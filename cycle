@@ -1,0 +1,626 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+from scipy.signal import get_window, detrend, find_peaks, welch
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from statsmodels.tsa.stattools import adfuller
+from statsmodels.tsa.seasonal import seasonal_decompose
+import plotly.express as px
+from fredapi import Fred
+import pytz
+import yfinance as yf
+from datetime import datetime, timedelta
+
+def main():
+    st.title("String's Cycle Man Arc v1")
+
+    data_source = st.radio("Select Data Source", ["Upload CSV", "Yahoo Finance", "FRED"])
+
+    # Initialize session state to store historical list of tickers or FRED series IDs
+    if "history" not in st.session_state:
+        st.session_state["history"] = []
+
+    if data_source == "Upload CSV":
+        uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+        if uploaded_file is not None:
+            process_file(uploaded_file)
+    elif data_source == "Yahoo Finance":
+        st.write("Historical Tickers: ", ", ".join(st.session_state["history"]))
+        ticker = st.text_input("Enter Ticker", value="AAPL" if not st.session_state["history"] else st.session_state["history"][-1])
+        if ticker and ticker not in st.session_state["history"]:
+            st.session_state["history"].append(ticker)
+        fetch_yfinance_data(ticker)
+    elif data_source == "FRED":
+        st.write("Historical Series IDs: ", ", ".join(st.session_state["history"]))
+        series_id = st.text_input("Enter Series ID", value="" if not st.session_state["history"] else st.session_state["history"][-1])
+        if series_id and series_id not in st.session_state["history"]:
+            st.session_state["history"].append(series_id)
+        fetch_fred_data(series_id)
+    else:
+        st.warning("Please upload a CSV file.")
+
+def process_file(uploaded_file):
+    df = pd.read_csv(uploaded_file)
+    time_column = st.selectbox('Select Time Column', df.columns, key='time_column_select_process_file')
+    value_column = st.selectbox('Select Value Column', df.columns, key='value_column_select_process_file')
+    handle_data(df, time_column, value_column)
+
+def process_data(df, time_column, value_column):
+    # Ensure the specified time_column exists in the DataFrame
+    if time_column not in df.columns:
+        raise ValueError(f"The specified time_column '{time_column}' does not exist in the DataFrame.")
+
+    # Convert the specified column to datetime, if it's not already
+    if not pd.api.types.is_datetime64_any_dtype(df[time_column]):
+        df[time_column] = pd.to_datetime(df[time_column], errors='coerce')
+        df[time_column] = df[time_column].dt.tz_localize(None)
+        
+    # Handle any conversion errors (e.g., unparseable date strings)
+    if df[time_column].isnull().any():
+        raise ValueError(f"Unable to convert some values in '{time_column}' to datetime.")
+
+    # Sort the DataFrame based on the time_column
+    df.sort_values(by=time_column, inplace=True)
+
+    # Set the time_column as the index of the DataFrame
+    df.set_index(time_column, inplace=True)
+
+    # Optional: Ensure the specified value_column is numeric
+    if not pd.api.types.is_numeric_dtype(df[value_column]):
+        raise ValueError(f"The specified value_column '{value_column}' is not numeric.")
+
+    # Numeric Data Check
+    if not np.issubdtype(df[value_column].dtype, np.number):
+        st.error(f'The selected value column, {value_column}, is not numeric.')
+        return
+
+    # Call the function to perform analysis and visualization
+    analyze_and_visualize_data(df, value_column)
+    
+def handle_data(df, time_column, value_column):
+    df = df.copy()  # Create a copy to avoid modifying the original DataFrame
+    process_data(df, time_column, value_column)
+    
+def fetch_yfinance_data(ticker):
+    if ticker:
+        date_option = st.selectbox("Select Date Range", ["Last Twelve Months", "Last Five Years", "Last Ten Years", "Manual Range", "Entire History"], key='date_range_select_fetch_yfinance')
+        
+        if date_option == "Manual Range":
+            start_date = st.date_input("Start Date", pd.to_datetime("2020-01-01"), key='start_date_input_fetch_yfinance')
+            end_date = st.date_input("End Date", pd.to_datetime("2021-12-31"), key='end_date_input_fetch_yfinance')
+            if start_date > end_date:
+                st.error("Start date should be earlier than end date")
+                return
+        elif date_option == "Entire History":
+            start_date = None
+            end_date = None
+        else:
+            end_date = datetime.today()
+            if date_option == "Last Twelve Months":
+                start_date = end_date - timedelta(days=365)
+            elif date_option == "Last Five Years":
+                start_date = end_date - timedelta(days=5*365)
+            elif date_option == "Last Ten Years":
+                start_date = end_date - timedelta(days=10*365)
+        
+        # Check if the selected time period has changed
+        current_time_period = (start_date, end_date)
+        if 'previous_time_period' in st.session_state and st.session_state['previous_time_period'] == current_time_period:
+            # The time period has not changed, use the data in st.session_state
+            pass
+        else:
+            # The time period has changed, fetch the data again and update st.session_state
+            st.session_state['previous_time_period'] = current_time_period
+            if st.button("Fetch Data", key='fetch_data_button_fetch_yfinance'):
+                data = yf.download(ticker, start=start_date, end=end_date)
+                if data is not None and not data.empty:
+                    data.reset_index(inplace=True)
+                    data.rename(columns={'Date': 'Time'}, inplace=True)
+                    st.session_state['df'] = data
+                    st.write(st.session_state['df'].head())
+
+        if 'df' in st.session_state:
+            time_column = st.selectbox('Select Time Column', st.session_state['df'].columns, index=list(st.session_state['df'].columns).index('Time'), key='time_column_select_fetch_yfinance')
+            value_column = st.selectbox('Select Value Column', st.session_state['df'].columns, index=list(st.session_state['df'].columns).index('Close'), key='value_column_select_fetch_yfinance')
+            handle_data(st.session_state['df'].copy(), time_column, value_column)
+
+
+        
+def fetch_fred_data(series_id):
+    if series_id:
+        api_key = st.text_input("Enter FRED API Key")
+        if not api_key:
+            st.error("Please provide a FRED API key.")
+            return
+        fred = Fred(api_key=api_key)
+        if st.button("Fetch Data"):
+            data = fred.get_series(series_id)
+            if data is not None and not data.empty:
+                df = pd.DataFrame(data, columns=["Value"]).reset_index()
+                df.columns = ["Time", "Value"]
+                time_column = st.selectbox('Select Time Column', df.columns, index=list(df.columns).index('Time'))
+                value_column = st.selectbox('Select Value Column', df.columns, index=list(df.columns).index('Value'), key='value_column_select_fetch_fred')
+                handle_data(df, time_column, value_column)  # Replace the existing call to process_data
+    
+def analyze_and_visualize_data(df, value_column):    
+       # Additional Preprocessing
+        apply_moving_average = st.checkbox('Apply Moving Average', key='apply_moving_average_key')
+        if apply_moving_average:
+            window_size = st.slider('Window Size for Moving Average', 3, 31, 5, step=2)  # odd numbers only
+            df['Smoothed Value'] = df[value_column].rolling(window_size, center=True).mean()
+            df[value_column].fillna(df[value_column].mean(), inplace=True)
+
+
+        sample_spacing = pd.to_timedelta(np.median(np.diff(df.index))).days
+
+        # Robustness Checks: ADF Test for Stationarity
+        st.subheader("Robustness Checks")
+        adf_result = adfuller(df[value_column])
+        st.write(f"ADF Test P-value: {adf_result[1]} (Lower p-value indicates stationarity)")
+
+        # Feature Engineering: Peak Detection
+        peaks, _ = find_peaks(df[value_column])
+        st.write(f"Number of Peaks detected: {len(peaks)}")
+
+        # Cycle Decomposition
+        st.subheader("Cycle Decomposition")
+        period = st.slider('Decomposition Period', 1, len(df)//2, 1)
+        result = seasonal_decompose(df[value_column], model='multiplicative', period=period)
+        result.plot()
+        plt.show()
+
+
+
+        # Additional preprocessing options from the new code
+        preprocessing_option = st.selectbox("Additional Preprocessing Method", ["None", "Standardization", "Normalization"])
+        if preprocessing_option == "Standardization":
+            scaler = StandardScaler()
+            df[value_column] = scaler.fit_transform(df[[value_column]])
+        elif preprocessing_option == "Normalization":
+            scaler = MinMaxScaler()
+            df[value_column] = scaler.fit_transform(df[[value_column]])
+
+        
+        # Analysis options
+        top_n = st.slider("Top N Frequencies", 1, 20, 7)
+        freq_range = st.slider(
+            "Frequency Range (in cycles per day)",
+            0.0, 10.0, (0.0, 1.0), 0.001,
+            format="%f",
+            help="Specify the range of frequencies to consider in the analysis."
+        )
+        identification_method = st.selectbox("Identification Method", ["Statistical Significance", "Amplitude"])
+        if identification_method == "Statistical Significance":
+            significance_level = st.slider("Statistical Significance Level (in -log10(p))", 0.0, 5.0, 2.0, 0.1, format="%f", help="Statistical significance in this context refers to the likelihood that a frequency's amplitude is not due to random chance. A lower significance level will identify more frequencies as significant.")
+        else:
+            amplitude_threshold = st.slider("Amplitude Threshold", 0.0, max(np.abs(np.fft.fft(df[value_column]))), 0.0, 0.01, format="%f", help="Amplitude threshold is the minimum amplitude a frequency must have to be considered significant.")
+        # Calculate the inferred frequency
+        inferred_frequency = float(pd.to_timedelta(np.median(np.diff(df.index))).days)
+        
+        # Update the selectbox options to include the inferred frequency
+        sample_spacing_option = st.selectbox(
+            "Sample Spacing",
+            ["Daily", "Monthly", "Quarterly", "Annual", "Custom", f"Inferred: [{inferred_frequency}]"]
+        )
+        
+        if sample_spacing_option == "Custom":
+            sample_spacing = st.number_input("Enter custom sample spacing (e.g., 1 for daily data, 0.25 for quarterly data):", value=1.0)
+        elif sample_spacing_option == f"Inferred: [{inferred_frequency}]":
+            sample_spacing = inferred_frequency
+        else:
+            sample_spacing_dict = {"Daily": 1, "Monthly": 1/30, "Quarterly": 1/90, "Annual": 1/365}
+            sample_spacing = sample_spacing_dict[sample_spacing_option]
+
+        # Determine the maximum forecast period for each unit
+        max_date = pd.Timestamp('2262-04-11')
+        days_to_max_date = (max_date - df.index[-1]).days
+        max_forecast_period_days = days_to_max_date
+        max_forecast_period_months = days_to_max_date / 30  # changed to floating-point division
+        max_forecast_period_quarters = days_to_max_date / 90  # changed to floating-point division
+        max_forecast_period_years = days_to_max_date / 365  # changed to floating-point division
+
+        # Get user input for the forecast unit
+        try:
+            forecast_unit = st.selectbox("Forecast Unit", ["Days", "Months", "Quarters", "Years"])
+        except Exception as e:
+            st.error(f'Error with forecast unit selectbox: {e}')
+
+        # Set the range of the forecast_period_input slider based on the selected unit
+        if forecast_unit == "Days":
+            max_forecast_period = max_forecast_period_days
+        elif forecast_unit == "Months":
+            max_forecast_period = max_forecast_period_months
+        elif forecast_unit == "Quarters":
+            max_forecast_period = max_forecast_period_quarters
+        else:  # Years
+            max_forecast_period = max_forecast_period_years
+
+        max_forecast_period = int(max_forecast_period)  # Ensure max_forecast_period is int
+
+        try:
+            forecast_period_input = st.slider("Forecast Period", 1, max_forecast_period, 30)
+        except Exception as e:
+            st.error(f'Error with forecast slider: {e}')
+
+        # Adjusting the forecast range and unit immediately after input
+        max_date = pd.Timestamp('2262-04-11')
+        days_to_max_date = (max_date - df.index[-1]).days
+
+        if forecast_unit == "Days":
+            max_forecast_period = min(forecast_period_input, days_to_max_date)
+        elif forecast_unit == "Months":
+            max_forecast_period = min(forecast_period_input, days_to_max_date / 30)  # changed to floating-point division
+        elif forecast_unit == "Quarters":
+            max_forecast_period = min(forecast_period_input, days_to_max_date / 90)  # changed to floating-point division
+        else:  # Years
+            max_forecast_period = min(forecast_period_input, days_to_max_date / 365)  # changed to floating-point division
+
+        forecast_period = max_forecast_period * (30 if forecast_unit == "Months" else 
+                                                 (90 if forecast_unit == "Quarters" else 
+                                                  (365 if forecast_unit == "Years" else 1)))  # This is now in days, regardless of the forecast unit
+
+
+
+        
+        # Preprocessing
+        log_diff = st.checkbox("Log Differencing", key='log_diff_key', help="Useful for stabilizing the variance in exponential growth or decline")
+        if log_diff:
+            df['Processed Value'] = np.log(df[value_column]).diff()
+            df.dropna(inplace=True)
+        else:
+            df['Processed Value'] = df[value_column]
+
+        normalize = st.checkbox("Normalize", key='normalize_key', help="Scales the data to have a mean of 0 and a variance of 1")
+        if normalize:
+            df['Processed Value'] = (df['Processed Value'] - df['Processed Value'].mean()) / df['Processed Value'].std()
+
+        detrend_data = st.checkbox("Detrend Data", key='detrend_data_key', help="Removes linear trends in the data")
+        if detrend_data:
+            df['Processed Value'] = detrend(df['Processed Value'])
+
+        remove_outliers = st.checkbox("Remove Outliers", key='remove_outliers_key', help="Removes data points that are statistically significant outliers")
+        if remove_outliers:
+            z_scores = np.abs(stats.zscore(df['Processed Value']))
+            df = df[z_scores < 3]  # Remove data points that are 3 standard deviations away from the mean
+
+        scale_data = st.checkbox("Scale Data", key='scale_data_key', help="Scales the data to a specified range")
+        if scale_data:
+            scale_range = st.slider("Scale Range", float(0), float(10), (0.0, 1.0), help="The range to scale the data to")
+            df['Processed Value'] = (df['Processed Value'] - df['Processed Value'].min()) / (df['Processed Value'].max() - df['Processed Value'].min()) * (scale_range[1] - scale_range[0]) + scale_range[0]
+
+        # Windowing options
+        apply_window = st.checkbox("Apply Windowing", key='apply_window_key', help="Applies a window function to the data to reduce edge effects")
+        if apply_window:
+            window_type = st.selectbox("Window Type", ["hanning", "hamming", "blackman", "bartlett"], help="The type of window function to apply. Windowing helps mitigate spectral leakage by tapering the edges of the signal.")
+            window_size = st.slider("Window Size", 1, len(df), len(df), help="The size of the window function. A larger window size reduces spectral leakage but also reduces resolution in the frequency domain.")
+
+
+        if apply_window:
+            window = get_window(window_type, len(df['Processed Value']))
+            df['Processed Value'] = df['Processed Value'] * window
+
+
+        # FFT analysis
+        fft_vals = np.fft.fft(df['Processed Value'])  # Changed to 'Processed Value'
+        fft_freq = np.fft.fftfreq(len(df['Processed Value']), d=sample_spacing)  # Changed to 'Processed Value'
+        st.write(f'FFT Values: {fft_vals}')  # Debugging output
+        st.write(f'FFT Frequencies: {fft_freq}')  # Debugging output
+
+        # Only consider non-negative frequencies and within the selected frequency range
+        positive_indices = np.logical_and(fft_freq > 0, fft_freq < np.inf)
+        fft_vals = fft_vals[positive_indices]
+        fft_freq = fft_freq[positive_indices]        # Condition to remove any cycles with infinite days
+        finite_indices = np.where(np.isfinite(1 / (fft_freq * sample_spacing)))[0]
+        freq_range_condition = np.logical_and(fft_freq >= freq_range[0], fft_freq <= freq_range[1])
+        st.write(f'Frequency Range Condition: {freq_range_condition}')  # Debugging output
+        fft_vals = fft_vals[freq_range_condition]
+        fft_freq = fft_freq[freq_range_condition]
+
+        # Identify prominent frequencies based on the chosen method
+        if identification_method == "Statistical Significance":
+            z_scores = np.abs(stats.zscore(np.abs(fft_vals)))
+            significant_indices = np.where(z_scores > -np.log10(10**(-significance_level)))[0]
+        else:
+            significant_indices = np.where(np.abs(fft_vals) > amplitude_threshold)[0]
+            st.write(f'Amplitude Threshold: {amplitude_threshold}')  # Debugging output
+
+
+        # If significant indices are found, intersect with top N indices; otherwise, just use top N indices
+        top_indices = np.argsort(np.abs(fft_vals))[-top_n:]
+        st.write(f'Top Indices: {top_indices}')  # Debugging output
+
+        if len(significant_indices) > 0:
+            top_indices = np.intersect1d(top_indices, significant_indices)
+
+        st.write(f'Final Top Indices: {top_indices}')  # Debugging output
+        # Data Visualization Enhancements
+        fig_hist = px.histogram(df, x=value_column, title='Histogram')
+        st.plotly_chart(fig_hist)
+
+        fig_box = px.box(df, y=value_column, title='Box Plot')
+        st.plotly_chart(fig_box)
+
+
+        # Colors for plotting
+        colors = plt.cm.tab20.colors
+        color_gen = (colors[i % len(colors)] for i in range(len(top_indices)))
+
+        # Plot
+        fig, axes = plt.subplots(len(top_indices) + 1, 1, figsize=(10, 20), constrained_layout=False)
+        plt.subplots_adjust(hspace=1.0)  # Adjust space between subplots to 1.0
+
+        # Initialize composite_signal
+        composite_signal = np.zeros(len(df) + forecast_period)
+
+        # Ensure the forecast period doesn't exceed the maximum allowable date
+        last_date_in_df = df.index[-1]  # Get the last date in the DataFrame
+        forecast_period = int(forecast_period)  # Ensure forecast_period is an integer
+        forecast_end_date = last_date_in_df + pd.to_timedelta(forecast_period, unit='D')  # Always use 'D' for days
+        
+        if forecast_end_date > max_date:
+            st.error(f'The forecast period is too large and exceeds the maximum allowable date of {max_date}. Please reduce the forecast period.')
+            return  # Exit the function to prevent further processing
+        
+        # If the check passes, then you can create your full_date_range as before
+        full_date_range = pd.date_range(df.index[0], periods=len(df) + forecast_period, freq='D')  # Use 'D' for daily frequency
+
+                
+        for i, idx in enumerate(top_indices):
+            freq = fft_freq[idx]
+            amp = np.abs(fft_vals[idx])
+            phase = np.angle(fft_vals[idx])
+            time_values = np.arange(len(df) + forecast_period)
+            signal = amp * np.sin(2 * np.pi * freq * time_values * sample_spacing + phase)
+            composite_signal += signal  # Accumulate signal into composite_signal
+            ax = axes[i]
+            ax.plot(df.index, signal[:len(df)], color=next(color_gen), label=f'Cycle with period {1/(freq*sample_spacing):.2f} days')
+            ax.legend()
+            ax.set_title(f'Cycle with period {1/(freq*sample_spacing):.2f} days')
+
+        # Overlaying the composite cycle, composite forecast, and actual data
+        ax1 = axes[-1]  # Use the last axes for this plot
+
+        print(len(composite_signal), len(full_date_range))  # Check lengths
+        print(composite_signal)  # Inspect values
+        
+        # Plot actual data
+        ax1.plot(df.index, df[value_column], color='blue', label='Actual Data')
+        ax1.set_ylabel('Actual Data', color='blue')
+        ax1.tick_params('y', colors='blue')
+
+        # Create a secondary y-axis for the composite cycle and forecast
+        ax2 = ax1.twinx()
+
+        # Compute and plot composite cycle + forecast
+        ax2.plot(full_date_range, composite_signal, color='black', linestyle='solid', label='Composite Cycle + Forecast')
+        ax2.set_ylabel('Composite Cycle and Forecast', color='black')
+        ax2.tick_params('y', colors='black')
+
+        ax1.legend(loc='upper left')
+        ax2.legend(loc='upper right')
+
+        plt.tight_layout()
+        st.pyplot(fig)
+    
+        # After calculating fft_vals and fft_freq
+
+        # Convert frequency to cycles per day to match your frequency range slider
+        freq_in_cycles_per_day = fft_freq / sample_spacing
+
+        # Compute power (amplitude squared)
+        power = np.abs(fft_vals)**2
+
+        def format_frequency(freq):
+            # Convert frequency in cycles per day to a human-readable string
+            if freq <= 1/365:
+                # Frequency is less than or equal to one cycle per year
+                return f'{365*freq:.2f} cycles/year'  # Present in years
+            elif freq <= 1/30:
+                # Frequency is less than or equal to one cycle per month
+                return f'{30*freq:.2f} cycles/month'  # Present in months
+            else:
+                # Frequency is more than one cycle per month
+                return f'{freq:.2f} cycles/day'  # Present in days
+
+        # Assuming fft_vals and fft_freq have been computed
+        # Also assuming sample_spacing and top_indices have been defined
+
+        # Convert frequency to cycles per day to match your frequency range slider
+        freq_in_cycles_per_day = fft_freq / sample_spacing
+
+        # Compute power (amplitude squared)
+        power = np.abs(fft_vals)**2
+
+        # Plot the periodogram
+        plt.figure(figsize=(10, 5))
+        plt.semilogy(freq_in_cycles_per_day, power)  # Log scale for y-axis
+        plt.title('Periodogram')
+        plt.xlabel('Frequency (cycles per day)')
+        plt.ylabel('Power Spectrum')
+
+        # Identify and annotate prominent frequencies
+        for idx in top_indices:
+            freq = freq_in_cycles_per_day[idx]
+            amp = power[idx]
+            annotation_label = f'{format_frequency(freq)}\nPower: {amp:.2e}'
+            
+            # Adjust the position of the annotation to avoid overlapping
+            text_x = freq
+            text_y = amp * 1.10  # Slightly above the actual amplitude for clarity
+            
+            plt.annotate(
+                annotation_label,
+                xy=(freq, amp),
+                xytext=(text_x, text_y),
+                textcoords='data',
+                arrowprops=dict(facecolor='black', arrowstyle='->', connectionstyle='arc3'),
+                ha='center'  # Center align the annotation horizontally
+            )
+
+        st.pyplot(plt)  # Display plot in Streamlit
+
+                # Apply a window to the signal
+        window_type = 'hanning'
+        window = get_window(window_type, len(df[value_column]))
+        windowed_signal = df[value_column] * window
+
+        def annotate_peaks(frequencies, power, ax, height_threshold):
+            # Find peaks with a minimum height
+            peaks, _ = find_peaks(power, height=height_threshold)
+            for peak in peaks:
+                freq = frequencies[peak]
+                pwr = power[peak]
+                
+                # Convert frequency to a more readable format
+                if freq <= 1/365:
+                    label = f'{365*freq:.1f} cycles/year'
+                elif freq <= 1/30:
+                    label = f'{30*freq:.1f} cycles/month'
+                else:
+                    label = f'{freq:.2f} cycles/day'
+                
+                # Annotate the peak frequency
+                ax.annotate(
+                    f'{label}\nPower: {pwr:.2e}',
+                    xy=(freq, pwr),
+                    xytext=(5, 5),
+                    textcoords='offset points',
+                    arrowprops=dict(arrowstyle='->', color='red')
+                )
+
+        # Set the height threshold for large peaks
+        # This can be a fixed value or calculated from the power spectrum, such as a multiple of the mean or median
+        height_threshold = np.mean(power) * 2  # For example, twice the mean power
+
+        # Compute the power spectral density
+        sampling_frequency = 1 / pd.to_timedelta(np.median(np.diff(df.index))).days
+        frequencies, power = welch(windowed_signal, fs=sampling_frequency, window=window_type, nperseg=len(windowed_signal))
+
+        # Plot the power spectral density
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.semilogy(frequencies, power)
+        ax.set_title('Power Spectral Density')
+        ax.set_xlabel('Frequency [Hz]')
+        ax.set_ylabel('Power')
+
+        # Call the annotation function with the height threshold
+        annotate_peaks(frequencies, power, ax, height_threshold)
+
+        # Display the plot in Streamlit
+        st.pyplot(fig)
+
+        plt.close('all')
+
+
+
+        def walk_forward_validation(df, initial_train_size, steps_ahead, value_column, fft_threshold_multiplier, max_freq=None):
+            """
+            Perform walk-forward validation for time series data using FFT for predictions.
+
+            :param df: DataFrame containing the time series data.
+            :param initial_train_size: Initial size of the training dataset.
+            :param steps_ahead: Number of steps ahead to predict.
+            :param value_column: Name of the column in df that contains the values to predict.
+            :param fft_threshold_multiplier: Multiplier for the FFT amplitude threshold.
+            :param max_freq: Maximum frequency to consider in the FFT output.
+            :return: Tuple of predictions and actual values.
+            """
+            # Validate input
+            if not isinstance(df, pd.DataFrame):
+                raise ValueError("df must be a pandas DataFrame.")
+            if not isinstance(initial_train_size, int) or initial_train_size <= 0:
+                raise ValueError("initial_train_size must be a positive integer.")
+            if not isinstance(steps_ahead, int) or steps_ahead <= 0:
+                raise ValueError("steps_ahead must be a positive integer.")
+            if value_column not in df.columns:
+                raise ValueError(f"Column '{value_column}' not found in DataFrame.")
+
+            # Initialize lists to store predictions and actual values
+            predictions = []
+            actual = []
+
+            # Efficient FFT computation setup
+            w = np.fft.fftfreq(initial_train_size)
+            if max_freq:
+                w = w[:max_freq]  # limit to max_freq if specified
+            else:
+                w = w[:initial_train_size // 2]  # keep only positive frequencies
+
+            # Loop over the time series data
+            for i in range(initial_train_size, len(df) - steps_ahead + 1):
+                train_data = df[value_column].iloc[:i].to_numpy()
+                test_data = df[value_column].iloc[i:i + steps_ahead].to_numpy()
+
+                # Apply FFT on the train data
+                fft_vals = np.fft.fft(train_data)
+                fft_theoretical = 2.0 * np.abs(fft_vals[:len(w)]) / initial_train_size
+
+                # Identify significant frequencies
+                threshold = fft_threshold_multiplier * np.mean(fft_theoretical)
+                significant_indices = np.where(fft_theoretical > threshold)[0]
+
+                # Predict using significant frequencies
+                prediction = np.zeros(steps_ahead)
+                for idx in significant_indices:
+                    amplitude = fft_theoretical[idx]
+                    phase = np.angle(fft_vals[idx])
+                    prediction += amplitude * np.cos(2 * np.pi * w[idx] * np.arange(i, i + steps_ahead) + phase)
+
+                # Store the predictions and actual values
+                predictions.extend(prediction)
+                actual.extend(test_data)
+
+            return predictions, actual
+
+        # Parameters to tune
+        fft_threshold_multipliers = [0.5, 1.0, 1.5]  # Example multipliers for threshold
+        max_freqs = [None, 100, 200]  # Example max frequencies
+
+        # Storage for tuning results
+        tuning_results = []
+
+        # Loop over the parameters to tune
+        for multiplier in fft_threshold_multipliers:
+            for max_freq in max_freqs:
+                predictions, actual = walk_forward_validation(
+                    df=df,
+                    initial_train_size=600,
+                    steps_ahead=1,
+                    value_column='Close',
+                    fft_threshold_multiplier=multiplier,
+                    max_freq=max_freq
+                )
+                
+                # Evaluate predictions and store results
+                mse = np.mean((np.array(actual) - np.array(predictions))**2)
+                tuning_results.append((multiplier, max_freq, mse))
+
+        # Find the best parameters based on the evaluation metric
+        best_params = min(tuning_results, key=lambda x: x[2])
+
+        # Output the best parameters and their performance
+        print(f"Best FFT Threshold Multiplier: {best_params[0]}")
+        print(f"Best Max Frequency: {best_params[1]}")
+        print(f"Best MSE: {best_params[2]}")
+
+        # Now you can use the best_params to run the final walk-forward validation
+        predictions, actual = walk_forward_validation(
+            df=df,
+            initial_train_size=600,
+            steps_ahead=1,
+            value_column='Close',
+            fft_threshold_multiplier=best_params[0],
+            max_freq=best_params[1]
+        )
+
+        # Plot the results
+        fig, ax = plt.subplots()
+        ax.plot(actual, label='Actual Data')
+        ax.plot(predictions, label='Predictions')
+        ax.legend()
+        st.pyplot(fig)
+        
+if __name__ == "__main__":
+    main()
