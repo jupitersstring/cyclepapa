@@ -19,10 +19,13 @@ on:
         default: "30"
       min_score:
         description: "Minimum composite score to include"
-        default: "4"
+        default: "0"
   schedule:
     # Sunday 23:00 UTC -- after US market close, before Monday open
     - cron: "0 23 * * 0"
+
+permissions:
+  contents: write
 
 jobs:
   scan:
@@ -44,20 +47,21 @@ jobs:
         env:
           TIMEFRAME: ${{ github.event.inputs.timeframe || 'both' }}
           TOP:       ${{ github.event.inputs.top || '30' }}
-          MIN_SCORE: ${{ github.event.inputs.min_score || '4' }}
+          MIN_SCORE: ${{ github.event.inputs.min_score || '0' }}
         run: |
-          mkdir -p scan_out
+          mkdir -p results
           python ord_scanner.py \
             --tf "$TIMEFRAME" \
             --top "$TOP" \
             --min-score "$MIN_SCORE" \
-            --out-dir scan_out | tee scan_out/scan_report.txt
+            --out-dir results 2>&1 | tee results/scan_report.txt
 
       - name: Upload scan artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ord-scan-${{ github.run_id }}
-          path: scan_out/
+          path: results/
           retention-days: 30
 
       - name: Append summary
@@ -68,9 +72,23 @@ jobs:
             echo ""
             echo "Timeframe: \`${TIMEFRAME:-both}\`"
             echo ""
-            if [ -f scan_out/scan_report.txt ]; then
+            if [ -f results/scan_report.txt ]; then
               echo '```'
-              cat scan_out/scan_report.txt
+              cat results/scan_report.txt
               echo '```'
             fi
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit results back to branch
+        if: success()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f results/
+          if git diff --cached --quiet; then
+            echo "no result changes to commit"
+            exit 0
+          fi
+          git commit -m "ci: scanner results for run ${{ github.run_id }} [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
