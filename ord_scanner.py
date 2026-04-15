@@ -72,16 +72,40 @@ TREND_MA = 50
 # ---------------------------------------------------------------------------
 
 def fetch_sp500_tickers() -> List[str]:
-    """Scrape the current S&P 500 constituent list from Wikipedia."""
-    url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    """Fetch the current S&P 500 constituent list.
+
+    Wikipedia blocks default Python user-agents with 403, so route the
+    request through `requests` with a real UA and hand the HTML to
+    pandas.read_html. Falls back to a static datahub mirror, then to a
+    hardcoded large-cap list.
+    """
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    # primary: Wikipedia
     try:
-        tables = pd.read_html(url)
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
         syms = tables[0]["Symbol"].astype(str).tolist()
+        return [s.replace(".", "-") for s in syms]
     except Exception as e:
-        print(f"[warn] wikipedia fetch failed ({e}); using fallback list", file=sys.stderr)
-        return FALLBACK_SP500
-    # yfinance uses '-' for class shares (BRK.B -> BRK-B)
-    return [s.replace(".", "-") for s in syms]
+        print(f"[warn] wikipedia fetch failed ({e}); trying datahub mirror", file=sys.stderr)
+    # secondary: datahub constituents CSV
+    try:
+        r = requests.get(
+            "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        syms = pd.read_csv(io.StringIO(r.text))["Symbol"].astype(str).tolist()
+        return [s.replace(".", "-") for s in syms]
+    except Exception as e:
+        print(f"[warn] datahub fetch failed ({e}); using fallback list", file=sys.stderr)
+    return FALLBACK_SP500
 
 
 # Minimal fallback if wiki is unreachable (top 50 by weight, roughly).
@@ -245,8 +269,14 @@ def low_vol_retest(df: pd.DataFrame, legs: List[Dict]) -> Dict:
     origin_vol = float(df["Volume"].iloc[origin_idx])
     if origin_vol <= 0:
         return {"signal": False}
-    # look for any bar in the current up leg that revisited the origin low
-    leg_slice = df.iloc[origin_idx:current["end_idx"] + 1]
+    # search the *current up leg* for any bar that revisited the origin low
+    # on shrinking volume. Exclude the origin bar itself so the ratio can't
+    # trivially resolve to 1.0.
+    start = origin_idx + 1
+    end   = current["end_idx"] + 1
+    if end <= start:
+        return {"signal": False}
+    leg_slice = df.iloc[start:end]
     origin_low = float(df["Low"].iloc[origin_idx])
     probes = leg_slice[leg_slice["Low"] <= origin_low * 1.01]
     if probes.empty:
