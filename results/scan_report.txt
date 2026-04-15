@@ -1,72 +1,71 @@
-[warn] wikipedia fetch failed (HTTP Error 403: Forbidden); using fallback list
-[universe] 50 tickers
+[universe] 503 tickers
 
 ================  WEEKLY BREAKOUT CANDIDATES  ================
-[scan] downloading 50 tickers @ 1wk (period=5y)
-ticker  score  close  ov_sig ov_str  ov_shrink  ov_expand  spv_sig  spv_ratio  squeeze  released  bw_pctile  asym  above_ma50
-  AAPL      4 258.83   False   NONE       0.98       0.93    False        1.0    False      True       0.09  1.16        True
-   LLY      4 922.50   False   NONE       0.94       0.65    False        1.0    False      True       0.32  1.00        True
-   AMD      4 255.07   False    NaN        NaN        NaN    False        NaN    False      True       0.18  0.89        True
-  AVGO      4 380.78   False   NONE       0.63       0.96    False        1.0    False      True       0.31  0.84        True
-   JPM      4 311.12   False    NaN        NaN        NaN    False        NaN    False      True       0.42  0.83        True
-   BAC      4  53.35   False    NaN        NaN        NaN    False        NaN    False      True       0.47  0.82        True
- GOOGL      4 332.91   False    NaN        NaN        NaN    False        NaN    False      True       0.20  0.77        True
-  TSLA      3 364.20   False    NaN        NaN        NaN    False        NaN    False      True       0.21  1.04       False
-  META      3 662.49   False   NONE       1.75       0.75    False        1.0    False      True       0.30  1.03       False
-  ABBV      3 210.26   False    NaN        NaN        NaN    False        NaN     True     False       0.18  0.97        True
-  NVDA      3 196.51   False   NONE       0.88       0.77    False        1.0     True     False       0.05  0.81        True
-   DIS      3 102.59   False   NONE       0.84       0.79    False        1.0    False      True       0.37  0.80       False
-   MRK      2 119.96   False   NONE       1.06       0.85    False        1.0    False     False       0.77  1.23        True
- BRK-B      2 477.54   False    NaN        NaN        NaN    False        NaN     True     False       0.23  0.98       False
-  GOOG      2 330.58   False    NaN        NaN        NaN    False        NaN    False     False       0.23  0.76        True
-   PEP      1 155.72   False   NONE       1.01       0.96    False        1.0    False     False       0.95  1.19        True
-   WMT      1 125.05   False   NONE       0.90       0.70    False        1.0    False     False       0.51  1.08        True
-    KO      1  75.90   False   NONE       0.82       0.83    False        1.0    False     False       0.87  1.06        True
-    VZ      1  45.48   False    NaN        NaN        NaN    False        NaN    False     False       0.96  1.04        True
-   JNJ      1 240.10   False    NaN        NaN        NaN    False        NaN    False     False       0.94  1.02        True
-   TXN      1 218.87   False   NONE       0.82       0.80    False        1.0    False     False       0.87  1.02        True
-  COST      1 974.80   False    NaN        NaN        NaN    False        NaN    False     False       0.63  1.00        True
-   CAT      1 794.25   False    NaN        NaN        NaN    False        NaN    False     False       0.77  1.00        True
-  CSCO      1  82.61   False   NONE       0.77       0.85    False        1.0     True     False       0.27  0.99        True
-   LIN      1 499.65   False   NONE       1.03       0.65    False        1.0    False     False       0.94  0.98        True
-   CVX      1 187.02   False    NaN        NaN        NaN    False        NaN    False     False       0.94  0.95        True
-  AMZN      1 249.02   False    NaN        NaN        NaN    False        NaN    False     False       0.53  0.92        True
-   XOM      1 149.24   False    NaN        NaN        NaN    False        NaN    False     False       0.95  0.84        True
-   UNH      1 314.19   False    NaN        NaN        NaN    False        NaN    False     False       0.86  0.82        True
-    GE      1 318.00   False   NONE       1.12       0.79    False        1.0    False     False       0.38  0.80        True
+[scan] downloading 503 tickers @ 1wk (period=5y)
+ticker  score   close  ov_sig ov_str  ov_shrink  ov_expand  spv_sig  spv_ratio  squeeze  released  bw_pctile  asym  above_ma50
+  SBAC      6  218.08   False    NaN        NaN        NaN    False        NaN    False      True       0.66  1.57        True
+   HPE      5   24.47   False    NaN        NaN        NaN    False        NaN    False      True       0.41  1.31        True
+     L      5  110.28   False   NONE       0.96       0.81     True       0.81     True     False       0.14  1.05        True
+   AFL      5  111.94   False   NONE       1.07       0.83     True       0.59     True     False       0.09  1.02        True
+   MAA      5  126.34   False   NONE       0.82       0.85     True       0.87    False      True       0.31  0.93       False
+  CINF      5  163.35   False   NONE       1.08       0.58     True       0.83     True     False       0.02  0.90        True
+  CDNS      5  292.37   False   NONE       0.66       0.85     True       0.70    False      True       0.35  0.89       False
+   ALL      5  214.88   False   NONE       0.87       0.80     True       0.87     True     False       0.08  0.84        True
+  TSCO      4   45.02   False   NONE       0.84       0.81    False        NaN    False      True       0.86  1.32       False
+   HON      4  233.24   False   NONE       1.01       0.86     True       0.72    False     False       0.92  1.26        True
+  DXCM      4   62.95   False    NaN        NaN        NaN    False        NaN    False      True       0.12  1.23       False
+  AAPL      4  258.83   False   NONE       0.98       0.93    False       1.20    False      True       0.09  1.16        True
+    LH      4  268.87   False    NaN        NaN        NaN    False        NaN    False      True       0.23  1.09        True
+     F      4   12.71   False    NaN        NaN        NaN    False        NaN    False      True       0.41  1.03        True
+   ZTS      4  121.11   False   NONE       0.96       0.57     True       0.60     True     False       0.12  1.03       False
+   CAH      4  214.95   False   NONE       1.18       0.71     True       0.65    False     False       0.21  1.01        True
+  INCY      4   97.69   False    NaN        NaN        NaN    False        NaN    False      True       0.14  1.00        True
+   LLY      4  922.50   False   NONE       0.94       0.65    False        NaN    False      True       0.32  1.00        True
+   BLK      4 1054.56   False    NaN        NaN        NaN    False        NaN    False      True       0.58  0.99        True
+  TECH      4   58.66   False    NaN        NaN        NaN    False        NaN    False      True       0.79  0.97        True
+   SRE      4   96.16   False    NaN        NaN        NaN    False        NaN    False      True       0.55  0.92        True
+   STT      4  141.78   False    NaN        NaN        NaN    False        NaN    False      True       0.24  0.92        True
+   AMD      4  255.07   False    NaN        NaN        NaN    False        NaN    False      True       0.18  0.89        True
+   ZBH      4   96.52   False   NONE       0.91       0.77    False        NaN    False      True       0.28  0.89        True
+   MTD      4 1341.53   False   NONE       0.82       0.84    False       1.16    False      True       0.48  0.87        True
+  AVGO      4  380.78   False   NONE       0.63       0.96    False        NaN    False      True       0.31  0.84        True
+   EQR      4   61.36   False   NONE       0.68       0.87     True       0.77     True     False       0.07  0.84       False
+   JPM      4  311.12   False    NaN        NaN        NaN    False        NaN    False      True       0.42  0.83        True
+   BAC      4   53.35   False    NaN        NaN        NaN    False        NaN    False      True       0.47  0.82        True
+     C      4  129.58   False    NaN        NaN        NaN    False        NaN    False      True       0.33  0.82        True
 [write] full ranking -> results/ord_scan_weekly.csv
 
 ================  MONTHLY BREAKOUT CANDIDATES  ================
-[scan] downloading 50 tickers @ 1mo (period=max)
+[scan] downloading 503 tickers @ 1mo (period=max)
 ticker  score  close  ov_sig ov_str  ov_shrink  ov_expand  spv_sig  spv_ratio  squeeze  released  bw_pctile  asym  above_ma50
+    ED      6 111.66   False   NONE       0.87       0.80     True       0.85    False      True       0.43  1.08        True
+  CTRA      5  31.67   False    NaN        NaN        NaN    False        NaN    False      True       0.34  1.33        True
+  AMAT      5 395.64   False    NaN        NaN        NaN    False        NaN    False      True       0.86  1.30        True
+    CF      5 118.96   False    NaN        NaN        NaN    False        NaN    False      True       0.39  1.26        True
+   DVA      5 149.45   False    NaN        NaN        NaN    False        NaN    False      True       0.44  1.24        True
+   HST      5  20.91   False   NONE       1.15       0.82    False        NaN    False      True       0.35  1.20        True
   COST      5 974.80   False   NONE       1.06       0.87     True       0.87     True     False       0.00  1.09        True
- BRK-B      4 477.54   False   NONE       0.86       0.97    False       1.00     True     False       0.16  1.46        True
+   MAS      5  64.91   False   NONE       1.11       0.69     True       0.42     True     False       0.20  0.97        True
+  CPAY      5 320.48   False   NONE       1.35       0.63     True       0.33     True     False       0.23  0.95        True
+ BRK-B      4 477.54   False   NONE       0.86       0.97    False        NaN     True     False       0.16  1.46        True
+    EW      4  78.20   False    NaN        NaN        NaN    False        NaN    False      True       0.11  1.25       False
+   ADI      4 348.60   False   NONE       1.08       0.64    False        NaN    False      True       0.69  1.16        True
+   HSY      4 197.68   False    NaN        NaN        NaN    False        NaN    False      True       0.56  1.15        True
+   NEE      4  91.31   False    NaN        NaN        NaN    False        NaN    False      True       0.73  1.15        True
+    TT      4 470.57   False   NONE       0.80       0.74    False        NaN    False      True       0.18  1.14        True
+  COIN      4 184.41   False    NaN        NaN        NaN    False        NaN    False      True       0.26  1.13        True
+   COP      4 118.79   False    NaN        NaN        NaN    False        NaN    False      True       0.55  1.13        True
     VZ      4  45.48   False    NaN        NaN        NaN    False        NaN    False      True       0.52  1.10        True
+   VLO      4 235.58   False    NaN        NaN        NaN    False        NaN    False      True       0.78  1.09        True
+  DELL      4 184.51   False    NaN        NaN        NaN    False        NaN    False      True       0.66  1.07        True
+  KEYS      4 330.46   False    NaN        NaN        NaN    False        NaN    False      True       1.00  1.07        True
+   MAR      4 366.70   False   NONE       1.07       0.68    False        NaN    False      True       0.40  1.07        True
+  ROST      4 223.29   False    NaN        NaN        NaN    False        NaN    False      True       0.66  1.07        True
    XOM      4 149.24   False    NaN        NaN        NaN    False        NaN    False      True       0.86  1.05        True
-   LIN      4 499.65   False    NaN        NaN        NaN    False        NaN    False      True       0.10  0.94        True
-   CVX      4 187.02   False    NaN        NaN        NaN    False        NaN    False      True       0.71  0.92        True
-   LLY      4 922.50   False    NaN        NaN        NaN    False        NaN    False      True       0.52  0.89        True
-   MCD      3 303.22   False    NaN        NaN        NaN    False        NaN     True     False       0.04  1.04        True
-    HD      3 342.71   False    NaN        NaN        NaN    False        NaN     True     False       0.06  0.95        True
-   TXN      3 218.87   False   NONE       0.91       0.64    False       1.00     True     False       0.22  0.95        True
-  META      3 662.49   False    NaN        NaN        NaN    False        NaN     True     False       0.10  0.92        True
-  AMZN      3 249.02   False   NONE       1.29       0.87    False       1.00     True     False       0.04  0.84        True
-    MA      3 513.16   False    NaN        NaN        NaN    False        NaN     True     False       0.02  0.76        True
-   AMD      2 255.07   False   NONE       0.98       0.67    False       1.00    False     False       0.53  1.32        True
-  TSLA      2 364.20   False    NaN        NaN        NaN    False        NaN    False     False       0.42  1.25        True
-   JNJ      2 240.10   False    NaN        NaN        NaN    False        NaN    False     False       0.95  1.22        True
-    PG      2 144.38   False    NaN        NaN        NaN    False        NaN     True     False       0.19  1.08       False
-   DIS      2 102.59   False    NaN        NaN        NaN    False        NaN    False     False       0.17  1.04        True
-  NVDA      2 196.51   False   NONE       1.05       0.70    False       1.00    False     False       0.14  0.96        True
-  QCOM      2 132.84   False    NaN        NaN        NaN    False        NaN     True     False       0.06  0.94       False
-  NFLX      2 106.28   False    NaN        NaN        NaN    False        NaN    False     False       0.15  0.93        True
-     V      2 311.37   False    NaN        NaN        NaN    False        NaN    False     False       0.13  0.82        True
-  AAPL      2 258.83   False    NaN        NaN        NaN    False        NaN    False     False       0.06  0.81        True
-   CAT      1 794.25   False    NaN        NaN        NaN    False        NaN    False     False       0.98  1.17        True
-  CSCO      1  82.61   False    NaN        NaN        NaN    False        NaN    False     False       0.45  1.13        True
-    KO      1  75.90   False    NaN        NaN        NaN    False        NaN    False     False       0.33  1.11        True
-  AVGO      1 380.78   False   NONE       0.91       0.81    False       1.00    False     False       0.78  1.06        True
-  ORCL      1 163.00   False    NaN        NaN        NaN    False        NaN    False     False       0.70  1.06        True
-   IBM      1 240.27   False    NaN        NaN        NaN    False        NaN    False     False       0.67  1.06        True
- GOOGL      1 332.91   False   NONE       1.00       0.62    False       1.00    False     False       0.99  1.02        True
+   HON      4 233.24   False   NONE       1.06       0.90    False        NaN    False      True       0.21  1.03        True
+  HUBB      4 545.62   False   NONE       1.17       0.73    False        NaN    False      True       0.53  1.03        True
+  AMGN      4 350.95   False    NaN        NaN        NaN    False        NaN    False      True       0.42  1.02        True
+   YUM      4 161.57   False    NaN        NaN        NaN    False        NaN    False      True       0.21  1.02        True
+   CHD      4  95.53   False    NaN        NaN        NaN    False        NaN    False      True       0.23  1.00        True
+   BEN      4  26.43   False   NONE       1.02       0.72    False        NaN    False      True       0.40  1.00        True
 [write] full ranking -> results/ord_scan_monthly.csv
