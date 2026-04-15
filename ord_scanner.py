@@ -69,6 +69,13 @@ ASYM_MIN_BULLISH = 1.20
 
 TREND_MA = 50
 
+# Consolidation envelope tolerance per timeframe (Ord's "cause" measurement)
+CONSOL_TOL = {"W": 0.12, "M": 0.20}
+
+# Regime-strength lookback per timeframe (bars used for SPY rolling return
+# that classifies up / chop / down market regimes by tercile)
+REGIME_LOOKBACK = {"W": 13, "M": 6}
+
 # ---------------------------------------------------------------------------
 
 def fetch_sp500_tickers() -> List[str]:
@@ -486,10 +493,105 @@ def vol_asymmetry(df: pd.DataFrame, window: int = ASYMMETRY_WINDOW) -> Dict:
 
 
 # ---------------------------------------------------------------------------
+# Consolidation length + regime-conditional strength
+# ---------------------------------------------------------------------------
+
+def consolidation_bars(df: pd.DataFrame, tol: float, cap: int = 104) -> int:
+    """Count bars back from the current bar that fit inside a single
+    expanding high/low envelope. Walking backward, each new bar widens the
+    envelope; once (h_max - l_min) / mid exceeds `tol`, the consolidation
+    ends. Returns bar count including the current bar (Ord's "cause").
+    """
+    n = len(df)
+    if n < 2:
+        return 0
+    highs = df["High"].values
+    lows  = df["Low"].values
+    h = float(highs[-1])
+    l = float(lows[-1])
+    count = 1
+    for i in range(n - 2, max(-1, n - 2 - cap), -1):
+        h = max(h, float(highs[i]))
+        l = min(l, float(lows[i]))
+        mid = (h + l) / 2.0
+        if mid <= 0:
+            break
+        if (h - l) / mid > tol:
+            break
+        count += 1
+    return count
+
+
+def compute_regime_frame(spy_df: pd.DataFrame, lookback: int) -> pd.DataFrame:
+    """Build a per-bar market-regime label from SPY returns.
+
+    Classifies each bar into one of three regimes by the tercile of SPY's
+    rolling `lookback`-bar return:
+        down   = bottom third   (market falling)
+        chop   = middle third   (market sideways)
+        up     = top third      (market rising)
+    """
+    c = spy_df["Close"].astype(float)
+    out = pd.DataFrame(index=spy_df.index)
+    out["mr"] = c.pct_change()
+    out["mret_look"] = c.pct_change(lookback)
+    valid = out["mret_look"].dropna()
+    if len(valid) < 30:
+        out["regime"] = None
+        return out
+    q1 = float(valid.quantile(1.0 / 3.0))
+    q2 = float(valid.quantile(2.0 / 3.0))
+    out["regime"] = pd.cut(
+        out["mret_look"],
+        bins=[-np.inf, q1, q2, np.inf],
+        labels=["down", "chop", "up"],
+    )
+    return out
+
+
+def regime_strength(stock_df: pd.DataFrame, regime_df: pd.DataFrame) -> Dict:
+    """For each market regime (up / chop / down), compute the stock's mean
+    per-bar excess return vs SPY. The all_weather flag is True iff the
+    stock posted positive mean excess returns in all three regimes.
+    """
+    out = {
+        "rs_up": np.nan, "rs_chop": np.nan, "rs_down": np.nan,
+        "n_up": 0, "n_chop": 0, "n_down": 0,
+        "all_weather": False,
+    }
+    if regime_df.empty or "regime" not in regime_df.columns:
+        return out
+    aligned = stock_df[["Close"]].join(regime_df[["mr", "regime"]], how="inner")
+    aligned["sr"] = aligned["Close"].pct_change()
+    aligned = aligned.dropna(subset=["sr", "mr", "regime"])
+    if aligned.empty:
+        return out
+    means = {}
+    for r in ("up", "chop", "down"):
+        m = aligned["regime"] == r
+        cnt = int(m.sum())
+        out[f"n_{r}"] = cnt
+        if cnt < 5:
+            continue
+        excess = aligned.loc[m, "sr"] - aligned.loc[m, "mr"]
+        means[r] = float(excess.mean())
+        out[f"rs_{r}"] = round(means[r] * 100.0, 3)  # % per bar
+    if set(means.keys()) == {"up", "chop", "down"}:
+        out["all_weather"] = all(v > 0 for v in means.values())
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Scoring
 # ---------------------------------------------------------------------------
 
-def score_candidate(df: pd.DataFrame, ticker: str, theta: float) -> Optional[Dict]:
+def score_candidate(
+    df: pd.DataFrame,
+    ticker: str,
+    theta: float,
+    consol_tol: float,
+    regime_df: Optional[pd.DataFrame] = None,
+) -> Optional[Dict]:
     df = df.dropna().copy()
     if len(df) < max(BB_LENGTH + 5, TREND_MA + 5):
         return None
@@ -497,11 +599,15 @@ def score_candidate(df: pd.DataFrame, ticker: str, theta: float) -> Optional[Dic
     pivots = zigzag(df["High"], df["Low"], theta)
     legs = build_legs(df, pivots)
 
-    ov   = ord_volume_buy(df, legs)
-    spv  = shakeout_retest(df, legs)
-    sq   = squeeze_state(df)
-    asym = vol_asymmetry(df)
-    q    = qullamaggie_setup(df)
+    ov    = ord_volume_buy(df, legs)
+    spv   = shakeout_retest(df, legs)
+    sq    = squeeze_state(df)
+    asym  = vol_asymmetry(df)
+    q     = qullamaggie_setup(df)
+    cause = consolidation_bars(df, tol=consol_tol)
+    rs    = regime_strength(df, regime_df) if regime_df is not None else {
+        "rs_up": np.nan, "rs_chop": np.nan, "rs_down": np.nan, "all_weather": False
+    }
 
     ma50 = df["Close"].rolling(TREND_MA).mean().iloc[-1]
     close = float(df["Close"].iloc[-1])
@@ -534,8 +640,18 @@ def score_candidate(df: pd.DataFrame, ticker: str, theta: float) -> Optional[Dic
     if above_ma:
         ord_score += 1
 
+    # Consolidation bonus ("cause") -- Ord §9.2
+    if cause >= 12:
+        ord_score += 2
+    elif cause >= 6:
+        ord_score += 1
+
     q_score = int(q.get("q_score", 0))
     combined = ord_score + q_score
+
+    # All-weather relative strength: top-tier badge worth 3 composite points
+    if rs.get("all_weather"):
+        combined += 3
 
     return {
         "ticker": ticker,
@@ -568,6 +684,13 @@ def score_candidate(df: pd.DataFrame, ticker: str, theta: float) -> Optional[Dic
         "q_volratio": q.get("q_volratio"),
         "q_prox": q.get("q_proximity"),
         "q_brk": q.get("q_breakout"),
+        # Consolidation length ("cause")
+        "cause_bars": cause,
+        # Regime-conditional strength
+        "rs_up": rs.get("rs_up"),
+        "rs_chop": rs.get("rs_chop"),
+        "rs_down": rs.get("rs_down"),
+        "all_weather": rs.get("all_weather"),
     }
 
 
@@ -604,6 +727,29 @@ def scan(tickers: List[str], tf: str) -> pd.DataFrame:
     print(f"[scan] downloading {len(tickers)} tickers @ {INTERVAL[tf]} (period={LOOKBACK[tf]})")
     panel = download_panel(tickers, tf)
 
+    # Fetch SPY once for regime classification
+    spy_df = None
+    regime_df = None
+    try:
+        spy_raw = yf.download(
+            "SPY",
+            period=LOOKBACK[tf],
+            interval=INTERVAL[tf],
+            auto_adjust=True,
+            progress=False,
+            threads=False,
+        )
+        if isinstance(spy_raw.columns, pd.MultiIndex):
+            spy_raw.columns = spy_raw.columns.get_level_values(0)
+        spy_df = spy_raw.dropna()
+        regime_df = compute_regime_frame(spy_df, REGIME_LOOKBACK[tf])
+        print(f"[regime] SPY {len(spy_df)} bars, regimes: "
+              f"up={int((regime_df['regime']=='up').sum())} "
+              f"chop={int((regime_df['regime']=='chop').sum())} "
+              f"down={int((regime_df['regime']=='down').sum())}")
+    except Exception as e:
+        print(f"[warn] SPY regime fetch failed ({e}); regime cols will be NaN")
+
     rows: List[Dict] = []
     for t in tickers:
         df = extract_ticker_df(panel, t)
@@ -613,7 +759,12 @@ def scan(tickers: List[str], tf: str) -> pd.DataFrame:
         if len(df) < MIN_BARS[tf]:
             continue
         try:
-            row = score_candidate(df, t, SWING_THETA[tf])
+            row = score_candidate(
+                df, t,
+                theta=SWING_THETA[tf],
+                consol_tol=CONSOL_TOL[tf],
+                regime_df=regime_df,
+            )
         except Exception as e:
             # keep scanning on per-ticker errors
             continue
@@ -623,8 +774,8 @@ def scan(tickers: List[str], tf: str) -> pd.DataFrame:
     if not rows:
         return pd.DataFrame()
     out = pd.DataFrame(rows).sort_values(
-        ["combined", "ord_score", "q_score", "asym"],
-        ascending=[False, False, False, False],
+        ["combined", "all_weather", "ord_score", "q_score", "asym"],
+        ascending=[False, False, False, False, False],
     )
     return out.reset_index(drop=True)
 
@@ -640,6 +791,8 @@ def main():
                     help="drop rows below this composite score")
     ap.add_argument("--out-dir", default=".",
                     help="directory to write per-timeframe CSV results")
+    ap.add_argument("--aw-only", action="store_true",
+                    help="only display all-weather rows (positive excess in up/chop/down regimes)")
     args = ap.parse_args()
 
     tickers = args.tickers if args.tickers else fetch_sp500_tickers()
@@ -653,10 +806,13 @@ def main():
         if df.empty:
             print("no results")
             continue
-        filtered = df[df["combined"] >= args.min_score].head(args.top)
+        view = df.copy()
+        if args.aw_only:
+            view = view[view["all_weather"] == True]
+        filtered = view[view["combined"] >= args.min_score].head(args.top)
         if filtered.empty:
             print(f"no candidates above min-score {args.min_score}; showing top {args.top} by combined")
-            filtered = df.head(args.top)
+            filtered = view.head(args.top)
         with pd.option_context("display.max_rows", None,
                                "display.max_columns", None,
                                "display.width", 200):
