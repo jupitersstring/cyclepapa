@@ -1,6 +1,12 @@
 name: Ord Scanner (SP500 W/M)
 
 on:
+  push:
+    branches:
+      - "claude/ord-price-volume-system-**"
+    paths:
+      - "ord_scanner.py"
+      - ".github/workflows/ord-scanner.yml"
   workflow_dispatch:
     inputs:
       timeframe:
