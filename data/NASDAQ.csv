@@ -1,0 +1,976 @@
+person_qid,person_name,dob,role,company_qid,company_name,ticker,ipo_date,company_inception,exchange_qid,exchange_name,gender,citizenship,occupation,place_of_birth
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,CEO,Q185278,News Corporation,NWS,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Melbourne
+Q5106059,Q5106059,1977-01-01T00:00:00Z,CEO,Q18156798,Astra,ASTR,2021-07-21T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Buffalo
+Q305177,Jensen Huang,1963-02-17T00:00:00Z,CEO,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Tainan
+Q6246250,John Mackey,1953-08-15T00:00:00Z,CEO,Q1809448,Whole Foods Market,WFM,,1980-09-20T00:00:00Z,Q82059,Nasdaq,male,United States,merchant,Houston
+Q117084620,Greg Becker,1967-01-01T00:00:00Z,CEO,Q17112054,Silicon Valley Bank,,,1983-10-17T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,
+Q15064277,Andrew Wilson,1974-09-07T00:00:00Z,CEO,Q173941,Electronic Arts,EA,1990-03-26T00:00:00Z,1982-05-28T00:00:00Z,Q82059,Nasdaq,male,Australia,businessperson,Gold Coast
+Q21041473,Chuck Robbins,1965-01-01T00:00:00Z,CEO,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Grayson
+Q21072926,Scott Kirby,1967-08-13T00:00:00Z,CEO,Q174769,United Airlines,UAL,1968-01-01T00:00:00Z,1926-04-06T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Rowlett
+Q44870909,Eric S. Yuan,1970-02-20T00:00:00Z,CEO,Q17460900,Zoom Video Communications,ZM,2019-04-18T00:00:00Z,2011-04-21T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Tai'an
+Q6249428,John Morgridge,1933-01-01T00:00:00Z,CEO,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,,chief executive officer,
+Q48609449,Ethan Brown,1971-01-01T00:00:00Z,CEO,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,environmentalist,
+Q7324637,Richard Carrión,1952-11-26T00:00:00Z,CEO,Q7229656,"Popular, Inc.",BPOP,1994-01-03T00:00:00Z,1893-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,San Juan
+Q471851,James Murdoch,1972-12-13T00:00:00Z,CEO,Q5476713,21st Century Fox,TFCF,2019-03-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,publisher,Wimbledon
+Q7323183,Rich Barton,1967-06-02T00:00:00Z,CEO,Q8071921,Zillow,ZG,,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q7346054,Robert James Thomson,1961-03-11T00:00:00Z,CEO,Q14289857,News Corp,NWS,2013-06-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,Australia,journalist,Torrumbarry
+Q112205462,Vincent Pilette,1972-01-01T00:00:00Z,CEO,Q677085,Gen Digital,SYMC,1989-01-01T00:00:00Z,1982-03-01T00:00:00Z,Q82059,Nasdaq,male,,manager,
+Q117084620,Greg Becker,1967-01-01T00:00:00Z,CEO,Q111839764,SVB Financial Group,SIVBP,2019-02-12T00:00:00Z,1983-02-22T00:00:00Z,Q82059,Nasdaq,male,United States,loan officer,
+Q18207172,Lisa Su,1969-11-07T00:00:00Z,CEO,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,Tainan County
+Q18352311,Aneel Bhusri,1966-02-14T00:00:00Z,CEO,Q8034666,"Workday, Inc.",WDAY,2012-10-12T00:00:00Z,2005-03-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Pittsford
+Q80978371,Mark Read,1966-01-01T00:00:00Z,CEO,Q1318049,WPP plc,WPP,,1971-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q5703504,David DeWalt,1968-01-01T00:00:00Z,CEO,Q5451274,FireEye,FEYE,2013-09-20T00:00:00Z,2004-02-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q7034852,Nikesh Arora,1968-02-09T00:00:00Z,CEO,Q7128508,Palo Alto Networks,PANW,2012-07-20T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,India,scientist,Uttar Pradesh
+Q115676278,David Schaeffer,1956-04-24T00:00:00Z,CEO,Q1106938,Cogent Communications,CCOI,2006-03-06T00:00:00Z,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q90959587,Stéphane Bancel,1972-07-20T00:00:00Z,CEO,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Marseille
+Q713734,Jonathan I. Schwartz,1965-10-20T00:00:00Z,CEO,Q14647,Sun Microsystems,,,1982-02-24T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q56299206,Kaan Terzioğlu,1968-08-01T00:00:00Z,CEO,Q1562826,VEON,VEON,2017-01-01T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,Turkey,chief executive officer,Istanbul
+Q96398640,Paul Stone,1965-01-01T00:00:00Z,CEO,Q1543874,The Hertz Corporation,HTZ,,1918-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,
+Q47672827,Tan Hock Eng,1951-01-01T00:00:00Z,CEO,Q790060,Broadcom,AVGO,2009-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,Malaysia,business executive,Penang
+Q19661212,Ted Sarandos,1964-07-30T00:00:00Z,CEO,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,chief content officer,Phoenix
+Q6766712,Mark Benjamin,1947-01-01T00:00:00Z,CEO,Q1137289,Nuance Communications,NUAN,,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,film director,
+Q110471964,Cristiano Amon,1972-11-24T00:00:00Z,CEO,Q544847,Qualcomm,QCOM,,1985-07-01T00:00:00Z,Q82059,Nasdaq,male,Brazil,businessperson,
+Q5116286,Chung Eui-sun,1970-10-18T00:00:00Z,CEO,Q55931,Hyundai Motor Company,HYMTF,,1967-12-29T00:00:00Z,Q82059,Nasdaq,male,South Korea,businessperson,South Korea
+Q52177144,Shuntaro Furukawa,1972-01-10T00:00:00Z,CEO,Q8093,Q8093,NTDOY,,1947-01-01T00:00:00Z,Q82059,Nasdaq,male,Japan,businessperson,Tokyo
+Q7613499,Steve Odland,1958-01-01T00:00:00Z,CEO,Q1337797,Office Depot,ODP,1988-12-01T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,
+Q17003309,Adena Friedman,1969-01-01T00:00:00Z,CEO,Q1472929,"Nasdaq, Inc.",NDAQ,1975-01-01T00:00:00Z,1971-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,executive,Baltimore
+Q4964404,Brian L. Roberts,1959-06-28T00:00:00Z,CEO,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Philadelphia
+Q5307199,Drew Houston,1983-03-04T00:00:00Z,CEO,Q15589464,Dropbox Inc.,DBX,2018-01-01T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Acton
+Q7609568,Stephen J. Luczo,1957-02-28T00:00:00Z,CEO,Q705392,Seagate Technology,STX,2002-12-11T00:00:00Z,1979-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Chicago
+Q716505,Arun Sarin,1954-10-21T00:00:00Z,CEO,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Madhya Pradesh
+Q47524652,Nick Read,1966-03-01T00:00:00Z,CEO,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,soldier,
+Q22095395,Doug Burgum,1956-08-01T00:00:00Z,CEO,Q112871910,Great Plains Software,GPSI,1997-01-01T00:00:00Z,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Arthur
+Q5483294,Francisco D'Souza,1968-08-23T00:00:00Z,CEO,Q1107035,Cognizant,CTSH,1998-06-19T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Nairobi
+Q5344048,Eddie Lampert,1962-07-19T00:00:00Z,CEO,Q6499202,Sears,SHLD,2005-01-01T00:00:00Z,1892-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Roslyn
+Q6831501,Michael J. Saylor,1965-02-04T00:00:00Z,CEO,Q1192211,Strategy,MSTR,1998-01-01T00:00:00Z,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,author,Lincoln
+Q2427296,Thomas Siebel,1952-11-20T00:00:00Z,CEO,Q104081972,C3.ai,AI,2020-12-09T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Chicago
+Q32539380,Robert Bakish,1963-12-14T00:00:00Z,CEO,Q76846862,Paramount Global,PARA,,2019-12-04T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Englewood
+Q24795213,Eddie Wilson,1936-01-01T00:00:00Z,CEO,Q170614,Ryanair,RYAAY,1997-05-28T00:00:00Z,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,,singer,Ludwigsburg
+Q55687800,Austin Russell,1995-03-14T00:00:00Z,CEO,Q106240666,Luminar Technologies,LAZR,2020-12-01T00:00:00Z,2011-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Newport Beach
+Q23018095,Greg Maffei,1960-05-24T00:00:00Z,CEO,Q1516562,Liberty Media,,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q30927408,Okafuji Masahiro,1949-12-12T00:00:00Z,CEO,Q717093,Itochu,ITOCY,,1949-12-01T00:00:00Z,Q82059,Nasdaq,male,Japan,businessperson,Osaka
+Q12572999,Brian Krzanich,1960-05-09T00:00:00Z,CEO,Q111387693,Cerence Inc.,CRNC,2019-09-15T00:00:00Z,2019-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Santa Clara County
+Q99880011,Revathi Advaithi,1967-10-18T00:00:00Z,CEO,Q1140680,Flex Ltd.,FLEX,1998-11-06T00:00:00Z,1969-01-01T00:00:00Z,Q82059,Nasdaq,female,,chief executive officer,India
+Q18393305,Rakesh Khanna,1962-01-01T00:00:00Z,CEO,Q7662679,Syntel,SYNT,,,Q82059,Nasdaq,male,India,chief executive officer,Indore
+Q4377226,David Zaslav,1960-01-15T00:00:00Z,CEO,Q107074885,Warner Bros. Discovery,WBD,2022-04-11T00:00:00Z,2022-04-08T00:00:00Z,Q82059,Nasdaq,male,United States,president,Rockland County
+Q104161930,Jurgi Camblong,1978-03-15T00:00:00Z,CEO,Q79583223,Sophia Genetics,SOPH,,2011-01-01T00:00:00Z,Q82059,Nasdaq,male,France,molecular biologist,Bayonne
+Q63981759,Daniel O'Day,1964-05-26T00:00:00Z,CEO,Q663596,Gilead Sciences,GILD,1992-01-01T00:00:00Z,1987-06-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q33112117,Christel Heydemann,1974-10-09T00:00:00Z,CEO,Q1431486,Q1431486,ORAN,,1988-01-01T00:00:00Z,Q82059,Nasdaq,female,France,engineer,Clamart
+Q2622748,Shantanu Narayen,1963-05-01T00:00:00Z,CEO,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,Hyderabad
+Q658709,Sanjay Jha,1963-01-01T00:00:00Z,CEO,Q691592,GlobalFoundries,GFS,2021-01-01T00:00:00Z,2008-10-07T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,Sultanganj
+Q19519581,Peter Ungaro,1969-01-01T00:00:00Z,CEO,Q144060,Cray,CRAY,1995-09-27T00:00:00Z,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q93014,Max Levchin,1975-07-11T00:00:00Z,CEO,Q65085822,Affirm,AFRM,,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Kyiv
+Q5569148,Glenn Tilton,1948-01-01T00:00:00Z,CEO,Q7863740,UAL Corporation,,,1968-12-30T00:00:00Z,Q82059,Nasdaq,male,,chief executive officer,
+Q22003540,David Callaway,1963-01-01T00:00:00Z,CEO,Q7711656,TheStreet,TST,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,,journalist,
+Q27893449,Kasper Fangel,1980-01-01T00:00:00Z,CEO,Q689791,ISS A/S,,2014-03-13T00:00:00Z,1901-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Denmark,chief executive officer,
+Q4699765,Ajit Balakrishnan,1901-01-01T00:00:00Z,CEO,Q140676,rediff.com,REDF,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,
+Q2474757,Dirk Van de Put,1959-01-01T00:00:00Z,CEO,Q12857502,Mondelez International,MDLZ,,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,Belgium,businessperson,Mechelen
+Q5233095,David Duffield,1941-01-01T00:00:00Z,CEO,Q8034666,"Workday, Inc.",WDAY,2012-10-12T00:00:00Z,2005-03-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,
+Q7346554,Robert L. Fornaro,1952-01-01T00:00:00Z,CEO,Q1190598,Spirit Airlines,SAVE,2011-05-26T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Long Island
+Q86071968,Michel Vounatsos,1961-01-01T00:00:00Z,CEO,Q864338,Biogen,BIIB,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,France,business executive,
+Q5236951,David M. Overton,1946-01-01T00:00:00Z,CEO,Q1045842,The Cheesecake Factory,CAKE,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,,Detroit
+Q47087171,Salil Parekh,1964-01-01T00:00:00Z,CEO,Q26989,Infosys,INFY,1999-03-11T00:00:00Z,1981-07-02T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q432929,Andrew Grove,1936-09-02T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,Hungary,writer,Budapest
+Q7426870,Satya Nadella,1967-08-19T00:00:00Z,CEO,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,electrotechnician,Hyderabad
+Q7143480,Pat Gelsinger,1961-03-05T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Robesonia
+Q729842,Mark Pincus,1966-02-13T00:00:00Z,CEO,Q245772,Zynga,ZNGA,2011-12-16T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Chicago
+Q75692161,Reshma Kewalramani,1972-01-01T00:00:00Z,CEO,Q2744099,Vertex Pharmaceuticals,VRTX,,1989-01-01T00:00:00Z,Q82059,Nasdaq,female,,business executive,Mumbai
+Q1148995,Paul Otellini,1950-10-12T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,San Francisco
+Q89896336,Hanneke Faber,1969-04-19T00:00:00Z,CEO,Q223127,Logitech,LOGI,1997-03-01T00:00:00Z,1981-10-02T00:00:00Z,Q82059,Nasdaq,female,,chief executive officer,Amsterdam
+Q12572999,Brian Krzanich,1960-05-09T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Santa Clara County
+Q67146947,Trevor Milton,1982-04-06T00:00:00Z,CEO,Q24887050,Nikola Corporation,NKLA,2020-06-04T00:00:00Z,2014-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Layton
+Q2564082,Craig R. Barrett,1939-08-29T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,San Francisco
+Q4662637,Aart de Geus,1954-01-01T00:00:00Z,CEO,Q2303478,Synopsys,SNPS,1992-02-26T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of the Netherlands,businessperson,Vlaardingen
+Q241735,Robert Noyce,1927-12-12T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Burlington
+Q243969,Gordon Moore,1929-01-03T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,San Francisco
+Q64853019,Fidji Simo,1985-10-05T00:00:00Z,CEO,Q22909236,Instacart,CART,2023-01-01T00:00:00Z,2012-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Sète
+Q20243418,Oliver Zipse,1964-02-01T00:00:00Z,CEO,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,manager,Heidelberg
+Q55819738,Bob Swan,1960-05-09T00:00:00Z,CEO,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Syracuse
+Q5344048,Eddie Lampert,1962-07-19T00:00:00Z,CEO,Q966556,Sears Holdings Corporation,SHLD,,2005-03-24T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Roslyn
+Q3215817,Lachlan Murdoch,1971-09-08T00:00:00Z,CEO,Q60238941,Fox Corporation,FOX,2019-03-19T00:00:00Z,2019-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,businessperson,London
+Q4377226,David Zaslav,1960-01-15T00:00:00Z,CEO,Q621592,"Discovery, Inc.",DISCA,2005-07-08T00:00:00Z,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,president,Rockland County
+Q4123823,Arkady Volozh,1964-02-11T00:00:00Z,CEO,Q47120756,Nebius Group,YNDX,2011-05-24T00:00:00Z,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,Soviet Union,mathematician,Atyrau
+Q4963341,Brian Chesky,1981-08-29T00:00:00Z,CEO,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Niskayuna
+Q51079032,Rolf Stahel,1944-04-21T00:00:00Z,CEO,Q905049,Shire plc,SHPG,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,Switzerland,business executive,
+Q5578461,Leon Black,1951-07-31T00:00:00Z,CEO,Q619121,Apollo Global Management,AINV,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q3503829,Sundar Pichai,1972-06-10T00:00:00Z,CEO,Q95,Google,GOOG,2004-08-19T00:00:00Z,1998-09-04T00:00:00Z,Q82059,Nasdaq,male,United States,executive,Madurai
+Q5214356,Dan Schulman,1958-01-19T00:00:00Z,CEO,Q135683211,PayPal Holdings,PYPL,2015-07-06T00:00:00Z,2015-01-30T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Newark
+Q16194777,Marc Rowan,1962-08-19T00:00:00Z,CEO,Q619121,Apollo Global Management,AINV,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q16733839,Flemming Ørnskov,1958-01-24T00:00:00Z,CEO,Q905049,Shire plc,SHPG,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Denmark,business executive,Esbjerg
+Q124814208,Nacho Abia,1968-08-03T00:00:00Z,CEO,Q901262,Grifols,GRFS,2011-01-01T00:00:00Z,1909-01-01T00:00:00Z,Q82059,Nasdaq,male,Spain,businessperson,
+Q4764240,Angus Russell,1956-01-02T00:00:00Z,CEO,Q905049,Shire plc,SHPG,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,businessperson,
+Q5105707,Chris Albrecht,1952-07-24T00:00:00Z,CEO,Q977627,Starz Inc.,,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,,Queens
+Q16847811,Kelly Sumner,1961-04-29T00:00:00Z,CEO,Q94933,Take-Two Interactive,TTWO,,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,businessperson,
+Q70209140,Matthew Emmens,1951-06-29T00:00:00Z,CEO,Q905049,Shire plc,SHPG,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Pasadena
+Q84747997,Anirudh Devgan,1969-09-15T00:00:00Z,CEO,Q608776,Cadence Design Systems,CDNS,2005-10-31T00:00:00Z,1988-01-01T00:00:00Z,Q82059,Nasdaq,male,,computer scientist,New Delhi
+Q3714587,Doug Carlston,1947-04-30T00:00:00Z,CEO,Q995863,Broderbund,BROD,1991-11-01T00:00:00Z,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,author,Boston
+Q5693758,Heather Bresch,1969-06-27T00:00:00Z,CEO,Q899010,Mylan,MYL,1976-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,business executive,West Virginia
+Q7348924,Robert Pittman,1953-12-28T00:00:00Z,CEO,Q477993,iHeartMedia,IHRT,,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Jackson
+Q1582880,Hans Vestberg,1965-06-23T00:00:00Z,CEO,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,2000-06-16T00:00:00Z,Q82059,Nasdaq,male,Sweden,handball player,Hudiksvall
+Q5300803,Doug Parker,1962-01-01T00:00:00Z,CEO,Q4742937,American Airlines Group,AAL,2013-12-09T00:00:00Z,2013-12-09T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q317521,Elon Musk,1971-06-28T00:00:00Z,CEO,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Pretoria
+Q5523720,Garo H. Armen,1953-01-31T00:00:00Z,CEO,Q4692116,Agenus,AGEN,2000-02-04T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,scientist,Istanbul
+Q16150260,Josh Sapan,1951-01-01T00:00:00Z,CEO,Q4652575,AMC Global Media,AMCX,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Queens
+Q16196595,Doug McMillon,1966-10-17T00:00:00Z,CEO,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Jonesboro
+Q5798429,Daniel Hajj Aboumrad,1966-03-22T00:00:00Z,CEO,Q482267,América Móvil,AMOV,,2000-09-01T00:00:00Z,Q82059,Nasdaq,male,Mexico,,
+Q312556,Jeff Bezos,1964-01-12T00:00:00Z,CEO,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Albuquerque
+Q36215,Mark Zuckerberg,1984-05-14T00:00:00Z,CEO,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,White Plains
+Q93591421,Yoni Assia,1981-03-01T00:00:00Z,CEO,Q5324516,eToro,ETOR,2025-05-01T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,
+Q4090439,Lars Boilesen,1967-01-01T00:00:00Z,CEO,Q215639,Opera,OPRA,2018-07-27T00:00:00Z,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Denmark,engineer,
+Q6864021,Mindy Grossman,1957-09-08T00:00:00Z,CEO,Q1929466,WW International,WW,2018-01-01T00:00:00Z,1963-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Long Island City
+Q3497982,Stefano Pessina,1941-06-04T00:00:00Z,CEO,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,Italy,engineer,Pescara
+Q56752478,John D. Idol,1955-01-01T00:00:00Z,CEO,Q19572998,Capri Holdings,KORS,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q3503829,Sundar Pichai,1972-06-10T00:00:00Z,CEO,Q20800404,Alphabet Inc.,GOOGL,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,India,executive,Madurai
+Q22278502,Srinivas Kandula,1968-01-01T00:00:00Z,CEO,Q2056977,IGATE Patni,IGTE,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,India,chief executive officer,
+Q56509715,Michael Lohscheller,1968-11-12T00:00:00Z,CEO,Q4047174,Polestar,PSNY,2021-05-21T00:00:00Z,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,Germany,manager,Bocholt
+Q138786664,Christophe Fouquet,1973-01-01T00:00:00Z,CEO,Q297879,ASML Holding,ASML,1995-03-16T00:00:00Z,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,France,chief executive officer,Orange
+Q5629910,Börje Ekholm,1963-01-01T00:00:00Z,CEO,Q52618,Ericsson,ERIC,1990-01-02T00:00:00Z,1876-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q5729029,Henry Taub,1927-09-20T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q16146327,Syed B. Ali,1975-01-01T00:00:00Z,CEO,Q5055187,Cavium,CAVM,,2001-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q260137,Carol Bartz,1948-08-28T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Winona
+Q123520943,"Macon Foscue Brock, Jr.",1942-04-11T00:00:00Z,CEO,Q5289230,Dollar Tree,DLTR,1995-03-09T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,philanthropist,Q49231
+Q18748951,Carlos Rodriguez,1965-01-01T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q47005455,Anthony Wood,1965-12-01T00:00:00Z,CEO,Q7360089,"Roku, Inc.",ROKU,2017-01-01T00:00:00Z,2002-10-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,England
+Q79960347,Mike Sievert,1969-05-10T00:00:00Z,CEO,Q3511885,T-Mobile US,TMUS,2013-05-01T00:00:00Z,2001-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Canton
+Q5524803,Gary C. Butler,1946-10-31T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,,
+Q6256206,John S. Chen,1955-07-01T00:00:00Z,CEO,Q502121,BlackBerry,BBRY,2013-01-01T00:00:00Z,1984-03-07T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,businessperson,British Hong Kong
+Q14086,Marissa Mayer,1975-05-30T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,engineer,Wausau
+Q6105149,J. Clifford Hudson,1954-01-01T00:00:00Z,CEO,Q7561808,Sonic Drive-In,SONC,,1963-06-18T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Dallas
+Q5300803,Doug Parker,1962-01-01T00:00:00Z,CEO,Q32396,American Airlines,AAL,,1936-06-25T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q32539380,Robert Bakish,1963-12-14T00:00:00Z,CEO,Q214346,Viacom,VIA,,2005-12-31T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Englewood
+Q2505089,Uğur Şahin,1965-09-19T00:00:00Z,CEO,Q30256699,BioNTech,BNTX,2019-01-01T00:00:00Z,2008-06-01T00:00:00Z,Q82059,Nasdaq,male,Turkey,oncologist,İskenderun
+Q111181494,Rene Haas,1962-07-23T00:00:00Z,CEO,Q296782,Arm Holdings,ARMH,2008-04-14T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q6178460,Jennifer Hyman,1980-08-24T00:00:00Z,CEO,Q7313510,Rent The Runway,RENT,,2009-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,New York City
+Q4977358,Bruce Davis,1952-01-01T00:00:00Z,CEO,Q5275736,Digimarc,DMRC,2005-04-15T00:00:00Z,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q215284,Jerry Yang,1968-11-06T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Taipei
+Q8273280,Terry Semel,1943-02-24T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Brooklyn
+Q3442764,Ross Levinsohn,1964-01-01T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Tenafly
+Q16821049,Ashok Vemuri,1968-04-22T00:00:00Z,CEO,Q2056977,IGATE Patni,IGTE,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,New Delhi
+Q4911038,Bill Stromberg,1960-03-10T00:00:00Z,CEO,Q3511946,T. Rowe Price,TROW,1990-01-02T00:00:00Z,1937-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Towson
+Q7807331,Timothy Koogle,1951-07-01T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Alexandria
+Q5424058,F. Thomson Leighton,1956-01-01T00:00:00Z,CEO,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,mathematician,
+Q4117176,Q4117176,1963-03-01T00:00:00Z,CEO,Q344341,Activision Blizzard,ATVI,,2008-07-10T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Long Island
+Q3372345,Paul Vasselin,1812-01-01T00:00:00Z,CEO,Q407237,Air France-KLM,AFRAF,,2004-05-05T00:00:00Z,Q82059,Nasdaq,male,France,journalist,
+Q508752,Frank Lautenberg,1924-01-23T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Paterson
+Q6864021,Mindy Grossman,1957-09-08T00:00:00Z,CEO,Q452340,HSN,HSNI,,1982-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Long Island City
+Q45545691,Chen Rui,1441-01-01T00:00:00Z,CEO,Q3077586,Bilibili,BILI,2018-03-28T00:00:00Z,2009-06-26T00:00:00Z,Q82059,Nasdaq,male,Ming dynasty,,
+Q7276871,"Robert ""RJ"" Scaringe",1983-01-19T00:00:00Z,CEO,Q7338847,Rivian Automotive,RIVN,2021-11-10T00:00:00Z,2009-06-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Rockledge
+Q5278137,Ding Lei,1971-10-01T00:00:00Z,CEO,Q196259,NetEase,NTES,2000-01-01T00:00:00Z,1997-06-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Ningbo
+Q17059044,Nick Woodman,1975-06-24T00:00:00Z,CEO,Q733482,GoPro,GPRO,2014-01-01T00:00:00Z,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Menlo Park
+Q21453163,Robert Forrester,1913-01-01T00:00:00Z,CEO,Q30289308,Verastem Oncology,VSTM,,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,,painter,
+Q86083744,Jean Jacques Bienaime,1953-08-19T00:00:00Z,CEO,Q4914632,BioMarin Pharmaceutical,BMRN,1999-07-23T00:00:00Z,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,
+Q133886484,Josh S. Weston,1928-12-22T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Brooklyn
+Q70092183,Makoto Uchida,1966-07-20T00:00:00Z,CEO,Q20165,Nissan,NSANY,,1933-12-26T00:00:00Z,Q82059,Nasdaq,male,Japan,entrepreneur,Japan
+Q2886450,Scott Thompson,1957-11-13T00:00:00Z,CEO,Q30321616,Altaba,AABA,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Taunton
+Q7608947,Stephen Cooper,1948-01-01T00:00:00Z,CEO,Q21077,Warner Music Group,WMG,2020-01-01T00:00:00Z,1958-04-06T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q15821808,Joseph M. Hogan,1957-05-07T00:00:00Z,CEO,Q30272258,Align Technology,ALGN,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,manager,Pennsylvania
+Q137998027,Art Weinbach,1943-05-05T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q118499866,Maria Black,1974-01-01T00:00:00Z,CEO,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,female,,,
+Q265852,Tim Cook,1960-11-01T00:00:00Z,CEO,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Mobile
+Q96654591,Peter Wennink,http://www.wikidata.org/.well-known/genid/c5897ab3bf15ec91db42067c0c798982,CEO,Q297879,ASML Holding,ASML,1995-03-16T00:00:00Z,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of the Netherlands,business executive,
+Q16843940,Bernardo Hees,1970-01-01T00:00:00Z,CEO,Q19681433,Kraft Heinz,KHC,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,
+Q92770,Jon Stephenson von Tetzchner,1967-08-29T00:00:00Z,CEO,Q215639,Opera,OPRA,2018-07-27T00:00:00Z,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,Norway,computer scientist,Seltjarnarnes
+Q117249140,Brian Niccol,1974-01-01T00:00:00Z,CEO,Q37158,Starbucks,SBUX,1992-06-26T00:00:00Z,1971-03-30T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q22073882,John F. Remondi,1962-05-01T00:00:00Z,CEO,Q19903490,Navient,NAVI,,2014-04-30T00:00:00Z,Q82059,Nasdaq,male,,business executive,
+Q41812531,Andy Jassy,1968-01-13T00:00:00Z,CEO,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Scarsdale
+Q6708744,Lyndon Rive,1977-01-22T00:00:00Z,CEO,Q7555824,SolarCity,SCTY,2012-01-01T00:00:00Z,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,South Africa,businessperson,Pretoria
+Q18685104,Stefano Buono,1966-01-01T00:00:00Z,founder,Q16824303,Advanced Accelerator Applications,AAAP,,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,Italy,manager,Avellino
+Q667095,Federico Faggin,1941-12-01T00:00:00Z,founder,Q1571490,Synaptics,SYNA,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Italy,inventor,Vicenza
+Q5307199,Drew Houston,1983-03-04T00:00:00Z,founder,Q15589464,Dropbox Inc.,DBX,2018-01-01T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Acton
+Q5681628,Hatim Zaghloul,1957-02-07T00:00:00Z,founder,Q15109932,WiLAN,WILN,,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,Egypt,scientist,Giza
+Q11369091,Gonshirō Kubota,1870-10-27T00:00:00Z,founder,Q1514221,Kubota,KUBTY,,1890-01-01T00:00:00Z,Q82059,Nasdaq,male,Japan,businessperson,
+Q3181165,John C. Malone,1941-03-07T00:00:00Z,founder,Q1516562,Liberty Media,,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Milford
+Q62910,Carver Mead,1934-05-01T00:00:00Z,founder,Q1571490,Synaptics,SYNA,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Bakersfield
+Q1791549,David Neeleman,1959-10-16T00:00:00Z,founder,Q161086,JetBlue Airways,JBLU,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,Cyprus,entrepreneur,São Paulo
+Q5555893,Ray Anderson,1934-07-28T00:00:00Z,founder,Q1666040,"Interface, Inc.",TILE,1990-03-26T00:00:00Z,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,writer,
+Q16221414,Jake Lodwick,1981-07-25T00:00:00Z,founder,Q156376,Vimeo,VMEO,2021-05-25T00:00:00Z,2004-11-14T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Baltimore
+Q942451,Elwood Haynes,1857-10-14T00:00:00Z,founder,Q1591976,Haynes International,HAYN,2007-03-20T00:00:00Z,1912-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Portland
+Q4893177,Bernard Goldstein,1929-02-05T00:00:00Z,founder,Q16154750,Isle of Capri Casinos,ISLE,,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,Rock Island
+Q50357718,Donald Foss,1945-01-01T00:00:00Z,founder,Q15845093,Credit Acceptance,CACC,,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q8063812,Zach Klein,1982-09-26T00:00:00Z,founder,Q156376,Vimeo,VMEO,2021-05-25T00:00:00Z,2004-11-14T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Rochester
+Q18120288,Yehudit Bronicki,1941-12-29T00:00:00Z,founder,Q1549511,Ormat Technologies,ORBK,1990-03-26T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,female,Israel,manager,Israel
+Q16889002,William Russell Kelly,1905-11-21T00:00:00Z,founder,Q1538585,Kelly Services,KELYA,,1946-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,Koksilah
+Q131737327,Arnold Habig,1907-05-02T00:00:00Z,founder,Q1526456,Kimball International,KBAL,1994-01-03T00:00:00Z,1950-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q62580965,Walter L. Jacobs,1896-01-01T00:00:00Z,founder,Q1543874,The Hertz Corporation,HTZ,,1918-01-01T00:00:00Z,Q82059,Nasdaq,male,,pioneer,
+Q4784346,Arash Ferdowsi,1985-10-07T00:00:00Z,founder,Q15589464,Dropbox Inc.,DBX,2018-01-01T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Overland Park
+Q7348118,Robert Oscar Peterson,1916-03-13T00:00:00Z,founder,Q1538507,Jack in the Box,JACK,,1951-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,San Diego
+Q5126403,Clarence Berry,1867-01-01T00:00:00Z,founder,Q16245358,Berry Petroleum Company,BRY,,1909-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q360517,John D. Hertz,1879-04-10T00:00:00Z,founder,Q1543874,The Hertz Corporation,HTZ,,1918-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,association football player,Q837456
+Q6137546,James L. Dolan,1955-05-11T00:00:00Z,founder,Q1573416,Madison Square Garden Sports,MSG,,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Massapequa
+Q6144428,James Truchard,1943-06-25T00:00:00Z,founder,Q1544413,National Instruments,NATI,,1976-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Austin County
+Q5660225,Harold Butler,1921-07-06T00:00:00Z,founder,Q1189695,Denny's,DENN,,1953-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Buffalo
+Q7287704,Ralph J. Roberts,1920-03-13T00:00:00Z,founder,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,New York City
+Q18204934,Al Kurtenbach,1934-01-03T00:00:00Z,founder,Q1157767,Daktronics,DAKT,,1968-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Dimock
+Q5084818,Charlie Ergen,1953-03-01T00:00:00Z,founder,Q1199757,Dish,DISH,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,merchant,Oak Ridge
+Q2959209,Charles Geschke,1939-09-11T00:00:00Z,founder,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Cleveland
+Q160802,Marcel Dassault,1892-01-22T00:00:00Z,founder,Q1172038,Dassault Systèmes,DASTY,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,France,media proprietor,9th arrondissement of Paris
+Q18352441,Doug Otto,1951-01-01T00:00:00Z,founder,Q1181953,Deckers Outdoor Corporation,DECK,,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,
+Q15967751,Ernest Harrison,1926-05-11T00:00:00Z,founder,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,,aircraft pilot,Metropolitan Borough of Hackney
+Q5483294,Francisco D'Souza,1968-08-23T00:00:00Z,founder,Q1107035,Cognizant,CTSH,1998-06-19T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Nairobi
+Q1767846,"Peter Karmanos, Jr.",1943-03-11T00:00:00Z,founder,Q1122747,Compuware,,,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,ice hockey player,Detroit
+Q11170265,Harold McMaster,1916-07-20T00:00:00Z,founder,Q1138888,First Solar,FSLR,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,physicist,Deshler
+Q5318172,Dwight Hamilton Baldwin,1821-09-15T00:00:00Z,founder,Q118663,Baldwin Piano Company,,1986-01-01T00:00:00Z,1862-01-01T00:00:00Z,Q82059,Nasdaq,male,,piano maker,
+Q64009055,Omid Cameron Farokhzad,1969-01-01T00:00:00Z,founder,Q115446257,"Seer, Inc",SEER,2020-12-01T00:00:00Z,2017-03-01T00:00:00Z,Q82059,Nasdaq,male,,scientist,Tehran
+Q6831501,Michael J. Saylor,1965-02-04T00:00:00Z,founder,Q1192211,Strategy,MSTR,1998-01-01T00:00:00Z,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,author,Lincoln
+Q55629586,Peter Beck,1976-01-01T00:00:00Z,founder,Q116319,Rocket Lab,RKLB,,2006-06-01T00:00:00Z,Q82059,Nasdaq,male,New Zealand,engineer,Invercargill
+Q716147,J. Willard Marriott,1900-09-17T00:00:00Z,founder,Q1141173,Marriott International,MAR,1993-01-01T00:00:00Z,1993-10-08T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Marriott-Slaterville
+Q1344392,John Warnock,1940-10-06T00:00:00Z,founder,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,male,United States,mathematician,Salt Lake City
+Q5553070,Gerry Whent,1927-03-01T00:00:00Z,founder,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q17859800,Julian A. Brodsky,1933-07-16T00:00:00Z,founder,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,,chief financial officer,
+Q7306657,Reed Hastings,1960-10-08T00:00:00Z,founder,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Boston
+Q18341330,Marc Randolph,1958-04-29T00:00:00Z,founder,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Chappaqua
+Q7922224,Vernon Rudolph,1915-06-30T00:00:00Z,founder,Q1192805,Krispy Kreme,DNUT,2021-01-01T00:00:00Z,1937-07-13T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q115676278,David Schaeffer,1956-04-24T00:00:00Z,founder,Q1106938,Cogent Communications,CCOI,2006-03-06T00:00:00Z,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q6479902,Lakshmi Narayanan,1953-01-01T00:00:00Z,founder,Q1107035,Cognizant,CTSH,1998-06-19T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q7794422,Thomas Thewes,1931-12-09T00:00:00Z,founder,Q1122747,Compuware,,,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,athlete,
+Q92765,Seymour Cray,1925-09-28T00:00:00Z,founder,Q144060,Cray,CRAY,1995-09-27T00:00:00Z,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,electrical engineer,Chippewa Falls
+Q7793309,Thomas Proulx,1961-11-18T00:00:00Z,founder,Q1318848,Intuit,INTU,1993-01-01T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q1687865,Jerry Sanders,1936-09-12T00:00:00Z,founder,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Chicago
+Q93309816,William Pigott,1860-01-01T00:00:00Z,founder,Q1477661,PACCAR,PCAR,,1905-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,,New York City
+Q7446496,Sehat Sutardja,1961-01-01T00:00:00Z,founder,Q1347782,Marvell Technology,MRVL,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,Indonesia,businessperson,Jakarta
+Q1668164,Scott McNealy,1954-11-13T00:00:00Z,founder,Q14647,Sun Microsystems,,,1982-02-24T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Columbus
+Q25496514,Izzy Sheratzki,1946-12-01T00:00:00Z,founder,Q13576574,Ituran,ITRN,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Tel Aviv
+Q335047,Bill Joy,1954-11-08T00:00:00Z,founder,Q14647,Sun Microsystems,,,1982-02-24T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Farmington Hills
+Q92985,Robin Li,1968-11-17T00:00:00Z,founder,Q14772,Baidu,BIDU,,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,inventor,Yangquan
+Q5235798,David K. Lam,1943-02-10T00:00:00Z,founder,Q1342041,Lam Research,LRCX,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,Taiwan,engineer,Republic of China
+Q7436159,Scott Cook,1952-01-01T00:00:00Z,founder,Q1318848,Intuit,INTU,1993-01-01T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q16018448,Jack Gifford,1941-01-11T00:00:00Z,founder,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,United States,baseball player,Torrance
+Q930948,Edwin Turney,1929-03-26T00:00:00Z,founder,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Brooklyn
+Q738005,Vinod Khosla,1955-01-28T00:00:00Z,founder,Q14647,Sun Microsystems,,,1982-02-24T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Delhi
+Q1585209,Nathan Handwerker,1892-06-14T00:00:00Z,founder,Q1319505,Nathan's Famous,NATH,,1916-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Germany
+Q4892974,"Berth Milton, Sr.",1926-11-26T00:00:00Z,founder,Q1476080,Private Media Group,PRVT,,1965-01-01T00:00:00Z,Q82059,Nasdaq,male,Sweden,businessperson,Sweden
+Q5724229,Henry Katzenstein,1927-01-09T00:00:00Z,founder,Q15109850,Brooktree,CNXT,,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,physicist,Shreveport – Bossier City metropolitan area
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,founder,Q14289857,News Corp,NWSA,2013-06-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Melbourne
+Q4699765,Ajit Balakrishnan,1901-01-01T00:00:00Z,founder,Q140676,rediff.com,REDF,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,
+Q6211110,Joe Mansueto,1956-09-03T00:00:00Z,founder,Q1389504,"Morningstar, Inc.",MORN,2005-01-01T00:00:00Z,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Munster
+Q5084818,Charlie Ergen,1953-03-01T00:00:00Z,founder,Q1280748,Q1280748,SATS,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,merchant,Oak Ridge
+Q8004854,William B. Ruger,1916-06-21T00:00:00Z,founder,Q1508526,"Sturm, Ruger & Co.",RGR,,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Brooklyn
+Q4933600,Bob Parsons,1950-11-27T00:00:00Z,founder,Q1416215,GoDaddy,GDDY,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Baltimore
+Q12010679,William Copeland,1834-01-10T00:00:00Z,founder,Q13403399,Kirin Holdings,KNBWY,,1885-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,brewer,Arendal
+Q65344,Andy Bechtolsheim,1955-09-30T00:00:00Z,founder,Q14647,Sun Microsystems,,,1982-02-24T00:00:00Z,Q82059,Nasdaq,male,Germany,inventor,Hängeberg
+Q4995756,Mark Palmer,1941-07-14T00:00:00Z,founder,Q1053787,Central European Media Enterprises,CETV,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,diplomat,Ann Arbor
+Q4449449,Ivan Tavrin,1976-11-01T00:00:00Z,founder,Q107526370,Kismet Acquisition Two Corp,KII,,2020-01-01T00:00:00Z,Q82059,Nasdaq,male,Russia,businessperson,Moscow
+Q369783,Mike Markkula,1942-02-11T00:00:00Z,founder,Q1083470,Echelon Corporation,ELON,,1988-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Los Angeles
+Q21028552,Fred Chang,1950-01-01T00:00:00Z,founder,Q10856243,Newegg,NEGG,,2001-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,Taiwan
+Q6831969,Michael Krasny,1955-01-01T00:00:00Z,founder,Q1023155,CDW,CDW,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q2427296,Thomas Siebel,1952-11-20T00:00:00Z,founder,Q104081972,C3.ai,AI,2020-12-09T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Chicago
+Q55687800,Austin Russell,1995-03-14T00:00:00Z,founder,Q106240666,Luminar Technologies,LAZR,2020-12-01T00:00:00Z,2011-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Newport Beach
+Q8993650,Li Yinan,1970-01-01T00:00:00Z,founder,Q104868523,Niu Technologies,NIU,2018-01-01T00:00:00Z,2014-09-18T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Changsha
+Q6984162,Neal Patterson,1949-12-10T00:00:00Z,founder,Q1055390,Cerner,CERN,,1979-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Anthony
+Q7635224,Suhas Patil,1944-01-01T00:00:00Z,founder,Q1067998,Cirrus Logic,CRUS,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Jamshedpur
+Q22686,Donald Trump,1946-06-14T00:00:00Z,founder,Q109030760,Trump Media & Technology Group,DJT,2024-03-26T00:00:00Z,2021-02-01T00:00:00Z,Q82059,Nasdaq,male,United States,actor,Jamaica Hospital Medical Center
+Q22947498,Ran Poliakine,1967-10-25T00:00:00Z,founder,Q109648854,Nano-X Imaging,NNOX,,2018-12-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Jerusalem
+Q7004838,Neville Roy Singham,1954-05-13T00:00:00Z,founder,Q10382234,ThoughtWorks,TWKS,2021-09-15T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,United States
+Q1528185,Sherman Fairchild,1896-04-07T00:00:00Z,founder,Q1096013,Fairchild Semiconductor,FCS,,1957-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Oneonta
+Q12538435,Vyacheslav Kim,1969-06-12T00:00:00Z,founder,Q106219885,Kaspi.kz Joint Stock Company,KSPI,2024-01-19T00:00:00Z,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,,economist,
+Q16751495,Louis B. Rosenberg,1969-05-24T00:00:00Z,founder,Q10534742,Immersion Corporation,IMMR,,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,
+Q952816,Jean Hoerni,1924-09-26T00:00:00Z,founder,Q1065090,Intersil,ISIL,,1967-01-01T00:00:00Z,Q82059,Nasdaq,male,Switzerland,engineer,Geneva
+Q5236951,David M. Overton,1946-01-01T00:00:00Z,founder,Q1045842,The Cheesecake Factory,CAKE,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,,Detroit
+Q17280087,Emmanuelle Charpentier,1968-12-11T00:00:00Z,founder,Q104480207,CRISPR Therapeutics,CRSP,2016-10-19T00:00:00Z,2013-01-01T00:00:00Z,Q82059,Nasdaq,female,France,geneticist,Juvisy-sur-Orge
+Q1261225,Eugene Kleiner,1923-05-12T00:00:00Z,founder,Q1096013,Fairchild Semiconductor,FCS,,1957-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Vienna
+Q23760309,Chris Urmson,1976-01-01T00:00:00Z,founder,Q101606525,Aurora Innovation,AUR,2021-05-06T00:00:00Z,2016-01-01T00:00:00Z,Q82059,Nasdaq,male,,engineer,Canada
+Q4449449,Ivan Tavrin,1976-11-01T00:00:00Z,founder,Q107526548,Kismet Acquisition One Corp,KSMTU,,2020-08-06T00:00:00Z,Q82059,Nasdaq,male,Russia,businessperson,Moscow
+Q4760588,Andy Dean,1981-06-11T00:00:00Z,founder,Q109030760,Trump Media & Technology Group,DJT,2024-03-26T00:00:00Z,2021-02-01T00:00:00Z,Q82059,Nasdaq,male,United States,radio personality,Boynton Beach
+Q699565,Ronald Lauder,1944-02-26T00:00:00Z,founder,Q1053787,Central European Media Enterprises,CETV,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,New York City
+Q861110,Shane McMahon,1970-01-15T00:00:00Z,founder,Q105062637,Ideanomics,IDEX,,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Gaithersburg
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,founder,Q5476713,21st Century Fox,TFCF,2019-03-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,Australia,publisher,Melbourne
+Q7094402,Onno van de Stolpe,1959-10-25T00:00:00Z,founder,Q5517961,Galápagos NV,GLPG,2010-07-29T00:00:00Z,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of the Netherlands,businessperson,
+Q3017285,Dave Thomas,1932-07-02T00:00:00Z,founder,Q550258,Wendy's,WEN,,1969-11-15T00:00:00Z,Q82059,Nasdaq,male,United States,restaurateur,Atlantic City
+Q6075105,Irwin M. Jacobs,1933-10-18T00:00:00Z,founder,Q544847,Qualcomm,QCOM,,1985-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,academic,New Bedford
+Q106968360,John Foley,1971-01-01T00:00:00Z,founder,Q56276186,Peloton,PTON,2019-09-01T00:00:00Z,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,executive,
+Q468467,Jeong Ju-yung,1915-11-25T00:00:00Z,founder,Q55931,Hyundai Motor Company,HYMTF,,1967-12-29T00:00:00Z,Q82059,Nasdaq,male,South Korea,politician,Tongchon County
+Q5726332,Henry Nicholas,1959-01-01T00:00:00Z,founder,Q555925,Broadcom,BRCM,1998-01-01T00:00:00Z,1991-08-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Cincinnati
+Q7626505,Stuart Epperson,1936-11-02T00:00:00Z,founder,Q5431118,Salem Media Group,SALM,1999-07-01T00:00:00Z,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Patrick County
+Q944937,Henry Samueli,1954-09-20T00:00:00Z,founder,Q555925,Broadcom,BRCM,1998-01-01T00:00:00Z,1991-08-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Buffalo
+Q6829676,Michael D. West,1953-01-01T00:00:00Z,founder,Q5552410,Geron Corporation,GERN,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,biologist,United States
+Q17986637,Andrew Conru,2000-01-01T00:00:00Z,founder,Q5503999,Friend Finder Networks,FFN,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,
+Q73463100,Dmitriy Zaporozhets,1989-01-01T00:00:00Z,founder,Q55589254,GitLab Inc.,GTLB,2021-10-14T00:00:00Z,2011-01-01T00:00:00Z,Q82059,Nasdaq,male,Ukraine,software developer,
+Q89801796,Ashar Aziz,1959-01-01T00:00:00Z,founder,Q5451274,FireEye,FEYE,2013-09-20T00:00:00Z,2004-02-01T00:00:00Z,Q82059,Nasdaq,male,,engineer,Karachi
+Q505358,Andrew Viterbi,1935-03-09T00:00:00Z,founder,Q544847,Qualcomm,QCOM,,1985-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Bergamo
+Q5213583,Dan Goldstein,1954-06-19T00:00:00Z,founder,Q5470333,Formula Systems (1985) Ltd.,FORTY,1997-10-20T00:00:00Z,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,Romania,businessperson,Bucharest
+Q50824633,Miles Nadal,1958-02-23T00:00:00Z,founder,Q539056,MDC Partners,MDCA,2005-08-01T00:00:00Z,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,businessperson,Toronto
+Q56651219,Richard McVey,1959-07-02T00:00:00Z,founder,Q55622230,MarketAxess,MKTX,2004-11-05T00:00:00Z,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,,,Painesville
+Q52325816,Christopher Gavigan,1974-04-20T00:00:00Z,founder,Q18534725,The Honest Company,HNST,,2011-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,writer,United States
+Q1065149,Charles Kaman,1919-06-15T00:00:00Z,founder,Q1722848,Kaman Corporation,KAMN,,1945-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,"Washington, D.C."
+Q44077,Jessica Alba,1981-04-28T00:00:00Z,founder,Q18534725,The Honest Company,HNST,,2011-01-01T00:00:00Z,Q82059,Nasdaq,female,France,actor,Pomona
+Q7549,Sandra Lerner,1955-01-01T00:00:00Z,founder,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,California
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,founder,Q185278,News Corporation,NWS,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Melbourne
+Q51841205,Jeff Fraser,2000-01-01T00:00:00Z,founder,Q17114312,NIC Inc.,EGOV,1999-07-15T00:00:00Z,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q460459,Trip Hawkins,1953-12-28T00:00:00Z,founder,Q173941,Electronic Arts,EA,1990-03-26T00:00:00Z,1982-05-28T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Pasadena
+Q19481845,Rony Abovitz,1971-01-01T00:00:00Z,founder,Q17107854,MAKO Surgical Corp.,MAKO,,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Israel
+Q28741107,Edward C. Raymund,1928-08-26T00:00:00Z,founder,Q1715931,Tech Data,TECD,1990-03-26T00:00:00Z,1974-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Mission Viejo
+Q305177,Jensen Huang,1963-02-17T00:00:00Z,founder,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Tainan
+Q6246250,John Mackey,1953-08-15T00:00:00Z,founder,Q1809448,Whole Foods Market,WFM,,1980-09-20T00:00:00Z,Q82059,Nasdaq,male,United States,merchant,Houston
+Q4964464,Brian Lee,1971-03-15T00:00:00Z,founder,Q18534725,The Honest Company,HNST,,2011-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,Seoul
+Q18345981,Leonard M. Tannenbaum,1971-01-01T00:00:00Z,founder,Q18643660,Fifth Street Asset Management,FSAM,,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,,
+Q8131454,Walter Varney,1888-12-26T00:00:00Z,founder,Q174769,United Airlines,UAL,1968-01-01T00:00:00Z,1926-04-06T00:00:00Z,Q82059,Nasdaq,male,United States,aircraft pilot,San Francisco
+Q3229666,Leonard Bosack,1952-01-01T00:00:00Z,founder,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Philadelphia
+Q44870909,Eric S. Yuan,1970-02-20T00:00:00Z,founder,Q17460900,Zoom Video Communications,ZM,2019-04-18T00:00:00Z,2011-04-21T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Tai'an
+Q16018448,Jack Gifford,1941-01-11T00:00:00Z,founder,Q1784671,Maxim Integrated,MXIM,1994-01-03T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,baseball player,Torrance
+Q6628738,Marius Nacht,1962-01-01T00:00:00Z,founder,Q176587,Check Point,CHKP,1999-03-03T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,engineer,Romania
+Q27020244,Shlomo Kramer,1966-01-01T00:00:00Z,founder,Q176587,Check Point,CHKP,1999-03-03T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,academic,Tel Aviv
+Q5107317,Chris Malachowsky,1959-05-02T00:00:00Z,founder,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,
+Q16142549,Arie Belldegrun,1949-01-01T00:00:00Z,founder,Q18343414,Kite Pharma,KITE,,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,oncologist,Israel
+Q5195858,Curtis Priem,1958-01-01T00:00:00Z,founder,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,United States
+Q48609449,Ethan Brown,1971-01-01T00:00:00Z,founder,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,environmentalist,
+Q2909403,Gil Shwed,1968-01-01T00:00:00Z,founder,Q176587,Check Point,CHKP,1999-03-03T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,programmer,Jerusalem
+Q4800074,Arthur Randall,1896-02-06T00:00:00Z,founder,Q891163,Bojangles' Famous Chicken 'n Biscuits,BOJA,,1977-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom of Great Britain and Ireland,military personnel,Paisley
+Q63086865,Marcus Younker,1839-08-07T00:00:00Z,founder,Q8058700,Younkers,,,1856-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,Lipno
+Q2846672,Andrew Mason,1981-01-01T00:00:00Z,founder,Q852787,Groupon,GRPN,2011-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,entrepreneur,Mt. Lebanon
+Q7323183,Rich Barton,1967-06-02T00:00:00Z,founder,Q8085893,Expedia Group,EXPE,2005-01-01T00:00:00Z,1996-10-22T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q6166316,Jay Adelson,1970-09-07T00:00:00Z,founder,Q851641,Equinix,EQIX,,1998-06-22T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Detroit
+Q109494078,Mikhail Kokorich,1976-10-11T00:00:00Z,founder,Q85786082,Momentus Space,MNTS,,,Q82059,Nasdaq,male,Russia,scientist,Aginskoye
+Q21062504,Vincent Viola,1956-02-12T00:00:00Z,founder,Q7934906,Virtu Financial,VIRT,2015-04-16T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Brooklyn
+Q217486,Walter Gilbert,1932-03-21T00:00:00Z,founder,Q864338,Biogen,BIIB,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,biochemist,Boston
+Q456052,Fusajirō Yamauchi,1859-11-22T00:00:00Z,founder,Q8093,Q8093,NTDOY,,1889-09-23T00:00:00Z,Q82059,Nasdaq,male,Japan,entrepreneur,Kyoto
+Q456219,Steve Burns,1973-10-09T00:00:00Z,founder,Q86681792,Lordstown Motors,RIDE,,2018-01-01T00:00:00Z,Q82059,Nasdaq,cisgender man,United States,actor,Boyertown
+Q6556021,Lior Haramaty,1966-01-01T00:00:00Z,founder,Q7939183,VocalTec,CALL,,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,,engineer,
+Q136351200,Pelatiah Webster Huntington,1836-07-02T00:00:00Z,founder,Q798819,Huntington Bancshares,HBAN,1994-01-03T00:00:00Z,1866-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,banker,
+Q8017766,William Rosenberg,1916-06-10T00:00:00Z,founder,Q847743,Dunkin',DNKN,,1950-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Boston
+Q312977,Phillip Sharp,1944-06-06T00:00:00Z,founder,Q864338,Biogen,BIIB,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,geneticist,Falmouth
+Q120251,Charles Weissmann,1931-10-14T00:00:00Z,founder,Q864338,Biogen,BIIB,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,Switzerland,biochemist,Budapest
+Q7323183,Rich Barton,1967-06-02T00:00:00Z,founder,Q8071921,Zillow,Z,2011-07-20T00:00:00Z,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q6390511,Kenneth Murray,1930-12-30T00:00:00Z,founder,Q864338,Biogen,BIIB,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,molecular biologist,East Ardsley
+Q5233095,David Duffield,1941-01-01T00:00:00Z,founder,Q8034666,"Workday, Inc.",WDAY,2012-10-12T00:00:00Z,2005-03-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,
+Q9351762,Deng Zhonghan,1968-09-11T00:00:00Z,founder,Q7931283,Vimicro,VIMC,,1999-10-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,politician,Nanjing
+Q18352311,Aneel Bhusri,1966-02-14T00:00:00Z,founder,Q8034666,"Workday, Inc.",WDAY,2012-10-12T00:00:00Z,2005-03-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Pittsford
+Q5524877,Gary Comer,1927-12-10T00:00:00Z,founder,Q839555,Lands' End,LE,,1963-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,sailor,
+Q4734331,Alon Cohen,1962-01-01T00:00:00Z,founder,Q7939183,VocalTec,CALL,,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,inventor,
+Q203559,Brigham Young,1801-06-01T00:00:00Z,founder,Q8072576,Zions Bank,ZION,1990-03-26T00:00:00Z,,Q82059,Nasdaq,male,United States,politician,Whitingham
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,founder,Q60238941,Fox Corporation,FOXA,2019-03-19T00:00:00Z,2019-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,media proprietor,Melbourne
+Q2469000,Elliot Handler,1916-04-09T00:00:00Z,founder,Q596139,Mattel,MAT,,1945-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Chicago
+Q19538950,Nathan Blecharczyk,1983-01-01T00:00:00Z,founder,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,West Roxbury
+Q4963341,Brian Chesky,1981-08-29T00:00:00Z,founder,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Niskayuna
+Q5578461,Leon Black,1951-07-31T00:00:00Z,founder,Q619121,Apollo Global Management,AINV,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q6289885,Josh Harris,1964-12-29T00:00:00Z,founder,Q619121,Apollo Global Management,AINV,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,investor,Chevy Chase
+Q3658792,John Hendricks,1952-03-29T00:00:00Z,founder,Q621592,"Discovery, Inc.",DISCA,2005-07-08T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Matewan
+Q16211119,Ken Fox,1970-01-01T00:00:00Z,founder,Q5969568,ICG Group,ACTA,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,financier,Philadelphia
+Q19560551,Joe Gebbia,1981-08-21T00:00:00Z,founder,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,computer scientist,Atlanta
+Q3182489,John Sperling,1921-01-09T00:00:00Z,founder,Q619111,Apollo Group,APOL,,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,Willow Springs
+Q420352,Frank Seiberling,1859-10-06T00:00:00Z,founder,Q620875,Goodyear Tire and Rubber Company,GT,,1898-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Akron
+Q6112592,Jack Friedman,1939-07-09T00:00:00Z,founder,Q580866,THQ,THQI,1991-01-01T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Queens
+Q16194777,Marc Rowan,1962-08-19T00:00:00Z,founder,Q619121,Apollo Global Management,AINV,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q16193321,Antony Ressler,1960-01-01T00:00:00Z,founder,Q619121,Apollo Global Management,AINV,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,"Washington, D.C."
+Q2857927,Zohar Zisapel,1949-02-15T00:00:00Z,founder,Q585861,RAD Group,,,1975-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Tel Aviv
+Q348483,Pierre Omidyar,1967-06-21T00:00:00Z,founder,Q58024,eBay,EBAY,1998-09-24T00:00:00Z,1995-09-03T00:00:00Z,Q82059,Nasdaq,male,United States,economist,Paris
+Q16193927,David Welch,1960-10-26T00:00:00Z,founder,Q6029685,Infinera,INFN,2007-06-07T00:00:00Z,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,"Washington, D.C."
+Q832333,Charles Wang,1944-08-19T00:00:00Z,founder,Q600624,CA Technologies,CA,,1976-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Shanghai
+Q4932076,Bob Citron,1932-09-14T00:00:00Z,founder,Q59507,Astrotech Corporation,ASTC,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,
+Q56678349,Eric Tan,http://www.wikidata.org/.well-known/genid/6de12976e1c73bfcfaab463672f2a0c9,founder,Q59318110,Qutoutiao,QTT,,,Q82059,Nasdaq,male,People's Republic of China,,People's Republic of China
+Q72513,Karl Rapp,1882-09-24T00:00:00Z,founder,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,entrepreneur,Ehingen
+Q432929,Andrew Grove,1936-09-02T00:00:00Z,founder,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,Hungary,writer,Budapest
+Q524369,Steve Wynn,1942-01-27T00:00:00Z,founder,Q2274089,Wynn Resorts,WYNN,,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,Monaco,entrepreneur,New Haven
+Q1391255,Nandan Nilekani,1955-06-02T00:00:00Z,founder,Q26989,Infosys,INFY,1999-03-11T00:00:00Z,1981-07-02T00:00:00Z,Q82059,Nasdaq,male,India,politician,Vanivilas Women and Children Hospital
+Q5284,Bill Gates,1955-10-28T00:00:00Z,founder,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,Seattle
+Q45864,John McAfee,1945-09-18T00:00:00Z,founder,Q267313,"McAfee, LLC",MCFE,,1987-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Cinderford
+Q2783694,Andy Heyward,1949-02-19T00:00:00Z,founder,Q25231005,Kartoon Studios,GNUS,,2013-11-01T00:00:00Z,Q82059,Nasdaq,male,United States,screenwriter,New York City
+Q118056,Daniel Borel,1950-02-14T00:00:00Z,founder,Q223127,Logitech,LOGI,1997-03-01T00:00:00Z,1981-10-02T00:00:00Z,Q82059,Nasdaq,male,Switzerland,engineer,Neuchâtel
+Q79091,Camillo Castiglioni,1879-10-22T00:00:00Z,founder,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Austria–Hungary,engineer,Trieste
+Q66756,Gustav Otto,1883-01-12T00:00:00Z,founder,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,engineer,Cologne
+Q241735,Robert Noyce,1927-12-12T00:00:00Z,founder,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Burlington
+Q243969,Gordon Moore,1929-01-03T00:00:00Z,founder,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,San Francisco
+Q162005,Paul Allen,1953-01-21T00:00:00Z,founder,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Seattle
+Q1398708,N. R. Narayana Murthy,1946-08-20T00:00:00Z,founder,Q26989,Infosys,INFY,1999-03-11T00:00:00Z,1981-07-02T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,Mysore
+Q113393,Franz Josef Popp,1886-01-14T00:00:00Z,founder,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,designer,Vienna
+Q3161760,Jan Stenbeck,1942-11-14T00:00:00Z,founder,Q276345,Millicom,TIGO,,1979-01-01T00:00:00Z,Q82059,Nasdaq,male,Sweden,economist,Engelbrekt church parish
+Q6453246,Kári Stefánsson,1949-04-06T00:00:00Z,founder,Q493712,deCODE genetics,DCGN,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,Iceland,neurologist,Iceland
+Q5108217,Chris T. Sullivan,1948-02-15T00:00:00Z,founder,Q4928282,Bloomin' Brands,BLMN,2012-08-08T00:00:00Z,1987-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,director,
+Q1379779,Mike Lazaridis,1961-03-14T00:00:00Z,founder,Q502121,BlackBerry,RIMM,1999-01-01T00:00:00Z,1984-03-07T00:00:00Z,Q82059,Nasdaq,male,Canada,businessperson,Istanbul
+Q6751021,Manny Mashouf,1938-07-06T00:00:00Z,founder,Q4878313,Bebe Stores,BEBE,,1976-01-01T00:00:00Z,Q82059,Nasdaq,male,Iran,businessperson,Tehran
+Q5203641,D. J. De Pree,1891-07-31T00:00:00Z,founder,Q489469,Herman Miller,MLHR,,1923-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,furniture designer,Zeeland
+Q7345044,"Robert H. Dedman, Sr.",1926-01-01T00:00:00Z,founder,Q5136077,ClubCorp,MYCC,,1957-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Rison
+Q110218309,Samuel S. Childs,1863-04-04T00:00:00Z,founder,Q5098617,Childs Restaurants,SNSTA,,1889-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Basking Ridge
+Q110216105,William Childs,1865-07-01T00:00:00Z,founder,Q5098617,Childs Restaurants,SNSTA,,1889-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,restaurateur,
+Q8877,Steven Spielberg,1946-12-18T00:00:00Z,founder,Q500088,DreamWorks Animation,DWA,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,actor,Cincinnati
+Q115055,Q115055,1943-02-21T00:00:00Z,founder,Q500088,DreamWorks Animation,DWA,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,theatrical producer,Brooklyn
+Q4710751,Albert Luce,1888-06-26T00:00:00Z,founder,Q4928875,Blue Bird Corporation,,,1932-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,La Grange
+Q7537295,Sky Dayton,1971-08-08T00:00:00Z,founder,Q4938392,Boingo Wireless,WIFI,,2001-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,New York City
+Q16132014,Giora Yaron,1948-01-01T00:00:00Z,founder,Q50038825,Itamar Medical Ltd,ITMR,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,manager,Manara
+Q4932385,Bob Evans,1918-05-30T00:00:00Z,founder,Q4932386,Bob Evans Restaurants,BOBE,,1946-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,restaurateur,Sugar Ridge
+Q6181059,Jeremy Allaire,1971-05-13T00:00:00Z,founder,Q4967514,Brightcove,BCOV,,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,United States
+Q5729029,Henry Taub,1927-09-20T00:00:00Z,founder,Q489080,Automatic Data Processing,ADP,1990-01-02T00:00:00Z,1949-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q550426,Jeffrey Katzenberg,1950-12-21T00:00:00Z,founder,Q500088,DreamWorks Animation,DWA,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,actor,New York City
+Q92858,Daniel Lewin,1970-05-14T00:00:00Z,founder,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,computer scientist,Denver
+Q5237122,David Margolese,1957-10-24T00:00:00Z,founder,Q3277465,Sirius XM,SIRI,1994-09-13T00:00:00Z,2008-07-29T00:00:00Z,Q82059,Nasdaq,male,Canada,businessperson,Vancouver
+Q3786739,Horace Smith,1808-10-28T00:00:00Z,founder,Q463090,Smith & Wesson,SWHC,,1852-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Cheshire
+Q741313,Milan Mandarić,1938-09-05T00:00:00Z,founder,Q426583,Sanmina Corporation,SANM,1993-06-22T00:00:00Z,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,Yugoslavia,businessperson,Gospić
+Q312663,Eduardo Saverin,1982-03-19T00:00:00Z,founder,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,economist,São Paulo
+Q5213457,Dan Evins,1935-10-11T00:00:00Z,founder,Q4492609,Cracker Barrel,CBRL,1990-01-02T00:00:00Z,1969-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Smithville
+Q36215,Mark Zuckerberg,1984-05-14T00:00:00Z,founder,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,White Plains
+Q5424058,F. Thomson Leighton,1956-01-01T00:00:00Z,founder,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,mathematician,
+Q4117176,Q4117176,1963-03-01T00:00:00Z,founder,Q344341,Activision Blizzard,ATVI,,2008-07-10T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Long Island
+Q258639,Wilhelmina Cooper,1939-05-01T00:00:00Z,founder,Q4019844,Wilhelmina Models,WHLM,2009-02-19T00:00:00Z,1967-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,model,Culemborg
+Q370321,Chris Hughes,1983-11-26T00:00:00Z,founder,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Hickory
+Q6266046,Johnnie Bryan Hunt,1927-02-28T00:00:00Z,founder,Q4041705,J. B. Hunt,JBHT,1994-01-03T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Heber Springs
+Q4983919,Bud Paxson,1935-04-17T00:00:00Z,founder,Q452340,HSN,HSNI,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Rochester
+Q765286,Jerry Baldwin,2000-01-01T00:00:00Z,founder,Q37158,Starbucks,SBUX,1992-06-26T00:00:00Z,1971-03-30T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q370217,Dustin Moskovitz,1984-05-22T00:00:00Z,founder,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Gainesville
+Q4757939,بن منشلين,1983-09-04T00:00:00Z,founder,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,angel investor,Los Angeles County
+Q766781,Gordon Bowker,1942-10-28T00:00:00Z,founder,Q37158,Starbucks,SBUX,1992-06-26T00:00:00Z,1971-03-30T00:00:00Z,Q82059,Nasdaq,male,United States,writer,
+Q312556,Jeff Bezos,1964-01-12T00:00:00Z,founder,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Albuquerque
+Q383244,Matthew Carter,1937-10-01T00:00:00Z,founder,Q45600,Bitstream Inc.,BITS,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,archivist,London
+Q111863,Günther Laukien,1924-05-23T00:00:00Z,founder,Q431454,Bruker,BRKR,,1960-01-01T00:00:00Z,Q82059,Nasdaq,male,Germany,university teacher,Eschringen
+Q62910,Carver Mead,1934-05-01T00:00:00Z,founder,Q4041316,Impinj,PI,2016-07-21T00:00:00Z,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Bakersfield
+Q1680704,James L. Kraft,1874-12-11T00:00:00Z,founder,Q327751,Kraft Foods Group,KRFT,,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,entrepreneur,Stevensville
+Q3701558,Daniel B. Wesson,1825-05-18T00:00:00Z,founder,Q463090,Smith & Wesson,SWHC,,1852-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Worcester
+Q1948502,Morris Kahn,1930-03-05T00:00:00Z,founder,Q460446,Amdocs,DOX,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Benoni
+Q5726547,Henry Oscar Houghton,1823-04-30T00:00:00Z,founder,Q390074,Houghton Mifflin Harcourt,HMHC,2013-11-14T00:00:00Z,1880-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Sutton
+Q766557,Zev Siegl,1942-12-28T00:00:00Z,founder,Q37158,Starbucks,SBUX,1992-06-26T00:00:00Z,1971-03-30T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Alameda
+Q5361236,Eliot Horowitz,1981-05-17T00:00:00Z,founder,Q4546965,MongoDB Inc.,,,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief technology officer,
+Q75838639,Willis Johnson,1947-01-01T00:00:00Z,founder,Q16951448,Copart,CPRT,1994-03-17T00:00:00Z,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Oklahoma
+Q7609204,Stephen Fodor,1953-01-01T00:00:00Z,founder,Q2826104,Affymetrix,AFFX,,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,geneticist,Seattle
+Q4662637,Aart de Geus,1954-01-01T00:00:00Z,founder,Q2303478,Synopsys,SNPS,1992-02-26T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of the Netherlands,businessperson,Vlaardingen
+Q6848316,Mike Parker,1929-01-01T00:00:00Z,founder,Q45600,Bitstream Inc.,BITS,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,typographer,London
+Q131440663,Q131440663,1831-09-23T00:00:00Z,founder,Q3403513,Principal Financial Group,PFG,2001-10-23T00:00:00Z,1879-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,pioneer,Des Moines
+Q8991047,Liu Qiangdong,1973-03-10T00:00:00Z,founder,Q3598926,JD.com,JD,2014-05-22T00:00:00Z,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Suqian
+Q6443491,Kumar Malavalli,1943-02-09T00:00:00Z,founder,Q2424396,Brocade Communications Systems,BRCD,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,British Raj,business executive,Malavalli
+Q27990373,Shimon Eckhouse,1945-05-13T00:00:00Z,founder,Q4043248,Lumenis,LMNS,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,entrepreneur,Chernivtsi
+Q6674673,"Lonnie ""Bo"" Pilgrim",1928-05-08T00:00:00Z,founder,Q3388421,Pilgrim's Corp,PPC,2012-12-28T00:00:00Z,1946-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q39786722,Winnie Liljeborg,1956-01-01T00:00:00Z,founder,Q2241604,Pandora,PANDORA,,1982-01-01T00:00:00Z,Q82059,Nasdaq,female,Kingdom of Denmark,businessperson,
+Q22006945,Umesh Mishra,1958-01-01T00:00:00Z,founder,Q25100315,Transphorm,TGAN,,,Q82059,Nasdaq,male,India,electrical engineer,
+Q4687701,Kobi Alexander,1952-05-04T00:00:00Z,founder,Q2388717,Comverse,CMVT,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Kfar Saba
+Q3934751,Richard Aleas,1969-01-01T00:00:00Z,founder,Q16997963,Juno Online Services,JWEB,1999-05-01T00:00:00Z,1995-05-01T00:00:00Z,Q82059,Nasdaq,male,United States,novelist,New York City
+Q41187955,Harvey Berger,1950-06-06T00:00:00Z,founder,Q4653724,ARIAD Pharmaceuticals,ARIA,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,
+Q7304577,Red McCombs,1927-10-19T00:00:00Z,founder,Q477993,iHeartMedia,IHRT,,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Spur
+Q1903673,Martin Eberhard,1960-05-15T00:00:00Z,founder,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Berkeley
+Q33114318,Franck Le Ouay,1977-09-03T00:00:00Z,founder,Q2814507,Criteo,CRTO,2013-10-30T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,France,engineer,Pessac
+Q7342369,Robert Briskman,1932-10-15T00:00:00Z,founder,Q3277465,Sirius XM,SIRI,1994-09-13T00:00:00Z,2008-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,electrical engineer,New York City
+Q6437174,Kris Gopalakrishnan,1955-04-05T00:00:00Z,founder,Q26989,Infosys,INFY,1999-03-11T00:00:00Z,1981-07-02T00:00:00Z,Q82059,Nasdaq,male,India,computer scientist,Thiruvananthapuram
+Q107144039,Apoorva Mehta,1986-01-01T00:00:00Z,founder,Q22909236,Instacart,CART,2023-01-01T00:00:00Z,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,business executive,
+Q113483577,Adam Singolda,1981-09-06T00:00:00Z,founder,Q18154756,Taboola,TBLA,2021-06-30T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Rishon LeZion
+Q31805121,Julian Sinclair Smith,1920-05-05T00:00:00Z,founder,Q2288792,Sinclair Broadcast Group,SBGI,,1971-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Baltimore
+Q47010611,Charles Avnet,1888-01-01T00:00:00Z,founder,Q4829076,Avnet,AVT,2018-05-01T00:00:00Z,1921-01-01T00:00:00Z,Q82059,Nasdaq,male,,,Russia
+Q58009626,Darrell Cavens,1972-11-21T00:00:00Z,founder,Q16968488,Zulily,ZU,,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q23060327,Jaye Muller,1972-01-01T00:00:00Z,founder,Q16997523,J2 Global,JCOM,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,Germany,musician,Berlin
+Q3762176,Giacomo Marini,1951-01-01T00:00:00Z,founder,Q223127,Logitech,LOGI,1997-03-01T00:00:00Z,1981-10-02T00:00:00Z,Q82059,Nasdaq,male,Italy,entrepreneur,Cugnoli
+Q7920541,Venugopal Dhoot,1951-09-30T00:00:00Z,founder,Q3259819,Q3259819,VDTH,,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,
+Q6694168,Lowry Mays,1935-07-24T00:00:00Z,founder,Q477993,iHeartMedia,IHRT,,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Harris County
+Q20684741,Brad Mattson,1954-10-29T00:00:00Z,founder,Q17068557,Mattson Technology,MTSN,,1988-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Norwood
+Q52327292,Jean-Baptiste Rudelle,1969-05-05T00:00:00Z,founder,Q2814507,Criteo,CRTO,2013-10-30T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,France,entrepreneur,Paris
+Q50082669,George Kurtz,1970-10-01T00:00:00Z,founder,Q24890758,CrowdStrike,CRWD,2019-06-12T00:00:00Z,2011-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,venture capitalist,New Jersey
+Q1892831,Marc Tarpenning,1964-06-01T00:00:00Z,founder,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Sacramento
+Q7356151,Rod Canion,1945-01-19T00:00:00Z,founder,Q324603,Compaq,CPQ,1983-01-01T00:00:00Z,1982-02-16T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Texas
+Q7298142,Ray Stata,1934-11-12T00:00:00Z,founder,Q484930,Analog Devices,ADI,,1965-01-01T00:00:00Z,Q82059,Nasdaq,male,,engineer,Oxford
+Q7373389,Roy Speer,1932-06-23T00:00:00Z,founder,Q452340,HSN,HSNI,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Key West
+Q7172426,Peter A. Appel,1962-01-01T00:00:00Z,founder,Q28155430,Arch Capital Group,ACGL,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q170419,Carlos Slim,1940-01-28T00:00:00Z,founder,Q482267,América Móvil,AMOV,,2000-09-01T00:00:00Z,Q82059,Nasdaq,male,Mexico,entrepreneur,Mexico City
+Q4892884,Bernard A. Newcomb,1943-11-10T00:00:00Z,founder,Q2607502,E-Trade,ETFC,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Scio
+Q16115316,Richard Hayne,1947-05-26T00:00:00Z,founder,Q3552193,Urban Outfitters,URBN,1993-01-01T00:00:00Z,1970-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q60047641,Bennett Rosenthal,1963-01-01T00:00:00Z,founder,Q4789079,Ares Management,ARCC,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q6265329,John Zimmer,1983-12-12T00:00:00Z,founder,Q17077936,Lyft,LYFT,,2013-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q7387428,S. D. Shibulal,1955-03-01T00:00:00Z,founder,Q26989,Infosys,INFY,1999-03-11T00:00:00Z,1981-07-02T00:00:00Z,Q82059,Nasdaq,male,India,computer scientist,Alappuzha
+Q6256904,John Schnatter,1961-11-23T00:00:00Z,founder,Q2759586,Papa John's,PZZA,1993-06-08T00:00:00Z,1984-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Jeffersonville
+Q52328319,Romain Niccoli,1977-12-13T00:00:00Z,founder,Q2814507,Criteo,CRTO,2013-10-30T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,France,entrepreneur,
+Q8004027,William A. Porter,1928-11-10T00:00:00Z,founder,Q2607502,E-Trade,ETFC,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,boulder
+Q28756477,Stephen Jacobsen,1940-07-15T00:00:00Z,founder,Q2747818,Sarcos,STRC,,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,biomedical engineer,Salt Lake City
+Q27057583,Mohit Aron,1973-01-01T00:00:00Z,founder,Q16959629,Nutanix,NTNX,2016-09-30T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,Pathankot
+Q6777103,Martine Rothblatt,1954-10-10T00:00:00Z,founder,Q3277465,Sirius XM,SIRI,1994-09-13T00:00:00Z,2008-07-29T00:00:00Z,Q82059,Nasdaq,trans woman,United States,lawyer,Chicago
+Q16193321,Antony Ressler,1960-01-01T00:00:00Z,founder,Q4789079,Ares Management,ARCC,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,"Washington, D.C."
+Q4712193,Alberto Sangiovanni-Vincentelli,1947-06-23T00:00:00Z,founder,Q2303478,Synopsys,SNPS,1992-02-26T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,Italy,engineer,Milan
+Q64705310,Brian Armstrong,1983-01-25T00:00:00Z,founder,Q16972754,Coinbase,COIN,2021-04-14T00:00:00Z,2012-06-20T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,San Jose
+Q6274305,Jonathan S. Bush,1969-03-10T00:00:00Z,founder,Q4813401,athenahealth,ATHN,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q7291568,Randall Kaplan,1968-11-22T00:00:00Z,founder,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,podcaster,Detroit
+Q55760424,Baiju Bhatt,1985-01-01T00:00:00Z,founder,Q18155123,Robinhood,HOOD,2021-07-29T00:00:00Z,2013-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,
+Q4861682,Barney Adams,1939-03-24T00:00:00Z,founder,Q4680354,Adams Golf,,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q17037444,Mark Skolnick,1946-01-01T00:00:00Z,founder,Q3331496,Myriad Genetics,MYGN,1995-10-06T00:00:00Z,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,,geneticist,Temple
+Q12859321,Patrick M. Byrne,1962-01-01T00:00:00Z,founder,Q3301958,Overstock.com,OSTK,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Fort Wayne
+Q21063604,Keith J. Krach,1957-04-01T00:00:00Z,founder,Q4790268,SAP Ariba,ARBA,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Lakewood
+Q26879,Melvil Dewey,1851-12-10T00:00:00Z,founder,Q17017007,Library Bureau,LBUR,,1881-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,journalist,Adams Center
+Q11278896,"Thomas Rowe Price, Jr.",1898-03-16T00:00:00Z,founder,Q3511946,T. Rowe Price,TROW,1990-01-02T00:00:00Z,1937-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Glyndon
+Q110462879,Langley Steinert,1965-01-01T00:00:00Z,founder,Q17050423,CarGurus,CARG,2017-10-12T00:00:00Z,2005-11-01T00:00:00Z,Q82059,Nasdaq,male,,manager,
+Q497827,Sam Walton,1918-03-29T00:00:00Z,founder,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,economist,Kingfisher
+Q56248473,Vladimir Tenev,1987-02-01T00:00:00Z,founder,Q18155123,Robinhood,HOOD,2021-07-29T00:00:00Z,2013-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Bulgaria
+Q67146947,Trevor Milton,1982-04-06T00:00:00Z,founder,Q24887050,Nikola Corporation,NKLA,2020-06-04T00:00:00Z,2014-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Layton
+Q5523720,Garo H. Armen,1953-01-31T00:00:00Z,founder,Q4692116,Agenus,AGEN,2000-02-04T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,scientist,Istanbul
+Q5285463,Dmitri Alperovitch,1980-01-01T00:00:00Z,founder,Q24890758,CrowdStrike,CRWD,2019-06-12T00:00:00Z,2011-08-29T00:00:00Z,Q82059,Nasdaq,male,Soviet Union,entrepreneur,Moscow
+Q110633450,John R. Eckel Jr.,1951-01-01T00:00:00Z,founder,Q16988699,Copano Energy,CPNO,,,Q82059,Nasdaq,male,,businessperson,
+Q6381659,John Rigas,1924-11-14T00:00:00Z,founder,Q4682079,Adelphia Communications Corporation,ADELQ,,1952-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Wellsville
+Q121488414,David Lederman,1944-05-26T00:00:00Z,founder,Q4667884,AbioMed,ABMD,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q3903138,Pierluigi Zappacosta,1950-07-02T00:00:00Z,founder,Q223127,Logitech,LOGI,1997-03-01T00:00:00Z,1981-10-02T00:00:00Z,Q82059,Nasdaq,male,Italy,engineer,Chieti
+Q639725,Tony Ryan,1936-02-02T00:00:00Z,founder,Q170614,Ryanair,RYAAY,1997-05-28T00:00:00Z,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,Ireland,businessperson,Thurles
+Q16924425,Ken Xie,1963-01-01T00:00:00Z,founder,Q2749364,Fortinet,FTNT,2009-11-18T00:00:00Z,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Beijing
+Q132852360,Q132852360,1928-07-27T00:00:00Z,founder,Q4651203,Adtran,ADTN,,1985-11-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q2580296,William R. Gorham,1888-01-04T00:00:00Z,founder,Q20165,Nissan,NSANY,,1933-12-26T00:00:00Z,Q82059,Nasdaq,male,Japan,engineer,San Francisco
+Q7704747,Terry Matthews,1943-06-06T00:00:00Z,founder,Q1957521,Mitel,MITL,2010-04-22T00:00:00Z,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,business magnate,Newport
+Q731692,Robert Simonds,1964-01-01T00:00:00Z,founder,Q19868261,STX Entertainment,SFXE,2000-01-01T00:00:00Z,2014-03-10T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Phoenix
+Q4357288,Cecil Howard Green,1900-08-06T00:00:00Z,founder,Q193412,Texas Instruments,TXN,,1930-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Whitefield
+Q707834,Den Kenjirō,1855-03-27T00:00:00Z,founder,Q20165,Nissan,NSANY,,1933-12-26T00:00:00Z,Q82059,Nasdaq,male,Empire of Japan,politician,Hikami district
+Q6446228,Jim Cramer,1955-02-10T00:00:00Z,founder,Q7711656,TheStreet,TST,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,opinion journalist,Wyndmoor
+Q382148,Geir Ivarsøy,1957-06-27T00:00:00Z,founder,Q215639,Opera,OPRA,2018-07-27T00:00:00Z,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,Norway,programmer,Norway
+Q92764,Sergey Brin,1973-08-21T00:00:00Z,founder,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,author,Moscow
+Q3851338,Jean Nidetch,1923-10-12T00:00:00Z,founder,Q1929466,WW International,WW,2018-01-01T00:00:00Z,1963-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Brooklyn
+Q404867,Yoshisuke Aikawa,1880-11-06T00:00:00Z,founder,Q20165,Nissan,NSANY,,1933-12-26T00:00:00Z,Q82059,Nasdaq,male,Empire of Japan,politician,Yamaguchi
+Q717618,Michael Kors,1959-08-09T00:00:00Z,founder,Q19572998,Capri Holdings,KORS,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,reality television program judge,Long Island
+Q3200863,Kwok Yuen Ho,1950-01-01T00:00:00Z,founder,Q213849,ATI Technologies,ATYT,1993-01-01T00:00:00Z,1985-08-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,
+Q8005465,"William Bernard Ziff, Sr.",1898-08-01T00:00:00Z,founder,Q199296,Ziff Davis,ZD,,1927-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,writer,
+Q7437001,Scott Painter,1968-09-30T00:00:00Z,founder,Q7847309,TrueCar,TRUE,,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Seattle
+Q4934,Larry Page,1973-03-26T00:00:00Z,founder,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,East Lansing
+Q7344541,Robert Friedland,1950-08-18T00:00:00Z,founder,Q7856196,Turquoise Hill Resources,,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,financier,Chicago
+Q6523913,Leo Kahn,1916-12-31T00:00:00Z,founder,Q785943,Staples Inc.,SPLS,,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Medford
+Q5278137,Ding Lei,1971-10-01T00:00:00Z,founder,Q196259,NetEase,NTES,2000-01-01T00:00:00Z,1997-06-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Ningbo
+Q2744012,Bob Miner,1941-12-23T00:00:00Z,founder,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Cicero
+Q2892029,Marty Peretz,1938-12-06T00:00:00Z,founder,Q7711656,TheStreet,TST,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,journalist,New York City
+Q6535882,Levy Gerzberg,1945-01-01T00:00:00Z,founder,Q220485,Zoran Corporation,ZRAN,,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q6709093,Lynn Jurich,1979-01-01T00:00:00Z,founder,Q7638158,Sunrun,RUN,,2007-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,
+Q985796,Alfred Chuang,1961-01-01T00:00:00Z,founder,Q787324,BEA Systems,BEAS,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Hong Kong
+Q7437341,Scott Swedorski,1970-10-10T00:00:00Z,founder,Q2087612,Tucows,TCX,1996-04-30T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Michigan
+Q92759,Larry Ellison,1944-08-17T00:00:00Z,founder,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,actor,The Bronx
+Q725940,Sumner Redstone,1923-05-27T00:00:00Z,founder,Q214346,Viacom,VIA,,2005-12-31T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Boston
+Q92770,Jon Stephenson von Tetzchner,1967-08-29T00:00:00Z,founder,Q215639,Opera,OPRA,2018-07-27T00:00:00Z,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,Norway,computer scientist,Seltjarnarnes
+Q5526736,Gaston Gonnet,1948-09-22T00:00:00Z,founder,Q2025791,Open Text Corporation,OTEX,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,Uruguay,businessperson,Montevideo
+Q1502402,Tim Bray,1955-06-21T00:00:00Z,founder,Q2025791,Open Text Corporation,OTEX,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,blogger,Canada
+Q203559,Brigham Young,1801-06-01T00:00:00Z,founder,Q205378,Zions Bancorporation,ZION,,1873-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Whitingham
+Q7489624,Shari Redstone,1954-04-14T00:00:00Z,founder,Q76846862,Paramount Global,PARA,,2019-12-04T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,"Washington, D.C."
+Q4901109,Bharat Desai,1953-01-01T00:00:00Z,founder,Q7662679,Syntel,SYNT,,,Q82059,Nasdaq,male,India,businessperson,Kenya
+Q5335240,Ed Oates,1946-01-01T00:00:00Z,founder,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,computer scientist,
+Q6167147,Jay S. Walker,1955-11-05T00:00:00Z,founder,Q18674747,Booking Holdings,BKNG,,1997-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Forest Hills
+Q3017930,David G. Bradley,1953-03-06T00:00:00Z,founder,Q7712716,The Advisory Board Company,ABCO,,1979-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Walter Reed Army Medical Center
+Q3776174,Michael Cowpland,1943-04-23T00:00:00Z,founder,Q1957521,Mitel,MITL,2010-04-22T00:00:00Z,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,entrepreneur,Bexhill-on-Sea
+Q5082215,"Charles Rudolph Walgreen, Sr.",1873-10-09T00:00:00Z,founder,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,pharmacist,Knoxville
+Q2505089,Uğur Şahin,1965-09-19T00:00:00Z,founder,Q30256699,BioNTech,BNTX,2019-01-01T00:00:00Z,2008-06-01T00:00:00Z,Q82059,Nasdaq,male,Turkey,oncologist,İskenderun
+Q1374080,Paul MacCready,1925-09-29T00:00:00Z,founder,Q919300,AeroVironment,AVAV,,1971-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,New Haven
+Q3018737,David Rubenstein,1949-08-11T00:00:00Z,founder,Q926806,Carlyle Group,CG,,1987-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Baltimore
+Q92764,Sergey Brin,1973-08-21T00:00:00Z,founder,Q95,Google,GOOG,2004-08-19T00:00:00Z,1998-09-04T00:00:00Z,Q82059,Nasdaq,male,United States,author,Moscow
+Q483382,Steve Wozniak,1950-08-11T00:00:00Z,founder,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,Serbia,actor,San Jose
+Q92809,Rodney Brooks,1954-12-30T00:00:00Z,founder,Q285161,iRobot,IRBT,2005-11-09T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,mathematician,Adelaide
+Q3297814,Tom Golisano,1941-11-14T00:00:00Z,founder,Q946080,Paychex,PAYX,1990-03-26T00:00:00Z,1971-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Irondequoit
+Q332591,Ronald Wayne,1934-05-17T00:00:00Z,founder,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,writer,Cleveland
+Q3035879,Don Panoz,1935-02-13T00:00:00Z,founder,Q899010,Mylan,MYL,1976-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,pharmacist,Alliance
+Q4934,Larry Page,1973-03-26T00:00:00Z,founder,Q95,Google,GOOG,2004-08-19T00:00:00Z,1998-09-04T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,East Lansing
+Q3575351,Charles Zhang,1964-10-31T00:00:00Z,founder,Q965133,Sohu,SOHU,2000-07-12T00:00:00Z,1996-08-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Lintong District
+Q352268,Yvon Chouinard,1938-11-09T00:00:00Z,founder,Q2905359,Black Diamond Equipment,BDE,,1989-12-01T00:00:00Z,Q82059,Nasdaq,male,United States,writer,Lewiston
+Q19837,Steve Jobs,1955-02-24T00:00:00Z,founder,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,San Francisco
+Q2847526,André Choulika,1965-01-23T00:00:00Z,founder,Q2943995,Cellectis,CLLS,2015-03-25T00:00:00Z,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Beirut
+Q363383,Armand Hammer,1898-05-21T00:00:00Z,founder,Q2918112,Isramco Negev 2 Limited Partnership,ISRL,1995-08-18T00:00:00Z,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,New York City
+Q2596247,Yanki Margalit,1962-09-18T00:00:00Z,founder,Q2916067,Aladdin Knowledge Systems,ALDN,,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,entrepreneur,
+Q41486,Helen Greiner,1967-12-06T00:00:00Z,founder,Q285161,iRobot,IRBT,2005-11-09T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,engineer,London
+Q3714587,Doug Carlston,1947-04-30T00:00:00Z,founder,Q995863,Broderbund,BROD,1991-11-01T00:00:00Z,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Boston
+Q20880796,Bob Stiller,1943-08-03T00:00:00Z,founder,Q3116111,Keurig Dr Pepper,GMCR,,2018-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,New York City
+Q4410115,Denis Sverdlov,1978-06-06T00:00:00Z,founder,Q28405615,Arrival,ARVL,,2015-03-06T00:00:00Z,Q82059,Nasdaq,male,Soviet Union,businessperson,Agara
+Q10943454,Jiang Fengnian,1957-10-07T00:00:00Z,founder,Q938668,Sina Corporation,SINA,2000-04-13T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,Taiwan,businessperson,Chiayi County
+Q8008212,"William E. Conway, Jr.",1949-08-27T00:00:00Z,founder,Q926806,Carlyle Group,CG,,1987-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,financier,McLean
+Q16211217,Stephen Gilfus,1970-01-01T00:00:00Z,founder,Q2905535,Blackboard Inc.,,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,
+Q104722795,Li Xiang,1981-10-05T00:00:00Z,founder,Q98139925,Li Auto,LI,,2015-07-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Shijiazhuang
+Q92379963,Özlem Türeci,1967-03-06T00:00:00Z,founder,Q30256699,BioNTech,BNTX,2019-01-01T00:00:00Z,2008-06-01T00:00:00Z,Q82059,Nasdaq,female,Turkey,physician,Siegen
+Q7352762,Robin Saxby,1947-02-04T00:00:00Z,founder,Q296782,Arm Holdings,ARM,2023-09-14T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,engineer,Chesterfield
+Q16105134,Bob Kierlin,1939-06-01T00:00:00Z,founder,Q3067119,Fastenal,FAST,1994-01-03T00:00:00Z,1967-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,
+Q5334978,Ed Iacobucci,1953-09-26T00:00:00Z,founder,Q916196,Citrix Systems,CTXS,,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Buenos Aires
+Q4718049,Alex d'Arbeloff,1927-12-21T00:00:00Z,founder,Q2404292,Teradyne,TER,2018-11-01T00:00:00Z,1960-01-01T00:00:00Z,Q82059,Nasdaq,male,,engineer,Paris
+Q6850662,Milan Puskar,1934-09-08T00:00:00Z,founder,Q899010,Mylan,MYL,1976-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Vintondale
+Q106551111,Yoram Palti,1937-09-18T00:00:00Z,founder,Q30267502,Novocure (Jersey),NVCR,,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,biophysicist,Haifa
+Q7816519,Tom L. Ward,1959-01-01T00:00:00Z,founder,Q2962826,Expand Energy,EXE,2024-10-01T00:00:00Z,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Seiling
+Q9065403,Wang Zhidong,1967-06-28T00:00:00Z,founder,Q938668,Sina Corporation,WB,2014-04-17T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,
+Q7027005,Nick DeWolf,1928-07-12T00:00:00Z,founder,Q2404292,Teradyne,TER,2018-11-01T00:00:00Z,1960-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Philadelphia
+Q5996574,Marcos Galperin,1971-10-31T00:00:00Z,founder,Q950419,Mercado pago,MELI,,1997-08-02T00:00:00Z,Q82059,Nasdaq,male,Argentina,businessperson,Buenos Aires
+Q65047041,Xu Yi,1989-01-01T00:00:00Z,founder,Q3077586,Bilibili,BILI,2018-03-28T00:00:00Z,2009-06-26T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Longyou County
+Q7331189,Rick Alden,1964-07-04T00:00:00Z,founder,Q2982090,Skullcandy,SKUL,,2003-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q7537295,Sky Dayton,1971-08-08T00:00:00Z,founder,Q919511,EarthLink,ELNK,1997-01-22T00:00:00Z,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,New York City
+Q5144848,Colin Angle,1967-01-01T00:00:00Z,founder,Q285161,iRobot,IRBT,2005-11-09T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,roboticist,
+Q5728322,Henry Silverman,1940-08-01T00:00:00Z,founder,Q2874395,Avis Budget Group,CAR,,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,manager,Brooklyn
+Q16132585,Amnon Shashua,1960-05-26T00:00:00Z,founder,Q2901365,Mobileye,MBLY,,1998-11-18T00:00:00Z,Q82059,Nasdaq,male,Israel,computer scientist,Givatayim
+Q5216326,Daniel A. D'Aniello,1946-09-14T00:00:00Z,founder,Q926806,Carlyle Group,CG,,1987-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,financier,Butler
+Q4819158,Aubrey McClendon,1959-07-14T00:00:00Z,founder,Q2962826,Expand Energy,EXE,2024-10-01T00:00:00Z,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Oklahoma City
+Q194419,Richard Branson,1950-07-18T00:00:00Z,founder,Q645084,Virgin America,VA,,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,businessperson,Blackheath
+Q5053441,Cathy Hughes,1947-04-22T00:00:00Z,founder,Q7280957,Urban One,ROIA,1999-01-01T00:00:00Z,1980-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Omaha
+Q5101553,Chip Wilson,1955-04-25T00:00:00Z,founder,Q6702957,Lululemon Athletica,LULU,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,businessperson,Vancouver
+Q5525233,Gary Hendrix,1948-05-14T00:00:00Z,founder,Q677085,Gen Digital,GEN,2022-01-01T00:00:00Z,1982-03-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q5347535,Efi Arazi,1937-04-14T00:00:00Z,founder,Q5358494,Electronics for Imaging,EFII,,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,manager,Jerusalem
+Q26566,Stanford R. Ovshinsky,1922-11-24T00:00:00Z,founder,Q5376911,Energy Conversion Devices,ENER,,1960-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Akron
+Q5558035,Gian M. Fulgoni,1948-01-24T00:00:00Z,founder,Q734779,Comscore,SCOR,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,consultant,Pontypool
+Q3431318,Richard Warren Sears,1863-12-07T00:00:00Z,founder,Q6499202,Sears,SHLD,2005-01-01T00:00:00Z,1892-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Stewartville
+Q5661339,Harold Katz,1937-05-05T00:00:00Z,founder,Q7070498,Nutrisystem,NTRI,2000-06-23T00:00:00Z,1972-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q5294809,Donald Marron,1934-07-21T00:00:00Z,founder,Q6546636,Lightyear Capital,GFSI,,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,banker,New York City
+Q235509,Elizabeth Arden,1881-12-31T00:00:00Z,founder,Q5362329,"Elizabeth Arden, Inc.",RDEN,,,Q82059,Nasdaq,female,United States,businessperson,Woodbridge
+Q2857927,Zohar Zisapel,1949-02-15T00:00:00Z,founder,Q7322037,RiT Technologies,RITT,,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Tel Aviv
+Q4964464,Brian Lee,1971-03-15T00:00:00Z,founder,Q6517346,LegalZoom,LZ,2021-07-01T00:00:00Z,2001-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,Seoul
+Q93014,Max Levchin,1975-07-11T00:00:00Z,founder,Q65085822,Affirm,AFRM,,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Kyiv
+Q6167147,Jay S. Walker,1955-11-05T00:00:00Z,founder,Q7242653,priceline.com,BKNG,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Forest Hills
+Q1872831,Lubert Stryer,1938-03-02T00:00:00Z,founder,Q7450899,Senomyx,SNMX,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,biochemist,Tianjin
+Q3791491,Ian Schrager,1946-07-19T00:00:00Z,founder,Q6911967,Morgans Hotel Group,MHGC,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,New York City
+Q61864,Carl von Linde,1842-06-11T00:00:00Z,founder,Q682759,Linde Group,LIN,2023-11-01T00:00:00Z,,Q82059,Nasdaq,male,Germany,engineer,Berndorf
+Q4737639,Alvah Curtis Roebuck,1864-01-09T00:00:00Z,founder,Q6499202,Sears,SHLD,2005-01-01T00:00:00Z,1892-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Lafayette
+Q5075240,Charles August,1919-01-28T00:00:00Z,founder,Q6902090,Monro Muffler Brake,MNRO,1991-01-01T00:00:00Z,1956-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Irondequoit
+Q1373431,Alan Shugart,1930-09-27T00:00:00Z,founder,Q705392,Seagate Technology,STX,2002-12-11T00:00:00Z,1979-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Los Angeles
+Q6143243,James Sinegal,1936-01-01T00:00:00Z,founder,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Pittsburgh
+Q4802207,Arunas Chesonis,1946-06-14T00:00:00Z,founder,Q7118075,PAETEC Holding Corp.,,,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q4722583,Alfred E. Mann,1925-01-01T00:00:00Z,founder,Q6750663,MannKind Corporation,MNKD,2004-07-28T00:00:00Z,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Portland
+Q1417617,William A. Haseltine,1944-10-17T00:00:00Z,founder,Q5256667,Dendreon,DNDN,,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,geneticist,St. Louis
+Q2249447,John Koza,1944-01-01T00:00:00Z,founder,Q7433758,Light & Wonder,SGMS,,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q2537149,Mehmet Öz,1960-06-11T00:00:00Z,founder,Q7489523,Sharecare,SHCR,,2010-10-07T00:00:00Z,Q82059,Nasdaq,male,Turkey,politician,Cleveland
+Q711309,Lars Magnus Ericsson,1846-05-05T00:00:00Z,founder,Q52618,Ericsson,ERIC,1990-01-02T00:00:00Z,1876-01-01T00:00:00Z,Q82059,Nasdaq,male,Sweden,inventor,Värmskog
+Q5235034,David Hitz,1901-01-01T00:00:00Z,founder,Q727883,NetApp,NTAP,,1992-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q21699576,Sachiko Kunō,1954-01-01T00:00:00Z,founder,Q19604569,Sucampo Pharmaceuticals,SCMP,,1996-01-01T00:00:00Z,Q82059,Nasdaq,female,Japan,businessperson,Kudamatsu
+Q65554184,Mitchell Hashimoto,1989-01-01T00:00:00Z,founder,Q21463167,HashiCorp,HCP,2021-12-09T00:00:00Z,2012-11-01T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,
+Q106139139,Wayne Kent Taylor,1955-01-01T00:00:00Z,founder,Q7707945,Texas Roadhouse,TXRH,2004-10-05T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q19967707,Whitney Wolfe Herd,1989-07-01T00:00:00Z,founder,Q21233433,Bumble,BMBL,,2014-12-01T00:00:00Z,Q82059,Nasdaq,female,United States,celebrity,Salt Lake City
+Q76458200,Shlomo Ostersetzer,1928-01-15T00:00:00Z,founder,Q7669439,Tat Technologies Ltd,TATT,1993-03-11T00:00:00Z,1969-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,industrialist,Duisburg
+Q23939846,Mike Cannon-Brookes,1979-11-17T00:00:00Z,founder,Q757307,Atlassian,TEAM,2015-12-10T00:00:00Z,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,writer,New Haven
+Q67449187,Guy Sella,1964-02-22T00:00:00Z,founder,Q187212,SolarEdge,SEDG,2015-03-01T00:00:00Z,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,military personnel,Haifa
+Q18387582,Kenneth D. Tuchman,1959-10-23T00:00:00Z,founder,Q7695737,TTEC,TTEC,1996-08-01T00:00:00Z,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,California
+Q15109673,Narendra Patni,1943-01-01T00:00:00Z,founder,Q2056977,IGATE Patni,IGTE,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,India,,
+Q27881473,Vivek Ramaswamy,1985-08-09T00:00:00Z,founder,Q20311716,Axovant Sciences,AXGT,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Cincinnati
+Q105038817,Tony Xu,1985-01-01T00:00:00Z,founder,Q20714323,DoorDash,DASH,2023-09-01T00:00:00Z,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Nanjing
+Q55695201,Horace Luke,1970-01-01T00:00:00Z,founder,Q19880591,Gogoro,GGR,,2011-08-29T00:00:00Z,Q82059,Nasdaq,male,Taiwan,entrepreneur,British Hong Kong
+Q113869505,Richard Robert Donnelley,1836-11-15T00:00:00Z,founder,Q2124539,RR Donnelley,RRD,,1864-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Hamilton
+Q107649743,Timur Turlov,1987-11-13T00:00:00Z,founder,Q21843099,Freedom Holding,FRHC,,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,Soviet Union,financier,Moscow
+Q23939847,Scott Farquhar,1979-01-01T00:00:00Z,founder,Q757307,Atlassian,TEAM,2015-12-10T00:00:00Z,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,chief executive officer,
+Q8019045,William T. Coleman III,1947-10-16T00:00:00Z,founder,Q787324,BEA Systems,BEAS,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,military officer,
+Q6178460,Jennifer Hyman,1980-08-24T00:00:00Z,founder,Q7313510,Rent The Runway,RENT,,2009-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,New York City
+Q7014294,Uzia Galil,1925-04-27T00:00:00Z,founder,Q5367351,Elron Ventures Ltd,,,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,industrialist,Bucharest
+Q27881473,Vivek Ramaswamy,1985-08-09T00:00:00Z,founder,Q53308720,Roivant,ROIV,,2014-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,Cincinnati
+Q8004435,William Andrew Goddard III,1937-03-29T00:00:00Z,founder,Q7432923,Schrödinger,SDGR,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,university teacher,El Centro
+Q137910729,Nathan Gettings,1977-03-01T00:00:00Z,founder,Q65085822,Affirm,AFRM,,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,
+Q19447315,Nir Zuk,1971-01-01T00:00:00Z,founder,Q7128508,Palo Alto Networks,PANW,2012-07-20T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,entrepreneur,Rehovot
+Q6256865,John Schaeffer,1949-11-09T00:00:00Z,founder,Q7300936,Real Goods,,,1978-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,environmentalist,Los Angeles
+Q8059909,Yu Dong,1971-01-01T00:00:00Z,founder,Q7226171,Polybona Films,BONA,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,entrepreneur,Beijing
+Q7276871,"Robert ""RJ"" Scaringe",1983-01-19T00:00:00Z,founder,Q7338847,Rivian Automotive,RIVN,2021-11-10T00:00:00Z,2009-06-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Rockledge
+Q6175871,Jeffrey Brotman,1942-09-27T00:00:00Z,founder,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Tacoma
+Q17059044,Nick Woodman,1975-06-24T00:00:00Z,founder,Q733482,GoPro,GPRO,2014-01-01T00:00:00Z,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Menlo Park
+Q42907562,Chi Yufeng,1971-09-15T00:00:00Z,founder,Q7168080,Q7168080,PWRD,2007-01-01T00:00:00Z,2004-03-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,
+Q125289366,Perry A. Sook,1958-01-01T00:00:00Z,founder,Q7020906,Nexstar Media Group,NXST,2012-01-01T00:00:00Z,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,DuBois
+Q42168197,John Cromwell Lincoln,1866-07-17T00:00:00Z,founder,Q6550657,Lincoln Electric,LECO,1995-06-13T00:00:00Z,1895-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Painesville
+Q7846960,Troy Smith,1922-05-26T00:00:00Z,founder,Q7561808,Sonic Drive-In,SONC,,1963-06-18T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,
+Q16196101,Joe Kiani,1964-09-16T00:00:00Z,founder,Q6783278,Masimo,MASI,,,Q82059,Nasdaq,male,United States,entrepreneur,Shiraz
+Q7323561,Richard A. Friesner,1952-08-09T00:00:00Z,founder,Q7432923,Schrödinger,SDGR,,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chemist,
+Q63456277,Steve Sarowitz,1965-01-01T00:00:00Z,founder,Q7156760,Paylocity Corporation,PCTY,2014-03-19T00:00:00Z,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,
+Q7349717,Robert Leslie Shapiro,1942-09-02T00:00:00Z,founder,Q6517346,LegalZoom,LZ,2021-07-01T00:00:00Z,2001-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Plainfield
+Q7329314,Richard Swanson,1945-01-01T00:00:00Z,founder,Q645525,SunPower,SPWR,2005-11-17T00:00:00Z,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,
+Q22006324,Michael C. Linn,1992-12-01T00:00:00Z,founder,Q6554513,Linn Energy,,,2003-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Pittsburgh
+Q48935994,Tiancheng Lou,1986-01-01T00:00:00Z,founder,Q65056153,Pony.ai,PONY,,2016-12-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,programmer,
+Q6834483,Michael Smolyansky,1947-05-04T00:00:00Z,founder,Q6545549,Lifeway Foods,LWAY,1995-08-18T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,physiologist,
+Q6708744,Lyndon Rive,1977-01-22T00:00:00Z,founder,Q7555824,SolarCity,SCTY,2012-01-01T00:00:00Z,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,South Africa,businessperson,Pretoria
+Q93591421,Yoni Assia,1981-03-01T00:00:00Z,founder,Q5324516,eToro,ETOR,2025-05-01T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,
+Q41700085,Eyal Waldman,1960-01-01T00:00:00Z,founder,Q6813052,Mellanox Technologies,MLNX,2007-02-08T00:00:00Z,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Jerusalem
+Q8033686,Woody Norris,1938-01-01T00:00:00Z,founder,Q6459789,Genasys,LRAD,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,
+Q16195333,Jeet Singh,1963-07-13T00:00:00Z,founder,Q705757,Art Technology Group,,,1991-12-01T00:00:00Z,Q82059,Nasdaq,male,United States,musician,Stockholm
+Q6175019,Jeff Smulyan,1947-04-06T00:00:00Z,founder,Q5373589,Emmis Communications,EMMS,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,baseball player,Indianapolis
+Q16214460,Josh James,1973-01-01T00:00:00Z,founder,Q5291323,Domo,DOMO,,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q21166323,Frank McCormick,1950-01-01T00:00:00Z,founder,Q7095196,Onyx Pharmaceuticals,ONXX,1996-05-09T00:00:00Z,1992-02-01T00:00:00Z,Q82059,Nasdaq,male,,oncologist,
+Q15429714,Bonnie S. Dunbar,1948-02-14T00:00:00Z,founder,Q7314329,Repros Therapeutics,,,1987-08-20T00:00:00Z,Q82059,Nasdaq,female,United States,zoologist,Sterling
+Q12306154,Christian Schmiegelow,1859-09-04T00:00:00Z,founder,Q694872,TORM,TRMD,,1889-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Denmark,director,Rønne
+Q133841735,Mary Davis,1940-09-05T00:00:00Z,founder,Q741046,Progress Software,PRGS,1991-01-01T00:00:00Z,1981-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,computer scientist,Engadine
+Q16745389,Robert LoCascio,1968-05-15T00:00:00Z,founder,Q6654568,Liveperson Inc.,LPSN,,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,journalist,
+Q108698080,Franc M. Wertheimer,1927-09-26T00:00:00Z,founder,Q6746136,ManTech International,MANT,,1968-01-01T00:00:00Z,Q82059,Nasdaq,male,,,Nuremberg
+Q60627261,Ditlev Torm,1836-04-24T00:00:00Z,founder,Q694872,TORM,TRMD,,1889-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Denmark,businessperson,Aalborg
+Q7324447,Richard Bunger Evans,1942-01-01T00:00:00Z,founder,Q6886914,Mobile Mini,MINI,,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,songwriter,Allentown
+Q7555570,Sol Price,1916-01-23T00:00:00Z,founder,Q7242563,PriceSmart,PSMT,1997-09-02T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,New York City
+Q123520943,"Macon Foscue Brock, Jr.",1942-04-11T00:00:00Z,founder,Q5289230,Dollar Tree,DLTR,1995-03-09T00:00:00Z,1986-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,philanthropist,Q49231
+Q47005455,Anthony Wood,1965-12-01T00:00:00Z,founder,Q7360089,"Roku, Inc.",ROKU,2017-01-01T00:00:00Z,2002-10-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,England
+Q6731070,Magid Abraham,1958-04-13T00:00:00Z,founder,Q734779,Comscore,SCOR,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Machgara
+Q16137703,Vikram Talwar,1949-01-01T00:00:00Z,founder,Q5324689,EXL,EXLS,,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q3215817,Lachlan Murdoch,1971-09-08T00:00:00Z,chairperson,Q60238941,Fox Corporation,FOX,2019-03-19T00:00:00Z,2019-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,businessperson,London
+Q1582408,Jason Rubin,1970-01-06T00:00:00Z,chairperson,Q580866,THQ,THQI,1991-01-01T00:00:00Z,1990-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,director,United States
+Q3215817,Lachlan Murdoch,1971-09-08T00:00:00Z,chairperson,Q5476713,21st Century Fox,FOX,http://www.wikidata.org/.well-known/genid/420f45cfacfb083491ac04b421478a25,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,London
+Q36215,Mark Zuckerberg,1984-05-14T00:00:00Z,chairperson,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,White Plains
+Q66795,Norbert Reithofer,1956-05-29T00:00:00Z,chairperson,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,entrepreneur,Penzberg
+Q587455,Barry Diller,1942-02-02T00:00:00Z,chairperson,Q8085893,Expedia Group,EXPE,2005-01-01T00:00:00Z,1996-10-22T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,San Francisco
+Q14927550,Michael Lynton,1960-01-01T00:00:00Z,chairperson,Q21077,Warner Music Group,WMG,2020-01-01T00:00:00Z,1958-04-06T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,London
+Q55185590,Ivan Monteiro,1960-01-01T00:00:00Z,chairperson,Q1328252,Eletrobras,EBR,,1962-06-11T00:00:00Z,Q82059,Nasdaq,male,Brazil,engineer,Manaus
+Q56752478,John D. Idol,1955-01-01T00:00:00Z,chairperson,Q19572998,Capri Holdings,KORS,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q19757744,Alex Behring,1967-01-01T00:00:00Z,chairperson,Q19681433,Kraft Heinz,KHC,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,Rio de Janeiro
+Q7489624,Shari Redstone,1954-04-14T00:00:00Z,chairperson,Q76846862,Paramount Global,PARA,,2019-12-04T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,"Washington, D.C."
+Q7323455,Rich Templeton,1959-01-01T00:00:00Z,chairperson,Q193412,Texas Instruments,TXN,,1930-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,
+Q423585,Ricky Wong,1961-12-13T00:00:00Z,chairperson,Q9013416,HKTV,HKTV,,2014-01-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,British Hong Kong
+Q4457610,Jean-François van Boxmeer,1961-09-10T00:00:00Z,chairperson,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,Belgium,entrepreneur,Ixelles
+Q11963448,Charles Dolan,1926-10-16T00:00:00Z,chairperson,Q4652575,AMC Global Media,AMCX,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Cleveland
+Q4805143,Paul E. Jacobs,1962-10-30T00:00:00Z,chairperson,Q544847,Qualcomm,QCOM,,1985-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,athlete,
+Q7176581,Peter Rice,1966-01-01T00:00:00Z,chairperson,Q5476713,21st Century Fox,FOXA,http://www.wikidata.org/.well-known/genid/08a4293867d20204ecc3b38eddcdfe26,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,businessperson,United Kingdom
+Q16980286,Anne Berner,1964-01-16T00:00:00Z,chairperson,Q901262,Grifols,GRFS,2011-01-01T00:00:00Z,1909-01-01T00:00:00Z,Q82059,Nasdaq,female,Finland,politician,Helsinki
+Q20962810,Ric Clark,1958-01-01T00:00:00Z,chairperson,Q24110304,Brookfield Property Partners,BPYPP,http://www.wikidata.org/.well-known/genid/7ba4436578395c4e772cfda7264de2ac,2013-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,United States
+Q47005455,Anthony Wood,1965-12-01T00:00:00Z,chairperson,Q7360089,"Roku, Inc.",ROKU,2017-01-01T00:00:00Z,2002-10-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,England
+Q5116286,Chung Eui-sun,1970-10-18T00:00:00Z,chairperson,Q55931,Hyundai Motor Company,HYMTF,,1967-12-29T00:00:00Z,Q82059,Nasdaq,male,South Korea,businessperson,South Korea
+Q317521,Elon Musk,1971-06-28T00:00:00Z,chairperson,Q7555824,SolarCity,SCTY,2012-01-01T00:00:00Z,2006-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Pretoria
+Q709063,Arthur D. Levinson,1950-03-31T00:00:00Z,chairperson,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,biochemist,Seattle
+Q3215817,Lachlan Murdoch,1971-09-08T00:00:00Z,chairperson,Q14289857,News Corp,NWSA,2013-06-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,London
+Q6490983,Larry Probst,1950-06-03T00:00:00Z,chairperson,Q173941,Electronic Arts,EA,1990-03-26T00:00:00Z,1982-05-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,United States
+Q5075079,Charles Allen,1957-01-04T00:00:00Z,chairperson,Q689791,ISS A/S,,2014-03-13T00:00:00Z,1901-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,politician,Lanarkshire
+Q58345040,Robyn Denholm,1963-05-27T00:00:00Z,chairperson,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Milperra
+Q267074,John Donahoe,1960-04-30T00:00:00Z,chairperson,Q135683211,PayPal Holdings,PYPL,2015-07-06T00:00:00Z,2015-01-30T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Evanston
+Q944937,Henry Samueli,1954-09-20T00:00:00Z,chairperson,Q790060,Broadcom,AVGO,2009-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Buffalo
+Q20177269,Greg Penner,1970-01-01T00:00:00Z,chairperson,Q483551,Q483551,WMT,,1969-10-31T00:00:00Z,Q82059,Nasdaq,male,,chairperson,
+Q5087105,Chase Carey,1953-11-22T00:00:00Z,chairperson,Q185278,News Corporation,NWS,,1980-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Ireland
+Q460459,Trip Hawkins,1953-12-28T00:00:00Z,chairperson,Q173941,Electronic Arts,EA,1990-03-26T00:00:00Z,1982-05-28T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Pasadena
+Q86068569,Robert J. Coury,1960-10-01T00:00:00Z,chairperson,Q101983981,Viatris,VTRS,2020-11-01T00:00:00Z,2020-11-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,
+Q557049,Ronald Perelman,1943-01-01T00:00:00Z,chairperson,Q7433758,Light & Wonder,SGMS,,1973-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,financier,Greensboro
+Q7351858,Roberto Quarta,1949-05-10T00:00:00Z,chairperson,Q1318049,WPP plc,WPP,,1971-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,financier,Italy
+Q2427296,Thomas Siebel,1952-11-20T00:00:00Z,chairperson,Q104081972,C3.ai,AI,2020-12-09T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Chicago
+Q5231533,David Bonderman,1942-11-27T00:00:00Z,chairperson,Q170614,Ryanair,RYAAY,1997-05-28T00:00:00Z,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Los Angeles
+Q92759,Larry Ellison,1944-08-17T00:00:00Z,chairperson,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,actor,The Bronx
+Q639725,Tony Ryan,1936-02-02T00:00:00Z,chairperson,Q170614,Ryanair,RYAAY,1997-05-28T00:00:00Z,1985-01-01T00:00:00Z,Q82059,Nasdaq,male,Ireland,businessperson,Thurles
+Q15064277,Andrew Wilson,1974-09-07T00:00:00Z,chairperson,Q173941,Electronic Arts,EA,1990-03-26T00:00:00Z,1982-05-28T00:00:00Z,Q82059,Nasdaq,male,Australia,businessperson,Gold Coast
+Q4699765,Ajit Balakrishnan,1901-01-01T00:00:00Z,chairperson,Q140676,rediff.com,REDF,,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,
+Q41812531,Andy Jassy,1968-01-13T00:00:00Z,chairperson,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Scarsdale
+Q2474757,Dirk Van de Put,1959-01-01T00:00:00Z,chairperson,Q12857502,Mondelez International,MDLZ,,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,Belgium,businessperson,Mechelen
+Q83780224,Omar Ishrak,1955-01-01T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,Bangladesh,,Dhaka
+Q7335804,Risa Lavizzo-Mourey,1934-09-25T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,female,United States,administrator,Philadelphia
+Q7426870,Satya Nadella,1967-08-19T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,electrotechnician,Hyderabad
+Q7143480,Pat Gelsinger,1961-03-05T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Robesonia
+Q6216368,Peder Tuborgh,1963-04-22T00:00:00Z,board_member,Q2241604,Pandora,PANDORA,,1982-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of Denmark,businessperson,Skanderborg
+Q107352040,Catherine MacGregor,1972-08-07T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,female,France,engineer,Salé
+Q18386868,Charlie Scharf,1965-04-24T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q75724,Helmut Panke,1946-08-31T00:00:00Z,board_member,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,manager,Fürstenwalde
+Q19561225,Lip-Bu Tan,1960-01-01T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Muar
+Q20984972,Sandi Peterson,1959-01-01T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,female,,businessperson,
+Q64009348,Tsu-Jae King Liu,1956-05-08T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,female,United States,engineer,Ithaca
+Q26923230,Dion Weisler,1967-08-20T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,male,Australia,chief executive officer,Australia
+Q80049510,Hugh Francis Johnston,1961-08-16T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,manager,Jersey City
+Q293365,Penny Pritzker,1959-05-02T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,female,United States,politician,Chicago
+Q27058352,Emma Walmsley,1969-06-01T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,female,United Kingdom,executive,Barrow-in-Furness
+Q211098,Reid Hoffman,1967-08-05T00:00:00Z,board_member,Q2283,Microsoft,MSFT,1987-09-17T00:00:00Z,1975-04-04T00:00:00Z,Q82059,Nasdaq,male,United States,writer,Stanford
+Q20638131,Andrea Goldsmith,1964-01-01T00:00:00Z,board_member,Q248,Intel,INTC,,1968-07-18T00:00:00Z,Q82059,Nasdaq,female,United States,academic,California
+Q1704262,Karl-Heinz Sonne,1915-06-03T00:00:00Z,board_member,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,manager,Bochum
+Q709063,Arthur D. Levinson,1950-03-31T00:00:00Z,board_member,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,biochemist,Seattle
+Q23018095,Greg Maffei,1960-05-24T00:00:00Z,board_member,Q2961234,Charter Communications,CHTR,2010-01-05T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q7365310,Ronald Sugar,1948-07-30T00:00:00Z,board_member,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,Canada,businessperson,Toronto
+Q2505089,Uğur Şahin,1965-09-19T00:00:00Z,board_member,Q30256699,BioNTech,BNTX,2019-01-01T00:00:00Z,2008-06-01T00:00:00Z,Q82059,Nasdaq,male,Turkey,oncologist,İskenderun
+Q49562283,Eric Zinterhofer,1971-01-01T00:00:00Z,board_member,Q2961234,Charter Communications,CHTR,2010-01-05T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,,financier,
+Q6128032,James A. Bell,1948-06-14T00:00:00Z,board_member,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Los Angeles
+Q92379963,Özlem Türeci,1967-03-06T00:00:00Z,board_member,Q30256699,BioNTech,BNTX,2019-01-01T00:00:00Z,2008-06-01T00:00:00Z,Q82059,Nasdaq,female,Turkey,physician,Siegen
+Q17388808,Susan Wagner,1961-01-01T00:00:00Z,board_member,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,female,United States,economist,Chicago
+Q15821808,Joseph M. Hogan,1957-05-07T00:00:00Z,board_member,Q30272258,Align Technology,ALGN,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,manager,Pennsylvania
+Q25189462,Mauricio Ramos,1968-01-01T00:00:00Z,board_member,Q2961234,Charter Communications,CHTR,2010-01-05T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q3181165,John C. Malone,1941-03-07T00:00:00Z,board_member,Q2961234,Charter Communications,CHTR,2010-01-05T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Milford
+Q6210825,Joe Lacob,1956-01-10T00:00:00Z,board_member,Q30272258,Align Technology,ALGN,,1997-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,New Bedford
+Q19673,Al Gore,1948-03-31T00:00:00Z,board_member,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,"Washington, D.C."
+Q271117,Andrea Jung,1959-08-28T00:00:00Z,board_member,Q312,Apple Inc.,AAPL,1980-12-01T00:00:00Z,1976-04-01T00:00:00Z,Q82059,Nasdaq,female,United States,linguist,Toronto
+Q7367220,Rosalind Brewer,1962-01-01T00:00:00Z,board_member,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Detroit
+Q7359066,"Roger W. Ferguson, Jr.",1951-10-28T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOGL,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,"Washington, D.C."
+Q979545,Michael Boskin,1945-09-23T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,writer,New York City
+Q3503829,Sundar Pichai,1972-06-10T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,executive,Madurai
+Q6291340,Joe Almeida,1961-09-22T00:00:00Z,board_member,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,
+Q92764,Sergey Brin,1973-08-21T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,author,Moscow
+Q348874,Alan Mulally,1945-08-04T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOGL,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Oakland
+Q244631,Leon Panetta,1938-06-28T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Monterey
+Q8009564,William G. Parrett,1945-06-04T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,banker,
+Q6176194,Jeffrey O. Henley,1945-01-01T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,chief financial officer,
+Q92854,John L. Hennessy,1952-09-22T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Huntington
+Q4273363,Frances Arnold,1956-07-25T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,female,United States,inventor,Pittsburgh
+Q4934,Larry Page,1973-03-26T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,East Lansing
+Q5231666,David Brailer,1959-07-16T00:00:00Z,board_member,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,economist,Kingwood
+Q450628,Safra Catz,1961-12-01T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,female,United States,banker,Holon
+Q1355678,Jim Skinner,1944-01-01T00:00:00Z,board_member,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Moline
+Q92759,Larry Ellison,1944-08-17T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,actor,The Bronx
+Q1380459,John Doerr,1951-06-29T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,St. Louis
+Q3617636,Ann Mather,1960-04-10T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Paris
+Q2745626,Bruce Chizen,1956-01-01T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q5081061,Charles Moorman,1953-01-01T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,New Orleans
+Q3497982,Stefano Pessina,1941-06-04T00:00:00Z,board_member,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,male,Italy,engineer,Pescara
+Q259514,Valerie Jarrett,1956-11-14T00:00:00Z,board_member,Q18712620,Walgreens Boots Alliance,WBA,,2015-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,lawyer,Shiraz
+Q7935934,Vishal Sikka,1967-06-01T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Vadodara
+Q14949405,Noubar Afeyan,1962-07-25T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,donor,Beirut
+Q18207172,Lisa Su,1969-11-07T00:00:00Z,board_member,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,Tainan County
+Q50300377,Brad Smith,1959-01-17T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Milwaukee
+Q9080179,Samuel Yin,1950-08-16T00:00:00Z,board_member,Q19880591,Gogoro,GGR,,2011-08-29T00:00:00Z,Q82059,Nasdaq,male,Taiwan,engineer,Taipei
+Q7153404,Paul Sagan,1959-01-01T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q12988436,Ram Shriram,1956-01-01T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,Chennai
+Q5549228,Gerald Hassell,1952-01-01T00:00:00Z,board_member,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,,chief executive officer,
+Q29514930,R. Martin Chavez,1964-01-01T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOGL,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Albuquerque
+Q90959587,Stéphane Bancel,1972-07-20T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Marseille
+Q285157,Anne Sweeney,1957-11-04T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Kingston
+Q669597,"Robert S. Langer, Jr.",1948-08-29T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Albany
+Q114842534,Annabelle Bexiga,1962-01-01T00:00:00Z,board_member,Q1666331,StoneX,SNEX,2020-01-01T00:00:00Z,1981-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,
+Q47672827,Tan Hock Eng,1951-01-01T00:00:00Z,board_member,Q790060,Broadcom,AVGO,2009-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,Malaysia,business executive,Penang
+Q81810283,Robin Washington,1964-01-01T00:00:00Z,board_member,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,female,United States,manager,
+Q19661212,Ted Sarandos,1964-07-30T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,chief content officer,Phoenix
+Q5232041,David C. Novak,1953-01-01T00:00:00Z,board_member,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Beeville
+Q16057962,Abhi Talwalkar,1964-01-01T00:00:00Z,board_member,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,Pune
+Q88965331,Moncef Slaoui,1959-07-22T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,Belgium,researcher,Agadir
+Q4964404,Brian L. Roberts,1959-06-28T00:00:00Z,board_member,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Philadelphia
+Q27449970,Diane Bryant,1962-02-01T00:00:00Z,board_member,Q790060,Broadcom,AVGO,2009-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Fair Oaks
+Q114837387,Laura Desmond,1965-01-01T00:00:00Z,board_member,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,female,,,
+Q19538950,Nathan Blecharczyk,1983-01-01T00:00:00Z,board_member,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,West Roxbury
+Q75328074,Prince Jan Radziwill,1947-08-08T00:00:00Z,board_member,Q1666331,StoneX,SNEX,2020-01-01T00:00:00Z,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q944937,Henry Samueli,1954-09-20T00:00:00Z,board_member,Q790060,Broadcom,AVGO,2009-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Buffalo
+Q4749092,Amy Banse,1959-04-22T00:00:00Z,board_member,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,female,,businessperson,
+Q19560551,Joe Gebbia,1981-08-21T00:00:00Z,board_member,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,computer scientist,Atlanta
+Q114837427,Michael Gregoire,1965-01-01T00:00:00Z,board_member,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q4991137,Christina Lampe Önnerud,1967-02-04T00:00:00Z,board_member,Q1671509,onsemi,ON,2000-04-28T00:00:00Z,1992-06-18T00:00:00Z,Q82059,Nasdaq,female,Sweden,pharmacist,Ludvika
+Q16249366,Mark Durcan,1961-04-20T00:00:00Z,board_member,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,
+Q16580195,Israel Ruiz,1971-01-01T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,Spain,engineer,
+Q3438288,Rodolphe Belmer,1969-08-21T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Rennes
+Q516550,Kenneth Chenault,1951-06-02T00:00:00Z,board_member,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Mineola
+Q107797,Mathias Döpfner,1963-01-15T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,Germany,lobbyist,Bonn
+Q17712328,Rona Fairhead,1961-08-28T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,female,,,Cumbria
+Q94715257,Tal Zaks,1965-01-01T00:00:00Z,board_member,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,Israel,physician,Haifa
+Q2622748,Shantanu Narayen,1963-05-01T00:00:00Z,board_member,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,male,India,businessperson,Hyderabad
+Q7624176,Strive Masiyiwa,1961-01-29T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,Zimbabwe,humanitarian,Zimbabwe
+Q7323183,Rich Barton,1967-06-02T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q125401280,Joseph A. Householder,1955-08-12T00:00:00Z,board_member,Q128896,AMD,AMD,2015-01-01T00:00:00Z,1969-05-01T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,
+Q5336658,Eddy Hartenstein,1901-01-01T00:00:00Z,board_member,Q790060,Broadcom,AVGO,2009-01-01T00:00:00Z,1961-01-01T00:00:00Z,Q82059,Nasdaq,male,,,Alhambra
+Q7306657,Reed Hastings,1960-10-08T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Boston
+Q529233,Angela Ahrendts,1960-06-12T00:00:00Z,board_member,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,New Palestine
+Q19868373,Edward D. Breen,1956-01-01T00:00:00Z,board_member,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q3617636,Ann Mather,1960-04-10T00:00:00Z,board_member,Q116452644,"Netflix, Inc.",NFLX,2002-05-23T00:00:00Z,1997-08-29T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Paris
+Q16745344,Renée James,1964-06-25T00:00:00Z,board_member,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Los Angeles
+Q110471964,Cristiano Amon,1972-11-24T00:00:00Z,board_member,Q11463,Adobe,ADBE,1986-08-01T00:00:00Z,1982-02-28T00:00:00Z,Q82059,Nasdaq,male,Brazil,businessperson,
+Q229671,Chelsea Clinton,1980-02-27T00:00:00Z,board_member,Q8085893,Expedia Group,EXPE,2005-01-01T00:00:00Z,1996-10-22T00:00:00Z,Q82059,Nasdaq,female,United States,writer,Little Rock
+Q437801,Ben Verwaayen,1952-02-11T00:00:00Z,board_member,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,Kingdom of the Netherlands,chief executive officer,Driebergen
+Q822657,Robert M. Kimmitt,1947-12-19T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,diplomat,Logan
+Q234653,Sheryl Sandberg,1969-08-28T00:00:00Z,board_member,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,female,United States,economist,"Washington, D.C."
+Q705525,Peter Thiel,1967-10-11T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,New Zealand,writer,Frankfurt
+Q36215,Mark Zuckerberg,1984-05-14T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,White Plains
+Q264913,Indra Nooyi,1955-09-28T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,female,India,businessperson,Chennai
+Q62882,Marc Andreessen,1971-07-09T00:00:00Z,board_member,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Cedar Falls
+Q312556,Jeff Bezos,1964-01-12T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Albuquerque
+Q376800,Jamie S. Gorelick,1950-05-06T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,female,United States,lawyer,Brooklyn
+Q471851,James Murdoch,1972-12-13T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,karateka,Wimbledon
+Q736477,S. Robson Walton,1944-10-27T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Tulsa
+Q979750,Randall L. Stephenson,1960-04-22T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Oklahoma City
+Q1582880,Hans Vestberg,1965-06-23T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,2000-06-16T00:00:00Z,Q82059,Nasdaq,male,Sweden,handball player,Hudiksvall
+Q58345040,Robyn Denholm,1963-05-27T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Milperra
+Q20177269,Greg Penner,1970-01-01T00:00:00Z,board_member,Q483551,Q483551,WMT,,1969-10-31T00:00:00Z,Q82059,Nasdaq,male,,chairperson,
+Q6409751,Kimbal Musk,1972-09-20T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,environmentalist,Pretoria
+Q17198710,Shellye Archambeau,1962-07-06T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,2000-06-16T00:00:00Z,Q82059,Nasdaq,female,,businessperson,
+Q5214356,Dan Schulman,1958-01-19T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,1983-10-07T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Newark
+Q14086,Marissa Mayer,1975-05-30T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,female,United States,engineer,Wausau
+Q7794754,Thomas Horton,1961-05-24T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,,businessperson,Hampton
+Q317521,Elon Musk,1971-06-28T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Pretoria
+Q2161181,Rodney E. Slater,1955-02-23T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,2000-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Marianna
+Q6766732,Mark T. Bertolini,1956-06-07T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,1983-10-07T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Detroit
+Q24524594,Steuart Walton,1982-01-01T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,lawyer,Bentonville
+Q5126682,"Clarence Otis, Jr.",1956-04-11T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,2000-06-16T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q5065434,Cesar Conde,1973-12-08T00:00:00Z,board_member,Q483551,Q483551,WMT,,1969-10-31T00:00:00Z,Q82059,Nasdaq,male,United States,,New York City
+Q19560551,Joe Gebbia,1981-08-21T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,computer scientist,Atlanta
+Q21551443,Carol Tomé,1957-01-08T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,1983-10-07T00:00:00Z,Q82059,Nasdaq,female,,business executive,Jackson
+Q6107808,J. B. Straubel,1965-12-20T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Wisconsin
+Q7615193,Steven Reinemund,1948-04-06T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,military officer,New York City
+Q16196595,Doug McMillon,1966-10-17T00:00:00Z,board_member,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Jonesboro
+Q92759,Larry Ellison,1944-08-17T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,actor,The Bronx
+Q6174749,Jeff Raikes,1958-05-29T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Nebraska
+Q47672827,Tan Hock Eng,1951-01-01T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,Malaysia,business executive,Penang
+Q305177,Jensen Huang,1963-02-17T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,Taiwan,tech VIP,Tainan
+Q112205462,Vincent Pilette,1972-01-01T00:00:00Z,board_member,Q677085,Gen Digital,GEN,2022-01-01T00:00:00Z,1982-03-01T00:00:00Z,Q82059,Nasdaq,male,,manager,
+Q6228096,John D. Arnold,1974-01-01T00:00:00Z,board_member,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,financier,Dallas
+Q25937248,Pavel Baudiš,1960-05-15T00:00:00Z,board_member,Q677085,Gen Digital,SYMC,1989-01-01T00:00:00Z,1982-03-01T00:00:00Z,Q82059,Nasdaq,male,Czechoslovakia,entrepreneur,Prague
+Q7456478,Seth Goldman,1965-01-01T00:00:00Z,board_member,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q105038817,Tony Xu,1985-01-01T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Nanjing
+Q124907215,Melissa Lora,1963-01-01T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,
+Q64745663,Laxman Narasimhan,1965-01-01T00:00:00Z,board_member,Q467752,Verizon,VZ,2010-05-01T00:00:00Z,1983-10-07T00:00:00Z,Q82059,Nasdaq,male,,business executive,Pune
+Q20685374,Thomas O. Ryder,1944-01-01T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,,South Carolina
+Q4231614,Sally Jewell,1956-02-21T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,politician,London
+Q18207172,Lisa Su,1969-11-07T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,Tainan County
+Q1239543,Don Thompson,1963-03-30T00:00:00Z,board_member,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,Chicago
+Q7298890,Raymond J. Lane,1946-12-26T00:00:00Z,board_member,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,McKeesport
+Q48609449,Ethan Brown,1971-01-01T00:00:00Z,board_member,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,environmentalist,
+Q47005455,Anthony Wood,1965-12-01T00:00:00Z,board_member,Q7360089,"Roku, Inc.",ROKU,2017-01-01T00:00:00Z,2002-10-01T00:00:00Z,Q82059,Nasdaq,male,,entrepreneur,England
+Q113119124,Brent Saunders,1970-02-06T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,,business executive,
+Q879247,Biz Stone,1974-03-10T00:00:00Z,board_member,Q18205509,Beyond Meat,BYND,2019-05-02T00:00:00Z,2009-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,San Francisco
+Q124879467,Tench Coxe,1958-01-01T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,venture capitalist,
+Q108001876,Carla A. Harris,1962-10-28T00:00:00Z,board_member,Q483551,Q483551,WMT,,1969-10-31T00:00:00Z,Q82059,Nasdaq,female,United States,,Port Arthur
+Q16149081,Hamilton E. James,1951-02-03T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Wyandotte
+Q109363035,Peggy Alford,1972-01-01T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,female,United States,manager,
+Q1162007,Daniel P. Huttenlocher,1958-01-01T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,executive,
+Q7647752,Susan Decker,1962-11-17T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,president,Memphis
+Q918630,Charlie Munger,1924-01-01T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,investor,Omaha
+Q5217482,Daniel Hesse,1953-01-01T00:00:00Z,board_member,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q5307199,Drew Houston,1983-03-04T00:00:00Z,board_member,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Acton
+Q28408347,Katherine August-deWilde,1948-01-01T00:00:00Z,board_member,Q7638158,Sunrun,RUN,,2007-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,business executive,Bridgeport
+Q60330177,Kathleen Wilson-Thompson,1955-01-01T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,female,,,
+Q7148734,Patty Stonesifer,1956-01-01T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,female,United States,business executive,Indianapolis
+Q96990627,Ondřej Vlček,1977-07-14T00:00:00Z,board_member,Q677085,Gen Digital,NLOK,2019-01-01T00:00:00Z,1982-03-01T00:00:00Z,Q82059,Nasdaq,male,Czech Republic,manager,Prague
+Q7340009,Rob Burgess,1957-08-29T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q1650162,W. Craig Jelinek,1952-08-08T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,California
+Q3082580,Frank Dangeard,1958-02-25T00:00:00Z,board_member,Q677085,Gen Digital,GEN,2022-01-01T00:00:00Z,1982-03-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Ottawa
+Q5424058,F. Thomson Leighton,1956-01-01T00:00:00Z,board_member,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,mathematician,
+Q107434318,Sarah Friar,1972-12-24T00:00:00Z,board_member,Q483551,Q483551,WMT,,1969-10-31T00:00:00Z,Q82059,Nasdaq,female,,business executive,
+Q6712901,M. Michele Burns,1958-01-01T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,Georgia
+Q1360488,Keith B. Alexander,1951-12-02T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,soldier,Syracuse
+Q869322,Jon Rubinstein,1956-04-18T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,New York City
+Q6228369,John O. Dabiri,1980-01-01T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,United States,biophysicist,Toledo
+Q6709093,Lynn Jurich,1979-01-01T00:00:00Z,board_member,Q7638158,Sunrun,RUN,,2007-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,entrepreneur,
+Q86744346,Hiromichi Mizuno,1965-09-28T00:00:00Z,board_member,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,Japan,,Tajimi
+Q6962779,Nancy Killefer,1953-01-01T00:00:00Z,board_member,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,female,,writer,
+Q1571715,Judy McGrath,1952-07-02T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,female,United States,film producer,Scranton
+Q1763248,Persis Drell,1955-12-30T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,female,United States,university teacher,Palo Alto
+Q41812531,Andy Jassy,1968-01-13T00:00:00Z,board_member,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,business executive,Scarsdale
+Q21041473,Chuck Robbins,1965-01-01T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Grayson
+Q5590777,Wesley Bush,1961-01-01T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,United States
+Q6730335,Maggie Wilderotter,1955-02-09T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Neptune Township
+Q65939291,Brittany Kaiser,1987-01-01T00:00:00Z,board_member,Q78203110,Phunware,PHUN,,2009-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,executive,Houston
+Q21067177,Helena Foulkes,1964-01-01T00:00:00Z,board_member,Q715583,Costco,COST,1990-01-02T00:00:00Z,1983-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,
+Q6273922,Jonathan Miller,1957-01-01T00:00:00Z,board_member,Q415598,Akamai Technologies,AKAM,1999-10-29T00:00:00Z,1998-01-01T00:00:00Z,Q82059,Nasdaq,male,,,
+Q124911295,A. Brooke Seawell,1948-01-01T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q6769848,Mark Stevens,1959-01-01T00:00:00Z,board_member,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,,,
+Q41651,Kristina M. Johnson,1957-01-01T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,female,United States,electrical engineer,St. Louis
+Q6829086,Michael David Capellas,1955-08-19T00:00:00Z,board_member,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,
+Q1393271,John Chambers,1949-08-23T00:00:00Z,director,Q173395,Cisco,CSCO,,1984-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Cleveland
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,director,Q14289857,News Corp,NWS,2013-06-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,Australia,publisher,Melbourne
+Q717618,Michael Kors,1959-08-09T00:00:00Z,director,Q19572998,Capri Holdings,KORS,,2002-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,reality television program judge,Long Island
+Q699565,Ronald Lauder,1944-02-26T00:00:00Z,director,Q1053787,Central European Media Enterprises,CETV,,1994-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,politician,New York City
+Q5186034,Crispin Davis,1949-03-19T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,,businessperson,
+Q90959587,Stéphane Bancel,1972-07-20T00:00:00Z,director,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Marseille
+Q1095180,Clara Furse,1957-09-16T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,female,United Kingdom,economist,Canada
+Q2846672,Andrew Mason,1980-01-01T00:00:00Z,director,Q852787,Groupon,GRPN,2011-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,entrepreneur,Mt. Lebanon
+Q16196595,Doug McMillon,1966-10-17T00:00:00Z,director,Q483551,Q483551,WMT,,1962-07-02T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Jonesboro
+Q5673253,Amparo Moraleda,1964-05-28T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,female,Spain,businessperson,Madrid
+Q731692,Robert Simonds,1964-01-01T00:00:00Z,director,Q19868261,STX Entertainment,SFXE,2000-01-01T00:00:00Z,2014-03-10T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Phoenix
+Q6571254,Michael Federmann,1943-09-09T00:00:00Z,director,Q1325369,Elbit Systems Ltd.,ESLT,,1966-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,businessperson,Haifa
+Q52177144,Shuntaro Furukawa,1972-01-10T00:00:00Z,director,Q8093,Q8093,NTDOY,,1947-01-01T00:00:00Z,Q82059,Nasdaq,male,Japan,businessperson,Tokyo
+Q50082669,George Kurtz,1970-10-01T00:00:00Z,director,Q24890758,CrowdStrike,CRWD,2019-06-12T00:00:00Z,2011-08-29T00:00:00Z,Q82059,Nasdaq,male,United States,venture capitalist,New Jersey
+Q107797,Mathias Döpfner,1963-01-15T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,Germany,lobbyist,Bonn
+Q69185,Gerard Kleisterlee,1946-09-28T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,Germany,engineer,Ludwigsburg
+Q4964404,Brian L. Roberts,1959-06-28T00:00:00Z,director,Q1113804,Comcast,CMCSA,,1963-06-28T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Philadelphia
+Q4963341,Brian Chesky,1981-08-29T00:00:00Z,director,Q63327,Airbnb,ABNB,2020-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Niskayuna
+Q7407438,Samuel Esson Jonah,1949-11-19T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,Ghana,mining engineer,Obuasi
+Q99646939,Megan Clarken,1966-10-30T00:00:00Z,director,Q2814507,Criteo,CRTO,2013-10-30T00:00:00Z,2005-01-01T00:00:00Z,Q82059,Nasdaq,female,,athletics competitor,
+Q3181165,John C. Malone,1941-03-07T00:00:00Z,director,Q1516562,Liberty Media,,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Milford
+Q47524652,Nick Read,1966-03-01T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,soldier,
+Q3035842,Don Mattrick,1964-02-13T00:00:00Z,director,Q245772,Zynga,ZNGA,2011-12-16T00:00:00Z,2007-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,programmer,Vancouver
+Q36215,Mark Zuckerberg,1984-05-14T00:00:00Z,director,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,White Plains
+Q92985,Robin Li,1968-11-17T00:00:00Z,director,Q14772,Baidu,BIDU,,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,inventor,Yangquan
+Q2439741,Tom Jenkins,1959-01-01T00:00:00Z,director,Q2025791,Open Text Corporation,OTEX,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,Canada,manager,Hamilton
+Q5238042,David Nish,1960-05-05T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,male,United Kingdom,entrepreneur,Barrhead
+Q450628,Safra Catz,1961-12-01T00:00:00Z,director,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,female,United States,banker,Holon
+Q7909096,Val Gooding,1950-05-14T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,female,United Kingdom,business executive,
+Q61756286,Strauss Zelnick,1957-06-26T00:00:00Z,director,Q94933,Take-Two Interactive,TTWO,,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,chief executive officer,Boston
+Q93217668,Mariola Fotin-Mleczek,1967-01-01T00:00:00Z,director,Q1144473,CureVac,CVAC,,2000-01-01T00:00:00Z,Q82059,Nasdaq,female,Polish People's Republic,microbiologist,
+Q55629586,Peter Beck,1976-01-01T00:00:00Z,director,Q116319,Rocket Lab,RKLB,,2006-06-01T00:00:00Z,Q82059,Nasdaq,male,New Zealand,engineer,Invercargill
+Q33112117,Christel Heydemann,1974-10-09T00:00:00Z,director,Q1431486,Q1431486,ORAN,,1988-01-01T00:00:00Z,Q82059,Nasdaq,female,France,engineer,Clamart
+Q5996574,Marcos Galperin,1971-10-31T00:00:00Z,director,Q950419,Mercado pago,MELI,,1997-08-02T00:00:00Z,Q82059,Nasdaq,male,Argentina,businessperson,Buenos Aires
+Q16745344,Renée James,1964-06-25T00:00:00Z,director,Q122141,Vodafone,VOD,,1984-07-17T00:00:00Z,Q82059,Nasdaq,female,United States,businessperson,Los Angeles
+Q1507272,Giorgos Economou,1953-08-04T00:00:00Z,director,Q2013404,Ocean Rig,ORIG,2011-10-06T00:00:00Z,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,Greece,art collector,Athens
+Q725940,Sumner Redstone,1923-05-27T00:00:00Z,director,Q214346,Viacom,VIA,,2005-12-31T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,Boston
+Q587455,Barry Diller,1942-02-02T00:00:00Z,director,Q8085893,Expedia Group,EXPE,2005-01-01T00:00:00Z,1996-10-22T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,San Francisco
+Q2847526,André Choulika,1965-01-23T00:00:00Z,director,Q2943995,Cellectis,CLLS,2015-03-25T00:00:00Z,1999-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Beirut
+Q92747,Eric Schmidt,1955-04-27T00:00:00Z,owner,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,"Washington, D.C."
+Q92764,Sergey Brin,1973-08-21T00:00:00Z,owner,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,author,Moscow
+Q4934,Larry Page,1973-03-26T00:00:00Z,owner,Q20800404,Alphabet Inc.,GOOG,2016-01-01T00:00:00Z,2015-10-02T00:00:00Z,Q82059,Nasdaq,male,United States,engineer,East Lansing
+Q63372513,Zhou Yahui,1977-02-01T00:00:00Z,owner,Q215639,Opera,OPRA,2018-07-27T00:00:00Z,1995-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Lijiang
+Q92759,Larry Ellison,1944-08-17T00:00:00Z,owner,Q19900,Oracle Corporation,ORCL,,1977-06-16T00:00:00Z,Q82059,Nasdaq,male,United States,actor,The Bronx
+Q105038817,Tony Xu,1985-01-01T00:00:00Z,owner,Q20714323,DoorDash,DASH,2023-09-01T00:00:00Z,2012-01-01T00:00:00Z,Q82059,Nasdaq,male,People's Republic of China,businessperson,Nanjing
+Q164997,Len Blavatnik,1957-06-14T00:00:00Z,owner,Q21077,Warner Music Group,WMG,2020-01-01T00:00:00Z,1958-04-06T00:00:00Z,Q82059,Nasdaq,male,United States,actor,Odesa
+Q4123823,Arkady Volozh,1964-02-11T00:00:00Z,owner,Q47120756,Nebius Group,YNDX,2011-05-24T00:00:00Z,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,mathematician,Atyrau
+Q90959587,Stéphane Bancel,1972-07-20T00:00:00Z,owner,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2010-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Marseille
+Q5006387,C. Dean Metropoulos,1946-05-05T00:00:00Z,owner,Q17068094,Hostess Brands,TWNK,,2013-01-01T00:00:00Z,Q82059,Nasdaq,male,Greece,businessperson,Tripoli
+Q305177,Jensen Huang,1963-02-17T00:00:00Z,owner,Q182477,Nvidia,NVDA,1999-01-22T00:00:00Z,1993-04-05T00:00:00Z,Q82059,Nasdaq,male,Taiwan,tech VIP,Tainan
+Q669597,"Robert S. Langer, Jr.",1948-08-29T00:00:00Z,owner,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Albany
+Q370217,Dustin Moskovitz,1984-05-22T00:00:00Z,owner,Q380,Meta,FB,2012-05-18T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Gainesville
+Q2909403,Gil Shwed,1968-01-01T00:00:00Z,owner,Q176587,Check Point,CHKP,1999-03-03T00:00:00Z,1993-01-01T00:00:00Z,Q82059,Nasdaq,male,Israel,programmer,Jerusalem
+Q2958994,Charles Edelstenne,1938-01-09T00:00:00Z,owner,Q1172038,Dassault Systèmes,DASTY,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,France,businessperson,Paris
+Q2897681,Bernard Charlès,1957-03-30T00:00:00Z,owner,Q1172038,Dassault Systèmes,DASTY,,1981-01-01T00:00:00Z,Q82059,Nasdaq,male,France,engineer,Brittany
+Q108516341,Tai Lopez,1977-04-11T00:00:00Z,owner,Q7191691,Pier 1 Imports,PIR,,1962-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,actor,
+Q3181165,John C. Malone,1941-03-07T00:00:00Z,owner,Q1516562,Liberty Media,,,1991-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,publisher,Milford
+Q312663,Eduardo Saverin,1982-03-19T00:00:00Z,owner,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,economist,São Paulo
+Q36215,Mark Zuckerberg,1984-05-14T00:00:00Z,owner,Q380,Meta,META,2022-06-09T00:00:00Z,2004-07-29T00:00:00Z,Q82059,Nasdaq,male,United States,programmer,White Plains
+Q64705310,Brian Armstrong,1983-01-25T00:00:00Z,owner,Q16972754,Coinbase,COIN,2021-04-14T00:00:00Z,2012-06-20T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,San Jose
+Q6831501,Michael J. Saylor,1965-02-04T00:00:00Z,owner,Q1192211,Strategy,MSTR,1998-01-01T00:00:00Z,1989-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,author,Lincoln
+Q289590,Susanne Klatten,1962-04-28T00:00:00Z,owner,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,female,Germany,businessperson,Bad Homburg vor der Höhe
+Q125289366,Perry A. Sook,1958-01-01T00:00:00Z,owner,Q7020906,Nexstar Media Group,NXST,2012-01-01T00:00:00Z,1996-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,DuBois
+Q4762718,Angeliki Frangou,1965-01-01T00:00:00Z,owner,Q6982488,Navios Maritime Holdings,,,1992-01-01T00:00:00Z,Q82059,Nasdaq,female,Greece,businessperson,Chios
+Q20857914,Wes Edens,1961-10-30T00:00:00Z,owner,Q106239511,New Fortress Energy,NFE,,,Q82059,Nasdaq,male,United States,businessperson,Montana
+Q75900,Stefan Quandt,1966-05-09T00:00:00Z,owner,Q26678,BMW,BMWYY,,1916-03-07T00:00:00Z,Q82059,Nasdaq,male,Germany,engineer,Bad Homburg vor der Höhe
+Q14949405,Noubar Afeyan,1962-07-25T00:00:00Z,owner,Q17081612,Moderna,MRNA,2018-01-01T00:00:00Z,2016-07-22T00:00:00Z,Q82059,Nasdaq,male,United States,donor,Beirut
+Q312556,Jeff Bezos,1964-01-12T00:00:00Z,owner,Q3884,Amazon,AMZN,1997-05-01T00:00:00Z,1994-07-05T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Albuquerque
+Q4310209,Eric Lefkofsky,1969-09-13T00:00:00Z,owner,Q852787,Groupon,GRPN,2011-01-01T00:00:00Z,2008-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,entrepreneur,Detroit
+Q62543,Dietmar Hopp,1940-04-26T00:00:00Z,owner,Q1144473,CureVac,CVAC,,2000-01-01T00:00:00Z,Q82059,Nasdaq,male,Germany,entrepreneur,Heidelberg
+Q5116286,Chung Eui-sun,1970-10-18T00:00:00Z,owner,Q55931,Hyundai Motor Company,HYMTF,,1967-12-29T00:00:00Z,Q82059,Nasdaq,male,South Korea,businessperson,South Korea
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,owner,Q5476713,21st Century Fox,TFCF,2019-03-19T00:00:00Z,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,Australia,publisher,Melbourne
+Q293679,Alwaleed Bin Talal Bin Abdulaziz Al Saud,1955-03-07T00:00:00Z,owner,Q5476713,21st Century Fox,FOXA,http://www.wikidata.org/.well-known/genid/08a4293867d20204ecc3b38eddcdfe26,2013-06-28T00:00:00Z,Q82059,Nasdaq,male,Saudi Arabia,entrepreneur,Jeddah
+Q488446,Chung Mong-koo,1938-03-19T00:00:00Z,owner,Q55931,Hyundai Motor Company,HYMTF,,1967-12-29T00:00:00Z,Q82059,Nasdaq,male,South Korea,entrepreneur,Gangwon Province
+Q53944,Rupert Murdoch,1931-03-11T00:00:00Z,owner,Q60238941,Fox Corporation,FOXA,2019-03-19T00:00:00Z,2019-01-01T00:00:00Z,Q82059,Nasdaq,male,Australia,media proprietor,Melbourne
+Q317521,Elon Musk,1971-06-28T00:00:00Z,owner,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,inventor,Pretoria
+Q4706659,Alan G. Hassenfeld,1948-11-16T00:00:00Z,owner,Q501476,Hasbro,HAS,,1923-01-01T00:00:00Z,Q82059,Nasdaq,male,United States,businessperson,
+Q1507272,Giorgos Economou,1953-08-04T00:00:00Z,owner,Q5309468,DryShips Inc,DRYS,,2004-01-01T00:00:00Z,Q82059,Nasdaq,male,Greece,art collector,Athens
+Q348483,Pierre Omidyar,1967-06-21T00:00:00Z,owner,Q58024,eBay,EBAY,1998-09-24T00:00:00Z,1995-09-03T00:00:00Z,Q82059,Nasdaq,male,United States,economist,Paris
+Q981479,Carl Icahn,1936-02-16T00:00:00Z,owner,Q5985017,Icahn Enterprises,IEP,,,Q82059,Nasdaq,male,United States,merchant,Far Rockaway
+Q92759,Larry Ellison,1944-08-17T00:00:00Z,owner,Q478214,Tesla,TSLA,2010-06-29T00:00:00Z,2003-07-01T00:00:00Z,Q82059,Nasdaq,male,United States,actor,The Bronx

@@ -1,0 +1,508 @@
+person_qid,person_name,dob,role,company_qid,company_name,ticker,ipo_date,company_inception,exchange_qid,exchange_name,gender,citizenship,occupation,place_of_birth
+Q108109520,Masaki Nakanishi,1973-11-09T00:00:00Z,CEO,Q719628,Amuse,4301,2004-03-24T00:00:00Z,1977-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q7827759,Toshio Kagami,1936-01-01T00:00:00Z,CEO,Q868679,The Oriental Land Company,4661,1996-12-11T00:00:00Z,1960-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q323515,Jean Leguay,1909-11-29T00:00:00Z,CEO,Q7969801,Warner–Lambert,WLA,,1955-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,official,Chevreuse
+Q46575574,Kōji Hoshino,1955-04-26T00:00:00Z,CEO,Q83584,Odakyu Electric Railway,9007,1949-05-16T00:00:00Z,1923-05-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q33102873,Christophe Weber,1966-11-14T00:00:00Z,CEO,Q899133,Takeda Pharmaceutical Company,4502,,1925-01-29T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,businessperson,Strasbourg
+Q8704,Walt Disney,1901-12-05T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,actor,Chicago
+Q52177144,Shuntaro Furukawa,1972-01-10T00:00:00Z,CEO,Q8093,Q8093,7974,1983-07-21T00:00:00Z,1947-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q117246541,Riku Tazumi,1996-02-03T00:00:00Z,CEO,Q85329888,AnyColor,5032,2022-06-08T00:00:00Z,2017-05-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kobe
+Q86408516,Bob Chapek,1960-01-01T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Hammond
+Q5585609,Gordon Nixon,1957-01-25T00:00:00Z,CEO,Q735261,Royal Bank of Canada,,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Canada,chief executive officer,Montreal
+Q727953,Michael Eisner,1942-03-07T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,New York City
+Q436622,Donn Tatum,1913-01-09T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Los Angeles
+Q54861333,Jim Fitterling,1961-01-01T00:00:00Z,CEO,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Missouri
+Q347432,Roy O. Disney,1893-06-24T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,Chicago
+Q325214,Card Walker,1916-01-09T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Rexburg
+Q30927408,Okafuji Masahiro,1949-12-12T00:00:00Z,CEO,Q717093,Itochu,8001,1950-07-01T00:00:00Z,1949-12-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Osaka
+Q532423,Bob Iger,1951-02-10T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Oceanside
+Q3421200,Raymond Watson,1926-10-04T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,architect,Seattle
+Q69598904,Josh D'Amaro,1971-02-10T00:00:00Z,CEO,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,chairperson,Medford
+Q57314707,Hideya Sadayasu,1961-07-06T00:00:00Z,CEO,Q17049674,Imperial Hotel,9708,,1887-12-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q9097127,Yōichi Erikawa,1950-10-26T00:00:00Z,CEO,Q1576915,Koei Tecmo Holdings,3635,2009-04-01T00:00:00Z,2009-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ashikaga
+Q15544602,Martin Lundstedt,1967-04-28T00:00:00Z,CEO,Q163810,AB Volvo,7652,,1927-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Sweden,engineer,Mariestad
+Q21032599,Oliver Blume,1968-06-06T00:00:00Z,CEO,Q156578,Volkswagen Group,7659,,1937-05-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,engineer,Brunswick
+Q716047,Lee Shau-kee,1928-02-20T00:00:00Z,CEO,Q1604969,KOLOUR,8990,,1981-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,People's Republic of China,banker,Shunde District
+Q125936166,Shunsuke Niwa,1965-06-22T00:00:00Z,CEO,Q513679,Central Japan Railway Company,9022,1997-01-01T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,,Japan,,
+Q982623,Kazuo Inamori,1932-01-21T00:00:00Z,CEO,Q213140,Japan Airlines,9201,2012-09-19T00:00:00Z,1951-08-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Kagoshima
+Q70092183,Makoto Uchida,1966-07-20T00:00:00Z,CEO,Q20165,Nissan,7201,1951-01-04T00:00:00Z,1933-12-26T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Japan
+Q6224507,John C. Lechleiter,1952-08-17T00:00:00Z,CEO,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,
+Q57314806,Matsuda Noriyuki,1965-01-01T00:00:00Z,CEO,Q11315494,Sourcenext,4344,2006-12-20T00:00:00Z,1996-08-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q239216,Jean-Laurent Bonnafé,1961-07-14T00:00:00Z,CEO,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,banker,Albi
+Q73426541,Chris Kempczinski,1968-09-26T00:00:00Z,CEO,Q38076,McDonald's,,,1940-05-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,Cincinnati
+Q23947103,Hiroshi Ogasawara,1955-01-01T00:00:00Z,CEO,Q2620239,Yaskawa Electric Corporation,6506,,1915-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,chairperson,
+Q56042353,Ramon Laguarta,1963-01-01T00:00:00Z,CEO,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,chairperson,Barcelona
+Q17229450,Masatsugu Nagato,1948-11-18T00:00:00Z,CEO,Q1372049,Japan Post Holdings,6178,2015-11-04T00:00:00Z,2006-01-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Otaru
+Q20640876,Motoi Oyama,1951-02-02T00:00:00Z,CEO,Q327247,ASICS,7936,1972-05-29T00:00:00Z,1949-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,athlete,Ishikawa Prefecture
+Q101070644,Tomokuni Tsuji,1988-11-01T00:00:00Z,CEO,Q1136885,Sanrio,8136,,1960-08-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q19663112,Bill Winters,1961-09-01T00:00:00Z,CEO,Q548278,Standard Chartered,,,1853-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,Connecticut
+Q84053114,Arvind Krishna,1962-01-01T00:00:00Z,CEO,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,chief executive officer,West Godavari district
+Q3528191,Tidjane Thiam,1962-07-29T00:00:00Z,CEO,Q372657,Credit Suisse,8653,,1856-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Ivory Coast,politician,Abidjan
+Q56868014,H. Lawrence Culp Jr.,1964-01-01T00:00:00Z,CEO,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,"Washington, D.C."
+Q79815733,Kazuaki Hasegawa,1957-05-01T00:00:00Z,CEO,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q5344048,Eddie Lampert,1962-07-19T00:00:00Z,CEO,Q6499202,Sears,,,1892-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Roslyn
+Q108858442,Shozaburo Shimano,1894-01-01T00:00:00Z,CEO,Q949610,Shimano,7309,,1921-02-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,inventor,Sakai
+Q11449999,Isao Moriyasu,1973-09-21T00:00:00Z,CEO,Q11320256,DeNA,2432,,1999-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ibaraki Prefecture
+Q922169,Jamie Dimon,1956-03-13T00:00:00Z,CEO,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,New York City
+Q717038,Masayoshi Son,1957-08-11T00:00:00Z,CEO,Q201653,SoftBank Group,9984,,1981-09-03T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Tosu
+Q19297571,Ola Källenius,1969-06-11T00:00:00Z,CEO,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Sweden,manager,Västervik
+Q61985799,John Stankey,1962-01-01T00:00:00Z,CEO,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,chief executive officer,
+Q11648574,Suzuki Osamu,1930-01-30T00:00:00Z,CEO,Q181642,Suzuki Motor Corporation,7269,,1909-02-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Gero
+Q15255950,Masamichi Kogai,1954-08-24T00:00:00Z,CEO,Q35996,Mazda,7261,1949-05-16T00:00:00Z,1920-01-30T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Chino
+Q109609662,C. S. Venkatakrishnan,1966-01-01T00:00:00Z,CEO,Q245343,Barclays,8642,,1690-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,
+Q11549950,Shigenobu Nagamori,1944-08-28T00:00:00Z,CEO,Q3341241,Nidec,6594,,1973-07-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Mukō-shi
+Q11456421,Kantaro Tomiyama,1954-01-22T00:00:00Z,CEO,Q1335998,Tomy,7867,,2006-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Katsushika
+Q1630242,Randall L. Tobias,1942-03-20T00:00:00Z,CEO,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,diplomat,Remington
+Q8992399,Yoshitaka Kitao,1951-01-21T00:00:00Z,CEO,Q1113213,SBI Holdings,8473,2000-12-15T00:00:00Z,1999-07-08T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Hyōgo Prefecture
+Q2844009,Shigesato Itoi,1948-11-10T00:00:00Z,CEO,Q5875192,Hobonichi,3560,2017-03-16T00:00:00Z,1998-06-06T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,lyricist,Maebashi
+Q51641672,Christian Sewing,1970-04-22T00:00:00Z,CEO,Q66048,Deutsche Bank,8651,,1870-03-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,manager,Bünde
+Q117289,Sergio Ermotti,1960-05-11T00:00:00Z,CEO,Q193199,UBS,8657,,1862-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Switzerland,chief executive officer,Lugano
+Q84557658,Thomas Gottstein,1964-01-01T00:00:00Z,CEO,Q372657,Credit Suisse,8653,,1856-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Switzerland,bank manager,Zurich
+Q912811,Brian Moynihan,1959-10-09T00:00:00Z,CEO,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,Marietta
+Q1386366,Timotheus Höttges,1962-09-18T00:00:00Z,CEO,Q9396,Deutsche Telekom,9496,,1995-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,manager,Solingen
+Q135274618,Masahiro Ando,1965-06-11T00:00:00Z,CEO,Q135274464,&Do Holdings,3457,2015-03-25T00:00:00Z,,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kyoto
+Q11556379,Kazuhiro Tsuga,1956-11-14T00:00:00Z,CEO,Q53247,Panasonic Holdings Corporation,6752,,1918-03-13T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Osaka Prefecture
+Q112150088,Yōji Furumiya,1962-11-26T00:00:00Z,CEO,Q498366,Kyushu Railway Company,9142,2016-10-25T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,Yukuhashi
+Q64782654,Eiji Hashimoto,1955-01-01T00:00:00Z,CEO,Q1151693,Nippon Steel Corporation,5401,1950-10-01T00:00:00Z,2012-10-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11637325,Nobuaki Kurumatani,1957-12-23T00:00:00Z,CEO,Q49125,Toshiba,6502,1949-05-16T00:00:00Z,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,banker,Niihama
+Q124321858,Mitsuko Tottori,1964-12-31T00:00:00Z,CEO,Q213140,Japan Airlines,9201,2012-09-19T00:00:00Z,1951-08-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Japan,businessperson,Kurume
+Q20687650,Peter Zaffino,1967-01-01T00:00:00Z,CEO,Q212235,American International Group,8685,,1919-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,business executive,Greenwich
+Q11608581,Yiwen Luo,1963-04-29T00:00:00Z,CEO,Q11346643,Laox,8202,,1976-09-27T00:00:00Z,Q217475,Tokyo Stock Exchange,,Japan,businessperson,
+Q11483620,Nobuyuki Hirano,1951-10-26T00:00:00Z,CEO,Q1542175,Mitsubishi UFJ Financial Group,8306.T,,2005-10-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,banker,
+Q21997525,Jane Fraser,1967-07-13T00:00:00Z,CEO,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United Kingdom,bank manager,St Andrews
+Q64783806,Kenichiro Yoshida,1959-10-01T00:00:00Z,CEO,Q41187,Sony Group,6758,1958-12-01T00:00:00Z,1946-05-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kumamoto Prefecture
+Q56349725,Toshiaki Higashihara,1955-01-01T00:00:00Z,CEO,Q53238,Hitachi,6501,,1910-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q116935918,Kōji Satō,1969-10-19T00:00:00Z,CEO,Q53268,Toyota,7203,1949-05-16T00:00:00Z,1937-08-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q20855800,Takahiro Hachigō,1959-01-01T00:00:00Z,CEO,Q9584,Honda,7267,,1948-09-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Japan
+Q5605358,Greg Brown,1960-01-01T00:00:00Z,CEO,Q259011,Q259011,6686,,1928-09-25T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Chicago
+Q116204726,Hiromi Yamaji,1955-03-08T00:00:00Z,CEO,Q11507487,Japan Exchange Group,8697,2004-04-01T00:00:00Z,,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q22278143,Brian Hartzer,1967-01-01T00:00:00Z,CEO,Q2031726,Westpac,8641,,1982-10-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Australia,banker,New York City
+Q121148056,Bill Anderson,1966-08-23T00:00:00Z,CEO,Q152051,Bayer,4863,http://www.wikidata.org/.well-known/genid/6e68203a7a6c49fd55358f1a10a622ac,1863-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,,
+Q16144345,Sidney Taurel,1949-02-09T00:00:00Z,CEO,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,businessperson,
+Q86582,Jürgen E. Schrempp,1944-09-15T00:00:00Z,CEO,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,business executive,Freiburg im Breisgau
+Q265852,Tim Cook,1960-11-01T00:00:00Z,CEO,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,engineer,Mobile
+Q11499608,Fumio Sudo,1941-03-03T00:00:00Z,CEO,Q962591,JFE Holdings,5411,,2002-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Toyama
+Q97496345,Yōzō Shimano,1934-11-27T00:00:00Z,CEO,Q949610,Shimano,7309,,1921-02-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Sakai
+Q738197,Hiroya Masuda,1951-12-20T00:00:00Z,CEO,Q1372049,Japan Post Holdings,6178,2015-11-04T00:00:00Z,2006-01-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Setagaya
+Q109767256,Kelly Ortberg,1960-01-01T00:00:00Z,CEO,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,
+Q130611962,Meg O'Neill,1970-09-01T00:00:00Z,CEO,Q152057,BP,5051,,1909-04-14T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,business executive,
+Q16195693,Jon Moeller,1964-01-01T00:00:00Z,CEO,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Chicago
+Q6185687,Jes Staley,1956-12-27T00:00:00Z,CEO,Q245343,Barclays,8642,,1690-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,Boston
+Q15854029,Werner Baumann,1962-10-06T00:00:00Z,CEO,Q152051,Bayer,4863,http://www.wikidata.org/.well-known/genid/6e68203a7a6c49fd55358f1a10a622ac,1863-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,manager,Krefeld
+Q556367,James Gamble,1803-04-03T00:00:00Z,founder,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Enniskillen
+Q11480504,Kiyoshi Ichimura,1900-04-04T00:00:00Z,founder,Q178778,Ricoh,7752,,1936-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,
+Q41693532,Kiichi Kubota,1953-01-01T00:00:00Z,founder,Q18339236,PeptiDream,4587,2013-06-11T00:00:00Z,2006-07-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11427381,Masao Horiba,1924-12-01T00:00:00Z,founder,Q176572,Horiba,6856,,1945-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Shimogyō-ku
+Q11619370,Hiroaki Suga,1963-01-01T00:00:00Z,founder,Q18339236,PeptiDream,4587,2013-06-11T00:00:00Z,2006-07-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,biochemist,Kita-ku
+Q19583075,Tadao Kashio,1917-11-26T00:00:00Z,founder,Q217338,Casio,6952,,1957-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Nankoku
+Q2580296,William R. Gorham,1888-01-04T00:00:00Z,founder,Q20165,Nissan,7201,1951-01-04T00:00:00Z,1933-12-26T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,engineer,San Francisco
+Q975020,Yukinori Taniguchi,1968-09-27T00:00:00Z,founder,Q1923795,Yuke's,4334,,1993-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Hiroshima
+Q4357288,Cecil Howard Green,1900-08-06T00:00:00Z,founder,Q193412,Texas Instruments,,,1930-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Whitefield
+Q556384,William Procter,1801-12-07T00:00:00Z,founder,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,factory owner,Herefordshire
+Q707834,Den Kenjirō,1855-03-27T00:00:00Z,founder,Q20165,Nissan,7201,1951-01-04T00:00:00Z,1933-12-26T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,politician,Hikami district
+Q17238947,Shinshichi Iida,1803-01-01T00:00:00Z,founder,Q2058024,Takashimaya,8233,,1829-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,merchant,
+Q404867,Yoshisuke Aikawa,1880-11-06T00:00:00Z,founder,Q20165,Nissan,7201,1951-01-04T00:00:00Z,1933-12-26T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,politician,Yamaguchi
+Q4476873,Shōjirō Ishibashi,1889-02-01T00:00:00Z,founder,Q179433,Bridgestone,5108,1961-10-02T00:00:00Z,1931-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Kurume
+Q11462675,Kōji Obuchi,1974-11-04T00:00:00Z,founder,Q18611508,CROOZ,2138,2007-02-01T00:00:00Z,2001-05-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11608898,Masuichi Midoro,1886-07-16T00:00:00Z,founder,Q204284,All Nippon Airways,9202,1961-10-01T00:00:00Z,1952-12-27T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,journalist,
+Q183340,Cornelius Vander Starr,1892-10-15T00:00:00Z,founder,Q212235,American International Group,8685,,1919-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Chicago
+Q11596960,Seiemon Inaba,1925-03-05T00:00:00Z,founder,Q212116,FANUC,6954,,1956-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,engineer,Chikusei
+Q11624818,Susumu Fujita,1973-05-16T00:00:00Z,founder,Q11304138,CyberAgent,4751,,1998-03-18T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Sabae
+Q6837925,Michio Suzuki,1887-02-18T00:00:00Z,founder,Q181642,Suzuki Motor Corporation,7269,,1909-02-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,inventor,Shizuoka Prefecture
+Q958364,Torakusu Yamaha,1851-04-20T00:00:00Z,founder,Q188454,Yamaha,7951,1949-01-01T00:00:00Z,1987-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Kii Province
+Q7387856,S. S. Kresge,1867-07-31T00:00:00Z,founder,Q1753080,Kmart,,,1962-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,founder,Wilkes-Barre
+Q717038,Masayoshi Son,1957-08-11T00:00:00Z,founder,Q201653,SoftBank Group,9984,,1981-09-03T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Tosu
+Q5689956,Wayne Huizenga,1937-12-29T00:00:00Z,founder,Q2552219,"Waste Management, Inc",,,1968-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Evergreen Park
+Q11666384,Tōjūrō Iijima,1910-11-07T00:00:00Z,founder,Q3138937,Yamazaki Baking,2212,,1948-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Mitaka
+Q483382,Steve Wozniak,1950-08-11T00:00:00Z,founder,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Serbia,actor,San Jose
+Q332591,Ronald Wayne,1934-05-17T00:00:00Z,founder,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,writer,Cleveland
+Q11473469,Takuya Okada,1925-09-19T00:00:00Z,founder,Q271413,Aeon,8267,,1758-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Yokkaichi
+Q7429431,Sazō Idemitsu,1885-08-22T00:00:00Z,founder,Q2216770,Idemitsu Kosan,5019,2006-10-24T00:00:00Z,1911-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,politician,Fukuoka Prefecture
+Q3371277,Paul Galvin,1895-06-27T00:00:00Z,founder,Q259011,Q259011,6686,,1928-09-25T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Harvard
+Q3594034,Ōkura Kihachirō,1837-10-23T00:00:00Z,founder,Q3178370,Taisei Corporation,1801,,1873-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Shibata
+Q861241,Fukuchi Genichiro,1841-05-13T00:00:00Z,founder,Q3082575,Kabuki-za,9661,1952-07-01T00:00:00Z,1889-11-21T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Nagasaki
+Q5246035,Dean Buntrock,1931-01-01T00:00:00Z,founder,Q2552219,"Waste Management, Inc",,,1968-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,chief executive officer,Columbia
+Q19837,Steve Jobs,1955-02-24T00:00:00Z,founder,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,San Francisco
+Q96713448,Takeshi Hakamada,1979-01-01T00:00:00Z,founder,Q24862548,ispace Inc,9348,2023-04-12T00:00:00Z,2010-09-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Tokyo
+Q3197218,Kintaro Hattori,1860-11-21T00:00:00Z,founder,Q322601,Seiko,8050,,1881-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,watchmaker,Edo
+Q1275777,Kazuo Okada,1942-01-01T00:00:00Z,founder,Q2866046,Universal Entertainment,6425,1998-09-01T00:00:00Z,1969-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Osaka
+Q2221592,Sanford I. Weill,1933-03-16T00:00:00Z,founder,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,economist,Brooklyn
+Q11405940,Chiba Katsugorō,1833-01-01T00:00:00Z,founder,Q3082575,Kabuki-za,9661,1952-07-01T00:00:00Z,1889-11-21T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q72400,Ludwig Bamberger,1823-07-22T00:00:00Z,founder,Q66048,Deutsche Bank,8651,,1870-03-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Grand Duchy of Hesse,politician,Mainz
+Q5535917,George A. Archer,1850-01-01T00:00:00Z,founder,Q632694,Archer Daniels Midland,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Dayton
+Q5364081,Ichizō Kobayashi,1873-01-03T00:00:00Z,founder,Q5628833,H2O Retailing,8242,,1947-03-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Nirasaki
+Q820282,Akira Murata,1921-03-25T00:00:00Z,founder,Q613325,Murata Manufacturing,6981,,1944-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Higashiyama-ku
+Q2844009,Shigesato Itoi,1948-11-10T00:00:00Z,founder,Q5875192,Hobonichi,3560,2017-03-16T00:00:00Z,1998-06-06T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,lyricist,Maebashi
+Q382363,Edwin J. Houston,1847-07-09T00:00:00Z,founder,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,Alexandria
+Q2122951,Charles A. Coffin,1844-12-31T00:00:00Z,founder,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Fairfield
+Q4737639,Alvah Curtis Roebuck,1864-01-09T00:00:00Z,founder,Q6499202,Sears,,,1892-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Lafayette
+Q5415024,Eva Chen,1959-01-01T00:00:00Z,founder,Q700974,Trend Micro,4704,,1988-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Taiwan,businessperson,Taichung
+Q8056215,Yoshinori Ohkoso,1915-02-01T00:00:00Z,founder,Q7039626,NH Foods,2282,,1949-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,baseball player,
+Q6883235,Mitsuhisa Ishikawa,1958-10-30T00:00:00Z,founder,Q5971072,IG Port,3791,2005-12-01T00:00:00Z,1987-12-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,animator,Hachiōji-shi
+Q380105,Iwasaki Yatarō,1835-01-09T00:00:00Z,founder,Q648280,Mitsubishi Heavy Industries,7011,1950-05-29T00:00:00Z,1934-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,factory owner,Inokuchi
+Q57098,Gottlieb Daimler,1834-03-17T00:00:00Z,founder,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Kingdom of Württemberg,inventor,Schorndorf
+Q11558530,Kazunori Ukigawa,1949-05-05T00:00:00Z,founder,Q6315712,JustSystems,4686,,1981-06-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,business manager,Niihama
+Q8743,Thomas Edison,1847-02-11T00:00:00Z,founder,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,Milan
+Q559794,Elihu Thomson,1853-03-29T00:00:00Z,founder,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,Manchester
+Q11489093,Takeshi Mitarai,1901-01-01T00:00:00Z,founder,Q62621,Canon Inc.,7751,,1937-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,physician,
+Q40224,Carl Benz,1844-11-25T00:00:00Z,founder,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Grand Duchy of Baden,inventor,Mühlburg
+Q5509802,Furukawa Ichibei,1832-04-16T00:00:00Z,founder,Q5509800,Furukawa Electric,5801,1949-05-01T00:00:00Z,1884-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kyoto
+Q214826,William Boeing,1881-10-01T00:00:00Z,founder,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,engineer,Detroit
+Q11519372,Takaaki Kidani,1960-06-06T00:00:00Z,founder,Q656229,Bushiroad,7803,,2007-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kanazawa
+Q2984214,Eli Lilly,1838-07-08T00:00:00Z,founder,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,pharmacist,Baltimore
+Q94765,James Wilson,1805-06-03T00:00:00Z,founder,Q548278,Standard Chartered,,,1853-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom of Great Britain and Ireland,politician,Hawick
+Q3431318,Richard Warren Sears,1863-12-07T00:00:00Z,founder,Q6499202,Sears,,,1892-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Stewartville
+Q716047,Lee Shau-kee,1929-01-01T00:00:00Z,founder,Q1604969,KOLOUR,8990,,1981-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,People's Republic of China,entrepreneur,Shunde District
+Q11558123,Yutaka Urakami,1909-07-20T00:00:00Z,founder,Q1104912,Ryobi,5851,,1943-12-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q313304,Sōichirō Honda,1906-11-17T00:00:00Z,founder,Q9584,Honda,7267,,1948-09-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Shizuoka
+Q11451135,Takao Yasuda,1949-01-01T00:00:00Z,founder,Q1185381,Don Quijote,7532,1998-06-19T00:00:00Z,1980-09-05T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ōgaki-shi
+Q125865102,Naoshi Nishimura,1888-11-10T00:00:00Z,founder,Q11324419,Nikkato Corporation,5367,1963-06-01T00:00:00Z,1921-05-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q11522762,Taichi Murakami,1986-10-27T00:00:00Z,founder,Q11348382,Livesense Inc.,6054,2011-12-01T00:00:00Z,2006-02-08T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q20983086,Masahiro Miki,1955-07-26T00:00:00Z,founder,Q11188787,ABC-Mart,2670,,1985-06-06T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ise
+Q7820162,Tomoko Namba,1962-04-21T00:00:00Z,founder,Q11320256,DeNA,2432,,1999-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Japan,businessperson,Niigata Prefecture
+Q3571972,Yasuda Zenjirō,1838-11-25T00:00:00Z,founder,Q11524838,Tokyo Tatemono,8804,,1896-10-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,banker,Toyama
+Q11560801,Nobutsugu Shimizu,1926-04-18T00:00:00Z,founder,Q11346476,Life Corporation,8194,,1941-02-22T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tsu
+Q11632721,Masaji Taniguchi,1913-10-01T00:00:00Z,founder,Q11346643,Laox,8202,,1930-05-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Saitama Prefecture
+Q108858442,Shozaburo Shimano,1894-01-01T00:00:00Z,founder,Q949610,Shimano,7309,,1921-02-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,inventor,Sakai
+Q967325,Michael Kogan,1920-01-01T00:00:00Z,founder,Q1054844,Taito,9646,1993-01-01T00:00:00Z,1953-08-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,translator,Odesa
+Q115791404,Masayuki Katō,1946-08-19T00:00:00Z,founder,Q1142226,Nihon Falcom,3723,2003-12-02T00:00:00Z,1981-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q104538784,Q104538784,1985-06-23T00:00:00Z,founder,Q11348382,Livesense Inc.,6054,2011-12-01T00:00:00Z,2006-02-08T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q30926520,Shōichirō Iwata,1950-08-14T00:00:00Z,founder,Q11283438,Askul Corporation,2678,2004-04-01T00:00:00Z,1963-11-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11638773,Takami Kondo,1967-11-01T00:00:00Z,founder,Q11325305,Nexyz Group,4346,2004-11-01T00:00:00Z,1990-02-21T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Osaka Prefecture
+Q5366748,Hiroshi Mikitani,1965-03-11T00:00:00Z,founder,Q973054,"Rakuten Group, Inc.",4755,2000-04-19T00:00:00Z,1997-02-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Kobe
+Q7675902,Taichiro Morinaga,1865-08-08T00:00:00Z,founder,Q1076089,Morinaga & Company,2201,,1910-02-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Imari
+Q982623,Kazuo Inamori,1932-01-21T00:00:00Z,founder,Q971946,KDDI,9433,,1984-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Kagoshima
+Q941489,Genichi Kawakami,1912-01-30T00:00:00Z,founder,Q158888,Yamaha Motor Company,7272,,1955-07-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Toyonishi
+Q5360288,Satoru Kikugawa,1965-07-04T00:00:00Z,founder,Q1137822,Gala,4777,2000-08-01T00:00:00Z,1993-09-03T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Setagaya
+Q11603602,Yoshiko Shinohara,1934-10-19T00:00:00Z,founder,Q11319871,"Persol Holdings Co., Ltd.",2181,2008-10-01T00:00:00Z,2008-10-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Japan,businessperson,Kanagawa Prefecture
+Q704995,Shibusawa Eiichi,1840-03-16T00:00:00Z,founder,Q17049674,Imperial Hotel,9708,,1887-12-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Hanzawa district
+Q3194717,Keita Gotō,1882-04-18T00:00:00Z,founder,Q1066018,Toei Company,9605,1952-11-28T00:00:00Z,1950-10-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Aoki
+Q111750389,Tetsuya Taya,1941-01-04T00:00:00Z,founder,Q11577266,Taya,4679,1997-09-01T00:00:00Z,1975-09-30T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,hairdresser,
+Q6684648,Hiroyuki Hiramatsu,1952-06-01T00:00:00Z,founder,Q119658245,Q119658245,2764,2003-03-01T00:00:00Z,,Q217475,Tokyo Stock Exchange,male,,chef,Yokohama
+Q11582549,Sōma Kokkō,1876-09-12T00:00:00Z,founder,Q11365540,Nakamuraya,2204,1957-03-01T00:00:00Z,1901-12-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Empire of Japan,businessperson,Sendai
+Q11464242,Giichirō Ono,1918-11-02T00:00:00Z,founder,Q11464162,Ono Sokki,6858,1983-08-01T00:00:00Z,1954-01-20T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,
+Q56702844,Hiroshi Nozawa,1942-01-01T00:00:00Z,founder,Q11455874,Fujisoft,9749,1998-09-01T00:00:00Z,1970-05-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11470404,Noboru Yamada,1943-02-11T00:00:00Z,founder,Q110652704,Yamada Holdings,9831,,1983-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q3275604,Minoru Shirota,1899-04-29T00:00:00Z,founder,Q16172223,Yakult Honsha,2267,,1955-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,physician,Iida
+Q30936360,Takao Hayashi,1949-09-01T00:00:00Z,founder,Q16962428,Ateam Holdings,3662,2012-04-01T00:00:00Z,1997-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,mathematician,Minamiuonuma
+Q8013078,Gen'yoshi Kadokawa,1917-01-01T00:00:00Z,founder,Q1054765,Kadokawa Shoten,9468.T,,1945-11-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Toyama
+Q11435159,Kōichi Ōkawa,1970-08-12T00:00:00Z,founder,Q11278197,Mag2,4059,2020-09-01T00:00:00Z,1999-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Saitama
+Q3594034,Ōkura Kihachirō,1837-10-23T00:00:00Z,founder,Q17049674,Imperial Hotel,9708,,1887-12-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Shibata
+Q1320253,Takeo Fujisawa,1910-11-10T00:00:00Z,founder,Q9584,Honda,7267,,1948-09-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Koishikawa-ku
+Q11539175,Hiroshi Morishita,1869-12-05T00:00:00Z,founder,Q11539166,Morishita Jintan,4524,1961-10-01T00:00:00Z,1936-11-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,apprentice,Tomo
+Q127417,Douglas MacArthur,1880-01-26T00:00:00Z,founder,Q1091203,Chubu Electric Power,9502,,1951-05-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,military officer,Little Rock
+Q11582502,Sōma Aizō,1870-11-08T00:00:00Z,founder,Q11365540,Nakamuraya,2204,1957-03-01T00:00:00Z,1901-12-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Hotaka
+Q11435137,Isao Okawa,1926-05-19T00:00:00Z,founder,Q11242714,SCSK Corporation,9719,1989-02-28T00:00:00Z,1969-10-25T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Osaka
+Q4506113,Shintaro Tsuji,1927-12-07T00:00:00Z,founder,Q1136885,Sanrio,8136,,1960-08-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,screenwriter,Kofu
+Q11476391,Nobutoshi Shimamura,1926-03-08T00:00:00Z,founder,Q7758173,Shimamura,8227,1988-12-23T00:00:00Z,1953-05-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ogawa
+Q11924992,Gumersindo Rico González,1891-01-01T00:00:00Z,founder,Q160229,Telefónica,9481,,1924-04-19T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,lawyer,Ḷḷuarca
+Q57314806,Matsuda Noriyuki,1965-01-01T00:00:00Z,founder,Q11315494,Sourcenext,4344,2006-12-20T00:00:00Z,1996-08-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q380575,Kikunae Ikeda,1864-10-08T00:00:00Z,founder,Q412826,Ajinomoto,2802,1949-05-16T00:00:00Z,1917-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,chemist,Kyoto
+Q442225,Kitasato Shibasaburō,1853-01-29T00:00:00Z,founder,Q3518961,Terumo,4543,,1921-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Oguni
+Q252785,Kōnosuke Matsushita,1894-11-27T00:00:00Z,founder,Q53247,Panasonic Holdings Corporation,6752,,1918-03-13T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,inventor,Wakayama
+Q319648,Ray Kroc,1902-10-05T00:00:00Z,founder,Q38076,McDonald's,,,1940-05-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,writer,Oak Park
+Q34286,Alexander Graham Bell,1847-03-03T00:00:00Z,founder,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,Edinburgh
+Q310845,Akio Morita,1921-01-26T00:00:00Z,founder,Q41187,Sony Group,6758,1958-12-01T00:00:00Z,1946-05-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,engineer,Nagoya
+Q435716,"Thomas John Watson, Sr.",1874-02-17T00:00:00Z,founder,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Campbell
+Q137727,Sakichi Toyoda,1867-03-19T00:00:00Z,founder,Q7830755,Toyota Boshoku,3116,,1918-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,inventor,Fuchi district
+Q8704,Walt Disney,1901-12-05T00:00:00Z,founder,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,actor,Chicago
+Q115569,Alfred Escher,1819-02-20T00:00:00Z,founder,Q372657,Credit Suisse,8653,,1856-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Switzerland,politician,Zurich
+Q352496,Masaru Ibuka,1908-04-11T00:00:00Z,founder,Q41187,Sony Group,6758,1958-12-01T00:00:00Z,1946-05-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,writer,Nikkō-shi
+Q458788,Kawasaki Shōzō,1837-12-02T00:00:00Z,founder,Q748148,Kawasaki Heavy Industries,7012,,1969-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Kagoshima
+Q456052,Fusajirō Yamauchi,1859-11-22T00:00:00Z,founder,Q8093,Q8093,7974,1983-07-21T00:00:00Z,1889-09-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Kyoto
+Q358556,Kiichirō Toyoda,1894-06-11T00:00:00Z,founder,Q409907,Aisin Seiki,7259,,1949-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Washizu
+Q347432,Roy O. Disney,1893-06-24T00:00:00Z,founder,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,Chicago
+Q358556,Kiichirō Toyoda,1894-06-11T00:00:00Z,founder,Q53268,Toyota,7203,1949-05-16T00:00:00Z,1937-08-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Washizu
+Q11396848,Tsurumatsu Toshimitsu,1863-12-31T00:00:00Z,founder,Q83584,Odakyu Electric Railway,9007,1949-05-16T00:00:00Z,1923-05-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q8052422,Yeoh Tiong Lay,1929-12-18T00:00:00Z,founder,Q842437,YTL Corporation,1773,,1955-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Malaysia,entrepreneur,Klang
+Q982623,Kazuo Inamori,1932-01-21T00:00:00Z,founder,Q745099,Kyocera,6971,,1959-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Kagoshima
+Q5364081,Ichizō Kobayashi,1873-01-23T00:00:00Z,founder,Q875920,Toho,9602,,1932-08-08T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Nirasaki
+Q4589580,Oki Kibatarō,1848-01-01T00:00:00Z,founder,Q786947,Oki Electric Industry,6703,,1881-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Hiroshima
+Q5364081,Ichizō Kobayashi,1873-01-23T00:00:00Z,founder,Q841220,Hankyu Hanshin Holdings,9042,1949-05-16T00:00:00Z,1907-10-19T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Nirasaki
+Q6138039,Namihei Odaira,1874-01-15T00:00:00Z,founder,Q53238,Hitachi,6501,,1910-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,inventor,Ienaka
+Q704995,Shibusawa Eiichi,1840-03-16T00:00:00Z,founder,Q712476,Imperial Hotel,9708,1961-10-01T00:00:00Z,,Q217475,Tokyo Stock Exchange,male,Japan,politician,Hanzawa district
+Q717411,Tanaka Hisashige,1799-10-16T00:00:00Z,founder,Q49125,Toshiba,6502,1949-05-16T00:00:00Z,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,inventor,Kurume
+Q786186,Masuda Takashi,1848-11-12T00:00:00Z,founder,Q904240,Mitsui & Co.,8031,1949-05-16T00:00:00Z,1947-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Aikawa
+Q2960084,Charles Ranlett Flint,1850-01-24T00:00:00Z,founder,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Thomaston
+Q565134,Max Matsuura,1964-10-01T00:00:00Z,founder,Q790686,Avex Group,7860,,1988-04-11T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Yokohama
+Q11439466,Yohkichi Ohsato,1946-08-22T00:00:00Z,founder,Q719628,Amuse,4301,2004-03-24T00:00:00Z,1977-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Aomori
+Q3274710,Jujiro Matsuda,1875-08-08T00:00:00Z,founder,Q35996,Mazda,7261,1949-05-16T00:00:00Z,1920-01-30T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Hiroshima
+Q908544,Herbert Henry Dow,1866-02-26T00:00:00Z,founder,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,Ontario
+Q706204,Caleb Bradham,1867-05-27T00:00:00Z,founder,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,inventor,Chinquapin
+Q3594034,Ōkura Kihachirō,1837-10-23T00:00:00Z,founder,Q712476,Imperial Hotel,9708,1961-10-01T00:00:00Z,,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Shibata
+Q6782608,Masao Kinoshita,1910-01-01T00:00:00Z,founder,Q4674469,Acom,8572,,1978-10-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,
+Q4790729,Arinobu Fukuhara,1848-05-10T00:00:00Z,founder,Q728185,Shiseido,4911,,1872-09-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,pharmacist,Chiba Prefecture
+Q722643,Tokuji Hayakawa,1893-11-03T00:00:00Z,founder,Q53227,Sharp Corporation,6753,1956-03-30T00:00:00Z,1912-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,inventor,Tokyo
+Q6782765,Masaya Nakamura,1925-12-24T00:00:00Z,founder,Q806259,Bandai Namco Holdings,7832,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Yokohama
+Q7827430,Toru Takasuka,1966-01-01T00:00:00Z,founder,Q5197904,Cybozu,4776,,1997-08-08T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Matsuyama
+Q714039,Matsukata Masayoshi,1835-02-25T00:00:00Z,founder,Q333101,Bank of Japan,8301,,1882-06-27T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Kagoshima
+Q2637693,Amadeo Giannini,1870-05-06T00:00:00Z,founder,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,San Jose
+Q494662,Park Tae-joon,1927-09-29T00:00:00Z,founder,Q483946,POSCO,5412,,1968-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,South Korea,politician,Busan
+Q714260,Kōjirō Matsukata,1865-01-17T00:00:00Z,founder,Q425880,K Line,9107,,1919-04-05T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Kagoshima
+Q11359112,Kagemasa Kozuki,1940-11-12T00:00:00Z,founder,Q45700,Konami,9766,1984-10-01T00:00:00Z,1969-03-21T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kyoto Prefecture
+Q11490855,Tsutomu Shida,1934-10-14T00:00:00Z,founder,Q7496130,Shidax,4837,2001-04-01T00:00:00Z,2001-04-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Izunokuni
+Q11594006,Momosuke Fukuzawa,1868-06-25T00:00:00Z,founder,Q7811386,Toagosei,4045,,1942-03-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Saitama Prefecture
+Q11545405,Yasuhiko Shōgaki,1946-01-06T00:00:00Z,founder,Q886564,Saizeriya,7581,1998-04-23T00:00:00Z,1973-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Hyōgo Prefecture
+Q11476816,Genzō Shimazu I,1839-06-25T00:00:00Z,founder,Q517117,Shimadzu Corp.,7701,,1917-09-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,inventor,Kyoto Prefecture
+Q11478367,Chiharu Kawasaki,1903-04-05T00:00:00Z,founder,Q868679,The Oriental Land Company,4661,1996-12-11T00:00:00Z,1960-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q16006726,Owen Robertson Cheatham,1902-07-09T00:00:00Z,founder,Q1509282,Georgia-Pacific,,,1927-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Concord
+Q214501,Adolphus Busch I,1839-07-10T00:00:00Z,founder,Q125074,Anheuser-Busch,,,1852-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Mainz-Kastel
+Q11369091,Gonshirō Kubota,1870-10-27T00:00:00Z,founder,Q1514221,Kubota,6326,,1890-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,
+Q11581622,Shunji Meguro,1943-06-18T00:00:00Z,founder,Q7229380,Poplar,7601,1999-02-01T00:00:00Z,1976-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q68613,Friedrich Bayer,1825-06-06T00:00:00Z,founder,Q152051,Bayer,4863,http://www.wikidata.org/.well-known/genid/6e68203a7a6c49fd55358f1a10a622ac,1863-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Kingdom of Prussia,entrepreneur,Barmen
+Q11638233,Kenzō Tsujimoto,1940-12-15T00:00:00Z,founder,Q14428,Capcom,9697,2000-10-18T00:00:00Z,1979-05-30T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kashihara
+Q5078411,"Charles Greenway, 1st Baron Greenway",1857-06-13T00:00:00Z,founder,Q152057,BP,5051,,1909-04-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom,politician,
+Q47544558,Horiuchi Ryōhei,1870-12-24T00:00:00Z,founder,Q842879,Fuji Kyuko,9010,1950-09-25T00:00:00Z,1926-09-18T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Higashiyatsushiro district
+Q11550855,Riichi Ezaki,1882-12-23T00:00:00Z,founder,Q391534,Ezaki Glico,2206,,1929-02-22T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,
+Q117246541,Riku Tazumi,1996-02-03T00:00:00Z,founder,Q85329888,AnyColor,5032,2022-06-08T00:00:00Z,2017-05-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kobe
+Q380105,Iwasaki Yatarō,1835-01-09T00:00:00Z,founder,Q1423176,Mitsubishi Materials,5711,,1871-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,factory owner,Inokuchi
+Q17211239,Gisaburō Shiono,1854-04-14T00:00:00Z,founder,Q3482319,Shionogi,4507,,1919-06-05T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Osaka Prefecture
+Q3276951,Tadashi Yanai,1949-02-07T00:00:00Z,founder,Q1397688,Fast Retailing,9983,,1963-05-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Q11363729
+Q11624686,Fujita Denzaburō,1841-07-03T00:00:00Z,founder,Q5302643,Dowa Holdings,5714,,1937-03-11T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Hagi
+Q11460611,Kentarō Ogawa,1948-07-29T00:00:00Z,founder,Q8069229,Zensho Holdings,7550,1997-08-25T00:00:00Z,1982-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ishikawa Prefecture
+Q11597889,Tachikawa Yūjirō,1862-03-20T00:00:00Z,founder,Q1322206,Keikyu,9006,1949-05-16T00:00:00Z,1898-02-25T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ōgaki-shi
+Q3194717,Keita Gotō,1882-04-18T00:00:00Z,founder,Q1332242,Tokyu,9005,,1922-09-02T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Aoki
+Q11577278,Shun'ya Tōji,1893-11-12T00:00:00Z,founder,Q716979,Sumitomo Corporation,8053,,1919-12-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Hyōgo Prefecture
+Q11373171,Tokutarō Inoue,1859-07-12T00:00:00Z,founder,Q1332506,Keio,9008,,1948-06-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,politician,Sanda
+Q40483740,Rin'emon Fujii,1885-11-16T00:00:00Z,founder,Q858452,Fujiya,2211,,1910-11-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Aichi Prefecture
+Q3821837,Willard Rockwell,1888-03-31T00:00:00Z,founder,Q1348664,Rockwell International,,,1973-02-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Boston
+Q11586639,Hiroyoshi Ishibashi,1947-01-05T00:00:00Z,founder,Q492412,Weathernews,4825,,1986-06-11T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Chiba Prefecture
+Q11604162,Minoru Yoneyama,1924-10-15T00:00:00Z,founder,Q773924,Yonex,7906,1994-02-22T00:00:00Z,1946-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Nagaoka
+Q2142803,William Knox D'Arcy,1849-10-11T00:00:00Z,founder,Q152057,BP,5051,,1909-04-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom of Great Britain and Ireland,businessperson,Newton Abbot
+Q214076,Eberhard Anheuser,1806-09-27T00:00:00Z,founder,Q125074,Anheuser-Busch,,,1852-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Bad Kreuznach
+Q12010679,William Copeland,1834-01-10T00:00:00Z,founder,Q13403399,Kirin Holdings,2503,,1885-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,brewer,Arendal
+Q11549950,Shigenobu Nagamori,1944-08-28T00:00:00Z,founder,Q3341241,Nidec,6594,,1973-07-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Mukō-shi
+Q49971,Ginni Rometty,1957-07-29T00:00:00Z,chairperson,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,Chicago
+Q709063,Arthur D. Levinson,1950-03-31T00:00:00Z,chairperson,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,biochemist,Seattle
+Q15819363,Hans Dieter Pötsch,1951-03-28T00:00:00Z,chairperson,Q156578,Volkswagen Group,7659,,1937-05-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Austria,manager,Traun
+Q11456421,Kantaro Tomiyama,1954-01-22T00:00:00Z,chairperson,Q1335998,Tomy,7867,,2006-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Katsushika
+Q30924635,Takuya Nakata,1958-06-08T00:00:00Z,chairperson,Q188454,Yamaha,7951,1949-01-01T00:00:00Z,1987-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q299646,Ana Botín,1960-10-04T00:00:00Z,chairperson,Q806215,Santander Group,8654,,1857-05-15T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Spain,economist,Santander
+Q11630828,Tatsuo Tsunoda,1928-01-18T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,Tokyo
+Q6224386,John Dugan,1955-06-03T00:00:00Z,chairperson,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,accountant,"Washington, D.C."
+Q109481051,Marc Murtra i Millar,1972-09-09T00:00:00Z,chairperson,Q160229,Telefónica,9481,,1924-04-19T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,business executive,Blackburn
+Q118696788,Kazukiyo Ishimura,1938-03-25T00:00:00Z,chairperson,Q188454,Yamaha,7951,1949-01-01T00:00:00Z,1987-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,business manager,Tokyo
+Q11540681,Kazuo Ueda,1951-09-20T00:00:00Z,chairperson,Q333101,Bank of Japan,8301,,1882-06-27T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,economist,Makinohara
+Q55407144,Yūsuke Tanaka,1980-12-05T00:00:00Z,chairperson,Q60987576,JADE GROUP,3558,2017-03-07T00:00:00Z,,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11445707,Taizen Okuyama,1971-08-13T00:00:00Z,chairperson,Q11340766,Money Partners Group,8732,2007-06-21T00:00:00Z,2005-06-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,Bull,Tsu
+Q1900344,Mark Parker,1955-10-21T00:00:00Z,chairperson,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,director,Poughkeepsie
+Q51574629,Tomomi Nakamura,1959-05-17T00:00:00Z,chairperson,Q1051297,Subaru Corporation,7270,,1953-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q5581403,Pär Boman,1961-01-01T00:00:00Z,chairperson,Q163810,AB Volvo,7652,,1927-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Sweden,businessperson,
+Q11382433,Takayuki Sasaki,1946-08-24T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Hiroshima
+Q418622,Akio Toyoda,1956-05-03T00:00:00Z,chairperson,Q53268,Toyota,7203,1949-05-16T00:00:00Z,1937-08-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Nagoya
+Q11386549,Noritaka Kurauchi,1936-01-26T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q3133501,Herbert Samuel Holt,1856-02-12T00:00:00Z,chairperson,Q735261,Royal Bank of Canada,,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Canada,civil engineer,Geashill
+Q116935686,Norman G. Milley,1924-05-30T00:00:00Z,chairperson,Q1753080,Kmart,,,1962-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,Malden
+Q4777590,António Mota de Sousa Horta Osório,1964-01-28T00:00:00Z,chairperson,Q372657,Credit Suisse,8653,,1856-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom,bank manager,Lisbon
+Q64689,Axel A. Weber,1957-03-08T00:00:00Z,chairperson,Q193199,UBS,8657,,1862-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,economist,Kusel
+Q118816,Manfred Bischoff,1942-04-22T00:00:00Z,chairperson,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,entrepreneur,Calw
+Q1700049,John Fellows Akers,1934-12-28T00:00:00Z,chairperson,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,fighter pilot,Boston
+Q7323455,Rich Templeton,1959-01-01T00:00:00Z,chairperson,Q193412,Texas Instruments,,,1930-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,engineer,
+Q54861333,Jim Fitterling,1961-01-01T00:00:00Z,chairperson,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Missouri
+Q718292,Helge Lund,1962-10-16T00:00:00Z,chairperson,Q152057,BP,5051,,1909-04-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Norway,entrepreneur,Asker
+Q11408448,Shōjirō Nan'ya,1941-07-02T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q11460611,Kentarō Ogawa,1948-07-29T00:00:00Z,chairperson,Q8069229,Zensho Holdings,7550,1997-08-25T00:00:00Z,1982-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Ishikawa Prefecture
+Q112286,Hilmar Kopper,1935-03-13T00:00:00Z,chairperson,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,bank manager,Osłonino
+Q11522969,Tsutomu Murai,1918-03-31T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,banker,
+Q56702850,Masayuki Hosaka,1954-01-01T00:00:00Z,chairperson,Q11541601,Rakuten Bank,5838,2023-04-21T00:00:00Z,2000-01-14T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Yūbari-shi
+Q11373591,Masataka Ide,1935-04-03T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q115791481,Toshihiro Kondō,1975-01-14T00:00:00Z,chairperson,Q1142226,Nihon Falcom,3723,2003-12-02T00:00:00Z,1981-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,chairperson,Toyota
+Q21032614,José Viñals Íñiguez,1954-06-20T00:00:00Z,chairperson,Q548278,Standard Chartered,,,1853-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,economist,Madrid
+Q118696786,Seisuke Ueshima,1934-05-16T00:00:00Z,chairperson,Q188454,Yamaha,7951,1949-01-01T00:00:00Z,1987-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,business manager,Ishikawa Prefecture
+Q11583616,Seiji Manabe,1953-10-21T00:00:00Z,chairperson,Q502125,West Japan Railway Company,9021,1996-10-08T00:00:00Z,1987-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,,
+Q11477561,Hiroshi Kawakami,1942-01-05T00:00:00Z,chairperson,Q188454,Yamaha,7951,1949-01-01T00:00:00Z,1987-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q68648,Bernd Pischetsrieder,1948-02-15T00:00:00Z,chairperson,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,engineer,Munich
+Q11453339,Yoshihiko Miyauchi,1935-09-13T00:00:00Z,chairperson,Q906055,Orix,8591,,1964-04-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Kobe
+Q6284393,Joseph Jimenez,1959-01-01T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Switzerland
+Q49971,Ginni Rometty,1957-07-29T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,Chicago
+Q5301995,Douglas Steenland,1951-09-17T00:00:00Z,board_member,Q212235,American International Group,8685,,1919-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,lawyer,
+Q14538344,Mark Weinberger,1962-07-28T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,politician,Scranton
+Q6813152,Mellody Hobson,1969-04-03T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,entrepreneur,Chicago
+Q20687650,Peter Zaffino,1967-01-01T00:00:00Z,board_member,Q212235,American International Group,8685,,1919-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,business executive,Greenwich
+Q926069,Rob Portman,1955-12-19T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,lawyer,Cincinnati
+Q3498872,Steve Burke,1958-08-14T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Birmingham
+Q16185302,James Crown,1953-06-25T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,
+Q527495,Angela Braly,1961-07-01T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,lawyer,Dallas
+Q73426541,Chris Kempczinski,1968-09-26T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,Cincinnati
+Q28873722,Terri Vaughan,1956-01-01T00:00:00Z,board_member,Q212235,American International Group,8685,,1919-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,economist,
+Q7704557,Terry Lundgren,1952-03-23T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Long Beach
+Q4970379,Phebe Novakovic,1957-01-01T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,chairperson,Pittsburgh
+Q55174,Meg Whitman,1956-08-04T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,politician,Cold Spring Harbor
+Q5248484,Debra Lee,1955-08-08T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,lawyer,Fort Jackson
+Q16195693,Jon Moeller,1964-01-01T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Chicago
+Q21063670,David S. Taylor,1958-01-01T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,chief executive officer,Charlotte
+Q531633,Patricia A. Woertz,1953-03-17T00:00:00Z,board_member,Q212405,Procter & Gamble,4852,1987-01-01T00:00:00Z,1837-10-31T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,Pittsburgh
+Q16193601,Alex Gorsky,1960-03-20T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,merchant,Kansas City
+Q7812320,Todd Combs,1971-01-27T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,,Sarasota
+Q922169,Jamie Dimon,1956-03-13T00:00:00Z,board_member,Q192314,JPMorgan Chase,8634,,2000-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,New York City
+Q709063,Arthur D. Levinson,1950-03-31T00:00:00Z,board_member,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,biochemist,Seattle
+Q7365310,Ronald Sugar,1948-07-30T00:00:00Z,board_member,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Canada,businessperson,Toronto
+Q50387551,Britta Seeger,1969-09-25T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Germany,manager,Bonn
+Q61605296,David Gross,1970-08-05T00:00:00Z,board_member,Q28840043,Kioxia,285A,2024-12-18T00:00:00Z,2017-01-04T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,
+Q6128032,James A. Bell,1948-06-14T00:00:00Z,board_member,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Los Angeles
+Q6224386,John Dugan,1955-06-03T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,accountant,"Washington, D.C."
+Q16745344,Renée James,1964-06-25T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,Los Angeles
+Q4859003,Barbara Desoer,1953-01-01T00:00:00Z,board_member,Q219508,Citigroup,8710,,1998-10-08T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,
+Q23874592,Hubertus Troska,1960-03-25T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,executive,Bilbao
+Q15435072,Wilfried Porth,1959-02-02T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,manager,Baden-Baden
+Q17388808,Susan Wagner,1961-01-01T00:00:00Z,board_member,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,economist,Chicago
+Q50387609,Renata Jungo Brüngger,1961-08-07T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Switzerland,lawyer,Fribourg
+Q21997525,Jane Fraser,1967-07-13T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United Kingdom,bank manager,St Andrews
+Q298149,Ernesto Zedillo,1951-12-27T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Mexico,author,Mexico City
+Q5271319,Diana Taylor,1955-02-06T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,politician,Greenwich
+Q730325,Lorenzo Bini Smaghi,1956-11-29T00:00:00Z,board_member,Q270363,Société Générale,8666,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Italy,economist,Florence
+Q3167891,Jean-Martin Folz,1947-01-11T00:00:00Z,board_member,Q270363,Société Générale,8666,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,engineer,Strasbourg
+Q460474,Anna Lee,1913-01-02T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United Kingdom,actor,Kent
+Q66057726,Markus Schäfer,1965-05-11T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,,Weidenau
+Q33417338,Martin Daum,1959-10-28T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,manager,Karlsruhe
+Q556539,Jean-Bernard Lévy,1955-03-18T00:00:00Z,board_member,Q270363,Société Générale,8666,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,engineer,Suresnes
+Q19673,Al Gore,1948-03-31T00:00:00Z,board_member,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,politician,"Washington, D.C."
+Q271117,Andrea Jung,1959-08-28T00:00:00Z,board_member,Q312,Apple Inc.,6689,1990-09-01T00:00:00Z,1976-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,linguist,Toronto
+Q7172847,Peter Henry,1969-07-30T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,economist,Kingston
+Q7342822,Robert Castaigne,1947-01-01T00:00:00Z,board_member,Q270363,Société Générale,8666,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,businessperson,Saint-Dizier
+Q5248413,Deborah Wright,1958-01-01T00:00:00Z,board_member,Q219508,Citigroup,8710,,1812-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,banker,Bennettsville
+Q19297571,Ola Källenius,1969-06-11T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Sweden,manager,Västervik
+Q62090160,Harald Wilhelm,1966-04-23T00:00:00Z,board_member,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,,Munich
+Q61985799,John Stankey,1962-01-01T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,chief executive officer,
+Q23560320,Thomas Buberl,1973-03-24T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Switzerland,businessperson,Cologne
+Q20111482,Martha Pollack,1958-08-27T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,university president,Stamford
+Q6291340,Joe Almeida,1961-09-22T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,
+Q729859,Jean Lemierre,1950-06-06T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,economist,Sainte-Adresse
+Q109817568,Alberto Weisser,1955-06-26T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,São Paulo
+Q16193921,Darren Walker,1960-01-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,lawyer,Lafayette
+Q979295,Christian Noyer,1950-10-06T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,official,Soisy-sous-Montmorency
+Q116012,Peter Voser,1958-08-29T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Switzerland,businessperson,Baden
+Q2579585,William Kennard,1957-01-19T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,diplomat,Los Angeles
+Q912811,Brian Moynihan,1959-10-09T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,Marietta
+Q33105206,Bertrand de Mazières,1957-07-03T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,official,Villecresnes
+Q47531165,Nicolas Peter,1962-04-01T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,manager,Mannheim
+Q13374927,Marie-Christine Lombard,1958-12-06T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,France,businessperson,Pantin
+Q5232042,David C. Page,1956-07-06T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,geneticist,Harrisburg
+Q28317059,Segun Agbaje,1964-01-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Nigeria,banker,Lagos State
+Q4194276,Maria T. Zuber,1958-06-27T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,astronomer,Norristown
+Q7647573,Susan Bies,1947-05-05T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,banker,Buffalo
+Q5568888,Glenn Hutchins,1955-01-01T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,financier,
+Q6551659,Linda Hudson,1950-08-22T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,business executive,
+Q16148720,Arnold W. Donald,1955-01-01T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,New Orleans
+Q5248484,Debra Lee,1955-08-08T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,lawyer,Fort Jackson
+Q33197384,Monique Cohen,1956-01-28T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,,businessperson,
+Q7500334,Shona Brown,1960-01-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,,business theorist,
+Q5982101,Ian M. Cook,2000-01-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom,entrepreneur,United Kingdom
+Q18044597,Dave Lewis,1965-03-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom,entrepreneur,Yorkshire
+Q7609568,Stephen J. Luczo,1957-02-28T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Chicago
+Q7411262,Samuel DiPiazza,1950-01-01T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Brooklyn
+Q6790760,Matthew K. Rose,1959-01-01T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,musician,Salina
+Q5277839,Dina Dublon,1953-01-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,Brazil
+Q3158153,Jacques Aschenbroich,1954-06-03T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,entrepreneur,6th arrondissement of Lyon
+Q6701168,Luis Ubiñas,1963-01-01T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,manager,
+Q5065434,Cesar Conde,1973-12-08T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,,New York City
+Q18630871,Beth E. Mooney,1955-01-01T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,Midland
+Q16193601,Alex Gorsky,1960-03-20T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,merchant,Kansas City
+Q6837087,Michelle J. Howard,1960-04-30T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,military officer,March Air Reserve Base
+Q239216,Jean-Laurent Bonnafé,1961-07-14T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,banker,Albi
+Q56042353,Ramon Laguarta,1963-01-01T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Spain,chairperson,Barcelona
+Q84053114,Arvind Krishna,1962-01-01T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,chief executive officer,West Godavari district
+Q83636,Andrew Liveris,1954-05-05T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Australia,businessperson,Darwin
+Q1557228,Monica C. Lozano,1956-07-21T00:00:00Z,board_member,Q487907,Bank of America,8648,,1998-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,editor,Los Angeles
+Q109752708,Al Zollar,1954-05-18T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Kansas City
+Q7966126,Walter Sherman Gifford,1885-01-10T00:00:00Z,board_member,Q35476,AT&T,,,2005-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,executive,Salem
+Q116679,Dan Vasella,1953-08-15T00:00:00Z,board_member,Q334800,PepsiCo,2953,,1961-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Switzerland,physician,Fribourg
+Q4481302,David Farr,1955-01-01T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,
+Q18153753,Joe Swedish,1951-05-17T00:00:00Z,board_member,Q37156,IBM,6680,1974-01-01T00:00:00Z,1911-06-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,chief executive officer,Richmond
+Q60695561,Daniela Schwarzer,1973-01-01T00:00:00Z,board_member,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Germany,political scientist,Hamburg
+Q18634617,Steve Mollenkopf,1968-01-01T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,engineer,United States
+Q5483294,Francisco D'Souza,1968-08-23T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Nairobi
+Q51641672,Christian Sewing,1970-04-22T00:00:00Z,board_member,Q66048,Deutsche Bank,8651,,1870-03-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,manager,Bünde
+Q3509946,Sébastien Bazin,1961-11-09T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,businessperson,Boulogne-Billancourt
+Q6376297,Katherine Baicker,1971-05-23T00:00:00Z,board_member,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,crossword creator,
+Q7335804,Risa Lavizzo-Mourey,1934-09-25T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,administrator,Philadelphia
+Q7364540,Ron Williams,1949-09-30T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Chicago
+Q1409036,Walter Hitzinger,1908-04-08T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Austria,engineer,Linz
+Q4806029,Ash Carter,1954-09-24T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,politician,Philadelphia
+Q12068195,Frank Sanchez,1959-06-16T00:00:00Z,board_member,Q632694,Archer Daniels Midland,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,lawyer,Tampa
+Q61471321,Erik Fyrwald,1959-07-29T00:00:00Z,board_member,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,West Virginia
+Q84587,Edzard Reuter,1928-02-16T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,German Reich,mathematician,Berlin
+Q6142713,James Tisch,1953-01-02T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Atlantic City
+Q30015214,Stayce Harris,1959-01-01T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,military personnel,Los Angeles
+Q1378278,Wilhelm Haspel,1898-04-29T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,engineer,Stuttgart
+Q16866325,Lynn Good,1953-01-01T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,merchant,Ohio
+Q101174,Joachim Zahn,1914-01-24T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,jurist,Barmen
+Q1385513,Fritz Koenecke,1899-01-16T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,economist,Hanover
+Q17180532,Robert A. Bradway,1963-01-01T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,
+Q6490609,Larry Kellner,1959-01-01T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,Sumter
+Q50825788,Juan R. Luciano,1965-01-01T00:00:00Z,board_member,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Argentina,business executive,Argentina
+Q98626,Wilhelm Kissel,1885-12-22T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,German Reich,engineer,Haßloch
+Q2997321,John M. Richardson,1960-04-08T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,military officer,Petersburg
+Q85519176,Bernd Leukert,1967-01-01T00:00:00Z,board_member,Q66048,Deutsche Bank,8651,,1870-03-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,manager,
+Q1286705,Edmund Giambastiani,1948-05-04T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,submariner,Canastota
+Q1512302,Gerhard Prinz,1929-04-05T00:00:00Z,board_member,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,manager,Solingen
+Q16727786,Dave Calhoun,1957-04-18T00:00:00Z,board_member,Q66,Boeing,7661,,1916-07-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,manager,Philadelphia
+Q50825788,Juan R. Luciano,1965-01-01T00:00:00Z,board_member,Q632694,Archer Daniels Midland,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Argentina,business executive,Argentina
+Q1603351,William G. Kaelin,1957-11-23T00:00:00Z,board_member,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,oncologist,New York City
+Q56868014,H. Lawrence Culp Jr.,1964-01-01T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,"Washington, D.C."
+Q66251649,Ted Colbert,1964-01-01T00:00:00Z,board_member,Q632694,Archer Daniels Midland,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,business executive,
+Q105798427,Marschall Stevens Runge,1954-01-01T00:00:00Z,board_member,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,physician,
+Q5294280,Donald E. Felsinger,1948-01-01T00:00:00Z,board_member,Q632694,Archer Daniels Midland,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,
+Q7287163,Ralph Alvarez,1955-01-01T00:00:00Z,board_member,Q632240,Eli Lilly and Company,4857,,1875-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,business executive,Cuba
+Q7794754,Thomas Horton,1961-05-24T00:00:00Z,board_member,Q54173,General Electric,,,1892-04-15T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,businessperson,Hampton
+Q450628,Safra Catz,1961-12-01T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,chief financial officer,Holon
+Q967283,Luis Alberto Moreno,1953-05-03T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,diplomat,Philadelphia
+Q6779013,Mary Barra,1961-12-24T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,business executive,Waterford
+Q535362,Susan Arnold,1954-01-01T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,manager,Pittsburgh
+Q5607123,Gregory R. Page,1951-01-01T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,Bottineau
+Q54861333,Jim Fitterling,1961-01-01T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Missouri
+Q6761171,Maria Elena Lagomasino,1950-01-01T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,
+Q5219140,Daniel Yohannes,1952-09-22T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,manager,Addis Ababa
+Q4699676,Ajaypal Singh Banga,1959-11-10T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Khadki
+Q1900344,Mark Parker,1955-10-21T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,director,Poughkeepsie
+Q466993,"Dambisa Moyo, Baroness Moyo",1969-02-02T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Zambia,writer,Lusaka
+Q6128032,James A. Bell,1948-06-14T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Los Angeles
+Q72175,Carl Duisberg,1861-09-29T00:00:00Z,board_member,Q152051,Bayer,4863,http://www.wikidata.org/.well-known/genid/6e68203a7a6c49fd55358f1a10a622ac,1863-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,engineer,Barmen
+Q1392181,Muhtar Kent,1952-10-31T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Turkey,businessperson,New York City
+Q86408516,Bob Chapek,1960-01-01T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Hammond
+Q1608367,Herbert Grünewald,1921-09-12T00:00:00Z,board_member,Q152051,Bayer,4863,http://www.wikidata.org/.well-known/genid/6e68203a7a6c49fd55358f1a10a622ac,1863-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,chemist,Weinheim
+Q16499756,Amy Hood,1971-08-09T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,executive,Nashville
+Q76245,Rudolf Leiding,1914-09-04T00:00:00Z,board_member,Q156578,Volkswagen Group,7659,,1937-05-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,manager,Iden
+Q29574725,Jeff M. Fettig,1957-01-01T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,
+Q68625,Heinrich Nordhoff,1899-01-06T00:00:00Z,board_member,Q156578,Volkswagen Group,7659,,1937-05-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,engineer,Hildesheim
+Q18687809,Jacqueline Hinman,1961-01-01T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,engineer,Maryland
+Q54861333,Jim Fitterling,1961-01-01T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Missouri
+Q28873264,Samuel R. Allen,1953-01-01T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,business executive,Sumter
+Q6768640,Mark Loughridge,1953-12-19T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,
+Q1105367,Jaqueline Barton,1952-05-07T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,professor,New York City
+Q112670837,Audrey Choi,1968-01-01T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,,journalist,
+Q5482914,Francis deSouza,1970-12-02T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Addis Ababa
+Q87129,Toni Schmücker,1921-01-01T00:00:00Z,board_member,Q156578,Volkswagen Group,7659,,1937-05-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,business executive,Frechen
+Q6830434,Michael Froman,1962-08-20T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,politician,San Rafael
+Q7326966,Richard K. Davis,1962-01-01T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,banker,
+Q911897,David Dillon,1951-03-30T00:00:00Z,board_member,Q159433,3M,,,1902-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,businessperson,Hutchinson
+Q5590777,Wesley Bush,1961-01-01T00:00:00Z,board_member,Q855639,Dow Chemical Company,4850,,1897-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United States,entrepreneur,United States
+Q18206823,Caroline Leonetti Ahmanson,1918-04-12T00:00:00Z,board_member,Q7414,The Walt Disney Company,,,1923-10-16T00:00:00Z,Q217475,Tokyo Stock Exchange,female,United States,businessperson,San Francisco
+Q5366748,Hiroshi Mikitani,1965-03-11T00:00:00Z,director,Q973054,"Rakuten Group, Inc.",4755,2000-04-19T00:00:00Z,1997-02-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Kobe
+Q729859,Jean Lemierre,1950-06-06T00:00:00Z,director,Q499707,BNP Paribas,8665,,1848-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,economist,Sainte-Adresse
+Q299646,Ana Botín,1960-10-04T00:00:00Z,director,Q806215,Santander Group,8654,,1857-05-15T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Spain,economist,Santander
+Q51641672,Christian Sewing,1970-04-22T00:00:00Z,director,Q66048,Deutsche Bank,8651,,1870-03-10T00:00:00Z,Q217475,Tokyo Stock Exchange,male,,manager,Bünde
+Q11551895,Norito Ikeda,1947-12-09T00:00:00Z,director,Q1372049,Japan Post Holdings,6178,2015-11-04T00:00:00Z,2006-01-23T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,banker,Kanagawa Prefecture
+Q19629723,Norio Hosomi,1950-01-01T00:00:00Z,director,Q7039672,Nissui,1332,1949-05-16T00:00:00Z,1911-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q565134,Max Matsuura,1964-10-01T00:00:00Z,director,Q790686,Avex Group,7860,,1988-04-11T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Yokohama
+Q52177144,Shuntaro Furukawa,1972-01-10T00:00:00Z,director,Q8093,Q8093,7974,1983-07-21T00:00:00Z,1947-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Tokyo
+Q1737565,Kazuo Kashio,1929-01-09T00:00:00Z,director,Q217338,Casio,6952,,1957-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,entrepreneur,Tokyo
+Q115120676,Colm Kelleher,1957-05-30T00:00:00Z,director,Q193199,UBS,8657,,1862-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,United Kingdom,banker,Bandon
+Q20855800,Takahiro Hachigō,1959-01-01T00:00:00Z,director,Q9584,Honda,7267,,1948-09-24T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Japan
+Q714129,Fujio Mitarai,1935-09-23T00:00:00Z,director,Q62621,Canon Inc.,7751,,1937-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Kamae
+Q3564554,W. Edmund Clark,1947-10-10T00:00:00Z,director,Q1194832,Toronto-Dominion Bank,8640,,1955-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Canada,banker,Toronto
+Q3276951,Tadashi Yanai,1949-02-07T00:00:00Z,director,Q1397688,Fast Retailing,9983,,1963-05-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Q11363729
+Q1647240,Satoshi Miura,1944-04-03T00:00:00Z,director,Q1054787,"NTT, Inc.",9432,1987-02-09T00:00:00Z,1985-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Onomichi
+Q30924570,Toshiki Kawai,1963-08-26T00:00:00Z,director,Q1351484,Tokyo Electron,8035,,1963-11-11T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q11578412,Yoshihiko Hatanaka,1957-04-20T00:00:00Z,director,Q528842,Astellas Pharma,4503,,2005-04-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,
+Q984266,Frédéric Oudéa,1963-07-03T00:00:00Z,director,Q270363,Société Générale,8666,,1864-01-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,France,banker,15th arrondissement of Paris
+Q717038,Masayoshi Son,1957-08-11T00:00:00Z,director,Q201653,SoftBank Group,9984,,1981-09-03T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Tosu
+Q5366748,Hiroshi Mikitani,1965-03-11T00:00:00Z,owner,Q973054,"Rakuten Group, Inc.",4755,2000-04-19T00:00:00Z,1997-02-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,entrepreneur,Kobe
+Q63043,Günther Quandt,1881-07-28T00:00:00Z,owner,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,politician,Pritzwalk
+Q6134636,Yoshikazu Tanaka,1977-02-18T00:00:00Z,owner,Q137321874,GREE Holdings,3632,2008-12-17T00:00:00Z,2004-12-07T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,businessperson,Mitaka
+Q63888,Friedrich Flick,1883-07-10T00:00:00Z,owner,Q541477,Daimler-Benz AG,,,1926-06-28T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Germany,businessperson,Kreuztal
+Q717785,Li Shufu,1963-06-25T00:00:00Z,owner,Q27530,Mercedes-Benz Group,7663,,1998-11-17T00:00:00Z,Q217475,Tokyo Stock Exchange,male,People's Republic of China,businessperson,Taizhou
+Q8061829,Yusaku Maezawa,1975-11-22T00:00:00Z,owner,Q11312063,Zozo,3092,2007-12-11T00:00:00Z,1998-05-21T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,musician,Kamagaya
+Q7888600,Masatoshi Ito,1924-04-30T00:00:00Z,owner,Q639447,Seven & I Holdings Co.,3382,2005-09-01T00:00:00Z,2005-09-01T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Empire of Japan,businessperson,Tokyo
+Q7820162,Tomoko Namba,1962-04-21T00:00:00Z,owner,Q11320256,DeNA,2432,,1999-03-01T00:00:00Z,Q217475,Tokyo Stock Exchange,female,Japan,businessperson,Niigata Prefecture
+Q717038,Masayoshi Son,1957-08-11T00:00:00Z,owner,Q201653,SoftBank Group,9984,,1981-09-03T00:00:00Z,Q217475,Tokyo Stock Exchange,male,Japan,engineer,Tosu
