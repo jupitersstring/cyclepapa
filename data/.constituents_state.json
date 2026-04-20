@@ -12,6 +12,11 @@
     "constituents:MSCI_France",
     "constituents:MSCI_Germany",
     "constituents:MSCI_Hong_Kong",
-    "constituents:MSCI_Italy"
+    "constituents:MSCI_Italy",
+    "constituents:MSCI_Japan",
+    "constituents:MSCI_Mexico",
+    "constituents:MSCI_Netherlands",
+    "constituents:MSCI_Pacific",
+    "constituents:MSCI_Singapore"
   ]
 }
