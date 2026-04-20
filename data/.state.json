@@ -359,6 +359,24 @@
     "Shenzhen_SZSE:P488:Q517750",
     "Shenzhen_SZSE:P3320:Q517750",
     "Shenzhen_SZSE:P1037:Q517750",
-    "Shenzhen_SZSE:P127:Q517750"
+    "Shenzhen_SZSE:P127:Q517750",
+    "TSX_Toronto:P169:Q482919",
+    "TSX_Toronto:P169:Q482920",
+    "TSX_Toronto:P169:Q1751381",
+    "TSX_Toronto:P112:Q482919",
+    "TSX_Toronto:P112:Q482920",
+    "TSX_Toronto:P112:Q1751381",
+    "TSX_Toronto:P488:Q482919",
+    "TSX_Toronto:P488:Q482920",
+    "TSX_Toronto:P488:Q1751381",
+    "TSX_Toronto:P3320:Q482919",
+    "TSX_Toronto:P3320:Q482920",
+    "TSX_Toronto:P3320:Q1751381",
+    "TSX_Toronto:P1037:Q482919",
+    "TSX_Toronto:P1037:Q482920",
+    "TSX_Toronto:P1037:Q1751381",
+    "TSX_Toronto:P127:Q482919",
+    "TSX_Toronto:P127:Q482920",
+    "TSX_Toronto:P127:Q1751381"
   ]
 }
