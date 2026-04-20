@@ -491,6 +491,12 @@
     "Euronext_Amsterdam:P1037:Q1485531",
     "Euronext_Amsterdam:P1037:Q602907",
     "Euronext_Amsterdam:P127:Q1485531",
-    "Euronext_Amsterdam:P127:Q602907"
+    "Euronext_Amsterdam:P127:Q602907",
+    "Euronext_Brussels:P169:Q820644",
+    "Euronext_Brussels:P112:Q820644",
+    "Euronext_Brussels:P488:Q820644",
+    "Euronext_Brussels:P3320:Q820644",
+    "Euronext_Brussels:P1037:Q820644",
+    "Euronext_Brussels:P127:Q820644"
   ]
 }
