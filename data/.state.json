@@ -527,6 +527,12 @@
     "BME_Madrid:P1037:Q11679",
     "BME_Madrid:P1037:Q806636",
     "BME_Madrid:P127:Q11679",
-    "BME_Madrid:P127:Q806636"
+    "BME_Madrid:P127:Q806636",
+    "OMX_Nordic:P169:Q380947",
+    "OMX_Nordic:P112:Q380947",
+    "OMX_Nordic:P488:Q380947",
+    "OMX_Nordic:P3320:Q380947",
+    "OMX_Nordic:P1037:Q380947",
+    "OMX_Nordic:P127:Q380947"
   ]
 }
