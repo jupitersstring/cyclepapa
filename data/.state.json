@@ -611,6 +611,18 @@
     "TASE_Tel_Aviv:P488:Q743925",
     "TASE_Tel_Aviv:P3320:Q743925",
     "TASE_Tel_Aviv:P1037:Q743925",
-    "TASE_Tel_Aviv:P127:Q743925"
+    "TASE_Tel_Aviv:P127:Q743925",
+    "Taiwan_TWSE:P169:Q752907",
+    "Taiwan_TWSE:P169:Q1616218",
+    "Taiwan_TWSE:P112:Q752907",
+    "Taiwan_TWSE:P112:Q1616218",
+    "Taiwan_TWSE:P488:Q752907",
+    "Taiwan_TWSE:P488:Q1616218",
+    "Taiwan_TWSE:P3320:Q752907",
+    "Taiwan_TWSE:P3320:Q1616218",
+    "Taiwan_TWSE:P1037:Q752907",
+    "Taiwan_TWSE:P1037:Q1616218",
+    "Taiwan_TWSE:P127:Q752907",
+    "Taiwan_TWSE:P127:Q1616218"
   ]
 }
