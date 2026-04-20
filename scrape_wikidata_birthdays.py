@@ -106,8 +106,35 @@ EXCHANGES = [
     ("Q4354970", "Kuwait_KSE"),
 ]
 
-# S&P 500 index (Wikidata QID).
-SP500_QID = "Q242345"
+# Indices queried the same way as the S&P 500 (members via P361 / P463).
+INDICES = [
+    ("Q242345", "SP500"),            # S&P 500
+    ("Q156014", "Dow_Jones"),        # Dow Jones Industrial Average
+    ("Q14773", "NASDAQ_100"),        # NASDAQ-100
+    ("Q133297", "FTSE_100"),         # FTSE 100 (UK)
+    ("Q924210", "FTSE_250"),         # FTSE 250 (UK)
+    ("Q213629", "CAC_40"),           # CAC 40 (France)
+    ("Q155646", "DAX"),              # DAX (Germany)
+    ("Q156285", "MDAX"),             # MDAX (Germany mid-cap)
+    ("Q157242", "TecDAX"),           # TecDAX (Germany tech)
+    ("Q239064", "Euro_Stoxx_50"),    # Euro Stoxx 50
+    ("Q1478818", "STOXX_Europe_600"),# STOXX Europe 600
+    ("Q195559", "IBEX_35"),          # IBEX 35 (Spain)
+    ("Q198925", "AEX"),              # AEX (Netherlands)
+    ("Q180457", "BEL_20"),           # BEL 20 (Belgium)
+    ("Q190090", "SMI"),              # Swiss Market Index
+    ("Q198229", "FTSE_MIB"),         # FTSE MIB (Italy)
+    ("Q740754", "PSI_20"),           # PSI 20 (Portugal)
+    ("Q1768921", "OMX_Stockholm_30"),# OMXS30
+    ("Q1768918", "OMX_Helsinki_25"), # OMXH25
+    ("Q1900463", "OMX_Copenhagen_25"),# OMXC25
+    ("Q1528531", "OBX"),             # OBX (Oslo)
+    ("Q200518", "ATX"),              # ATX (Austria)
+    ("Q2607891", "ISEQ_20"),         # ISEQ 20 (Ireland)
+    ("Q461724", "WIG_20"),           # WIG20 (Poland)
+    ("Q262284", "BIST_30"),          # BIST 30 (Turkey)
+    ("Q1139792", "MOEX_Russia"),     # MOEX Russia Index
+]
 
 
 EXCHANGE_QUERY = """
@@ -330,8 +357,10 @@ def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     state = load_state()
 
-    # S&P 500 index first so it's available even if we get timed out later.
-    process_scope("Q242345", "SP500", INDEX_QUERY, state)
+    # Indices first so the headline datasets (S&P 500, FTSE 100, DAX…)
+    # are written even if exchange runs get timed out later.
+    for qid, name in INDICES:
+        process_scope(qid, name, INDEX_QUERY, state)
 
     for ex_qid, ex_name in EXCHANGES:
         process_scope(ex_qid, ex_name, EXCHANGE_QUERY, state)
