@@ -29,6 +29,7 @@
     "constituents:Russell_2000",
     "constituents:Russell_3000",
     "constituents:SP500",
-    "constituents:SP_MidCap_400"
+    "constituents:SP_MidCap_400",
+    "constituents:SP_SmallCap_600"
   ]
 }
