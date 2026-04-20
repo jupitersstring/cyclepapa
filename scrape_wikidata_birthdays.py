@@ -9,6 +9,10 @@ person who has a date of birth (P569) via one of these roles:
     P1037 director / manager
     P127  owned by (for major individual owners)
 
+We also pull the listing start date (qualifier P580 on the P414 listing
+statement, which represents the IPO / first-trading date on that exchange)
+and the company's inception date (P571).
+
 The Wikidata public SPARQL endpoint times out after 60s, so we split the
 work per-exchange and per-role. Results are streamed to a single CSV so the
 job can be interrupted and resumed without losing progress.
@@ -107,13 +111,16 @@ EXCHANGES = [
 
 
 QUERY_TEMPLATE = """
-SELECT DISTINCT ?company ?companyLabel ?ticker ?exchange ?exchangeLabel
+SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
+       ?exchange ?exchangeLabel
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
   ?company p:P414 ?listingStmt .
   ?listingStmt ps:P414 wd:{exchange_qid} .
   OPTIONAL {{ ?listingStmt pq:P249 ?ticker . }}
+  OPTIONAL {{ ?listingStmt pq:P580 ?listingStart . }}
+  OPTIONAL {{ ?company wdt:P571 ?inception . }}
   BIND(wd:{exchange_qid} AS ?exchange)
 
   ?company wdt:{role_pid} ?person .
@@ -185,6 +192,8 @@ FIELDNAMES = [
     "company_qid",
     "company_name",
     "ticker",
+    "ipo_date",
+    "company_inception",
     "exchange_qid",
     "exchange_name",
     "gender",
@@ -226,6 +235,8 @@ def main() -> None:
                             "company_qid": company_qid,
                             "company_name": extract(b, "companyLabel"),
                             "ticker": extract(b, "ticker"),
+                            "ipo_date": extract(b, "listingStart"),
+                            "company_inception": extract(b, "inception"),
                             "exchange_qid": extract(b, "exchange"),
                             "exchange_name": ex_name,
                             "gender": extract(b, "genderLabel"),
