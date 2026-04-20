@@ -140,6 +140,8 @@ INDICES = [
 EXCHANGE_QUERY = """
 SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
        ?exchange ?exchangeLabel
+       ?hq ?hqLabel ?hqCountryLabel ?companyCountryLabel
+       ?exchangeCityLabel ?exchangeCountryLabel
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
@@ -148,7 +150,12 @@ WHERE {{
   OPTIONAL {{ ?listingStmt pq:P249 ?ticker . }}
   OPTIONAL {{ ?listingStmt pq:P580 ?listingStart . }}
   OPTIONAL {{ ?company wdt:P571 ?inception . }}
+  OPTIONAL {{ ?company wdt:P159 ?hq . }}
+  OPTIONAL {{ ?hq wdt:P17 ?hqCountry . }}
+  OPTIONAL {{ ?company wdt:P17 ?companyCountry . }}
   BIND(wd:{scope_qid} AS ?exchange)
+  OPTIONAL {{ ?exchange wdt:P159 ?exchangeCity . }}
+  OPTIONAL {{ ?exchange wdt:P17 ?exchangeCountry . }}
 
   ?company wdt:{role_pid} ?person .
   ?person wdt:P569 ?dob .
@@ -165,6 +172,8 @@ WHERE {{
 INDEX_QUERY = """
 SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
        ?exchange ?exchangeLabel
+       ?hq ?hqLabel ?hqCountryLabel ?companyCountryLabel
+       ?exchangeCityLabel ?exchangeCountryLabel
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
@@ -177,8 +186,13 @@ WHERE {{
     ?listingStmt ps:P414 ?exchange .
     OPTIONAL {{ ?listingStmt pq:P249 ?ticker . }}
     OPTIONAL {{ ?listingStmt pq:P580 ?listingStart . }}
+    OPTIONAL {{ ?exchange wdt:P159 ?exchangeCity . }}
+    OPTIONAL {{ ?exchange wdt:P17 ?exchangeCountry . }}
   }}
   OPTIONAL {{ ?company wdt:P571 ?inception . }}
+  OPTIONAL {{ ?company wdt:P159 ?hq . }}
+  OPTIONAL {{ ?hq wdt:P17 ?hqCountry . }}
+  OPTIONAL {{ ?company wdt:P17 ?companyCountry . }}
 
   ?company wdt:{role_pid} ?person .
   ?person wdt:P569 ?dob .
@@ -202,8 +216,13 @@ FIELDNAMES = [
     "ticker",
     "ipo_date",
     "company_inception",
+    "hq_city",
+    "hq_country",
+    "company_country",
     "exchange_qid",
     "exchange_name",
+    "exchange_city",
+    "exchange_country",
     "gender",
     "citizenship",
     "occupation",
@@ -336,8 +355,13 @@ def process_scope(
                         "ticker": extract(b, "ticker"),
                         "ipo_date": extract(b, "listingStart"),
                         "company_inception": extract(b, "inception"),
+                        "hq_city": extract(b, "hqLabel"),
+                        "hq_country": extract(b, "hqCountryLabel"),
+                        "company_country": extract(b, "companyCountryLabel"),
                         "exchange_qid": extract(b, "exchange"),
                         "exchange_name": extract(b, "exchangeLabel") or scope_name,
+                        "exchange_city": extract(b, "exchangeCityLabel"),
+                        "exchange_country": extract(b, "exchangeCountryLabel"),
                         "gender": extract(b, "genderLabel"),
                         "citizenship": extract(b, "citizenshipLabel"),
                         "occupation": extract(b, "occupationLabel"),
