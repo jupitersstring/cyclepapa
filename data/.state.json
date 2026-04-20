@@ -593,6 +593,18 @@
     "Warsaw_GPW:P1037:Q516419",
     "Warsaw_GPW:P1037:Q156711",
     "Warsaw_GPW:P127:Q516419",
-    "Warsaw_GPW:P127:Q156711"
+    "Warsaw_GPW:P127:Q156711",
+    "Istanbul_BIST:P169:Q1371044",
+    "Istanbul_BIST:P169:Q1131722",
+    "Istanbul_BIST:P112:Q1371044",
+    "Istanbul_BIST:P112:Q1131722",
+    "Istanbul_BIST:P488:Q1371044",
+    "Istanbul_BIST:P488:Q1131722",
+    "Istanbul_BIST:P3320:Q1371044",
+    "Istanbul_BIST:P3320:Q1131722",
+    "Istanbul_BIST:P1037:Q1371044",
+    "Istanbul_BIST:P1037:Q1131722",
+    "Istanbul_BIST:P127:Q1371044",
+    "Istanbul_BIST:P127:Q1131722"
   ]
 }
