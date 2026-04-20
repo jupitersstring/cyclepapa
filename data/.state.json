@@ -245,6 +245,12 @@
     "Nikkei_225:P488:Q672464",
     "Nikkei_225:P3320:Q672464",
     "Nikkei_225:P1037:Q672464",
-    "Nikkei_225:P127:Q672464"
+    "Nikkei_225:P127:Q672464",
+    "Hang_Seng:P169:Q691419",
+    "Hang_Seng:P112:Q691419",
+    "Hang_Seng:P488:Q691419",
+    "Hang_Seng:P3320:Q691419",
+    "Hang_Seng:P1037:Q691419",
+    "Hang_Seng:P127:Q691419"
   ]
 }
