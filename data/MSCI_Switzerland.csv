@@ -1,0 +1,2 @@
+person_qid,person_name,dob,role,company_qid,company_name,ticker,ipo_date,company_inception,hq_city,hq_country,company_country,exchange_qid,exchange_name,exchange_city,exchange_country,gender,citizenship,occupation,place_of_birth
+Q19661212,Ted Sarandos,1964-07-30T00:00:00Z,chairperson,Q907311,Netflix,,,1997-08-29T00:00:00Z,Los Gatos,United States,United States,,,,,male,United States,chief content officer,Phoenix
