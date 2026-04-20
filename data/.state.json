@@ -191,6 +191,12 @@
     "OMX_Copenhagen_25:P488:Q1900463",
     "OMX_Copenhagen_25:P3320:Q1900463",
     "OMX_Copenhagen_25:P1037:Q1900463",
-    "OMX_Copenhagen_25:P127:Q1900463"
+    "OMX_Copenhagen_25:P127:Q1900463",
+    "OBX:P169:Q1528531",
+    "OBX:P112:Q1528531",
+    "OBX:P488:Q1528531",
+    "OBX:P3320:Q1528531",
+    "OBX:P1037:Q1528531",
+    "OBX:P127:Q1528531"
   ]
 }
