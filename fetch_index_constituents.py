@@ -116,7 +116,15 @@ def parse_ishares_csv(blob: bytes) -> list[dict]:
 
 SSGA = "https://www.ssga.com/us/en/intermediary/library-content/products/fund-data/etfs/us/holdings-daily-us-en-{}.xlsx"
 
-ISHARES = "https://www.ishares.com/us/products/{pid}/.ajax?fileType=csv&fileName={t}_holdings&dataType=fund"
+
+def ishares(pid: int, slug: str, ticker: str) -> str:
+    """iShares holdings CSV needs the full product page path including slug
+    plus the magic constant file id — not just the product ID."""
+    return (
+        f"https://www.ishares.com/us/products/{pid}/{slug}/"
+        f"1467271812596.ajax?fileType=csv&fileName={ticker}_holdings"
+        f"&dataType=fund"
+    )
 
 # Each entry: (index name, url, parser, source description)
 SOURCES = [
@@ -124,37 +132,36 @@ SOURCES = [
     ("SP500",         SSGA.format("spy"), parse_ssga_xlsx, "SPDR SPY"),
     ("Dow_Jones",     SSGA.format("dia"), parse_ssga_xlsx, "SPDR DIA"),
     ("SP_MidCap_400", SSGA.format("mdy"), parse_ssga_xlsx, "SPDR MDY"),
-    ("SP_SmallCap_600", SSGA.format("ijr"), parse_ssga_xlsx, "SPDR? "),
-    # iShares CSV (US listings — broad market / Russell / sectors)
-    ("Russell_1000",  ISHARES.format(pid=239707, t="IWB"), parse_ishares_csv, "iShares IWB"),
-    ("Russell_2000",  ISHARES.format(pid=239710, t="IWM"), parse_ishares_csv, "iShares IWM"),
-    ("Russell_3000",  ISHARES.format(pid=239714, t="IWV"), parse_ishares_csv, "iShares IWV"),
-    ("NASDAQ_100",    ISHARES.format(pid=239779, t="IUSG"), parse_ishares_csv, "iShares IUSG"),
-    # iShares country / region MSCI funds — these aren't 1:1 with the named
-    # local indices but they cover the same large/mid-cap universe.
-    ("MSCI_United_Kingdom", ISHARES.format(pid=239690, t="EWU"), parse_ishares_csv, "iShares EWU"),
-    ("MSCI_Germany",  ISHARES.format(pid=239676, t="EWG"), parse_ishares_csv, "iShares EWG"),
-    ("MSCI_France",   ISHARES.format(pid=239674, t="EWQ"), parse_ishares_csv, "iShares EWQ"),
-    ("MSCI_Italy",    ISHARES.format(pid=239680, t="EWI"), parse_ishares_csv, "iShares EWI"),
-    ("MSCI_Spain",    ISHARES.format(pid=239693, t="EWP"), parse_ishares_csv, "iShares EWP"),
-    ("MSCI_Netherlands", ISHARES.format(pid=239686, t="EWN"), parse_ishares_csv, "iShares EWN"),
-    ("MSCI_Belgium",  ISHARES.format(pid=239669, t="EWK"), parse_ishares_csv, "iShares EWK"),
-    ("MSCI_Switzerland", ISHARES.format(pid=239695, t="EWL"), parse_ishares_csv, "iShares EWL"),
-    ("MSCI_Sweden",   ISHARES.format(pid=239692, t="EWD"), parse_ishares_csv, "iShares EWD"),
-    ("MSCI_Austria",  ISHARES.format(pid=239667, t="EWO"), parse_ishares_csv, "iShares EWO"),
-    ("MSCI_Japan",    ISHARES.format(pid=239665, t="EWJ"), parse_ishares_csv, "iShares EWJ"),
-    ("MSCI_Hong_Kong",ISHARES.format(pid=239678, t="EWH"), parse_ishares_csv, "iShares EWH"),
-    ("MSCI_Australia",ISHARES.format(pid=239668, t="EWA"), parse_ishares_csv, "iShares EWA"),
-    ("MSCI_Canada",   ISHARES.format(pid=239670, t="EWC"), parse_ishares_csv, "iShares EWC"),
-    ("MSCI_Mexico",   ISHARES.format(pid=239685, t="EWW"), parse_ishares_csv, "iShares EWW"),
-    ("MSCI_Brazil",   ISHARES.format(pid=239612, t="EWZ"), parse_ishares_csv, "iShares EWZ"),
-    ("MSCI_South_Korea", ISHARES.format(pid=239681, t="EWY"), parse_ishares_csv, "iShares EWY"),
-    ("MSCI_Taiwan",   ISHARES.format(pid=239696, t="EWT"), parse_ishares_csv, "iShares EWT"),
-    ("MSCI_Singapore",ISHARES.format(pid=239691, t="EWS"), parse_ishares_csv, "iShares EWS"),
-    ("MSCI_Emerging_Markets", ISHARES.format(pid=239637, t="EEM"), parse_ishares_csv, "iShares EEM"),
-    ("MSCI_EAFE",     ISHARES.format(pid=239623, t="EFA"), parse_ishares_csv, "iShares EFA"),
-    ("MSCI_Europe",   ISHARES.format(pid=239625, t="IEUR"), parse_ishares_csv, "iShares IEUR"),
-    ("MSCI_Pacific",  ISHARES.format(pid=239640, t="IPAC"), parse_ishares_csv, "iShares IPAC"),
+    # iShares CSVs (slug matters — without it the ajax endpoint 403/redirects)
+    ("SP_SmallCap_600", ishares(239774, "ishares-core-sp-small-cap-etf", "IJR"), parse_ishares_csv, "iShares IJR"),
+    ("NASDAQ_100",      ishares(239726, "ishares-nasdaq-100-etf", "QQQM"),      parse_ishares_csv, "iShares QQQM"),
+    ("Russell_1000",  ishares(239707, "ishares-russell-1000-etf", "IWB"), parse_ishares_csv, "iShares IWB"),
+    ("Russell_2000",  ishares(239710, "ishares-russell-2000-etf", "IWM"), parse_ishares_csv, "iShares IWM"),
+    ("Russell_3000",  ishares(239714, "ishares-russell-3000-etf", "IWV"), parse_ishares_csv, "iShares IWV"),
+    # Country / regional MSCI funds (proxy for DAX / CAC / FTSE / etc.)
+    ("MSCI_United_Kingdom", ishares(239690, "ishares-msci-united-kingdom-etf", "EWU"), parse_ishares_csv, "iShares EWU"),
+    ("MSCI_Germany",        ishares(239676, "ishares-msci-germany-etf",        "EWG"), parse_ishares_csv, "iShares EWG"),
+    ("MSCI_France",         ishares(239674, "ishares-msci-france-etf",         "EWQ"), parse_ishares_csv, "iShares EWQ"),
+    ("MSCI_Italy",          ishares(239680, "ishares-msci-italy-etf",          "EWI"), parse_ishares_csv, "iShares EWI"),
+    ("MSCI_Spain",          ishares(239693, "ishares-msci-spain-etf",          "EWP"), parse_ishares_csv, "iShares EWP"),
+    ("MSCI_Netherlands",    ishares(239686, "ishares-msci-netherlands-etf",    "EWN"), parse_ishares_csv, "iShares EWN"),
+    ("MSCI_Belgium",        ishares(239669, "ishares-msci-belgium-etf",        "EWK"), parse_ishares_csv, "iShares EWK"),
+    ("MSCI_Switzerland",    ishares(239695, "ishares-msci-switzerland-etf",    "EWL"), parse_ishares_csv, "iShares EWL"),
+    ("MSCI_Sweden",         ishares(239692, "ishares-msci-sweden-etf",         "EWD"), parse_ishares_csv, "iShares EWD"),
+    ("MSCI_Austria",        ishares(239667, "ishares-msci-austria-etf",        "EWO"), parse_ishares_csv, "iShares EWO"),
+    ("MSCI_Japan",          ishares(239665, "ishares-msci-japan-etf",          "EWJ"), parse_ishares_csv, "iShares EWJ"),
+    ("MSCI_Hong_Kong",      ishares(239678, "ishares-msci-hong-kong-etf",      "EWH"), parse_ishares_csv, "iShares EWH"),
+    ("MSCI_Australia",      ishares(239668, "ishares-msci-australia-etf",      "EWA"), parse_ishares_csv, "iShares EWA"),
+    ("MSCI_Canada",         ishares(239666, "ishares-msci-canada-etf",         "EWC"), parse_ishares_csv, "iShares EWC"),
+    ("MSCI_Mexico",         ishares(239685, "ishares-msci-mexico-etf",         "EWW"), parse_ishares_csv, "iShares EWW"),
+    ("MSCI_Brazil",         ishares(239612, "ishares-msci-brazil-etf",         "EWZ"), parse_ishares_csv, "iShares EWZ"),
+    ("MSCI_South_Korea",    ishares(239681, "ishares-msci-south-korea-etf",    "EWY"), parse_ishares_csv, "iShares EWY"),
+    ("MSCI_Taiwan",         ishares(239696, "ishares-msci-taiwan-etf",         "EWT"), parse_ishares_csv, "iShares EWT"),
+    ("MSCI_Singapore",      ishares(239691, "ishares-msci-singapore-etf",      "EWS"), parse_ishares_csv, "iShares EWS"),
+    ("MSCI_Emerging_Markets", ishares(239637, "ishares-msci-emerging-markets-etf", "EEM"),  parse_ishares_csv, "iShares EEM"),
+    ("MSCI_EAFE",           ishares(239623, "ishares-msci-eafe-etf",           "EFA"), parse_ishares_csv, "iShares EFA"),
+    ("MSCI_Europe",         ishares(239625, "ishares-core-msci-europe-etf",    "IEUR"), parse_ishares_csv, "iShares IEUR"),
+    ("MSCI_Pacific",        ishares(239640, "ishares-core-msci-pacific-etf",   "IPAC"), parse_ishares_csv, "iShares IPAC"),
 ]
 
 
