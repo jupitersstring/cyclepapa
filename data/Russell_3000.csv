@@ -1,0 +1,7 @@
+person_qid,person_name,dob,role,company_qid,company_name,ticker,ipo_date,company_inception,hq_city,hq_country,company_country,exchange_qid,exchange_name,exchange_city,exchange_country,gender,citizenship,occupation,place_of_birth
+Q22073882,John F. Remondi,1962-05-01T00:00:00Z,CEO,Q1569558,Sallie Mae,,,1972-01-01T00:00:00Z,"Washington, D.C.",United States,United States,,,,,male,,business executive,
+Q130318327,Edward A. Fox,1936-01-01T00:00:00Z,CEO,Q1569558,Sallie Mae,,,1972-01-01T00:00:00Z,"Washington, D.C.",United States,United States,,,,,male,,,
+Q55615074,Jihan Wu,1986-01-01T00:00:00Z,CEO,Q133042901,Bitdeer,,,2021-01-01T00:00:00Z,Singapore,Singapore,,,,,,male,Singapore,businessperson,Chongqing
+Q55615074,Jihan Wu,1986-01-01T00:00:00Z,founder,Q133042901,Bitdeer,,,2021-01-01T00:00:00Z,Singapore,Singapore,,,,,,male,Singapore,businessperson,Chongqing
+Q19661212,Ted Sarandos,1964-07-30T00:00:00Z,chairperson,Q907311,Netflix,,,1997-08-29T00:00:00Z,Los Gatos,United States,United States,,,,,male,United States,chief content officer,Phoenix
+Q55615074,Jihan Wu,1986-01-01T00:00:00Z,chairperson,Q133042901,Bitdeer,,,2021-01-01T00:00:00Z,Singapore,Singapore,,,,,,male,Singapore,businessperson,Chongqing

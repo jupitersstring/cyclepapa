@@ -26,6 +26,7 @@
     "constituents:MSCI_United_Kingdom",
     "constituents:NASDAQ_100",
     "constituents:Russell_1000",
-    "constituents:Russell_2000"
+    "constituents:Russell_2000",
+    "constituents:Russell_3000"
   ]
 }
