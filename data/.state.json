@@ -605,6 +605,12 @@
     "Istanbul_BIST:P1037:Q1371044",
     "Istanbul_BIST:P1037:Q1131722",
     "Istanbul_BIST:P127:Q1371044",
-    "Istanbul_BIST:P127:Q1131722"
+    "Istanbul_BIST:P127:Q1131722",
+    "TASE_Tel_Aviv:P169:Q743925",
+    "TASE_Tel_Aviv:P112:Q743925",
+    "TASE_Tel_Aviv:P488:Q743925",
+    "TASE_Tel_Aviv:P3320:Q743925",
+    "TASE_Tel_Aviv:P1037:Q743925",
+    "TASE_Tel_Aviv:P127:Q743925"
   ]
 }
