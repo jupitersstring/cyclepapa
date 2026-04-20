@@ -239,6 +239,12 @@
     "MOEX_Russia:P1037:Q1139792",
     "MOEX_Russia:P1037:Q1928619",
     "MOEX_Russia:P127:Q1139792",
-    "MOEX_Russia:P127:Q1928619"
+    "MOEX_Russia:P127:Q1928619",
+    "Nikkei_225:P169:Q672464",
+    "Nikkei_225:P112:Q672464",
+    "Nikkei_225:P488:Q672464",
+    "Nikkei_225:P3320:Q672464",
+    "Nikkei_225:P1037:Q672464",
+    "Nikkei_225:P127:Q672464"
   ]
 }
