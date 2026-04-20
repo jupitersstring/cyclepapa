@@ -1,0 +1,54 @@
+name: Fetch index constituents
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - claude/scrape-wikidata-birthdays-39uOY
+    paths:
+      - fetch_index_constituents.py
+      - .github/workflows/fetch_constituents.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: constituents-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install requests openpyxl
+
+      - name: Configure git
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch constituents
+        run: python3 fetch_index_constituents.py
+
+      - name: Summarize
+        if: always()
+        run: |
+          if [ -d data/constituents ]; then
+            wc -l data/constituents/*.csv 2>/dev/null || true
+          fi
+
+      - name: Commit results
+        if: always() && hashFiles('data/constituents/*.csv') != ''
+        run: |
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git add data/constituents/
+          git diff --cached --quiet || git commit -m "Update index constituents from vendor files"
+          git push origin HEAD:${GITHUB_REF_NAME} || true
