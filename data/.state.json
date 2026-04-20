@@ -557,6 +557,18 @@
     "OMX_Copenhagen:P488:Q1392919",
     "OMX_Copenhagen:P3320:Q1392919",
     "OMX_Copenhagen:P1037:Q1392919",
-    "OMX_Copenhagen:P127:Q1392919"
+    "OMX_Copenhagen:P127:Q1392919",
+    "Oslo_Bors:P169:Q1799794",
+    "Oslo_Bors:P169:Q668886",
+    "Oslo_Bors:P112:Q1799794",
+    "Oslo_Bors:P112:Q668886",
+    "Oslo_Bors:P488:Q1799794",
+    "Oslo_Bors:P488:Q668886",
+    "Oslo_Bors:P3320:Q1799794",
+    "Oslo_Bors:P3320:Q668886",
+    "Oslo_Bors:P1037:Q1799794",
+    "Oslo_Bors:P1037:Q668886",
+    "Oslo_Bors:P127:Q1799794",
+    "Oslo_Bors:P127:Q668886"
   ]
 }
