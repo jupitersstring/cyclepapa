@@ -581,6 +581,18 @@
     "Moscow_MOEX:P1037:Q1117036",
     "Moscow_MOEX:P1037:Q1805776",
     "Moscow_MOEX:P127:Q1117036",
-    "Moscow_MOEX:P127:Q1805776"
+    "Moscow_MOEX:P127:Q1805776",
+    "Warsaw_GPW:P169:Q516419",
+    "Warsaw_GPW:P169:Q156711",
+    "Warsaw_GPW:P112:Q516419",
+    "Warsaw_GPW:P112:Q156711",
+    "Warsaw_GPW:P488:Q516419",
+    "Warsaw_GPW:P488:Q156711",
+    "Warsaw_GPW:P3320:Q516419",
+    "Warsaw_GPW:P3320:Q156711",
+    "Warsaw_GPW:P1037:Q516419",
+    "Warsaw_GPW:P1037:Q156711",
+    "Warsaw_GPW:P127:Q516419",
+    "Warsaw_GPW:P127:Q156711"
   ]
 }
