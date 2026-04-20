@@ -1,0 +1,55 @@
+name: Scrape listed-equity birthdays
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - claude/scrape-wikidata-birthdays-39uOY
+    paths:
+      - scrape_wikidata_birthdays.py
+      - .github/workflows/scrape_birthdays.yml
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Run scraper
+        run: python3 scrape_wikidata_birthdays.py
+
+      - name: Summarize
+        if: always()
+        run: |
+          if [ -f listed_equity_birthdays.csv ]; then
+            wc -l listed_equity_birthdays.csv
+            head -5 listed_equity_birthdays.csv
+          fi
+
+      - name: Upload CSV as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: listed_equity_birthdays
+          path: listed_equity_birthdays.csv
+          if-no-files-found: warn
+
+      - name: Commit CSV back to branch
+        if: always() && hashFiles('listed_equity_birthdays.csv') != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add listed_equity_birthdays.csv
+          git diff --cached --quiet || git commit -m "Add scraped listed-equity birthdays dataset"
+          git push origin HEAD:${GITHUB_REF_NAME}
