@@ -173,15 +173,15 @@ SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
-  VALUES ?exchange {{ {scope_values} }}
   ?company p:P414 ?listingStmt .
-  ?listingStmt ps:P414 ?exchange .
+  ?listingStmt ps:P414 wd:{scope_qid} .
   OPTIONAL {{ ?listingStmt pq:P249 ?ticker . }}
   OPTIONAL {{ ?listingStmt pq:P580 ?listingStart . }}
   OPTIONAL {{ ?company wdt:P571 ?inception . }}
   OPTIONAL {{ ?company wdt:P159 ?hq . }}
   OPTIONAL {{ ?hq wdt:P17 ?hqCountry . }}
   OPTIONAL {{ ?company wdt:P17 ?companyCountry . }}
+  BIND(wd:{scope_qid} AS ?exchange)
   OPTIONAL {{ ?exchange wdt:P159 ?exchangeCity . }}
   OPTIONAL {{ ?exchange wdt:P17 ?exchangeCountry . }}
 
@@ -205,10 +205,9 @@ SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
-  VALUES ?index {{ {scope_values} }}
-  {{ ?company wdt:P361 ?index }}
+  {{ ?company wdt:P361 wd:{scope_qid} }}
   UNION
-  {{ ?company wdt:P463 ?index }}
+  {{ ?company wdt:P463 wd:{scope_qid} }}
 
   OPTIONAL {{
     ?company p:P414 ?listingStmt .
@@ -403,7 +402,6 @@ def process_scope(
     seen = load_existing_keys(out_path, state, scope_name)
     fresh = not out_path.exists()
     total = len(seen)
-    scope_values = " ".join(f"wd:{q}" for q in scope_qids)
 
     mode = "w" if fresh else "a"
     with out_path.open(mode, newline="", encoding="utf-8") as f:
@@ -412,53 +410,67 @@ def process_scope(
             writer.writeheader()
 
         for role_pid, role_name in ROLES:
-            key = f"{scope_name}:{role_pid}"
-            if key in state["completed"]:
-                continue
-            print(f"[{scope_name}] {role_name}", flush=True)
-            sparql = query_template.format(
-                scope_values=scope_values, role_pid=role_pid
-            )
-            rows = run_query(sparql)
-            added = 0
-            for b in rows:
-                person_qid = extract(b, "person")
-                company_qid = extract(b, "company")
-                dedup = (person_qid, role_name, company_qid)
-                if dedup in seen:
+            # One SPARQL per (qid, role). Single-QID queries have the best
+            # chance of completing under the 60s Wikidata timeout; VALUES
+            # across multiple QIDs blows out the plan and loses rows.
+            for scope_qid in scope_qids:
+                key = f"{scope_name}:{role_pid}:{scope_qid}"
+                # Backwards compat with legacy state without the QID suffix.
+                legacy_key = f"{scope_name}:{role_pid}"
+                if key in state["completed"] or (
+                    len(scope_qids) == 1 and legacy_key in state["completed"]
+                ):
                     continue
-                seen.add(dedup)
-                writer.writerow(
-                    {
-                        "person_qid": person_qid,
-                        "person_name": extract(b, "personLabel"),
-                        "dob": extract(b, "dob"),
-                        "role": role_name,
-                        "company_qid": company_qid,
-                        "company_name": extract(b, "companyLabel"),
-                        "ticker": extract(b, "ticker"),
-                        "ipo_date": extract(b, "listingStart"),
-                        "company_inception": extract(b, "inception"),
-                        "hq_city": extract(b, "hqLabel"),
-                        "hq_country": extract(b, "hqCountryLabel"),
-                        "company_country": extract(b, "companyCountryLabel"),
-                        "exchange_qid": extract(b, "exchange"),
-                        "exchange_name": extract(b, "exchangeLabel") or scope_name,
-                        "exchange_city": extract(b, "exchangeCityLabel"),
-                        "exchange_country": extract(b, "exchangeCountryLabel"),
-                        "gender": extract(b, "genderLabel"),
-                        "citizenship": extract(b, "citizenshipLabel"),
-                        "occupation": extract(b, "occupationLabel"),
-                        "place_of_birth": extract(b, "pobLabel"),
-                    }
+                print(
+                    f"[{scope_name}] {role_name} ({scope_qid})",
+                    flush=True,
                 )
-                added += 1
-            total += added
-            f.flush()
-            state["completed"].append(key)
-            save_state(state)
-            print(f"    -> {added} new rows ({out_path.name} total {total})", flush=True)
-            time.sleep(0.3)
+                sparql = query_template.format(
+                    scope_qid=scope_qid, role_pid=role_pid
+                )
+                rows = run_query(sparql)
+                added = 0
+                for b in rows:
+                    person_qid = extract(b, "person")
+                    company_qid = extract(b, "company")
+                    dedup = (person_qid, role_name, company_qid)
+                    if dedup in seen:
+                        continue
+                    seen.add(dedup)
+                    writer.writerow(
+                        {
+                            "person_qid": person_qid,
+                            "person_name": extract(b, "personLabel"),
+                            "dob": extract(b, "dob"),
+                            "role": role_name,
+                            "company_qid": company_qid,
+                            "company_name": extract(b, "companyLabel"),
+                            "ticker": extract(b, "ticker"),
+                            "ipo_date": extract(b, "listingStart"),
+                            "company_inception": extract(b, "inception"),
+                            "hq_city": extract(b, "hqLabel"),
+                            "hq_country": extract(b, "hqCountryLabel"),
+                            "company_country": extract(b, "companyCountryLabel"),
+                            "exchange_qid": extract(b, "exchange"),
+                            "exchange_name": extract(b, "exchangeLabel") or scope_name,
+                            "exchange_city": extract(b, "exchangeCityLabel"),
+                            "exchange_country": extract(b, "exchangeCountryLabel"),
+                            "gender": extract(b, "genderLabel"),
+                            "citizenship": extract(b, "citizenshipLabel"),
+                            "occupation": extract(b, "occupationLabel"),
+                            "place_of_birth": extract(b, "pobLabel"),
+                        }
+                    )
+                    added += 1
+                total += added
+                f.flush()
+                state["completed"].append(key)
+                save_state(state)
+                print(
+                    f"    -> {added} new rows ({out_path.name} total {total})",
+                    flush=True,
+                )
+                time.sleep(0.3)
 
     checkpoint_commit(scope_name, total)
 
