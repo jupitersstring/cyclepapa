@@ -533,6 +533,18 @@
     "OMX_Nordic:P488:Q380947",
     "OMX_Nordic:P3320:Q380947",
     "OMX_Nordic:P1037:Q380947",
-    "OMX_Nordic:P127:Q380947"
+    "OMX_Nordic:P127:Q380947",
+    "OMX_Stockholm:P169:Q1399969",
+    "OMX_Stockholm:P169:Q852157",
+    "OMX_Stockholm:P112:Q1399969",
+    "OMX_Stockholm:P112:Q852157",
+    "OMX_Stockholm:P488:Q1399969",
+    "OMX_Stockholm:P488:Q852157",
+    "OMX_Stockholm:P3320:Q1399969",
+    "OMX_Stockholm:P3320:Q852157",
+    "OMX_Stockholm:P1037:Q1399969",
+    "OMX_Stockholm:P1037:Q852157",
+    "OMX_Stockholm:P127:Q1399969",
+    "OMX_Stockholm:P127:Q852157"
   ]
 }
