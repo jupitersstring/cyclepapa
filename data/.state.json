@@ -467,6 +467,18 @@
     "Euronext:P1037:Q745519",
     "Euronext:P1037:Q1371123",
     "Euronext:P127:Q745519",
-    "Euronext:P127:Q1371123"
+    "Euronext:P127:Q1371123",
+    "Euronext_Paris:P169:Q1799674",
+    "Euronext_Paris:P169:Q637785",
+    "Euronext_Paris:P112:Q1799674",
+    "Euronext_Paris:P112:Q637785",
+    "Euronext_Paris:P488:Q1799674",
+    "Euronext_Paris:P488:Q637785",
+    "Euronext_Paris:P3320:Q1799674",
+    "Euronext_Paris:P3320:Q637785",
+    "Euronext_Paris:P1037:Q1799674",
+    "Euronext_Paris:P1037:Q637785",
+    "Euronext_Paris:P127:Q1799674",
+    "Euronext_Paris:P127:Q637785"
   ]
 }
