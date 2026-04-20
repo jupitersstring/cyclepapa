@@ -17,6 +17,8 @@
     "constituents:MSCI_Mexico",
     "constituents:MSCI_Netherlands",
     "constituents:MSCI_Pacific",
-    "constituents:MSCI_Singapore"
+    "constituents:MSCI_Singapore",
+    "constituents:MSCI_South_Korea",
+    "constituents:MSCI_Spain"
   ]
 }
