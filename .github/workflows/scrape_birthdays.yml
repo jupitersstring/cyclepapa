@@ -32,24 +32,26 @@ jobs:
       - name: Summarize
         if: always()
         run: |
-          if [ -f listed_equity_birthdays.csv ]; then
-            wc -l listed_equity_birthdays.csv
-            head -5 listed_equity_birthdays.csv
+          if [ -d data ]; then
+            wc -l data/*.csv 2>/dev/null || true
           fi
 
-      - name: Upload CSV as artifact
+      - name: Upload per-exchange CSVs as artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: listed_equity_birthdays
-          path: listed_equity_birthdays.csv
+          name: listed_equity_birthdays_per_exchange
+          path: data/*.csv
           if-no-files-found: warn
 
-      - name: Commit CSV back to branch
-        if: always() && hashFiles('listed_equity_birthdays.csv') != ''
+      - name: Commit results back to branch
+        if: always() && hashFiles('data/*.csv') != ''
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add listed_equity_birthdays.csv
-          git diff --cached --quiet || git commit -m "Add scraped listed-equity birthdays dataset"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git add data/
+          # Drop the old monolithic CSV now that we output per-exchange files.
+          git rm -f listed_equity_birthdays.csv 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update per-exchange birthday datasets"
           git push origin HEAD:${GITHUB_REF_NAME}
