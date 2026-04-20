@@ -623,6 +623,18 @@
     "Taiwan_TWSE:P1037:Q752907",
     "Taiwan_TWSE:P1037:Q1616218",
     "Taiwan_TWSE:P127:Q752907",
-    "Taiwan_TWSE:P127:Q1616218"
+    "Taiwan_TWSE:P127:Q1616218",
+    "SGX_Singapore:P169:Q1138199",
+    "SGX_Singapore:P169:Q623137",
+    "SGX_Singapore:P112:Q1138199",
+    "SGX_Singapore:P112:Q623137",
+    "SGX_Singapore:P488:Q1138199",
+    "SGX_Singapore:P488:Q623137",
+    "SGX_Singapore:P3320:Q1138199",
+    "SGX_Singapore:P3320:Q623137",
+    "SGX_Singapore:P1037:Q1138199",
+    "SGX_Singapore:P1037:Q623137",
+    "SGX_Singapore:P127:Q1138199",
+    "SGX_Singapore:P127:Q623137"
   ]
 }
