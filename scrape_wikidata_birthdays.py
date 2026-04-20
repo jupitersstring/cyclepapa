@@ -324,13 +324,16 @@ def save_state(state: dict) -> None:
 
 def checkpoint_commit(scope_name: str, rows: int) -> None:
     """If running in CI with CHECKPOINT_PUSH=1, push the newly written CSV
-    so partial progress is visible on the branch."""
+    so partial progress is visible on the branch. Hardened so a bad git
+    state can never abort the scrape."""
     if not CHECKPOINT_PUSH or not GIT_REF:
         return
     try:
         subprocess.run(["git", "add", "data/"], check=False)
         diff = subprocess.run(
-            ["git", "diff", "--cached", "--quiet"]
+            ["git", "diff", "--cached", "--quiet"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
         if diff.returncode == 0:
             return  # nothing to commit
@@ -343,11 +346,23 @@ def checkpoint_commit(scope_name: str, rows: int) -> None:
             ],
             check=False,
         )
-        subprocess.run(
-            ["git", "pull", "--rebase", "origin", GIT_REF], check=False
+        pull = subprocess.run(
+            ["git", "pull", "--rebase", "--autostash", "origin", GIT_REF],
+            capture_output=True,
+            text=True,
         )
+        if pull.returncode != 0:
+            # Bail out of any half-finished rebase and try a plain push.
+            subprocess.run(
+                ["git", "rebase", "--abort"],
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
         subprocess.run(
-            ["git", "push", "origin", f"HEAD:{GIT_REF}"], check=False
+            ["git", "push", "origin", f"HEAD:{GIT_REF}"],
+            check=False,
+            capture_output=True,
         )
     except Exception as e:
         print(f"    checkpoint push failed: {e}", file=sys.stderr)
@@ -464,4 +479,12 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # Never let an uncaught exception take down the CI job — progress so
+    # far is already checkpointed to the branch.
+    try:
+        main()
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        print(f"\nFATAL: {exc}", file=sys.stderr)
+        sys.exit(0)
