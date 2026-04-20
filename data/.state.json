@@ -419,6 +419,18 @@
     "ASX_Australia:P1037:Q4805389",
     "ASX_Australia:P127:Q484573",
     "ASX_Australia:P127:Q1495972",
-    "ASX_Australia:P127:Q4805389"
+    "ASX_Australia:P127:Q4805389",
+    "KRX_Korea:P169:Q489398",
+    "KRX_Korea:P169:Q496775",
+    "KRX_Korea:P112:Q489398",
+    "KRX_Korea:P112:Q496775",
+    "KRX_Korea:P488:Q489398",
+    "KRX_Korea:P488:Q496775",
+    "KRX_Korea:P3320:Q489398",
+    "KRX_Korea:P3320:Q496775",
+    "KRX_Korea:P1037:Q489398",
+    "KRX_Korea:P1037:Q496775",
+    "KRX_Korea:P127:Q489398",
+    "KRX_Korea:P127:Q496775"
   ]
 }
