@@ -32,7 +32,14 @@ jobs:
       - name: Install deps
         run: pip install requests
 
-      - name: Run scraper
+      - name: Configure git for checkpoint commits
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run scraper (checkpoints per scope)
+        env:
+          CHECKPOINT_PUSH: "1"
         run: python3 scrape_wikidata_birthdays.py
 
       - name: Summarize
@@ -50,14 +57,11 @@ jobs:
           path: data/*.csv
           if-no-files-found: warn
 
-      - name: Commit results back to branch
+      - name: Final commit (safety net for anything the script didn't push)
         if: always() && hashFiles('data/*.csv') != ''
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin "${GITHUB_REF_NAME}" || true
           git add data/
-          # Drop the old monolithic CSV now that we output per-exchange files.
           git rm -f listed_equity_birthdays.csv 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "Update per-exchange birthday datasets"
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git diff --cached --quiet || git commit -m "Finalize per-exchange birthday datasets"
+          git push origin HEAD:${GITHUB_REF_NAME} || true

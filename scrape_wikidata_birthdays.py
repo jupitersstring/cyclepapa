@@ -25,6 +25,8 @@ from __future__ import annotations
 
 import csv
 import json
+import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -40,6 +42,11 @@ USER_AGENT = (
 
 DATA_DIR = Path(__file__).parent / "data"
 STATE_PATH = DATA_DIR / ".state.json"
+
+# When CHECKPOINT_PUSH=1 the script commits + pushes data/ after each scope
+# finishes so CI runs publish progress incrementally. Skip in local runs.
+CHECKPOINT_PUSH = os.environ.get("CHECKPOINT_PUSH") == "1"
+GIT_REF = os.environ.get("GITHUB_REF_NAME", "")
 
 ROLES = [
     ("P169", "CEO"),
@@ -315,6 +322,37 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True))
 
 
+def checkpoint_commit(scope_name: str, rows: int) -> None:
+    """If running in CI with CHECKPOINT_PUSH=1, push the newly written CSV
+    so partial progress is visible on the branch."""
+    if not CHECKPOINT_PUSH or not GIT_REF:
+        return
+    try:
+        subprocess.run(["git", "add", "data/"], check=False)
+        diff = subprocess.run(
+            ["git", "diff", "--cached", "--quiet"]
+        )
+        if diff.returncode == 0:
+            return  # nothing to commit
+        subprocess.run(
+            [
+                "git",
+                "commit",
+                "-m",
+                f"Checkpoint: {scope_name} ({rows} rows)",
+            ],
+            check=False,
+        )
+        subprocess.run(
+            ["git", "pull", "--rebase", "origin", GIT_REF], check=False
+        )
+        subprocess.run(
+            ["git", "push", "origin", f"HEAD:{GIT_REF}"], check=False
+        )
+    except Exception as e:
+        print(f"    checkpoint push failed: {e}", file=sys.stderr)
+
+
 def load_existing_keys(
     path: Path, state: dict, scope_name: str
 ) -> set[tuple[str, str, str]]:
@@ -406,6 +444,8 @@ def process_scope(
             save_state(state)
             print(f"    -> {added} new rows ({out_path.name} total {total})", flush=True)
             time.sleep(0.3)
+
+    checkpoint_commit(scope_name, total)
 
 
 def main() -> None:
