@@ -785,6 +785,18 @@
     "Bucharest_BVB:P1037:Q502974",
     "Bucharest_BVB:P1037:Q806224",
     "Bucharest_BVB:P127:Q502974",
-    "Bucharest_BVB:P127:Q806224"
+    "Bucharest_BVB:P127:Q806224",
+    "Ireland_ISE:P169:Q1145806",
+    "Ireland_ISE:P169:Q1364884",
+    "Ireland_ISE:P112:Q1145806",
+    "Ireland_ISE:P112:Q1364884",
+    "Ireland_ISE:P488:Q1145806",
+    "Ireland_ISE:P488:Q1364884",
+    "Ireland_ISE:P3320:Q1145806",
+    "Ireland_ISE:P3320:Q1364884",
+    "Ireland_ISE:P1037:Q1145806",
+    "Ireland_ISE:P1037:Q1364884",
+    "Ireland_ISE:P127:Q1145806",
+    "Ireland_ISE:P127:Q1364884"
   ]
 }
