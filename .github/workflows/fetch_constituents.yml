@@ -19,7 +19,7 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
 
@@ -38,17 +38,30 @@ jobs:
       - name: Fetch constituents
         run: python3 fetch_index_constituents.py
 
-      - name: Summarize
+      - name: Summarize constituents
         if: always()
         run: |
           if [ -d data/constituents ]; then
             wc -l data/constituents/*.csv 2>/dev/null || true
           fi
 
-      - name: Commit results
+      - name: Commit constituents
         if: always() && hashFiles('data/constituents/*.csv') != ''
         run: |
           git pull --rebase origin "${GITHUB_REF_NAME}" || true
           git add data/constituents/
           git diff --cached --quiet || git commit -m "Update index constituents from vendor files"
+          git push origin HEAD:${GITHUB_REF_NAME} || true
+
+      - name: Scrape birthdays for each constituent list
+        env:
+          CHECKPOINT_PUSH: "1"
+        run: python3 scrape_from_constituents.py
+
+      - name: Final commit (birthdays)
+        if: always() && hashFiles('data/*.csv') != ''
+        run: |
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git add data/
+          git diff --cached --quiet || git commit -m "Finalize constituent-based birthday datasets"
           git push origin HEAD:${GITHUB_REF_NAME} || true
