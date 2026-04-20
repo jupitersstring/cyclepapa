@@ -12,6 +12,12 @@ on:
 permissions:
   contents: write
 
+# Only one scrape run at a time on this branch — otherwise concurrent runs
+# race on data/ and on the rebase-then-push step.
+concurrency:
+  group: scrape-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   scrape:
     runs-on: ubuntu-latest

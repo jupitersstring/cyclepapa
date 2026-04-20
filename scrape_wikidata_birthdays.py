@@ -50,90 +50,111 @@ ROLES = [
     ("P127", "owner"),
 ]
 
+# Each scope is (name, [candidate Wikidata QIDs]).
+# Some exchanges are tagged via different entities by different editors —
+# e.g. companies on the Hong Kong floor may be linked to Q496772 (Stock
+# Exchange of Hong Kong) or the parent Q1090009 (HKEX clearing). We try
+# every candidate via SPARQL VALUES and union the results.
 EXCHANGES = [
-    ("Q13677", "NYSE"),
-    ("Q82059", "NASDAQ"),
-    ("Q171240", "LSE"),
-    ("Q217475", "TSE_Tokyo"),
-    ("Q496772", "HKEX"),
-    ("Q633842", "SIX_Swiss"),
-    ("Q99479", "Deutsche_Borse"),
-    ("Q1026145", "Frankfurt"),
-    ("Q739514", "Shanghai_SSE"),
-    ("Q517750", "Shenzhen_SZSE"),
-    ("Q482920", "TSX_Toronto"),
-    ("Q807565", "BSE_Bombay"),
-    ("Q1894265", "NSE_India"),
-    ("Q484573", "ASX_Australia"),
-    ("Q496775", "KRX_Korea"),
-    ("Q27916241", "B3_Brazil"),
-    ("Q689925", "JSE_Johannesburg"),
-    ("Q1371123", "Euronext"),
-    ("Q1799674", "Euronext_Paris"),
-    ("Q1485531", "Euronext_Amsterdam"),
-    ("Q746118", "Borsa_Italiana"),
-    ("Q806636", "BME_Madrid"),
-    ("Q380947", "OMX_Nordic"),
-    ("Q1399969", "OMX_Stockholm"),
-    ("Q1569738", "OMX_Helsinki"),
-    ("Q1392919", "OMX_Copenhagen"),
-    ("Q1799794", "Oslo_Bors"),
-    ("Q1805776", "Moscow_MOEX"),
-    ("Q516419", "Warsaw_GPW"),
-    ("Q1371044", "Istanbul_BIST"),
-    ("Q743925", "TASE_Tel_Aviv"),
-    ("Q1616218", "Taiwan_TWSE"),
-    ("Q623137", "SGX_Singapore"),
-    ("Q1889124", "Bursa_Malaysia"),
-    ("Q1663776", "SET_Thailand"),
-    ("Q688089", "IDX_Indonesia"),
-    ("Q1526381", "PSE_Philippines"),
-    ("Q1892454", "Mexican_BMV"),
-    ("Q1057990", "Santiago_SSE_Chile"),
-    ("Q2720844", "Tadawul_Saudi"),
-    ("Q3578649", "ADX_Abu_Dhabi"),
-    ("Q1196338", "DFM_Dubai"),
-    ("Q1145812", "EGX_Egypt"),
-    ("Q1568804", "NGX_Nigeria"),
-    ("Q1321140", "Vienna_WBAG"),
-    ("Q1145898", "Athens_ASE"),
-    ("Q1797014", "Prague_PSE"),
-    ("Q1140488", "Budapest_BSE"),
-    ("Q502974", "Bucharest_BVB"),
-    ("Q1145806", "Ireland_ISE"),
-    ("Q686822", "NZX_New_Zealand"),
-    ("Q2632892", "Qatar_QE"),
-    ("Q4354970", "Kuwait_KSE"),
+    ("NYSE",                ["Q13677"]),
+    ("NASDAQ",              ["Q82059"]),
+    ("LSE",                 ["Q171240"]),
+    ("TSE_Tokyo",           ["Q217475"]),
+    ("HKEX",                ["Q496772", "Q1090009", "Q1130758"]),
+    ("SIX_Swiss",           ["Q633842", "Q1187137"]),
+    ("Deutsche_Borse",      ["Q99479"]),
+    ("Frankfurt",           ["Q1026145"]),
+    ("Shanghai_SSE",        ["Q739514"]),
+    ("Shenzhen_SZSE",       ["Q517750"]),
+    ("TSX_Toronto",         ["Q482919", "Q482920", "Q1751381"]),
+    ("BSE_Bombay",          ["Q1378029", "Q807565"]),
+    ("NSE_India",           ["Q571393", "Q1894265"]),
+    ("ASX_Australia",       ["Q484573", "Q1495972", "Q4805389"]),
+    ("KRX_Korea",           ["Q489398", "Q496775"]),
+    ("B3_Brazil",           ["Q27916241", "Q1273135"]),
+    ("JSE_Johannesburg",    ["Q689925", "Q1681644"]),
+    ("Euronext",            ["Q745519", "Q1371123"]),
+    ("Euronext_Paris",      ["Q1799674", "Q637785"]),
+    ("Euronext_Amsterdam",  ["Q1485531", "Q602907"]),
+    ("Euronext_Brussels",   ["Q820644"]),
+    ("Euronext_Lisbon",     ["Q599876"]),
+    ("Borsa_Italiana",      ["Q746118", "Q3520038"]),
+    ("BME_Madrid",          ["Q11679", "Q806636"]),
+    ("OMX_Nordic",          ["Q380947"]),
+    ("OMX_Stockholm",       ["Q1399969", "Q852157"]),
+    ("OMX_Helsinki",        ["Q1569738"]),
+    ("OMX_Copenhagen",      ["Q1392919"]),
+    ("Oslo_Bors",           ["Q1799794", "Q668886"]),
+    ("Moscow_MOEX",         ["Q1117036", "Q1805776"]),
+    ("Warsaw_GPW",          ["Q516419", "Q156711"]),
+    ("Istanbul_BIST",       ["Q1371044", "Q1131722"]),
+    ("TASE_Tel_Aviv",       ["Q743925"]),
+    ("Taiwan_TWSE",         ["Q752907", "Q1616218"]),
+    ("SGX_Singapore",       ["Q1138199", "Q623137"]),
+    ("Bursa_Malaysia",      ["Q1889124", "Q1015852"]),
+    ("SET_Thailand",        ["Q1663776"]),
+    ("IDX_Indonesia",       ["Q688089", "Q3505144"]),
+    ("PSE_Philippines",     ["Q1526381"]),
+    ("Mexican_BMV",         ["Q1892454", "Q1995504"]),
+    ("Santiago_SSE_Chile",  ["Q1057990"]),
+    ("Tadawul_Saudi",       ["Q2720844", "Q1066198"]),
+    ("ADX_Abu_Dhabi",       ["Q3578649", "Q4671922"]),
+    ("DFM_Dubai",           ["Q1196338"]),
+    ("EGX_Egypt",           ["Q1145812"]),
+    ("NGX_Nigeria",         ["Q1568804", "Q7039674"]),
+    ("Vienna_WBAG",         ["Q1321140", "Q694446"]),
+    ("Athens_ASE",          ["Q1145898", "Q1138196"]),
+    ("Prague_PSE",          ["Q1797014"]),
+    ("Budapest_BSE",        ["Q1140488"]),
+    ("Bucharest_BVB",       ["Q502974", "Q806224"]),
+    ("Ireland_ISE",         ["Q1145806", "Q1364884"]),
+    ("NZX_New_Zealand",     ["Q686822"]),
+    ("Qatar_QE",            ["Q2632892"]),
+    ("Kuwait_KSE",          ["Q4354970", "Q1781415"]),
 ]
 
-# Indices queried the same way as the S&P 500 (members via P361 / P463).
+# Indices queried via P361 (part of) / P463 (member of) on each candidate QID.
 INDICES = [
-    ("Q242345", "SP500"),            # S&P 500
-    ("Q156014", "Dow_Jones"),        # Dow Jones Industrial Average
-    ("Q14773", "NASDAQ_100"),        # NASDAQ-100
-    ("Q133297", "FTSE_100"),         # FTSE 100 (UK)
-    ("Q924210", "FTSE_250"),         # FTSE 250 (UK)
-    ("Q213629", "CAC_40"),           # CAC 40 (France)
-    ("Q155646", "DAX"),              # DAX (Germany)
-    ("Q156285", "MDAX"),             # MDAX (Germany mid-cap)
-    ("Q157242", "TecDAX"),           # TecDAX (Germany tech)
-    ("Q239064", "Euro_Stoxx_50"),    # Euro Stoxx 50
-    ("Q1478818", "STOXX_Europe_600"),# STOXX Europe 600
-    ("Q195559", "IBEX_35"),          # IBEX 35 (Spain)
-    ("Q198925", "AEX"),              # AEX (Netherlands)
-    ("Q180457", "BEL_20"),           # BEL 20 (Belgium)
-    ("Q190090", "SMI"),              # Swiss Market Index
-    ("Q198229", "FTSE_MIB"),         # FTSE MIB (Italy)
-    ("Q740754", "PSI_20"),           # PSI 20 (Portugal)
-    ("Q1768921", "OMX_Stockholm_30"),# OMXS30
-    ("Q1768918", "OMX_Helsinki_25"), # OMXH25
-    ("Q1900463", "OMX_Copenhagen_25"),# OMXC25
-    ("Q1528531", "OBX"),             # OBX (Oslo)
-    ("Q200518", "ATX"),              # ATX (Austria)
-    ("Q2607891", "ISEQ_20"),         # ISEQ 20 (Ireland)
-    ("Q461724", "WIG_20"),           # WIG20 (Poland)
-    ("Q262284", "BIST_30"),          # BIST 30 (Turkey)
-    ("Q1139792", "MOEX_Russia"),     # MOEX Russia Index
+    ("SP500",               ["Q242345"]),
+    ("Dow_Jones",           ["Q156014", "Q105774521"]),
+    ("NASDAQ_100",          ["Q14773", "Q161054"]),
+    ("Russell_1000",        ["Q1545953"]),
+    ("Russell_2000",        ["Q1545960"]),
+    ("FTSE_100",            ["Q133297", "Q15952612"]),
+    ("FTSE_250",            ["Q924210"]),
+    ("FTSE_All_Share",      ["Q5429618"]),
+    ("CAC_40",              ["Q213629"]),
+    ("CAC_Next_20",         ["Q1023824"]),
+    ("SBF_120",             ["Q1145850"]),
+    ("DAX",                 ["Q155646", "Q124171"]),
+    ("MDAX",                ["Q156285"]),
+    ("SDAX",                ["Q156289"]),
+    ("TecDAX",              ["Q157242"]),
+    ("Euro_Stoxx_50",       ["Q239064"]),
+    ("STOXX_Europe_600",    ["Q1478818"]),
+    ("IBEX_35",             ["Q195559"]),
+    ("AEX",                 ["Q198925", "Q1145823"]),
+    ("BEL_20",              ["Q180457"]),
+    ("SMI",                 ["Q190090"]),
+    ("FTSE_MIB",            ["Q198229", "Q4174776"]),
+    ("PSI_20",              ["Q740754"]),
+    ("OMX_Stockholm_30",    ["Q1768921"]),
+    ("OMX_Helsinki_25",     ["Q1768918"]),
+    ("OMX_Copenhagen_25",   ["Q1900463"]),
+    ("OBX",                 ["Q1528531"]),
+    ("ATX",                 ["Q200518"]),
+    ("ISEQ_20",             ["Q2607891"]),
+    ("WIG_20",              ["Q461724"]),
+    ("BIST_30",             ["Q262284"]),
+    ("BIST_100",            ["Q806262"]),
+    ("MOEX_Russia",         ["Q1139792", "Q1928619"]),
+    ("Nikkei_225",          ["Q672464"]),
+    ("Hang_Seng",           ["Q691419"]),
+    ("KOSPI",               ["Q485947"]),
+    ("ASX_200",             ["Q4807306"]),
+    ("Nifty_50",            ["Q1781125"]),
+    ("Sensex",              ["Q201172"]),
+    ("TSX_60",              ["Q1377025"]),
 ]
 
 
@@ -145,15 +166,15 @@ SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
+  VALUES ?exchange {{ {scope_values} }}
   ?company p:P414 ?listingStmt .
-  ?listingStmt ps:P414 wd:{scope_qid} .
+  ?listingStmt ps:P414 ?exchange .
   OPTIONAL {{ ?listingStmt pq:P249 ?ticker . }}
   OPTIONAL {{ ?listingStmt pq:P580 ?listingStart . }}
   OPTIONAL {{ ?company wdt:P571 ?inception . }}
   OPTIONAL {{ ?company wdt:P159 ?hq . }}
   OPTIONAL {{ ?hq wdt:P17 ?hqCountry . }}
   OPTIONAL {{ ?company wdt:P17 ?companyCountry . }}
-  BIND(wd:{scope_qid} AS ?exchange)
   OPTIONAL {{ ?exchange wdt:P159 ?exchangeCity . }}
   OPTIONAL {{ ?exchange wdt:P17 ?exchangeCountry . }}
 
@@ -177,9 +198,10 @@ SELECT DISTINCT ?company ?companyLabel ?ticker ?listingStart ?inception
        ?person ?personLabel ?dob ?pob ?pobLabel ?gender ?genderLabel
        ?citizenshipLabel ?occupationLabel
 WHERE {{
-  {{ ?company wdt:P361 wd:{scope_qid} }}
+  VALUES ?index {{ {scope_values} }}
+  {{ ?company wdt:P361 ?index }}
   UNION
-  {{ ?company wdt:P463 wd:{scope_qid} }}
+  {{ ?company wdt:P463 ?index }}
 
   OPTIONAL {{
     ?company p:P414 ?listingStmt .
@@ -319,7 +341,7 @@ def load_existing_keys(
 
 
 def process_scope(
-    scope_qid: str,
+    scope_qids: list[str],
     scope_name: str,
     query_template: str,
     state: dict,
@@ -328,6 +350,7 @@ def process_scope(
     seen = load_existing_keys(out_path, state, scope_name)
     fresh = not out_path.exists()
     total = len(seen)
+    scope_values = " ".join(f"wd:{q}" for q in scope_qids)
 
     mode = "w" if fresh else "a"
     with out_path.open(mode, newline="", encoding="utf-8") as f:
@@ -341,7 +364,7 @@ def process_scope(
                 continue
             print(f"[{scope_name}] {role_name}", flush=True)
             sparql = query_template.format(
-                scope_qid=scope_qid, role_pid=role_pid
+                scope_values=scope_values, role_pid=role_pid
             )
             rows = run_query(sparql)
             added = 0
@@ -391,11 +414,11 @@ def main() -> None:
 
     # Indices first so the headline datasets (S&P 500, FTSE 100, DAX…)
     # are written even if exchange runs get timed out later.
-    for qid, name in INDICES:
-        process_scope(qid, name, INDEX_QUERY, state)
+    for name, qids in INDICES:
+        process_scope(qids, name, INDEX_QUERY, state)
 
-    for ex_qid, ex_name in EXCHANGES:
-        process_scope(ex_qid, ex_name, EXCHANGE_QUERY, state)
+    for name, qids in EXCHANGES:
+        process_scope(qids, name, EXCHANGE_QUERY, state)
 
     print("\nDone.")
 
