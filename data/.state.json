@@ -545,6 +545,12 @@
     "OMX_Stockholm:P1037:Q1399969",
     "OMX_Stockholm:P1037:Q852157",
     "OMX_Stockholm:P127:Q1399969",
-    "OMX_Stockholm:P127:Q852157"
+    "OMX_Stockholm:P127:Q852157",
+    "OMX_Helsinki:P169:Q1569738",
+    "OMX_Helsinki:P112:Q1569738",
+    "OMX_Helsinki:P488:Q1569738",
+    "OMX_Helsinki:P3320:Q1569738",
+    "OMX_Helsinki:P1037:Q1569738",
+    "OMX_Helsinki:P127:Q1569738"
   ]
 }
