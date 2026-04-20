@@ -377,6 +377,18 @@
     "TSX_Toronto:P1037:Q1751381",
     "TSX_Toronto:P127:Q482919",
     "TSX_Toronto:P127:Q482920",
-    "TSX_Toronto:P127:Q1751381"
+    "TSX_Toronto:P127:Q1751381",
+    "BSE_Bombay:P169:Q1378029",
+    "BSE_Bombay:P169:Q807565",
+    "BSE_Bombay:P112:Q1378029",
+    "BSE_Bombay:P112:Q807565",
+    "BSE_Bombay:P488:Q1378029",
+    "BSE_Bombay:P488:Q807565",
+    "BSE_Bombay:P3320:Q1378029",
+    "BSE_Bombay:P3320:Q807565",
+    "BSE_Bombay:P1037:Q1378029",
+    "BSE_Bombay:P1037:Q807565",
+    "BSE_Bombay:P127:Q1378029",
+    "BSE_Bombay:P127:Q807565"
   ]
 }
