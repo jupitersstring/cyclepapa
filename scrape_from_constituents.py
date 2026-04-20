@@ -187,14 +187,23 @@ def load_existing_keys(path: Path) -> set[tuple[str, str, str]]:
 
 
 def resolve_tickers(tickers: list[str]) -> dict[str, str]:
-    """Map ticker string -> Wikidata QID via the P249 property."""
+    """Map ticker string -> Wikidata QID.
+
+    Wikidata stores ticker symbols two ways: as a direct property of the
+    company (wdt:P249) or as a qualifier on the company's P414 listing
+    statement (pq:P249). We need both — most companies only have the
+    qualifier form, which is why the truthy lookup missed ~99% of
+    Russell constituents earlier.
+    """
     out: dict[str, str] = {}
-    for batch in chunks(sorted(set(tickers)), 150):
+    for batch in chunks(sorted(set(tickers)), 60):
         values = " ".join(f'"{sparql_escape(t)}"' for t in batch)
         q = f"""
         SELECT ?ticker ?company WHERE {{
           VALUES ?ticker {{ {values} }}
-          ?company wdt:P249 ?ticker .
+          {{ ?company wdt:P249 ?ticker }}
+          UNION
+          {{ ?company p:P414 ?ls . ?ls pq:P249 ?ticker }}
         }}
         """
         rows = run_query(q)
