@@ -2,6 +2,11 @@
   "completed": [
     "constituents:Dow_Jones",
     "constituents:MSCI_Australia",
-    "constituents:MSCI_Austria"
+    "constituents:MSCI_Austria",
+    "constituents:MSCI_Belgium",
+    "constituents:MSCI_Brazil",
+    "constituents:MSCI_Canada",
+    "constituents:MSCI_EAFE",
+    "constituents:MSCI_Emerging_Markets"
   ]
 }
