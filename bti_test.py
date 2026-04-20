@@ -66,13 +66,19 @@ def compute_natal(date_str, hr=14.5):
         c["ASC"] = {"lon": 0, "sign": 0}; c["MC"] = {"lon": 0, "sign": 0}
     return c
 
+_transit_cache = {}
+
 def transits_at(y, m, d=15, hr=12.0):
-    """Planet positions at a given date. Caches for speed."""
+    """Planet positions at a given date. Cached across all callers."""
+    key = (y, m, d, hr)
+    if key in _transit_cache:
+        return _transit_cache[key]
     jd = jd_of(y, m, d, hr)
     t = {"_jd": jd}
     for nm, pid in PLANET_IDS.items():
         res = swe.calc_ut(jd, pid)
         t[nm] = {"lon": res[0][0] % 360, "speed": res[0][3], "retro": res[0][3] < 0}
+    _transit_cache[key] = t
     return t
 
 # --- DIGNITIES (used by Gamma_survive) -------------------------------------
