@@ -389,6 +389,18 @@
     "BSE_Bombay:P1037:Q1378029",
     "BSE_Bombay:P1037:Q807565",
     "BSE_Bombay:P127:Q1378029",
-    "BSE_Bombay:P127:Q807565"
+    "BSE_Bombay:P127:Q807565",
+    "NSE_India:P169:Q571393",
+    "NSE_India:P169:Q1894265",
+    "NSE_India:P112:Q571393",
+    "NSE_India:P112:Q1894265",
+    "NSE_India:P488:Q571393",
+    "NSE_India:P488:Q1894265",
+    "NSE_India:P3320:Q571393",
+    "NSE_India:P3320:Q1894265",
+    "NSE_India:P1037:Q571393",
+    "NSE_India:P1037:Q1894265",
+    "NSE_India:P127:Q571393",
+    "NSE_India:P127:Q1894265"
   ]
 }
