@@ -1,0 +1,3 @@
+person_qid,person_name,dob,role,company_qid,company_name,ticker,ipo_date,company_inception,hq_city,hq_country,company_country,exchange_qid,exchange_name,exchange_city,exchange_country,gender,citizenship,occupation,place_of_birth
+Q22073882,John F. Remondi,1962-05-01T00:00:00Z,CEO,Q1569558,Sallie Mae,,,1972-01-01T00:00:00Z,"Washington, D.C.",United States,United States,,,,,male,,business executive,
+Q130318327,Edward A. Fox,1936-01-01T00:00:00Z,CEO,Q1569558,Sallie Mae,,,1972-01-01T00:00:00Z,"Washington, D.C.",United States,United States,,,,,male,,,
