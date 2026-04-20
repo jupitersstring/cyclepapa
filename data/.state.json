@@ -347,6 +347,12 @@
     "Frankfurt:P488:Q1026145",
     "Frankfurt:P3320:Q1026145",
     "Frankfurt:P1037:Q1026145",
-    "Frankfurt:P127:Q1026145"
+    "Frankfurt:P127:Q1026145",
+    "Shanghai_SSE:P169:Q739514",
+    "Shanghai_SSE:P112:Q739514",
+    "Shanghai_SSE:P488:Q739514",
+    "Shanghai_SSE:P3320:Q739514",
+    "Shanghai_SSE:P1037:Q739514",
+    "Shanghai_SSE:P127:Q739514"
   ]
 }
