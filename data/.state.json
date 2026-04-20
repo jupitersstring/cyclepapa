@@ -773,6 +773,18 @@
     "Budapest_BSE:P488:Q1140488",
     "Budapest_BSE:P3320:Q1140488",
     "Budapest_BSE:P1037:Q1140488",
-    "Budapest_BSE:P127:Q1140488"
+    "Budapest_BSE:P127:Q1140488",
+    "Bucharest_BVB:P169:Q502974",
+    "Bucharest_BVB:P169:Q806224",
+    "Bucharest_BVB:P112:Q502974",
+    "Bucharest_BVB:P112:Q806224",
+    "Bucharest_BVB:P488:Q502974",
+    "Bucharest_BVB:P488:Q806224",
+    "Bucharest_BVB:P3320:Q502974",
+    "Bucharest_BVB:P3320:Q806224",
+    "Bucharest_BVB:P1037:Q502974",
+    "Bucharest_BVB:P1037:Q806224",
+    "Bucharest_BVB:P127:Q502974",
+    "Bucharest_BVB:P127:Q806224"
   ]
 }
