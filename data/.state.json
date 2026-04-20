@@ -5,6 +5,18 @@
     "SP500:P488:Q242345",
     "SP500:P3320:Q242345",
     "SP500:P1037:Q242345",
-    "SP500:P127:Q242345"
+    "SP500:P127:Q242345",
+    "Dow_Jones:P169:Q156014",
+    "Dow_Jones:P169:Q105774521",
+    "Dow_Jones:P112:Q156014",
+    "Dow_Jones:P112:Q105774521",
+    "Dow_Jones:P488:Q156014",
+    "Dow_Jones:P488:Q105774521",
+    "Dow_Jones:P3320:Q156014",
+    "Dow_Jones:P3320:Q105774521",
+    "Dow_Jones:P1037:Q156014",
+    "Dow_Jones:P1037:Q105774521",
+    "Dow_Jones:P127:Q156014",
+    "Dow_Jones:P127:Q105774521"
   ]
 }
