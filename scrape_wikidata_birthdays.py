@@ -293,9 +293,12 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True))
 
 
-def load_existing_keys(path: Path) -> set[tuple[str, str, str]]:
+def load_existing_keys(
+    path: Path, state: dict, scope_name: str
+) -> set[tuple[str, str, str]]:
     """Return already-written (person, role, company) keys so we can dedupe
-    across runs. If the file's schema is outdated, wipe it."""
+    across runs. If the file's schema is outdated, wipe it AND clear the
+    scope's completion entries so it gets re-queried."""
     if not path.exists():
         return set()
     with path.open(newline="", encoding="utf-8") as f:
@@ -303,6 +306,11 @@ def load_existing_keys(path: Path) -> set[tuple[str, str, str]]:
         if reader.fieldnames != FIELDNAMES:
             print(f"  {path.name}: schema mismatch, removing", flush=True)
             path.unlink()
+            prefix = f"{scope_name}:"
+            state["completed"] = [
+                k for k in state["completed"] if not k.startswith(prefix)
+            ]
+            save_state(state)
             return set()
         return {
             (row["person_qid"], row["role"], row["company_qid"])
@@ -317,7 +325,7 @@ def process_scope(
     state: dict,
 ) -> None:
     out_path = DATA_DIR / f"{scope_name}.csv"
-    seen = load_existing_keys(out_path)
+    seen = load_existing_keys(out_path, state, scope_name)
     fresh = not out_path.exists()
     total = len(seen)
 
