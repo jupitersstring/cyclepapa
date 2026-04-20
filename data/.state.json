@@ -749,6 +749,18 @@
     "Vienna_WBAG:P1037:Q1321140",
     "Vienna_WBAG:P1037:Q694446",
     "Vienna_WBAG:P127:Q1321140",
-    "Vienna_WBAG:P127:Q694446"
+    "Vienna_WBAG:P127:Q694446",
+    "Athens_ASE:P169:Q1145898",
+    "Athens_ASE:P169:Q1138196",
+    "Athens_ASE:P112:Q1145898",
+    "Athens_ASE:P112:Q1138196",
+    "Athens_ASE:P488:Q1145898",
+    "Athens_ASE:P488:Q1138196",
+    "Athens_ASE:P3320:Q1145898",
+    "Athens_ASE:P3320:Q1138196",
+    "Athens_ASE:P1037:Q1145898",
+    "Athens_ASE:P1037:Q1138196",
+    "Athens_ASE:P127:Q1145898",
+    "Athens_ASE:P127:Q1138196"
   ]
 }
