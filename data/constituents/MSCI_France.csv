@@ -1,1 +1,105 @@
 ticker,name,weight,sector
+CBA,COMMONWEALTH BANK OF AUSTRALIA,9.28,Financials
+BHP,BHP GROUP LTD,8.85,Materials
+1299,AIA GROUP LTD,4.76,Financials
+WBC,WESTPAC BANKING CORPORATION CORP,4.23,Financials
+D05,DBS GROUP HOLDINGS LTD,4.10,Financials
+NAB,NATIONAL AUSTRALIA BANK LTD,4.06,Financials
+ANZ,ANZ GROUP HOLDINGS LTD,3.55,Financials
+MQG,MACQUARIE GROUP LTD DEF,2.73,Financials
+O39,OVERSEA-CHINESE BANKING LTD,2.61,Financials
+WES,WESFARMERS LTD,2.60,Consumer Discretionary
+388,HONG KONG EXCHANGES AND CLEARING L,2.51,Financials
+CSL,CSL LTD,2.07,Health Care
+RIO,RIO TINTO LTD,2.01,Materials
+WDS,WOODSIDE ENERGY GROUP LTD,1.93,Energy
+GMG,GOODMAN GROUP UNITS,1.86,Real Estate
+U11,UNITED OVERSEAS BANK LTD,1.59,Financials
+SE,SEA ADS REPRESENTING LTD CLASS A,1.57,Consumer Discretionary
+WOW,WOOLWORTHS GROUP LTD,1.39,Consumer Staples
+TCL,TRANSURBAN GROUP STAPLED UNITS,1.31,Industrials
+Z74,SINGAPORE TELECOMMUNICATIONS LTD,1.22,Communication
+FMG,FORTESCUE LTD,1.12,Materials
+16,SUN HUNG KAI PROPERTIES LTD,1.07,Real Estate
+QBE,QBE INSURANCE GROUP LTD,1.06,Financials
+NST,NORTHERN STAR RESOURCES LTD,1.00,Materials
+1,CK HUTCHISON HOLDINGS LTD,0.96,Industrials
+BXB,BRAMBLES LTD,0.94,Industrials
+COL,COLES GROUP LTD,0.94,Consumer Staples
+2388,BOC HONG KONG HOLDINGS LTD,0.92,Financials
+669,TECHTRONIC INDUSTRIES LTD,0.89,Industrials
+EVN,EVOLUTION MINING LTD,0.85,Materials
+ALL,ARISTOCRAT LEISURE LTD,0.85,Consumer Discretionary
+STO,SANTOS LTD,0.77,Energy
+2,CLP HOLDINGS LTD,0.68,Utilities
+ORG,ORIGIN ENERGY LTD,0.66,Utilities
+TLS,TELSTRA GROUP LTD,0.65,Communication
+S32,SOUTH32 LTD,0.63,Materials
+S68,SINGAPORE EXCHANGE LTD,0.63,Financials
+S63,SINGAPORE TECHNOLOGIES ENGINEERING,0.60,Industrials
+BN4,KEPPEL LTD,0.60,Industrials
+LYC,LYNAS RARE EARTHS LTD,0.59,Materials
+FPH,FISHER AND PAYKEL HEALTHCARE CORPO,0.58,Health Care
+SUN,SUNCORP GROUP LTD,0.57,Financials
+SCG,SCENTRE GROUP,0.57,Real Estate
+823,LINK REAL ESTATE INVESTMENT TRUST,0.57,Real Estate
+IAG,INSURANCE AUSTRALIA GROUP LTD,0.55,Financials
+J36,JARDINE MATHESON HOLDINGS LTD,0.52,Industrials
+1113,CK ASSET HOLDINGS LTD,0.51,Real Estate
+CPU,COMPUTERSHARE LTD,0.50,Industrials
+CICT,CAPITALAND INTEGRATED COMMERCIAL T,0.50,Real Estate
+288,WH GROUP LTD,0.50,Consumer Staples
+6,POWER ASSETS HOLDINGS LTD,0.49,Utilities
+SOL,WASHINGTON H SOUL PATTINSON & COMP,0.46,Financials
+3,HONG KONG AND CHINA GAS LTD,0.46,Utilities
+SIG,SIGMA HEALTHCARE LTD,0.45,Health Care
+GRAB,GRAB HOLDINGS LTD CLASS A,0.45,Industrials
+XRO,XERO LTD,0.44,Information Technology
+FUTU,FUTU HOLDINGS ADR LTD,0.41,Financials
+MPL,MEDIBANK PRIVATE LTD,0.40,Financials
+27,GALAXY ENTERTAINMENT GROUP LTD,0.40,Consumer Discretionary
+APA,APA GROUP UNITS,0.40,Utilities
+ASX,ASX LTD,0.39,Financials
+H78,HONGKONG LAND HOLDINGS LTD,0.38,Real Estate
+TLC,THE LOTTERY CORPORATION LTD,0.37,Consumer Discretionary
+BS6,YANGZIJIANG SHIPBUILDING (HOLDINGS,0.37,Industrials
+C6L,SINGAPORE AIRLINES LTD,0.36,Industrials
+CLAR,CAPITALAND ASCENDAS REIT,0.36,Real Estate
+AIA,AUCKLAND INTERNATIONAL AIRPORT LTD,0.35,Industrials
+COH,COCHLEAR LTD,0.34,Health Care
+SGP,STOCKLAND STAPLED UNITS LTD,0.31,Real Estate
+CAR,CAR GROUP LTD,0.31,Communication
+66,MTR CORPORATION CORP LTD,0.31,Industrials
+IFT,INFRATIL LTD,0.31,Financials
+VCX,VICINITY CENTRES,0.30,Real Estate
+REA,REA GROUP LTD,0.30,Communication
+WTC,WISETECH GLOBAL LTD,0.30,Information Technology
+SHL,SONIC HEALTHCARE LTD,0.29,Health Care
+1308,SITC INTERNATIONAL HOLDINGS LTD,0.27,Industrials
+PME,PRO MEDICUS LTD,0.26,Health Care
+SGH,SGH LTD,0.26,Industrials
+6823,HKT TRUST AND HKT UNITS LTD,0.26,Communication
+F34,WILMAR INTERNATIONAL LTD,0.26,Consumer Staples
+83,SINO LAND LTD,0.25,Real Estate
+12,HENDERSON LAND DEVELOPMENT LTD,0.25,Real Estate
+1928,SANDS CHINA LTD,0.24,Consumer Discretionary
+AUD,AUD CASH,0.24,Cash and/or Derivatives
+9CI,CAPITALAND INVESTMENT LTD,0.24,Real Estate
+1038,CHEUNG KONG INFRASTRUCTURE HOLDING,0.23,Utilities
+1997,WHARF REAL ESTATE INVESTMENT COMPA,0.23,Real Estate
+U96,SEMBCORP INDUSTRIES LTD,0.22,Utilities
+CEN,CONTACT ENERGY LTD,0.21,Utilities
+QAN,QANTAS AIRWAYS LTD,0.21,Industrials
+MEL,MERIDIAN ENERGY LTD,0.19,Utilities
+19,SWIRE PACIFIC LTD A,0.17,Industrials
+4,WHARF (HOLDINGS) LTD,0.13,Real Estate
+SGD,SGD CASH,0.09,Cash and/or Derivatives
+HKD,HKD CASH,0.05,Cash and/or Derivatives
+JPFFT,CASH COLLATERAL AUD JPFFT,0.02,Cash and/or Derivatives
+JPFFT,CASH COLLATERAL SGD JPFFT,0.01,Cash and/or Derivatives
+USD,USD CASH,0.01,Cash and/or Derivatives
+NZD,NZD CASH,0.01,Cash and/or Derivatives
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.00,Cash and/or Derivatives
+QZJ6,MSCI SING IX ETS APR 26,0.00,Cash and/or Derivatives
+XPM6,SPI 200 JUN 26,0.00,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

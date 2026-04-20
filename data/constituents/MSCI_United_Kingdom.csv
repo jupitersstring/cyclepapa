@@ -1,1 +1,81 @@
 ticker,name,weight,sector
+HSBA,HSBC HOLDINGS PLC,9.59,Financials
+AZN,ASTRAZENECA PLC,9.59,Health Care
+SHEL,SHELL PLC,7.45,Energy
+RR.,ROLLS-ROYCE HOLDINGS PLC,4.50,Industrials
+ULVR,UNILEVER PLC,3.83,Consumer Staples
+BATS,BRITISH AMERICAN TOBACCO,3.69,Consumer Staples
+GSK,GLAXOSMITHKLINE,3.57,Health Care
+BP.,BP PLC,3.48,Energy
+RIO,RIO TINTO PLC,3.44,Materials
+BA.,BAE SYSTEMS PLC,2.77,Industrials
+NG.,NATIONAL GRID PLC,2.59,Utilities
+BARC,BARCLAYS PLC,2.56,Financials
+LLOY,LLOYDS BANKING GROUP PLC,2.53,Financials
+GLEN,GLENCORE PLC,2.23,Materials
+NWG,NATWEST GROUP PLC,2.05,Financials
+REL,RELX PLC,2.02,Industrials
+LSEG,LONDON STOCK EXCHANGE GROUP PLC,1.77,Financials
+AAL,ANGLO AMERICAN PLC,1.70,Materials
+CPG,COMPASS GROUP PLC,1.46,Consumer Discretionary
+STAN,STANDARD CHARTERED PLC,1.44,Financials
+DGE,DIAGEO PLC,1.38,Consumer Staples
+RKT,RECKITT BENCKISER GROUP PLC,1.37,Consumer Staples
+HLN,HALEON PLC,1.31,Health Care
+TSCO,TESCO PLC,1.27,Consumer Staples
+SSE,SSE PLC,1.22,Utilities
+III,3I GROUP PLC,1.18,Financials
+PRU,PRUDENTIAL PLC,1.18,Financials
+EXPN,EXPERIAN PLC,1.08,Industrials
+SUNB,SUNBELT RENTALS HOLDINGS INC,0.89,Industrials
+VOD,VODAFONE GROUP PLC,0.88,Communication
+IMB,IMPERIAL BRANDS PLC,0.86,Consumer Staples
+AV.,AVIVA PLC,0.80,Financials
+GBP,GBP CASH,0.74,Cash and/or Derivatives
+HLMA,HALMA PLC,0.70,Information Technology
+NXT,NEXT PLC,0.64,Consumer Discretionary
+ANTO,ANTOFAGASTA PLC,0.64,Materials
+IHG,INTERCONTINENTAL HOTELS GROUP PLC,0.64,Consumer Discretionary
+LGEN,LEGAL AND GENERAL GROUP PLC,0.61,Financials
+BT.A,BT GROUP PLC,0.53,Communication
+RTO,RENTOKIL INITIAL PLC,0.52,Industrials
+INF,INFORMA PLC,0.45,Communication
+SN.,SMITH AND NEPHEW PLC,0.42,Health Care
+EDV,ENDEAVOUR MINING,0.40,Materials
+CCH,COCA COLA HBC AG,0.39,Consumer Staples
+SGRO,SEGRO REIT PLC,0.39,Real Estate
+UU.,UNITED UTILITIES GROUP PLC,0.38,Utilities
+CNA,CENTRICA PLC,0.37,Utilities
+SGE,THE SAGE GROUP PLC,0.36,Information Technology
+ADM,ADMIRAL GROUP PLC,0.36,Financials
+SVT,SEVERN TRENT PLC,0.35,Utilities
+SMIN,SMITHS GROUP PLC,0.34,Industrials
+FRES,FRESNILLO PLC,0.34,Materials
+ITRK,INTERTEK GROUP PLC,0.31,Industrials
+BNZL,BUNZL,0.31,Industrials
+MKS,MARKS AND SPENCER GROUP PLC,0.31,Consumer Staples
+WISE,WISE PLC CLASS A,0.30,Financials
+MRO,MELROSE INDUSTRIES PLC,0.29,Industrials
+MNG,M&G PLC,0.28,Financials
+PSON,PEARSON PLC,0.25,Consumer Discretionary
+SBRY,SAINSBURY(J) PLC,0.25,Consumer Staples
+ABF,ASSOCIATED BRITISH FOODS PLC,0.25,Consumer Staples
+SPX,SPIRAX GROUP PLC,0.23,Industrials
+USD,USD CASH,0.23,Cash and/or Derivatives
+KGF,KINGFISHER PLC,0.22,Consumer Discretionary
+SDLF,STANDARD LIFE PLC,0.22,Financials
+AUTO,AUTOTRADER GROUP PLC,0.18,Communication
+LAND,LAND SECURITIES GROUP REIT PLC,0.18,Real Estate
+WTB,WHITBREAD PLC,0.18,Consumer Discretionary
+SDR,SCHRODERS PLC,0.17,Financials
+ENT,ENTAIN PLC,0.16,Consumer Discretionary
+BTRW,BARRATT REDROW PLC,0.16,Consumer Discretionary
+AAF,AIRTEL AFRICA PLC,0.13,Communication
+JD.,JD SPORTS FASHION PLC,0.08,Consumer Discretionary
+UBFUT,CASH COLLATERAL GBP UBFUT,0.06,Cash and/or Derivatives
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.01,Cash and/or Derivatives
+EUR,EUR CASH,0.00,Cash and/or Derivatives
+ETD_USD,ETD USD BALANCE WITH R93531,0.00,Cash and/or Derivatives
+NMC,NMC HEALTH PLC,0.00,Health Care
+Z M6,FTSE 100 INDEX JUN 26,0.00,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

@@ -1,1 +1,186 @@
 ticker,name,weight,sector
+8306,MITSUBISHI UFJ FINANCIAL GROUP INC,4.11,Financials
+7203,TOYOTA MOTOR CORP,4.02,Consumer Discretionary
+6501,HITACHI LTD,3.00,Industrials
+6857,ADVANTEST CORP,2.71,Information Technology
+6758,SONY GROUP CORP,2.65,Consumer Discretionary
+8316,SUMITOMO MITSUI FINANCIAL GROUP IN,2.60,Financials
+8035,TOKYO ELECTRON LTD,2.50,Information Technology
+8411,MIZUHO FINANCIAL GROUP INC,2.14,Financials
+9984,SOFTBANK GROUP CORP,2.13,Communication
+8058,MITSUBISHI CORP,2.03,Industrials
+8031,MITSUI LTD,1.82,Industrials
+9983,FAST RETAILING LTD,1.79,Consumer Discretionary
+7011,MITSUBISHI HEAVY INDUSTRIES LTD,1.78,Industrials
+8766,TOKIO MARINE HOLDINGS INC,1.62,Financials
+6861,KEYENCE CORP,1.55,Information Technology
+8001,ITOCHU CORP,1.49,Industrials
+4063,SHIN ETSU CHEMICAL LTD,1.48,Materials
+6503,MITSUBISHI ELECTRIC CORP,1.40,Industrials
+6098,RECRUIT HOLDINGS LTD,1.35,Industrials
+7741,HOYA CORP,1.25,Health Care
+7974,NINTENDO LTD,1.21,Communication
+4502,TAKEDA PHARMACEUTICAL LTD,1.13,Health Care
+5803,FUJIKURA LTD,1.10,Industrials
+8002,MARUBENI CORP,1.05,Industrials
+6981,MURATA MANUFACTURING LTD,0.97,Information Technology
+JPY,JPY CASH,0.97,Cash and/or Derivatives
+9433,KDDI CORP,0.96,Communication
+5802,SUMITOMO ELECTRIC INDUSTRIES LTD,0.90,Consumer Discretionary
+2914,JAPAN TOBACCO INC,0.88,Consumer Staples
+6752,PANASONIC HOLDINGS CORP,0.86,Consumer Discretionary
+6146,DISCO CORP,0.85,Information Technology
+6702,FUJITSU LTD,0.84,Information Technology
+8053,SUMITOMO CORP,0.83,Industrials
+9434,SOFTBANK CORP,0.82,Communication
+6301,KOMATSU LTD,0.81,Industrials
+8591,ORIX CORP,0.74,Financials
+6954,FANUC CORP,0.74,Industrials
+285A,KIOXIA HOLDINGS CORP,0.73,Information Technology
+6367,DAIKIN INDUSTRIES LTD,0.71,Industrials
+4519,CHUGAI PHARMACEUTICAL LTD,0.71,Health Care
+6701,NEC CORP,0.70,Information Technology
+4568,DAIICHI SANKYO LTD,0.67,Health Care
+8630,SOMPO HOLDINGS INC,0.66,Financials
+8725,MS&AD INSURANCE GROUP HOLDINGS INC,0.66,Financials
+8750,DAIICHI LIFE GROUP INC,0.65,Financials
+6762,TDK CORP,0.65,Information Technology
+6723,RENESAS ELECTRONICS CORP,0.63,Information Technology
+7182,JAPAN POST BANK LTD,0.62,Financials
+7267,HONDA MOTOR LTD,0.61,Consumer Discretionary
+8802,MITSUBISHI ESTATE CO LTD,0.61,Real Estate
+4503,ASTELLAS PHARMA INC,0.59,Health Care
+9432,NTT INC,0.59,Communication
+4578,OTSUKA HOLDINGS LTD,0.58,Health Care
+8801,MITSUI FUDOSAN LTD,0.58,Real Estate
+8015,TOYOTA TSUSHO CORP,0.55,Industrials
+3382,SEVEN & I HOLDINGS LTD,0.54,Consumer Staples
+2802,AJINOMOTO INC,0.53,Consumer Staples
+6273,SMC (JAPAN) CORP,0.52,Industrials
+8308,RESONA HOLDINGS INC,0.52,Financials
+8604,NOMURA HOLDINGS INC,0.51,Financials
+7751,CANON INC,0.49,Information Technology
+5108,BRIDGESTONE CORP,0.49,Consumer Discretionary
+8267,AEON LTD,0.48,Consumer Staples
+5020,ENEOS HOLDINGS INC,0.47,Energy
+4901,FUJIFILM HOLDINGS CORP,0.45,Information Technology
+1605,INPEX CORP,0.45,Energy
+6971,KYOCERA CORP,0.44,Information Technology
+8309,SUMITOMO MITSUI TRUST GROUP INC,0.43,Financials
+6902,DENSO CORP,0.43,Consumer Discretionary
+9020,EAST JAPAN RAILWAY,0.43,Industrials
+6178,JAPAN POST HOLDINGS LTD,0.42,Financials
+9022,CENTRAL JAPAN RAILWAY,0.41,Industrials
+7013,IHI CORP,0.41,Industrials
+7936,ASICS CORP,0.41,Consumer Discretionary
+6920,LASERTEC CORP,0.41,Information Technology
+7269,SUZUKI MOTOR CORP,0.38,Consumer Discretionary
+4543,TERUMO CORP,0.37,Health Care
+5401,NIPPON STEEL CORP,0.37,Materials
+4661,ORIENTAL LAND LTD,0.36,Consumer Discretionary
+8830,SUMITOMO REALTY & DEVELOPMENT LTD,0.36,Real Estate
+5016,JX ADVANCED METALS CORP,0.35,Materials
+4452,KAO CORP,0.35,Consumer Staples
+1925,DAIWA HOUSE INDUSTRY LTD,0.35,Real Estate
+2502,ASAHI GROUP HOLDINGS LTD,0.32,Consumer Staples
+5713,SUMITOMO METAL MINING LTD,0.32,Materials
+9101,NIPPON YUSEN,0.32,Industrials
+1812,KAJIMA CORP,0.32,Industrials
+6326,KUBOTA CORP,0.32,Industrials
+4507,SHIONOGI LTD,0.31,Health Care
+9735,SECOM LTD,0.31,Industrials
+9503,KANSAI ELECTRIC POWER INC,0.30,Utilities
+1802,OBAYASHI CORP,0.30,Industrials
+1801,TAISEI CORP,0.30,Industrials
+7012,KAWASAKI HEAVY INDUSTRIES LTD,0.30,Industrials
+7832,BANDAI NAMCO HOLDINGS INC,0.29,Consumer Discretionary
+6988,NITTO DENKO CORP,0.29,Materials
+6361,EBARA CORP,0.29,Industrials
+4062,IBIDEN LTD,0.28,Information Technology
+9532,OSAKA GAS LTD,0.28,Utilities
+9531,TOKYO GAS LTD,0.28,Utilities
+9104,MITSUI OSK LINES LTD,0.28,Industrials
+9766,KONAMI GROUP CORP,0.27,Communication
+3407,ASAHI KASEI CORP,0.26,Materials
+1928,SEKISUI HOUSE LTD,0.26,Consumer Discretionary
+6383,DAIFUKU LTD,0.26,Industrials
+8601,DAIWA SECURITIES GROUP INC,0.26,Financials
+2503,KIRIN HOLDINGS LTD,0.26,Consumer Staples
+7453,RYOHIN KEIKAKU LTD,0.25,Consumer Discretionary
+9502,CHUBU ELECTRIC POWER INC,0.25,Utilities
+6594,NIDEC CORP,0.24,Industrials
+8697,JAPAN EXCHANGE GROUP INC,0.24,Financials
+8795,T&D HOLDINGS INC,0.24,Financials
+4307,NOMURA RESEARCH INSTITUTE LTD,0.23,Information Technology
+7532,PAN PACIFIC INTERNATIONAL HOLDINGS,0.23,Consumer Discretionary
+8473,SBI HOLDINGS INC,0.23,Financials
+7733,OLYMPUS CORP,0.22,Health Care
+6504,FUJI ELECTRIC LTD,0.22,Industrials
+7735,SCREEN HOLDINGS LTD,0.22,Information Technology
+3402,TORAY INDUSTRIES INC,0.20,Materials
+7186,YOKOHAMA FINANCIAL GROUP INC,0.20,Financials
+7270,SUBARU CORP,0.19,Consumer Discretionary
+1803,SHIMIZU CORP,0.18,Industrials
+4684,OBIC LTD,0.17,Information Technology
+8593,MITSUBISHI HC CAPITAL INC,0.16,Financials
+4523,EISAI LTD,0.16,Health Care
+9697,CAPCOM LTD,0.16,Communication
+4755,RAKUTEN GROUP INC,0.16,Consumer Discretionary
+7309,SHIMANO INC,0.16,Consumer Discretionary
+9021,WEST JAPAN RAILWAY,0.16,Industrials
+6586,MAKITA CORP,0.16,Industrials
+7202,ISUZU MOTORS LTD,0.16,Consumer Discretionary
+4911,SHISEIDO LTD,0.16,Consumer Staples
+6841,YOKOGAWA ELECTRIC CORP,0.16,Information Technology
+8331,CHIBA BANK LTD,0.16,Financials
+4188,MITSUBISHI CHEMICAL GROUP CORP,0.15,Materials
+7912,DAI NIPPON PRINTING LTD,0.15,Industrials
+4689,LY CORP,0.15,Communication
+5019,IDEMITSU KOSAN LTD,0.15,Energy
+9042,HANKYU HANSHIN HOLDINGS INC,0.15,Industrials
+7259,AISIN CORP,0.14,Consumer Discretionary
+5201,AGC INC,0.14,Industrials
+7911,TOPPAN HOLDINGS INC,0.14,Industrials
+8113,UNICHARM CORP,0.14,Consumer Staples
+6479,MINEBEA MITSUMI INC,0.14,Industrials
+8951,NIPPON BUILDING FUND REIT INC,0.13,Real Estate
+7272,YAMAHA MOTOR LTD,0.13,Consumer Discretionary
+3659,NEXON LTD,0.13,Communication
+5411,JFE HOLDINGS INC,0.13,Materials
+1878,DAITO TRUST CONSTRUCTION LTD,0.13,Real Estate
+4091,NIPPON SANSO HOLDINGS CORP,0.13,Materials
+9843,NITORI HOLDINGS LTD,0.13,Consumer Discretionary
+2801,KIKKOMAN CORP,0.13,Consumer Staples
+4612,NIPPON PAINT HOLDINGS LTD,0.12,Materials
+4204,SEKISUI CHEMICAL LTD,0.12,Industrials
+9107,KAWASAKI KISEN LTD,0.12,Industrials
+8136,SANRIO LTD,0.12,Consumer Discretionary
+9005,TOKYU CORP,0.12,Industrials
+8729,SONY FINANCIAL GROUP INC,0.12,Financials
+7701,SHIMADZU CORP,0.11,Information Technology
+7181,JAPAN POST INSURANCE LTD,0.11,Financials
+3003,HULIC LTD,0.11,Real Estate
+9024,SEIBU HOLDINGS INC,0.11,Industrials
+7550,ZENSHO HOLDINGS LTD,0.11,Consumer Discretionary
+7201,NISSAN MOTOR LTD,0.10,Consumer Discretionary
+3626,TIS INC,0.10,Information Technology
+9602,TOHO (TOKYO) LTD,0.10,Communication
+3088,MATSUKIYOKARA,0.10,Consumer Staples
+6869,SYSMEX CORP,0.09,Health Care
+2413,M3 INC,0.09,Health Care
+4768,OTSUKA CORP,0.09,Information Technology
+9435,HIKARI TSUSHIN INC,0.08,Industrials
+2587,SUNTORY BEVERAGE & FOOD LTD,0.08,Consumer Staples
+4151,KYOWA KIRIN LTD,0.07,Health Care
+UBFUT,CASH COLLATERAL JPY UBFUT,0.07,Cash and/or Derivatives
+3092,ZOZO INC,0.06,Consumer Discretionary
+3064,MONOTARO LTD,0.06,Industrials
+3391,TSURUHA HOLDINGS INC,0.06,Consumer Staples
+9202,ANA HOLDINGS INC,0.06,Industrials
+4716,ORACLE JAPAN CORP,0.05,Information Technology
+9201,JAPAN AIRLINES LTD,0.05,Industrials
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.02,Cash and/or Derivatives
+ETD_JPY,ETD JPY BALANCE WITH R30382,0.00,Cash and/or Derivatives
+TPM6,TOPIX INDEX JUN 26,0.00,Cash and/or Derivatives
+USD,USD CASH,-0.02,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

@@ -1,1 +1,49 @@
 ticker,name,weight,sector
+NOVN,NOVARTIS AG,13.73,Health Care
+ROP,ROCHE PS PAR AG,13.68,Health Care
+NESN,NESTLE SA,12.32,Consumer Staples
+ABBN,ABB LTD,4.89,Industrials
+UBSG,UBS GROUP AG,4.80,Financials
+CFR,COMPAGNIE FINANCIERE RICHEMONT SA,4.56,Consumer Discretionary
+ZURN,ZURICH INSURANCE GROUP AG,4.49,Financials
+SREN,SWISS RE AG,2.61,Financials
+LONN,LONZA GROUP AG,2.57,Health Care
+HOLN,HOLCIM LTD AG,2.55,Materials
+ALC,ALCON AG,2.18,Health Care
+GALD,GALDERMA GROUP N AG,2.13,Health Care
+SDZ,SANDOZ GROUP AG,1.98,Health Care
+SLHN,SWISS LIFE HOLDING AG,1.88,Financials
+GIVN,GIVAUDAN SA,1.87,Materials
+CHF,CHF CASH,1.70,Cash and/or Derivatives
+SIKA,SIKA AG,1.68,Materials
+PGHN,PARTNERS GROUP HOLDING AG,1.53,Financials
+HBAN,HELVETIA BALOISE HOLDING N AG,1.51,Financials
+GEBN,GEBERIT AG,1.35,Industrials
+VACN,VAT GROUP AG,1.33,Industrials
+SCMN,SWISSCOM AG,1.26,Communication
+SGSN,SGS SA,1.10,Industrials
+BAER,JULIUS BAER GRUPPE AG,1.01,Financials
+SPSN,SWISS PRIME SITE AG,0.91,Real Estate
+LOGN,LOGITECH INTERNATIONAL SA,0.90,Information Technology
+SCHP,SCHINDLER HOLDING PAR AG,0.89,Industrials
+LISN,CHOCOLADEFABRIKEN LINDT & SPRUENGL,0.88,Consumer Staples
+STMN,STRAUMANN HOLDING AG,0.81,Health Care
+KNIN,KUEHNE UND NAGEL INTERNATIONAL AG,0.78,Industrials
+SOON,SONOVA HOLDING AG,0.77,Health Care
+LISP,CHOCOLADEFABRIKEN LINDT & SPRUENGL,0.75,Consumer Staples
+BEAN,BELIMO N AG,0.65,Industrials
+SCHN,SCHINDLER HOLDING AG,0.57,Industrials
+UHR,THE SWATCH GROUP AG,0.54,Consumer Discretionary
+EMSN,EMS-CHEMIE HOLDING AG,0.53,Materials
+AVOL,AVOLTA AG,0.51,Consumer Discretionary
+BCVN,BC VAUD N,0.47,Financials
+BARN,BARRY CALLEBAUT AG,0.41,Consumer Staples
+RO,ROCHE HOLDING AG,0.39,Health Care
+BKW,BKW N AG,0.39,Utilities
+MSFUT,CASH COLLATERAL EUR MSFUT,0.10,Cash and/or Derivatives
+SGSN,SGS SA COUPON,0.04,Industrials
+EUR,EUR CASH,0.01,Cash and/or Derivatives
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.00,Cash and/or Derivatives
+SMM6,SWISS MKT IX JUN 26,0.00,Cash and/or Derivatives
+USD,USD CASH,-0.02,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

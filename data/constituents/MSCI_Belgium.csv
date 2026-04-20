@@ -1,1 +1,34 @@
 ticker,name,weight,sector
+PBBANK,PUBLIC BANK,13.38,Financials
+MAYBANK,MALAYAN BANKING,13.17,Financials
+CIMB,CIMB GROUP HOLDINGS,11.88,Financials
+TENAGA,TENAGA NASIONAL,7.38,Utilities
+PMETAL,PRESS METAL ALUMINIUM HOLDINGS,5.80,Materials
+GAMUDA,GAMUDA,4.02,Industrials
+IHH,IHH HEALTHCARE,3.79,Health Care
+AMBANK,AMMB HOLDINGS,3.00,Financials
+HLBANK,HONG LEONG BANK,2.84,Financials
+SWB,SUNWAY BHD,2.83,Industrials
+RHBBANK,RHB BANK,2.80,Financials
+PETGAS,PETRONAS GAS,2.80,Utilities
+PCHEM,PETRONAS CHEMICALS GROUP,2.63,Materials
+SDG,SD GUTHRIE,2.44,Consumer Staples
+YTLPOWR,YTL POWER INTERNATIONAL,2.22,Utilities
+MISC,MISC,2.15,Industrials
+IOICORP,IOI CORPORATION,2.11,Consumer Staples
+KLK,KUALA LUMPUR KEPONG,2.08,Consumer Staples
+CDB,CELCOMDIGI,2.05,Communication
+MAXIS,MAXIS,1.69,Communication
+TM,TELEKOM MALAYSIA,1.59,Communication
+NESTLE,NESTLE MALAYSIA,1.37,Consumer Staples
+AXIATA,AXIATA GROUP,1.22,Communication
+QL,QL RESOURCES,1.21,Consumer Staples
+PETDAG,PETRONAS DAGANGAN,1.21,Consumer Discretionary
+YTL,YTL CORPORATION,1.11,Utilities
+MRDIY,MR D.I.Y. GROUP (M),1.05,Consumer Discretionary
+MYR,MYR CASH,0.25,Cash and/or Derivatives
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.13,Cash and/or Derivatives
+HBCFT,CASH COLLATERAL USD HBCFT,0.01,Cash and/or Derivatives
+MESM6,MSCI EMER MKT INDEX (ICE) JUN 26,0.00,Cash and/or Derivatives
+USD,USD CASH,-0.18,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

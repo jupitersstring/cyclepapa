@@ -1,1 +1,177 @@
 ticker,name,weight,sector
+CSCO,CISCO SYSTEMS INC,1.70,Information Technology
+NVDA,NVIDIA CORP,1.65,Information Technology
+MSFT,MICROSOFT CORP,1.61,Information Technology
+APH,AMPHENOL CORP CLASS A,1.54,Information Technology
+DUK,DUKE ENERGY CORP,1.53,Utilities
+XOM,EXXON MOBIL CORP,1.51,Energy
+CB,CHUBB,1.51,Financials
+SO,SOUTHERN,1.49,Utilities
+MSI,MOTOROLA SOLUTIONS INC,1.46,Information Technology
+JNJ,JOHNSON & JOHNSON,1.45,Health Care
+VZ,VERIZON COMMUNICATIONS INC,1.44,Communication
+BRKB,BERKSHIRE HATHAWAY INC CLASS B,1.41,Financials
+WM,WASTE MANAGEMENT INC,1.41,Industrials
+VRTX,VERTEX PHARMACEUTICALS INC,1.40,Health Care
+MCK,MCKESSON CORP,1.38,Health Care
+COR,CENCORA INC,1.36,Health Care
+ED,CONSOLIDATED EDISON INC,1.32,Utilities
+MCD,MCDONALDS CORP,1.31,Consumer Discretionary
+MRK,MERCK & CO INC,1.27,Health Care
+RSG,REPUBLIC SERVICES INC,1.25,Industrials
+WCN,WASTE CONNECTIONS INC,1.23,Industrials
+NEM,NEWMONT,1.23,Materials
+IBM,INTERNATIONAL BUSINESS MACHINES CO,1.21,Information Technology
+MA,MASTERCARD INC CLASS A,1.19,Financials
+TMUS,T MOBILE US INC,1.17,Communication
+TJX,TJX INC,1.17,Consumer Discretionary
+KO,COCA-COLA,1.14,Consumer Staples
+PG,PROCTER & GAMBLE,1.10,Consumer Staples
+PGR,PROGRESSIVE CORP,1.07,Financials
+TRV,TRAVELERS COMPANIES INC,1.07,Financials
+CBOE,CBOE GLOBAL MARKETS INC,1.05,Financials
+PEP,PEPSICO INC,1.01,Consumer Staples
+T,AT&T INC,1.00,Communication
+YUM,YUM BRANDS INC,0.99,Consumer Discretionary
+NOC,NORTHROP GRUMMAN CORP,0.97,Industrials
+ROP,ROPER TECHNOLOGIES INC,0.95,Information Technology
+TDY,TELEDYNE TECHNOLOGIES INC,0.94,Information Technology
+CME,CME GROUP INC CLASS A,0.94,Financials
+AZO,AUTOZONE INC,0.91,Consumer Discretionary
+CRM,SALESFORCE INC,0.91,Information Technology
+LMT,LOCKHEED MARTIN CORP,0.90,Industrials
+V,VISA INC CLASS A,0.90,Financials
+WEC,WEC ENERGY GROUP INC,0.89,Utilities
+CL,COLGATE-PALMOLIVE,0.89,Consumer Staples
+MRSH,MARSH INC,0.87,Financials
+GILD,GILEAD SCIENCES INC,0.86,Health Care
+EA,ELECTRONIC ARTS INC,0.85,Communication
+WMT,WALMART INC,0.84,Consumer Staples
+ACN,ACCENTURE PLC CLASS A,0.82,Information Technology
+AAPL,APPLE INC,0.81,Information Technology
+ORLY,OREILLY AUTOMOTIVE INC,0.78,Consumer Discretionary
+VRSN,VERISIGN INC,0.78,Information Technology
+WELL,WELLTOWER INC,0.77,Real Estate
+NOW,SERVICENOW INC,0.76,Information Technology
+O,REALTY INCOME REIT CORP,0.73,Real Estate
+MNST,MONSTER BEVERAGE CORP,0.72,Consumer Staples
+ABT,ABBOTT LABORATORIES,0.71,Health Care
+INTU,INTUIT INC,0.70,Information Technology
+KR,KROGER,0.70,Consumer Staples
+MDLZ,MONDELEZ INTERNATIONAL INC CLASS A,0.69,Consumer Staples
+ADSK,AUTODESK INC,0.68,Information Technology
+TEL,TE CONNECTIVITY PLC,0.68,Information Technology
+GLW,CORNING INC,0.68,Information Technology
+LIN,LINDE PLC,0.68,Materials
+LLY,ELI LILLY,0.65,Health Care
+TXN,TEXAS INSTRUMENT INC,0.63,Information Technology
+ABBV,ABBVIE INC,0.62,Health Care
+FFIV,F5 INC,0.60,Information Technology
+CTSH,COGNIZANT TECHNOLOGY SOLUTIONS COR,0.60,Information Technology
+FWONK,LIBERTY MEDIA FORMULA ONE SERIES C,0.59,Communication
+CHD,CHURCH AND DWIGHT INC,0.59,Consumer Staples
+PTC,PTC INC,0.56,Information Technology
+ADBE,ADOBE INC,0.56,Information Technology
+INCY,INCYTE CORP,0.55,Health Care
+SUI,SUN COMMUNITIES REIT INC,0.55,Real Estate
+AEP,AMERICAN ELECTRIC POWER INC,0.53,Utilities
+XEL,XCEL ENERGY INC,0.53,Utilities
+PLTR,PALANTIR TECHNOLOGIES INC CLASS A,0.52,Information Technology
+ACGL,ARCH CAPITAL GROUP LTD,0.51,Financials
+ALL,ALLSTATE CORP,0.50,Financials
+PANW,PALO ALTO NETWORKS INC,0.49,Information Technology
+PM,PHILIP MORRIS INTERNATIONAL INC,0.49,Consumer Staples
+KDP,KEURIG DR PEPPER INC,0.49,Consumer Staples
+ANET,ARISTA NETWORKS INC,0.49,Information Technology
+AVGO,BROADCOM INC,0.48,Information Technology
+TYL,TYLER TECHNOLOGIES INC,0.46,Information Technology
+AON,AON PLC CLASS A,0.46,Financials
+WMB,WILLIAMS INC,0.45,Energy
+FTNT,FORTINET INC,0.42,Information Technology
+AMD,ADVANCED MICRO DEVICES INC,0.41,Information Technology
+GOOG,ALPHABET INC CLASS C,0.40,Communication
+ADI,ANALOG DEVICES INC,0.40,Information Technology
+ROL,ROLLINS INC,0.40,Industrials
+GDDY,GODADDY INC CLASS A,0.39,Information Technology
+CVX,CHEVRON CORP,0.38,Energy
+EXE,EXPAND ENERGY CORP,0.38,Energy
+WDAY,WORKDAY INC CLASS A,0.38,Information Technology
+SNPS,SYNOPSYS INC,0.37,Information Technology
+L,LOEWS CORP,0.37,Financials
+MU,MICRON TECHNOLOGY INC,0.37,Information Technology
+WTW,WILLIS TOWERS WATSON PLC,0.36,Financials
+FSLR,FIRST SOLAR INC,0.35,Information Technology
+MELI,MERCADOLIBRE INC,0.35,Consumer Discretionary
+UNH,UNITEDHEALTH GROUP INC,0.34,Health Care
+BSX,BOSTON SCIENTIFIC CORP,0.34,Health Care
+WRB,WR BERKLEY CORP,0.34,Financials
+FCNCA,FIRST CITIZENS BANCSHARES INC CLAS,0.32,Financials
+ORCL,ORACLE CORP,0.32,Information Technology
+AMGN,AMGEN INC,0.32,Health Care
+CIEN,CIENA CORP,0.31,Information Technology
+COST,COSTCO WHOLESALE CORP,0.31,Consumer Staples
+AJG,ARTHUR J GALLAGHER,0.31,Financials
+NBIX,NEUROCRINE BIOSCIENCES INC,0.31,Health Care
+ALNY,ALNYLAM PHARMACEUTICALS INC,0.31,Health Care
+UBER,UBER TECHNOLOGIES INC,0.30,Industrials
+AEE,AMEREN CORP,0.29,Utilities
+CTVA,CORTEVA INC,0.29,Materials
+ICE,INTERCONTINENTAL EXCHANGE INC,0.28,Financials
+FICO,FAIR ISAAC CORP,0.28,Information Technology
+SNOW,SNOWFLAKE INC,0.26,Information Technology
+ELV,ELEVANCE HEALTH INC,0.26,Health Care
+D,DOMINION ENERGY INC,0.24,Utilities
+HSY,HERSHEY FOODS,0.24,Consumer Staples
+NFLX,NETFLIX INC,0.24,Communication
+ZM,ZOOM COMMUNICATIONS INC CLASS A,0.23,Information Technology
+UTHR,UNITED THERAPEUTICS CORP,0.22,Health Care
+DASH,DOORDASH INC CLASS A,0.22,Consumer Discretionary
+CMS,CMS ENERGY CORP,0.22,Utilities
+MRVL,MARVELL TECHNOLOGY INC,0.22,Information Technology
+GEN,GEN DIGITAL INC,0.21,Information Technology
+LNG,CHENIERE ENERGY INC,0.19,Energy
+TSN,TYSON FOODS INC CLASS A,0.19,Consumer Staples
+HCA,HCA HEALTHCARE INC,0.19,Health Care
+CDNS,CADENCE DESIGN SYSTEMS INC,0.18,Information Technology
+GEV,GE VERNOVA INC,0.18,Industrials
+CI,CIGNA,0.18,Health Care
+TW,TRADEWEB MARKETS INC CLASS A,0.17,Financials
+VTR,VENTAS REIT INC,0.17,Real Estate
+CTRA,COTERRA ENERGY INC,0.16,Energy
+EOG,EOG RESOURCES INC,0.16,Energy
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.16,Cash and/or Derivatives
+QCOM,QUALCOMM INC,0.15,Information Technology
+GIS,GENERAL MILLS INC,0.15,Consumer Staples
+KMB,KIMBERLY CLARK CORP,0.15,Consumer Staples
+HIG,HARTFORD INSURANCE GROUP INC,0.14,Financials
+RTX,RTX CORP,0.14,Industrials
+AMZN,AMAZON COM INC,0.14,Consumer Discretionary
+MDT,MEDTRONIC PLC,0.13,Health Care
+VRSK,VERISK ANALYTICS INC,0.13,Industrials
+AMAT,APPLIED MATERIAL INC,0.12,Information Technology
+CRWD,CROWDSTRIKE HOLDINGS INC CLASS A,0.12,Information Technology
+NEE,NEXTERA ENERGY INC,0.12,Utilities
+APP,APPLOVIN CORP CLASS A,0.12,Information Technology
+META,META PLATFORMS INC CLASS A,0.10,Communication
+ERIE,ERIE INDEMNITY CLASS A,0.09,Financials
+CAH,CARDINAL HEALTH INC,0.09,Health Care
+HD,HOME DEPOT INC,0.08,Consumer Discretionary
+ALAB,ASTERA LABS INC,0.08,Information Technology
+USD,USD CASH,0.08,Cash and/or Derivatives
+REGN,REGENERON PHARMACEUTICALS INC,0.07,Health Care
+CRDO,CREDO TECHNOLOGY GROUP HOLDING LTD,0.07,Information Technology
+ATO,ATMOS ENERGY CORP,0.07,Utilities
+GD,GENERAL DYNAMICS CORP,0.06,Industrials
+ADP,AUTOMATIC DATA PROCESSING INC,0.06,Industrials
+PPL,PPL CORP,0.06,Utilities
+DTE,DTE ENERGY,0.06,Utilities
+DDOG,DATADOG INC CLASS A,0.05,Information Technology
+CDW,CDW CORP,0.05,Information Technology
+LNT,ALLIANT ENERGY CORP,0.05,Utilities
+AWK,AMERICAN WATER WORKS INC,0.05,Utilities
+PODD,INSULET CORP,0.05,Health Care
+HUBS,HUBSPOT INC,0.05,Information Technology
+GSCFT,CASH COLLATERAL USD GSCFT,0.02,Cash and/or Derivatives
+DJEM6,DOW JONES US REAL ESTATE JUN 26,0.00,Cash and/or Derivatives
+ESM6,S&P500 EMINI JUN 26,0.00,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

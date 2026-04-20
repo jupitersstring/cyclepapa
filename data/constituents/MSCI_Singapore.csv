@@ -1,1 +1,203 @@
 ticker,name,weight,sector
+DPLM,DIPLOMA PLC,2.75,Industrials
+WEIR,WEIR GROUP PLC,2.43,Industrials
+BEZ,BEAZLEY PLC,2.25,Financials
+IMI,IMI PLC,2.11,Industrials
+STJ,ST JAMESS PLACE PLC,2.04,Financials
+GAW,GAMES WORKSHOP GROUP PLC,1.95,Consumer Discretionary
+ICG,ICG PLC,1.60,Financials
+HSX,HISCOX LTD,1.54,Financials
+IGG,IG GROUP HOLDINGS PLC,1.52,Financials
+HWDN,HOWDEN JOINERY GROUP PLC,1.37,Industrials
+DCC,DCC PLC,1.33,Energy
+LMP,LONDONMETRIC PROPERTY REIT PLC,1.30,Real Estate
+BRBY,BURBERRY GROUP PLC,1.26,Consumer Discretionary
+BLND,BRITISH LAND REIT PLC,1.22,Real Estate
+BBY,BALFOUR BEATTY PLC,1.21,Industrials
+CRDA,CRODA INTERNATIONAL PLC,1.19,Materials
+BGEO,LION FINANCE GROUP PLC,1.18,Financials
+ABDN,ABERDEEN GROUP PLC,1.14,Financials
+PSN,PERSIMMON PLC,1.14,Consumer Discretionary
+CTEC,CONVATEC GROUP PLC,1.14,Health Care
+MNDI,MONDI PLC,1.13,Materials
+INVP,INVESTEC PLC,1.10,Financials
+BBOX,TRITAX BIG BOX REIT PLC,1.04,Real Estate
+RMV,RIGHTMOVE PLC,1.04,Communication
+JMAT,JOHNSON MATTHEY PLC,1.02,Materials
+PAF,PAN AFRICAN RESOURCES PLC,1.00,Materials
+BKG,BERKELEY GROUP HOLDINGS (THE) PLC,1.00,Consumer Discretionary
+ZEG,ZEGONA COMMUNICATIONS PLC,0.98,Communication
+BAB,BABCOCK INTERNATIONAL GROUP PLC,0.92,Industrials
+PLUS,PLUS500 LTD,0.92,Financials
+TW.,TAYLOR WIMPEY PLC,0.92,Consumer Discretionary
+MTLN,METLEN ENERGY & METALS PLC,0.91,Industrials
+EMG,MAN GROUP PLC,0.91,Financials
+CCL,CARNIVAL PLC,0.89,Consumer Discretionary
+SRP,SERCO GROUP PLC,0.88,Industrials
+WPP,WPP PLC,0.86,Communication
+RS1,RS GROUP PLC,0.85,Industrials
+DRX,DRAX GROUP PLC,0.84,Utilities
+ROR,ROTORK PLC,0.83,Industrials
+ITV,ITV PLC,0.82,Communication
+CWK,CRANSWICK PLC,0.81,Consumer Staples
+INCH,INCHCAPE PLC,0.79,Consumer Discretionary
+QLT,QUILTER PLC,0.76,Financials
+PNN,PENNON GROUP PLC,0.75,Utilities
+PHP,PRIMARY HEALTH PROPERTIES REIT PLC,0.75,Real Estate
+BWY,BELLWAY PLC,0.72,Consumer Discretionary
+GBP,GBP CASH,0.72,Cash and/or Derivatives
+HOC,HOCHSCHILD MINING PLC,0.69,Materials
+MTO,MITIE GROUP PLC,0.68,Industrials
+QQ.,QINETIQ GROUP PLC,0.68,Industrials
+TCAP,TP ICAP GROUP PLC,0.68,Financials
+HIK,HIKMA PHARMACEUTICALS PLC,0.67,Health Care
+MGNS,MORGAN SINDALL GROUP PLC,0.66,Industrials
+TBCG,TBC BANK GROUP PLC,0.64,Financials
+SHC,SHAFTESBURY CAPITAL PLC,0.62,Real Estate
+UTG,UNITE GROUP PLC,0.62,Real Estate
+CCC,COMPUTACENTER PLC,0.61,Information Technology
+JTC,JTC PLC,0.60,Financials
+OSB,OSB GROUP PLC,0.60,Financials
+HILS,HILL AND SMITH PLC,0.57,Materials
+DLN,DERWENT LONDON REIT PLC,0.56,Real Estate
+AJB,AJ BELL PLC,0.55,Financials
+HMSO,HAMMERSON REIT PLC,0.54,Real Estate
+BME,B&M EUROPEAN VALUE RETAIL PLC,0.53,Consumer Discretionary
+GNS,GENUS PLC,0.52,Health Care
+BYG,BIG YELLOW GROUP PLC,0.51,Real Estate
+SCT,SOFTCAT PLC,0.51,Information Technology
+COA,COATS GROUP PLC,0.50,Consumer Discretionary
+GRG,GREGGS PLC,0.49,Consumer Discretionary
+GFTU,GRAFTON GROUP PLC,0.49,Industrials
+CAN,CANAL+ SA,0.49,Communication
+OXIG,OXFORD INSTRUMENTS PLC,0.47,Information Technology
+SRE,SIRIUS REAL ESTATE LIMITED LTD,0.46,Real Estate
+SAFE,SAFESTORE HOLDINGS PLC,0.46,Real Estate
+SSPG,SSP GROUP PLC,0.46,Consumer Discretionary
+HTWS,HELIOS TOWERS PLC,0.46,Communication
+PAG,PARAGON GROUP OF COMPANIES,0.46,Financials
+KLR,KELLER GROUP PLC,0.45,Industrials
+CHG,CHEMRING GROUP PLC,0.45,Industrials
+RSW,RENISHAW PLC,0.45,Information Technology
+IWG,INTERNATIONAL WORKPLACE GROUP PLC,0.44,Real Estate
+YCA,YELLOW CAKE PLC,0.44,Energy
+HBR,HARBOUR ENERGY PLC,0.43,Energy
+GNC,GREENCORE GROUP PLC,0.43,Consumer Staples
+CKN,CLARKSON PLC,0.42,Industrials
+TATE,TATE AND LYLE PLC,0.40,Consumer Staples
+SRC,SIGMAROC PLC,0.40,Materials
+RAT,RATHBONES GROUP PLC,0.40,Financials
+LRE,LANCASHIRE HOLDINGS LTD,0.39,Financials
+CURY,CURRYS PLC,0.39,Consumer Discretionary
+FAN,VOLUTION GROUP PLCINARY,0.38,Industrials
+PFD,PREMIER FOODS PLC,0.38,Consumer Staples
+TPK,TRAVIS PERKINS PLC,0.37,Industrials
+BOY,BODYCOTE PLC,0.37,Industrials
+GRI,GRAINGER PLC,0.37,Real Estate
+SNR,SENIOR PLC,0.36,Industrials
+CGEO,GEORGIA CAPITAL PLC,0.36,Financials
+SVS,SAVILLS PLC,0.35,Real Estate
+EZJ,EASYJET PLC,0.35,Industrials
+JET2,JET2 PLC,0.35,Industrials
+WOSG,WATCHES OF SWITZERLAND GROUP PLC,0.35,Consumer Discretionary
+VTY,VISTRY GROUP PLC,0.34,Consumer Discretionary
+ENOG,ENERGEAN PLC,0.33,Energy
+GPE,GREAT PORTLAND ESTATES PLC,0.33,Real Estate
+PTEC,PLAYTECH PLC,0.33,Consumer Discretionary
+OCDO,OCADO GROUP PLC,0.33,Consumer Staples
+FOUR,4IMPRINT GROUP PLC,0.32,Communication
+DNLM,DUNELM GROUP PLC,0.32,Consumer Discretionary
+SUPR,SUPERMARKET INCOME REIT PLC,0.32,Real Estate
+IHP,INTEGRAFIN HOLDINGS,0.30,Financials
+FGP,FIRSTGROUP PLC,0.30,Industrials
+TEP,TELECOM PLUS PLC,0.29,Utilities
+TRN,TRAINLINE PLC,0.29,Consumer Discretionary
+ZIG,ZIGUP PLC,0.28,Industrials
+BCG,BALTIC CLASSIFIEDS GROUP PLC,0.28,Communication
+ASHM,ASHMORE GROUP PLC,0.27,Financials
+KIE,KIER GROUP PLC,0.27,Industrials
+BREE,BREEDON GROUP PLC,0.27,Materials
+ELM,ELEMENTIS PLC,0.27,Materials
+TRST,TRUSTPILOT GROUP PLC,0.26,Communication
+CVSG,CVS GROUP PLC,0.26,Health Care
+VSVS,VESUVIUS,0.26,Industrials
+PETS,PETS AT HOME PLC,0.26,Consumer Discretionary
+MONY,MONY GROUP PLC,0.26,Communication
+GROW,MOLTEN VENTURES PLC,0.25,Financials
+FEVR,FEVERTREE DRINKS PLC,0.25,Consumer Staples
+GAMA,GAMMA COMMUNICATIONS PLC,0.25,Communication
+SMWH,WH SMITH PLC,0.24,Consumer Discretionary
+GEN,GENUIT GROUP PLC,0.24,Industrials
+ATYM,ATALAYA MINING COPPER SA,0.24,Materials
+VLX,VOLEX PLC,0.23,Industrials
+FRAS,FRASERS GROUP PLC,0.23,Consumer Discretionary
+RNWH,RENEW HOLDINGS PLC,0.22,Industrials
+MAB,MITCHELLS AND BUTLERS PLC,0.22,Consumer Discretionary
+CBG,CLOSE BROS GROUP PLC,0.22,Financials
+BAG,A G BARR PLC,0.22,Consumer Staples
+CSN,CHESNARA PLC,0.21,Financials
+KNOS,KAINOS GROUP PLC,0.21,Information Technology
+BYIT,BYTES TECHNOLOGY GROUP PLC,0.21,Information Technology
+DOM,DOMINOS PIZZA GROUP PLC,0.21,Consumer Discretionary
+BPT,BRIDGEPOINT GROUP PLC,0.21,Financials
+JUP,JUPITER FUND MANAGEMENT PLC,0.21,Financials
+THRL,TARGET HEALTHCARE REIT PLC,0.20,Real Estate
+POLR,POLAR CAPITAL HOLDINGS PLC,0.19,Financials
+DSCV,DISCOVERIE GROUP,0.19,Industrials
+MOON,MOONPIG GROUP PLC,0.19,Consumer Discretionary
+N91,NINETY ONE PLC,0.19,Financials
+MPE,M. P. EVANS GROUP PLC,0.19,Consumer Staples
+XPS,XPS PENSIONS GROUP PLC,0.19,Financials
+SQZ,SERICA ENERGY PLC,0.18,Energy
+MGAM,MORGAN ADVANCED MATERIALS PLC,0.18,Industrials
+CRE,CONDUIT HOLDINGS LTD,0.17,Financials
+HTG,HUNTING PLC,0.17,Energy
+RHIM,RHI MAGNESITA NV,0.17,Materials
+ONT,OXFORD NANOPORE TECHNOLOGIES PLC,0.16,Health Care
+IPO,IP GROUP PLC,0.16,Financials
+AVON,AVON TECHNOLOGIES PLC,0.16,Industrials
+OXB,OXFORD BIOMEDICA PLC,0.16,Health Care
+HAS,HAYS PLC,0.16,Industrials
+VCT,VICTREX PLC,0.16,Materials
+GBG,GB GROUP PLC,0.15,Information Technology
+JSG,JOHNSON SERVICE GROUP PLC,0.15,Industrials
+AMS,ADVANCED MEDICAL SOLUTIONS GROUP P,0.15,Health Care
+WKP,WORKSPACE GROUP REIT PLC,0.15,Real Estate
+MTRO,METRO BANK HOLDINGS PLC,0.15,Financials
+SHAW,SHAWBROOK GROUP PLC,0.14,Financials
+CHRT,COHORT PLC,0.14,Industrials
+BOWL,HOLLYWOOD BOWL GROUP PLC,0.14,Consumer Discretionary
+CCR,C C GROUP PLC,0.14,Consumer Staples
+JDW,WETHERSPOON(J.D.) PLC,0.13,Consumer Discretionary
+RPI,RASPBERRY PI HOLDINGS PLC,0.13,Information Technology
+IBST,IBSTOCK PLC,0.13,Materials
+HFG,HILTON FOOD GROUP PLC,0.13,Consumer Staples
+CRW,CRANEWARE PLC,0.13,Health Care
+SPI,SPIRE HEALTHCARE GROUP PLCINARY,0.13,Health Care
+DOCS,DR. MARTENS PLC,0.12,Consumer Discretionary
+PAGE,PAGEGROUP PLC,0.12,Industrials
+PPH,PPH HOTEL GROUP LTD,0.12,Consumer Discretionary
+CMCX,CMC MARKETS PLC,0.11,Financials
+MEGP,ME GROUP INTERNATIONAL PLC,0.10,Consumer Discretionary
+MSLH,MARSHALLS PLC,0.10,Materials
+FSG,FORESIGHT GROUP HOLDINGS LTD,0.10,Financials
+NCC,NCC GROUP PLC,0.10,Information Technology
+CER,CERILLION PLC,0.09,Information Technology
+FUTR,FUTURE PLC,0.09,Communication
+AO.,AO WORLD,0.09,Consumer Discretionary
+YNGA,YOUNG AND COS BREWERY PLC,0.08,Consumer Discretionary
+SGAFT,CASH COLLATERAL GBP SGAFT,0.08,Cash and/or Derivatives
+CRST,CREST NICHOLSON HOLDINGS PLC,0.08,Consumer Discretionary
+EWG,W.A.G PAYMENT SOLUTIONS PLC,0.07,Financials
+THG,THG PLC,0.07,Consumer Discretionary
+DATA,GLOBALDATA PLC,0.07,Industrials
+ALFA,ALFA FINANCIAL SOFTWARE HOLDINGS P,0.06,Information Technology
+RNK,RANK GROUP PLC,0.06,Consumer Discretionary
+USD,USD CASH,0.04,Cash and/or Derivatives
+AML,ASTON MARTIN LAGONDA GLOBAL HOLDIN,0.03,Consumer Discretionary
+HOME,HOME REIT PLC,0.03,Real Estate
+EUR,EUR CASH,0.01,Cash and/or Derivatives
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.00,Cash and/or Derivatives
+CHF,CHF CASH,0.00,Cash and/or Derivatives
+YBYM6,FTSE 250 MID LIF (Y2) JUN 26,0.00,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

@@ -1,1 +1,89 @@
 ticker,name,weight,sector
+005930,SAMSUNG ELECTRONICS LTD,23.25,Information Technology
+000660,SK HYNIX INC,21.14,Information Technology
+005380,HYUNDAI MOTOR,2.59,Consumer Discretionary
+402340,SK SQUARE LTD,2.39,Industrials
+105560,KB FINANCIAL GROUP INC,2.14,Financials
+034020,DOOSAN ENERBILITY LTD,1.77,Industrials
+012450,HANWHA AEROSPACE LTD,1.75,Industrials
+055550,SHINHAN FINANCIAL GROUP LTD,1.56,Financials
+009150,SAMSUNG ELECTRO MECHANICS LTD,1.56,Information Technology
+000270,KIA CORPORATION CORP,1.36,Consumer Discretionary
+086790,HANA FINANCIAL GROUP INC,1.27,Financials
+006400,SAMSUNG SDI LTD,1.21,Information Technology
+068270,CELLTRION INC,1.20,Health Care
+035420,NAVER CORP,1.12,Communication
+005490,POSCO,1.06,Materials
+267260,HD HYUNDAI ELECTRIC LTD,1.00,Industrials
+028260,SAMSUNG C&T CORP,0.98,Industrials
+012330,HYUNDAI MOBIS LTD,0.96,Consumer Discretionary
+316140,WOORI FINANCIAL GROUP INC,0.90,Financials
+032830,SAMSUNG LIFE LTD,0.84,Financials
+010140,SAMSUNG HEAVY INDUSTRIES LTD,0.82,Industrials
+006800,MIRAE ASSET SECURITIES CO LTD,0.80,Financials
+373220,LG ENERGY SOLUTION LTD,0.79,Industrials
+329180,HD HYUNDAI HEAVY INDUSTRIES LTD,0.75,Industrials
+207940,SAMSUNG BIOLOGICS LTD,0.74,Health Care
+051910,LG CHEM LTD,0.74,Materials
+009540,HD KOREA SHIPBUILDING & OFFSHORE E,0.73,Industrials
+042660,HANWHA OCEAN LTD,0.73,Industrials
+298040,HYOSUNG HEAVY INDUSTRIES CORP,0.72,Industrials
+064350,HYUNDAI-ROTEM,0.69,Industrials
+000720,HYUNDAI ENGINEERING & CONSTRUCTION,0.67,Industrials
+033780,KT&G CORP,0.67,Consumer Staples
+010120,LS ELECTRIC LTD,0.66,Industrials
+086520,ECOPRO LTD,0.65,Industrials
+079550,LIG DEFENSE&AEROSPACE LTD,0.65,Industrials
+035720,KAKAO CORP,0.63,Communication
+196170,ALTEOGEN INC,0.62,Health Care
+047810,KOREA AEROSPACE INDUSTRIES LTD,0.60,Industrials
+042700,HANMI SEMICONDUCTOR LTD,0.60,Information Technology
+000810,SAMSUNG FIRE & MARINE INSURANCE LT,0.59,Financials
+034730,SK INC,0.59,Industrials
+066570,LG ELECTRONICS INC,0.58,Consumer Discretionary
+278470,APR LTD,0.55,Consumer Staples
+KRW,KRW CASH,0.52,Cash and/or Derivatives
+000150,DOOSAN CORP,0.52,Industrials
+267250,HD HYUNDAI LTD,0.51,Energy
+017670,SK TELECOM LTD,0.50,Communication
+272210,HANWHA SYSTEMS LTD,0.50,Industrials
+015760,KOREA ELECTRIC POWER CORP,0.49,Utilities
+071050,KOREA INVESTMENT HOLDINGS LTD,0.49,Financials
+247540,ECOPRO BM LTD,0.48,Industrials
+096770,SK INNOVATION LTD,0.45,Energy
+003550,LG CORP,0.43,Industrials
+138040,MERITZ FINANCIAL GROUP INC,0.43,Financials
+005387,HYUNDAI MOTOR S2 PREF,0.42,Consumer Discretionary
+003670,POSCO FUTURE M LTD,0.42,Industrials
+028300,HLB INC,0.42,Health Care
+086280,HYUNDAI GLOVIS LTD,0.40,Industrials
+018260,SAMSUNG SDS LTD,0.40,Information Technology
+005830,DB INSURANCE LTD,0.40,Financials
+259960,KRAFTON INC,0.39,Communication
+ETD_KRW,ETD KRW BALANCE WITH R93546,0.37,Cash and/or Derivatives
+003230,SAM YANG FOODS INC,0.35,Consumer Staples
+010950,S-OIL CORP,0.33,Energy
+024110,INDUSTRIAL BANK OF KOREA,0.33,Financials
+005940,NH INVESTMENT & SECURITIES LTD,0.33,Financials
+005385,HYUNDAI MOTOR S1 PREF,0.32,Consumer Discretionary
+034220,LG DISPLAY LTD,0.32,Information Technology
+USD,USD CASH,0.31,Cash and/or Derivatives
+000100,YUHAN CORP,0.30,Health Care
+011200,HMM LTD,0.30,Industrials
+352820,HYBE LTD,0.30,Communication
+003490,KOREAN AIR LINES LTD,0.29,Industrials
+047050,POSCO INTERNATIONAL CORP,0.29,Industrials
+0126Z0,SAMSUNG EPIS HOLDINGS LTD,0.28,Health Care
+323410,KAKAOBANK CORP,0.27,Financials
+161390,HANKOOK TIRE & TECHNOLOGY LTD,0.26,Consumer Discretionary
+443060,HD HYUNDAI MARINE SOLUTION LTD,0.25,Industrials
+326030,SK BIOPHARMACEUTICALS LTD,0.24,Health Care
+090430,AMOREPACIFIC CORP,0.24,Consumer Staples
+180640,HANJIN KAL,0.21,Consumer Discretionary
+032640,LG UPLUS CORP,0.21,Communication
+005935,SAMSUNG ELECTRONICS NON VOTING PRE,0.07,Information Technology
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.04,Cash and/or Derivatives
+023530,LOTTE SHOPPING LTD,0.00,Consumer Discretionary
+KMM6,KOSPI2 INDEX JUN 26,0.00,Cash and/or Derivatives
+KRW,KRW/USD,0.00,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,

@@ -1,1 +1,721 @@
 ticker,name,weight,sector
+ASML,ASML HOLDING NV,2.58,Information Technology
+HSBA,HSBC HOLDINGS PLC,1.44,Financials
+AZN,ASTRAZENECA PLC,1.44,Health Care
+NOVN,NOVARTIS AG,1.31,Health Care
+ROP,ROCHE PS PAR AG,1.30,Health Care
+NESN,NESTLE SA,1.18,Consumer Staples
+SHEL,SHELL PLC,1.12,Energy
+SIE,SIEMENS N AG,1.00,Industrials
+CBA,COMMONWEALTH BANK OF AUSTRALIA,0.97,Financials
+8306,MITSUBISHI UFJ FINANCIAL GROUP INC,0.93,Financials
+BHP,BHP GROUP LTD,0.92,Materials
+7203,TOYOTA MOTOR CORP,0.91,Consumer Discretionary
+SAP,SAP,0.87,Information Technology
+SAN,BANCO SANTANDER SA,0.87,Financials
+SU,SCHNEIDER ELECTRIC,0.82,Industrials
+ALV,ALLIANZ,0.79,Financials
+TTE,TOTALENERGIES,0.77,Energy
+ENR,SIEMENS ENERGY N AG,0.71,Industrials
+ABBN,ABB LTD,0.69,Industrials
+IBE,IBERDROLA SA,0.68,Utilities
+6501,HITACHI LTD,0.68,Industrials
+RR.,ROLLS-ROYCE HOLDINGS PLC,0.68,Industrials
+MC,LVMH,0.66,Consumer Discretionary
+UBSG,UBS GROUP AG,0.63,Financials
+BBVA,BANCO BILBAO VIZCAYA ARGENTARIA SA,0.62,Financials
+6857,ADVANTEST CORP,0.61,Information Technology
+NOVO B,NOVO NORDISK CLASS B,0.60,Health Care
+SAF,SAFRAN SA,0.60,Industrials
+6758,SONY GROUP CORP,0.60,Consumer Discretionary
+8316,SUMITOMO MITSUI FINANCIAL GROUP IN,0.59,Financials
+DTE,DEUTSCHE TELEKOM N AG,0.58,Communication
+AI,LAIR LIQUIDE SOCIETE ANONYME POUR,0.58,Materials
+ULVR,UNILEVER PLC,0.57,Consumer Staples
+AIR,AIRBUS GROUP,0.57,Industrials
+8035,TOKYO ELECTRON LTD,0.56,Information Technology
+BATS,BRITISH AMERICAN TOBACCO,0.55,Consumer Staples
+UCG,UNICREDIT,0.54,Financials
+GSK,GLAXOSMITHKLINE,0.54,Health Care
+BP.,BP PLC,0.52,Energy
+RIO,RIO TINTO PLC,0.52,Materials
+BNP,BNP PARIBAS SA,0.51,Financials
+CFR,COMPAGNIE FINANCIERE RICHEMONT SA,0.50,Consumer Discretionary
+1299,AIA GROUP LTD,0.49,Financials
+8411,MIZUHO FINANCIAL GROUP INC,0.48,Financials
+9984,SOFTBANK GROUP CORP,0.48,Communication
+SAN,SANOFI SA,0.48,Health Care
+ZURN,ZURICH INSURANCE GROUP AG,0.48,Financials
+OR,LOREAL SA,0.46,Consumer Staples
+8058,MITSUBISHI CORP,0.46,Industrials
+WBC,WESTPAC BANKING CORPORATION CORP,0.44,Financials
+ISP,INTESA SANPAOLO,0.44,Financials
+D05,DBS GROUP HOLDINGS LTD,0.43,Financials
+NAB,NATIONAL AUSTRALIA BANK LTD,0.43,Financials
+ENEL,ENEL,0.42,Utilities
+BA.,BAE SYSTEMS PLC,0.42,Industrials
+8031,MITSUI LTD,0.41,Industrials
+9983,FAST RETAILING LTD,0.40,Consumer Discretionary
+7011,MITSUBISHI HEAVY INDUSTRIES LTD,0.40,Industrials
+MUV2,MUENCHENER RUECKVERSICHERUNGS-GESE,0.39,Financials
+NG.,NATIONAL GRID PLC,0.39,Utilities
+INGA,ING GROEP NV,0.39,Financials
+BARC,BARCLAYS PLC,0.38,Financials
+CS,AXA SA,0.38,Financials
+SPOT,SPOTIFY TECHNOLOGY SA,0.38,Communication
+LLOY,LLOYDS BANKING GROUP PLC,0.38,Financials
+ANZ,ANZ GROUP HOLDINGS LTD,0.37,Financials
+RHM,RHEINMETALL AG,0.37,Industrials
+8766,TOKIO MARINE HOLDINGS INC,0.36,Financials
+DG,VINCI SA,0.36,Industrials
+6861,KEYENCE CORP,0.35,Information Technology
+INVE B,INVESTOR CLASS B,0.35,Financials
+EL,ESSILORLUXOTTICA SA,0.35,Health Care
+IFX,INFINEON TECHNOLOGIES AG,0.34,Information Technology
+ABI,ANHEUSER-BUSCH INBEV SA,0.34,Consumer Staples
+8001,ITOCHU CORP,0.34,Industrials
+GLEN,GLENCORE PLC,0.33,Materials
+4063,SHIN ETSU CHEMICAL LTD,0.33,Materials
+ITX,INDUSTRIA DE DISENO TEXTIL SA,0.32,Consumer Discretionary
+6503,MITSUBISHI ELECTRIC CORP,0.32,Industrials
+PRX,PROSUS NV CLASS N,0.31,Consumer Discretionary
+NWG,NATWEST GROUP PLC,0.31,Financials
+REL,RELX PLC,0.30,Industrials
+6098,RECRUIT HOLDINGS LTD,0.30,Industrials
+RMS,HERMES INTERNATIONAL,0.29,Consumer Discretionary
+7741,HOYA CORP,0.28,Health Care
+MQG,MACQUARIE GROUP LTD DEF,0.28,Financials
+DBK,DEUTSCHE BANK AG,0.28,Financials
+GLE,SOCIETE GENERALE SA,0.28,Financials
+O39,OVERSEA-CHINESE BANKING LTD,0.27,Financials
+ENGI,ENGIE SA,0.27,Utilities
+7974,NINTENDO LTD,0.27,Communication
+388,HONG KONG EXCHANGES AND CLEARING L,0.27,Financials
+WES,WESFARMERS LTD,0.27,Consumer Discretionary
+LSEG,LONDON STOCK EXCHANGE GROUP PLC,0.27,Financials
+NDA FI,NORDEA BANK,0.26,Financials
+DB1,DEUTSCHE BOERSE AG,0.26,Financials
+VOLV B,VOLVO CLASS B,0.26,Industrials
+4502,TAKEDA PHARMACEUTICAL LTD,0.25,Health Care
+AAL,ANGLO AMERICAN PLC,0.25,Materials
+ATCO A,ATLAS COPCO CLASS A,0.25,Industrials
+BAS,BASF N,0.25,Materials
+DSV,DSV,0.25,Industrials
+5803,FUJIKURA LTD,0.25,Industrials
+DHL,DEUTSCHE POST AG,0.25,Industrials
+NOKIA,NOKIA,0.25,Information Technology
+ENI,ENI,0.24,Energy
+ARGX,ARGENX,0.24,Health Care
+8002,MARUBENI CORP,0.24,Industrials
+BN,DANONE SA,0.24,Consumer Staples
+SREN,SWISS RE AG,0.23,Financials
+EOAN,E.ON N,0.23,Utilities
+CABK,CAIXABANK SA,0.22,Financials
+LONN,LONZA GROUP AG,0.22,Health Care
+6981,MURATA MANUFACTURING LTD,0.22,Information Technology
+HOLN,HOLCIM LTD AG,0.22,Materials
+CPG,COMPASS GROUP PLC,0.22,Consumer Discretionary
+9433,KDDI CORP,0.22,Communication
+STAN,STANDARD CHARTERED PLC,0.22,Financials
+CSL,CSL LTD,0.22,Health Care
+RACE,FERRARI NV,0.22,Consumer Discretionary
+BAYN,BAYER AG,0.22,Health Care
+SAND,SANDVIK,0.21,Industrials
+LR,LEGRAND SA,0.21,Industrials
+RIO,RIO TINTO LTD,0.21,Materials
+DGE,DIAGEO PLC,0.21,Consumer Staples
+JPY,JPY CASH,0.21,Cash and/or Derivatives
+RKT,RECKITT BENCKISER GROUP PLC,0.20,Consumer Staples
+5802,SUMITOMO ELECTRIC INDUSTRIES LTD,0.20,Consumer Discretionary
+MBG,MERCEDES-BENZ GROUP N AG,0.20,Consumer Discretionary
+WDS,WOODSIDE ENERGY GROUP LTD,0.20,Energy
+2914,JAPAN TOBACCO INC,0.20,Consumer Staples
+ASM,ASM INTERNATIONAL NV,0.20,Information Technology
+HLN,HALEON PLC,0.20,Health Care
+GMG,GOODMAN GROUP UNITS,0.20,Real Estate
+AD,KONINKLIJKE AHOLD DELHAIZE NV,0.19,Consumer Staples
+SGO,COMPAGNIE DE SAINT GOBAIN SA,0.19,Industrials
+6752,PANASONIC HOLDINGS CORP,0.19,Consumer Discretionary
+6146,DISCO CORP,0.19,Information Technology
+TSCO,TESCO PLC,0.19,Consumer Staples
+6702,FUJITSU LTD,0.19,Information Technology
+RWE,RWE AG,0.19,Utilities
+ASSA B,ASSA ABLOY B,0.19,Industrials
+8053,SUMITOMO CORP,0.19,Industrials
+EUR,EUR CASH,0.19,Cash and/or Derivatives
+ALC,ALCON AG,0.18,Health Care
+9434,SOFTBANK CORP,0.18,Communication
+PRY,PRYSMIAN,0.18,Industrials
+SSE,SSE PLC,0.18,Utilities
+6301,KOMATSU LTD,0.18,Industrials
+CHF,CHF CASH,0.18,Cash and/or Derivatives
+EBS,ERSTE GROUP BANK AG,0.18,Financials
+UCB,UCB SA,0.18,Health Care
+III,3I GROUP PLC,0.18,Financials
+PRU,PRUDENTIAL PLC,0.18,Financials
+LUMI,BANK LEUMI LE ISRAEL,0.17,Financials
+G,ASSICURAZIONI GENERALI,0.17,Financials
+ORA,ORANGE SA,0.17,Communication
+GALD,GALDERMA GROUP N AG,0.17,Health Care
+TEVA,TEVA PHARMACEUTICAL INDUSTRIES ADR,0.17,Health Care
+FER,FERROVIAL,0.17,Industrials
+8591,ORIX CORP,0.17,Financials
+6954,FANUC CORP,0.17,Industrials
+U11,UNITED OVERSEAS BANK LTD,0.17,Financials
+285A,KIOXIA HOLDINGS CORP,0.17,Information Technology
+SE,SEA ADS REPRESENTING LTD CLASS A,0.16,Consumer Discretionary
+SDZ,SANDOZ GROUP AG,0.16,Health Care
+EXPN,EXPERIAN PLC,0.16,Industrials
+6367,DAIKIN INDUSTRIES LTD,0.16,Industrials
+6701,NEC CORP,0.16,Information Technology
+4519,CHUGAI PHARMACEUTICAL LTD,0.16,Health Care
+DANSKE,DANSKE BANK,0.16,Financials
+GIVN,GIVAUDAN SA,0.16,Materials
+SLHN,SWISS LIFE HOLDING AG,0.16,Financials
+POLI,BANK HAPOALIM BM,0.15,Financials
+4568,DAIICHI SANKYO LTD,0.15,Health Care
+NBIS,NEBIUS NV CLASS A,0.15,Information Technology
+8630,SOMPO HOLDINGS INC,0.15,Financials
+8725,MS&AD INSURANCE GROUP HOLDINGS INC,0.15,Financials
+KBC,KBC GROEP,0.15,Financials
+8750,DAIICHI LIFE GROUP INC,0.15,Financials
+ERIC B,ERICSSON B,0.15,Information Technology
+WOW,WOOLWORTHS GROUP LTD,0.15,Consumer Staples
+6762,TDK CORP,0.15,Information Technology
+6723,RENESAS ELECTRONICS CORP,0.14,Information Technology
+CBK,COMMERZBANK AG,0.14,Financials
+7182,JAPAN POST BANK LTD,0.14,Financials
+HEI,HEIDELBERG MATERIALS AG,0.14,Materials
+SWED A,SWEDBANK,0.14,Financials
+SIKA,SIKA AG,0.14,Materials
+SEB A,SKANDINAVISKA ENSKILDA BANKEN,0.14,Financials
+VWS,VESTAS WIND SYSTEMS,0.14,Industrials
+7267,HONDA MOTOR LTD,0.14,Consumer Discretionary
+TCL,TRANSURBAN GROUP STAPLED UNITS,0.14,Industrials
+8802,MITSUBISHI ESTATE CO LTD,0.14,Real Estate
+STMPA,STMICROELECTRONICS NV,0.13,Information Technology
+ADS,ADIDAS N AG,0.13,Consumer Discretionary
+SUNB,SUNBELT RENTALS HOLDINGS INC,0.13,Industrials
+ADYEN,ADYEN NV,0.13,Financials
+4503,ASTELLAS PHARMA INC,0.13,Health Care
+VOD,VODAFONE GROUP PLC,0.13,Communication
+9432,NTT INC,0.13,Communication
+4578,OTSUKA HOLDINGS LTD,0.13,Health Care
+AMS,AMADEUS IT GROUP SA,0.13,Consumer Discretionary
+HO,THALES SA,0.13,Industrials
+8801,MITSUI FUDOSAN LTD,0.13,Real Estate
+ATCO B,ATLAS COPCO CLASS B,0.13,Industrials
+DNB,DNB BANK,0.13,Financials
+IMB,IMPERIAL BRANDS PLC,0.13,Consumer Staples
+Z74,SINGAPORE TELECOMMUNICATIONS LTD,0.13,Communication
+BMW,BMW AG,0.13,Consumer Discretionary
+PGHN,PARTNERS GROUP HOLDING AG,0.13,Financials
+LDO,LEONARDO FINMECCANICA SPA,0.12,Industrials
+8015,TOYOTA TSUSHO CORP,0.12,Industrials
+3382,SEVEN & I HOLDINGS LTD,0.12,Consumer Staples
+MT,ARCELORMITTAL SA,0.12,Materials
+EQNR,EQUINOR,0.12,Energy
+UMG,UNIVERSAL MUSIC GROUP NV,0.12,Communication
+AV.,AVIVA PLC,0.12,Financials
+SAMPO,SAMPO CLASS A,0.12,Financials
+VIE,VEOLIA ENVIRON. SA,0.12,Utilities
+TSEM,TOWER SEMICONDUCTOR LTD,0.12,Information Technology
+REP,REPSOL SA,0.12,Energy
+2802,AJINOMOTO INC,0.12,Consumer Staples
+8308,RESONA HOLDINGS INC,0.12,Financials
+FMG,FORTESCUE LTD,0.12,Materials
+ACS,ACS ACTIVIDADES DE CONSTRUCCION Y,0.12,Industrials
+RYA,RYANAIR HOLDINGS PLC,0.12,Industrials
+6273,SMC (JAPAN) CORP,0.12,Industrials
+8604,NOMURA HOLDINGS INC,0.12,Financials
+ML,MICHELIN,0.11,Consumer Discretionary
+16,SUN HUNG KAI PROPERTIES LTD,0.11,Real Estate
+ESLT,ELBIT SYSTEMS LTD,0.11,Industrials
+QBE,QBE INSURANCE GROUP LTD,0.11,Financials
+AER,AERCAP HOLDINGS NV,0.11,Industrials
+7751,CANON INC,0.11,Information Technology
+A5G,AIB GROUP PLC,0.11,Financials
+5108,BRIDGESTONE CORP,0.11,Consumer Discretionary
+GEBN,GEBERIT AG,0.11,Industrials
+8267,AEON LTD,0.11,Consumer Staples
+DTG,DAIMLER TRUCK HOLDING E AG,0.11,Industrials
+AENA,AENA SME SA,0.11,Industrials
+5020,ENEOS HOLDINGS INC,0.11,Energy
+KNEBV,KONE,0.11,Industrials
+HEXA B,HEXAGON CLASS B,0.11,Information Technology
+HEIA,HEINEKEN NV,0.11,Consumer Staples
+NN,NN GROUP NV,0.11,Financials
+HLMA,HALMA PLC,0.10,Information Technology
+NST,NORTHERN STAR RESOURCES LTD,0.10,Materials
+PHIA,KONINKLIJKE PHILIPS NV,0.10,Health Care
+HBAN,HELVETIA BALOISE HOLDING N AG,0.10,Financials
+VOW3,VOLKSWAGEN NON-VOTING PREF AG,0.10,Consumer Discretionary
+4901,FUJIFILM HOLDINGS CORP,0.10,Information Technology
+FRE,FRESENIUS SE AND CO KGAA,0.10,Health Care
+KER,KERING SA,0.10,Consumer Discretionary
+ACA,CREDIT AGRICOLE SA,0.10,Financials
+1605,INPEX CORP,0.10,Energy
+1,CK HUTCHISON HOLDINGS LTD,0.10,Industrials
+WRT1V,WARTSILA,0.10,Industrials
+MTX,MTU AERO ENGINES HOLDING AG,0.10,Industrials
+BXB,BRAMBLES LTD,0.10,Industrials
+COL,COLES GROUP LTD,0.10,Consumer Staples
+6971,KYOCERA CORP,0.10,Information Technology
+VNA,VONOVIA SE,0.10,Real Estate
+PUB,PUBLICIS GROUPE SA,0.10,Communication
+BPE,BPER BANCA,0.10,Financials
+8309,SUMITOMO MITSUI TRUST GROUP INC,0.10,Financials
+SCMN,SWISSCOM AG,0.10,Communication
+BMPS,BANCA MONTE DEI PASCHI DI SIENA SP,0.10,Financials
+SHB A,SVENSKA HANDELSBANKEN-A SHS,0.10,Financials
+6902,DENSO CORP,0.10,Consumer Discretionary
+NXT,NEXT PLC,0.10,Consumer Discretionary
+9020,EAST JAPAN RAILWAY,0.10,Industrials
+6178,JAPAN POST HOLDINGS LTD,0.10,Financials
+NSIS B,NOVOZYMES B,0.10,Materials
+ANTO,ANTOFAGASTA PLC,0.10,Materials
+IHG,INTERCONTINENTAL HOTELS GROUP PLC,0.10,Consumer Discretionary
+ABN,ABN AMRO BANK NV,0.09,Financials
+SAAB B,SAAB CLASS B,0.09,Industrials
+LGEN,LEGAL AND GENERAL GROUP PLC,0.09,Financials
+KPN,KONINKLIJKE KPN NV,0.09,Communication
+2388,BOC HONG KONG HOLDINGS LTD,0.09,Financials
+669,TECHTRONIC INDUSTRIES LTD,0.09,Industrials
+VACN,VAT GROUP AG,0.09,Industrials
+CCEP,COCA COLA EUROPACIFIC PARTNERS PLC,0.09,Consumer Staples
+9022,CENTRAL JAPAN RAILWAY,0.09,Industrials
+7013,IHI CORP,0.09,Industrials
+6920,LASERTEC CORP,0.09,Information Technology
+7936,ASICS CORP,0.09,Consumer Discretionary
+SAB,BANCO DE SABADELL SA,0.09,Financials
+CAP,CAPGEMINI,0.09,Information Technology
+EVN,EVOLUTION MINING LTD,0.09,Materials
+HNR1,HANNOVER RUECK,0.09,Financials
+ALL,ARISTOCRAT LEISURE LTD,0.09,Consumer Discretionary
+WKL,WOLTERS KLUWER NV,0.09,Industrials
+BESI,BE SEMICONDUCTOR INDUSTRIES NV,0.09,Information Technology
+BIRG,BANK OF IRELAND GROUP PLC,0.09,Financials
+7269,SUZUKI MOTOR CORP,0.09,Consumer Discretionary
+SGSN,SGS SA,0.09,Industrials
+GBP,GBP CASH,0.08,Cash and/or Derivatives
+EPI A,EPIROC CLASS A,0.08,Industrials
+4543,TERUMO CORP,0.08,Health Care
+ALFA,ALFA LAVAL,0.08,Industrials
+5401,NIPPON STEEL CORP,0.08,Materials
+BAMI,BANCO BPM,0.08,Financials
+MRK,MERCK,0.08,Health Care
+4661,ORIENTAL LAND LTD,0.08,Consumer Discretionary
+8830,SUMITOMO REALTY & DEVELOPMENT LTD,0.08,Real Estate
+EQT,EQT,0.08,Financials
+STO,SANTOS LTD,0.08,Energy
+STLAM,STELLANTIS NV,0.08,Consumer Discretionary
+BT.A,BT GROUP PLC,0.08,Communication
+KOG,KONGSBERG GRUPPEN,0.08,Industrials
+BOL,BOLIDEN,0.08,Materials
+GMAB,GENMAB,0.08,Health Care
+4452,KAO CORP,0.08,Consumer Staples
+5016,JX ADVANCED METALS CORP,0.08,Materials
+1925,DAIWA HOUSE INDUSTRY LTD,0.08,Real Estate
+RTO,RENTOKIL INITIAL PLC,0.08,Industrials
+TEF,TELEFONICA SA,0.08,Communication
+ESSITY B,ESSITY CLASS B,0.08,Consumer Staples
+BAER,JULIUS BAER GRUPPE AG,0.08,Financials
+TRN,TERNA RETE ELETTRICA NAZIONALE,0.07,Utilities
+UPM,UPM-KYMMENE,0.07,Materials
+CLNX,CELLNEX TELECOM,0.07,Communication
+EDP,EDP ENERGIAS DE PORTUGAL SA,0.07,Utilities
+FBK,FINECOBANK BANCA FINECO,0.07,Financials
+RI,PERNOD RICARD SA,0.07,Consumer Staples
+5713,SUMITOMO METAL MINING LTD,0.07,Materials
+2502,ASAHI GROUP HOLDINGS LTD,0.07,Consumer Staples
+1812,KAJIMA CORP,0.07,Industrials
+9101,NIPPON YUSEN,0.07,Industrials
+6326,KUBOTA CORP,0.07,Industrials
+MONC,MONCLER,0.07,Consumer Discretionary
+2,CLP HOLDINGS LTD,0.07,Utilities
+SHL,SIEMENS HEALTHINEERS AG,0.07,Health Care
+LOGN,LOGITECH INTERNATIONAL SA,0.07,Information Technology
+SRG,SNAM,0.07,Utilities
+ORG,ORIGIN ENERGY LTD,0.07,Utilities
+4507,SHIONOGI LTD,0.07,Health Care
+DSY,DASSAULT SYSTEMES,0.07,Information Technology
+URW,UNIBAIL RODAMCO WE STAPLED UNITS,0.07,Real Estate
+NVMI,NOVA LTD,0.07,Information Technology
+NHY,NORSK HYDRO,0.07,Materials
+9735,SECOM LTD,0.07,Industrials
+TLS,TELSTRA GROUP LTD,0.07,Communication
+9503,KANSAI ELECTRIC POWER INC,0.07,Utilities
+1802,OBAYASHI CORP,0.07,Industrials
+KRX,KINGSPAN GROUP PLC,0.07,Industrials
+INF,INFORMA PLC,0.07,Communication
+LISN,CHOCOLADEFABRIKEN LINDT & SPRUENGL,0.07,Consumer Staples
+7012,KAWASAKI HEAVY INDUSTRIES LTD,0.07,Industrials
+1801,TAISEI CORP,0.07,Industrials
+S32,SOUTH32 LTD,0.07,Materials
+7832,BANDAI NAMCO HOLDINGS INC,0.07,Consumer Discretionary
+S68,SINGAPORE EXCHANGE LTD,0.07,Financials
+6988,NITTO DENKO CORP,0.07,Materials
+SCHP,SCHINDLER HOLDING PAR AG,0.07,Industrials
+6361,EBARA CORP,0.07,Industrials
+DSCT,ISRAEL DISCOUNT BANK LTD,0.06,Financials
+SPSN,SWISS PRIME SITE AG,0.06,Real Estate
+BG,BAWAG GROUP AG,0.06,Financials
+S63,SINGAPORE TECHNOLOGIES ENGINEERING,0.06,Industrials
+4062,IBIDEN LTD,0.06,Information Technology
+9532,OSAKA GAS LTD,0.06,Utilities
+ELE,ENDESA SA,0.06,Utilities
+9531,TOKYO GAS LTD,0.06,Utilities
+PHOE,PHOENIX FINANCIAL LTD,0.06,Financials
+SN.,SMITH AND NEPHEW PLC,0.06,Health Care
+9104,MITSUI OSK LINES LTD,0.06,Industrials
+BN4,KEPPEL LTD,0.06,Industrials
+RO,ROCHE HOLDING AG,0.06,Health Care
+ENX,EURONEXT NV,0.06,Financials
+LYC,LYNAS RARE EARTHS LTD,0.06,Materials
+DSFIR,DSM FIRMENICH AG,0.06,Materials
+9766,KONAMI GROUP CORP,0.06,Communication
+SCG,SCENTRE GROUP,0.06,Real Estate
+3407,ASAHI KASEI CORP,0.06,Materials
+STMN,STRAUMANN HOLDING AG,0.06,Health Care
+FPH,FISHER AND PAYKEL HEALTHCARE CORPO,0.06,Health Care
+1928,SEKISUI HOUSE LTD,0.06,Consumer Discretionary
+6383,DAIFUKU LTD,0.06,Industrials
+METSO,METSO CORPORATION,0.06,Industrials
+KRZ,KERRY GROUP PLC,0.06,Consumer Staples
+EDV,ENDEAVOUR MINING,0.06,Materials
+CCH,COCA COLA HBC AG,0.06,Consumer Staples
+ORSTED,ORSTED A/S,0.06,Utilities
+8601,DAIWA SECURITIES GROUP INC,0.06,Financials
+SUN,SUNCORP GROUP LTD,0.06,Financials
+823,LINK REAL ESTATE INVESTMENT TRUST,0.06,Real Estate
+SGRO,SEGRO REIT PLC,0.06,Real Estate
+2503,KIRIN HOLDINGS LTD,0.06,Consumer Staples
+IAG,INSURANCE AUSTRALIA GROUP LTD,0.06,Financials
+HEN3,HENKEL & KGAA PREF AG,0.06,Consumer Staples
+MZTF,MIZRAHI TEFAHOT BANK LTD,0.06,Financials
+CARL B,CARLSBERG AS CL B,0.06,Consumer Staples
+7453,RYOHIN KEIKAKU LTD,0.06,Consumer Discretionary
+CNA,CENTRICA PLC,0.06,Utilities
+UU.,UNITED UTILITIES GROUP PLC,0.06,Utilities
+9502,CHUBU ELECTRIC POWER INC,0.06,Utilities
+SOON,SONOVA HOLDING AG,0.06,Health Care
+LISP,CHOCOLADEFABRIKEN LINDT & SPRUENGL,0.06,Consumer Staples
+SEK,SEK CASH,0.06,Cash and/or Derivatives
+SY1,SYMRISE AG,0.05,Materials
+AGS,AGEAS SA,0.05,Financials
+PST,POSTE ITALIANE,0.05,Financials
+BKT,BANKINTER SA,0.05,Financials
+8697,JAPAN EXCHANGE GROUP INC,0.05,Financials
+TELIA,TELIA COMPANY,0.05,Communication
+6594,NIDEC CORP,0.05,Industrials
+SGE,THE SAGE GROUP PLC,0.05,Information Technology
+EN,BOUYGUES SA,0.05,Industrials
+J36,JARDINE MATHESON HOLDINGS LTD,0.05,Industrials
+ASRNL,ASR NEDERLAND NV,0.05,Financials
+ADM,ADMIRAL GROUP PLC,0.05,Financials
+NESTE,NESTE,0.05,Energy
+8795,T&D HOLDINGS INC,0.05,Financials
+BVI,BUREAU VERITAS SA,0.05,Industrials
+4307,NOMURA RESEARCH INSTITUTE LTD,0.05,Information Technology
+CHKP,CHECK POINT SOFTWARE TECHNOLOGIES,0.05,Information Technology
+1113,CK ASSET HOLDINGS LTD,0.05,Real Estate
+CPU,COMPUTERSHARE LTD,0.05,Industrials
+SMIN,SMITHS GROUP PLC,0.05,Industrials
+SVT,SEVERN TRENT PLC,0.05,Utilities
+CICT,CAPITALAND INTEGRATED COMMERCIAL T,0.05,Real Estate
+KNIN,KUEHNE UND NAGEL INTERNATIONAL AG,0.05,Industrials
+CA,CARREFOUR SA,0.05,Consumer Staples
+FGR,EIFFAGE SA,0.05,Industrials
+8473,SBI HOLDINGS INC,0.05,Financials
+7532,PAN PACIFIC INTERNATIONAL HOLDINGS,0.05,Consumer Discretionary
+288,WH GROUP LTD,0.05,Consumer Staples
+7733,OLYMPUS CORP,0.05,Health Care
+FRES,FRESNILLO PLC,0.05,Materials
+TEL2 B,TELE2 B,0.05,Communication
+6,POWER ASSETS HOLDINGS LTD,0.05,Utilities
+FORTUM,FORTUM,0.05,Utilities
+AKZA,AKZO NOBEL NV,0.05,Materials
+G1A,GEA GROUP AG,0.05,Industrials
+7735,SCREEN HOLDINGS LTD,0.05,Information Technology
+AKRBP,AKER BP,0.05,Energy
+TEN,TENARIS SA,0.05,Energy
+MOWI,MOWI,0.05,Consumer Staples
+6504,FUJI ELECTRIC LTD,0.05,Industrials
+SOL,WASHINGTON H SOUL PATTINSON & COMP,0.05,Financials
+AC,ACCOR SA,0.05,Consumer Discretionary
+TEL,TELENOR,0.05,Communication
+SIG,SIGMA HEALTHCARE LTD,0.05,Health Care
+BNZL,BUNZL,0.05,Industrials
+ITRK,INTERTEK GROUP PLC,0.05,Industrials
+3,HONG KONG AND CHINA GAS LTD,0.05,Utilities
+AGN,AEGON LTD,0.05,Financials
+MKS,MARKS AND SPENCER GROUP PLC,0.05,Consumer Staples
+FME,FRESENIUS MEDICAL CARE AG,0.05,Health Care
+3402,TORAY INDUSTRIES INC,0.05,Materials
+ADDT B,ADDTECH CLASS B,0.05,Industrials
+RXL,REXEL SA,0.05,Industrials
+GRAB,GRAB HOLDINGS LTD CLASS A,0.05,Industrials
+XRO,XERO LTD,0.05,Information Technology
+7186,YOKOHAMA FINANCIAL GROUP INC,0.04,Financials
+OMV,OMV AG,0.04,Energy
+SKA B,SKANSKA B,0.04,Industrials
+WISE,WISE PLC CLASS A,0.04,Financials
+ERF,EUROFINS SCIENTIFIC,0.04,Health Care
+BEAN,BELIMO N AG,0.04,Industrials
+ORNBV,ORION CLASS B,0.04,Health Care
+HEIO,HEINEKEN HOLDING NV,0.04,Consumer Staples
+HM B,HENNES & MAURITZ,0.04,Consumer Discretionary
+MRO,MELROSE INDUSTRIES PLC,0.04,Industrials
+MAERSK B,A P MOLLER MAERSK B,0.04,Industrials
+EVO,EVOLUTION,0.04,Consumer Discretionary
+UNI,UNIPOL ASSICURAZIONI SPA,0.04,Financials
+7270,SUBARU CORP,0.04,Consumer Discretionary
+FUTU,FUTU HOLDINGS ADR LTD,0.04,Financials
+SKF B,SKF B,0.04,Industrials
+EPI B,EPIROC CLASS B,0.04,Industrials
+MNG,M&G PLC,0.04,Financials
+SECU B,SECURITAS B,0.04,Industrials
+APA,APA GROUP UNITS,0.04,Utilities
+MPL,MEDIBANK PRIVATE LTD,0.04,Financials
+GALP,GALP ENERGIA SGPS SA CLASS B,0.04,Energy
+TLX,TALANX AG,0.04,Financials
+SOBI,SWEDISH ORPHAN BIOVITRUM,0.04,Health Care
+KBX,KNORR BREMSE AG,0.04,Industrials
+YAR,YARA INTERNATIONAL,0.04,Materials
+TLC,THE LOTTERY CORPORATION LTD,0.04,Consumer Discretionary
+ORK,ORKLA,0.04,Consumer Staples
+TIT,TELECOM ITALIA,0.04,Communication
+LI,KLEPIERRE REIT SA,0.04,Real Estate
+BEI,BEIERSDORF AG,0.04,Consumer Staples
+COLO B,COLOPLAST B,0.04,Health Care
+CON,CONTINENTAL AG,0.04,Consumer Discretionary
+H78,HONGKONG LAND HOLDINGS LTD,0.04,Real Estate
+TREL B,TRELLEBORG B,0.04,Industrials
+27,GALAXY ENTERTAINMENT GROUP LTD,0.04,Consumer Discretionary
+RBCFT,CASH COLLATERAL EUR RBCFT,0.04,Cash and/or Derivatives
+1803,SHIMIZU CORP,0.04,Industrials
+4684,OBIC LTD,0.04,Information Technology
+BNR,BRENNTAG,0.04,Industrials
+INDU C,INDUSTRIVARDEN SERIES,0.04,Financials
+QIA,QIAGEN NV,0.04,Health Care
+HOT,HOCHTIEF AG,0.04,Industrials
+BS6,YANGZIJIANG SHIPBUILDING (HOLDINGS,0.04,Industrials
+LIFCO B,LIFCO CLASS B,0.04,Industrials
+CLAR,CAPITALAND ASCENDAS REIT,0.04,Real Estate
+PSON,PEARSON PLC,0.04,Consumer Discretionary
+NTGY,NATURGY ENERGY GROUP SA,0.04,Utilities
+ASX,ASX LTD,0.04,Financials
+C6L,SINGAPORE AIRLINES LTD,0.04,Industrials
+TRYG,TRYG,0.04,Financials
+4523,EISAI LTD,0.04,Health Care
+AIA,AUCKLAND INTERNATIONAL AIRPORT LTD,0.04,Industrials
+8593,MITSUBISHI HC CAPITAL INC,0.04,Financials
+SBRY,SAINSBURY(J) PLC,0.04,Consumer Staples
+ABF,ASSOCIATED BRITISH FOODS PLC,0.04,Consumer Staples
+7309,SHIMANO INC,0.04,Consumer Discretionary
+BCP,BANCO COMERCIAL PORTUGUES SA,0.04,Financials
+9697,CAPCOM LTD,0.04,Communication
+4755,RAKUTEN GROUP INC,0.04,Consumer Discretionary
+COH,COCHLEAR LTD,0.04,Health Care
+SCHN,SCHINDLER HOLDING AG,0.04,Industrials
+EXO,EXOR NV,0.04,Financials
+4911,SHISEIDO LTD,0.04,Consumer Staples
+8331,CHIBA BANK LTD,0.04,Financials
+6841,YOKOGAWA ELECTRIC CORP,0.04,Information Technology
+6586,MAKITA CORP,0.04,Industrials
+GBLB,GROUPE BRUXELLES LAMBERT NV,0.04,Financials
+9021,WEST JAPAN RAILWAY,0.04,Industrials
+7202,ISUZU MOTORS LTD,0.04,Consumer Discretionary
+HEN,HENKEL AG,0.04,Consumer Staples
+INDT,INDUTRADE,0.03,Industrials
+SPX,SPIRAX GROUP PLC,0.03,Industrials
+4188,MITSUBISHI CHEMICAL GROUP CORP,0.03,Materials
+SGP,STOCKLAND STAPLED UNITS LTD,0.03,Real Estate
+AM,DASSAULT AVIATION SA,0.03,Industrials
+SRT3,SARTORIUS PREF AG,0.03,Health Care
+7912,DAI NIPPON PRINTING LTD,0.03,Industrials
+IG,ITALGAS,0.03,Utilities
+4689,LY CORP,0.03,Communication
+RNO,RENAULT SA,0.03,Consumer Discretionary
+SCA B,SVENSKA CELLULOSA B,0.03,Materials
+KGF,KINGFISHER PLC,0.03,Consumer Discretionary
+9042,HANKYU HANSHIN HOLDINGS INC,0.03,Industrials
+RBI,RAIFFEISEN BANK INTERNATIONAL AG,0.03,Financials
+STERV,STORA ENSO CLASS R,0.03,Materials
+IPN,IPSEN SA,0.03,Health Care
+5019,IDEMITSU KOSAN LTD,0.03,Energy
+SDLF,STANDARD LIFE PLC,0.03,Financials
+5201,AGC INC,0.03,Industrials
+CAR,CAR GROUP LTD,0.03,Communication
+7259,AISIN CORP,0.03,Consumer Discretionary
+UHR,THE SWATCH GROUP AG,0.03,Consumer Discretionary
+MAERSK A,A P MOLLER MAERSK,0.03,Industrials
+MICC,MAGNUM ICE CREAM NV,0.03,Consumer Staples
+VCX,VICINITY CENTRES,0.03,Real Estate
+USD,USD CASH,0.03,Cash and/or Derivatives
+JMT,JERONIMO MARTINS SA,0.03,Consumer Staples
+ELI,ELIA GROUP SA,0.03,Utilities
+GET,GETLINK,0.03,Industrials
+ANA,ACCIONA SA,0.03,Utilities
+7911,TOPPAN HOLDINGS INC,0.03,Industrials
+SHL,SONIC HEALTHCARE LTD,0.03,Health Care
+8113,UNICHARM CORP,0.03,Consumer Staples
+NIBE B,NIBE INDUSTRIER CLASS B,0.03,Industrials
+ELISA,ELISA,0.03,Communication
+REC,RECORDATI INDUSTRIA CHIMICA E FARM,0.03,Health Care
+RED,REDEIA CORPORACION SA,0.03,Utilities
+6479,MINEBEA MITSUMI INC,0.03,Industrials
+66,MTR CORPORATION CORP LTD,0.03,Industrials
+ALO,ALSTOM SA,0.03,Industrials
+NICE,NICE LTD,0.03,Information Technology
+IFT,INFRATIL LTD,0.03,Financials
+WTC,WISETECH GLOBAL LTD,0.03,Information Technology
+BEIJ B,BEIJER REF CLASS B,0.03,Industrials
+8951,NIPPON BUILDING FUND REIT INC,0.03,Real Estate
+5411,JFE HOLDINGS INC,0.03,Materials
+KESKOB,KESKO CLASS B,0.03,Consumer Staples
+7272,YAMAHA MOTOR LTD,0.03,Consumer Discretionary
+AZRG,AZRIELI GROUP LTD,0.03,Real Estate
+DIM,SARTORIUS STEDIM BIOTECH SA,0.03,Health Care
+REA,REA GROUP LTD,0.03,Communication
+3659,NEXON LTD,0.03,Communication
+PNDORA,PANDORA,0.03,Consumer Discretionary
+IAG,INTERNATIONAL AIRLINES GROUP SA,0.03,Industrials
+4091,NIPPON SANSO HOLDINGS CORP,0.03,Materials
+1878,DAITO TRUST CONSTRUCTION LTD,0.03,Real Estate
+2801,KIKKOMAN CORP,0.03,Consumer Staples
+G24,SCOUT24 N,0.03,Communication
+9843,NITORI HOLDINGS LTD,0.03,Consumer Discretionary
+AUTO,AUTOTRADER GROUP PLC,0.03,Communication
+ZAL,ZALANDO,0.03,Consumer Discretionary
+PME,PRO MEDICUS LTD,0.03,Health Care
+6823,HKT TRUST AND HKT UNITS LTD,0.03,Communication
+EMSN,EMS-CHEMIE HOLDING AG,0.03,Materials
+4612,NIPPON PAINT HOLDINGS LTD,0.03,Materials
+WTB,WHITBREAD PLC,0.03,Consumer Discretionary
+1308,SITC INTERNATIONAL HOLDINGS LTD,0.03,Industrials
+HAG,HENSOLDT AG,0.03,Industrials
+PAH3,PORSCHE AUTOMOBIL HOLDING PREF,0.03,Consumer Discretionary
+INDU A,INDUSTRIVARDEN A,0.03,Financials
+SGH,SGH LTD,0.03,Industrials
+4204,SEKISUI CHEMICAL LTD,0.03,Industrials
+LAND,LAND SECURITIES GROUP REIT PLC,0.03,Real Estate
+AVOL,AVOLTA AG,0.03,Consumer Discretionary
+9107,KAWASAKI KISEN LTD,0.03,Industrials
+AMUN,AMUNDI SA,0.03,Financials
+P911,DR ING HC F PORSCHE PRF AG,0.03,Consumer Discretionary
+8729,SONY FINANCIAL GROUP INC,0.03,Financials
+F34,WILMAR INTERNATIONAL LTD,0.03,Consumer Staples
+8136,SANRIO LTD,0.03,Consumer Discretionary
+SDR,SCHRODERS PLC,0.03,Financials
+9005,TOKYU CORP,0.03,Industrials
+7701,SHIMADZU CORP,0.03,Information Technology
+12,HENDERSON LAND DEVELOPMENT LTD,0.03,Real Estate
+LHA,DEUTSCHE LUFTHANSA AG,0.03,Industrials
+7181,JAPAN POST INSURANCE LTD,0.03,Financials
+LEG,LEG IMMOBILIEN N,0.03,Real Estate
+3003,HULIC LTD,0.03,Real Estate
+83,SINO LAND LTD,0.03,Real Estate
+TITR,TELECOM ITALIA S.P.A.,0.02,Communication
+GJF,GJENSIDIGE FORSIKRING,0.02,Financials
+9024,SEIBU HOLDINGS INC,0.02,Industrials
+TUB,FINANCIERE DE TUBIZE SA,0.02,Health Care
+9CI,CAPITALAND INVESTMENT LTD,0.02,Real Estate
+1928,SANDS CHINA LTD,0.02,Consumer Discretionary
+BMW3,BMW PREF AG,0.02,Consumer Discretionary
+1038,CHEUNG KONG INFRASTRUCTURE HOLDING,0.02,Utilities
+1997,WHARF REAL ESTATE INVESTMENT COMPA,0.02,Real Estate
+ENT,ENTAIN PLC,0.02,Consumer Discretionary
+BMED,BANCA MEDIOLANUM,0.02,Financials
+BTRW,BARRATT REDROW PLC,0.02,Consumer Discretionary
+IDR,INDRA SISTEMAS SA,0.02,Information Technology
+7550,ZENSHO HOLDINGS LTD,0.02,Consumer Discretionary
+7201,NISSAN MOTOR LTD,0.02,Consumer Discretionary
+EVK,EVONIK INDUSTRIES AG,0.02,Materials
+3626,TIS INC,0.02,Information Technology
+CSG,CSG CLASS A NV,0.02,Industrials
+DKK,DKK CASH,0.02,Cash and/or Derivatives
+3088,MATSUKIYOKARA,0.02,Consumer Staples
+VER,VERBUND AG,0.02,Utilities
+EDPR,EDP RENOVAVEIS SA,0.02,Utilities
+BARN,BARRY CALLEBAUT AG,0.02,Consumer Staples
+CPR,DAVIDE CAMPARI MILANO NV,0.02,Consumer Staples
+U96,SEMBCORP INDUSTRIES LTD,0.02,Utilities
+CEN,CONTACT ENERGY LTD,0.02,Utilities
+9602,TOHO (TOKYO) LTD,0.02,Communication
+SYENS,SYENSQO NV,0.02,Materials
+QAN,QANTAS AIRWAYS LTD,0.02,Industrials
+BALD B,FASTIGHETS BALDER CLASS B,0.02,Real Estate
+DHER,DELIVERY HERO,0.02,Consumer Discretionary
+LOTB,LOTUS BAKERIES NV,0.02,Consumer Staples
+DIE,DIETEREN (D) SA,0.02,Consumer Discretionary
+BCVN,BC VAUD N,0.02,Financials
+LUND B,LUNDBERGFORETAGEN CLASS B,0.02,Financials
+ADP,AEROPORTS DE PARIS SA,0.02,Industrials
+AYV,AYVENS SA,0.02,Industrials
+NEM,NEMETSCHEK,0.02,Information Technology
+MAP,MAPFRE SA,0.02,Financials
+SAGA B,SAGAX CLASS B,0.02,Real Estate
+6869,SYSMEX CORP,0.02,Health Care
+BZU,BUZZI,0.02,Materials
+INPST,INPOST SA,0.02,Industrials
+BIM,BIOMERIEUX SA,0.02,Health Care
+SOF,SOFINA SA,0.02,Financials
+SW,SODEXO SA,0.02,Consumer Discretionary
+9435,HIKARI TSUSHIN INC,0.02,Industrials
+AAF,AIRTEL AFRICA PLC,0.02,Communication
+MEL,MERIDIAN ENERGY LTD,0.02,Utilities
+2413,M3 INC,0.02,Health Care
+EVD,CTS EVENTIM AG,0.02,Communication
+4768,OTSUKA CORP,0.02,Information Technology
+RAA,RATIONAL AG,0.02,Industrials
+BOL,BOLLORE,0.02,Energy
+BKW,BKW N AG,0.02,Utilities
+ICL,ICL GROUP LTD,0.02,Materials
+2587,SUNTORY BEVERAGE & FOOD LTD,0.02,Consumer Staples
+SALM,SALMAR,0.02,Consumer Staples
+GFC,GECINA SA,0.02,Real Estate
+AUD,AUD CASH,0.02,Cash and/or Derivatives
+COV,COVIVIO SA,0.02,Real Estate
+LATO B,LATOUR INVESTMENT CLASS B,0.02,Industrials
+19,SWIRE PACIFIC LTD A,0.02,Industrials
+4151,KYOWA KIRIN LTD,0.02,Health Care
+CVC,CVC CAPITAL PARTNERS PLC,0.02,Financials
+GRF,GRIFOLS SA CLASS A,0.02,Health Care
+DEMANT,DEMANT,0.02,Health Care
+VSURE,VERISURE PLC,0.01,Industrials
+RBCFT,CASH COLLATERAL JPY RBCFT,0.01,Cash and/or Derivatives
+RAND,RANDSTAD HOLDING,0.01,Industrials
+ROCK B,ROCKWOOL CLASS B,0.01,Industrials
+3092,ZOZO INC,0.01,Consumer Discretionary
+3391,TSURUHA HOLDINGS INC,0.01,Consumer Staples
+4,WHARF (HOLDINGS) LTD,0.01,Real Estate
+3064,MONOTARO LTD,0.01,Industrials
+9202,ANA HOLDINGS INC,0.01,Industrials
+MNDY,MONDAYCOM LTD,0.01,Information Technology
+JD.,JD SPORTS FASHION PLC,0.01,Consumer Discretionary
+HOLM B,HOLMEN CLASS B,0.01,Materials
+4716,ORACLE JAPAN CORP,0.01,Information Technology
+9201,JAPAN AIRLINES LTD,0.01,Industrials
+SGD,SGD CASH,0.01,Cash and/or Derivatives
+RBCFT,CASH COLLATERAL AUD RBCFT,0.00,Cash and/or Derivatives
+HKD,HKD CASH,0.00,Cash and/or Derivatives
+ILS,ILS CASH,0.00,Cash and/or Derivatives
+NOK,NOK CASH,0.00,Cash and/or Derivatives
+SGSN,SGS SA COUPON,0.00,Industrials
+NZD,NZD CASH,0.00,Cash and/or Derivatives
+XTSLA,BLK CSH FND TREASURY SL AGENCY,0.00,Cash and/or Derivatives
+EUR,EUR/USD,0.00,Cash and/or Derivatives
+ETD_USD,ETD USD BALANCE WITH R73215,0.00,Cash and/or Derivatives
+ETD_USD,ETD USD BALANCE WITH R30191,0.00,Cash and/or Derivatives
+ETD_AUD,ETD AUD BALANCE WITH R73215,0.00,Cash and/or Derivatives
+ETD_EUR,ETD EUR BALANCE WITH R73215,0.00,Cash and/or Derivatives
+ETD_JPY,ETD JPY BALANCE WITH R73215,0.00,Cash and/or Derivatives
+NMC,NMC HEALTH PLC,0.00,Health Care
+EUR,EUR/USD,0.00,Cash and/or Derivatives
+SEK,SEK/USD,0.00,Cash and/or Derivatives
+XPM6,SPI 200 JUN 26,0.00,Cash and/or Derivatives
+TPM6,TOPIX INDEX JUN 26,0.00,Cash and/or Derivatives
+SXOM6,STOXX EUROPE 600 JUN 26,0.00,Cash and/or Derivatives
+CHF,CHF/USD,0.00,Cash and/or Derivatives
+"The content contained herein is owned or licensed by BlackRock and/or its third-party information providers and is protected by applicable copyrights, trademarks, service marks, and/or other intellectual property rights. Such content is solely for your personal, non-commercial use. Accordingly, you may not copy, distribute, modify, post, frame or deep link this content. You may download material displayed on this Website for your personal use provided you also retain all copyright and other proprietary notices contained on the materials. Modification or use of the materials for any other purpose violates BlackRock's intellectual property rights.Holdings subject to change. See www.iShares.com for the most recent funds holdings.The values for “price” shown herein generally represent a price provided by a third-party pricing vendor for the portfolio holding and do not reflect the impact of systematic fair valuation (“the vendor price”). The vendor price is not necessarily the price at which the Fund values the portfolio holding for the purposes of determining its net asset value (the “valuation price”). Additionally, where applicable, foreign currency exchange rates with respect to the portfolio holdings denominated in non-U.S. currencies for the valuation price will be generally determined as of the close of business on the New York Stock Exchange, whereas for the vendor price will be generally determined as of 4 p.m. London. The values shown herein for “market value,” “weight,” and “notional value” (the “calculated values”) are based off of the vendor price and may have been different if the valuation price were to have been used to calculate such values. The vendor price is as of the most recent practicable date and may not necessarily be as of the date shown above.Please see the “Determination of Net Asset Value” section of each Fund’s prospectus for additional information on the Fund’s valuation policies and procedures.CAREFULLY CONSIDER THE FUNDS' INVESTMENT OBJECTIVES, RISK FACTORS, AND CHARGES AND EXPENSES BEFORE INVESTING. THIS AND OTHER INFORMATION CAN BE FOUND IN THE FUNDS' PROSPECTUSES OR, IF AVAILABLE, THE SUMMARY PROSPECTUSES WHICH MAY BE OBTAINED BY VISITING WWW.ISHARES.COM OR WWW.BLACKROCK.COM. READ THE PROSPECTUS CAREFULLY BEFORE INVESTING. INVESTING INVOLVES RISK, INCLUDING POSSIBLE LOSS OF PRINCIPAL.This information should not be relied upon as research, investment advice, or a recommendation regarding any products, strategies, or any security in particular.This material is strictly for illustrative, educational, or informational purposes and is subject to change.The Funds are distributed by BlackRock Investments, LLC (together with its affiliates, “BlackRock”).The iShares Funds are not sponsored, endorsed, issued, sold or promoted by Bloomberg, BlackRock Index Services, LLC, Cboe Global Indices, LLC, Cohen & Steers, European Public Real Estate Association (“EPRA® ”), FTSE International Limited (“FTSE”), ICE Data Indices, LLC, NSE Indices Ltd, JPMorgan, JPX Group, London Stock Exchange Group (“LSEG”), MSCI Inc., Markit Indices Limited, Morningstar, Inc., Nasdaq, Inc., National Association of Real Estate Investment Trusts (“NAREIT”), Nikkei, Inc., Russell, S&P Dow Jones Indices LLC or STOXX Ltd. None of these companies make any representation regarding the advisability of investing in the Funds. With the exception of BlackRock Index Services, LLC, who is an affiliate, BlackRock Investments, LLC is not affiliated with the companies listed above. Neither FTSE, LSEG, nor NAREIT makes any warranty regarding the FTSE Nareit Equity REITS Index, FTSE Nareit All Residential Capped Index or FTSE Nareit All Mortgage Capped Index. Neither FTSE, EPRA, LSEG, nor NAREIT makes any warranty regarding the FTSE EPRA Nareit Developed ex-U.S. Index, FTSE EPRA Nareit Developed Green Target Index or FTSE EPRA Nareit Global REITs Index. “FTSE®” is a trademark of London Stock Exchange Group companies and is used by FTSE under license.©2023 BlackRock, Inc or its affiliates. All rights reserved. iSHARES, iBONDS and BLACKROCK are trademarks of BlackRock, Inc. or its affiliates. All other trademarks are those of their respective owners.",,,
