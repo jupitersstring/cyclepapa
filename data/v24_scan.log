@@ -1,0 +1,16 @@
+Building eclipse DB...
+Universe: 12086
+  1000/12086  55s
+  2000/12086  110s
+  3000/12086  165s
+  4000/12086  221s
+  5000/12086  277s
+  6000/12086  332s
+  7000/12086  387s
+  8000/12086  443s
+  9000/12086  498s
+  10000/12086  553s
+  11000/12086  610s
+  12000/12086  664s
+Scan done: 668s, kept 3204
+Exported 3204 -> /home/user/cyclepapa/data/universe_macro_v24.csv
