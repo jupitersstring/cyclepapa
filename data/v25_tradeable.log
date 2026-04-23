@@ -1,0 +1,106 @@
+3479 total (unfiltered); 130 tradeable survivors
+
+=========================================================================================================================================================================================
+TOP 40 SP500+Ritter ASYMMETRIC (v25 — profection + GC + stations + helio + exit-penalty)
+=========================================================================================================================================================================================
+  # Tkr    ModSec         Src     Age   Now  Peak     Δ  Bub   GC PkMo     Run  mPk +Prof  +Jst -Exit  Asym  Name
+  1 NXPI   SEMIS          SP500    16  16.1  46.9 +30.79 4.94 1.00 2026-07    3 2.01  0.57  0.00  0.48 22.29  NXP Semiconductors
+  2 NFLX   STREAMING      SP500    24   8.6  44.4 +35.89 4.04 1.00 2027-06   14 1.66  0.35  0.00  0.00 20.86  Netflix
+  3 KVYO   TECH           Ritter    3  13.0  48.4 +35.39 3.70 1.40 2026-07    3 1.78  0.38  0.00  0.48 20.73  Klaviyo, Inc.
+  4 IVZ    FINANCE        SP500    18  13.4  39.9 +26.49 4.16 1.40 2027-04   12 1.02  0.58  0.00  0.00 19.58  Invesco
+  5 TER    SEMIS          SP500     6   8.6  35.3 +26.69 3.78 1.00 2026-07    3 2.01  0.00  0.00  0.48 19.29  Teradyne
+  6 HON    INDUSTRIAL     SP500    27  10.1  31.6 +21.44 4.10 1.00 2026-11    7 1.29  0.59  0.00  0.00 17.86  Honeywell
+  7 DKS    RETAIL         Ritter   24   9.8  34.9 +25.05 3.57 1.40 2026-08    4 0.99  0.00  0.00  0.27 17.14  Dicks Sporting Goods Inc
+  8 CHRW   INDUSTRIAL     SP500    29   7.8  32.1 +24.32 3.27 1.00 2026-08    4 1.21  0.00  0.00  0.27 16.67  C.H. Robinson
+  9 IBKR   FINANCE        SP500    19  24.8  46.9 +22.08 4.91 1.40 2026-11    7 1.17  0.00  0.00  0.00 15.09  Interactive Brokers
+ 10 MPWR   SEMIS          SP500    22   6.6  32.7 +26.14 2.50 1.00 2026-07    3 2.01  0.00  0.00  0.48 13.77  Monolithic Power Systems
+ 11 FOXA   MEDIA          SP500     7   7.4  29.3 +21.91 2.70 1.00 2027-04   12 1.45  0.46  0.00  0.00 13.45  Fox Corporation (Class A
+ 12 TPG    FINANCE        Ritter    4   6.8  24.0 +17.13 3.18 1.00 2027-01    9 1.02  0.00  0.00  0.00 13.06  TPG Inc.
+ 13 WM     INDUSTRIAL     SP500    28  12.2  38.2 +25.99 2.92 1.40 2026-07    3 1.42  0.48  0.00  0.48 12.68  Waste Management
+ 14 DECK   LUXURY         SP500    33  12.3  36.5 +24.18 2.70 1.00 2026-10    6 1.25  0.00  0.00  0.00 12.13  Deckers Brands
+ 15 KDP    FOOD_BEV       SP500     4  14.0  28.5 +14.55 4.46 1.40 2026-11    7 1.17  0.09  0.00  0.00 12.05  Keurig Dr Pepper
+ 16 TTD    MEDIA          SP500    10  17.8  37.3 +19.44 3.76 1.00 2027-01    9 1.45  0.00  0.00  0.00 11.91  Trade Desk (The)
+ 17 INGM   TECH           Ritter    2  22.7  46.5 +23.81 3.37 1.40 2026-11    7 1.62  0.00  0.00  0.00 11.53  Ingram Micro Holding Cor
+ 18 DVN    FOSSIL         SP500    26   9.6  23.7 +14.12 4.16 1.00 2026-07    3 1.03  0.00  0.00  0.48 11.47  Devon Energy
+ 19 PARA   MEDIA          Ritter   30   7.3  27.9 +20.65 2.50 1.00 2026-08    4 1.56  0.00  0.00  0.27 11.26  Paramount Financial
+ 20 CE     METALS         Ritter   21   7.5  26.7 +19.23 2.50 1.00 2026-11    7 1.48  0.54  0.00  0.00 11.06  Celanese Corp
+ 21 KEYS   TECH           SP500    30   7.2  26.9 +19.67 2.67 1.00 2026-07    3 1.78  0.40  0.00  0.48 11.02  Keysight Technologies
+ 22 WYNN   HOSPITALITY    SP500    24  11.3  31.5 +20.17 2.69 1.40 2026-11    7 1.17  0.00  0.00  0.00 10.61  Wynn Resorts
+ 23 AMAT   SEMIS          SP500    31  20.4  46.2 +25.83 3.00 1.00 2026-07    3 2.01  0.00  0.00  0.48 10.46  Applied Materials
+ 24 ROP    TECH           SP500    17  23.3  39.7 +16.36 5.91 1.00 2026-06    2 1.71  0.00  0.00  0.00  9.98  Roper Technologies
+ 25 HBAN   FINANCE        SP500    29  12.0  29.2 +17.21 2.91 1.00 2027-03   11 1.02  0.00  0.00  0.00  9.74  Huntington Bancshares
+ 26 WST    HEALTH         SP500     6  11.0  31.5 +20.49 3.43 1.00 2028-02   22 1.20  0.23  0.00  0.00  9.71  West Pharmaceutical Serv
+ 27 TEL    TECH           SP500    15  17.6  34.0 +16.39 3.70 1.00 2026-08    4 1.52  0.57  0.00  0.27  9.56  TE Connectivity
+ 28 ANSS   UNK            Ritter   30   5.4  19.2 +13.79 2.67 1.00 2026-07    3 1.29  0.40  0.00  0.48  8.83  ANSYS
+ 29 MKC    FOOD_BEV       SP500    23   7.5  29.6 +22.15 2.50 1.00 2027-07   15 1.10  0.00  0.00  0.00  8.78  McCormick & Company
+ 30 BLDR   HOMEBUILDER    SP500    21  11.2  22.0 +10.90 3.81 1.00 2026-09    5 1.02  0.11  0.00  0.00  8.68  Builders FirstSource
+ 31 DDOG   TECH           SP500     7   9.4  31.6 +22.23 2.68 1.00 2026-05    1 1.64  0.54  0.00  0.00  8.68  Datadog
+ 32 VRSN   TECH           SP500    28  22.9  46.2 +23.32 3.69 1.00 2026-05    1 1.64  0.15  0.00  0.00  8.64  Verisign
+ 33 ASML   SEMIS          Ritter   31  24.4  48.5 +24.11 3.64 1.00 2026-06    2 1.93  0.00  0.00  0.00  8.54  ASM Lithography Holding
+ 34 ALLE   INDUSTRIAL     SP500    13   9.8  33.1 +23.27 2.50 1.00 2026-05    1 1.31  0.00  0.00  0.00  8.30  Allegion
+ 35 ADBE   TECH           SP500    40   7.8  28.3 +20.52 2.50 1.00 2026-05    1 1.64  0.22  0.00  0.00  8.08  Adobe Inc.
+ 36 PWR    INDUSTRIAL     SP500    28  18.9  36.2 +17.33 4.10 1.00 2026-06    2 1.36  0.00  0.00  0.00  7.98  Quanta Services
+ 37 PSX    FOSSIL         SP500    14  16.6  28.2 +11.62 4.25 1.00 2026-07    3 1.03  0.68  0.00  0.48  7.90  Phillips 66
+ 38 ULTA   RETAIL         SP500    19  23.6  44.9 +21.37 2.50 1.40 2026-11    7 1.06  0.67  0.00  0.00  7.63  Ulta Beauty
+ 39 BX     FINANCE        SP500    19  16.7  25.1 +8.46 4.80 1.40 2026-10    6 1.06  0.00  0.00  0.00  7.39  Blackstone Inc.
+ 40 INCY   BIOTECH        SP500     9  24.8  45.1 +20.23 3.70 1.40 2027-06   14 1.35  0.00  0.00  0.00  7.35  Incyte
+
+=========================================================================================================================================================================================
+TOP 20 WITH NATAL GALACTIC CENTER ≤3° (magnitude-amplified, +40% composite)
+=========================================================================================================================================================================================
+ Rk Tkr    ModSec           Now  Peak     Δ  Bub PkMo     Run  Asym  Name
+  1 KVYO   TECH            13.0  48.4 +35.39 3.70 2026-07    3 20.73  Klaviyo, Inc.
+  2 IVZ    FINANCE         13.4  39.9 +26.49 4.16 2027-04   12 19.58  Invesco
+  3 DKS    RETAIL           9.8  34.9 +25.05 3.57 2026-08    4 17.14  Dicks Sporting Goods Inc
+  4 IBKR   FINANCE         24.8  46.9 +22.08 4.91 2026-11    7 15.09  Interactive Brokers
+  5 WM     INDUSTRIAL      12.2  38.2 +25.99 2.92 2026-07    3 12.68  Waste Management
+  6 KDP    FOOD_BEV        14.0  28.5 +14.55 4.46 2026-11    7 12.05  Keurig Dr Pepper
+  7 INGM   TECH            22.7  46.5 +23.81 3.37 2026-11    7 11.53  Ingram Micro Holding Corp
+  8 WYNN   HOSPITALITY     11.3  31.5 +20.17 2.69 2026-11    7 10.61  Wynn Resorts
+  9 ULTA   RETAIL          23.6  44.9 +21.37 2.50 2026-11    7  7.63  Ulta Beauty
+ 10 BX     FINANCE         16.7  25.1 +8.46 4.80 2026-10    6  7.39  Blackstone Inc.
+ 11 INCY   BIOTECH         24.8  45.1 +20.23 3.70 2027-06   14  7.35  Incyte
+ 12 COR    HEALTH          23.3  34.4 +11.11 4.11 2026-11    7  7.00  Cencora
+ 13 J      INDUSTRIAL      23.5  37.6 +14.07 3.12 2026-10    6  6.54  Jacobs Solutions
+ 14 STX    SEMIS           23.5  39.5 +16.04 2.98 2026-07    3  6.37  Seagate Technology
+ 15 CTSH   TECH            23.2  43.1 +19.86 2.91 2026-06    2  5.87  Cognizant
+ 16 CMG    RETAIL          12.7  28.9 +16.14 2.37 2027-06   14  5.11  Chipotle Mexican Grill
+ 17 MAR    HOSPITALITY     20.6  28.9 +8.29 3.90 2026-07    3  4.87  Marriott International
+ 18 KVUE   RETAIL          12.4  26.4 +14.00 2.41 2026-06    2  4.62  Kenvue
+ 19 FIS    FINANCE          9.9  23.6 +13.70 2.20 2026-06    2  4.53  Fidelity National Information Servi
+ 20 FICO   FINANCE         16.2  25.9 +9.66 3.64 2028-02   22  4.48  Fair Isaac
+
+=========================================================================================================================================================================================
+IMMINENT + STRONG + LOW EXIT-PENALTY (runway≤5, bub≥3, Δ≥10, exit_penalty<1)
+=========================================================================================================================================================================================
+Tkr    ModSec         Src     Age   Now  Peak     Δ  Bub PkMo     Run  mPk  Asym  Name
+NXPI   SEMIS          SP500    16  16.1  46.9 +30.79 4.94 2026-07    3 2.01 22.29  NXP Semiconductors
+KVYO   TECH           Ritter    3  13.0  48.4 +35.39 3.70 2026-07    3 1.78 20.73  Klaviyo, Inc.
+TER    SEMIS          SP500     6   8.6  35.3 +26.69 3.78 2026-07    3 2.01 19.29  Teradyne
+DKS    RETAIL         Ritter   24   9.8  34.9 +25.05 3.57 2026-08    4 0.99 17.14  Dicks Sporting Goods Inc
+CHRW   INDUSTRIAL     SP500    29   7.8  32.1 +24.32 3.27 2026-08    4 1.21 16.67  C.H. Robinson
+DVN    FOSSIL         SP500    26   9.6  23.7 +14.12 4.16 2026-07    3 1.03 11.47  Devon Energy
+AMAT   SEMIS          SP500    31  20.4  46.2 +25.83 3.00 2026-07    3 2.01 10.46  Applied Materials
+ROP    TECH           SP500    17  23.3  39.7 +16.36 5.91 2026-06    2 1.71  9.98  Roper Technologies
+TEL    TECH           SP500    15  17.6  34.0 +16.39 3.70 2026-08    4 1.52  9.56  TE Connectivity
+BLDR   HOMEBUILDER    SP500    21  11.2  22.0 +10.90 3.81 2026-09    5 1.02  8.68  Builders FirstSource
+VRSN   TECH           SP500    28  22.9  46.2 +23.32 3.69 2026-05    1 1.64  8.64  Verisign
+ASML   SEMIS          Ritter   31  24.4  48.5 +24.11 3.64 2026-06    2 1.93  8.54  ASM Lithography Holding
+PWR    INDUSTRIAL     SP500    28  18.9  36.2 +17.33 4.10 2026-06    2 1.36  7.98  Quanta Services
+PSX    FOSSIL         SP500    14  16.6  28.2 +11.62 4.25 2026-07    3 1.03  7.90  Phillips 66
+META   TECH           SP500    13  24.2  37.8 +13.57 4.19 2026-06    2 1.71  5.88  Meta Platforms
+VICI   RETAIL         SP500     8  19.5  35.0 +15.51 3.24 2026-05    1 1.07  5.64  Vici Properties
+BXP    REIT           SP500    29  17.1  30.1 +12.97 3.12 2026-06    2 1.37  4.88  BXP, Inc.
+DOC    REIT           SP500    13  15.7  26.0 +10.22 3.44 2026-06    2 1.37  4.51  Healthpeak Properties
+
+=========================================================================================================================================================================================
+HIGH EXIT-PENALTY WARNINGS (helio Jup-Sat, Saturn station, or node ingress near peak)
+=========================================================================================================================================================================================
+Tkr    ModSec          Peak  Bub PkMo      hjs sstn  nod Exit  Name
+
+--- SEMIS (6 of 7 tradeable) ---
+Traceback (most recent call last):
+  File "/home/user/cyclepapa/filter_v25.py", line 107, in <module>
+    print(f"  {r['ticker']:<6s} Age{int(r['age']):>3d} "
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Sign not allowed in string format specifier
