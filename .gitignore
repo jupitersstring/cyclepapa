@@ -1,0 +1,6 @@
+failed_bearish_*.csv
+*.log
+__pycache__/
+*.pyc
+.venv/
+venv/
