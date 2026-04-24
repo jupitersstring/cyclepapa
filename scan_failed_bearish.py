@@ -135,15 +135,30 @@ def detect_failed_bearish_setup(
     }
 
 
-def fetch_fundamentals(tickers, sleep_s=0.05):
+def fetch_fundamentals(tickers, base_sleep_s=1.0, max_retries=3):
     rows = []
+    sleep_s = base_sleep_s
+    rate_limited_streak = 0
     for i, t in enumerate(tickers, 1):
-        if i % 25 == 0:
-            print(f"  fundamentals {i}/{len(tickers)}")
-        try:
-            info = yf.Ticker(t).info or {}
-        except Exception:
-            info = {}
+        if i % 10 == 0:
+            print(f"  fundamentals {i}/{len(tickers)} (sleep={sleep_s:.1f}s)")
+        info = {}
+        for attempt in range(max_retries):
+            try:
+                info = yf.Ticker(t).info or {}
+                rate_limited_streak = 0
+                break
+            except Exception as e:
+                msg = str(e).lower()
+                if "rate" in msg or "too many" in msg or "429" in msg:
+                    rate_limited_streak += 1
+                    wait = sleep_s * (2 ** attempt) + 2
+                    print(f"    rate limited on {t}, waiting {wait:.0f}s (attempt {attempt + 1})")
+                    time.sleep(wait)
+                else:
+                    break
+        if rate_limited_streak >= 3:
+            sleep_s = min(sleep_s * 1.5, 10.0)
         rows.append(
             {
                 "Ticker": t,
@@ -165,8 +180,9 @@ def fetch_fundamentals(tickers, sleep_s=0.05):
 
 
 def rank(df):
-    mask = (df["priceToBook"].astype(float) > 0) & (df["returnOnEquity"].astype(float) > 0)
-    out = df[mask].copy()
+    pb = pd.to_numeric(df["priceToBook"], errors="coerce")
+    drop_mask = pb.notna() & (pb <= 0)
+    out = df[~drop_mask].copy()
     if out.empty:
         return out
 
@@ -192,6 +208,9 @@ def rank(df):
         + 0.15 * out["z_margin"]
         + 0.10 * out["z_growth"]
     )
+
+    n_complete = out[["priceToBook", "returnOnEquity"]].notna().all(axis=1).sum()
+    print(f"  {n_complete}/{len(out)} rows have full P/B + ROE; missing rows rank with z=0")
 
     return out.sort_values("score", ascending=False)
 
@@ -245,16 +264,22 @@ def main():
         print("No signals.")
         return
 
-    print("Fetching fundamentals...")
-    fundamentals = fetch_fundamentals(list(signals.keys()))
-
     sig_df = pd.DataFrame.from_dict(signals, orient="index")
     sig_df.index.name = "Ticker"
+
+    signals_path = (
+        f"failed_bearish_signals_{args.timeframe}_{datetime.today():%Y%m%d}.csv"
+    )
+    sig_df.to_csv(signals_path)
+    print(f"Saved signals-only CSV: {signals_path}")
+
+    print("Fetching fundamentals (rate-limit aware; this is slow)...")
+    fundamentals = fetch_fundamentals(list(signals.keys()))
     combined = sig_df.join(fundamentals, how="left")
 
     ranked = rank(combined)
     if ranked.empty:
-        print("No survivors after P/B > 0 and ROE > 0 filter.")
+        print("No survivors after P/B filter.")
         return
 
     ranked["pct_from_failure"] = (
