@@ -29,11 +29,16 @@ import pandas as pd
 import yfinance as yf
 
 
+US_EXCHANGES = {"NYQ", "NMS", "NGM", "NCM", "ASE", "BATS"}
+
+
 def get_midcap_universe():
     import financedatabase as fd
 
     equities = fd.Equities()
     df = equities.select(country="United States", market_cap="Mid Cap")
+    df = df[df["exchange"].isin(US_EXCHANGES)]
+    df = df[~df.index.to_series().str.contains(r"\.", regex=True, na=False)]
     return df
 
 
