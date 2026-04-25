@@ -220,20 +220,34 @@ def rank(df):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--timeframe", choices=["weekly", "monthly"], default="weekly")
-    parser.add_argument("--years", type=int, default=5, help="History length for price download")
-    parser.add_argument("--lookback", type=int, default=10, help="Bars for fresh-low / support lookback")
-    parser.add_argument("--sma-short", type=int, default=20)
-    parser.add_argument("--sma-long", type=int, default=50)
-    parser.add_argument("--max-bars-to-failure", type=int, default=5)
+    parser.add_argument("--years", type=int, default=None, help="History length for price download (default: 5y weekly, 15y monthly)")
+    parser.add_argument("--lookback", type=int, default=None, help="Bars for fresh-low / support lookback (default: 10 weekly, 6 monthly)")
+    parser.add_argument("--sma-short", type=int, default=None, help="Short SMA bars (default: 20 weekly, 10 monthly)")
+    parser.add_argument("--sma-long", type=int, default=None, help="Long SMA bars (default: 50 weekly, 20 monthly)")
+    parser.add_argument("--max-bars-to-failure", type=int, default=None, help="(default: 5 weekly, 3 monthly)")
     parser.add_argument(
         "--active-bars",
         type=int,
-        default=8,
-        help="Failure trigger must be within the last N bars to count as active",
+        default=None,
+        help="Failure trigger must be within the last N bars to count as active (default: 8 weekly, 4 monthly)",
     )
     parser.add_argument("--top", type=int, default=20)
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
+
+    if args.timeframe == "weekly":
+        defaults = dict(years=5, lookback=10, sma_short=20, sma_long=50, max_bars_to_failure=5, active_bars=8)
+    else:
+        defaults = dict(years=15, lookback=6, sma_short=10, sma_long=20, max_bars_to_failure=3, active_bars=4)
+    for k, v in defaults.items():
+        cli = getattr(args, k)
+        if cli is None:
+            setattr(args, k, v)
+    print(
+        f"Params: timeframe={args.timeframe} years={args.years} lookback={args.lookback} "
+        f"sma_short={args.sma_short} sma_long={args.sma_long} "
+        f"max_bars_to_failure={args.max_bars_to_failure} active_bars={args.active_bars}"
+    )
 
     print("Fetching US mid-cap universe from financedatabase...")
     universe = get_midcap_universe()
