@@ -98,14 +98,16 @@ def _extract_ticker_frame(data, ticker):
     return sub
 
 
-def download_prices(tickers, timeframe, years, chunk_size=150):
+def download_prices(tickers, timeframe, years, chunk_size=80, batch_sleep=20.0):
     interval = "1wk" if timeframe == "weekly" else "1mo"
     period = f"{years}y"
     frames = {}
     total = len(tickers)
+    n_batches = (total + chunk_size - 1) // chunk_size
     for i in range(0, total, chunk_size):
+        batch_idx = i // chunk_size + 1
         chunk = tickers[i : i + chunk_size]
-        print(f"  batch {i // chunk_size + 1}: {i + 1}-{min(i + chunk_size, total)} of {total}")
+        print(f"  batch {batch_idx}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} of {total} (kept so far: {len(frames)})")
         try:
             data = yf.download(
                 chunk,
@@ -118,13 +120,17 @@ def download_prices(tickers, timeframe, years, chunk_size=150):
             )
         except Exception as e:
             print(f"    batch failed: {e}")
-            continue
-        if data is None or data.empty:
-            continue
-        for t in chunk:
-            sub = _extract_ticker_frame(data, t)
-            if sub is not None and len(sub) >= 60:
-                frames[t] = sub
+            data = None
+        if data is not None and not data.empty:
+            for t in chunk:
+                try:
+                    sub = _extract_ticker_frame(data, t)
+                    if sub is not None and len(sub) >= 60:
+                        frames[t] = sub
+                except Exception:
+                    continue
+        if batch_idx < n_batches:
+            time.sleep(batch_sleep)
     return frames
 
 
