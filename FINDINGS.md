@@ -1,6 +1,39 @@
 # Hull MITM / FMH lock-picker — backtest findings
 
-## Iteration 3: indicator variants on single names (this is the alpha)
+## Iteration 4: 30-name equal-weight basket (deployable alpha)
+
+Same 4-TF (90m/1d/1w/1mo) signal as iteration 3, but each of 30 names runs
+its own sleeve and is averaged into an equal-weight portfolio.  Compared to
+equal-weight buy-hold of the same basket. Idiosyncratic timing noise
+diversifies away; systematic alpha aggregates.
+
+Universe (30): NVDA TSLA AAPL MSFT AMZN META GOOGL AMD AVGO CRM NFLX ORCL
+JPM BAC GS V MA WMT COST HD LLY UNH JNJ PG KO DIS XOM CVX CAT BA.
+
+| strategy | mode | CAGR | B&H | Sharpe | B&H | ΔShp | Sortino | Vol | B&H Vol | MaxDD | B&H DD |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| HMA-MTF       | long_flat | 3.5%  | 22.0% | 1.60 | 1.49 | +0.10 | 1.73 | 2.2% | 13.9% | −2.0% | −20.8% |
+| **RSI-MTF**   | long_flat | **19.8%** | 22.0% | **2.43** | 1.49 | **+0.94** | **3.20** | 7.5% | 13.9% | **−5.7%** | −20.8% |
+| MFI-MTF       | long_flat | 8.5%  | 22.0% | 1.29 | 1.49 | −0.21 | 1.59 | 6.5% | 13.9% | −9.4% | −20.8% |
+| **STOCH-MTF** | long_flat | 14.9% | 22.0% | **2.49** | 1.49 | **+0.99** | 3.21 | 5.6% | 13.9% | −3.7% | −20.8% |
+| HMA×RSI-gate  | long_flat | 6.7%  | 22.0% | 1.63 | 1.49 | +0.13 | 1.88 | 4.0% | 13.9% | −3.5% | −20.8% |
+| RSI-MTF       | long_short | 18.0% | 22.0% | 2.33 | 1.49 | +0.84 | 3.09 | 7.2% | 13.9% | −4.8% | −20.8% |
+| STOCH-MTF     | long_short | 14.9% | 22.0% | 2.11 | 1.49 | +0.61 | 2.59 | 6.7% | 13.9% | −4.9% | −20.8% |
+
+**Headline:** RSI-MTF long-flat basket has Sharpe 2.43 vs 22.0% B&H Sharpe 1.49
+(Δshp +0.94), at half the volatility and a quarter of the max drawdown.
+Sortino 3.20 vs ~1.7 for B&H. Levered to B&H vol (~1.85×) you target ~37%
+CAGR vs 22% B&H — that's the deployable risk-adjusted alpha.
+
+STOCH-MTF tops the Sharpe table at 2.49 with even tighter MaxDD (−3.7%) but
+~5pp lower CAGR than RSI-MTF.
+
+The signal works because: (a) idiosyncratic name-level noise averages out
+across 30 sleeves; (b) the systematic component — multi-TF oscillator
+alignment — is the actual edge; (c) per-bar normalization across sleeves
+keeps exposure smooth.
+
+## Iteration 3: indicator variants on single names (per-name)
 
 Universe: NVDA, TSLA, AAPL, MSFT, AMZN, META, GOOGL, AMD, COIN, NFLX, AVGO, CRM
 Data: yfinance 60m for ~3 years, resampled to 4 TFs: **90m / 1d / 1w / 1mo**.
@@ -59,7 +92,8 @@ vs −83%. Not alpha — just lower-risk sub-buy-hold. (`fmh_lockpicker.py`,
 
 ## Repro
 ```
-python3 fmh_indicators.py                           # main result
+python3 basket_backtest.py                          # main deployable result
+python3 fmh_indicators.py                           # per-name comparison
 python3 fmh_multitf.py                              # HMA-only baseline
 python3 test_alpha.py                               # daily ETF tests
 ```
@@ -70,4 +104,5 @@ python3 test_alpha.py                               # daily ETF tests
 - `fmh_lockpicker.py` — daily FMH rebuild with Hurst gate.
 - `fmh_multitf.py` — multi-TF (90m/1d/1w/1mo) HMA-slope cascade.
 - `fmh_indicators.py` — RSI/MFI/Stoch variants + HMA×RSI gate + RSI mean-rev.
+- `basket_backtest.py` — equal-weight 30-name portfolio backtest.
 - `test_alpha.py` — daily ETF eval harness.
