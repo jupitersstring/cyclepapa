@@ -165,6 +165,8 @@ def fetch_fundamentals(tickers, base_sleep_s=1.0, max_retries=3):
                 "priceToBook": info.get("priceToBook"),
                 "trailingPE": info.get("trailingPE"),
                 "forwardPE": info.get("forwardPE"),
+                "enterpriseToEbitda": info.get("enterpriseToEbitda"),
+                "enterpriseValue": info.get("enterpriseValue"),
                 "returnOnEquity": info.get("returnOnEquity"),
                 "debtToEquity": info.get("debtToEquity"),
                 "profitMargins": info.get("profitMargins"),
@@ -290,6 +292,7 @@ def main():
         "shortName",
         "sector",
         "priceToBook",
+        "enterpriseToEbitda",
         "returnOnEquity",
         "debtToEquity",
         "profitMargins",
@@ -311,9 +314,20 @@ def main():
     out.to_csv(out_path)
     print(f"Saved: {out_path}")
 
-    print(f"\nTop {args.top}:")
-    with pd.option_context("display.max_columns", None, "display.width", 200):
+    with pd.option_context("display.max_columns", None, "display.width", 200, "display.float_format", "{:.2f}".format):
+        print(f"\n=== Top {args.top} by composite score ===")
         print(out.head(args.top).to_string())
+
+        pb = pd.to_numeric(out["priceToBook"], errors="coerce")
+        by_pb = out[pb > 0].sort_values("priceToBook", ascending=True)
+        print(f"\n=== Top {args.top} cheapest by P/B ===")
+        print(by_pb.head(args.top).to_string())
+
+        if "enterpriseToEbitda" in out.columns:
+            ev = pd.to_numeric(out["enterpriseToEbitda"], errors="coerce")
+            by_ev = out[ev > 0].sort_values("enterpriseToEbitda", ascending=True)
+            print(f"\n=== Top {args.top} cheapest by EV/EBITDA ===")
+            print(by_ev.head(args.top).to_string())
 
 
 if __name__ == "__main__":
