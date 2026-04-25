@@ -71,7 +71,7 @@ def get_universe(name):
     if name == "eu-smid":
         frames = []
         for country in EU_COUNTRIES:
-            for cap in ["Small Cap", "Mid Cap"]:
+            for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap"]:
                 try:
                     sub = equities.select(country=country, market_cap=cap)
                     if len(sub):
