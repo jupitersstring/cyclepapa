@@ -31,15 +31,58 @@ import yfinance as yf
 
 US_EXCHANGES = {"NYQ", "NMS", "NGM", "NCM", "ASE", "BATS"}
 
+EU_PRIMARY_EXCHANGES = {
+    "LSE",  # London .L
+    "GER",  # Xetra .DE
+    "PAR",  # Paris .PA
+    "AMS",  # Amsterdam .AS
+    "MIL",  # Milan .MI
+    "MCE",  # Madrid .MC
+    "STO",  # Stockholm .ST
+    "HEL",  # Helsinki .HE
+    "CPH",  # Copenhagen .CO
+    "OSL",  # Oslo .OL
+    "VIE",  # Vienna .VI
+    "EBS",  # SIX Swiss .SW
+    "BRU",  # Brussels .BR
+    "IRE",  # Dublin .IR
+    "LIS",  # Lisbon .LS
+    "ATH",  # Athens .AT
+    "WSE",  # Warsaw .WA
+    "PRA",  # Prague .PR
+}
 
-def get_midcap_universe():
+EU_COUNTRIES = [
+    "United Kingdom", "Germany", "France", "Italy", "Spain",
+    "Netherlands", "Switzerland", "Sweden", "Belgium", "Norway",
+    "Denmark", "Finland", "Ireland", "Austria", "Portugal",
+    "Greece", "Poland", "Czech Republic", "Hungary", "Luxembourg",
+]
+
+
+def get_universe(name):
     import financedatabase as fd
 
     equities = fd.Equities()
-    df = equities.select(country="United States", market_cap="Mid Cap")
-    df = df[df["exchange"].isin(US_EXCHANGES)]
-    df = df[~df.index.to_series().str.contains(r"\.", regex=True, na=False)]
-    return df
+    if name == "us-mid":
+        df = equities.select(country="United States", market_cap="Mid Cap")
+        df = df[df["exchange"].isin(US_EXCHANGES)]
+        return df
+    if name == "eu-smid":
+        frames = []
+        for country in EU_COUNTRIES:
+            for cap in ["Small Cap", "Mid Cap"]:
+                try:
+                    sub = equities.select(country=country, market_cap=cap)
+                    if len(sub):
+                        frames.append(sub)
+                except Exception:
+                    continue
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(EU_PRIMARY_EXCHANGES)]
+        return df
+    raise ValueError(f"unknown universe: {name}")
 
 
 def _extract_ticker_frame(data, ticker):
@@ -232,6 +275,7 @@ def main():
         help="Failure trigger must be within the last N bars to count as active (default: 8 weekly, 4 monthly)",
     )
     parser.add_argument("--top", type=int, default=20)
+    parser.add_argument("--universe", choices=["us-mid", "eu-smid"], default="us-mid")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
@@ -249,8 +293,8 @@ def main():
         f"max_bars_to_failure={args.max_bars_to_failure} active_bars={args.active_bars}"
     )
 
-    print("Fetching US mid-cap universe from financedatabase...")
-    universe = get_midcap_universe()
+    print(f"Fetching {args.universe} universe from financedatabase...")
+    universe = get_universe(args.universe)
     tickers = [t for t in universe.index.tolist() if isinstance(t, str) and t]
     print(f"  {len(tickers)} tickers")
 
@@ -284,7 +328,7 @@ def main():
     sig_df.index.name = "Ticker"
 
     signals_path = (
-        f"failed_bearish_signals_{args.timeframe}_{datetime.today():%Y%m%d}.csv"
+        f"failed_bearish_signals_{args.universe}_{args.timeframe}_{datetime.today():%Y%m%d}.csv"
     )
     sig_df.to_csv(signals_path)
     print(f"Saved signals-only CSV: {signals_path}")
@@ -323,7 +367,7 @@ def main():
 
     out_path = (
         args.out
-        or f"failed_bearish_midcap_{args.timeframe}_{datetime.today():%Y%m%d}.csv"
+        or f"failed_bearish_{args.universe}_{args.timeframe}_{datetime.today():%Y%m%d}.csv"
     )
     out.to_csv(out_path)
     print(f"Saved: {out_path}")
