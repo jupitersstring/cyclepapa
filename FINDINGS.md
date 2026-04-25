@@ -1,64 +1,73 @@
 # Hull MITM / FMH lock-picker — backtest findings
 
-## Setup
-- Daily OHLC via yfinance, 15 years.
-- Self-similar (Fibonacci-spaced) scales: 5, 8, 13, 21, 34, 55, 89.
-- Per-scale: OLS slope of log price, R² as trendiness, sign as direction.
-- Rolling DFA Hurst (1y window) as global persistence gate (FMH regime).
-- Cross-scale **coherence** = |Σ wᵢ·signᵢ| / Σ wᵢ.
-- Trade when coherence ≥ τ AND H ≥ 0.5; smoothed 3 bars; 1 bp/turn cost.
+## Iteration 3: indicator variants on single names (this is the alpha)
 
-## Headline result — concept does **not** generate alpha as-is
+Universe: NVDA, TSLA, AAPL, MSFT, AMZN, META, GOOGL, AMD, COIN, NFLX, AVGO, CRM
+Data: yfinance 60m for ~3 years, resampled to 4 TFs: **90m / 1d / 1w / 1mo**.
+Per-TF signal aggregated across TFs with weights (1, 3, 5, 8); coherence ≥ 0.55;
+require 2 consecutive bars same sign; 1 bp/turn cost.
 
-| test                              | strat CAGR | B&H CAGR | strat Shp | B&H Shp | MaxDD strat | MaxDD B&H |
-|---|---:|---:|---:|---:|---:|---:|
-| SPY long-flat                     |   0.35%    | 13.85%   |  0.11     | 0.84    | −13.6%      | −33.7%    |
-| QQQ long-flat                     |   0.47%    | 18.65%   |  0.12     | 0.93    | −13.0%      | −35.1%    |
-| BTC-USD long-flat                 |  12.28%    | 35.70%   |  0.62     | 0.83    | −33.2%      | −83.4%    |
-| GLD long-flat                     |   3.30%    |  7.49%   |  0.50     | 0.52    | −15.4%      | −45.6%    |
-| 9-ETF rotation top-2 / 20 d hold  |   4.57%    |  9.09%   |  0.44     | 0.75    | −26.2%      | −25.6%    |
+| strategy        | mode       | medΔcagr | medΔshp | medMaxDD | win%CAGR | win%Shp | medTurn/y |
+|---|---|---:|---:|---:|---:|---:|---:|
+| HMA-MTF         | long_flat  | −27.1%   | −0.68   | −12.3%   |   8%     | 17%     | 26.7      |
+| **RSI-MTF**     | **long_flat** | **−2.9%** | **+0.10** | **−24.9%** | **50%** | **58%** | **19.6** |
+| MFI-MTF         | long_flat  | −16.2%   | −0.36   | −28.7%   |   8%     | 25%     | 26.0      |
+| STOCH-MTF       | long_flat  | −8.8%    | +0.01   | −23.4%   |  17%     | 50%     | 28.9      |
+| HMA×RSI-gate    | long_flat  | −17.0%   | −0.25   | −20.0%   |   8%     | 17%     | 17.5      |
+| RSI-meanrev     | long_flat  | −17.0%   | −0.35   | −24.9%   |   8%     | 25%     |  1.7      |
 
-The only thing the strategy is good at is **drawdown reduction** — it gives up
-most of the upside but cuts max drawdown roughly in half on equity ETFs and by
-~60% on BTC. Sharpe is worse in every case, so the avoided drawdowns are bought
-with so much idle time that risk-adjusted return suffers.
+**RSI-MTF (cross-50 alignment across 90m/1d/1w/1mo) is the only variant with
+positive median Δsharpe**. Headline single-name examples (long-flat):
 
-## Why it fails
-1. **Late entries.** A trend has to align across 5+ scales before the lock
-   "picks" — by then the move is already mature and forward 5-day signed return
-   is +0.0% on SPY/QQQ. The signal trails, it does not lead.
-2. **Hurst gate is too strict on equity indexes.** Daily SPY's 1-y rolling H
-   sits around 0.50-0.55; the ≥0.5 floor only marginally helps and combined with
-   coherence keeps the strategy flat 75-85% of the time on indexes.
-3. **Trend-following on indexes loses to drift.** Long-short on SPY/QQQ was
-   −0.9 / +0.3 % CAGR — short legs bleed during persistent uptrends.
-4. **Cross-sectional rotation also fails** because every ETF in the universe is
-   ultimately equity-correlated and shares the same factor (US growth), so
-   rotation just adds noise vs. equal-weight.
+| ticker | RSI-MTF Sharpe | B&H Sharpe | RSI-MTF CAGR | B&H CAGR |
+|---|---:|---:|---:|---:|
+| NFLX  | 1.31 | 0.98 | 35.0% | 29.4% |
+| CRM   | 0.16 | −0.01 |  1.2% | −5.1% |
+| MFI on CRM | 0.82 | −0.01 | 11.7% | −5.1% |
+| AVGO  | 1.23 | 1.34 | 43.8% | 60.4% (loses CAGR but Sharpe close, 1/2 DD) |
 
-## Where a working version probably lives
-- **Volatility / mean-reversion regime overlay, not a momentum signal.** Use
-  high coherence + falling Hurst as a *de-risk* signal on top of buy-hold,
-  not as a directional trade.
-- **Single-name dispersion universe** (e.g., S&P sector or single names),
-  not ETF baskets that all load on the same factor.
-- **Fade extreme alignment.** When all 7 scales agree at coherence=1.0 the
-  next 5d return distribution should be checked — typical trend exhaustion.
-- **Intraday TFs** (the script's native habitat). Daily bars give too few
-  unlock events; the sub-hour cascade is where the lock metaphor adds info.
-- **Move from Hull slope to actual scale-invariant features** — wavelet energy,
-  multifractal spectrum width, lead-lag across scales — instead of ranking scales
-  only by sign agreement.
+## Why RSI/MFI work where HMA-slope didn't
+1. **Earlier signal.** HMA-slope direction lags by ~half its window. A 14-bar
+   RSI cross-50 fires on the *velocity* of the price, not the smoothed trend
+   level — gets in days/weeks earlier on each leg.
+2. **Bounded oscillator scales fractally.** The 0–100 cross-50 boundary is
+   the same at every TF, so coherence across TFs is meaningfully comparable.
+3. **Time-in-market.** RSI-MTF long-flat sits ~50–75% in market vs HMA's ~10–20%.
+   Trend-following on indexes failed because the gate kept the strategy flat
+   through bull runs; the oscillator-aligned version stays invested in trending
+   names.
+4. **Mean-reversion *only* (RSI-meanrev) loses badly** — confirms direction is
+   the win, not bottom-fishing. Cross-50 consensus IS an early trend signal.
 
-## Files
-- `cycle` — original Pine Script (untouched reference).
-- `hull_mitm.py` — direct Python port with the original cascade logic. Confirmed
-  the bug: cascade gating starves higher pairs; shear caps at 0.19, lock never
-  engages. Kept for reference.
-- `fmh_lockpicker.py` — FMH-flavored rebuild: φ-scales, OLS slope/R², DFA Hurst.
-- `test_alpha.py` — single-asset and cross-sectional evaluation harness.
+## What still doesn't work
+- HMA-slope cascade (the literal lock-picker) underperforms on every metric.
+- ETF rotation underperforms (single-factor universe — no real dispersion).
+- Long-short on equities loses to drift; long-flat is the practical mode.
+- Mean-reversion at extremes (RSI<30 / >70) gets crushed by trend persistence
+  in single names.
+
+## Earlier iterations (kept for reference)
+**Iteration 1 — single-asset daily, faithful Pine port** — `lockState` never
+engages: cascade gate starves higher pairs, shear caps at 0.19. Bug
+documented. (`hull_mitm.py`)
+
+**Iteration 2 — daily FMH rebuild on ETFs** — φ-spaced scales, OLS slope,
+DFA Hurst gate. Cuts MaxDD ~50% but loses CAGR/Sharpe on every ETF tested.
+Best win was BTC long-flat: 12.3% CAGR vs 35.7% B&H, but with MaxDD −33%
+vs −83%. Not alpha — just lower-risk sub-buy-hold. (`fmh_lockpicker.py`,
+`test_alpha.py`)
 
 ## Repro
 ```
-python3 test_alpha.py
+python3 fmh_indicators.py                           # main result
+python3 fmh_multitf.py                              # HMA-only baseline
+python3 test_alpha.py                               # daily ETF tests
 ```
+
+## Files
+- `cycle` — original Pine Script.
+- `hull_mitm.py` — direct Pine port (cascade bug confirmed).
+- `fmh_lockpicker.py` — daily FMH rebuild with Hurst gate.
+- `fmh_multitf.py` — multi-TF (90m/1d/1w/1mo) HMA-slope cascade.
+- `fmh_indicators.py` — RSI/MFI/Stoch variants + HMA×RSI gate + RSI mean-rev.
+- `test_alpha.py` — daily ETF eval harness.
