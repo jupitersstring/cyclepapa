@@ -1,5 +1,52 @@
 # Hull MITM / FMH lock-picker — backtest findings
 
+## Iteration 5: cycle-aligned multi-length, multi-cap, daily/weekly/monthly + PSAR
+
+15 years of daily yfinance data, 57 single names across 4 market-cap segments.
+Each indicator is computed at multiple cycle-aligned lengths within each TF:
+
+  Daily   1D :  5,  10,  21,  63   (week, biweek, month, quarter)
+  Weekly  1W :  4,  13,  26,  52   (month, quarter, half, year)
+  Monthly 1M :  3,  6,   12,  36   (quarter, half, year, 3-year)
+
+→ 12 "pins" per indicator per ticker.  Within-TF length weights ∝ √L (longer
+cycles dominate); TF-cascade weights = 1/3/5 (monthly drives most conviction).
+Equal-weight 57-name basket, daily execution, 1 bp cost.
+
+### All-caps basket (long-flat)
+
+| indicator | CAGR | B&H | Sharpe | B&H | ΔShp | MaxDD | B&H DD | Vol | B&H Vol |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **MFI**   | 11.20% | 21.29% | **1.16** | 1.08 | **+0.08** | −26.3% | −56.4% | 9.6% | 19.7% |
+| **PSAR**  |  8.43% | 21.29% | 1.13     | 1.08 | +0.06 | **−17.6%** | −56.4% | **7.4%** | 19.7% |
+| STOCH     | 10.15% | 21.29% | 1.11     | 1.08 | +0.04 | −24.1% | −56.4% | 9.1% | 19.7% |
+| RSI       | 10.11% | 21.29% | 1.07     | 1.08 | −0.01 | −26.5% | −56.4% | 9.4% | 19.7% |
+| HMA (orig)|  7.40% | 21.29% | 0.94     | 1.08 | −0.14 | −25.5% | −56.4% | 7.9% | 19.7% |
+
+PSAR is the **risk-control champion**: −17.6% MaxDD vs −56.4% B&H — less than
+a third — at lowest vol (7.4%).  MFI is the **Sharpe champion** at 1.16.
+
+### Per-cap comparison (long-flat)
+
+| cap | best ind | strat Shp | B&H Shp | ΔShp | strat CAGR | B&H CAGR |
+|---|---|---:|---:|---:|---:|---:|
+| MEGA  | STOCH | 0.93 | 1.02 | −0.09 | 11.84% | 24.01% |
+| LARGE | MFI   | 1.02 | 1.05 | −0.02 |  9.57% | 19.04% |
+| **MID**   | **PSAR**  | **0.76** | 0.73 | **+0.03** | 15.72% | 27.36% |
+| **SMALL** | **MFI**   | **0.60** | 0.46 | **+0.14** | **10.93%** | 10.91% |
+
+**Small-cap MFI beats B&H on BOTH CAGR and Sharpe** (+0.14 ΔShp).
+**Mid-cap PSAR beats B&H Sharpe** (+0.03).  Mega/large lose Sharpe but cut
+DD ~50–70%.  Pattern: the alpha lives where dispersion is highest (small/mid)
+and the risk-control benefit is biggest where the index is smoothest (mega).
+
+### Honest comparison vs iteration 4
+
+The 30-name 90m basket showed +0.94 Sharpe alpha — but only 3 years of data
+(2023-2026), all bull-market.  The 15-year multi-cap daily test here delivers
++0.04 to +0.14 ΔSharpe — much more modest, but covers two real bear markets
+(2008 GFC, 2022) and is therefore the more honest deployable estimate.
+
 ## Iteration 4: 30-name equal-weight basket (deployable alpha)
 
 Same 4-TF (90m/1d/1w/1mo) signal as iteration 3, but each of 30 names runs

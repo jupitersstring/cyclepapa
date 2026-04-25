@@ -54,11 +54,77 @@ def stoch_k(high: pd.Series, low: pd.Series, close: pd.Series,
     return (100 * (close - ll) / (hh - ll).replace(0, np.nan)).fillna(50)
 
 
+def psar(high: pd.Series, low: pd.Series,
+         af_start: float = 0.02, af_step: float = 0.02,
+         af_max: float = 0.20) -> tuple[pd.Series, pd.Series]:
+    """
+    Wilder's Parabolic SAR.  Returns (sar, trend) where trend is +1 (long) /
+    -1 (short).  Direction = trend (already binary, no deadband needed).
+    """
+    h = high.to_numpy()
+    l = low.to_numpy()
+    n = len(h)
+    sar = np.zeros(n)
+    trend = np.zeros(n, dtype=int)
+    if n < 2:
+        return pd.Series(sar, index=high.index), pd.Series(trend, index=high.index)
+
+    # init: assume long if first close-to-close goes up
+    trend[0] = 1
+    ep = h[0]
+    af = af_start
+    sar[0] = l[0]
+
+    for i in range(1, n):
+        prev_sar = sar[i - 1]
+        prev_trend = trend[i - 1]
+        prev_ep = ep
+        prev_af = af
+
+        sar_i = prev_sar + prev_af * (prev_ep - prev_sar)
+        if prev_trend == 1:
+            # SAR cannot be above last two lows
+            sar_i = min(sar_i, l[i - 1], l[i - 2] if i >= 2 else l[i - 1])
+            if l[i] < sar_i:
+                # flip to down
+                trend[i] = -1
+                sar[i] = prev_ep             # SAR resets to prior EP
+                ep = l[i]
+                af = af_start
+                continue
+            trend[i] = 1
+            if h[i] > prev_ep:
+                ep = h[i]
+                af = min(prev_af + af_step, af_max)
+            else:
+                ep = prev_ep
+                af = prev_af
+            sar[i] = sar_i
+        else:
+            sar_i = max(sar_i, h[i - 1], h[i - 2] if i >= 2 else h[i - 1])
+            if h[i] > sar_i:
+                trend[i] = 1
+                sar[i] = prev_ep
+                ep = h[i]
+                af = af_start
+                continue
+            trend[i] = -1
+            if l[i] < prev_ep:
+                ep = l[i]
+                af = min(prev_af + af_step, af_max)
+            else:
+                ep = prev_ep
+                af = prev_af
+            sar[i] = sar_i
+    return pd.Series(sar, index=high.index), pd.Series(trend, index=high.index)
+
+
 def per_tf_indicator_dir(df60: pd.DataFrame, freq: str, kind: str,
                          length: int = 14, deadband: float = 5) -> pd.Series:
     """
     Resample OHLCV to freq, compute indicator, return signal in [-1,0,+1]
-    based on cross above/below 50 with a deadband.
+    based on cross above/below 50 with a deadband.  PSAR returns its
+    native +1/-1 trend (no deadband).
     """
     o = df60["Open"].resample(freq).first()
     h = df60["High"].resample(freq).max()
@@ -73,6 +139,9 @@ def per_tf_indicator_dir(df60: pd.DataFrame, freq: str, kind: str,
         ind = mfi(df["H"], df["L"], df["C"], df["V"], length)
     elif kind == "stoch":
         ind = stoch_k(df["H"], df["L"], df["C"], length)
+    elif kind == "psar":
+        _, trend = psar(df["H"], df["L"])
+        return trend.astype(int), trend
     else:
         raise ValueError(kind)
 
