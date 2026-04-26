@@ -6,7 +6,9 @@ Screen 2: max-independent-set on the |corr|>eps graph among survivors,
           weighted by composite momentum score (greedy).
 """
 
+import io
 import sys
+import urllib.request
 import warnings
 
 import numpy as np
@@ -15,10 +17,32 @@ import yfinance as yf
 
 warnings.filterwarnings("ignore")
 
-INDEX = "IWM"  # Russell 2000 proxy
+INDEX = "IJR"  # S&P 600 SmallCap proxy (matches sourced universe)
 
-# ~150 SMID-cap names spanning sectors. Mostly S&P 400 / S&P 600 constituents.
-UNIVERSE = [
+IJR_HOLDINGS_URL = (
+    "https://www.ishares.com/us/products/239774/ishares-core-sp-smallcap-etf/"
+    "1467271812596.ajax?fileType=csv&fileName=IJR_holdings&dataType=fund"
+)
+
+
+def fetch_sp600_universe() -> list[str]:
+    """Pull S&P 600 constituents from iShares IJR holdings CSV."""
+    req = urllib.request.Request(IJR_HOLDINGS_URL, headers={"User-Agent": "Mozilla/5.0"})
+    raw = urllib.request.urlopen(req, timeout=30).read().decode("utf-8-sig")
+    # The header row starts with "Ticker,Name,..."; skip preamble.
+    lines = raw.splitlines()
+    start = next(i for i, l in enumerate(lines) if l.startswith("Ticker,Name"))
+    df = pd.read_csv(io.StringIO("\n".join(lines[start:])))
+    df = df[df["Asset Class"].astype(str).str.lower() == "equity"]
+    tickers = (
+        df["Ticker"].astype(str).str.strip().str.replace(".", "-", regex=False)
+    )
+    tickers = sorted({t for t in tickers if t and t.isascii() and t.replace("-", "").isalnum()})
+    return tickers
+
+
+# Fallback list if iShares fetch fails.
+FALLBACK_UNIVERSE = [
     # Industrials
     "SAIA", "WMS", "BLDR", "OC", "ATKR", "CSL", "RBC", "AAON", "CW", "GGG",
     "HUBB", "MLI", "WCC", "AYI", "FSS", "EME", "TREX", "WWD", "GTLS", "AGCO",
@@ -135,7 +159,13 @@ def diagnostics(selected: list[str], px: pd.DataFrame) -> dict:
 
 
 def main() -> None:
-    px_all = fetch_prices(UNIVERSE + [INDEX], period="18mo")
+    try:
+        universe = fetch_sp600_universe()
+        print(f"Fetched {len(universe)} tickers from IJR holdings.", file=sys.stderr)
+    except Exception as e:
+        print(f"IJR fetch failed ({e}); using fallback list.", file=sys.stderr)
+        universe = FALLBACK_UNIVERSE
+    px_all = fetch_prices(universe + [INDEX], period="18mo")
     if INDEX not in px_all.columns:
         raise SystemExit(f"Index {INDEX} missing from data.")
     idx = px_all[INDEX]
@@ -147,7 +177,7 @@ def main() -> None:
     if survivors.empty:
         print("(none)")
         return
-    print(survivors.head(30).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
+    print(survivors.head(50).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
 
     final = screen2_max_indep_set(survivors, px, eps=0.5)
     selected = final[final.selected].ticker.tolist()
