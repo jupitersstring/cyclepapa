@@ -68,6 +68,10 @@ def get_universe(name):
         df = equities.select(country="United States", market_cap="Mid Cap")
         df = df[df["exchange"].isin(US_EXCHANGES)]
         return df
+    if name == "us-micro":
+        df = equities.select(country="United States", market_cap="Micro Cap")
+        df = df[df["exchange"].isin(US_EXCHANGES)]
+        return df
     if name == "eu-smid":
         frames = []
         for country in EU_COUNTRIES:
@@ -230,10 +234,24 @@ def fetch_fundamentals(tickers, base_sleep_s=1.0, max_retries=3):
     return pd.DataFrame(rows).set_index("Ticker")
 
 
-def rank(df):
+def rank(df, quality=False):
     pb = pd.to_numeric(df["priceToBook"], errors="coerce")
     drop_mask = pb.notna() & (pb <= 0)
     out = df[~drop_mask].copy()
+    if quality and not out.empty:
+        roe = pd.to_numeric(out["returnOnEquity"], errors="coerce")
+        margin = pd.to_numeric(out["profitMargins"], errors="coerce")
+        de = pd.to_numeric(out["debtToEquity"], errors="coerce")
+        growth = pd.to_numeric(out["revenueGrowth"], errors="coerce")
+        keep = (
+            (roe > 0.05)
+            & (margin > 0)
+            & (de.notna() & (de < 200))
+            & (growth.notna() & (growth > -0.10))
+        )
+        n_before = len(out)
+        out = out[keep]
+        print(f"  quality filter: {len(out)}/{n_before} survive (ROE>5%, margin>0, D/E<200, growth>-10%)")
     if out.empty:
         return out
 
@@ -281,7 +299,9 @@ def main():
         help="Failure trigger must be within the last N bars to count as active (default: 8 weekly, 4 monthly)",
     )
     parser.add_argument("--top", type=int, default=20)
-    parser.add_argument("--universe", choices=["us-mid", "eu-smid"], default="us-mid")
+    parser.add_argument("--universe", choices=["us-mid", "us-micro", "eu-smid"], default="us-mid")
+    parser.add_argument("--quality", action="store_true",
+                        help="Apply hard quality floor: ROE>5%, margin>0, D/E<200, rev_growth>-10% (drops NaN)")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
@@ -343,7 +363,7 @@ def main():
     fundamentals = fetch_fundamentals(list(signals.keys()))
     combined = sig_df.join(fundamentals, how="left")
 
-    ranked = rank(combined)
+    ranked = rank(combined, quality=args.quality)
     if ranked.empty:
         print("No survivors after P/B filter.")
         return
