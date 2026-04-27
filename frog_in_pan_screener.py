@@ -777,18 +777,67 @@ def shortlist_early_stage(qrs: list[QullaResult], top_n: int) -> list[QullaResul
     return [q for q in qrs if q.symbol in keep]
 
 
+def shortlist_daily_leading(qrs: list[QullaResult], top_n: int) -> list[QullaResult]:
+    """Daily-leads-weekly setup: daily RS FIP already established (deep negative),
+    weekly RS FIP still less smooth (fip_w > fip_d) but inflecting toward
+    smoother. Continuous scoring, no hard gates.
+
+    Components (weights sum to 1.00):
+      0.20  rank: rs_fip_d deeper negative (established daily smoothness)
+      0.20  rank: fip_w - fip_d more positive (daily leads, weekly lagging)
+      0.15  rank: weekly RS FIP inflection more negative (weekly catching up)
+      0.15  rank: stronger 12m RS return vs SPX
+      0.10  rank: weekly volasym above its MA
+      0.05  rank: weekly volasym rising
+      0.10  rank: monthly volasym above its EMA-6
+      0.05  rank: monthly volasym 3-bar ROC positive
+    """
+    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d)]
+    if not rows:
+        return []
+    df = pd.DataFrame(rows)
+    df["fip_w_minus_d"] = df["rs_fip_w"] - df["rs_fip_d"]
+
+    rank_fip_d_deep = _pct_rank(df["rs_fip_d"],            lower_is_better=True)
+    rank_w_minus_d  = _pct_rank(df["fip_w_minus_d"],       lower_is_better=False)
+    rank_w_infl     = _pct_rank(df["rs_fip_w_inflection"], lower_is_better=True)
+    rank_rs_pret    = _pct_rank(df["rs_pret_d"],           lower_is_better=False)
+    rank_w_above    = _pct_rank(df["asym_w_above_ma"],     lower_is_better=False)
+    rank_w_roc      = _pct_rank(df["asym_w_roc5"],         lower_is_better=False)
+    rank_m_above    = _pct_rank(df["asym_m_above_ma"],     lower_is_better=False)
+    rank_m_roc      = _pct_rank(df["asym_m_roc3"],         lower_is_better=False)
+
+    df["tech_score"] = (
+        0.20 * rank_fip_d_deep
+        + 0.20 * rank_w_minus_d
+        + 0.15 * rank_w_infl
+        + 0.15 * rank_rs_pret
+        + 0.10 * rank_w_above
+        + 0.05 * rank_w_roc
+        + 0.10 * rank_m_above
+        + 0.05 * rank_m_roc
+    )
+    df = df.sort_values("tech_score", ascending=False).head(top_n)
+    keep = set(df["symbol"].tolist())
+    return [q for q in qrs if q.symbol in keep]
+
+
 def build_qulla_table(
     qrs: list[QullaResult],
     funds: dict[str, Fundamentals],
     universe: pd.DataFrame,
     early: bool = False,
+    leading: bool = False,
 ) -> pd.DataFrame:
     """Continuous composite score, no hard exclusions.
 
     All criteria are score components (rank or band), so candidates that
-    meet some-but-not-all conditions still appear. Set `early=True` to
-    shift weights toward the just-becoming-FIP transition: heavier on
-    inflection and band-passes around mild FIP levels.
+    meet some-but-not-all conditions still appear.
+
+    `early=True` shifts weights toward the just-becoming-FIP transition
+        (mild FIP level, heavy inflection weight).
+    `leading=True` shifts weights toward the daily-leads-weekly setup
+        (deep daily FIP, weekly fip > daily fip but inflecting smoother).
     """
     rows = []
     for q in qrs:
@@ -806,6 +855,7 @@ def build_qulla_table(
             "rs_fip_d": q.rs_fip_d,
             "rs_fip_w": q.rs_fip_w,
             "rs_fip_w_inflection": q.rs_fip_w_inflection,
+            "fip_w_minus_d": q.rs_fip_w - q.rs_fip_d,
             "asym_d_last": q.asym_d_last,
             "asym_w_last": q.asym_w_last,
             "asym_w_ma_last": q.asym_w_ma_last,
@@ -841,11 +891,29 @@ def build_qulla_table(
     rank_m_roc     = _pct_rank(df["asym_m_roc3"],             lower_is_better=False)
     rank_dist50    = _pct_rank(df["asym_m_dist50"],           lower_is_better=True)
     rank_va_fip    = _pct_rank(df["va_fip_d"],                lower_is_better=True)
+    rank_w_minus_d = _pct_rank(df["fip_w_minus_d"],           lower_is_better=False)
     fip_band       = _band_score(df["rs_fip_d"],   target=-0.03, sigma=0.04)
     w_above_band   = _band_score(df["asym_w_above_ma"], target=3.0, sigma=3.0)
     va_band        = _band_score(df["va_fip_d"],   target=-0.03, sigma=0.06)
 
-    if early:
+    if leading:
+        # Daily-leads-weekly: deep daily FIP + weekly FIP > daily FIP +
+        # weekly FIP inflecting toward smoother + RS strength.
+        weights = {
+            "rs_fip":     0.20,   # established daily smoothness (deeper rank)
+            "w_minus_d":  0.20,   # weekly higher than daily (daily leading)
+            "rs_w_infl":  0.15,   # weekly catching up
+            "rs_pret":    0.10,
+            "w_above":    0.05,
+            "w_roc":      0.05,
+            "m_above":    0.05,
+            "m_roc":      0.05,
+            "rev_g":      0.07,
+            "rev_inf":    0.03,
+            "pb":         0.03,
+            "ev":         0.02,
+        }
+    elif early:
         weights = {
             "rs_w_infl": 0.20,  # transition speed (most important)
             "rs_fip_band": 0.05,
@@ -878,7 +946,22 @@ def build_qulla_table(
             "ev":       0.06,
         }
 
-    if early:
+    if leading:
+        df["score"] = (
+            weights["rs_fip"]    * rank_rs_fip
+            + weights["w_minus_d"] * rank_w_minus_d
+            + weights["rs_w_infl"] * rank_rs_w_infl
+            + weights["rs_pret"]   * rank_rs_pret
+            + weights["w_above"]   * rank_w_above
+            + weights["w_roc"]     * rank_w_roc
+            + weights["m_above"]   * rank_m_above
+            + weights["m_roc"]     * rank_m_roc
+            + weights["rev_g"]     * rank_g
+            + weights["rev_inf"]   * rank_inf
+            + weights["pb"]        * rank_pb
+            + weights["ev"]        * rank_ev
+        )
+    elif early:
         df["score"] = (
             weights["rs_w_infl"]   * rank_rs_w_infl
             + weights["rs_fip_band"] * fip_band
@@ -1182,6 +1265,10 @@ def main() -> int:
                     help="(qulla) Bias scoring toward EARLY-stage FIP setups "
                          "(strong inflection, mild FIP level, weekly volasym "
                          "just above its MA). Implies --soft.")
+    ap.add_argument("--leading", action="store_true",
+                    help="(qulla) Bias scoring toward DAILY-LEADS-WEEKLY setups "
+                         "(deep daily RS FIP, weekly RS FIP > daily FIP, weekly "
+                         "inflecting smoother). Implies --soft.")
     ap.add_argument("--funds-top", type=int, default=120,
                     help="(qulla soft mode) Fetch fundamentals for at most this "
                          "many top-ranked candidates.")
@@ -1299,7 +1386,11 @@ def _run_qulla(args, universe, symbols):
             qrs.append(q)
     print(f"  Qullamaggie metrics for {len(qrs)} symbols")
 
-    if args.early:
+    if args.leading:
+        candidates = shortlist_daily_leading(qrs, top_n=args.funds_top)
+        print(f"  leading mode: shortlisting top {len(candidates)} "
+              f"(daily-leads-weekly weighted)")
+    elif args.early:
         candidates = shortlist_early_stage(qrs, top_n=args.funds_top)
         print(f"  early mode: shortlisting top {len(candidates)} RS-winners "
               f"(inflection-weighted)")
@@ -1327,7 +1418,8 @@ def _run_qulla(args, universe, symbols):
     funds = fetch_fundamentals_parallel([c.symbol for c in candidates])
     print(f"  fundamentals for {len(funds)} candidates")
 
-    table = build_qulla_table(candidates, funds, universe, early=args.early)
+    table = build_qulla_table(candidates, funds, universe,
+                              early=args.early, leading=args.leading)
     if table.empty:
         print("No rows after building Qullamaggie table.")
         return 1
@@ -1336,7 +1428,7 @@ def _run_qulla(args, universe, symbols):
     print(f"\nWrote {len(table)} rows to {args.out}")
     show_cols = [
         "symbol", "name", "country", "sector",
-        "rs_pret_d", "rs_fip_d", "rs_fip_w_inflection",
+        "rs_pret_d", "rs_fip_d", "rs_fip_w", "fip_w_minus_d", "rs_fip_w_inflection",
         "asym_m_last", "asym_m_above_ma", "asym_m_roc3",
         "asym_w_last", "asym_w_above_ma", "asym_w_roc5",
         "va_fip_d",
