@@ -556,13 +556,17 @@ class QullaResult:
     rs_fip_d: float
     rs_fip_w: float
     rs_fip_w_inflection: float
-    # Volatility asymmetry levels
+    # Volatility asymmetry levels (weekly)
     asym_d_last: float
     asym_w_last: float
     asym_w_ma_last: float
     asym_w_above_ma: float    # asym_w - asym_w_ma
     asym_w_roc5: float        # 5-bar change in weekly asymmetry (rising = >0)
+    # Volatility asymmetry levels (monthly)
     asym_m_last: float
+    asym_m_ma_last: float     # 6-EMA of monthly asym
+    asym_m_above_ma: float
+    asym_m_roc3: float        # 3-bar change in monthly asymmetry
     # FIP on the volatility-asymmetry series (lower = smoother rise/fall)
     va_pret_d: float
     va_fip_d: float
@@ -610,6 +614,14 @@ def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series) -> Qull
         if len(asym_w) >= 6 else float("nan")
     )
 
+    asym_m_ma = _ema(asym_m, 6)
+    asym_m_last = float(asym_m.iloc[-1])
+    asym_m_ma_last = float(asym_m_ma.iloc[-1]) if len(asym_m_ma) else float("nan")
+    asym_m_roc3 = (
+        float(asym_m.iloc[-1] - asym_m.iloc[-4])
+        if len(asym_m) >= 4 else float("nan")
+    )
+
     # FIP on the smoothed daily asymmetry series.
     va_pret_d, va_fip_d = _fip_change(asym_d, n=252)
 
@@ -625,7 +637,10 @@ def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series) -> Qull
         asym_w_ma_last=asym_w_ma_last,
         asym_w_above_ma=asym_w_last - asym_w_ma_last,
         asym_w_roc5=asym_w_roc5,
-        asym_m_last=float(asym_m.iloc[-1]),
+        asym_m_last=asym_m_last,
+        asym_m_ma_last=asym_m_ma_last,
+        asym_m_above_ma=asym_m_last - asym_m_ma_last,
+        asym_m_roc3=asym_m_roc3,
         va_pret_d=va_pret_d,
         va_fip_d=va_fip_d,
     )
@@ -709,11 +724,71 @@ def shortlist_by_tech_score(qrs: list[QullaResult], top_n: int) -> list[QullaRes
     return [q for q in qrs if q.symbol in keep]
 
 
+def _band_score(series: pd.Series, target: float, sigma: float) -> pd.Series:
+    """Gaussian-shaped score in [0,1] peaking at `target`, NaN -> 0."""
+    s = series.astype(float)
+    score = np.exp(-0.5 * ((s - target) / sigma) ** 2)
+    return pd.Series(score, index=s.index).fillna(0.0)
+
+
+def shortlist_early_stage(qrs: list[QullaResult], top_n: int) -> list[QullaResult]:
+    """Fully continuous early-stage scoring: no hard gates beyond RS-winner.
+
+    Each criterion is a soft ranking component, so a candidate that meets some
+    but not all conditions still appears in the output, ranked appropriately.
+
+    Components (weights sum to 1.00):
+      0.25  rank: weekly RS-FIP inflection more negative (faster transition)
+      0.10  band: daily RS FIP near -0.03 (mild — not deep, not positive)
+      0.10  band: weekly volasym 0..6 above MA (just crossed, not extended)
+      0.10  rank: weekly volasym ROC5 more positive (rising)
+      0.10  rank: monthly volasym above its EMA-6 (regardless of level)
+      0.10  rank: monthly volasym 3-bar ROC positive (rising)
+      0.05  band: volasym daily FIP near -0.03 (early-cycle smoothing)
+      0.20  rank: stronger 12m RS return vs SPX
+    """
+    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d) and q.rs_pret_d > 0]
+    if not rows:
+        return []
+    df = pd.DataFrame(rows)
+
+    rank_infl    = _pct_rank(df["rs_fip_w_inflection"], lower_is_better=True)
+    fip_band     = _band_score(df["rs_fip_d"], target=-0.03, sigma=0.04)
+    w_above_band = _band_score(df["asym_w_above_ma"], target=3.0, sigma=3.0)
+    rank_w_roc   = _pct_rank(df["asym_w_roc5"], lower_is_better=False)
+    rank_m_above = _pct_rank(df["asym_m_above_ma"], lower_is_better=False)
+    rank_m_roc   = _pct_rank(df["asym_m_roc3"], lower_is_better=False)
+    va_band      = _band_score(df["va_fip_d"], target=-0.03, sigma=0.06)
+    rank_rs_pret = _pct_rank(df["rs_pret_d"], lower_is_better=False)
+
+    df["tech_score"] = (
+        0.25 * rank_infl
+        + 0.10 * fip_band
+        + 0.10 * w_above_band
+        + 0.10 * rank_w_roc
+        + 0.10 * rank_m_above
+        + 0.10 * rank_m_roc
+        + 0.05 * va_band
+        + 0.20 * rank_rs_pret
+    )
+    df = df.sort_values("tech_score", ascending=False).head(top_n)
+    keep = set(df["symbol"].tolist())
+    return [q for q in qrs if q.symbol in keep]
+
+
 def build_qulla_table(
     qrs: list[QullaResult],
     funds: dict[str, Fundamentals],
     universe: pd.DataFrame,
+    early: bool = False,
 ) -> pd.DataFrame:
+    """Continuous composite score, no hard exclusions.
+
+    All criteria are score components (rank or band), so candidates that
+    meet some-but-not-all conditions still appear. Set `early=True` to
+    shift weights toward the just-becoming-FIP transition: heavier on
+    inflection and band-passes around mild FIP levels.
+    """
     rows = []
     for q in qrs:
         fu = funds.get(q.symbol)
@@ -736,6 +811,9 @@ def build_qulla_table(
             "asym_w_above_ma": q.asym_w_above_ma,
             "asym_w_roc5": q.asym_w_roc5,
             "asym_m_last": q.asym_m_last,
+            "asym_m_ma_last": q.asym_m_ma_last,
+            "asym_m_above_ma": q.asym_m_above_ma,
+            "asym_m_roc3": q.asym_m_roc3,
             "asym_m_dist50": abs(q.asym_m_last - 50.0),
             "va_fip_d": q.va_fip_d,
             "pb": fu.pb if fu else float("nan"),
@@ -749,38 +827,88 @@ def build_qulla_table(
 
     pb_clean = df["pb"].where(df["pb"] > 0)
     ev_clean = df["ev_ebitda"].where(df["ev_ebitda"] > 0)
-    rank_pb       = _pct_rank(pb_clean,                      lower_is_better=True)
-    rank_ev       = _pct_rank(ev_clean,                      lower_is_better=True)
-    rank_g        = _pct_rank(df["rev_growth"],              lower_is_better=False)
-    rank_inf      = _pct_rank(df["rev_growth_inflection"],   lower_is_better=False)
-    rank_rs_fip   = _pct_rank(df["rs_fip_d"],                lower_is_better=True)
-    rank_rs_pret  = _pct_rank(df["rs_pret_d"],               lower_is_better=False)
-    rank_asym_roc = _pct_rank(df["asym_w_roc5"],             lower_is_better=False)
-    rank_asym_50  = _pct_rank(df["asym_m_dist50"],           lower_is_better=True)
-    rank_va_fip   = _pct_rank(df["va_fip_d"],                lower_is_better=True)
+    rank_pb        = _pct_rank(pb_clean,                      lower_is_better=True)
+    rank_ev        = _pct_rank(ev_clean,                      lower_is_better=True)
+    rank_g         = _pct_rank(df["rev_growth"],              lower_is_better=False)
+    rank_inf       = _pct_rank(df["rev_growth_inflection"],   lower_is_better=False)
+    rank_rs_fip    = _pct_rank(df["rs_fip_d"],                lower_is_better=True)
+    rank_rs_pret   = _pct_rank(df["rs_pret_d"],               lower_is_better=False)
+    rank_rs_w_infl = _pct_rank(df["rs_fip_w_inflection"],     lower_is_better=True)
+    rank_w_roc     = _pct_rank(df["asym_w_roc5"],             lower_is_better=False)
+    rank_w_above   = _pct_rank(df["asym_w_above_ma"],         lower_is_better=False)
+    rank_m_above   = _pct_rank(df["asym_m_above_ma"],         lower_is_better=False)
+    rank_m_roc     = _pct_rank(df["asym_m_roc3"],             lower_is_better=False)
+    rank_dist50    = _pct_rank(df["asym_m_dist50"],           lower_is_better=True)
+    rank_va_fip    = _pct_rank(df["va_fip_d"],                lower_is_better=True)
+    fip_band       = _band_score(df["rs_fip_d"],   target=-0.03, sigma=0.04)
+    w_above_band   = _band_score(df["asym_w_above_ma"], target=3.0, sigma=3.0)
+    va_band        = _band_score(df["va_fip_d"],   target=-0.03, sigma=0.06)
 
-    weights = {
-        "rs_fip":   0.20,   # smooth daily RS line (the actual breakout signal)
-        "rs_pret":  0.10,   # how strong is the RS uptrend
-        "asym_roc": 0.10,   # weekly volasym is rising
-        "asym_50":  0.05,   # monthly volasym near 50
-        "va_fip":   0.05,   # smooth daily volasym trend
-        "rev_g":    0.20,
-        "rev_inf":  0.10,
-        "pb":       0.10,
-        "ev":       0.10,
-    }
-    df["score"] = (
-        weights["rs_fip"]   * rank_rs_fip
-        + weights["rs_pret"]  * rank_rs_pret
-        + weights["asym_roc"] * rank_asym_roc
-        + weights["asym_50"]  * rank_asym_50
-        + weights["va_fip"]   * rank_va_fip
-        + weights["rev_g"]    * rank_g
-        + weights["rev_inf"]  * rank_inf
-        + weights["pb"]       * rank_pb
-        + weights["ev"]       * rank_ev
-    )
+    if early:
+        weights = {
+            "rs_w_infl": 0.20,  # transition speed (most important)
+            "rs_fip_band": 0.05,
+            "rs_pret":  0.10,
+            "w_above_band": 0.05,  # weekly just above MA
+            "w_roc":    0.05,
+            "m_above":  0.10,    # monthly above MA — soft
+            "m_roc":    0.10,    # monthly rising — soft
+            "dist50":   0.02,
+            "va_band":  0.03,
+            "rev_g":    0.15,
+            "rev_inf":  0.05,
+            "pb":       0.05,
+            "ev":       0.05,
+        }
+    else:
+        weights = {
+            "rs_w_infl": 0.10,
+            "rs_fip":   0.15,
+            "rs_pret":  0.10,
+            "w_above":  0.05,
+            "w_roc":    0.05,
+            "m_above":  0.05,
+            "m_roc":    0.05,
+            "dist50":   0.03,
+            "va_fip":   0.05,
+            "rev_g":    0.17,
+            "rev_inf":  0.08,
+            "pb":       0.06,
+            "ev":       0.06,
+        }
+
+    if early:
+        df["score"] = (
+            weights["rs_w_infl"]   * rank_rs_w_infl
+            + weights["rs_fip_band"] * fip_band
+            + weights["rs_pret"]     * rank_rs_pret
+            + weights["w_above_band"] * w_above_band
+            + weights["w_roc"]       * rank_w_roc
+            + weights["m_above"]     * rank_m_above
+            + weights["m_roc"]       * rank_m_roc
+            + weights["dist50"]      * rank_dist50
+            + weights["va_band"]     * va_band
+            + weights["rev_g"]       * rank_g
+            + weights["rev_inf"]     * rank_inf
+            + weights["pb"]          * rank_pb
+            + weights["ev"]          * rank_ev
+        )
+    else:
+        df["score"] = (
+            weights["rs_w_infl"] * rank_rs_w_infl
+            + weights["rs_fip"]    * rank_rs_fip
+            + weights["rs_pret"]   * rank_rs_pret
+            + weights["w_above"]   * rank_w_above
+            + weights["w_roc"]     * rank_w_roc
+            + weights["m_above"]   * rank_m_above
+            + weights["m_roc"]     * rank_m_roc
+            + weights["dist50"]    * rank_dist50
+            + weights["va_fip"]    * rank_va_fip
+            + weights["rev_g"]     * rank_g
+            + weights["rev_inf"]   * rank_inf
+            + weights["pb"]        * rank_pb
+            + weights["ev"]        * rank_ev
+        )
 
     df = df.sort_values("score", ascending=False)
     df = df.drop_duplicates(subset="name", keep="first").reset_index(drop=True)
@@ -1049,6 +1177,10 @@ def main() -> int:
     ap.add_argument("--soft", action="store_true",
                     help="(qulla) Skip hard filters and rank all RS-winners by "
                          "the composite Qullamaggie score; partial matches OK.")
+    ap.add_argument("--early", action="store_true",
+                    help="(qulla) Bias scoring toward EARLY-stage FIP setups "
+                         "(strong inflection, mild FIP level, weekly volasym "
+                         "just above its MA). Implies --soft.")
     ap.add_argument("--funds-top", type=int, default=120,
                     help="(qulla soft mode) Fetch fundamentals for at most this "
                          "many top-ranked candidates.")
@@ -1166,7 +1298,11 @@ def _run_qulla(args, universe, symbols):
             qrs.append(q)
     print(f"  Qullamaggie metrics for {len(qrs)} symbols")
 
-    if args.soft:
+    if args.early:
+        candidates = shortlist_early_stage(qrs, top_n=args.funds_top)
+        print(f"  early mode: shortlisting top {len(candidates)} RS-winners "
+              f"(inflection-weighted)")
+    elif args.soft:
         candidates = shortlist_by_tech_score(qrs, top_n=args.funds_top)
         print(f"  soft mode: shortlisting top {len(candidates)} RS-winners by tech score")
     else:
@@ -1190,7 +1326,7 @@ def _run_qulla(args, universe, symbols):
     funds = fetch_fundamentals_parallel([c.symbol for c in candidates])
     print(f"  fundamentals for {len(funds)} candidates")
 
-    table = build_qulla_table(candidates, funds, universe)
+    table = build_qulla_table(candidates, funds, universe, early=args.early)
     if table.empty:
         print("No rows after building Qullamaggie table.")
         return 1
@@ -1200,7 +1336,8 @@ def _run_qulla(args, universe, symbols):
     show_cols = [
         "symbol", "name", "country", "sector",
         "rs_pret_d", "rs_fip_d", "rs_fip_w_inflection",
-        "asym_m_last", "asym_w_last", "asym_w_above_ma", "asym_w_roc5",
+        "asym_m_last", "asym_m_above_ma", "asym_m_roc3",
+        "asym_w_last", "asym_w_above_ma", "asym_w_roc5",
         "va_fip_d",
         "pb", "ev_ebitda", "rev_growth", "rev_growth_inflection", "score",
     ]
