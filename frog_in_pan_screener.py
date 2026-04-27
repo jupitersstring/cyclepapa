@@ -581,8 +581,8 @@ def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series) -> Qull
 def filter_qulla_candidates(
     qrs: list[QullaResult],
     daily_rs_fip_max: float = -0.03,
-    asym_m_band: tuple[float, float] = (45.0, 55.0),
-    asym_w_max: float = 60.0,
+    asym_m_band: tuple[float, float] = (40.0, 60.0),
+    asym_w_max: float = 65.0,
     require_winner: bool = True,
 ) -> list[QullaResult]:
     """Qullamaggie-style RS breakout setup with stealth volatility profile.
@@ -953,12 +953,14 @@ def main() -> int:
                     help="(momentum) Daily FIP must be <= this to qualify.")
     ap.add_argument("--rs-fip-max", type=float, default=-0.03,
                     help="(qulla) Daily FIP on the RS line must be <= this.")
-    ap.add_argument("--asym-monthly-low", type=float, default=45.0,
-                    help="(qulla) Monthly volatility asymmetry must be >= this.")
-    ap.add_argument("--asym-monthly-high", type=float, default=55.0,
+    ap.add_argument("--asym-monthly-low", type=float, default=40.0,
+                    help="(qulla) Monthly volatility asymmetry must be >= this. "
+                         "'near 50' interpreted as 50 +/- 10 by default.")
+    ap.add_argument("--asym-monthly-high", type=float, default=60.0,
                     help="(qulla) Monthly volatility asymmetry must be <= this.")
-    ap.add_argument("--asym-weekly-max", type=float, default=60.0,
-                    help="(qulla) Weekly volatility asymmetry must be < this (low but rising).")
+    ap.add_argument("--asym-weekly-max", type=float, default=65.0,
+                    help="(qulla) Weekly volatility asymmetry must be < this "
+                         "('preferably low but above its MA').")
     ap.add_argument("--top", type=int, default=50, help="Print top-N rows to stdout.")
     ap.add_argument("--cooldown", type=int, default=60,
                     help="Seconds to pause between price download and fundamentals phase.")
