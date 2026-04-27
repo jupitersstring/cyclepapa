@@ -111,6 +111,9 @@ COUNTRY_TO_SUFFIX = {
     "United Arab Emirates": ".AE",
     "Qatar": ".QA",
     "Egypt": ".CA",
+    # Americas
+    "United States": "",   # native Yahoo tickers have no suffix
+    "Canada": ".TO",
 }
 
 
@@ -177,12 +180,14 @@ def load_universe(
         raise RuntimeError("Universe is empty; check countries / suffix filters.")
     df.index.name = "symbol"
     df = df[df.index.notna()]
-    df = df[df.index.astype(str).str.contains(r"\.[A-Z]{1,4}$", regex=True)]
+    # Accept either a Yahoo suffix (.L, .DE, etc.) OR a dotless US-style ticker.
+    idx_strs = df.index.astype(str)
+    df = df[pd.Series(idx_strs).str.match(r"^[A-Za-z0-9][A-Za-z0-9._-]*$").fillna(False).values]
 
     if primary_only and "name" in df.columns and "country" in df.columns:
         idx_str = df.index.astype(str)
-        suffix = idx_str.str.extract(r"(\.[A-Z]{1,4})$")[0].to_numpy()
-        pref = df["country"].map(COUNTRY_TO_SUFFIX).to_numpy()
+        suffix = idx_str.str.extract(r"(\.[A-Z]{1,4})$")[0].fillna("").to_numpy()
+        pref = df["country"].map(COUNTRY_TO_SUFFIX).fillna("__none__").to_numpy()
         is_primary = pd.Series(suffix == pref, index=df.index).fillna(False)
         df = df.assign(_is_primary=is_primary.values)
         # Stable sort by name, primary listings first; rows with NaN name
