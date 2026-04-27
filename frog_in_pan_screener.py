@@ -30,6 +30,9 @@ from __future__ import annotations
 
 import argparse
 import math
+import os
+import pickle
+import random
 import sys
 import time
 import warnings
@@ -41,6 +44,8 @@ import numpy as np
 import pandas as pd
 
 warnings.filterwarnings("ignore")
+
+PRICE_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".price_cache.pkl")
 
 
 EUROPEAN_COUNTRIES = [
@@ -155,39 +160,96 @@ def compute_fip(symbol: str, prices: pd.Series) -> FIPResult | None:
 # Price download
 # ---------------------------------------------------------------------------
 
-def download_prices(symbols: list[str], period: str = "2y", batch: int = 80) -> dict[str, pd.Series]:
-    """Batched yfinance download. Returns {symbol -> adj-close series}."""
+def _load_price_cache() -> dict[str, pd.Series]:
+    if not os.path.exists(PRICE_CACHE):
+        return {}
+    try:
+        with open(PRICE_CACHE, "rb") as fh:
+            return pickle.load(fh)
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def _save_price_cache(cache: dict[str, pd.Series]) -> None:
+    try:
+        with open(PRICE_CACHE, "wb") as fh:
+            pickle.dump(cache, fh, protocol=pickle.HIGHEST_PROTOCOL)
+    except Exception as e:  # noqa: BLE001
+        print(f"[warn] could not write price cache: {e}", file=sys.stderr)
+
+
+def download_prices(
+    symbols: list[str],
+    period: str = "2y",
+    batch: int = 25,
+    sleep_between: float = 1.5,
+    use_cache: bool = True,
+) -> dict[str, pd.Series]:
+    """Batched yfinance download with disk cache and rate-limit backoff.
+
+    Returns {symbol -> adj-close series}. The cache is keyed on symbol; if a
+    symbol is already cached we don't re-fetch.
+    """
     import yfinance as yf
+    from yfinance.exceptions import YFRateLimitError
 
-    out: dict[str, pd.Series] = {}
-    for i in range(0, len(symbols), batch):
-        chunk = symbols[i : i + batch]
-        try:
-            df = yf.download(
-                tickers=" ".join(chunk),
-                period=period,
-                interval="1d",
-                auto_adjust=True,
-                progress=False,
-                threads=True,
-                group_by="ticker",
-            )
-        except Exception as e:  # noqa: BLE001
-            print(f"[warn] batch {i // batch} download failed: {e}", file=sys.stderr)
-            continue
+    cache = _load_price_cache() if use_cache else {}
+    cached_hits = sum(1 for s in symbols if s in cache)
+    if cached_hits:
+        print(f"  cache hit on {cached_hits}/{len(symbols)} symbols", file=sys.stderr)
+    todo = [s for s in symbols if s not in cache]
 
-        if isinstance(df.columns, pd.MultiIndex):
-            for sym in chunk:
-                if sym in df.columns.get_level_values(0):
-                    s = df[sym].get("Close")
-                    if s is not None and len(s.dropna()) > 0:
-                        out[sym] = s.dropna()
-        else:
-            s = df.get("Close")
-            if s is not None and len(s.dropna()) > 0:
-                out[chunk[0]] = s.dropna()
+    out: dict[str, pd.Series] = {s: cache[s] for s in symbols if s in cache}
+    save_every = 5  # batches
 
-        time.sleep(0.4)  # be polite to Yahoo
+    def _fetch_batch(chunk: list[str]) -> pd.DataFrame | None:
+        for attempt in range(4):
+            try:
+                df = yf.download(
+                    tickers=" ".join(chunk),
+                    period=period,
+                    interval="1d",
+                    auto_adjust=True,
+                    progress=False,
+                    threads=True,
+                    group_by="ticker",
+                )
+                return df
+            except YFRateLimitError:
+                wait = 30 * (2 ** attempt) + random.uniform(0, 5)
+                print(f"  [rate-limit] sleeping {wait:.0f}s ...", file=sys.stderr)
+                time.sleep(wait)
+            except Exception as e:  # noqa: BLE001
+                print(f"  [warn] batch fetch error: {e}", file=sys.stderr)
+                return None
+        return None
+
+    n_batches = (len(todo) + batch - 1) // batch
+    for bi, i in enumerate(range(0, len(todo), batch)):
+        chunk = todo[i : i + batch]
+        df = _fetch_batch(chunk)
+        if df is not None:
+            if isinstance(df.columns, pd.MultiIndex):
+                for sym in chunk:
+                    if sym in df.columns.get_level_values(0):
+                        s = df[sym].get("Close")
+                        if s is not None and len(s.dropna()) > 0:
+                            out[sym] = s.dropna()
+                            cache[sym] = out[sym]
+            else:
+                s = df.get("Close")
+                if s is not None and len(s.dropna()) > 0:
+                    out[chunk[0]] = s.dropna()
+                    cache[chunk[0]] = out[chunk[0]]
+
+        if (bi + 1) % save_every == 0:
+            _save_price_cache(cache)
+            print(f"  batch {bi + 1}/{n_batches}: {len(out)} series cached so far",
+                  file=sys.stderr)
+
+        time.sleep(sleep_between)
+
+    _save_price_cache(cache)
     return out
 
 
@@ -239,11 +301,21 @@ def _annual_revenues(tk) -> pd.Series:
 
 def fetch_fundamentals(symbol: str) -> Fundamentals | None:
     import yfinance as yf
+    from yfinance.exceptions import YFRateLimitError
 
-    try:
-        tk = yf.Ticker(symbol)
-        info = tk.info or {}
-    except Exception:  # noqa: BLE001
+    info: dict = {}
+    tk = None
+    for attempt in range(4):
+        try:
+            tk = yf.Ticker(symbol)
+            info = tk.info or {}
+            break
+        except YFRateLimitError:
+            wait = 20 * (2 ** attempt) + random.uniform(0, 5)
+            time.sleep(wait)
+        except Exception:  # noqa: BLE001
+            return None
+    if tk is None or not info:
         return None
 
     pb = _safe(info.get("priceToBook"))
@@ -289,11 +361,13 @@ def fetch_fundamentals(symbol: str) -> Fundamentals | None:
     )
 
 
-def fetch_fundamentals_parallel(symbols: Iterable[str], workers: int = 8) -> dict[str, Fundamentals]:
+def fetch_fundamentals_parallel(symbols: Iterable[str], workers: int = 2) -> dict[str, Fundamentals]:
+    """Sequentially-ish (low concurrency) fetch — Yahoo aggressively rate-limits .info."""
+    syms = list(symbols)
     out: dict[str, Fundamentals] = {}
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(fetch_fundamentals, s): s for s in symbols}
-        for fut in as_completed(futures):
+        futures = {pool.submit(fetch_fundamentals, s): s for s in syms}
+        for done_count, fut in enumerate(as_completed(futures), start=1):
             s = futures[fut]
             try:
                 f = fut.result()
@@ -301,6 +375,9 @@ def fetch_fundamentals_parallel(symbols: Iterable[str], workers: int = 8) -> dic
                 f = None
             if f is not None:
                 out[s] = f
+            if done_count % 10 == 0:
+                print(f"  fundamentals progress: {done_count}/{len(syms)} ({len(out)} ok)",
+                      file=sys.stderr)
     return out
 
 
@@ -414,6 +491,9 @@ def main() -> int:
     ap.add_argument("--daily-fip-max", type=float, default=-0.05,
                     help="Daily FIP must be <= this to qualify (lower = smoother).")
     ap.add_argument("--top", type=int, default=50, help="Print top-N rows to stdout.")
+    ap.add_argument("--cooldown", type=int, default=60,
+                    help="Seconds to pause between price download and fundamentals phase.")
+    ap.add_argument("--no-cache", action="store_true", help="Ignore the on-disk price cache.")
     args = ap.parse_args()
 
     print("Loading universe (financedatabase, EU + UK, small & mid cap) ...")
@@ -426,7 +506,7 @@ def main() -> int:
         print(f"  capped to {len(symbols)} for this run")
 
     print("Downloading 2y daily prices ...")
-    prices = download_prices(symbols)
+    prices = download_prices(symbols, use_cache=not args.no_cache)
     print(f"  got prices for {len(prices)}/{len(symbols)} symbols")
 
     print("Computing FIP scores (daily + weekly + weekly inflection) ...")
@@ -446,6 +526,10 @@ def main() -> int:
     if not candidates:
         print("No FIP candidates passed the filter. Try loosening --daily-fip-max.")
         return 1
+
+    if args.cooldown > 0:
+        print(f"Cooling down {args.cooldown}s before fundamentals phase to ease rate limiting ...")
+        time.sleep(args.cooldown)
 
     print("Fetching fundamentals (P/B, EV/EBITDA, revenue growth) ...")
     funds = fetch_fundamentals_parallel([c.symbol for c in candidates])
