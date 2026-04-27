@@ -695,10 +695,9 @@ def filter_qulla_candidates(
 def shortlist_by_tech_score(qrs: list[QullaResult], top_n: int) -> list[QullaResult]:
     """Soft-mode pre-rank: use only RS + volatility-asymmetry features (no
     fundamentals) to pick the top_n candidates so the fundamentals fetch is
-    bounded. RS losers (rs_pret_d <= 0) are dropped — RS-breakout setups by
-    definition need positive relative strength.
+    bounded. No hard gates — RS-laggards just rank lower via rs_pret_d.
     """
-    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d) and q.rs_pret_d > 0]
+    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d)]
     if not rows:
         return []
     df = pd.DataFrame(rows)
@@ -732,10 +731,12 @@ def _band_score(series: pd.Series, target: float, sigma: float) -> pd.Series:
 
 
 def shortlist_early_stage(qrs: list[QullaResult], top_n: int) -> list[QullaResult]:
-    """Fully continuous early-stage scoring: no hard gates beyond RS-winner.
+    """Fully continuous early-stage scoring: NO hard gates at all.
 
     Each criterion is a soft ranking component, so a candidate that meets some
     but not all conditions still appears in the output, ranked appropriately.
+    Even RS-laggards make it to the table — they just rank lower via the
+    rs_pret_d component.
 
     Components (weights sum to 1.00):
       0.25  rank: weekly RS-FIP inflection more negative (faster transition)
@@ -747,7 +748,7 @@ def shortlist_early_stage(qrs: list[QullaResult], top_n: int) -> list[QullaResul
       0.05  band: volasym daily FIP near -0.03 (early-cycle smoothing)
       0.20  rank: stronger 12m RS return vs SPX
     """
-    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d) and q.rs_pret_d > 0]
+    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d)]
     if not rows:
         return []
     df = pd.DataFrame(rows)
