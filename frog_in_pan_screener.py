@@ -49,7 +49,9 @@ EUROPEAN_COUNTRIES = [
     "Portugal", "Sweden", "Norway", "Denmark", "Finland", "Iceland",
     "Poland", "Czech Republic", "Hungary", "Greece", "Cyprus", "Malta",
     "Estonia", "Latvia", "Lithuania", "Slovenia", "Slovakia", "Romania",
-    "Bulgaria", "Croatia",
+    # Crown dependencies / micro-states with Yahoo listings
+    "Guernsey", "Jersey", "Isle of Man", "Gibraltar", "Liechtenstein",
+    "Monaco", "Macedonia", "Montenegro",
 ]
 
 SMALL_MID_BUCKETS = ["Small Cap", "Mid Cap"]
