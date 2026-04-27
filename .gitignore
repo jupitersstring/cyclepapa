@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-screen.log
-*screen*.csv
+*.log
+*.csv
 .price_cache.pkl
 .ohlc_cache.pkl
