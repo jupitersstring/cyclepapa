@@ -624,6 +624,38 @@ def filter_qulla_candidates(
     return out
 
 
+def shortlist_by_tech_score(qrs: list[QullaResult], top_n: int) -> list[QullaResult]:
+    """Soft-mode pre-rank: use only RS + volatility-asymmetry features (no
+    fundamentals) to pick the top_n candidates so the fundamentals fetch is
+    bounded. RS losers (rs_pret_d <= 0) are dropped — RS-breakout setups by
+    definition need positive relative strength.
+    """
+    rows = [q.__dict__ for q in qrs if not math.isnan(q.rs_pret_d) and q.rs_pret_d > 0]
+    if not rows:
+        return []
+    df = pd.DataFrame(rows)
+    df["asym_m_dist50"] = (df["asym_m_last"] - 50.0).abs()
+    rank_rs_fip      = _pct_rank(df["rs_fip_d"],            lower_is_better=True)
+    rank_rs_pret     = _pct_rank(df["rs_pret_d"],           lower_is_better=False)
+    rank_rs_w_infl   = _pct_rank(df["rs_fip_w_inflection"], lower_is_better=True)
+    rank_asym_roc    = _pct_rank(df["asym_w_roc5"],         lower_is_better=False)
+    rank_asym_50     = _pct_rank(df["asym_m_dist50"],       lower_is_better=True)
+    rank_asym_above  = _pct_rank(df["asym_w_above_ma"],     lower_is_better=False)
+    rank_va_fip      = _pct_rank(df["va_fip_d"],            lower_is_better=True)
+    df["tech_score"] = (
+        0.20 * rank_rs_fip
+        + 0.10 * rank_rs_pret
+        + 0.15 * rank_rs_w_infl
+        + 0.15 * rank_asym_roc
+        + 0.10 * rank_asym_50
+        + 0.15 * rank_asym_above
+        + 0.15 * rank_va_fip
+    )
+    df = df.sort_values("tech_score", ascending=False).head(top_n)
+    keep = set(df["symbol"].tolist())
+    return [q for q in qrs if q.symbol in keep]
+
+
 def build_qulla_table(
     qrs: list[QullaResult],
     funds: dict[str, Fundamentals],
@@ -961,6 +993,12 @@ def main() -> int:
     ap.add_argument("--asym-weekly-max", type=float, default=65.0,
                     help="(qulla) Weekly volatility asymmetry must be < this "
                          "('preferably low but above its MA').")
+    ap.add_argument("--soft", action="store_true",
+                    help="(qulla) Skip hard filters and rank all RS-winners by "
+                         "the composite Qullamaggie score; partial matches OK.")
+    ap.add_argument("--funds-top", type=int, default=120,
+                    help="(qulla soft mode) Fetch fundamentals for at most this "
+                         "many top-ranked candidates.")
     ap.add_argument("--top", type=int, default=50, help="Print top-N rows to stdout.")
     ap.add_argument("--cooldown", type=int, default=60,
                     help="Seconds to pause between price download and fundamentals phase.")
@@ -1056,16 +1094,20 @@ def _run_qulla(args, universe, symbols):
             qrs.append(q)
     print(f"  Qullamaggie metrics for {len(qrs)} symbols")
 
-    candidates = filter_qulla_candidates(
-        qrs,
-        daily_rs_fip_max=args.rs_fip_max,
-        asym_m_band=(args.asym_monthly_low, args.asym_monthly_high),
-        asym_w_max=args.asym_weekly_max,
-    )
-    print(f"  passed Qullamaggie filter: {len(candidates)}")
+    if args.soft:
+        candidates = shortlist_by_tech_score(qrs, top_n=args.funds_top)
+        print(f"  soft mode: shortlisting top {len(candidates)} RS-winners by tech score")
+    else:
+        candidates = filter_qulla_candidates(
+            qrs,
+            daily_rs_fip_max=args.rs_fip_max,
+            asym_m_band=(args.asym_monthly_low, args.asym_monthly_high),
+            asym_w_max=args.asym_weekly_max,
+        )
+        print(f"  passed Qullamaggie filter: {len(candidates)}")
     if not candidates:
         print("No Qullamaggie candidates passed the filter. "
-              "Try loosening --rs-fip-max or widening --asym-monthly-* bounds.")
+              "Try --soft, or loosen --rs-fip-max / widen --asym-monthly-* bounds.")
         return 1
 
     if args.cooldown > 0:
