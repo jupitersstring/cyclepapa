@@ -408,9 +408,16 @@ def filter_fip_candidates(
     return out
 
 
-def _rank(series: pd.Series, ascending: bool) -> pd.Series:
-    """Percentile rank in [0, 1]; NaNs get the worst rank (0)."""
-    r = series.rank(ascending=ascending, pct=True, na_option="bottom")
+def _pct_rank(series: pd.Series, lower_is_better: bool) -> pd.Series:
+    """Return a percentile in [0,1] where HIGHER = better. NaNs map to 0.
+
+    For lower_is_better=True we rank with pandas ascending=False so the
+    smallest input value lands at pct ≈ 1.0; for higher_is_better=True we
+    use ascending=True so the largest value tops the distribution. NaNs
+    are excluded from the rank (na_option="keep") and then filled to 0
+    so missing fundamentals never look like a virtue.
+    """
+    r = series.rank(ascending=not lower_is_better, pct=True, na_option="keep")
     return r.fillna(0.0)
 
 
@@ -462,11 +469,11 @@ def build_screen_table(
     pb_clean = df["pb"].where(df["pb"] > 0)
     ev_clean = df["ev_ebitda"].where(df["ev_ebitda"] > 0)
 
-    rank_pb = _rank(pb_clean, ascending=True)            # lower P/B → higher rank
-    rank_ev = _rank(ev_clean, ascending=True)            # lower EV/EBITDA → higher rank
-    rank_g = _rank(df["rev_growth"], ascending=False)    # higher growth → higher rank
-    rank_inf = _rank(df["rev_growth_inflection"], ascending=False)
-    rank_fip = _rank(df["fip_d"], ascending=True)        # lower FIP → higher rank
+    rank_pb = _pct_rank(pb_clean, lower_is_better=True)
+    rank_ev = _pct_rank(ev_clean, lower_is_better=True)
+    rank_g = _pct_rank(df["rev_growth"], lower_is_better=False)
+    rank_inf = _pct_rank(df["rev_growth_inflection"], lower_is_better=False)
+    rank_fip = _pct_rank(df["fip_d"], lower_is_better=True)
 
     df["score"] = (
         weights["pb"] * rank_pb
