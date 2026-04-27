@@ -91,6 +91,26 @@ COUNTRY_TO_SUFFIX = {
     "Monaco": ".PA",
     "Macedonia": ".AT",
     "Montenegro": ".AT",
+    # Asia / MENA (added on demand)
+    "Malaysia": ".KL",
+    "Saudi Arabia": ".SR",
+    "Singapore": ".SI",
+    "Hong Kong": ".HK",
+    "Indonesia": ".JK",
+    "Thailand": ".BK",
+    "Philippines": ".PS",
+    "South Korea": ".KS",
+    "Taiwan": ".TW",
+    "Japan": ".T",
+    "India": ".NS",
+    "Australia": ".AX",
+    "New Zealand": ".NZ",
+    "South Africa": ".JO",
+    "Israel": ".TA",
+    "Turkey": ".IS",
+    "United Arab Emirates": ".AE",
+    "Qatar": ".QA",
+    "Egypt": ".CA",
 }
 
 
@@ -112,33 +132,66 @@ SMALL_MID_BUCKETS = ["Small Cap", "Mid Cap"]
 # Universe
 # ---------------------------------------------------------------------------
 
-def load_universe(min_n: int = 50, primary_only: bool = True) -> pd.DataFrame:
-    """Pull European + UK small & mid-caps from financedatabase.
+def load_universe(
+    min_n: int = 50,
+    primary_only: bool = True,
+    countries: list[str] | None = None,
+    include_suffixes: list[str] | None = None,
+    market_caps: list[str] | None = None,
+) -> pd.DataFrame:
+    """Pull a country-filtered small/mid-cap universe from financedatabase.
 
-    If primary_only is True, collapse cross-listed duplicates by keeping the
-    listing whose Yahoo suffix matches the company's HQ country (so Getinge
-    resolves to GETI-B.ST rather than GTN.MU). This dramatically improves
-    fundamentals coverage and removes redundant downloads.
+    `countries` overrides the EUROPEAN_COUNTRIES default.
+    `include_suffixes` (e.g. ['.KL']) merges in tickers with that Yahoo suffix
+        even if FD has them tagged NaN — useful for markets where FD doesn't
+        classify country/market_cap (Bursa Malaysia is the canonical case).
+    `market_caps` overrides ['Small Cap','Mid Cap'].
+    primary_only collapses cross-listings to the listing whose Yahoo suffix
+        matches the company's HQ country.
     """
     import financedatabase as fd
 
+    countries = countries or EUROPEAN_COUNTRIES
+    market_caps = market_caps or SMALL_MID_BUCKETS
+
     eq = fd.Equities()
-    df = eq.select(country=EUROPEAN_COUNTRIES, market_cap=SMALL_MID_BUCKETS)
-    if df is None or df.empty:
-        raise RuntimeError("financedatabase returned empty universe; check installation.")
+    df = eq.select(country=countries, market_cap=market_caps)
+    if df is None:
+        df = pd.DataFrame()
     df = df.copy()
+
+    if include_suffixes:
+        full = eq.select()
+        idx_str = full.index.astype(str)
+        masks = [idx_str.str.endswith(s) for s in include_suffixes]
+        if masks:
+            mask = masks[0]
+            for m in masks[1:]:
+                mask = mask | m
+            extra = full[mask]
+            # FD often tags these with NaN country/market_cap — keep them anyway.
+            df = pd.concat([df, extra]).copy()
+            df = df[~df.index.duplicated(keep="first")]
+
+    if df.empty:
+        raise RuntimeError("Universe is empty; check countries / suffix filters.")
     df.index.name = "symbol"
     df = df[df.index.notna()]
-    df = df[df.index.astype(str).str.contains(r"\.[A-Z]{1,3}$", regex=True)]
+    df = df[df.index.astype(str).str.contains(r"\.[A-Z]{1,4}$", regex=True)]
 
     if primary_only and "name" in df.columns and "country" in df.columns:
         idx_str = df.index.astype(str)
-        suffix = idx_str.str.extract(r"(\.[A-Z]{1,3})$")[0].to_numpy()
+        suffix = idx_str.str.extract(r"(\.[A-Z]{1,4})$")[0].to_numpy()
         pref = df["country"].map(COUNTRY_TO_SUFFIX).to_numpy()
         is_primary = pd.Series(suffix == pref, index=df.index).fillna(False)
         df = df.assign(_is_primary=is_primary.values)
-        df = df.sort_values(by=["name", "_is_primary"], ascending=[True, False])
-        df = df.drop_duplicates(subset="name", keep="first")
+        # Stable sort by name, primary listings first; rows with NaN name
+        # (e.g. include_suffixes additions) won't dedupe and will all stay.
+        df = df.sort_values(by=["name", "_is_primary"], ascending=[True, False],
+                            na_position="last")
+        named = df[df["name"].notna()].drop_duplicates(subset="name", keep="first")
+        unnamed = df[df["name"].isna()]
+        df = pd.concat([named, unnamed])
         df = df.drop(columns=["_is_primary"])
 
     if len(df) < min_n:
@@ -1005,11 +1058,30 @@ def main() -> int:
     ap.add_argument("--no-cache", action="store_true", help="Ignore the on-disk price cache.")
     ap.add_argument("--all-listings", action="store_true",
                     help="Disable primary-ticker dedup (keep every cross-listing).")
+    ap.add_argument("--countries", default=None,
+                    help="Comma-separated country list to override the default "
+                         "EU + UK universe (e.g. 'Malaysia,Saudi Arabia').")
+    ap.add_argument("--include-suffix", default=None,
+                    help="Comma-separated Yahoo suffix list to also include in "
+                         "the universe (e.g. '.KL' for Bursa Malaysia, where FD "
+                         "rows are tagged NaN country).")
+    ap.add_argument("--market-caps", default=None,
+                    help="Comma-separated FD market_cap buckets "
+                         "(default: 'Small Cap,Mid Cap').")
     args = ap.parse_args()
 
     print(f"Mode: {args.mode}")
-    print("Loading universe (financedatabase, EU + UK, small & mid cap) ...")
-    universe = load_universe(primary_only=not args.all_listings)
+    countries = [c.strip() for c in args.countries.split(",")] if args.countries else None
+    suffixes = [s.strip() for s in args.include_suffix.split(",")] if args.include_suffix else None
+    market_caps = [c.strip() for c in args.market_caps.split(",")] if args.market_caps else None
+    label = ", ".join(countries) if countries else "EU + UK"
+    print(f"Loading universe (financedatabase, {label}, small & mid cap) ...")
+    universe = load_universe(
+        primary_only=not args.all_listings,
+        countries=countries,
+        include_suffixes=suffixes,
+        market_caps=market_caps,
+    )
     print(f"  universe size: {len(universe)} (primary_only={not args.all_listings})")
     symbols = list(universe.index.astype(str))
     if args.limit:
