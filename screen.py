@@ -300,6 +300,31 @@ def rs_breakout(stock_close: pd.Series, idx_close: pd.Series, freq: str, lookbac
     return bool(current > prior_max), float(current - prior_max)
 
 
+def true_range(high: pd.Series, low: pd.Series, close: pd.Series) -> pd.Series:
+    pc = close.shift(1)
+    return pd.concat([(high - low), (high - pc).abs(), (low - pc).abs()], axis=1).max(axis=1)
+
+
+def squeeze_indicator(bars: pd.DataFrame, period: int = 14, smooth: int = 7) -> pd.DataFrame:
+    """Port of the Pine "Squeeze & Release" indicator.
+
+    squeezeValue = ema((ema(ATR,2*period) - ATR) / ema(High-Low, 2*period) * 100, smooth)
+    squeezeValueMA = ema(squeezeValue, period)
+
+    squeezeValue > 0 and rising = squeeze (volatility contraction).
+    squeezeValue > squeezeValueMA = active squeeze.
+    """
+    h, l, c = bars["High"], bars["Low"], bars["Close"]
+    atr = true_range(h, l, c).ewm(span=period, adjust=False).mean()
+    atr_ema = atr.ewm(span=period * 2, adjust=False).mean()
+    vol_ind = atr_ema - atr
+    hl_ema = (h - l).ewm(span=period * 2, adjust=False).mean()
+    sv_raw = vol_ind / (hl_ema + 1e-9) * 100
+    sv = sv_raw.ewm(span=smooth, adjust=False).mean()
+    sv_ma = sv.ewm(span=period, adjust=False).mean()
+    return pd.DataFrame({"sv": sv, "sv_ma": sv_ma}).dropna()
+
+
 def fip_score(close: pd.Series, lookback_days: int = 252, skip_days: int = 21) -> tuple[float, float, float]:
     """Frog-in-the-Pan (Da/Gurun/Warachka 2014).
 
@@ -355,6 +380,31 @@ def screen_rs_and_asymmetry(
         ok_m, mm = rs_breakout(close_for_rs, idx_close, "ME",    RS_LOOKBACK_M)
         prior_rs_26w = prior_relative_return(close_for_rs, idx_close, weeks=26)
         R12_1, fip, pos_pct = fip_score(close_local, lookback_days=252, skip_days=21)
+        # Trend + position-vs-52w-high + daily squeeze (for pre-breakout setup).
+        try:
+            high = daily["High"][t].dropna()
+            low = daily["Low"][t].dropna()
+        except KeyError:
+            high = low = close_local
+        ma50 = close_local.rolling(50).mean().iloc[-1] if len(close_local) >= 50 else np.nan
+        ma200 = close_local.rolling(200).mean().iloc[-1] if len(close_local) >= 200 else np.nan
+        last_px = float(close_local.iloc[-1])
+        win252 = close_local.iloc[-252:] if len(close_local) >= 252 else close_local
+        dist_52w_high = float(last_px / win252.max() - 1)  # negative = below high
+        trend_intact = bool(
+            not np.isnan(ma50) and not np.isnan(ma200)
+            and last_px > ma200 and ma50 > ma200
+        )
+        # Daily squeeze
+        d_bars = pd.DataFrame({"High": high, "Low": low, "Close": close_local}).dropna()
+        if len(d_bars) >= 60:
+            sq = squeeze_indicator(d_bars)
+            sv_now = float(sq["sv"].iloc[-1])
+            sv_ma_now = float(sq["sv_ma"].iloc[-1])
+            sv_rising = bool(sq["sv"].iloc[-5:].diff().dropna().mean() > 0)
+        else:
+            sv_now = sv_ma_now = np.nan
+            sv_rising = False
         # Also keep `close` reference for downstream code that already used it.
         close = close_local
 
@@ -385,6 +435,8 @@ def screen_rs_and_asymmetry(
             asym_m=float(m_now),
             w_rising=weekly_rising, w_above_ma=weekly_above_ma,
             w_low=weekly_low, m_balanced=monthly_balanced,
+            dist_52w_high=dist_52w_high, trend_intact=trend_intact,
+            sv=sv_now, sv_ma=sv_ma_now, sv_rising=sv_rising,
             score=(mw if not np.isnan(mw) else 0) + (mm if not np.isnan(mm) else 0),
         ))
 
@@ -410,6 +462,25 @@ def screen_rs_and_asymmetry(
     # well below zero (more positive than negative days). -0.05 is a mild
     # cutoff; the paper's bottom quintile typically sits around -0.10 to -0.20.
     df["pass_fip"] = df.fip.notna() & (df.fip <= -0.05) & (df.R_12_1 > 0)
+    # Pre-breakout coiled-spring setup ("Nov-23 ACLN" style):
+    # - prior winner (12-month return positive, prior 26w RS positive),
+    # - trend intact (price > 200d, 50d > 200d),
+    # - within 2-15% of 52-week high (still in range, not crashed, not at high),
+    # - NOT currently breaking weekly RS (we want the coil, not the release),
+    # - balanced monthly asym, weekly asym still low (Pine Qullamaggie spec),
+    # - daily squeeze active (sv > 0 and rising and above sv_ma),
+    # - frog-in-the-pan quality on the prior 12-month (continuous accumulation).
+    df["pass_pre_breakout"] = (
+        (df.R_12_1 > 0.20)
+        & (df.prior_rs_26w > 0.05)
+        & df.trend_intact
+        & (df.dist_52w_high.between(-0.15, -0.02))
+        & (~df.rs_w)
+        & df.m_balanced
+        & (df.asym_w <= 55)
+        & df.sv.notna() & (df.sv > 0) & (df.sv > df.sv_ma) & df.sv_rising
+        & (df.fip <= -0.05)
+    )
     return df.sort_values("score", ascending=False)
 
 
@@ -484,32 +555,49 @@ def main() -> None:
     print(f"  Pass strict (RS + setup):                {int(df.pass_strict.sum())}")
     print(f"  Pass aligned breakout (RS_w + bal asym): {int(df.pass_aligned.sum())}")
     print(f"  Pass Frog-in-the-Pan (R>0 & FIP<=-0.05): {int(df.pass_fip.sum())}")
+    print(f"  Pass PRE-BREAKOUT setup (Nov-23 ACLN-like): {int(df.pass_pre_breakout.sum())}")
 
     cols = ["ticker", "w_margin", "m_margin", "prior_rs_26w",
             "R_12_1", "fip", "pos_pct",
             "asym_w", "asym_w_ma", "asym_m", "score"]
+    pre_cols = ["ticker", "R_12_1", "prior_rs_26w", "dist_52w_high",
+                "asym_w", "asym_m", "sv", "sv_ma", "fip", "pos_pct"]
 
     modes = [
         ("Mode A: pre-breakout setup (asym only)", "pass_setup"),
         ("Mode B: aligned breakout (weekly RS + balanced monthly asym)", "pass_aligned"),
         ("Mode C: strict (both RS TFs + full asym pattern)", "pass_strict"),
         ("Mode D: aligned breakout AND Frog-in-the-Pan quality", None),
+        ("Mode E: pre-breakout coiled-spring (Nov-23 ACLN-like)", "pass_pre_breakout"),
     ]
     for label, key in modes:
         if label.startswith("Mode D"):
             survivors = df[df.pass_aligned & df.pass_fip].copy()
+        elif label.startswith("Mode E"):
+            survivors = df[df.pass_pre_breakout].copy()
+            # Rank by FIP (ascending — most negative first), then squeeze strength.
+            if not survivors.empty:
+                survivors["pre_score"] = -survivors.fip + (survivors.sv - survivors.sv_ma) / 100
+                survivors = survivors.sort_values("pre_score", ascending=False)
         else:
             survivors = df[df[key]].copy()
         print(f"\n=== {label} — {len(survivors)} survivors ===")
         if survivors.empty:
             print("(none)")
             continue
-        print(survivors[cols].head(40).to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+        show_cols = pre_cols if label.startswith("Mode E") else cols
+        print(survivors[show_cols].head(40).to_string(index=False, float_format=lambda x: f"{x:.3f}"))
 
-        final = max_independent_set(survivors, daily, eps=CORR_EPS)
+        # For Mode E we keep the survivors order; for others use score-driven max-IS.
+        if label.startswith("Mode E"):
+            survivors_for_is = survivors.copy()
+            survivors_for_is["score"] = survivors_for_is.get("pre_score", survivors_for_is.score)
+            final = max_independent_set(survivors_for_is, daily, eps=CORR_EPS)
+        else:
+            final = max_independent_set(survivors, daily, eps=CORR_EPS)
         selected = final[final.selected].ticker.tolist()
         print(f"\n  Uncorrelated portfolio (|weekly corr| <= {CORR_EPS}): {len(selected)} names")
-        print(final[final.selected][cols].to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+        print(final[final.selected][show_cols].to_string(index=False, float_format=lambda x: f"{x:.3f}"))
 
         diag = diagnostics(selected, daily)
         print("  Diagnostics:", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in diag.items()})
