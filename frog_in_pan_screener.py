@@ -236,6 +236,10 @@ class FIPResult:
     fip_w: float
     fip_w_prev: float        # weekly FIP measured one quarter ago (inflection)
     fip_w_inflection: float  # negative => weekly is becoming smoother
+    pret_m: float            # monthly compounded return over the window
+    fip_m: float             # monthly FIP (over ~24 months)
+    fip_m_prev: float        # monthly FIP measured ~6 months earlier
+    fip_m_inflection: float  # change in monthly FIP
     last_price: float
     n_days: int
 
@@ -246,21 +250,28 @@ def compute_fip(symbol: str, prices: pd.Series) -> FIPResult | None:
         return None
 
     daily_ret = prices.pct_change()
-    # Daily FIP over trailing ~252 trading days.
     pret_d, fip_d = _fip(daily_ret.iloc[-252:])
 
-    # Weekly FIP over trailing ~52 weeks (Friday closes).
     weekly = prices.resample("W-FRI").last().dropna()
     if len(weekly) < 70:
         return None
     weekly_ret = weekly.pct_change()
     pret_w, fip_w = _fip(weekly_ret.iloc[-52:])
-
-    # Weekly FIP one quarter ago (drop most recent ~13 weeks, take 52 before that).
     prev_window = weekly_ret.iloc[-(52 + 13):-13]
     _, fip_w_prev = _fip(prev_window)
+    w_inflection = fip_w - fip_w_prev if not (math.isnan(fip_w) or math.isnan(fip_w_prev)) else np.nan
 
-    inflection = fip_w - fip_w_prev if not (math.isnan(fip_w) or math.isnan(fip_w_prev)) else np.nan
+    # Monthly FIP: 24-month window of month-end returns; "inflection" compares
+    # to the 24-month window ending 6 months ago.
+    monthly = prices.resample("ME").last().dropna()
+    pret_m = fip_m = fip_m_prev = m_inflection = float("nan")
+    if len(monthly) >= 24:
+        monthly_ret = monthly.pct_change()
+        pret_m, fip_m = _fip(monthly_ret.iloc[-24:])
+        if len(monthly_ret) >= 30:
+            _, fip_m_prev = _fip(monthly_ret.iloc[-30:-6])
+            if not (math.isnan(fip_m) or math.isnan(fip_m_prev)):
+                m_inflection = fip_m - fip_m_prev
 
     return FIPResult(
         symbol=symbol,
@@ -269,7 +280,11 @@ def compute_fip(symbol: str, prices: pd.Series) -> FIPResult | None:
         pret_w=pret_w,
         fip_w=fip_w,
         fip_w_prev=fip_w_prev,
-        fip_w_inflection=inflection,
+        fip_w_inflection=w_inflection,
+        pret_m=pret_m,
+        fip_m=fip_m,
+        fip_m_prev=fip_m_prev,
+        fip_m_inflection=m_inflection,
         last_price=float(prices.iloc[-1]),
         n_days=len(prices),
     )
