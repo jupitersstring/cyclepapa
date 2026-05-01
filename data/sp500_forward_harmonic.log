@@ -1,0 +1,141 @@
+Loading event-study keys (harmonic only)...
+  223 valid harmonic keys (out of 384 total)
+
+========================================================================================================================================================================================================
+SP500 — BIGGEST FORWARD HARMONIC-ASPECT SHIFTS (Apr 2026 → Apr 2027)
+  Restricted to: bat_41, sept_51, qnt_72, gart_77, butt_98, phi_137, biq_144
+  Filter: today's score moderate, max forward delta ≥ 30
+========================================================================================================================================================================================================
+  # Tkr    GICS                     Now→  Max      Δ  PkMo      tMx  +3mo  +6mo  Name
+  1 LIN    Materials               +15 →+176  + 161  2027-03   11mo  +63  +39  Linde plc
+  2 SW     Materials               +61 →+214  + 153  2026-11    7mo  +45 +121  Smurfit Westrock
+  3 TDG    Industrials             +50 →+198  + 149  2026-08    4mo  +78  +91  TransDigm Group
+  4 CHRW   Industrials             +20 →+165  + 145  2026-08    4mo +129 +123  C.H. Robinson
+  5 HWM    Industrials             +30 →+161  + 131  2027-03   11mo  +46   +8  Howmet Aerospace
+  6 DRI    Consumer Discretionar   +29 →+158  + 129  2027-04   12mo  +72   +6  Darden Restaurants
+  7 L      Financials              +29 →+158  + 129  2027-04   12mo  +72   +6  Loews Corporation
+  8 REGN   Health Care             +72 →+199  + 127  2026-07    3mo +127  +43  Regeneron Pharmace
+  9 DOC    Real Estate             +64 →+191  + 127  2026-08    4mo  +76  +84  Healthpeak Propert
+ 10 NEE    Utilities               +22 →+147  + 125  2026-09    5mo  +60  +53  NextEra Energy
+ 11 BKR    Energy                  +85 →+209  + 125  2026-11    7mo  +38  +68  Baker Hughes
+ 12 KHC    Consumer Staples        +66 →+190  + 125  2026-05    1mo +114  +32  Kraft Heinz
+ 13 INTU   Information Technolog   +91 →+215  + 124  2026-08    4mo  +60  +96  Intuit
+ 14 ON     Information Technolog   +19 →+142  + 122  2026-09    5mo   +3  +77  ON Semiconductor
+ 15 ICE    Financials              +42 →+164  + 122  2026-09    5mo   -6  +62  Intercontinental E
+ 16 TXN    Information Technolog   +66 →+186  + 120  2027-04   12mo  +22  +71  Texas Instruments
+ 17 ORCL   Information Technolog   +66 →+186  + 120  2026-08    4mo  +58  +80  Oracle Corporation
+ 18 LOW    Consumer Discretionar   +76 →+195  + 119  2027-01    9mo  +99   -2  Lowe's
+ 19 ROL    Industrials             +85 →+203  + 118  2026-08    4mo  +50  +29  Rollins, Inc.
+ 20 BR     Industrials             +69 →+186  + 117  2026-11    7mo  +55  +50  Broadridge Financi
+ 21 GIS    Consumer Staples        +66 →+180  + 114  2026-09    5mo  +81  +57  General Mills
+ 22 V      Financials              +76 →+190  + 114  2026-11    7mo  -47  +44  Visa Inc.
+ 23 MTB    Financials              +54 →+166  + 113  2026-08    4mo  +41  +33  M&T Bank
+ 24 COST   Consumer Staples        +38 →+150  + 112  2027-03   11mo  +28   +3  Costco
+ 25 CPT    Real Estate             +37 →+149  + 112  2027-04   12mo +101  +53  Camden Property Tr
+ 26 XYZ    Financials              +13 →+124  + 111  2026-12    8mo  +43  +42  Block, Inc.
+ 27 DHR    Health Care             +81 →+191  + 110  2026-08    4mo   +7  +34  Danaher Corporatio
+ 28 GS     Financials              +84 →+193  + 109  2027-03   11mo  +24  +40  Goldman Sachs
+ 29 TROW   Financials              +62 →+170  + 108  2026-12    8mo +108  +52  T. Rowe Price
+ 30 ADBE   Information Technolog   +72 →+180  + 108  2027-04   12mo  +31  +50  Adobe Inc.
+ 31 BLK    Financials              +85 →+191  + 106  2026-08    4mo  +34  +24  BlackRock
+ 32 CVNA   Consumer Discretionar   +49 →+155  + 106  2026-09    5mo   -5  +52  Carvana
+ 33 TRMB   Information Technolog   +37 →+143  + 106  2026-07    3mo +106  +60  Trimble Inc.
+ 34 TSLA   Consumer Discretionar   +38 →+142  + 104  2027-04   12mo  +13  +50  Tesla, Inc.
+ 35 CPRT   Industrials             +21 →+124  + 103  2026-07    3mo +103  +41  Copart
+ 36 BEN    Financials              +37 →+140  + 103  2026-09    5mo  +56  +55  Franklin Resources
+ 37 OKE    Energy                  +64 →+166  + 103  2026-08    4mo  +12  +59  Oneok
+ 38 LYB    Materials               +67 →+168  + 102  2026-05    1mo  -25  -25  LyondellBasell
+ 39 TMUS   Communication Service   +87 →+189  + 102  2027-02   10mo  +10  +38  T-Mobile US
+ 40 HBAN   Financials              +16 →+118  + 102  2026-11    7mo  +39  +88  Huntington Bancsha
+ 41 JBHT   Industrials             +86 →+188  + 102  2027-01    9mo  +49  +65  J.B. Hunt
+ 42 KIM    Real Estate             +67 →+168  + 101  2027-02   10mo  +37  +69  Kimco Realty
+ 43 CARR   Industrials             +44 →+145  + 101  2026-08    4mo  +59  +33  Carrier Global
+ 44 OTIS   Industrials             +44 →+145  + 101  2026-08    4mo  +59  +33  Otis Worldwide
+ 45 AMP    Financials              +64 →+165  + 101  2027-02   10mo  +15  +26  Ameriprise Financi
+ 46 Q      Information Technolog   +14 →+115  + 101  2026-07    3mo +101  +34  Qnity Electronics
+ 47 STLD   Materials              +121 →+222  + 101  2027-02   10mo  +38  +48  Steel Dynamics
+ 48 PAYX   Industrials              -2 → +98  + 100  2026-10    6mo  +83 +100  Paychex
+ 49 BX     Financials              +97 →+197  + 100  2026-08    4mo  +35  +14  Blackstone Inc.
+ 50 STX    Information Technolog   +57 →+157  + 100  2026-11    7mo  +74  +43  Seagate Technology
+
+========================================================================================================================================================================================================
+IMMINENT HARMONIC SHIFTS — 3-month delta ≥ 25
+========================================================================================================================================================================================================
+Tkr    GICS                     Now→Jul26  Δ3mo  Top 3 NEW HARMONIC aspects activating
+CHRW   Industrials             +20 →+149 + 129  C.H. Robinson       Plu-Moo qnt_72 (Δ+54) | Ura-Sun phi_137 (Δ+27) | Jup-Sun gart_77 (Δ+19)
+REGN   Health Care             +72 →+199 + 127  Regeneron Pharmace  Plu-ASC biq_144 (Δ+34) | Ura-Sun sept_51 (Δ+18) | Ven-ASC qnt_72 (Δ+15)
+KHC    Consumer Staples        +66 →+180 + 114  Kraft Heinz         Ura-Sun bat_41 (Δ+39) | Nep-Sun butt_98 (Δ+17) | Jup-Moo phi_137 (Δ+15)
+TROW   Financials              +62 →+170 + 108  T. Rowe Price       Plu-ASC biq_144 (Δ+34) | Ura-Sun sept_51 (Δ+18) | Ven-ASC qnt_72 (Δ+15)
+TRMB   Information Technolog   +37 →+143 + 106  Trimble Inc.        Nep-MC gart_77 (Δ+44) | Ura-Sun sept_51 (Δ+18) | Jup-MC bat_41 (Δ+17)
+CPRT   Industrials             +21 →+124 + 103  Copart              Plu-ASC biq_144 (Δ+34) | Ura-Sun sept_51 (Δ+18) | Ven-ASC qnt_72 (Δ+15)
+CPT    Real Estate             +37 →+138 + 101  Camden Property Tr  Ura-Moo butt_98 (Δ+35) | Jup-Moo bat_41 (Δ+23) | Jup-MC bat_41 (Δ+17)
+Q      Information Technolog   +14 →+115 + 101  Qnity Electronics   Mar-Moo bat_41 (Δ+19) | Jup-Sun gart_77 (Δ+19) | Ven-ASC bat_41 (Δ+15)
+SOLV   Health Care             +35 →+134 +  99  Solventum           Plu-ASC biq_144 (Δ+34) | Ura-Sun sept_51 (Δ+18) | Ven-ASC qnt_72 (Δ+15)
+LOW    Consumer Discretionar   +76 →+176 +  99  Lowe's              Sat-ASC phi_137 (Δ+26) | Ura-MC butt_98 (Δ+16) | Ura-Moo biq_144 (Δ+15)
+ADI    Information Technolog  +101 →+191 +  91  Analog Devices      Sat-ASC phi_137 (Δ+26) | Jup-Sun gart_77 (Δ+19) | Jup-MC bat_41 (Δ+17)
+TTWO   Communication Service    +4 → +94 +  90  Take-Two Interacti  Ura-Sun bat_41 (Δ+39) | Jup-Sun butt_98 (Δ+19) | Mar-Moo bat_41 (Δ+19)
+PAYX   Industrials              -2 → +80 +  83  Paychex             Sat-Sun phi_137 (Δ+23) | Jup-ASC gart_77 (Δ+16) | Ven-MC bat_41 (Δ+14)
+GIS    Consumer Staples        +66 →+147 +  81  General Mills       Plu-Moo qnt_72 (Δ+54) | Ura-ASC qnt_72 (Δ+35) | Jup-Sun sept_51 (Δ+21)
+AIZ    Financials              +42 →+123 +  81  Assurant            Nep-Sun sept_51 (Δ+31) | Mar-Moo bat_41 (Δ+19) | Sat-MC butt_98 (Δ+18)
+TRV    Financials              +45 →+125 +  80  Travelers Companie  Ura-Sun sept_51 (Δ+18) | Mar-Moo qnt_72 (Δ+17) | Ven-ASC qnt_72 (Δ+15)
+PANW   Information Technolog   +81 →+161 +  80  Palo Alto Networks  Ura-Sun sept_51 (Δ+18) | Mar-Moo sept_51 (Δ+17) | Jup-MC bat_41 (Δ+17)
+TDG    Industrials             +50 →+128 +  78  TransDigm Group     Ura-Sun qnt_72 (Δ+39) | Sat-ASC sept_51 (Δ+23) | Mar-Sun gart_77 (Δ+18)
+DOC    Real Estate             +64 →+141 +  76  Healthpeak Propert  Ura-Sun sept_51 (Δ+18) | Jup-MC bat_41 (Δ+17) | Mar-ASC butt_98 (Δ+15)
+PGR    Financials               -2 → +72 +  74  Progressive Corpor  Ura-Sun bat_41 (Δ+39) | Jup-Sun butt_98 (Δ+19) | Jup-Moo phi_137 (Δ+15)
+STX    Information Technolog   +57 →+131 +  74  Seagate Technology  Ura-Sun phi_137 (Δ+27) | Sat-ASC phi_137 (Δ+26) | Jup-Sun gart_77 (Δ+19)
+PG     Consumer Staples        +52 →+125 +  73  Procter & Gamble    Nep-Sun bat_41 (Δ+31) | Jup-Sun gart_77 (Δ+19) | Ven-ASC bat_41 (Δ+15)
+DRI    Consumer Discretionar   +29 →+101 +  72  Darden Restaurants  Ura-ASC qnt_72 (Δ+35) | Jup-Sun sept_51 (Δ+21) | Sat-Moo gart_77 (Δ+19)
+L      Financials              +29 →+101 +  72  Loews Corporation   Ura-ASC qnt_72 (Δ+35) | Jup-Sun sept_51 (Δ+21) | Sat-Moo gart_77 (Δ+19)
+HUM    Health Care             +76 →+142 +  66  Humana              Ura-Sun gart_77 (Δ+53) | Ura-MC bat_41 (Δ+24) | Mar-Sun qnt_72 (Δ+17)
+VRTX   Health Care             +56 →+122 +  65  Vertex Pharmaceuti  Nep-Sun sept_51 (Δ+31) | Sat-Moo qnt_72 (Δ+21) | Sat-MC butt_98 (Δ+18)
+ACN    Information Technolog   +54 →+119 +  65  Accenture           Nep-Sun bat_41 (Δ+31) | Mar-Moo bat_41 (Δ+19) | Jup-Sun gart_77 (Δ+19)
+PRU    Financials             +124 →+189 +  65  Prudential Financi  Nep-ASC qnt_72 (Δ+37) | Jup-Sun phi_137 (Δ+16) | Ven-Moo gart_77 (Δ+14)
+DECK   Consumer Discretionar   +32 → +96 +  64  Deckers Brands      Ura-Sun phi_137 (Δ+27) | Jup-Sun gart_77 (Δ+19) | Jup-MC bat_41 (Δ+17)
+LRCX   Information Technolog  +130 →+194 +  64  Lam Research        Sat-ASC butt_98 (Δ+33) | Sat-Moo qnt_72 (Δ+21) | Jup-Sun gart_77 (Δ+19)
+
+========================================================================================================================================================================================================
+6-MONTH HARMONIC SHIFTS — peak by October 2026
+========================================================================================================================================================================================================
+Tkr    GICS                     Now→Oct26  Δ6mo  Top 3 NEW HARMONIC aspects
+CHRW   Industrials             +20 →+143 + 123  C.H. Robinson       Plu-Moo qnt_72 (Δ+54) | Ura-Sun phi_137 (Δ+27) | Mar-Sun qnt_72 (Δ+17)
+SW     Materials               +61 →+182 + 121  Smurfit Westrock    Nep-MC qnt_72 (Δ+39) | Ura-Sun bat_41 (Δ+39) | Ven-ASC sept_51 (Δ+17)
+PAYX   Industrials              -2 → +98 + 100  Paychex             Jup-Moo phi_137 (Δ+15) | Mar-ASC qnt_72 (Δ+15) | Ven-MC butt_98 (Δ+14)
+JCI    Industrials              +7 →+106 +  99  Johnson Controls    Jup-Moo phi_137 (Δ+15) | Mar-ASC qnt_72 (Δ+15) | Ven-MC butt_98 (Δ+14)
+INTU   Information Technolog   +91 →+187 +  96  Intuit              Plu-Moo qnt_72 (Δ+54) | Ura-Sun qnt_72 (Δ+39) | Mar-Sun phi_137 (Δ+18)
+URI    Industrials             +42 →+134 +  92  United Rentals      Sat-MC phi_137 (Δ+25) | Mar-Sun phi_137 (Δ+18) | Mer-ASC qnt_72 (Δ+14)
+CINF   Financials              +42 →+134 +  92  Cincinnati Financi  Sat-MC phi_137 (Δ+25) | Mar-Sun phi_137 (Δ+18) | Mer-ASC qnt_72 (Δ+14)
+TDG    Industrials             +50 →+141 +  91  TransDigm Group     Ura-Sun qnt_72 (Δ+39) | Mar-Moo bat_41 (Δ+19) | Mar-Sun phi_137 (Δ+18)
+CEG    Utilities               +21 →+110 +  89  Constellation Ener  Sat-Sun phi_137 (Δ+23) | Ven-ASC sept_51 (Δ+17) | Ven-Moo bat_41 (Δ+14)
+HBAN   Financials              +16 →+104 +  88  Huntington Bancsha  Ura-Moo bat_41 (Δ+16) | Mar-ASC qnt_72 (Δ+15) | Ven-MC butt_98 (Δ+14)
+FOX    Communication Service    +6 → +94 +  88  Fox Corporation (C  Ura-Moo bat_41 (Δ+16) | Mar-ASC qnt_72 (Δ+15) | Ven-MC butt_98 (Δ+14)
+DOC    Real Estate             +64 →+149 +  84  Healthpeak Propert  Ura-Sun sept_51 (Δ+18) | Mar-ASC bat_41 (Δ+15) | Ven-ASC bat_41 (Δ+15)
+ORCL   Information Technolog   +66 →+146 +  80  Oracle Corporation  Plu-Moo qnt_72 (Δ+54) | Ura-Sun qnt_72 (Δ+39) | Mar-Sun phi_137 (Δ+18)
+LITE   Information Technolog   +44 →+123 +  79  Lumentum            Plu-Sun butt_98 (Δ+34) | Ura-Sun phi_137 (Δ+27) | Mar-Sun qnt_72 (Δ+17)
+DECK   Consumer Discretionar   +32 →+110 +  78  Deckers Brands      Ura-Sun phi_137 (Δ+27) | Mar-Sun qnt_72 (Δ+17) | Ura-MC butt_98 (Δ+16)
+RF     Financials              +52 →+129 +  78  Regions Financial   Mar-ASC qnt_72 (Δ+15) | Ven-MC butt_98 (Δ+14) | Ura-MC sept_51 (Δ+13)
+ON     Information Technolog   +19 → +96 +  77  ON Semiconductor    Ura-ASC bat_41 (Δ+45) | Sat-ASC butt_98 (Δ+33) | Ven-MC biq_144 (Δ+13)
+AMGN   Health Care             +80 →+155 +  75  Amgen               Sat-ASC phi_137 (Δ+26) | Plu-Sun biq_144 (Δ+21) | Mar-Moo bat_41 (Δ+19)
+ROK    Industrials             +68 →+142 +  74  Rockwell Automatio  Plu-ASC biq_144 (Δ+34) | Sat-MC sept_51 (Δ+23) | Nep-Sun butt_98 (Δ+17)
+NOW    Information Technolog   +68 →+140 +  72  ServiceNow          Plu-ASC biq_144 (Δ+34) | Sat-MC sept_51 (Δ+23) | Mar-Moo gart_77 (Δ+17)
+MNST   Consumer Staples        +68 →+140 +  72  Monster Beverage    Plu-ASC biq_144 (Δ+34) | Sat-MC sept_51 (Δ+23) | Mar-Moo gart_77 (Δ+17)
+TXN    Information Technolog   +66 →+137 +  71  Texas Instruments   Ura-Sun qnt_72 (Δ+39) | Mar-Sun phi_137 (Δ+18) | Jup-ASC gart_77 (Δ+16)
+JBL    Information Technolog   +33 →+102 +  69  Jabil               Sat-MC phi_137 (Δ+25) | Mar-Sun phi_137 (Δ+18) | Mer-ASC qnt_72 (Δ+14)
+KIM    Real Estate             +67 →+136 +  69  Kimco Realty        Sat-ASC butt_98 (Δ+33) | Jup-Sun butt_98 (Δ+19) | Jup-Moo qnt_72 (Δ+16)
+BKR    Energy                  +85 →+153 +  68  Baker Hughes        Ura-Sun bat_41 (Δ+39) | Mer-Moo bat_41 (Δ+17) | Ven-ASC sept_51 (Δ+17)
+MO     Consumer Staples        +86 →+154 +  68  Altria              Ura-Sun gart_77 (Δ+53) | Sat-ASC sept_51 (Δ+23) | Mar-Sun phi_137 (Δ+18)
+MSFT   Information Technolog   +55 →+122 +  67  Microsoft           Ura-Sun qnt_72 (Δ+39) | Mar-Sun phi_137 (Δ+18) | Jup-ASC gart_77 (Δ+16)
+BBY    Consumer Discretionar   +79 →+145 +  66  Best Buy            Plu-ASC biq_144 (Δ+34) | Sat-MC sept_51 (Δ+23) | Jup-Moo biq_144 (Δ+18)
+TEL    Information Technolog   +60 →+126 +  66  TE Connectivity     Plu-Sun butt_98 (Δ+34) | Ura-Sun phi_137 (Δ+27) | Sat-Moo qnt_72 (Δ+21)
+JBHT   Industrials             +86 →+151 +  65  J.B. Hunt           Sat-ASC butt_98 (Δ+33) | Jup-Sun butt_98 (Δ+19) | Plu-Moo biq_144 (Δ+12)
+
+========================================================================================================================
+AGGREGATE — which harmonic type produces the most active 3mo shifts in SP500
+========================================================================================================================
+Harmonic        #new SP500 hits in next 3mo
+biq_144             393
+qnt_72              392
+phi_137             335
+gart_77             330
+sept_51             322
+bat_41              322
+butt_98             295
