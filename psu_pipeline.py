@@ -23,9 +23,10 @@ from pathlib import Path
 
 import yfinance as yf
 
-from edgar import latest_def14a, fetch_filing_html
+from edgar import latest_def14a, fetch_filing_html, Filing
 from proxy import html_to_text, extract_comp_section
 from psu_scoring import extract_features, score
+from recent import recent_def14a, RecentFiling
 
 
 def current_price(ticker: str) -> float | None:
@@ -47,6 +48,11 @@ def current_price(ticker: str) -> float | None:
     return None
 
 
+def _fetch_url(url: str) -> str:
+    from edgar import _get
+    return _get(url).text
+
+
 def run_one(ticker: str) -> dict:
     out: dict = {"ticker": ticker.upper()}
     try:
@@ -57,14 +63,18 @@ def run_one(ticker: str) -> dict:
     if filing is None:
         out["error"] = "no DEF 14A found"
         return out
+    return _process_filing(ticker, filing)
 
+
+def _process_filing(ticker: str, filing) -> dict:
+    """Common path: given a Filing or RecentFiling, score it."""
+    out: dict = {"ticker": ticker.upper()}
     out["filing_date"] = filing.filing_date
     out["filing_url"] = filing.url
-
     try:
-        html = fetch_filing_html(filing)
+        html = fetch_filing_html(filing) if isinstance(filing, Filing) else _fetch_url(filing.url)
     except Exception as e:
-        out["error"] = f"edgar_fetch: {e}"
+        out["error"] = f"fetch: {e}"
         return out
 
     text = html_to_text(html)
@@ -131,8 +141,12 @@ def main() -> int:
             "alignment + OTM kicker + override/milking risk."
         )
     )
-    p.add_argument("--tickers", required=True,
-                   help="File with one ticker per line (# comments OK).")
+    src = p.add_mutually_exclusive_group(required=True)
+    src.add_argument("--tickers",
+                     help="File with one ticker per line (# comments OK).")
+    src.add_argument("--recent", type=int,
+                     help="Pull the N most recently filed DEF 14A proxies "
+                          "from EDGAR and score them.")
     p.add_argument("--out", default="psu_scorecard.csv",
                    help="Ranked CSV output path.")
     p.add_argument("--json", default=None,
@@ -143,24 +157,41 @@ def main() -> int:
                    help="Sleep between EDGAR requests (default 0.25s).")
     args = p.parse_args()
 
-    tickers = [
-        t.strip().upper()
-        for t in Path(args.tickers).read_text().splitlines()
-        if t.strip() and not t.strip().startswith("#")
-    ]
-    if not tickers:
-        print("No tickers found.", file=sys.stderr)
-        return 1
-
     rows: list[dict] = []
-    for tk in tickers:
-        print(f"[{tk}] processing...", file=sys.stderr, flush=True)
-        try:
-            row = run_one(tk)
-        except Exception as e:
-            row = {"ticker": tk, "error": f"unhandled: {e}"}
-        rows.append(row)
-        time.sleep(args.sleep)
+    if args.recent:
+        print(f"Pulling {args.recent} most-recent DEF 14A from EDGAR...",
+              file=sys.stderr, flush=True)
+        feed = recent_def14a(args.recent)
+        print(f"Got {len(feed)} filings.", file=sys.stderr)
+        for rf in feed:
+            tk = rf.ticker or rf.cik
+            print(f"[{tk}] {rf.filing_date} {rf.company}",
+                  file=sys.stderr, flush=True)
+            try:
+                row = _process_filing(tk, rf)
+                row["company"] = rf.company
+            except Exception as e:
+                row = {"ticker": tk, "company": rf.company,
+                       "error": f"unhandled: {e}"}
+            rows.append(row)
+            time.sleep(args.sleep)
+    else:
+        tickers = [
+            t.strip().upper()
+            for t in Path(args.tickers).read_text().splitlines()
+            if t.strip() and not t.strip().startswith("#")
+        ]
+        if not tickers:
+            print("No tickers found.", file=sys.stderr)
+            return 1
+        for tk in tickers:
+            print(f"[{tk}] processing...", file=sys.stderr, flush=True)
+            try:
+                row = run_one(tk)
+            except Exception as e:
+                row = {"ticker": tk, "error": f"unhandled: {e}"}
+            rows.append(row)
+            time.sleep(args.sleep)
 
     rows.sort(key=lambda r: r.get("asymmetry", 0) or 0, reverse=True)
     write_csv(rows, Path(args.out))

@@ -113,10 +113,33 @@ class PSUFeatures:
     snippet: str = ""
 
 
+def _psu_windows(text: str, before: int = 600, after: int = 1500) -> str:
+    """Concatenated text windows around every PSU mention. Flags evaluated
+    only inside these windows do not pick up unrelated boilerplate (e.g.
+    director-retirement age policy, repricing of *option* plans not PSUs)
+    elsewhere in the proxy."""
+    spans: list[tuple[int, int]] = []
+    for m in PSU_KEYWORDS.finditer(text):
+        spans.append((max(0, m.start() - before), min(len(text), m.end() + after)))
+    if not spans:
+        return ""
+    spans.sort()
+    merged: list[list[int]] = []
+    for s, e in spans:
+        if merged and s <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], e)
+        else:
+            merged.append([s, e])
+    return "\n".join(text[s:e] for s, e in merged)
+
+
 def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
     f = PSUFeatures(ticker=ticker)
     f.has_psu_program = bool(PSU_KEYWORDS.search(comp_text))
 
+    # Metric detection across the full comp section -- aggregate vs
+    # per-share metrics often live in performance-metric tables that the
+    # narrow PSU window misses.
     seen_agg: set[str] = set()
     for pat, name in AGGREGATE_PATTERNS:
         if name in seen_agg:
@@ -133,18 +156,24 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
             f.per_share_metrics.append(name)
             seen_ps.add(name)
 
-    hurdles = [float(x) for x in STOCK_PRICE_HURDLE.findall(comp_text)]
+    # Hurdle parsing -- localized to PSU paragraphs only. Non-PSU "stock
+    # price" mentions (e.g. fee schedules, beneficial ownership tables)
+    # would otherwise pollute the upside-kicker score.
+    psu_window = _psu_windows(comp_text)
+    base = psu_window if psu_window else comp_text
+    hurdles = [float(x) for x in STOCK_PRICE_HURDLE.findall(base)]
     if not hurdles:
-        hurdles = [float(x) for x in GENERIC_PRICE_TARGET.findall(comp_text)]
-    # De-dup and ignore cents-level outliers (CD&A often quotes share prices
-    # at <$1 in fee tables; we only care about realistic vest hurdles).
+        hurdles = [float(x) for x in GENERIC_PRICE_TARGET.findall(base)]
     hurdles = sorted({round(h, 2) for h in hurdles if h >= 1.0})
     f.stock_price_hurdles = hurdles
 
-    f.discretionary_language = bool(DISCRETIONARY.search(comp_text))
-    f.retirement_language = bool(RETIREMENT.search(comp_text))
-    f.repricing_language = bool(REPRICING.search(comp_text))
-    f.front_loaded_language = bool(FRONT_LOADED.search(comp_text))
+    # Risk flags evaluated only inside PSU windows -- generic governance
+    # boilerplate elsewhere in the proxy should not falsely cut the score.
+    flag_text = psu_window if psu_window else comp_text
+    f.discretionary_language = bool(DISCRETIONARY.search(flag_text))
+    f.retirement_language = bool(RETIREMENT.search(flag_text))
+    f.repricing_language = bool(REPRICING.search(flag_text))
+    f.front_loaded_language = bool(FRONT_LOADED.search(flag_text))
 
     m = PSU_KEYWORDS.search(comp_text)
     if m:
