@@ -13,15 +13,10 @@ import pytz
 import yfinance as yf
 from datetime import datetime, timedelta
 
-from psu_screener import render_psu_screener
-
 def main():
     st.title("String's Cycle Man Arc v1")
 
-    data_source = st.radio(
-        "Select Data Source",
-        ["Upload CSV", "Yahoo Finance", "FRED", "PSU Screener"],
-    )
+    data_source = st.radio("Select Data Source", ["Upload CSV", "Yahoo Finance", "FRED"])
 
     # Initialize session state to store historical list of tickers or FRED series IDs
     if "history" not in st.session_state:
@@ -43,8 +38,6 @@ def main():
         if series_id and series_id not in st.session_state["history"]:
             st.session_state["history"].append(series_id)
         fetch_fred_data(series_id)
-    elif data_source == "PSU Screener":
-        render_psu_screener()
     else:
         st.warning("Please upload a CSV file.")
 
