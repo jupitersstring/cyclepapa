@@ -208,14 +208,15 @@ def load_universe(
 # Frog-in-the-pan core math
 # ---------------------------------------------------------------------------
 
-def _fip(returns: pd.Series) -> tuple[float, float]:
+def _fip(returns: pd.Series, min_len: int = 20) -> tuple[float, float]:
     """Return (PRET, FIP) for a clean returns series.
 
     PRET is compounded return over the window.
     FIP  = sign(PRET) * (%neg - %pos)  with zero-return days excluded.
+    `min_len` lets short-window callers (e.g. 12w/12m) accept smaller samples.
     """
     r = returns.dropna()
-    if len(r) < 20:
+    if len(r) < min_len:
         return (np.nan, np.nan)
     pret = float((1.0 + r).prod() - 1.0)
     nz = r[r != 0]
@@ -230,6 +231,7 @@ def _fip(returns: pd.Series) -> tuple[float, float]:
 @dataclass
 class FIPResult:
     symbol: str
+    # Long-window FIP (Da/Gurun/Warachka 2014 standard).
     pret_d: float
     fip_d: float
     pret_w: float
@@ -240,6 +242,20 @@ class FIPResult:
     fip_m: float             # monthly FIP (over ~24 months)
     fip_m_prev: float        # monthly FIP measured ~6 months earlier
     fip_m_inflection: float  # change in monthly FIP
+    # Short-window FIP (44d / 12w / 12m) — matches quarterly/annual incentive
+    # cycles. Inflection compares vs the prior half-window.
+    pret_d_s: float
+    fip_d_s: float
+    fip_d_s_prev: float
+    fip_d_s_inflection: float
+    pret_w_s: float
+    fip_w_s: float
+    fip_w_s_prev: float
+    fip_w_s_inflection: float
+    pret_m_s: float
+    fip_m_s: float
+    fip_m_s_prev: float
+    fip_m_s_inflection: float
     last_price: float
     n_days: int
 
@@ -265,6 +281,7 @@ def compute_fip(symbol: str, prices: pd.Series) -> FIPResult | None:
     # to the 24-month window ending 6 months ago.
     monthly = prices.resample("ME").last().dropna()
     pret_m = fip_m = fip_m_prev = m_inflection = float("nan")
+    monthly_ret = pd.Series(dtype=float)
     if len(monthly) >= 24:
         monthly_ret = monthly.pct_change()
         pret_m, fip_m = _fip(monthly_ret.iloc[-24:])
@@ -273,18 +290,31 @@ def compute_fip(symbol: str, prices: pd.Series) -> FIPResult | None:
             if not (math.isnan(fip_m) or math.isnan(fip_m_prev)):
                 m_inflection = fip_m - fip_m_prev
 
+    # --- Short-window FIP (44d / 12w / 12m) ---
+    pret_d_s, fip_d_s = _fip(daily_ret.iloc[-44:])
+    pret_d_s_prev, fip_d_s_prev = _fip(daily_ret.iloc[-(44 + 22):-22]) if len(daily_ret) >= 66 else (np.nan, np.nan)
+    fip_d_s_inflection = (fip_d_s - fip_d_s_prev) if not (math.isnan(fip_d_s) or math.isnan(fip_d_s_prev)) else np.nan
+
+    pret_w_s, fip_w_s = _fip(weekly_ret.iloc[-12:], min_len=8) if len(weekly_ret) >= 12 else (np.nan, np.nan)
+    pret_w_s_prev, fip_w_s_prev = _fip(weekly_ret.iloc[-(12 + 6):-6], min_len=8) if len(weekly_ret) >= 18 else (np.nan, np.nan)
+    fip_w_s_inflection = (fip_w_s - fip_w_s_prev) if not (math.isnan(fip_w_s) or math.isnan(fip_w_s_prev)) else np.nan
+
+    pret_m_s = fip_m_s = fip_m_s_prev = fip_m_s_inflection = np.nan
+    if len(monthly_ret) >= 12:
+        pret_m_s, fip_m_s = _fip(monthly_ret.iloc[-12:], min_len=8)
+        if len(monthly_ret) >= 18:
+            _, fip_m_s_prev = _fip(monthly_ret.iloc[-(12 + 6):-6], min_len=8)
+            if not (math.isnan(fip_m_s) or math.isnan(fip_m_s_prev)):
+                fip_m_s_inflection = fip_m_s - fip_m_s_prev
+
     return FIPResult(
         symbol=symbol,
-        pret_d=pret_d,
-        fip_d=fip_d,
-        pret_w=pret_w,
-        fip_w=fip_w,
-        fip_w_prev=fip_w_prev,
-        fip_w_inflection=w_inflection,
-        pret_m=pret_m,
-        fip_m=fip_m,
-        fip_m_prev=fip_m_prev,
-        fip_m_inflection=m_inflection,
+        pret_d=pret_d, fip_d=fip_d,
+        pret_w=pret_w, fip_w=fip_w, fip_w_prev=fip_w_prev, fip_w_inflection=w_inflection,
+        pret_m=pret_m, fip_m=fip_m, fip_m_prev=fip_m_prev, fip_m_inflection=m_inflection,
+        pret_d_s=pret_d_s, fip_d_s=fip_d_s, fip_d_s_prev=fip_d_s_prev, fip_d_s_inflection=fip_d_s_inflection,
+        pret_w_s=pret_w_s, fip_w_s=fip_w_s, fip_w_s_prev=fip_w_s_prev, fip_w_s_inflection=fip_w_s_inflection,
+        pret_m_s=pret_m_s, fip_m_s=fip_m_s, fip_m_s_prev=fip_m_s_prev, fip_m_s_inflection=fip_m_s_inflection,
         last_price=float(prices.iloc[-1]),
         n_days=len(prices),
     )
