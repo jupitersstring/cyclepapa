@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 .cache/
 *.log
+wide_*.csv
+wide_*.json
+recent_psu_*.csv
+recent_psu_*.json
