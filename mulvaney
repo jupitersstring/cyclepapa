@@ -1,0 +1,540 @@
+"""Mulvaney-style trend following backtester.
+
+Recreates the rules of Paul Mulvaney's Global Markets Fund as documented in
+public sources (Concretum, Traders Mastermind, TurtleTrader, Mulvaney Capital
+fund disclosures):
+
+  * Universe: ~45 globally diversified futures (default 45)
+  * Entry: 6-month Donchian channel breakout (close >= prior 126-day high
+    for longs, mirror for shorts)
+  * Initial stop: placed inside the channel, offset from the breakout level
+    by a fraction of channel width (default 1/3)
+  * Trailing stop: Donchian channel midline -- it ratchets only in the
+    favorable direction and replaces the initial stop once the position
+    is profitable enough that the midline has crossed it
+  * Loss-parity sizing: per-market risk = total_portfolio_risk / N_markets
+    of equity, contracts = risk_budget / dollar_stop_distance
+  * Pyramiding: Mulvaney scales 1x, 1x, 1x, 1.5x, 2x.  This file extends
+    that with a focus on **adding on discomfort** -- additions are
+    triggered by pullbacks against the trend (k * ATR off the peak
+    excursion) rather than the more common "add on strength" approach,
+    on the premise that a contra-trend pullback inside an uncrushed
+    trailing stop is the high-edge entry.
+  * No profit targets -- only the trailing stop exits the position.
+
+The defaults reproduce the documented numbers (15% portfolio risk, 45
+markets, 126-day breakout, 1/3 channel offset, 6-month average hold).
+"""
+
+import math
+from datetime import datetime, timedelta
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import streamlit as st
+import yfinance as yf
+
+
+PYRAMID_SIZES = (1.0, 1.0, 1.0, 1.5, 2.0)
+
+
+# -----------------------------------------------------------------------------
+# Indicators
+# -----------------------------------------------------------------------------
+def compute_indicators(df: pd.DataFrame, lookback: int, atr_period: int) -> pd.DataFrame:
+    """Attach Donchian high/low/mid (using prior bars only) and ATR."""
+    df = df.copy()
+    high = df["High"]
+    low = df["Low"]
+    close = df["Close"]
+
+    # Shift by 1 so today's signal uses only data through yesterday.
+    df["DonHigh"] = high.shift(1).rolling(lookback, min_periods=lookback).max()
+    df["DonLow"] = low.shift(1).rolling(lookback, min_periods=lookback).min()
+    df["DonMid"] = (df["DonHigh"] + df["DonLow"]) / 2.0
+
+    tr = pd.concat(
+        [
+            (high - low),
+            (high - close.shift(1)).abs(),
+            (low - close.shift(1)).abs(),
+        ],
+        axis=1,
+    ).max(axis=1)
+    df["ATR"] = tr.rolling(atr_period, min_periods=atr_period).mean()
+    return df
+
+
+# -----------------------------------------------------------------------------
+# Backtest engine
+# -----------------------------------------------------------------------------
+def backtest(df: pd.DataFrame, params: dict) -> dict:
+    """Run a Mulvaney-style trend-following backtest on a single instrument.
+
+    The single-instrument run uses the same per-market risk that would be
+    applied inside a 45-market portfolio; comparing CAGR/Sharpe across
+    instruments thus reflects each market's contribution rather than a
+    single-market all-in bet.
+    """
+    df = compute_indicators(df, params["lookback"], params["atr_period"])
+
+    cash = params["initial_capital"]
+    position = 0  # signed: + long, - short
+    direction = 0
+    layers: list[dict] = []
+    peak = None  # most-favourable price since entry
+    trail = None
+    eff_stop = None
+
+    equity_track = []
+    events = []
+    trades = []
+    open_trade = None
+
+    risk_pct = params["portfolio_risk"]
+    n_markets = max(params["n_markets"], 1)
+    stop_frac = params["stop_fraction"]
+    enable_pyr = params["enable_pyramid"]
+    pullback_k = params["discomfort_k"]
+    add_mode = params["add_mode"]  # "discomfort" or "strength"
+    max_layers = params["max_layers"]
+
+    for date, row in df.iterrows():
+        price = float(row["Close"])
+        high = float(row["High"])
+        low = float(row["Low"])
+        atr = row["ATR"]
+        don_hi = row["DonHigh"]
+        don_lo = row["DonLow"]
+        don_mid = row["DonMid"]
+
+        equity = cash + position * price
+
+        if pd.isna(don_hi) or pd.isna(don_lo) or pd.isna(atr):
+            equity_track.append((date, equity))
+            continue
+
+        # ---------------- Manage open position ----------------
+        if direction != 0:
+            if direction == 1:
+                peak = max(peak, high)
+                trail = max(trail, don_mid) if trail is not None else don_mid
+                worst_init_stop = min(L["initial_stop"] for L in layers)
+                eff_stop = max(worst_init_stop, trail)
+                if low <= eff_stop:
+                    exit_px = eff_stop
+                    avg_entry = sum(L["entry_price"] * L["qty"] for L in layers) / position
+                    pnl = (exit_px - avg_entry) * position
+                    cash += position * exit_px
+                    trades.append(
+                        {
+                            **open_trade,
+                            "exit_date": date,
+                            "exit_price": exit_px,
+                            "qty": position,
+                            "layers": len(layers),
+                            "pnl": pnl,
+                            "ret_R": pnl / open_trade["initial_risk"] if open_trade["initial_risk"] else np.nan,
+                        }
+                    )
+                    events.append({"date": date, "type": "exit", "price": exit_px, "qty": -position, "equity": cash})
+                    position, direction = 0, 0
+                    layers = []
+                    peak = trail = eff_stop = None
+                    open_trade = None
+            else:
+                peak = min(peak, low)
+                trail = min(trail, don_mid) if trail is not None else don_mid
+                worst_init_stop = max(L["initial_stop"] for L in layers)
+                eff_stop = min(worst_init_stop, trail)
+                if high >= eff_stop:
+                    exit_px = eff_stop
+                    avg_entry = sum(L["entry_price"] * L["qty"] for L in layers) / abs(position)
+                    pnl = (avg_entry - exit_px) * abs(position)
+                    cash += position * exit_px  # position is negative
+                    trades.append(
+                        {
+                            **open_trade,
+                            "exit_date": date,
+                            "exit_price": exit_px,
+                            "qty": position,
+                            "layers": len(layers),
+                            "pnl": pnl,
+                            "ret_R": pnl / open_trade["initial_risk"] if open_trade["initial_risk"] else np.nan,
+                        }
+                    )
+                    events.append({"date": date, "type": "exit", "price": exit_px, "qty": -position, "equity": cash})
+                    position, direction = 0, 0
+                    layers = []
+                    peak = trail = eff_stop = None
+                    open_trade = None
+
+        # ---------------- Pyramiding ----------------
+        if direction != 0 and enable_pyr and len(layers) < max_layers:
+            layer_idx = len(layers)
+            mult = PYRAMID_SIZES[min(layer_idx, len(PYRAMID_SIZES) - 1)]
+
+            trigger = False
+            if add_mode == "discomfort":
+                # Add when price has pulled back k * ATR from the peak
+                # excursion -- but only if still above the trailing stop.
+                if direction == 1:
+                    pullback = peak - price
+                    trigger = pullback >= pullback_k * atr and price > eff_stop
+                else:
+                    pullback = price - peak
+                    trigger = pullback >= pullback_k * atr and price < eff_stop
+            else:  # add on strength: hit a profit threshold of K * R
+                last = layers[-1]
+                init_R = abs(last["entry_price"] - last["initial_stop"])
+                if direction == 1:
+                    trigger = (price - last["entry_price"]) >= pullback_k * init_R
+                else:
+                    trigger = (last["entry_price"] - price) >= pullback_k * init_R
+
+            if trigger:
+                channel_width = don_hi - don_lo
+                if direction == 1:
+                    init_stop = price - stop_frac * channel_width
+                    risk_per = price - init_stop
+                else:
+                    init_stop = price + stop_frac * channel_width
+                    risk_per = init_stop - price
+
+                if risk_per > 0:
+                    risk_budget = risk_pct * equity / n_markets * mult
+                    qty = int(risk_budget / risk_per)
+                    if qty > 0:
+                        if direction == 1:
+                            cash -= qty * price
+                            position += qty
+                        else:
+                            cash += qty * price
+                            position -= qty
+                        layers.append({"entry_price": price, "qty": qty, "initial_stop": init_stop})
+                        events.append(
+                            {
+                                "date": date,
+                                "type": f"add{layer_idx}",
+                                "price": price,
+                                "qty": qty if direction == 1 else -qty,
+                                "equity": cash + position * price,
+                            }
+                        )
+                        # Reset peak so a new pullback / new high is required
+                        peak = price
+
+        # ---------------- Entry signal (only if flat) ----------------
+        if direction == 0:
+            channel_width = don_hi - don_lo
+            mult = PYRAMID_SIZES[0]
+            risk_budget = risk_pct * equity / n_markets * mult
+
+            long_signal = price >= don_hi
+            short_signal = price <= don_lo
+            if long_signal:
+                init_stop = price - stop_frac * channel_width
+                risk_per = price - init_stop
+                if risk_per > 0:
+                    qty = int(risk_budget / risk_per)
+                    if qty > 0:
+                        cash -= qty * price
+                        position = qty
+                        direction = 1
+                        layers = [{"entry_price": price, "qty": qty, "initial_stop": init_stop}]
+                        peak = price
+                        trail = init_stop
+                        eff_stop = init_stop
+                        open_trade = {
+                            "entry_date": date,
+                            "entry_price": price,
+                            "direction": "long",
+                            "initial_stop": init_stop,
+                            "initial_risk": risk_per * qty,
+                        }
+                        events.append({"date": date, "type": "long_entry", "price": price, "qty": qty, "equity": cash + position * price})
+            elif short_signal:
+                init_stop = price + stop_frac * channel_width
+                risk_per = init_stop - price
+                if risk_per > 0:
+                    qty = int(risk_budget / risk_per)
+                    if qty > 0:
+                        cash += qty * price
+                        position = -qty
+                        direction = -1
+                        layers = [{"entry_price": price, "qty": qty, "initial_stop": init_stop}]
+                        peak = price
+                        trail = init_stop
+                        eff_stop = init_stop
+                        open_trade = {
+                            "entry_date": date,
+                            "entry_price": price,
+                            "direction": "short",
+                            "initial_stop": init_stop,
+                            "initial_risk": risk_per * qty,
+                        }
+                        events.append({"date": date, "type": "short_entry", "price": price, "qty": -qty, "equity": cash + position * price})
+
+        equity_track.append((date, cash + position * price))
+
+    eq = pd.DataFrame(equity_track, columns=["Date", "Equity"]).set_index("Date")
+    ev = pd.DataFrame(events)
+    tr = pd.DataFrame(trades)
+    return {"equity": eq, "events": ev, "trades": tr, "indicators": df}
+
+
+# -----------------------------------------------------------------------------
+# Performance metrics
+# -----------------------------------------------------------------------------
+def compute_metrics(eq: pd.DataFrame, trades: pd.DataFrame, initial_capital: float) -> dict:
+    final = float(eq["Equity"].iloc[-1])
+    years = max((eq.index[-1] - eq.index[0]).days / 365.25, 1e-9)
+    cagr = (final / initial_capital) ** (1 / years) - 1 if final > 0 else -1.0
+
+    daily = eq["Equity"].pct_change().dropna()
+    sharpe = (daily.mean() / daily.std()) * math.sqrt(252) if daily.std() > 0 else 0.0
+    downside = daily[daily < 0].std()
+    sortino = (daily.mean() / downside) * math.sqrt(252) if downside and downside > 0 else 0.0
+
+    rolling_max = eq["Equity"].cummax()
+    dd = eq["Equity"] / rolling_max - 1.0
+    max_dd = float(dd.min())
+    pct_underwater = float((dd < 0).mean())
+    avg_dd_when_under = float(dd[dd < 0].mean()) if (dd < 0).any() else 0.0
+
+    monthly = eq["Equity"].resample("ME").last().pct_change().dropna()
+    monthly_mean = monthly.mean()
+    monthly_std = monthly.std()
+
+    win_rate = (trades["pnl"] > 0).mean() if not trades.empty else 0.0
+    expectancy_R = trades["ret_R"].mean() if not trades.empty else 0.0
+
+    return {
+        "Final equity": f"${final:,.0f}",
+        "CAGR": f"{cagr * 100:.2f}%",
+        "Sharpe": f"{sharpe:.2f}",
+        "Sortino": f"{sortino:.2f}",
+        "Max drawdown": f"{max_dd * 100:.1f}%",
+        "% days underwater": f"{pct_underwater * 100:.1f}%",
+        "Avg DD when under": f"{avg_dd_when_under * 100:.2f}%",
+        "Monthly mean": f"{monthly_mean * 100:.2f}%",
+        "Monthly stdev": f"{monthly_std * 100:.2f}%",
+        "# trades": int(len(trades)),
+        "Win rate": f"{win_rate * 100:.1f}%",
+        "Avg trade R-multiple": f"{expectancy_R:.2f}",
+    }
+
+
+# -----------------------------------------------------------------------------
+# Plotting
+# -----------------------------------------------------------------------------
+def plot_results(ticker: str, ind: pd.DataFrame, eq: pd.DataFrame, ev: pd.DataFrame) -> plt.Figure:
+    fig, axes = plt.subplots(
+        3, 1, figsize=(13, 13), sharex=True, gridspec_kw={"height_ratios": [3, 2, 1]}
+    )
+    ax1, ax2, ax3 = axes
+
+    ax1.plot(ind.index, ind["Close"], color="black", lw=1.0, label="Close")
+    ax1.plot(ind.index, ind["DonHigh"], color="green", lw=0.7, alpha=0.6, label="Donchian high")
+    ax1.plot(ind.index, ind["DonLow"], color="red", lw=0.7, alpha=0.6, label="Donchian low")
+    ax1.plot(ind.index, ind["DonMid"], color="blue", lw=0.6, ls="--", alpha=0.5, label="Donchian mid (trail)")
+
+    if not ev.empty:
+        markers = [
+            ("long_entry", "lime", "^", 110, "long entry"),
+            ("short_entry", "red", "v", 110, "short entry"),
+            ("exit", "black", "x", 90, "exit"),
+        ]
+        for t, c, m, s, lab in markers:
+            sub = ev[ev["type"] == t]
+            if not sub.empty:
+                ax1.scatter(sub["date"], sub["price"], c=c, marker=m, s=s, zorder=5, label=lab, edgecolors="white", linewidths=0.5)
+        adds = ev[ev["type"].str.startswith("add", na=False)]
+        if not adds.empty:
+            ax1.scatter(adds["date"], adds["price"], c="orange", marker="P", s=80, zorder=5, label="pyramid add", edgecolors="black", linewidths=0.4)
+
+    ax1.set_title(f"{ticker} — Mulvaney trend-following")
+    ax1.legend(loc="best", fontsize=8)
+    ax1.grid(alpha=0.3)
+
+    ax2.plot(eq.index, eq["Equity"], color="navy", lw=1.2)
+    ax2.axhline(eq["Equity"].iloc[0], color="gray", ls="--", alpha=0.5)
+    ax2.set_yscale("log")
+    ax2.set_ylabel("Equity (log)")
+    ax2.set_title("Equity curve")
+    ax2.grid(alpha=0.3, which="both")
+
+    rolling_max = eq["Equity"].cummax()
+    dd = (eq["Equity"] / rolling_max - 1.0) * 100.0
+    ax3.fill_between(eq.index, dd, 0, color="crimson", alpha=0.45)
+    ax3.set_ylabel("Drawdown %")
+    ax3.set_title("Drawdown")
+    ax3.grid(alpha=0.3)
+
+    plt.tight_layout()
+    return fig
+
+
+# -----------------------------------------------------------------------------
+# Streamlit app
+# -----------------------------------------------------------------------------
+def main():
+    st.set_page_config(page_title="Mulvaney Trading System", layout="wide")
+    st.title("Mulvaney Trading System")
+    st.caption(
+        "Donchian breakouts • loss-parity sizing • add-on-discomfort pyramiding • "
+        "midline trailing exit. Defaults reproduce the public-source description "
+        "of Paul Mulvaney's Global Markets Fund."
+    )
+
+    with st.sidebar:
+        st.header("Instrument")
+        ticker = st.text_input("Ticker (Yahoo Finance)", value="GC=F", help="GC=F (gold), CL=F (oil), CC=F (cocoa), ES=F (S&P), ZC=F (corn)")
+        end_default = datetime.today()
+        start_default = end_default - timedelta(days=20 * 365)
+        col_a, col_b = st.columns(2)
+        start = col_a.date_input("Start", start_default)
+        end = col_b.date_input("End", end_default)
+
+        st.header("Entry / exit")
+        lookback = st.number_input("Donchian lookback (trading days)", 20, 504, 126, help="Mulvaney uses ~6 months = 126 trading days")
+        stop_fraction = st.slider("Initial stop offset (× channel width)", 0.10, 0.50, 0.33, 0.01, help="Initial stop = breakout - p × (DonHigh - DonLow)")
+
+        st.header("Position sizing — loss parity")
+        portfolio_risk = st.slider("Total portfolio risk %", 5.0, 25.0, 15.0, 0.5, help="Total simultaneous risk if every market stops out") / 100.0
+        n_markets = st.number_input("Markets in universe", 1, 100, 45, help="Per-market risk = total_risk / N. Set to 1 to stress a single-market all-in run.")
+        per_market = portfolio_risk / max(n_markets, 1) * 100
+        st.info(f"Per-market initial risk: **{per_market:.2f}%** of equity")
+
+        st.header("Pyramiding")
+        enable_pyramid = st.checkbox("Enable pyramiding", True)
+        add_mode = st.radio(
+            "Add-on mode",
+            ["discomfort", "strength"],
+            index=0,
+            help=(
+                "discomfort: add on pullbacks of k × ATR from peak (contrarian, harder, "
+                "better risk-reward on each add). strength: add on each k × R of profit "
+                "from prior layer (classic Turtle/Mulvaney scale-in)."
+            ),
+        )
+        if add_mode == "discomfort":
+            discomfort_k = st.slider("Pullback trigger (× ATR)", 0.5, 5.0, 1.5, 0.1)
+        else:
+            discomfort_k = st.slider("Profit trigger (× initial R)", 0.25, 3.0, 0.5, 0.05)
+        max_layers = st.number_input("Max layers (incl. initial)", 1, 5, 5)
+        st.caption("Layer size multipliers: 1, 1, 1, 1.5, 2 (Mulvaney scaling).")
+
+        st.header("Other")
+        atr_period = st.number_input("ATR period", 5, 60, 20)
+        initial_capital = st.number_input("Initial capital ($)", 10_000, 1_000_000_000, 1_000_000, step=10_000)
+
+        run = st.button("Run backtest", type="primary")
+
+    if not run:
+        st.markdown(
+            """
+            ### Strategy spec
+
+            **Entry.** Long when close ≥ prior 6-month high; short when close ≤ prior 6-month low.
+
+            **Initial stop.** Inside the channel, offset by 1/3 of channel width from the
+            breakout level. Wider channel ⇒ wider stop ⇒ smaller position (volatility-adjusted).
+
+            **Trailing stop.** The Donchian channel midline. Ratchets only in the favourable
+            direction; replaces the initial stop once the midline has crossed it. There is
+            **no profit target** — the trailing midline is the only exit.
+
+            **Loss parity sizing.** Risk budget per market = total_risk / N_markets × equity.
+            Contracts = budget / dollar-stop-distance. Each market is sized to risk equal
+            dollars; volatile markets get fewer contracts.
+
+            **Add on discomfort (this build's focus).** After entry, track the running peak
+            excursion. When price retraces ≥ k × ATR from that peak — but is still above the
+            trailing stop — add a layer. Reset the peak so a new excursion is required before
+            the next add. Layer multipliers: 1, 1, 1, 1.5, 2 (per Mulvaney). Adding on
+            pullbacks gives a better entry price and tighter per-add stop than the
+            conventional "add on strength" approach; this is psychologically the harder trade,
+            which is the source of the edge.
+
+            **Holding period.** ~6 months on average — the trailing midline decides.
+
+            **Profile to expect.** ~80% losing trades, large positive expectancy from a
+            handful of monster trends. ~80% of months underwater, average drawdown when
+            underwater ~-15%. CAGR ~20%.
+
+            ---
+            Choose a ticker on the left and click **Run backtest**.
+            """
+        )
+        return
+
+    if start >= end:
+        st.error("Start date must be before end date.")
+        return
+
+    with st.spinner(f"Downloading {ticker}…"):
+        raw = yf.download(ticker, start=start, end=end, auto_adjust=False, progress=False)
+
+    if raw is None or raw.empty:
+        st.error(f"No data returned for {ticker}.")
+        return
+
+    if isinstance(raw.columns, pd.MultiIndex):
+        raw.columns = raw.columns.get_level_values(0)
+
+    needed = {"High", "Low", "Close"}
+    if not needed.issubset(raw.columns):
+        st.error(f"Data missing required columns: {needed - set(raw.columns)}")
+        return
+
+    params = dict(
+        lookback=int(lookback),
+        atr_period=int(atr_period),
+        portfolio_risk=float(portfolio_risk),
+        n_markets=int(n_markets),
+        stop_fraction=float(stop_fraction),
+        enable_pyramid=bool(enable_pyramid),
+        discomfort_k=float(discomfort_k),
+        add_mode=add_mode,
+        max_layers=int(max_layers),
+        initial_capital=float(initial_capital),
+    )
+    results = backtest(raw, params)
+
+    eq = results["equity"]
+    ev = results["events"]
+    tr = results["trades"]
+    ind = results["indicators"]
+
+    metrics = compute_metrics(eq, tr, params["initial_capital"])
+    cols = st.columns(4)
+    items = list(metrics.items())
+    for i, (k, v) in enumerate(items):
+        cols[i % 4].metric(k, v)
+
+    st.pyplot(plot_results(ticker, ind, eq, ev))
+
+    if not tr.empty:
+        st.subheader(f"Trade log — {len(tr)} closed trades")
+        show = tr.copy()
+        for c in ("entry_price", "exit_price", "initial_stop", "initial_risk", "pnl"):
+            if c in show.columns:
+                show[c] = show[c].astype(float).round(2)
+        if "ret_R" in show.columns:
+            show["ret_R"] = show["ret_R"].astype(float).round(2)
+        st.dataframe(show, use_container_width=True)
+    else:
+        st.info("No closed trades over this window.")
+
+    if not ev.empty:
+        st.subheader("All events (entries, adds, exits)")
+        st.dataframe(ev, use_container_width=True)
+
+    with st.expander("Strategy parameters used"):
+        st.json(params)
+
+
+if __name__ == "__main__":
+    main()
