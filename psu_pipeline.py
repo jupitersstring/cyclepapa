@@ -23,13 +23,17 @@ from pathlib import Path
 
 import yfinance as yf
 
+import cache
 from edgar import latest_def14a, fetch_filing_html, Filing
 from proxy import html_to_text, extract_comp_section
 from psu_scoring import extract_features, score
-from recent import recent_def14a, RecentFiling
+from recent import recent_def14a, recent_def14a_range, RecentFiling
 
 
 def current_price(ticker: str) -> float | None:
+    cached = cache.get_price(ticker)
+    if cached is not None:
+        return cached
     try:
         t = yf.Ticker(ticker)
         info = getattr(t, "fast_info", None)
@@ -37,11 +41,13 @@ def current_price(ticker: str) -> float | None:
             for k in ("last_price", "lastPrice", "regular_market_price"):
                 v = info.get(k) if hasattr(info, "get") else getattr(info, k, None)
                 if v:
+                    cache.put_price(ticker, float(v))
                     return float(v)
         full = t.info or {}
         for k in ("currentPrice", "regularMarketPrice", "previousClose"):
             v = full.get(k)
             if v:
+                cache.put_price(ticker, float(v))
                 return float(v)
     except Exception:
         return None
@@ -51,6 +57,16 @@ def current_price(ticker: str) -> float | None:
 def _fetch_url(url: str) -> str:
     from edgar import _get
     return _get(url).text
+
+
+def _fetch_doc_cached(accession: str, url: str) -> str:
+    """Return the filing's raw HTML, hitting disk cache first."""
+    cached = cache.get_doc(accession)
+    if cached is not None:
+        return cached
+    html = _fetch_url(url)
+    cache.put_doc(accession, html)
+    return html
 
 
 def run_one(ticker: str) -> dict:
@@ -66,13 +82,22 @@ def run_one(ticker: str) -> dict:
     return _process_filing(ticker, filing)
 
 
-def _process_filing(ticker: str, filing) -> dict:
+def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
     """Common path: given a Filing or RecentFiling, score it."""
+    accession = getattr(filing, "accession", None)
+    if use_cache and accession:
+        cached = cache.get_score(accession)
+        if cached is not None:
+            return cached
+
     out: dict = {"ticker": ticker.upper()}
     out["filing_date"] = filing.filing_date
     out["filing_url"] = filing.url
     try:
-        html = fetch_filing_html(filing) if isinstance(filing, Filing) else _fetch_url(filing.url)
+        if accession and use_cache:
+            html = _fetch_doc_cached(accession, filing.url)
+        else:
+            html = fetch_filing_html(filing) if isinstance(filing, Filing) else _fetch_url(filing.url)
     except Exception as e:
         out["error"] = f"fetch: {e}"
         return out
@@ -101,6 +126,8 @@ def _process_filing(ticker: str, filing) -> dict:
         flags=sc.flags,
         snippet=feats.snippet[:1200],
     )
+    if accession and use_cache:
+        cache.put_score(accession, out)
     return out
 
 
@@ -146,7 +173,12 @@ def main() -> int:
                      help="File with one ticker per line (# comments OK).")
     src.add_argument("--recent", type=int,
                      help="Pull the N most recently filed DEF 14A proxies "
-                          "from EDGAR and score them.")
+                          "from EDGAR's getcurrent feed.")
+    src.add_argument("--days", type=int,
+                     help="Pull every DEF 14A filed in the past N days via "
+                          "EDGAR full-text search.")
+    p.add_argument("--limit", type=int, default=300,
+                   help="Cap on filings for --days mode (default 300).")
     p.add_argument("--out", default="psu_scorecard.csv",
                    help="Ranked CSV output path.")
     p.add_argument("--json", default=None,
@@ -155,26 +187,42 @@ def main() -> int:
                    help="If set, also print top-N ticker / score / setup to stdout.")
     p.add_argument("--sleep", type=float, default=0.25,
                    help="Sleep between EDGAR requests (default 0.25s).")
+    p.add_argument("--no-cache", action="store_true",
+                   help="Bypass on-disk cache; refetch and re-score everything.")
     args = p.parse_args()
 
     rows: list[dict] = []
-    if args.recent:
-        print(f"Pulling {args.recent} most-recent DEF 14A from EDGAR...",
-              file=sys.stderr, flush=True)
-        feed = recent_def14a(args.recent)
+    use_cache = not args.no_cache
+
+    if args.recent or args.days:
+        if args.recent:
+            print(f"Pulling {args.recent} most-recent DEF 14A from EDGAR...",
+                  file=sys.stderr, flush=True)
+            feed = recent_def14a(args.recent)
+        else:
+            from datetime import datetime, timedelta, timezone
+            end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            start = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
+            print(f"Pulling DEF 14A filings {start} .. {end} (limit {args.limit})...",
+                  file=sys.stderr, flush=True)
+            feed = recent_def14a_range(start, end, limit=args.limit)
         print(f"Got {len(feed)} filings.", file=sys.stderr)
-        for rf in feed:
+
+        for i, rf in enumerate(feed, 1):
             tk = rf.ticker or rf.cik
-            print(f"[{tk}] {rf.filing_date} {rf.company}",
+            cached = use_cache and cache.get_score(rf.accession) is not None
+            tag = "[cache]" if cached else ""
+            print(f"[{i}/{len(feed)}] {tk} {rf.filing_date} {rf.company} {tag}",
                   file=sys.stderr, flush=True)
             try:
-                row = _process_filing(tk, rf)
+                row = _process_filing(tk, rf, use_cache=use_cache)
                 row["company"] = rf.company
             except Exception as e:
                 row = {"ticker": tk, "company": rf.company,
                        "error": f"unhandled: {e}"}
             rows.append(row)
-            time.sleep(args.sleep)
+            if not cached:
+                time.sleep(args.sleep)
     else:
         tickers = [
             t.strip().upper()

@@ -39,6 +39,70 @@ _UPDATED = re.compile(r"<updated>([^<]+)</updated>")
 _CIK = re.compile(r"\((\d{6,10})\)")
 
 
+EFTS = "https://efts.sec.gov/LATEST/search-index"
+
+
+def recent_def14a_range(
+    start_date: str,
+    end_date: str,
+    limit: int = 300,
+) -> list[RecentFiling]:
+    """Pull every DEF 14A filed between start_date and end_date (YYYY-MM-DD).
+
+    Uses the full-text search index so we can paginate beyond what
+    /cgi-bin/browse-edgar?action=getcurrent returns. Deduplicates by CIK
+    so each filer surfaces only once even if they amended."""
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+    page_size = 100
+    offset = 0
+    while len(out) < limit and offset < 1000:  # EFTS hard caps at 10k anyway
+        url = (
+            f"{EFTS}?forms=DEF+14A&dateRange=custom"
+            f"&startdt={start_date}&enddt={end_date}"
+            f"&from={offset}"
+        )
+        try:
+            data = _get(url).json()
+        except Exception:
+            break
+        hits = data.get("hits", {}).get("hits", [])
+        if not hits:
+            break
+        for h in hits:
+            src = h.get("_source", {}) or {}
+            ciks = src.get("ciks") or []
+            cik = f"{int(ciks[0]):010d}" if ciks else None
+            if not cik or cik in seen_cik:
+                continue
+            seen_cik.add(cik)
+
+            tickers = src.get("tickers") or []
+            ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+            display = (src.get("display_names") or ["?"])[0]
+            company = display.split(" (")[0]
+            file_date = src.get("file_date", "")
+
+            id_parts = (h.get("_id") or "").split(":")
+            if len(id_parts) != 2:
+                continue
+            accession, primary_doc = id_parts
+
+            out.append(RecentFiling(
+                cik=cik,
+                company=company,
+                ticker=ticker,
+                filing_date=file_date,
+                accession=accession,
+                primary_doc=primary_doc,
+            ))
+            if len(out) >= limit:
+                break
+        offset += page_size
+    return out
+
+
 def recent_def14a(n: int = 25) -> list[RecentFiling]:
     """Walk the EDGAR 'getcurrent' atom feed for DEF 14A filings."""
     n = max(1, min(int(n), 100))
