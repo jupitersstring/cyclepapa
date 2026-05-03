@@ -1,0 +1,542 @@
+SCANNER METHODOLOGY REFERENCE
+==============================
+
+All measures implemented in ord_scanner.py, documented for reuse.
+Each section states: what is computed, the formula, the thresholds,
+and how it feeds the composite score.
+
+
+================================================================================
+1. ZIGZAG SWING DETECTION (Ord spec section 2.1)
+================================================================================
+
+Purpose: Identify swing highs and swing lows to define "legs" -- the
+contiguous bar sequences between consecutive pivots.
+
+Algorithm:
+  - Walk forward through the bar series tracking the running extreme
+    (highest high or lowest low since the last confirmed pivot).
+  - A pivot is confirmed when price reverses by >= theta percent from
+    the running extreme.
+  - The final (unconfirmed) extreme is appended as a "tentative" pivot
+    so the most recent in-progress leg can be evaluated.
+
+Parameters:
+  theta (% reversal required to confirm a swing):
+    Weekly  = 5%   (SWING_THETA["W"] = 0.05)
+    Monthly = 10%  (SWING_THETA["M"] = 0.10)
+    Daily large-cap = 1.5-3% (not used in the scanner but available)
+    Daily small-cap  = 3-5%
+
+  Ord's "zoom = 0.25" in his charting software corresponds to surfacing
+  sub-swings at 1/4 of the normal reversal threshold.
+
+Output: List of pivots as (bar_index, price, direction) where
+  direction = +1 for a high pivot, -1 for a low pivot.
+
+
+================================================================================
+2. LEG CONSTRUCTION AND ORD-VOLUME (Ord spec section 2.2, 3.1)
+================================================================================
+
+Purpose: Quantify the directional energy of each price swing.
+
+Definition:
+  A leg is the contiguous bar sequence between two adjacent pivots.
+  Each leg has:
+    - direction: "up" or "down"
+    - start_idx, end_idx (inclusive bar indices)
+    - start_price, end_price
+    - n_bars = end_idx - start_idx + 1
+    - Ord-Volume (OV) = arithmetic mean of volume over leg bars
+
+Why arithmetic mean, not sum:
+  Ord stresses that comparing total volume between legs of different
+  durations is wrong. A 20-bar leg will have double the total volume of
+  a 10-bar leg even at identical intensity. The mean normalises for
+  duration, isolating participation intensity per unit time.
+
+  Formula: OV = sum(volume[start..end]) / n_bars
+
+  Sum-of-volume comparisons are explicitly forbidden by Ord.
+
+
+================================================================================
+3. ORD-VOLUME BUY SIGNAL (Ord spec section 3.2)
+================================================================================
+
+Purpose: Detect a bullish reversal setup where selling energy (volume)
+has dried up on the decline, and buying energy is expanding on the
+subsequent rally.
+
+Pattern (looking at the last 4 legs):
+  legs[-4] = prev_down (establishes the "prior swing low" at its end)
+  legs[-3] = prev_up
+  legs[-2] = L_down (the decline being tested)
+  legs[-1] = L_current (the rally in progress)
+
+Three conditions must ALL be met (spec section 3.2):
+
+  (a) Volume shrinkage (OR comparator -- either leg satisfies):
+      OV(L_down) <= 0.50 * OV(prev_up)
+      OR
+      OV(L_down) <= 0.50 * OV(prev_down)
+
+  (b) Probe: L_down's swing low is below the prior swing low
+      (i.e. L_down.end_price < prev_down.end_price)
+      This means price broke below the prior support level.
+
+  (c) Close-back: current price has closed back above the prior swing low
+      (i.e. close[now] > prev_down.end_price)
+      This means the breakdown was rejected -- a "shakeout".
+
+Confirmation (within <= 5 bars after trigger):
+  OV(L_current) >= 1.50 * OV(L_down)
+  i.e. the rally leg's average volume is at least 50% higher than the
+  decline leg's average volume.
+
+Strength scoring based on shrinkage ratio:
+  <= 0.25  (>= 75% shrinkage)  = STRONG
+  0.25-0.50                    = GOOD
+  0.50-0.55                    = MARGINAL (Ord accepts down to ~46%)
+  > 0.55                       = NO SIGNAL
+
+Expansion scoring (confirmation quality):
+  >= 3.00 (>= 200% expansion)  = EXPLOSIVE
+  1.50-3.00                    = CONFIRMED
+  1.30-1.50                    = WEAK (the scanner's "loose" threshold)
+  1.00-1.30                    = RANGE-BOUND expected
+  < 1.00                       = FAILED -- exit
+
+Scanner implementation:
+  - "signal" (strict): all three conditions + strength is not None
+  - "signal_loose": drops the probe requirement, uses 1.30x for confirm
+  - Both are reported so partial setups surface in the ranking
+
+Index adjustment (spec section 3.4, NOT used in stock scanner):
+  Indices don't exhibit 50% leg shrinkage. For index application:
+    Trigger shrinkage:  <= 0.70 (30% shrinkage, not 50%)
+    Confirmation:       >= 1.10 (10% expansion, not 50%)
+
+
+================================================================================
+4. SHAKEOUT RETEST (Ord spec section 4.2(f) -- False Breakout Bottom)
+================================================================================
+
+Purpose: Detect a Wyckoff-style shakeout where price breaks below a
+prior swing low on shrinking volume, then reverses. This is a bar-level
+volume comparator (vs Ord-Volume's leg-level comparator).
+
+Algorithm:
+  - Identify the prior swing low: the end of legs[-4] (prev_down leg).
+  - The "origin bar" is the bar at that swing low's index.
+  - Search within the most recent down leg (legs[-2]) for any bar whose
+    Low <= prior swing low price (a probe).
+  - Compare the minimum volume among probe bars to the origin bar volume.
+
+Thresholds (spec section 4.1):
+  probe_vol / origin_vol <= 0.92  = reversal signal (energy insufficient)
+  0.92 - 0.97                    = "no man's land" -- no signal
+  >= 0.97                        = continuation expected (energy sufficient)
+
+Additional condition:
+  Current close must be back above the prior swing low (close-back).
+
+Signal: TRUE if ratio <= 0.92 AND close-back is true.
+
+The tighter the shrinkage (20%, 50%, 75% less volume on probe), the
+higher the conviction. A probe at 50% of origin volume is very strong.
+
+Critical implementation note (Ord p. 69):
+  The highest-volume bar and the lowest-price bar at a climax are
+  frequently NOT the same bar (often offset by 1 day). Use the
+  highest-volume bar for volume comparisons and the lowest-price bar
+  for price comparisons. Treating them as the same bar destroys the
+  signal in ~30% of cases.
+
+First-High/First-Low anchoring rule (spec section 4.2(c)):
+  When multiple retests occur (3rd, 4th, etc.), always compare volume
+  to the FIRST peak/trough in the cluster, never the most recent one.
+  Sequential mild declines can mask cumulative weakness if you re-anchor.
+
+
+================================================================================
+5. BOLLINGER / KELTNER SQUEEZE (TTM-style)
+================================================================================
+
+Purpose: Detect volatility compression (a "loaded spring") that precedes
+large directional moves. When Bollinger Bands contract inside Keltner
+Channels, price is coiling. The release (BB expanding back outside KC)
+often produces the breakout.
+
+Computation:
+  Bollinger Bands:
+    ma     = SMA(close, 20)
+    sd     = StdDev(close, 20)
+    bb_up  = ma + 2.0 * sd
+    bb_dn  = ma - 2.0 * sd
+
+  Keltner Channels:
+    tr     = max(high-low, |high-prev_close|, |low-prev_close|)
+    atr    = SMA(tr, 20)
+    kc_up  = ma + 1.5 * atr
+    kc_dn  = ma - 1.5 * atr
+
+  Squeeze state:
+    in_squeeze = (bb_up < kc_up) AND (bb_dn > kc_dn)
+    i.e. Bollinger Bands are INSIDE Keltner Channels on both sides.
+
+  Squeeze release:
+    released = squeeze was active in any of the prior 7 bars AND
+               squeeze is OFF on the current bar.
+
+  Bandwidth percentile:
+    bw = (bb_up - bb_dn) / ma
+    bw_pctile = rank of current bw within the full history (0 = tightest
+    ever, 1 = widest ever).
+
+Scoring:
+  released = TRUE                      -> +3 to ord_score
+  in_squeeze AND bw_pctile <= 0.25     -> +2 (loaded but not yet fired)
+  bw_pctile <= 0.25 (even without KC)  -> +1 (compressed)
+
+Parameters:
+  BB_LENGTH = 20
+  BB_MULT   = 2.0
+  KC_LENGTH = 20
+  KC_MULT   = 1.5
+  SQUEEZE_BW_PCTL = 0.25  (bottom quartile = compressed)
+
+
+================================================================================
+6. VOLATILITY ASYMMETRY (up-bar vs down-bar energy)
+================================================================================
+
+Purpose: Measure whether buying activity (volume + range on up bars)
+exceeds selling activity (volume + range on down bars). Persistent
+positive asymmetry indicates accumulation; negative indicates distribution.
+
+Computation (over the last 20 bars):
+  Classify each bar: up if close > prior close, down if close < prior close.
+
+  up_vol   = mean volume of up bars
+  dn_vol   = mean volume of down bars
+  up_range = mean (high - low) of up bars
+  dn_range = mean (high - low) of down bars
+
+  vol_ratio   = up_vol / dn_vol     (capped at 5.0)
+  range_ratio = up_range / dn_range (capped at 5.0)
+
+  asymmetry = (vol_ratio + range_ratio) / 2.0
+
+Interpretation:
+  >= 1.50  = strong bullish asymmetry, up bars dominate  -> +2 to score
+  >= 1.20  = moderate bullish asymmetry                  -> +1 to score
+  ~1.00    = neutral (balanced buying/selling)
+  < 0.80   = bearish asymmetry (not scored in long-only scanner)
+
+Parameters:
+  ASYMMETRY_WINDOW = 20 bars
+  ASYM_MIN_BULLISH = 1.20
+
+
+================================================================================
+7. QULLAMAGGIE BREAKOUT SETUP
+================================================================================
+
+Purpose: Detect Kristjan Qullamaggie's tight-range-breakout pattern.
+The setup is: a relative strength leader consolidates in a tight range
+near highs with volume drying up, then breaks out on expanding volume.
+
+Components (each scored independently, summed to q_score 0-10):
+
+  (a) Moving average stack and trend:
+      MA10 > MA20 > MA50 with close > MA10 AND MA10/MA20 both rising
+      Full stack + rising = +2
+      Stack only          = +1
+
+  (b) Relative strength (prior multi-bar returns):
+      ret_13 = 13-bar percentage return
+      ret_26 = 26-bar percentage return
+      ret_26 >= 25% AND ret_13 > 0  = +2
+      ret_26 >= 15%                 = +1
+
+  (c) Range compression (tight consolidation):
+      compression = ATR(5) / ATR(20)
+      Measures recent range vs longer-term range.
+      <= 0.70  = very tight  -> +2
+      <= 0.85  = tight       -> +1
+
+  (d) Volume dry-up in consolidation:
+      volratio = avg_volume(5) / avg_volume(20)
+      <= 0.75           -> +1
+      0.75-0.90         -> +1
+
+  (e) Breakout proximity (how close to breaking out):
+      proximity = close / max(high, 20 bars)
+      >= 0.97 (within 3% of 20-bar high)  -> +2
+      >= 0.93 (within 7%)                 -> +1
+
+  (f) Active breakout bar:
+      close > max(high, prior 20 bars excluding current)
+      AND current volume > 1.3 * avg(volume, prior 20 bars)
+      -> +1
+
+Total q_score range: 0-10 (sum of all components).
+
+
+================================================================================
+8. CONSOLIDATION LENGTH / ORD'S "CAUSE" (Ord spec section 9.2)
+================================================================================
+
+Purpose: Measure how long price has been range-bound. Ord asserts that
+longer consolidation ("cause") leads to larger subsequent moves ("effect").
+In Wyckoff terms, the sideways range is accumulating energy; the longer
+the cause, the more energy stored.
+
+Algorithm:
+  Walk backward from the current bar. At each step, expand the envelope
+  to include that bar's high and low:
+    h = max(h, bar.high)
+    l = min(l, bar.low)
+  If (h - l) / mid > tolerance, stop. The count of bars included before
+  stopping is the consolidation length.
+
+  This measures how many recent bars fit inside a single price envelope
+  of the specified width. A stock that has been range-bound for 12 weeks
+  within a 12% band returns cause_bars = 12.
+
+Parameters:
+  tolerance:
+    Weekly  = 0.12 (12% envelope)
+    Monthly = 0.20 (20% envelope)
+  cap = 104 bars maximum lookback
+
+Scoring:
+  cause_bars >= 12  -> +2 to ord_score
+  cause_bars >= 6   -> +1 to ord_score
+
+Interpretation:
+  cause_bars = 3-5:  short pause, minor move expected
+  cause_bars = 6-12: meaningful consolidation, decent move potential
+  cause_bars = 13+:  extended cause, large move expected on breakout
+  cause_bars = 20+:  major base, watch for trend-change breakout
+
+
+================================================================================
+9. REGIME-CONDITIONAL RELATIVE STRENGTH (SPY-based)
+================================================================================
+
+Purpose: Determine whether a stock outperforms SPY across all market
+conditions -- not just in bull markets (which is trivially achieved by
+high-beta names). A true "all-weather" stock generates excess returns
+when the market is rising, falling, AND going sideways.
+
+Step 1 -- Classify market regime:
+  Download SPY for the same timeframe and period as the stock universe.
+  Compute SPY's rolling lookback-bar return:
+    weekly:  13-bar (quarter) rolling return
+    monthly: 6-bar (half-year) rolling return
+
+  Split the distribution of this rolling return into terciles:
+    Bottom third = "down" regime (SPY falling)
+    Middle third = "chop" regime (SPY sideways/mixed)
+    Top third    = "up" regime (SPY rising)
+
+  Each bar in the dataset gets a regime label. This gives roughly equal
+  sample sizes across all three regimes (~83 bars each for 5yr weekly,
+  ~131 each for 33yr monthly).
+
+Step 2 -- Compute per-regime excess return:
+  For each stock, align its returns with the SPY regime frame on dates.
+
+  For each regime r in {up, chop, down}:
+    excess[r] = mean(stock_daily_return - spy_daily_return)
+                over all bars where regime == r
+
+  The result is in per-bar units. Multiply by 100 for display as
+  percentage per bar.
+
+  rs_up   = mean excess return per bar in up-regime bars
+  rs_chop = mean excess return per bar in chop-regime bars
+  rs_down = mean excess return per bar in down-regime bars
+
+  Positive rs_down means the stock falls less than SPY (or rises) when
+  the broad market is declining. This is the hardest alpha to generate
+  and the most predictive of future resilience.
+
+Step 3 -- All-weather flag:
+  all_weather = TRUE iff rs_up > 0 AND rs_chop > 0 AND rs_down > 0
+
+  This means the stock has historically beaten SPY in every market
+  condition over the sample window. Names like high-beta tech will
+  show strong rs_up but negative rs_down (they crash harder in selloffs).
+  True all-weather names outperform regardless.
+
+Scoring:
+  all_weather = TRUE  -> +3 to combined score
+
+Parameters:
+  REGIME_LOOKBACK["W"] = 13 (bars for SPY rolling return, weekly)
+  REGIME_LOOKBACK["M"] = 6  (bars for SPY rolling return, monthly)
+
+
+================================================================================
+10. TREND REGIME FILTER (simple)
+================================================================================
+
+Purpose: Confirm the stock is in an uptrend on the active timeframe.
+
+Computation:
+  ma50 = SMA(close, 50)
+  above_ma50 = close > ma50
+
+Scoring:
+  above_ma50 = TRUE  -> +1 to ord_score
+
+
+================================================================================
+11. COMPOSITE SCORING AND RANKING
+================================================================================
+
+The scanner computes two sub-scores and one combined score:
+
+  ord_score = sum of:
+    Ord-Volume signal strength:
+      strict signal:  STRONG +4, GOOD +3, MARGINAL +2
+        + confirmed (expand >= 1.50)       +2
+        + confirmed_loose (expand >= 1.30) +1
+      loose signal (no probe): STRONG +3, GOOD +2, MARGINAL +1
+        + confirmed_loose                  +1
+    Shakeout retest signal TRUE:           +3
+    Squeeze released:                      +3
+    In squeeze + bw_pctile <= 0.25:        +2
+    bw_pctile <= 0.25 (no squeeze):        +1
+    Asymmetry >= 1.50:                     +2
+    Asymmetry >= 1.20:                     +1
+    Above MA50:                            +1
+    Cause bars >= 12:                      +2
+    Cause bars >= 6:                       +1
+
+  q_score (0-10) = sum of Qullamaggie components (see section 7)
+
+  combined = ord_score + q_score + (3 if all_weather)
+
+Ranking: sort by combined DESC, then all_weather DESC, then ord_score DESC,
+then q_score DESC, then asymmetry DESC.
+
+
+================================================================================
+12. OUTPUT COLUMNS REFERENCE
+================================================================================
+
+  ticker       : stock symbol
+  combined     : composite score (ord_score + q_score + all_weather bonus)
+  ord_score    : Ord / squeeze / asymmetry / cause sub-score
+  q_score      : Qullamaggie sub-score (0-10)
+  close        : last closing price
+
+  ov_sig       : Ord-Volume strict buy signal (True/False)
+  ov_sig_loose : Ord-Volume loose buy signal (probe dropped)
+  ov_str       : signal strength (STRONG / GOOD / MARGINAL / NONE)
+  ov_shrink    : OV(L_down) / OV(comparator) -- lower = more bullish
+  ov_expand    : OV(L_current) / OV(L_down) -- higher = more confirmed
+  ov_probed    : did L_down break below prior swing low?
+  ov_closed_back : has price closed back above prior swing low?
+
+  spv_sig      : shakeout (false breakout bottom) signal (True/False)
+  spv_ratio    : probe_vol / origin_vol -- lower = stronger shakeout
+
+  squeeze      : currently in BB-inside-KC squeeze (True/False)
+  released     : squeeze just released in last 7 bars (True/False)
+  bw_pctile    : BB width percentile (0 = tightest ever, 1 = widest)
+
+  asym         : up/down volatility asymmetry (>1 = bullish, <1 = bearish)
+
+  above_ma50   : close > 50-period MA (True/False)
+
+  q_stacked    : MA10 > MA20 > MA50 with close > MA10 (True/False)
+  q_ret13      : 13-bar return (decimal, e.g. 0.15 = +15%)
+  q_ret26      : 26-bar return
+  q_compress   : ATR(5) / ATR(20) range compression (lower = tighter)
+  q_volratio   : vol(5) / vol(20) volume dry-up (lower = drier)
+  q_prox       : close / 20-bar high (1.0 = at high, 0.90 = 10% below)
+  q_brk        : active breakout bar (close > prior 20-bar high on volume)
+
+  cause_bars   : consolidation length in bars (Ord's "cause")
+
+  rs_up        : mean excess return per bar vs SPY in up-regime (pct)
+  rs_chop      : mean excess return per bar vs SPY in chop-regime (pct)
+  rs_down      : mean excess return per bar vs SPY in down-regime (pct)
+  all_weather  : positive excess in all three regimes (True/False)
+
+
+================================================================================
+13. CALIBRATION CONSTANTS SUMMARY
+================================================================================
+
+  # Swing detection
+  SWING_THETA_WEEKLY  = 0.05   (5% reversal)
+  SWING_THETA_MONTHLY = 0.10   (10% reversal)
+
+  # Ord-Volume
+  OV_TRIGGER_STOCK    = 0.55   (shrinkage upper bound for stock signal)
+  OV_STRONG_SHRINK    = 0.30   (<= 30% of comparator = STRONG)
+  OV_GOOD_SHRINK      = 0.50
+  OV_MARGINAL_SHRINK  = 0.55
+  OV_CONFIRM_STRICT   = 1.50   (50% expansion for full confirmation)
+  OV_CONFIRM_LOOSE    = 1.30   (30% expansion for loose confirmation)
+
+  # Swing P&V (shakeout)
+  SPV_REVERSAL_MAX    = 0.92   (probe vol <= 92% of origin = reversal)
+  SPV_CONTINUATION    = 0.97   (>= 97% = continuation expected)
+  SPV_NO_MANS_LAND    = 0.92 to 0.97  (no signal in this band)
+
+  # Squeeze
+  BB_LENGTH = 20,  BB_MULT = 2.0
+  KC_LENGTH = 20,  KC_MULT = 1.5
+  SQUEEZE_BW_PCTL     = 0.25  (bottom quartile = compressed)
+
+  # Asymmetry
+  ASYMMETRY_WINDOW    = 20 bars
+  ASYM_MIN_BULLISH    = 1.20
+
+  # Consolidation
+  CONSOL_TOL_WEEKLY   = 0.12   (12% envelope)
+  CONSOL_TOL_MONTHLY  = 0.20   (20% envelope)
+
+  # Regime lookback
+  REGIME_LOOKBACK_W   = 13 bars (quarterly return for regime classify)
+  REGIME_LOOKBACK_M   = 6 bars  (half-year return)
+
+  # Trend
+  TREND_MA            = 50
+
+
+================================================================================
+14. USAGE
+================================================================================
+
+  # Full SP500 scan, weekly + monthly, all scores
+  python ord_scanner.py --tf both --top 30 --min-score 0
+
+  # Weekly only, all-weather filter
+  python ord_scanner.py --tf W --aw-only --top 50
+
+  # Monthly only, minimum combined score of 8
+  python ord_scanner.py --tf M --min-score 8 --top 30
+
+  # Custom ticker list
+  python ord_scanner.py --tickers AAPL MSFT NVDA AMZN --tf W
+
+  # Output to specific directory
+  python ord_scanner.py --out-dir ./results
+
+  The scanner writes full rankings (all tickers, all scores) to CSV
+  regardless of display filters. CSVs go to --out-dir as:
+    ord_scan_weekly.csv
+    ord_scan_monthly.csv
+
+  The GitHub Actions workflow runs automatically on push to the feature
+  branch and on a weekly Sunday-23:00-UTC cron. Results are committed
+  back to the branch under results/ and also uploaded as artifacts.
