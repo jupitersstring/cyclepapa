@@ -48,11 +48,27 @@ DEBT_EVENT = re.compile(
     r"supporting holders|minimum participation condition)\b",
     re.I,
 )
+# Debt amount extraction: multiple word-orders. The principal can come
+# before or after the action verb, and SEC filings use "principal amount
+# of $X.X million was exchanged" / "exchanged $X.X million of notes" /
+# "$X.X million of senior secured notes were repurchased" / etc.
 DEBT_REDUCTION_AMOUNT = re.compile(
-    r"\$\s*([0-9]+(?:\.[0-9]+)?)\s*(million|billion|m\b|bn\b)[^.\n]{0,80}?"
-    r"(of (?:second[- ]lien |first[- ]lien |senior secured |outstanding )?"
-    r"(?:notes|debt|principal)\s+(?:was\s+|were\s+|being\s+)?"
-    r"(?:exchanged|repurchased|reduced|redeemed|cancelled|retired))",
+    r"(?:"
+    # Forward: "$X million ... of notes ... exchanged/reduced/repurchased"
+    r"\$\s*([0-9]+(?:\.[0-9]+)?)\s*(million|billion|m\b|bn\b)[^.\n]{0,120}?"
+    r"(?:notes?|debt|principal)[^.\n]{0,80}?"
+    r"(?:exchanged|repurchased|reduced|redeemed|cancelled|retired|tendered)"
+    r"|"
+    # Reverse: "exchanged/repurchased/etc $X million of notes"
+    r"(?:exchanged|repurchased|reduced|redeemed|cancelled|retired|tendered|"
+    r"purchased outstanding)[^.\n]{0,80}?"
+    r"\$\s*([0-9]+(?:\.[0-9]+)?)\s*(million|billion|m\b|bn\b)"
+    r"[^.\n]{0,80}?(?:notes?|debt|principal)?"
+    r"|"
+    # Standalone: "principal amount reduced by $X million"
+    r"principal amount[^.\n]{0,40}?reduced[^.\n]{0,40}?\$\s*"
+    r"([0-9]+(?:\.[0-9]+)?)\s*(million|billion|m\b|bn\b)"
+    r")",
     re.I,
 )
 PARTICIPATION_PCT = re.compile(
@@ -196,10 +212,16 @@ def extract_special_features(ticker: str, text: str) -> SpecialFeatures:
     f.has_debt_event = bool(f.debt_event_phrases)
     drs = []
     for m in DEBT_REDUCTION_AMOUNT.finditer(text):
-        try:
-            drs.append(_to_musd(float(m.group(1)), m.group(2)))
-        except ValueError:
-            pass
+        # Three alternative groups; pick whichever matched.
+        for amt_g, unit_g in ((1, 2), (3, 4), (5, 6)):
+            amt = m.group(amt_g)
+            unit = m.group(unit_g)
+            if amt and unit:
+                try:
+                    drs.append(_to_musd(float(amt), unit))
+                except ValueError:
+                    pass
+                break
     if drs:
         f.debt_reduced_musd = max(drs)
     pps = []

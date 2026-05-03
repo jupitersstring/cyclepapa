@@ -35,7 +35,7 @@ from recent import (
     recent_8k_restructuring_range, company_filings, RecentFiling,
 )
 
-CACHE_VERSION = "v6-bastian"
+CACHE_VERSION = "v7-bastian-fix"
 
 
 def current_price(ticker: str) -> float | None:

@@ -62,10 +62,25 @@ def inducement_lottery(row: Row) -> tuple[bool, str]:
     """Inducement-grant deep-OTM hurdle ladder.
 
     Triggered when the PSU asymmetry signal fires AND the top hurdle is
-    >=2x current price -- the FNKO/RYAM/OPEN setup."""
+    >=2x current price -- the FNKO/RYAM/OPEN setup. Filters out SPAC
+    warrant noise (-WT/-W/-UN/-R suffixes, 'Acquisition Corp' / 'SPAC'
+    in the company name) where $18 trust-redemption prices look like
+    deep-OTM hurdles but are just SPAC mechanics."""
     h = row.get("stock_price_hurdles") or []
     px = row.get("current_price") or 0
     if not h or not px:
+        return False, ""
+    ticker = (row.get("ticker") or "").upper()
+    company = (row.get("company") or "").lower()
+    spac_suffixes = ("-WT", "-W", "-UN", "-R", "+", ".U", ".W", ".WS")
+    if (any(ticker.endswith(s) for s in spac_suffixes)
+        or "acquisition corp" in company
+        or "spac" in company
+            or "blank check" in company):
+        return False, ""
+    # SPAC trust prices cluster at $10-12 / $18 (warrants) -- if every
+    # hurdle is exactly one of these, treat as noise.
+    if all(round(v, 2) in (10.0, 11.5, 12.0, 18.0) for v in h):
         return False, ""
     top = max(h)
     if top / px >= 2.0:
