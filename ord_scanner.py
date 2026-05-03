@@ -1595,7 +1595,8 @@ def main():
             print(filtered.to_string(index=False))
         import os
         os.makedirs(args.out_dir, exist_ok=True)
-        out_path = os.path.join(args.out_dir, f"ord_scan_{label.lower()}.csv")
+        suffix = f"{args.mode}_{args.universe}" if not args.tickers else args.mode
+        out_path = os.path.join(args.out_dir, f"ord_scan_{label.lower()}_{suffix}.csv")
         df.to_csv(out_path, index=False)
         print(f"[write] full ranking -> {out_path}")
 

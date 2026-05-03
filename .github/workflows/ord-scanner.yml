@@ -43,48 +43,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install "yfinance>=0.2.40" "pandas>=2.0" "numpy>=1.24" "lxml>=4.9" "requests>=2.31"
 
-      - name: Run breakout scanner
+      - name: Scan SP500 (all modes)
         env:
-          TIMEFRAME: ${{ github.event.inputs.timeframe || 'both' }}
-          TOP:       ${{ github.event.inputs.top || '30' }}
-          MIN_SCORE: ${{ github.event.inputs.min_score || '0' }}
+          TF: ${{ github.event.inputs.timeframe || 'both' }}
+          TOP: ${{ github.event.inputs.top || '30' }}
         run: |
           mkdir -p results
-          python ord_scanner.py \
-            --tf "$TIMEFRAME" \
-            --top "$TOP" \
-            --min-score "$MIN_SCORE" \
-            --mode breakout \
-            --out-dir results 2>&1 | tee results/scan_report.txt
+          for MODE in early massive breakout; do
+            MS=0; [ "$MODE" = "massive" ] && MS=40
+            python ord_scanner.py --tf "$TF" --top "$TOP" --min-score "$MS" \
+              --mode "$MODE" --universe sp500 --out-dir results 2>&1 | tee -a results/scan_report.txt
+          done
 
-      - name: Run early-asymmetric scanner
+      - name: Scan SMID (early + massive)
         env:
-          TIMEFRAME: ${{ github.event.inputs.timeframe || 'both' }}
-          TOP:       ${{ github.event.inputs.top || '30' }}
+          TF: ${{ github.event.inputs.timeframe || 'both' }}
+          TOP: ${{ github.event.inputs.top || '30' }}
         run: |
-          python ord_scanner.py \
-            --tf "$TIMEFRAME" \
-            --top "$TOP" \
-            --min-score 6 \
-            --mode early \
-            --out-dir results 2>&1 | tee -a results/scan_report.txt
+          for MODE in early massive; do
+            MS=0; [ "$MODE" = "massive" ] && MS=40
+            python ord_scanner.py --tf "$TF" --top "$TOP" --min-score "$MS" \
+              --mode "$MODE" --universe smid --out-dir results 2>&1 | tee -a results/scan_report.txt
+          done
 
-      - name: Run massive-move scanner
-        env:
-          TIMEFRAME: ${{ github.event.inputs.timeframe || 'both' }}
-          TOP:       ${{ github.event.inputs.top || '30' }}
+      - name: Cross-rank all results
         run: |
-          python ord_scanner.py \
-            --tf "$TIMEFRAME" \
-            --top "$TOP" \
-            --min-score 55 \
-            --mode massive \
-            --out-dir results 2>&1 | tee -a results/scan_report.txt
-
-      - name: Run SMID early-asymmetric scanner
-        env:
-          TIMEFRAME: ${{ github.event.inputs.timeframe || 'both' }}
-          TOP:       ${{ github.event.inputs.top || '30' }}
+          python cross_rank.py --top 50 --min-ua 35 --out results/ultimate_asymmetry.csv 2>&1 | tee -a results/scan_report.txt
         run: |
           python ord_scanner.py \
             --tf "$TIMEFRAME" \
