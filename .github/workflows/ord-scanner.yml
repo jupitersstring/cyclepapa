@@ -30,7 +30,7 @@ permissions:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -43,28 +43,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install "yfinance>=0.2.40" "pandas>=2.0" "numpy>=1.24" "lxml>=4.9" "requests>=2.31"
 
-      - name: Scan SP500 (all modes)
+      - name: Scan SP500
         env:
           TF: ${{ github.event.inputs.timeframe || 'both' }}
           TOP: ${{ github.event.inputs.top || '30' }}
         run: |
           mkdir -p results
-          for MODE in early massive breakout; do
-            MS=0; [ "$MODE" = "massive" ] && MS=40
-            python ord_scanner.py --tf "$TF" --top "$TOP" --min-score "$MS" \
-              --mode "$MODE" --universe sp500 --out-dir results 2>&1 | tee -a results/scan_report.txt
-          done
+          python ord_scanner.py --tf "$TF" --top "$TOP" --min-score 0 \
+            --mode early --universe sp500 --out-dir results 2>&1 | tee results/scan_report.txt
 
-      - name: Scan SMID (early + massive)
+      - name: Scan SMID
         env:
           TF: ${{ github.event.inputs.timeframe || 'both' }}
           TOP: ${{ github.event.inputs.top || '30' }}
         run: |
-          for MODE in early massive; do
-            MS=0; [ "$MODE" = "massive" ] && MS=40
-            python ord_scanner.py --tf "$TF" --top "$TOP" --min-score "$MS" \
-              --mode "$MODE" --universe smid --out-dir results 2>&1 | tee -a results/scan_report.txt
-          done
+          python ord_scanner.py --tf "$TF" --top "$TOP" --min-score 0 \
+            --mode early --universe smid --out-dir results 2>&1 | tee -a results/scan_report.txt
 
       - name: Cross-rank all results
         run: |
