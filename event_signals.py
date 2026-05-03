@@ -174,6 +174,50 @@ INFLECTION_LANG = re.compile(
 )
 
 
+# Spin-off detection (Greenblatt / Stock Spinoff Investing tradition) -------
+SPINOFF = re.compile(
+    r"\b(spin[- ]off|spinoff|spin[- ]out|separation (agreement|transaction)|"
+    r"distribution of (shares of )?(common stock|spinco)|"
+    r"Form 10(-12B)?|stand[- ]alone (public )?company|"
+    r"separate (publicly[- ]traded )?company|tax[- ]free distribution)\b",
+    re.I,
+)
+
+# Insider buying references -- proxy and 8-K text often reference Form 4
+# transactions; cleaner signal still comes from primary Form 4s.
+INSIDER_BUY_REF = re.compile(
+    r"\b(insider (purchases?|buying)|open[- ]market purchases?|"
+    r"(directors?|officers?) (purchased|acquired) [^.\n]{0,40}? shares)\b",
+    re.I,
+)
+
+# Auction process evidence (Boone-Mulherin)
+AUCTION = re.compile(
+    r"\b(auction process|contacted [0-9]+ (potential )?(strategic )?"
+    r"(buyers|acquirers|bidders)|received (proposals|offers) from "
+    r"(multiple|several) parties|go[- ]shop period|market check)\b",
+    re.I,
+)
+
+# Ab-initio conditioning -- MFW dual protections imposed at the outset
+AB_INITIO = re.compile(
+    r"\b(condition(ed|al) (from the (start|outset)|ab initio)|"
+    r"from inception of the (transaction|negotiation)|prior to (any )?"
+    r"substantive (negotiations|economic discussions))\b",
+    re.I,
+)
+
+# CIC dollar amount extraction -- table cells often contain the total.
+CIC_DOLLAR = re.compile(
+    r"\$\s*([0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]+)?)\b",
+    re.I,
+)
+
+# Pay-for-performance metric quality (Yet Another Value Blog framing)
+TSR_METRIC = re.compile(
+    r"\b(relative TSR|absolute TSR|total shareholder return)\b", re.I,
+)
+
 # Active-bid detection ------------------------------------------------------
 ACTIVE_BID = re.compile(
     r"(received (an? )?(unsolicited )?(proposal|offer)|merger agreement|"

@@ -118,11 +118,22 @@ def recent_8k_inducement_range(
     seen_cik: set[str] = set()
     cik_to_ticker = _cik_to_ticker_map()
 
+    # Broader query set: many new-CEO PSU grants don't use the word
+    # "inducement". They live in Item 5.02 with phrases like "appointment"
+    # / "named Chief Executive" / "stock price hurdle" / "performance
+    # share units" / "performance-based RSU". Casting a wide net here.
     queries = [
         '"inducement" "performance share"',
         '"inducement award" "stock price"',
-        '"inducement grant" "performance"',
-        '"appointment" "performance share units" "inducement"',
+        '"Item 5.02" "stock price hurdle"',
+        '"Item 5.02" "performance share units"',
+        '"Item 5.02" "performance-based" "stock price"',
+        '"appointment" "Chief Executive" "performance share"',
+        '"named" "Chief Executive Officer" "stock price"',
+        '"appointed" "performance stock units"',
+        '"new Chief Executive" "performance share"',
+        '"hire" "performance share units" "vest"',
+        '"sign-on" "performance share"',
     ]
 
     page_size = 100
@@ -174,6 +185,55 @@ def recent_8k_inducement_range(
 def requests_quote(s: str) -> str:
     import urllib.parse
     return urllib.parse.quote(s)
+
+
+def company_filings(
+    ticker: str,
+    forms: tuple[str, ...] = ("DEF 14A", "8-K", "10-K", "S-8"),
+    limit_per_form: int = 5,
+    days: int | None = 365,
+) -> list[RecentFiling]:
+    """Pull recent filings for a single company directly from its
+    submissions JSON. Bypasses the full-text-search guesswork --
+    ideal for verifying a specific ticker the user has in mind.
+
+    Returns up to `limit_per_form` of each form type, sorted most-recent
+    first. Constrained to filings within the past `days` days when set."""
+    from edgar import cik_for, _get, SEC_DATA
+    cik = cik_for(ticker)
+    if not cik:
+        return []
+    try:
+        sub = _get(f"{SEC_DATA}/submissions/CIK{cik}.json").json()
+    except Exception:
+        return []
+    recent = sub.get("filings", {}).get("recent", {})
+    forms_list = recent.get("form", [])
+    accs = recent.get("accessionNumber", [])
+    docs = recent.get("primaryDocument", [])
+    dates = recent.get("filingDate", [])
+    company = sub.get("name", ticker.upper())
+
+    cutoff = None
+    if days:
+        from datetime import datetime, timedelta, timezone
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+
+    out: list[RecentFiling] = []
+    counts: dict[str, int] = {f: 0 for f in forms}
+    for form, acc, doc, dt in zip(forms_list, accs, docs, dates):
+        if form not in forms:
+            continue
+        if cutoff and dt < cutoff:
+            continue
+        if counts[form] >= limit_per_form:
+            continue
+        counts[form] += 1
+        out.append(RecentFiling(
+            cik=cik, company=company, ticker=ticker.upper(),
+            filing_date=dt, accession=acc, primary_doc=doc,
+        ))
+    return out
 
 
 def recent_def14a(n: int = 25) -> list[RecentFiling]:

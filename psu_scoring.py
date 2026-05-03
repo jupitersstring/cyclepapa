@@ -107,6 +107,32 @@ VEST_AT_PRICE = re.compile(
     r"vest(?:ing|s)?\s+(?:at|upon|when)[^.\n]{0,40}?\$([0-9]+(?:\.[0-9]+)?)",
     re.I,
 )
+
+# Hurdle-table trigger: many proxies/8-Ks render PSU ladders as tables that
+# survive HTML-to-text conversion as one $-value per line. A purely
+# in-line ladder regex misses these. After a trigger phrase, collect every
+# plausible $-amount within the next ~2000 chars.
+HURDLE_TABLE_TRIGGER = re.compile(
+    r"(achievement of the following|the following (stock|share) price"
+    r"|the following (price )?(hurdles?|targets?|thresholds?|levels?|tranches?)"
+    r"|vest(ing|s)? (in (the )?)?(\w+ )?tranches"
+    r"|price hurdles? (?:are|of|set|equal)"
+    r"|performance hurdles? (?:are|of)"
+    r"|following stock price (hurdles?|levels?|thresholds?|targets?)"
+    r"|VWAP (hurdles?|of|equal|targets?)"
+    r")",
+    re.I,
+)
+DOLLAR_AMT = re.compile(r"\$\s*([0-9]+(?:\.[0-9]+)?)")
+
+# % share-price appreciation -- e.g. Penguin Solutions: "25% / 50% / 75% /
+# 100% share price appreciation". Convert to implied $ hurdles using the
+# current price as a proxy for grant-date baseline (best-effort).
+APPRECIATION_LADDER = re.compile(
+    r"((?:[0-9]{1,3}\s*%\s*[/,]?\s*(?:and\s+)?){2,})"
+    r"\s*(?:share\s+price\s+)?appreciation",
+    re.I,
+)
 # "% share price appreciation" — Penguin Solutions style.
 APPRECIATION_PCT = re.compile(
     r"([0-9]{1,3})\s*%\s*(?:share\s+price\s+)?appreciation",
@@ -220,6 +246,17 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
                 THRESHOLD_TARGET_MAX, STOCK_PRICE_TARGET,
                 PRE_POSITIONAL_HURDLE, VEST_AT_PRICE):
         found.extend(float(x) for x in pat.findall(base))
+
+    # Trigger-window extraction for table-rendered ladders.
+    for m in HURDLE_TABLE_TRIGGER.finditer(base):
+        window = base[m.end(): m.end() + 2500]
+        for d in DOLLAR_AMT.findall(window):
+            try:
+                v = float(d)
+                if 1.0 <= v <= 10000.0:
+                    found.append(v)
+            except ValueError:
+                pass
 
     # Multi-tranche ladders: extract every $-amount inside the run.
     for m in PRICE_LADDER.finditer(base):

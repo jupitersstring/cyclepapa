@@ -30,10 +30,10 @@ from psu_scoring import extract_features, score
 from event_signals import extract_event_features, score_event_stack
 from recent import (
     recent_def14a, recent_def14a_range, recent_8k_inducement_range,
-    RecentFiling,
+    company_filings, RecentFiling,
 )
 
-CACHE_VERSION = "v3-induce"
+CACHE_VERSION = "v4-table-trigger"
 
 
 def current_price(ticker: str) -> float | None:
@@ -249,6 +249,13 @@ def main() -> int:
                      help="Pull 8-K Item 5.02 inducement-grant filings "
                           "from the past N days (catches new-CEO PSU "
                           "awards that aren't yet in any DEF 14A).")
+    src.add_argument("--deepdive", metavar="FILE_OR_TICKER",
+                     help="Per-ticker deep-dive: pull ALL recent DEF 14A "
+                          "/ 8-K / 10-K / S-8 filings for the given "
+                          "ticker(s) directly via submissions JSON. "
+                          "Pass a single ticker or a path to a tickers "
+                          "file. No FTS guesswork -- you'll get every "
+                          "fresh comp disclosure regardless of phrasing.")
     p.add_argument("--limit", type=int, default=300,
                    help="Cap on filings for --days mode (default 300).")
     p.add_argument("--out", default="psu_scorecard.csv",
@@ -266,7 +273,43 @@ def main() -> int:
     rows: list[dict] = []
     use_cache = not args.no_cache
 
-    if args.recent or args.days or args.inducements:
+    if args.deepdive:
+        # Parse target ticker(s) from a file or single value.
+        path = Path(args.deepdive)
+        if path.exists():
+            targets = [t.strip().upper() for t in path.read_text().splitlines()
+                       if t.strip() and not t.strip().startswith("#")]
+        else:
+            targets = [args.deepdive.upper()]
+        print(f"Deep-dive on {len(targets)} ticker(s): pulling DEF 14A / "
+              f"8-K / 10-K / S-8...", file=sys.stderr, flush=True)
+        feed: list[RecentFiling] = []
+        for tk in targets:
+            cf = company_filings(
+                tk, forms=("DEF 14A", "8-K", "10-K", "S-8"),
+                limit_per_form=8, days=540,
+            )
+            print(f"  {tk}: {len(cf)} filings", file=sys.stderr, flush=True)
+            feed.extend(cf)
+        for i, rf in enumerate(feed, 1):
+            tk = rf.ticker or rf.cik
+            cached = use_cache and cache.get_score(rf.accession) is not None
+            tag = "[cache]" if cached else ""
+            print(f"[{i}/{len(feed)}] {tk} {rf.filing_date} "
+                  f"{rf.accession[:20]} {tag}",
+                  file=sys.stderr, flush=True)
+            try:
+                row = _process_filing(tk, rf, use_cache=use_cache)
+                row["company"] = rf.company
+                row["accession"] = rf.accession
+            except Exception as e:
+                row = {"ticker": tk, "company": rf.company,
+                       "accession": rf.accession,
+                       "error": f"unhandled: {e}"}
+            rows.append(row)
+            if not cached:
+                time.sleep(args.sleep)
+    elif args.recent or args.days or args.inducements:
         from datetime import datetime, timedelta, timezone
         end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if args.recent:
