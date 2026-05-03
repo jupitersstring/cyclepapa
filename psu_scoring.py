@@ -69,6 +69,55 @@ GENERIC_PRICE_TARGET = re.compile(
     r"\$([0-9]+(?:\.[0-9]+)?)\s*per share",
     re.I,
 )
+# VWAP-anchored hurdles -- common in tranched inducement grants.
+VWAP_HURDLE = re.compile(
+    r"(?:VWAP|volume[- ]weighted average price)[^.\n]{0,80}?\$([0-9]+(?:\.[0-9]+)?)",
+    re.I,
+)
+VWAP_HURDLE_REVERSE = re.compile(
+    r"\$([0-9]+(?:\.[0-9]+)?)\s+(?:VWAP|volume[- ]weighted)",
+    re.I,
+)
+# "trailing 45-day average / highest 60-day average / X-day moving average"
+TRAILING_AVG_HURDLE = re.compile(
+    r"(?:trailing|highest|moving|average)[^.\n]{0,80}?\$([0-9]+(?:\.[0-9]+)?)",
+    re.I,
+)
+# "threshold / target / maximum at $X / $Y / $Z" -- inducement-grant style.
+THRESHOLD_TARGET_MAX = re.compile(
+    r"(?:threshold|target|maximum)[^.\n]{0,40}?\$([0-9]+(?:\.[0-9]+)?)",
+    re.I,
+)
+# Multi-tranche dollar ladders: "$8 / $20", "$15, $30, $45",
+# "$1.50, $2.25, $3.00, $3.75 and $4.50" -- accept comma, slash or
+# bare "and" as the connector.
+PRICE_LADDER = re.compile(
+    r"(\$[0-9]+(?:\.[0-9]+)?)"
+    r"(?:\s*(?:[/,]\s*(?:and\s+)?|\s+and\s+)\s*\$[0-9]+(?:\.[0-9]+)?){1,8}",
+    re.I,
+)
+# "$X hurdle" / "$X share price target" / "vest at $X" -- reverse phrasing
+# where the dollar comes before the noun.
+PRE_POSITIONAL_HURDLE = re.compile(
+    r"\$([0-9]+(?:\.[0-9]+)?)\s+(?:stock\s+price\s+)?(?:hurdle|target|threshold|"
+    r"per\s+share|VWAP|trailing|share\s+price)",
+    re.I,
+)
+VEST_AT_PRICE = re.compile(
+    r"vest(?:ing|s)?\s+(?:at|upon|when)[^.\n]{0,40}?\$([0-9]+(?:\.[0-9]+)?)",
+    re.I,
+)
+# "% share price appreciation" — Penguin Solutions style.
+APPRECIATION_PCT = re.compile(
+    r"([0-9]{1,3})\s*%\s*(?:share\s+price\s+)?appreciation",
+    re.I,
+)
+# Plain "$X share price hurdle" / "stock price target of $X"
+STOCK_PRICE_TARGET = re.compile(
+    r"(?:price\s+target|price\s+hurdle|hurdle (?:of|at)|target (?:of|at)|"
+    r"reach[a-z]*\s*(?:a\s+)?\$|exceed[a-z]*\s+\$)\s*\$?([0-9]+(?:\.[0-9]+)?)",
+    re.I,
+)
 
 DISCRETIONARY = re.compile(
     r"\b(discretionary bonus|special bonus|notwithstanding the formula|"
@@ -158,13 +207,30 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
 
     # Hurdle parsing -- localized to PSU paragraphs only. Non-PSU "stock
     # price" mentions (e.g. fee schedules, beneficial ownership tables)
-    # would otherwise pollute the upside-kicker score.
+    # would otherwise pollute the upside-kicker score. Multiple regexes
+    # cover the common inducement-grant hurdle phrasings: VWAP-anchored,
+    # trailing-average, threshold/target/maximum ladders, multi-dollar
+    # tranches like "$15 / $30 / $45".
     psu_window = _psu_windows(comp_text)
     base = psu_window if psu_window else comp_text
-    hurdles = [float(x) for x in STOCK_PRICE_HURDLE.findall(base)]
-    if not hurdles:
-        hurdles = [float(x) for x in GENERIC_PRICE_TARGET.findall(base)]
-    hurdles = sorted({round(h, 2) for h in hurdles if h >= 1.0})
+
+    found: list[float] = []
+    for pat in (STOCK_PRICE_HURDLE, GENERIC_PRICE_TARGET,
+                VWAP_HURDLE, VWAP_HURDLE_REVERSE,
+                THRESHOLD_TARGET_MAX, STOCK_PRICE_TARGET,
+                PRE_POSITIONAL_HURDLE, VEST_AT_PRICE):
+        found.extend(float(x) for x in pat.findall(base))
+
+    # Multi-tranche ladders: extract every $-amount inside the run.
+    for m in PRICE_LADDER.finditer(base):
+        for v in re.findall(r"\$([0-9]+(?:\.[0-9]+)?)", m.group(0)):
+            try:
+                found.append(float(v))
+            except ValueError:
+                pass
+
+    # Drop fee-table / par-value noise (<$1) and obvious dividends/strikes.
+    hurdles = sorted({round(h, 2) for h in found if 1.0 <= h <= 10000.0})
     f.stock_price_hurdles = hurdles
 
     # Risk flags evaluated only inside PSU windows -- generic governance

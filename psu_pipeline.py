@@ -28,9 +28,12 @@ from edgar import latest_def14a, fetch_filing_html, Filing
 from proxy import html_to_text, extract_comp_section
 from psu_scoring import extract_features, score
 from event_signals import extract_event_features, score_event_stack
-from recent import recent_def14a, recent_def14a_range, RecentFiling
+from recent import (
+    recent_def14a, recent_def14a_range, recent_8k_inducement_range,
+    RecentFiling,
+)
 
-CACHE_VERSION = "v2-eventstack"
+CACHE_VERSION = "v3-induce"
 
 
 def current_price(ticker: str) -> float | None:
@@ -242,6 +245,10 @@ def main() -> int:
     src.add_argument("--days", type=int,
                      help="Pull every DEF 14A filed in the past N days via "
                           "EDGAR full-text search.")
+    src.add_argument("--inducements", type=int, metavar="DAYS",
+                     help="Pull 8-K Item 5.02 inducement-grant filings "
+                          "from the past N days (catches new-CEO PSU "
+                          "awards that aren't yet in any DEF 14A).")
     p.add_argument("--limit", type=int, default=300,
                    help="Cap on filings for --days mode (default 300).")
     p.add_argument("--out", default="psu_scorecard.csv",
@@ -259,14 +266,19 @@ def main() -> int:
     rows: list[dict] = []
     use_cache = not args.no_cache
 
-    if args.recent or args.days:
+    if args.recent or args.days or args.inducements:
+        from datetime import datetime, timedelta, timezone
+        end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if args.recent:
             print(f"Pulling {args.recent} most-recent DEF 14A from EDGAR...",
                   file=sys.stderr, flush=True)
             feed = recent_def14a(args.recent)
+        elif args.inducements:
+            start = (datetime.now(timezone.utc) - timedelta(days=args.inducements)).strftime("%Y-%m-%d")
+            print(f"Pulling 8-K inducement filings {start} .. {end} (limit {args.limit})...",
+                  file=sys.stderr, flush=True)
+            feed = recent_8k_inducement_range(start, end, limit=args.limit)
         else:
-            from datetime import datetime, timedelta, timezone
-            end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
             start = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
             print(f"Pulling DEF 14A filings {start} .. {end} (limit {args.limit})...",
                   file=sys.stderr, flush=True)

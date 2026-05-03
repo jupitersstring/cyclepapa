@@ -103,6 +103,79 @@ def recent_def14a_range(
     return out
 
 
+def recent_8k_inducement_range(
+    start_date: str,
+    end_date: str,
+    limit: int = 300,
+) -> list[RecentFiling]:
+    """Pull 8-Ks reporting executive inducement / hire grants.
+
+    EDGAR full-text search for 8-Ks containing 'inducement' AND
+    'performance share'. This catches new-CEO PSU inducement awards
+    that don't yet live in any annual proxy. Results are deduped by
+    CIK so each issuer surfaces at most once."""
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+
+    queries = [
+        '"inducement" "performance share"',
+        '"inducement award" "stock price"',
+        '"inducement grant" "performance"',
+        '"appointment" "performance share units" "inducement"',
+    ]
+
+    page_size = 100
+    for q in queries:
+        offset = 0
+        while len(out) < limit and offset < 1000:
+            url = (
+                f"{EFTS}?forms=8-K&dateRange=custom"
+                f"&startdt={start_date}&enddt={end_date}"
+                f"&from={offset}"
+                f"&q={requests_quote(q)}"
+            )
+            try:
+                data = _get(url).json()
+            except Exception:
+                break
+            hits = data.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for h in hits:
+                src = h.get("_source", {}) or {}
+                ciks = src.get("ciks") or []
+                cik = f"{int(ciks[0]):010d}" if ciks else None
+                if not cik or cik in seen_cik:
+                    continue
+                # 8-K can also report director departures with PSU mentions; we
+                # accept any 8-K matching the query and let the scorer decide.
+                seen_cik.add(cik)
+                tickers = src.get("tickers") or []
+                ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+                display = (src.get("display_names") or ["?"])[0]
+                company = display.split(" (")[0]
+                file_date = src.get("file_date", "")
+                id_parts = (h.get("_id") or "").split(":")
+                if len(id_parts) != 2:
+                    continue
+                accession, primary_doc = id_parts
+                out.append(RecentFiling(
+                    cik=cik, company=company, ticker=ticker,
+                    filing_date=file_date,
+                    accession=accession, primary_doc=primary_doc,
+                ))
+                if len(out) >= limit:
+                    return out
+            offset += page_size
+    return out
+
+
+def requests_quote(s: str) -> str:
+    import urllib.parse
+    return urllib.parse.quote(s)
+
+
 def recent_def14a(n: int = 25) -> list[RecentFiling]:
     """Walk the EDGAR 'getcurrent' atom feed for DEF 14A filings."""
     n = max(1, min(int(n), 100))
