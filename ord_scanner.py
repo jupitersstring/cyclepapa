@@ -634,6 +634,17 @@ def relative_analysis(stock_df: pd.DataFrame, spy_df: pd.DataFrame, theta: float
     rs_hi20 = rel["Close"].rolling(20).max()
     if len(rs_hi20.dropna()) >= 2:
         out["rs_breakout"] = bool(rel["Close"].iloc[-1] >= rs_hi20.iloc[-2])
+    # RS at 13-bar and 26-bar highs (Dalton "RS leading before price")
+    if len(rel) >= 14:
+        rs_hi13 = rel["Close"].rolling(13).max()
+        out["rs_13hi"] = bool(rel["Close"].iloc[-1] >= rs_hi13.iloc[-2])
+    else:
+        out["rs_13hi"] = False
+    if len(rel) >= 27:
+        rs_hi26 = rel["Close"].rolling(26).max()
+        out["rs_26hi"] = bool(rel["Close"].iloc[-1] >= rs_hi26.iloc[-2])
+    else:
+        out["rs_26hi"] = False
 
     # Ord-Volume on RS line (relative volume shrinkage on pullbacks)
     pivots = zigzag(rel["High"], rel["Low"], theta)
@@ -752,6 +763,10 @@ def early_asym_score(
         score += 2
     if rel.get("rs_breakout"):
         score += 2
+    if rel.get("rs_13hi"):
+        score += 1
+    if rel.get("rs_26hi"):
+        score += 1
     if rel.get("rs_released"):
         score += 1
     if rel.get("rel_ov_sig"):
@@ -879,6 +894,58 @@ def bracket_analysis(df: pd.DataFrame) -> Dict:
     destination = brk_high + brk_range
     rr_dest = (destination - c) / (c - base_low) if (c - base_low) > 0.01 else 0.0
 
+    # --- Dalton additions ---
+
+    # (1) Close-in-bar position: fraction of recent 13 bars where close
+    # is in the UPPER 40% of that bar's range. Persistent bullish closes
+    # = "higher prices attracting activity, not cutting it off."
+    lookback_cib = min(13, n)
+    bullish_close_count = 0
+    for i in range(n - lookback_cib, n):
+        bar_range = float(high[i]) - float(low[i])
+        if bar_range > 0:
+            bar_pos = (close_arr[i] - float(low[i])) / bar_range
+            if bar_pos >= 0.60:
+                bullish_close_count += 1
+    close_in_bar = bullish_close_count / lookback_cib
+
+    # (2) Volume-confirms-direction: for bars that make new 10-bar highs,
+    # is their volume above the 20-bar average? Measures acceptance.
+    vol = df["Volume"].values.astype(float)
+    vol_avg_20 = float(pd.Series(vol).rolling(20).mean().iloc[-1]) if n >= 20 else float(np.mean(vol))
+    confirm_bars = 0
+    confirm_total = 0
+    for i in range(max(10, n - 13), n):
+        if float(high[i]) >= float(pd.Series(high[max(0, i - 10):i]).max()):
+            confirm_total += 1
+            if vol[i] >= vol_avg_20:
+                confirm_bars += 1
+    vol_confirms_dir = confirm_bars / max(confirm_total, 1)
+
+    # (3) Failed-probe detection: in the last 8 bars, did price probe beyond
+    # the bracket high/low and then close back inside? = responsive rejection weakening.
+    recent_probe_top = False
+    recent_probe_bot = False
+    probe_window = min(8, n)
+    for i in range(n - probe_window, n):
+        if float(high[i]) >= brk_high * 0.99 and close_arr[i] < brk_high:
+            recent_probe_top = True
+        if float(low[i]) <= brk_low * 1.01 and close_arr[i] > brk_low:
+            recent_probe_bot = True
+
+    # (4) RS at 13/26-bar highs (relative strength making new highs before price)
+    # Requires spy_df — handled in relative_analysis, surfaced via rel dict.
+    # Here we add: is the 13-bar RS rolling max at current bar?
+    # (computed externally; placeholder flag in bracket_analysis)
+
+    # (5) Range expansion on volume: did the last bar have range > 1.3x avg(range,10)
+    # AND volume > avg(vol,20)?
+    bar_ranges = pd.Series(high - low)
+    avg_range_10 = float(bar_ranges.rolling(10).mean().iloc[-1]) if n >= 10 else float(bar_ranges.mean())
+    last_range = float(high[-1]) - float(low[-1])
+    last_vol = float(vol[-1])
+    range_expand_vol = bool(last_range > 1.3 * avg_range_10 and last_vol > vol_avg_20)
+
     return {
         "brk_bars": brk_bars,
         "brk_high": round(brk_high, 2),
@@ -894,6 +961,12 @@ def bracket_analysis(df: pd.DataFrame) -> Dict:
         "rr_dest": round(rr_dest, 1),
         "one_tf_up": one_tf_up,
         "one_tf_dn": one_tf_dn,
+        # Dalton enhancements
+        "close_in_bar": round(close_in_bar, 2),
+        "vol_confirms": round(vol_confirms_dir, 2),
+        "probe_top": recent_probe_top,
+        "probe_bot": recent_probe_bot,
+        "range_exp_vol": range_expand_vol,
     }
 
 
@@ -984,6 +1057,20 @@ def massive_move_score(
     elif rs.get("rs_down") is not None and rs["rs_down"] > 0:
         s += 3
 
+    # Dalton: "higher prices attracting activity" (close-in-bar)
+    cib = brk.get("close_in_bar", 0)
+    if cib >= 0.70:
+        s += 5  # 70%+ of recent bars close in upper 40% of range
+    elif cib >= 0.55:
+        s += 3
+
+    # Volume confirms direction (new highs on above-avg vol)
+    vcf = brk.get("vol_confirms", 0)
+    if vcf >= 0.70:
+        s += 5
+    elif vcf >= 0.50:
+        s += 3
+
     # --- D. Breakout readiness ---
     if brk["near_top"] and brk["brk_pos"] >= 0.90:
         s += 5
@@ -998,6 +1085,16 @@ def massive_move_score(
         s += 5
 
     if cp >= 0.85:
+        s += 5
+
+    # Dalton: failed probe = responsive activity weakening at edge
+    if brk.get("probe_top") and brk["near_top"]:
+        s += 5  # tested top, closed back inside but didn't reject hard
+    elif brk.get("probe_bot") and brk["near_bottom"]:
+        s += 5
+
+    # Range expansion with volume = acceptance beginning
+    if brk.get("range_exp_vol"):
         s += 5
 
     # --- E. Asymmetry ---
@@ -1158,6 +1255,13 @@ def score_candidate(
         "close_pos": brk.get("close_pos_26"),
         "one_tf": max(brk.get("one_tf_up", 0), brk.get("one_tf_dn", 0)),
         "rr_dest": brk.get("rr_dest"),
+        # Dalton auction-quality enhancements
+        "cib": brk.get("close_in_bar"),       # close-in-bar (upper %)
+        "vol_conf": brk.get("vol_confirms"),   # vol confirms direction
+        "probe_edge": brk.get("probe_top") or brk.get("probe_bot"),
+        "rng_exp_v": brk.get("range_exp_vol"), # range expansion on vol
+        "rs_13hi": rel.get("rs_13hi"),
+        "rs_26hi": rel.get("rs_26hi"),
     }
 
 
