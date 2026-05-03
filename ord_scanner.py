@@ -858,6 +858,111 @@ def early_asym_score(
 
 
 # ---------------------------------------------------------------------------
+# Dalton MOM techniques (adapted from Mind Over Markets for weekly/monthly)
+# ---------------------------------------------------------------------------
+
+def rotation_factor(df: pd.DataFrame, n: int = 10) -> Dict:
+    """Cumulative rotation factor: +1 if high > prior high, -1 if lower;
+    same for lows. Sums the two per bar. A streak of +2 = one-timeframing up."""
+    if len(df) < n + 1:
+        return {"rf_cum": 0, "rf_streak": 0, "rf_dir": 0}
+    recent = df.iloc[-(n + 1):]
+    vals = []
+    for i in range(1, len(recent)):
+        hd = 1 if float(recent.iloc[i]["High"]) > float(recent.iloc[i - 1]["High"]) else (
+            -1 if float(recent.iloc[i]["High"]) < float(recent.iloc[i - 1]["High"]) else 0)
+        ld = 1 if float(recent.iloc[i]["Low"]) > float(recent.iloc[i - 1]["Low"]) else (
+            -1 if float(recent.iloc[i]["Low"]) < float(recent.iloc[i - 1]["Low"]) else 0)
+        vals.append(hd + ld)
+    cum = sum(vals)
+    sign = int(np.sign(vals[-1])) if vals else 0
+    streak = 0
+    for v in reversed(vals):
+        if int(np.sign(v)) == sign and sign != 0:
+            streak += 1
+        else:
+            break
+    return {"rf_cum": cum, "rf_streak": streak, "rf_dir": sign}
+
+
+def directional_performance(df: pd.DataFrame) -> Dict:
+    """Dalton's two-question framework on the last bar:
+    'Which way is it trying to go? Is it doing a good job?'
+    Compares attempt (open-close direction) vs value placement vs volume."""
+    if len(df) < 3:
+        return {"dp_signal": "N/A", "dp_score": 0}
+    w = df.iloc[-1]
+    pw = df.iloc[-2]
+    rng = float(w["High"]) - float(w["Low"])
+    if rng == 0:
+        return {"dp_signal": "N/A", "dp_score": 0}
+    cp = (float(w["Close"]) - float(w["Low"])) / rng
+    # attempted direction
+    if cp >= 0.70:
+        att = "UP"
+    elif cp <= 0.30:
+        att = "DOWN"
+    else:
+        att = "NEUTRAL"
+    # value placement
+    mid = (float(w["High"]) + float(w["Low"])) / 2
+    pmid = (float(pw["High"]) + float(pw["Low"])) / 2
+    prng = float(pw["High"]) - float(pw["Low"])
+    if prng > 0 and mid > pmid + 0.3 * prng:
+        vp = "HIGHER"
+    elif prng > 0 and mid < pmid - 0.3 * prng:
+        vp = "LOWER"
+    else:
+        vp = "OVERLAP"
+    # volume vs recent avg
+    vol_avg = float(df["Volume"].iloc[-10:].mean()) if len(df) >= 10 else float(df["Volume"].mean())
+    vr = float(w["Volume"]) / vol_avg if vol_avg > 0 else 1.0
+    vol_s = "HIGH" if vr > 1.1 else ("LOW" if vr < 0.9 else "AVG")
+    # divergence signals
+    score = 0
+    signal = "NEUTRAL"
+    if att == "UP" and vp == "LOWER":
+        signal = "FAILED_UP"
+        score = -2
+    elif att == "DOWN" and vp == "HIGHER":
+        signal = "MIRAGE_BUY"
+        score = 2
+    elif att == "UP" and vol_s == "LOW":
+        signal = "LOW_VOL_RALLY"
+        score = -1
+    elif att == "DOWN" and vol_s == "LOW":
+        signal = "LOW_VOL_SELL"
+        score = 1
+    elif att == "UP" and vol_s == "HIGH" and vp == "HIGHER":
+        signal = "CONFIRMED_UP"
+        score = 2
+    elif att == "DOWN" and vol_s == "HIGH" and vp == "LOWER":
+        signal = "CONFIRMED_DN"
+        score = -2
+    return {"dp_signal": signal, "dp_score": score, "dp_vol": round(vr, 2)}
+
+
+def hidden_corrective(df: pd.DataFrame, n: int = 6) -> Dict:
+    """Hidden corrective action: selling structure (close < open) with
+    higher value midpoint = actually bullish (accumulation on dips).
+    Buying structure with lower value = actually bearish."""
+    if len(df) < n + 1:
+        return {"hidden_bull": 0, "hidden_bear": 0}
+    recent = df.iloc[-n:]
+    hb, hbe = 0, 0
+    for i in range(1, len(recent)):
+        d = recent.iloc[i]
+        p = recent.iloc[i - 1]
+        curr_mid = (float(d["High"]) + float(d["Low"])) / 2
+        prev_mid = (float(p["High"]) + float(p["Low"])) / 2
+        if float(d["Close"]) < float(d["Open"]) and curr_mid > prev_mid:
+            hb += 1
+        elif float(d["Close"]) > float(d["Open"]) and curr_mid < prev_mid:
+            hbe += 1
+    return {"hidden_bull": hb, "hidden_bear": hbe}
+
+
+# ---------------------------------------------------------------------------
 # Bracket / auction-transition analysis (Dalton framework)
 # ---------------------------------------------------------------------------
 
@@ -1200,9 +1305,24 @@ def score_candidate(
         "rs_breakout": False, "rel_ov_sig": False, "rel_ov_sig_loose": False,
         "rel_ov_str": "NONE", "rel_ov_shrink": np.nan, "rel_spv_sig": False,
     }
+    rf    = rotation_factor(df)
+    dp    = directional_performance(df)
+    hc    = hidden_corrective(df)
     early = early_asym_score(df, rel, ov, spv, sq, asym, cause, q, rs)
     brk   = bracket_analysis(df)
     massive = massive_move_score(brk, sq, asym, rel, rs)
+
+    # Dalton MOM boost to early_score
+    if dp["dp_signal"] == "MIRAGE_BUY":
+        early["early_score"] = early.get("early_score", 0) + 3
+    elif dp["dp_signal"] == "LOW_VOL_SELL":
+        early["early_score"] = early.get("early_score", 0) + 2
+    elif dp["dp_signal"] == "CONFIRMED_UP":
+        early["early_score"] = early.get("early_score", 0) + 1
+    if hc["hidden_bull"] >= 2:
+        early["early_score"] = early.get("early_score", 0) + 2
+    if rf["rf_streak"] >= 4 and rf["rf_dir"] > 0:
+        early["early_score"] = early.get("early_score", 0) + 1
 
     ma50 = df["Close"].rolling(TREND_MA).mean().iloc[-1]
     close = float(df["Close"].iloc[-1])
@@ -1318,6 +1438,12 @@ def score_candidate(
         "rng_exp_v": brk.get("range_exp_vol"), # range expansion on vol
         "rs_13hi": rel.get("rs_13hi"),
         "rs_26hi": rel.get("rs_26hi"),
+        # Dalton MOM signals
+        "rf_cum": rf.get("rf_cum"),
+        "rf_str": rf.get("rf_streak"),
+        "dp_sig": dp.get("dp_signal"),
+        "dp_vol": dp.get("dp_vol"),
+        "h_bull": hc.get("hidden_bull"),
     }
 
 
