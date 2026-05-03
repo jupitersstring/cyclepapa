@@ -115,6 +115,62 @@ def fetch_sp500_tickers() -> List[str]:
     return FALLBACK_SP500
 
 
+def fetch_sp400_tickers() -> List[str]:
+    """Fetch S&P MidCap 400 constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/List_of_S%26P_400_companies",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        syms = tables[0]["Symbol"].astype(str).tolist()
+        return [s.replace(".", "-") for s in syms]
+    except Exception as e:
+        print(f"[warn] SP400 wiki fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_sp600_tickers() -> List[str]:
+    """Fetch S&P SmallCap 600 constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/List_of_S%26P_600_companies",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        syms = tables[0]["Symbol"].astype(str).tolist()
+        return [s.replace(".", "-") for s in syms]
+    except Exception as e:
+        print(f"[warn] SP600 wiki fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_universe(name: str) -> List[str]:
+    """Fetch tickers for a named universe."""
+    name = name.lower()
+    if name == "sp500":
+        return fetch_sp500_tickers()
+    elif name == "sp400":
+        return fetch_sp400_tickers()
+    elif name == "sp600":
+        return fetch_sp600_tickers()
+    elif name in ("smid", "sp400+sp600"):
+        return fetch_sp400_tickers() + fetch_sp600_tickers()
+    elif name == "all":
+        return fetch_sp500_tickers() + fetch_sp400_tickers() + fetch_sp600_tickers()
+    else:
+        print(f"[warn] unknown universe '{name}'; defaulting to sp500", file=sys.stderr)
+        return fetch_sp500_tickers()
+
+
 # Minimal fallback if wiki is unreachable (top 50 by weight, roughly).
 FALLBACK_SP500 = [
     "AAPL","MSFT","NVDA","AMZN","META","GOOGL","GOOG","BRK-B","LLY","AVGO",
@@ -1354,7 +1410,11 @@ def main():
                     help="timeframe: weekly, monthly, or both (default)")
     ap.add_argument("--top", type=int, default=25, help="top N to print")
     ap.add_argument("--tickers", nargs="+", default=None,
-                    help="explicit ticker list (default: live S&P 500 from wiki)")
+                    help="explicit ticker list (overrides --universe)")
+    ap.add_argument("--universe", default="sp500",
+                    choices=["sp500", "sp400", "sp600", "smid", "all"],
+                    help="stock universe: sp500, sp400 (midcap), sp600 (smallcap), "
+                         "smid (400+600), or all (500+400+600)")
     ap.add_argument("--min-score", type=int, default=4,
                     help="drop rows below this composite score")
     ap.add_argument("--out-dir", default=".",
@@ -1367,7 +1427,7 @@ def main():
                          "'massive' = rank by Dalton massive-move pre-conditions (0-100)")
     args = ap.parse_args()
 
-    tickers = args.tickers if args.tickers else fetch_sp500_tickers()
+    tickers = args.tickers if args.tickers else fetch_universe(args.universe)
     print(f"[universe] {len(tickers)} tickers")
 
     tfs = ["W", "M"] if args.tf == "both" else [args.tf]

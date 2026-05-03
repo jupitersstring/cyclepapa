@@ -81,6 +81,19 @@ jobs:
             --mode massive \
             --out-dir results 2>&1 | tee -a results/scan_report.txt
 
+      - name: Run SMID early-asymmetric scanner
+        env:
+          TIMEFRAME: ${{ github.event.inputs.timeframe || 'both' }}
+          TOP:       ${{ github.event.inputs.top || '30' }}
+        run: |
+          python ord_scanner.py \
+            --tf "$TIMEFRAME" \
+            --top "$TOP" \
+            --min-score 6 \
+            --mode early \
+            --universe smid \
+            --out-dir results 2>&1 | tee -a results/scan_report.txt
+
       - name: Upload scan artifacts
         if: always()
         uses: actions/upload-artifact@v4
