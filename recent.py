@@ -236,6 +236,82 @@ def company_filings(
     return out
 
 
+def recent_8k_restructuring_range(
+    start_date: str,
+    end_date: str,
+    limit: int = 300,
+) -> list[RecentFiling]:
+    """Pull 8-Ks reporting debt events / restructurings / strategic
+    alternatives. The Bastian / Kingdom playbook lives here: exchange
+    offers, RSAs, consent solicitations, going-concern disclosures,
+    spin-off announcements, take-private proposals."""
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+
+    queries = [
+        '"exchange offer" "senior secured"',
+        '"consent solicitation" "notes due"',
+        '"transaction support agreement"',
+        '"restructuring support agreement"',
+        '"PIK notes"',
+        '"springing maturity"',
+        '"strategic alternatives committee"',
+        '"value enhancement committee"',
+        '"asset sales sufficient to repay"',
+        '"going concern" "waiver"',
+        '"go private" OR "going private"',
+        '"Schedule 13E-3"',
+        '"spin-off" OR "Form 10"',
+        '"separation agreement" "common stock"',
+        '"rights offering" "subscription rights"',
+        '"cooperation agreement" "board"',
+    ]
+
+    page_size = 100
+    for q in queries:
+        offset = 0
+        while len(out) < limit and offset < 1000:
+            url = (
+                f"{EFTS}?forms=8-K&dateRange=custom"
+                f"&startdt={start_date}&enddt={end_date}"
+                f"&from={offset}"
+                f"&q={requests_quote(q)}"
+            )
+            try:
+                data = _get(url).json()
+            except Exception:
+                break
+            hits = data.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for h in hits:
+                src = h.get("_source", {}) or {}
+                ciks = src.get("ciks") or []
+                cik = f"{int(ciks[0]):010d}" if ciks else None
+                if not cik or cik in seen_cik:
+                    continue
+                seen_cik.add(cik)
+                tickers = src.get("tickers") or []
+                ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+                display = (src.get("display_names") or ["?"])[0]
+                company = display.split(" (")[0]
+                file_date = src.get("file_date", "")
+                id_parts = (h.get("_id") or "").split(":")
+                if len(id_parts) != 2:
+                    continue
+                accession, primary_doc = id_parts
+                out.append(RecentFiling(
+                    cik=cik, company=company, ticker=ticker,
+                    filing_date=file_date,
+                    accession=accession, primary_doc=primary_doc,
+                ))
+                if len(out) >= limit:
+                    return out
+            offset += page_size
+    return out
+
+
 def recent_def14a(n: int = 25) -> list[RecentFiling]:
     """Walk the EDGAR 'getcurrent' atom feed for DEF 14A filings."""
     n = max(1, min(int(n), 100))

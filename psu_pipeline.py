@@ -28,12 +28,14 @@ from edgar import latest_def14a, fetch_filing_html, Filing
 from proxy import html_to_text, extract_comp_section
 from psu_scoring import extract_features, score
 from event_signals import extract_event_features, score_event_stack
+from special_situations import extract_special_features, score_specials
+from compound_screens import run_screens
 from recent import (
     recent_def14a, recent_def14a_range, recent_8k_inducement_range,
-    company_filings, RecentFiling,
+    recent_8k_restructuring_range, company_filings, RecentFiling,
 )
 
-CACHE_VERSION = "v5-wide-trigger"
+CACHE_VERSION = "v6-bastian"
 
 
 def current_price(ticker: str) -> float | None:
@@ -129,10 +131,25 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
         market_cap = None
     stack = score_event_stack(ev, market_cap)
 
+    # Bastian/Kingdom-style special-situations layer (distressed equity
+    # stubs, spin-offs, cash shells, take-privates, governance resets).
+    sf = extract_special_features(ticker, text)
+    sp = score_specials(sf, market_cap)
+
     # Composite Munger score: incentive stack carries equal-or-greater
     # weight than PSU asymmetry. The archive synthesis emphasises that
     # process quality is the real edge, not just the comp structure.
-    munger_composite = round(0.4 * (sc.asymmetry or 0) + 0.6 * stack.process_quality, 1)
+    # When a hard special-situations catalyst fires, lift the composite.
+    base_composite = 0.4 * (sc.asymmetry or 0) + 0.6 * stack.process_quality
+    if sp.special_situations_score >= 60:
+        # A strong special-sit signal can dominate; weight it 50/50 then.
+        munger_composite = round(
+            0.5 * base_composite + 0.5 * sp.special_situations_score, 1
+        )
+    else:
+        munger_composite = round(
+            base_composite + 0.2 * sp.special_situations_score, 1
+        )
 
     out.update(
         current_price=px,
@@ -181,10 +198,36 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
         active_bid=ev.active_bid,
         offer_price=ev.offer_price,
         majority_of_minority=ev.majority_of_minority,
-        # Combined flags
-        flags=sc.flags + stack.flags,
+        # Bastian / Kingdom special-situations layer
+        has_debt_event=sf.has_debt_event,
+        debt_event_phrases=sf.debt_event_phrases,
+        debt_reduced_musd=sf.debt_reduced_musd,
+        participation_pct=sf.participation_pct,
+        going_concern=sf.going_concern,
+        creditor_board_control=sf.creditor_board_control,
+        has_spinoff=sf.has_spinoff,
+        has_rights_offering=sf.has_rights_offering,
+        cash_shell_language=sf.cash_shell_language,
+        go_private_language=sf.go_private_language,
+        hidden_assets=sf.hidden_assets,
+        governance_reset=sf.governance_reset,
+        insider_buying_language=sf.insider_buying_language,
+        catalyst_hardness=sp.catalyst_hardness,
+        balance_sheet_convexity=sp.balance_sheet_convexity,
+        common_preservation=sp.common_preservation,
+        distressed_stub_score=sp.distressed_stub,
+        spinoff_score=sp.spinoff,
+        cash_shell_score=sp.cash_shell,
+        take_private_score=sp.take_private,
+        governance_reset_score=sp.governance_reset,
+        special_situations_score=sp.special_situations_score,
+        taxonomy=sp.taxonomy,
         snippet=feats.snippet[:1200],
+        # Combined flags
+        flags=sc.flags + stack.flags + sp.flags,
     )
+    # Compound-screen overlap detection (InsideArbitrage tradition).
+    out["compound_screens"] = run_screens(out)
     if accession and use_cache:
         cache.put_score(accession, out)
     return out
@@ -200,6 +243,15 @@ def write_csv(rows: list[dict], path: Path) -> None:
     fields = [
         "ticker", "company", "filing_date", "current_price", "market_cap",
         "munger_composite", "process_quality", "asymmetry",
+        "special_situations_score", "taxonomy", "compound_screens",
+        "distressed_stub_score", "spinoff_score", "cash_shell_score",
+        "take_private_score", "governance_reset_score",
+        "catalyst_hardness", "balance_sheet_convexity", "common_preservation",
+        "has_debt_event", "debt_reduced_musd", "participation_pct",
+        "going_concern", "creditor_board_control",
+        "has_spinoff", "has_rights_offering", "cash_shell_language",
+        "go_private_language", "hidden_assets", "governance_reset",
+        "insider_buying_language",
         "strategic_review", "change_of_control", "buyback_score",
         "controller_score", "activist_score", "board_score", "financing_score",
         "alignment", "upside_kicker", "transformation_signal",
@@ -221,7 +273,8 @@ def write_csv(rows: list[dict], path: Path) -> None:
             row = r.copy()
             for k in ("aggregate_metrics", "per_share_metrics",
                       "stock_price_hurdles", "flags",
-                      "advisers_named", "activists_named"):
+                      "advisers_named", "activists_named",
+                      "debt_event_phrases", "compound_screens"):
                 if k in row:
                     row[k] = _fmt_list(row[k])
             w.writerow(row)
@@ -249,6 +302,11 @@ def main() -> int:
                      help="Pull 8-K Item 5.02 inducement-grant filings "
                           "from the past N days (catches new-CEO PSU "
                           "awards that aren't yet in any DEF 14A).")
+    src.add_argument("--restructurings", type=int, metavar="DAYS",
+                     help="Pull 8-Ks reporting debt events / "
+                          "restructurings / strategic alternatives / "
+                          "going-concern / spin-offs / take-privates "
+                          "(Bastian / Kingdom Capital playbook universe).")
     src.add_argument("--deepdive", metavar="FILE_OR_TICKER",
                      help="Per-ticker deep-dive: pull ALL recent DEF 14A "
                           "/ 8-K / 10-K / S-8 filings for the given "
@@ -309,7 +367,7 @@ def main() -> int:
             rows.append(row)
             if not cached:
                 time.sleep(args.sleep)
-    elif args.recent or args.days or args.inducements:
+    elif args.recent or args.days or args.inducements or args.restructurings:
         from datetime import datetime, timedelta, timezone
         end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if args.recent:
@@ -321,6 +379,12 @@ def main() -> int:
             print(f"Pulling 8-K inducement filings {start} .. {end} (limit {args.limit})...",
                   file=sys.stderr, flush=True)
             feed = recent_8k_inducement_range(start, end, limit=args.limit)
+        elif args.restructurings:
+            start = (datetime.now(timezone.utc) - timedelta(days=args.restructurings)).strftime("%Y-%m-%d")
+            print(f"Pulling 8-K restructuring/strategic-alternatives filings "
+                  f"{start} .. {end} (limit {args.limit})...",
+                  file=sys.stderr, flush=True)
+            feed = recent_8k_restructuring_range(start, end, limit=args.limit)
         else:
             start = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
             print(f"Pulling DEF 14A filings {start} .. {end} (limit {args.limit})...",
