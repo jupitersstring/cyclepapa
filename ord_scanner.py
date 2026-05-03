@@ -582,6 +582,439 @@ def regime_strength(stock_df: pd.DataFrame, regime_df: pd.DataFrame) -> Dict:
 
 
 # ---------------------------------------------------------------------------
+# Relative price (stock/SPY) analysis
+# ---------------------------------------------------------------------------
+
+def build_relative_df(stock_df: pd.DataFrame, spy_df: pd.DataFrame) -> Optional[pd.DataFrame]:
+    """Construct a relative-performance OHLCV frame: stock / SPY.
+
+    High of the RS bar = stock_high / spy_close (best-case relative perf).
+    Low  of the RS bar = stock_low  / spy_close (worst-case relative perf).
+    Close              = stock_close / spy_close.
+    Volume             = stock volume (energy applies to the relative move).
+    """
+    spy_c = spy_df[["Close"]].rename(columns={"Close": "spy_c"})
+    aligned = stock_df[["Open", "High", "Low", "Close", "Volume"]].join(spy_c, how="inner")
+    if len(aligned) < 30:
+        return None
+    sc = aligned["spy_c"]
+    rel = pd.DataFrame({
+        "Open":   aligned["Open"] / sc,
+        "High":   aligned["High"] / sc,
+        "Low":    aligned["Low"]  / sc,
+        "Close":  aligned["Close"] / sc,
+        "Volume": aligned["Volume"],
+    }, index=aligned.index)
+    return rel
+
+
+def relative_analysis(stock_df: pd.DataFrame, spy_df: pd.DataFrame, theta: float) -> Dict:
+    """Run squeeze + Ord-Volume + zigzag on the relative strength line.
+
+    Detects stocks whose relative performance is compressing (RS squeeze)
+    or whose RS line is breaking out (stock starting to outperform SPY).
+    """
+    out = {
+        "rs_squeeze": False, "rs_released": False, "rs_bw_pctile": 1.0,
+        "rs_breakout": False, "rel_ov_sig": False, "rel_ov_sig_loose": False,
+        "rel_ov_str": "NONE", "rel_ov_shrink": np.nan,
+        "rel_spv_sig": False,
+    }
+    rel = build_relative_df(stock_df, spy_df)
+    if rel is None:
+        return out
+
+    # RS squeeze (BB/KC on the relative line)
+    sq = squeeze_state(rel)
+    out["rs_squeeze"]   = sq["in_squeeze"]
+    out["rs_released"]  = sq["released"]
+    out["rs_bw_pctile"] = sq["bw_pctile"]
+
+    # RS at new 20-bar high = relative breakout
+    rs_hi20 = rel["Close"].rolling(20).max()
+    if len(rs_hi20.dropna()) >= 2:
+        out["rs_breakout"] = bool(rel["Close"].iloc[-1] >= rs_hi20.iloc[-2])
+
+    # Ord-Volume on RS line (relative volume shrinkage on pullbacks)
+    pivots = zigzag(rel["High"], rel["Low"], theta)
+    legs = build_legs(rel, pivots)
+    ov = ord_volume_buy(rel, legs)
+    out["rel_ov_sig"]       = ov.get("signal", False)
+    out["rel_ov_sig_loose"] = ov.get("signal_loose", False)
+    out["rel_ov_str"]       = ov.get("strength", "NONE")
+    out["rel_ov_shrink"]    = ov.get("shrink", np.nan)
+
+    # Shakeout on RS line
+    spv = shakeout_retest(rel, legs)
+    out["rel_spv_sig"] = spv.get("signal", False)
+
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Early asymmetric opportunity scoring
+# ---------------------------------------------------------------------------
+
+def early_asym_score(
+    df: pd.DataFrame,
+    rel: Dict,
+    ov: Dict,
+    spv: Dict,
+    sq: Dict,
+    asym: Dict,
+    cause: int,
+    q: Dict,
+    rs: Dict,
+) -> Dict:
+    """Score optimised for EARLY-STAGE setups before the big move.
+
+    Rewards: basing after drawdown, volatility compression still loading,
+    volume shrinkage on selling (Ord), tight risk/reward, emerging RS
+    breakout on relative line, all-weather quality.
+
+    Penalizes: already extended (high returns), already at highs (proximity
+    near 1.0), no drawdown from peak.
+    """
+    close = float(df["Close"].iloc[-1])
+    n = len(df)
+    hi_lookback = min(n, 104)  # ~2 years weekly or ~8 years monthly
+    hi52 = float(df["High"].iloc[-hi_lookback:].max())
+    drawdown = 1.0 - close / hi52 if hi52 > 0 else 0.0
+
+    # Base low: minimum low over consolidation or last 10 bars
+    base_window = max(cause, 10)
+    base_low = float(df["Low"].iloc[-base_window:].min())
+    risk_pct = (close - base_low) / close if close > 0 else 1.0
+
+    # R:R = upside (to prior high) / downside (to base low)
+    rr = (hi52 - close) / (close - base_low) if (close - base_low) > 0.001 else 0.0
+
+    score = 0
+
+    # --- REWARD: drawdown sweet spot (pulled back, basing, not destroyed) ---
+    if 0.15 <= drawdown <= 0.35:
+        score += 3
+    elif 0.10 <= drawdown < 0.15:
+        score += 2
+    elif 0.05 <= drawdown < 0.10:
+        score += 1
+
+    # --- REWARD: currently IN squeeze (spring loading, not yet fired) ---
+    if sq["in_squeeze"]:
+        score += 3
+        if sq["bw_pctile"] <= 0.15:
+            score += 2
+        elif sq["bw_pctile"] <= 0.25:
+            score += 1
+
+    # --- REWARD: consolidation forming (cause accumulating) ---
+    if cause >= 10:
+        score += 3
+    elif cause >= 6:
+        score += 2
+    elif cause >= 4:
+        score += 1
+
+    # --- REWARD: Ord-Volume selling shrinkage (energy leaving the decline) ---
+    ov_str = ov.get("strength", "NONE")
+    if ov_str in ("STRONG", "GOOD", "MARGINAL"):
+        score += {"STRONG": 3, "GOOD": 2, "MARGINAL": 1}[ov_str]
+
+    # --- REWARD: shakeout (tested support on low vol = spring) ---
+    if spv.get("signal"):
+        score += 3
+
+    # --- REWARD: early volume asymmetry tilt (subtle shift, not overt) ---
+    a = asym.get("asymmetry", 1.0)
+    if 1.05 <= a <= 1.30:
+        score += 2
+    elif a > 1.30:
+        score += 1  # less weight: might be late-stage if already extended
+
+    # --- REWARD: tight risk (close near base low = well-defined stop) ---
+    if risk_pct <= 0.04:
+        score += 3
+    elif risk_pct <= 0.07:
+        score += 2
+    elif risk_pct <= 0.10:
+        score += 1
+
+    # --- REWARD: good R:R ratio ---
+    if rr >= 5.0:
+        score += 3
+    elif rr >= 3.0:
+        score += 2
+    elif rr >= 2.0:
+        score += 1
+
+    # --- REWARD: relative strength line signals ---
+    if rel.get("rs_squeeze"):
+        score += 2
+    if rel.get("rs_breakout"):
+        score += 2
+    if rel.get("rs_released"):
+        score += 1
+    if rel.get("rel_ov_sig"):
+        score += 3
+    elif rel.get("rel_ov_sig_loose"):
+        score += 1
+    if rel.get("rel_spv_sig"):
+        score += 2
+
+    # --- REWARD: all-weather quality ---
+    if rs.get("all_weather"):
+        score += 2
+
+    # --- PENALTIES for already-extended names ---
+    ret26 = float(q.get("q_ret26") or 0)
+    if ret26 > 0.30:
+        score -= 4
+    elif ret26 > 0.20:
+        score -= 2
+    # At absolute highs (no pullback) = no asymmetry left
+    if drawdown < 0.05:
+        score -= 4
+    elif drawdown < 0.08:
+        score -= 2
+
+    return {
+        "early_score": max(score, 0),
+        "drawdown": round(drawdown, 3),
+        "risk_pct": round(risk_pct, 3),
+        "rr": round(rr, 1),
+        "base_low": round(base_low, 2),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Bracket / auction-transition analysis (Dalton framework)
+# ---------------------------------------------------------------------------
+
+def bracket_analysis(df: pd.DataFrame) -> Dict:
+    """Detect the current bracket (multi-bar balance area) and measure
+    structural features: duration, edge proximity, rising lows / falling
+    highs, Donchian compression, close position, and R:R to destination.
+
+    Uses a wide tolerance (30% for weekly, embedded in input) to capture
+    the full multi-month trading range as one bracket.
+    """
+    n = len(df)
+    if n < 20:
+        return {
+            "brk_bars": 0, "brk_high": np.nan, "brk_low": np.nan,
+            "brk_pos": 0.5, "near_top": False, "near_bottom": False,
+            "rising_lows": False, "falling_highs": False,
+            "donch_pctile": 1.0, "close_pos_26": 0.5,
+            "rr_up": 0.0, "rr_dest": 0.0, "one_tf_up": 0, "one_tf_dn": 0,
+        }
+    high = df["High"].values.astype(float)
+    low  = df["Low"].values.astype(float)
+    close_arr = df["Close"].values.astype(float)
+    c = close_arr[-1]
+
+    # Bracket: walk back with 30% envelope (captures wide multi-month ranges)
+    h, l = float(high[-1]), float(low[-1])
+    brk_bars = 1
+    for i in range(n - 2, max(-1, n - 200), -1):
+        h = max(h, float(high[i]))
+        l = min(l, float(low[i]))
+        mid = (h + l) / 2.0
+        if mid <= 0 or (h - l) / mid > 0.35:
+            break
+        brk_bars += 1
+    brk_high, brk_low = h, l
+    brk_range = brk_high - brk_low
+    brk_pos = (c - brk_low) / brk_range if brk_range > 0 else 0.5
+
+    # Near edge
+    near_top = brk_pos >= 0.80
+    near_bottom = brk_pos <= 0.20
+
+    # One-timeframing: count consecutive bars with rising lows (bullish) or
+    # falling highs (bearish) from the current bar backward.
+    one_tf_up = 0
+    for i in range(n - 1, max(0, n - 13), -1):
+        if i == 0:
+            break
+        if low[i] >= low[i - 1]:
+            one_tf_up += 1
+        else:
+            break
+    one_tf_dn = 0
+    for i in range(n - 1, max(0, n - 13), -1):
+        if i == 0:
+            break
+        if high[i] <= high[i - 1]:
+            one_tf_dn += 1
+        else:
+            break
+
+    # Rising lows over last 6 bars (looser than strict one-TF)
+    recent = min(6, n)
+    lows_window = low[-recent:]
+    rising_lows = all(lows_window[i] >= lows_window[i - 1] * 0.995
+                      for i in range(1, len(lows_window)))
+    highs_window = high[-recent:]
+    falling_highs = all(highs_window[i] <= highs_window[i - 1] * 1.005
+                        for i in range(1, len(highs_window)))
+
+    # Donchian width (20-bar) percentile
+    donch_h = pd.Series(high).rolling(20).max()
+    donch_l = pd.Series(low).rolling(20).min()
+    donch_w = (donch_h - donch_l) / ((donch_h + donch_l) / 2.0)
+    donch_pctile = float(donch_w.rank(pct=True).iloc[-1]) if donch_w.notna().any() else 1.0
+
+    # Close position in 26-bar range
+    span26 = min(26, n)
+    hi26 = float(high[-span26:].max())
+    lo26 = float(low[-span26:].min())
+    close_pos_26 = (c - lo26) / (hi26 - lo26) if (hi26 - lo26) > 0 else 0.5
+
+    # R:R for upside: (bracket_high - close) / (close - base)
+    base_window = max(brk_bars, 10)
+    base_low = float(low[-min(base_window, n):].min())
+    rr_up = (brk_high - c) / (c - base_low) if (c - base_low) > 0.01 else 0.0
+
+    # Destination R:R: measured move target = bracket_high + bracket_width
+    destination = brk_high + brk_range
+    rr_dest = (destination - c) / (c - base_low) if (c - base_low) > 0.01 else 0.0
+
+    return {
+        "brk_bars": brk_bars,
+        "brk_high": round(brk_high, 2),
+        "brk_low": round(brk_low, 2),
+        "brk_pos": round(brk_pos, 3),
+        "near_top": near_top,
+        "near_bottom": near_bottom,
+        "rising_lows": rising_lows,
+        "falling_highs": falling_highs,
+        "donch_pctile": round(donch_pctile, 2),
+        "close_pos_26": round(close_pos_26, 3),
+        "rr_up": round(rr_up, 1),
+        "rr_dest": round(rr_dest, 1),
+        "one_tf_up": one_tf_up,
+        "one_tf_dn": one_tf_dn,
+    }
+
+
+def massive_move_score(
+    brk: Dict, sq: Dict, asym: Dict, rel: Dict, rs: Dict,
+) -> int:
+    """Dalton-style massive-move pre-conditions score (0-100 scale).
+
+    A. Bracket quality (max ~25): duration, edge proximity, structure
+    B. Compression (max ~20): ATR/Donchian/BB squeeze
+    C. Sponsorship (max ~25): RS leading, up-vol asymmetry, close position
+    D. Breakout readiness (max ~20): edge test, range expanding, one-TF
+    E. Asymmetry (max ~10): stop close, destination far
+    """
+    s = 0
+
+    # --- A. Bracket quality ---
+    bb = brk["brk_bars"]
+    if bb >= 52:
+        s += 5
+    elif bb >= 26:
+        s += 3
+    elif bb >= 13:
+        s += 1
+
+    if brk["near_top"] or brk["near_bottom"]:
+        s += 5
+    elif brk["brk_pos"] >= 0.70 or brk["brk_pos"] <= 0.30:
+        s += 3
+
+    if bb >= 26:
+        s += 5  # wide bracket = more fuel
+
+    if brk["near_top"] and brk["rising_lows"]:
+        s += 5
+    elif brk["near_bottom"] and brk["falling_highs"]:
+        s += 5
+    elif brk["rising_lows"] or brk["falling_highs"]:
+        s += 2
+
+    # one-timeframing bonus
+    otf = max(brk["one_tf_up"], brk["one_tf_dn"])
+    if otf >= 6:
+        s += 5
+    elif otf >= 4:
+        s += 3
+
+    # --- B. Compression ---
+    if sq["bw_pctile"] <= 0.15:
+        s += 5
+    elif sq["bw_pctile"] <= 0.25:
+        s += 3
+    elif sq["bw_pctile"] <= 0.35:
+        s += 1
+
+    if brk["donch_pctile"] <= 0.20:
+        s += 5
+    elif brk["donch_pctile"] <= 0.35:
+        s += 3
+
+    if sq["in_squeeze"]:
+        s += 5
+    elif sq["released"]:
+        s += 3
+
+    # --- C. Sponsorship / accumulation ---
+    if rel.get("rs_breakout"):
+        s += 5
+    if rel.get("rs_released"):
+        s += 3
+    if rel.get("rs_bw_pctile", 1.0) <= 0.25:
+        s += 2  # RS line also compressed → about to resolve
+
+    a = asym.get("asymmetry", 1.0)
+    if a >= 1.30:
+        s += 5
+    elif a >= 1.15:
+        s += 3
+
+    cp = brk["close_pos_26"]
+    if cp >= 0.80:
+        s += 5
+    elif cp >= 0.65:
+        s += 3
+
+    if rs.get("all_weather"):
+        s += 5
+    elif rs.get("rs_down") is not None and rs["rs_down"] > 0:
+        s += 3
+
+    # --- D. Breakout readiness ---
+    if brk["near_top"] and brk["brk_pos"] >= 0.90:
+        s += 5
+    elif brk["near_top"]:
+        s += 3
+    elif brk["near_bottom"] and brk["brk_pos"] <= 0.10:
+        s += 5
+    elif brk["near_bottom"]:
+        s += 3
+
+    if brk["rising_lows"] and brk["near_top"]:
+        s += 5
+
+    if cp >= 0.85:
+        s += 5
+
+    # --- E. Asymmetry ---
+    if brk["rr_dest"] >= 5.0:
+        s += 5
+    elif brk["rr_dest"] >= 3.0:
+        s += 3
+
+    if brk["rr_up"] >= 3.0:
+        s += 5
+    elif brk["rr_up"] >= 2.0:
+        s += 3
+
+    return s
+
+
+# ---------------------------------------------------------------------------
 # Scoring
 # ---------------------------------------------------------------------------
 
@@ -591,6 +1024,7 @@ def score_candidate(
     theta: float,
     consol_tol: float,
     regime_df: Optional[pd.DataFrame] = None,
+    spy_df: Optional[pd.DataFrame] = None,
 ) -> Optional[Dict]:
     df = df.dropna().copy()
     if len(df) < max(BB_LENGTH + 5, TREND_MA + 5):
@@ -608,6 +1042,14 @@ def score_candidate(
     rs    = regime_strength(df, regime_df) if regime_df is not None else {
         "rs_up": np.nan, "rs_chop": np.nan, "rs_down": np.nan, "all_weather": False
     }
+    rel   = relative_analysis(df, spy_df, theta) if spy_df is not None else {
+        "rs_squeeze": False, "rs_released": False, "rs_bw_pctile": 1.0,
+        "rs_breakout": False, "rel_ov_sig": False, "rel_ov_sig_loose": False,
+        "rel_ov_str": "NONE", "rel_ov_shrink": np.nan, "rel_spv_sig": False,
+    }
+    early = early_asym_score(df, rel, ov, spv, sq, asym, cause, q, rs)
+    brk   = bracket_analysis(df)
+    massive = massive_move_score(brk, sq, asym, rel, rs)
 
     ma50 = df["Close"].rolling(TREND_MA).mean().iloc[-1]
     close = float(df["Close"].iloc[-1])
@@ -691,6 +1133,31 @@ def score_candidate(
         "rs_chop": rs.get("rs_chop"),
         "rs_down": rs.get("rs_down"),
         "all_weather": rs.get("all_weather"),
+        # Relative strength line (stock/SPY)
+        "rel_sq": rel.get("rs_squeeze"),
+        "rel_released": rel.get("rs_released"),
+        "rel_bw_pct": round(rel.get("rs_bw_pctile", 1.0), 2),
+        "rel_brk": rel.get("rs_breakout"),
+        "rel_ov": rel.get("rel_ov_sig"),
+        "rel_ov_loose": rel.get("rel_ov_sig_loose"),
+        "rel_ov_str": rel.get("rel_ov_str"),
+        "rel_spv": rel.get("rel_spv_sig"),
+        # Early asymmetric opportunity
+        "early_score": early.get("early_score"),
+        "drawdown": early.get("drawdown"),
+        "risk_pct": early.get("risk_pct"),
+        "rr": early.get("rr"),
+        "base_low": early.get("base_low"),
+        # Dalton massive-move pre-conditions
+        "massive": massive,
+        "brk_bars": brk.get("brk_bars"),
+        "brk_pos": brk.get("brk_pos"),
+        "near_edge": brk.get("near_top") or brk.get("near_bottom"),
+        "rising_lows": brk.get("rising_lows"),
+        "donch_pct": brk.get("donch_pctile"),
+        "close_pos": brk.get("close_pos_26"),
+        "one_tf": max(brk.get("one_tf_up", 0), brk.get("one_tf_dn", 0)),
+        "rr_dest": brk.get("rr_dest"),
     }
 
 
@@ -764,6 +1231,7 @@ def scan(tickers: List[str], tf: str) -> pd.DataFrame:
                 theta=SWING_THETA[tf],
                 consol_tol=CONSOL_TOL[tf],
                 regime_df=regime_df,
+                spy_df=spy_df,
             )
         except Exception as e:
             # keep scanning on per-ticker errors
@@ -773,11 +1241,7 @@ def scan(tickers: List[str], tf: str) -> pd.DataFrame:
 
     if not rows:
         return pd.DataFrame()
-    out = pd.DataFrame(rows).sort_values(
-        ["combined", "all_weather", "ord_score", "q_score", "asym"],
-        ascending=[False, False, False, False, False],
-    )
-    return out.reset_index(drop=True)
+    return pd.DataFrame(rows)
 
 
 def main():
@@ -793,6 +1257,10 @@ def main():
                     help="directory to write per-timeframe CSV results")
     ap.add_argument("--aw-only", action="store_true",
                     help="only display all-weather rows (positive excess in up/chop/down regimes)")
+    ap.add_argument("--mode", choices=["breakout", "early", "massive"], default="early",
+                    help="'breakout' = rank by combined (already-moving momentum); "
+                         "'early' = rank by early_score (pre-move asymmetric setups); "
+                         "'massive' = rank by Dalton massive-move pre-conditions (0-100)")
     args = ap.parse_args()
 
     tickers = args.tickers if args.tickers else fetch_sp500_tickers()
@@ -801,17 +1269,35 @@ def main():
     tfs = ["W", "M"] if args.tf == "both" else [args.tf]
     for tf in tfs:
         label = "WEEKLY" if tf == "W" else "MONTHLY"
-        print(f"\n================  {label} BREAKOUT CANDIDATES  ================")
+        mode_label = "EARLY ASYMMETRIC" if args.mode == "early" else "BREAKOUT"
+        print(f"\n================  {label} {mode_label} CANDIDATES  ================")
         df = scan(tickers, tf)
         if df.empty:
             print("no results")
             continue
+
+        # Sort based on mode
+        if args.mode == "early":
+            sort_cols = ["early_score", "rr", "all_weather", "drawdown"]
+            sort_asc  = [False, False, False, False]
+            score_col = "early_score"
+        elif args.mode == "massive":
+            sort_cols = ["massive", "rr_dest", "all_weather", "early_score"]
+            sort_asc  = [False, False, False, False]
+            score_col = "massive"
+        else:
+            sort_cols = ["combined", "all_weather", "ord_score", "q_score", "asym"]
+            sort_asc  = [False, False, False, False, False]
+            score_col = "combined"
+
+        df = df.sort_values(sort_cols, ascending=sort_asc).reset_index(drop=True)
+
         view = df.copy()
         if args.aw_only:
             view = view[view["all_weather"] == True]
-        filtered = view[view["combined"] >= args.min_score].head(args.top)
+        filtered = view[view[score_col] >= args.min_score].head(args.top)
         if filtered.empty:
-            print(f"no candidates above min-score {args.min_score}; showing top {args.top} by combined")
+            print(f"no candidates above min-score {args.min_score}; showing top {args.top} by {score_col}")
             filtered = view.head(args.top)
         with pd.option_context("display.max_rows", None,
                                "display.max_columns", None,
