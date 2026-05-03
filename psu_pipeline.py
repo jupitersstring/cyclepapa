@@ -27,7 +27,10 @@ import cache
 from edgar import latest_def14a, fetch_filing_html, Filing
 from proxy import html_to_text, extract_comp_section
 from psu_scoring import extract_features, score
+from event_signals import extract_event_features, score_event_stack
 from recent import recent_def14a, recent_def14a_range, RecentFiling
+
+CACHE_VERSION = "v2-eventstack"
 
 
 def current_price(ticker: str) -> float | None:
@@ -87,10 +90,10 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
     accession = getattr(filing, "accession", None)
     if use_cache and accession:
         cached = cache.get_score(accession)
-        if cached is not None:
+        if cached is not None and cached.get("_cache_version") == CACHE_VERSION:
             return cached
 
-    out: dict = {"ticker": ticker.upper()}
+    out: dict = {"ticker": ticker.upper(), "_cache_version": CACHE_VERSION}
     out["filing_date"] = filing.filing_date
     out["filing_url"] = filing.url
     try:
@@ -106,11 +109,32 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
     comp = extract_comp_section(text)
     feats = extract_features(ticker, comp)
     px = current_price(ticker)
-
     sc = score(feats, px)
+
+    # Event-driven incentive stack signals (run on the full proxy text,
+    # since strategic-review / advisers / activists / ownership tables
+    # often live outside the narrow comp section).
+    ev = extract_event_features(ticker, text)
+    market_cap = None
+    try:
+        import yfinance as yf  # already imported above; lazy-safe
+        info = yf.Ticker(ticker).info or {}
+        mc = info.get("marketCap")
+        if mc:
+            market_cap = float(mc)
+    except Exception:
+        market_cap = None
+    stack = score_event_stack(ev, market_cap)
+
+    # Composite Munger score: incentive stack carries equal-or-greater
+    # weight than PSU asymmetry. The archive synthesis emphasises that
+    # process quality is the real edge, not just the comp structure.
+    munger_composite = round(0.4 * (sc.asymmetry or 0) + 0.6 * stack.process_quality, 1)
 
     out.update(
         current_price=px,
+        market_cap=market_cap,
+        # PSU comp -- preserved keys for backward-compat
         has_psu_program=feats.has_psu_program,
         aggregate_metrics=feats.aggregate_metrics,
         per_share_metrics=feats.per_share_metrics,
@@ -123,7 +147,39 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
         upside_kicker=sc.upside_kicker,
         transformation_signal=sc.transformation_signal,
         asymmetry=sc.asymmetry,
-        flags=sc.flags,
+        # Event stack
+        strategic_review=stack.strategic_review,
+        change_of_control=stack.change_of_control,
+        buyback_score=stack.buyback,
+        controller_score=stack.controller,
+        activist_score=stack.activist,
+        board_score=stack.board,
+        financing_score=stack.financing,
+        inflection_score=stack.inflection,
+        majority_of_minority_score=stack.majority_of_minority,
+        process_quality=stack.process_quality,
+        munger_composite=munger_composite,
+        # Selected event features for inspection
+        has_special_committee=ev.has_special_committee,
+        strategic_alts_language=ev.strategic_alts_language,
+        advisers_named=ev.advisers_named,
+        engaged_adviser=ev.engaged_adviser,
+        activists_named=ev.activists_named,
+        has_cic_table=ev.has_cic_table,
+        double_trigger=ev.double_trigger,
+        single_trigger=ev.single_trigger,
+        buyback_authorisation_musd=ev.buyback_authorisation_musd,
+        largest_owner_pct=ev.largest_owner_pct,
+        insiders_group_pct=ev.insiders_group_pct,
+        board_ma_keyword_count=ev.board_ma_keyword_count,
+        pe_firm_count=ev.pe_firm_count,
+        revolver_capacity_musd=ev.revolver_capacity_musd,
+        cash_musd=ev.cash_musd,
+        active_bid=ev.active_bid,
+        offer_price=ev.offer_price,
+        majority_of_minority=ev.majority_of_minority,
+        # Combined flags
+        flags=sc.flags + stack.flags,
         snippet=feats.snippet[:1200],
     )
     if accession and use_cache:
@@ -139,11 +195,19 @@ def _fmt_list(v) -> str:
 
 def write_csv(rows: list[dict], path: Path) -> None:
     fields = [
-        "ticker", "filing_date", "current_price",
-        "asymmetry", "alignment", "upside_kicker", "transformation_signal",
-        "has_psu_program",
-        "per_share_metrics", "aggregate_metrics", "stock_price_hurdles",
-        "discretionary_language", "retirement_language",
+        "ticker", "company", "filing_date", "current_price", "market_cap",
+        "munger_composite", "process_quality", "asymmetry",
+        "strategic_review", "change_of_control", "buyback_score",
+        "controller_score", "activist_score", "board_score", "financing_score",
+        "alignment", "upside_kicker", "transformation_signal",
+        "has_special_committee", "strategic_alts_language", "engaged_adviser",
+        "active_bid", "offer_price", "majority_of_minority",
+        "advisers_named", "activists_named",
+        "buyback_authorisation_musd", "largest_owner_pct", "insiders_group_pct",
+        "revolver_capacity_musd", "cash_musd",
+        "board_ma_keyword_count", "pe_firm_count",
+        "has_psu_program", "per_share_metrics", "aggregate_metrics",
+        "stock_price_hurdles", "discretionary_language", "retirement_language",
         "repricing_language", "front_loaded_language",
         "flags", "filing_url", "error",
     ]
@@ -153,7 +217,8 @@ def write_csv(rows: list[dict], path: Path) -> None:
         for r in rows:
             row = r.copy()
             for k in ("aggregate_metrics", "per_share_metrics",
-                      "stock_price_hurdles", "flags"):
+                      "stock_price_hurdles", "flags",
+                      "advisers_named", "activists_named"):
                 if k in row:
                     row[k] = _fmt_list(row[k])
             w.writerow(row)
@@ -241,7 +306,8 @@ def main() -> int:
             rows.append(row)
             time.sleep(args.sleep)
 
-    rows.sort(key=lambda r: r.get("asymmetry", 0) or 0, reverse=True)
+    rows.sort(key=lambda r: r.get("munger_composite") or r.get("asymmetry") or 0,
+              reverse=True)
     write_csv(rows, Path(args.out))
 
     if args.json:
@@ -249,17 +315,28 @@ def main() -> int:
 
     if args.top:
         print()
-        print(f"{'TICKER':<8} {'ASYM':>6} {'ALIGN':>6} {'KICK':>6}  SETUP")
-        print("-" * 64)
+        hdr = (f"{'TICKER':<10} {'MUNGER':>6} {'PROC':>6} {'ASYM':>6} "
+               f"{'STRAT':>5} {'CIC':>5} {'BUY':>5} {'CTRL':>5} {'ACT':>5} "
+               f" SETUP")
+        print(hdr)
+        print("-" * len(hdr))
         for r in rows[: args.top]:
-            tag = "TRANSFORM" if r.get("transformation_signal") else (
-                "ERROR" if r.get("error") else ""
-            )
+            tags = []
+            if r.get("active_bid"): tags.append("BID")
+            if r.get("has_special_committee"): tags.append("CMTE")
+            if r.get("transformation_signal"): tags.append("TRANSFORM")
+            if r.get("activists_named"): tags.append("ACTIVIST")
+            tag = " ".join(tags) or ("ERROR" if r.get("error") else "")
             print(
-                f"{r.get('ticker',''):<8} "
-                f"{r.get('asymmetry',0) or 0:>6} "
-                f"{r.get('alignment',0) or 0:>6} "
-                f"{r.get('upside_kicker',0) or 0:>6}  "
+                f"{r.get('ticker',''):<10} "
+                f"{r.get('munger_composite',0) or 0:>6.1f} "
+                f"{r.get('process_quality',0) or 0:>6.1f} "
+                f"{r.get('asymmetry',0) or 0:>6.1f} "
+                f"{r.get('strategic_review',0) or 0:>5.0f} "
+                f"{r.get('change_of_control',0) or 0:>5.0f} "
+                f"{r.get('buyback_score',0) or 0:>5.0f} "
+                f"{r.get('controller_score',0) or 0:>5.0f} "
+                f"{r.get('activist_score',0) or 0:>5.0f}  "
                 f"{tag}"
             )
 
