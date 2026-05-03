@@ -1,0 +1,773 @@
+{
+  "eclipses": [
+    {
+      "date": "2026-02-17",
+      "lon": 328.8364,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2026-03-03",
+      "lon": 162.8592,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2026-08-12",
+      "lon": 140.0391,
+      "type": "total_solar"
+    },
+    {
+      "date": "2026-08-28",
+      "lon": 334.8525,
+      "type": "partial_lunar"
+    },
+    {
+      "date": "2027-02-06",
+      "lon": 317.6296,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2027-02-20",
+      "lon": 151.9829,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2027-07-18",
+      "lon": 295.961,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2027-08-02",
+      "lon": 129.9183,
+      "type": "total_solar"
+    },
+    {
+      "date": "2027-08-17",
+      "lon": 324.0745,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2028-01-12",
+      "lon": 111.563,
+      "type": "partial_lunar"
+    },
+    {
+      "date": "2028-01-26",
+      "lon": 306.1804,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2028-07-06",
+      "lon": 285.2633,
+      "type": "partial_lunar_NEAR_Vega"
+    },
+    {
+      "date": "2028-07-22",
+      "lon": 119.8418,
+      "type": "total_solar"
+    },
+    {
+      "date": "2028-12-31",
+      "lon": 100.5811,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2029-01-14",
+      "lon": 294.8309,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2029-06-12",
+      "lon": 81.4945,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2029-06-26",
+      "lon": 274.8294,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2029-07-11",
+      "lon": 109.6192,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2029-12-05",
+      "lon": 253.7652,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2029-12-20",
+      "lon": 89.3062,
+      "type": "total_lunar_NEAR_Betelgeuse"
+    },
+    {
+      "date": "2030-06-01",
+      "lon": 70.8366,
+      "type": "annular_solar_NEAR_Aldebaran"
+    },
+    {
+      "date": "2030-06-15",
+      "lon": 264.6374,
+      "type": "partial_lunar"
+    },
+    {
+      "date": "2030-11-25",
+      "lon": 243.0375,
+      "type": "total_solar"
+    },
+    {
+      "date": "2030-12-09",
+      "lon": 77.7951,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2031-05-07",
+      "lon": 226.5262,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2031-05-21",
+      "lon": 60.0715,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2031-06-05",
+      "lon": 254.5066,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2031-10-30",
+      "lon": 36.7934,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2031-11-14",
+      "lon": 232.2896,
+      "type": "solar"
+    },
+    {
+      "date": "2032-04-25",
+      "lon": 216.0036,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2032-05-09",
+      "lon": 49.4772,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2032-10-18",
+      "lon": 25.9936,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2032-11-03",
+      "lon": 221.3501,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2033-03-30",
+      "lon": 10.349,
+      "type": "total_solar"
+    },
+    {
+      "date": "2033-04-14",
+      "lon": 205.1159,
+      "type": "total_lunar_NEAR_Spica"
+    },
+    {
+      "date": "2033-09-23",
+      "lon": 180.8577,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2033-10-08",
+      "lon": 15.4514,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2034-03-20",
+      "lon": 359.8758,
+      "type": "total_solar_NEAR_Scheat"
+    },
+    {
+      "date": "2034-04-03",
+      "lon": 193.9971,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2034-09-12",
+      "lon": 169.9841,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2034-09-28",
+      "lon": 4.968,
+      "type": "partial_lunar"
+    },
+    {
+      "date": "2035-02-22",
+      "lon": 153.6586,
+      "type": "penumbral_lunar"
+    },
+    {
+      "date": "2035-03-09",
+      "lon": 349.2014,
+      "type": "annular_solar"
+    },
+    {
+      "date": "2035-08-19",
+      "lon": 326.0145,
+      "type": "partial_lunar"
+    },
+    {
+      "date": "2035-09-02",
+      "lon": 159.4627,
+      "type": "total_solar"
+    },
+    {
+      "date": "2036-02-11",
+      "lon": 142.7907,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2036-02-27",
+      "lon": 338.1643,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2036-07-23",
+      "lon": 121.1598,
+      "type": "partial_solar"
+    },
+    {
+      "date": "2036-08-07",
+      "lon": 315.2193,
+      "type": "total_lunar"
+    },
+    {
+      "date": "2036-08-21",
+      "lon": 149.2318,
+      "type": "partial_solar_NEAR_Regulus"
+    }
+  ],
+  "outer_pair_conj_and_ingress": [
+    {
+      "date": "2026-01-26",
+      "lon": 0.0,
+      "note": "Neptune ingress"
+    },
+    {
+      "date": "2026-02-14",
+      "lon": 0.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2026-02-20",
+      "lon": 0.7527,
+      "note": "Saturn-Neptune conjunction"
+    },
+    {
+      "date": "2026-04-26",
+      "lon": 60.0,
+      "note": "Uranus ingress"
+    },
+    {
+      "date": "2028-04-13",
+      "lon": 30.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2030-06-01",
+      "lon": 60.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2032-06-28",
+      "lon": 88.0203,
+      "note": "Saturn-Uranus conjunction"
+    },
+    {
+      "date": "2032-07-14",
+      "lon": 90.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2032-08-03",
+      "lon": 90.0,
+      "note": "Uranus ingress"
+    },
+    {
+      "date": "2032-12-12",
+      "lon": 90.0,
+      "note": "Uranus ingress"
+    },
+    {
+      "date": "2033-02-04",
+      "lon": 314.8375,
+      "note": "Jupiter-Pluto conjunction"
+    },
+    {
+      "date": "2033-05-22",
+      "lon": 90.0,
+      "note": "Uranus ingress"
+    },
+    {
+      "date": "2034-08-27",
+      "lon": 120.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2035-02-15",
+      "lon": 120.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2035-03-24",
+      "lon": 21.3518,
+      "note": "Jupiter-Neptune conjunction"
+    },
+    {
+      "date": "2035-05-11",
+      "lon": 120.0,
+      "note": "Saturn ingress"
+    },
+    {
+      "date": "2036-10-16",
+      "lon": 150.0,
+      "note": "Saturn ingress"
+    }
+  ],
+  "stations": [
+    {
+      "date": "2026-02-04",
+      "lon": 57.4598,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2026-05-06",
+      "lon": 305.5094,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2026-07-07",
+      "lon": 4.418,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2026-07-26",
+      "lon": 14.75,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2026-09-10",
+      "lon": 65.697,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2026-10-16",
+      "lon": 303.0685,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2026-12-10",
+      "lon": 7.931,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2026-12-12",
+      "lon": 1.6128,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2027-02-08",
+      "lon": 61.6826,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2027-05-08",
+      "lon": 307.178,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2027-07-09",
+      "lon": 6.6594,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2027-08-09",
+      "lon": 27.8804,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2027-09-15",
+      "lon": 69.9557,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2027-10-18",
+      "lon": 304.7482,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2027-12-15",
+      "lon": 3.8525,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2027-12-24",
+      "lon": 21.0206,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2028-02-12",
+      "lon": 65.9311,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2028-05-09",
+      "lon": 308.8253,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2028-07-11",
+      "lon": 8.9002,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2028-08-22",
+      "lon": 41.3136,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2028-09-19",
+      "lon": 74.241,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2028-10-19",
+      "lon": 306.4068,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2028-12-16",
+      "lon": 6.0918,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2029-01-05",
+      "lon": 34.4165,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2029-02-16",
+      "lon": 70.2054,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2029-05-11",
+      "lon": 310.4528,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2029-07-14",
+      "lon": 11.1412,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2029-09-06",
+      "lon": 55.019,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2029-09-23",
+      "lon": 78.5532,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2029-10-21",
+      "lon": 308.0456,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2029-12-19",
+      "lon": 8.3319,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2030-01-19",
+      "lon": 48.0903,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2030-02-20",
+      "lon": 74.5077,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2030-05-12",
+      "lon": 312.0607,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2030-07-16",
+      "lon": 13.3829,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2030-09-20",
+      "lon": 68.9462,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2030-09-28",
+      "lon": 82.8942,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2030-10-23",
+      "lon": 309.6647,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2030-12-21",
+      "lon": 10.5733,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2031-02-02",
+      "lon": 61.9935,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2031-02-25",
+      "lon": 78.8386,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2031-05-14",
+      "lon": 313.6502,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2031-07-19",
+      "lon": 15.6265,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2031-10-03",
+      "lon": 87.2647,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2031-10-05",
+      "lon": 83.0277,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2031-10-24",
+      "lon": 311.2652,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2031-12-24",
+      "lon": 12.8169,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2032-02-16",
+      "lon": 76.0599,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2032-03-01",
+      "lon": 83.2004,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2032-05-15",
+      "lon": 315.2212,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2032-07-20",
+      "lon": 17.872,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2032-10-06",
+      "lon": 91.667,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2032-10-18",
+      "lon": 97.1834,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2032-10-25",
+      "lon": 312.8466,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2032-12-25",
+      "lon": 15.0629,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2033-03-01",
+      "lon": 90.211,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2033-03-05",
+      "lon": 87.5945,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2033-05-17",
+      "lon": 316.7736,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2033-07-23",
+      "lon": 20.1203,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2033-10-11",
+      "lon": 96.1022,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2033-10-27",
+      "lon": 314.4087,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2033-11-02",
+      "lon": 111.3274,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2033-12-28",
+      "lon": 17.3113,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2034-03-10",
+      "lon": 92.0231,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2034-03-16",
+      "lon": 104.3612,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2034-05-19",
+      "lon": 318.3072,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2034-07-25",
+      "lon": 22.3706,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2034-10-16",
+      "lon": 100.5723,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2034-10-29",
+      "lon": 315.9516,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2034-11-16",
+      "lon": 125.3752,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2034-12-30",
+      "lon": 19.5617,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2035-03-14",
+      "lon": 96.4868,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2035-03-30",
+      "lon": 118.4247,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2035-05-20",
+      "lon": 319.8215,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2035-07-28",
+      "lon": 24.6225,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2035-10-21",
+      "lon": 105.0774,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2035-10-31",
+      "lon": 317.4748,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2035-11-30",
+      "lon": 139.2497,
+      "what": "Saturn_Rx"
+    },
+    {
+      "date": "2036-01-02",
+      "lon": 21.8125,
+      "what": "Neptune_Dx"
+    },
+    {
+      "date": "2036-03-18",
+      "lon": 100.9859,
+      "what": "Uranus_Dx"
+    },
+    {
+      "date": "2036-04-12",
+      "lon": 132.3237,
+      "what": "Saturn_Dx"
+    },
+    {
+      "date": "2036-05-21",
+      "lon": 321.3169,
+      "what": "Pluto_Rx"
+    },
+    {
+      "date": "2036-07-30",
+      "lon": 26.8743,
+      "what": "Neptune_Rx"
+    },
+    {
+      "date": "2036-10-25",
+      "lon": 109.6167,
+      "what": "Uranus_Rx"
+    },
+    {
+      "date": "2036-11-01",
+      "lon": 318.9787,
+      "what": "Pluto_Dx"
+    },
+    {
+      "date": "2036-12-13",
+      "lon": 152.8878,
+      "what": "Saturn_Rx"
+    }
+  ]
+}
