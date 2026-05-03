@@ -72,9 +72,22 @@ DEBT_REDUCTION_AMOUNT = re.compile(
     re.I,
 )
 PARTICIPATION_PCT = re.compile(
-    r"([0-9]{1,3}(?:\.[0-9]+)?)\s*%\s*(?:of (?:second[- ]lien |first[- ]lien |"
-    r"outstanding )?(?:notes|holders) (?:tendered|consented|"
-    r"accepted|supported|participated))",
+    r"(?:"
+    # Forward: "99.5% of notes tendered"
+    r"([0-9]{1,3}(?:\.[0-9]+)?)\s*%\s*(?:of (?:the )?(?:second[- ]lien |"
+    r"first[- ]lien |outstanding |total |aggregate |senior secured )?"
+    r"(?:notes|holders|noteholders|principal amount|aggregate principal)"
+    r"\s*(?:were\s+|was\s+|have been\s+)?"
+    r"(?:tendered|consented|accepted|supported|participated|exchanged))"
+    r"|"
+    # Reverse: "tendered/exchanged X% of notes"
+    r"(?:tendered|consented|accepted|exchanged|received tenders for)"
+    r"[^.\n]{0,50}?([0-9]{1,3}(?:\.[0-9]+)?)\s*%"
+    r"|"
+    # "supporting holders representing X%"
+    r"(?:supporting holders|consenting holders)[^.\n]{0,40}?"
+    r"([0-9]{1,3}(?:\.[0-9]+)?)\s*%"
+    r")",
     re.I,
 )
 GOING_CONCERN = re.compile(
@@ -226,12 +239,17 @@ def extract_special_features(ticker: str, text: str) -> SpecialFeatures:
         f.debt_reduced_musd = max(drs)
     pps = []
     for m in PARTICIPATION_PCT.finditer(text):
-        try:
-            v = float(m.group(1))
-            if 50.0 <= v <= 100.0:
-                pps.append(v)
-        except ValueError:
-            pass
+        for g in (1, 2, 3):
+            v = m.group(g)
+            if v is None:
+                continue
+            try:
+                vv = float(v)
+                if 50.0 <= vv <= 100.0:
+                    pps.append(vv)
+            except ValueError:
+                pass
+            break
     if pps:
         f.participation_pct = max(pps)
     f.going_concern = bool(GOING_CONCERN.search(text))
