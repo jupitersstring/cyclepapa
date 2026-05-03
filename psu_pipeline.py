@@ -33,7 +33,7 @@ from recent import (
     company_filings, RecentFiling,
 )
 
-CACHE_VERSION = "v4-table-trigger"
+CACHE_VERSION = "v5-wide-trigger"
 
 
 def current_price(ticker: str) -> float | None:

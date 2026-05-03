@@ -111,15 +111,21 @@ VEST_AT_PRICE = re.compile(
 # Hurdle-table trigger: many proxies/8-Ks render PSU ladders as tables that
 # survive HTML-to-text conversion as one $-value per line. A purely
 # in-line ladder regex misses these. After a trigger phrase, collect every
-# plausible $-amount within the next ~2000 chars.
+# plausible $-amount within the next ~4000 chars.
 HURDLE_TABLE_TRIGGER = re.compile(
-    r"(achievement of the following|the following (stock|share) price"
+    r"("
+    r"achievement of (?:the following|specified|certain)?\s*(?:specified\s+)?"
+    r"(?:stock|share) price"
+    r"|the following (stock|share) price"
     r"|the following (price )?(hurdles?|targets?|thresholds?|levels?|tranches?)"
-    r"|vest(ing|s)? (in (the )?)?(\w+ )?tranches"
-    r"|price hurdles? (?:are|of|set|equal)"
+    r"|vest(ing|s)? (in (the )?)?(\w+ )?(equal )?tranches"
+    r"|tranches based on (the )?achievement"
+    r"|price (hurdles?|targets?|thresholds?) (?:are|of|set|equal)"
     r"|performance hurdles? (?:are|of)"
-    r"|following stock price (hurdles?|levels?|thresholds?|targets?)"
     r"|VWAP (hurdles?|of|equal|targets?)"
+    r"|weighted average (closing )?price[^.]{0,200}?(equal|exceed|reach)"
+    r"|highest (\d+[- ])?day average"
+    r"|trailing \d+[- ]day"
     r")",
     re.I,
 )
@@ -247,9 +253,13 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
                 PRE_POSITIONAL_HURDLE, VEST_AT_PRICE):
         found.extend(float(x) for x in pat.findall(base))
 
-    # Trigger-window extraction for table-rendered ladders.
+    # Trigger-window extraction for table-rendered ladders. Wider window
+    # (4000 chars) handles verbose phrasings like "the weighted average
+    # price ... over 30 consecutive trading days is equal to or greater
+    # than $50". We harvest every plausible $-amount and let downstream
+    # de-duplication keep the unique tranche values.
     for m in HURDLE_TABLE_TRIGGER.finditer(base):
-        window = base[m.end(): m.end() + 2500]
+        window = base[m.end(): m.end() + 4000]
         for d in DOLLAR_AMT.findall(window):
             try:
                 v = float(d)
