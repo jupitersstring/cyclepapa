@@ -260,50 +260,77 @@ class FIPResult:
     n_days: int
 
 
-def compute_fip(symbol: str, prices: pd.Series) -> FIPResult | None:
+def compute_fip(symbol: str, prices: pd.Series, skip_recent_days: int = 21) -> FIPResult | None:
+    """Compute long- and short-window FIP scores.
+
+    Per Da/Gurun/Warachka 2014 (eq. 1), the canonical formation period is
+    t-12m through t-1m — i.e. the most recent month is SKIPPED to avoid
+    short-term reversal contamination. We honour this by default with
+    skip_recent_days=21. Set skip_recent_days=0 for a real-time signal that
+    includes today's behaviour.
+    """
     prices = prices.dropna()
     if len(prices) < 260:
         return None
 
     daily_ret = prices.pct_change()
-    pret_d, fip_d = _fip(daily_ret.iloc[-252:])
+    skip = max(0, int(skip_recent_days))
+    end_d = -skip if skip > 0 else None
+    pret_d, fip_d = _fip(daily_ret.iloc[-(252 + skip):end_d])
 
     weekly = prices.resample("W-FRI").last().dropna()
     if len(weekly) < 70:
         return None
     weekly_ret = weekly.pct_change()
-    pret_w, fip_w = _fip(weekly_ret.iloc[-52:])
-    prev_window = weekly_ret.iloc[-(52 + 13):-13]
-    _, fip_w_prev = _fip(prev_window)
+    # Convert skip days to weeks (~5 trading days per week)
+    skip_w = max(0, round(skip / 5))
+    end_w = -skip_w if skip_w > 0 else None
+    pret_w, fip_w = _fip(weekly_ret.iloc[-(52 + skip_w):end_w])
+    # Inflection: weekly FIP one quarter (13 weeks) before the current window
+    prev_end = -(13 + skip_w) if (13 + skip_w) > 0 else None
+    _, fip_w_prev = _fip(weekly_ret.iloc[-(52 + 13 + skip_w):prev_end])
     w_inflection = fip_w - fip_w_prev if not (math.isnan(fip_w) or math.isnan(fip_w_prev)) else np.nan
 
-    # Monthly FIP: 24-month window of month-end returns; "inflection" compares
-    # to the 24-month window ending 6 months ago.
     monthly = prices.resample("ME").last().dropna()
     pret_m = fip_m = fip_m_prev = m_inflection = float("nan")
     monthly_ret = pd.Series(dtype=float)
-    if len(monthly) >= 24:
+    skip_m = max(0, round(skip / 21))
+    if len(monthly) >= 24 + skip_m:
         monthly_ret = monthly.pct_change()
-        pret_m, fip_m = _fip(monthly_ret.iloc[-24:])
-        if len(monthly_ret) >= 30:
-            _, fip_m_prev = _fip(monthly_ret.iloc[-30:-6])
+        end_m = -skip_m if skip_m > 0 else None
+        pret_m, fip_m = _fip(monthly_ret.iloc[-(24 + skip_m):end_m])
+        if len(monthly_ret) >= 30 + skip_m:
+            prev_end_m = -(6 + skip_m) if (6 + skip_m) > 0 else None
+            _, fip_m_prev = _fip(monthly_ret.iloc[-(30 + skip_m):prev_end_m])
             if not (math.isnan(fip_m) or math.isnan(fip_m_prev)):
                 m_inflection = fip_m - fip_m_prev
 
-    # --- Short-window FIP (44d / 12w / 12m) ---
-    pret_d_s, fip_d_s = _fip(daily_ret.iloc[-44:])
-    pret_d_s_prev, fip_d_s_prev = _fip(daily_ret.iloc[-(44 + 22):-22]) if len(daily_ret) >= 66 else (np.nan, np.nan)
+    # --- Short-window FIP (44d / 12w / 12m). Skip-recent applies here too. ---
+    pret_d_s, fip_d_s = _fip(daily_ret.iloc[-(44 + skip):end_d])
+    end_d_prev = -(22 + skip) if (22 + skip) > 0 else None
+    pret_d_s_prev, fip_d_s_prev = (
+        _fip(daily_ret.iloc[-(44 + 22 + skip):end_d_prev]) if len(daily_ret) >= 66 + skip else (np.nan, np.nan)
+    )
     fip_d_s_inflection = (fip_d_s - fip_d_s_prev) if not (math.isnan(fip_d_s) or math.isnan(fip_d_s_prev)) else np.nan
 
-    pret_w_s, fip_w_s = _fip(weekly_ret.iloc[-12:], min_len=8) if len(weekly_ret) >= 12 else (np.nan, np.nan)
-    pret_w_s_prev, fip_w_s_prev = _fip(weekly_ret.iloc[-(12 + 6):-6], min_len=8) if len(weekly_ret) >= 18 else (np.nan, np.nan)
+    pret_w_s, fip_w_s = (
+        _fip(weekly_ret.iloc[-(12 + skip_w):end_w], min_len=8)
+        if len(weekly_ret) >= 12 + skip_w else (np.nan, np.nan)
+    )
+    end_w_prev = -(6 + skip_w) if (6 + skip_w) > 0 else None
+    pret_w_s_prev, fip_w_s_prev = (
+        _fip(weekly_ret.iloc[-(12 + 6 + skip_w):end_w_prev], min_len=8)
+        if len(weekly_ret) >= 18 + skip_w else (np.nan, np.nan)
+    )
     fip_w_s_inflection = (fip_w_s - fip_w_s_prev) if not (math.isnan(fip_w_s) or math.isnan(fip_w_s_prev)) else np.nan
 
     pret_m_s = fip_m_s = fip_m_s_prev = fip_m_s_inflection = np.nan
-    if len(monthly_ret) >= 12:
-        pret_m_s, fip_m_s = _fip(monthly_ret.iloc[-12:], min_len=8)
-        if len(monthly_ret) >= 18:
-            _, fip_m_s_prev = _fip(monthly_ret.iloc[-(12 + 6):-6], min_len=8)
+    if len(monthly_ret) >= 12 + skip_m:
+        end_m_s = -skip_m if skip_m > 0 else None
+        pret_m_s, fip_m_s = _fip(monthly_ret.iloc[-(12 + skip_m):end_m_s], min_len=8)
+        if len(monthly_ret) >= 18 + skip_m:
+            end_m_s_prev = -(6 + skip_m) if (6 + skip_m) > 0 else None
+            _, fip_m_s_prev = _fip(monthly_ret.iloc[-(12 + 6 + skip_m):end_m_s_prev], min_len=8)
             if not (math.isnan(fip_m_s) or math.isnan(fip_m_s_prev)):
                 fip_m_s_inflection = fip_m_s - fip_m_s_prev
 
