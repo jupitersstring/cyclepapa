@@ -113,8 +113,8 @@ def main() -> int:
                    help="Optional cap on market cap in $M (default none).")
     p.add_argument("--min-confidence", type=int, default=0,
                    help="Optional confidence floor (default 0 = no filter).")
-    p.add_argument("--region", choices=["US", "UK", "ALL"], default="ALL",
-                   help="Filter by listing region (UK = .L suffix).")
+    p.add_argument("--region", choices=["US", "UK", "INTL", "ALL"], default="ALL",
+                   help="US (no suffix) / UK (.L) / INTL (.AX/.TO/.HK/.SI/.T/.DE/.PA/.MI) / ALL.")
     args = p.parse_args()
 
     rows = load_all()
@@ -127,10 +127,18 @@ def main() -> int:
         if bad:
             continue
         # Region filter
-        is_uk = tk.endswith(".L") or tk.endswith(".AX") or tk.endswith(".T")
-        if args.region == "US" and is_uk:
+        is_uk = tk.endswith(".L")
+        is_intl = (tk.endswith(".AX") or tk.endswith(".TO") or tk.endswith(".V")
+                   or tk.endswith(".HK") or tk.endswith(".SI")
+                   or tk.endswith(".T") or tk.endswith(".DE")
+                   or tk.endswith(".PA") or tk.endswith(".MI")
+                   or tk.endswith(".F"))
+        is_us = "." not in tk
+        if args.region == "US" and not is_us:
             continue
-        if args.region == "UK" and not tk.endswith(".L"):
+        if args.region == "UK" and not is_uk:
+            continue
+        if args.region == "INTL" and not is_intl:
             continue
         px = r.get("current_price") or 0
         mc = (r.get("market_cap") or 0) / 1e6
