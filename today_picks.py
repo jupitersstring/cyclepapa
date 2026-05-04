@@ -111,6 +111,8 @@ def main() -> int:
     p.add_argument("--min-mcap-musd", type=float, default=50.0)
     p.add_argument("--min-confidence", type=int, default=0,
                    help="Optional confidence floor (default 0 = no filter).")
+    p.add_argument("--region", choices=["US", "UK", "ALL"], default="ALL",
+                   help="Filter by listing region (UK = .L suffix).")
     args = p.parse_args()
 
     rows = load_all()
@@ -121,6 +123,12 @@ def main() -> int:
     for tk, r in merged.items():
         bad, _ = is_excluded(tk, r.get("company"))
         if bad:
+            continue
+        # Region filter
+        is_uk = tk.endswith(".L") or tk.endswith(".AX") or tk.endswith(".T")
+        if args.region == "US" and is_uk:
+            continue
+        if args.region == "UK" and not tk.endswith(".L"):
             continue
         px = r.get("current_price") or 0
         mc = (r.get("market_cap") or 0) / 1e6
@@ -203,8 +211,38 @@ def main() -> int:
             sigs.append("DISTRESSED-STUB")
         if r.get("has_spinoff"):
             sigs.append("SPIN-OFF")
+        if r.get("rns_signal_count"):
+            kws = ",".join(list((r.get("rns_keywords") or {}).keys())[:3])
+            sigs.append(f"RNS({kws})")
         if sigs:
             print(f"    signals: {' | '.join(sigs)}")
+
+        # New yfinance enrichment columns
+        ext = []
+        if r.get("short_pct_float") is not None:
+            ext.append(f"short={r['short_pct_float']*100:.1f}%")
+        if r.get("short_ratio"):
+            ext.append(f"days_to_cover={r['short_ratio']:.1f}")
+        if r.get("earnings_date_days") is not None:
+            ed = r['earnings_date_days']
+            if -7 <= ed <= 60:
+                ext.append(f"earnings_in={ed}d")
+        if r.get("analyst_count") is not None:
+            ext.append(f"analysts={int(r['analyst_count'])}")
+        if r.get("target_mean_pct") is not None:
+            ext.append(f"target={r['target_mean_pct']:+.0f}%")
+        if r.get("drawdown_pct") is not None:
+            ext.append(f"52w_pos={r['drawdown_pct']:.0f}%")
+        if r.get("p_b") is not None:
+            ext.append(f"P/B={r['p_b']:.2f}")
+        if r.get("fcf_yield"):
+            ext.append(f"FCF_yld={r['fcf_yield']*100:.1f}%")
+        if r.get("div_yield"):
+            ext.append(f"div={r['div_yield']*100:.1f}%")
+        if r.get("sector"):
+            ext.append(f"sector={r['sector']}")
+        if ext:
+            print(f"    fundamentals: {' | '.join(ext)}")
 
         # Reasons
         rr = r.get("_conf_reasons") or []

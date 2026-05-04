@@ -71,10 +71,21 @@ def load_rns_overlay() -> dict[str, dict]:
         return {}
 
 
+def load_yfinance_overlay() -> dict[str, dict]:
+    p = Path("yfinance_enrichment.json")
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        return {}
+
+
 def apply_enrichment(merged: dict[str, dict]) -> None:
-    """Patch in 13D / Form 4 / RNS overlays. Called after merge_by_ticker."""
+    """Patch in 13D / Form 4 / RNS / yfinance overlays."""
     enr = load_enrichment_overlay()
     rns = load_rns_overlay()
+    yfo = load_yfinance_overlay()
     for tk, r in merged.items():
         e = enr.get(tk)
         if e:
@@ -94,6 +105,25 @@ def apply_enrichment(merged: dict[str, dict]) -> None:
                                  if isinstance(v, int) and v > 0
                                  and k != "rns_signal_count"}
             r["news_titles"] = n.get("news_titles") or []
+        y = yfo.get(tk)
+        if y:
+            for key in ("short_pct_float", "short_ratio",
+                        "earnings_date_days", "analyst_count",
+                        "target_mean_pct", "drawdown_pct",
+                        "fcf_yield", "ev_ebitda", "ev_revenue",
+                        "p_b", "p_s", "div_yield", "debt_eq",
+                        "rev_growth", "earn_growth", "roe",
+                        "inst_pct", "insider_pct", "sector",
+                        "industry", "currency"):
+                if y.get(key) is not None and r.get(key) in (None, 0, False, ""):
+                    r[key] = y[key]
+            # Always upgrade name/price/mcap with yfinance fresh
+            if y.get("name") and not r.get("name") and not r.get("company"):
+                r["company"] = y["name"]
+            if y.get("price") and not r.get("current_price"):
+                r["current_price"] = y["price"]
+            if y.get("market_cap") and not r.get("market_cap"):
+                r["market_cap"] = y["market_cap"]
 
 
 def merge_by_ticker(rows: list[dict]) -> dict[str, dict]:
@@ -158,9 +188,10 @@ def merge_by_ticker(rows: list[dict]) -> dict[str, dict]:
 
 
 def psu_leg(r: dict) -> float:
-    """0-100. Strongest of: PSU asymmetry, OTM-ladder kicker, transformation.
+    """0-100. Strongest of: PSU asymmetry, OTM-ladder kicker, transformation,
+    or (UK) RNS-keyword PSU/LTIP/remuneration evidence.
 
-    Filters: hurdle values producing >50x moneyness are treated as
+    Filters: hurdle values producing >30x moneyness are treated as
     parser noise (fee tables, aggregate share amounts), not vest hurdles."""
     asym = r.get("asymmetry") or 0
     kick = r.get("upside_kicker") or 0
@@ -173,7 +204,21 @@ def psu_leg(r: dict) -> float:
         moneyness = max(plausible) / px
         if moneyness >= 1.5:
             ladder_kicker = min(100, (moneyness - 1.0) * 50.0)
-    return min(100.0, max(asym, kick, ladder_kicker) + bonus)
+
+    # UK RNS-derived synthetic PSU leg: even without proxy text, a UK
+    # name with multiple LTIP / performance-share / remuneration keyword
+    # hits in the RNS feed has *some* comp-structure context. Cap at 60
+    # so it doesn't dominate genuine US ladder finds.
+    rns_kw = r.get("rns_keywords") or {}
+    rns_psu = (
+        (rns_kw.get("ltip", 0) or 0) * 15 +
+        (rns_kw.get("performance_share", 0) or 0) * 15 +
+        (rns_kw.get("remuneration", 0) or 0) * 8 +
+        (rns_kw.get("options", 0) or 0) * 5
+    )
+    rns_psu = min(60.0, rns_psu)
+
+    return min(100.0, max(asym, kick, ladder_kicker, rns_psu) + bonus)
 
 
 def plausible_hurdles(r: dict) -> list[float]:
