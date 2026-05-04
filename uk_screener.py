@@ -70,10 +70,41 @@ def _safe(d: dict, k: str) -> float | None:
 
 @cache_decorator := (lambda f: f)  # placeholder; cached via cache.get_price
 def fetch_uk_fundamentals(ticker: str) -> dict:
-    """Pull yfinance fundamentals. Returns {} on failure."""
+    """Pull yfinance fundamentals.
+
+    yfinance 404s on delisted UK tickers; we capture and fall back to
+    fast_info where possible so the row still surfaces with at least a
+    price. Returns {} on total failure."""
+    info: dict = {}
+    fast_only = False
     try:
         t = yf.Ticker(ticker)
-        info = t.info or {}
+        try:
+            info = t.info or {}
+        except Exception:
+            info = {}
+        if not info:
+            # Fall back to fast_info for at least a price + market cap.
+            fi = getattr(t, "fast_info", None)
+            if fi is not None:
+                fi_d = {}
+                for k in ("last_price", "market_cap", "currency",
+                          "year_high", "year_low"):
+                    try:
+                        v = fi[k] if hasattr(fi, "__getitem__") else getattr(fi, k, None)
+                        if v is not None:
+                            fi_d[k] = v
+                    except Exception:
+                        pass
+                if fi_d:
+                    info = {
+                        "currentPrice": fi_d.get("last_price"),
+                        "marketCap":    fi_d.get("market_cap"),
+                        "currency":     fi_d.get("currency"),
+                        "fiftyTwoWeekHigh": fi_d.get("year_high"),
+                        "fiftyTwoWeekLow":  fi_d.get("year_low"),
+                    }
+                    fast_only = True
     except Exception:
         return {}
     if not info:
@@ -103,6 +134,7 @@ def fetch_uk_fundamentals(ticker: str) -> dict:
         "shares_out":  _safe(info, "sharesOutstanding"),
         "held_insid":  _safe(info, "heldPercentInsiders"),
         "held_inst":   _safe(info, "heldPercentInstitutions"),
+        "fast_only":   fast_only,
     }
 
 
@@ -156,13 +188,26 @@ def score_uk(fund: dict, sector: str) -> dict:
     else:
         drawdown = 50.0
 
+    # Neglect: small mcap + low institutional ownership. UK micro/small
+    # caps with <40% institutional and <£500m mcap are systematically
+    # underfollowed -- a structural alpha source the user flagged.
+    mcap = fund.get("market_cap") or 0
+    held_inst = fund.get("held_inst") or 0
+    if mcap > 0:
+        size_factor = max(0.0, min(1.0, (5e9 - mcap) / 4.5e9))  # 1.0 below £500M, 0 above £5bn
+    else:
+        size_factor = 0.5
+    inst_factor = max(0.0, min(1.0, (0.5 - held_inst) / 0.5))   # 1.0 below 0%, 0 above 50%
+    neglect = 100.0 * (0.6 * size_factor + 0.4 * inst_factor)
+
     tailwind = SECTOR_TAILWIND.get(sector, 1.0)
 
     composite_raw = (
-        0.35 * valuation
-        + 0.25 * income
-        + 0.20 * quality
-        + 0.20 * drawdown
+        0.30 * valuation
+        + 0.20 * income
+        + 0.18 * quality
+        + 0.17 * drawdown
+        + 0.15 * neglect
     )
     composite = round(composite_raw * tailwind, 1)
     return {
@@ -171,6 +216,7 @@ def score_uk(fund: dict, sector: str) -> dict:
         "income":     round(income, 1),
         "quality":    round(quality, 1),
         "drawdown":   round(drawdown, 1),
+        "neglect":    round(neglect, 1),
         "tailwind":   tailwind,
     }
 
@@ -213,10 +259,12 @@ def main() -> int:
     fields = [
         "ticker", "name", "sector", "tag", "currency",
         "price", "market_cap",
-        "composite", "valuation", "income", "quality", "drawdown", "tailwind",
+        "composite", "valuation", "income", "quality", "drawdown",
+        "neglect", "tailwind",
         "p_b", "p_s", "ev_ebitda", "trailing_pe", "forward_pe",
         "div_yield", "payout", "roe", "debt_eq", "rev_growth", "earn_growth",
-        "fwk_low", "fwk_high",
+        "held_insid", "held_inst",
+        "fwk_low", "fwk_high", "fast_only",
     ]
     with open(args.out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
@@ -227,8 +275,11 @@ def main() -> int:
     Path(args.json).write_text(json.dumps(rows, indent=2, default=str))
 
     print()
-    print(f"=== TOP {args.top} UK NAMES (eligible {len(eligible)} of {len(rows)}) ===")
-    print(f"{'TICKER':<9}{'COMP':>6}{'VAL':>5}{'INC':>5}{'QUA':>5}{'DD':>5}{'TW':>5}  "
+    n_failed = sum(1 for r in rows if not r.get("market_cap"))
+    print(f"=== TOP {args.top} UK NAMES (eligible {len(eligible)} of "
+          f"{len(rows)}; {n_failed} fetch failures) ===")
+    print(f"{'TICKER':<9}{'COMP':>6}{'VAL':>5}{'INC':>5}{'QUA':>5}{'DD':>5}"
+          f"{'NEG':>5}{'TW':>5}  "
           f"{'PRICE':>9}{'MCAP':>8}  SECTOR     NAME")
     for r in eligible[: args.top]:
         mc = (r.get("market_cap") or 0) / 1e6
@@ -239,6 +290,7 @@ def main() -> int:
               f"{r.get('income') or 0:>5.0f}"
               f"{r.get('quality') or 0:>5.0f}"
               f"{r.get('drawdown') or 0:>5.0f}"
+              f"{r.get('neglect') or 0:>5.0f}"
               f"{r.get('tailwind') or 1:>5.2f}  "
               f"{px:>8.2f}{cur[:1] if cur else ' ':<1}"
               f"{mc:>7.0f}M  "
