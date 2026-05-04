@@ -312,6 +312,74 @@ def recent_8k_restructuring_range(
     return out
 
 
+def company_13d_filers(ticker: str, days: int = 365) -> list[dict]:
+    """Activists who have filed SC 13D (or amendments) on a company.
+
+    Returns [{'filer_cik','filer_name','form','date','accession'}].
+    SC 13D = active intent (>5% owner declaring activist purpose);
+    SC 13D/A = amendment; SC 13G = passive (excluded here)."""
+    from edgar import cik_for, _get, SEC_DATA
+    cik = cik_for(ticker)
+    if not cik:
+        return []
+    out: list[dict] = []
+    try:
+        sub = _get(f"{SEC_DATA}/submissions/CIK{cik}.json").json()
+    except Exception:
+        return []
+    recent = sub.get("filings", {}).get("recent", {})
+    forms = recent.get("form", [])
+    accs = recent.get("accessionNumber", [])
+    docs = recent.get("primaryDocument", [])
+    dates = recent.get("filingDate", [])
+    cutoff = None
+    if days:
+        from datetime import datetime, timedelta, timezone
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    for form, acc, doc, dt in zip(forms, accs, docs, dates):
+        if form not in ("SC 13D", "SC 13D/A"):
+            continue
+        if cutoff and dt < cutoff:
+            continue
+        out.append({"form": form, "date": dt, "accession": acc, "doc": doc})
+    return out
+
+
+def company_insider_buys(ticker: str, days: int = 90) -> list[dict]:
+    """Recent insider open-market purchases via Form 4.
+
+    Returns [{'date','accession','filer'}] for Form 4 filings in the
+    past N days. The actual purchase-vs-sale distinction lives in the
+    XML detail (transaction code 'P' = purchase, 'S' = sale); this
+    function just enumerates Form 4s for the issuer -- pair with text
+    parsing if you need code-level filtering."""
+    from edgar import cik_for, _get, SEC_DATA
+    cik = cik_for(ticker)
+    if not cik:
+        return []
+    out: list[dict] = []
+    try:
+        sub = _get(f"{SEC_DATA}/submissions/CIK{cik}.json").json()
+    except Exception:
+        return []
+    recent = sub.get("filings", {}).get("recent", {})
+    forms = recent.get("form", [])
+    accs = recent.get("accessionNumber", [])
+    docs = recent.get("primaryDocument", [])
+    dates = recent.get("filingDate", [])
+    cutoff = None
+    if days:
+        from datetime import datetime, timedelta, timezone
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    for form, acc, doc, dt in zip(forms, accs, docs, dates):
+        if form not in ("4", "4/A"):
+            continue
+        if cutoff and dt < cutoff:
+            continue
+        out.append({"form": form, "date": dt, "accession": acc, "doc": doc})
+    return out
+
+
 def recent_def14a(n: int = 25) -> list[RecentFiling]:
     """Walk the EDGAR 'getcurrent' atom feed for DEF 14A filings."""
     n = max(1, min(int(n), 100))

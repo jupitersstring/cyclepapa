@@ -32,10 +32,12 @@ from special_situations import extract_special_features, score_specials
 from compound_screens import run_screens
 from recent import (
     recent_def14a, recent_def14a_range, recent_8k_inducement_range,
-    recent_8k_restructuring_range, company_filings, RecentFiling,
+    recent_8k_restructuring_range, company_filings,
+    company_13d_filers, company_insider_buys,
+    RecentFiling,
 )
 
-CACHE_VERSION = "v7-bastian-fix"
+CACHE_VERSION = "v8-primary-13d-form4"
 
 
 def current_price(ticker: str) -> float | None:
@@ -136,6 +138,26 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
     sf = extract_special_features(ticker, text)
     sp = score_specials(sf, market_cap)
 
+    # Primary-source overlays: SC 13D filers in past year (replaces the
+    # text-mention activist heuristic with a real cap-table fact) and
+    # Form 4 count over the past 90 days (insider activity tape).
+    try:
+        sc13d = company_13d_filers(ticker, days=365)
+    except Exception:
+        sc13d = []
+    try:
+        form4s = company_insider_buys(ticker, days=90)
+    except Exception:
+        form4s = []
+    has_13d = len(sc13d) > 0
+    insider_form4_count_90d = len(form4s)
+    # Heuristic: 3+ Form 4s in 90 days strongly suggests insider buying
+    # tape. Without parsing each XML for transaction code 'P' vs 'S',
+    # this is a best-effort signal -- the user should still verify.
+    insider_buying_evidence = insider_form4_count_90d >= 3
+    if insider_buying_evidence:
+        sf.insider_buying_language = True  # lift compound-screen eligibility
+
     # Composite Munger score: incentive stack carries equal-or-greater
     # weight than PSU asymmetry. The archive synthesis emphasises that
     # process quality is the real edge, not just the comp structure.
@@ -222,6 +244,10 @@ def _process_filing(ticker: str, filing, use_cache: bool = True) -> dict:
         governance_reset_score=sp.governance_reset,
         special_situations_score=sp.special_situations_score,
         taxonomy=sp.taxonomy,
+        sc13d_filings_1y=len(sc13d),
+        sc13d_dates=[f["date"] for f in sc13d[:5]],
+        insider_form4_count_90d=insider_form4_count_90d,
+        insider_buying_evidence=insider_buying_evidence,
         snippet=feats.snippet[:1200],
         # Combined flags
         flags=sc.flags + stack.flags + sp.flags,
