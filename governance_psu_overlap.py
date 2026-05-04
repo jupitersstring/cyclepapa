@@ -29,8 +29,9 @@ from universe_filter import is_excluded
 def load_all() -> list[dict]:
     sources = [
         "v2_detail.json", "wide180_detail.json",
-        "induce_detail.json", "restruct_v7.json",
-        "targets_v4.json", "missing_v8.json",
+        "induce_detail.json",
+        "restruct_v10.json", "restruct_v7.json",  # v10 first; merge prefers max
+        "targets_v4.json", "missing_v8.json", "missing_v10.json",
         "uk_v2_detail.json", "uk_detail.json",
     ]
     rows: list[dict] = []
