@@ -62,31 +62,56 @@ def load_all_results(results_dir: str = "results") -> pd.DataFrame:
 
 
 def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
-    """Compute the unified cross-system asymmetry score for each row."""
+    """Compute the unified cross-system asymmetry score for each row.
+    Only scores BULLISH setups — stocks showing accumulation structure
+    near the TOP of a bracket with rising lows, not breakdowns."""
 
     def safe(col, default=0):
         return df[col].fillna(default) if col in df.columns else pd.Series(default, index=df.index)
 
     ua = pd.Series(0.0, index=df.index, name="ua_score")
 
-    # === 1. RISK/REWARD (most important — pure asymmetry) ===
+    # === DIRECTIONAL FILTERS (only reward bullish structure) ===
+    above_ma = safe("above_ma50").astype(bool)
+    close_pos = safe("close_pos", 0.5)
+    brk_pos = safe("brk_pos", 0.5)
+    rising = safe("rising_lows").astype(bool)
+
+    # Is the stock near the TOP of its bracket (bullish) or bottom (bearish)?
+    near_top = brk_pos >= 0.70
+    near_bot = brk_pos <= 0.30
+    mid_range = (brk_pos > 0.30) & (brk_pos < 0.70)
+
+    # Bullish structure: rising lows OR above MA OR close in upper half
+    bullish = (rising | above_ma | (close_pos >= 0.55))
+
+    # === 1. RISK/REWARD (only meaningful for bullish setups) ===
     rr = safe("rr").clip(0, 50)
-    ua += np.where(rr >= 10, 15, np.where(rr >= 5, 10, np.where(rr >= 3, 6, np.where(rr >= 2, 3, 0))))
+    ua += np.where(bullish & (rr >= 10), 15,
+          np.where(bullish & (rr >= 5), 10,
+          np.where(bullish & (rr >= 3), 6,
+          np.where(bullish & (rr >= 2), 3, 0))))
 
     risk = safe("risk_pct", 1.0)
-    ua += np.where(risk <= 0.03, 10, np.where(risk <= 0.05, 7, np.where(risk <= 0.08, 4, np.where(risk <= 0.12, 2, 0))))
+    ua += np.where(bullish & (risk <= 0.03), 10,
+          np.where(bullish & (risk <= 0.05), 7,
+          np.where(bullish & (risk <= 0.08), 4,
+          np.where(bullish & (risk <= 0.12), 2, 0))))
 
     rr_dest = safe("rr_dest").clip(0, 50)
-    ua += np.where(rr_dest >= 5, 5, np.where(rr_dest >= 3, 3, np.where(rr_dest >= 2, 1, 0)))
+    ua += np.where(near_top & (rr_dest >= 5), 5,
+          np.where(near_top & (rr_dest >= 3), 3,
+          np.where(near_top & (rr_dest >= 2), 1, 0)))
 
-    # === 2. DRAWDOWN SWEET SPOT (pulled back but not destroyed) ===
+    # === 2. DRAWDOWN (only rewarded if bullish structure present) ===
     dd = safe("drawdown")
-    ua += np.where((dd >= 0.15) & (dd <= 0.35), 8,
-          np.where((dd >= 0.10) & (dd < 0.15), 5,
-          np.where((dd >= 0.05) & (dd < 0.10), 2,
-          np.where(dd < 0.05, -5, np.where(dd > 0.50, -3, 0)))))
+    ua += np.where(bullish & (dd >= 0.15) & (dd <= 0.35), 8,
+          np.where(bullish & (dd >= 0.10) & (dd < 0.15), 5,
+          np.where(bullish & (dd >= 0.05) & (dd < 0.10), 2,
+          np.where(dd < 0.05, -5,  # at highs = no asymmetry
+          np.where(~bullish & (dd > 0.30), -5, 0)))))  # big DD without bullish = broken
 
-    # === 3. VOLATILITY COMPRESSION (loaded spring) ===
+    # === 3. VOLATILITY COMPRESSION (spring loading) ===
     in_sq = safe("squeeze").astype(bool)
     bw = safe("bw_pctile", 1.0)
     ua += np.where(in_sq & (bw <= 0.10), 10,
@@ -97,14 +122,14 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     donch = safe("donch_pct", 1.0)
     ua += np.where(donch <= 0.15, 5, np.where(donch <= 0.30, 3, 0))
 
-    # === 4. ORD SIGNALS (volume-confirmed setups) ===
+    # === 4. ORD SIGNALS (volume-confirmed) ===
     ov_sig = safe("ov_sig").astype(bool)
     ov_loose = safe("ov_sig_loose").astype(bool)
     spv_sig = safe("spv_sig").astype(bool)
     ua += np.where(ov_sig, 12, np.where(ov_loose, 6, 0))
     ua += np.where(spv_sig, 8, 0)
 
-    # === 5. RELATIVE STRENGTH (outperforming before the move) ===
+    # === 5. RELATIVE STRENGTH (must be improving = bullish) ===
     rel_brk = safe("rel_brk").astype(bool)
     rs_13 = safe("rs_13hi").astype(bool)
     rs_26 = safe("rs_26hi").astype(bool)
@@ -116,18 +141,19 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     ua += np.where(rel_sq, 3, 0)
     ua += np.where(rel_spv, 5, 0)
 
-    # === 6. CONSOLIDATION / BRACKET (Ord cause + Dalton bracket) ===
+    # === 6. CONSOLIDATION near TOP (bullish cause) ===
     cause = safe("cause_bars")
-    ua += np.where(cause >= 15, 6, np.where(cause >= 8, 4, np.where(cause >= 4, 2, 0)))
+    ua += np.where(near_top & (cause >= 15), 6,
+          np.where(near_top & (cause >= 8), 4,
+          np.where(cause >= 8, 2,
+          np.where(cause >= 4, 1, 0))))
 
     brk_bars = safe("brk_bars")
-    near_edge = safe("near_edge").astype(bool)
-    rising = safe("rising_lows").astype(bool)
     ua += np.where(brk_bars >= 52, 5, np.where(brk_bars >= 26, 3, 0))
-    ua += np.where(near_edge, 4, 0)
-    ua += np.where(rising & near_edge, 5, 0)
+    ua += np.where(near_top, 5, 0)  # only reward near TOP edge
+    ua += np.where(rising & near_top, 5, 0)
 
-    # === 7. DALTON AUCTION QUALITY ===
+    # === 7. DALTON AUCTION QUALITY (directionally aware) ===
     cib = safe("cib")
     vol_conf = safe("vol_conf")
     ua += np.where(cib >= 0.70, 5, np.where(cib >= 0.50, 3, 0))
@@ -135,11 +161,12 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
 
     probe = safe("probe_edge").astype(bool)
     rng_exp = safe("rng_exp_v").astype(bool)
-    ua += np.where(probe, 3, 0)
-    ua += np.where(rng_exp, 4, 0)
+    # Probe at TOP = responsive sellers failing = bullish
+    ua += np.where(probe & near_top, 4, np.where(probe & mid_range, 2, 0))
+    ua += np.where(rng_exp & bullish, 4, 0)
 
     otf = safe("one_tf")
-    ua += np.where(otf >= 6, 5, np.where(otf >= 4, 3, 0))
+    ua += np.where(rising & (otf >= 6), 5, np.where(rising & (otf >= 4), 3, 0))
 
     # === 8. DALTON MOM SIGNALS ===
     dp = safe("dp_sig", "")
@@ -153,15 +180,22 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     aw = safe("all_weather").astype(bool)
     ua += np.where(aw, 8, 0)
 
-    # === 10. QULLAMAGGIE COMPONENTS (tight base, proximity, not yet extended) ===
+    # === 10. QULLAMAGGIE (tight base near highs) ===
     q_compress = safe("q_compress", 1.0)
     q_volratio = safe("q_volratio", 1.0)
-    ua += np.where(q_compress <= 0.70, 4, np.where(q_compress <= 0.85, 2, 0))
-    ua += np.where(q_volratio <= 0.75, 3, np.where(q_volratio <= 0.90, 1, 0))
+    ua += np.where(bullish & (q_compress <= 0.70), 4,
+          np.where(bullish & (q_compress <= 0.85), 2, 0))
+    ua += np.where(bullish & (q_volratio <= 0.75), 3,
+          np.where(bullish & (q_volratio <= 0.90), 1, 0))
 
-    # === PENALTIES for extended names ===
+    # === PENALTIES ===
     q_ret26 = safe("q_ret26")
     ua += np.where(q_ret26 > 0.40, -10, np.where(q_ret26 > 0.25, -5, 0))
+
+    # Penalize bearish structure masquerading as "asymmetry"
+    ua += np.where(near_bot & ~rising & (dd > 0.25), -10, 0)  # broken stock at bracket low
+    ua += np.where(~above_ma & ~rising & (close_pos < 0.40), -5, 0)  # weak structure
+    ua += np.where((dd > 0.50) & ~bullish, -8, 0)  # >50% DD without bullish signs = disaster
 
     df = df.copy()
     df["ua_score"] = ua.round(1)
