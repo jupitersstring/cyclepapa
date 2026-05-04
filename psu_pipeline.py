@@ -37,7 +37,7 @@ from recent import (
     RecentFiling,
 )
 
-CACHE_VERSION = "v8-primary-13d-form4"
+CACHE_VERSION = "v9-strategic-cmte-bare"
 
 
 def current_price(ticker: str) -> float | None:

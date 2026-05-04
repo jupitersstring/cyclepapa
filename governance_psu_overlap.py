@@ -185,17 +185,47 @@ def plausible_hurdles(r: dict) -> list[float]:
 def gov_leg(r: dict) -> float:
     """0-100. Strongest governance/process signal across all detectors.
 
-    Includes UK RNS keyword overlay so UK names with possible-offer /
-    Rule 2.x / strategic-review headlines aren't penalised relative to
-    US names where the signal lives in DEF 14A text."""
+    Includes UK RNS keyword overlay AND a synthetic process score
+    rebuilt from the merged flag set -- so a name whose Jan filing has
+    a committee, March filing has activists, and a separate filing has
+    advisers all get credited together rather than capped by each
+    filing's individual process_quality score."""
     pq = r.get("process_quality") or 0
     ds = r.get("distressed_stub_score") or 0
     sr = r.get("strategic_review") or 0
     ac = r.get("activist_score") or 0
     cc = r.get("change_of_control") or 0
+
+    # Synthetic process score from merged flag union.
+    syn = 0.0
+    if r.get("has_special_committee"):
+        syn += 35
+    if r.get("strategic_alts_language"):
+        syn += 15
+    if r.get("engaged_adviser") or (r.get("advisers_named") or []):
+        syn += 15
+    if r.get("activists_named") or (r.get("sc13d_filings_1y") or 0) > 0:
+        syn += 25
+    if r.get("active_bid"):
+        syn += 15
+    if r.get("has_debt_event"):
+        syn += 10
+    if r.get("has_spinoff"):
+        syn += 10
+    if r.get("go_private_language"):
+        syn += 15
+    if r.get("governance_reset"):
+        syn += 10
+    if r.get("majority_of_minority"):
+        syn += 10
+    if (r.get("buyback_authorisation_musd") or 0) > 0:
+        syn += 5
+    syn = min(100.0, syn)
+
     # UK RNS overlay -- treat each keyword hit as ~15 base points up to 60.
     rns_count = r.get("rns_signal_count") or 0
     rns_score = min(60.0, rns_count * 15.0) if rns_count > 0 else 0
+
     # Bonuses for primary-source signals
     bonus = 0
     if (r.get("sc13d_filings_1y") or 0) > 0:
@@ -206,7 +236,7 @@ def gov_leg(r: dict) -> float:
         bonus += 10
     if r.get("active_bid") and r.get("majority_of_minority"):
         bonus += 10
-    return min(100.0, max(pq, ds, sr, ac, cc, rns_score) + bonus)
+    return min(100.0, max(pq, ds, sr, ac, cc, syn, rns_score) + bonus)
 
 
 def main() -> int:

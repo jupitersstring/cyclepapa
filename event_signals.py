@@ -36,8 +36,10 @@ from dataclasses import dataclass, field
 # 4. Strategic-review read-through ------------------------------------------
 SPECIAL_COMMITTEE = re.compile(
     r"\b(special committee|value enhancement committee|"
-    r"strategic alternatives? committee|strategic review committee|"
-    r"transaction committee|finance and strategy committee)\b",
+    r"strategic (alternatives?|review) committee|"
+    r"strategic committee|"  # bare form -- NNBR-style
+    r"transaction committee|finance and strategy committee|"
+    r"independent committee of (the )?board)\b",
     re.I,
 )
 STRATEGIC_LANG = re.compile(
