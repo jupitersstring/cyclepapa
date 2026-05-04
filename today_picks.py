@@ -109,6 +109,8 @@ def main() -> int:
     p.add_argument("--min-gov", type=float, default=20.0)
     p.add_argument("--min-price", type=float, default=0.50)
     p.add_argument("--min-mcap-musd", type=float, default=50.0)
+    p.add_argument("--max-mcap-musd", type=float, default=None,
+                   help="Optional cap on market cap in $M (default none).")
     p.add_argument("--min-confidence", type=int, default=0,
                    help="Optional confidence floor (default 0 = no filter).")
     p.add_argument("--region", choices=["US", "UK", "ALL"], default="ALL",
@@ -135,6 +137,8 @@ def main() -> int:
         if px and px < args.min_price:
             continue
         if mc and mc < args.min_mcap_musd:
+            continue
+        if args.max_mcap_musd and mc and mc > args.max_mcap_musd:
             continue
         psu = psu_leg(r)
         gov = gov_leg(r)

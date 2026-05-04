@@ -33,6 +33,7 @@ def load_all() -> list[dict]:
         "restruct_v10.json", "restruct_v7.json",  # v10 first; merge prefers max
         "targets_v4.json", "missing_v8.json", "missing_v10.json",
         "uk_v2_detail.json", "uk_detail.json",
+        "intl_detail.json",
     ]
     rows: list[dict] = []
     for fn in sources:
@@ -291,7 +292,20 @@ def gov_leg(r: dict) -> float:
         bonus += 10
     if r.get("active_bid") and r.get("majority_of_minority"):
         bonus += 10
-    return min(100.0, max(pq, ds, sr, ac, cc, syn, rns_score) + bonus)
+    base = max(pq, ds, sr, ac, cc, syn, rns_score)
+    # For names with a real PSU/fundamentals signal but no positive
+    # governance hit, give a minimum baseline so the geometric-mean
+    # screen doesn't collapse them to zero. UK fundamentals-only names
+    # in particular need this floor to remain rankable.
+    psu_floor_evidence = (
+        (r.get("composite") or 0) >= 50
+        or (r.get("asymmetry") or 0) >= 30
+        or (r.get("upside_kicker") or 0) >= 50
+        or r.get("transformation_signal")
+    )
+    if base == 0 and psu_floor_evidence:
+        base = 20
+    return min(100.0, base + bonus)
 
 
 def main() -> int:
