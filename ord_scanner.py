@@ -153,6 +153,133 @@ def fetch_sp600_tickers() -> List[str]:
         return []
 
 
+def fetch_ftse250_tickers() -> List[str]:
+    """Fetch FTSE 250 (UK mid-cap) constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/FTSE_250_Index",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Ticker", "EPIC", "Epic", "ticker", "Symbol"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip().replace(".", "") + ".L" for s in syms if len(s.strip()) <= 6]
+        print("[warn] FTSE250: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] FTSE250 fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_ftse_smallcap_tickers() -> List[str]:
+    """Fetch FTSE SmallCap constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/FTSE_SmallCap_Index",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Ticker", "EPIC", "Epic", "ticker", "Symbol"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip().replace(".", "") + ".L" for s in syms if len(s.strip()) <= 6]
+        print("[warn] FTSE SmallCap: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] FTSE SmallCap fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_aim100_tickers() -> List[str]:
+    """Fetch AIM 100 (UK micro/small) tickers from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/FTSE_AIM_100_Index",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Ticker", "EPIC", "Epic", "ticker", "Symbol"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip().replace(".", "") + ".L" for s in syms if len(s.strip()) <= 6]
+        print("[warn] AIM100: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] AIM100 fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_asx200_tickers() -> List[str]:
+    """Fetch S&P/ASX 200 constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/S%26P/ASX_200",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Code", "Ticker", "Symbol", "ASX code"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip() + ".AX" for s in syms if len(s.strip()) <= 5 and s.strip().isalpha()]
+        print("[warn] ASX200: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] ASX200 fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_asx_smallords_tickers() -> List[str]:
+    """Fetch S&P/ASX Small Ordinaries from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/S%26P/ASX_Small_Ordinaries",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Code", "Ticker", "Symbol", "ASX code"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip() + ".AX" for s in syms if len(s.strip()) <= 5 and s.strip().isalpha()]
+        print("[warn] ASX SmallOrds: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] ASX SmallOrds fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+BENCHMARK_MAP = {
+    "sp500": "SPY", "sp400": "SPY", "sp600": "SPY", "smid": "SPY", "all": "SPY",
+    "uk": "ISF.L", "uk_mid": "ISF.L", "uk_small": "ISF.L", "uk_aim": "ISF.L",
+    "asx": "STW.AX", "asx_small": "STW.AX", "asx_all": "STW.AX",
+}
+
+
 def fetch_universe(name: str) -> List[str]:
     """Fetch tickers for a named universe."""
     name = name.lower()
@@ -166,6 +293,22 @@ def fetch_universe(name: str) -> List[str]:
         return fetch_sp400_tickers() + fetch_sp600_tickers()
     elif name == "all":
         return fetch_sp500_tickers() + fetch_sp400_tickers() + fetch_sp600_tickers()
+    # UK
+    elif name == "uk":
+        return fetch_ftse250_tickers() + fetch_ftse_smallcap_tickers() + fetch_aim100_tickers()
+    elif name == "uk_mid":
+        return fetch_ftse250_tickers()
+    elif name == "uk_small":
+        return fetch_ftse_smallcap_tickers() + fetch_aim100_tickers()
+    elif name == "uk_aim":
+        return fetch_aim100_tickers()
+    # Australia
+    elif name == "asx":
+        return fetch_asx200_tickers()
+    elif name == "asx_small":
+        return fetch_asx_smallords_tickers()
+    elif name == "asx_all":
+        return fetch_asx200_tickers() + fetch_asx_smallords_tickers()
     else:
         print(f"[warn] unknown universe '{name}'; defaulting to sp500", file=sys.stderr)
         return fetch_sp500_tickers()
@@ -1476,16 +1619,17 @@ def extract_ticker_df(panel: pd.DataFrame, ticker: str) -> Optional[pd.DataFrame
         return None
 
 
-def scan(tickers: List[str], tf: str) -> pd.DataFrame:
+def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
     print(f"[scan] downloading {len(tickers)} tickers @ {INTERVAL[tf]} (period={LOOKBACK[tf]})")
     panel = download_panel(tickers, tf)
 
-    # Fetch SPY once for regime classification
+    # Fetch benchmark once for regime classification
     spy_df = None
     regime_df = None
+    print(f"[benchmark] {benchmark}")
     try:
         spy_raw = yf.download(
-            "SPY",
+            benchmark,
             period=LOOKBACK[tf],
             interval=INTERVAL[tf],
             auto_adjust=True,
@@ -1538,9 +1682,12 @@ def main():
     ap.add_argument("--tickers", nargs="+", default=None,
                     help="explicit ticker list (overrides --universe)")
     ap.add_argument("--universe", default="sp500",
-                    choices=["sp500", "sp400", "sp600", "smid", "all"],
-                    help="stock universe: sp500, sp400 (midcap), sp600 (smallcap), "
-                         "smid (400+600), or all (500+400+600)")
+                    choices=["sp500", "sp400", "sp600", "smid", "all",
+                             "uk", "uk_mid", "uk_small", "uk_aim",
+                             "asx", "asx_small", "asx_all"],
+                    help="stock universe: US (sp500/sp400/sp600/smid/all), "
+                         "UK (uk/uk_mid/uk_small/uk_aim), "
+                         "AU (asx/asx_small/asx_all)")
     ap.add_argument("--min-score", type=int, default=4,
                     help="drop rows below this composite score")
     ap.add_argument("--out-dir", default=".",
@@ -1554,14 +1701,15 @@ def main():
     args = ap.parse_args()
 
     tickers = args.tickers if args.tickers else fetch_universe(args.universe)
-    print(f"[universe] {len(tickers)} tickers")
+    benchmark = BENCHMARK_MAP.get(args.universe, "SPY")
+    print(f"[universe] {len(tickers)} tickers, benchmark={benchmark}")
 
     tfs = ["W", "M"] if args.tf == "both" else [args.tf]
     for tf in tfs:
         label = "WEEKLY" if tf == "W" else "MONTHLY"
         mode_label = "EARLY ASYMMETRIC" if args.mode == "early" else "BREAKOUT"
         print(f"\n================  {label} {mode_label} CANDIDATES  ================")
-        df = scan(tickers, tf)
+        df = scan(tickers, tf, benchmark=benchmark)
         if df.empty:
             print("no results")
             continue
