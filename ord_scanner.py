@@ -521,6 +521,155 @@ def shakeout_retest(df: pd.DataFrame, legs: List[Dict]) -> Dict:
     }
 
 
+def selling_climax(df: pd.DataFrame) -> Dict:
+    """Spec §4.2(g) Selling Climax Day detection.
+
+    A climax bar has volume >= 1.20 × max(volume, prior 5 bars) on a
+    wide-range-down bar. The buy trigger is a subsequent retest of the
+    climax low on volume <= 0.92 × climax volume with close above.
+
+    On weekly/monthly bars this detects capitulation washouts.
+    """
+    n = len(df)
+    if n < 10:
+        return {"climax": False, "climax_retest": False}
+    vol = df["Volume"].values.astype(float)
+    low = df["Low"].values.astype(float)
+    high = df["High"].values.astype(float)
+    close = df["Close"].values.astype(float)
+    opn = df["Open"].values.astype(float)
+
+    # Search last 20 bars for a climax bar
+    best_climax_idx = None
+    for i in range(max(5, n - 20), n - 1):
+        prior_max_vol = max(vol[max(0, i - 5):i])
+        if prior_max_vol <= 0:
+            continue
+        if vol[i] >= 1.20 * prior_max_vol:
+            bar_range = high[i] - low[i]
+            # Wide range down: close in bottom 30% of bar
+            if bar_range > 0 and (close[i] - low[i]) / bar_range <= 0.35:
+                best_climax_idx = i
+
+    if best_climax_idx is None:
+        return {"climax": False, "climax_retest": False}
+
+    climax_vol = vol[best_climax_idx]
+    climax_low = low[best_climax_idx]
+
+    # Look for retest: any bar after climax that probes climax_low on lower vol
+    retest_found = False
+    for j in range(best_climax_idx + 1, n):
+        if low[j] <= climax_low * 1.02:
+            if vol[j] <= 0.92 * climax_vol and close[j] > climax_low:
+                retest_found = True
+                break
+
+    return {
+        "climax": True,
+        "climax_retest": retest_found,
+        "climax_vol_ratio": round(vol[best_climax_idx] / max(vol[max(0, best_climax_idx - 5):best_climax_idx]), 2) if best_climax_idx else np.nan,
+    }
+
+
+def multi_leg_dissipation(legs: List[Dict]) -> Dict:
+    """Spec §3.5 Multi-leg dissipation pattern.
+
+    Three or more sequential down legs with monotonically decreasing OV.
+    Signals selling exhaustion. The trigger is the first up leg whose OV
+    exceeds the most recent down leg by even 5-10%.
+    """
+    if len(legs) < 5:
+        return {"dissipation": False, "diss_legs": 0}
+
+    # Collect the last N down legs in sequence
+    down_legs = [L for L in legs[:-1] if L["dir"] == "down"]
+    if len(down_legs) < 3:
+        return {"dissipation": False, "diss_legs": 0}
+
+    # Check if the last 3+ down legs have monotonically decreasing OV
+    recent_downs = down_legs[-4:]  # up to last 4 down legs
+    mono_count = 1
+    for i in range(len(recent_downs) - 1, 0, -1):
+        if recent_downs[i]["ov"] < recent_downs[i - 1]["ov"]:
+            mono_count += 1
+        else:
+            break
+
+    if mono_count < 3:
+        return {"dissipation": False, "diss_legs": mono_count}
+
+    # Check if current up leg exceeds the last down leg's OV
+    current = legs[-1]
+    last_down = down_legs[-1]
+    if current["dir"] == "up" and last_down["ov"] > 0:
+        expansion = current["ov"] / last_down["ov"]
+        triggered = expansion >= 1.05
+    else:
+        expansion = 0.0
+        triggered = False
+
+    return {
+        "dissipation": True,
+        "diss_triggered": triggered,
+        "diss_legs": mono_count,
+        "diss_expansion": round(expansion, 2),
+    }
+
+
+def gap_test(df: pd.DataFrame) -> Dict:
+    """Spec §5 Gap Test method.
+
+    Detects gaps (size >= 0.5 * ATR(20), gap-day volume >= 1.5 * avg(20))
+    and checks if a subsequent pullback into the gap zone occurred on
+    shrinking volume (<=0.90 × gap-day volume) with close holding above gap_low.
+    """
+    n = len(df)
+    if n < 25:
+        return {"gap_found": False, "gap_test_bull": False}
+
+    high = df["High"].values.astype(float)
+    low = df["Low"].values.astype(float)
+    close = df["Close"].values.astype(float)
+    vol = df["Volume"].values.astype(float)
+
+    # ATR(20)
+    tr = np.maximum(high[1:] - low[1:],
+         np.maximum(np.abs(high[1:] - close[:-1]), np.abs(low[1:] - close[:-1])))
+    if len(tr) < 20:
+        return {"gap_found": False, "gap_test_bull": False}
+    atr20 = float(np.mean(tr[-20:]))
+    vol_avg20 = float(np.mean(vol[-20:]))
+
+    # Search for bullish gaps in last 20 bars
+    best_gap = None
+    for i in range(max(1, n - 20), n):
+        gap_size = low[i] - high[i - 1]
+        if gap_size > 0.5 * atr20 and vol[i] >= 1.5 * vol_avg20:
+            best_gap = {"idx": i, "gap_low": float(high[i - 1]),
+                        "gap_high": float(low[i]), "gap_vol": float(vol[i])}
+
+    if best_gap is None:
+        return {"gap_found": False, "gap_test_bull": False}
+
+    # Look for pullback into gap zone on lower volume
+    gi = best_gap["idx"]
+    gap_low = best_gap["gap_low"]
+    gap_vol = best_gap["gap_vol"]
+    test_found = False
+    for j in range(gi + 1, n):
+        if low[j] <= best_gap["gap_high"]:  # entered gap zone
+            if vol[j] <= 0.90 * gap_vol and close[j] > gap_low:
+                test_found = True
+                break
+
+    return {
+        "gap_found": True,
+        "gap_test_bull": test_found,
+        "gap_vol_ratio": round(vol[min(gi + 1, n - 1)] / gap_vol, 2) if gap_vol > 0 else np.nan,
+    }
+
+
 def qullamaggie_setup(df: pd.DataFrame) -> Dict:
     """Qullamaggie-style breakout setup on the active timeframe.
 
@@ -1448,12 +1597,23 @@ def score_candidate(
         "rs_breakout": False, "rel_ov_sig": False, "rel_ov_sig_loose": False,
         "rel_ov_str": "NONE", "rel_ov_shrink": np.nan, "rel_spv_sig": False,
     }
+    clx   = selling_climax(df)
+    diss  = multi_leg_dissipation(legs)
+    gpt   = gap_test(df)
     rf    = rotation_factor(df)
     dp    = directional_performance(df)
     hc    = hidden_corrective(df)
     early = early_asym_score(df, rel, ov, spv, sq, asym, cause, q, rs)
     brk   = bracket_analysis(df)
     massive = massive_move_score(brk, sq, asym, rel, rs)
+
+    # Ord volume signals boost to early_score
+    if clx.get("climax_retest"):
+        early["early_score"] = early.get("early_score", 0) + 4
+    if diss.get("diss_triggered"):
+        early["early_score"] = early.get("early_score", 0) + 3
+    if gpt.get("gap_test_bull"):
+        early["early_score"] = early.get("early_score", 0) + 2
 
     # Dalton MOM boost to early_score
     if dp["dp_signal"] == "MIRAGE_BUY":
@@ -1485,6 +1645,18 @@ def score_candidate(
             ord_score += 1
     if spv["signal"]:
         ord_score += 3
+    if clx.get("climax_retest"):
+        ord_score += 4
+    elif clx.get("climax"):
+        ord_score += 1
+    if diss.get("diss_triggered"):
+        ord_score += 3
+    elif diss.get("dissipation"):
+        ord_score += 1
+    if gpt.get("gap_test_bull"):
+        ord_score += 3
+    elif gpt.get("gap_found"):
+        ord_score += 1
     if sq["released"]:
         ord_score += 3
     elif sq["in_squeeze"] and sq["bw_pctile"] <= SQUEEZE_BW_PCTL:
@@ -1581,6 +1753,13 @@ def score_candidate(
         "rng_exp_v": brk.get("range_exp_vol"), # range expansion on vol
         "rs_13hi": rel.get("rs_13hi"),
         "rs_26hi": rel.get("rs_26hi"),
+        # Ord advanced volume signals
+        "climax": clx.get("climax"),
+        "clx_retest": clx.get("climax_retest"),
+        "diss": diss.get("dissipation"),
+        "diss_trig": diss.get("diss_triggered"),
+        "diss_n": diss.get("diss_legs"),
+        "gap_test": gpt.get("gap_test_bull"),
         # Dalton MOM signals
         "rf_cum": rf.get("rf_cum"),
         "rf_str": rf.get("rf_streak"),
@@ -1694,6 +1873,10 @@ def main():
                     help="directory to write per-timeframe CSV results")
     ap.add_argument("--aw-only", action="store_true",
                     help="only display all-weather rows (positive excess in up/chop/down regimes)")
+    ap.add_argument("--max-price", type=float, default=None,
+                    help="filter to stocks below this price (useful for nano/micro-cap screening)")
+    ap.add_argument("--min-price", type=float, default=None,
+                    help="filter to stocks above this price")
     ap.add_argument("--mode", choices=["breakout", "early", "massive"], default="early",
                     help="'breakout' = rank by combined (already-moving momentum); "
                          "'early' = rank by early_score (pre-move asymmetric setups); "
@@ -1731,6 +1914,10 @@ def main():
         df = df.sort_values(sort_cols, ascending=sort_asc).reset_index(drop=True)
 
         view = df.copy()
+        if args.max_price is not None:
+            view = view[view["close"] <= args.max_price]
+        if args.min_price is not None:
+            view = view[view["close"] >= args.min_price]
         if args.aw_only:
             view = view[view["all_weather"] == True]
         filtered = view[view[score_col] >= args.min_score].head(args.top)
