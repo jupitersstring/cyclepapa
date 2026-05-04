@@ -40,23 +40,23 @@ def is_excluded(ticker: str, company: str | None = None) -> tuple[bool, str]:
     if any(t.endswith(s) for s in PREFERRED_SUFFIXES):
         return True, f"preferred series suffix ({t})"
     # Hyphen-less warrant/right/unit suffixes (RVMDW, SVMHW, KVACR, etc.).
-    # These are 4-5 letter SPAC-tier tickers terminating in W/R/U or
-    # known multi-letter warrant codes WS/UN.
     if len(t) >= 4 and t.endswith(("WS", "UN")) and "." not in t:
         return True, f"warrant/unit suffix ({t})"
-    # Hyphen-less single-letter W/R/Z at end of long tickers is a strong
-    # warrant/right signal (e.g. RVMDW = Rev Med warrant). 3-letter
-    # tickers ending W are usually real symbols (NWS, FWS); 4-letter+
-    # are mostly SPAC-derived warrants.
     if len(t) >= 5 and t.endswith(("W", "R", "Z")) and t[-2].isalpha() and "." not in t:
-        # Extra heuristic: if the company name contains "warrant" or
-        # the ticker is in a known SPAC roster, exclude. Without that
-        # context we still flag long-suffix W/R as likely warrants.
         if t.endswith("W") or t.endswith("Z"):
             return True, f"likely warrant ({t})"
-    # Preferred classes encoded as a trailing single letter on a known
-    # common-equity root (e.g. SFB = Stifel Series B preferred). This is
-    # heuristic; only flags 3-letter tickers ending in B/C/D/E/F.
+    # Known preferred 3-letter aliases. SFB/SFE etc. without "preferred" in
+    # company name -- maintain a small explicit blocklist so legitimate
+    # 3-letter common-equity tickers (NWS, FOX, etc.) aren't caught.
+    PREFERRED_ALIASES = {
+        "SFB",   # Stifel Financial Series B preferred
+        "SFE",   # Stifel Financial Series E preferred
+        "BANC.PRE",  # Banc of California pref E
+        "BACPRL", "BACPRM", "BACPRN",  # Bank of America pref series
+        "WFCPRC", "WFCPRD", "WFCPRR",  # Wells Fargo pref series
+    }
+    if t in PREFERRED_ALIASES:
+        return True, f"known preferred alias ({t})"
     if (len(t) == 3 and t.endswith(("B", "C", "D", "E", "F"))
         and "preferred" in c):
         return True, f"preferred class ({t})"

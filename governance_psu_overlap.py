@@ -109,6 +109,7 @@ def merge_by_ticker(rows: list[dict]) -> dict[str, dict]:
             continue
         if tk not in by_ticker:
             by_ticker[tk] = dict(r)
+            by_ticker[tk]["_sources"] = [r.get("_source")] if r.get("_source") else []
         else:
             # Union flags: keep True if either filing had it.
             cur = by_ticker[tk]
