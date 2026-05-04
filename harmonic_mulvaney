@@ -1,0 +1,550 @@
+"""Harmonic Mulvaney: planetary-period MAs on a country-ETF basket.
+
+An extension of the Mulvaney trend system in `mulvaney`.  Same DNA --
+loss-parity sizing, add-on-discomfort pyramiding, no profit target --
+but the breakout signal is replaced with an MA cross whose lookback is
+derived from a planet's orbital (or synodic) period, scaled by a
+harmonic in {1, 1/2, 1/4, 1/8}.
+
+For every (planet, harmonic, timeframe in {W, M}) we compute the MA
+length in bars, run a long-only backtest on every ETF in a country
+basket, and aggregate (mean CAGR, mean Sharpe, mean max DD across the
+basket).  The grid identifies which planetary harmonic is most
+profitable as a trend filter on country indices.
+
+Sidereal orbital periods used (calendar days):
+    Mercury 87.97, Venus 224.70, Earth 365.25, Mars 686.97,
+    Jupiter 4332.59, Saturn 10759.22
+
+Synodic periods of interest:
+    Mars-syn 779.94, Jupiter-syn 398.88, Saturn-syn 378.09,
+    Jupiter-Saturn 7253.45
+"""
+
+import math
+from datetime import datetime, timedelta
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import streamlit as st
+import yfinance as yf
+
+
+# ----- Planet table -----
+PLANETS = {
+    "Mercury": 87.97,
+    "Venus": 224.70,
+    "Earth": 365.25,
+    "Mars": 686.97,
+    "Jupiter": 4332.59,
+    "Saturn": 10759.22,
+}
+SYNODIC = {
+    "Mars-syn": 779.94,
+    "Jupiter-syn": 398.88,
+    "Saturn-syn": 378.09,
+    "Jup-Sat": 7253.45,
+}
+HARMONICS = (("1", 1.0), ("1/2", 0.5), ("1/4", 0.25), ("1/8", 0.125))
+PYRAMID_SIZES = (1.0, 1.0, 1.0, 1.5, 2.0)
+
+DEFAULT_COUNTRY_BASKET = [
+    "EWA",  # Australia
+    "EWC",  # Canada
+    "EWG",  # Germany
+    "EWH",  # Hong Kong
+    "EWI",  # Italy
+    "EWJ",  # Japan
+    "EWL",  # Switzerland
+    "EWM",  # Malaysia
+    "EWN",  # Netherlands
+    "EWO",  # Austria
+    "EWP",  # Spain
+    "EWQ",  # France
+    "EWS",  # Singapore
+    "EWT",  # Taiwan
+    "EWU",  # United Kingdom
+    "EWW",  # Mexico
+    "EWY",  # South Korea
+    "EWZ",  # Brazil
+    "SPY",  # US (proxy)
+]
+DEFAULT_SECTOR_BASKET = [
+    "XLB",   # Materials
+    "XLE",   # Energy
+    "XLF",   # Financials
+    "XLI",   # Industrials
+    "XLK",   # Technology
+    "XLP",   # Consumer Staples
+    "XLU",   # Utilities
+    "XLV",   # Health Care
+    "XLY",   # Consumer Discretionary
+    "XLRE",  # Real Estate (post-2015)
+    "XLC",   # Communications (post-2018)
+]
+
+TIMEFRAMES = {
+    # bars-per-year, pandas resample rule, max sensible lookback in bars
+    "Weekly": (52.0, "W-FRI", 260),
+    "Monthly": (12.0, "ME", 60),
+}
+
+
+# ----- Candidate generation -----
+def candidate_lengths() -> pd.DataFrame:
+    rows = []
+    cycles = [("planet", k, v) for k, v in PLANETS.items()] + [
+        ("synodic", k, v) for k, v in SYNODIC.items()
+    ]
+    for tf_name, (bpy, _, max_L) in TIMEFRAMES.items():
+        cal_days_per_bar = 365.25 / bpy
+        for kind, name, period_days in cycles:
+            for h_label, h in HARMONICS:
+                bars = period_days * h / cal_days_per_bar
+                L = int(round(bars))
+                if 2 <= L <= max_L:
+                    rows.append(
+                        {
+                            "timeframe": tf_name,
+                            "kind": kind,
+                            "entity": name,
+                            "harmonic": h_label,
+                            "h": h,
+                            "period_days": period_days,
+                            "ma_length_bars": L,
+                        }
+                    )
+    return pd.DataFrame(rows)
+
+
+# ----- Data utilities -----
+@st.cache_data(show_spinner=False)
+def fetch_daily(ticker: str, start: str, end: str) -> pd.DataFrame:
+    df = yf.download(ticker, start=start, end=end, auto_adjust=False, progress=False)
+    if df is None or df.empty:
+        return pd.DataFrame()
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    keep = [c for c in ("Open", "High", "Low", "Close") if c in df.columns]
+    return df[keep].dropna()
+
+
+def resample_ohlc(daily: pd.DataFrame, rule: str) -> pd.DataFrame:
+    o = daily["Open"].resample(rule).first()
+    h = daily["High"].resample(rule).max()
+    l = daily["Low"].resample(rule).min()
+    c = daily["Close"].resample(rule).last()
+    return pd.DataFrame({"Open": o, "High": h, "Low": l, "Close": c}).dropna()
+
+
+# ----- Backtest -----
+def backtest_ma(
+    bars: pd.DataFrame,
+    ma_length: int,
+    *,
+    bars_per_year: float,
+    atr_period: int = 14,
+    portfolio_risk: float = 0.15,
+    n_markets: int = 19,
+    max_layers: int = 5,
+    discomfort_k: float = 1.0,
+    enable_pyramid: bool = True,
+    initial_capital: float = 1_000_000.0,
+):
+    """Long-only Mulvaney-style backtest with an MA(L) trend filter on
+    resampled bars.  MA itself acts as the trailing stop; entry is on a
+    bullish cross of the MA; pyramid adds when price pulls back k*ATR
+    from the running peak while still above the MA.
+    """
+    if len(bars) < ma_length * 3 + atr_period + 5:
+        return None
+
+    df = bars.copy()
+    df["MA"] = df["Close"].rolling(ma_length).mean()
+    h, l, c = df["High"], df["Low"], df["Close"]
+    tr = pd.concat([(h - l), (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
+    df["ATR"] = tr.rolling(atr_period).mean()
+
+    cash = initial_capital
+    pos = 0
+    layers: list[dict] = []
+    peak = None
+    open_trade = None
+
+    eq_track = []
+    trades = []
+
+    prev_close = prev_ma = None
+
+    for date, row in df.iterrows():
+        cl = float(row["Close"])
+        hi = float(row["High"])
+        lo = float(row["Low"])
+        ma = row["MA"]
+        atr = row["ATR"]
+        equity = cash + pos * cl
+
+        if pd.isna(ma) or pd.isna(atr) or prev_close is None or prev_ma is None:
+            eq_track.append((date, equity))
+            prev_close, prev_ma = cl, ma if not pd.isna(ma) else prev_ma
+            continue
+
+        # Exit: close back below MA
+        if pos > 0 and cl < ma:
+            cash += pos * cl
+            avg_entry = sum(L["entry_price"] * L["qty"] for L in layers) / pos
+            pnl = (cl - avg_entry) * pos
+            trades.append(
+                {
+                    "entry_date": open_trade["entry_date"],
+                    "entry_price": open_trade["entry_price"],
+                    "exit_date": date,
+                    "exit_price": cl,
+                    "qty": pos,
+                    "pnl": pnl,
+                    "layers": len(layers),
+                }
+            )
+            pos = 0
+            layers = []
+            peak = None
+            open_trade = None
+            equity = cash
+
+        # Pyramid: add on discomfort pullback while still above MA
+        if pos > 0 and enable_pyramid and len(layers) < max_layers:
+            peak = max(peak, hi)
+            if (peak - cl) >= discomfort_k * atr and cl > ma:
+                stop = ma
+                risk = cl - stop
+                if risk > 0:
+                    mult = PYRAMID_SIZES[min(len(layers), len(PYRAMID_SIZES) - 1)]
+                    budget = portfolio_risk * equity / max(n_markets, 1) * mult
+                    qty = int(budget / risk)
+                    if qty > 0 and cash >= qty * cl:
+                        cash -= qty * cl
+                        pos += qty
+                        layers.append({"entry_price": cl, "qty": qty, "stop": stop})
+                        peak = cl
+
+        # Entry: bullish cross of MA
+        if pos == 0 and prev_close <= prev_ma and cl > ma:
+            stop = ma
+            risk = cl - stop
+            if risk > 0:
+                budget = portfolio_risk * equity / max(n_markets, 1) * PYRAMID_SIZES[0]
+                qty = int(budget / risk)
+                if qty > 0 and cash >= qty * cl:
+                    cash -= qty * cl
+                    pos = qty
+                    layers = [{"entry_price": cl, "qty": qty, "stop": stop}]
+                    peak = hi
+                    open_trade = {"entry_date": date, "entry_price": cl}
+
+        eq_track.append((date, cash + pos * cl))
+        prev_close, prev_ma = cl, ma
+
+    eq = pd.DataFrame(eq_track, columns=["Date", "Equity"]).set_index("Date")
+    final = float(eq["Equity"].iloc[-1])
+    years = max((eq.index[-1] - eq.index[0]).days / 365.25, 1e-9)
+    cagr = (final / initial_capital) ** (1 / years) - 1 if final > 0 else -1.0
+    rets = eq["Equity"].pct_change().dropna()
+    sharpe = (rets.mean() / rets.std()) * math.sqrt(bars_per_year) if rets.std() > 0 else 0.0
+    rolling = eq["Equity"].cummax()
+    dd = eq["Equity"] / rolling - 1.0
+    return {
+        "cagr": cagr,
+        "sharpe": sharpe,
+        "max_dd": float(dd.min()),
+        "final": final,
+        "trades": len(trades),
+        "equity": eq,
+    }
+
+
+# ----- Grid runner -----
+def run_grid(
+    daily_data: dict[str, pd.DataFrame],
+    candidates: pd.DataFrame,
+    bt_params: dict,
+    segment_map: dict[str, str] | None = None,
+) -> tuple[pd.DataFrame, dict]:
+    """Per (timeframe, entity, harmonic) row: backtest each ETF, average.
+
+    Returns the aggregated grid (with overall and per-segment metrics)
+    plus a dict of per-row equity curves (averaged across the basket).
+    """
+    rows = []
+    eq_curves = {}
+    segment_map = segment_map or {tk: "all" for tk in daily_data}
+    segments = sorted(set(segment_map.values()))
+
+    resampled_cache: dict[tuple[str, str], pd.DataFrame] = {}
+    for tf_name, (_, rule, _) in TIMEFRAMES.items():
+        for tk, dly in daily_data.items():
+            resampled_cache[(tf_name, tk)] = resample_ohlc(dly, rule)
+
+    n_markets = max(len(daily_data), 1)
+    bt_params = {**bt_params, "n_markets": n_markets}
+
+    for _, cand in candidates.iterrows():
+        tf = cand["timeframe"]
+        L = int(cand["ma_length_bars"])
+        bpy = TIMEFRAMES[tf][0]
+
+        # collect by segment
+        per_seg: dict[str, dict[str, list]] = {
+            s: {"cagr": [], "sharpe": [], "dd": [], "trades": []} for s in segments
+        }
+        per_etf_eq = []
+        for tk, dly in daily_data.items():
+            bars = resampled_cache[(tf, tk)]
+            res = backtest_ma(bars, L, bars_per_year=bpy, **bt_params)
+            if res is None:
+                continue
+            seg = segment_map.get(tk, "all")
+            per_seg[seg]["cagr"].append(res["cagr"])
+            per_seg[seg]["sharpe"].append(res["sharpe"])
+            per_seg[seg]["dd"].append(res["max_dd"])
+            per_seg[seg]["trades"].append(res["trades"])
+            per_etf_eq.append(res["equity"]["Equity"].rename(tk))
+
+        all_cagr = [c for s in per_seg.values() for c in s["cagr"]]
+        if not all_cagr:
+            continue
+        all_sharpe = [c for s in per_seg.values() for c in s["sharpe"]]
+        all_dd = [c for s in per_seg.values() for c in s["dd"]]
+        all_trades = [c for s in per_seg.values() for c in s["trades"]]
+
+        key = (tf, cand["entity"], cand["harmonic"], L)
+        row = {
+            "timeframe": tf,
+            "kind": cand["kind"],
+            "entity": cand["entity"],
+            "harmonic": cand["harmonic"],
+            "ma_length_bars": L,
+            "n_etfs": len(all_cagr),
+            "avg_cagr": float(np.mean(all_cagr)),
+            "med_cagr": float(np.median(all_cagr)),
+            "avg_sharpe": float(np.mean(all_sharpe)),
+            "avg_max_dd": float(np.mean(all_dd)),
+            "avg_trades": float(np.mean(all_trades)),
+        }
+        for s, d in per_seg.items():
+            row[f"{s}_n"] = len(d["cagr"])
+            row[f"{s}_cagr"] = float(np.mean(d["cagr"])) if d["cagr"] else np.nan
+            row[f"{s}_sharpe"] = float(np.mean(d["sharpe"])) if d["sharpe"] else np.nan
+        rows.append(row)
+
+        if per_etf_eq:
+            wide = pd.concat(per_etf_eq, axis=1).ffill().dropna(how="all")
+            normalized = wide.divide(wide.iloc[0])
+            eq_curves[key] = normalized.mean(axis=1)
+
+    return pd.DataFrame(rows), eq_curves
+
+
+# ----- Streamlit UI -----
+def main():
+    st.set_page_config(page_title="Harmonic Mulvaney", layout="wide")
+    st.title("Harmonic Mulvaney — planetary-period MAs on country ETFs")
+    st.caption(
+        "Extends the Mulvaney trend system: MA lookback = (planet period × "
+        "{1, 1/2, 1/4, 1/8}) on weekly and monthly bars. Long-only on a "
+        "country-ETF basket. Loss-parity sizing, add-on-discomfort "
+        "pyramiding, MA as the trailing stop."
+    )
+
+    with st.sidebar:
+        st.header("Universe")
+        country_str = st.text_area(
+            "Country basket",
+            value=", ".join(DEFAULT_COUNTRY_BASKET),
+            height=110,
+        )
+        sector_str = st.text_area(
+            "Sector basket",
+            value=", ".join(DEFAULT_SECTOR_BASKET),
+            height=90,
+        )
+        countries = [t.strip().upper() for t in country_str.split(",") if t.strip()]
+        sectors = [t.strip().upper() for t in sector_str.split(",") if t.strip()]
+        basket_segment = {**{t: "country" for t in countries},
+                          **{t: "sector" for t in sectors}}
+        basket = list(basket_segment.keys())
+
+        end_default = datetime.today()
+        start_default = end_default - timedelta(days=25 * 365)
+        col_a, col_b = st.columns(2)
+        start = col_a.date_input("Start", start_default)
+        end = col_b.date_input("End", end_default)
+
+        st.header("Backtest parameters")
+        portfolio_risk = st.slider("Portfolio risk %", 5.0, 25.0, 15.0, 0.5) / 100
+        atr_period = st.number_input("ATR period (bars)", 5, 60, 14)
+        discomfort_k = st.slider("Discomfort pullback (× ATR)", 0.5, 4.0, 1.0, 0.1)
+        max_layers = st.number_input("Max pyramid layers", 1, 5, 5)
+        enable_pyramid = st.checkbox("Enable pyramiding", True)
+        initial_capital = st.number_input("Initial capital ($)", 10_000, 100_000_000, 1_000_000, step=10_000)
+
+        run = st.button("Run harmonic grid", type="primary")
+
+    cands = candidate_lengths()
+    st.subheader("Candidate MA lengths (planet × harmonic × timeframe)")
+    st.caption(
+        f"{len(cands)} candidates. MA lengths capped to ≤260 weekly bars "
+        "(~5 yr) and ≤60 monthly bars (~5 yr) to ensure ≥3× data coverage."
+    )
+    st.dataframe(cands, use_container_width=True, height=320)
+
+    if not run:
+        st.info("Click **Run harmonic grid** to download the basket and "
+                "evaluate every harmonic.")
+        return
+
+    if not basket:
+        st.error("Empty basket.")
+        return
+    if start >= end:
+        st.error("Start must be before end.")
+        return
+
+    # ----- Download -----
+    with st.spinner(f"Downloading {len(basket)} ETFs…"):
+        daily_data = {}
+        missing = []
+        for tk in basket:
+            d = fetch_daily(tk, str(start), str(end))
+            if d.empty or len(d) < 252:
+                missing.append(tk)
+            else:
+                daily_data[tk] = d
+    if missing:
+        st.warning(f"Skipped (no/insufficient data): {', '.join(missing)}")
+    if not daily_data:
+        st.error("No usable ETFs.")
+        return
+    st.success(f"Loaded {len(daily_data)} ETFs.")
+
+    # ----- Grid -----
+    bt_params = dict(
+        atr_period=int(atr_period),
+        portfolio_risk=float(portfolio_risk),
+        max_layers=int(max_layers),
+        discomfort_k=float(discomfort_k),
+        enable_pyramid=bool(enable_pyramid),
+        initial_capital=float(initial_capital),
+    )
+    seg_map = {tk: basket_segment.get(tk, "country") for tk in daily_data}
+    with st.spinner("Backtesting harmonic grid…"):
+        grid, eq_curves = run_grid(daily_data, cands, bt_params, segment_map=seg_map)
+
+    if grid.empty:
+        st.error("No combinations produced enough data.")
+        return
+
+    # ----- Results -----
+    st.subheader("Harmonic grid — ranked by mean CAGR across the basket")
+    show = grid.sort_values("avg_cagr", ascending=False).reset_index(drop=True)
+    fmt = show.copy()
+    pct_cols = [c for c in fmt.columns if c.endswith("_cagr") or c == "avg_max_dd" or c == "med_cagr"]
+    for c in pct_cols:
+        fmt[c] = (fmt[c] * 100).round(2)
+    if "avg_sharpe" in fmt:
+        fmt["avg_sharpe"] = fmt["avg_sharpe"].round(2)
+    for c in fmt.columns:
+        if c.endswith("_sharpe"):
+            fmt[c] = fmt[c].round(2)
+    if "avg_trades" in fmt:
+        fmt["avg_trades"] = fmt["avg_trades"].round(1)
+    st.dataframe(fmt, use_container_width=True, height=440)
+
+    best = show.iloc[0]
+    st.success(
+        f"**Most profitable harmonic (overall):** {best['timeframe']} • "
+        f"{best['entity']} • {best['harmonic']} • MA({best['ma_length_bars']}) — "
+        f"avg CAGR {best['avg_cagr'] * 100:.2f}%, "
+        f"avg Sharpe {best['avg_sharpe']:.2f}, "
+        f"avg max DD {best['avg_max_dd'] * 100:.1f}%."
+    )
+
+    # Per-segment leaders
+    seg_cols = [c for c in show.columns if c.endswith("_cagr") and c not in ("avg_cagr", "med_cagr")]
+    if seg_cols:
+        seg_lines = []
+        for sc in seg_cols:
+            seg = sc.replace("_cagr", "")
+            sub = show.dropna(subset=[sc]).sort_values(sc, ascending=False)
+            if sub.empty:
+                continue
+            top = sub.iloc[0]
+            seg_lines.append(
+                f"**{seg}**: {top['timeframe']} • {top['entity']} • "
+                f"{top['harmonic']} • MA({top['ma_length_bars']}) — "
+                f"CAGR {top[sc] * 100:.2f}%"
+            )
+        if seg_lines:
+            st.info("Per-segment best harmonic\n\n- " + "\n- ".join(seg_lines))
+
+    # Heatmap: avg CAGR by (entity × harmonic) per timeframe
+    st.subheader("Heatmaps — avg CAGR by entity × harmonic")
+    harm_order = [h for h, _ in HARMONICS]
+    for tf in TIMEFRAMES:
+        sub = grid[grid["timeframe"] == tf]
+        if sub.empty:
+            continue
+        pivot = sub.pivot_table(
+            index="entity", columns="harmonic", values="avg_cagr", aggfunc="first"
+        ).reindex(columns=harm_order)
+        if pivot.empty:
+            continue
+        fig, ax = plt.subplots(figsize=(7, 0.5 * len(pivot) + 1.5))
+        data = pivot.values * 100
+        im = ax.imshow(data, cmap="RdYlGn", aspect="auto",
+                        vmin=-max(abs(np.nanmin(data)), abs(np.nanmax(data))),
+                        vmax= max(abs(np.nanmin(data)), abs(np.nanmax(data))))
+        ax.set_xticks(range(len(pivot.columns)))
+        ax.set_xticklabels(pivot.columns)
+        ax.set_yticks(range(len(pivot.index)))
+        ax.set_yticklabels(pivot.index)
+        ax.set_title(f"{tf} — avg CAGR % across basket")
+        for i in range(data.shape[0]):
+            for j in range(data.shape[1]):
+                v = data[i, j]
+                if not np.isnan(v):
+                    ax.text(j, i, f"{v:.1f}", ha="center", va="center",
+                            fontsize=8, color="black")
+        plt.colorbar(im, ax=ax, fraction=0.04)
+        plt.tight_layout()
+        st.pyplot(fig)
+
+    # Top-3 basket equity curves
+    st.subheader("Top-3 basket equity curves (equal-weighted across ETFs)")
+    top3 = show.head(3)
+    fig, ax = plt.subplots(figsize=(11, 5))
+    for _, r in top3.iterrows():
+        key = (r["timeframe"], r["entity"], r["harmonic"], int(r["ma_length_bars"]))
+        ec = eq_curves.get(key)
+        if ec is None or ec.empty:
+            continue
+        ax.plot(ec.index, ec.values,
+                label=f"{r['timeframe']} {r['entity']} {r['harmonic']} MA({int(r['ma_length_bars'])}) — "
+                      f"CAGR {r['avg_cagr']*100:.1f}%")
+    # Buy-and-hold benchmark
+    bh = pd.concat([d["Close"] for d in daily_data.values()], axis=1).ffill().dropna(how="all")
+    bh_norm = bh.divide(bh.iloc[0]).mean(axis=1)
+    ax.plot(bh_norm.index, bh_norm.values, color="black", lw=1, ls="--",
+            label="Equal-weight buy & hold")
+    ax.set_yscale("log")
+    ax.set_ylabel("Growth of $1 (log)")
+    ax.legend(loc="best", fontsize=8)
+    ax.grid(alpha=0.3, which="both")
+    st.pyplot(fig)
+
+    with st.expander("Backtest parameters used"):
+        st.json({**bt_params, "basket": list(daily_data.keys())})
+
+
+if __name__ == "__main__":
+    main()
