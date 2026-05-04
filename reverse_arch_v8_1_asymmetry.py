@@ -740,11 +740,17 @@ def pre_cult_bucket(window: str, total_dna: float, peak: float, conc: float, alr
 def asymmetry_scores(row: dict) -> tuple[float, float, float, str]:
     timing_window = {"IMMINENT": 1.0, "SOONER": 0.8, "MEDIUM": 0.45, "PEAK": 0.25, "DISTANT": 0.1}.get(row["window"], 0.1)
     wax_bonus = 1.0 if row["jn_phase"] == "waxing" else 0.6
-    age_bonus = 1.1 if row["jn_phase"] == "waxing" and row["jn_age"] < 120 else (0.8 if row["jn_phase"] == "waning" and row["jn_age"] > 300 else 1.0)
-    early = (row["total_dna"] * 0.9 + row["peak"] * 1.2 + row["conc"] * 0.6 + row["jul"] * 0.4) * timing_window * wax_bonus * age_bonus
+    is_imminent = row["window"] == "IMMINENT"
+    young_wax = row["jn_phase"] == "waxing" and row["jn_age"] < 120
+    age_bonus = 1.1 if young_wax else (0.8 if row["jn_phase"] == "waning" and row["jn_age"] > 300 else 1.0)
+    imminent_kicker = 1.20 if is_imminent and young_wax else 1.0
+    early = (row["total_dna"] * 0.9 + row["peak"] * 1.2 + row["conc"] * 0.6 + row["jul"] * 0.4) * timing_window * wax_bonus * age_bonus * imminent_kicker
 
     env = 1.0 if BARBAULT.get(row["first_year"], "RISING") == "RISING" else 0.78
-    endurance = 1.15 if row["jn_phase"] == "waxing" and row["jn_age"] < 150 else (0.7 if row["jn_phase"] == "waning" and row["jn_age"] > 300 else 0.9)
+    if is_imminent:
+        endurance = 1.0
+    else:
+        endurance = 1.15 if row["jn_phase"] == "waxing" and row["jn_age"] < 150 else (0.7 if row["jn_phase"] == "waning" and row["jn_age"] > 300 else 0.9)
     enduring = (row["total_dna"] * 1.1 + row["peak"] * 0.8 + row["conc"] * 0.9 + row["era"] * 0.5 + row["jul"] * 0.3) * env * endurance
 
     total = max(early, enduring)
@@ -832,7 +838,7 @@ def run_scoring(ipos: list[dict], events: dict | None = None, already_cult: set[
         r["asym_total"] = asym
         r["asym_label"] = asym_label
 
-    preliminary.sort(key=lambda r: (-r["asym_total"], -r["comp"], -r["total_dna"]))
+    preliminary.sort(key=lambda r: (-r["asym_total"], -r["comp"], -r["total_dna"], r["date"], r["ticker"]))
     return preliminary, stats
 
 

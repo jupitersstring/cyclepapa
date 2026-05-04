@@ -58,7 +58,7 @@
     {
       "date": "2028-07-06",
       "lon": 285.2633,
-      "type": "partial_lunar_NEAR_Vega"
+      "type": "partial_lunar_NEAR_VEGA"
     },
     {
       "date": "2028-07-22",
@@ -98,12 +98,12 @@
     {
       "date": "2029-12-20",
       "lon": 89.3062,
-      "type": "total_lunar_NEAR_Betelgeuse"
+      "type": "total_lunar_NEAR_BETELGEUSE"
     },
     {
       "date": "2030-06-01",
       "lon": 70.8366,
-      "type": "annular_solar_NEAR_Aldebaran"
+      "type": "annular_solar_NEAR_ALDEBARAN"
     },
     {
       "date": "2030-06-15",
@@ -173,7 +173,7 @@
     {
       "date": "2033-04-14",
       "lon": 205.1159,
-      "type": "total_lunar_NEAR_Spica"
+      "type": "total_lunar_NEAR_SPICA"
     },
     {
       "date": "2033-09-23",
@@ -188,7 +188,7 @@
     {
       "date": "2034-03-20",
       "lon": 359.8758,
-      "type": "total_solar_NEAR_Scheat"
+      "type": "total_solar_NEAR_SCHEAT"
     },
     {
       "date": "2034-04-03",
@@ -248,7 +248,7 @@
     {
       "date": "2036-08-21",
       "lon": 149.2318,
-      "type": "partial_solar_NEAR_Regulus"
+      "type": "partial_solar_NEAR_REGULUS"
     }
   ],
   "outer_pair_conj_and_ingress": [

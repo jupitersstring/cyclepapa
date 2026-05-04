@@ -66,7 +66,7 @@ def star_label(lon: float, jd: float) -> str:
         o = orb(lon, sl2)
         if o <= 1.5 and (best is None or o < best[1]):
             best = (nm, o)
-    return f" near {best[0]}" if best else ""
+    return f" near {best[0].upper()}" if best else ""
 
 
 def find_eclipses():
