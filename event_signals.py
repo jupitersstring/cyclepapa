@@ -43,10 +43,26 @@ SPECIAL_COMMITTEE = re.compile(
     re.I,
 )
 STRATEGIC_LANG = re.compile(
-    r"\b(strategic alternatives?|maximi[sz]e (shareholder|stockholder) value|"
-    r"explor(e|ing) (a )?(sale|merger|all|strategic)|"
-    r"formal (review )?process|review of strategic options|"
-    r"unsolicited (offer|proposal)|going[- ]private)\b",
+    r"\b("
+    r"strategic alternatives?|"
+    r"strategic (review|options?|direction|transaction|opportunit(y|ies)|"
+    r"and financial alternatives?|considerations?)|"
+    r"maximi[sz]e (shareholder|stockholder) value|"
+    r"value (maximi[sz]ation|enhancement)|"
+    r"explor(e|ing) (a )?(sale|merger|all|strategic|various|opportunit|"
+    r"potential transaction)|"
+    r"evaluat(e|ing) (a )?(strategic|all|various|potential)|"
+    r"consider(ing|ation of) (a )?(sale|merger|strategic|"
+    r"potential transaction)|"
+    r"review of (the company.s )?(strategic|capital structure|"
+    r"capital allocation|business)|"
+    r"formal (sale )?(review )?process|"
+    r"unsolicited (offer|proposal|indication of interest)|"
+    r"non[- ]binding (offer|proposal|indication of interest)|"
+    r"preliminary (offer|proposal|indication of interest)|"
+    r"letter of intent|going[- ]private|"
+    r"reviewing (a )?range of (strategic|alternatives)"
+    r")\b",
     re.I,
 )
 ADVISERS = re.compile(
@@ -55,11 +71,29 @@ ADVISERS = re.compile(
     r"Bank of America|BofA Securities|Barclays|Jefferies|Rothschild|"
     r"PJT Partners|Guggenheim|Greenhill|UBS|William Blair|Raymond James|"
     r"Perella Weinberg|Wells Fargo Securities|Stifel|Piper Sandler|"
-    r"Cantor Fitzgerald|Qatalyst Partners)\b",
+    r"Cantor Fitzgerald|Qatalyst Partners|"
+    # Added in v10
+    r"Allen & Co(mpany)?|Deutsche Bank|BMO Capital|"
+    r"Cowen( Inc| and Company)?|Wedbush|Stephens Inc|"
+    r"Truist Securities|Robert W\.? Baird|BTIG|Roth Capital|"
+    r"Solomon Partners|Lincoln International|Ducera Partners|"
+    r"FT Partners|FTI Consulting|"
+    r"Berenberg|Numis|Peel Hunt|Liberum|Panmure Gordon|"
+    r"DA Davidson|D\.A\. Davidson|Oppenheimer|Needham|Craig[- ]Hallum|"
+    r"Lake Street Capital|Roth MKM|Maxim Group|H\.C\. Wainwright"
+    r")\b",
     re.I,
 )
 ENGAGED_AS_ADVISER = re.compile(
-    r"(engaged|retained|appointed) .{0,50}(financial advis|investment bank)",
+    r"(engaged|retained|appointed|hired|selected|"
+    r"(?:is|are|will be|has been|have been) (?:acting|serving|"
+    r"engaged|retained))\s+"
+    r"(?:as\s+(?:exclusive\s+|sole\s+|lead\s+)?|"
+    r"to\s+(?:act|serve)\s+as\s+|to\s+|"
+    r"(?:[A-Z][A-Za-z &\.,'-]+,?\s+)?as\s+)"
+    r"(?:exclusive\s+|sole\s+|lead\s+)?"
+    r"(financial\s+advis|investment\s+bank|"
+    r"M&A\s+advis|capital\s+markets\s+advis)",
     re.I,
 )
 
@@ -81,7 +115,7 @@ ACTIVISTS = re.compile(
     r"Cevian Capital|"
     r"Sachem Head|"
     r"Land & Buildings|"
-    r"Blackwells|"
+    r"Blackwells (Capital)?|"
     r"Sandell Asset|"
     r"Standard General|"
     r"Permian Investment|"
@@ -90,8 +124,105 @@ ACTIVISTS = re.compile(
     r"Macellum|"
     r"Legion Partners|"
     r"Coliseum Capital|"
-    r"Saba Capital"
+    r"Saba Capital|"
+    # Added in v10 -- broaden activist universe
+    r"Indaba Capital|"
+    r"Senator Investment|"
+    r"Effissimo Capital|"
+    r"Browning West|"
+    r"Glenview Capital|"
+    r"Greenlight Capital|David Einhorn|"
+    r"Marathon Partners|"
+    r"Stilwell Value|"
+    r"Engine No\.? 1|"
+    r"Inclusive Capital|Jeff Ubben|"
+    r"ValueAct (Capital)?|"
+    r"Coast Capital|"
+    r"Lone Star Value|"
+    r"Riposte Capital|"
+    r"Crescendo (Partners|Capital)|"
+    r"Eminence Capital|"
+    r"Caligan Partners|"
+    r"Cohanzick Management|"
+    r"JCP Investment|"
+    r"Nine Ten Partners|"
+    r"Viex Capital|"
+    r"Hestia Capital|"
+    r"Corre Partners|"
+    r"Carronade Capital|"
+    r"Legato Capital|"
+    r"Atalaya Capital|"
+    r"Western Investment|"
+    r"Discovery Capital|"
+    r"Bow Street|"
+    r"Driver Management|"
+    r"PWP Active|"
+    r"D\.E\. Shaw activist|"
+    r"Third Point|Daniel Loeb|"
+    r"Jana Partners|"
+    r"Highfields Capital|"
+    r"Nelson Peltz|"
+    r"Carl Icahn|"
+    r"Mantle Ridge|"
+    r"BlueTriton|"
+    r"HG Vora|"
+    r"Tang Capital|"
+    r"Voss Capital|"
+    r"Roumell Asset|"
+    r"Engaged Capital|"
+    r"Newtyn Management|"
+    r"Hudson Bay Capital|"
+    r"Anson Funds|"
+    r"Oaktree Capital activist|"
+    r"Owl Creek|"
+    r"FrontFour Capital|"
+    # UK-specific activists -- used by UK proxy/RNS text and increasingly
+    # by US filings citing cross-border holders.
+    r"Saporta Capital|Albert Saporta|Randel Freeman|"
+    r"Crystal Amber|"
+    r"Sherborne Investors|Edward Bramson|"
+    r"Boatman Capital|"
+    r"GO Investment Partners|"
+    r"Aleph Capital|"
+    r"Manchester Capital|"
+    r"Schroder Adveq|"
+    r"Petrus Advisers|"
+    r"Bluebell Capital|"
+    r"Phase 2 Partners|"
+    r"Causeway Capital activist|"
+    r"Aviva Investors activist|"
+    r"Janus Henderson activist|"
+    r"Schroders activist|"
+    r"Asset Value Investors|AVI|"
+    r"Kelso Place|"
+    r"Polygon Investment|"
+    r"Algebris activist|"
+    r"M&G activist|"
+    r"BlackRock activist|"
+    r"Norges Bank activist"
     r")\b",
+    re.I,
+)
+
+# UK Takeover Panel rule references -- treated as hard process evidence
+UK_TAKEOVER_RULE = re.compile(
+    r"\b(?:Rule\s*2\.[47](?:\s*\([a-z0-9]+\))?|"
+    r"Rule\s*8\.[35]|"
+    r"Form\s*8\.[3-5]|"
+    r"possible\s+offer\s+announcement|"
+    r"firm\s+intention\s+to\s+make\s+an\s+offer|"
+    r"recommended\s+(?:cash\s+)?(?:offer|acquisition)|"
+    r"scheme\s+of\s+arrangement|"
+    r"PUSU\s+deadline|put\s+up\s+or\s+shut\s+up|"
+    r"formal\s+sale\s+process|"
+    r"strategic\s+review\s+(?:concluded|launched)|"
+    r"the\s+Code\s+(?:on\s+)?Takeover|City\s+Code)\b",
+    re.I,
+)
+# UK shareholder disclosure (TR-1) and material holdings
+UK_TR1 = re.compile(
+    r"\b(TR[- ]?1|holding[s]? in (the )?company|major shareholding|"
+    r"net short position|disclosure of major holdings?)\b",
     re.I,
 )
 
@@ -124,8 +255,13 @@ BUYBACK_REMAINING = re.compile(
 # Controller / founder concentration ----------------------------------------
 # Looks for "X% beneficially owned" or "owns Y%" patterns in ownership table.
 OWNER_PCT = re.compile(
-    r"([0-9]{1,2}(?:\.[0-9]+)?)\s*%\s*(of (the )?outstanding|of (the )?shares|"
-    r"beneficially owned|beneficial ownership)",
+    r"([0-9]{1,2}(?:\.[0-9]+)?)\s*%\s*"
+    r"(?:of (the )?(outstanding|total |fully diluted )?(shares|"
+    r"common stock|equity|voting power)|"
+    r"beneficially? (owned|owns)|"
+    r"beneficial ownership|"
+    r"of the issued share capital|"
+    r"of (the )?(class\s+[A-Z]\s+)?(common|ordinary) (stock|shares))",
     re.I,
 )
 ALL_DIRECTORS_OFFICERS = re.compile(
@@ -195,9 +331,20 @@ INSIDER_BUY_REF = re.compile(
 
 # Auction process evidence (Boone-Mulherin)
 AUCTION = re.compile(
-    r"\b(auction process|contacted [0-9]+ (potential )?(strategic )?"
-    r"(buyers|acquirers|bidders)|received (proposals|offers) from "
-    r"(multiple|several) parties|go[- ]shop period|market check)\b",
+    r"\b("
+    r"auction process|limited auction|targeted auction|"
+    r"contacted [0-9]+ (potential )?(strategic )?(buyers|acquirers|bidders|parties)|"
+    r"contacted (multiple|several|numerous) (potential )?(strategic )?"
+    r"(buyers|acquirers|bidders|parties)|"
+    r"received (proposals|offers|bids|indications of interest) from "
+    r"(multiple|several|numerous) parties|"
+    r"go[- ]shop period|"
+    r"market check|targeted outreach|"
+    r"contacted [0-9]+ (potential )?counterparties|"
+    r"approached [0-9]+ (parties|companies|buyers)|"
+    r"discussions with (multiple|several|numerous) parties|"
+    r"reached out to (potential )?(strategic )?(buyers|acquirers|partners)"
+    r")\b",
     re.I,
 )
 
@@ -233,8 +380,15 @@ OFFER_PRICE = re.compile(
     re.I,
 )
 MAJORITY_OF_MINORITY = re.compile(
-    r"\bmajority of (the )?(unaffiliated )?minority\b|"
-    r"\bmajority[- ]of[- ](the[- ])?minority\b",
+    r"\b(?:"
+    r"majority of (?:the )?(?:unaffiliated )?minority|"
+    r"majority[- ]of[- ](?:the[- ])?minority|"
+    r"majority of (?:the )?disinterested (?:holders|stockholders|shareholders)|"
+    r"majority of (?:the )?unaffiliated (?:holders|stockholders|shareholders)|"
+    r"approval of (?:holders|stockholders|shareholders) not affiliated|"
+    r"approval by (?:disinterested|unaffiliated) (?:holders|stockholders)|"
+    r"vote of (?:the )?disinterested (?:holders|stockholders)"
+    r")\b",
     re.I,
 )
 

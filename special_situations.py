@@ -34,18 +34,31 @@ from dataclasses import dataclass, field
 
 # A. Distressed equity stub / debt-haircut event (BBGI / RGS pattern) -------
 DEBT_EVENT = re.compile(
-    r"\b(exchange offer|consent solicitation|tender offer|"
+    r"\b("
+    r"exchange offer|consent solicitation|tender offer|"
     r"transaction support agreement|restructuring support agreement|"
+    r"RSA|TSA|"
     r"forbearance agreement|waiver and amendment|"
-    r"credit agreement amendment|debt exchange|notes exchanged|"
+    r"credit agreement amendment|amend(ed|ment)?\s+and\s+extend(ed)?|"
+    r"debt exchange|notes exchanged|"
     r"accepted for exchange|principal amount reduced|"
     r"second[- ]lien notes|PIK notes|"
     r"springing maturity|equity conversion|"
     r"asset sales sufficient to (repay|redeem)|"
     r"binding agreements for asset sales|"
-    r"maturity extension|debt repurchase|"
+    r"maturity extension|debt repurchase|debt repurchases?|"
+    r"liability management (transaction|exercise|programme)|LME|"
+    r"deleveraging (transaction|programme|plan)|"
+    r"covenant relief|covenant (waiver|holiday|amendment)|"
+    r"distressed exchange|"
+    r"recapitalization|recapitalisation|"
     r"lenders agreed|notes (will be|are being) (cancelled|repurchased)|"
-    r"supporting holders|minimum participation condition)\b",
+    r"supporting holders|minimum participation condition|"
+    r"out[- ]of[- ]court (restructuring|exchange)|"
+    r"prepackaged plan|pre[- ]packaged plan|"
+    r"chapter 11|bankruptcy protection|"
+    r"emergence from chapter 11"
+    r")\b",
     re.I,
 )
 # Debt amount extraction: multiple word-orders. The principal can come
@@ -96,9 +109,17 @@ GOING_CONCERN = re.compile(
     re.I,
 )
 CREDITOR_BOARD = re.compile(
-    r"\b(board (designat(ed|ee)|appointed|seats?) by (the )?(noteholders?|"
-    r"lenders?|creditors?)|noteholder[- ]designated director|"
-    r"creditor[- ]appointed)\b",
+    r"\b("
+    r"board (designat(ed|ee)|appointed|seats?|nominees?) by (the )?"
+    r"(noteholders?|lenders?|creditors?|holders?)|"
+    r"noteholder[- ]designated director|"
+    r"creditor[- ](appointed|nominated|representative)|"
+    r"lender[- ](designated|nominated|appointed) director|"
+    r"creditor steering committee|"
+    r"ad hoc (group|committee) of (holders|creditors|lenders)|"
+    r"holder[- ]designated nominees?|"
+    r"directors? designated by the (Required|Consenting) (Holders|Lenders|Noteholders)"
+    r")\b",
     re.I,
 )
 
@@ -123,49 +144,105 @@ RIGHTS_OFFERING = re.compile(
 
 # C. Cash shell / net-net activist kicker -----------------------------------
 NET_CASH_LANG = re.compile(
-    r"\b(cash exceeds (the )?market cap|trading (at|below) (net )?cash|"
-    r"net cash position|cash (and|&) (cash )?equivalents (greater|exceed))\b",
+    r"\b("
+    r"cash exceeds (the )?market cap|"
+    r"trading (at|below) (net )?cash|"
+    r"net cash position|"
+    r"cash (and|&) (cash )?equivalents (greater|exceed|in excess)|"
+    r"cash per share (?:exceeds|greater than|in excess of|approximately)|"
+    r"net cash per share|"
+    r"trading (at )?(below|at) (net )?(book )?(value|cash)|"
+    r"discount to (?:net )?cash|"
+    r"cash[- ]rich balance sheet|"
+    r"net[- ]net|"
+    r"cash stub|"
+    r"enterprise value (?:is )?(below|negative)"
+    r")\b",
     re.I,
 )
 
 
 # D. Controller take-private / bump trades ----------------------------------
 GO_PRIVATE = re.compile(
-    r"\b(go[- ]private (transaction|proposal|offer)|"
+    r"\b("
+    r"go[- ]private (transaction|proposal|offer|merger)|"
     r"going[- ]private|"
     r"Schedule\s*13E-3|SC 13E-3|"
-    r"controlling stockholder (proposal|offer)|"
-    r"unsolicited (take[- ]private|controller) (proposal|bid))\b",
+    r"controlling stockholder (proposal|offer|bid)|"
+    r"unsolicited (take[- ]private|controller) (proposal|bid)|"
+    r"take(\s+the)? company private|"
+    r"all[- ]cash (take[- ]private|merger consideration)|"
+    r"private equity (offer|bid|consortium)|"
+    r"sponsor[- ]led (take[- ]private|buyout)|"
+    r"management buy[- ]out|MBO|"
+    r"leveraged buy[- ]out|LBO"
+    r")\b",
     re.I,
 )
 
 
 # E. Asset conversion / hidden assets ---------------------------------------
 HIDDEN_ASSETS = re.compile(
-    r"\b(NOLs?|net operating loss(es)?|"
-    r"FCC license|spectrum (assets|holdings|auction)|"
+    r"\b("
+    r"NOLs?|net operating loss(es)?|"
+    r"FCC license|spectrum (assets|holdings|auction|portfolio)|"
     r"sale[- ]leaseback|tax assets?|"
     r"section 382|tax asset protection plan|"
-    r"deferred tax asset|monetiz(e|ation) (of )?(real estate|land|spectrum))\b",
+    r"deferred tax asset|"
+    r"monetiz(e|ation) (of )?(real estate|land|spectrum|"
+    r"intellectual property|patents?|portfolio|brands?)|"
+    r"valuable land holdings|land bank|"
+    r"real estate portfolio|property monetization|"
+    r"property holdings|owned real estate|"
+    r"patent portfolio|trademark portfolio|"
+    r"intellectual property (?:portfolio|monetization)|"
+    r"licensing (?:revenue|royalty|opportunity)|"
+    r"hidden assets?|undervalued assets?|"
+    r"(unlocking|unlock(ed)?) (?:value|hidden value|asset value)|"
+    r"asset[- ]rich"
+    r")\b",
     re.I,
 )
 
 
 # F. Governance reset -------------------------------------------------------
 GOVERNANCE_RESET = re.compile(
-    r"\b(cooperation agreement|board refresh(ment)?|"
-    r"chair (resign|stepping down|departure)|"
+    r"\b("
+    r"cooperation agreement|"
+    r"settlement agreement|"
+    r"standstill agreement|"
+    r"board refresh(ment)?|board reconstitut|"
+    r"chair (resign|stepping down|departure|change|succession)|"
+    r"interim (CEO|chief executive|CFO|chief financial)|"
+    r"acting (CEO|chief executive)|"
     r"value enhancement committee|finance and strategy committee|"
-    r"strategic review committee)\b",
+    r"strategic review committee|strategic alternatives committee|"
+    r"transaction committee|capital allocation committee|"
+    r"lead (independent )?director appointed|"
+    r"new (independent )?director(s)? appointed|"
+    r"governance reform|"
+    r"board (composition )?changes?|"
+    r"new (CEO|chief executive|CFO|chief financial) (appointed|named|hired)|"
+    r"announce(?:s|d) (?:the )?(?:appointment|hiring) of (?:a )?new (CEO|chief)"
+    r")\b",
     re.I,
 )
 
 
 # Compound-screen helpers ---------------------------------------------------
 INSIDER_BUYING = re.compile(
-    r"\b(insiders? (purchas(ed|ing)|bought)|directors? and officers? "
-    r"acquired|open[- ]market purchases? by (insiders?|directors?|"
-    r"officers?)|recent Form 4 (purchases?|buys?))\b",
+    r"\b("
+    r"insiders? (purchas(ed|ing)|bought|acquir(ed|ing))|"
+    r"directors? and (executive )?officers? (acquired|purchased|bought)|"
+    r"open[- ]market purchases? by (insiders?|directors?|officers?|"
+    r"the (CEO|chief executive|CFO|chairman))|"
+    r"recent Form 4 (purchases?|buys?|filings?)|"
+    r"Form 4 (purchases?|buys?)|"
+    r"insider (transactions?|filings?) (disclosed|reported|filed)|"
+    r"members of (?:the )?(?:board|management) (purchased|bought)|"
+    r"director purchases?|officer purchases?|"
+    r"open[- ]market acquisitions?\s+by\s+(?:directors?|officers?|insiders?)"
+    r")\b",
     re.I,
 )
 

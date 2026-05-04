@@ -32,9 +32,25 @@ from dataclasses import dataclass, field
 # ---------------------------------------------------------------------------
 
 PSU_KEYWORDS = re.compile(
-    r"\b(performance share units?|performance[- ]based stock units?|"
-    r"performance stock units?|PSUs?|PRSUs?|performance[- ]vested|"
-    r"market[- ]based (RSUs?|awards?))\b",
+    r"\b("
+    r"performance share units?|performance[- ]based stock units?|"
+    r"performance stock units?|"
+    r"PSUs?|PRSUs?|"
+    r"performance[- ]vested|performance[- ]conditioned|"
+    r"performance[- ]vesting (?:awards?|RSUs?|units?)|"
+    r"market[- ]based (?:RSUs?|awards?|units?)|"
+    r"market[- ]conditioned (?:awards?|RSUs?|units?)|"
+    r"price[- ]vested (?:awards?|RSUs?|options?)|"
+    r"performance restricted stock units?|"
+    r"performance[- ]based restricted stock|"
+    r"long[- ]term (?:performance|incentive) (?:awards?|units?)|"
+    # UK terminology
+    r"long[- ]term incentive plan|LTIP|"
+    r"performance share plan|PSP|"
+    r"deferred share (?:bonus|plan)|"
+    r"matching shares plan|"
+    r"performance rights"
+    r")\b",
     re.I,
 )
 
@@ -116,16 +132,26 @@ HURDLE_TABLE_TRIGGER = re.compile(
     r"("
     r"achievement of (?:the following|specified|certain)?\s*(?:specified\s+)?"
     r"(?:stock|share) price"
-    r"|the following (stock|share) price"
-    r"|the following (price )?(hurdles?|targets?|thresholds?|levels?|tranches?)"
-    r"|vest(ing|s)? (in (the )?)?(\w+ )?(equal )?tranches"
-    r"|tranches based on (the )?achievement"
-    r"|price (hurdles?|targets?|thresholds?) (?:are|of|set|equal)"
-    r"|performance hurdles? (?:are|of)"
-    r"|VWAP (hurdles?|of|equal|targets?)"
-    r"|weighted average (closing )?price[^.]{0,200}?(equal|exceed|reach)"
-    r"|highest (\d+[- ])?day average"
+    r"|achievement of the following"
+    r"|the following (?:stock|share) price"
+    r"|the following (?:price )?(?:hurdles?|targets?|thresholds?|levels?|tranches?)"
+    r"|the following (?:VWAP|volume[- ]weighted average price)"
+    r"|vest(?:ing|s)? (?:in (?:the )?)?(?:\w+\s+)?(?:equal )?tranches?"
+    r"|vest(?:ing|s)? upon (?:the )?(?:achievement|attainment)"
+    r"|tranches based on (?:the )?achievement"
+    r"|price (?:hurdles?|targets?|thresholds?) (?:are|of|set|equal)"
+    r"|performance hurdles? (?:are|of|set)"
+    r"|VWAP (?:hurdles?|of|equal|targets?)"
+    r"|weighted average (?:closing )?price[^.]{0,200}?(?:equal|exceed|reach)"
+    r"|highest (?:\d+[- ])?day average"
     r"|trailing \d+[- ]day"
+    r"|share price targets? are|stock price targets? are"
+    r"|if the (?:Company.s )?(?:stock|share) price reaches?"
+    r"|(?:upon|when) the (?:Company.s )?(?:stock|share) price (?:exceeds|reaches|achieves)"
+    r"|price[- ]vesting conditions?"
+    r"|the price thresholds? are"
+    r"|vest(?:ing|s)? based on (?:stock|share) price"
+    r"|provided (?:that )?the (?:stock|share) price (?:reaches|exceeds|achieves)"
     r")",
     re.I,
 )

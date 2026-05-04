@@ -30,43 +30,125 @@ from uk_universe import UK_UNIVERSE
 # ---------------------------------------------------------------------------
 
 UK_KEYWORDS = {
-    # Comp / PSU equivalents
-    "ltip":               re.compile(r"\b(LTIP|long[- ]term incentive plan|"
-                                     r"performance share plan|PSP)\b", re.I),
-    "performance_share":  re.compile(r"\bperformance shares?\b|\bperformance "
-                                     r"share units?\b|\bPSU\b", re.I),
-    "remuneration":       re.compile(r"\b(remuneration (report|policy|"
-                                     r"committee))\b", re.I),
-    "options":            re.compile(r"\b(option grant|share option scheme|"
-                                     r"executive option)\b", re.I),
-    # Takeover Panel / governance machinery
-    "rule_2_4":           re.compile(r"\bRule 2\.[47]\b", re.I),
-    "possible_offer":     re.compile(r"\b(possible offer|formal sale process|"
-                                     r"strategic review)\b", re.I),
-    "scheme":             re.compile(r"\b(scheme of arrangement|takeover "
-                                     r"scheme)\b", re.I),
-    "tender":             re.compile(r"\btender offer\b", re.I),
-    # Activist / cooperation
-    "activist":           re.compile(r"\b(activist|requisition|cooperation "
-                                     r"agreement|board representation)\b", re.I),
-    "13d_uk":             re.compile(r"\b(major shareholding|disclosure "
-                                     r"of major holding|TR-1)\b", re.I),
-    # Capital allocation
-    "buyback":            re.compile(r"\b(share buy[- ]?back|repurchase "
-                                     r"programme|return of capital|"
-                                     r"tender offer)\b", re.I),
-    "dividend_change":    re.compile(r"\b(special dividend|dividend "
-                                     r"increase|dividend cut)\b", re.I),
-    # Distress / restructuring
-    "going_concern_uk":   re.compile(r"\b(going concern|material "
-                                     r"uncertainty|covenant breach|"
-                                     r"refinancing)\b", re.I),
-    "spinoff_uk":         re.compile(r"\b(demerger|spin[- ]off|separation|"
-                                     r"distribution in specie)\b", re.I),
-    # CEO change
-    "ceo_change":         re.compile(r"\b(new (CEO|Chief Executive)|CEO "
-                                     r"resign|appointment of (a )?Chief "
-                                     r"Executive|board change)\b", re.I),
+    # ---- Comp / PSU equivalents (UK) ------------------------------------
+    "ltip":               re.compile(
+        r"\b(LTIP|long[- ]term incentive plan|"
+        r"performance share plan|PSP|"
+        r"deferred share (bonus|plan)|"
+        r"matching shares plan|"
+        r"executive incentive plan)\b", re.I),
+    "performance_share":  re.compile(
+        r"\bperformance shares?\b|\bperformance share units?\b|"
+        r"\bPSU\b|performance[- ]vested|performance[- ]conditioned|"
+        r"price[- ]vested awards?", re.I),
+    "remuneration":       re.compile(
+        r"\b(remuneration (report|policy|committee)|"
+        r"director.s? remuneration|"
+        r"directors.? remuneration|"
+        r"binding (?:vote|resolution) on remuneration)\b", re.I),
+    "options":            re.compile(
+        r"\b(option grant|share option scheme|executive option|"
+        r"executive sharesave|SAYE|EMI option|"
+        r"share[- ]based payments?)\b", re.I),
+
+    # ---- Takeover Panel / governance machinery ---------------------------
+    "rule_2_4":           re.compile(
+        r"\b(Rule 2\.[47]|Rule 2\.[47]\([a-z0-9]+\)|"
+        r"firm intention to make an offer|"
+        r"firm offer announcement|"
+        r"announcement of (a )?possible offer|"
+        r"possible offer announcement)\b", re.I),
+    "possible_offer":     re.compile(
+        r"\b(possible offer|formal sale process|"
+        r"strategic review|recommended (cash )?(offer|acquisition)|"
+        r"reviewing strategic alternatives|"
+        r"the company has been approached|"
+        r"approach by (?:a )?(?:third party|potential offeror)|"
+        r"in receipt of (an )?(unsolicited )?(approach|offer|proposal))\b", re.I),
+    "scheme":             re.compile(
+        r"\b(scheme of arrangement|takeover scheme|"
+        r"court[- ]sanctioned scheme|"
+        r"scheme document|"
+        r"scheme circular|"
+        r"recommended scheme)\b", re.I),
+    "tender":             re.compile(
+        r"\b(tender offer|tender process|"
+        r"return of capital via tender|"
+        r"capital return tender)\b", re.I),
+    "pusu":               re.compile(
+        r"\b(PUSU deadline|put up or shut up|PUSU extension)\b", re.I),
+
+    # ---- Activist / cooperation ------------------------------------------
+    "activist":           re.compile(
+        r"\b(activist|requisition (?:of (?:a )?(?:meeting|EGM|AGM))?|"
+        r"cooperation agreement|board representation|"
+        r"shareholder requisition|"
+        r"call for (?:a )?(?:strategic review|board change|sale)|"
+        r"shareholder (?:campaign|letter|engagement)|"
+        r"settlement agreement)\b", re.I),
+    "13d_uk":             re.compile(
+        r"\b(major shareholding|disclosure of major holding|"
+        r"TR[- ]?1|notification of major holdings|"
+        r"net short position|"
+        r"holdings? in company)\b", re.I),
+
+    # ---- Capital allocation ----------------------------------------------
+    "buyback":            re.compile(
+        r"\b(share buy[- ]?back|repurchase programme|"
+        r"return of capital|share repurchase|"
+        r"tender offer|capital return|"
+        r"on[- ]market buyback|"
+        r"authority to (?:repurchase|buy back) shares)\b", re.I),
+    "dividend_change":    re.compile(
+        r"\b(special dividend|dividend increase|dividend cut|"
+        r"dividend reinstatement|suspended dividend|"
+        r"final dividend (?:increase|raised|hiked)|"
+        r"interim dividend (?:increase|raised|hiked))\b", re.I),
+
+    # ---- Distress / restructuring ----------------------------------------
+    "going_concern_uk":   re.compile(
+        r"\b(going concern|material uncertainty|"
+        r"covenant breach|covenant waiver|"
+        r"refinancing (?:risk|required|completed)?|"
+        r"liquidity (?:concerns?|issues?|crisis)|"
+        r"funding requirement|"
+        r"(?:emergency|urgent) (?:fundraising|placing))\b", re.I),
+    "spinoff_uk":         re.compile(
+        r"\b(demerger|spin[- ]off|separation|"
+        r"distribution in specie|"
+        r"reverse takeover|RTO|"
+        r"hive[- ]down|"
+        r"sale of (?:the )?(?:business|division|operations))\b", re.I),
+
+    # ---- CEO / leadership change -----------------------------------------
+    "ceo_change":         re.compile(
+        r"\b(new (?:CEO|Chief Executive)|CEO resign|"
+        r"appointment of (?:a )?(?:Chief Executive|CEO)|"
+        r"board change|chair (?:resign|stepping down)|"
+        r"interim (?:CEO|Chief Executive)|"
+        r"announcement of (?:a )?new (?:CEO|Chief))\b", re.I),
+
+    # ---- New: capital raise / placing (often a forced-seller signal) -----
+    "placing":            re.compile(
+        r"\b(equity placing|placing of shares|"
+        r"discounted placing|cashbox placing|"
+        r"vendor placing|firm placing|"
+        r"open offer|placement agreement)\b", re.I),
+
+    # ---- New: financial sponsor / private equity references --------------
+    "private_equity_uk":  re.compile(
+        r"\b(private equity (?:approach|consortium|bidder)|"
+        r"financial sponsor|"
+        r"buy[- ]out approach|"
+        r"public[- ]to[- ]private)\b", re.I),
+
+    # ---- New: AIM-specific signals ---------------------------------------
+    "aim_signal":         re.compile(
+        r"\b(cancellation of (?:AIM )?listing|"
+        r"AIM cancellation|"
+        r"matched bargain facility|"
+        r"return to AIM|"
+        r"NEX Exchange)\b", re.I),
 }
 
 
