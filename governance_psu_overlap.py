@@ -31,6 +31,7 @@ def load_all() -> list[dict]:
         "v2_detail.json", "wide180_detail.json",
         "induce_detail.json", "restruct_v7.json",
         "targets_v4.json", "missing_v8.json",
+        "uk_v2_detail.json", "uk_detail.json",
     ]
     rows: list[dict] = []
     for fn in sources:
@@ -45,6 +46,53 @@ def load_all() -> list[dict]:
         except Exception:
             pass
     return rows
+
+
+def load_enrichment_overlay() -> dict[str, dict]:
+    """SC 13D + Form 4 batch overlay (US)."""
+    p = Path("enrichment_overlay.json")
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        return {}
+
+
+def load_rns_overlay() -> dict[str, dict]:
+    """UK RNS keyword overlay."""
+    p = Path("uk_rns_overlay.json")
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        return {}
+
+
+def apply_enrichment(merged: dict[str, dict]) -> None:
+    """Patch in 13D / Form 4 / RNS overlays. Called after merge_by_ticker."""
+    enr = load_enrichment_overlay()
+    rns = load_rns_overlay()
+    for tk, r in merged.items():
+        e = enr.get(tk)
+        if e:
+            for key in ("sc13d_filings_1y", "sc13d_dates",
+                        "insider_form4_count_90d", "insider_form4_dates",
+                        "insider_buying_evidence"):
+                if e.get(key) is not None:
+                    cur = r.get(key)
+                    if cur in (None, 0, False, []) or (
+                        isinstance(cur, (int, float))
+                            and (e.get(key) or 0) > cur):
+                        r[key] = e[key]
+        n = rns.get(tk)
+        if n:
+            r["rns_signal_count"] = n.get("rns_signal_count", 0)
+            r["rns_keywords"] = {k: v for k, v in n.items()
+                                 if isinstance(v, int) and v > 0
+                                 and k != "rns_signal_count"}
+            r["news_titles"] = n.get("news_titles") or []
 
 
 def merge_by_ticker(rows: list[dict]) -> dict[str, dict]:
@@ -135,12 +183,19 @@ def plausible_hurdles(r: dict) -> list[float]:
 
 
 def gov_leg(r: dict) -> float:
-    """0-100. Strongest governance/process signal across all detectors."""
+    """0-100. Strongest governance/process signal across all detectors.
+
+    Includes UK RNS keyword overlay so UK names with possible-offer /
+    Rule 2.x / strategic-review headlines aren't penalised relative to
+    US names where the signal lives in DEF 14A text."""
     pq = r.get("process_quality") or 0
     ds = r.get("distressed_stub_score") or 0
     sr = r.get("strategic_review") or 0
     ac = r.get("activist_score") or 0
     cc = r.get("change_of_control") or 0
+    # UK RNS overlay -- treat each keyword hit as ~15 base points up to 60.
+    rns_count = r.get("rns_signal_count") or 0
+    rns_score = min(60.0, rns_count * 15.0) if rns_count > 0 else 0
     # Bonuses for primary-source signals
     bonus = 0
     if (r.get("sc13d_filings_1y") or 0) > 0:
@@ -151,7 +206,7 @@ def gov_leg(r: dict) -> float:
         bonus += 10
     if r.get("active_bid") and r.get("majority_of_minority"):
         bonus += 10
-    return min(100.0, max(pq, ds, sr, ac, cc) + bonus)
+    return min(100.0, max(pq, ds, sr, ac, cc, rns_score) + bonus)
 
 
 def main() -> int:
@@ -169,6 +224,11 @@ def main() -> int:
     print(f"Loaded {len(rows)} filings across sources.")
     merged = merge_by_ticker(rows)
     print(f"Merged: {len(merged)} unique tickers.")
+    apply_enrichment(merged)
+    enr_hits = sum(1 for r in merged.values() if r.get("sc13d_filings_1y") or r.get("insider_buying_evidence"))
+    rns_hits = sum(1 for r in merged.values() if r.get("rns_signal_count"))
+    print(f"Enriched: {enr_hits} tickers got 13D/Form4 overlay; "
+          f"{rns_hits} got UK RNS overlay.")
 
     candidates = []
     for tk, r in merged.items():

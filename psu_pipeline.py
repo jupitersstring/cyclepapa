@@ -32,7 +32,7 @@ from special_situations import extract_special_features, score_specials
 from compound_screens import run_screens
 from recent import (
     recent_def14a, recent_def14a_range, recent_8k_inducement_range,
-    recent_8k_restructuring_range, company_filings,
+    recent_8k_restructuring_range, recent_form10_range, company_filings,
     company_13d_filers, company_insider_buys,
     RecentFiling,
 )
@@ -333,6 +333,10 @@ def main() -> int:
                           "restructurings / strategic alternatives / "
                           "going-concern / spin-offs / take-privates "
                           "(Bastian / Kingdom Capital playbook universe).")
+    src.add_argument("--spinoffs", type=int, metavar="DAYS",
+                     help="Pull Form 10 / 10-12B / 10-12G filings "
+                          "(SpinCo registration statements -- the "
+                          "Greenblatt edge).")
     src.add_argument("--deepdive", metavar="FILE_OR_TICKER",
                      help="Per-ticker deep-dive: pull ALL recent DEF 14A "
                           "/ 8-K / 10-K / S-8 filings for the given "
@@ -393,7 +397,8 @@ def main() -> int:
             rows.append(row)
             if not cached:
                 time.sleep(args.sleep)
-    elif args.recent or args.days or args.inducements or args.restructurings:
+    elif (args.recent or args.days or args.inducements
+          or args.restructurings or args.spinoffs):
         from datetime import datetime, timedelta, timezone
         end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if args.recent:
@@ -411,6 +416,12 @@ def main() -> int:
                   f"{start} .. {end} (limit {args.limit})...",
                   file=sys.stderr, flush=True)
             feed = recent_8k_restructuring_range(start, end, limit=args.limit)
+        elif args.spinoffs:
+            start = (datetime.now(timezone.utc) - timedelta(days=args.spinoffs)).strftime("%Y-%m-%d")
+            print(f"Pulling Form 10 / spin-off registration filings "
+                  f"{start} .. {end} (limit {args.limit})...",
+                  file=sys.stderr, flush=True)
+            feed = recent_form10_range(start, end, limit=args.limit)
         else:
             start = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
             print(f"Pulling DEF 14A filings {start} .. {end} (limit {args.limit})...",

@@ -1,0 +1,560 @@
+{
+  "0002008748": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "0002011498": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "0002041841": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "0002044112": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "0002061670": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "0002066811": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "AACPU": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 1,
+    "insider_form4_dates": [
+      "2026-04-10"
+    ],
+    "insider_buying_evidence": false
+  },
+  "AAL": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 13,
+    "insider_form4_dates": [
+      "2026-03-26",
+      "2026-03-02",
+      "2026-02-23",
+      "2026-02-23",
+      "2026-02-23",
+      "2026-02-23",
+      "2026-02-19",
+      "2026-02-19"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AAMI": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 6,
+    "insider_form4_dates": [
+      "2026-02-18",
+      "2026-02-18",
+      "2026-02-18",
+      "2026-02-18",
+      "2026-02-12",
+      "2026-02-12"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AAOI": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 21,
+    "insider_form4_dates": [
+      "2026-04-24",
+      "2026-04-24",
+      "2026-04-24",
+      "2026-04-24",
+      "2026-04-24",
+      "2026-04-14",
+      "2026-03-23",
+      "2026-03-18"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABCL": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 3,
+    "insider_form4_dates": [
+      "2026-03-02",
+      "2026-02-27",
+      "2026-02-27"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABEO": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 4,
+    "insider_form4_dates": [
+      "2026-04-07",
+      "2026-03-31",
+      "2026-03-16",
+      "2026-02-04"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABNB": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 19,
+    "insider_form4_dates": [
+      "2026-04-27",
+      "2026-04-27",
+      "2026-04-27",
+      "2026-04-23",
+      "2026-04-22",
+      "2026-04-10",
+      "2026-04-08",
+      "2026-03-25"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABOS": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 3,
+    "insider_form4_dates": [
+      "2026-03-18",
+      "2026-03-10",
+      "2026-03-03"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABSI": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 20,
+    "insider_form4_dates": [
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-05",
+      "2026-03-04",
+      "2026-03-04"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABT": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 41,
+    "insider_form4_dates": [
+      "2026-04-29",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABTC": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 7,
+    "insider_form4_dates": [
+      "2026-03-09",
+      "2026-03-05",
+      "2026-03-05",
+      "2026-02-26",
+      "2026-02-26",
+      "2026-02-26",
+      "2026-02-26"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ABXL": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 16,
+    "insider_form4_dates": [
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16",
+      "2026-03-16"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACAD": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 15,
+    "insider_form4_dates": [
+      "2026-04-07",
+      "2026-04-07",
+      "2026-03-26",
+      "2026-03-26",
+      "2026-03-26",
+      "2026-03-26",
+      "2026-03-26",
+      "2026-03-20"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACCS": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 2,
+    "insider_form4_dates": [
+      "2026-03-30",
+      "2026-03-26"
+    ],
+    "insider_buying_evidence": false
+  },
+  "ACDC": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 19,
+    "insider_form4_dates": [
+      "2026-04-09",
+      "2026-04-09",
+      "2026-04-09",
+      "2026-04-09",
+      "2026-04-09",
+      "2026-04-09",
+      "2026-04-01",
+      "2026-04-01"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACET": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 8,
+    "insider_form4_dates": [
+      "2026-04-29",
+      "2026-04-13",
+      "2026-04-09",
+      "2026-03-27",
+      "2026-03-27",
+      "2026-03-27",
+      "2026-03-27",
+      "2026-03-27"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACMR": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 8,
+    "insider_form4_dates": [
+      "2026-04-21",
+      "2026-03-13",
+      "2026-03-13",
+      "2026-03-12",
+      "2026-03-11",
+      "2026-03-09",
+      "2026-03-09",
+      "2026-02-06"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACNT": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 11,
+    "insider_form4_dates": [
+      "2026-04-08",
+      "2026-04-06",
+      "2026-03-30",
+      "2026-03-30",
+      "2026-03-30",
+      "2026-03-30",
+      "2026-03-30",
+      "2026-03-18"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACOG": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 11,
+    "insider_form4_dates": [
+      "2026-04-17",
+      "2026-03-31",
+      "2026-03-26",
+      "2026-03-20",
+      "2026-03-18",
+      "2026-03-13",
+      "2026-03-10",
+      "2026-03-06"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACRS": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 16,
+    "insider_form4_dates": [
+      "2026-04-27",
+      "2026-03-03",
+      "2026-02-06",
+      "2026-02-06",
+      "2026-02-06",
+      "2026-02-06",
+      "2026-02-06",
+      "2026-02-06"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACRV": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 15,
+    "insider_form4_dates": [
+      "2026-04-23",
+      "2026-04-21",
+      "2026-03-03",
+      "2026-03-03",
+      "2026-03-03",
+      "2026-03-03",
+      "2026-03-03",
+      "2026-03-03"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ACTG": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 4,
+    "insider_form4_dates": [
+      "2026-04-01",
+      "2026-04-01",
+      "2026-03-24",
+      "2026-03-12"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ADACU": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 1,
+    "insider_form4_dates": [
+      "2026-02-06"
+    ],
+    "insider_buying_evidence": false
+  },
+  "ADAMO": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 0,
+    "insider_form4_dates": [],
+    "insider_buying_evidence": false
+  },
+  "ADGM": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 2,
+    "insider_form4_dates": [
+      "2026-03-09",
+      "2026-03-09"
+    ],
+    "insider_buying_evidence": false
+  },
+  "ADPT": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 42,
+    "insider_form4_dates": [
+      "2026-04-29",
+      "2026-04-24",
+      "2026-04-21",
+      "2026-04-16",
+      "2026-04-13",
+      "2026-04-10",
+      "2026-04-10",
+      "2026-04-08"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ADTX": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 2,
+    "insider_form4_dates": [
+      "2026-04-27",
+      "2026-04-23"
+    ],
+    "insider_buying_evidence": false
+  },
+  "ADUS": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 21,
+    "insider_form4_dates": [
+      "2026-04-22",
+      "2026-03-03",
+      "2026-02-26",
+      "2026-02-26",
+      "2026-02-26",
+      "2026-02-26",
+      "2026-02-26",
+      "2026-02-26"
+    ],
+    "insider_buying_evidence": true
+  },
+  "ADV": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 20,
+    "insider_form4_dates": [
+      "2026-05-01",
+      "2026-05-01",
+      "2026-05-01",
+      "2026-05-01",
+      "2026-05-01",
+      "2026-05-01",
+      "2026-04-22",
+      "2026-04-22"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AEON": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 5,
+    "insider_form4_dates": [
+      "2026-04-03",
+      "2026-03-11",
+      "2026-03-05",
+      "2026-03-05",
+      "2026-02-19"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AERA": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 2,
+    "insider_form4_dates": [
+      "2026-03-17",
+      "2026-02-25"
+    ],
+    "insider_buying_evidence": false
+  },
+  "AESI": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 23,
+    "insider_form4_dates": [
+      "2026-04-21",
+      "2026-03-31",
+      "2026-03-24",
+      "2026-03-24",
+      "2026-03-24",
+      "2026-03-17",
+      "2026-03-17",
+      "2026-03-17"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AEVA": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 3,
+    "insider_form4_dates": [
+      "2026-03-19",
+      "2026-03-05",
+      "2026-02-13"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AGEN": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 16,
+    "insider_form4_dates": [
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28",
+      "2026-04-28"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AGIO": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 15,
+    "insider_form4_dates": [
+      "2026-04-06",
+      "2026-04-06",
+      "2026-04-06",
+      "2026-04-06",
+      "2026-04-06",
+      "2026-04-06",
+      "2026-03-09",
+      "2026-03-05"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AGL": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 13,
+    "insider_form4_dates": [
+      "2026-04-16",
+      "2026-04-16",
+      "2026-04-16",
+      "2026-04-16",
+      "2026-04-03",
+      "2026-04-03",
+      "2026-04-03",
+      "2026-04-03"
+    ],
+    "insider_buying_evidence": true
+  },
+  "AGO": {
+    "sc13d_filings_1y": 0,
+    "sc13d_dates": [],
+    "insider_form4_count_90d": 24,
+    "insider_form4_dates": [
+      "2026-05-01",
+      "2026-04-30",
+      "2026-03-31",
+      "2026-03-24",
+      "2026-03-23",
+      "2026-03-05",
+      "2026-02-25",
+      "2026-02-25"
+    ],
+    "insider_buying_evidence": true
+  }
+}

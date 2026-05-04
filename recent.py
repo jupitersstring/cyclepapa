@@ -236,6 +236,64 @@ def company_filings(
     return out
 
 
+def recent_form10_range(
+    start_date: str,
+    end_date: str,
+    limit: int = 200,
+) -> list[RecentFiling]:
+    """Pull Form 10 / 10-12B / 10-12G filings in a date window.
+
+    Form 10 is the registration statement filed by a spin-off entity
+    (SpinCo) before separation -- the Greenblatt edge. These are
+    structurally distinct from 8-Ks and the wider DEF 14A sweep, so a
+    dedicated query is required to avoid missing the spin-off universe.
+    """
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+    forms_to_match = ("10-12B", "10-12G", "10-12B/A", "10-12G/A")
+    for form_q in forms_to_match:
+        offset = 0
+        while len(out) < limit and offset < 500:
+            url = (
+                f"{EFTS}?forms={requests_quote(form_q)}"
+                f"&dateRange=custom&startdt={start_date}&enddt={end_date}"
+                f"&from={offset}"
+            )
+            try:
+                data = _get(url).json()
+            except Exception:
+                break
+            hits = data.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for h in hits:
+                src = h.get("_source", {}) or {}
+                ciks = src.get("ciks") or []
+                cik = f"{int(ciks[0]):010d}" if ciks else None
+                if not cik or cik in seen_cik:
+                    continue
+                seen_cik.add(cik)
+                tickers = src.get("tickers") or []
+                ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+                display = (src.get("display_names") or ["?"])[0]
+                company = display.split(" (")[0]
+                file_date = src.get("file_date", "")
+                id_parts = (h.get("_id") or "").split(":")
+                if len(id_parts) != 2:
+                    continue
+                accession, primary_doc = id_parts
+                out.append(RecentFiling(
+                    cik=cik, company=company, ticker=ticker,
+                    filing_date=file_date,
+                    accession=accession, primary_doc=primary_doc,
+                ))
+                if len(out) >= limit:
+                    return out
+            offset += 100
+    return out
+
+
 def recent_8k_restructuring_range(
     start_date: str,
     end_date: str,
