@@ -28,7 +28,7 @@ from universe_filter import is_excluded
 
 def load_all() -> list[dict]:
     sources = [
-        "v2_detail.json", "wide180_detail.json",
+        "v2_detail.json", "wide180_detail.json", "wide365_detail.json",
         "induce_detail.json",
         "restruct_v10.json", "restruct_v7.json",  # v10 first; merge prefers max
         "targets_v4.json", "missing_v8.json", "missing_v10.json",
@@ -218,7 +218,15 @@ def psu_leg(r: dict) -> float:
     )
     rns_psu = min(60.0, rns_psu)
 
-    return min(100.0, max(asym, kick, ladder_kicker, rns_psu) + bonus)
+    # UK / non-US names lack proxy comp data entirely. Use the
+    # fundamentals composite (from uk_screener.py output) as a proxy
+    # for the value-floor + tailwind side of the asymmetry equation.
+    # Cap at 70 so it can reach the eligibility floor but doesn't
+    # dominate genuine US ladder ranks.
+    uk_composite = r.get("composite") if isinstance(r.get("composite"), (int, float)) else 0
+    uk_proxy = min(70.0, uk_composite or 0)
+
+    return min(100.0, max(asym, kick, ladder_kicker, rns_psu, uk_proxy) + bonus)
 
 
 def plausible_hurdles(r: dict) -> list[float]:
