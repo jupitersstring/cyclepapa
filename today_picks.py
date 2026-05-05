@@ -115,6 +115,8 @@ def main() -> int:
                    help="Optional confidence floor (default 0 = no filter).")
     p.add_argument("--region", choices=["US", "UK", "INTL", "ALL"], default="ALL",
                    help="US (no suffix) / UK (.L) / INTL (.AX/.TO/.HK/.SI/.T/.DE/.PA/.MI) / ALL.")
+    p.add_argument("--csv", default=None,
+                   help="Optional path to save the ranked top-N as CSV.")
     args = p.parse_args()
 
     rows = load_all()
@@ -174,6 +176,62 @@ def main() -> int:
         candidates.append(r)
 
     candidates.sort(key=lambda x: x["_today_score"], reverse=True)
+
+    if args.csv:
+        import csv as _csv
+        from pathlib import Path as _Path
+        fields = [
+            "rank", "ticker", "company", "region", "sector",
+            "current_price", "market_cap_musd",
+            "today_score", "overlap", "confidence", "catalyst_hardness",
+            "psu_leg", "gov_leg", "hurdle_quality", "adviser_tier",
+            "filing_date", "filing_url",
+            "transformation_signal", "active_bid", "has_special_committee",
+            "activists_named", "advisers_named", "engaged_adviser",
+            "insider_form4_count_90d", "sc13d_filings_1y",
+            "has_debt_event", "has_spinoff", "go_private_language",
+            "compound_screens",
+            "stock_price_hurdles_plausible", "ladder_top", "ladder_median",
+            "short_pct_float", "short_ratio", "earnings_date_days",
+            "analyst_count", "target_mean_pct",
+            "drawdown_pct", "p_b", "fcf_yield", "div_yield",
+            "rev_growth", "earn_growth",
+            "insider_pct", "inst_pct",
+        ]
+        with _Path(args.csv).open("w", newline="") as f:
+            w = _csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+            w.writeheader()
+            for i, r in enumerate(candidates[: args.top], 1):
+                tk = r.get("ticker", "")
+                region = ("UK" if tk.endswith(".L") else
+                          "INTL" if any(tk.endswith(s) for s in (
+                              ".AX", ".TO", ".V", ".HK", ".SI",
+                              ".T", ".DE", ".PA", ".MI", ".F"))
+                          else "US")
+                h_p = plausible_hurdles(r)
+                row = dict(r)
+                row.update(
+                    rank=i,
+                    region=region,
+                    market_cap_musd=round((r.get("market_cap") or 0) / 1e6, 1),
+                    today_score=r.get("_today_score"),
+                    overlap=r.get("_overlap"),
+                    confidence=r.get("_confidence"),
+                    catalyst_hardness=r.get("_catalyst_hardness"),
+                    psu_leg=r.get("_psu_leg"),
+                    gov_leg=r.get("_gov_leg"),
+                    hurdle_quality=r.get("_hurdle_quality"),
+                    adviser_tier=r.get("_adviser_tier"),
+                    activists_named=", ".join(r.get("activists_named") or []),
+                    advisers_named=", ".join(r.get("advisers_named") or []),
+                    compound_screens=" | ".join(r.get("compound_screens") or []),
+                    stock_price_hurdles_plausible=", ".join(f"{x:.2f}" for x in h_p),
+                    ladder_top=max(h_p) if h_p else None,
+                    ladder_median=sorted(h_p)[len(h_p)//2] if h_p else None,
+                    fcf_yield=r.get("fcf_yield"),
+                )
+                w.writerow(row)
+        print(f"Wrote ranked CSV to {args.csv}\n", file=sys.stderr)
 
     print(f"Universe: {len(merged)} tickers; eligible {len(candidates)}.\n")
     print(f"=== TODAY'S BEST RISK/REWARD (top {args.top}) ===\n")
