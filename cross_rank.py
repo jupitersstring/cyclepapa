@@ -188,6 +188,18 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     ua += np.where(bullish & (q_volratio <= 0.75), 3,
           np.where(bullish & (q_volratio <= 0.90), 1, 0))
 
+    # === 11. ORD TRAJECTORY (early inflection detection) ===
+    ord_early = safe("ord_early").astype(bool)
+    ord_traj = safe("ord_traj", "")
+    ord_cont = safe("ord_cont")
+    ord_vel = safe("ord_vel")
+    ua += np.where(ord_traj == "INFLECT_UP", 12, 0)
+    ua += np.where(ord_traj == "ACCEL_BULL", 10, 0)
+    ua += np.where(ord_traj == "VEL_POS", 6, 0)
+    ua += np.where((ord_traj == "STRONG_UP") & bullish, 4, 0)
+    ua += np.where(ord_traj == "ACCEL_BEAR", -5, 0)
+    ua += np.where(ord_traj == "DECLINING", -3, 0)
+
     # === PENALTIES ===
     q_ret26 = safe("q_ret26")
     ua += np.where(q_ret26 > 0.40, -10, np.where(q_ret26 > 0.25, -5, 0))
@@ -205,6 +217,9 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
 def signal_summary(row) -> str:
     """Build a human-readable signal summary for a row."""
     signals = []
+    traj = row.get("ord_traj", "")
+    if traj in ("INFLECT_UP", "ACCEL_BULL", "VEL_POS", "STRONG_UP"):
+        signals.append(f"★{traj}")
     if row.get("ov_sig"):
         signals.append(f"OV_{row.get('ov_str','?')}")
     elif row.get("ov_sig_loose"):
