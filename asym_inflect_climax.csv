@@ -1,0 +1,1636 @@
+ticker,name,date,dna,t0_asym,peak_asym,months_to_peak,climb,slope_3m,slope_6m
+NEOF,Neoforma.com Inc,2000-01-24,15.3,77.35,77.35,0,0.00,0.00,-0.20
+RGCI,Regent Communications Inc,2000-01-24,15.3,77.35,77.35,0,0.00,0.00,-0.20
+HGAT,HealthGate Data Corp,2000-01-25,5.3,54.52,54.52,0,0.00,-0.32,-0.32
+SVNX,724 Solutions Inc,2000-01-27,8.1,55.12,55.12,0,0.00,0.00,0.00
+ASPM,Aspect Medical Systems Inc,2000-01-27,8.1,55.12,55.12,0,0.00,0.00,0.00
+NTG,NATCO Group Inc,2000-01-27,8.1,55.12,55.12,0,0.00,0.00,0.00
+PKG,Packaging Corp of America,2000-01-27,8.1,55.12,55.12,0,0.00,0.00,0.00
+CAMZ,Caminus Corp,2000-01-28,7.2,57.25,57.25,0,0.00,0.00,0.00
+LNTY,L90 Inc,2000-01-28,7.2,57.25,57.25,0,0.00,0.00,0.00
+STTS,ST Assembly Test Services Pte,2000-01-28,7.2,57.25,57.25,0,0.00,0.00,0.00
+IWAV,interWAVE Communications,2000-01-28,7.2,57.25,57.25,0,0.00,0.00,0.00
+EMRG,Emerge Interactive Inc,2000-02-04,10.1,60.35,60.35,0,0.00,0.00,0.00
+FIRE,FirePond Inc,2000-02-04,10.1,60.35,60.35,0,0.00,0.00,0.00
+WQNI,WorldQuest Networks Inc,2000-02-04,10.1,60.35,60.35,0,0.00,0.00,0.00
+EONC,eOn Communications Corp,2000-02-04,10.1,60.35,60.35,0,0.00,0.00,0.00
+BUYX,Buy.com Inc,2000-02-07,11.4,59.82,59.82,0,0.00,-0.06,-0.35
+NXTP,Nextel Partners Inc,2000-02-22,4.7,58.83,58.83,0,0.00,-1.67,-1.79
+ASIA,AsiaInfo Holdings Inc,2000-03-02,6.3,51.71,51.71,0,0.00,-0.90,-0.90
+PRME,Prime Response Inc,2000-03-02,6.3,51.71,51.71,0,0.00,-0.90,-0.90
+RCOM,Register.com Inc,2000-03-02,6.3,51.71,51.71,0,0.00,-0.90,-0.90
+SWBD,Switchboard Inc,2000-03-02,6.3,51.71,51.71,0,0.00,-0.90,-0.90
+UTSI,UTStarcom Inc,2000-03-02,6.3,51.71,51.71,0,0.00,-0.90,-0.90
+VATA,Versata Inc,2000-03-03,9.2,55.94,57.35,1,1.41,1.25,1.25
+CRFH,Crayfish Co Ltd,2000-03-06,6.2,46.53,46.53,0,0.00,-0.68,-1.08
+IFE,IFCO Systems NV,2000-03-06,6.2,46.53,46.53,0,0.00,-0.68,-1.08
+NTKK,Net 2000 Communications Inc,2000-03-06,6.2,46.53,46.53,0,0.00,-0.68,-1.08
+FWIS,FirstWorld Communications Inc,2000-03-07,7.1,50.62,50.62,0,0.00,-3.33,-4.46
+IPRT,iprint.com Inc,2000-03-07,7.1,50.62,50.62,0,0.00,-3.33,-4.46
+CHOM,New China Homes Ltd,2000-03-08,8.5,51.20,51.20,0,0.00,-0.99,-0.36
+GTTLO,GT Group Telecom Inc,2000-03-09,12.4,66.23,66.23,0,0.00,-0.56,-0.09
+HOMG,HomeGrocer.com,2000-03-09,12.4,66.23,66.23,0,0.00,-0.56,-0.09
+OPHM,OraPharma Inc,2000-03-09,12.4,66.23,66.23,0,0.00,-0.56,-0.09
+RVDP,Riverdeep Interactive Learning,2000-03-09,12.4,66.23,66.23,0,0.00,-0.56,-0.09
+SLTC,Selectica Inc,2000-03-09,12.4,66.23,66.23,0,0.00,-0.56,-0.09
+OTGS,OTG Software Inc,2000-03-10,12.1,59.58,61.21,1,1.63,1.63,1.40
+SDAY,SUNDAY Communications Ltd,2000-03-10,12.1,59.58,61.21,1,1.63,1.63,1.40
+DTAS,Digitas Inc,2000-03-13,15.1,63.14,65.03,1,1.90,1.90,1.90
+FAIM,FairMarket Inc,2000-03-13,15.1,63.14,65.03,1,1.90,1.90,1.90
+IFX,Infineon Technologies AG,2000-03-13,15.1,63.14,65.03,1,1.90,1.90,1.90
+RVSN,RADVision Ltd,2000-03-13,15.1,63.14,65.03,1,1.90,1.90,1.90
+LMIN,Lastminute.com,2000-03-14,18.2,64.61,66.55,1,1.95,1.95,1.95
+IMPV,ImproveNet Inc,2000-03-15,20.4,69.52,72.42,1,2.89,2.89,2.89
+LOUD,Loudeye Technologies Inc,2000-03-15,20.4,69.52,72.42,1,2.89,2.89,2.89
+SHOC,Shochet Holding Corp,2000-03-15,20.4,69.52,72.42,1,2.89,2.89,2.89
+TEUR,Tele1 Europe Holding AB,2000-03-15,20.4,69.52,72.42,1,2.89,2.89,2.89
+PSIT,PSi Technologies Inc,2000-03-16,23.7,75.38,79.19,1,3.81,3.81,3.53
+UAXS,Universal Access Inc,2000-03-16,23.7,75.38,79.19,1,3.81,3.81,3.53
+IISX,Integrated Information Systems,2000-03-17,17.8,69.61,72.34,4,2.73,-0.41,2.73
+NPLI,Netpliance Inc,2000-03-17,17.8,69.61,72.34,4,2.73,-0.41,2.73
+ACLA,Aclara Biosciences Inc,2000-03-21,17.4,66.94,70.83,8,3.88,-0.35,-0.74
+CALD,Caldera Systems Inc,2000-03-21,17.4,66.94,70.83,8,3.88,-0.35,-0.74
+BLZE,Blaze Software Inc,2000-03-22,10.0,59.19,63.70,8,4.51,-0.33,-0.61
+BRZE,BreezeCOM Inc,2000-03-22,10.0,59.19,63.70,8,4.51,-0.33,-0.61
+PRTS,Partsbase.com Inc,2000-03-22,10.0,59.19,63.70,8,4.51,-0.33,-0.61
+INSN,inSilicon Corp,2000-03-22,10.0,59.19,63.70,8,4.51,-0.33,-0.61
+SLAB,Silicon Laboratories Inc,2000-03-23,6.9,53.33,55.56,1,2.23,2.23,2.05
+SLC,Sun Life Finl Svcs of Canada,2000-03-23,6.9,53.33,55.56,1,2.23,2.23,2.05
+VG,Viasystems Group,2000-03-23,6.9,53.33,55.56,1,2.23,2.23,2.05
+ETIN,ETINUUM INC,2000-03-24,5.8,57.67,57.67,0,0.00,-3.19,-3.19
+EPRS,Eprise Corp,2000-03-24,5.8,57.67,57.67,0,0.00,-3.19,-3.19
+ITMN,Intermune Pharmaceuticals Inc,2000-03-24,5.8,57.67,57.67,0,0.00,-3.19,-3.19
+EEEE,e Machines Inc,2000-03-24,5.8,57.67,57.67,0,0.00,-3.19,-3.19
+SEA,Bio Aqua Systems Inc,2000-03-29,2.3,51.79,51.79,0,0.00,-0.30,-0.30
+ARPT,ArrowPoint Communications Inc,2000-03-30,4.0,57.84,57.84,0,0.00,-0.29,-0.29
+IW,Imageware Systems Inc,2000-03-30,4.0,57.84,57.84,0,0.00,-0.29,-0.29
+LMNX,Luminex Corp,2000-03-30,4.0,57.84,57.84,0,0.00,-0.29,-0.29
+PTR,PetroChina,2000-03-30,4.0,57.84,57.84,0,0.00,-0.29,-0.29
+TRDR,Trader.com (Hebdo Mag Europe),2000-03-30,4.0,57.84,57.84,0,0.00,-0.29,-0.29
+VCLK,Valueclick Inc,2000-03-30,4.0,57.84,57.84,0,0.00,-0.29,-0.29
+MTWV,Metawave Communications,2000-04-26,11.2,61.50,61.50,0,0.00,0.00,-0.16
+PRCS,Praecis Pharmaceuticals Inc,2000-04-26,11.2,61.50,61.50,0,0.00,0.00,-0.16
+SERV,Stratus Services Group Inc,2000-04-26,11.2,61.50,61.50,0,0.00,0.00,-0.16
+AWE,AT&T Wireless Group,2000-04-27,6.7,53.95,53.95,0,0.00,0.00,0.00
+ONNN,ON Semiconductor,2000-04-27,6.7,53.95,53.95,0,0.00,0.00,0.00
+STCS,Software Technologies Corp,2000-04-27,6.7,53.95,53.95,0,0.00,0.00,0.00
+SNCI,Sonic Innovations Inc,2000-05-01,2.2,50.05,50.05,0,0.00,0.00,0.00
+VLGC,Virologic Inc,2000-05-02,2.2,45.44,45.44,0,0.00,0.00,0.00
+WNET,WHEREVER.net Holdings Corp,2000-05-02,2.2,45.44,45.44,0,0.00,0.00,0.00
+CRWN,Crown Media Holdings Inc,2000-05-03,3.9,47.39,47.39,0,0.00,0.00,0.00
+ORCH,Orchid BioSciences Inc,2000-05-04,4.0,45.66,47.56,4,1.90,0.00,1.90
+GNSL,Genomic Solutions Inc,2000-05-05,5.0,53.30,53.30,0,0.00,0.00,-0.28
+PDGM,Paradigm Genetics Inc,2000-05-05,5.0,53.30,53.30,0,0.00,0.00,-0.28
+SQSW,Sequoia Software Corp,2000-05-12,13.8,55.33,56.67,5,1.34,0.00,1.34
+NUFO,New Focus Inc,2000-05-17,7.8,64.39,64.39,0,0.00,0.00,-8.95
+UNWR,US Unwired Inc,2000-05-17,7.8,64.39,64.39,0,0.00,0.00,-8.95
+IBEM,iBeam Broadcasting Corp,2000-05-17,7.8,64.39,64.39,0,0.00,0.00,-8.95
+NGTC,Nogatech Inc,2000-05-18,6.1,58.74,58.74,0,0.00,0.00,-3.56
+PXLW,Pixelworks Inc,2000-05-18,6.1,58.74,58.74,0,0.00,0.00,-3.56
+PRTHV,Parthus Technologies PLC,2000-05-19,9.6,62.32,64.54,4,2.23,0.00,2.23
+CSAV,coolsavings.com inc,2000-05-19,9.6,62.32,64.54,4,2.23,0.00,2.23
+ICST,Integrated Circuit Systems Inc,2000-05-22,9.5,59.53,62.90,4,3.37,0.00,3.37
+CTLM,Centillium Communications Inc,2000-05-23,11.5,67.10,70.79,4,3.69,0.00,3.69
+UCO,Universal Compression Holdings,2000-05-23,11.5,67.10,70.79,4,3.69,0.00,3.69
+SONS,Sonus Networks Inc,2000-05-24,10.3,61.19,65.32,4,4.13,0.00,4.13
+SMDI,Stanford Microdevices Inc,2000-05-25,9.2,54.95,57.89,4,2.93,0.00,2.93
+NRG,NRG Energy Inc,2000-05-30,15.0,80.99,84.81,5,3.82,-0.04,3.82
+FHRX,First Horizon Pharmaceutical,2000-05-31,9.1,72.15,72.15,0,0.00,-0.06,-0.06
+ONIS,ONI Systems Corp,2000-05-31,9.1,72.15,72.15,0,0.00,-0.06,-0.06
+CWLD,CrossWorlds Software Inc,2000-06-01,11.3,68.19,68.19,0,0.00,-0.07,-0.07
+EXLT,Exult Inc,2000-06-02,11.8,61.08,61.08,0,0.00,-0.08,-0.08
+HAND,Handspring Inc,2000-06-20,10.2,82.40,82.47,1,0.08,0.08,0.08
+CPHD,Cepheid,2000-06-21,11.6,77.21,77.78,4,0.57,-0.27,0.57
+ACCL,Accelerated Networks Inc,2000-06-22,6.5,54.53,56.50,1,1.98,1.98,1.98
+CKSW,Clicksoftware Ltd,2000-06-22,6.5,54.53,56.50,1,1.98,1.98,1.98
+CRL,Charles River Labs Int Inc,2000-06-23,2.7,46.67,47.41,1,0.75,0.75,0.75
+MSV,Manufacturers Services,2000-06-23,2.7,46.67,47.41,1,0.75,0.75,0.75
+QBAK,Qualstar Corp,2000-06-23,2.7,46.67,47.41,1,0.75,0.75,0.75
+CKCM,Click Commerce Inc,2000-06-26,2.6,49.35,50.36,1,1.01,1.01,1.01
+MRVL,Marvell Technology Group Ltd,2000-06-26,2.6,49.35,50.36,1,1.01,1.01,1.01
+STLW,Stratos Lightwave Inc,2000-06-26,2.6,49.35,50.36,1,1.01,1.01,1.01
+EFDS,eFunds Corp,2000-06-26,2.6,49.35,50.36,1,1.01,1.01,1.01
+BUSY,BusyBox.com Inc,2000-06-27,4.0,56.09,58.45,1,2.36,2.36,2.36
+GENU,Genuity Inc,2000-06-27,4.0,56.09,58.45,1,2.36,2.36,2.36
+ACCD,Accord Networks Ltd,2000-06-28,3.6,53.11,54.13,1,1.02,1.02,0.95
+CPST,Capstone Turbine Corp,2000-06-28,3.6,53.11,54.13,1,1.02,1.02,0.95
+CARE,CareScience Inc,2000-06-28,3.6,53.11,54.13,1,1.02,1.02,0.95
+VRGE,Virage Inc,2000-06-28,3.6,53.11,54.13,1,1.02,1.02,0.95
+EXFO,Exfo Electro Optical,2000-06-29,2.8,44.08,44.62,1,0.55,0.55,0.27
+MBT,Mobile Telesystems OJSC,2000-06-29,2.8,44.08,44.62,1,0.55,0.55,0.27
+PRSE,Precise Software Solutions Ltd,2000-06-29,2.8,44.08,44.62,1,0.55,0.55,0.27
+STOR,Storagenetworks Inc,2000-06-29,2.8,44.08,44.62,1,0.55,0.55,0.27
+MOBE,Mobility Electronics Inc,2000-06-30,2.7,47.33,48.99,1,1.66,1.66,1.66
+NTES,Netease.com Inc,2000-06-30,2.7,47.33,48.99,1,1.66,1.66,1.66
+IVTA,InfoVista SA,2000-07-06,3.8,49.62,52.34,1,2.71,2.71,2.71
+ACLS,Axcelis Technologies Inc,2000-07-10,2.3,41.81,43.03,1,1.23,1.23,1.23
+ENTG,Entegris Inc,2000-07-10,2.3,41.81,43.03,1,1.23,1.23,1.23
+TKC,Turkcell Iletisim Hizmetleri,2000-07-10,2.3,41.81,43.03,1,1.23,1.23,1.23
+ASTT,ASAT Holdings Ltd,2000-07-11,2.8,51.44,52.10,1,0.67,0.67,0.67
+DVIN,Divine Interventures Inc,2000-07-11,2.8,51.44,52.10,1,0.67,0.67,0.67
+SOHU,Sohu.com Inc,2000-07-12,3.3,54.99,56.15,1,1.16,1.16,1.14
+SRTI,Sunrise Telecom Inc,2000-07-12,3.3,54.99,56.15,1,1.16,1.16,1.14
+TNSI,Triton Network Systems Inc,2000-07-12,3.3,54.99,56.15,1,1.16,1.16,1.14
+SPRT,Support.com Inc,2000-07-18,5.6,57.88,60.09,1,2.21,2.21,1.94
+TBIO,Transgenomic Inc,2000-07-18,5.6,57.88,60.09,1,2.21,2.21,1.94
+DCGN,deCode Genetics Inc,2000-07-18,5.6,57.88,60.09,1,2.21,2.21,1.94
+AMEV,Applied Molecular Evolution,2000-07-26,4.8,46.36,46.36,0,0.00,-0.45,-3.79
+TCM,TyCom Ltd(Tyco Intl Ltd),2000-07-26,4.8,46.36,46.36,0,0.00,-0.45,-3.79
+AVCI,Avici Systems Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+CORV,Corvis Corp,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+DPII,Discovery Partners Int'l Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+GCOR,Genencor International Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+ILMN,Illumina Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+LXNT,Lexent Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+MSPR,Mainspring Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+RITA,Rita Medical Systems Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+VLCT,ValiCert Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+WEBX,Webex Communications Inc,2000-07-27,6.8,45.23,50.33,5,5.10,-0.49,5.10
+ARNA,Arena Pharmaceuticals Inc,2000-07-28,8.1,55.26,61.56,5,6.30,-0.47,6.30
+CAMT,Camtek Ltd,2000-07-28,8.1,55.26,61.56,5,6.30,-0.47,6.30
+KERX,Keryx Biopharmaceuticals Inc,2000-07-28,8.1,55.26,61.56,5,6.30,-0.47,6.30
+ACPW,Active Power Inc,2000-08-07,7.8,43.55,49.76,1,6.21,6.21,5.94
+APTI,Advanced Power Technology Inc,2000-08-07,7.8,43.55,49.76,1,6.21,6.21,5.94
+AOLA,America Online Latin America,2000-08-07,7.8,43.55,49.76,1,6.21,6.21,5.94
+MDCO,Medicines Co,2000-08-07,7.8,43.55,49.76,1,6.21,6.21,5.94
+PMTR,Pemstar Inc,2000-08-07,7.8,43.55,49.76,1,6.21,6.21,5.94
+CHPC,ChipPAC Inc,2000-08-08,10.1,50.94,50.94,0,0.00,-0.30,-0.42
+MNDO,Mind C.T.I. Ltd,2000-08-08,10.1,50.94,50.94,0,0.00,-0.30,-0.42
+RPTR,Repeater Technologies Inc,2000-08-08,10.1,50.94,50.94,0,0.00,-0.30,-0.42
+TSYS,TeleCommunications Systems Inc,2000-08-08,10.1,50.94,50.94,0,0.00,-0.30,-0.42
+AGIX,AtheroGenics Inc,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+ESPR,Esperion Therapeutics Inc,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+EVLV,Evolve Software Inc,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+HPOW,H Power Corp,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+MCDT,McData Corp,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+MCEL,Millennium Cell Inc,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+PHST,Pharsight Corp,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+RADV,RadView Software Ltd,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+TVIA,Tvia Inc,2000-08-09,12.2,60.16,60.16,0,0.00,-0.27,-0.44
+AMMD,American Medical Systems Hold,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+EQIX,Equinix Inc,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+LSBC,Large Scale Biology Corp,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+LION,Lion Bioscience AG,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+OEH,Orient-Express Hotels Ltd,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+QLNX,Quintalinux Ltd,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+RTIX,Regeneration Technologies Inc,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+VINA,Vina Technologies Inc,2000-08-10,15.6,54.63,61.95,4,7.33,-0.22,7.33
+CGEN,Compugen Ltd,2000-08-11,18.5,62.86,70.19,4,7.33,-0.20,7.33
+TELK,Telik Inc,2000-08-11,18.5,62.86,70.19,4,7.33,-0.20,7.33
+OTWO,O2Wireless Solutions Inc,2000-08-16,10.1,56.30,56.30,0,0.00,-0.12,-0.20
+PEOP,PeoplePC Inc,2000-08-16,10.1,56.30,56.30,0,0.00,-0.12,-0.20
+OIIM,02 Micro International Limited,2000-08-23,5.7,57.60,57.60,0,0.00,0.00,0.00
+CURN,Curon Medical Inc,2000-09-21,4.6,68.05,68.05,0,0.00,0.00,-0.11
+INRG,INRANGE Technologies Corp,2000-09-21,4.6,68.05,68.05,0,0.00,0.00,-0.11
+TTMI,TTM Technologies Inc,2000-09-21,4.6,68.05,68.05,0,0.00,0.00,-0.11
+ZNGN,Zengine Inc,2000-09-21,4.6,68.05,68.05,0,0.00,0.00,-0.11
+DRRX,DURECT Corp,2000-09-27,7.0,58.32,58.32,0,0.00,0.00,-0.21
+UOPX,University of Phoenix Online,2000-09-27,7.0,58.32,58.32,0,0.00,0.00,-0.21
+ARDI,#NAME?,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+CIPH,Ciphergen Biosystems Inc,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+ELAS,Elastic Networks Inc,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+ASR,Grupo Aeroportuario del,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+HED,Head NV,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+PRTN,Proton Energy Systems Inc,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+VAST,Vastera Inc,2000-09-28,5.3,58.99,58.99,0,0.00,0.00,-0.16
+ENWV,EndWave Corp,2000-10-17,4.8,60.55,60.55,0,0.00,0.00,-0.23
+XXIA,IXIA Communications,2000-10-17,4.8,60.55,60.55,0,0.00,0.00,-0.23
+MON,Monsanto Co,2000-10-17,4.8,60.55,60.55,0,0.00,0.00,-0.23
+REGS,Regus PLC,2000-10-17,4.8,60.55,60.55,0,0.00,0.00,-0.23
+WRC,Westport Resources Corp,2000-10-19,2.6,54.98,54.98,0,0.00,0.00,-0.23
+ALCA,Alcatel Optronics,2000-10-20,2.2,53.71,53.71,0,0.00,0.00,-0.22
+DLEX,Datalex PLC,2000-10-20,2.2,53.71,53.71,0,0.00,0.00,-0.22
+UTOB,Utek Corp,2000-10-25,5.9,53.14,53.14,0,0.00,0.00,-0.21
+CRXL,Crucell N.V.,2000-10-26,10.5,60.50,60.50,0,0.00,0.00,-0.20
+HYGS,Hydrogenics Corp,2000-10-26,10.5,60.50,60.50,0,0.00,0.00,-0.20
+MCLS,MediChem Life Sciences Inc,2000-10-26,10.5,60.50,60.50,0,0.00,0.00,-0.20
+SNBA,Sun Bancshares Inc,2000-10-27,10.0,64.77,64.77,0,0.00,0.00,-0.20
+ICFN,Inficon Holding AG,2000-11-08,10.2,58.44,58.44,0,0.00,-0.26,-0.35
+GORX,Go2pharmacy.com Inc,2000-11-09,10.0,60.85,60.85,0,0.00,0.00,-0.08
+LMNE,Luminent Inc(MRV Comm),2000-11-09,10.0,60.85,60.85,0,0.00,0.00,-0.08
+AEGN,AeroGen Inc,2000-11-10,7.4,41.01,46.80,4,5.79,0.00,5.72
+CATZ,Computer Access Technology,2000-11-10,7.4,41.01,46.80,4,5.79,0.00,5.72
+TELN,Telenor AS(Norway),2000-12-04,9.2,37.80,40.25,5,2.45,0.00,2.45
+GNVC,GenVec,2000-12-11,5.0,52.01,52.03,4,0.02,-0.10,-0.22
+NFM,Nuveen MD Div Adv Muni  Fund,2001-01-23,17.2,67.73,68.11,6,0.38,-0.22,0.38
+NFC,Nuveen CT Div Adv Muni Fund,2001-01-25,9.6,64.22,64.22,0,0.00,-3.20,-0.51
+NRB,Nuveen North Carolina,2001-01-25,9.6,64.22,64.22,0,0.00,-3.20,-0.51
+PEET,Peet's Coffee & Tea,2001-01-25,9.6,64.22,64.22,0,0.00,-3.20,-0.51
+ALGN,Align Technology,2001-01-26,15.1,66.91,70.61,4,3.70,-0.15,3.70
+KCIN,KPMG Consulting,2001-02-07,5.3,55.06,56.78,4,1.72,-0.37,1.72
+ICH,Investors Capital Holdings Ltd,2001-02-08,8.9,68.51,68.51,0,0.00,-0.40,-7.74
+OIS,Oil States International Inc,2001-02-08,8.9,68.51,68.51,0,0.00,-0.40,-7.74
+AQA,Aquacell Technologies Inc,2001-02-09,12.1,54.85,55.59,4,0.74,0.00,0.74
+TWTI,Third Wave Technologies Inc,2001-02-09,12.1,54.85,55.59,4,0.74,0.00,0.74
+RSTN,Riverstone Networks Inc,2001-02-15,4.6,44.89,48.24,4,3.35,0.00,3.35
+SGEN,Seattle Genetics Inc,2001-03-06,5.2,46.68,47.80,4,1.12,0.00,1.12
+SJH,Stelmar Shipping Ltd,2001-03-06,5.2,46.68,47.80,4,1.12,0.00,1.12
+KMR,Kinder Morgan Mgmt LLC,2001-05-14,8.3,56.30,56.30,0,0.00,0.00,0.00
+GEG,Global Power Equipment Group,2001-05-17,7.9,49.37,49.37,0,0.00,0.00,0.00
+INET,Instinet Group Inc,2001-05-17,7.9,49.37,49.37,0,0.00,0.00,0.00
+TELM,Tellium Inc,2001-05-17,7.9,49.37,49.37,0,0.00,0.00,0.00
+ULAB,Unilab Corp,2001-06-05,8.8,67.57,67.57,0,0.00,0.00,0.00
+PNX,Phoenix Cos Inc,2001-06-19,12.6,57.45,57.45,0,0.00,0.00,0.00
+MLTC,Multilink Technology Corp,2001-06-20,13.4,74.26,74.26,0,0.00,0.00,0.00
+HPLA,HPL Technologies Inc,2001-07-31,4.6,41.97,41.97,0,0.00,0.00,0.00
+MXRE,Max Re Capital LTD,2001-08-14,8.1,52.29,52.29,0,0.00,0.00,-0.17
+ATH,Anthem Inc,2001-10-30,9.8,46.10,46.10,0,0.00,-4.92,-4.92
+AMGP,Amerigroup Corp,2001-11-06,6.5,46.99,46.99,0,0.00,-4.96,-4.96
+AHS,AMN Healthcare Services Inc,2001-11-13,19.2,62.78,62.78,0,0.00,-0.23,-6.95
+ABCO,Advisory Board Co,2001-11-13,19.2,62.78,62.78,0,0.00,-0.23,-6.95
+FPHC,Fisher & Paykel Healthcare Ltd,2001-11-13,19.2,62.78,62.78,0,0.00,-0.23,-6.95
+WTW,Weight Watchers International,2001-11-14,13.7,48.92,48.92,0,0.00,-0.20,-0.20
+LAVA,Magma Design Automation Inc,2001-11-20,8.4,52.19,52.19,0,0.00,-0.15,-7.53
+WOOF,VCA Antech Inc,2001-11-21,8.3,48.26,48.26,0,0.00,-0.12,-0.21
+LWSN,Lawson Software Inc,2001-12-06,8.0,41.17,41.17,0,0.00,0.00,-4.45
+PCN,Pimco Corporate Income Fund,2001-12-18,7.9,34.99,34.99,0,0.00,0.00,0.00
+AKP,Alliance California Municipal,2002-01-28,13.1,58.91,58.91,0,0.00,0.00,0.00
+AFB,Alliance National Municipal,2002-01-28,13.1,58.91,58.91,0,0.00,0.00,0.00
+SYNA,Synaptics Inc,2002-01-28,13.1,58.91,58.91,0,0.00,0.00,0.00
+GME,GameStop Corp,2002-02-12,11.0,57.70,57.70,0,0.00,0.00,0.00
+PYPL,Paypal Inc,2002-02-14,9.9,57.78,57.78,0,0.00,0.00,-0.09
+ACL,Alcon Inc,2002-03-20,16.1,98.64,98.64,0,0.00,-0.15,-0.15
+TAP,Travelers Property Casualty,2002-03-21,13.3,73.36,73.36,0,0.00,0.00,0.00
+EFH,Empire Financial Holdings Co,2002-04-09,4.4,55.23,55.23,0,0.00,0.00,0.00
+PCO,Premcor Inc,2002-04-30,11.2,63.15,71.67,5,8.52,0.00,8.52
+ARO,Aeropostale Inc,2002-05-16,8.8,40.33,40.33,0,0.00,0.00,0.00
+DWMA,Dickie Walker Marine Inc,2002-05-16,8.8,40.33,40.33,0,0.00,0.00,0.00
+VRNT,Verint Systems Inc,2002-05-16,8.8,40.33,40.33,0,0.00,0.00,0.00
+KYPH,Kyphon Inc,2002-05-17,14.0,45.80,45.80,0,0.00,0.00,0.00
+CPSI,Computer Programs & Systems,2002-05-21,8.8,46.03,46.03,0,0.00,0.00,0.00
+MWE,MarkWest Energy Partners LP,2002-05-21,8.8,46.03,46.03,0,0.00,0.00,0.00
+OSTK,Overstock.com,2002-05-30,7.2,51.01,51.01,0,0.00,0.00,-0.24
+CTMI,CTI Molecular Imaging Inc,2002-06-20,9.6,54.65,54.65,0,0.00,0.00,-0.09
+KIRK,Kirkland's Inc,2002-07-10,3.1,40.96,40.96,0,0.00,0.00,0.00
+HETC,Healthetech Inc,2002-07-12,2.1,43.32,43.32,0,0.00,0.00,0.00
+HPI,John Hancock Preferred Income,2002-08-22,10.2,41.77,41.77,0,0.00,0.00,0.00
+NBW,Neuberger Berman Cali  Fund,2002-09-24,6.1,31.46,31.46,0,0.00,0.00,0.00
+NBH,Neuberger Berman Intermediate,2002-09-24,6.1,31.46,31.46,0,0.00,0.00,0.00
+NBO,Neuberger Berman NY Fund,2002-09-24,6.1,31.46,31.46,0,0.00,0.00,0.00
+BCK,Blackrock Cali Insured Muni,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+BAF,Blackrock Florida Insured Muni,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+BYM,Blackrock Insured Muni Income,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+BSE,Blackrock NY Insured Muni,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+PZC,PIMCO California Municipal III,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+PYN,PIMCO New York Municipal 3,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+PMX,Pimco Municipal Income III,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+PTP,Platinum Underwriters Holdings,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+SRQ,Scudder RREEF Real Estate Fund,2002-10-28,5.3,34.57,34.57,0,0.00,0.00,0.00
+MMLP,Martin Midstream Partners LP,2002-11-01,13.6,43.34,43.34,0,0.00,0.00,0.00
+STX,Seagate Technology,2002-12-11,7.1,44.49,44.49,0,0.00,0.00,0.00
+XTEX,Crosstex Energy LP,2002-12-12,6.9,41.65,41.65,0,0.00,0.00,0.00
+CCBI,Commercial Capital Bancorp,2002-12-18,12.5,44.78,44.78,0,0.00,0.00,0.00
+VSTA,VistaCare,2002-12-18,12.5,44.78,44.78,0,0.00,0.00,0.00
+FPT,Federated Premier Intermediate,2002-12-19,5.2,40.27,40.27,0,0.00,0.00,0.00
+FMN,Federated Premier Municipal,2002-12-19,5.2,40.27,40.27,0,0.00,0.00,0.00
+OLCB,Ohio Legacy Corp.,2002-12-19,5.2,40.27,40.27,0,0.00,0.00,0.00
+PTY,PIMCO Corp Opp Fund,2002-12-23,7.1,44.56,44.56,0,0.00,0.00,0.00
+BOFL,Bancshares of Florida Inc,2003-02-10,7.2,45.03,45.03,0,0.00,0.00,-5.02
+IPCC,Infinity Prop & Casualty Corp,2003-02-11,9.0,36.92,36.92,0,0.00,0.00,0.00
+LEND,Accredited Home Lenders,2003-02-14,11.1,37.11,37.11,0,0.00,0.00,0.00
+BPP,Blackrock Preferred Opp Trust,2003-02-25,9.5,45.42,45.42,0,0.00,0.00,-0.09
+EAD,Evergreen Income Adv Fund,2003-02-26,8.0,50.58,50.58,0,0.00,0.00,-6.98
+ENH,Endurance Specialty Holdings,2003-02-27,7.7,50.97,50.97,0,0.00,0.00,-5.48
+IPMT,iPayment Inc,2003-05-12,3.8,44.07,44.07,0,0.00,0.00,-4.78
+RED,Redline Performance Inc,2003-05-15,6.6,38.92,38.92,0,0.00,0.00,0.00
+CHY,Calamos Cvt and High Inc Fund,2003-05-27,13.9,59.85,59.85,0,0.00,0.00,-13.07
+EVV,Eaton Vance Limited Duration,2003-05-27,13.9,59.85,59.85,0,0.00,0.00,-13.07
+FORM,FormFactor Inc,2003-06-11,6.6,38.38,38.38,0,0.00,0.00,0.00
+FVL,First Trst Value Line 100 Fund,2003-06-12,4.6,35.64,35.64,0,0.00,0.00,-0.02
+MUI,Muni Intermediate Duration,2003-07-29,4.2,43.06,43.06,0,0.00,0.00,0.00
+MNE,Muni New York Intermediate,2003-07-29,4.2,43.06,43.06,0,0.00,0.00,0.00
+PSW,Preferred & Corporate Income,2003-07-29,4.2,43.06,43.06,0,0.00,0.00,0.00
+NTGR,NETGEAR Inc,2003-07-30,5.6,37.16,37.16,0,0.00,0.00,0.00
+CDL,Citadel Broadcasting Corp,2003-07-31,8.7,36.95,36.95,0,0.00,0.00,-0.08
+CSE,Capitalsource Inc,2003-08-06,9.1,43.86,43.86,0,0.00,0.00,0.00
+FVD,First Trust Val Line Div Fund,2003-08-26,10.8,61.40,61.40,0,0.00,0.00,-6.79
+FLC,Flaherty & Crumrine/Claymore,2003-08-26,10.8,61.40,61.40,0,0.00,0.00,-6.79
+FTF,Frank Temp Lim Dur Inc Trust,2003-08-26,10.8,61.40,61.40,0,0.00,0.00,-6.79
+MZF,MBIA Cap/Claymore Managed,2003-08-26,10.8,61.40,61.40,0,0.00,0.00,-6.79
+PFL,Pimco Floating Rate Income,2003-08-26,10.8,61.40,61.40,0,0.00,0.00,-6.79
+AMIS,AMIS Holdings,2003-09-23,8.1,67.55,67.55,0,0.00,0.00,-7.05
+JRN,Journal Co,2003-09-23,8.1,67.55,67.55,0,0.00,0.00,-7.05
+AGCC,Anchor Glass Container Corp,2003-09-24,4.9,39.95,39.95,0,0.00,0.00,-0.23
+REDE,RedEnvelope Inc,2003-09-24,4.9,39.95,39.95,0,0.00,0.00,-0.23
+AVNC,Advancis Pharmaceutical Corp,2003-10-16,4.7,46.60,46.60,0,0.00,0.00,0.00
+MRLN,Marlin Business Services Inc,2003-11-11,6.2,51.29,51.29,0,0.00,0.00,-5.58
+BWLD,Buffalo Wild Wings Inc,2003-11-20,10.2,36.61,36.61,0,0.00,0.00,0.00
+ESD,Salomon Brothers Emerging Mkts,2003-12-01,7.6,42.95,42.95,0,0.00,0.00,0.00
+NPTT,NPTest Holding Corp.,2003-12-11,6.4,40.62,40.62,0,0.00,0.00,0.00
+NNI,Nelnet Inc.,2003-12-11,6.4,40.62,40.62,0,0.00,0.00,0.00
+VAPN,Vaso Active Pharmaceuticals,2003-12-11,6.4,40.62,40.62,0,0.00,0.00,0.00
+CENF,Central Freight Lines Inc.,2003-12-12,7.1,40.29,40.29,0,0.00,0.00,0.00
+LFC,China Life Insurance Company L,2003-12-12,7.1,40.29,40.29,0,0.00,0.00,0.00
+CMP,Compass Minerals International,2003-12-12,7.1,40.29,40.29,0,0.00,0.00,0.00
+ISG,International Steel Group Inc.,2003-12-12,7.1,40.29,40.29,0,0.00,0.00,0.00
+NAX,Natural Golf Corp.,2003-12-12,7.1,40.29,40.29,0,0.00,0.00,0.00
+BDV,BlackRock Divi Achievers Trst,2003-12-18,6.0,39.10,39.10,0,0.00,0.00,0.00
+FBTX,Franklin Bank Corp.,2003-12-18,6.0,39.10,39.10,0,0.00,0.00,0.00
+KNOL,Knology Inc.,2003-12-18,6.0,39.10,39.10,0,0.00,0.00,0.00
+RMR,R M R REAL ESTATE FUND,2003-12-18,6.0,39.10,39.10,0,0.00,0.00,0.00
+TPX,Tempur-Pedic International Inc,2003-12-18,6.0,39.10,39.10,0,0.00,0.00,0.00
+KNTA,Kintera Inc.,2003-12-19,3.5,37.60,37.60,0,0.00,0.00,0.00
+LUM,Luminent Mortgage Capital,2003-12-19,3.5,37.60,37.60,0,0.00,0.00,0.00
+PRPX,Portec Rail Products Inc,2004-01-23,5.0,47.86,47.86,0,0.00,0.00,-8.61
+TBBK,"Bancorp Bank,Wilmington,DE",2004-02-02,9.6,45.90,45.90,0,0.00,0.00,0.00
+GTXI,GTx Inc,2004-02-02,9.6,45.90,45.90,0,0.00,0.00,0.00
+TRW,TRW Automotive Holdings Corp,2004-02-02,9.6,45.90,45.90,0,0.00,0.00,0.00
+KCI,Kinetic Concepts Inc,2004-02-23,10.5,43.41,43.41,0,0.00,-0.07,-4.88
+IGR,ING Clarion Real Estate Income,2004-02-24,7.3,35.95,35.95,0,0.00,0.00,-12.02
+HTD,John Hancock Tax-Adv Div Inc F,2004-02-24,7.3,35.95,35.95,0,0.00,0.00,-12.02
+UTG,Reaves Utility Income Fund,2004-02-24,7.3,35.95,35.95,0,0.00,0.00,-12.02
+SCD,Salomon Brothers Cap and Inc,2004-02-24,7.3,35.95,35.95,0,0.00,0.00,-12.02
+TYG,Tortoise Energy Infrastructure,2004-02-24,7.3,35.95,35.95,0,0.00,0.00,-12.02
+SMI,Semiconductor Mnfg Intl Corp,2004-03-11,4.8,33.18,33.18,0,0.00,0.00,-0.16
+LSE,Capital Lease Funding Inc,2004-03-18,8.8,41.92,41.92,0,0.00,0.00,0.00
+RSF,RMK Strategic Income Fund,2004-03-18,8.8,41.92,41.92,0,0.00,0.00,0.00
+GHL,Greenhill & Co Inc,2004-05-05,9.9,47.37,47.37,0,0.00,0.00,0.00
+ORGN,Origen Financial Inc,2004-05-05,9.9,47.37,47.37,0,0.00,0.00,0.00
+IFS,InfraSource Services Inc,2004-05-06,10.2,52.34,52.34,0,0.00,0.00,0.00
+ACAD,Acadia Pharmaceuticals,2004-05-26,6.4,54.65,54.65,0,0.00,0.00,-9.93
+ANGO,AngioDynamics Inc,2004-05-26,6.4,54.65,54.65,0,0.00,0.00,-9.93
+CRTX,Critical Therapeutics Inc,2004-05-26,6.4,54.65,54.65,0,0.00,0.00,-9.93
+RJET,Republic Airways Holdings Inc,2004-05-26,6.4,54.65,54.65,0,0.00,0.00,-9.93
+ALNY,Alnylam Pharmaceuticals Inc,2004-05-27,9.6,46.72,46.72,0,0.00,0.00,-0.19
+STAN,Standard Parking Corp,2004-05-27,9.6,46.72,46.72,0,0.00,0.00,-0.19
+CBG,CB Richard Ellis Group Inc,2004-06-09,10.4,59.82,59.82,0,0.00,0.00,0.00
+DRAD,Digirad Corp,2004-06-09,10.4,59.82,59.82,0,0.00,0.00,0.00
+PDSN,PowerDsine Ltd,2004-06-09,10.4,59.82,59.82,0,0.00,0.00,0.00
+JTX,Jackson Hewitt Tax Service Inc,2004-06-21,8.8,58.50,58.50,0,0.00,0.00,0.00
+MNTA,Momenta Pharmaceuticals Inc,2004-06-21,8.8,58.50,58.50,0,0.00,0.00,0.00
+SNMX,Senomyx Inc,2004-06-21,8.8,58.50,58.50,0,0.00,0.00,0.00
+CLRK,Color Kinetics Inc,2004-06-22,5.6,45.90,45.90,0,0.00,0.00,0.00
+WCAA,WCA Waste Corp,2004-06-22,5.6,45.90,45.90,0,0.00,0.00,0.00
+CFSI,Collegiate Funding Svcs LLC,2004-07-15,4.5,31.76,31.76,0,0.00,0.00,0.00
+SRVY,Greenfield Online Inc,2004-07-15,4.5,31.76,31.76,0,0.00,0.00,0.00
+LPL,LG Philips LCD,2004-07-15,4.5,31.76,31.76,0,0.00,0.00,0.00
+QCCO,QC Holdings Inc,2004-07-15,4.5,31.76,31.76,0,0.00,0.00,0.00
+FSL,Freescale Semiconductor Inc,2004-07-16,6.7,42.37,42.37,0,0.00,0.00,-4.65
+XGEN,Xenogen Corp,2004-07-16,6.7,42.37,42.37,0,0.00,0.00,-4.65
+NRPH,New River Pharmaceuticals Inc,2004-08-05,6.7,40.24,40.24,0,0.00,0.00,0.00
+RNOW,RightNow Technologies Inc,2004-08-05,6.7,40.24,40.24,0,0.00,0.00,0.00
+ELOS,Syneron Medical Ltd,2004-08-05,6.7,40.24,40.24,0,0.00,0.00,0.00
+NVT,Navteq Corp,2004-08-06,7.6,51.06,51.06,0,0.00,0.00,0.00
+FFA,First Trst/Fid Asset Man Cvd C,2004-08-26,10.0,45.36,45.36,0,0.00,0.00,-0.24
+ECST,Ecost Com Inc,2004-08-27,15.0,55.16,55.16,0,0.00,0.00,-6.63
+STON,Stonemor Partners LP,2004-09-14,5.5,31.85,31.85,0,0.00,0.00,-3.47
+BMM,Bimini Mortgage Management,2004-09-16,2.1,29.83,29.83,0,0.00,0.00,0.00
+NEP,Nephros Inc,2004-09-20,5.9,44.93,44.93,0,0.00,0.00,0.00
+SAXN,Saxon REIT Inc,2004-09-20,5.9,44.93,44.93,0,0.00,0.00,0.00
+BECN,Beacon Roofing Supply Inc,2004-09-22,10.6,76.15,76.15,0,0.00,0.00,0.00
+COGT,Cogent Inc,2004-09-23,8.4,63.97,63.97,0,0.00,0.00,-0.13
+VLLY,Valley Bancorp,2004-09-23,8.4,63.97,63.97,0,0.00,0.00,-0.13
+CALL,Callwave Inc,2004-09-29,2.0,25.93,25.93,0,0.00,0.00,0.00
+NSTC,Ness Technologies Inc,2004-09-29,2.0,25.93,25.93,0,0.00,0.00,0.00
+PRS,Primus Guaranty Ltd,2004-09-29,2.0,25.93,25.93,0,0.00,0.00,0.00
+PSPT,PeopleSupport Inc,2004-09-30,2.0,21.98,21.98,0,0.00,0.00,0.00
+TXRH,Texas Roadhouse Inc,2004-10-04,4.4,29.70,29.70,0,0.00,0.00,0.00
+ARCC,Ares Capital Co,2004-10-05,3.0,25.86,25.86,0,0.00,0.00,0.00
+THRX,Theravance Inc,2004-10-05,3.0,25.86,25.86,0,0.00,0.00,0.00
+GKIS,Gold Kist Holdings Inc,2004-10-06,3.0,34.08,34.08,0,0.00,0.00,-0.09
+ILSE,IntraLase Corp,2004-10-06,3.0,34.08,34.08,0,0.00,0.00,-0.09
+NWY,New York & Co Inc,2004-10-06,3.0,34.08,34.08,0,0.00,0.00,-0.09
+TPGI,Thomas Properties Group Inc,2004-10-06,3.0,34.08,34.08,0,0.00,0.00,-0.09
+BGF,B&G Foods Holdings Corp,2004-10-07,3.0,29.01,29.01,0,0.00,0.00,-3.23
+HTX,Hutchison Telecommun Intl Ltd,2004-10-07,3.0,29.01,29.01,0,0.00,0.00,-3.23
+HURN,Huron Consulting Group Inc,2004-10-12,3.6,41.61,41.61,0,0.00,0.00,0.00
+GRU,Gurunet Corp,2004-10-13,2.2,39.60,39.60,0,0.00,0.00,0.00
+LGBT,PlanetOut Inc,2004-10-13,2.2,39.60,39.60,0,0.00,0.00,0.00
+JRJC,China Finance Online Co Ltd,2004-10-15,4.1,35.78,35.78,0,0.00,0.00,0.00
+CTRX,CoTherix Inc,2004-10-15,4.1,35.78,35.78,0,0.00,0.00,0.00
+MKTX,MarketAxess Holdings Inc,2004-11-04,12.5,41.00,41.00,0,0.00,0.00,0.00
+ATB,Arlington Tankers Ltd,2004-11-05,11.7,34.04,34.04,0,0.00,0.00,0.00
+NINE,Ninetowns,2004-12-02,9.2,49.11,49.11,0,0.00,0.00,0.00
+BXC,Bluelinx Holdings Inc,2004-12-13,8.3,32.61,32.61,0,0.00,0.00,-0.11
+KNL,Knoll Inc,2004-12-13,8.3,32.61,32.61,0,0.00,0.00,-0.11
+ORNG,Orange 21 Inc,2004-12-13,8.3,32.61,32.61,0,0.00,0.00,-0.11
+CSCD,Cascade Microtech Inc,2004-12-14,6.0,31.06,31.06,0,0.00,0.00,0.00
+CHCI,Comstock Homebuilding Co Inc,2004-12-14,6.0,31.06,31.06,0,0.00,0.00,0.00
+CONR,Conor Medsystems Inc,2004-12-14,6.0,31.06,31.06,0,0.00,0.00,0.00
+WOLF,Great Wolf Resorts Inc,2004-12-14,6.0,31.06,31.06,0,0.00,0.00,0.00
+LVS,Las Vegas Sands Corp,2004-12-14,6.0,31.06,31.06,0,0.00,0.00,0.00
+NCTY,The9 Ltd,2004-12-14,6.0,31.06,31.06,0,0.00,0.00,0.00
+BGR,BlackRock Global Energy,2004-12-22,4.7,42.02,42.02,0,0.00,0.00,0.00
+FMO,FIDUCIARY/CLAYMORE MLP,2004-12-22,4.7,42.02,42.02,0,0.00,0.00,0.00
+PHD,Pioneer Floating Rate Trust,2004-12-22,4.7,42.02,42.02,0,0.00,0.00,0.00
+FVRL,Favrille Inc,2005-02-02,6.7,49.75,49.75,0,0.00,-6.51,-6.51
+ARP,American Reprographics Co,2005-02-03,13.3,46.56,46.56,0,0.00,0.00,0.00
+DRYS,DryShips Inc,2005-02-03,13.3,46.56,46.56,0,0.00,0.00,0.00
+FRP,FairPoint Communications Inc,2005-02-03,13.3,46.56,46.56,0,0.00,0.00,0.00
+HRAY,Hurray Holding  Co Ltd,2005-02-03,13.3,46.56,46.56,0,0.00,0.00,0.00
+ICGN,Icagen Inc,2005-02-03,13.3,46.56,46.56,0,0.00,0.00,0.00
+THLD,Threshold Pharmaceuticals Inc,2005-02-03,13.3,46.56,46.56,0,0.00,0.00,0.00
+ANR,Alpha Natural Resources Inc,2005-02-14,8.5,37.09,37.09,0,0.00,0.00,0.00
+ODMO,Odimo Inc,2005-02-14,8.5,37.09,37.09,0,0.00,0.00,0.00
+PFBC,Preferred Bank LA,2005-02-14,8.5,37.09,37.09,0,0.00,0.00,0.00
+VCC,Veri-Tek International Corp,2005-02-14,8.5,37.09,37.09,0,0.00,0.00,0.00
+WXS,Wright Express Corp,2005-02-15,7.6,31.97,31.97,0,0.00,0.00,0.00
+DCA,Dividend Capital Realty Income,2005-02-23,5.9,33.84,33.84,0,0.00,0.00,-11.74
+EVG,Eaton Vance Shrt Dur Div IF,2005-02-23,5.9,33.84,33.84,0,0.00,0.00,-11.74
+NFJ,NFJ Div Int Prem Strat Fnd,2005-02-23,5.9,33.84,33.84,0,0.00,0.00,-11.74
+BOFI,BofI Holding Inc,2005-03-14,8.0,34.38,34.38,0,0.00,0.00,0.00
+PRB,PRB Gas Transportation Inc,2005-04-12,9.9,48.22,48.22,0,0.00,0.00,0.00
+DXCM,Dexcom Inc,2005-04-13,10.0,45.99,45.99,0,0.00,0.00,0.00
+JOR,Earle M Jorgensen Co,2005-04-14,8.6,52.38,52.38,0,0.00,0.00,0.00
+PAY,VeriFone Holdings Inc,2005-04-29,4.9,42.84,42.84,0,0.00,0.00,0.00
+BDE,Bois d'Arc Energy Inc,2005-05-06,5.5,48.44,48.44,0,0.00,0.00,-0.22
+NSE,New Skies Satellites Holdings,2005-05-09,6.3,51.15,51.15,0,0.00,0.00,-5.91
+XRM,Xerium Technologies Inc,2005-05-16,7.5,44.75,44.75,0,0.00,0.00,0.00
+CTRN,Citi Trends Inc,2005-05-17,8.2,44.10,44.10,0,0.00,0.00,0.00
+XNPT,XenoPort Inc,2005-06-02,18.0,56.50,56.50,0,0.00,0.00,0.00
+NRGP,Inergy Holdings LP,2005-06-20,9.8,57.18,57.18,0,0.00,0.00,0.00
+ALLI,Allion Healthcare Inc,2005-06-22,7.3,43.26,43.26,0,0.00,0.00,0.00
+BLDR,Builders FirstSource Inc,2005-06-22,7.3,43.26,43.26,0,0.00,0.00,0.00
+EGLE,Eagle Bulk Shipping Inc,2005-06-22,7.3,43.26,43.26,0,0.00,0.00,0.00
+GAIN,Gladstone Investment Corp,2005-06-22,7.3,43.26,43.26,0,0.00,0.00,0.00
+LINC,Lincoln Educational Svcs Corp,2005-06-22,7.3,43.26,43.26,0,0.00,0.00,0.00
+JRVR,James River Group Inc,2005-08-08,9.1,38.77,38.77,0,0.00,0.00,0.00
+KFI,K&F Industries Holdings Inc,2005-08-08,9.1,38.77,38.77,0,0.00,0.00,0.00
+RUTH,Ruth's Chris Steak House,2005-08-08,9.1,38.77,38.77,0,0.00,0.00,0.00
+SSW,Seaspan Corp,2005-08-08,9.1,38.77,38.77,0,0.00,0.00,0.00
+CMED,China Medical Technologies Inc,2005-08-09,5.2,35.89,35.89,0,0.00,0.00,0.00
+COLY,Coley Pharmaceutical Group Inc,2005-08-09,5.2,35.89,35.89,0,0.00,0.00,0.00
+FSGI,First Security Group Inc,2005-08-09,5.2,35.89,35.89,0,0.00,0.00,0.00
+ROLL,RBC Bearings Inc,2005-08-09,5.2,35.89,35.89,0,0.00,0.00,0.00
+FRZ,Reddy Ice Holdings Inc,2005-08-09,5.2,35.89,35.89,0,0.00,0.00,0.00
+EPE,Enterprise GP Holdings LP,2005-08-23,4.2,34.05,34.05,0,0.00,0.00,0.00
+RMX,Ready Mix Inc,2005-08-23,4.2,34.05,34.05,0,0.00,0.00,0.00
+BDJ,Blackrock Enhanced Div Ach Trs,2005-08-25,2.6,40.77,40.77,0,0.00,0.00,-4.56
+MGU,Macquarie Global Infrastructur,2005-08-25,2.6,40.77,40.77,0,0.00,0.00,-4.56
+OLA,Old Mutual/Claymore Long-Short,2005-08-25,2.6,40.77,40.77,0,0.00,0.00,-4.56
+IKAN,Ikanos Communications Inc,2005-09-21,7.3,41.55,41.55,0,0.00,0.00,0.00
+GCA,Global Cash Access Holdings,2005-09-22,6.9,56.91,56.91,0,0.00,0.00,0.00
+NPTE,North Pointe Holdings Corp,2005-09-23,11.3,53.78,53.78,0,0.00,0.00,0.00
+BWP,Boardwalk Pipeline Partners LP,2005-11-08,9.3,37.58,37.58,0,0.00,0.00,0.00
+SFUN,Saifun Semiconductors Ltd,2005-11-08,9.3,37.58,37.58,0,0.00,0.00,0.00
+IRBT,iROBOT CORP,2005-11-08,9.3,37.58,37.58,0,0.00,0.00,0.00
+CRXX,Combinatorx Inc,2005-11-09,5.2,38.86,38.86,0,0.00,0.00,0.00
+CCO,Clear Channel Outdoor Holdings,2005-11-10,5.6,35.68,35.68,0,0.00,0.00,-0.16
+IHS,IHS Inc,2005-11-10,5.6,35.68,35.68,0,0.00,0.00,-0.16
+BKD,Brookdale Senior Living,2005-11-21,7.0,41.64,41.64,0,0.00,0.00,-0.08
+TRX,Tronox,2005-11-21,7.0,41.64,41.64,0,0.00,0.00,-0.08
+UDRL,Union Drilling,2005-11-21,7.0,41.64,41.64,0,0.00,0.00,-0.08
+ACTS,Actions Semiconductor,2005-11-29,8.8,40.48,40.48,0,0.00,0.00,0.00
+DPM,DCP Midstream Partners,2005-12-01,14.8,54.84,54.84,0,0.00,0.00,0.00
+CNCP,Carolina National Corp,2005-12-16,6.8,45.18,45.18,0,0.00,0.00,-4.79
+DEIX,Directed Electronics,2005-12-16,6.8,45.18,45.18,0,0.00,0.00,-4.79
+EMS,Emergency Medical Services,2005-12-16,6.8,45.18,45.18,0,0.00,0.00,-4.79
+SPSN,Spansion,2005-12-16,6.8,45.18,45.18,0,0.00,0.00,-4.79
+CRMH,CRM Holdings,2005-12-21,11.5,69.39,69.39,0,0.00,0.00,-0.15
+PXPL,Pixelplus Ltd.,2005-12-21,11.5,69.39,69.39,0,0.00,0.00,-0.15
+NCST,NUCRYST Pharmaceuticals,2005-12-22,5.5,41.35,41.35,0,0.00,0.00,0.00
+FGI,SunAmerica Focused Alpha,2005-12-22,5.5,41.35,41.35,0,0.00,0.00,0.00
+LINE,Linn Energy LLC,2006-01-12,9.0,44.27,44.27,0,0.00,0.00,0.00
+WNR,Western Refining Inc,2006-01-18,14.2,42.64,42.64,0,0.00,0.00,0.00
+ARII,American Railcar Industries,2006-01-19,17.1,53.47,53.47,0,0.00,0.00,0.00
+RHY,RMK Multi-Sector High Income,2006-01-19,17.1,53.47,53.47,0,0.00,0.00,0.00
+CLMT,Calumet Specialty Products,2006-01-25,11.4,56.82,56.82,0,0.00,-7.96,-13.37
+TRFC,Traffic.com Inc,2006-01-25,11.4,56.82,56.82,0,0.00,-7.96,-13.37
+ALTU,Altus Pharmaceuticals Inc,2006-01-26,19.3,67.66,67.66,0,0.00,-0.16,-8.32
+HEES,H&E Equipment Services Inc,2006-01-30,9.9,49.53,49.53,0,0.00,0.00,-0.24
+MAIL,IncrediMail Ltd,2006-01-30,9.9,49.53,49.53,0,0.00,0.00,-0.24
+RGNC,Regency Energy Partners LP,2006-01-30,9.9,49.53,49.53,0,0.00,0.00,-0.24
+FNET,Fortunet Inc,2006-01-31,11.2,46.83,46.83,0,0.00,0.00,-0.07
+KOP,Koppers Holdings Inc,2006-01-31,11.2,46.83,46.83,0,0.00,0.00,-0.07
+SGXP,SGX Pharmaceuticals Inc,2006-01-31,11.2,46.83,46.83,0,0.00,0.00,-0.07
+TX,Ternium SA,2006-01-31,11.2,46.83,46.83,0,0.00,0.00,-0.07
+IOMI,Iomai Corp,2006-02-01,11.6,47.96,47.96,0,0.00,0.00,0.00
+TWPG,Thomas Weisel Partners Group,2006-02-01,11.6,47.96,47.96,0,0.00,0.00,0.00
+VLRX,Valera Pharmaceuticals Inc,2006-02-01,11.6,47.96,47.96,0,0.00,0.00,0.00
+CRDC,Cardica Inc,2006-02-02,8.9,49.98,49.98,0,0.00,0.00,-0.17
+DMGI,Digital Music Group Inc,2006-02-02,8.9,49.98,49.98,0,0.00,0.00,-0.17
+HS,HealthSpring Inc,2006-02-02,8.9,49.98,49.98,0,0.00,0.00,-0.17
+SMOD,Smart Modular Technologies Inc,2006-02-02,8.9,49.98,49.98,0,0.00,0.00,-0.17
+ETE,Energy Transfer Equity LP,2006-02-03,8.7,53.90,53.90,0,0.00,0.00,-6.37
+XCO,EXCO Resources Inc,2006-02-08,12.5,62.76,62.76,0,0.00,0.00,-10.90
+MRT,Morton's Restaurant Group Inc,2006-02-08,12.5,62.76,62.76,0,0.00,0.00,-10.90
+NTLS,NTELOS Holdings Corp,2006-02-08,12.5,62.76,62.76,0,0.00,0.00,-10.90
+NHWK,NightHawk Radiology Holdings,2006-02-08,12.5,62.76,62.76,0,0.00,0.00,-10.90
+ACOR,Acorda Therapeutics Inc,2006-02-09,8.9,52.31,52.31,0,0.00,0.00,-7.92
+AMCP,AmComp Inc,2006-02-09,8.9,52.31,52.31,0,0.00,0.00,-7.92
+MGG,Magellan Midstream Holdings LP,2006-02-09,8.9,52.31,52.31,0,0.00,0.00,-7.92
+MHGC,Morgans Hotel Group Co,2006-02-13,10.7,44.85,44.85,0,0.00,0.00,-0.14
+LQDT,Liquidity Services Inc,2006-02-22,7.9,48.56,48.56,0,0.00,0.00,-5.53
+BTA,BlackRock Long-term Muni,2006-02-23,8.0,47.05,47.05,0,0.00,0.00,-6.76
+PAC,Grupo Aeroportuario Pacifico,2006-02-23,8.0,47.05,47.05,0,0.00,0.00,-6.76
+ALXA,Alexza Pharmaceuticals Inc,2006-03-08,13.6,51.78,51.78,0,0.00,0.00,-6.21
+EGLT,Eagle Test Systems Inc,2006-03-08,13.6,51.78,51.78,0,0.00,0.00,-6.21
+TDG,Transdigm Group Inc,2006-03-14,9.7,41.85,41.85,0,0.00,0.00,-4.88
+NEXT,Nextest Systems Corp,2006-03-21,21.8,70.18,70.18,0,0.00,0.00,-7.68
+CLAY,Clayton Holdings Inc,2006-03-23,11.1,46.90,46.90,0,0.00,0.00,-5.32
+GNET,Global Traffic Network Inc,2006-03-23,11.1,46.90,46.90,0,0.00,0.00,-5.32
+THI,Tim Hortons Inc,2006-03-23,11.1,46.90,46.90,0,0.00,0.00,-5.32
+FHY,FIRST TRUST STRAT HIGH INC FD,2006-03-28,14.6,56.91,56.91,0,0.00,0.00,-0.95
+GRRF,China GrenTech Corp Ltd,2006-03-29,9.6,52.94,52.94,0,0.00,0.00,-5.87
+HIMX,Himax Technologies Inc,2006-03-30,8.4,49.68,49.68,0,0.00,0.00,-5.56
+EICU,Visicu Inc,2006-04-04,5.7,49.62,49.62,0,0.00,-3.51,-9.67
+ROX,Castle Brands Inc,2006-04-05,5.1,51.53,51.53,0,0.00,-0.13,-5.95
+GGL,Goodman Global Inc,2006-04-05,5.1,51.53,51.53,0,0.00,-0.13,-5.95
+AHGP,Alliance Holdings GP LP,2006-05-09,4.9,48.25,48.25,0,0.00,0.00,-13.01
+NOVC,Novacea Inc,2006-05-09,4.9,48.25,48.25,0,0.00,0.00,-13.01
+CODI,Compass Diversified Trust,2006-05-10,7.9,57.57,57.57,0,0.00,0.00,-12.20
+BWTR,Basin Water Inc,2006-05-11,6.0,51.85,51.85,0,0.00,0.00,-16.61
+REST,Restore Medical Inc,2006-05-16,3.6,47.91,47.91,0,0.00,-0.56,-13.18
+BKC,Burger King Holdings Inc,2006-05-17,7.7,51.17,51.17,0,0.00,0.00,-12.90
+PNSN,Penson Worldwide Inc,2006-05-17,7.7,51.17,51.17,0,0.00,0.00,-12.90
+EOE,Eaton Vance Credit Opport,2006-05-26,7.1,55.52,55.52,0,0.00,0.00,-14.16
+RAP,RMR Asia Pacific Real Estate,2006-05-26,7.1,55.52,55.52,0,0.00,0.00,-14.16
+LOOP,LoopNet Inc,2006-06-06,8.5,54.44,54.44,0,0.00,0.00,-9.86
+VRGY,Verigy Ltd,2006-06-12,3.8,53.14,53.14,0,0.00,0.00,-9.29
+VSE,Verasun Energy Corp,2006-06-13,5.4,54.44,54.44,0,0.00,0.00,-8.98
+GOLF,Golfsmith Intl Hldg Inc,2006-06-14,8.4,60.31,60.31,0,0.00,0.00,-9.39
+HWCC,Houston Wire & Cable Co,2006-06-14,8.4,60.31,60.31,0,0.00,0.00,-9.39
+VOLC,Volcano Corp,2006-06-14,8.4,60.31,60.31,0,0.00,0.00,-9.39
+SNCR,Synchronoss Technologies Inc,2006-06-15,11.4,59.62,59.62,0,0.00,0.00,-11.86
+TWLL,Techwell Inc,2006-06-21,15.8,82.79,82.79,0,0.00,0.00,-9.95
+HOMB,"Home Bancshares Inc,Conway,AR",2006-06-22,9.8,56.61,56.61,0,0.00,0.00,-8.15
+HCF,Highland Credit Strategies,2006-06-23,7.9,55.10,55.10,0,0.00,0.00,-7.98
+JCG,J Crew Group Inc,2006-06-27,6.2,49.87,49.87,0,0.00,0.00,-8.09
+JGG,Nuveen Global Government,2006-06-27,6.2,49.87,49.87,0,0.00,0.00,-8.09
+OMTR,Omniture Inc,2006-06-27,6.2,49.87,49.87,0,0.00,0.00,-8.09
+PGTI,PGT Inc,2006-06-27,6.2,49.87,49.87,0,0.00,0.00,-8.09
+RDYN,Replidyne Inc,2006-06-27,6.2,49.87,49.87,0,0.00,0.00,-8.09
+AVR,Aventine Renewable Energy Hlds,2006-06-28,5.1,50.94,50.94,0,0.00,0.00,-7.37
+GMKT,GMarket Inc,2006-06-28,5.1,50.94,50.94,0,0.00,0.00,-7.37
+ASTIU,Ascent Solar Technologies Inc,2006-07-10,6.2,45.67,45.67,0,0.00,0.00,-5.74
+AWH,Allied World Assurance,2006-07-11,6.1,46.90,46.90,0,0.00,0.00,-5.66
+COWN,Cowen Group Inc,2006-07-12,2.9,41.80,41.80,0,0.00,0.00,-5.42
+VEH,Valero GP Holdings Inc,2006-07-13,2.8,56.55,56.55,0,0.00,0.00,-6.29
+EVR,Evercore Partners Inc,2006-08-10,5.9,43.46,43.46,0,0.00,0.00,-0.29
+FEO,First Trust/Aberdeen Emerging,2006-08-28,10.8,48.10,48.10,0,0.00,0.00,-6.15
+EDU,New Oriental Education,2006-09-06,10.8,47.95,47.95,0,0.00,0.00,0.00
+HPGP,Hiland Holdings GP LP,2006-09-19,6.9,38.24,38.24,0,0.00,0.00,0.00
+HDIX,Home Diagnostics Inc,2006-09-20,7.3,40.09,40.09,0,0.00,0.00,-0.04
+KED,Kayne Anderson Energy Dvpt,2006-09-20,7.3,40.09,40.09,0,0.00,0.00,-0.04
+RVBD,Riverbed Technology Inc,2006-09-20,7.3,40.09,40.09,0,0.00,0.00,-0.04
+WCRX,Warner Chilcott Holdings Co,2006-09-20,7.3,40.09,40.09,0,0.00,0.00,-0.04
+CVLT,CommVault Systems Inc,2006-09-21,11.5,47.40,47.40,0,0.00,0.00,0.00
+DIVX,DivX Inc,2006-09-21,11.5,47.40,47.40,0,0.00,0.00,0.00
+PBIB,Porter Bancorp Inc,2006-09-21,11.5,47.40,47.40,0,0.00,0.00,0.00
+MR,Mindray Medical International,2006-09-25,12.1,47.44,47.44,0,0.00,0.00,0.00
+BCF,BlackRock Real Asset Equity Tr,2006-09-26,14.4,51.36,51.36,0,0.00,0.00,0.00
+EVEP,EV Energy Partners LP,2006-09-26,14.4,51.36,51.36,0,0.00,0.00,0.00
+CBF,CBRE Realty Finance,2006-09-27,11.0,47.16,47.16,0,0.00,0.00,0.00
+ICFI,ICF International Inc,2006-09-27,11.0,47.16,47.16,0,0.00,0.00,0.00
+BARE,Bare Escentuals Inc,2006-09-28,11.9,45.58,45.58,0,0.00,0.00,0.00
+CAF,Morgan Stanley China A Share,2006-09-28,11.9,45.58,45.58,0,0.00,0.00,0.00
+OFSI,Omni Financial Services Inc,2006-09-29,12.0,45.67,45.67,0,0.00,0.00,-0.11
+SFLY,Shutterfly Inc,2006-09-29,12.0,45.67,45.67,0,0.00,0.00,-0.11
+BBEP,BreitBurn Energy Partners L.P.,2006-10-04,4.1,40.31,40.31,0,0.00,0.00,-5.42
+UCLP,Universal Compression Partners,2006-10-16,7.0,41.63,41.63,0,0.00,0.00,-4.51
+FMR,First Mercury Financial Corp,2006-10-17,8.2,46.74,46.74,0,0.00,0.00,-5.17
+SXE,Stanley Inc,2006-10-17,8.2,46.74,46.74,0,0.00,0.00,-5.17
+TRBN,Trubion Pharmaceuticals Inc,2006-10-17,8.2,46.74,46.74,0,0.00,0.00,-5.17
+CADX,Cadence Pharmaceuticals Inc,2006-10-24,5.3,41.01,41.01,0,0.00,0.00,0.00
+EROC,Eagle Rock Energy LP,2006-10-24,5.3,41.01,41.01,0,0.00,0.00,0.00
+GHS,GateHouse Media Inc,2006-10-24,5.3,41.01,41.01,0,0.00,0.00,0.00
+IRR,I N G RISK MANAGED NATUR RES F,2006-10-24,5.3,41.01,41.01,0,0.00,0.00,0.00
+ACHN,Achillion Pharmaceuticals Inc,2006-10-25,8.4,37.29,37.29,0,0.00,0.00,0.00
+HMIN,Home Inns & Hotels Management,2006-10-25,8.4,37.29,37.29,0,0.00,0.00,0.00
+OPTM,Optium Corp,2006-10-26,5.4,31.63,31.63,0,0.00,0.00,0.00
+RRST,RRSat Global Communications,2006-10-31,4.0,31.48,31.48,0,0.00,0.00,0.00
+DRV,Debt Resolve Inc,2006-11-01,4.0,35.75,35.75,0,0.00,0.00,0.00
+GSAT,GLOBALSTAR INC,2006-11-01,4.0,35.75,35.75,0,0.00,0.00,0.00
+IPHS,Innophos Holdings Inc,2006-11-02,6.6,48.63,48.63,0,0.00,0.00,0.00
+ORBC,ORBCOMM Inc,2006-11-02,6.6,48.63,48.63,0,0.00,0.00,0.00
+CPRX,Catalyst Pharmaceutical,2006-11-07,10.4,42.93,42.93,0,0.00,0.00,-0.00
+CSIQ,Canadian Solar Inc,2006-11-08,11.7,44.95,44.95,0,0.00,0.00,-4.90
+KBW,KBW Inc,2006-11-08,11.7,44.95,44.95,0,0.00,0.00,-4.90
+OB,One Beacon Insurance Group,2006-11-08,11.7,44.95,44.95,0,0.00,0.00,-4.90
+FACE,Physicians Formula Holdings,2006-11-08,11.7,44.95,44.95,0,0.00,0.00,-4.90
+ACA,ACA Capital Holdings Inc,2006-11-09,12.9,52.50,52.50,0,0.00,0.00,-7.06
+CPLA,Capella Education Co,2006-11-09,12.9,52.50,52.50,0,0.00,0.00,-7.06
+THRM,Thermage Inc,2006-11-09,12.9,52.50,52.50,0,0.00,0.00,-7.06
+MBLX,Metabolix Inc,2006-11-10,9.9,40.73,40.73,0,0.00,0.00,-0.20
+EBS,Emergent BioSolutions Inc,2006-11-14,8.4,38.20,38.20,0,0.00,0.00,0.00
+ALLT,Allot Communications Inc,2006-11-15,12.7,42.51,42.51,0,0.00,0.00,0.00
+CEP,Constellation Energy Partners,2006-11-15,12.7,42.51,42.51,0,0.00,0.00,0.00
+HNSN,Hansen Medical Inc,2006-11-15,12.7,42.51,42.51,0,0.00,0.00,0.00
+HTZ,Hertz Global Holdings Inc,2006-11-15,12.7,42.51,42.51,0,0.00,0.00,0.00
+KBR,"KBR, Inc.",2006-11-15,12.7,42.51,42.51,0,0.00,0.00,0.00
+FSLR,First Solar Inc,2006-11-16,9.1,39.51,39.51,0,0.00,0.00,0.00
+NMX,NYMEX Holdings Inc,2006-11-16,9.1,39.51,39.51,0,0.00,0.00,0.00
+VQ,Venoco Inc,2006-11-16,9.1,39.51,39.51,0,0.00,0.00,0.00
+FOF,Cohen & Steers Closed-End,2006-11-20,9.4,47.82,47.82,0,0.00,0.00,-5.46
+AER,AerCap Holdings,2006-11-21,7.3,47.70,47.70,0,0.00,0.00,-6.92
+DHG,DWS Dreman Value IncomEdge,2006-11-21,7.3,47.70,47.70,0,0.00,0.00,-6.92
+SPR,Spirit Aerosystems Holdings,2006-11-21,7.3,47.70,47.70,0,0.00,0.00,-6.92
+WLDN,Willdan Group,2006-11-21,7.3,47.70,47.70,0,0.00,0.00,-6.92
+MVE,Smart Move Inc,2006-12-07,3.9,45.98,45.98,0,0.00,0.00,-0.03
+ANW,Aegean Marine Petroleum Ntwrk,2006-12-08,3.0,45.17,45.17,0,0.00,0.00,-0.10
+ALGT,Allegiant Travel Company,2006-12-08,3.0,45.17,45.17,0,0.00,0.00,-0.10
+HLYS,Heelys,2006-12-08,3.0,45.17,45.17,0,0.00,0.00,-0.10
+KCAP,Kohlberg Capital Group,2006-12-11,2.0,51.91,51.91,0,0.00,0.00,-6.05
+ATN,Atlas Energy Resources LLC,2006-12-13,2.0,40.55,40.55,0,0.00,0.00,-4.79
+DCT,DCT Industrial,2006-12-13,2.0,40.55,40.55,0,0.00,0.00,-4.79
+GUID,Guidance Software,2006-12-13,2.0,40.55,40.55,0,0.00,0.00,-4.79
+IPGP,IPG Photonics,2006-12-13,2.0,40.55,40.55,0,0.00,0.00,-4.79
+MEDE,MEDecision,2006-12-13,2.0,40.55,40.55,0,0.00,0.00,-4.79
+DVR,Cal Dive International,2006-12-14,3.9,45.68,45.68,0,0.00,0.00,-5.22
+GLS,Genesis Lease,2006-12-14,3.9,45.68,45.68,0,0.00,0.00,-5.22
+NEWS,NewStar Financial,2006-12-14,3.9,45.68,45.68,0,0.00,0.00,-5.22
+OMPI,Obagi Medical Products,2006-12-14,3.9,45.68,45.68,0,0.00,0.00,-5.22
+TOO,Teekay Offshore Partners L.P.,2006-12-14,3.9,45.68,45.68,0,0.00,0.00,-5.22
+WSFG,WSB Financial Group,2006-12-14,3.9,45.68,45.68,0,0.00,0.00,-5.22
+AFFY,Affymax,2006-12-15,6.9,49.98,49.98,0,0.00,0.00,-5.57
+AIMC,Altra Holdings,2006-12-15,6.9,49.98,49.98,0,0.00,0.00,-5.57
+TAST,Carrols Restaurant Group,2006-12-15,6.9,49.98,49.98,0,0.00,0.00,-5.57
+DBTK,Double-Take Software,2006-12-15,6.9,49.98,49.98,0,0.00,0.00,-5.57
+ISLN,Isilon Systems,2006-12-15,6.9,49.98,49.98,0,0.00,0.00,-5.57
+USBE,U.S. BioEnergy,2006-12-15,6.9,49.98,49.98,0,0.00,0.00,-5.57
+PLTE,Claymont Steel Holdings,2006-12-19,8.8,50.99,50.99,0,0.00,0.00,-5.46
+FFHL,Fuwei Films (Holdings),2006-12-19,8.8,50.99,50.99,0,0.00,0.00,-5.46
+MPEL,Melco PBL Entertainment,2006-12-19,8.8,50.99,50.99,0,0.00,0.00,-5.46
+TSL,Trina Solar Limited,2006-12-19,8.8,50.99,50.99,0,0.00,0.00,-5.46
+ARTE,Artes Medical,2006-12-20,9.5,52.66,52.66,0,0.00,0.00,-5.56
+DSUP,Dayton Superior,2006-12-20,9.5,52.66,52.66,0,0.00,0.00,-5.56
+SOLF,Solarfun Power Holdings,2006-12-20,9.5,52.66,52.66,0,0.00,0.00,-5.56
+BTZ,Blackrock Preferred and Equity,2006-12-21,13.8,68.66,68.66,0,0.00,0.00,-0.24
+UPG,Universal Power Group,2006-12-21,13.8,68.66,68.66,0,0.00,0.00,-0.24
+MVO,MV Oil Trust,2007-01-19,8.2,52.96,52.96,0,0.00,-0.23,-6.43
+AVAV,AeroVironment Inc,2007-01-22,9.4,41.29,41.29,0,0.00,0.00,-4.71
+MMPI,Meruelo Maddux Properties Inc,2007-01-24,15.3,51.97,51.97,0,0.00,0.00,-5.96
+AOD,Alpine Total Dynamic,2007-01-25,10.3,51.66,51.66,0,0.00,-2.73,-8.15
+GDL,Gabelli Global Deal Fund,2007-01-26,11.1,58.54,58.54,0,0.00,-0.28,-7.08
+OCLS,Oculus Innovative Sciences Inc,2007-01-26,11.1,58.54,58.54,0,0.00,-0.28,-7.08
+AHII,Animal Health International,2007-01-30,4.6,53.07,53.07,0,0.00,0.00,-5.98
+DEP,Duncan Energy Partners LP,2007-01-30,4.6,53.07,53.07,0,0.00,0.00,-5.98
+EIG,Employers Holdings Inc,2007-01-30,4.6,53.07,53.07,0,0.00,0.00,-5.98
+HF,HFF,2007-01-30,4.6,53.07,53.07,0,0.00,0.00,-5.98
+XTNT,Xtent Inc,2007-01-31,5.4,48.66,48.66,0,0.00,0.00,-7.03
+MIPI,Molecular Insight Pharm Inc,2007-02-01,5.0,44.55,44.55,0,0.00,0.00,-7.11
+TTO,Tortoise Capital Resources,2007-02-01,5.0,44.55,44.55,0,0.00,0.00,-7.11
+ARAY,Accuray Inc,2007-02-07,6.1,49.23,49.23,0,0.00,0.00,-8.00
+MLNX,Mellanox Technologies Ltd,2007-02-07,6.1,49.23,49.23,0,0.00,0.00,-8.00
+NCMI,National CineMedia Inc,2007-02-07,6.1,49.23,49.23,0,0.00,0.00,-8.00
+SDXC,Switch And Data Inc,2007-02-07,6.1,49.23,49.23,0,0.00,0.00,-8.00
+NGLS,Targa Resources Partners LP,2007-02-08,9.3,55.95,55.95,0,0.00,0.00,-10.45
+OPTR,Optimer Pharmaceuticals Inc,2007-02-09,6.5,51.85,51.85,0,0.00,0.00,-24.85
+CHIP,VeriChip Corp,2007-02-09,6.5,51.85,51.85,0,0.00,0.00,-24.85
+SLRY,Salary.com Inc,2007-02-15,2.7,44.14,44.14,0,0.00,0.00,-11.68
+HCD,Highland Distressed Opp. Fund,2007-02-21,2.7,56.46,56.46,0,0.00,0.00,-12.95
+EXG,Eaton Vance Tax-Managed Global,2007-02-22,2.9,51.67,51.67,0,0.00,0.00,-9.76
+NIE,Nicholas-Applegate Eq & Cvt Fd,2007-02-23,4.1,47.34,47.34,0,0.00,0.00,-17.31
+ROSG,Rosetta Genomics Ltd,2007-02-26,4.7,50.14,50.14,0,0.00,0.00,-15.31
+CLWR,Clearwire Corp,2007-03-07,7.6,47.02,47.02,0,0.00,0.00,-10.96
+XFML,Xinhua Finance Media Ltd,2007-03-08,3.3,41.13,41.13,0,0.00,0.00,-9.75
+BBND,Bigband Networks Inc,2007-03-14,2.7,39.72,39.72,0,0.00,0.00,-7.77
+HAYN,Haynes International Inc,2007-03-19,16.3,63.23,63.23,0,0.00,-0.34,-7.35
+CQP,Cheniere Energy Partners LP,2007-03-20,26.3,91.21,91.21,0,0.00,0.00,-9.89
+GLUU,Glu Mobile Inc,2007-03-21,17.5,76.20,76.20,0,0.00,0.00,-8.23
+ARUN,Aruba Networks Inc,2007-03-26,6.1,46.46,46.46,0,0.00,0.00,-5.30
+BFD,Blackrock Global Eq Inc Trust,2007-03-27,4.5,48.20,48.20,0,0.00,0.00,-5.33
+EOD,Evergreen Global Dividend,2007-03-27,4.5,48.20,48.20,0,0.00,0.00,-5.33
+FHO,First Trust Strategic High III,2007-03-27,4.5,48.20,48.20,0,0.00,0.00,-5.33
+IAE,ING Asia Pacific High Dividend,2007-03-27,4.5,48.20,48.20,0,0.00,0.00,-5.33
+ETEL,eTelecare Global Solutions,2007-03-27,4.5,48.20,48.20,0,0.00,0.00,-5.33
+VRAZ,Veraz Networks Inc,2007-04-04,7.8,46.98,46.98,0,0.00,-0.81,-6.19
+CAVM,Cavium Networks Inc,2007-05-01,3.9,37.58,37.58,0,0.00,0.00,-0.09
+NGSX,Neurogesx Inc,2007-05-01,3.9,37.58,37.58,0,0.00,0.00,-0.09
+ATV,Acorn International Inc,2007-05-02,4.8,35.01,35.01,0,0.00,0.00,-0.08
+QXM,Qiao Xing Mobile Commun,2007-05-02,4.8,35.01,35.01,0,0.00,0.00,-0.08
+IBKR,Interactive Brokers Group,2007-05-04,5.0,29.52,29.52,0,0.00,0.00,-0.07
+TTPY,Tomotherapy Incorporated,2007-05-08,7.0,49.05,49.05,0,0.00,0.00,-0.05
+ACM,AECOM Technology Corp,2007-05-09,4.6,36.26,36.26,0,0.00,0.00,-3.98
+BIOD,Biodel Inc,2007-05-10,5.3,45.99,45.99,0,0.00,0.00,-10.81
+JMP,JMP Group Inc,2007-05-10,5.3,45.99,45.99,0,0.00,0.00,-10.81
+CLR,Continental Resources Inc,2007-05-14,11.5,47.32,47.32,0,0.00,0.00,-0.25
+PODD,Insulet Corp,2007-05-14,11.5,47.32,47.32,0,0.00,0.00,-0.25
+PINN,Pinnacle Gas Resources Inc,2007-05-14,11.5,47.32,47.32,0,0.00,0.00,-0.25
+SKH,Skilled Healthcare Group Inc,2007-05-15,5.3,46.01,46.01,0,0.00,0.00,-0.02
+CAP,CAI Int Inc,2007-05-16,8.0,44.44,44.44,0,0.00,0.00,-0.08
+EURX,Eurand NV,2007-05-16,8.0,44.44,44.44,0,0.00,0.00,-0.08
+TTGT,TechTarget Inc,2007-05-16,8.0,44.44,44.44,0,0.00,0.00,-0.08
+CSUN,China Sunergy Co Ltd,2007-05-17,13.6,47.75,47.75,0,0.00,0.00,-0.02
+ENOC,EnerNOC Inc,2007-05-17,13.6,47.75,47.75,0,0.00,0.00,-0.02
+TRS,TriMas Corp,2007-05-17,13.6,47.75,47.75,0,0.00,0.00,-0.02
+FOLD,Amicus Therapeutics Inc,2007-05-30,6.8,43.89,43.89,0,0.00,0.00,-0.01
+JAZZ,Jazz Pharmaceuticals Inc,2007-05-31,8.7,52.05,52.05,0,0.00,0.00,-0.21
+LDK,LDK Solar Co Ltd,2007-05-31,8.7,52.05,52.05,0,0.00,0.00,-0.21
+BWY,Bway Holding Co,2007-06-12,5.2,37.37,37.37,0,0.00,0.00,-0.05
+BIOF,Biofuel Energy Corp,2007-06-14,3.3,44.11,44.11,0,0.00,0.00,-0.07
+KUN,China Shenghuo Pharmaceutical,2007-06-18,8.1,36.42,36.42,0,0.00,0.00,-0.09
+GRX,GABELLI HEALTHCARE & WELLNESS,2007-06-19,10.9,47.13,47.13,0,0.00,0.00,-0.10
+AUTH,AuthenTec Inc,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+CHW,Calamos Global Dynamic,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+SCOR,Comscore Inc,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+DRP,DWS RREEF World Real Est & Tac,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+DDUP,Data Domain Inc,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+MTP,MLP & Strategic Equity,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+JTD,NUVEEN TAX ADVANTAGE DIV GRTH,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+SEP,Spectra Energy Partners LP,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+SPRD,Spreadtrum Communications Inc,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+VTA,Van Kampen Dynamic Credit,2007-06-26,3.8,29.86,29.86,0,0.00,0.00,-0.51
+DCW,Dividend Capital Strategic,2007-06-27,4.9,38.29,38.29,0,0.00,0.00,-5.02
+PPO,Polypore International Inc,2007-06-27,4.9,38.29,38.29,0,0.00,0.00,-5.02
+PRO,Pros Holdings Inc,2007-06-27,4.9,38.29,38.29,0,0.00,0.00,-5.02
+FOODU,Vaughan Foods Inc,2007-06-27,4.9,38.29,38.29,0,0.00,0.00,-5.02
+BLSW,Bridgeline Software Inc,2007-06-28,6.3,49.70,49.70,0,0.00,0.00,-8.82
+SHOR,ShoreTel Inc,2007-07-02,4.9,46.37,46.37,0,0.00,0.00,-0.22
+BLOG,BladeLogic Inc,2007-07-24,5.4,51.29,51.29,0,0.00,0.00,-6.09
+TYPE,Monotype Imaging Holdings Inc,2007-07-24,5.4,51.29,51.29,0,0.00,0.00,-6.09
+REXX,Rex Energy Corp,2007-07-24,5.4,51.29,51.29,0,0.00,0.00,-6.09
+VR,Validus Holdings Ltd,2007-07-24,5.4,51.29,51.29,0,0.00,0.00,-6.09
+IMRX,ImaRx Therapeutics Inc,2007-07-25,5.2,48.75,48.75,0,0.00,0.00,-5.58
+PWRD,Perfect World Co Ltd,2007-07-25,5.2,48.75,48.75,0,0.00,0.00,-5.58
+VOLT,Voltaire Ltd,2007-07-25,5.2,48.75,48.75,0,0.00,0.00,-5.58
+GOF,CLAYMORE GUGGENHEIM STRAT OPP,2007-07-26,4.6,50.41,50.41,0,0.00,0.00,-5.58
+INB,COHEN & STEERS GLBL INC BLDR I,2007-07-26,4.6,50.41,50.41,0,0.00,0.00,-5.58
+ETJ,Eaton Vance Risk-Managed Div,2007-07-26,4.6,50.41,50.41,0,0.00,0.00,-5.58
+VMW,VMware Inc,2007-08-13,17.9,66.55,66.55,0,0.00,0.00,-13.98
+SRV,Cushing MLP Total,2007-08-27,7.1,60.65,60.65,0,0.00,0.00,-12.14
+CFP,Cornerstone Prog Return Fund,2007-09-10,10.4,55.37,55.37,0,0.00,0.00,-13.47
+ENP,Encore Energy Partners LP,2007-09-11,7.5,52.42,52.42,0,0.00,0.00,-13.34
+ATHN,athenahealth Inc,2007-09-19,12.5,54.00,54.00,0,0.00,0.00,-13.94
+FAV,First Trust Act Div Income,2007-09-20,9.4,51.36,51.36,0,0.00,0.00,-11.97
+CTCT,Constant Contact Inc,2007-10-02,4.8,45.50,45.50,0,0.00,0.00,-8.89
+STV,China Dig TV Hldg Co Ltd,2007-10-04,4.0,45.34,45.34,0,0.00,0.00,-7.22
+MAPP,MAP Pharmaceuticals Inc,2007-10-04,4.0,45.34,45.34,0,0.00,0.00,-7.22
+CML,Compellent Technologies Inc,2007-10-09,7.2,43.80,43.80,0,0.00,0.00,-8.59
+TARG,Targanta Therapeutics Corp,2007-10-09,7.2,43.80,43.80,0,0.00,0.00,-8.59
+TGH,Textainer Grp Hldg Ltd,2007-10-09,7.2,43.80,43.80,0,0.00,0.00,-8.59
+VM,"Virgin Mobile USA, Inc",2007-10-10,5.1,40.07,40.07,0,0.00,0.00,-8.22
+TSON,Trans1 Inc,2007-10-16,5.2,41.33,41.33,0,0.00,0.00,-7.51
+NMM,Navios Maritime Partners LP,2007-11-12,8.4,54.93,54.93,0,0.00,0.00,-25.13
+ENTR,Entropic Communications Inc,2007-12-06,10.2,50.96,50.96,0,0.00,0.00,-19.78
+TITN,Titan Machinery Inc,2007-12-06,10.2,50.96,50.96,0,0.00,0.00,-19.78
+GTS,Triple-S Management Corp,2007-12-06,10.2,50.96,50.96,0,0.00,0.00,-19.78
+VISN,VisionChina Media Inc,2007-12-06,10.2,50.96,50.96,0,0.00,0.00,-19.78
+WH,WSP Holdings Ltd,2007-12-06,10.2,50.96,50.96,0,0.00,0.00,-19.78
+CATM,Cardtronics Inc,2007-12-10,10.7,53.08,53.08,0,0.00,0.00,-20.97
+CEDU,ChinaEdu Corp,2007-12-10,10.7,53.08,53.08,0,0.00,0.00,-20.97
+VIT,VanceInfo Technologies Inc,2007-12-11,6.4,52.06,52.06,0,0.00,0.00,-18.96
+XIN,Xinyuan Real Estate Co Ltd,2007-12-11,6.4,52.06,52.06,0,0.00,0.00,-18.96
+GU,Gushan Environmental Energy,2007-12-18,7.9,71.46,71.46,0,0.00,0.00,-25.28
+OESX,Orion Energy Systems Inc,2007-12-18,7.9,71.46,71.46,0,0.00,0.00,-25.28
+RCR,RMR Dividend Capture Fund,2007-12-18,7.9,71.46,71.46,0,0.00,0.00,-25.28
+N,NetSuite Inc,2007-12-19,6.4,66.27,66.27,0,0.00,0.00,-23.94
+RMG,RiskMetrics Group Inc,2008-01-24,10.5,53.59,53.59,0,0.00,0.00,-18.04
+TYM,Asia Time Corporation,2008-02-12,4.0,21.43,21.43,0,0.00,0.00,-0.12
+BEAT,CardioNet Inc,2008-03-18,8.5,43.93,43.93,0,0.00,0.00,-14.56
+HFFIU,Healthy Fast Food Inc,2008-03-19,25.0,54.79,54.79,0,0.00,0.00,-0.09
+AGNC,American Capital Agency Corp,2008-05-14,12.4,30.13,30.13,0,0.00,0.00,0.00
+VRS,Verso Paper Corp,2008-05-14,12.4,30.13,30.13,0,0.00,0.00,0.00
+SB,Safe Bulkers Inc,2008-05-28,9.2,44.60,44.60,0,0.00,0.00,-13.63
+FSC,Fifth Street Finance Corp,2008-06-11,9.8,28.01,28.01,0,0.00,0.00,-0.06
+HPJ,Hong Kong Highpower Tech Inc,2008-06-19,17.3,38.80,38.80,0,0.00,0.00,0.00
+FFD,Morgan Stanley Frontier Inc,2008-08-22,10.7,34.60,34.60,0,0.00,0.00,0.00
+NIV,NIVS IntelliMedia Tech Gp Inc,2009-03-12,10.5,45.45,45.45,0,0.00,-15.64,-15.75
+DGI,DigitalGlobe Inc,2009-05-13,10.8,29.64,29.64,0,0.00,0.00,0.00
+SWI,SolarWinds Inc,2009-05-19,9.3,40.78,40.78,0,0.00,-12.45,-12.45
+EOT,Eaton Vance Natl Municipal Opp,2009-05-26,12.0,51.57,51.57,0,0.00,0.00,-19.02
+GOV,Government Properties Income,2009-06-02,13.4,47.85,47.85,0,0.00,0.00,0.00
+CYS,Cypress Sharpridge Investments,2009-06-11,17.7,50.46,50.46,0,0.00,0.00,-0.16
+CPC,ChemSpec International Ltd,2009-06-23,21.1,66.01,66.01,0,0.00,0.00,0.00
+DWG,Duoyuan Global Water Inc,2009-06-24,17.4,54.71,54.71,0,0.00,0.00,-0.20
+MDSO,Medidata Solutions Inc,2009-06-24,17.4,54.71,54.71,0,0.00,0.00,-0.20
+IVR,Invesco Mortgage Capital Inc,2009-06-25,14.7,53.73,54.33,4,0.60,0.00,0.60
+IGI,Wstn Asset Invest Grade Define,2009-06-25,14.7,53.73,54.33,4,0.60,0.00,0.60
+LOGM,LogMeIn Inc,2009-06-30,19.4,55.29,55.29,0,0.00,0.00,-0.13
+TBNK,Territorial Bancorp Inc,2009-07-13,13.6,53.52,53.52,0,0.00,0.00,0.00
+PMT,Pennymac Mtg Invest Tr,2009-07-29,4.7,28.69,28.69,0,0.00,0.00,0.00
+RCON,Recon Technology Ltd,2009-07-29,4.7,28.69,28.69,0,0.00,0.00,0.00
+TPZ,Tortoise Power & Energy,2009-07-29,4.7,28.69,28.69,0,0.00,0.00,0.00
+LIWA,Lihua International Inc,2009-09-04,2.5,43.92,43.92,0,0.00,0.00,-15.71
+TRIT,Tri-Tech Holding Inc,2009-09-09,3.3,35.55,35.55,0,0.00,0.00,-11.54
+CXS,CreXus Investment Corp,2009-09-16,19.1,36.72,36.72,0,0.00,0.00,-0.12
+AONE,A123 Systems Inc,2009-09-23,23.6,51.80,51.80,0,0.00,0.00,-0.13
+ARI,Apollo Coml RE Fin Inc,2009-09-23,23.6,51.80,51.80,0,0.00,0.00,-0.13
+ART,Artio Global Investors Inc,2009-09-23,23.6,51.80,51.80,0,0.00,0.00,-0.13
+CLNY,Colony Financial Inc,2009-09-23,23.6,51.80,51.80,0,0.00,0.00,-0.13
+VITC,Vitacost.com Inc,2009-09-23,23.6,51.80,51.80,0,0.00,0.00,-0.13
+NEV,Nuveen Enhanced Municipal,2009-09-24,17.3,54.05,54.05,0,0.00,0.00,-16.52
+GAME,Shanda Games Ltd,2009-09-24,17.3,54.05,54.05,0,0.00,0.00,-16.52
+SEM,Select Medical Holdings Corp,2009-09-25,10.5,32.88,32.88,0,0.00,0.00,-0.12
+TLCR,Talecris Biotherapeutics Hldg,2009-09-30,6.0,31.57,31.57,0,0.00,0.00,0.00
+ECHO,Echo Global Logistics Inc,2009-10-01,3.9,27.73,27.73,0,0.00,0.00,0.00
+EDMC,Education Management Corp,2009-10-01,3.9,27.73,27.73,0,0.00,0.00,0.00
+BSBR,Banco Santander Brasil SA,2009-10-06,3.9,26.57,26.57,0,0.00,0.00,0.00
+VRSK,Verisk Analytics Inc,2009-10-06,3.9,26.57,26.57,0,0.00,0.00,0.00
+MG,Mistras Group Inc,2009-10-07,3.9,26.63,26.63,0,0.00,0.00,0.00
+OMER,Omeros Corp,2009-10-07,3.9,26.63,26.63,0,0.00,0.00,0.00
+CRIC,China Real Estate Information,2009-10-16,13.9,37.39,37.39,0,0.00,0.00,0.00
+PMIC,Penn Millers Holding Corp,2009-10-16,13.9,37.39,37.39,0,0.00,0.00,0.00
+PEB,Pebblebrook Hotel Trust,2009-12-09,4.1,39.46,39.46,0,0.00,0.00,-12.12
+NKBP,China Nuokang Bio-Pharmac,2009-12-10,4.7,45.78,45.78,0,0.00,0.00,-14.06
+CCM,Concord Medical Services Ltd,2009-12-11,5.2,42.57,42.57,0,0.00,0.00,-13.13
+CIE,Cobalt International Energy,2009-12-16,12.4,46.38,46.38,0,0.00,0.00,-15.61
+TMH,Team Health Holdings,2009-12-16,12.4,46.38,46.38,0,0.00,0.00,-15.61
+KRA,Kraton Performance Polymers,2009-12-17,10.9,43.82,43.82,0,0.00,0.00,-15.62
+AFCB,Athens Bancshares Corp,2010-01-06,6.5,38.48,38.48,0,0.00,0.00,0.00
+SLRC,Solar Capital Ltd,2010-02-08,5.1,57.58,57.58,0,0.00,0.00,-6.81
+ANTH,Anthera Pharmaceuticals Inc,2010-03-01,5.2,70.27,70.27,0,0.00,0.00,0.00
+FNGN,Financial Engines Inc,2010-03-15,14.6,53.69,53.69,0,0.00,0.00,0.00
+HTHT,China Lodging Group Ltd,2010-03-25,9.5,52.34,54.21,3,1.86,1.86,1.86
+AH,Accretive Health Inc,2010-05-20,5.9,48.90,51.56,4,2.66,0.00,2.66
+RLOC,ReachLocal Inc,2010-05-20,5.9,48.90,51.56,4,2.66,0.00,2.66
+BORN,China New Borun Corp,2010-06-10,4.9,65.08,65.08,0,0.00,0.00,0.00
+CBOE,CBOE Holdings Inc,2010-06-14,3.9,52.26,56.62,8,4.36,0.00,-0.20
+BSFT,BroadSoft Inc,2010-06-16,3.3,39.40,39.40,0,0.00,0.00,-1.62
+ONE,Higher One Holdings Inc,2010-06-16,3.3,39.40,39.40,0,0.00,0.00,-1.62
+OAS,Oasis Petroleum Inc,2010-06-16,3.3,39.40,39.40,0,0.00,0.00,-1.62
+CIL,China Intelligent Lighting & E,2010-06-17,3.4,32.05,32.05,0,0.00,0.00,-0.53
+MOTR,Motricity Inc,2010-06-17,3.4,32.05,32.05,0,0.00,0.00,-0.53
+VRNG,Vringo Inc,2010-06-21,18.8,94.51,94.51,0,0.00,0.00,0.00
+HPP,Hudson Pacific Properties Inc,2010-06-23,12.6,59.18,59.87,8,0.70,0.00,0.00
+CEM,ClearBridge Energy MLP Fund,2010-06-24,8.7,50.61,52.03,8,1.43,0.00,0.00
+EXD,Eaton Vance Tax-Advantaged Bon,2010-06-24,8.7,50.61,52.03,8,1.43,0.00,0.00
+FN,Fabrinet,2010-06-24,8.7,50.61,52.03,8,1.43,0.00,0.00
+COR,CoreSite Realty Corporation,2010-09-22,17.8,80.88,80.88,0,0.00,0.00,0.00
+CHFN,Charter Financial Corp,2010-09-23,17.8,80.82,80.82,0,0.00,0.00,0.00
+SQI,SciQuest Inc,2010-09-24,11.1,55.32,57.15,3,1.82,1.82,1.82
+AMRS,Amyris Inc,2010-09-27,6.2,41.72,41.72,0,0.00,0.00,-0.29
+CCSC,Country Style Cooking,2010-09-27,6.2,41.72,41.72,0,0.00,0.00,-0.29
+CTUY,Century Next Financial Corp,2010-09-28,4.3,38.26,38.26,0,0.00,0.00,-0.19
+FSD,First Trust High Income Long,2010-09-28,4.3,38.26,38.26,0,0.00,0.00,-0.19
+CFD,Nuveen Diversified Commodity,2010-09-28,4.3,38.26,38.26,0,0.00,0.00,-0.19
+RNO,Rhino Resource Partners LP,2010-09-29,4.0,39.82,39.82,0,0.00,0.00,0.00
+MY,China Ming Yang Wind Power Grp,2010-09-30,6.1,48.31,48.31,0,0.00,0.00,0.00
+CCIH,ChinaCache Intl Hldg Ltd,2010-09-30,6.1,48.31,48.31,0,0.00,0.00,0.00
+ELT,Elster Group SE,2010-09-30,6.1,48.31,48.31,0,0.00,0.00,0.00
+KEYW,The KEYW Holding Corp,2010-09-30,6.1,48.31,48.31,0,0.00,0.00,0.00
+VRA,Vera Bradley Inc,2010-10-20,5.1,47.27,47.27,0,0.00,0.00,0.00
+BBRG,Bravo Brio Restaurant Grp Inc,2010-10-21,7.4,50.55,50.55,0,0.00,0.00,0.00
+AEGR,Aegerion Pharmaceuticals Inc,2010-10-22,8.9,49.39,49.39,0,0.00,0.00,0.00
+NA,Asia Carbon Industries Inc,2010-10-25,4.8,36.10,36.10,0,0.00,0.00,0.00
+GBAB,Guggenheim Build America Bonds,2010-10-26,5.0,40.26,40.26,0,0.00,0.00,0.00
+MCOX,Mecox Lane Ltd,2010-10-26,5.0,40.26,40.26,0,0.00,0.00,0.00
+PACB,Pacific Biosciences of CA Inc,2010-10-26,5.0,40.26,40.26,0,0.00,0.00,0.00
+HYI,Western Asset High Yield,2010-10-26,5.0,40.26,40.26,0,0.00,0.00,0.00
+EXAM,Examworks Group Inc,2010-10-27,7.0,45.19,45.19,0,0.00,0.00,0.00
+BOX,SeaCube Container Leasing Ltd,2010-10-27,7.0,45.19,45.19,0,0.00,0.00,0.00
+BITA,Bitauto Holdings Ltd,2010-11-17,7.8,38.09,38.09,0,0.00,0.00,0.00
+ARX,Aeroflex Holding Corp,2010-11-18,11.2,47.08,47.08,0,0.00,0.00,0.00
+LPLA,LPL Investment Holdings Inc,2010-11-18,11.2,47.08,47.08,0,0.00,0.00,0.00
+LZEN,Lizhan Environmental Corp,2010-11-19,11.8,38.68,38.68,0,0.00,0.00,0.00
+FXCM,FXCM Inc,2010-12-01,6.1,62.04,62.04,0,0.00,0.00,0.00
+EDF,Stone Harbor Emerging Markets,2010-12-22,9.0,59.80,59.80,0,0.00,0.00,0.00
+OFED,Oconee Federal Financial Corp,2011-01-14,4.5,42.84,42.84,0,0.00,0.00,0.00
+TBET,Tibet Pharmaceuticals Inc,2011-01-24,5.6,64.16,64.16,0,0.00,0.00,0.00
+HCA,HCA Holdings Inc,2011-03-09,10.2,71.61,71.61,0,0.00,0.00,0.00
+BCX,BlackRock Resources & Commodit,2011-03-28,13.3,52.61,53.22,8,0.62,-0.33,-0.33
+APO,Apollo Global Management LLC,2011-03-29,8.1,55.61,58.14,8,2.53,-0.48,-0.48
+QIHU,Qihoo 360 Technology Co Ltd,2011-03-29,8.1,55.61,58.14,8,2.53,-0.48,-0.48
+GMLP,Golar LNG Partners LP,2011-04-06,4.2,46.10,47.85,4,1.75,0.00,1.75
+SDT,SandRidge Mississippian Trust,2011-04-06,4.2,46.10,47.85,4,1.75,0.00,1.75
+UAN,CVR Partners LP,2011-04-07,6.5,57.92,60.50,3,2.58,2.58,2.58
+PFLT,PennantPark Floating Rate,2011-04-08,7.0,47.44,48.87,3,1.44,1.44,1.44
+ARCO,Arcos Dorados Holdings Inc,2011-04-13,4.3,43.55,45.08,4,1.52,0.00,1.52
+TMS,TMS International Corp,2011-04-13,4.3,43.55,45.08,4,1.52,0.00,1.52
+ZIP,Zipcar Inc,2011-04-13,4.3,43.55,45.08,4,1.52,0.00,1.52
+TEU,Box Ships Inc,2011-04-14,5.0,46.07,46.07,0,0.00,0.00,-0.24
+ELLI,Ellie Mae Inc,2011-04-14,5.0,46.07,46.07,0,0.00,0.00,-0.24
+SQNS,Sequans Communications SA,2011-04-14,5.0,46.07,46.07,0,0.00,0.00,-0.24
+STIR,STAG Industrial Inc,2011-04-15,5.6,50.82,50.82,0,0.00,-0.27,-0.27
+AL,Air Lease Corp,2011-04-18,4.3,47.87,47.87,0,0.00,-0.11,-0.11
+SGNT,Sagent Pharmaceuticals Inc,2011-04-19,4.2,50.81,53.34,4,2.53,0.00,2.53
+TLLP,Tesoro Logistics LP,2011-04-19,4.2,50.81,53.34,4,2.53,0.00,2.53
+VNET,21Vianet Group Inc,2011-04-21,7.4,58.77,61.69,3,2.93,2.93,2.93
+IHD,ING Emerging Markets High,2011-04-27,4.0,48.30,50.34,8,2.03,0.00,-0.20
+FRNK,Franklin Financial Corp,2011-04-28,4.0,48.16,48.16,0,0.00,-0.17,-0.17
+GSVC,NeXt Innovation Corp,2011-04-28,4.0,48.16,48.16,0,0.00,-0.17,-0.17
+WIFI,Boingo Wireless Inc,2011-05-03,4.7,40.90,41.33,3,0.44,0.44,0.44
+RENN,Renren Inc,2011-05-03,4.7,40.90,41.33,3,0.44,0.44,0.44
+NQ,NetQin Mobile Inc,2011-05-04,4.2,38.91,38.91,0,0.00,0.00,0.00
+RPXC,RPX Corp,2011-05-04,4.2,38.91,38.91,0,0.00,0.00,0.00
+SGMEU,SMG Indium Resources Ltd,2011-05-04,4.2,38.91,38.91,0,0.00,0.00,0.00
+THR,Thermon Group Holdings Inc,2011-05-04,4.2,38.91,38.91,0,0.00,0.00,0.00
+VOC,VOC Energy Tr,2011-05-05,4.2,43.97,43.97,0,0.00,0.00,0.00
+FFN,FriendFinder Networks Inc,2011-05-10,4.0,53.77,53.77,0,0.00,0.00,-4.39
+KOS,Kosmos Energy Ltd,2011-05-10,4.0,53.77,53.77,0,0.00,0.00,-4.39
+RLJ,RLJ Lodging Trust,2011-05-10,4.0,53.77,53.77,0,0.00,0.00,-4.39
+NMFC,New Mountain Finance Corp,2011-05-19,3.1,43.15,43.15,0,0.00,0.00,0.00
+EMO,ClearBridge Energy MLP Opport,2011-06-09,5.1,54.40,54.40,0,0.00,0.00,-0.19
+FDUS,Fidus Investment Corp,2011-06-20,13.7,62.99,62.99,0,0.00,0.00,0.00
+VHS,Vanguard Health Systems Inc,2011-06-22,10.2,60.99,60.99,0,0.00,0.00,0.00
+KIOR,KiOR Inc,2011-06-23,7.5,58.40,58.40,0,0.00,0.00,0.00
+AWAY,HomeAway Inc,2011-06-28,10.7,63.59,63.68,5,0.09,0.00,0.09
+MITT,AG Mortgage Investment Trust,2011-06-29,3.7,44.42,44.69,5,0.27,0.00,0.27
+FBNK,First Connecticut Bancorp Inc,2011-06-29,3.7,44.42,44.69,5,0.27,0.00,0.27
+FIF,First Trust Energy Infrastruct,2011-09-28,12.6,53.05,53.05,0,0.00,0.00,0.00
+GWRE,Guidewire Software Inc,2012-01-24,8.9,49.31,50.13,4,0.82,0.00,0.74
+CSTE,CaesarStone Sdot-Yam Ltd,2012-03-21,8.3,49.04,49.04,0,0.00,0.00,0.00
+ET,ExactTarget Inc,2012-03-21,8.3,49.04,49.04,0,0.00,0.00,0.00
+VNTV,Vantiv Inc,2012-03-21,8.3,49.04,49.04,0,0.00,0.00,0.00
+PRSS,CafePress Inc,2012-03-28,4.5,49.05,49.05,0,0.00,0.00,-0.28
+MACK,Merrimack Pharmaceuticals Inc,2012-03-28,4.5,49.05,49.05,0,0.00,0.00,-0.28
+MM,Millennial Media Inc,2012-03-28,4.5,49.05,49.05,0,0.00,0.00,-0.28
+RXN,Rexnord Corp,2012-03-28,4.5,49.05,49.05,0,0.00,0.00,-0.28
+ENPH,Enphase Energy Inc,2012-03-29,6.3,41.08,42.71,4,1.64,0.00,1.64
+GLOG,Gaslog Ltd,2012-03-29,6.3,41.08,42.71,4,1.64,0.00,1.64
+RPAI,Retail Ppty of Americas Inc,2012-04-05,5.5,44.32,46.59,4,2.27,0.00,2.27
+FET,Forum Energy Technologies Inc,2012-04-11,4.3,58.99,58.99,0,0.00,0.00,-0.23
+MRC,MRC Global Inc,2012-04-11,4.3,58.99,58.99,0,0.00,0.00,-0.23
+OAK,Oaktree Capital Group LLC,2012-04-11,4.3,58.99,58.99,0,0.00,0.00,-0.23
+DCIN,Digital Cinema Destinations,2012-04-17,4.7,59.32,59.32,0,0.00,0.00,-0.23
+SDR,SandRidge Mississippian,2012-04-17,4.7,59.32,59.32,0,0.00,0.00,-0.23
+SPLK,Splunk Inc,2012-04-18,5.0,53.51,55.72,8,2.21,0.00,-0.19
+TUMI,Tumi Holdings Inc,2012-04-18,5.0,53.51,55.72,8,2.21,0.00,-0.19
+BLOX,Infoblox Inc,2012-04-19,9.0,74.28,74.28,0,0.00,0.00,-0.26
+MPO,Midstates Petroleum Co Inc,2012-04-19,9.0,74.28,74.28,0,0.00,0.00,-0.26
+PFPT,Proofpoint Inc,2012-04-19,9.0,74.28,74.28,0,0.00,0.00,-0.26
+FB,Facebook Inc,2012-05-17,5.2,59.37,59.37,0,0.00,0.00,-0.08
+PDI,PIMCO Dynamic Income Fund,2012-05-24,10.6,66.27,69.36,4,3.08,0.00,3.08
+SMM,Salient Midstream & MLP Fund,2012-05-24,10.6,66.27,69.36,4,3.08,0.00,3.08
+CTR,ClearBridge Energy MLP Total,2012-06-26,12.8,72.37,72.37,0,0.00,0.00,-0.23
+EQM,EQT Midstream Partners LP,2012-06-26,12.8,72.37,72.37,0,0.00,0.00,-0.23
+MMD,MainStay DefinedTerm Municipal,2012-06-26,12.8,72.37,72.37,0,0.00,0.00,-0.23
+TSRO,Tesaro Inc,2012-06-27,15.7,76.50,76.50,0,0.00,0.00,-0.30
+EXA,Exa Corp,2012-06-28,20.2,79.19,80.80,4,1.62,0.00,1.62
+GMED,Globus Medical Inc,2012-08-02,2.7,59.98,59.98,0,0.00,0.00,0.00
+BLMN,Bloomin' Brands Inc,2012-08-08,5.2,56.16,56.16,0,0.00,0.00,0.00
+PSMI,Peregrine Semiconductor Corp,2012-08-08,5.2,56.16,56.16,0,0.00,0.00,0.00
+PFMT,Performant Financial Corp,2012-08-09,4.6,56.70,56.70,0,0.00,0.00,0.00
+HCLP,Hi-Crush Partners LP,2012-08-15,5.2,40.74,40.74,0,0.00,0.00,0.00
+SFBC,Sound Financial Bancorp Inc,2012-08-15,5.2,40.74,40.74,0,0.00,0.00,0.00
+BTT,BlackRock Muni Target Tr,2012-08-29,2.8,46.62,46.62,0,0.00,0.00,-0.09
+QLYS,Qualys Inc,2012-09-27,5.1,43.62,43.62,0,0.00,0.00,-0.29
+SMLP,Summit Midstream Partners LP,2012-09-27,5.1,43.62,43.62,0,0.00,0.00,-0.29
+BERY,Berry Plastics Group Inc,2012-10-03,6.1,48.89,49.98,4,1.09,0.00,1.09
+JMI,JAVELIN Mortgage Invstmnt Corp,2012-10-03,6.1,48.89,49.98,4,1.09,0.00,1.09
+LXFR,Luxfer Holdings PLC,2012-10-03,6.1,48.89,49.98,4,1.09,0.00,1.09
+MCBK,Madison County Financial Inc,2012-10-03,6.1,48.89,49.98,4,1.09,0.00,1.09
+FLTX,Fleetmatics Group PLC,2012-10-04,9.3,43.02,43.02,0,0.00,0.00,0.00
+RGLS,Regulus Therapeutics Inc,2012-10-04,9.3,43.02,43.02,0,0.00,0.00,0.00
+AMBA,Ambarella Inc,2012-10-09,3.0,39.42,39.42,0,0.00,0.00,0.00
+GHY,Prudential Global Short,2012-12-21,9.0,79.82,79.82,0,0.00,0.00,-0.02
+BCC,Boise Cascade Co,2013-02-05,8.6,58.70,58.70,0,0.00,0.00,-0.42
+XONE,ExOne Co,2013-02-06,3.7,49.85,51.87,1,2.02,2.02,1.44
+IPDN,Professional Diversity Network,2013-03-05,5.5,55.42,55.42,0,0.00,0.00,-0.16
+APAM,Artisan Partners Asset Mgmt In,2013-03-06,5.3,54.29,54.29,0,0.00,0.00,-0.17
+MODN,Model N Inc,2013-03-19,19.2,82.18,86.64,4,4.46,0.00,4.46
+TTPH,Tetraphase Pharmaceuticals Inc,2013-03-19,19.2,82.18,86.64,4,4.46,0.00,4.46
+AVIV,Aviv REIT Inc,2013-03-20,21.1,99.11,101.96,4,2.85,0.00,2.85
+ENTA,Enanta Pharmaceuticals Inc,2013-03-20,21.1,99.11,101.96,4,2.85,0.00,2.85
+OAKS,Five Oaks Investment Corp,2013-03-21,8.1,63.87,69.26,8,5.39,0.00,-0.39
+MRIN,Marin Software Inc,2013-03-21,8.1,63.87,69.26,8,5.39,0.00,-0.39
+NVEE.,NV5 Holdings Inc,2013-03-27,12.8,67.71,68.53,4,0.82,0.00,0.82
+PF,Pinnacle Foods,2013-03-28,15.9,72.48,72.48,0,0.00,0.00,-0.35
+IBTX,Independent Bank Group Inc,2013-04-02,10.6,54.66,54.90,4,0.24,-0.29,0.24
+HCAP,Harvest Capital Credit Corp,2013-05-02,2.0,34.30,34.30,0,0.00,0.00,-0.01
+INSY,Insys Therapeutics Inc,2013-05-02,2.0,34.30,34.30,0,0.00,0.00,-0.01
+QIWI,QIWI PLC,2013-05-02,2.0,34.30,34.30,0,0.00,0.00,-0.01
+AHH,Armada Hoffler Properties Inc,2013-05-07,5.6,48.07,49.88,4,1.81,0.00,1.81
+ARPI,American Residential Ppty Inc,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+CYNI,Cyan Inc,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+EMES,Emerge Energy Services LP,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+PFSI,PennyMac Finl Svcs Inc,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+Q,Quintiles Transnational Hold,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+RCPT,Receptos Inc,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+TSC,TriState Capital Holdings Inc,2013-05-08,3.0,53.49,54.89,4,1.40,0.00,1.40
+BIOA.,BioAmber Inc,2013-05-09,2.2,48.25,48.25,0,0.00,0.00,-0.97
+NBCB,First NBC Bank Holding Co,2013-05-09,2.2,48.25,48.25,0,0.00,0.00,-0.97
+TEP,Tallgrass Energy Partners LP,2013-05-13,10.9,52.51,54.38,4,1.87,0.00,1.75
+MKTO,Marketo Inc,2013-05-16,8.4,43.55,46.73,4,3.18,0.00,3.18
+DATA,Tableau Software Inc,2013-05-16,8.4,43.55,46.73,4,3.18,0.00,3.18
+ADHD,Alcobra Ltd,2013-05-21,9.4,44.28,47.34,4,3.07,0.00,3.07
+PTLA,Portola Pharmaceuticals Inc,2013-05-21,9.4,44.28,47.34,4,3.07,0.00,3.07
+ECOM,ChannelAdvisor Corp,2013-05-22,4.9,51.26,53.38,4,2.11,0.00,2.11
+CSTM,Constellium NV,2013-05-22,4.9,51.26,53.38,4,2.11,0.00,2.11
+PGEM,Ply Gem Holdings Inc,2013-05-22,4.9,51.26,53.38,4,2.11,0.00,2.11
+DFP,Flaherty & Crumrine Dynamic,2013-05-23,5.6,51.82,53.57,4,1.75,0.00,1.75
+BRSS,Global Brass & Copper Holdings,2013-05-23,5.6,51.82,53.57,4,1.75,0.00,1.75
+IVH,Ivy High Income Opportunities,2013-05-28,5.5,39.76,42.18,4,2.42,0.00,2.42
+EPZM,Epizyme Inc,2013-05-30,9.8,63.60,64.85,4,1.25,0.00,1.25
+TXTR,Textura Corp,2013-06-06,10.3,51.24,51.24,0,0.00,0.00,-2.68
+PTCT,PTC Therapeutics Inc,2013-06-19,11.6,60.39,62.42,4,2.02,0.00,2.02
+THST,Truett-Hurst Inc,2013-06-19,11.6,60.39,62.42,4,2.02,0.00,2.02
+GOGO,Gogo Inc,2013-06-20,13.3,84.00,85.41,4,1.41,0.00,1.41
+PETX,Aratana Therapeutics Inc,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+CDW,CDW Corp,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+GGM,Guggenheim Credit Allocation,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+HDS,HD Supply Holdings Inc,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+JPW,Nuveen Flexible Invest Inc Fd,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+SAMG,Silvercrest Asset Management,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+TRMR,Tremor Video Inc,2013-06-26,2.0,69.25,69.25,0,0.00,0.00,-2.79
+NYLD,NRG Yield Inc,2013-07-16,5.8,44.27,45.11,4,0.84,0.00,0.84
+OMED,OncoMed Pharmaceuticals Inc,2013-07-17,6.7,41.22,42.25,4,1.03,0.00,1.03
+UCP,UCP Inc,2013-07-17,6.7,41.22,42.25,4,1.03,0.00,1.03
+DRII,Diamond Resorts International,2013-07-18,6.9,37.72,42.13,4,4.41,0.00,4.41
+DOC,Physicians Realty Trust,2013-07-18,6.9,37.72,42.13,4,4.41,0.00,4.41
+SALE,RetailMeNot Inc,2013-07-18,6.9,37.72,42.13,4,4.41,0.00,4.41
+REXR,Rexford Industrial Realty Inc,2013-07-18,6.9,37.72,42.13,4,4.41,0.00,4.41
+PSXP,Phillips 66 Partners LP,2013-07-22,5.4,56.62,64.39,4,7.77,0.00,7.77
+AGIO,Agios Pharmaceuticals Inc,2013-07-23,4.6,40.62,45.84,4,5.23,0.00,5.23
+HTBX,Heat Biologics Inc,2013-07-23,4.6,40.62,45.84,4,5.23,0.00,5.23
+JONE,Jones Energy Inc,2013-07-23,4.6,40.62,45.84,4,5.23,0.00,5.23
+KIO,KKR Income Opportunities Fund,2013-07-25,5.8,38.94,43.87,4,4.93,0.00,4.93
+LIQD,Liquid Holdings Group Inc,2013-07-25,5.8,38.94,43.87,4,4.93,0.00,4.93
+FISH,Marlin Midstream Partners LP,2013-07-25,5.8,38.94,43.87,4,4.93,0.00,4.93
+EVHC,Envision Healthcare Holdings,2013-08-14,3.6,44.49,44.49,0,0.00,0.00,-0.54
+TPRE,Third Point Reinsurance Ltd,2013-08-14,3.6,44.49,44.49,0,0.00,0.00,-0.54
+RGDO,Regado Biosciences Inc,2013-08-22,9.9,44.49,50.72,4,6.23,0.00,6.23
+FATE,Fate Therapeutics,2013-10-01,9.4,53.88,53.88,0,0.00,0.00,-0.31
+BURL,Burlington Stores Inc,2013-10-02,13.1,64.54,64.54,0,0.00,0.00,-0.07
+ESRT,Empire State Realty Trust,2013-10-02,13.1,64.54,64.54,0,0.00,0.00,-0.07
+RMAX,RE/MAX Holdings,2013-10-02,13.1,64.54,64.54,0,0.00,0.00,-0.07
+CHMI,Cherry Hill Mortgage Inv,2013-10-04,7.4,57.96,57.96,0,0.00,0.00,-0.06
+OCIP,OCI Partners LP,2013-10-04,7.4,57.96,57.96,0,0.00,0.00,-0.06
+PBPB,Potbelly Corp,2013-10-04,7.4,57.96,57.96,0,0.00,0.00,-0.06
+LDRH,LDR Holding,2013-10-09,3.5,48.25,48.25,0,0.00,0.00,-0.02
+QTS,QTS Realty Trust,2013-10-09,3.5,48.25,48.25,0,0.00,0.00,-0.02
+SFXE,SFX Entertainment,2013-10-09,3.5,48.25,48.25,0,0.00,0.00,-0.02
+AR,Antero Resources,2013-10-10,5.3,55.93,55.93,0,0.00,0.00,-0.08
+MGNX,MacroGenics,2013-10-10,5.3,55.93,55.93,0,0.00,0.00,-0.08
+SGM,Stonegate Mortgage,2013-10-10,5.3,55.93,55.93,0,0.00,0.00,-0.08
+WNRL,Western Refining Logistics LP,2013-10-10,5.3,55.93,55.93,0,0.00,0.00,-0.08
+PAGP,Plains GP Holdings,2013-10-16,6.8,58.35,58.35,0,0.00,0.00,0.00
+LEAF,Springleaf Holdings,2013-10-16,6.8,58.35,58.35,0,0.00,0.00,0.00
+VEEV,Veeva Systems,2013-10-16,6.8,58.35,58.35,0,0.00,0.00,0.00
+ADMA,ADMA Biologics,2013-10-17,5.3,59.13,59.13,0,0.00,0.00,0.00
+VJET,voxeljet AG,2013-10-18,3.2,53.25,53.25,0,0.00,0.00,0.00
+GMZ,Goldman Sachs MLP Income,2013-11-25,6.9,59.93,59.93,0,0.00,0.00,-0.24
+XNCR,Xencor Inc,2013-12-02,1.6,52.53,60.05,4,7.52,0.00,7.52
+AMC,AMC Entertainment Holdings,2013-12-18,13.8,61.01,61.01,0,0.00,0.00,-0.03
+SC,Santander Consumer USA Hold,2014-01-23,11.5,47.54,52.18,6,4.64,0.00,4.64
+CRCM,Care.com,2014-01-24,3.7,43.75,49.31,4,5.56,0.00,5.56
+RICE,Rice Energy,2014-01-24,3.7,43.75,49.31,4,5.56,0.00,5.56
+NRX,NephroGenex,2014-02-11,3.3,36.15,40.44,4,4.29,0.00,4.29
+EGRX,Eagle Pharmaceuticals,2014-02-12,4.2,36.04,40.71,4,4.68,0.00,4.68
+FLXN,Flexion Therapeutics,2014-02-12,4.2,36.04,40.71,4,4.68,0.00,4.68
+TLMR,Talmer Bancorp,2014-02-12,4.2,36.04,40.71,4,4.68,0.00,4.68
+AMDA,Amedica,2014-02-13,4.6,36.48,40.81,4,4.34,0.00,4.34
+CNCE,Concert Pharmaceuaticals,2014-02-13,4.6,36.48,40.81,4,4.34,0.00,4.34
+IBP,Installed Building Products,2014-02-13,4.6,36.48,40.81,4,4.34,0.00,4.34
+SMLR,Semler Scientific,2014-02-21,6.1,54.52,61.13,4,6.61,0.00,6.61
+LMNS,Lumenis Ltd,2014-02-27,5.2,50.02,56.83,4,6.81,0.00,6.81
+VRNS,Varonis Systems,2014-02-28,5.0,52.92,60.21,4,7.29,0.00,7.29
+TPVG,TriplePoint Venture Growth BDC,2014-03-05,9.6,54.82,61.80,4,6.99,0.00,6.99
+AQXP,Aquinox Pharmaceuticals Inc,2014-03-06,5.9,48.67,52.10,4,3.43,0.00,3.43
+COUP,Coupons.com Inc,2014-03-06,5.9,48.67,52.10,4,3.43,0.00,3.43
+REPH,Recro Pharma Inc,2014-03-06,5.9,48.67,52.10,4,3.43,0.00,3.43
+AKAO,Achaogen Inc,2014-03-12,3.4,44.98,50.73,4,5.75,-0.49,5.75
+CSLT,Castlight Health Inc,2014-03-13,3.3,42.80,48.81,4,6.01,0.00,6.01
+DPRX,Dipexium Pharmaceuticals LLC,2014-03-13,3.3,42.80,48.81,4,6.01,0.00,6.01
+GLMD,Galmed Pharmaceuticals Ltd,2014-03-13,3.3,42.80,48.81,4,6.01,0.00,6.01
+PCTY,Paylocity Holding Corp,2014-03-19,14.0,60.46,69.19,4,8.73,0.00,8.73
+AKBA,Akebia Therapeutics Inc,2014-03-20,22.6,94.15,94.15,0,0.00,0.00,-0.34
+MDWD,MediWound Ltd,2014-03-20,22.6,94.15,94.15,0,0.00,0.00,-0.34
+QTWO,Q2 Holdings Inc,2014-03-20,22.6,94.15,94.15,0,0.00,0.00,-0.34
+RTGN,Ruthigen Inc,2014-03-20,22.6,94.15,94.15,0,0.00,0.00,-0.34
+ATEN,A10 Networks Inc,2014-03-21,13.7,63.34,72.13,4,8.79,0.00,8.79
+AMBR,Amber Road Inc,2014-03-21,13.7,63.34,72.13,4,8.79,0.00,8.79
+BRDR,Borderfree Inc,2014-03-21,13.7,63.34,72.13,4,8.79,0.00,8.79
+TSLX,TPG Specialty Lending Inc,2014-03-21,13.7,63.34,72.13,4,8.79,0.00,8.79
+VSAR,Versartis Inc,2014-03-21,13.7,63.34,72.13,4,8.79,0.00,8.79
+FPL,First Trust New Opportunities,2014-03-26,3.0,45.10,50.96,4,5.86,0.00,5.86
+KING,King Digital Entertainment plc,2014-03-26,3.0,45.10,50.96,4,5.86,0.00,5.86
+NORD,Nord Anglia Education,2014-03-26,3.0,45.10,50.96,4,5.86,0.00,5.86
+JMLP,Nuveen All Cap Energy MLP,2014-03-26,3.0,45.10,50.96,4,5.86,0.00,5.86
+OXBRU,Oxbridge Re Holdings Ltd,2014-03-26,3.0,45.10,50.96,4,5.86,0.00,5.86
+AGTC,Applied Genetic Technologies,2014-03-27,3.3,41.58,44.95,4,3.36,0.00,3.36
+SQBK,Square 1 Financial,2014-03-27,3.3,41.58,44.95,4,3.36,0.00,3.36
+TNET,TriNet Group,2014-03-27,3.3,41.58,44.95,4,3.36,0.00,3.36
+TWOU,"2U, Inc",2014-03-28,4.3,41.56,41.56,0,0.00,0.00,-0.50
+HIVE,Aerohive Networks,2014-03-28,4.3,41.56,41.56,0,0.00,0.00,-0.50
+BRG,Bluerock Residential Growth,2014-03-28,4.3,41.56,41.56,0,0.00,0.00,-0.50
+CBSO,CBS Outdoor Americas,2014-03-28,4.3,41.56,41.56,0,0.00,0.00,-0.50
+WATT,Energous,2014-03-28,4.3,41.56,41.56,0,0.00,0.00,-0.50
+EVDY,Everyday Health,2014-03-28,4.3,41.56,41.56,0,0.00,0.00,-0.50
+PIH,1347 Property Insurance Hldgs,2014-04-01,17.9,62.00,62.00,0,0.00,0.00,-0.17
+RUBI,The Rubicon Project Inc,2014-04-02,22.1,72.86,72.86,0,0.00,0.00,-0.16
+TEDU,Tarena International Inc,2014-04-03,18.0,57.96,57.96,0,0.00,0.00,-0.15
+FIVN,Five9 Inc,2014-04-04,10.9,51.14,51.14,0,0.00,-2.57,-2.71
+GRUB,GrubHub Inc,2014-04-04,10.9,51.14,51.14,0,0.00,-2.57,-2.71
+IMS,IMS Health Holdings Inc,2014-04-04,10.9,51.14,51.14,0,0.00,-2.57,-2.71
+OPWR,Opower Inc,2014-04-04,10.9,51.14,51.14,0,0.00,-2.57,-2.71
+LQ,La Quinta Holdings Inc,2014-04-09,3.7,45.93,45.93,0,0.00,0.00,-0.37
+KANG,iKang Healthcare Group Inc,2014-04-09,3.7,45.93,45.93,0,0.00,0.00,-0.37
+ADMS,Adamas Pharmaceuticals Inc,2014-04-10,5.6,44.13,49.94,4,5.80,-0.24,5.80
+ALLY,Ally Financial Inc,2014-04-10,5.6,44.13,49.94,4,5.80,-0.24,5.80
+CERU,Cerulean Pharma Inc,2014-04-10,5.6,44.13,49.94,4,5.80,-0.24,5.80
+ENBL,Enable Midstream Partners LP,2014-04-11,10.1,70.40,70.40,0,0.00,0.00,-0.25
+FPI,Farmland Partners Inc,2014-04-11,10.1,70.40,70.40,0,0.00,0.00,-0.25
+PAHC,Phibro Animal Health Corp,2014-04-11,10.1,70.40,70.40,0,0.00,0.00,-0.25
+ZOES,Zoe's Kitchen Inc,2014-04-11,10.1,70.40,70.40,0,0.00,0.00,-0.25
+CIO,City Office REIT Inc,2014-04-15,9.7,43.27,49.29,3,6.02,6.02,6.00
+PAYC,Paycom Software Inc,2014-04-15,9.7,43.27,49.29,3,6.02,6.02,6.00
+MC,Moelis & Co LLC,2014-04-16,6.5,41.91,41.91,0,0.00,0.00,-0.01
+OPB,Opus Bank,2014-04-16,6.5,41.91,41.91,0,0.00,0.00,-0.01
+TRIV,TriVascular Technologies Inc,2014-04-16,6.5,41.91,41.91,0,0.00,0.00,-0.01
+LEJU,Leju Holdings Ltd,2014-04-17,4.6,35.63,35.63,0,0.00,0.00,-0.00
+SABR,Sabre Corp,2014-04-17,4.6,35.63,35.63,0,0.00,0.00,-0.00
+SPWH,Sportsman's Warehouse Hldg Inc,2014-04-17,4.6,35.63,35.63,0,0.00,0.00,-0.00
+VTL,Vital Therapies Inc,2014-04-17,4.6,35.63,35.63,0,0.00,0.00,-0.00
+WB,Weibo Corp,2014-04-17,4.6,35.63,35.63,0,0.00,0.00,-0.00
+QTNTU,Quotient Ltd,2014-04-25,4.2,40.69,40.69,0,0.00,0.00,0.00
+ALDX,Aldeyra Therapeutics Inc,2014-05-02,4.3,47.16,52.54,4,5.39,0.00,5.39
+ARES,Ares Management LP,2014-05-02,4.3,47.16,52.54,4,5.39,0.00,5.39
+FRSH,Papa Murphy's Holdings Inc,2014-05-02,4.3,47.16,52.54,4,5.39,0.00,5.39
+SCYX,SCYNEXIS Inc,2014-05-02,4.3,47.16,52.54,4,5.39,0.00,5.39
+JMEI,Jumei Intl Hldg Ltd,2014-05-16,2.2,35.71,35.71,0,0.00,-0.24,-0.24
+TRUE,TrueCar Inc,2014-05-16,2.2,35.71,35.71,0,0.00,-0.24,-0.24
+RESN,Resonant Inc,2014-05-29,9.4,66.85,66.85,0,0.00,0.00,0.00
+ARDX,Ardelyx Inc,2014-06-19,7.0,53.32,53.32,0,0.00,0.00,0.00
+MRKT,Markit Ltd,2014-06-19,7.0,53.32,53.32,0,0.00,0.00,0.00
+ZFGN,Zafgen Inc,2014-06-19,7.0,53.32,53.32,0,0.00,0.00,0.00
+KITE,Kite Pharma Inc,2014-06-20,12.2,69.87,69.87,0,0.00,0.00,0.00
+WMS,Advanced Drainage Systems Inc,2014-07-24,5.7,44.99,44.99,0,0.00,0.00,0.00
+LOCO,El Pollo Loco Holdings Inc,2014-07-24,5.7,44.99,44.99,0,0.00,0.00,0.00
+INNL,Innocoll AG,2014-07-24,5.7,44.99,44.99,0,0.00,0.00,0.00
+OCUL,Ocular Therapeutix Inc,2014-07-24,5.7,44.99,44.99,0,0.00,0.00,0.00
+OEC,Orion Engineered Carbons SA,2014-07-24,5.7,44.99,44.99,0,0.00,0.00,0.00
+PFNX,Pfenex Inc,2014-07-24,5.7,44.99,44.99,0,0.00,0.00,0.00
+OTIC,Otonomy Inc,2014-08-13,10.5,57.04,63.05,4,6.01,0.00,6.01
+BNK,C1 Financial Inc,2014-08-14,6.9,42.08,45.43,3,3.35,3.35,2.98
+AFMD,Affimed Therapeutics BV,2014-09-12,6.6,43.27,43.27,0,0.00,0.00,-4.62
+RWLK,ReWalk Robotics Ltd,2014-09-12,6.6,43.27,43.27,0,0.00,0.00,-4.62
+GWGH,GWG Holdings Inc,2014-09-22,13.5,68.80,68.80,0,0.00,0.00,-7.45
+CFG,Citizens Financial Group Inc,2014-09-24,7.4,33.56,33.56,0,0.00,0.00,-3.74
+CYBR,CyberArk Software Ltd,2014-09-24,7.4,33.56,33.56,0,0.00,0.00,-3.74
+MDLY,Medley Management Inc,2014-09-24,7.4,33.56,33.56,0,0.00,0.00,-3.74
+SFS,Smart & Final Stores Inc,2014-09-24,7.4,33.56,33.56,0,0.00,0.00,-3.74
+VTAE,Vitae Pharmaceuticals Inc,2014-09-24,7.4,33.56,33.56,0,0.00,0.00,-3.74
+DERM,Dermira Inc,2014-10-03,6.8,45.40,45.40,0,0.00,0.00,-5.88
+FMSA,FMSA Holdings Inc,2014-10-03,6.8,45.40,45.40,0,0.00,0.00,-5.88
+YDLE,Yodlee Inc,2014-10-03,6.8,45.40,45.40,0,0.00,0.00,-5.88
+ECC,Eagle Point Credit Co Inc,2014-10-08,7.9,42.32,42.32,0,0.00,0.00,-4.70
+VBTX,Veritex Holdings Inc,2014-10-08,7.9,42.32,42.32,0,0.00,0.00,-4.70
+GBSN,Great Basin Scientific Inc,2014-10-09,4.2,38.38,38.38,0,0.00,0.00,-5.05
+HUBS,HubSpot Inc,2014-10-09,4.2,38.38,38.38,0,0.00,0.00,-5.05
+MOLG,MOL Global Inc,2014-10-09,4.2,38.38,38.38,0,0.00,0.00,-5.05
+OMAM,OM Asset Management plc,2014-10-09,4.2,38.38,38.38,0,0.00,0.00,-5.05
+USDP,USD Partners LP,2014-10-09,4.2,38.38,38.38,0,0.00,0.00,-5.05
+ATRA,Atara Biotherapeutics Inc,2014-10-16,5.7,36.77,36.77,0,0.00,0.00,-5.73
+ZAYO,Zayo Group Holdings Inc,2014-10-17,7.4,35.55,35.55,0,0.00,0.00,-5.30
+PGRE,Paramount Group Inc,2014-11-19,8.9,39.76,39.76,0,0.00,0.00,-6.24
+EYES,Second Sight Med Prod Inc,2014-11-19,8.9,39.76,39.76,0,0.00,0.00,-6.24
+CNV,Cnova NV,2014-11-20,9.2,39.00,39.00,0,0.00,0.00,-7.08
+NEOT,Neothetics Inc,2014-11-20,9.2,39.00,39.00,0,0.00,0.00,-7.08
+HABT,The Habit Restaurants Inc,2014-11-20,9.2,39.00,39.00,0,0.00,0.00,-7.08
+NEFF,Neff Corp,2014-11-21,4.5,39.38,39.38,0,0.00,0.00,-8.50
+SKIS,Peak Resorts Inc,2014-11-21,4.5,39.38,39.38,0,0.00,0.00,-8.50
+HIE,Miller/Howard High Income,2014-11-26,6.1,37.07,37.07,0,0.00,0.00,-6.40
+BLCM,Bellicum Pharmaceuticals Inc,2014-12-18,7.9,39.02,39.02,0,0.00,0.00,-4.40
+JUNO,Juno Therapeutics Inc,2014-12-19,1.6,36.24,36.24,0,0.00,0.00,-4.35
+MDVXU,MEDOVEX Corp,2014-12-19,1.6,36.24,36.24,0,0.00,0.00,-4.35
+NCOM,National Commerce Corp,2015-03-19,7.5,42.14,42.14,0,0.00,0.00,0.00
+STDY,SteadyMed Ltd,2015-03-20,19.5,82.50,82.50,0,0.00,0.00,0.00
+WOWO,Wowo Ltd,2015-04-08,12.5,42.71,42.71,0,0.00,0.00,-0.23
+CAFD,8point3 Energy Partners LP,2015-06-19,5.6,55.83,55.83,0,0.00,0.00,-7.23
+EGIF,Eagle Growth & Income Opport,2015-06-19,5.6,55.83,55.83,0,0.00,0.00,-7.23
+FOGO,Fogo De Chao Inc,2015-06-19,5.6,55.83,55.83,0,0.00,0.00,-7.23
+MB,MINDBODY Inc,2015-06-19,5.6,55.83,55.83,0,0.00,0.00,-7.23
+BETR,Amplify Snack Brands Inc,2015-08-05,5.5,29.40,29.40,0,0.00,0.00,0.00
+RUN,Sunrun Inc,2015-08-05,5.5,29.40,29.40,0,0.00,0.00,0.00
+ZYNE,Zynerba Pharmaceuticals Inc,2015-08-05,5.5,29.40,29.40,0,0.00,0.00,0.00
+AIMT,Aimmune Therapeutics Inc,2015-08-06,5.9,40.75,40.75,0,0.00,0.00,0.00
+PLNT,Planet Fitness Inc,2015-08-06,5.9,40.75,40.75,0,0.00,0.00,0.00
+RGNX,Regenxbio Inc,2015-09-17,9.9,35.63,35.63,0,0.00,0.00,0.00
+NBRV,Nabriva Therapeutics,2015-09-18,9.0,34.22,34.22,0,0.00,0.00,0.00
+PEN,Penumbra Inc,2015-09-18,9.0,34.22,34.22,0,0.00,0.00,0.00
+FDEU,First Tr Dynamic Europe Eq,2015-09-24,9.6,58.90,58.90,0,0.00,0.00,-9.80
+ACRS,Aclaris Therapeutics Inc,2015-10-07,9.7,33.28,33.28,0,0.00,0.00,0.00
+PSTG,Pure Storage Inc,2015-10-07,9.7,33.28,33.28,0,0.00,0.00,0.00
+ABTX,Allegiance Bancshares Inc,2015-10-08,5.8,33.43,33.43,0,0.00,0.00,0.00
+CTMX,CytomX Therapeutics Inc,2015-10-08,5.8,33.43,33.43,0,0.00,0.00,0.00
+CERC,Cerecor Inc,2015-10-15,10.7,54.45,54.45,0,0.00,0.00,-6.55
+FDC,First Data Corp,2015-10-15,10.7,54.45,54.45,0,0.00,0.00,-6.55
+AFCO,American Farmland Co,2015-10-20,5.6,34.85,34.85,0,0.00,0.00,0.00
+RACE,Ferrari NV,2015-10-21,5.7,30.84,30.84,0,0.00,0.00,0.00
+DMTX,Dimension Therapeutics Inc,2015-10-22,5.8,32.82,32.82,0,0.00,0.00,-4.61
+MPSX,Multi Packaging Solutions,2015-10-22,5.8,32.82,32.82,0,0.00,0.00,-4.61
+IOTS,Adesto Technologies Corp,2015-10-27,6.3,33.01,33.01,0,0.00,0.00,0.00
+MYOK,MyoKardia Inc,2015-10-29,8.1,39.45,39.45,0,0.00,0.00,-0.21
+FORK,Fuling Global Inc,2015-11-04,7.1,25.87,25.87,0,0.00,0.00,0.00
+AAAP,Advanced Accelerator,2015-11-11,5.8,44.66,44.66,0,0.00,0.00,-4.97
+EQBK,Equity Bancshares Inc,2015-11-11,5.8,44.66,44.66,0,0.00,0.00,-4.97
+VYGR,Voyager Therapeutics Inc,2015-11-11,5.8,44.66,44.66,0,0.00,0.00,-4.97
+WVE,WaVe Life Sciences Ltd,2015-11-11,5.8,44.66,44.66,0,0.00,0.00,-4.97
+JHA,Nuveen High Income Dec 2018,2015-11-12,5.6,60.36,60.36,0,0.00,0.00,-11.54
+INST,Instructure Inc,2015-11-13,6.2,49.20,49.20,0,0.00,0.00,-8.85
+XCOM,Xtera Communications Inc,2015-11-13,6.2,49.20,49.20,0,0.00,0.00,-8.85
+AXSM,Axsome Therapeutics Inc,2015-11-19,13.9,32.13,32.13,0,0.00,0.00,0.00
+MTCH,Match Group Inc,2015-11-19,13.9,32.13,32.13,0,0.00,0.00,0.00
+MIME,Mimecast Ltd,2015-11-19,13.9,32.13,32.13,0,0.00,0.00,0.00
+DLTH,Duluth Holdings Inc,2015-11-20,11.0,39.68,39.68,0,0.00,0.00,0.00
+YRD,Yirendai Ltd,2015-12-18,5.3,28.72,28.72,0,0.00,0.00,0.00
+AGLE,Aeglea BioTherapeutics Inc,2016-04-06,6.7,62.28,62.28,0,0.00,-0.65,-0.65
+PAVMU,PAVmed Inc,2016-04-28,5.1,36.99,36.99,0,0.00,0.00,0.00
+NTLA,Intellia Therapeutics Inc,2016-05-06,13.9,46.96,46.96,0,0.00,0.00,-5.08
+SBPH,Spring Bank Pharms Inc,2016-05-06,13.9,46.96,46.96,0,0.00,0.00,-5.08
+JHD,Nuveen High Income Dec 2019,2016-05-10,9.9,51.97,51.97,0,0.00,0.00,-15.01
+TPB,Turning Point Brands Inc,2016-05-11,10.1,44.43,44.43,0,0.00,0.00,-5.40
+SITE,SiteOne Landscape Supply Inc,2016-05-12,14.1,50.14,50.14,0,0.00,0.00,-5.38
+ACIA,Acacia Communications Inc,2016-05-13,14.3,47.63,47.63,0,0.00,0.00,-5.30
+ONSIU,Oncobiologics Inc,2016-05-13,14.3,47.63,47.63,0,0.00,0.00,-5.30
+PZRX,PhaseRx Inc,2016-05-18,7.7,40.56,40.56,0,0.00,0.00,-0.06
+PLSE,Pulse Biosciences Inc,2016-05-18,7.7,40.56,40.56,0,0.00,0.00,-0.06
+SUPV,Grupo Supervielle SA,2016-05-19,6.2,39.05,39.05,0,0.00,0.00,0.00
+MRUS,Merus BV,2016-05-19,6.2,39.05,39.05,0,0.00,0.00,0.00
+MSBI,Midland States Bancorp Inc,2016-05-24,4.3,45.13,45.13,0,0.00,0.00,-4.80
+COTV,Cotiviti Holdings Inc,2016-05-26,4.3,51.65,51.65,0,0.00,0.00,-11.18
+EHT,Eaton Vance High Income 2021,2016-05-26,4.3,51.65,51.65,0,0.00,0.00,-11.18
+GMS,GMS Inc,2016-05-26,4.3,51.65,51.65,0,0.00,0.00,-11.18
+RETA,Reata Pharmaceuticals Inc,2016-05-26,4.3,51.65,51.65,0,0.00,0.00,-11.18
+USFD,US Foods Holding Corp,2016-05-26,4.3,51.65,51.65,0,0.00,0.00,-11.18
+CLSD,Clearside Biomedical Inc,2016-06-02,18.6,53.94,53.94,0,0.00,0.00,-5.69
+NH,NantHealth Inc,2016-06-02,18.6,53.94,53.94,0,0.00,0.00,-5.69
+SRTS,Sensus Healthcare Inc,2016-06-03,17.5,49.58,49.58,0,0.00,0.00,-7.42
+ATKR,Atkore International Group Inc,2016-06-10,5.0,36.03,36.03,0,0.00,0.00,0.00
+SELB,Selecta Biosciences Inc,2016-06-22,6.9,40.64,40.64,0,0.00,0.00,0.00
+TWLO,Twilio Inc,2016-06-23,3.4,30.26,30.26,0,0.00,0.00,0.00
+SYRS,Syros Pharmaceuticals Inc,2016-06-30,4.8,31.15,31.15,0,0.00,0.00,0.00
+APFH,AdvancePierre Foods Hldg Inc,2016-07-15,8.7,41.50,41.50,0,0.00,0.00,0.00
+BOLD,Audentes Therapeutics Inc,2016-07-20,2.6,44.56,44.56,0,0.00,-4.96,-4.96
+PI,Impinj Inc,2016-07-21,4.7,47.60,47.60,0,0.00,0.00,-5.09
+PTHN,Patheon N.V.,2016-07-21,4.7,47.60,47.60,0,0.00,0.00,-5.09
+MEDP,Medpace Inc,2016-08-11,8.9,58.47,58.47,0,0.00,0.00,-6.89
+PTGX,Protagonist Therapeutics Inc,2016-08-11,8.9,58.47,58.47,0,0.00,0.00,-6.89
+AIRG,Airgain Inc,2016-08-12,12.0,60.80,60.80,0,0.00,0.00,-12.99
+NBLX,Noble Midstream Partners LP,2016-09-15,4.5,39.29,39.29,0,0.00,0.00,-0.04
+EVBG,Everbridge Inc,2016-09-16,4.4,42.21,42.21,0,0.00,0.00,0.00
+FBK,FB Financial Corp,2016-09-16,4.4,42.21,42.21,0,0.00,0.00,0.00
+NOVN,Novan Inc,2016-09-21,8.8,57.01,57.01,0,0.00,0.00,-5.95
+TTD,Trade Desk Inc,2016-09-21,8.8,57.01,57.01,0,0.00,0.00,-5.95
+CSTR,Capstar Financial Holdings Inc,2016-09-22,11.6,70.40,70.40,0,0.00,0.00,0.00
+ELF,e l f Beauty Inc,2016-09-22,11.6,70.40,70.40,0,0.00,0.00,0.00
+ACIU,AC Immune SA,2016-09-23,10.8,52.08,52.08,0,0.00,0.00,0.00
+GSUM,Gridsum Holding Inc,2016-09-23,10.8,52.08,52.08,0,0.00,0.00,0.00
+VVV,Valvoline Inc,2016-09-23,10.8,52.08,52.08,0,0.00,0.00,0.00
+ADSW,Advanced Disposal Services Inc,2016-10-06,3.9,39.99,39.99,0,0.00,0.00,0.00
+WAAS,AquaVenture Holdings LLC,2016-10-06,3.9,39.99,39.99,0,0.00,0.00,0.00
+OBLN,Obalon Therapeutics Inc,2016-10-06,3.9,39.99,39.99,0,0.00,0.00,0.00
+CWH,Camping World Holdings Inc,2016-10-07,9.7,50.18,50.18,0,0.00,0.00,0.00
+MRAM,EverSpin Technologies,2016-10-07,9.7,50.18,50.18,0,0.00,0.00,0.00
+TUSK,Mammoth Energy Services Inc,2016-10-14,13.9,62.10,62.10,0,0.00,0.00,0.00
+CRSP,CRISPR Therapeutics AG,2016-10-19,4.3,44.42,44.42,0,0.00,0.00,0.00
+FRTA,Forterra Inc,2016-10-20,8.4,46.31,46.31,0,0.00,0.00,0.00
+IRTC,iRhythm Technologies Inc,2016-10-20,8.4,46.31,46.31,0,0.00,0.00,0.00
+RARX,Ra Pharmaceuticals Inc,2016-10-26,3.8,45.11,45.11,0,0.00,0.00,0.00
+IIPR,Innovative Industrial Ppty Inc,2016-12-01,15.0,58.19,58.19,0,0.00,0.00,0.00
+TRVG,travel BV (trivago),2016-12-16,2.5,42.80,42.80,0,0.00,0.00,0.00
+HEBT,Hebron Technology Co Ltd,2016-12-23,4.4,47.04,47.04,0,0.00,0.00,-0.15
+INVH,Invitation Homes Inc,2017-02-01,6.7,51.72,51.72,0,0.00,0.00,0.00
+LAUR,Laureate Education Inc,2017-02-01,6.7,51.72,51.72,0,0.00,0.00,0.00
+BGIO,BlackRock 2022 Global Income,2017-02-28,8.1,54.40,54.40,0,0.00,0.00,-5.82
+HLNE,Hamilton Lane Inc,2017-03-01,13.8,54.92,54.92,0,0.00,0.00,-0.07
+BYSI,Beyondspring Inc,2017-03-09,3.3,44.22,44.22,0,0.00,0.00,0.00
+JILL,J.Jill Inc,2017-03-09,3.3,44.22,44.22,0,0.00,0.00,0.00
+PSDO,Presidio Inc,2017-03-10,3.0,37.06,37.06,0,0.00,0.00,0.00
+NETS,Netshoes (Cayman) Ltd,2017-04-12,6.1,31.60,31.60,0,0.00,0.00,0.00
+CADE,Cadence Bancorp,2017-04-13,9.9,36.08,36.08,0,0.00,0.00,-4.63
+TOCA,Tocagen Inc,2017-04-13,9.9,36.08,36.08,0,0.00,0.00,-4.63
+HCC,Warrior Met Coal,2017-04-13,9.9,36.08,36.08,0,0.00,0.00,-4.63
+YEXT,Yext Inc,2017-04-13,9.9,36.08,36.08,0,0.00,0.00,-4.63
+FND,Floor & Decor Holdings Inc,2017-04-27,5.6,48.17,48.17,0,0.00,0.00,-5.10
+CVNA,Carvana Co,2017-04-28,6.9,51.82,51.82,0,0.00,0.00,-5.72
+XRF,China Rapid Finance,2017-04-28,6.9,51.82,51.82,0,0.00,0.00,-5.72
+CLDR,Cloudera Inc,2017-04-28,6.9,51.82,51.82,0,0.00,0.00,-5.72
+EEX,Emerald Expositions Events Inc,2017-04-28,6.9,51.82,51.82,0,0.00,0.00,-5.72
+NCSM,NCS Multistage Holdings Inc,2017-04-28,6.9,51.82,51.82,0,0.00,0.00,-5.72
+ZYME,Zymeworks Inc,2017-04-28,6.9,51.82,51.82,0,0.00,0.00,-5.72
+BHVN,Biohaven Pharmaceutical Hldg,2017-05-04,2.4,33.06,33.06,0,0.00,0.00,0.00
+URGN,Urogen Pharma Ltd,2017-05-04,2.4,33.06,33.06,0,0.00,0.00,0.00
+KREF,KKR Real Estate Fin Trust,2017-05-05,4.7,38.15,38.15,0,0.00,-0.18,-0.18
+OVID,Ovid Therapeutics Inc,2017-05-05,4.7,38.15,38.15,0,0.00,-0.18,-0.18
+NDRAU,ENDRA Life Sciences Inc,2017-05-09,9.0,46.00,46.00,0,0.00,0.00,-6.32
+GNTY,Guaranty Bancshares Inc,2017-05-09,9.0,46.00,46.00,0,0.00,0.00,-6.32
+ASV,ASV Holdings,2017-05-12,10.5,45.93,45.93,0,0.00,0.00,-0.02
+GDI,Gardner Denver Holdings Inc,2017-05-12,10.5,45.93,45.93,0,0.00,0.00,-0.02
+SOI,Solaris Oilfield,2017-05-12,10.5,45.93,45.93,0,0.00,0.00,-0.02
+VERI,Veritone Inc,2017-05-12,10.5,45.93,45.93,0,0.00,0.00,-0.02
+GTHX,G1 Therapeutics Inc,2017-05-17,5.2,32.55,32.55,0,0.00,0.00,0.00
+ATUS,Altice USA Inc,2017-06-22,7.6,38.00,38.00,0,0.00,0.00,0.00
+SGBX,SG Blocks Inc,2017-06-22,7.6,38.00,38.00,0,0.00,0.00,0.00
+SAFE,Safety Income & Growth Inc,2017-06-22,7.6,38.00,38.00,0,0.00,0.00,0.00
+CLXT,Calyxt Inc,2017-07-20,9.3,42.42,42.42,0,0.00,0.00,0.00
+KALA,Kala Pharmaceuticals Inc,2017-07-20,9.3,42.42,42.42,0,0.00,0.00,0.00
+PETQ,PetIQ Inc,2017-07-21,12.5,45.84,45.84,0,0.00,0.00,0.00
+BSTI,BEST Inc,2017-09-20,3.4,38.03,38.03,0,0.00,0.00,0.00
+CELC,Celcuity LLC,2017-09-20,3.4,38.03,38.03,0,0.00,0.00,0.00
+DESP,Despegar.com Corp,2017-09-20,3.4,38.03,38.03,0,0.00,0.00,0.00
+KRYS,Krystal Biotech Inc,2017-09-20,3.4,38.03,38.03,0,0.00,0.00,0.00
+ZLAB,Zai Lab Ltd,2017-09-20,3.4,38.03,38.03,0,0.00,0.00,0.00
+FUV,Arcimoto,2017-09-21,9.9,45.99,45.99,0,0.00,0.00,0.00
+OMP,Oasis Midstream Partners LP,2017-09-21,9.9,45.99,45.99,0,0.00,0.00,0.00
+PETZ,TDH Holdings Inc,2017-09-21,9.9,45.99,45.99,0,0.00,0.00,0.00
+SECO,Secoo Holding Ltd,2017-09-22,16.2,74.59,74.59,0,0.00,0.00,-0.04
+JEMD,Nuveen Emerg Mrkts Debt 2022,2017-09-27,10.8,41.55,41.55,0,0.00,0.00,0.00
+RYB,Ryb Education Inc,2017-09-27,10.8,41.55,41.55,0,0.00,0.00,0.00
+DCPH,Deciphera Pharmaceuticals LLC,2017-09-28,11.7,40.93,40.93,0,0.00,0.00,0.00
+NITE,Nightstar Therapeutics Ltd,2017-09-28,11.7,40.93,40.93,0,0.00,0.00,0.00
+NCNA,NuCana plc,2017-09-28,11.7,40.93,40.93,0,0.00,0.00,0.00
+PQG,PQ Group Holdings Inc,2017-09-29,14.1,44.06,44.06,0,0.00,0.00,0.00
+XFLT,XAI Octagon Floating Rate Inco,2017-10-09,7.8,44.59,44.59,0,0.00,0.00,0.00
+QD,Qudian Inc,2017-10-18,6.4,34.18,34.18,0,0.00,0.00,0.00
+LYL,Dragon Victory Intl Ltd,2017-10-20,9.4,37.53,37.53,0,0.00,0.00,0.00
+REDU,RISE Education Cayman Ltd,2017-10-20,9.4,37.53,37.53,0,0.00,0.00,0.00
+SE,Sea Ltd,2017-10-20,9.4,37.53,37.53,0,0.00,0.00,0.00
+DOGZ,Dogness Corp,2017-12-20,9.0,46.89,46.89,0,0.00,0.00,0.00
+LX,LexinFintech Holdings,2017-12-21,12.8,77.38,77.38,0,0.00,-8.10,-8.10
+ICLK,iClick Interactive Asia Group,2017-12-22,5.2,41.80,41.80,0,0.00,0.00,0.00
+PAGS,Pagseguro Digital Ltd.,2018-01-24,2.9,47.55,47.55,0,0.00,-0.05,-11.61
+FAMI,Farmmi Inc,2018-02-16,5.0,26.71,26.71,0,0.00,0.00,-0.11
+DNJR,Golden Bull Ltd,2018-03-20,20.1,76.57,76.57,0,0.00,0.00,0.00
+ZUO,Zuora Inc,2018-04-12,3.6,39.76,39.76,0,0.00,-0.21,-4.49
+AGMH,AGM Group Holdings Inc,2018-04-18,12.9,44.17,44.17,0,0.00,-0.15,-10.70
+EAF,GrafTech International Ltd,2018-04-19,13.0,56.49,56.49,0,0.00,0.00,-8.37
+SURF,Surface Oncology Inc,2018-04-19,13.0,56.49,56.49,0,0.00,0.00,-8.37
+LEVL,Level One Bancorp Inc,2018-04-20,10.3,56.73,56.73,0,0.00,0.00,-8.23
+PVTL,Pivotal Software,2018-04-20,10.3,56.73,56.73,0,0.00,0.00,-8.23
+PS,Pluralsight Inc,2018-05-17,7.7,41.26,41.26,0,0.00,0.00,0.00
+HJLI,Hancock Jaffe Laboratories,2018-05-31,6.0,55.71,55.71,0,0.00,-6.04,-6.14
+MGTX,Meiragtx Holdings Plc,2018-06-08,5.9,34.48,34.48,0,0.00,0.00,0.00
+EIDX,Eidos Therapeutics Inc,2018-06-20,13.6,56.66,56.66,0,0.00,0.00,0.00
+AVRO,AVROBIO Inc,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+APTX,Aptinyx Inc,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+AUTL,Autolus Therapeutics Ltd,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+ECOR,ElectroCore Llc,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+EPRT,Essential Properties Realty,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+IIIV,I3 Verticals,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+KZR,Kezar Life Sciences Inc,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+MGTA,Magenta Therapeutics,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+XERS,Xeris Pharmaceuticals Inc,2018-06-21,7.6,59.95,59.95,0,0.00,0.00,0.00
+DOMO,Domo Inc,2018-06-29,2.8,29.58,29.58,0,0.00,0.00,-0.02
+PRVB,Provention Bio Inc,2018-07-24,12.6,35.67,35.67,0,0.00,-0.23,-0.23
+AQST,Aquestive Therapeutics Inc,2018-07-25,14.1,34.26,34.26,0,0.00,-0.06,-0.06
+BE,Bloom Energy Corp,2018-07-25,14.1,34.26,34.26,0,0.00,-0.06,-0.06
+JG,Aurora Mobile Ltd,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+BRY,Berry Petro Corp,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+CANG,Cango Inc,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+FOCS,Focus Financial Partners Inc,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+LQDA,Liquidia Technologies Inc,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+PDD,Pinduoduo Inc,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+TENB,Tenable Holdings Inc,2018-07-26,13.3,32.80,32.80,0,0.00,0.00,0.00
+ADIL,Adial Pharmaceuticals Inc,2018-07-27,5.8,31.12,31.12,0,0.00,0.00,0.00
+DAVA,Endava Ltd,2018-07-27,5.8,31.12,31.12,0,0.00,0.00,0.00
+OPRA,Opera Ltd,2018-07-27,5.8,31.12,31.12,0,0.00,0.00,0.00
+WISA,Summit Semiconductor Inc,2018-07-27,5.8,31.12,31.12,0,0.00,0.00,0.00
+FTCH,Farfetch Ltd,2018-09-21,3.6,48.70,48.70,0,0.00,0.00,-11.64
+YMAB,Y-MABS Therapeutics Inc,2018-09-21,3.6,48.70,48.70,0,0.00,0.00,-11.64
+ALLO,Allogene Therapeutics Inc.,2018-10-11,12.2,43.02,43.02,0,0.00,0.00,-0.23
+LTHM,Livent Corp,2018-10-11,12.2,43.02,43.02,0,0.00,0.00,-0.23
+PLAN,Anaplan Inc,2018-10-12,10.3,41.26,41.26,0,0.00,0.00,0.00
+EQ,Equillium,2018-10-12,10.3,41.26,41.26,0,0.00,0.00,0.00
+SIBN,SI-Bone Inc,2018-10-17,10.0,38.48,38.48,0,0.00,0.00,-5.85
+PT,Pintec Tech Hldg Ltd,2018-10-25,10.7,37.56,37.56,0,0.00,0.00,0.00
+STNE,Stoneco Ltd,2018-10-25,10.7,37.56,37.56,0,0.00,0.00,0.00
+YETI,Yeti Holdings Inc,2018-10-25,10.7,37.56,37.56,0,0.00,0.00,0.00
+GMDA,Gamida Cell Ltd,2018-10-26,9.3,34.57,34.57,0,0.00,0.00,-0.04
+RMI,RiverNorth Opportunistic Munic,2018-10-26,9.3,34.57,34.57,0,0.00,0.00,-0.04
+MOGU,Mogu Inc,2018-12-06,10.3,33.72,33.72,0,0.00,0.00,-0.26
+MRNA,Moderna Inc,2018-12-07,9.1,30.84,30.84,0,0.00,0.00,-0.11
+THOR,Synthorx Inc,2018-12-07,9.1,30.84,30.84,0,0.00,0.00,-0.11
+APM,Aptorum Grp Ltd,2018-12-18,9.8,38.93,38.93,0,0.00,0.00,-0.23
+SXTC,China Sxt Pharms Inc,2019-01-04,8.3,39.23,39.23,0,0.00,0.00,0.00
+MDJH,Mdjm Ltd,2019-01-08,10.4,33.81,33.81,0,0.00,-0.23,-0.23
+BCOW,1895 Bancorp of Wisconsin,2019-01-09,11.3,35.30,35.30,0,0.00,0.00,0.00
+MTC,Mmtec Inc,2019-01-09,11.3,35.30,35.30,0,0.00,0.00,0.00
+RBKB,Rhinebeck Bancorp,2019-01-17,13.8,47.57,47.57,0,0.00,0.00,0.00
+SWAV,Shockwave Medical Inc,2019-03-07,8.7,41.31,41.31,0,0.00,0.00,0.00
+TIGR,Up Fintech Holding Ltd,2019-03-20,20.5,71.84,71.84,0,0.00,0.00,0.00
+LEVI,Levi Strauss & Co,2019-03-21,14.2,53.37,53.37,0,0.00,0.00,0.00
+PLMR,Palomar Holdings Inc,2019-04-17,2.7,40.11,40.11,0,0.00,0.00,0.00
+TPTX,Turning Point Therapeutics,2019-04-17,2.7,40.11,40.11,0,0.00,0.00,0.00
+MNRL,Brigham Minerals Inc,2019-04-18,2.6,35.66,35.66,0,0.00,0.00,0.00
+GNLN,Greenlane Holdings,2019-04-18,2.6,35.66,35.66,0,0.00,0.00,0.00
+HOOK,Hookipa Pharma Inc,2019-04-18,2.6,35.66,35.66,0,0.00,0.00,0.00
+WAFU,Wah Fu Education Group Ltd,2019-04-30,7.6,46.38,46.38,0,0.00,0.00,0.00
+SY,So-Young International Inc,2019-05-02,6.8,36.78,36.78,0,0.00,-4.18,-4.18
+TMDX,Transmedics Group Inc,2019-05-02,6.8,36.78,36.78,0,0.00,-4.18,-4.18
+ATIF,Atif Holdings Ltd,2019-05-03,6.8,34.08,34.08,0,0.00,-0.08,-0.08
+RRBI,Red River Bancshares Inc,2019-05-03,6.8,34.08,34.08,0,0.00,-0.08,-0.08
+SCPL,Sciplay Corp,2019-05-03,6.8,34.08,34.08,0,0.00,-0.08,-0.08
+YJ,Yunji Inc,2019-05-03,6.8,34.08,34.08,0,0.00,-0.08,-0.08
+TRVI,Trevi Therapeutics Inc,2019-05-07,11.3,40.04,40.04,0,0.00,0.00,0.00
+PSN,Parsons Corp,2019-05-08,11.8,47.98,47.98,0,0.00,0.00,0.00
+AXLA,Axcella Health Inc,2019-05-09,5.7,33.06,33.06,0,0.00,0.00,-3.68
+HHR,Headhunter Grp Plc,2019-05-09,5.7,33.06,33.06,0,0.00,0.00,-3.68
+MEC,Mayville Engineering Co Inc,2019-05-09,5.7,33.06,33.06,0,0.00,0.00,-3.68
+MIST,Milestone Pharmaceuticals Inc,2019-05-09,5.7,33.06,33.06,0,0.00,0.00,-3.68
+NXTC,NextCure Inc,2019-05-09,5.7,33.06,33.06,0,0.00,0.00,-3.68
+SPFI,South Plains Financial Inc,2019-05-09,5.7,33.06,33.06,0,0.00,0.00,-3.68
+JFIN,Jiayin Grp Inc,2019-05-10,4.1,46.13,46.13,0,0.00,0.00,-11.59
+SONM,Sonim Technologies Inc,2019-05-10,4.1,46.13,46.13,0,0.00,0.00,-11.59
+APLT,Applied Therapeutics Inc,2019-05-14,6.8,36.69,36.69,0,0.00,0.00,0.00
+AVTR,Avantor Inc,2019-05-17,13.5,40.96,40.96,0,0.00,0.00,-0.19
+FSLY,Fastly Inc,2019-05-17,13.5,40.96,40.96,0,0.00,0.00,-0.19
+LK,Luckin Coffee Inc,2019-05-17,13.5,40.96,40.96,0,0.00,0.00,-0.19
+BCYC,Bicycle Therapeutics Ltd,2019-05-23,2.2,46.78,46.78,0,0.00,0.00,-5.04
+IDYA,Ideaya Biosciences Inc,2019-05-23,2.2,46.78,46.78,0,0.00,0.00,-5.04
+RTLR,Rattler Midstream Partners LP,2019-05-23,2.2,46.78,46.78,0,0.00,0.00,-5.04
+GSX,Gsx Techedu Inc,2019-06-06,5.1,37.03,37.03,0,0.00,0.00,0.00
+RVLV,Revolve Group LLC,2019-06-07,6.5,39.43,39.43,0,0.00,0.00,0.00
+MWK,Mohawk Group Holdings Inc,2019-06-12,10.1,49.38,49.38,0,0.00,0.00,-5.22
+FVRR,Fiverr International Ltd,2019-06-13,11.0,52.57,52.57,0,0.00,0.00,-6.13
+STOK,Stoke Therapeutics Inc,2019-06-19,16.1,52.62,52.62,0,0.00,0.00,0.00
+AKRO,Akero Therapeutics Inc,2019-06-20,26.1,73.69,73.69,0,0.00,-7.81,-7.81
+BCEL,Atreca Inc,2019-06-20,26.1,73.69,73.69,0,0.00,-7.81,-7.81
+GO,Grocery Outlet Holding Corp,2019-06-20,26.1,73.69,73.69,0,0.00,-7.81,-7.81
+PSNL,Personalis Inc,2019-06-20,26.1,73.69,73.69,0,0.00,-7.81,-7.81
+PRVL,Prevail Therapeutics Inc,2019-06-20,26.1,73.69,73.69,0,0.00,-7.81,-7.81
+BSTZ,BlackRock Science and Tech II,2019-06-26,8.9,43.76,43.76,0,0.00,0.00,0.00
+CMBM,Cambium Networks Corp,2019-06-26,8.9,43.76,43.76,0,0.00,0.00,0.00
+BBIO,BridgeBio Pharma Inc,2019-06-27,5.7,39.60,39.60,0,0.00,0.00,0.00
+CHNG,Change Healthcare Inc,2019-06-27,5.7,39.60,39.60,0,0.00,0.00,0.00
+MORF,Morphic Holding Inc,2019-06-27,5.7,39.60,39.60,0,0.00,0.00,0.00
+KRTX,Karuna Therapeutics Inc,2019-06-28,4.3,39.31,39.31,0,0.00,0.00,0.00
+REAL,The Realreal Inc,2019-06-28,4.3,39.31,39.31,0,0.00,0.00,0.00
+JFG,9F Inc,2019-08-15,7.9,33.45,33.45,0,0.00,0.00,0.00
+CFB,Crossfirst Bankshares Inc,2019-08-15,7.9,33.45,33.45,0,0.00,0.00,0.00
+TXG,10X Genomics Inc,2019-09-12,13.8,44.26,44.26,0,0.00,0.00,0.00
+SDC,SmileDirectClub Inc,2019-09-12,13.8,44.26,44.26,0,0.00,0.00,0.00
+STSA,Satsuma Pharmaceuticals Inc,2019-09-13,13.5,42.61,42.61,0,0.00,0.00,0.00
+SWTX,Springworks Therapeutics Inc,2019-09-13,13.5,42.61,42.61,0,0.00,0.00,0.00
+NVST,Envista Hldg Corp,2019-09-18,8.4,30.38,30.38,0,0.00,0.00,0.00
+IGMS,IGM Biosciences Inc,2019-09-18,8.4,30.38,30.38,0,0.00,0.00,0.00
+XGN,Exagen Inc,2019-09-19,11.3,28.27,28.27,0,0.00,0.00,0.00
+PING,Ping Identity Holding Corp,2019-09-19,11.3,28.27,28.27,0,0.00,0.00,0.00
+OPRT,Oportun Financial Corp,2019-09-26,10.0,32.13,32.13,0,0.00,0.00,0.00
+APRE,Aprea Therapeutics Inc,2019-10-03,5.3,49.43,49.43,0,0.00,0.00,0.00
+FREQ,Frequency Therapeutics Inc,2019-10-03,5.3,49.43,49.43,0,0.00,0.00,0.00
+VIE,Viela Bio Inc,2019-10-03,5.3,49.43,49.43,0,0.00,0.00,0.00
+BRBR,BellRing Brands Inc,2019-10-17,8.0,39.09,39.09,0,0.00,0.00,-6.14
+AIO,AllianzGI Artificial Int Fund,2019-10-29,12.1,39.89,39.89,0,0.00,0.00,0.00
+YAYO,YayYo Inc,2019-11-13,4.9,36.74,36.74,0,0.00,0.00,-8.65
+INDO,Indonesia Energy Corp Ltd,2019-12-19,4.1,40.08,40.08,0,0.00,0.00,-9.96
+MNPR,Monopar Therapeutics,2019-12-19,4.1,40.08,40.08,0,0.00,0.00,-9.96
+IMAB,I-MAB,2020-01-17,2.5,42.42,42.42,0,0.00,0.00,-4.60
+LIZI,Lizhi Inc,2020-01-17,2.5,42.42,42.42,0,0.00,0.00,-4.60
+DNK,Phoenix Tree Holdings Ltd,2020-01-17,2.5,42.42,42.42,0,0.00,0.00,-4.60
+VEL,Velocity Financial LLC,2020-01-17,2.5,42.42,42.42,0,0.00,0.00,-4.60
+ANVS,Annovis Bio Inc,2020-01-29,5.4,44.61,44.61,0,0.00,0.00,-0.04
+BMEZ,BlackRock Health Sci Tr II,2020-01-29,5.4,44.61,44.61,0,0.00,0.00,-0.04
+ANPC,Anpac Bio Med Science Co Ltd,2020-01-30,2.6,41.76,41.76,0,0.00,0.00,0.00
+BDTX,Black Diamond Therapeutics Inc,2020-01-30,2.6,41.76,41.76,0,0.00,0.00,0.00
+ORIC,Oric Pharmaceuticals Inc,2020-04-24,7.8,45.46,45.46,0,0.00,0.00,-13.88
+LYRA,Lyra Therapeutics Inc,2020-05-01,6.7,42.35,42.35,0,0.00,0.00,-13.03
+AYLA,Ayala Pharmaceuticals Inc,2020-05-08,3.0,26.77,26.77,0,0.00,0.00,-0.28
+CLEU,China Liberal Education,2020-05-08,3.0,26.77,26.77,0,0.00,0.00,-0.28
+KC,Kingsoft Cloud Holdings Ltd,2020-05-08,3.0,26.77,26.77,0,0.00,0.00,-0.28
+ADCT,ADC Therapeutics SA,2020-05-15,4.6,27.36,27.36,0,0.00,0.00,-0.09
+SLQT,SelectQuote Inc,2020-05-21,9.3,31.22,31.22,0,0.00,0.00,-0.18
+NARI,Inari Medical Inc,2020-05-22,8.5,36.35,36.35,0,0.00,0.00,-0.07
+UCL,UCloudLink Group Inc,2020-06-10,6.6,48.27,48.27,0,0.00,0.00,-14.83
+LTRN,Lantern Pharma Inc,2020-06-11,9.9,31.08,31.08,0,0.00,0.00,0.00
+AZEK,AZEK Co Inc,2020-06-12,8.2,27.07,27.07,0,0.00,0.00,0.00
+BNR,Burning Rock Biotech Ltd,2020-06-12,8.2,27.07,27.07,0,0.00,0.00,0.00
+GBIO,Generation Bio Co,2020-06-12,8.2,27.07,27.07,0,0.00,0.00,0.00
+PCVX,Vaxcyte Inc,2020-06-12,8.2,27.07,27.07,0,0.00,0.00,0.00
+FMTX,Forma Therapeutics Hldg Inc,2020-06-19,12.3,54.41,54.41,0,0.00,0.00,-16.82
+GTH,Genetron Hldg Ltd,2020-06-19,12.3,54.41,54.41,0,0.00,0.00,-16.82
+PROG,Progenity Inc,2020-06-19,12.3,54.41,54.41,0,0.00,0.00,-16.82
+RPTX,Repare Therapeutics Inc,2020-06-19,12.3,54.41,54.41,0,0.00,0.00,-16.82
+NCNO,nCino Inc,2020-07-14,7.1,29.14,29.14,0,0.00,0.00,0.00
+GOCO,GoHealth Inc,2020-07-15,7.6,26.83,26.83,0,0.00,0.00,-0.02
+RLAY,Relay Therapeutics Inc,2020-07-16,4.9,28.39,28.39,0,0.00,0.00,-0.15
+TIG,Trean Insurance Group Inc,2020-07-16,4.9,28.39,28.39,0,0.00,0.00,-0.15
+GOED,1847 Goedeker Inc,2020-07-31,5.6,35.72,35.72,0,0.00,0.00,0.00
+FTHM,Fathom Holdings Inc,2020-07-31,5.6,35.72,35.72,0,0.00,0.00,0.00
+VITL,Vital Farms Inc,2020-07-31,5.6,35.72,35.72,0,0.00,0.00,0.00
+BSY,Bentley Systems Inc,2020-09-23,5.1,50.39,50.39,0,0.00,0.00,-5.53
+CRSR,Corsair Gaming Inc,2020-09-23,5.1,50.39,50.39,0,0.00,0.00,-5.53
+GDRX,GoodRx Holdings Inc,2020-09-23,5.1,50.39,50.39,0,0.00,0.00,-5.53
+LSF,Laird Superfood Inc,2020-09-23,5.1,50.39,50.39,0,0.00,0.00,-5.53
+AZYO,Aziyo Biologics Inc,2020-10-08,7.3,40.13,40.13,0,0.00,0.00,-0.04
+FUBO,fuboTV Inc.,2020-10-08,7.3,40.13,40.13,0,0.00,0.00,-0.04
+KRON,Kronos Bio Inc,2020-10-09,4.0,35.58,35.58,0,0.00,0.00,0.00
+STTK,Shattuck Labs Inc,2020-10-09,4.0,35.58,35.58,0,0.00,0.00,0.00
+SPRB,Spruce Biosciences Inc,2020-10-09,4.0,35.58,35.58,0,0.00,0.00,0.00
+IH,iHuman Inc.,2020-10-09,4.0,35.58,35.58,0,0.00,0.00,0.00
+CDAK,Codiak Biosciences Inc,2020-10-14,10.9,43.99,43.99,0,0.00,0.00,0.00
+MNSO,MINISO Group Holding Ltd,2020-10-15,8.3,30.61,30.61,0,0.00,0.00,0.00
+ALGS,Aligos Therapeutics Inc,2020-10-16,13.8,32.95,32.95,0,0.00,0.00,0.00
+EAR,Eargo Inc,2020-10-16,13.8,32.95,32.95,0,0.00,0.00,0.00
+KRBP,Kiromic Biopharma Inc,2020-10-16,13.8,32.95,32.95,0,0.00,0.00,0.00
+PRAX,Praxis Precision Medicines Inc,2020-10-16,13.8,32.95,32.95,0,0.00,0.00,0.00
+TARS,Tarsus Pharmaceuticals Inc,2020-10-16,13.8,32.95,32.95,0,0.00,0.00,0.00
+YGMZ,Mingzhu Logistics Holdings Ltd,2020-10-21,6.0,26.32,26.32,0,0.00,0.00,0.00
+AVIR,Atea Pharmaceuticals Inc,2020-10-30,6.9,25.73,25.73,0,0.00,0.00,0.00
+JUPW,Jupiter Wellness Inc,2020-10-30,6.9,25.73,25.73,0,0.00,0.00,0.00
+LU,Lufax Hldg Ltd,2020-10-30,6.9,25.73,25.73,0,0.00,0.00,0.00
+SQZ,SQZ Biotechnologies Co,2020-10-30,6.9,25.73,25.73,0,0.00,0.00,0.00
+PUBM,PubMatic Inc,2020-12-09,7.3,24.59,24.59,0,0.00,0.00,0.00
+HYFM,Hydrofarm Holdings Group Inc,2020-12-10,8.9,32.37,32.37,0,0.00,0.00,0.00
+VIRI,Virios Therapeutics LLC,2020-12-17,6.6,36.63,36.63,0,0.00,-0.04,-0.04
+MASS,908 Devices Inc.,2020-12-18,9.8,39.08,39.08,0,0.00,0.00,-0.13
+MRM,Medirom Healthcare Tech Inc,2020-12-29,4.0,23.30,23.30,0,0.00,0.00,-0.09
+KUKE,Kuke Music Holding Ltd,2021-01-12,12.9,52.22,52.22,0,0.00,-16.41,-16.41
+QLI,Qilian International Holding,2021-01-12,12.9,52.22,52.22,0,0.00,-16.41,-16.41
+AFRM,Affirm Holdings Inc,2021-01-13,13.1,50.75,50.75,0,0.00,-15.88,-15.88
+MSGM,Motorsport Games,2021-01-13,13.1,50.75,50.75,0,0.00,-15.88,-15.88
+POSH,Poshmark Inc,2021-01-14,13.4,57.71,57.71,0,0.00,-17.60,-17.60
+DRVN,Driven Brands Holdings Inc,2021-01-15,11.0,37.65,37.65,0,0.00,-0.17,-0.17
+PLTK,Playtika Holding Corp,2021-01-15,11.0,37.65,37.65,0,0.00,-0.17,-0.17
+DFH,Dream Finders Homes Inc,2021-01-21,10.4,51.73,51.73,0,0.00,0.00,-4.05
+MYTE,MYT Netherlands Parent BV,2021-01-21,10.4,51.73,51.73,0,0.00,0.00,-4.05
+HUDI,Huadi International Group Co,2021-01-22,7.7,47.66,47.66,0,0.00,0.00,-16.59
+MNTK,Montauk Renewables Inc,2021-01-22,7.7,47.66,47.66,0,0.00,0.00,-16.59
+PAX,Patria Investments Ltd,2021-01-22,7.7,47.66,47.66,0,0.00,0.00,-16.59
+RLX,RLX Technology Inc,2021-01-22,7.7,47.66,47.66,0,0.00,0.00,-16.59
+EZGO,EZGO Technologies Ltd,2021-01-26,22.4,48.28,48.28,0,0.00,0.00,0.00
+PDO,Pimco Dynamic Income Opp,2021-01-27,16.6,42.67,42.67,0,0.00,0.00,0.00
+SHLS,Shoals Technologies Group Inc,2021-01-27,16.6,42.67,42.67,0,0.00,0.00,0.00
+TIRX,Tian Ruixiang Holdings Ltd,2021-01-27,16.6,42.67,42.67,0,0.00,0.00,0.00
+ONTF,ON24 Inc,2021-02-03,4.0,48.30,48.30,0,0.00,0.00,-14.72
+TIXT,TELUS International (Cda) Inc,2021-02-03,4.0,48.30,48.30,0,0.00,0.00,-14.72
+ATC,Atotech Ltd,2021-02-04,4.0,33.60,33.60,0,0.00,0.00,-0.15
+LABP,Landos Biopharma Inc,2021-02-04,4.0,33.60,33.60,0,0.00,0.00,-0.15
+SANA,Sana Biotechnology Inc,2021-02-04,4.0,33.60,33.60,0,0.00,0.00,-0.15
+SNSE,Sensei Biotherapeutics Inc,2021-02-04,4.0,33.60,33.60,0,0.00,0.00,-0.15
+ANGN,Angion Biomedica Corp,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+BOLT,Bolt Biotherapeutics Inc,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+CNEY,CN Energy Group Inc,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+EVAX,Evaxion Biotech AS,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+IMCR,Immunocore Hldg Ltd,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+LHDX,Lucira Health Inc,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+PHVS,Pharvaris BV,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+TERN,Terns Pharmaceuticals Inc,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+VOR,Vor Biopharma Inc,2021-02-05,4.0,47.11,47.11,0,0.00,-14.40,-14.40
+BAOS,Baosheng Media Group Holdings,2021-02-08,5.3,58.60,58.60,0,0.00,0.00,-26.55
+ADAG,Adagene Inc,2021-02-09,7.1,50.34,50.34,0,0.00,0.00,-15.80
+RAAS,Cloopen Group Holding Ltd,2021-02-09,7.1,50.34,50.34,0,0.00,0.00,-15.80
+SDH,Global Internet Of People Inc,2021-02-09,7.1,50.34,50.34,0,0.00,0.00,-15.80
+VLON,Vallon Pharms Inc,2021-02-10,6.5,33.11,33.11,0,0.00,0.00,0.00
+DSP,Viant Technology Inc,2021-02-10,6.5,33.11,33.11,0,0.00,0.00,0.00
+APR,Apria Inc,2021-02-11,4.3,42.42,42.42,0,0.00,0.00,-13.11
+BVS,Bioventus Inc,2021-02-11,4.3,42.42,42.42,0,0.00,0.00,-13.11
+BMBL,Bumble Inc,2021-02-11,4.3,42.42,42.42,0,0.00,0.00,-13.11
+SGFY,Signify Health Inc,2021-02-11,4.3,42.42,42.42,0,0.00,0.00,-13.11
+LDI,loanDepot Inc,2021-02-11,4.3,42.42,42.42,0,0.00,0.00,-13.11
+DBTX,Decibel Therapeutics Inc,2021-02-12,6.0,44.93,44.93,0,0.00,0.00,-13.86
+NEXI,NexImmune Inc,2021-02-12,6.0,44.93,44.93,0,0.00,0.00,-13.86
+TLIS,Talis Biomedical Corp,2021-02-12,6.0,44.93,44.93,0,0.00,0.00,-13.86
+AUUD,Auddia Inc (Clip Interactive),2021-02-17,5.6,48.20,48.20,0,0.00,0.00,-17.33
+VRPX,Virpax Pharmaceuticals Inc,2021-02-17,5.6,48.20,48.20,0,0.00,0.00,-17.33
+GROY,Gold Royalty Corp,2021-03-09,6.1,50.59,50.59,0,0.00,0.00,-15.60
+RBLX,Roblox,2021-03-10,7.3,44.57,44.57,0,0.00,0.00,-13.83
+FHS,First High-School Educ Grp Co,2021-03-11,6.6,41.84,41.84,0,0.00,0.00,-13.24
+AFCG,AFC Gamma Inc,2021-03-19,18.8,72.39,72.39,0,0.00,0.00,-23.83
+CNTB,Connect Biopharma Hldg Ltd,2021-03-19,18.8,72.39,72.39,0,0.00,0.00,-23.83
+FNCH,Finch Therapeutics Group Inc,2021-03-19,18.8,72.39,72.39,0,0.00,0.00,-23.83
+TIL,Instil Bio Inc,2021-03-19,18.8,72.39,72.39,0,0.00,0.00,-23.83
+RPHM,Reneo Pharmaceuticals Inc,2021-04-09,15.2,37.22,37.22,0,0.00,0.00,0.00
+VECT,VectivBio Holding AG,2021-04-09,15.2,37.22,37.22,0,0.00,0.00,0.00
+APP,AppLovin Corp,2021-04-15,6.2,28.69,28.69,0,0.00,0.00,-0.06
+KRT,Karat Packaging Inc,2021-04-15,6.2,28.69,28.69,0,0.00,0.00,-0.06
+TSP,TuSimple Holdings Inc,2021-04-15,6.2,28.69,28.69,0,0.00,0.00,-0.06
+AGL,agilon health inc,2021-04-15,6.2,28.69,28.69,0,0.00,0.00,-0.06
+EBET,eSports Technologies Inc,2021-04-15,6.2,28.69,28.69,0,0.00,0.00,-0.06
+AKYA,Akoya Biosciences Inc,2021-04-16,7.9,30.26,30.26,0,0.00,0.00,0.00
+BMEA,Biomea Fusion Inc,2021-04-16,7.9,30.26,30.26,0,0.00,0.00,0.00
+RXRX,Recursion Pharmaceuticals Inc,2021-04-16,7.9,30.26,30.26,0,0.00,0.00,0.00
+AGTI,Agiliti Inc,2021-04-23,4.0,33.30,33.30,0,0.00,0.00,0.00
+IMPL,Impel NeuroPharma Inc,2021-04-23,4.0,33.30,33.30,0,0.00,0.00,0.00
+SWIM,Latham Group Inc,2021-04-23,4.0,33.30,33.30,0,0.00,0.00,0.00
+RAIN,Rain Therapeutics Inc,2021-04-23,4.0,33.30,33.30,0,0.00,0.00,0.00
+TMCI,Treace Medical Concepts Inc,2021-04-23,4.0,33.30,33.30,0,0.00,0.00,0.00
+AVAH,Aveanna Healthcare Holdings In,2021-04-29,11.7,48.29,48.29,0,0.00,0.00,-14.80
+PRVA,Privia Health Group Inc,2021-04-29,11.7,48.29,48.29,0,0.00,0.00,-14.80
+VACC,Vaccitech plc,2021-04-30,14.5,53.36,53.36,0,0.00,0.00,-18.01
+HOWL,Werewolf Therapeutics Inc,2021-04-30,14.5,53.36,53.36,0,0.00,0.00,-18.01
+DAWN,Day One Biopharmaceuticals Inc,2021-05-27,11.8,30.48,30.48,0,0.00,0.00,-0.25
+FIGS,Figs Inc,2021-05-27,11.8,30.48,30.48,0,0.00,0.00,-0.25
+OMIC,Singular Genomics Systems Inc,2021-05-27,11.8,30.48,30.48,0,0.00,0.00,-0.25
+CNTA,Centessa Pharmaceuticals plc,2021-05-28,8.2,30.27,30.27,0,0.00,0.00,0.00
+ALZN,Alzamend Neuro Inc,2021-06-15,3.2,24.33,24.33,0,0.00,0.00,0.00
+YMM,Full Truck Alliance Co Ltd,2021-06-22,6.9,30.93,30.93,0,0.00,0.00,0.00
+BLND,Blend Labs Inc,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+BLFY,Blue Foundry Bancorp,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+BRDG,Bridge Investment Group Holdin,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+ERAS,Erasca Inc,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+IMGO,Imago BioSciences Inc,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+STVN,Stevanato Group SpA,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+TCRX,TScan Therapeutics Inc,2021-07-16,3.2,20.08,20.08,0,0.00,0.00,-0.11
+EWCZ,European Wax Center Inc,2021-08-05,7.3,37.38,37.38,0,0.00,0.00,-11.43
+WEBR,Weber Inc,2021-08-05,7.3,37.38,37.38,0,0.00,0.00,-11.43
+ADGI,Adagio Therapeutics Inc,2021-08-06,10.3,44.96,44.96,0,0.00,0.00,-17.06
+MIO,Pioneer Municipal High Income,2021-08-09,6.6,26.03,26.03,0,0.00,0.00,-0.02
+ELYM,Eliem Therapeutics Inc,2021-08-10,4.6,22.21,22.21,0,0.00,0.00,-0.05
+DDI,DoubleDown Interactive Co Ltd,2021-08-31,9.3,26.65,26.65,0,0.00,0.00,0.00
+SRAD,Sportradar Group AG,2021-09-14,9.0,36.49,36.49,0,0.00,0.00,0.00
+DICE,DICE Therapeutics Inc,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+DH,Definitive Healthcare Corp,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+EZFL,EzFill Holdings Inc,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+ONON,On Holding AG,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+KTTA,Pasithea Therapeutics Corp,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+PRCT,Procept Biorobotics Corp,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+TWKS,"Thoughtworks Holding, Inc",2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+TYRA,Tyra Biosciences Inc,2021-09-15,6.3,31.72,31.72,0,0.00,0.00,0.00
+AKA,A.K.A. Brands Holding Corp,2021-09-22,7.3,46.35,46.35,0,0.00,0.00,0.00
+BRLT,"Brilliant Earth Group, Inc.",2021-09-23,7.8,36.72,36.72,0,0.00,0.00,0.00
+ESMT,EngageSmart Inc,2021-09-23,7.8,36.72,36.72,0,0.00,0.00,0.00
+RELY,Remitly Global Inc,2021-09-23,7.8,36.72,36.72,0,0.00,0.00,0.00
+SOVO,Sovos Brands Inc,2021-09-23,7.8,36.72,36.72,0,0.00,0.00,0.00
+STER,Sterling Check Corp,2021-09-23,7.8,36.72,36.72,0,0.00,0.00,0.00
+THRN,Thorne Healthtech Inc,2021-09-23,7.8,36.72,36.72,0,0.00,0.00,0.00
+OZ,"Belpointe PREP, LLC",2021-10-18,8.1,41.78,41.78,0,0.00,0.00,0.00
+AIP,Arteris Inc,2021-10-27,4.9,23.88,23.88,0,0.00,0.00,0.00
+INFA,Informatica Inc,2021-10-27,4.9,23.88,23.88,0,0.00,0.00,0.00
+MEGI,MainStay CBRE Global Infrastru,2021-10-27,4.9,23.88,23.88,0,0.00,0.00,0.00
+MRAI,Marpai Inc,2021-10-27,4.9,23.88,23.88,0,0.00,0.00,0.00
+RENT,Rent The Runway Inc,2021-10-27,4.9,23.88,23.88,0,0.00,0.00,0.00
+BIRD,Allbirds Inc,2021-11-03,6.8,26.82,26.82,0,0.00,0.00,0.00
+ARHS,Arhaus Inc,2021-11-04,9.2,31.76,31.76,0,0.00,0.00,0.00
+CDRE,Cadre Holdings Inc,2021-11-04,9.2,31.76,31.76,0,0.00,0.00,0.00
+NRDS,NerdWallet Inc,2021-11-04,9.2,31.76,31.76,0,0.00,0.00,0.00
+CIAN,Cian Plc,2021-11-05,10.3,39.61,39.61,0,0.00,0.00,0.00
+IOBT,IO Biotech Inc,2021-11-05,10.3,39.61,39.61,0,0.00,0.00,0.00
+MYNZ,Mainz Biomed BV,2021-11-05,10.3,39.61,39.61,0,0.00,0.00,0.00
+RGF,Real Good Food Company Inc,2021-11-05,10.3,39.61,39.61,0,0.00,0.00,0.00
+NXGL,NEXGEL Inc,2021-12-22,7.1,31.70,31.70,0,0.00,0.00,-0.06
+SLTN,Solectron,1989-11-15,30.2,69.90,69.90,0,0.00,0.00,0.00
+IMGN,ImmunoGen,1989-11-16,30.0,69.57,69.57,0,0.00,0.00,0.00
+CMLE,Casual Male,1988-09-20,19.4,54.23,59.92,8,5.69,0.00,-1.20
+NRGN,Neurogen,1989-10-03,22.8,67.75,67.75,0,0.00,0.00,-7.34
