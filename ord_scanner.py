@@ -1565,6 +1565,269 @@ def massive_move_score(
 
 
 # ---------------------------------------------------------------------------
+# Rolling Continuous Ord Score + Inflection / Acceleration Detection
+# ---------------------------------------------------------------------------
+
+DECAY_RATE = 0.97  # per-bar decay for leg-based signals (half-life ~23 bars)
+DERIV_SPAN = 5     # EMA span for velocity/acceleration smoothing
+
+
+def _bar_based_scores(df: pd.DataFrame) -> pd.DataFrame:
+    """Compute per-bar continuous sub-scores from bar-level data (vectorized)."""
+    n = len(df)
+    out = pd.DataFrame(index=df.index)
+    close = df["Close"].astype(float)
+    vol = df["Volume"].astype(float)
+    high = df["High"].astype(float)
+    low = df["Low"].astype(float)
+
+    # Volume asymmetry (20-bar rolling) -> [-15, +15]
+    ret = close.pct_change()
+    up_mask = ret > 0
+    dn_mask = ret < 0
+    up_vol = vol.where(up_mask).rolling(20, min_periods=5).mean()
+    dn_vol = vol.where(dn_mask).rolling(20, min_periods=5).mean()
+    asym_ratio = (up_vol / dn_vol.replace(0, np.nan)).clip(0.3, 3.0).fillna(1.0)
+    out["s_asym"] = ((asym_ratio - 1.0) * 30.0).clip(-15, 15)
+
+    # Squeeze bandwidth -> [-5, +15]
+    ma = close.rolling(20).mean()
+    sd = close.rolling(20).std()
+    prev_c = close.shift()
+    tr = pd.concat([high - low, (high - prev_c).abs(), (low - prev_c).abs()], axis=1).max(axis=1)
+    atr = tr.rolling(20).mean()
+    bb_w = (2.0 * sd) / ma.replace(0, np.nan)
+    bw_pct = bb_w.rank(pct=True)
+    bb_up = ma + 2.0 * sd
+    bb_dn = ma - 2.0 * sd
+    kc_up = ma + 1.5 * atr
+    kc_dn = ma - 1.5 * atr
+    in_sq = (bb_up < kc_up) & (bb_dn > kc_dn)
+    sq_score = np.where(in_sq & (bw_pct <= 0.15), 15,
+               np.where(in_sq & (bw_pct <= 0.30), 10,
+               np.where(in_sq, 7,
+               np.where(bw_pct <= 0.20, 5,
+               np.where(bw_pct >= 0.80, -5, 0)))))
+    out["s_squeeze"] = sq_score.astype(float)
+
+    # Trend distance (close vs MA50) -> [-10, +5]
+    ma50 = close.rolling(50, min_periods=20).mean()
+    dist = ((close - ma50) / ma50.replace(0, np.nan)).fillna(0)
+    out["s_trend"] = np.where(dist > 0.05, 5, np.where(dist > 0, 2,
+                    np.where(dist > -0.05, -2, np.where(dist > -0.15, -5, -10))))
+
+    # Rotation factor (2-bar sum of H/L direction) -> [-5, +5]
+    h_dir = np.sign(high - high.shift(1))
+    l_dir = np.sign(low - low.shift(1))
+    rf = (h_dir + l_dir).rolling(5, min_periods=2).mean() * 2.5
+    out["s_rf"] = rf.clip(-5, 5).fillna(0)
+
+    # Close-in-bar position (bullish close tendency) -> [-5, +5]
+    bar_range = high - low
+    cib = ((close - low) / bar_range.replace(0, np.nan)).fillna(0.5)
+    cib_avg = cib.rolling(8, min_periods=3).mean()
+    out["s_cib"] = ((cib_avg - 0.5) * 20).clip(-5, 5)
+
+    return out
+
+
+def _leg_based_anchors(df: pd.DataFrame, theta: float) -> List[tuple]:
+    """Run zigzag once, build legs, compute sub-scores at each leg completion.
+
+    Returns list of (bar_idx, score_dict) anchors where score_dict has
+    signed contributions from OV shrinkage, expansion, shakeout, dissipation.
+    """
+    pivots = zigzag(df["High"], df["Low"], theta)
+    legs = build_legs(df, pivots)
+    anchors = []
+
+    for k in range(3, len(legs)):
+        L_current = legs[k]
+        L_down = legs[k - 1] if legs[k - 1]["dir"] == "down" else None
+        prev_up = legs[k - 2] if legs[k - 2]["dir"] == "up" else None
+        prev_down = legs[k - 3] if legs[k - 3]["dir"] == "down" else None
+
+        anchor_bar = L_current["start_idx"]
+        scores = {}
+
+        # OV shrinkage quality [-25, +25]
+        if L_down and L_current["dir"] == "up" and prev_up and prev_down:
+            shrink_up = L_down["ov"] / prev_up["ov"] if prev_up["ov"] > 0 else 1.0
+            shrink_dn = L_down["ov"] / prev_down["ov"] if prev_down["ov"] > 0 else 1.0
+            best = min(shrink_up, shrink_dn)
+            if best <= 0.25:
+                scores["s_ov_shrink"] = 25
+            elif best <= 0.40:
+                scores["s_ov_shrink"] = 18
+            elif best <= 0.50:
+                scores["s_ov_shrink"] = 12
+            elif best <= 0.60:
+                scores["s_ov_shrink"] = 5
+            elif best <= 0.75:
+                scores["s_ov_shrink"] = 0
+            else:
+                scores["s_ov_shrink"] = -10
+
+            # OV expansion [-10, +10]
+            expand = L_current["ov"] / L_down["ov"] if L_down["ov"] > 0 else 0
+            if expand >= 2.0:
+                scores["s_ov_expand"] = 10
+            elif expand >= 1.5:
+                scores["s_ov_expand"] = 7
+            elif expand >= 1.3:
+                scores["s_ov_expand"] = 4
+            elif expand >= 1.0:
+                scores["s_ov_expand"] = 0
+            elif expand >= 0.7:
+                scores["s_ov_expand"] = -5
+            else:
+                scores["s_ov_expand"] = -10
+
+        # Shakeout quality [-5, +10]
+        if L_down and prev_down and L_down["dir"] == "down" and prev_down["dir"] == "down":
+            origin_idx = int(prev_down["end_idx"])
+            origin_vol = float(df["Volume"].iloc[origin_idx]) if origin_idx < len(df) else 0
+            if origin_vol > 0:
+                seg = df.iloc[int(L_down["start_idx"]):int(L_down["end_idx"]) + 1]
+                origin_low = float(df["Low"].iloc[origin_idx])
+                probes = seg[seg["Low"].astype(float) <= origin_low]
+                if not probes.empty:
+                    ratio = float(probes["Volume"].min()) / origin_vol
+                    if ratio <= 0.50:
+                        scores["s_shakeout"] = 10
+                    elif ratio <= 0.75:
+                        scores["s_shakeout"] = 7
+                    elif ratio <= 0.92:
+                        scores["s_shakeout"] = 4
+                    else:
+                        scores["s_shakeout"] = -3
+
+        # Multi-leg dissipation [0, +10]
+        down_legs = [L for L in legs[:k] if L["dir"] == "down"]
+        if len(down_legs) >= 3:
+            recent = down_legs[-3:]
+            if all(recent[i]["ov"] > recent[i + 1]["ov"] for i in range(len(recent) - 1)):
+                scores["s_dissipation"] = 8
+            elif len(down_legs) >= 2 and down_legs[-2]["ov"] > down_legs[-1]["ov"]:
+                scores["s_dissipation"] = 4
+
+        if scores:
+            anchors.append((anchor_bar, scores))
+
+    return anchors
+
+
+def _apply_decay(anchors: List[tuple], n_bars: int) -> pd.DataFrame:
+    """Forward-fill leg-based anchor scores with exponential decay."""
+    cols = ["s_ov_shrink", "s_ov_expand", "s_shakeout", "s_dissipation"]
+    result = pd.DataFrame(0.0, index=range(n_bars), columns=cols)
+
+    for col in cols:
+        last_val = 0.0
+        last_bar = 0
+        anchor_vals = [(b, sc.get(col, None)) for b, sc in anchors if col in sc]
+
+        for idx, (bar_idx, val) in enumerate(anchor_vals):
+            # Decay the old value up to this anchor
+            for t in range(last_bar, min(bar_idx, n_bars)):
+                decay = DECAY_RATE ** (t - last_bar)
+                result.iloc[t][col] = last_val * decay
+            # Set new anchor
+            last_val = val
+            last_bar = bar_idx
+
+        # Decay after last anchor to end
+        for t in range(last_bar, n_bars):
+            decay = DECAY_RATE ** (t - last_bar)
+            result.iloc[t][col] = last_val * decay
+
+    return result
+
+
+def compute_rolling_ord_score(df: pd.DataFrame, theta: float) -> Dict:
+    """Compute the rolling continuous Ord score and return current-bar state.
+
+    Returns a dict with trajectory information for the most recent bar:
+      ord_cont: current score
+      ord_vel: current velocity (1st derivative)
+      ord_acc: current acceleration (2nd derivative)
+      ord_trajectory: state label
+      ord_early_entry: True if conditions are improving from negative
+    """
+    n = len(df)
+    if n < 30:
+        return {"ord_cont": 0, "ord_vel": 0, "ord_acc": 0,
+                "ord_trajectory": "INSUFFICIENT", "ord_early_entry": False,
+                "ord_bars_since_infl": 99}
+
+    # Bar-based scores (vectorized)
+    bar_scores = _bar_based_scores(df)
+
+    # Leg-based scores (discrete with decay)
+    anchors = _leg_based_anchors(df, theta)
+    leg_scores = _apply_decay(anchors, n)
+    leg_scores.index = df.index
+
+    # Combine
+    total = bar_scores.sum(axis=1) + leg_scores.sum(axis=1)
+    total = total.clip(-100, 100)
+
+    # Velocity (1st derivative, EMA smoothed)
+    diff = total.diff().fillna(0)
+    velocity = diff.ewm(span=DERIV_SPAN, min_periods=2).mean()
+
+    # Acceleration (2nd derivative)
+    vel_diff = velocity.diff().fillna(0)
+    accel = vel_diff.ewm(span=DERIV_SPAN, min_periods=2).mean()
+
+    # Detect inflections
+    inflection_up = (total.shift(1) < 0) & (total >= 0)
+
+    # Bars since last inflection up
+    infl_indices = inflection_up[inflection_up].index
+    bars_since = 99
+    if len(infl_indices) > 0:
+        last_infl_pos = df.index.get_loc(infl_indices[-1])
+        bars_since = n - 1 - last_infl_pos
+
+    # Current state
+    s = float(total.iloc[-1])
+    v = float(velocity.iloc[-1])
+    a = float(accel.iloc[-1])
+
+    # Trajectory classification
+    if s < 0 and a > 0.3 and v > 0:
+        trajectory = "ACCEL_BULL"
+    elif s < 0 and v > 0:
+        trajectory = "VEL_POS"
+    elif bars_since <= 3:
+        trajectory = "INFLECT_UP"
+    elif s > 0 and v > 0 and a > 0:
+        trajectory = "STRONG_UP"
+    elif s > 0 and v > 0:
+        trajectory = "IMPROVING"
+    elif s > 0 and v <= 0 and a < -0.3:
+        trajectory = "ACCEL_BEAR"
+    elif s > 0 and v <= 0:
+        trajectory = "DETERIORATING"
+    elif s < 0 and v <= 0:
+        trajectory = "DECLINING"
+    else:
+        trajectory = "FLAT"
+
+    early_entry = trajectory in ("ACCEL_BULL", "VEL_POS", "INFLECT_UP")
+
+    return {
+        "ord_cont": round(s, 1),
+        "ord_vel": round(v, 2),
+        "ord_acc": round(a, 2),
+        "ord_trajectory": trajectory,
+        "ord_early_entry": early_entry,
+        "ord_bars_since_infl": bars_since,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Scoring
 # ---------------------------------------------------------------------------
 
@@ -1600,12 +1863,21 @@ def score_candidate(
     clx   = selling_climax(df)
     diss  = multi_leg_dissipation(legs)
     gpt   = gap_test(df)
+    traj  = compute_rolling_ord_score(df, theta)
     rf    = rotation_factor(df)
     dp    = directional_performance(df)
     hc    = hidden_corrective(df)
     early = early_asym_score(df, rel, ov, spv, sq, asym, cause, q, rs)
     brk   = bracket_analysis(df)
     massive = massive_move_score(brk, sq, asym, rel, rs)
+
+    # Trajectory boost to early_score (the key early-detection layer)
+    if traj["ord_trajectory"] == "INFLECT_UP":
+        early["early_score"] = early.get("early_score", 0) + 5
+    elif traj["ord_trajectory"] == "ACCEL_BULL":
+        early["early_score"] = early.get("early_score", 0) + 4
+    elif traj["ord_trajectory"] == "VEL_POS":
+        early["early_score"] = early.get("early_score", 0) + 3
 
     # Ord volume signals boost to early_score
     if clx.get("climax_retest"):
@@ -1766,6 +2038,13 @@ def score_candidate(
         "dp_sig": dp.get("dp_signal"),
         "dp_vol": dp.get("dp_vol"),
         "h_bull": hc.get("hidden_bull"),
+        # Continuous Ord trajectory
+        "ord_cont": traj.get("ord_cont"),
+        "ord_vel": traj.get("ord_vel"),
+        "ord_acc": traj.get("ord_acc"),
+        "ord_traj": traj.get("ord_trajectory"),
+        "ord_early": traj.get("ord_early_entry"),
+        "bars_infl": traj.get("ord_bars_since_infl"),
     }
 
 
