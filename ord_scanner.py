@@ -745,8 +745,17 @@ def mfi_zero_cross(weekly_df: pd.DataFrame,
     if not vol_spike and vol_avg > 0:
         vol_spike = float(vol.iloc[-1]) > 1.5 * vol_avg
 
-    weekly_signal = (cmf_cross or mfi50_cross) and (cmf_improving or cmf_now > 0)
+    # Weekly MFI "near 50 and improving" (the structural condition)
     w_mfi_now = float(w_mfi.iloc[-1]) if np.isfinite(w_mfi.iloc[-1]) else np.nan
+    w_mfi_recent = float(w_mfi.iloc[-weekly_lookback:].mean()) if w_mfi.iloc[-weekly_lookback:].notna().any() else np.nan
+    w_mfi_prior = float(w_mfi.iloc[ps:pe].mean()) if pe > ps and w_mfi.iloc[ps:pe].notna().any() else np.nan
+    w_mfi_near_50 = bool(np.isfinite(w_mfi_now) and 30 <= w_mfi_now <= 70)
+    w_mfi_improving = bool(
+        np.isfinite(w_mfi_now) and np.isfinite(w_mfi_recent) and np.isfinite(w_mfi_prior)
+        and w_mfi_now > w_mfi_recent and w_mfi_recent > w_mfi_prior
+    )
+
+    weekly_signal = (cmf_cross or mfi50_cross) and (cmf_improving or cmf_now > 0)
 
     # Daily MFI cross (the timing trigger)
     daily_mfi_x = False
@@ -756,8 +765,8 @@ def mfi_zero_cross(weekly_df: pd.DataFrame,
         daily_mfi_x, _ = _detect_zero_cross(d_mfi, 50.0, daily_lookback)
         daily_mfi_now = float(d_mfi.iloc[-1]) if np.isfinite(d_mfi.iloc[-1]) else np.nan
 
-    # Full TCAP = daily cross + weekly near/improving + vol spike
-    full_tcap = bool(daily_mfi_x and (cmf_improving or cmf_now > -0.05) and vol_spike)
+    # Full TCAP = daily MFI cross + weekly MFI near 50 & improving + vol spike
+    full_tcap = bool(daily_mfi_x and w_mfi_near_50 and w_mfi_improving and vol_spike)
 
     return {
         "mfi_cross": bool(full_tcap or weekly_signal),
