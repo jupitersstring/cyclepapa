@@ -273,10 +273,59 @@ def fetch_asx_smallords_tickers() -> List[str]:
         return []
 
 
+def fetch_ftse_mib_tickers() -> List[str]:
+    """Fetch FTSE MIB (Italian large-cap 40) constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/FTSE_MIB",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Ticker", "Ticker symbol", "Symbol", "Epic"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip() + ".MI" for s in syms if len(s.strip()) <= 6 and s.strip().isalpha()]
+        print("[warn] FTSE MIB: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] FTSE MIB fetch failed ({e})", file=sys.stderr)
+        return []
+
+
+def fetch_italy_midcap_tickers() -> List[str]:
+    """Fetch FTSE Italia Mid Cap constituents from Wikipedia."""
+    import io
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    try:
+        r = requests.get(
+            "https://en.wikipedia.org/wiki/FTSE_Italia_Mid_Cap_Index",
+            headers=ua, timeout=15,
+        )
+        r.raise_for_status()
+        tables = pd.read_html(io.StringIO(r.text))
+        for t in tables:
+            for col in ("Ticker", "Ticker symbol", "Symbol", "Epic"):
+                if col in t.columns:
+                    syms = t[col].astype(str).tolist()
+                    return [s.strip() + ".MI" for s in syms if len(s.strip()) <= 6 and s.strip().isalpha()]
+        print("[warn] Italy MidCap: could not find ticker column", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"[warn] Italy MidCap fetch failed ({e})", file=sys.stderr)
+        return []
+
+
 BENCHMARK_MAP = {
     "sp500": "SPY", "sp400": "SPY", "sp600": "SPY", "smid": "SPY", "all": "SPY",
     "uk": "ISF.L", "uk_mid": "ISF.L", "uk_small": "ISF.L", "uk_aim": "ISF.L",
     "asx": "STW.AX", "asx_small": "STW.AX", "asx_all": "STW.AX",
+    "italy": "FTSEMIB.MI", "italy_mid": "FTSEMIB.MI",
 }
 
 
@@ -309,6 +358,11 @@ def fetch_universe(name: str) -> List[str]:
         return fetch_asx_smallords_tickers()
     elif name == "asx_all":
         return fetch_asx200_tickers() + fetch_asx_smallords_tickers()
+    # Italy
+    elif name == "italy":
+        return fetch_ftse_mib_tickers() + fetch_italy_midcap_tickers()
+    elif name == "italy_mid":
+        return fetch_italy_midcap_tickers()
     else:
         print(f"[warn] unknown universe '{name}'; defaulting to sp500", file=sys.stderr)
         return fetch_sp500_tickers()
@@ -2300,7 +2354,8 @@ def main():
     ap.add_argument("--universe", default="sp500",
                     choices=["sp500", "sp400", "sp600", "smid", "all",
                              "uk", "uk_mid", "uk_small", "uk_aim",
-                             "asx", "asx_small", "asx_all"],
+                             "asx", "asx_small", "asx_all",
+                             "italy", "italy_mid"],
                     help="stock universe: US (sp500/sp400/sp600/smid/all), "
                          "UK (uk/uk_mid/uk_small/uk_aim), "
                          "AU (asx/asx_small/asx_all)")
