@@ -274,7 +274,18 @@ def fetch_asx_smallords_tickers() -> List[str]:
 
 
 def fetch_ftse_mib_tickers() -> List[str]:
-    """Fetch FTSE MIB (Italian large-cap 40) constituents from Wikipedia."""
+    """Fetch Italian stocks on Milan exchange via financedatabase."""
+    try:
+        import financedatabase as fd
+        eq = fd.Equities()
+        it = eq.search(country="Italy", exchange="MIL")
+        tickers = [str(idx) for idx in it.index if isinstance(idx, str) and ".MI" in str(idx)]
+        if tickers:
+            print(f"[italy] {len(tickers)} Milan tickers via financedatabase")
+            return tickers
+    except Exception as e:
+        print(f"[warn] financedatabase Italy failed ({e})", file=sys.stderr)
+    # Fallback to Wikipedia
     import io
     import requests
     ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
@@ -290,34 +301,38 @@ def fetch_ftse_mib_tickers() -> List[str]:
                 if col in t.columns:
                     syms = t[col].astype(str).tolist()
                     return [s.strip() + ".MI" for s in syms if len(s.strip()) <= 6 and s.strip().isalpha()]
-        print("[warn] FTSE MIB: could not find ticker column", file=sys.stderr)
-        return []
-    except Exception as e:
-        print(f"[warn] FTSE MIB fetch failed ({e})", file=sys.stderr)
-        return []
+    except Exception:
+        pass
+    return []
 
 
 def fetch_italy_midcap_tickers() -> List[str]:
-    """Fetch FTSE Italia Mid Cap constituents from Wikipedia."""
-    import io
-    import requests
-    ua = {"User-Agent": "Mozilla/5.0 (compatible; ord-scanner/1.0)"}
+    """Fetch Italian mid/small caps — returns tickers not in FTSE MIB."""
+    mib = set(fetch_ftse_mib_tickers())
     try:
-        r = requests.get(
-            "https://en.wikipedia.org/wiki/FTSE_Italia_Mid_Cap_Index",
-            headers=ua, timeout=15,
-        )
-        r.raise_for_status()
-        tables = pd.read_html(io.StringIO(r.text))
-        for t in tables:
-            for col in ("Ticker", "Ticker symbol", "Symbol", "Epic"):
-                if col in t.columns:
-                    syms = t[col].astype(str).tolist()
-                    return [s.strip() + ".MI" for s in syms if len(s.strip()) <= 6 and s.strip().isalpha()]
-        print("[warn] Italy MidCap: could not find ticker column", file=sys.stderr)
-        return []
+        import financedatabase as fd
+        eq = fd.Equities()
+        it = eq.search(country="Italy", exchange="MIL")
+        all_milan = [str(idx) for idx in it.index if isinstance(idx, str) and ".MI" in str(idx)]
+        midsmall = [t for t in all_milan if t not in mib]
+        print(f"[italy_mid] {len(midsmall)} mid/small tickers")
+        return midsmall
     except Exception as e:
-        print(f"[warn] Italy MidCap fetch failed ({e})", file=sys.stderr)
+        print(f"[warn] Italy midcap via financedatabase failed ({e})", file=sys.stderr)
+        return []
+
+
+def _fd_uk_tickers() -> List[str]:
+    """Fetch all UK LSE tickers via financedatabase."""
+    try:
+        import financedatabase as fd
+        eq = fd.Equities()
+        uk = eq.search(country="United Kingdom", exchange="LSE")
+        tickers = [str(idx) for idx in uk.index if isinstance(idx, str) and ".L" in str(idx)]
+        print(f"[uk_fd] {len(tickers)} LSE tickers via financedatabase")
+        return tickers
+    except Exception as e:
+        print(f"[warn] financedatabase UK failed ({e})", file=sys.stderr)
         return []
 
 
@@ -344,13 +359,18 @@ def fetch_universe(name: str) -> List[str]:
         return fetch_sp500_tickers() + fetch_sp400_tickers() + fetch_sp600_tickers()
     # UK
     elif name == "uk":
-        return fetch_ftse250_tickers() + fetch_ftse_smallcap_tickers() + fetch_aim100_tickers()
+        wiki = fetch_ftse250_tickers() + fetch_ftse_smallcap_tickers() + fetch_aim100_tickers()
+        fd = _fd_uk_tickers()
+        combined = list(dict.fromkeys(wiki + fd))  # dedup preserving order
+        return combined if combined else wiki or fd
     elif name == "uk_mid":
         return fetch_ftse250_tickers()
     elif name == "uk_small":
         return fetch_ftse_smallcap_tickers() + fetch_aim100_tickers()
     elif name == "uk_aim":
         return fetch_aim100_tickers()
+    elif name == "uk_all":
+        return _fd_uk_tickers()
     # Australia
     elif name == "asx":
         return fetch_asx200_tickers()
@@ -759,71 +779,124 @@ def _detect_zero_cross(series: pd.Series, threshold: float,
     return crossed, cross_idx
 
 
+def _tcap_pair(trigger_df: pd.DataFrame, struct_df: pd.DataFrame,
+               mfi_period: int = 18, cmf_period: int = 20,
+               trigger_lookback: int = 8, struct_lookback: int = 6) -> Dict:
+    """Core TCAP detection for any two-timeframe pair.
+
+    trigger_df = faster TF (daily for D/W pair, weekly for W/M pair)
+    struct_df  = slower TF (weekly for D/W pair, monthly for W/M pair)
+
+    Returns:
+      trigger_x:    trigger TF MFI crossed above 50 recently
+      struct_near:  structural TF MFI is near 50 (30-70)
+      struct_impr:  structural TF MFI improving (now > recent avg > prior avg)
+      vol_spike:    structural TF volume spiked (>1.5x 20-bar avg)
+      full:         all three aligned
+    """
+    out = {"trigger_x": False, "struct_mfi_now": np.nan,
+           "struct_near": False, "struct_impr": False,
+           "vol_spike": False, "full": False}
+
+    # Structural TF: MFI near 50 and improving
+    sn = len(struct_df)
+    if sn < mfi_period + struct_lookback + 5:
+        return out
+    s_mfi, s_cmf = _compute_mfi_cmf(struct_df, mfi_period, cmf_period)
+    s_mfi_now = float(s_mfi.iloc[-1]) if np.isfinite(s_mfi.iloc[-1]) else np.nan
+    out["struct_mfi_now"] = round(s_mfi_now, 1) if np.isfinite(s_mfi_now) else np.nan
+    s_recent = float(s_mfi.iloc[-struct_lookback:].mean()) if s_mfi.iloc[-struct_lookback:].notna().any() else np.nan
+    ps, pe = max(0, sn - struct_lookback * 2), max(0, sn - struct_lookback)
+    s_prior = float(s_mfi.iloc[ps:pe].mean()) if pe > ps and s_mfi.iloc[ps:pe].notna().any() else np.nan
+    out["struct_near"] = bool(np.isfinite(s_mfi_now) and 30 <= s_mfi_now <= 70)
+    out["struct_impr"] = bool(
+        np.isfinite(s_mfi_now) and np.isfinite(s_recent) and np.isfinite(s_prior)
+        and s_mfi_now > s_recent and s_recent > s_prior
+    )
+
+    # Volume spike on structural TF
+    s_vol = struct_df["Volume"].astype(float)
+    vol_avg = float(s_vol.rolling(20).mean().iloc[-1]) if sn >= 20 else float(s_vol.mean())
+    if vol_avg > 0:
+        out["vol_spike"] = bool(float(s_vol.iloc[-1]) > 1.5 * vol_avg)
+
+    # Trigger TF: MFI crosses above 50 recently
+    if trigger_df is not None and len(trigger_df) >= mfi_period + trigger_lookback + 5:
+        t_mfi, _ = _compute_mfi_cmf(trigger_df, mfi_period, cmf_period)
+        out["trigger_x"], _ = _detect_zero_cross(t_mfi, 50.0, trigger_lookback)
+
+    # Full TCAP = trigger cross + structural near 50 & improving + vol spike
+    out["full"] = bool(out["trigger_x"] and out["struct_near"]
+                       and out["struct_impr"] and out["vol_spike"])
+    return out
+
+
 def mfi_zero_cross(weekly_df: pd.DataFrame,
                    daily_df: Optional[pd.DataFrame] = None,
+                   monthly_df: Optional[pd.DataFrame] = None,
                    mfi_period: int = 18, cmf_period: int = 20,
                    weekly_lookback: int = 6, daily_lookback: int = 15) -> Dict:
-    """Detect the full TCAP pattern across daily + weekly timeframes.
+    """Detect TCAP patterns on two timeframe pairs:
 
-    The setup requires ALL three:
-      1. Daily MFI(18) crosses above 50 in last `daily_lookback` trading days
-      2. Weekly CMF near 0 and improving (current > recent avg > prior avg)
-      3. Volume spike on the weekly cross bar (vol > 1.5x 20-bar avg)
+    Daily+Weekly TCAP (fast):
+      1. Daily MFI(18) crosses above 50 in last 15 days
+      2. Weekly MFI near 50 and improving
+      3. Weekly volume spike
 
-    If daily_df is None, falls back to weekly-only detection.
+    Weekly+Monthly TCAP (slow, bigger moves):
+      1. Weekly MFI(18) crosses above 50 in last 8 bars
+      2. Monthly MFI near 50 and improving
+      3. Monthly volume spike
+
+    Also computes standalone weekly CMF/MFI cross signals.
     """
     n = len(weekly_df)
     empty = {"mfi_cross": False, "cmf_cross": False, "mfi50_cross": False,
              "cmf_now": 0.0, "cmf_improving": False, "vol_spike_cross": False,
              "mfi_now": np.nan, "daily_mfi_x": False, "daily_mfi_now": np.nan,
-             "full_tcap": False}
+             "full_tcap": False, "tcap_wm": False, "m_mfi_now": np.nan}
     if n < max(mfi_period, cmf_period) + weekly_lookback + 5:
         return empty
 
     vol = weekly_df["Volume"].astype(float)
     w_mfi, w_cmf = _compute_mfi_cmf(weekly_df, mfi_period, cmf_period)
 
+    # Standalone weekly signals
     cmf_cross, cmf_cross_idx = _detect_zero_cross(w_cmf, 0.0, weekly_lookback)
     mfi50_cross, _ = _detect_zero_cross(w_mfi, 50.0, weekly_lookback)
-
     cmf_now = float(w_cmf.iloc[-1]) if np.isfinite(w_cmf.iloc[-1]) else 0.0
     cmf_recent = float(w_cmf.iloc[-weekly_lookback:].mean()) if w_cmf.iloc[-weekly_lookback:].notna().any() else 0.0
     ps, pe = max(0, n - weekly_lookback * 2), max(0, n - weekly_lookback)
     cmf_prior = float(w_cmf.iloc[ps:pe].mean()) if pe > ps else 0.0
     cmf_improving = bool(cmf_now > cmf_recent and cmf_recent > cmf_prior)
-
     vol_avg = float(vol.rolling(20).mean().iloc[-1]) if n >= 20 else float(vol.mean())
     vol_spike = False
     if cmf_cross_idx >= 0 and cmf_cross_idx < n and vol_avg > 0:
         vol_spike = float(vol.iloc[cmf_cross_idx]) > 1.5 * vol_avg
     if not vol_spike and vol_avg > 0:
         vol_spike = float(vol.iloc[-1]) > 1.5 * vol_avg
-
-    # Weekly MFI "near 50 and improving" (the structural condition)
-    w_mfi_now = float(w_mfi.iloc[-1]) if np.isfinite(w_mfi.iloc[-1]) else np.nan
-    w_mfi_recent = float(w_mfi.iloc[-weekly_lookback:].mean()) if w_mfi.iloc[-weekly_lookback:].notna().any() else np.nan
-    w_mfi_prior = float(w_mfi.iloc[ps:pe].mean()) if pe > ps and w_mfi.iloc[ps:pe].notna().any() else np.nan
-    w_mfi_near_50 = bool(np.isfinite(w_mfi_now) and 30 <= w_mfi_now <= 70)
-    w_mfi_improving = bool(
-        np.isfinite(w_mfi_now) and np.isfinite(w_mfi_recent) and np.isfinite(w_mfi_prior)
-        and w_mfi_now > w_mfi_recent and w_mfi_recent > w_mfi_prior
-    )
-
     weekly_signal = (cmf_cross or mfi50_cross) and (cmf_improving or cmf_now > 0)
+    w_mfi_now = float(w_mfi.iloc[-1]) if np.isfinite(w_mfi.iloc[-1]) else np.nan
 
-    # Daily MFI cross (the timing trigger)
-    daily_mfi_x = False
+    # Daily+Weekly TCAP
+    dw = _tcap_pair(daily_df, weekly_df, mfi_period, cmf_period,
+                    trigger_lookback=daily_lookback, struct_lookback=weekly_lookback)
+    full_tcap_dw = dw["full"]
+    daily_mfi_x = dw["trigger_x"]
     daily_mfi_now = np.nan
-    if daily_df is not None and len(daily_df) >= mfi_period + daily_lookback + 5:
+    if daily_df is not None and len(daily_df) >= mfi_period + 5:
         d_mfi, _ = _compute_mfi_cmf(daily_df, mfi_period, cmf_period)
-        daily_mfi_x, _ = _detect_zero_cross(d_mfi, 50.0, daily_lookback)
         daily_mfi_now = float(d_mfi.iloc[-1]) if np.isfinite(d_mfi.iloc[-1]) else np.nan
 
-    # Full TCAP = daily MFI cross + weekly MFI near 50 & improving + vol spike
-    full_tcap = bool(daily_mfi_x and w_mfi_near_50 and w_mfi_improving and vol_spike)
+    # Weekly+Monthly TCAP
+    wm = _tcap_pair(weekly_df, monthly_df, mfi_period, cmf_period,
+                    trigger_lookback=8, struct_lookback=4) if monthly_df is not None else {
+                        "full": False, "struct_mfi_now": np.nan}
+    tcap_wm = wm["full"]
+    m_mfi_now = wm.get("struct_mfi_now", np.nan)
 
     return {
-        "mfi_cross": bool(full_tcap or weekly_signal),
+        "mfi_cross": bool(full_tcap_dw or tcap_wm or weekly_signal),
         "cmf_cross": bool(cmf_cross),
         "mfi50_cross": bool(mfi50_cross),
         "cmf_now": round(cmf_now, 3),
@@ -832,7 +905,9 @@ def mfi_zero_cross(weekly_df: pd.DataFrame,
         "mfi_now": round(w_mfi_now, 1) if np.isfinite(w_mfi_now) else np.nan,
         "daily_mfi_x": bool(daily_mfi_x),
         "daily_mfi_now": round(daily_mfi_now, 1) if np.isfinite(daily_mfi_now) else np.nan,
-        "full_tcap": bool(full_tcap),
+        "full_tcap": bool(full_tcap_dw),
+        "tcap_wm": bool(tcap_wm),
+        "m_mfi_now": round(m_mfi_now, 1) if np.isfinite(m_mfi_now) else np.nan,
     }
 
 
@@ -2005,6 +2080,7 @@ def score_candidate(
     regime_df: Optional[pd.DataFrame] = None,
     spy_df: Optional[pd.DataFrame] = None,
     daily_df: Optional[pd.DataFrame] = None,
+    monthly_df: Optional[pd.DataFrame] = None,
 ) -> Optional[Dict]:
     df = df.dropna().copy()
     if len(df) < max(BB_LENGTH + 5, TREND_MA + 5):
@@ -2030,7 +2106,7 @@ def score_candidate(
     clx   = selling_climax(df)
     diss  = multi_leg_dissipation(legs)
     gpt   = gap_test(df)
-    mfi   = mfi_zero_cross(df, daily_df=daily_df)
+    mfi   = mfi_zero_cross(df, daily_df=daily_df, monthly_df=monthly_df)
     traj  = compute_rolling_ord_score(df, theta)
     rf    = rotation_factor(df)
     dp    = directional_performance(df)
@@ -2040,6 +2116,8 @@ def score_candidate(
     massive = massive_move_score(brk, sq, asym, rel, rs)
 
     # MFI zero-cross boost (the TCAP pattern)
+    if mfi.get("tcap_wm"):
+        early["early_score"] = early.get("early_score", 0) + 8
     if mfi.get("full_tcap"):
         early["early_score"] = early.get("early_score", 0) + 7
     elif mfi.get("mfi_cross") and mfi.get("vol_spike_cross"):
@@ -2226,6 +2304,8 @@ def score_candidate(
         "d_mfi_x": mfi.get("daily_mfi_x"),
         "d_mfi_now": mfi.get("daily_mfi_now"),
         "full_tcap": mfi.get("full_tcap"),
+        "tcap_wm": mfi.get("tcap_wm"),
+        "m_mfi_now": mfi.get("m_mfi_now"),
         # Continuous Ord trajectory
         "ord_cont": traj.get("ord_cont"),
         "ord_vel": traj.get("ord_vel"),
@@ -2294,20 +2374,27 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
         print(f"[warn] SPY regime fetch failed ({e}); regime cols will be NaN")
 
     # Fetch daily data for the TCAP daily MFI cross check
+    # Fetch daily data for D/W TCAP
     daily_panel = None
     try:
-        print(f"[daily] downloading {len(tickers)} tickers @ 1d for MFI cross")
+        print(f"[daily] downloading {len(tickers)} tickers @ 1d for D/W TCAP")
         daily_panel = yf.download(
-            tickers,
-            period="3mo",
-            interval="1d",
-            group_by="ticker",
-            auto_adjust=True,
-            progress=False,
-            threads=True,
+            tickers, period="3mo", interval="1d",
+            group_by="ticker", auto_adjust=True, progress=False, threads=True,
         )
     except Exception as e:
-        print(f"[warn] daily download failed ({e}); TCAP will use weekly-only")
+        print(f"[warn] daily download failed ({e})")
+
+    # Fetch monthly data for W/M TCAP
+    monthly_panel = None
+    try:
+        print(f"[monthly] downloading {len(tickers)} tickers @ 1mo for W/M TCAP")
+        monthly_panel = yf.download(
+            tickers, period="5y", interval="1mo",
+            group_by="ticker", auto_adjust=True, progress=False, threads=True,
+        )
+    except Exception as e:
+        print(f"[warn] monthly download failed ({e})")
 
     rows: List[Dict] = []
     for t in tickers:
@@ -2317,7 +2404,6 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
         df = df.dropna()
         if len(df) < MIN_BARS[tf]:
             continue
-        # Extract daily data for this ticker
         d_df = None
         if daily_panel is not None:
             d_df = extract_ticker_df(daily_panel, t)
@@ -2325,6 +2411,13 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
                 d_df = d_df.dropna()
                 if len(d_df) < 30:
                     d_df = None
+        m_df = None
+        if monthly_panel is not None:
+            m_df = extract_ticker_df(monthly_panel, t)
+            if m_df is not None:
+                m_df = m_df.dropna()
+                if len(m_df) < 24:
+                    m_df = None
         try:
             row = score_candidate(
                 df, t,
@@ -2333,6 +2426,7 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
                 regime_df=regime_df,
                 spy_df=spy_df,
                 daily_df=d_df,
+                monthly_df=m_df,
             )
         except Exception as e:
             continue

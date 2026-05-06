@@ -189,10 +189,12 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
           np.where(bullish & (q_volratio <= 0.90), 1, 0))
 
     # === 11. MFI / CMF ZERO-CROSS (TCAP pattern) ===
+    tcap_wm = safe("tcap_wm").astype(bool)
     full_tcap = safe("full_tcap").astype(bool)
     mfi_x = safe("mfi_x").astype(bool)
     vol_spk_x = safe("vol_spk_x").astype(bool)
     cmf_impr = safe("cmf_impr").astype(bool)
+    ua += np.where(tcap_wm, 18, 0)  # W/M TCAP = biggest moves
     ua += np.where(full_tcap, 15,
           np.where(mfi_x & vol_spk_x, 10,
           np.where(mfi_x, 6,
@@ -251,6 +253,8 @@ def signal_summary(row) -> str:
         signals.append(dp)
     if row.get("h_bull", 0) >= 2:
         signals.append(f"HidBull×{row['h_bull']}")
+    if row.get("tcap_wm"):
+        signals.append("★TCAP_WM")
     if row.get("full_tcap"):
         signals.append("★TCAP")
     elif row.get("mfi_x"):
