@@ -670,6 +670,97 @@ def gap_test(df: pd.DataFrame) -> Dict:
     }
 
 
+def mfi_zero_cross(df: pd.DataFrame, mfi_period: int = 18,
+                   cmf_period: int = 20, lookback: int = 6) -> Dict:
+    """Detect MFI/CMF zero-cross setup (the TCAP pattern).
+
+    The setup: Chaikin Money Flow crosses from negative to positive
+    (institutional buying emerging), MFI crosses above 50 (centered = 0),
+    and volume spikes on the cross bar. On weekly bars this catches the
+    exact week where money flow inflects.
+
+    Components:
+      CMF crossing 0 from below in last `lookback` bars
+      MFI crossing above 50 in last `lookback` bars
+      CMF improving (current > recent average)
+      Volume spike (bar vol > 1.5x 20-bar average) on or near cross
+    """
+    n = len(df)
+    if n < max(mfi_period, cmf_period) + lookback + 5:
+        return {"mfi_cross": False, "cmf_cross": False, "mfi50_cross": False,
+                "cmf_now": 0.0, "cmf_improving": False, "vol_spike_cross": False,
+                "mfi_now": np.nan}
+
+    high = df["High"].astype(float)
+    low = df["Low"].astype(float)
+    close = df["Close"].astype(float)
+    vol = df["Volume"].astype(float)
+
+    # CMF (Chaikin Money Flow, oscillates -1 to +1)
+    hl = (high - low).replace(0, np.nan)
+    mfm = ((close - low) - (high - close)) / hl
+    mfv = mfm * vol
+    cmf = mfv.rolling(cmf_period).sum() / vol.rolling(cmf_period).sum()
+
+    # MFI (Money Flow Index, 0-100; crossing 50 = crossing centered-zero)
+    tp = (high + low + close) / 3.0
+    tp_diff = tp.diff()
+    raw_mf = tp * vol
+    pos_mf = (raw_mf.where(tp_diff > 0, 0)).rolling(mfi_period).sum()
+    neg_mf = (raw_mf.where(tp_diff < 0, 0)).rolling(mfi_period).sum()
+    mfi = 100.0 - (100.0 / (1.0 + pos_mf / neg_mf.replace(0, np.nan)))
+
+    # Detect zero-crosses in last N bars
+    window = min(lookback + 1, len(cmf))
+    cmf_vals = cmf.iloc[-window:].values
+    mfi_vals = mfi.iloc[-window:].values
+
+    cmf_cross_found = False
+    cmf_cross_idx = -1
+    for i in range(1, len(cmf_vals)):
+        if np.isfinite(cmf_vals[i - 1]) and np.isfinite(cmf_vals[i]):
+            if cmf_vals[i - 1] < 0 and cmf_vals[i] >= 0:
+                cmf_cross_found = True
+                cmf_cross_idx = n - window + i
+
+    mfi_cross_found = False
+    for i in range(1, len(mfi_vals)):
+        if np.isfinite(mfi_vals[i - 1]) and np.isfinite(mfi_vals[i]):
+            if mfi_vals[i - 1] < 50 and mfi_vals[i] >= 50:
+                mfi_cross_found = True
+
+    # CMF improving: current > average of last N bars AND > average of N bars before that
+    cmf_now = float(cmf.iloc[-1]) if np.isfinite(cmf.iloc[-1]) else 0.0
+    cmf_recent_avg = float(cmf.iloc[-lookback:].mean()) if cmf.iloc[-lookback:].notna().any() else 0.0
+    prior_start = max(0, n - lookback * 2)
+    prior_end = max(0, n - lookback)
+    cmf_prior_avg = float(cmf.iloc[prior_start:prior_end].mean()) if prior_end > prior_start else 0.0
+    cmf_improving = bool(cmf_now > cmf_recent_avg and cmf_recent_avg > cmf_prior_avg)
+
+    # Volume spike on cross bar or current bar
+    vol_avg = float(vol.rolling(20).mean().iloc[-1]) if n >= 20 else float(vol.mean())
+    vol_spike = False
+    if cmf_cross_idx >= 0 and cmf_cross_idx < n and vol_avg > 0:
+        vol_spike = float(vol.iloc[cmf_cross_idx]) > 1.5 * vol_avg
+    if not vol_spike and vol_avg > 0:
+        vol_spike = float(vol.iloc[-1]) > 1.5 * vol_avg
+
+    # Composite signal
+    signal = (cmf_cross_found or mfi_cross_found) and (cmf_improving or cmf_now > 0)
+
+    mfi_now = float(mfi.iloc[-1]) if np.isfinite(mfi.iloc[-1]) else np.nan
+
+    return {
+        "mfi_cross": bool(signal),
+        "cmf_cross": bool(cmf_cross_found),
+        "mfi50_cross": bool(mfi_cross_found),
+        "cmf_now": round(cmf_now, 3),
+        "cmf_improving": bool(cmf_improving),
+        "vol_spike_cross": bool(vol_spike),
+        "mfi_now": round(mfi_now, 1) if np.isfinite(mfi_now) else np.nan,
+    }
+
+
 def qullamaggie_setup(df: pd.DataFrame) -> Dict:
     """Qullamaggie-style breakout setup on the active timeframe.
 
@@ -1863,6 +1954,7 @@ def score_candidate(
     clx   = selling_climax(df)
     diss  = multi_leg_dissipation(legs)
     gpt   = gap_test(df)
+    mfi   = mfi_zero_cross(df)
     traj  = compute_rolling_ord_score(df, theta)
     rf    = rotation_factor(df)
     dp    = directional_performance(df)
@@ -1870,6 +1962,14 @@ def score_candidate(
     early = early_asym_score(df, rel, ov, spv, sq, asym, cause, q, rs)
     brk   = bracket_analysis(df)
     massive = massive_move_score(brk, sq, asym, rel, rs)
+
+    # MFI zero-cross boost (the TCAP pattern)
+    if mfi.get("mfi_cross") and mfi.get("vol_spike_cross"):
+        early["early_score"] = early.get("early_score", 0) + 5
+    elif mfi.get("mfi_cross"):
+        early["early_score"] = early.get("early_score", 0) + 3
+    elif mfi.get("cmf_improving") and mfi.get("cmf_now", 0) > -0.05:
+        early["early_score"] = early.get("early_score", 0) + 1
 
     # Trajectory boost to early_score (the key early-detection layer)
     if traj["ord_trajectory"] == "INFLECT_UP":
@@ -2038,6 +2138,13 @@ def score_candidate(
         "dp_sig": dp.get("dp_signal"),
         "dp_vol": dp.get("dp_vol"),
         "h_bull": hc.get("hidden_bull"),
+        # MFI / CMF zero-cross (TCAP pattern)
+        "mfi_x": mfi.get("mfi_cross"),
+        "cmf_x": mfi.get("cmf_cross"),
+        "cmf_now": mfi.get("cmf_now"),
+        "cmf_impr": mfi.get("cmf_improving"),
+        "vol_spk_x": mfi.get("vol_spike_cross"),
+        "mfi_now": mfi.get("mfi_now"),
         # Continuous Ord trajectory
         "ord_cont": traj.get("ord_cont"),
         "ord_vel": traj.get("ord_vel"),
