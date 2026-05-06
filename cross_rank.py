@@ -258,7 +258,7 @@ def signal_summary(row) -> str:
         signals.append("PROBE")
     if row.get("rng_exp_v"):
         signals.append("RNG_EXP")
-    return " ".join(signals[:8])
+    return " ".join(str(s) for s in signals[:8])
 
 
 def main():
