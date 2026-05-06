@@ -189,10 +189,14 @@ def compute_ultimate_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
           np.where(bullish & (q_volratio <= 0.90), 1, 0))
 
     # === 11. MFI / CMF ZERO-CROSS (TCAP pattern) ===
+    full_tcap = safe("full_tcap").astype(bool)
     mfi_x = safe("mfi_x").astype(bool)
     vol_spk_x = safe("vol_spk_x").astype(bool)
     cmf_impr = safe("cmf_impr").astype(bool)
-    ua += np.where(mfi_x & vol_spk_x, 10, np.where(mfi_x, 6, np.where(cmf_impr, 2, 0)))
+    ua += np.where(full_tcap, 15,
+          np.where(mfi_x & vol_spk_x, 10,
+          np.where(mfi_x, 6,
+          np.where(cmf_impr, 2, 0))))
 
     # === 12. ORD TRAJECTORY (early inflection detection) ===
     ord_early = safe("ord_early").astype(bool)
@@ -247,7 +251,9 @@ def signal_summary(row) -> str:
         signals.append(dp)
     if row.get("h_bull", 0) >= 2:
         signals.append(f"HidBull×{row['h_bull']}")
-    if row.get("mfi_x"):
+    if row.get("full_tcap"):
+        signals.append("★TCAP")
+    elif row.get("mfi_x"):
         vspk = "+VOL" if row.get("vol_spk_x") else ""
         signals.append(f"MFI_X{vspk}")
     if row.get("near_edge"):

@@ -670,74 +670,74 @@ def gap_test(df: pd.DataFrame) -> Dict:
     }
 
 
-def mfi_zero_cross(df: pd.DataFrame, mfi_period: int = 18,
-                   cmf_period: int = 20, lookback: int = 6) -> Dict:
-    """Detect MFI/CMF zero-cross setup (the TCAP pattern).
-
-    The setup: Chaikin Money Flow crosses from negative to positive
-    (institutional buying emerging), MFI crosses above 50 (centered = 0),
-    and volume spikes on the cross bar. On weekly bars this catches the
-    exact week where money flow inflects.
-
-    Components:
-      CMF crossing 0 from below in last `lookback` bars
-      MFI crossing above 50 in last `lookback` bars
-      CMF improving (current > recent average)
-      Volume spike (bar vol > 1.5x 20-bar average) on or near cross
-    """
-    n = len(df)
-    if n < max(mfi_period, cmf_period) + lookback + 5:
-        return {"mfi_cross": False, "cmf_cross": False, "mfi50_cross": False,
-                "cmf_now": 0.0, "cmf_improving": False, "vol_spike_cross": False,
-                "mfi_now": np.nan}
-
+def _compute_mfi_cmf(df: pd.DataFrame, mfi_period: int = 18,
+                     cmf_period: int = 20) -> tuple:
+    """Compute MFI and CMF series from an OHLCV DataFrame."""
     high = df["High"].astype(float)
     low = df["Low"].astype(float)
     close = df["Close"].astype(float)
     vol = df["Volume"].astype(float)
-
-    # CMF (Chaikin Money Flow, oscillates -1 to +1)
     hl = (high - low).replace(0, np.nan)
     mfm = ((close - low) - (high - close)) / hl
     mfv = mfm * vol
     cmf = mfv.rolling(cmf_period).sum() / vol.rolling(cmf_period).sum()
-
-    # MFI (Money Flow Index, 0-100; crossing 50 = crossing centered-zero)
     tp = (high + low + close) / 3.0
     tp_diff = tp.diff()
     raw_mf = tp * vol
     pos_mf = (raw_mf.where(tp_diff > 0, 0)).rolling(mfi_period).sum()
     neg_mf = (raw_mf.where(tp_diff < 0, 0)).rolling(mfi_period).sum()
     mfi = 100.0 - (100.0 / (1.0 + pos_mf / neg_mf.replace(0, np.nan)))
+    return mfi, cmf
 
-    # Detect zero-crosses in last N bars
-    window = min(lookback + 1, len(cmf))
-    cmf_vals = cmf.iloc[-window:].values
-    mfi_vals = mfi.iloc[-window:].values
 
-    cmf_cross_found = False
-    cmf_cross_idx = -1
-    for i in range(1, len(cmf_vals)):
-        if np.isfinite(cmf_vals[i - 1]) and np.isfinite(cmf_vals[i]):
-            if cmf_vals[i - 1] < 0 and cmf_vals[i] >= 0:
-                cmf_cross_found = True
-                cmf_cross_idx = n - window + i
+def _detect_zero_cross(series: pd.Series, threshold: float,
+                       lookback: int) -> tuple:
+    """Return (crossed, cross_idx) for series crossing above threshold."""
+    n = len(series)
+    window = min(lookback + 1, n)
+    vals = series.iloc[-window:].values
+    crossed, cross_idx = False, -1
+    for i in range(1, len(vals)):
+        if np.isfinite(vals[i - 1]) and np.isfinite(vals[i]):
+            if vals[i - 1] < threshold and vals[i] >= threshold:
+                crossed = True
+                cross_idx = n - window + i
+    return crossed, cross_idx
 
-    mfi_cross_found = False
-    for i in range(1, len(mfi_vals)):
-        if np.isfinite(mfi_vals[i - 1]) and np.isfinite(mfi_vals[i]):
-            if mfi_vals[i - 1] < 50 and mfi_vals[i] >= 50:
-                mfi_cross_found = True
 
-    # CMF improving: current > average of last N bars AND > average of N bars before that
-    cmf_now = float(cmf.iloc[-1]) if np.isfinite(cmf.iloc[-1]) else 0.0
-    cmf_recent_avg = float(cmf.iloc[-lookback:].mean()) if cmf.iloc[-lookback:].notna().any() else 0.0
-    prior_start = max(0, n - lookback * 2)
-    prior_end = max(0, n - lookback)
-    cmf_prior_avg = float(cmf.iloc[prior_start:prior_end].mean()) if prior_end > prior_start else 0.0
-    cmf_improving = bool(cmf_now > cmf_recent_avg and cmf_recent_avg > cmf_prior_avg)
+def mfi_zero_cross(weekly_df: pd.DataFrame,
+                   daily_df: Optional[pd.DataFrame] = None,
+                   mfi_period: int = 18, cmf_period: int = 20,
+                   weekly_lookback: int = 6, daily_lookback: int = 15) -> Dict:
+    """Detect the full TCAP pattern across daily + weekly timeframes.
 
-    # Volume spike on cross bar or current bar
+    The setup requires ALL three:
+      1. Daily MFI(18) crosses above 50 in last `daily_lookback` trading days
+      2. Weekly CMF near 0 and improving (current > recent avg > prior avg)
+      3. Volume spike on the weekly cross bar (vol > 1.5x 20-bar avg)
+
+    If daily_df is None, falls back to weekly-only detection.
+    """
+    n = len(weekly_df)
+    empty = {"mfi_cross": False, "cmf_cross": False, "mfi50_cross": False,
+             "cmf_now": 0.0, "cmf_improving": False, "vol_spike_cross": False,
+             "mfi_now": np.nan, "daily_mfi_x": False, "daily_mfi_now": np.nan,
+             "full_tcap": False}
+    if n < max(mfi_period, cmf_period) + weekly_lookback + 5:
+        return empty
+
+    vol = weekly_df["Volume"].astype(float)
+    w_mfi, w_cmf = _compute_mfi_cmf(weekly_df, mfi_period, cmf_period)
+
+    cmf_cross, cmf_cross_idx = _detect_zero_cross(w_cmf, 0.0, weekly_lookback)
+    mfi50_cross, _ = _detect_zero_cross(w_mfi, 50.0, weekly_lookback)
+
+    cmf_now = float(w_cmf.iloc[-1]) if np.isfinite(w_cmf.iloc[-1]) else 0.0
+    cmf_recent = float(w_cmf.iloc[-weekly_lookback:].mean()) if w_cmf.iloc[-weekly_lookback:].notna().any() else 0.0
+    ps, pe = max(0, n - weekly_lookback * 2), max(0, n - weekly_lookback)
+    cmf_prior = float(w_cmf.iloc[ps:pe].mean()) if pe > ps else 0.0
+    cmf_improving = bool(cmf_now > cmf_recent and cmf_recent > cmf_prior)
+
     vol_avg = float(vol.rolling(20).mean().iloc[-1]) if n >= 20 else float(vol.mean())
     vol_spike = False
     if cmf_cross_idx >= 0 and cmf_cross_idx < n and vol_avg > 0:
@@ -745,19 +745,31 @@ def mfi_zero_cross(df: pd.DataFrame, mfi_period: int = 18,
     if not vol_spike and vol_avg > 0:
         vol_spike = float(vol.iloc[-1]) > 1.5 * vol_avg
 
-    # Composite signal
-    signal = (cmf_cross_found or mfi_cross_found) and (cmf_improving or cmf_now > 0)
+    weekly_signal = (cmf_cross or mfi50_cross) and (cmf_improving or cmf_now > 0)
+    w_mfi_now = float(w_mfi.iloc[-1]) if np.isfinite(w_mfi.iloc[-1]) else np.nan
 
-    mfi_now = float(mfi.iloc[-1]) if np.isfinite(mfi.iloc[-1]) else np.nan
+    # Daily MFI cross (the timing trigger)
+    daily_mfi_x = False
+    daily_mfi_now = np.nan
+    if daily_df is not None and len(daily_df) >= mfi_period + daily_lookback + 5:
+        d_mfi, _ = _compute_mfi_cmf(daily_df, mfi_period, cmf_period)
+        daily_mfi_x, _ = _detect_zero_cross(d_mfi, 50.0, daily_lookback)
+        daily_mfi_now = float(d_mfi.iloc[-1]) if np.isfinite(d_mfi.iloc[-1]) else np.nan
+
+    # Full TCAP = daily cross + weekly near/improving + vol spike
+    full_tcap = bool(daily_mfi_x and (cmf_improving or cmf_now > -0.05) and vol_spike)
 
     return {
-        "mfi_cross": bool(signal),
-        "cmf_cross": bool(cmf_cross_found),
-        "mfi50_cross": bool(mfi_cross_found),
+        "mfi_cross": bool(full_tcap or weekly_signal),
+        "cmf_cross": bool(cmf_cross),
+        "mfi50_cross": bool(mfi50_cross),
         "cmf_now": round(cmf_now, 3),
         "cmf_improving": bool(cmf_improving),
         "vol_spike_cross": bool(vol_spike),
-        "mfi_now": round(mfi_now, 1) if np.isfinite(mfi_now) else np.nan,
+        "mfi_now": round(w_mfi_now, 1) if np.isfinite(w_mfi_now) else np.nan,
+        "daily_mfi_x": bool(daily_mfi_x),
+        "daily_mfi_now": round(daily_mfi_now, 1) if np.isfinite(daily_mfi_now) else np.nan,
+        "full_tcap": bool(full_tcap),
     }
 
 
@@ -1929,6 +1941,7 @@ def score_candidate(
     consol_tol: float,
     regime_df: Optional[pd.DataFrame] = None,
     spy_df: Optional[pd.DataFrame] = None,
+    daily_df: Optional[pd.DataFrame] = None,
 ) -> Optional[Dict]:
     df = df.dropna().copy()
     if len(df) < max(BB_LENGTH + 5, TREND_MA + 5):
@@ -1954,7 +1967,7 @@ def score_candidate(
     clx   = selling_climax(df)
     diss  = multi_leg_dissipation(legs)
     gpt   = gap_test(df)
-    mfi   = mfi_zero_cross(df)
+    mfi   = mfi_zero_cross(df, daily_df=daily_df)
     traj  = compute_rolling_ord_score(df, theta)
     rf    = rotation_factor(df)
     dp    = directional_performance(df)
@@ -1964,7 +1977,9 @@ def score_candidate(
     massive = massive_move_score(brk, sq, asym, rel, rs)
 
     # MFI zero-cross boost (the TCAP pattern)
-    if mfi.get("mfi_cross") and mfi.get("vol_spike_cross"):
+    if mfi.get("full_tcap"):
+        early["early_score"] = early.get("early_score", 0) + 7
+    elif mfi.get("mfi_cross") and mfi.get("vol_spike_cross"):
         early["early_score"] = early.get("early_score", 0) + 5
     elif mfi.get("mfi_cross"):
         early["early_score"] = early.get("early_score", 0) + 3
@@ -2145,6 +2160,9 @@ def score_candidate(
         "cmf_impr": mfi.get("cmf_improving"),
         "vol_spk_x": mfi.get("vol_spike_cross"),
         "mfi_now": mfi.get("mfi_now"),
+        "d_mfi_x": mfi.get("daily_mfi_x"),
+        "d_mfi_now": mfi.get("daily_mfi_now"),
+        "full_tcap": mfi.get("full_tcap"),
         # Continuous Ord trajectory
         "ord_cont": traj.get("ord_cont"),
         "ord_vel": traj.get("ord_vel"),
@@ -2212,6 +2230,22 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
     except Exception as e:
         print(f"[warn] SPY regime fetch failed ({e}); regime cols will be NaN")
 
+    # Fetch daily data for the TCAP daily MFI cross check
+    daily_panel = None
+    try:
+        print(f"[daily] downloading {len(tickers)} tickers @ 1d for MFI cross")
+        daily_panel = yf.download(
+            tickers,
+            period="3mo",
+            interval="1d",
+            group_by="ticker",
+            auto_adjust=True,
+            progress=False,
+            threads=True,
+        )
+    except Exception as e:
+        print(f"[warn] daily download failed ({e}); TCAP will use weekly-only")
+
     rows: List[Dict] = []
     for t in tickers:
         df = extract_ticker_df(panel, t)
@@ -2220,6 +2254,14 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
         df = df.dropna()
         if len(df) < MIN_BARS[tf]:
             continue
+        # Extract daily data for this ticker
+        d_df = None
+        if daily_panel is not None:
+            d_df = extract_ticker_df(daily_panel, t)
+            if d_df is not None:
+                d_df = d_df.dropna()
+                if len(d_df) < 30:
+                    d_df = None
         try:
             row = score_candidate(
                 df, t,
@@ -2227,9 +2269,9 @@ def scan(tickers: List[str], tf: str, benchmark: str = "SPY") -> pd.DataFrame:
                 consol_tol=CONSOL_TOL[tf],
                 regime_df=regime_df,
                 spy_df=spy_df,
+                daily_df=d_df,
             )
         except Exception as e:
-            # keep scanning on per-ticker errors
             continue
         if row is not None:
             rows.append(row)
