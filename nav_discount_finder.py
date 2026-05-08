@@ -50,6 +50,117 @@ TICKER_CONTEXT_WORDS = (
     "realiz", "scheme", "reconstruction", "continuation", "return of capital",
 )
 
+# Curated seed list of special-sits / discount-to-NAV / workout candidates.
+# Grouped by status so the screener has useful defaults even when news
+# extraction misses. Edit freely — the UI lets you override.
+KNOWN_CANDIDATES: dict[str, list[str]] = {
+    # Boards have committed to a managed wind-down / realisation: this is
+    # the bullseye cohort for the "accumulation before value crystallises"
+    # setup.
+    "managed_wind_down": [
+        "RSE.L",    # Riverstone Energy
+        "ADIG.L",   # abrdn Diversified Income & Growth
+        "DGI9.L",   # Digital 9 Infrastructure
+        "USF.L",    # US Solar Fund
+        "TENT.L",   # Triple Point Energy Transition
+        "HEIT.L",   # Harmony Energy Income Trust
+        "HGEN.L",   # HydrogenOne Capital Growth
+        "AEET.L",   # Aquila Energy Efficiency Trust
+        "AERI.L",   # Aquila European Renewables Income
+        "GSEO.L",   # VH Global Sustainable Energy Opps
+        "VSL.L",    # VPC Specialty Lending
+        "GABI.L",   # GCP Asset Backed Income
+        "RMII.L",   # RM Infrastructure Income
+        "API.L",    # abrdn Property Income
+        "RESI.L",   # Residential Secure Income
+        "SBO.L",    # Schroder British Opportunities
+        "SUPP.L",   # Schroders Capital Global Innovation (ex-Woodford)
+        "MPLS.L",   # Marble Point Loan Financing
+        "HOT.L",    # Henderson Opportunities Trust
+        "KPC.L",    # Keystone Positive Change (Saba-driven)
+        "AAS.L",    # abrdn Asia Focus
+    ],
+    # Strategic review, continuation vote, or active activist pressure
+    # — the next-tier cohort, often the first chart to set up before a
+    # wind-down decision is announced.
+    "strategic_review_or_activist": [
+        "CHRY.L",   # Chrysalis Investments — return-of-capital programme
+        "SSIT.L",   # Seraphim Space
+        "AUGM.L",   # Augmentum Fintech
+        "GROW.L",   # Molten Ventures
+        "HRI.L",    # Herald Investment Trust (Saba target)
+        "USA.L",    # Baillie Gifford US Growth (Saba target)
+        "CYN.L",    # CQS Natural Resources Growth & Income (Saba)
+        "ESCT.L",   # European Smaller Companies (Saba)
+        "EWI.L",    # Edinburgh Worldwide (Saba)
+        "BNKR.L",   # Bankers Investment Trust (Saba)
+        "TEM.L",    # Templeton Emerging Markets (Saba)
+        "HOME.L",   # Home REIT (workout, suspended)
+    ],
+    # Listed private-equity trusts on persistent wide discounts; classic
+    # setup territory when a buyback / realisation is announced.
+    "listed_private_equity": [
+        "HVPE.L",   # HarbourVest Global Private Equity
+        "NBPE.L",   # NB Private Equity Partners
+        "ICGT.L",   # ICG Enterprise Trust
+        "PIN.L",    # Pantheon International
+        "OCI.L",    # Oakley Capital Investments
+        "APAX.L",   # Apax Global Alpha
+        "CTPE.L",   # CT Private Equity Trust
+        "HGT.L",    # HgCapital Trust
+    ],
+    # Renewables / infrastructure discount cohort — sector-wide
+    # de-rating since 2022; many running buybacks, asset sales, or
+    # strategic reviews.
+    "renewables_infra_discount": [
+        "UKW.L",    # Greencoat UK Wind
+        "TRIG.L",   # Renewables Infrastructure Group
+        "FSFL.L",   # Foresight Solar Fund
+        "NESF.L",   # NextEnergy Solar Fund
+        "BSIF.L",   # Bluefield Solar Income
+        "JLEN.L",   # JLEN Environmental
+        "GRID.L",   # Gresham House Energy Storage
+        "FGEN.L",   # Foresight Environmental Infrastructure
+        "SEIT.L",   # SDCL Energy Efficiency Income
+        "HICL.L",   # HICL Infrastructure
+        "INPP.L",   # International Public Partnerships
+        "3IN.L",    # 3i Infrastructure
+        "PINT.L",   # Pantheon Infrastructure
+        "CORD.L",   # Cordiant Digital Infrastructure
+    ],
+    # Specialist credit / debt CEFs on workout-style discounts.
+    "specialist_credit": [
+        "BPCR.L",   # BioPharma Credit
+        "VTA.L",    # Volta Finance
+        "NCYF.L",   # CQS New City High Yield
+        "TFIF.L",   # TwentyFour Income
+        "SEQI.L",   # Sequoia Economic Infrastructure Income
+    ],
+    # REITs trading at workout-grade discounts.
+    "reit_workout": [
+        "SREI.L",   # Schroder REIT
+        "CREI.L",   # Custodian REIT
+        "RGL.L",    # Regional REIT
+        "AEWU.L",   # AEW UK REIT
+        "PCTN.L",   # Picton Property
+        "WHR.L",    # Warehouse REIT
+        "ESP.L",    # Empiric Student Property
+        "HLCL.L",   # Helical
+    ],
+}
+
+
+def all_known_candidates() -> list[str]:
+    seen: list[str] = []
+    out: list[str] = []
+    for group in KNOWN_CANDIDATES.values():
+        for sym in group:
+            if sym not in seen:
+                seen.append(sym)
+                out.append(sym)
+    return out
+
+
 # Patterns we trust to actually identify a ticker rather than an acronym.
 _TICKER_PATTERNS = [
     re.compile(r"\(\s*(?:LSE|LON|AIM)\s*[:\-]\s*([A-Z]{2,5})\s*\)"),
@@ -254,6 +365,13 @@ def render_nav_discount_finder() -> None:
         "Manually-added tickers (comma-separated, e.g. RSE.L, NBPE.L)",
         value="",
     )
+    seed_groups = st.multiselect(
+        "Seed candidate groups (curated UK CEF special-sits / workouts)",
+        options=list(KNOWN_CANDIDATES.keys()),
+        default=["managed_wind_down", "strategic_review_or_activist"],
+        help="Tickers from the chosen groups are screened even if news "
+             "extraction misses them.",
+    )
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -294,6 +412,9 @@ def render_nav_discount_finder() -> None:
     st.write(f"Retrieved {len(all_items)} news items.")
 
     ticker_to_news = _gather_candidates(all_items)
+    for group in seed_groups:
+        for sym in KNOWN_CANDIDATES.get(group, []):
+            ticker_to_news.setdefault(normalise_lse_ticker(sym), [])
     for raw in [t.strip() for t in extra_tickers.split(",") if t.strip()]:
         ticker_to_news.setdefault(normalise_lse_ticker(raw), [])
 
