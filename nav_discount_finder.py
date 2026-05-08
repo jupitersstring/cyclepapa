@@ -146,6 +146,64 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "WHR.L",    # Warehouse REIT
         "ESP.L",    # Empiric Student Property
         "HLCL.L",   # Helical
+        "PSDL.L",   # Phoenix Spree Deutschland
+        "RECI.L",   # Real Estate Credit Investments
+    ],
+    # Aircraft / shipping / leased-asset funds in distribution mode.
+    "leasing_realisation": [
+        "DNA2.L",   # Doric Nimrod Air Two
+        "DNA3.L",   # Doric Nimrod Air Three
+        "AA4.L",    # Amedeo Air Four Plus
+        "DPA.L",    # DP Aircraft I
+        "SHIP.L",   # Tufton Oceanic Assets
+        "TMI.L",    # Taylor Maritime Investments
+        "KKVL.L",   # KKV Secured Loan Fund
+    ],
+    # Healthcare / life-sciences CEFs on persistent discounts; several
+    # have run tender / return-of-capital programmes.
+    "healthcare_cefs": [
+        "BBH.L",    # BB Healthcare Trust
+        "IBT.L",    # International Biotechnology Trust
+        "WWH.L",    # Worldwide Healthcare
+        "BIOG.L",   # Biotech Growth Trust
+        "RTW.L",    # RTW Biotech Opportunities
+    ],
+    # Single-country / EM trusts where activism or strategic review is
+    # plausible.
+    "em_country_funds": [
+        "FCSS.L",   # Fidelity China Special Situations
+        "PHI.L",    # Pacific Horizon
+        "PAC.L",    # Pacific Assets
+        "VOF.L",    # VinaCapital Vietnam Opportunity
+        "VNH.L",    # VietNam Holding
+        "BRLA.L",   # BlackRock Latin American
+        "JEMI.L",   # JPMorgan Global Emerging Markets Income
+        "AAIF.L",   # abrdn Asian Income
+        "MYI.L",    # Murray International
+    ],
+    # UK small-cap and special-sits-mandated trusts (the screen looks
+    # natural here — they buy this kind of setup themselves).
+    "uk_smallcap_specialsits": [
+        "SEC.L",    # Strategic Equity Capital
+        "OIT.L",    # Odyssean Investment Trust
+        "ONWD.L",   # Onward Opportunities
+        "AGT.L",    # AVI Global
+        "AJOT.L",   # AVI Japan Opportunity
+        "RIII.L",   # Rights & Issues
+        "MNL.L",    # Manchester & London
+        "DIVI.L",   # Diverse Income Trust (Saba)
+        "CGL.L",    # Castelnau Group (Phoenix Asset Mgmt)
+    ],
+    # Global multi-asset / hedge-fund-style trusts on persistent wide
+    # discounts where buybacks / restructurings are the catalyst.
+    "global_multi_asset_discount": [
+        "PSH.L",    # Pershing Square Holdings
+        "TFG.L",    # Tetragon Financial Group
+        "TPOU.L",   # Third Point Investors
+        "BHMG.L",   # BH Macro
+        "NAS.L",    # North Atlantic Smaller Companies
+        "CLDN.L",   # Caledonia Investments
+        "RCP.L",    # RIT Capital Partners
     ],
 }
 
