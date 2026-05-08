@@ -137,6 +137,61 @@ CATALYST: dict[str, str] = {
     "ONWD.L": "STRUCTURAL_DISCOUNT",
     "OIT.L": "STRUCTURAL_DISCOUNT",
     "SEC.L": "STRUCTURAL_DISCOUNT",
+    # Australian LICs
+    "LSF.AX": "ACTIVIST_TARGET",         # Saba campaign
+    "WAM.AX": "STRUCTURAL_DISCOUNT",
+    "WLE.AX": "STRUCTURAL_DISCOUNT",
+    "WGB.AX": "STRUCTURAL_DISCOUNT",
+    "WAA.AX": "STRUCTURAL_DISCOUNT",
+    "TGF.AX": "STRATEGIC_REVIEW",         # discount-control / wind-up
+    "HM1.AX": "STRUCTURAL_DISCOUNT",
+    "MFF.AX": "STRUCTURAL_DISCOUNT",
+    "PIA.AX": "STRATEGIC_REVIEW",         # restructure history
+    "PE1.AX": "STRUCTURAL_DISCOUNT",
+    "NCC.AX": "STRUCTURAL_DISCOUNT",
+    "NSC.AX": "STRUCTURAL_DISCOUNT",
+    "GC1.AX": "STRUCTURAL_DISCOUNT",
+    "PL8.AX": "STRUCTURAL_DISCOUNT",
+    "OBL.AX": "STRUCTURAL_DISCOUNT",
+    "SOL.AX": "STRUCTURAL_DISCOUNT",
+    "AUI.AX": "STRUCTURAL_DISCOUNT",
+    "DUI.AX": "STRUCTURAL_DISCOUNT",
+    "WHF.AX": "STRUCTURAL_DISCOUNT",
+    "ARG.AX": "STRUCTURAL_DISCOUNT",
+    "AFI.AX": "STRUCTURAL_DISCOUNT",
+    # Canadian special sits
+    "POW.TO": "STRUCTURAL_DISCOUNT",
+    "ONEX.TO": "STRUCTURAL_DISCOUNT",
+    "BAM.TO": "STRUCTURAL_DISCOUNT",
+    "DGS.TO": "STRUCTURAL_DISCOUNT",
+    "FTN.TO": "STRUCTURAL_DISCOUNT",
+    "LBS.TO": "STRUCTURAL_DISCOUNT",
+    "BSP.TO": "STRUCTURAL_DISCOUNT",
+    "FFN.TO": "STRUCTURAL_DISCOUNT",
+    "LCS.TO": "STRUCTURAL_DISCOUNT",
+    # US sum-of-parts / conglomerate
+    "IAC": "STRUCTURAL_DISCOUNT",
+    "L": "STRUCTURAL_DISCOUNT",
+    "FWONK": "STRUCTURAL_DISCOUNT",
+    "BATRA": "STRUCTURAL_DISCOUNT",
+    "LBRDK": "STRUCTURAL_DISCOUNT",
+    "LILA": "STRUCTURAL_DISCOUNT",
+    "MSGS": "STRUCTURAL_DISCOUNT",
+    "MSGE": "STRUCTURAL_DISCOUNT",
+    "LGF.A": "STRUCTURAL_DISCOUNT",
+    # Swiss / EU specialist
+    "BION.SW": "STRUCTURAL_DISCOUNT",
+    "HBMN.SW": "STRUCTURAL_DISCOUNT",
+    # UK extras 2
+    "MIGO.L": "STRUCTURAL_DISCOUNT",
+    "ARR.L": "STRUCTURAL_DISCOUNT",
+    "JAM.L": "STRUCTURAL_DISCOUNT",
+    "MUT.L": "STRUCTURAL_DISCOUNT",
+    "LWDB.L": "STRUCTURAL_DISCOUNT",
+    "BIPS.L": "STRUCTURAL_DISCOUNT",
+    "FAIR.L": "STRUCTURAL_DISCOUNT",
+    "SDP.L": "STRATEGIC_REVIEW",          # merger candidate
+    "ATR.L": "STRATEGIC_REVIEW",          # merger candidate
 }
 
 # NAV reliability — listed-asset trusts have observable NAV; private/
@@ -186,6 +241,39 @@ NAV_QUALITY: dict[str, str] = {
     ]},
     # Distressed / unreliable
     **{t: "DISTRESSED" for t in ["HOME.L", "ADIG.L", "AAS.L", "KKVL.L"]},
+    # New universe additions
+    **{t: "LISTED_CLEAN" for t in [
+        # Australian LICs (mostly listed equity portfolios)
+        "LSF.AX", "WAM.AX", "WLE.AX", "WGB.AX", "WAA.AX", "HM1.AX",
+        "MFF.AX", "PIA.AX", "NCC.AX", "NSC.AX", "GC1.AX", "PL8.AX",
+        "AUI.AX", "DUI.AX", "WHF.AX", "ARG.AX", "AFI.AX",
+        # UK extras 2 (listed-equity trusts)
+        "MIGO.L", "ARR.L", "JAM.L", "MUT.L", "LWDB.L", "BIPS.L",
+        "SDP.L", "ATR.L",
+        # Swiss specialist (listed biotech/healthcare)
+        "BION.SW", "HBMN.SW",
+        # US conglomerate (listed subsidiary stubs)
+        "FWONK", "BATRA", "LBRDK", "LILA", "MSGS", "MSGE", "LGF.A",
+    ]},
+    **{t: "REAL_ASSET_OBSERVABLE" for t in [
+        "TGF.AX",  # Tribeca Natural Resources
+    ]},
+    **{t: "PRIVATE_EQUITY" for t in [
+        "PE1.AX",       # Pengana Private Equity
+        "ONEX.TO",      # Onex
+        "BAM.TO",       # Brookfield AM
+        "POW.TO",       # Power Corp (mixed listed/private)
+        "SOL.AX",       # Soul Patts (mixed listed/private)
+        "OBL.AX",       # Omni Bridgeway (litigation, model-driven)
+        "FAIR.L",       # Fair Oaks (CLO equity, model)
+    ]},
+    # Canadian split corps — debt-amortising-ish capital structure
+    **{t: "DEBT_AMORTISING" for t in [
+        "DGS.TO", "FTN.TO", "LBS.TO", "BSP.TO", "FFN.TO", "LCS.TO",
+    ]},
+    # IAC and Loews — sum-of-parts of mostly-listed subsidiaries
+    "IAC": "LISTED_CLEAN",
+    "L": "LISTED_CLEAN",
 }
 
 

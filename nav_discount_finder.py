@@ -319,6 +319,79 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "PRX.AS",       # Prosus (Tencent stub)
         "NPN.JO",       # Naspers (Tencent stub)
     ],
+    # Australian listed investment companies (LICs) — large activist
+    # ecosystem (WAM family, Sandon, Pengana, Saba). Persistent NAV
+    # discounts; many continuation / wind-up campaigns.
+    "australian_lics": [
+        "LSF.AX",       # L1 Capital (Saba target)
+        "WAM.AX",       # WAM Capital
+        "WLE.AX",       # WAM Leaders
+        "WGB.AX",       # WAM Global
+        "WAA.AX",       # WAM Active
+        "TGF.AX",       # Tribeca Global Natural Resources
+        "HM1.AX",       # Hearts & Minds Investments
+        "MFF.AX",       # MFF Capital Investments
+        "PIA.AX",       # Pengana International Equities
+        "PE1.AX",       # Pengana Private Equity
+        "NCC.AX",       # NAOS Emerging Opportunities
+        "NSC.AX",       # NAOS Small Cap Opportunities
+        "GC1.AX",       # Glennon Small Companies
+        "PL8.AX",       # Plato Income Maximiser
+        "OBL.AX",       # Omni Bridgeway (litigation finance, separate setup)
+        "SOL.AX",       # Washington H. Soul Pattinson (holdco)
+        "AUI.AX",       # Australian United Investment
+        "DUI.AX",       # Diversified United Investment
+        "WHF.AX",       # Whitefield (banks LIC)
+        "ARG.AX",       # Argo Investments
+        "AFI.AX",       # Australian Foundation Investment
+    ],
+    # Canadian special situations — listed holding companies and
+    # split-share corporations (split corps trade at structural NAV
+    # discounts).
+    "canadian_special_sits": [
+        "POW.TO",       # Power Corp of Canada (sum-of-parts)
+        "ONEX.TO",      # Onex Corp (PE GP at discount)
+        "BAM.TO",       # Brookfield Asset Management
+        "DGS.TO",       # Dividend Growth Split Corp
+        "FTN.TO",       # Financial 15 Split Corp
+        "LBS.TO",       # Life & Banc Split Corp
+        "BSP.TO",       # Brompton Split Banc Corp
+        "FFN.TO",       # NA Financial 15 Split Corp
+        "LCS.TO",       # Brompton Lifeco Split Corp
+    ],
+    # US sum-of-parts / conglomerate discount — IAC, Liberty trackers,
+    # Loews, MSG group. Structurally trade below sum-of-parts of
+    # listed subsidiaries / NAV.
+    "us_conglomerate_discount": [
+        "IAC",          # IAC Inc (Match/Vimeo/MGM/Angi stub)
+        "L",            # Loews Corp (CNA/Diamond Offshore/Boardwalk)
+        "FWONK",        # Liberty Media F1 (Class K)
+        "BATRA",        # Liberty Braves (Class A)
+        "LBRDK",        # Liberty Broadband (Charter stub)
+        "LILA",         # Liberty Latin America
+        "MSGS",         # Madison Square Garden Sports
+        "MSGE",         # Madison Square Garden Entertainment
+        "LGF.A",        # Lions Gate Entertainment
+    ],
+    # Swiss-listed / EU specialist CEFs — biotech / healthcare names
+    # that don't fit the UK basket but have similar discount mechanics.
+    "swiss_eu_specialist": [
+        "BION.SW",      # BB Biotech (large biotech CEF)
+        "HBMN.SW",      # HBM Healthcare Investments
+    ],
+    # UK names missed previously — small but live discount or
+    # mandate-driven situations.
+    "uk_extras_2": [
+        "MIGO.L",       # MIGO Opportunities (fund of trusts at discount)
+        "ARR.L",        # Aurora Investment Trust (Phoenix Asset Mgmt)
+        "JAM.L",        # JPMorgan American
+        "MUT.L",        # Murray Income
+        "LWDB.L",       # Law Debenture
+        "BIPS.L",       # BlackRock Income & Growth (or similar)
+        "FAIR.L",       # Fair Oaks Income
+        "SDP.L",        # Schroder AsiaPacific
+        "ATR.L",        # Asia Total Return (merger candidate)
+    ],
 }
 
 
