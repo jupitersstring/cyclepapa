@@ -77,10 +77,15 @@ def collect_universe() -> list[str]:
                         out.add(tk.upper())
         except Exception:
             pass
-    # Also include curated wind-down trust universe
+    # Also include curated wind-down trust universe + broader roster
     try:
         from wind_down_trusts import WIND_DOWN_UNIVERSE
         out.update(WIND_DOWN_UNIVERSE.keys())
+    except Exception:
+        pass
+    try:
+        from broader_universe import fresh_universe
+        out.update(fresh_universe())
     except Exception:
         pass
     return sorted(out)
