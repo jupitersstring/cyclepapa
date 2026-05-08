@@ -205,6 +205,120 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "CLDN.L",   # Caledonia Investments
         "RCP.L",    # RIT Capital Partners
     ],
+    # Additional UK trusts: 2024–26 wind-downs, strategic reviews, and
+    # commodity / sector specialists.
+    "uk_extras": [
+        "GCP.L",    # GCP Infrastructure Investments
+        "GRIO.L",   # Ground Rents Income Fund (wind-down)
+        "SOHO.L",   # Triple Point Social Housing
+        "ANII.L",   # abrdn New India
+        "ASCI.L",   # abrdn Smaller Companies Income
+        "AUSC.L",   # abrdn UK Smaller Companies Growth
+        "JAGI.L",   # JPMorgan Asia Growth & Income
+        "JEDT.L",   # JPMorgan European Discovery
+        "JMG.L",    # JPMorgan Emerging Markets
+        "FEML.L",   # Fidelity Emerging Markets
+        "BRFI.L",   # BlackRock Frontiers
+        "MMIT.L",   # Mobius Investment Trust
+        "HFEL.L",   # Henderson Far East Income
+        "HHI.L",    # Henderson High Income
+        "SCF.L",    # Schroder Income Growth
+        "LWI.L",    # Lowland Investment
+        "BRSC.L",   # BlackRock Smaller Companies
+        "THRG.L",   # BlackRock Throgmorton
+        "BERI.L",   # BlackRock Energy & Resources
+        "BRWM.L",   # BlackRock World Mining
+        "HSL.L",    # Henderson Smaller Companies
+        "BUT.L",    # Brunner Investment Trust
+        "SCP.L",    # Schroder UK Mid Cap
+        "MRC.L",    # Mercantile Investment Trust
+        "SSON.L",   # Smithson Investment Trust
+        "ASL.L",    # Aberforth Smaller Companies
+        "AGVI.L",   # Aberforth Geared Value & Income
+        "GCL.L",    # Geiger Counter (uranium)
+        "GPM.L",    # Golden Prospect Precious Metals
+        "BGFD.L",   # Baillie Gifford Japan
+        "JFJ.L",    # JPMorgan Japanese
+    ],
+    # US closed-end funds with persistent NAV discounts and / or active
+    # activist (Saba, Bulldog, Karpus) campaigns.
+    "us_cef_discount": [
+        "BRW",      # Saba Capital Income & Opportunities
+        "BIF",      # Boulder Growth & Income
+        "GAM",      # General American Investors
+        "CET",      # Central Securities
+        "ADX",      # Adams Diversified Equity
+        "PEO",      # Adams Natural Resources
+        "TY",       # Tri-Continental
+        "SOR",      # Source Capital
+        "FUND",     # Sprott Focus Trust (ex-Royce)
+        "RVT",      # Royce Value Trust
+        "RMT",      # Royce Micro-Cap Trust
+        "RGT",      # Royce Global Value Trust
+        "GAB",      # Gabelli Equity Trust
+        "GDV",      # Gabelli Dividend & Income
+        "GUT",      # Gabelli Utility Trust
+        "BST",      # BlackRock Science & Tech
+        "BUI",      # BlackRock Utilities & Infrastructure
+        "BME",      # BlackRock Health Sciences
+        "BTO",      # John Hancock Financial Opps
+        "ECC",      # Eagle Point Credit
+        "EIC",      # Eagle Point Income
+        "OXLC",     # Oxford Lane Capital
+        "ASA",      # ASA Gold and Precious Metals
+        "GGT",      # Gabelli Multimedia
+        "MIN",      # MFS Intermediate Income
+        "ASGI",     # abrdn Global Infrastructure Income
+        "AOD",      # abrdn Total Dynamic Dividend
+        "AWP",      # abrdn Global Premier Properties
+        "FOF",      # Cohen & Steers Closed-End Opportunity
+        "JLS",      # Nuveen Mortgage & Income
+        "JMM",      # Nuveen Multi-Market Income
+        "ETW",      # Eaton Vance Tax-Managed Global Buy-Write
+        "ETV",      # Eaton Vance Tax-Managed Buy-Write Opps
+        "EOI",      # Eaton Vance Enhanced Equity Income
+    ],
+    # Externally-managed US BDCs with persistent book-value discounts
+    # — common targets for restructurings, internalisations or
+    # activist pressure.
+    "us_bdc_discount": [
+        "BKCC",     # BlackRock Capital Investment
+        "PSEC",     # Prospect Capital
+        "PFLT",     # PennantPark Floating Rate
+        "PNNT",     # PennantPark Investment
+        "GLAD",     # Gladstone Investment
+        "GAIN",     # Gladstone Investment
+        "OFS",      # OFS Capital
+        "PTMN",     # Portman Ridge Finance
+        "LRFC",     # Logan Ridge Finance
+        "MFIC",     # MidCap Financial Investment (ex-Apollo)
+        "BBDC",     # Barings BDC
+        "CGBD",     # Carlyle Secured Lending
+        "GBDC",     # Golub Capital BDC
+        "SCM",      # Stellus Capital
+        "SAR",      # Saratoga Investment
+        "RAND",     # Rand Capital
+    ],
+    # Listed European holding companies; structurally trade at large
+    # discounts to NAV with periodic buyback / simplification catalysts.
+    "european_holding_co": [
+        "SOF.BR",       # Sofina
+        "GBLB.BR",      # Groupe Bruxelles Lambert
+        "ACKB.BR",      # Ackermans & van Haaren
+        "MF.PA",        # Wendel
+        "RF.PA",        # Eurazeo
+        "BOL.PA",       # Bolloré
+        "INDU-C.ST",    # Industrivärden
+        "INVE-B.ST",    # Investor AB
+        "KINV-B.ST",    # Kinnevik
+        "LATO-B.ST",    # Latour
+        "LUND-B.ST",    # Lundbergföretagen
+        "AKER.OL",      # Aker
+        "BONHR.OL",     # Bonheur
+        "EXO.AS",       # Exor (Amsterdam-listed)
+        "PRX.AS",       # Prosus (Tencent stub)
+        "NPN.JO",       # Naspers (Tencent stub)
+    ],
 }
 
 
@@ -472,7 +586,9 @@ def render_nav_discount_finder() -> None:
     ticker_to_news = _gather_candidates(all_items)
     for group in seed_groups:
         for sym in KNOWN_CANDIDATES.get(group, []):
-            ticker_to_news.setdefault(normalise_lse_ticker(sym), [])
+            # Seeds are pre-formatted with the right Yahoo suffix
+            # (UK .L, EU .PA/.BR/.ST etc., US bare). Don't force .L.
+            ticker_to_news.setdefault(sym.upper(), [])
     for raw in [t.strip() for t in extra_tickers.split(",") if t.strip()]:
         ticker_to_news.setdefault(normalise_lse_ticker(raw), [])
 
