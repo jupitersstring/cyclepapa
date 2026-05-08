@@ -1,0 +1,51 @@
+rank,ticker,last_close,vol_spike,max_4w_spike,pos_in_6m_range,above_low_pct,volatility_13w,mfi,wind_down,accumulation_score,reasons,low_6m,high_6m,last_volume,avg_baseline_vol
+1,VEEV,168.25,5.54,5.54,0.131,13.6,0.063,72.3,False,85,vol spike 5.5x baseline | near 6m low (13% of range) | MFI green (72),148.05,302.17,52239490,9435913
+2,ALGS,6.03,1.84,24.58,0.028,3.8,0.09,50.2,False,80,vol spike 24.6x baseline | near 6m low (3% of range),5.81,13.689,526638,286859
+3,GOVX,1.76,7.22,8.34,0.066,82.8,0.164,71.4,False,80,vol spike 8.3x baseline | near 6m low (7% of range) | MFI green (71),0.963,13.0,4068555,563754
+4,MAMO,0.9949,0.16,24.04,0.031,17.0,0.078,50.0,False,80,vol spike 24.0x baseline | near 6m low (3% of range),0.85,5.59,408139,2615790
+5,TRDA,6.85,8.91,8.91,0.104,19.5,0.158,79.3,False,80,vol spike 8.9x baseline | near 6m low (10% of range) | MFI green (79),5.73,16.45,9473961,1063627
+6,APUS,1.45,92.14,92.14,0.002,5.5,0.9,80.0,False,75,vol spike 92.1x baseline | near 6m low (0% of range) | MFI green (80),1.375,40.31,7190687,78044
+7,CAPS,0.38,0.94,85.52,0.025,5.6,0.2,50.0,False,75,vol spike 85.5x baseline | near 6m low (2% of range),0.36,1.16,1178818,1259731
+8,EWSB,9.28,3.09,5.53,0.284,4.3,0.034,53.2,False,75,vol spike 5.5x baseline | low-third of 6m range (28%) | flat base (vol 3.4%),8.9,10.24,1400,452
+9,KVYO,15.77,4.03,4.03,0.025,3.0,0.093,65.8,False,75,vol spike 4.0x baseline | near 6m low (2% of range) | MFI green (66),15.31,33.355,68781455,17063445
+10,NSPR,1.16,10.59,32.81,0.117,13.7,0.164,57.5,False,75,vol spike 32.8x baseline | near 6m low (12% of range),1.02,2.22,3043364,287500
+11,VITL,9.52,5.04,5.04,0.04,13.3,0.356,62.6,False,75,vol spike 5.0x baseline | near 6m low (4% of range) | MFI green (63),8.4,36.095,51067457,10129963
+12,ZTS,87.31,3.11,3.11,0.042,2.3,0.091,64.6,False,75,vol spike 3.1x baseline | near 6m low (4% of range) | MFI green (65),85.31,132.49,69543080,22373327
+13,ATEC,7.75,4.51,4.51,0.055,13.1,0.135,63.9,False,70,vol spike 4.5x baseline | near 6m low (6% of range) | MFI green (64),6.85,23.29,56910201,12628045
+14,BIRD,6.22,5.98,724.63,0.184,189.3,0.583,50.1,False,70,vol spike 724.6x baseline | near 6m low (18% of range),2.15,24.31,2801426,468163
+15,CMPX,1.81,4.84,23.71,0.038,12.4,0.287,50.9,False,70,vol spike 23.7x baseline | near 6m low (4% of range),1.61,6.88,50132282,10354713
+16,DWTX,1.56,3.06,5.21,0.049,21.9,0.293,52.0,False,70,vol spike 5.2x baseline | near 6m low (5% of range),1.28,7.044,756671,247209
+17,ENZND,6.1089,1.5,8.74,0.069,22.2,0.237,51.0,False,70,vol spike 8.7x baseline | near 6m low (7% of range),5.0,20.9699,2343,1565
+18,ERII,9.43,3.27,3.27,0.019,1.4,0.193,66.6,False,70,vol spike 3.3x baseline | near 6m low (2% of range) | MFI green (67),9.3,16.3,9148074,2798813
+19,FLYYQ,0.17,24.21,50.74,0.046,183.3,0.95,51.5,False,70,vol spike 50.7x baseline | near 6m low (5% of range),0.06,2.45,22406257,925609
+20,GFL.TO,50.79,2.24,4.58,0.09,3.0,0.063,55.9,False,70,vol spike 4.6x baseline | near 6m low (9% of range),49.32,65.7,4088688,1828645
+21,KITW.L,2.94,0.79,6.05,0.0,0.0,0.337,50.2,False,70,vol spike 6.0x baseline | near 6m low (0% of range),2.94,300.0,2157397,2736237
+22,LAB,1.0,1.09,3.07,0.153,14.9,0.092,52.7,False,70,vol spike 3.1x baseline | near 6m low (15% of range),0.87,1.72,9669666,8896277
+23,LMB,74.13,3.42,3.42,0.181,13.9,0.108,72.5,False,70,vol spike 3.4x baseline | near 6m low (18% of range) | MFI green (72),65.08,114.95,2821752,824459
+24,PMI,0.2209,7.67,7.67,0.01,22.7,0.355,52.9,False,70,vol spike 7.7x baseline | near 6m low (1% of range),0.18,4.16,36191613,4716127
+25,PRTHU,5.0,22.0,22.0,0.5,0.0,0.0,100.0,False,70,vol spike 22.0x baseline | flat base (vol 0.0%) | MFI green (100),5.0,5.0,100,4
+26,QS,7.35,1.25,3.18,0.124,24.6,0.064,50.6,False,70,vol spike 3.2x baseline | near 6m low (12% of range),5.9,17.58,90096582,72277590
+27,QVCGB,0.51,0.0,27.7,0.0,0.0,0.651,50.0,False,70,vol spike 27.7x baseline | near 6m low (0% of range),0.51,25.0,0,33
+28,SDSYA,6.86,4.53,4.53,0.004,0.1,0.051,56.6,False,70,vol spike 4.5x baseline | near 6m low (0% of range),6.85,9.5,89500,19750
+29,SHAK,69.24,4.81,4.81,0.051,3.0,0.103,72.2,False,70,vol spike 4.8x baseline | near 6m low (5% of range) | MFI green (72),67.205,107.46,33724196,7005454
+30,SNES,1.97,9.19,9.19,0.255,39.7,0.152,72.2,False,70,vol spike 9.2x baseline | low-third of 6m range (26%) | MFI green (72),1.41,3.609,2479695,269690
+31,SNYR,0.3956,46.66,531.39,0.045,32.3,0.489,51.0,False,70,vol spike 531.4x baseline | near 6m low (4% of range),0.299,2.445,6749106,144654
+32,VREOF,0.4108,1.61,3.47,0.167,18.0,0.085,51.8,False,70,vol spike 3.5x baseline | near 6m low (17% of range),0.348,0.725,1398225,867836
+33,XXII,0.7117,71.68,457.89,0.002,5.9,0.555,51.6,False,70,vol spike 457.9x baseline | near 6m low (0% of range),0.6718,20.175,9822540,137026
+34,ADTX,0.1166,5.95,14.7,0.0,16.6,0.989,49.9,False,65,vol spike 14.7x baseline | near 6m low (0% of range),0.1,51.36,12554177,2108903
+35,ATRA,9.93,109.94,109.94,0.395,153.3,0.275,97.5,False,65,vol spike 109.9x baseline | low-third of 6m range (40%) | MFI green (98),3.92,19.145,152105549,1383563
+36,CICB,24.96,0.86,24.15,0.404,2.3,0.01,50.0,False,65,vol spike 24.1x baseline | flat base (vol 1.0%),24.41,25.77,40728,47618
+37,CRST.L,74.585,2.93,16.41,0.132,25.1,0.297,48.2,False,65,vol spike 16.4x baseline | near 6m low (13% of range),59.6,173.0,12972814,4426595
+38,DOO.TO,76.11,2.15,4.56,0.199,13.4,0.138,52.5,False,65,vol spike 4.6x baseline | near 6m low (20% of range),67.11,112.26,2196249,1022181
+39,DRCT,4.75,0.61,5.1,0.029,118.9,0.29,43.3,False,65,vol spike 5.1x baseline | near 6m low (3% of range),2.17,92.4,1250865,2058455
+40,ESNT.L,84.6,0.37,3.08,0.163,6.1,0.096,46.3,False,65,vol spike 3.1x baseline | near 6m low (16% of range),79.7,109.8,1641505,4412747
+41,GEHC,61.34,1.65,3.29,0.083,4.4,0.101,54.6,False,65,vol spike 3.3x baseline | near 6m low (8% of range),58.75,89.77,28024620,16981818
+42,GNPX,0.865,0.69,5.09,0.001,0.5,0.287,41.0,False,65,vol spike 5.1x baseline | near 6m low (0% of range),0.861,5.0,2387344,3480759
+43,GNVR,0.5,20.35,20.35,0.245,3471.4,0.227,72.3,False,65,vol spike 20.4x baseline | low-third of 6m range (24%) | MFI green (72),0.014,2.0,58344,2866
+44,GPGI,12.94,3.09,3.09,0.06,7.2,0.188,58.1,False,65,vol spike 3.1x baseline | near 6m low (6% of range),12.07,26.5,40523578,13121622
+45,ICFI,74.5,2.67,3.34,0.302,15.8,0.078,66.5,False,65,vol spike 3.3x baseline | low-third of 6m range (30%) | MFI green (66),64.34,98.03,2533703,947350
+46,IDYA,28.24,1.0,4.28,0.036,1.5,0.059,49.4,False,65,vol spike 4.3x baseline | near 6m low (4% of range),27.83,39.28,4431251,4410609
+47,JAGX,2.98,4.55,4.55,0.007,17.8,0.457,60.7,False,65,vol spike 4.5x baseline | near 6m low (1% of range) | MFI green (61),2.53,69.3,1471750,323177
+48,LCID,6.05,2.72,4.5,0.035,7.7,0.184,53.9,False,65,vol spike 4.5x baseline | near 6m low (4% of range),5.62,17.8,95748460,35158595
+49,LRHC,1.8,3.78,13.54,0.0,6.5,0.602,39.1,False,65,vol spike 13.5x baseline | near 6m low (0% of range),1.69,470.0,3492173,924932
+50,MAB1.L,531.0,1.31,3.72,0.107,6.9,0.105,51.2,False,65,vol spike 3.7x baseline | near 6m low (11% of range),496.5,818.0,1455151,1107097
