@@ -153,6 +153,10 @@ def main() -> int:
                    help="Only keep names with at least one plausible hurdle.")
     p.add_argument("--csv", default="bullish_psu.csv")
     p.add_argument("--region", choices=["US", "UK", "INTL", "ALL"], default="ALL")
+    p.add_argument("--min-mcap-musd", type=float, default=0.0,
+                   help="Minimum market cap in $M (0 = no floor).")
+    p.add_argument("--max-mcap-musd", type=float, default=None,
+                   help="Maximum market cap in $M (None = no cap).")
     args = p.parse_args()
 
     rows_raw = load_all()
@@ -172,6 +176,13 @@ def main() -> int:
         if args.region == "US" and not is_us: continue
         if args.region == "UK" and not is_uk: continue
         if args.region == "INTL" and not is_intl: continue
+
+        # Size band filter
+        mc_musd = (r.get("market_cap") or 0) / 1e6
+        if args.min_mcap_musd and mc_musd < args.min_mcap_musd:
+            continue
+        if args.max_mcap_musd and mc_musd > 0 and mc_musd > args.max_mcap_musd:
+            continue
 
         u, u_reasons = ungameable_score(r)
         t, t_reasons = triangulation_axes(r)
