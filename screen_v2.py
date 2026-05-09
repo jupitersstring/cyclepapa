@@ -192,6 +192,41 @@ CATALYST: dict[str, str] = {
     "FAIR.L": "STRUCTURAL_DISCOUNT",
     "SDP.L": "STRATEGIC_REVIEW",          # merger candidate
     "ATR.L": "STRATEGIC_REVIEW",          # merger candidate
+    "NAVF.L": "ACTIVIST_TARGET",          # itself runs activist mandate
+    # Listed PE GP at discount
+    "BPT.L": "STRUCTURAL_DISCOUNT",
+    "EQT.ST": "STRUCTURAL_DISCOUNT",
+    "PGHN.SW": "STRUCTURAL_DISCOUNT",
+    "CVC.AS": "STRUCTURAL_DISCOUNT",
+    # Korean chaebol holdcos
+    "003550.KS": "STRUCTURAL_DISCOUNT",   # LG Corp
+    "028260.KS": "STRUCTURAL_DISCOUNT",   # Samsung C&T
+    "005380.KS": "STRUCTURAL_DISCOUNT",   # Hyundai Motor
+    "005490.KS": "STRUCTURAL_DISCOUNT",   # POSCO Holdings
+    # Japanese trading houses / SoftBank
+    "8001.T": "STRUCTURAL_DISCOUNT",
+    "8053.T": "STRUCTURAL_DISCOUNT",
+    "8002.T": "STRUCTURAL_DISCOUNT",
+    "9101.T": "STRUCTURAL_DISCOUNT",
+    "9984.T": "STRUCTURAL_DISCOUNT",
+    # European extras
+    "HEIO.AS": "STRUCTURAL_DISCOUNT",
+    "ITM.MI": "STRUCTURAL_DISCOUNT",
+    "CIR.MI": "STRUCTURAL_DISCOUNT",
+}
+
+# Catalyst-implied discount-narrowing rule of thumb. These are
+# illustrative averages — actual narrowing depends on starting
+# discount (which the screener doesn't know) and execution. Used
+# as a proxy when ranking "greatest upside".
+CATALYST_IMPLIED_UPSIDE: dict[str, float] = {
+    "WIND_DOWN_COMMITTED": 0.20,
+    "WIND_DOWN_LIKELY": 0.18,
+    "RETURN_OF_CAPITAL_LIVE": 0.15,
+    "STRATEGIC_REVIEW": 0.15,
+    "ACTIVIST_TARGET": 0.15,
+    "STRUCTURAL_DISCOUNT": 0.08,
+    "DISTRESSED": 0.05,  # high variance, mostly skip
 }
 
 # NAV reliability — listed-asset trusts have observable NAV; private/
@@ -304,6 +339,12 @@ class ScreenResult:
     catalyst: str | None = None
     nav_quality: str | None = None
     score: float = 0.0
+    # Upside metrics
+    room_to_base_high_pct: float | None = None  # (base_high - close)/close
+    room_to_5y_high_pct: float | None = None    # (5y_high - close)/close
+    catalyst_upside_est: float | None = None    # rule-of-thumb % from CATALYST_IMPLIED_UPSIDE
+    upside_combined: float | None = None        # max of catalyst and room_to_base_high
+    value_score: float = 0.0                    # score * (1 + upside_combined)
 
 
 def detect_base(df: pd.DataFrame, max_lookback: int = 208,
@@ -471,7 +512,20 @@ def screen_one(ticker: str, *, max_lookback: int = 208,
         res.mfi = float(mfi_series.iloc[-1])
         res.mfi_rising = float(mfi_series.iloc[-1]) > float(mfi_series.iloc[-2])
 
+    # Upside metrics
+    if res.last_close and base_hi:
+        res.room_to_base_high_pct = (base_hi - res.last_close) / res.last_close
+    if res.last_close and len(data) >= 26:
+        full_high = float(data["High"].iloc[-min(260, len(data)):].max())
+        res.room_to_5y_high_pct = (full_high - res.last_close) / res.last_close
+    res.catalyst_upside_est = CATALYST_IMPLIED_UPSIDE.get(res.catalyst, 0.05)
+    # Combined: max of room-within-base (technical) and catalyst-
+    # implied (fundamental). Floor at zero.
+    candidates = [v for v in (res.room_to_base_high_pct, res.catalyst_upside_est) if v is not None]
+    res.upside_combined = max(0.0, max(candidates)) if candidates else 0.0
+
     res.score = compute_score(res)
+    res.value_score = res.score * (1.0 + res.upside_combined)
     return res
 
 
@@ -575,7 +629,8 @@ def main() -> int:
 
     df = pd.DataFrame([r.__dict__ for r in results])
 
-    def show(title: str, frame: pd.DataFrame, n: int = 15) -> None:
+    def show(title: str, frame: pd.DataFrame, n: int = 15,
+             extra_cols: list[str] | None = None) -> None:
         print(f"\n=== {title} ({len(frame)}) ===")
         if frame.empty:
             print("(none)")
@@ -583,6 +638,8 @@ def main() -> int:
         cols = ["ticker", "phase", "catalyst", "nav_quality",
                 "base_length_weeks", "base_range_pct", "chg_13w_pct",
                 "poc_distance_pct", "vol_z", "mfi", "score"]
+        if extra_cols:
+            cols = cols + extra_cols
         cols = [c for c in cols if c in frame.columns]
         print(frame[cols].head(n).to_string(index=False))
 
@@ -609,6 +666,33 @@ def main() -> int:
 
     show("OVERALL TOP BY SCORE",
          df_ranked.head(args.top), args.top)
+
+    # ---------------- Upside-ranked views ----------------
+    upside_extras = ["room_to_base_high_pct", "catalyst_upside_est",
+                     "upside_combined", "value_score"]
+
+    show("HIGHEST UPSIDE x SETUP (value_score = score * (1 + upside))",
+         df_ranked.sort_values("value_score", ascending=False).head(args.top),
+         args.top, extra_cols=upside_extras)
+
+    # Confine to actually-formed setups so we don't surface deep-discount
+    # but-no-base-yet names. Also exclude names with broken bases
+    # (range_pct > 0.5 = > 50%) which indicate data-integrity issues
+    # (un-back-adjusted dividends, bad ticks, etc.).
+    setups_only = df_ranked[
+        df_ranked["phase"].isin(["BASE_ABSORBING", "BASE_BREAKOUT", "BASE_QUIET"])
+        & (df_ranked["base_range_pct"] <= 0.50)
+    ]
+    show("HIGHEST UPSIDE WITH ACTIVE SETUP "
+         "(only ABSORBING / BREAKOUT / QUIET phases)",
+         setups_only.sort_values("value_score", ascending=False).head(args.top),
+         args.top, extra_cols=upside_extras)
+
+    show("HIGHEST RAW TECHNICAL UPSIDE TO BASE HIGH "
+         "(setup phases, sorted by room_to_base_high_pct)",
+         setups_only.sort_values("room_to_base_high_pct",
+                                 ascending=False).head(args.top),
+         args.top, extra_cols=upside_extras)
 
     return 0
 

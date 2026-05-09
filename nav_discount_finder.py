@@ -391,6 +391,41 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "FAIR.L",       # Fair Oaks Income
         "SDP.L",        # Schroder AsiaPacific
         "ATR.L",        # Asia Total Return (merger candidate)
+        "NAVF.L",       # Nippon Active Value Fund
+    ],
+    # Listed PE GP managers that trade at discount (most premium ones
+    # like KKR/Apollo/Blackstone/Ares are excluded — they trade at fair
+    # value or premium so the workout setup doesn't apply).
+    "listed_pe_gp_discount": [
+        "BPT.L",        # Bridgepoint Group
+        "EQT.ST",       # EQT AB
+        "PGHN.SW",      # Partners Group (Switzerland)
+        "CVC.AS",       # CVC Capital Partners
+    ],
+    # Korean chaebol holding companies — structural NAV-discount plays
+    # vs listed subsidiaries; periodic restructure / governance reform
+    # catalysts.
+    "korean_holdcos": [
+        "003550.KS",    # LG Corp
+        "028260.KS",    # Samsung C&T
+        "005380.KS",    # Hyundai Motor (stub vs Hyundai Glovis etc.)
+        "005490.KS",    # POSCO Holdings
+    ],
+    # Japanese trading houses (sogo shosha) and SoftBank — Buffett-
+    # favourite sum-of-parts discount plays; SoftBank is the
+    # Alibaba/Arm/listed-stake stub trade.
+    "japan_holdcos_specials": [
+        "8001.T",       # Itochu Corp
+        "8053.T",       # Sumitomo Corp
+        "8002.T",       # Marubeni
+        "9101.T",       # NYK Line (cyclical sum-of-parts)
+        "9984.T",       # SoftBank Group
+    ],
+    # Additional European holdco / specialist names
+    "european_extras": [
+        "HEIO.AS",      # Heineken Holding (classic stub-discount vs HEIA)
+        "ITM.MI",       # Italmobiliare
+        "CIR.MI",       # CIR (De Benedetti family vehicle)
     ],
 }
 
