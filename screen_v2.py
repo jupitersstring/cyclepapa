@@ -229,6 +229,106 @@ CATALYST_IMPLIED_UPSIDE: dict[str, float] = {
     "DISTRESSED": 0.05,  # high variance, mostly skip
 }
 
+
+# True "upside" for this strategy = discount-to-NAV closure.
+# DISCOUNT_ESTIMATE is the *current discount* (positive = discount,
+# negative = premium) per ticker, sourced from public-information
+# averages over my training period. These are NOT live numbers —
+# refresh from theaic.co.uk / QuotedData / CEFConnect / AIC API
+# before sizing. Names not in this dict default to 0.10 (10%) to
+# avoid implying false precision.
+DISCOUNT_ESTIMATE: dict[str, float] = {
+    # UK closed-end funds (typical mid-2024 -> early-2026 ranges)
+    "RSE.L": 0.20, "ADIG.L": 0.30, "DGI9.L": 0.40, "USF.L": 0.25,
+    "TENT.L": 0.30, "HEIT.L": 0.40, "HGEN.L": 0.45, "AEET.L": 0.30,
+    "AERI.L": 0.35, "GSEO.L": 0.35, "VSL.L": 0.20, "GABI.L": 0.20,
+    "RMII.L": 0.20, "API.L": 0.15, "RESI.L": 0.30, "SBO.L": 0.40,
+    "SUPP.L": 0.50, "MPLS.L": 0.30, "HOT.L": 0.10, "KPC.L": 0.15,
+    "AAS.L": 0.15, "TMI.L": 0.20, "GCP.L": 0.30, "FGEN.L": 0.30,
+    "SOHO.L": 0.30, "CHRY.L": 0.35, "SSIT.L": 0.25, "AUGM.L": 0.30,
+    "GROW.L": 0.30, "HRI.L": 0.13, "USA.L": 0.13, "CYN.L": 0.12,
+    "ESCT.L": 0.12, "EWI.L": 0.13, "BNKR.L": 0.12, "TEM.L": 0.11,
+    "DIVI.L": 0.13, "HOME.L": 0.50,  # workout, NAV unreliable
+    "HVPE.L": 0.35, "NBPE.L": 0.25, "ICGT.L": 0.30, "PIN.L": 0.25,
+    "OCI.L": 0.30, "APAX.L": 0.30, "CTPE.L": 0.30, "HGT.L": 0.10,
+    "UKW.L": 0.18, "TRIG.L": 0.22, "FSFL.L": 0.22, "NESF.L": 0.22,
+    "BSIF.L": 0.18, "JLEN.L": 0.22, "GRID.L": 0.30, "SEIT.L": 0.30,
+    "HICL.L": 0.18, "INPP.L": 0.18, "3IN.L": 0.10, "PINT.L": 0.13,
+    "CORD.L": 0.30, "BPCR.L": 0.10, "VTA.L": 0.10, "NCYF.L": 0.05,
+    "TFIF.L": 0.05, "SEQI.L": 0.10, "RECI.L": 0.13, "SREI.L": 0.30,
+    "CREI.L": 0.20, "RGL.L": 0.50, "AEWU.L": 0.10, "PCTN.L": 0.30,
+    "WHR.L": 0.15, "ESP.L": 0.20, "HLCL.L": 0.40, "PSDL.L": 0.30,
+    "VOF.L": 0.20, "VNH.L": 0.15,
+    "PSH.L": 0.30, "TFG.L": 0.45, "TPOU.L": 0.20, "BHMG.L": 0.05,
+    "NAS.L": 0.25, "CLDN.L": 0.30, "RCP.L": 0.25, "AGT.L": 0.08,
+    "AJOT.L": 0.07, "ONWD.L": 0.10, "OIT.L": 0.07, "SEC.L": 0.13,
+    "BBH.L": 0.08, "IBT.L": 0.10, "WWH.L": 0.07, "BIOG.L": 0.10,
+    "RTW.L": 0.10, "FCSS.L": 0.13, "PHI.L": 0.10, "PAC.L": 0.10,
+    "BRLA.L": 0.13, "JEMI.L": 0.10, "AAIF.L": 0.13, "MYI.L": 0.07,
+    "MIGO.L": 0.05, "ARR.L": 0.05, "JAM.L": 0.07, "MUT.L": 0.08,
+    "LWDB.L": 0.05, "BIPS.L": 0.05, "FAIR.L": 0.20, "SDP.L": 0.08,
+    "ATR.L": 0.08, "NAVF.L": 0.05,
+    # Australian LICs
+    "LSF.AX": 0.20, "WAM.AX": 0.05, "WLE.AX": 0.05, "WGB.AX": 0.10,
+    "WAA.AX": 0.05, "TGF.AX": 0.20, "HM1.AX": 0.20, "MFF.AX": 0.10,
+    "PIA.AX": 0.20, "PE1.AX": 0.20, "NCC.AX": 0.10, "NSC.AX": 0.10,
+    "GC1.AX": 0.15, "PL8.AX": 0.05, "OBL.AX": 0.10, "SOL.AX": 0.05,
+    "AUI.AX": 0.10, "DUI.AX": 0.10, "WHF.AX": 0.13, "ARG.AX": 0.05,
+    "AFI.AX": 0.05,
+    # Canadian
+    "POW.TO": 0.25, "ONEX.TO": 0.30, "BAM.TO": 0.10,
+    "DGS.TO": 0.05, "FTN.TO": 0.05, "LBS.TO": 0.05, "BSP.TO": 0.05,
+    "FFN.TO": 0.05, "LCS.TO": 0.05,
+    # US conglomerate
+    "IAC": 0.30, "L": 0.20, "FWONK": 0.15, "BATRA": 0.15,
+    "LBRDK": 0.20, "LILA": 0.30, "MSGS": 0.20, "MSGE": 0.30,
+    "LGF.A": 0.15,
+    # Swiss/EU specialist
+    "BION.SW": 0.20, "HBMN.SW": 0.18,
+    # Listed PE GP
+    "BPT.L": 0.30, "EQT.ST": 0.10, "PGHN.SW": 0.0, "CVC.AS": 0.10,
+    # Korean chaebol holdcos (large structural discounts)
+    "003550.KS": 0.55, "028260.KS": 0.50, "005380.KS": 0.45, "005490.KS": 0.40,
+    # Japanese sogo shosha + SoftBank
+    "8001.T": 0.10, "8053.T": 0.10, "8002.T": 0.15, "9101.T": 0.30,
+    "9984.T": 0.50,
+    # European extras
+    "HEIO.AS": 0.15, "ITM.MI": 0.40, "CIR.MI": 0.40,
+    # EU holdco
+    "SOF.BR": 0.30, "GBLB.BR": 0.30, "ACKB.BR": 0.20, "MF.PA": 0.40,
+    "RF.PA": 0.40, "BOL.PA": 0.30, "INDU-C.ST": 0.20, "INVE-B.ST": 0.20,
+    "KINV-B.ST": 0.30, "LATO-B.ST": 0.10, "LUND-B.ST": 0.20,
+    "AKER.OL": 0.30, "BONHR.OL": 0.30, "EXO.AS": 0.40, "PRX.AS": 0.40,
+    "NPN.JO": 0.40,
+    # US CEFs / BDCs — typical discounts smaller
+    "BRW": 0.05, "BIF": 0.13, "GAM": 0.13, "CET": 0.15, "ADX": 0.13,
+    "PEO": 0.15, "TY": 0.13, "SOR": 0.10, "FUND": 0.13, "RVT": 0.10,
+    "RMT": 0.08, "RGT": 0.13, "GAB": 0.10, "GDV": 0.10, "GUT": -0.10,
+    "BST": 0.05, "BUI": 0.05, "BME": 0.05, "BTO": 0.10, "ECC": -0.05,
+    "EIC": 0.05, "OXLC": 0.0, "ASA": 0.10, "GGT": 0.13, "MIN": 0.10,
+    "ASGI": 0.13, "AOD": 0.05, "AWP": 0.10, "FOF": 0.05, "JLS": 0.10,
+    "JMM": 0.10, "ETW": 0.05, "ETV": 0.05, "EOI": 0.05,
+    "BKCC": 0.10, "PSEC": 0.30, "PFLT": 0.05, "PNNT": 0.20,
+    "GLAD": -0.05, "GAIN": -0.05, "OFS": 0.20, "PTMN": 0.20,
+    "LRFC": 0.20, "MFIC": 0.20, "BBDC": 0.10, "CGBD": 0.05,
+    "GBDC": 0.0, "SCM": 0.10, "SAR": 0.05, "RAND": 0.20,
+}
+
+
+# Catalyst realisation probability — likelihood that within ~12-18m
+# the catalyst actually narrows the discount meaningfully. Reflects
+# event clarity, not magnitude. Combined with discount to give
+# expected upside.
+CATALYST_REALISATION_PROBABILITY: dict[str, float] = {
+    "WIND_DOWN_COMMITTED": 0.80,
+    "WIND_DOWN_LIKELY": 0.60,
+    "RETURN_OF_CAPITAL_LIVE": 0.70,
+    "STRATEGIC_REVIEW": 0.50,
+    "ACTIVIST_TARGET": 0.45,
+    "STRUCTURAL_DISCOUNT": 0.20,
+    "DISTRESSED": 0.20,
+}
+
 # NAV reliability — listed-asset trusts have observable NAV; private/
 # infrastructure/biotech NAVs are model-driven and often overstated.
 NAV_QUALITY: dict[str, str] = {
@@ -340,11 +440,15 @@ class ScreenResult:
     nav_quality: str | None = None
     score: float = 0.0
     # Upside metrics
-    room_to_base_high_pct: float | None = None  # (base_high - close)/close
+    room_to_base_high_pct: float | None = None  # technical room within base (NOT real upside)
     room_to_5y_high_pct: float | None = None    # (5y_high - close)/close
-    catalyst_upside_est: float | None = None    # rule-of-thumb % from CATALYST_IMPLIED_UPSIDE
-    upside_combined: float | None = None        # max of catalyst and room_to_base_high
-    value_score: float = 0.0                    # score * (1 + upside_combined)
+    nav_discount_est: float | None = None       # current discount-to-NAV (estimate)
+    discount_closure_upside: float | None = None  # discount/(1-discount) — return if discount fully closes
+    catalyst_realisation_prob: float | None = None  # P(catalyst fires within ~12-18m)
+    expected_upside: float | None = None        # discount_closure_upside * catalyst_realisation_prob
+    catalyst_upside_est: float | None = None    # legacy: rule-of-thumb % narrowing per catalyst
+    upside_combined: float | None = None        # legacy
+    value_score: float = 0.0                    # score * (1 + expected_upside)
 
 
 def detect_base(df: pd.DataFrame, max_lookback: int = 208,
@@ -512,20 +616,34 @@ def screen_one(ticker: str, *, max_lookback: int = 208,
         res.mfi = float(mfi_series.iloc[-1])
         res.mfi_rising = float(mfi_series.iloc[-1]) > float(mfi_series.iloc[-2])
 
-    # Upside metrics
+    # Technical metrics (not the same as fundamental upside)
     if res.last_close and base_hi:
         res.room_to_base_high_pct = (base_hi - res.last_close) / res.last_close
     if res.last_close and len(data) >= 26:
         full_high = float(data["High"].iloc[-min(260, len(data)):].max())
         res.room_to_5y_high_pct = (full_high - res.last_close) / res.last_close
+
+    # Real fundamental upside = closing the discount-to-NAV.
+    # discount of d => price * (1/(1-d)) at NAV => upside = d/(1-d)
+    discount = DISCOUNT_ESTIMATE.get(ticker, 0.10)
+    res.nav_discount_est = discount
+    if discount < 1.0:
+        res.discount_closure_upside = discount / (1.0 - discount) if discount > -0.99 else 0.0
+    else:
+        res.discount_closure_upside = 0.0
+    # Probability the catalyst actually closes (or meaningfully
+    # narrows) the discount over a ~12-18m horizon.
+    prob = CATALYST_REALISATION_PROBABILITY.get(res.catalyst, 0.20)
+    res.catalyst_realisation_prob = prob
+    res.expected_upside = (res.discount_closure_upside or 0.0) * prob
+
+    # Legacy fields kept for backward compatibility with prior tables.
     res.catalyst_upside_est = CATALYST_IMPLIED_UPSIDE.get(res.catalyst, 0.05)
-    # Combined: max of room-within-base (technical) and catalyst-
-    # implied (fundamental). Floor at zero.
     candidates = [v for v in (res.room_to_base_high_pct, res.catalyst_upside_est) if v is not None]
     res.upside_combined = max(0.0, max(candidates)) if candidates else 0.0
 
     res.score = compute_score(res)
-    res.value_score = res.score * (1.0 + res.upside_combined)
+    res.value_score = res.score * (1.0 + (res.expected_upside or 0.0))
     return res
 
 
@@ -667,30 +785,30 @@ def main() -> int:
     show("OVERALL TOP BY SCORE",
          df_ranked.head(args.top), args.top)
 
-    # ---------------- Upside-ranked views ----------------
-    upside_extras = ["room_to_base_high_pct", "catalyst_upside_est",
-                     "upside_combined", "value_score"]
+    # ---------------- Upside-ranked views (corrected) ----------------
+    # Real upside = discount-to-NAV closure x probability.
+    # `expected_upside = discount/(1-discount) * P(catalyst fires)`.
+    upside_extras = ["nav_discount_est", "discount_closure_upside",
+                     "catalyst_realisation_prob", "expected_upside",
+                     "value_score"]
 
-    show("HIGHEST UPSIDE x SETUP (value_score = score * (1 + upside))",
+    show("HIGHEST EXPECTED UPSIDE x SETUP "
+         "(value_score = setup_score * (1 + expected_upside))",
          df_ranked.sort_values("value_score", ascending=False).head(args.top),
          args.top, extra_cols=upside_extras)
 
-    # Confine to actually-formed setups so we don't surface deep-discount
-    # but-no-base-yet names. Also exclude names with broken bases
-    # (range_pct > 0.5 = > 50%) which indicate data-integrity issues
-    # (un-back-adjusted dividends, bad ticks, etc.).
     setups_only = df_ranked[
         df_ranked["phase"].isin(["BASE_ABSORBING", "BASE_BREAKOUT", "BASE_QUIET"])
         & (df_ranked["base_range_pct"] <= 0.50)
     ]
-    show("HIGHEST UPSIDE WITH ACTIVE SETUP "
+    show("HIGHEST EXPECTED UPSIDE WITH ACTIVE SETUP "
          "(only ABSORBING / BREAKOUT / QUIET phases)",
-         setups_only.sort_values("value_score", ascending=False).head(args.top),
+         setups_only.sort_values("expected_upside", ascending=False).head(args.top),
          args.top, extra_cols=upside_extras)
 
-    show("HIGHEST RAW TECHNICAL UPSIDE TO BASE HIGH "
-         "(setup phases, sorted by room_to_base_high_pct)",
-         setups_only.sort_values("room_to_base_high_pct",
+    show("HIGHEST RAW DISCOUNT-CLOSURE UPSIDE "
+         "(NAV closure if catalyst fully fires; ignores probability)",
+         setups_only.sort_values("discount_closure_upside",
                                  ascending=False).head(args.top),
          args.top, extra_cols=upside_extras)
 
