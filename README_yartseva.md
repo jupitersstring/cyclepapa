@@ -43,6 +43,17 @@ with inflection / acceleration / "not priced in" signals.
    minus the same window's price return, plus EV/Sales multiple compression
    while sales grew. Positive = price/multiple has not caught up to the
    improving fundamentals.
+7. **Cheapness composites** (lower = cheaper):
+   * **`cheapness_growth_blend`** = `(1/3)·sales_yoy + (1/3)·ebitda_yoy
+     + (1/6)·fcf_yoy + (1/6)·(NCAV / mcap)`
+     where NCAV = current assets − total liabilities (Graham).
+   * **`cheapness_ev_ebit_vs_growth`** = `EV/EBIT / cheapness_growth_blend`
+     (only computed when blend > 0). Sub-7 reads as cheap relative to growth.
+   * **`cheapness_under_7x_flag`** – binary trigger: `EV/EBIT < 7x` AND
+     blend > 0 (a "cheap *and* growing" filter; Yartseva-style entry).
+   * **`cheapness_blend_vs_growth`** = `((P/B + EV/EBIT)/2)
+     / ((sales_yoy + ebitda_yoy)/2)`. Lower = cheaper relative to
+     blended top-line + EBITDA growth.
 6. **Yartseva composite** – weighted blend (0–1):
 
    | weight | factor                                           |
