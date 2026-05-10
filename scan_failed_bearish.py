@@ -124,6 +124,19 @@ def get_universe(name):
         df = df[~df.index.duplicated(keep="first")]
         df = df[df["exchange"].isin(US_EXCHANGES)]
         return df
+    if name == "it-all":
+        frames = []
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap"]:
+            try:
+                sub = equities.select(country="Italy", market_cap=cap)
+                if len(sub):
+                    frames.append(sub)
+            except Exception:
+                continue
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"] == "MIL"]
+        return df
     if name == "eu-smid":
         frames = []
         for country in EU_COUNTRIES:
@@ -351,7 +364,7 @@ def main():
         help="Failure trigger must be within the last N bars to count as active (default: 8 weekly, 4 monthly)",
     )
     parser.add_argument("--top", type=int, default=20)
-    parser.add_argument("--universe", choices=["us-mid", "us-micro", "us-smid", "us-midlarge", "uk-smid", "uk-midlarge", "eu-smid"], default="us-mid")
+    parser.add_argument("--universe", choices=["us-mid", "us-micro", "us-smid", "us-midlarge", "uk-smid", "uk-midlarge", "eu-smid", "it-all"], default="us-mid")
     parser.add_argument("--quality", action="store_true",
                         help="Apply hard quality floor: ROE>5%, margin>0, D/E<200, rev_growth>-10% (drops NaN)")
     parser.add_argument("--out", default=None)
