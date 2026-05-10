@@ -123,7 +123,16 @@ class TickerRow:
     # Valuation
     ev_sales: float
     ev_ebitda: float
+    ev_ebit: float
+    pb: float
     fcf_yield: float
+    ncav: float
+    ncav_pct_mcap: float
+    # Cheapness composites (lower = cheaper)
+    cheapness_growth_blend: float        # 1/3 sales + 1/3 ebitda + 1/6 fcf + 1/6 ncav%
+    cheapness_ev_ebit_vs_growth: float   # ev_ebit / cheapness_growth_blend
+    cheapness_under_7x_flag: int         # ev_ebit < 7 AND blend > 0
+    cheapness_blend_vs_growth: float     # ((pb+ev_ebit)/2) / ((sales_yoy+ebitda_yoy)/2)
     # Yoy growth (TTM vs prior TTM)
     rev_yoy: float
     ebitda_yoy: float
@@ -188,7 +197,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     import yfinance as yf
 
     # Retry yfinance calls a few times on transient rate-limit errors.
-    attempts = 3
+    attempts = 4
     last_err = None
     for attempt in range(attempts):
         try:
@@ -204,8 +213,13 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         except Exception as e:
             last_err = e
             msg = str(e)
-            if "401" in msg or "429" in msg or "Crumb" in msg:
-                time.sleep(2 * (attempt + 1))
+            transient = (
+                "401" in msg or "429" in msg or "Crumb" in msg
+                or "Too Many Requests" in msg or "Rate limit" in msg
+                or "rate limit" in msg or "YFRateLimitError" in msg
+            )
+            if transient and attempt < attempts - 1:
+                time.sleep(5 * (attempt + 1))
                 continue
             return None
     else:
@@ -529,7 +543,59 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     price = info.get("currentPrice") or info.get("regularMarketPrice") or np.nan
     ev_sales = safe_div(enterprise_value, rev_ttm) if rev_ttm else np.nan
     ev_ebitda = safe_div(enterprise_value, ebitda_ttm) if ebitda_ttm else np.nan
+    ev_ebit = safe_div(enterprise_value, ebit_ttm) if (ebit_ttm and ebit_ttm > 0) else np.nan
+    pb = safe_div(market_cap, eq_v) if (market_cap and pd.notna(eq_v) and eq_v > 0) else np.nan
     fcf_yield = safe_div(fcf_ttm, market_cap) if market_cap else np.nan
+
+    # NCAV (Graham): current assets - total liabilities. Use balance sheet rows
+    # with annual fallback. NCAV % of market cap is a "cigar butt" cheapness gauge.
+    cur_assets = first_row_with_fallback(qbs, abs_, ["Current Assets", "Total Current Assets"])
+    total_liab = first_row_with_fallback(qbs, abs_, ["Total Liabilities Net Minority Interest",
+                                                     "Total Liab", "Total Liabilities"])
+    ca_v = q(cur_assets, 0) if cur_assets is not None else np.nan
+    tl_v = q(total_liab, 0) if total_liab is not None else np.nan
+    ncav = (ca_v - tl_v) if (pd.notna(ca_v) and pd.notna(tl_v)) else np.nan
+    ncav_pct_mcap = safe_div(ncav, market_cap) if (pd.notna(ncav) and market_cap) else np.nan
+
+    # ----- Cheapness composites (per user spec) -----
+    # 1) EV/EBIT relative to a weighted growth+NCAV blend.
+    #    blend = 1/3 sales_yoy + 1/3 ebitda_yoy + 1/6 fcf_yoy + 1/6 ncav_pct_mcap
+    #    cheapness1 = ev_ebit / blend (lower = cheaper). Flag fires when
+    #    EV/EBIT < 7x AND blend > 0 (growing cheap company).
+    blend_components = []
+    if pd.notna(rev_yoy):    blend_components.append((1/3, rev_yoy))
+    if pd.notna(ebitda_yoy): blend_components.append((1/3, ebitda_yoy))
+    if pd.notna(fcf_yoy):    blend_components.append((1/6, fcf_yoy))
+    if pd.notna(ncav_pct_mcap): blend_components.append((1/6, ncav_pct_mcap))
+    if blend_components:
+        wsum = sum(w for w, _ in blend_components)
+        cheapness_growth_blend = sum(w * v for w, v in blend_components) / wsum
+    else:
+        cheapness_growth_blend = np.nan
+
+    if pd.notna(ev_ebit) and pd.notna(cheapness_growth_blend) and cheapness_growth_blend > 0:
+        cheapness_ev_ebit_vs_growth = ev_ebit / cheapness_growth_blend
+    else:
+        cheapness_ev_ebit_vs_growth = np.nan
+
+    cheapness_under_7x_flag = int(
+        pd.notna(ev_ebit) and ev_ebit > 0 and ev_ebit < 7
+        and pd.notna(cheapness_growth_blend) and cheapness_growth_blend > 0
+    )
+
+    # 2) Blended P/B + EV/EBIT vs blended growth: ((PB + EV/EBIT)/2) / ((sales+ebitda)/2)
+    if pd.notna(pb) and pd.notna(ev_ebit):
+        val_blend = (pb + ev_ebit) / 2.0
+    else:
+        val_blend = np.nan
+    if pd.notna(rev_yoy) and pd.notna(ebitda_yoy):
+        growth_blend2 = (rev_yoy + ebitda_yoy) / 2.0
+    else:
+        growth_blend2 = np.nan
+    if pd.notna(val_blend) and pd.notna(growth_blend2) and growth_blend2 > 0:
+        cheapness_blend_vs_growth = val_blend / growth_blend2
+    else:
+        cheapness_blend_vs_growth = np.nan
 
     # Price 1y change vs fundamentals (what's not priced in)
     try:
@@ -662,6 +728,8 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         notes_parts.append("accelerating sales")
     if pd.notna(not_priced_in_score) and not_priced_in_score > 0.10:
         notes_parts.append("under-priced vs fundamentals")
+    if cheapness_under_7x_flag:
+        notes_parts.append(f"cheap+grow (EV/EBIT {ev_ebit:.1f}x)")
     notes = "; ".join(notes_parts)
 
     return TickerRow(
@@ -685,7 +753,15 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         net_debt_ebitda=net_debt_ebitda,
         ev_sales=ev_sales,
         ev_ebitda=ev_ebitda,
+        ev_ebit=ev_ebit,
+        pb=pb,
         fcf_yield=fcf_yield,
+        ncav=ncav,
+        ncav_pct_mcap=ncav_pct_mcap,
+        cheapness_growth_blend=cheapness_growth_blend,
+        cheapness_ev_ebit_vs_growth=cheapness_ev_ebit_vs_growth,
+        cheapness_under_7x_flag=cheapness_under_7x_flag,
+        cheapness_blend_vs_growth=cheapness_blend_vs_growth,
         rev_yoy=rev_yoy,
         ebitda_yoy=ebitda_yoy,
         cfo_yoy=cfo_yoy,
@@ -910,6 +986,20 @@ def main():
             "fcf_eta_quarters", "fcf_eta_years", "ebitda_eta_years",
             "yartseva_score", "notes"]
     print(fwd.head(args.top)[cols].to_string(index=False) if len(fwd) else "  (none)")
+
+    print("\n=== CHEAP + GROWING (EV/EBIT < 7x AND blended growth+NCAV > 0) ===")
+    cheap1 = df[df["cheapness_under_7x_flag"] == 1].sort_values("cheapness_ev_ebit_vs_growth")
+    cols = ["symbol", "name", "ev_ebit", "rev_yoy", "ebitda_yoy", "fcf_yoy",
+            "ncav_pct_mcap", "cheapness_growth_blend", "cheapness_ev_ebit_vs_growth",
+            "yartseva_score"]
+    print(cheap1.head(args.top)[cols].to_string(index=False) if len(cheap1) else "  (none)")
+
+    print("\n=== CHEAPEST ON BLENDED P/B + EV/EBIT vs (sales+EBITDA) growth ===")
+    cheap2 = df[(df["cheapness_blend_vs_growth"].notna()) & (df["cheapness_blend_vs_growth"] > 0)] \
+        .sort_values("cheapness_blend_vs_growth")
+    cols = ["symbol", "name", "pb", "ev_ebit", "rev_yoy", "ebitda_yoy",
+            "cheapness_blend_vs_growth", "yartseva_score"]
+    print(cheap2.head(args.top)[cols].to_string(index=False) if len(cheap2) else "  (none)")
 
     print(f"\n[3/3] done in {time.time()-start:.0f}s", file=sys.stderr)
 
