@@ -37,6 +37,25 @@ from nav_discount_finder import (
     money_flow_index,
 )
 
+# Live UK discount data from AIC. Loaded lazily on first call.
+_AIC_DISCOUNTS: dict[str, float] | None = None
+
+
+def _load_aic_discounts() -> dict[str, float]:
+    global _AIC_DISCOUNTS
+    if _AIC_DISCOUNTS is not None:
+        return _AIC_DISCOUNTS
+    try:
+        from aic_scraper import fetch_aic_discounts
+        _AIC_DISCOUNTS = fetch_aic_discounts()
+        print(f"[aic] loaded {len(_AIC_DISCOUNTS)} live UK discount records",
+              file=__import__("sys").stderr)
+    except Exception as exc:
+        print(f"[aic] live data unavailable, using hardcoded estimates: {exc}",
+              file=__import__("sys").stderr)
+        _AIC_DISCOUNTS = {}
+    return _AIC_DISCOUNTS
+
 
 # ---------------------------------------------------------------------------
 # Catalyst + NAV-quality metadata. WIND_DOWN_COMMITTED is the strongest
@@ -489,6 +508,7 @@ class ScreenResult:
     catalyst_upside_est: float | None = None    # legacy: rule-of-thumb % narrowing per catalyst
     upside_combined: float | None = None        # legacy
     value_score: float = 0.0                    # score * (1 + expected_upside)
+    discount_source: str | None = None          # "aic_live" or "estimate"
 
 
 def detect_base(df: pd.DataFrame, max_lookback: int = 208,
@@ -665,7 +685,15 @@ def screen_one(ticker: str, *, max_lookback: int = 208,
 
     # Real fundamental upside = closing the discount-to-NAV.
     # discount of d => price * (1/(1-d)) at NAV => upside = d/(1-d)
-    discount = DISCOUNT_ESTIMATE.get(ticker, 0.10)
+    # Prefer live AIC data for UK CEFs; fall back to hardcoded estimate
+    # for non-UK or AIC-missing names.
+    aic_discounts = _load_aic_discounts()
+    if ticker in aic_discounts:
+        discount = aic_discounts[ticker]
+        res.discount_source = "aic_live"
+    else:
+        discount = DISCOUNT_ESTIMATE.get(ticker, 0.10)
+        res.discount_source = "estimate"
     res.nav_discount_est = discount
     if discount < 1.0:
         res.discount_closure_upside = discount / (1.0 - discount) if discount > -0.99 else 0.0
@@ -828,7 +856,8 @@ def main() -> int:
     # ---------------- Upside-ranked views (corrected) ----------------
     # Real upside = discount-to-NAV closure x probability.
     # `expected_upside = discount/(1-discount) * P(catalyst fires)`.
-    upside_extras = ["nav_discount_est", "discount_closure_upside",
+    upside_extras = ["nav_discount_est", "discount_source",
+                     "discount_closure_upside",
                      "catalyst_realisation_prob", "expected_upside",
                      "value_score"]
 
