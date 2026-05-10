@@ -69,6 +69,13 @@ jobs:
           python ord_scanner.py --tf "$TF" --top "$TOP" --min-score 0 \
             --mode early --universe italy --out-dir results 2>&1 | tee -a results/scan_report.txt
 
+      - name: Scan Germany
+        run: |
+          TF="${{ github.event.inputs.timeframe || 'both' }}"
+          TOP="${{ github.event.inputs.top || '30' }}"
+          python ord_scanner.py --tf "$TF" --top "$TOP" --min-score 0 \
+            --mode early --universe germany --out-dir results 2>&1 | tee -a results/scan_report.txt
+
       - name: Cross-rank all results
         run: |
           python cross_rank.py --top 50 --min-ua 30 --out results/ultimate_asymmetry.csv 2>&1 | tee -a results/scan_report.txt
