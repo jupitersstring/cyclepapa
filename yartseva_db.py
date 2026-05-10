@@ -147,11 +147,29 @@ class TickerRow:
     ebitda_accel: float
     cfo_accel: float
     fcf_accel: float
-    # Inflection flags (sign-flip negative -> positive on growth, single quarter)
+    # YoY-growth sign-flip up (growth rate crossed zero from below)
     rev_inflection: int
     ebitda_inflection: int
     cfo_inflection: int
     fcf_inflection: int
+    # Level sign-flip: prior period <= 0, current period > 0 (first positive print)
+    ebitda_first_positive: int
+    cfo_first_positive: int
+    fcf_first_positive: int
+    net_income_first_positive: int
+    # ROCE inflection
+    roce_prev: float
+    roce_delta_yoy: float
+    roce_inflection: int
+    roce_first_positive: int
+    # Forward-projected break-even (linear run-rate of improvement)
+    fcf_run_rate_delta: float
+    fcf_eta_quarters: float
+    fcf_eta_years: float
+    ebitda_eta_years: float
+    cfo_eta_years: float
+    ni_eta_years: float
+    fcf_projected_positive_in_n: int
     # Price vs fundamentals divergence (what's not priced in)
     price_yoy: float
     price_minus_rev_yoy: float
@@ -169,16 +187,28 @@ class TickerRow:
 def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     import yfinance as yf
 
-    try:
-        t = yf.Ticker(symbol)
-        qis = t.quarterly_income_stmt
-        qcf = t.quarterly_cashflow
-        qbs = t.quarterly_balance_sheet
-        ais = t.income_stmt          # annual
-        acf = t.cashflow             # annual
-        abs_ = t.balance_sheet       # annual
-        info = t.info or {}
-    except Exception:
+    # Retry yfinance calls a few times on transient rate-limit errors.
+    attempts = 3
+    last_err = None
+    for attempt in range(attempts):
+        try:
+            t = yf.Ticker(symbol)
+            qis = t.quarterly_income_stmt
+            qcf = t.quarterly_cashflow
+            qbs = t.quarterly_balance_sheet
+            ais = t.income_stmt          # annual
+            acf = t.cashflow             # annual
+            abs_ = t.balance_sheet       # annual
+            info = t.info or {}
+            break
+        except Exception as e:
+            last_err = e
+            msg = str(e)
+            if "401" in msg or "429" in msg or "Crumb" in msg:
+                time.sleep(2 * (attempt + 1))
+                continue
+            return None
+    else:
         return None
 
     # If neither quarterly nor annual income statement is present, skip.
@@ -197,6 +227,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     rev_q = first_row(qis, INCOME_ALIASES["revenue"])
     ebitda_q = first_row(qis, INCOME_ALIASES["ebitda"])
     ebit_q = first_row(qis, INCOME_ALIASES["ebit"])
+    ni_q = first_row(qis, INCOME_ALIASES["net_income"])
     cfo_q = first_row(qcf, CASHFLOW_ALIASES["cfo"])
     fcf_q = first_row(qcf, CASHFLOW_ALIASES["fcf"])
     capex_q = first_row(qcf, CASHFLOW_ALIASES["capex"])
@@ -204,6 +235,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     rev_a = first_row(ais, INCOME_ALIASES["revenue"])
     ebitda_a = first_row(ais, INCOME_ALIASES["ebitda"])
     ebit_a = first_row(ais, INCOME_ALIASES["ebit"])
+    ni_a = first_row(ais, INCOME_ALIASES["net_income"])
     cfo_a = first_row(acf, CASHFLOW_ALIASES["cfo"])
     fcf_a = first_row(acf, CASHFLOW_ALIASES["fcf"])
     capex_a = first_row(acf, CASHFLOW_ALIASES["capex"])
@@ -239,6 +271,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     cfo_ttm = ttm_or_annual(cfo_q, cfo_a)
     fcf_ttm = ttm_or_annual(fcf_q, fcf_a)
     ebit_ttm = ttm_or_annual(ebit_q, ebit_a)
+    ni_ttm = ttm_or_annual(ni_q, ni_a)
 
     # Prior TTM (8q->4q earlier) or prior annual
     def ttm_prev_or_annual(qseries, aseries):
@@ -255,6 +288,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     ebitda_ttm_prev = ttm_prev_or_annual(ebitda_q, ebitda_a)
     cfo_ttm_prev = ttm_prev_or_annual(cfo_q, cfo_a)
     fcf_ttm_prev = ttm_prev_or_annual(fcf_q, fcf_a)
+    ni_ttm_prev = ttm_prev_or_annual(ni_q, ni_a)
 
     # 1-quarter shifted TTM (only meaningful with full quarterly data)
     rev_ttm_q1 = trailing_sum(rev_q.iloc[1:], 4) if (rev_q is not None and len(rev_q) >= 5) else None
@@ -351,6 +385,46 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     if not fcf_inflection and fcf_a is not None and len(fcf_a) >= 3:
         fcf_inflection = inflect(annual_yoy(fcf_a, 0), annual_yoy(fcf_a, 1))
 
+    # Level sign-flip ("first positive"): current TTM/annual > 0 while prior <= 0.
+    # Distinct from the YoY-growth flip above: this is the level itself crossing
+    # zero from below (e.g. first positive FCF print after years of burn).
+    def first_pos(curr, prev):
+        if curr is None or prev is None or pd.isna(curr) or pd.isna(prev):
+            return 0
+        return int(prev <= 0 and curr > 0)
+
+    ebitda_first_positive = first_pos(ebitda_ttm, ebitda_ttm_prev)
+    cfo_first_positive = first_pos(cfo_ttm, cfo_ttm_prev)
+    fcf_first_positive = first_pos(fcf_ttm, fcf_ttm_prev)
+    net_income_first_positive = first_pos(ni_ttm, ni_ttm_prev)
+
+    # ROCE inflection — needs prior-period ROCE = EBIT_prev / IC_prev.
+    # Use prior-year balance sheet column where available; if ROCE was already
+    # computed below, we recompute it here in a self-contained block since
+    # the balance-sheet rows are needed.
+    def prior_bs_value(qdf, adf, names):
+        # Prefer second annual column (i.e. one year ago) if present, else
+        # second quarterly column (one quarter ago) as a fallback.
+        adf_row = first_row(adf, names) if adf is not None else None
+        if adf_row is not None and len(adf_row) >= 2:
+            v = adf_row.iloc[1]
+            if pd.notna(v):
+                return float(v)
+        qdf_row = first_row(qdf, names) if qdf is not None else None
+        if qdf_row is not None and len(qdf_row) >= 5:
+            v = qdf_row.iloc[4]  # 4 quarters back
+            if pd.notna(v):
+                return float(v)
+        return None
+
+    eq_prev = prior_bs_value(qbs, abs_, BALANCE_ALIASES["equity"])
+    debt_prev = prior_bs_value(qbs, abs_, BALANCE_ALIASES["total_debt"])
+    cash_prev = prior_bs_value(qbs, abs_, BALANCE_ALIASES["cash"])
+    ic_prev = (eq_prev + debt_prev - cash_prev) if (eq_prev is not None and debt_prev is not None and cash_prev is not None) else None
+
+    ebit_ttm_prev = ttm_prev_or_annual(ebit_q, ebit_a)
+    roce_prev = (ebit_ttm_prev / ic_prev) if (ebit_ttm_prev is not None and ic_prev not in (None, 0)) else np.nan
+
     # Margins
     ebitda_margin = safe_div(ebitda_ttm, rev_ttm)
     fcf_margin = safe_div(fcf_ttm, rev_ttm)
@@ -382,6 +456,70 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     invested_capital = (eq_v + debt_v - cash_v) if (pd.notna(eq_v) and pd.notna(debt_v) and pd.notna(cash_v)) else np.nan
     roce = safe_div(ebit_ttm, invested_capital) if pd.notna(invested_capital) else np.nan
     net_debt_ebitda = safe_div(nd_v, ebitda_ttm) if pd.notna(nd_v) else np.nan
+
+    # ROCE inflection signals
+    roce_delta_yoy = (roce - roce_prev) if (pd.notna(roce) and pd.notna(roce_prev)) else np.nan
+    # YoY-improvement inflection: ROCE delta turns positive (improving)
+    roce_inflection = int(pd.notna(roce_delta_yoy) and pd.notna(roce_prev) and roce_delta_yoy > 0 and roce_prev <= 0.0)
+    # Level first-positive: ROCE itself crossed zero from below
+    roce_first_positive = first_pos(roce, roce_prev) if (pd.notna(roce) and pd.notna(roce_prev)) else 0
+
+    # Forward-projected break-even: linear extrapolation of the latest improvement
+    # in FCF (and EBITDA, CFO). If current is negative and improving, periods-to-zero
+    # = -current / period_delta. Period unit is whichever cadence was used to
+    # compute the prior level (TTM-rolled-1y when annual fallback, else 1q-shift TTM).
+    def periods_to_positive(curr, prev, prev_seq=None):
+        # prev_seq is the most recent available "shorter horizon" prior for cadence:
+        # if quarterly TTM-shifted-1q is available we use that for a 1-quarter-step
+        # projection; otherwise fall back to annual step.
+        if curr is None or pd.isna(curr):
+            return np.nan, np.nan
+        # Prefer the shorter cadence delta when available so the eta is in quarters
+        ref_prev = prev_seq if (prev_seq is not None and pd.notna(prev_seq)) else prev
+        if ref_prev is None or pd.isna(ref_prev):
+            return np.nan, np.nan
+        delta = curr - ref_prev
+        if delta <= 0:
+            return np.nan, np.nan  # not improving, no meaningful eta
+        if curr >= 0:
+            return 0.0, delta  # already positive
+        eta = -curr / delta  # number of cadence-units to break-even
+        return float(eta), float(delta)
+
+    # FCF projection: prefer 1q-step (TTM rolled fwd 1q) if quarters dense, else 1y-step
+    fcf_eta_quarters = np.nan
+    fcf_eta_years = np.nan
+    fcf_run_rate_delta = np.nan
+    if pd.notna(fcf_ttm) and pd.notna(fcf_ttm_q1):
+        eta_q, d_q = periods_to_positive(fcf_ttm, None, prev_seq=fcf_ttm_q1)
+        fcf_eta_quarters = eta_q
+        fcf_run_rate_delta = d_q
+    if pd.notna(fcf_ttm) and pd.notna(fcf_ttm_prev):
+        eta_y, d_y = periods_to_positive(fcf_ttm, None, prev_seq=fcf_ttm_prev)
+        fcf_eta_years = eta_y
+        if pd.isna(fcf_run_rate_delta):
+            fcf_run_rate_delta = d_y
+
+    # Same for EBITDA and CFO (lighter touch — reported in years only)
+    def annual_eta(curr, prev):
+        eta, _ = periods_to_positive(curr, None, prev_seq=prev)
+        return eta
+
+    ebitda_eta_years = annual_eta(ebitda_ttm, ebitda_ttm_prev) if pd.notna(ebitda_ttm) and pd.notna(ebitda_ttm_prev) else np.nan
+    cfo_eta_years = annual_eta(cfo_ttm, cfo_ttm_prev) if pd.notna(cfo_ttm) and pd.notna(cfo_ttm_prev) else np.nan
+    ni_eta_years = annual_eta(ni_ttm, ni_ttm_prev) if pd.notna(ni_ttm) and pd.notna(ni_ttm_prev) else np.nan
+
+    # Binary projection flag: improving + still negative + reaches positive
+    # within the user-defined horizon (set on the module via PROJECTION_N_PERIODS;
+    # default 4 periods).
+    n_periods = globals().get("PROJECTION_N_PERIODS", 4)
+    if pd.notna(fcf_eta_quarters):
+        fcf_projected_positive_in_n = int(0 < fcf_eta_quarters <= n_periods)
+    elif pd.notna(fcf_eta_years):
+        # n_periods interpreted in quarters when only annual cadence is available -> /4
+        fcf_projected_positive_in_n = int(0 < fcf_eta_years <= max(1, n_periods / 4))
+    else:
+        fcf_projected_positive_in_n = 0
 
     # Valuation
     market_cap = info.get("marketCap")
@@ -456,15 +594,29 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         valuation_score = np.nan
     fcf_yield_score = clip01((fcf_yield - 0.0) / 0.12) if pd.notna(fcf_yield) else np.nan
 
+    # First-positive level crossings get a meaningful nudge in the composite:
+    # FCF crossing zero from below is a textbook Yartseva entry signal.
+    first_pos_score = 0.20 * (
+        fcf_first_positive + ebitda_first_positive + cfo_first_positive
+        + net_income_first_positive + roce_first_positive
+    )
+    # Forward-projected FCF break-even within the lookahead horizon.
+    fwd_eta_score = 1.0 if fcf_projected_positive_in_n else 0.0
+    # ROCE inflection bonus
+    roce_inf_score = 1.0 if roce_inflection else 0.0
+
     weights = {
-        "growth": 0.20,
-        "accel": 0.15,
-        "margin": 0.15,
-        "cash_quality": 0.10,
-        "roce": 0.15,
-        "leverage": 0.05,
-        "valuation": 0.10,
-        "fcf_yield": 0.10,
+        "growth": 0.16,
+        "accel": 0.12,
+        "margin": 0.12,
+        "cash_quality": 0.08,
+        "roce": 0.12,
+        "leverage": 0.04,
+        "valuation": 0.08,
+        "fcf_yield": 0.08,
+        "first_positive": 0.10,
+        "fwd_eta": 0.06,
+        "roce_inflect": 0.04,
     }
     parts = {
         "growth": growth_score,
@@ -475,6 +627,9 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         "leverage": leverage_score,
         "valuation": valuation_score,
         "fcf_yield": fcf_yield_score,
+        "first_positive": first_pos_score,
+        "fwd_eta": fwd_eta_score,
+        "roce_inflect": roce_inf_score,
     }
     total_w = 0.0
     total_v = 0.0
@@ -486,7 +641,23 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     notes_parts = []
     if rev_inflection or ebitda_inflection or fcf_inflection:
-        notes_parts.append("inflection")
+        notes_parts.append("growth-flip")
+    fp_tags = []
+    if fcf_first_positive: fp_tags.append("FCF")
+    if ebitda_first_positive: fp_tags.append("EBITDA")
+    if cfo_first_positive: fp_tags.append("CFO")
+    if net_income_first_positive: fp_tags.append("NI")
+    if roce_first_positive: fp_tags.append("ROCE")
+    if fp_tags:
+        notes_parts.append("first-positive: " + "/".join(fp_tags))
+    if roce_inflection:
+        notes_parts.append("ROCE improving from <=0")
+    if fcf_projected_positive_in_n:
+        eta_disp = (
+            f"{fcf_eta_quarters:.1f}q" if pd.notna(fcf_eta_quarters)
+            else f"{fcf_eta_years:.1f}y"
+        )
+        notes_parts.append(f"FCF break-even ETA {eta_disp}")
     if pd.notna(rev_accel) and rev_accel > 0.05:
         notes_parts.append("accelerating sales")
     if pd.notna(not_priced_in_score) and not_priced_in_score > 0.10:
@@ -537,6 +708,21 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         ebitda_inflection=ebitda_inflection,
         cfo_inflection=cfo_inflection,
         fcf_inflection=fcf_inflection,
+        ebitda_first_positive=ebitda_first_positive,
+        cfo_first_positive=cfo_first_positive,
+        fcf_first_positive=fcf_first_positive,
+        net_income_first_positive=net_income_first_positive,
+        roce_prev=roce_prev,
+        roce_delta_yoy=roce_delta_yoy,
+        roce_inflection=roce_inflection,
+        roce_first_positive=roce_first_positive,
+        fcf_run_rate_delta=fcf_run_rate_delta,
+        fcf_eta_quarters=fcf_eta_quarters,
+        fcf_eta_years=fcf_eta_years,
+        ebitda_eta_years=ebitda_eta_years,
+        cfo_eta_years=cfo_eta_years,
+        ni_eta_years=ni_eta_years,
+        fcf_projected_positive_in_n=fcf_projected_positive_in_n,
         price_yoy=price_yoy,
         price_minus_rev_yoy=price_minus_rev_yoy,
         price_minus_ebitda_yoy=price_minus_ebitda_yoy,
@@ -548,33 +734,73 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     )
 
 
-def get_italian_universe(min_bucket: Optional[str] = None) -> pd.DataFrame:
+def get_universe(
+    country: str = "Italy",
+    min_bucket: Optional[str] = None,
+    max_bucket: Optional[str] = None,
+) -> pd.DataFrame:
     import financedatabase as fd
 
     eq = fd.Equities()
-    italy = eq.select(country="Italy")
-    # Restrict to .MI listing where actual quarterly fundamentals are reachable.
-    italy = italy[italy.index.str.endswith(".MI")]
-    if min_bucket:
-        order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
-        if min_bucket in order:
-            allowed = set(order[order.index(min_bucket):])
-            italy = italy[italy["market_cap"].isin(allowed)]
-    return italy
+    df = eq.select(country=country)
+    if country == "Italy":
+        # Restrict to .MI listing for Italian names where yfinance returns financials.
+        df = df[df.index.str.endswith(".MI")]
+    elif country == "United States":
+        # Drop OTC / ADR-style suffixed tickers; keep plain NYSE/NASDAQ symbols
+        # (no dot suffix) - yfinance supports those directly.
+        df = df[~df.index.str.contains(r"\.", regex=True)]
+        # Drop SPACs / warrants / rights / units which dominate the nano/micro tail
+        # and have no real fundamentals to score.
+        spac_terms = (
+            "Acquisition", "Acquistion", "SPAC", "Blank Check",
+            " Trust ", " Trust,", " Trust$",
+            " Warrant", " Warrants", " Right ", " Rights",
+            " Unit ", " Units",
+        )
+        name_pat = "|".join(t.replace(" ", r"\s") for t in spac_terms)
+        df = df[~df["name"].astype(str).str.contains(name_pat, case=False, regex=True, na=False)]
+        # Drop ticker suffixes typically used for warrants/units/rights/preferred
+        # (e.g. ABCW, ABCU, ABCR, ABCP).
+        df = df[~df.index.str.match(r".+[WURP]$")]
+    order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
+    if min_bucket and min_bucket in order:
+        lo = order.index(min_bucket)
+        allowed_min = set(order[lo:])
+        df = df[df["market_cap"].isin(allowed_min)]
+    if max_bucket and max_bucket in order:
+        hi = order.index(max_bucket)
+        allowed_max = set(order[: hi + 1])
+        df = df[df["market_cap"].isin(allowed_max)]
+    return df
+
+
+# Backward-compatible alias used elsewhere
+def get_italian_universe(min_bucket: Optional[str] = None) -> pd.DataFrame:
+    return get_universe(country="Italy", min_bucket=min_bucket)
 
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--country", default="Italy",
+                        help='country (financedatabase: "Italy", "United States", ...)')
     parser.add_argument("--max", type=int, default=40, help="max tickers to fetch (0 = all)")
     parser.add_argument("--min-bucket", default="Small Cap",
                         help="minimum financedatabase market_cap bucket (Nano/Micro/Small/Mid/Large)")
+    parser.add_argument("--max-bucket", default=None,
+                        help="maximum financedatabase market_cap bucket (e.g. Small Cap to cap at smid)")
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--out", default="italian_yartseva.csv")
     parser.add_argument("--top", type=int, default=15, help="rows printed in console summary")
+    parser.add_argument("--projection-n", type=int, default=4,
+                        help="lookahead periods (quarters) for forward FCF break-even projection")
     args = parser.parse_args()
 
-    print(f"[1/3] Loading Italian universe (min bucket={args.min_bucket}) ...", file=sys.stderr)
-    universe = get_italian_universe(args.min_bucket)
+    # Set module-level so fetch_ticker can read it without threading state.
+    globals()["PROJECTION_N_PERIODS"] = args.projection_n
+
+    print(f"[1/3] Loading {args.country} universe (min bucket={args.min_bucket}, max bucket={args.max_bucket}) ...", file=sys.stderr)
+    universe = get_universe(country=args.country, min_bucket=args.min_bucket, max_bucket=args.max_bucket)
     print(f"      universe size = {len(universe)}", file=sys.stderr)
 
     if args.max and args.max > 0:
@@ -583,25 +809,41 @@ def main():
 
     rows: list[TickerRow] = []
     start = time.time()
-    with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        futures = {
-            ex.submit(fetch_ticker, sym, meta.to_dict()): sym
-            for sym, meta in universe.iterrows()
-        }
-        done = 0
-        for fut in as_completed(futures):
-            sym = futures[fut]
-            done += 1
-            try:
-                row = fut.result()
-            except Exception as e:
-                print(f"   {sym}: {e}", file=sys.stderr)
-                row = None
-            if row is not None:
-                rows.append(row)
-            if done % 10 == 0:
-                print(f"      {done}/{len(universe)} done ({len(rows)} kept) "
-                      f"elapsed {time.time()-start:.0f}s", file=sys.stderr)
+    # Write incrementally so a mid-scan kill still leaves a usable CSV.
+    partial_path = args.out + ".partial"
+    csv_writer = None
+    csv_file = None
+    try:
+        import csv as _csv
+        csv_file = open(partial_path, "w", newline="")
+        with ThreadPoolExecutor(max_workers=args.workers) as ex:
+            futures = {
+                ex.submit(fetch_ticker, sym, meta.to_dict()): sym
+                for sym, meta in universe.iterrows()
+            }
+            done = 0
+            for fut in as_completed(futures):
+                sym = futures[fut]
+                done += 1
+                try:
+                    row = fut.result()
+                except Exception as e:
+                    print(f"   {sym}: {e}", file=sys.stderr)
+                    row = None
+                if row is not None:
+                    d = asdict(row)
+                    if csv_writer is None:
+                        csv_writer = _csv.DictWriter(csv_file, fieldnames=list(d.keys()))
+                        csv_writer.writeheader()
+                    csv_writer.writerow(d)
+                    csv_file.flush()
+                    rows.append(row)
+                if done % 25 == 0:
+                    print(f"      {done}/{len(universe)} done ({len(rows)} kept) "
+                          f"elapsed {time.time()-start:.0f}s", file=sys.stderr)
+    finally:
+        if csv_file is not None:
+            csv_file.close()
 
     if not rows:
         print("No tickers produced data.", file=sys.stderr)
@@ -640,6 +882,34 @@ def main():
             "rev_yoy", "ebitda_yoy", "yartseva_score"]
     accel = df.sort_values("rev_accel", ascending=False)
     print(accel.head(args.top)[cols].to_string(index=False))
+
+    print("\n=== FIRST-POSITIVE LEVEL CROSSINGS (TTM/annual) ===")
+    fp_mask = (
+        (df["fcf_first_positive"] == 1)
+        | (df["ebitda_first_positive"] == 1)
+        | (df["cfo_first_positive"] == 1)
+        | (df["net_income_first_positive"] == 1)
+        | (df["roce_first_positive"] == 1)
+    )
+    fp = df[fp_mask]
+    cols = ["symbol", "name", "fcf_first_positive", "ebitda_first_positive",
+            "cfo_first_positive", "net_income_first_positive", "roce_first_positive",
+            "fcf_ttm", "ebitda_ttm", "yartseva_score"]
+    print(fp.head(args.top)[cols].to_string(index=False) if len(fp) else "  (none)")
+
+    print("\n=== ROCE INFLECTIONS (level >0 first time, or improving from <=0) ===")
+    rmask = (df["roce_inflection"] == 1) | (df["roce_first_positive"] == 1)
+    rsub = df[rmask].sort_values("roce_delta_yoy", ascending=False)
+    cols = ["symbol", "name", "roce", "roce_prev", "roce_delta_yoy",
+            "roce_inflection", "roce_first_positive", "yartseva_score"]
+    print(rsub.head(args.top)[cols].to_string(index=False) if len(rsub) else "  (none)")
+
+    print(f"\n=== FORWARD FCF BREAK-EVEN PROJECTED <= {args.projection_n} QUARTERS ===")
+    fwd = df[df["fcf_projected_positive_in_n"] == 1].sort_values("fcf_eta_quarters", na_position="last")
+    cols = ["symbol", "name", "fcf_ttm", "fcf_run_rate_delta",
+            "fcf_eta_quarters", "fcf_eta_years", "ebitda_eta_years",
+            "yartseva_score", "notes"]
+    print(fwd.head(args.top)[cols].to_string(index=False) if len(fwd) else "  (none)")
 
     print(f"\n[3/3] done in {time.time()-start:.0f}s", file=sys.stderr)
 

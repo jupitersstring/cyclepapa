@@ -25,8 +25,21 @@ with inflection / acceleration / "not priced in" signals.
    * **QoQ-of-TTM** – TTM rolled forward one quarter (where 5+ quarters exist)
    * **Sequential** – latest single quarter vs prior single quarter
    * **Acceleration** – latest YoY growth minus prior YoY growth
-   * **Inflection flag** – sign-flip from ≤0% YoY to >0% YoY
-5. **"Not priced in" divergence** – fundamental momentum (rev/EBITDA/FCF YoY)
+   * **Inflection flag** – YoY-growth sign-flip from ≤0% to >0%
+   * **First-positive flag** – the level itself crossed zero from below
+     (current TTM/annual > 0 while prior period ≤ 0). Distinct from the
+     growth-flip: this fires on the first positive FCF / EBITDA / CFO /
+     net income / ROCE print after a loss-making period. Strong Yartseva
+     entry signal.
+   * **ROCE inflection** – ROCE improving (delta YoY > 0) when the prior
+     period was ≤ 0; or ROCE itself crossing zero from below.
+5. **Forward-projected break-even** – linear extrapolation of the latest
+   period-over-period improvement in FCF (and EBITDA / CFO / NI). Reports
+   `*_eta_quarters` / `*_eta_years` plus `fcf_projected_positive_in_n`
+   binary flag (= 1 if currently negative, improving, and break-even
+   reached within `--projection-n` quarters). Use to surface names that
+   *aren't yet* FCF positive but are on a path to be.
+6. **"Not priced in" divergence** – fundamental momentum (rev/EBITDA/FCF YoY)
    minus the same window's price return, plus EV/Sales multiple compression
    while sales grew. Positive = price/multiple has not caught up to the
    improving fundamentals.
