@@ -213,6 +213,23 @@ CATALYST: dict[str, str] = {
     "HEIO.AS": "STRUCTURAL_DISCOUNT",
     "ITM.MI": "STRUCTURAL_DISCOUNT",
     "CIR.MI": "STRUCTURAL_DISCOUNT",
+    # FDB scanner finds — default to STRUCTURAL_DISCOUNT
+    **{t: "STRUCTURAL_DISCOUNT" for t in [
+        "AD-UN.TO", "AIE.L", "AIQ.AX", "APL.AX", "BGCG.L", "BGEU.L",
+        "BKI.AX", "BNK.TO", "BRGE.L", "BRIG.L", "CCD", "CCJI.L",
+        "CD1.AX", "CD2.AX", "CD3.AX", "CHI", "CHW", "CHY", "CIC.L",
+        "CPEN.SW", "CTF-UN.TO", "CTY.L", "DF.TO", "DFN.TO", "DGS-PA.TO",
+        "DIG.L", "EDIN.L", "EIT-UN.TO", "ENS.TO", "FAP.TO", "FCIT.L",
+        "FGG.AX", "FGT.L", "FGX.AX", "GCI.AX", "GDV-PA.TO", "GDV.TO",
+        "IGC.L", "IIGF.AX", "JETG.L", "JGGI.L", "JPEL.L", "JUSC.L",
+        "KKC.AX", "LBS-PA.TO", "LCS-PA.TO", "LFE.TO", "LTI.L", "MA1.AX",
+        "MAET.AX", "MGCI.L", "MNKS.L", "MOT.AX", "MTE.L", "MTU.L",
+        "MWY.L", "MXT.AX", "NAIT.L", "NSI.L", "OIG.L", "PCI.AX",
+        "PEY.L", "PEYS.L", "PIC.AX", "PRM.TO", "PVS-PH.TO", "PVS-PJ.TO",
+        "QRI.AX", "RICA.L", "RMMC.L", "RS.TO", "SAIN.L", "SJG.L",
+        "SLPE.L", "SMT.L", "SOI.L", "SST.L", "SWTZ.AX", "TBLD",
+        "TCF.AX", "TMPL.L", "TORO.L", "TRG.L", "TRY.L", "VIP.L", "XTD.TO",
+    ]},
 }
 
 # Catalyst-implied discount-narrowing rule of thumb. These are
@@ -409,6 +426,29 @@ NAV_QUALITY: dict[str, str] = {
     # IAC and Loews — sum-of-parts of mostly-listed subsidiaries
     "IAC": "LISTED_CLEAN",
     "L": "LISTED_CLEAN",
+    # FDB scanner finds — auto-tagged by name-pattern heuristic
+    **{t: "DEBT_AMORTISING" for t in [
+        "AD-UN.TO", "CCD", "CHI", "CHW", "CHY", "CTF-UN.TO", "EIT-UN.TO",
+        "FGT.L", "GCI.AX", "KKC.AX", "MGCI.L", "MXT.AX", "NAIT.L",
+        "PCI.AX", "QRI.AX", "SOI.L", "TBLD", "TCF.AX", "TORO.L", "VIP.L",
+        "MOT.AX",  # MCP Income Opps
+    ]},
+    **{t: "LISTED_CLEAN" for t in [
+        "AIE.L", "AIQ.AX", "APL.AX", "BGCG.L", "BGEU.L", "BKI.AX",
+        "BRIG.L", "BRGE.L", "CCJI.L", "CIC.L", "CTY.L", "DIG.L",
+        "EDIN.L", "FAP.TO", "FCIT.L", "FGG.AX", "FGX.AX", "IGC.L",
+        "IIGF.AX", "JETG.L", "JGGI.L", "JUSC.L", "LTI.L", "MA1.AX",
+        "MAET.AX", "MNKS.L", "MTE.L", "MTU.L", "MWY.L", "NSI.L",
+        "OIG.L", "PIC.AX", "RICA.L", "RMMC.L", "SAIN.L", "SJG.L",
+        "SMT.L", "SST.L", "SWTZ.AX", "TMPL.L", "TRG.L",
+    ]},
+    **{t: "PRIVATE_EQUITY" for t in [
+        "BNK.TO", "CD1.AX", "CD2.AX", "CD3.AX", "CPEN.SW",
+        "DF.TO", "DFN.TO", "DGS-PA.TO", "ENS.TO", "GDV-PA.TO", "GDV.TO",
+        "JPEL.L", "LBS-PA.TO", "LCS-PA.TO", "LFE.TO", "PEY.L", "PEYS.L",
+        "PRM.TO", "PVS-PH.TO", "PVS-PJ.TO", "SLPE.L", "XTD.TO",
+    ]},
+    **{t: "PROPERTY_DCF" for t in ["RS.TO", "TRY.L"]},
 }
 
 

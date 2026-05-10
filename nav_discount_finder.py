@@ -427,6 +427,29 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "ITM.MI",       # Italmobiliare
         "CIR.MI",       # CIR (De Benedetti family vehicle)
     ],
+    # ---- financedatabase scanner finds ----
+    # Auto-discovered via financedatabase package: name-pattern scan
+    # for investment trusts, listed CEFs, split corps and LICs across
+    # liquid exchanges (LSE, TOR, ASX, NMS/NAS, EBS, AMS, PAR), with
+    # liquidity floor (median weekly volume > 5000) and yfinance
+    # reachability check. Default catalyst is STRUCTURAL_DISCOUNT
+    # unless tagged below; NAV quality auto-derived from name pattern.
+    "fdb_scanner_finds": [
+        "AD-UN.TO", "AIE.L", "AIQ.AX", "APL.AX", "BGCG.L", "BGEU.L",
+        "BKI.AX", "BNK.TO", "BRGE.L", "BRIG.L", "CCD", "CCJI.L",
+        "CD1.AX", "CD2.AX", "CD3.AX", "CHI", "CHW", "CHY", "CIC.L",
+        "CPEN.SW", "CTF-UN.TO", "CTY.L", "DF.TO", "DFN.TO", "DGS-PA.TO",
+        "DIG.L", "EDIN.L", "EIT-UN.TO", "ENS.TO", "FAP.TO", "FCIT.L",
+        "FGG.AX", "FGT.L", "FGX.AX", "GCI.AX", "GDV-PA.TO", "GDV.TO",
+        "IGC.L", "IIGF.AX", "JETG.L", "JGGI.L", "JPEL.L", "JUSC.L",
+        "KKC.AX", "LBS-PA.TO", "LCS-PA.TO", "LFE.TO", "LTI.L", "MA1.AX",
+        "MAET.AX", "MGCI.L", "MNKS.L", "MOT.AX", "MTE.L", "MTU.L",
+        "MWY.L", "MXT.AX", "NAIT.L", "NSI.L", "OIG.L", "PCI.AX",
+        "PEY.L", "PEYS.L", "PIC.AX", "PRM.TO", "PVS-PH.TO", "PVS-PJ.TO",
+        "QRI.AX", "RICA.L", "RMMC.L", "RS.TO", "SAIN.L", "SJG.L",
+        "SLPE.L", "SMT.L", "SOI.L", "SST.L", "SWTZ.AX", "TBLD",
+        "TCF.AX", "TMPL.L", "TORO.L", "TRG.L", "TRY.L", "VIP.L", "XTD.TO",
+    ],
 }
 
 
