@@ -340,7 +340,7 @@ BENCHMARK_MAP = {
     "sp500": "SPY", "sp400": "SPY", "sp600": "SPY", "smid": "SPY", "all": "SPY",
     "uk": "ISF.L", "uk_mid": "ISF.L", "uk_small": "ISF.L", "uk_aim": "ISF.L",
     "asx": "STW.AX", "asx_small": "STW.AX", "asx_all": "STW.AX",
-    "italy": "FTSEMIB.MI", "italy_mid": "FTSEMIB.MI",
+    "italy": "ENI.MI", "italy_mid": "ENI.MI",
 }
 
 
