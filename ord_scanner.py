@@ -47,7 +47,7 @@ warnings.filterwarnings("ignore")
 SWING_THETA = {"W": 0.05, "M": 0.10}      # zigzag reversal threshold per TF
 LOOKBACK    = {"W": "5y", "M": "max"}
 INTERVAL    = {"W": "1wk", "M": "1mo"}
-MIN_BARS    = {"W": 80,   "M": 48}
+MIN_BARS    = {"W": 40,   "M": 24}
 
 OV_TRIGGER_STOCK = 0.55        # fuzzy upper bound of the 50% rule
 OV_CONFIRM_STOCK = 1.30        # relaxed 1.5x to catch early-stage breakouts
