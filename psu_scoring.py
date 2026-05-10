@@ -69,6 +69,18 @@ PER_SHARE_PATTERNS = [
     (re.compile(r"\bearnings per share\b|\bdiluted EPS\b|(?<![A-Z])\bEPS\b", re.I), "eps"),
     (re.compile(r"\b(free cash flow|FCF) per share\b", re.I), "fcf_per_share"),
     (re.compile(r"\b(adjusted )?total shareholder return\b|(?<![A-Z])\bTSR\b", re.I), "tsr"),
+    # ROIIC = Return on Incremental Invested Capital (capital-allocator
+    # signature -- forces management to earn returns on NEW capital).
+    # Rarer than ROIC; firms that use it (Constellation Software,
+    # Diploma plc, etc.) are signalling deliberate capital discipline.
+    (re.compile(
+        r"\bROIIC\b|"
+        r"\breturn on incremental invested capital\b|"
+        r"\breturn on incremental capital\b|"
+        r"\bincremental ROIC\b|"
+        r"\bmarginal ROIC\b|"
+        r"\bincremental return on (invested )?capital\b",
+        re.I), "roiic"),
     (re.compile(r"\breturn on invested capital\b|(?<![A-Z])\bROIC\b", re.I), "roic"),
     (re.compile(r"\breturn on capital employed\b|(?<![A-Z])\bROCE\b", re.I), "roce"),
     (re.compile(r"\breturn on equity\b|(?<![A-Z])\bROE\b", re.I), "roe"),

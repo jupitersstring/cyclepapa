@@ -37,7 +37,7 @@ from recent import (
     RecentFiling,
 )
 
-CACHE_VERSION = "v10-broad-regex"
+CACHE_VERSION = "v11-roiic"
 
 
 def current_price(ticker: str) -> float | None:
