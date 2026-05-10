@@ -12,9 +12,9 @@ A universe CSV needs at minimum a `ticker` column (yfinance-style symbols, e.g. 
 
 ## Scripts
 
-### `dalton_screen.py` — Mind Over Markets / Auction Market Theory
+### `dalton_screen.py` — Mind Over Markets / Auction Market Theory (simpler version)
 
-Implements weekly-bar approximations of James Dalton's Mind Over Markets framework. Computes 15 distinct signals on the most recent week:
+Implements weekly-bar approximations of James Dalton's Mind Over Markets framework. Computes 15 signals on the most recent week:
 
 - Composite week classification (Buying / Selling / Neutral by open quartile)
 - 3-to-I week (bull/bear) — the 94%-continuation pattern
@@ -54,6 +54,67 @@ Then narrow to setups with room left and volume confirmation:
 asymm = df[(df['bull_score'] >= 5) &
            (df['pct_below_52w_high'].between(2, 30)) &
            (df['vol_vs_avg'].fillna(0) >= 1.0)]
+```
+
+### `dalton_complete_screen.py` — Full Mind Over Markets + Markets in Profile
+
+The comprehensive version. Adds everything the simpler `dalton_screen.py` omitted:
+
+- **Proper Value Area** (70% volume around POC) computed empirically from daily bars within each weekly/monthly period — not approximated from H/L.
+- **TPO Count** — daily closes above/below POC = selling/buying TPOs.
+- **Day Type Classification** — Normal / Trend / Double-Distribution / Neutral / Nontrend / Normal Variation.
+- **Opening Type** — Open-Drive / Open-Test-Drive / Open-Reject / Open-Auction.
+- **Open vs Prior VA** — within / above-in-range / below-in-range / out-of-range up/down.
+- **Initiative vs Responsive** — bar's location relative to prior period's value area.
+- **Directional Performance Matrix** — attempted direction × volume × value placement; MIRAGE_BUY / FAILED_UP / CONFIRMED_UP&DN / LOW_VOL_RALLY.
+- **Value Area Rule** — open outside, accept inside, traverse all the way.
+- **Spike + 3 resolution rules** — continuation / acceptance / rejection.
+- **Balance-area streak + breakout** with multi-bar overlap detection.
+- **Failed Breakdown Reclaim** and **Failed Breakout Rejection** (bracket reversals).
+- **P-formation** (short cover) and **B-formation** (long liquidation) detection over 5-bar window.
+- **No-tail anomaly** — multi-bar streak of close-on-extreme without tails.
+- **Gap behavior** — held vs filled with directional implication.
+- **5-pillar macro framework**: long bracket quality (25 pts) + compression percentile (20 pts) + sponsorship/RS-at-13w-26w-high (25 pts) + breakout readiness (20 pts) + asymmetry ratio destination/risk (10 pts) = 100 max.
+- **Per-bar score time series** — 1st and 2nd derivatives detect INFLECTION_UP / DECELERATION_UP / ACCELERATION_UP states.
+- **Cross-timeframe hierarchy** — monthly bear vetoes conflicting weekly bull (Dalton's ruling reason).
+- **Relative-to-benchmark series** — every signal also computed on ticker/benchmark ratio.
+
+Computes ~80 columns of features per ticker on weekly + monthly + relative weekly + relative monthly. Heavy: ~1 min per 100 tickers due to Value Area calculation. Checkpoints every 250 tickers.
+
+Output composite `final_rank` combines macro structural score × signal direction × velocity (1st derivative) + acceleration (2nd derivative), with monthly-bear veto penalty.
+
+Typical use:
+
+```bash
+python3 screeners/dalton_complete_screen.py \
+    --universe my_universe.csv \
+    --out results.csv \
+    --benchmark SPY    # or ^FTSE, FTSEMIB.MI, ^IBEX, URTH, etc.
+```
+
+Quality filter recommended:
+
+```python
+quality = df[
+    (df['absW_macro'] >= 30) &                              # decent structural setup
+    (df['absW_state'].str.endswith('_UP')) &                 # bullish state
+    (~df['absM_state'].isin(['INFLECTION_DOWN','ACCELERATION_DOWN','TRENDING_DOWN'])) &
+    (df['absW_pos_in_bracket'].between(40, 90)) &            # room left
+    (df['absW_room'] >= 8)                                   # at least 8% to destination
+].sort_values('final_rank', ascending=False)
+```
+
+Special-flag inspection:
+
+```python
+# Hidden bull: selling structure with higher value placement
+mirages = df[df['absW_dp_signal'] == 'MIRAGE_BUY']
+
+# Bottom forming: long-liquidation drop decelerating
+b_form = df[df['absW_b_form'] == True]
+
+# Bracket reversal: broke balance low, reclaimed
+fail_bd = df[df['absW_failed_bd_reclaim'] == True]
 ```
 
 ### `breakout_weekly.py` / `breakout_monthly.py` — Top-of-range breakout
