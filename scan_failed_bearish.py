@@ -167,15 +167,29 @@ def _extract_ticker_frame(data, ticker):
     return sub
 
 
-def download_prices(tickers, timeframe, years, chunk_size=80, batch_sleep=20.0):
+def download_prices(tickers, timeframe, years, chunk_size=80, batch_sleep=20.0,
+                    checkpoint_path=None):
+    import pickle, os
     interval = "1wk" if timeframe == "weekly" else "1mo"
     period = f"{years}y"
     frames = {}
-    total = len(tickers)
+    done_tickers = set()
+    if checkpoint_path and os.path.exists(checkpoint_path):
+        try:
+            with open(checkpoint_path, "rb") as f:
+                state = pickle.load(f)
+            if state.get("timeframe") == timeframe and state.get("years") == years:
+                frames = state["frames"]
+                done_tickers = set(state["done"])
+                print(f"  resumed from checkpoint: {len(frames)} kept, {len(done_tickers)} already attempted")
+        except Exception as e:
+            print(f"  checkpoint load failed: {e}")
+    todo = [t for t in tickers if t not in done_tickers]
+    total = len(todo)
     n_batches = (total + chunk_size - 1) // chunk_size
     for i in range(0, total, chunk_size):
         batch_idx = i // chunk_size + 1
-        chunk = tickers[i : i + chunk_size]
+        chunk = todo[i : i + chunk_size]
         print(f"  batch {batch_idx}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} of {total} (kept so far: {len(frames)})")
         try:
             data = yf.download(
@@ -198,6 +212,16 @@ def download_prices(tickers, timeframe, years, chunk_size=80, batch_sleep=20.0):
                         frames[t] = sub
                 except Exception:
                     continue
+        done_tickers.update(chunk)
+        if checkpoint_path:
+            try:
+                tmp = checkpoint_path + ".tmp"
+                with open(tmp, "wb") as f:
+                    pickle.dump({"timeframe": timeframe, "years": years,
+                                 "frames": frames, "done": list(done_tickers)}, f)
+                os.replace(tmp, checkpoint_path)
+            except Exception as e:
+                print(f"    checkpoint save failed: {e}")
         if batch_idx < n_batches:
             time.sleep(batch_sleep)
     return frames
@@ -390,7 +414,8 @@ def main():
     print(f"  {len(tickers)} tickers")
 
     print(f"Downloading {args.timeframe} bars ({args.years}y)...")
-    prices = download_prices(tickers, args.timeframe, args.years)
+    checkpoint_path = f"/tmp/cyclepapa_dl_{args.universe}_{args.timeframe}_{args.years}y.pkl"
+    prices = download_prices(tickers, args.timeframe, args.years, checkpoint_path=checkpoint_path)
     print(f"  {len(prices)} tickers with usable data")
 
     print("Detecting failed bearish setups...")
