@@ -40,6 +40,10 @@ from nav_discount_finder import (
 # Live UK discount data from AIC. Loaded lazily on first call.
 _AIC_DISCOUNTS: dict[str, float] | None = None
 
+# Live US-ish discount data from Yahoo bookValue. Loaded once for all
+# screened tickers.
+_YAHOO_DISCOUNTS: dict[str, float] | None = None
+
 
 def _load_aic_discounts() -> dict[str, float]:
     global _AIC_DISCOUNTS
@@ -55,6 +59,27 @@ def _load_aic_discounts() -> dict[str, float]:
               file=__import__("sys").stderr)
         _AIC_DISCOUNTS = {}
     return _AIC_DISCOUNTS
+
+
+def _load_yahoo_discounts(tickers: list[str]) -> dict[str, float]:
+    """Lazily load Yahoo bookValue-implied discounts for non-UK tickers."""
+    global _YAHOO_DISCOUNTS
+    if _YAHOO_DISCOUNTS is not None:
+        return _YAHOO_DISCOUNTS
+    try:
+        from yahoo_nav_scraper import fetch_yahoo_discounts
+        # Only fetch for tickers without an LSE-style suffix
+        # (AIC already covers UK; Yahoo bookValue is the US fallback).
+        non_uk = [t for t in tickers if not t.endswith(".L")]
+        _YAHOO_DISCOUNTS = fetch_yahoo_discounts(non_uk)
+        print(f"[yahoo] resolved {len(_YAHOO_DISCOUNTS)} non-UK "
+              f"bookValue-implied discounts out of {len(non_uk)} attempted",
+              file=__import__("sys").stderr)
+    except Exception as exc:
+        print(f"[yahoo] live data unavailable: {exc}",
+              file=__import__("sys").stderr)
+        _YAHOO_DISCOUNTS = {}
+    return _YAHOO_DISCOUNTS
 
 
 # ---------------------------------------------------------------------------
@@ -685,12 +710,15 @@ def screen_one(ticker: str, *, max_lookback: int = 208,
 
     # Real fundamental upside = closing the discount-to-NAV.
     # discount of d => price * (1/(1-d)) at NAV => upside = d/(1-d)
-    # Prefer live AIC data for UK CEFs; fall back to hardcoded estimate
-    # for non-UK or AIC-missing names.
+    # Priority: live AIC (UK CEFs) > live Yahoo bookValue (US CEFs/BDCs)
+    # > hardcoded estimate.
     aic_discounts = _load_aic_discounts()
     if ticker in aic_discounts:
         discount = aic_discounts[ticker]
         res.discount_source = "aic_live"
+    elif ticker in (_YAHOO_DISCOUNTS or {}):
+        discount = _YAHOO_DISCOUNTS[ticker]
+        res.discount_source = "yahoo_live"
     else:
         discount = DISCOUNT_ESTIMATE.get(ticker, 0.10)
         res.discount_source = "estimate"
@@ -796,6 +824,10 @@ def main() -> int:
 
     print(f"Screening {len(symbols)} tickers (range_threshold={args.range_threshold}, "
           f"max_lookback={args.max_lookback}, mfi={args.mfi_period})", file=sys.stderr)
+
+    # Pre-load discount data sources once so they're cached for screen_one calls
+    _load_aic_discounts()
+    _load_yahoo_discounts(symbols)
 
     results: list[ScreenResult] = []
     for i, sym in enumerate(symbols, 1):
