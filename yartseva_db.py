@@ -839,6 +839,17 @@ def get_universe(
         # Drop ticker suffixes typically used for warrants/units/rights/preferred
         # (e.g. ABCW, ABCU, ABCR, ABCP).
         df = df[~df.index.str.match(r".+[WURP]$")]
+    elif country == "United Kingdom":
+        # LSE primary listings (.L). Drops Frankfurt/Berlin/Munich secondary lines.
+        df = df[df.index.str.endswith(".L")]
+    elif country == "Germany":
+        # XETRA + Frankfurt primary listings. Prefer .DE; .F is the older venue.
+        df = df[df.index.str.endswith(".DE") | df.index.str.endswith(".F")]
+        # Same SPAC/warrant filter principle (UK/DE have less of this issue
+        # but apply to be safe)
+        df = df[~df["name"].astype(str).str.contains(
+            r"warrant|right|trust|spac", case=False, regex=True, na=False
+        )]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
     if min_bucket and min_bucket in order:
         lo = order.index(min_bucket)
