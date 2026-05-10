@@ -1,0 +1,289 @@
+"""Warrant mispricing scanner.
+
+Finds relative-value dislocations (extreme z-scores) and inflections
+(turns / zero-crossings) of a warrant vs. its underlying common on
+weekly and monthly timeframes.
+
+Signals per timeframe:
+  - ratio_z:    rolling z of log(warrant / common)
+  - resid_z:    rolling z of the residual from rolling OLS
+                log(warrant) ~ a + b * log(common)   (cointegration spread)
+  - composite_z: average of the two
+Inflections on composite_z: local peaks/troughs (find_peaks) and
+zero-crossings.
+
+Run as a Streamlit app:   streamlit run warrants
+Or import as a module to reuse the pure functions.
+"""
+from __future__ import annotations
+
+import numpy as np
+import pandas as pd
+import yfinance as yf
+import streamlit as st
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from scipy.signal import find_peaks
+
+
+TIMEFRAMES = {"Weekly": "W-FRI", "Monthly": "ME"}
+DEFAULT_LOOKBACK = {"Weekly": 26, "Monthly": 24}
+
+
+# ---------- pure signal functions ----------
+
+def resample_pair(df: pd.DataFrame, freq: str) -> pd.DataFrame:
+    """Resample a daily (common, warrant) frame to last-of-period."""
+    return df.resample(freq).last().dropna()
+
+
+def rolling_zscore(s: pd.Series, lookback: int) -> pd.Series:
+    mean = s.rolling(lookback).mean()
+    std = s.rolling(lookback).std()
+    return (s - mean) / std
+
+
+def rolling_ols_residual(y: pd.Series, x: pd.Series, lookback: int):
+    """Rolling OLS  y ~ alpha + beta * x.  Returns (alpha, beta, residual)."""
+    cov = x.rolling(lookback).cov(y)
+    var = x.rolling(lookback).var()
+    beta = cov / var
+    alpha = y.rolling(lookback).mean() - beta * x.rolling(lookback).mean()
+    fitted = alpha + beta * x
+    resid = y - fitted
+    return alpha, beta, resid
+
+
+def compute_signals(pair_df: pd.DataFrame, lookback: int) -> pd.DataFrame:
+    """Build the signal frame for one timeframe."""
+    common = pair_df["common"].astype(float)
+    warrant = pair_df["warrant"].astype(float)
+    log_common = np.log(common)
+    log_warrant = np.log(warrant)
+    log_ratio = log_warrant - log_common
+
+    out = pd.DataFrame(index=pair_df.index)
+    out["common"] = common
+    out["warrant"] = warrant
+    out["ratio"] = warrant / common
+    out["log_ratio"] = log_ratio
+    out["ratio_z"] = rolling_zscore(log_ratio, lookback)
+
+    alpha, beta, resid = rolling_ols_residual(log_warrant, log_common, lookback)
+    out["alpha"] = alpha
+    out["beta"] = beta
+    out["resid"] = resid
+    out["resid_z"] = rolling_zscore(resid, lookback)
+
+    out["composite_z"] = (out["ratio_z"] + out["resid_z"]) / 2
+    return out
+
+
+def detect_inflections(z: pd.Series, prominence: float = 0.5) -> pd.DataFrame:
+    """Local peaks/troughs and sign changes of a z-score series."""
+    z = z.dropna()
+    if z.empty:
+        return pd.DataFrame(columns=["date", "kind", "z"])
+    arr = z.to_numpy()
+    peaks, _ = find_peaks(arr, prominence=prominence)
+    troughs, _ = find_peaks(-arr, prominence=prominence)
+    sign = np.sign(arr)
+    crosses = np.where(np.diff(sign) != 0)[0] + 1
+
+    rows = []
+    for i in peaks:
+        rows.append({"date": z.index[i], "kind": "peak", "z": float(arr[i])})
+    for i in troughs:
+        rows.append({"date": z.index[i], "kind": "trough", "z": float(arr[i])})
+    for i in crosses:
+        rows.append({"date": z.index[i], "kind": "zero_cross", "z": float(arr[i])})
+    if not rows:
+        return pd.DataFrame(columns=["date", "kind", "z"])
+    return pd.DataFrame(rows).sort_values("date").reset_index(drop=True)
+
+
+def scan_pair(pair_df: pd.DataFrame, lookbacks: dict | None = None,
+              prominence: float = 0.5) -> dict:
+    """Run the scan across all timeframes. Returns {tf: {signals, inflections}}."""
+    lookbacks = lookbacks or DEFAULT_LOOKBACK
+    out = {}
+    for tf_name, freq in TIMEFRAMES.items():
+        resampled = resample_pair(pair_df, freq)
+        if len(resampled) < lookbacks[tf_name] + 2:
+            continue
+        sig = compute_signals(resampled, lookbacks[tf_name])
+        infl = detect_inflections(sig["composite_z"], prominence=prominence)
+        out[tf_name] = {"signals": sig, "inflections": infl}
+    return out
+
+
+def summarize(scan: dict) -> pd.DataFrame:
+    """Latest reading per timeframe."""
+    rows = []
+    for tf, payload in scan.items():
+        sig = payload["signals"].dropna(subset=["composite_z"])
+        if sig.empty:
+            continue
+        last = sig.iloc[-1]
+        infl = payload["inflections"]
+        last_infl = infl.iloc[-1] if not infl.empty else None
+        z = float(last["composite_z"])
+        regime = "rich" if z > 1 else ("cheap" if z < -1 else "neutral")
+        rows.append({
+            "timeframe": tf,
+            "as_of": sig.index[-1].date(),
+            "ratio_z": round(float(last["ratio_z"]), 2),
+            "resid_z": round(float(last["resid_z"]), 2),
+            "composite_z": round(z, 2),
+            "beta": round(float(last["beta"]), 3),
+            "regime": regime,
+            "last_inflection": last_infl["date"].date() if last_infl is not None else None,
+            "last_inflection_kind": last_infl["kind"] if last_infl is not None else None,
+        })
+    return pd.DataFrame(rows)
+
+
+# ---------- data loading ----------
+
+def load_pair_yf(common_ticker: str, warrant_ticker: str,
+                 period: str = "5y") -> pd.DataFrame:
+    """Pull daily closes for both legs from Yahoo and align."""
+    data = yf.download(
+        [common_ticker, warrant_ticker],
+        period=period,
+        auto_adjust=True,
+        progress=False,
+        group_by="column",
+    )
+    # When two tickers are passed yfinance returns a MultiIndex frame.
+    if isinstance(data.columns, pd.MultiIndex):
+        close = data["Close"]
+    else:
+        close = data[["Close"]]
+        close.columns = [common_ticker]
+    df = close.rename(columns={common_ticker: "common",
+                               warrant_ticker: "warrant"}).dropna()
+    return df[["common", "warrant"]]
+
+
+# ---------- Streamlit UI ----------
+
+def _plot(sig: pd.DataFrame, infl: pd.DataFrame, title: str) -> go.Figure:
+    fig = make_subplots(
+        rows=3, cols=1, shared_xaxes=True,
+        row_heights=[0.35, 0.3, 0.35],
+        subplot_titles=(f"{title} — prices", "log(warrant/common)", "z-scores"),
+        vertical_spacing=0.06,
+    )
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["common"], name="common"), row=1, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["warrant"], name="warrant",
+                             yaxis="y2"), row=1, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["log_ratio"], name="log ratio"),
+                  row=2, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["ratio_z"], name="ratio z",
+                             line=dict(dash="dot")), row=3, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["resid_z"], name="resid z",
+                             line=dict(dash="dash")), row=3, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["composite_z"], name="composite z",
+                             line=dict(width=3)), row=3, col=1)
+
+    if not infl.empty:
+        for kind, sym, color in [("peak", "triangle-down", "red"),
+                                 ("trough", "triangle-up", "green"),
+                                 ("zero_cross", "x", "grey")]:
+            sub = infl[infl["kind"] == kind]
+            if not sub.empty:
+                fig.add_trace(go.Scatter(
+                    x=sub["date"], y=sub["z"], mode="markers", name=kind,
+                    marker=dict(symbol=sym, size=10, color=color),
+                ), row=3, col=1)
+
+    fig.add_hline(y=2, line_dash="dot", line_color="red", row=3, col=1)
+    fig.add_hline(y=-2, line_dash="dot", line_color="green", row=3, col=1)
+    fig.add_hline(y=0, line_dash="dash", line_color="grey", row=3, col=1)
+    fig.update_layout(height=750, showlegend=True, hovermode="x unified")
+    return fig
+
+
+def main():
+    st.set_page_config(page_title="Warrant Mispricing Scanner", layout="wide")
+    st.title("Warrant Mispricing Scanner")
+    st.caption("Relative-value dislocations & inflections of warrant vs. common — "
+               "weekly + monthly timeframes.")
+
+    with st.sidebar:
+        st.header("Inputs")
+        source = st.radio("Data source", ["Yahoo Finance", "Upload CSV"])
+        lookback_w = int(st.number_input("Weekly lookback (bars)", 8, 260, 26))
+        lookback_m = int(st.number_input("Monthly lookback (bars)", 6, 120, 24))
+        prominence = float(st.number_input(
+            "Inflection prominence (z units)", 0.1, 3.0, 0.5, 0.1))
+        z_alert = float(st.number_input(
+            "Alert |composite_z| ≥", 0.5, 5.0, 2.0, 0.1))
+
+    pair_df = st.session_state.get("pair_df")
+    pair_name = st.session_state.get("pair_name")
+
+    if source == "Yahoo Finance":
+        c1, c2, c3, c4 = st.columns([2, 2, 1, 1])
+        common_ticker = c1.text_input("Common ticker", value="LCID")
+        warrant_ticker = c2.text_input("Warrant ticker", value="LCIDW")
+        period = c3.selectbox("History", ["1y", "2y", "5y", "10y", "max"], index=2)
+        if c4.button("Fetch", use_container_width=True):
+            try:
+                pair_df = load_pair_yf(common_ticker, warrant_ticker, period=period)
+                pair_name = f"{warrant_ticker} vs {common_ticker}"
+                st.session_state["pair_df"] = pair_df
+                st.session_state["pair_name"] = pair_name
+            except Exception as e:
+                st.error(f"Fetch failed: {e}")
+    else:
+        upl = st.file_uploader("CSV with columns: date, common, warrant", type="csv")
+        if upl is not None:
+            df = pd.read_csv(upl)
+            date_col = next((c for c in df.columns if c.lower() in ("date", "time")),
+                            df.columns[0])
+            df[date_col] = pd.to_datetime(df[date_col])
+            df = df.set_index(date_col).sort_index()
+            pair_df = df[["common", "warrant"]].dropna()
+            pair_name = upl.name
+            st.session_state["pair_df"] = pair_df
+            st.session_state["pair_name"] = pair_name
+
+    if pair_df is None or pair_df.empty:
+        st.info("Load a pair to begin.")
+        return
+
+    st.subheader(f"Pair: {pair_name}")
+    st.write(f"Daily bars: {len(pair_df)} — {pair_df.index[0].date()} → "
+             f"{pair_df.index[-1].date()}")
+
+    scan = scan_pair(pair_df,
+                     lookbacks={"Weekly": lookback_w, "Monthly": lookback_m},
+                     prominence=prominence)
+    if not scan:
+        st.warning("Not enough data for the chosen lookbacks.")
+        return
+
+    summary = summarize(scan)
+    st.subheader("Current readings")
+    st.dataframe(summary, use_container_width=True)
+
+    hot = summary[summary["composite_z"].abs() >= z_alert]
+    if not hot.empty:
+        st.error("ALERT — dislocation thresholds breached:")
+        st.dataframe(hot, use_container_width=True)
+
+    for tf, payload in scan.items():
+        st.markdown(f"### {tf} timeframe")
+        sig = payload["signals"]
+        infl = payload["inflections"]
+        st.plotly_chart(_plot(sig, infl, tf), use_container_width=True)
+        with st.expander(f"{tf} inflections ({len(infl)})"):
+            st.dataframe(infl.iloc[::-1], use_container_width=True)
+        with st.expander(f"{tf} signal frame"):
+            st.dataframe(sig.iloc[::-1].head(60), use_container_width=True)
+
+
+if __name__ == "__main__":
+    main()
