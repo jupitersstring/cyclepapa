@@ -117,7 +117,14 @@ class Config:
     inflection_threshold: float = 1.0   # min z-score to flag as inflected
     market_cap_buckets: tuple[str, ...] = ("Small Cap",)
     countries: tuple[str, ...] = ("United States",)
-    exchanges: Optional[tuple[str, ...]] = None  # e.g. ("NASDAQ","NYSE")
+    exchanges: Optional[tuple[str, ...]] = None
+    # EDGAR (SEC XBRL) opt-in for deep quarterly history (revenue/EBITDA/FCF).
+    # yfinance is hard-capped at 5-7 quarters by Yahoo's backend; EDGAR gives
+    # 20+ years for any XBRL-filing US issuer. Requires a real contact email
+    # for the SEC-mandated User-Agent.
+    use_edgar: bool = False
+    edgar_ua: str = "earnings-price-analysis researcher@example.com"
+    edgar_cache_dir: Path = field(default_factory=lambda: Path(".cache/edgar"))
 
 
 log = logging.getLogger("earnings_price")
@@ -255,12 +262,64 @@ def _with_retries(fn, *args, attempts: int = 3, base_sleep: float = 1.0, **kwarg
 def fetch_fundamentals(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
     """Return dict with 'income', 'cashflow', and 'eps_history' DataFrames.
 
-    'income'/'cashflow' come from yfinance's quarterly statements (currently
-    limited to ~5 quarters of history). 'eps_history' uses
-    Ticker.get_earnings_dates(limit=80) which gives decades of reported EPS,
-    so the EPS-only variant can run meaningfully even when the full income
-    statement is short.
+    Source:
+      - If cfg.use_edgar is True, pulls from SEC EDGAR XBRL Company Facts
+        (20+ years of quarterly history for any US issuer; ~10 req/sec).
+        EPS history is still augmented with yfinance get_earnings_dates so
+        we keep the older pre-XBRL EPS observations for long-history names.
+      - Otherwise yfinance is the source: 'income'/'cashflow' are limited to
+        ~5-7 quarters server-side; 'eps_history' uses get_earnings_dates
+        (decades of reported EPS, single endpoint that isn't capped).
     """
+    if cfg.use_edgar:
+        from edgar_fetcher import fetch_fundamentals_edgar
+        edgar = fetch_fundamentals_edgar(cfg.edgar_cache_dir, ticker, cfg.edgar_ua)
+        if edgar is not None:
+            # Augment EDGAR EPS with yfinance get_earnings_dates so we don't
+            # lose pre-XBRL observations (pre-~2009 for many issuers).
+            yf_eps = _fetch_eps_history_yf(cfg, ticker)
+            if not yf_eps.empty:
+                cur = edgar.get("eps_history", pd.DataFrame())
+                if cur.empty:
+                    edgar["eps_history"] = yf_eps
+                else:
+                    merged = (
+                        pd.concat([cur, yf_eps])
+                        .sort_index()
+                    )
+                    merged = merged[~merged.index.duplicated(keep="first")]
+                    edgar["eps_history"] = merged
+            return edgar
+        log.debug("EDGAR returned no data for %s; falling back to yfinance", ticker)
+    return _fetch_fundamentals_yf(cfg, ticker)
+
+
+def _fetch_eps_history_yf(cfg: Config, ticker: str) -> pd.DataFrame:
+    """Just the EPS-history slice of the yfinance fetch (used to augment EDGAR)."""
+    cached = _read_cache(cfg, ticker, "eps_history")
+    if cached is not None:
+        return cached
+    try:
+        t = yf.Ticker(ticker)
+        ed = _with_retries(t.get_earnings_dates, limit=80)
+    except Exception as exc:
+        log.debug("fetch eps_history failed for %s: %s", ticker, exc)
+        return pd.DataFrame()
+    if ed is None or ed.empty or "Reported EPS" not in ed.columns:
+        return pd.DataFrame()
+    df = ed[["Reported EPS"]].copy()
+    idx = pd.to_datetime(df.index)
+    if getattr(idx, "tz", None) is not None:
+        idx = idx.tz_localize(None)
+    df.index = idx
+    df = df.sort_index().dropna(subset=["Reported EPS"])
+    _write_cache(cfg, ticker, "eps_history", df)
+    time.sleep(cfg.request_sleep)
+    return df
+
+
+def _fetch_fundamentals_yf(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
+    """yfinance backend (legacy; capped at 5-7 quarters for income/cashflow)."""
     out: dict[str, pd.DataFrame] = {}
     for kind, attr in (("income", "quarterly_income_stmt"), ("cashflow", "quarterly_cashflow")):
         cached = _read_cache(cfg, ticker, kind)
@@ -651,6 +710,84 @@ def composite_growth(metrics: pd.DataFrame, n: int) -> pd.Series:
     return blend.dropna()
 
 
+def latest_shallow_growth(series: pd.Series) -> tuple[float, str]:
+    """Most recent point-in-time growth observation from a short series.
+
+    yfinance's 5-7 quarter cap on quarterly statements is not enough for a
+    rolling-beta pipeline on revenue/EBITDA/FCF, but it IS enough for a
+    single growth observation per name. We try, in order of preference:
+
+      1. YoY (latest Q vs Q-4): cleanest, no seasonality risk.
+         Requires >= 5 quarters.
+      2. Trailing 2Q vs prior 2Q: smoother than single-quarter; useful when
+         only 4 quarters available.
+         Requires >= 4 quarters.
+      3. Sequential (latest Q vs Q-1): noisiest, last-resort.
+         Requires >= 2 quarters. Has seasonality risk.
+
+    Returns (growth_value, method_used). NaN growth + 'none' if no data.
+
+    All methods use the symmetric formula 2*(last - prior) / (|last| + |prior|)
+    so a negative-to-positive flip doesn't blow up the denominator -- important
+    for small-cap names where revenue/EBITDA/FCF often straddle zero.
+    """
+    if series is None or series.empty:
+        return (float("nan"), "none")
+    s = series.dropna().astype(float).sort_index()
+    n = len(s)
+
+    def _sym(a: float, b: float) -> float:
+        denom = abs(a) + abs(b)
+        if denom == 0:
+            return float("nan")
+        return 2.0 * (a - b) / denom
+
+    if n >= 5:
+        return (_sym(float(s.iloc[-1]), float(s.iloc[-5])), "yoy")
+    if n >= 4:
+        last2 = float(s.iloc[-2:].sum())
+        prior2 = float(s.iloc[-4:-2].sum())
+        return (_sym(last2, prior2), "ttm2")
+    if n >= 2:
+        return (_sym(float(s.iloc[-1]), float(s.iloc[-2])), "seq")
+    return (float("nan"), "none")
+
+
+def extract_shallow_momentum(funds: dict[str, pd.DataFrame]) -> dict[str, float | str]:
+    """Per-ticker shallow-history fundamental momentum, suitable for the 5-7
+    quarter cap on yfinance quarterly statements.
+
+    Returns a flat dict with the latest revenue/EBITDA/FCF/NetIncome growth
+    plus the method used for each. Caller z-scores cross-sectionally.
+    """
+    inc = funds.get("income", pd.DataFrame())
+    cf = funds.get("cashflow", pd.DataFrame())
+
+    revenue = _first_existing(inc, REVENUE_FIELDS)
+    ebitda = _first_existing(inc, EBITDA_FIELDS)
+    if ebitda is None:
+        op_inc = _first_existing(inc, OP_INCOME_FIELDS)
+        da = _first_existing(inc, DA_FIELDS)
+        if op_inc is not None and da is not None:
+            ebitda = (op_inc.add(da.abs(), fill_value=np.nan)).dropna()
+    fcf = _first_existing(cf, FCF_FIELDS)
+    if fcf is None:
+        ocf = _first_existing(cf, OCF_FIELDS)
+        capex = _first_existing(cf, CAPEX_FIELDS)
+        if ocf is not None and capex is not None:
+            fcf = (ocf - capex.abs()).dropna()
+    net_inc = _first_existing(inc, NET_INCOME_FIELDS)
+
+    out: dict[str, float | str] = {}
+    for label, series in (("revenue", revenue), ("ebitda", ebitda),
+                          ("fcf", fcf), ("net_income", net_inc)):
+        g, method = latest_shallow_growth(series if series is not None else pd.Series(dtype=float))
+        out[f"{label}_growth_latest"] = g
+        out[f"{label}_growth_method"] = method
+        out[f"{label}_n_quarters"] = len(series.dropna()) if series is not None else 0
+    return out
+
+
 # --------------------------------------------------------------------------- #
 # Per-ticker analysis orchestration                                           #
 # --------------------------------------------------------------------------- #
@@ -669,6 +806,10 @@ class TickerResult:
     eps_shp_rel: Optional[Responsiveness] = None
     comp_shp_abs: Optional[Responsiveness] = None
     comp_shp_rel: Optional[Responsiveness] = None
+    # Shallow-history composite momentum (works within the 5-7 quarter yfinance cap):
+    # single point-in-time growth observation per fundamental, blended cross-
+    # sectionally in post-processing.
+    shallow_momentum: dict[str, float | str] = field(default_factory=dict)
     error: Optional[str] = None
 
 
@@ -680,6 +821,12 @@ def analyze_ticker(
     res = TickerResult(ticker=ticker)
     try:
         funds = fetch_fundamentals(cfg, ticker)
+        # Shallow momentum is cheap and uses whatever income/cashflow we got,
+        # even if it's too short for the rolling-beta pipeline. Compute it
+        # before the min_quarters guard so we still emit it for short-history
+        # names that don't qualify for the responsiveness analysis.
+        res.shallow_momentum = extract_shallow_momentum(funds)
+
         metrics = extract_metrics(funds)
         if metrics.empty or len(metrics) < cfg.min_quarters:
             res.error = f"insufficient fundamentals (have {len(metrics)})"
@@ -765,6 +912,10 @@ def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
             else:
                 for k, v in sub.to_row().items():
                     row[f"{var}_{k}"] = v
+        # Shallow-history fundamental momentum (works even when the responsiveness
+        # pipeline can't run because we have <20 quarters).
+        for k, v in (r.shallow_momentum or {}).items():
+            row[f"shallow_{k}"] = v
         rows.append(row)
     return pd.DataFrame(rows).set_index("ticker")
 
@@ -839,6 +990,74 @@ def write_per_variant_csvs(df: pd.DataFrame, outdir: Path) -> None:
         log.info("wrote %s.csv (%d rows)", label, len(sub))
 
 
+def write_composite_momentum(df: pd.DataFrame, outdir: Path) -> None:
+    """Cross-sectional shallow-history composite-momentum CSV.
+
+    For each ticker we have a single recent growth observation per fundamental
+    (revenue / EBITDA / FCF / net income) -- whatever the 5-7 quarter yfinance
+    cap permits. This function:
+
+      1. Cross-sectionally z-scores each fundamental's latest growth.
+      2. Blends the four fundamentals equally into composite_momentum_z.
+      3. Adds cross-sectional rank and percentile.
+
+    The composite_momentum_z is the cross-sectional analog of what the
+    composite *responsiveness* variants would have produced if Yahoo gave us
+    24+ quarters of history. It says "this name's fundamentals are improving
+    fast relative to the universe right now," which usefully confirms or
+    contradicts the EPS-based rolling-beta inflection.
+    """
+    fields = ["revenue_growth_latest", "ebitda_growth_latest",
+              "fcf_growth_latest", "net_income_growth_latest"]
+    base_cols = [f"shallow_{f}" for f in fields]
+    have = [c for c in base_cols if c in df.columns]
+    if not have:
+        log.info("composite_momentum: no shallow_* columns found, skipping")
+        return
+
+    sub = df[have].copy().apply(pd.to_numeric, errors="coerce")
+
+    z_cols: list[str] = []
+    for c in have:
+        s = sub[c]
+        mu = s.mean(skipna=True)
+        sd = s.std(ddof=0, skipna=True)
+        if sd and not pd.isna(sd) and sd > 0:
+            sub[f"{c}_xs_z"] = (s - mu) / sd
+        else:
+            sub[f"{c}_xs_z"] = np.nan
+        z_cols.append(f"{c}_xs_z")
+        sub[f"{c}_pct"] = s.rank(ascending=True, method="average", pct=True, na_option="keep") * 100
+
+    sub["composite_momentum_z"] = sub[z_cols].mean(axis=1, skipna=True)
+    sub["composite_momentum_pct"] = (
+        sub["composite_momentum_z"]
+        .rank(ascending=True, method="average", pct=True, na_option="keep")
+        * 100
+    )
+    sub["composite_momentum_rank"] = sub["composite_momentum_z"].rank(
+        ascending=False, method="min", na_option="keep"
+    )
+
+    sub = sub.sort_values("composite_momentum_z", ascending=False)
+    sub.to_csv(outdir / "composite_momentum.csv")
+    nz = sub["composite_momentum_z"].dropna()
+    log.info("composite_momentum.csv written; %d tickers with valid score (mean=%.2f)",
+             len(nz), nz.mean() if not nz.empty else 0.0)
+    if not nz.empty:
+        top = sub.dropna(subset=["composite_momentum_z"]).head(15)
+        log.info("top 15 by composite_momentum_z (shallow-history blend):")
+        for tkr, row in top.iterrows():
+            log.info("  %-8s  z=%+.2f  pct=%.0f  rev=%+.2f  ebitda=%+.2f  fcf=%+.2f  ni=%+.2f",
+                     tkr,
+                     float(row["composite_momentum_z"]),
+                     float(row["composite_momentum_pct"]),
+                     float(row.get("shallow_revenue_growth_latest", np.nan)),
+                     float(row.get("shallow_ebitda_growth_latest", np.nan)),
+                     float(row.get("shallow_fcf_growth_latest", np.nan)),
+                     float(row.get("shallow_net_income_growth_latest", np.nan)))
+
+
 def write_ranked(df: pd.DataFrame, outdir: Path, threshold: float) -> None:
     """Combined ranking: avg inflection_z across all variants, with the count
     of variants where the inflection was flagged.
@@ -908,6 +1127,14 @@ def parse_args(argv: Optional[list[str]] = None) -> Config:
     p.add_argument("--output-dir", type=Path, default=Path("results"))
     p.add_argument("--cache-dir", type=Path, default=Path(".cache/yf"))
     p.add_argument("--log-level", default="INFO")
+    p.add_argument("--use-edgar", action="store_true",
+                   help="pull quarterly fundamentals from SEC EDGAR XBRL "
+                        "(deep history) instead of yfinance (5-7 quarter cap). "
+                        "Requires --edgar-ua to identify you per SEC fair-use rules.")
+    p.add_argument("--edgar-ua",
+                   default="earnings-price-analysis researcher@example.com",
+                   help='SEC-required User-Agent: "<Name or Org> <email>"')
+    p.add_argument("--edgar-cache-dir", type=Path, default=Path(".cache/edgar"))
     args = p.parse_args(argv)
     return Config(
         universe=args.universe,
@@ -928,6 +1155,9 @@ def parse_args(argv: Optional[list[str]] = None) -> Config:
         output_dir=args.output_dir,
         cache_dir=args.cache_dir,
         log_level=args.log_level,
+        use_edgar=args.use_edgar,
+        edgar_ua=args.edgar_ua,
+        edgar_cache_dir=args.edgar_cache_dir,
     )
 
 
@@ -963,6 +1193,7 @@ def run(cfg: Config) -> pd.DataFrame:
 
     df = results_to_frame(results)
     write_per_variant_csvs(df, cfg.output_dir)
+    write_composite_momentum(df, cfg.output_dir)
     write_ranked(df, cfg.output_dir, cfg.inflection_threshold)
     log.info("done in %.1fs", time.time() - t0)
     return df
