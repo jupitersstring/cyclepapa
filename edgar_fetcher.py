@@ -83,6 +83,25 @@ TAG_CANDIDATES: dict[str, tuple[str, ...]] = {
         "EarningsPerShareBasic",
         "IncomeLossFromContinuingOperationsPerBasicShare",
     ),
+    # Diluted shares outstanding (weighted average over the period). Used to
+    # convert dollar revenue/EBITDA/FCF into per-share figures so dilution
+    # and buybacks are normalized out. Same denominator EPS uses, so per-
+    # share metrics line up cleanly.
+    "shares_diluted": (
+        "WeightedAverageNumberOfDilutedSharesOutstanding",
+        "WeightedAverageNumberOfDilutedSharesOutstandingNetOfTreasuryStock",
+    ),
+    "shares_basic": (
+        "WeightedAverageNumberOfSharesOutstandingBasic",
+    ),
+    # Balance-sheet line for book value per share -> P/B valuation overlay.
+    # Common stockholders' equity excludes preferred; falls back to total
+    # equity if the cleaner tag is absent.
+    "stockholders_equity": (
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "CommonStockholdersEquity",
+    ),
 }
 
 QUARTER_DAYS_RANGE = (80, 100)      # ~one quarter
@@ -177,6 +196,30 @@ def _fetch_companyfacts(cache_dir: Path, cik: int, ua: str, max_age_days: int = 
     except Exception as exc:
         log.debug("companyfacts cache-write failed for CIK %d: %s", cik, exc)
     return payload
+
+
+def _instant_records(records: Iterable[dict]) -> dict[pd.Timestamp, dict]:
+    """Balance-sheet records: one value per period-end date (point-in-time).
+
+    These records carry only an `end` date (no `start`/duration). Per the
+    XBRL spec, they represent the balance as of `end`. Dedup amendments by
+    keeping the latest `filed` per `end`.
+    """
+    out: dict[pd.Timestamp, dict] = {}
+    for r in records:
+        form = str(r.get("form", ""))
+        if not (form.startswith("10-Q") or form.startswith("10-K")):
+            continue
+        if "end" not in r or "start" in r:
+            continue  # skip duration records that found their way into this stream
+        try:
+            end = pd.Timestamp(r["end"])
+        except Exception:
+            continue
+        prior = out.get(end)
+        if prior is None or str(r.get("filed", "")) > str(prior.get("filed", "")):
+            out[end] = dict(r)
+    return out
 
 
 def _quarterly_records(records: Iterable[dict]) -> dict[pd.Timestamp, dict]:
@@ -285,15 +328,60 @@ def _assemble_quarterly_frame(facts_us_gaap: dict) -> dict[str, pd.Series]:
     """Pull all wanted metrics into a {metric_name: Series} dict."""
     metrics: dict[str, pd.Series] = {}
 
+    # Balance-sheet (point-in-time / instant) metrics: parsed differently
+    # because their records have only `end` not `start`.
+    INSTANT_METRICS = {"stockholders_equity"}
+
     for name, candidates in TAG_CANDIDATES.items():
-        unit = "USD/shares" if name.startswith("eps_") else "USD"
+        if name.startswith("eps_"):
+            unit = "USD/shares"
+        elif name.startswith("shares_"):
+            unit = "shares"
+        else:
+            unit = "USD"
+
+        if name in INSTANT_METRICS:
+            # Bypass the flow-metric path; balance-sheet stream.
+            recs = {}
+            for tag in candidates:
+                node = facts_us_gaap.get(tag)
+                if not node:
+                    continue
+                units = node.get("units", {})
+                if unit not in units:
+                    continue
+                inst = _instant_records(units[unit])
+                if inst:
+                    recs = inst
+                    break
+            if not recs:
+                metrics[name] = pd.Series(dtype=float)
+                continue
+            idx, vals = [], []
+            for end_ts, r in recs.items():
+                v = r.get("val")
+                if v is None:
+                    continue
+                try:
+                    vals.append(float(v)); idx.append(end_ts)
+                except (TypeError, ValueError):
+                    continue
+            s = pd.Series(vals, index=pd.DatetimeIndex(idx)).sort_index()
+            s = s[~s.index.duplicated(keep="last")]
+            metrics[name] = s
+            continue
+
         recs = _select_metric(facts_us_gaap, candidates, unit)
         if not recs:
             metrics[name] = pd.Series(dtype=float)
             continue
         qs, ans = _series_from_records(recs)
         if name in ("revenue", "op_income", "net_income", "d_and_a", "ocf", "capex"):
+            # Flow metrics: 10-K carries the annual sum, derive Q4 from it.
             qs = _derive_q4(qs, ans)
+        # shares_* records are typically weighted-average for the period, so
+        # both quarterly and annual values are valid as-is; we don't derive
+        # a Q4 for them (would mix avg-period semantics).
         metrics[name] = qs
 
     return metrics
@@ -363,6 +451,11 @@ def fetch_fundamentals_edgar(
     if eps.empty:
         eps = series.get("eps_basic", pd.Series(dtype=float))
 
+    # Diluted weighted-average shares for per-share normalization downstream.
+    shares = series.get("shares_diluted", pd.Series(dtype=float))
+    if shares.empty:
+        shares = series.get("shares_basic", pd.Series(dtype=float))
+
     # Build income-statement DataFrame with yfinance-compatible column names
     # (so extract_metrics's *_FIELDS lookups work without modification).
     income_cols: dict[str, pd.Series] = {}
@@ -378,6 +471,13 @@ def fetch_fundamentals_edgar(
         income_cols["Depreciation And Amortization"] = da
     if not eps.empty:
         income_cols["Diluted EPS"] = eps
+    if not shares.empty:
+        # Match yfinance column name so existing DILUTED_SHARES_FIELDS lookup hits.
+        income_cols["Diluted Average Shares"] = shares
+    # Stockholders' equity (book value) for P/B valuation overlay.
+    se = series.get("stockholders_equity", pd.Series(dtype=float))
+    if not se.empty:
+        income_cols["Stockholders Equity"] = se
 
     cashflow_cols: dict[str, pd.Series] = {}
     if not ocf.empty:

@@ -186,12 +186,17 @@ def load_universe(cfg: Config) -> list[str]:
     df = equities.select(**selectors)
     # financedatabase returns a DataFrame indexed by symbol
     tickers = [t for t in df.index.tolist() if isinstance(t, str) and t]
-    # Drop obvious junk: tickers with spaces, dots used for share classes are
-    # generally fine on yfinance (BRK.B becomes BRK-B). Convert "." to "-".
+    # Clean for yfinance:
+    #   BRK.B -> BRK-B  (single-letter share-class suffix)
+    #   SAP.DE / FME.DE / FME.MI / VOD.L -> kept as-is (exchange suffix)
+    import re
+    share_class_re = re.compile(r"^[A-Z]+\.[A-Z]$")
     cleaned: list[str] = []
     seen: set[str] = set()
     for t in tickers:
-        t2 = t.replace(".", "-").upper().strip()
+        t2 = t.strip().upper()
+        if share_class_re.match(t2):
+            t2 = t2.replace(".", "-")
         if not t2 or " " in t2 or t2 in seen:
             continue
         seen.add(t2)
@@ -292,6 +297,49 @@ def fetch_fundamentals(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
             return edgar
         log.debug("EDGAR returned no data for %s; falling back to yfinance", ticker)
     return _fetch_fundamentals_yf(cfg, ticker)
+
+
+def fetch_info_metrics(cfg: Config, ticker: str) -> dict[str, float]:
+    """Pull pre-computed valuation metrics from yfinance Ticker.info.
+
+    Yahoo serves priceToBook, priceToSalesTrailing12Months, marketCap, and a
+    bunch of other ratios as a single dict from Ticker.info. Much simpler
+    than rebuilding them from balance-sheet line items.
+
+    Cached as a single-row parquet keyed by 'info_metrics'.
+    """
+    cached = _read_cache(cfg, ticker, "info_metrics")
+    if cached is not None and not cached.empty:
+        return cached.iloc[0].to_dict()
+    try:
+        info = yf.Ticker(ticker).info or {}
+    except Exception as exc:
+        log.debug("info fetch failed for %s: %s", ticker, exc)
+        return {}
+    keep_keys = (
+        "priceToBook", "priceToSalesTrailing12Months",
+        "trailingPE", "forwardPE", "enterpriseToEbitda",
+        "marketCap", "sharesOutstanding", "floatShares",
+        "currentPrice", "previousClose",
+        "bookValue", "trailingEps", "totalRevenue",
+        "profitMargins", "operatingMargins", "grossMargins",
+        "returnOnEquity", "returnOnAssets",
+    )
+    out: dict[str, float] = {}
+    for k in keep_keys:
+        v = info.get(k)
+        if v is None:
+            continue
+        try:
+            out[k] = float(v)
+        except (TypeError, ValueError):
+            pass
+    try:
+        _write_cache(cfg, ticker, "info_metrics", pd.DataFrame([out]) if out else pd.DataFrame())
+    except Exception as exc:
+        log.debug("info cache write failed for %s: %s", ticker, exc)
+    time.sleep(cfg.request_sleep)
+    return out
 
 
 def _fetch_eps_history_yf(cfg: Config, ticker: str) -> pd.DataFrame:
@@ -464,7 +512,34 @@ def extract_metrics(funds: dict[str, pd.DataFrame]) -> pd.DataFrame:
             # yfinance stores CapEx as negative; OCF + CapEx = FCF.
             fcf = ocf.add(capex, fill_value=np.nan).dropna()
 
-    cols = {"eps": eps, "revenue": revenue, "ebitda": ebitda, "fcf": fcf}
+    # Diluted weighted-average shares. EDGAR delivers this via the EDGAR
+    # fetcher writing 'Diluted Average Shares' into the income frame, which
+    # already matches yfinance's column name. Used for per-share normalization
+    # of revenue/EBITDA/FCF so dilution and buybacks don't show up as growth.
+    shares = _first_existing(inc, DILUTED_SHARES_FIELDS)
+
+    # Per-share revenue/EBITDA/FCF: divide the dollar series by shares,
+    # aligning on the union of indices. NaN where shares missing for a date.
+    def _per_share(num: Optional[pd.Series]) -> Optional[pd.Series]:
+        if num is None or shares is None:
+            return None
+        idx = num.index.union(shares.index)
+        n = num.reindex(idx)
+        s = shares.reindex(idx).replace(0, np.nan)
+        out = (n / s).dropna()
+        return out if not out.empty else None
+
+    revenue_ps = _per_share(revenue)
+    ebitda_ps = _per_share(ebitda)
+    fcf_ps = _per_share(fcf)
+
+    cols = {
+        "eps": eps,
+        "revenue": revenue, "ebitda": ebitda, "fcf": fcf,
+        # Per-share variants -- composite_growth() prefers these when available
+        "revenue_ps": revenue_ps, "ebitda_ps": ebitda_ps, "fcf_ps": fcf_ps,
+        "shares": shares,
+    }
     # Dedup each component series on its index before concat -- yfinance and
     # EDGAR both occasionally emit two rows for the same period_end (restated
     # quarters, corporate-action ticks). Without this the outer concat
@@ -488,11 +563,14 @@ def extract_metrics(funds: dict[str, pd.DataFrame]) -> pd.DataFrame:
     out.index = idx
     if out.index.has_duplicates:
         out = out[~out.index.duplicated(keep="last")]
-    # Add missing columns so downstream always has the schema.
-    for c in ("eps", "revenue", "ebitda", "fcf"):
+    # Schema guarantee: every downstream consumer can expect these columns.
+    # Per-share columns are NaN when shares-outstanding isn't available.
+    schema = ("eps", "revenue", "ebitda", "fcf",
+              "revenue_ps", "ebitda_ps", "fcf_ps", "shares")
+    for c in schema:
         if c not in out.columns:
             out[c] = np.nan
-    return out[["eps", "revenue", "ebitda", "fcf"]]
+    return out[list(schema)]
 
 
 # --------------------------------------------------------------------------- #
@@ -790,11 +868,34 @@ def compute_responsiveness(
 def composite_growth(metrics: pd.DataFrame, n: int) -> pd.Series:
     """Z-scored equal-weight blend of revenue, EBITDA, FCF trailing N-Q growth.
 
+    Per-share variants (revenue_ps / ebitda_ps / fcf_ps) are preferred when
+    available -- this normalizes out dilution and buybacks so growth reflects
+    real per-share creation, not aggregate-dollar moves driven by share-count
+    changes. Falls back to dollar columns if shares-outstanding wasn't
+    captured (e.g., yfinance-only run without EDGAR).
+
     Each component is z-scored using its own full-sample mean/std before
     averaging so a high-vol component (FCF) doesn't dominate.
     """
+    # Prefer per-share when meaningful data is present.
+    use_per_share = all(
+        col in metrics.columns and metrics[col].notna().sum() >= 2 * n
+        for col in ("revenue_ps", "ebitda_ps", "fcf_ps")
+    )
+    pairs = (
+        (("revenue_ps", "revenue"), ("ebitda_ps", "ebitda"), ("fcf_ps", "fcf"))
+        if use_per_share
+        else (("revenue",), ("ebitda",), ("fcf",))
+    )
     parts = []
-    for col in ("revenue", "ebitda", "fcf"):
+    for tup in pairs:
+        col = tup[0]
+        # Allow fallback within a single metric (e.g., revenue_ps -> revenue)
+        # in case a single line item is missing per-share but others have it.
+        for cand in tup:
+            if cand in metrics.columns and metrics[cand].notna().sum() >= 2 * n:
+                col = cand
+                break
         g = trailing_n_growth(metrics[col], n)
         if g.empty:
             continue
@@ -908,6 +1009,14 @@ class TickerResult:
     # single point-in-time growth observation per fundamental, blended cross-
     # sectionally in post-processing.
     shallow_momentum: dict[str, float | str] = field(default_factory=dict)
+    # Yahoo pre-computed valuation metrics (priceToBook, priceToSales, etc.)
+    # plus per-share derived ratios -- used for the "cheap + inflecting" overlay.
+    info_metrics: dict[str, float] = field(default_factory=dict)
+    # FCF sign-flip detection: tracks the most recent 12 quarters of FCF
+    # ($-level and per-share) so the post-pass can flag names where FCF went
+    # negative -> positive (a fundamental inflection that often precedes the
+    # market's price-response inflection).
+    fcf_recent: dict[str, list[tuple[str, float]]] = field(default_factory=dict)
     error: Optional[str] = None
 
 
@@ -924,8 +1033,19 @@ def analyze_ticker(
         # before the min_quarters guard so we still emit it for short-history
         # names that don't qualify for the responsiveness analysis.
         res.shallow_momentum = extract_shallow_momentum(funds)
+        # Yahoo pre-computed valuation snapshot.
+        res.info_metrics = fetch_info_metrics(cfg, ticker)
 
         metrics = extract_metrics(funds)
+        # Capture the last 12 quarters of FCF and FCF/share for the sign-flip
+        # screener, regardless of whether the ticker clears the main-pipeline
+        # min_quarters threshold. EDGAR delivers deep history, yfinance only 5-7q.
+        if not metrics.empty:
+            for src_col, tag in (("fcf", "fcf"), ("fcf_ps", "fcf_ps")):
+                if src_col in metrics.columns:
+                    s = pd.to_numeric(metrics[src_col], errors="coerce").dropna().sort_index().tail(12)
+                    if not s.empty:
+                        res.fcf_recent[tag] = [(d.strftime("%Y-%m-%d"), float(v)) for d, v in s.items()]
         if metrics.empty or len(metrics) < cfg.min_quarters:
             res.error = f"insufficient fundamentals (have {len(metrics)})"
             return res
@@ -1021,6 +1141,9 @@ def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
         # pipeline can't run because we have <20 quarters).
         for k, v in (r.shallow_momentum or {}).items():
             row[f"shallow_{k}"] = v
+        # Yahoo pre-computed valuation snapshot (priceToBook, priceToSalesTTM, etc.).
+        for k, v in (r.info_metrics or {}).items():
+            row[f"info_{k}"] = v
         rows.append(row)
     return pd.DataFrame(rows).set_index("ticker")
 
@@ -1170,6 +1293,159 @@ def write_composite_momentum(df: pd.DataFrame, outdir: Path) -> None:
                      float(row.get("shallow_net_income_growth_latest", np.nan)))
 
 
+def write_fcf_inflections(
+    results: list,  # list[TickerResult]
+    df: pd.DataFrame,
+    outdir: Path,
+    recent_q: int = 2,
+    prior_q: int = 6,
+) -> None:
+    """Names where FCF went from negative -> positive on recent quarters.
+
+    For each ticker that has at least recent_q + prior_q quarters of FCF
+    history (from EDGAR; yfinance is too shallow), we look at:
+      prior  = mean(FCF over the prior `prior_q` quarters before the recent window)
+      recent = mean(FCF over the most recent `recent_q` quarters)
+
+    A flip is flagged when prior <= 0 AND recent > 0. We rank by
+    (recent - prior) / mean(|FCF history|) so the size of the flip is
+    comparable across companies of different scale.
+
+    Per-share FCF gets the same treatment in a second pass -- this catches
+    dilutive companies whose dollar FCF turned positive only because shares
+    increased (less interesting) vs companies where per-share FCF actually
+    turned (the real signal).
+    """
+    rows = []
+    for r in results:
+        for kind in ("fcf", "fcf_ps"):
+            hist = (r.fcf_recent or {}).get(kind)
+            if not hist or len(hist) < recent_q + prior_q:
+                continue
+            vals = [v for _, v in hist]
+            recent_w = vals[-recent_q:]
+            prior_w = vals[-(recent_q + prior_q): -recent_q]
+            if not recent_w or not prior_w:
+                continue
+            mean_recent = float(np.mean(recent_w))
+            mean_prior = float(np.mean(prior_w))
+            scale = float(np.mean([abs(v) for v in vals])) or 1.0
+            flip_magnitude = (mean_recent - mean_prior) / scale
+            is_flip = (mean_prior <= 0) and (mean_recent > 0)
+            # Also surface a softer signal: prior negative-quarters fraction.
+            frac_negative_prior = sum(1 for v in prior_w if v < 0) / len(prior_w)
+            frac_positive_recent = sum(1 for v in recent_w if v > 0) / len(recent_w)
+            rows.append({
+                "ticker": r.ticker,
+                "metric": kind,
+                "n_history": len(vals),
+                "prior_mean": mean_prior,
+                "recent_mean": mean_recent,
+                "scale_abs_mean": scale,
+                "flip_magnitude": flip_magnitude,
+                "frac_negative_prior": frac_negative_prior,
+                "frac_positive_recent": frac_positive_recent,
+                "is_flip": is_flip,
+                "latest_value": vals[-1],
+            })
+    if not rows:
+        log.info("fcf_inflections: no eligible tickers (need >= %d+%d quarters)",
+                 recent_q, prior_q)
+        return
+    out = pd.DataFrame(rows)
+    # Cross-sectional rank/pct within each metric (fcf vs fcf_ps separately).
+    for kind in out["metric"].unique():
+        mask = out["metric"] == kind
+        s = out.loc[mask, "flip_magnitude"]
+        out.loc[mask, "flip_magnitude_pct"] = s.rank(pct=True) * 100
+    out = out.sort_values(["is_flip", "flip_magnitude"], ascending=[False, False])
+    out.to_csv(outdir / "fcf_inflections.csv", index=False)
+    n_flipped = int(out["is_flip"].sum())
+    log.info("fcf_inflections.csv written; %d names with confirmed sign flip "
+             "(prior_mean <= 0 AND recent_mean > 0)", n_flipped)
+    # Brief headline log -- per-share flips only for relevance.
+    flips_ps = out[(out["metric"] == "fcf_ps") & (out["is_flip"])].head(30)
+    if not flips_ps.empty:
+        log.info("top FCF-per-share negative->positive flips:")
+        for _, r in flips_ps.iterrows():
+            log.info(
+                "  %-8s  prior_mean=%+.3f  recent_mean=%+.3f  flip_magnitude=%+.2f",
+                r["ticker"], r["prior_mean"], r["recent_mean"], r["flip_magnitude"],
+            )
+
+
+def write_valuation_screener(
+    df: pd.DataFrame,
+    outdir: Path,
+    pb_pct_cap: float = 33.3,
+    ps_pct_cap: float = 33.3,
+) -> None:
+    """Names that are (a) cheap on P/B and P/S AND (b) showing inflection.
+
+    Uses Yahoo's pre-computed info_priceToBook and info_priceToSalesTrailing12Months
+    from Ticker.info. We cross-sectionally rank P/B and P/S (low = better),
+    keep names in the bottom `pb_pct_cap` and `ps_pct_cap` percent of each,
+    intersected with the inflection set (>= 2 of the 8 responsiveness
+    variants flagged).
+    """
+    pb_col = "info_priceToBook"
+    ps_col = "info_priceToSalesTrailing12Months"
+    if pb_col not in df.columns and ps_col not in df.columns:
+        log.info("valuation_screener: no priceToBook/priceToSales columns found, skipping")
+        return
+    out = df.copy()
+    if pb_col in out.columns:
+        s = pd.to_numeric(out[pb_col], errors="coerce")
+        # Positive values only (negative book = special; skip)
+        s = s.where(s > 0)
+        out["pb_pct"] = s.rank(ascending=True, pct=True) * 100
+    else:
+        out["pb_pct"] = np.nan
+    if ps_col in out.columns:
+        s = pd.to_numeric(out[ps_col], errors="coerce")
+        s = s.where(s > 0)
+        out["ps_pct"] = s.rank(ascending=True, pct=True) * 100
+    else:
+        out["ps_pct"] = np.nan
+
+    flag_cols = [f"{v}_is_inflected" for v in VARIANT_FIELDS]
+    out["n_variants_inflected"] = (
+        out[flag_cols].fillna(False).astype(bool).sum(axis=1)
+        if all(c in out.columns for c in flag_cols)
+        else 0
+    )
+    # Composite "cheap + inflecting" criterion.
+    cheap = (out["pb_pct"] <= pb_pct_cap) & (out["ps_pct"] <= ps_pct_cap)
+    inflecting = out["n_variants_inflected"] >= 2
+    out["is_cheap_inflecting"] = cheap & inflecting
+
+    cols = [pb_col, ps_col, "pb_pct", "ps_pct", "n_variants_inflected",
+            "is_cheap_inflecting"]
+    cols = [c for c in cols if c in out.columns]
+    valuation = out[cols].sort_values(
+        ["is_cheap_inflecting", "pb_pct", "ps_pct"],
+        ascending=[False, True, True],
+    )
+    valuation.to_csv(outdir / "valuation_screen.csv")
+    n_cheap_inf = int(out["is_cheap_inflecting"].sum())
+    log.info("valuation_screen.csv written; %d names cheap (P/B and P/S in "
+             "bottom %.0f%% each) AND inflecting in >= 2 variants",
+             n_cheap_inf, pb_pct_cap)
+    if n_cheap_inf:
+        top = valuation[valuation["is_cheap_inflecting"]].head(30)
+        log.info("cheap + inflecting:")
+        for tkr, row in top.iterrows():
+            pb = row.get(pb_col, np.nan); ps = row.get(ps_col, np.nan)
+            n = int(row.get("n_variants_inflected", 0))
+            log.info("  %-8s  P/B=%-6s  P/S=%-6s  n_var=%d  pb_pct=%-5s  ps_pct=%-5s",
+                     tkr,
+                     f"{pb:.2f}" if pd.notna(pb) else "nan",
+                     f"{ps:.2f}" if pd.notna(ps) else "nan",
+                     n,
+                     f"{row.get('pb_pct', np.nan):.1f}",
+                     f"{row.get('ps_pct', np.nan):.1f}")
+
+
 def write_ranked(df: pd.DataFrame, outdir: Path, threshold: float) -> None:
     """Combined ranking: avg inflection_z across all variants, with the count
     of variants where the inflection was flagged.
@@ -1306,6 +1582,8 @@ def run(cfg: Config) -> pd.DataFrame:
     df = results_to_frame(results)
     write_per_variant_csvs(df, cfg.output_dir)
     write_composite_momentum(df, cfg.output_dir)
+    write_fcf_inflections(results, df, cfg.output_dir)
+    write_valuation_screener(df, cfg.output_dir)
     write_ranked(df, cfg.output_dir, cfg.inflection_threshold)
     log.info("done in %.1fs", time.time() - t0)
     return df
