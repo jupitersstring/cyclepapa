@@ -500,10 +500,37 @@ Each dimension has a defensible quantitative anchor:
 | 6 | Count of debt tranches post-deal | 1 / 2–3 / 4+ |
 | 7 | UCC-1 terminations within ±30 days of close | ≥3 / 1–2 / 0 |
 | 8 | MIP strike ÷ recap price | ≤1.0 / 1.0–1.5 / >1.5 |
-| 9 | Anchor's cost basis premium to recap price | <0% / 0–25% / >25% |
+| 9 | **Alignment-gap ratio** = anchor entry price ÷ current market | ≥2.0× / 1.2–2.0× / <1.2× |
+| 9b | Anchor's cost basis premium to recap price | <0% / 0–25% / >25% |
 | 11 | Consensus 24-month EBITDA CAGR | ≥30% / 10–30% / <10% |
 | 13 | Pro-forma Altman Z-score | >2.9 / 1.8–2.9 / <1.8 |
 | 14 | Liquidity ÷ quarterly opex | >6 / 2–6 / <2 |
+
+**The alignment-gap ratio is the highest-information single metric.** When
+a sovereign or strategic anchor pays a reserved-capital-increase price
+multiple times the parallel rights price (and multiple times current
+market), they have stamped a hard valuation floor against which the
+listed equity is visibly mispriced.
+
+Worked examples:
+
+- **Eutelsat (Nov–Dec 2025):** anchors (French State, Bharti, UK Gov,
+  CMA CGM) paid €4.00/share in the reserved increase; parallel rights
+  cleared at €1.35; stock now near rights. **Gap = 4.00 / ~1.40 ≈ 2.9×.**
+- **Worldline (Mar 2026):** anchors (Bpifrance, Crédit Agricole, BNP)
+  paid €2.75 (a 10% premium to 30-day VWAP); parallel rights cleared at
+  €0.202; stock ~€0.40. **Gap = 2.75 / 0.40 ≈ 6.9×.**
+- **Star Entertainment (Jun 2025):** Bally's + Mathieson convertible
+  strike A$0.08; stock A$0.10–0.13. **Gap = 0.08 / 0.12 ≈ 0.67×** — no
+  alignment gap, anchor accepted current market.
+- **Calfrac (per the Tenneco worked example):** director rights price ≈
+  current market. **Gap ≈ 1.0×** — alignment is in the act of
+  participating, not the price gap.
+
+A high alignment gap (≥2×) does *not* by itself guarantee upside — it
+must combine with operational catalyst (Condition 7, §2.2) and a
+non-creditor-controlled cap stack. But it is the single hardest signal
+that *informed parties think today's price is wrong*.
 
 Dimensions without a clean number (1, 10, 12) stay qualitative.
 
@@ -520,13 +547,33 @@ Dimensions without a clean number (1, 10, 12) stay qualitative.
    NO  → re-underwrite at the post-money share count
    YES → continue
 4. Is there a real anchor (insider, sponsor, sovereign) with cost basis at
-   or near the recap price?
+   or above the recap price?
    NO  → no alignment; pass
-   YES → buy candidate
-5. Is the operating catalyst identifiable and dated within 24 months?
-   NO  → option, size accordingly
+   YES → continue
+5. Alignment-gap ratio ≥ 2× (anchor entry / current market)?
+   NO  → option-sized only
+   YES → strong asymmetry signal; continue
+6. Is the operating catalyst (Condition 7) identifiable and dated within
+   24 months — i.e. is there a visible inflection that will force the
+   market to re-rate from "rescue" pricing to "recovery" pricing?
+   NO  → balance-sheet repair without operating fix; pass (Provident /
+         Spirit / Meyer Burger risk)
    YES → core position
 ```
+
+**The Condition-7 gate is what separates Tier 1 from Tier 2.** A clean
+recap with no operational catalyst on the horizon is a *better* equity
+than before the deal, but not yet a multibagger setup. The investable
+opportunity sits in the time gap between *balance-sheet repair done* and
+*operational inflection visible* — exactly the structural mispricing
+that defined Rolls-Royce 2020, ArcelorMittal 2016, and 3i 2009 in their
+respective cycles, and Eutelsat / Worldline / Vodafone Idea / Sunac in
+the current vintage.
+
+Prior-cycle textbook winners have already played through Condition 7 and
+re-rated past the entry: Greek banks, Hanwha Ocean, Thai Airways,
+Patanjali Foods, Saipem, Banca Monte dei Paschi. These belong on the
+*completed arc* list, not the live shortlist.
 
 ### 2.3 Red flags (any one is a pass by default)
 
@@ -599,6 +646,29 @@ paydowns, repricings, repeat issuance at tighter spreads.
 
 **Tier-B** (mixed; depends on terms): new general loans, attached warrants,
 second-lien add-ons, PIPEs without alignment.
+
+### 3.1 Archetype taxonomy (orthogonal to Bucket A/B/C)
+
+The **Bucket** (§8) answers *which seat captures the upside*. The
+**Archetype** (this section) answers *what kind of deal mechanic produced
+it*. Both axes are needed: archetype tells you which historical playbook
+applies; bucket tells you which security to buy.
+
+| Code | Archetype | Mechanic | Historical examples | Current vintage |
+|---|---|---|---|---|
+| **A** | Sovereign-strategic dual-tier raise | Reserved capital increase to anchors at a premium price *plus* parallel rights at deep discount. Creates a hard valuation floor multiples above current market | Lufthansa 2020, ING 2009 | **Eutelsat, Worldline, Hawaiian Electric, Star, Synlait, Americanas, Light SA** |
+| **B** | Convertible / strategic-instrument backed | Convertible notes (often with capped calls), warrants, or convertible loan stock with strategic anchor; equity participates via conversion economics | Nvidia 2013, Sirius XM 2009 | **Coinbase, Sibanye-Stillwater, Borr Drilling, Hycroft, Calumet** |
+| **C** | Out-of-court liability management | Bond exchange / consent solicitation pushing maturities; legacy equity untouched but creditor classes converted | Carvana 2023, Lloyds 2009 | **Lumen, iHeartMedia, Aston Martin, Hertz, WW International** |
+| **D** | Strategic customer / parent recap | Capital injected by an industrial partner with deep operational alignment (customer, parent, supplier) | Daimler / Mercedes-Benz in 2009 | **Synlait (Bright Dairy + a2 Milk), NIO (Hefei 2020)** |
+| **E** | National bankruptcy framework (court-supervised survival) | PN17 (Malaysia), CCAA (Canada), recovery judicial (Brazil), StaRUG (Germany) — sovereign procedure that preserves listed common while restructuring debt | GM 2009 (failed for legacy), Drake & Scull 2024 | **Capital A, Drake & Scull, Light SA, Americanas, Sapura** |
+| **F** | Post-bankruptcy / spin orphan | Ch.11 emergence with negotiated legacy retention; or sponsor-backed spin off; or strategic anchor receives material new equity | Charter 2009, Valaris 2021, Core Scientific 2024 | **Wolfspeed (Renesas 38.7%), Sunac (founder 23% MCBs), Sino-Ocean (state insurers 53.8%), Sunrise, Embracer/Fellowship, Endo/Mallinckrodt, Japan Display, GOL** |
+| **G** | Regulator-forced sector recap | Regulatory mandate (capital floor, AGR settlement, MREL, central-bank stress test) drives recapitalisation across an entire sector | Greek banks 2010s, BoI 2011, Yes Bank 2020 | **Vodafone Idea (GoI 49%), Metro Bank (MREL + Gilinski), Nigerian banks (CBN ₦500bn floor)** |
+
+Same name can carry two codes (e.g., Eutelsat A + F because the recap is
+also a partial reorganization). The most valuable signal is the *current
+vintage column*: the May 2026 universe is dominated by Archetypes A, F,
+G — French sovereign-strategic playbook (A), Chinese property post-RX
+(F), and emerging-market regulatory recaps (G).
 
 ---
 
