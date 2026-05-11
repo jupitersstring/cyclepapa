@@ -24,6 +24,86 @@ as the *pipeline*; sizing requires the daily refresh.
 
 ---
 
+## Tier 0 — Cleanest seven-condition setups (Screen 10 standouts)
+
+These three were surfaced by the May 2026 deep screen and meet *all seven*
+framework conditions with unusually clean alignment. They lead the
+ranking — Mountain Province specifically is the single most under-
+appreciated name in this universe.
+
+### 0a. Mountain Province Diamonds — TSX/OTC: MPVD / MPVDF (Canada)
+
+**Bucket A · Archetype F + B (asset-rich + founder backstop) · C7 pending**
+
+The single highest-asymmetry small-cap in the global screen. Dermot
+Desmond (billionaire) is **simultaneously the largest shareholder and
+the largest debtholder** via Dunebridge — the framework's condition #9
+(aligned anchor) is satisfied in textbook form on both sides of the
+cap stack.
+
+- **Mechanic.** 19 Mar 2025 refinancing: $177m of 9% second-lien notes
+  extended to Dec 2027; next interest deferred to Jun 2026; $20m bridge
+  from Dunebridge.
+- **Alignment.** Desmond holding both the equity and the debt eliminates
+  the "creditors vs equity" conflict that breaks most recaps. There is
+  no fulcrum to fight over because one party owns both sides.
+- **Condition 7.** NEX high-grade orebody coming online targeting 50–70%
+  production uplift versus Q1 2025 grades (0.82 carats/tonne) — the
+  diamond-cycle inflection compounds the operating step-up.
+- **Trade.** Listed TSX common. ~30% discount to 2023 valuation despite
+  holding 49% of Gahcho Kué (one of the lowest-cost diamond mines
+  globally). **Asymmetry 3–5×**, and the float is small enough that
+  re-rating can be violent.
+- **Kill criteria.** Diamond cycle deepens; NEX grade disappointing;
+  Desmond reduces position; second covenant amendment needed.
+
+### 0b. MP Materials — NYSE: MP (US)
+
+**Bucket A · Archetype A2 (sovereign industrial-policy anchor) · C7 partial**
+
+The **template deal of the cycle** for sovereign-anchored critical
+minerals. Already 5×'d; the framework's question is whether the next
+2–3× is in price or behind.
+
+- **Mechanic.** 10 Jul 2025: **$400m DoD convertible preferred → Pentagon
+  15% as-converted stake; $150m 12-yr DoD loan; $1bn JPM/GS committed
+  financing; ten-year NdPr price floor at $110/kg (≈2× spot at deal date);
+  7,000-tonne magnet offtake.** Apple followed with $500m prepayment.
+- **The structural innovation.** This is not an equity injection or a
+  rights issue — the DoD provides a *price floor and offtake*, which is
+  hard downside protection on the underlying commodity. Combined with
+  sub-commercial loan terms, it transforms a single-mine concentrate
+  seller into a vertically integrated national champion.
+- **Condition 7.** Magnet plant ramp; rare-earth export-control
+  retaliation cycle; vertical integration economics visible by 2026–27.
+- **Trade.** Already 5×'d; current asymmetry 2–3× on continued NdPr
+  price normalisation + magnet offtake margin pull-through.
+- **Kill criteria.** China NdPr export controls relax; DoD policy
+  shifts under new administration; magnet plant ramp slips.
+
+### 0c. Lithium Americas — NYSE/TSX: LAC (US/Canada)
+
+**Bucket A · Archetype A2 · C7 pending**
+
+The most generous sovereign-financing terms of the cycle.
+
+- **Mechanic.** **$2.26bn DOE ATVM loan at US Treasury rate with 0%
+  spread over 24 years** — restructured Oct 2025 to defer $184m of debt
+  service to back-end years in exchange for 5% LAC equity warrants at 1¢
+  and 5% Thacker Pass JV warrants. GM holds 38% of the JV ($625m paid).
+  First draw $435m closed Oct 2025; second draw $432m closed Feb 2026.
+  Phase 1 mechanical completion late 2027.
+- **The structural innovation.** Sub-commercial cost of capital that
+  cannot be replicated. Shifts the breakeven lithium-carbonate price
+  meaningfully below peers'.
+- **Condition 7.** Phase 1 commercial production late 2027 / 2028.
+- **Trade.** Listed common. **Asymmetry 3–5×** on lithium-cycle
+  normalisation plus the sub-commercial-financing pull-through.
+- **Kill criteria.** Lithium cycle weakens further; DOE policy
+  shift under new administration; construction delays beyond 2028.
+
+---
+
 ## Tier 1 — Core sizing (alignment gap + Condition 7 both lit)
 
 ### 1. Eutelsat Communications — Euronext: ETL (France)
@@ -166,6 +246,95 @@ the only one where bankruptcy was avoided entirely.
   legislation slips and another ignition occurs.
 - **Kill criteria.** Another wildfire event; Hawaii PUC denies rate-base
   normalisation; cap legislation stalls; dividend re-suspension.
+
+---
+
+## Tier 1.5 — Screen 10 high-conviction additions
+
+### 5a. Kaisa Group Holdings — HKEX: 1638 (China)
+
+**Bucket B (new post-MCB common) · Archetype F · C7 pending · Liquidation floor 4–10%**
+
+Cleanest founder-alignment signal in the Chinese property cascade.
+
+- **Mechanic.** Restructuring effective 15 Sept 2025. **$6.69bn senior
+  notes + $6.69bn MCBs across 8 tranches.** Founder Kwok Ying Shing
+  pledged a Rmb115m shareholder loan and reserved 20% fully-diluted
+  equity for management incentive.
+- **Alignment.** Founder shareholder loan + 20% MIP at recap is the
+  framework-required Bucket A signal inside a Bucket B mechanic.
+- **Condition 7.** Tier-1 land cycle inflection; PRC policy support.
+  Beijing soft-landing engineering is the binary.
+- **Residual risk.** NDRC offshore-debt sign-off; SSE disciplinary
+  action (a Country Garden risk, not Kaisa).
+- **Trade.** Post-conversion HKEX common. Asymmetry 5–10× or zero —
+  pure binary on China property; size accordingly.
+
+### 5b. CIFI Holdings — HKEX: 884 (China)
+
+**Bucket B · Archetype F · C7 pending · Liquidation floor 4–10%**
+
+The first Chinese developer to complete *both* onshore and offshore
+restructuring (29 Dec 2025) — the most asset-rich survivor stub in the
+cascade.
+
+- **Mechanic.** 66% of $8.1bn offshore debt cancelled. Lin family
+  converted their shareholder loan; Rosy Fortune and Rain-Mountain
+  trusts behind the MCB.
+- **Asset cover.** Rmb130bn property NAV + Rmb1.8bn rent-yielding IP
+  portfolio growing 10%.
+- **Trade.** HKEX post-MCB common. Asymmetry 3–5× on Tier-1 cycle
+  + monetisation of the IP portfolio.
+
+### 5c. Solocal — Euronext: LOCAL (France)
+
+**Bucket A (residual stub) · Archetype E · C7 partial**
+
+Most extreme legacy-dilution in this list (~0.4% retained) but the
+surviving stub is the cleanest Niel-anchored microcap option.
+
+- **Mechanic.** Completion 31 Jul 2024: €18m rights at €0.003 (91-for-2)
+  + €25m reserved to **Ycor (Maurice Lévy / Xavier Niel vehicle) → 64.8%
+  control**. Pre-existing shareholders to **~0.4%**.
+- **Operating reset.** 2025: revenue €324.5m, EBITDA €60m at 18.5%
+  margin, **€51.8m net cash**. Targets €500m revenue / 25% EBITDA by 2027.
+- **Trade.** Microcap. Asymmetry binary 5–10× — Niel network is the
+  anchor; position-size accordingly. Same Lévy/Niel playbook as GAM
+  Holdings (below).
+- **Kill criteria.** Niel reduces stake; €500m revenue target slips;
+  digital-advertising cycle weakens.
+
+### 5d. Patriot Battery Metals — TSX: PMET / ASX: PMT (Canada/Australia)
+
+**Bucket A · Archetype B · Premium-to-VWAP placement (9c) = 65% · C7 pending**
+
+The rarest setup in the screen: a strategic willingly paying a *premium*
+in a bear cycle for the underlying commodity.
+
+- **Mechanic.** 21 Jan 2025: VW PowerCo subscribed **C$69m at C$4.42 — a
+  65% premium to 30-day VWAP and 35% to 90-day VWAP — for 9.9%**, plus
+  a 10-year binding 100ktpa SC5.5 offtake.
+- **The signal.** When a strategic pays 65% above market in a lithium
+  bear cycle, the asset is being repriced versus EV/resource peers, not
+  versus current commodity prices.
+- **Asset.** Shaakichiuwaanaan, 80.1Mt at 1.44% Li₂O — eighth-largest
+  pegmatite globally.
+- **Trade.** TSX or ASX common. Asymmetry 3–4× on EV/resource
+  repricing + lithium-cycle return.
+
+### 5e. Lynas Rare Earths — ASX: LYC (Australia)
+
+**Bucket A · Archetype A2 (likely next DoD recipient) · C7 pending**
+
+- **Mechanic.** A$750m placement at A$13.25 in August 2025 funded the
+  Seadrift Texas heavies plant — *precisely to qualify for an MP-style
+  DoD price-floor + offtake arrangement* after China's April 2025 rare-
+  earth export controls.
+- **Setup.** Lynas is structurally the only ex-China rare-earth producer
+  at scale outside MP. If the MP DoD template is replicated, Lynas is
+  the obvious next recipient.
+- **Trade.** ASX common. Asymmetry 3–4× on DoD/strategic agreement
+  + China export-control persistence.
 
 ---
 
@@ -470,7 +639,287 @@ aligned anchors.
 
 ---
 
-## Borderline / monitor list
+## Tier 2+ — Post-rehabilitation Asian airlines (LATAM 2022→2026 template)
+
+The cleanest replication template in this cycle. Court-supervised rehab
++ creditor conversion + re-listing + EBIT margin *already* at peer-
+leading levels at relist. LATAM Airlines' 2022 emergence at $24/ADS has
+since re-rated meaningfully — the template is now playable on three
+fresh names.
+
+### 26. Thai Airways — SET: THAI
+
+**Bucket A · Archetype E · C7 visible**
+
+- Exited rehabilitation 16 Jun 2025; relisted 4 Aug 2025.
+- Combined recap: THB53.5bn debt-to-equity + THB22.99bn new share
+  offering. Equity **negative THB43.1bn (YE2020) → positive THB55.4bn
+  (Mar 2025)**; IBD/E 12.5× → 2.2×.
+- Q1 2025 net profit THB9.8bn; **EBIT margin 26.5% — highest among
+  Asia-Pacific full-service carriers**.
+- Cleaner than LATAM 2022 emergence: creditors took *no principal
+  haircut*; shareholder equity positive at re-entry.
+- Day-1 +216% spike already happened; current asymmetry ~2–3× on
+  yield + capacity cycle.
+
+### 27. Aeromexico — NYSE/BMV: AERO
+
+**Bucket B (post-bankruptcy re-IPO) · Archetype E + F · C7 pending**
+
+- **Re-IPO 6 Nov 2025: $222.8m at $19/ADS, $2.77bn valuation.**
+- Apollo retained ~19%; Delta 20% (likely to become largest holder);
+  PAR Capital backing a private placement.
+- Replicates LATAM's Jul 2024 relisting at $24/ADS.
+- USMCA aviation dispute resolution is the discrete catalyst.
+- Asymmetry 2–3×.
+
+### 28. Garuda Indonesia — IDX: GIAA
+
+**Bucket A · Archetype G · C7 pending**
+
+- 12 Nov 2025 EGM approved **$1.4bn (Rp23.6tn) capital injection from
+  Danantara** (new Indonesian sovereign wealth vehicle), two-thirds to
+  Citilink.
+- Prabowo directive: fleet expansion 96 → 186 aircraft by 2026 —
+  political mandate underpins backstop.
+- Residual risks: SIAC arbitration; Paris PKPU recognition.
+- Asymmetry 2–3×.
+
+---
+
+## Tier 2+ — French accelerated-safeguard cohort (excluding Solocal in Tier 1.5)
+
+### 29. emeis (ex-Orpea) — Euronext: EMEIS (France)
+
+**Bucket A (residual stub) · Archetype E · C7 partial**
+
+- €3.8bn unsecured debt equitised; two capital increases €1.2bn + €390m
+  through early 2024. **Caisse des Dépôts / CNP / MAIF / MACSF consortium
+  took 50.3%.** Pre-existing shareholders to **~0.04%**.
+- **Nov 2025 €3.15bn refinancing at EURIBOR+247bps** removed the funding
+  overhang.
+- 2024 EBITDAR guidance €800–835m on 985+ care facilities.
+- **Real-estate-rich, semi-sovereign-backed nursing portfolio at trough
+  multiples** with reputational tail risk from the original Orpea
+  scandal. Asymmetry 3–4×.
+
+### 30. Casino Guichard — Euronext: CO (France)
+
+**Bucket A (residual stub) · Archetype E · C7 pending**
+
+- Plan implemented 27 Mar 2024: €5.2bn debt-to-equity + €1.2bn new equity
+  from **Křetínský / Fimalac / Attestor consortium**; net debt –€6.1bn.
+  100:1 reverse split Jun 2024. Křetínský sole controller via EP Equity
+  Investment III after Feb 2025 Trinity/Fimalac transfer.
+- **Yellow flag.** Mar 2026 announcement of a fresh "balance sheet
+  adapting project" — may not be the last restructuring (Provident /
+  Meyer Burger risk).
+- Asymmetry 2–3× — discount the score for repeat-restructuring risk.
+
+### 31. Pierre & Vacances / Center Parcs — Euronext: VAC (France)
+
+**Bucket A · Archetype E · C7 visible**
+
+The cleanest French story in this cohort.
+
+- Definitive exit Jul 2024: early redemption of €303m reinstated debt
+  + new €205m RCF to 2029.
+- FY 2023/24 **adjusted EBITDA €174m — more than double 2019 levels**;
+  €33m net cash; first net profit (€29m) in over a decade.
+- Targets: €200m EBITDA by 2026, €220m by 2028.
+- **The equity has not re-rated to operational delivery** — clearest
+  Condition 7 mispricing in the French cohort. Asymmetry 2–3×.
+
+---
+
+## Tier 3 expansion — Screen 10 additions
+
+### 32. Sigma Lithium — NASDAQ: SGML (Brazil)
+
+**Bucket A · Archetype C · C7 pending**
+
+- Quasi-equity restructuring that **preserved 100% of equity through the
+  trough**: trade-finance debt cut 60%, total debt cut 35% to $141m;
+  $146m of offtake prepayments. Asymmetry 3–4×.
+
+### 33. Paladin Energy — ASX/TSX: PDN (Australia)
+
+**Bucket A · Archetype B (cyclical uranium) · C7 partial**
+
+- A$300m raised Sept 2025 at A$7.25 + US$110m debt restructuring; stock
+  traded to ~A$13 by mid-2026.
+- Langer Heinrich ramped past 1.23 Mlb/quarter at realised prices
+  $71.80/lb vs cash costs $39.70/lb. Asymmetry 2–3× from current.
+
+### 34. Lotus Resources — ASX: LOT (Australia)
+
+**Bucket A · Archetype B · C7 visible**
+
+- Serial trough raises: A$130m at A$0.25 (Oct 2024); A$65m at A$0.19
+  (Sept 2025); A$76m at **A$2.15 (Oct–Nov 2025) — an 8.6× re-rate in
+  two months** as Kayelekera came back online.
+- Already largely re-rated; current asymmetry 2–3×. Case study for
+  *staged trough placements*.
+
+### 35. Vulcan Energy — ASX: VUL (Australia/Germany)
+
+**Bucket A · Archetype A2 + B · C7 pending**
+
+- A$973m / €545m equity assembled by Dec 2025 + €250m **EIB facility**
+  (the European Commission's Critical Raw Materials Act has made EIB
+  the de facto sovereign for European lithium).
+- Asymmetry 2–3× on European lithium production cycle.
+
+### 36. Algoma Steel — NYSE/TSX: ASTL (Canada)
+
+**Bucket A · Archetype A2 · C7 partial**
+
+- 17 Nov 2025: **C$500m government financing** from Canada Enterprise
+  Emergency Funding Corp + Ontario with **6.77m warrants at C$11.08 —
+  sovereign-equivalent backstop with explicit upside participation**.
+- EAF transition (first steel Apr 2025, full transition end-2026):
+  capacity 2.0 → 3.7 Mt; carbon –70%.
+- Asymmetry 2.5–3× on EAF ramp + steel cycle.
+
+### 37. Mesoblast — ASX: MSB (Australia)
+
+**Bucket A · Archetype B (asset-rich post-approval) · C7 partial**
+
+- A$260m at A$2.50 (Jan 2025) + US$125m Oaktree debt refinanced at 8%
+  via NovaQuest (Aug 2025) — released collateral and lowered cost.
+- Ryoncil sales **US$35.1m Q2 FY26 (+60% QoQ)**; J-Code activated; FY26
+  guidance US$110–120m; adult GvHD trial (3–4× larger TAM) beginning
+  2026.
+- Stock up 868% on 12-month basis; adult-label readouts retain 3–5×
+  optionality.
+
+### 38. Idorsia — SIX: IDIA (Switzerland)
+
+**Bucket A · Archetype C (CHF800m SPV restructuring) · C7 pending**
+
+- Feb 2025 restructured CHF 800m of convertibles: CHF 710m into an SPV
+  holding rights to aprocitentan, selatogrel, cenerimod — only CHF 90m
+  left at parent.
+- QUVIVIQ revenue +50% sequentially Q1 2025; TRYVIO REMS removal by FDA
+  makes aprocitentan partner-able.
+- Asymmetry 3–5×.
+
+### 39. Vroom — NASDAQ: VRM (US)
+
+**Bucket C → B (post-prepack clean BS) · Archetype F · C7 pending**
+
+- Emerged from prepack Ch.11 14 Jan 2025: ~$290m 2026 converts equitised
+  via 1-for-5 reverse split. **Vroom Inc. parent now has zero LT debt**;
+  only UACC carries warehouse + ABS lines.
+- Tangible book ~$145m; stockholders' equity $151.9m Q1 2025; **stock
+  ~0.5× P/TBV**.
+- Mudrick + former noteholders are the new common.
+- Trade: used-car subprime credit normalisation + potential UACC
+  strategic sale. Asymmetry 2.5–3.5×.
+
+### 40. Diebold Nixdorf — NYSE: DBD (US)
+
+**Bucket C → B · Archetype F · C7 visible (partially)**
+
+- Emerged 14 Aug 2023; $2.1bn debt eliminated; S&P upgraded to B+ Sept
+  2024; TTM FCF ~$132m; EV/EBITDA ~7×; new buyback authorised.
+- Asymmetry 1.8–2.5× — compounder post-emergence.
+
+### 41. Cineplex — TSX: CGX (Canada)
+
+**Bucket A · Archetype C · C7 pending**
+
+- Comprehensive Mar 2024 refinancing: convertible debentures extended
+  Sept 2025 → Mar 2030.
+- Box-office recovery + Nov 2025 Cineplex Digital Media sale (C$70m)
+  progresses deleveraging.
+- Asymmetry 2–2.5×.
+
+### 42. Attica Bank / Crediabank — ATHEX: TATT (Greece)
+
+**Bucket A · Archetype G · C7 partial**
+
+- Merged with Pancreta 4 Sept 2024; **€672m rights** completed Dec 2024
+  (86.94% existing-shareholder take-up). Created Greek fifth-pillar bank
+  with **Thrivest 58.5% + HFSF 35%**.
+- Targets €80m net profit 2025 tripling by 2028. Asymmetry 2–3×.
+
+### 43. GAM Holding — SIX: GAMH (Switzerland)
+
+**Bucket A · Archetype E (Niel-anchored microcap) · C7 pending**
+
+- CHF 100m fully underwritten rights Nov 2024 with **Xavier Niel's NJJ /
+  Rock Investment as new control shareholder** — clean Niel-anchored
+  turnaround setup analogous to Solocal / Eutelsat playbook.
+- Asymmetry 2–4× binary.
+
+### 44. Pick n Pay — JSE: PIK (South Africa)
+
+**Bucket A · Archetype A (family-backed rights + spin) · C7 partial**
+
+- R4bn raised Jul 2024 at R15.86 (33% discount, 106% subscribed) +
+  Boxer separately listed Nov 2024 — **textbook distressed-rights-plus-
+  spin combination with the Ackerman family retaining R1bn but ceding
+  control**.
+- Asymmetry 2–3×.
+
+### 45. Blue Label Telecoms / Cell C — JSE: BLU (South Africa)
+
+**Bucket B (post-DES + spin) · Archetype F · C7 pending**
+
+- May 2025 debt-for-equity swap + Cell C separately listed on JSE 27 Nov
+  2025 at R27 (R9bn cap, undersubscribed at R6.5bn).
+- Post-restructure Cell C projected at R2.5bn EBITDA + **R28bn tax-loss
+  carryforwards**. Asymmetry 2×.
+
+### 46. Healius — ASX: HLS (Australia)
+
+**Bucket A · Archetype C (asset-sale recap) · C7 visible**
+
+- 1 May 2025: divested Lumus Imaging to Affinity for A$965m EV (**17×
+  FY24 EBITDA**); returned A$300m as special dividend.
+- Pure-play pathology business now at ~6× EBITDA vs Sonic Healthcare
+  at 12×. Asymmetry 2–2.5×.
+
+### 47. Novaland — HOSE: NVL (Vietnam) — *yellow flag*
+
+**Bucket A · Archetype F · C7 pending**
+
+- 168m-share debt-for-equity swap with founder-affiliated entities Aug
+  2025 (Rp2.65tn at VND17,747); converting Rp6.07tn private bond
+  tranches Q4 2025 – 2026. Vietnamese banks committed VND18.2tn new
+  credit. 2025 net profit VND1.82tn vs 2024 loss VND4.39tn.
+- **Yellow flag.** The Bui Thanh Nhon family has *actively sold NVL
+  shares* to fund the restructuring — alignment in *reverse*. This
+  triggers the new red flag in §2.3 (insider net seller during the
+  restructuring). Treat as Tier 3 option-only, not Tier 1.
+
+### 48. Vinpearl — HOSE: VPL (Vietnam)
+
+**Bucket A · Archetype F (conglomerate unlock) · C7 pending**
+
+- Listed 13 May 2025 with Vingroup retaining 85.5% — conglomerate unlock
+  during the broader Vingroup liquidity rebuild post-VinFast. Asymmetry
+  2–3×.
+
+### 49. Ithaca Energy — LSE: ITH (UK)
+
+**Bucket A · Archetype B (asset-rich UKCS) · C7 partial**
+
+- UKCS asset-rich Eni-combined business. Asymmetry 1.5–2× + 14% yield
+  on equity at current.
+
+### 50. First Quantum — TSX: FM (Canada)
+
+**Bucket A · Archetype B · C7 pending**
+
+- Cyclical + restart optionality (Cobre Panama). Asymmetry 2–3×.
+
+### 51. Coronado Global Resources — ASX: CRN (Australia)
+
+**Bucket A · Archetype B · C7 pending**
+
+- Oaktree-backed cyclical met-coal trough. Asymmetry 2–3×.
 
 - **Thyssenkrupp** (Kretinsky EPCG 20% of Steel Europe Jul 2024, JV
   pending) — Tier 2 if JV closes attractively
@@ -496,13 +945,22 @@ aligned anchors.
 These screen as "recent recap" but legacy equity was wiped, the
 restructuring was a creditor takeover, or rescue was fee-extractive.
 
-**Europe:** Casino Guichard (Kretinsky/Fimalac/Attestor 53.7%; legacy
-diluted to ~0.3%); Solocal (Ycor/Lévy took control; pre-RX <1%);
-Emeis/Orpea (€3.8bn debt equitised Dec 2023, Caisse des Dépôts
-consortium 50.2%, legacy >99.99% diluted); Adler Group (controlled
-wind-down); Pierre & Vacances; ams-Osram (2023 rescue + microLED
-customer loss); Wood Group (Sidara cash takeover at 30p closed Mar 2026
-— delisted).
+**Europe:** Adler Group (controlled wind-down); ams-Osram (2023 rescue +
+microLED customer loss); **Wood Group** (Sidara cash takeover at 30p
+closed Mar 2026 — old equity crystallised 85% below 2023 levels after
+Deloitte review uncovered accounting irregularities); **Petrofac** (UK
+**Court of Appeal set aside the Part 26A sanction 1 Jul 2025** on the
+basis of disproportionate value transfer to new-money creditors at 211%
+IRRs — TenneT terminated its 2GW programme 23 Oct 2025; PIL applied for
+Royal Court of Jersey administration 25 Nov 2025; listed equity
+effectively wiped — canonical reversal-risk case study now folded into
+§2.3); legacy Casino-Rallye (wiped); legacy Orpea (>99.99% diluted to
+0.04% — only post-emeis listing buyable).
+
+*Note: Casino, Solocal, emeis, and Pierre & Vacances all moved off this
+false-friends list into Tier 1.5 / Tier 2+ above — their stubs (or
+post-recap entities) are the buyable instruments, not the original
+legacy lines. Read each entry carefully for which security applies.*
 
 **United States:** Spirit Aviation (re-filed 5 months after emergence);
 Rite Aid (full liquidation Oct 2025); Tupperware (credit-bid sale);
@@ -516,15 +974,25 @@ Carvana (no longer distressed); Wayfair (no material recap).
 **Asia:** Sintex; Jaiprakash Associates (NCLT-approved Adani plan Mar
 2026 mandates *immediate delisting with zero consideration*); Reliance
 Capital; Reliance Naval; Essar Steel; Videocon; Future Retail (all IBC
-wipeouts); Taeyoung E&C (100:1 reduction for majors); Thai Airways
-(relisted 4 Aug 2025, +216% Day 1 — re-rated past condition 7); Yes
-Bank (SMBC at ₹21.50 with stock at ₹24.30 ATH — completed arc); RBL
-Bank (Emirates NBD primary at premium ₹280); Hanwha Ocean (+53%,
-defence/shipbuilding re-rate done); Vedanta (corporate action not
-distress); Patanjali Foods (debt-free since 2022); Logan/Agile/Kaisa/
-Powerlong/CIFI/Yango (weaker promoter alignment than Sunac/Sino-Ocean);
-Nissan (no equity raise yet); Fosun (asset-sale self-rescue, no equity
-event).
+wipeouts); Taeyoung E&C (100:1 reduction for majors); Yes Bank (SMBC at
+₹21.50 with stock at ₹24.30 ATH — completed arc); RBL Bank (Emirates NBD
+primary at premium ₹280); Hanwha Ocean (+53%, defence/shipbuilding
+re-rate done); Vedanta (corporate action not distress); Patanjali Foods
+(debt-free since 2022); Logan/Agile/Powerlong/Yango (weaker promoter
+alignment than Sunac/Sino-Ocean/Kaisa/CIFI); Nissan (no equity raise
+yet); Fosun (asset-sale self-rescue, no equity event); **Vanke
+(000002.SZ / 2202.HK)** — flagged as *yellow* now that the Nov 2025
+Shenzhen Metro collateral demand on the entire Onewo stake + Rmb2bn
+onshore bond extension request show **state backstop has become
+conditional**; previously a Tier 2 candidate, now binary on whether
+state support is re-extended.
+
+*Note: Thai Airways moved off this false-friends list to Tier 2+ above
+— the post-rehab relisting is a fresh Bucket A buyable instrument
+despite the +216% Day 1 spike, with EBIT margins still at peer-leading
+levels and remaining asymmetry 2–3×. Kaisa, CIFI, and Sunac similarly
+moved off — founder alignment is materially stronger than Logan/Agile/
+Powerlong cohort.*
 
 **EM ex-Asia:** Tongaat Hulett (rescue lapsed Feb 2026, provisional
 liquidation); Oi SA (serial restructurings, equity diluted to zero);
@@ -539,33 +1007,70 @@ secured Sep 2025 — fully re-rated; now a consolidator).
 
 ## Asymmetry-ranked summary table
 
-| Rank | Name | Region | Bucket | Archetype | Gap | C7 | Seat |
-|------|------|--------|--------|-----------|-----|----|------|
-| 1 | **Eutelsat** | France | A | A+F | 2.9× | pending | Old equity (rights took) |
-| 2 | **Worldline** | France | A | A | **6.9×** | pending | Old equity |
-| 3 | **Vodafone Idea** | India | A | A+G | <1× (cheaper than FPO) | pending | Old equity, diluted |
-| 4 | **Sunac China** | HK/China | B | F+A | n/a | pending | New post-MCB common |
-| 5 | **Hawaiian Electric** | US | A | A | 1.6× | visible | Old equity |
-| 6 | **Sapura Energy** | Malaysia | A | G+B | n/a | pending | Old, severely diluted |
-| 7 | **Star Entertainment** | Australia | A→B | A | 0.7× | pending | Old equity |
-| 8 | **Americanas** | Brazil | A | C+E | 1.7× | pending | Old, heavily diluted |
-| 9 | **Sino-Ocean** | HK/China | B | F+G | n/a | pending | Hybrid (state insurers) |
-| 10 | **Metro Bank** | UK | A | G | n/a | partial | Old, diluted |
-| 11 | **Synlait Milk** | NZ | A | D+A | 1× | pending | Old, diluted |
-| 12 | **Wolfspeed** | US | B | F | n/a | pending | New post-prepack |
-| 13 | **iHeartMedia** | US | A | C | n/a | pending | Old, preserved |
-| 14 | **Lumen** | US | A | C/G | n/a | partial | Old, preserved |
-| 15 | **Calumet** | US | A | B+C | n/a | pending | Old, participated |
-| 16 | **Aston Martin** | UK | A | C | n/a | pending | Old, participated |
-| 17 | **Capital A** | Malaysia | A | A+E | n/a | pending | Old, participated |
-| 18 | **WW International** | US | A | C/F | n/a | pending | Hybrid (9% legacy) |
-| 19 | **Embracer/Fellowship** | Sweden | B | F | n/a | pending | New post-spin |
-| 20 | **Sibanye-Stillwater** | S. Africa | B | B | n/a | pending | Old, ~19% diluted |
-| 21 | **Nigerian banks (GTCO/ZENITH)** | Nigeria | A | G | n/a | partial | Old, diluted |
-| 22 | **Borr Drilling** | Norway/US | A | B | n/a | pending | Old, diluted |
-| 23 | **Hycroft** | US | A | B | n/a | pending | Old, diluted |
-| 24 | **Drake & Scull** | UAE | A | E | n/a | pending | Old, preserved |
-| 25 | **Light SA** | Brazil | A | A+E | n/a | pending | Old, heavily diluted |
+The single-best-conviction names sit in Tier 0 (all seven framework
+conditions met with unusually clean alignment).
+
+| Rank | Name | Region | Bucket | Archetype | Key signal | Asymmetry |
+|------|------|--------|--------|-----------|------------|-----------|
+| 0a | **Mountain Province Diamonds** | Canada | A | F+B | Desmond owns both equity *and* debt | 3–5× |
+| 0b | **MP Materials** | US | A | A2 | DoD 15% + $110/kg NdPr 10-yr floor + offtake | 2–3× more (after 5× run) |
+| 0c | **Lithium Americas** | US/Canada | A | A2 | $2.26bn 0%-spread 24y DOE ATVM | 3–5× |
+| 1 | **Eutelsat** | France | A | A1+F | Alignment gap 2.9× | 3–5× |
+| 2 | **Worldline** | France | A | A1 | Alignment gap **6.9×** | 3–5× |
+| 3 | **Vodafone Idea** | India | A | A1+G | Stock cheaper than GoI FPO entry | 3–5× |
+| 4 | **Sunac China** | HK/China | B | F+A | Founder 23% MCBs + 6yr lock | 3–7× |
+| 5 | **Hawaiian Electric** | US | A | A1 | Alignment gap 1.6× + C7 visible | 2.5–3× |
+| 5a | **Kaisa** | HK/China | B | F | Kwok founder + 6yr restriction + 20% MIP | 5–10× or zero |
+| 5b | **CIFI Holdings** | HK/China | B | F | First to complete onshore+offshore | 3–5× |
+| 5c | **Solocal** | France | A | E | Lévy/Niel control 64.8% | binary 5–10× |
+| 5d | **Patriot Battery Metals** | Canada | A | B | **VW PowerCo 65% VWAP premium** | 3–4× |
+| 5e | **Lynas Rare Earths** | Australia | A | A2 | Likely next DoD recipient | 3–4× |
+| 6 | **Sapura Energy** | Malaysia | A | G+B | Sovereign MDH 33% | 4–6× option |
+| 7 | **Star Entertainment** | Australia | A→B | A1 | Bally's + Mathieson converts | 2–3× |
+| 8 | **Americanas** | Brazil | A | C+E | 3G trio R$12bn injection | 2–4× |
+| 9 | **Sino-Ocean** | HK/China | B | F+G | China Life + Dajia 53.8% | 2–4× |
+| 10 | **Metro Bank** | UK | A | G | Gilinski 53% controlling | 2–3× |
+| 11 | **Synlait Milk** | NZ | A | D+A | Bright Dairy 65% + a2 19.8% | 2–3× |
+| 12 | **Wolfspeed** | US | B | F | Renesas 38.7% post-prepack | 3–5× |
+| 13 | **iHeartMedia** | US | A | C | $4.8bn debt swept to 2029–31 | 4–6× option |
+| 14 | **Lumen** | US | A | C/G | $15bn pushed to 2029–32 + AI fibre | 2.5–3× |
+| 15 | **Calumet** | US | A | A2+C | DOE Title XVII + Montana Renewables | 2–3× |
+| 16 | **Aston Martin** | UK | A | C | Yew Tree 33% + PIF + Geely | 2–3× |
+| 17 | **Capital A** | Malaysia | A | A1+E | Fernandes 30% promoter | 2–3× |
+| 18 | **WW International** | US | A | C/F | 9% legacy + GLP-1 Med+ pivot | 3–5× option |
+| 19 | **Embracer/Fellowship** | Sweden | B | F | Wingefors across all spincos | 1.5–2.5× |
+| 20 | **Sibanye-Stillwater** | S. Africa | B | B | Convertible + multi-commodity | 2–3× |
+| 21 | **Nigerian banks (GTCO, Zenith, Fidelity)** | Nigeria | A | G | CBN ₦500bn floor sector-wide | 2–4× USD |
+| 22 | **Borr Drilling** | Norway/US | A | B | Trøim founder | 2–3× |
+| 23 | **Hycroft** | US | A | B | Sprott anchor | 3–5× |
+| 24 | **Drake & Scull** | UAE | A | E | Tabarak strategic | 2–3× |
+| 25 | **Light SA** | Brazil | A | A1+E | ANEEL renewal catalyst | 2–3× |
+| 26 | **Thai Airways** | Thailand | A | E | 26.5% EBIT at relist | 2–3× |
+| 27 | **Aeromexico** | Mexico | B | E+F | Apollo 19% + Delta 20% | 2–3× |
+| 28 | **Garuda Indonesia** | Indonesia | A | G | Danantara $1.4bn | 2–3× |
+| 29 | **emeis** | France | A | E | Caisse des Dépôts 50.3% | 3–4× |
+| 30 | **Casino** | France | A | E | Křetínský sole control (warn: repeat-RX risk) | 2–3× |
+| 31 | **Pierre & Vacances** | France | A | E | EBITDA already 2× 2019 | 2–3× |
+| 32 | **Sigma Lithium** | Brazil | A | C | 100% equity preserved through trough | 3–4× |
+| 33 | **Paladin Energy** | Australia | A | B | Langer Heinrich ramp | 2–3× |
+| 34 | **Lotus Resources** | Australia | A | B | 8.6× re-rated Oct–Nov 2025 | 2–3× residual |
+| 35 | **Vulcan Energy** | Aus/Germany | A | A2+B | EIB €250m | 2–3× |
+| 36 | **Algoma Steel** | Canada | A | A2 | CEEFC + 6.77m warrants @ C$11.08 | 2.5–3× |
+| 37 | **Mesoblast** | Australia | A | B | Ryoncil +60% QoQ; adult GvHD pending | 3–5× |
+| 38 | **Idorsia** | Switzerland | A | C | CHF 800m SPV restructuring | 3–5× |
+| 39 | **Vroom** | US | C→B | F | Zero LT debt; 0.5× P/TBV | 2.5–3.5× |
+| 40 | **Diebold Nixdorf** | US | C→B | F | $2.1bn debt cut; FCF $132m | 1.8–2.5× |
+| 41 | **Cineplex** | Canada | A | C | Convertible to 2030 | 2–2.5× |
+| 42 | **Attica/Crediabank** | Greece | A | G | Thrivest 58.5% + HFSF 35% | 2–3× |
+| 43 | **GAM Holding** | Switzerland | A | E | Niel/NJJ control | 2–4× binary |
+| 44 | **Pick n Pay** | S. Africa | A | A1 | Ackerman + Boxer spin | 2–3× |
+| 45 | **Blue Label / Cell C** | S. Africa | B | F | R28bn tax-loss carryforwards | 2× |
+| 46 | **Healius** | Australia | A | C | Lumus sale 17× FY24 EBITDA | 2–2.5× |
+| 47 | **Novaland** ⚠️ | Vietnam | A | F | *Founder net seller* — yellow | option only |
+| 48 | **Vinpearl** | Vietnam | A | F | Vingroup unlock | 2–3× |
+| 49 | **Ithaca Energy** | UK | A | B | UKCS asset-rich + 14% yield | 1.5–2× |
+| 50 | **First Quantum** | Canada | A | B | Cobre Panama restart | 2–3× |
+| 51 | **Coronado Global** | Australia | A | B | Oaktree-backed met coal | 2–3× |
 
 ---
 
