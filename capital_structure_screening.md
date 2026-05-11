@@ -21,50 +21,284 @@ Five hard problems to solve, in order:
 
 ---
 
-## 1. Discovery pipeline (RSS + form filters + keyword regex)
+## 1. Discovery pipeline (RSS + databases + form filters + keyword regex)
 
 The goal is a daily inbox of 5–20 candidates pulled automatically from
-primary sources, not a weekly trawl through PitchBook or Bloomberg headlines.
+primary sources, not a weekly trawl through PitchBook or Bloomberg
+headlines. The pipeline runs eleven independent data streams:
 
-### 1.1 Primary regulatory feeds (free, RSS/Atom/JSON)
+1. **Primary regulatory filings** by jurisdiction (§1.1)
+2. **Form-type / item-code** filters (§1.2)
+3. **Bond, credit & distressed** feeds — trustee notices, TRACE, paid services (§1.3)
+4. **UCC, lien & collateral** aggregators worldwide (§1.4)
+5. **Insider & institutional** positioning — Form 4, 13D/G/F, SEDI, PDMR, SAST (§1.5)
+6. **Macro & cycle** data — HY OAS, default rates, loan-price indices (§1.6)
+7. **Keyword regex** tiered Tier-S / Tier-A / Tier-B / Red-flag (§1.7)
+8. **EDGAR full-text** programmatic recipe (§1.8)
+9. **Secondary commentary** — paid distress press, sell-side desks, short reports (§1.9)
+10. **Data architecture** — joining the feeds into one ticker-keyed table (§1.10)
+11. **Triage cadence** — daily / weekly / monthly disciplines (§1.11)
 
-| Jurisdiction | Source | Feed | What to pull |
+### 1.1 Primary regulatory feeds — ~40 jurisdictions
+
+Free RSS / Atom / JSON wherever available. Where no RSS exists, scrape the
+issuer-search HTML on a saved query basis.
+
+**Americas**
+
+| Country | Regulator / exchange | Feed | What to pull |
 |---|---|---|---|
-| US | SEC EDGAR current | `https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=8-K&output=atom` | 8-K, 6-K, S-3/424B, 13D/G, T-3, 15-12B, NT-10 |
-| US | SEC EDGAR full-text | `https://efts.sec.gov/LATEST/search-index?q=...&forms=...` (JSON) | Keyword + form-type slice |
+| US | SEC EDGAR — current | `sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=8-K&output=atom` | 8-K, 6-K, S-3/424B, 13D/G, T-3, 15-12B, NT-10 |
+| US | SEC EDGAR — full-text | `efts.sec.gov/LATEST/search-index` (JSON) | Keyword + form-type slice |
+| US | SEC EDGAR — Form D | Reg D private placement filings (Atom) | Anchor / strategic-investor disclosure |
+| US | NYSE listing-qualifications notices | `nyse.com/regulation/notices` | Delisting threats, going-concern letters |
+| US | Nasdaq listing-qualifications | `listingcenter.nasdaq.com` notices | Compliance / delisting |
 | Canada | SEDAR+ | Per-issuer Atom on `sedarplus.ca` | Material change reports, rights offering circulars |
-| UK | LSE RNS | `londonstockexchange.com/news?tab=news-explorer` (RSS per ticker) | Rights issues, scheme circulars, restructuring plan notices |
-| EU | OAM hubs (AMF, BaFin, AFM, FINMA, ESMA) | Per-regulator RSS | Prospectuses, ad-hoc disclosures, StaRUG/WHOA notices |
-| Australia | ASX Announcements | `asx.com.au/asx/v2/statistics/announcements.do?timeframe=D` | Capital raisings, voluntary administration |
-| India | BSE/NSE corp announcements | `bseindia.com/corporates/ann.html` (HTML) + NSE API | Rights issues, QIP, FPO |
-| Singapore | SGXNet | Per-issuer RSS | Rights issues, scheme of arrangement |
-| Court dockets | CourtListener (RECAP) | RSS per case + bankruptcy keyword alerts | First-day declarations, DIP motions, plan/disclosure statements |
-| UCC | State SoS portals + UCCDirect / Wolters Kluwer | Per-debtor saved search | New/amended/terminated UCC-1 |
+| Canada | TSX Venture / CSE bulletins | Exchange RSS | Cease-trade orders, halts |
+| Brazil | CVM | `cvm.gov.br/dados-publicos` | Material facts (FRE/IPE) |
+| Brazil | B3 | `b3.com.br` corporate actions | Capital raises, debenture issues |
+| Mexico | CNBV | `cnbv.gob.mx` | Eventos relevantes |
+| Mexico | BMV | `bmv.com.mx` | Corporate disclosures |
+| Argentina | CNV | `cnv.gov.ar/sitioweb/hechosrelevantes` | Hechos relevantes |
+| Chile | CMF | `cmfchile.cl` | Hechos esenciales |
+| Peru | SMV | `smv.gob.pe` | Hechos de importancia |
+| Colombia | SuperFinanciera | `superfinanciera.gov.co` | Información relevante |
 
-Most state SoS sites don't expose RSS. Practical workaround: twice-weekly
-scrape of saved-debtor searches for the watchlist (200–500 tickers), or a
-paid feed (UCCDirect, Lien Solutions, CSC).
+**Europe**
 
-### 1.2 Form-type and item filters
+| Country | Regulator / exchange | Feed | What to pull |
+|---|---|---|---|
+| UK | LSE RNS | `londonstockexchange.com/news?tab=news-explorer` (RSS) | Rights, scheme of arrangement, Pt 26A restructuring plan |
+| UK | FCA NSM | `data.fca.org.uk/artefacts/NSM/` | National Storage Mechanism filings |
+| UK | Companies House | `find-and-update.company-information.service.gov.uk` | Charges, PSC changes, accounts |
+| UK | Insolvency Service | `gov.uk/government/organisations/insolvency-service` | Administration / liquidation notices |
+| Ireland | Euronext Dublin + ISE | `euronext.com/en/markets/dublin` | Capital raises, scheme circulars |
+| France | AMF + Euronext Paris | `amf-france.org` info financière | Prospectus + ad-hoc |
+| Germany | BaFin + Bundesanzeiger + Frankfurt | `bundesanzeiger.de` | Ad-hoc, StaRUG notices |
+| Netherlands | AFM + Euronext Amsterdam | `afm.nl` register | WHOA notices, prospectuses |
+| Switzerland | FINMA + SIX | `six-exchange-regulation.com` | Ad-hoc, capital raises |
+| Italy | Consob + Borsa Italiana | `consob.it` + `borsaitaliana.it` | Comunicati / OPA |
+| Spain | CNMV + BME | `cnmv.es/portal/HR/` | Hechos relevantes |
+| Sweden | FI + Nasdaq Stockholm | `fi.se` + `nasdaqomxnordic.com` | Prospectuses, A&E announcements |
+| Norway | Oslo Børs + FT | `newsweb.oslobors.no` | Børsmeldinger |
+| Denmark | Finanstilsynet + Nasdaq Copenhagen | `finanstilsynet.dk` | Selskabsmeddelelser |
+| Finland | FIN-FSA + Nasdaq Helsinki | `finanssivalvonta.fi` | Pörssitiedotteet |
+| Austria | FMA + Wiener Börse | `wienerborse.at` | Ad-hoc |
+| Belgium | FSMA + Euronext Brussels | `fsma.be` | Prospectuses |
+| Poland | KNF + GPW | `gpw.pl` ESPI/EBI | Raporty bieżące |
 
-Cast a wide net by form, then narrow by item code:
+**Middle East & Africa**
 
-- **8-K Item 1.01** — entry into material definitive agreement (credit
-  agreements, indentures, backstop agreements)
-- **8-K Item 1.03** — bankruptcy or receivership
-- **8-K Item 2.03 / 2.04** — creation of / triggering events under direct
-  financial obligations
-- **8-K Item 3.02 / 3.03** — unregistered equity sales; modification of
-  rights of security holders
-- **8-K Item 5.07** — vote results (restructuring approvals)
-- **6-K** — foreign private issuers (Petra/Viaplay/Brait window)
-- **13D + amendments** — anchor investor disclosure, group formation
-- **S-3 / 424B5** — prospectus supplements at the moment of pricing
-- **T-3** — new indenture qualification (often signals exchange mechanics)
-- **DEF 14A** — restructuring votes, MIP approvals
-- **NT-10** — late filer (precursor to distress)
+| Country | Regulator / exchange | Feed | What to pull |
+|---|---|---|---|
+| Israel | TASE / MAYA | `maya.tase.co.il` | Material events |
+| UAE | ADX + DFM | `adx.ae` + `dfm.ae` | Disclosures |
+| Saudi | Tadawul | `saudiexchange.sa` | Tadawul announcements |
+| Qatar | QSE | `qe.com.qa` | Disclosures |
+| Turkey | KAP | `kap.org.tr` (multilingual) | Public Disclosure Platform |
+| South Africa | JSE SENS | `jse.co.za/sens` | Stock Exchange News Service |
+| Egypt | EGX + FRA | `egx.com.eg` | Disclosures |
+| Nigeria | NGX | `ngxgroup.com` | Corporate announcements |
 
-### 1.3 Keyword regex (run against feed titles + first page of filing)
+**Asia-Pacific**
+
+| Country | Regulator / exchange | Feed | What to pull |
+|---|---|---|---|
+| Japan | EDINET (FSA) | `disclosure.edinet-fsa.go.jp` | Securities filings |
+| Japan | TDnet (TSE) | `tse.or.jp/announcement` | Timely disclosure |
+| Korea | DART (FSS) | `dart.fss.or.kr` | Major reports, capital raises |
+| Hong Kong | HKEXnews | `hkexnews.hk` | Listed-issuer disclosures |
+| China | SSE + SZSE | `sse.com.cn` + `szse.cn` | Periodic + interim (CN/EN) |
+| Taiwan | MOPS | `mops.twse.com.tw` | Material info |
+| Singapore | SGXNet | `sgx.com/securities/company-announcements` | Per-issuer RSS |
+| Malaysia | Bursa Malaysia | `bursamalaysia.com/market_information/announcements` | Listed-issuer announcements |
+| Thailand | SET | `set.or.th/en/company/listed/announcements` | Listed-company news |
+| Indonesia | IDX | `idx.co.id` | Pengumuman emiten |
+| Philippines | PSE EDGE | `edge.pse.com.ph` | Disclosures |
+| Vietnam | HOSE + HNX | `hsx.vn` + `hnx.vn` | Corporate disclosures |
+| Australia | ASX + ASIC | `asx.com.au/asx/v2/statistics/announcements.do?timeframe=D` + ASIC company extracts | Capital raises, VA notices |
+| New Zealand | NZX | `nzx.com/announcements` | Announcements |
+| India | BSE + NSE + SEBI | `bseindia.com/corporates/ann.html`, NSE corporate API, `sebi.gov.in` | Rights, QIP, FPO, takeover |
+| Pakistan | PSX + SECP | `psx.com.pk` + `secp.gov.pk` | Material info |
+| Sri Lanka | CSE | `cse.lk/pages/announcement` | Disclosures |
+| Bangladesh | DSE | `dsebd.org` | Price-sensitive info |
+
+**Court & insolvency dockets**
+
+| Country | Source | Feed |
+|---|---|---|
+| US | PACER + CourtListener (RECAP) | RSS per case + bankruptcy keyword alerts |
+| US | Stretto, Kroll, Epiq, Prime Clerk, BMC Group | Public docket pages per case |
+| UK | Insolvency Service notices | Gazette + Insolvency Service site |
+| UK | BAILII case feeds | `bailii.org/recent-decisions.html` |
+| Canada | Provincial court registries + Insolvency Insider | Per-court HTML scrape |
+| Australia | Federal Court eFiling + state Supreme Courts | Daily-judgments page |
+| Singapore | SUPCT eLitigation | Daily-cause-list HTML |
+| Hong Kong | Judiciary Daily Cause List | `judiciary.hk` |
+| Germany | InsO register (Bundesanzeiger) | Insolvenzbekanntmachungen |
+| Netherlands | Centraal Insolventieregister | `insolventies.rechtspraak.nl` |
+
+### 1.2 Form-type & item-code filters (cross-jurisdictional)
+
+| Filter | US equivalent | UK | EU (Transparency / MAR) | Canada | Australia | India |
+|---|---|---|---|---|---|---|
+| Material agreement | 8-K Item 1.01 | RNS "Notification of major holdings" + LR 13 | MAR Art. 17 ad-hoc | Material change report | ASX 3A.1 / 3A.2 | SEBI LODR Reg 30 |
+| Bankruptcy / insolvency | 8-K Item 1.03 | LSE Notice of Liquidation | Per-country code | Filing under CCAA / BIA | ASX VA notice / Appendix 3X | NCLT order |
+| Debt obligation | 8-K Item 2.03 / 2.04 | RNS debt issuance | MAR ad-hoc | Material change report | ASX 3D | LODR Reg 30 |
+| Unregistered equity | 8-K Item 3.02 / 3.03 | RNS placing / open offer | Prospectus Reg | Form 45-106F1 | ASX placement notice | Preferential allotment |
+| Vote results | 8-K Item 5.07 | RNS results of GM | Per-country | Form 51-102 | ASX 3G | LODR Reg 44 |
+| FPI window | 6-K | n/a | n/a | n/a | n/a | n/a |
+| Anchor disclosure | SC 13D/G + amendments | TR-1 substantial shareholder | Transparency Directive | Early Warning Report | Substantial holder notice 5%+ | SAST Reg 29 |
+| New equity pricing | S-3 / 424B5 | Prospectus + final terms | EU Prospectus | Short-form prospectus | ASX cleansing notice | DRHP / addendum |
+| New indenture | T-3 | Trust deed RNS | Per-country | Trust indenture | n/a | Information memorandum |
+| Restructuring vote | DEF 14A | Circular under LR | Per-country | Mgmt info circular | Scheme booklet | NCLT scheme circular |
+| Late filer | NT-10 | RNS "Delay in publication" | Per-country | Cease trade order | Suspension notice | LODR Reg 33 non-compliance |
+| Insider transaction | Form 4 | RNS PDMR notification | MAR Art. 19 | SEDI | ASX Appendix 3Y | SEBI insider Reg 7(2) |
+
+### 1.3 Bond, credit & distressed feeds
+
+**Free**
+
+- **FINRA TRACE** (US corporate bonds) — `finra.org/finra-data/fixed-income`
+- **MSRB EMMA** (US municipal) — `emma.msrb.org`
+- **DTC LENS notices** — `dtcc.com/notices/lens-notices` (corporate-action and default notices)
+- **Euroclear / Clearstream** public notices — corporate-action announcements
+- **SEC EDGAR ABS-15G** — securitization disclosures
+- **Bond-trustee public-notice pages** (default and consent solicitations):
+  - BNY Mellon Corporate Trust — `bnymellon.com/us/en/who-we-are/corporate-trust.html`
+  - U.S. Bank Global Corporate Trust — `usbank.com/corporate-and-commercial-banking/global-corporate-trust-services.html`
+  - Deutsche Bank Trust Company Americas
+  - Citibank N.A. (Agency & Trust)
+  - Computershare Corporate Trust
+  - Wilmington Trust — `wilmingtontrust.com`
+  - GLAS Trustees (London) — `glas.agency`
+
+**Paid (premium distress)**
+
+- **Octus** (formerly Reorg Research) — `octus.com`
+- **9fin** — `9fin.com`
+- **Debtwire / Mergermarket** — `iongroup.com/markets/debtwire/`
+- **CreditSights**
+- **S&P LCD News** (LSTA loan market) — `lcdcomps.com`
+- **Xtract Research** (covenant database)
+- **BondCliQ** (intraday corp-bond pricing)
+- **MarketAxess** (bond liquidity / pricing)
+- **Bloomberg ALLQ** + Bloomberg Terminal `NSE BANKRUPTCY` / `NSE RECAPITALIZATION` / `NSE TENDER OFFER`
+
+### 1.4 UCC, lien & collateral aggregators (worldwide)
+
+**United States — state-by-state**
+
+- Per-state Secretary of State UCC search (DE, NY, CA, TX, IL most common)
+- **UCCDirect** — `uccdirect.com`
+- **Wolters Kluwer Lien Solutions** — `liensolutions.com`
+- **CSC Global** — `cscglobal.com`
+- **Capitol Services** — `capitolservices.com`
+- **Parasec** — `parasec.com`
+- **iLien** (CT Corp / Wolters Kluwer)
+
+**Outside the US**
+
+| Country | Registry | Feed |
+|---|---|---|
+| UK | Companies House — charges | `find-and-update.company-information.service.gov.uk` |
+| Canada | Provincial PPRs (Ontario, BC, Alberta, etc.) | Per-province search; commercial: TLOxp, Dye & Durham |
+| Australia | ASIC PPSR | `ppsr.gov.au` |
+| New Zealand | PPSR | `ppsr.govt.nz` |
+| India | CERSAI + MCA charges | `cersai.org.in` + `mca.gov.in` |
+| Mexico | RUG | `rug.gob.mx` |
+| Brazil | Junta Comercial (state-level) | Per-state JUCESP, JUCERJA, etc. |
+| Singapore | ACRA Bizfile | `bizfile.gov.sg` |
+| Hong Kong | Companies Registry charges | `cr.gov.hk` |
+| Germany | Schuldnerverzeichnis (debtor register) | `vollstreckungsportal.de` |
+| France | Greffes des tribunaux de commerce — privilèges | `infogreffe.fr` |
+| Netherlands | Kadaster + Kamer van Koophandel | `kvk.nl` |
+
+UCC/lien changes around a Tier-S filing date are the single highest-value
+post-deal verification signal. A clean Bucket A deal *should* show
+terminations of old liens on the same day or within 30 days.
+
+### 1.5 Insider & institutional positioning feeds (revealed preference, triangulation Leg 3)
+
+**Insider transactions**
+
+| Country | Source | Feed |
+|---|---|---|
+| US | SEC EDGAR Form 4 / 4-A | `sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=<CIK>&type=4&output=atom` |
+| US | OpenInsider (free aggregator) | `openinsider.com` |
+| US | SECForm4.com / InsiderSentiment.com / WhaleWisdom | Free + paid |
+| UK | PDMR (Persons Discharging Managerial Responsibility) | RNS notifications per ticker |
+| UK | Companies House confirmation statements + PSC | `find-and-update.company-information.service.gov.uk` |
+| Canada | SEDI | `sedi.ca` — daily download |
+| Canada | Canadian Insider | `canadianinsider.com` |
+| Australia | ASX Appendix 3Y (change in director's interest) | ASX RSS per ticker |
+| Australia | ASIC Form 605 | Substantial holder notices |
+| India | BSE / NSE bulk + block deals | Daily HTML downloads |
+| India | SEBI Reg 7(2) insider disclosures | BSE / NSE company pages |
+| India | TrendlyneInsider, Tijori Finance | Aggregators |
+| Japan | EDINET large-shareholding reports | `disclosure.edinet-fsa.go.jp` |
+| Korea | DART executive shareholding | `dart.fss.or.kr` |
+| Hong Kong | HKEX Disclosures of Interest | `sdinotice.hkex.com.hk` |
+| Singapore | SGXNet directors' transactions | `sgx.com/securities/company-announcements` |
+| EU | MAR Art. 19 manager transactions | Per-OAM hub |
+
+**Institutional positioning**
+
+| Source | What it shows | Feed |
+|---|---|---|
+| SEC 13F-HR (quarterly, 45-day lag) | US institutional holdings >$100m AUM | EDGAR Atom + WhaleWisdom |
+| SEC 13D / 13G / 13G-A | 5%+ positions + activist intent | EDGAR Atom per CIK |
+| SEC NPORT-P | Mutual-fund holdings | EDGAR Atom |
+| Form ADV (RIA filings) | Adviser AUM + strategy changes | EDGAR |
+| UK TR-1 | Substantial shareholder notifications | RNS per issuer |
+| EU Transparency Directive | 5%+ shareholder notifications | Per-OAM hub |
+| Canada Early Warning Reports | 10%+ shareholder | SEDAR+ |
+| Australia substantial holder notices | 5%+ shareholder | ASX RSS |
+| India SAST Reg 29 + 31 | Substantial Acquisition of Shares & Takeovers | BSE / NSE |
+| WhaleWisdom | 13F aggregator with delta tracking | Paid web |
+| FactSet Stock Surveillance / Ownership | Institutional ownership database | Paid |
+| Refinitiv eMaxx | Bond-fund holdings database | Paid |
+| Morningstar Direct / Lipper | Mutual fund holdings + flows | Paid |
+| Ortex / S3 Partners | Short interest + borrow rates | Paid |
+| FINRA short interest reports | Bi-weekly US short interest | Free |
+
+**Tracking watch-list for known recap-/value-fund 13F entries**
+
+Maintain a list of CIKs / fund identifiers and watch each filing for new
+positions in distressed names. Useful clusters:
+
+- *Distressed credit & recap funds:* Oaktree, Apollo, Cerberus, Centerbridge,
+  Silver Point, Anchorage, GoldenTree, Mudrick, Brigade, King Street,
+  Marathon, Sound Point, Owl Creek, Solus, Strategic Value Partners
+- *Value funds known for restructuring exposure:* Baupost, Markel, Akre,
+  Ariel, FPA, Pzena, Yacktman, Longleaf, Wedgewood, Causeway
+- *Activist / anchor:* ValueAct, Trian, Elliott, Starboard, Engine No. 1
+- *Sovereign / strategic:* GIC, Temasek, ADIA, PIF, NBIM, CDP, Bpifrance
+
+### 1.6 Macro & cycle data feeds
+
+| Indicator | Source | Feed / series ID |
+|---|---|---|
+| HY OAS (ICE BofA US HY index) | FRED | `BAMLH0A0HYM2` |
+| HY effective yield | FRED | `BAMLH0A0HYM2EY` |
+| BBB OAS | FRED | `BAMLC0A4CBBB` |
+| CCC OAS | FRED | `BAMLH0A3HYC` |
+| HY default rate (Moody's) | FRED + Moody's Analytics | `BAMLH0A3HYCEY` proxy |
+| Investment-grade vs HY spread | FRED arithmetic | `BAMLH0A0HYM2 - BAMLC0A1CAAA` |
+| LSTA US Leveraged Loan price index | S&P/LCD | `lcdcomps.com` (paid) |
+| ICE BofA HY rebound index | ICE Data Services | Paid |
+| EPFR HY ETF flows | EPFR | Paid |
+| ICI weekly mutual fund flows | ICI | Free |
+| Moody's Default & Recovery DB | Moody's | Paid |
+| S&P Default & Rating Transitions | S&P Global | Paid |
+| Trepp CRE delinquency | Trepp | Paid |
+| RCA commercial real estate | RCA | Paid |
+
+Read the macro filter (§7) against these series to size the watchlist
+appropriately: candidate density should scale with HY OAS / default-rate
+backdrop, not narrative.
+
+### 1.7 Keyword regex (run against feed titles + first page of filing)
 
 Tier these so the inbox is sorted by signal strength.
 
@@ -93,18 +327,26 @@ RED_FLAGS = r"\b(going concern|substantial doubt|covenant waiver|" \
             r"forbearance agreement|payment default|" \
             r"missed (coupon|interest)|" \
             r"strategic alternatives|hire(d)? (financial )?advisor)\b"
+
+REVEALED_PREF = r"\b(director (purchase|acquisition)|" \
+                r"promoter (subscribed|purchased)|" \
+                r"insider (buy|purchase)|" \
+                r"13D filing|substantial shareholder)\b"
 ```
 
 `RED_FLAGS` matched *before* a `TIER_S` event is the highest-value early-
 warning lane — 3–9 month leading indicators of the deal that matters.
 
-### 1.4 Concrete EDGAR full-text queries
+`REVEALED_PREF` matched *after* a `TIER_S` event within 30 days is the
+Leg 3 confirmation signal for triangulation (§8.3).
+
+### 1.8 Concrete EDGAR full-text recipe
 
 EDGAR's full-text endpoint accepts JSON queries with form-type filters.
 A starter daily script:
 
 ```python
-import requests, datetime as dt, urllib.parse as up
+import requests, datetime as dt
 
 EDGAR = "https://efts.sec.gov/LATEST/search-index"
 HEADERS = {"User-Agent": "screener you@example.com"}
@@ -118,8 +360,9 @@ QUERIES = {
     "lien_release":         '"UCC termination" OR "lien release"',
     "going_concern":        '"substantial doubt" AND "going concern"',
     "scheme":               '"scheme of arrangement" OR "restructuring plan"',
+    "insider_buy":          '"director purchase" OR "Section 16 acquisition"',
 }
-FORMS = "8-K,6-K,S-1,S-3,424B5,T-3,SC 13D,DEF 14A"
+FORMS = "8-K,6-K,S-1,S-3,424B5,T-3,SC 13D,SC 13G,DEF 14A,4"
 
 for label, q in QUERIES.items():
     params = {
@@ -141,28 +384,80 @@ for label, q in QUERIES.items():
 ```
 
 Adapt the same pattern for: SEDAR+ Atom, LSE RNS HTML scrape, ASX
-announcements JSON, BSE/NSE announcements HTML. Each issuer hit becomes a
-row in the triage queue with `tier`, `ticker`, `form`, `accession`, `url`.
+announcements JSON, BSE/NSE announcements HTML, EDINET JSON, DART REST API.
+Each issuer hit becomes a row in the triage queue with `tier`, `ticker`,
+`form`, `accession`, `url`.
 
-### 1.5 Secondary feeds (commentary, distress press)
+### 1.9 Secondary commentary feeds
 
-- Reuters tag feeds (`/business/restructuring/`, `/markets/deals/`)
-- FT Alphaville RSS
-- Bloomberg Terminal `NSE BANKRUPTCY` / `NSE RECAPITALIZATION` (paid)
-- *Petition* (Substack RSS) — weekly distress digest
-- Reorg / Debtwire / 9fin (paid; trial APIs)
-- Trustee / agent press releases: Kroll Restructuring Administration, Epiq,
-  Stretto, Prime Clerk, DF King
-- Court docket trackers: Stretto, Kroll, BMC Group public docket pages
+- **Reuters** tag feeds — `/business/restructuring/`, `/markets/deals/`
+- **FT Alphaville** RSS
+- **Bloomberg Terminal** `NSE` codes (paid)
+- **Petition** (Substack) — weekly distress digest
+- **Distressed Hub** / **Reorg-Research** highlights
+- **Octus / 9fin / Debtwire** headlines (paid trial APIs available)
+- **Trustee / agent press release pages** — Kroll Restructuring Administration,
+  Epiq, Stretto, Prime Clerk, DF King, Computershare
+- **Sell-side credit research** — BAML High Yield Weekly, JPM Distressed
+  Watch, Morgan Stanley HY, Goldman Distressed (Bloomberg / direct)
+- **Specialty primary-market press** — GlobalCapital, IFR (International
+  Financing Review), Euroweek
+- **M&A / capital-markets newsflow** — DealReporter, Mergermarket capital
+  markets, Mlex (regulatory)
+- **Short-seller research** — Hindenburg, Citron, Spruce Point, Muddy
+  Waters, Wolfpack, Bonitas, Iceberg, Viceroy (short reports frequently
+  precede restructurings; Marc Cohodes is the canonical follow on Twitter/X)
+- **Specialty newsletters** — Kuppy's Event Driven, Off Wall Street, MOI
+  Global, ValueWalk
 
-### 1.6 Triage cadence
+### 1.10 Data architecture (joining the feeds)
+
+The pipeline outputs one ticker-keyed `candidates` table per day. Schema:
+
+```
+candidates(
+    ticker, isin, cik_or_equivalent, jurisdiction, sector,
+    last_tier_s_signal, last_red_flag, last_insider_buy,
+    last_13d_change, last_ucc_event,
+    pf_net_debt, ebitda_p25, ebitda_p50, ebitda_p75,
+    fulcrum_tranche_price, listed_equity_mc,
+    score_total, bucket, triangulation_legs,
+    next_event_date,  -- record date / sub period / earnings
+    state            -- watch | option | core | drop
+)
+```
+
+Cross-feed joins to perform daily:
+
+1. **Ticker ↔ CIK / ISIN / LEI** map. Use OpenFIGI for ISIN ↔ FIGI, EDGAR
+   tickers.json, LSE SEDOL lookup.
+2. **Issuer ↔ trustee / debt-tranche** map. Maintain a hand-curated
+   dictionary of each watchlist issuer's outstanding tranches + their
+   trustee + their CUSIP / ISIN. New trustee notices auto-attach.
+3. **Issuer ↔ UCC debtor name** map. Legal entity name (per Secretary of
+   State) often differs from listed-issuer name. Build aliases.
+4. **Insider name ↔ issuer** map. Form 4 filers come keyed by CIK of the
+   reporting person, not the issuer; join via the `subject CIK` field.
+5. **Fund manager ↔ position delta** map. 13F-HR quarterly delta vs prior
+   filing per ticker → flag on watchlist names.
+
+Output the joined `candidates` table to Postgres / SQLite / DuckDB nightly
+for triage. Snapshot per day to track score drift through the deal cycle.
+
+### 1.11 Triage cadence
 
 - **Daily (15 min).** Sort overnight feed by tier; tag candidates; queue
-  filings for deep read.
-- **Weekly (60 min).** Run watchlist UCC search; reconcile against bond
-  trustee notices; refresh maturity wall for every name on the list.
+  filings for deep read. Review Form 4 / PDMR / SEDI hits against the
+  watchlist (Leg 3 signal).
+- **Weekly (60 min).** Run watchlist UCC / lien-registry search; reconcile
+  against bond-trustee notices; refresh maturity wall and triangulation
+  read for every active name; check fulcrum-debt price moves.
+- **Quarterly (post-13F due date).** Reconcile institutional positioning
+  against watchlist — new entries by recap-fund cluster, exits by
+  long-only value managers.
 - **Monthly.** Prune candidates that have not progressed (no Item 1.01, no
-  anchor backstop disclosed, no maturity extension filed).
+  anchor backstop disclosed, no maturity extension filed). Re-score
+  macro filter; resize watchlist if HY OAS regime shifted.
 
 Binary discipline: a name either advances along the deal pipeline or falls
 out. No "interesting, watching" purgatory.
