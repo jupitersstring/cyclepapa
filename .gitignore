@@ -4,6 +4,5 @@ __pycache__/
 results/
 .venv/
 run.log
-us_small_universe.csv
-us_small_sample.csv
+us_small_*.csv
 eligible.csv
