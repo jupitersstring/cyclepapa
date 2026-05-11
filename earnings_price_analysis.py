@@ -465,7 +465,19 @@ def extract_metrics(funds: dict[str, pd.DataFrame]) -> pd.DataFrame:
             fcf = ocf.add(capex, fill_value=np.nan).dropna()
 
     cols = {"eps": eps, "revenue": revenue, "ebitda": ebitda, "fcf": fcf}
-    parts = [s.rename(name) for name, s in cols.items() if s is not None]
+    # Dedup each component series on its index before concat -- yfinance and
+    # EDGAR both occasionally emit two rows for the same period_end (restated
+    # quarters, corporate-action ticks). Without this the outer concat
+    # explodes into a many-row cartesian product and later reindex calls
+    # raise "cannot reindex on an axis with duplicate labels".
+    parts = []
+    for name, s in cols.items():
+        if s is None:
+            continue
+        s = s.copy()
+        if s.index.has_duplicates:
+            s = s[~s.index.duplicated(keep="last")]
+        parts.append(s.rename(name))
     if not parts:
         return pd.DataFrame(columns=["eps", "revenue", "ebitda", "fcf"])
 
@@ -474,6 +486,8 @@ def extract_metrics(funds: dict[str, pd.DataFrame]) -> pd.DataFrame:
     if getattr(idx, "tz", None) is not None:
         idx = idx.tz_localize(None)
     out.index = idx
+    if out.index.has_duplicates:
+        out = out[~out.index.duplicated(keep="last")]
     # Add missing columns so downstream always has the schema.
     for c in ("eps", "revenue", "ebitda", "fcf"):
         if c not in out.columns:
@@ -522,10 +536,16 @@ def smoothed_log_returns_at(prices: pd.Series, dates: pd.DatetimeIndex, smooth_d
     # Normalize tz to align with fiscal dates (which arrive tz-naive).
     if getattr(p.index, "tz", None) is not None:
         p.index = p.index.tz_localize(None)
+    # Drop duplicate dates (rare yfinance corporate-action quirk) -- otherwise
+    # reindex below blows up with "cannot reindex on an axis with duplicate labels".
+    if p.index.has_duplicates:
+        p = p[~p.index.duplicated(keep="last")]
     if smooth_days and smooth_days > 1:
         p = p.rolling(window=smooth_days, min_periods=max(2, smooth_days // 2), center=False).mean()
-    # Align by asof: for each fiscal date, take the most recent price.
-    p_at = p.reindex(p.index.union(dates)).ffill().reindex(dates)
+    # Align by asof: for each fiscal date, take the most recent price. Dedup
+    # `dates` too -- fiscal date dupes occur when a name re-reported a quarter.
+    dates_unique = pd.DatetimeIndex(dates).drop_duplicates()
+    p_at = p.reindex(p.index.union(dates_unique)).ffill().reindex(dates_unique)
     log_p = np.log(p_at.replace(0, np.nan))
     return log_p.diff().shift(-1)  # forward return
 
@@ -554,12 +574,16 @@ def forward_sharpe_at(
     p = prices.sort_index().copy()
     if getattr(p.index, "tz", None) is not None:
         p.index = p.index.tz_localize(None)
+    if p.index.has_duplicates:
+        p = p[~p.index.duplicated(keep="last")]
     daily_ret = np.log(p.replace(0, np.nan)).diff()
 
     if benchmark_prices is not None and not benchmark_prices.empty:
         b = benchmark_prices.sort_index().copy()
         if getattr(b.index, "tz", None) is not None:
             b.index = b.index.tz_localize(None)
+        if b.index.has_duplicates:
+            b = b[~b.index.duplicated(keep="last")]
         bench_ret = np.log(b.replace(0, np.nan)).diff()
         daily_ret = daily_ret - bench_ret      # NaN-aligned on union of indices
 
