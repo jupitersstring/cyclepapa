@@ -5,14 +5,29 @@ script measures how a stock's price responds to fundamental growth on the
 margin and flags names where that responsiveness has recently inflected
 positively.
 
-Two flavors are computed in parallel:
+Two growth signals are computed:
 
-  1. EPS-only:  trailing N-quarter EPS growth vs price.
-  2. Composite: z-scored blend of trailing N-Q revenue, EBITDA, FCF growth
-                vs price.
+  1. EPS-only:  trailing N-quarter EPS growth.
+  2. Composite: z-scored blend of trailing N-Q revenue, EBITDA, FCF growth.
 
-Each is computed against both absolute price (log) returns and price relative
-to ^GSPC (log return spread). Optional smoothing on the price series.
+Two price-side dependent variables are tested (Sharpe is inherently a
+lookback measure, just like the rolling regression, so we include it as a
+risk-adjusted complement to raw forward returns):
+
+  A. Forward 1Q smoothed log return.
+  B. Forward annualized Sharpe over the next ~W trading days.
+
+Each (growth x dependent variable) pair is run in two modes:
+
+  i.  absolute (stock-only).
+  ii. relative to ^GSPC (return spread, or Sharpe-of-excess-returns).
+
+= 8 variants per ticker:
+
+   eps_return_absolute        eps_sharpe_absolute
+   eps_return_vs_spx          eps_sharpe_vs_spx
+   composite_return_absolute  composite_sharpe_absolute
+   composite_return_vs_spx    composite_sharpe_vs_spx
 
 Methodology
 -----------
@@ -21,10 +36,12 @@ For each ticker on a per-quarter grid (aligned to fiscal quarter-ends):
   g_t   = TrailingSumLastN(metric_t) / TrailingSumPriorN(metric_t) - 1
   dg_t  = g_t - g_{t-1}
   r_t   = log(P_smooth_{t+1}) - log(P_smooth_t)   (forward 1Q return)
-  r^*_t = r_t - r_spx_t                            (relative to SPX)
+  s_t   = mean(daily_ret) / std(daily_ret) * sqrt(252) over (t, t+W days]
+  *_rel = same, but on excess-vs-^GSPC series
 
-Then on a rolling window of W quarters we run OLS of r on dg and store the
-slope beta_t (the marginal price-response sensitivity). Inflection is:
+Then on a rolling window of W_q quarters we run OLS of the chosen dependent
+variable on dg and store the slope beta_t (the marginal sensitivity).
+Inflection is:
 
   inflection_z = mean(beta_{t-K+1..t}) - mean(beta_{t-2K+1..t-K})
                  ----------------------------------------------------
@@ -41,12 +58,12 @@ Usage
         --beta-window 12 \\
         --inflection-lookback 4 \\
         --price-smooth-days 21 \\
+        --sharpe-window-days 252 \\
         --max-tickers 500 \\
         --workers 8 \\
         --output-dir results/
 
-Outputs CSVs per analysis variant (eps_absolute, eps_relative,
-composite_absolute, composite_relative) and a combined ranked.csv.
+Outputs one CSV per variant (8 total) plus a combined ranked.csv.
 
 Caches yfinance pulls to .cache/yf/<ticker>.parquet to avoid re-fetching on
 re-runs. Delete .cache/ to force refresh.
@@ -87,6 +104,7 @@ class Config:
     beta_window: int = 12           # W: rolling regression window (quarters)
     inflection_lookback: int = 4    # K: half-window for recent vs prior beta
     price_smooth_days: int = 21     # rolling mean applied to daily close
+    sharpe_window_days: int = 252   # forward window (trading days) for Sharpe
     min_quarters: int = 16          # require >= this many quarters of data
     benchmark: str = "^GSPC"
     history_period: str = "max"     # passed to yfinance for prices
@@ -401,6 +419,65 @@ def smoothed_log_returns_at(prices: pd.Series, dates: pd.DatetimeIndex, smooth_d
     return log_p.diff().shift(-1)  # forward return
 
 
+def forward_sharpe_at(
+    prices: pd.Series,
+    dates: pd.DatetimeIndex,
+    window_trading_days: int = 252,
+    periods_per_year: int = 252,
+    benchmark_prices: Optional[pd.Series] = None,
+) -> pd.Series:
+    """At each fiscal date t, annualized Sharpe of forward daily log returns.
+
+    Returns over (t, t + ~window calendar days] are used; we take the first
+    `window_trading_days` actual observations within that window. If
+    `benchmark_prices` is provided, Sharpe is computed on excess returns
+    (stock daily - benchmark daily) -- the information-ratio analog.
+
+    Sharpe is inherently a lookback measure, so this gives a smoother, risk-
+    adjusted dependent variable for the growth-responsiveness regression in
+    addition to raw forward returns.
+    """
+    if prices is None or prices.empty or len(dates) < 2:
+        return pd.Series(dtype=float)
+
+    p = prices.sort_index().copy()
+    if getattr(p.index, "tz", None) is not None:
+        p.index = p.index.tz_localize(None)
+    daily_ret = np.log(p.replace(0, np.nan)).diff()
+
+    if benchmark_prices is not None and not benchmark_prices.empty:
+        b = benchmark_prices.sort_index().copy()
+        if getattr(b.index, "tz", None) is not None:
+            b.index = b.index.tz_localize(None)
+        bench_ret = np.log(b.replace(0, np.nan)).diff()
+        daily_ret = daily_ret - bench_ret      # NaN-aligned on union of indices
+
+    daily_ret = daily_ret.dropna()
+    if daily_ret.empty:
+        return pd.Series(dtype=float)
+
+    # Calendar-day budget covering the requested trading-day window plus slack.
+    calendar_days = int(round(window_trading_days * 365 / 252)) + 14
+    min_obs = max(20, int(window_trading_days * 0.6))
+
+    rows: list[tuple] = []
+    for t in dates:
+        t_end = t + pd.Timedelta(days=calendar_days)
+        sub = daily_ret.loc[(daily_ret.index > t) & (daily_ret.index <= t_end)]
+        if len(sub) < min_obs:
+            continue
+        sub = sub.iloc[:window_trading_days]
+        mu = float(sub.mean())
+        sd = float(sub.std(ddof=0))
+        if sd > 0:
+            rows.append((t, (mu / sd) * np.sqrt(periods_per_year)))
+
+    if not rows:
+        return pd.Series(dtype=float)
+    idx, vals = zip(*rows)
+    return pd.Series(list(vals), index=pd.DatetimeIndex(list(idx)))
+
+
 # --------------------------------------------------------------------------- #
 # Responsiveness + inflection                                                 #
 # --------------------------------------------------------------------------- #
@@ -530,10 +607,16 @@ def composite_growth(metrics: pd.DataFrame, n: int) -> pd.Series:
 @dataclass
 class TickerResult:
     ticker: str
-    eps_abs: Optional[Responsiveness] = None
-    eps_rel: Optional[Responsiveness] = None
-    comp_abs: Optional[Responsiveness] = None
-    comp_rel: Optional[Responsiveness] = None
+    # Forward 1Q log-return dependent variable
+    eps_ret_abs: Optional[Responsiveness] = None
+    eps_ret_rel: Optional[Responsiveness] = None
+    comp_ret_abs: Optional[Responsiveness] = None
+    comp_ret_rel: Optional[Responsiveness] = None
+    # Forward annualized Sharpe dependent variable (Sharpe is itself a lookback)
+    eps_shp_abs: Optional[Responsiveness] = None
+    eps_shp_rel: Optional[Responsiveness] = None
+    comp_shp_abs: Optional[Responsiveness] = None
+    comp_shp_rel: Optional[Responsiveness] = None
     error: Optional[str] = None
 
 
@@ -558,30 +641,47 @@ def analyze_ticker(
         # Fiscal-quarter dates (alignment grid).
         q_dates = pd.DatetimeIndex(sorted(metrics.index.unique()))
 
-        # Absolute forward returns at fiscal dates.
+        # ---- Dependent variables ----
+        # Forward 1Q smoothed log returns at fiscal dates (absolute + vs SPX).
         r_abs = smoothed_log_returns_at(prices, q_dates, cfg.price_smooth_days)
-        # Benchmark return on same dates.
         r_bench = smoothed_log_returns_at(bench_prices, q_dates, cfg.price_smooth_days)
         r_rel = (r_abs - r_bench).dropna()
+
+        # Forward annualized Sharpe (absolute) and Sharpe-of-excess-returns (vs SPX).
+        s_abs = forward_sharpe_at(prices, q_dates, cfg.sharpe_window_days)
+        s_rel = forward_sharpe_at(prices, q_dates, cfg.sharpe_window_days,
+                                  benchmark_prices=bench_prices)
 
         # ---- EPS variant ----
         g_eps = trailing_n_growth(metrics["eps"], cfg.growth_window)
         if not g_eps.empty:
-            res.eps_abs = compute_responsiveness(
+            res.eps_ret_abs = compute_responsiveness(
                 g_eps, r_abs, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
             )
-            res.eps_rel = compute_responsiveness(
+            res.eps_ret_rel = compute_responsiveness(
                 g_eps, r_rel, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
+            )
+            res.eps_shp_abs = compute_responsiveness(
+                g_eps, s_abs, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
+            )
+            res.eps_shp_rel = compute_responsiveness(
+                g_eps, s_rel, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
             )
 
         # ---- Composite variant ----
         g_comp = composite_growth(metrics, cfg.growth_window)
         if not g_comp.empty:
-            res.comp_abs = compute_responsiveness(
+            res.comp_ret_abs = compute_responsiveness(
                 g_comp, r_abs, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
             )
-            res.comp_rel = compute_responsiveness(
+            res.comp_ret_rel = compute_responsiveness(
                 g_comp, r_rel, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
+            )
+            res.comp_shp_abs = compute_responsiveness(
+                g_comp, s_abs, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
+            )
+            res.comp_shp_rel = compute_responsiveness(
+                g_comp, s_rel, cfg.beta_window, cfg.inflection_lookback, cfg.inflection_threshold
             )
     except Exception as exc:                                  # one bad ticker shouldn't kill the run
         res.error = f"{type(exc).__name__}: {exc}"
@@ -594,7 +694,10 @@ def analyze_ticker(
 # --------------------------------------------------------------------------- #
 
 
-VARIANT_FIELDS = ("eps_abs", "eps_rel", "comp_abs", "comp_rel")
+VARIANT_FIELDS = (
+    "eps_ret_abs", "eps_ret_rel", "comp_ret_abs", "comp_ret_rel",
+    "eps_shp_abs", "eps_shp_rel", "comp_shp_abs", "comp_shp_rel",
+)
 
 
 def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
@@ -617,10 +720,14 @@ def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
 def write_per_variant_csvs(df: pd.DataFrame, outdir: Path) -> None:
     outdir.mkdir(parents=True, exist_ok=True)
     variant_to_name = {
-        "eps_abs": "eps_absolute",
-        "eps_rel": "eps_vs_spx",
-        "comp_abs": "composite_absolute",
-        "comp_rel": "composite_vs_spx",
+        "eps_ret_abs": "eps_return_absolute",
+        "eps_ret_rel": "eps_return_vs_spx",
+        "comp_ret_abs": "composite_return_absolute",
+        "comp_ret_rel": "composite_return_vs_spx",
+        "eps_shp_abs": "eps_sharpe_absolute",
+        "eps_shp_rel": "eps_sharpe_vs_spx",
+        "comp_shp_abs": "composite_sharpe_absolute",
+        "comp_shp_rel": "composite_sharpe_vs_spx",
     }
     for var, label in variant_to_name.items():
         cols = [c for c in df.columns if c.startswith(f"{var}_")]
@@ -634,25 +741,43 @@ def write_per_variant_csvs(df: pd.DataFrame, outdir: Path) -> None:
 
 
 def write_ranked(df: pd.DataFrame, outdir: Path, threshold: float) -> None:
-    """Combined ranking: avg inflection_z across the four variants for names
-    flagged as inflected in >= 2 of them."""
+    """Combined ranking: avg inflection_z across all variants, with the count
+    of variants where the inflection was flagged.
+
+    With 8 variants (ret/shp x abs/rel x eps/comp), being inflected in 3+ is a
+    strong signal -- the two dependent variables (return vs Sharpe) are
+    correlated, so confirmation across both indicates a robust regime shift.
+    """
     z_cols = [f"{v}_inflection_z" for v in VARIANT_FIELDS]
     flag_cols = [f"{v}_is_inflected" for v in VARIANT_FIELDS]
     avail = df[z_cols + flag_cols].copy()
     avail["avg_inflection_z"] = df[z_cols].mean(axis=1, skipna=True)
     avail["n_variants_inflected"] = df[flag_cols].fillna(False).astype(bool).sum(axis=1)
+    # Decompose into return-side and Sharpe-side counts for diagnostic clarity.
+    ret_flags = [f"{v}_is_inflected" for v in VARIANT_FIELDS if "_ret_" in v]
+    shp_flags = [f"{v}_is_inflected" for v in VARIANT_FIELDS if "_shp_" in v]
+    avail["n_inflected_returns"] = df[ret_flags].fillna(False).astype(bool).sum(axis=1)
+    avail["n_inflected_sharpe"] = df[shp_flags].fillna(False).astype(bool).sum(axis=1)
+
     ranked = avail.sort_values(
         ["n_variants_inflected", "avg_inflection_z"], ascending=[False, False]
     )
     ranked.to_csv(outdir / "ranked.csv")
-    top = ranked[ranked["n_variants_inflected"] >= 2].head(40)
-    log.info("ranked.csv written; %d names inflected in >= 2 variants", (ranked["n_variants_inflected"] >= 2).sum())
-    if not top.empty:
-        log.info("top inflecting names (n_variants_inflected >= 2):")
-        for tkr, row in top.iterrows():
+
+    min_flags = max(3, len(VARIANT_FIELDS) // 3)
+    qualified = ranked[ranked["n_variants_inflected"] >= min_flags]
+    log.info("ranked.csv written; %d names inflected in >= %d of %d variants",
+             len(qualified), min_flags, len(VARIANT_FIELDS))
+    if not qualified.empty:
+        log.info("top inflecting names (n_variants_inflected >= %d):", min_flags)
+        for tkr, row in qualified.head(40).iterrows():
             log.info(
-                "  %-8s  n_var=%d  avg_z=%.2f",
-                tkr, int(row["n_variants_inflected"]), float(row["avg_inflection_z"]),
+                "  %-8s  n_var=%d  (ret=%d shp=%d)  avg_z=%.2f",
+                tkr,
+                int(row["n_variants_inflected"]),
+                int(row["n_inflected_returns"]),
+                int(row["n_inflected_sharpe"]),
+                float(row["avg_inflection_z"]),
             )
 
 
@@ -674,6 +799,8 @@ def parse_args(argv: Optional[list[str]] = None) -> Config:
     p.add_argument("--inflection-lookback", type=int, default=4)
     p.add_argument("--inflection-threshold", type=float, default=1.0)
     p.add_argument("--price-smooth-days", type=int, default=21)
+    p.add_argument("--sharpe-window-days", type=int, default=252,
+                   help="forward trading-day window for the Sharpe dependent variable")
     p.add_argument("--min-quarters", type=int, default=16)
     p.add_argument("--benchmark", default="^GSPC")
     p.add_argument("--max-tickers", type=int, default=None)
@@ -693,6 +820,7 @@ def parse_args(argv: Optional[list[str]] = None) -> Config:
         inflection_lookback=args.inflection_lookback,
         inflection_threshold=args.inflection_threshold,
         price_smooth_days=args.price_smooth_days,
+        sharpe_window_days=args.sharpe_window_days,
         min_quarters=args.min_quarters,
         benchmark=args.benchmark,
         max_tickers=args.max_tickers,
