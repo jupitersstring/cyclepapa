@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+scipy
+statsmodels
+scikit-learn
+matplotlib
+plotly
+yfinance
+fredapi
+pytz
+financedatabase
+requests
