@@ -211,6 +211,12 @@ def _cache_path(cfg: Config, ticker: str, kind: str) -> Path:
 
 
 def _read_cache(cfg: Config, ticker: str, kind: str, max_age_days: int = 7) -> Optional[pd.DataFrame]:
+    """Return cached DataFrame or None.
+
+    Empty DataFrames are returned for 'price' (the file structure encodes
+    success) but treated as cache-miss for 'income'/'cashflow'/'eps_history',
+    so a transient rate-limit doesn't permanently poison the cache.
+    """
     path = _cache_path(cfg, ticker, kind)
     if not path.exists():
         return None
@@ -218,10 +224,13 @@ def _read_cache(cfg: Config, ticker: str, kind: str, max_age_days: int = 7) -> O
     if age > max_age_days * 86400:
         return None
     try:
-        return pd.read_parquet(path)
+        df = pd.read_parquet(path)
     except Exception as exc:                # corrupt cache file
         log.debug("cache read failed for %s/%s: %s", ticker, kind, exc)
         return None
+    if kind in ("income", "cashflow", "eps_history") and df.empty:
+        return None  # retry — empty very likely means rate-limited
+    return df
 
 
 def _write_cache(cfg: Config, ticker: str, kind: str, df: pd.DataFrame) -> None:
@@ -760,7 +769,49 @@ def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("ticker")
 
 
+def _xs_rank_columns(sub: pd.DataFrame, value_cols: tuple[str, ...]) -> pd.DataFrame:
+    """Add cross-sectional rank/percentile/z-score columns for each value col.
+
+    For each value column V:
+      V_rank        — 1 = highest in universe; ties broken by first-seen
+      V_pct         — percentile [0, 100], where 100 = top of universe
+      V_xs_z        — cross-sectional z-score: (V - mean(V_universe)) / std(V_universe)
+
+    NaN inputs stay NaN in the output columns. Universe = rows where the value
+    is not NaN.
+    """
+    out = sub.copy()
+    for col in value_cols:
+        if col not in out.columns:
+            continue
+        s = pd.to_numeric(out[col], errors="coerce")
+        # Rank descending (1 = best). pandas pct=True gives 0..1; flip so
+        # high V => high percentile.
+        rk = s.rank(ascending=False, method="min", na_option="keep")
+        pct = s.rank(ascending=True, method="average", pct=True, na_option="keep") * 100
+        mu = s.mean(skipna=True)
+        sd = s.std(ddof=0, skipna=True)
+        xs_z = (s - mu) / sd if sd and not pd.isna(sd) and sd > 0 else pd.Series(np.nan, index=s.index)
+        out[f"{col}_rank"] = rk
+        out[f"{col}_pct"] = pct
+        out[f"{col}_xs_z"] = xs_z
+    return out
+
+
 def write_per_variant_csvs(df: pd.DataFrame, outdir: Path) -> None:
+    """Emit one CSV per variant.
+
+    Each CSV includes:
+      - the per-ticker time-series metrics (latest_growth, latest_beta,
+        inflection_z, etc.)
+      - cross-sectional rank/percentile/z-score for the headline values
+        (latest_beta, inflection_z, latest_growth, latest_corr)
+
+    Time-series inflection_z is "this ticker's recent beta vs its own prior
+    beta, scaled by its own beta std." Cross-sectional inflection_z_xs_z is
+    "this ticker's inflection_z vs the universe of tickers' inflection_z."
+    Both are useful; cross-sectional surfaces the standouts in the sample.
+    """
     outdir.mkdir(parents=True, exist_ok=True)
     variant_to_name = {
         "eps_ret_abs": "eps_return_absolute",
@@ -772,12 +823,17 @@ def write_per_variant_csvs(df: pd.DataFrame, outdir: Path) -> None:
         "comp_shp_abs": "composite_sharpe_absolute",
         "comp_shp_rel": "composite_sharpe_vs_spx",
     }
+    headline_cols = ("inflection_z", "latest_beta", "latest_growth", "latest_corr",
+                     "recent_mean_beta")
     for var, label in variant_to_name.items():
         cols = [c for c in df.columns if c.startswith(f"{var}_")]
         if not cols:
             continue
         sub = df[cols].copy()
         sub.columns = [c[len(var) + 1 :] for c in cols]
+        # Cross-sectional ranks computed across all tickers in this variant.
+        xs_targets = tuple(c for c in headline_cols if c in sub.columns)
+        sub = _xs_rank_columns(sub, xs_targets)
         sub = sub.sort_values("inflection_z", ascending=False)
         sub.to_csv(outdir / f"{label}.csv")
         log.info("wrote %s.csv (%d rows)", label, len(sub))
