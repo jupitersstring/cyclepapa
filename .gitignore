@@ -6,4 +6,5 @@ results_*/
 .venv/
 run*.log
 us_small_*.csv
+universe_*.csv
 eligible.csv
