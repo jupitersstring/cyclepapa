@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .cache/
 results/
+.venv/
+run.log
+us_small_universe.csv
+us_small_sample.csv
+eligible.csv

@@ -151,6 +151,18 @@ def load_universe(cfg: Config) -> list[str]:
     """Return list of tickers for the requested universe."""
     log.info("loading universe: %s", cfg.universe)
 
+    # CSV escape hatch: if cfg.universe points to an existing CSV file, load
+    # tickers from its index (first column). Lets us run on a pre-filtered list.
+    csv_path = Path(cfg.universe)
+    if csv_path.is_file() and csv_path.suffix.lower() == ".csv":
+        df = pd.read_csv(csv_path, index_col=0)
+        tickers = [str(t).upper().strip() for t in df.index.tolist() if pd.notna(t)]
+        tickers = [t for t in tickers if t and " " not in t]
+        log.info("loaded %d tickers from %s", len(tickers), csv_path)
+        if cfg.max_tickers:
+            tickers = tickers[: cfg.max_tickers]
+        return tickers
+
     equities = fd.Equities()
     selectors: dict[str, object] = {}
     if cfg.countries:
@@ -232,10 +244,13 @@ def _with_retries(fn, *args, attempts: int = 3, base_sleep: float = 1.0, **kwarg
 
 
 def fetch_fundamentals(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
-    """Return dict with 'income', 'cashflow' quarterly DataFrames.
+    """Return dict with 'income', 'cashflow', and 'eps_history' DataFrames.
 
-    Each DataFrame has dates as the index (most recent at bottom) and metric
-    names as columns. Empty DataFrame on failure rather than raising.
+    'income'/'cashflow' come from yfinance's quarterly statements (currently
+    limited to ~5 quarters of history). 'eps_history' uses
+    Ticker.get_earnings_dates(limit=80) which gives decades of reported EPS,
+    so the EPS-only variant can run meaningfully even when the full income
+    statement is short.
     """
     out: dict[str, pd.DataFrame] = {}
     for kind, attr in (("income", "quarterly_income_stmt"), ("cashflow", "quarterly_cashflow")):
@@ -249,7 +264,6 @@ def fetch_fundamentals(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
             if df is None or not isinstance(df, pd.DataFrame) or df.empty:
                 df = pd.DataFrame()
             else:
-                # yfinance returns rows=metric, cols=date. Transpose to dates-index.
                 df = df.T
                 df.index = pd.to_datetime(df.index, errors="coerce")
                 df = df[~df.index.isna()].sort_index()
@@ -258,6 +272,30 @@ def fetch_fundamentals(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
         except Exception as exc:
             log.debug("fetch %s failed for %s: %s", kind, ticker, exc)
             out[kind] = pd.DataFrame()
+        time.sleep(cfg.request_sleep)
+
+    # Long EPS history via get_earnings_dates (gives ~20+ years for many names).
+    cached = _read_cache(cfg, ticker, "eps_history")
+    if cached is not None:
+        out["eps_history"] = cached
+    else:
+        try:
+            t = yf.Ticker(ticker)
+            ed = _with_retries(t.get_earnings_dates, limit=80)
+            if ed is None or ed.empty or "Reported EPS" not in ed.columns:
+                ed_df = pd.DataFrame()
+            else:
+                ed_df = ed[["Reported EPS"]].copy()
+                idx = pd.to_datetime(ed_df.index)
+                if getattr(idx, "tz", None) is not None:
+                    idx = idx.tz_localize(None)
+                ed_df.index = idx
+                ed_df = ed_df.sort_index().dropna(subset=["Reported EPS"])
+            out["eps_history"] = ed_df
+            _write_cache(cfg, ticker, "eps_history", ed_df)
+        except Exception as exc:
+            log.debug("fetch eps_history failed for %s: %s", ticker, exc)
+            out["eps_history"] = pd.DataFrame()
         time.sleep(cfg.request_sleep)
     return out
 
@@ -322,13 +360,18 @@ CAPEX_FIELDS = ("Capital Expenditure", "Capital Expenditures")
 def extract_metrics(funds: dict[str, pd.DataFrame]) -> pd.DataFrame:
     """Pull EPS, Revenue, EBITDA, FCF into one quarterly DataFrame.
 
-    Columns: ['eps', 'revenue', 'ebitda', 'fcf'].
-    Missing metrics result in NaN columns (caller handles).
+    EPS preferentially uses the long historical earnings-dates feed (decades
+    of quarters); falls back to the income statement's short window.
     """
     inc = funds.get("income", pd.DataFrame())
     cf = funds.get("cashflow", pd.DataFrame())
+    eps_hist = funds.get("eps_history", pd.DataFrame())
 
-    eps = _first_existing(inc, EPS_FIELDS)
+    eps = None
+    if not eps_hist.empty and "Reported EPS" in eps_hist.columns:
+        eps = pd.to_numeric(eps_hist["Reported EPS"], errors="coerce").dropna()
+    if eps is None or eps.empty:
+        eps = _first_existing(inc, EPS_FIELDS)
     if eps is None:
         ni = _first_existing(inc, NET_INCOME_FIELDS)
         shares = _first_existing(inc, DILUTED_SHARES_FIELDS)
