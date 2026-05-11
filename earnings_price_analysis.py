@@ -642,6 +642,29 @@ def _rolling_corr(y: pd.Series, x: pd.Series, window: int) -> pd.Series:
 
 @dataclass
 class Responsiveness:
+    """Per-ticker rolling-beta inflection summary.
+
+    Fields beyond `inflection_z` capture the raw (non-normalized) signals so
+    downstream filters can pick names by absolute beta improvement, by
+    sign-flip from negative to positive, or by an acceleration check on the
+    rolling-correlation series.
+
+    Glossary:
+      recent_mean_beta : mean of last K rolling betas
+      prior_mean_beta  : mean of the K betas before that
+      beta_delta_raw   : recent - prior (numerator of inflection_z, pre-z)
+      beta_roc         : second-difference proxy: (latest - recent_mean)
+                         - (recent_mean - prior_mean). >0 means beta is
+                         accelerating upward.
+      recent_mean_corr / prior_mean_corr / corr_delta_raw : same on the
+                         rolling correlation series.
+      is_inflected     : z-score >= threshold AND latest_beta > 0.
+      is_regime_flip   : prior_mean_beta <= 0 AND latest_beta > 0
+                         (the literal "underreaction -> appreciation"
+                         transition: market wasn't responding, now is).
+      is_corr_inflected: corr_delta_raw > 0 AND latest_corr > 0
+                         (correlation has improved and is now positive).
+    """
     latest_growth: float
     latest_delta_growth: float
     latest_beta: float
@@ -649,7 +672,16 @@ class Responsiveness:
     inflection_z: float
     n_quarters: int
     beta_history: pd.Series = field(repr=False)
+    recent_mean_beta: float = float("nan")
+    prior_mean_beta: float = float("nan")
+    beta_delta_raw: float = float("nan")
+    beta_roc: float = float("nan")
+    recent_mean_corr: float = float("nan")
+    prior_mean_corr: float = float("nan")
+    corr_delta_raw: float = float("nan")
     is_inflected: bool = False
+    is_regime_flip: bool = False
+    is_corr_inflected: bool = False
 
     def to_row(self) -> dict[str, float | int | bool]:
         return {
@@ -658,8 +690,17 @@ class Responsiveness:
             "latest_beta": self.latest_beta,
             "latest_corr": self.latest_corr,
             "inflection_z": self.inflection_z,
+            "recent_mean_beta": self.recent_mean_beta,
+            "prior_mean_beta": self.prior_mean_beta,
+            "beta_delta_raw": self.beta_delta_raw,
+            "beta_roc": self.beta_roc,
+            "recent_mean_corr": self.recent_mean_corr,
+            "prior_mean_corr": self.prior_mean_corr,
+            "corr_delta_raw": self.corr_delta_raw,
             "n_quarters": self.n_quarters,
             "is_inflected": self.is_inflected,
+            "is_regime_flip": self.is_regime_flip,
+            "is_corr_inflected": self.is_corr_inflected,
         }
 
 
@@ -670,7 +711,14 @@ def compute_responsiveness(
     lookback: int,
     inflection_threshold: float,
 ) -> Optional[Responsiveness]:
-    """Run the rolling-beta + inflection pipeline for one (growth, return) pair."""
+    """Run the rolling-beta + inflection pipeline for one (growth, return) pair.
+
+    Produces three independent inflection flags:
+      is_inflected      — z-score-based (current behavior, threshold-driven)
+      is_regime_flip    — prior_mean_beta <= 0 AND latest_beta > 0 (sign flip)
+      is_corr_inflected — corr_delta_raw > 0 AND latest_corr > 0
+                          (correlation improving and now positive)
+    """
     if growth is None or fwd_return is None or growth.empty or fwd_return.empty:
         return None
     df = pd.concat([growth.rename("g"), fwd_return.rename("r")], axis=1).dropna()
@@ -683,28 +731,54 @@ def compute_responsiveness(
     corr = _rolling_corr(df["r"], df["dg"], beta_window)
 
     beta_clean = beta.dropna()
+    corr_clean = corr.dropna()
     if len(beta_clean) < 2 * lookback:
         return None
 
-    recent = beta_clean.iloc[-lookback:].mean()
-    prior = beta_clean.iloc[-2 * lookback : -lookback].mean()
-    std_full = beta_clean.std(ddof=0)
-    z = (recent - prior) / std_full if std_full and not np.isnan(std_full) and std_full > 0 else np.nan
+    recent_b = float(beta_clean.iloc[-lookback:].mean())
+    prior_b = float(beta_clean.iloc[-2 * lookback : -lookback].mean())
+    std_full = float(beta_clean.std(ddof=0))
+    z = (recent_b - prior_b) / std_full if std_full and not np.isnan(std_full) and std_full > 0 else np.nan
+    beta_delta_raw = recent_b - prior_b
+    latest_beta = float(beta_clean.iloc[-1])
+    # Second-difference style ROC: change in change. >0 => beta accelerating up.
+    beta_roc = (latest_beta - recent_b) - (recent_b - prior_b)
 
-    latest_beta = beta_clean.iloc[-1]
-    latest_corr = corr.dropna().iloc[-1] if not corr.dropna().empty else np.nan
-    latest_growth = df["g"].iloc[-1]
-    latest_dg = df["dg"].iloc[-1]
+    # Same recent/prior decomposition on the correlation series so we can
+    # detect correlation inflections independently from beta-magnitude moves.
+    if len(corr_clean) >= 2 * lookback:
+        recent_c = float(corr_clean.iloc[-lookback:].mean())
+        prior_c = float(corr_clean.iloc[-2 * lookback : -lookback].mean())
+        latest_corr = float(corr_clean.iloc[-1])
+    else:
+        recent_c = prior_c = float("nan")
+        latest_corr = float(corr_clean.iloc[-1]) if not corr_clean.empty else float("nan")
+    corr_delta_raw = recent_c - prior_c
+
+    latest_growth = float(df["g"].iloc[-1])
+    latest_dg = float(df["dg"].iloc[-1])
 
     return Responsiveness(
-        latest_growth=float(latest_growth),
-        latest_delta_growth=float(latest_dg),
-        latest_beta=float(latest_beta),
-        latest_corr=float(latest_corr) if pd.notna(latest_corr) else np.nan,
+        latest_growth=latest_growth,
+        latest_delta_growth=latest_dg,
+        latest_beta=latest_beta,
+        latest_corr=latest_corr if pd.notna(latest_corr) else np.nan,
         inflection_z=float(z) if pd.notna(z) else np.nan,
         n_quarters=int(len(df)),
         beta_history=beta_clean,
+        recent_mean_beta=recent_b,
+        prior_mean_beta=prior_b,
+        beta_delta_raw=float(beta_delta_raw),
+        beta_roc=float(beta_roc),
+        recent_mean_corr=recent_c,
+        prior_mean_corr=prior_c,
+        corr_delta_raw=float(corr_delta_raw) if pd.notna(corr_delta_raw) else float("nan"),
         is_inflected=bool(pd.notna(z) and z >= inflection_threshold and latest_beta > 0),
+        is_regime_flip=bool(pd.notna(prior_b) and prior_b <= 0 and latest_beta > 0),
+        is_corr_inflected=bool(
+            pd.notna(corr_delta_raw) and corr_delta_raw > 0
+            and pd.notna(latest_corr) and latest_corr > 0
+        ),
     )
 
 
@@ -931,7 +1005,14 @@ def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
         for var in VARIANT_FIELDS:
             sub = getattr(r, var)
             if sub is None:
-                for k in ("latest_growth", "latest_delta_growth", "latest_beta", "latest_corr", "inflection_z", "n_quarters", "is_inflected"):
+                # Stub all columns the Responsiveness.to_row() would produce.
+                for k in (
+                    "latest_growth", "latest_delta_growth", "latest_beta", "latest_corr",
+                    "inflection_z", "recent_mean_beta", "prior_mean_beta",
+                    "beta_delta_raw", "beta_roc", "recent_mean_corr", "prior_mean_corr",
+                    "corr_delta_raw", "n_quarters", "is_inflected",
+                    "is_regime_flip", "is_corr_inflected",
+                ):
                     row[f"{var}_{k}"] = np.nan
             else:
                 for k, v in sub.to_row().items():
@@ -998,8 +1079,15 @@ def write_per_variant_csvs(df: pd.DataFrame, outdir: Path) -> None:
         "comp_shp_abs": "composite_sharpe_absolute",
         "comp_shp_rel": "composite_sharpe_vs_spx",
     }
-    headline_cols = ("inflection_z", "latest_beta", "latest_growth", "latest_corr",
-                     "recent_mean_beta")
+    # Cross-section all the headline signals (z-based and raw) so the CSV
+    # carries percentile/rank/xs-z for each. Raw deltas matter alongside the
+    # z because a name with a small std-of-beta can have a giant z-score off
+    # a tiny absolute move.
+    headline_cols = (
+        "inflection_z", "latest_beta", "latest_growth", "latest_corr",
+        "recent_mean_beta", "prior_mean_beta",
+        "beta_delta_raw", "beta_roc", "corr_delta_raw",
+    )
     for var, label in variant_to_name.items():
         cols = [c for c in df.columns if c.startswith(f"{var}_")]
         if not cols:
