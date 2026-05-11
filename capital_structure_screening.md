@@ -261,12 +261,57 @@ multibagger setups from the look-alikes.
 - **Arch Coal → Core Natural Resources (US, post-Ch.11) — S ≈ 18/28 (new
   common).** Old common cancelled; new post-reorg shares multibagged. The
   multibagger here was the *new* security, not the legacy stub.
+- **Goodman Group (ASX: GMG, 2009) — S ≈ 21/28.** 1-for-1 rights at A$0.40,
+  underwritten with CIC (China Investment Corp) as cornerstone. Caught the
+  trough of the Australian logistics property cycle; reported as ~60x
+  including dividends by 2021 for holders who took up the issue. Scorecard
+  wins: pro-rata access, sovereign anchor at the same price, simple
+  post-deal cap stack, identifiable secular catalyst (e-commerce → logistics
+  rents).
+- **Charter Communications (US, 2009 Ch.11) — legacy stub S ≈ 2/28; new
+  common S ≈ 19/28.** Eliminated ~$8B of debt and conducted a ~$1.6B
+  fully-underwritten rights as part of the plan; old common cancelled,
+  new common compounded into hundreds of dollars. The *multibagger seat*
+  was the new common allocated to plan participants (creditors and rights
+  takers), not the prior shareholders. Same lesson as Arch Coal / Valaris /
+  Core Scientific — the security that multibags is often not the one
+  trading the day before the petition.
+- **Tenneco (US, early 2000s) — equity S ≈ 14/28; debt seat S ≈ 22/28.**
+  Munger's firm bought the debt at deep discounts and a small equity stub;
+  the equity ran from ~$1.50–2.00 to ~$15 (≈10x) as EBITDA recovered into
+  the $300–400m range and debt was paid down. The instructive point is that
+  the *debt* was the higher-IRR seat: Munger captured both the par
+  recovery and the equity option. When you find a Tier-S setup, ask which
+  tranche has the cleanest payoff — sometimes the answer isn't the listed
+  common.
+- **Provident Financial (LSE: PFG, 2018) — S ≈ 8/28 in hindsight.** ~£330m
+  fully-underwritten rescue rights after FCA fines and the home-credit
+  collapse; shares spiked ~87.6% intraday on the announcement. Long term,
+  the business model kept decaying (home-credit wind-down, eventual
+  Vanquis-only refocus and Provident Financial → Vanquis Banking Group
+  rebrand). This is the canonical *rescue ≠ recovery* warning: the rights
+  fixed the capital ratio but not the franchise. Scorecard dimension #11
+  (operating catalyst) and #13 (second-restructuring risk) were both weak
+  even though the headline raise looked clean.
 
 **Pattern.** High scores cluster around: regulated/state-adjacent rescue
 (banks), Tier-S converts with capped calls (Nvidia, Coinbase), and
-cyclical-recovery rights issues with insider/anchor backing (Petra, Yes
-Bank). Low scores cluster around: creditor-led equitizations (Canopy,
-Country Garden) and stub equity post-Chapter 11.
+cyclical-recovery rights issues with insider/anchor backing (Goodman,
+Petra, Yes Bank). Low scores cluster around: creditor-led equitizations
+(Canopy, Country Garden) and stub equity post-Chapter 11.
+
+**Two meta-lessons from the historicals:**
+
+1. **Seat selection.** Tenneco and Charter both show that the multibagger
+   tranche in a recap is often the *debt* (bought sub-par, paid at par +
+   equity stub) or the *new* post-emergence common, not the legacy listed
+   equity. When scoring a deal, identify all three seats (old common,
+   rights-takers, debt) and underwrite the one with the cleanest payoff.
+2. **Rescue ≠ recovery.** Provident, Meyer Burger and Spirit all had
+   "clean" rescue rights issues at face value but the operating franchise
+   never re-rated. The scorecard's dimensions #11 and #13 are weight-
+   sensitive — a perfect 14/14 on financial dimensions with a 0 on
+   operating catalyst is *still a pass*.
 
 ---
 
@@ -282,6 +327,7 @@ scorecard reads.
 | 3 | **Brait (South Africa)** | R1.5bn rights + bond extension to Dec 2027 + convert reset to R2.21 | 17/28 | Virgin Active monetization; NAV-discount close |
 | 4 | **Worldline (France)** | ~€500m raise, 121% subscribed, French banks anchored | 17/28 | Client retention; 2027 FCF credibility |
 | 5 | **Ørsted (Denmark)** | DKK60bn rights, 99.3% subscribed, Danish state holds 50.1% | 16/28 | Offshore-wind IRR trough confirmed; no further write-downs |
+| 5= | **Eutelsat (France)** | ~€670m fully underwritten rights at €1.35; sovereign + strategic anchors funding LEO pivot | 16/28 | LEO execution vs. SpaceX/Starlink; OneWeb integration |
 | 6 | **Petra Diamonds (UK)** | £18.8m rights + maturity push to 2029/2030 | 15/28 | Diamond price recovery |
 | 7 | **SBB (Sweden)** | 95% participation in bond exchange, €2.78bn debt retired below par | 15/28 | Property valuations stabilizing; continued sub-par retirement |
 | 8 | **Fossil (US)** | "Stapled Exchange" — UK plan + $32.5m new money, legacy equity preserved | 14/28 | Brand/licensing cash flows; cost cuts |
@@ -291,6 +337,7 @@ scorecard reads.
 | 12 | **Exicom (India)** | ~₹259 cr rights, ₹120 cr from promoter; debt-reduction use of proceeds | 13/28 | Tritium integration; EV charger margins |
 | 13 | **OXE Marine (Sweden)** | MSEK 78 rights + MSEK 155 debt-to-equity + EIB warrant swap | 11/28 | Product traction; liquidity tail |
 | 14 | **Ebusco (Netherlands)** | €36m rights at €0.8209, 64.3% take-up, shareholder loans converted | 10/28 | Production normalization; customer confidence |
+| 14= | **mm2 Asia (Singapore)** | SGD15m private placement + SGD10m fully-underwritten rights | 10/28 | Post-pandemic media demand; no visible strategic anchor |
 | 15 | **Ascot Resources (Canada)** | C$14.87m rights at C$0.01 + creditor settlement | 9/28 | Mine restart math; post-consolidation dilution |
 | 16 | **Star Entertainment (Australia)** | A$300m, Bally's/Mathieson ~56% post-conversion | 8/28 | Control transfer reduces alignment with minorities |
 
@@ -311,7 +358,7 @@ scorecard reads.
 - **Pro-rata rights with insider/anchor backstop:** Calfrac, Brait, Petra,
   Exicom.
 - **Discounted-debt-retirement / NAV convexity:** SBB.
-- **State / strategic-anchor mega recap:** Ørsted, Worldline.
+- **State / strategic-anchor mega recap:** Ørsted, Worldline, Eutelsat.
 - **Legal-structure preserves listed common:** Fossil, Viaplay.
 - **Post-court recap where common kept real economics:** Core Scientific,
   Intrum.
@@ -327,9 +374,14 @@ scorecard reads.
    read of the primary filing.
 4. **Decision tree.** Pro-rata + maturity wall + dilution + anchor + catalyst
    — five gates, in order. Drop fast at the first failure.
-5. **Position.** Score ≥ 18 = core; 13–17 = option; <13 = pass or short the
+5. **Seat selection.** Before sizing, list every tranche available to a
+   minority investor (old common, rights, traded debt, post-emergence
+   common, warrants, CVRs). Underwrite each separately. The listed common
+   is the default but rarely the best risk-adjusted seat in Charter- or
+   Tenneco-style situations.
+6. **Position.** Score ≥ 18 = core; 13–17 = option; <13 = pass or short the
    stub. Re-score on every amendment.
-6. **Monitor.** UCC and 8-K Item 1.01/2.04 alerts on every active name; auto
+7. **Monitor.** UCC and 8-K Item 1.01/2.04 alerts on every active name; auto
    drop if a second restructuring becomes visible (NT filings, going-concern
    language, advisor hires).
 
