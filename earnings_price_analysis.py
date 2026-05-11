@@ -1293,84 +1293,179 @@ def write_composite_momentum(df: pd.DataFrame, outdir: Path) -> None:
                      float(row.get("shallow_net_income_growth_latest", np.nan)))
 
 
+def _fcf_window_inflection(
+    vals: list[float],
+    recent_q: int,
+    prior_q: int,
+) -> Optional[dict]:
+    """Return summary dict for the prior-vs-recent FCF window comparison.
+
+    Returns None if the input doesn't have enough observations for both
+    windows. Calls itself can decide whether a NaN-flagged record is still
+    worth emitting (e.g., when ANY window pair fits).
+    """
+    if len(vals) < recent_q + prior_q:
+        return None
+    recent_w = vals[-recent_q:]
+    prior_w = vals[-(recent_q + prior_q): -recent_q]
+    mean_recent = float(np.mean(recent_w))
+    mean_prior = float(np.mean(prior_w))
+    scale = float(np.mean([abs(v) for v in vals])) or 1.0
+    return {
+        "n_history": len(vals),
+        "prior_q_used": prior_q,
+        "recent_q_used": recent_q,
+        "prior_mean": mean_prior,
+        "recent_mean": mean_recent,
+        "scale_abs_mean": scale,
+        "flip_magnitude": (mean_recent - mean_prior) / scale,
+        "frac_negative_prior": sum(1 for v in prior_w if v < 0) / len(prior_w),
+        "frac_positive_recent": sum(1 for v in recent_w if v > 0) / len(recent_w),
+        "is_flip": (mean_prior <= 0) and (mean_recent > 0),
+        "latest_value": vals[-1],
+    }
+
+
+def _ttm_series(vals: list[float], dates: list[str]) -> tuple[list[float], list[str]]:
+    """Build a TTM (rolling 4-quarter sum) series from quarterly values.
+
+    Use to surface annual / year-over-year inflections that smooth out
+    seasonality. Requires at least 4 quarterly observations.
+    """
+    if len(vals) < 4:
+        return [], []
+    ttm: list[float] = []
+    out_dates: list[str] = []
+    for i in range(3, len(vals)):
+        ttm.append(sum(vals[i - 3 : i + 1]))
+        out_dates.append(dates[i])
+    return ttm, out_dates
+
+
 def write_fcf_inflections(
     results: list,  # list[TickerResult]
     df: pd.DataFrame,
     outdir: Path,
-    recent_q: int = 2,
-    prior_q: int = 6,
 ) -> None:
-    """Names where FCF went from negative -> positive on recent quarters.
+    """Names where FCF went from negative -> positive.
 
-    For each ticker that has at least recent_q + prior_q quarters of FCF
-    history (from EDGAR; yfinance is too shallow), we look at:
-      prior  = mean(FCF over the prior `prior_q` quarters before the recent window)
-      recent = mean(FCF over the most recent `recent_q` quarters)
+    Three views are emitted to a single CSV (column 'view' distinguishes):
 
-    A flip is flagged when prior <= 0 AND recent > 0. We rank by
-    (recent - prior) / mean(|FCF history|) so the size of the flip is
-    comparable across companies of different scale.
+      quarterly_strict : prior 6Q vs recent 2Q -- the cleanest signal, needs
+                         deep history.
+      quarterly_loose  : best-effort with whatever history is available
+                         (prior_q = max(2, n-2), recent_q = min(2, n//3)).
+                         Lets yfinance-only names (5-7 quarters of FCF) still
+                         contribute a signal.
+      ttm_yoy          : TTM(t) vs TTM(t-4Q), the smoothed annual analogue.
+                         Less noise from quarter-to-quarter seasonality;
+                         catches cyclicals that swing back to positive on a
+                         full-year basis even if a single quarter is still
+                         negative.
 
-    Per-share FCF gets the same treatment in a second pass -- this catches
-    dilutive companies whose dollar FCF turned positive only because shares
-    increased (less interesting) vs companies where per-share FCF actually
-    turned (the real signal).
+    Per-share FCF gets the same treatment so dilution-driven flips are
+    separable from real per-share turns.
     """
     rows = []
     for r in results:
         for kind in ("fcf", "fcf_ps"):
             hist = (r.fcf_recent or {}).get(kind)
-            if not hist or len(hist) < recent_q + prior_q:
+            if not hist:
                 continue
+            dates = [d for d, _ in hist]
             vals = [v for _, v in hist]
-            recent_w = vals[-recent_q:]
-            prior_w = vals[-(recent_q + prior_q): -recent_q]
-            if not recent_w or not prior_w:
-                continue
-            mean_recent = float(np.mean(recent_w))
-            mean_prior = float(np.mean(prior_w))
-            scale = float(np.mean([abs(v) for v in vals])) or 1.0
-            flip_magnitude = (mean_recent - mean_prior) / scale
-            is_flip = (mean_prior <= 0) and (mean_recent > 0)
-            # Also surface a softer signal: prior negative-quarters fraction.
-            frac_negative_prior = sum(1 for v in prior_w if v < 0) / len(prior_w)
-            frac_positive_recent = sum(1 for v in recent_w if v > 0) / len(recent_w)
-            rows.append({
-                "ticker": r.ticker,
-                "metric": kind,
-                "n_history": len(vals),
-                "prior_mean": mean_prior,
-                "recent_mean": mean_recent,
-                "scale_abs_mean": scale,
-                "flip_magnitude": flip_magnitude,
-                "frac_negative_prior": frac_negative_prior,
-                "frac_positive_recent": frac_positive_recent,
-                "is_flip": is_flip,
-                "latest_value": vals[-1],
-            })
+            n = len(vals)
+
+            # --- quarterly_strict (prior 6Q, recent 2Q) ---
+            rec = _fcf_window_inflection(vals, recent_q=2, prior_q=6)
+            if rec is not None:
+                rec.update({"ticker": r.ticker, "metric": kind, "view": "quarterly_strict"})
+                rows.append(rec)
+
+            # --- quarterly_loose: best-effort with whatever we have ---
+            # Need at least 4 obs to do anything meaningful (2 prior + 2 recent).
+            if n >= 4:
+                recent_q = min(2, max(1, n // 3))
+                prior_q = max(2, n - recent_q)
+                # Cap prior_q at n - recent_q to avoid overflow.
+                prior_q = min(prior_q, n - recent_q)
+                if prior_q + recent_q <= n and prior_q >= 1 and recent_q >= 1:
+                    rec = _fcf_window_inflection(vals, recent_q=recent_q, prior_q=prior_q)
+                    if rec is not None:
+                        rec.update({"ticker": r.ticker, "metric": kind, "view": "quarterly_loose"})
+                        rows.append(rec)
+
+            # --- ttm_yoy: build TTM series, compare latest TTM vs TTM 4Q ago ---
+            ttm_vals, ttm_dates = _ttm_series(vals, dates)
+            if len(ttm_vals) >= 5:
+                # Recent = latest TTM; Prior = TTM 4 quarters back (so YoY).
+                rec_ttm = ttm_vals[-1]
+                pri_ttm = ttm_vals[-5]  # 4Q earlier (since indices step by 1Q)
+                scale = float(np.mean([abs(v) for v in ttm_vals])) or 1.0
+                rows.append({
+                    "ticker": r.ticker, "metric": kind, "view": "ttm_yoy",
+                    "n_history": len(ttm_vals),
+                    "prior_q_used": 1, "recent_q_used": 1,
+                    "prior_mean": pri_ttm,
+                    "recent_mean": rec_ttm,
+                    "scale_abs_mean": scale,
+                    "flip_magnitude": (rec_ttm - pri_ttm) / scale,
+                    "frac_negative_prior": 1.0 if pri_ttm < 0 else 0.0,
+                    "frac_positive_recent": 1.0 if rec_ttm > 0 else 0.0,
+                    "is_flip": (pri_ttm <= 0) and (rec_ttm > 0),
+                    "latest_value": ttm_vals[-1],
+                })
+            elif len(ttm_vals) >= 2:
+                # Shallow TTM: compare last vs first available TTM.
+                rec_ttm = ttm_vals[-1]; pri_ttm = ttm_vals[0]
+                scale = float(np.mean([abs(v) for v in ttm_vals])) or 1.0
+                rows.append({
+                    "ticker": r.ticker, "metric": kind, "view": "ttm_shallow",
+                    "n_history": len(ttm_vals),
+                    "prior_q_used": 1, "recent_q_used": 1,
+                    "prior_mean": pri_ttm,
+                    "recent_mean": rec_ttm,
+                    "scale_abs_mean": scale,
+                    "flip_magnitude": (rec_ttm - pri_ttm) / scale,
+                    "frac_negative_prior": 1.0 if pri_ttm < 0 else 0.0,
+                    "frac_positive_recent": 1.0 if rec_ttm > 0 else 0.0,
+                    "is_flip": (pri_ttm <= 0) and (rec_ttm > 0),
+                    "latest_value": ttm_vals[-1],
+                })
+
     if not rows:
-        log.info("fcf_inflections: no eligible tickers (need >= %d+%d quarters)",
-                 recent_q, prior_q)
+        log.info("fcf_inflections: no eligible tickers")
         return
     out = pd.DataFrame(rows)
-    # Cross-sectional rank/pct within each metric (fcf vs fcf_ps separately).
-    for kind in out["metric"].unique():
-        mask = out["metric"] == kind
-        s = out.loc[mask, "flip_magnitude"]
-        out.loc[mask, "flip_magnitude_pct"] = s.rank(pct=True) * 100
+    # Cross-sectional rank/pct within each (metric, view) bucket.
+    for (kind, view), grp in out.groupby(["metric", "view"]):
+        s = grp["flip_magnitude"]
+        out.loc[grp.index, "flip_magnitude_pct"] = s.rank(pct=True) * 100
     out = out.sort_values(["is_flip", "flip_magnitude"], ascending=[False, False])
     out.to_csv(outdir / "fcf_inflections.csv", index=False)
-    n_flipped = int(out["is_flip"].sum())
-    log.info("fcf_inflections.csv written; %d names with confirmed sign flip "
-             "(prior_mean <= 0 AND recent_mean > 0)", n_flipped)
-    # Brief headline log -- per-share flips only for relevance.
-    flips_ps = out[(out["metric"] == "fcf_ps") & (out["is_flip"])].head(30)
-    if not flips_ps.empty:
-        log.info("top FCF-per-share negative->positive flips:")
-        for _, r in flips_ps.iterrows():
+
+    # Headline log: confirmed flips, separately for quarterly and TTM views.
+    for view_filter, view_label in (
+        ("quarterly_strict", "quarterly (prior 6Q vs recent 2Q)"),
+        ("quarterly_loose",  "quarterly (best-effort short history)"),
+        ("ttm_yoy",          "TTM year-over-year"),
+        ("ttm_shallow",      "TTM (shallow: first vs latest available)"),
+    ):
+        flips_ps = out[
+            (out["metric"] == "fcf_ps")
+            & (out["view"] == view_filter)
+            & (out["is_flip"])
+        ].sort_values("flip_magnitude", ascending=False).head(30)
+        if flips_ps.empty:
+            log.info("fcf_inflections [%s]: 0 confirmed FCF/share flips", view_label)
+            continue
+        log.info("fcf_inflections [%s]: %d confirmed FCF/share flips, top 30:",
+                 view_label, len(flips_ps))
+        for _, rr in flips_ps.iterrows():
             log.info(
-                "  %-8s  prior_mean=%+.3f  recent_mean=%+.3f  flip_magnitude=%+.2f",
-                r["ticker"], r["prior_mean"], r["recent_mean"], r["flip_magnitude"],
+                "  %-8s  prior=%+.3f  recent=%+.3f  mag=%+.2f  n=%d",
+                rr["ticker"], rr["prior_mean"], rr["recent_mean"],
+                rr["flip_magnitude"], int(rr["n_history"]),
             )
 
 
