@@ -12,7 +12,8 @@ Signals per timeframe:
 Inflections on composite_z: local peaks/troughs (find_peaks) and
 zero-crossings.
 
-Run as a Streamlit app:   streamlit run warrants
+Run as a Streamlit app:   cp warrants warrants_app.py && streamlit run warrants_app.py
+(streamlit requires a .py extension; warrants_app.py is gitignored)
 Or import as a module to reuse the pure functions.
 """
 from __future__ import annotations
