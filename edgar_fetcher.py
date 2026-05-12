@@ -102,6 +102,33 @@ TAG_CANDIDATES: dict[str, tuple[str, ...]] = {
         "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
         "CommonStockholdersEquity",
     ),
+    # Net-net / Graham NCAV inputs: Current Assets minus Total Liabilities.
+    "assets_current": (
+        "AssetsCurrent",
+    ),
+    "liabilities_total": (
+        "Liabilities",
+        "LiabilitiesAndStockholdersEquity",   # rare; only sum of L + equity
+    ),
+    # For EV / negative-EV cross-check against yfinance info.enterpriseValue.
+    "cash_and_equivalents": (
+        "CashAndCashEquivalentsAtCarryingValue",
+        "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+        "Cash",
+    ),
+    "short_term_investments": (
+        "ShortTermInvestments",
+        "MarketableSecuritiesCurrent",
+    ),
+    "long_term_debt": (
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+    ),
+    "short_term_debt": (
+        "ShortTermBorrowings",
+        "DebtCurrent",
+        "LongTermDebtCurrent",
+    ),
 }
 
 QUARTER_DAYS_RANGE = (80, 100)      # ~one quarter
@@ -330,7 +357,12 @@ def _assemble_quarterly_frame(facts_us_gaap: dict) -> dict[str, pd.Series]:
 
     # Balance-sheet (point-in-time / instant) metrics: parsed differently
     # because their records have only `end` not `start`.
-    INSTANT_METRICS = {"stockholders_equity"}
+    INSTANT_METRICS = {
+        "stockholders_equity",
+        "assets_current", "liabilities_total",
+        "cash_and_equivalents", "short_term_investments",
+        "long_term_debt", "short_term_debt",
+    }
 
     for name, candidates in TAG_CANDIDATES.items():
         if name.startswith("eps_"):
@@ -478,6 +510,18 @@ def fetch_fundamentals_edgar(
     se = series.get("stockholders_equity", pd.Series(dtype=float))
     if not se.empty:
         income_cols["Stockholders Equity"] = se
+    # NCAV / net-net / EV inputs (all balance-sheet, point-in-time).
+    for label, key in (
+        ("Assets Current",        "assets_current"),
+        ("Total Liabilities",     "liabilities_total"),
+        ("Cash And Equivalents",  "cash_and_equivalents"),
+        ("Short Term Investments","short_term_investments"),
+        ("Long Term Debt",        "long_term_debt"),
+        ("Short Term Debt",       "short_term_debt"),
+    ):
+        s = series.get(key, pd.Series(dtype=float))
+        if not s.empty:
+            income_cols[label] = s
 
     cashflow_cols: dict[str, pd.Series] = {}
     if not ocf.empty:

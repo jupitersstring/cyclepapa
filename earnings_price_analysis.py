@@ -318,12 +318,16 @@ def fetch_info_metrics(cfg: Config, ticker: str) -> dict[str, float]:
         return {}
     keep_keys = (
         "priceToBook", "priceToSalesTrailing12Months",
-        "trailingPE", "forwardPE", "enterpriseToEbitda",
+        "trailingPE", "forwardPE", "enterpriseToEbitda", "enterpriseToRevenue",
         "marketCap", "sharesOutstanding", "floatShares",
         "currentPrice", "previousClose",
         "bookValue", "trailingEps", "totalRevenue",
         "profitMargins", "operatingMargins", "grossMargins",
         "returnOnEquity", "returnOnAssets",
+        # For negative-EV and net-net screens
+        "enterpriseValue", "totalCash", "totalDebt",
+        "totalCashPerShare", "currentRatio", "quickRatio",
+        "debtToEquity",
     )
     out: dict[str, float] = {}
     for k in keep_keys:
@@ -471,6 +475,16 @@ DA_FIELDS = ("Reconciled Depreciation", "Depreciation Amortization Depletion", "
 FCF_FIELDS = ("Free Cash Flow",)
 OCF_FIELDS = ("Operating Cash Flow", "Cash Flow From Continuing Operating Activities", "Total Cash From Operating Activities")
 CAPEX_FIELDS = ("Capital Expenditure", "Capital Expenditures")
+# Balance-sheet (EDGAR-only realistically; yfinance balance_sheet has these
+# columns too but only 5 quarters of history). Names match what edgar_fetcher
+# emits.
+STOCKHOLDERS_EQUITY_FIELDS = ("Stockholders Equity", "Total Stockholder Equity")
+ASSETS_CURRENT_FIELDS = ("Assets Current", "Total Current Assets")
+TOTAL_LIABILITIES_FIELDS = ("Total Liabilities", "Total Liabilities Net Minority Interest")
+CASH_EQUIV_FIELDS = ("Cash And Equivalents", "Cash And Cash Equivalents")
+ST_INVESTMENTS_FIELDS = ("Short Term Investments",)
+LT_DEBT_FIELDS = ("Long Term Debt",)
+ST_DEBT_FIELDS = ("Short Term Debt",)
 
 
 def extract_metrics(funds: dict[str, pd.DataFrame]) -> pd.DataFrame:
@@ -1017,6 +1031,11 @@ class TickerResult:
     # negative -> positive (a fundamental inflection that often precedes the
     # market's price-response inflection).
     fcf_recent: dict[str, list[tuple[str, float]]] = field(default_factory=dict)
+    # Balance-sheet snapshot (latest available) for negative-EV and net-net
+    # screens. Populated from the EDGAR-derived income frame; yfinance can
+    # supply some of these via info_metrics directly (enterpriseValue, totalCash,
+    # totalDebt) when EDGAR data is missing (non-US issuers).
+    balance_sheet: dict[str, float] = field(default_factory=dict)
     error: Optional[str] = None
 
 
@@ -1046,6 +1065,25 @@ def analyze_ticker(
                     s = pd.to_numeric(metrics[src_col], errors="coerce").dropna().sort_index().tail(12)
                     if not s.empty:
                         res.fcf_recent[tag] = [(d.strftime("%Y-%m-%d"), float(v)) for d, v in s.items()]
+        # Latest balance-sheet snapshot from the income frame (EDGAR writes
+        # balance-sheet line items in here for negative-EV / net-net screens).
+        inc_frame = funds.get("income", pd.DataFrame())
+        if not inc_frame.empty:
+            for label, fields in (
+                ("stockholders_equity", STOCKHOLDERS_EQUITY_FIELDS),
+                ("assets_current",     ASSETS_CURRENT_FIELDS),
+                ("total_liabilities",  TOTAL_LIABILITIES_FIELDS),
+                ("cash_equiv",         CASH_EQUIV_FIELDS),
+                ("st_investments",     ST_INVESTMENTS_FIELDS),
+                ("lt_debt",            LT_DEBT_FIELDS),
+                ("st_debt",            ST_DEBT_FIELDS),
+            ):
+                for f in fields:
+                    if f in inc_frame.columns:
+                        s = pd.to_numeric(inc_frame[f], errors="coerce").dropna()
+                        if not s.empty:
+                            res.balance_sheet[label] = float(s.sort_index().iloc[-1])
+                            break
         if metrics.empty or len(metrics) < cfg.min_quarters:
             res.error = f"insufficient fundamentals (have {len(metrics)})"
             return res
@@ -1144,6 +1182,9 @@ def results_to_frame(results: list[TickerResult]) -> pd.DataFrame:
         # Yahoo pre-computed valuation snapshot (priceToBook, priceToSalesTTM, etc.).
         for k, v in (r.info_metrics or {}).items():
             row[f"info_{k}"] = v
+        # Latest balance-sheet snapshot for value screens.
+        for k, v in (r.balance_sheet or {}).items():
+            row[f"bs_{k}"] = v
         rows.append(row)
     return pd.DataFrame(rows).set_index("ticker")
 
@@ -1469,6 +1510,138 @@ def write_fcf_inflections(
             )
 
 
+def write_deep_value_screen(df: pd.DataFrame, outdir: Path) -> None:
+    """Negative-EV and Graham net-net detection, cross-referenced with the
+    inflection set.
+
+    Negative EV (cash-rich):
+        Yahoo pre-computes enterpriseValue in Ticker.info. A negative
+        figure means market cap minus net debt is below zero --
+        i.e., the company trades for less than its net cash holdings.
+        Extremely rare and a classic deep-value setup.
+
+    Net-net (Graham NCAV):
+        NCAV = Current Assets - Total Liabilities
+        NCAV per share = NCAV / shares outstanding
+        Net-net: market cap per share < NCAV per share.
+        Strict net-net: market cap per share < 2/3 * NCAV per share.
+
+        EDGAR delivers AssetsCurrent and Liabilities; yfinance supplies
+        sharesOutstanding and currentPrice via info. Names that hit BOTH
+        the deep-value screen and the inflection set are the
+        highest-quality opportunities.
+    """
+    out_rows = []
+    mc_col = "info_marketCap"
+    ev_col = "info_enterpriseValue"
+    cash_col = "info_totalCash"
+    debt_col = "info_totalDebt"
+    so_col = "info_sharesOutstanding"
+    price_col = "info_currentPrice"
+
+    flag_cols = [f"{v}_is_inflected" for v in VARIANT_FIELDS]
+    have_flags = all(c in df.columns for c in flag_cols)
+
+    for tkr, row in df.iterrows():
+        rec = {"ticker": tkr}
+
+        # ---- EV: prefer Yahoo's pre-computed, fall back to balance-sheet derivation
+        ev_yahoo = row.get(ev_col, np.nan)
+        rec["enterprise_value"] = float(ev_yahoo) if pd.notna(ev_yahoo) else np.nan
+        rec["market_cap"] = float(row.get(mc_col, np.nan)) if pd.notna(row.get(mc_col, np.nan)) else np.nan
+
+        # Reconstruct EV from EDGAR if Yahoo missing:
+        # EV ~= MarketCap + LT_Debt + ST_Debt - Cash - ST_Investments
+        if not pd.notna(rec["enterprise_value"]) and pd.notna(rec["market_cap"]):
+            ltd = float(row.get("bs_lt_debt", 0) or 0)
+            std = float(row.get("bs_st_debt", 0) or 0)
+            cash = float(row.get("bs_cash_equiv", 0) or 0)
+            sti = float(row.get("bs_st_investments", 0) or 0)
+            rec["enterprise_value"] = rec["market_cap"] + ltd + std - cash - sti
+
+        rec["is_negative_ev"] = bool(pd.notna(rec["enterprise_value"]) and rec["enterprise_value"] < 0)
+
+        # ---- NCAV / net-net
+        ac = row.get("bs_assets_current", np.nan)
+        tl = row.get("bs_total_liabilities", np.nan)
+        so = row.get(so_col, np.nan)
+        price = row.get(price_col, np.nan)
+
+        if pd.notna(ac) and pd.notna(tl) and pd.notna(so) and so > 0:
+            ncav = float(ac) - float(tl)
+            ncav_ps = ncav / float(so)
+            rec["ncav"] = ncav
+            rec["ncav_per_share"] = ncav_ps
+            if pd.notna(price) and price > 0:
+                rec["price_to_ncav"] = float(price) / ncav_ps if ncav_ps > 0 else np.nan
+                # Net-net: price < NCAV per share (P/NCAV < 1)
+                # Strict: price < 2/3 * NCAV per share (P/NCAV < 0.667)
+                rec["is_net_net"] = bool(
+                    pd.notna(rec.get("price_to_ncav"))
+                    and rec["price_to_ncav"] > 0
+                    and rec["price_to_ncav"] < 1.0
+                )
+                rec["is_strict_net_net"] = bool(
+                    pd.notna(rec.get("price_to_ncav"))
+                    and rec["price_to_ncav"] > 0
+                    and rec["price_to_ncav"] < (2.0 / 3.0)
+                )
+            else:
+                rec["price_to_ncav"] = np.nan
+                rec["is_net_net"] = False
+                rec["is_strict_net_net"] = False
+        else:
+            rec["ncav"] = np.nan
+            rec["ncav_per_share"] = np.nan
+            rec["price_to_ncav"] = np.nan
+            rec["is_net_net"] = False
+            rec["is_strict_net_net"] = False
+
+        # ---- Inflection cross-check
+        if have_flags:
+            rec["n_variants_inflected"] = int(
+                row[flag_cols].fillna(False).astype(bool).sum()
+            )
+        else:
+            rec["n_variants_inflected"] = 0
+        rec["is_value_plus_inflection"] = (
+            (rec["is_negative_ev"] or rec["is_net_net"]) and rec["n_variants_inflected"] >= 2
+        )
+
+        out_rows.append(rec)
+
+    if not out_rows:
+        log.info("deep_value_screen: no eligible rows")
+        return
+    vdf = pd.DataFrame(out_rows).set_index("ticker")
+    # Sort by deepest discount first.
+    vdf = vdf.sort_values(["is_strict_net_net", "is_net_net", "is_negative_ev",
+                            "price_to_ncav"], ascending=[False, False, False, True])
+    vdf.to_csv(outdir / "deep_value_screen.csv")
+
+    n_neg_ev = int(vdf["is_negative_ev"].sum())
+    n_nn = int(vdf["is_net_net"].sum())
+    n_strict_nn = int(vdf["is_strict_net_net"].sum())
+    n_combo = int(vdf["is_value_plus_inflection"].sum())
+    log.info("deep_value_screen.csv written; %d negative-EV, %d net-nets, "
+             "%d strict net-nets, %d value+inflection (>=2 variants)",
+             n_neg_ev, n_nn, n_strict_nn, n_combo)
+    if n_combo:
+        top = vdf[vdf["is_value_plus_inflection"]].head(40)
+        log.info("value + inflection (cheap AND market starting to respond):")
+        for tkr, row in top.iterrows():
+            ev = row.get("enterprise_value", np.nan)
+            pnc = row.get("price_to_ncav", np.nan)
+            log.info("  %-8s  EV=%-12s  P/NCAV=%-6s  neg_ev=%s  net_net=%s  strict_nn=%s  n_var=%d",
+                     tkr,
+                     f"{ev:.2e}" if pd.notna(ev) else "nan",
+                     f"{pnc:.2f}" if pd.notna(pnc) else "nan",
+                     "Y" if row["is_negative_ev"] else "-",
+                     "Y" if row["is_net_net"] else "-",
+                     "Y" if row["is_strict_net_net"] else "-",
+                     int(row["n_variants_inflected"]))
+
+
 def write_valuation_screener(
     df: pd.DataFrame,
     outdir: Path,
@@ -1679,6 +1852,7 @@ def run(cfg: Config) -> pd.DataFrame:
     write_composite_momentum(df, cfg.output_dir)
     write_fcf_inflections(results, df, cfg.output_dir)
     write_valuation_screener(df, cfg.output_dir)
+    write_deep_value_screen(df, cfg.output_dir)
     write_ranked(df, cfg.output_dir, cfg.inflection_threshold)
     log.info("done in %.1fs", time.time() - t0)
     return df
