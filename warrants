@@ -42,8 +42,10 @@ EDGAR_HEADERS = {"User-Agent": "warrant-scanner research@cyclepapa.local"}
 # ---------- pure signal functions ----------
 
 def resample_pair(df: pd.DataFrame, freq: str) -> pd.DataFrame:
-    """Resample a daily (common, warrant) frame to last-of-period."""
-    return df.resample(freq).last().dropna()
+    """Resample to period bars. Closes use last(); *_vol columns sum()."""
+    agg = {c: ("sum" if c.endswith("_vol") else "last") for c in df.columns}
+    price_cols = [c for c in df.columns if not c.endswith("_vol")]
+    return df.resample(freq).agg(agg).dropna(subset=price_cols)
 
 
 def rolling_zscore(s: pd.Series, lookback: int) -> pd.Series:
@@ -111,24 +113,100 @@ def detect_inflections(z: pd.Series, prominence: float = 0.5) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values("date").reset_index(drop=True)
 
 
+def compute_volume_signals(df: pd.DataFrame, lookback: int) -> pd.DataFrame:
+    """Volume z-scores. Requires *_vol columns from yfinance Volume."""
+    out = pd.DataFrame(index=df.index)
+    if "warrant_vol" in df.columns and "warrant" in df.columns:
+        wvol = df["warrant_vol"].astype(float).replace(0, np.nan)
+        out["warrant_vol"] = wvol
+        out["warrant_vol_z"] = rolling_zscore(np.log(wvol), lookback)
+        out["warrant_relvol"] = wvol / wvol.rolling(lookback).median()
+        dollar = wvol * df["warrant"]
+        out["warrant_dollar_vol"] = dollar
+        out["warrant_dollar_vol_z"] = rolling_zscore(
+            np.log(dollar.replace(0, np.nan)), lookback)
+    if "common_vol" in df.columns:
+        cvol = df["common_vol"].astype(float).replace(0, np.nan)
+        out["common_vol"] = cvol
+        out["common_vol_z"] = rolling_zscore(np.log(cvol), lookback)
+        if "warrant_vol" in df.columns:
+            ratio = (df["warrant_vol"].replace(0, np.nan) / cvol)
+            out["w2c_vol"] = ratio
+            out["w2c_vol_z"] = rolling_zscore(np.log(ratio), lookback)
+    return out
+
+
+def detect_volume_anomalies(sig: pd.DataFrame, threshold: float = 2.0,
+                            lookback: int = 12) -> pd.DataFrame:
+    """Bars where any volume z-score breaches threshold (absolute)."""
+    cols = [c for c in ("warrant_vol_z", "warrant_dollar_vol_z", "w2c_vol_z")
+            if c in sig.columns]
+    rows = []
+    for c in cols:
+        s = sig[c].dropna()
+        for d, v in s[s.abs() >= threshold].items():
+            rows.append({"date": d, "metric": c, "z": float(v)})
+    if not rows:
+        return pd.DataFrame(columns=["date", "metric", "z"])
+    return pd.DataFrame(rows).sort_values(["date", "metric"]).reset_index(drop=True)
+
+
+def _joint_z(price_z: pd.Series, vol_z: pd.Series, vol_weight: float = 0.5) -> pd.Series:
+    """price dislocation amplified by *confirming* volume.
+
+    joint = price_z + vol_weight * max(vol_z, 0) * sign(price_z)
+
+    Idea: a price dislocation is much more actionable when accompanied
+    by an unusual volume print — volume confirms the move. Quiet
+    dislocations get the original price_z; loud dislocations get bigger.
+    """
+    if vol_z is None or vol_z.isna().all():
+        return price_z
+    confirm = vol_z.fillna(0).clip(lower=0)
+    return price_z + vol_weight * np.sign(price_z) * confirm
+
+
 def scan_pair(pair_df: pd.DataFrame, lookbacks: dict | None = None,
-              prominence: float = 0.5) -> dict:
-    """Run the scan across all timeframes. Returns {tf: {signals, inflections}}."""
+              prominence: float = 0.5, vol_weight: float = 0.5) -> dict:
+    """Run the scan across all timeframes.
+
+    Returns {tf: {signals, inflections, vol_anomalies}}. signals includes
+    price z-scores, volume z-scores (if Volume present), and joint_z.
+    """
     lookbacks = lookbacks or DEFAULT_LOOKBACK
     out = {}
     for tf_name, freq in TIMEFRAMES.items():
         resampled = resample_pair(pair_df, freq)
         if len(resampled) < lookbacks[tf_name] + 2:
             continue
-        sig = compute_signals(resampled, lookbacks[tf_name])
-        infl = detect_inflections(sig["composite_z"], prominence=prominence)
-        out[tf_name] = {"signals": sig, "inflections": infl}
+        price_sig = compute_signals(resampled, lookbacks[tf_name])
+        vol_sig = compute_volume_signals(resampled, lookbacks[tf_name])
+        merged = pd.concat([price_sig, vol_sig], axis=1)
+        vz = merged["w2c_vol_z"] if "w2c_vol_z" in merged.columns \
+            else merged.get("warrant_vol_z")
+        merged["joint_z"] = _joint_z(merged["composite_z"], vz,
+                                     vol_weight=vol_weight)
+        infl = detect_inflections(merged["joint_z"], prominence=prominence)
+        vol_anom = detect_volume_anomalies(merged, threshold=2.0)
+        out[tf_name] = {"signals": merged, "inflections": infl,
+                        "vol_anomalies": vol_anom}
     return out
 
 
 def summarize(scan: dict) -> pd.DataFrame:
     """Latest reading per timeframe."""
     rows = []
+
+    def _g(last, key, ndigits=2):
+        v = last.get(key, np.nan) if hasattr(last, "get") else np.nan
+        try:
+            v = float(v)
+        except Exception:
+            return None
+        if np.isnan(v):
+            return None
+        return round(v, ndigits)
+
     for tf, payload in scan.items():
         sig = payload["signals"].dropna(subset=["composite_z"])
         if sig.empty:
@@ -136,18 +214,26 @@ def summarize(scan: dict) -> pd.DataFrame:
         last = sig.iloc[-1]
         infl = payload["inflections"]
         last_infl = infl.iloc[-1] if not infl.empty else None
+        vol_anom = payload.get("vol_anomalies", pd.DataFrame())
+        last_vol = vol_anom.iloc[-1] if not vol_anom.empty else None
         z = float(last["composite_z"])
-        regime = "rich" if z > 1 else ("cheap" if z < -1 else "neutral")
+        jz = float(last.get("joint_z", z)) if not pd.isna(last.get("joint_z", z)) else z
+        regime = "rich" if jz > 1 else ("cheap" if jz < -1 else "neutral")
         rows.append({
             "timeframe": tf,
             "as_of": sig.index[-1].date(),
-            "ratio_z": round(float(last["ratio_z"]), 2),
-            "resid_z": round(float(last["resid_z"]), 2),
+            "ratio_z": _g(last, "ratio_z"),
+            "resid_z": _g(last, "resid_z"),
             "composite_z": round(z, 2),
-            "beta": round(float(last["beta"]), 3),
+            "warrant_vol_z": _g(last, "warrant_vol_z"),
+            "w2c_vol_z": _g(last, "w2c_vol_z"),
+            "warrant_relvol": _g(last, "warrant_relvol"),
+            "joint_z": round(jz, 2),
+            "beta": _g(last, "beta", 3),
             "regime": regime,
             "last_inflection": last_infl["date"].date() if last_infl is not None else None,
             "last_inflection_kind": last_infl["kind"] if last_infl is not None else None,
+            "last_vol_anom": last_vol["date"].date() if last_vol is not None else None,
         })
     return pd.DataFrame(rows)
 
@@ -156,7 +242,10 @@ def summarize(scan: dict) -> pd.DataFrame:
 
 def load_pair_yf(common_ticker: str, warrant_ticker: str,
                  period: str = "5y") -> pd.DataFrame:
-    """Pull daily closes for both legs from Yahoo and align."""
+    """Pull daily Close + Volume for both legs from Yahoo and align.
+
+    Returns columns: common, warrant, common_vol, warrant_vol.
+    """
     data = yf.download(
         [common_ticker, warrant_ticker],
         period=period,
@@ -164,15 +253,23 @@ def load_pair_yf(common_ticker: str, warrant_ticker: str,
         progress=False,
         group_by="column",
     )
-    # When two tickers are passed yfinance returns a MultiIndex frame.
     if isinstance(data.columns, pd.MultiIndex):
         close = data["Close"]
+        vol = data["Volume"] if "Volume" in data.columns.get_level_values(0) \
+            else pd.DataFrame(index=close.index)
     else:
-        close = data[["Close"]]
-        close.columns = [common_ticker]
-    df = close.rename(columns={common_ticker: "common",
-                               warrant_ticker: "warrant"}).dropna()
-    return df[["common", "warrant"]]
+        close = data[["Close"]].copy(); close.columns = [common_ticker]
+        vol = data[["Volume"]].copy() if "Volume" in data.columns \
+            else pd.DataFrame(index=close.index)
+        if not vol.empty:
+            vol.columns = [common_ticker]
+    out = pd.DataFrame({
+        "common": close.get(common_ticker),
+        "warrant": close.get(warrant_ticker),
+        "common_vol": vol.get(common_ticker),
+        "warrant_vol": vol.get(warrant_ticker),
+    }).dropna(subset=["common", "warrant"])
+    return out
 
 
 # ---------- universe (financedatabase) ----------
@@ -237,44 +334,54 @@ def discover_warrants_for(commons: list[str], limit: int | None = None,
 
 # ---------- batch scan ----------
 
-def batch_load_closes(tickers: list[str], period: str = "5y") -> pd.DataFrame:
-    """One yfinance call for many tickers; returns Close DataFrame indexed by date."""
+def batch_load_pairs(tickers: list[str], period: str = "5y") -> dict:
+    """One yfinance call for many tickers; returns {'close': df, 'volume': df}."""
     tickers = sorted(set(tickers))
     data = yf.download(tickers, period=period, auto_adjust=True,
                        progress=False, group_by="column", threads=True)
     if data is None or data.empty:
-        return pd.DataFrame()
+        return {"close": pd.DataFrame(), "volume": pd.DataFrame()}
     if isinstance(data.columns, pd.MultiIndex):
-        if "Close" in data.columns.get_level_values(0):
-            close = data["Close"]
-        else:
-            close = data.xs("Close", axis=1, level=-1, drop_level=True)
+        levels = data.columns.get_level_values(0)
+        close = data["Close"] if "Close" in levels else pd.DataFrame()
+        volume = data["Volume"] if "Volume" in levels else pd.DataFrame()
     else:
-        close = data[["Close"]].copy()
-        close.columns = tickers
-    return close
+        close = data[["Close"]].copy() if "Close" in data.columns else pd.DataFrame()
+        if not close.empty:
+            close.columns = tickers
+        volume = data[["Volume"]].copy() if "Volume" in data.columns else pd.DataFrame()
+        if not volume.empty:
+            volume.columns = tickers
+    return {"close": close, "volume": volume}
 
 
 def batch_scan(pairs: list[tuple[str, str]], period: str = "5y",
                lookbacks: dict | None = None,
-               prominence: float = 0.5) -> tuple[pd.DataFrame, dict]:
+               prominence: float = 0.5,
+               vol_weight: float = 0.5) -> tuple[pd.DataFrame, dict]:
     """Scan many (common, warrant) pairs. Returns (summary_df, details_dict)."""
     pairs = [(c, w) for c, w in pairs if c and w]
     if not pairs:
         return pd.DataFrame(), {}
     universe = [t for pair in pairs for t in pair]
-    closes = batch_load_closes(universe, period=period)
+    bundle = batch_load_pairs(universe, period=period)
+    closes, vols = bundle["close"], bundle["volume"]
     summaries = []
     details = {}
     for common, warrant in pairs:
         if common not in closes.columns or warrant not in closes.columns:
             continue
-        df = pd.DataFrame({"common": closes[common],
-                           "warrant": closes[warrant]}).dropna()
+        cols = {"common": closes[common], "warrant": closes[warrant]}
+        if not vols.empty and common in vols.columns:
+            cols["common_vol"] = vols[common]
+        if not vols.empty and warrant in vols.columns:
+            cols["warrant_vol"] = vols[warrant]
+        df = pd.DataFrame(cols).dropna(subset=["common", "warrant"])
         if len(df) < 60:
             continue
         try:
-            scan = scan_pair(df, lookbacks=lookbacks, prominence=prominence)
+            scan = scan_pair(df, lookbacks=lookbacks, prominence=prominence,
+                             vol_weight=vol_weight)
         except Exception:
             continue
         if not scan:
@@ -291,12 +398,14 @@ def batch_scan(pairs: list[tuple[str, str]], period: str = "5y",
     return summary, details
 
 
-def rank_dislocations(summary: pd.DataFrame) -> pd.DataFrame:
-    """One row per pair, max |composite_z| across timeframes, sorted."""
-    if summary.empty or "composite_z" not in summary.columns:
+def rank_dislocations(summary: pd.DataFrame, by: str = "joint_z") -> pd.DataFrame:
+    """One row per pair, max |z| across timeframes on the chosen metric."""
+    if summary.empty or by not in summary.columns:
+        by = "composite_z" if "composite_z" in summary.columns else None
+    if by is None:
         return summary
-    s = summary.dropna(subset=["composite_z"]).copy()
-    s["abs_z"] = s["composite_z"].abs()
+    s = summary.dropna(subset=[by]).copy()
+    s["abs_z"] = s[by].abs()
     idx = s.groupby("pair")["abs_z"].idxmax()
     return s.loc[idx].sort_values("abs_z", ascending=False).reset_index(drop=True)
 
@@ -409,23 +518,47 @@ def option_warrant_parity(common_ticker: str, warrant_price: float,
 # ---------- Streamlit UI ----------
 
 def _plot(sig: pd.DataFrame, infl: pd.DataFrame, title: str) -> go.Figure:
-    fig = make_subplots(
-        rows=3, cols=1, shared_xaxes=True,
-        row_heights=[0.35, 0.3, 0.35],
-        subplot_titles=(f"{title} — prices", "log(warrant/common)", "z-scores"),
-        vertical_spacing=0.06,
-    )
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["common"], name="common"), row=1, col=1)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["warrant"], name="warrant",
-                             yaxis="y2"), row=1, col=1)
+    has_vol = "warrant_vol" in sig.columns
+    rows = 4 if has_vol else 3
+    heights = [0.28, 0.22, 0.22, 0.28] if has_vol else [0.35, 0.3, 0.35]
+    titles = [f"{title} — prices", "log(warrant/common)"]
+    if has_vol:
+        titles.append("volume z-scores")
+    titles.append("price z-scores (composite + joint)")
+    fig = make_subplots(rows=rows, cols=1, shared_xaxes=True,
+                        row_heights=heights, subplot_titles=titles,
+                        vertical_spacing=0.05)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["common"], name="common"),
+                  row=1, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["warrant"], name="warrant"),
+                  row=1, col=1)
     fig.add_trace(go.Scatter(x=sig.index, y=sig["log_ratio"], name="log ratio"),
                   row=2, col=1)
+
+    z_row = 4 if has_vol else 3
+    if has_vol:
+        if "warrant_vol_z" in sig.columns:
+            fig.add_trace(go.Scatter(x=sig.index, y=sig["warrant_vol_z"],
+                                     name="warrant vol z"), row=3, col=1)
+        if "w2c_vol_z" in sig.columns:
+            fig.add_trace(go.Scatter(x=sig.index, y=sig["w2c_vol_z"],
+                                     name="warrant/common vol z",
+                                     line=dict(width=2)), row=3, col=1)
+        fig.add_hline(y=2, line_dash="dot", line_color="orange", row=3, col=1)
+        fig.add_hline(y=-2, line_dash="dot", line_color="orange", row=3, col=1)
+
     fig.add_trace(go.Scatter(x=sig.index, y=sig["ratio_z"], name="ratio z",
-                             line=dict(dash="dot")), row=3, col=1)
+                             line=dict(dash="dot")), row=z_row, col=1)
     fig.add_trace(go.Scatter(x=sig.index, y=sig["resid_z"], name="resid z",
-                             line=dict(dash="dash")), row=3, col=1)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["composite_z"], name="composite z",
-                             line=dict(width=3)), row=3, col=1)
+                             line=dict(dash="dash")), row=z_row, col=1)
+    fig.add_trace(go.Scatter(x=sig.index, y=sig["composite_z"],
+                             name="composite z", line=dict(width=2)),
+                  row=z_row, col=1)
+    if "joint_z" in sig.columns:
+        fig.add_trace(go.Scatter(x=sig.index, y=sig["joint_z"],
+                                 name="joint z (price+vol)",
+                                 line=dict(width=3, color="purple")),
+                      row=z_row, col=1)
 
     if not infl.empty:
         for kind, sym, color in [("peak", "triangle-down", "red"),
@@ -436,12 +569,13 @@ def _plot(sig: pd.DataFrame, infl: pd.DataFrame, title: str) -> go.Figure:
                 fig.add_trace(go.Scatter(
                     x=sub["date"], y=sub["z"], mode="markers", name=kind,
                     marker=dict(symbol=sym, size=10, color=color),
-                ), row=3, col=1)
+                ), row=z_row, col=1)
 
-    fig.add_hline(y=2, line_dash="dot", line_color="red", row=3, col=1)
-    fig.add_hline(y=-2, line_dash="dot", line_color="green", row=3, col=1)
-    fig.add_hline(y=0, line_dash="dash", line_color="grey", row=3, col=1)
-    fig.update_layout(height=750, showlegend=True, hovermode="x unified")
+    fig.add_hline(y=2, line_dash="dot", line_color="red", row=z_row, col=1)
+    fig.add_hline(y=-2, line_dash="dot", line_color="green", row=z_row, col=1)
+    fig.add_hline(y=0, line_dash="dash", line_color="grey", row=z_row, col=1)
+    fig.update_layout(height=850 if has_vol else 750, showlegend=True,
+                      hovermode="x unified")
     return fig
 
 
@@ -513,9 +647,13 @@ def _pair_tab(lookback_w: int, lookback_m: int, prominence: float, z_alert: floa
         st.markdown(f"### {tf} timeframe")
         sig = payload["signals"]
         infl = payload["inflections"]
+        vol_anom = payload.get("vol_anomalies", pd.DataFrame())
         st.plotly_chart(_plot(sig, infl, tf), use_container_width=True)
-        with st.expander(f"{tf} inflections ({len(infl)})"):
+        c_l, c_r = st.columns(2)
+        with c_l.expander(f"{tf} price inflections ({len(infl)})"):
             st.dataframe(infl.iloc[::-1], use_container_width=True)
+        with c_r.expander(f"{tf} volume anomalies ({len(vol_anom)})"):
+            st.dataframe(vol_anom.iloc[::-1], use_container_width=True)
         with st.expander(f"{tf} signal frame"):
             st.dataframe(sig.iloc[::-1].head(60), use_container_width=True)
 
@@ -534,12 +672,15 @@ def _screener_tab(lookback_w: int, lookback_m: int, prominence: float,
         horizontal=False, key="screen_mode",
     )
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
     limit = int(c1.number_input("Max commons to probe", 5, 2500, 100,
                                 key="screen_limit"))
     period = c2.selectbox("History", ["1y", "2y", "5y", "10y"], index=2,
                           key="screen_period")
-    min_abs_z = float(c3.number_input("Show |composite_z| ≥", 0.0, 5.0, 1.5,
+    rank_by = c3.selectbox("Rank by",
+                           ["joint_z", "composite_z", "warrant_vol_z",
+                            "w2c_vol_z"], index=0, key="screen_rank_by")
+    min_abs_z = float(c4.number_input(f"Show |{rank_by}| ≥", 0.0, 5.0, 1.5,
                                        0.1, key="screen_min_z"))
 
     pairs: list[tuple[str, str]] = []
@@ -636,10 +777,10 @@ def _screener_tab(lookback_w: int, lookback_m: int, prominence: float,
     if summary is None or summary.empty:
         return
 
-    ranked = rank_dislocations(summary)
-    if min_abs_z > 0:
+    ranked = rank_dislocations(summary, by=rank_by)
+    if min_abs_z > 0 and "abs_z" in ranked.columns:
         ranked = ranked[ranked["abs_z"] >= min_abs_z]
-    st.subheader(f"Top dislocations ({len(ranked)})")
+    st.subheader(f"Top dislocations by {rank_by} ({len(ranked)})")
     st.dataframe(ranked, use_container_width=True)
 
     st.subheader("All TF rows")
