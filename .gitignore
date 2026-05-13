@@ -1,4 +1,6 @@
-warrants_app.py
-__pycache__/
 *.pyc
 .streamlit/
+__pycache__/
+warrants_active.csv
+warrants_app.py
+warrants_scan_results.csv
