@@ -18,6 +18,7 @@ Or import as a module to reuse the pure functions.
 """
 from __future__ import annotations
 
+import re
 from urllib.parse import quote_plus
 
 import numpy as np
@@ -34,7 +35,9 @@ TIMEFRAMES = {"Weekly": "W-FRI", "Monthly": "ME"}
 DEFAULT_LOOKBACK = {"Weekly": 26, "Monthly": 24}
 
 # Common ticker conventions for U.S. warrants across Yahoo Finance.
-WARRANT_SUFFIXES = [".WS", "-WT", ".WT", "W", "WS", "WT", "-WS", ".WTA", ".WTB", ".U"]
+# Space-prefixed variants (e.g. "GME WT") are how Yahoo carries some NYSE warrants.
+WARRANT_SUFFIXES = [".WS", "-WT", ".WT", "W", "WS", "WT", "-WS",
+                    ".WTA", ".WTB", ".U", " WT", " WS"]
 
 EDGAR_HEADERS = {"User-Agent": "warrant-scanner research@cyclepapa.local"}
 
@@ -294,28 +297,163 @@ def load_smallcap_universe(country: str = "United States",
     return df[keep]
 
 
+# ---------- universe (NASDAQ Trader daily listings) ----------
+
+NASDAQ_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
+OTHER_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+
+
+@st.cache_data(ttl=24 * 3600, show_spinner=False)
+def fetch_nasdaqtrader_listings() -> pd.DataFrame:
+    """All U.S. exchange-listed securities (NASDAQ + NYSE/AMEX/ARCA)."""
+    import io as _io
+
+    def _load(url):
+        r = requests.get(url, headers=EDGAR_HEADERS, timeout=30)
+        r.raise_for_status()
+        df = pd.read_csv(_io.StringIO(r.text), sep="|")
+        if not df.empty:
+            df = df[~df.iloc[:, 0].astype(str).str.startswith("File Creation Time",
+                                                              na=False)]
+        return df
+
+    nas = _load(NASDAQ_LISTED_URL).rename(
+        columns={"Symbol": "symbol", "Security Name": "security_name"})
+    nas["exchange"] = "NASDAQ"
+    other = _load(OTHER_LISTED_URL).rename(
+        columns={"ACT Symbol": "symbol", "Security Name": "security_name",
+                 "Exchange": "exchange"})
+    cols = ["symbol", "security_name", "exchange"]
+    return pd.concat([nas[cols], other[cols]], ignore_index=True) \
+             .dropna(subset=cols)
+
+
+WARRANT_NAME_RE = r"\bWARRANTS?\b|\bWT[S]?\b"
+NON_COMMON_RE = (r"\bDEPOSITARY\b|\bPREFERRED\b|\bUNIT[S]?\b|\bRIGHT[S]?\b|"
+                 r"\bNOTE[S]?\b|\bBOND[S]?\b|\bDEBENTURE\b|\bTRUST\b|"
+                 r"\bCONVERTIBLE\b|\bSUBORDINATED\b|\bSERIES\b")
+
+
+_ISSUER_SUFFIX_RE = re.compile(
+    r"\b(CORPORATION|CORP|INC(?:ORPORATED)?|LTD|LIMITED|LLC|PLC|"
+    r"HOLDINGS?|GROUP|COMPANY|CO|TRUST|N\.V\.|S\.A\.|S\.A|N\.V|AG|SE)\.?\b"
+)
+_ISSUER_CLASS_RE = re.compile(
+    r"\b(CLASS\s+[A-D]|CL\s+[A-D]|COMMON\s+(STOCK|SHARES?)|"
+    r"ORDINARY\s+SHARES?|SHARES?)\b"
+)
+_WARRANT_SPLIT_RE = re.compile(r"\b(WARRANTS?|WT[S]?)\b")
+
+
+def _issuer_key(name: str) -> str:
+    """Normalize an issuer label so common+warrant rows match by issuer."""
+    s = str(name).upper()
+    s = _WARRANT_SPLIT_RE.split(s, maxsplit=1)[0]
+    s = _ISSUER_SUFFIX_RE.sub("", s)
+    s = _ISSUER_CLASS_RE.sub("", s)
+    s = re.sub(r"[-,]+", " ", s)
+    return re.sub(r"\s+", " ", s).strip(" .-")
+
+
+def _to_yahoo_ticker(symbol: str) -> str:
+    """NASDAQ Trader uses dot-suffixes (e.g. GME.W); Yahoo uses dashes."""
+    return str(symbol).replace(".", "-").strip()
+
+
+@st.cache_data(ttl=24 * 3600, show_spinner=False)
+def extract_warrant_pairs(min_share_price: float = 0.0) -> pd.DataFrame:
+    """All warrant tickers from U.S. exchange listings paired with their common.
+
+    Returns columns: common, warrant, issuer_key, security_name, exchange.
+    No freshness check — caller must validate via Yahoo.
+    """
+    listings = fetch_nasdaqtrader_listings()
+    df = listings.copy()
+    df["name_upper"] = df["security_name"].astype(str).str.upper()
+    warrant_mask = df["name_upper"].str.contains(WARRANT_NAME_RE, regex=True,
+                                                 na=False)
+    non_common = df["name_upper"].str.contains(NON_COMMON_RE, regex=True,
+                                               na=False)
+    common_mask = ~warrant_mask & ~non_common
+    warrants = df[warrant_mask].copy()
+    commons = df[common_mask].copy()
+    warrants["issuer_key"] = warrants["security_name"].apply(_issuer_key)
+    commons["issuer_key"] = commons["security_name"].apply(_issuer_key)
+    common_by_key = (commons.drop_duplicates(subset="issuer_key")
+                            .set_index("issuer_key")["symbol"])
+    warrants["common"] = warrants["issuer_key"].map(common_by_key)
+    paired = warrants.dropna(subset=["common"]).copy()
+    paired = paired.rename(columns={"symbol": "warrant"})
+    paired["common"] = paired["common"].map(_to_yahoo_ticker)
+    paired["warrant"] = paired["warrant"].map(_to_yahoo_ticker)
+    return paired[["common", "warrant", "issuer_key",
+                   "security_name", "exchange"]].reset_index(drop=True)
+
+
+def filter_active_pairs(pairs_df: pd.DataFrame, period: str = "1y",
+                        max_stale_days: int = 30) -> pd.DataFrame:
+    """Keep only pairs where both legs traded within max_stale_days.
+
+    One batch yfinance call validates the whole list — far faster than
+    per-ticker probing.
+    """
+    if pairs_df.empty:
+        return pairs_df
+    tickers = sorted(set(pairs_df["common"]) | set(pairs_df["warrant"]))
+    bundle = batch_load_pairs(tickers, period=period)
+    closes = bundle["close"]
+    if closes.empty:
+        return pairs_df.iloc[0:0]
+    cutoff = pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta(days=max_stale_days)
+
+    def _last(s):
+        s = s.dropna()
+        return s.index[-1].tz_localize(None) if len(s) else pd.NaT
+
+    last_dates = closes.apply(_last)
+    active = set(last_dates[last_dates >= cutoff].index)
+    mask = pairs_df["common"].isin(active) & pairs_df["warrant"].isin(active)
+    out = pairs_df[mask].copy()
+    out["last_warrant_bar"] = out["warrant"].map(last_dates).dt.date
+    return out.reset_index(drop=True)
+
+
 # ---------- warrant discovery (yfinance suffix probing) ----------
 
 @st.cache_data(ttl=7 * 24 * 3600, show_spinner=False)
-def _yf_has_data(ticker: str, min_bars: int = 60) -> bool:
+def _yf_probe(ticker: str, min_bars: int = 60, max_stale_days: int = 30) -> bool:
+    """True if ticker has enough bars AND traded within max_stale_days."""
     try:
         df = yf.download(ticker, period="6mo", progress=False,
                          auto_adjust=True, threads=False)
         if df is None or df.empty:
             return False
         if isinstance(df.columns, pd.MultiIndex):
-            df = df.xs("Close", axis=1, level=0, drop_level=True) \
-                if "Close" in df.columns.get_level_values(0) else df
-        return len(df.dropna(how="all")) >= min_bars
+            if "Close" in df.columns.get_level_values(0):
+                df = df["Close"]
+        clean = df.dropna(how="all")
+        if len(clean) < min_bars:
+            return False
+        last_ts = clean.index[-1]
+        age_days = (pd.Timestamp.utcnow().tz_localize(None) -
+                    last_ts.tz_localize(None) if last_ts.tz is not None
+                    else pd.Timestamp.utcnow().tz_localize(None) - last_ts).days
+        return age_days <= max_stale_days
     except Exception:
         return False
 
 
-def discover_warrant(common: str, suffixes=WARRANT_SUFFIXES) -> str | None:
-    """Try ticker suffix conventions; return first that has Yahoo data."""
+def _yf_has_data(ticker: str, min_bars: int = 60) -> bool:
+    """Legacy alias retained for backward compat (no staleness check)."""
+    return _yf_probe(ticker, min_bars=min_bars, max_stale_days=10_000)
+
+
+def discover_warrant(common: str, suffixes=WARRANT_SUFFIXES,
+                     max_stale_days: int = 30) -> str | None:
+    """Try suffix conventions; return first warrant ticker with *recent* data."""
     for suf in suffixes:
         candidate = f"{common}{suf}"
-        if _yf_has_data(candidate):
+        if _yf_probe(candidate, max_stale_days=max_stale_days):
             return candidate
     return None
 
@@ -459,6 +597,39 @@ def edgar_fulltext_search_url(query: str,
 
 
 # ---------- option vs. warrant parity (the GME case) ----------
+
+def _fetch_last_close(ticker: str, sentinel_ticker: str | None = None) -> float | None:
+    """Robust last close fetch via the batch endpoint.
+
+    Single-ticker yf.download() fails on many warrant tickers
+    (e.g. 'GRAB-W'); the batch endpoint handles them. If `sentinel_ticker`
+    is given and the fetched series is identical to the sentinel's,
+    return None — Yahoo sometimes falls back to a parent ticker for
+    multi-word/missing warrants (e.g. 'GME WT' returns GME's prices).
+    """
+    try:
+        tickers = [ticker, sentinel_ticker] if sentinel_ticker else [ticker]
+        df = yf.download(tickers, period="10d", progress=False,
+                         auto_adjust=True, group_by="column", threads=False)
+        if df is None or df.empty:
+            return None
+        if isinstance(df.columns, pd.MultiIndex):
+            close = df["Close"] if "Close" in df.columns.get_level_values(0) else None
+            if close is None or ticker not in close.columns:
+                return None
+            s = close[ticker].dropna()
+            if sentinel_ticker and sentinel_ticker in close.columns:
+                ss = close[sentinel_ticker].dropna()
+                if len(s) and len(ss) and len(s) == len(ss) and \
+                        np.allclose(s.values, ss.values, rtol=1e-9):
+                    return None
+        else:
+            s = df["Close"].dropna() if "Close" in df.columns else \
+                df.iloc[:, 0].dropna()
+        return float(s.iloc[-1]) if len(s) else None
+    except Exception:
+        return None
+
 
 def option_warrant_parity(common_ticker: str, warrant_price: float,
                           strike: float, expiry: str,
@@ -667,8 +838,9 @@ def _screener_tab(lookback_w: int, lookback_m: int, prominence: float,
 
     mode = st.radio(
         "Universe source",
-        ["financedatabase (small/micro cap US)", "Paste commons",
-         "Paste pairs", "Upload pair CSV"],
+        ["NASDAQ Trader (all listed warrants)",
+         "financedatabase (small/micro cap US)",
+         "Paste commons", "Paste pairs", "Upload pair CSV"],
         horizontal=False, key="screen_mode",
     )
 
@@ -686,7 +858,18 @@ def _screener_tab(lookback_w: int, lookback_m: int, prominence: float,
     pairs: list[tuple[str, str]] = []
     pairs_df: pd.DataFrame | None = None
 
-    if mode == "financedatabase (small/micro cap US)":
+    if mode == "NASDAQ Trader (all listed warrants)":
+        if st.button("Load listed warrants", key="nasdaq_btn"):
+            try:
+                with st.spinner("Fetching listed-warrant universe..."):
+                    pairs_df = extract_warrant_pairs()
+                st.write(f"Universe size: {len(pairs_df)} listed warrant pairs.")
+                st.session_state["screen_pairs_df"] = pairs_df
+            except Exception as e:
+                st.error(f"Universe step failed: {e}")
+        pairs_df = st.session_state.get("screen_pairs_df")
+
+    elif mode == "financedatabase (small/micro cap US)":
         if st.button("Discover warrants", key="discover_btn"):
             try:
                 with st.spinner("Loading universe..."):
@@ -805,7 +988,7 @@ def _parity_tab():
     c1, c2, c3, c4 = st.columns(4)
     common = c1.text_input("Common ticker", value="GME", key="par_common")
     warrant_ticker = c2.text_input("Warrant ticker (optional, for live px)",
-                                   value="GME-WT", key="par_warrant")
+                                   value="GME WT", key="par_warrant")
     strike = float(c3.number_input("Warrant strike", value=32.0, step=0.5,
                                     key="par_strike"))
     expiry = c4.text_input("Warrant expiry (YYYY-MM-DD)", value="2032-06-15",
@@ -825,12 +1008,15 @@ def _parity_tab():
     if st.button("Check parity", type="primary", key="par_run"):
         warrant_px = float(warrant_px_override)
         if warrant_px <= 0 and warrant_ticker:
-            try:
-                hist = yf.Ticker(warrant_ticker).history(period="5d")
-                if not hist.empty:
-                    warrant_px = float(hist["Close"].iloc[-1])
-            except Exception as e:
-                st.warning(f"Could not fetch warrant price: {e}")
+            px = _fetch_last_close(warrant_ticker, sentinel_ticker=common)
+            if px is None:
+                st.warning(
+                    f"Could not fetch a distinct price for {warrant_ticker}. "
+                    "Yahoo may not carry this warrant under that ticker. "
+                    "Enter the warrant price manually in the override field."
+                )
+            else:
+                warrant_px = px
         if warrant_px <= 0:
             st.error("Provide a warrant price (override or valid ticker).")
             return

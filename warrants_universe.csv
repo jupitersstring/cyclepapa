@@ -1,11 +1,349 @@
-common,warrant,notes
-GME,GME-WT,GameStop 2025 warrants — strike ~32.00 expiry 2032-06 (verify on EDGAR)
-LCID,LCIDW,Lucid Group public warrants (SPAC legacy)
-BARK,BARK-WS,BarkBox public warrants
-ASTS,ASTSW,AST SpaceMobile public warrants
-DNA,DNA-WT,Ginkgo Bioworks public warrants
-HYZN,HYZNW,Hyzon Motors public warrants
-OPAD,OPADW,Offerpad public warrants
-BLNK,BLNKW,Blink Charging warrants
-GOEV,GOEVW,Canoo warrants
-AUR,AUROW,Aurora Innovation warrants
+common,warrant,security_name,exchange,last_warrant_bar
+AACI,AACIW,Armada Acquisition Corp. III - Warrant,NASDAQ,2026-05-13
+AACO,AACOW,Abony Acquisition Corp. I - Warrants,NASDAQ,2026-05-12
+ABLV,ABLVW,Able View Global Inc. - Warrant,NASDAQ,2026-05-13
+ABVE,ABVEW,Above Food Ingredients Inc. - Warrant,NASDAQ,2026-05-13
+ACAA,ACAAW,Averin Capital Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+ACON,ACONW,"Aclarion, Inc. - Warrant",NASDAQ,2026-05-13
+ADAC,ADACW,American Drive Acquisition Company - Warrant,NASDAQ,2026-05-13
+ADSE,ADSEW,ADS-TEC ENERGY PLC - Warrant,NASDAQ,2026-05-13
+AEAQ,AEAQW,Activate Energy Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+AENT,AENTW,Alliance Entertainment Holding Corporation - Warrants,NASDAQ,2026-05-13
+AERT,AERTW,"Aeries Technology, Inc. - Warrant",NASDAQ,2026-05-12
+AFRI,AFRIW,Forafric Global PLC - Warrants,NASDAQ,2026-05-13
+AIIO,AIIOW,Robo.ai Inc. - Warrant,NASDAQ,2026-05-13
+AIMD,AIMDW,"Ainos, Inc. - warrants",NASDAQ,2026-05-12
+AIRJ,AIRJW,AirJoule Technologies Corporation - Warrant,NASDAQ,2026-05-13
+AISP,AISPW,"Airship AI Holdings, Inc - Warrants",NASDAQ,2026-05-13
+ALCY,ALCYW,Alchemy Investments Acquisition Corp 1 - Warrants,NASDAQ,2026-05-13
+ALDF,ALDFW,Aldel Financial II Inc. - Warrants,NASDAQ,2026-05-12
+ALF,ALFUW,Centurion Acquisition Corp. - Warrant,NASDAQ,2026-05-12
+ALOV,ALOVW,"Aldabra 4 Liquidity Opportunity Vehicle, Inc. - Warrants",NASDAQ,2026-05-12
+ALVO,ALVOW,Alvotech - Warrant,NASDAQ,2026-05-12
+AMOD,AMODW,"Alpha Modus Holdings, Inc. - Warrant",NASDAQ,2026-05-12
+ANGH,ANGHW,Anghami Inc. - Warrants,NASDAQ,2026-05-13
+ANNA,ANNAW,"AleAnna, Inc. - Warrant",NASDAQ,2026-05-13
+ANSC,ANSCW,Agriculture & Natural Solutions Acquisition Corporation - Warrant,NASDAQ,2026-05-12
+APLM,APLMW,Apollomics Inc. - Warrant,NASDAQ,2026-05-13
+APXT,APXTW,Apex Treasury Corporation - Warrants,NASDAQ,2026-05-13
+ARBE,ARBEW,Arbe Robotics Ltd. - Warrant,NASDAQ,2026-05-13
+ARCI,ARCIW,Archimedes Tech SPAC Partners III Co. - Warrant,NASDAQ,2026-05-13
+ARQQ,ARQQW,Arqit Quantum Inc. - Warrants,NASDAQ,2026-05-13
+ARTC,ARTCW,Art Technology Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+ASBP,ASBPW,"Aspire Biopharma Holdings, Inc.  - Warrant",NASDAQ,2026-05-13
+ASTL,ASTLW,Algoma Steel Group Inc. - Warrant,NASDAQ,2026-05-13
+ATII,ATIIW,Archimedes Tech SPAC Partners II Co. - Warrant,NASDAQ,2026-05-13
+AUR,AUROW,"Aurora Innovation, Inc.  - Warrant",NASDAQ,2026-05-13
+BAER,BAERW,"Bridger Aerospace Group Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+BBCQ,BBCQW,Bleichroeder Acquisition Corp. II - Warrants,NASDAQ,2026-05-13
+BBLG,BBLGW,Bone Biologics Corp - warrants,NASDAQ,2026-05-12
+BCAR,BCARW,D. Boral ARC Acquisition I Corp. - Warrant,NASDAQ,2026-05-13
+BCG,BCGWW,"Binah Capital Group, Inc. - Warrants",NASDAQ,2026-05-12
+BCTX,BCTXL,BriaCell Therapeutics Corp. - Warrants,NASDAQ,2026-05-13
+BCTX,BCTXZ,BriaCell Therapeutics Corp. - Warrant,NASDAQ,2026-05-13
+BDCI,BDCIW,BTC Development Corp. - Warrant,NASDAQ,2026-05-12
+BDMD,BDMDW,Baird Medical Investment Holdings Ltd - Warrant,NASDAQ,2026-05-13
+BEAT,BEATW,"Heartbeam, Inc. - Warrant",NASDAQ,2026-05-13
+BENF,BENFW,Beneficient - Warrant,NASDAQ,2026-05-13
+BETR,BETRW,Better Home & Finance Holding Company - Warrant,NASDAQ,2026-05-12
+BFRG,BFRGW,"Bullfrog AI Holdings, Inc. - Warrants",NASDAQ,2026-05-13
+BFRI,BFRIW,Biofrontera Inc. - Warrants,NASDAQ,2026-05-13
+BGL,BGLWW,Blue Gold Limited - Warrant,NASDAQ,2026-05-12
+BIAF,BIAFW,"bioAffinity Technologies, Inc. - Warrant",NASDAQ,2026-05-13
+BIVI,BIVIW,BioVie Inc. - Warrant,NASDAQ,2026-05-13
+BIXI,BIXIW,Bitcoin Infrastructure Acquisition Corp Ltd. - Warrants,NASDAQ,2026-05-13
+BLRK,BLRKW,Bluerock Acquisition Corp. - Warrants,NASDAQ,2026-05-07
+BLUW,BLUWW,Blue Water Acquisition Corp. III - Warrant.,NASDAQ,2026-05-13
+BLZR,BLZRW,Trailblazer Acquisition Corp. - Warrant,NASDAQ,2026-05-12
+BNAI,BNAIW,Brand Engagement Network Inc. - Warrant,NASDAQ,2026-05-13
+BNC,BNCWW,CEA Industries Inc. - Warrant,NASDAQ,2026-05-13
+BNC,BNCWZ,CEA Industries Inc. - Warrants,NASDAQ,2026-05-13
+BNZI,BNZIW,"Banzai International, Inc. - Warrant",NASDAQ,2026-05-13
+BRLS,BRLSW,Borealis Foods Inc. - Warrant,NASDAQ,2026-05-12
+BRR,BRRWW,"ProCap Financial, Inc. - Warrant.",NASDAQ,2026-05-13
+BRUN,BRUNW,Boost Run Inc. - Warrant,NASDAQ,2026-05-13
+BTBD,BTBDW,"BT Brands, Inc. - Warrant",NASDAQ,2026-05-13
+BTM,BTMWW,Bitcoin Depot Inc. - Warrant,NASDAQ,2026-05-13
+BULL,BULLW,Webull Corporation - Warrants,NASDAQ,2026-05-12
+BZAI,BZAIW,"Blaize Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+BZFD,BZFDW,"BuzzFeed, Inc. - Warrant",NASDAQ,2026-05-13
+CAQ,CAQUW,Cambridge Acquisition Corp. - Warrants,NASDAQ,2026-05-12
+CCG,CCGWW,Cheche Group Inc. - Warrant,NASDAQ,2026-05-12
+CCII,CCIIW,Cohen Circle Acquisition Corp. II - Warrant,NASDAQ,2026-05-13
+CCIX,CCIXW,Churchill Capital Corp IX - Warrant,NASDAQ,2026-05-13
+CCXI,CCXIW,Churchill Capital Corp XI - Warrants,NASDAQ,2026-05-12
+CDIO,CDIOW,Cardio Diagnostics Holdings Inc. - Warrant,NASDAQ,2026-05-13
+CDRO,CDROW,"Codere Online Luxembourg, S.A. - Warrants",NASDAQ,2026-05-13
+CDT,CDTTW,CDT Equity Inc. - Warrant,NASDAQ,2026-05-13
+CELU,CELUW,Celularity Inc. - Warrant,NASDAQ,2026-05-13
+CGCT,CGCTW,Cartesian Growth Corporation III - Warrant,NASDAQ,2026-05-13
+CHEC,CHECW,Chenghe Acquisition III Co. - Warrants,NASDAQ,2026-05-13
+CING,CINGW,Cingulate Inc. - Warrants,NASDAQ,2026-05-13
+CLSK,CLSKW,"CleanSpark, Inc. - Warrant",NASDAQ,2026-05-13
+CMII,CMIIW,Columbus Circle Capital Corp II - Warrant,NASDAQ,2026-04-30
+CNCK,CNCKW,Coincheck Group N.V. - Warrants,NASDAQ,2026-05-13
+COCH,COCHW,"Envoy Medical, Inc. - Warrant",NASDAQ,2026-05-13
+COOT,COOTW,Australian Oilseeds Holdings Limited - Warrant,NASDAQ,2026-05-13
+CRAC,CRACW,Crown Reserve Acquisition Corp. I - Warrant,NASDAQ,2026-05-12
+CRGO,CRGOW,Freightos Limited - Warrants,NASDAQ,2026-05-13
+CRML,CRMLW,Critical Metals Corp. - Warrants,NASDAQ,2026-05-13
+CSHR,CSHRW,CoinShares PLC - Warrants,NASDAQ,2026-05-13
+CUB,CUBWW,Lionheart Holdings - Warrant,NASDAQ,2026-05-13
+CXAI,CXAIW,CXApp Inc. - Warrant,NASDAQ,2026-05-13
+CYCU,CYCUW,"Cycurion, Inc. - Warrants",NASDAQ,2026-05-12
+DAAQ,DAAQW,Digital Asset Acquisition Corp. - Warrant,NASDAQ,2026-05-12
+DAIC,DAICW,"CID HoldCo, Inc. - Warrants",NASDAQ,2026-05-12
+DAVE,DAVEW,Dave Inc.  - Warrants,NASDAQ,2026-05-13
+DBCA,DBCAW,D. Boral Acquisition I Corp. - Warrants,NASDAQ,2026-05-12
+DFDV,DFDVW,DeFi Development Corp. - Warrant,NASDAQ,2026-05-13
+DFLI,DFLIW,Dragonfly Energy Holdings Corp - Warrant,NASDAQ,2026-05-13
+DFNS,DFNSW,T3 Defense Inc. - Warrants,NASDAQ,2026-05-13
+DJT,DJTWW,Trump Media & Technology Group Corp. - Warrants,NASDAQ,2026-05-13
+DNMX,DNMXW,Dynamix Corporation III - Warrants,NASDAQ,2026-05-12
+DRDB,DRDBW,Roman DBDR Acquisition Corp. II - Warrants,NASDAQ,2026-05-12
+DRMA,DRMAW,"Dermata Therapeutics, Inc. - Warrant",NASDAQ,2026-05-13
+DRTS,DRTSW,Alpha Tau Medical Ltd. - Warrant,NASDAQ,2026-05-13
+DSAC,DSACW,Daedalus Special Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+DSY,DSYWW,Big Tree Cloud Holdings Limited - Warrants,NASDAQ,2026-05-13
+DTST,DTSTW,Data Storage Corporation - Warrant,NASDAQ,2026-05-13
+DYNC,DYNCW,Dynamix Corporation - Warrant,NASDAQ,2026-05-13
+DYOR,DYORW,Insight Digital Partners II - Warrants,NASDAQ,2026-05-12
+ECX,ECXWW,ECARX Holdings Inc. - Warrants,NASDAQ,2026-05-12
+EDBL,EDBLW,Edible Garden AG Incorporated - Warrant,NASDAQ,2026-05-13
+ENGN,ENGNW,enGene Therapeutics Inc. - Warrants,NASDAQ,2026-05-13
+ERNA,ERNAW,Ernexa Therapeutics Inc. - Warrants,NASDAQ,2026-05-13
+ESLA,ESLAW,"Estrella Immunopharma, Inc. - Warrant",NASDAQ,2026-05-12
+EUDA,EUDAW,Euda Health Holdings Limited - Warrant,NASDAQ,2026-05-13
+EVGO,EVGOW,"EVgo Inc. - Warrants, each whole warrant exercisable for one share of Class A Common Stock at an exercise price of $11.50",NASDAQ,2026-05-13
+EVLV,EVLVW,"Evolv Technologies Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+EVOX,EVOXW,Evolution Global Acquisition Corp - Warrants,NASDAQ,2026-05-12
+FACT,FACTW,FACT II Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+FBYD,FBYDW,"Falcon's Beyond Global, Inc. - Warrants",NASDAQ,2026-05-12
+FFAI,FFAIW,Faraday Future Intelligent Electric Inc. - Warrant,NASDAQ,2026-05-13
+FGII,FGIIW,FG Imperii Acquisition Corp. - Warrants,NASDAQ,2026-05-11
+FGI,FGIWW,FGI Industries Ltd. - warrant,NASDAQ,2026-05-12
+FLD,FLDDW,"Fold Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+FMST,FMSTW,Foremost Clean Energy Ltd. - Warrant,NASDAQ,2026-05-13
+FOXX,FOXXW,Foxx Development Holdings Inc. - Warrant,NASDAQ,2026-05-12
+FUFU,FUFUW,BitFuFu Inc. - Warrant,NASDAQ,2026-05-13
+FUSE,FUSEW,Fusemachines Inc. - Warrants,NASDAQ,2026-05-12
+GCL,GCLWW,GCL Global Holdings Ltd - Warrants,NASDAQ,2026-05-13
+GDEV,GDEVW,GDEV Inc. - Warrant,NASDAQ,2026-05-13
+GFAI,GFAIW,"Guardforce AI Co., Limited - Warrant",NASDAQ,2026-05-12
+GGR,GGROW,Gogoro Inc. - Warrant,NASDAQ,2026-05-12
+GIBO,GIBOW,GIBO Holdings Limited - Warrants,NASDAQ,2026-05-12
+GIG,GIGGW,GigCapital7 Corp. - Warrant,NASDAQ,2026-05-13
+GIPR,GIPRW,Generation Income Properties Inc. - Warrant,NASDAQ,2026-05-12
+GLND,GLNDW,Greenland Energy Company - Warrant,NASDAQ,2026-05-13
+GPAC,GPACW,General Purpose Acquisition Corp. - Warrant,NASDAQ,2026-04-29
+GPAT,GPATW,GP-Act III Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+GRAB,GRABW,Grab Holdings Limited - Warrant,NASDAQ,2026-05-13
+GRML,GRMLW,Greenland Mines Ltd - Warrants,NASDAQ,2026-05-13
+GRRR,GRRRW,Gorilla Technology Group Inc. - Warrant,NASDAQ,2026-05-13
+GSHR,GSHRW,Gesher Acquisition Corp. II - Warrants,NASDAQ,2026-05-12
+GTEN,GTENW,"Gores Holdings X, Inc. - Warrants",NASDAQ,2026-05-13
+GTERA,GTERW,Globa Terra Acquisition Corporation - Warrants,NASDAQ,2026-05-13
+HACQ,HACQW,HCM IV Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+HCMA,HCMAW,HCM III Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+HOLO,HOLOW,MicroCloud Hologram Inc. - Warrant,NASDAQ,2026-05-13
+HOVR,HOVRW,New Horizon Aircraft Ltd. - Warrant,NASDAQ,2026-05-13
+HPAI,HPAIW,Helport AI Limited - Warrants,NASDAQ,2026-05-13
+HQ,HQWWW,Horizon Quantum Holdings Ltd. - Warrant,NASDAQ,2026-05-13
+HSCS,HSCSW,HeartSciences Inc. - Warrant,NASDAQ,2026-05-13
+HTZ,HTZWW,"Hertz Global Holdings, Inc - Warrant",NASDAQ,2026-05-13
+HUBC,HUBCW,Hub Cyber Security Ltd. - Warrant expiring 2/27/28,NASDAQ,2026-05-13
+HUBC,HUBCZ,Hub Cyber Security Ltd. - Warrant,NASDAQ,2026-05-13
+HUMA,HUMAW,"Humacyte, Inc. - Warrant",NASDAQ,2026-05-13
+HVMC,HVMCW,Highview Merger Corp. - Warrants,NASDAQ,2026-05-13
+IACO,IACOW,Idea Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+ICU,ICUCW,SeaStar Medical Holding Corporation - Warrant,NASDAQ,2026-05-13
+IINN,IINNW,Inspira Technologies Oxy B.H.N. Ltd. - Warrant,NASDAQ,2026-05-12
+ILLR,ILLRW,Triller Group Inc. - Warrant,NASDAQ,2026-05-12
+ILLU,ILLUW,Illumination Acquisition Corp I - Warrant,NASDAQ,2026-05-12
+IMSR,IMSRW,Terrestrial Energy Inc. - Warrant,NASDAQ,2026-05-13
+IPOD,IPODW,Dune Acquisition Corporation II - Warrants,NASDAQ,2026-05-12
+ITHA,ITHAW,ITHAX Acquisition Corp III - Warrants,NASDAQ,2026-05-13
+IVDA,IVDAW,"Iveda Solutions, Inc. - Warrant",NASDAQ,2026-05-13
+JSPR,JSPRW,"Jasper Therapeutics, Inc. - Warrant",NASDAQ,2026-05-13
+KBON,KBONW,Karbon Capital Partners Corp. - Warrant,NASDAQ,2026-05-13
+KDK,KDKRW,"Kodiak AI, Inc. - Warrant",NASDAQ,2026-05-13
+KIDZ,KIDZW,"Classover Holdings, Inc. - Warrants",NASDAQ,2026-05-13
+KITT,KITTW,"Nauticus Robotics, Inc. - Warrant",NASDAQ,2026-05-13
+KOYN,KOYNW,CSLM Digital Asset Acquisition Corp III - Warrants,NASDAQ,2026-05-12
+KPLT,KPLTW,"Katapult Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+KRAQ,KRAQW,KRAKacquisition Corp - Warrants,NASDAQ,2026-05-11
+KTTA,KTTAW,Pasithea Therapeutics Corp. - Warrant,NASDAQ,2026-05-13
+KVAC,KVACW,Keen Vision Acquisition Corporation - Warrant,NASDAQ,2026-05-13
+KWM,KWMWW,"K Wave Media, Ltd. - Warrant",NASDAQ,2026-05-12
+KYIV,KYIVW,Kyivstar Group Ltd. - Warrant,NASDAQ,2026-05-13
+LATA,LATAW,Galata Acquisition Corp. II - Warrant,NASDAQ,2026-05-12
+LCFY,LCFYW,Locafy Limited - Warrant,NASDAQ,2026-05-12
+LFAC,LFACW,Leapfrog Acquisition Corporation - Warrants,NASDAQ,2026-05-13
+LIDR,LIDRW,"AEye, Inc. - Warrant",NASDAQ,2026-05-13
+LIMN,LIMNW,"Liminatus Pharma, Inc. - Warrants",NASDAQ,2026-05-13
+LNZA,LNZAW,"LanzaTech Global, Inc. - Warrant",NASDAQ,2026-05-13
+LOKV,LOKVW,Live Oak Acquisition Corp. V - Warrants,NASDAQ,2026-05-13
+LPAA,LPAAW,Launch One Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+LPBB,LPBBW,Launch Two Acquisition Corp. - Warrant,NASDAQ,2026-05-12
+LPCV,LPCVW,Launchpad Cadenza Acquisition Corp I - Warrant,NASDAQ,2026-05-13
+SEGG,LTRYW,Sports Entertainment Gaming Global Corporation  - Warrant,NASDAQ,2026-05-13
+LUCY,LUCYW,"Innovative Eyewear, Inc. - Warrants",NASDAQ,2026-05-13
+LWAC,LWACW,LightWave Acquisition Corp. - Warrants,NASDAQ,2026-05-12
+MACI,MACIW,Melar Acquisition Corp. I - Warrant,NASDAQ,2026-05-12
+MBAV,MBAVW,M3-Brigade Acquisition V Corp. - Warrant,NASDAQ,2026-05-12
+MBVI,MBVIW,M3-Brigade Acquisition VI Corp. - Warrant,NASDAQ,2026-05-13
+MCGA,MCGAW,Yorkville Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+MDAI,MDAIW,"Spectral AI, Inc. - Warrants",NASDAQ,2026-05-13
+MDCX,MDCXW,Medicus Pharma Ltd. - Warrant,NASDAQ,2026-05-13
+MESH,MESHW,Meshflow Acquisition Corp. - Warrants,NASDAQ,2026-05-12
+MEVO,MEVOW,M Evo Global Acquisition Corp II - Warrants,NASDAQ,2026-05-13
+MKDW,MKDWW,MKDWELL Tech Inc. - Warrants,NASDAQ,2026-05-12
+MLAA,MLAAW,Mountain Lake Acquisition Corp. II - Warrants,NASDAQ,2026-05-13
+MLEC,MLECW,Moolec Science SA - Warrant,NASDAQ,2026-05-13
+MMTX,MMTXW,Miluna Acquisition Corp - Warrant,NASDAQ,2026-05-13
+MNTS,MNTSW,Momentus Inc. - Warrant,NASDAQ,2026-05-13
+MNY,MNYWW,MoneyHero Limited - Warrants,NASDAQ,2026-05-13
+MOB,MOBBW,Mobilicom Limited - Warrants,NASDAQ,2026-05-13
+MOBX,MOBXW,"Mobix Labs, Inc. - Warrants",NASDAQ,2026-05-13
+MRNO,MRNOW,Murano Global Investments PLC - Warrants,NASDAQ,2026-05-13
+MSAI,MSAIW,"MultiSensor AI Holdings, Inc. - Warrants",NASDAQ,2026-05-13
+MTEK,MTEKW,Maris-Tech Ltd. - Warrants,NASDAQ,2026-05-12
+MUZE,MUZEW,Muzero Acquisition Corp - Warrant,NASDAQ,2026-05-13
+MVST,MVSTW,"Microvast Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+MYPS,MYPSW,"PLAYSTUDIOS, Inc.  - Warrant",NASDAQ,2026-05-13
+NAMM,NAMMW,Namib Minerals - Warrants,NASDAQ,2026-05-13
+NAMS,NAMSW,NewAmsterdam Pharma Company N.V. - Warrant,NASDAQ,2026-05-12
+NCPL,NCPLW,Netcapital Inc. - warrants,NASDAQ,2026-05-13
+NEOV,NEOVW,NeoVolta Inc. - Warrant,NASDAQ,2026-05-12
+NEXR,NEXRW,Nexera Technologies Ltd - Warrant,NASDAQ,2026-05-13
+NHIC,NHICW,NewHold Investment Corp III - Warrants,NASDAQ,2026-05-13
+NB,NIOBW,NioCorp Developments Ltd. - Warrant,NASDAQ,2026-05-13
+NIVF,NIVFW,NewGenIvf Group Limited - Warrants,NASDAQ,2026-05-13
+NIXX,NIXXW,"Nixxy, Inc. - Warrant",NASDAQ,2026-05-12
+NN,NNAVW,NextNav Inc. - Warrant,NASDAQ,2026-05-13
+NOEM,NOEMW,CO2 Energy Transition Corp. - Warrant,NASDAQ,2026-05-12
+NPAC,NPACW,New Providence Acquisition Corp. III - Warrants,NASDAQ,2026-05-12
+NRSN,NRSNW,NeuroSense Therapeutics Ltd. - Warrant,NASDAQ,2026-05-13
+NRXP,NRXPW,"NRX Pharmaceuticals, Inc. - Warrant",NASDAQ,2026-05-13
+NTRB,NTRBW,Nutriband Inc. - Warrant,NASDAQ,2026-05-13
+NTWO,NTWOW,Newbury Street II Acquisition Corp - Warrant,NASDAQ,2026-05-13
+NUAI,NUAIW,"New Era Energy & Digital, Inc. - Warrants",NASDAQ,2026-05-13
+NUCL,NUCLW,Eagle Nuclear Energy Corp. - Warrants,NASDAQ,2026-05-13
+NVNI,NVNIW,Nvni Group Limited - Warrants,NASDAQ,2026-05-13
+NXGL,NXGLW,"NexGel, Inc - Warrant",NASDAQ,2026-05-12
+NXPL,NXPLW,NextPlat Corp - Warrants,NASDAQ,2026-05-12
+OABI,OABIW,"OmniAb, Inc. - Warrant",NASDAQ,2026-05-13
+OACC,OACCW,Oaktree Acquisition Corp. III Life Sciences - Warrant,NASDAQ,2026-05-12
+OBA,OBAWW,Oxley Bridge Acquisition Limited - Warrants,NASDAQ,2026-05-12
+OCS,OCSAW,Oculis Holding AG - Warrants,NASDAQ,2026-05-12
+ODV,ODVWZ,Osisko Development Corp. - Warrant,NASDAQ,2026-05-13
+OIM,OIMAW,OneIM Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+OIO,OIOWW,OIO Group - Warrants,NASDAQ,2026-05-04
+ONCH,ONCHW,1RT Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+ONFO,ONFOW,Onfolio Holdings Inc. - Warrant,NASDAQ,2026-05-13
+ONMD,ONMDW,OneMedNet Corp - Warrant,NASDAQ,2026-05-13
+OPTX,OPTXW,"Syntec Optics Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+ORGN,ORGNW,"Origin Materials, Inc. - Warrant",NASDAQ,2026-05-13
+OSRH,OSRHW,"OSR Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+OTGA,OTGAW,OTG Acquisition Corp. I - Warrants,NASDAQ,2026-05-12
+OXBR,OXBRW,Oxbridge Re Holdings Limited - Warrant,NASDAQ,2026-05-12
+PAAC,PAACW,Proem Acquisition Corp I - Warrants,NASDAQ,2026-05-13
+PACH,PACHW,Pioneer Acquisition I Corp - Warrants,NASDAQ,2026-05-13
+PALO,PALOW,Paloma Acquisition Corp I - Warrants,NASDAQ,2026-05-13
+PBM,PBMWW,Psyence Biomedical Ltd. - Warrant,NASDAQ,2026-05-13
+PCAP,PCAPW,ProCap Acquisition Corp - Warrant,NASDAQ,2026-05-13
+PCT,PCTTW,"PureCycle Technologies, Inc. - Warrant",NASDAQ,2026-05-13
+PDYN,PDYNW,Palladyne AI Corp. - Warrant,NASDAQ,2026-05-13
+PGY,PGYWW,Pagaya Technologies Ltd. - Warrants,NASDAQ,2026-05-13
+PIII,PIIIW,P3 Health Partners Inc. - Warrant,NASDAQ,2026-05-13
+PLMK,PLMKW,Plum Acquisition Corp. IV - Warrants,NASDAQ,2026-05-13
+PMTR,PMTRW,Perimeter Acquisition Corp. I - Warrant,NASDAQ,2026-05-12
+POLE,POLEW,Andretti Acquisition Corp. II - Warrant,NASDAQ,2026-05-12
+PRE,PRENW,Prenetics Global Limited - Warrant,NASDAQ,2026-05-13
+PTOR,PTORW,Praetorian Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+QSI,QSIAW,Quantum-Si Incorporated - Warrant,NASDAQ,2026-05-13
+RAAQ,RAAQW,Real Asset Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+RAIN,RAINW,"Rain Enhancement Technologies Holdco, Inc. - Warrants",NASDAQ,2026-05-13
+RCKT,RCKTW,"Rocket Pharmaceuticals, Inc. - Warrant",NASDAQ,2026-05-13
+RDAG,RDAGW,Republic Digital Acquisition Company - Warrants,NASDAQ,2026-05-12
+RDZN,RDZNW,"Roadzen, Inc. - Warrants",NASDAQ,2026-05-13
+REVB,REVBW,"Revelation Biosciences, Inc. - Warrant",NASDAQ,2026-05-13
+RMCO,RMCOW,Royalty Management Holding Corporation - Warrant,NASDAQ,2026-05-13
+RMSG,RMSGW,Real Messenger Corporation - Warrants,NASDAQ,2026-05-13
+RNGT,RNGTW,Range Capital Acquisition Corp II - Warrants,NASDAQ,2026-05-12
+RNW,RNWWW,ReNew Energy Global plc - Warrant,NASDAQ,2026-05-13
+RSVR,RSVRW,"Reservoir Media, Inc.. - Warrant",NASDAQ,2026-05-12
+RTAC,RTACW,Renatus Tactical Acquisition Corp I - Warrant,NASDAQ,2026-05-13
+RUM,RUMBW,Rumble Inc. - Warrant,NASDAQ,2026-05-13
+RVMD,RVMDW,"Revolution Medicines, Inc. - Warrant",NASDAQ,2026-05-13
+RVSN,RVSNW,Rail Vision Ltd. - Warrant,NASDAQ,2026-05-13
+RZLV,RZLVW,Rezolve AI PLC - Warrants,NASDAQ,2026-05-13
+SAAQ,SAAQW,Space Asset Acquisition Corp. - Warrants,NASDAQ,2026-05-12
+SABS,SABSW,"SAB Biotherapeutics, Inc. - Warrant",NASDAQ,2026-05-13
+SAIH,SAIHW,SAIHEAT Limited - Warrant,NASDAQ,2026-05-12
+SATL,SATLW,Satellogic Inc. - Warrant,NASDAQ,2026-05-13
+SBC,SBCWW,SBC Medical Group Holdings Incorporated - Warrants,NASDAQ,2026-05-13
+SBFM,SBFMW,Sunshine Biopharma Inc. - Warrant,NASDAQ,2026-05-13
+SCLX,SCLXW,Scilex Holding Company - Warrant,NASDAQ,2026-05-13
+SCPQ,SCPQW,Social Commerce Partners Corporation - Warrant,NASDAQ,2026-05-13
+SDA,SDAWW,SunCar Technology Group Inc. - Warrant,NASDAQ,2026-05-13
+SDST,SDSTW,Stardust Power Inc. - Warrant,NASDAQ,2026-05-13
+SEAT,SEATW,Vivid Seats Inc. - Warrant,NASDAQ,2026-05-12
+SHFS,SHFSW,"SHF Holdings, Inc. - Warrants",NASDAQ,2026-05-12
+SHMD,SHMDW,SCHMID Group N.V. - Warrants,NASDAQ,2026-05-13
+SIMA,SIMAW,SIM Acquisition Corp. I - Warrant,NASDAQ,2026-05-13
+SLDP,SLDPW,"Solid Power, Inc. - Warrant",NASDAQ,2026-05-13
+SLXN,SLXNW,Silexion Therapeutics Corp - Warrant,NASDAQ,2026-05-13
+SMX,SMXWW,SMX (Security Matters) Public Limited Company - Warrant,NASDAQ,2026-05-13
+SOCA,SOCAW,Solarius Capital Acquisition Corp. - Warrant,NASDAQ,2026-05-12
+SORN,SORNW,Soren Acquisition Corp. - Warrant,NASDAQ,2026-05-12
+SOUN,SOUNW,"SoundHound AI, Inc. - Warrant",NASDAQ,2026-05-13
+SPKL,SPKLW,Spark I Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+SPWR,SPWRW,SunPower Inc. - Warrant,NASDAQ,2026-05-12
+SRZN,SRZNW,"Surrozen, Inc. - Warrant",NASDAQ,2026-05-13
+SSAC,SSACW,SPACSphere Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+STSS,STSSW,Sharps Technology Inc. - Warrant,NASDAQ,2026-05-13
+SVAC,SVACW,Spring Valley Acquisition Corp. III - Warrant,NASDAQ,2026-05-13
+SVAQ,SVAQW,Silicon Valley Acquisition Corp. - Warrants,NASDAQ,2026-05-13
+SVCC,SVCCW,Stellar V Capital Corp. - Warrant,NASDAQ,2026-05-13
+SVIV,SVIVW,Spring Valley Acquisition Corp. IV - Warrants,NASDAQ,2026-05-13
+SWAG,SWAGW,"Stran & Company, Inc. - Warrant",NASDAQ,2026-05-13
+SWVL,SWVLW,Swvl Holdings Corp - Warrant,NASDAQ,2026-05-12
+SXTP,SXTPW,"60 Degrees Pharmaceuticals, Inc. - Warrant",NASDAQ,2026-05-13
+TACH,TACHW,Titan Acquisition Corp. - Warrants,NASDAQ,2026-05-12
+TACO,TACOW,Berto Acquisition Corp. - Warrant,NASDAQ,2026-05-13
+TALK,TALKW,"Talkspace, Inc. - Warrant",NASDAQ,2026-05-13
+TBLA,TBLAW,Taboola.com Ltd. - Warrant,NASDAQ,2026-05-12
+TDAC,TDACW,Translational Development Acquisition Corp. - Warrants,NASDAQ,2026-05-12
+TLNC,TLNCW,Talon Capital Corp. - Warrants,NASDAQ,2026-05-13
+TLSI,TLSIW,"TriSalus Life Sciences, Inc. - Warrant",NASDAQ,2026-05-13
+TMC,TMCWW,TMC the metals company Inc. - Warrant,NASDAQ,2026-05-13
+TMTS,TMTSW,Spartacus Acquisition Corp. II - Warrants,NASDAQ,2026-05-11
+TNON,TNONW,"Tenon Medical, Inc. - Warrant",NASDAQ,2026-05-13
+TOI,TOIIW,"The Oncology Institute, Inc. - Warrant",NASDAQ,2026-05-13
+TVA,TVACW,Texas Ventures Acquisition III Corp - Warrants,NASDAQ,2026-05-12
+TVGN,TVGNW,Tevogen Bio Holdings Inc. - Warrant,NASDAQ,2026-05-13
+USGO,USGOW,U.S. GoldMining Inc. - Warrant,NASDAQ,2026-05-13
+VACH,VACHW,Voyager Acquisition Corp - Warrants,NASDAQ,2026-05-13
+VEEA,VEEAW,Veea Inc. - Warrant,NASDAQ,2026-05-13
+VFS,VFSWW,VinFast Auto Ltd. - Warrant,NASDAQ,2026-05-12
+VGAS,VGASW,"Verde Clean Fuels, Inc. - Warrant",NASDAQ,2026-05-13
+VHCP,VHCPW,Vine Hill Capital Investment Corp. II - Warrants,NASDAQ,2026-05-08
+VNME,VNMEW,Vendome Acquisition Corporation I - Warrant,NASDAQ,2026-05-12
+VSEE,VSEEW,"VSee Health, Inc. - Warrant",NASDAQ,2026-05-12
+VWAV,VWAVW,"VisionWave Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+WALD,WALDW,Waldencast plc - Warrant,NASDAQ,2026-05-13
+WENN,WENNW,Wen Acquisition Corp - Warrant,NASDAQ,2026-05-12
+WGS,WGSWW,GeneDx Holdings Corp. - Warrant,NASDAQ,2026-05-13
+WLDS,WLDSW,Wearable Devices Ltd. - Warrant,NASDAQ,2026-05-12
+WLII,WLIIW,Willow Lane Acquisition Corp. II - Warrants,NASDAQ,2026-05-12
+XBP,XBPEW,"XBP Global Holdings, Inc. - Warrant",NASDAQ,2026-05-13
+XCBE,XCBEW,X3 Acquisition Corp. Ltd. - Warrant,NASDAQ,2026-05-12
+XOS,XOSWW,"Xos, Inc. - Warrants",NASDAQ,2026-05-13
+XRPN,XRPNW,Armada Acquisition Corp. II - Warrant,NASDAQ,2026-05-13
+XRX,XRXDW,Xerox Holdings Corporation - Warrants,NASDAQ,2026-05-13
+XSLL,XSLLW,Xsolla SPAC 1 - Warrants,NASDAQ,2026-05-12
+YDES,YDESW,YD Bio Limited - Warrants,NASDAQ,2026-05-13
+ZEO,ZEOWW,Zeo Energy Corporation - Warrants,NASDAQ,2026-05-13
+ZKP,ZKPW,Lafayette Digital Acquisition Corp. I - Warrant,NASDAQ,2026-05-13
+ZOOZ,ZOOZW,ZOOZ Strategy Ltd. - Warrant,NASDAQ,2026-05-12
