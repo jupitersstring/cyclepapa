@@ -299,6 +299,33 @@ def fetch_fundamentals(cfg: Config, ticker: str) -> dict[str, pd.DataFrame]:
     return _fetch_fundamentals_yf(cfg, ticker)
 
 
+def _info_with_timeout(ticker: str, timeout_sec: float) -> dict:
+    """yf.Ticker(t).info has no built-in timeout and can block for minutes
+    on a misbehaving symbol. Run it in a daemon sub-thread with a hard
+    wall-clock cap; orphaned threads are left to GC after timeout.
+
+    This was the root cause of the previous 7502-ticker run hanging at
+    4500 with no log output: all workers blocked on .info calls that never
+    returned, and the ThreadPoolExecutor had no way to interrupt them.
+    """
+    import concurrent.futures as _cf
+    def _do():
+        return yf.Ticker(ticker).info or {}
+    with _cf.ThreadPoolExecutor(max_workers=1, thread_name_prefix=f"info-{ticker}") as ex:
+        fut = ex.submit(_do)
+        try:
+            return fut.result(timeout=timeout_sec) or {}
+        except _cf.TimeoutError:
+            log.debug("info fetch timed out (%.0fs) for %s", timeout_sec, ticker)
+            # Don't wait for the thread to finish; let the ThreadPoolExecutor
+            # context manager drain it in the background.
+            ex.shutdown(wait=False, cancel_futures=True)
+            return {}
+        except Exception as exc:
+            log.debug("info fetch failed for %s: %s", ticker, exc)
+            return {}
+
+
 def fetch_info_metrics(cfg: Config, ticker: str) -> dict[str, float]:
     """Pull pre-computed valuation metrics from yfinance Ticker.info.
 
@@ -306,16 +333,13 @@ def fetch_info_metrics(cfg: Config, ticker: str) -> dict[str, float]:
     bunch of other ratios as a single dict from Ticker.info. Much simpler
     than rebuilding them from balance-sheet line items.
 
-    Cached as a single-row parquet keyed by 'info_metrics'.
+    Cached as a single-row parquet keyed by 'info_metrics'. Hard timeout
+    (20s default) prevents one hung ticker from freezing the whole run.
     """
     cached = _read_cache(cfg, ticker, "info_metrics")
     if cached is not None and not cached.empty:
         return cached.iloc[0].to_dict()
-    try:
-        info = yf.Ticker(ticker).info or {}
-    except Exception as exc:
-        log.debug("info fetch failed for %s: %s", ticker, exc)
-        return {}
+    info = _info_with_timeout(ticker, timeout_sec=20.0)
     keep_keys = (
         "priceToBook", "priceToSalesTrailing12Months",
         "trailingPE", "forwardPE", "enterpriseToEbitda", "enterpriseToRevenue",
@@ -1836,16 +1860,49 @@ def run(cfg: Config) -> pd.DataFrame:
     log.info("analyzing %d tickers with %d workers", len(tickers), cfg.workers)
     results: list[TickerResult] = []
     t0 = time.time()
-    with ThreadPoolExecutor(max_workers=cfg.workers) as pool:
-        futures = {pool.submit(analyze_ticker, cfg, t, bench_prices): t for t in tickers}
-        for i, fut in enumerate(as_completed(futures), 1):
-            r = fut.result()
-            results.append(r)
-            if i % 25 == 0 or i == len(futures):
-                elapsed = time.time() - t0
-                rate = i / elapsed if elapsed > 0 else 0
-                log.info("  %d/%d  (%.1f/s)  last=%s err=%s",
-                         i, len(futures), rate, r.ticker, r.error or "ok")
+    CHECKPOINT_EVERY = 500
+    checkpoint_path = cfg.output_dir / "_checkpoint.parquet"
+
+    def _write_checkpoint() -> None:
+        """Persist accumulated results as a parquet so a crash doesn't lose
+        progress. Cheap to read back on restart but currently only used as a
+        safety net the operator can manually inspect."""
+        try:
+            tmp = results_to_frame(results)
+            cfg.output_dir.mkdir(parents=True, exist_ok=True)
+            tmp.to_parquet(checkpoint_path)
+            log.info("checkpoint: %d rows saved to %s", len(tmp), checkpoint_path.name)
+        except Exception as exc:
+            log.debug("checkpoint write failed: %s", exc)
+
+    try:
+        with ThreadPoolExecutor(max_workers=cfg.workers) as pool:
+            futures = {pool.submit(analyze_ticker, cfg, t, bench_prices): t for t in tickers}
+            for i, fut in enumerate(as_completed(futures), 1):
+                try:
+                    r = fut.result(timeout=120)  # per-future cap; should be << 120s normally
+                except Exception as exc:
+                    # A worker crashed/hung past timeout; record an error stub
+                    # so the outer pipeline doesn't lose track of it.
+                    tk = futures.get(fut, "?")
+                    r = TickerResult(ticker=tk, error=f"worker failure: {type(exc).__name__}")
+                    log.warning("ticker %s failed: %s", tk, exc)
+                results.append(r)
+                if i % 25 == 0 or i == len(futures):
+                    elapsed = time.time() - t0
+                    rate = i / elapsed if elapsed > 0 else 0
+                    log.info("  %d/%d  (%.1f/s)  last=%s err=%s",
+                             i, len(futures), rate, r.ticker, r.error or "ok")
+                if i % CHECKPOINT_EVERY == 0 and i < len(futures):
+                    _write_checkpoint()
+    except KeyboardInterrupt:
+        log.warning("KeyboardInterrupt received; emitting partial outputs from %d results", len(results))
+        _write_checkpoint()
+        # Continue to the outputs below with whatever we have so far.
+    finally:
+        # Ensure checkpoint is saved on any exit path.
+        if results:
+            _write_checkpoint()
 
     df = results_to_frame(results)
     write_per_variant_csvs(df, cfg.output_dir)

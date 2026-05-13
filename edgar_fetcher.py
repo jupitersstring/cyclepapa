@@ -189,7 +189,12 @@ def _companyfacts_path(cache_dir: Path, cik: int) -> Path:
 
 
 def _fetch_companyfacts(cache_dir: Path, cik: int, ua: str, max_age_days: int = 7) -> Optional[dict]:
-    """Pull the full company-facts JSON for a CIK; cache to disk as gzipped JSON."""
+    """Pull the full company-facts JSON for a CIK; cache to disk as gzipped JSON.
+
+    Returns None on ANY failure -- caller falls back to yfinance. Catches
+    generic Exception, not just RequestException, so a malformed JSON or
+    socket-level error doesn't crash the worker thread.
+    """
     import gzip
     path = _companyfacts_path(cache_dir, cik)
     if path.exists() and (time.time() - path.stat().st_mtime) < max_age_days * 86400:
@@ -202,7 +207,7 @@ def _fetch_companyfacts(cache_dir: Path, cik: int, ua: str, max_age_days: int = 
     time.sleep(0.12)
     try:
         r = _session(ua).get(url, timeout=20)
-    except requests.RequestException as exc:
+    except Exception as exc:  # broadened from RequestException for robustness
         log.debug("companyfacts request failed for CIK %d: %s", cik, exc)
         return None
     if r.status_code == 404:
@@ -215,7 +220,11 @@ def _fetch_companyfacts(cache_dir: Path, cik: int, ua: str, max_age_days: int = 
     if not r.ok:
         log.debug("companyfacts non-OK %d for CIK %d", r.status_code, cik)
         return None
-    payload = r.json()
+    try:
+        payload = r.json()
+    except Exception as exc:
+        log.debug("companyfacts JSON parse failed for CIK %d: %s", cik, exc)
+        return None
     try:
         cache_dir.mkdir(parents=True, exist_ok=True)
         with gzip.open(path, "wt", encoding="utf-8") as f:
