@@ -877,6 +877,142 @@ def filter_real_arbs(fair_df: pd.DataFrame,
     ].copy().reset_index(drop=True)
 
 
+# ---------- business quality + recent inflection scoring ----------
+
+def fetch_fundamentals(commons: list[str]) -> pd.DataFrame:
+    """Pull yfinance.info snapshots for a list of common tickers."""
+    rows = []
+    for c in commons:
+        try:
+            info = yf.Ticker(c).info or {}
+        except Exception:
+            info = {}
+        rows.append({
+            "common": c,
+            "totalRevenue": info.get("totalRevenue"),
+            "revenueGrowth": info.get("revenueGrowth"),
+            "grossMargins": info.get("grossMargins"),
+            "operatingMargins": info.get("operatingMargins"),
+            "totalCash": info.get("totalCash"),
+            "totalDebt": info.get("totalDebt"),
+            "freeCashflow": info.get("freeCashflow"),
+            "operatingCashflow": info.get("operatingCashflow"),
+            "marketCap": info.get("marketCap"),
+            "sharesOutstanding": info.get("sharesOutstanding"),
+            "earningsQuarterlyGrowth": info.get("earningsQuarterlyGrowth"),
+            "recommendationMean": info.get("recommendationMean"),
+            "numberOfAnalystOpinions": info.get("numberOfAnalystOpinions"),
+        })
+    return pd.DataFrame(rows)
+
+
+def score_quality_and_inflection(df: pd.DataFrame) -> pd.DataFrame:
+    """Score business quality and recent positive inflection from fundamentals.
+
+    quality = revenue traction + margin profile + cash runway.
+    inflection = sequential growth + EPS surprise + analyst coverage.
+    Penalize negative YoY revenue growth (no positive inflection by def).
+    Caps absurd outliers (e.g. yfinance occasionally reports growth = 23775).
+    """
+    out = df.copy()
+
+    def rev_score(r):
+        rev = r.get("totalRevenue") or 0
+        g = r.get("revenueGrowth")
+        s = 0.0
+        if rev >= 50e6: s += 1.0
+        elif rev >= 10e6: s += 0.5
+        elif rev >= 1e6: s += 0.2
+        if g is not None and not pd.isna(g):
+            g = max(min(g, 3.0), -1.0)  # cap data errors
+            if g > 0:
+                s += min(2.0, g * 3)
+        return s
+
+    def margin_score(r):
+        gm = r.get("grossMargins")
+        om = r.get("operatingMargins")
+        s = 0.0
+        if gm is not None and not pd.isna(gm) and gm > 0:
+            s += gm * 2
+        if om is not None and not pd.isna(om) and om > -0.20:
+            s += 0.5
+        return s
+
+    def runway_score(r):
+        cash = r.get("totalCash") or 0
+        fcf = r.get("freeCashflow")
+        if fcf is None or pd.isna(fcf) or fcf >= 0:
+            return 1.5 if cash > 100e6 else (1.0 if cash > 25e6 else 0.5)
+        burn_q = abs(fcf) / 4
+        if burn_q <= 0: return 0.5
+        q = cash / burn_q
+        if q >= 8: return 1.5
+        if q >= 4: return 1.0
+        if q >= 2: return 0.5
+        return 0.0
+
+    def inflection_score(r):
+        s = 0.0
+        # penalize declining revenue YoY — no positive inflection by definition
+        g = r.get("revenueGrowth")
+        if g is not None and not pd.isna(g):
+            g = max(min(g, 3.0), -1.0)
+            if g < 0: s -= 0.5
+        eg = r.get("earningsQuarterlyGrowth")
+        if eg is not None and not pd.isna(eg):
+            eg = max(min(eg, 5.0), -1.0)
+            if eg > 0:
+                s += min(2.0, eg * 0.5)
+        rec = r.get("recommendationMean")
+        if rec is not None and not pd.isna(rec) and 1.0 <= rec <= 2.5:
+            s += 1.0
+        n = r.get("numberOfAnalystOpinions") or 0
+        if n >= 3: s += 0.5
+        return s
+
+    out["rev_score"] = out.apply(rev_score, axis=1)
+    out["margin_score"] = out.apply(margin_score, axis=1)
+    out["runway_score"] = out.apply(runway_score, axis=1)
+    out["quality"] = out[["rev_score", "margin_score", "runway_score"]].sum(axis=1)
+    out["inflection"] = out.apply(inflection_score, axis=1)
+    return out
+
+
+def rank_discount_quality_inflection(fair_df: pd.DataFrame,
+                                     gap_threshold: float = -0.50,
+                                     max_moneyness: float = 0.90,
+                                     top_n_to_score: int = 60) -> pd.DataFrame:
+    """End-to-end: take BS fair-value scan, filter to deep-discount survivors,
+    pull fundamentals, score quality + inflection, rank by composite.
+
+    composite = (-gap_pct) * (1 + quality) * max(0, 1 + inflection)
+
+    A declining-revenue name with no other inflection signals gets
+    inflection <= 0 -> composite collapses, so 'positive inflections'
+    actually matter.
+    """
+    if fair_df.empty:
+        return pd.DataFrame()
+    deep = fair_df[
+        (fair_df["gap_pct"] <= gap_threshold)
+        & (fair_df["moneyness"] <= max_moneyness)
+        & (fair_df["days_above_18"] == 0)
+    ].copy()
+    deep = deep.sort_values("gap_pct").head(top_n_to_score)
+    if deep.empty:
+        return deep
+    fundamentals = fetch_fundamentals(deep["common"].unique().tolist())
+    scored = score_quality_and_inflection(fundamentals)
+    merged = deep.merge(scored, on="common", how="left")
+    merged["composite"] = (
+        (-merged["gap_pct"])
+        * (1.0 + merged["quality"].fillna(0))
+        * (1.0 + merged["inflection"].fillna(0)).clip(lower=0)
+    )
+    return merged.sort_values("composite", ascending=False).reset_index(drop=True)
+
+
 # ---------- Streamlit UI ----------
 
 def _plot(sig: pd.DataFrame, infl: pd.DataFrame, title: str) -> go.Figure:
@@ -1367,6 +1503,34 @@ def _fair_value_tab():
                                 "redemption_risk"]
         st.dataframe(fair[[c for c in all_cols if c in fair.columns]],
                     use_container_width=True)
+
+    st.markdown("---")
+    st.subheader("Composite rank: discount × biz quality × positive inflection")
+    st.caption("Layer fundamental scoring on top of deep-discount survivors. "
+               "Pulls yfinance.info per common — slow on first run.")
+    c_q1, c_q2, c_q3 = st.columns(3)
+    gap_th = float(c_q1.number_input("Gap threshold for shortlist", -1.0, 0.0,
+                                      -0.50, 0.05, key="ql_gap"))
+    money_cap = float(c_q2.number_input("Max moneyness", 0.1, 2.0, 0.90, 0.05,
+                                         key="ql_money"))
+    top_n = int(c_q3.number_input("Max names to score", 5, 200, 60,
+                                    key="ql_topn"))
+    if st.button("Score quality + inflection", type="primary", key="ql_run"):
+        with st.spinner("Pulling fundamentals from yfinance..."):
+            ranked = rank_discount_quality_inflection(
+                fair, gap_threshold=gap_th, max_moneyness=money_cap,
+                top_n_to_score=top_n,
+            )
+        st.session_state["ql_ranked"] = ranked
+    ranked = st.session_state.get("ql_ranked")
+    if ranked is not None and not ranked.empty:
+        rank_cols = ["common", "warrant", "warrant_px", "common_px",
+                     "moneyness", "gap_pct", "totalRevenue", "revenueGrowth",
+                     "grossMargins", "earningsQuarterlyGrowth",
+                     "rev_score", "margin_score", "runway_score",
+                     "quality", "inflection", "composite", "security_name"]
+        rank_cols = [c for c in rank_cols if c in ranked.columns]
+        st.dataframe(ranked[rank_cols], use_container_width=True)
 
 
 if __name__ == "__main__":
