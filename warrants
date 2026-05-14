@@ -297,6 +297,87 @@ def load_smallcap_universe(country: str = "United States",
     return df[keep]
 
 
+_TSX_BOARDS = ("tsx", "tsxv")
+TSX_COMMON_SUFFIX = {"TSX": ".TO", "TSXV": ".V"}
+TSX_WARRANT_SUFFIXES = (".WT.TO", ".WS.TO", ".WTA.TO", ".UN.TO",
+                        ".WT.V", ".WS.V", ".WTA.V")
+
+
+@st.cache_data(ttl=24 * 3600, show_spinner=False)
+def fetch_tsx_companies() -> pd.DataFrame:
+    """All TSX + TSXV listed companies (alphabetic crawl of the public directory)."""
+    rows = []
+    for board in _TSX_BOARDS:
+        for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            try:
+                r = requests.get(
+                    f"https://www.tsx.com/json/company-directory/search/"
+                    f"{board}/{letter}",
+                    headers=EDGAR_HEADERS, timeout=15,
+                )
+                if not r.ok:
+                    continue
+                for row in r.json().get("results", []):
+                    sym = row.get("symbol")
+                    name = row.get("name")
+                    if sym:
+                        rows.append({"symbol": sym, "name": name,
+                                     "board": board.upper()})
+            except Exception:
+                continue
+    return (pd.DataFrame(rows).dropna(subset=["symbol"])
+            .drop_duplicates(subset=["symbol", "board"])
+            .reset_index(drop=True))
+
+
+def discover_tsx_warrants(companies: pd.DataFrame | None = None,
+                           chunk_size: int = 250,
+                           min_bars: int = 30,
+                           max_stale_days: int = 45) -> pd.DataFrame:
+    """Batch-probe Yahoo for TSX/TSXV warrant tickers.
+
+    Generates `<symbol><suffix>` candidates for each company, downloads
+    them in chunks via the batch endpoint, and keeps the ones with
+    recent data. Much faster than per-ticker probing.
+    """
+    if companies is None:
+        companies = fetch_tsx_companies()
+    if companies.empty:
+        return pd.DataFrame(columns=["common", "warrant", "name", "exchange"])
+    candidates = []
+    for _, row in companies.iterrows():
+        for sfx in TSX_WARRANT_SUFFIXES:
+            board = row["board"]
+            if (sfx.endswith(".TO") and board == "TSX") or \
+               (sfx.endswith(".V") and board == "TSXV"):
+                candidates.append((f"{row['symbol']}{sfx}", row))
+    out = []
+    cutoff = pd.Timestamp.utcnow().tz_localize(None) - \
+        pd.Timedelta(days=max_stale_days)
+    for i in range(0, len(candidates), chunk_size):
+        batch = candidates[i:i + chunk_size]
+        bundle = batch_load_pairs([c[0] for c in batch], period="6mo")
+        closes = bundle["close"]
+        if closes.empty:
+            continue
+        for ticker, row in batch:
+            if ticker not in closes.columns:
+                continue
+            s = closes[ticker].dropna()
+            if len(s) < min_bars:
+                continue
+            last = s.index[-1].tz_localize(None) if s.index.tz is not None \
+                else s.index[-1]
+            if last < cutoff:
+                continue
+            board = row["board"]
+            common_y = f"{row['symbol']}{TSX_COMMON_SUFFIX[board]}"
+            out.append({"common": common_y, "warrant": ticker,
+                        "name": row["name"], "exchange": board})
+    return pd.DataFrame(out).drop_duplicates(subset=["warrant"]) \
+                            .reset_index(drop=True)
+
+
 # ---------- universe (NASDAQ Trader daily listings) ----------
 
 NASDAQ_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
@@ -684,6 +765,116 @@ def option_warrant_parity(common_ticker: str, warrant_price: float,
         "gap_pct": float(gap_pct),
         "verdict": verdict,
     }
+
+
+# ---------- model-based fair value (Black-Scholes) ----------
+
+from scipy.stats import norm as _norm
+
+
+def bs_call(S: float, K: float, T: float, r: float, sigma: float) -> float:
+    """Standard Black-Scholes European call. Intrinsic when T<=0 or sigma<=0."""
+    if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
+        return max(0.0, S - K)
+    d1 = (np.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * np.sqrt(T))
+    d2 = d1 - sigma * np.sqrt(T)
+    return float(S * _norm.cdf(d1) - K * np.exp(-r * T) * _norm.cdf(d2))
+
+
+def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
+                    strike: float = 11.50, T_years: float = 3.0,
+                    r: float = 0.045, dilution: float = 0.90,
+                    min_warrant_px: float = 0.05,
+                    moneyness_cap: float = 0.85,
+                    days_above_18_lookback: int = 60,
+                    sigma_floor: float = 0.30,
+                    sigma_cap: float = 2.00) -> pd.DataFrame:
+    """For each (common, warrant) pair, compute the model-implied fair
+    value and the gap to market. Filters out names where redemption-cap
+    risk plausibly explains the discount.
+
+    Returns a DataFrame sorted by gap_pct ascending (most-discounted
+    first). Columns include moneyness, sigma_used, bs_call, theoretical,
+    gap_pct, days_above_18.
+    """
+    if pairs_df.empty:
+        return pd.DataFrame()
+    tickers = sorted(set(pairs_df["common"]) | set(pairs_df["warrant"]))
+    bundle = batch_load_pairs(tickers, period=period)
+    closes = bundle["close"]
+    if closes.empty:
+        return pd.DataFrame()
+    log_rets = np.log(closes / closes.shift(1))
+    sigma_1y = log_rets.tail(252).std() * np.sqrt(252)
+    sigma_3m = log_rets.tail(63).std() * np.sqrt(252)
+    last_close = closes.ffill().iloc[-1]
+    days_above_18 = closes.apply(
+        lambda s: int((s.dropna().tail(days_above_18_lookback) >= 18).sum())
+    )
+    rows = []
+    for _, r_ in pairs_df.iterrows():
+        try:
+            cpx = float(last_close[r_["common"]])
+            wpx = float(last_close[r_["warrant"]])
+        except Exception:
+            continue
+        if abs(cpx - wpx) < 1e-9:  # yfinance fallback collision
+            continue
+        if wpx < min_warrant_px or cpx <= 0:
+            continue
+        s1 = float(sigma_1y.get(r_["common"], np.nan))
+        s3 = float(sigma_3m.get(r_["common"], np.nan))
+        if not np.isfinite(s1) or s1 <= 0:
+            continue
+        sigma = min(s1, s3) if np.isfinite(s3) else s1
+        sigma = max(sigma_floor, min(sigma, sigma_cap))
+        bs = bs_call(cpx, strike, T_years, r, sigma)
+        if bs < min_warrant_px:
+            continue
+        theoretical = dilution * bs
+        gap_pct = (wpx - theoretical) / theoretical
+        moneyness = cpx / strike
+        rows.append({
+            "common": r_["common"],
+            "warrant": r_["warrant"],
+            "common_px": cpx,
+            "warrant_px": wpx,
+            "moneyness": moneyness,
+            "sigma_1y": s1,
+            "sigma_3m": s3 if np.isfinite(s3) else None,
+            "sigma_used": sigma,
+            "days_above_18": int(days_above_18.get(r_["common"], 0)),
+            "bs_call": bs,
+            "theoretical": theoretical,
+            "gap_pct": gap_pct,
+            "security_name": r_.get("security_name", ""),
+        })
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return out
+    out["redemption_risk"] = (out["moneyness"] >= 1.0) | (out["days_above_18"] > 0)
+    return out.sort_values("gap_pct").reset_index(drop=True)
+
+
+def filter_real_arbs(fair_df: pd.DataFrame,
+                     max_moneyness: float = 0.85,
+                     min_theoretical: float = 0.50,
+                     max_gap_pct: float = -0.70,
+                     sigma_low: float = 0.40,
+                     sigma_high: float = 1.50) -> pd.DataFrame:
+    """The 'discount no longer makes sense' shortlist: warrant deeply
+    OTM (no redemption-cap pressure), reasonable vol, meaningful
+    theoretical fair value, and large negative gap.
+    """
+    if fair_df.empty:
+        return fair_df
+    return fair_df[
+        (fair_df["moneyness"] <= max_moneyness)
+        & (fair_df["days_above_18"] == 0)
+        & (fair_df["sigma_1y"].between(sigma_low, sigma_high))
+        & (fair_df["theoretical"] >= min_theoretical)
+        & (fair_df["gap_pct"] <= max_gap_pct)
+    ].copy().reset_index(drop=True)
 
 
 # ---------- Streamlit UI ----------
@@ -1084,17 +1275,98 @@ def main():
         z_alert = float(st.number_input(
             "Alert |composite_z| ≥", 0.5, 5.0, 2.0, 0.1))
 
-    tab_pair, tab_screen, tab_parity, tab_edgar = st.tabs(
-        ["Pair scan", "Screener", "Option-warrant parity", "EDGAR"]
+    tab_pair, tab_screen, tab_fv, tab_parity, tab_edgar = st.tabs(
+        ["Pair scan", "Screener", "Fair-value (BS)", "Option-warrant parity", "EDGAR"]
     )
     with tab_pair:
         _pair_tab(lookback_w, lookback_m, prominence, z_alert)
     with tab_screen:
         _screener_tab(lookback_w, lookback_m, prominence, z_alert)
+    with tab_fv:
+        _fair_value_tab()
     with tab_parity:
         _parity_tab()
     with tab_edgar:
         _edgar_tab()
+
+
+def _fair_value_tab():
+    st.subheader("Black-Scholes fair-value scan — discounts that don't make sense")
+    st.caption("For each pair, model the warrant as a call on the common using "
+               "realized vol; flag warrants priced far below BS fair value where "
+               "the discount can't be explained by redemption-cap risk.")
+
+    c1, c2, c3, c4 = st.columns(4)
+    strike = float(c1.number_input("Assumed strike ($)", 1.0, 100.0, 11.50, 0.5,
+                                   key="fv_strike"))
+    T_years = float(c2.number_input("Assumed T (years)", 0.25, 10.0, 3.0, 0.25,
+                                    key="fv_T"))
+    r = float(c3.number_input("Risk-free r", 0.0, 0.15, 0.045, 0.005,
+                              key="fv_r"))
+    dilution = float(c4.number_input("Dilution factor", 0.5, 1.0, 0.90, 0.01,
+                                     key="fv_dilution"))
+
+    c5, c6, c7 = st.columns(3)
+    max_money = float(c5.number_input("Max moneyness (OTM filter)", 0.1, 2.0,
+                                      0.85, 0.05, key="fv_money"))
+    max_gap = float(c6.number_input("Max gap_pct (e.g. -0.70 = -70%)",
+                                    -1.0, 0.0, -0.70, 0.05, key="fv_gap"))
+    period = c7.selectbox("Vol history window", ["6mo", "1y", "2y"],
+                         index=1, key="fv_period")
+
+    source = st.radio("Universe", ["Current screener pairs",
+                                   "NASDAQ Trader (all listed warrants)",
+                                   "Upload pair CSV"],
+                     horizontal=True, key="fv_source")
+
+    pairs_df = None
+    if source == "Current screener pairs":
+        pairs_df = st.session_state.get("screen_pairs_df")
+        if pairs_df is None or pairs_df.empty:
+            st.info("Load pairs in the Screener tab first.")
+            return
+    elif source == "NASDAQ Trader (all listed warrants)":
+        if st.button("Load universe & scan", key="fv_load_btn"):
+            with st.spinner("Loading universe..."):
+                pairs_df = extract_warrant_pairs()
+            st.session_state["fv_pairs_df"] = pairs_df
+        pairs_df = st.session_state.get("fv_pairs_df")
+    else:
+        upl = st.file_uploader("CSV with common,warrant", type="csv",
+                              key="fv_csv")
+        if upl is not None:
+            pairs_df = pd.read_csv(upl)
+            pairs_df.columns = [c.lower() for c in pairs_df.columns]
+
+    if pairs_df is None or pairs_df.empty:
+        return
+
+    if st.button("Run fair-value scan", type="primary", key="fv_run"):
+        with st.spinner(f"Pricing {len(pairs_df)} pairs (BS, 1y realized vol)..."):
+            fair = fair_value_scan(pairs_df, period=period, strike=strike,
+                                    T_years=T_years, r=r, dilution=dilution)
+        st.session_state["fv_result"] = fair
+
+    fair = st.session_state.get("fv_result")
+    if fair is None or fair.empty:
+        return
+
+    real = filter_real_arbs(fair, max_moneyness=max_money,
+                            max_gap_pct=max_gap)
+    st.subheader(f"Discounts no longer making sense — {len(real)} pairs")
+    st.caption("OTM, no recent ≥$18 print (no redemption-cap pressure), "
+               "sigma 0.40–1.50, theoretical ≥ $0.50, gap ≤ threshold.")
+    show_cols = ["common", "warrant", "common_px", "warrant_px", "moneyness",
+                 "sigma_used", "bs_call", "theoretical", "gap_pct",
+                 "security_name"]
+    st.dataframe(real[show_cols], use_container_width=True)
+
+    with st.expander(f"Full scan ({len(fair)} pairs) — includes "
+                     "redemption-risk and high-vol names"):
+        all_cols = show_cols + ["days_above_18", "sigma_1y", "sigma_3m",
+                                "redemption_risk"]
+        st.dataframe(fair[[c for c in all_cols if c in fair.columns]],
+                    use_container_width=True)
 
 
 if __name__ == "__main__":
