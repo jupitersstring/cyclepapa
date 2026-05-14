@@ -948,25 +948,30 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
                     days_above_18_lookback: int = 60,
                     sigma_floor: float = 0.30,
                     sigma_cap: float = 2.00,
-                    use_parsed_terms: bool = True) -> pd.DataFrame:
+                    use_parsed_terms: bool = True,
+                    min_avg_dollar_vol: float = 0.0,
+                    min_days_traded_5d: int = 0) -> pd.DataFrame:
     """For each (common, warrant) pair, compute the model-implied fair
     value and the gap to market. Filters out names where redemption-cap
     risk plausibly explains the discount.
 
-    When `use_parsed_terms` is True and the row's security_name embeds
-    an exercise price (e.g. EVGO: "...exercise price of $11.50") or a
-    sub-1.0 share ratio (e.g. "one-half of one share"), those override
-    the function-level defaults for that pair.
+    Tradeability filters (applied when > 0):
+      - min_avg_dollar_vol: drop pairs where the warrant's 5-day average
+        dollar volume is below this threshold. yfinance reports
+        last_close even when 0 shares traded, so without this filter
+        the screen returns theoretical discounts on untradeable warrants.
+      - min_days_traded_5d: require at least this many of the last 5
+        sessions to have non-zero warrant volume.
 
-    Returns a DataFrame sorted by gap_pct ascending (most-discounted
-    first). Columns include moneyness, sigma_used, bs_call, theoretical,
-    gap_pct, days_above_18, strike_used, ratio_used.
+    Returns columns include: warrant_5d_avg_vol, warrant_5d_avg_dvol,
+    warrant_days_traded_5d (for tradeability inspection).
     """
     if pairs_df.empty:
         return pd.DataFrame()
     tickers = sorted(set(pairs_df["common"]) | set(pairs_df["warrant"]))
     bundle = batch_load_pairs(tickers, period=period)
     closes = bundle["close"]
+    volumes = bundle.get("volume", pd.DataFrame())
     if closes.empty:
         return pd.DataFrame()
     log_rets = np.log(closes / closes.shift(1))
@@ -976,6 +981,16 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
     days_above_18 = closes.apply(
         lambda s: int((s.dropna().tail(days_above_18_lookback) >= 18).sum())
     )
+    # 5-day tradeability stats on the warrant leg
+    if not volumes.empty:
+        vol5 = volumes.tail(5).fillna(0)
+        close5 = closes.tail(5).ffill()
+        avg_vol_5d = vol5.mean()
+        avg_dvol_5d = (vol5 * close5).mean()
+        days_traded_5d = (vol5 > 0).sum()
+    else:
+        avg_vol_5d = avg_dvol_5d = days_traded_5d = pd.Series(dtype=float)
+
     rows = []
     for _, r_ in pairs_df.iterrows():
         try:
@@ -995,31 +1010,36 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
         sigma = max(sigma_floor, min(sigma, sigma_cap))
         strike_used, ratio_used = strike, 1.0
         if use_parsed_terms:
-            t = parse_warrant_terms(r_.get("security_name", ""))
-            if t["strike"] is not None:
-                strike_used = t["strike"]
-            ratio_used = t["ratio"]
+            tt = parse_warrant_terms(r_.get("security_name", ""))
+            if tt["strike"] is not None:
+                strike_used = tt["strike"]
+            ratio_used = tt["ratio"]
         bs = bs_call(cpx, strike_used, T_years, r, sigma) * ratio_used
         if bs < min_warrant_px:
             continue
         theoretical = dilution * bs
         gap_pct = (wpx - theoretical) / theoretical
         moneyness = cpx / strike_used
+        w = r_["warrant"]
+        wv = float(avg_vol_5d.get(w, 0)) if hasattr(avg_vol_5d, "get") else 0
+        wdv = float(avg_dvol_5d.get(w, 0)) if hasattr(avg_dvol_5d, "get") else 0
+        wdt = int(days_traded_5d.get(w, 0)) if hasattr(days_traded_5d, "get") else 0
+        if min_avg_dollar_vol > 0 and wdv < min_avg_dollar_vol:
+            continue
+        if min_days_traded_5d > 0 and wdt < min_days_traded_5d:
+            continue
         rows.append({
-            "common": r_["common"],
-            "warrant": r_["warrant"],
-            "common_px": cpx,
-            "warrant_px": wpx,
-            "strike_used": strike_used,
-            "ratio_used": ratio_used,
+            "common": r_["common"], "warrant": w,
+            "common_px": cpx, "warrant_px": wpx,
+            "strike_used": strike_used, "ratio_used": ratio_used,
             "moneyness": moneyness,
-            "sigma_1y": s1,
-            "sigma_3m": s3 if np.isfinite(s3) else None,
+            "sigma_1y": s1, "sigma_3m": s3 if np.isfinite(s3) else None,
             "sigma_used": sigma,
             "days_above_18": int(days_above_18.get(r_["common"], 0)),
-            "bs_call": bs,
-            "theoretical": theoretical,
-            "gap_pct": gap_pct,
+            "warrant_5d_avg_vol": int(round(wv)),
+            "warrant_5d_avg_dvol": round(wdv, 2),
+            "warrant_days_traded_5d": wdt,
+            "bs_call": bs, "theoretical": theoretical, "gap_pct": gap_pct,
             "security_name": r_.get("security_name", ""),
         })
     out = pd.DataFrame(rows)
@@ -1319,10 +1339,13 @@ def _cmd_opportunities(args):
         pairs = pd.read_csv(args.pairs)
         print(f"Using {args.pairs}: {len(pairs)} pairs")
     print(f"BS fair-value scan ({args.period} vol window, "
-          f"K=${args.strike}, T={args.T}y, div={args.dilution})...")
+          f"K=${args.strike}, T={args.T}y, div={args.dilution}, "
+          f"min_dvol=${args.min_dvol:,.0f}, min_days_traded={args.min_days_traded}/5)...")
     fair = fair_value_scan(pairs, period=args.period, strike=args.strike,
-                           T_years=args.T, r=args.r, dilution=args.dilution)
-    print(f"  computable: {len(fair)} pairs")
+                           T_years=args.T, r=args.r, dilution=args.dilution,
+                           min_avg_dollar_vol=args.min_dvol,
+                           min_days_traded_5d=args.min_days_traded)
+    print(f"  computable + tradeable: {len(fair)} pairs")
     ranked = rank_discount_quality_inflection(
         fair, gap_threshold=args.gap, max_moneyness=args.money,
         top_n_to_score=args.score_n,
@@ -1331,8 +1354,8 @@ def _cmd_opportunities(args):
           f"(discount × quality × positive inflection) ==")
     cols = [c for c in ["common", "warrant", "warrant_px", "common_px",
                         "strike_used", "moneyness", "gap_pct",
-                        "totalRevenue", "revenueGrowth", "grossMargins",
-                        "quality", "inflection", "composite"]
+                        "warrant_5d_avg_dvol", "warrant_days_traded_5d",
+                        "revenueGrowth", "quality", "inflection", "composite"]
             if c in ranked.columns]
     _print_df(ranked, cols=cols, max_rows=args.top)
     if args.out:
@@ -1426,6 +1449,10 @@ def cli():
     s.add_argument("--score-n", type=int, default=60,
                   help="Max names to pull fundamentals for.")
     s.add_argument("--top", type=int, default=15)
+    s.add_argument("--min-dvol", type=float, default=10_000.0,
+                  help="Min warrant 5-day avg dollar volume to be considered tradeable.")
+    s.add_argument("--min-days-traded", type=int, default=3,
+                  help="Min days the warrant traded in the last 5 sessions.")
     s.add_argument("--out", default=None)
     s.set_defaults(fn=_cmd_opportunities)
 
