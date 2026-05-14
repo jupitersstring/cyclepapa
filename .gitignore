@@ -3,4 +3,8 @@
 __pycache__/
 warrants_active.csv
 warrants_app.py
+warrants_discount_arbs.csv
+warrants_real_arbs.csv
 warrants_scan_results.csv
+warrants_subintrinsic.csv
+warrants_tsx.csv
