@@ -52,7 +52,17 @@ BALANCE_ALIASES = {
     "current_liab": ["Current Liabilities", "Total Current Liabilities"],
     "total_debt": ["Total Debt"],
     "net_debt": ["Net Debt"],
-    "cash": ["Cash And Cash Equivalents", "Cash"],
+    # Broad cash bucket - prefer the all-in definition that includes short-term
+    # investments, fall back to bare cash. Yfinance row labels drift between
+    # releases so we hold a small list.
+    "cash": [
+        "Cash Cash Equivalents And Short Term Investments",
+        "Cash And Cash Equivalents",
+        "Cash And Short Term Investments",
+        "Cash",
+    ],
+    "cash_narrow": ["Cash And Cash Equivalents", "Cash"],
+    "short_term_investments": ["Other Short Term Investments", "Short Term Investments"],
     "equity": ["Stockholders Equity", "Common Stock Equity", "Total Stockholder Equity"],
     "invested_capital": ["Invested Capital"],
 }
@@ -130,6 +140,10 @@ class TickerRow:
     ncav_pct_mcap: float
     cash_pct_mcap: float
     cash_pct_ev: float
+    net_cash: float
+    net_cash_pct_mcap: float
+    cash_gt_ev_flag: int   # 1 only when net cash > 0 AND cash > EV (genuine setup)
+    balance_sheet_date: str
     mcap_to_ncav: float
     graham_net_net_flag: int
     # Cheapness composites (lower = cheaper)
@@ -471,6 +485,13 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     if pd.isna(nd_v) and pd.notna(debt_v) and pd.notna(cash_v):
         nd_v = debt_v - cash_v
 
+    # Record the BS as-of date for transparency on staleness
+    bs_date_src = qbs if (qbs is not None and not qbs.empty) else abs_
+    try:
+        balance_sheet_date = str(bs_date_src.columns[0].date()) if bs_date_src is not None and len(bs_date_src.columns) else ""
+    except Exception:
+        balance_sheet_date = ""
+
     invested_capital = (eq_v + debt_v - cash_v) if (pd.notna(eq_v) and pd.notna(debt_v) and pd.notna(cash_v)) else np.nan
     roce = safe_div(ebit_ttm, invested_capital) if pd.notna(invested_capital) else np.nan
     net_debt_ebitda = safe_div(nd_v, ebitda_ttm) if pd.notna(nd_v) else np.nan
@@ -539,12 +560,26 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     else:
         fcf_projected_positive_in_n = 0
 
-    # Valuation
-    market_cap = info.get("marketCap")
-    enterprise_value = info.get("enterpriseValue") or (
-        (market_cap or 0) + (nd_v if pd.notna(nd_v) else 0)
-    )
+    # Valuation - market cap and enterprise value. yfinance's
+    # info.enterpriseValue is sometimes 0 / stale; recompute from the
+    # latest balance sheet whenever we have the inputs.
     price = info.get("currentPrice") or info.get("regularMarketPrice") or np.nan
+    shares = info.get("sharesOutstanding") or info.get("impliedSharesOutstanding")
+    market_cap = info.get("marketCap")
+    if (not market_cap) and shares and pd.notna(price):
+        try:
+            market_cap = float(shares) * float(price)
+        except Exception:
+            market_cap = None
+    yf_ev = info.get("enterpriseValue")
+    if yf_ev and float(yf_ev) > 0:
+        enterprise_value = float(yf_ev)
+    elif market_cap and pd.notna(nd_v):
+        enterprise_value = float(market_cap) + float(nd_v)
+    elif market_cap:
+        enterprise_value = float(market_cap)
+    else:
+        enterprise_value = np.nan
     ev_sales = safe_div(enterprise_value, rev_ttm) if rev_ttm else np.nan
     ev_ebitda = safe_div(enterprise_value, ebitda_ttm) if ebitda_ttm else np.nan
     ev_ebit = safe_div(enterprise_value, ebit_ttm) if (ebit_ttm and ebit_ttm > 0) else np.nan
@@ -565,6 +600,22 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     # the balance sheet exceeds enterprise value (debt-adjusted cheapness).
     cash_pct_mcap = safe_div(cash_v, market_cap) if (pd.notna(cash_v) and market_cap) else np.nan
     cash_pct_ev = safe_div(cash_v, enterprise_value) if (pd.notna(cash_v) and pd.notna(enterprise_value) and enterprise_value > 0) else np.nan
+
+    # Net cash = cash - debt (positive = company has more cash than debt).
+    net_cash = (cash_v - debt_v) if (pd.notna(cash_v) and pd.notna(debt_v)) else np.nan
+    net_cash_pct_mcap = safe_div(net_cash, market_cap) if (pd.notna(net_cash) and market_cap) else np.nan
+
+    # cash_gt_ev fires only when ALL of these hold:
+    #   1. cash > EV
+    #   2. net cash > 0 (genuine cheapness, not gross cash with bigger debt)
+    #   3. cash is plausibly scaled to mcap (cash <= 3x mcap; >3x is almost
+    #      always a dual-class structure where the BS belongs to the parent
+    #      but we have a share-class mcap — Newlat/Danieli/Generali trap).
+    cash_gt_ev_flag = int(
+        pd.notna(cash_pct_ev) and cash_pct_ev > 1.0
+        and pd.notna(net_cash) and net_cash > 0
+        and pd.notna(cash_pct_mcap) and cash_pct_mcap <= 3.0
+    )
 
     # Graham net-net: market cap < (2/3) * NCAV.  Reports the ratio mcap/NCAV
     # for sortable output. Only meaningful when NCAV is positive.
@@ -750,8 +801,8 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         notes_parts.append(f"Graham net-net (mcap {mcap_to_ncav:.2f}x NCAV)")
     if pd.notna(cash_pct_mcap) and cash_pct_mcap > 0.5:
         notes_parts.append(f"cash {cash_pct_mcap:.0%} of mcap")
-    if pd.notna(cash_pct_ev) and cash_pct_ev > 1.0:
-        notes_parts.append("cash > EV")
+    if cash_gt_ev_flag:
+        notes_parts.append(f"cash > EV ({cash_pct_ev:.2f}x, net cash {net_cash_pct_mcap:.0%} mcap)")
     notes = "; ".join(notes_parts)
 
     return TickerRow(
@@ -782,6 +833,10 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         ncav_pct_mcap=ncav_pct_mcap,
         cash_pct_mcap=cash_pct_mcap,
         cash_pct_ev=cash_pct_ev,
+        net_cash=net_cash,
+        net_cash_pct_mcap=net_cash_pct_mcap,
+        cash_gt_ev_flag=cash_gt_ev_flag,
+        balance_sheet_date=balance_sheet_date,
         mcap_to_ncav=mcap_to_ncav,
         graham_net_net_flag=graham_net_net_flag,
         cheapness_growth_blend=cheapness_growth_blend,
@@ -848,6 +903,11 @@ def get_universe(
     if country == "Italy":
         # Restrict to .MI listing for Italian names where yfinance returns financials.
         df = df[df.index.str.endswith(".MI")]
+        # NOTE: Italian dual-class structures (risparmio / privilegiate, e.g.
+        # DAN.MI vs DANR.MI) are kept as separate rows. Each share class has
+        # its own market cap and trades at a different price; the per-class
+        # cash/EV ratio is economically meaningful (savings shares typically
+        # trade at a discount to ordinary).
     elif country == "United States":
         # Drop OTC / ADR-style suffixed tickers; keep plain NYSE/NASDAQ symbols
         # (no dot suffix) - yfinance supports those directly.
@@ -1038,12 +1098,21 @@ def main():
             "cheapness_blend_vs_growth", "yartseva_score"]
     print(cheap2.head(args.top)[cols].to_string(index=False) if len(cheap2) else "  (none)")
 
-    print("\n=== CASH-RICH vs MARKET CAP / EV (sorted by cash_pct_mcap) ===")
-    cash_sub = df[df["cash_pct_mcap"].notna() & (df["cash_pct_mcap"] > 0.20)] \
+    print("\n=== CASH > EV (genuine: net cash > 0 AND cash > EV) ===")
+    cev_sub = df[df["cash_gt_ev_flag"] == 1].sort_values("cash_pct_ev", ascending=False)
+    cols = ["symbol", "name", "sector", "balance_sheet_date", "market_cap",
+            "enterprise_value", "net_cash", "cash_pct_ev",
+            "net_cash_pct_mcap", "is_breakeven_or_profitable" if "is_breakeven_or_profitable" in df.columns else "ebitda_margin",
+            "yartseva_score"]
+    cols = [c for c in cols if c in df.columns]
+    print(cev_sub.head(args.top)[cols].to_string(index=False) if len(cev_sub) else "  (none)")
+
+    print("\n=== CASH-RICH vs MARKET CAP (cash_pct_mcap > 0.30) ===")
+    cash_sub = df[df["cash_pct_mcap"].notna() & (df["cash_pct_mcap"] > 0.30)] \
         .sort_values("cash_pct_mcap", ascending=False)
-    cols = ["symbol", "name", "sector", "market_cap", "cash_and_equivalents" if "cash_and_equivalents" in df.columns else "cash_pct_mcap",
-            "cash_pct_mcap", "cash_pct_ev", "ncav_pct_mcap",
-            "mcap_to_ncav", "graham_net_net_flag", "yartseva_score"]
+    cols = ["symbol", "name", "sector", "balance_sheet_date", "market_cap",
+            "cash_pct_mcap", "cash_pct_ev", "net_cash_pct_mcap",
+            "ncav_pct_mcap", "mcap_to_ncav", "graham_net_net_flag", "yartseva_score"]
     cols = [c for c in cols if c in df.columns]
     print(cash_sub.head(args.top)[cols].to_string(index=False) if len(cash_sub) else "  (none)")
 

@@ -85,6 +85,8 @@ class PewRow:
     ev_to_mcap: float
     negative_ev_flag: int
     below_net_cash_flag: int
+    cash_gt_ev_flag: int
+    balance_sheet_date: str
     # Graham
     ncav: float
     ncav_pct_mcap: float
@@ -249,11 +251,33 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
         nd_v = debt_v - cash_v
     net_cash = -nd_v if pd.notna(nd_v) else np.nan
 
-    market_cap = float(info.get("marketCap") or 0) or np.nan
+    # Record latest BS as-of date for transparency
+    bs_src = qbs if (qbs is not None and not qbs.empty) else abs_
+    try:
+        balance_sheet_date = str(bs_src.columns[0].date()) if (bs_src is not None and len(bs_src.columns)) else ""
+    except Exception:
+        balance_sheet_date = ""
+
+    # Market cap / EV with recompute when yfinance info is stale or zero
+    price = info.get("currentPrice") or info.get("regularMarketPrice")
+    shares = info.get("sharesOutstanding") or info.get("impliedSharesOutstanding")
+    market_cap = float(info.get("marketCap") or 0)
+    if not market_cap and shares and price:
+        try:
+            market_cap = float(shares) * float(price)
+        except Exception:
+            market_cap = 0.0
+    market_cap = market_cap if market_cap > 0 else np.nan
+
     yf_ev = info.get("enterpriseValue")
-    enterprise_value = float(yf_ev) if yf_ev is not None else (
-        (market_cap + nd_v) if (pd.notna(market_cap) and pd.notna(nd_v)) else np.nan
-    )
+    if yf_ev and float(yf_ev) > 0:
+        enterprise_value = float(yf_ev)
+    elif pd.notna(market_cap) and pd.notna(nd_v):
+        enterprise_value = float(market_cap) + float(nd_v)
+    elif pd.notna(market_cap):
+        enterprise_value = float(market_cap)
+    else:
+        enterprise_value = np.nan
 
     net_cash_pct_mcap = safe_div(net_cash, market_cap)
     cash_pct_mcap = safe_div(cash_v, market_cap)
@@ -261,6 +285,10 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
     ev_to_mcap = safe_div(enterprise_value, market_cap)
     negative_ev_flag = int(pd.notna(enterprise_value) and enterprise_value < 0)
     below_net_cash_flag = int(pd.notna(net_cash) and pd.notna(market_cap) and net_cash > market_cap)
+    cash_gt_ev_flag = int(
+        pd.notna(cash_pct_ev) and cash_pct_ev > 1.0
+        and pd.notna(net_cash) and net_cash > 0
+    )
 
     # NCAV: current assets - total liabilities (Graham)
     cur_assets = first_with_fallback(qbs, abs_, ["Current Assets", "Total Current Assets"])
@@ -333,6 +361,8 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
         ev_to_mcap=ev_to_mcap,
         negative_ev_flag=negative_ev_flag,
         below_net_cash_flag=below_net_cash_flag,
+        cash_gt_ev_flag=cash_gt_ev_flag,
+        balance_sheet_date=balance_sheet_date,
         ncav=ncav,
         ncav_pct_mcap=ncav_pct_mcap,
         mcap_to_ncav=mcap_to_ncav,
@@ -432,8 +462,10 @@ def _composite(row: PewRow, median_3y_cagr: float) -> tuple[float, str]:
         note_parts.append(f"platform/SaaS hint x{row.platform_hits}")
     if getattr(row, "graham_net_net_flag", 0):
         note_parts.append(f"Graham net-net (mcap {row.mcap_to_ncav:.2f}x NCAV)")
-    if pd.notna(getattr(row, "cash_pct_ev", np.nan)) and row.cash_pct_ev > 1.0:
-        note_parts.append("cash > EV")
+    if getattr(row, "cash_gt_ev_flag", 0):
+        note_parts.append(
+            f"cash > EV ({row.cash_pct_ev:.2f}x, net cash {row.net_cash_pct_mcap:.0%} mcap)"
+        )
 
     return score, "; ".join(note_parts)
 
@@ -579,11 +611,11 @@ def main():
             "is_breakeven_or_profitable", "pew_score"]
     print(cash_sub.head(args.top)[cols].to_string(index=False) if len(cash_sub) else "  (none)")
 
-    print("\n=== CASH > EV (cash_pct_ev > 1.0) ===")
-    cev = df[df["cash_pct_ev"].fillna(0) > 1.0].sort_values("cash_pct_ev", ascending=False)
-    cols = ["symbol", "name", "sector", "market_cap", "enterprise_value",
-            "cash_pct_ev", "cash_pct_mcap", "is_breakeven_or_profitable",
-            "rev_3y_cagr", "pew_score", "notes"]
+    print("\n=== CASH > EV (genuine: net cash > 0 AND cash > EV) ===")
+    cev = df[df["cash_gt_ev_flag"] == 1].sort_values("cash_pct_ev", ascending=False)
+    cols = ["symbol", "name", "sector", "balance_sheet_date", "market_cap",
+            "enterprise_value", "net_cash", "cash_pct_ev", "net_cash_pct_mcap",
+            "is_breakeven_or_profitable", "rev_3y_cagr", "pew_score", "notes"]
     print(cev.head(args.top)[cols].to_string(index=False) if len(cev) else "  (none)")
 
     print(f"\n[3/3] done in {time.time()-start:.0f}s", file=sys.stderr)
