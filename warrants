@@ -1449,10 +1449,14 @@ def cli():
     s.add_argument("--score-n", type=int, default=60,
                   help="Max names to pull fundamentals for.")
     s.add_argument("--top", type=int, default=15)
-    s.add_argument("--min-dvol", type=float, default=10_000.0,
-                  help="Min warrant 5-day avg dollar volume to be considered tradeable.")
-    s.add_argument("--min-days-traded", type=int, default=3,
-                  help="Min days the warrant traded in the last 5 sessions.")
+    s.add_argument("--min-dvol", type=float, default=0.0,
+                  help="Optional: drop pairs below this 5-day avg dollar volume. "
+                  "Default 0 (off) — yfinance volume is incomplete for many "
+                  "warrant tickers, so absence of prints doesn't mean absence "
+                  "of a tradeable market.")
+    s.add_argument("--min-days-traded", type=int, default=0,
+                  help="Optional: require this many of last 5 sessions with "
+                  "non-zero volume per yfinance. Default 0 (off).")
     s.add_argument("--out", default=None)
     s.set_defaults(fn=_cmd_opportunities)
 
