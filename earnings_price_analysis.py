@@ -947,6 +947,64 @@ def composite_growth(metrics: pd.DataFrame, n: int) -> pd.Series:
     return blend.dropna()
 
 
+def _symmetric_growth(a: float, b: float) -> float:
+    """Bounded symmetric percentage change: 2*(a-b)/(|a|+|b|), in [-2, +2]."""
+    denom = abs(a) + abs(b)
+    if denom == 0:
+        return float("nan")
+    return 2.0 * (a - b) / denom
+
+
+def three_window_growth(series: pd.Series) -> dict[str, float | int]:
+    """Three orthogonal growth measures from a quarterly series:
+
+      qoq         : Q(t) vs Q(t-1)              -- sequential, single-quarter
+      yoy         : Q(t) vs Q(t-4)              -- single-quarter YoY (seasonal-aligned)
+      ltm         : sum(Q[t-3..t]) vs sum(Q[t-7..t-4])
+                                                 -- LTM vs prior LTM, NON-overlapping
+                                                    (this is the canonical TTM YoY)
+
+    Plus the level values for each window so the caller can show "negative X
+    -> positive Y" plainly.
+
+    Returns dict with keys: qoq, yoy, ltm (growths); q_now, q_prev_q, q_prev_yr
+    (single-quarter levels); ltm_now, ltm_prev (LTM levels); n (history depth).
+
+    All growth values use the symmetric formula to cleanly handle zero-crossings,
+    which is the standard case for FCF inflections.
+    """
+    if series is None or series.empty:
+        return {"n": 0}
+    s = pd.to_numeric(series, errors="coerce").dropna().sort_index()
+    n = len(s)
+    if n < 2:
+        return {"n": n}
+
+    out: dict[str, float | int] = {"n": n, "q_now": float(s.iloc[-1])}
+
+    # QoQ: needs 2 quarters minimum.
+    if n >= 2:
+        q_prev_q = float(s.iloc[-2])
+        out["q_prev_q"] = q_prev_q
+        out["qoq"] = _symmetric_growth(out["q_now"], q_prev_q)
+
+    # Single-quarter YoY: needs 5 quarters minimum.
+    if n >= 5:
+        q_prev_yr = float(s.iloc[-5])
+        out["q_prev_yr"] = q_prev_yr
+        out["yoy"] = _symmetric_growth(out["q_now"], q_prev_yr)
+
+    # LTM vs prior LTM (non-overlapping): needs 8 quarters minimum.
+    if n >= 8:
+        ltm_now = float(s.iloc[-4:].sum())
+        ltm_prev = float(s.iloc[-8:-4].sum())
+        out["ltm_now"] = ltm_now
+        out["ltm_prev"] = ltm_prev
+        out["ltm"] = _symmetric_growth(ltm_now, ltm_prev)
+
+    return out
+
+
 def latest_shallow_growth(series: pd.Series) -> tuple[float, str]:
     """Most recent point-in-time growth observation from a short series.
 
@@ -1060,6 +1118,11 @@ class TickerResult:
     # supply some of these via info_metrics directly (enterpriseValue, totalCash,
     # totalDebt) when EDGAR data is missing (non-US issuers).
     balance_sheet: dict[str, float] = field(default_factory=dict)
+    # Three-window growth (qoq / yoy single-Q / ltm-non-overlapping) for every
+    # metric we track: revenue, ebitda, fcf, fcf_ps, eps. Lets the consumer
+    # compare apples-to-apples across metrics and rank cross-sectionally on
+    # any single window.
+    growth_windows: dict[str, dict[str, float | int]] = field(default_factory=dict)
     error: Optional[str] = None
 
 
@@ -1089,6 +1152,13 @@ def analyze_ticker(
                     s = pd.to_numeric(metrics[src_col], errors="coerce").dropna().sort_index().tail(12)
                     if not s.empty:
                         res.fcf_recent[tag] = [(d.strftime("%Y-%m-%d"), float(v)) for d, v in s.items()]
+            # Three-window growth on every quarterly metric we have. This is
+            # the uniform measurement framework: QoQ + single-Q YoY + LTM
+            # non-overlapping for sales, EBITDA, FCF, FCF/share, EPS. Consumer
+            # can rank cross-sectionally on any column / any window.
+            for col in ("revenue", "ebitda", "fcf", "fcf_ps", "eps"):
+                if col in metrics.columns:
+                    res.growth_windows[col] = three_window_growth(metrics[col])
         # Latest balance-sheet snapshot from the income frame (EDGAR writes
         # balance-sheet line items in here for negative-EV / net-net screens).
         inc_frame = funds.get("income", pd.DataFrame())
@@ -1405,6 +1475,67 @@ def _ttm_series(vals: list[float], dates: list[str]) -> tuple[list[float], list[
         ttm.append(sum(vals[i - 3 : i + 1]))
         out_dates.append(dates[i])
     return ttm, out_dates
+
+
+def write_growth_windows(
+    results: list,  # list[TickerResult]
+    outdir: Path,
+) -> None:
+    """Uniform three-window growth (QoQ / single-Q YoY / LTM non-overlapping)
+    across all fundamental metrics, in tidy long-format CSV.
+
+    Columns:
+      ticker, metric, q_now, q_prev_q, q_prev_yr, ltm_now, ltm_prev,
+      qoq, yoy, ltm, n_history,
+      qoq_pct, yoy_pct, ltm_pct        -- cross-sectional percentiles within
+                                          each (metric) group
+
+    Lets the consumer:
+      - filter to "ticker X, all four metrics" to see direction agreement
+      - filter to "metric=fcf_ps, view=ltm, growth>0" to find the cleanest
+        FCF/share LTM inflectors
+      - rank cross-sectionally on any window / any metric independently
+    """
+    rows = []
+    for r in results:
+        gw = r.growth_windows or {}
+        for metric, m in gw.items():
+            rows.append({
+                "ticker": r.ticker,
+                "metric": metric,
+                "q_now":      m.get("q_now"),
+                "q_prev_q":   m.get("q_prev_q"),
+                "q_prev_yr":  m.get("q_prev_yr"),
+                "ltm_now":    m.get("ltm_now"),
+                "ltm_prev":   m.get("ltm_prev"),
+                "qoq":        m.get("qoq"),
+                "yoy":        m.get("yoy"),
+                "ltm":        m.get("ltm"),
+                "n_history":  m.get("n", 0),
+            })
+    if not rows:
+        log.info("growth_windows: no rows")
+        return
+    df = pd.DataFrame(rows)
+    # Cross-sectional percentile within each metric for qoq/yoy/ltm.
+    for col in ("qoq", "yoy", "ltm"):
+        for metric, grp in df.groupby("metric"):
+            s = grp[col]
+            df.loc[grp.index, f"{col}_pct"] = s.rank(pct=True, na_option="keep") * 100
+    df.to_csv(outdir / "growth_windows.csv", index=False)
+
+    # Per-metric headline summary in the log.
+    log.info("growth_windows.csv written; %d rows across %d tickers, %d metrics",
+             len(df), df["ticker"].nunique(), df["metric"].nunique())
+    for metric in ("revenue", "ebitda", "fcf", "fcf_ps", "eps"):
+        sub = df[df["metric"] == metric]
+        if sub.empty: continue
+        n_qoq_pos = int(((sub["qoq"] > 0) & sub["qoq"].notna()).sum())
+        n_yoy_pos = int(((sub["yoy"] > 0) & sub["yoy"].notna()).sum())
+        n_ltm_pos = int(((sub["ltm"] > 0) & sub["ltm"].notna()).sum())
+        n_total = len(sub)
+        log.info("  %-10s  n=%d   positive: qoq=%d  yoy=%d  ltm=%d",
+                 metric, n_total, n_qoq_pos, n_yoy_pos, n_ltm_pos)
 
 
 def write_fcf_inflections(
@@ -1907,6 +2038,7 @@ def run(cfg: Config) -> pd.DataFrame:
     df = results_to_frame(results)
     write_per_variant_csvs(df, cfg.output_dir)
     write_composite_momentum(df, cfg.output_dir)
+    write_growth_windows(results, cfg.output_dir)
     write_fcf_inflections(results, df, cfg.output_dir)
     write_valuation_screener(df, cfg.output_dir)
     write_deep_value_screen(df, cfg.output_dir)
