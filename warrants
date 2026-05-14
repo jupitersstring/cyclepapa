@@ -1,34 +1,33 @@
 """Warrant mispricing scanner.
 
-Finds relative-value dislocations (extreme z-scores) and inflections
-(turns / zero-crossings) of a warrant vs. its underlying common on
-weekly and monthly timeframes.
+Library of pure functions plus an argparse CLI. Run with:
 
-Signals per timeframe:
+    python warrants universe                       # build & save universe
+    python warrants pair LCID LCIDW                # technical scan on one pair
+    python warrants screen [--quality]             # BS fair-value screen
+    python warrants parity GME "GME WT" 32 2032-06-15
+    python warrants edgar GME
+
+Signals per timeframe (Weekly, Monthly):
   - ratio_z:    rolling z of log(warrant / common)
   - resid_z:    rolling z of the residual from rolling OLS
-                log(warrant) ~ a + b * log(common)   (cointegration spread)
+                log(warrant) ~ a + b * log(common)
   - composite_z: average of the two
-Inflections on composite_z: local peaks/troughs (find_peaks) and
-zero-crossings.
-
-Run as a Streamlit app:   cp warrants warrants_app.py && streamlit run warrants_app.py
-(streamlit requires a .py extension; warrants_app.py is gitignored)
-Or import as a module to reuse the pure functions.
+  - joint_z:    composite_z amplified by confirming volume
+Inflections on joint_z: local peaks/troughs and zero-crossings.
 """
 from __future__ import annotations
 
+import argparse
 import logging
 import re
+import sys
 from urllib.parse import quote_plus
 
 import numpy as np
 import pandas as pd
 import requests
 import yfinance as yf
-import streamlit as st
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 from scipy.signal import find_peaks
 from scipy.stats import norm as _norm
 
@@ -36,9 +35,12 @@ from scipy.stats import norm as _norm
 # Silence yfinance's per-ticker "possibly delisted" download spam — these
 # are informational, not errors, and flood batch operations.
 logging.getLogger("yfinance").setLevel(logging.CRITICAL)
-# Silence streamlit's "No runtime found" cache warnings when the module
-# is imported outside the streamlit runtime (CLI usage, tests).
-logging.getLogger("streamlit.runtime.caching.cache_data_api").setLevel(logging.ERROR)
+
+
+def _cache(*_a, **_kw):
+    """No-op decorator (drop-in replacement for @st.cache_data)."""
+    def deco(fn): return fn
+    return deco
 
 
 TIMEFRAMES = {"Weekly": "W-FRI", "Monthly": "ME"}
@@ -287,7 +289,7 @@ def load_pair_yf(common_ticker: str, warrant_ticker: str,
 
 # ---------- universe (financedatabase) ----------
 
-@st.cache_data(ttl=24 * 3600, show_spinner=False)
+@_cache(ttl=24 * 3600, show_spinner=False)
 def load_smallcap_universe(country: str = "United States",
                            market_caps=("Small Cap", "Micro Cap")) -> pd.DataFrame:
     """Approximate Russell 2000 via financedatabase small/micro caps."""
@@ -313,7 +315,7 @@ TSX_WARRANT_SUFFIXES = (".WT.TO", ".WS.TO", ".WTA.TO", ".UN.TO",
                         ".WT.V", ".WS.V", ".WTA.V")
 
 
-@st.cache_data(ttl=24 * 3600, show_spinner=False)
+@_cache(ttl=24 * 3600, show_spinner=False)
 def fetch_tsx_companies() -> pd.DataFrame:
     """All TSX + TSXV listed companies (alphabetic crawl of the public directory)."""
     rows = []
@@ -394,7 +396,7 @@ NASDAQ_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.tx
 OTHER_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
 
 
-@st.cache_data(ttl=24 * 3600, show_spinner=False)
+@_cache(ttl=24 * 3600, show_spinner=False)
 def fetch_nasdaqtrader_listings() -> pd.DataFrame:
     """All U.S. exchange-listed securities (NASDAQ + NYSE/AMEX/ARCA)."""
     import io as _io
@@ -492,7 +494,7 @@ def _to_yahoo_ticker(symbol: str) -> str:
     return str(symbol).replace(".", "-").strip()
 
 
-@st.cache_data(ttl=24 * 3600, show_spinner=False)
+@_cache(ttl=24 * 3600, show_spinner=False)
 def extract_warrant_pairs(min_share_price: float = 0.0) -> pd.DataFrame:
     """All warrant tickers from U.S. exchange listings paired with their common.
 
@@ -561,7 +563,7 @@ def filter_active_pairs(pairs_df: pd.DataFrame, period: str = "1y",
 
 # ---------- warrant discovery (yfinance suffix probing) ----------
 
-@st.cache_data(ttl=7 * 24 * 3600, show_spinner=False)
+@_cache(ttl=7 * 24 * 3600, show_spinner=False)
 def _yf_probe(ticker: str, min_bars: int = 60, max_stale_days: int = 30) -> bool:
     """True if ticker has enough bars AND traded within max_stale_days."""
     try:
@@ -691,7 +693,7 @@ def rank_dislocations(summary: pd.DataFrame, by: str = "joint_z") -> pd.DataFram
 
 # ---------- EDGAR ----------
 
-@st.cache_data(ttl=24 * 3600, show_spinner=False)
+@_cache(ttl=24 * 3600, show_spinner=False)
 def sec_ticker_map() -> dict:
     """Yahoo-style ticker (uppercase) → 10-digit CIK."""
     r = requests.get("https://www.sec.gov/files/company_tickers.json",
@@ -705,7 +707,7 @@ def ticker_to_cik(ticker: str) -> str | None:
     return sec_ticker_map().get(ticker.upper())
 
 
-@st.cache_data(ttl=24 * 3600, show_spinner=False)
+@_cache(ttl=24 * 3600, show_spinner=False)
 def edgar_recent_filings(cik: str, forms: tuple[str, ...] | None = None,
                         limit: int = 25) -> pd.DataFrame:
     """Pull the most recent filings index for a CIK."""
@@ -1145,525 +1147,192 @@ def rank_discount_quality_inflection(fair_df: pd.DataFrame,
     return merged.sort_values("composite", ascending=False).reset_index(drop=True)
 
 
-# ---------- Streamlit UI ----------
 
-def _plot(sig: pd.DataFrame, infl: pd.DataFrame, title: str) -> go.Figure:
-    has_vol = "warrant_vol" in sig.columns
-    rows = 4 if has_vol else 3
-    heights = [0.28, 0.22, 0.22, 0.28] if has_vol else [0.35, 0.3, 0.35]
-    titles = [f"{title} — prices", "log(warrant/common)"]
-    if has_vol:
-        titles.append("volume z-scores")
-    titles.append("price z-scores (composite + joint)")
-    fig = make_subplots(rows=rows, cols=1, shared_xaxes=True,
-                        row_heights=heights, subplot_titles=titles,
-                        vertical_spacing=0.05)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["common"], name="common"),
-                  row=1, col=1)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["warrant"], name="warrant"),
-                  row=1, col=1)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["log_ratio"], name="log ratio"),
-                  row=2, col=1)
+# ---------- CLI ----------
 
-    z_row = 4 if has_vol else 3
-    if has_vol:
-        if "warrant_vol_z" in sig.columns:
-            fig.add_trace(go.Scatter(x=sig.index, y=sig["warrant_vol_z"],
-                                     name="warrant vol z"), row=3, col=1)
-        if "w2c_vol_z" in sig.columns:
-            fig.add_trace(go.Scatter(x=sig.index, y=sig["w2c_vol_z"],
-                                     name="warrant/common vol z",
-                                     line=dict(width=2)), row=3, col=1)
-        fig.add_hline(y=2, line_dash="dot", line_color="orange", row=3, col=1)
-        fig.add_hline(y=-2, line_dash="dot", line_color="orange", row=3, col=1)
-
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["ratio_z"], name="ratio z",
-                             line=dict(dash="dot")), row=z_row, col=1)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["resid_z"], name="resid z",
-                             line=dict(dash="dash")), row=z_row, col=1)
-    fig.add_trace(go.Scatter(x=sig.index, y=sig["composite_z"],
-                             name="composite z", line=dict(width=2)),
-                  row=z_row, col=1)
-    if "joint_z" in sig.columns:
-        fig.add_trace(go.Scatter(x=sig.index, y=sig["joint_z"],
-                                 name="joint z (price+vol)",
-                                 line=dict(width=3, color="purple")),
-                      row=z_row, col=1)
-
-    if not infl.empty:
-        for kind, sym, color in [("peak", "triangle-down", "red"),
-                                 ("trough", "triangle-up", "green"),
-                                 ("zero_cross", "x", "grey")]:
-            sub = infl[infl["kind"] == kind]
-            if not sub.empty:
-                fig.add_trace(go.Scatter(
-                    x=sub["date"], y=sub["z"], mode="markers", name=kind,
-                    marker=dict(symbol=sym, size=10, color=color),
-                ), row=z_row, col=1)
-
-    fig.add_hline(y=2, line_dash="dot", line_color="red", row=z_row, col=1)
-    fig.add_hline(y=-2, line_dash="dot", line_color="green", row=z_row, col=1)
-    fig.add_hline(y=0, line_dash="dash", line_color="grey", row=z_row, col=1)
-    fig.update_layout(height=850 if has_vol else 750, showlegend=True,
-                      hovermode="x unified")
-    return fig
-
-
-def _pair_tab(lookback_w: int, lookback_m: int, prominence: float, z_alert: float):
-    st.subheader("Single pair scan")
-    source = st.radio("Data source", ["Yahoo Finance", "Upload CSV"],
-                      horizontal=True, key="pair_source")
-
-    pair_df = st.session_state.get("pair_df")
-    pair_name = st.session_state.get("pair_name")
-
-    if source == "Yahoo Finance":
-        c1, c2, c3, c4 = st.columns([2, 2, 1, 1])
-        common_ticker = c1.text_input("Common ticker", value="LCID",
-                                      key="pair_common")
-        warrant_ticker = c2.text_input("Warrant ticker", value="LCIDW",
-                                       key="pair_warrant")
-        period = c3.selectbox("History", ["1y", "2y", "5y", "10y", "max"],
-                              index=2, key="pair_period")
-        if c4.button("Fetch", use_container_width=True, key="pair_fetch"):
-            try:
-                pair_df = load_pair_yf(common_ticker, warrant_ticker,
-                                       period=period)
-                pair_name = f"{warrant_ticker} vs {common_ticker}"
-                st.session_state["pair_df"] = pair_df
-                st.session_state["pair_name"] = pair_name
-            except Exception as e:
-                st.error(f"Fetch failed: {e}")
-    else:
-        upl = st.file_uploader("CSV with columns: date, common, warrant",
-                               type="csv", key="pair_upload")
-        if upl is not None:
-            df = pd.read_csv(upl)
-            date_col = next((c for c in df.columns
-                             if c.lower() in ("date", "time")),
-                            df.columns[0])
-            df[date_col] = pd.to_datetime(df[date_col])
-            df = df.set_index(date_col).sort_index()
-            pair_df = df[["common", "warrant"]].dropna()
-            pair_name = upl.name
-            st.session_state["pair_df"] = pair_df
-            st.session_state["pair_name"] = pair_name
-
-    if pair_df is None or pair_df.empty:
-        st.info("Load a pair to begin.")
+def _print_df(df: pd.DataFrame, cols: list[str] | None = None,
+              max_rows: int = 30) -> None:
+    if df is None or df.empty:
+        print("(no rows)")
         return
+    sub = df[cols] if cols else df
+    pd.set_option("display.width", 200)
+    pd.set_option("display.max_columns", 30)
+    pd.set_option("display.max_rows", max_rows)
+    print(sub.head(max_rows).to_string(index=False))
 
-    st.subheader(f"Pair: {pair_name}")
-    st.write(f"Daily bars: {len(pair_df)} — {pair_df.index[0].date()} → "
-             f"{pair_df.index[-1].date()}")
 
-    scan = scan_pair(pair_df,
-                     lookbacks={"Weekly": lookback_w, "Monthly": lookback_m},
-                     prominence=prominence)
+def _cmd_universe(args):
+    pairs = extract_warrant_pairs()
+    if not args.include_stale:
+        pairs = filter_active_pairs(pairs, max_stale_days=args.max_stale_days)
+    pairs.to_csv(args.out, index=False)
+    print(f"Wrote {args.out}: {len(pairs)} pairs")
+
+
+def _cmd_pair(args):
+    df = load_pair_yf(args.common, args.warrant, period=args.period)
+    if df.empty:
+        print(f"No data for {args.common}/{args.warrant}")
+        return 1
+    scan = scan_pair(df, lookbacks={"Weekly": args.weekly_lookback,
+                                    "Monthly": args.monthly_lookback},
+                     prominence=args.prominence)
     if not scan:
-        st.warning("Not enough data for the chosen lookbacks.")
-        return
-
+        print("Not enough data for the chosen lookbacks.")
+        return 1
     summary = summarize(scan)
-    st.subheader("Current readings")
-    st.dataframe(summary, use_container_width=True)
-
-    hot = summary[summary["composite_z"].abs() >= z_alert]
-    if not hot.empty:
-        st.error("ALERT — dislocation thresholds breached:")
-        st.dataframe(hot, use_container_width=True)
-
-    for tf, payload in scan.items():
-        st.markdown(f"### {tf} timeframe")
-        sig = payload["signals"]
-        infl = payload["inflections"]
-        vol_anom = payload.get("vol_anomalies", pd.DataFrame())
-        st.plotly_chart(_plot(sig, infl, tf), use_container_width=True)
-        c_l, c_r = st.columns(2)
-        with c_l.expander(f"{tf} price inflections ({len(infl)})"):
-            st.dataframe(infl.iloc[::-1], use_container_width=True)
-        with c_r.expander(f"{tf} volume anomalies ({len(vol_anom)})"):
-            st.dataframe(vol_anom.iloc[::-1], use_container_width=True)
-        with st.expander(f"{tf} signal frame"):
-            st.dataframe(sig.iloc[::-1].head(60), use_container_width=True)
+    print(f"== {args.warrant} vs {args.common}  ({len(df)} daily bars) ==")
+    _print_df(summary)
+    if args.out:
+        summary.to_csv(args.out, index=False)
+        print(f"Wrote {args.out}")
 
 
-def _screener_tab(lookback_w: int, lookback_m: int, prominence: float,
-                  z_alert: float):
-    st.subheader("Universe screener (R2K proxy via financedatabase)")
-    st.caption("Pulls small/micro-cap U.S. equities, probes Yahoo for "
-               "warrant tickers via common suffixes, then runs the same "
-               "weekly+monthly scan in batch.")
-
-    mode = st.radio(
-        "Universe source",
-        ["NASDAQ Trader (all listed warrants)",
-         "financedatabase (small/micro cap US)",
-         "Paste commons", "Paste pairs", "Upload pair CSV"],
-        horizontal=False, key="screen_mode",
-    )
-
-    c1, c2, c3, c4 = st.columns(4)
-    limit = int(c1.number_input("Max commons to probe", 5, 2500, 100,
-                                key="screen_limit"))
-    period = c2.selectbox("History", ["1y", "2y", "5y", "10y"], index=2,
-                          key="screen_period")
-    rank_by = c3.selectbox("Rank by",
-                           ["joint_z", "composite_z", "warrant_vol_z",
-                            "w2c_vol_z"], index=0, key="screen_rank_by")
-    min_abs_z = float(c4.number_input(f"Show |{rank_by}| ≥", 0.0, 5.0, 1.5,
-                                       0.1, key="screen_min_z"))
-
-    pairs: list[tuple[str, str]] = []
-    pairs_df: pd.DataFrame | None = None
-
-    if mode == "NASDAQ Trader (all listed warrants)":
-        if st.button("Load listed warrants", key="nasdaq_btn"):
-            try:
-                with st.spinner("Fetching listed-warrant universe..."):
-                    pairs_df = extract_warrant_pairs()
-                st.write(f"Universe size: {len(pairs_df)} listed warrant pairs.")
-                st.session_state["screen_pairs_df"] = pairs_df
-            except Exception as e:
-                st.error(f"Universe step failed: {e}")
-        pairs_df = st.session_state.get("screen_pairs_df")
-
-    elif mode == "financedatabase (small/micro cap US)":
-        if st.button("Discover warrants", key="discover_btn"):
-            try:
-                with st.spinner("Loading universe..."):
-                    uni = load_smallcap_universe()
-                st.write(f"Universe size: {len(uni)} — probing first "
-                         f"{limit}.")
-                prog = st.progress(0.0)
-                status = st.empty()
-
-                def _cb(p, c, w):
-                    prog.progress(p)
-                    status.write(f"{c} → {w or 'no warrant found'}")
-
-                pairs_df = discover_warrants_for(
-                    uni["common"].dropna().astype(str).tolist(),
-                    limit=limit, progress_cb=_cb,
-                )
-                pairs_df = pairs_df.dropna(subset=["warrant"])
-                st.session_state["screen_pairs_df"] = pairs_df
-                status.write(f"Found {len(pairs_df)} pairs with warrant data.")
-            except Exception as e:
-                st.error(f"Universe step failed: {e}")
-        pairs_df = st.session_state.get("screen_pairs_df")
-
-    elif mode == "Paste commons":
-        raw = st.text_area(
-            "Common tickers (one per line or comma-separated)",
-            value="GME\nLCID\nBARK\nASTS\nDNA",
-            key="screen_commons",
-        )
-        commons = [t.strip().upper() for t in raw.replace(",", "\n").splitlines()
-                   if t.strip()]
-        if st.button("Discover warrants", key="discover_commons_btn"):
-            prog = st.progress(0.0)
-            status = st.empty()
-
-            def _cb(p, c, w):
-                prog.progress(p)
-                status.write(f"{c} → {w or 'no warrant found'}")
-
-            pairs_df = discover_warrants_for(commons, limit=limit,
-                                             progress_cb=_cb)
-            pairs_df = pairs_df.dropna(subset=["warrant"])
-            st.session_state["screen_pairs_df"] = pairs_df
-        pairs_df = st.session_state.get("screen_pairs_df")
-
-    elif mode == "Paste pairs":
-        raw = st.text_area(
-            "Pairs as common,warrant (one per line)",
-            value="GME,GME-WT\nLCID,LCIDW\nBARK,BARK-WS",
-            key="screen_pairs_text",
-        )
-        rows = []
-        for line in raw.splitlines():
-            parts = [p.strip() for p in line.split(",")]
-            if len(parts) >= 2 and parts[0] and parts[1]:
-                rows.append({"common": parts[0].upper(),
-                             "warrant": parts[1].upper()})
-        pairs_df = pd.DataFrame(rows) if rows else None
-
-    elif mode == "Upload pair CSV":
-        upl = st.file_uploader("CSV with columns: common,warrant", type="csv",
-                               key="screen_csv")
-        if upl is not None:
-            pairs_df = pd.read_csv(upl)
-            pairs_df.columns = [c.lower() for c in pairs_df.columns]
-            pairs_df = pairs_df[["common", "warrant"]].dropna()
-
-    if pairs_df is None or pairs_df.empty:
-        st.info("Pick a universe source and load pairs to begin.")
-        return
-
-    st.dataframe(pairs_df, use_container_width=True, height=200)
-
-    if st.button("Run batch scan", type="primary", key="run_batch"):
-        pairs = [(r["common"], r["warrant"]) for _, r in pairs_df.iterrows()]
-        with st.spinner(f"Scanning {len(pairs)} pairs..."):
-            summary, details = batch_scan(
-                pairs, period=period,
-                lookbacks={"Weekly": lookback_w, "Monthly": lookback_m},
-                prominence=prominence,
-            )
-        st.session_state["screen_summary"] = summary
-        st.session_state["screen_details"] = details
-
-    summary = st.session_state.get("screen_summary")
-    details = st.session_state.get("screen_details", {})
-    if summary is None or summary.empty:
-        return
-
-    ranked = rank_dislocations(summary, by=rank_by)
-    if min_abs_z > 0 and "abs_z" in ranked.columns:
-        ranked = ranked[ranked["abs_z"] >= min_abs_z]
-    st.subheader(f"Top dislocations by {rank_by} ({len(ranked)})")
-    st.dataframe(ranked, use_container_width=True)
-
-    st.subheader("All TF rows")
-    st.dataframe(summary, use_container_width=True)
-
-    pick = st.selectbox("Drill into a pair", [""] + list(details.keys()),
-                        format_func=lambda x: f"{x[1]}/{x[0]}" if x else "")
-    if pick:
-        for tf, payload in details[pick].items():
-            st.markdown(f"### {pick[1]}/{pick[0]} — {tf}")
-            st.plotly_chart(_plot(payload["signals"],
-                                  payload["inflections"], tf),
-                            use_container_width=True)
-
-
-def _parity_tab():
-    st.subheader("Option vs. warrant parity (model-free arb check)")
-    st.caption("Compare a warrant's market price to the listed call at "
-               "the same strike & expiry. Theoretical: "
-               "`warrant ≈ ratio × dilution × call_mid`.")
-
-    c1, c2, c3, c4 = st.columns(4)
-    common = c1.text_input("Common ticker", value="GME", key="par_common")
-    warrant_ticker = c2.text_input("Warrant ticker (optional, for live px)",
-                                   value="GME WT", key="par_warrant")
-    strike = float(c3.number_input("Warrant strike", value=32.0, step=0.5,
-                                    key="par_strike"))
-    expiry = c4.text_input("Warrant expiry (YYYY-MM-DD)", value="2032-06-15",
-                           key="par_expiry")
-
-    c5, c6, c7 = st.columns(3)
-    warrant_ratio = float(c5.number_input("Shares per warrant", value=1.0,
-                                          step=0.1, key="par_ratio"))
-    dilution = float(c6.number_input("Dilution factor", value=1.0, step=0.01,
-                                     min_value=0.0, max_value=1.0,
-                                     key="par_dilution"))
-    warrant_px_override = c7.number_input(
-        "Warrant price (override, 0 = auto)", value=0.0, step=0.01,
-        key="par_px",
-    )
-
-    if st.button("Check parity", type="primary", key="par_run"):
-        warrant_px = float(warrant_px_override)
-        if warrant_px <= 0 and warrant_ticker:
-            px = _fetch_last_close(warrant_ticker, sentinel_ticker=common)
-            if px is None:
-                st.warning(
-                    f"Could not fetch a distinct price for {warrant_ticker}. "
-                    "Yahoo may not carry this warrant under that ticker. "
-                    "Enter the warrant price manually in the override field."
-                )
-            else:
-                warrant_px = px
-        if warrant_px <= 0:
-            st.error("Provide a warrant price (override or valid ticker).")
-            return
-        try:
-            res = option_warrant_parity(
-                common_ticker=common, warrant_price=warrant_px,
-                strike=strike, expiry=expiry,
-                warrant_ratio=warrant_ratio, dilution_factor=dilution,
-            )
-        except Exception as e:
-            st.error(f"Parity check failed: {e}")
-            return
-        if "error" in res:
-            st.error(res["error"])
-            return
-        gap_pct = res["gap_pct"]
-        if gap_pct < -0.05:
-            st.error(f"**{res['verdict']}** — gap {gap_pct:.1%}")
-        elif gap_pct > 0.05:
-            st.warning(f"**{res['verdict']}** — gap {gap_pct:.1%}")
-        else:
-            st.success(f"**{res['verdict']}** — gap {gap_pct:.1%}")
-        st.json(res)
-
-
-def _edgar_tab():
-    st.subheader("EDGAR — warrant terms lookup")
-    st.caption("Pull recent SEC filings for the issuer; use full-text "
-               "search to extract warrant terms (strike, expiry, ratio, "
-               "anti-dilution).")
-    ticker = st.text_input("Ticker", value="GME", key="edgar_ticker")
-    forms = st.multiselect("Forms",
-                           ["10-K", "10-Q", "8-K", "S-1", "S-3", "424B5",
-                            "8-A12B", "DEF 14A"],
-                           default=["8-K", "S-1", "S-3", "424B5"],
-                           key="edgar_forms")
-    if st.button("Fetch filings", key="edgar_fetch"):
-        try:
-            cik = ticker_to_cik(ticker)
-            if not cik:
-                st.error(f"No CIK found for {ticker}")
-                return
-            st.write(f"CIK: {cik}")
-            df = edgar_recent_filings(cik, forms=tuple(forms) if forms else None)
-            st.dataframe(df, use_container_width=True)
-        except Exception as e:
-            st.error(f"EDGAR fetch failed: {e}")
-    url = edgar_fulltext_search_url(
-        f'"{st.session_state.get("edgar_ticker", "GME")}" warrant exercise price')
-    st.markdown(f"[Open EDGAR full-text search for warrant terms]({url})")
-
-
-def main():
-    st.set_page_config(page_title="Warrant Mispricing Scanner", layout="wide")
-    st.title("Warrant Mispricing Scanner")
-    st.caption("Relative-value dislocations & inflections of warrant vs. "
-               "common — weekly + monthly timeframes.")
-
-    with st.sidebar:
-        st.header("Signal params")
-        lookback_w = int(st.number_input("Weekly lookback (bars)", 8, 260, 26))
-        lookback_m = int(st.number_input("Monthly lookback (bars)", 6, 120, 24))
-        prominence = float(st.number_input(
-            "Inflection prominence (z units)", 0.1, 3.0, 0.5, 0.1))
-        z_alert = float(st.number_input(
-            "Alert |composite_z| ≥", 0.5, 5.0, 2.0, 0.1))
-
-    tab_pair, tab_screen, tab_fv, tab_parity, tab_edgar = st.tabs(
-        ["Pair scan", "Screener", "Fair-value (BS)", "Option-warrant parity", "EDGAR"]
-    )
-    with tab_pair:
-        _pair_tab(lookback_w, lookback_m, prominence, z_alert)
-    with tab_screen:
-        _screener_tab(lookback_w, lookback_m, prominence, z_alert)
-    with tab_fv:
-        _fair_value_tab()
-    with tab_parity:
-        _parity_tab()
-    with tab_edgar:
-        _edgar_tab()
-
-
-def _fair_value_tab():
-    st.subheader("Black-Scholes fair-value scan — discounts that don't make sense")
-    st.caption("For each pair, model the warrant as a call on the common using "
-               "realized vol; flag warrants priced far below BS fair value where "
-               "the discount can't be explained by redemption-cap risk.")
-
-    c1, c2, c3, c4 = st.columns(4)
-    strike = float(c1.number_input("Assumed strike ($)", 1.0, 100.0, 11.50, 0.5,
-                                   key="fv_strike"))
-    T_years = float(c2.number_input("Assumed T (years)", 0.25, 10.0, 3.0, 0.25,
-                                    key="fv_T"))
-    r = float(c3.number_input("Risk-free r", 0.0, 0.15, 0.045, 0.005,
-                              key="fv_r"))
-    dilution = float(c4.number_input("Dilution factor", 0.5, 1.0, 0.90, 0.01,
-                                     key="fv_dilution"))
-
-    c5, c6, c7 = st.columns(3)
-    max_money = float(c5.number_input("Max moneyness (OTM filter)", 0.1, 2.0,
-                                      0.85, 0.05, key="fv_money"))
-    max_gap = float(c6.number_input("Max gap_pct (e.g. -0.70 = -70%)",
-                                    -1.0, 0.0, -0.70, 0.05, key="fv_gap"))
-    period = c7.selectbox("Vol history window", ["6mo", "1y", "2y"],
-                         index=1, key="fv_period")
-
-    source = st.radio("Universe", ["Current screener pairs",
-                                   "NASDAQ Trader (all listed warrants)",
-                                   "Upload pair CSV"],
-                     horizontal=True, key="fv_source")
-
-    pairs_df = None
-    if source == "Current screener pairs":
-        pairs_df = st.session_state.get("screen_pairs_df")
-        if pairs_df is None or pairs_df.empty:
-            st.info("Load pairs in the Screener tab first.")
-            return
-    elif source == "NASDAQ Trader (all listed warrants)":
-        if st.button("Load universe & scan", key="fv_load_btn"):
-            with st.spinner("Loading universe..."):
-                pairs_df = extract_warrant_pairs()
-            st.session_state["fv_pairs_df"] = pairs_df
-        pairs_df = st.session_state.get("fv_pairs_df")
+def _cmd_screen(args):
+    if args.pairs:
+        pairs = pd.read_csv(args.pairs)
     else:
-        upl = st.file_uploader("CSV with common,warrant", type="csv",
-                              key="fv_csv")
-        if upl is not None:
-            pairs_df = pd.read_csv(upl)
-            pairs_df.columns = [c.lower() for c in pairs_df.columns]
+        pairs = extract_warrant_pairs()
+        pairs = filter_active_pairs(pairs, max_stale_days=30)
+    print(f"Scanning {len(pairs)} pairs with BS fair-value ...")
+    fair = fair_value_scan(pairs, period=args.period, strike=args.strike,
+                           T_years=args.T, r=args.r, dilution=args.dilution)
+    print(f"Computable: {len(fair)}")
+    if args.quality:
+        ranked = rank_discount_quality_inflection(
+            fair, gap_threshold=args.gap, max_moneyness=args.money,
+            top_n_to_score=args.top,
+        )
+        print(f"\n== Top {min(args.top, len(ranked))} by composite (discount × quality × inflection) ==")
+        _print_df(ranked, cols=[c for c in
+            ["common", "warrant", "warrant_px", "common_px", "strike_used",
+             "moneyness", "gap_pct", "revenueGrowth", "quality",
+             "inflection", "composite"] if c in ranked.columns],
+            max_rows=args.top)
+        if args.out:
+            ranked.to_csv(args.out, index=False)
+            print(f"Wrote {args.out}")
+    else:
+        real = filter_real_arbs(fair, max_moneyness=args.money,
+                                max_gap_pct=args.gap)
+        print(f"\n== {len(real)} discounts that don't make sense "
+              f"(OTM, no redemption-cap risk, sane vol) ==")
+        _print_df(real, cols=[c for c in
+            ["common", "warrant", "warrant_px", "common_px", "strike_used",
+             "moneyness", "sigma_used", "bs_call", "theoretical", "gap_pct",
+             "security_name"] if c in real.columns], max_rows=args.top)
+        if args.out:
+            real.to_csv(args.out, index=False)
+            print(f"Wrote {args.out}")
 
-    if pairs_df is None or pairs_df.empty:
-        return
 
-    if st.button("Run fair-value scan", type="primary", key="fv_run"):
-        with st.spinner(f"Pricing {len(pairs_df)} pairs (BS, 1y realized vol)..."):
-            fair = fair_value_scan(pairs_df, period=period, strike=strike,
-                                    T_years=T_years, r=r, dilution=dilution)
-        st.session_state["fv_result"] = fair
+def _cmd_parity(args):
+    if args.warrant_price > 0:
+        wpx = args.warrant_price
+    else:
+        wpx = _fetch_last_close(args.warrant, sentinel_ticker=args.common)
+        if wpx is None:
+            print(f"Could not fetch distinct price for {args.warrant} "
+                  f"(Yahoo may not carry it / falls back to {args.common}). "
+                  "Pass --warrant-price.", file=sys.stderr)
+            return 1
+        print(f"Fetched {args.warrant} last close: ${wpx:.4f}")
+    res = option_warrant_parity(args.common, wpx, strike=args.strike,
+                                expiry=args.expiry,
+                                warrant_ratio=args.ratio,
+                                dilution_factor=args.dilution)
+    if "error" in res:
+        print(f"Error: {res['error']}", file=sys.stderr)
+        return 1
+    print()
+    for k, v in res.items():
+        print(f"  {k:24s}: {v}")
 
-    fair = st.session_state.get("fv_result")
-    if fair is None or fair.empty:
-        return
 
-    real = filter_real_arbs(fair, max_moneyness=max_money,
-                            max_gap_pct=max_gap)
-    st.subheader(f"Discounts no longer making sense — {len(real)} pairs")
-    st.caption("OTM, no recent ≥$18 print (no redemption-cap pressure), "
-               "sigma 0.40–1.50, theoretical ≥ $0.50, gap ≤ threshold.")
-    show_cols = ["common", "warrant", "common_px", "warrant_px", "moneyness",
-                 "sigma_used", "bs_call", "theoretical", "gap_pct",
-                 "security_name"]
-    st.dataframe(real[show_cols], use_container_width=True)
+def _cmd_edgar(args):
+    cik = ticker_to_cik(args.ticker)
+    if not cik:
+        print(f"No CIK for {args.ticker}", file=sys.stderr)
+        return 1
+    print(f"CIK: {cik}")
+    forms = tuple(args.forms.split(",")) if args.forms else None
+    df = edgar_recent_filings(cik, forms=forms, limit=args.limit)
+    _print_df(df, cols=["form", "filed", "description", "url"], max_rows=args.limit)
+    if args.search:
+        url = edgar_fulltext_search_url(
+            f'"{args.ticker}" warrant exercise price',
+            forms="10-K,10-Q,8-K,S-1,S-3,424B5",
+        )
+        print(f"\nEDGAR full-text search: {url}")
 
-    with st.expander(f"Full scan ({len(fair)} pairs) — includes "
-                     "redemption-risk and high-vol names"):
-        all_cols = show_cols + ["days_above_18", "sigma_1y", "sigma_3m",
-                                "redemption_risk"]
-        st.dataframe(fair[[c for c in all_cols if c in fair.columns]],
-                    use_container_width=True)
 
-    st.markdown("---")
-    st.subheader("Composite rank: discount × biz quality × positive inflection")
-    st.caption("Layer fundamental scoring on top of deep-discount survivors. "
-               "Pulls yfinance.info per common — slow on first run.")
-    c_q1, c_q2, c_q3 = st.columns(3)
-    gap_th = float(c_q1.number_input("Gap threshold for shortlist", -1.0, 0.0,
-                                      -0.50, 0.05, key="ql_gap"))
-    money_cap = float(c_q2.number_input("Max moneyness", 0.1, 2.0, 0.90, 0.05,
-                                         key="ql_money"))
-    top_n = int(c_q3.number_input("Max names to score", 5, 200, 60,
-                                    key="ql_topn"))
-    if st.button("Score quality + inflection", type="primary", key="ql_run"):
-        with st.spinner("Pulling fundamentals from yfinance..."):
-            ranked = rank_discount_quality_inflection(
-                fair, gap_threshold=gap_th, max_moneyness=money_cap,
-                top_n_to_score=top_n,
-            )
-        st.session_state["ql_ranked"] = ranked
-    ranked = st.session_state.get("ql_ranked")
-    if ranked is not None and not ranked.empty:
-        rank_cols = ["common", "warrant", "warrant_px", "common_px",
-                     "moneyness", "gap_pct", "totalRevenue", "revenueGrowth",
-                     "grossMargins", "earningsQuarterlyGrowth",
-                     "rev_score", "margin_score", "runway_score",
-                     "quality", "inflection", "composite", "security_name"]
-        rank_cols = [c for c in rank_cols if c in ranked.columns]
-        st.dataframe(ranked[rank_cols], use_container_width=True)
+def cli():
+    p = argparse.ArgumentParser(prog="warrants",
+        description="Warrant mispricing scanner — universe build, technical "
+                    "scan, BS fair-value screen, option-warrant parity, EDGAR.")
+    sub = p.add_subparsers(dest="cmd", required=True)
+
+    # universe
+    s = sub.add_parser("universe", help="Build & save the active warrant universe (NASDAQ Trader).")
+    s.add_argument("--out", default="warrants_universe.csv")
+    s.add_argument("--include-stale", action="store_true")
+    s.add_argument("--max-stale-days", type=int, default=30)
+    s.set_defaults(fn=_cmd_universe)
+
+    # pair
+    s = sub.add_parser("pair", help="Technical scan on one (common, warrant) pair.")
+    s.add_argument("common")
+    s.add_argument("warrant")
+    s.add_argument("--period", default="3y")
+    s.add_argument("--weekly-lookback", type=int, default=26)
+    s.add_argument("--monthly-lookback", type=int, default=24)
+    s.add_argument("--prominence", type=float, default=0.5)
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_pair)
+
+    # screen
+    s = sub.add_parser("screen", help="BS fair-value screen across the universe.")
+    s.add_argument("--pairs", help="CSV of (common, warrant) pairs (defaults to NASDAQ Trader live).")
+    s.add_argument("--period", default="1y")
+    s.add_argument("--strike", type=float, default=11.50)
+    s.add_argument("--T", type=float, default=3.0, help="Assumed years to expiry.")
+    s.add_argument("--r", type=float, default=0.045)
+    s.add_argument("--dilution", type=float, default=0.90)
+    s.add_argument("--gap", type=float, default=-0.50, help="Max gap_pct.")
+    s.add_argument("--money", type=float, default=0.85, help="Max moneyness.")
+    s.add_argument("--top", type=int, default=25)
+    s.add_argument("--quality", action="store_true",
+                  help="Layer business quality + recent inflection scoring.")
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_screen)
+
+    # parity
+    s = sub.add_parser("parity", help="Compare warrant price to listed-call parity.")
+    s.add_argument("common")
+    s.add_argument("warrant")
+    s.add_argument("strike", type=float)
+    s.add_argument("expiry", help="YYYY-MM-DD (warrant expiry).")
+    s.add_argument("--ratio", type=float, default=1.0)
+    s.add_argument("--dilution", type=float, default=1.0)
+    s.add_argument("--warrant-price", type=float, default=0.0,
+                  help="Override (otherwise fetched from Yahoo).")
+    s.set_defaults(fn=_cmd_parity)
+
+    # edgar
+    s = sub.add_parser("edgar", help="Recent EDGAR filings for a ticker.")
+    s.add_argument("ticker")
+    s.add_argument("--forms", default="8-K,S-1,S-3,424B5",
+                  help="Comma-separated form types.")
+    s.add_argument("--limit", type=int, default=15)
+    s.add_argument("--search", action="store_true",
+                  help="Also print an EDGAR full-text-search URL.")
+    s.set_defaults(fn=_cmd_edgar)
+
+    args = p.parse_args()
+    rc = args.fn(args)
+    sys.exit(rc or 0)
 
 
 if __name__ == "__main__":
-    main()
+    cli()

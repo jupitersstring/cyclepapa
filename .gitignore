@@ -1,8 +1,6 @@
 *.pyc
-.streamlit/
 __pycache__/
 warrants_active.csv
-warrants_app.py
 warrants_discount_arbs.csv
 warrants_quality_arbs.csv
 warrants_real_arbs.csv
