@@ -739,6 +739,45 @@ def edgar_fulltext_search_url(query: str,
             f"?q={quote_plus(query)}&forms={quote_plus(forms)}")
 
 
+@_cache(ttl=24 * 3600, show_spinner=False)
+def edgar_recent_warrant_filers(days: int = 180, limit: int = 200) -> pd.DataFrame:
+    """Recent 8-A12B filings (registration of additional class of securities)
+    matching 'warrant'. Surfaces fresh warrant registrations that may not
+    yet be in NASDAQ Trader's symbol file.
+
+    Returns columns: filed, form, ticker, name, cik.
+    """
+    end = pd.Timestamp.utcnow().tz_localize(None)
+    start = end - pd.Timedelta(days=days)
+    url = ("https://efts.sec.gov/LATEST/search-index"
+           f"?q=warrant&forms=8-A12B&dateRange=custom"
+           f"&startdt={start:%Y-%m-%d}&enddt={end:%Y-%m-%d}")
+    try:
+        r = requests.get(url, headers=EDGAR_HEADERS, timeout=20)
+        r.raise_for_status()
+        hits = r.json().get("hits", {}).get("hits", [])
+    except Exception:
+        return pd.DataFrame(columns=["filed", "form", "ticker", "name", "cik"])
+    rows = []
+    for h in hits[:limit]:
+        s = h.get("_source", {})
+        names = s.get("display_names", [])
+        if not names:
+            continue
+        name = names[0]
+        m = re.search(r"\(([A-Z][A-Z0-9.]{0,6})\)\s*\(CIK\s*(\d+)\)", name)
+        ticker = m.group(1) if m else None
+        cik = m.group(2) if m else None
+        rows.append({
+            "filed": s.get("file_date"),
+            "form": s.get("form"),
+            "ticker": ticker,
+            "name": re.sub(r"\(.*$", "", name).strip(),
+            "cik": cik,
+        })
+    return pd.DataFrame(rows).dropna(subset=["ticker"]).reset_index(drop=True)
+
+
 # ---------- option vs. warrant parity (the GME case) ----------
 
 def _fetch_last_close(ticker: str, sentinel_ticker: str | None = None) -> float | None:
@@ -799,11 +838,26 @@ def option_warrant_parity(common_ticker: str, warrant_price: float,
         return {"error": f"empty call chain at {closest}"}
     row = chain.iloc[(chain["strike"] - strike).abs().argmin()]
     bid, ask, last = float(row["bid"]), float(row["ask"]), float(row["lastPrice"])
-    call_mid = (bid + ask) / 2 if bid > 0 and ask > 0 else last
+    # Detect stale / one-sided quotes: a real verdict requires a two-sided
+    # market on the listed-call leg. Without it, fall back to lastPrice
+    # but flag the result so callers don't trade on garbage.
+    stale = (bid <= 0 or ask <= 0)
+    spread_pct = ((ask - bid) / ((ask + bid) / 2)) if (bid > 0 and ask > 0) else None
+    wide = (spread_pct is not None and spread_pct > 0.50)
+    if stale:
+        call_mid = last if last > 0 else 0.0
+    else:
+        call_mid = (bid + ask) / 2
+    if call_mid <= 0:
+        return {"error": f"no usable call quote for K={float(row['strike'])} "
+                          f"exp={closest} (bid={bid}, ask={ask}, last={last})"}
     theoretical = warrant_ratio * dilution_factor * call_mid
     gap = warrant_price - theoretical
     gap_pct = (gap / theoretical) if theoretical else float("nan")
-    if gap_pct < -0.05:
+    if stale or wide:
+        verdict = ("STALE/ILLIQUID listed-call quote — verdict unreliable. "
+                   f"bid={bid} ask={ask} last={last}")
+    elif gap_pct < -0.05:
         verdict = "WARRANT CHEAP vs. listed call (potential long warrant / short call)"
     elif gap_pct > 0.05:
         verdict = "WARRANT RICH vs. listed call (potential short warrant / long call)"
@@ -820,6 +874,8 @@ def option_warrant_parity(common_ticker: str, warrant_price: float,
         "call_ask": ask,
         "call_last": last,
         "call_mid": float(call_mid),
+        "call_stale_quote": stale,
+        "call_spread_pct": spread_pct,
         "warrant_ratio": warrant_ratio,
         "dilution_factor": dilution_factor,
         "theoretical_warrant": float(theoretical),
@@ -1250,6 +1306,40 @@ def _cmd_parity(args):
         print(f"  {k:24s}: {v}")
 
 
+def _cmd_opportunities(args):
+    """End-to-end: build/refresh universe -> BS scan -> quality+inflection
+    -> ranked top N. The combined 'what to actually look at' command."""
+    if args.refresh_universe or not pd.io.common.file_exists(args.pairs):
+        print("Refreshing universe from NASDAQ Trader...")
+        pairs = extract_warrant_pairs()
+        pairs = filter_active_pairs(pairs, max_stale_days=args.max_stale_days)
+        pairs.to_csv(args.pairs, index=False)
+        print(f"  wrote {args.pairs}: {len(pairs)} active pairs")
+    else:
+        pairs = pd.read_csv(args.pairs)
+        print(f"Using {args.pairs}: {len(pairs)} pairs")
+    print(f"BS fair-value scan ({args.period} vol window, "
+          f"K=${args.strike}, T={args.T}y, div={args.dilution})...")
+    fair = fair_value_scan(pairs, period=args.period, strike=args.strike,
+                           T_years=args.T, r=args.r, dilution=args.dilution)
+    print(f"  computable: {len(fair)} pairs")
+    ranked = rank_discount_quality_inflection(
+        fair, gap_threshold=args.gap, max_moneyness=args.money,
+        top_n_to_score=args.score_n,
+    )
+    print(f"\n== Top {min(args.top, len(ranked))} opportunities "
+          f"(discount × quality × positive inflection) ==")
+    cols = [c for c in ["common", "warrant", "warrant_px", "common_px",
+                        "strike_used", "moneyness", "gap_pct",
+                        "totalRevenue", "revenueGrowth", "grossMargins",
+                        "quality", "inflection", "composite"]
+            if c in ranked.columns]
+    _print_df(ranked, cols=cols, max_rows=args.top)
+    if args.out:
+        ranked.to_csv(args.out, index=False)
+        print(f"\nWrote {args.out}")
+
+
 def _cmd_edgar(args):
     cik = ticker_to_cik(args.ticker)
     if not cik:
@@ -1318,6 +1408,26 @@ def cli():
     s.add_argument("--warrant-price", type=float, default=0.0,
                   help="Override (otherwise fetched from Yahoo).")
     s.set_defaults(fn=_cmd_parity)
+
+    # opportunities — end-to-end pipeline
+    s = sub.add_parser("opportunities", aliases=["opp"],
+        help="Run BS + quality + inflection pipeline end-to-end; print top N.")
+    s.add_argument("--pairs", default="warrants_universe.csv")
+    s.add_argument("--refresh-universe", action="store_true",
+                  help="Re-fetch NASDAQ Trader and rewrite the universe CSV.")
+    s.add_argument("--max-stale-days", type=int, default=30)
+    s.add_argument("--period", default="1y")
+    s.add_argument("--strike", type=float, default=11.50)
+    s.add_argument("--T", type=float, default=3.0)
+    s.add_argument("--r", type=float, default=0.045)
+    s.add_argument("--dilution", type=float, default=0.90)
+    s.add_argument("--gap", type=float, default=-0.50)
+    s.add_argument("--money", type=float, default=0.85)
+    s.add_argument("--score-n", type=int, default=60,
+                  help="Max names to pull fundamentals for.")
+    s.add_argument("--top", type=int, default=15)
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_opportunities)
 
     # edgar
     s = sub.add_parser("edgar", help="Recent EDGAR filings for a ticker.")
