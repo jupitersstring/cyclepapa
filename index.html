@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Special Sits Monitor — UK M&amp;A Report</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #111821;
+    --panel-2: #0e141c;
+    --border: #1f2a37;
+    --text: #e6edf3;
+    --muted: #8b95a5;
+    --accent: #4ea1ff;
+    --green: #3fb950;
+    --amber: #d29922;
+    --red: #f85149;
+    --tag-bg: #1a2433;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Inter, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 28px;
+    background: linear-gradient(180deg, #0e141c, #0b0f14);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  h1 {
+    font-size: 18px;
+    margin: 0;
+    letter-spacing: 0.2px;
+  }
+  h1 span.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-right: 8px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px var(--green);
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .meta strong { color: var(--text); }
+  main { padding: 22px 28px 60px; max-width: 1400px; margin: 0 auto; }
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card .label {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .card .value {
+    font-size: 26px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .card .sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  section h2 {
+    margin: 0;
+    padding: 14px 18px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel-2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  section h2 .count {
+    background: var(--tag-bg);
+    color: var(--accent);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    vertical-align: top;
+  }
+  th {
+    background: var(--panel-2);
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(78, 161, 255, 0.04); }
+  .ticker {
+    font-weight: 600;
+    color: var(--accent);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+  }
+  .num { text-align: right; }
+  .spread-low { color: var(--muted); }
+  .spread-mid { color: var(--amber); }
+  .spread-high { color: var(--green); font-weight: 600; }
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    background: var(--tag-bg);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .pill.green { background: rgba(63,185,80,0.12); color: var(--green); }
+  .pill.amber { background: rgba(210,153,34,0.12); color: var(--amber); }
+  .pill.red   { background: rgba(248,81,73,0.12); color: var(--red); }
+  .pill.blue  { background: rgba(78,161,255,0.12); color: var(--accent); }
+  .controls {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel-2);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .controls input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 7px 10px;
+    font-size: 13px;
+    min-width: 260px;
+    outline: none;
+  }
+  .controls input:focus { border-color: var(--accent); }
+  .controls .hint { color: var(--muted); font-size: 12px; }
+  footer {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+  @media (max-width: 820px) {
+    .summary { grid-template-columns: repeat(2, 1fr); }
+    main { padding: 16px; }
+    header { padding: 14px 16px; }
+    th, td { padding: 8px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="row">
+    <h1><span class="dot"></span>Special Sits Monitor — UK M&amp;A</h1>
+    <div class="meta">Generated <strong>2026-05-14</strong> · RNS M&amp;A Report System · <strong id="total-count">61</strong> active situations</div>
+  </div>
+</header>
+<main>
+  <div class="summary">
+    <div class="card">
+      <div class="label">Announced Bids</div>
+      <div class="value" style="color: var(--green);">14</div>
+      <div class="sub">Formal offers · live spreads</div>
+    </div>
+    <div class="card">
+      <div class="label">Approaches</div>
+      <div class="value" style="color: var(--accent);">12</div>
+      <div class="sub">Preliminary / PUSU windows</div>
+    </div>
+    <div class="card">
+      <div class="label">Strategic Reviews</div>
+      <div class="value" style="color: var(--amber);">24</div>
+      <div class="sub">FSP / event watches</div>
+    </div>
+    <div class="card">
+      <div class="label">Lapsed Deals</div>
+      <div class="value" style="color: var(--red);">11</div>
+      <div class="sub">Revival potential</div>
+    </div>
+  </div>
+
+  <div class="controls" style="margin-bottom: 18px; border: 1px solid var(--border); border-radius: 8px;">
+    <input id="search" type="text" placeholder="Filter by ticker, company, status…" />
+    <span class="hint">Live filter across all tables</span>
+  </div>
+
+  <section>
+    <h2>Announced Bids <span class="count">14</span></h2>
+    <table data-section="bids">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Company</th>
+          <th>Terms</th>
+          <th class="num">Current</th>
+          <th class="num">Offer</th>
+          <th class="num">Spread</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-bids"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Approaches / Possible Offers <span class="count">12</span></h2>
+    <table data-section="approaches">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Company</th>
+          <th>Proposal</th>
+          <th class="num">Current</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-approaches"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Strategic Reviews / Event Watches <span class="count">24</span></h2>
+    <table data-section="reviews">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Company</th>
+          <th>Status</th>
+          <th class="num">Current</th>
+          <th>Catalyst</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-reviews"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Lapsed Deals — Revival Potential <span class="count">11</span></h2>
+    <table data-section="lapsed">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Company</th>
+          <th>Lapsed Proposal</th>
+          <th class="num">Current</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-lapsed"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    Total situations: 61 of 72 archive situations · For research only · Not investment advice
+  </footer>
+</main>
+
+<script>
+const bids = [
+  ["BEZ","Beazley","Cash by Zurich at 1310p","1280.5p","1310p",2.4,"Regulatory Clearance"],
+  ["PTSB","Permanent TSB","Cash by BAWAG at €2.97","€2.92","€2.97",2.4,"Regulatory Clearance"],
+  ["JTC","JTC","Cash by Papilio at 1340p","1314p","1340p",2.0,"Regulatory Clearance"],
+  ["SPEC","Inspecs Group","Cash by Bidco at 84p","83.5p","84p",0.6,"Unconditional"],
+  ["CRDL","Cordel Group","Cash by Vossloh at 12.4p","11.34p","12.4p",9.7,"Regulatory Clearance"],
+  ["TET","Treatt","Cash by Doehler at 305p","299.5p","305p",1.5,"Awaiting Vote"],
+  ["DELT","Deltic Energy","Cash by NEO NEXT+ at 7.7p","6.6p","7.7p",16.7,"Recommended Scheme"],
+  ["CABP","Cab Payments","Cash by Mara BidCo at 85.24p","77p","85.24p",10.7,"Competing Interest"],
+  ["IPF","International Personal Finance","Cash by IPF Parent at 250p","247.5p","250p",1.0,"Regulatory Clearance"],
+  ["SDR","Schroders","Cash by Pantheon at 590p","581p","590p",1.7,"Competing Interest"],
+  ["VANL","Van Elle Holdings","Cash by STRABAG at 52.3p","50p","52.3p",4.0,"Awaiting Vote"],
+  ["SNR","Senior","Cash by Zeus at 300p","286p","300p",5.1,"Awaiting Vote"],
+  ["ANCR","Animalcare Group","Cash by CCP Paw 2 at 336p","331.5p","336p",1.5,"Regulatory Clearance"],
+  ["FEN","Frenkel Topping","Mixed by Irwell at 50p","48.5p","50p",3.1,"Regulatory Clearance"]
+];
+
+const approaches = [
+  ["SPI","Spire Healthcare","Toscafund 250p + rollover","221p","PUSU: 2026-06-11"],
+  ["ITRK","Intertek Group","EQT 6000p cash + dividend","5635p","PUSU: 2026-06-11"],
+  ["DCC","DCC","ECP/KKR approach (no firm terms)","5850p","PUSU: 2026-06-10"],
+  ["GAMA","Gamma Communications","Providence among interested parties","917.5p","PUSU: 2026-06-10"],
+  ["PCTN","Picton Property","LondonMetric/Schroders all-share","71.1p","No fixed date"],
+  ["CNE","Capricorn Energy","Alamadiyaf/Cafani all-cash","324p","PUSU: 2026-06-03"],
+  ["CYAN","Cyanconnode Holdings","Esyasoft 10.44p","7.85p","PUSU: 2026-05-26"],
+  ["EVOK","Evoke Di","Bally's Intralot 50p","35p","PUSU: 2026-05-18"],
+  ["AMS","Advanced Medical Solutions","TA Associates ~280p (indicative)","248p","PUSU: 2026-05-16"],
+  ["IIG","Intuitive Investments","Acceler8 reverse takeover","220p","No fixed date"],
+  ["AIRE","Alternative Income REIT","AEW UK REIT all-share","72.2p","Process completed"],
+  ["BRCK","Brickability Group","Atlas 65p (rejected)","47.7p","Process ended"]
+];
+
+const reviews = [
+  ["HUW","Helios Underwriting","Pre-M&A stakebuilding","213.5p","May 2026 TR-1 evidence"],
+  ["BSIF","Bluefield Solar Income","Formal Sale Process","79.7p","TBD update"],
+  ["MNG","M&G","Strategic stakebuilding","309.2p","Next TR-1/update"],
+  ["KP2","Kore Potash","Formal Sale Process","3.04p","Q2 2026 update"],
+  ["APTD","Aptitude Software","Formal Sale Process","237p","2026-05-27 AGM"],
+  ["TTA","Time To Act","Register-driven watch","7.5p","2026-07-17 catalyst"],
+  ["NCC","NCC Group","Post-acquisition review","135.4p","2026-06-11 results"],
+  ["PTEC","Playtech","EBT capital allocation","344p","2026-05-20 AGM"],
+  ["IDHC","Integrated Diagnostics","Elliott-controlled funds 21.67%","0.59p","2026-05-19 AGM"],
+  ["KZG","Kazera Global","Stakebuilding/funding","1.1p","May 2026 funding"],
+  ["TIG","Team Internet","Strategic review","37.5p","Late May results"],
+  ["PPH","PPHE Hotel Group","FSP/asset-backed review","1606p","Summer 2026 update"],
+  ["ELIX","Elixirr International","Stakebuilding watch","700p","June 2026 AGM"],
+  ["MILA","Mila Resources","Register watch","1.6p","Q1 assay results"],
+  ["MEX","Tortilla Mexican Grill","Register tightening","72.5p","FY25 results TBC"],
+  ["QHE","Quantum Helium","Pre-M&A asset partnering","0.03p","Apr/May test data"],
+  ["CKT","Checkit","Formal Sale Process","26p","2026-05-22 AGM"],
+  ["MET1","Metals One","Cash asset bid","1.2p","No catalyst"],
+  ["BOOM","Audioboom Group","Strategic review","570p","2026-06-30 target"],
+  ["MIND","Mind Gym","Strategic review","12.5p","Mid-June results"],
+  ["FOX","Focus Xplore","Strategic review","0.02p","No fixed date"],
+  ["SFR","Severfield","Strategic review","26.25p","2026-06-23 results"],
+  ["EOT","European Opportunities","Board-led review","879p","2026-05-31 tender test"],
+  ["MCG","Mobico Group","Pre-M&A turnaround","21.26p","2026-06-30 agreements"]
+];
+
+const lapsed = [
+  ["ATG","Auction Technology","FitzWalter 400p rejected","395.4p","2026-02-02"],
+  ["SAA","M&C Saatchi","AdvancedAdvT offer","138.5p","2026-03-09"],
+  ["IKIV","Ikigai Ventures","Dotlines RTO completed","0.42p","2026-05-11"],
+  ["GLEN","Glencore","Rio Tinto all-share","589.5p","2026-02-05"],
+  ["HIK","Hikma Pharmaceuticals","Brookfield interest","1448p","2026-02-04"],
+  ["FCM","First Class Metals","Administrator-led process","1.74p","2026-02-20"],
+  ["PINE","Pinewood Technologies","Apax 500p + shares","271.5p","2026-02-13"],
+  ["AFRN","Aferian","Formal sale process","0.55p","2026-03-06"],
+  ["OXB","Oxford Biomedica","EQT possible offer","623p","2026-02-25"],
+  ["TTG","TT Electronics","Cicor scheme 150p","118.4p","2026-01-07"],
+  ["NANO","Nanoco Group","CDX sale process","6.28p","2026-01-26"]
+];
+
+function spreadClass(s) {
+  if (s < 2) return "spread-low";
+  if (s < 6) return "spread-mid";
+  return "spread-high";
+}
+
+function statusPill(s) {
+  const lc = s.toLowerCase();
+  if (lc.includes("unconditional") || lc.includes("recommended")) return "green";
+  if (lc.includes("competing")) return "amber";
+  if (lc.includes("regulatory") || lc.includes("awaiting")) return "blue";
+  if (lc.includes("rejected") || lc.includes("ended")) return "red";
+  if (lc.includes("pusu")) return "amber";
+  return "";
+}
+
+function row(cells) {
+  const tr = document.createElement("tr");
+  cells.forEach(c => {
+    const td = document.createElement("td");
+    if (typeof c === "object" && c !== null) {
+      td.innerHTML = c.html;
+      if (c.cls) td.className = c.cls;
+    } else {
+      td.textContent = c;
+    }
+    tr.appendChild(td);
+  });
+  return tr;
+}
+
+const bidsBody = document.getElementById("tbody-bids");
+bids.forEach(r => {
+  const [t,c,terms,cur,off,sp,st] = r;
+  bidsBody.appendChild(row([
+    {html: `<span class="ticker">${t}</span>`},
+    c,
+    terms,
+    {html: cur, cls: "num"},
+    {html: off, cls: "num"},
+    {html: `<span class="${spreadClass(sp)}">${sp.toFixed(1)}%</span>`, cls: "num"},
+    {html: `<span class="pill ${statusPill(st)}">${st}</span>`}
+  ]));
+});
+
+const apprBody = document.getElementById("tbody-approaches");
+approaches.forEach(r => {
+  const [t,c,p,cur,st] = r;
+  apprBody.appendChild(row([
+    {html: `<span class="ticker">${t}</span>`},
+    c,
+    p,
+    {html: cur, cls: "num"},
+    {html: `<span class="pill ${statusPill(st)}">${st}</span>`}
+  ]));
+});
+
+const revBody = document.getElementById("tbody-reviews");
+reviews.forEach(r => {
+  const [t,c,st,cur,cat] = r;
+  revBody.appendChild(row([
+    {html: `<span class="ticker">${t}</span>`},
+    c,
+    st,
+    {html: cur, cls: "num"},
+    cat
+  ]));
+});
+
+const lapBody = document.getElementById("tbody-lapsed");
+lapsed.forEach(r => {
+  const [t,c,p,cur,d] = r;
+  lapBody.appendChild(row([
+    {html: `<span class="ticker">${t}</span>`},
+    c,
+    p,
+    {html: cur, cls: "num"},
+    {html: `<span class="pill red">${d}</span>`}
+  ]));
+});
+
+const search = document.getElementById("search");
+search.addEventListener("input", () => {
+  const q = search.value.trim().toLowerCase();
+  document.querySelectorAll("tbody tr").forEach(tr => {
+    tr.style.display = tr.textContent.toLowerCase().includes(q) ? "" : "none";
+  });
+});
+</script>
+</body>
+</html>
