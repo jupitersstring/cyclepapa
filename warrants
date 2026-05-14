@@ -18,6 +18,7 @@ Or import as a module to reuse the pure functions.
 """
 from __future__ import annotations
 
+import logging
 import re
 from urllib.parse import quote_plus
 
@@ -29,6 +30,15 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from scipy.signal import find_peaks
+from scipy.stats import norm as _norm
+
+
+# Silence yfinance's per-ticker "possibly delisted" download spam — these
+# are informational, not errors, and flood batch operations.
+logging.getLogger("yfinance").setLevel(logging.CRITICAL)
+# Silence streamlit's "No runtime found" cache warnings when the module
+# is imported outside the streamlit runtime (CLI usage, tests).
+logging.getLogger("streamlit.runtime.caching.cache_data_api").setLevel(logging.ERROR)
 
 
 TIMEFRAMES = {"Weekly": "W-FRI", "Monthly": "ME"}
@@ -863,9 +873,6 @@ def parse_warrant_terms(security_name: str) -> dict:
 
 # ---------- model-based fair value (Black-Scholes) ----------
 
-from scipy.stats import norm as _norm
-
-
 def bs_call(S: float, K: float, T: float, r: float, sigma: float) -> float:
     """Standard Black-Scholes European call. Intrinsic when T<=0 or sigma<=0."""
     if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
@@ -987,8 +994,24 @@ def filter_real_arbs(fair_df: pd.DataFrame,
 
 # ---------- business quality + recent inflection scoring ----------
 
+def _cap_growth(x, lo: float = -1.0, hi: float = 3.0) -> float | None:
+    """Cap a yfinance growth field. Values like 23775 (BZAI revenueGrowth)
+    are unit errors; clip to the [-100%, +300%] band so they don't
+    pollute downstream scoring and displays.
+    """
+    if x is None: return None
+    try:
+        x = float(x)
+    except (TypeError, ValueError):
+        return None
+    if not np.isfinite(x): return None
+    return max(lo, min(x, hi))
+
+
 def fetch_fundamentals(commons: list[str]) -> pd.DataFrame:
-    """Pull yfinance.info snapshots for a list of common tickers."""
+    """Pull yfinance.info snapshots for a list of common tickers.
+    Growth fields capped to a sane range to suppress yfinance data errors.
+    """
     rows = []
     for c in commons:
         try:
@@ -998,7 +1021,7 @@ def fetch_fundamentals(commons: list[str]) -> pd.DataFrame:
         rows.append({
             "common": c,
             "totalRevenue": info.get("totalRevenue"),
-            "revenueGrowth": info.get("revenueGrowth"),
+            "revenueGrowth": _cap_growth(info.get("revenueGrowth")),
             "grossMargins": info.get("grossMargins"),
             "operatingMargins": info.get("operatingMargins"),
             "totalCash": info.get("totalCash"),
@@ -1007,7 +1030,8 @@ def fetch_fundamentals(commons: list[str]) -> pd.DataFrame:
             "operatingCashflow": info.get("operatingCashflow"),
             "marketCap": info.get("marketCap"),
             "sharesOutstanding": info.get("sharesOutstanding"),
-            "earningsQuarterlyGrowth": info.get("earningsQuarterlyGrowth"),
+            "earningsQuarterlyGrowth": _cap_growth(
+                info.get("earningsQuarterlyGrowth"), lo=-1.0, hi=5.0),
             "recommendationMean": info.get("recommendationMean"),
             "numberOfAnalystOpinions": info.get("numberOfAnalystOpinions"),
         })
