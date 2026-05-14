@@ -128,6 +128,10 @@ class TickerRow:
     fcf_yield: float
     ncav: float
     ncav_pct_mcap: float
+    cash_pct_mcap: float
+    cash_pct_ev: float
+    mcap_to_ncav: float
+    graham_net_net_flag: int
     # Cheapness composites (lower = cheaper)
     cheapness_growth_blend: float        # 1/3 sales + 1/3 ebitda + 1/6 fcf + 1/6 ncav%
     cheapness_ev_ebit_vs_growth: float   # ev_ebit / cheapness_growth_blend
@@ -557,6 +561,18 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     ncav = (ca_v - tl_v) if (pd.notna(ca_v) and pd.notna(tl_v)) else np.nan
     ncav_pct_mcap = safe_div(ncav, market_cap) if (pd.notna(ncav) and market_cap) else np.nan
 
+    # Cash as a fraction of market cap and EV. cash_pct_ev > 1 means cash on
+    # the balance sheet exceeds enterprise value (debt-adjusted cheapness).
+    cash_pct_mcap = safe_div(cash_v, market_cap) if (pd.notna(cash_v) and market_cap) else np.nan
+    cash_pct_ev = safe_div(cash_v, enterprise_value) if (pd.notna(cash_v) and pd.notna(enterprise_value) and enterprise_value > 0) else np.nan
+
+    # Graham net-net: market cap < (2/3) * NCAV.  Reports the ratio mcap/NCAV
+    # for sortable output. Only meaningful when NCAV is positive.
+    mcap_to_ncav = safe_div(market_cap, ncav) if (pd.notna(ncav) and ncav > 0 and market_cap) else np.nan
+    graham_net_net_flag = int(
+        pd.notna(mcap_to_ncav) and mcap_to_ncav > 0 and mcap_to_ncav < (2.0 / 3.0)
+    )
+
     # ----- Cheapness composites (per user spec) -----
     # 1) EV/EBIT relative to a weighted growth+NCAV blend.
     #    blend = 1/3 sales_yoy + 1/3 ebitda_yoy + 1/6 fcf_yoy + 1/6 ncav_pct_mcap
@@ -730,6 +746,12 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         notes_parts.append("under-priced vs fundamentals")
     if cheapness_under_7x_flag:
         notes_parts.append(f"cheap+grow (EV/EBIT {ev_ebit:.1f}x)")
+    if graham_net_net_flag:
+        notes_parts.append(f"Graham net-net (mcap {mcap_to_ncav:.2f}x NCAV)")
+    if pd.notna(cash_pct_mcap) and cash_pct_mcap > 0.5:
+        notes_parts.append(f"cash {cash_pct_mcap:.0%} of mcap")
+    if pd.notna(cash_pct_ev) and cash_pct_ev > 1.0:
+        notes_parts.append("cash > EV")
     notes = "; ".join(notes_parts)
 
     return TickerRow(
@@ -758,6 +780,10 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         fcf_yield=fcf_yield,
         ncav=ncav,
         ncav_pct_mcap=ncav_pct_mcap,
+        cash_pct_mcap=cash_pct_mcap,
+        cash_pct_ev=cash_pct_ev,
+        mcap_to_ncav=mcap_to_ncav,
+        graham_net_net_flag=graham_net_net_flag,
         cheapness_growth_blend=cheapness_growth_blend,
         cheapness_ev_ebit_vs_growth=cheapness_ev_ebit_vs_growth,
         cheapness_under_7x_flag=cheapness_under_7x_flag,
@@ -1011,6 +1037,22 @@ def main():
     cols = ["symbol", "name", "pb", "ev_ebit", "rev_yoy", "ebitda_yoy",
             "cheapness_blend_vs_growth", "yartseva_score"]
     print(cheap2.head(args.top)[cols].to_string(index=False) if len(cheap2) else "  (none)")
+
+    print("\n=== CASH-RICH vs MARKET CAP / EV (sorted by cash_pct_mcap) ===")
+    cash_sub = df[df["cash_pct_mcap"].notna() & (df["cash_pct_mcap"] > 0.20)] \
+        .sort_values("cash_pct_mcap", ascending=False)
+    cols = ["symbol", "name", "sector", "market_cap", "cash_and_equivalents" if "cash_and_equivalents" in df.columns else "cash_pct_mcap",
+            "cash_pct_mcap", "cash_pct_ev", "ncav_pct_mcap",
+            "mcap_to_ncav", "graham_net_net_flag", "yartseva_score"]
+    cols = [c for c in cols if c in df.columns]
+    print(cash_sub.head(args.top)[cols].to_string(index=False) if len(cash_sub) else "  (none)")
+
+    print("\n=== GRAHAM NET-NETS (market_cap < 2/3 x NCAV) ===")
+    nn = df[df["graham_net_net_flag"] == 1].sort_values("mcap_to_ncav")
+    cols = ["symbol", "name", "sector", "market_cap", "ncav", "mcap_to_ncav",
+            "cash_pct_mcap", "rev_yoy", "ebitda_margin", "yartseva_score", "notes"]
+    cols = [c for c in cols if c in df.columns]
+    print(nn.head(args.top)[cols].to_string(index=False) if len(nn) else "  (none)")
 
     print(f"\n[3/3] done in {time.time()-start:.0f}s", file=sys.stderr)
 

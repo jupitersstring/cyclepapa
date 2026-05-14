@@ -81,9 +81,15 @@ class PewRow:
     # Cheapness on net-cash basis
     net_cash_pct_mcap: float
     cash_pct_mcap: float
+    cash_pct_ev: float
     ev_to_mcap: float
     negative_ev_flag: int
     below_net_cash_flag: int
+    # Graham
+    ncav: float
+    ncav_pct_mcap: float
+    mcap_to_ncav: float
+    graham_net_net_flag: int
     # Quality / health
     revenue_ttm: float
     ebitda_ttm: float
@@ -251,9 +257,23 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
 
     net_cash_pct_mcap = safe_div(net_cash, market_cap)
     cash_pct_mcap = safe_div(cash_v, market_cap)
+    cash_pct_ev = safe_div(cash_v, enterprise_value) if (pd.notna(cash_v) and pd.notna(enterprise_value) and enterprise_value > 0) else np.nan
     ev_to_mcap = safe_div(enterprise_value, market_cap)
     negative_ev_flag = int(pd.notna(enterprise_value) and enterprise_value < 0)
     below_net_cash_flag = int(pd.notna(net_cash) and pd.notna(market_cap) and net_cash > market_cap)
+
+    # NCAV: current assets - total liabilities (Graham)
+    cur_assets = first_with_fallback(qbs, abs_, ["Current Assets", "Total Current Assets"])
+    total_liab = first_with_fallback(qbs, abs_, ["Total Liabilities Net Minority Interest",
+                                                  "Total Liab", "Total Liabilities"])
+    ca_v = float(cur_assets.iloc[0]) if (cur_assets is not None and pd.notna(cur_assets.iloc[0])) else np.nan
+    tl_v = float(total_liab.iloc[0]) if (total_liab is not None and pd.notna(total_liab.iloc[0])) else np.nan
+    ncav = (ca_v - tl_v) if (pd.notna(ca_v) and pd.notna(tl_v)) else np.nan
+    ncav_pct_mcap = safe_div(ncav, market_cap) if (pd.notna(ncav) and market_cap) else np.nan
+    mcap_to_ncav = safe_div(market_cap, ncav) if (pd.notna(ncav) and ncav > 0 and market_cap) else np.nan
+    graham_net_net_flag = int(
+        pd.notna(mcap_to_ncav) and mcap_to_ncav > 0 and mcap_to_ncav < (2.0 / 3.0)
+    )
 
     # Quality: breakeven-to-profitable. Accept positive EBITDA or NI within
     # a small loss band (NI/revenue > -3%).
@@ -309,9 +329,14 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
         net_cash=net_cash,
         net_cash_pct_mcap=net_cash_pct_mcap,
         cash_pct_mcap=cash_pct_mcap,
+        cash_pct_ev=cash_pct_ev,
         ev_to_mcap=ev_to_mcap,
         negative_ev_flag=negative_ev_flag,
         below_net_cash_flag=below_net_cash_flag,
+        ncav=ncav,
+        ncav_pct_mcap=ncav_pct_mcap,
+        mcap_to_ncav=mcap_to_ncav,
+        graham_net_net_flag=graham_net_net_flag,
         revenue_ttm=rev_ttm if rev_ttm else np.nan,
         ebitda_ttm=ebitda_ttm if ebitda_ttm is not None else np.nan,
         ebitda_margin=ebitda_margin,
@@ -350,6 +375,8 @@ def _composite(row: PewRow, median_3y_cagr: float) -> tuple[float, str]:
         parts["negative_ev"] = 1.0
     if row.below_net_cash_flag:
         parts["below_net_cash"] = 1.0
+    if getattr(row, "graham_net_net_flag", 0):
+        parts["graham_net_net"] = 1.0
 
     # Quality
     parts["breakeven"] = float(row.is_breakeven_or_profitable)
@@ -372,12 +399,13 @@ def _composite(row: PewRow, median_3y_cagr: float) -> tuple[float, str]:
     parts["platform_optionality"] = float(row.has_platform_hint)
 
     weights = {
-        "cheapness_net_cash":   0.18,
+        "cheapness_net_cash":   0.16,
         "negative_ev":          0.10,
         "below_net_cash":       0.10,
-        "breakeven":            0.15,
-        "outgrowing":           0.15,
-        "insider":              0.13,
+        "graham_net_net":       0.08,
+        "breakeven":            0.13,
+        "outgrowing":           0.13,
+        "insider":              0.11,
         "forgotten":            0.10,
         "platform_optionality": 0.09,
     }
@@ -402,6 +430,10 @@ def _composite(row: PewRow, median_3y_cagr: float) -> tuple[float, str]:
         note_parts.append("forgotten")
     if row.has_platform_hint:
         note_parts.append(f"platform/SaaS hint x{row.platform_hits}")
+    if getattr(row, "graham_net_net_flag", 0):
+        note_parts.append(f"Graham net-net (mcap {row.mcap_to_ncav:.2f}x NCAV)")
+    if pd.notna(getattr(row, "cash_pct_ev", np.nan)) and row.cash_pct_ev > 1.0:
+        note_parts.append("cash > EV")
 
     return score, "; ".join(note_parts)
 
@@ -532,6 +564,27 @@ def main():
     cols = ["symbol", "name", "sector", "platform_hits", "pew_score",
             "net_cash_pct_mcap", "rev_3y_cagr", "summary_excerpt"]
     print(plat.head(args.top)[cols].to_string(index=False) if len(plat) else "  (none)")
+
+    print("\n=== GRAHAM NET-NETS (market_cap < 2/3 x NCAV) ===")
+    nn = df[df["graham_net_net_flag"] == 1].sort_values("mcap_to_ncav")
+    cols = ["symbol", "name", "sector", "market_cap", "ncav", "mcap_to_ncav",
+            "cash_pct_mcap", "cash_pct_ev", "rev_3y_cagr",
+            "is_breakeven_or_profitable", "pew_score", "notes"]
+    print(nn.head(args.top)[cols].to_string(index=False) if len(nn) else "  (none)")
+
+    print("\n=== CASH-RICH vs MARKET CAP (cash_pct_mcap > 0.3, sorted) ===")
+    cash_sub = df[df["cash_pct_mcap"].fillna(0) > 0.3].sort_values("cash_pct_mcap", ascending=False)
+    cols = ["symbol", "name", "sector", "market_cap", "cash_pct_mcap",
+            "cash_pct_ev", "ncav_pct_mcap", "mcap_to_ncav",
+            "is_breakeven_or_profitable", "pew_score"]
+    print(cash_sub.head(args.top)[cols].to_string(index=False) if len(cash_sub) else "  (none)")
+
+    print("\n=== CASH > EV (cash_pct_ev > 1.0) ===")
+    cev = df[df["cash_pct_ev"].fillna(0) > 1.0].sort_values("cash_pct_ev", ascending=False)
+    cols = ["symbol", "name", "sector", "market_cap", "enterprise_value",
+            "cash_pct_ev", "cash_pct_mcap", "is_breakeven_or_profitable",
+            "rev_3y_cagr", "pew_score", "notes"]
+    print(cev.head(args.top)[cols].to_string(index=False) if len(cev) else "  (none)")
 
     print(f"\n[3/3] done in {time.time()-start:.0f}s", file=sys.stderr)
 
