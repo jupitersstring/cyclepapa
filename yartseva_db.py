@@ -146,6 +146,20 @@ class TickerRow:
     balance_sheet_date: str
     mcap_to_ncav: float
     graham_net_net_flag: int
+    # Berezin / Stockcoach methodology (microcap deep value)
+    p_s: float                          # market cap / revenue (Berezin's preferred quick read)
+    p_e: float                          # trailing PE from yfinance
+    p_ocf: float                        # market cap / operating cash flow
+    gross_profit_ttm: float
+    gross_margin: float
+    gross_profit_to_mcap: float         # the "classic Stockcoach" tell
+    debt_to_equity: float
+    insider_ownership_pct: float
+    analyst_target_mean: float
+    analyst_target_upside_pct: float    # (target - price) / price
+    momentum_12m: float                 # 1y total return (Jegadeesh-Titman style)
+    berezin_classic_flag: int
+    berezin_score: float
     # Cheapness composites (lower = cheaper)
     cheapness_growth_blend: float        # 1/3 sales + 1/3 ebitda + 1/6 fcf + 1/6 ncav%
     cheapness_ev_ebit_vs_growth: float   # ev_ebit / cheapness_growth_blend
@@ -624,6 +638,126 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         pd.notna(mcap_to_ncav) and mcap_to_ncav > 0 and mcap_to_ncav < (2.0 / 3.0)
     )
 
+    # Price history is needed for momentum (Berezin's only TA edge) and for
+    # the price-vs-fundamentals "not priced in" block further down. Compute
+    # once here so both can use it.
+    try:
+        hist = t.history(period="2y", interval="1d", auto_adjust=True)
+        if hist is not None and not hist.empty:
+            close = hist["Close"].dropna()
+            price_now = float(close.iloc[-1])
+            idx_1y = max(0, len(close) - 252)
+            price_1y = float(close.iloc[idx_1y])
+            price_yoy = pct_change(price_now, price_1y)
+        else:
+            price_yoy = np.nan
+    except Exception:
+        price_yoy = np.nan
+
+    # ----- Berezin / Stockcoach screen (microcap deep value, Fama-French style) -----
+    # Per his October 2006 "Screening for fun and profit" post: low P/S, low P/B,
+    # healthy gross margin, low P/E, low P/OCF, positive past growth, low D/E,
+    # net insider buying, consensus analyst target above price, plus the soft
+    # 12-month momentum edge from Jegadeesh-Titman.
+
+    # Gross profit TTM (annual fallback to first row of annual gross profit)
+    gross_profit_q = first_row(qis, ["Gross Profit"])
+    gross_profit_a = first_row(ais, ["Gross Profit"])
+    gross_profit_ttm = ttm_or_annual(gross_profit_q, gross_profit_a)
+    gross_margin = safe_div(gross_profit_ttm, rev_ttm) if (gross_profit_ttm and rev_ttm) else np.nan
+    gross_profit_to_mcap = safe_div(gross_profit_ttm, market_cap) if (gross_profit_ttm and market_cap) else np.nan
+
+    # Standard multiples on market cap (not EV) per Berezin's convention
+    p_s = safe_div(market_cap, rev_ttm) if (market_cap and rev_ttm) else np.nan
+    p_e_yf = info.get("trailingPE")
+    p_e = float(p_e_yf) if (p_e_yf is not None and pd.notna(p_e_yf) and p_e_yf > 0) else np.nan
+    p_ocf = safe_div(market_cap, cfo_ttm) if (market_cap and cfo_ttm and cfo_ttm > 0) else np.nan
+
+    debt_to_equity = safe_div(debt_v, eq_v) if (pd.notna(debt_v) and pd.notna(eq_v) and eq_v > 0) else np.nan
+
+    insider_ownership_pct_b = info.get("heldPercentInsiders")
+    insider_ownership_pct = float(insider_ownership_pct_b) if insider_ownership_pct_b is not None else np.nan
+
+    target_mean_yf = info.get("targetMeanPrice")
+    analyst_target_mean = float(target_mean_yf) if target_mean_yf is not None else np.nan
+    analyst_target_upside_pct = (
+        (analyst_target_mean / price - 1.0)
+        if (pd.notna(analyst_target_mean) and pd.notna(price) and price > 0)
+        else np.nan
+    )
+
+    momentum_12m = price_yoy if pd.notna(price_yoy) else np.nan
+
+    # The "classic Stockcoach" pattern flag - multiple boxes ticked simultaneously:
+    #   sub-$200m mcap, P/S < 0.5, P/B < 1.0, gross profit > mcap, positive
+    #   revenue growth, positive operating cash flow, debt/equity < 1.0.
+    berezin_classic_flag = int(
+        pd.notna(market_cap) and market_cap < 200_000_000
+        and pd.notna(p_s) and p_s < 0.5
+        and pd.notna(pb) and pb > 0 and pb < 1.0
+        and pd.notna(gross_profit_to_mcap) and gross_profit_to_mcap > 1.0
+        and pd.notna(rev_yoy) and rev_yoy > 0
+        and pd.notna(cfo_ttm) and cfo_ttm > 0
+        and pd.notna(debt_to_equity) and debt_to_equity < 1.0
+    )
+
+    def clip01_b(x):
+        if pd.isna(x):
+            return np.nan
+        return float(max(0.0, min(1.0, x)))
+
+    # Subscores - each in [0,1], lower-is-better metrics get inverted gradients.
+    p_s_score = clip01_b((0.5 - p_s) / 0.5) if pd.notna(p_s) else np.nan          # 1.0 at P/S=0, 0 at 0.5
+    p_b_score = clip01_b((1.5 - pb) / 1.5) if (pd.notna(pb) and pb > 0) else np.nan
+    p_e_score = clip01_b((15.0 - p_e) / 15.0) if pd.notna(p_e) else np.nan
+    p_ocf_score = clip01_b((12.0 - p_ocf) / 12.0) if pd.notna(p_ocf) else np.nan
+    gp_mcap_score = clip01_b(gross_profit_to_mcap / 2.0) if pd.notna(gross_profit_to_mcap) else np.nan
+    gm_score = clip01_b((gross_margin - 0.15) / 0.45) if pd.notna(gross_margin) else np.nan
+    rev_growth_score_b = clip01_b((rev_yoy + 0.05) / 0.30) if pd.notna(rev_yoy) else np.nan
+    earnings_growth_score = clip01_b((ebitda_yoy + 0.05) / 0.40) if pd.notna(ebitda_yoy) else np.nan
+    de_score = clip01_b((1.0 - debt_to_equity) / 1.0) if pd.notna(debt_to_equity) else np.nan
+    insider_score = clip01_b((insider_ownership_pct - 0.03) / 0.25) if pd.notna(insider_ownership_pct) else np.nan
+    target_score = clip01_b((analyst_target_upside_pct - 0.0) / 0.40) if pd.notna(analyst_target_upside_pct) else np.nan
+    mom12_score = clip01_b((momentum_12m + 0.10) / 0.40) if pd.notna(momentum_12m) else np.nan
+    microcap_score = clip01_b((200_000_000 - market_cap) / 150_000_000) if pd.notna(market_cap) else np.nan
+
+    berezin_weights = {
+        "p_s":              0.16,
+        "p_b":              0.10,
+        "gp_to_mcap":       0.10,
+        "gross_margin":     0.06,
+        "p_e":              0.06,
+        "p_ocf":            0.06,
+        "rev_growth":       0.08,
+        "earnings_growth":  0.06,
+        "debt_equity":      0.06,
+        "insider":          0.06,
+        "analyst_upside":   0.04,
+        "momentum_12m":     0.10,
+        "microcap_bias":    0.06,
+    }
+    berezin_parts = {
+        "p_s":              p_s_score,
+        "p_b":              p_b_score,
+        "gp_to_mcap":       gp_mcap_score,
+        "gross_margin":     gm_score,
+        "p_e":              p_e_score,
+        "p_ocf":            p_ocf_score,
+        "rev_growth":       rev_growth_score_b,
+        "earnings_growth":  earnings_growth_score,
+        "debt_equity":      de_score,
+        "insider":          insider_score,
+        "analyst_upside":   target_score,
+        "momentum_12m":     mom12_score,
+        "microcap_bias":    microcap_score,
+    }
+    bw, bv = 0.0, 0.0
+    for k, v in berezin_parts.items():
+        if pd.notna(v):
+            bw += berezin_weights[k]
+            bv += berezin_weights[k] * v
+    berezin_score = (bv / bw) if bw > 0 else np.nan
+
     # ----- Cheapness composites (per user spec) -----
     # 1) EV/EBIT relative to a weighted growth+NCAV blend.
     #    blend = 1/3 sales_yoy + 1/3 ebitda_yoy + 1/6 fcf_yoy + 1/6 ncav_pct_mcap
@@ -663,21 +797,6 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         cheapness_blend_vs_growth = val_blend / growth_blend2
     else:
         cheapness_blend_vs_growth = np.nan
-
-    # Price 1y change vs fundamentals (what's not priced in)
-    try:
-        hist = t.history(period="2y", interval="1d", auto_adjust=True)
-        if hist is not None and not hist.empty:
-            close = hist["Close"].dropna()
-            price_now = float(close.iloc[-1])
-            # Approx price 1y ago = ~252 trading days back (or first available)
-            idx_1y = max(0, len(close) - 252)
-            price_1y = float(close.iloc[idx_1y])
-            price_yoy = pct_change(price_now, price_1y)
-        else:
-            price_yoy = np.nan
-    except Exception:
-        price_yoy = np.nan
 
     # Approx prior EV/Sales using prior TTM and current EV deflated by price change
     if pd.notna(price_yoy) and pd.notna(ev_sales) and rev_ttm_prev:
@@ -803,6 +922,10 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         notes_parts.append(f"cash {cash_pct_mcap:.0%} of mcap")
     if cash_gt_ev_flag:
         notes_parts.append(f"cash > EV ({cash_pct_ev:.2f}x, net cash {net_cash_pct_mcap:.0%} mcap)")
+    if berezin_classic_flag:
+        notes_parts.append(
+            f"Berezin classic (P/S {p_s:.2f}, P/B {pb:.2f}, GP/mcap {gross_profit_to_mcap:.1f}x)"
+        )
     notes = "; ".join(notes_parts)
 
     return TickerRow(
@@ -839,6 +962,19 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         balance_sheet_date=balance_sheet_date,
         mcap_to_ncav=mcap_to_ncav,
         graham_net_net_flag=graham_net_net_flag,
+        p_s=p_s,
+        p_e=p_e,
+        p_ocf=p_ocf,
+        gross_profit_ttm=gross_profit_ttm if gross_profit_ttm is not None else np.nan,
+        gross_margin=gross_margin,
+        gross_profit_to_mcap=gross_profit_to_mcap,
+        debt_to_equity=debt_to_equity,
+        insider_ownership_pct=insider_ownership_pct,
+        analyst_target_mean=analyst_target_mean,
+        analyst_target_upside_pct=analyst_target_upside_pct,
+        momentum_12m=momentum_12m,
+        berezin_classic_flag=berezin_classic_flag,
+        berezin_score=berezin_score,
         cheapness_growth_blend=cheapness_growth_blend,
         cheapness_ev_ebit_vs_growth=cheapness_ev_ebit_vs_growth,
         cheapness_under_7x_flag=cheapness_under_7x_flag,
@@ -1122,6 +1258,23 @@ def main():
             "cash_pct_mcap", "rev_yoy", "ebitda_margin", "yartseva_score", "notes"]
     cols = [c for c in cols if c in df.columns]
     print(nn.head(args.top)[cols].to_string(index=False) if len(nn) else "  (none)")
+
+    print("\n=== TOP BY BEREZIN / STOCKCOACH SCORE ===")
+    bz = df.sort_values("berezin_score", ascending=False, na_position="last")
+    cols = ["symbol", "name", "sector", "market_cap", "berezin_score",
+            "p_s", "pb", "p_e", "p_ocf", "gross_profit_to_mcap",
+            "gross_margin", "debt_to_equity", "rev_yoy",
+            "insider_ownership_pct", "momentum_12m"]
+    cols = [c for c in cols if c in df.columns]
+    print(bz.head(args.top)[cols].to_string(index=False))
+
+    print("\n=== BEREZIN CLASSIC SETUPS (microcap + sub-book + P/S<0.5 + GP>mcap + growing + low debt) ===")
+    bcl = df[df["berezin_classic_flag"] == 1].sort_values("berezin_score", ascending=False)
+    cols = ["symbol", "name", "sector", "market_cap", "p_s", "pb",
+            "gross_profit_to_mcap", "rev_yoy", "debt_to_equity",
+            "insider_ownership_pct", "berezin_score", "notes"]
+    cols = [c for c in cols if c in df.columns]
+    print(bcl.head(args.top)[cols].to_string(index=False) if len(bcl) else "  (none)")
 
     print(f"\n[3/3] done in {time.time()-start:.0f}s", file=sys.stderr)
 
