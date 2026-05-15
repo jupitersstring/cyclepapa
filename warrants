@@ -533,6 +533,57 @@ def extract_warrant_pairs(min_share_price: float = 0.0) -> pd.DataFrame:
                    "security_name", "exchange"]].reset_index(drop=True)
 
 
+@_cache(ttl=24 * 3600, show_spinner=False)
+def extract_warrant_pairs_full(chunk_size: int = 250,
+                                min_bars: int = 30,
+                                max_stale_days: int = 30) -> pd.DataFrame:
+    """Wider universe via SEC + Yahoo probing.
+
+    NASDAQ Trader only covers exchange-listed warrants. SEC's company
+    tickers file covers ~14K commons including many OTC names. For each,
+    probe Yahoo with standard warrant suffixes; keep ones that return
+    fresh price data. Much slower than extract_warrant_pairs() — takes
+    a few minutes — but catches warrants on OTC commons and any
+    exchange-listed warrant whose pairing was missed.
+    """
+    base = extract_warrant_pairs()
+    already = set(base["warrant"].tolist())
+    sec = sec_ticker_map()
+    candidates = []
+    for ticker, _cik in sec.items():
+        ticker = _to_yahoo_ticker(ticker)
+        for suf in WARRANT_SUFFIXES:
+            cand = f"{ticker}{suf}"
+            if cand in already:
+                continue
+            candidates.append((cand, ticker))
+    out = []
+    cutoff = pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta(days=max_stale_days)
+    for i in range(0, len(candidates), chunk_size):
+        batch = candidates[i:i + chunk_size]
+        bundle = batch_load_pairs([c[0] for c in batch], period="6mo")
+        closes = bundle["close"]
+        if closes.empty:
+            continue
+        for cand, common in batch:
+            if cand not in closes.columns:
+                continue
+            s = closes[cand].dropna()
+            if len(s) < min_bars:
+                continue
+            last = s.index[-1].tz_localize(None) if s.index.tz is not None else s.index[-1]
+            if last < cutoff:
+                continue
+            out.append({"common": common, "warrant": cand,
+                        "issuer_key": "", "security_name": "",
+                        "exchange": "SEC-probed"})
+    discovered = pd.DataFrame(out)
+    if discovered.empty:
+        return base
+    combined = pd.concat([base, discovered], ignore_index=True)
+    return combined.drop_duplicates(subset=["common", "warrant"]).reset_index(drop=True)
+
+
 def filter_active_pairs(pairs_df: pd.DataFrame, period: str = "1y",
                         max_stale_days: int = 30) -> pd.DataFrame:
     """Keep only pairs where both legs traded within max_stale_days.
@@ -931,6 +982,36 @@ def parse_warrant_terms(security_name: str) -> dict:
 
 # ---------- model-based fair value (Black-Scholes) ----------
 
+@_cache(ttl=24 * 3600, show_spinner=False)
+def common_split_factor(ticker: str) -> float:
+    """Cumulative split factor for a common's entire history.
+
+    yfinance Ticker.splits returns a Series of ratios:
+      1-for-10 reverse split -> 0.1
+      2-for-1 forward split  -> 2.0
+    Product gives cumulative; missing -> 1.0.
+
+    For warrants the strike adjusts inversely: a 1-for-10 RS takes a
+    $11.50 strike to $115 (per DTCC / issuer adjustment). If you don't
+    apply this, the BS screen falsely flags post-RS warrants as deep
+    discounts when they're actually deeply OTM and near-worthless.
+    """
+    try:
+        sp = yf.Ticker(ticker).splits
+    except Exception:
+        return 1.0
+    if sp is None or sp.empty:
+        return 1.0
+    f = float(sp.prod())
+    return f if f > 0 else 1.0
+
+
+def adjust_strike_for_splits(common_ticker: str, raw_strike: float) -> tuple:
+    """Returns (adjusted_strike, split_factor)."""
+    f = common_split_factor(common_ticker)
+    return raw_strike / f, f
+
+
 def bs_call(S: float, K: float, T: float, r: float, sigma: float) -> float:
     """Standard Black-Scholes European call. Intrinsic when T<=0 or sigma<=0."""
     if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
@@ -1014,6 +1095,13 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
             if tt["strike"] is not None:
                 strike_used = tt["strike"]
             ratio_used = tt["ratio"]
+        # CRITICAL: adjust strike for any reverse/forward splits in the
+        # common. A 1-for-10 RS takes a $11.50 strike to $115 — without
+        # this adjustment, the screen falsely flags post-RS warrants as
+        # deep discounts when they're actually deeply OTM and worthless.
+        # E.g. XBP (1-for-10), SEAT (1-for-20), PIII (1-for-50).
+        strike_raw = strike_used
+        strike_used, split_f = adjust_strike_for_splits(r_["common"], strike_used)
         bs = bs_call(cpx, strike_used, T_years, r, sigma) * ratio_used
         if bs < min_warrant_px:
             continue
@@ -1031,6 +1119,8 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
         rows.append({
             "common": r_["common"], "warrant": w,
             "common_px": cpx, "warrant_px": wpx,
+            "strike_raw": strike_raw,
+            "split_factor": split_f,
             "strike_used": strike_used, "ratio_used": ratio_used,
             "moneyness": moneyness,
             "sigma_1y": s1, "sigma_3m": s3 if np.isfinite(s3) else None,
@@ -1239,7 +1329,11 @@ def _print_df(df: pd.DataFrame, cols: list[str] | None = None,
 
 
 def _cmd_universe(args):
-    pairs = extract_warrant_pairs()
+    if args.sec_wide:
+        print("Wider universe via SEC company tickers + Yahoo probe (slow)...")
+        pairs = extract_warrant_pairs_full()
+    else:
+        pairs = extract_warrant_pairs()
     if not args.include_stale:
         pairs = filter_active_pairs(pairs, max_stale_days=args.max_stale_days)
     pairs.to_csv(args.out, index=False)
@@ -1387,10 +1481,13 @@ def cli():
     sub = p.add_subparsers(dest="cmd", required=True)
 
     # universe
-    s = sub.add_parser("universe", help="Build & save the active warrant universe (NASDAQ Trader).")
+    s = sub.add_parser("universe", help="Build & save the active warrant universe.")
     s.add_argument("--out", default="warrants_universe.csv")
     s.add_argument("--include-stale", action="store_true")
     s.add_argument("--max-stale-days", type=int, default=30)
+    s.add_argument("--sec-wide", action="store_true",
+                  help="Wider universe: NASDAQ Trader + SEC company-ticker probe "
+                  "for OTC and missed warrants. Takes several minutes.")
     s.set_defaults(fn=_cmd_universe)
 
     # pair
