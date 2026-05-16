@@ -422,7 +422,22 @@ def main():
     frames = download_daily(args.universe, tickers, years=args.years)
     print(f"  {len(frames)} tickers with usable daily data")
 
+    junk_substrings = ("Acquisition Corp", "Acquisition Corporation", "Preferred",
+                       "Senior Notes", "Note due", "Notes due",
+                       "Warrants", "Rights ", "Trust Units", "Royalty Trust",
+                       " Fund", " Fund Inc", "Income Fund", "Bond Fund",
+                       "Series A ", "Series B ", "Series C ", "Series D ",
+                       "Depositary Shares", "Ordinary Shares", "Class A ordinary")
+    def is_junk_ticker(t, nm):
+        # preferreds / units / warrants by ticker pattern
+        if "-P" in t or "-W" in t or "-U" in t or t.endswith(("U", ".U")):
+            return True
+        if nm and any(s.lower() in nm.lower() for s in junk_substrings):
+            return True
+        return False
+
     rows = []
+    junk_dropped = 0
     for t, f in frames.items():
         m = compute_momentum(f, spy_close=spy_close)
         if m is None:
@@ -431,9 +446,14 @@ def main():
             continue
         m["Ticker"] = t
         name_col = "name" if "name" in universe.columns else "shortName"
-        m["name"] = universe.loc[t, name_col] if t in universe.index else None
+        nm = universe.loc[t, name_col] if t in universe.index else None
+        if is_junk_ticker(t, nm):
+            junk_dropped += 1
+            continue
+        m["name"] = nm
         m["sector"] = universe.loc[t, "sector"] if t in universe.index and "sector" in universe.columns else None
         rows.append(m)
+    print(f"  junk filter dropped {junk_dropped} preferreds / SPACs / CEFs / notes")
 
     if not rows:
         print("No momentum metrics computed.")
@@ -622,12 +642,19 @@ def main():
         & df["roque_rel_trend"].fillna(False)
     )
 
-    # Roque BIG BASE (multi-month consolidation breakout candidate)
+    # Roque BIG BASE (multi-month consolidation breakout candidate).
+    # Requires real price action: positive 6m momentum AND outperforming SPY,
+    # else we get SPACs/CEFs trading in tight ranges by nature.
+    real_movement = (
+        df["mom_6m"].fillna(0).gt(1.05)
+        & df.get("rel_return_6m_pct", pd.Series(-1, index=df.index)).fillna(-1).gt(0)
+    )
     df["roque_big_base"] = (
         df["long_base"]
         & df["vol_drying"]
         & df["monthly_uptrend"].fillna(False)
         & (df["near_box_top"] | df["box_breakout"])
+        & real_movement
     )
 
     # Save anything that is in the strict top-30 union OR passes a weekly
