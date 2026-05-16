@@ -4570,10 +4570,11 @@
     "issuer_name": "Blackstone Inc.",
     "issuer_cik": "0001393818",
     "buyer_set": [
-      "Porat Ruth | Director"
+      "Porat Ruth | Director",
+      "Blackstone Holdings IV GP Management (Delaware) L.P. | 10%"
     ],
-    "total_dollar": 53973.90788682,
-    "total_shares": 438.8438,
+    "total_dollar": 105122527.15303017,
+    "total_shares": 4015821.2444,
     "filings": [
       {
         "accession": "0001193125-26-221785",
@@ -4582,6 +4583,30 @@
         "title": null,
         "dollar": 53973.90788682,
         "shares": 438.8438
+      },
+      {
+        "accession": "0001213900-26-032972",
+        "date": "2026-03-23",
+        "person": "Blackstone Holdings IV GP Management (Delaware) L.P.",
+        "title": null,
+        "dollar": 75000000.00909999,
+        "shares": 2868068.834
+      },
+      {
+        "accession": "0001213900-26-020011",
+        "date": "2026-02-24",
+        "person": "Blackstone Holdings IV GP Management (Delaware) L.P.",
+        "title": null,
+        "dollar": 29999999.9784,
+        "shares": 1146788.99
+      },
+      {
+        "accession": "0001193125-26-061364",
+        "date": "2026-02-20",
+        "person": "Porat Ruth",
+        "title": null,
+        "dollar": 68553.25764334,
+        "shares": 524.5765999999999
       }
     ]
   },
@@ -7536,5 +7561,231 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "M&T BANK CORP"
+  },
+  "CCI": {
+    "ticker": "CCI",
+    "buyer_set": [
+      "Stephens Kevin A | Director"
+    ],
+    "total_dollar": 73996.8,
+    "total_shares": 820.0,
+    "filings": [
+      {
+        "accession": "0001834017-26-000007",
+        "date": "2026-05-06",
+        "person": "Stephens Kevin A",
+        "title": null,
+        "dollar": 73996.8,
+        "shares": 820.0
+      }
+    ],
+    "issuer_name": "CROWN CASTLE INC."
+  },
+  "SF": {
+    "ticker": "SF",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "STIFEL FINANCIAL CORP"
+  },
+  "MNSB": {
+    "ticker": "MNSB",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "MainStreet Bancshares, Inc."
+  },
+  "INSE": {
+    "ticker": "INSE",
+    "buyer_set": [
+      "Chambrello Michael R. | Director",
+      "PIERCE BROOKS H | President and CEO",
+      "WEIL A LORNE | Executive Chairman"
+    ],
+    "total_dollar": 545788.85,
+    "total_shares": 80000.0,
+    "filings": [
+      {
+        "accession": "0001493152-26-013359",
+        "date": "2026-03-27",
+        "person": "Chambrello Michael R.",
+        "title": null,
+        "dollar": 69240.6,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001493152-26-013357",
+        "date": "2026-03-27",
+        "person": "PIERCE BROOKS H",
+        "title": "President and CEO",
+        "dollar": 136633.04,
+        "shares": 20000.0
+      },
+      {
+        "accession": "0001493152-26-013355",
+        "date": "2026-03-27",
+        "person": "WEIL A LORNE",
+        "title": "Executive Chairman",
+        "dollar": 339915.20999999996,
+        "shares": 50000.0
+      }
+    ],
+    "issuer_name": "Inspired Entertainment, Inc."
+  },
+  "CARE": {
+    "ticker": "CARE",
+    "buyer_set": [
+      "Walsh Elizabeth L. | Director"
+    ],
+    "total_dollar": 119865.0,
+    "total_shares": 4575.0,
+    "filings": [
+      {
+        "accession": "0001829238-26-000008",
+        "date": "2026-05-07",
+        "person": "Walsh Elizabeth L.",
+        "title": null,
+        "dollar": 119865.0,
+        "shares": 4575.0
+      }
+    ],
+    "issuer_name": "Carter Bankshares, Inc."
+  },
+  "DLTR": {
+    "ticker": "DLTR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "DOLLAR TREE, INC."
+  },
+  "LCID": {
+    "ticker": "LCID",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Lucid Group, Inc."
+  },
+  "PGR": {
+    "ticker": "PGR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "PROGRESSIVE CORP/OH/"
+  },
+  "TT": {
+    "ticker": "TT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Trane Technologies plc"
+  },
+  "DUK": {
+    "ticker": "DUK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Duke Energy CORP"
+  },
+  "KKR": {
+    "ticker": "KKR",
+    "buyer_set": [
+      "BARAKETT TIMOTHY R | Director",
+      "NUTTALL SCOTT C | Co-Chief Executive Officer",
+      "BAE JOSEPH Y | Co-Chief Executive Officer",
+      "Dillon Mary N | Director",
+      "Cohler Matt | Director"
+    ],
+    "total_dollar": 45684632.300000004,
+    "total_shares": 466097.0,
+    "filings": [
+      {
+        "accession": "0001140361-26-008123",
+        "date": "2026-03-05",
+        "person": "BARAKETT TIMOTHY R",
+        "title": null,
+        "dollar": 4723500.0,
+        "shares": 50000.0
+      },
+      {
+        "accession": "0001140361-26-007579",
+        "date": "2026-03-03",
+        "person": "NUTTALL SCOTT C",
+        "title": "Co-Chief Executive Officer",
+        "dollar": 4390500.0,
+        "shares": 50000.0
+      },
+      {
+        "accession": "0001140361-26-007578",
+        "date": "2026-03-03",
+        "person": "BAE JOSEPH Y",
+        "title": "Co-Chief Executive Officer",
+        "dollar": 4428000.0,
+        "shares": 50000.0
+      },
+      {
+        "accession": "0001140361-26-007577",
+        "date": "2026-03-03",
+        "person": "Dillon Mary N",
+        "title": null,
+        "dollar": 2021585.9999999998,
+        "shares": 22225.0
+      },
+      {
+        "accession": "0001140361-26-006058",
+        "date": "2026-02-18",
+        "person": "Cohler Matt",
+        "title": null,
+        "dollar": 4514428.8,
+        "shares": 43872.0
+      },
+      {
+        "accession": "0001140361-26-006056",
+        "date": "2026-02-18",
+        "person": "BAE JOSEPH Y",
+        "title": "Co-Chief Executive Officer",
+        "dollar": 12773530.16,
+        "shares": 125000.0
+      },
+      {
+        "accession": "0001140361-26-006054",
+        "date": "2026-02-18",
+        "person": "NUTTALL SCOTT C",
+        "title": "Co-Chief Executive Officer",
+        "dollar": 12833087.34,
+        "shares": 125000.0
+      }
+    ],
+    "issuer_name": "KKR & Co. Inc."
+  },
+  "JBL": {
+    "ticker": "JBL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "JABIL INC"
+  },
+  "EME": {
+    "ticker": "EME",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "EMCOR Group, Inc."
+  },
+  "PWR": {
+    "ticker": "PWR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "QUANTA SERVICES, INC."
   }
 }
