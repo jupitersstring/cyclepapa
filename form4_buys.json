@@ -8352,5 +8352,201 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "STARBUCKS CORP"
+  },
+  "WMT": {
+    "ticker": "WMT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Walmart Inc."
+  },
+  "TGT": {
+    "ticker": "TGT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "TARGET CORP"
+  },
+  "ULTA": {
+    "ticker": "ULTA",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Ulta Beauty, Inc."
+  },
+  "TPR": {
+    "ticker": "TPR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "TAPESTRY, INC."
+  },
+  "SHAK": {
+    "ticker": "SHAK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Shake Shack Inc."
+  },
+  "HFFG": {
+    "ticker": "HFFG",
+    "buyer_set": [
+      "Lam Dennis | Director",
+      "McGarry Paul E | CFO",
+      "Lin Xi | President and CEO",
+      "Chang Christine | Chief Administrative Officer"
+    ],
+    "total_dollar": 40936.3687,
+    "total_shares": 22967.0,
+    "filings": [
+      {
+        "accession": "0002090078-26-000002",
+        "date": "2026-03-19",
+        "person": "Lam Dennis",
+        "title": null,
+        "dollar": 14548.8,
+        "shares": 8100.0
+      },
+      {
+        "accession": "0001780044-26-000002",
+        "date": "2026-03-18",
+        "person": "McGarry Paul E",
+        "title": "CFO",
+        "dollar": 4400.0,
+        "shares": 2500.0
+      },
+      {
+        "accession": "0001793896-26-000002",
+        "date": "2026-03-18",
+        "person": "Lin Xi",
+        "title": "President and CEO",
+        "dollar": 15027.9687,
+        "shares": 8367.0
+      },
+      {
+        "accession": "0001886874-26-000002",
+        "date": "2026-03-18",
+        "person": "Chang Christine",
+        "title": "Chief Administrative Officer",
+        "dollar": 6959.6,
+        "shares": 4000.0
+      }
+    ],
+    "issuer_name": "HF Foods Group Inc."
+  },
+  "NUE": {
+    "ticker": "NUE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "NUCOR CORP"
+  },
+  "STLD": {
+    "ticker": "STLD",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "STEEL DYNAMICS INC"
+  },
+  "CLF": {
+    "ticker": "CLF",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CLEVELAND-CLIFFS INC."
+  },
+  "MOS": {
+    "ticker": "MOS",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "MOSAIC CO"
+  },
+  "CF": {
+    "ticker": "CF",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CF Industries Holdings, Inc."
+  },
+  "MRK": {
+    "ticker": "MRK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Merck & Co., Inc."
+  },
+  "PFE": {
+    "ticker": "PFE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "PFIZER INC"
+  },
+  "NKE": {
+    "ticker": "NKE",
+    "buyer_set": [
+      "Hill Elliott | PRESIDENT & CEO",
+      "COOK TIMOTHY D | Director",
+      "ROGERS JOHN W JR | Director",
+      "SWAN ROBERT HOLMES | Director"
+    ],
+    "total_dollar": 3734230.030005,
+    "total_shares": 88101.857,
+    "filings": [
+      {
+        "accession": "0000320187-26-000053",
+        "date": "2026-04-22",
+        "person": "Hill Elliott",
+        "title": "PRESIDENT & CEO",
+        "dollar": 1000118.1334500001,
+        "shares": 23660.235
+      },
+      {
+        "accession": "0000320187-26-000051",
+        "date": "2026-04-14",
+        "person": "Hill Elliott",
+        "title": "PRESIDENT & CEO",
+        "dollar": 999999.832275,
+        "shares": 23660.235
+      },
+      {
+        "accession": "0000320187-26-000049",
+        "date": "2026-04-14",
+        "person": "COOK TIMOTHY D",
+        "title": null,
+        "dollar": 1060750.0,
+        "shares": 25000.0
+      },
+      {
+        "accession": "0000320187-26-000045",
+        "date": "2026-04-10",
+        "person": "ROGERS JOHN W JR",
+        "title": null,
+        "dollar": 173360.0,
+        "shares": 4000.0
+      },
+      {
+        "accession": "0000320187-26-000043",
+        "date": "2026-04-08",
+        "person": "SWAN ROBERT HOLMES",
+        "title": null,
+        "dollar": 500002.06428,
+        "shares": 11781.387
+      }
+    ],
+    "issuer_name": "NIKE, Inc."
   }
 }
