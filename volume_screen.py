@@ -150,26 +150,29 @@ def classify(m):
     tags = []
     atr_c = m["atr_compression"]
     bb_c = m["bb_compression"]
-    compressed_loose = (
-        m["range_pct"] < 15
-        or (atr_c is not None and atr_c < 0.85)
-        or (bb_c is not None and bb_c < 0.85)
+    # Count compression hits across three dimensions
+    compression_score = sum([
+        m["range_pct"] < 18,
+        atr_c is not None and atr_c < 0.85,
+        bb_c is not None and bb_c < 0.85,
+    ])
+    # Tight version
+    tight_compression = (
+        m["range_pct"] < 12
+        and ((atr_c is not None and atr_c < 0.80) or (bb_c is not None and bb_c < 0.70))
     )
-    compressed_tight = (
-        m["range_pct"] < 10
-        and (atr_c is not None and atr_c < 0.75)
-    )
-    vol_step_soft = m["vol_stepup"] >= 1.3 and m["bars_above_prior"] >= 5
-    vol_step_strong = m["vol_stepup"] >= 1.5 and m["bars_above_prior"] >= 5
-    price_compressed = -8.0 < m["price_return_pct"] < 8.0
+    vol_step_soft = m["vol_stepup"] >= 1.1 and m["bars_above_prior"] >= 4
+    vol_step_strong = m["vol_stepup"] >= 1.3 and m["bars_above_prior"] >= 5
+    price_compressed_loose = -10.0 < m["price_return_pct"] < 10.0
+    price_compressed_tight = -5.0 < m["price_return_pct"] < 5.0
 
-    if vol_step_soft and compressed_loose and price_compressed:
+    if vol_step_soft and compression_score >= 2 and price_compressed_loose:
         tags.append("COILED")
-    if vol_step_strong and compressed_tight and price_compressed:
+    if vol_step_strong and tight_compression and price_compressed_tight:
         tags.append("COILED_TIGHT")
     if vol_step_strong and m["price_return_pct"] > 8:
         tags.append("BREAKOUT_FIRING")
-    if m["vol_stepup"] >= 2.0 and m["bars_above_prior"] >= 6:
+    if m["vol_stepup"] >= 1.8 and m["bars_above_prior"] >= 6:
         tags.append("STRONG_VOLUME")
     return tags
 
