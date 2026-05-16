@@ -94,32 +94,67 @@ def compute_momentum(df):
         return None
     high = pd.to_numeric(df.loc[close.index, "High"], errors="coerce")
     low = pd.to_numeric(df.loc[close.index, "Low"], errors="coerce")
+    volume = pd.to_numeric(df.loc[close.index, "Volume"], errors="coerce")
     last = float(close.iloc[-1])
-    sma20 = float(close.tail(20).mean())
     sma25 = float(close.tail(25).mean())
-    sma50 = float(close.tail(50).mean())
     sma66 = float(close.tail(66).mean())
     sma126 = float(close.tail(126).mean())
-    if min(sma25, sma66, sma126, sma20, sma50) <= 0:
+    if min(sma25, sma66, sma126) <= 0:
         return None
 
-    # Q's "extension" metrics: how far above the key moving averages.
+    # --- Daily metrics (kept for reference, used for momentum ranks) -------
+    sma20 = float(close.tail(20).mean())
+    sma50 = float(close.tail(50).mean())
     dist_sma20 = (last - sma20) / sma20 * 100
     dist_sma50 = (last - sma50) / sma50 * 100
 
-    # Pullback / base structure
-    high_30d = float(high.tail(30).max())
-    high_60d = float(high.tail(60).max())
-    high_252d = float(high.tail(252).max()) if len(high) >= 252 else float(high.max())
-    pullback_30d = (last - high_30d) / high_30d * 100   # 0 or negative
-    pullback_60d = (last - high_60d) / high_60d * 100
-    pullback_52wk = (last - high_252d) / high_252d * 100
+    # --- Weekly metrics (the proper Q base/extension lens) -----------------
+    df_ohlcv = pd.DataFrame({
+        "Open": pd.to_numeric(df["Open"], errors="coerce") if "Open" in df.columns else close,
+        "High": high, "Low": low, "Close": close, "Volume": volume,
+    }).dropna()
+    weekly = df_ohlcv.resample("W-FRI").agg({
+        "Open": "first", "High": "max", "Low": "min",
+        "Close": "last", "Volume": "sum",
+    }).dropna()
+    if len(weekly) < 30:
+        return None
 
-    # Base tightness
-    range_20d = (float(high.tail(20).max()) - float(low.tail(20).min())) / float(close.tail(20).mean()) * 100
-    range_60d = (float(high.tail(60).max()) - float(low.tail(60).min())) / float(close.tail(60).mean()) * 100
+    wclose = weekly["Close"]
+    whigh = weekly["High"]
+    wlow = weekly["Low"]
+    wvol = weekly["Volume"]
 
-    # Days since 52-week high (calendar days)
+    wma10 = float(wclose.tail(10).mean())
+    wma30 = float(wclose.tail(30).mean())
+    wma40 = float(wclose.tail(40).mean()) if len(wclose) >= 40 else wma30
+    dist_wma10 = (last - wma10) / wma10 * 100
+    dist_wma30 = (last - wma30) / wma30 * 100
+    wma_trend_up = (wma10 > wma30) and (wma30 >= wma40)  # rising structure
+
+    # Weekly-bar range tightness over last N weeks
+    range_4w_w = float((whigh.tail(4).max() - wlow.tail(4).min()) / wclose.tail(4).mean() * 100)
+    range_8w_w = float((whigh.tail(8).max() - wlow.tail(8).min()) / wclose.tail(8).mean() * 100)
+    range_12w_w = float((whigh.tail(12).max() - wlow.tail(12).min()) / wclose.tail(12).mean() * 100)
+
+    # Pullback from weekly highs
+    high_4w_w = float(whigh.tail(4).max())
+    high_8w_w = float(whigh.tail(8).max())
+    high_26w_w = float(whigh.tail(26).max()) if len(whigh) >= 26 else float(whigh.max())
+    pullback_4w_w = (last - high_4w_w) / high_4w_w * 100
+    pullback_8w_w = (last - high_8w_w) / high_8w_w * 100
+
+    # Weeks since the last weekly close registered an 8-week high.
+    # If the high is the current bar (idxmax == last index), this is 0.
+    idx_of_high = whigh.tail(8).idxmax()
+    weeks_since_8w_high = int((whigh.index[-1] - idx_of_high).days // 7)
+
+    # Volume drying: last 4w avg vs prior 13w avg (non-overlapping)
+    vol_4w = float(wvol.tail(4).mean()) if wvol.tail(4).mean() > 0 else 0
+    vol_prior_13w = float(wvol.iloc[-17:-4].mean()) if len(wvol) >= 17 and wvol.iloc[-17:-4].mean() > 0 else 0
+    vol_drying_ratio = vol_4w / vol_prior_13w if vol_prior_13w > 0 else None
+
+    # Days since 52-week high (calendar days), kept for reference
     try:
         days_since_52w_high = int((close.index[-1] - high.tail(252).idxmax()).days)
     except Exception:
@@ -130,14 +165,21 @@ def compute_momentum(df):
         "mom_1m": last / sma25,
         "mom_3m": last / sma66,
         "mom_6m": last / sma126,
+        # daily references
         "dist_sma20_pct": dist_sma20,
         "dist_sma50_pct": dist_sma50,
-        "pullback_30d_pct": pullback_30d,
-        "pullback_60d_pct": pullback_60d,
-        "pullback_52wk_pct": pullback_52wk,
-        "range_20d_pct": range_20d,
-        "range_60d_pct": range_60d,
         "days_since_52w_high": days_since_52w_high,
+        # weekly Q metrics
+        "dist_wma10_pct": float(dist_wma10),
+        "dist_wma30_pct": float(dist_wma30),
+        "wma_trend_up": bool(wma_trend_up),
+        "range_4w_w_pct": range_4w_w,
+        "range_8w_w_pct": range_8w_w,
+        "range_12w_w_pct": range_12w_w,
+        "pullback_4w_w_pct": float(pullback_4w_w),
+        "pullback_8w_w_pct": float(pullback_8w_w),
+        "weeks_since_8w_high": weeks_since_8w_high,
+        "vol_drying_ratio": float(vol_drying_ratio) if vol_drying_ratio is not None else None,
     }
 
 
@@ -197,34 +239,65 @@ def main():
     df["in_all_three"] = df.index.isin(intersection)
     df["in_any"] = df.index.isin(union)
 
-    # Q's "buy off bases, not when extended" filter.
-    #   EXTENDED      : price > 25% above 50dma OR > 12% above 20dma
-    #   NEAR_20DMA    : within +/- 5% of 20dma
-    #   NEAR_50DMA    : within +/- 8% of 50dma
-    #   PULLBACK_OK   : last 30d high was 3-15% above current close (real pullback)
-    #   TIGHT_BASE    : 20d range < 12% of mean close
-    #   BASE_READY    : momentum leader + NOT extended + (NEAR_20DMA or NEAR_50DMA)
-    #                    AND (PULLBACK_OK or TIGHT_BASE)
-    df["extended"] = (df["dist_sma50_pct"] > 25) | (df["dist_sma20_pct"] > 12)
-    df["near_20dma"] = df["dist_sma20_pct"].abs() < 5
-    df["near_50dma"] = df["dist_sma50_pct"].abs() < 8
-    df["pullback_ok"] = (df["pullback_30d_pct"] > -15) & (df["pullback_30d_pct"] < -3)
-    df["tight_base"] = df["range_20d_pct"] < 12
+    # Q's "buy off bases, not extended" filter — WEEKLY-bar logic.
+    # All thresholds reflect what a true multi-week consolidation looks like
+    # rather than a single-week pullback in an aggressive uptrend.
+    #
+    #   EXTENDED_W       : dist_wma30 > 40%  OR  dist_wma10 > 18%
+    #                       (stock has run too far past its weekly trend MAs)
+    #   NEAR_10WMA       : within +/- 7% of the 10-week MA
+    #   TIGHT_BASE_W     : 4-week range < 12%  OR  8-week range < 18%
+    #                       (real consolidation on weekly bars, not a 1w dip)
+    #   PULLBACK_W       : 4-8 week weekly pullback between -3% and -15%
+    #   CONSOLIDATION    : at least 2 weeks since the last 8-week high made
+    #                       (so it has actually paused, not still extending)
+    #   VOL_DRYING       : last 4-week avg vol < prior 13-week avg vol
+    #                       (smart-money accumulation phase looks quiet)
+    #   UPTREND_W        : 10wma > 30wma (Q insists on rising structure)
+    #   BASE_READY       : leader + UPTREND_W + NOT EXTENDED_W +
+    #                       NEAR_10WMA + (TIGHT_BASE_W or PULLBACK_W) +
+    #                       CONSOLIDATION + VOL_DRYING
+    df["extended_w"] = (df["dist_wma30_pct"] > 40) | (df["dist_wma10_pct"] > 18)
+    df["near_10wma"] = df["dist_wma10_pct"].abs() < 7
+    df["tight_base_w"] = (df["range_4w_w_pct"] < 12) | (df["range_8w_w_pct"] < 18)
+    df["pullback_w"] = (
+        ((df["pullback_4w_w_pct"] > -15) & (df["pullback_4w_w_pct"] < -3))
+        | ((df["pullback_8w_w_pct"] > -18) & (df["pullback_8w_w_pct"] < -3))
+    )
+    df["consolidating"] = df["weeks_since_8w_high"] >= 2
+    df["vol_drying"] = df["vol_drying_ratio"].notna() & (df["vol_drying_ratio"] < 1.0)
+    df["uptrend_w"] = df["wma_trend_up"].fillna(False)
 
     is_leader = df["in_top_1m"] | df["in_top_3m"] | df["in_top_6m"]
-    near_ma = df["near_20dma"] | df["near_50dma"]
-    base_structure = df["pullback_ok"] | df["tight_base"]
-    df["base_ready"] = is_leader & (~df["extended"]) & near_ma & base_structure
+    df["base_ready"] = (
+        is_leader
+        & df["uptrend_w"]
+        & (~df["extended_w"])
+        & df["near_10wma"]
+        & (df["tight_base_w"] | df["pullback_w"])
+        & df["consolidating"]
+        & df["vol_drying"]
+    )
+    # Softer "still forming" - missing only one of vol_drying or tight_base
+    df["base_forming"] = (
+        is_leader
+        & df["uptrend_w"]
+        & (~df["extended_w"])
+        & df["near_10wma"]
+        & (df["tight_base_w"] | df["pullback_w"])
+        & df["consolidating"]
+        & (~df["base_ready"])
+    )
 
-    # Composite Q score: average momentum rank (lower=better), penalty for
-    # being extended, bonus for tight base near a moving average.
     df["q_score"] = (
         df["rank_avg"]
-        + df["extended"].astype(int) * 500
-        - df["near_20dma"].astype(int) * 30
-        - df["near_50dma"].astype(int) * 20
-        - df["tight_base"].astype(int) * 25
-        - df["pullback_ok"].astype(int) * 15
+        + df["extended_w"].astype(int) * 500
+        + (~df["uptrend_w"]).astype(int) * 200
+        - df["near_10wma"].astype(int) * 30
+        - df["tight_base_w"].astype(int) * 30
+        - df["pullback_w"].astype(int) * 15
+        - df["vol_drying"].astype(int) * 20
+        - df["consolidating"].astype(int) * 10
     )
 
     flagged = df[df["in_any"]].sort_values("rank_max")
@@ -233,20 +306,30 @@ def main():
     flagged.to_csv(out_path)
     print(f"Saved {len(flagged)} flagged tickers to {out_path}")
 
-    show_cols = ["name", "sector", "last_close", "mom_1m", "mom_3m", "mom_6m",
-                 "rank_1m", "rank_3m", "rank_6m",
-                 "dist_sma20_pct", "dist_sma50_pct", "pullback_30d_pct",
-                 "range_20d_pct", "days_since_52w_high",
-                 "extended", "near_20dma", "near_50dma", "tight_base", "base_ready",
+    show_cols = ["name", "sector", "last_close", "mom_3m", "mom_6m",
+                 "rank_3m", "rank_6m",
+                 "dist_wma10_pct", "dist_wma30_pct", "uptrend_w",
+                 "range_4w_w_pct", "range_8w_w_pct",
+                 "pullback_4w_w_pct", "pullback_8w_w_pct",
+                 "weeks_since_8w_high", "vol_drying_ratio",
+                 "extended_w", "near_10wma", "tight_base_w", "pullback_w",
+                 "consolidating", "vol_drying", "base_ready", "base_forming",
                  "q_score"]
     show_cols = [c for c in show_cols if c in flagged.columns]
 
     base_ready = df[df["base_ready"]].sort_values("q_score")
+    base_forming = df[df["base_forming"]].sort_values("q_score")
 
     with pd.option_context("display.max_columns", None, "display.width", 260, "display.float_format", "{:.2f}".format):
-        print(f"\n=== BASE_READY: leader + NOT extended + near 20/50dma + base/pullback ({len(base_ready)}) ===")
+        print(f"\n=== BASE_READY (weekly): leader + uptrend + NOT EXTENDED_W + near 10wma + base/pullback + consolidating + vol drying ({len(base_ready)}) ===")
         if len(base_ready):
             print(base_ready[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== BASE_FORMING (one criterion shy of BASE_READY, usually vol-drying) ({len(base_forming)}) ===")
+        if len(base_forming):
+            print(base_forming[show_cols].head(args.top).to_string())
         else:
             print("(none)")
 
