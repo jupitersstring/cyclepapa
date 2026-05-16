@@ -107,7 +107,10 @@ def load_or_download_spy(years=3):
                        auto_adjust=True, progress=False)
     if data is None or data.empty:
         return None
-    spy = pd.to_numeric(data["Close"], errors="coerce").dropna()
+    spy_close = data["Close"]
+    if isinstance(spy_close, pd.DataFrame):
+        spy_close = spy_close.iloc[:, 0]
+    spy = pd.to_numeric(spy_close, errors="coerce").dropna()
     try:
         with open(SPY_PICKLE, "wb") as f:
             pickle.dump(spy, f)
