@@ -829,6 +829,96 @@ def edgar_recent_warrant_filers(days: int = 180, limit: int = 200) -> pd.DataFra
     return pd.DataFrame(rows).dropna(subset=["ticker"]).reset_index(drop=True)
 
 
+# ---------- EDGAR strike resolution ----------
+
+_EDGAR_STRIKE_PATTERNS = [
+    re.compile(r"exercise\s+price\s+(?:of|equal\s+to|is)\s+\$?\s?([\d,]+\.\d{1,2})", re.I),
+    re.compile(r"\$\s?([\d,]+\.\d{1,2})\s+per\s+(?:whole\s+)?(?:share|warrant)", re.I),
+    re.compile(r"exercisable\s+(?:for|to\s+purchase)[^.]{0,80}\$\s?([\d,]+\.\d{1,2})", re.I),
+    re.compile(r"strike\s+price[^.]{0,30}\$\s?([\d,]+\.\d{1,2})", re.I),
+]
+
+
+@_cache(ttl=7 * 24 * 3600, show_spinner=False)
+def fetch_recent_filing_text(common_ticker: str,
+                              form_types: tuple = ("S-1", "S-3", "424B5",
+                                                    "8-A12B", "S-1/A", "S-3/A",
+                                                    "8-K"),
+                              max_filings: int = 4,
+                              char_limit: int = 500_000) -> str:
+    """Concatenate (stripped) HTML of the issuer's N most-recent relevant
+    filings, truncated to char_limit. Used to scrape warrant terms.
+    """
+    cik = ticker_to_cik(common_ticker)
+    if not cik:
+        return ""
+    try:
+        sub = requests.get(f"https://data.sec.gov/submissions/CIK{cik}.json",
+                           headers=EDGAR_HEADERS, timeout=20).json()
+    except Exception:
+        return ""
+    rec = sub.get("filings", {}).get("recent", {})
+    if not rec:
+        return ""
+    parts = []
+    pulled = 0
+    for i in range(len(rec.get("form", []))):
+        if pulled >= max_filings:
+            break
+        if rec["form"][i] not in form_types:
+            continue
+        accession = rec["accessionNumber"][i].replace("-", "")
+        primary = rec["primaryDocument"][i]
+        url = (f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/"
+               f"{accession}/{primary}")
+        try:
+            r = requests.get(url, headers=EDGAR_HEADERS, timeout=30)
+            if not r.ok:
+                continue
+            txt = re.sub(r"<[^>]+>", " ", r.text)
+            txt = re.sub(r"\s+", " ", txt)
+            parts.append(txt[:char_limit])
+            pulled += 1
+        except Exception:
+            continue
+    return " ".join(parts)
+
+
+@_cache(ttl=7 * 24 * 3600, show_spinner=False)
+def edgar_resolve_strike(common_ticker: str) -> float | None:
+    """Best-effort exercise price for the issuer's warrants, parsed from
+    recent S-1/S-3/424B5/8-A12B/8-K filings.
+
+    Strategy: pull recent filings, find every mention of 'warrant', take
+    a 240-char window around it, search for a $X.XX pattern. Return the
+    most-frequently-mentioned price (mode) within a sane $0.50-$10000
+    range. The split-adjustment in fair_value_scan() then scales this
+    original-prospectus strike to the current effective strike.
+
+    Returns None if no confident match.
+    """
+    text = fetch_recent_filing_text(common_ticker)
+    if not text or len(text) < 1000:
+        return None
+    matches = []
+    for m in re.finditer(r"\bwarrants?\b", text, re.I):
+        window = text[max(0, m.start() - 60): m.end() + 240]
+        for pat in _EDGAR_STRIKE_PATTERNS:
+            sm = pat.search(window)
+            if sm:
+                try:
+                    strike = float(sm.group(1).replace(",", ""))
+                    if 0.50 <= strike <= 10000:
+                        matches.append(round(strike, 2))
+                except ValueError:
+                    pass
+                break
+    if not matches:
+        return None
+    from collections import Counter
+    return Counter(matches).most_common(1)[0][0]
+
+
 # ---------- option vs. warrant parity (the GME case) ----------
 
 def _fetch_last_close(ticker: str, sentinel_ticker: str | None = None) -> float | None:
@@ -1030,6 +1120,7 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
                     sigma_floor: float = 0.30,
                     sigma_cap: float = 2.00,
                     use_parsed_terms: bool = True,
+                    resolve_edgar: bool = False,
                     min_avg_dollar_vol: float = 0.0,
                     min_days_traded_5d: int = 0) -> pd.DataFrame:
     """For each (common, warrant) pair, compute the model-implied fair
@@ -1090,18 +1181,34 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
         sigma = min(s1, s3) if np.isfinite(s3) else s1
         sigma = max(sigma_floor, min(sigma, sigma_cap))
         strike_used, ratio_used = strike, 1.0
+        strike_source = "default"
         if use_parsed_terms:
             tt = parse_warrant_terms(r_.get("security_name", ""))
             if tt["strike"] is not None:
                 strike_used = tt["strike"]
+                strike_source = "listing"
             ratio_used = tt["ratio"]
-        # CRITICAL: adjust strike for any reverse/forward splits in the
-        # common. A 1-for-10 RS takes a $11.50 strike to $115 — without
-        # this adjustment, the screen falsely flags post-RS warrants as
-        # deep discounts when they're actually deeply OTM and worthless.
-        # E.g. XBP (1-for-10), SEAT (1-for-20), PIII (1-for-50).
+        # EDGAR scrape (opt-in, slow on first run, cached after).
+        # When EDGAR resolves a strike, treat it as the CURRENT effective
+        # strike and skip split adjustment (filings often already show
+        # the post-adjustment value). Otherwise apply split adjustment
+        # to the default/listing strike.
+        edgar_strike = None
+        if resolve_edgar:
+            try:
+                edgar_strike = edgar_resolve_strike(r_["common"])
+            except Exception:
+                edgar_strike = None
         strike_raw = strike_used
-        strike_used, split_f = adjust_strike_for_splits(r_["common"], strike_used)
+        if edgar_strike is not None:
+            strike_used = edgar_strike
+            split_f = 1.0
+            strike_source = "edgar"
+        else:
+            strike_used, split_f = adjust_strike_for_splits(r_["common"],
+                                                             strike_used)
+            if split_f != 1.0:
+                strike_source = f"{strike_source}+split_adj"
         bs = bs_call(cpx, strike_used, T_years, r, sigma) * ratio_used
         if bs < min_warrant_px:
             continue
@@ -1122,6 +1229,7 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
             "strike_raw": strike_raw,
             "split_factor": split_f,
             "strike_used": strike_used, "ratio_used": ratio_used,
+            "strike_source": strike_source,
             "moneyness": moneyness,
             "sigma_1y": s1, "sigma_3m": s3 if np.isfinite(s3) else None,
             "sigma_used": sigma,
@@ -1434,11 +1542,13 @@ def _cmd_opportunities(args):
         print(f"Using {args.pairs}: {len(pairs)} pairs")
     print(f"BS fair-value scan ({args.period} vol window, "
           f"K=${args.strike}, T={args.T}y, div={args.dilution}, "
-          f"min_dvol=${args.min_dvol:,.0f}, min_days_traded={args.min_days_traded}/5)...")
+          f"min_dvol=${args.min_dvol:,.0f}, min_days_traded={args.min_days_traded}/5, "
+          f"resolve_edgar={args.resolve_edgar})...")
     fair = fair_value_scan(pairs, period=args.period, strike=args.strike,
                            T_years=args.T, r=args.r, dilution=args.dilution,
                            min_avg_dollar_vol=args.min_dvol,
-                           min_days_traded_5d=args.min_days_traded)
+                           min_days_traded_5d=args.min_days_traded,
+                           resolve_edgar=args.resolve_edgar)
     print(f"  computable + tradeable: {len(fair)} pairs")
     ranked = rank_discount_quality_inflection(
         fair, gap_threshold=args.gap, max_moneyness=args.money,
@@ -1447,7 +1557,7 @@ def _cmd_opportunities(args):
     print(f"\n== Top {min(args.top, len(ranked))} opportunities "
           f"(discount × quality × positive inflection) ==")
     cols = [c for c in ["common", "warrant", "warrant_px", "common_px",
-                        "strike_used", "moneyness", "gap_pct",
+                        "strike_used", "strike_source", "moneyness", "gap_pct",
                         "warrant_5d_avg_dvol", "warrant_days_traded_5d",
                         "revenueGrowth", "quality", "inflection", "composite"]
             if c in ranked.columns]
@@ -1546,6 +1656,10 @@ def cli():
     s.add_argument("--score-n", type=int, default=60,
                   help="Max names to pull fundamentals for.")
     s.add_argument("--top", type=int, default=15)
+    s.add_argument("--resolve-edgar", action="store_true",
+                  help="Resolve each pair's strike from EDGAR (S-1/S-3/424B5/8-A12B). "
+                  "Slow on first run (~1s/name), cached after. Without this, "
+                  "uses --strike default and split-adjusts.")
     s.add_argument("--min-dvol", type=float, default=0.0,
                   help="Optional: drop pairs below this 5-day avg dollar volume. "
                   "Default 0 (off) — yfinance volume is incomplete for many "
