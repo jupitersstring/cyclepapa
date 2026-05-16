@@ -257,13 +257,13 @@ def main():
             print("(none)")
 
         print(f"\n=== Top {args.top} by 1-month momentum (c/avgc25) ===")
-        print(top_1m[show_cols].to_string())
+        print(df.loc[top_1m.index][show_cols].to_string())
 
         print(f"\n=== Top {args.top} by 3-month momentum (c/avgc66) ===")
-        print(top_3m[show_cols].to_string())
+        print(df.loc[top_3m.index][show_cols].to_string())
 
         print(f"\n=== Top {args.top} by 6-month momentum (c/avgc126) ===")
-        print(top_6m[show_cols].to_string())
+        print(df.loc[top_6m.index][show_cols].to_string())
 
 
 if __name__ == "__main__":
