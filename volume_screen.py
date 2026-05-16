@@ -1,39 +1,43 @@
 """
-Volume + compression screen for failed-bearish-setup candidates.
+Volume step-up + price-compression screen for failed-bearish-setup candidates.
 
-The intuition: stealth accumulation. Buyers step in - so volume rises against
-the immediately prior, NON-OVERLAPPING period - but they do not move price,
-so the bar is compressed (tight range, low ATR%, narrow Bollinger bands).
-When the squeeze releases, breakout tends to follow the accumulation.
+The intuition: stealth accumulation. Volume rises against the immediately
+prior, NON-OVERLAPPING period (recent N vs prior N) while price stays
+compressed (tight range, low ATR%, narrow Bollinger bands). When the
+squeeze releases, breakout tends to follow the accumulation.
 
-Metrics (weekly bars unless --timeframe monthly):
+Multiple lookbacks are run in parallel so we catch both fresh (last 2-4
+weeks) and matured (last 8 weeks) accumulation:
 
-  vol_stepup        = mean(last N) / mean(prior N)            (N=8 by default)
-  bars_above_prior  = count of last N bars where vol > mean(prior N)
-  range_pct         = (max(high)-min(low)) / mean(close) over last N bars
-  atr_pct           = ATR(14) / last close, in pct
-  atr_compression   = atr_pct / median atr_pct over last 52 bars   (<1 tight)
-  bb_compression    = current BB(20) width / median BB width 52    (<1 tight)
-  price_return_pct  = (last close / close at -N) - 1, in pct
+  N=2   - last 2 weeks vs prior 2 weeks       (fast / fresh)
+  N=3   - last 3 weeks vs prior 3 weeks
+  N=4   - last 4 weeks vs prior 4 weeks       (intermediate)
+  N=8   - last 8 weeks vs prior 8 weeks       (matured, conviction)
 
-Tags:
-  COILED            - vol_stepup >= 1.3 AND bars_above_prior >= 5
-                       AND any of (range_pct < 15, atr_compression < 0.85,
-                                   bb_compression < 0.85)
-                       AND price_return between -8% and +8%  (price compressed)
-  COILED_TIGHT      - the strict version: vol_stepup >= 1.5, bars >= 6,
-                       range_pct < 10, atr_compression < 0.75
-  BREAKOUT_FIRING   - vol_stepup >= 1.5 AND bars_above_prior >= 5
-                       AND price_return_pct > 8 (volume confirms a move
-                       already in progress; not "early" but still actionable)
-  STRONG_VOLUME     - vol_stepup >= 2.0 AND bars_above_prior >= 6
-                       (heavy sustained volume, regardless of price action)
+For each N we compute:
+  vol_stepup_Nw        mean(last N) / mean(prior N)
+  bars_above_Nw        count of last N bars where vol > mean(prior N)
+  range_pct_Nw         (max(high)-min(low))/mean(close) over last N bars
+  price_return_Nw      (last close / close at -N) - 1, in pct
+
+Shared (lookback-independent) compression:
+  atr_pct              ATR(14) / last close, in pct
+  atr_compression      atr_pct / median atr_pct over 52 bars      (<1 tight)
+  bb_compression       BB(20) width now / median BB width 52      (<1 tight)
+
+Tags are emitted per lookback so you can see which timeframe triggered:
+
+  COILED@Nw          - vol_stepup >= 1.1, >50% bars above prior,
+                        2+ of {range, atr, bb} compressed, price flat (+/-10%)
+  COILED_TIGHT@Nw    - stricter: vol_stepup >= 1.3, range tight for N,
+                        ATR or BB strongly compressed, price within +/-5%
+  BREAKOUT_FIRING@Nw - vol_stepup >= 1.3 AND price up > 8% over the lookback
+  STRONG_VOLUME@Nw   - vol_stepup >= 1.8 AND >=75% bars above prior
 """
 
 import argparse
 import os
 import pickle
-import sys
 import time
 
 import numpy as np
@@ -42,6 +46,10 @@ import yfinance as yf
 
 
 PICKLE_TMPL = "/tmp/cyclepapa_dl_{universe}_{timeframe}_{years}y.pkl"
+LOOKBACKS = (2, 3, 4, 8)
+# Range thresholds scale with lookback length
+RANGE_LOOSE = {2: 6, 3: 8, 4: 10, 8: 18}
+RANGE_TIGHT = {2: 4, 3: 6, 4: 7, 8: 12}
 
 
 def load_pickle_frames(universe, timeframe, years):
@@ -89,8 +97,8 @@ def true_range(high, low, close_prev):
     )
 
 
-def compute_metrics(df, recent_n=8, prior_n=8, atr_period=14, bb_period=20, hist_window=52):
-    needed = max(recent_n + prior_n, atr_period + hist_window + 1, bb_period + hist_window)
+def compute_metrics(df, lookbacks=LOOKBACKS, atr_period=14, bb_period=20, hist_window=52):
+    needed = max(max(lookbacks) * 2, atr_period + hist_window + 1, bb_period + hist_window)
     if len(df) < needed:
         return None
     high = pd.to_numeric(df["High"], errors="coerce").astype(float).values
@@ -100,86 +108,85 @@ def compute_metrics(df, recent_n=8, prior_n=8, atr_period=14, bb_period=20, hist
     if np.any(np.isnan(close[-needed:])) or np.any(np.isnan(vol[-needed:])):
         return None
 
-    # Volume step-up: non-overlapping windows
-    recent_vol = vol[-recent_n:]
-    prior_vol = vol[-(recent_n + prior_n):-recent_n]
-    if recent_vol.mean() == 0 or prior_vol.mean() == 0:
-        return None
-    vol_stepup = recent_vol.mean() / prior_vol.mean()
-    bars_above_prior = int((recent_vol > prior_vol.mean()).sum())
-
-    # Range over last N bars
-    recent_high = high[-recent_n:].max()
-    recent_low = low[-recent_n:].min()
-    recent_mean_close = close[-recent_n:].mean()
-    range_pct = (recent_high - recent_low) / recent_mean_close * 100
-
-    # ATR(14) series in pct of close
+    # Shared compression metrics
     tr = true_range(high[1:], low[1:], close[:-1])
     atr_series = pd.Series(tr).rolling(atr_period).mean().values
     atr_pct_series = atr_series / close[1:] * 100
     atr_pct_now = atr_pct_series[-1]
-    atr_pct_window = atr_pct_series[-hist_window:]
-    atr_pct_median = np.nanmedian(atr_pct_window)
-    atr_compression = atr_pct_now / atr_pct_median if atr_pct_median and not np.isnan(atr_pct_median) else np.nan
+    atr_pct_median = np.nanmedian(atr_pct_series[-hist_window:])
+    atr_compression = atr_pct_now / atr_pct_median if atr_pct_median and not np.isnan(atr_pct_median) else None
 
-    # Bollinger Band width
     close_s = pd.Series(close)
     bb_mean = close_s.rolling(bb_period).mean()
     bb_std = close_s.rolling(bb_period).std()
-    bb_width_pct = (4 * bb_std / bb_mean) * 100  # +/-2 sigma band width as %
+    bb_width_pct = (4 * bb_std / bb_mean) * 100
     bb_now = bb_width_pct.iloc[-1]
     bb_median = bb_width_pct.iloc[-hist_window:].median()
-    bb_compression = (bb_now / bb_median) if bb_median and not np.isnan(bb_median) else np.nan
+    bb_compression = (bb_now / bb_median) if bb_median and not np.isnan(bb_median) else None
 
-    price_return_pct = (close[-1] / close[-recent_n] - 1) * 100
-
-    return {
-        "vol_stepup": float(vol_stepup),
-        "bars_above_prior": bars_above_prior,
-        "range_pct": float(range_pct),
+    out = {
         "atr_pct": float(atr_pct_now),
-        "atr_compression": float(atr_compression) if not np.isnan(atr_compression) else None,
-        "bb_compression": float(bb_compression) if not np.isnan(bb_compression) else None,
-        "price_return_pct": float(price_return_pct),
+        "atr_compression": float(atr_compression) if atr_compression is not None else None,
+        "bb_compression": float(bb_compression) if bb_compression is not None else None,
         "last_close": float(close[-1]),
     }
 
+    for N in lookbacks:
+        recent_vol = vol[-N:]
+        prior_vol = vol[-(2 * N):-N]
+        if recent_vol.mean() == 0 or prior_vol.mean() == 0:
+            continue
+        recent_high = high[-N:].max()
+        recent_low = low[-N:].min()
+        recent_mean_close = close[-N:].mean()
+        out[f"vol_stepup_{N}w"] = float(recent_vol.mean() / prior_vol.mean())
+        out[f"bars_above_{N}w"] = int((recent_vol > prior_vol.mean()).sum())
+        out[f"range_pct_{N}w"] = float((recent_high - recent_low) / recent_mean_close * 100)
+        out[f"price_return_{N}w"] = float((close[-1] / close[-N] - 1) * 100)
 
-def classify(m):
+    return out
+
+
+def classify(m, lookbacks=LOOKBACKS):
     tags = []
-    atr_c = m["atr_compression"]
-    bb_c = m["bb_compression"]
-    # Count compression hits across three dimensions
-    compression_score = sum([
-        m["range_pct"] < 18,
-        atr_c is not None and atr_c < 0.85,
-        bb_c is not None and bb_c < 0.85,
-    ])
-    # Tight version
-    tight_compression = (
-        m["range_pct"] < 12
-        and ((atr_c is not None and atr_c < 0.80) or (bb_c is not None and bb_c < 0.70))
-    )
-    vol_step_soft = m["vol_stepup"] >= 1.1 and m["bars_above_prior"] >= 4
-    vol_step_strong = m["vol_stepup"] >= 1.3 and m["bars_above_prior"] >= 5
-    price_compressed_loose = -10.0 < m["price_return_pct"] < 10.0
-    price_compressed_tight = -5.0 < m["price_return_pct"] < 5.0
+    atr_c = m.get("atr_compression")
+    bb_c = m.get("bb_compression")
+    for N in lookbacks:
+        vol_stepup = m.get(f"vol_stepup_{N}w")
+        bars_above = m.get(f"bars_above_{N}w")
+        range_pct = m.get(f"range_pct_{N}w")
+        price_return = m.get(f"price_return_{N}w")
+        if vol_stepup is None:
+            continue
+        bars_threshold = (N + 1) // 2  # >=50% of bars above prior mean
+        compression_score = sum([
+            range_pct < RANGE_LOOSE[N],
+            atr_c is not None and atr_c < 0.85,
+            bb_c is not None and bb_c < 0.85,
+        ])
+        tight_compression = (
+            range_pct < RANGE_TIGHT[N]
+            and ((atr_c is not None and atr_c < 0.80) or (bb_c is not None and bb_c < 0.70))
+        )
+        vol_step_soft = vol_stepup >= 1.1 and bars_above >= bars_threshold
+        vol_step_strong = vol_stepup >= 1.3 and bars_above >= bars_threshold
+        flat_loose = -10.0 < price_return < 10.0
+        flat_tight = -5.0 < price_return < 5.0
 
-    if vol_step_soft and compression_score >= 2 and price_compressed_loose:
-        tags.append("COILED")
-    if vol_step_strong and tight_compression and price_compressed_tight:
-        tags.append("COILED_TIGHT")
-    if vol_step_strong and m["price_return_pct"] > 8:
-        tags.append("BREAKOUT_FIRING")
-    if m["vol_stepup"] >= 1.8 and m["bars_above_prior"] >= 6:
-        tags.append("STRONG_VOLUME")
+        if vol_step_soft and compression_score >= 2 and flat_loose:
+            tags.append(f"COILED@{N}w")
+        if vol_step_strong and tight_compression and flat_tight:
+            tags.append(f"COILED_TIGHT@{N}w")
+        if vol_step_strong and price_return > 8:
+            tags.append(f"BREAKOUT_FIRING@{N}w")
+        if vol_stepup >= 1.8 and bars_above >= max(2, int(0.75 * N)):
+            tags.append(f"STRONG_VOLUME@{N}w")
     return tags
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("input_csv", help="Quality-filtered CSV from scan_failed_bearish.py")
+    parser.add_argument("input_csv")
     parser.add_argument("--universe", default=None,
                         help="Universe key for checkpoint pickle (e.g. de-all, us-midlarge).")
     parser.add_argument("--timeframe", default="weekly")
@@ -224,28 +231,29 @@ def main():
     merged.to_csv(out_path)
     print(f"Saved: {out_path}")
 
-    show_cols = [
-        "shortName", "sector", "priceToBook", "enterpriseToEbitda",
-        "returnOnEquity", "vol_stepup", "bars_above_prior",
-        "range_pct", "atr_compression", "bb_compression",
-        "price_return_pct", "failure_date", "pct_from_failure", "score",
-    ]
-    show_cols = [c for c in show_cols if c in merged.columns]
+    def show_tag(prefix):
+        sub = merged[merged["tags"].fillna("").str.contains(prefix, regex=False)]
+        if len(sub) == 0:
+            print(f"\n=== {prefix} (0) ===\n(none)")
+            return
+        cols = ["shortName", "sector", "priceToBook", "returnOnEquity",
+                "atr_compression", "bb_compression"]
+        # add the lookback-specific columns that triggered
+        for N in LOOKBACKS:
+            for col in (f"vol_stepup_{N}w", f"range_pct_{N}w", f"price_return_{N}w"):
+                if col in sub.columns:
+                    cols.append(col)
+        cols += ["failure_date", "pct_from_failure", "score", "tags"]
+        cols = [c for c in cols if c in sub.columns]
+        print(f"\n=== {prefix} ({len(sub)}) ===")
+        sort_col = "score" if "score" in sub.columns else "vol_stepup_2w"
+        print(sub.sort_values(sort_col, ascending=False)[cols].to_string())
 
-    def show(tag):
-        sub = merged[merged["tags"].fillna("").str.contains(tag)]
-        print(f"\n=== {tag} ({len(sub)}) ===")
-        if len(sub):
-            sort_col = "score" if "score" in sub.columns else "vol_stepup"
-            print(sub.sort_values(sort_col, ascending=False)[show_cols].to_string())
-        else:
-            print("(none)")
-
-    with pd.option_context("display.max_columns", None, "display.width", 240, "display.float_format", "{:.2f}".format):
-        show("COILED_TIGHT")
-        show("COILED")
-        show("BREAKOUT_FIRING")
-        show("STRONG_VOLUME")
+    with pd.option_context("display.max_columns", None, "display.width", 260, "display.float_format", "{:.2f}".format):
+        show_tag("COILED_TIGHT")
+        show_tag("COILED@")  # excludes COILED_TIGHT
+        show_tag("BREAKOUT_FIRING")
+        show_tag("STRONG_VOLUME")
 
 
 if __name__ == "__main__":
