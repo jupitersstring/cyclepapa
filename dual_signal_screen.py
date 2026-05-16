@@ -387,7 +387,7 @@ def main() -> int:
         ds, ds_reasons = dual_signal(ins, bb.get("buyback_musd"), mc)
         ui, ui_reasons = u_index(ph, p_b, mc)
 
-        composite = 0.40 * cs + 0.35 * ds + 0.25 * ui
+        composite = 0.30 * cs + 0.50 * ds + 0.20 * ui
         if composite < args.min_composite:
             continue
 
