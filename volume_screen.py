@@ -97,6 +97,49 @@ def true_range(high, low, close_prev):
     )
 
 
+def compute_poc(df, lookback=52, bins=50):
+    """Volume profile over last `lookback` bars; returns POC price and
+    current close distance to it. Each bar's volume is distributed across
+    its high-low range in proportion to overlap with each price bin."""
+    if len(df) < lookback:
+        return None
+    sub = df.iloc[-lookback:]
+    high = pd.to_numeric(sub["High"], errors="coerce").astype(float).values
+    low = pd.to_numeric(sub["Low"], errors="coerce").astype(float).values
+    close = pd.to_numeric(sub["Close"], errors="coerce").astype(float).values
+    vol = pd.to_numeric(sub["Volume"], errors="coerce").astype(float).values
+    if np.any(np.isnan(high)) or np.any(np.isnan(vol)):
+        return None
+    lo, hi = low.min(), high.max()
+    if hi <= lo:
+        return None
+    edges = np.linspace(lo, hi, bins + 1)
+    centers = (edges[:-1] + edges[1:]) / 2
+    bin_vol = np.zeros(bins)
+    bar_range = high - low
+    for b in range(bins):
+        e_lo, e_hi = edges[b], edges[b + 1]
+        overlap_lo = np.maximum(low, e_lo)
+        overlap_hi = np.minimum(high, e_hi)
+        overlap = np.clip(overlap_hi - overlap_lo, 0, None)
+        # avoid divide-by-zero on zero-range bars
+        frac = np.where(bar_range > 0, overlap / np.where(bar_range > 0, bar_range, 1), 0)
+        # zero-range bars dump full volume in the bin containing the close
+        zero_mask = bar_range == 0
+        if zero_mask.any():
+            in_bin = (close[zero_mask] >= e_lo) & (close[zero_mask] < e_hi)
+            frac = np.where(zero_mask, in_bin.astype(float), frac)
+        bin_vol[b] += np.sum(vol * frac)
+    poc_idx = int(np.argmax(bin_vol))
+    poc_price = float(centers[poc_idx])
+    current = float(close[-1])
+    return {
+        "poc": poc_price,
+        "poc_distance_pct": (current - poc_price) / poc_price * 100,
+        "poc_volume_share": float(bin_vol[poc_idx] / bin_vol.sum()) if bin_vol.sum() > 0 else 0.0,
+    }
+
+
 def compute_metrics(df, lookbacks=LOOKBACKS, atr_period=14, bb_period=20, hist_window=52):
     needed = max(max(lookbacks) * 2, atr_period + hist_window + 1, bb_period + hist_window)
     if len(df) < needed:
@@ -144,6 +187,12 @@ def compute_metrics(df, lookbacks=LOOKBACKS, atr_period=14, bb_period=20, hist_w
         out[f"range_pct_{N}w"] = float((recent_high - recent_low) / recent_mean_close * 100)
         out[f"price_return_{N}w"] = float((close[-1] / close[-N] - 1) * 100)
 
+    poc = compute_poc(df, lookback=52, bins=50)
+    if poc:
+        out["poc"] = poc["poc"]
+        out["poc_distance_pct"] = poc["poc_distance_pct"]
+        out["poc_volume_share"] = poc["poc_volume_share"]
+
     return out
 
 
@@ -181,6 +230,9 @@ def classify(m, lookbacks=LOOKBACKS):
             tags.append(f"BREAKOUT_FIRING@{N}w")
         if vol_stepup >= 1.8 and bars_above >= max(2, int(0.75 * N)):
             tags.append(f"STRONG_VOLUME@{N}w")
+    poc_dist = m.get("poc_distance_pct")
+    if poc_dist is not None and abs(poc_dist) < 3:
+        tags.append("NEAR_POC")
     return tags
 
 
