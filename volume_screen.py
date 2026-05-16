@@ -278,6 +278,10 @@ def main():
         return
 
     vol_df = pd.DataFrame(rows).set_index("Ticker")
+    # avoid column collisions if the input CSV already has some of these
+    overlap = [c for c in vol_df.columns if c in df.columns]
+    if overlap:
+        df = df.drop(columns=overlap)
     merged = df.join(vol_df, how="left")
     out_path = args.out or args.input_csv.replace(".csv", "_volume.csv")
     merged.to_csv(out_path)
