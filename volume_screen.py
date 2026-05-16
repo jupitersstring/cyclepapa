@@ -122,12 +122,12 @@ def compute_poc(df, lookback=52, bins=50):
         overlap_lo = np.maximum(low, e_lo)
         overlap_hi = np.minimum(high, e_hi)
         overlap = np.clip(overlap_hi - overlap_lo, 0, None)
-        # avoid divide-by-zero on zero-range bars
-        frac = np.where(bar_range > 0, overlap / np.where(bar_range > 0, bar_range, 1), 0)
-        # zero-range bars dump full volume in the bin containing the close
+        safe_range = np.where(bar_range > 0, bar_range, 1)
+        frac = np.where(bar_range > 0, overlap / safe_range, 0.0)
+        # Zero-range bars (high==low): dump full volume in the bin containing close
         zero_mask = bar_range == 0
         if zero_mask.any():
-            in_bin = (close[zero_mask] >= e_lo) & (close[zero_mask] < e_hi)
+            in_bin = (close >= e_lo) & (close < e_hi)
             frac = np.where(zero_mask, in_bin.astype(float), frac)
         bin_vol[b] += np.sum(vol * frac)
     poc_idx = int(np.argmax(bin_vol))
