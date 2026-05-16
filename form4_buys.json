@@ -6944,5 +6944,101 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "TARGET CORP"
+  },
+  "ULTA": {
+    "ticker": "ULTA",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Ulta Beauty, Inc."
+  },
+  "TPR": {
+    "ticker": "TPR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "TAPESTRY, INC."
+  },
+  "SHAK": {
+    "ticker": "SHAK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Shake Shack Inc."
+  },
+  "HFFG": {
+    "ticker": "HFFG",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "HF Foods Group Inc."
+  },
+  "NUE": {
+    "ticker": "NUE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "NUCOR CORP"
+  },
+  "STLD": {
+    "ticker": "STLD",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "STEEL DYNAMICS INC"
+  },
+  "CLF": {
+    "ticker": "CLF",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CLEVELAND-CLIFFS INC."
+  },
+  "CF": {
+    "ticker": "CF",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CF Industries Holdings, Inc."
+  },
+  "MRK": {
+    "ticker": "MRK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Merck & Co., Inc."
+  },
+  "PFE": {
+    "ticker": "PFE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "PFIZER INC"
+  },
+  "NKE": {
+    "ticker": "NKE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "NIKE, Inc."
+  },
+  "LULU": {
+    "ticker": "LULU",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "lululemon athletica inc."
   }
 }
