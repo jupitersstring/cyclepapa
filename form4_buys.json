@@ -6792,5 +6792,157 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "Lucid Group, Inc."
+  },
+  "PGR": {
+    "ticker": "PGR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "PROGRESSIVE CORP/OH/"
+  },
+  "TT": {
+    "ticker": "TT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Trane Technologies plc"
+  },
+  "DUK": {
+    "ticker": "DUK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Duke Energy CORP"
+  },
+  "KKR": {
+    "ticker": "KKR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "KKR & Co. Inc."
+  },
+  "JBL": {
+    "ticker": "JBL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "JABIL INC"
+  },
+  "EME": {
+    "ticker": "EME",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "EMCOR Group, Inc."
+  },
+  "PWR": {
+    "ticker": "PWR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "QUANTA SERVICES, INC."
+  },
+  "MCO": {
+    "ticker": "MCO",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "MOODYS CORP /DE/"
+  },
+  "WST": {
+    "ticker": "WST",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "WEST PHARMACEUTICAL SERVICES INC"
+  },
+  "TJX": {
+    "ticker": "TJX",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "TJX COMPANIES INC /DE/"
+  },
+  "VRT": {
+    "ticker": "VRT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Vertiv Holdings Co"
+  },
+  "PAY": {
+    "ticker": "PAY",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Paymentus Holdings, Inc."
+  },
+  "TXRH": {
+    "ticker": "TXRH",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Texas Roadhouse, Inc."
+  },
+  "ODFL": {
+    "ticker": "ODFL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "OLD DOMINION FREIGHT LINE, INC."
+  },
+  "CTAS": {
+    "ticker": "CTAS",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CINTAS CORP"
+  },
+  "MSCI": {
+    "ticker": "MSCI",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "MSCI Inc."
+  },
+  "SBUX": {
+    "ticker": "SBUX",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "STARBUCKS CORP"
+  },
+  "WMT": {
+    "ticker": "WMT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Walmart Inc."
+  },
+  "TGT": {
+    "ticker": "TGT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "TARGET CORP"
   }
 }
