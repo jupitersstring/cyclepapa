@@ -1135,10 +1135,11 @@
     "issuer_name": "Texas Pacific Land Corp",
     "issuer_cik": "0001811074",
     "buyer_set": [
-      "HORIZON KINETICS ASSET MANAGEMENT LLC | 10%"
+      "HORIZON KINETICS ASSET MANAGEMENT LLC | 10%",
+      "EPPS DONNA E | Director"
     ],
-    "total_dollar": 1160.02,
-    "total_shares": 3.0,
+    "total_dollar": 486458.91000000003,
+    "total_shares": 958.0,
     "filings": [
       {
         "accession": "0001437749-26-017281",
@@ -1162,6 +1163,470 @@
         "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
         "title": null,
         "dollar": 393.71,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-015887",
+        "date": "2026-05-08",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 401.32,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-015658",
+        "date": "2026-05-07",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 419.02,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-015059",
+        "date": "2026-05-06",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 432.71,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-014777",
+        "date": "2026-05-05",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 438.69,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-014611",
+        "date": "2026-05-04",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 433.13,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-014356",
+        "date": "2026-05-01",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 436.8,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-014049",
+        "date": "2026-04-30",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 435.76,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-013772",
+        "date": "2026-04-29",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 435.73,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-013591",
+        "date": "2026-04-28",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 436.44,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-013404",
+        "date": "2026-04-27",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 435.4,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-013258",
+        "date": "2026-04-24",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 436.73,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-013115",
+        "date": "2026-04-23",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 437.87,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012989",
+        "date": "2026-04-22",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 441.84,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012894",
+        "date": "2026-04-21",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 427.65,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012789",
+        "date": "2026-04-20",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 419.94,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012652",
+        "date": "2026-04-17",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 424.47,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012532",
+        "date": "2026-04-16",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 419.26,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012326",
+        "date": "2026-04-15",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 413.96,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012212",
+        "date": "2026-04-14",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 414.88,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012106",
+        "date": "2026-04-13",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 407.06,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-012037",
+        "date": "2026-04-10",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 401.64,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-011877",
+        "date": "2026-04-09",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 1347.0,
+        "shares": 3.0
+      },
+      {
+        "accession": "0001437749-26-011865",
+        "date": "2026-04-09",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 447.12,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-011574",
+        "date": "2026-04-07",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 443.42,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-011355",
+        "date": "2026-04-06",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 443.26,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-011053",
+        "date": "2026-04-02",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 454.04,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-010837",
+        "date": "2026-04-01",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 470.18,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-010558",
+        "date": "2026-03-31",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 494.25,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-010291",
+        "date": "2026-03-30",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 1044.3400000000001,
+        "shares": 2.0
+      },
+      {
+        "accession": "0001437749-26-009926",
+        "date": "2026-03-26",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 538.37,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-009772",
+        "date": "2026-03-25",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 534.94,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-009551",
+        "date": "2026-03-24",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 529.07,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-009339",
+        "date": "2026-03-23",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 533.81,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-009167",
+        "date": "2026-03-20",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 527.28,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-008973",
+        "date": "2026-03-19",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 531.96,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-008791",
+        "date": "2026-03-18",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 525.47,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-008527",
+        "date": "2026-03-17",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 524.58,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-008358",
+        "date": "2026-03-16",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 529.1,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-008086",
+        "date": "2026-03-13",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 532.02,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-007863",
+        "date": "2026-03-12",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 523.28,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-007656",
+        "date": "2026-03-11",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 526.83,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-007459",
+        "date": "2026-03-10",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 527.22,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-007293",
+        "date": "2026-03-09",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 526.43,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-007155",
+        "date": "2026-03-06",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 529.46,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-007050",
+        "date": "2026-03-05",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 530.21,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-006871",
+        "date": "2026-03-04",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 522.34,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-006541",
+        "date": "2026-03-03",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 524.01,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-006296",
+        "date": "2026-03-02",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 517.29,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-006026",
+        "date": "2026-02-27",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 507.39,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001104659-26-021089",
+        "date": "2026-02-27",
+        "person": "EPPS DONNA E",
+        "title": null,
+        "dollar": 456852.75,
+        "shares": 895.0
+      },
+      {
+        "accession": "0001437749-26-005774",
+        "date": "2026-02-26",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 510.65,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-005485",
+        "date": "2026-02-25",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 520.15,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-005214",
+        "date": "2026-02-24",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 519.85,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-005026",
+        "date": "2026-02-23",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 504.28,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-004817",
+        "date": "2026-02-20",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 469.18,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-004666",
+        "date": "2026-02-19",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 435.13,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-004480",
+        "date": "2026-02-18",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 425.55,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-004273",
+        "date": "2026-02-17",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 426.38,
         "shares": 1.0
       }
     ]
@@ -7787,5 +8252,105 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "QUANTA SERVICES, INC."
+  },
+  "MCO": {
+    "ticker": "MCO",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "MOODYS CORP /DE/"
+  },
+  "WST": {
+    "ticker": "WST",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "WEST PHARMACEUTICAL SERVICES INC"
+  },
+  "TJX": {
+    "ticker": "TJX",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "TJX COMPANIES INC /DE/"
+  },
+  "VRT": {
+    "ticker": "VRT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Vertiv Holdings Co"
+  },
+  "PAY": {
+    "ticker": "PAY",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Paymentus Holdings, Inc."
+  },
+  "TXRH": {
+    "ticker": "TXRH",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Texas Roadhouse, Inc."
+  },
+  "ODFL": {
+    "ticker": "ODFL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "OLD DOMINION FREIGHT LINE, INC."
+  },
+  "CTAS": {
+    "ticker": "CTAS",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CINTAS CORP"
+  },
+  "MSCI": {
+    "ticker": "MSCI",
+    "buyer_set": [
+      "Ashe Robert G. | Director",
+      "Fernandez Henry A | Chairman and CEO"
+    ],
+    "total_dollar": 5559794.81,
+    "total_shares": 10481.0,
+    "filings": [
+      {
+        "accession": "0001414310-26-000002",
+        "date": "2026-02-20",
+        "person": "Ashe Robert G.",
+        "title": null,
+        "dollar": 1999556.0100000002,
+        "shares": 3681.0
+      },
+      {
+        "accession": "0001416750-26-000006",
+        "date": "2026-02-17",
+        "person": "Fernandez Henry A",
+        "title": "Chairman and CEO",
+        "dollar": 3560238.7999999993,
+        "shares": 6800.0
+      }
+    ],
+    "issuer_name": "MSCI Inc."
+  },
+  "SBUX": {
+    "ticker": "SBUX",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "STARBUCKS CORP"
   }
 }
