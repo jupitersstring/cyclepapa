@@ -187,11 +187,15 @@ def compute_metrics(df, lookbacks=LOOKBACKS, atr_period=14, bb_period=20, hist_w
         out[f"range_pct_{N}w"] = float((recent_high - recent_low) / recent_mean_close * 100)
         out[f"price_return_{N}w"] = float((close[-1] / close[-N] - 1) * 100)
 
-    poc = compute_poc(df, lookback=52, bins=50)
-    if poc:
-        out["poc"] = poc["poc"]
-        out["poc_distance_pct"] = poc["poc_distance_pct"]
-        out["poc_volume_share"] = poc["poc_volume_share"]
+    poc_long = compute_poc(df, lookback=52, bins=50)
+    if poc_long:
+        out["poc_52w"] = poc_long["poc"]
+        out["poc_52w_dist_pct"] = poc_long["poc_distance_pct"]
+    poc_recent = compute_poc(df, lookback=13, bins=30)
+    if poc_recent:
+        out["poc_13w"] = poc_recent["poc"]
+        out["poc_13w_dist_pct"] = poc_recent["poc_distance_pct"]
+        out["poc_13w_share"] = poc_recent["poc_volume_share"]
 
     return out
 
@@ -230,9 +234,11 @@ def classify(m, lookbacks=LOOKBACKS):
             tags.append(f"BREAKOUT_FIRING@{N}w")
         if vol_stepup >= 1.8 and bars_above >= max(2, int(0.75 * N)):
             tags.append(f"STRONG_VOLUME@{N}w")
-    poc_dist = m.get("poc_distance_pct")
+    poc_dist = m.get("poc_13w_dist_pct")
     if poc_dist is not None and abs(poc_dist) < 3:
-        tags.append("NEAR_POC")
+        tags.append("NEAR_POC_13w")
+    if poc_dist is not None and abs(poc_dist) < 6:
+        tags.append("AT_VALUE_13w")
     return tags
 
 
