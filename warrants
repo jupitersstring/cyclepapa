@@ -1214,6 +1214,7 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
             continue
         theoretical = dilution * bs
         gap_pct = (wpx - theoretical) / theoretical
+        asymmetry = (theoretical / wpx) if wpx > 0 else float("nan")
         moneyness = cpx / strike_used
         w = r_["warrant"]
         wv = float(avg_vol_5d.get(w, 0)) if hasattr(avg_vol_5d, "get") else 0
@@ -1238,6 +1239,7 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
             "warrant_5d_avg_dvol": round(wdv, 2),
             "warrant_days_traded_5d": wdt,
             "bs_call": bs, "theoretical": theoretical, "gap_pct": gap_pct,
+            "asymmetry": asymmetry,
             "security_name": r_.get("security_name", ""),
         })
     out = pd.DataFrame(rows)
