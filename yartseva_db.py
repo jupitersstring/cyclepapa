@@ -632,8 +632,13 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     )
 
     # Graham net-net: market cap < (2/3) * NCAV.  Reports the ratio mcap/NCAV
-    # for sortable output. Only meaningful when NCAV is positive.
-    mcap_to_ncav = safe_div(market_cap, ncav) if (pd.notna(ncav) and ncav > 0 and market_cap) else np.nan
+    # for sortable output. Only meaningful when NCAV is positive AND scaled
+    # sensibly vs market cap (NCAV > 100x mcap is almost always a yfinance
+    # unit/currency mismatch, e.g. HOLO showing $2.7B cash on a $39M mcap).
+    if pd.notna(ncav) and ncav > 0 and market_cap and ncav < market_cap * 100:
+        mcap_to_ncav = safe_div(market_cap, ncav)
+    else:
+        mcap_to_ncav = np.nan
     graham_net_net_flag = int(
         pd.notna(mcap_to_ncav) and mcap_to_ncav > 0 and mcap_to_ncav < (2.0 / 3.0)
     )
@@ -1072,6 +1077,38 @@ def get_universe(
         df = df[~df["name"].astype(str).str.contains(
             r"warrant|right|trust|spac", case=False, regex=True, na=False
         )]
+    elif country == "France":
+        # Euronext Paris primary listings.
+        df = df[df.index.str.endswith(".PA")]
+        df = df[~df["name"].astype(str).str.contains(
+            r"warrant|right|trust|spac", case=False, regex=True, na=False
+        )]
+    elif country == "Switzerland":
+        df = df[df.index.str.endswith(".SW")]
+    elif country == "Netherlands":
+        df = df[df.index.str.endswith(".AS")]
+    elif country == "Spain":
+        df = df[df.index.str.endswith(".MC")]
+    elif country == "Belgium":
+        df = df[df.index.str.endswith(".BR")]
+    elif country == "Sweden":
+        df = df[df.index.str.endswith(".ST")]
+    elif country == "Norway":
+        df = df[df.index.str.endswith(".OL")]
+    elif country == "Denmark":
+        df = df[df.index.str.endswith(".CO")]
+    elif country == "Finland":
+        df = df[df.index.str.endswith(".HE")]
+    elif country == "Austria":
+        df = df[df.index.str.endswith(".VI")]
+    elif country == "Portugal":
+        df = df[df.index.str.endswith(".LS")]
+    elif country == "Ireland":
+        df = df[df.index.str.endswith(".IR") | df.index.str.endswith(".L")]
+    elif country == "Greece":
+        df = df[df.index.str.endswith(".AT")]
+    elif country == "Poland":
+        df = df[df.index.str.endswith(".WA")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
     if min_bucket and min_bucket in order:
         lo = order.index(min_bucket)
