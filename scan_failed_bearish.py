@@ -414,7 +414,7 @@ def main():
         help="Failure trigger must be within the last N bars to count as active (default: 8 weekly, 4 monthly)",
     )
     parser.add_argument("--top", type=int, default=20)
-    parser.add_argument("--universe", choices=["us-mid", "us-micro", "us-smid", "us-midlarge", "uk-smid", "uk-midlarge", "eu-smid", "it-all", "de-all"], default="us-mid")
+    parser.add_argument("--universe", choices=["us-mid", "us-micro", "us-smid", "us-midlarge", "us-all", "uk-smid", "uk-midlarge", "eu-smid", "it-all", "de-all"], default="us-mid")
     parser.add_argument("--quality", action="store_true",
                         help="Apply hard quality floor: ROE>5%, margin>0, D/E<200, rev_growth>-10% (drops NaN)")
     parser.add_argument("--out", default=None)
