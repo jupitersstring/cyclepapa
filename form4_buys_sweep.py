@@ -65,7 +65,12 @@ def fetch_form4_xml(cik: str, accession: str, primary_doc: str) -> str | None:
     if not cik:
         return None
     acc = accession.replace("-", "")
-    url = f"{SEC_WWW}/Archives/edgar/data/{int(cik)}/{acc}/{primary_doc}"
+    # Form 4 primary_doc often points to the XSL-rendered HTML view
+    # (xslF345X06/<name>.xml). Strip the XSL prefix to get the raw XML.
+    doc = primary_doc
+    if "/" in doc:
+        doc = doc.split("/")[-1]
+    url = f"{SEC_WWW}/Archives/edgar/data/{int(cik)}/{acc}/{doc}"
     try:
         return _get(url).text
     except Exception:

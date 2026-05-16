@@ -117,35 +117,6 @@
       }
     ]
   },
-  "BREZ": {
-    "ticker": "BREZ",
-    "issuer_name": "Breeze Acquisition Corp. II",
-    "issuer_cik": "0002095443",
-    "buyer_set": [
-      "RAMSEY J DOUGLAS | CEO, CFO, Chairman",
-      "Breeze Sponsor II, LLC | 10%"
-    ],
-    "total_dollar": 0.0,
-    "total_shares": 940000.0,
-    "filings": [
-      {
-        "accession": "0001213900-26-058000",
-        "date": "2026-05-15",
-        "person": "RAMSEY J DOUGLAS",
-        "title": "CEO, CFO, Chairman",
-        "dollar": 0.0,
-        "shares": 470000.0
-      },
-      {
-        "accession": "0001213900-26-057999",
-        "date": "2026-05-15",
-        "person": "Breeze Sponsor II, LLC",
-        "title": null,
-        "dollar": 0.0,
-        "shares": 470000.0
-      }
-    ]
-  },
   "AMR": {
     "ticker": "AMR",
     "issuer_name": "Alpha Metallurgical Resources, Inc.",
@@ -730,26 +701,6 @@
         "title": null,
         "dollar": 100060.95,
         "shares": 1221.0
-      }
-    ]
-  },
-  "CRCW": {
-    "ticker": "CRCW",
-    "issuer_name": "Crypto Co",
-    "issuer_cik": "0001688126",
-    "buyer_set": [
-      "Levy Ron | CEO and Interim CFO"
-    ],
-    "total_dollar": 0.0,
-    "total_shares": 16000000.0,
-    "filings": [
-      {
-        "accession": "0001493152-26-023817",
-        "date": "2026-05-15",
-        "person": "Levy Ron",
-        "title": "CEO and Interim CFO",
-        "dollar": 0.0,
-        "shares": 16000000.0
       }
     ]
   },
@@ -1742,8 +1693,8 @@
     "buyer_set": [
       "Meister Keith A. | Director"
     ],
-    "total_dollar": 60572073.81,
-    "total_shares": 1556420.0,
+    "total_dollar": 74032163.44,
+    "total_shares": 1725941.0,
     "filings": [
       {
         "accession": "0001011438-26-000351",
@@ -1760,6 +1711,14 @@
         "title": null,
         "dollar": 46806729.120000005,
         "shares": 1205147.0
+      },
+      {
+        "accession": "0001193125-26-094527",
+        "date": "2026-03-05",
+        "person": "Meister Keith A.",
+        "title": null,
+        "dollar": 13460089.629999999,
+        "shares": 169521.0
       }
     ]
   },
@@ -3693,26 +3652,6 @@
         "title": null,
         "dollar": 1999950.0488800001,
         "shares": 291537.908
-      }
-    ]
-  },
-  "PCT": {
-    "ticker": "PCT",
-    "issuer_name": "PureCycle Technologies, Inc.",
-    "issuer_cik": "0001830033",
-    "buyer_set": [
-      "SYLEBRA CAPITAL LLC | Director"
-    ],
-    "total_dollar": 0.0,
-    "total_shares": 16622.0,
-    "filings": [
-      {
-        "accession": "0002003074-26-000006",
-        "date": "2026-05-13",
-        "person": "SYLEBRA CAPITAL LLC",
-        "title": null,
-        "dollar": 0.0,
-        "shares": 16622.0
       }
     ]
   },
@@ -5902,35 +5841,6 @@
       }
     ]
   },
-  "SAGU": {
-    "ticker": "SAGU",
-    "issuer_name": "Shreya Acquisition Group",
-    "issuer_cik": "0002083452",
-    "buyer_set": [
-      "Goyal Anuj | Chief Executive Officer",
-      "Thews (Mauritius) Ltd | 10%"
-    ],
-    "total_dollar": 0.0,
-    "total_shares": 383500.0,
-    "filings": [
-      {
-        "accession": "0001829126-26-004954",
-        "date": "2026-05-11",
-        "person": "Goyal Anuj",
-        "title": "Chief Executive Officer",
-        "dollar": 0.0,
-        "shares": 191750.0
-      },
-      {
-        "accession": "0001829126-26-004955",
-        "date": "2026-05-11",
-        "person": "Thews (Mauritius) Ltd",
-        "title": null,
-        "dollar": 0.0,
-        "shares": 191750.0
-      }
-    ]
-  },
   "AMWL": {
     "ticker": "AMWL",
     "issuer_name": "American Well Corp",
@@ -6008,26 +5918,6 @@
         "title": null,
         "dollar": 50000.5,
         "shares": 18182.0
-      }
-    ]
-  },
-  "ZGN": {
-    "ticker": "ZGN",
-    "issuer_name": "Ermenegildo Zegna N.V.",
-    "issuer_cik": "0001877787",
-    "buyer_set": [
-      "Tagliabue Gianluca Ambrogio | Acting Group CEO"
-    ],
-    "total_dollar": 0.0,
-    "total_shares": 47250.0,
-    "filings": [
-      {
-        "accession": "0001976837-26-000004",
-        "date": "2026-05-11",
-        "person": "Tagliabue Gianluca Ambrogio",
-        "title": "Acting Group CEO",
-        "dollar": 0.0,
-        "shares": 47250.0
       }
     ]
   },
@@ -6587,458 +6477,135 @@
   },
   "CHTR": {
     "ticker": "CHTR",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
+    "buyer_set": [
+      "Davis Wade | Director",
+      "Nair Balan | Director",
+      "Winfrey Christopher L | President and CEO"
+    ],
+    "total_dollar": 2365149.4264,
+    "total_shares": 13664.0,
+    "filings": [
+      {
+        "accession": "0001563441-26-000011",
+        "date": "2026-04-29",
+        "person": "Davis Wade",
+        "title": null,
+        "dollar": 995068.16,
+        "shares": 5728.0
+      },
+      {
+        "accession": "0001398905-26-000010",
+        "date": "2026-04-28",
+        "person": "Nair Balan",
+        "title": null,
+        "dollar": 175460.0,
+        "shares": 1000.0
+      },
+      {
+        "accession": "0001504089-26-000005",
+        "date": "2026-04-28",
+        "person": "Winfrey Christopher L",
+        "title": "President and CEO",
+        "dollar": 1194621.2664,
+        "shares": 6936.0
+      }
+    ],
     "issuer_name": "CHARTER COMMUNICATIONS, INC. /MO/"
   },
   "GO": {
     "ticker": "GO",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
+    "buyer_set": [
+      "Ragatz Erik D. | Director",
+      "Potter Jason J. N. | President and CEO",
+      "Jaros Carey F. | Director",
+      "York Jeffrey | Director",
+      "Lindberg Eric J. Jr. | Director",
+      "BACHMAN JOHN E. | Director"
+    ],
+    "total_dollar": 7923061.0,
+    "total_shares": 1299905.0,
+    "filings": [
+      {
+        "accession": "0001469085-26-000006",
+        "date": "2026-03-30",
+        "person": "Ragatz Erik D.",
+        "title": null,
+        "dollar": 882500.0,
+        "shares": 125000.0
+      },
+      {
+        "accession": "0002055884-26-000006",
+        "date": "2026-03-25",
+        "person": "Potter Jason J. N.",
+        "title": "President and CEO",
+        "dollar": 717174.2799999999,
+        "shares": 112808.0
+      },
+      {
+        "accession": "0002055884-26-000004",
+        "date": "2026-03-20",
+        "person": "Potter Jason J. N.",
+        "title": "President and CEO",
+        "dollar": 1687972.3,
+        "shares": 286097.0
+      },
+      {
+        "accession": "0001469085-26-000004",
+        "date": "2026-03-19",
+        "person": "Ragatz Erik D.",
+        "title": null,
+        "dollar": 486382.44999999995,
+        "shares": 83997.0
+      },
+      {
+        "accession": "0001469085-26-000002",
+        "date": "2026-03-17",
+        "person": "Ragatz Erik D.",
+        "title": null,
+        "dollar": 702617.55,
+        "shares": 116003.0
+      },
+      {
+        "accession": "0001771515-26-000019",
+        "date": "2026-03-12",
+        "person": "Ragatz Erik D.",
+        "title": null,
+        "dollar": 750000.0,
+        "shares": 125000.0
+      },
+      {
+        "accession": "0001823561-26-000001",
+        "date": "2026-03-11",
+        "person": "Jaros Carey F.",
+        "title": null,
+        "dollar": 250400.0,
+        "shares": 40000.0
+      },
+      {
+        "accession": "0001780265-26-000001",
+        "date": "2026-03-11",
+        "person": "York Jeffrey",
+        "title": null,
+        "dollar": 698200.0,
+        "shares": 120000.0
+      },
+      {
+        "accession": "0001779740-26-000002",
+        "date": "2026-03-11",
+        "person": "Lindberg Eric J. Jr.",
+        "title": null,
+        "dollar": 1644500.0000000002,
+        "shares": 275000.0
+      },
+      {
+        "accession": "0001670760-26-000002",
+        "date": "2026-03-09",
+        "person": "BACHMAN JOHN E.",
+        "title": null,
+        "dollar": 103314.42,
+        "shares": 16000.0
+      }
+    ],
     "issuer_name": "Grocery Outlet Holding Corp."
-  },
-  "OPCH": {
-    "ticker": "OPCH",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Option Care Health, Inc."
-  },
-  "VSNT": {
-    "ticker": "VSNT",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Versant Media Group, Inc."
-  },
-  "SRAD": {
-    "ticker": "SRAD",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Sportradar Group AG"
-  },
-  "PATK": {
-    "ticker": "PATK",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "PATRICK INDUSTRIES INC"
-  },
-  "NSP": {
-    "ticker": "NSP",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "INSPERITY, INC."
-  },
-  "JPM": {
-    "ticker": "JPM",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "JPMORGAN CHASE & CO"
-  },
-  "GME": {
-    "ticker": "GME",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "GameStop Corp."
-  },
-  "AAPL": {
-    "ticker": "AAPL",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Apple Inc."
-  },
-  "CRSP": {
-    "ticker": "CRSP",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "CRISPR Therapeutics AG"
-  },
-  "CRM": {
-    "ticker": "CRM",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Salesforce, Inc."
-  },
-  "VRSK": {
-    "ticker": "VRSK",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Verisk Analytics, Inc."
-  },
-  "INDV": {
-    "ticker": "INDV",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Indivior Pharmaceuticals, Inc."
-  },
-  "EPAM": {
-    "ticker": "EPAM",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "EPAM Systems, Inc."
-  },
-  "SCHL": {
-    "ticker": "SCHL",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "SCHOLASTIC CORP"
-  },
-  "YEXT": {
-    "ticker": "YEXT",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Yext, Inc."
-  },
-  "SNPS": {
-    "ticker": "SNPS",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "SYNOPSYS INC"
-  },
-  "BAC": {
-    "ticker": "BAC",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "BANK OF AMERICA CORP /DE/"
-  },
-  "MTB": {
-    "ticker": "MTB",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "M&T BANK CORP"
-  },
-  "CCI": {
-    "ticker": "CCI",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "CROWN CASTLE INC."
-  },
-  "MNSB": {
-    "ticker": "MNSB",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "MainStreet Bancshares, Inc."
-  },
-  "INSE": {
-    "ticker": "INSE",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Inspired Entertainment, Inc."
-  },
-  "CARE": {
-    "ticker": "CARE",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Carter Bankshares, Inc."
-  },
-  "DLTR": {
-    "ticker": "DLTR",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "DOLLAR TREE, INC."
-  },
-  "LCID": {
-    "ticker": "LCID",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Lucid Group, Inc."
-  },
-  "PGR": {
-    "ticker": "PGR",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "PROGRESSIVE CORP/OH/"
-  },
-  "TT": {
-    "ticker": "TT",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Trane Technologies plc"
-  },
-  "DUK": {
-    "ticker": "DUK",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Duke Energy CORP"
-  },
-  "KKR": {
-    "ticker": "KKR",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "KKR & Co. Inc."
-  },
-  "JBL": {
-    "ticker": "JBL",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "JABIL INC"
-  },
-  "EME": {
-    "ticker": "EME",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "EMCOR Group, Inc."
-  },
-  "PWR": {
-    "ticker": "PWR",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "QUANTA SERVICES, INC."
-  },
-  "MCO": {
-    "ticker": "MCO",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "MOODYS CORP /DE/"
-  },
-  "WST": {
-    "ticker": "WST",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "WEST PHARMACEUTICAL SERVICES INC"
-  },
-  "TJX": {
-    "ticker": "TJX",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "TJX COMPANIES INC /DE/"
-  },
-  "VRT": {
-    "ticker": "VRT",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Vertiv Holdings Co"
-  },
-  "PAY": {
-    "ticker": "PAY",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Paymentus Holdings, Inc."
-  },
-  "TXRH": {
-    "ticker": "TXRH",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Texas Roadhouse, Inc."
-  },
-  "ODFL": {
-    "ticker": "ODFL",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "OLD DOMINION FREIGHT LINE, INC."
-  },
-  "CTAS": {
-    "ticker": "CTAS",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "CINTAS CORP"
-  },
-  "MSCI": {
-    "ticker": "MSCI",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "MSCI Inc."
-  },
-  "SBUX": {
-    "ticker": "SBUX",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "STARBUCKS CORP"
-  },
-  "WMT": {
-    "ticker": "WMT",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Walmart Inc."
-  },
-  "TGT": {
-    "ticker": "TGT",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "TARGET CORP"
-  },
-  "ULTA": {
-    "ticker": "ULTA",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Ulta Beauty, Inc."
-  },
-  "TPR": {
-    "ticker": "TPR",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "TAPESTRY, INC."
-  },
-  "SHAK": {
-    "ticker": "SHAK",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Shake Shack Inc."
-  },
-  "HFFG": {
-    "ticker": "HFFG",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "HF Foods Group Inc."
-  },
-  "NUE": {
-    "ticker": "NUE",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "NUCOR CORP"
-  },
-  "STLD": {
-    "ticker": "STLD",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "STEEL DYNAMICS INC"
-  },
-  "CLF": {
-    "ticker": "CLF",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "CLEVELAND-CLIFFS INC."
-  },
-  "CF": {
-    "ticker": "CF",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "CF Industries Holdings, Inc."
-  },
-  "MRK": {
-    "ticker": "MRK",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "Merck & Co., Inc."
-  },
-  "PFE": {
-    "ticker": "PFE",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "PFIZER INC"
-  },
-  "NKE": {
-    "ticker": "NKE",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "NIKE, Inc."
-  },
-  "LULU": {
-    "ticker": "LULU",
-    "buyer_set": [],
-    "total_dollar": 0.0,
-    "total_shares": 0.0,
-    "filings": [],
-    "issuer_name": "lululemon athletica inc."
   }
 }

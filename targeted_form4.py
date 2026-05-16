@@ -88,7 +88,10 @@ def main() -> int:
             if f["accession"] in existing_accs:
                 continue
             acc_no_dash = f["accession"].replace("-", "")
-            url = f"{SEC_WWW}/Archives/edgar/data/{int(f['cik'])}/{acc_no_dash}/{f['primary_doc']}"
+            doc = f["primary_doc"]
+            if "/" in doc:
+                doc = doc.split("/")[-1]
+            url = f"{SEC_WWW}/Archives/edgar/data/{int(f['cik'])}/{acc_no_dash}/{doc}"
             try:
                 xml = _get(url).text
             except Exception:
