@@ -85,6 +85,19 @@ def get_universe(name):
         df = df[~df.index.duplicated(keep="first")]
         df = df[df["exchange"].isin(US_EXCHANGES)]
         return df
+    if name == "us-all":
+        frames = []
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
+            try:
+                sub = equities.select(country="United States", market_cap=cap)
+                if len(sub):
+                    frames.append(sub)
+            except Exception:
+                continue
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(US_EXCHANGES)]
+        return df
     if name == "uk-smid":
         frames = []
         for cap in ["Small Cap", "Mid Cap"]:

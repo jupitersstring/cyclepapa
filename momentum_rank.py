@@ -88,7 +88,56 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
     return frames
 
 
-def compute_momentum(df):
+SPY_PICKLE = "/tmp/cyclepapa_spy_daily.pkl"
+
+
+def load_or_download_spy(years=3):
+    if os.path.exists(SPY_PICKLE):
+        try:
+            with open(SPY_PICKLE, "rb") as f:
+                spy = pickle.load(f)
+            # Refresh if more than 2 days stale
+            if (pd.Timestamp.today() - spy.index[-1]).days <= 2:
+                print(f"  SPY benchmark loaded from cache ({len(spy)} bars, last={spy.index[-1].date()})")
+                return spy
+        except Exception:
+            pass
+    print(f"  Downloading SPY benchmark ({years}y daily)...")
+    data = yf.download("SPY", period=f"{years}y", interval="1d",
+                       auto_adjust=True, progress=False)
+    if data is None or data.empty:
+        return None
+    spy = pd.to_numeric(data["Close"], errors="coerce").dropna()
+    try:
+        with open(SPY_PICKLE, "wb") as f:
+            pickle.dump(spy, f)
+    except Exception:
+        pass
+    return spy
+
+
+def macd(close_series, fast=12, slow=26, signal_n=9):
+    ema_fast = close_series.ewm(span=fast, adjust=False).mean()
+    ema_slow = close_series.ewm(span=slow, adjust=False).mean()
+    macd_line = ema_fast - ema_slow
+    signal_line = macd_line.ewm(span=signal_n, adjust=False).mean()
+    hist = macd_line - signal_line
+    return macd_line, signal_line, hist
+
+
+def dma200_slope_pct(close_series, slope_window=20):
+    if len(close_series) < 220:
+        return None, None
+    dma = close_series.rolling(200).mean().dropna()
+    if len(dma) < slope_window:
+        return None, None
+    last_dma = float(dma.iloc[-1])
+    recent = dma.tail(slope_window).values
+    slope, _ = np.polyfit(np.arange(len(recent)), recent, 1)
+    return float(slope / last_dma * 100), float((close_series.iloc[-1] - last_dma) / last_dma * 100)
+
+
+def compute_momentum(df, spy_close=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
     if len(close) < 130:
         return None
@@ -154,13 +203,24 @@ def compute_momentum(df):
     vol_prior_13w = float(wvol.iloc[-17:-4].mean()) if len(wvol) >= 17 and wvol.iloc[-17:-4].mean() > 0 else 0
     vol_drying_ratio = vol_4w / vol_prior_13w if vol_prior_13w > 0 else None
 
+    # Distance from 40-week MA (long-term anchor, Roque's primary weekly trend)
+    dist_wma40 = (last - wma40) / wma40 * 100 if wma40 else None
+
     # Days since 52-week high (calendar days), kept for reference
     try:
         days_since_52w_high = int((close.index[-1] - high.tail(252).idxmax()).days)
     except Exception:
         days_since_52w_high = None
 
-    return {
+    # Weekly MACD on absolute close
+    macd_w, signal_w, hist_w = macd(wclose)
+    macd_above = bool(macd_w.iloc[-1] > signal_w.iloc[-1])
+    macd_hist_rising = bool(hist_w.iloc[-1] > hist_w.iloc[-2]) if len(hist_w) >= 2 else False
+
+    # 200-day MA slope (Roque's "demand line")
+    dma200_slope, dist_dma200 = dma200_slope_pct(close)
+
+    out = {
         "last_close": last,
         "mom_1m": last / sma25,
         "mom_3m": last / sma66,
@@ -168,10 +228,13 @@ def compute_momentum(df):
         # daily references
         "dist_sma20_pct": dist_sma20,
         "dist_sma50_pct": dist_sma50,
+        "dist_dma200_pct": dist_dma200,
+        "dma200_slope_pct": dma200_slope,
         "days_since_52w_high": days_since_52w_high,
-        # weekly Q metrics
+        # weekly Q / Roque metrics
         "dist_wma10_pct": float(dist_wma10),
         "dist_wma30_pct": float(dist_wma30),
+        "dist_wma40_pct": float(dist_wma40) if dist_wma40 is not None else None,
         "wma_trend_up": bool(wma_trend_up),
         "range_4w_w_pct": range_4w_w,
         "range_8w_w_pct": range_8w_w,
@@ -180,7 +243,49 @@ def compute_momentum(df):
         "pullback_8w_w_pct": float(pullback_8w_w),
         "weeks_since_8w_high": weeks_since_8w_high,
         "vol_drying_ratio": float(vol_drying_ratio) if vol_drying_ratio is not None else None,
+        # absolute weekly MACD
+        "macd_w": float(macd_w.iloc[-1]),
+        "macd_signal_w": float(signal_w.iloc[-1]),
+        "macd_hist_w": float(hist_w.iloc[-1]),
+        "macd_above_signal": macd_above,
+        "macd_hist_rising": macd_hist_rising,
     }
+
+    # --- Relative-to-SPY metrics ----------------------------------------
+    if spy_close is not None:
+        aligned = pd.concat([close, spy_close], axis=1, join="inner").dropna()
+        if len(aligned) >= 140:
+            aligned.columns = ["t", "s"]
+            rel = aligned["t"] / aligned["s"]
+            # Resample to weekly
+            rel_w = rel.resample("W-FRI").last().dropna()
+            if len(rel_w) >= 30:
+                rel_last = float(rel.iloc[-1])
+                rel_wma10 = float(rel_w.tail(10).mean())
+                rel_wma30 = float(rel_w.tail(30).mean())
+                rel_dist_wma10 = (rel_last - rel_wma10) / rel_wma10 * 100
+                rel_dist_wma30 = (rel_last - rel_wma30) / rel_wma30 * 100
+                rel_trend_up = rel_wma10 > rel_wma30
+                rel_macd, rel_sig, rel_hist = macd(rel_w)
+                rel_macd_above = bool(rel_macd.iloc[-1] > rel_sig.iloc[-1])
+                rel_hist_rising = bool(rel_hist.iloc[-1] > rel_hist.iloc[-2]) if len(rel_hist) >= 2 else False
+                # Relative momentum: rel return over 3m and 6m (in days, using daily aligned series)
+                try:
+                    rel_ret_3m = (rel.iloc[-1] / rel.iloc[-66] - 1) * 100
+                    rel_ret_6m = (rel.iloc[-1] / rel.iloc[-126] - 1) * 100
+                except Exception:
+                    rel_ret_3m = rel_ret_6m = None
+                out.update({
+                    "rel_dist_wma10_pct": float(rel_dist_wma10),
+                    "rel_dist_wma30_pct": float(rel_dist_wma30),
+                    "rel_trend_up": bool(rel_trend_up),
+                    "rel_macd_above_signal": rel_macd_above,
+                    "rel_macd_hist_rising": rel_hist_rising,
+                    "rel_return_3m_pct": float(rel_ret_3m) if rel_ret_3m is not None else None,
+                    "rel_return_6m_pct": float(rel_ret_6m) if rel_ret_6m is not None else None,
+                })
+
+    return out
 
 
 def main():
@@ -199,13 +304,15 @@ def main():
     tickers = [t for t in universe.index.tolist() if isinstance(t, str) and t]
     print(f"  {len(tickers)} tickers")
 
+    spy_close = load_or_download_spy(years=max(args.years + 1, 3))
+
     print(f"Downloading daily bars ({args.years}y)...")
     frames = download_daily(args.universe, tickers, years=args.years)
     print(f"  {len(frames)} tickers with usable daily data")
 
     rows = []
     for t, f in frames.items():
-        m = compute_momentum(f)
+        m = compute_momentum(f, spy_close=spy_close)
         if m is None:
             continue
         if m["last_close"] < args.min_price:
@@ -238,6 +345,20 @@ def main():
     df["in_top_6m"] = df.index.isin(top_6m.index)
     df["in_all_three"] = df.index.isin(intersection)
     df["in_any"] = df.index.isin(union)
+
+    # --- Relative-to-SPY momentum ranks ---------------------------------
+    if "rel_return_6m_pct" in df.columns:
+        df["rel_rank_3m"] = df["rel_return_3m_pct"].rank(ascending=False)
+        df["rel_rank_6m"] = df["rel_return_6m_pct"].rank(ascending=False)
+        rel_top_6m = df.nsmallest(args.top, "rel_rank_6m").index
+        rel_top_3m = df.nsmallest(args.top, "rel_rank_3m").index
+        df["in_rel_top_6m"] = df.index.isin(rel_top_6m)
+        df["in_rel_top_3m"] = df.index.isin(rel_top_3m)
+    else:
+        df["rel_rank_3m"] = None
+        df["rel_rank_6m"] = None
+        df["in_rel_top_6m"] = False
+        df["in_rel_top_3m"] = False
 
     # Q's "buy off bases, not extended" filter — WEEKLY-bar logic.
     # All thresholds reflect what a true multi-week consolidation looks like
@@ -300,6 +421,59 @@ def main():
         - df["consolidating"].astype(int) * 10
     )
 
+    # --- Roque score: count of bullish criteria passed (0..12) ----------
+    def b(col):
+        if col not in df.columns:
+            return pd.Series(False, index=df.index)
+        return df[col].fillna(False).astype(bool)
+
+    not_extended_w = df["dist_wma30_pct"].between(-5, 40) & df["dist_wma10_pct"].between(-10, 18)
+    above_wma40 = df["dist_wma40_pct"].notna() & (df["dist_wma40_pct"] > 0)
+    dma200_up = df["dma200_slope_pct"].notna() & (df["dma200_slope_pct"] > 0)
+    macd_bull_abs = b("macd_above_signal") & b("macd_hist_rising")
+    rel_not_extended = df.get("rel_dist_wma30_pct", pd.Series(False, index=df.index)).between(-5, 40)
+    rel_macd_bull = b("rel_macd_above_signal") & b("rel_macd_hist_rising")
+    base_or_consol = (df["tight_base_w"] | df["pullback_w"]) & df["consolidating"]
+    is_leader = df["in_top_1m"] | df["in_top_3m"] | df["in_top_6m"]
+    is_rel_leader = df["in_rel_top_3m"] | df["in_rel_top_6m"]
+
+    df["roque_abs_trend"] = b("uptrend_w")
+    df["roque_abs_above_40wma"] = above_wma40
+    df["roque_abs_dma200_up"] = dma200_up
+    df["roque_abs_not_extended"] = not_extended_w
+    df["roque_abs_macd_bull"] = macd_bull_abs
+    df["roque_abs_base"] = base_or_consol
+    df["roque_rel_trend"] = b("rel_trend_up")
+    df["roque_rel_not_extended"] = rel_not_extended
+    df["roque_rel_macd_bull"] = rel_macd_bull
+    df["roque_abs_leader"] = is_leader
+    df["roque_rel_leader"] = is_rel_leader
+    df["roque_vol_drying"] = b("vol_drying")
+
+    roque_cols = ["roque_abs_trend", "roque_abs_above_40wma", "roque_abs_dma200_up",
+                  "roque_abs_not_extended", "roque_abs_macd_bull", "roque_abs_base",
+                  "roque_rel_trend", "roque_rel_not_extended", "roque_rel_macd_bull",
+                  "roque_abs_leader", "roque_rel_leader", "roque_vol_drying"]
+    df["roque_score"] = df[roque_cols].sum(axis=1)
+
+    # PRE-BREAKOUT WEEKLY: setup is built but the breakout has not fired.
+    #   - Trend up (abs + rel)
+    #   - Not extended (abs + rel)
+    #   - Consolidating with vol drying
+    #   - Price has NOT expanded recently (no breakout move yet)
+    not_expanded_yet = (df["range_4w_w_pct"] < 12) & (df["pullback_4w_w_pct"] > -10)
+    df["prebreakout_w"] = (
+        df["roque_abs_trend"]
+        & df["roque_rel_trend"]
+        & df["roque_abs_not_extended"]
+        & df["roque_rel_not_extended"]
+        & df["consolidating"]
+        & df["vol_drying"]
+        & (df["tight_base_w"] | df["pullback_w"])
+        & not_expanded_yet
+        & is_leader
+    )
+
     flagged = df[df["in_any"]].sort_values("rank_max")
 
     out_path = args.out or f"momentum_rank_{args.universe}_{pd.Timestamp.today():%Y%m%d}.csv"
@@ -307,27 +481,40 @@ def main():
     print(f"Saved {len(flagged)} flagged tickers to {out_path}")
 
     show_cols = ["name", "sector", "last_close", "mom_3m", "mom_6m",
-                 "rank_3m", "rank_6m",
-                 "dist_wma10_pct", "dist_wma30_pct", "uptrend_w",
+                 "rank_3m", "rank_6m", "rel_rank_6m",
+                 "dist_wma10_pct", "dist_wma30_pct", "dist_wma40_pct",
+                 "dist_dma200_pct", "dma200_slope_pct",
+                 "rel_dist_wma30_pct", "rel_return_6m_pct",
                  "range_4w_w_pct", "range_8w_w_pct",
-                 "pullback_4w_w_pct", "pullback_8w_w_pct",
-                 "weeks_since_8w_high", "vol_drying_ratio",
-                 "extended_w", "near_10wma", "tight_base_w", "pullback_w",
-                 "consolidating", "vol_drying", "base_ready", "base_forming",
-                 "q_score"]
+                 "pullback_4w_w_pct", "weeks_since_8w_high", "vol_drying_ratio",
+                 "macd_above_signal", "macd_hist_rising",
+                 "rel_macd_above_signal", "rel_macd_hist_rising",
+                 "prebreakout_w", "base_ready", "base_forming",
+                 "roque_score", "q_score"]
     show_cols = [c for c in show_cols if c in flagged.columns]
 
+    prebreakout = df[df["prebreakout_w"]].sort_values("roque_score", ascending=False)
     base_ready = df[df["base_ready"]].sort_values("q_score")
     base_forming = df[df["base_forming"]].sort_values("q_score")
 
-    with pd.option_context("display.max_columns", None, "display.width", 260, "display.float_format", "{:.2f}".format):
-        print(f"\n=== BASE_READY (weekly): leader + uptrend + NOT EXTENDED_W + near 10wma + base/pullback + consolidating + vol drying ({len(base_ready)}) ===")
+    with pd.option_context("display.max_columns", None, "display.width", 280, "display.float_format", "{:.2f}".format):
+        print(f"\n=== PREBREAKOUT_W (Roque + relative-SPY, breakout not fired yet) ({len(prebreakout)}) ===")
+        if len(prebreakout):
+            print(prebreakout[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== Top by roque_score (count of 12 bullish criteria) ===")
+        top_roque = df.sort_values(["roque_score", "rank_avg"], ascending=[False, True]).head(args.top)
+        print(top_roque[show_cols].to_string())
+
+        print(f"\n=== BASE_READY (weekly) ({len(base_ready)}) ===")
         if len(base_ready):
             print(base_ready[show_cols].head(args.top).to_string())
         else:
             print("(none)")
 
-        print(f"\n=== BASE_FORMING (one criterion shy of BASE_READY, usually vol-drying) ({len(base_forming)}) ===")
+        print(f"\n=== BASE_FORMING ({len(base_forming)}) ===")
         if len(base_forming):
             print(base_forming[show_cols].head(args.top).to_string())
         else:
