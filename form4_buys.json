@@ -6640,5 +6640,157 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "INSPERITY, INC."
+  },
+  "JPM": {
+    "ticker": "JPM",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "JPMORGAN CHASE & CO"
+  },
+  "GME": {
+    "ticker": "GME",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "GameStop Corp."
+  },
+  "AAPL": {
+    "ticker": "AAPL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Apple Inc."
+  },
+  "CRSP": {
+    "ticker": "CRSP",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CRISPR Therapeutics AG"
+  },
+  "CRM": {
+    "ticker": "CRM",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Salesforce, Inc."
+  },
+  "VRSK": {
+    "ticker": "VRSK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Verisk Analytics, Inc."
+  },
+  "INDV": {
+    "ticker": "INDV",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Indivior Pharmaceuticals, Inc."
+  },
+  "EPAM": {
+    "ticker": "EPAM",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "EPAM Systems, Inc."
+  },
+  "SCHL": {
+    "ticker": "SCHL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "SCHOLASTIC CORP"
+  },
+  "YEXT": {
+    "ticker": "YEXT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Yext, Inc."
+  },
+  "SNPS": {
+    "ticker": "SNPS",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "SYNOPSYS INC"
+  },
+  "BAC": {
+    "ticker": "BAC",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "BANK OF AMERICA CORP /DE/"
+  },
+  "MTB": {
+    "ticker": "MTB",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "M&T BANK CORP"
+  },
+  "CCI": {
+    "ticker": "CCI",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CROWN CASTLE INC."
+  },
+  "MNSB": {
+    "ticker": "MNSB",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "MainStreet Bancshares, Inc."
+  },
+  "INSE": {
+    "ticker": "INSE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Inspired Entertainment, Inc."
+  },
+  "CARE": {
+    "ticker": "CARE",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Carter Bankshares, Inc."
+  },
+  "DLTR": {
+    "ticker": "DLTR",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "DOLLAR TREE, INC."
+  },
+  "LCID": {
+    "ticker": "LCID",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Lucid Group, Inc."
   }
 }
