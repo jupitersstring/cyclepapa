@@ -140,6 +140,69 @@ def dma200_slope_pct(close_series, slope_window=20):
     return float(slope / last_dma * 100), float((close_series.iloc[-1] - last_dma) / last_dma * 100)
 
 
+def detect_darvas_box(weekly, min_box_weeks=4):
+    """Find the most recent Darvas-style box on weekly bars.
+
+    Box top  = the most recent weekly high that has not been exceeded for
+               at least min_box_weeks subsequent bars.
+    Box bot  = the lowest weekly low since the box-top bar.
+    Returns dict of box geometry plus the position of the current close
+    within the box. None if no qualifying box exists.
+    """
+    if len(weekly) < min_box_weeks * 2:
+        return None
+    high = weekly["High"].astype(float).values
+    low = weekly["Low"].astype(float).values
+    close = weekly["Close"].astype(float).values
+    last_idx = len(weekly) - 1
+
+    box_top_idx = None
+    # Walk backward looking for a high that has stood for min_box_weeks+
+    for i in range(last_idx - min_box_weeks, -1, -1):
+        if np.all(high[i + 1: last_idx + 1] <= high[i]):
+            box_top_idx = i
+            break
+    if box_top_idx is None:
+        return None
+
+    box_top = float(high[box_top_idx])
+    box_bottom = float(low[box_top_idx: last_idx + 1].min())
+    box_len_w = last_idx - box_top_idx
+    if box_bottom <= 0 or box_top <= box_bottom:
+        return None
+    box_height_pct = (box_top - box_bottom) / box_bottom * 100
+    last = float(close[-1])
+    pos_in_box_pct = (last - box_bottom) / (box_top - box_bottom) * 100
+    dist_from_top_pct = (last - box_top) / box_top * 100
+
+    # Look for a nested tighter base inside the most recent 1/2 of this box
+    inner = None
+    half_start = box_top_idx + box_len_w // 2
+    if last_idx - half_start >= min_box_weeks:
+        inner_top = float(high[half_start: last_idx + 1].max())
+        inner_bot = float(low[half_start: last_idx + 1].min())
+        if inner_bot > 0 and inner_top > inner_bot:
+            inner_height_pct = (inner_top - inner_bot) / inner_bot * 100
+            if inner_height_pct < box_height_pct * 0.6:
+                inner = {
+                    "inner_top": inner_top,
+                    "inner_bottom": inner_bot,
+                    "inner_height_pct": inner_height_pct,
+                    "inner_weeks": last_idx - half_start,
+                }
+    out = {
+        "box_top": box_top,
+        "box_bottom": box_bottom,
+        "box_height_pct": float(box_height_pct),
+        "box_length_weeks": int(box_len_w),
+        "pos_in_box_pct": float(pos_in_box_pct),
+        "dist_from_box_top_pct": float(dist_from_top_pct),
+    }
+    if inner:
+        out.update(inner)
+    return out
+
+
 def compute_momentum(df, spy_close=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
     if len(close) < 130:
@@ -209,6 +272,37 @@ def compute_momentum(df, spy_close=None):
     # Distance from 40-week MA (long-term anchor, Roque's primary weekly trend)
     dist_wma40 = (last - wma40) / wma40 * 100 if wma40 else None
 
+    # --- Monthly metrics (the long-term Roque "BIG BASE" lens) ----------
+    monthly = df_ohlcv.resample("ME").agg({
+        "Open": "first", "High": "max", "Low": "min",
+        "Close": "last", "Volume": "sum",
+    }).dropna()
+    m_close = monthly["Close"]
+    m_high = monthly["High"]
+    m_low = monthly["Low"]
+    if len(m_close) >= 12:
+        mma6 = float(m_close.tail(6).mean())
+        mma12 = float(m_close.tail(12).mean())
+        dist_mma6 = (last - mma6) / mma6 * 100
+        dist_mma12 = (last - mma12) / mma12 * 100
+        m_uptrend = mma6 > mma12
+        # Monthly base: high minus low over last 6 months as %
+        m_range_6m_pct = float((m_high.tail(6).max() - m_low.tail(6).min()) / m_close.tail(6).mean() * 100)
+        # Months since a new 6-month high
+        try:
+            months_since_6m_high = int((m_close.index[-1] - m_high.tail(6).idxmax()).days // 30)
+        except Exception:
+            months_since_6m_high = None
+    else:
+        dist_mma6 = dist_mma12 = m_range_6m_pct = None
+        m_uptrend = False
+        months_since_6m_high = None
+
+    # --- Darvas box on weekly bars (longest current consolidation) ------
+    box = detect_darvas_box(weekly, min_box_weeks=4)
+    if box is None:
+        box = {}
+
     # Days since 52-week high (calendar days), kept for reference
     try:
         days_since_52w_high = int((close.index[-1] - high.tail(252).idxmax()).days)
@@ -252,6 +346,21 @@ def compute_momentum(df, spy_close=None):
         "macd_hist_w": float(hist_w.iloc[-1]),
         "macd_above_signal": macd_above,
         "macd_hist_rising": macd_hist_rising,
+        # monthly
+        "dist_mma6_pct": dist_mma6,
+        "dist_mma12_pct": dist_mma12,
+        "monthly_uptrend": bool(m_uptrend),
+        "month_range_6m_pct": m_range_6m_pct,
+        "months_since_6m_high": months_since_6m_high,
+        # Darvas box on weekly
+        "box_top": box.get("box_top"),
+        "box_bottom": box.get("box_bottom"),
+        "box_height_pct": box.get("box_height_pct"),
+        "box_length_weeks": box.get("box_length_weeks"),
+        "pos_in_box_pct": box.get("pos_in_box_pct"),
+        "dist_from_box_top_pct": box.get("dist_from_box_top_pct"),
+        "inner_height_pct": box.get("inner_height_pct"),
+        "inner_weeks": box.get("inner_weeks"),
     }
 
     # --- Relative-to-SPY metrics ----------------------------------------
@@ -485,6 +594,42 @@ def main():
         & soft_leader
     )
 
+    # --- Darvas-box tags + Qullamaggie-style consolidation setups -------
+    box_len = pd.to_numeric(df["box_length_weeks"], errors="coerce")
+    box_height = pd.to_numeric(df["box_height_pct"], errors="coerce")
+    dist_top = pd.to_numeric(df["dist_from_box_top_pct"], errors="coerce")
+    pos_box = pd.to_numeric(df["pos_in_box_pct"], errors="coerce")
+
+    df["darvas_tight"] = box_len.ge(4) & box_height.lt(15)
+    df["long_base"] = box_len.ge(12) & box_height.lt(25)
+    df["very_long_base"] = box_len.ge(26) & box_height.lt(30)
+    df["base_on_base"] = df["inner_height_pct"].notna() & pd.to_numeric(df["inner_height_pct"], errors="coerce").lt(box_height * 0.6)
+    df["near_box_top"] = dist_top.between(-3, 0)
+    df["box_breakout"] = dist_top.gt(0) & dist_top.lt(5)  # just broke out, not yet extended
+
+    # Qullamaggie Setup 3 (Consolidation Breakout): big prior move, tight box,
+    # near top of box / just broken out, vol drying during consol.
+    big_prior_move = (
+        df["mom_3m"].fillna(0).ge(1.30)
+        | df["mom_6m"].fillna(0).ge(1.40)
+    )
+    df["big_prior_move"] = big_prior_move
+    df["qulla_consol_setup"] = (
+        big_prior_move
+        & df["darvas_tight"]
+        & (df["near_box_top"] | df["box_breakout"])
+        & df["vol_drying"]
+        & df["roque_rel_trend"].fillna(False)
+    )
+
+    # Roque BIG BASE (multi-month consolidation breakout candidate)
+    df["roque_big_base"] = (
+        df["long_base"]
+        & df["vol_drying"]
+        & df["monthly_uptrend"].fillna(False)
+        & (df["near_box_top"] | df["box_breakout"])
+    )
+
     # Save anything that is in the strict top-30 union OR passes a weekly
     # setup gate. This way Q-style "was-a-leader-now-basing" names that
     # do not currently rank top 30 still make it into the CSV for review.
@@ -493,6 +638,9 @@ def main():
         | df["prebreakout_w"].fillna(False)
         | df["base_ready"].fillna(False)
         | df["base_forming"].fillna(False)
+        | df["qulla_consol_setup"].fillna(False)
+        | df["roque_big_base"].fillna(False)
+        | df["long_base"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -501,24 +649,52 @@ def main():
     flagged.to_csv(out_path)
     print(f"Saved {len(flagged)} flagged tickers to {out_path}")
 
-    show_cols = ["name", "sector", "last_close", "mom_3m", "mom_6m",
-                 "rank_3m", "rank_6m", "rel_rank_6m",
+    show_cols = ["name", "sector", "last_close", "mom_3m", "mom_6m", "rel_return_6m_pct",
                  "dist_wma10_pct", "dist_wma30_pct", "dist_wma40_pct",
-                 "dist_dma200_pct", "dma200_slope_pct",
-                 "rel_dist_wma30_pct", "rel_return_6m_pct",
-                 "range_4w_w_pct", "range_8w_w_pct",
-                 "pullback_4w_w_pct", "weeks_since_8w_high", "vol_drying_ratio",
-                 "macd_above_signal", "macd_hist_rising",
-                 "rel_macd_above_signal", "rel_macd_hist_rising",
-                 "prebreakout_w", "base_ready", "base_forming",
-                 "roque_score", "q_score"]
+                 "dist_mma6_pct", "dist_mma12_pct", "months_since_6m_high",
+                 "rel_dist_wma30_pct",
+                 "box_top", "box_bottom", "box_height_pct", "box_length_weeks",
+                 "pos_in_box_pct", "dist_from_box_top_pct",
+                 "vol_drying_ratio",
+                 "macd_above_signal", "rel_macd_above_signal",
+                 "darvas_tight", "long_base", "very_long_base", "near_box_top", "box_breakout",
+                 "qulla_consol_setup", "roque_big_base",
+                 "prebreakout_w", "base_ready", "roque_score"]
     show_cols = [c for c in show_cols if c in flagged.columns]
 
+    qulla = df[df["qulla_consol_setup"]].sort_values("box_length_weeks", ascending=False)
+    big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
+    long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
+    very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
     prebreakout = df[df["prebreakout_w"]].sort_values("roque_score", ascending=False)
     base_ready = df[df["base_ready"]].sort_values("q_score")
     base_forming = df[df["base_forming"]].sort_values("q_score")
 
-    with pd.option_context("display.max_columns", None, "display.width", 280, "display.float_format", "{:.2f}".format):
+    with pd.option_context("display.max_columns", None, "display.width", 300, "display.float_format", "{:.2f}".format):
+        print(f"\n=== QULLA_CONSOL_SETUP (big prior move + tight Darvas box + near top + vol dry + rel up) ({len(qulla)}) ===")
+        if len(qulla):
+            print(qulla[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== ROQUE_BIG_BASE (long box >=12w + monthly uptrend + vol dry + near/at box top) ({len(big_base)}) ===")
+        if len(big_base):
+            print(big_base[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== LONG_BASE (>=12 weeks, height < 25%) ({len(long_bases)}) ===")
+        if len(long_bases):
+            print(long_bases[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== VERY_LONG_BASE (>=26 weeks, height < 30%) ({len(very_long)}) ===")
+        if len(very_long):
+            print(very_long[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
         print(f"\n=== PREBREAKOUT_W (Roque + relative-SPY, breakout not fired yet) ({len(prebreakout)}) ===")
         if len(prebreakout):
             print(prebreakout[show_cols].head(args.top).to_string())
