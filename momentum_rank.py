@@ -460,10 +460,18 @@ def main():
     df["roque_score"] = df[roque_cols].sum(axis=1)
 
     # PRE-BREAKOUT WEEKLY: setup is built but the breakout has not fired.
-    #   - Trend up (abs + rel)
-    #   - Not extended (abs + rel)
-    #   - Consolidating with vol drying
-    #   - Price has NOT expanded recently (no breakout move yet)
+    # A real Q setup is NOT the current "top 30 momentum" cohort - those
+    # are by definition already extended. Look instead for stocks that:
+    #   - have had a prior advance (mom_6m > 1.10 = up 10%+ in 6 months)
+    #   - are outperforming SPY (rel_return_6m > 0)
+    #   - are now trending and basing
+    #   - have NOT yet expanded (no recent breakout move in 4 weeks)
+    soft_leader = (
+        df["mom_6m"].fillna(0).gt(1.10)
+        & df.get("rel_return_6m_pct", pd.Series(0, index=df.index)).fillna(0).gt(0)
+    )
+    df["soft_leader"] = soft_leader
+
     not_expanded_yet = (df["range_4w_w_pct"] < 12) & (df["pullback_4w_w_pct"] > -10)
     df["prebreakout_w"] = (
         df["roque_abs_trend"]
@@ -474,10 +482,20 @@ def main():
         & df["vol_drying"]
         & (df["tight_base_w"] | df["pullback_w"])
         & not_expanded_yet
-        & is_leader
+        & soft_leader
     )
 
-    flagged = df[df["in_any"]].sort_values("rank_max")
+    # Save anything that is in the strict top-30 union OR passes a weekly
+    # setup gate. This way Q-style "was-a-leader-now-basing" names that
+    # do not currently rank top 30 still make it into the CSV for review.
+    save_mask = (
+        df["in_any"]
+        | df["prebreakout_w"].fillna(False)
+        | df["base_ready"].fillna(False)
+        | df["base_forming"].fillna(False)
+        | (df["roque_score"] >= 8)
+    )
+    flagged = df[save_mask].sort_values("roque_score", ascending=False)
 
     out_path = args.out or f"momentum_rank_{args.universe}_{pd.Timestamp.today():%Y%m%d}.csv"
     flagged.to_csv(out_path)
