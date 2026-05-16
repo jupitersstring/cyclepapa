@@ -2959,10 +2959,11 @@
     "issuer_name": "ADMA BIOLOGICS, INC.",
     "issuer_cik": "0001368514",
     "buyer_set": [
-      "Grossman Jerrold B | Director"
+      "Grossman Jerrold B | Director",
+      "ELMS STEVE | Director"
     ],
-    "total_dollar": 200250.0,
-    "total_shares": 25000.0,
+    "total_dollar": 417670.0,
+    "total_shares": 39000.0,
     "filings": [
       {
         "accession": "0001140361-26-021150",
@@ -2979,6 +2980,14 @@
         "title": null,
         "dollar": 100125.0,
         "shares": 12500.0
+      },
+      {
+        "accession": "0001140361-26-008363",
+        "date": "2026-03-09",
+        "person": "ELMS STEVE",
+        "title": null,
+        "dollar": 217420.0,
+        "shares": 14000.0
       }
     ]
   },
@@ -7231,5 +7240,301 @@
       }
     ],
     "issuer_name": "INSPERITY, INC."
+  },
+  "JPM": {
+    "ticker": "JPM",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "JPMORGAN CHASE & CO"
+  },
+  "GME": {
+    "ticker": "GME",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "GameStop Corp."
+  },
+  "AAPL": {
+    "ticker": "AAPL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Apple Inc."
+  },
+  "CRSP": {
+    "ticker": "CRSP",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CRISPR Therapeutics AG"
+  },
+  "CMG": {
+    "ticker": "CMG",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "CHIPOTLE MEXICAN GRILL INC"
+  },
+  "CRM": {
+    "ticker": "CRM",
+    "buyer_set": [
+      "ALBER LAURA | Director",
+      "Kirk David Blair | Director"
+    ],
+    "total_dollar": 1000444.415,
+    "total_shares": 5141.0,
+    "filings": [
+      {
+        "accession": "0001108524-26-000066",
+        "date": "2026-03-19",
+        "person": "ALBER LAURA",
+        "title": null,
+        "dollar": 500266.13200000004,
+        "shares": 2571.0
+      },
+      {
+        "accession": "0001108524-26-000064",
+        "date": "2026-03-18",
+        "person": "Kirk David Blair",
+        "title": null,
+        "dollar": 500178.28300000005,
+        "shares": 2570.0
+      }
+    ],
+    "issuer_name": "Salesforce, Inc."
+  },
+  "VRSK": {
+    "ticker": "VRSK",
+    "buyer_set": [
+      "PERRY CHRISTOPHER JOHN | Director",
+      "Stevenson Kimberly S | Director",
+      "Hendrick Gregory | Director"
+    ],
+    "total_dollar": 449280.0,
+    "total_shares": 2500.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-067198",
+        "date": "2026-02-24",
+        "person": "PERRY CHRISTOPHER JOHN",
+        "title": null,
+        "dollar": 180000.0,
+        "shares": 1000.0
+      },
+      {
+        "accession": "0001193125-26-067164",
+        "date": "2026-02-24",
+        "person": "Stevenson Kimberly S",
+        "title": null,
+        "dollar": 179200.0,
+        "shares": 1000.0
+      },
+      {
+        "accession": "0001193125-26-067138",
+        "date": "2026-02-24",
+        "person": "Hendrick Gregory",
+        "title": null,
+        "dollar": 90080.0,
+        "shares": 500.0
+      }
+    ],
+    "issuer_name": "Verisk Analytics, Inc."
+  },
+  "INDV": {
+    "ticker": "INDV",
+    "buyer_set": [
+      "Ryan Barbara | Director",
+      "Kingsley Stuart A | Director"
+    ],
+    "total_dollar": 31211.14,
+    "total_shares": 979.0,
+    "filings": [
+      {
+        "accession": "0001827169-26-000010",
+        "date": "2026-03-13",
+        "person": "Ryan Barbara",
+        "title": null,
+        "dollar": 248.68,
+        "shares": 8.0
+      },
+      {
+        "accession": "0001369067-26-000006",
+        "date": "2026-03-11",
+        "person": "Kingsley Stuart A",
+        "title": null,
+        "dollar": 29953.1,
+        "shares": 940.0
+      },
+      {
+        "accession": "0001827169-26-000008",
+        "date": "2026-03-11",
+        "person": "Ryan Barbara",
+        "title": null,
+        "dollar": 1009.3600000000001,
+        "shares": 31.0
+      }
+    ],
+    "issuer_name": "Indivior Pharmaceuticals, Inc."
+  },
+  "EPAM": {
+    "ticker": "EPAM",
+    "buyer_set": [
+      "Fejes Balazs | CEO, President, Director",
+      "Rockwell Edward | SVP/Chief Legal Officer",
+      "Abrahams Gary C | VP, Corporate Controller, PAO",
+      "Peterson Jason D. | Chief Financial Officer",
+      "Solomon Lawrence F | SVP/Chief People Officer",
+      "Dvorkin Viktar | Chief Deliv Off, EVP, Americas"
+    ],
+    "total_dollar": 44999.743259999996,
+    "total_shares": 465.306,
+    "filings": [
+      {
+        "accession": "0001538408-26-000004",
+        "date": "2026-05-04",
+        "person": "Fejes Balazs",
+        "title": "CEO, President, Director",
+        "dollar": 7499.95721,
+        "shares": 77.551
+      },
+      {
+        "accession": "0001761897-26-000004",
+        "date": "2026-05-04",
+        "person": "Rockwell Edward",
+        "title": "SVP/Chief Legal Officer",
+        "dollar": 7499.95721,
+        "shares": 77.551
+      },
+      {
+        "accession": "0001703877-26-000004",
+        "date": "2026-05-04",
+        "person": "Abrahams Gary C",
+        "title": "VP, Corporate Controller, PAO",
+        "dollar": 7499.95721,
+        "shares": 77.551
+      },
+      {
+        "accession": "0001702274-26-000004",
+        "date": "2026-05-04",
+        "person": "Peterson Jason D.",
+        "title": "Chief Financial Officer",
+        "dollar": 7499.95721,
+        "shares": 77.551
+      },
+      {
+        "accession": "0001693502-26-000004",
+        "date": "2026-05-04",
+        "person": "Solomon Lawrence F",
+        "title": "SVP/Chief People Officer",
+        "dollar": 7499.95721,
+        "shares": 77.551
+      },
+      {
+        "accession": "0001732239-26-000006",
+        "date": "2026-05-04",
+        "person": "Dvorkin Viktar",
+        "title": "Chief Deliv Off, EVP, Americas",
+        "dollar": 7499.95721,
+        "shares": 77.551
+      }
+    ],
+    "issuer_name": "EPAM Systems, Inc."
+  },
+  "SCHL": {
+    "ticker": "SCHL",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "SCHOLASTIC CORP"
+  },
+  "YEXT": {
+    "ticker": "YEXT",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "Yext, Inc."
+  },
+  "SNPS": {
+    "ticker": "SNPS",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "SYNOPSYS INC"
+  },
+  "BAC": {
+    "ticker": "BAC",
+    "buyer_set": [
+      "BANK OF AMERICA CORP /DE/ | 10%"
+    ],
+    "total_dollar": 50352.3627,
+    "total_shares": 5289.0,
+    "filings": [
+      {
+        "accession": "0000070858-26-000251",
+        "date": "2026-05-04",
+        "person": "BANK OF AMERICA CORP /DE/",
+        "title": null,
+        "dollar": 5018.31,
+        "shares": 407.0
+      },
+      {
+        "accession": "0000070858-26-000215",
+        "date": "2026-04-06",
+        "person": "BANK OF AMERICA CORP /DE/",
+        "title": null,
+        "dollar": 29156.12,
+        "shares": 3359.0
+      },
+      {
+        "accession": "0000070858-26-000210",
+        "date": "2026-03-23",
+        "person": "BANK OF AMERICA CORP /DE/",
+        "title": null,
+        "dollar": 528.5,
+        "shares": 50.0
+      },
+      {
+        "accession": "0000070858-26-000201",
+        "date": "2026-03-17",
+        "person": "BANK OF AMERICA CORP /DE/",
+        "title": null,
+        "dollar": 503.4055,
+        "shares": 65.0
+      },
+      {
+        "accession": "0000070858-26-000162",
+        "date": "2026-02-27",
+        "person": "BANK OF AMERICA CORP /DE/",
+        "title": null,
+        "dollar": 103.0272,
+        "shares": 8.0
+      },
+      {
+        "accession": "0000070858-26-000143",
+        "date": "2026-02-19",
+        "person": "BANK OF AMERICA CORP /DE/",
+        "title": null,
+        "dollar": 15042.999999999998,
+        "shares": 1400.0
+      }
+    ],
+    "issuer_name": "BANK OF AMERICA CORP /DE/"
+  },
+  "MTB": {
+    "ticker": "MTB",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "M&T BANK CORP"
   }
 }
