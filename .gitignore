@@ -8,3 +8,5 @@ run*.log
 us_small_*.csv
 universe_*.csv
 eligible.csv
+segment_inflection.csv
+pre_rerate_setups.csv
