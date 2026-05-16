@@ -1,4 +1,6 @@
 failed_bearish_*.csv
+momentum_rank_*.csv
+*_volume.csv
 *.log
 __pycache__/
 *.pyc
