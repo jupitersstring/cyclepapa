@@ -1423,6 +1423,99 @@ def rank_discount_quality_inflection(fair_df: pd.DataFrame,
     return merged.sort_values("composite", ascending=False).reset_index(drop=True)
 
 
+# ---------- unusual-volume screen ----------
+
+def unusual_volume_scan(pairs_df: pd.DataFrame,
+                        period: str = "3mo",
+                        min_dollar_vol_5d: float = 1000.0,
+                        min_history_bars: int = 40) -> pd.DataFrame:
+    """Find warrants with suspicious recent volume vs their own baseline.
+
+    Per warrant computes: surge_5d (5d_avg/30d_avg), surge_1d (1d/30d_avg),
+    vol_z_1d (z-score of log volume on 30d), 5d dollar volume, recent
+    price changes, and a warrant-vs-common activity ratio so you can
+    distinguish 'whole-stock buzz' from 'warrant-specific accumulation.'
+
+    w2c_surge > 1 means the warrant is unusually active relative to its
+    own common's activity baseline — i.e. someone wants the warrant
+    specifically, not just buzz on the underlying. This is the cleanest
+    'unusual flow' signal in the screen.
+    """
+    if pairs_df.empty:
+        return pd.DataFrame()
+    tickers = sorted(set(pairs_df["common"]) | set(pairs_df["warrant"]))
+    bundle = batch_load_pairs(tickers, period=period)
+    closes = bundle["close"]
+    volumes = bundle.get("volume", pd.DataFrame())
+    if closes.empty or volumes.empty:
+        return pd.DataFrame()
+    rows = []
+    for _, r in pairs_df.iterrows():
+        w, c = r["warrant"], r["common"]
+        if w not in volumes.columns:
+            continue
+        wv = volumes[w].fillna(0)
+        wc = closes[w].ffill()
+        # Need at least a handful of actual trading days to compute a
+        # baseline. Compute the historical baseline over trading days
+        # only (days with vol > 0), not raw calendar mean — that way an
+        # illiquid warrant with 8 trade-days/month doesn't look like a
+        # 30x surge when one of those days lands in the recent window.
+        traded_days = wv[wv > 0]
+        if len(traded_days) < 5:
+            continue
+        vol_1d = float(wv.iloc[-1])
+        vol_5d = float(wv.tail(5).mean())
+        # Baseline: mean of (up to 30) most recent trading days, excluding
+        # the most recent 5 (so a current burst doesn't deflate its own
+        # comparison).
+        baseline_pool = traded_days.iloc[:-5] if len(traded_days) > 5 else traded_days
+        vol_30d = float(baseline_pool.tail(30).mean()) if len(baseline_pool) else 0
+        if vol_30d <= 0:
+            continue
+        prices_5d = wc.tail(5).reindex(wv.tail(5).index).fillna(wc.iloc[-1])
+        dvol_5d = float((wv.tail(5) * prices_5d).mean())
+        if dvol_5d < min_dollar_vol_5d:
+            continue
+        surge_5d = vol_5d / vol_30d
+        surge_1d = vol_1d / vol_30d
+        log_vol = np.log(wv.replace(0, np.nan)).dropna().tail(30)
+        if len(log_vol) >= 10 and log_vol.std() > 0:
+            vol_z_1d = (np.log(max(vol_1d, 1)) - log_vol.mean()) / log_vol.std()
+        else:
+            vol_z_1d = 0.0
+        px_1d = float((wc.iloc[-1] / wc.iloc[-2] - 1)) if len(wc) >= 2 else 0.0
+        px_5d = float((wc.iloc[-1] / wc.iloc[-6] - 1)) if len(wc) >= 6 else 0.0
+        w2c_ratio = w2c_baseline = w2c_surge = float("nan")
+        if c in volumes.columns:
+            cv = volumes[c].fillna(0)
+            c_vol_5d = float(cv.tail(5).mean())
+            if c_vol_5d > 0:
+                w2c_ratio = vol_5d / c_vol_5d
+                ratio30 = (wv.tail(30) / cv.tail(30).replace(0, np.nan)).dropna()
+                if len(ratio30) >= 5 and ratio30.median() > 0:
+                    w2c_baseline = float(ratio30.median())
+                    w2c_surge = w2c_ratio / w2c_baseline
+        rows.append({
+            "common": c, "warrant": w,
+            "warrant_px": float(wc.iloc[-1]),
+            "vol_1d": int(vol_1d),
+            "vol_5d_avg": int(round(vol_5d)),
+            "vol_30d_avg": int(round(vol_30d)),
+            "dvol_5d": round(dvol_5d, 0),
+            "surge_5d": round(surge_5d, 2),
+            "surge_1d": round(surge_1d, 2),
+            "vol_z_1d": round(float(vol_z_1d), 2),
+            "px_1d_chg": round(px_1d, 4),
+            "px_5d_chg": round(px_5d, 4),
+            "w2c_ratio": round(w2c_ratio, 4) if w2c_ratio == w2c_ratio else None,
+            "w2c_surge": round(w2c_surge, 2) if w2c_surge == w2c_surge else None,
+        })
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return out
+    return out.sort_values("surge_5d", ascending=False).reset_index(drop=True)
+
 
 # ---------- CLI ----------
 
@@ -1569,6 +1662,30 @@ def _cmd_opportunities(args):
         print(f"\nWrote {args.out}")
 
 
+def _cmd_flow(args):
+    """Unusual-volume screen — warrants with surge in recent volume vs baseline."""
+    pairs = pd.read_csv(args.pairs)
+    print(f"Unusual-volume scan on {len(pairs)} pairs "
+          f"(period={args.period}, min_dvol_5d=${args.min_dvol:,.0f})...")
+    df = unusual_volume_scan(pairs, period=args.period,
+                              min_dollar_vol_5d=args.min_dvol)
+    if df.empty:
+        print("(no rows surviving filters)")
+        return
+    sort_col = args.sort
+    if sort_col not in df.columns:
+        sort_col = "surge_5d"
+    df = df.sort_values(sort_col, ascending=False).reset_index(drop=True)
+    cols = ["common", "warrant", "warrant_px", "vol_1d", "vol_30d_avg",
+            "surge_5d", "surge_1d", "vol_z_1d", "w2c_surge",
+            "px_1d_chg", "px_5d_chg", "dvol_5d"]
+    print(f"\n== Top {min(args.top, len(df))} by {sort_col} ==")
+    _print_df(df, cols=cols, max_rows=args.top)
+    if args.out:
+        df.to_csv(args.out, index=False)
+        print(f"\nWrote {args.out}")
+
+
 def _cmd_edgar(args):
     cik = ticker_to_cik(args.ticker)
     if not cik:
@@ -1672,6 +1789,21 @@ def cli():
                   "non-zero volume per yfinance. Default 0 (off).")
     s.add_argument("--out", default=None)
     s.set_defaults(fn=_cmd_opportunities)
+
+    # flow — unusual-volume screen
+    s = sub.add_parser("flow", help="Suspicious volume on warrants (recent surge vs baseline).")
+    s.add_argument("--pairs", default="warrants_universe.csv")
+    s.add_argument("--period", default="3mo",
+                  help="History window for the baseline computation.")
+    s.add_argument("--min-dvol", type=float, default=1000.0,
+                  help="Minimum 5d avg dollar volume to consider (drops "
+                  "names with no real activity).")
+    s.add_argument("--sort", default="surge_5d",
+                  choices=["surge_5d", "surge_1d", "vol_z_1d",
+                           "w2c_surge", "dvol_5d", "px_5d_chg"])
+    s.add_argument("--top", type=int, default=25)
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_flow)
 
     # edgar
     s = sub.add_parser("edgar", help="Recent EDGAR filings for a ticker.")
