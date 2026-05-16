@@ -1517,6 +1517,109 @@ def unusual_volume_scan(pairs_df: pd.DataFrame,
     return out.sort_values("surge_5d", ascending=False).reset_index(drop=True)
 
 
+# ---------- coiled-spring screen ----------
+
+def coiled_spring_scan(pairs_df: pd.DataFrame,
+                       period: str = "3mo",
+                       min_dollar_vol_5d: float = 1000.0,
+                       max_range_pct: float = 0.20,
+                       min_vol_accel: float = 1.5,
+                       min_history_bars: int = 30) -> pd.DataFrame:
+    """Find pre-breakout 'coiled spring' setups on warrants.
+
+    Per warrant, three non-overlapping volume windows:
+      w0 = last 5 sessions
+      w1 = 5-10 sessions ago
+      w2 = 10-30 sessions ago
+
+    A real coiled-spring setup needs all three of:
+      1. Volume acceleration: vol_w0 / vol_w2 >= min_vol_accel (volume
+         growing across windows, not a one-day spike)
+      2. Range-bound price: max-min over last 10 sessions / mean
+         <= max_range_pct (the breakout HASN'T happened yet — the
+         compression is the setup)
+      3. Warrant-specific flow: w2c_accel = (vol_w0/cv_w0) / (vol_w2/cv_w2)
+         elevated, meaning warrant volume is rising relative to the
+         common's volume too — not just the whole stock getting bid
+
+    Composite `coil_score` = vol_accel × (1 / range_pct) × w2c_accel.
+    Sorted descending — highest scores are tightest, loudest setups.
+    """
+    if pairs_df.empty:
+        return pd.DataFrame()
+    tickers = sorted(set(pairs_df["common"]) | set(pairs_df["warrant"]))
+    bundle = batch_load_pairs(tickers, period=period)
+    closes = bundle["close"]
+    volumes = bundle.get("volume", pd.DataFrame())
+    if closes.empty or volumes.empty:
+        return pd.DataFrame()
+    rows = []
+    for _, r in pairs_df.iterrows():
+        w, c = r["warrant"], r["common"]
+        if w not in volumes.columns:
+            continue
+        wv = volumes[w].fillna(0)
+        wc = closes[w].ffill()
+        if (wv > 0).sum() < 5 or len(wc) < min_history_bars:
+            continue
+        w0 = wv.iloc[-5:]
+        w1 = wv.iloc[-10:-5]
+        w2 = wv.iloc[-30:-10]
+        if len(w0) < 3 or len(w2) < 5:
+            continue
+        vol_w0 = float(w0.mean())
+        vol_w1 = float(w1.mean()) if len(w1) else 0.0
+        vol_w2 = float(w2.mean())
+        if vol_w2 <= 0:
+            continue
+        prices_5d = wc.iloc[-5:].reindex(w0.index).fillna(wc.iloc[-1])
+        dvol_w0 = float((w0 * prices_5d).mean())
+        if dvol_w0 < min_dollar_vol_5d:
+            continue
+        vol_acc = vol_w0 / vol_w2
+        persistence = (vol_w0 > vol_w1) and (vol_w1 > vol_w2)
+        recent_prices = wc.iloc[-10:]
+        mid = float(recent_prices.mean())
+        if mid <= 0:
+            continue
+        rng = float((recent_prices.max() - recent_prices.min()) / mid)
+        px_5d_chg = float(wc.iloc[-1] / wc.iloc[-6] - 1) if len(wc) > 5 else 0.0
+        px_10d_chg = float(wc.iloc[-1] / wc.iloc[-11] - 1) if len(wc) > 10 else 0.0
+        w2c_accel = float("nan")
+        if c in volumes.columns:
+            cv = volumes[c].fillna(0)
+            cv_w0 = float(cv.iloc[-5:].mean())
+            cv_w2 = float(cv.iloc[-30:-10].mean())
+            if cv_w0 > 0 and cv_w2 > 0:
+                w2c_recent = vol_w0 / cv_w0
+                w2c_prior = vol_w2 / cv_w2
+                if w2c_prior > 0:
+                    w2c_accel = w2c_recent / w2c_prior
+        w2c_eff = w2c_accel if w2c_accel == w2c_accel else 1.0
+        coil_score = vol_acc * (1.0 / max(rng, 0.01)) * w2c_eff
+        rows.append({
+            "common": c, "warrant": w,
+            "warrant_px": float(wc.iloc[-1]),
+            "vol_w0_5d": int(round(vol_w0)),
+            "vol_w1_5to10d": int(round(vol_w1)),
+            "vol_w2_10to30d": int(round(vol_w2)),
+            "vol_accel": round(vol_acc, 2),
+            "persistence": persistence,
+            "range_pct_10d": round(rng, 4),
+            "px_5d_chg": round(px_5d_chg, 4),
+            "px_10d_chg": round(px_10d_chg, 4),
+            "w2c_accel": round(w2c_accel, 2) if w2c_accel == w2c_accel else None,
+            "dvol_5d": round(dvol_w0, 0),
+            "coil_score": round(coil_score, 2),
+        })
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return out
+    out = out[(out["vol_accel"] >= min_vol_accel) &
+              (out["range_pct_10d"] <= max_range_pct)]
+    return out.sort_values("coil_score", ascending=False).reset_index(drop=True)
+
+
 # ---------- CLI ----------
 
 def _print_df(df: pd.DataFrame, cols: list[str] | None = None,
@@ -1686,6 +1789,33 @@ def _cmd_flow(args):
         print(f"\nWrote {args.out}")
 
 
+def _cmd_coil(args):
+    """Coiled-spring screen — pre-breakout setups."""
+    pairs = pd.read_csv(args.pairs)
+    print(f"Coiled-spring scan on {len(pairs)} pairs "
+          f"(vol_accel >= {args.min_accel}x, range <= {args.max_range:.0%}, "
+          f"min_dvol_5d >= ${args.min_dvol:,.0f})...")
+    df = coiled_spring_scan(pairs, period=args.period,
+                             min_dollar_vol_5d=args.min_dvol,
+                             max_range_pct=args.max_range,
+                             min_vol_accel=args.min_accel)
+    if df.empty:
+        print("(no setups match filters)")
+        return
+    sort_col = args.sort if args.sort in df.columns else "coil_score"
+    df = df.sort_values(sort_col, ascending=False).reset_index(drop=True)
+    cols = ["common", "warrant", "warrant_px",
+            "vol_w0_5d", "vol_w1_5to10d", "vol_w2_10to30d",
+            "vol_accel", "persistence", "range_pct_10d",
+            "px_5d_chg", "px_10d_chg", "w2c_accel",
+            "dvol_5d", "coil_score"]
+    print(f"\n== Top {min(args.top, len(df))} by {sort_col} ==")
+    _print_df(df, cols=cols, max_rows=args.top)
+    if args.out:
+        df.to_csv(args.out, index=False)
+        print(f"\nWrote {args.out}")
+
+
 def _cmd_edgar(args):
     cik = ticker_to_cik(args.ticker)
     if not cik:
@@ -1804,6 +1934,22 @@ def cli():
     s.add_argument("--top", type=int, default=25)
     s.add_argument("--out", default=None)
     s.set_defaults(fn=_cmd_flow)
+
+    # coil — coiled-spring (pre-breakout accumulation)
+    s = sub.add_parser("coil", help="Coiled-spring setups: volume rising + price range-bound + warrant flow accelerating vs common.")
+    s.add_argument("--pairs", default="warrants_universe.csv")
+    s.add_argument("--period", default="3mo")
+    s.add_argument("--min-dvol", type=float, default=1000.0)
+    s.add_argument("--max-range", type=float, default=0.20,
+                  help="Max 10-day price (high-low)/mean to count as range-bound.")
+    s.add_argument("--min-accel", type=float, default=1.5,
+                  help="Min vol_w0/vol_w2 ratio (volume ramp across 5d vs 10-30d).")
+    s.add_argument("--sort", default="coil_score",
+                  choices=["coil_score", "vol_accel", "w2c_accel",
+                           "range_pct_10d", "dvol_5d"])
+    s.add_argument("--top", type=int, default=25)
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_coil)
 
     # edgar
     s = sub.add_parser("edgar", help="Recent EDGAR filings for a ticker.")
