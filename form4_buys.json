@@ -8548,5 +8548,41 @@
       }
     ],
     "issuer_name": "NIKE, Inc."
+  },
+  "LULU": {
+    "ticker": "LULU",
+    "buyer_set": [
+      "MAESTRINI ANDRE | Pres, CCO & Interim Co-CEO",
+      "Bergh Charles V | Director"
+    ],
+    "total_dollar": 1494568.5,
+    "total_shares": 9365.0,
+    "filings": [
+      {
+        "accession": "0001397187-26-000065",
+        "date": "2026-04-03",
+        "person": "MAESTRINI ANDRE",
+        "title": "Pres, CCO & Interim Co-CEO",
+        "dollar": 494590.50000000006,
+        "shares": 3275.0
+      },
+      {
+        "accession": "0001397187-26-000038",
+        "date": "2026-03-23",
+        "person": "Bergh Charles V",
+        "title": null,
+        "dollar": 999977.9999999999,
+        "shares": 6090.0
+      }
+    ],
+    "issuer_name": "lululemon athletica inc."
+  },
+  "DECK": {
+    "ticker": "DECK",
+    "buyer_set": [],
+    "total_dollar": 0.0,
+    "total_shares": 0.0,
+    "filings": [],
+    "issuer_name": "DECKERS OUTDOOR CORP"
   }
 }
