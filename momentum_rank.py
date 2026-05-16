@@ -627,15 +627,25 @@ def main():
     df["near_box_top"] = dist_top.between(-3, 0)
     df["box_breakout"] = dist_top.gt(0) & dist_top.lt(5)  # just broke out, not yet extended
 
-    # Qullamaggie Setup 3 (Consolidation Breakout): big prior move, tight box,
-    # near top of box / just broken out, vol drying during consol.
+    # Qullamaggie Setup 3 (Consolidation Breakout): had a real prior move,
+    # tight box, near top / just broken out, vol drying, relative trend up.
     big_prior_move = (
-        df["mom_3m"].fillna(0).ge(1.30)
-        | df["mom_6m"].fillna(0).ge(1.40)
+        df["mom_3m"].fillna(0).ge(1.20)
+        | df["mom_6m"].fillna(0).ge(1.30)
     )
     df["big_prior_move"] = big_prior_move
+    # Strict (Q's "big mover") vs loose (any prior advance)
     df["qulla_consol_setup"] = (
         big_prior_move
+        & df["darvas_tight"]
+        & (df["near_box_top"] | df["box_breakout"])
+        & df["vol_drying"]
+        & df["roque_rel_trend"].fillna(False)
+    )
+    # Looser variant: same structure but only mom_6m > 1.10 (had some advance)
+    soft_prior = df["mom_6m"].fillna(0).gt(1.10)
+    df["qulla_consol_soft"] = (
+        soft_prior
         & df["darvas_tight"]
         & (df["near_box_top"] | df["box_breakout"])
         & df["vol_drying"]
@@ -666,6 +676,7 @@ def main():
         | df["base_ready"].fillna(False)
         | df["base_forming"].fillna(False)
         | df["qulla_consol_setup"].fillna(False)
+        | df["qulla_consol_soft"].fillna(False)
         | df["roque_big_base"].fillna(False)
         | df["long_base"].fillna(False)
         | (df["roque_score"] >= 8)
@@ -690,6 +701,7 @@ def main():
     show_cols = [c for c in show_cols if c in flagged.columns]
 
     qulla = df[df["qulla_consol_setup"]].sort_values("box_length_weeks", ascending=False)
+    qulla_soft = df[df["qulla_consol_soft"] & (~df["qulla_consol_setup"])].sort_values("box_length_weeks", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -698,9 +710,15 @@ def main():
     base_forming = df[df["base_forming"]].sort_values("q_score")
 
     with pd.option_context("display.max_columns", None, "display.width", 300, "display.float_format", "{:.2f}".format):
-        print(f"\n=== QULLA_CONSOL_SETUP (big prior move + tight Darvas box + near top + vol dry + rel up) ({len(qulla)}) ===")
+        print(f"\n=== QULLA_CONSOL_SETUP (Q big prior move + tight Darvas + near top + vol dry + rel up) ({len(qulla)}) ===")
         if len(qulla):
             print(qulla[show_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== QULLA_CONSOL_SOFT (any positive 6m advance + tight Darvas + near top + vol dry + rel up) ({len(qulla_soft)}) ===")
+        if len(qulla_soft):
+            print(qulla_soft[show_cols].head(args.top).to_string())
         else:
             print("(none)")
 
