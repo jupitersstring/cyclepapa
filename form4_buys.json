@@ -2494,10 +2494,12 @@
     "buyer_set": [
       "Everard Michele J | Director",
       "Farquharson Tyler | President and CEO",
-      "Miller Matthew Reade | Director"
+      "Miller Matthew Reade | Director",
+      "Kettler Ronald Kyle | Chief Financial Officer",
+      "MCCARTNEY JOHN | Director"
     ],
-    "total_dollar": 156777.8,
-    "total_shares": 30180.0,
+    "total_dollar": 379591.5,
+    "total_shares": 73338.0,
     "filings": [
       {
         "accession": "0001628280-26-035006",
@@ -2530,6 +2532,70 @@
         "title": null,
         "dollar": 94717.8,
         "shares": 18180.0
+      },
+      {
+        "accession": "0001628280-26-018416",
+        "date": "2026-03-17",
+        "person": "Miller Matthew Reade",
+        "title": null,
+        "dollar": 3388.7000000000003,
+        "shares": 658.0
+      },
+      {
+        "accession": "0001628280-26-017978",
+        "date": "2026-03-16",
+        "person": "Kettler Ronald Kyle",
+        "title": "Chief Financial Officer",
+        "dollar": 15510.0,
+        "shares": 3000.0
+      },
+      {
+        "accession": "0001628280-26-017977",
+        "date": "2026-03-16",
+        "person": "MCCARTNEY JOHN",
+        "title": null,
+        "dollar": 25800.0,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0001628280-26-017169",
+        "date": "2026-03-12",
+        "person": "MCCARTNEY JOHN",
+        "title": null,
+        "dollar": 10240.0,
+        "shares": 2000.0
+      },
+      {
+        "accession": "0001628280-26-017163",
+        "date": "2026-03-12",
+        "person": "Everard Michele J",
+        "title": null,
+        "dollar": 25850.0,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0001628280-26-016706",
+        "date": "2026-03-11",
+        "person": "Miller Matthew Reade",
+        "title": null,
+        "dollar": 51000.0,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001628280-26-016701",
+        "date": "2026-03-11",
+        "person": "Kettler Ronald Kyle",
+        "title": "Chief Financial Officer",
+        "dollar": 25900.0,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0001628280-26-016687",
+        "date": "2026-03-11",
+        "person": "Farquharson Tyler",
+        "title": "President and CEO",
+        "dollar": 65125.0,
+        "shares": 12500.0
       }
     ]
   },
@@ -3041,10 +3107,12 @@
     "buyer_set": [
       "PEREZ DE LA MESA MANUEL J | Director",
       "WHALEN DAVID G | Director",
-      "STOKELY JOHN E | Director"
+      "STOKELY JOHN E | Director",
+      "Hope James D | Director",
+      "St Romain Kenneth G | Senior Vice President"
     ],
-    "total_dollar": 3952517.0,
-    "total_shares": 21525.0,
+    "total_dollar": 7673697.7930000005,
+    "total_shares": 38954.0,
     "filings": [
       {
         "accession": "0000945841-26-000118",
@@ -3077,6 +3145,46 @@
         "title": null,
         "dollar": 1900000.0,
         "shares": 10000.0
+      },
+      {
+        "accession": "0000945841-26-000110",
+        "date": "2026-05-08",
+        "person": "Hope James D",
+        "title": null,
+        "dollar": 90208.56,
+        "shares": 464.0
+      },
+      {
+        "accession": "0000945841-26-000065",
+        "date": "2026-03-17",
+        "person": "PEREZ DE LA MESA MANUEL J",
+        "title": null,
+        "dollar": 1025000.0,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0000945841-26-000063",
+        "date": "2026-03-04",
+        "person": "PEREZ DE LA MESA MANUEL J",
+        "title": null,
+        "dollar": 1090000.0,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0000945841-26-000049",
+        "date": "2026-02-27",
+        "person": "Hope James D",
+        "title": null,
+        "dollar": 300162.233,
+        "shares": 1405.0
+      },
+      {
+        "accession": "0000945841-26-000037",
+        "date": "2026-02-25",
+        "person": "St Romain Kenneth G",
+        "title": "Senior Vice President",
+        "dollar": 1215810.0,
+        "shares": 5560.0
       }
     ]
   },
@@ -3478,10 +3586,14 @@
     "issuer_cik": "0001835856",
     "buyer_set": [
       "Advani Loveen | Chief Financial Officer",
-      "Talwar Harit | Director"
+      "Talwar Harit | Director",
+      "Garg Vishal | Chief Executive Officer",
+      "Framework Ventures IV L.P. | 10%",
+      "Orn Jonsson Sigurgeir | Chief Technology Officer",
+      "MENON BHASKAR | Director"
     ],
-    "total_dollar": 106635.0,
-    "total_shares": 3500.0,
+    "total_dollar": 9214152.9415,
+    "total_shares": 289576.0,
     "filings": [
       {
         "accession": "0002111354-26-000011",
@@ -3498,6 +3610,134 @@
         "title": null,
         "dollar": 91290.0,
         "shares": 3000.0
+      },
+      {
+        "accession": "0001297602-26-000023",
+        "date": "2026-05-07",
+        "person": "Garg Vishal",
+        "title": "Chief Executive Officer",
+        "dollar": 197485.0,
+        "shares": 6583.0
+      },
+      {
+        "accession": "0001437749-26-012081",
+        "date": "2026-04-10",
+        "person": "Framework Ventures IV L.P.",
+        "title": null,
+        "dollar": 1792496.6400000001,
+        "shares": 54384.0
+      },
+      {
+        "accession": "0001401336-26-000011",
+        "date": "2026-04-09",
+        "person": "Talwar Harit",
+        "title": null,
+        "dollar": 164431.5,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0001297602-26-000021",
+        "date": "2026-04-08",
+        "person": "Garg Vishal",
+        "title": "Chief Executive Officer",
+        "dollar": 350519.00000000006,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001828689-26-000008",
+        "date": "2026-04-08",
+        "person": "Orn Jonsson Sigurgeir",
+        "title": "Chief Technology Officer",
+        "dollar": 36089.16,
+        "shares": 1000.0
+      },
+      {
+        "accession": "0002111354-26-000008",
+        "date": "2026-04-08",
+        "person": "Advani Loveen",
+        "title": "Chief Financial Officer",
+        "dollar": 355.0,
+        "shares": 10.0
+      },
+      {
+        "accession": "0001437224-26-000005",
+        "date": "2026-04-08",
+        "person": "MENON BHASKAR",
+        "title": null,
+        "dollar": 20139.649999999998,
+        "shares": 590.0
+      },
+      {
+        "accession": "0001401336-26-000009",
+        "date": "2026-04-08",
+        "person": "Talwar Harit",
+        "title": null,
+        "dollar": 33340.0,
+        "shares": 1000.0
+      },
+      {
+        "accession": "0001401336-26-000006",
+        "date": "2026-04-06",
+        "person": "Talwar Harit",
+        "title": null,
+        "dollar": 176218.0,
+        "shares": 5000.0
+      },
+      {
+        "accession": "0001297602-26-000019",
+        "date": "2026-03-25",
+        "person": "Garg Vishal",
+        "title": "Chief Executive Officer",
+        "dollar": 66298.27649999999,
+        "shares": 2217.0
+      },
+      {
+        "accession": "0001297602-26-000017",
+        "date": "2026-03-24",
+        "person": "Garg Vishal",
+        "title": "Chief Executive Officer",
+        "dollar": 618931.895,
+        "shares": 21200.0
+      },
+      {
+        "accession": "0001437749-26-009476",
+        "date": "2026-03-23",
+        "person": "Framework Ventures IV L.P.",
+        "title": null,
+        "dollar": 1184000.0,
+        "shares": 40000.0
+      },
+      {
+        "accession": "0001437749-26-009107",
+        "date": "2026-03-19",
+        "person": "Framework Ventures IV L.P.",
+        "title": null,
+        "dollar": 1509440.0,
+        "shares": 53000.0
+      },
+      {
+        "accession": "0001437749-26-008490",
+        "date": "2026-03-16",
+        "person": "Framework Ventures IV L.P.",
+        "title": null,
+        "dollar": 738750.0,
+        "shares": 25000.0
+      },
+      {
+        "accession": "0001437749-26-008292",
+        "date": "2026-03-13",
+        "person": "Framework Ventures IV L.P.",
+        "title": null,
+        "dollar": 1006335.2799999999,
+        "shares": 29494.0
+      },
+      {
+        "accession": "0001437749-26-007812",
+        "date": "2026-03-11",
+        "person": "Framework Ventures IV L.P.",
+        "title": null,
+        "dollar": 1212688.54,
+        "shares": 31598.0
       }
     ]
   },
@@ -3871,10 +4111,11 @@
     "buyer_set": [
       "Presa Rachel | General Counsel and Secretary",
       "Nitkin Robert | Chief Operating Officer",
-      "Richman Darren | See Remarks"
+      "Richman Darren | See Remarks",
+      "Gorson Matthew B. | Director"
     ],
-    "total_dollar": 6495140.4977,
-    "total_shares": 237872.0,
+    "total_dollar": 6525805.4977,
+    "total_shares": 238872.0,
     "filings": [
       {
         "accession": "0001193125-26-221992",
@@ -3899,6 +4140,14 @@
         "title": "See Remarks",
         "dollar": 6418320.0,
         "shares": 235000.0
+      },
+      {
+        "accession": "0001193125-26-098539",
+        "date": "2026-03-09",
+        "person": "Gorson Matthew B.",
+        "title": null,
+        "dollar": 30665.0,
+        "shares": 1000.0
       }
     ]
   },
@@ -6044,10 +6293,12 @@
     "issuer_cik": "0001408075",
     "buyer_set": [
       "HAGEMANN ROBERT | Director",
-      "Stafeil Jeffrey | Director"
+      "Stafeil Jeffrey | Director",
+      "Venturelli Larry M | Director",
+      "Rietbroek Robbert | President and CEO"
     ],
-    "total_dollar": 353992.3650776,
-    "total_shares": 31878.282,
+    "total_dollar": 1054285.3342776,
+    "total_shares": 93687.282,
     "filings": [
       {
         "accession": "0001193125-26-216732",
@@ -6064,6 +6315,22 @@
         "title": null,
         "dollar": 200000.7650776,
         "shares": 17878.282
+      },
+      {
+        "accession": "0001193125-26-093915",
+        "date": "2026-03-05",
+        "person": "Venturelli Larry M",
+        "title": null,
+        "dollar": 199194.4154,
+        "shares": 17531.0
+      },
+      {
+        "accession": "0001193125-26-091829",
+        "date": "2026-03-04",
+        "person": "Rietbroek Robbert",
+        "title": "President and CEO",
+        "dollar": 501098.5538,
+        "shares": 44278.0
       }
     ]
   },
@@ -6132,10 +6399,13 @@
     "issuer_name": "Lamb Weston Holdings, Inc.",
     "issuer_cik": "0001679273",
     "buyer_set": [
-      "Gray James D | Chief Financial Officer"
+      "Gray James D | Chief Financial Officer",
+      "JANA Partners Management, LP | Director",
+      "Prestage Norman | Director",
+      "Bensen Peter J | Director"
     ],
-    "total_dollar": 409225.0,
-    "total_shares": 10000.0,
+    "total_dollar": 16983270.6,
+    "total_shares": 408056.0,
     "filings": [
       {
         "accession": "0001699728-26-000010",
@@ -6144,6 +6414,46 @@
         "title": "Chief Financial Officer",
         "dollar": 409225.0,
         "shares": 10000.0
+      },
+      {
+        "accession": "0001699728-26-000008",
+        "date": "2026-04-28",
+        "person": "Gray James D",
+        "title": "Chief Financial Officer",
+        "dollar": 199780.6,
+        "shares": 4556.0
+      },
+      {
+        "accession": "0000902664-26-001994",
+        "date": "2026-04-15",
+        "person": "JANA Partners Management, LP",
+        "title": null,
+        "dollar": 6371500.0,
+        "shares": 150000.0
+      },
+      {
+        "accession": "0000902664-26-001944",
+        "date": "2026-04-09",
+        "person": "JANA Partners Management, LP",
+        "title": null,
+        "dollar": 9702040.0,
+        "shares": 236000.0
+      },
+      {
+        "accession": "0002039277-26-000002",
+        "date": "2026-04-08",
+        "person": "Prestage Norman",
+        "title": null,
+        "dollar": 103500.0,
+        "shares": 2500.0
+      },
+      {
+        "accession": "0001395526-26-000003",
+        "date": "2026-04-07",
+        "person": "Bensen Peter J",
+        "title": null,
+        "dollar": 197225.0,
+        "shares": 5000.0
       }
     ]
   },
@@ -6607,5 +6917,319 @@
       }
     ],
     "issuer_name": "Grocery Outlet Holding Corp."
+  },
+  "OPCH": {
+    "ticker": "OPCH",
+    "buyer_set": [
+      "SULLIVAN TIMOTHY P | Director",
+      "KRAEMER HARRY M JANSEN JR | Director",
+      "Sethna Meenal | Chief Financial Officer",
+      "RADEMACHER JOHN CHARLES | Chief Executive Officer"
+    ],
+    "total_dollar": 1875225.0470999999,
+    "total_shares": 89489.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-015657",
+        "date": "2026-05-07",
+        "person": "SULLIVAN TIMOTHY P",
+        "title": null,
+        "dollar": 499671.3826,
+        "shares": 24154.0
+      },
+      {
+        "accession": "0001437749-26-014959",
+        "date": "2026-05-05",
+        "person": "KRAEMER HARRY M JANSEN JR",
+        "title": null,
+        "dollar": 783772.507,
+        "shares": 36610.0
+      },
+      {
+        "accession": "0001437749-26-014693",
+        "date": "2026-05-04",
+        "person": "Sethna Meenal",
+        "title": "Chief Financial Officer",
+        "dollar": 327074.9075,
+        "shares": 16225.0
+      },
+      {
+        "accession": "0001437749-26-014692",
+        "date": "2026-05-04",
+        "person": "RADEMACHER JOHN CHARLES",
+        "title": "Chief Executive Officer",
+        "dollar": 264706.25,
+        "shares": 12500.0
+      }
+    ],
+    "issuer_name": "Option Care Health, Inc."
+  },
+  "VSNT": {
+    "ticker": "VSNT",
+    "buyer_set": [
+      "Potter Leonard | Director",
+      "Conway Michael Aaron | Director",
+      "HASSELL GERALD L | Director",
+      "NOVAK DAVID C | Director"
+    ],
+    "total_dollar": 6189514.0,
+    "total_shares": 167850.0,
+    "filings": [
+      {
+        "accession": "0001628280-26-018337",
+        "date": "2026-03-16",
+        "person": "Potter Leonard",
+        "title": null,
+        "dollar": 510475.0,
+        "shares": 13500.0
+      },
+      {
+        "accession": "0001628280-26-016564",
+        "date": "2026-03-10",
+        "person": "Conway Michael Aaron",
+        "title": null,
+        "dollar": 48789.0,
+        "shares": 1350.0
+      },
+      {
+        "accession": "0001628280-26-016554",
+        "date": "2026-03-10",
+        "person": "HASSELL GERALD L",
+        "title": null,
+        "dollar": 360700.0,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001628280-26-016141",
+        "date": "2026-03-09",
+        "person": "NOVAK DAVID C",
+        "title": null,
+        "dollar": 5269550.0,
+        "shares": 143000.0
+      }
+    ],
+    "issuer_name": "Versant Media Group, Inc."
+  },
+  "SRAD": {
+    "ticker": "SRAD",
+    "buyer_set": [
+      "Koerl Carsten | Chief Executive Officer",
+      "Walder Marc | Director",
+      "YABUKI JEFFERY W | Director",
+      "Ramanathan Rajani | Director",
+      "KURTZ WILLIAM | Director",
+      "Fleet George | Director",
+      "Bigley Deirdre Mary | Director"
+    ],
+    "total_dollar": 11349413.386495,
+    "total_shares": 855694.201,
+    "filings": [
+      {
+        "accession": "0001104659-26-057135",
+        "date": "2026-05-07",
+        "person": "Koerl Carsten",
+        "title": "Chief Executive Officer",
+        "dollar": 2128735.49,
+        "shares": 157801.0
+      },
+      {
+        "accession": "0001104659-26-056245",
+        "date": "2026-05-06",
+        "person": "Koerl Carsten",
+        "title": "Chief Executive Officer",
+        "dollar": 4552360.0,
+        "shares": 340000.0
+      },
+      {
+        "accession": "0001104659-26-054872",
+        "date": "2026-05-04",
+        "person": "Koerl Carsten",
+        "title": "Chief Executive Officer",
+        "dollar": 3342856.0,
+        "shares": 254100.0
+      },
+      {
+        "accession": "0001104659-26-054469",
+        "date": "2026-05-04",
+        "person": "Walder Marc",
+        "title": null,
+        "dollar": 842820.0,
+        "shares": 66000.0
+      },
+      {
+        "accession": "0001104659-26-054467",
+        "date": "2026-05-04",
+        "person": "YABUKI JEFFERY W",
+        "title": null,
+        "dollar": 129400.0,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001104659-26-054466",
+        "date": "2026-05-04",
+        "person": "Ramanathan Rajani",
+        "title": null,
+        "dollar": 99999.996495,
+        "shares": 8003.201
+      },
+      {
+        "accession": "0001104659-26-054465",
+        "date": "2026-05-04",
+        "person": "KURTZ WILLIAM",
+        "title": null,
+        "dollar": 103785.6,
+        "shares": 8000.0
+      },
+      {
+        "accession": "0001104659-26-054464",
+        "date": "2026-05-04",
+        "person": "Fleet George",
+        "title": null,
+        "dollar": 99930.5,
+        "shares": 7850.0
+      },
+      {
+        "accession": "0001104659-26-054460",
+        "date": "2026-05-04",
+        "person": "Bigley Deirdre Mary",
+        "title": null,
+        "dollar": 49525.8,
+        "shares": 3940.0
+      }
+    ],
+    "issuer_name": "Sportradar Group AG"
+  },
+  "PATK": {
+    "ticker": "PATK",
+    "buyer_set": [
+      "Augsburger Blake | Director",
+      "NEMETH ANDY L | Chief Executive Officer",
+      "WELCH M SCOTT | Director",
+      "Filer Matthew S | ?",
+      "Roeder Charles R | President - RV"
+    ],
+    "total_dollar": 3541270.975,
+    "total_shares": 37310.0,
+    "filings": [
+      {
+        "accession": "0001380659-26-000006",
+        "date": "2026-05-06",
+        "person": "Augsburger Blake",
+        "title": null,
+        "dollar": 34076.0,
+        "shares": 400.0
+      },
+      {
+        "accession": "0001209929-26-000006",
+        "date": "2026-05-06",
+        "person": "NEMETH ANDY L",
+        "title": "Chief Executive Officer",
+        "dollar": 880000.0,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001189422-26-000019",
+        "date": "2026-05-06",
+        "person": "WELCH M SCOTT",
+        "title": null,
+        "dollar": 886670.5,
+        "shares": 10050.0
+      },
+      {
+        "accession": "0001974819-26-000008",
+        "date": "2026-05-06",
+        "person": "Filer Matthew S",
+        "title": null,
+        "dollar": 85500.0,
+        "shares": 1000.0
+      },
+      {
+        "accession": "0002015612-26-000006",
+        "date": "2026-05-06",
+        "person": "Roeder Charles R",
+        "title": "President - RV",
+        "dollar": 505018.47500000003,
+        "shares": 5750.0
+      },
+      {
+        "accession": "0001189422-26-000017",
+        "date": "2026-03-12",
+        "person": "WELCH M SCOTT",
+        "title": null,
+        "dollar": 1136821.0,
+        "shares": 10000.0
+      },
+      {
+        "accession": "0001189422-26-000013",
+        "date": "2026-03-10",
+        "person": "WELCH M SCOTT",
+        "title": null,
+        "dollar": 5820.0,
+        "shares": 50.0
+      },
+      {
+        "accession": "0001189422-26-000009",
+        "date": "2026-02-27",
+        "person": "WELCH M SCOTT",
+        "title": null,
+        "dollar": 7365.0,
+        "shares": 60.0
+      }
+    ],
+    "issuer_name": "PATRICK INDUSTRIES INC"
+  },
+  "NSP": {
+    "ticker": "NSP",
+    "buyer_set": [
+      "SARVADI PAUL J | Chairman of the Board & CEO",
+      "MASTERSON ELLEN H | Director",
+      "Callens Christian P | SVP Legal, Gen Counsel & Sec",
+      "ALLISON JAMES D | EVP, Finance, CFO & Treasurer"
+    ],
+    "total_dollar": 7814505.93,
+    "total_shares": 314437.0,
+    "filings": [
+      {
+        "accession": "0001000753-26-000053",
+        "date": "2026-05-06",
+        "person": "SARVADI PAUL J",
+        "title": "Chairman of the Board & CEO",
+        "dollar": 2873235.58,
+        "shares": 100000.0
+      },
+      {
+        "accession": "0001000753-26-000037",
+        "date": "2026-03-19",
+        "person": "SARVADI PAUL J",
+        "title": "Chairman of the Board & CEO",
+        "dollar": 4688790.35,
+        "shares": 201987.0
+      },
+      {
+        "accession": "0001000753-26-000035",
+        "date": "2026-03-11",
+        "person": "MASTERSON ELLEN H",
+        "title": null,
+        "dollar": 23880.0,
+        "shares": 1200.0
+      },
+      {
+        "accession": "0001000753-26-000034",
+        "date": "2026-03-11",
+        "person": "Callens Christian P",
+        "title": "SVP Legal, Gen Counsel & Sec",
+        "dollar": 24100.0,
+        "shares": 1250.0
+      },
+      {
+        "accession": "0001000753-26-000033",
+        "date": "2026-03-11",
+        "person": "ALLISON JAMES D",
+        "title": "EVP, Finance, CFO & Treasurer",
+        "dollar": 204500.0,
+        "shares": 10000.0
+      }
+    ],
+    "issuer_name": "INSPERITY, INC."
   }
 }
