@@ -89,6 +89,93 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
 
 
 SPY_PICKLE = "/tmp/cyclepapa_spy_daily.pkl"
+SPY_MONTHLY_PICKLE = "/tmp/cyclepapa_spy_monthly.pkl"
+PICKLE_MONTHLY_TMPL = "/tmp/cyclepapa_dl_{universe}_monthly_{years}y.pkl"
+
+
+def load_or_download_spy_monthly(years=10):
+    """Cached SPY monthly close (1mo bars). ~120 bars at 10y - tiny pickle."""
+    if os.path.exists(SPY_MONTHLY_PICKLE):
+        try:
+            with open(SPY_MONTHLY_PICKLE, "rb") as f:
+                spy = pickle.load(f)
+            if (pd.Timestamp.today() - spy.index[-1]).days <= 35:
+                print(f"  SPY monthly loaded from cache ({len(spy)} bars)")
+                return spy
+        except Exception:
+            pass
+    print(f"  Downloading SPY monthly ({years}y)...")
+    data = yf.download("SPY", period=f"{years}y", interval="1mo",
+                       auto_adjust=True, progress=False)
+    if data is None or data.empty:
+        return None
+    spy_close = data["Close"]
+    if isinstance(spy_close, pd.DataFrame):
+        spy_close = spy_close.iloc[:, 0]
+    spy = pd.to_numeric(spy_close, errors="coerce").dropna()
+    try:
+        with open(SPY_MONTHLY_PICKLE, "wb") as f:
+            pickle.dump(spy, f)
+    except Exception:
+        pass
+    return spy
+
+
+def load_pickle_frames_monthly(universe, years):
+    path = PICKLE_MONTHLY_TMPL.format(universe=universe, years=years)
+    if not os.path.exists(path):
+        return {}, set()
+    with open(path, "rb") as f:
+        state = pickle.load(f)
+    return state.get("frames", {}), set(state.get("done", []))
+
+
+def save_pickle_monthly(universe, years, frames, done):
+    path = PICKLE_MONTHLY_TMPL.format(universe=universe, years=years)
+    tmp = path + ".tmp"
+    try:
+        with open(tmp, "wb") as f:
+            pickle.dump({"frames": frames, "done": list(done)}, f)
+        os.replace(tmp, path)
+    except Exception as e:
+        print(f"    monthly checkpoint save failed: {e}")
+
+
+def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10):
+    """Download yfinance monthly bars (interval='1mo'). ~120 bars/ticker at 10y."""
+    frames, done = load_pickle_frames_monthly(universe, years)
+    if frames:
+        print(f"  monthly resumed: {len(frames)} kept, {len(done)} attempted")
+    todo = [t for t in tickers if t not in done]
+    total = len(todo)
+    n_batches = (total + chunk_size - 1) // chunk_size
+    for i in range(0, total, chunk_size):
+        b = i // chunk_size + 1
+        chunk = todo[i:i + chunk_size]
+        print(f"  monthly batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {len(frames)})")
+        try:
+            data = yf.download(chunk, period=f"{years}y", interval="1mo",
+                               group_by="ticker", threads=True, progress=False,
+                               auto_adjust=True)
+        except Exception as e:
+            print(f"    batch failed: {e}")
+            data = None
+        if data is not None and not data.empty:
+            for t in chunk:
+                try:
+                    if isinstance(data.columns, pd.MultiIndex):
+                        sub = data[t].dropna(how="all")
+                    else:
+                        sub = data.dropna(how="all")
+                    if "Close" in sub.columns and len(sub) >= 24:
+                        frames[t] = sub
+                except Exception:
+                    continue
+        done.update(chunk)
+        save_pickle_monthly(universe, years, frames, done)
+        if b < n_batches:
+            time.sleep(batch_sleep)
+    return frames
 
 
 def load_or_download_spy(years=3):
@@ -279,7 +366,7 @@ def compute_volatility_asymmetry(df, period=14, smooth=7, slow=14, lookback=5,
     }
 
 
-def compute_momentum(df, spy_close=None):
+def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
     if len(close) < 130:
         return None
@@ -533,12 +620,25 @@ def compute_momentum(df, spy_close=None):
                 except Exception:
                     rel_ret_3m = rel_ret_6m = None
                 # Volatility asymmetry on relative price (the "RS-strength" signal)
-                # daily/weekly/monthly. Monthly uses smaller params so it can be
-                # computed from a 2y daily history (~24 monthly bars).
-                rel_m = rel.resample("ME").last().dropna()
                 rel_asym_d = compute_close_only_asymmetry(rel) or {}
                 rel_asym_w = compute_close_only_asymmetry(rel_w) or {}
-                rel_asym_m = compute_close_only_asymmetry(rel_m, period=5, smooth=3, slow=4) or {}
+                # Monthly: prefer direct monthly bars (yfinance interval='1mo')
+                # over resample-from-daily, since direct gives ~120 bars vs 24.
+                if df_monthly is not None and spy_monthly_close is not None and len(df_monthly) >= 30:
+                    t_m_close = pd.to_numeric(df_monthly["Close"], errors="coerce").dropna()
+                    aligned_m = pd.concat([t_m_close, spy_monthly_close], axis=1, join="inner").dropna()
+                    if len(aligned_m) >= 30:
+                        aligned_m.columns = ["t", "s"]
+                        rel_m_direct = aligned_m["t"] / aligned_m["s"]
+                        rel_asym_m = compute_close_only_asymmetry(rel_m_direct) or {}
+                    else:
+                        rel_asym_m = {}
+                else:
+                    # Fallback: resample daily to monthly (~24 bars, smaller params)
+                    rel_m_resampled = rel.resample("ME").last().dropna()
+                    rel_asym_m = compute_close_only_asymmetry(
+                        rel_m_resampled, period=5, smooth=3, slow=4
+                    ) or {}
                 out.update({
                     "rel_dist_wma10_pct": float(rel_dist_wma10),
                     "rel_dist_wma30_pct": float(rel_dist_wma30),
@@ -584,10 +684,15 @@ def main():
     print(f"  {len(tickers)} tickers")
 
     spy_close = load_or_download_spy(years=max(args.years + 1, 3))
+    spy_monthly_close = load_or_download_spy_monthly(years=10)
 
     print(f"Downloading daily bars ({args.years}y)...")
     frames = download_daily(args.universe, tickers, years=args.years)
     print(f"  {len(frames)} tickers with usable daily data")
+
+    print("Downloading monthly bars (10y, interval='1mo')...")
+    monthly_frames = download_monthly(args.universe, tickers, years=10)
+    print(f"  {len(monthly_frames)} tickers with usable monthly data")
 
     junk_substrings = ("Acquisition Corp", "Acquisition Corporation", "Preferred",
                        "Senior Notes", "Note due", "Notes due",
@@ -606,7 +711,9 @@ def main():
     rows = []
     junk_dropped = 0
     for t, f in frames.items():
-        m = compute_momentum(f, spy_close=spy_close)
+        m = compute_momentum(f, spy_close=spy_close,
+                              df_monthly=monthly_frames.get(t),
+                              spy_monthly_close=spy_monthly_close)
         if m is None:
             continue
         if m["last_close"] < args.min_price:
