@@ -15,8 +15,8 @@ from typing import Optional
 
 import numpy as np, pandas as pd, yfinance as yf
 
-UA_SLEEP = 0.3
-WORKERS = 6
+UA_SLEEP = 0.8
+WORKERS = 4
 OUTDIR = Path('results_uk'); OUTDIR.mkdir(exist_ok=True)
 
 
@@ -132,7 +132,19 @@ def main():
     uk = pd.read_csv('universe_wider.csv', index_col=0)
     uk = uk[uk['_country']=='United Kingdom']
     print(f"Universe: {len(uk)} UK tickers")
-    tickers = uk.index.astype(str).tolist()
+    # Reverse the bad clean() conversion for UK: VOD-L → VOD.L, BARC-L → BARC.L.
+    # The single-letter London exchange suffix .L was treated as a share-class
+    # and rewritten to dash. yfinance only accepts the .L form.
+    raw_tickers = uk.index.astype(str).tolist()
+    tickers = []
+    for t in raw_tickers:
+        if t.endswith('-L') and len(t.split('-')[0]) >= 2:
+            tickers.append(t[:-2] + '.L')
+        elif not t.endswith('.L'):
+            tickers.append(t + '.L' if '.' not in t else t)
+        else:
+            tickers.append(t)
+    print(f"Sample fixed tickers: {tickers[:8]}")
     results = []
     t0 = time.time()
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
@@ -157,7 +169,10 @@ def main():
     # Quick summary: how many cleared at least quarterly QoQ + annual YoY?
     if not df.empty:
         for met in ('revenue','ebitda','net_inc'):
-            sub = df[df[f'{met}_qoq'].notna() & df[f'{met}_yoy_a'].notna()]
+            q_col = f'{met}_qoq'; a_col = f'{met}_yoy_a'
+            if q_col not in df.columns or a_col not in df.columns:
+                print(f"  {met}: no data columns present"); continue
+            sub = df[df[q_col].notna() & df[a_col].notna()]
             print(f"  {met}: {len(sub)} have both QoQ and annual YoY data")
 
 
