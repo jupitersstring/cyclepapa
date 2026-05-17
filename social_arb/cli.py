@@ -23,7 +23,7 @@ from .anomaly import AnomalyParams
 from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
-from .ranking import RankParams, bullish_ranking, weekly_momentum
+from .ranking import RankParams, bullish_ranking, crossover_intersect_social, weekly_momentum
 from .technicals import (
     load_price_cache, refresh_price_cache,
     scan_technicals, scan_universe, weekly_signals,
@@ -146,6 +146,35 @@ def cmd_technicals(args: argparse.Namespace) -> int:
         snap = snap[snap["signal"].str.contains(args.filter, na=False) | (snap["state"] == args.filter)]
     snap = snap.sort_values(["state", "hma_slope_20w"], ascending=[True, False])
     print(snap.to_string(index=False))
+    return 0
+
+
+def cmd_crossovers_social(args: argparse.Namespace) -> int:
+    """Intersect a broad universe technical scan with stored social mentions."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    if args.limit:
+        tickers = tickers[: args.limit]
+    snap = scan_universe(cfg, tickers, years=args.years, use_cache=True, lookback_weeks=args.lookback)
+    if snap.empty:
+        print("no cached technical data; run `scan --refresh` first")
+        return 0
+    out = crossover_intersect_social(
+        cfg, snap, min_total_mentions=args.min_total,
+    )
+    if out.empty:
+        print("no intersection between socially-mentioned tickers and bullish technical state")
+        return 0
+    cols = ["ticker", "total_mentions", "sentiment_mean", "close", "close_vs_sma40_pct",
+            "state", "weeks_in_state", "signal", "hma_slope_20w"]
+    cols = [c for c in cols if c in out.columns]
+    print(out[cols].head(args.top).to_string(index=False))
     return 0
 
 
@@ -303,6 +332,15 @@ def build_parser() -> argparse.ArgumentParser:
     ps.add_argument("--refresh", action="store_true", help="re-download price cache")
     ps.add_argument("--consumer", action="store_true", help="restrict to consumer + comms sectors")
     ps.set_defaults(func=cmd_scan)
+
+    pxs = sub.add_parser("crossovers-social", help="Crossovers filtered to socially-mentioned tickers")
+    pxs.add_argument("--top", type=int, default=40)
+    pxs.add_argument("--years", type=int, default=4)
+    pxs.add_argument("--lookback", type=int, default=4)
+    pxs.add_argument("--limit", type=int, default=None)
+    pxs.add_argument("--min-total", dest="min_total", type=int, default=5)
+    pxs.add_argument("--consumer", action="store_true")
+    pxs.set_defaults(func=cmd_crossovers_social)
 
     pb = sub.add_parser("backtest", help="Event-study backtest")
     pb.add_argument("--signals", required=True)

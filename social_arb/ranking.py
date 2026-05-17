@@ -106,6 +106,34 @@ def bullish_ranking(cfg: Config, params: RankParams | None = None, top: int = 25
     return out.head(int(top))
 
 
+def crossover_intersect_social(
+    cfg: Config,
+    technical_scan: pd.DataFrame,
+    *,
+    signals: tuple[str, ...] = ("golden_cross_recent", "hma_flip_up_recent"),
+    min_total_mentions: int = 5,
+) -> pd.DataFrame:
+    """Intersect a technical scan with social mentions.
+
+    Returns the rows from `technical_scan` for which we have at least
+    `min_total_mentions` stored mentions, sorted by descending total
+    attention.
+    """
+    if technical_scan is None or technical_scan.empty:
+        return pd.DataFrame()
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return technical_scan.head(0)
+    totals = daily.groupby("ticker")["mentions"].sum().rename("total_mentions")
+    sent = daily.groupby("ticker")["sentiment_mean"].mean().rename("sentiment_mean")
+    soc = pd.concat([totals, sent], axis=1).reset_index()
+    out = technical_scan.merge(soc, on="ticker", how="inner")
+    out = out[out["total_mentions"] >= int(min_total_mentions)]
+    if signals:
+        out = out[out["signal"].isin(list(signals)) | out["state"].isin(("golden", "hma_up"))]
+    return out.sort_values(["total_mentions", "hma_slope_20w"], ascending=[False, False]).reset_index(drop=True)
+
+
 def weekly_momentum(cfg: Config, min_total: int = 10, top: int = 25) -> pd.DataFrame:
     """Ranks by last-7d vs prior-7d mention growth (log ratio).
 
