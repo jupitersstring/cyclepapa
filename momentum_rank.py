@@ -210,10 +210,12 @@ def true_range(high, low, close_prev):
     )
 
 
-def compute_close_only_asymmetry(close_series, period=14, smooth=7, slow=14):
+def compute_close_only_asymmetry(close_series, period=14, smooth=7, slow=14, min_bars=None):
     """Asymmetry on a close-only series (used for relative-to-SPY price).
     up_move = max(delta, 0), dn_move = max(-delta, 0)."""
-    if len(close_series) < period * 3 + slow + 2:
+    if min_bars is None:
+        min_bars = period * 3 + slow + 2
+    if len(close_series) < min_bars:
         return None
     delta = close_series.diff().dropna()
     up = delta.clip(lower=0)
@@ -531,8 +533,12 @@ def compute_momentum(df, spy_close=None):
                 except Exception:
                     rel_ret_3m = rel_ret_6m = None
                 # Volatility asymmetry on relative price (the "RS-strength" signal)
+                # daily/weekly/monthly. Monthly uses smaller params so it can be
+                # computed from a 2y daily history (~24 monthly bars).
+                rel_m = rel.resample("ME").last().dropna()
                 rel_asym_d = compute_close_only_asymmetry(rel) or {}
                 rel_asym_w = compute_close_only_asymmetry(rel_w) or {}
+                rel_asym_m = compute_close_only_asymmetry(rel_m, period=5, smooth=3, slow=4) or {}
                 out.update({
                     "rel_dist_wma10_pct": float(rel_dist_wma10),
                     "rel_dist_wma30_pct": float(rel_dist_wma30),
@@ -551,6 +557,11 @@ def compute_momentum(df, spy_close=None):
                     "rel_asym_w_rising": rel_asym_w.get("asym_rising", False),
                     "rel_asym_w_above_ma": rel_asym_w.get("asym_above_ma", False),
                     "rel_asym_w_just_crossed_up": rel_asym_w.get("asym_just_crossed_up", False),
+                    # monthly asymmetry on rel price (may be None for short history)
+                    "rel_asym_m_now": rel_asym_m.get("asym_now"),
+                    "rel_asym_m_rising": rel_asym_m.get("asym_rising", False),
+                    "rel_asym_m_above_ma": rel_asym_m.get("asym_above_ma", False),
+                    "rel_asym_m_just_crossed_up": rel_asym_m.get("asym_just_crossed_up", False),
                 })
 
     return out
@@ -643,8 +654,9 @@ def main():
     df["weekly_range_top_half"] = df["weekly_range_pos_pct"].fillna(0) >= 50
     df["stacked_ma_any"] = df["stacked_ma"].fillna(False) | df["weekly_stacked_ma"].fillna(False)
 
-    # RS-strength signal: rel-asym rising / crossed MA / near 50 and up
-    df["rel_asym_signal"] = (
+    # RS-strength signal: rel-asym rising / crossed MA / above MA.
+    # Weight: monthly > weekly > daily (weekly+monthly are what matters).
+    df["rel_asym_d_signal"] = (
         df["rel_asym_rising"].fillna(False)
         | df["rel_asym_above_ma"].fillna(False)
         | df["rel_asym_just_crossed_up"].fillna(False)
@@ -654,16 +666,38 @@ def main():
         | df["rel_asym_w_above_ma"].fillna(False)
         | df["rel_asym_w_just_crossed_up"].fillna(False)
     )
+    df["rel_asym_m_signal"] = (
+        df.get("rel_asym_m_rising", pd.Series(False, index=df.index)).fillna(False)
+        | df.get("rel_asym_m_above_ma", pd.Series(False, index=df.index)).fillna(False)
+        | df.get("rel_asym_m_just_crossed_up", pd.Series(False, index=df.index)).fillna(False)
+    )
+    # Headline rel_asym_signal = weekly OR monthly (weight: w/m matter much more).
+    # Daily is bonus only. Monthly-not-available is fine (short history).
+    df["rel_asym_signal"] = df["rel_asym_w_signal"] | df["rel_asym_m_signal"]
+    # rel_asym_score 0..5 (monthly=3, weekly=2, daily=1, but bonus +1 if monthly+weekly stack)
+    df["rel_asym_score"] = (
+        df["rel_asym_d_signal"].astype(int) * 1
+        + df["rel_asym_w_signal"].astype(int) * 2
+        + df["rel_asym_m_signal"].astype(int) * 3
+    )
 
     # Q METHOD PASS (lightened):
     #   - decent RS (rank_max >= 70)
-    #   - relative-asymmetry signal up (the "real" RS leader signal)
+    #   - rel-asym signal up on WEEKLY OR MONTHLY (daily alone insufficient)
     #   - stacked MAs (daily OR weekly)
     #   - ATR_RS >= 50 (above-average daily range)
     #   - price in top half of 20-day OR 20-week range
     df["q_method_pass"] = (
         df["rs_decent"]
-        & df["rel_asym_signal"]
+        & df["rel_asym_signal"]   # weekly OR monthly rel asym up
+        & df["stacked_ma_any"]
+        & df["atr_rs_above_50"]
+        & (df["price_range_top_half"] | df["weekly_range_top_half"])
+    )
+    # Higher-conviction variant: requires monthly rel asym confirmation
+    df["q_method_pass_monthly_strong"] = (
+        df["rs_decent"]
+        & df["rel_asym_m_signal"]
         & df["stacked_ma_any"]
         & df["atr_rs_above_50"]
         & (df["price_range_top_half"] | df["weekly_range_top_half"])
@@ -904,6 +938,7 @@ def main():
         | df["long_base"].fillna(False)
         | df["q_method_pass"].fillna(False)
         | df["q_method_pass_weekly"].fillna(False)
+        | df["q_method_pass_monthly_strong"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -930,6 +965,7 @@ def main():
     q_method = df[df["q_method_pass"]].sort_values("rs_rank_max", ascending=False)
     q_method_weekly = df[df["q_method_pass_weekly"]].sort_values("rs_rank_max", ascending=False)
     q_method_both = df[df["q_method_pass"] & df["q_method_pass_weekly"]].sort_values("rs_rank_max", ascending=False)
+    q_method_monthly = df[df["q_method_pass_monthly_strong"]].sort_values("rs_rank_max", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -941,22 +977,28 @@ def main():
                      "rs_rank_max", "rs_rank_1w", "rs_rank_1m", "rs_rank_3m", "rs_rank_6m",
                      "atr_rs", "range_20d_pos_pct", "weekly_range_pos_pct",
                      "stacked_ma", "weekly_stacked_ma",
-                     "rel_asym_now", "rel_asym_rising", "rel_asym_above_ma", "rel_asym_just_crossed_up",
-                     "rel_asym_w_now", "rel_asym_w_rising", "rel_asym_w_above_ma", "rel_asym_w_just_crossed_up",
-                     "asym_now", "asym_rising", "asym_just_crossed_up",
+                     "rel_asym_now", "rel_asym_w_now", "rel_asym_m_now",
+                     "rel_asym_d_signal", "rel_asym_w_signal", "rel_asym_m_signal",
+                     "rel_asym_score",
                      "vol_asym_bonus", "vol_asym_w_bonus",
-                     "q_method_pass", "q_method_pass_weekly",
+                     "q_method_pass", "q_method_pass_weekly", "q_method_pass_monthly_strong",
                      "box_length_weeks", "box_height_pct", "roque_score"]
     q_method_show = [c for c in q_method_show if c in flagged.columns]
 
     with pd.option_context("display.max_columns", None, "display.width", 300, "display.float_format", "{:.2f}".format):
+        print(f"\n=== Q_METHOD_MONTHLY_STRONG (rel asym up on MONTHLY) ({len(q_method_monthly)}) ===")
+        if len(q_method_monthly):
+            print(q_method_monthly[q_method_show].head(args.top).to_string())
+        else:
+            print("(none)")
+
         print(f"\n=== Q_METHOD_PASS_BOTH (daily AND weekly criteria pass) ({len(q_method_both)}) ===")
         if len(q_method_both):
             print(q_method_both[q_method_show].head(args.top).to_string())
         else:
             print("(none)")
 
-        print(f"\n=== Q_METHOD_PASS daily (RS>=70 + rel-asym up + stacked MA + ATR_RS>=50 + price top half) ({len(q_method)}) ===")
+        print(f"\n=== Q_METHOD_PASS (RS>=70 + w/m rel-asym up + stacked MA + ATR_RS>=50 + range top half) ({len(q_method)}) ===")
         if len(q_method):
             print(q_method[q_method_show].head(args.top).to_string())
         else:
