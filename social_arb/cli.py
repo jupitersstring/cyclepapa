@@ -24,6 +24,7 @@ from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
 from .ranking import RankParams, bullish_ranking, weekly_momentum
+from .technicals import scan_technicals, weekly_signals
 
 
 def _setup_logging(verbose: bool) -> None:
@@ -115,6 +116,62 @@ def cmd_anomalies(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_technicals(args: argparse.Namespace) -> int:
+    cfg = Config()
+    if args.tickers:
+        tickers = [t.strip().upper() for t in args.tickers.split(",") if t.strip()]
+    else:
+        # Fall back to whatever has social mentions, intersected with the
+        # universe to skip private/delisted tickers.
+        pipe = Pipeline.build()
+        from . import storage
+        tickers = storage.all_tickers(cfg)
+        uni = set(pipe.universe_df["symbol"].astype(str).tolist())
+        tickers = [t for t in tickers if t in uni][: args.top]
+    if args.detail:
+        df = weekly_signals(args.detail.upper(), years=args.years)
+        if df.empty:
+            print(f"no data for {args.detail}")
+            return 0
+        print(df.tail(args.tail).to_string())
+        return 0
+    snap = scan_technicals(tickers, years=args.years)
+    if snap.empty:
+        print("no data")
+        return 0
+    if args.filter:
+        snap = snap[snap["signal"].str.contains(args.filter, na=False) | (snap["state"] == args.filter)]
+    snap = snap.sort_values(["state", "hma_slope_20w"], ascending=[True, False])
+    print(snap.to_string(index=False))
+    return 0
+
+
+def cmd_combined(args: argparse.Namespace) -> int:
+    """Cross-join social bullish ranking with technical scan."""
+    cfg = Config()
+    pipe = Pipeline.build()
+    soc = bullish_ranking(cfg, top=args.top)
+    if soc.empty:
+        print("no social data")
+        return 0
+    uni = set(pipe.universe_df["symbol"].astype(str).tolist())
+    tickers = [t for t in soc["ticker"].tolist() if t in uni]
+    tech = scan_technicals(tickers, years=args.years)
+    if tech.empty:
+        print(soc.to_string(index=False))
+        return 0
+    merged = soc.merge(tech, on="ticker", how="left")
+    bullish_states = {"golden", "hma_up"}
+    merged["aligned"] = merged["state"].isin(bullish_states) & (merged["bullish_score"] > 1.0)
+    print(merged.to_string(index=False))
+    print()
+    aligned = merged[merged["aligned"]].sort_values("bullish_score", ascending=False)
+    if not aligned.empty:
+        print("=== Aligned (social bullish AND price trend up) ===")
+        print(aligned[["ticker", "bullish_score", "latest_z", "state", "weeks_in_state", "signal", "close_vs_sma40_pct"]].to_string(index=False))
+    return 0
+
+
 def cmd_backtest(args: argparse.Namespace) -> int:
     signals = pd.read_csv(args.signals)
     if not {"ticker", "signal_date"}.issubset(signals.columns):
@@ -173,6 +230,20 @@ def build_parser() -> argparse.ArgumentParser:
     pa.add_argument("--min-periods", dest="min_periods", type=int, default=7)
     pa.add_argument("--tail", type=int, default=14)
     pa.set_defaults(func=cmd_anomalies)
+
+    pt = sub.add_parser("technicals", help="Weekly MA crossover + Hull MA scan")
+    pt.add_argument("--tickers", default=None, help="comma-separated; default = stored mentions")
+    pt.add_argument("--top", type=int, default=50)
+    pt.add_argument("--years", type=int, default=5)
+    pt.add_argument("--filter", default=None, help="state or signal substring filter")
+    pt.add_argument("--detail", default=None, help="single ticker -> full weekly history")
+    pt.add_argument("--tail", type=int, default=12)
+    pt.set_defaults(func=cmd_technicals)
+
+    po = sub.add_parser("combined", help="Cross-join social bullish ranking with technical scan")
+    po.add_argument("--top", type=int, default=30)
+    po.add_argument("--years", type=int, default=5)
+    po.set_defaults(func=cmd_combined)
 
     pb = sub.add_parser("backtest", help="Event-study backtest")
     pb.add_argument("--signals", required=True)
