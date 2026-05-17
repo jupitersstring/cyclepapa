@@ -165,18 +165,26 @@ def cmd_camillo(args: argparse.Namespace) -> int:
     uni = uni_mod.filter_us_liquid(uni)
     tickers = uni["symbol"].astype(str).tolist()
 
-    # Coverage report -- be explicit about what we're actually scanning.
+    # Coverage report -- be explicit about what's tradeable vs stale.
     cache = load_price_cache(cfg)
     if cache.empty:
         print("no price cache; run `scan --refresh` first")
         return 0
     valid_in_cache = {c for c in cache.columns if cache[c].notna().sum() >= 42}
     scannable = set(tickers) & valid_in_cache
+    missing = set(tickers) - valid_in_cache
+    # Reasons a ticker can be in financedatabase but not in our cache:
+    # delisted, acquired, recently renamed (e.g. VIAC -> PARA), recent IPO
+    # with <42 weeks of history, or SPAC remnant. None of these are
+    # tradeable in the sense Camillo's framework cares about.
     pct = 100.0 * len(scannable) / max(1, len(tickers))
     print(
         f"coverage: scanning {len(scannable):,} of {len(tickers):,} "
-        f"US-liquid tickers ({pct:.1f}%) -- "
-        f"{len(tickers) - len(scannable):,} missing/stale in price cache"
+        f"US-liquid tickers in financedatabase ({pct:.1f}%)"
+    )
+    print(
+        f"  {len(missing):,} not in cache (delisted/acquired/SPAC remnant/"
+        f"recent IPO without 42w history -- not actionable)"
     )
 
     snap = scan_universe(cfg, tickers, years=args.years, use_cache=True, lookback_weeks=args.lookback)
