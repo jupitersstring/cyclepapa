@@ -203,6 +203,46 @@ def detect_darvas_box(weekly, min_box_weeks=4):
     return out
 
 
+def compute_volatility_asymmetry(df, period=14, smooth=7, slow=14, lookback=5,
+                                  threshold_pct=5.0):
+    """Pine Script logic (malikmck / YourName):
+      upward = max(high - close[1], 0)
+      downward = max(close[1] - low, 0)
+      ratio = ema(upward, period) / (ema(upward, period) + ema(downward, period))
+      asym = ema(ratio * 100, smooth) ; asym_ma = ema(asym, slow)
+    """
+    high = pd.to_numeric(df["High"], errors="coerce").values
+    low = pd.to_numeric(df["Low"], errors="coerce").values
+    close = pd.to_numeric(df["Close"], errors="coerce").values
+    if len(close) < period * 3 + slow + lookback + 2:
+        return None
+    prior_close = np.concatenate([[close[0]], close[:-1]])
+    up = np.maximum(high - prior_close, 0)
+    dn = np.maximum(prior_close - low, 0)
+    up_s = pd.Series(up).ewm(span=period, adjust=False).mean()
+    dn_s = pd.Series(dn).ewm(span=period, adjust=False).mean()
+    ratio = up_s / (up_s + dn_s + 0.0001)
+    asym = ratio.ewm(span=smooth, adjust=False).mean() * 100
+    asym_ma = asym.ewm(span=slow, adjust=False).mean()
+    up_roc = up_s.pct_change(lookback) * 100
+    dn_roc = dn_s.pct_change(lookback) * 100
+    asym_now = float(asym.iloc[-1])
+    asym_ma_now = float(asym_ma.iloc[-1])
+    rising = bool(asym.iloc[-1] > asym.iloc[-2])
+    above_ma = bool(asym_now > asym_ma_now)
+    just_crossed_up = bool(above_ma and asym.iloc[-2] <= asym_ma.iloc[-2])
+    upper_asym = bool(up_roc.iloc[-1] > threshold_pct
+                      and (abs(dn_roc.iloc[-1]) < threshold_pct / 2 or dn_roc.iloc[-1] < 0))
+    return {
+        "asym_now": asym_now,
+        "asym_ma": asym_ma_now,
+        "asym_rising": rising,
+        "asym_above_ma": above_ma,
+        "asym_just_crossed_up": just_crossed_up,
+        "asym_upper_signal": upper_asym,
+    }
+
+
 def compute_momentum(df, spy_close=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
     if len(close) < 130:
@@ -222,6 +262,35 @@ def compute_momentum(df, spy_close=None):
     sma50 = float(close.tail(50).mean())
     dist_sma20 = (last - sma20) / sma20 * 100
     dist_sma50 = (last - sma50) / sma50 * 100
+
+    # Stacked moving averages: Price >= EMA10 >= SMA20 >= SMA50 >= SMA100 >= SMA200
+    ema10 = float(close.ewm(span=10, adjust=False).mean().iloc[-1])
+    sma100 = float(close.tail(100).mean()) if len(close) >= 100 else None
+    sma200 = float(close.tail(200).mean()) if len(close) >= 200 else None
+    stacked_ma = bool(
+        sma200 is not None
+        and last >= ema10 >= sma20 >= sma50 >= sma100 >= sma200
+    )
+
+    # Position in 20-day range
+    high_20d = float(high.tail(20).max())
+    low_20d = float(low.tail(20).min())
+    span_20d = high_20d - low_20d
+    range_20d_pos_pct = (last - low_20d) / span_20d * 100 if span_20d > 0 else 50.0
+
+    # 1-week return (5 trading days)
+    week_return_pct = (
+        float(close.iloc[-1] / close.iloc[-6] - 1) * 100
+        if len(close) >= 6 else None
+    )
+
+    # ATR(14) as % of price - used for ATR_RS cross-sectional ranking later
+    tr_vals = true_range(high.values[1:], low.values[1:], close.values[:-1])
+    atr14 = float(np.mean(tr_vals[-14:])) if len(tr_vals) >= 14 else None
+    atr14_pct = (atr14 / last * 100) if atr14 else None
+
+    # Volatility asymmetry (Pine Script port)
+    asym = compute_volatility_asymmetry(df) or {}
 
     # --- Weekly metrics (the proper Q base/extension lens) -----------------
     df_ohlcv = pd.DataFrame({
@@ -322,6 +391,22 @@ def compute_momentum(df, spy_close=None):
         "mom_1m": last / sma25,
         "mom_3m": last / sma66,
         "mom_6m": last / sma126,
+        "week_return_pct": week_return_pct,
+        # MA stack
+        "ema10": ema10, "sma20": sma20, "sma50": sma50,
+        "sma100": sma100, "sma200": sma200,
+        "stacked_ma": stacked_ma,
+        # 20-day range position
+        "range_20d_pos_pct": float(range_20d_pos_pct),
+        # ATR
+        "atr14_pct": atr14_pct,
+        # Volatility asymmetry
+        "asym_now": asym.get("asym_now"),
+        "asym_ma": asym.get("asym_ma"),
+        "asym_rising": asym.get("asym_rising", False),
+        "asym_above_ma": asym.get("asym_above_ma", False),
+        "asym_just_crossed_up": asym.get("asym_just_crossed_up", False),
+        "asym_upper_signal": asym.get("asym_upper_signal", False),
         # daily references
         "dist_sma20_pct": dist_sma20,
         "dist_sma50_pct": dist_sma50,
@@ -465,6 +550,39 @@ def main():
     df["rank_6m"] = df["mom_6m"].rank(ascending=False).astype(int)
     df["rank_avg"] = (df["rank_1m"] + df["rank_3m"] + df["rank_6m"]) / 3
     df["rank_max"] = df[["rank_1m", "rank_3m", "rank_6m"]].max(axis=1)
+
+    # --- IBD-style cross-sectional RS rank (0..99 percentile) ----------
+    df["rs_rank_1w"] = (df["week_return_pct"].rank(pct=True) * 99).round(1)
+    df["rs_rank_1m"] = (df["mom_1m"].rank(pct=True) * 99).round(1)
+    df["rs_rank_3m"] = (df["mom_3m"].rank(pct=True) * 99).round(1)
+    df["rs_rank_6m"] = (df["mom_6m"].rank(pct=True) * 99).round(1)
+    df["rs_rank_max"] = df[["rs_rank_1w", "rs_rank_1m", "rs_rank_3m", "rs_rank_6m"]].max(axis=1)
+
+    # ATR RS rank (higher = more volatile / more daily range)
+    df["atr_rs"] = (df["atr14_pct"].rank(pct=True) * 99).round(1)
+
+    # Q method criteria booleans
+    df["rs_leader_97"] = df["rs_rank_max"] >= 97
+    df["atr_rs_above_50"] = df["atr_rs"] >= 50
+    df["price_range_top_half"] = df["range_20d_pos_pct"] >= 50
+    df["q_method_pass"] = (
+        df["rs_leader_97"]
+        & df["stacked_ma"].fillna(False)
+        & df["atr_rs_above_50"]
+        & df["price_range_top_half"]
+    )
+    df["q_method_partial"] = (
+        df["rs_leader_97"]
+        & df["price_range_top_half"]
+        & (df["stacked_ma"].fillna(False) | df["atr_rs_above_50"])
+    )
+
+    # Volatility asymmetry bonus: near 50 and rising, OR just crossed above MA
+    df["vol_asym_bonus"] = (
+        (df["asym_now"].fillna(0).between(40, 60) & df["asym_rising"].fillna(False))
+        | df["asym_just_crossed_up"].fillna(False)
+        | df["asym_upper_signal"].fillna(False)
+    )
 
     top_1m = df.nlargest(args.top, "mom_1m")
     top_3m = df.nlargest(args.top, "mom_3m")
@@ -679,6 +797,8 @@ def main():
         | df["qulla_consol_soft"].fillna(False)
         | df["roque_big_base"].fillna(False)
         | df["long_base"].fillna(False)
+        | df["q_method_pass"].fillna(False)
+        | df["q_method_partial"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -702,6 +822,8 @@ def main():
 
     qulla = df[df["qulla_consol_setup"]].sort_values("box_length_weeks", ascending=False)
     qulla_soft = df[df["qulla_consol_soft"] & (~df["qulla_consol_setup"])].sort_values("box_length_weeks", ascending=False)
+    q_method = df[df["q_method_pass"]].sort_values("rs_rank_max", ascending=False)
+    q_method_partial = df[df["q_method_partial"] & (~df["q_method_pass"])].sort_values("rs_rank_max", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -709,7 +831,27 @@ def main():
     base_ready = df[df["base_ready"]].sort_values("q_score")
     base_forming = df[df["base_forming"]].sort_values("q_score")
 
+    q_method_show = ["name", "sector", "last_close",
+                     "rs_rank_1w", "rs_rank_1m", "rs_rank_3m", "rs_rank_6m", "rs_rank_max",
+                     "stacked_ma", "atr_rs", "range_20d_pos_pct",
+                     "asym_now", "asym_rising", "asym_above_ma", "asym_just_crossed_up",
+                     "vol_asym_bonus", "q_method_pass", "q_method_partial",
+                     "box_length_weeks", "box_height_pct", "roque_score"]
+    q_method_show = [c for c in q_method_show if c in flagged.columns]
+
     with pd.option_context("display.max_columns", None, "display.width", 300, "display.float_format", "{:.2f}".format):
+        print(f"\n=== Q_METHOD_PASS (RS>=97 + stacked MA + ATR_RS>=50 + price top half of 20d range) ({len(q_method)}) ===")
+        if len(q_method):
+            print(q_method[q_method_show].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== Q_METHOD_PARTIAL (RS>=97 + price top half + (stacked MA OR ATR_RS>=50)) ({len(q_method_partial)}) ===")
+        if len(q_method_partial):
+            print(q_method_partial[q_method_show].head(args.top).to_string())
+        else:
+            print("(none)")
+
         print(f"\n=== QULLA_CONSOL_SETUP (Q big prior move + tight Darvas + near top + vol dry + rel up) ({len(qulla)}) ===")
         if len(qulla):
             print(qulla[show_cols].head(args.top).to_string())
