@@ -25,7 +25,8 @@ from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
     CamilloParams, RankParams, bullish_ranking, camillo_ranking,
-    crossover_intersect_social, rank_improvers, rank_inflecters, weekly_momentum,
+    crossover_intersect_social, rank_improvers, rank_inflecters,
+    union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -198,6 +199,34 @@ def cmd_camillo(args: argparse.Namespace) -> int:
         return 0
     print()
     print(out.to_string(index=False))
+    return 0
+
+
+def cmd_union(args: argparse.Namespace) -> int:
+    """Confluence ranking: names appearing in multiple Camillo views."""
+    cfg = Config()
+    from . import universe as uni_mod
+    from .technicals import load_price_cache
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    cache = load_price_cache(cfg)
+    valid = {c for c in cache.columns if cache[c].notna().sum() >= 42}
+    scannable = set(tickers) & valid
+    pct = 100.0 * len(scannable) / max(1, len(tickers))
+    print(f"coverage: {len(scannable):,} of {len(tickers):,} US-liquid ({pct:.1f}%)")
+    out = union_ranking(cfg, tickers, top_each=args.top_each, weeks=args.weeks,
+                       short=args.short, long=args.long, min_score_now=args.min_score)
+    if out.empty:
+        print("no data")
+        return 0
+    if args.min_confluence > 1:
+        out = out[out["confluence"] >= args.min_confluence]
+    print()
+    print(out.head(args.top).to_string(index=False))
     return 0
 
 
@@ -434,6 +463,17 @@ def build_parser() -> argparse.ArgumentParser:
     pcam.add_argument("--min-total", dest="min_total", type=int, default=5)
     pcam.add_argument("--consumer", action="store_true")
     pcam.set_defaults(func=cmd_camillo)
+
+    pun = sub.add_parser("union", help="Confluence ranking across Camillo views")
+    pun.add_argument("--top", type=int, default=40)
+    pun.add_argument("--top-each", dest="top_each", type=int, default=50)
+    pun.add_argument("--weeks", type=int, default=4)
+    pun.add_argument("--short", type=int, default=4)
+    pun.add_argument("--long", type=int, default=8)
+    pun.add_argument("--min-score", dest="min_score", type=float, default=1.0)
+    pun.add_argument("--min-confluence", dest="min_confluence", type=int, default=1)
+    pun.add_argument("--consumer", action="store_true")
+    pun.set_defaults(func=cmd_union)
 
     pimp = sub.add_parser("improvers", help="Technical-score improvers over N weeks")
     pimp.add_argument("--top", type=int, default=30)

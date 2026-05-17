@@ -251,6 +251,77 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def union_ranking(
+    cfg: Config,
+    tickers: list[str],
+    *,
+    top_each: int = 50,
+    weeks: int = 4,
+    short: int = 4,
+    long: int = 8,
+    min_score_now: float = 1.0,
+) -> pd.DataFrame:
+    """Surface names that show up in multiple Camillo views.
+
+    For each ticker, count whether it lands in the top `top_each` of:
+      - Camillo composite (current state, social + technical)
+      - Improvers   (4w technical-score gain)
+      - Inflecters  (acceleration)
+    Plus a `confluence` score equal to the count, used to rank.
+    Always reports the latest underlying metrics so the user can verify.
+    """
+    from .technicals import load_price_cache, scan_universe
+    cache = load_price_cache(cfg)
+    if cache.empty:
+        return pd.DataFrame()
+    snap = scan_universe(cfg, tickers, use_cache=True)
+    cam = camillo_ranking(cfg, snap, min_total_mentions=1, top=top_each)
+    imp = rank_improvers(cfg, tickers, lookback_weeks=weeks, top=top_each, min_score_now=min_score_now)
+    inf = rank_inflecters(cfg, tickers, short=short, long=long, top=top_each, min_score_now=min_score_now)
+
+    def _set(df):
+        return set(df["ticker"].tolist()) if not df.empty and "ticker" in df.columns else set()
+
+    cam_set, imp_set, inf_set = _set(cam), _set(imp), _set(inf)
+    all_t = sorted(cam_set | imp_set | inf_set)
+    rows: list[dict] = []
+    for t in all_t:
+        in_cam = t in cam_set
+        in_imp = t in imp_set
+        in_inf = t in inf_set
+        conf = int(in_cam) + int(in_imp) + int(in_inf)
+        # pull metrics from whichever frame has them
+        cam_score = float(cam.loc[cam["ticker"] == t, "camillo_score"].iloc[0]) if in_cam else None
+        improvement = float(imp.loc[imp["ticker"] == t, "improvement"].iloc[0]) if in_imp else None
+        inflection = float(inf.loc[inf["ticker"] == t, "inflection"].iloc[0]) if in_inf else None
+        snap_row = snap[snap["ticker"] == t]
+        close = float(snap_row["close"].iloc[0]) if not snap_row.empty else None
+        v40 = float(snap_row["close_vs_sma40_pct"].iloc[0]) if not snap_row.empty and pd.notna(snap_row["close_vs_sma40_pct"].iloc[0]) else None
+        state = str(snap_row["state"].iloc[0]) if not snap_row.empty else None
+        signal = str(snap_row["signal"].iloc[0]) if not snap_row.empty else None
+        daily = _per_ticker_daily(cfg)
+        mentions = int(daily.loc[daily["ticker"] == t, "mentions"].sum()) if not daily.empty else 0
+        rows.append({
+            "ticker": t,
+            "confluence": conf,
+            "in_cam": in_cam,
+            "in_imp": in_imp,
+            "in_inf": in_inf,
+            "cam_score": round(cam_score, 2) if cam_score is not None else None,
+            "improvement": round(improvement, 2) if improvement is not None else None,
+            "inflection": round(inflection, 2) if inflection is not None else None,
+            "close": round(close, 2) if close is not None else None,
+            "vs_sma40_pct": round(v40, 1) if v40 is not None else None,
+            "state": state,
+            "signal": signal,
+            "mentions": mentions,
+        })
+    out = pd.DataFrame(rows)
+    # Sort by confluence desc, then by best available signal score.
+    out["sort_key"] = out[["cam_score", "improvement", "inflection"]].max(axis=1)
+    return out.sort_values(["confluence", "sort_key"], ascending=[False, False]).drop(columns=["sort_key"]).reset_index(drop=True)
+
+
 def rank_inflecters(
     cfg: Config,
     tickers: list[str],
