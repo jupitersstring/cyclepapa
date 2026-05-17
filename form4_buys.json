@@ -8584,5 +8584,25 @@
     "total_shares": 0.0,
     "filings": [],
     "issuer_name": "DECKERS OUTDOOR CORP"
+  },
+  "BREZ": {
+    "ticker": "BREZ",
+    "issuer_name": "Breeze Acquisition Corp. II",
+    "issuer_cik": "0002095443",
+    "buyer_set": [
+      "RAMSEY J DOUGLAS | CEO, CFO, Chairman"
+    ],
+    "total_dollar": 0.0,
+    "total_shares": 470000.0,
+    "filings": [
+      {
+        "accession": "0001213900-26-058000",
+        "date": "2026-05-15",
+        "person": "RAMSEY J DOUGLAS",
+        "title": "CEO, CFO, Chairman",
+        "dollar": 0.0,
+        "shares": 470000.0
+      }
+    ]
   }
 }
