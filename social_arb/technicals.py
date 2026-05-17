@@ -1,5 +1,9 @@
 """Weekly technical signals: classic MA crossovers + Hull MA.
 
+Includes a bulk scanner for hundreds-to-thousands of tickers using
+yfinance.download() and a parquet-cached price store so re-runs are
+near-instant.
+
 Free price data via yfinance. We expose three things:
 
   1. `wma`, `hma` -- weighted MA and Hull MA primitives.
@@ -25,10 +29,12 @@ from __future__ import annotations
 import logging
 import math
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+from .config import Config
 from .prices import daily_close
 
 log = logging.getLogger(__name__)
@@ -142,6 +148,206 @@ def weekly_signals(
         streak += 1
     df["weeks_since_state"] = weeks_since
     return df
+
+
+# ---- Bulk price cache ----------------------------------------------------
+
+def _cache_path(cfg: Config) -> Path:
+    cfg.ensure_dirs()
+    return cfg.data_dir / "prices_weekly.parquet"
+
+
+def bulk_download_weekly(
+    tickers: list[str],
+    *,
+    years: int = 5,
+    chunk: int = 200,
+    max_workers: int = 1,
+) -> pd.DataFrame:
+    """Bulk-download daily closes via yfinance.download and resample weekly.
+
+    Returns a wide DataFrame indexed by Friday weekly close with one column
+    per ticker (auto-adjusted close). Tickers that fail to fetch are
+    silently dropped. yfinance enforces its own rate-limits internally.
+    """
+    try:
+        import yfinance as yf
+    except ImportError:  # pragma: no cover
+        log.warning("yfinance not installed")
+        return pd.DataFrame()
+
+    end = datetime.now(timezone.utc)
+    start = end - timedelta(days=365 * int(years))
+
+    frames: list[pd.DataFrame] = []
+    chunks = [tickers[i : i + chunk] for i in range(0, len(tickers), chunk)]
+    for i, group in enumerate(chunks):
+        log.info("bulk download chunk %d/%d (%d tickers)", i + 1, len(chunks), len(group))
+        try:
+            df = yf.download(
+                tickers=group,
+                start=start.date(),
+                end=end.date(),
+                progress=False,
+                auto_adjust=True,
+                threads=min(max_workers, 4),
+                group_by="ticker",
+            )
+        except Exception as exc:  # noqa: BLE001
+            log.warning("bulk download chunk failed: %s", exc)
+            continue
+        if df is None or df.empty:
+            continue
+        # yfinance returns a MultiIndex (ticker, field) when multiple tickers.
+        if isinstance(df.columns, pd.MultiIndex):
+            closes = df.xs("Close", axis=1, level=1, drop_level=True)
+        else:
+            closes = df[["Close"]].rename(columns={"Close": group[0]})
+        closes.index = pd.to_datetime(closes.index).tz_localize(None)
+        frames.append(closes)
+
+    if not frames:
+        return pd.DataFrame()
+    combined = pd.concat(frames, axis=1).sort_index()
+    # Collapse duplicate columns (e.g., a ticker present in two chunks).
+    combined = combined.loc[:, ~combined.columns.duplicated()]
+    weekly = combined.resample("W-FRI").last().dropna(how="all")
+    return weekly
+
+
+def refresh_price_cache(
+    cfg: Config,
+    tickers: list[str],
+    *,
+    years: int = 5,
+    chunk: int = 200,
+) -> pd.DataFrame:
+    """Bulk-download and persist to parquet. Returns the cached DataFrame."""
+    weekly = bulk_download_weekly(tickers, years=years, chunk=chunk)
+    if weekly.empty:
+        return weekly
+    path = _cache_path(cfg)
+    weekly.to_parquet(path)
+    log.info("cached %d weekly bars x %d tickers -> %s", len(weekly), weekly.shape[1], path)
+    return weekly
+
+
+def load_price_cache(cfg: Config) -> pd.DataFrame:
+    path = _cache_path(cfg)
+    if not path.exists():
+        return pd.DataFrame()
+    return pd.read_parquet(path)
+
+
+# ---- Bulk signal computation --------------------------------------------
+
+def signals_for_close(
+    close: pd.Series,
+    *,
+    short_w: int = 10,
+    long_w: int = 40,
+    hma_short_w: int = 9,
+    hma_long_w: int = 20,
+) -> pd.DataFrame | None:
+    """Compute the same signal columns as `weekly_signals` for an already-
+    weekly close series. Returns None if there isn't enough data."""
+    w = close.dropna()
+    if len(w) < max(long_w, hma_long_w) + 2:
+        return None
+    sma_s = sma(w, short_w)
+    sma_l = sma(w, long_w)
+    hma_s = hma(w, hma_short_w)
+    hma_l = hma(w, hma_long_w)
+    hma_slope = hma_l.diff()
+
+    df = pd.DataFrame({
+        "close": w,
+        f"sma_{short_w}w": sma_s,
+        f"sma_{long_w}w": sma_l,
+        f"hma_{hma_short_w}w": hma_s,
+        f"hma_{hma_long_w}w": hma_l,
+        f"hma_slope_{hma_long_w}w": hma_slope,
+    })
+    df["gc"] = ((sma_s > sma_l) & (sma_s.shift(1) <= sma_l.shift(1))).fillna(False)
+    df["dc"] = ((sma_s < sma_l) & (sma_s.shift(1) >= sma_l.shift(1))).fillna(False)
+    df["hma_flip_up"] = ((hma_s > hma_l) & (hma_s.shift(1) <= hma_l.shift(1))).fillna(False)
+    df["hma_flip_down"] = ((hma_s < hma_l) & (hma_s.shift(1) >= hma_l.shift(1))).fillna(False)
+
+    sa = sma_s > sma_l
+    ha = hma_s > hma_l
+    hr = hma_slope > 0
+    state = np.where(
+        sa.isna() | ha.isna() | hr.isna(), "warmup",
+        np.where(sa & ha & hr, "golden",
+        np.where((~sa) & (~ha) & (~hr), "death",
+        np.where(ha & hr, "hma_up",
+        np.where((~ha) & (~hr), "hma_down", "mixed")))),
+    )
+    df["state"] = state
+    # weeks_since_state without a Python loop.
+    chg = df["state"] != df["state"].shift(1)
+    grp = chg.cumsum()
+    df["weeks_since_state"] = df.groupby(grp).cumcount()
+    return df
+
+
+def scan_universe(
+    cfg: Config,
+    tickers: list[str],
+    *,
+    years: int = 5,
+    use_cache: bool = True,
+    lookback_weeks: int = 4,
+) -> pd.DataFrame:
+    """Scan a large universe by relying on the bulk price cache.
+
+    If `use_cache=True` and a parquet cache exists, use it; otherwise
+    `refresh_price_cache` first.
+    """
+    weekly = load_price_cache(cfg) if use_cache else pd.DataFrame()
+    if weekly.empty:
+        weekly = refresh_price_cache(cfg, tickers, years=years)
+    if weekly.empty:
+        return pd.DataFrame()
+
+    rows: list[dict] = []
+    for ticker in tickers:
+        if ticker not in weekly.columns:
+            continue
+        s = weekly[ticker].dropna()
+        sig = signals_for_close(s)
+        if sig is None or sig.empty:
+            continue
+        last = sig.iloc[-1]
+        tail = sig.tail(lookback_weeks)
+        signal = "none"
+        if tail["gc"].any():
+            signal = "golden_cross_recent"
+        elif tail["dc"].any():
+            signal = "death_cross_recent"
+        elif tail["hma_flip_up"].any():
+            signal = "hma_flip_up_recent"
+        elif tail["hma_flip_down"].any():
+            signal = "hma_flip_down_recent"
+
+        close_v = float(last["close"])
+        sma40 = float(last.get("sma_40w", np.nan))
+        rows.append({
+            "ticker": ticker,
+            "close": round(close_v, 2),
+            "sma_10w": round(float(last.get("sma_10w", np.nan)), 2),
+            "sma_40w": round(sma40, 2) if pd.notna(sma40) else None,
+            "hma_20w": round(float(last.get("hma_20w", np.nan)), 2),
+            "hma_slope_20w": round(float(last.get("hma_slope_20w", np.nan)), 3),
+            "state": str(last["state"]),
+            "weeks_in_state": int(last["weeks_since_state"]),
+            "signal": signal,
+            "close_vs_sma40_pct": (
+                round(100.0 * (close_v / sma40 - 1.0), 1)
+                if pd.notna(sma40) and sma40 > 0 else None
+            ),
+        })
+    return pd.DataFrame(rows)
 
 
 def scan_technicals(tickers: list[str], **kwargs) -> pd.DataFrame:

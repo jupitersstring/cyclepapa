@@ -24,7 +24,10 @@ from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
 from .ranking import RankParams, bullish_ranking, weekly_momentum
-from .technicals import scan_technicals, weekly_signals
+from .technicals import (
+    load_price_cache, refresh_price_cache,
+    scan_technicals, scan_universe, weekly_signals,
+)
 
 
 def _setup_logging(verbose: bool) -> None:
@@ -146,6 +149,48 @@ def cmd_technicals(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_scan(args: argparse.Namespace) -> int:
+    """Broad universe scan for fresh crossovers."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    if args.limit:
+        tickers = tickers[: args.limit]
+    print(f"scanning {len(tickers)} tickers (cache={'yes' if not args.refresh else 'refresh'})")
+    if args.refresh:
+        refresh_price_cache(cfg, tickers, years=args.years)
+    snap = scan_universe(cfg, tickers, years=args.years, use_cache=not args.refresh, lookback_weeks=args.lookback)
+    if snap.empty:
+        print("no data")
+        return 0
+    # Liquidity floor: drop sub-$2 close (penny stocks have meaningless MAs).
+    snap = snap[snap["close"] >= args.min_close]
+    if args.signal:
+        snap = snap[snap["signal"].fillna("").str.contains(args.signal)]
+    if args.state:
+        snap = snap[snap["state"] == args.state]
+    if args.max_above_sma40 is not None:
+        snap = snap[snap["close_vs_sma40_pct"].fillna(1e9) <= args.max_above_sma40]
+    snap = snap.sort_values(
+        ["signal", "hma_slope_20w"], ascending=[True, False]
+    ).reset_index(drop=True)
+    print(f"\n{len(snap)} matches")
+    print(snap.head(args.top).to_string(index=False))
+
+    # If no explicit filter was set, summarize counts by signal/state.
+    if not (args.signal or args.state):
+        print("\n=== Signal counts ===")
+        print(snap["signal"].value_counts().to_string())
+        print("\n=== State counts ===")
+        print(snap["state"].value_counts().to_string())
+    return 0
+
+
 def cmd_combined(args: argparse.Namespace) -> int:
     """Cross-join social bullish ranking with technical scan."""
     cfg = Config()
@@ -244,6 +289,20 @@ def build_parser() -> argparse.ArgumentParser:
     po.add_argument("--top", type=int, default=30)
     po.add_argument("--years", type=int, default=5)
     po.set_defaults(func=cmd_combined)
+
+    ps = sub.add_parser("scan", help="Broad US-equity weekly crossover scan with parquet cache")
+    ps.add_argument("--top", type=int, default=50)
+    ps.add_argument("--years", type=int, default=5)
+    ps.add_argument("--limit", type=int, default=None, help="cap universe size for speed")
+    ps.add_argument("--lookback", type=int, default=4, help="weeks to look back for a 'recent' signal")
+    ps.add_argument("--min-close", dest="min_close", type=float, default=2.0)
+    ps.add_argument("--max-above-sma40", dest="max_above_sma40", type=float, default=None,
+                    help="filter out tickers more than N%% above 40w SMA (avoids late chases)")
+    ps.add_argument("--signal", default=None, help="filter by signal substring")
+    ps.add_argument("--state", default=None, choices=["golden", "death", "hma_up", "hma_down", "mixed", "warmup"])
+    ps.add_argument("--refresh", action="store_true", help="re-download price cache")
+    ps.add_argument("--consumer", action="store_true", help="restrict to consumer + comms sectors")
+    ps.set_defaults(func=cmd_scan)
 
     pb = sub.add_parser("backtest", help="Event-study backtest")
     pb.add_argument("--signals", required=True)

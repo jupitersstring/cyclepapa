@@ -78,12 +78,57 @@ def load_etfs_from_financedatabase() -> pd.DataFrame:
     return df[["symbol", "name", "category_group", "category"]].dropna(subset=["symbol"]).reset_index(drop=True)
 
 
+CONSUMER_SECTORS = frozenset({
+    "Consumer Cyclical", "Consumer Defensive",       # yfinance taxonomy
+    "Consumer Discretionary", "Consumer Staples",    # financedatabase / GICS
+    "Communication Services",
+})
+
+
 def filter_consumer_focused(equities: pd.DataFrame) -> pd.DataFrame:
     """Camillo's universe is heavily consumer-cyclical and consumer-defensive."""
     if equities.empty or "sector" not in equities.columns:
         return equities
-    mask = equities["sector"].isin(["Consumer Cyclical", "Consumer Defensive", "Communication Services"])
+    mask = equities["sector"].isin(CONSUMER_SECTORS)
     return equities[mask].reset_index(drop=True)
+
+
+# Yahoo Finance exchange codes for the primary US listings.
+US_EXCHANGE_CODES = frozenset({"NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BATS"})
+
+
+def filter_us_liquid(equities: pd.DataFrame) -> pd.DataFrame:
+    """US-listed equities with a known sector (proxy for "investable").
+
+    Drops OTC / pink / international ADRs. Strips suffixes like `.L`, `.TO`,
+    `.SA` that financedatabase tags onto foreign cross-listings -- we want
+    the primary US symbol that yfinance will recognize.
+    """
+    if equities.empty:
+        return equities
+    df = equities.copy()
+    # Drop any symbol containing a dot (cross-listings, share classes
+    # already present as `BRK-B` etc don't carry dots in Yahoo's catalog).
+    df = df[~df["symbol"].astype(str).str.contains(r"\.", na=False)]
+    if "exchange" in df.columns:
+        df = df[df["exchange"].isin(US_EXCHANGE_CODES) | df["exchange"].isna()]
+    if "country" in df.columns:
+        df = df[df["country"].isin(["United States"]) | df["country"].isna()]
+    if "sector" in df.columns:
+        df = df[df["sector"].notna()]
+    # Keep length-1..5 alphanumeric tickers; reject anything with non-letters.
+    df = df[df["symbol"].astype(str).str.fullmatch(r"[A-Z]{1,5}", na=False)]
+    # Drop common SPAC/unit/warrant patterns: tickers ending in U or W,
+    # and names matching "unit"/"warrant"/"acquisition".
+    sym = df["symbol"].astype(str)
+    name = df["name"].astype(str).str.lower()
+    junk_name = name.str.contains(r"\b(?:unit|warrant|acquisition corp|spac)\b", regex=True, na=False)
+    df = df.loc[~junk_name]
+    # SPAC units/warrants tend to end in 'U' or 'W' AND be 5-char tickers.
+    sym2 = df["symbol"].astype(str)
+    spac_suffix = sym2.str.len().eq(5) & sym2.str.endswith(("U", "W"))
+    df = df.loc[~spac_suffix]
+    return df.drop_duplicates(subset=["symbol"]).reset_index(drop=True)
 
 
 def build_universe(cfg: Config, country: str | None = "United States", refresh: bool = False) -> pd.DataFrame:

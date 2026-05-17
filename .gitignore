@@ -9,6 +9,7 @@ __pycache__/
 data/*.duckdb
 data/*.duckdb.wal
 data/universe.parquet
+data/prices_weekly.parquet
 
 # venv
 .venv/
