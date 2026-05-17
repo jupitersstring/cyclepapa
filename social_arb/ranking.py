@@ -251,6 +251,157 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def best_today(
+    cfg: Config,
+    tickers: list[str],
+    *,
+    top: int = 30,
+    short_w: int = 4,
+    long_w: int = 8,
+    history_lookback: int = 156,        # ~3 years of weekly bars
+    min_score_now: float = 0.0,
+    weights: tuple[float, float, float] = (1.0, 1.0, 1.0),
+    min_close: float = 1.0,
+) -> pd.DataFrame:
+    """Rank "what's best TODAY" using both own-history and cross-section.
+
+    For each ticker we compute three measures, each normalised:
+
+      * **own_pct_now** -- percentile rank of the current technical score
+        within the ticker's *own* last `history_lookback` weeks.
+        100 = best level this name has seen in ~3 years.
+      * **own_pct_improvement** -- percentile rank of the most recent
+        `short_w` score change within the ticker's own distribution of
+        rolling `short_w` changes. 100 = biggest improvement this name
+        has ever had.
+      * **own_pct_inflection** -- percentile rank of the most recent
+        second-derivative (recent_change - prior_change) within its own
+        distribution.
+
+    We then **cross-section rank** the same three quantities across the
+    whole tradeable universe at this single timestamp and z-score each.
+    The final composite is a weighted sum of cross-sectional z-scores so
+    a name that's both at a personal best *and* leading the universe
+    today rises to the top.
+
+    No social-mention filter is applied -- this is a pure observation
+    layer over the universe, so it finds names Camillo's framework
+    would surface *before* social-media chatter.
+    """
+    from .technicals import load_price_cache
+    cache = load_price_cache(cfg)
+    if cache.empty:
+        return pd.DataFrame()
+
+    per_ticker: dict[str, dict[str, float]] = {}
+    for t in tickers:
+        if t not in cache.columns:
+            continue
+        close = cache[t].dropna()
+        if len(close) < max(history_lookback // 4, 30):
+            continue
+        if float(close.iloc[-1]) < min_close:
+            continue
+        sh = technical_score_history(close)
+        if sh is None or sh.empty or len(sh) < short_w + long_w + 5:
+            continue
+        score_now = float(sh.iloc[-1])
+        if score_now < min_score_now:
+            continue
+        # Restrict to recent history (avoid old regime).
+        window = sh.iloc[-history_lookback:] if len(sh) > history_lookback else sh
+
+        # 1) own-history percentile of CURRENT score
+        own_pct_now = float((window <= score_now).sum() / len(window) * 100.0)
+
+        # 2) own-history percentile of the LATEST short-window change
+        change_short = sh.diff(short_w).dropna()
+        latest_change = float(change_short.iloc[-1]) if len(change_short) else 0.0
+        chg_window = change_short.iloc[-history_lookback:] if len(change_short) > history_lookback else change_short
+        own_pct_improvement = (
+            float((chg_window <= latest_change).sum() / len(chg_window) * 100.0)
+            if len(chg_window) >= 5 else 50.0
+        )
+
+        # 3) own-history percentile of latest INFLECTION (2nd derivative)
+        recent = sh.diff(short_w)
+        prior = sh.diff(short_w).shift(short_w)
+        infl_series = (recent - prior).dropna()
+        latest_infl = float(infl_series.iloc[-1]) if len(infl_series) else 0.0
+        infl_window = infl_series.iloc[-history_lookback:] if len(infl_series) > history_lookback else infl_series
+        own_pct_inflection = (
+            float((infl_window <= latest_infl).sum() / len(infl_window) * 100.0)
+            if len(infl_window) >= 5 else 50.0
+        )
+
+        per_ticker[t] = {
+            "score_now": score_now,
+            "change_short": latest_change,
+            "inflection": latest_infl,
+            "own_pct_now": own_pct_now,
+            "own_pct_improvement": own_pct_improvement,
+            "own_pct_inflection": own_pct_inflection,
+        }
+
+    if not per_ticker:
+        return pd.DataFrame()
+    df = pd.DataFrame.from_dict(per_ticker, orient="index").reset_index().rename(columns={"index": "ticker"})
+
+    # Cross-section z-scores at this single timestamp.
+    def _z(col: str) -> pd.Series:
+        s = df[col].astype(float)
+        mu = s.mean()
+        sd = s.std(ddof=0)
+        return (s - mu) / (sd if sd > 0 else 1.0)
+
+    df["cs_z_now"] = _z("score_now")
+    df["cs_z_change"] = _z("change_short")
+    df["cs_z_inflection"] = _z("inflection")
+
+    w1, w2, w3 = weights
+    # Composite -- average of own-history-percentile (scaled to z-equivalent)
+    # plus cross-sectional z. Own percentile is on 0-100 so divide by 50 then -1
+    # to roughly center on 0 with scale similar to a z-score.
+    def _pct_to_z(pct: pd.Series) -> pd.Series:
+        return (pct - 50.0) / 25.0
+
+    df["best_today_score"] = (
+        w1 * (df["cs_z_now"] + _pct_to_z(df["own_pct_now"])) +
+        w2 * (df["cs_z_change"] + _pct_to_z(df["own_pct_improvement"])) +
+        w3 * (df["cs_z_inflection"] + _pct_to_z(df["own_pct_inflection"]))
+    )
+    df = df.sort_values("best_today_score", ascending=False).head(top)
+
+    # Decorate with latest state/close/vs_sma40/mentions for verification.
+    from .technicals import signals_for_close
+    daily = _per_ticker_daily(cfg)
+    soc = daily.groupby("ticker")["mentions"].sum() if not daily.empty else None
+    rows: list[dict] = []
+    for _, r in df.iterrows():
+        t = r["ticker"]
+        close = cache[t].dropna()
+        sig = signals_for_close(close)
+        last = sig.iloc[-1] if sig is not None and not sig.empty else None
+        v40 = None
+        if last is not None and pd.notna(last.get("sma_40w")) and last["sma_40w"]:
+            v40 = round((float(last["close"]) / float(last["sma_40w"]) - 1.0) * 100.0, 1)
+        rows.append({
+            "ticker": t,
+            "best_today_score": round(float(r["best_today_score"]), 2),
+            "own_pct_now": round(float(r["own_pct_now"]), 0),
+            "own_pct_improve": round(float(r["own_pct_improvement"]), 0),
+            "own_pct_inflect": round(float(r["own_pct_inflection"]), 0),
+            "cs_z_now": round(float(r["cs_z_now"]), 2),
+            "cs_z_change": round(float(r["cs_z_change"]), 2),
+            "cs_z_inflect": round(float(r["cs_z_inflection"]), 2),
+            "close": round(float(last["close"]), 2) if last is not None else None,
+            "vs_sma40_pct": v40,
+            "state": str(last["state"]) if last is not None else None,
+            "mentions": int(soc[t]) if soc is not None and t in soc.index else 0,
+        })
+    return pd.DataFrame(rows)
+
+
 def union_ranking(
     cfg: Config,
     tickers: list[str],

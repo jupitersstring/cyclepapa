@@ -24,7 +24,7 @@ from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
-    CamilloParams, RankParams, bullish_ranking, camillo_ranking,
+    CamilloParams, RankParams, best_today, bullish_ranking, camillo_ranking,
     crossover_intersect_social, rank_improvers, rank_inflecters,
     union_ranking, weekly_momentum,
 )
@@ -205,6 +205,40 @@ def cmd_camillo(args: argparse.Namespace) -> int:
         print("Falling back to pure-social bullish ranking:\n")
         print(soc.to_string(index=False))
         return 0
+    print()
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_best_today(args: argparse.Namespace) -> int:
+    """Best-today: own-history percentile + cross-section z-score."""
+    cfg = Config()
+    from . import universe as uni_mod
+    from .technicals import load_price_cache
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    cache = load_price_cache(cfg)
+    valid = {c for c in cache.columns if cache[c].notna().sum() >= 42}
+    scannable = set(tickers) & valid
+    print(f"coverage: {len(scannable):,} of {len(tickers):,} US-liquid ({100*len(scannable)/len(tickers):.1f}%)")
+    out = best_today(
+        cfg, tickers, top=args.top,
+        short_w=args.short, long_w=args.long,
+        history_lookback=args.history,
+        min_score_now=args.min_score,
+        min_close=args.min_close,
+    )
+    if out.empty:
+        print("no data")
+        return 0
+    if args.min_mentions:
+        out = out[out["mentions"] >= args.min_mentions]
+    if args.max_above_sma40 is not None:
+        out = out[out["vs_sma40_pct"].fillna(1e9) <= args.max_above_sma40]
     print()
     print(out.to_string(index=False))
     return 0
@@ -471,6 +505,19 @@ def build_parser() -> argparse.ArgumentParser:
     pcam.add_argument("--min-total", dest="min_total", type=int, default=5)
     pcam.add_argument("--consumer", action="store_true")
     pcam.set_defaults(func=cmd_camillo)
+
+    pbt = sub.add_parser("best-today", help="Best today: own-history percentile + cross-section z-score")
+    pbt.add_argument("--top", type=int, default=40)
+    pbt.add_argument("--short", type=int, default=4)
+    pbt.add_argument("--long", type=int, default=8)
+    pbt.add_argument("--history", type=int, default=156, help="weeks of own history to compare against (default 3y)")
+    pbt.add_argument("--min-score", dest="min_score", type=float, default=0.0)
+    pbt.add_argument("--min-close", dest="min_close", type=float, default=1.0)
+    pbt.add_argument("--min-mentions", dest="min_mentions", type=int, default=0)
+    pbt.add_argument("--max-above-sma40", dest="max_above_sma40", type=float, default=None,
+                    help="filter out names more than N%% above 40w SMA")
+    pbt.add_argument("--consumer", action="store_true")
+    pbt.set_defaults(func=cmd_best_today)
 
     pun = sub.add_parser("union", help="Confluence ranking across Camillo views")
     pun.add_argument("--top", type=int, default=40)

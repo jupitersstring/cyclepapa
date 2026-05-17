@@ -100,5 +100,21 @@ class TechScoreHistoryTest(unittest.TestCase):
         self.assertGreater(float(sh.iloc[-1]), float(sh.iloc[-25]))
 
 
+class BestTodayPercentileTest(unittest.TestCase):
+    """Sanity-check that own-history percentiles behave correctly."""
+
+    def test_current_is_max_when_monotonic_rise(self) -> None:
+        import numpy as np
+        import pandas as pd
+        from social_arb.ranking import technical_score_history
+        idx = pd.date_range("2023-01-06", periods=120, freq="W-FRI")
+        # Monotonically rising close -- score should also rise.
+        close = pd.Series(np.linspace(10.0, 50.0, 120), index=idx, name="MONO")
+        sh = technical_score_history(close)
+        # After warmup, score at end should be >= every prior score.
+        warm = sh.iloc[60:]
+        self.assertAlmostEqual(float(warm.iloc[-1]), float(warm.max()), places=4)
+
+
 if __name__ == "__main__":
     unittest.main()
