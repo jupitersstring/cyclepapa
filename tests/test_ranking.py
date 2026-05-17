@@ -80,5 +80,25 @@ class CamilloScoringTest(unittest.TestCase):
         self.assertGreater(inside, outside)
 
 
+class TechScoreHistoryTest(unittest.TestCase):
+    """Sanity-check the historical technical scorer against a synthetic
+    breakout series."""
+
+    def test_score_rises_through_breakout(self) -> None:
+        import numpy as np
+        import pandas as pd
+        from social_arb.ranking import technical_score_history
+
+        # 60 weeks of sideways noise then 20 weeks of clean uptrend.
+        rs = np.random.default_rng(7)
+        sideways = 50 + rs.normal(0, 0.5, 60)
+        uptrend = np.linspace(50, 80, 20)
+        idx = pd.date_range("2024-01-05", periods=80, freq="W-FRI")
+        close = pd.Series(np.concatenate([sideways, uptrend]), index=idx, name="TEST")
+        sh = technical_score_history(close)
+        # Score should be near zero / negative during sideways, positive at end.
+        self.assertGreater(float(sh.iloc[-1]), float(sh.iloc[-25]))
+
+
 if __name__ == "__main__":
     unittest.main()

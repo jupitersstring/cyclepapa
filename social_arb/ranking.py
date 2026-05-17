@@ -21,6 +21,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 
+import math
+
 import numpy as np
 import pandas as pd
 
@@ -132,6 +134,181 @@ def crossover_intersect_social(
     if signals:
         out = out[out["signal"].isin(list(signals)) | out["state"].isin(("golden", "hma_up"))]
     return out.sort_values(["total_mentions", "hma_slope_20w"], ascending=[False, False]).reset_index(drop=True)
+
+
+@dataclass
+class TechScoreParams:
+    """Weekly technical Camillo score (price-only, no social).
+
+    Captures the *price* side of Camillo's framework so we can compute it
+    historically (years of weekly bars) and then look at *first* and
+    *second derivatives* -- which names are climbing the ranks and which
+    are accelerating.
+
+    A clean way to surface "this is turning right now" without waiting for
+    Wall Street recognition (= the social signal lagging).
+    """
+    w_state_golden: float = 2.0       # +2 when in golden state (SMA + HMA + slope)
+    w_state_hma_up: float = 1.0       # +1 for hma_up only
+    w_state_mixed: float = 0.0
+    w_state_hma_down: float = -1.0
+    w_state_death: float = -2.0
+    w_clean_entry: float = 1.5        # -25% <= close vs 40w <= +10%
+    w_stretched_pen: float = 0.05     # subtract per % above +25% from SMA40
+    w_broken_pen: float = 0.05        # subtract per % below -35% from SMA40
+    slope_scale: float = 0.5          # multiplied onto sign(slope)*log(|slope|+1)
+    slope_cap: float = 2.0            # cap absolute slope contribution
+
+
+def technical_score_history(close: pd.Series, params: TechScoreParams | None = None) -> pd.Series:
+    """Weekly technical Camillo score history for one ticker.
+
+    Returns a pd.Series indexed like the weekly close, with the score at
+    each historical week. Used by `rank_improvers` and `rank_inflecters`.
+    """
+    if params is None:
+        params = TechScoreParams()
+    from .technicals import signals_for_close
+    sig = signals_for_close(close.dropna())
+    if sig is None or sig.empty:
+        return pd.Series(dtype=float, name=close.name)
+
+    sma_l = sig["sma_40w"]
+    close_v = sig["close"]
+    vs_sma40 = (close_v / sma_l - 1.0) * 100.0
+    slope = sig["hma_slope_20w"]
+
+    state_map = {
+        "golden": params.w_state_golden,
+        "hma_up": params.w_state_hma_up,
+        "mixed": params.w_state_mixed,
+        "hma_down": params.w_state_hma_down,
+        "death": params.w_state_death,
+    }
+    state_pts = sig["state"].map(state_map).astype(float).fillna(0.0)
+
+    clean = ((vs_sma40 >= -25.0) & (vs_sma40 <= 10.0)).astype(float) * params.w_clean_entry
+    stretched = np.maximum(vs_sma40 - 25.0, 0.0) * -params.w_stretched_pen
+    broken = np.maximum(-(vs_sma40 + 35.0), 0.0) * -params.w_broken_pen
+
+    sl = np.sign(slope.fillna(0.0)) * np.log1p(np.abs(slope.fillna(0.0))) * params.slope_scale
+    sl = sl.clip(-params.slope_cap, params.slope_cap)
+
+    score = state_pts + clean + stretched + broken + sl
+    score.name = close.name
+    return score
+
+
+def _scores_at(cache: pd.DataFrame, tickers: list[str], weeks: list[int]) -> pd.DataFrame:
+    """For a list of (negative) week-offsets like [-8, -4, 0], return a
+    DataFrame indexed by ticker with one column per offset."""
+    rows: dict[str, dict[int, float]] = {}
+    for t in tickers:
+        if t not in cache.columns:
+            continue
+        close = cache[t].dropna()
+        if len(close) < 50:
+            continue
+        sh = technical_score_history(close)
+        if sh is None or sh.empty:
+            continue
+        row: dict[int, float] = {}
+        for w in weeks:
+            idx = len(sh) - 1 + w  # w is <= 0; w=0 is latest
+            if idx < 0 or idx >= len(sh):
+                continue
+            row[w] = float(sh.iloc[idx])
+        if row:
+            rows[t] = row
+    return pd.DataFrame.from_dict(rows, orient="index")
+
+
+def rank_improvers(
+    cfg: Config,
+    tickers: list[str],
+    *,
+    lookback_weeks: int = 4,
+    top: int = 30,
+    min_score_now: float | None = None,
+) -> pd.DataFrame:
+    """Tickers whose technical Camillo score has improved over `lookback_weeks`.
+
+    Ranked by (score_now - score_lookback_ago), descending. Optional
+    `min_score_now` keeps the list to currently-bullish names rather than
+    "least bearish".
+    """
+    from .technicals import load_price_cache
+    cache = load_price_cache(cfg)
+    if cache.empty:
+        return pd.DataFrame()
+    scores = _scores_at(cache, tickers, weeks=[-lookback_weeks, 0])
+    if scores.empty:
+        return scores
+    scores.columns = ["score_prev", "score_now"]
+    scores["improvement"] = scores["score_now"] - scores["score_prev"]
+    if min_score_now is not None:
+        scores = scores[scores["score_now"] >= float(min_score_now)]
+    return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
+
+
+def rank_inflecters(
+    cfg: Config,
+    tickers: list[str],
+    *,
+    short: int = 4,
+    long: int = 8,
+    top: int = 30,
+    min_score_now: float | None = None,
+) -> pd.DataFrame:
+    """Tickers whose technical score is *accelerating*.
+
+    Inflection = (score_now - score_short_ago) - (score_short_ago - score_long_ago)
+    A positive value means the rate of improvement has increased -- the
+    second derivative is positive. These are the "the turn is happening
+    right now" names, before they show up in golden-cross / improver lists.
+    """
+    from .technicals import load_price_cache
+    cache = load_price_cache(cfg)
+    if cache.empty:
+        return pd.DataFrame()
+    scores = _scores_at(cache, tickers, weeks=[-long, -short, 0])
+    if scores.empty:
+        return scores
+    scores.columns = ["score_long", "score_short", "score_now"]
+    recent = scores["score_now"] - scores["score_short"]
+    prior = scores["score_short"] - scores["score_long"]
+    scores["delta_recent"] = recent
+    scores["delta_prior"] = prior
+    scores["inflection"] = recent - prior
+    if min_score_now is not None:
+        scores = scores[scores["score_now"] >= float(min_score_now)]
+    return _decorate(cfg, cache, scores.sort_values("inflection", ascending=False).head(top))
+
+
+def _decorate(cfg: Config, cache: pd.DataFrame, df: pd.DataFrame) -> pd.DataFrame:
+    """Attach close, vs SMA40, state, signal, and social-mention totals."""
+    from .technicals import signals_for_close
+    out_rows: list[dict] = []
+    daily = _per_ticker_daily(cfg)
+    soc = daily.groupby("ticker")["mentions"].sum() if not daily.empty else None
+    for ticker, row in df.iterrows():
+        close = cache[ticker].dropna()
+        sig = signals_for_close(close)
+        if sig is None or sig.empty:
+            continue
+        last = sig.iloc[-1]
+        v40 = (float(last["close"]) / float(last["sma_40w"]) - 1.0) * 100.0 if pd.notna(last["sma_40w"]) and last["sma_40w"] else None
+        entry = {
+            "ticker": ticker,
+            **{c: round(float(row[c]), 3) for c in df.columns if pd.notna(row[c])},
+            "close": round(float(last["close"]), 2),
+            "vs_sma40_pct": round(v40, 1) if v40 is not None else None,
+            "state": str(last["state"]),
+            "hma_slope_20w": round(float(last["hma_slope_20w"]), 3) if pd.notna(last["hma_slope_20w"]) else None,
+            "mentions": int(soc[ticker]) if soc is not None and ticker in soc.index else 0,
+        }
+        out_rows.append(entry)
+    return pd.DataFrame(out_rows)
 
 
 @dataclass

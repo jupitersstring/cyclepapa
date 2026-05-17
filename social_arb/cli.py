@@ -25,7 +25,7 @@ from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
     CamilloParams, RankParams, bullish_ranking, camillo_ranking,
-    crossover_intersect_social, weekly_momentum,
+    crossover_intersect_social, rank_improvers, rank_inflecters, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -197,6 +197,48 @@ def cmd_camillo(args: argparse.Namespace) -> int:
         print(soc.to_string(index=False))
         return 0
     print()
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_improvers(args: argparse.Namespace) -> int:
+    """Tickers whose technical Camillo score has improved over N weeks."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = rank_improvers(cfg, tickers, lookback_weeks=args.weeks, top=args.top,
+                        min_score_now=args.min_score)
+    if out.empty:
+        print("no data; run `scan --refresh` first")
+        return 0
+    if args.min_mentions:
+        out = out[out["mentions"] >= args.min_mentions]
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_inflecters(args: argparse.Namespace) -> int:
+    """Tickers whose technical Camillo score is accelerating."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = rank_inflecters(cfg, tickers, short=args.short, long=args.long,
+                         top=args.top, min_score_now=args.min_score)
+    if out.empty:
+        print("no data; run `scan --refresh` first")
+        return 0
+    if args.min_mentions:
+        out = out[out["mentions"] >= args.min_mentions]
     print(out.to_string(index=False))
     return 0
 
@@ -392,6 +434,23 @@ def build_parser() -> argparse.ArgumentParser:
     pcam.add_argument("--min-total", dest="min_total", type=int, default=5)
     pcam.add_argument("--consumer", action="store_true")
     pcam.set_defaults(func=cmd_camillo)
+
+    pimp = sub.add_parser("improvers", help="Technical-score improvers over N weeks")
+    pimp.add_argument("--top", type=int, default=30)
+    pimp.add_argument("--weeks", type=int, default=4)
+    pimp.add_argument("--min-score", dest="min_score", type=float, default=None)
+    pimp.add_argument("--min-mentions", dest="min_mentions", type=int, default=0)
+    pimp.add_argument("--consumer", action="store_true")
+    pimp.set_defaults(func=cmd_improvers)
+
+    pinf = sub.add_parser("inflecters", help="Tickers whose technical score is accelerating")
+    pinf.add_argument("--top", type=int, default=30)
+    pinf.add_argument("--short", type=int, default=4, help="recent window")
+    pinf.add_argument("--long", type=int, default=8, help="prior window")
+    pinf.add_argument("--min-score", dest="min_score", type=float, default=None)
+    pinf.add_argument("--min-mentions", dest="min_mentions", type=int, default=0)
+    pinf.add_argument("--consumer", action="store_true")
+    pinf.set_defaults(func=cmd_inflecters)
 
     pxs = sub.add_parser("crossovers-social", help="Crossovers filtered to socially-mentioned tickers")
     pxs.add_argument("--top", type=int, default=40)
