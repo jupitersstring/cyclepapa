@@ -254,6 +254,8 @@ def refresh_price_cache(
     chunk: int = 200,
     incremental: bool = True,
     min_bars: int = 42,
+    stooq_fallback: bool = True,
+    stooq_sleep: float = 0.25,
 ) -> pd.DataFrame:
     """Bulk-download and persist to parquet. Returns the cached DataFrame.
 
@@ -276,8 +278,8 @@ def refresh_price_cache(
         weekly_new = pd.DataFrame()
 
     if existing.empty and weekly_new.empty:
-        return pd.DataFrame()
-    if existing.empty:
+        weekly = pd.DataFrame()
+    elif existing.empty:
         weekly = weekly_new
     elif weekly_new.empty:
         weekly = existing
@@ -285,6 +287,27 @@ def refresh_price_cache(
         weekly = pd.concat([existing, weekly_new], axis=1)
         weekly = weekly.loc[:, ~weekly.columns.duplicated(keep="last")]
         weekly = weekly.sort_index()
+
+    # Stooq fallback for any ticker yfinance still hasn't covered.
+    if stooq_fallback:
+        if weekly.empty:
+            valid = set()
+        else:
+            valid = {c for c in weekly.columns if weekly[c].notna().sum() >= min_bars}
+        still_missing = [t for t in tickers if t not in valid]
+        if still_missing:
+            log.info("stooq fallback for %d tickers (yfinance failed)", len(still_missing))
+            from .prices_stooq import stooq_bulk
+            stooq_df = stooq_bulk(still_missing, years=years, sleep_between=stooq_sleep, min_bars=min_bars)
+            if not stooq_df.empty:
+                if weekly.empty:
+                    weekly = stooq_df
+                else:
+                    weekly = pd.concat([weekly, stooq_df], axis=1)
+                    weekly = weekly.loc[:, ~weekly.columns.duplicated(keep="last")]
+                    weekly = weekly.sort_index()
+    if weekly.empty:
+        return weekly
     path = _cache_path(cfg)
     weekly.to_parquet(path)
     n_valid = int((weekly.notna().sum() >= min_bars).sum())
