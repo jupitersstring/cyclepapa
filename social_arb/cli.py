@@ -156,20 +156,47 @@ def cmd_camillo(args: argparse.Namespace) -> int:
     """Camillo composite ranking: attention + sentiment + tech + not-stretched."""
     cfg = Config()
     from . import universe as uni_mod
+    from .technicals import load_price_cache
     pipe = Pipeline.build(cfg)
     uni = pipe.universe_df
     if args.consumer:
         uni = uni_mod.filter_consumer_focused(uni)
     uni = uni_mod.filter_us_liquid(uni)
     tickers = uni["symbol"].astype(str).tolist()
+
+    # Coverage report -- be explicit about what we're actually scanning.
+    cache = load_price_cache(cfg)
+    if cache.empty:
+        print("no price cache; run `scan --refresh` first")
+        return 0
+    valid_in_cache = {c for c in cache.columns if cache[c].notna().sum() >= 42}
+    scannable = set(tickers) & valid_in_cache
+    pct = 100.0 * len(scannable) / max(1, len(tickers))
+    print(
+        f"coverage: scanning {len(scannable):,} of {len(tickers):,} "
+        f"US-liquid tickers ({pct:.1f}%) -- "
+        f"{len(tickers) - len(scannable):,} missing/stale in price cache"
+    )
+
     snap = scan_universe(cfg, tickers, years=args.years, use_cache=True, lookback_weeks=args.lookback)
     if snap.empty:
         print("no cached technical data; run `scan --refresh` first")
         return 0
+    print(f"scan produced signals for {len(snap):,} tickers")
     out = camillo_ranking(cfg, snap, min_total_mentions=args.min_total, top=args.top)
     if out.empty:
-        print("no intersection: try a smaller --min-total or run more collectors")
+        # No technical-tier hit -- fall back to social-only bullish ranking so
+        # we never silently return nothing.
+        from .ranking import bullish_ranking
+        soc = bullish_ranking(cfg, top=args.top)
+        if soc.empty:
+            print("no intersection and no social data either")
+            return 0
+        print("\nNo socially-mentioned tickers passed the technical filter.")
+        print("Falling back to pure-social bullish ranking:\n")
+        print(soc.to_string(index=False))
         return 0
+    print()
     print(out.to_string(index=False))
     return 0
 
