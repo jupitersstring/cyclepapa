@@ -525,6 +525,22 @@ def extract_warrant_pairs(min_share_price: float = 0.0) -> pd.DataFrame:
             warrants.loc[unmatched_mask, "issuer_key"]
             .apply(lambda k: _fuzzy_match_common(k, common_by_key))
         )
+    # For any warrant still unmatched, fall back to the warrant ticker's
+    # alphabetic prefix as the common candidate — many warrant tickers
+    # encode the common's ticker (XYZW -> XYZ, ABCDW -> ABCD). Then we'll
+    # rely on filter_active_pairs / sentinel guards to drop bad pairs.
+    still_unmatched = warrants["common"].isna()
+    if still_unmatched.any():
+        def _prefix_guess(sym):
+            s = str(sym)
+            # strip trailing W/WS/WW/WTS/WT
+            for suf in ("WTS", "WTA", "WTB", "WW", "WS", "WT", "L", "Z", "W"):
+                if s.endswith(suf) and len(s) > len(suf) + 1:
+                    return s[:-len(suf)]
+            return None
+        warrants.loc[still_unmatched, "common"] = (
+            warrants.loc[still_unmatched, "symbol"].apply(_prefix_guess)
+        )
     paired = warrants.dropna(subset=["common"]).copy()
     paired = paired.rename(columns={"symbol": "warrant"})
     paired["common"] = paired["common"].map(_to_yahoo_ticker)
