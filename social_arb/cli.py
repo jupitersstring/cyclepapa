@@ -23,6 +23,7 @@ from .anomaly import AnomalyParams
 from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
+from .ranking import RankParams, bullish_ranking, weekly_momentum
 
 
 def _setup_logging(verbose: bool) -> None:
@@ -60,9 +61,42 @@ def cmd_collect(args: argparse.Namespace) -> int:
     elif args.source == "stocktwits":
         n = pipe.run_stocktwits(ticker=args.ticker)
         print(f"stocktwits[{args.ticker}]: {n} mentions stored")
+    elif args.source == "hackernews":
+        n = pipe.run_hackernews(query=args.query, hours_back=args.hours, hits=args.size)
+        print(f"hackernews: {n} mentions stored")
+    elif args.source == "reddit_rss":
+        n = pipe.run_reddit_rss(subreddit=args.subreddit, listing=args.listing, period=args.period)
+        print(f"reddit_rss r/{args.subreddit}: {n} mentions stored")
+    elif args.source == "yfinance_news":
+        n = pipe.run_yfinance_news(ticker=args.ticker)
+        print(f"yfinance_news[{args.ticker}]: {n} mentions stored")
+    elif args.source == "wikipedia":
+        n = pipe.run_wikipedia(title=args.query, ticker=args.ticker, days_back=args.days * 1)
+        print(f"wikipedia[{args.query} -> {args.ticker}]: {n} rows stored")
+    elif args.source == "form4":
+        n = pipe.run_form4(days_back=args.days, max_records=args.max_records)
+        print(f"sec_form4: {n} ticker-rows stored")
     else:
         print(f"unknown source: {args.source}", file=sys.stderr)
         return 2
+    return 0
+
+
+def cmd_rank(args: argparse.Namespace) -> int:
+    cfg = Config()
+    if args.mode == "bullish":
+        params = RankParams(
+            min_total_mentions=args.min_total,
+            halflife_days=args.halflife,
+            window_days=args.window,
+        )
+        out = bullish_ranking(cfg, params=params, top=args.top)
+    else:
+        out = weekly_momentum(cfg, min_total=args.min_total, top=args.top)
+    if out.empty:
+        print("no data -- run a collector first")
+        return 0
+    print(out.to_string(index=False))
     return 0
 
 
@@ -106,7 +140,10 @@ def build_parser() -> argparse.ArgumentParser:
     pu.set_defaults(func=cmd_universe)
 
     pc = sub.add_parser("collect", help="Run a collector")
-    pc.add_argument("source", choices=["reddit", "apewisdom", "gdelt", "stocktwits"])
+    pc.add_argument("source", choices=[
+        "reddit", "apewisdom", "gdelt", "stocktwits",
+        "hackernews", "reddit_rss", "yfinance_news", "wikipedia", "form4",
+    ])
     pc.add_argument("--query", default=None)
     pc.add_argument("--subreddit", default=None)
     pc.add_argument("--days", type=int, default=1)
@@ -117,7 +154,17 @@ def build_parser() -> argparse.ArgumentParser:
     pc.add_argument("--hours", type=int, default=24)
     pc.add_argument("--max-records", dest="max_records", type=int, default=250)
     pc.add_argument("--ticker", default=None)
+    pc.add_argument("--listing", default="new", choices=["new", "hot", "top"])
+    pc.add_argument("--period", default=None, choices=[None, "hour", "day", "week", "month", "year", "all"])
     pc.set_defaults(func=cmd_collect)
+
+    pr = sub.add_parser("rank", help="Cross-ticker bullishness / momentum ranking")
+    pr.add_argument("mode", choices=["bullish", "momentum"], default="bullish")
+    pr.add_argument("--top", type=int, default=25)
+    pr.add_argument("--min-total", dest="min_total", type=int, default=20)
+    pr.add_argument("--halflife", type=int, default=14)
+    pr.add_argument("--window", type=int, default=90)
+    pr.set_defaults(func=cmd_rank)
 
     pa = sub.add_parser("anomalies", help="Run anomaly detection on stored mentions")
     pa.add_argument("--ticker", required=True)

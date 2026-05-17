@@ -18,9 +18,14 @@ from . import storage, universe
 from .anomaly import AnomalyParams, ewma_zscore, joint_signal
 from .collectors import (
     collect_apewisdom,
+    collect_form4,
     collect_gdelt,
+    collect_hackernews,
     collect_pullpush,
+    collect_reddit_rss,
     collect_stocktwits,
+    collect_wikipedia,
+    collect_yfinance_news,
 )
 from .config import Config
 from .entity_resolution import Resolver
@@ -78,6 +83,32 @@ class Pipeline:
 
     def run_stocktwits(self, *, ticker: str) -> int:
         df = collect_stocktwits(self.cfg, self.sentiment, ticker=ticker)
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_hackernews(self, *, query: str, hours_back: int = 24, hits: int = 100) -> int:
+        df = collect_hackernews(
+            self.cfg, self.resolver, self.sentiment,
+            query=query, hours_back=hours_back, hits=hits,
+        )
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_reddit_rss(self, *, subreddit: str, listing: str = "new", period: str | None = None) -> int:
+        df = collect_reddit_rss(
+            self.cfg, self.resolver, self.sentiment,
+            subreddit=subreddit, listing=listing, period=period,
+        )
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_yfinance_news(self, *, ticker: str) -> int:
+        df = collect_yfinance_news(self.cfg, self.sentiment, ticker=ticker)
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_wikipedia(self, *, title: str, ticker: str, days_back: int = 60) -> int:
+        df = collect_wikipedia(self.cfg, title=title, ticker=ticker, days_back=days_back)
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_form4(self, *, days_back: int = 7, max_records: int = 100) -> int:
+        df = collect_form4(self.cfg, days_back=days_back, max_records=max_records)
         return storage.upsert_mentions(self.cfg, df)
 
     # ---- analysis -------------------------------------------------------
