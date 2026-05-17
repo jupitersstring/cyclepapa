@@ -1,0 +1,36 @@
+# --- Core (already present in cycle app) ---
+streamlit
+pandas
+numpy
+scipy
+scikit-learn
+statsmodels
+matplotlib
+plotly
+pytz
+yfinance
+fredapi
+
+# --- Social arbitrage pipeline ---
+# Universe
+financedatabase>=2.3
+
+# Storage
+duckdb>=0.10
+pyarrow>=14
+
+# HTTP / scraping (no-auth public endpoints)
+requests>=2.31
+httpx>=0.27
+tenacity>=8.2
+feedparser>=6.0
+python-dateutil>=2.8
+
+# NLP - offline / free
+vaderSentiment>=3.3.2
+rapidfuzz>=3.6
+
+# Optional (require API keys; degrade gracefully if missing)
+praw>=7.7              # Reddit official API (free, needs OAuth app)
+# edgartools>=2.20     # SEC filings (free, no key)
+# pytrends>=4.9        # Google Trends (archived but installs)

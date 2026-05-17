@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+.DS_Store
+
+# Pipeline runtime artifacts
+data/*.duckdb
+data/*.duckdb.wal
+data/universe.parquet
+
+# venv
+.venv/
+venv/
