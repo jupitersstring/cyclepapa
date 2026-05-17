@@ -210,6 +210,33 @@ def true_range(high, low, close_prev):
     )
 
 
+def compute_close_only_asymmetry(close_series, period=14, smooth=7, slow=14):
+    """Asymmetry on a close-only series (used for relative-to-SPY price).
+    up_move = max(delta, 0), dn_move = max(-delta, 0)."""
+    if len(close_series) < period * 3 + slow + 2:
+        return None
+    delta = close_series.diff().dropna()
+    up = delta.clip(lower=0)
+    dn = (-delta).clip(lower=0)
+    up_s = up.ewm(span=period, adjust=False).mean()
+    dn_s = dn.ewm(span=period, adjust=False).mean()
+    ratio = up_s / (up_s + dn_s + 1e-10)
+    asym = ratio.ewm(span=smooth, adjust=False).mean() * 100
+    asym_ma = asym.ewm(span=slow, adjust=False).mean()
+    if len(asym) < 2:
+        return None
+    rising = bool(asym.iloc[-1] > asym.iloc[-2])
+    above_ma = bool(asym.iloc[-1] > asym_ma.iloc[-1])
+    crossed_up = bool(above_ma and (asym.iloc[-2] <= asym_ma.iloc[-2]))
+    return {
+        "asym_now": float(asym.iloc[-1]),
+        "asym_ma": float(asym_ma.iloc[-1]),
+        "asym_rising": rising,
+        "asym_above_ma": above_ma,
+        "asym_just_crossed_up": crossed_up,
+    }
+
+
 def compute_volatility_asymmetry(df, period=14, smooth=7, slow=14, lookback=5,
                                   threshold_pct=5.0):
     """Pine Script logic (malikmck / YourName):
@@ -296,8 +323,30 @@ def compute_momentum(df, spy_close=None):
     atr14 = float(np.mean(tr_vals[-14:])) if len(tr_vals) >= 14 else None
     atr14_pct = (atr14 / last * 100) if atr14 else None
 
-    # Volatility asymmetry (Pine Script port)
+    # Volatility asymmetry (Pine Script port - daily bars)
     asym = compute_volatility_asymmetry(df) or {}
+
+    # Weekly stacked MA: Close >= WMA10 >= WMA20 >= WMA30 (on weekly close)
+    if len(wclose) >= 30:
+        wema10 = float(wclose.ewm(span=10, adjust=False).mean().iloc[-1])
+        wsma20 = float(wclose.tail(20).mean())
+        wsma30 = float(wclose.tail(30).mean())
+        weekly_stacked_ma = bool(last >= wema10 >= wsma20 >= wsma30)
+    else:
+        wema10 = wsma20 = wsma30 = None
+        weekly_stacked_ma = False
+
+    # Weekly position in last-20-week range
+    if len(whigh) >= 20:
+        high_20w = float(whigh.tail(20).max())
+        low_20w = float(wlow.tail(20).min())
+        span_20w = high_20w - low_20w
+        weekly_range_pos_pct = (last - low_20w) / span_20w * 100 if span_20w > 0 else 50.0
+    else:
+        weekly_range_pos_pct = None
+
+    # Weekly asymmetry (run on weekly bars)
+    weekly_asym_dict = compute_volatility_asymmetry(weekly, period=14, smooth=7, slow=14, lookback=5) or {}
 
     # --- Weekly metrics (the proper Q base/extension lens) -----------------
     df_ohlcv = pd.DataFrame({
@@ -414,6 +463,13 @@ def compute_momentum(df, spy_close=None):
         "asym_above_ma": asym.get("asym_above_ma", False),
         "asym_just_crossed_up": asym.get("asym_just_crossed_up", False),
         "asym_upper_signal": asym.get("asym_upper_signal", False),
+        # weekly variants
+        "weekly_stacked_ma": weekly_stacked_ma,
+        "weekly_range_pos_pct": weekly_range_pos_pct,
+        "asym_w_now": weekly_asym_dict.get("asym_now"),
+        "asym_w_rising": weekly_asym_dict.get("asym_rising", False),
+        "asym_w_above_ma": weekly_asym_dict.get("asym_above_ma", False),
+        "asym_w_just_crossed_up": weekly_asym_dict.get("asym_just_crossed_up", False),
         # daily references
         "dist_sma20_pct": dist_sma20,
         "dist_sma50_pct": dist_sma50,
@@ -479,6 +535,9 @@ def compute_momentum(df, spy_close=None):
                     rel_ret_6m = (rel.iloc[-1] / rel.iloc[-126] - 1) * 100
                 except Exception:
                     rel_ret_3m = rel_ret_6m = None
+                # Volatility asymmetry on relative price (the "RS-strength" signal)
+                rel_asym_d = compute_close_only_asymmetry(rel) or {}
+                rel_asym_w = compute_close_only_asymmetry(rel_w) or {}
                 out.update({
                     "rel_dist_wma10_pct": float(rel_dist_wma10),
                     "rel_dist_wma30_pct": float(rel_dist_wma30),
@@ -487,6 +546,16 @@ def compute_momentum(df, spy_close=None):
                     "rel_macd_hist_rising": rel_hist_rising,
                     "rel_return_3m_pct": float(rel_ret_3m) if rel_ret_3m is not None else None,
                     "rel_return_6m_pct": float(rel_ret_6m) if rel_ret_6m is not None else None,
+                    # daily asymmetry on rel price
+                    "rel_asym_now": rel_asym_d.get("asym_now"),
+                    "rel_asym_rising": rel_asym_d.get("asym_rising", False),
+                    "rel_asym_above_ma": rel_asym_d.get("asym_above_ma", False),
+                    "rel_asym_just_crossed_up": rel_asym_d.get("asym_just_crossed_up", False),
+                    # weekly asymmetry on rel price
+                    "rel_asym_w_now": rel_asym_w.get("asym_now"),
+                    "rel_asym_w_rising": rel_asym_w.get("asym_rising", False),
+                    "rel_asym_w_above_ma": rel_asym_w.get("asym_above_ma", False),
+                    "rel_asym_w_just_crossed_up": rel_asym_w.get("asym_just_crossed_up", False),
                 })
 
     return out
@@ -568,27 +637,61 @@ def main():
     # ATR RS rank (higher = more volatile / more daily range)
     df["atr_rs"] = (df["atr14_pct"].rank(pct=True) * 99).round(1)
 
-    # Q method criteria booleans
-    df["rs_leader_97"] = df["rs_rank_max"] >= 97
+    # Q method criteria booleans (lightened: decent RS instead of strict 97).
+    # Use volatility asymmetry on relative-to-SPY price as the RS-strength
+    # signal: when rel-asym rises near 50 or crosses above its MA, the stock
+    # is taking on relative strength versus the benchmark.
+    df["rs_decent"] = df["rs_rank_max"] >= 70  # was 97, now decent threshold
+    df["rs_strong"] = df["rs_rank_max"] >= 85
     df["atr_rs_above_50"] = df["atr_rs"] >= 50
     df["price_range_top_half"] = df["range_20d_pos_pct"] >= 50
-    df["q_method_pass"] = (
-        df["rs_leader_97"]
-        & df["stacked_ma"].fillna(False)
-        & df["atr_rs_above_50"]
-        & df["price_range_top_half"]
+    df["weekly_range_top_half"] = df["weekly_range_pos_pct"].fillna(0) >= 50
+    df["stacked_ma_any"] = df["stacked_ma"].fillna(False) | df["weekly_stacked_ma"].fillna(False)
+
+    # RS-strength signal: rel-asym rising / crossed MA / near 50 and up
+    df["rel_asym_signal"] = (
+        df["rel_asym_rising"].fillna(False)
+        | df["rel_asym_above_ma"].fillna(False)
+        | df["rel_asym_just_crossed_up"].fillna(False)
     )
-    df["q_method_partial"] = (
-        df["rs_leader_97"]
-        & df["price_range_top_half"]
-        & (df["stacked_ma"].fillna(False) | df["atr_rs_above_50"])
+    df["rel_asym_w_signal"] = (
+        df["rel_asym_w_rising"].fillna(False)
+        | df["rel_asym_w_above_ma"].fillna(False)
+        | df["rel_asym_w_just_crossed_up"].fillna(False)
     )
 
-    # Volatility asymmetry bonus: near 50 and rising, OR just crossed above MA
+    # Q METHOD PASS (lightened):
+    #   - decent RS (rank_max >= 70)
+    #   - relative-asymmetry signal up (the "real" RS leader signal)
+    #   - stacked MAs (daily OR weekly)
+    #   - ATR_RS >= 50 (above-average daily range)
+    #   - price in top half of 20-day OR 20-week range
+    df["q_method_pass"] = (
+        df["rs_decent"]
+        & df["rel_asym_signal"]
+        & df["stacked_ma_any"]
+        & df["atr_rs_above_50"]
+        & (df["price_range_top_half"] | df["weekly_range_top_half"])
+    )
+
+    # Weekly-only Q method: same but weekly-bar variants
+    df["q_method_pass_weekly"] = (
+        df["rs_decent"]
+        & df["rel_asym_w_signal"]
+        & df["weekly_stacked_ma"].fillna(False)
+        & df["atr_rs_above_50"]
+        & df["weekly_range_top_half"]
+    )
+
+    # Daily absolute-price volatility asymmetry bonus
     df["vol_asym_bonus"] = (
         (df["asym_now"].fillna(0).between(40, 60) & df["asym_rising"].fillna(False))
         | df["asym_just_crossed_up"].fillna(False)
         | df["asym_upper_signal"].fillna(False)
+    )
+    df["vol_asym_w_bonus"] = (
+        (df["asym_w_now"].fillna(0).between(40, 60) & df["asym_w_rising"].fillna(False))
+        | df["asym_w_just_crossed_up"].fillna(False)
     )
 
     top_1m = df.nlargest(args.top, "mom_1m")
@@ -805,7 +908,7 @@ def main():
         | df["roque_big_base"].fillna(False)
         | df["long_base"].fillna(False)
         | df["q_method_pass"].fillna(False)
-        | df["q_method_partial"].fillna(False)
+        | df["q_method_pass_weekly"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -830,7 +933,8 @@ def main():
     qulla = df[df["qulla_consol_setup"]].sort_values("box_length_weeks", ascending=False)
     qulla_soft = df[df["qulla_consol_soft"] & (~df["qulla_consol_setup"])].sort_values("box_length_weeks", ascending=False)
     q_method = df[df["q_method_pass"]].sort_values("rs_rank_max", ascending=False)
-    q_method_partial = df[df["q_method_partial"] & (~df["q_method_pass"])].sort_values("rs_rank_max", ascending=False)
+    q_method_weekly = df[df["q_method_pass_weekly"]].sort_values("rs_rank_max", ascending=False)
+    q_method_both = df[df["q_method_pass"] & df["q_method_pass_weekly"]].sort_values("rs_rank_max", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -839,23 +943,33 @@ def main():
     base_forming = df[df["base_forming"]].sort_values("q_score")
 
     q_method_show = ["name", "sector", "last_close",
-                     "rs_rank_1w", "rs_rank_1m", "rs_rank_3m", "rs_rank_6m", "rs_rank_max",
-                     "stacked_ma", "atr_rs", "range_20d_pos_pct",
-                     "asym_now", "asym_rising", "asym_above_ma", "asym_just_crossed_up",
-                     "vol_asym_bonus", "q_method_pass", "q_method_partial",
+                     "rs_rank_max", "rs_rank_1w", "rs_rank_1m", "rs_rank_3m", "rs_rank_6m",
+                     "atr_rs", "range_20d_pos_pct", "weekly_range_pos_pct",
+                     "stacked_ma", "weekly_stacked_ma",
+                     "rel_asym_now", "rel_asym_rising", "rel_asym_above_ma", "rel_asym_just_crossed_up",
+                     "rel_asym_w_now", "rel_asym_w_rising", "rel_asym_w_above_ma", "rel_asym_w_just_crossed_up",
+                     "asym_now", "asym_rising", "asym_just_crossed_up",
+                     "vol_asym_bonus", "vol_asym_w_bonus",
+                     "q_method_pass", "q_method_pass_weekly",
                      "box_length_weeks", "box_height_pct", "roque_score"]
     q_method_show = [c for c in q_method_show if c in flagged.columns]
 
     with pd.option_context("display.max_columns", None, "display.width", 300, "display.float_format", "{:.2f}".format):
-        print(f"\n=== Q_METHOD_PASS (RS>=97 + stacked MA + ATR_RS>=50 + price top half of 20d range) ({len(q_method)}) ===")
+        print(f"\n=== Q_METHOD_PASS_BOTH (daily AND weekly criteria pass) ({len(q_method_both)}) ===")
+        if len(q_method_both):
+            print(q_method_both[q_method_show].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== Q_METHOD_PASS daily (RS>=70 + rel-asym up + stacked MA + ATR_RS>=50 + price top half) ({len(q_method)}) ===")
         if len(q_method):
             print(q_method[q_method_show].head(args.top).to_string())
         else:
             print("(none)")
 
-        print(f"\n=== Q_METHOD_PARTIAL (RS>=97 + price top half + (stacked MA OR ATR_RS>=50)) ({len(q_method_partial)}) ===")
-        if len(q_method_partial):
-            print(q_method_partial[q_method_show].head(args.top).to_string())
+        print(f"\n=== Q_METHOD_PASS_WEEKLY (RS>=70 + weekly rel-asym up + weekly stacked MA + weekly range top half) ({len(q_method_weekly)}) ===")
+        if len(q_method_weekly):
+            print(q_method_weekly[q_method_show].head(args.top).to_string())
         else:
             print("(none)")
 
