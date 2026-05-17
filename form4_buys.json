@@ -1005,10 +1005,11 @@
     "issuer_cik": "0002058758",
     "buyer_set": [
       "Jensen Barry H | EVP and Chief Admin Officer",
-      "Cozzone Robert D | President & CEO"
+      "Cozzone Robert D | President & CEO",
+      "GILLES MICHAEL O | Director"
     ],
-    "total_dollar": 69810.25940000001,
-    "total_shares": 3523.0,
+    "total_dollar": 167306.35940000002,
+    "total_shares": 8523.0,
     "filings": [
       {
         "accession": "0001437749-26-017315",
@@ -1033,6 +1034,14 @@
         "title": "EVP and Chief Admin Officer",
         "dollar": 20190.0,
         "shares": 1000.0
+      },
+      {
+        "accession": "0001437749-26-017376",
+        "date": "2026-05-15",
+        "person": "GILLES MICHAEL O",
+        "title": null,
+        "dollar": 97496.1,
+        "shares": 5000.0
       }
     ]
   },
@@ -8590,10 +8599,11 @@
     "issuer_name": "Breeze Acquisition Corp. II",
     "issuer_cik": "0002095443",
     "buyer_set": [
-      "RAMSEY J DOUGLAS | CEO, CFO, Chairman"
+      "RAMSEY J DOUGLAS | CEO, CFO, Chairman",
+      "Breeze Sponsor II, LLC | 10%"
     ],
     "total_dollar": 0.0,
-    "total_shares": 470000.0,
+    "total_shares": 940000.0,
     "filings": [
       {
         "accession": "0001213900-26-058000",
@@ -8602,6 +8612,34 @@
         "title": "CEO, CFO, Chairman",
         "dollar": 0.0,
         "shares": 470000.0
+      },
+      {
+        "accession": "0001213900-26-057999",
+        "date": "2026-05-15",
+        "person": "Breeze Sponsor II, LLC",
+        "title": null,
+        "dollar": 0.0,
+        "shares": 470000.0
+      }
+    ]
+  },
+  "CRCW": {
+    "ticker": "CRCW",
+    "issuer_name": "Crypto Co",
+    "issuer_cik": "0001688126",
+    "buyer_set": [
+      "Levy Ron | CEO and Interim CFO"
+    ],
+    "total_dollar": 0.0,
+    "total_shares": 16000000.0,
+    "filings": [
+      {
+        "accession": "0001493152-26-023817",
+        "date": "2026-05-15",
+        "person": "Levy Ron",
+        "title": "CEO and Interim CFO",
+        "dollar": 0.0,
+        "shares": 16000000.0
       }
     ]
   }
