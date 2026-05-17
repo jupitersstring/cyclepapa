@@ -5162,5 +5162,6687 @@
       "180d return -44%",
       "Div yield 32.0%"
     ]
+  },
+  "CINE.L": {
+    "ticker": "CINE.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "CLDN.L": {
+    "ticker": "CLDN.L",
+    "score": 14.0,
+    "share_history": {
+      "latest_shares": 514381383.0,
+      "shares_1y_ago": 53923500.0,
+      "shares_2y_ago": 54373400.0,
+      "pct_change_1y": 853.9094884419594,
+      "pct_change_2y": 846.0165871547484,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Caledonia Investments Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 1918642560.0,
+      "price": 373.0,
+      "p_b": 0.6498258,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 10.657143,
+      "shares_out": 514381383.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 373.0,
+      "ret_30d_pct": 14.417177914110436,
+      "ret_90d_pct": -2.2280471821756187,
+      "ret_180d_pct": 1.91256830601092,
+      "high_52w": 395.0,
+      "low_52w": 3.549999952316284
+    },
+    "reasons": [
+      "Shares +853.9% (dilution)",
+      "P/B 0.65 (deep value)"
+    ]
+  },
+  "CLNX.MC": {
+    "ticker": "CLNX.MC",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 669469920.0,
+      "shares_1y_ago": 681507008.0,
+      "shares_2y_ago": 705524992.0,
+      "pct_change_1y": -1.7662456671318605,
+      "pct_change_2y": -5.11038905904555,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Cellnex Telecom, S.A.",
+      "sector": "Real Estate",
+      "currency": "EUR",
+      "market_cap": 18604570624.0,
+      "price": 27.79,
+      "p_b": 1.5644,
+      "div_yield": 2.67,
+      "fcf": null,
+      "ev_ebitda": 15.73,
+      "trailing_pe": null,
+      "shares_out": 669469920.0,
+      "inst_pct": 0.63938,
+      "insider_pct": 0.00014
+    },
+    "price_summary": {
+      "last": 27.790000915527344,
+      "ret_30d_pct": -0.8915834231002506,
+      "ret_90d_pct": 0.3974010445765508,
+      "ret_180d_pct": -8.55544102118908,
+      "high_52w": 34.529998779296875,
+      "low_52w": 24.719999313354492
+    },
+    "reasons": [
+      "P/B 1.56",
+      "Div yield 267.0%"
+    ]
+  },
+  "CNA.L": {
+    "ticker": "CNA.L",
+    "score": 49.0,
+    "share_history": {
+      "latest_shares": 4528933918.0,
+      "shares_1y_ago": 4892839936.0,
+      "shares_2y_ago": 5313520128.0,
+      "pct_change_1y": -7.437521414148296,
+      "pct_change_2y": -14.765846201759224,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Centrica plc",
+      "sector": "Utilities",
+      "currency": "GBP",
+      "market_cap": 8571006976.0,
+      "price": 189.25,
+      "p_b": 2.7749267,
+      "div_yield": 2.91,
+      "fcf": 3528250112.0,
+      "ev_ebitda": 1.402,
+      "trailing_pe": null,
+      "shares_out": 4528933918.0,
+      "inst_pct": 0.58037996,
+      "insider_pct": 0.00282
+    },
+    "price_summary": {
+      "last": 189.25,
+      "ret_30d_pct": -10.731132075471695,
+      "ret_90d_pct": 7.467344372920981,
+      "ret_180d_pct": 17.58310257120319,
+      "high_52w": 220.3000030517578,
+      "low_52w": 145.85000610351562
+    },
+    "reasons": [
+      "Shares -7.4% YoY",
+      "Div yield 291.0%"
+    ]
+  },
+  "COG.L": {
+    "ticker": "COG.L",
+    "score": -1.0,
+    "share_history": {
+      "latest_shares": 46554785.0,
+      "shares_1y_ago": 41865500.0,
+      "shares_2y_ago": 35939200.0,
+      "pct_change_1y": 11.20083362195603,
+      "pct_change_2y": 29.537621872495777,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Cambridge Cognition Holdings Plc",
+      "sector": "Healthcare",
+      "currency": "GBP",
+      "market_cap": 15828626.0,
+      "price": 34.0,
+      "p_b": 5.3125,
+      "div_yield": null,
+      "fcf": 255625.0,
+      "ev_ebitda": -24.063,
+      "trailing_pe": null,
+      "shares_out": 46554785.0,
+      "inst_pct": 0.36158,
+      "insider_pct": 0.32007
+    },
+    "price_summary": {
+      "last": 34.0,
+      "ret_30d_pct": -13.924050632911388,
+      "ret_90d_pct": 21.42857142857142,
+      "ret_180d_pct": 4.615384615384621,
+      "high_52w": 45.0,
+      "low_52w": 23.899999618530273
+    },
+    "reasons": [
+      "Shares +11.2% (dilution)",
+      "Small cap ($0.0B)"
+    ]
+  },
+  "CON.DE": {
+    "ticker": "CON.DE",
+    "score": 31.0,
+    "share_history": {
+      "latest_shares": 200005983.0,
+      "shares_1y_ago": 200006000.0,
+      "shares_2y_ago": 200006000.0,
+      "pct_change_1y": -8.499745007828352e-06,
+      "pct_change_2y": -8.499745007828352e-06,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Continental Aktiengesellschaft",
+      "sector": "Consumer Cyclical",
+      "currency": "EUR",
+      "market_cap": 13580406784.0,
+      "price": 67.9,
+      "p_b": 3.1062722,
+      "div_yield": 3.98,
+      "fcf": 10488999936.0,
+      "ev_ebitda": 7.614,
+      "trailing_pe": null,
+      "shares_out": 200005983.0,
+      "inst_pct": 0.32175,
+      "insider_pct": 0.46
+    },
+    "price_summary": {
+      "last": 67.9000015258789,
+      "ret_30d_pct": 8.224417770749115,
+      "ret_90d_pct": -0.32296126223242405,
+      "ret_180d_pct": -9.490796368684663,
+      "high_52w": 78.68000030517578,
+      "low_52w": 53.099998474121094
+    },
+    "reasons": [
+      "Div yield 398.0%"
+    ]
+  },
+  "CPG.L": {
+    "ticker": "CPG.L",
+    "score": 8.0,
+    "share_history": {
+      "latest_shares": 1700312938.0,
+      "shares_1y_ago": 1697129984.0,
+      "shares_2y_ago": 1702320000.0,
+      "pct_change_1y": 0.18754921720833817,
+      "pct_change_2y": -0.11790156962263598,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Compass Group PLC",
+      "sector": "Consumer Cyclical",
+      "currency": "USD",
+      "market_cap": 54342000640.0,
+      "price": 31.96,
+      "p_b": 7.088046,
+      "div_yield": 2.14,
+      "fcf": 1974125056.0,
+      "ev_ebitda": 16.544,
+      "trailing_pe": 26.857141,
+      "shares_out": 1700312938.0,
+      "inst_pct": 0.75628996,
+      "insider_pct": 0.00121
+    },
+    "price_summary": {
+      "last": 31.959999084472656,
+      "ret_30d_pct": 8.155668052910038,
+      "ret_90d_pct": 36.990995237841794,
+      "ret_180d_pct": 27.229291467842167,
+      "high_52w": 33.310001373291016,
+      "low_52w": 20.0
+    },
+    "reasons": [
+      "Div yield 214.0%"
+    ]
+  },
+  "CPI.L": {
+    "ticker": "CPI.L",
+    "score": -5.0,
+    "share_history": {
+      "latest_shares": 119780328.0,
+      "shares_1y_ago": 113964000.0,
+      "shares_2y_ago": 1691010048.0,
+      "pct_change_1y": 5.103653785405915,
+      "pct_change_2y": -92.9166400790068,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Capita plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 377308032.0,
+      "price": 315.0,
+      "p_b": 7.934509,
+      "div_yield": null,
+      "fcf": 101775000.0,
+      "ev_ebitda": 4.36,
+      "trailing_pe": null,
+      "shares_out": 119780328.0,
+      "inst_pct": 0.7622,
+      "insider_pct": 0.07948
+    },
+    "price_summary": {
+      "last": 315.0,
+      "ret_30d_pct": 14.337568058076222,
+      "ret_90d_pct": -22.699386503067487,
+      "ret_180d_pct": 31.524008350730682,
+      "high_52w": 415.5,
+      "low_52w": 208.1999969482422
+    },
+    "reasons": [
+      "Shares +5.1% (dilution)",
+      "Small cap ($0.4B)"
+    ]
+  },
+  "CRDA.L": {
+    "ticker": "CRDA.L",
+    "score": 36.0,
+    "share_history": {
+      "latest_shares": 139354139.0,
+      "shares_1y_ago": 140632000.0,
+      "shares_2y_ago": 139635008.0,
+      "pct_change_1y": -0.9086559246828552,
+      "pct_change_2y": -0.20114511684634628,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Croda International Plc",
+      "sector": "Basic Materials",
+      "currency": "GBP",
+      "market_cap": 3841993728.0,
+      "price": 2757.0,
+      "p_b": 1.7566104,
+      "div_yield": 4.03,
+      "fcf": 65900000.0,
+      "ev_ebitda": 18.681,
+      "trailing_pe": 62.659092,
+      "shares_out": 139354139.0,
+      "inst_pct": 0.62071,
+      "insider_pct": 0.0092400005
+    },
+    "price_summary": {
+      "last": 2757.0,
+      "ret_30d_pct": -4.569055036344761,
+      "ret_90d_pct": 1.1371973587674278,
+      "ret_180d_pct": 9.928229665071765,
+      "high_52w": 3312.0,
+      "low_52w": 2426.77197265625
+    },
+    "reasons": [
+      "P/B 1.76",
+      "Div yield 403.0%"
+    ]
+  },
+  "CRH.L": {
+    "ticker": "CRH.L",
+    "score": 33.0,
+    "share_history": {
+      "latest_shares": 668200414.0,
+      "shares_1y_ago": 679902976.0,
+      "shares_2y_ago": 685809984.0,
+      "pct_change_1y": -1.721210586376376,
+      "pct_change_2y": -2.567703942904398,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "CRH plc",
+      "sector": "Basic Materials",
+      "currency": "USD",
+      "market_cap": 58734817280.0,
+      "price": 8790.0,
+      "p_b": 332.32022,
+      "div_yield": 0.0127,
+      "fcf": 1836749952.0,
+      "ev_ebitda": 10.11,
+      "trailing_pe": 21.597052,
+      "shares_out": 668200414.0,
+      "inst_pct": 0.90112996,
+      "insider_pct": 0.00139
+    },
+    "price_summary": {
+      "last": 87.9000015258789,
+      "ret_30d_pct": -98.94325557194182,
+      "ret_90d_pct": -99.07415207998864,
+      "ret_180d_pct": -98.76752661909872,
+      "high_52w": 9758.0,
+      "low_52w": 84.16000366210938
+    },
+    "reasons": [
+      "180d return -99%"
+    ]
+  },
+  "CRST.L": {
+    "ticker": "CRST.L",
+    "score": 81.0,
+    "share_history": {
+      "latest_shares": 256725883.0,
+      "shares_1y_ago": 264146000.0,
+      "shares_2y_ago": 256920992.0,
+      "pct_change_1y": -2.809096863098437,
+      "pct_change_2y": -0.07594124500344135,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Crest Nicholson Holdings plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 177140864.0,
+      "price": 69.0,
+      "p_b": 0.24660471,
+      "div_yield": 4.49,
+      "fcf": 85437504.0,
+      "ev_ebitda": 6.901,
+      "trailing_pe": 69.0,
+      "shares_out": 256725883.0,
+      "inst_pct": 0.75377,
+      "insider_pct": 0.09283
+    },
+    "price_summary": {
+      "last": 69.0,
+      "ret_30d_pct": -34.65908996494018,
+      "ret_90d_pct": -50.18050541516246,
+      "ret_180d_pct": -54.06125073106567,
+      "high_52w": 197.60000610351562,
+      "low_52w": 59.599998474121094
+    },
+    "reasons": [
+      "Shares -2.8% YoY",
+      "180d return -54%",
+      "P/B 0.25 (deep value)",
+      "Small cap ($0.2B)",
+      "Div yield 449.0%"
+    ]
+  },
+  "CRW.L": {
+    "ticker": "CRW.L",
+    "score": 87.0,
+    "share_history": {
+      "latest_shares": 34237148.0,
+      "shares_1y_ago": 36265100.0,
+      "shares_2y_ago": 35320900.0,
+      "pct_change_1y": -5.592020978847434,
+      "pct_change_2y": -3.0683023365769224,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Craneware plc",
+      "sector": "Healthcare",
+      "currency": "USD",
+      "market_cap": 482743776.0,
+      "price": 1410.0,
+      "p_b": 1.9729213,
+      "div_yield": 2.38,
+      "fcf": -3549000.0,
+      "ev_ebitda": 16.01,
+      "trailing_pe": 30.0,
+      "shares_out": 34237148.0,
+      "inst_pct": 0.66468,
+      "insider_pct": 0.21645
+    },
+    "price_summary": {
+      "last": 1410.0,
+      "ret_30d_pct": 6.41509433962264,
+      "ret_90d_pct": -27.877237851662407,
+      "ret_180d_pct": -34.112149532710276,
+      "high_52w": 2644.0,
+      "low_52w": 1272.3370361328125
+    },
+    "reasons": [
+      "Shares -5.6% YoY",
+      "180d return -34%",
+      "P/B 1.97",
+      "Small cap ($0.5B)",
+      "Div yield 238.0%"
+    ]
+  },
+  "CSGN.SW": {
+    "ticker": "CSGN.SW",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "CTEC.L": {
+    "ticker": "CTEC.L",
+    "score": 54.0,
+    "share_history": {
+      "latest_shares": 1954454579.0,
+      "shares_1y_ago": 2061090048.0,
+      "shares_2y_ago": 2049789952.0,
+      "pct_change_1y": -5.173741394922304,
+      "pct_change_2y": -4.650982551016036,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Convatec Group PLC",
+      "sector": "Healthcare",
+      "currency": "USD",
+      "market_cap": 4065265664.0,
+      "price": 208.0,
+      "p_b": 3.5845335,
+      "div_yield": 2.58,
+      "fcf": 241500000.0,
+      "ev_ebitda": 9.396,
+      "trailing_pe": 34.666668,
+      "shares_out": 1954454579.0,
+      "inst_pct": 0.80671,
+      "insider_pct": 0.00187
+    },
+    "price_summary": {
+      "last": 208.0,
+      "ret_30d_pct": -5.282334144402334,
+      "ret_90d_pct": -14.684168418225008,
+      "ret_180d_pct": -12.087914355759889,
+      "high_52w": 311.20001220703125,
+      "low_52w": 199.0
+    },
+    "reasons": [
+      "Shares -5.2% YoY",
+      "Div yield 258.0%"
+    ]
+  },
+  "CTY.L": {
+    "ticker": "CTY.L",
+    "score": 20.0,
+    "share_history": {
+      "latest_shares": 509997106.0,
+      "shares_1y_ago": 492967008.0,
+      "shares_2y_ago": 497976992.0,
+      "pct_change_1y": 3.454612118789102,
+      "pct_change_2y": 2.4137890290320874,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "City of London Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 2794784256.0,
+      "price": 548.0,
+      "p_b": 1.0573027,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 4.807018,
+      "shares_out": 509997106.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 548.0,
+      "ret_30d_pct": -0.7246376811594235,
+      "ret_90d_pct": 2.0484171322160183,
+      "ret_180d_pct": 9.929789368104313,
+      "high_52w": 586.0,
+      "low_52w": 466.5
+    },
+    "reasons": [
+      "P/B 1.06"
+    ]
+  },
+  "DANSKE.CO": {
+    "ticker": "DANSKE.CO",
+    "score": 40.0,
+    "share_history": {
+      "latest_shares": 809817910.0,
+      "shares_1y_ago": 826601984.0,
+      "shares_2y_ago": 852892992.0,
+      "pct_change_1y": -2.0304904083075614,
+      "pct_change_2y": -5.050467339283749,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Danske Bank A/S",
+      "sector": "Financial Services",
+      "currency": "DKK",
+      "market_cap": 261247270912.0,
+      "price": 322.6,
+      "p_b": 1.45129,
+      "div_yield": 5.25,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 11.521429,
+      "shares_out": 809817910.0,
+      "inst_pct": 0.29988,
+      "insider_pct": 0.22231
+    },
+    "price_summary": {
+      "last": 322.6000061035156,
+      "ret_30d_pct": 5.770493804431354,
+      "ret_90d_pct": 0.9702679510221079,
+      "ret_180d_pct": 17.096190963163572,
+      "high_52w": 347.5,
+      "low_52w": 246.5
+    },
+    "reasons": [
+      "Shares -2.0% YoY",
+      "P/B 1.45",
+      "Div yield 525.0%"
+    ]
+  },
+  "DARK.L": {
+    "ticker": "DARK.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "USD",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "DBK.DE": {
+    "ticker": "DBK.DE",
+    "score": 56.0,
+    "share_history": {
+      "latest_shares": 1913163641.0,
+      "shares_1y_ago": 1954620032.0,
+      "shares_2y_ago": 1974499968.0,
+      "pct_change_1y": -2.1209437292823208,
+      "pct_change_2y": -3.1064232967361605,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Deutsche Bank Aktiengesellschaft",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 51081469952.0,
+      "price": 26.7,
+      "p_b": 0.64390105,
+      "div_yield": 3.75,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 8.449368,
+      "shares_out": 1913163641.0,
+      "inst_pct": 0.52158,
+      "insider_pct": 0.08527
+    },
+    "price_summary": {
+      "last": 26.700000762939453,
+      "ret_30d_pct": 1.2706277061616644,
+      "ret_90d_pct": -19.103166493355396,
+      "ret_180d_pct": -12.026357735266425,
+      "high_52w": 34.2599983215332,
+      "low_52w": 23.375
+    },
+    "reasons": [
+      "Shares -2.1% YoY",
+      "P/B 0.64 (deep value)",
+      "Div yield 375.0%"
+    ]
+  },
+  "DEC.L": {
+    "ticker": "DEC.L",
+    "score": 51.0,
+    "share_history": {
+      "latest_shares": 72323471.0,
+      "shares_1y_ago": 75712800.0,
+      "shares_2y_ago": 47504700.0,
+      "pct_change_1y": -4.4765601060851035,
+      "pct_change_2y": 52.244874717659506,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Diversified Energy Company",
+      "sector": "Energy",
+      "currency": "USD",
+      "market_cap": 872221056.0,
+      "price": 1206.0,
+      "p_b": 1.2748711,
+      "div_yield": 7.09,
+      "fcf": null,
+      "ev_ebitda": 4.607,
+      "trailing_pe": 2.0475383,
+      "shares_out": 72323471.0,
+      "inst_pct": 0.6657,
+      "insider_pct": 0.06576
+    },
+    "price_summary": {
+      "last": 1206.0,
+      "ret_30d_pct": -3.6741214057507965,
+      "ret_90d_pct": 18.934911242603558,
+      "ret_180d_pct": 0.16611295681063787,
+      "high_52w": 1430.0,
+      "low_52w": 917.5
+    },
+    "reasons": [
+      "Shares -4.5% YoY",
+      "P/B 1.27",
+      "Div yield 709.0%"
+    ]
+  },
+  "DEMANT.CO": {
+    "ticker": "DEMANT.CO",
+    "score": 18.0,
+    "share_history": {
+      "latest_shares": 210898609.0,
+      "shares_1y_ago": 213014000.0,
+      "shares_2y_ago": 220552000.0,
+      "pct_change_1y": -0.9930760419502915,
+      "pct_change_2y": -4.376922902535451,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Demant A/S",
+      "sector": "Healthcare",
+      "currency": "DKK",
+      "market_cap": 49729892352.0,
+      "price": 235.8,
+      "p_b": 5.052821,
+      "div_yield": null,
+      "fcf": 3279375104.0,
+      "ev_ebitda": 14.824,
+      "trailing_pe": 21.053572,
+      "shares_out": 210898609.0,
+      "inst_pct": 0.16236,
+      "insider_pct": 0.589
+    },
+    "price_summary": {
+      "last": 235.8000030517578,
+      "ret_30d_pct": 26.163729669438606,
+      "ret_90d_pct": 10.4967243654839,
+      "ret_180d_pct": -8.1775645402838,
+      "high_52w": 293.0,
+      "low_52w": 175.0
+    },
+    "reasons": []
+  },
+  "DG.PA": {
+    "ticker": "DG.PA",
+    "score": 25.0,
+    "share_history": {
+      "latest_shares": 551347337.0,
+      "shares_1y_ago": 560273024.0,
+      "shares_2y_ago": 568185984.0,
+      "pct_change_1y": -1.5930959760075858,
+      "pct_change_2y": -2.963580143504563,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Vinci SA",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 68725448704.0,
+      "price": 124.65,
+      "p_b": 2.253539,
+      "div_yield": 4.01,
+      "fcf": 7772125184.0,
+      "ev_ebitda": 7.689,
+      "trailing_pe": 14.410405,
+      "shares_out": 551347337.0,
+      "inst_pct": 0.5231,
+      "insider_pct": 0.12104999
+    },
+    "price_summary": {
+      "last": 124.6500015258789,
+      "ret_30d_pct": -5.995478289367851,
+      "ret_90d_pct": 0.3219328176087721,
+      "ret_180d_pct": 7.54961163485941,
+      "high_52w": 143.14999389648438,
+      "low_52w": 112.4000015258789
+    },
+    "reasons": [
+      "Div yield 401.0%"
+    ]
+  },
+  "DGE.L": {
+    "ticker": "DGE.L",
+    "score": 46.0,
+    "share_history": {
+      "latest_shares": 2223585557.0,
+      "shares_1y_ago": 2271269888.0,
+      "shares_2y_ago": 2223249920.0,
+      "pct_change_1y": -2.09945683918652,
+      "pct_change_2y": 0.015096683327442406,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Diageo plc",
+      "sector": "Consumer Defensive",
+      "currency": "USD",
+      "market_cap": 34009741312.0,
+      "price": 1529.5,
+      "p_b": 3.9639518,
+      "div_yield": 4.1,
+      "fcf": 958124992.0,
+      "ev_ebitda": 9.406,
+      "trailing_pe": 19.11875,
+      "shares_out": 2223585557.0,
+      "inst_pct": 0.68126,
+      "insider_pct": 0.00079
+    },
+    "price_summary": {
+      "last": 1529.5,
+      "ret_30d_pct": 9.641577060931894,
+      "ret_90d_pct": -3.0120481927710885,
+      "ret_180d_pct": -25.35383113714007,
+      "high_52w": 2215.0,
+      "low_52w": 1350.0
+    },
+    "reasons": [
+      "Shares -2.1% YoY",
+      "Div yield 410.0%"
+    ]
+  },
+  "DHL.DE": {
+    "ticker": "DHL.DE",
+    "score": 33.0,
+    "share_history": {
+      "latest_shares": 1119243239.0,
+      "shares_1y_ago": 1153219968.0,
+      "shares_2y_ago": 1180979968.0,
+      "pct_change_1y": -2.9462487593693854,
+      "pct_change_2y": -5.227584774748695,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Deutsche Post AG",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 52380581888.0,
+      "price": 46.8,
+      "p_b": 2.2311213,
+      "div_yield": 4.06,
+      "fcf": 5193999872.0,
+      "ev_ebitda": 9.446,
+      "trailing_pe": 15.145631,
+      "shares_out": 1119243239.0,
+      "inst_pct": 0.3971,
+      "insider_pct": 0.17733999
+    },
+    "price_summary": {
+      "last": 46.79999923706055,
+      "ret_30d_pct": 0.42918620061869195,
+      "ret_90d_pct": -3.0855283707143077,
+      "ret_180d_pct": 19.357307650623135,
+      "high_52w": 51.720001220703125,
+      "low_52w": 36.9900016784668
+    },
+    "reasons": [
+      "Shares -2.9% YoY",
+      "Div yield 406.0%"
+    ]
+  },
+  "DLG.L": {
+    "ticker": "DLG.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "DLN.L": {
+    "ticker": "DLN.L",
+    "score": 63.0,
+    "share_history": {
+      "latest_shares": 112297122.0,
+      "shares_1y_ago": 114646000.0,
+      "shares_2y_ago": 112291000.0,
+      "pct_change_1y": -2.0488093784344907,
+      "pct_change_2y": 0.005451906207976087,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Derwent London Plc",
+      "sector": "Real Estate",
+      "currency": "GBP",
+      "market_cap": 1877607936.0,
+      "price": 1672.0,
+      "p_b": 0.5193192,
+      "div_yield": 4.87,
+      "fcf": 203362496.0,
+      "ev_ebitda": 20.107,
+      "trailing_pe": 11.692307,
+      "shares_out": 112297122.0,
+      "inst_pct": 0.75139,
+      "insider_pct": 0.0101
+    },
+    "price_summary": {
+      "last": 1672.0,
+      "ret_30d_pct": 3.9154754505904332,
+      "ret_90d_pct": -8.882833787465938,
+      "ret_180d_pct": -1.6470588235294126,
+      "high_52w": 2106.0,
+      "low_52w": 1469.3299560546875
+    },
+    "reasons": [
+      "Shares -2.0% YoY",
+      "P/B 0.52 (deep value)",
+      "Div yield 487.0%"
+    ]
+  },
+  "DNB.OL": {
+    "ticker": "DNB.OL",
+    "score": 44.0,
+    "share_history": {
+      "latest_shares": 1440664864.0,
+      "shares_1y_ago": 1482680064.0,
+      "shares_2y_ago": 1509529984.0,
+      "pct_change_1y": -2.833733387272419,
+      "pct_change_2y": -4.562023989581121,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "DNB Bank ASA",
+      "sector": "Financial Services",
+      "currency": "NOK",
+      "market_cap": 404106477568.0,
+      "price": 280.5,
+      "p_b": 1.4730054,
+      "div_yield": 6.42,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 10.060976,
+      "shares_out": 1440664864.0,
+      "inst_pct": 0.4446,
+      "insider_pct": 0.44452998
+    },
+    "price_summary": {
+      "last": 280.5,
+      "ret_30d_pct": -4.526885073372034,
+      "ret_90d_pct": 0.0,
+      "ret_180d_pct": 2.223034343731367,
+      "high_52w": 313.6000061035156,
+      "low_52w": 256.6000061035156
+    },
+    "reasons": [
+      "Shares -2.8% YoY",
+      "P/B 1.47",
+      "Div yield 642.0%"
+    ]
+  },
+  "DNLM.L": {
+    "ticker": "DNLM.L",
+    "score": 40.0,
+    "share_history": {
+      "latest_shares": 201420108.0,
+      "shares_1y_ago": 201216992.0,
+      "shares_2y_ago": 202172992.0,
+      "pct_change_1y": 0.10094376125053817,
+      "pct_change_2y": -0.3723959330828919,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Dunelm Group plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 1459288576.0,
+      "price": 724.5,
+      "p_b": 8.933415,
+      "div_yield": 6.21,
+      "fcf": 163924992.0,
+      "ev_ebitda": 7.033,
+      "trailing_pe": 9.924657,
+      "shares_out": 201420108.0,
+      "inst_pct": 0.53317,
+      "insider_pct": 0.38619
+    },
+    "price_summary": {
+      "last": 724.5,
+      "ret_30d_pct": -9.944064636420135,
+      "ret_90d_pct": -37.218370883882145,
+      "ret_180d_pct": -39.625,
+      "high_52w": 1249.0,
+      "low_52w": 707.0
+    },
+    "reasons": [
+      "180d return -40%",
+      "Div yield 621.0%"
+    ]
+  },
+  "DOM.L": {
+    "ticker": "DOM.L",
+    "score": 45.0,
+    "share_history": {
+      "latest_shares": 381157777.0,
+      "shares_1y_ago": 393227008.0,
+      "shares_2y_ago": 401443008.0,
+      "pct_change_1y": -3.069278242454798,
+      "pct_change_2y": -5.053078667644895,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Domino's Pizza Group plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 723056320.0,
+      "price": 189.7,
+      "p_b": -8.176724,
+      "div_yield": 5.96,
+      "fcf": 38787500.0,
+      "ev_ebitda": 11.236,
+      "trailing_pe": 12.646666,
+      "shares_out": 381157777.0,
+      "inst_pct": 0.85176,
+      "insider_pct": 0.0165
+    },
+    "price_summary": {
+      "last": 189.6999969482422,
+      "ret_30d_pct": 6.752954533530575,
+      "ret_90d_pct": 6.155568096168462,
+      "ret_180d_pct": -2.8673865929390363,
+      "high_52w": 271.6000061035156,
+      "low_52w": 164.031005859375
+    },
+    "reasons": [
+      "Shares -3.1% YoY",
+      "Div yield 596.0%"
+    ]
+  },
+  "DOO.TO": {
+    "ticker": "DOO.TO",
+    "score": 30.0,
+    "share_history": {
+      "latest_shares": 73737648.0,
+      "shares_1y_ago": 74295800.0,
+      "shares_2y_ago": 75187504.0,
+      "pct_change_1y": -0.7512564640262287,
+      "pct_change_2y": -1.9283204294160416,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "BRP Inc.",
+      "sector": "Consumer Cyclical",
+      "currency": "CAD",
+      "market_cap": 5632818688.0,
+      "price": 76.39,
+      "p_b": 9.247065,
+      "div_yield": 1.17,
+      "fcf": 726300032.0,
+      "ev_ebitda": 7.909,
+      "trailing_pe": 16.463362,
+      "shares_out": 38918444.0,
+      "inst_pct": 0.88515997,
+      "insider_pct": 0.02596
+    },
+    "price_summary": {
+      "last": 76.38999938964844,
+      "ret_30d_pct": -25.012273161824872,
+      "ret_90d_pct": -24.85737100349874,
+      "ret_180d_pct": -3.30379824095135,
+      "high_52w": 112.26000213623047,
+      "low_52w": 48.5
+    },
+    "reasons": [
+      "Div yield 117.0%"
+    ]
+  },
+  "DPLM.L": {
+    "ticker": "DPLM.L",
+    "score": 20.0,
+    "share_history": {
+      "latest_shares": 134094839.0,
+      "shares_1y_ago": 135310000.0,
+      "shares_2y_ago": 134025000.0,
+      "pct_change_1y": -0.8980570541718969,
+      "pct_change_2y": 0.05210893490019686,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Diploma PLC",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 9011173376.0,
+      "price": 6720.0,
+      "p_b": 9.104458,
+      "div_yield": 0.93,
+      "fcf": 271237504.0,
+      "ev_ebitda": 26.633,
+      "trailing_pe": 49.051094,
+      "shares_out": 134094839.0,
+      "inst_pct": 0.83008003,
+      "insider_pct": 0.0054400004
+    },
+    "price_summary": {
+      "last": 6720.0,
+      "ret_30d_pct": 9.090909090909083,
+      "ret_90d_pct": 19.679430097951922,
+      "ret_180d_pct": 24.444444444444446,
+      "high_52w": 7295.0,
+      "low_52w": 4144.0
+    },
+    "reasons": [
+      "Div yield 93.0%"
+    ]
+  },
+  "DPM.TO": {
+    "ticker": "DPM.TO",
+    "score": 2.0,
+    "share_history": {
+      "latest_shares": 221041933.0,
+      "shares_1y_ago": 167679008.0,
+      "shares_2y_ago": 186124000.0,
+      "pct_change_1y": 31.824451752481743,
+      "pct_change_2y": 18.76057520792589,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "DPM Metals Inc.",
+      "sector": "Basic Materials",
+      "currency": "USD",
+      "market_cap": 9896047616.0,
+      "price": 44.77,
+      "p_b": 2.6787975,
+      "div_yield": 0.49,
+      "fcf": 419002880.0,
+      "ev_ebitda": 12.994,
+      "trailing_pe": 12.791429,
+      "shares_out": 221041933.0,
+      "inst_pct": 0.81431997,
+      "insider_pct": 0.03279
+    },
+    "price_summary": {
+      "last": 44.77000045776367,
+      "ret_30d_pct": -13.471204086960642,
+      "ret_90d_pct": -0.42259481890114525,
+      "ret_180d_pct": 81.10842112191146,
+      "high_52w": 60.130001068115234,
+      "low_52w": 18.459999084472656
+    },
+    "reasons": [
+      "Shares +31.8% (dilution)",
+      "Div yield 49.0%"
+    ]
+  },
+  "DPP.L": {
+    "ticker": "DPP.L",
+    "score": 65.0,
+    "share_history": {
+      "latest_shares": 943750808.0,
+      "shares_1y_ago": 994566976.0,
+      "shares_2y_ago": 919654976.0,
+      "pct_change_1y": -5.109376163320345,
+      "pct_change_2y": 2.6200947778050265,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "DP Poland Plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 73140688.0,
+      "price": 7.75,
+      "p_b": 2.0945945,
+      "div_yield": null,
+      "fcf": 401123.0,
+      "ev_ebitda": 37.412,
+      "trailing_pe": null,
+      "shares_out": 943750808.0,
+      "inst_pct": 0.16779,
+      "insider_pct": 0.61804
+    },
+    "price_summary": {
+      "last": 7.75,
+      "ret_30d_pct": 24.0,
+      "ret_90d_pct": 6.896551724137923,
+      "ret_180d_pct": -16.216216216216218,
+      "high_52w": 11.199999809265137,
+      "low_52w": 5.800000190734863
+    },
+    "reasons": [
+      "Shares -5.1% YoY",
+      "Small cap ($0.1B)"
+    ]
+  },
+  "DPW.DE": {
+    "ticker": "DPW.DE",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "DRX.L": {
+    "ticker": "DRX.L",
+    "score": 56.0,
+    "share_history": {
+      "latest_shares": 336215396.0,
+      "shares_1y_ago": 354956000.0,
+      "shares_2y_ago": 386700992.0,
+      "pct_change_1y": -5.279697765356827,
+      "pct_change_2y": -13.055460690413746,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Drax Group plc",
+      "sector": "Utilities",
+      "currency": "GBP",
+      "market_cap": 2688041984.0,
+      "price": 799.5,
+      "p_b": 1.5885158,
+      "div_yield": 3.63,
+      "fcf": 514375008.0,
+      "ev_ebitda": 4.234,
+      "trailing_pe": 39.975,
+      "shares_out": 336215396.0,
+      "inst_pct": 0.65182996,
+      "insider_pct": 0.00746
+    },
+    "price_summary": {
+      "last": 799.5,
+      "ret_30d_pct": -9.864712514092444,
+      "ret_90d_pct": -9.199318568994885,
+      "ret_180d_pct": 23.0,
+      "high_52w": 937.5,
+      "low_52w": 606.0
+    },
+    "reasons": [
+      "Shares -5.3% YoY",
+      "P/B 1.59",
+      "Div yield 363.0%"
+    ]
+  },
+  "DSM.AS": {
+    "ticker": "DSM.AS",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "DSV.CO": {
+    "ticker": "DSV.CO",
+    "score": 17.0,
+    "share_history": {
+      "latest_shares": 238565473.0,
+      "shares_1y_ago": 235486000.0,
+      "shares_2y_ago": 208351008.0,
+      "pct_change_1y": 1.3077095878311296,
+      "pct_change_2y": 14.501712897880491,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "DSV A/S",
+      "sector": "Industrials",
+      "currency": "DKK",
+      "market_cap": 379676950528.0,
+      "price": 1591.5,
+      "p_b": 3.2089798,
+      "div_yield": 0.44,
+      "fcf": 21578999808.0,
+      "ev_ebitda": 19.626,
+      "trailing_pe": 44.843616,
+      "shares_out": 238565473.0,
+      "inst_pct": 0.46754003,
+      "insider_pct": 0.177
+    },
+    "price_summary": {
+      "last": 1591.5,
+      "ret_30d_pct": 5.11889035667108,
+      "ret_90d_pct": -0.5312500000000053,
+      "ret_180d_pct": 8.3758937691522,
+      "high_52w": 1913.5,
+      "low_52w": 1233.0
+    },
+    "reasons": [
+      "Div yield 44.0%"
+    ]
+  },
+  "DSY.PA": {
+    "ticker": "DSY.PA",
+    "score": 39.0,
+    "share_history": {
+      "latest_shares": 1313291898.0,
+      "shares_1y_ago": 1333970048.0,
+      "shares_2y_ago": 1326759936.0,
+      "pct_change_1y": -1.5501210114126973,
+      "pct_change_2y": -1.0151073780991782,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Dassault Syst\u00e8mes SE",
+      "sector": "Technology",
+      "currency": "EUR",
+      "market_cap": 26160775168.0,
+      "price": 19.92,
+      "p_b": 2.8477485,
+      "div_yield": 1.36,
+      "fcf": 1259175040.0,
+      "ev_ebitda": 14.293,
+      "trailing_pe": 21.652174,
+      "shares_out": 1313291898.0,
+      "inst_pct": 0.32965,
+      "insider_pct": 0.49051
+    },
+    "price_summary": {
+      "last": 19.920000076293945,
+      "ret_30d_pct": 13.698627601729063,
+      "ret_90d_pct": -17.447158022772623,
+      "ret_180d_pct": -25.112782742023,
+      "high_52w": 34.45000076293945,
+      "low_52w": 15.824999809265137
+    },
+    "reasons": [
+      "Div yield 136.0%"
+    ]
+  },
+  "DTE.DE": {
+    "ticker": "DTE.DE",
+    "score": 31.0,
+    "share_history": {
+      "latest_shares": 4838022420.0,
+      "shares_1y_ago": 4900429824.0,
+      "shares_2y_ago": 4978619904.0,
+      "pct_change_1y": -1.273508778645449,
+      "pct_change_2y": -2.824025266259811,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Deutsche Telekom AG",
+      "sector": "Communication Services",
+      "currency": "EUR",
+      "market_cap": 133916467200.0,
+      "price": 27.68,
+      "p_b": 2.1124935,
+      "div_yield": 3.61,
+      "fcf": 18050500608.0,
+      "ev_ebitda": 7.209,
+      "trailing_pe": 15.292818,
+      "shares_out": 4838022420.0,
+      "inst_pct": 0.30856,
+      "insider_pct": 0.28303
+    },
+    "price_summary": {
+      "last": 27.68000030517578,
+      "ret_30d_pct": -13.065326091319108,
+      "ret_90d_pct": 1.3919453433514084,
+      "ret_180d_pct": -12.681389151458522,
+      "high_52w": 34.439998626708984,
+      "low_52w": 26.0
+    },
+    "reasons": [
+      "Div yield 361.0%"
+    ]
+  },
+  "DTG.DE": {
+    "ticker": "DTG.DE",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 764336944.0,
+      "shares_1y_ago": 774740992.0,
+      "shares_2y_ago": 805283008.0,
+      "pct_change_1y": -1.342906611039374,
+      "pct_change_2y": -5.084679993645169,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Daimler Truck Holding AG",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 30412967936.0,
+      "price": 39.79,
+      "p_b": 1.3821251,
+      "div_yield": 4.78,
+      "fcf": 214500000.0,
+      "ev_ebitda": 13.874,
+      "trailing_pe": 25.343948,
+      "shares_out": 764336944.0,
+      "inst_pct": 0.28078,
+      "insider_pct": 0.352
+    },
+    "price_summary": {
+      "last": 39.790000915527344,
+      "ret_30d_pct": -5.956039650129796,
+      "ret_90d_pct": -0.2756907422176824,
+      "ret_180d_pct": -1.2410027020061554,
+      "high_52w": 45.189998626708984,
+      "low_52w": 33.529998779296875
+    },
+    "reasons": [
+      "P/B 1.38",
+      "Div yield 478.0%"
+    ]
+  },
+  "EAT.L": {
+    "ticker": "EAT.L",
+    "score": 8.0,
+    "share_history": {
+      "latest_shares": 360069279.0,
+      "shares_1y_ago": 360904992.0,
+      "shares_2y_ago": 360068992.0,
+      "pct_change_1y": -0.2315603880591377,
+      "pct_change_2y": 7.97069468205791e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 99.87699890136719,
+      "ret_30d_pct": 7.394622474588375,
+      "ret_90d_pct": 12.983028481202474,
+      "ret_180d_pct": null,
+      "high_52w": 99.87699890136719,
+      "low_52w": 0.9120000004768372
+    },
+    "reasons": []
+  },
+  "EBQ.L": {
+    "ticker": "EBQ.L",
+    "score": 61.0,
+    "share_history": {
+      "latest_shares": 138952686.0,
+      "shares_1y_ago": 141196000.0,
+      "shares_2y_ago": 136560992.0,
+      "pct_change_1y": -1.5887943001218208,
+      "pct_change_2y": 1.7513742138018484,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Ebiquity plc",
+      "sector": "Communication Services",
+      "currency": "GBP",
+      "market_cap": 15493224.0,
+      "price": 11.15,
+      "p_b": 0.65588236,
+      "div_yield": null,
+      "fcf": 6537125.0,
+      "ev_ebitda": 5.389,
+      "trailing_pe": null,
+      "shares_out": 138952686.0,
+      "inst_pct": 0.70927,
+      "insider_pct": 0.27103
+    },
+    "price_summary": {
+      "last": 11.149999618530273,
+      "ret_30d_pct": -8.979594950773272,
+      "ret_90d_pct": -13.565891874029234,
+      "ret_180d_pct": -42.82051477676782,
+      "high_52w": 25.0,
+      "low_52w": 10.600000381469727
+    },
+    "reasons": [
+      "180d return -43%",
+      "P/B 0.66 (deep value)",
+      "Small cap ($0.0B)"
+    ]
+  },
+  "EBS.VI": {
+    "ticker": "EBS.VI",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 388406224.0,
+      "shares_1y_ago": 390828992.0,
+      "shares_2y_ago": 398524992.0,
+      "pct_change_1y": -0.619904881570299,
+      "pct_change_2y": -2.5390548154129333,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Erste Group Bank AG",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 37675401216.0,
+      "price": 97.0,
+      "p_b": 1.6108141,
+      "div_yield": 0.77,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 11.318554,
+      "shares_out": 388406224.0,
+      "inst_pct": 0.3877,
+      "insider_pct": 0.26479998
+    },
+    "price_summary": {
+      "last": 97.0,
+      "ret_30d_pct": 1.6771472206811966,
+      "ret_90d_pct": -6.641002333537294,
+      "ret_180d_pct": 19.091471619868994,
+      "high_52w": 112.0,
+      "low_52w": 68.0999984741211
+    },
+    "reasons": [
+      "P/B 1.61",
+      "Div yield 77.0%"
+    ]
+  },
+  "EDIN.L": {
+    "ticker": "EDIN.L",
+    "score": 67.0,
+    "share_history": {
+      "latest_shares": 129883025.0,
+      "shares_1y_ago": 144151008.0,
+      "shares_2y_ago": 151042000.0,
+      "pct_change_1y": -9.897941886053275,
+      "pct_change_2y": -14.008669773970151,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Edinburgh Investment Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 1002696960.0,
+      "price": 772.0,
+      "p_b": 0.9329305,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 13.310345,
+      "shares_out": 129883025.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 772.0,
+      "ret_30d_pct": -1.1523687580025643,
+      "ret_90d_pct": -7.099879663056563,
+      "ret_180d_pct": -3.8605230386052347,
+      "high_52w": 842.0,
+      "low_52w": 737.5999755859375
+    },
+    "reasons": [
+      "Shares -9.9% YoY",
+      "P/B 0.93 (deep value)"
+    ]
+  },
+  "EDP.LS": {
+    "ticker": "EDP.LS",
+    "score": 40.0,
+    "share_history": {
+      "latest_shares": 4133921625.0,
+      "shares_1y_ago": 4244499968.0,
+      "shares_2y_ago": 4161570048.0,
+      "pct_change_1y": -2.6052148388189145,
+      "pct_change_2y": -0.6643748076110678,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EDP, S.A.",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 17676648448.0,
+      "price": 4.276,
+      "p_b": 1.5045743,
+      "div_yield": 4.79,
+      "fcf": -1200283648.0,
+      "ev_ebitda": 11.226,
+      "trailing_pe": 15.837036,
+      "shares_out": 4133921624.0,
+      "inst_pct": 0.42678002,
+      "insider_pct": 0.28244
+    },
+    "price_summary": {
+      "last": 4.276000022888184,
+      "ret_30d_pct": -8.04301214642653,
+      "ret_90d_pct": 4.420030328940805,
+      "ret_180d_pct": 12.91259808954126,
+      "high_52w": 4.76800012588501,
+      "low_52w": 3.3320000171661377
+    },
+    "reasons": [
+      "Shares -2.6% YoY",
+      "P/B 1.50",
+      "Div yield 479.0%"
+    ]
+  },
+  "EDPR.LS": {
+    "ticker": "EDPR.LS",
+    "score": 40.0,
+    "share_history": {
+      "latest_shares": 1051033116.0,
+      "shares_1y_ago": 1080589952.0,
+      "shares_2y_ago": 1040230016.0,
+      "pct_change_1y": -2.735249938729767,
+      "pct_change_2y": 1.0385299245200708,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EDP Renewables, S.A.",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 14283539456.0,
+      "price": 13.59,
+      "p_b": 1.3901391,
+      "div_yield": 0.91,
+      "fcf": null,
+      "ev_ebitda": 21.875,
+      "trailing_pe": 64.71429,
+      "shares_out": 1051033116.0,
+      "inst_pct": 0.23788999,
+      "insider_pct": 0.71322
+    },
+    "price_summary": {
+      "last": 13.59000015258789,
+      "ret_30d_pct": -2.580642735479799,
+      "ret_90d_pct": 5.2672371279081975,
+      "ret_180d_pct": 35.35856777114628,
+      "high_52w": 14.670000076293945,
+      "low_52w": 8.524999618530273
+    },
+    "reasons": [
+      "Shares -2.7% YoY",
+      "P/B 1.39",
+      "Div yield 91.0%"
+    ]
+  },
+  "EDV.L": {
+    "ticker": "EDV.L",
+    "score": 8.0,
+    "share_history": {
+      "latest_shares": 241357497.0,
+      "shares_1y_ago": 240864992.0,
+      "shares_2y_ago": 244879008.0,
+      "pct_change_1y": 0.20447346702836544,
+      "pct_change_2y": -1.4380616079594732,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Endeavour Mining plc",
+      "sector": "Basic Materials",
+      "currency": "USD",
+      "market_cap": 10950389760.0,
+      "price": 4537.0,
+      "p_b": 4.457225,
+      "div_yield": 2.38,
+      "fcf": 1550274944.0,
+      "ev_ebitda": 4.074,
+      "trailing_pe": 17.653696,
+      "shares_out": 241357497.0,
+      "inst_pct": 0.65533996,
+      "insider_pct": 0.10192
+    },
+    "price_summary": {
+      "last": 4537.0,
+      "ret_30d_pct": -3.8771186440678007,
+      "ret_90d_pct": 15.56291390728477,
+      "ret_180d_pct": 78.903785488959,
+      "high_52w": 5410.0,
+      "low_52w": 2025.1800537109375
+    },
+    "reasons": [
+      "Div yield 238.0%"
+    ]
+  },
+  "EKT.L": {
+    "ticker": "EKT.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "EL.PA": {
+    "ticker": "EL.PA",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 459253760.0,
+      "shares_1y_ago": 455531008.0,
+      "shares_2y_ago": 465817984.0,
+      "pct_change_1y": 0.817233499942116,
+      "pct_change_2y": -1.4091821753279499,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EssilorLuxottica Soci\u00e9t\u00e9 anonyme",
+      "sector": "Healthcare",
+      "currency": "EUR",
+      "market_cap": 79565717504.0,
+      "price": 173.25,
+      "p_b": 2.063507,
+      "div_yield": 2.31,
+      "fcf": 3278374912.0,
+      "ev_ebitda": 16.464,
+      "trailing_pe": 34.859158,
+      "shares_out": 459253760.0,
+      "inst_pct": 0.26681,
+      "insider_pct": 0.37071
+    },
+    "price_summary": {
+      "last": 173.25,
+      "ret_30d_pct": -10.672852422764523,
+      "ret_90d_pct": -36.42201834862385,
+      "ret_180d_pct": -33.41660573706985,
+      "high_52w": 323.79998779296875,
+      "low_52w": 162.5
+    },
+    "reasons": [
+      "180d return -33%",
+      "Div yield 231.0%"
+    ]
+  },
+  "ELE.MC": {
+    "ticker": "ELE.MC",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 1028410560.0,
+      "shares_1y_ago": 1053459968.0,
+      "shares_2y_ago": 1057689984.0,
+      "pct_change_1y": -2.3778224859893338,
+      "pct_change_2y": -2.7682425325869398,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Endesa, S.A.",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 37218177024.0,
+      "price": 36.19,
+      "p_b": 4.4112625,
+      "div_yield": 4.38,
+      "fcf": 1450397056.0,
+      "ev_ebitda": 9.049,
+      "trailing_pe": 16.084444,
+      "shares_out": 1028410560.0,
+      "inst_pct": 0.11773,
+      "insider_pct": 0.70119005
+    },
+    "price_summary": {
+      "last": 36.189998626708984,
+      "ret_30d_pct": -1.8709393205598168,
+      "ret_90d_pct": 13.984247643177895,
+      "ret_180d_pct": 38.97848446360583,
+      "high_52w": 38.72999954223633,
+      "low_52w": 23.760000228881836
+    },
+    "reasons": [
+      "Shares -2.4% YoY",
+      "Div yield 438.0%"
+    ]
+  },
+  "ELUX-B.ST": {
+    "ticker": "ELUX-B.ST",
+    "score": 30.0,
+    "share_history": {
+      "latest_shares": 270496318.0,
+      "shares_1y_ago": 270040992.0,
+      "shares_2y_ago": 268422000.0,
+      "pct_change_1y": 0.16861365995870514,
+      "pct_change_2y": 0.7727824097875757,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "AB Electrolux (publ)",
+      "sector": "Consumer Cyclical",
+      "currency": "SEK",
+      "market_cap": 13557275648.0,
+      "price": 50.12,
+      "p_b": 1.4501475,
+      "div_yield": null,
+      "fcf": -3203000064.0,
+      "ev_ebitda": 7.369,
+      "trailing_pe": 38.55385,
+      "shares_out": 262304514.0,
+      "inst_pct": 0.479,
+      "insider_pct": 0.00773
+    },
+    "price_summary": {
+      "last": 50.119998931884766,
+      "ret_30d_pct": -14.354069480812015,
+      "ret_90d_pct": -20.821485725167634,
+      "ret_180d_pct": -17.019871414389918,
+      "high_52w": 88.4000015258789,
+      "low_52w": 45.0
+    },
+    "reasons": [
+      "P/B 1.45"
+    ]
+  },
+  "EMG.L": {
+    "ticker": "EMG.L",
+    "score": 25.0,
+    "share_history": {
+      "latest_shares": 1119106369.0,
+      "shares_1y_ago": 1140409984.0,
+      "shares_2y_ago": 1164460032.0,
+      "pct_change_1y": -1.8680663356942295,
+      "pct_change_2y": -3.894823502194711,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Man Group Plc",
+      "sector": "Financial Services",
+      "currency": "USD",
+      "market_cap": 3137974528.0,
+      "price": 280.4,
+      "p_b": 2.7071545,
+      "div_yield": 4.53,
+      "fcf": 162124992.0,
+      "ev_ebitda": 10.009,
+      "trailing_pe": 25.490908,
+      "shares_out": 1119106369.0,
+      "inst_pct": 0.35851002,
+      "insider_pct": 0.00617
+    },
+    "price_summary": {
+      "last": 280.3999938964844,
+      "ret_30d_pct": 7.104662708473652,
+      "ret_90d_pct": 11.802229060825798,
+      "ret_180d_pct": 71.49846721497515,
+      "high_52w": 286.20001220703125,
+      "low_52w": 154.2480010986328
+    },
+    "reasons": [
+      "Div yield 453.0%"
+    ]
+  },
+  "EMSN.SW": {
+    "ticker": "EMSN.SW",
+    "score": 20.0,
+    "share_history": {
+      "latest_shares": 23389028.0,
+      "shares_1y_ago": 23711500.0,
+      "shares_2y_ago": 23680800.0,
+      "pct_change_1y": -1.3599814436033197,
+      "pct_change_2y": -1.2321036451471201,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EMS-CHEMIE HOLDING AG",
+      "sector": "Basic Materials",
+      "currency": "CHF",
+      "market_cap": 15401674752.0,
+      "price": 658.5,
+      "p_b": 8.303281,
+      "div_yield": 2.12,
+      "fcf": 400881632.0,
+      "ev_ebitda": 24.026,
+      "trailing_pe": 33.00752,
+      "shares_out": 23389028.0,
+      "inst_pct": 0.11212,
+      "insider_pct": 0.70919
+    },
+    "price_summary": {
+      "last": 658.5,
+      "ret_30d_pct": 5.783132530120483,
+      "ret_90d_pct": 18.328840970350413,
+      "ret_180d_pct": 5.023923444976086,
+      "high_52w": 683.0,
+      "low_52w": 530.0
+    },
+    "reasons": [
+      "Div yield 212.0%"
+    ]
+  },
+  "EN.PA": {
+    "ticker": "EN.PA",
+    "score": 20.0,
+    "share_history": {
+      "latest_shares": 385625652.0,
+      "shares_1y_ago": 378480992.0,
+      "shares_2y_ago": 377712000.0,
+      "pct_change_1y": 1.8877196348079828,
+      "pct_change_2y": 2.0951550387596996,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Bouygues SA",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 19474096128.0,
+      "price": 50.5,
+      "p_b": 1.5186601,
+      "div_yield": 4.16,
+      "fcf": 2713999872.0,
+      "ev_ebitda": 6.368,
+      "trailing_pe": 15.981012,
+      "shares_out": 385625652.0,
+      "inst_pct": 0.37602,
+      "insider_pct": 0.43216
+    },
+    "price_summary": {
+      "last": 50.5,
+      "ret_30d_pct": -1.0192090417446176,
+      "ret_90d_pct": 9.307357502274982,
+      "ret_180d_pct": 37.827513212970466,
+      "high_52w": 53.47999954223633,
+      "low_52w": 35.38999938964844
+    },
+    "reasons": [
+      "P/B 1.52",
+      "Div yield 416.0%"
+    ]
+  },
+  "ENEL.MI": {
+    "ticker": "ENEL.MI",
+    "score": 33.0,
+    "share_history": {
+      "latest_shares": 9923263654.0,
+      "shares_1y_ago": 10157100032.0,
+      "shares_2y_ago": 10190900224.0,
+      "pct_change_1y": -2.302196269243162,
+      "pct_change_2y": -2.626230893417092,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Enel SpA",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 94112235520.0,
+      "price": 9.484,
+      "p_b": 2.770669,
+      "div_yield": 5.48,
+      "fcf": 1622499968.0,
+      "ev_ebitda": 8.813,
+      "trailing_pe": 24.957895,
+      "shares_out": 9923263654.0,
+      "inst_pct": 0.31625,
+      "insider_pct": 0.236
+    },
+    "price_summary": {
+      "last": 9.484000205993652,
+      "ret_30d_pct": -2.146101679271628,
+      "ret_90d_pct": 2.308519284384225,
+      "ret_180d_pct": 18.817343467387595,
+      "high_52w": 10.3100004196167,
+      "low_52w": 7.574999809265137
+    },
+    "reasons": [
+      "Shares -2.3% YoY",
+      "Div yield 548.0%"
+    ]
+  },
+  "ENG.MC": {
+    "ticker": "ENG.MC",
+    "score": 24.0,
+    "share_history": {
+      "latest_shares": 260009776.0,
+      "shares_1y_ago": 259624000.0,
+      "shares_2y_ago": 260850000.0,
+      "pct_change_1y": 0.14859026900440053,
+      "pct_change_2y": -0.3221100249185316,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Enag\u00e1s, S.A.",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 4313562112.0,
+      "price": 16.59,
+      "p_b": 1.9398971,
+      "div_yield": 6.03,
+      "fcf": 5631750.0,
+      "ev_ebitda": 14.176,
+      "trailing_pe": 13.166667,
+      "shares_out": 260009776.0,
+      "inst_pct": 0.16916999,
+      "insider_pct": 0.16709
+    },
+    "price_summary": {
+      "last": 16.59000015258789,
+      "ret_30d_pct": -1.9503541502248978,
+      "ret_90d_pct": 20.96244963918221,
+      "ret_180d_pct": 24.596325012503772,
+      "high_52w": 17.3700008392334,
+      "low_52w": 13.0
+    },
+    "reasons": [
+      "P/B 1.94",
+      "Div yield 603.0%"
+    ]
+  },
+  "ENGI.PA": {
+    "ticker": "ENGI.PA",
+    "score": 13.0,
+    "share_history": {
+      "latest_shares": 2540934316.0,
+      "shares_1y_ago": 2446889984.0,
+      "shares_2y_ago": 2439040000.0,
+      "pct_change_1y": 3.843422982436784,
+      "pct_change_2y": 4.177640219102607,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Engie SA",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 67588857856.0,
+      "price": 26.6,
+      "p_b": 2.2649863,
+      "div_yield": 5.08,
+      "fcf": -537249984.0,
+      "ev_ebitda": 8.637,
+      "trailing_pe": 17.615894,
+      "shares_out": 2540934316.0,
+      "inst_pct": 0.41537997,
+      "insider_pct": 0.26514
+    },
+    "price_summary": {
+      "last": 26.600000381469727,
+      "ret_30d_pct": -6.338025567740124,
+      "ret_90d_pct": 12.283663072225703,
+      "ret_180d_pct": 50.36743684805527,
+      "high_52w": 29.889999389648438,
+      "low_52w": 17.200000762939453
+    },
+    "reasons": [
+      "Div yield 508.0%"
+    ]
+  },
+  "ENI.MI": {
+    "ticker": "ENI.MI",
+    "score": 52.0,
+    "share_history": {
+      "latest_shares": 2940278266.0,
+      "shares_1y_ago": 3147660032.0,
+      "shares_2y_ago": 3266020096.0,
+      "pct_change_1y": -6.588442331500177,
+      "pct_change_2y": -9.973662758503732,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Eni S.p.A.",
+      "sector": "Energy",
+      "currency": "EUR",
+      "market_cap": 69155348480.0,
+      "price": 23.52,
+      "p_b": 1.620058,
+      "div_yield": 4.59,
+      "fcf": -16551374848.0,
+      "ev_ebitda": 7.995,
+      "trailing_pe": 23.757576,
+      "shares_out": 2940278266.0,
+      "inst_pct": 0.22176,
+      "insider_pct": 0.36299
+    },
+    "price_summary": {
+      "last": 23.520000457763672,
+      "ret_30d_pct": -0.6546939146432673,
+      "ret_90d_pct": 49.90440463217072,
+      "ret_180d_pct": 54.492909177117,
+      "high_52w": 25.014999389648438,
+      "low_52w": 12.574000358581543
+    },
+    "reasons": [
+      "Shares -6.6% YoY",
+      "P/B 1.62",
+      "Div yield 459.0%"
+    ]
+  },
+  "ENOG.L": {
+    "ticker": "ENOG.L",
+    "score": 33.0,
+    "share_history": {
+      "latest_shares": 184715959.0,
+      "shares_1y_ago": 185574000.0,
+      "shares_2y_ago": 183480992.0,
+      "pct_change_1y": -0.46237134512377986,
+      "pct_change_2y": 0.6730762606733665,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Energean plc",
+      "sector": "Energy",
+      "currency": "USD",
+      "market_cap": 1624576768.0,
+      "price": 879.5,
+      "p_b": 15.469478,
+      "div_yield": 10.31,
+      "fcf": -113968248.0,
+      "ev_ebitda": 4.485,
+      "trailing_pe": null,
+      "shares_out": 184715959.0,
+      "inst_pct": 0.50167,
+      "insider_pct": 0.33900002
+    },
+    "price_summary": {
+      "last": 879.5,
+      "ret_30d_pct": 6.027727546714878,
+      "ret_90d_pct": -1.1242270938729648,
+      "ret_180d_pct": -7.85751702462022,
+      "high_52w": 1042.0,
+      "low_52w": 770.0
+    },
+    "reasons": [
+      "Div yield 1031.0%"
+    ]
+  },
+  "ENQ.L": {
+    "ticker": "ENQ.L",
+    "score": 44.0,
+    "share_history": {
+      "latest_shares": 1861081427.0,
+      "shares_1y_ago": 1881459968.0,
+      "shares_2y_ago": 1918800000.0,
+      "pct_change_1y": -1.0831238158982681,
+      "pct_change_2y": -3.008055711903268,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EnQuest PLC",
+      "sector": "Energy",
+      "currency": "USD",
+      "market_cap": 366260832.0,
+      "price": 19.68,
+      "p_b": 0.93728775,
+      "div_yield": 4.07,
+      "fcf": 250282000.0,
+      "ev_ebitda": 2.37,
+      "trailing_pe": null,
+      "shares_out": 1861081427.0,
+      "inst_pct": 0.54069,
+      "insider_pct": 0.21239
+    },
+    "price_summary": {
+      "last": 19.68000030517578,
+      "ret_30d_pct": 0.6135012398253981,
+      "ret_90d_pct": 92.94118307041062,
+      "ret_180d_pct": 55.69620071705139,
+      "high_52w": 21.600000381469727,
+      "low_52w": 9.720000267028809
+    },
+    "reasons": [
+      "P/B 0.94 (deep value)",
+      "Small cap ($0.4B)",
+      "Div yield 407.0%"
+    ]
+  },
+  "ENT.L": {
+    "ticker": "ENT.L",
+    "score": 45.0,
+    "share_history": {
+      "latest_shares": 639907852.0,
+      "shares_1y_ago": 640564992.0,
+      "shares_2y_ago": 638958016.0,
+      "pct_change_1y": -0.10258756070141706,
+      "pct_change_2y": 0.14865389841201004,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Entain Plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 3406869504.0,
+      "price": 532.4,
+      "p_b": 3.8274624,
+      "div_yield": 3.68,
+      "fcf": 1024712512.0,
+      "ev_ebitda": 8.171,
+      "trailing_pe": null,
+      "shares_out": 639907852.0,
+      "inst_pct": 0.76238,
+      "insider_pct": 0.00214
+    },
+    "price_summary": {
+      "last": 532.4000244140625,
+      "ret_30d_pct": -8.080108219376282,
+      "ret_90d_pct": -28.40236122996843,
+      "ret_180d_pct": -39.36218400750997,
+      "high_52w": 1031.5,
+      "low_52w": 500.3999938964844
+    },
+    "reasons": [
+      "180d return -39%",
+      "Div yield 368.0%"
+    ]
+  },
+  "EOG.L": {
+    "ticker": "EOG.L",
+    "score": -5.0,
+    "share_history": {
+      "latest_shares": 1316139215.0,
+      "shares_1y_ago": 1074290048.0,
+      "shares_2y_ago": 959184000.0,
+      "pct_change_1y": 22.512464622589512,
+      "pct_change_2y": 37.21446719294734,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Europa Oil & Gas (Holdings) plc",
+      "sector": "Energy",
+      "currency": "GBP",
+      "market_cap": 19084020.0,
+      "price": 1.45,
+      "p_b": 4.8333335,
+      "div_yield": null,
+      "fcf": -1281228.0,
+      "ev_ebitda": -52.142,
+      "trailing_pe": null,
+      "shares_out": 1316139215.0,
+      "inst_pct": 0.2029,
+      "insider_pct": 0.10582
+    },
+    "price_summary": {
+      "last": 1.4500000476837158,
+      "ret_30d_pct": 16.000003814697262,
+      "ret_90d_pct": -21.621620054224124,
+      "ret_180d_pct": 100.0,
+      "high_52w": 2.4000000953674316,
+      "low_52w": 0.44999998807907104
+    },
+    "reasons": [
+      "Shares +22.5% (dilution)",
+      "Small cap ($0.0B)"
+    ]
+  },
+  "EPI-A.ST": {
+    "ticker": "EPI-A.ST",
+    "score": 8.0,
+    "share_history": {
+      "latest_shares": 1209823755.0,
+      "shares_1y_ago": 1161149952.0,
+      "shares_2y_ago": 1186540032.0,
+      "pct_change_1y": 4.191861948249032,
+      "pct_change_2y": 1.9623208970668715,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Epiroc AB (publ)",
+      "sector": "Industrials",
+      "currency": "SEK",
+      "market_cap": 328467152896.0,
+      "price": 271.5,
+      "p_b": 7.7673516,
+      "div_yield": 1.4,
+      "fcf": 7602999808.0,
+      "ev_ebitda": 23.93,
+      "trailing_pe": 38.620197,
+      "shares_out": 819850906.0,
+      "inst_pct": 0.80083,
+      "insider_pct": 0.00017999999
+    },
+    "price_summary": {
+      "last": 271.5,
+      "ret_30d_pct": 18.507198937972326,
+      "ret_90d_pct": 26.869158878504674,
+      "ret_180d_pct": 37.19050448380186,
+      "high_52w": 277.5,
+      "low_52w": 186.60000610351562
+    },
+    "reasons": [
+      "Div yield 140.0%"
+    ]
+  },
+  "EQB.TO": {
+    "ticker": "EQB.TO",
+    "score": 44.0,
+    "share_history": {
+      "latest_shares": 36617491.0,
+      "shares_1y_ago": 38443400.0,
+      "shares_2y_ago": 38610100.0,
+      "pct_change_1y": -4.749603312922379,
+      "pct_change_2y": -5.1608491042499205,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EQB Inc.",
+      "sector": "Financial Services",
+      "currency": "CAD",
+      "market_cap": 4211011584.0,
+      "price": 115.0,
+      "p_b": 1.3406857,
+      "div_yield": 1.95,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 19.198666,
+      "shares_out": 36617491.0,
+      "inst_pct": 0.29632,
+      "insider_pct": 0.32196
+    },
+    "price_summary": {
+      "last": 115.0,
+      "ret_30d_pct": 1.7429012138182598,
+      "ret_90d_pct": 10.757967805028446,
+      "ret_180d_pct": 27.423822714681446,
+      "high_52w": 126.51000213623047,
+      "low_52w": 83.93000030517578
+    },
+    "reasons": [
+      "Shares -4.7% YoY",
+      "P/B 1.34",
+      "Div yield 195.0%"
+    ]
+  },
+  "EQNR.OL": {
+    "ticker": "EQNR.OL",
+    "score": 45.0,
+    "share_history": {
+      "latest_shares": 2491944324.0,
+      "shares_1y_ago": 2751579904.0,
+      "shares_2y_ago": 2925900032.0,
+      "pct_change_1y": -9.435872809747048,
+      "pct_change_2y": -14.831528871592015,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Equinor ASA",
+      "sector": "Energy",
+      "currency": "USD",
+      "market_cap": 899591962624.0,
+      "price": 361.0,
+      "p_b": 2.3774242,
+      "div_yield": 4.01,
+      "fcf": 18090625024.0,
+      "ev_ebitda": 25.394,
+      "trailing_pe": 17.82716,
+      "shares_out": 2491944324.0,
+      "inst_pct": 0.19951001,
+      "insider_pct": 0.67
+    },
+    "price_summary": {
+      "last": 361.0,
+      "ret_30d_pct": -14.088531767548728,
+      "ret_90d_pct": 51.87210964861968,
+      "ret_180d_pct": 44.05426624406439,
+      "high_52w": 422.29998779296875,
+      "low_52w": 226.39999389648438
+    },
+    "reasons": [
+      "Shares -9.4% YoY",
+      "Div yield 401.0%"
+    ]
+  },
+  "EQT.ST": {
+    "ticker": "EQT.ST",
+    "score": 26.0,
+    "share_history": {
+      "latest_shares": 1169901011.0,
+      "shares_1y_ago": 1177209984.0,
+      "shares_2y_ago": 1189660032.0,
+      "pct_change_1y": -0.6208724950807043,
+      "pct_change_2y": -1.6608964299474782,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "EQT AB (publ)",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 357287788544.0,
+      "price": 305.4,
+      "p_b": 47.622017,
+      "div_yield": 1.64,
+      "fcf": 1211774976.0,
+      "ev_ebitda": 250.276,
+      "trailing_pe": 45.244442,
+      "shares_out": 1169901011.0,
+      "inst_pct": 0.4573,
+      "insider_pct": 0.34789002
+    },
+    "price_summary": {
+      "last": 305.3999938964844,
+      "ret_30d_pct": 6.596856508371518,
+      "ret_90d_pct": -14.429812519116236,
+      "ret_180d_pct": -11.708586503219253,
+      "high_52w": 383.0,
+      "low_52w": 262.1000061035156
+    },
+    "reasons": [
+      "Div yield 164.0%"
+    ]
+  },
+  "ERIC-B.ST": {
+    "ticker": "ERIC-B.ST",
+    "score": 16.0,
+    "share_history": {
+      "latest_shares": 3324588143.0,
+      "shares_1y_ago": 3333110016.0,
+      "shares_2y_ago": 3283369984.0,
+      "pct_change_1y": -0.2556733188851301,
+      "pct_change_2y": 1.2553613878685033,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Telefonaktiebolaget LM Ericsson (publ)",
+      "sector": "Technology",
+      "currency": "SEK",
+      "market_cap": 392467611648.0,
+      "price": 118.05,
+      "p_b": 3.8415232,
+      "div_yield": 2.54,
+      "fcf": 29486125056.0,
+      "ev_ebitda": 10.327,
+      "trailing_pe": 15.656499,
+      "shares_out": 3062832160.0,
+      "inst_pct": 0.67683,
+      "insider_pct": 0.00098
+    },
+    "price_summary": {
+      "last": 118.05000305175781,
+      "ret_30d_pct": 11.053621507686028,
+      "ret_90d_pct": 31.72282909382087,
+      "ret_180d_pct": 55.903329567671676,
+      "high_52w": 120.9000015258789,
+      "low_52w": 69.9000015258789
+    },
+    "reasons": [
+      "Div yield 254.0%"
+    ]
+  },
+  "ESNT.L": {
+    "ticker": "ESNT.L",
+    "score": 62.0,
+    "share_history": {
+      "latest_shares": 284127744.0,
+      "shares_1y_ago": 286041984.0,
+      "shares_2y_ago": 288084992.0,
+      "pct_change_1y": -0.6692164462123174,
+      "pct_change_2y": -1.3736390682927313,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Essentra plc",
+      "sector": "Basic Materials",
+      "currency": "GBP",
+      "market_cap": 231848240.0,
+      "price": 81.6,
+      "p_b": 0.87366164,
+      "div_yield": 2.45,
+      "fcf": 30475000.0,
+      "ev_ebitda": 9.526,
+      "trailing_pe": 81.6,
+      "shares_out": 284127744.0,
+      "inst_pct": 0.92872,
+      "insider_pct": 0.08838
+    },
+    "price_summary": {
+      "last": 81.5999984741211,
+      "ret_30d_pct": -10.624320102309092,
+      "ret_90d_pct": -12.352309547240914,
+      "ret_180d_pct": -18.886680206946195,
+      "high_52w": 123.80000305175781,
+      "low_52w": 79.69999694824219
+    },
+    "reasons": [
+      "P/B 0.87 (deep value)",
+      "Small cap ($0.2B)",
+      "Div yield 245.0%"
+    ]
+  },
+  "EVK.DE": {
+    "ticker": "EVK.DE",
+    "score": 36.0,
+    "share_history": {
+      "latest_shares": 466000000.0,
+      "shares_1y_ago": 466000000.0,
+      "shares_2y_ago": 466000000.0,
+      "pct_change_1y": 0.0,
+      "pct_change_2y": 0.0,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Evonik Industries AG",
+      "sector": "Basic Materials",
+      "currency": "EUR",
+      "market_cap": 8299459584.0,
+      "price": 17.81,
+      "p_b": 1.0018563,
+      "div_yield": 5.61,
+      "fcf": 1113149952.0,
+      "ev_ebitda": 7.043,
+      "trailing_pe": 52.38235,
+      "shares_out": 466000000.0,
+      "inst_pct": 0.3719,
+      "insider_pct": 0.4652
+    },
+    "price_summary": {
+      "last": 17.809999465942383,
+      "ret_30d_pct": 8.863073358770857,
+      "ret_90d_pct": 34.21250076538289,
+      "ret_180d_pct": 6.774575180409115,
+      "high_52w": 20.780000686645508,
+      "low_52w": 12.489999771118164
+    },
+    "reasons": [
+      "P/B 1.00",
+      "Div yield 561.0%"
+    ]
+  },
+  "EXPN.L": {
+    "ticker": "EXPN.L",
+    "score": 53.0,
+    "share_history": {
+      "latest_shares": 896498966.0,
+      "shares_1y_ago": 923273024.0,
+      "shares_2y_ago": 912481024.0,
+      "pct_change_1y": -2.8999068860480426,
+      "pct_change_2y": -1.751494834373668,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Experian plc",
+      "sector": "Industrials",
+      "currency": "USD",
+      "market_cap": 23291043840.0,
+      "price": 2598.0,
+      "p_b": 5.892276,
+      "div_yield": 1.82,
+      "fcf": 1316749952.0,
+      "ev_ebitda": 12.031,
+      "trailing_pe": 23.834862,
+      "shares_out": 896498966.0,
+      "inst_pct": 0.51672,
+      "insider_pct": 0.00229
+    },
+    "price_summary": {
+      "last": 2598.0,
+      "ret_30d_pct": -1.5536187949981017,
+      "ret_90d_pct": -24.564459930313586,
+      "ret_180d_pct": -32.20250521920668,
+      "high_52w": 4101.0,
+      "low_52w": 2353.0
+    },
+    "reasons": [
+      "Shares -2.9% YoY",
+      "180d return -32%",
+      "Div yield 182.0%"
+    ]
+  },
+  "EYE.L": {
+    "ticker": "EYE.L",
+    "score": 30.0,
+    "share_history": {
+      "latest_shares": 29881760.0,
+      "shares_1y_ago": 30954900.0,
+      "shares_2y_ago": 29613300.0,
+      "pct_change_1y": -3.466785549299145,
+      "pct_change_2y": 0.906552123539095,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Eagle Eye Solutions Group PLC",
+      "sector": "Technology",
+      "currency": "GBP",
+      "market_cap": 121768168.0,
+      "price": 407.5,
+      "p_b": 3.6416445,
+      "div_yield": null,
+      "fcf": 4882000.0,
+      "ev_ebitda": 20.21,
+      "trailing_pe": null,
+      "shares_out": 29881760.0,
+      "inst_pct": 0.49881,
+      "insider_pct": 0.34550998
+    },
+    "price_summary": {
+      "last": 407.5,
+      "ret_30d_pct": 31.4516129032258,
+      "ret_90d_pct": 44.50354609929077,
+      "ret_180d_pct": 88.65740740740742,
+      "high_52w": 420.0,
+      "low_52w": 190.0
+    },
+    "reasons": [
+      "Shares -3.5% YoY",
+      "Small cap ($0.1B)"
+    ]
+  },
+  "EZJ.L": {
+    "ticker": "EZJ.L",
+    "score": 56.0,
+    "share_history": {
+      "latest_shares": 747526182.0,
+      "shares_1y_ago": 759576000.0,
+      "shares_2y_ago": 753096000.0,
+      "pct_change_1y": -1.5863874056052274,
+      "pct_change_2y": -0.7395893750597571,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "easyJet plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 2572985344.0,
+      "price": 344.2,
+      "p_b": 0.734215,
+      "div_yield": 3.83,
+      "fcf": 201250000.0,
+      "ev_ebitda": 1.959,
+      "trailing_pe": 5.295385,
+      "shares_out": 747526182.0,
+      "inst_pct": 0.47901002,
+      "insider_pct": 0.1711
+    },
+    "price_summary": {
+      "last": 344.20001220703125,
+      "ret_30d_pct": -5.569269627700613,
+      "ret_90d_pct": -31.787552904543425,
+      "ret_180d_pct": -29.697710801446064,
+      "high_52w": 590.5999755859375,
+      "low_52w": 337.1000061035156
+    },
+    "reasons": [
+      "P/B 0.73 (deep value)",
+      "Div yield 383.0%"
+    ]
+  },
+  "F34.SI": {
+    "ticker": "F34.SI",
+    "score": 26.0,
+    "share_history": {
+      "latest_shares": 6242733006.0,
+      "shares_2y_ago": 6242474000.0,
+      "pct_change_2y": 0.004149092170835367,
+      "source": "balance_sheet"
+    },
+    "fundamentals": {
+      "name": "Wilmar International Limited",
+      "sector": "Consumer Defensive",
+      "currency": "USD",
+      "market_cap": 23723016192.0,
+      "price": 3.8,
+      "p_b": 0.84975183,
+      "div_yield": 3.68,
+      "fcf": 1307077888.0,
+      "ev_ebitda": 12.586,
+      "trailing_pe": 13.103449,
+      "shares_out": 6242898806.0,
+      "inst_pct": 0.083170004,
+      "insider_pct": 0.70287
+    },
+    "price_summary": {
+      "last": 3.799999952316284,
+      "ret_30d_pct": -0.7832890858321839,
+      "ret_90d_pct": 23.37662488458374,
+      "ret_180d_pct": 28.81355562349812,
+      "high_52w": 4.019999980926514,
+      "low_52w": 2.7799999713897705
+    },
+    "reasons": [
+      "P/B 0.85 (deep value)",
+      "Div yield 368.0%"
+    ]
+  },
+  "FBK.MI": {
+    "ticker": "FBK.MI",
+    "score": 16.0,
+    "share_history": {
+      "latest_shares": 611819221.0,
+      "shares_1y_ago": 612462016.0,
+      "shares_2y_ago": 610918016.0,
+      "pct_change_1y": -0.104952631054267,
+      "pct_change_2y": 0.14751652044913133,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "FinecoBank Banca Fineco S.p.A.",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 13056222208.0,
+      "price": 21.34,
+      "p_b": 5.110153,
+      "div_yield": 3.7,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 20.132076,
+      "shares_out": 611819221.0,
+      "inst_pct": 0.79309,
+      "insider_pct": 0.0
+    },
+    "price_summary": {
+      "last": 21.34000015258789,
+      "ret_30d_pct": 8.960945367143935,
+      "ret_90d_pct": -5.323871846486028,
+      "ret_180d_pct": 12.790698026085723,
+      "high_52w": 23.06999969482422,
+      "low_52w": 17.549999237060547
+    },
+    "reasons": [
+      "Div yield 370.0%"
+    ]
+  },
+  "FCIT.L": {
+    "ticker": "FCIT.L",
+    "score": 7.0,
+    "share_history": {
+      "latest_shares": 1887000564.0,
+      "shares_1y_ago": 481844992.0,
+      "shares_2y_ago": 502608000.0,
+      "pct_change_1y": 291.6198352851201,
+      "pct_change_2y": 275.4418083277624,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "F&C Investment Trust Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 6222225920.0,
+      "price": 329.75,
+      "p_b": 0.25353682,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 9.421429,
+      "shares_out": 1886952425.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 329.75,
+      "ret_30d_pct": 6.715210355987056,
+      "ret_90d_pct": 4.26877470355731,
+      "ret_180d_pct": 13.413585554600171,
+      "high_52w": 5300.0,
+      "low_52w": 264.5
+    },
+    "reasons": [
+      "Shares +291.6% (dilution)",
+      "P/B 0.25 (deep value)"
+    ]
+  },
+  "FCS.L": {
+    "ticker": "FCS.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "FDM.L": {
+    "ticker": "FDM.L",
+    "score": 49.0,
+    "share_history": {
+      "latest_shares": 109337436.0,
+      "shares_1y_ago": 110588000.0,
+      "shares_2y_ago": 109092000.0,
+      "pct_change_1y": -1.130831554960754,
+      "pct_change_2y": 0.22498075019250496,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "FDM Group (Holdings) plc",
+      "sector": "Technology",
+      "currency": "GBP",
+      "market_cap": 116116360.0,
+      "price": 106.2,
+      "p_b": 2.2357895,
+      "div_yield": 9.42,
+      "fcf": 17773376.0,
+      "ev_ebitda": 7.175,
+      "trailing_pe": 21.239998,
+      "shares_out": 109337436.0,
+      "inst_pct": 0.94351995,
+      "insider_pct": 0.18213
+    },
+    "price_summary": {
+      "last": 106.19999694824219,
+      "ret_30d_pct": 4.32219426776177,
+      "ret_90d_pct": -15.445861275130612,
+      "ret_180d_pct": -16.509434358355314,
+      "high_52w": 251.0,
+      "low_52w": 94.5
+    },
+    "reasons": [
+      "Small cap ($0.1B)",
+      "Div yield 942.0%"
+    ]
+  },
+  "FEET.L": {
+    "ticker": "FEET.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "FER.MC": {
+    "ticker": "FER.MC",
+    "score": 16.0,
+    "share_history": {
+      "latest_shares": 716921587.0,
+      "shares_1y_ago": 729473024.0,
+      "shares_2y_ago": 745291008.0,
+      "pct_change_1y": -1.7206170190057657,
+      "pct_change_2y": -3.8064891023078085,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Ferrovial N.V.",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 41624469504.0,
+      "price": 58.06,
+      "p_b": 7.0822153,
+      "div_yield": 1.56,
+      "fcf": 321375008.0,
+      "ev_ebitda": 34.376,
+      "trailing_pe": 49.623936,
+      "shares_out": 716921587.0,
+      "inst_pct": 0.36938998,
+      "insider_pct": 0.36086
+    },
+    "price_summary": {
+      "last": 58.060001373291016,
+      "ret_30d_pct": 0.6937244657257091,
+      "ret_90d_pct": 0.5542079763110941,
+      "ret_180d_pct": 24.35211625831539,
+      "high_52w": 63.540000915527344,
+      "low_52w": 43.310001373291016
+    },
+    "reasons": [
+      "Div yield 156.0%"
+    ]
+  },
+  "FERG.L": {
+    "ticker": "FERG.L",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 193937826.0,
+      "shares_1y_ago": 203671008.0,
+      "shares_2y_ago": 202102000.0,
+      "pct_change_1y": -4.778874566182734,
+      "pct_change_2y": -4.039630483617184,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Ferguson Enterprises Inc.",
+      "sector": "Industrials",
+      "currency": "USD",
+      "market_cap": 32581556224.0,
+      "price": 16800.0,
+      "p_b": 7.547563,
+      "div_yield": 1.57,
+      "fcf": null,
+      "ev_ebitda": 12.438,
+      "trailing_pe": 22.370173,
+      "shares_out": 193937826.0,
+      "inst_pct": 0.98467004,
+      "insider_pct": 0.01799
+    },
+    "price_summary": {
+      "last": 16800.0,
+      "ret_30d_pct": -6.718489727928933,
+      "ret_90d_pct": 0.23866348448686736,
+      "ret_180d_pct": -2.0408163265306145,
+      "high_52w": 19930.0,
+      "low_52w": 12960.0
+    },
+    "reasons": [
+      "Shares -4.8% YoY",
+      "Div yield 157.0%"
+    ]
+  },
+  "FEVR.L": {
+    "ticker": "FEVR.L",
+    "score": 57.0,
+    "share_history": {
+      "latest_shares": 114445923.0,
+      "shares_1y_ago": 122679000.0,
+      "shares_2y_ago": 116711000.0,
+      "pct_change_1y": -6.7110727997456765,
+      "pct_change_2y": -1.940757083736755,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Fevertree Drinks PLC",
+      "sector": "Consumer Defensive",
+      "currency": "GBP",
+      "market_cap": 890389248.0,
+      "price": 778.0,
+      "p_b": 4.1963325,
+      "div_yield": 2.22,
+      "fcf": 40062500.0,
+      "ev_ebitda": 29.066,
+      "trailing_pe": 40.94737,
+      "shares_out": 114445923.0,
+      "inst_pct": 0.69043,
+      "insider_pct": 0.19833
+    },
+    "price_summary": {
+      "last": 778.0,
+      "ret_30d_pct": 1.302083333333326,
+      "ret_90d_pct": -3.712871287128716,
+      "ret_180d_pct": -4.069050554870534,
+      "high_52w": 1020.0,
+      "low_52w": 711.0
+    },
+    "reasons": [
+      "Shares -6.7% YoY",
+      "Div yield 222.0%"
+    ]
+  },
+  "FFI.L": {
+    "ticker": "FFI.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "FLT.AX": {
+    "ticker": "FLT.AX",
+    "score": 74.0,
+    "share_history": {
+      "latest_shares": 206156257.0,
+      "shares_1y_ago": 222140992.0,
+      "shares_2y_ago": 220968992.0,
+      "pct_change_1y": -7.195761059714723,
+      "pct_change_2y": -6.703535580232001,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Flight Centre Travel Group Limited",
+      "sector": "Consumer Cyclical",
+      "currency": "AUD",
+      "market_cap": 2119286272.0,
+      "price": 10.28,
+      "p_b": 1.8383404,
+      "div_yield": 3.99,
+      "fcf": 255779376.0,
+      "ev_ebitda": 11.327,
+      "trailing_pe": 20.56,
+      "shares_out": 206156257.0,
+      "inst_pct": 0.36339,
+      "insider_pct": 0.23408002
+    },
+    "price_summary": {
+      "last": 10.279999732971191,
+      "ret_30d_pct": -4.2830544501872065,
+      "ret_90d_pct": -30.820996160979462,
+      "ret_180d_pct": -21.10514241256186,
+      "high_52w": 16.559999465942383,
+      "low_52w": 9.989999771118164
+    },
+    "reasons": [
+      "Shares -7.2% YoY",
+      "P/B 1.84",
+      "Div yield 399.0%"
+    ]
+  },
+  "FLTR.L": {
+    "ticker": "FLTR.L",
+    "score": 45.0,
+    "share_history": {
+      "latest_shares": 173339407.0,
+      "shares_1y_ago": 176688000.0,
+      "shares_2y_ago": 177568992.0,
+      "pct_change_1y": -1.8952011455220519,
+      "pct_change_2y": -2.3819389592525275,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Flutter Entertainment plc",
+      "sector": "Consumer Cyclical",
+      "currency": "USD",
+      "market_cap": 12099091456.0,
+      "price": 6980.0,
+      "p_b": 1.8286301,
+      "div_yield": null,
+      "fcf": -877374976.0,
+      "ev_ebitda": 11.18,
+      "trailing_pe": null,
+      "shares_out": 173339407.0,
+      "inst_pct": 0.88242996,
+      "insider_pct": 0.1893
+    },
+    "price_summary": {
+      "last": 6980.0,
+      "ret_30d_pct": -9.679089026915111,
+      "ret_90d_pct": -55.569700827498416,
+      "ret_180d_pct": -69.1696113074205,
+      "high_52w": 23610.0,
+      "low_52w": 6722.0
+    },
+    "reasons": [
+      "180d return -69%",
+      "P/B 1.83"
+    ]
+  },
+  "FME.DE": {
+    "ticker": "FME.DE",
+    "score": 72.0,
+    "share_history": {
+      "latest_shares": 268564630.0,
+      "shares_1y_ago": 293412992.0,
+      "shares_2y_ago": 293412992.0,
+      "pct_change_1y": -8.46873270015256,
+      "pct_change_2y": -8.46873270015256,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Fresenius Medical Care AG",
+      "sector": "Healthcare",
+      "currency": "EUR",
+      "market_cap": 9995976704.0,
+      "price": 37.22,
+      "p_b": 0.78101397,
+      "div_yield": 4.0,
+      "fcf": 1672323840.0,
+      "ev_ebitda": 8.01,
+      "trailing_pe": 11.382263,
+      "shares_out": 268564630.0,
+      "inst_pct": 0.44280997,
+      "insider_pct": 0.28564
+    },
+    "price_summary": {
+      "last": 37.220001220703125,
+      "ret_30d_pct": -3.5501397420774405,
+      "ret_90d_pct": -5.0025499469272265,
+      "ret_180d_pct": -13.962083530233505,
+      "high_52w": 54.02000045776367,
+      "low_52w": 34.56999969482422
+    },
+    "reasons": [
+      "Shares -8.5% YoY",
+      "P/B 0.78 (deep value)",
+      "Div yield 400.0%"
+    ]
+  },
+  "FORT.L": {
+    "ticker": "FORT.L",
+    "score": 56.0,
+    "share_history": {
+      "latest_shares": 207351844.0,
+      "shares_1y_ago": 210914000.0,
+      "shares_2y_ago": 206898000.0,
+      "pct_change_1y": -1.6889139649335694,
+      "pct_change_2y": 0.21935639783854377,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Forterra plc",
+      "sector": "Basic Materials",
+      "currency": "GBP",
+      "market_cap": 311857152.0,
+      "price": 150.4,
+      "p_b": 1.3537353,
+      "div_yield": 4.12,
+      "fcf": 38712500.0,
+      "ev_ebitda": 7.887,
+      "trailing_pe": 18.8,
+      "shares_out": 207351844.0,
+      "inst_pct": 0.8627,
+      "insider_pct": 0.01702
+    },
+    "price_summary": {
+      "last": 150.39999389648438,
+      "ret_30d_pct": -6.815365809155461,
+      "ret_90d_pct": -19.399791544995683,
+      "ret_180d_pct": -21.421108311097537,
+      "high_52w": 215.0,
+      "low_52w": 147.1999969482422
+    },
+    "reasons": [
+      "P/B 1.35",
+      "Small cap ($0.3B)",
+      "Div yield 412.0%"
+    ]
+  },
+  "FORTUM.HE": {
+    "ticker": "FORTUM.HE",
+    "score": 21.0,
+    "share_history": {
+      "latest_shares": 897264465.0,
+      "shares_1y_ago": 903152000.0,
+      "shares_2y_ago": 897264000.0,
+      "pct_change_1y": -0.6518875006643388,
+      "pct_change_2y": 5.182421227711842e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Fortum Oyj",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 18124742656.0,
+      "price": 20.2,
+      "p_b": 2.2120018,
+      "div_yield": 3.66,
+      "fcf": 1305374976.0,
+      "ev_ebitda": 15.336,
+      "trailing_pe": 21.956522,
+      "shares_out": 897264465.0,
+      "inst_pct": 0.214,
+      "insider_pct": 0.5298
+    },
+    "price_summary": {
+      "last": 20.200000762939453,
+      "ret_30d_pct": -7.678237944540611,
+      "ret_90d_pct": 8.398178238989606,
+      "ret_180d_pct": 33.5095876414399,
+      "high_52w": 22.920000076293945,
+      "low_52w": 14.399999618530273
+    },
+    "reasons": [
+      "Div yield 366.0%"
+    ]
+  },
+  "FR.PA": {
+    "ticker": "FR.PA",
+    "score": 50.0,
+    "share_history": {
+      "latest_shares": 242943775.0,
+      "shares_1y_ago": 250819008.0,
+      "shares_2y_ago": 245682000.0,
+      "pct_change_1y": -3.13980709149444,
+      "pct_change_2y": -1.1145403407657017,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Valeo SE",
+      "sector": "Consumer Cyclical",
+      "currency": "EUR",
+      "market_cap": 3059876864.0,
+      "price": 12.595,
+      "p_b": 0.9214281,
+      "div_yield": 3.49,
+      "fcf": -845000000.0,
+      "ev_ebitda": 3.618,
+      "trailing_pe": 15.549383,
+      "shares_out": 242943775.0,
+      "inst_pct": 0.45474997,
+      "insider_pct": 0.14824
+    },
+    "price_summary": {
+      "last": 12.595000267028809,
+      "ret_30d_pct": 15.075382532763882,
+      "ret_90d_pct": 4.609637100782549,
+      "ret_180d_pct": 21.632069761624706,
+      "high_52w": 13.920000076293945,
+      "low_52w": 8.392000198364258
+    },
+    "reasons": [
+      "Shares -3.1% YoY",
+      "P/B 0.92 (deep value)",
+      "Div yield 349.0%"
+    ]
+  },
+  "FRCL.L": {
+    "ticker": "FRCL.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": "Foreign &amp; Colonial Investment Trust PLC",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": 632.0,
+      "p_b": 0.90882945,
+      "div_yield": 2.02,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 0.090028495,
+      "shares_out": 542180992.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "FRE.DE": {
+    "ticker": "FRE.DE",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 563237277.0,
+      "shares_1y_ago": 563236992.0,
+      "shares_2y_ago": 563236992.0,
+      "pct_change_1y": 5.060036964987802e-05,
+      "pct_change_2y": 5.060036964987802e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Fresenius SE & Co. KGaA",
+      "sector": "Healthcare",
+      "currency": "EUR",
+      "market_cap": 21853603840.0,
+      "price": 38.8,
+      "p_b": 1.1046578,
+      "div_yield": 2.71,
+      "fcf": 1804749952.0,
+      "ev_ebitda": 10.675,
+      "trailing_pe": 14.477612,
+      "shares_out": 563237277.0,
+      "inst_pct": 0.44399,
+      "insider_pct": 0.27008
+    },
+    "price_summary": {
+      "last": 38.79999923706055,
+      "ret_30d_pct": -11.717864474354256,
+      "ret_90d_pct": -20.767820563874096,
+      "ret_180d_pct": -16.738196335762133,
+      "high_52w": 52.959999084472656,
+      "low_52w": 38.15999984741211
+    },
+    "reasons": [
+      "P/B 1.10",
+      "Div yield 271.0%"
+    ]
+  },
+  "FRES.L": {
+    "ticker": "FRES.L",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 736893589.0,
+      "shares_1y_ago": 762030976.0,
+      "shares_2y_ago": 736894016.0,
+      "pct_change_1y": -3.2987355884073644,
+      "pct_change_2y": -5.7945917697477256e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Fresnillo plc",
+      "sector": "Basic Materials",
+      "currency": "USD",
+      "market_cap": 24575399936.0,
+      "price": 3335.0,
+      "p_b": 7.2162147,
+      "div_yield": 2.85,
+      "fcf": 1788570752.0,
+      "ev_ebitda": 8.952,
+      "trailing_pe": 23.992805,
+      "shares_out": 736893589.0,
+      "inst_pct": 0.14596,
+      "insider_pct": 0.74994004
+    },
+    "price_summary": {
+      "last": 3335.0,
+      "ret_30d_pct": -4.6052631578947345,
+      "ret_90d_pct": -4.714285714285715,
+      "ret_180d_pct": 86.52125279642058,
+      "high_52w": 4472.0,
+      "low_52w": 963.0
+    },
+    "reasons": [
+      "Shares -3.3% YoY",
+      "Div yield 285.0%"
+    ]
+  },
+  "FSJ.L": {
+    "ticker": "FSJ.L",
+    "score": 22.0,
+    "share_history": {
+      "latest_shares": 50484822.0,
+      "shares_1y_ago": 50353300.0,
+      "shares_2y_ago": 50385500.0,
+      "pct_change_1y": 0.2611983723013189,
+      "pct_change_2y": 0.19712417262902626,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "James Fisher and Sons plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 248385328.0,
+      "price": 492.0,
+      "p_b": 1.3409648,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": 50484822.0,
+      "inst_pct": 0.45401,
+      "insider_pct": 0.33421
+    },
+    "price_summary": {
+      "last": 492.0,
+      "ret_30d_pct": 6.493506493506485,
+      "ret_90d_pct": 32.258064516129025,
+      "ret_180d_pct": 47.305389221556894,
+      "high_52w": 554.0,
+      "low_52w": 307.0
+    },
+    "reasons": [
+      "P/B 1.34",
+      "Small cap ($0.2B)"
+    ]
+  },
+  "FUM.L": {
+    "ticker": "FUM.L",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 581327755.0,
+      "shares_1y_ago": 330035008.0,
+      "shares_2y_ago": 301448992.0,
+      "pct_change_1y": 76.14123984083531,
+      "pct_change_2y": 92.84448461516168,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Futura Medical plc",
+      "sector": "Healthcare",
+      "currency": "GBP",
+      "market_cap": 4069294.0,
+      "price": 0.7,
+      "p_b": 0.7,
+      "div_yield": null,
+      "fcf": -1617857.0,
+      "ev_ebitda": 0.253,
+      "trailing_pe": null,
+      "shares_out": 581327755.0,
+      "inst_pct": 0.16701001,
+      "insider_pct": 0.16125
+    },
+    "price_summary": {
+      "last": 0.699999988079071,
+      "ret_30d_pct": -37.77777883741591,
+      "ret_90d_pct": -43.77510157445309,
+      "ret_180d_pct": -92.22222235467699,
+      "high_52w": 15.0,
+      "low_52w": 0.6000000238418579
+    },
+    "reasons": [
+      "Shares +76.1% (dilution)",
+      "180d return -92%",
+      "P/B 0.70 (deep value)",
+      "Small cap ($0.0B)"
+    ]
+  },
+  "FUTR.L": {
+    "ticker": "FUTR.L",
+    "score": 100.0,
+    "share_history": {
+      "latest_shares": 91016231.0,
+      "shares_1y_ago": 110102000.0,
+      "shares_2y_ago": 115171000.0,
+      "pct_change_1y": -17.33462516575539,
+      "pct_change_2y": -20.97296107527068,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Future plc",
+      "sector": "Communication Services",
+      "currency": "GBP",
+      "market_cap": 292344160.0,
+      "price": 321.2,
+      "p_b": 0.31592408,
+      "div_yield": 5.29,
+      "fcf": 101725000.0,
+      "ev_ebitda": 3.379,
+      "trailing_pe": 8.681082,
+      "shares_out": 91016231.0,
+      "inst_pct": 0.70251,
+      "insider_pct": 0.040009998
+    },
+    "price_summary": {
+      "last": 321.20001220703125,
+      "ret_30d_pct": 14.143574688629057,
+      "ret_90d_pct": -38.23076688326322,
+      "ret_180d_pct": -55.72708308655668,
+      "high_52w": 806.0,
+      "low_52w": 262.2040100097656
+    },
+    "reasons": [
+      "Shares -17.3% YoY (heavy)",
+      "180d return -56%",
+      "P/B 0.32 (deep value)",
+      "Small cap ($0.3B)",
+      "Div yield 529.0%"
+    ]
+  },
+  "G.MI": {
+    "ticker": "G.MI",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 1495978000.0,
+      "shares_1y_ago": 1513180032.0,
+      "shares_2y_ago": 1577020032.0,
+      "pct_change_1y": -1.1368133094687871,
+      "pct_change_2y": -5.138934848989917,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Assicurazioni Generali S.p.A.",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 57789632512.0,
+      "price": 38.63,
+      "p_b": 1.8115739,
+      "div_yield": 4.25,
+      "fcf": 3450125056.0,
+      "ev_ebitda": 11.763,
+      "trailing_pe": 14.360595,
+      "shares_out": 1495978000.0,
+      "inst_pct": 0.33507,
+      "insider_pct": 0.23236999
+    },
+    "price_summary": {
+      "last": 38.630001068115234,
+      "ret_30d_pct": 8.970381485859535,
+      "ret_90d_pct": 9.557580564386981,
+      "ret_180d_pct": 14.86767719653903,
+      "high_52w": 39.5099983215332,
+      "low_52w": 29.68000030517578
+    },
+    "reasons": [
+      "P/B 1.81",
+      "Div yield 425.0%"
+    ]
+  },
+  "GALP.LS": {
+    "ticker": "GALP.LS",
+    "score": -2.0,
+    "share_history": {
+      "latest_shares": 806104488.0,
+      "shares_1y_ago": 726073024.0,
+      "shares_2y_ago": 773083008.0,
+      "pct_change_1y": 11.022508942571596,
+      "pct_change_2y": 4.271401603487313,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Galp Energia, SGPS, S.A.",
+      "sector": "Energy",
+      "currency": "EUR",
+      "market_cap": 15896380416.0,
+      "price": 19.72,
+      "p_b": 3.4712195,
+      "div_yield": 3.3,
+      "fcf": 1612375040.0,
+      "ev_ebitda": 6.672,
+      "trailing_pe": 19.145632,
+      "shares_out": 748024974.0,
+      "inst_pct": 0.34737,
+      "insider_pct": 0.49872002
+    },
+    "price_summary": {
+      "last": 19.719999313354492,
+      "ret_30d_pct": -3.0958282865139353,
+      "ret_90d_pct": 35.3466007302645,
+      "ret_180d_pct": 18.795173856547386,
+      "high_52w": 22.260000228881836,
+      "low_52w": 13.574999809265137
+    },
+    "reasons": [
+      "Shares +11.0% (dilution)",
+      "Div yield 330.0%"
+    ]
+  },
+  "GAMA.L": {
+    "ticker": "GAMA.L",
+    "score": 75.0,
+    "share_history": {
+      "latest_shares": 90500177.0,
+      "shares_1y_ago": 106939000.0,
+      "shares_2y_ago": 97022800.0,
+      "pct_change_1y": -15.372149543197523,
+      "pct_change_2y": -6.722773409961369,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Gamma Communications plc",
+      "sector": "Communication Services",
+      "currency": "GBP",
+      "market_cap": 913146752.0,
+      "price": 1009.0,
+      "p_b": 2.410416,
+      "div_yield": 2.2,
+      "fcf": 87562496.0,
+      "ev_ebitda": 7.748,
+      "trailing_pe": 14.623189,
+      "shares_out": 90500177.0,
+      "inst_pct": 0.84463996,
+      "insider_pct": 0.01869
+    },
+    "price_summary": {
+      "last": 1009.0,
+      "ret_30d_pct": 38.03009575923393,
+      "ret_90d_pct": 14.789533560864609,
+      "ret_180d_pct": -4.45075757575758,
+      "high_52w": 1232.0,
+      "low_52w": 687.0
+    },
+    "reasons": [
+      "Shares -15.4% YoY (heavy)",
+      "Div yield 220.0%"
+    ]
+  },
+  "GAN.L": {
+    "ticker": "GAN.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "GAW.L": {
+    "ticker": "GAW.L",
+    "score": 12.0,
+    "share_history": {
+      "latest_shares": 33044302.0,
+      "shares_1y_ago": 32971700.0,
+      "shares_2y_ago": 32951800.0,
+      "pct_change_1y": 0.2201948944094534,
+      "pct_change_2y": 0.28071911094387225,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Games Workshop Group PLC",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 6407290368.0,
+      "price": 19390.0,
+      "p_b": 20.035131,
+      "div_yield": 1.78,
+      "fcf": 186562496.0,
+      "ev_ebitda": 21.391,
+      "trailing_pe": 31.073719,
+      "shares_out": 33044302.0,
+      "inst_pct": 0.72885,
+      "insider_pct": 0.00583
+    },
+    "price_summary": {
+      "last": 19390.0,
+      "ret_30d_pct": 10.170454545454554,
+      "ret_90d_pct": 5.094850948509477,
+      "ret_180d_pct": 25.501618122977355,
+      "high_52w": 20330.0,
+      "low_52w": 13634.0
+    },
+    "reasons": [
+      "Div yield 178.0%"
+    ]
+  },
+  "GBF.DE": {
+    "ticker": "GBF.DE",
+    "score": 35.0,
+    "share_history": {
+      "latest_shares": 36939723.0,
+      "shares_1y_ago": 37519500.0,
+      "shares_2y_ago": 37484300.0,
+      "pct_change_1y": -1.545268460400595,
+      "pct_change_2y": -1.4528135779513063,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Bilfinger SE",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 3171275264.0,
+      "price": 85.85,
+      "p_b": 2.3813486,
+      "div_yield": 3.26,
+      "fcf": 147191008.0,
+      "ev_ebitda": 8.756,
+      "trailing_pe": 17.70103,
+      "shares_out": 36939723.0,
+      "inst_pct": 0.67800003,
+      "insider_pct": 0.0
+    },
+    "price_summary": {
+      "last": 85.8499984741211,
+      "ret_30d_pct": -16.731329054607002,
+      "ret_90d_pct": -24.956296041044546,
+      "ret_180d_pct": -5.138123233015368,
+      "high_52w": 129.3000030517578,
+      "low_52w": 70.0999984741211
+    },
+    "reasons": [
+      "Div yield 326.0%"
+    ]
+  },
+  "GBLB.BR": {
+    "ticker": "GBLB.BR",
+    "score": 54.0,
+    "share_history": {
+      "latest_shares": 120064650.0,
+      "shares_1y_ago": 123799000.0,
+      "shares_2y_ago": 129106000.0,
+      "pct_change_1y": -3.0164621685150883,
+      "pct_change_2y": -7.003044010348081,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Groupe Bruxelles Lambert SA",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 9305010176.0,
+      "price": 77.5,
+      "p_b": 0.8091713,
+      "div_yield": 6.61,
+      "fcf": null,
+      "ev_ebitda": 16.557,
+      "trailing_pe": null,
+      "shares_out": 120064650.0,
+      "inst_pct": 0.25472,
+      "insider_pct": 0.35704
+    },
+    "price_summary": {
+      "last": 77.5,
+      "ret_30d_pct": -1.3367320317810183,
+      "ret_90d_pct": -0.6410256410256387,
+      "ret_180d_pct": 3.1957411113742396,
+      "high_52w": 85.6500015258789,
+      "low_52w": 70.25
+    },
+    "reasons": [
+      "Shares -3.0% YoY",
+      "P/B 0.81 (deep value)",
+      "Div yield 661.0%"
+    ]
+  },
+  "GEBN.SW": {
+    "ticker": "GEBN.SW",
+    "score": 26.0,
+    "share_history": {
+      "latest_shares": 32973728.0,
+      "shares_1y_ago": 32937500.0,
+      "shares_2y_ago": 33334400.0,
+      "pct_change_1y": 0.10999013282733117,
+      "pct_change_2y": -1.081981376595953,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Geberit AG",
+      "sector": "Industrials",
+      "currency": "CHF",
+      "market_cap": 16572596224.0,
+      "price": 502.6,
+      "p_b": 10.92395,
+      "div_yield": 2.57,
+      "fcf": null,
+      "ev_ebitda": 18.944,
+      "trailing_pe": 27.86031,
+      "shares_out": 32973728.0,
+      "inst_pct": 0.42468,
+      "insider_pct": 0.0054
+    },
+    "price_summary": {
+      "last": 502.6000061035156,
+      "ret_30d_pct": -5.632739552685395,
+      "ret_90d_pct": -18.856960559702408,
+      "ret_180d_pct": -16.4838789800009,
+      "high_52w": 659.7999877929688,
+      "low_52w": 499.0
+    },
+    "reasons": [
+      "Div yield 257.0%"
+    ]
+  },
+  "GEN.L": {
+    "ticker": "GEN.L",
+    "score": 51.0,
+    "share_history": {
+      "latest_shares": 251713089.0,
+      "shares_1y_ago": 250144992.0,
+      "shares_2y_ago": 251364992.0,
+      "pct_change_1y": 0.6268752324251947,
+      "pct_change_2y": 0.13848268894978144,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Genuit Group plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 630289600.0,
+      "price": 250.4,
+      "p_b": 0.94704986,
+      "div_yield": 5.15,
+      "fcf": 53812500.0,
+      "ev_ebitda": 7.338,
+      "trailing_pe": 13.91111,
+      "shares_out": 251713089.0,
+      "inst_pct": 0.87983,
+      "insider_pct": 0.01881
+    },
+    "price_summary": {
+      "last": 250.39999389648438,
+      "ret_30d_pct": -13.35640349602617,
+      "ret_90d_pct": -23.77473549574296,
+      "ret_180d_pct": -25.697331187986826,
+      "high_52w": 422.0,
+      "low_52w": 241.0
+    },
+    "reasons": [
+      "P/B 0.95 (deep value)",
+      "Div yield 515.0%"
+    ]
+  },
+  "GETI-B.ST": {
+    "ticker": "GETI-B.ST",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 272369573.0,
+      "shares_1y_ago": 272651008.0,
+      "shares_2y_ago": 272369984.0,
+      "pct_change_1y": -0.10322169797369884,
+      "pct_change_2y": -0.00015089768482523525,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Getinge AB (publ)",
+      "sector": "Healthcare",
+      "currency": "SEK",
+      "market_cap": 51505086464.0,
+      "price": 189.1,
+      "p_b": 1.6627977,
+      "div_yield": 2.51,
+      "fcf": 2923624960.0,
+      "ev_ebitda": 10.717,
+      "trailing_pe": 21.83603,
+      "shares_out": 254152373.0,
+      "inst_pct": 0.65192,
+      "insider_pct": 0.15758
+    },
+    "price_summary": {
+      "last": 189.10000610351562,
+      "ret_30d_pct": 0.2917014281918817,
+      "ret_90d_pct": -13.455374780999719,
+      "ret_180d_pct": -8.955219604245634,
+      "high_52w": 231.60000610351562,
+      "low_52w": 175.89999389648438
+    },
+    "reasons": [
+      "P/B 1.66",
+      "Div yield 251.0%"
+    ]
+  },
+  "GFL.TO": {
+    "ticker": "GFL.TO",
+    "score": 39.0,
+    "share_history": {
+      "latest_shares": 361795628.0,
+      "shares_1y_ago": 368952992.0,
+      "shares_2y_ago": 376627008.0,
+      "pct_change_1y": -1.939912171792335,
+      "pct_change_2y": -3.937949134014307,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "GFL Environmental Inc.",
+      "sector": "Industrials",
+      "currency": "CAD",
+      "market_cap": 18466048000.0,
+      "price": 51.04,
+      "p_b": 2.5147812,
+      "div_yield": 0.17,
+      "fcf": 33625000.0,
+      "ev_ebitda": 16.246,
+      "trailing_pe": 100.07844,
+      "shares_out": 349158325.0,
+      "inst_pct": 0.97191,
+      "insider_pct": 0.02977
+    },
+    "price_summary": {
+      "last": 51.040000915527344,
+      "ret_30d_pct": -18.362123253648754,
+      "ret_90d_pct": -12.811752447394776,
+      "ret_180d_pct": -24.730861593934826,
+      "high_52w": 71.12999725341797,
+      "low_52w": 48.66999816894531
+    },
+    "reasons": [
+      "Div yield 17.0%"
+    ]
+  },
+  "GFRD.L": {
+    "ticker": "GFRD.L",
+    "score": 15.0,
+    "share_history": {
+      "latest_shares": 98202451.0,
+      "shares_1y_ago": 97706000.0,
+      "shares_2y_ago": 102708000.0,
+      "pct_change_1y": 0.50810697398318,
+      "pct_change_2y": -4.38675565681349,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Galliford Try Holdings plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 531275232.0,
+      "price": 541.0,
+      "p_b": 4.5271964,
+      "div_yield": 3.7,
+      "fcf": 49987500.0,
+      "ev_ebitda": 7.926,
+      "trailing_pe": 15.457143,
+      "shares_out": 98202451.0,
+      "inst_pct": 0.50627,
+      "insider_pct": 0.070989996
+    },
+    "price_summary": {
+      "last": 541.0,
+      "ret_30d_pct": 8.200000000000006,
+      "ret_90d_pct": 2.2684310018903586,
+      "ret_180d_pct": 26.401869158878498,
+      "high_52w": 585.0,
+      "low_52w": 396.5
+    },
+    "reasons": [
+      "Div yield 370.0%"
+    ]
+  },
+  "GFTU.L": {
+    "ticker": "GFTU.L",
+    "score": 51.0,
+    "share_history": {
+      "latest_shares": 193146816.0,
+      "shares_1y_ago": 194742000.0,
+      "shares_2y_ago": 200086000.0,
+      "pct_change_1y": -0.8191268447484412,
+      "pct_change_2y": -3.4681007166918243,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Grafton Group plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 1601634432.0,
+      "price": 808.4,
+      "p_b": 0.9381456,
+      "div_yield": 4.67,
+      "fcf": 187710128.0,
+      "ev_ebitda": 7.216,
+      "trailing_pe": 12.631251,
+      "shares_out": 193146816.0,
+      "inst_pct": 0.68964,
+      "insider_pct": 0.11722
+    },
+    "price_summary": {
+      "last": 808.4000244140625,
+      "ret_30d_pct": -10.476187772529066,
+      "ret_90d_pct": -17.09567791463691,
+      "ret_180d_pct": -7.516297106384673,
+      "high_52w": 1035.5999755859375,
+      "low_52w": 788.5999755859375
+    },
+    "reasons": [
+      "P/B 0.94 (deep value)",
+      "Div yield 467.0%"
+    ]
+  },
+  "GHE.L": {
+    "ticker": "GHE.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "GHH.L": {
+    "ticker": "GHH.L",
+    "score": 23.0,
+    "share_history": {
+      "latest_shares": 27370726.0,
+      "shares_1y_ago": 27230400.0,
+      "shares_2y_ago": 25786400.0,
+      "pct_change_1y": 0.5153284564310523,
+      "pct_change_2y": 6.1440371668786575,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Gooch & Housego PLC",
+      "sector": "Technology",
+      "currency": "GBP",
+      "market_cap": 259474480.0,
+      "price": 948.0,
+      "p_b": 2.188871,
+      "div_yield": 1.39,
+      "fcf": 2601000.0,
+      "ev_ebitda": 14.339,
+      "trailing_pe": 72.92307,
+      "shares_out": 27370726.0,
+      "inst_pct": 0.69514,
+      "insider_pct": 0.116239995
+    },
+    "price_summary": {
+      "last": 948.0,
+      "ret_30d_pct": 23.759791122715402,
+      "ret_90d_pct": 51.92307692307692,
+      "ret_180d_pct": 91.5151515151515,
+      "high_52w": 980.0,
+      "low_52w": 448.0
+    },
+    "reasons": [
+      "Small cap ($0.3B)",
+      "Div yield 139.0%"
+    ]
+  },
+  "GIB-A.TO": {
+    "ticker": "GIB-A.TO",
+    "score": 70.0,
+    "share_history": {
+      "latest_shares": 209420044.0,
+      "shares_1y_ago": 220684992.0,
+      "shares_2y_ago": 229882000.0,
+      "pct_change_1y": -5.10453742137571,
+      "pct_change_2y": -8.901069244220949,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "CGI Inc.",
+      "sector": "Technology",
+      "currency": "CAD",
+      "market_cap": 18215356416.0,
+      "price": 86.98,
+      "p_b": 3.3154185,
+      "div_yield": 0.78,
+      "fcf": 2126564736.0,
+      "ev_ebitda": 7.5,
+      "trailing_pe": 11.355092,
+      "shares_out": 185297286.0,
+      "inst_pct": 0.73059,
+      "insider_pct": 0.0038100001
+    },
+    "price_summary": {
+      "last": 86.9800033569336,
+      "ret_30d_pct": -15.041994832609006,
+      "ret_90d_pct": -33.5675489020151,
+      "ret_180d_pct": -34.438829760010194,
+      "high_52w": 152.3000030517578,
+      "low_52w": 83.33999633789062
+    },
+    "reasons": [
+      "Shares -5.1% YoY",
+      "180d return -34%",
+      "Div yield 78.0%"
+    ]
+  },
+  "GIVN.SW": {
+    "ticker": "GIVN.SW",
+    "score": 26.0,
+    "share_history": {
+      "latest_shares": 9229197.0,
+      "shares_1y_ago": 9226250.0,
+      "shares_2y_ago": 9238480.0,
+      "pct_change_1y": 0.031941471345353634,
+      "pct_change_2y": -0.10048189745499592,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Givaudan SA",
+      "sector": "Basic Materials",
+      "currency": "CHF",
+      "market_cap": 24918831104.0,
+      "price": 2700.0,
+      "p_b": 5.4923596,
+      "div_yield": 2.67,
+      "fcf": 1130749952.0,
+      "ev_ebitda": 17.658,
+      "trailing_pe": 23.364487,
+      "shares_out": 9229197.0,
+      "inst_pct": 0.35032,
+      "insider_pct": 0.17141001
+    },
+    "price_summary": {
+      "last": 2700.0,
+      "ret_30d_pct": 0.5961251862891315,
+      "ret_90d_pct": -13.930506853681857,
+      "ret_180d_pct": -20.68155111633373,
+      "high_52w": 4236.0,
+      "low_52w": 2566.0
+    },
+    "reasons": [
+      "Div yield 267.0%"
+    ]
+  },
+  "GLE.PA": {
+    "ticker": "GLE.PA",
+    "score": 58.0,
+    "share_history": {
+      "latest_shares": 730035000.0,
+      "shares_1y_ago": 778041024.0,
+      "shares_2y_ago": 796243968.0,
+      "pct_change_1y": -6.170114752201039,
+      "pct_change_2y": -8.315161013565131,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Soci\u00e9t\u00e9 G\u00e9n\u00e9rale Soci\u00e9t\u00e9 anonyme",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 48554631168.0,
+      "price": 66.51,
+      "p_b": 0.68389344,
+      "div_yield": 2.42,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 9.447444,
+      "shares_out": 730035000.0,
+      "inst_pct": 0.47965,
+      "insider_pct": 0.09405
+    },
+    "price_summary": {
+      "last": 66.51000213623047,
+      "ret_30d_pct": 0.8338433283685109,
+      "ret_90d_pct": -3.776042399652002,
+      "ret_180d_pct": 26.15705727660722,
+      "high_52w": 77.33999633789062,
+      "low_52w": 46.09000015258789
+    },
+    "reasons": [
+      "Shares -6.2% YoY",
+      "P/B 0.68 (deep value)",
+      "Div yield 242.0%"
+    ]
+  },
+  "GLEN.L": {
+    "ticker": "GLEN.L",
+    "score": 33.0,
+    "share_history": {
+      "latest_shares": 11715401399.0,
+      "shares_1y_ago": 12075400192.0,
+      "shares_2y_ago": 12154600448.0,
+      "pct_change_1y": -2.9812576583466033,
+      "pct_change_2y": -3.613438803513025,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Glencore plc",
+      "sector": "Basic Materials",
+      "currency": "USD",
+      "market_cap": 67281547264.0,
+      "price": 574.3,
+      "p_b": 2.3375046,
+      "div_yield": 2.18,
+      "fcf": 5955874816.0,
+      "ev_ebitda": 10.66,
+      "trailing_pe": 287.15,
+      "shares_out": 11715401399.0,
+      "inst_pct": 0.66094,
+      "insider_pct": 0.13726
+    },
+    "price_summary": {
+      "last": 574.2999877929688,
+      "ret_30d_pct": 2.0977756076388854,
+      "ret_90d_pct": 34.19791363743136,
+      "ret_180d_pct": 94.90921421662418,
+      "high_52w": 598.0,
+      "low_52w": 261.70001220703125
+    },
+    "reasons": [
+      "Shares -3.0% YoY",
+      "Div yield 218.0%"
+    ]
+  },
+  "GMAB.CO": {
+    "ticker": "GMAB.CO",
+    "score": 17.0,
+    "share_history": {
+      "latest_shares": 61393404.0,
+      "shares_1y_ago": 61998100.0,
+      "shares_2y_ago": 65834500.0,
+      "pct_change_1y": -0.9753460186683105,
+      "pct_change_2y": -6.74584906090272,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Genmab A/S",
+      "sector": "Healthcare",
+      "currency": "USD",
+      "market_cap": 103386488832.0,
+      "price": 1684.0,
+      "p_b": 2.7848735,
+      "div_yield": null,
+      "fcf": 830374976.0,
+      "ev_ebitda": 80.599,
+      "trailing_pe": 20.121878,
+      "shares_out": 61393404.0,
+      "inst_pct": 0.42902002,
+      "insider_pct": 0.0
+    },
+    "price_summary": {
+      "last": 1684.0,
+      "ret_30d_pct": -0.26650873556410826,
+      "ret_90d_pct": -16.093672147483808,
+      "ret_180d_pct": 7.261146496815285,
+      "high_52w": 2257.0,
+      "low_52w": 1268.5
+    },
+    "reasons": []
+  },
+  "GPE.L": {
+    "ticker": "GPE.L",
+    "score": 43.0,
+    "share_history": {
+      "latest_shares": 403409734.0,
+      "shares_1y_ago": 403295008.0,
+      "shares_2y_ago": 252980992.0,
+      "pct_change_1y": 0.028447165901934746,
+      "pct_change_2y": 59.46246823160533,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Great Portland Estates Plc",
+      "sector": "Real Estate",
+      "currency": "GBP",
+      "market_cap": 1203774592.0,
+      "price": 298.4,
+      "p_b": 0.58972335,
+      "div_yield": 2.65,
+      "fcf": -211275008.0,
+      "ev_ebitda": 68.319,
+      "trailing_pe": 8.288889,
+      "shares_out": 403409734.0,
+      "inst_pct": 0.82015,
+      "insider_pct": 0.01169
+    },
+    "price_summary": {
+      "last": 298.3999938964844,
+      "ret_30d_pct": 3.2525930437662165,
+      "ret_90d_pct": -8.746179236549123,
+      "ret_180d_pct": -2.324060917681059,
+      "high_52w": 377.0,
+      "low_52w": 270.0
+    },
+    "reasons": [
+      "P/B 0.59 (deep value)",
+      "Div yield 265.0%"
+    ]
+  },
+  "GRF.MC": {
+    "ticker": "GRF.MC",
+    "score": 27.0,
+    "share_history": {
+      "latest_shares": 680575312.0,
+      "shares_1y_ago": 621491008.0,
+      "shares_2y_ago": 612683008.0,
+      "pct_change_1y": 9.506863854738178,
+      "pct_change_2y": 11.081146875873538,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Grifols, S.A.",
+      "sector": "Healthcare",
+      "currency": "EUR",
+      "market_cap": 6187790848.0,
+      "price": 9.092,
+      "p_b": 1.1739187,
+      "div_yield": 1.65,
+      "fcf": 887539392.0,
+      "ev_ebitda": 10.466,
+      "trailing_pe": 14.904918,
+      "shares_out": 422351576.0,
+      "inst_pct": 0.36655,
+      "insider_pct": 0.31870002
+    },
+    "price_summary": {
+      "last": 9.092000007629395,
+      "ret_30d_pct": -1.9201773607810502,
+      "ret_90d_pct": -21.553063952296203,
+      "ret_180d_pct": -24.672740368600266,
+      "high_52w": 13.699999809265137,
+      "low_52w": 8.432000160217285
+    },
+    "reasons": [
+      "Shares +9.5% (dilution)",
+      "P/B 1.17",
+      "Div yield 165.0%"
+    ]
+  },
+  "GRG.L": {
+    "ticker": "GRG.L",
+    "score": 24.0,
+    "share_history": {
+      "latest_shares": 101955014.0,
+      "shares_1y_ago": 101819000.0,
+      "shares_2y_ago": 101480000.0,
+      "pct_change_1y": 0.13358410512773755,
+      "pct_change_2y": 0.468086322428074,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Greggs plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 1730176640.0,
+      "price": 1697.0,
+      "p_b": 2.7674494,
+      "div_yield": 4.07,
+      "fcf": 8687500.0,
+      "ev_ebitda": 7.486,
+      "trailing_pe": 14.260503,
+      "shares_out": 101955014.0,
+      "inst_pct": 0.44526002,
+      "insider_pct": 0.04575
+    },
+    "price_summary": {
+      "last": 1697.0,
+      "ret_30d_pct": 9.767141009055624,
+      "ret_90d_pct": -4.2865200225606355,
+      "ret_180d_pct": 7.609384908053274,
+      "high_52w": 2237.876953125,
+      "low_52w": 1407.2020263671875
+    },
+    "reasons": [
+      "Div yield 407.0%"
+    ]
+  },
+  "GSK.L": {
+    "ticker": "GSK.L",
+    "score": 16.0,
+    "share_history": {
+      "latest_shares": 4015024374.0,
+      "shares_1y_ago": 4059409920.0,
+      "shares_2y_ago": 4582000128.0,
+      "pct_change_1y": -1.0933989637587516,
+      "pct_change_2y": -12.373979444812445,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "GSK plc",
+      "sector": "Healthcare",
+      "currency": "GBP",
+      "market_cap": 74779828224.0,
+      "price": 1862.5,
+      "p_b": 4.1938753,
+      "div_yield": 3.65,
+      "fcf": 3019249920.0,
+      "ev_ebitda": 7.882,
+      "trailing_pe": 13.116198,
+      "shares_out": 4015024374.0,
+      "inst_pct": 0.46397,
+      "insider_pct": 0.01743
+    },
+    "price_summary": {
+      "last": 1862.5,
+      "ret_30d_pct": -11.604176554342672,
+      "ret_90d_pct": -2.051012358664217,
+      "ret_180d_pct": 28.227194492254725,
+      "high_52w": 2282.0,
+      "low_52w": 1288.60498046875
+    },
+    "reasons": [
+      "Div yield 365.0%"
+    ]
+  },
+  "GUD.AX": {
+    "ticker": "GUD.AX",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "AUD",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "HAS.L": {
+    "ticker": "HAS.L",
+    "score": 55.0,
+    "share_history": {
+      "latest_shares": 1599014589.0,
+      "shares_1y_ago": 1591900032.0,
+      "shares_2y_ago": 1584780032.0,
+      "pct_change_1y": 0.4469223479480311,
+      "pct_change_2y": 0.8982039597025926,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Hays plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 479384544.0,
+      "price": 29.98,
+      "p_b": 1.0162712,
+      "div_yield": 1.47,
+      "fcf": 111337504.0,
+      "ev_ebitda": 10.984,
+      "trailing_pe": null,
+      "shares_out": 1599014589.0,
+      "inst_pct": 0.82627,
+      "insider_pct": 0.0051499996
+    },
+    "price_summary": {
+      "last": 29.979999542236328,
+      "ret_30d_pct": -9.807466821947642,
+      "ret_90d_pct": -45.09157439547177,
+      "ret_180d_pct": -51.95513011357404,
+      "high_52w": 75.0999984741211,
+      "low_52w": 28.68000030517578
+    },
+    "reasons": [
+      "180d return -52%",
+      "P/B 1.02",
+      "Small cap ($0.5B)",
+      "Div yield 147.0%"
+    ]
+  },
+  "HBR.L": {
+    "ticker": "HBR.L",
+    "score": 9.0,
+    "share_history": {
+      "latest_shares": 1568873512.0,
+      "shares_1y_ago": 1461280000.0,
+      "shares_2y_ago": 788179968.0,
+      "pct_change_1y": 7.3629634293222335,
+      "pct_change_2y": 99.05016312213608,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Harbour Energy plc",
+      "sector": "Energy",
+      "currency": "USD",
+      "market_cap": 4634452480.0,
+      "price": 295.4,
+      "p_b": 1.5758944,
+      "div_yield": 5.32,
+      "fcf": 2650874880.0,
+      "ev_ebitda": 1.747,
+      "trailing_pe": null,
+      "shares_out": 1568873512.0,
+      "inst_pct": 0.18076,
+      "insider_pct": 0.53313
+    },
+    "price_summary": {
+      "last": 295.3999938964844,
+      "ret_30d_pct": 2.640724956869267,
+      "ret_90d_pct": 58.90263775961899,
+      "ret_180d_pct": 29.561400831791396,
+      "high_52w": 321.0,
+      "low_52w": 167.1999969482422
+    },
+    "reasons": [
+      "Shares +7.4% (dilution)",
+      "P/B 1.58",
+      "Div yield 532.0%"
+    ]
+  },
+  "HEI.DE": {
+    "ticker": "HEI.DE",
+    "score": 58.0,
+    "share_history": {
+      "latest_shares": 176365065.0,
+      "shares_1y_ago": 183951008.0,
+      "shares_2y_ago": 182068000.0,
+      "pct_change_1y": -4.123893140069123,
+      "pct_change_2y": -3.1323104554342285,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Heidelberg Materials AG",
+      "sector": "Basic Materials",
+      "currency": "EUR",
+      "market_cap": 29832151040.0,
+      "price": 169.15,
+      "p_b": 1.6423286,
+      "div_yield": 2.13,
+      "fcf": 1509675008.0,
+      "ev_ebitda": 8.911,
+      "trailing_pe": 15.15681,
+      "shares_out": 176365065.0,
+      "inst_pct": 0.46075,
+      "insider_pct": 0.284
+    },
+    "price_summary": {
+      "last": 169.14999389648438,
+      "ret_30d_pct": -7.340459562454338,
+      "ret_90d_pct": -26.29629895578023,
+      "ret_180d_pct": -16.592706434370918,
+      "high_52w": 241.8000030517578,
+      "low_52w": 159.6999969482422
+    },
+    "reasons": [
+      "Shares -4.1% YoY",
+      "P/B 1.64",
+      "Div yield 213.0%"
+    ]
+  },
+  "HEIA.AS": {
+    "ticker": "HEIA.AS",
+    "score": 31.0,
+    "share_history": {
+      "latest_shares": 557914729.0,
+      "shares_1y_ago": 563580992.0,
+      "shares_2y_ago": 563449024.0,
+      "pct_change_1y": -1.0054034966459624,
+      "pct_change_2y": -0.9822175146761758,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Heineken N.V.",
+      "sector": "Consumer Defensive",
+      "currency": "EUR",
+      "market_cap": 36867006464.0,
+      "price": 66.08,
+      "p_b": 2.046454,
+      "div_yield": 2.88,
+      "fcf": 2138249984.0,
+      "ev_ebitda": 9.772,
+      "trailing_pe": 19.550295,
+      "shares_out": 557914729.0,
+      "inst_pct": 0.27045,
+      "insider_pct": 0.51019
+    },
+    "price_summary": {
+      "last": 66.08000183105469,
+      "ret_30d_pct": -2.2195915350074924,
+      "ret_90d_pct": -2.5943316654528314,
+      "ret_180d_pct": -4.231881404268567,
+      "high_52w": 81.66000366210938,
+      "low_52w": 63.900001525878906
+    },
+    "reasons": [
+      "Div yield 288.0%"
+    ]
+  },
+  "HEN3.DE": {
+    "ticker": "HEN3.DE",
+    "score": 30.0,
+    "share_history": {
+      "latest_shares": 407074160.0,
+      "shares_1y_ago": 394484992.0,
+      "shares_2y_ago": 390204000.0,
+      "pct_change_1y": 3.191292002307655,
+      "pct_change_2y": 4.323420569753256,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Henkel AG & Co. KGaA",
+      "sector": "Consumer Defensive",
+      "currency": "EUR",
+      "market_cap": 26166726656.0,
+      "price": 64.28,
+      "p_b": 1.2759031,
+      "div_yield": 3.22,
+      "fcf": 1473750016.0,
+      "ev_ebitda": 8.283,
+      "trailing_pe": 13.065041,
+      "shares_out": 153428149.0,
+      "inst_pct": 0.34672,
+      "insider_pct": 0.0
+    },
+    "price_summary": {
+      "last": 64.27999877929688,
+      "ret_30d_pct": -2.782825001289446,
+      "ret_90d_pct": -6.4337676350630595,
+      "ret_180d_pct": -11.460054916929451,
+      "high_52w": 84.19999694824219,
+      "low_52w": 61.279998779296875
+    },
+    "reasons": [
+      "P/B 1.28",
+      "Div yield 322.0%"
+    ]
+  },
+  "HEXA-B.ST": {
+    "ticker": "HEXA-B.ST",
+    "score": 26.0,
+    "share_history": {
+      "latest_shares": 2684377888.0,
+      "shares_1y_ago": 2707620096.0,
+      "shares_2y_ago": 2736709888.0,
+      "pct_change_1y": -0.8583998927447767,
+      "pct_change_2y": -1.9122231490252828,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Hexagon AB (publ)",
+      "sector": "Technology",
+      "currency": "EUR",
+      "market_cap": 257002323968.0,
+      "price": 95.74,
+      "p_b": 21.365767,
+      "div_yield": 1.58,
+      "fcf": -6078737408.0,
+      "ev_ebitda": 202.453,
+      "trailing_pe": 11.562802,
+      "shares_out": 2574127888.0,
+      "inst_pct": 0.69164,
+      "insider_pct": 0.25701
+    },
+    "price_summary": {
+      "last": 95.73999786376953,
+      "ret_30d_pct": 6.330516315287182,
+      "ret_90d_pct": -10.103288390826727,
+      "ret_180d_pct": -10.898091593351344,
+      "high_52w": 122.0999984741211,
+      "low_52w": 88.5199966430664
+    },
+    "reasons": [
+      "Div yield 158.0%"
+    ]
+  },
+  "HFEL.L": {
+    "ticker": "HFEL.L",
+    "score": 12.0,
+    "share_history": {
+      "latest_shares": 208904679.0,
+      "shares_1y_ago": 173795008.0,
+      "shares_2y_ago": 162282000.0,
+      "pct_change_1y": 20.20177184836056,
+      "pct_change_2y": 28.72942100787519,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Henderson Far East Income Limited",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 553597376.0,
+      "price": 265.0,
+      "p_b": 1.013772,
+      "div_yield": 9.43,
+      "fcf": 91800376.0,
+      "ev_ebitda": null,
+      "trailing_pe": 3.6805556,
+      "shares_out": 208904679.0,
+      "inst_pct": 0.03477,
+      "insider_pct": 0.00098
+    },
+    "price_summary": {
+      "last": 265.0,
+      "ret_30d_pct": 5.788423153692612,
+      "ret_90d_pct": 7.5050709939147975,
+      "ret_180d_pct": 14.71861471861471,
+      "high_52w": 275.0,
+      "low_52w": 208.5
+    },
+    "reasons": [
+      "Shares +20.2% (dilution)",
+      "P/B 1.01",
+      "Div yield 943.0%"
+    ]
+  },
+  "HFG.DE": {
+    "ticker": "HFG.DE",
+    "score": 89.0,
+    "share_history": {
+      "latest_shares": 143342081.0,
+      "shares_1y_ago": 170612000.0,
+      "shares_2y_ago": 172908992.0,
+      "pct_change_1y": -15.983587907063978,
+      "pct_change_2y": -17.099695428216943,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "HelloFresh SE",
+      "sector": "Consumer Cyclical",
+      "currency": "EUR",
+      "market_cap": 610780608.0,
+      "price": 4.261,
+      "p_b": 1.0030602,
+      "div_yield": null,
+      "fcf": 185987504.0,
+      "ev_ebitda": 4.257,
+      "trailing_pe": null,
+      "shares_out": 143342081.0,
+      "inst_pct": 0.83393997,
+      "insider_pct": 0.08509
+    },
+    "price_summary": {
+      "last": 4.261000156402588,
+      "ret_30d_pct": 8.174670576513577,
+      "ret_90d_pct": -26.07563841911108,
+      "ret_180d_pct": -43.91945079505598,
+      "high_52w": 11.130000114440918,
+      "low_52w": 3.490000009536743
+    },
+    "reasons": [
+      "Shares -16.0% YoY (heavy)",
+      "180d return -44%",
+      "P/B 1.00"
+    ]
+  },
+  "HFG.L": {
+    "ticker": "HFG.L",
+    "score": 63.0,
+    "share_history": {
+      "latest_shares": 89955713.0,
+      "shares_1y_ago": 90309104.0,
+      "shares_2y_ago": 89602200.0,
+      "pct_change_1y": -0.391312707520608,
+      "pct_change_2y": 0.39453607165895743,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Hilton Food Group plc",
+      "sector": "Consumer Defensive",
+      "currency": "GBP",
+      "market_cap": 483062176.0,
+      "price": 537.0,
+      "p_b": 1.3194102,
+      "div_yield": 6.52,
+      "fcf": -24862500.0,
+      "ev_ebitda": 7.483,
+      "trailing_pe": 10.529411,
+      "shares_out": 89955713.0,
+      "inst_pct": 0.61375,
+      "insider_pct": 0.13802
+    },
+    "price_summary": {
+      "last": 537.0,
+      "ret_30d_pct": 3.26923076923078,
+      "ret_90d_pct": 8.594539939332657,
+      "ret_180d_pct": -35.37906137184116,
+      "high_52w": 914.0,
+      "low_52w": 447.88800048828125
+    },
+    "reasons": [
+      "180d return -35%",
+      "P/B 1.32",
+      "Small cap ($0.5B)",
+      "Div yield 652.0%"
+    ]
+  },
+  "HL.L": {
+    "ticker": "HL.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "HLN.L": {
+    "ticker": "HLN.L",
+    "score": 38.0,
+    "share_history": {
+      "latest_shares": 8866775834.0,
+      "shares_1y_ago": 9007960064.0,
+      "shares_2y_ago": 9194869760.0,
+      "pct_change_1y": -1.5673274414729876,
+      "pct_change_2y": -3.5682280941845557,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Haleon plc",
+      "sector": "Healthcare",
+      "currency": "GBP",
+      "market_cap": 29517498368.0,
+      "price": 332.9,
+      "p_b": 1.8053145,
+      "div_yield": 2.13,
+      "fcf": 1399500032.0,
+      "ev_ebitda": 13.488,
+      "trailing_pe": 17.521053,
+      "shares_out": 8866775834.0,
+      "inst_pct": 0.61511004,
+      "insider_pct": 0.00063
+    },
+    "price_summary": {
+      "last": 332.8999938964844,
+      "ret_30d_pct": -10.3903111987929,
+      "ret_90d_pct": -10.870148889830155,
+      "ret_180d_pct": -8.26674028783736,
+      "high_52w": 419.5,
+      "low_52w": 274.3999938964844
+    },
+    "reasons": [
+      "P/B 1.81",
+      "Div yield 213.0%"
+    ]
+  },
+  "HMB.ST": {
+    "ticker": "HMB.ST",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "9.2",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "HMSO.L": {
+    "ticker": "HMSO.L",
+    "score": 18.0,
+    "share_history": {
+      "latest_shares": 530160734.0,
+      "shares_1y_ago": 490518016.0,
+      "shares_2y_ago": 4989259776.0,
+      "pct_change_1y": 8.081806724097973,
+      "pct_change_2y": -89.37396011027027,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Hammerson Plc",
+      "sector": "Real Estate",
+      "currency": "GBP",
+      "market_cap": 1681670016.0,
+      "price": 317.2,
+      "p_b": 0.80222565,
+      "div_yield": 5.2,
+      "fcf": 49225000.0,
+      "ev_ebitda": 21.621,
+      "trailing_pe": 6.8956523,
+      "shares_out": 530160734.0,
+      "inst_pct": 0.81097,
+      "insider_pct": 0.03915
+    },
+    "price_summary": {
+      "last": 317.20001220703125,
+      "ret_30d_pct": 5.10272532702245,
+      "ret_90d_pct": -7.3598078675993435,
+      "ret_180d_pct": 10.522652336944693,
+      "high_52w": 373.6000061035156,
+      "low_52w": 258.6000061035156
+    },
+    "reasons": [
+      "Shares +8.1% (dilution)",
+      "P/B 0.80 (deep value)",
+      "Div yield 520.0%"
+    ]
+  },
+  "HO.PA": {
+    "ticker": "HO.PA",
+    "score": 18.0,
+    "share_history": {
+      "latest_shares": 205481486.0,
+      "shares_1y_ago": 205428000.0,
+      "shares_2y_ago": 207120000.0,
+      "pct_change_1y": 0.026036372841087285,
+      "pct_change_2y": -0.791094051757435,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Thales S.A.",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 45082636288.0,
+      "price": 219.4,
+      "p_b": 5.6575556,
+      "div_yield": 1.78,
+      "fcf": 2076862464.0,
+      "ev_ebitda": 15.524,
+      "trailing_pe": 26.953316,
+      "shares_out": 205481486.0,
+      "inst_pct": 0.2307,
+      "insider_pct": 0.56198
+    },
+    "price_summary": {
+      "last": 219.39999389648438,
+      "ret_30d_pct": -17.673548256478654,
+      "ret_90d_pct": -18.28678067170042,
+      "ret_180d_pct": -2.575489844740464,
+      "high_52w": 279.29998779296875,
+      "low_52w": 216.1999969482422
+    },
+    "reasons": [
+      "Div yield 178.0%"
+    ]
+  },
+  "HOC.L": {
+    "ticker": "HOC.L",
+    "score": 44.0,
+    "share_history": {
+      "latest_shares": 514458432.0,
+      "shares_1y_ago": 559931008.0,
+      "shares_2y_ago": 514457984.0,
+      "pct_change_1y": -8.121103377078908,
+      "pct_change_2y": 8.708194136897163e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Hochschild Mining plc",
+      "sector": "Basic Materials",
+      "currency": "USD",
+      "market_cap": 3174208512.0,
+      "price": 617.0,
+      "p_b": 5.888678,
+      "div_yield": 0.95,
+      "fcf": 331344384.0,
+      "ev_ebitda": 5.92,
+      "trailing_pe": 21.275864,
+      "shares_out": 514458432.0,
+      "inst_pct": 0.4578,
+      "insider_pct": 0.38384998
+    },
+    "price_summary": {
+      "last": 617.0,
+      "ret_30d_pct": -3.3672670321065024,
+      "ret_90d_pct": 25.815662251056004,
+      "ret_180d_pct": 119.57295373665482,
+      "high_52w": 849.5,
+      "low_52w": 231.0
+    },
+    "reasons": [
+      "Shares -8.1% YoY",
+      "Div yield 95.0%"
+    ]
+  },
+  "HRI.L": {
+    "ticker": "HRI.L",
+    "score": 39.0,
+    "share_history": {
+      "latest_shares": 47858467.0,
+      "shares_1y_ago": 50192100.0,
+      "shares_2y_ago": 54541600.0,
+      "pct_change_1y": -4.6494029936982155,
+      "pct_change_2y": -12.253276398198809,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Herald Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 1466861952.0,
+      "price": 3065.0,
+      "p_b": 1.1349751,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 15.40201,
+      "shares_out": 47858467.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 3065.0,
+      "ret_30d_pct": 22.599999999999998,
+      "ret_90d_pct": 24.593495934959343,
+      "ret_180d_pct": 30.14861995753715,
+      "high_52w": 3095.0,
+      "low_52w": 2100.0
+    },
+    "reasons": [
+      "Shares -4.6% YoY",
+      "P/B 1.13"
+    ]
+  },
+  "HSBA.L": {
+    "ticker": "HSBA.L",
+    "score": 40.0,
+    "share_history": {
+      "latest_shares": 17148206193.0,
+      "shares_1y_ago": 17611599872.0,
+      "shares_2y_ago": 18805999616.0,
+      "pct_change_1y": -2.631184460059943,
+      "pct_change_2y": -8.815236928908377,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "HSBC Holdings plc",
+      "sector": "Financial Services",
+      "currency": "USD",
+      "market_cap": 227042246656.0,
+      "price": 1324.0,
+      "p_b": 1.764162,
+      "div_yield": 4.2,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 14.711111,
+      "shares_out": 17148206193.0,
+      "inst_pct": 0.51225,
+      "insider_pct": 0.00208
+    },
+    "price_summary": {
+      "last": 1324.0,
+      "ret_30d_pct": 8.382451412946912,
+      "ret_90d_pct": 8.756363844927995,
+      "ret_180d_pct": 38.52270526360222,
+      "high_52w": 1410.5999755859375,
+      "low_52w": 847.0
+    },
+    "reasons": [
+      "Shares -2.6% YoY",
+      "P/B 1.76",
+      "Div yield 420.0%"
+    ]
+  },
+  "HSV.L": {
+    "ticker": "HSV.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "HSX.L": {
+    "ticker": "HSX.L",
+    "score": 37.0,
+    "share_history": {
+      "latest_shares": 321064405.0,
+      "shares_1y_ago": 337321984.0,
+      "shares_2y_ago": 344676992.0,
+      "pct_change_1y": -4.819602567023917,
+      "pct_change_2y": -6.850642064324386,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Hiscox Ltd",
+      "sector": "Financial Services",
+      "currency": "USD",
+      "market_cap": 5910796288.0,
+      "price": 1841.0,
+      "p_b": 2.0425198,
+      "div_yield": 2.03,
+      "fcf": 1005162496.0,
+      "ev_ebitda": 5.722,
+      "trailing_pe": 14.271318,
+      "shares_out": 321064405.0,
+      "inst_pct": 0.72565,
+      "insider_pct": 0.0018600001
+    },
+    "price_summary": {
+      "last": 1841.0,
+      "ret_30d_pct": 19.467878001297855,
+      "ret_90d_pct": 32.63688760806915,
+      "ret_180d_pct": 41.0727969348659,
+      "high_52w": 1890.0,
+      "low_52w": 1162.0
+    },
+    "reasons": [
+      "Shares -4.8% YoY",
+      "Div yield 203.0%"
+    ]
+  },
+  "HUR.L": {
+    "ticker": "HUR.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "IAG.MC": {
+    "ticker": "IAG.MC",
+    "score": 55.0,
+    "share_history": {
+      "latest_shares": 4463586054.0,
+      "shares_1y_ago": 4718799872.0,
+      "shares_2y_ago": 4918450176.0,
+      "pct_change_1y": -5.408447590972553,
+      "pct_change_2y": -9.248118934284388,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "International Consolidated Airlines Group S.A.",
+      "sector": "Industrials",
+      "currency": "EUR",
+      "market_cap": 19282694144.0,
+      "price": 4.32,
+      "p_b": 2.5992782,
+      "div_yield": 2.27,
+      "fcf": null,
+      "ev_ebitda": 3.933,
+      "trailing_pe": 6.0,
+      "shares_out": 4463586054.0,
+      "inst_pct": 0.25592,
+      "insider_pct": 0.28046
+    },
+    "price_summary": {
+      "last": 4.320000171661377,
+      "ret_30d_pct": 1.7188592061734065,
+      "ret_90d_pct": -13.148367681139161,
+      "ret_180d_pct": -2.085222209673243,
+      "high_52w": 5.300000190734863,
+      "low_52w": 3.5329999923706055
+    },
+    "reasons": [
+      "Shares -5.4% YoY",
+      "Div yield 227.0%"
+    ]
+  },
+  "IBE.MC": {
+    "ticker": "IBE.MC",
+    "score": -2.0,
+    "share_history": {
+      "latest_shares": 6757845604.0,
+      "shares_1y_ago": 6318669824.0,
+      "shares_2y_ago": 6291859968.0,
+      "pct_change_1y": 6.950446727440851,
+      "pct_change_2y": 7.406166672017078,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Iberdrola, S.A.",
+      "sector": "Utilities",
+      "currency": "EUR",
+      "market_cap": 129750638592.0,
+      "price": 19.2,
+      "p_b": 2.6115344,
+      "div_yield": 3.54,
+      "fcf": null,
+      "ev_ebitda": 14.198,
+      "trailing_pe": 24.0,
+      "shares_out": 6757845603.0,
+      "inst_pct": 0.46453,
+      "insider_pct": 0.0023700001
+    },
+    "price_summary": {
+      "last": 19.200000762939453,
+      "ret_30d_pct": -4.334822845608343,
+      "ret_90d_pct": 1.0792309273429224,
+      "ret_180d_pct": 19.44012349414388,
+      "high_52w": 20.600000381469727,
+      "low_52w": 15.095000267028809
+    },
+    "reasons": [
+      "Shares +7.0% (dilution)",
+      "Div yield 354.0%"
+    ]
+  },
+  "IBST.L": {
+    "ticker": "IBST.L",
+    "score": 61.0,
+    "share_history": {
+      "latest_shares": 395016066.0,
+      "shares_1y_ago": 394044000.0,
+      "shares_2y_ago": 392340000.0,
+      "pct_change_1y": 0.2466897097786136,
+      "pct_change_2y": 0.6820782994341634,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Ibstock plc",
+      "sector": "Basic Materials",
+      "currency": "GBP",
+      "market_cap": 378030368.0,
+      "price": 95.7,
+      "p_b": 0.9876161,
+      "div_yield": 3.13,
+      "fcf": 7342125.0,
+      "ev_ebitda": 8.714,
+      "trailing_pe": 95.7,
+      "shares_out": 395016066.0,
+      "inst_pct": 0.95732003,
+      "insider_pct": 0.00399
+    },
+    "price_summary": {
+      "last": 95.69999694824219,
+      "ret_30d_pct": -9.716984011092277,
+      "ret_90d_pct": -30.24781408388486,
+      "ret_180d_pct": -30.752533240588154,
+      "high_52w": 200.5,
+      "low_52w": 94.0
+    },
+    "reasons": [
+      "180d return -31%",
+      "P/B 0.99 (deep value)",
+      "Small cap ($0.4B)",
+      "Div yield 313.0%"
+    ]
+  },
+  "ICG.L": {
+    "ticker": "ICG.L",
+    "score": 50.0,
+    "share_history": {
+      "latest_shares": 288642216.0,
+      "shares_1y_ago": 290636992.0,
+      "shares_2y_ago": 290612992.0,
+      "pct_change_1y": -0.6863462170706769,
+      "pct_change_2y": -0.6781444925903379,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "ICG plc",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 5215764992.0,
+      "price": 1807.0,
+      "p_b": 1.9820117,
+      "div_yield": 4.67,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 8.857843,
+      "shares_out": 284690757.0,
+      "inst_pct": 0.84718,
+      "insider_pct": 0.00904
+    },
+    "price_summary": {
+      "last": 1807.0,
+      "ret_30d_pct": 13.505025125628144,
+      "ret_90d_pct": -13.952380952380949,
+      "ret_180d_pct": -17.18606782768103,
+      "high_52w": 2340.0,
+      "low_52w": 1424.875
+    },
+    "reasons": [
+      "P/B 1.98",
+      "Div yield 467.0%"
+    ]
+  },
+  "ICP.L": {
+    "ticker": "ICP.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "IDS.L": {
+    "ticker": "IDS.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "IFP.TO": {
+    "ticker": "IFP.TO",
+    "score": 35.0,
+    "share_history": {
+      "latest_shares": 65766951.0,
+      "shares_1y_ago": 51453700.0,
+      "shares_2y_ago": 51974600.0,
+      "pct_change_1y": 27.81772933724882,
+      "pct_change_2y": 26.5367140872657,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Interfor Corporation",
+      "sector": "Basic Materials",
+      "currency": "CAD",
+      "market_cap": 563622784.0,
+      "price": 8.57,
+      "p_b": 0.44443288,
+      "div_yield": null,
+      "fcf": -17375000.0,
+      "ev_ebitda": 15.281,
+      "trailing_pe": null,
+      "shares_out": 65766951.0,
+      "inst_pct": 0.44764,
+      "insider_pct": 0.00601
+    },
+    "price_summary": {
+      "last": 8.569999694824219,
+      "ret_30d_pct": -18.536128118705253,
+      "ret_90d_pct": -2.1689558115670193,
+      "ret_180d_pct": -32.836994192003935,
+      "high_52w": 13.949999809265137,
+      "low_52w": 7.050000190734863
+    },
+    "reasons": [
+      "Shares +27.8% (dilution)",
+      "180d return -33%",
+      "P/B 0.44 (deep value)"
+    ]
+  },
+  "IFX.DE": {
+    "ticker": "IFX.DE",
+    "score": 8.0,
+    "share_history": {
+      "latest_shares": 1299499659.0,
+      "shares_1y_ago": 1299389952.0,
+      "shares_2y_ago": 1297319936.0,
+      "pct_change_1y": 0.008442962009302946,
+      "pct_change_2y": 0.1680173825679976,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Infineon Technologies AG",
+      "sector": "Technology",
+      "currency": "EUR",
+      "market_cap": 84714381312.0,
+      "price": 65.19,
+      "p_b": 5.044104,
+      "div_yield": 0.54,
+      "fcf": 1356125056.0,
+      "ev_ebitda": 22.618,
+      "trailing_pe": 79.5,
+      "shares_out": 1299499659.0,
+      "inst_pct": 0.53484,
+      "insider_pct": 0.0
+    },
+    "price_summary": {
+      "last": 65.19000244140625,
+      "ret_30d_pct": 62.36612693373791,
+      "ret_90d_pct": 54.71699308954459,
+      "ret_180d_pct": 81.58774281503393,
+      "high_52w": 68.4800033569336,
+      "low_52w": 30.81999969482422
+    },
+    "reasons": [
+      "Div yield 54.0%"
+    ]
+  },
+  "IGG.L": {
+    "ticker": "IGG.L",
+    "score": 49.0,
+    "share_history": {
+      "latest_shares": 330804566.0,
+      "shares_1y_ago": 348622016.0,
+      "shares_2y_ago": 373556000.0,
+      "pct_change_1y": -5.110821801913968,
+      "pct_change_2y": -11.444451166625624,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "IG Group Holdings plc",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 5071234048.0,
+      "price": 1533.0,
+      "p_b": 2.7156775,
+      "div_yield": 4.01,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 14.6,
+      "shares_out": 330804566.0,
+      "inst_pct": 0.74259,
+      "insider_pct": 0.03339
+    },
+    "price_summary": {
+      "last": 1533.0,
+      "ret_30d_pct": 5.505849965588427,
+      "ret_90d_pct": 15.785498489425986,
+      "ret_180d_pct": 35.663716814159294,
+      "high_52w": 1556.0,
+      "low_52w": 1016.0
+    },
+    "reasons": [
+      "Shares -5.1% YoY",
+      "Div yield 401.0%"
+    ]
+  },
+  "IHG.L": {
+    "ticker": "IHG.L",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 148919817.0,
+      "shares_1y_ago": 154692000.0,
+      "shares_2y_ago": 162568000.0,
+      "pct_change_1y": -3.731403692498647,
+      "pct_change_2y": -8.395368707248663,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "InterContinental Hotels Group PLC",
+      "sector": "Consumer Cyclical",
+      "currency": "USD",
+      "market_cap": 22107148288.0,
+      "price": 148.45,
+      "p_b": -8.166465,
+      "div_yield": 1.24,
+      "fcf": 684249984.0,
+      "ev_ebitda": 20.784,
+      "trailing_pe": 30.482546,
+      "shares_out": 148919817.0,
+      "inst_pct": 0.64482003,
+      "insider_pct": 0.059949998
+    },
+    "price_summary": {
+      "last": 148.4499969482422,
+      "ret_30d_pct": 11.911046949679926,
+      "ret_90d_pct": 9.355430532775099,
+      "ret_180d_pct": 23.201235150501986,
+      "high_52w": 152.0,
+      "low_52w": 108.67604064941406
+    },
+    "reasons": [
+      "Shares -3.7% YoY",
+      "Div yield 124.0%"
+    ]
+  },
+  "III.L": {
+    "ticker": "III.L",
+    "score": 51.0,
+    "share_history": {
+      "latest_shares": 1017894224.0,
+      "shares_1y_ago": 1008179968.0,
+      "shares_2y_ago": 964369024.0,
+      "pct_change_1y": 0.963543842204162,
+      "pct_change_2y": 5.55028196343228,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "3i Group Ord",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 22495463424.0,
+      "price": 2210.0,
+      "p_b": 0.7724302,
+      "div_yield": 3.82,
+      "fcf": 3376375040.0,
+      "ev_ebitda": 4.242,
+      "trailing_pe": 4.100186,
+      "shares_out": 1017894224.0,
+      "inst_pct": 0.85011,
+      "insider_pct": 0.02003
+    },
+    "price_summary": {
+      "last": 2210.0,
+      "ret_30d_pct": -14.473684210526317,
+      "ret_90d_pct": -30.524992140836215,
+      "ret_180d_pct": -45.01119681512814,
+      "high_52w": 4497.0,
+      "low_52w": 1825.0
+    },
+    "reasons": [
+      "180d return -45%",
+      "P/B 0.77 (deep value)",
+      "Div yield 382.0%"
+    ]
+  },
+  "IMB.L": {
+    "ticker": "IMB.L",
+    "score": 50.0,
+    "share_history": {
+      "latest_shares": 773098599.0,
+      "shares_1y_ago": 819083008.0,
+      "shares_2y_ago": 861476992.0,
+      "pct_change_1y": -5.6141329451190325,
+      "pct_change_2y": -10.25893829094857,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Imperial Brands PLC",
+      "sector": "Consumer Defensive",
+      "currency": "GBP",
+      "market_cap": 21778188288.0,
+      "price": 2817.0,
+      "p_b": 4.6965656,
+      "div_yield": 5.92,
+      "fcf": 2502374912.0,
+      "ev_ebitda": 8.38,
+      "trailing_pe": 13.225351,
+      "shares_out": 773098599.0,
+      "inst_pct": 0.65907997,
+      "insider_pct": 0.041350003
+    },
+    "price_summary": {
+      "last": 2817.0,
+      "ret_30d_pct": -7.3659980269648155,
+      "ret_90d_pct": -6.225033288948067,
+      "ret_180d_pct": -9.769378603459323,
+      "high_52w": 3632.0400390625,
+      "low_52w": 2648.0
+    },
+    "reasons": [
+      "Shares -5.6% YoY",
+      "Div yield 592.0%"
+    ]
+  },
+  "IMI.L": {
+    "ticker": "IMI.L",
+    "score": 32.0,
+    "share_history": {
+      "latest_shares": 239826158.0,
+      "shares_1y_ago": 251596992.0,
+      "shares_2y_ago": 262874000.0,
+      "pct_change_1y": -4.678447825004206,
+      "pct_change_2y": -8.767638488401285,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "IMI plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 6345800192.0,
+      "price": 2646.0,
+      "p_b": 5.8669624,
+      "div_yield": 1.29,
+      "fcf": 251950000.0,
+      "ev_ebitda": 13.612,
+      "trailing_pe": 21.338709,
+      "shares_out": 239826158.0,
+      "inst_pct": 0.77427,
+      "insider_pct": 0.00417
+    },
+    "price_summary": {
+      "last": 2646.0,
+      "ret_30d_pct": 0.6849315068493178,
+      "ret_90d_pct": 1.1467889908256979,
+      "ret_180d_pct": 16.358839050131934,
+      "high_52w": 2938.0,
+      "low_52w": 1858.0
+    },
+    "reasons": [
+      "Shares -4.7% YoY",
+      "Div yield 129.0%"
+    ]
+  },
+  "INCH.L": {
+    "ticker": "INCH.L",
+    "score": 49.0,
+    "share_history": {
+      "latest_shares": 353315807.0,
+      "shares_1y_ago": 375897984.0,
+      "shares_2y_ago": 411999008.0,
+      "pct_change_1y": -6.007528095708015,
+      "pct_change_2y": -14.243529683450106,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Inchcape plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 2867157760.0,
+      "price": 811.5,
+      "p_b": 2.322553,
+      "div_yield": 3.98,
+      "fcf": 273624992.0,
+      "ev_ebitda": 8.65,
+      "trailing_pe": 11.270833,
+      "shares_out": 353315807.0,
+      "inst_pct": 0.56093,
+      "insider_pct": 0.13738
+    },
+    "price_summary": {
+      "last": 811.5,
+      "ret_30d_pct": 3.772378516624042,
+      "ret_90d_pct": 5.389610389610389,
+      "ret_180d_pct": 21.573033707865164,
+      "high_52w": 895.0,
+      "low_52w": 640.5
+    },
+    "reasons": [
+      "Shares -6.0% YoY",
+      "Div yield 398.0%"
+    ]
+  },
+  "INDU-A.ST": {
+    "ticker": "INDU-A.ST",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 431899108.0,
+      "shares_1y_ago": 432223008.0,
+      "shares_2y_ago": 431640992.0,
+      "pct_change_1y": -0.07493816710469892,
+      "pct_change_2y": 0.05979876906594406,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "AB Industriv\u00e4rden (publ)",
+      "sector": "Financial Services",
+      "currency": "SEK",
+      "market_cap": 208175366144.0,
+      "price": 482.0,
+      "p_b": 1.0232502,
+      "div_yield": 1.82,
+      "fcf": 24360249344.0,
+      "ev_ebitda": 5.334,
+      "trailing_pe": 5.1945252,
+      "shares_out": 210635902.0,
+      "inst_pct": 0.19278,
+      "insider_pct": 0.50771
+    },
+    "price_summary": {
+      "last": 482.0,
+      "ret_30d_pct": 3.611347238205176,
+      "ret_90d_pct": 16.990291262135916,
+      "ret_180d_pct": 27.24393229480111,
+      "high_52w": 514.5,
+      "low_52w": 335.0
+    },
+    "reasons": [
+      "P/B 1.02",
+      "Div yield 182.0%"
+    ]
+  },
+  "INF.L": {
+    "ticker": "INF.L",
+    "score": 54.0,
+    "share_history": {
+      "latest_shares": 1260752470.0,
+      "shares_1y_ago": 1302989952.0,
+      "shares_2y_ago": 1352060032.0,
+      "pct_change_1y": -3.241581559026485,
+      "pct_change_2y": -6.753218040543341,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Informa plc",
+      "sector": "Communication Services",
+      "currency": "GBP",
+      "market_cap": 9967509504.0,
+      "price": 790.6,
+      "p_b": 1.8021426,
+      "div_yield": 2.78,
+      "fcf": 765312512.0,
+      "ev_ebitda": 12.157,
+      "trailing_pe": 790.6,
+      "shares_out": 1260752470.0,
+      "inst_pct": 0.79286003,
+      "insider_pct": 0.00398
+    },
+    "price_summary": {
+      "last": 790.5999755859375,
+      "ret_30d_pct": 2.2239398278925515,
+      "ret_90d_pct": -11.486793015998353,
+      "ret_180d_pct": -9.16820388209949,
+      "high_52w": 1000.0,
+      "low_52w": 719.0
+    },
+    "reasons": [
+      "Shares -3.2% YoY",
+      "P/B 1.80",
+      "Div yield 278.0%"
+    ]
+  },
+  "INGA.AS": {
+    "ticker": "INGA.AS",
+    "score": 40.0,
+    "share_history": {
+      "latest_shares": 2869454153.0,
+      "shares_1y_ago": 2999340032.0,
+      "shares_2y_ago": 3258190080.0,
+      "pct_change_1y": -4.330481959839361,
+      "pct_change_2y": -11.931038934352166,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "ING Groep N.V.",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 72783699968.0,
+      "price": 25.365,
+      "p_b": 1.4342663,
+      "div_yield": 4.28,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 11.582191,
+      "shares_out": 2869454153.0,
+      "inst_pct": 0.48771,
+      "insider_pct": 6.0000002e-05
+    },
+    "price_summary": {
+      "last": 25.364999771118164,
+      "ret_30d_pct": 9.167200795414022,
+      "ret_90d_pct": 6.085319669558831,
+      "ret_180d_pct": 24.582509875868695,
+      "high_52w": 26.44499969482422,
+      "low_52w": 17.645999908447266
+    },
+    "reasons": [
+      "Shares -4.3% YoY",
+      "P/B 1.43",
+      "Div yield 428.0%"
+    ]
+  },
+  "INVE-B.ST": {
+    "ticker": "INVE-B.ST",
+    "score": 20.0,
+    "share_history": {
+      "latest_shares": 3063735732.0,
+      "shares_1y_ago": 3048179968.0,
+      "shares_2y_ago": 3060450048.0,
+      "pct_change_1y": 0.5103295790703122,
+      "pct_change_2y": 0.10735950427118723,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Investor AB (publ)",
+      "sector": "Financial Services",
+      "currency": "SEK",
+      "market_cap": 1116731736064.0,
+      "price": 364.5,
+      "p_b": 1.1338892,
+      "div_yield": 1.54,
+      "fcf": 126124376064.0,
+      "ev_ebitda": 6.015,
+      "trailing_pe": 5.8620133,
+      "shares_out": 1816972356.0,
+      "inst_pct": 0.46615002,
+      "insider_pct": 0.00254
+    },
+    "price_summary": {
+      "last": 364.5,
+      "ret_30d_pct": 2.878919717319195,
+      "ret_90d_pct": 10.437816537245492,
+      "ret_180d_pct": 22.87207399275788,
+      "high_52w": 387.04998779296875,
+      "low_52w": 271.8999938964844
+    },
+    "reasons": [
+      "P/B 1.13",
+      "Div yield 154.0%"
+    ]
+  },
+  "INVE.L": {
+    "ticker": "INVE.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "IPX.L": {
+    "ticker": "IPX.L",
+    "score": 87.0,
+    "share_history": {
+      "latest_shares": 121111895.0,
+      "shares_1y_ago": 127935000.0,
+      "shares_2y_ago": 128322000.0,
+      "pct_change_1y": -5.333259076874974,
+      "pct_change_2y": -5.618759838531195,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Impax Asset Management Group Plc",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 128620832.0,
+      "price": 106.2,
+      "p_b": 1.1493506,
+      "div_yield": 11.3,
+      "fcf": 20670000.0,
+      "ev_ebitda": 1.673,
+      "trailing_pe": 6.6375,
+      "shares_out": 121111894.0,
+      "inst_pct": 0.44432998,
+      "insider_pct": 0.21686001
+    },
+    "price_summary": {
+      "last": 106.19999694824219,
+      "ret_30d_pct": -13.093290016019232,
+      "ret_90d_pct": -27.35978169285518,
+      "ret_180d_pct": -42.15686633018656,
+      "high_52w": 214.5,
+      "low_52w": 90.9000015258789
+    },
+    "reasons": [
+      "Shares -5.3% YoY",
+      "180d return -42%",
+      "P/B 1.15",
+      "Small cap ($0.1B)",
+      "Div yield 1130.0%"
+    ]
+  },
+  "ISP.MI": {
+    "ticker": "ISP.MI",
+    "score": 44.0,
+    "share_history": {
+      "latest_shares": 17428766031.0,
+      "shares_1y_ago": 17875499008.0,
+      "shares_2y_ago": 18256799744.0,
+      "pct_change_1y": -2.499135698533894,
+      "pct_change_2y": -4.535481161051402,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Intesa Sanpaolo S.p.A.",
+      "sector": "Financial Services",
+      "currency": "EUR",
+      "market_cap": 99953983488.0,
+      "price": 5.735,
+      "p_b": 1.4533705,
+      "div_yield": 6.63,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 10.62037,
+      "shares_out": 17428766031.0,
+      "inst_pct": 0.35637,
+      "insider_pct": 0.05623
+    },
+    "price_summary": {
+      "last": 5.735000133514404,
+      "ret_30d_pct": 6.440239816876114,
+      "ret_90d_pct": -2.9117983654503465,
+      "ret_180d_pct": 6.440239816876114,
+      "high_52w": 6.158999919891357,
+      "low_52w": 4.696499824523926
+    },
+    "reasons": [
+      "Shares -2.5% YoY",
+      "P/B 1.45",
+      "Div yield 663.0%"
+    ]
+  },
+  "ITH.L": {
+    "ticker": "ITH.L",
+    "score": 37.0,
+    "share_history": {
+      "latest_shares": 1650599943.0,
+      "shares_1y_ago": 1698569984.0,
+      "shares_2y_ago": 1006190016.0,
+      "pct_change_1y": -2.8241427466552893,
+      "pct_change_2y": 64.04455587442442,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Ithaca Energy plc",
+      "sector": "Energy",
+      "currency": "USD",
+      "market_cap": 4697607168.0,
+      "price": 284.6,
+      "p_b": 2.4831626,
+      "div_yield": 11.25,
+      "fcf": 467075008.0,
+      "ev_ebitda": 3.115,
+      "trailing_pe": null,
+      "shares_out": 1650599943.0,
+      "inst_pct": 0.05671,
+      "insider_pct": 0.86503
+    },
+    "price_summary": {
+      "last": 284.6000061035156,
+      "ret_30d_pct": 16.16326779735331,
+      "ret_90d_pct": 84.0879656323919,
+      "ret_180d_pct": 22.672416423929143,
+      "high_52w": 288.5,
+      "low_52w": 126.19999694824219
+    },
+    "reasons": [
+      "Shares -2.8% YoY",
+      "Div yield 1125.0%"
+    ]
+  },
+  "ITRK.L": {
+    "ticker": "ITRK.L",
+    "score": 32.0,
+    "share_history": {
+      "latest_shares": 153496203.0,
+      "shares_1y_ago": 159192000.0,
+      "shares_2y_ago": 161115008.0,
+      "pct_change_1y": -3.5779417307402417,
+      "pct_change_2y": -4.728799070040701,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Intertek Group plc",
+      "sector": "Industrials",
+      "currency": "GBP",
+      "market_cap": 8618812416.0,
+      "price": 5615.0,
+      "p_b": 7.9588947,
+      "div_yield": 2.94,
+      "fcf": 362312512.0,
+      "ev_ebitda": 13.315,
+      "trailing_pe": 25.99537,
+      "shares_out": 153496203.0,
+      "inst_pct": 0.98634005,
+      "insider_pct": 0.00699
+    },
+    "price_summary": {
+      "last": 5615.0,
+      "ret_30d_pct": 51.10333692142088,
+      "ret_90d_pct": 22.17145343777198,
+      "ret_180d_pct": 19.722814498933893,
+      "high_52w": 5722.408203125,
+      "low_52w": 3519.416015625
+    },
+    "reasons": [
+      "Shares -3.6% YoY",
+      "Div yield 294.0%"
+    ]
+  },
+  "ITV.L": {
+    "ticker": "ITV.L",
+    "score": 34.0,
+    "share_history": {
+      "latest_shares": 3739962358.0,
+      "shares_1y_ago": 3733870080.0,
+      "shares_2y_ago": 3978810112.0,
+      "pct_change_1y": 0.16316255974284655,
+      "pct_change_2y": -6.002994545521045,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "ITV plc",
+      "sector": "Communication Services",
+      "currency": "GBP",
+      "market_cap": 2890990848.0,
+      "price": 77.3,
+      "p_b": 1.6070687,
+      "div_yield": 6.47,
+      "fcf": 249375008.0,
+      "ev_ebitda": 6.67,
+      "trailing_pe": 12.883333,
+      "shares_out": 3739962358.0,
+      "inst_pct": 0.68271005,
+      "insider_pct": 0.04883
+    },
+    "price_summary": {
+      "last": 77.30000305175781,
+      "ret_30d_pct": 1.4435776214831053,
+      "ret_90d_pct": -3.555830842000529,
+      "ret_180d_pct": -5.2115264757288005,
+      "high_52w": 88.9000015258789,
+      "low_52w": 65.69999694824219
+    },
+    "reasons": [
+      "P/B 1.61",
+      "Div yield 647.0%"
+    ]
+  },
+  "ITX.MC": {
+    "ticker": "ITX.MC",
+    "score": 8.0,
+    "share_history": {
+      "latest_shares": 3115651520.0,
+      "shares_1y_ago": 3114749952.0,
+      "shares_2y_ago": 3113070080.0,
+      "pct_change_1y": 0.02894511642648201,
+      "pct_change_2y": 0.08292264336047239,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Industria de Dise\u00f1o Textil, S.A.",
+      "sector": "Consumer Cyclical",
+      "currency": "EUR",
+      "market_cap": 154118668288.0,
+      "price": 49.48,
+      "p_b": 7.5565057,
+      "div_yield": 1.31,
+      "fcf": 5341875200.0,
+      "ev_ebitda": 15.886,
+      "trailing_pe": 24.74,
+      "shares_out": 3114766768.0,
+      "inst_pct": 0.1753,
+      "insider_pct": 0.64356005
+    },
+    "price_summary": {
+      "last": 49.47999954223633,
+      "ret_30d_pct": -3.660438173235381,
+      "ret_90d_pct": -13.496505450582097,
+      "ret_180d_pct": 17.251181629575374,
+      "high_52w": 58.279998779296875,
+      "low_52w": 40.79999923706055
+    },
+    "reasons": [
+      "Div yield 131.0%"
+    ]
+  },
+  "IWG.L": {
+    "ticker": "IWG.L",
+    "score": 57.0,
+    "share_history": {
+      "latest_shares": 950208776.0,
+      "shares_1y_ago": 1020120000.0,
+      "shares_2y_ago": 1006689984.0,
+      "pct_change_1y": -6.853235305650318,
+      "pct_change_2y": -5.610586068967982,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "International Workplace Group plc",
+      "sector": "Real Estate",
+      "currency": "USD",
+      "market_cap": 1781641344.0,
+      "price": 187.5,
+      "p_b": -8.139454,
+      "div_yield": 0.54,
+      "fcf": 135375008.0,
+      "ev_ebitda": 19.21,
+      "trailing_pe": 187.5,
+      "shares_out": 950208776.0,
+      "inst_pct": 0.42386,
+      "insider_pct": 0.26641
+    },
+    "price_summary": {
+      "last": 187.5,
+      "ret_30d_pct": 5.337078651685401,
+      "ret_90d_pct": -20.88607594936709,
+      "ret_180d_pct": -7.3616572854764195,
+      "high_52w": 250.60000610351562,
+      "low_52w": 163.5
+    },
+    "reasons": [
+      "Shares -6.9% YoY",
+      "Div yield 54.0%"
+    ]
+  },
+  "JBH.AX": {
+    "ticker": "JBH.AX",
+    "score": 45.0,
+    "share_history": {
+      "latest_shares": 109333981.0,
+      "shares_1y_ago": 109334000.0,
+      "shares_2y_ago": 109334000.0,
+      "pct_change_1y": -1.7377942818086467e-05,
+      "pct_change_2y": -1.7377942818086467e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "JB Hi-Fi Limited",
+      "sector": "Consumer Cyclical",
+      "currency": "AUD",
+      "market_cap": 7798793216.0,
+      "price": 71.33,
+      "p_b": 4.6475115,
+      "div_yield": 4.42,
+      "fcf": 519512512.0,
+      "ev_ebitda": 10.148,
+      "trailing_pe": 16.211363,
+      "shares_out": 109333981.0,
+      "inst_pct": 0.52677,
+      "insider_pct": 0.022769999
+    },
+    "price_summary": {
+      "last": 71.33000183105469,
+      "ret_30d_pct": -0.9993076893916375,
+      "ret_90d_pct": -22.803029596187873,
+      "ret_180d_pct": -39.143415759565436,
+      "high_52w": 121.0,
+      "low_52w": 68.91000366210938
+    },
+    "reasons": [
+      "180d return -39%",
+      "Div yield 442.0%"
+    ]
+  },
+  "JD.L": {
+    "ticker": "JD.L",
+    "score": 74.0,
+    "share_history": {
+      "latest_shares": 4801281892.0,
+      "shares_1y_ago": 5214090240.0,
+      "shares_2y_ago": 5183139840.0,
+      "pct_change_1y": -7.917169227972554,
+      "pct_change_2y": -7.367309387508247,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "JD Sports Fashion Plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 3457883136.0,
+      "price": 72.02,
+      "p_b": 1.1904131,
+      "div_yield": 1.67,
+      "fcf": 833000000.0,
+      "ev_ebitda": 4.995,
+      "trailing_pe": 8.002221,
+      "shares_out": 4801281892.0,
+      "inst_pct": 0.37777,
+      "insider_pct": 0.55536
+    },
+    "price_summary": {
+      "last": 72.0199966430664,
+      "ret_30d_pct": 2.156023607186386,
+      "ret_90d_pct": -13.187081198333638,
+      "ret_180d_pct": -24.994793625347455,
+      "high_52w": 106.18099975585938,
+      "low_52w": 63.97999954223633
+    },
+    "reasons": [
+      "Shares -7.9% YoY",
+      "P/B 1.19",
+      "Div yield 167.0%"
+    ]
+  },
+  "JEMI.L": {
+    "ticker": "JEMI.L",
+    "score": 27.0,
+    "share_history": {
+      "latest_shares": 260272215.0,
+      "shares_1y_ago": 272561984.0,
+      "shares_2y_ago": 292223008.0,
+      "pct_change_1y": -4.508981340552609,
+      "pct_change_2y": -10.933702044433137,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "JPMorgan Emerging Markets Div Inc",
+      "sector": null,
+      "currency": "GBp",
+      "market_cap": 516640320.0,
+      "price": 198.5,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 4.5113635,
+      "shares_out": 260272215.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 198.5,
+      "ret_30d_pct": 10.584958217270191,
+      "ret_90d_pct": 12.784090909090917,
+      "ret_180d_pct": 32.77591973244147,
+      "high_52w": 208.0,
+      "low_52w": 137.5
+    },
+    "reasons": [
+      "Shares -4.5% YoY"
+    ]
+  },
+  "JEN.DE": {
+    "ticker": "JEN.DE",
+    "score": 25.0,
+    "share_history": {
+      "latest_shares": 57238115.0,
+      "shares_1y_ago": 57565700.0,
+      "shares_2y_ago": 57238100.0,
+      "pct_change_1y": -0.5690628273433695,
+      "pct_change_2y": 2.6206320624666546e-05,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Jenoptik AG",
+      "sector": "Technology",
+      "currency": "EUR",
+      "market_cap": 2548240896.0,
+      "price": 44.52,
+      "p_b": 2.5094416,
+      "div_yield": 0.9,
+      "fcf": 82310624.0,
+      "ev_ebitda": 15.609,
+      "trailing_pe": 37.411762,
+      "shares_out": 57238115.0,
+      "inst_pct": 0.4934,
+      "insider_pct": 0.11
+    },
+    "price_summary": {
+      "last": 44.52000045776367,
+      "ret_30d_pct": 50.60893525744981,
+      "ret_90d_pct": 105.16128521892756,
+      "ret_180d_pct": 159.59184517800566,
+      "high_52w": 46.0,
+      "low_52w": 16.040000915527344
+    },
+    "reasons": [
+      "Div yield 90.0%"
+    ]
+  },
+  "JET2.L": {
+    "ticker": "JET2.L",
+    "score": 97.0,
+    "share_history": {
+      "latest_shares": 180692692.0,
+      "shares_1y_ago": 213116992.0,
+      "shares_2y_ago": 220266000.0,
+      "pct_change_1y": -15.214319466370851,
+      "pct_change_2y": -17.966144570655484,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Jet2 plc",
+      "sector": "Consumer Cyclical",
+      "currency": "GBP",
+      "market_cap": 1940639360.0,
+      "price": 1074.0,
+      "p_b": 1.0408994,
+      "div_yield": 1.55,
+      "fcf": -58987500.0,
+      "ev_ebitda": 0.097,
+      "trailing_pe": 4.5897436,
+      "shares_out": 180692692.0,
+      "inst_pct": 0.52531,
+      "insider_pct": 0.20472999
+    },
+    "price_summary": {
+      "last": 1074.0,
+      "ret_30d_pct": -8.517887563884152,
+      "ret_90d_pct": -24.41942294159043,
+      "ret_180d_pct": -34.029484029484024,
+      "high_52w": 1963.0,
+      "low_52w": 980.0
+    },
+    "reasons": [
+      "Shares -15.2% YoY (heavy)",
+      "180d return -34%",
+      "P/B 1.04",
+      "Div yield 155.0%"
+    ]
+  },
+  "JGGI.L": {
+    "ticker": "JGGI.L",
+    "score": 5.0,
+    "share_history": {
+      "latest_shares": 545720407.0,
+      "shares_1y_ago": 519273984.0,
+      "shares_2y_ago": 477921984.0,
+      "pct_change_1y": 5.092961291124487,
+      "pct_change_2y": 14.186085861243836,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "JPMorgan Global Growth & Income Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 3293422592.0,
+      "price": 603.5,
+      "p_b": 1.0289855,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 14.369048,
+      "shares_out": 545720407.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 603.5,
+      "ret_30d_pct": 8.93501805054151,
+      "ret_90d_pct": 3.516295025728988,
+      "ret_180d_pct": 7.003546099290769,
+      "high_52w": 603.5,
+      "low_52w": 517.0330200195312
+    },
+    "reasons": [
+      "Shares +5.1% (dilution)",
+      "P/B 1.03"
+    ]
+  },
+  "JLEN.L": {
+    "ticker": "JLEN.L",
+    "score": 51.0,
+    "share_history": {
+      "latest_shares": 657646016.0,
+      "shares_1y_ago": 661531008.0,
+      "shares_2y_ago": 661531008.0,
+      "pct_change_1y": -0.5872728493476753,
+      "pct_change_2y": -0.5872728493476753,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Foresight Environmental Infra Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 615223808.0,
+      "price": 93.0,
+      "p_b": 0.8186619,
+      "div_yield": 5.11,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": 657646016.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 76.0,
+      "ret_30d_pct": 11.764705882352944,
+      "ret_90d_pct": 12.759641364131191,
+      "ret_180d_pct": -3.675540519384801,
+      "high_52w": 86.0,
+      "low_52w": 61.20600128173828
+    },
+    "reasons": [
+      "P/B 0.82 (deep value)",
+      "Div yield 511.0%"
+    ]
+  },
+  "JMAT.L": {
+    "ticker": "JMAT.L",
+    "score": 24.0,
+    "share_history": {
+      "latest_shares": 167544129.0,
+      "shares_1y_ago": 167424000.0,
+      "shares_2y_ago": 183452992.0,
+      "pct_change_1y": 0.07175136181192254,
+      "pct_change_2y": -8.67190162807484,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Johnson Matthey Plc",
+      "sector": "Basic Materials",
+      "currency": "GBP",
+      "market_cap": 3531830016.0,
+      "price": 2108.0,
+      "p_b": 1.6859953,
+      "div_yield": 3.65,
+      "fcf": -506124992.0,
+      "ev_ebitda": 8.675,
+      "trailing_pe": null,
+      "shares_out": 167544129.0,
+      "inst_pct": 0.71048,
+      "insider_pct": 0.05523
+    },
+    "price_summary": {
+      "last": 2108.0,
+      "ret_30d_pct": 10.772464529689962,
+      "ret_90d_pct": -8.268059181897303,
+      "ret_180d_pct": 10.308738880167457,
+      "high_52w": 2434.0,
+      "low_52w": 1346.0
+    },
+    "reasons": [
+      "P/B 1.69",
+      "Div yield 365.0%"
+    ]
+  },
+  "JMG.L": {
+    "ticker": "JMG.L",
+    "score": 28.0,
+    "share_history": {
+      "latest_shares": 985801206.0,
+      "shares_1y_ago": 1029920000.0,
+      "shares_2y_ago": 1117080064.0,
+      "pct_change_1y": -4.283710773652327,
+      "pct_change_2y": -11.751964987175711,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "JPMorgan Emerging Markets Growth & Inc",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 143335489536.0,
+      "price": 145.4,
+      "p_b": 115.305305,
+      "div_yield": 2.26,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": 2907.9998,
+      "shares_out": 975227846.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 163.39999389648438,
+      "ret_30d_pct": 12.379642885552578,
+      "ret_90d_pct": 14.58624607482113,
+      "ret_180d_pct": 36.62207021837101,
+      "high_52w": 168.0,
+      "low_52w": 106.4000015258789
+    },
+    "reasons": [
+      "Shares -4.3% YoY",
+      "Div yield 226.0%"
+    ]
+  },
+  "JMT.LS": {
+    "ticker": "JMT.LS",
+    "score": 26.0,
+    "share_history": {
+      "latest_shares": 628434220.0,
+      "shares_1y_ago": 639777984.0,
+      "shares_2y_ago": 630283008.0,
+      "pct_change_1y": -1.7730782058296035,
+      "pct_change_2y": -0.293326644782399,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Jer\u00f3nimo Martins, SGPS, S.A.",
+      "sector": "Consumer Defensive",
+      "currency": "EUR",
+      "market_cap": 11569474560.0,
+      "price": 18.41,
+      "p_b": 3.5153713,
+      "div_yield": 3.53,
+      "fcf": null,
+      "ev_ebitda": 7.946,
+      "trailing_pe": 17.873787,
+      "shares_out": 628434220.0,
+      "inst_pct": 0.21192,
+      "insider_pct": 0.56183
+    },
+    "price_summary": {
+      "last": 18.40999984741211,
+      "ret_30d_pct": -12.166027425781746,
+      "ret_90d_pct": -11.744969756729851,
+      "ret_180d_pct": -12.913905492225886,
+      "high_52w": 23.239999771118164,
+      "low_52w": 17.969999313354492
+    },
+    "reasons": [
+      "Div yield 353.0%"
+    ]
+  },
+  "JOIN.L": {
+    "ticker": "JOIN.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "JUP.L": {
+    "ticker": "JUP.L",
+    "score": 41.0,
+    "share_history": {
+      "latest_shares": 501979511.0,
+      "shares_1y_ago": 511643008.0,
+      "shares_2y_ago": 511080000.0,
+      "pct_change_1y": -1.8887186669029998,
+      "pct_change_2y": -1.7806388432339393,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Jupiter Fund Management Plc",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 783088000.0,
+      "price": 156.0,
+      "p_b": 0.864266,
+      "div_yield": 2.82,
+      "fcf": 675000.0,
+      "ev_ebitda": 2.989,
+      "trailing_pe": 8.666666,
+      "shares_out": 501979510.0,
+      "inst_pct": 0.56847,
+      "insider_pct": 0.20301001
+    },
+    "price_summary": {
+      "last": 156.0,
+      "ret_30d_pct": -8.771929824561408,
+      "ret_90d_pct": -8.98482756410428,
+      "ret_180d_pct": 24.600642014784203,
+      "high_52w": 214.5,
+      "low_52w": 76.80000305175781
+    },
+    "reasons": [
+      "P/B 0.86 (deep value)",
+      "Div yield 282.0%"
+    ]
+  },
+  "JUSC.L": {
+    "ticker": "JUSC.L",
+    "score": 71.0,
+    "share_history": {
+      "latest_shares": 51663193.0,
+      "shares_1y_ago": 60628400.0,
+      "shares_2y_ago": 62484300.0,
+      "pct_change_1y": -14.78714100982378,
+      "pct_change_2y": -17.31812151212384,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "JPMorgan US Smaller Companies Ord",
+      "sector": null,
+      "currency": "GBP",
+      "market_cap": 218535296.0,
+      "price": 423.0,
+      "p_b": 1.0040352,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": 51663193.0,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": {
+      "last": 423.0,
+      "ret_30d_pct": 7.088607594936702,
+      "ret_90d_pct": 3.4229828850855792,
+      "ret_180d_pct": 4.962779156327546,
+      "high_52w": 431.0,
+      "low_52w": 365.0
+    },
+    "reasons": [
+      "Shares -14.8% YoY (heavy)",
+      "P/B 1.00",
+      "Small cap ($0.2B)"
+    ]
+  },
+  "JUST.L": {
+    "ticker": "JUST.L",
+    "score": 29.0,
+    "share_history": {
+      "latest_shares": 1053894083.0,
+      "shares_1y_ago": 1052929984.0,
+      "shares_2y_ago": 1038700032.0,
+      "pct_change_1y": 0.09156344815421935,
+      "pct_change_2y": 1.4627948909122557,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Just Group plc",
+      "sector": "Financial Services",
+      "currency": "GBP",
+      "market_cap": 2308027904.0,
+      "price": 219.0,
+      "p_b": 204.86436,
+      "div_yield": 0.0121,
+      "fcf": -3840750080.0,
+      "ev_ebitda": -222.21,
+      "trailing_pe": null,
+      "shares_out": 1053894083.0,
+      "inst_pct": 1.07918,
+      "insider_pct": 0.10767999
+    },
+    "price_summary": {
+      "last": 2.190000057220459,
+      "ret_30d_pct": -98.99078338376938,
+      "ret_90d_pct": -98.97423884907707,
+      "ret_180d_pct": -98.32568806871215,
+      "high_52w": 219.5,
+      "low_52w": 2.184999942779541
+    },
+    "reasons": [
+      "180d return -98%"
+    ]
+  },
+  "KAPE.L": {
+    "ticker": "KAPE.L",
+    "score": 0.0,
+    "share_history": null,
+    "fundamentals": {
+      "name": null,
+      "sector": null,
+      "currency": null,
+      "market_cap": null,
+      "price": null,
+      "p_b": null,
+      "div_yield": null,
+      "fcf": null,
+      "ev_ebitda": null,
+      "trailing_pe": null,
+      "shares_out": null,
+      "inst_pct": null,
+      "insider_pct": null
+    },
+    "price_summary": null,
+    "reasons": [
+      "no share-count history"
+    ]
+  },
+  "KER.PA": {
+    "ticker": "KER.PA",
+    "score": 32.0,
+    "share_history": {
+      "latest_shares": 122620351.0,
+      "shares_1y_ago": 124624000.0,
+      "shares_2y_ago": 122587000.0,
+      "pct_change_1y": -1.6077553280267054,
+      "pct_change_2y": 0.027205984321332366,
+      "source": "get_shares_full"
+    },
+    "fundamentals": {
+      "name": "Kering SA",
+      "sector": "Consumer Cyclical",
+      "currency": "EUR",
+      "market_cap": 29042630656.0,
+      "price": 236.85,
+      "p_b": 1.9748856,
+      "div_yield": 1.27,
+      "fcf": 2295000064.0,
+      "ev_ebitda": 17.343,
+      "trailing_pe": null,
+      "shares_out": 122620351.0,
+      "inst_pct": 0.24666001,
+      "insider_pct": 0.42529
+    },
+    "price_summary": {
+      "last": 236.85000610351562,
+      "ret_30d_pct": -10.011400030934992,
+      "ret_90d_pct": -22.165620898855533,
+      "ret_180d_pct": 3.360249798003334,
+      "high_52w": 354.20001220703125,
+      "low_52w": 166.9600067138672
+    },
+    "reasons": [
+      "P/B 1.97",
+      "Div yield 127.0%"
+    ]
   }
 }
