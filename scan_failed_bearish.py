@@ -30,6 +30,8 @@ import yfinance as yf
 
 
 US_EXCHANGES = {"NYQ", "NMS", "NGM", "NCM", "ASE", "BATS"}
+US_ETF_EXCHANGES = {"PCX", "NYQ", "NMS", "NGM", "NCM", "ASE", "BATS"}  # PCX = NYSE Arca, primary US ETF venue
+BR_EXCHANGES = {"SAO"}  # Brazil B3 / São Paulo
 
 EU_PRIMARY_EXCHANGES = {
     "LSE",  # London .L
@@ -176,6 +178,53 @@ def get_universe(name):
         df = pd.concat(frames)
         df = df[~df.index.duplicated(keep="first")]
         df = df[df["exchange"].isin(EU_PRIMARY_EXCHANGES)]
+        return df
+    if name == "uk-all":
+        frames = []
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
+            try:
+                sub = equities.select(country="United Kingdom", market_cap=cap)
+                if len(sub):
+                    frames.append(sub)
+            except Exception:
+                continue
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"] == "LSE"]
+        return df
+    if name == "br-all":
+        frames = []
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap"]:
+            try:
+                sub = equities.select(country="Brazil", market_cap=cap)
+                if len(sub):
+                    frames.append(sub)
+            except Exception:
+                continue
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(BR_EXCHANGES)]
+        return df
+    # --- ETF universes (fd.ETFs() instead of fd.Equities()) ---
+    if name.endswith("-etfs"):
+        try:
+            etfs = fd.ETFs()
+        except Exception as e:
+            raise ValueError(f"financedatabase ETFs failed: {e}")
+        df = etfs.select()
+        if name == "us-etfs":
+            df = df[df["exchange"].isin(US_ETF_EXCHANGES)]
+        elif name == "uk-etfs":
+            df = df[df["exchange"] == "LSE"]
+        elif name == "de-etfs":
+            df = df[df["exchange"] == "GER"]
+        elif name == "it-etfs":
+            df = df[df["exchange"] == "MIL"]
+        elif name == "eu-etfs":
+            df = df[df["exchange"].isin(EU_PRIMARY_EXCHANGES)]
+        else:
+            raise ValueError(f"unknown ETF universe: {name}")
+        df = df[~df.index.duplicated(keep="first")]
         return df
     raise ValueError(f"unknown universe: {name}")
 
@@ -414,7 +463,12 @@ def main():
         help="Failure trigger must be within the last N bars to count as active (default: 8 weekly, 4 monthly)",
     )
     parser.add_argument("--top", type=int, default=20)
-    parser.add_argument("--universe", choices=["us-mid", "us-micro", "us-smid", "us-midlarge", "us-all", "uk-smid", "uk-midlarge", "eu-smid", "it-all", "de-all"], default="us-mid")
+    parser.add_argument("--universe", choices=[
+        "us-mid", "us-micro", "us-smid", "us-midlarge", "us-all",
+        "uk-smid", "uk-midlarge", "uk-all",
+        "eu-smid", "it-all", "de-all", "br-all",
+        "us-etfs", "uk-etfs", "de-etfs", "it-etfs", "eu-etfs",
+    ], default="us-mid")
     parser.add_argument("--quality", action="store_true",
                         help="Apply hard quality floor: ROE>5%, margin>0, D/E<200, rev_growth>-10% (drops NaN)")
     parser.add_argument("--out", default=None)
