@@ -326,28 +326,6 @@ def compute_momentum(df, spy_close=None):
     # Volatility asymmetry (Pine Script port - daily bars)
     asym = compute_volatility_asymmetry(df) or {}
 
-    # Weekly stacked MA: Close >= WMA10 >= WMA20 >= WMA30 (on weekly close)
-    if len(wclose) >= 30:
-        wema10 = float(wclose.ewm(span=10, adjust=False).mean().iloc[-1])
-        wsma20 = float(wclose.tail(20).mean())
-        wsma30 = float(wclose.tail(30).mean())
-        weekly_stacked_ma = bool(last >= wema10 >= wsma20 >= wsma30)
-    else:
-        wema10 = wsma20 = wsma30 = None
-        weekly_stacked_ma = False
-
-    # Weekly position in last-20-week range
-    if len(whigh) >= 20:
-        high_20w = float(whigh.tail(20).max())
-        low_20w = float(wlow.tail(20).min())
-        span_20w = high_20w - low_20w
-        weekly_range_pos_pct = (last - low_20w) / span_20w * 100 if span_20w > 0 else 50.0
-    else:
-        weekly_range_pos_pct = None
-
-    # Weekly asymmetry (run on weekly bars)
-    weekly_asym_dict = compute_volatility_asymmetry(weekly, period=14, smooth=7, slow=14, lookback=5) or {}
-
     # --- Weekly metrics (the proper Q base/extension lens) -----------------
     df_ohlcv = pd.DataFrame({
         "Open": pd.to_numeric(df["Open"], errors="coerce") if "Open" in df.columns else close,
@@ -371,6 +349,23 @@ def compute_momentum(df, spy_close=None):
     dist_wma10 = (last - wma10) / wma10 * 100
     dist_wma30 = (last - wma30) / wma30 * 100
     wma_trend_up = (wma10 > wma30) and (wma30 >= wma40)  # rising structure
+
+    # Weekly stacked MA: Close >= WMA10(EMA) >= SMA20 >= SMA30 (on weekly close)
+    wema10 = float(wclose.ewm(span=10, adjust=False).mean().iloc[-1])
+    wsma20 = float(wclose.tail(20).mean())
+    weekly_stacked_ma = bool(last >= wema10 >= wsma20 >= wma30)
+
+    # Weekly position in last-20-week range
+    if len(whigh) >= 20:
+        high_20w = float(whigh.tail(20).max())
+        low_20w = float(wlow.tail(20).min())
+        span_20w = high_20w - low_20w
+        weekly_range_pos_pct = (last - low_20w) / span_20w * 100 if span_20w > 0 else 50.0
+    else:
+        weekly_range_pos_pct = None
+
+    # Weekly asymmetry (run on weekly bars)
+    weekly_asym_dict = compute_volatility_asymmetry(weekly, period=14, smooth=7, slow=14, lookback=5) or {}
 
     # Weekly-bar range tightness over last N weeks
     range_4w_w = float((whigh.tail(4).max() - wlow.tail(4).min()) / wclose.tail(4).mean() * 100)
