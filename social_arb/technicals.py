@@ -161,16 +161,24 @@ def bulk_download_weekly(
     tickers: list[str],
     *,
     years: int = 5,
-    chunk: int = 200,
+    chunk: int = 50,
     max_workers: int = 1,
+    sleep_between: float = 2.0,
+    retry_failed: bool = True,
 ) -> pd.DataFrame:
     """Bulk-download daily closes via yfinance.download and resample weekly.
 
     Returns a wide DataFrame indexed by Friday weekly close with one column
     per ticker (auto-adjusted close). Tickers that fail to fetch are
-    silently dropped. yfinance enforces its own rate-limits internally.
+    silently dropped.
+
+    Yahoo rate-limits bursty parallel requests aggressively. Defaults here
+    are deliberately conservative: chunks of 50, 2-second sleep between
+    chunks, single threaded. One follow-up retry pass for failed tickers
+    after a longer cool-down.
     """
     try:
+        import time
         import yfinance as yf
     except ImportError:  # pragma: no cover
         log.warning("yfinance not installed")
@@ -179,10 +187,7 @@ def bulk_download_weekly(
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=365 * int(years))
 
-    frames: list[pd.DataFrame] = []
-    chunks = [tickers[i : i + chunk] for i in range(0, len(tickers), chunk)]
-    for i, group in enumerate(chunks):
-        log.info("bulk download chunk %d/%d (%d tickers)", i + 1, len(chunks), len(group))
+    def _fetch_chunk(group: list[str]) -> pd.DataFrame | None:
         try:
             df = yf.download(
                 tickers=group,
@@ -195,21 +200,47 @@ def bulk_download_weekly(
             )
         except Exception as exc:  # noqa: BLE001
             log.warning("bulk download chunk failed: %s", exc)
-            continue
+            return None
         if df is None or df.empty:
-            continue
-        # yfinance returns a MultiIndex (ticker, field) when multiple tickers.
+            return None
         if isinstance(df.columns, pd.MultiIndex):
             closes = df.xs("Close", axis=1, level=1, drop_level=True)
         else:
             closes = df[["Close"]].rename(columns={"Close": group[0]})
         closes.index = pd.to_datetime(closes.index).tz_localize(None)
-        frames.append(closes)
+        return closes
+
+    frames: list[pd.DataFrame] = []
+    failed: list[str] = []
+    chunks = [tickers[i : i + chunk] for i in range(0, len(tickers), chunk)]
+    for i, group in enumerate(chunks):
+        log.info("bulk download chunk %d/%d (%d tickers)", i + 1, len(chunks), len(group))
+        closes = _fetch_chunk(group)
+        if closes is None or closes.empty:
+            failed.extend(group)
+        else:
+            # Identify which tickers came back empty (rate-limited).
+            empty_cols = [c for c in closes.columns if closes[c].notna().sum() == 0]
+            failed.extend(empty_cols)
+            frames.append(closes)
+        if i + 1 < len(chunks):
+            time.sleep(sleep_between)
+
+    if retry_failed and failed:
+        log.info("retry pass for %d failed tickers (cool-down 10s)", len(failed))
+        time.sleep(10.0)
+        retry_chunks = [failed[i : i + chunk] for i in range(0, len(failed), chunk)]
+        for i, group in enumerate(retry_chunks):
+            log.info("retry chunk %d/%d (%d tickers)", i + 1, len(retry_chunks), len(group))
+            closes = _fetch_chunk(group)
+            if closes is not None and not closes.empty:
+                frames.append(closes)
+            if i + 1 < len(retry_chunks):
+                time.sleep(sleep_between * 2)
 
     if not frames:
         return pd.DataFrame()
     combined = pd.concat(frames, axis=1).sort_index()
-    # Collapse duplicate columns (e.g., a ticker present in two chunks).
     combined = combined.loc[:, ~combined.columns.duplicated()]
     weekly = combined.resample("W-FRI").last().dropna(how="all")
     return weekly
@@ -221,14 +252,46 @@ def refresh_price_cache(
     *,
     years: int = 5,
     chunk: int = 200,
+    incremental: bool = True,
+    min_bars: int = 42,
 ) -> pd.DataFrame:
-    """Bulk-download and persist to parquet. Returns the cached DataFrame."""
-    weekly = bulk_download_weekly(tickers, years=years, chunk=chunk)
-    if weekly.empty:
-        return weekly
+    """Bulk-download and persist to parquet. Returns the cached DataFrame.
+
+    If `incremental=True`, only fetch tickers that are missing or have fewer
+    than `min_bars` weekly bars in the existing cache. Merges into the
+    existing parquet so prior fetches survive yfinance rate-limit gaps.
+    """
+    existing = load_price_cache(cfg) if incremental else pd.DataFrame()
+    to_fetch = list(tickers)
+    if not existing.empty:
+        valid = {c for c in existing.columns if existing[c].notna().sum() >= min_bars}
+        to_fetch = [t for t in tickers if t not in valid]
+        log.info(
+            "cache already has %d valid tickers; fetching %d new/stale",
+            len(valid), len(to_fetch),
+        )
+    if to_fetch:
+        weekly_new = bulk_download_weekly(to_fetch, years=years, chunk=chunk)
+    else:
+        weekly_new = pd.DataFrame()
+
+    if existing.empty and weekly_new.empty:
+        return pd.DataFrame()
+    if existing.empty:
+        weekly = weekly_new
+    elif weekly_new.empty:
+        weekly = existing
+    else:
+        weekly = pd.concat([existing, weekly_new], axis=1)
+        weekly = weekly.loc[:, ~weekly.columns.duplicated(keep="last")]
+        weekly = weekly.sort_index()
     path = _cache_path(cfg)
     weekly.to_parquet(path)
-    log.info("cached %d weekly bars x %d tickers -> %s", len(weekly), weekly.shape[1], path)
+    n_valid = int((weekly.notna().sum() >= min_bars).sum())
+    log.info(
+        "cached %d weekly bars x %d cols (%d valid >= %d bars) -> %s",
+        len(weekly), weekly.shape[1], n_valid, min_bars, path,
+    )
     return weekly
 
 
