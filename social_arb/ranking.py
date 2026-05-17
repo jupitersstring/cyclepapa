@@ -134,6 +134,104 @@ def crossover_intersect_social(
     return out.sort_values(["total_mentions", "hma_slope_20w"], ascending=[False, False]).reset_index(drop=True)
 
 
+@dataclass
+class CamilloParams:
+    """Weights for the Camillo composite.
+
+    Each weight is roughly normalised so a healthy contributor adds ~1 point.
+    Defaults reflect the priorities in Schwager's Unknown Market Wizards
+    chapter: attention growth + organic positive sentiment + technical
+    confirmation + NOT being a stretched / consensus name.
+    """
+    w_mention_z: float = 1.0          # latest mention z-score (capped 0..6)
+    w_sentiment: float = 3.0          # sentiment_14d, multiplied to z-units
+    w_growth: float = 1.5             # log_growth_7d (capped at +3.0)
+    w_tech_confirm: float = 1.0       # +1 if state in {hma_up, golden}
+    w_clean_entry: float = 1.5        # +1.5 if -25 <= vs SMA40 <= +10
+    w_stretched_pen: float = 0.05     # subtract per % above +25% of SMA40
+    w_smallcap: float = 0.5           # +0.5 if close <= $50 (price proxy)
+    w_microcap: float = 0.3           # additional +0.3 if close <= $10
+
+
+def camillo_ranking(
+    cfg: Config,
+    technical_scan: pd.DataFrame,
+    *,
+    params: CamilloParams | None = None,
+    min_total_mentions: int = 5,
+    top: int = 25,
+) -> pd.DataFrame:
+    """Camillo composite: socially-attended, technically confirmed, NOT consensus.
+
+    The score deliberately *penalises* tickers more than 25% above their 40w
+    SMA -- per Camillo, when a name is that stretched the information edge
+    is gone (Wall Street has caught up). It also tilts to small/mid-caps
+    on price -- a crude but useful proxy since financedatabase doesn't ship
+    market-cap natively and live mcap lookups would burn yfinance calls.
+    """
+    if params is None:
+        params = CamilloParams()
+    if technical_scan is None or technical_scan.empty:
+        return pd.DataFrame()
+
+    soc = bullish_ranking(cfg, params=RankParams(min_total_mentions=min_total_mentions), top=10000)
+    if soc.empty:
+        return pd.DataFrame()
+
+    merged = soc.merge(technical_scan, on="ticker", how="inner")
+    if merged.empty:
+        return merged
+
+    def _score(row) -> float:
+        # Hard exclusions -- not bullish under Camillo's framework, period:
+        #   - attention is actually FADING (z < 0)
+        #   - price is in confirmed downtrend (death or hma_down)
+        z = row.get("latest_z")
+        state = row.get("state")
+        if state in ("death", "hma_down"):
+            return float("-inf")
+        if pd.notna(z) and z < -1.0:
+            return float("-inf")
+
+        s = 0.0
+        if pd.notna(z) and z > 0:
+            s += params.w_mention_z * min(float(z), 6.0)
+        sent = row.get("sentiment_14d")
+        if pd.notna(sent) and sent > 0:
+            s += params.w_sentiment * float(sent)
+        grow = row.get("log_growth_7d")
+        if pd.notna(grow) and grow > 0:
+            s += params.w_growth * min(float(grow), 3.0)
+        if state in ("hma_up", "golden"):
+            s += params.w_tech_confirm
+        v40 = row.get("close_vs_sma40_pct")
+        if pd.notna(v40):
+            v40f = float(v40)
+            if -25.0 <= v40f <= 10.0:
+                s += params.w_clean_entry
+            if v40f > 25.0:
+                s -= params.w_stretched_pen * (v40f - 25.0)
+        close = row.get("close")
+        if pd.notna(close):
+            if float(close) <= 50.0:
+                s += params.w_smallcap
+            if float(close) <= 10.0:
+                s += params.w_microcap
+        return round(s, 3)
+
+    merged["camillo_score"] = merged.apply(_score, axis=1)
+    merged = merged[merged["camillo_score"] > float("-inf")]
+    out = merged.sort_values("camillo_score", ascending=False)
+    cols = [
+        "ticker", "camillo_score",
+        "latest_z", "sentiment_14d", "log_growth_7d", "total_mentions",
+        "close", "close_vs_sma40_pct", "state", "weeks_in_state",
+        "signal", "hma_slope_20w",
+    ]
+    cols = [c for c in cols if c in out.columns]
+    return out[cols].head(top).reset_index(drop=True)
+
+
 def weekly_momentum(cfg: Config, min_total: int = 10, top: int = 25) -> pd.DataFrame:
     """Ranks by last-7d vs prior-7d mention growth (log ratio).
 
