@@ -203,6 +203,13 @@ def detect_darvas_box(weekly, min_box_weeks=4):
     return out
 
 
+def true_range(high, low, close_prev):
+    return np.maximum(
+        high - low,
+        np.maximum(np.abs(high - close_prev), np.abs(low - close_prev)),
+    )
+
+
 def compute_volatility_asymmetry(df, period=14, smooth=7, slow=14, lookback=5,
                                   threshold_pct=5.0):
     """Pine Script logic (malikmck / YourName):
