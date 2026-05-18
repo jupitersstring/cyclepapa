@@ -1107,6 +1107,251 @@ def social_asymmetric_setups(
     return df.reset_index(drop=True)
 
 
+def recent_spike_rank(
+    cfg: Config,
+    *,
+    short_window_days: int = 5,
+    baseline_window_days: int = 30,
+    top: int = 30,
+    min_total_mentions: int = 20,
+    require_positive: bool = True,
+) -> pd.DataFrame:
+    """Acute spike detector: short-window deviation from longer baseline.
+
+    For each ticker computes z-scores at the LATEST day:
+
+      mention_spike_z   = (mean(mentions, short) - mean(mentions, baseline))
+                          / std(mentions, baseline)
+      sentiment_spike_z = same for sentiment
+
+    Cross-sectional ordinal rank on the COMBINED spike-z (sum of mention
+    spike and sentiment spike). `require_positive` filters to spikes
+    where both mention and sentiment moved up.
+
+    Different from `momentum_acceleration_rank` (which is a 44-day trend
+    fit) -- this picks up the LAST 5 DAYS of acute deviation from a
+    30-day baseline. Designed to surface things just starting NOW.
+    """
+    from . import storage
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment FROM mentions"
+        ).df()
+    if df.empty:
+        return pd.DataFrame()
+    df["d"] = pd.to_datetime(df["d"])
+    agg = df.groupby(["ticker", "d"]).agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+    ).reset_index()
+
+    mw = agg.pivot(index="d", columns="ticker", values="mentions").sort_index()
+    sw = agg.pivot(index="d", columns="ticker", values="sentiment").sort_index()
+    full_idx = pd.date_range(mw.index.min(), mw.index.max(), freq="D")
+    mw = mw.reindex(full_idx).fillna(0)
+    sw = sw.reindex(full_idx).ffill().fillna(0.0)
+
+    if len(mw) < baseline_window_days + short_window_days:
+        return pd.DataFrame()
+
+    n = len(mw)
+    short_slice = mw.iloc[n - short_window_days: n].astype(float)
+    base_slice = mw.iloc[n - baseline_window_days - short_window_days:
+                          n - short_window_days].astype(float)
+    short_s = sw.iloc[n - short_window_days: n].astype(float)
+    base_s = sw.iloc[n - baseline_window_days - short_window_days:
+                      n - short_window_days].astype(float)
+
+    base_mean = base_slice.mean(axis=0)
+    base_std = base_slice.std(axis=0).replace(0.0, np.nan)
+    short_mean = short_slice.mean(axis=0)
+    mention_spike = (short_mean - base_mean) / base_std
+
+    base_s_mean = base_s.mean(axis=0)
+    base_s_std = base_s.std(axis=0).replace(0.0, np.nan)
+    short_s_mean = short_s.mean(axis=0)
+    sentiment_spike = (short_s_mean - base_s_mean) / base_s_std
+
+    totals = mw.sum()
+    keep = totals[totals >= int(min_total_mentions)].index
+    mention_spike = mention_spike.reindex(keep)
+    sentiment_spike = sentiment_spike.reindex(keep)
+
+    # Fill NaN spikes with 0 (no signal) so they can still be ranked.
+    mention_spike = mention_spike.fillna(0.0)
+    sentiment_spike = sentiment_spike.fillna(0.0)
+
+    if require_positive:
+        mask = (mention_spike > 0)
+        if not mask.any():
+            return pd.DataFrame()
+        keep2 = keep[mask.values]
+        mention_spike = mention_spike.loc[keep2]
+        sentiment_spike = sentiment_spike.loc[keep2]
+        keep = keep2
+
+    combined_spike = mention_spike + sentiment_spike
+    rank_m = mention_spike.rank(ascending=False, method="min").astype(int)
+    rank_s = sentiment_spike.rank(ascending=False, method="min").astype(int)
+    rank_c = combined_spike.rank(ascending=False, method="min").astype(int)
+
+    out = pd.DataFrame({
+        "ticker": keep,
+        "combined_spike_z": combined_spike.round(2).values,
+        "mention_spike_z": mention_spike.round(2).values,
+        "sentiment_spike_z": sentiment_spike.round(2).values,
+        "rank_combined": rank_c.values,
+        "rank_mention": rank_m.values,
+        "rank_sentiment": rank_s.values,
+        "short_mean_mentions": short_mean.reindex(keep).round(1).values,
+        "baseline_mean_mentions": base_mean.reindex(keep).round(1).values,
+        "short_mean_sentiment": short_s_mean.reindex(keep).round(3).values,
+        "baseline_mean_sentiment": base_s_mean.reindex(keep).round(3).values,
+        "total_mentions": totals.reindex(keep).astype(int).values,
+    })
+    return out.sort_values("rank_combined").head(int(top)).reset_index(drop=True)
+
+
+def momentum_acceleration_rank(
+    cfg: Config,
+    *,
+    window_days: int = 44,
+    top: int = 30,
+    min_total_mentions: int = 20,
+    require_positive: bool = True,
+) -> pd.DataFrame:
+    """Cross-sectional rank by 44-day momentum AND acceleration.
+
+    For each ticker we compute, on its daily mention and daily mean-
+    sentiment series:
+
+      * velocity_now    = OLS slope over last `window_days` (units/day)
+      * velocity_prev   = OLS slope over the prior `window_days`
+      * acceleration    = velocity_now - velocity_prev
+
+    Done separately for mentions and sentiment, then cross-sectionally
+    ordinally ranked (1 = highest = strongest positive momentum/accel).
+
+    `combined_rank` = mean of the 4 ranks
+    (mention_velocity, mention_accel, sentiment_velocity, sentiment_accel).
+
+    If `require_positive` (default True), we filter to tickers where
+    both velocities are >= 0 -- the "social trending up and price hasn't
+    caught up" candidate set.
+    """
+    from . import storage
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment "
+            "FROM mentions"
+        ).df()
+    if df.empty:
+        return pd.DataFrame()
+    df["d"] = pd.to_datetime(df["d"])
+    agg = df.groupby(["ticker", "d"]).agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+    ).reset_index()
+
+    mentions_wide = agg.pivot(index="d", columns="ticker", values="mentions").sort_index()
+    sentiment_wide = agg.pivot(index="d", columns="ticker", values="sentiment").sort_index()
+    full_idx = pd.date_range(mentions_wide.index.min(), mentions_wide.index.max(), freq="D")
+    # NOTE: pandas pivot leaves NaN at sparse (ticker, day) cells regardless
+    # of reindex `fill_value` (which only fills NEW rows). We need an
+    # explicit fillna(0) after.
+    mentions_wide = mentions_wide.reindex(full_idx).fillna(0)
+    # Sentiment: forward-fill, then fill remaining NaNs with 0 (neutral) so
+    # the prior window has a defined value even for tickers whose mentions
+    # only started recently.
+    sentiment_wide = sentiment_wide.reindex(full_idx).ffill().fillna(0.0)
+
+    n = len(mentions_wide)
+    if n < window_days * 2:
+        return pd.DataFrame()
+
+    last_idx = n - 1
+    prev_end_idx = n - window_days - 1
+    if prev_end_idx - window_days < 0:
+        return pd.DataFrame()
+
+    # x axis in days (centered for numerical stability).
+    x_recent = np.arange(window_days, dtype=float)
+    x_prev = np.arange(window_days, dtype=float)
+    # Recent window: rows last_idx - window_days + 1 .. last_idx
+    recent_m = mentions_wide.iloc[last_idx - window_days + 1: last_idx + 1].astype(float)
+    prev_m = mentions_wide.iloc[prev_end_idx - window_days + 1: prev_end_idx + 1].astype(float)
+    recent_s = sentiment_wide.iloc[last_idx - window_days + 1: last_idx + 1].astype(float)
+    prev_s = sentiment_wide.iloc[prev_end_idx - window_days + 1: prev_end_idx + 1].astype(float)
+
+    def _slopes(window_df: pd.DataFrame, x: np.ndarray) -> pd.Series:
+        # vectorised OLS slope per column.
+        x_mean = x.mean()
+        y = window_df.values
+        y_mean = y.mean(axis=0)
+        num = ((x[:, None] - x_mean) * (y - y_mean)).sum(axis=0)
+        den = ((x - x_mean) ** 2).sum()
+        if den == 0:
+            return pd.Series(0.0, index=window_df.columns)
+        slope = num / den
+        return pd.Series(slope, index=window_df.columns)
+
+    m_vel_now = _slopes(recent_m, x_recent)
+    m_vel_prev = _slopes(prev_m, x_prev)
+    s_vel_now = _slopes(recent_s, x_recent)
+    s_vel_prev = _slopes(prev_s, x_prev)
+
+    m_accel = m_vel_now - m_vel_prev
+    s_accel = s_vel_now - s_vel_prev
+
+    totals = mentions_wide.sum()
+    keep = totals[totals >= int(min_total_mentions)].index
+    m_vel_now = m_vel_now.reindex(keep).dropna()
+    m_accel = m_accel.reindex(keep).dropna()
+    s_vel_now = s_vel_now.reindex(keep).dropna()
+    s_accel = s_accel.reindex(keep).dropna()
+    common = m_vel_now.index.intersection(m_accel.index).intersection(s_vel_now.index).intersection(s_accel.index)
+    if len(common) == 0:
+        return pd.DataFrame()
+    m_vel_now = m_vel_now.loc[common]
+    m_accel = m_accel.loc[common]
+    s_vel_now = s_vel_now.loc[common]
+    s_accel = s_accel.loc[common]
+
+    # Optional positive-momentum filter.
+    if require_positive:
+        mask = (m_vel_now >= 0) & (s_vel_now >= 0)
+        common2 = common[mask]
+        if len(common2) == 0:
+            return pd.DataFrame()
+        m_vel_now = m_vel_now.loc[common2]
+        m_accel = m_accel.loc[common2]
+        s_vel_now = s_vel_now.loc[common2]
+        s_accel = s_accel.loc[common2]
+        common = common2
+
+    # Cross-sectional ordinal ranks (1 = highest).
+    rank_m_vel = m_vel_now.rank(ascending=False, method="min").astype(int)
+    rank_m_acc = m_accel.rank(ascending=False, method="min").astype(int)
+    rank_s_vel = s_vel_now.rank(ascending=False, method="min").astype(int)
+    rank_s_acc = s_accel.rank(ascending=False, method="min").astype(int)
+    combined = ((rank_m_vel + rank_m_acc + rank_s_vel + rank_s_acc) / 4.0).round(1)
+
+    out = pd.DataFrame({
+        "ticker": common,
+        "mention_velocity_per_day": m_vel_now.round(3).values,
+        "mention_acceleration": m_accel.round(3).values,
+        "sentiment_velocity_per_day": s_vel_now.round(5).values,
+        "sentiment_acceleration": s_accel.round(5).values,
+        "rank_m_vel": rank_m_vel.values,
+        "rank_m_acc": rank_m_acc.values,
+        "rank_s_vel": rank_s_vel.values,
+        "rank_s_acc": rank_s_acc.values,
+        "combined_rank": combined.values,
+        "total_mentions": totals.reindex(common).astype(int).values,
+    })
+    return out.sort_values("combined_rank").head(int(top)).reset_index(drop=True)
+
+
 def ordinal_social_rank(
     cfg: Config,
     *,

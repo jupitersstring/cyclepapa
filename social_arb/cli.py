@@ -30,7 +30,8 @@ from .ranking import (
     rank_inflecters, sentiment_ema_history, sentiment_ema_history_weekly,
     sentiment_momentum_scan, sentiment_momentum_scan_weekly,
     small_mid_cap_asymmetric, social_asymmetric_setups,
-    ordinal_social_rank, social_price_divergence, social_signal_score,
+    momentum_acceleration_rank, ordinal_social_rank, recent_spike_rank,
+    social_price_divergence, social_signal_score,
     social_weekly_history, social_weekly_movers, social_weekly_pivot,
     union_ranking, weekly_momentum,
 )
@@ -530,6 +531,42 @@ def cmd_social_asymmetric(args: argparse.Namespace) -> int:
     if out.empty:
         print("no candidates: try lower --min-mentions or --min-social")
         return 0
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_recent_spike(args: argparse.Namespace) -> int:
+    """Acute short-window spike detector: short MA vs baseline z-score."""
+    cfg = Config()
+    out = recent_spike_rank(
+        cfg, short_window_days=args.short, baseline_window_days=args.baseline,
+        top=args.top, min_total_mentions=args.min_total,
+        require_positive=not args.allow_negative,
+    )
+    if out.empty:
+        print("no candidates")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_momentum_accel(args: argparse.Namespace) -> int:
+    """Cross-sectional rank by 44d social/sentiment velocity + acceleration."""
+    cfg = Config()
+    out = momentum_acceleration_rank(
+        cfg, window_days=args.window, top=args.top,
+        min_total_mentions=args.min_total,
+        require_positive=not args.allow_negative,
+    )
+    if out.empty:
+        print("no candidates")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
     print(out.to_string(index=False))
     return 0
 
@@ -1066,6 +1103,25 @@ def build_parser() -> argparse.ArgumentParser:
     psa.add_argument("--consumer", action="store_true")
     psa.add_argument("--north-america", dest="north_america", action="store_true")
     psa.set_defaults(func=cmd_social_asymmetric)
+
+    prs = sub.add_parser("recent-spike",
+                        help="Acute short-window spike detector (5d vs 30d baseline z-score)")
+    prs.add_argument("--top", type=int, default=30)
+    prs.add_argument("--short", type=int, default=5, help="recent window in days")
+    prs.add_argument("--baseline", type=int, default=30, help="trailing baseline window in days")
+    prs.add_argument("--min-total", dest="min_total", type=int, default=15)
+    prs.add_argument("--allow-negative", action="store_true",
+                    help="don't require positive mention spike (default: positive only)")
+    prs.set_defaults(func=cmd_recent_spike)
+
+    pma = sub.add_parser("momentum-accel",
+                        help="44d social+sentiment velocity + acceleration cross-sectional rank")
+    pma.add_argument("--top", type=int, default=30)
+    pma.add_argument("--window", type=int, default=44, help="rolling window in days")
+    pma.add_argument("--min-total", dest="min_total", type=int, default=20)
+    pma.add_argument("--allow-negative", action="store_true",
+                    help="don't require positive velocities (default: positive-only)")
+    pma.set_defaults(func=cmd_momentum_accel)
 
     por = sub.add_parser("ordinal-rank",
                          help="Cross-sectional ordinal rank: 44d sentiment + 14d modal mentions")
