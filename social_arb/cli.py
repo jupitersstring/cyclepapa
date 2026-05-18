@@ -30,8 +30,9 @@ from .ranking import (
     rank_inflecters, sentiment_ema_history, sentiment_ema_history_weekly,
     sentiment_momentum_scan, sentiment_momentum_scan_weekly,
     small_mid_cap_asymmetric, social_asymmetric_setups,
-    social_price_divergence, social_signal_score, union_ranking,
-    weekly_momentum,
+    ordinal_social_rank, social_price_divergence, social_signal_score,
+    social_weekly_history, social_weekly_movers, social_weekly_pivot,
+    union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -533,6 +534,62 @@ def cmd_social_asymmetric(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ordinal_rank(args: argparse.Namespace) -> int:
+    """Cross-sectional ordinal rank on 44d sentiment + 14d modal mentions."""
+    cfg = Config()
+    out = ordinal_social_rank(
+        cfg, sentiment_window_days=args.sentiment_window,
+        mention_modal_window_days=args.modal_window,
+        min_total_mentions=args.min_total, top=args.top,
+    )
+    if out.empty:
+        print("no data")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 200)
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_social_weekly(args: argparse.Namespace) -> int:
+    """Weekly social comparisons -- WoW deltas + per-ticker history + pivot."""
+    cfg = Config()
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
+
+    if args.ticker:
+        hist = social_weekly_history(cfg, args.ticker, weeks=args.weeks)
+        if hist.empty:
+            print(f"no weekly history for {args.ticker}")
+            return 0
+        print(f"\n=== {args.ticker.upper()} -- last {len(hist)} weeks ===")
+        print(hist.to_string())
+        return 0
+
+    if args.pivot:
+        wide = social_weekly_pivot(cfg, weeks=args.weeks,
+                                    n_tickers=args.top, metric=args.metric)
+        if wide.empty:
+            print("no data")
+            return 0
+        print(f"\n=== Weekly pivot of {args.metric} (top {args.top}, last {args.weeks} weeks) ===")
+        print(wide.to_string())
+        return 0
+
+    out = social_weekly_movers(
+        cfg, top=args.top, min_mentions=args.min_mentions,
+        sort_by=args.sort_by,
+    )
+    if out.empty:
+        print("no movers; lower --min-mentions or wait for more collector runs")
+        return 0
+    print(f"\n=== Weekly social MOVERS (sorted by {args.sort_by}) ===")
+    print(out.to_string(index=False))
+    return 0
+
+
 def cmd_camillo_social_first(args: argparse.Namespace) -> int:
     """Social-first Camillo: divergence + spike + small/mid-cap + asymmetric."""
     cfg = Config()
@@ -1009,6 +1066,28 @@ def build_parser() -> argparse.ArgumentParser:
     psa.add_argument("--consumer", action="store_true")
     psa.add_argument("--north-america", dest="north_america", action="store_true")
     psa.set_defaults(func=cmd_social_asymmetric)
+
+    por = sub.add_parser("ordinal-rank",
+                         help="Cross-sectional ordinal rank: 44d sentiment + 14d modal mentions")
+    por.add_argument("--top", type=int, default=30)
+    por.add_argument("--sentiment-window", dest="sentiment_window", type=int, default=44)
+    por.add_argument("--modal-window", dest="modal_window", type=int, default=14)
+    por.add_argument("--min-total", dest="min_total", type=int, default=10)
+    por.set_defaults(func=cmd_ordinal_rank)
+
+    psw = sub.add_parser("social-weekly",
+                         help="Weekly social WoW comparisons: movers, pivot, or per-ticker history")
+    psw.add_argument("--top", type=int, default=25)
+    psw.add_argument("--weeks", type=int, default=6, help="history depth (per-ticker / pivot)")
+    psw.add_argument("--min-mentions", dest="min_mentions", type=int, default=10)
+    psw.add_argument("--sort-by", dest="sort_by", default="mentions_wow_pct",
+                    help="movers sort col: mentions_wow_pct, mentions_wow_chg, sentiment_delta, polarity_gap_delta")
+    psw.add_argument("--ticker", default=None, help="single ticker -> show full weekly history table")
+    psw.add_argument("--pivot", action="store_true",
+                    help="show wide-form weekly pivot of --metric across top N tickers")
+    psw.add_argument("--metric", default="mentions",
+                    choices=["mentions", "sentiment", "polarity_gap", "bull", "bear"])
+    psw.set_defaults(func=cmd_social_weekly)
 
     pcsf = sub.add_parser("camillo-social-first",
                          help="Social-first Camillo: divergence + spike + small/mid-cap")

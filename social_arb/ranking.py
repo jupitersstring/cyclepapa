@@ -1107,6 +1107,310 @@ def social_asymmetric_setups(
     return df.reset_index(drop=True)
 
 
+def ordinal_social_rank(
+    cfg: Config,
+    *,
+    sentiment_window_days: int = 44,
+    mention_modal_window_days: int = 14,
+    min_total_mentions: int = 10,
+    top: int = 30,
+) -> pd.DataFrame:
+    """Cross-sectional ordinal ranking on two slow social measures.
+
+    Two measures, each computed at the LATEST day across the full
+    cross-section of tickers:
+
+      * **sentiment_44d**  -- rolling mean of daily mean-sentiment over
+        `sentiment_window_days` (default 44d = ~2 months). The slow
+        sentiment-state of the audience.
+      * **mentions_modal_14d** -- rolling MODE of daily mention counts
+        over `mention_modal_window_days` (default 14d). The 2-week modal
+        value is a noise-robust "typical attention level" -- a single
+        viral day can't move it, but a sustained shift can.
+
+    Each ticker is then ordinally ranked (1 = highest) on each measure
+    and a combined_rank = average is returned.
+    """
+    from . import storage
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment "
+            "FROM mentions"
+        ).df()
+    if df.empty:
+        return pd.DataFrame()
+    df["d"] = pd.to_datetime(df["d"])
+    agg = df.groupby(["ticker", "d"]).agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+    ).reset_index()
+
+    # Wide pivots.
+    mentions_wide = agg.pivot(index="d", columns="ticker", values="mentions").sort_index()
+    sentiment_wide = agg.pivot(index="d", columns="ticker", values="sentiment").sort_index()
+
+    # Forward-fill calendar.
+    full_idx = pd.date_range(mentions_wide.index.min(), mentions_wide.index.max(), freq="D")
+    mentions_wide = mentions_wide.reindex(full_idx, fill_value=0)
+    sentiment_wide = sentiment_wide.reindex(full_idx).ffill()
+
+    # 44-day rolling MEAN sentiment per ticker, last value.
+    sentiment_44d = sentiment_wide.rolling(
+        sentiment_window_days,
+        min_periods=max(5, sentiment_window_days // 4),
+    ).mean().iloc[-1]
+
+    # 14-day rolling MODE of daily mention counts per ticker, last value.
+    def _modal(x: np.ndarray) -> float:
+        if len(x) == 0:
+            return 0.0
+        # Round to nearest int + clip non-negative so np.bincount accepts.
+        vals = np.clip(np.nan_to_num(x).round(), 0, None).astype(int)
+        if vals.size == 0:
+            return 0.0
+        counts = np.bincount(vals)
+        if counts.size == 0:
+            return 0.0
+        return float(np.argmax(counts))
+
+    # min_periods big enough that a one-day surge doesn't dominate.
+    mentions_modal = mentions_wide.rolling(
+        mention_modal_window_days,
+        min_periods=max(3, mention_modal_window_days // 2),
+    ).apply(_modal, raw=True).iloc[-1]
+
+    # Volume floor for noise control.
+    totals = mentions_wide.sum()
+    keep = totals[totals >= int(min_total_mentions)].index
+
+    s44 = sentiment_44d.reindex(keep).dropna()
+    mod14 = mentions_modal.reindex(keep).dropna()
+    common = s44.index.intersection(mod14.index)
+    if len(common) == 0:
+        return pd.DataFrame()
+    s44 = s44.loc[common]
+    mod14 = mod14.loc[common]
+
+    # Ordinal rank, 1 = highest. method='min' so ties share rank.
+    sent_rank = s44.rank(ascending=False, method="min").astype(int)
+    ment_rank = mod14.rank(ascending=False, method="min").astype(int)
+    combined_rank = ((sent_rank + ment_rank) / 2.0).round(1)
+
+    out = pd.DataFrame({
+        "ticker": common,
+        "sentiment_44d": s44.round(3).values,
+        "mentions_modal_14d": mod14.round(1).values,
+        "sent_rank": sent_rank.values,
+        "ment_rank": ment_rank.values,
+        "combined_rank": combined_rank.values,
+        "total_mentions": totals.reindex(common).astype(int).values,
+    })
+    return out.sort_values("combined_rank").head(int(top)).reset_index(drop=True)
+
+
+def social_weekly_history(
+    cfg: Config,
+    ticker: str,
+    *,
+    weeks: int = 8,
+) -> pd.DataFrame:
+    """Per-ticker weekly history of every social measure side-by-side.
+
+    Returns a DataFrame indexed by Friday week-end with columns:
+      mentions, sentiment, bull, bear, neutral, polarity_gap,
+      polarity_volume, sources, polarised_share, bull_share
+
+    Useful for: `cli social-weekly --ticker NWL`.
+    """
+    from . import storage
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT CAST(timestamp AS DATE) AS d, sentiment_label, source, sentiment "
+            "FROM mentions WHERE ticker = ?", [ticker.upper()],
+        ).df()
+    if df.empty:
+        return df
+    df["d"] = pd.to_datetime(df["d"])
+    df["week"] = (df["d"] + pd.offsets.Week(weekday=4) - pd.offsets.Day()).dt.normalize()
+    # Use pandas built-in week ending Friday.
+    df["week"] = df["d"].dt.to_period("W-FRI").apply(lambda p: p.end_time.normalize())
+    agg = df.groupby("week").agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+        bull=("sentiment_label", lambda s: (s == "bullish").sum()),
+        bear=("sentiment_label", lambda s: (s == "bearish").sum()),
+        neutral=("sentiment_label", lambda s: (s == "neutral").sum()),
+        sources=("source", "nunique"),
+    ).sort_index()
+    agg["polarity_gap"] = agg["bull"] - agg["bear"]
+    agg["polarity_volume"] = agg["bull"] + agg["bear"]
+    total = agg["mentions"].replace(0, np.nan)
+    agg["polarised_share"] = (agg["polarity_volume"] / total).round(2)
+    agg["bull_share"] = (agg["bull"] / agg["polarity_volume"].replace(0, np.nan)).round(2)
+    agg["sentiment"] = agg["sentiment"].round(3)
+    return agg.tail(int(weeks))
+
+
+def social_weekly_movers(
+    cfg: Config,
+    *,
+    top: int = 30,
+    min_mentions: int = 10,
+    sort_by: str = "mentions_wow_pct",
+) -> pd.DataFrame:
+    """Cross-ticker week-over-week social leaderboard.
+
+    Each ticker -> this-week vs last-week deltas for every measure.
+    Sort by `sort_by` (default mentions_wow_pct).
+    """
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+
+    end = pd.to_datetime(daily["date"]).max()
+    # Friday week ending containing `end`.
+    week_end_this = (pd.Timestamp(end).to_period("W-FRI")).end_time.normalize()
+    week_end_prev = week_end_this - pd.Timedelta(days=7)
+
+    this_start = week_end_this - pd.Timedelta(days=6)
+    prev_start = week_end_prev - pd.Timedelta(days=6)
+
+    # Pull labelled counts per ticker per week.
+    from . import storage
+    with storage.connect(cfg) as con:
+        labelled = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment_label, source, "
+            "sentiment FROM mentions "
+            "WHERE timestamp >= ? AND timestamp <= ?",
+            [prev_start.to_pydatetime(), (week_end_this + pd.Timedelta(days=1)).to_pydatetime()],
+        ).df()
+    if labelled.empty:
+        return pd.DataFrame()
+    labelled["d"] = pd.to_datetime(labelled["d"])
+    labelled["bucket"] = np.where(labelled["d"] >= this_start, "this", "prev")
+
+    by = labelled.groupby(["ticker", "bucket"]).agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+        bull=("sentiment_label", lambda s: (s == "bullish").sum()),
+        bear=("sentiment_label", lambda s: (s == "bearish").sum()),
+        sources=("source", "nunique"),
+    ).unstack(level="bucket", fill_value=0)
+
+    if by.empty:
+        return pd.DataFrame()
+    rows: list[dict] = []
+    for ticker, row in by.iterrows():
+        m_t = float(row.get(("mentions", "this"), 0))
+        m_p = float(row.get(("mentions", "prev"), 0))
+        if m_t + m_p < int(min_mentions):
+            continue
+        s_t = float(row.get(("sentiment", "this"), 0.0) or 0.0)
+        s_p = float(row.get(("sentiment", "prev"), 0.0) or 0.0)
+        b_t = int(row.get(("bull", "this"), 0))
+        b_p = int(row.get(("bull", "prev"), 0))
+        x_t = int(row.get(("bear", "this"), 0))
+        x_p = int(row.get(("bear", "prev"), 0))
+        src_t = int(row.get(("sources", "this"), 0))
+        src_p = int(row.get(("sources", "prev"), 0))
+
+        wow_chg = m_t - m_p
+        wow_pct = (m_t - m_p) / max(1.0, m_p) * 100.0
+        gap_t = b_t - x_t
+        gap_p = b_p - x_p
+        gap_delta = gap_t - gap_p
+        bull_share_t = b_t / max(1, b_t + x_t)
+        bull_share_p = b_p / max(1, b_p + x_p)
+
+        rows.append({
+            "ticker": ticker,
+            "mentions_this": int(m_t),
+            "mentions_prev": int(m_p),
+            "mentions_wow_chg": int(wow_chg),
+            "mentions_wow_pct": round(wow_pct, 1),
+            "sentiment_this": round(s_t, 2),
+            "sentiment_prev": round(s_p, 2),
+            "sentiment_delta": round(s_t - s_p, 2),
+            "bull_this": b_t,
+            "bear_this": x_t,
+            "polarity_gap_this": gap_t,
+            "polarity_gap_prev": gap_p,
+            "polarity_gap_delta": gap_delta,
+            "bull_share_this": round(bull_share_t, 2),
+            "bull_share_prev": round(bull_share_p, 2),
+            "sources_this": src_t,
+            "new_sources": max(0, src_t - src_p),
+        })
+    if not rows:
+        return pd.DataFrame()
+    df = pd.DataFrame(rows)
+    if sort_by not in df.columns:
+        sort_by = "mentions_wow_pct"
+    return df.sort_values(sort_by, ascending=False).head(int(top)).reset_index(drop=True)
+
+
+def social_weekly_pivot(
+    cfg: Config,
+    *,
+    top_tickers_by: str = "total_mentions",
+    n_tickers: int = 30,
+    weeks: int = 6,
+    metric: str = "mentions",
+) -> pd.DataFrame:
+    """Wide-form weekly pivot: one row per ticker, one column per week.
+
+    Useful for at-a-glance scanning of trend shapes. `metric` can be:
+      mentions | sentiment | polarity_gap | bull | bear
+    """
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+    end = pd.to_datetime(daily["date"]).max()
+    start = end - pd.Timedelta(weeks=int(weeks))
+    from . import storage
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment_label, sentiment "
+            "FROM mentions WHERE timestamp >= ?",
+            [start.to_pydatetime()],
+        ).df()
+    if df.empty:
+        return pd.DataFrame()
+    df["d"] = pd.to_datetime(df["d"])
+    df["week"] = df["d"].dt.to_period("W-FRI").apply(lambda p: p.end_time.normalize().date())
+
+    if metric == "sentiment":
+        wide = df.groupby(["ticker", "week"])["sentiment"].mean().unstack(fill_value=np.nan)
+    elif metric == "polarity_gap":
+        bull = df.assign(b=(df["sentiment_label"] == "bullish").astype(int))\
+                 .groupby(["ticker", "week"])["b"].sum().unstack(fill_value=0)
+        bear = df.assign(x=(df["sentiment_label"] == "bearish").astype(int))\
+                 .groupby(["ticker", "week"])["x"].sum().unstack(fill_value=0)
+        wide = (bull - bear)
+    elif metric in ("bull", "bear"):
+        mask = "bullish" if metric == "bull" else "bearish"
+        wide = df.assign(n=(df["sentiment_label"] == mask).astype(int))\
+                 .groupby(["ticker", "week"])["n"].sum().unstack(fill_value=0)
+    else:  # mentions
+        wide = df.groupby(["ticker", "week"]).size().unstack(fill_value=0)
+
+    # Pick top N tickers by total over the window.
+    if top_tickers_by == "total_mentions":
+        totals = df.groupby("ticker").size()
+    elif top_tickers_by == "this_week_mentions":
+        last_w = wide.columns.max()
+        totals = wide[last_w] if last_w in wide.columns else df.groupby("ticker").size()
+    else:
+        totals = df.groupby("ticker").size()
+    keep = totals.sort_values(ascending=False).head(int(n_tickers)).index
+    wide = wide.loc[wide.index.isin(keep)].copy()
+    # Sort rows by latest-week value descending.
+    if not wide.empty:
+        last = wide.columns.max()
+        wide = wide.sort_values(last, ascending=False)
+    return wide
+
+
 def camillo_social_first(
     cfg: Config,
     tickers: list[str] | None = None,
