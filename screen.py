@@ -165,10 +165,13 @@ def _fetch_holdings_csv(cfg: dict) -> str:
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         body = urllib.request.urlopen(req, timeout=30).read()
-        if len(body) > 5000:
+        decoded = body.decode("utf-8-sig", errors="replace")
+        # Validate: must contain the holdings header row, not an HTML wrapper.
+        if len(body) > 5000 and "Ticker,Name" in decoded and not decoded.lstrip().startswith("<!DOCTYPE"):
             with open(cache_path, "wb") as f:
                 f.write(body)
-            return body.decode("utf-8-sig")
+            return decoded
+        print("  iShares response did not contain holdings header; falling back to cache.", file=sys.stderr)
     except Exception as e:
         print(f"  iShares fetch failed: {e}", file=sys.stderr)
     if os.path.exists(cache_path) and os.path.getsize(cache_path) > 5000:
@@ -274,9 +277,19 @@ def resample_ohlc(daily: pd.DataFrame, ticker: str, freq: str) -> pd.DataFrame:
     return sub.resample(freq).agg({"High": "max", "Low": "min", "Close": "last"}).dropna()
 
 
-def asymmetry(bars: pd.DataFrame, period: int = ASYM_PERIOD, smooth: int = ASYM_SMOOTH) -> pd.DataFrame:
+def asymmetry(bars: pd.DataFrame, period: int = ASYM_PERIOD, smooth: int = ASYM_SMOOTH,
+              roc_n: int = 5, threshold: float = 5.0) -> pd.DataFrame:
     """Port of the Pine Volatility Asymmetry indicator.
-    Returns columns: asym (0-100, 50 = balanced), asym_ma."""
+
+    Returns columns:
+      asym         -> 0-100 (50 = balanced)
+      asym_ma      -> EMA of asym
+      up_roc       -> ROC of upwardATR over roc_n bars (% change)
+      dn_roc       -> ROC of downwardATR
+      upper_asym   -> Pine's "↑" event: upward ATR accelerating while downward is
+                      stable or declining (upwardChange > thresh AND
+                      (|downwardChange| < thresh/2 OR downwardChange < 0))
+    """
     prev_close = bars["Close"].shift(1)
     up = (bars["High"] - prev_close).clip(lower=0)
     dn = (prev_close - bars["Low"]).clip(lower=0)
@@ -285,7 +298,14 @@ def asymmetry(bars: pd.DataFrame, period: int = ASYM_PERIOD, smooth: int = ASYM_
     ratio = up_atr / (up_atr + dn_atr + 1e-9)
     asym = (ratio * 100).ewm(span=smooth, adjust=False).mean()
     asym_ma = asym.ewm(span=period, adjust=False).mean()
-    return pd.DataFrame({"asym": asym, "asym_ma": asym_ma}).dropna()
+    up_roc = (up_atr / up_atr.shift(roc_n) - 1) * 100
+    dn_roc = (dn_atr / dn_atr.shift(roc_n) - 1) * 100
+    upper_asym = (up_roc > threshold) & ((dn_roc.abs() < threshold / 2) | (dn_roc < 0))
+    return pd.DataFrame({
+        "asym": asym, "asym_ma": asym_ma,
+        "up_roc": up_roc, "dn_roc": dn_roc,
+        "upper_asym": upper_asym,
+    }).dropna()
 
 
 def rs_breakout(stock_close: pd.Series, idx_close: pd.Series, freq: str, lookback: int) -> tuple[bool, float]:
@@ -418,7 +438,13 @@ def screen_rs_and_asymmetry(
         if wa.empty or ma.empty:
             continue
         w_now, w_ma_now = wa["asym"].iloc[-1], wa["asym_ma"].iloc[-1]
-        m_now = ma["asym"].iloc[-1]
+        m_now, m_ma_now = ma["asym"].iloc[-1], ma["asym_ma"].iloc[-1]
+        w_up_roc = float(wa["up_roc"].iloc[-1])
+        w_dn_roc = float(wa["dn_roc"].iloc[-1])
+        m_up_roc = float(ma["up_roc"].iloc[-1])
+        m_dn_roc = float(ma["dn_roc"].iloc[-1])
+        w_upper_asym = bool(wa["upper_asym"].iloc[-1])
+        m_upper_asym = bool(ma["upper_asym"].iloc[-1])
         # Rising: last N bars strictly higher than prior bar
         recent = wa["asym"].iloc[-(WEEKLY_ASYM_RISING_BARS + 1):]
         weekly_rising = bool((recent.diff().dropna() > 0).all())
@@ -432,7 +458,10 @@ def screen_rs_and_asymmetry(
             prior_rs_26w=prior_rs_26w,
             R_12_1=R12_1, fip=fip, pos_pct=pos_pct,
             asym_w=float(w_now), asym_w_ma=float(w_ma_now),
-            asym_m=float(m_now),
+            asym_m=float(m_now), asym_m_ma=float(m_ma_now),
+            w_up_roc=w_up_roc, w_dn_roc=w_dn_roc,
+            m_up_roc=m_up_roc, m_dn_roc=m_dn_roc,
+            w_upper_asym=w_upper_asym, m_upper_asym=m_upper_asym,
             w_rising=weekly_rising, w_above_ma=weekly_above_ma,
             w_low=weekly_low, m_balanced=monthly_balanced,
             dist_52w_high=dist_52w_high, trend_intact=trend_intact,
@@ -482,6 +511,21 @@ def screen_rs_and_asymmetry(
         & (df.fip <= -0.05)
     )
     return df.sort_values("score", ascending=False)
+
+
+def balanced_rising_score(df: pd.DataFrame) -> pd.Series:
+    """Overweight names whose weekly AND monthly volatility asymmetry is:
+      - near 50 (balanced),
+      - rising (positive ROC of upwardATR, or Pine's upper_asym firing),
+      - above its MA (or nearly above it).
+    Sum of six terms in [0,1], so total ranges 0..6 (higher = better)."""
+    w_near50 = (1 - (df.asym_w - 50).abs() / 20).clip(lower=0)
+    m_near50 = (1 - (df.asym_m - 50).abs() / 20).clip(lower=0)
+    w_above = ((df.asym_w - df.asym_w_ma + 1).clip(lower=0, upper=6) / 6)
+    m_above = ((df.asym_m - df.asym_m_ma + 1).clip(lower=0, upper=6) / 6)
+    w_rising = df.w_upper_asym.astype(float).clip(upper=1) + (df.w_up_roc > 0).astype(float) * 0.3
+    m_rising = df.m_upper_asym.astype(float).clip(upper=1) + (df.m_up_roc > 0).astype(float) * 0.3
+    return (w_near50 + m_near50 + w_above + m_above + w_rising + m_rising).clip(upper=6)
 
 
 def max_independent_set(survivors: pd.DataFrame, daily: pd.DataFrame, eps: float = CORR_EPS) -> pd.DataFrame:
@@ -557,11 +601,19 @@ def main() -> None:
     print(f"  Pass Frog-in-the-Pan (R>0 & FIP<=-0.05): {int(df.pass_fip.sum())}")
     print(f"  Pass PRE-BREAKOUT setup (Nov-23 ACLN-like): {int(df.pass_pre_breakout.sum())}")
 
+    # Add balanced+rising volasym overweight to every row.
+    df["balanced_rising"] = balanced_rising_score(df)
+    df["combined_score"] = df.score + df.balanced_rising * 0.5 + (-df.fip.fillna(0)) * 0.5
+
     cols = ["ticker", "w_margin", "m_margin", "prior_rs_26w",
             "R_12_1", "fip", "pos_pct",
-            "asym_w", "asym_w_ma", "asym_m", "score"]
-    pre_cols = ["ticker", "R_12_1", "prior_rs_26w", "dist_52w_high",
-                "asym_w", "asym_m", "sv", "sv_ma", "fip", "pos_pct"]
+            "asym_w", "asym_w_ma", "asym_m", "asym_m_ma",
+            "w_upper_asym", "m_upper_asym",
+            "balanced_rising", "score", "combined_score"]
+    pre_cols = ["ticker", "R_12_1", "dist_52w_high",
+                "asym_w", "asym_w_ma", "w_up_roc", "w_upper_asym",
+                "asym_m", "asym_m_ma", "m_up_roc", "m_upper_asym",
+                "sv", "sv_ma", "fip", "pos_pct", "balanced_rising", "pre_score"]
 
     modes = [
         ("Mode A: pre-breakout setup (asym only)", "pass_setup"),
@@ -575,12 +627,18 @@ def main() -> None:
             survivors = df[df.pass_aligned & df.pass_fip].copy()
         elif label.startswith("Mode E"):
             survivors = df[df.pass_pre_breakout].copy()
-            # Rank by FIP (ascending — most negative first), then squeeze strength.
             if not survivors.empty:
-                survivors["pre_score"] = -survivors.fip + (survivors.sv - survivors.sv_ma) / 100
+                survivors["pre_score"] = (
+                    -survivors.fip
+                    + (survivors.sv - survivors.sv_ma) / 100
+                    + survivors.balanced_rising * 0.5
+                )
                 survivors = survivors.sort_values("pre_score", ascending=False)
         else:
             survivors = df[df[key]].copy()
+            # Re-rank by combined_score (RS momentum + balanced/rising volasym + FIP).
+            if not survivors.empty:
+                survivors = survivors.sort_values("combined_score", ascending=False)
         print(f"\n=== {label} — {len(survivors)} survivors ===")
         if survivors.empty:
             print("(none)")
@@ -601,6 +659,20 @@ def main() -> None:
 
         diag = diagnostics(selected, daily)
         print("  Diagnostics:", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in diag.items()})
+
+    # Final cross-mode synthesis: top 20 uncorrelated by combined_score across
+    # every name that passed Mode B (the aligned-breakout pool).
+    pool = df[df.pass_aligned].copy()
+    if not pool.empty:
+        pool = pool.sort_values("combined_score", ascending=False)
+        chosen_for_is = pool.copy()
+        chosen_for_is["score"] = chosen_for_is["combined_score"]
+        ranked = max_independent_set(chosen_for_is, daily, eps=CORR_EPS)
+        top20 = ranked[ranked.selected].head(20)
+        print("\n=== TOP 20 (Mode B pool, overweighted by balanced+rising volasym, uncorrelated) ===")
+        print(top20[cols].to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+        diag = diagnostics(top20.ticker.tolist(), daily)
+        print("Diagnostics:", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in diag.items()})
 
 
 if __name__ == "__main__":
