@@ -251,6 +251,190 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def sentiment_ema_history_weekly(
+    cfg: Config,
+    ticker: str,
+    *,
+    short: int = 20,
+    long: int = 50,
+    min_periods_ratio: float = 0.4,
+) -> pd.DataFrame:
+    """Weekly-resampled sentiment EMA history.
+
+    Same shape as `sentiment_ema_history` but on Friday-weekly bars,
+    matching the technicals weekly cadence. With enough historical
+    backfill (e.g. PullPush + Wikipedia + HN sweeps) the classic 20/50
+    weekly EMA crossover becomes meaningful on a multi-quarter window.
+    """
+    daily = _per_ticker_daily(cfg)
+    sub = daily[daily["ticker"] == ticker]
+    if sub.empty:
+        return pd.DataFrame()
+    sub = sub.copy()
+    sub["date"] = pd.to_datetime(sub["date"])
+    agg = sub.groupby("date").agg(
+        mentions=("mentions", "sum"),
+        sentiment_mean=("sentiment_mean", "mean"),
+    ).sort_index()
+    # Weekly resample: take the mean sentiment per week (weighted via mean
+    # of daily means; perfect would be mention-weighted but expensive).
+    agg = agg.resample("W-FRI").agg(
+        mentions=("mentions", "sum"),
+        sentiment_mean=("sentiment_mean", "mean"),
+    )
+    sent = agg["sentiment_mean"].ffill().fillna(0.0)
+    if len(sent) < int(long * min_periods_ratio):
+        return pd.DataFrame()
+    ema_s = sent.ewm(span=short, adjust=False, min_periods=int(short * min_periods_ratio)).mean()
+    ema_l = sent.ewm(span=long, adjust=False, min_periods=int(long * min_periods_ratio)).mean()
+    spread = ema_s - ema_l
+    cross_up = (spread > 0) & (spread.shift(1) <= 0)
+    cross_down = (spread < 0) & (spread.shift(1) >= 0)
+    state = np.where(
+        spread.isna(), "warmup",
+        np.where(spread > 0, "bullish", "bearish"),
+    )
+    return pd.DataFrame({
+        "mentions": agg["mentions"].fillna(0.0),
+        "sentiment_mean": agg["sentiment_mean"],
+        "ema_short_w": ema_s,
+        "ema_long_w": ema_l,
+        "spread_w": spread,
+        "ema_cross_up_w": cross_up.fillna(False),
+        "ema_cross_down_w": cross_down.fillna(False),
+        "state_w": state,
+    })
+
+
+def sentiment_momentum_scan_weekly(
+    cfg: Config,
+    *,
+    top: int = 30,
+    short: int = 20,
+    long: int = 50,
+    min_mentions: int = 20,
+    min_periods_ratio: float = 0.4,
+) -> pd.DataFrame:
+    """Cross-ticker weekly-EMA scan; same composite shape as the daily one."""
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+    rows: list[dict] = []
+    for ticker in daily["ticker"].unique():
+        sub = daily[daily["ticker"] == ticker]
+        if int(sub["mentions"].sum()) < int(min_mentions):
+            continue
+        hist = sentiment_ema_history_weekly(
+            cfg, ticker, short=short, long=long, min_periods_ratio=min_periods_ratio,
+        )
+        if hist.empty:
+            continue
+        m_series = hist["mentions"].fillna(0.0)
+        m_ema_s = m_series.ewm(span=short, adjust=False, min_periods=int(short * min_periods_ratio)).mean()
+        m_ema_l = m_series.ewm(span=long, adjust=False, min_periods=int(long * min_periods_ratio)).mean()
+        m_spread = m_ema_s - m_ema_l
+        m_cross_up = (m_spread > 0) & (m_spread.shift(1) <= 0)
+        last = hist.iloc[-1]
+        if pd.isna(last["spread_w"]):
+            continue
+        weeks_observed = int(len(hist))
+        recent_w = min(weeks_observed, 4)
+        s_cross_recent = bool(hist["ema_cross_up_w"].tail(recent_w).any())
+        m_cross_recent = bool(m_cross_up.tail(recent_w).any())
+        spread_chg = float(last["spread_w"] - hist["spread_w"].iloc[-min(weeks_observed, 3)])
+
+        score = 0.0
+        score += min(float(last["spread_w"]) * 5.0, 4.0) if last["spread_w"] > 0 else max(float(last["spread_w"]) * 5.0, -4.0)
+        if s_cross_recent: score += 3.0
+        if float(last["ema_short_w"]) > 0.15: score += 1.5
+        if m_cross_recent: score += 2.0
+        score += min(spread_chg * 5.0, 2.0) if spread_chg > 0 else max(spread_chg * 5.0, -2.0)
+        score += min(float(m_ema_s.iloc[-1]) / 5.0, 1.5) if pd.notna(m_ema_s.iloc[-1]) else 0.0
+
+        rows.append({
+            "ticker": ticker,
+            "sent_momentum_w": round(score, 2),
+            "state_w": str(last["state_w"]),
+            "ema_short_w": round(float(last["ema_short_w"]), 3) if pd.notna(last["ema_short_w"]) else None,
+            "ema_long_w": round(float(last["ema_long_w"]), 3) if pd.notna(last["ema_long_w"]) else None,
+            "spread_w": round(float(last["spread_w"]), 3),
+            "spread_3w_chg": round(spread_chg, 3),
+            "sent_cross_up_recent_w": s_cross_recent,
+            "mentions_ema_short_w": round(float(m_ema_s.iloc[-1]), 1) if pd.notna(m_ema_s.iloc[-1]) else None,
+            "mentions_ema_long_w": round(float(m_ema_l.iloc[-1]), 1) if pd.notna(m_ema_l.iloc[-1]) else None,
+            "mention_cross_up_recent_w": m_cross_recent,
+            "total_mentions": int(sub["mentions"].sum()),
+            "weeks_observed": weeks_observed,
+        })
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).sort_values("sent_momentum_w", ascending=False).head(int(top)).reset_index(drop=True)
+
+
+def bullish_leaderboard(
+    cfg: Config,
+    *,
+    top: int = 50,
+    min_mentions: int = 5,
+) -> dict:
+    """Run every bullish ranker and surface the union of top-N per measure.
+
+    Returns a dict of DataFrames:
+      "social_momentum"    -- pure_social_momentum top N
+      "sentiment_ema_d"    -- sentiment_momentum_scan top N (daily EMAs)
+      "sentiment_ema_w"    -- sentiment_momentum_scan_weekly top N (weekly EMAs)
+      "polarity_gap"       -- top N by bull_minus_bear_7d (extracted from
+                              pure_social_momentum)
+      "polarity_growth"    -- top N by polarity_vol_growth
+      "composite"          -- per-ticker average of percentile ranks across
+                              all the above (single ranking)
+    """
+    out: dict[str, pd.DataFrame] = {}
+
+    sm = pure_social_momentum(cfg, top=1000, min_mentions=min_mentions)
+    if not sm.empty:
+        out["social_momentum"] = sm.head(top).reset_index(drop=True)
+        polg = sm.sort_values("bull_minus_bear_7d", ascending=False).head(top).reset_index(drop=True)
+        out["polarity_gap"] = polg[["ticker", "bull_minus_bear_7d", "bull_7d", "bear_7d",
+                                    "polarity_volume_7d", "polarity_vol_growth", "bull_share"]]
+        polg2 = sm.sort_values("polarity_vol_growth", ascending=False).head(top).reset_index(drop=True)
+        out["polarity_growth"] = polg2[["ticker", "polarity_vol_growth", "polarity_volume_7d",
+                                        "bull_minus_bear_7d", "mentions_7d"]]
+    sed = sentiment_momentum_scan(cfg, top=1000, short=5, long=14, min_mentions=min_mentions)
+    if not sed.empty:
+        out["sentiment_ema_d"] = sed.head(top).reset_index(drop=True)
+    sew = sentiment_momentum_scan_weekly(cfg, top=1000, short=20, long=50, min_mentions=min_mentions * 2)
+    if not sew.empty:
+        out["sentiment_ema_w"] = sew.head(top).reset_index(drop=True)
+
+    # Composite: per-ticker average percentile rank across the measures.
+    score_cols = {
+        "social_momentum": "social_momentum",
+        "sentiment_ema_d": "sent_momentum",
+        "sentiment_ema_w": "sent_momentum_w",
+    }
+    components: list[pd.Series] = []
+    for key, col in score_cols.items():
+        if key in out and col in out[key].columns:
+            full = (sm if key == "social_momentum" else
+                    sed if key == "sentiment_ema_d" else
+                    sew if key == "sentiment_ema_w" else None)
+            if full is None or full.empty:
+                continue
+            ranked = full[["ticker", col]].copy()
+            ranked["pct"] = ranked[col].rank(pct=True) * 100.0
+            components.append(ranked.set_index("ticker")["pct"].rename(key))
+    if not components:
+        out["composite"] = pd.DataFrame()
+        return out
+    comp = pd.concat(components, axis=1)
+    comp["composite_pct"] = comp.mean(axis=1, skipna=True).round(1)
+    comp = comp.sort_values("composite_pct", ascending=False).head(top)
+    comp = comp.reset_index()
+    out["composite"] = comp
+    return out
+
+
 def sentiment_ema_history(
     cfg: Config,
     ticker: str,

@@ -25,6 +25,82 @@ log = logging.getLogger(__name__)
 HN_BASE = "https://hn.algolia.com/api/v1/search"
 
 
+def backfill_hackernews(
+    cfg: Config,
+    resolver: Resolver,
+    sentiment: SentimentScorer,
+    *,
+    query: str,
+    days_back: int = 365,
+    chunk_days: int = 14,
+    hits_per_chunk: int = 200,
+) -> pd.DataFrame:
+    """Sweep HN history in `chunk_days` windows for `days_back` total.
+
+    Algolia's HN index supports numeric range filters via
+    `numericFilters=created_at_i>...,created_at_i<...`. We slide a window
+    backward from now to days_back, accumulating mention rows.
+    """
+    import time
+    end = datetime.now(timezone.utc)
+    cur_end = end
+    cur_start = cur_end - timedelta(days=int(chunk_days))
+    earliest = end - timedelta(days=int(days_back))
+    all_rows: list[dict] = []
+    while cur_end > earliest:
+        params = {
+            "query": query,
+            "tags": "(story,comment)",
+            "numericFilters": (
+                f"created_at_i>{int(cur_start.timestamp())},"
+                f"created_at_i<{int(cur_end.timestamp())}"
+            ),
+            "hitsPerPage": min(int(hits_per_chunk), 1000),
+        }
+        try:
+            payload = http_get_json(HN_BASE, cfg, params=params)
+        except Exception as exc:  # noqa: BLE001
+            log.warning("hn backfill chunk failed: %s", exc)
+            cur_end = cur_start
+            cur_start = cur_end - timedelta(days=int(chunk_days))
+            continue
+        hits = payload.get("hits", []) or []
+        for hit in hits:
+            text = " ".join(filter(None, [
+                hit.get("title"), hit.get("story_title"),
+                hit.get("comment_text"), hit.get("story_text"),
+            ])).strip()
+            if not text:
+                continue
+            mentions = resolver.resolve(text)
+            if not mentions:
+                continue
+            created = hit.get("created_at_i")
+            ts = datetime.fromtimestamp(int(created), tz=timezone.utc) if created else cur_end
+            s = sentiment.score(text)
+            sid = str(hit.get("objectID") or hit.get("story_id") or "")
+            for m in mentions:
+                all_rows.append({
+                    "timestamp": ts,
+                    "source": "hackernews",
+                    "source_id": sid,
+                    "ticker": m.ticker,
+                    "alias": m.alias,
+                    "confidence": m.confidence,
+                    "via": m.via,
+                    "text": text[:4000],
+                    "sentiment": s.compound,
+                    "sentiment_label": s.label,
+                    "url": hit.get("url") or f"https://news.ycombinator.com/item?id={sid}",
+                    "author": hit.get("author"),
+                })
+        cur_end = cur_start
+        cur_start = cur_end - timedelta(days=int(chunk_days))
+        time.sleep(0.5)  # be polite
+    log.info("hn backfill '%s' (%dd): %d mention rows", query, days_back, len(all_rows))
+    return normalized_dataframe(all_rows)
+
+
 def collect_hackernews(
     cfg: Config,
     resolver: Resolver,

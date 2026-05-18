@@ -24,11 +24,12 @@ from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
-    CamilloParams, RankParams, asymmetric_setups, best_today, bullish_ranking,
-    camillo_ranking, crossover_intersect_social, pure_social_momentum,
-    rank_improvers, rank_inflecters, sentiment_ema_history,
-    sentiment_momentum_scan, social_asymmetric_setups, social_signal_score,
-    union_ranking, weekly_momentum,
+    CamilloParams, RankParams, asymmetric_setups, best_today, bullish_leaderboard,
+    bullish_ranking, camillo_ranking, crossover_intersect_social,
+    pure_social_momentum, rank_improvers, rank_inflecters, sentiment_ema_history,
+    sentiment_ema_history_weekly, sentiment_momentum_scan,
+    sentiment_momentum_scan_weekly, social_asymmetric_setups,
+    social_signal_score, union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -283,6 +284,89 @@ def cmd_finviz(args: argparse.Namespace) -> int:
     ]
     cols = [c for c in cols if c in df.columns]
     print(df[cols].to_string(index=False))
+    return 0
+
+
+def cmd_leaderboard(args: argparse.Namespace) -> int:
+    """Top N most-bullish names under EACH bullish measure + a composite."""
+    cfg = Config()
+    out = bullish_leaderboard(cfg, top=args.top, min_mentions=args.min_mentions)
+    if not out or all(v.empty for v in out.values()):
+        print("no data; run collectors first")
+        return 0
+    for name, df in out.items():
+        if df.empty:
+            continue
+        print(f"\n=== TOP {len(df)} :: {name} ===")
+        # Cap printed width.
+        print(df.to_string(index=False))
+    return 0
+
+
+def cmd_backfill(args: argparse.Namespace) -> int:
+    """Run historic backfills of free sources that support time-window queries."""
+    cfg = Config()
+    pipe = Pipeline.build(cfg)
+    if args.source == "hackernews":
+        from .collectors.hackernews import backfill_hackernews
+        from . import storage
+        queries = (args.queries.split(",") if args.queries else [
+            "NVIDIA", "Tesla", "Apple", "Palantir", "Crocs", "Celsius",
+            "Mattel", "Stanley tumbler", "Hoka", "Cheesecake Factory",
+        ])
+        total = 0
+        for q in queries:
+            df = backfill_hackernews(
+                cfg, pipe.resolver, pipe.sentiment,
+                query=q.strip(), days_back=args.days, chunk_days=args.chunk,
+            )
+            total += storage.upsert_mentions(cfg, df)
+        print(f"hn backfill: {total} mentions stored")
+    elif args.source == "wikipedia":
+        # Sweep Wikipedia pageviews over a long horizon.
+        titles = (args.queries.split(",") if args.queries else [
+            "Mattel", "Crocs", "Celsius_Holdings", "Deckers_Outdoor_Corporation",
+            "Nvidia", "GameStop", "Lululemon_Athletica", "Newell_Brands",
+            "Under_Armour", "Tapestry,_Inc.", "Build-A-Bear_Workshop",
+            "Vital_Farms", "TripAdvisor",
+        ])
+        # Best-effort title -> ticker map; users should edit aliases.csv.
+        title_to_ticker = {
+            "Mattel": "MAT", "Crocs": "CROX", "Celsius_Holdings": "CELH",
+            "Deckers_Outdoor_Corporation": "DECK", "Nvidia": "NVDA",
+            "GameStop": "GME", "Lululemon_Athletica": "LULU",
+            "Newell_Brands": "NWL", "Under_Armour": "UAA",
+            "Tapestry,_Inc.": "TPR", "Build-A-Bear_Workshop": "BBW",
+            "Vital_Farms": "VITL", "TripAdvisor": "TRIP",
+        }
+        total = 0
+        for t in titles:
+            t = t.strip()
+            ticker = title_to_ticker.get(t, t.upper())
+            total += pipe.run_wikipedia(title=t, ticker=ticker, days_back=args.days)
+        print(f"wikipedia backfill ({args.days}d): {total} rows stored")
+    elif args.source == "bluesky":
+        from .collectors.bluesky import collect_bluesky
+        from . import storage
+        queries = (args.queries.split(",") if args.queries else [
+            "$NVDA", "$CELH", "$NWL", "Crocs", "Stanley tumbler", "TripAdvisor",
+            "Allbirds", "Birkenstock", "Cheesecake Factory", "Build-A-Bear",
+        ])
+        total = 0
+        for q in queries:
+            df = collect_bluesky(cfg, pipe.resolver, pipe.sentiment,
+                               query=q.strip(), hours_back=args.hours, limit=100)
+            total += storage.upsert_mentions(cfg, df)
+        print(f"bluesky: {total} mentions stored")
+    elif args.source == "openinsider":
+        from .collectors.openinsider import collect_openinsider_cluster_buys
+        from . import storage
+        df = collect_openinsider_cluster_buys(cfg)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"openinsider cluster buys: {n} mentions stored")
+    else:
+        print(f"unknown source: {args.source}", file=sys.stderr)
+        return 2
     return 0
 
 
@@ -721,6 +805,20 @@ def build_parser() -> argparse.ArgumentParser:
     pfv.add_argument("--tickers", required=True, help="comma-separated")
     pfv.add_argument("--sleep", type=float, default=0.7)
     pfv.set_defaults(func=cmd_finviz)
+
+    plb = sub.add_parser("leaderboard", help="Top N most bullish under EACH measure + composite")
+    plb.add_argument("--top", type=int, default=50)
+    plb.add_argument("--min-mentions", dest="min_mentions", type=int, default=5)
+    plb.set_defaults(func=cmd_leaderboard)
+
+    pbf = sub.add_parser("backfill", help="Historic backfills (hackernews, wikipedia, bluesky, openinsider)")
+    pbf.add_argument("source", choices=["hackernews", "wikipedia", "bluesky", "openinsider"])
+    pbf.add_argument("--queries", default=None,
+                    help="comma-separated query/title list; defaults to Camillo-archetype set")
+    pbf.add_argument("--days", type=int, default=365, help="days of history (hn/wikipedia)")
+    pbf.add_argument("--chunk", type=int, default=14, help="hn backfill chunk size in days")
+    pbf.add_argument("--hours", type=int, default=72, help="bluesky lookback hours")
+    pbf.set_defaults(func=cmd_backfill)
 
     pse = sub.add_parser("sentiment-momentum",
                          help="Sentiment-EMA momentum scan (short vs long, e.g. 20/50)")
