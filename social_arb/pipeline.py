@@ -111,6 +111,36 @@ class Pipeline:
         df = collect_form4(self.cfg, days_back=days_back, max_records=max_records)
         return storage.upsert_mentions(self.cfg, df)
 
+    def run_reddit_chat(self, *, subreddit: str, days_back: int = 7,
+                       max_threads_per_query: int = 10) -> int:
+        from .collectors.reddit_chat import collect_reddit_chat
+        df = collect_reddit_chat(
+            self.cfg, self.resolver, self.sentiment,
+            subreddit=subreddit, days_back=days_back,
+            max_threads_per_query=max_threads_per_query,
+        )
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_fourchan(self, *, max_threads: int = 50, min_replies: int = 5) -> int:
+        from .collectors.fourchan import collect_fourchan_biz
+        df = collect_fourchan_biz(
+            self.cfg, self.resolver, self.sentiment,
+            max_threads=max_threads, min_replies=min_replies,
+        )
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_yahoo_conversations(self, *, ticker: str, count: int = 50) -> int:
+        from .collectors.yahoo_conversations import collect_yahoo_conversations
+        df = collect_yahoo_conversations(self.cfg, self.sentiment,
+                                         ticker=ticker, count=count)
+        return storage.upsert_mentions(self.cfg, df)
+
+    def run_bluesky(self, *, query: str, hours_back: int = 24, limit: int = 100) -> int:
+        from .collectors.bluesky import collect_bluesky
+        df = collect_bluesky(self.cfg, self.resolver, self.sentiment,
+                             query=query, hours_back=hours_back, limit=limit)
+        return storage.upsert_mentions(self.cfg, df)
+
     # ---- analysis -------------------------------------------------------
 
     def daily_counts(self, ticker: str | None = None, source: str | None = None) -> pd.DataFrame:

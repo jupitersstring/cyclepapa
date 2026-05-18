@@ -12,6 +12,7 @@ data/universe.parquet
 data/prices_weekly.parquet
 data/prices_daily_close.parquet
 data/prices_daily_volume.parquet
+data/plots/
 
 # venv
 .venv/

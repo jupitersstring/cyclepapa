@@ -21,9 +21,37 @@ from social_arb.pipeline import Pipeline
 
 
 CONSUMER_SUBS = [
-    "wallstreetbets", "stocks", "investing", "stockmarket",
-    "SkincareAddiction", "BuyItForLife", "MaleFashionAdvice",
-    "Sneakers", "GenZ",
+    # --- Finance discussion ---
+    "wallstreetbets", "stocks", "stockmarket", "investing", "options",
+    "Daytrading", "pennystocks", "smallstreetbets", "ValueInvesting",
+    "SecurityAnalysis", "Bogleheads", "thetagang", "biotech_stocks",
+    # --- Beauty / personal care (Camillo: UGG, beauty cycles) ---
+    "SkincareAddiction", "MakeupAddiction", "Sephora", "Ulta", "AsianBeauty",
+    "30PlusSkinCare", "fragrance",
+    # --- Apparel / footwear (Camillo: CROX, DECK, UAA, LULU, BIRD) ---
+    "MaleFashionAdvice", "FemaleFashionAdvice", "frugalmalefashion",
+    "Sneakers", "SneakerMarket", "streetwear",
+    # --- Consumer staples / household (Camillo: NWL Elmer's Glue, KHC, CELH) ---
+    "BuyItForLife", "Frugal", "CoffeeStations", "coffee", "tea",
+    "homestead", "OrganicHomeRemedies",
+    # --- Food / restaurants (CAKE, SBUX, CMG, WING, SHAK) ---
+    "FoodPorn", "KetoMealPrep", "ZeroWaste",
+    # --- Pets (CHWY) ---
+    "Pets", "dogs", "cats", "DogTraining",
+    # --- Home / DIY (HD, LOW, FND, FTDR) ---
+    "HomeImprovement", "DIY", "Plumbing", "centuryhomes",
+    # --- Auto / EV / cars (TSLA, RIVN, CARS, KMX) ---
+    "cars", "ElectricVehicles", "teslamotors", "Cartalk",
+    # --- Tech / gaming / streaming (NFLX, ROKU, RBLX, GME, GOOG, AAPL) ---
+    "gaming", "PS5", "XboxSeriesX", "buildapc", "iphone", "apple",
+    # --- Travel / leisure (TRIP, BKNG, ABNB, AAL, CCL) ---
+    "travel", "solotravel",
+    # --- Health / wellness (HIMS, VITL, EL) ---
+    "loseit", "intermittentfasting", "keto",
+    # --- Crypto-adjacent (we track crypto-tier stocks like COIN/MSTR) ---
+    "CryptoCurrency",
+    # --- Gen-Z taste-makers ---
+    "GenZ", "Millennials",
 ]
 
 CAMILLO_GDELT_QUERIES = [
@@ -37,7 +65,21 @@ CAMILLO_GDELT_QUERIES = [
     '"Yeti"',
 ]
 
-WATCHLIST_STOCKTWITS = ["NVDA", "GME", "MAT", "CROX", "CELH", "TPR", "DECK"]
+WATCHLIST_STOCKTWITS = [
+    "NVDA", "GME", "MAT", "CROX", "CELH", "TPR", "DECK",
+    "BBW", "VITL", "TRIP", "FTDR", "CAKE", "COLM", "BIRD",
+    "WEN", "SHAK", "CHWY", "HOOD", "EL", "PVH", "TACO",
+]
+
+# Subreddits whose daily megathreads have high-frequency chat-flow.
+CHAT_SUBS = ["wallstreetbets", "stocks", "options", "StockMarket",
+             "pennystocks", "smallstreetbets"]
+
+# Yahoo Finance Conversations watchlist (per-ticker stream).
+WATCHLIST_YAHOO = [
+    "CELH", "NWL", "MAT", "CROX", "DECK", "TPR", "BBW", "VITL", "TRIP",
+    "NVDA", "GME", "HOOD", "BIRD", "FTDR", "CAKE",
+]
 
 HN_QUERIES = ["NVIDIA", "AMD", "Tesla", "Apple", "Palantir", "OpenAI", "Anthropic", "Crocs", "Stanley tumbler"]
 
@@ -66,7 +108,9 @@ def main() -> int:
     parser.add_argument("--skip", nargs="*", default=[],
                         choices=["reddit", "apewisdom", "gdelt", "stocktwits",
                                  "hackernews", "reddit_rss", "yfinance_news",
-                                 "wikipedia", "form4"])
+                                 "wikipedia", "form4",
+                                 "reddit_chat", "fourchan", "yahoo_conversations",
+                                 "bluesky", "openinsider"])
     parser.add_argument("--reddit-days", type=int, default=1)
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args()
@@ -80,6 +124,8 @@ def main() -> int:
         "reddit": 0, "apewisdom": 0, "gdelt": 0, "stocktwits": 0,
         "hackernews": 0, "reddit_rss": 0, "yfinance_news": 0,
         "wikipedia": 0, "form4": 0,
+        "reddit_chat": 0, "fourchan": 0, "yahoo_conversations": 0,
+        "bluesky": 0, "openinsider": 0,
     }
 
     if "reddit" not in args.skip:
@@ -145,8 +191,46 @@ def main() -> int:
         except Exception as exc:  # noqa: BLE001
             logging.warning("sec form4 failed: %s", exc)
 
+    if "reddit_chat" not in args.skip:
+        for sub in CHAT_SUBS:
+            try:
+                totals["reddit_chat"] += pipe.run_reddit_chat(subreddit=sub, days_back=7)
+            except Exception as exc:  # noqa: BLE001
+                logging.warning("reddit_chat r/%s failed: %s", sub, exc)
+
+    if "fourchan" not in args.skip:
+        try:
+            totals["fourchan"] += pipe.run_fourchan(max_threads=40, min_replies=10)
+        except Exception as exc:  # noqa: BLE001
+            logging.warning("fourchan /biz/ failed: %s", exc)
+
+    if "yahoo_conversations" not in args.skip:
+        for t in WATCHLIST_YAHOO:
+            try:
+                totals["yahoo_conversations"] += pipe.run_yahoo_conversations(ticker=t)
+            except Exception as exc:  # noqa: BLE001
+                logging.warning("yahoo_conversations %s failed: %s", t, exc)
+
+    if "bluesky" not in args.skip:
+        for q in ["$CELH", "$NVDA", "$NWL", "Crocs", "Stanley tumbler",
+                  "TripAdvisor", "Build-A-Bear", "Allbirds"]:
+            try:
+                totals["bluesky"] += pipe.run_bluesky(query=q, hours_back=168, limit=100)
+            except Exception as exc:  # noqa: BLE001
+                logging.warning("bluesky '%s' failed: %s", q, exc)
+
+    if "openinsider" not in args.skip:
+        try:
+            from social_arb.collectors.openinsider import collect_openinsider_cluster_buys
+            from social_arb import storage
+            totals["openinsider"] += storage.upsert_mentions(
+                pipe.cfg, collect_openinsider_cluster_buys(pipe.cfg),
+            )
+        except Exception as exc:  # noqa: BLE001
+            logging.warning("openinsider failed: %s", exc)
+
     for k, v in totals.items():
-        print(f"{k:>14}: {v}")
+        print(f"{k:>20}: {v}")
     return 0
 
 

@@ -213,6 +213,19 @@ def cmd_camillo(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_plot(args: argparse.Namespace) -> int:
+    """Generate per-ticker plot panels (price + smoothed social with EMAs)."""
+    from .plots import plot_many
+    tickers = [t.strip().upper() for t in args.tickers.split(",") if t.strip()]
+    paths = plot_many(
+        tickers, short=args.short, long=args.long, months=args.months,
+        min_periods_ratio=args.min_periods,
+    )
+    for p in paths:
+        print(p)
+    return 0
+
+
 def cmd_health(args: argparse.Namespace) -> int:
     """Pipeline health & coverage audit."""
     from .health import collect as _hc
@@ -827,6 +840,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     phc = sub.add_parser("health", help="Pipeline health & coverage audit")
     phc.set_defaults(func=cmd_health)
+
+    pplot = sub.add_parser("plot", help="3-panel per-ticker plots (price + smoothed social with EMAs)")
+    pplot.add_argument("--tickers", required=True, help="comma-separated")
+    pplot.add_argument("--short", type=int, default=20)
+    pplot.add_argument("--long", type=int, default=50)
+    pplot.add_argument("--months", type=int, default=24)
+    pplot.add_argument("--min-periods", dest="min_periods", type=float, default=0.3)
+    pplot.set_defaults(func=cmd_plot)
 
     pdr = sub.add_parser("daily-refresh", help="Bulk-download daily price cache")
     pdr.add_argument("--years", type=int, default=3)
