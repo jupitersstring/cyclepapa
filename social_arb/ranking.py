@@ -251,6 +251,210 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def pure_social_momentum(
+    cfg: Config,
+    *,
+    top: int = 30,
+    min_mentions: int = 5,
+    half_life: int = 14,
+    require_positive_sentiment: bool = False,
+) -> pd.DataFrame:
+    """Pure social momentum ranking -- no price, no technicals.
+
+    Aggregates the mention store and ranks tickers by a composite of:
+
+      * **mention_z**       -- EWMA z-score of daily mentions
+      * **growth_7d**       -- log(last7) - log(prev7) (1st derivative)
+      * **growth_3d**       -- log(last3) - log(prior3) (short-end)
+      * **inflection**      -- (recent growth) - (prior growth) (2nd deriv)
+      * **sentiment_delta** -- last-7d mean sentiment - prior-7d mean
+
+    PLUS explicit sentiment-volume measures (the key Camillo edge --
+    "people are talking about this, and the conversation has flipped"):
+
+      * **bull_minus_bear_7d**    -- COUNT bullish - COUNT bearish, last 7d.
+                                     A POLARITY GAP that ignores neutral
+                                     noise. The actual bull/bear *vote*.
+      * **bull_bear_delta**       -- gap_now - gap_prev. Did the conversation
+                                     just flip from neutral/bearish to bullish?
+      * **polarity_volume_7d**    -- bullish + bearish counts last 7d.
+                                     How LOUD the polarized conversation is,
+                                     independent of which way it leans.
+      * **polarity_volume_growth**-- log ratio of polarity_volume now vs prev7d.
+                                     The room got louder this week.
+
+      * **new_sources**     -- # distinct sources active in last 7d but not
+                               in prior 7d (= the topic is spreading)
+      * **source_count**    -- # distinct sources currently active
+
+    Composite = weighted sum, with explicit caps so a single dimension
+    can't dominate. Tickers with `min_mentions` cumulative mentions or
+    fewer are filtered out.
+    """
+    from . import storage
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+
+    # Source-level breakdown per ticker per day, for diversity metrics.
+    try:
+        with storage.connect(cfg) as con:
+            src_df = con.execute(
+                "SELECT CAST(timestamp AS DATE) AS date, ticker, source, "
+                "COUNT(*) AS n FROM mentions GROUP BY 1, 2, 3"
+            ).df()
+        src_df["date"] = pd.to_datetime(src_df["date"])
+    except Exception:  # noqa: BLE001
+        src_df = pd.DataFrame()
+
+    # Per-ticker per-day per-label counts for sentiment-polarity volumes.
+    try:
+        with storage.connect(cfg) as con:
+            pol_df = con.execute(
+                "SELECT CAST(timestamp AS DATE) AS date, ticker, sentiment_label, "
+                "COUNT(*) AS n FROM mentions GROUP BY 1, 2, 3"
+            ).df()
+        pol_df["date"] = pd.to_datetime(pol_df["date"])
+    except Exception:  # noqa: BLE001
+        pol_df = pd.DataFrame()
+
+    end_date = pd.to_datetime(daily["date"]).max()
+    last7_cut = end_date - pd.Timedelta(days=6)
+    prev7_cut = end_date - pd.Timedelta(days=13)
+    last3_cut = end_date - pd.Timedelta(days=2)
+    prior3_cut = end_date - pd.Timedelta(days=5)
+
+    rows: list[dict] = []
+    for ticker, grp in daily.groupby("ticker"):
+        total = int(grp["mentions"].sum())
+        if total < int(min_mentions):
+            continue
+        series = grp.set_index("date")["mentions"].sort_index()
+        series.index = pd.to_datetime(series.index)
+        series = series.asfreq("D", fill_value=0.0)
+
+        # EWMA z-score on log mentions.
+        log_s = np.log1p(series)
+        if len(log_s) >= 3:
+            mu = log_s.ewm(halflife=half_life, min_periods=3).mean()
+            sd = log_s.ewm(halflife=half_life, min_periods=3).std().replace(0.0, np.nan)
+            z = float(((log_s - mu) / sd).iloc[-1]) if sd.notna().iloc[-1] else 0.0
+        else:
+            z = 0.0
+
+        last7 = float(series.loc[series.index >= last7_cut].sum())
+        prev7 = float(series.loc[(series.index >= prev7_cut) & (series.index < last7_cut)].sum())
+        last3 = float(series.loc[series.index >= last3_cut].sum())
+        prior3 = float(series.loc[(series.index >= prior3_cut) & (series.index < last3_cut)].sum())
+
+        growth_7d = float(np.log1p(last7) - np.log1p(prev7))
+        growth_3d = float(np.log1p(last3) - np.log1p(prior3))
+        # 2nd derivative: short-window growth vs longer-window growth.
+        inflection = growth_3d - growth_7d / 2.0
+
+        # Sentiment delta last7 vs prev7.
+        sent_series = grp.set_index("date")["sentiment_mean"].sort_index()
+        sent_series.index = pd.to_datetime(sent_series.index)
+        sent_last7 = float(sent_series.loc[sent_series.index >= last7_cut].mean()) if not sent_series.empty else 0.0
+        sent_prev7 = float(sent_series.loc[(sent_series.index >= prev7_cut) & (sent_series.index < last7_cut)].mean()) if not sent_series.empty else 0.0
+        if pd.isna(sent_last7): sent_last7 = 0.0
+        if pd.isna(sent_prev7): sent_prev7 = 0.0
+        sent_delta = sent_last7 - sent_prev7
+        if require_positive_sentiment and sent_last7 < 0:
+            continue
+
+        # Source diversity.
+        n_sources_now = 0
+        new_sources_n = 0
+        if not src_df.empty:
+            sub_src = src_df[src_df["ticker"] == ticker]
+            srcs_last7 = set(sub_src.loc[sub_src["date"] >= last7_cut, "source"])
+            srcs_prev7 = set(sub_src.loc[(sub_src["date"] >= prev7_cut) & (sub_src["date"] < last7_cut), "source"])
+            n_sources_now = len(srcs_last7)
+            new_sources_n = len(srcs_last7 - srcs_prev7)
+
+        # Sentiment-polarity volumes (count of bullish vs bearish vs neutral).
+        bull_7 = bear_7 = neu_7 = 0
+        bull_p = bear_p = 0
+        if not pol_df.empty:
+            sub_pol = pol_df[pol_df["ticker"] == ticker]
+            last_pol = sub_pol[sub_pol["date"] >= last7_cut]
+            prev_pol = sub_pol[(sub_pol["date"] >= prev7_cut) & (sub_pol["date"] < last7_cut)]
+            bull_7 = int(last_pol.loc[last_pol["sentiment_label"] == "bullish", "n"].sum())
+            bear_7 = int(last_pol.loc[last_pol["sentiment_label"] == "bearish", "n"].sum())
+            neu_7 = int(last_pol.loc[last_pol["sentiment_label"] == "neutral", "n"].sum())
+            bull_p = int(prev_pol.loc[prev_pol["sentiment_label"] == "bullish", "n"].sum())
+            bear_p = int(prev_pol.loc[prev_pol["sentiment_label"] == "bearish", "n"].sum())
+        bull_minus_bear_7d = bull_7 - bear_7
+        bull_minus_bear_prev = bull_p - bear_p
+        bull_bear_delta = bull_minus_bear_7d - bull_minus_bear_prev
+        polarity_volume_7d = bull_7 + bear_7
+        polarity_volume_prev = bull_p + bear_p
+        polarity_volume_growth = float(np.log1p(polarity_volume_7d) - np.log1p(polarity_volume_prev))
+        # Polarised share: what fraction of last-7d mentions actually took a
+        # side, vs being neutral. A noisy stock with mostly neutral chatter
+        # carries less signal than one whose audience has formed an opinion.
+        last7_total_int = bull_7 + bear_7 + neu_7
+        polarised_share = (bull_7 + bear_7) / max(1, last7_total_int)
+        # Bull-vote share: of polarized mentions, what fraction are bullish.
+        bull_share = bull_7 / max(1, bull_7 + bear_7)
+
+        # Composite, cap each contribution.
+        score = 0.0
+        score += min(max(z, 0.0), 4.0) * 1.0
+        score += min(growth_7d, 3.0) * 1.0 if growth_7d > 0 else 0.0
+        score += min(growth_3d, 3.0) * 0.7 if growth_3d > 0 else 0.0
+        score += min(inflection, 3.0) * 1.2 if inflection > 0 else 0.0
+        score += min(sent_delta * 5.0, 2.0) if sent_delta > 0 else max(sent_delta * 3.0, -2.0)
+        score += min(sent_last7 * 3.0, 1.5) if sent_last7 > 0 else 0.0
+        score += min(n_sources_now, 4) * 0.5
+        score += min(new_sources_n, 3) * 0.75
+        # Bull/bear polarity weight: log scaling so a 100-bull / 5-bear week
+        # contributes more than 5-bull / 1-bear without going parabolic.
+        if bull_minus_bear_7d > 0:
+            score += min(np.log1p(bull_minus_bear_7d), 3.0) * 1.0
+        elif bull_minus_bear_7d < 0:
+            score -= min(np.log1p(abs(bull_minus_bear_7d)), 3.0) * 1.0
+        # Flip bonus: net polarity gap improved week-over-week.
+        if bull_bear_delta > 0:
+            score += min(np.log1p(bull_bear_delta), 2.5) * 1.0
+        # Polarity volume growth: the polarized room got louder.
+        if polarity_volume_growth > 0:
+            score += min(polarity_volume_growth, 3.0) * 0.7
+        # Polarised share bonus: real conviction vs noise.
+        score += polarised_share * 1.0
+        # Volume floor: more mentions = more reliable signal.
+        score += min(np.log1p(total) / 2.0, 1.5)
+
+        rows.append({
+            "ticker": ticker,
+            "social_momentum": round(score, 2),
+            "total_mentions": total,
+            "mentions_7d": int(last7),
+            "mentions_prev7d": int(prev7),
+            "growth_7d": round(growth_7d, 2),
+            "growth_3d": round(growth_3d, 2),
+            "inflection": round(inflection, 2),
+            "mention_z": round(z, 2),
+            "sentiment_7d": round(sent_last7, 2),
+            "sentiment_delta": round(sent_delta, 2),
+            "bull_7d": bull_7,
+            "bear_7d": bear_7,
+            "neutral_7d": neu_7,
+            "bull_minus_bear_7d": bull_minus_bear_7d,
+            "bull_bear_delta": bull_bear_delta,
+            "polarity_volume_7d": polarity_volume_7d,
+            "polarity_vol_growth": round(polarity_volume_growth, 2),
+            "polarised_share": round(polarised_share, 2),
+            "bull_share": round(bull_share, 2),
+            "sources_now": n_sources_now,
+            "new_sources": new_sources_n,
+        })
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).sort_values("social_momentum", ascending=False).head(int(top)).reset_index(drop=True)
+
+
 def social_signal_score(cfg: Config, ticker: str) -> dict:
     """Per-ticker rolled-up social/alt-data signal.
 

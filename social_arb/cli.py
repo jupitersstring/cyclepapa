@@ -25,9 +25,9 @@ from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
     CamilloParams, RankParams, asymmetric_setups, best_today, bullish_ranking,
-    camillo_ranking, crossover_intersect_social, rank_improvers,
-    rank_inflecters, social_asymmetric_setups, social_signal_score,
-    union_ranking, weekly_momentum,
+    camillo_ranking, crossover_intersect_social, pure_social_momentum,
+    rank_improvers, rank_inflecters, social_asymmetric_setups,
+    social_signal_score, union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -282,6 +282,37 @@ def cmd_finviz(args: argparse.Namespace) -> int:
     ]
     cols = [c for c in cols if c in df.columns]
     print(df[cols].to_string(index=False))
+    return 0
+
+
+def cmd_social_momentum(args: argparse.Namespace) -> int:
+    """Pure social momentum: no price, no technicals.
+
+    Surfaces tickers whose social conversation is accelerating, the
+    bull/bear polarity is shifting positive, and new sources are picking
+    up the topic. The "people are talking about it more, and more
+    positively" filter.
+    """
+    cfg = Config()
+    out = pure_social_momentum(
+        cfg, top=args.top, min_mentions=args.min_mentions,
+        half_life=args.halflife,
+        require_positive_sentiment=args.positive_only,
+    )
+    if out.empty:
+        print("no data; run collectors first")
+        return 0
+    cols_main = [
+        "ticker", "social_momentum", "total_mentions", "mentions_7d", "mentions_prev7d",
+        "growth_7d", "growth_3d", "inflection", "mention_z",
+        "bull_7d", "bear_7d", "neutral_7d",
+        "bull_minus_bear_7d", "bull_bear_delta",
+        "polarity_volume_7d", "polarity_vol_growth", "polarised_share", "bull_share",
+        "sentiment_7d", "sentiment_delta",
+        "sources_now", "new_sources",
+    ]
+    cols_main = [c for c in cols_main if c in out.columns]
+    print(out[cols_main].to_string(index=False))
     return 0
 
 
@@ -660,6 +691,15 @@ def build_parser() -> argparse.ArgumentParser:
     pfv.add_argument("--tickers", required=True, help="comma-separated")
     pfv.add_argument("--sleep", type=float, default=0.7)
     pfv.set_defaults(func=cmd_finviz)
+
+    psm = sub.add_parser("social-momentum",
+                         help="Pure social momentum: mentions accelerating + bull/bear flip")
+    psm.add_argument("--top", type=int, default=30)
+    psm.add_argument("--min-mentions", dest="min_mentions", type=int, default=5)
+    psm.add_argument("--halflife", type=int, default=14)
+    psm.add_argument("--positive-only", dest="positive_only", action="store_true",
+                    help="exclude tickers with net-negative last-7d sentiment")
+    psm.set_defaults(func=cmd_social_momentum)
 
     psa = sub.add_parser("social-asymmetric",
                          help="Information arbitrage: broken price + rising social signal")
