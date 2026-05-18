@@ -31,7 +31,8 @@ from .ranking import (
     sentiment_momentum_scan, sentiment_momentum_scan_weekly,
     small_mid_cap_asymmetric, social_asymmetric_setups,
     mention_spike_vs_price, momentum_acceleration_rank, ordinal_social_rank,
-    recent_spike_rank, social_price_divergence, social_signal_score,
+    recent_spike_rank, rising_mentions_flat_price, social_price_divergence,
+    social_signal_score,
     social_weekly_history, social_weekly_movers, social_weekly_pivot,
     union_ranking, weekly_momentum,
 )
@@ -531,6 +532,27 @@ def cmd_social_asymmetric(args: argparse.Namespace) -> int:
     if out.empty:
         print("no candidates: try lower --min-mentions or --min-social")
         return 0
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_rising_flat(args: argparse.Namespace) -> int:
+    """Mentions rising over a window AND price essentially flat (dormant attention)."""
+    cfg = Config()
+    out = rising_mentions_flat_price(
+        cfg, window_days=args.window, top=args.top,
+        min_total_mentions=args.min_total,
+        max_abs_price_pct=args.max_price_move,
+        min_mention_slope=args.min_slope,
+        min_r2=args.min_r2,
+        require_positive_sentiment=args.positive_sentiment,
+    )
+    if out.empty:
+        print("no candidates; widen --max-price-move or lower --min-slope/--min-r2")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
     print(out.to_string(index=False))
     return 0
 
@@ -1122,6 +1144,21 @@ def build_parser() -> argparse.ArgumentParser:
     psa.add_argument("--consumer", action="store_true")
     psa.add_argument("--north-america", dest="north_america", action="store_true")
     psa.set_defaults(func=cmd_social_asymmetric)
+
+    prfl = sub.add_parser("rising-flat",
+                        help="Mentions rising over N days AND price essentially flat")
+    prfl.add_argument("--top", type=int, default=30)
+    prfl.add_argument("--window", type=int, default=30, help="window length in days")
+    prfl.add_argument("--max-price-move", dest="max_price_move", type=float, default=5.0,
+                    help="max abs price move pct over window (default 5%%)")
+    prfl.add_argument("--min-slope", dest="min_slope", type=float, default=0.05,
+                    help="min mention slope mentions/day (default 0.05)")
+    prfl.add_argument("--min-r2", dest="min_r2", type=float, default=0.15,
+                    help="min OLS R^2 to qualify as 'trending' (default 0.15)")
+    prfl.add_argument("--min-total", dest="min_total", type=int, default=15)
+    prfl.add_argument("--positive-sentiment", action="store_true",
+                    help="also require sentiment_mean > 0")
+    prfl.set_defaults(func=cmd_rising_flat)
 
     pmvp = sub.add_parser("mention-vs-price",
                         help="Acute mention spike minus price spike (5d vs 30d both)")

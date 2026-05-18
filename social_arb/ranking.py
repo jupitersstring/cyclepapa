@@ -1107,6 +1107,137 @@ def social_asymmetric_setups(
     return df.reset_index(drop=True)
 
 
+def rising_mentions_flat_price(
+    cfg: Config,
+    *,
+    window_days: int = 30,
+    top: int = 30,
+    min_total_mentions: int = 20,
+    max_abs_price_pct: float = 5.0,
+    min_mention_slope: float = 0.05,
+    min_r2: float = 0.15,
+    require_positive_sentiment: bool = False,
+) -> pd.DataFrame:
+    """Rising mentions over `window_days` AND price essentially flat.
+
+    The dormant-attention zone Camillo specifically loves: the stock's
+    chart looks like nothing's happening, but the social conversation
+    is sustainably accumulating. Different from "spike" (which is acute)
+    or "divergence" (which often catches price-falling-mention-rising).
+    This explicitly requires the price to be roughly UNCHANGED.
+
+    For each ticker over the last `window_days` days:
+      mention_slope    = OLS slope of daily mentions, units = mentions/day
+      r2_mentions      = R^2 of the regression (TRENDING vs noisy)
+      price_return_pct = cumulative return over the same window
+      sentiment_mean   = mean sentiment over the same window
+
+    Filters:
+      mention_slope >= min_mention_slope         (real positive trend)
+      |price_return_pct| <= max_abs_price_pct    (flat, not moving)
+      r2_mentions >= min_r2                      (trend not noise)
+      total_mentions >= min_total_mentions       (signal floor)
+    """
+    from . import storage
+    from .technicals import load_price_cache
+
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment FROM mentions"
+        ).df()
+    if df.empty:
+        return pd.DataFrame()
+    df["d"] = pd.to_datetime(df["d"])
+    agg = df.groupby(["ticker", "d"]).agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+    ).reset_index()
+
+    mw = agg.pivot(index="d", columns="ticker", values="mentions").sort_index()
+    sw = agg.pivot(index="d", columns="ticker", values="sentiment").sort_index()
+    full_idx = pd.date_range(mw.index.min(), mw.index.max(), freq="D")
+    mw = mw.reindex(full_idx).fillna(0)
+    sw = sw.reindex(full_idx).ffill().fillna(0.0)
+
+    n = len(mw)
+    if n < window_days:
+        return pd.DataFrame()
+
+    window_m = mw.iloc[n - window_days:].astype(float)
+    window_s = sw.iloc[n - window_days:].astype(float)
+    x = np.arange(window_days, dtype=float)
+    x_mean = x.mean()
+    x_centered = x - x_mean
+    x_var = (x_centered ** 2).sum()
+
+    # Vectorised OLS slope + R^2 per ticker.
+    y = window_m.values
+    y_mean = y.mean(axis=0)
+    y_centered = y - y_mean
+    cov = (x_centered[:, None] * y_centered).sum(axis=0)
+    slope = cov / x_var
+    intercept = y_mean - slope * x_mean
+    y_pred = intercept[None, :] + slope[None, :] * x[:, None]
+    ss_res = ((y - y_pred) ** 2).sum(axis=0)
+    ss_tot = (y_centered ** 2).sum(axis=0)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        r2 = 1.0 - (ss_res / np.where(ss_tot == 0, np.nan, ss_tot))
+    slope_s = pd.Series(slope, index=window_m.columns)
+    r2_s = pd.Series(r2, index=window_m.columns).fillna(0.0)
+
+    sentiment_mean = pd.Series(window_s.values.mean(axis=0), index=window_s.columns)
+
+    # Price return over the same window.
+    price_cache = load_price_cache(cfg)
+    if price_cache.empty:
+        return pd.DataFrame()
+    price_daily = price_cache.reindex(full_idx).ffill()
+    price_start = price_daily.iloc[n - window_days]
+    price_end = price_daily.iloc[n - 1]
+    price_return_pct = ((price_end / price_start - 1.0) * 100.0).fillna(np.inf)
+
+    totals = mw.sum()
+    keep = totals[totals >= int(min_total_mentions)].index
+    common = keep.intersection(slope_s.index).intersection(price_return_pct.index)
+    slope_v = slope_s.loc[common]
+    r2_v = r2_s.loc[common]
+    ret_v = price_return_pct.loc[common]
+    sent_v = sentiment_mean.loc[common]
+
+    mask = (
+        (slope_v >= float(min_mention_slope))
+        & (ret_v.abs() <= float(max_abs_price_pct))
+        & (r2_v >= float(min_r2))
+    )
+    if require_positive_sentiment:
+        mask = mask & (sent_v >= 0.0)
+    if not mask.any():
+        return pd.DataFrame()
+    common = common[mask.values]
+    slope_v = slope_v.loc[common]
+    r2_v = r2_v.loc[common]
+    ret_v = ret_v.loc[common]
+    sent_v = sent_v.loc[common]
+    short_mean = window_m.iloc[-7:].mean()[common]
+    prior_mean = window_m.iloc[:7].mean()[common]
+    growth_pct = ((short_mean - prior_mean) / prior_mean.replace(0, np.nan) * 100).fillna(0.0)
+
+    out = pd.DataFrame({
+        "ticker": common,
+        "mention_slope_per_day": slope_v.round(3).values,
+        "r2_mentions": r2_v.round(2).values,
+        "growth_first_last_week_pct": growth_pct.round(0).astype(int).values,
+        "price_return_pct": ret_v.round(1).values,
+        "sentiment_mean": sent_v.round(2).values,
+        "mentions_first_week": prior_mean.round(1).values,
+        "mentions_last_week": short_mean.round(1).values,
+        "total_mentions": totals.reindex(common).astype(int).values,
+    })
+    return out.sort_values(
+        ["mention_slope_per_day", "r2_mentions"], ascending=[False, False]
+    ).head(int(top)).reset_index(drop=True)
+
+
 def mention_spike_vs_price(
     cfg: Config,
     *,
