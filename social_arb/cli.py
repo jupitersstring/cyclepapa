@@ -24,9 +24,9 @@ from .backtest import EventStudyParams, event_study
 from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
-    CamilloParams, RankParams, best_today, bullish_ranking, camillo_ranking,
-    crossover_intersect_social, rank_improvers, rank_inflecters,
-    union_ranking, weekly_momentum,
+    CamilloParams, RankParams, asymmetric_setups, best_today, bullish_ranking,
+    camillo_ranking, crossover_intersect_social, rank_improvers,
+    rank_inflecters, union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -281,6 +281,33 @@ def cmd_finviz(args: argparse.Namespace) -> int:
     ]
     cols = [c for c in cols if c in df.columns]
     print(df[cols].to_string(index=False))
+    return 0
+
+
+def cmd_asymmetric(args: argparse.Namespace) -> int:
+    """Camillo-style asymmetric setups: limited downside, large upside."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    if args.north_america:
+        uni = uni_mod.filter_north_american_liquid(uni)
+    else:
+        uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = asymmetric_setups(
+        cfg, tickers, top=args.top,
+        enrich_finviz=args.finviz,
+        min_close=args.min_close,
+        min_upside_pct=args.min_upside,
+        min_asym_ratio=args.min_ratio,
+    )
+    if out.empty:
+        print("no candidates")
+        return 0
+    print(out.to_string(index=False))
     return 0
 
 
@@ -605,6 +632,19 @@ def build_parser() -> argparse.ArgumentParser:
     pfv.add_argument("--tickers", required=True, help="comma-separated")
     pfv.add_argument("--sleep", type=float, default=0.7)
     pfv.set_defaults(func=cmd_finviz)
+
+    pas = sub.add_parser("asymmetric", help="Camillo-style asymmetric setups: capped downside, large upside")
+    pas.add_argument("--top", type=int, default=30)
+    pas.add_argument("--min-close", dest="min_close", type=float, default=1.0)
+    pas.add_argument("--min-upside", dest="min_upside", type=float, default=30.0,
+                    help="minimum upside pct to 52w high (default 30%%)")
+    pas.add_argument("--min-ratio", dest="min_ratio", type=float, default=2.0,
+                    help="minimum upside/downside ratio (default 2x)")
+    pas.add_argument("--finviz", type=int, default=0,
+                    help="enrich top N with Finviz (short float, earnings date)")
+    pas.add_argument("--consumer", action="store_true")
+    pas.add_argument("--north-america", dest="north_america", action="store_true")
+    pas.set_defaults(func=cmd_asymmetric)
 
     pbt = sub.add_parser("best-today", help="Best today: own-history percentile + cross-section z-score")
     pbt.add_argument("--top", type=int, default=40)

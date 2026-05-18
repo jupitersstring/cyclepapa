@@ -251,6 +251,176 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def asymmetric_setups(
+    cfg: Config,
+    tickers: list[str] | None = None,
+    *,
+    top: int = 30,
+    enrich_finviz: int = 0,
+    min_close: float = 1.0,
+    min_upside_pct: float = 30.0,
+    min_asym_ratio: float = 2.0,
+) -> pd.DataFrame:
+    """Find Camillo-style asymmetric setups: capped downside + large upside.
+
+    Combines weekly state + daily indicators (RSI, 52w distance, vol z)
+    into a single asymmetric score. Optionally fetches Finviz for short
+    float + earnings date on the top N candidates (`enrich_finviz`).
+
+    Score components (additive):
+
+      * `cheap_pct`     -- (1 − close / 52w_high) * 10        cap 5
+      * `near_low`      -- (1 − (close − 52w_low) / 52w_low * 20) cap 5
+      * `asym_ratio`    -- upside_to_52w_high / downside_to_52w_low cap 5
+      * `oversold`      -- RSI <= 35 → +1.5
+      * `capitulation`  -- vol_z >= 2 → vol_z * 0.5 cap 5
+      * `tech_turn`     -- weekly state in {hma_up, golden} → +2
+      * `flip_up`       -- weekly hma_flip_up_recent → +1
+      * `short_squeeze` -- short_float >= 10% (Finviz) → +short_float / 5 cap 6
+      * `earnings_near` -- earnings within next 30 days (Finviz) → +1
+      * `attention`     -- stored mentions present → +0.5
+    """
+    from .technicals import load_price_cache, signals_for_close
+    from .technicals_daily import daily_signals_for, load_daily_cache
+
+    weekly = load_price_cache(cfg)
+    if weekly.empty:
+        return pd.DataFrame()
+    daily_close, daily_vol = load_daily_cache(cfg)
+
+    if tickers is None:
+        tickers = list(weekly.columns)
+
+    daily = _per_ticker_daily(cfg)
+    mention_totals = daily.groupby("ticker")["mentions"].sum() if not daily.empty else None
+    sentiment_totals = daily.groupby("ticker")["sentiment_mean"].mean() if not daily.empty else None
+
+    rows: list[dict] = []
+    for t in tickers:
+        if t not in weekly.columns:
+            continue
+        wclose = weekly[t].dropna()
+        if len(wclose) < 50:
+            continue
+        if float(wclose.iloc[-1]) < min_close:
+            continue
+        wsig = signals_for_close(wclose)
+        if wsig is None or wsig.empty:
+            continue
+        wlast = wsig.iloc[-1]
+
+        # 52-week range -- prefer daily if available (more accurate), fall back to weekly.
+        rsi14 = vol_z = None
+        from_high = from_low = None
+        gap_today = False
+        if not daily_close.empty and t in daily_close.columns:
+            dc = daily_close[t].dropna()
+            dv = daily_vol[t] if (not daily_vol.empty and t in daily_vol.columns) else None
+            if len(dc) >= 60:
+                dsig = daily_signals_for(dc, dv)
+                if not dsig.empty:
+                    dlast = dsig.iloc[-1]
+                    rsi14 = float(dlast["rsi_14"]) if pd.notna(dlast["rsi_14"]) else None
+                    from_high = float(dlast["pct_from_high_52w"]) if pd.notna(dlast["pct_from_high_52w"]) else None
+                    from_low = float(dlast["pct_from_low_52w"]) if pd.notna(dlast["pct_from_low_52w"]) else None
+                    vol_z = float(dlast.get("vol_z_30")) if pd.notna(dlast.get("vol_z_30", np.nan)) else None
+                    gap_today = bool(dlast.get("gap", False))
+        if from_high is None or from_low is None:
+            # Weekly fallback.
+            wh = float(wclose.tail(52).max())
+            wl = float(wclose.tail(52).min())
+            c = float(wclose.iloc[-1])
+            from_high = (c / wh - 1.0) * 100.0
+            from_low = (c / wl - 1.0) * 100.0
+
+        upside_to_high = -from_high if from_high < 0 else 0.0   # positive number = headroom
+        downside_to_low = max(from_low, 0.0)
+        if upside_to_high < min_upside_pct:
+            continue
+        asym_ratio = upside_to_high / max(downside_to_low, 1.0)
+        if asym_ratio < min_asym_ratio:
+            continue
+
+        score = 0.0
+        cheap = min(upside_to_high / 10.0, 5.0)
+        score += cheap
+        near_low_bonus = max(0.0, 5.0 - downside_to_low / 4.0)
+        score += near_low_bonus
+        score += min(asym_ratio / 2.0, 5.0)
+        if rsi14 is not None and rsi14 <= 35:
+            score += 1.5
+        if vol_z is not None and vol_z >= 2.0:
+            score += min(vol_z * 0.5, 5.0)
+        if str(wlast["state"]) in ("hma_up", "golden"):
+            score += 2.0
+        # Weekly Hull flip-up within last 4 bars.
+        tail = wsig.tail(4)
+        if bool(tail["hma_flip_up"].any()):
+            score += 1.0
+        mentions_n = int(mention_totals[t]) if mention_totals is not None and t in mention_totals.index else 0
+        sent_v = float(sentiment_totals[t]) if sentiment_totals is not None and t in sentiment_totals.index else 0.0
+        if mentions_n > 0 and sent_v >= 0:
+            score += 0.5
+
+        rows.append({
+            "ticker": t,
+            "asym_score": round(score, 2),
+            "close": round(float(wlast["close"]), 2),
+            "from_52w_high_pct": round(from_high, 1) if from_high is not None else None,
+            "from_52w_low_pct": round(from_low, 1) if from_low is not None else None,
+            "upside_pct": round(upside_to_high, 1),
+            "downside_pct": round(downside_to_low, 1),
+            "asym_ratio": round(asym_ratio, 1),
+            "rsi_14": round(rsi14, 1) if rsi14 is not None else None,
+            "vol_z_30": round(vol_z, 1) if vol_z is not None else None,
+            "gap_today": gap_today,
+            "state": str(wlast["state"]),
+            "mentions": mentions_n,
+            "sentiment": round(sent_v, 2),
+        })
+
+    if not rows:
+        return pd.DataFrame()
+    df = pd.DataFrame(rows).sort_values("asym_score", ascending=False).head(int(top))
+
+    if enrich_finviz and len(df) > 0:
+        from .collectors.finviz import collect_finviz_batch
+        fv = collect_finviz_batch(df["ticker"].head(int(enrich_finviz)).tolist(), sleep_between=0.7)
+        if not fv.empty:
+            cols = ["ticker", "market_cap", "short_float_pct", "insider_trans_pct",
+                    "earnings_date", "sector", "industry"]
+            cols = [c for c in cols if c in fv.columns]
+            df = df.merge(fv[cols], on="ticker", how="left")
+            # Add short-squeeze and earnings-near bonuses post-hoc.
+            def _post_bonus(row) -> float:
+                bonus = 0.0
+                sf = row.get("short_float_pct")
+                if pd.notna(sf) and float(sf) >= 10.0:
+                    bonus += min(float(sf), 30.0) / 5.0
+                # earnings_date strings like 'May 20 AMC'
+                ed = row.get("earnings_date")
+                if isinstance(ed, str) and ed:
+                    try:
+                        from datetime import datetime
+                        for fmt in ("%b %d", "%b %d %Y"):
+                            try:
+                                d = datetime.strptime(ed.split(" AMC")[0].split(" BMO")[0], fmt)
+                                d = d.replace(year=datetime.now().year)
+                                if 0 <= (d - datetime.now()).days <= 30:
+                                    bonus += 1.0
+                                break
+                            except ValueError:
+                                continue
+                    except Exception:  # noqa: BLE001
+                        pass
+                return bonus
+            df["finviz_bonus"] = df.apply(_post_bonus, axis=1)
+            df["asym_score"] = (df["asym_score"] + df["finviz_bonus"]).round(2)
+            df = df.sort_values("asym_score", ascending=False)
+
+    return df.reset_index(drop=True)
+
+
 def best_today(
     cfg: Config,
     tickers: list[str],
