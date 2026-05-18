@@ -518,9 +518,20 @@ def balanced_rising_score(df: pd.DataFrame) -> pd.Series:
       - near 50 (balanced),
       - rising (positive ROC of upwardATR, or Pine's upper_asym firing),
       - above its MA (or nearly above it).
-    Sum of six terms in [0,1], so total ranges 0..6 (higher = better)."""
-    w_near50 = (1 - (df.asym_w - 50).abs() / 20).clip(lower=0)
-    m_near50 = (1 - (df.asym_m - 50).abs() / 20).clip(lower=0)
+    Near-50 score has no decay below 50 if up_roc is positive (asym low and
+    rising = early in the move, not overshot). Sum of six terms in [0,1].
+    """
+    def near50_directional(asym: pd.Series, up_roc: pd.Series) -> pd.Series:
+        decay_above = (1 - (asym - 50).clip(lower=0) / 20).clip(lower=0)
+        decay_below = (1 - (50 - asym).clip(lower=0) / 20).clip(lower=0)
+        rising_below = (asym < 50) & (up_roc > 0)
+        return pd.Series(
+            np.where(rising_below, 1.0, np.where(asym >= 50, decay_above, decay_below)),
+            index=asym.index,
+        )
+
+    w_near50 = near50_directional(df.asym_w, df.w_up_roc)
+    m_near50 = near50_directional(df.asym_m, df.m_up_roc)
     w_above = ((df.asym_w - df.asym_w_ma + 1).clip(lower=0, upper=6) / 6)
     m_above = ((df.asym_m - df.asym_m_ma + 1).clip(lower=0, upper=6) / 6)
     w_rising = df.w_upper_asym.astype(float).clip(upper=1) + (df.w_up_roc > 0).astype(float) * 0.3
