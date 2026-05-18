@@ -25,12 +25,13 @@ from .config import Config
 from .pipeline import Pipeline
 from .ranking import (
     CamilloParams, RankParams, asymmetric_setups, best_today, bullish_leaderboard,
-    bullish_ranking, camillo_ranking, crossover_intersect_social,
-    pure_social_momentum, rank_improvers, rank_inflecters, sentiment_ema_history,
-    sentiment_ema_history_weekly, sentiment_momentum_scan,
-    sentiment_momentum_scan_weekly, small_mid_cap_asymmetric,
-    social_asymmetric_setups, social_price_divergence, social_signal_score,
-    union_ranking, weekly_momentum,
+    bullish_ranking, camillo_ranking, camillo_social_first,
+    crossover_intersect_social, pure_social_momentum, rank_improvers,
+    rank_inflecters, sentiment_ema_history, sentiment_ema_history_weekly,
+    sentiment_momentum_scan, sentiment_momentum_scan_weekly,
+    small_mid_cap_asymmetric, social_asymmetric_setups,
+    social_price_divergence, social_signal_score, union_ranking,
+    weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -532,6 +533,35 @@ def cmd_social_asymmetric(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_camillo_social_first(args: argparse.Namespace) -> int:
+    """Social-first Camillo: divergence + spike + small/mid-cap + asymmetric."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    if args.north_america:
+        uni = uni_mod.filter_north_american_liquid(uni)
+    else:
+        uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = camillo_social_first(
+        cfg, tickers, top=args.top,
+        mcap_min=args.mcap_min * 1e6, mcap_max=args.mcap_max * 1e6,
+        min_divergence=args.min_divergence, min_social_z=args.min_social_z,
+        min_close=args.min_close,
+    )
+    if out.empty:
+        print("no candidates matched; lower --min-divergence or --min-social-z")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
+    print(out.to_string(index=False))
+    return 0
+
+
 def cmd_smid_asymmetric(args: argparse.Namespace) -> int:
     """Small/mid-cap-filtered asymmetric setups."""
     cfg = Config()
@@ -979,6 +1009,18 @@ def build_parser() -> argparse.ArgumentParser:
     psa.add_argument("--consumer", action="store_true")
     psa.add_argument("--north-america", dest="north_america", action="store_true")
     psa.set_defaults(func=cmd_social_asymmetric)
+
+    pcsf = sub.add_parser("camillo-social-first",
+                         help="Social-first Camillo: divergence + spike + small/mid-cap")
+    pcsf.add_argument("--top", type=int, default=20)
+    pcsf.add_argument("--mcap-min", dest="mcap_min", type=float, default=250.0)
+    pcsf.add_argument("--mcap-max", dest="mcap_max", type=float, default=10000.0)
+    pcsf.add_argument("--min-divergence", dest="min_divergence", type=float, default=0.3)
+    pcsf.add_argument("--min-social-z", dest="min_social_z", type=float, default=0.3)
+    pcsf.add_argument("--min-close", dest="min_close", type=float, default=1.0)
+    pcsf.add_argument("--consumer", action="store_true")
+    pcsf.add_argument("--north-america", dest="north_america", action="store_true")
+    pcsf.set_defaults(func=cmd_camillo_social_first)
 
     psm = sub.add_parser("smid-asymmetric",
                         help="Small/mid-cap asymmetric setups: Finviz-filtered mcap, social-spike bonus")

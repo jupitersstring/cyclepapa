@@ -1107,6 +1107,195 @@ def social_asymmetric_setups(
     return df.reset_index(drop=True)
 
 
+def camillo_social_first(
+    cfg: Config,
+    tickers: list[str] | None = None,
+    *,
+    top: int = 20,
+    mcap_min: float = 250e6,
+    mcap_max: float = 10e9,
+    min_divergence: float = 0.5,
+    min_social_z: float = 0.5,
+    require_brand: bool = False,
+    enrich_finviz: bool = True,
+    min_close: float = 1.0,
+) -> pd.DataFrame:
+    """Camillo's framework with SOCIAL as the leading filter.
+
+    The proper Camillo order:
+      1. SOCIAL signal first -- rising attention, positive sentiment, OR
+         positive divergence (mentions ahead of price). This is what he
+         actually *observes*.
+      2. Market-cap band (small/mid where institutions can't compete).
+      3. Asymmetric price (broken below trend so the downside is capped).
+      4. Catalyst proximity (Finviz earnings_date inside 30 days).
+
+    Filters by minimum positive divergence AND minimum social_z, so we
+    only surface names where BOTH "social is leading price" AND "mention
+    z-score is anomalously high" are true. Price-asymmetric is a bonus,
+    not a requirement -- this can also surface socially-spiking-AND-
+    already-rallying names if the social signal is strong enough.
+    """
+    # 1) SOCIAL LAYER first: rank by divergence + raw social signal.
+    div = social_price_divergence(
+        cfg, top=10000, lookback_weeks=8,
+        min_mentions_per_week=1.0, min_total_mentions=10,
+        require_positive=False,
+    )
+    if div.empty:
+        return div
+    soc_full = pure_social_momentum(cfg, top=10000, min_mentions=5)
+
+    # Cross-join the two social views.
+    if not soc_full.empty:
+        soc = div.merge(
+            soc_full[["ticker", "social_momentum", "growth_7d", "inflection",
+                      "sentiment_7d", "bull_minus_bear_7d", "polarity_vol_growth",
+                      "sources_now", "new_sources"]],
+            on="ticker", how="left",
+        )
+    else:
+        soc = div.copy()
+        for c in ["social_momentum", "growth_7d", "inflection", "sentiment_7d",
+                  "bull_minus_bear_7d", "polarity_vol_growth",
+                  "sources_now", "new_sources"]:
+            soc[c] = None
+
+    # Pre-filter on social.
+    soc = soc[soc["divergence"] >= float(min_divergence)]
+    soc = soc[soc["social_z"] >= float(min_social_z)]
+    if soc.empty:
+        return soc
+
+    # 2) Add price asymmetry from the existing tech cache.
+    from .technicals import load_price_cache, signals_for_close
+    weekly = load_price_cache(cfg)
+    rows: list[dict] = []
+    for _, r in soc.iterrows():
+        t = r["ticker"]
+        if t not in weekly.columns:
+            continue
+        wclose = weekly[t].dropna()
+        if len(wclose) < 50:
+            continue
+        if float(wclose.iloc[-1]) < float(min_close):
+            continue
+        sig = signals_for_close(wclose)
+        if sig is None or sig.empty:
+            continue
+        last = sig.iloc[-1]
+        sma40 = float(last.get("sma_40w", np.nan))
+        vs_sma40 = ((float(last["close"]) / sma40 - 1.0) * 100.0) if pd.notna(sma40) and sma40 > 0 else None
+        # 52w range from weekly bars (proxy for daily 52w).
+        wh = float(wclose.tail(52).max())
+        wl = float(wclose.tail(52).min())
+        c = float(wclose.iloc[-1])
+        from_high = (c / wh - 1.0) * 100.0
+        upside = -from_high if from_high < 0 else 0.0
+
+        rows.append({
+            **r.to_dict(),
+            "vs_sma40_pct": round(vs_sma40, 1) if vs_sma40 is not None else None,
+            "from_52w_high_pct": round(from_high, 1),
+            "upside_pct": round(upside, 1),
+            "state": str(last["state"]),
+        })
+    if not rows:
+        return pd.DataFrame()
+    df = pd.DataFrame(rows)
+
+    # 3) Finviz enrichment for mcap, short float, earnings.
+    if enrich_finviz:
+        from .collectors.finviz import collect_finviz_batch
+        fv = collect_finviz_batch(df["ticker"].tolist(), sleep_between=0.5)
+        if not fv.empty:
+            keep_cols = [c for c in ["ticker", "market_cap", "short_float_pct",
+                                     "earnings_date", "sector", "industry"]
+                         if c in fv.columns]
+            df = df.merge(fv[keep_cols], on="ticker", how="left")
+
+    # 4) Filter to small/mid cap.
+    if "market_cap" in df.columns:
+        df = df[df["market_cap"].notna()]
+        df = df[(df["market_cap"] >= mcap_min) & (df["market_cap"] <= mcap_max)]
+    if df.empty:
+        return df
+    df["mcap_$M"] = (df["market_cap"] / 1e6).round(0).astype(int)
+
+    # 5) Composite SOCIAL-FIRST score.
+    def _score(row) -> float:
+        s = 0.0
+        # Social divergence (LEADING component, weight 3)
+        s += min(float(row.get("divergence", 0)), 5.0) * 1.5
+        s += min(float(row.get("divergence_4w", 0) or 0), 3.0) * 1.0
+        s += min(float(row.get("social_z", 0)), 4.0) * 1.0
+        # Social momentum
+        sm = row.get("social_momentum")
+        if pd.notna(sm):
+            s += min(float(sm) / 4.0, 3.0)
+        gr = row.get("growth_7d")
+        if pd.notna(gr) and gr > 0:
+            s += min(float(gr), 2.5) * 0.8
+        infl = row.get("inflection")
+        if pd.notna(infl) and infl > 0:
+            s += min(float(infl), 2.0) * 0.8
+        sent = row.get("sentiment_7d")
+        if pd.notna(sent) and sent > 0:
+            s += min(float(sent) * 4.0, 2.0)
+        bmb = row.get("bull_minus_bear_7d")
+        if pd.notna(bmb) and bmb > 0:
+            s += min(np.log1p(float(bmb)), 2.0) * 0.7
+        ns = row.get("new_sources")
+        if pd.notna(ns) and ns > 0:
+            s += min(float(ns), 3.0) * 0.6
+        # Price asymmetry layer (secondary, weight ~1)
+        up = row.get("upside_pct", 0) or 0
+        if up > 0:
+            s += min(float(up) / 20.0, 3.0)
+        vs40 = row.get("vs_sma40_pct")
+        if pd.notna(vs40):
+            v = float(vs40)
+            if v <= -10.0:
+                s += 1.0      # broken below trend = capped downside
+            if v > 30.0:
+                s -= (v - 30.0) / 20.0    # stretched penalty
+        # Short squeeze fuel
+        sf = row.get("short_float_pct")
+        if pd.notna(sf) and float(sf) >= 10.0:
+            s += min(float(sf), 30.0) / 8.0
+        # Earnings near
+        ed = row.get("earnings_date")
+        if isinstance(ed, str) and ed:
+            try:
+                from datetime import datetime as _dt
+                for fmt in ("%b %d", "%b %d %Y"):
+                    try:
+                        d = _dt.strptime(ed.split(" AMC")[0].split(" BMO")[0], fmt)
+                        d = d.replace(year=_dt.now().year)
+                        if 0 <= (d - _dt.now()).days <= 30:
+                            s += 1.0
+                        break
+                    except ValueError:
+                        continue
+            except Exception:
+                pass
+        return s
+
+    df["camillo_social_score"] = df.apply(_score, axis=1).round(2)
+    df = df.sort_values("camillo_social_score", ascending=False).head(int(top))
+
+    display = [
+        "ticker", "camillo_social_score",
+        "divergence", "divergence_4w", "social_z", "price_z",
+        "growth_7d", "inflection", "sentiment_7d", "bull_minus_bear_7d",
+        "sources_now", "new_sources",
+        "close", "mcap_$M", "from_52w_high_pct", "vs_sma40_pct", "state",
+        "short_float_pct", "earnings_date", "sector", "industry",
+    ]
+    cols = [c for c in display if c in df.columns]
+    return df[cols].reset_index(drop=True)
+
+
 def small_mid_cap_asymmetric(
     cfg: Config,
     tickers: list[str] | None = None,
