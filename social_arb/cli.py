@@ -26,8 +26,9 @@ from .pipeline import Pipeline
 from .ranking import (
     CamilloParams, RankParams, asymmetric_setups, best_today, bullish_ranking,
     camillo_ranking, crossover_intersect_social, pure_social_momentum,
-    rank_improvers, rank_inflecters, social_asymmetric_setups,
-    social_signal_score, union_ranking, weekly_momentum,
+    rank_improvers, rank_inflecters, sentiment_ema_history,
+    sentiment_momentum_scan, social_asymmetric_setups, social_signal_score,
+    union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -282,6 +283,35 @@ def cmd_finviz(args: argparse.Namespace) -> int:
     ]
     cols = [c for c in cols if c in df.columns]
     print(df[cols].to_string(index=False))
+    return 0
+
+
+def cmd_sentiment_momentum(args: argparse.Namespace) -> int:
+    """Sentiment-EMA momentum scan.
+
+    Daily sentiment time series per ticker, EMA(short) vs EMA(long), with
+    bullish/bearish state plus a fresh-cross flag. Also computes the same
+    EMAs on mention VOLUME so we see attention momentum independently.
+    """
+    cfg = Config()
+    if args.ticker:
+        hist = sentiment_ema_history(
+            cfg, args.ticker.upper(),
+            short=args.short, long=args.long, min_periods_ratio=args.min_periods,
+        )
+        if hist.empty:
+            print(f"insufficient sentiment history for {args.ticker}")
+            return 0
+        print(hist.tail(args.tail).to_string())
+        return 0
+    out = sentiment_momentum_scan(
+        cfg, top=args.top, short=args.short, long=args.long,
+        min_mentions=args.min_mentions, min_periods_ratio=args.min_periods,
+    )
+    if out.empty:
+        print(f"no candidates with enough history -- try smaller --short/--long, current ({args.short}/{args.long})")
+        return 0
+    print(out.to_string(index=False))
     return 0
 
 
@@ -691,6 +721,18 @@ def build_parser() -> argparse.ArgumentParser:
     pfv.add_argument("--tickers", required=True, help="comma-separated")
     pfv.add_argument("--sleep", type=float, default=0.7)
     pfv.set_defaults(func=cmd_finviz)
+
+    pse = sub.add_parser("sentiment-momentum",
+                         help="Sentiment-EMA momentum scan (short vs long, e.g. 20/50)")
+    pse.add_argument("--top", type=int, default=25)
+    pse.add_argument("--short", type=int, default=20, help="short EMA span")
+    pse.add_argument("--long", type=int, default=50, help="long EMA span")
+    pse.add_argument("--min-mentions", dest="min_mentions", type=int, default=5)
+    pse.add_argument("--min-periods", dest="min_periods", type=float, default=0.5,
+                    help="EMA min_periods as fraction of span (default 0.5)")
+    pse.add_argument("--ticker", default=None, help="single ticker -> full history")
+    pse.add_argument("--tail", type=int, default=30)
+    pse.set_defaults(func=cmd_sentiment_momentum)
 
     psm = sub.add_parser("social-momentum",
                          help="Pure social momentum: mentions accelerating + bull/bear flip")

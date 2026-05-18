@@ -251,6 +251,157 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def sentiment_ema_history(
+    cfg: Config,
+    ticker: str,
+    *,
+    short: int = 20,
+    long: int = 50,
+    min_periods_ratio: float = 0.5,
+) -> pd.DataFrame:
+    """Daily sentiment time series for one ticker with short/long EMAs.
+
+    Returns a DataFrame indexed by date with columns:
+      mentions, sentiment_mean, ema_short, ema_long, spread,
+      ema_cross_up, ema_cross_down, state ('bullish'|'bearish'|'warmup').
+
+    Sentiment time series is mean sentiment per day (weighted by per-row
+    sentiment field). Days with no mentions are filled with NaN -- EMAs
+    skip them via `ffill` so a holiday doesn't trigger a fake cross.
+    """
+    daily = _per_ticker_daily(cfg)
+    sub = daily[daily["ticker"] == ticker]
+    if sub.empty:
+        return pd.DataFrame()
+    sub = sub.copy()
+    sub["date"] = pd.to_datetime(sub["date"])
+    agg = sub.groupby("date").agg(
+        mentions=("mentions", "sum"),
+        sentiment_mean=("sentiment_mean", "mean"),
+    ).sort_index()
+    # Fill calendar so EMAs are correctly spaced.
+    agg = agg.asfreq("D")
+    # Sentiment EMAs use ffill so non-mention days persist last value,
+    # rather than crashing to 0 (which would create artificial crossovers).
+    sent = agg["sentiment_mean"].ffill().fillna(0.0)
+    if len(sent) < int(long * min_periods_ratio):
+        return pd.DataFrame()  # not enough history
+
+    ema_s = sent.ewm(span=short, adjust=False, min_periods=int(short * min_periods_ratio)).mean()
+    ema_l = sent.ewm(span=long, adjust=False, min_periods=int(long * min_periods_ratio)).mean()
+    spread = ema_s - ema_l
+    cross_up = (spread > 0) & (spread.shift(1) <= 0)
+    cross_down = (spread < 0) & (spread.shift(1) >= 0)
+
+    state = np.where(
+        spread.isna(), "warmup",
+        np.where(spread > 0, "bullish", "bearish"),
+    )
+    return pd.DataFrame({
+        "mentions": agg["mentions"].fillna(0.0),
+        "sentiment_mean": agg["sentiment_mean"],
+        "ema_short": ema_s,
+        "ema_long": ema_l,
+        "spread": spread,
+        "ema_cross_up": cross_up.fillna(False),
+        "ema_cross_down": cross_down.fillna(False),
+        "state": state,
+    })
+
+
+def sentiment_momentum_scan(
+    cfg: Config,
+    *,
+    top: int = 30,
+    short: int = 20,
+    long: int = 50,
+    min_mentions: int = 5,
+    min_periods_ratio: float = 0.5,
+) -> pd.DataFrame:
+    """Rank tickers by sentiment-EMA momentum.
+
+    For each ticker with enough mention history we compute:
+
+      * `ema_short` -- short EMA of daily sentiment
+      * `ema_long`  -- long EMA of daily sentiment
+      * `spread`    -- ema_short - ema_long (signed momentum)
+      * `cross_up_recent` -- bullish EMA cross within last 7 days
+      * `state` -- "bullish" if spread > 0
+      * `mentions_ema_short / long` -- same EMAs on mention VOLUME (the
+        attention side; rising EMA(20) on mentions = audience is growing)
+
+    Composite ranks by:
+        + spread (capped)
+        + bullish cross bonus
+        + positive ema_short bonus
+        + mentions EMA cross-up bonus
+        + spread acceleration (widening = stronger trend)
+    """
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+    end = pd.to_datetime(daily["date"]).max()
+    recent_cut = end - pd.Timedelta(days=7)
+
+    rows: list[dict] = []
+    for ticker in daily["ticker"].unique():
+        sub = daily[daily["ticker"] == ticker]
+        if int(sub["mentions"].sum()) < int(min_mentions):
+            continue
+        hist = sentiment_ema_history(
+            cfg, ticker, short=short, long=long, min_periods_ratio=min_periods_ratio,
+        )
+        if hist.empty:
+            continue
+        # Also EMAs on mention volume (attention momentum).
+        m_series = hist["mentions"].fillna(0.0)
+        m_ema_s = m_series.ewm(span=short, adjust=False, min_periods=int(short * min_periods_ratio)).mean()
+        m_ema_l = m_series.ewm(span=long, adjust=False, min_periods=int(long * min_periods_ratio)).mean()
+        m_spread = m_ema_s - m_ema_l
+        m_cross_up = (m_spread > 0) & (m_spread.shift(1) <= 0)
+        m_cross_recent = bool(m_cross_up.tail(7).any())
+
+        last = hist.iloc[-1]
+        if pd.isna(last["spread"]):
+            continue
+        s_cross_recent = bool(hist["ema_cross_up"].tail(7).any())
+        # Spread acceleration: latest spread - spread 5 days ago.
+        if len(hist) >= 6:
+            spread_chg = float(last["spread"]) - float(hist["spread"].iloc[-6])
+        else:
+            spread_chg = 0.0
+
+        score = 0.0
+        score += min(float(last["spread"]) * 5.0, 4.0) if last["spread"] > 0 else max(float(last["spread"]) * 5.0, -4.0)
+        if s_cross_recent:
+            score += 3.0
+        if float(last["ema_short"]) > 0.15:
+            score += 1.5
+        if m_cross_recent:
+            score += 2.0
+        score += min(spread_chg * 5.0, 2.0) if spread_chg > 0 else max(spread_chg * 5.0, -2.0)
+        score += min(float(m_ema_s.iloc[-1]) / 5.0, 1.5) if pd.notna(m_ema_s.iloc[-1]) else 0.0
+
+        rows.append({
+            "ticker": ticker,
+            "sent_momentum": round(score, 2),
+            "state": str(last["state"]),
+            "ema_short": round(float(last["ema_short"]), 3) if pd.notna(last["ema_short"]) else None,
+            "ema_long": round(float(last["ema_long"]), 3) if pd.notna(last["ema_long"]) else None,
+            "spread": round(float(last["spread"]), 3),
+            "spread_5d_chg": round(spread_chg, 3),
+            "sent_cross_up_recent": s_cross_recent,
+            "mentions_ema_short": round(float(m_ema_s.iloc[-1]), 1) if pd.notna(m_ema_s.iloc[-1]) else None,
+            "mentions_ema_long": round(float(m_ema_l.iloc[-1]), 1) if pd.notna(m_ema_l.iloc[-1]) else None,
+            "mention_cross_up_recent": m_cross_recent,
+            "total_mentions": int(sub["mentions"].sum()),
+            "days_observed": int(len(hist)),
+        })
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).sort_values("sent_momentum", ascending=False).head(int(top)).reset_index(drop=True)
+
+
 def pure_social_momentum(
     cfg: Config,
     *,
