@@ -364,6 +364,51 @@ def cmd_backfill(args: argparse.Namespace) -> int:
         df = collect_openinsider_cluster_buys(cfg)
         n = storage.upsert_mentions(cfg, df)
         print(f"openinsider cluster buys: {n} mentions stored")
+    elif args.source == "google-trends":
+        from .collectors.google_trends import collect_google_trends
+        from . import storage
+        # Default Camillo-archetype list with brand-query for the
+        # consumer-attention layer (not just $TICKER).
+        targets = (args.queries.split(",") if args.queries else None) or [
+            "CELH:Celsius Holdings:Celsius energy drink",
+            "NWL:Newell Brands:Sharpie",
+            "MAT:Mattel:Barbie",
+            "CROX:Crocs",
+            "DECK:Deckers Outdoor:Hoka",
+            "TPR:Tapestry:Coach handbag",
+            "BBW:Build-A-Bear:Build-A-Bear",
+            "VITL:Vital Farms:Vital Farms eggs",
+            "TRIP:TripAdvisor",
+            "NVDA:NVIDIA",
+            "GME:GameStop",
+            "LULU:Lululemon",
+            "UAA:Under Armour",
+            "BIRD:Allbirds",
+        ]
+        total = 0
+        for spec in targets:
+            parts = [p.strip() for p in spec.split(":") if p.strip()]
+            ticker = parts[0]
+            company = parts[1] if len(parts) > 1 else None
+            brand = parts[2] if len(parts) > 2 else None
+            df = collect_google_trends(
+                cfg, ticker=ticker, company_name=company, brand_query=brand,
+                timeframe=args.timeframe,
+            )
+            total += storage.upsert_mentions(cfg, df)
+        print(f"google_trends ({args.timeframe}): {total} rows stored")
+    elif args.source == "brave-search":
+        from .collectors.brave_search import collect_brave_search_attention
+        from . import storage
+        tickers = (args.queries.split(",") if args.queries else None) or [
+            "CELH", "NWL", "MAT", "CROX", "DECK", "TPR", "BBW", "VITL",
+            "TRIP", "NVDA", "GME", "LULU", "UAA", "BIRD",
+        ]
+        total = 0
+        for t in tickers:
+            df = collect_brave_search_attention(cfg, ticker=t.strip())
+            total += storage.upsert_mentions(cfg, df)
+        print(f"brave_search: {total} rows stored")
     else:
         print(f"unknown source: {args.source}", file=sys.stderr)
         return 2
@@ -811,13 +856,19 @@ def build_parser() -> argparse.ArgumentParser:
     plb.add_argument("--min-mentions", dest="min_mentions", type=int, default=5)
     plb.set_defaults(func=cmd_leaderboard)
 
-    pbf = sub.add_parser("backfill", help="Historic backfills (hackernews, wikipedia, bluesky, openinsider)")
-    pbf.add_argument("source", choices=["hackernews", "wikipedia", "bluesky", "openinsider"])
+    pbf = sub.add_parser("backfill",
+                         help="Historic backfills (hn, wikipedia, bluesky, openinsider, google-trends, brave-search)")
+    pbf.add_argument("source", choices=[
+        "hackernews", "wikipedia", "bluesky", "openinsider",
+        "google-trends", "brave-search",
+    ])
     pbf.add_argument("--queries", default=None,
                     help="comma-separated query/title list; defaults to Camillo-archetype set")
     pbf.add_argument("--days", type=int, default=365, help="days of history (hn/wikipedia)")
     pbf.add_argument("--chunk", type=int, default=14, help="hn backfill chunk size in days")
     pbf.add_argument("--hours", type=int, default=72, help="bluesky lookback hours")
+    pbf.add_argument("--timeframe", default="today 12-m",
+                    help="google-trends timeframe (e.g. 'today 5-y', 'today 12-m', 'today 3-m')")
     pbf.set_defaults(func=cmd_backfill)
 
     pse = sub.add_parser("sentiment-momentum",
