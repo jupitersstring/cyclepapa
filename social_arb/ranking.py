@@ -251,6 +251,95 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def social_price_divergence(
+    cfg: Config,
+    *,
+    top: int = 30,
+    lookback_weeks: int = 13,
+    min_mentions_per_week: float = 2.0,
+    min_total_mentions: int = 15,
+    require_positive: bool = True,
+) -> pd.DataFrame:
+    """Find tickers where social attention is leading price.
+
+    For each ticker with enough history we compute:
+      social_z = rolling z-score of log(weekly mentions) over `lookback_weeks`
+      price_z  = rolling z-score of weekly log-return over same window
+      divergence = social_z - price_z   (LATEST WEEK)
+
+    Positive divergence = mentions spiking while price hasn't moved
+    (or has even fallen) -- the information-edge zone Camillo trades.
+    """
+    from .technicals import load_price_cache
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+    price_cache = load_price_cache(cfg)
+    if price_cache.empty:
+        return pd.DataFrame()
+
+    rows: list[dict] = []
+    for ticker, grp in daily.groupby("ticker"):
+        total = int(grp["mentions"].sum())
+        if total < int(min_total_mentions):
+            continue
+        if ticker not in price_cache.columns:
+            continue
+        # Weekly mention totals.
+        m_daily = grp.set_index("date")["mentions"].sort_index()
+        m_daily.index = pd.to_datetime(m_daily.index)
+        m_weekly = m_daily.asfreq("D", fill_value=0.0).resample("W-FRI").sum()
+        if len(m_weekly) < lookback_weeks // 2:
+            continue
+        if float(m_weekly.mean()) < min_mentions_per_week:
+            continue
+
+        m_log = np.log1p(m_weekly.astype(float))
+        m_mu = m_log.rolling(lookback_weeks, min_periods=4).mean()
+        m_sd = m_log.rolling(lookback_weeks, min_periods=4).std().replace(0.0, np.nan)
+        social_z = (m_log - m_mu) / m_sd
+
+        # Aligned weekly returns.
+        price = price_cache[ticker].dropna()
+        if price.empty:
+            continue
+        p_w = price.reindex(m_weekly.index).ffill()
+        ret = np.log(p_w / p_w.shift(1))
+        p_mu = ret.rolling(lookback_weeks, min_periods=4).mean()
+        p_sd = ret.rolling(lookback_weeks, min_periods=4).std().replace(0.0, np.nan)
+        price_z = (ret - p_mu) / p_sd
+
+        divergence = (social_z - price_z).dropna()
+        if divergence.empty:
+            continue
+        last_div = float(divergence.iloc[-1])
+        last_social_z = float(social_z.iloc[-1]) if pd.notna(social_z.iloc[-1]) else 0.0
+        last_price_z = float(price_z.iloc[-1]) if pd.notna(price_z.iloc[-1]) else 0.0
+        # Mean divergence over last 4 weeks (smooths single-week noise).
+        recent_div = float(divergence.tail(4).mean())
+
+        if require_positive and last_div <= 0:
+            continue
+
+        rows.append({
+            "ticker": ticker,
+            "divergence": round(last_div, 2),
+            "divergence_4w": round(recent_div, 2),
+            "social_z": round(last_social_z, 2),
+            "price_z": round(last_price_z, 2),
+            "weekly_mentions": float(m_weekly.iloc[-1]),
+            "total_mentions": total,
+            "close": round(float(price.iloc[-1]), 2),
+            "price_4w_return_pct": round(
+                (float(price.iloc[-1]) / float(price.iloc[-min(5, len(price))]) - 1.0) * 100.0, 1
+            ),
+        })
+    if not rows:
+        return pd.DataFrame()
+    out = pd.DataFrame(rows).sort_values("divergence", ascending=False).head(int(top)).reset_index(drop=True)
+    return out
+
+
 def sentiment_ema_history_weekly(
     cfg: Config,
     ticker: str,

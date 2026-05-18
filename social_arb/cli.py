@@ -29,7 +29,8 @@ from .ranking import (
     pure_social_momentum, rank_improvers, rank_inflecters, sentiment_ema_history,
     sentiment_ema_history_weekly, sentiment_momentum_scan,
     sentiment_momentum_scan_weekly, social_asymmetric_setups,
-    social_signal_score, union_ranking, weekly_momentum,
+    social_price_divergence, social_signal_score, union_ranking,
+    weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -209,6 +210,22 @@ def cmd_camillo(args: argparse.Namespace) -> int:
         print(soc.to_string(index=False))
         return 0
     print()
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_divergence(args: argparse.Namespace) -> int:
+    """Rank tickers by positive social-vs-price divergence."""
+    cfg = Config()
+    out = social_price_divergence(
+        cfg, top=args.top, lookback_weeks=args.lookback,
+        min_mentions_per_week=args.min_mentions_per_week,
+        min_total_mentions=args.min_total,
+        require_positive=not args.allow_negative,
+    )
+    if out.empty:
+        print("no candidates")
+        return 0
     print(out.to_string(index=False))
     return 0
 
@@ -841,7 +858,16 @@ def build_parser() -> argparse.ArgumentParser:
     phc = sub.add_parser("health", help="Pipeline health & coverage audit")
     phc.set_defaults(func=cmd_health)
 
-    pplot = sub.add_parser("plot", help="3-panel per-ticker plots (price + smoothed social with EMAs)")
+    pdv = sub.add_parser("divergence", help="Find tickers where social leads price (information edge)")
+    pdv.add_argument("--top", type=int, default=30)
+    pdv.add_argument("--lookback", type=int, default=13)
+    pdv.add_argument("--min-mentions-per-week", dest="min_mentions_per_week", type=float, default=2.0)
+    pdv.add_argument("--min-total", dest="min_total", type=int, default=15)
+    pdv.add_argument("--allow-negative", action="store_true",
+                    help="don't filter out negative-divergence rows (default: positive only)")
+    pdv.set_defaults(func=cmd_divergence)
+
+    pplot = sub.add_parser("plot", help="4-panel per-ticker plots (price + mentions + sentiment + divergence)")
     pplot.add_argument("--tickers", required=True, help="comma-separated")
     pplot.add_argument("--short", type=int, default=20)
     pplot.add_argument("--long", type=int, default=50)

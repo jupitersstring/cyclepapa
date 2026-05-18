@@ -115,10 +115,10 @@ def plot_ticker_panel(
         s_ema_s = s_ema_l = s_smooth = pd.Series(dtype=float)
 
     fig, axes = plt.subplots(
-        3, 1, figsize=(12, 10), sharex=True,
-        gridspec_kw={"height_ratios": [3, 2, 2], "hspace": 0.08},
+        4, 1, figsize=(12, 12), sharex=True,
+        gridspec_kw={"height_ratios": [3, 2, 2, 2], "hspace": 0.08},
     )
-    ax_p, ax_m, ax_s = axes
+    ax_p, ax_m, ax_s, ax_d = axes
 
     # === Panel 1: price + MAs ===
     if not price.empty:
@@ -174,9 +174,57 @@ def plot_ticker_panel(
     ax_s.set_ylabel("Sentiment")
     ax_s.legend(loc="upper left", fontsize=9, frameon=False)
     ax_s.grid(True, alpha=0.25)
-    ax_s.set_xlabel("Week (Friday close)")
-    ax_s.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
-    ax_s.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+
+    # === Panel 4: SOCIAL-vs-PRICE DIVERGENCE ===
+    # The Camillo information-edge zone: mention z-score is high BUT price
+    # hasn't moved. Computed as:
+    #   social_z   = rolling z-score of log(weekly mentions) over a 13w
+    #                trailing window
+    #   price_z    = rolling z-score of weekly log-return over same window
+    #   divergence = social_z - price_z
+    # Positive = social leading price (information edge active).
+    # Negative = price leading social (chase / late discovery).
+    if not social.empty and not price.empty:
+        # Align indices to social's weekly grid.
+        idx_w = social.index
+        m_log = np.log1p(social["mentions"].astype(float))
+        # 13-week trailing z-scores.
+        m_mu = m_log.rolling(13, min_periods=4).mean()
+        m_sd = m_log.rolling(13, min_periods=4).std().replace(0.0, np.nan)
+        social_z = (m_log - m_mu) / m_sd
+
+        p_aligned = price.reindex(idx_w).ffill()
+        ret = np.log(p_aligned / p_aligned.shift(1))
+        p_mu = ret.rolling(13, min_periods=4).mean()
+        p_sd = ret.rolling(13, min_periods=4).std().replace(0.0, np.nan)
+        price_z = (ret - p_mu) / p_sd
+
+        divergence = (social_z - price_z).dropna()
+        ax_d.axhline(0.0, color="#999999", linewidth=0.5, linestyle="--")
+        ax_d.fill_between(
+            divergence.index, 0.0, divergence.values,
+            where=(divergence.values > 0), color="#54a24b", alpha=0.45,
+            label="social leading price",
+        )
+        ax_d.fill_between(
+            divergence.index, 0.0, divergence.values,
+            where=(divergence.values <= 0), color="#e45756", alpha=0.45,
+            label="price leading social",
+        )
+        ax_d.plot(divergence.index, divergence.values, color="#1f1f1f", linewidth=0.9)
+        # Mark spikes >= +1.5 (strong information-edge windows).
+        spikes = divergence[divergence >= 1.5]
+        if not spikes.empty:
+            ax_d.scatter(spikes.index, spikes.values, color="#2c7d32",
+                         marker="^", s=42, zorder=5,
+                         label="z(social-price) >= 1.5")
+    ax_d.set_ylabel("z(social) - z(price)")
+    ax_d.legend(loc="upper left", fontsize=9, frameon=False)
+    ax_d.grid(True, alpha=0.25)
+
+    ax_d.set_xlabel("Week (Friday close)")
+    ax_d.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
+    ax_d.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
     fig.autofmt_xdate(rotation=0, ha="center")
 
     out_dir = Path(out_dir) if out_dir else cfg.data_dir / "plots"
