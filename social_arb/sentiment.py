@@ -1,12 +1,14 @@
 """Sentiment scoring.
 
-Uses VADER (free, offline, MIT-licensed) as the workhorse and overlays a
-small finance-specific lexicon: VADER mis-handles a number of finance
-idioms ("beat", "miss", "guided down", "tendies", "puts"). The overlay
-adjusts the compound score by a bounded delta.
+Combines VADER (general-purpose, emoji/slang) + a finance-idiom overlay
+(beat/miss/tendies/MOASS) + the **Loughran-McDonald** financial dictionary
+(positive/negative/uncertainty/litigious counts). LM is the canonical
+academic fix for the well-known problem that general lexica
+mis-classify finance words ("liability", "tax", "vice" all show as
+negative in Harvard-IV but are neutral in earnings-call context).
 
-For higher-quality scoring users can drop FinBERT in -- the public API is
-the same: `score(text) -> SentimentScore`.
+`score()` returns a single compound, but `score_full()` exposes the LM
+component so downstream code (filings, news) can use it directly.
 """
 
 from __future__ import annotations
@@ -41,28 +43,57 @@ class SentimentScore:
     neu: float
     neg: float
     label: str            # "bullish" | "bearish" | "neutral"
+    lm_score: float = 0.0       # Loughran-McDonald polarity in [-1, 1]
+    lm_uncertainty: int = 0     # raw LM uncertainty count
+    lm_litigious: int = 0       # raw LM litigious count
 
 
 class SentimentScorer:
-    def __init__(self) -> None:
+    def __init__(self, lm_blend: float = 0.4) -> None:
+        """`lm_blend` in [0,1]: how much of the final compound comes from
+        the Loughran-McDonald polarity vs VADER+finance-overlay. 0 = VADER
+        only, 1 = LM only. Default 0.4 = LM contributes ~40% on finance
+        text, ~0% on emoji-heavy social text (LM scores near zero on
+        non-financial text)."""
         try:
             from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
             self._vader = SentimentIntensityAnalyzer()
         except ImportError:
             log.warning("vaderSentiment not installed; sentiment will be neutral")
             self._vader = None
+        self.lm_blend = float(lm_blend)
 
     def score(self, text: str) -> SentimentScore:
         if not text:
             return SentimentScore(0.0, 0.0, 1.0, 0.0, "neutral")
-        if self._vader is None:
-            return SentimentScore(0.0, 0.0, 1.0, 0.0, "neutral")
-        s = self._vader.polarity_scores(text)
-        compound = s["compound"]
-        lower = text.lower()
-        for term, delta in FINANCE_LEXICON.items():
-            if term in lower:
-                compound += delta
+        # VADER + finance-overlay component.
+        vader_compound = 0.0
+        pos = neu = neg = 0.0
+        if self._vader is not None:
+            s = self._vader.polarity_scores(text)
+            pos, neu, neg = s["pos"], s["neu"], s["neg"]
+            vader_compound = s["compound"]
+            lower = text.lower()
+            for term, delta in FINANCE_LEXICON.items():
+                if term in lower:
+                    vader_compound += delta
+            vader_compound = max(-1.0, min(1.0, vader_compound))
+        # Loughran-McDonald component.
+        try:
+            from .sentiment_lm import lm_counts, lm_score
+            lm_counts_d = lm_counts(text)
+            lm_pol = lm_score(text)
+        except ImportError:
+            lm_counts_d = {"unc": 0, "lit": 0}
+            lm_pol = 0.0
+        # Blend: lean on LM only when the text has finance content
+        # (i.e. either pos or neg LM hits). Tweets with zero LM hits
+        # default to pure VADER.
+        lm_hits = lm_counts_d.get("pos", 0) + lm_counts_d.get("neg", 0)
+        if lm_hits == 0:
+            compound = vader_compound
+        else:
+            compound = (1.0 - self.lm_blend) * vader_compound + self.lm_blend * lm_pol
         compound = max(-1.0, min(1.0, compound))
         if compound >= 0.20:
             label = "bullish"
@@ -70,4 +101,9 @@ class SentimentScorer:
             label = "bearish"
         else:
             label = "neutral"
-        return SentimentScore(compound, s["pos"], s["neu"], s["neg"], label)
+        return SentimentScore(
+            compound=compound, pos=pos, neu=neu, neg=neg, label=label,
+            lm_score=lm_pol,
+            lm_uncertainty=lm_counts_d.get("unc", 0),
+            lm_litigious=lm_counts_d.get("lit", 0),
+        )

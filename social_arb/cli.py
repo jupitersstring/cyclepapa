@@ -210,6 +210,80 @@ def cmd_camillo(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_health(args: argparse.Namespace) -> int:
+    """Pipeline health & coverage audit."""
+    from .health import collect as _hc
+    rep = _hc(Config())
+    print(rep.to_text())
+    return 0
+
+
+def cmd_daily_refresh(args: argparse.Namespace) -> int:
+    """Bulk-refresh daily price cache for the US-liquid (or consumer) slice."""
+    cfg = Config()
+    from . import universe as uni_mod
+    from .technicals_daily import refresh_daily_cache
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    if args.north_america:
+        uni = uni_mod.filter_north_american_liquid(uni)
+    else:
+        uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    if args.limit:
+        tickers = tickers[: args.limit]
+    refresh_daily_cache(cfg, tickers, years=args.years, chunk=args.chunk)
+    return 0
+
+
+def cmd_daily_scan(args: argparse.Namespace) -> int:
+    """Latest daily-indicator snapshot for a universe."""
+    cfg = Config()
+    from . import universe as uni_mod
+    from .technicals_daily import scan_daily_universe
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = scan_daily_universe(cfg, tickers)
+    if out.empty:
+        print("no daily cache; run `daily-refresh` first")
+        return 0
+    if args.rsi_max is not None:
+        out = out[out["rsi_14"].fillna(100) <= args.rsi_max]
+    if args.rsi_min is not None:
+        out = out[out["rsi_14"].fillna(0) >= args.rsi_min]
+    if args.vol_z_min is not None:
+        out = out[out["vol_z_30"].fillna(-99) >= args.vol_z_min]
+    if args.near_52w_low:
+        out = out[out["pct_from_52w_low"].fillna(99) <= args.near_52w_low]
+    out = out.sort_values("vol_z_30", ascending=False).head(args.top)
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_finviz(args: argparse.Namespace) -> int:
+    """Fetch Finviz fundamentals + insider for a list of tickers."""
+    from .collectors.finviz import collect_finviz_batch
+    tickers = [t.strip().upper() for t in args.tickers.split(",") if t.strip()]
+    df = collect_finviz_batch(tickers, sleep_between=args.sleep)
+    if df.empty:
+        print("no data")
+        return 0
+    cols = [
+        "ticker", "market_cap", "pe", "short_float_pct", "insider_trans_pct",
+        "inst_trans_pct", "perf_month_pct", "perf_quarter_pct",
+        "high_52w_pct", "low_52w_pct", "rsi_14", "earnings_date", "sector", "industry",
+    ]
+    cols = [c for c in cols if c in df.columns]
+    print(df[cols].to_string(index=False))
+    return 0
+
+
 def cmd_best_today(args: argparse.Namespace) -> int:
     """Best-today: own-history percentile + cross-section z-score."""
     cfg = Config()
@@ -505,6 +579,32 @@ def build_parser() -> argparse.ArgumentParser:
     pcam.add_argument("--min-total", dest="min_total", type=int, default=5)
     pcam.add_argument("--consumer", action="store_true")
     pcam.set_defaults(func=cmd_camillo)
+
+    phc = sub.add_parser("health", help="Pipeline health & coverage audit")
+    phc.set_defaults(func=cmd_health)
+
+    pdr = sub.add_parser("daily-refresh", help="Bulk-download daily price cache")
+    pdr.add_argument("--years", type=int, default=3)
+    pdr.add_argument("--chunk", type=int, default=50)
+    pdr.add_argument("--consumer", action="store_true")
+    pdr.add_argument("--north-america", dest="north_america", action="store_true")
+    pdr.add_argument("--limit", type=int, default=None)
+    pdr.set_defaults(func=cmd_daily_refresh)
+
+    pds = sub.add_parser("daily-scan", help="Snapshot daily indicators (RSI, vol z, 52w distance)")
+    pds.add_argument("--top", type=int, default=40)
+    pds.add_argument("--rsi-max", dest="rsi_max", type=float, default=None)
+    pds.add_argument("--rsi-min", dest="rsi_min", type=float, default=None)
+    pds.add_argument("--vol-z-min", dest="vol_z_min", type=float, default=None)
+    pds.add_argument("--near-52w-low", dest="near_52w_low", type=float, default=None,
+                    help="filter to names within N%% above their 52w low")
+    pds.add_argument("--consumer", action="store_true")
+    pds.set_defaults(func=cmd_daily_scan)
+
+    pfv = sub.add_parser("finviz", help="Scrape Finviz fundamentals + insider for tickers")
+    pfv.add_argument("--tickers", required=True, help="comma-separated")
+    pfv.add_argument("--sleep", type=float, default=0.7)
+    pfv.set_defaults(func=cmd_finviz)
 
     pbt = sub.add_parser("best-today", help="Best today: own-history percentile + cross-section z-score")
     pbt.add_argument("--top", type=int, default=40)

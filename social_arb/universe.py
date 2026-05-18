@@ -49,7 +49,12 @@ def load_equities_from_financedatabase(country: str | None = "United States") ->
 
     try:
         equities = fd.Equities()
-        df = equities.select(country=country) if country else equities.select()
+        if country == "ALL":
+            df = equities.select()
+        elif country:
+            df = equities.select(country=country)
+        else:
+            df = equities.select()
     except Exception as exc:  # noqa: BLE001
         log.warning("financedatabase select failed (%s); using fallback", exc)
         return pd.DataFrame(_FALLBACK_ROWS)
@@ -63,6 +68,45 @@ def load_equities_from_financedatabase(country: str | None = "United States") ->
         if col not in df.columns:
             df[col] = pd.NA
     return df[keep].dropna(subset=["symbol", "name"]).reset_index(drop=True)
+
+
+# Yahoo exchange codes for primary listings, by country.
+YAHOO_EXCHANGE_CODES_BY_COUNTRY: dict[str, frozenset[str]] = {
+    "United States": frozenset({"NMS", "NGM", "NCM", "NYQ", "ASE", "PCX", "BATS"}),
+    "Canada":        frozenset({"TOR", "VAN", "CNQ"}),         # TSX, TSXV, CSE
+    "United Kingdom": frozenset({"LSE"}),
+    "Australia":     frozenset({"ASX"}),
+    "Germany":       frozenset({"GER", "FRA"}),
+    "France":        frozenset({"PAR"}),
+    "Japan":         frozenset({"JPX", "TYO"}),
+}
+
+
+def filter_north_american_liquid(equities: pd.DataFrame) -> pd.DataFrame:
+    """US + Canadian primary listings.
+
+    Camillo's most famous trade (Dorel/Cannondale, +629%) was a Canadian
+    name. Adds TSX/TSXV via financedatabase's Canada slice. Yahoo
+    suffixes Canadian tickers with `.TO` (TSX) or `.V` (TSXV), so the
+    suffix here is part of the symbol that yfinance will recognise.
+    """
+    if equities.empty:
+        return equities
+    out_us = filter_us_liquid(equities)
+    if "country" not in equities.columns:
+        return out_us
+    ca = equities[equities["country"] == "Canada"].copy()
+    if not ca.empty:
+        ca_ex = YAHOO_EXCHANGE_CODES_BY_COUNTRY["Canada"]
+        if "exchange" in ca.columns:
+            ca = ca[ca["exchange"].isin(ca_ex) | ca["exchange"].isna()]
+        # Canadian tickers in financedatabase often already carry the
+        # `.TO` / `.V` suffix; keep .-containing symbols here, unlike US.
+        ca = ca[ca["sector"].notna()] if "sector" in ca.columns else ca
+        name = ca["name"].astype(str).str.lower()
+        junk = name.str.contains(r"\b(?:unit|warrant|acquisition corp|spac)\b", regex=True, na=False)
+        ca = ca.loc[~junk]
+    return pd.concat([out_us, ca], ignore_index=True).drop_duplicates(subset=["symbol"]).reset_index(drop=True)
 
 
 def load_etfs_from_financedatabase() -> pd.DataFrame:
@@ -132,7 +176,13 @@ def filter_us_liquid(equities: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_universe(cfg: Config, country: str | None = "United States", refresh: bool = False) -> pd.DataFrame:
-    """Materialize the equity universe to parquet on disk."""
+    """Materialize the equity universe to parquet on disk.
+
+    `country` accepts a single country name, "ALL" for the full
+    financedatabase set, or None (same as "ALL"). Pass "United States"
+    for the default Camillo universe; "ALL" + filter_north_american_liquid
+    for the broader US+Canada slice.
+    """
     cfg.ensure_dirs()
     path = Path(cfg.universe_parquet)
     if path.exists() and not refresh:
