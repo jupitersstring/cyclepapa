@@ -1107,6 +1107,146 @@ def social_asymmetric_setups(
     return df.reset_index(drop=True)
 
 
+def mention_spike_vs_price(
+    cfg: Config,
+    *,
+    short_window_days: int = 5,
+    baseline_window_days: int = 30,
+    top: int = 30,
+    min_total_mentions: int = 20,
+    require_positive_div: bool = True,
+    min_mention_spike: float = 1.0,
+) -> pd.DataFrame:
+    """Divergence between acute mention spike and price reaction.
+
+    For each ticker on the *same* short window vs baseline:
+
+      mention_spike_z = (mean(mentions, 5d) - mean(mentions, 30d)) / std(mentions, 30d)
+      price_spike_z   = (mean(return, 5d)   - mean(return, 30d))   / std(return, 30d)
+      divergence      = mention_spike_z - price_spike_z
+
+    Positive divergence here means *the audience just lit up and the price
+    didn't react* -- the textbook acute information edge, distinct from
+    the slower weekly version. We additionally require a real mention
+    spike (`min_mention_spike`) to filter out tiny-base random hits.
+    """
+    from .technicals import load_price_cache
+    from . import storage
+
+    with storage.connect(cfg) as con:
+        df = con.execute(
+            "SELECT ticker, CAST(timestamp AS DATE) AS d, sentiment FROM mentions"
+        ).df()
+    if df.empty:
+        return pd.DataFrame()
+    df["d"] = pd.to_datetime(df["d"])
+    agg = df.groupby(["ticker", "d"]).agg(
+        mentions=("d", "count"),
+        sentiment=("sentiment", "mean"),
+    ).reset_index()
+    mw = agg.pivot(index="d", columns="ticker", values="mentions").sort_index()
+    sw = agg.pivot(index="d", columns="ticker", values="sentiment").sort_index()
+    full_idx = pd.date_range(mw.index.min(), mw.index.max(), freq="D")
+    mw = mw.reindex(full_idx).fillna(0)
+    sw = sw.reindex(full_idx).ffill().fillna(0.0)
+
+    n = len(mw)
+    if n < baseline_window_days + short_window_days:
+        return pd.DataFrame()
+
+    short_slice = mw.iloc[n - short_window_days: n].astype(float)
+    base_slice = mw.iloc[n - baseline_window_days - short_window_days:
+                          n - short_window_days].astype(float)
+
+    base_mean = base_slice.mean(axis=0)
+    base_std = base_slice.std(axis=0).replace(0.0, np.nan)
+    short_mean = short_slice.mean(axis=0)
+    mention_spike = ((short_mean - base_mean) / base_std).fillna(0.0)
+
+    # Sentiment spike (kept for the decoration).
+    short_s = sw.iloc[n - short_window_days: n].astype(float)
+    base_s = sw.iloc[n - baseline_window_days - short_window_days:
+                      n - short_window_days].astype(float)
+    base_s_mean = base_s.mean(axis=0)
+    base_s_std = base_s.std(axis=0).replace(0.0, np.nan)
+    short_s_mean = short_s.mean(axis=0)
+    sentiment_spike = ((short_s_mean - base_s_mean) / base_s_std).fillna(0.0)
+
+    totals = mw.sum()
+
+    # Price spike z-score from the weekly cache (daily returns approximated
+    # via reindex onto a daily grid + ffill).
+    price_cache = load_price_cache(cfg)
+    if price_cache.empty:
+        return pd.DataFrame()
+    price_daily = price_cache.reindex(full_idx).ffill()
+    rets = np.log(price_daily / price_daily.shift(1))
+
+    short_ret = rets.iloc[n - short_window_days: n].astype(float)
+    base_ret = rets.iloc[n - baseline_window_days - short_window_days:
+                          n - short_window_days].astype(float)
+    base_ret_mean = base_ret.mean(axis=0)
+    base_ret_std = base_ret.std(axis=0).replace(0.0, np.nan)
+    short_ret_mean = short_ret.mean(axis=0)
+    price_spike = ((short_ret_mean - base_ret_mean) / base_ret_std).fillna(0.0)
+
+    # Cumulative price return over the short window (decoration).
+    short_window_return_pct = (
+        (price_daily.iloc[n - 1] / price_daily.iloc[n - short_window_days - 1] - 1.0) * 100.0
+    )
+
+    # Intersect, filter by min mentions and min spike.
+    keep = totals[totals >= int(min_total_mentions)].index
+    common = (keep
+              .intersection(mention_spike.index)
+              .intersection(price_spike.index))
+    mention_spike = mention_spike.reindex(common)
+    sentiment_spike = sentiment_spike.reindex(common)
+    price_spike = price_spike.reindex(common)
+    short_window_return_pct = short_window_return_pct.reindex(common)
+    short_mean_v = short_mean.reindex(common)
+    base_mean_v = base_mean.reindex(common)
+
+    mask = mention_spike >= float(min_mention_spike)
+    if not mask.any():
+        return pd.DataFrame()
+    common = common[mask.values]
+    mention_spike = mention_spike.loc[common]
+    sentiment_spike = sentiment_spike.loc[common]
+    price_spike = price_spike.loc[common]
+    short_window_return_pct = short_window_return_pct.loc[common]
+    short_mean_v = short_mean_v.loc[common]
+    base_mean_v = base_mean_v.loc[common]
+
+    divergence = mention_spike - price_spike
+
+    if require_positive_div:
+        keep_pos = divergence > 0
+        if not keep_pos.any():
+            return pd.DataFrame()
+        common = common[keep_pos.values]
+        mention_spike = mention_spike.loc[common]
+        sentiment_spike = sentiment_spike.loc[common]
+        price_spike = price_spike.loc[common]
+        short_window_return_pct = short_window_return_pct.loc[common]
+        short_mean_v = short_mean_v.loc[common]
+        base_mean_v = base_mean_v.loc[common]
+        divergence = divergence.loc[common]
+
+    out = pd.DataFrame({
+        "ticker": common,
+        "divergence": divergence.round(2).values,
+        "mention_spike_z": mention_spike.round(2).values,
+        "price_spike_z": price_spike.round(2).values,
+        "sentiment_spike_z": sentiment_spike.round(2).values,
+        "short_5d_return_pct": short_window_return_pct.round(1).values,
+        "short_mean_mentions": short_mean_v.round(1).values,
+        "baseline_mean_mentions": base_mean_v.round(1).values,
+        "total_mentions": totals.reindex(common).astype(int).values,
+    })
+    return out.sort_values("divergence", ascending=False).head(int(top)).reset_index(drop=True)
+
+
 def recent_spike_rank(
     cfg: Config,
     *,

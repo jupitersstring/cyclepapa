@@ -30,8 +30,8 @@ from .ranking import (
     rank_inflecters, sentiment_ema_history, sentiment_ema_history_weekly,
     sentiment_momentum_scan, sentiment_momentum_scan_weekly,
     small_mid_cap_asymmetric, social_asymmetric_setups,
-    momentum_acceleration_rank, ordinal_social_rank, recent_spike_rank,
-    social_price_divergence, social_signal_score,
+    mention_spike_vs_price, momentum_acceleration_rank, ordinal_social_rank,
+    recent_spike_rank, social_price_divergence, social_signal_score,
     social_weekly_history, social_weekly_movers, social_weekly_pivot,
     union_ranking, weekly_momentum,
 )
@@ -531,6 +531,25 @@ def cmd_social_asymmetric(args: argparse.Namespace) -> int:
     if out.empty:
         print("no candidates: try lower --min-mentions or --min-social")
         return 0
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_mention_vs_price(args: argparse.Namespace) -> int:
+    """Acute mention spike z minus price spike z (5d vs 30d, both windows)."""
+    cfg = Config()
+    out = mention_spike_vs_price(
+        cfg, short_window_days=args.short, baseline_window_days=args.baseline,
+        top=args.top, min_total_mentions=args.min_total,
+        min_mention_spike=args.min_spike,
+        require_positive_div=not args.allow_negative,
+    )
+    if out.empty:
+        print("no candidates")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
     print(out.to_string(index=False))
     return 0
 
@@ -1103,6 +1122,18 @@ def build_parser() -> argparse.ArgumentParser:
     psa.add_argument("--consumer", action="store_true")
     psa.add_argument("--north-america", dest="north_america", action="store_true")
     psa.set_defaults(func=cmd_social_asymmetric)
+
+    pmvp = sub.add_parser("mention-vs-price",
+                        help="Acute mention spike minus price spike (5d vs 30d both)")
+    pmvp.add_argument("--top", type=int, default=30)
+    pmvp.add_argument("--short", type=int, default=5)
+    pmvp.add_argument("--baseline", type=int, default=30)
+    pmvp.add_argument("--min-total", dest="min_total", type=int, default=15)
+    pmvp.add_argument("--min-spike", dest="min_spike", type=float, default=1.0,
+                    help="minimum mention_spike_z (default 1.0)")
+    pmvp.add_argument("--allow-negative", action="store_true",
+                    help="don't require positive divergence")
+    pmvp.set_defaults(func=cmd_mention_vs_price)
 
     prs = sub.add_parser("recent-spike",
                         help="Acute short-window spike detector (5d vs 30d baseline z-score)")
