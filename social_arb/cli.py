@@ -28,9 +28,9 @@ from .ranking import (
     bullish_ranking, camillo_ranking, crossover_intersect_social,
     pure_social_momentum, rank_improvers, rank_inflecters, sentiment_ema_history,
     sentiment_ema_history_weekly, sentiment_momentum_scan,
-    sentiment_momentum_scan_weekly, social_asymmetric_setups,
-    social_price_divergence, social_signal_score, union_ranking,
-    weekly_momentum,
+    sentiment_momentum_scan_weekly, small_mid_cap_asymmetric,
+    social_asymmetric_setups, social_price_divergence, social_signal_score,
+    union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -532,6 +532,36 @@ def cmd_social_asymmetric(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_smid_asymmetric(args: argparse.Namespace) -> int:
+    """Small/mid-cap-filtered asymmetric setups."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    if args.north_america:
+        uni = uni_mod.filter_north_american_liquid(uni)
+    else:
+        uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = small_mid_cap_asymmetric(
+        cfg, tickers,
+        top=args.top, candidate_pool=args.pool, enrich_top=args.enrich,
+        mcap_min=args.mcap_min * 1e6, mcap_max=args.mcap_max * 1e6,
+        min_upside_pct=args.min_upside, min_asym_ratio=args.min_ratio,
+        min_close=args.min_close,
+    )
+    if out.empty:
+        print("no candidates in the small/mid-cap band; widen --mcap-min/max")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 220)
+    print(out.to_string(index=False))
+    return 0
+
+
 def cmd_asymmetric(args: argparse.Namespace) -> int:
     """Camillo-style asymmetric setups: limited downside, large upside."""
     cfg = Config()
@@ -949,6 +979,22 @@ def build_parser() -> argparse.ArgumentParser:
     psa.add_argument("--consumer", action="store_true")
     psa.add_argument("--north-america", dest="north_america", action="store_true")
     psa.set_defaults(func=cmd_social_asymmetric)
+
+    psm = sub.add_parser("smid-asymmetric",
+                        help="Small/mid-cap asymmetric setups: Finviz-filtered mcap, social-spike bonus")
+    psm.add_argument("--top", type=int, default=25)
+    psm.add_argument("--pool", type=int, default=300, help="size of pre-Finviz candidate pool")
+    psm.add_argument("--enrich", type=int, default=150, help="how many to Finviz-enrich")
+    psm.add_argument("--mcap-min", dest="mcap_min", type=float, default=250.0,
+                    help="market cap floor in millions (default 250)")
+    psm.add_argument("--mcap-max", dest="mcap_max", type=float, default=10000.0,
+                    help="market cap ceiling in millions (default 10000 = $10B)")
+    psm.add_argument("--min-close", dest="min_close", type=float, default=1.5)
+    psm.add_argument("--min-upside", dest="min_upside", type=float, default=50.0)
+    psm.add_argument("--min-ratio", dest="min_ratio", type=float, default=3.0)
+    psm.add_argument("--consumer", action="store_true")
+    psm.add_argument("--north-america", dest="north_america", action="store_true")
+    psm.set_defaults(func=cmd_smid_asymmetric)
 
     pas = sub.add_parser("asymmetric", help="Camillo-style asymmetric setups: capped downside, large upside")
     pas.add_argument("--top", type=int, default=30)

@@ -1107,6 +1107,126 @@ def social_asymmetric_setups(
     return df.reset_index(drop=True)
 
 
+def small_mid_cap_asymmetric(
+    cfg: Config,
+    tickers: list[str] | None = None,
+    *,
+    top: int = 30,
+    candidate_pool: int = 200,
+    enrich_top: int = 120,
+    mcap_min: float = 250e6,
+    mcap_max: float = 10e9,
+    min_upside_pct: float = 50.0,
+    min_asym_ratio: float = 3.0,
+    min_close: float = 1.5,
+) -> pd.DataFrame:
+    """Asymmetric setups filtered to the small/mid-cap band ($250M-$10B).
+
+    Camillo's edge is structurally in this band -- multi-billion funds
+    can't size in, retail can. We run the price-asymmetric scan on a
+    deep candidate pool, Finviz-enrich the top, filter by market cap,
+    then add a social-spike bonus and rerank.
+
+    Social-spike bonus comes from the social_price_divergence layer:
+    +2 if divergence > 1.0 AND social_z > 1.5 (anomalous mention spike
+    where price hasn't followed = textbook Camillo information edge).
+    """
+    # 1) Get a deep technical-asymmetric candidate pool.
+    base = asymmetric_setups(
+        cfg, tickers=tickers, top=candidate_pool,
+        enrich_finviz=0, min_close=min_close,
+        min_upside_pct=min_upside_pct, min_asym_ratio=min_asym_ratio,
+    )
+    if base.empty:
+        return base
+
+    # 2) Finviz-enrich the top `enrich_top` for market cap + short float.
+    from .collectors.finviz import collect_finviz_batch
+    top_pool = base.head(int(enrich_top)).copy()
+    fv = collect_finviz_batch(top_pool["ticker"].tolist(), sleep_between=0.5)
+    if fv.empty:
+        log.warning("Finviz returned no data; using price-proxy filter only")
+        return base.head(int(top))
+
+    keep_cols = [c for c in [
+        "ticker", "market_cap", "short_float_pct", "insider_trans_pct",
+        "earnings_date", "sector", "industry",
+    ] if c in fv.columns]
+    merged = top_pool.merge(fv[keep_cols], on="ticker", how="left")
+
+    # 3) Filter to the small/mid cap band.
+    merged = merged[merged["market_cap"].notna()]
+    merged = merged[(merged["market_cap"] >= mcap_min) & (merged["market_cap"] <= mcap_max)]
+    if merged.empty:
+        return merged
+
+    # 4) Pull divergence scores for each.
+    div = social_price_divergence(
+        cfg, top=10000, lookback_weeks=8,
+        min_mentions_per_week=1.0, min_total_mentions=10,
+        require_positive=False,
+    )
+    if not div.empty:
+        merged = merged.merge(
+            div[["ticker", "divergence", "divergence_4w", "social_z", "price_z"]],
+            on="ticker", how="left",
+        )
+    else:
+        for c in ["divergence", "divergence_4w", "social_z", "price_z"]:
+            merged[c] = None
+
+    # 5) Composite: asym_score + short-squeeze + earnings-near + social-spike.
+    def _bonus(row) -> float:
+        bonus = 0.0
+        sf = row.get("short_float_pct")
+        if pd.notna(sf) and float(sf) >= 10.0:
+            bonus += min(float(sf), 30.0) / 5.0
+        ed = row.get("earnings_date")
+        if isinstance(ed, str) and ed:
+            try:
+                from datetime import datetime as _dt
+                for fmt in ("%b %d", "%b %d %Y"):
+                    try:
+                        d = _dt.strptime(ed.split(" AMC")[0].split(" BMO")[0], fmt)
+                        d = d.replace(year=_dt.now().year)
+                        if 0 <= (d - _dt.now()).days <= 30:
+                            bonus += 1.0
+                        break
+                    except ValueError:
+                        continue
+            except Exception:  # noqa: BLE001
+                pass
+        # Social-spike bonus: anomalous mention z + price flat/down.
+        sz = row.get("social_z")
+        pz = row.get("price_z")
+        if pd.notna(sz) and pd.notna(pz) and float(sz) >= 1.5 and float(pz) <= 0.5:
+            bonus += 3.0
+        elif pd.notna(sz) and float(sz) >= 1.0 and pd.notna(pz) and float(pz) <= 0.0:
+            bonus += 1.5
+        # Sustained 4w divergence
+        d4 = row.get("divergence_4w")
+        if pd.notna(d4) and float(d4) >= 1.0:
+            bonus += 1.5
+        return bonus
+
+    merged["bonus"] = merged.apply(_bonus, axis=1)
+    merged["composite"] = (merged["asym_score"] + merged["bonus"]).round(2)
+    merged["mcap_$M"] = (merged["market_cap"] / 1e6).round(0).astype(int)
+    out = merged.sort_values("composite", ascending=False).head(int(top))
+
+    # Cleaner column order for display.
+    display_cols = [
+        "ticker", "composite", "asym_score", "bonus", "close", "mcap_$M",
+        "from_52w_high_pct", "from_52w_low_pct", "asym_ratio",
+        "rsi_14", "vol_z_30", "state",
+        "short_float_pct", "earnings_date",
+        "divergence", "divergence_4w", "social_z", "price_z",
+        "sector", "industry",
+    ]
+    cols = [c for c in display_cols if c in out.columns]
+    return out[cols].reset_index(drop=True)
+
+
 def asymmetric_setups(
     cfg: Config,
     tickers: list[str] | None = None,
