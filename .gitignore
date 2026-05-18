@@ -10,6 +10,8 @@ data/*.duckdb
 data/*.duckdb.wal
 data/universe.parquet
 data/prices_weekly.parquet
+data/prices_daily_close.parquet
+data/prices_daily_volume.parquet
 
 # venv
 .venv/
