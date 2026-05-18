@@ -251,6 +251,234 @@ def rank_improvers(
     return _decorate(cfg, cache, scores.sort_values("improvement", ascending=False).head(top))
 
 
+def social_signal_score(cfg: Config, ticker: str) -> dict:
+    """Per-ticker rolled-up social/alt-data signal.
+
+    Aggregates everything we have for a single ticker into a small dict:
+
+        total_mentions   -- all-time count in our store
+        latest_z         -- EWMA z-score of daily mentions (last day)
+        log_growth_7d    -- log(last7) - log(prev7)
+        sentiment_14d    -- mean sentiment over last 14 days
+        n_sources        -- distinct sources contributing mentions
+        wiki_growth_pct  -- 30d Wikipedia pageviews trend (if cached)
+        social_score     -- composite 0..10
+        positive         -- bool: is the signal CONSTRUCTIVE?
+    """
+    from . import storage
+    daily = _per_ticker_daily(cfg)
+    sub = daily[daily["ticker"] == ticker]
+    if sub.empty:
+        return {
+            "total_mentions": 0, "latest_z": 0.0, "log_growth_7d": 0.0,
+            "sentiment_14d": 0.0, "n_sources": 0, "wiki_growth_pct": 0.0,
+            "social_score": 0.0, "positive": False,
+        }
+    total = int(sub["mentions"].sum())
+    # Per-day series and EWMA z-score.
+    series = sub.groupby("date")["mentions"].sum().sort_index()
+    series.index = pd.to_datetime(series.index)
+    series = series.asfreq("D", fill_value=0.0)
+    log_s = np.log1p(series)
+    if len(log_s) >= 5:
+        mu = log_s.ewm(halflife=14, min_periods=3).mean()
+        sd = log_s.ewm(halflife=14, min_periods=3).std().replace(0.0, np.nan)
+        z = float(((log_s - mu) / sd).iloc[-1]) if sd.notna().iloc[-1] else 0.0
+    else:
+        z = 0.0
+    last7 = float(series.tail(7).sum())
+    prev7 = float(series.tail(14).head(7).sum())
+    growth = float(np.log1p(last7) - np.log1p(prev7))
+    sent_14d = float(sub.tail(14)["sentiment_mean"].mean()) if not sub.empty else 0.0
+
+    # Source diversity from raw store.
+    try:
+        with storage.connect(cfg) as con:
+            n_sources = int(con.execute(
+                "SELECT COUNT(DISTINCT source) FROM mentions WHERE ticker = ?", [ticker]
+            ).fetchone()[0])
+    except Exception:  # noqa: BLE001
+        n_sources = 0
+
+    # Wikipedia pageview growth (last 7d vs prior 7d).
+    wiki_growth = 0.0
+    try:
+        with storage.connect(cfg) as con:
+            wiki = con.execute(
+                "SELECT CAST(timestamp AS DATE) AS d, COUNT(*) AS n "
+                "FROM mentions WHERE ticker = ? AND source = 'wikipedia' "
+                "GROUP BY 1 ORDER BY 1", [ticker]
+            ).df()
+        if not wiki.empty and len(wiki) >= 14:
+            wn = wiki.tail(7)["n"].sum()
+            wp = wiki.tail(14).head(7)["n"].sum()
+            if wp > 0:
+                wiki_growth = (wn / wp - 1.0) * 100.0
+    except Exception:  # noqa: BLE001
+        pass
+
+    # Composite social score 0..10.
+    s = 0.0
+    if z > 0:
+        s += min(z, 4.0) * 1.0
+    if sent_14d > 0:
+        s += min(sent_14d * 5.0, 3.0)
+    if growth > 0:
+        s += min(growth * 1.5, 2.5)
+    if n_sources >= 2:
+        s += min(n_sources / 3.0, 1.5)
+    if total >= 30:
+        s += 1.0
+    if wiki_growth > 20:
+        s += min(wiki_growth / 50.0, 1.5)
+
+    positive = (z > 0.5 or sent_14d > 0.15 or growth > 0.3) and sent_14d >= -0.05
+
+    return {
+        "total_mentions": total, "latest_z": z, "log_growth_7d": growth,
+        "sentiment_14d": sent_14d, "n_sources": n_sources,
+        "wiki_growth_pct": wiki_growth, "social_score": round(s, 2),
+        "positive": positive,
+    }
+
+
+def social_asymmetric_setups(
+    cfg: Config,
+    tickers: list[str] | None = None,
+    *,
+    top: int = 30,
+    min_mentions: int = 5,
+    min_upside_pct: float = 30.0,
+    min_social_score: float = 1.5,
+    enrich_finviz: int = 0,
+) -> pd.DataFrame:
+    """Information-arbitrage ranker: broken price + rising social signal.
+
+    The Camillo edge. Pure-price asymmetry surfaces *how cheap* a name
+    is; that's necessary but not sufficient. The information imbalance
+    is when the *alt-data* (social mentions, sentiment, attention, news
+    coverage diversity) is constructive AT THE SAME TIME as the price
+    is washed out. Wall Street hasn't priced the turn yet -- the
+    observation has not become consensus.
+
+    Composite = price-asymmetric score + social-signal score +
+    explicit **divergence** bonus when both fire.
+    """
+    from .technicals import load_price_cache, signals_for_close
+    from .technicals_daily import daily_signals_for, load_daily_cache
+
+    weekly = load_price_cache(cfg)
+    if weekly.empty:
+        return pd.DataFrame()
+    daily_close, daily_vol = load_daily_cache(cfg)
+
+    daily = _per_ticker_daily(cfg)
+    if daily.empty:
+        return pd.DataFrame()
+    universe_with_mentions = set(daily["ticker"].unique())
+    if tickers is None:
+        tickers = sorted(universe_with_mentions & set(weekly.columns))
+    else:
+        tickers = sorted(set(tickers) & universe_with_mentions & set(weekly.columns))
+
+    rows: list[dict] = []
+    for t in tickers:
+        soc = social_signal_score(cfg, t)
+        if soc["total_mentions"] < int(min_mentions):
+            continue
+        if soc["social_score"] < float(min_social_score):
+            continue
+
+        wclose = weekly[t].dropna()
+        if len(wclose) < 50:
+            continue
+        wsig = signals_for_close(wclose)
+        if wsig is None or wsig.empty:
+            continue
+        wlast = wsig.iloc[-1]
+
+        # 52w range, prefer daily.
+        rsi14 = vol_z = None
+        from_high = from_low = None
+        if not daily_close.empty and t in daily_close.columns:
+            dc = daily_close[t].dropna()
+            dv = daily_vol[t] if (not daily_vol.empty and t in daily_vol.columns) else None
+            if len(dc) >= 60:
+                dsig = daily_signals_for(dc, dv)
+                if not dsig.empty:
+                    dlast = dsig.iloc[-1]
+                    rsi14 = float(dlast["rsi_14"]) if pd.notna(dlast["rsi_14"]) else None
+                    from_high = float(dlast["pct_from_high_52w"]) if pd.notna(dlast["pct_from_high_52w"]) else None
+                    from_low = float(dlast["pct_from_low_52w"]) if pd.notna(dlast["pct_from_low_52w"]) else None
+                    vol_z = float(dlast.get("vol_z_30")) if pd.notna(dlast.get("vol_z_30", np.nan)) else None
+        if from_high is None or from_low is None:
+            wh = float(wclose.tail(52).max())
+            wl = float(wclose.tail(52).min())
+            c = float(wclose.iloc[-1])
+            from_high = (c / wh - 1.0) * 100.0
+            from_low = (c / wl - 1.0) * 100.0
+
+        upside = -from_high if from_high < 0 else 0.0
+        downside = max(from_low, 0.0)
+        if upside < float(min_upside_pct):
+            continue
+        asym_ratio = upside / max(downside, 1.0)
+
+        # Price-pain score (= broken-and-cheap, capped 8).
+        price_score = min(upside / 7.0, 6.0) + min(asym_ratio / 5.0, 2.0)
+        if rsi14 is not None and rsi14 <= 35:
+            price_score += 1.0
+
+        # Social signal score (already 0..10).
+        social = float(soc["social_score"])
+
+        # Divergence bonus: BOTH broken price AND constructive social.
+        divergence = 0.0
+        if soc["positive"] and upside >= 30.0:
+            divergence = 3.0  # explicit Camillo edge
+        # Penalty if sentiment is actively negative -- broken price + crowd
+        # screaming "short it" is the GME-2024-style fade, not the Camillo trade.
+        if soc["sentiment_14d"] < -0.1 and not soc["positive"]:
+            divergence -= 2.0
+
+        total = round(price_score + social + divergence, 2)
+
+        rows.append({
+            "ticker": t,
+            "social_asym_score": total,
+            "price_score": round(price_score, 1),
+            "social_score": social,
+            "divergence_bonus": divergence,
+            "close": round(float(wlast["close"]), 2),
+            "from_52w_high_pct": round(from_high, 1),
+            "from_52w_low_pct": round(from_low, 1),
+            "asym_ratio": round(asym_ratio, 1),
+            "rsi_14": round(rsi14, 1) if rsi14 is not None else None,
+            "vol_z_30": round(vol_z, 1) if vol_z is not None else None,
+            "state": str(wlast["state"]),
+            "mentions": int(soc["total_mentions"]),
+            "mention_z": round(soc["latest_z"], 2),
+            "mention_growth_7d": round(soc["log_growth_7d"], 2),
+            "sentiment_14d": round(soc["sentiment_14d"], 2),
+            "n_sources": int(soc["n_sources"]),
+            "wiki_growth_pct": round(soc["wiki_growth_pct"], 0),
+        })
+
+    if not rows:
+        return pd.DataFrame()
+    df = pd.DataFrame(rows).sort_values("social_asym_score", ascending=False).head(int(top))
+
+    if enrich_finviz and len(df) > 0:
+        from .collectors.finviz import collect_finviz_batch
+        fv = collect_finviz_batch(df["ticker"].head(int(enrich_finviz)).tolist(), sleep_between=0.7)
+        if not fv.empty:
+            cols = ["ticker", "market_cap", "short_float_pct", "earnings_date", "sector", "industry"]
+            cols = [c for c in cols if c in fv.columns]
+            df = df.merge(fv[cols], on="ticker", how="left")
+
+    return df.reset_index(drop=True)
+
+
 def asymmetric_setups(
     cfg: Config,
     tickers: list[str] | None = None,

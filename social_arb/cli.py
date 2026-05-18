@@ -26,7 +26,8 @@ from .pipeline import Pipeline
 from .ranking import (
     CamilloParams, RankParams, asymmetric_setups, best_today, bullish_ranking,
     camillo_ranking, crossover_intersect_social, rank_improvers,
-    rank_inflecters, union_ranking, weekly_momentum,
+    rank_inflecters, social_asymmetric_setups, social_signal_score,
+    union_ranking, weekly_momentum,
 )
 from .technicals import (
     load_price_cache, refresh_price_cache,
@@ -281,6 +282,33 @@ def cmd_finviz(args: argparse.Namespace) -> int:
     ]
     cols = [c for c in cols if c in df.columns]
     print(df[cols].to_string(index=False))
+    return 0
+
+
+def cmd_social_asymmetric(args: argparse.Namespace) -> int:
+    """Information-arbitrage ranker: broken price + rising social signal."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    if args.north_america:
+        uni = uni_mod.filter_north_american_liquid(uni)
+    else:
+        uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = social_asymmetric_setups(
+        cfg, tickers, top=args.top,
+        min_mentions=args.min_mentions,
+        min_upside_pct=args.min_upside,
+        min_social_score=args.min_social,
+        enrich_finviz=args.finviz,
+    )
+    if out.empty:
+        print("no candidates: try lower --min-mentions or --min-social")
+        return 0
+    print(out.to_string(index=False))
     return 0
 
 
@@ -632,6 +660,17 @@ def build_parser() -> argparse.ArgumentParser:
     pfv.add_argument("--tickers", required=True, help="comma-separated")
     pfv.add_argument("--sleep", type=float, default=0.7)
     pfv.set_defaults(func=cmd_finviz)
+
+    psa = sub.add_parser("social-asymmetric",
+                         help="Information arbitrage: broken price + rising social signal")
+    psa.add_argument("--top", type=int, default=30)
+    psa.add_argument("--min-mentions", dest="min_mentions", type=int, default=5)
+    psa.add_argument("--min-upside", dest="min_upside", type=float, default=30.0)
+    psa.add_argument("--min-social", dest="min_social", type=float, default=1.5)
+    psa.add_argument("--finviz", type=int, default=0)
+    psa.add_argument("--consumer", action="store_true")
+    psa.add_argument("--north-america", dest="north_america", action="store_true")
+    psa.set_defaults(func=cmd_social_asymmetric)
 
     pas = sub.add_parser("asymmetric", help="Camillo-style asymmetric setups: capped downside, large upside")
     pas.add_argument("--top", type=int, default=30)
