@@ -365,8 +365,244 @@ TIER 3 — SETUPS WORTH OWNING SMALLER (DIVERSIFICATION)
 
 
 ================================================================================
-WARRANT TRADES (CONVEX POSITION-SIZED SMALL)
+EVENT-DRIVEN — DATED CATALYSTS, BOUNDED OUTCOMES
 ================================================================================
+
+Event-driven setups have a SPECIFIC dated catalyst and a BOUNDED outcome
+distribution (deal closes vs breaks, tender succeeds vs fails, etc.). Reward
+is usually smaller absolute but with much narrower probability distribution -
+so risk-adjusted multiples can be very attractive, especially as defensive
+arb sleeve.
+
+
+-------- A. PENDING MERGERS / GOING-PRIVATE (ARB SPREADS) -----------------------
+
+  EEX (Emerald Holding) - Apollo / Onex consortium go-private 5/9/2026
+    93% written consent same day = effectively closed; tiny spread remaining.
+    Status: arb spread closing. ASYMMETRY: spread capture / break risk.
+
+  JHG (Janus Henderson) - Trian + General Catalyst (Jupiter) merger
+    Price raised $49 -> $52/share 3/24/2026 amendment. Closing by mid-2026.
+    Status: arb spread + Trian's price-hike track record (won 5 of last 6
+    similar campaigns). ASYMMETRY: 5-8% spread / minimal break risk.
+
+  WHG (Westwood Holdings / Settian Capital amendment) - private equity
+    seeking control. Settian filing pre-window. ASYMMETRY: 10-20% capture.
+
+  CPAC (Cementos Pacasmayo) - Holcim acquiring; tender offer in flight.
+    ASYMMETRY: 5-10% spread.
+
+  APLS (Apellis Pharmaceuticals) - Biogen tender closed 5/13/2026 at 11:59 PM.
+    No longer actionable; included as confirmed event.
+
+  EVO (Evolution AB) - MAK (Manuel Albeniz) filing pre-window.
+    Status: ongoing event, low arb visibility.
+
+
+-------- B. TENDER OFFERS (HOSTILE + FRIENDLY) ----------------------------------
+
+  GNK (Genco Shipping) - Diana Shipping HOSTILE tender $23.50 5/12/2026
+    Board UNANIMOUSLY REJECTED 5/15/2026. Now contested.
+    THESIS: Either Diana raises price OR Genco rejects formally and
+    operates at lower multiple. Diana history of pursuing aggressively.
+    UPSIDE: tender price increase to $26-28 = 10-20% rerate.
+    DOWNSIDE: break = ~5-10% reset.
+    ASYMMETRY: 3:1 in defensive arb posture.
+
+  PSUS (Pershing Square USA Ltd) - NEW IPO closed 5/7/2026
+    Ackman bought 100% of Series A preferred + 4M common at IPO. This is
+    his permanent-capital vehicle (modeled on Pershing Square Holdings UK).
+    Trade: PSUS will trade at discount to PSH UK historical multiple ;
+    Ackman has done this before (PSH up 4x in 10 years from IPO).
+    ASYMMETRY: 3-5x over 10 years (very long-dated) / -20% if rerate fails.
+
+
+-------- C. SPIN-OFFS / SEPARATION / DIVESTITURE -------------------------------
+
+  REZI (Resideo Technologies) - Honeywell spin maturing - covered in Tier 2
+    3 SITG funds initiating simultaneously. Activist pressure from Sachem
+    Head likely accelerates strategic actions.
+
+  MICC (Millicom International) - First Eagle $260M new + Southeastern new
+    Q4 2025. Latin American telecom spin/restructure thesis. Uncrowded.
+    UPSIDE: 2x on consolidation or LatAm recovery.
+    DOWNSIDE: cashflow floor ~30% below.
+    ASYMMETRY: 4:1
+
+  LLYVK (Liberty Live Series C) - Corvex + GAMCO new positions
+    Liberty Media spin-off; tracker stock dynamics. Live Nation exposure.
+    ASYMMETRY: 3:1
+
+  HHH (Howard Hughes Holdings) - Pershing Square 47.74% + JCP new
+    Ackman taking over; planned permanent capital vehicle structure.
+    Catalyst: Ackman public commentary on capital deployment strategy.
+    UPSIDE: 3-5x as MSGE / Liberty-style tracker.
+    ASYMMETRY: 5:1
+
+  TPL - covered Tier 2 (land royalty, not technically a spin)
+
+  Q (Qnity Electronics) - Greenblatt/Gotham new Q4 2025
+    AMD spin-off; Gotham specializes in spin-offs.
+    ASYMMETRY: 3:1
+
+
+-------- D. POST-BANKRUPTCY / POST-RESTRUCTURING EQUITY ------------------------
+
+  HTZ (Hertz) - Knighthead 67% covered Tier 3.
+    Post-BK sponsor with cost basis floor.
+
+  CORZ (Core Scientific) - Aurelius 15.31% + Pentwater + Two Seas
+    Two Seas independent director deadline 5/30/2026.
+    Post-BK bitcoin miner with AI-data-center conversion. 2-3x / 0.6x.
+
+  MNKTQ (Mallinckrodt) - Hudson Bay + Marathon 14.2%
+    Post-BK pharma equity tail. Cash + Specialty Pharma cashflow floor.
+    UPSIDE: 3-5x if reorg equity gets recognized
+    DOWNSIDE: 50% below.
+    ASYMMETRY: 6:1
+
+  VRM (Vroom) - Mudrick Capital 21.3% of 13F
+    Post-BK equity tail. Mudrick is the post-reorg specialist.
+    ASYMMETRY: 4:1
+
+  SDRL (Seadrill) - Elliott +23% Q4 2025 shares add
+    Post-BK offshore driller. Cycle play with Elliott discipline.
+    ASYMMETRY: 3:1
+
+  BALY (Bally's Corp) - Standard General 96.1% of 13F
+    Hyper-concentrated post-reorg-style consolidation.
+    ASYMMETRY: 4:1
+
+  LTM (LATAM Airlines) - Strategic Value Partners 100% of 13F (concentrated)
+    Post-BK airline equity. Cycle dependent.
+    ASYMMETRY: 3:1
+
+
+-------- E. ACTIVIST CAMPAIGNS MID-FLIGHT (PROXY / BOARD ACTION DATED) ---------
+
+  MAT (Mattel) - Southeastern 7.57%, public letter 5/7/2026 urging
+    strategic alternatives review. Hawkins rarely goes public; resolves
+    at premium 70% of his historical campaigns.
+    UPSIDE: 30-50% rerate or sale.
+    DOWNSIDE: Barbie cashflow floor.
+    ASYMMETRY: 4-5:1
+
+  VSCO (Victoria's Secret) - Brett Blundy/BBRC 13% preliminary proxy
+    5/4/2026 AGAINST Chair James + Dir. Naficy at 2026 AGM. Australian
+    retail PE escalating.
+    UPSIDE: 25-50% rerate if board changes / strategic shift.
+    DOWNSIDE: 10-15% below if proxy fails.
+    ASYMMETRY: 3-4:1
+
+  WEX (WEX Inc) - Impactive Capital SETTLEMENT 5/3/2026 (already won)
+    3 board nominees added, board to 11, Chair/CEO split.
+    UPSIDE: 15-30% rerate over 12 months as new board executes.
+    ASYMMETRY: 3:1 (lower convexity, higher probability)
+
+  ASA (ASA Gold & Precious Metals) - Saba 31.9% buyout proposal mid-May
+    BDC-aligned transaction. NAV discount close + gold beta upside.
+    UPSIDE: 15-25% NAV close.
+    DOWNSIDE: minimal - already trading at NAV discount.
+    ASYMMETRY: 8:1 (very defensive)
+
+  SEER (Seer Inc) - covered Tier 2 (30:1 cash-floor arb)
+
+  ARTV (Artiva Biotherapeutics) - covered Tier 1
+
+  RPAY (Repay Holdings) - Veradace 8.6% slate (Vezendan + Jacobs)
+    2026 AGM proxy contest. Microcap payment processing.
+    ASYMMETRY: 3:1
+
+  BRN (Barnwell Industries) - Radoff + Foundation 17.4% combined
+    Escalated Dec 2025 -> March 2026 via SC 13D/A. Active control campaign.
+    ASYMMETRY: 5:1
+
+  CSR (Centerspace) - Land & Buildings 39% activist real-estate
+    Multi-family REIT; sell-side pressure.
+    ASYMMETRY: 3:1
+
+  MNRO (Monro) - covered Tier 3 (Icahn + Gabelli simultaneous initiation)
+
+  PENN (Penn Entertainment) - HG Vora 2 board seats won 2024-25
+    Ongoing engagement. Sports betting / regional casino.
+    ASYMMETRY: 3:1
+
+  APD (Air Products) - Mantle Ridge 3 board seats 2025
+    Hilal's current major campaign; ongoing operational improvements.
+    ASYMMETRY: 2-3:1
+
+
+-------- F. SPECIAL SITUATIONS (RECAPS, FORCED EVENTS) -------------------------
+
+  WHLR (Wheeler REIT) - Magnetar 45% + Stilwell. Micro REIT recap pending.
+    Highly illiquid; recap = 3-5x or holdout = 0.4x.
+    ASYMMETRY: 6:1 but sizing-constrained.
+
+  RENT (Rent the Runway) - CEO Hyman resigned 5/13/2026. CHS sponsor at
+    59.8%. Forced governance restructure.
+    UPSIDE: 2x on strategic review.
+    DOWNSIDE: 50% below if continues unprofitable.
+    ASYMMETRY: 3:1
+
+  BLDP (Ballard Power) - Weichai lost 2 board seats 5/13/2026 as stake
+    fell below 15%. Activist/governance vacuum.
+    ASYMMETRY: 2:1
+
+  LSEG (London Stock Exchange Group, UK) - Elliott pushing £5B buyback
+    + portfolio review. UK FCA TR-1 disclosure not US 13D.
+    ASYMMETRY: 3-4:1 (lower because LSEG is large + diversified)
+
+  EOSE (Eos Energy) - Cerberus 32% (159.6M shs) 5/11/2026
+    Energy storage post-restructure equity. Cerberus controls.
+    ASYMMETRY: 4:1
+
+  CIFR (Cipher Mining) - Bitfury/V3 15% w/ $100M prepaid forward 5/13/26
+    Bitcoin/AI compute pivot with sponsor on deck.
+    ASYMMETRY: 3-4:1
+
+  PRKS (United Parks) - Hill Path 57.9% + GoldenTree 96% + Engine 4%
+    Three SITG buyers in name where sponsor controls 58%. Capital return
+    or sale highly likely.
+    ASYMMETRY: 5:1
+
+  MSGE / SPHR (MSG Entertainment / Sphere) - Ariel 19.5% + 14.4%
+    Dolan family complex assets; Ariel patient capital. Tracker stock
+    dynamics. Slow rerate but high probability.
+    ASYMMETRY: 4:1 each
+
+
+-------- EVENT-DRIVEN SUMMARY TABLE --------------------------------------------
+
+CATEGORY               TOP TICKER    ASYMMETRY    CATALYST WINDOW
+-------------          ----------    ---------    ------------------
+M&A / Going-Private    JHG           5-8% spread  Mid-2026 close
+Tender Offers          GNK           3:1          Diana decision pending
+Spin-offs              MICC          4:1          Restructure 2026-27
+Spin-offs              HHH           5:1          Ackman strategy ongoing
+Post-BK Equity         MNKTQ         6:1          Specialty Pharma cycle
+Post-BK Equity         VRM           4:1          Auto retail cycle
+Activist Proxy         MAT           4-5:1        Strategic review pending
+Activist Proxy         ASA           8:1          Saba transaction proposal
+Activist Settled       WEX           3:1          12-mo execution
+Special Sit (Recap)    WHLR          6:1          Recap timing
+Special Sit (CEO out)  RENT          3:1          Strategic review forthcoming
+Sponsor-Controlled     PRKS          5:1          Capital return or sale
+
+
+-------- EVENT-DRIVEN PORTFOLIO SLEEVE GUIDANCE --------------------------------
+
+If you want a dedicated event-driven sleeve (10-15% of book):
+
+  - DEFENSIVE ARB (30%): JHG, EEX, GNK, ASA - bounded outcomes
+  - POST-BK EQUITY (25%): MNKTQ, VRM, HTZ, CORZ - sponsor-floor protected
+  - ACTIVIST PROXY (25%): MAT, WEX, BRN, SEER, MNRO - dated AGMs
+  - SPIN/SPECIAL SIT (20%): MICC, HHH, LLYVK, Q, PRKS - tracker dynamics
+
+Rebalance after each catalyst resolves. Pipeline typically refreshes
+every 60-90 days as new 13Ds and merger announcements emerge.
+
+
+
 
 Each of these is an at-the-money or near-the-money warrant attached to a name
 where the SITG holder is also long the common. They are explicitly designed for
@@ -412,14 +648,19 @@ HOW TO POSITION
 
 Suggested allocation framework for a generalist book:
 
-  CORE (25-35%): JOE + TPL + LOGC + MASI - long-duration, hard-asset, or
+  CORE (20-30%): JOE + TPL + LOGC + MASI - long-duration, hard-asset, or
                  control-stake exposures.
 
-  ACTIVIST CATALYSTS (20-30%): ARTV + SEER + PCYO + REZI - 12-24 month
+  ACTIVIST CATALYSTS (15-25%): ARTV + SEER + PCYO + REZI - 12-24 month
                                  catalyst windows.
 
-  HYPER-CONVICTION SMALLCAP (15-20%): NETD + PLCE + NEXN - follow the
+  HYPER-CONVICTION SMALLCAP (10-15%): NETD + PLCE + NEXN - follow the
                                        SITG concentration.
+
+  EVENT-DRIVEN SLEEVE (10-15%): JHG/EEX/GNK/ASA defensive arb +
+                                 MAT/WEX/BRN/MNRO activist proxy +
+                                 MICC/HHH/LLYVK spin tracker dynamics +
+                                 MNKTQ/VRM post-BK equity tails.
 
   CONVEX WARRANTS (3-5%): Sprott + Crescat warrant book - small position
                           per name, ~10 names total.
@@ -427,10 +668,11 @@ Suggested allocation framework for a generalist book:
   CYCLICAL OPTIONALITY (10-15%): TDW + HYMC + TFPM + Galantas - gold and
                                  commodity cycle exposure.
 
-  CASH (10-25%): Dry powder for new 13Ds and pullbacks.
+  CASH (5-20%): Dry powder for new 13Ds and pullbacks.
 
-Total: 100%, with concentrated exposure to ~20 names, ~80% of which are
-in the staleness-resistant categories.
+Total: 100%, with concentrated exposure to ~25-30 names, ~75% of which are
+in the staleness-resistant categories AND ~25% with dated event catalysts
+that pay out within 60-180 days.
 
 
 ================================================================================
