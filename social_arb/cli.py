@@ -443,6 +443,68 @@ def cmd_backfill(args: argparse.Namespace) -> int:
             df = collect_brave_search_attention(cfg, ticker=t.strip())
             total += storage.upsert_mentions(cfg, df)
         print(f"brave_search: {total} rows stored")
+    elif args.source == "nitter":
+        from .collectors.nitter import collect_nitter
+        from . import storage
+        queries = (args.queries.split(",") if args.queries else None) or [
+            "$CELH", "$NVDA", "$NWL", "$TRIP", "$DECK", "$BBW", "$VITL",
+            "Crocs review", "Build-A-Bear", "Stanley tumbler",
+        ]
+        total = 0
+        for q in queries:
+            df = collect_nitter(cfg, pipe.resolver, pipe.sentiment,
+                               query=q.strip(), max_tweets=100)
+            total += storage.upsert_mentions(cfg, df)
+        print(f"nitter (X via mirrors): {total} mentions stored")
+    elif args.source == "youtube":
+        from .collectors.youtube_comments import collect_search_videos
+        from . import storage
+        targets = (args.queries.split(",") if args.queries else None) or [
+            "Celsius energy drink review:CELH",
+            "Stanley tumbler review:ELUX-B.ST",
+            "Crocs unboxing:CROX",
+            "Allbirds review:BIRD",
+            "Birkenstock review:BIRK",
+            "Build-A-Bear:BBW",
+            "Vital Farms eggs:VITL",
+        ]
+        total = 0
+        for spec in targets:
+            parts = spec.split(":")
+            query = parts[0].strip()
+            ticker = parts[1].strip() if len(parts) > 1 else None
+            df = collect_search_videos(
+                cfg, pipe.resolver, pipe.sentiment,
+                query=query, ticker_hint=ticker,
+                max_videos=3, max_comments_per_video=80,
+            )
+            total += storage.upsert_mentions(cfg, df)
+        print(f"youtube comments: {total} mentions stored")
+    elif args.source == "mastodon":
+        from .collectors.mastodon import collect_mastodon
+        from . import storage
+        queries = (args.queries.split(",") if args.queries else None) or [
+            "$CELH", "$NVDA", "$NWL", "Celsius drink", "Crocs",
+            "Build-A-Bear", "Stanley tumbler",
+        ]
+        total = 0
+        for q in queries:
+            df = collect_mastodon(cfg, pipe.resolver, pipe.sentiment,
+                                  query=q.strip(), limit=40)
+            total += storage.upsert_mentions(cfg, df)
+        print(f"mastodon: {total} mentions stored")
+    elif args.source == "twitter":
+        from .collectors.twitter_twikit import collect_twitter
+        from . import storage
+        queries = (args.queries.split(",") if args.queries else None) or [
+            "$CELH", "$NVDA", "$NWL", "$TRIP", "$DECK",
+        ]
+        total = 0
+        for q in queries:
+            df = collect_twitter(cfg, pipe.resolver, pipe.sentiment,
+                                 query=q.strip(), count=100)
+            total += storage.upsert_mentions(cfg, df)
+        print(f"twitter (twikit): {total} mentions stored")
     else:
         print(f"unknown source: {args.source}", file=sys.stderr)
         return 2
@@ -1103,6 +1165,7 @@ def build_parser() -> argparse.ArgumentParser:
     pbf.add_argument("source", choices=[
         "hackernews", "wikipedia", "bluesky", "openinsider",
         "google-trends", "brave-search",
+        "nitter", "youtube", "mastodon", "twitter",
     ])
     pbf.add_argument("--queries", default=None,
                     help="comma-separated query/title list; defaults to Camillo-archetype set")
