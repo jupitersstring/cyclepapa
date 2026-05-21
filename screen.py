@@ -91,17 +91,89 @@ REGIONS = {
         fid="239774", slug="ishares-core-sp-smallcap-etf", tag="IJR",
         index="IJR", suffix=None, label="US S&P 600 SmallCap",
     ),
+    "us-mid": dict(
+        source="nasdaq", marketcap="mid", index="IJH", suffix=None,
+        label="US Mid Cap ($2-10B, NASDAQ screener)",
+    ),
+    "us-small": dict(
+        source="nasdaq", marketcap="small", index="IJR", suffix=None,
+        label="US Small Cap ($300M-2B, NASDAQ screener)",
+    ),
+    "us-micro": dict(
+        source="nasdaq", marketcap="micro", index="IWC", suffix=None,
+        label="US Micro Cap ($50M-300M, NASDAQ screener)",
+    ),
+    "us-nano": dict(
+        source="nasdaq", marketcap="nano", index="IWC", suffix=None,
+        label="US Nano Cap (<$50M, NASDAQ screener)",
+    ),
     "europe": dict(
         fid="239537", slug="ishares-msci-europe-smallcap-etf", tag="IEUS",
         index="IEUS", suffix="exchange", label="MSCI Europe Small-Cap",
     ),
     "uk": dict(
-        # UK universe from EWUS holdings; benchmark with ISF.L (FTSE 100 in
-        # pence) so stock and index are in the same currency (GBp), no FX leak.
         fid="239691", slug="ishares-msci-united-kingdom-smallcap-etf", tag="EWUS",
         index="ISF.L", suffix=".L", label="MSCI UK Small-Cap (vs FTSE 100)",
     ),
 }
+
+NASDAQ_SCREENER_URL = (
+    "https://api.nasdaq.com/api/screener/stocks?tableonly=false"
+    "&limit=5000&offset=0&marketcap={cap}"
+)
+
+
+def fetch_nasdaq_universe(marketcap: str, min_price: float = 1.0) -> tuple[list[str], pd.DataFrame]:
+    """Pull a US-listed universe by NASDAQ market-cap bucket.
+
+    cap ∈ {mega, large, mid, small, micro, nano}. Filters out tickers with
+    last sale < min_price to skip the worst penny-stock noise. Returns tickers
+    + a tiny DataFrame with symbol, name, lastsale, marketCap. Caches to
+    /tmp/nasdaq_{cap}.json on success; falls back to cache on transient errors.
+    """
+    import json, os
+    cache = os.path.join(CACHE_DIR, f"nasdaq_{marketcap}.json")
+    url = NASDAQ_SCREENER_URL.format(cap=marketcap)
+    raw = None
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0", "Accept": "application/json"
+        })
+        body = urllib.request.urlopen(req, timeout=30).read()
+        raw = json.loads(body)
+        if raw.get("data", {}).get("table", {}).get("rows"):
+            with open(cache, "wb") as f:
+                f.write(body)
+    except Exception as e:
+        print(f"  NASDAQ screener fetch failed: {e}", file=sys.stderr)
+    if raw is None or not raw.get("data", {}).get("table", {}).get("rows"):
+        if os.path.exists(cache):
+            print(f"  Falling back to cached {cache}", file=sys.stderr)
+            with open(cache, "rb") as f:
+                raw = json.loads(f.read())
+        else:
+            raise RuntimeError(f"No live NASDAQ data or cache for {marketcap}")
+    rows = raw.get("data", {}).get("table", {}).get("rows") or []
+    df = pd.DataFrame(rows)
+
+    def to_float(s, default=np.nan):
+        try:
+            return float(str(s).replace("$", "").replace(",", ""))
+        except Exception:
+            return default
+
+    df["px"] = df["lastsale"].map(to_float)
+    df["mcap"] = df["marketCap"].map(to_float)
+    df = df[df["px"] >= min_price]
+    # Yahoo: replace '/' or '.' in symbols (share-class) with '-'.
+    df["Yahoo"] = (
+        df["symbol"].astype(str).str.strip()
+        .str.replace("/", "-", regex=False)
+        .str.replace(".", "-", regex=False)
+    )
+    df = df[df["Yahoo"].str.match(r"^[A-Z][A-Z0-9\-]{0,5}$")]
+    tickers = sorted(df["Yahoo"].unique().tolist())
+    return tickers, df[["symbol", "Yahoo", "name", "px", "mcap"]]
 
 # Map Yahoo suffix -> local currency code. Used for FX-to-USD conversion.
 # 'GBp' = pence (1/100 of GBP), Yahoo's actual returned unit for .L tickers.
@@ -183,6 +255,8 @@ def _fetch_holdings_csv(cfg: dict) -> str:
 
 def fetch_universe(region: str) -> tuple[list[str], pd.DataFrame]:
     cfg = REGIONS[region]
+    if cfg.get("source") == "nasdaq":
+        return fetch_nasdaq_universe(cfg["marketcap"])
     raw = _fetch_holdings_csv(cfg)
     lines = raw.splitlines()
     start = next(i for i, l in enumerate(lines) if l.startswith("Ticker,Name"))
@@ -583,7 +657,8 @@ def main() -> None:
 
     try:
         universe, _holdings = fetch_universe(region)
-        print(f"Fetched {len(universe)} tickers from {cfg['tag']} holdings.", file=sys.stderr)
+        src = cfg.get("tag") or f"NASDAQ:{cfg.get('marketcap')}"
+        print(f"Fetched {len(universe)} tickers from {src}.", file=sys.stderr)
     except Exception as e:
         print(f"Universe fetch failed ({e}); aborting.", file=sys.stderr)
         sys.exit(1)
