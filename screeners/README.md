@@ -140,6 +140,28 @@ Late Stage 1 / handle / tight flag setup with prior leg required:
 
 MFI dropped ≥ 10 points but price moved < 7% (divergence ratio < 0.4) with low realized volatility — sellers exiting being absorbed. Bullish under-the-surface accumulation pattern.
 
+### `td_sequential_screen.py` — TD Sequential mean reversion (DeMark, MTF)
+
+Python port of malikmck's "Enhanced MTF TD Sequential" Pine indicator. Computes the canonical DeMark setup (1-9) and countdown (1-13) per timeframe across **1h / 4h / 1d / 1w / 1M**, plus setup perfection (the bar-8/9 lower-low confirmation for buy setups, higher-high for sells).
+
+Aggregates across timeframes into two primary readings:
+
+- `net_setup`   = `buy_setup_prop` − `sell_setup_prop`     (% of 45-bar max)
+- `net_perfect` = `buy_perfect_prop` − `sell_perfect_prop` (% of TFs perfected)
+
+Strongly **negative** net_setup / net_perfect → stretched DOWN → bullish mean-reversion candidate. Strongly **positive** → stretched UP → bearish reversion / take-profit candidate.
+
+```bash
+python3 screeners/td_sequential_screen.py \
+    --universe my_universe.csv \
+    --out td_seq.csv
+```
+
+Notes:
+- 4h bars are resampled from 1h (yfinance doesn't expose 4h directly).
+- Hourly history is limited to ~730 days by yfinance; default `--hourly-days 60` is plenty for live setup detection.
+- Perfection is gated to setup bars 8 or 9 — extended setups past 9 don't keep firing perfection (per DeMark spec).
+
 ## Building a universe
 
 Use `financedatabase` to assemble tickers by country / exchange / market cap:
