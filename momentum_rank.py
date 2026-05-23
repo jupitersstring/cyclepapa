@@ -297,6 +297,80 @@ def true_range(high, low, close_prev):
     )
 
 
+def compute_squeeze_release(df, period=14, smoothing=7, ma_length=14, hist_window=100):
+    """Pine Script Squeeze & Release port (malikmck / YourName).
+
+    averageTrueRange  = ema(TR, 14)
+    emaOfATR          = ema(ATR, 28)
+    volatilityInd     = emaOfATR - ATR        (positive = vol contracting)
+    emaHighLowDiff    = ema(high-low, 28)
+    squeezeValue      = ema(volInd / emaHL * 100, 7)
+    squeezeValueMA    = ema(squeezeValue, 14)
+
+    HIGH squeezeValue + above its MA  = SQUEEZING (vol coiling)
+    crossunder MA                      = RELEASE  (vol expanding)
+    """
+    high = pd.to_numeric(df["High"], errors="coerce")
+    low = pd.to_numeric(df["Low"], errors="coerce")
+    close = pd.to_numeric(df["Close"], errors="coerce")
+    need = period * 4 + ma_length + 5
+    if len(close) < need:
+        return None
+    prior_close = close.shift(1).bfill()
+    tr = pd.concat([
+        high - low,
+        (high - prior_close).abs(),
+        (low - prior_close).abs(),
+    ], axis=1).max(axis=1)
+    atr = tr.ewm(span=period, adjust=False).mean()
+    ema_atr = atr.ewm(span=period * 2, adjust=False).mean()
+    vol_ind = ema_atr - atr
+    ema_hl = (high - low).ewm(span=period * 2, adjust=False).mean().replace(0, 1e-10)
+    raw_sq = vol_ind / ema_hl * 100
+    sq_v = raw_sq.ewm(span=smoothing, adjust=False).mean()
+    sq_ma = sq_v.ewm(span=ma_length, adjust=False).mean()
+    if len(sq_v) < 2:
+        return None
+    sv_now = float(sq_v.iloc[-1])
+    ma_now = float(sq_ma.iloc[-1])
+    sv_prev = float(sq_v.iloc[-2])
+    ma_prev = float(sq_ma.iloc[-2])
+    squeezing = sv_now > ma_now
+    releasing = sv_now < ma_now
+    just_release = bool(releasing and (sv_prev >= ma_prev))
+    just_squeeze = bool(squeezing and (sv_prev <= ma_prev))
+    rising = sv_now > sv_prev
+    # Hyper squeeze: positive squeezeValue rising for 5 bars
+    hyper = False
+    if len(sq_v) >= 6 and sv_now > 0:
+        hyper = all(sq_v.iloc[-i] > sq_v.iloc[-i - 1] for i in range(1, 6))
+    # Was-high indicator: relative position vs last hist_window bars
+    if len(sq_v) >= hist_window:
+        recent_window = sq_v.tail(hist_window)
+        q75 = float(recent_window.quantile(0.75))
+        q90 = float(recent_window.quantile(0.90))
+        max_recent = float(recent_window.max())
+        was_high_75 = sv_now > q75 or sv_prev > q75  # at or recently above 75th pct
+        was_high_90 = sv_now > q90 or sv_prev > q90
+        pct_of_max = sv_now / max_recent if max_recent else 0
+    else:
+        was_high_75 = was_high_90 = False
+        pct_of_max = None
+    return {
+        "sq_value": sv_now,
+        "sq_ma": ma_now,
+        "sq_squeezing": bool(squeezing),
+        "sq_releasing": bool(releasing),
+        "sq_just_release": just_release,
+        "sq_just_squeeze": just_squeeze,
+        "sq_rising": bool(rising),
+        "sq_hyper": bool(hyper),
+        "sq_was_high_75": bool(was_high_75),
+        "sq_was_high_90": bool(was_high_90),
+        "sq_pct_of_max": pct_of_max,
+    }
+
+
 def compute_close_only_asymmetry(close_series, period=14, smooth=7, slow=14, min_bars=None):
     """Asymmetry on a close-only series (used for relative-to-SPY price).
     up_move = max(delta, 0), dn_move = max(-delta, 0)."""
@@ -415,6 +489,9 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # Volatility asymmetry (Pine Script port - daily bars)
     asym = compute_volatility_asymmetry(df) or {}
 
+    # Squeeze & Release on daily bars
+    sq_d = compute_squeeze_release(df) or {}
+
     # --- Weekly metrics (the proper Q base/extension lens) -----------------
     df_ohlcv = pd.DataFrame({
         "Open": pd.to_numeric(df["Open"], errors="coerce") if "Open" in df.columns else close,
@@ -455,6 +532,25 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
 
     # Weekly asymmetry (run on weekly bars)
     weekly_asym_dict = compute_volatility_asymmetry(weekly, period=14, smooth=7, slow=14, lookback=5) or {}
+
+    # Squeeze & Release on weekly bars
+    sq_w = compute_squeeze_release(weekly) or {}
+
+    # Squeeze & Release on monthly bars (use direct monthly download if available)
+    if df_monthly is not None and len(df_monthly) >= 60:
+        sq_m = compute_squeeze_release(df_monthly) or {}
+    else:
+        # resample from daily to monthly
+        monthly_from_daily = df_ohlcv.resample("ME").agg({
+            "Open": "first", "High": "max", "Low": "min",
+            "Close": "last", "Volume": "sum",
+        }).dropna()
+        sq_m = compute_squeeze_release(monthly_from_daily, period=6, smoothing=4, ma_length=6) or {}
+
+    # Monthly asymmetry on direct monthly bars (or resampled)
+    monthly_asym_dict = {}
+    if df_monthly is not None and len(df_monthly) >= 60:
+        monthly_asym_dict = compute_volatility_asymmetry(df_monthly) or {}
 
     # Weekly-bar range tightness over last N weeks
     range_4w_w = float((whigh.tail(4).max() - wlow.tail(4).min()) / wclose.tail(4).mean() * 100)
@@ -554,6 +650,34 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "asym_w_rising": weekly_asym_dict.get("asym_rising", False),
         "asym_w_above_ma": weekly_asym_dict.get("asym_above_ma", False),
         "asym_w_just_crossed_up": weekly_asym_dict.get("asym_just_crossed_up", False),
+        # monthly asymmetry (price, not relative)
+        "asym_m_now": monthly_asym_dict.get("asym_now"),
+        "asym_m_rising": monthly_asym_dict.get("asym_rising", False),
+        "asym_m_above_ma": monthly_asym_dict.get("asym_above_ma", False),
+        "asym_m_just_crossed_up": monthly_asym_dict.get("asym_just_crossed_up", False),
+        # Squeeze & Release - daily
+        "sq_d_value": sq_d.get("sq_value"),
+        "sq_d_ma": sq_d.get("sq_ma"),
+        "sq_d_squeezing": sq_d.get("sq_squeezing", False),
+        "sq_d_releasing": sq_d.get("sq_releasing", False),
+        "sq_d_just_release": sq_d.get("sq_just_release", False),
+        "sq_d_was_high_75": sq_d.get("sq_was_high_75", False),
+        "sq_d_was_high_90": sq_d.get("sq_was_high_90", False),
+        "sq_d_pct_of_max": sq_d.get("sq_pct_of_max"),
+        # Squeeze & Release - weekly
+        "sq_w_value": sq_w.get("sq_value"),
+        "sq_w_ma": sq_w.get("sq_ma"),
+        "sq_w_squeezing": sq_w.get("sq_squeezing", False),
+        "sq_w_just_release": sq_w.get("sq_just_release", False),
+        "sq_w_was_high_75": sq_w.get("sq_was_high_75", False),
+        "sq_w_was_high_90": sq_w.get("sq_was_high_90", False),
+        "sq_w_hyper": sq_w.get("sq_hyper", False),
+        "sq_w_pct_of_max": sq_w.get("sq_pct_of_max"),
+        # Squeeze & Release - monthly
+        "sq_m_value": sq_m.get("sq_value"),
+        "sq_m_squeezing": sq_m.get("sq_squeezing", False),
+        "sq_m_just_release": sq_m.get("sq_just_release", False),
+        "sq_m_was_high_75": sq_m.get("sq_was_high_75", False),
         # daily references
         "dist_sma20_pct": dist_sma20,
         "dist_sma50_pct": dist_sma50,
@@ -819,6 +943,49 @@ def main():
         & df["weekly_range_top_half"]
     )
 
+    # ===== BREAKOUT_SQUEEZE setup =====
+    # Daily squeeze is HIGH and just RELEASING (vol about to expand)
+    # Weekly squeeze is HIGH and still SQUEEZING (long-term coil intact)
+    # Volatility asymmetry improving (rising), preferably near 50
+    daily_release_from_high = (
+        df["sq_d_just_release"].fillna(False)
+        & df["sq_d_was_high_75"].fillna(False)
+    )
+    daily_release_from_high_strict = (
+        df["sq_d_just_release"].fillna(False)
+        & df["sq_d_was_high_90"].fillna(False)
+    )
+    weekly_still_squeezing_high = (
+        df["sq_w_squeezing"].fillna(False)
+        & df["sq_w_was_high_75"].fillna(False)
+    )
+    weekly_still_squeezing_high_strict = (
+        df["sq_w_squeezing"].fillna(False)
+        & df["sq_w_was_high_90"].fillna(False)
+    )
+    asym_improving_near_50 = (
+        df["asym_now"].fillna(0).between(40, 60) & df["asym_rising"].fillna(False)
+    ) | df["asym_just_crossed_up"].fillna(False) | df["asym_w_rising"].fillna(False) | df["asym_w_just_crossed_up"].fillna(False)
+
+    df["breakout_squeeze"] = (
+        daily_release_from_high
+        & weekly_still_squeezing_high
+        & asym_improving_near_50
+    )
+    # Strict variant: 90th percentile on both
+    df["breakout_squeeze_strict"] = (
+        daily_release_from_high_strict
+        & weekly_still_squeezing_high_strict
+        & asym_improving_near_50
+    )
+    # Looser: daily released recently (last 5 bars) and weekly squeezing
+    df["breakout_squeeze_loose"] = (
+        df["sq_d_releasing"].fillna(False)
+        & (df["sq_d_was_high_75"].fillna(False) | df["sq_d_was_high_90"].fillna(False))
+        & df["sq_w_squeezing"].fillna(False)
+        & asym_improving_near_50
+    )
+
     # Daily absolute-price volatility asymmetry bonus
     df["vol_asym_bonus"] = (
         (df["asym_now"].fillna(0).between(40, 60) & df["asym_rising"].fillna(False))
@@ -1046,6 +1213,8 @@ def main():
         | df["q_method_pass"].fillna(False)
         | df["q_method_pass_weekly"].fillna(False)
         | df["q_method_pass_monthly_strong"].fillna(False)
+        | df["breakout_squeeze"].fillna(False)
+        | df["breakout_squeeze_loose"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -1073,6 +1242,9 @@ def main():
     q_method_weekly = df[df["q_method_pass_weekly"]].sort_values("rs_rank_max", ascending=False)
     q_method_both = df[df["q_method_pass"] & df["q_method_pass_weekly"]].sort_values("rs_rank_max", ascending=False)
     q_method_monthly = df[df["q_method_pass_monthly_strong"]].sort_values("rs_rank_max", ascending=False)
+    breakout_sq = df[df["breakout_squeeze"]].sort_values("rs_rank_max", ascending=False)
+    breakout_sq_strict = df[df["breakout_squeeze_strict"]].sort_values("rs_rank_max", ascending=False)
+    breakout_sq_loose = df[df["breakout_squeeze_loose"] & (~df["breakout_squeeze"])].sort_values("rs_rank_max", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -1093,6 +1265,32 @@ def main():
     q_method_show = [c for c in q_method_show if c in flagged.columns]
 
     with pd.option_context("display.max_columns", None, "display.width", 300, "display.float_format", "{:.2f}".format):
+        sq_cols = ["name", "sector", "last_close", "rs_rank_max",
+                   "sq_d_value", "sq_d_pct_of_max", "sq_d_just_release", "sq_d_was_high_75",
+                   "sq_w_value", "sq_w_pct_of_max", "sq_w_squeezing", "sq_w_was_high_75", "sq_w_hyper",
+                   "sq_m_value", "sq_m_squeezing", "sq_m_was_high_75",
+                   "asym_now", "asym_w_now", "asym_m_now", "asym_rising",
+                   "vol_drying_ratio", "box_length_weeks", "box_height_pct", "roque_score"]
+        sq_cols = [c for c in sq_cols if c in flagged.columns]
+
+        print(f"\n=== BREAKOUT_SQUEEZE STRICT (daily just-release from >=90th-pct squeeze + weekly still squeezing in >=90th pct + asym improving) ({len(breakout_sq_strict)}) ===")
+        if len(breakout_sq_strict):
+            print(breakout_sq_strict[sq_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== BREAKOUT_SQUEEZE (daily just-release from >=75th pct + weekly still squeezing >=75th pct + asym improving) ({len(breakout_sq)}) ===")
+        if len(breakout_sq):
+            print(breakout_sq[sq_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        print(f"\n=== BREAKOUT_SQUEEZE LOOSE (daily releasing + weekly squeezing + asym improving) ({len(breakout_sq_loose)}) ===")
+        if len(breakout_sq_loose):
+            print(breakout_sq_loose[sq_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
         print(f"\n=== Q_METHOD_MONTHLY_STRONG (rel asym up on MONTHLY) ({len(q_method_monthly)}) ===")
         if len(q_method_monthly):
             print(q_method_monthly[q_method_show].head(args.top).to_string())
