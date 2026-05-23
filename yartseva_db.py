@@ -1109,6 +1109,18 @@ def get_universe(
         df = df[df.index.str.endswith(".AT")]
     elif country == "Poland":
         df = df[df.index.str.endswith(".WA")]
+    elif country == "Iceland":
+        df = df[df.index.str.endswith(".IC")]
+    elif country == "Czech Republic":
+        df = df[df.index.str.endswith(".PR")]
+    elif country == "Hungary":
+        df = df[df.index.str.endswith(".BD")]
+    elif country == "Estonia":
+        df = df[df.index.str.endswith(".TL")]
+    elif country == "Latvia":
+        df = df[df.index.str.endswith(".RG")]
+    elif country == "Lithuania":
+        df = df[df.index.str.endswith(".VS")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
     if min_bucket and min_bucket in order:
         lo = order.index(min_bucket)
