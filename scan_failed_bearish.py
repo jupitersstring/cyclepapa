@@ -62,7 +62,7 @@ EU_COUNTRIES = [
 ]
 
 
-def get_universe(name):
+def get_universe(name, sector=None, industry_group=None, industry=None, theme=None):
     import financedatabase as fd
 
     equities = fd.Equities()
@@ -227,6 +227,32 @@ def get_universe(name):
         df = df[~df.index.duplicated(keep="first")]
         return df
     raise ValueError(f"unknown universe: {name}")
+
+
+def apply_universe_filters(df, sector=None, industry_group=None, industry=None, theme=None):
+    """Narrow a universe DataFrame by financedatabase metadata.
+
+    sector / industry_group / industry: comma-separated list, case-insensitive.
+    theme: text search across name + summary (uses fd.search-equivalent).
+    """
+    if df is None or len(df) == 0:
+        return df
+    if sector:
+        wanted = [s.strip().lower() for s in sector.split(",")]
+        df = df[df["sector"].fillna("").str.lower().isin(wanted)] if "sector" in df.columns else df
+    if industry_group and "industry_group" in df.columns:
+        wanted = [s.strip().lower() for s in industry_group.split(",")]
+        df = df[df["industry_group"].fillna("").str.lower().isin(wanted)]
+    if industry and "industry" in df.columns:
+        wanted = [s.strip().lower() for s in industry.split(",")]
+        df = df[df["industry"].fillna("").str.lower().isin(wanted)]
+    if theme:
+        keys = [k.strip().lower() for k in theme.split(",") if k.strip()]
+        if "summary" in df.columns and keys:
+            text = (df["name"].fillna("") + " " + df.get("summary", df["name"]).fillna("")).str.lower()
+            mask = text.apply(lambda s: any(k in s for k in keys))
+            df = df[mask]
+    return df
 
 
 def _extract_ticker_frame(data, ticker):
@@ -469,6 +495,13 @@ def main():
         "eu-smid", "it-all", "de-all", "br-all",
         "us-etfs", "uk-etfs", "de-etfs", "it-etfs", "eu-etfs",
     ], default="us-mid")
+    parser.add_argument("--sector", default=None,
+                        help="Comma-separated sector(s) to keep (e.g. 'Information Technology,Health Care').")
+    parser.add_argument("--industry-group", default=None, help="Comma-separated industry group(s).")
+    parser.add_argument("--industry", default=None, help="Comma-separated industry/ies.")
+    parser.add_argument("--theme", default=None,
+                        help="Comma-separated keyword(s) - filter by text search across name+summary "
+                             "(e.g. 'robotics,AI,quantum').")
     parser.add_argument("--quality", action="store_true",
                         help="Apply hard quality floor: ROE>5%, margin>0, D/E<200, rev_growth>-10% (drops NaN)")
     parser.add_argument("--out", default=None)
@@ -490,6 +523,16 @@ def main():
 
     print(f"Fetching {args.universe} universe from financedatabase...")
     universe = get_universe(args.universe)
+    before_n = len(universe)
+    universe = apply_universe_filters(
+        universe,
+        sector=args.sector,
+        industry_group=args.industry_group,
+        industry=args.industry,
+        theme=args.theme,
+    )
+    if any([args.sector, args.industry_group, args.industry, args.theme]):
+        print(f"  filters narrowed {before_n} -> {len(universe)} tickers")
     tickers = [t for t in universe.index.tolist() if isinstance(t, str) and t]
     print(f"  {len(tickers)} tickers")
 

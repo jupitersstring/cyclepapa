@@ -25,7 +25,7 @@ import yfinance as yf
 
 # Reuse the universe definitions from scan_failed_bearish.py
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from scan_failed_bearish import get_universe  # noqa: E402
+from scan_failed_bearish import get_universe, apply_universe_filters  # noqa: E402
 
 
 PICKLE_TMPL = "/tmp/cyclepapa_dl_{universe}_daily_{years}y.pkl"
@@ -795,6 +795,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--universe", required=True,
                         help="Universe key (e.g. us-smid, us-midlarge, us-micro, eu-smid).")
+    parser.add_argument("--sector", default=None,
+                        help="Comma-separated sector(s) (e.g. 'Information Technology,Health Care').")
+    parser.add_argument("--industry-group", default=None, help="Comma-separated industry group(s).")
+    parser.add_argument("--industry", default=None, help="Comma-separated industry/ies.")
+    parser.add_argument("--theme", default=None,
+                        help="Comma-separated keyword(s) for text-search across name+summary.")
     parser.add_argument("--years", type=int, default=2)
     parser.add_argument("--top", type=int, default=30)
     parser.add_argument("--min-price", type=float, default=5.0,
@@ -804,6 +810,13 @@ def main():
 
     print(f"Loading {args.universe} universe...")
     universe = get_universe(args.universe)
+    before_n = len(universe)
+    universe = apply_universe_filters(
+        universe, sector=args.sector, industry_group=args.industry_group,
+        industry=args.industry, theme=args.theme,
+    )
+    if any([args.sector, args.industry_group, args.industry, args.theme]):
+        print(f"  filters narrowed {before_n} -> {len(universe)} tickers")
     tickers = [t for t in universe.index.tolist() if isinstance(t, str) and t]
     print(f"  {len(tickers)} tickers")
 
