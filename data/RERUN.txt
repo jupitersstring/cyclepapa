@@ -1,4 +1,14 @@
 Markets needing rerun (yfinance rate-limited during initial pass):
-- uk: dalton (21 rows), absorption, compression, prebreakout, fundamentals all empty/sparse
-- italy: dalton small, fundamentals empty
-- (more may be added as queue progresses)
+
+DALTON / WEEKLY SCREENS NEEDING RERUN:
+- uk: dalton only 21 rows from 272 universe; absorp/compress/prebo also sparse
+- italy: dalton 14KB ~30 rows from 341 universe
+
+FUNDAMENTALS NEEDING RERUN (all empty - .info rate-limited while other markets had Dalton running):
+- uk
+- italy
+- canada
+- (more likely as queue progresses)
+
+STRATEGY: After all Dalton runs complete and the rate-limit budget recovers,
+rerun fundamentals SEQUENTIALLY with sleep>=2s per ticker.
