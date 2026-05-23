@@ -1,21 +1,31 @@
-Markets needing rerun (yfinance rate-limited during initial pass):
+DALTON CAPTURE RATES (rows kept / universe):
 
-DALTON / WEEKLY SCREENS NEEDING RERUN (heavy rate-limit damage):
-- uk:        21 rows  / 272 universe (8%)
-- italy:     25 rows  / 341 universe (7%)
-- australia: 122 rows / 1627 universe (8%)
+GOOD (>40%) — keep as-is, no rerun:
+  canada       1181 /  2180  ( 54%)
+  japan        1414 /  2865  ( 49%)
 
-DALTON RUNS THAT ARE LIKELY OK:
-- canada:    1182 / 2180 (54%)
-- japan:     1415 / 2865 (49%) — still running
-- us:        1470+ / 8557   — still running
+DEGRADED (15-40%) — may rerun for incremental coverage:
+  us           1476 /  8557  ( 17%)
 
-DALTON CURRENTLY RUNNING (status TBD):
-- taiwan, germany, korea (queued), france (queued), ...
+POOR (<15%) — MUST rerun once rate budget recovers:
+  australia     121 /  1627  (  7%)
+  germany        60 /  1523  (  3%)  [in progress]
+  italy          24 /   341  (  7%)
+  korea         116 /  1506  (  7%)  [in progress]
+  taiwan        130 /  1286  ( 10%)  [in progress]
+  uk             20 /   272  (  7%)
 
-FUNDAMENTALS NEEDING RERUN (all empty/sparse — .info heavily rate-limited):
-- uk, italy, canada (all 1-byte empty files)
-- Likely more as queue progresses
+NOT YET STARTED:
+  france, hk, sweden, singapore, switzerland, spain, norway, finland,
+  denmark, netherlands, belgium, nz
 
-REMEDY: After queue clears, rerun affected markets with --sleep 2 (single-process,
-no concurrent Dalton).
+FUNDAMENTALS NEEDING RERUN (all empty, .info heavily rate-limited):
+  uk, italy, canada — confirmed 1-byte
+  (likely all foreign markets)
+
+REMEDY PLAN (after current queue clears):
+  1. Lower MAX_PARALLEL to 1 for all reruns
+  2. Add --sleep 2 to pull_fundamentals.py
+  3. Rerun in priority order: us(?) -> germany -> korea -> taiwan ->
+     australia -> uk -> italy -> remaining unstarted markets
+  4. Then all fundamentals serially
