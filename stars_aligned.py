@@ -599,6 +599,66 @@ def confluence(W, Q, D, DA):
     return 0.70 * geo + 0.30 * min(W, Q, D, DA)
 
 
+def regime_change_breakout(bars: pd.DataFrame, min_weeks: int = 52,
+                            vol_pct_min: float = 0.95) -> dict:
+    """OUST-style multi-year downtrend-line break with volume blow-off.
+
+    Mechanism:
+      - Find the all-time high in the bar series.
+      - Fit a linear trendline through the rolling-13-bar maxes from ATH forward.
+      - "Downtrend break" = current close > projected trendline.
+      - Score blends: break-existence (30%), downtrend strength (30%), volume
+        percentile (40%).
+
+    Returns R in 0..100. Only meaningful for weekly/monthly bars with enough
+    history (need at least `min_weeks` bars post-ATH).
+    """
+    if len(bars) < min_weeks + 5:
+        return {"R": np.nan}
+    h = bars["High"]; c = bars["Close"]; v = bars.get("Volume")
+    ath_pos = h.idxmax()
+    ath_idx = h.index.get_loc(ath_pos)
+    if isinstance(ath_idx, slice):
+        ath_idx = ath_idx.start
+    if ath_idx > len(h) - min_weeks:
+        return {"R": 0.0, "reason": "ATH too recent for trendline"}
+    rolling_max = h.rolling(13, min_periods=4).max()
+    post_ath = rolling_max.iloc[ath_idx:]
+    valid_mask = ~post_ath.isna()
+    if int(valid_mask.sum()) < min_weeks:
+        return {"R": 0.0}
+    x = np.arange(len(post_ath))[valid_mask.values]
+    y = post_ath.values[valid_mask.values]
+    if len(x) < 2:
+        return {"R": 0.0}
+    slope, intercept = np.polyfit(x.astype(float), y, 1)
+    current_line = intercept + slope * (len(post_ath) - 1)
+    last_close = float(c.iloc[-1])
+    close_break = bool(last_close > current_line)
+    break_margin = (last_close / current_line - 1) if current_line > 0 else 0.0
+    total_drop = -slope * (len(post_ath) - 1) / max(1e-9, float(h.iloc[ath_idx]))
+    vol_pct = 0.5
+    if v is not None:
+        vv = v.dropna()
+        if not vv.empty:
+            vol_pct = float((vv.iloc[-1] >= vv).mean())
+    if not close_break:
+        score = 0.0
+    elif total_drop < 0.10:
+        score = 0.30
+    else:
+        score = 0.30 + 0.30 * min(1, total_drop / 0.50) + 0.40 * min(1, vol_pct / vol_pct_min)
+    return dict(
+        R=float(score * 100),
+        dt_break=close_break,
+        dt_break_margin=float(break_margin),
+        vol_pct=float(vol_pct),
+        dt_weeks=int(len(post_ath)),
+        dt_strength=float(total_drop),
+        dt_line_now=float(current_line),
+    )
+
+
 def stars_label(rank, C_D, C_W, C_M, W_T, Q_T, D_T, DA_T, vetoes):
     if vetoes:
         return "Reject"
@@ -659,12 +719,21 @@ def evaluate(daily, idx_close, ticker, fx):
         Q = qullamaggie_score(bars, idx_bars, tf)
         D = demark_score(bars, tf)
         DA = darvas_score(bars, tf)
+        # Regime-change breakout (OUST-style) only on weekly/monthly TF
+        # with enough lifetime data.
+        if tf == "W":
+            R = regime_change_breakout(bars, min_weeks=52, vol_pct_min=0.95)
+        elif tf == "M":
+            R = regime_change_breakout(bars, min_weeks=18, vol_pct_min=0.95)
+        else:
+            R = {"R": np.nan}
         C = confluence(W.get("W", np.nan), Q.get("Q", np.nan),
                        D.get("D", np.nan), DA.get("DA", np.nan))
         rows[tf] = dict(
             W=W.get("W", np.nan), Q=Q.get("Q", np.nan),
             D=D.get("D", np.nan), DA=DA.get("DA", np.nan),
-            C=C, W_dict=W, Q_dict=Q, D_dict=D, DA_dict=DA,
+            R=R.get("R", np.nan),
+            C=C, W_dict=W, Q_dict=Q, D_dict=D, DA_dict=DA, R_dict=R,
         )
     C_D, C_W, C_M = rows["D"]["C"], rows["W"]["C"], rows["M"]["C"]
     if any(np.isnan([C_D, C_W, C_M])):
@@ -678,8 +747,12 @@ def evaluate(daily, idx_close, ticker, fx):
     return dict(
         ticker=ticker,
         W_D=rows["D"]["W"], Q_D=rows["D"]["Q"], D_D=rows["D"]["D"], DA_D=rows["D"]["DA"], C_D=C_D,
-        W_W=rows["W"]["W"], Q_W=rows["W"]["Q"], D_W=rows["W"]["D"], DA_W=rows["W"]["DA"], C_W=C_W,
-        W_M=rows["M"]["W"], Q_M=rows["M"]["Q"], D_M=rows["M"]["D"], DA_M=rows["M"]["DA"], C_M=C_M,
+        W_W=rows["W"]["W"], Q_W=rows["W"]["Q"], D_W=rows["W"]["D"], DA_W=rows["W"]["DA"], R_W=rows["W"]["R"], C_W=C_W,
+        W_M=rows["M"]["W"], Q_M=rows["M"]["Q"], D_M=rows["M"]["D"], DA_M=rows["M"]["DA"], R_M=rows["M"]["R"], C_M=C_M,
+        dt_break_w=rows["W"]["R_dict"].get("dt_break", False),
+        dt_strength_w=rows["W"]["R_dict"].get("dt_strength", 0.0),
+        dt_vol_pct_w=rows["W"]["R_dict"].get("vol_pct", 0.0),
+        dt_break_m=rows["M"]["R_dict"].get("dt_break", False),
         daily_rank=daily_rank, weekly_rank=weekly_rank, monthly_rank=monthly_rank,
         daily_gate=(C_W >= 55) and (C_M >= 45),
         weekly_gate=(C_W >= 65) and (C_M >= 55),
