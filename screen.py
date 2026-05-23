@@ -137,7 +137,11 @@ def fetch_nasdaq_universe(marketcap: str, min_price: float = 1.0) -> tuple[list[
     raw = None
     try:
         req = urllib.request.Request(url, headers={
-            "User-Agent": "Mozilla/5.0", "Accept": "application/json"
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.nasdaq.com/",
+            "Origin": "https://www.nasdaq.com",
         })
         body = urllib.request.urlopen(req, timeout=30).read()
         raw = json.loads(body)
