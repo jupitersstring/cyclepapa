@@ -1,0 +1,4 @@
+Markets needing rerun (yfinance rate-limited during initial pass):
+- uk: dalton (21 rows), absorption, compression, prebreakout, fundamentals all empty/sparse
+- italy: dalton small, fundamentals empty
+- (more may be added as queue progresses)
