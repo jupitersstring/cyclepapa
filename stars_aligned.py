@@ -684,63 +684,202 @@ def confluence(W, Q, D, DA):
     return 0.70 * geo + 0.30 * min(W, Q, D, DA)
 
 
-def regime_change_breakout(bars: pd.DataFrame, min_weeks: int = 52,
-                            vol_pct_min: float = 0.95) -> dict:
-    """OUST-style multi-year downtrend-line break with volume blow-off.
+def _rsi(close: pd.Series, n: int = 14) -> pd.Series:
+    delta = close.diff()
+    up = delta.clip(lower=0).ewm(alpha=1/n, adjust=False).mean()
+    dn = (-delta).clip(lower=0).ewm(alpha=1/n, adjust=False).mean()
+    rs = up / (dn + 1e-9)
+    return 100 - 100 / (1 + rs)
 
-    Mechanism:
-      - Find the all-time high in the bar series.
-      - Fit a linear trendline through the rolling-13-bar maxes from ATH forward.
-      - "Downtrend break" = current close > projected trendline.
-      - Score blends: break-existence (30%), downtrend strength (30%), volume
-        percentile (40%).
 
-    Returns R in 0..100. Only meaningful for weekly/monthly bars with enough
-    history (need at least `min_weeks` bars post-ATH).
-    """
-    if len(bars) < min_weeks + 5:
-        return {"R": np.nan}
-    h = bars["High"]; c = bars["Close"]; v = bars.get("Volume")
-    ath_pos = h.idxmax()
-    ath_idx = h.index.get_loc(ath_pos)
+def _downtrend_line_break(bars: pd.DataFrame, min_bars: int) -> dict:
+    """OUST-style: regress rolling-13-bar max from ATH forward; close above
+    the projected line = breakout."""
+    h = bars["High"]; c = bars["Close"]
+    if len(h) < min_bars + 5:
+        return dict(score=0.0, strength=0.0, ok=False)
+    ath_idx = h.index.get_loc(h.idxmax())
     if isinstance(ath_idx, slice):
         ath_idx = ath_idx.start
-    if ath_idx > len(h) - min_weeks:
-        return {"R": 0.0, "reason": "ATH too recent for trendline"}
+    if ath_idx > len(h) - min_bars:
+        return dict(score=0.0, strength=0.0, ok=False)
     rolling_max = h.rolling(13, min_periods=4).max()
     post_ath = rolling_max.iloc[ath_idx:]
-    valid_mask = ~post_ath.isna()
-    if int(valid_mask.sum()) < min_weeks:
-        return {"R": 0.0}
-    x = np.arange(len(post_ath))[valid_mask.values]
-    y = post_ath.values[valid_mask.values]
+    valid = ~post_ath.isna()
+    if int(valid.sum()) < min_bars:
+        return dict(score=0.0, strength=0.0, ok=False)
+    x = np.arange(len(post_ath))[valid.values].astype(float)
+    y = post_ath.values[valid.values]
     if len(x) < 2:
-        return {"R": 0.0}
-    slope, intercept = np.polyfit(x.astype(float), y, 1)
-    current_line = intercept + slope * (len(post_ath) - 1)
-    last_close = float(c.iloc[-1])
-    close_break = bool(last_close > current_line)
-    break_margin = (last_close / current_line - 1) if current_line > 0 else 0.0
-    total_drop = -slope * (len(post_ath) - 1) / max(1e-9, float(h.iloc[ath_idx]))
+        return dict(score=0.0, strength=0.0, ok=False)
+    slope, intercept = np.polyfit(x, y, 1)
+    line_now = intercept + slope * (len(post_ath) - 1)
+    last = float(c.iloc[-1])
+    close_break = bool(last > line_now)
+    strength = float(-slope * (len(post_ath) - 1) / max(1e-9, float(h.iloc[ath_idx])))
+    if not close_break:
+        return dict(score=0.0, strength=strength, ok=False, line_now=float(line_now))
+    if strength < 0.10:
+        score = 0.40
+    else:
+        score = 0.40 + 0.60 * min(1, strength / 0.50)
+    return dict(score=float(score), strength=strength, ok=True, line_now=float(line_now))
+
+
+def _base_break(bars: pd.DataFrame, tf: str) -> dict:
+    """Horizontal-range base breakout. A long flat range (low range% relative
+    to price, low ATR%) then a close above the range high."""
+    c = bars["Close"]; h = bars["High"]; l = bars["Low"]
+    base_len = {"D": 30, "W": 8, "M": 4}[tf]
+    if len(c) < base_len * 2 + 5:
+        return dict(score=0.0, ok=False)
+    pre = c.iloc[-(base_len * 2):-base_len]
+    base = c.iloc[-base_len-1:-1]
+    base_range = (base.max() / base.min() - 1) if base.min() > 0 else 1
+    if base_range > 0.30:
+        return dict(score=0.0, ok=False, base_range=float(base_range))
+    pivot = base.max()
+    breaks = bool(c.iloc[-1] > pivot * 0.995)
+    if not breaks:
+        return dict(score=0.0, ok=False, base_range=float(base_range))
+    tightness = float(1 - base_range / 0.30)  # tighter = higher score
+    base_length_bonus = min(1.0, base_len * 2 / {"D": 60, "W": 12, "M": 6}[tf])
+    score = 0.30 + 0.45 * tightness + 0.25 * base_length_bonus
+    return dict(
+        score=float(min(1.0, score)), ok=True,
+        base_range=float(base_range), pivot=float(pivot),
+    )
+
+
+def _flag_break(bars: pd.DataFrame, tf: str) -> dict:
+    """Flag/pennant: sharp prior move (flagpole), short tight consolidation,
+    then close above flag high."""
+    c = bars["Close"]; h = bars["High"]
+    pole_n = {"D": 10, "W": 3, "M": 2}[tf]
+    flag_n = {"D": 10, "W": 4, "M": 2}[tf]
+    if len(c) < pole_n + flag_n + 5:
+        return dict(score=0.0, ok=False)
+    pole = c.iloc[-(pole_n + flag_n):-flag_n]
+    flag = c.iloc[-flag_n-1:-1]
+    pole_move = (pole.iloc[-1] / pole.iloc[0] - 1) if pole.iloc[0] > 0 else 0
+    flag_range = (flag.max() / flag.min() - 1) if flag.min() > 0 else 1
+    if pole_move < 0.10:
+        return dict(score=0.0, ok=False)
+    if flag_range > 0.15:
+        return dict(score=0.0, ok=False)
+    breaks = bool(c.iloc[-1] > flag.max() * 0.995)
+    if not breaks:
+        return dict(score=0.0, ok=False)
+    score = 0.35 + 0.35 * min(1.0, pole_move / 0.30) + 0.30 * (1 - flag_range / 0.15)
+    return dict(
+        score=float(min(1.0, score)), ok=True,
+        pole_move=float(pole_move), flag_range=float(flag_range),
+    )
+
+
+def _gap_signal(bars: pd.DataFrame, tf: str) -> dict:
+    """Gap-up retention: bar opens significantly above prior close, doesn't
+    fill the gap, and closes near the high — bullish.
+
+    Gap thresholds: D 3%, W 5%, M 8%.
+    """
+    if "Open" not in bars.columns or len(bars) < 3:
+        return dict(score=0.0, ok=False)
+    o = bars["Open"]; c = bars["Close"]; l = bars["Low"]; h = bars["High"]
+    prev_close = c.iloc[-2]
+    open_now = o.iloc[-1]
+    low_now = l.iloc[-1]
+    high_now = h.iloc[-1]
+    close_now = c.iloc[-1]
+    gap_thr = {"D": 0.03, "W": 0.05, "M": 0.08}[tf]
+    gap_pct = open_now / prev_close - 1
+    if gap_pct < gap_thr:
+        return dict(score=0.0, ok=False, gap_pct=float(gap_pct))
+    # Gap not filled: low_now > prev_close (kept the gap open)
+    gap_held = bool(low_now > prev_close)
+    close_strength = (close_now - low_now) / max(1e-9, high_now - low_now)
+    score = 0.30 + 0.40 * float(gap_held) + 0.30 * float(np.clip(close_strength, 0, 1))
+    return dict(
+        score=float(score), ok=True,
+        gap_pct=float(gap_pct), gap_held=gap_held,
+        close_strength=float(close_strength),
+    )
+
+
+def _rsi_50_cross(bars: pd.DataFrame, tf: str) -> dict:
+    """RSI(14) crossing above 50 and bedding into the 50-70 sweet spot."""
+    rsi_n = {"D": 14, "W": 14, "M": 8}[tf]
+    if len(bars) < rsi_n + 5:
+        return dict(score=0.0, ok=False)
+    rsi = _rsi(bars["Close"], rsi_n)
+    if rsi.dropna().empty:
+        return dict(score=0.0, ok=False)
+    rsi_now = float(rsi.iloc[-1])
+    cross_window = {"D": 5, "W": 3, "M": 2}[tf]
+    recent = rsi.iloc[-cross_window-1:].dropna()
+    crossed_up = bool((recent.shift(1) < 50).any() and (recent >= 50).iloc[-1])
+    in_sweet_spot = 50 <= rsi_now <= 70
+    if not (crossed_up or in_sweet_spot):
+        return dict(score=0.0, ok=False, rsi=rsi_now)
+    score = 0.30 + 0.40 * float(crossed_up) + 0.30 * float(in_sweet_spot)
+    return dict(score=float(score), ok=True, rsi=rsi_now, crossed_up=crossed_up)
+
+
+def regime_change_breakout(bars: pd.DataFrame, tf: str = "W",
+                            min_bars_dt: int = 52,
+                            vol_pct_min: float = 0.85) -> dict:
+    """Multi-pattern bullish breakout composite (ContraClub-style).
+
+    Combines five independent breakout signal sources:
+      - Downtrend-line break from ATH (OUST-style)
+      - Horizontal base/range breakout
+      - Flag/pennant breakout
+      - Gap-up retention (gap held with strong close)
+      - RSI(14) cross-up above 50 / in the 50-70 sweet spot
+
+    Each component returns 0..1; final R = max(components) * volume_multiplier,
+    scaled to 0..100. Volume multiplier ranges 0.6 (low) to 1.0 (top 5%).
+    """
+    if len(bars) < 30:
+        return {"R": np.nan}
+    v = bars.get("Volume")
+    # Volume percentile of the latest bar across full history.
     vol_pct = 0.5
     if v is not None:
         vv = v.dropna()
         if not vv.empty:
             vol_pct = float((vv.iloc[-1] >= vv).mean())
-    if not close_break:
-        score = 0.0
-    elif total_drop < 0.10:
-        score = 0.30
-    else:
-        score = 0.30 + 0.30 * min(1, total_drop / 0.50) + 0.40 * min(1, vol_pct / vol_pct_min)
+    vol_mult = 0.6 + 0.4 * min(1.0, vol_pct / vol_pct_min)
+
+    dt   = _downtrend_line_break(bars, min_bars=min_bars_dt)
+    base = _base_break(bars, tf)
+    flag = _flag_break(bars, tf)
+    gap  = _gap_signal(bars, tf)
+    rsi  = _rsi_50_cross(bars, tf)
+
+    components = {
+        "downtrend_break": dt["score"],
+        "base_break":      base["score"],
+        "flag_break":      flag["score"],
+        "gap_retention":   gap["score"],
+        "rsi_cross":       rsi["score"],
+    }
+    max_component = max(components.values()) if components else 0.0
+    score = max_component * vol_mult * 100
+
     return dict(
-        R=float(score * 100),
-        dt_break=close_break,
-        dt_break_margin=float(break_margin),
+        R=float(score),
         vol_pct=float(vol_pct),
-        dt_weeks=int(len(post_ath)),
-        dt_strength=float(total_drop),
-        dt_line_now=float(current_line),
+        vol_mult=float(vol_mult),
+        **{k: float(v) for k, v in components.items()},
+        dt_break=dt.get("ok", False),
+        dt_strength=float(dt.get("strength", 0.0)),
+        base_ok=base.get("ok", False),
+        flag_ok=flag.get("ok", False),
+        gap_ok=gap.get("ok", False),
+        gap_pct=float(gap.get("gap_pct", 0.0)),
+        rsi=float(rsi.get("rsi", np.nan)) if not np.isnan(rsi.get("rsi", np.nan) if rsi.get("rsi") is not None else np.nan) else None,
+        rsi_cross_up=rsi.get("crossed_up", False),
     )
 
 
@@ -804,14 +943,9 @@ def evaluate(daily, idx_close, ticker, fx):
         Q = qullamaggie_score(bars, idx_bars, tf)
         D = demark_score(bars, tf)
         DA = darvas_score(bars, tf)
-        # Regime-change breakout (OUST-style) only on weekly/monthly TF
-        # with enough lifetime data.
-        if tf == "W":
-            R = regime_change_breakout(bars, min_weeks=52, vol_pct_min=0.95)
-        elif tf == "M":
-            R = regime_change_breakout(bars, min_weeks=18, vol_pct_min=0.95)
-        else:
-            R = {"R": np.nan}
+        # Regime-change multi-pattern breakout composite — applies to all TFs.
+        min_dt = {"D": 252, "W": 52, "M": 18}[tf]
+        R = regime_change_breakout(bars, tf=tf, min_bars_dt=min_dt, vol_pct_min=0.85)
         C = confluence(W.get("W", np.nan), Q.get("Q", np.nan),
                        D.get("D", np.nan), DA.get("DA", np.nan))
         rows[tf] = dict(
@@ -831,13 +965,26 @@ def evaluate(daily, idx_close, ticker, fx):
               for tf in "DWM"}
     return dict(
         ticker=ticker,
-        W_D=rows["D"]["W"], Q_D=rows["D"]["Q"], D_D=rows["D"]["D"], DA_D=rows["D"]["DA"], C_D=C_D,
+        W_D=rows["D"]["W"], Q_D=rows["D"]["Q"], D_D=rows["D"]["D"], DA_D=rows["D"]["DA"], R_D=rows["D"]["R"], C_D=C_D,
         W_W=rows["W"]["W"], Q_W=rows["W"]["Q"], D_W=rows["W"]["D"], DA_W=rows["W"]["DA"], R_W=rows["W"]["R"], C_W=C_W,
         W_M=rows["M"]["W"], Q_M=rows["M"]["Q"], D_M=rows["M"]["D"], DA_M=rows["M"]["DA"], R_M=rows["M"]["R"], C_M=C_M,
+        # Weekly multi-pattern detail
         dt_break_w=rows["W"]["R_dict"].get("dt_break", False),
         dt_strength_w=rows["W"]["R_dict"].get("dt_strength", 0.0),
-        dt_vol_pct_w=rows["W"]["R_dict"].get("vol_pct", 0.0),
+        vol_pct_w=rows["W"]["R_dict"].get("vol_pct", 0.0),
+        base_ok_w=rows["W"]["R_dict"].get("base_ok", False),
+        flag_ok_w=rows["W"]["R_dict"].get("flag_ok", False),
+        gap_ok_w=rows["W"]["R_dict"].get("gap_ok", False),
+        rsi_w=rows["W"]["R_dict"].get("rsi"),
+        rsi_cross_up_w=rows["W"]["R_dict"].get("rsi_cross_up", False),
+        # Daily detail (for short-horizon traders)
+        base_ok_d=rows["D"]["R_dict"].get("base_ok", False),
+        flag_ok_d=rows["D"]["R_dict"].get("flag_ok", False),
+        gap_ok_d=rows["D"]["R_dict"].get("gap_ok", False),
+        rsi_d=rows["D"]["R_dict"].get("rsi"),
+        # Monthly detail
         dt_break_m=rows["M"]["R_dict"].get("dt_break", False),
+        base_ok_m=rows["M"]["R_dict"].get("base_ok", False),
         daily_rank=daily_rank, weekly_rank=weekly_rank, monthly_rank=monthly_rank,
         daily_gate=(C_W >= 55) and (C_M >= 45),
         weekly_gate=(C_W >= 65) and (C_M >= 55),
