@@ -225,15 +225,64 @@ def darvas_score(bars: pd.DataFrame, tf: str) -> dict:
 
 # ---------- Weinstein Stage 2 ----------------------------------------------
 
-def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
-    """Stage-2 leadership scorecard, fully TF-aware.
+def _stage_classify(px: float, ma_long_now: float, ma_long_prev: float,
+                    higher_highs: bool, higher_lows: bool) -> int:
+    """Stage 1/2/3/4 per Weinstein's stage analysis.
 
-    Weinstein wrote for weekly bars; the user's spec maps that to:
-      Daily   -> 150d/50d MAs, RS over 13/26 weeks (65/130 daily bars).
-      Weekly  -> 30w/10w MAs, RS over 13/26 weeks (13/26 weekly bars).
-      Monthly -> 10m/3m MAs (or 7m), RS over 3/6 months (3/6 monthly bars).
-    All other lookbacks (breakout-pivot, volume-average, overhead-supply,
-    higher-highs/lows window) scale per TF too.
+    Stage 1 (base):   price near MA, MA flat
+    Stage 2 (advance): price > MA, MA rising, higher highs/lows
+    Stage 3 (top):    price > MA but MA flattening/rolling over
+    Stage 4 (decline): price < MA, MA falling
+    """
+    slope_pos = ma_long_now > ma_long_prev
+    above_ma = px > ma_long_now
+    if above_ma and slope_pos and higher_highs and higher_lows:
+        return 2
+    if above_ma and not slope_pos:
+        return 3
+    if not above_ma and not slope_pos:
+        return 4
+    return 1
+
+
+def _mansfield_rs(stock_close: pd.Series, idx_close: pd.Series, n: int) -> tuple[float, bool]:
+    """Mansfield Relative Strength (Stan Weinstein's specific RS measure).
+
+    MRS_t = ((P_stock / P_index) / SMA(P_stock/P_index, n)) - 1, scaled %.
+    Returns (mrs_value_pct, rising_flag).
+    """
+    common = stock_close.index.intersection(idx_close.index)
+    if len(common) < n + 5:
+        return np.nan, False
+    rs = (stock_close.reindex(common) / idx_close.reindex(common)).dropna()
+    if len(rs) < n + 1:
+        return np.nan, False
+    ma = rs.rolling(n).mean()
+    mrs = ((rs / ma) - 1.0) * 100
+    mrs_now = float(mrs.iloc[-1])
+    rising = bool(mrs.iloc[-1] > mrs.iloc[-min(4, len(mrs)-1)])
+    return mrs_now, rising
+
+
+def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
+    """Stage-2 leadership scorecard with canonical Weinstein breakout criteria.
+
+    Components (sum to 1.0):
+      0.25 stage_quality   (1.0 if Stage 2 w/ rising MA, 0.5 if Stage 1,
+                            0.25 if Stage 3, 0.0 if Stage 4)
+      0.20 breakout        (close > N-bar horizontal resistance, close in
+                            upper part of recent range, base proportions OK,
+                            not extended >10% above resistance)
+      0.20 mansfield_rs    (MRS = ((P/Index)/SMA(P/Index,52)) − 1; ≥0 + rising
+                            scores 1.0; clamped over [−5%, +20%])
+      0.10 volume_2x       (Weinstein's "smoking gun" 2x average volume on
+                            breakout bar; applies on W TF; partial credit
+                            on other TFs)
+      0.10 stage_transition (bonus when stock just transitioned 1→2:
+                             prior 13-26 bars were flat-MA base, current bar
+                             breaks N-bar resistance with rising MA)
+      0.10 no_overhead     (proximity to all-time high)
+      0.05 group_score     (placeholder — neutral 0.5 since we don't track sectors)
     """
     ma_long_n, ma_short_n = {"D": (150, 50), "W": (30, 10), "M": (10, 3)}[tf]
     c = bars["Close"]; h = bars["High"]; v = bars.get("Volume")
@@ -241,19 +290,25 @@ def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
         return {"W": np.nan}
     ma_long = c.rolling(ma_long_n).mean()
     ma_short = c.rolling(ma_short_n).mean()
-    ma_long_slope = ma_long.diff(max(3, ma_short_n // 2)).iloc[-1]
+    slope_lookback = max(3, ma_short_n // 2)
+    ma_long_slope = ma_long.diff(slope_lookback).iloc[-1]
     px = float(c.iloc[-1])
     hh_window = {"D": 30, "W": 13, "M": 4}[tf]
     higher_highs = (c.iloc[-hh_window:].max() > c.iloc[-hh_window*2:-hh_window].max()
                     if len(c) >= hh_window*2 else True)
     higher_lows = (c.iloc[-hh_window:].min() > c.iloc[-hh_window*2:-hh_window].min()
                    if len(c) >= hh_window*2 else True)
-    trend = np.mean([
-        px > ma_long.iloc[-1], ma_long_slope > 0,
-        ma_short.iloc[-1] > ma_long.iloc[-1], px > ma_short.iloc[-1],
-        higher_highs and higher_lows,
-    ])
-    look = {"D": 50, "W": 13, "M": 6}[tf]
+
+    # === Stage classification (1/2/3/4)
+    stage = _stage_classify(
+        px, float(ma_long.iloc[-1]),
+        float(ma_long.iloc[-slope_lookback-1]),
+        bool(higher_highs), bool(higher_lows),
+    )
+    stage_quality = {1: 0.50, 2: 1.00, 3: 0.25, 4: 0.0}[stage]
+
+    # === Horizontal resistance break + breakout quality
+    look = {"D": 50, "W": 30, "M": 12}[tf]   # 50d / 30w / 12m horizontal-resistance lookback
     look = min(look, len(c) - 1)
     resistance = c.iloc[-look-1:-1].max()
     cp_window = {"D": 20, "W": 8, "M": 4}[tf]
@@ -263,45 +318,75 @@ def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
     base_length_ok = (c.iloc[-look:].std() / max(1e-9, c.iloc[-look:].mean())) < 0.15
     base_depth_ok = (c.iloc[-look:].max() / max(1e-9, c.iloc[-look:].min()) - 1) < 0.50
     not_extended = px <= resistance * 1.10
-    breakout = np.mean([
-        px > resistance * 0.995, close_pos > 0.65,
-        bool(base_length_ok), bool(base_depth_ok), not_extended,
+    breakout_score = np.mean([
+        float(px > resistance * 0.995), float(close_pos > 0.65),
+        float(base_length_ok), float(base_depth_ok), float(not_extended),
     ])
-    # RS vs benchmark: target 13/26 weeks worth of bars per TF.
-    rs_short_n, rs_long_n = {"D": (65, 130), "W": (13, 26), "M": (3, 6)}[tf]
-    if len(c) >= rs_long_n + 5 and len(idx_close) >= rs_long_n + 5:
-        common = c.index.intersection(idx_close.index)
-        rs_series = (c.reindex(common) / idx_close.reindex(common)).dropna()
-        if len(rs_series) >= rs_long_n + 1:
-            roc_s = rs_series.iloc[-1] / rs_series.iloc[-rs_short_n] - 1
-            roc_l = rs_series.iloc[-1] / rs_series.iloc[-rs_long_n] - 1
-            rs_score = float(np.clip(0.5 * (1 if roc_s > 0 else 0) +
-                                      0.5 * (1 if roc_l > 0 else 0), 0, 1))
-        else:
-            rs_score = 0.5
+
+    # === Mansfield Relative Strength (Weinstein's canonical RS measure)
+    mrs_n = {"D": 200, "W": 52, "M": 13}[tf]
+    mrs_pct, mrs_rising = _mansfield_rs(c, idx_close, mrs_n)
+    if np.isnan(mrs_pct):
+        mrs_score = 0.5
     else:
-        rs_score = 0.5
-    vol_window = {"D": 20, "W": 10, "M": 6}[tf]
+        # Map MRS over [-5%, +20%] -> [0, 1]. Bonus when MRS > 0 AND rising.
+        base = float(np.clip((mrs_pct + 5) / 25, 0, 1))
+        mrs_score = base + (0.10 if (mrs_pct > 0 and mrs_rising) else 0.0)
+        mrs_score = float(np.clip(mrs_score, 0, 1))
+
+    # === Volume on breakout: Weinstein wants ≥2x avg on the breakout bar
+    vol_window = {"D": 20, "W": 4, "M": 4}[tf]  # weekly: 4-week avg
     if v is not None and len(v.dropna()) >= vol_window:
-        vol_score = float(np.clip(v.iloc[-1] / max(1e-9, v.iloc[-vol_window:].mean()) / 2, 0, 1))
+        ratio = float(v.iloc[-1] / max(1e-9, v.iloc[-vol_window:].mean()))
+        vol_2x = float(np.clip(ratio / 2.0, 0, 1))  # 2x ratio = 1.0
     else:
-        vol_score = 0.5
-    overhead_lookback = {"D": 252, "W": 52, "M": 12}[tf]
+        vol_2x = 0.5
+        ratio = np.nan
+
+    # === Stage 1->2 transition (highest-EV setup):
+    # Prior 13-26 bars had flat MA (Stage 1 base), current bar breaks
+    # resistance with rising MA. Returns 0..1 score.
+    trans_window = {"D": 60, "W": 13, "M": 4}[tf]
+    if len(ma_long) >= ma_long_n + trans_window + 5:
+        # Was MA flat over the prior `trans_window` bars? Measure abs avg slope
+        # relative to price level.
+        prior_slopes = ma_long.diff(slope_lookback).iloc[-trans_window-slope_lookback-1:-slope_lookback-1]
+        prior_abs_slope = float(prior_slopes.abs().mean()) / max(1e-9, px)
+        was_flat = prior_abs_slope < 0.002  # very flat (≈0.2% per slope-window)
+        is_now_rising = ma_long_slope > 0
+        is_breakout_now = px > c.iloc[-look-1:-1].max() * 0.995
+        stage_transition = float(was_flat and is_now_rising and is_breakout_now)
+    else:
+        stage_transition = 0.0
+
+    # === No overhead supply (proximity to all-time high)
+    overhead_lookback = {"D": 252, "W": 156, "M": 48}[tf]
     overhead_lookback = min(overhead_lookback, len(c))
     high_n = c.iloc[-overhead_lookback:].max()
     no_overhead = float(np.clip(1 + ((px / high_n) - 1) * 6, 0, 1))
-    group_score = 0.5
+
+    group_score = 0.5  # placeholder until sector-relative data is wired in
+
     W = 100 * (
-        0.25 * trend + 0.20 * breakout + 0.20 * rs_score +
-        0.15 * vol_score + 0.10 * group_score + 0.10 * no_overhead
+        0.25 * stage_quality + 0.20 * breakout_score + 0.20 * mrs_score +
+        0.10 * vol_2x + 0.10 * stage_transition + 0.10 * no_overhead +
+        0.05 * group_score
     )
     return dict(
-        W=float(W), trend=float(trend), breakout=float(breakout),
-        rs=rs_score, vol=vol_score, no_overhead=float(no_overhead),
+        W=float(W),
+        stage=int(stage), stage_quality=float(stage_quality),
+        trend=float(stage_quality),  # kept for backwards-compat naming
+        breakout=float(breakout_score),
+        mrs=mrs_score, mrs_pct=float(mrs_pct) if not np.isnan(mrs_pct) else None,
+        mrs_rising=bool(mrs_rising) if not np.isnan(mrs_pct) else False,
+        rs=mrs_score,  # alias for rs veto check
+        vol=vol_2x, vol_2x_ratio=float(ratio) if not np.isnan(ratio) else None,
+        stage_transition=float(stage_transition),
+        no_overhead=float(no_overhead),
         above_ma_long=bool(px > ma_long.iloc[-1]),
         ma_long_slope_pos=bool(ma_long_slope > 0),
-        rs_positive=bool(rs_score >= 0.5),
-        breakout_volume_ok=bool(vol_score >= 0.4),
+        rs_positive=bool(mrs_score >= 0.4),
+        breakout_volume_ok=bool(vol_2x >= 0.4),
     )
 
 
