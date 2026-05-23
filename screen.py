@@ -115,6 +115,35 @@ REGIONS = {
         fid="239691", slug="ishares-msci-united-kingdom-smallcap-etf", tag="EWUS",
         index="ISF.L", suffix=".L", label="MSCI UK Small-Cap (vs FTSE 100)",
     ),
+    # financedatabase-backed universes (broader, includes OTC/pink sheets).
+    "fd-us-small": dict(
+        source="financedatabase", country="United States",
+        market_caps=["Small Cap"],
+        exchanges=["NMS", "NYQ", "NCM", "NGM", "ASE"],
+        index="IJR", suffix=None, label="US Small (FD, NMS+NYQ+NCM+NGM+ASE)",
+    ),
+    "fd-us-micro": dict(
+        source="financedatabase", country="United States",
+        market_caps=["Micro Cap"],
+        exchanges=["NMS", "NYQ", "NCM", "NGM", "ASE"],
+        index="IWC", suffix=None, label="US Micro (FD)",
+    ),
+    "fd-us-nano": dict(
+        source="financedatabase", country="United States",
+        market_caps=["Nano Cap"],
+        exchanges=["NMS", "NYQ", "NCM", "NGM", "ASE"],
+        index="IWC", suffix=None, label="US Nano (FD)",
+    ),
+    "fd-uk": dict(
+        source="financedatabase", country="United Kingdom",
+        market_caps=["Small Cap", "Micro Cap"],
+        index="ISF.L", suffix=".L", label="UK Small+Micro (FD)",
+    ),
+    "fd-de": dict(
+        source="financedatabase", country="Germany",
+        market_caps=["Small Cap", "Micro Cap"],
+        index="IEUS", suffix=".DE", label="Germany Small+Micro (FD)",
+    ),
 }
 
 NASDAQ_SCREENER_URL = (
@@ -257,10 +286,45 @@ def _fetch_holdings_csv(cfg: dict) -> str:
     raise RuntimeError(f"No live or cached holdings for {cfg['tag']}")
 
 
+FD_US_EXCHANGES = {"NMS", "NYQ", "NCM", "NGM", "ASE", "PCX", "BTS"}
+
+
+def fetch_fd_universe(country: str, market_caps, listed_exchanges=None) -> tuple[list[str], pd.DataFrame]:
+    """Pull a universe from JerBouma's financedatabase package.
+
+    `market_caps` accepts a string ("Micro Cap") or list of strings; the
+    intersection is returned.  `listed_exchanges` filters by Yahoo exchange
+    code (None = no filter).  Returns (tickers, metadata-DataFrame).
+    """
+    import financedatabase as fd
+    eq = fd.Equities()
+    if isinstance(market_caps, str):
+        market_caps = [market_caps]
+    rows = []
+    for mc in market_caps:
+        rows.append(eq.select(country=country, market_cap=mc))
+    df = pd.concat(rows) if rows else pd.DataFrame()
+    df = df[~df.index.duplicated()]
+    if listed_exchanges is not None:
+        df = df[df.exchange.isin(listed_exchanges)]
+    # Yahoo wants '-' for share classes; preserve as-is for international suffixes.
+    tickers = sorted({str(t) for t in df.index
+                      if t and str(t).strip()
+                      and len(str(t)) <= 15
+                      and "/" not in str(t)})
+    return tickers, df
+
+
 def fetch_universe(region: str) -> tuple[list[str], pd.DataFrame]:
     cfg = REGIONS[region]
     if cfg.get("source") == "nasdaq":
         return fetch_nasdaq_universe(cfg["marketcap"])
+    if cfg.get("source") == "financedatabase":
+        return fetch_fd_universe(
+            country=cfg["country"],
+            market_caps=cfg["market_caps"],
+            listed_exchanges=cfg.get("exchanges"),
+        )
     raw = _fetch_holdings_csv(cfg)
     lines = raw.splitlines()
     start = next(i for i, l in enumerate(lines) if l.startswith("Ticker,Name"))
@@ -328,18 +392,71 @@ def usd_close(daily: pd.DataFrame, ticker: str, fx: dict) -> pd.Series:
     return p.reindex(common) * f.reindex(common).ffill()
 
 
-def fetch_ohlc(tickers: list[str], period: str = "24mo") -> pd.DataFrame:
-    print(f"Downloading OHLC for {len(tickers)} tickers ({period})...", file=sys.stderr)
-    raw = yf.download(
-        tickers,
-        period=period,
-        interval="1d",
-        auto_adjust=True,
-        progress=False,
-        threads=True,
-        group_by="column",
-    )
-    return raw  # MultiIndex columns: (field, ticker)
+def fetch_ohlc(tickers: list[str], period: str = "24mo",
+                chunk: int = 80, retries: int = 4,
+                pause_between_chunks: float = 1.5) -> pd.DataFrame:
+    """Chunked yfinance download with per-chunk retries and exponential backoff.
+
+    Yahoo throttles aggressive bulk pulls; we batch in groups of `chunk` and
+    if a chunk returns any rate-limit errors we retry those specific tickers
+    up to `retries` times with backoff (2s, 4s, 8s, ...).  Final result is a
+    column-grouped MultiIndex DataFrame compatible with the prior shape.
+    """
+    import time
+    print(f"Downloading OHLC for {len(tickers)} tickers ({period}) in chunks of {chunk}...", file=sys.stderr)
+
+    def _download_chunk(t_list):
+        if len(t_list) == 1:
+            t = t_list[0]
+            df = yf.download(t, period=period, interval="1d",
+                             auto_adjust=True, progress=False, threads=False)
+            if df.empty:
+                return pd.DataFrame()
+            df.columns = pd.MultiIndex.from_product([df.columns.tolist(), [t]])
+            return df
+        return yf.download(
+            t_list, period=period, interval="1d", auto_adjust=True,
+            progress=False, threads=True, group_by="column",
+        )
+
+    pieces = []
+    remaining = list(tickers)
+    chunk_idx = 0
+    while remaining:
+        batch = remaining[:chunk]
+        remaining = remaining[chunk:]
+        chunk_idx += 1
+        attempt = 0
+        retry_pool = list(batch)
+        while retry_pool and attempt < retries:
+            try:
+                df = _download_chunk(retry_pool)
+            except Exception:
+                df = pd.DataFrame()
+            attempt += 1
+            if df.empty:
+                # Whole chunk failed (likely rate-limited); back off + retry.
+                time.sleep(2 ** attempt)
+                continue
+            pieces.append(df)
+            # Find which tickers from retry_pool weren't returned, retry those.
+            if isinstance(df.columns, pd.MultiIndex):
+                fetched = set(df.columns.get_level_values(1))
+            else:
+                fetched = {retry_pool[0]} if not df.empty else set()
+            retry_pool = [t for t in retry_pool if t not in fetched]
+            if retry_pool:
+                time.sleep(2 ** attempt)
+        if (chunk_idx * chunk) % 400 == 0:
+            print(f"  chunk {chunk_idx}: {min(chunk_idx*chunk, len(tickers))}/{len(tickers)}", file=sys.stderr)
+        time.sleep(pause_between_chunks)
+
+    if not pieces:
+        return pd.DataFrame()
+    raw = pd.concat(pieces, axis=1)
+    # Deduplicate columns (same ticker fetched twice across retries).
+    raw = raw.loc[:, ~raw.columns.duplicated()]
+    return raw.sort_index(axis=1)
 
 
 def resample_ohlc(daily: pd.DataFrame, ticker: str, freq: str) -> pd.DataFrame:
