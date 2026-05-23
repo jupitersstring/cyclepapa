@@ -232,6 +232,10 @@ def main():
     p.add_argument("--top", type=int, default=60)
     p.add_argument("--min-upside", type=float, default=0.35)
     p.add_argument("--min-downside-floor", type=float, default=0.20)
+    p.add_argument("--buckets", default="",
+                   help=("optional comma-separated whitelist of financedatabase "
+                         "market_cap buckets to keep (e.g. 'Nano Cap,Micro Cap,Small Cap'). "
+                         "Empty = keep all."))
     args = p.parse_args()
 
     df = load_concat(args.csvs)
@@ -245,6 +249,11 @@ def main():
         & (df["market_cap"].fillna(0) >= args.min_mcap)
     ]
     df = df[~df.apply(is_pharma_bio, axis=1)].copy()
+    if args.buckets and "market_cap_bucket" in df.columns:
+        keep_buckets = {b.strip() for b in args.buckets.split(",") if b.strip()}
+        before = len(df)
+        df = df[df["market_cap_bucket"].isin(keep_buckets)]
+        print(f"bucket filter ({sorted(keep_buckets)}): {before} -> {len(df)}", file=sys.stderr)
     print(f"after filters: {len(df)}", file=sys.stderr)
 
     if args.pew:
@@ -259,9 +268,9 @@ def main():
     ].sort_values("asymmetry_score", ascending=False)
 
     out_cols = [
-        "symbol", "name", "src", "sector", "industry", "market_cap",
-        "asymmetry_score", "upside_score", "downside_floor_score", "cluster_n",
-        "yartseva_score", "berezin_score",
+        "symbol", "name", "src", "sector", "industry", "market_cap_bucket",
+        "market_cap", "asymmetry_score", "upside_score", "downside_floor_score",
+        "cluster_n", "yartseva_score", "berezin_score",
         "cash_gt_ev_flag", "graham_net_net_flag", "pew_negative_ev_flag",
         "pb", "ebitda_margin", "ebitda_positive_proxy", "net_debt_ebitda",
         "insider_ownership_pct", "pew_forgotten_score", "pew_has_platform_hint",
