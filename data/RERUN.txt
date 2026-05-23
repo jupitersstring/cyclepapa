@@ -1,14 +1,21 @@
 Markets needing rerun (yfinance rate-limited during initial pass):
 
-DALTON / WEEKLY SCREENS NEEDING RERUN:
-- uk: dalton only 21 rows from 272 universe; absorp/compress/prebo also sparse
-- italy: dalton 14KB ~30 rows from 341 universe
+DALTON / WEEKLY SCREENS NEEDING RERUN (heavy rate-limit damage):
+- uk:        21 rows  / 272 universe (8%)
+- italy:     25 rows  / 341 universe (7%)
+- australia: 122 rows / 1627 universe (8%)
 
-FUNDAMENTALS NEEDING RERUN (all empty - .info rate-limited while other markets had Dalton running):
-- uk
-- italy
-- canada
-- (more likely as queue progresses)
+DALTON RUNS THAT ARE LIKELY OK:
+- canada:    1182 / 2180 (54%)
+- japan:     1415 / 2865 (49%) — still running
+- us:        1470+ / 8557   — still running
 
-STRATEGY: After all Dalton runs complete and the rate-limit budget recovers,
-rerun fundamentals SEQUENTIALLY with sleep>=2s per ticker.
+DALTON CURRENTLY RUNNING (status TBD):
+- taiwan, germany, korea (queued), france (queued), ...
+
+FUNDAMENTALS NEEDING RERUN (all empty/sparse — .info heavily rate-limited):
+- uk, italy, canada (all 1-byte empty files)
+- Likely more as queue progresses
+
+REMEDY: After queue clears, rerun affected markets with --sleep 2 (single-process,
+no concurrent Dalton).
