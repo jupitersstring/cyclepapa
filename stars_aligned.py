@@ -226,24 +226,40 @@ def darvas_score(bars: pd.DataFrame, tf: str) -> dict:
 # ---------- Weinstein Stage 2 ----------------------------------------------
 
 def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
+    """Stage-2 leadership scorecard, fully TF-aware.
+
+    Weinstein wrote for weekly bars; the user's spec maps that to:
+      Daily   -> 150d/50d MAs, RS over 13/26 weeks (65/130 daily bars).
+      Weekly  -> 30w/10w MAs, RS over 13/26 weeks (13/26 weekly bars).
+      Monthly -> 10m/3m MAs (or 7m), RS over 3/6 months (3/6 monthly bars).
+    All other lookbacks (breakout-pivot, volume-average, overhead-supply,
+    higher-highs/lows window) scale per TF too.
+    """
     ma_long_n, ma_short_n = {"D": (150, 50), "W": (30, 10), "M": (10, 3)}[tf]
     c = bars["Close"]; h = bars["High"]; v = bars.get("Volume")
-    if len(c) < ma_long_n + 10:
+    if len(c) < ma_long_n + 5:
         return {"W": np.nan}
     ma_long = c.rolling(ma_long_n).mean()
     ma_short = c.rolling(ma_short_n).mean()
-    ma_long_slope = ma_long.diff(5).iloc[-1]
+    ma_long_slope = ma_long.diff(max(3, ma_short_n // 2)).iloc[-1]
     px = float(c.iloc[-1])
-    higher_highs = c.iloc[-30:].max() > c.iloc[-60:-30].max() if len(c) >= 60 else True
-    higher_lows = c.iloc[-30:].min() > c.iloc[-60:-30].min() if len(c) >= 60 else True
+    hh_window = {"D": 30, "W": 13, "M": 4}[tf]
+    higher_highs = (c.iloc[-hh_window:].max() > c.iloc[-hh_window*2:-hh_window].max()
+                    if len(c) >= hh_window*2 else True)
+    higher_lows = (c.iloc[-hh_window:].min() > c.iloc[-hh_window*2:-hh_window].min()
+                   if len(c) >= hh_window*2 else True)
     trend = np.mean([
         px > ma_long.iloc[-1], ma_long_slope > 0,
         ma_short.iloc[-1] > ma_long.iloc[-1], px > ma_short.iloc[-1],
         higher_highs and higher_lows,
     ])
-    look = min(50, len(c) - 1)
+    look = {"D": 50, "W": 13, "M": 6}[tf]
+    look = min(look, len(c) - 1)
     resistance = c.iloc[-look-1:-1].max()
-    close_pos = (px - c.iloc[-20:].min()) / max(1e-9, c.iloc[-20:].max() - c.iloc[-20:].min())
+    cp_window = {"D": 20, "W": 8, "M": 4}[tf]
+    cp_window = min(cp_window, len(c))
+    cp_win = c.iloc[-cp_window:]
+    close_pos = (px - cp_win.min()) / max(1e-9, cp_win.max() - cp_win.min())
     base_length_ok = (c.iloc[-look:].std() / max(1e-9, c.iloc[-look:].mean())) < 0.15
     base_depth_ok = (c.iloc[-look:].max() / max(1e-9, c.iloc[-look:].min()) - 1) < 0.50
     not_extended = px <= resistance * 1.10
@@ -251,24 +267,29 @@ def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
         px > resistance * 0.995, close_pos > 0.65,
         bool(base_length_ok), bool(base_depth_ok), not_extended,
     ])
-    if len(c) >= 130 and len(idx_close) >= 130:
+    # RS vs benchmark: target 13/26 weeks worth of bars per TF.
+    rs_short_n, rs_long_n = {"D": (65, 130), "W": (13, 26), "M": (3, 6)}[tf]
+    if len(c) >= rs_long_n + 5 and len(idx_close) >= rs_long_n + 5:
         common = c.index.intersection(idx_close.index)
         rs_series = (c.reindex(common) / idx_close.reindex(common)).dropna()
-        if len(rs_series) >= 130:
-            roc13 = rs_series.iloc[-1] / rs_series.iloc[-65] - 1
-            roc26 = rs_series.iloc[-1] / rs_series.iloc[-130] - 1
-            rs_score = float(np.clip(0.5 * (1 if roc13 > 0 else 0) +
-                                      0.5 * (1 if roc26 > 0 else 0), 0, 1))
+        if len(rs_series) >= rs_long_n + 1:
+            roc_s = rs_series.iloc[-1] / rs_series.iloc[-rs_short_n] - 1
+            roc_l = rs_series.iloc[-1] / rs_series.iloc[-rs_long_n] - 1
+            rs_score = float(np.clip(0.5 * (1 if roc_s > 0 else 0) +
+                                      0.5 * (1 if roc_l > 0 else 0), 0, 1))
         else:
             rs_score = 0.5
     else:
         rs_score = 0.5
-    if v is not None and len(v.dropna()) >= 20:
-        vol_score = float(np.clip(v.iloc[-1] / max(1e-9, v.iloc[-20:].mean()) / 2, 0, 1))
+    vol_window = {"D": 20, "W": 10, "M": 6}[tf]
+    if v is not None and len(v.dropna()) >= vol_window:
+        vol_score = float(np.clip(v.iloc[-1] / max(1e-9, v.iloc[-vol_window:].mean()) / 2, 0, 1))
     else:
         vol_score = 0.5
-    high_252 = c.iloc[-252:].max() if len(c) >= 252 else c.max()
-    no_overhead = float(np.clip(1 + ((px / high_252) - 1) * 6, 0, 1))
+    overhead_lookback = {"D": 252, "W": 52, "M": 12}[tf]
+    overhead_lookback = min(overhead_lookback, len(c))
+    high_n = c.iloc[-overhead_lookback:].max()
+    no_overhead = float(np.clip(1 + ((px / high_n) - 1) * 6, 0, 1))
     group_score = 0.5
     W = 100 * (
         0.25 * trend + 0.20 * breakout + 0.20 * rs_score +
@@ -287,6 +308,12 @@ def weinstein_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
 # ---------- Qullamaggie ----------------------------------------------------
 
 def _detect_stair_steps(close: pd.Series, tf: str) -> dict:
+    """Find the most recent thrust + consolidation.
+
+    Thrust magnitude thresholds scale with TF — a 30% move in 20 days is
+    similar in 'leadership' significance to a 50% move over 6 months or a
+    100% move over 12 months. We keep one normalised thrust score per TF.
+    """
     if tf == "D":
         thrust_lookback, base_min, base_max = range(15, 90), 10, 60
     elif tf == "W":
@@ -313,6 +340,54 @@ def _detect_stair_steps(close: pd.Series, tf: str) -> dict:
     return best
 
 
+def _prior_base_duration(close: pd.Series, tf: str) -> float:
+    """How many bars of 'sideways action' precede the current breakout point?
+
+    Qullamaggie's note that 'best EPs are on stocks sideways 3-6+ months'
+    applies on all TFs — the longer the prior consolidation, the more rocket
+    fuel. Returns score in 0..1.
+    Targets: D 60-120 bars, W 13-26 bars, M 3-6 bars.
+    """
+    target = {"D": 90, "W": 20, "M": 5}[tf]
+    if len(close) < target + 20:
+        return 0.5
+    # Identify the most-recent breakout pivot: the bar where price first
+    # exceeded its rolling-60 maximum (on D), -20 (W), -5 (M).
+    win = {"D": 60, "W": 20, "M": 5}[tf]
+    roll_max = close.rolling(win).max()
+    is_breakout = close > roll_max.shift(1)
+    last_bo_idx = is_breakout.iloc[::-1].idxmax() if is_breakout.any() else None
+    if last_bo_idx is None:
+        return 0.3
+    last_pos = close.index.get_loc(last_bo_idx)
+    if isinstance(last_pos, slice):
+        last_pos = last_pos.stop - 1
+    # Count quiet bars in the run-up to that breakout: bars whose range vs
+    # the prior 5-bar median is below average.
+    rng = (close.diff().abs().rolling(5).mean()) / close
+    pre = rng.iloc[max(0, last_pos - target):last_pos].dropna()
+    if pre.empty:
+        return 0.3
+    quiet_share = float((pre < pre.median()).sum() / len(pre))
+    return float(np.clip(quiet_share * (len(pre) / target), 0, 1))
+
+
+def _ma_surf(close: pd.Series, tf: str) -> float:
+    """10/20/50 DMA surf, mapped to bar counts per TF.
+
+    Qullamaggie uses 10/20/50 DMA on daily. For weekly we use 4/10/20 bars
+    (~20/50/100 daily-equivalents); for monthly 3/6/12 bars (~60/120/240).
+    """
+    spec = {"D": (10, 20, 50), "W": (4, 10, 20), "M": (3, 6, 12)}[tf]
+    if len(close) < max(spec):
+        return 0.5
+    px = float(close.iloc[-1])
+    ma_s = close.rolling(spec[0]).mean().iloc[-1]
+    ma_m = close.rolling(spec[1]).mean().iloc[-1]
+    ma_l = close.rolling(spec[2]).mean().iloc[-1]
+    return float(np.mean([px > ma_s, px > ma_m, ma_s > ma_m, ma_s > ma_l, px > ma_l]))
+
+
 def qullamaggie_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict:
     c = bars["Close"]; h = bars["High"]; l = bars["Low"]; v = bars.get("Volume")
     min_bars = {"D": 100, "W": 30, "M": 18}[tf]
@@ -320,22 +395,29 @@ def qullamaggie_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict
         return {"Q": np.nan, "QBO": np.nan, "QEP": np.nan, "QPL": np.nan}
     px = float(c.iloc[-1])
 
+    # === Leadership: top-1-2% ROC, scaled to TF
     def roc(n):
         return (c.iloc[-1] / c.iloc[-n] - 1) if len(c) > n else np.nan
     if tf == "D":
         roc_1, roc_2, roc_3 = roc(21), roc(63), roc(126)
+        roc_norm = (0.10, 0.30, 0.50)
     elif tf == "W":
         roc_1, roc_2, roc_3 = roc(4), roc(13), roc(26)
+        roc_norm = (0.15, 0.35, 0.60)
     else:
         roc_1, roc_2, roc_3 = roc(1), roc(3), roc(6)
+        roc_norm = (0.10, 0.30, 0.50)
     leader = np.mean([
-        float(np.clip(roc_1 / 0.10, 0, 1)) if not np.isnan(roc_1) else 0.5,
-        float(np.clip(roc_2 / 0.30, 0, 1)) if not np.isnan(roc_2) else 0.5,
-        float(np.clip(roc_3 / 0.50, 0, 1)) if not np.isnan(roc_3) else 0.5,
+        float(np.clip(roc_1 / roc_norm[0], 0, 1)) if not np.isnan(roc_1) else 0.5,
+        float(np.clip(roc_2 / roc_norm[1], 0, 1)) if not np.isnan(roc_2) else 0.5,
+        float(np.clip(roc_3 / roc_norm[2], 0, 1)) if not np.isnan(roc_3) else 0.5,
     ])
 
+    # === Stair-step thrust + base
     step = _detect_stair_steps(c, tf)
-    prior_thrust = float(np.clip(step["thrust"] / 0.30, 0, 1))
+    # Thrust thresholds: D 30%, W 30%, M 50% (longer time = bigger expected move).
+    thrust_norm = {"D": 0.30, "W": 0.30, "M": 0.50}[tf]
+    prior_thrust = float(np.clip(step["thrust"] / thrust_norm, 0, 1))
     base_len = max(step["base_len"], {"D": 20, "W": 6, "M": 4}[tf])
     win = c.iloc[-base_len:]
     higher_lows = (win.diff().clip(lower=0) > 0).sum() / max(1, len(win) - 1) if len(win) >= 4 else 0.5
@@ -345,16 +427,13 @@ def qullamaggie_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict
         vol_dryup = float(np.clip((v_prior / max(1e-9, v_recent) - 1) / 0.30, 0, 1))
     else:
         vol_dryup = 0.5
-    consolidation = np.mean([step["base_tightness"], higher_lows, vol_dryup])
+    prior_duration = _prior_base_duration(c, tf)
+    consolidation = np.mean([step["base_tightness"], higher_lows, vol_dryup, prior_duration])
 
-    if len(c) >= 50:
-        ma10 = c.rolling(10).mean().iloc[-1]
-        ma20 = c.rolling(20).mean().iloc[-1]
-        ma50 = c.rolling(50).mean().iloc[-1]
-        ma_surf = np.mean([px > ma10, px > ma20, ma10 > ma20, px > ma50])
-    else:
-        ma_surf = 0.5
+    # === MA surf (TF-aware)
+    ma_surf = _ma_surf(c, tf)
 
+    # === Trigger: above pivot, close near recent high, volume expansion
     pivot = c.iloc[-base_len-1:-1].max() if len(c) > base_len + 1 else c.iloc[-1]
     close_near_high = (px - l.iloc[-5:].min()) / max(1e-9, h.iloc[-5:].max() - l.iloc[-5:].min())
     if v is not None and len(v.dropna()) >= 20:
@@ -365,55 +444,89 @@ def qullamaggie_score(bars: pd.DataFrame, idx_close: pd.Series, tf: str) -> dict
         float(px > pivot * 0.995), float(close_near_high), vol_exp,
     ])
 
+    # === Risk: stop = recent low (3 bars on D, 2 bars on W/M), bound by 1.5 ATR
     tr = pd.concat([(h - l).abs(), (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
     atr = tr.rolling(14).mean().iloc[-1]
-    stop = l.iloc[-3:].min()
+    stop_bars = {"D": 3, "W": 2, "M": 2}[tf]
+    stop = l.iloc[-stop_bars:].min()
     risk = float(np.clip(1 - max(0, (px - stop)) / max(1e-9, atr * ATR_MAX_STOP), 0, 1))
 
+    # === Qullamaggie Breakout
     QBO = 100 * (
         0.20 * leader + 0.20 * prior_thrust + 0.20 * consolidation +
         0.15 * ma_surf + 0.15 * trigger + 0.10 * risk
     )
 
-    QEP = 0.0
-    if tf == "D" and len(c) >= 2:
-        open_ = bars["Open"].iloc[-1] if "Open" in bars.columns else c.iloc[-1]
-        gap = float(open_ / c.iloc[-2] - 1)
-        gap_ok = float(np.clip(gap / 0.10, 0, 1))
-        if v is not None and len(v.dropna()) >= 50:
-            vol_shock = float(np.clip(v.iloc[-1] / max(1e-9, v.iloc[-50:].mean()) / 3, 0, 1))
+    # === Episodic Pivot — now generalised to all TFs.
+    #   - D: open gap ≥ 10% from yesterday's close, intraday volume shock.
+    #   - W: weekly open gap (first day's open vs previous Friday close) ≥ 10%
+    #        OR weekly RANGE expansion (this week's high/prev close ≥ 1.10)
+    #        with weekly volume ≥ 2x trailing 10-week average.
+    #   - M: month's high vs prior month close ≥ 1.15 with monthly volume ≥ 2x.
+    open_now = bars["Open"].iloc[-1] if "Open" in bars.columns else c.iloc[-1]
+    high_now = h.iloc[-1]
+    prev_close = c.iloc[-2]
+    if tf == "D":
+        gap_pct = float(open_now / prev_close - 1)
+        gap_target = 0.10
+    elif tf == "W":
+        # Use range expansion since weekly "open gap" is rarely huge on its own
+        gap_pct = float(max(open_now, high_now) / prev_close - 1)
+        gap_target = 0.10
+    else:
+        gap_pct = float(high_now / prev_close - 1)
+        gap_target = 0.15
+    gap_ok = float(np.clip(gap_pct / gap_target, 0, 1))
+    if v is not None and len(v.dropna()) >= 20:
+        # Volume "shock" vs 20-bar average on whatever TF we're on.
+        vol_shock_n = {"D": 50, "W": 10, "M": 6}[tf]
+        if len(v.dropna()) >= vol_shock_n:
+            vol_shock = float(np.clip(v.iloc[-1] / max(1e-9, v.iloc[-vol_shock_n:].mean()) / 3, 0, 1))
         else:
             vol_shock = 0.0
-        if "Open" in bars.columns:
-            recent_gaps = bars["Open"].iloc[-60:-1] / c.iloc[-61:-2].values - 1
-            recent_ep_count = int((recent_gaps >= 0.10).sum())
-        else:
-            recent_ep_count = 0
-        ep_penalty = 1 - np.clip(recent_ep_count / 3, 0, 1) * 0.5
-        QEP = 100 * ep_penalty * (
-            0.25 * gap_ok + 0.25 * vol_shock + 0.15 * 0.5 +
-            0.15 * consolidation + 0.10 * trigger + 0.10 * risk
-        )
+    else:
+        vol_shock = 0.0
+    # Recent-EP penalty: how many gap-up bars have already happened in the
+    # trailing window (D 60 bars, W 13 bars, M 6 bars)? More recent EPs => penalty.
+    recent_n = {"D": 60, "W": 13, "M": 6}[tf]
+    if "Open" in bars.columns and len(c) > recent_n + 1:
+        recent_gaps = (bars["Open"].iloc[-recent_n:-1].values
+                       / c.iloc[-recent_n-1:-2].values - 1)
+        recent_ep_count = int((recent_gaps >= gap_target).sum())
+    else:
+        recent_ep_count = 0
+    ep_penalty = 1 - np.clip(recent_ep_count / 3, 0, 1) * 0.5
+    QEP = 100 * ep_penalty * (
+        0.25 * gap_ok + 0.25 * vol_shock + 0.15 * 0.5 +
+        0.15 * consolidation + 0.10 * trigger + 0.10 * risk
+    )
 
+    # === Parabolic Long bounce — generalised
+    #   - D: ≥ -50% drawdown from 15-day high, today green + volume up
+    #   - W: ≥ -50% drawdown from 8-week high, this week green + volume up
+    #   - M: ≥ -55% drawdown from 6-month high, this month green
+    pl_lookback = {"D": 15, "W": 8, "M": 6}[tf]
+    pl_dd_thr = {"D": -0.50, "W": -0.50, "M": -0.55}[tf]
     QPL = 0.0
-    if tf == "D" and len(c) >= 15:
-        drawdown = px / c.iloc[-15:-1].max() - 1
-        if drawdown < -0.40:
-            green_today = c.iloc[-1] > c.iloc[-2]
-            volume_up = (v.iloc[-1] / v.iloc[-20:].mean()) > 1.5 if v is not None else False
+    if len(c) >= pl_lookback + 1:
+        drawdown = px / c.iloc[-pl_lookback:-1].max() - 1
+        if drawdown < pl_dd_thr:
+            green_now = c.iloc[-1] > c.iloc[-2]
+            volume_up = (v.iloc[-1] / v.iloc[-20:].mean()) > 1.5 if v is not None and len(v.dropna()) >= 20 else False
             QPL = 100 * (
-                0.40 * float(green_today) + 0.30 * float(volume_up) +
-                0.30 * float(np.clip(-drawdown / 0.50, 0, 1))
+                0.40 * float(green_now) + 0.30 * float(volume_up) +
+                0.30 * float(np.clip(-drawdown / 0.60, 0, 1))
             )
 
     return dict(
         Q=float(max(QBO, QEP, QPL)), QBO=float(QBO), QEP=float(QEP), QPL=float(QPL),
         leader=float(leader), prior_thrust=float(prior_thrust),
-        consolidation=float(consolidation), ma_surf=float(ma_surf),
-        trigger=float(trigger), risk=float(risk),
+        consolidation=float(consolidation), prior_base_duration=float(prior_duration),
+        ma_surf=float(ma_surf), trigger=float(trigger), risk=float(risk),
         stop=float(stop), atr=float(atr),
         stop_distance_atr=float((px - stop) / max(1e-9, atr)),
         stair_step_thrust=step["thrust"], stair_step_base_len=step["base_len"],
+        gap_pct=float(gap_pct), recent_ep_count=int(recent_ep_count),
     )
 
 
@@ -433,11 +546,14 @@ def demark_score(bars: pd.DataFrame, tf: str) -> dict:
         buy_ex = 0.4 + (td["buy_setup_now"] - 6) * 0.1
     else:
         buy_ex = 0.0
+    # Bull-confirm MA scales with TF (Pine code uses MA20 daily; on weekly we
+    # use MA10, on monthly MA6).
+    ma_confirm_n = {"D": 20, "W": 10, "M": 6}[tf]
     if len(c) > 4:
         bull_confirm = np.mean([
             float(c.iloc[-1] > c.iloc[-5]), float(td["range_flip"]),
             float(td["close_gt_swing"]),
-            float(c.iloc[-1] > c.rolling(20).mean().iloc[-1]) if len(c) >= 20 else 0.5,
+            float(c.iloc[-1] > c.rolling(ma_confirm_n).mean().iloc[-1]) if len(c) >= ma_confirm_n else 0.5,
         ])
     else:
         bull_confirm = 0.0
@@ -445,11 +561,15 @@ def demark_score(bars: pd.DataFrame, tf: str) -> dict:
         float(not td["close_below_tdst_support"]),
         float(td["tdst_resistance"] == 0 or px > td["tdst_resistance"]),
     ])
-    sl_break = float(c.iloc[-1] >= c.iloc[-25:-5].max()) if len(c) >= 25 else 0.5
+    sl_lookback = {"D": 25, "W": 13, "M": 6}[tf]
+    sl_skip = {"D": 5, "W": 3, "M": 2}[tf]
+    sl_break = float(c.iloc[-1] >= c.iloc[-sl_lookback:-sl_skip].max()) if len(c) >= sl_lookback else 0.5
     h = bars["High"]; l = bars["Low"]
     tr = pd.concat([(h - l).abs(), (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
     atr = tr.rolling(14).mean().iloc[-1]
-    rr = float(np.clip((c.iloc[-20:].max() - px) / max(1e-9, atr * 2.0), 0, 1))
+    rr_window = {"D": 20, "W": 13, "M": 6}[tf]
+    rr_window = min(rr_window, len(c))
+    rr = float(np.clip((c.iloc[-rr_window:].max() - px) / max(1e-9, atr * 2.0), 0, 1))
     lookback_sell = {"D": 9, "W": 6, "M": 4}[tf]
     sell_blocked = (
         (td["bars_since_sell13"] is not None and td["bars_since_sell13"] <= lookback_sell) or
