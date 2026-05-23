@@ -31,6 +31,7 @@ from .ranking import (
     sentiment_momentum_scan, sentiment_momentum_scan_weekly,
     small_mid_cap_asymmetric, social_asymmetric_setups,
     mention_spike_vs_price, momentum_acceleration_rank, ordinal_social_rank,
+    early_stage_momentum,
     recent_spike_rank, rising_mentions_flat_price, social_price_divergence,
     social_signal_score,
     social_weekly_history, social_weekly_movers, social_weekly_pivot,
@@ -827,6 +828,40 @@ def cmd_recent_spike(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_early_stage(args: argparse.Namespace) -> int:
+    """Early-stage momentum: NVDA-2023-shape, BEFORE the parabolic."""
+    cfg = Config()
+    from . import universe as uni_mod
+    pipe = Pipeline.build(cfg)
+    uni = pipe.universe_df
+    if args.consumer:
+        uni = uni_mod.filter_consumer_focused(uni)
+    if args.north_america:
+        uni = uni_mod.filter_north_american_liquid(uni)
+    else:
+        uni = uni_mod.filter_us_liquid(uni)
+    tickers = uni["symbol"].astype(str).tolist()
+    out = early_stage_momentum(
+        cfg, tickers, top=args.top,
+        social_window_days=args.window,
+        min_total_mentions=args.min_total,
+        max_vs_sma40_pct=args.max_vs_sma40,
+        min_vs_sma40_pct=args.min_vs_sma40,
+        max_weeks_in_state=args.max_weeks_in_state,
+        require_positive_velocity=not args.allow_decel,
+        require_positive_sentiment=not args.allow_neg_sentiment,
+        enrich_finviz=args.finviz,
+    )
+    if out.empty:
+        print("no candidates -- try widening --max-vs-sma40 or --max-weeks-in-state")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
+    print(out.to_string(index=False))
+    return 0
+
+
 def cmd_momentum_accel(args: argparse.Namespace) -> int:
     """Cross-sectional rank by 44d social/sentiment velocity + acceleration."""
     cfg = Config()
@@ -1437,6 +1472,27 @@ def build_parser() -> argparse.ArgumentParser:
     prs.add_argument("--allow-negative", action="store_true",
                     help="don't require positive mention spike (default: positive only)")
     prs.set_defaults(func=cmd_recent_spike)
+
+    pes = sub.add_parser("early-stage",
+                        help="Early-stage momentum: NVDA-2023 shape, social accelerating but price not yet stretched")
+    pes.add_argument("--top", type=int, default=20)
+    pes.add_argument("--window", type=int, default=44)
+    pes.add_argument("--min-total", dest="min_total", type=int, default=30)
+    pes.add_argument("--max-vs-sma40", dest="max_vs_sma40", type=float, default=20.0,
+                    help="max %% above 40w SMA -- keep names not yet stretched (default 20)")
+    pes.add_argument("--min-vs-sma40", dest="min_vs_sma40", type=float, default=-15.0,
+                    help="min %% above 40w SMA -- exclude too-broken names (default -15)")
+    pes.add_argument("--max-weeks-in-state", dest="max_weeks_in_state", type=int, default=12,
+                    help="max weeks in current bullish state -- keep RECENT turns (default 12)")
+    pes.add_argument("--allow-decel", action="store_true",
+                    help="don't require positive mention velocity (default: required)")
+    pes.add_argument("--allow-neg-sentiment", action="store_true",
+                    help="don't require positive sentiment velocity (default: required)")
+    pes.add_argument("--finviz", type=int, default=0,
+                    help="enrich top N with Finviz market cap + short float")
+    pes.add_argument("--consumer", action="store_true")
+    pes.add_argument("--north-america", dest="north_america", action="store_true")
+    pes.set_defaults(func=cmd_early_stage)
 
     pma = sub.add_parser("momentum-accel",
                         help="44d social+sentiment velocity + acceleration cross-sectional rank")

@@ -1483,6 +1483,139 @@ def recent_spike_rank(
     return out.sort_values("rank_combined").head(int(top)).reset_index(drop=True)
 
 
+def early_stage_momentum(
+    cfg: Config,
+    tickers: list[str] | None = None,
+    *,
+    top: int = 25,
+    social_window_days: int = 44,
+    min_total_mentions: int = 30,
+    max_vs_sma40_pct: float = 20.0,
+    min_vs_sma40_pct: float = -15.0,
+    max_weeks_in_state: int = 12,
+    require_positive_velocity: bool = True,
+    require_positive_sentiment: bool = True,
+    enrich_finviz: int = 0,
+) -> pd.DataFrame:
+    """Find stocks at the EARLY stage of the NVDA-2023 semi-bubble shape.
+
+    The pattern Camillo wants: social signal accelerating PERSISTENTLY
+    (44d velocity + acceleration both positive, sentiment rising) AND
+    price still near its long-term trend line (not stretched). This is
+    *the start* of a multi-quarter narrative trend, not the
+    consensus-known mature phase.
+
+    Filters:
+      - mention_velocity_44d > 0 AND mention_acceleration_44d > 0
+        (sustained, still-accelerating attention)
+      - sentiment_velocity_44d > 0 (mood improving)
+      - close_vs_sma40 between `min_vs_sma40_pct` and `max_vs_sma40_pct`
+        (early-stage breakout, not mature parabolic)
+      - state in {hma_up, golden}
+      - weeks_in_state <= `max_weeks_in_state` (RECENT turn, not stale)
+
+    Composite ranks by 44d acceleration (mention + sentiment, both signed)
+    plus sentiment-floor bonus and small-mcap tilt.
+    """
+    # 1. Start from the 44d momentum + acceleration ranking we already have.
+    mom = momentum_acceleration_rank(
+        cfg, window_days=social_window_days, top=10000,
+        min_total_mentions=min_total_mentions,
+        require_positive=require_positive_velocity,
+    )
+    if mom.empty:
+        return mom
+    if require_positive_sentiment:
+        mom = mom[mom["sentiment_velocity_per_day"] > 0]
+    if mom.empty:
+        return mom
+
+    # 2. Pull weekly technicals for state + vs-SMA40.
+    from .technicals import load_price_cache, signals_for_close
+    weekly = load_price_cache(cfg)
+    rows: list[dict] = []
+    for _, r in mom.iterrows():
+        t = r["ticker"]
+        if t not in weekly.columns:
+            continue
+        wclose = weekly[t].dropna()
+        if len(wclose) < 50:
+            continue
+        sig = signals_for_close(wclose)
+        if sig is None or sig.empty:
+            continue
+        last = sig.iloc[-1]
+        state = str(last["state"])
+        if state not in ("hma_up", "golden"):
+            continue
+        sma40 = float(last.get("sma_40w", np.nan))
+        if pd.isna(sma40) or sma40 <= 0:
+            continue
+        vs40 = (float(last["close"]) / sma40 - 1.0) * 100.0
+        if not (float(min_vs_sma40_pct) <= vs40 <= float(max_vs_sma40_pct)):
+            continue
+        weeks_in_state = int(last["weeks_since_state"])
+        if weeks_in_state > int(max_weeks_in_state):
+            continue
+        rows.append({
+            **r.to_dict(),
+            "close": round(float(last["close"]), 2),
+            "vs_sma40_pct": round(vs40, 1),
+            "state": state,
+            "weeks_in_state": weeks_in_state,
+            "hma_slope_20w": round(float(last["hma_slope_20w"]), 2),
+        })
+
+    if not rows:
+        return pd.DataFrame()
+    df = pd.DataFrame(rows)
+
+    # 3. Composite: weight mention + sentiment acceleration explicitly.
+    def _score(row) -> float:
+        s = 0.0
+        s += min(float(row["mention_acceleration"]), 2.0) * 3.0
+        s += min(float(row["mention_velocity_per_day"]), 2.0) * 1.5
+        s += min(float(row["sentiment_acceleration"]) * 50.0, 3.0) * 2.0
+        s += min(float(row["sentiment_velocity_per_day"]) * 50.0, 3.0) * 1.5
+        # Early-stage entry bonus: close near SMA40, recent state.
+        v = float(row["vs_sma40_pct"])
+        if -5.0 <= v <= 10.0:
+            s += 2.0
+        elif v > 15.0:
+            s -= (v - 15.0) / 10.0
+        if int(row["weeks_in_state"]) <= 4:
+            s += 1.5
+        # Volume floor.
+        s += min(np.log1p(int(row["total_mentions"])) / 3.0, 1.5)
+        return s
+
+    df["early_stage_score"] = df.apply(_score, axis=1).round(2)
+    df = df.sort_values("early_stage_score", ascending=False).head(int(top))
+
+    # 4. Optional Finviz enrichment for the top N.
+    if enrich_finviz and len(df) > 0:
+        from .collectors.finviz import collect_finviz_batch
+        fv = collect_finviz_batch(df["ticker"].head(int(enrich_finviz)).tolist(), sleep_between=0.5)
+        if not fv.empty:
+            keep = [c for c in ["ticker", "market_cap", "short_float_pct",
+                                "earnings_date", "sector", "industry"]
+                    if c in fv.columns]
+            df = df.merge(fv[keep], on="ticker", how="left")
+            if "market_cap" in df.columns:
+                df["mcap_$M"] = (df["market_cap"] / 1e6).round(0).astype("Int64")
+
+    cols = [
+        "ticker", "early_stage_score", "close", "vs_sma40_pct", "state",
+        "weeks_in_state", "hma_slope_20w",
+        "mention_velocity_per_day", "mention_acceleration",
+        "sentiment_velocity_per_day", "sentiment_acceleration",
+        "total_mentions", "mcap_$M", "short_float_pct", "earnings_date",
+        "sector", "industry",
+    ]
+    cols = [c for c in cols if c in df.columns]
+    return df[cols].reset_index(drop=True)
+
+
 def momentum_acceleration_rank(
     cfg: Config,
     *,
