@@ -144,6 +144,39 @@ REGIONS = {
         market_caps=["Small Cap", "Micro Cap"],
         index="IEUS", suffix=".DE", label="Germany Small+Micro (FD)",
     ),
+    # European tiered universes (FD, union of major European countries).
+    "fd-eu-mid": dict(
+        source="financedatabase",
+        country=["United Kingdom","Germany","France","Switzerland","Netherlands",
+                 "Italy","Spain","Sweden","Norway","Denmark","Finland","Belgium",
+                 "Austria","Ireland","Portugal","Poland","Greece"],
+        market_caps=["Mid Cap"],
+        index="IEUS", suffix=None, label="Europe Mid Cap (FD multi-country)",
+    ),
+    "fd-eu-small": dict(
+        source="financedatabase",
+        country=["United Kingdom","Germany","France","Switzerland","Netherlands",
+                 "Italy","Spain","Sweden","Norway","Denmark","Finland","Belgium",
+                 "Austria","Ireland","Portugal","Poland","Greece"],
+        market_caps=["Small Cap"],
+        index="IEUS", suffix=None, label="Europe Small Cap (FD multi-country)",
+    ),
+    "fd-eu-micro": dict(
+        source="financedatabase",
+        country=["United Kingdom","Germany","France","Switzerland","Netherlands",
+                 "Italy","Spain","Sweden","Norway","Denmark","Finland","Belgium",
+                 "Austria","Ireland","Portugal","Poland","Greece"],
+        market_caps=["Micro Cap"],
+        index="IEUS", suffix=None, label="Europe Micro Cap (FD multi-country)",
+    ),
+    "fd-eu-nano": dict(
+        source="financedatabase",
+        country=["United Kingdom","Germany","France","Switzerland","Netherlands",
+                 "Italy","Spain","Sweden","Norway","Denmark","Finland","Belgium",
+                 "Austria","Ireland","Portugal","Poland","Greece"],
+        market_caps=["Nano Cap"],
+        index="IEUS", suffix=None, label="Europe Nano Cap (FD multi-country)",
+    ),
 }
 
 NASDAQ_SCREENER_URL = (
@@ -289,25 +322,29 @@ def _fetch_holdings_csv(cfg: dict) -> str:
 FD_US_EXCHANGES = {"NMS", "NYQ", "NCM", "NGM", "ASE", "PCX", "BTS"}
 
 
-def fetch_fd_universe(country: str, market_caps, listed_exchanges=None) -> tuple[list[str], pd.DataFrame]:
+def fetch_fd_universe(country, market_caps, listed_exchanges=None) -> tuple[list[str], pd.DataFrame]:
     """Pull a universe from JerBouma's financedatabase package.
 
-    `market_caps` accepts a string ("Micro Cap") or list of strings; the
-    intersection is returned.  `listed_exchanges` filters by Yahoo exchange
-    code (None = no filter).  Returns (tickers, metadata-DataFrame).
+    `country` is a single country or list (union across them).
+    `market_caps` accepts a string ("Micro Cap") or list (union).
+    `listed_exchanges` filters by Yahoo exchange code (None = no filter).
     """
     import financedatabase as fd
     eq = fd.Equities()
     if isinstance(market_caps, str):
         market_caps = [market_caps]
+    if isinstance(country, str):
+        countries = [country]
+    else:
+        countries = list(country)
     rows = []
-    for mc in market_caps:
-        rows.append(eq.select(country=country, market_cap=mc))
+    for c in countries:
+        for mc in market_caps:
+            rows.append(eq.select(country=c, market_cap=mc))
     df = pd.concat(rows) if rows else pd.DataFrame()
     df = df[~df.index.duplicated()]
     if listed_exchanges is not None:
         df = df[df.exchange.isin(listed_exchanges)]
-    # Yahoo wants '-' for share classes; preserve as-is for international suffixes.
     tickers = sorted({str(t) for t in df.index
                       if t and str(t).strip()
                       and len(str(t)) <= 15
