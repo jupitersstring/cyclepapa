@@ -247,6 +247,61 @@ def cmd_plot(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_changepoints(args: argparse.Namespace) -> int:
+    """Detect structural change-points in social signals via ruptures."""
+    from .changepoint import scan_tickers_for_changes
+    cfg = Config()
+    out = scan_tickers_for_changes(
+        cfg, method=args.method, penalty=args.penalty,
+        min_total_mentions=args.min_total, top_recent=args.top,
+    )
+    if out.empty:
+        print("no change-points; install `ruptures` or lower --min-total")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 200)
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_bot_filter(args: argparse.Namespace) -> int:
+    """Score every mention for bot-likeness and optionally apply filter."""
+    from . import storage
+    from .bot_filter import score_bots, BotFilterParams
+    cfg = Config()
+    with storage.connect(cfg) as con:
+        df = con.execute("SELECT * FROM mentions").df()
+    if df.empty:
+        print("no mentions")
+        return 0
+    scored = score_bots(df, BotFilterParams(
+        max_posts_per_day=args.max_per_day,
+        dup_text_threshold=args.dup_threshold,
+    ))
+    counts = scored["bot_score"].describe()
+    print("bot_score distribution across full mention store:")
+    print(counts.round(3).to_string())
+    bot_mask = scored["bot_score"] >= 0.5
+    print(f"\nrows with bot_score >= 0.5: {int(bot_mask.sum()):,} / {len(scored):,}")
+    print("\nTop-suspicious authors by row count:")
+    sus = scored[bot_mask].groupby("author").size().sort_values(ascending=False).head(15)
+    print(sus.to_string())
+    return 0
+
+
+def cmd_pit_snapshot(args: argparse.Namespace) -> int:
+    """Snapshot IWV (Russell 3000 ETF) constituents to data/universe_pit/."""
+    from .universe_pit import save_constituents_snapshot
+    cfg = Config()
+    path = save_constituents_snapshot(cfg)
+    if path is None:
+        print("snapshot failed")
+        return 1
+    print(f"snapshot saved: {path}")
+    return 0
+
+
 def cmd_health(args: argparse.Namespace) -> int:
     """Pipeline health & coverage audit."""
     from .health import collect as _hc
@@ -505,6 +560,122 @@ def cmd_backfill(args: argparse.Namespace) -> int:
                                  query=q.strip(), count=100)
             total += storage.upsert_mentions(cfg, df)
         print(f"twitter (twikit): {total} mentions stored")
+    elif args.source == "telegram":
+        from .collectors.telegram import collect_telegram
+        from . import storage
+        channels = (args.queries.split(",") if args.queries else None) or [
+            "@WSBchatter", "@CryptoNewsPlus", "@stocktitan",
+            "@finance_news_eng",
+        ]
+        df = collect_telegram(cfg, pipe.resolver, pipe.sentiment,
+                              channels=[c.strip() for c in channels],
+                              limit_per_channel=300)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"telegram: {n} mentions stored")
+    elif args.source == "tiktok":
+        from .collectors.tiktok_creative import collect_tiktok_hashtags_as_mentions
+        from . import storage
+        hashtag_to_ticker = {
+            "celsius": "CELH",
+            "celsiusdrink": "CELH",
+            "stanleycup": "ELUX-B.ST",
+            "stanleytumbler": "ELUX-B.ST",
+            "crocs": "CROX",
+            "ugg": "DECK",
+            "hoka": "DECK",
+            "birkenstock": "BIRK",
+            "lululemon": "LULU",
+            "allbirds": "BIRD",
+            "buildabear": "BBW",
+            "vitalfarms": "VITL",
+            "nvidia": "NVDA",
+        }
+        if args.queries:
+            hashtag_to_ticker = dict(
+                tuple(kv.split(":")) for kv in args.queries.split(",") if ":" in kv
+            )
+        df = collect_tiktok_hashtags_as_mentions(cfg, hashtag_to_ticker)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"tiktok creative center: {n} rows stored")
+    elif args.source == "google-play":
+        from .collectors.app_stores import collect_app_signals
+        from . import storage
+        app_to_ticker = {
+            "com.celsius.celsius": "CELH",
+            "com.crocs.android": "CROX",
+            "com.lululemon.app": "LULU",
+            "com.tripadvisor.tripadvisor": "TRIP",
+            "com.starbucks.mobilecard": "SBUX",
+            "com.robinhood.android": "HOOD",
+            "com.cheesecakefactory.app": "CAKE",
+            "com.dutchbros.app": "BROS",
+            "com.gap.gap": "GPS",
+        }
+        if args.queries:
+            app_to_ticker = dict(
+                tuple(kv.split(":")) for kv in args.queries.split(",") if ":" in kv
+            )
+        df = collect_app_signals(cfg, app_to_ticker, reviews_per_app=50)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"google_play: {n} rows stored")
+    elif args.source == "jobs":
+        from .collectors.job_postings import collect_job_postings
+        from . import storage
+        ticker_to_board = {
+            "CELH": ("greenhouse", "celsius"),
+            "FTDR": ("greenhouse", "frontdoor"),
+            "CROX": ("greenhouse", "crocs"),
+            "HOOD": ("greenhouse", "robinhood"),
+            "DECK": ("greenhouse", "deckersbrands"),
+            "BBW": ("greenhouse", "buildabear"),
+            "VITL": ("greenhouse", "vitalfarms"),
+            "TRIP": ("greenhouse", "tripadvisor"),
+            "GPS": ("greenhouse", "gapinc"),
+        }
+        if args.queries:
+            ticker_to_board = {}
+            for kv in args.queries.split(","):
+                parts = kv.split(":")
+                if len(parts) == 3:
+                    ticker_to_board[parts[0]] = (parts[1], parts[2])
+        df = collect_job_postings(cfg, ticker_to_board)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"job_postings: {n} rows stored")
+    elif args.source == "capitol":
+        from .collectors.capitol_trades import collect_capitol_trades
+        from . import storage
+        df = collect_capitol_trades(cfg, days_back=args.days)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"capitol_trades: {n} filings stored")
+    elif args.source == "patents":
+        from .collectors.uspto import collect_patents
+        from . import storage
+        assignee_to_ticker = {
+            "Mattel, Inc.": "MAT",
+            "Crocs, Inc.": "CROX",
+            "Newell Brands": "NWL",
+            "Nvidia Corporation": "NVDA",
+            "Deckers Outdoor Corporation": "DECK",
+        }
+        if args.queries:
+            assignee_to_ticker = dict(
+                tuple(kv.split(":")) for kv in args.queries.split(",") if ":" in kv
+            )
+        df = collect_patents(cfg, assignee_to_ticker)
+        n = storage.upsert_mentions(cfg, df)
+        print(f"uspto patents: {n} rows stored")
+    elif args.source == "rss":
+        from .collectors.rss_news import collect_rss_for_ticker
+        from . import storage
+        tickers = (args.queries.split(",") if args.queries else None) or [
+            "CELH", "NVDA", "NWL", "TRIP", "DECK", "BBW", "VITL",
+        ]
+        total = 0
+        for t in tickers:
+            df = collect_rss_for_ticker(cfg, pipe.sentiment,
+                                         ticker=t.strip(), fetch_bodies=args.fetch_bodies)
+            total += storage.upsert_mentions(cfg, df)
+        print(f"rss news: {total} rows stored")
     else:
         print(f"unknown source: {args.source}", file=sys.stderr)
         return 2
@@ -1115,6 +1286,24 @@ def build_parser() -> argparse.ArgumentParser:
     phc = sub.add_parser("health", help="Pipeline health & coverage audit")
     phc.set_defaults(func=cmd_health)
 
+    pcp = sub.add_parser("changepoints",
+                        help="Structural change-point detection via ruptures (CUSUM/PELT)")
+    pcp.add_argument("--top", type=int, default=30)
+    pcp.add_argument("--method", default="pelt", choices=["pelt", "binseg", "window"])
+    pcp.add_argument("--penalty", type=float, default=5.0)
+    pcp.add_argument("--min-total", dest="min_total", type=int, default=30)
+    pcp.set_defaults(func=cmd_changepoints)
+
+    pbot = sub.add_parser("bot-filter",
+                        help="Score every mention for bot-likeness")
+    pbot.add_argument("--max-per-day", dest="max_per_day", type=int, default=30)
+    pbot.add_argument("--dup-threshold", dest="dup_threshold", type=int, default=3)
+    pbot.set_defaults(func=cmd_bot_filter)
+
+    ppit = sub.add_parser("pit-snapshot",
+                        help="Snapshot iShares Russell 3000 (IWV) constituents")
+    ppit.set_defaults(func=cmd_pit_snapshot)
+
     pdv = sub.add_parser("divergence", help="Find tickers where social leads price (information edge)")
     pdv.add_argument("--top", type=int, default=30)
     pdv.add_argument("--lookback", type=int, default=13)
@@ -1166,7 +1355,11 @@ def build_parser() -> argparse.ArgumentParser:
         "hackernews", "wikipedia", "bluesky", "openinsider",
         "google-trends", "brave-search",
         "nitter", "youtube", "mastodon", "twitter",
+        "telegram", "tiktok", "google-play", "jobs",
+        "capitol", "patents", "rss",
     ])
+    pbf.add_argument("--fetch-bodies", dest="fetch_bodies", action="store_true",
+                    help="rss-news: fetch article body via trafilatura")
     pbf.add_argument("--queries", default=None,
                     help="comma-separated query/title list; defaults to Camillo-archetype set")
     pbf.add_argument("--days", type=int, default=365, help="days of history (hn/wikipedia)")
