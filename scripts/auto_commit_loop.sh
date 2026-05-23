@@ -24,5 +24,5 @@ while true; do
             delay=$((delay * 2))
         done
     fi
-    sleep 300
+    sleep 30
 done
