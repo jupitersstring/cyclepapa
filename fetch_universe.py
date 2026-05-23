@@ -213,8 +213,16 @@ def build_universe() -> list[str]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--workers', type=int, default=6)
-    ap.add_argument('--request-sleep', type=float, default=0.4)
+    ap.add_argument('--workers', type=int, default=4)
+    ap.add_argument('--request-sleep', type=float, default=0.6)
+    ap.add_argument('--batch-size', type=int, default=1000,
+                    help='process this many tickers per batch')
+    ap.add_argument('--batch-pause', type=float, default=30.0,
+                    help='seconds to wait between batches (let yfinance breathe)')
+    ap.add_argument('--throttle-pause', type=float, default=300.0,
+                    help='longer pause when a batch hits the throttle wall')
+    ap.add_argument('--throttle-threshold', type=float, default=0.05,
+                    help='if fraction of batch with new fetches < this, treat as throttled')
     ap.add_argument('--tickers', nargs='+', default=None,
                     help='override: fetch only these tickers')
     ap.add_argument('--max', type=int, default=None,
@@ -228,39 +236,75 @@ def main():
     if args.max:
         universe = universe[:args.max]
     print(f"Universe to process: {len(universe)}")
+    print(f"Batch size: {args.batch_size}   Pause between batches: {args.batch_pause}s")
+    print(f"Throttle pause: {args.throttle_pause}s if batch success rate < {args.throttle_threshold*100:.0f}%")
 
-    results = []
-    t0 = time.time()
+    # Resumability: each ticker's slots are individually cached on disk.
+    # fetch_one() checks each slot before fetching, so a re-run naturally
+    # skips done work. Throttled-but-empty fetches don't write any cache --
+    # they'll be retried next pass.
+
+    log_path = Path('fetch_universe.log.csv')
+    all_results = []
     fetched_counts = {'price':0,'info':0,'eps_history':0,'income':0,'cashflow':0}
     skipped_all = 0
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futs = {pool.submit(fetch_one, t): t for t in universe}
-        for i, fut in enumerate(as_completed(futs), 1):
-            try:
-                r = fut.result(timeout=180)
-            except Exception as exc:
-                r = {'_ticker': futs[fut], '_error': f'worker exc: {exc}'}
-            results.append(r)
-            if r.get('_all_cached'):
-                skipped_all += 1
-            for k in fetched_counts:
-                if r.get(k) == 'fetched':
-                    fetched_counts[k] += 1
-            if i % 100 == 0 or i == len(universe):
-                el = time.time() - t0
-                rate = i/el if el>0 else 0
-                eta_sec = (len(universe)-i)/rate if rate>0 else 0
-                print(f"  {i}/{len(universe)}  ({rate:.1f}/s)  "
-                      f"all-cached={skipped_all}  fetched={fetched_counts}  "
-                      f"eta={eta_sec/60:.0f}min")
-            time.sleep(args.request_sleep / args.workers)
-    print(f"\nDone in {time.time()-t0:.0f}s")
-    print(f"All-cached (skipped): {skipped_all}")
-    print(f"New fetches:  {fetched_counts}")
-    # Save log
-    log = pd.DataFrame([{k: v for k, v in r.items()} for r in results])
-    log_path = Path('fetch_universe.log.csv')
-    log.to_csv(log_path, index=False)
+    t0 = time.time()
+
+    batches = [universe[i:i+args.batch_size]
+               for i in range(0, len(universe), args.batch_size)]
+    print(f"Processing {len(batches)} batches of {args.batch_size}\n")
+
+    for bi, batch in enumerate(batches, 1):
+        b_t0 = time.time()
+        b_fetched = {'price':0,'info':0,'eps_history':0,'income':0,'cashflow':0}
+        b_skipped = 0
+        b_results = []
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futs = {pool.submit(fetch_one, t): t for t in batch}
+            for fut in as_completed(futs):
+                try:
+                    r = fut.result(timeout=180)
+                except Exception as exc:
+                    r = {'_ticker': futs[fut], '_error': f'worker exc: {exc}'}
+                b_results.append(r)
+                if r.get('_all_cached'): b_skipped += 1
+                for k in fetched_counts:
+                    if r.get(k) == 'fetched':
+                        b_fetched[k] += 1
+                        fetched_counts[k] += 1
+                time.sleep(args.request_sleep / args.workers)
+        all_results.extend(b_results)
+        skipped_all += b_skipped
+
+        # Save progress log after each batch
+        pd.DataFrame([{k: v for k, v in r.items()} for r in all_results]).to_csv(log_path, index=False)
+
+        b_total_new = sum(b_fetched.values())
+        b_attempts = len(batch) - b_skipped
+        b_rate = b_total_new / max(1, b_attempts)  # fraction of attempted slots with new data
+        b_elapsed = time.time() - b_t0
+        cum_elapsed = time.time() - t0
+        eta_min = (len(universe) - bi*args.batch_size) / (bi*args.batch_size / cum_elapsed) / 60 if cum_elapsed > 0 else 0
+        print(f"BATCH {bi}/{len(batches)} done in {b_elapsed:.0f}s | "
+              f"all-cached={b_skipped}/{len(batch)} | fetched={b_fetched} | "
+              f"success-rate={b_rate:.2f} | total-fetched-so-far={fetched_counts} | "
+              f"eta={eta_min:.0f}min")
+
+        if bi == len(batches): break    # no pause after the last batch
+
+        # Throttle detection: if this batch's success rate is below threshold
+        # AND we actually attempted (not all skipped), take a longer pause.
+        if b_attempts > 50 and b_rate < args.throttle_threshold:
+            print(f"  -> Throttle detected (success rate {b_rate:.3f} < {args.throttle_threshold}). "
+                  f"Pausing {args.throttle_pause:.0f}s")
+            time.sleep(args.throttle_pause)
+        else:
+            print(f"  -> Normal pause {args.batch_pause:.0f}s")
+            time.sleep(args.batch_pause)
+
+    print(f"\nDone in {(time.time()-t0)/60:.1f}min")
+    print(f"All-cached: {skipped_all}")
+    print(f"Total new fetches:  {fetched_counts}")
     print(f"Per-ticker log: {log_path}")
 
 
