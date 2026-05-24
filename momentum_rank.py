@@ -297,9 +297,10 @@ def true_range(high, low, close_prev):
     )
 
 
-def find_swing_pivots(high_arr, low_arr, lookback=3):
-    """Alternating swing pivots: (idx, price, 'H'|'L').
-    A pivot high is the strict max over `lookback` bars on each side."""
+def find_swing_pivots(high_arr, low_arr, lookback=5, min_swing_pct=4.0):
+    """ZigZag-style alternating swing pivots: (idx, price, 'H'|'L').
+    Each pivot is a local extremum over +/- lookback bars and is at least
+    min_swing_pct away from the prior pivot."""
     n = len(high_arr)
     pivots = []
     for i in range(lookback, n - lookback):
@@ -319,6 +320,26 @@ def find_swing_pivots(high_arr, low_arr, lookback=3):
             cleaned.append(p)
         elif (p[2] == "H" and p[1] > cleaned[-1][1]) or (p[2] == "L" and p[1] < cleaned[-1][1]):
             cleaned[-1] = p
+    # Apply minimum swing percent filter (ZigZag style) - skip tiny swings
+    if min_swing_pct > 0 and len(cleaned) > 1:
+        filtered = [cleaned[0]]
+        for p in cleaned[1:]:
+            swing_pct = abs(p[1] - filtered[-1][1]) / filtered[-1][1] * 100
+            if swing_pct >= min_swing_pct:
+                filtered.append(p)
+            else:
+                # too small a swing; replace the prior pivot if same direction
+                if (p[2] == "H" and p[1] > filtered[-1][1]) or \
+                   (p[2] == "L" and p[1] < filtered[-1][1]):
+                    filtered[-1] = p
+        # Re-dedupe consecutive same-type after replacement
+        re_cleaned = [filtered[0]]
+        for p in filtered[1:]:
+            if p[2] != re_cleaned[-1][2]:
+                re_cleaned.append(p)
+            elif (p[2] == "H" and p[1] > re_cleaned[-1][1]) or (p[2] == "L" and p[1] < re_cleaned[-1][1]):
+                re_cleaned[-1] = p
+        cleaned = re_cleaned
     return cleaned
 
 
@@ -355,30 +376,41 @@ def detect_harmonic(pivots, current_close):
     is_beyond_x = (bullish and D[1] < X[1]) or (not bullish and D[1] > X[1])
 
     candidates = []
-    # Gartley:    AB=0.618, BC 0.382-0.886, CD 1.13-1.618, D=0.786 XA
-    if _near(ab_xa, 0.618, 0.07) and 0.382 <= bc_ab <= 0.886 and \
-       1.13 <= cd_bc <= 1.618 and _near(d_x_ratio, 0.786, 0.07):
-        candidates.append(("Gartley", 0.95))
-    # Bat:        AB=0.50,  BC 0.382-0.886, CD 1.618-2.618, D=0.886 XA
-    if _near(ab_xa, 0.50, 0.10) and 0.382 <= bc_ab <= 0.886 and \
-       1.618 <= cd_bc <= 2.618 and _near(d_x_ratio, 0.886, 0.05):
-        candidates.append(("Bat", 0.95))
-    # Butterfly:  AB=0.786, BC 0.382-0.886, CD 1.618-2.618, D 1.27-1.62 XA, beyond X
-    if _near(ab_xa, 0.786, 0.07) and 0.382 <= bc_ab <= 0.886 and \
-       1.618 <= cd_bc <= 2.618 and 1.20 <= d_x_ratio <= 1.62 and is_beyond_x:
-        candidates.append(("Butterfly", 0.90))
-    # Crab:       AB 0.382-0.618, BC 0.382-0.886, CD 2.24-3.618, D 1.618 XA, beyond X
-    if 0.382 <= ab_xa <= 0.618 and 0.382 <= bc_ab <= 0.886 and \
-       2.24 <= cd_bc <= 3.618 and _near(d_x_ratio, 1.618, 0.10) and is_beyond_x:
-        candidates.append(("Crab", 0.90))
-    # Deep Crab:  AB=0.886, BC 0.382-0.886, CD 2.0-3.618, D 1.618 XA, beyond X
-    if _near(ab_xa, 0.886, 0.05) and 0.382 <= bc_ab <= 0.886 and \
-       2.0 <= cd_bc <= 3.618 and _near(d_x_ratio, 1.618, 0.10) and is_beyond_x:
-        candidates.append(("Deep Crab", 0.90))
-    # Cypher:     AB 0.382-0.618, BC 1.13-1.50 of XA, CD=0.786 XC
-    if 0.382 <= ab_xa <= 0.618 and 1.13 <= bc_xa <= 1.50 and \
-       _near(cd_xc, 0.786, 0.07):
-        candidates.append(("Cypher", 0.85))
+    # Tolerances widened to 10-12% so the screener catches near-fits;
+    # the quality score reflects how tight the actual ratios are.
+    def _q(actual, target):
+        return max(0.0, 1.0 - abs(actual - target) / target / 2)  # 1.0 perfect, 0.0 50% off
+
+    # Gartley:    AB=0.618, BC 0.30-0.95, CD 1.05-1.70, D=0.786 XA
+    if _near(ab_xa, 0.618, 0.12) and 0.30 <= bc_ab <= 0.95 and \
+       1.05 <= cd_bc <= 1.70 and _near(d_x_ratio, 0.786, 0.10):
+        candidates.append(("Gartley", 0.6 * _q(ab_xa, 0.618) + 0.4 * _q(d_x_ratio, 0.786)))
+    # Bat:        AB=0.50,  BC 0.30-0.95, CD 1.50-2.80, D=0.886 XA
+    if _near(ab_xa, 0.50, 0.15) and 0.30 <= bc_ab <= 0.95 and \
+       1.50 <= cd_bc <= 2.80 and _near(d_x_ratio, 0.886, 0.08):
+        candidates.append(("Bat", 0.6 * _q(ab_xa, 0.50) + 0.4 * _q(d_x_ratio, 0.886)))
+    # Butterfly:  AB=0.786, BC 0.30-0.95, CD 1.50-2.80, D 1.10-1.70 XA, beyond X
+    if _near(ab_xa, 0.786, 0.12) and 0.30 <= bc_ab <= 0.95 and \
+       1.50 <= cd_bc <= 2.80 and 1.10 <= d_x_ratio <= 1.70 and is_beyond_x:
+        candidates.append(("Butterfly", 0.6 * _q(ab_xa, 0.786) + 0.4 * _q(d_x_ratio, 1.272)))
+    # Crab:       AB 0.30-0.65, BC 0.30-0.95, CD 2.0-3.80, D 1.40-1.80 XA, beyond X
+    if 0.30 <= ab_xa <= 0.65 and 0.30 <= bc_ab <= 0.95 and \
+       2.0 <= cd_bc <= 3.80 and 1.40 <= d_x_ratio <= 1.80 and is_beyond_x:
+        candidates.append(("Crab", 0.5 * _q(d_x_ratio, 1.618) + 0.5))
+    # Deep Crab:  AB=0.886, BC 0.30-0.95, CD 1.80-3.80, D 1.40-1.80 XA, beyond X
+    if _near(ab_xa, 0.886, 0.08) and 0.30 <= bc_ab <= 0.95 and \
+       1.80 <= cd_bc <= 3.80 and 1.40 <= d_x_ratio <= 1.80 and is_beyond_x:
+        candidates.append(("Deep Crab", 0.6 * _q(ab_xa, 0.886) + 0.4 * _q(d_x_ratio, 1.618)))
+    # Cypher:     AB 0.30-0.65, BC 1.05-1.60 of XA, CD=0.786 XC
+    if 0.30 <= ab_xa <= 0.65 and 1.05 <= bc_xa <= 1.60 and \
+       _near(cd_xc, 0.786, 0.12):
+        candidates.append(("Cypher", 0.5 * _q(cd_xc, 0.786) + 0.4))
+    # AB=CD (4-point simpler): C retraces ~0.618 of AB, then D where CD ≈ AB
+    # Allowing 0.50-0.786 for C, and CD length 0.85-1.15 of AB
+    cd_ab = cd / ab if ab else 0
+    bc_ab_inv = bc / ab if ab else 0
+    if 0.45 <= bc_ab_inv <= 0.85 and 0.85 <= cd_ab <= 1.15:
+        candidates.append(("AB=CD", 0.3 + 0.4 * _q(cd_ab, 1.0)))
 
     if not candidates:
         return None
@@ -398,8 +430,8 @@ def detect_harmonic(pivots, current_close):
     }
 
 
-def compute_harmonics_for_tf(df_ohlc, lookback=3, recent_d_max_bars=10,
-                              close_near_d_pct=10.0):
+def compute_harmonics_for_tf(df_ohlc, lookback=5, min_swing_pct=4.0,
+                              recent_d_max_bars=15, close_near_d_pct=10.0):
     """Find most recent harmonic pattern on a single timeframe.
     Returns None if D pivot is too old or current price is too far from D."""
     if "High" not in df_ohlc.columns or len(df_ohlc) < lookback * 2 + 6:
@@ -407,7 +439,7 @@ def compute_harmonics_for_tf(df_ohlc, lookback=3, recent_d_max_bars=10,
     high = pd.to_numeric(df_ohlc["High"], errors="coerce").values
     low = pd.to_numeric(df_ohlc["Low"], errors="coerce").values
     close_last = float(pd.to_numeric(df_ohlc["Close"], errors="coerce").iloc[-1])
-    pivots = find_swing_pivots(high, low, lookback=lookback)
+    pivots = find_swing_pivots(high, low, lookback=lookback, min_swing_pct=min_swing_pct)
     h = detect_harmonic(pivots, close_last)
     if h is None:
         return None
@@ -616,9 +648,9 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # Squeeze & Release on daily bars
     sq_d = compute_squeeze_release(df) or {}
 
-    # Harmonic patterns on daily bars
-    h_d = compute_harmonics_for_tf(df, lookback=3, recent_d_max_bars=10,
-                                    close_near_d_pct=8.0) or {}
+    # Harmonic patterns on daily bars (5-bar ZigZag, 4% min swing)
+    h_d = compute_harmonics_for_tf(df, lookback=5, min_swing_pct=4.0,
+                                    recent_d_max_bars=15, close_near_d_pct=8.0) or {}
 
     # --- Weekly metrics (the proper Q base/extension lens) -----------------
     df_ohlcv = pd.DataFrame({
@@ -664,15 +696,16 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # Squeeze & Release on weekly bars
     sq_w = compute_squeeze_release(weekly) or {}
 
-    # Harmonic patterns on weekly bars
-    h_w = compute_harmonics_for_tf(weekly, lookback=2, recent_d_max_bars=6,
-                                    close_near_d_pct=12.0) or {}
+    # Harmonic patterns on weekly bars (3-bar ZigZag, 7% min swing)
+    h_w = compute_harmonics_for_tf(weekly, lookback=3, min_swing_pct=7.0,
+                                    recent_d_max_bars=8, close_near_d_pct=12.0) or {}
 
     # Squeeze & Release on monthly bars (use direct monthly download if available)
     if df_monthly is not None and len(df_monthly) >= 60:
         sq_m = compute_squeeze_release(df_monthly) or {}
-        h_m = compute_harmonics_for_tf(df_monthly, lookback=2, recent_d_max_bars=4,
-                                        close_near_d_pct=18.0) or {}
+        # Monthly: 2-bar pivots, 10% min swing
+        h_m = compute_harmonics_for_tf(df_monthly, lookback=2, min_swing_pct=10.0,
+                                        recent_d_max_bars=5, close_near_d_pct=18.0) or {}
     else:
         # resample from daily to monthly
         monthly_from_daily = df_ohlcv.resample("ME").agg({
@@ -680,8 +713,8 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
             "Close": "last", "Volume": "sum",
         }).dropna()
         sq_m = compute_squeeze_release(monthly_from_daily, period=6, smoothing=4, ma_length=6) or {}
-        h_m = compute_harmonics_for_tf(monthly_from_daily, lookback=2, recent_d_max_bars=4,
-                                        close_near_d_pct=18.0) or {}
+        h_m = compute_harmonics_for_tf(monthly_from_daily, lookback=2, min_swing_pct=10.0,
+                                        recent_d_max_bars=5, close_near_d_pct=18.0) or {}
 
     # Monthly asymmetry on direct monthly bars (or resampled)
     monthly_asym_dict = {}
