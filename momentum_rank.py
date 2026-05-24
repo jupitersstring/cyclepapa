@@ -297,6 +297,130 @@ def true_range(high, low, close_prev):
     )
 
 
+def find_swing_pivots(high_arr, low_arr, lookback=3):
+    """Alternating swing pivots: (idx, price, 'H'|'L').
+    A pivot high is the strict max over `lookback` bars on each side."""
+    n = len(high_arr)
+    pivots = []
+    for i in range(lookback, n - lookback):
+        is_high = all(high_arr[i] >= high_arr[i - k] for k in range(1, lookback + 1)) and \
+                  all(high_arr[i] >= high_arr[i + k] for k in range(1, lookback + 1))
+        is_low = all(low_arr[i] <= low_arr[i - k] for k in range(1, lookback + 1)) and \
+                 all(low_arr[i] <= low_arr[i + k] for k in range(1, lookback + 1))
+        if is_high and not is_low:
+            pivots.append((i, float(high_arr[i]), "H"))
+        elif is_low and not is_high:
+            pivots.append((i, float(low_arr[i]), "L"))
+    if not pivots:
+        return []
+    cleaned = [pivots[0]]
+    for p in pivots[1:]:
+        if p[2] != cleaned[-1][2]:
+            cleaned.append(p)
+        elif (p[2] == "H" and p[1] > cleaned[-1][1]) or (p[2] == "L" and p[1] < cleaned[-1][1]):
+            cleaned[-1] = p
+    return cleaned
+
+
+def _near(value, target, tol=0.07):
+    return abs(value - target) / target <= tol if target else False
+
+
+def detect_harmonic(pivots, current_close):
+    """Inspect the last 5 alternating pivots for a harmonic pattern."""
+    if len(pivots) < 5:
+        return None
+    X, A, B, C, D = pivots[-5:]
+    types = "".join(p[2] for p in [X, A, B, C, D])
+    if types == "LHLHL":
+        bullish = True
+    elif types == "HLHLH":
+        bullish = False
+    else:
+        return None
+    xa = abs(A[1] - X[1])
+    ab = abs(B[1] - A[1])
+    bc = abs(C[1] - B[1])
+    cd = abs(D[1] - C[1])
+    xc = abs(C[1] - X[1])
+    if xa <= 0 or ab <= 0:
+        return None
+    ab_xa = ab / xa
+    bc_ab = bc / ab if ab else 0
+    cd_bc = cd / bc if bc else 0
+    bc_xa = bc / xa
+    cd_xc = cd / xc if xc else 0
+    d_x_ratio = abs(D[1] - X[1]) / xa
+
+    is_beyond_x = (bullish and D[1] < X[1]) or (not bullish and D[1] > X[1])
+
+    candidates = []
+    # Gartley:    AB=0.618, BC 0.382-0.886, CD 1.13-1.618, D=0.786 XA
+    if _near(ab_xa, 0.618, 0.07) and 0.382 <= bc_ab <= 0.886 and \
+       1.13 <= cd_bc <= 1.618 and _near(d_x_ratio, 0.786, 0.07):
+        candidates.append(("Gartley", 0.95))
+    # Bat:        AB=0.50,  BC 0.382-0.886, CD 1.618-2.618, D=0.886 XA
+    if _near(ab_xa, 0.50, 0.10) and 0.382 <= bc_ab <= 0.886 and \
+       1.618 <= cd_bc <= 2.618 and _near(d_x_ratio, 0.886, 0.05):
+        candidates.append(("Bat", 0.95))
+    # Butterfly:  AB=0.786, BC 0.382-0.886, CD 1.618-2.618, D 1.27-1.62 XA, beyond X
+    if _near(ab_xa, 0.786, 0.07) and 0.382 <= bc_ab <= 0.886 and \
+       1.618 <= cd_bc <= 2.618 and 1.20 <= d_x_ratio <= 1.62 and is_beyond_x:
+        candidates.append(("Butterfly", 0.90))
+    # Crab:       AB 0.382-0.618, BC 0.382-0.886, CD 2.24-3.618, D 1.618 XA, beyond X
+    if 0.382 <= ab_xa <= 0.618 and 0.382 <= bc_ab <= 0.886 and \
+       2.24 <= cd_bc <= 3.618 and _near(d_x_ratio, 1.618, 0.10) and is_beyond_x:
+        candidates.append(("Crab", 0.90))
+    # Deep Crab:  AB=0.886, BC 0.382-0.886, CD 2.0-3.618, D 1.618 XA, beyond X
+    if _near(ab_xa, 0.886, 0.05) and 0.382 <= bc_ab <= 0.886 and \
+       2.0 <= cd_bc <= 3.618 and _near(d_x_ratio, 1.618, 0.10) and is_beyond_x:
+        candidates.append(("Deep Crab", 0.90))
+    # Cypher:     AB 0.382-0.618, BC 1.13-1.50 of XA, CD=0.786 XC
+    if 0.382 <= ab_xa <= 0.618 and 1.13 <= bc_xa <= 1.50 and \
+       _near(cd_xc, 0.786, 0.07):
+        candidates.append(("Cypher", 0.85))
+
+    if not candidates:
+        return None
+    pattern, quality = max(candidates, key=lambda c: c[1])
+    dist_from_d_pct = (current_close - D[1]) / D[1] * 100
+    return {
+        "pattern": pattern,
+        "direction": "bullish" if bullish else "bearish",
+        "quality": quality,
+        "D_price": D[1],
+        "D_bar_idx": D[0],
+        "dist_from_d_pct": dist_from_d_pct,
+        "ab_xa": ab_xa,
+        "bc_ab": bc_ab,
+        "cd_bc": cd_bc,
+        "d_x_ratio": d_x_ratio,
+    }
+
+
+def compute_harmonics_for_tf(df_ohlc, lookback=3, recent_d_max_bars=10,
+                              close_near_d_pct=10.0):
+    """Find most recent harmonic pattern on a single timeframe.
+    Returns None if D pivot is too old or current price is too far from D."""
+    if "High" not in df_ohlc.columns or len(df_ohlc) < lookback * 2 + 6:
+        return None
+    high = pd.to_numeric(df_ohlc["High"], errors="coerce").values
+    low = pd.to_numeric(df_ohlc["Low"], errors="coerce").values
+    close_last = float(pd.to_numeric(df_ohlc["Close"], errors="coerce").iloc[-1])
+    pivots = find_swing_pivots(high, low, lookback=lookback)
+    h = detect_harmonic(pivots, close_last)
+    if h is None:
+        return None
+    bars_since_d = len(df_ohlc) - 1 - h["D_bar_idx"]
+    if bars_since_d > recent_d_max_bars:
+        return None
+    if abs(h["dist_from_d_pct"]) > close_near_d_pct:
+        # Current price has already moved away from D - pattern played out
+        return None
+    h["bars_since_d"] = bars_since_d
+    return h
+
+
 def compute_squeeze_release(df, period=14, smoothing=7, ma_length=14, hist_window=100):
     """Pine Script Squeeze & Release port (malikmck / YourName).
 
@@ -492,6 +616,10 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # Squeeze & Release on daily bars
     sq_d = compute_squeeze_release(df) or {}
 
+    # Harmonic patterns on daily bars
+    h_d = compute_harmonics_for_tf(df, lookback=3, recent_d_max_bars=10,
+                                    close_near_d_pct=8.0) or {}
+
     # --- Weekly metrics (the proper Q base/extension lens) -----------------
     df_ohlcv = pd.DataFrame({
         "Open": pd.to_numeric(df["Open"], errors="coerce") if "Open" in df.columns else close,
@@ -536,9 +664,15 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # Squeeze & Release on weekly bars
     sq_w = compute_squeeze_release(weekly) or {}
 
+    # Harmonic patterns on weekly bars
+    h_w = compute_harmonics_for_tf(weekly, lookback=2, recent_d_max_bars=6,
+                                    close_near_d_pct=12.0) or {}
+
     # Squeeze & Release on monthly bars (use direct monthly download if available)
     if df_monthly is not None and len(df_monthly) >= 60:
         sq_m = compute_squeeze_release(df_monthly) or {}
+        h_m = compute_harmonics_for_tf(df_monthly, lookback=2, recent_d_max_bars=4,
+                                        close_near_d_pct=18.0) or {}
     else:
         # resample from daily to monthly
         monthly_from_daily = df_ohlcv.resample("ME").agg({
@@ -546,6 +680,8 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
             "Close": "last", "Volume": "sum",
         }).dropna()
         sq_m = compute_squeeze_release(monthly_from_daily, period=6, smoothing=4, ma_length=6) or {}
+        h_m = compute_harmonics_for_tf(monthly_from_daily, lookback=2, recent_d_max_bars=4,
+                                        close_near_d_pct=18.0) or {}
 
     # Monthly asymmetry on direct monthly bars (or resampled)
     monthly_asym_dict = {}
@@ -678,6 +814,22 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "sq_m_squeezing": sq_m.get("sq_squeezing", False),
         "sq_m_just_release": sq_m.get("sq_just_release", False),
         "sq_m_was_high_75": sq_m.get("sq_was_high_75", False),
+        # Harmonic patterns
+        "h_d_pattern": h_d.get("pattern"),
+        "h_d_direction": h_d.get("direction"),
+        "h_d_quality": h_d.get("quality"),
+        "h_d_dist_from_d_pct": h_d.get("dist_from_d_pct"),
+        "h_d_bars_since_d": h_d.get("bars_since_d"),
+        "h_w_pattern": h_w.get("pattern"),
+        "h_w_direction": h_w.get("direction"),
+        "h_w_quality": h_w.get("quality"),
+        "h_w_dist_from_d_pct": h_w.get("dist_from_d_pct"),
+        "h_w_bars_since_d": h_w.get("bars_since_d"),
+        "h_m_pattern": h_m.get("pattern"),
+        "h_m_direction": h_m.get("direction"),
+        "h_m_quality": h_m.get("quality"),
+        "h_m_dist_from_d_pct": h_m.get("dist_from_d_pct"),
+        "h_m_bars_since_d": h_m.get("bars_since_d"),
         # daily references
         "dist_sma20_pct": dist_sma20,
         "dist_sma50_pct": dist_sma50,
@@ -956,6 +1108,47 @@ def main():
         & df["weekly_range_top_half"]
     )
 
+    # ===== Harmonic patterns =====
+    # Score per timeframe (presence + direction + quality). Monthly + weekly
+    # weighted higher than daily per Candleboxlaw's multi-timeframe workflow.
+    def _hscore(direction, quality, weight):
+        if pd.isna(quality) or quality is None:
+            return 0.0
+        sign = 1 if direction == "bullish" else (-1 if direction == "bearish" else 0)
+        return sign * float(quality) * weight
+
+    df["h_d_score"] = df.apply(lambda r: _hscore(r.get("h_d_direction"),
+                                                  r.get("h_d_quality"), 1.0), axis=1)
+    df["h_w_score"] = df.apply(lambda r: _hscore(r.get("h_w_direction"),
+                                                  r.get("h_w_quality"), 3.0), axis=1)
+    df["h_m_score"] = df.apply(lambda r: _hscore(r.get("h_m_direction"),
+                                                  r.get("h_m_quality"), 5.0), axis=1)
+    df["harmonic_score"] = df["h_d_score"] + df["h_w_score"] + df["h_m_score"]
+
+    # Consonance: how many timeframes agree on bullish (or bearish) direction
+    def _consonance(row):
+        dirs = [row.get(c) for c in ("h_d_direction", "h_w_direction", "h_m_direction")]
+        bull = sum(1 for d in dirs if d == "bullish")
+        bear = sum(1 for d in dirs if d == "bearish")
+        # bull-dominant returns positive, bear-dominant negative
+        if bull >= 2 and bear == 0:
+            return bull
+        if bear >= 2 and bull == 0:
+            return -bear
+        if bull >= 1 and bear == 0:
+            return 0.5
+        if bear >= 1 and bull == 0:
+            return -0.5
+        return 0
+    df["harmonic_consonance"] = df.apply(_consonance, axis=1)
+
+    # Tag flags
+    df["harmonic_bullish_w_or_m"] = (
+        (df["h_w_direction"] == "bullish") | (df["h_m_direction"] == "bullish")
+    )
+    df["harmonic_bullish_consonance"] = df["harmonic_consonance"] >= 2
+    df["harmonic_bearish_consonance"] = df["harmonic_consonance"] <= -2
+
     # ===== BREAKOUT_SQUEEZE setup =====
     # Daily squeeze is HIGH and just RELEASING (vol about to expand)
     # Weekly squeeze is HIGH and still SQUEEZING (long-term coil intact)
@@ -1228,6 +1421,8 @@ def main():
         | df["q_method_pass_monthly_strong"].fillna(False)
         | df["breakout_squeeze"].fillna(False)
         | df["breakout_squeeze_loose"].fillna(False)
+        | df["harmonic_bullish_w_or_m"].fillna(False)
+        | df["harmonic_bullish_consonance"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -1258,6 +1453,8 @@ def main():
     breakout_sq = df[df["breakout_squeeze"]].sort_values("rs_rank_max", ascending=False)
     breakout_sq_strict = df[df["breakout_squeeze_strict"]].sort_values("rs_rank_max", ascending=False)
     breakout_sq_loose = df[df["breakout_squeeze_loose"] & (~df["breakout_squeeze"])].sort_values("rs_rank_max", ascending=False)
+    harm_bull_cons = df[df["harmonic_bullish_consonance"]].sort_values("harmonic_score", ascending=False)
+    harm_bull_wm = df[df["harmonic_bullish_w_or_m"] & (~df["harmonic_bullish_consonance"])].sort_values("harmonic_score", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -1295,6 +1492,23 @@ def main():
         print(f"\n=== BREAKOUT_SQUEEZE (daily just-release from >=75th pct + weekly still squeezing >=75th pct + asym improving) ({len(breakout_sq)}) ===")
         if len(breakout_sq):
             print(breakout_sq[sq_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        harm_cols = ["name", "sector", "last_close", "rs_rank_max",
+                     "h_d_pattern", "h_d_direction", "h_d_dist_from_d_pct", "h_d_bars_since_d",
+                     "h_w_pattern", "h_w_direction", "h_w_dist_from_d_pct", "h_w_bars_since_d",
+                     "h_m_pattern", "h_m_direction", "h_m_dist_from_d_pct", "h_m_bars_since_d",
+                     "harmonic_consonance", "harmonic_score", "roque_score"]
+        harm_cols = [c for c in harm_cols if c in flagged.columns]
+        print(f"\n=== HARMONIC BULLISH CONSONANCE (>=2 timeframes bullish) ({len(harm_bull_cons)}) ===")
+        if len(harm_bull_cons):
+            print(harm_bull_cons[harm_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+        print(f"\n=== HARMONIC BULLISH W or M (weekly OR monthly bullish, less consonant) ({len(harm_bull_wm)}) ===")
+        if len(harm_bull_wm):
+            print(harm_bull_wm[harm_cols].head(args.top).to_string())
         else:
             print("(none)")
 
