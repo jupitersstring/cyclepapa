@@ -1036,6 +1036,7 @@ def get_universe(
     country: str = "Italy",
     min_bucket: Optional[str] = None,
     max_bucket: Optional[str] = None,
+    include_uncategorized: bool = False,
 ) -> pd.DataFrame:
     import financedatabase as fd
 
@@ -1122,14 +1123,24 @@ def get_universe(
     elif country == "Lithuania":
         df = df[df.index.str.endswith(".VS")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
+    # When include_uncategorized=True, names with NaN market_cap bucket are
+    # kept (financedatabase coverage is sparse for many UK / Nordic small
+    # caps). The downstream yartseva scan will pull yfinance fundamentals
+    # which lets us classify by actual mcap later.
     if min_bucket and min_bucket in order:
         lo = order.index(min_bucket)
         allowed_min = set(order[lo:])
-        df = df[df["market_cap"].isin(allowed_min)]
+        mask = df["market_cap"].isin(allowed_min)
+        if include_uncategorized:
+            mask = mask | df["market_cap"].isna()
+        df = df[mask]
     if max_bucket and max_bucket in order:
         hi = order.index(max_bucket)
         allowed_max = set(order[: hi + 1])
-        df = df[df["market_cap"].isin(allowed_max)]
+        mask = df["market_cap"].isin(allowed_max)
+        if include_uncategorized:
+            mask = mask | df["market_cap"].isna()
+        df = df[mask]
     return df
 
 
@@ -1147,6 +1158,9 @@ def main():
                         help="minimum financedatabase market_cap bucket (Nano/Micro/Small/Mid/Large)")
     parser.add_argument("--max-bucket", default=None,
                         help="maximum financedatabase market_cap bucket (e.g. Small Cap to cap at smid)")
+    parser.add_argument("--include-uncategorized", action="store_true",
+                        help="include tickers without a financedatabase market_cap bucket "
+                             "(many UK / Nordic small caps are uncategorized)")
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--out", default="italian_yartseva.csv")
     parser.add_argument("--top", type=int, default=15, help="rows printed in console summary")
@@ -1158,7 +1172,9 @@ def main():
     globals()["PROJECTION_N_PERIODS"] = args.projection_n
 
     print(f"[1/3] Loading {args.country} universe (min bucket={args.min_bucket}, max bucket={args.max_bucket}) ...", file=sys.stderr)
-    universe = get_universe(country=args.country, min_bucket=args.min_bucket, max_bucket=args.max_bucket)
+    universe = get_universe(country=args.country, min_bucket=args.min_bucket,
+                            max_bucket=args.max_bucket,
+                            include_uncategorized=args.include_uncategorized)
     print(f"      universe size = {len(universe)}", file=sys.stderr)
 
     if args.max and args.max > 0:

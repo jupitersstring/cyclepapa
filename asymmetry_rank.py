@@ -249,6 +249,29 @@ def main():
         & (df["market_cap"].fillna(0) >= args.min_mcap)
     ]
     df = df[~df.apply(is_pharma_bio, axis=1)].copy()
+
+    # Backfill market_cap_bucket using actual USD market_cap when financedatabase
+    # bucket is missing (UK / Nordic names often have NaN bucket but real mcap).
+    def _mcap_to_bucket(v):
+        if pd.isna(v) or v <= 0:
+            return None
+        if v < 50_000_000:
+            return "Nano Cap"
+        if v < 300_000_000:
+            return "Micro Cap"
+        if v < 2_000_000_000:
+            return "Small Cap"
+        if v < 10_000_000_000:
+            return "Mid Cap"
+        if v < 200_000_000_000:
+            return "Large Cap"
+        return "Mega Cap"
+
+    if "market_cap_bucket" not in df.columns:
+        df["market_cap_bucket"] = None
+    backfill = df["market_cap"].apply(_mcap_to_bucket)
+    df["market_cap_bucket"] = df["market_cap_bucket"].fillna(backfill)
+
     if args.buckets and "market_cap_bucket" in df.columns:
         keep_buckets = {b.strip() for b in args.buckets.split(",") if b.strip()}
         before = len(df)
