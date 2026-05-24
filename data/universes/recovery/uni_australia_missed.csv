@@ -1,0 +1,504 @@
+ticker,name,sector,industry,market_cap
+1AG.AX,Alterra Limited,Financials,Capital Markets,Nano Cap
+2BE.AX,Tubi Limited,Industrials,Machinery,Nano Cap
+3MF.AX,3D Metalforge Limited,Industrials,Building Products,Nano Cap
+A2B.AX,A2B Australia Limited,Information Technology,Software,Micro Cap
+ABA.AX,Auswide Bank Ltd,Financials,Banks,Micro Cap
+ABC.AX,Adbri Limited,Materials,Construction Materials,Small Cap
+ABP.AX,Abacus Property Group,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+ACB.AX,A-Cap Energy Limited,Materials,Metals & Mining,Nano Cap
+ADA.AX,Adacel Technologies Limited,Information Technology,Software,Micro Cap
+ADI.AX,APN Industria REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+AFW.AX,Applyflow Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+AGH.AX,Althea Group Holdings Limited,Health Care,Pharmaceuticals,Micro Cap
+AGS.AX,Alliance Resources Limited,Materials,Metals & Mining,Nano Cap
+AHQ.AX,Allegiance Coal Limited,Materials,Metals & Mining,Micro Cap
+AHX.AX,Apiam Animal Health Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+AHY.AX,Asaleo Care Limited,Consumer Staples,Household Products,Small Cap
+AIB.AX,Aurora Global Income Trust,Financials,Capital Markets,Nano Cap
+AIR.AX,AstiVita Limited,Consumer Discretionary,Household Durables,Nano Cap
+AKL.AX,Auckland Real Estate Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+AL8.AX,Alderan Resources Limited,Materials,Metals & Mining,Nano Cap
+ALG.AX,Ardent Leisure Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ALT.AX,Analytica Limited,Health Care,Health Care Technology,Nano Cap
+AME.AX,Alto Metals Limited,Materials,Metals & Mining,Nano Cap
+AMG.AX,Ausmex Mining Group Limited,Materials,Metals & Mining,Nano Cap
+AML.AX,Aeon Metals Limited,Materials,Metals & Mining,Nano Cap
+AMPPA.AX,AMP Limited,Financials,Capital Markets,Mid Cap
+AMPPB.AX,AMP Limited,Financials,Capital Markets,Mid Cap
+ANA.AX,Ansila Energy NL,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+AND.AX,Ansarada Group Limited,Information Technology,Software,Micro Cap
+ANP.AX,Antisense Therapeutics Limited,Health Care,Pharmaceuticals,Micro Cap
+ANW.AX,Aus Tin Mining Limited,Materials,Metals & Mining,Nano Cap
+AOP.AX,Apollo Consolidated Limited,Materials,Metals & Mining,Micro Cap
+AOU.AX,Auroch Minerals Limited,Materials,Metals & Mining,Nano Cap
+APD.AX,APN Property Group Limited,Financials,Capital Markets,Micro Cap
+APG.AX,Austpac Resources N.L.,Materials,Metals & Mining,Nano Cap
+APH.AX,Australian Primary Hemp Limited,Health Care,Pharmaceuticals,Nano Cap
+API.AX,Australian Pharmaceutical Industries Limited,Health Care,Health Care Providers & Services,Small Cap
+APV.AX,AppsVillage Australia Limited,Information Technology,Software,Nano Cap
+AQR.AX,APN Convenience Retail REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+AQS.AX,Aquis Entertainment Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ARE.AX,Argonaut Resources NL,Materials,Metals & Mining,Nano Cap
+ARO.AX,Astro Resources NL,Materials,Metals & Mining,Nano Cap
+ASO.AX,Aston Minerals Limited,Materials,Metals & Mining,Micro Cap
+AST.AX,AusNet Services Ltd,Utilities,Multi-Utilities,Mid Cap
+ASW.AX,Advanced Share Registry Limited,Financials,Capital Markets,Nano Cap
+ATL.AX,Apollo Tourism & Leisure Ltd,Consumer Discretionary,Automobiles,Micro Cap
+AUH.AX,AustChina Holdings Limited,Materials,Metals & Mining,Nano Cap
+AUK.AX,AuMake Limited,Consumer Discretionary,Household Durables,Nano Cap
+AUL.AX,AuStar Gold Limited,Materials,Metals & Mining,Nano Cap
+AUN.AX,Aurumin Limited,Materials,Metals & Mining,Nano Cap
+AUT.AX,Auteco Minerals Limited,Materials,Metals & Mining,Micro Cap
+AVC.AX,Auctus Investment Group Limited,Financials,Capital Markets,Nano Cap
+AVJ.AX,AVJennings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+AVN.AX,Aventus Group,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+AVZ.AX,AVZ MINERALS LIMITED,Materials,Metals & Mining,Small Cap
+AWC.AX,Alumina Limited,Materials,Metals & Mining,Mid Cap
+AWN.AX,AWN Holdings Limited,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+AWV.AX,Anova Metals Limited,Materials,Metals & Mining,Nano Cap
+AZS.AX,Azure Minerals Limited,Materials,Metals & Mining,Nano Cap
+BAR.AX,Barra Resources Limited,Materials,Metals & Mining,Nano Cap
+BAT.AX,Battery Minerals Limited,Materials,Metals & Mining,Nano Cap
+BBX.AX,BBX Minerals Limited,Materials,Metals & Mining,Micro Cap
+BCT.AX,Bluechiip Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+BD1.AX,BARD1 Life Sciences Limited,Health Care,Biotechnology,Micro Cap
+BDA.AX,Bod Australia Limited,Consumer Staples,Household Products,Nano Cap
+BDC.AX,Bardoc Gold Limited,Materials,Metals & Mining,Micro Cap
+BEE.AX,Broo Limited,Consumer Staples,Beverages,Nano Cap
+BEM.AX,BlackEarth Minerals NL,Materials,Metals & Mining,Nano Cap
+BENPF.AX,Bendigo and Adelaide Bank Limited,Financials,Banks,Mid Cap
+BENPG.AX,Bendigo and Adelaide Bank Limited,Financials,Banks,Mid Cap
+BEX.AX,BikeExchange Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+BFC.AX,Beston Global Food Company Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+BFG.AX,Bell Financial Group Limited,Financials,Capital Markets,Small Cap
+BID.AX,Bill Identity Limited,Information Technology,Software,Micro Cap
+BIN.AX,Bingo Industries Limited,Industrials,Transportation Infrastructure,Small Cap
+BIR.AX,BIR Financial Limited,Financials,Capital Markets,Nano Cap
+BKL.AX,Blackmores Limited,Consumer Staples,Household Products,Small Cap
+BKW.AX,Brickworks Limited,Materials,Construction Materials,Mid Cap
+BLD.AX,Boral Limited,Materials,Construction Materials,Mid Cap
+BMO.AX,Bastion Minerals Limited,Materials,Metals & Mining,Nano Cap
+BNO.AX,Bionomics Limited,Health Care,Biotechnology,Micro Cap
+BOQPE.AX,Bank of Queensland Limited,Financials,Banks,Mid Cap
+BRB.AX,Breaker Resources NL,Materials,Metals & Mining,Nano Cap
+BRV.AX,Big River Gold Limited,Materials,Metals & Mining,Micro Cap
+BSE.AX,Base Resources Limited,Materials,Metals & Mining,Micro Cap
+BSM.AX,Bass Metals Limited,Materials,Metals & Mining,Nano Cap
+BTH.AX,Bigtincan Holdings Limited,Information Technology,Software,Small Cap
+BUD.AX,Buddy Technologies Limited,Information Technology,Software,Micro Cap
+BWX.AX,BWX Limited,Consumer Staples,Household Products,Small Cap
+BYE.AX,Byron Energy Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+BYH.AX,Bryah Resources Limited,Materials,Metals & Mining,Nano Cap
+BYI.AX,Beyond International Limited,Communication Services,Entertainment,Nano Cap
+CAD.AX,CAENEUS MINERALS LTD,Materials,Metals & Mining,Nano Cap
+CAG.AX,Cape Range Limited,Information Technology,Software,Nano Cap
+CAI.AX,Calidus Resources Limited,Materials,Metals & Mining,Micro Cap
+CAJ.AX,Capitol Health Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+CAP.AX,Carpentaria Resources Limited,Materials,Metals & Mining,Nano Cap
+CAU.AX,Cronos Australia Limited,Health Care,Pharmaceuticals,Nano Cap
+CBR.AX,Carbon Revolution Limited,Consumer Discretionary,Auto Components,Micro Cap
+CCZ.AX,Castillo Copper Limited,Materials,Metals & Mining,Nano Cap
+CDD.AX,Cardno Limited,Industrials,Construction & Engineering,Micro Cap
+CDX.AX,CardieX Limited,Health Care,Health Care Technology,Micro Cap
+CDY.AX,Cellmid Limited,Health Care,Biotechnology,Nano Cap
+CE1.AX,Calima Energy Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+CGA.AX,Contango Asset Management Limited,Financials,Capital Markets,Nano Cap
+CGB.AX,Cann Global Limited,Health Care,Pharmaceuticals,Nano Cap
+CGC.AX,Costa Group Holdings Limited,Consumer Staples,Household Products,Small Cap
+CGN.AX,Crater Gold Mining Limited,Materials,Metals & Mining,Nano Cap
+CHK.AX,Cohiba Minerals Limited,Materials,Metals & Mining,Nano Cap
+CHZ.AX,Chesser Resources Limited,Materials,Metals & Mining,Micro Cap
+CII.AX,CI Resources Limited,Materials,Metals & Mining,Micro Cap
+CIM.AX,CIMIC Group Limited,Industrials,Construction & Engineering,Mid Cap
+CL1.AX,Class Limited,Information Technology,Software,Micro Cap
+CLH.AX,Collection House Limited,Industrials,Professional Services,Nano Cap
+CLT.AX,Cellnet Group Limited,Industrials,Professional Services,Nano Cap
+CNL.AX,Celamin Holdings Limited,Materials,Metals & Mining,Nano Cap
+COE.AX,Cooper Energy Limited,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+COO.AX,Corum Group Limited,Health Care,Health Care Providers & Services,Nano Cap
+CPH.AX,Creso Pharma Limited,Health Care,Pharmaceuticals,Micro Cap
+CPT.AX,Cipherpoint Limited,Information Technology,Software,Nano Cap
+CRL.AX,Comet Resources Limited,Materials,Metals & Mining,Nano Cap
+CRM.AX,Carbon Minerals Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+CRO.AX,Cirralto Limited,Information Technology,Software,Micro Cap
+CRW.AX,Cashrewards Limited,Industrials,Professional Services,Nano Cap
+CSR.AX,CSR Limited,Materials,Construction Materials,Mid Cap
+CSS.AX,Clean Seas Seafood Limited,Consumer Staples,Household Products,Nano Cap
+CV1.AX,CV Check Ltd,Information Technology,IT Services,Nano Cap
+CWN.AX,Crown Resorts Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+CWNHB.AX,Crown Resorts Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+CWX.AX,Carawine Resources Limited,Materials,Metals & Mining,Nano Cap
+CWZ.AX,Cashwerkz Limited,Information Technology,Software,Micro Cap
+CXM.AX,Centrex Metals Limited,Materials,Metals & Mining,Nano Cap
+CXX.AX,Cradle Resources Limited,Materials,Metals & Mining,Nano Cap
+CZL.AX,Consolidated Zinc Limited,Materials,Metals & Mining,Nano Cap
+D2O.AX,Duxton Water Limited,Utilities,Water Utilities,Micro Cap
+DAV.AX,Davenport Resources Limited,Materials,Metals & Mining,Nano Cap
+DCG.AX,Decmil Group Limited,Industrials,Construction & Engineering,Nano Cap
+DCN.AX,Dacian Gold Limited,Materials,Metals & Mining,Micro Cap
+DCX.AX,DiscovEx Resources Limited,Materials,Metals & Mining,Nano Cap
+DDB.AX,Dynamic Drill and Blast Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+DDD.AX,3D Resources Limited,Materials,Metals & Mining,Nano Cap
+DDH.AX,DDH1 Limited,Energy,Energy Equipment & Services,Micro Cap
+DEG.AX,De Grey Mining Limited,Materials,Metals & Mining,Small Cap
+DEX.AX,Duke Exploration Limited,Materials,Metals & Mining,Nano Cap
+DGO.AX,DGO Gold Limited,Materials,Metals & Mining,Micro Cap
+DHG.AX,Domain Holdings Australia Limited,Communication Services,Diversified Telecommunication Services,Mid Cap
+DLC.AX,Delecta Limited,Consumer Discretionary,Specialty Retail,Nano Cap
+DNA.AX,Donaco International Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+DOU.AX,Douugh Limited,Information Technology,IT Services,Micro Cap
+DTC.AX,Damstra Holdings Limited,Information Technology,Software,Micro Cap
+DTS.AX,Dragontail Systems Limited,Information Technology,Software,Nano Cap
+DVN.AX,Devine Limited,Real Estate,Real Estate Management & Development,Nano Cap
+DW8.AX,Digital Wine Ventures Limited,Consumer Staples,Beverages,Micro Cap
+E2M.AX,E2 Metals Limited,Materials,Metals & Mining,Nano Cap
+EAI.AX,Ellerston Asian Investments Limited,Financials,Capital Markets,Micro Cap
+EAS.AX,Easton Investments Limited,Financials,Capital Markets,Nano Cap
+EBG.AX,Eumundi Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ECF.AX,Elanor Commercial Property Fund,Real Estate,Real Estate Management & Development,Micro Cap
+ECX.AX,Eclipx Group Limited,Industrials,Commercial Services & Supplies,Small Cap
+EDC.AX,Eildon Capital Fund,Real Estate,Real Estate Management & Development,Nano Cap
+EEG.AX,Empire Energy Group Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+EGN.AX,Engenco Limited,Industrials,Road & Rail,Micro Cap
+EHE.AX,Estia Health Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+ELO.AX,Elmo Software Limited,Information Technology,Software,Small Cap
+EM1.AX,Emerge Gaming Limited,Communication Services,Interactive Media & Services,Nano Cap
+ENA.AX,Ensurance Limited,Financials,Insurance,Nano Cap
+EOF.AX,Ecofibre Limited,Health Care,Pharmaceuticals,Micro Cap
+EP1.AX,E&P Financial Group Limited,Financials,Capital Markets,Micro Cap
+EPD.AX,Empired Limited,Information Technology,IT Services,Micro Cap
+ERF.AX,Elanor Retail Property Fund,Real Estate,Real Estate Management & Development,Micro Cap
+ERW.AX,Errawarra Resources Ltd,Materials,Metals & Mining,Nano Cap
+ESH.AX,Esports Mogul Limited,Communication Services,Interactive Media & Services,Nano Cap
+ESS.AX,Essential Metals Limited,Materials,Metals & Mining,Nano Cap
+EVS.AX,Envirosuite Limited,Information Technology,Software,Micro Cap
+EX1.AX,Exopharm Limited,Health Care,Biotechnology,Micro Cap
+FEL.AX,Fe Limited,Materials,Metals & Mining,Nano Cap
+FFC.AX,FarmaForce Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+FFF.AX,Forbidden Foods Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+FFR.AX,Firefly Resources Limited,Materials,Metals & Mining,Micro Cap
+FFT.AX,Future First Technologies Ltd,Information Technology,IT Services,Nano Cap
+FFX.AX,Firefinch Limited,Materials,Metals & Mining,Small Cap
+FGL.AX,Frugl Group Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+FGO.AX,Fargo Enterprises Limited,Information Technology,Software,Nano Cap
+FIJ.AX,Fiji Kava Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+FMS.AX,Flinders Mines Limited,Materials,Metals & Mining,Micro Cap
+FNP.AX,Freedom Foods Group Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+FNT.AX,Frontier Resources Limited,Materials,Metals & Mining,Nano Cap
+FOD.AX,The Food Revolution Group Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+FOR.AX,Forager Australian Shares Fund,Financials,,Micro Cap
+FPP.AX,Fat Prophets Global Property Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FSG.AX,Field Solutions Holdings Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+FTZ.AX,Fertoz Limited,Materials,Construction Materials,Nano Cap
+FYI.AX,FYI Resources Limited,Materials,Metals & Mining,Micro Cap
+GBZ.AX,GBM RESOURCES LTD,Materials,Metals & Mining,Nano Cap
+GCY.AX,Gascoyne Resources Limited,Materials,Metals & Mining,Micro Cap
+GDA.AX,Good Drinks Australia Ltd,Consumer Staples,Beverages,Micro Cap
+GDC.AX,360 Capital Digital Infrastructure Fund,Financials,Capital Markets,Micro Cap
+GEV.AX,Global Energy Ventures Ltd.,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+GGG.AX,Greenland Minerals Limited,Materials,Metals & Mining,Micro Cap
+GLA.AX,Gladiator Resources Limited,Materials,Metals & Mining,Nano Cap
+GLV.AX,Global Oil & Gas Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+GMA.AX,Genworth Mortgage Insurance Australia Limited,Financials,Insurance,Small Cap
+GME.AX,GME Resources Limited,Materials,Metals & Mining,Nano Cap
+GMR.AX,Golden Rim Resources Ltd,Materials,Metals & Mining,Nano Cap
+GNX.AX,Genex Power Limited,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+GOR.AX,Gold Road Resources Limited,Materials,Metals & Mining,Small Cap
+GTR.AX,GTI Resources Limited,Materials,Metals & Mining,Nano Cap
+GUD.AX,GUD Holdings Limited,Industrials,Machinery,Small Cap
+GXY.AX,Galaxy Resources Limited,Materials,Metals & Mining,Small Cap
+HIL.AX,Hills Limited,Industrials,Professional Services,Nano Cap
+HLA.AX,Healthia Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+HNR.AX,Hannans Limited,Materials,Metals & Mining,Nano Cap
+HPI.AX,Hotel Property Investments,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+HRL.AX,HRL Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+HRR.AX,Heron Resources Limited,Materials,Metals & Mining,Nano Cap
+HSC.AX,HSC Technology Group Ltd,Information Technology,Software,Nano Cap
+HT1.AX,HT&E Limited,Communication Services,Entertainment,Small Cap
+HTA.AX,Hutchison Telecommunications (Australia) Limited,Communication Services,Diversified Telecommunication Services,Small Cap
+HUO.AX,Huon Aquaculture Group Limited,Consumer Staples,Household Products,Micro Cap
+HWH.AX,Houston We Have Limited,Information Technology,Software,Nano Cap
+HXG.AX,Hexagon Energy Materials Limited,Materials,Metals & Mining,Nano Cap
+HYM.AX,Hyperion Metals Limited,Materials,Metals & Mining,Micro Cap
+IAGPD.AX,Insurance Australia Group Limited,Financials,Insurance,Mid Cap
+IAP.AX,Irongate Group,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+IBG.AX,Ironbark Zinc Limited,Materials,Metals & Mining,Nano Cap
+ICG.AX,Inca Minerals Limited,Materials,Metals & Mining,Nano Cap
+ICI.AX,iCandy Interactive Limited,Communication Services,Interactive Media & Services,Nano Cap
+ICS.AX,ICS Global Limited,Health Care,Health Care Providers & Services,Nano Cap
+ICT.AX,iCollege Limited,Consumer Staples,Household Products,Nano Cap
+IDZ.AX,Indoor Skydive Australia Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+IEC.AX,Intra Energy Corporation Limited,Materials,Metals & Mining,Nano Cap
+IFM.AX,Infomedia Ltd,Information Technology,Software,Small Cap
+IHL.AX,Incannex Healthcare Limited,Health Care,Pharmaceuticals,Micro Cap
+IHR.AX,intelliHR Limited,Information Technology,Software,Micro Cap
+INP.AX,IncentiaPay Limited,Information Technology,Software,Nano Cap
+IOU.AX,IOUpay Limited,Information Technology,Software,Micro Cap
+IP1.AX,Integrated Payment Technologies Limited,Information Technology,IT Services,Nano Cap
+IPB.AX,IPB Petroleum Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+IPL.AX,Incitec Pivot Limited,Materials,Chemicals,Mid Cap
+IQ3.AX,iQ3Corp Ltd,Financials,Capital Markets,Nano Cap
+ISD.AX,Isentia Group Limited,Information Technology,Software,Nano Cap
+ISU.AX,iSelect Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+ITG.AX,Intega Group Limited,Industrials,Construction & Engineering,Micro Cap
+IVC.AX,InvoCare Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+IVT.AX,Inventis Limited,Consumer Discretionary,Household Durables,Nano Cap
+IXU.AX,IXUP Limited,Information Technology,Software,Micro Cap
+JDR.AX,Jadar Resources Limited,Materials,Metals & Mining,Nano Cap
+JHC.AX,Japara Healthcare Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+JHL.AX,Jayex Healthcare Limited,Health Care,Health Care Providers & Services,Nano Cap
+JLG.AX,Johns Lyng Group Limited,Industrials,Construction & Engineering,Small Cap
+JRL.AX,Jindalee Resources Limited,Materials,Metals & Mining,Micro Cap
+JRV.AX,Jervois Mining Limited,Materials,Metals & Mining,Micro Cap
+JXT.AX,Jaxsta Limited,Information Technology,Software,Nano Cap
+K2F.AX,K2fly Limited,Information Technology,Software,Nano Cap
+KAI.AX,Kairos Minerals Limited,Materials,Metals & Mining,Nano Cap
+KFE.AX,Kogi Iron Limited,Materials,Metals & Mining,Nano Cap
+KGD.AX,Kula Gold Limited,Materials,Metals & Mining,Nano Cap
+KIN.AX,Kin Mining NL,Materials,Metals & Mining,Micro Cap
+KIS.AX,King Island Scheelite Limited,Materials,Metals & Mining,Micro Cap
+KMT.AX,Kopore Metals Limited,Materials,Metals & Mining,Nano Cap
+KPT.AX,Kangaroo Island Plantation Timbers Limited,Materials,Paper & Forest Products,Nano Cap
+KTE.AX,K2 Energy Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+KWR.AX,Kingwest Resources Limited,Materials,Metals & Mining,Nano Cap
+KYK.AX,Kyckr Limited,Information Technology,Software,Nano Cap
+KZA.AX,Kazia Therapeutics Limited,Health Care,Biotechnology,Micro Cap
+LBT.AX,LBT Innovations Limited,Health Care,Health Care Technology,Nano Cap
+LCD.AX,Latitude Consolidated Limited,Materials,Metals & Mining,Nano Cap
+LCK.AX,Leigh Creek Energy Limited,Materials,,Micro Cap
+LCT.AX,Living Cell Technologies Limited,Health Care,Biotechnology,Nano Cap
+LEP.AX,ALE Property Group,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+LER.AX,Leaf Resources Limited,Materials,Chemicals,Micro Cap
+LGL.AX,Lynch Group Holdings Limited,Consumer Staples,Household Products,Small Cap
+LITCF.AX,Lithium Australia NL,Materials,Metals & Mining,Micro Cap
+LNK.AX,Link Administration Holdings Limited,Information Technology,IT Services,Small Cap
+LNU.AX,Linius Technologies Limited,Information Technology,Software,Nano Cap
+LNY.AX,Laneway Resources Limited,Materials,Metals & Mining,Nano Cap
+LOM.AX,Lucapa Diamond Company Limited,Materials,Metals & Mining,Nano Cap
+LPD.AX,Lepidico Limited,Materials,Metals & Mining,Nano Cap
+LPI.AX,Lithium Power International Limited,Materials,Metals & Mining,Micro Cap
+LRS.AX,Latin Resources Limited,Materials,Metals & Mining,Micro Cap
+LSH.AX,Lifespot Health Ltd,Health Care,Biotechnology,Nano Cap
+LV1.AX,Live Verdure Ltd,Health Care,Pharmaceuticals,Nano Cap
+LVH.AX,LiveHire Limited,Industrials,Professional Services,Micro Cap
+MAI.AX,Mainstream Group Holdings Limited,Financials,Capital Markets,Micro Cap
+MBM.AX,Mobecom Limited,Information Technology,Software,Nano Cap
+MCL.AX,Mighty Craft Limited,Consumer Staples,Beverages,Nano Cap
+MCR.AX,Mincor Resources NL,Materials,Metals & Mining,Small Cap
+MCT.AX,Metalicity Limited,Materials,Metals & Mining,Nano Cap
+MCX.AX,Mariner Corporation Limited,Financials,Capital Markets,Nano Cap
+MDR.AX,MedAdvisor Limited,Health Care,Health Care Providers & Services,Micro Cap
+MEA.AX,McGrath Limited,Real Estate,Real Estate Management & Development,Micro Cap
+MEB.AX,Medibio Limited,Health Care,Health Care Providers & Services,Nano Cap
+MEP.AX,Minotaur Exploration Limited,Materials,Metals & Mining,Nano Cap
+MEY.AX,Elevate Uranium Ltd,Materials,Metals & Mining,Nano Cap
+MGV.AX,Musgrave Minerals Limited,Materials,Metals & Mining,Micro Cap
+MKG.AX,Mako Gold Limited,Materials,Metals & Mining,Nano Cap
+MKL.AX,Mighty Kingdom Limited,Communication Services,Interactive Media & Services,Nano Cap
+MLD.AX,MACA Limited,Materials,Metals & Mining,Micro Cap
+MLM.AX,Metallica Minerals Limited,Materials,Metals & Mining,Nano Cap
+MLT.AX,Milton Corporation Limited,Financials,Capital Markets,Mid Cap
+MMJ.AX,MMJ Group Holdings Limited,Health Care,Pharmaceuticals,Nano Cap
+MNF.AX,MNF Group Limited,Communication Services,Diversified Telecommunication Services,Small Cap
+MOB.AX,Mobilicom Limited,Information Technology,Communications Equipment,Nano Cap
+MOC.AX,Mortgage Choice Limited,Financials,Thrifts & Mortgage Finance,Micro Cap
+MOE.AX,Moelis Australia Limited,Financials,Capital Markets,Small Cap
+MOQ.AX,MOQ Limited,Information Technology,Software,Nano Cap
+MOZ.AX,Mosaic Brands Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+MPA.AX,Mad Paws Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+MPH.AX,Mediland Pharm Limited,Consumer Staples,Household Products,Nano Cap
+MR1.AX,Montem Resources Limited,Materials,Metals & Mining,Nano Cap
+MRG.AX,Murray River Organics Group Limited,Consumer Staples,Household Products,Nano Cap
+MRL.AX,Mayur Resources Ltd,Materials,Metals & Mining,Nano Cap
+MRM.AX,MMA Offshore Limited,Industrials,Marine,Micro Cap
+MSL.AX,MSL Solutions Limited,Information Technology,Software,Nano Cap
+MSR.AX,Manas Resources Limited,Materials,Metals & Mining,Nano Cap
+MTB.AX,Mount Burgess Mining N.L.,Materials,Metals & Mining,Nano Cap
+MWY.AX,Midway Limited,Materials,Paper & Forest Products,Micro Cap
+MXC.AX,MGC Pharmaceuticals Limited,Health Care,Pharmaceuticals,Micro Cap
+MXR.AX,Maximus Resources Limited,Materials,Metals & Mining,Nano Cap
+MYD.AX,MyDeal.com.au Limited,Consumer Discretionary,Internet & Direct Marketing Retail,Micro Cap
+MZZ.AX,Matador Mining Limited,Materials,Metals & Mining,Micro Cap
+NAM.AX,Namoi Cotton Limited,Consumer Staples,Household Products,Nano Cap
+NCZ.AX,New Century Resources Limited,Materials,Metals & Mining,Micro Cap
+NEA.AX,Nearmap Ltd,Communication Services,Diversified Telecommunication Services,Small Cap
+NEW.AX,New Energy Solar Limited,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+NML.AX,Navarre Minerals Limited,Materials,Metals & Mining,Nano Cap
+NSX.AX,NSX Limited,Financials,Capital Markets,Nano Cap
+NUS.AX,Nusantara Resources Limited,Materials,Metals & Mining,Micro Cap
+NWC.AX,New World Resources Limited,Materials,Metals & Mining,Micro Cap
+NWE.AX,Norwest Energy NL,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+NWF.AX,Newfield Resources Limited,Materials,Metals & Mining,Micro Cap
+NXS.AX,Next Science Limited,Health Care,Pharmaceuticals,Micro Cap
+OAR.AX,OAR Resources Limited,Materials,Metals & Mining,Nano Cap
+OAU.AX,Ora Gold Limited,Materials,Metals & Mining,Nano Cap
+ODM.AX,Odin Metals Limited,Materials,Metals & Mining,Nano Cap
+OEX.AX,Oilex Ltd,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+OGC.AX,OceanaGold Corporation,Materials,Metals & Mining,Small Cap
+OKR.AX,Okapi Resources Limited,Materials,Metals & Mining,Nano Cap
+OKU.AX,Oklo Resources Limited,Materials,Metals & Mining,Nano Cap
+ONT.AX,1300SMILES Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+ONX.AX,Orminex Limited,Materials,Metals & Mining,Nano Cap
+OPL.AX,Opyl Limited,Health Care,Health Care Providers & Services,Nano Cap
+OPY.AX,Openpay Group Ltd,Information Technology,IT Services,Micro Cap
+ORM.AX,Orion Metals Limited,Materials,Metals & Mining,Nano Cap
+ORR.AX,OreCorp Limited,Materials,Metals & Mining,Micro Cap
+OTW.AX,Over the Wire Holdings Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+OVN.AX,Oventus Medical Limited,Health Care,Health Care Technology,Nano Cap
+OVT.AX,Ovato Limited,Industrials,Professional Services,Nano Cap
+OXX.AX,Octanex Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+OZG.AX,Ozgrowth Limited,Financials,Capital Markets,Micro Cap
+OZL.AX,OZ Minerals Limited,Materials,Metals & Mining,Mid Cap
+PAA.AX,PharmAust Limited,Health Care,Biotechnology,Nano Cap
+PAF.AX,PM Capital Asian Opportunities Fund Limited,Financials,Capital Markets,Nano Cap
+PAI.AX,Platinum Asia Investments Limited,Financials,Capital Markets,Small Cap
+PAK.AX,Pacific American Holdings Limited,Materials,Metals & Mining,Nano Cap
+PAL.AX,Palla Pharma Limited,Consumer Staples,Household Products,Nano Cap
+PBP.AX,Probiotec Limited,Health Care,Pharmaceuticals,Micro Cap
+PDL.AX,Pendal Group Limited,Financials,Capital Markets,Small Cap
+PDZ.AX,Prairie Mining Limited,Materials,Metals & Mining,Nano Cap
+PEK.AX,Peak Resources Limited,Materials,Metals & Mining,Micro Cap
+PF1.AX,Pathfinder Resources Ltd,Materials,Metals & Mining,Nano Cap
+PG1.AX,Pearl Global Limited,Industrials,Transportation Infrastructure,Nano Cap
+PGH.AX,Pact Group Holdings Ltd,Consumer Discretionary,Distributors,Small Cap
+PGL.AX,Prospa Group Limited,Information Technology,Software,Micro Cap
+PH2.AX,Pure Hydrogen Corporation Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+PHL.AX,Propell Holdings Limited,Information Technology,Software,Nano Cap
+PKS.AX,PKS Holdings Limited,Health Care,Health Care Providers & Services,Micro Cap
+PLL.AX,Piedmont Lithium Inc.,Materials,Metals & Mining,Small Cap
+PNX.AX,PNX Metals Limited,Materials,Metals & Mining,Nano Cap
+POS.AX,Poseidon Nickel Limited,Materials,Metals & Mining,Micro Cap
+PRS.AX,Prospech Limited,Materials,Metals & Mining,Nano Cap
+PRT.AX,Prime Media Group Limited,Communication Services,Media,Micro Cap
+PSI.AX,PSC Insurance Group Limited,Financials,Insurance,Small Cap
+PSQ.AX,Pacific Smiles Group Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+PTB.AX,PTB Group Limited,Industrials,Aerospace & Defense,Micro Cap
+PTG.AX,PropTech Group Limited,Information Technology,Software,Micro Cap
+PTM.AX,Platinum Investment Management Limited,Financials,Capital Markets,Mid Cap
+PUA.AX,Peak Minerals Limited,Materials,Metals & Mining,Nano Cap
+PWG.AX,Primewest Group Limited,Real Estate,,Small Cap
+PWNCA.AX,Parkway Minerals NL,Materials,Metals & Mining,Nano Cap
+PXS.AX,Pharmaxis Ltd,Health Care,Pharmaceuticals,Nano Cap
+PYG.AX,PayGroup Limited,Information Technology,Software,Nano Cap
+PYR.AX,Payright Limited,Financials,Consumer Finance,Nano Cap
+QHL.AX,Quickstep Holdings Limited,Industrials,Aerospace & Defense,Nano Cap
+QIP.AX,QANTM Intellectual Property Limited,Industrials,Professional Services,Micro Cap
+QTM.AX,Quantum Health Group Limited,Health Care,Health Care Technology,Nano Cap
+RAP.AX,ResApp Health Limited,Health Care,Health Care Providers & Services,Nano Cap
+RBL.AX,Redbubble Limited,Consumer Discretionary,Internet & Direct Marketing Retail,Small Cap
+RBR.AX,RBR Group Limited,Industrials,Professional Services,Nano Cap
+RCP.AX,Redbank Copper Limited,Materials,Metals & Mining,Nano Cap
+RCW.AX,RightCrowd Limited,Information Technology,Software,Micro Cap
+RDC.AX,Redcape Hotel Group,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+RDF.AX,REDFLEX HOLDINGS,Industrials,Professional Services,Micro Cap
+RDG.AX,Resource Development Group Limited,Industrials,Construction & Engineering,Micro Cap
+RDH.AX,RedHill Education Limited,Consumer Staples,Household Products,Nano Cap
+RED.AX,Red 5 Limited,Materials,Metals & Mining,Micro Cap
+REX.AX,Regional Express Holdings Limited,Industrials,Airlines,Micro Cap
+REY.AX,Rey Resources Limited,Materials,Metals & Mining,Nano Cap
+RFR.AX,Rafaella Resources Limited,Materials,Metals & Mining,Nano Cap
+RFX.AX,RedFlow Limited,Industrials,Electrical Equipment,Micro Cap
+RGI.AX,Roto-Gro International Limited,Industrials,Machinery,Nano Cap
+RGS.AX,Regeneus Ltd,Health Care,Biotechnology,Nano Cap
+RNE.AX,ReNu Energy Limited,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+RPG.AX,Raptis Group Limited,Real Estate,Real Estate Management & Development,Nano Cap
+RSH.AX,Respiri Limited,Health Care,Health Care Technology,Micro Cap
+RUL.AX,RPMGlobal Holdings Limited,Information Technology,Software,Micro Cap
+RVR.AX,Red River Resources Limited,Materials,Metals & Mining,Micro Cap
+RXM.AX,Rex Minerals Limited,Materials,Metals & Mining,Micro Cap
+SAU.AX,Southern Gold Limited,Materials,Metals & Mining,Nano Cap
+SCI.AX,Silver City Minerals Limited,Materials,Metals & Mining,Nano Cap
+SCL.AX,Schrole Group Ltd,Information Technology,Software,Nano Cap
+SCU.AX,Stemcell United Limited,Health Care,Pharmaceuticals,Nano Cap
+SDG.AX,Sunland Group Limited,Real Estate,Real Estate Management & Development,Micro Cap
+SE1.AX,Sensera Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+SES.AX,SECOS Group Limited,Consumer Discretionary,Distributors,Micro Cap
+SGC.AX,Sacgasco Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+SGF.AX,SG Fleet Group Limited,Industrials,Commercial Services & Supplies,Small Cap
+SHH.AX,Shree Minerals Limited,Materials,Metals & Mining,Nano Cap
+SI6.AX,SI6 Metals Limited,Materials,Metals & Mining,Nano Cap
+SIH.AX,Sihayo Gold Limited,Materials,Metals & Mining,Nano Cap
+SIT.AX,Site Group International Limited,Consumer Staples,Household Products,Nano Cap
+SKF.AX,Skyfii Limited,Information Technology,Software,Nano Cap
+SKI.AX,Spark Infrastructure Group,Utilities,Electric Utilities,Mid Cap
+SLK.AX,SeaLink Travel Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+SLR.AX,Silver Lake Resources Limited,Materials,Metals & Mining,Small Cap
+SO4.AX,Salt Lake Potash Limited,Materials,Metals & Mining,Micro Cap
+SOV.AX,Sovereign Cloud Holdings Limited,Information Technology,Software,Micro Cap
+SRI.AX,Sipa Resources Limited,Materials,Metals & Mining,Nano Cap
+ST1.AX,Spirit Technology Solutions Ltd.,Communication Services,Diversified Telecommunication Services,Micro Cap
+SUD.AX,Suda Pharmaceuticals Ltd,Health Care,Biotechnology,Nano Cap
+SUP.AX,Superior Lake Resources Limited,Materials,Metals & Mining,Nano Cap
+SUV.AX,Suvo Strategic Minerals Limited,Materials,Metals & Mining,Micro Cap
+SVW.AX,Seven Group Holdings Limited,Industrials,Industrial Conglomerates,Mid Cap
+SW1.AX,Swift Media Limited,Communication Services,Entertainment,Nano Cap
+SWF.AX,SelfWealth Limited,Financials,Capital Markets,Micro Cap
+SWK.AX,Swick Mining Services Limited,Materials,Metals & Mining,Nano Cap
+SWM.AX,Seven West Media Limited,Communication Services,Entertainment,Small Cap
+SXY.AX,Senex Energy Limited,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+SYA.AX,Sayona Mining Limited,Materials,Metals & Mining,Micro Cap
+TGA.AX,Thorn Group Limited,Industrials,Commercial Services & Supplies,Micro Cap
+TGG.AX,Templeton Global Growth Fund Ltd.,Financials,Capital Markets,Micro Cap
+TGP.AX,360 Capital Group Limited,Real Estate,Real Estate Management & Development,Micro Cap
+TGR.AX,Tassal Group Limited,Consumer Staples,Household Products,Small Cap
+TIE.AX,Tietto Minerals Limited,Materials,Metals & Mining,Micro Cap
+TIN.AX,TNT Mines Limited,Materials,Metals & Mining,Nano Cap
+TKL.AX,Traka Resources Limited,Materials,Metals & Mining,Nano Cap
+TLT.AX,Tilt Renewables Limited,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+TMG.AX,Trigg Mining Limited,Materials,Metals & Mining,Nano Cap
+TMH.AX,The Market Herald Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+TMR.AX,Tempus Resources Limited,Materials,Metals & Mining,Nano Cap
+TMT.AX,Technology Metals Australia Limited,Materials,Metals & Mining,Nano Cap
+TNG.AX,TNG Limited,Materials,Metals & Mining,Micro Cap
+TNK.AX,Think Childcare Group,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+TNR.AX,Torian Resources Limited,Materials,Metals & Mining,Nano Cap
+TNT.AX,Tesserent Limited,Information Technology,Software,Micro Cap
+TPD.AX,Talon Energy Ltd.,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+TPP.AX,Tempo Australia Limited,Industrials,Electrical Equipment,Nano Cap
+TPS.AX,Threat Protect Australia Limited,Industrials,Professional Services,Nano Cap
+TRL.AX,Tanga Resources Limited,Materials,Metals & Mining,Nano Cap
+TRN.AX,Torrens Mining Limited,Materials,Metals & Mining,Nano Cap
+TRS.AX,The Reject Shop Limited,Consumer Staples,Household Products,Micro Cap
+TRT.AX,Todd River Resources Limited,Materials,Metals & Mining,Nano Cap
+TRY.AX,Troy Resources Limited,Materials,Metals & Mining,Nano Cap
+TSC.AX,Twenty Seven Co. Limited,Materials,Metals & Mining,Nano Cap
+TSI.AX,Top Shelf International Holdings Ltd,Consumer Staples,Beverages,Micro Cap
+TTB.AX,Total Brain Limited,Health Care,Health Care Providers & Services,Nano Cap
+TTI.AX,Traffic Technologies Limited,Industrials,Road & Rail,Nano Cap
+TUL.AX,Tulla Resources Plc,Materials,Metals & Mining,Micro Cap
+UCW.AX,UCW Limited,Consumer Staples,Household Products,Nano Cap
+URFPA.AX,US Masters Residential Property Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+UUL.AX,Ultima United Limited,Real Estate,Real Estate Management & Development,Nano Cap
+UUV.AX,UUV Aquabotix Limited,Industrials,Aerospace & Defense,Nano Cap
+UWL.AX,Uniti Group Limited,Communication Services,Diversified Telecommunication Services,Small Cap
+VAL.AX,Valor Resources Limited,Materials,Metals & Mining,Nano Cap
+VAN.AX,Vango Mining Limited,Materials,Metals & Mining,Nano Cap
+VG1.AX,VGI Partners Global Investments Limited,Financials,Capital Markets,Small Cap
+VGI.AX,VGI Partners Limited,Financials,Capital Markets,Small Cap
+VIC.AX,Victory Mines Limited,Materials,Metals & Mining,Nano Cap
+VMX.AX,Valmec Limited,Energy,Energy Equipment & Services,Nano Cap
+VMY.AX,VIMY RESOURCES LIMITED,Materials,Metals & Mining,Micro Cap
+VOC.AX,Vocus Group Limited,Communication Services,Diversified Telecommunication Services,Mid Cap
+VOL.AX,Victory Offices Limited,Real Estate,Real Estate Management & Development,Nano Cap
+VOR.AX,Vortiv Limited,Information Technology,Software,Nano Cap
+VRT.AX,Virtus Health Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+VTG.AX,Vita Group Limited,Consumer Discretionary,Specialty Retail,Micro Cap
+VTH.AX,Vitalharvest Freehold Trust,Financials,Capital Markets,Micro Cap
+VXR.AX,Venturex Resources Limited,Materials,Metals & Mining,Micro Cap
+WCG.AX,Webcentral Group Limited,Information Technology,IT Services,Micro Cap
+WHFPB.AX,Whitefield Limited,Financials,Capital Markets,Small Cap
+WIC.AX,Westoz Investment Company Limited,Financials,Capital Markets,Micro Cap
+WJA.AX,Wameja Limited,Information Technology,Software,Micro Cap
+WKT.AX,Walkabout Resources Limited,Materials,Metals & Mining,Nano Cap
+WLD.AX,Wellard Limited,Consumer Staples,Household Products,Nano Cap
+WML.AX,Woomera Mining Limited,Materials,Metals & Mining,Nano Cap
+WOO.AX,Wooboard Technologies Limited,Information Technology,Software,Nano Cap
+WRM.AX,White Rock Minerals Ltd,Materials,Metals & Mining,Nano Cap
+WSA.AX,Western Areas Limited,Materials,Metals & Mining,Small Cap
+WSP.AX,Whispir Limited,Information Technology,Software,Micro Cap
+XTE.AX,XTEK Limited,Industrials,Aerospace & Defense,Nano Cap
+YBR.AX,Yellow Brick Road Holdings Limited,Financials,Capital Markets,Nano Cap
+YFZ.AX,Youfoodz Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+YPB.AX,YPB Group Limited,Industrials,Professional Services,Nano Cap
+Z1P.AX,Zip Co Limited,Financials,Consumer Finance,Mid Cap
