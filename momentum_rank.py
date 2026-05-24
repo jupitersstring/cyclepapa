@@ -324,7 +324,10 @@ def find_swing_pivots(high_arr, low_arr, lookback=5, min_swing_pct=4.0):
     if min_swing_pct > 0 and len(cleaned) > 1:
         filtered = [cleaned[0]]
         for p in cleaned[1:]:
-            swing_pct = abs(p[1] - filtered[-1][1]) / filtered[-1][1] * 100
+            prior_px = filtered[-1][1]
+            if prior_px == 0 or not np.isfinite(prior_px):
+                continue
+            swing_pct = abs(p[1] - prior_px) / prior_px * 100
             if swing_pct >= min_swing_pct:
                 filtered.append(p)
             else:
