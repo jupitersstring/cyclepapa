@@ -1123,24 +1123,66 @@ def get_universe(
     elif country == "Lithuania":
         df = df[df.index.str.endswith(".VS")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
+
+    # When include_uncategorized=True we also pull tickers with no
+    # financedatabase market_cap classification. But many exchanges list
+    # huge tails of structured products / certificates / warrants /
+    # turbo / knockout / discount-cert etc. that aren't real stocks.
+    # Apply a strong name-based derivative filter so the uncategorized
+    # tail doesn't poison the universe.
+    derivative_terms = (
+        "Zert", "Cert", "Certifi", "Discount", "Bonus", "Turbo",
+        "Knockout", "Knock-Out", "Garant", "Garantie", "Open End",
+        "Warrant", "Optionsschein", "Mini-Future", "Long Mini",
+        "Short Mini", "Faktor ", "Express ", "ETC ", " ETN",
+        "Bull Cert", "Bear Cert", "Tracker", "Strategic Certificate",
+        " ETF", " UCITS", "Index Cert", "ETP ",
+        # Structured-product abbreviations and issuer prefixes (mostly
+        # Austrian / German "Garantie-Zertifikat" naming):
+        "Gar.Z", "GarZ", "Gar Z", "Gar.",
+        r"^RCB ", r"^EB ", r"^VKB ", r"^DZ ", r"^BNP ",
+        r"^DB ", r"^UBS ", r"^GS ", r"^HSBC ", r"^SG ",
+    )
+    deriv_pattern = "|".join(
+        t if t.startswith("^") else t.replace(" ", r"\s")
+        for t in derivative_terms
+    )
+
     # When include_uncategorized=True, names with NaN market_cap bucket are
     # kept (financedatabase coverage is sparse for many UK / Nordic small
     # caps). The downstream yartseva scan will pull yfinance fundamentals
     # which lets us classify by actual mcap later.
+    def _unc_mask(d):
+        return (
+            d["market_cap"].isna()
+            & d["name"].astype(str).str.strip().ne("")
+            & d["name"].astype(str).str.lower().ne("nan")
+            & ~d["name"].astype(str).str.contains(
+                deriv_pattern, case=False, regex=True, na=False
+            )
+        )
+
     if min_bucket and min_bucket in order:
         lo = order.index(min_bucket)
         allowed_min = set(order[lo:])
-        mask = df["market_cap"].isin(allowed_min)
+        strict_mask = df["market_cap"].isin(allowed_min)
         if include_uncategorized:
-            mask = mask | df["market_cap"].isna()
-        df = df[mask]
+            u = _unc_mask(df)
+            # Pollution guard: if uncategorized adds >3x the strict
+            # universe size, the country's listings are dominated by
+            # structured products (Austria) and we silently skip.
+            if u.sum() <= max(50, 3 * strict_mask.sum()):
+                strict_mask = strict_mask | u
+        df = df[strict_mask]
     if max_bucket and max_bucket in order:
         hi = order.index(max_bucket)
         allowed_max = set(order[: hi + 1])
-        mask = df["market_cap"].isin(allowed_max)
+        strict_mask = df["market_cap"].isin(allowed_max)
         if include_uncategorized:
-            mask = mask | df["market_cap"].isna()
-        df = df[mask]
+            u = _unc_mask(df)
+            if u.sum() <= max(50, 3 * strict_mask.sum()):
+                strict_mask = strict_mask | u
+        df = df[strict_mask]
     return df
 
 
