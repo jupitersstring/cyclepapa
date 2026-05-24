@@ -1,0 +1,672 @@
+ticker,name,sector,industry,market_cap
+1108.TW,Lucky Cement Corporation,Materials,Construction Materials,Micro Cap
+1201.TW,Wei Chuan Foods Corporation,Consumer Staples,Food & Staples Retailing,Small Cap
+1213.TW,"Oceanic Beverages Co., Inc.",Consumer Staples,Beverages,Nano Cap
+1215.TW,"Charoen Pokphand Enterprise(Taiwan) Co., Ltd.",Consumer Staples,Food & Staples Retailing,Small Cap
+1218.TW,"Taisun Enterprise Co., Ltd.",Consumer Staples,Food & Staples Retailing,Small Cap
+1219.TW,"Fwusow Industry Co., Ltd.",Consumer Staples,Food & Staples Retailing,Micro Cap
+1225.TW,"Formosa Oilseed Processing Co., Ltd.",Consumer Staples,Food & Staples Retailing,Small Cap
+1229.TW,Lien Hwa Industrial Holdings Corporation,Consumer Staples,Food & Staples Retailing,Mid Cap
+1232.TW,TTET Union Corporation,Consumer Staples,Food & Staples Retailing,Small Cap
+1234.TW,Hey-Song Corporation,Consumer Staples,Beverages,Small Cap
+1236.TW,"Hunya Foods Co., Ltd.",Consumer Staples,Food & Staples Retailing,Micro Cap
+1258.TWO,Kee Song Bio-Technology Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+1309.TW,"Taita Chemical Company, Limited",Materials,Chemicals,Small Cap
+1310.TW,Taiwan Styrene Monomer Corporation,Materials,Chemicals,Small Cap
+1312A.TW,Grand Pacific Petrochemical Corporation,Materials,Chemicals,Small Cap
+1313.TW,UPC Technology Corporation,Materials,Chemicals,Small Cap
+1314.TW,China Petrochemical Development Corporation,Materials,Chemicals,Small Cap
+1316.TW,"Sun Yad Construction Co.,Ltd",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1323.TW,"Yonyu Plastics Co., Ltd.",Consumer Discretionary,Distributors,Micro Cap
+1339.TW,"Y.C.C. Parts Mfg. Co., Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+1409.TW,Shinkong Synthetic Fibers Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1410.TW,"Nan Yang Dyeing & Finishing Co.,Ltd",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1413.TW,"Hung Chou Fiber Ind. Co., Ltd",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1416.TW,Kwong Fong Industries Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1418.TW,Tong-Hwa Synthetic Fiber Company Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1419.TW,"Shinkong Textile Co.,Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1423.TW,Reward Wool Industry Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1434.TW,"Formosa Taffeta Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1438.TW,"SanDi Properties Co.,Ltd.",Real Estate,Real Estate Management & Development,Nano Cap
+1439.TW,"Chuwa Wool Industry Co., (Taiwan) Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1440.TW,"Tainan Spinning Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1442.TW,"Advancetek Enterprise Co.,Ltd.",Real Estate,Real Estate Management & Development,Micro Cap
+1443.TW,"Lily Textile Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1444.TW,"Lealea Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1447.TW,"Li Peng Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1449.TW,"Chia Her Industrial Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1451.TW,"Nien Hsing Textile Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1454.TW,"Taiwan Taffeta Fabric Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1457.TW,"Yi Jinn Industrial Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1460.TW,"Everest Textile Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1463.TW,"Chyang Sheng Dyeing & Finishing Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1464.TW,"De Licacy Industrial Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1465.TW,"Wisher Industrial Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1466.TW,Acelon Chemicals & Fiber Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1470.TW,evertex fabrinology limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1471.TW,Solytech Enterprise Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+1473.TW,"Tainan Enterprises Co.,Ltd",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1474.TW,"Honmyue Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1476.TW,"Eclat Textile Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+1477.TW,"Makalot Industrial Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+1503.TW,Shihlin Electric & Engineering Corporation,Industrials,Machinery,Small Cap
+1504.TW,"TECO Electric & Machinery Co., Ltd.",Industrials,Machinery,Mid Cap
+1506.TW,"Right Way Industrial Co.,Ltd",Consumer Discretionary,Auto Components,Micro Cap
+1507.TW,"Yungtay Engineering Co., Ltd.",Industrials,Machinery,Small Cap
+1513.TW,Chung-Hsin Electric and Machinery Manufacturing Corp.,Industrials,Machinery,Small Cap
+1514.TW,"Allis Electric Co.,Ltd.",Industrials,Machinery,Micro Cap
+1515.TW,"Rexon Industrial Corp.,Ltd",Industrials,Machinery,Small Cap
+1517.TW,Leechi Machinery Industry Ltd. Co.,Industrials,Building Products,Micro Cap
+1521.TW,"Ta Yih Industrial Co., Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+1524.TW,"Gordon Auto Body Parts Co., Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+1525.TW,Kian Shen Corporation,Consumer Discretionary,Auto Components,Micro Cap
+1526.TW,Sun Race Sturmey-Archer Inc.,Consumer Discretionary,Auto Components,Micro Cap
+1527.TW,Basso Industry Corp.,Industrials,Building Products,Micro Cap
+1528.TW,Anderson Industrial Corporation,Industrials,Machinery,Micro Cap
+1529.TW,Klingon Aerospace Inc.,Industrials,Electrical Equipment,Micro Cap
+1530.TW,"Awea mechantronic co.,ltd",Industrials,Machinery,Micro Cap
+1531.TW,"Kaulin Mfg. Co., Ltd.",Industrials,Machinery,Micro Cap
+1533.TW,"Mobiletron Electronics Co.,Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+1535.TW,China Ecotek Corporation,Industrials,Construction & Engineering,Micro Cap
+1536.TW,"Hota Industrial Mfg. Co., Ltd.",Consumer Discretionary,Auto Components,Small Cap
+1537.TW,"Kung Long Batteries Industrial Co.,Ltd",Industrials,Electrical Equipment,Small Cap
+1539.TW,"Chiu Ting Machinery Co., Ltd.",Industrials,Machinery,Nano Cap
+1540.TW,"Roundtop Machinery Industries Co., Ltd.",Industrials,Machinery,Nano Cap
+1541.TW,"CHANG TYPE Industrial Co., Ltd.",Industrials,Building Products,Micro Cap
+1558.TW,"Zeng Hsing Industrial Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+1560.TW,Kinik Company,Industrials,Machinery,Small Cap
+1563.TWO,"SuperAlloy Industrial Co., Ltd.",Consumer Discretionary,Auto Components,Small Cap
+1568.TW,"Tsang Yow Industrial Co.,Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+1582.TW,Syncmold Enterprise Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+1583.TW,Goodway Machine Corp.,Industrials,Machinery,Micro Cap
+1585.TWO,"TopGreen Technology Co., Ltd.",Industrials,Building Products,Nano Cap
+1587.TW,Cryomax Cooling System Corp.,Consumer Discretionary,Auto Components,Micro Cap
+1590.TW,AirTAC International Group,Industrials,Machinery,Mid Cap
+1592.TW,Enterex International Limited,Consumer Discretionary,Auto Components,Nano Cap
+1597.TW,"Chieftek Precision Co., Ltd.",Industrials,Electrical Equipment,Micro Cap
+1598.TW,Dyaco International Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+1604.TW,Sampo Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+1605.TW,Walsin Lihwa Corporation,Industrials,Electrical Equipment,Mid Cap
+1616.TW,Evertop Wire Cable Corporation,Industrials,Electrical Equipment,Micro Cap
+1617.TW,"Jung Shing Wire Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+1702.TW,"Namchow Holdings Co., Ltd.",Consumer Staples,Food & Staples Retailing,Small Cap
+1707.TW,Grape King Bio Ltd,Health Care,Pharmaceuticals,Small Cap
+1708.TW,Sesoda Corporation,Materials,Chemicals,Micro Cap
+1709.TW,Formosan Union Chemical Corp.,Materials,Chemicals,Small Cap
+1711.TW,Everlight Chemical Industrial Corporation,Materials,Chemicals,Small Cap
+1712.TW,Sinon Corporation,Materials,Construction Materials,Small Cap
+1714.TW,Ho Tung Chemical Corp.,Materials,Chemicals,Small Cap
+1717.TW,"Eternal Materials Co., Ltd.",Materials,Chemicals,Small Cap
+1721.TW,"Sunko Ink Co., Ltd.",Materials,Chemicals,Micro Cap
+1724.TW,"T.N.C. Industrial Co., Ltd.",Materials,Chemicals,Micro Cap
+1726.TW,"Yung Chi Paint & Varnish Mfg.Co.,Ltd",Materials,Chemicals,Small Cap
+1730.TW,"Farcent Enterprise Co., Ltd",Consumer Staples,Household Products,Micro Cap
+1731.TW,Maywufa Company Ltd.,Health Care,Pharmaceuticals,Micro Cap
+1732.TW,Mao Bao Inc.,Consumer Staples,Household Products,Micro Cap
+1733.TW,Apex Biotechnology Corp.,Health Care,Biotechnology,Micro Cap
+1734.TW,"Sinphar Pharmaceutical Co.,Ltd.",Health Care,Biotechnology,Micro Cap
+1735.TW,"Evermore Chemical Industry Co., Ltd.",Materials,Chemicals,Micro Cap
+1736.TW,"Johnson Health Tech. Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+1737.TW,"Taiyen Biotech Co., Ltd.",Consumer Staples,Household Products,Micro Cap
+1752.TWO,"Nang Kuang Pharmaceutical Co., Ltd.",Health Care,Health Care Equipment & Supplies,Micro Cap
+1760.TW,Panion & Bf Biotech Inc.,Health Care,Biotechnology,Small Cap
+1762.TW,"Chunghwa Chemical Synthesis & Biotech Co., Ltd.",Health Care,Biotechnology,Micro Cap
+1773.TW,Shiny Chemical Industrial Company Limited,Materials,Chemicals,Small Cap
+1776.TW,Headway Advanced Materials Inc.,Materials,Chemicals,Nano Cap
+1783.TW,Maxigen Biotech Inc.,Health Care,Health Care Equipment & Supplies,Micro Cap
+1786.TW,SciVision Biotech Inc.,Health Care,Health Care Equipment & Supplies,Micro Cap
+1789.TW,"ScinoPharm Taiwan, Ltd.",Health Care,Pharmaceuticals,Small Cap
+1795.TW,"Lotus Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Small Cap
+1809.TW,"China Glaze Co.,Ltd.",Industrials,Building Products,Micro Cap
+1810.TW,Hocheng Corporation,Consumer Discretionary,Household Durables,Micro Cap
+1817.TW,"Sanitar Co., Ltd.",Consumer Staples,Household Products,Micro Cap
+1903.TW,Shihlin Paper Corporation,Materials,Paper & Forest Products,Small Cap
+1904.TW,Cheng Loong Corporation,Materials,Paper & Forest Products,Small Cap
+1906.TW,"Baolong International Co., Ltd.",Materials,Paper & Forest Products,Micro Cap
+1907.TW,YFY Inc.,Materials,Paper & Forest Products,Mid Cap
+1909.TW,"Longchen Paper & Packaging Co., Ltd.",Consumer Discretionary,Distributors,Small Cap
+2007.TW,"Yieh Hsing Enterprise Co., Ltd.",Materials,Metals & Mining,Micro Cap
+2008.TW,Kao Hsing Chang Iron & Steel Corp.,Materials,Metals & Mining,Micro Cap
+2010.TW,"Chun Yuan Steel Industry Co., Ltd.",Materials,Metals & Mining,Small Cap
+2014.TW,Chung Hung Steel Corporation,Materials,Metals & Mining,Mid Cap
+2015.TW,"Feng Hsin Steel Co.,Ltd",Materials,Metals & Mining,Small Cap
+2017.TW,"Quintain Steel Co., LTD.",Materials,Metals & Mining,Micro Cap
+2020.TW,Mayer Steel Pipe Corporation,Materials,Metals & Mining,Micro Cap
+2022.TW,"Tycoons Group Enterprise Co.,Ltd.",Materials,Metals & Mining,Micro Cap
+2023.TW,"Yieh Phui Enterprise Co., Ltd.",Materials,Metals & Mining,Small Cap
+2024.TW,"Chih Lien Industrial Co., Ltd.",Materials,Metals & Mining,Micro Cap
+2025.TW,"Chien Shing Stainless Steel Co., Ltd.",Materials,,Nano Cap
+2027.TW,"Ta Chen Stainless Pipe Co., Ltd.",Materials,Metals & Mining,Mid Cap
+2028.TW,"Wei Chih Steel Industrial Co.,Ltd.",Materials,Metals & Mining,Small Cap
+2030.TW,"Froch Enterprise Co., Ltd.",Materials,Metals & Mining,Micro Cap
+2031.TW,Hsin Kuang Steel Company Limited,Materials,Metals & Mining,Small Cap
+2032.TW,"Sinkang Industries Co., Ltd.",Materials,Metals & Mining,Micro Cap
+2034.TW,"YC Inox Co.,Ltd",Materials,Metals & Mining,Small Cap
+2038.TW,Hai Kwang Enterprise Corporation,Materials,Metals & Mining,Micro Cap
+2049.TW,Hiwin Technologies Corp.,Industrials,Building Products,Mid Cap
+2059.TW,"King Slide Works Co., Ltd.",Consumer Discretionary,Household Durables,Small Cap
+2062.TW,Sunspring Metal Corporation,Industrials,Building Products,Micro Cap
+2069.TW,"Yuen Chang Stainless Steel Co., Ltd.",Materials,Metals & Mining,Micro Cap
+2101.TW,"Nankang Rubber Tire Corp.,Ltd.",Consumer Discretionary,Auto Components,Small Cap
+2102.TW,Federal Corporation,Consumer Discretionary,Auto Components,Small Cap
+2103.TW,TSRC Corporation,Materials,Chemicals,Small Cap
+2104.TW,"International CSRC Investment Holdings Co., Ltd.",Materials,Chemicals,Small Cap
+2105.TW,"Cheng Shin Rubber Ind. Co., Ltd.",Consumer Discretionary,Auto Components,Mid Cap
+2106.TW,Kenda Rubber Industrial Co. Ltd.,Consumer Discretionary,Auto Components,Small Cap
+2107.TW,Formosan Rubber Group Inc.,Materials,Chemicals,Small Cap
+2108.TW,"NANTEX Industry Co., Ltd.",Materials,Chemicals,Mid Cap
+2109.TW,"Hwa Fong Rubber Ind. Co., Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+2114.TW,"Hsin Yung Chien Co., Ltd.",Consumer Discretionary,Auto Components,Small Cap
+2115.TW,Luhai Holding Corp.,Consumer Discretionary,Auto Components,Micro Cap
+2201.TW,Yulon Motor Company Ltd.,Consumer Discretionary,Automobiles,Small Cap
+2206.TW,"Sanyang Motor Co., Ltd.",Consumer Discretionary,Automobiles,Small Cap
+2208.TW,CSBC Corporation,Industrials,Aerospace & Defense,Small Cap
+2227.TW,"Yulon Nissan Motor Co., Ltd",Consumer Discretionary,Automobiles,Mid Cap
+2228.TW,"Iron Force Industrial Co., Ltd.",Consumer Discretionary,Auto Components,Micro Cap
+2231.TW,Cub Elecparts Inc.,Consumer Discretionary,Auto Components,Small Cap
+2233.TW,"TURVO International Co., Ltd.",Industrials,Machinery,Micro Cap
+2241.TW,"Amulaire Thermal Technology, Inc.",Consumer Discretionary,Auto Components,Micro Cap
+2246.TWO,"Kaison Green Energy Technology Co., LTD",Consumer Discretionary,Automobiles,Nano Cap
+2301.TW,Lite-On Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2302.TW,Rectron Limited,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2305.TW,"Microtek International, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2312.TW,"Kinpo Electronics, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2313.TW,"Compeq Manufacturing Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2314.TW,Microelectronics Technology Inc.,Information Technology,Communications Equipment,Small Cap
+2316.TW,"WUS Printed Circuit Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2321.TW,"Tecom Co., Ltd.",Information Technology,Communications Equipment,Nano Cap
+2323.TW,CMC Magnetics Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2324.TW,"Compal Electronics, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2327.TW,Yageo Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+2331.TW,"Elitegroup Computer Systems Co.,Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2337.TW,"Macronix International Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+2338.TW,Taiwan Mask Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2342.TW,Mosel Vitelic Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2344.TW,Winbond Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+2345.TW,Accton Technology Corporation,Information Technology,Communications Equipment,Mid Cap
+2347.TW,Synnex Technology International Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2348.TW,"Hiyes International Co., Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+2349.TW,RITEK Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2352.TW,Qisda Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2353.TW,Acer Incorporated,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2354.TW,"Foxconn Technology Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2356.TW,Inventec Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2359.TW,Solomon Technology Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2360.TW,Chroma ATE Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+2362.TW,Clevo Co.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2364.TW,Twinhead International Corp.,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+2365.TW,KYE Systems Corp.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2367.TW,Unitech Printed Circuit Board Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2368.TW,Gold Circuit Electronics Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2369.TW,"Lingsen Precision Industries, Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2371.TW,"Tatung Co., Ltd.",Industrials,Industrial Conglomerates,Mid Cap
+2373.TW,Aurora Corporation,Industrials,Commercial Services & Supplies,Small Cap
+2374.TW,"Ability Enterprise Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2375.TW,Kaimei Electronic Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2379.TW,Realtek Semiconductor Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+2380.TW,Avision Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2385.TW,"Chicony Electronics Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2387.TW,Sunrex Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2390.TW,"Everspring Industry Co., Ltd.",Industrials,Professional Services,Micro Cap
+2392.TW,"Cheng Uei Precision Industry Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2393.TW,"Everlight Electronics Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2395.TW,"Advantech Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+2399.TW,Biostar Microtech International Corp.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2401.TW,Sunplus Technology Company Limited,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2402.TW,"Ichia Technologies, Inc.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2405.TW,Shuttle Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2406.TW,Gigastorage Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2408.TW,Nanya Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+2409.TW,AU Optronics Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+2414.TW,"Unitech Computer Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2417.TW,"AVerMedia Technologies, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2419.TW,Hitron Technologies Inc.,Information Technology,Communications Equipment,Micro Cap
+2420.TW,Zippy Technology Corp.,Industrials,Electrical Equipment,Micro Cap
+2421.TW,"Sunonwealth Electric Machine Industry Co., Ltd.",Industrials,Machinery,Small Cap
+2425.TW,Chaintech Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2426.TW,Tyntek Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2427.TW,Mercuries Data Systems Ltd.,Industrials,Commercial Services & Supplies,Micro Cap
+2428.TW,"Thinking Electronic Industrial Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2429.TW,"Abonmax Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+2430.TW,"Tsann Kuen Enterprise Co.,Ltd",Consumer Discretionary,Specialty Retail,Micro Cap
+2433.TW,Huxen Corporation,Industrials,Commercial Services & Supplies,Micro Cap
+2434.TW,Mospec Semiconductor Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2436.TW,"Weltrend Semiconductor, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2438.TW,Enlight Corporation,Industrials,Electrical Equipment,Nano Cap
+2439.TW,"Merry Electronics Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2440.TW,"Space Shuttle Hi-Tech Co., Ltd.",Industrials,Electrical Equipment,Micro Cap
+2441.TW,Greatek Electronics Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2442.TW,"Jean Co.,Ltd",Consumer Discretionary,Auto Components,Micro Cap
+2444.TW,"AboCom Systems, Inc.",Information Technology,Communications Equipment,Nano Cap
+2450.TW,"Senao International Co., Ltd.",Consumer Discretionary,Specialty Retail,Small Cap
+2451.TW,"Transcend Information, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+2453.TW,Syscom Computer Engineering Co.,Information Technology,IT Services,Micro Cap
+2455.TW,"Visual Photonics Epitaxy Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2456.TW,Chilisin Electronics Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2457.TW,"Phihong Technology Co., Ltd.",Industrials,Electrical Equipment,Small Cap
+2458.TW,ELAN Microelectronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+2459.TW,Audix Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2464.TW,Mirle Automation Corporation,Industrials,Machinery,Small Cap
+2465.TW,Leadtek Research Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2472.TW,Lelon Electronics Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2474.TW,"Catcher Technology Co., Ltd.",Industrials,Building Products,Mid Cap
+2477.TW,"Meiloon Industrial Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2480.TW,"Stark Technology, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2481.TW,Panjit International Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+2482.TW,Uniform Industrial Corporation,Industrials,Commercial Services & Supplies,Nano Cap
+2484.TW,"Siward Crystal Technology Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2485.TW,Zinwell Corporation,Information Technology,Communications Equipment,Micro Cap
+2488.TW,"Hanpin Electron Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2489.TW,"AmTRAN Technology Co.,Ltd",Industrials,Electrical Equipment,Small Cap
+2492.TW,Walsin Technology Corporation,Industrials,Electrical Equipment,Mid Cap
+2493.TW,"Ampoc Far-East Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2495.TW,"Infortrend Technology, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+2496.TW,Success Prime Corporation,Information Technology,Communications Equipment,Nano Cap
+2498.TW,HTC Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+2509.TW,"Chainqui Construction Development Co.,Ltd",Real Estate,Real Estate Management & Development,Micro Cap
+2511.TW,Prince Housing & Development Corp.,Real Estate,Real Estate Management & Development,Small Cap
+2520.TW,"Kindom Development Co., Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+2527.TW,Hung Ching Development & Construction Co. Ltd.,Real Estate,Real Estate Management & Development,Micro Cap
+2528.TW,Crowell Development Corp.,Real Estate,Real Estate Management & Development,Micro Cap
+2530.TW,"Delpha Construction Co.,Ltd.",Real Estate,Real Estate Management & Development,Micro Cap
+2539.TW,"Sakura Development Co.,Ltd",Real Estate,Real Estate Management & Development,Small Cap
+2542.TW,Highwealth Construction Corp.,Real Estate,Real Estate Management & Development,Small Cap
+2543.TW,"Hwang Chang General Contractor Co., Ltd",Industrials,Construction & Engineering,Micro Cap
+2545.TW,Huang Hsiang Construction Corporation,Real Estate,Real Estate Management & Development,Small Cap
+2546.TW,"Kedge Construction Co., Ltd.",Industrials,Construction & Engineering,Micro Cap
+2547.TW,"Radium Life Technology Co., Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+2548.TW,"Huaku Development Co., Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+2597.TW,"Ruentex Engineering & Construction Co., Ltd.",Industrials,Construction & Engineering,Small Cap
+2601.TW,"First Steamship Co., Ltd.",Industrials,Marine,Small Cap
+2605.TW,Sincere Navigation Corporation,Industrials,Marine,Small Cap
+2611.TW,Tze Shin International Co. Ltd.,Industrials,Marine,Micro Cap
+2613.TW,China Container Terminal Corporation,Industrials,Marine,Micro Cap
+2617.TW,"Taiwan Navigation Co., Ltd.",Industrials,Marine,Small Cap
+2618.TW,EVA Airways Corp.,Industrials,Airlines,Mid Cap
+2633.TW,Taiwan High Speed Rail Corporation,Industrials,Road & Rail,Mid Cap
+2636.TW,T3EX Global Holdings Corp.,Industrials,Air Freight & Logistics,Small Cap
+2642.TW,"Taiwan Pelican Express Co., Ltd.",Industrials,Air Freight & Logistics,Micro Cap
+2701.TW,Wanhwa Enterprise Company,Real Estate,Real Estate Management & Development,Micro Cap
+2702.TW,Hotel Holiday Garden,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+2704.TW,"The Ambassador Hotel,Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+2705.TW,"Leofoo Development Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+2707.TW,Formosa International Hotels Corporation,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+2712.TW,"FarGlory Hotel Co.,Ltd",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+2722.TW,"Chateau International Development Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+2723.TW,Gourmet Master Co. Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+2727.TW,Wowprime Corp.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+2730.TWO,"Miramar Hospitality Co.,Ltd",Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+2739.TW,"My Humble House Hospitality Management Consulting Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+2750.TWO,"Hotel Orchard Park CO., LTD.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+2753.TWO,Bafang Yunji International Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+2801.TW,"Chang Hwa Commercial Bank, Ltd.",Financials,Banks,Mid Cap
+2812.TW,"Taichung Commercial Bank Co., Ltd.",Financials,Banks,Small Cap
+2820.TW,China Bills Finance Corporation,Financials,Capital Markets,Small Cap
+2836.TW,"Bank of Kaohsiung Co., Ltd.",Financials,Banks,Small Cap
+2849.TW,"EnTie Commercial Bank Co., Ltd.",Financials,Banks,Small Cap
+2850.TW,"Shinkong Insurance Co., Ltd.",Financials,Insurance,Small Cap
+2855.TW,President Securities Corporation,Financials,Capital Markets,Small Cap
+2867.TW,"Mercuries Life Insurance Co., Ltd.",Financials,Insurance,Small Cap
+2887.TW,"Taishin Financial Holding Co., Ltd.",Financials,Banks,Mid Cap
+2887E.TW,"Taishin Financial Holding Co., Ltd.",Financials,Banks,Mid Cap
+2889.TW,"IBF Financial Holdings Co., Ltd.",Financials,Capital Markets,Small Cap
+2890.TW,SinoPac Financial Holdings Company Limited,Financials,Banks,Mid Cap
+2903.TW,"Far Eastern Department Stores, Ltd.",Consumer Discretionary,Household Durables,Small Cap
+2905.TW,"Mercuries & Associates Holding, Ltd.",Financials,Insurance,Small Cap
+2906.TW,"Collins Co., Ltd.",Consumer Discretionary,Specialty Retail,Micro Cap
+2910.TW,"Tonlin Department Store Co.,Ltd.",Consumer Discretionary,Household Durables,Micro Cap
+2911.TW,"Les Enphants Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+2912.TW,President Chain Store Corporation,Consumer Staples,Food & Staples Retailing,Mid Cap
+2915.TW,Ruentex Industries Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+2929.TW,TOPBI International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+3002.TW,AHOKU Electronic Company,Industrials,Electrical Equipment,Nano Cap
+3003.TW,K.S. Terminals Inc.,Industrials,Electrical Equipment,Small Cap
+3004.TW,National Aerospace Fasteners Corporation,Industrials,Building Products,Micro Cap
+3005.TW,Getac Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+3006.TW,Elite Semiconductor Microelectronics Tech Inc,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3013.TW,Chenming Electronic Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3016.TW,Episil-Precision Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3021.TW,Welltend Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3022.TW,IEI Integration Corp.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+3023.TW,"SINBON Electronics Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+3027.TW,"Billion Electric Co., Ltd.",Industrials,Industrial Conglomerates,Micro Cap
+3028.TW,Zenitron Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3032.TW,"Compucase Enterprise Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3033.TW,"Weikeng Industrial Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3035.TW,Faraday Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3036.TW,"WT Microelectronics Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3037.TW,Unimicron Technology Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+3042.TW,TXC Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3043.TW,"Powercom Co., Ltd",Industrials,Electrical Equipment,Nano Cap
+3044.TW,Tripod Technology Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+3046.TW,Aopen Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3047.TW,"EDIMAX Technology Co., Ltd.",Information Technology,Communications Equipment,Micro Cap
+3048.TW,"EDOM Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3049.TW,HannsTouch Solution Incorporated,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3051.TW,Optimax Technology Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3054.TW,"LIWANLI Innovation Co., Ltd.",Health Care,Pharmaceuticals,Micro Cap
+3055.TW,Spirox Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3056.TW,"ZongTai Real Estate Development Co., Ltd.",Real Estate,Real Estate Management & Development,Micro Cap
+3057.TW,"Promise Technology, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+3059.TW,Altek Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3060.TW,"Min Aik Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3062.TW,"CyberTAN Technology, Inc.",Information Technology,Communications Equipment,Micro Cap
+3090.TW,Nichidenbo Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3092.TWO,"Hotron Precision Electronic Industrial Co.,Ltd.",Industrials,Electrical Equipment,Micro Cap
+3094.TW,"Davicom Semiconductor, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3138.TW,Auden Techno Corp.,Information Technology,Communications Equipment,Small Cap
+3144.TWO,ThinFlex Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3149.TW,G-TECH Optoelectronics Corporation,Materials,Chemicals,Micro Cap
+3150.TWO,Syncomm Technology Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+3164.TW,GenMont Biotech Incorporation,Health Care,Biotechnology,Micro Cap
+3167.TW,"Taliang Technology Co., Ltd.",Industrials,Machinery,Micro Cap
+3189.TW,Kinsus Interconnect Technology Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3202.TWO,"High-Tek Harness Enterprise Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3209.TW,Alltek Technology Corporation,Information Technology,Communications Equipment,Micro Cap
+3229.TW,"Cheer Time Enterprise Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+3231.TW,Wistron Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+3266.TW,"Sunty Development Co., LTD",Real Estate,Real Estate Management & Development,Micro Cap
+3296.TW,"Powertech Industrial Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3305.TW,Shenmao Technology Inc,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3308.TW,"Bestec Power Electronics Co., Ltd.",Industrials,Electrical Equipment,Nano Cap
+3311.TW,Silitech Technology Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3321.TW,Uniflex Technology Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3338.TW,"TaiSol Electronics Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3346.TW,"Laster Tech Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3356.TW,GeoVision Inc.,Industrials,Professional Services,Micro Cap
+3376.TW,"Shin Zu Shing Co., Ltd.",Industrials,Building Products,Small Cap
+3391.TWO,Remotek Corporation,Information Technology,Communications Equipment,Nano Cap
+3406.TW,"Genius Electronic Optical Co., Ltd",Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+3413.TW,Foxsemicon Integrated Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3416.TW,WinMate Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3419.TW,"Wha Yu Industrial Co., Ltd.",Information Technology,Communications Equipment,Micro Cap
+3429.TWO,Promaster Technology Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+3432.TW,"Tai Twun Enterprise Co., Ltd.",Industrials,Electrical Equipment,Nano Cap
+3437.TW,Advanced Optoelectronic Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3443.TW,Global Unichip Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3454.TW,Vivotek Inc.,Industrials,Professional Services,Micro Cap
+3481.TW,Innolux Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+3494.TW,"HiTi Digital, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+3504.TW,Young Optics Inc.,Industrials,Electrical Equipment,Small Cap
+3515.TW,ASROCK Incorporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+3528.TW,"Answer Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3530.TW,"Silicon Optronics, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3532.TW,Formosa Sumco Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+3533.TW,"Lotes Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3535.TW,"Favite, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+3536.TW,Sintronic Technology Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+3543.TW,"Jochu Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3545.TW,"FocalTech Systems Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3550.TW,Copartner Technology Corporation,Industrials,Electrical Equipment,Micro Cap
+3563.TW,Machvision Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3583.TW,Scientech Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3588.TW,Leadtrend Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3592.TWO,Raydium Semiconductor Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3593.TW,Logah Technology Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+3596.TW,Arcadyan Technology Corporation,Information Technology,Communications Equipment,Small Cap
+3605.TW,"ACES Electronics Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3607.TW,"Coxon Precise Industrial Co., Ltd",Consumer Discretionary,Distributors,Micro Cap
+3622.TW,"Young Fast Optoelectronics Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3627.TWO,Arima Lasers Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+3642.TWO,Unitel High Technology Corporation,Consumer Discretionary,Auto Components,Nano Cap
+3645.TW,Taimide Tech. Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3652.TWO,"Unitech Electronics Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+3653.TW,"Jentech Precision Industrial Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3661.TW,"Alchip Technologies, Limited",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+3665.TW,Bizlink Holding Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+3673.TW,"TPK Holding Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3679.TW,Nishoku Technology Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+3686.TW,Danen Technology Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3688.TWO,"HLJ Technology Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+3694.TW,"AzureWave Technologies, Inc.",Information Technology,Communications Equipment,Micro Cap
+3702.TW,WPG Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+3704.TW,Unizyx Holding Corporation,Information Technology,Communications Equipment,Small Cap
+3705.TW,YungShin Global Holding Corporation,Health Care,Pharmaceuticals,Small Cap
+3706.TW,MiTAC Holdings Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+3708.TW,"Swancor Holding Co., LTD.",Materials,Chemicals,Small Cap
+3714.TW,ENNOSTAR Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+4104.TW,"Excelsior Medical Co., Ltd.",Health Care,Health Care Technology,Micro Cap
+4108.TW,PhytoHealth Corporation,Health Care,Pharmaceuticals,Micro Cap
+4119.TW,"SCI Pharmtech, Inc.",Health Care,Pharmaceuticals,Micro Cap
+4133.TW,Abnova (Taiwan) Corporation,Health Care,Biotechnology,Micro Cap
+4142.TW,Adimmune Corporation,Health Care,Biotechnology,Small Cap
+4151.TWO,"Strength Master Fitness Tech Co.,Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+4152.TWO,"Taiwan Liposome Company, Ltd.",Health Care,Biotechnology,Micro Cap
+4191.TWO,Pharmadax Inc.,Health Care,Pharmaceuticals,Micro Cap
+4306.TW,"Yem Chio Co., Ltd.",Consumer Discretionary,Auto Components,Small Cap
+4426.TW,"Li Cheng Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+4429.TWO,GFun Industrial Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+4438.TW,"Quang Viet Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+4526.TW,"Tongtai Machine & Tool Co., Ltd.",Industrials,Machinery,Micro Cap
+4532.TW,"Rechi Precision Co., Ltd.",Industrials,Machinery,Small Cap
+4536.TW,Topkey Corporation,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+4551.TW,"Global PMX Co., Ltd.",Consumer Discretionary,Auto Components,Small Cap
+4555.TW,"TAIWAN CHELIC Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+4557.TW,Yusin Holding Corp.,Consumer Discretionary,Auto Components,Micro Cap
+4566.TW,"GLOBAL TEK FABRICATION CO., Ltd.",Industrials,Machinery,Micro Cap
+4572.TW,"Drewloong Precision, Inc.",Industrials,Machinery,Micro Cap
+4576.TW,Hiwin Mikrosystem Corp.,Industrials,Electrical Equipment,Small Cap
+4578.TWO,"Sogotec Precision Co., Ltd.",Industrials,Machinery,Nano Cap
+4722.TW,Qualipoly Chemical Corporation,Materials,Chemicals,Micro Cap
+4736.TWO,TaiDoc Technology Corporation,Health Care,Health Care Technology,Small Cap
+4737.TW,Bionime Corporation,Health Care,Health Care Equipment & Supplies,Micro Cap
+4739.TW,Coremax Corporation,Materials,Chemicals,Micro Cap
+4746.TW,"Formosa Laboratories, Inc.",Health Care,Pharmaceuticals,Small Cap
+4766.TW,"Nan Pao Resins Chemical Co., Ltd.",Materials,Chemicals,Small Cap
+4803.TWO,VHQ Media Holdings Ltd,Communication Services,Entertainment,Micro Cap
+4906.TW,"Gemtek Technology Co., Ltd.",Information Technology,Communications Equipment,Small Cap
+4912.TW,"Lemtech Holdings Co., Limited",Industrials,Building Products,Small Cap
+4915.TW,Primax Electronics Ltd.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+4916.TW,Parpro Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+4919.TW,Nuvoton Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+4930.TW,"Star Comgistic Capital Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+4934.TW,"Tainergy Tech Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+4938.TW,Pegatron Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+4944.TWO,Crystalwise Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+4945.TWO,Sentelic Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+4952.TW,Generalplus Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+4956.TW,"Epileds Technologies, Inc.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+4961.TW,Fitipower Integrated Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+4968.TW,RichWave Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+4976.TW,"Calin Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+4989.TW,LCY Technology Corp.,Materials,Metals & Mining,Micro Cap
+4999.TW,Sinher Technology Inc.,Industrials,Building Products,Micro Cap
+5007.TW,San Shing Fastech Corp.,Industrials,Building Products,Small Cap
+5102.TWO,"Fu Chian Tire Co.,Ltd.",Consumer Discretionary,Auto Components,Nano Cap
+5203.TW,CyberLink Corp.,Information Technology,Software,Micro Cap
+5222.TWO,"Transcom, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+5233.TWO,Amita Technologies Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+5234.TW,Daxin Materials Corporation,Materials,Chemicals,Small Cap
+5244.TWO,"Brightek Optoelectronic Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+5258.TW,"Castles Technology Co., Ltd.",Industrials,Commercial Services & Supplies,Micro Cap
+5269.TW,ASMedia Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+5277.TWO,ProLight Opto Technology Corporation,Industrials,Electrical Equipment,Micro Cap
+5283.TW,"Heran Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+5292.TWO,Desiccant Technology Corporation,Industrials,Construction & Engineering,Micro Cap
+5306.TWO,KMC (Kuei Meng) International Inc.,Consumer Discretionary,Auto Components,Small Cap
+5383.TWO,"Kenly Precision Industrial Co., LTD.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+5388.TW,Sercomm Corporation,Information Technology,Communications Equipment,Small Cap
+5434.TW,"Topco Scientific Co.,Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+5469.TW,HannStar Board Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+5471.TW,"Sonix Technology Co.,Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+5484.TW,EverFocus Electronics Corporation,Industrials,Professional Services,Nano Cap
+5515.TW,"Chien Kuo Construction Co., Ltd.",Industrials,Construction & Engineering,Micro Cap
+5519.TW,LongDa Construction & Development Corporation,Industrials,Construction & Engineering,Micro Cap
+5521.TW,Kung Sing Engineering Corporation,Industrials,Construction & Engineering,Micro Cap
+5522.TW,"Farglory Land Development Co., Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+5525.TW,"Sweeten Real Estate Development Co.,Ltd.",Real Estate,Real Estate Management & Development,Micro Cap
+5531.TW,"Shining Building Business Co.,Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+5533.TW,"Founding Construction & Development Co., Ltd.",Real Estate,Real Estate Management & Development,Micro Cap
+5608.TW,"Shih Wei Navigation Co., Ltd.",Industrials,Marine,Small Cap
+5706.TW,"Phoenix Tours International, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+5820.TWO,"JihSun Financial Holding Co.,Ltd.",Financials,Capital Markets,Small Cap
+6108.TW,APCB Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6112.TW,"SYSAGE Technology Co., Ltd.",Information Technology,IT Services,Micro Cap
+6116.TW,HannStar Display Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+6120.TW,Darwin Precisions Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6133.TW,Golden Bridge Electech Inc.,Industrials,Electrical Equipment,Nano Cap
+6136.TW,"Fullerton Technology Co., Ltd.",Communication Services,Diversified Telecommunication Services,Micro Cap
+6141.TW,"Plotech Co.,Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6142.TW,"Cameo Communications, Inc.",Information Technology,Communications Equipment,Micro Cap
+6152.TW,Prime Electronics & Satellitics Inc.,Information Technology,Communications Equipment,Micro Cap
+6153.TW,"Career Technology (Mfg.) Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6164.TW,Ledtech Electronics Corp.,Industrials,Electrical Equipment,Nano Cap
+6166.TW,"ADLINK Technology, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6168.TW,Harvatek Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+6172.TW,Billionton Systems Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+6176.TW,Radiant Opto-Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+6184.TW,Dafeng TV Ltd.,Communication Services,Entertainment,Micro Cap
+6189.TW,"Promate Electronic Co.,Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6191.TW,Global Brands Manufacture Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6192.TW,"Lumax International Corp., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6196.TW,Marketech International Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6197.TW,"Jess-link Products Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+6201.TW,"Ya Horng Electronic Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6202.TW,Holtek Semiconductor Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6205.TW,"Chant Sincere Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6206.TW,"Flytech Technology Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6209.TW,"Kinko Optical Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6213.TW,ITEQ Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6214.TW,Systex Corporation,Information Technology,IT Services,Small Cap
+6215.TW,Aurotek Corporation,Industrials,Machinery,Micro Cap
+6216.TW,DrayTek Corporation,Information Technology,Communications Equipment,Micro Cap
+6224.TW,Polytronics Technology Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6225.TW,AIPTEK International Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6230.TW,Nidec Chaun-Choung Technology Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6235.TW,Waffer Technology Corporation,Industrials,Building Products,Micro Cap
+6239.TW,Powertech Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+6247.TWO,Jazz Hipster Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6257.TW,Sigurd Microelectronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6269.TW,"Flexium Interconnect, Inc.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6272.TWO,"Wieson Technologies Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6277.TW,"Aten International Co., Ltd",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6278.TW,Taiwan Surface Mounting Technology Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6282.TW,AcBel Polytech Inc.,Industrials,Electrical Equipment,Small Cap
+6285.TW,Wistron NeWeb Corporation,Information Technology,Communications Equipment,Small Cap
+6288.TW,Excellence Optoelectronics Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6289.TW,Arima Optoelectronics Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6403.TWO,AcSiP Technology Corp.,Information Technology,Communications Equipment,Nano Cap
+6405.TW,Onano Industrial Corp.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6409.TW,Voltronic Power Technology Corp.,Industrials,Electrical Equipment,Mid Cap
+6412.TW,"Chicony Power Technology Co., Ltd.",Industrials,Electrical Equipment,Small Cap
+6414.TW,Ennoconn Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6416.TW,CASwell Inc.,Information Technology,Communications Equipment,Small Cap
+6426.TW,"Apogee Optocom Co., Ltd.",Information Technology,Communications Equipment,Micro Cap
+6438.TW,"Symtek Automation Asia Co., Ltd.",Industrials,Machinery,Micro Cap
+6442.TW,EZconn Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6443.TW,TSEC Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6446.TWO,PharmaEssentia Corporation,Health Care,Biotechnology,Small Cap
+6449.TW,"Apaq Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6457.TWO,Hycon Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+6464.TW,"Taiwan Optical Platform Co., Ltd.",Communication Services,Entertainment,Small Cap
+6468.TWO,Netmarble Joybomb Inc.,Communication Services,Interactive Media & Services,Nano Cap
+6472.TWO,"Bora Pharmaceuticals Co., LTD.",Health Care,Pharmaceuticals,Small Cap
+6475.TWO,"Assem Technology Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6477.TW,"ANJI Technology Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+6491.TW,Pegavision Corporation,Health Care,Health Care Equipment & Supplies,Small Cap
+6495.TWO,Nanoplus Ltd.,Materials,Chemicals,Micro Cap
+6504.TW,"Nan Liu Enterprise Co., Ltd.",Consumer Staples,Household Products,Small Cap
+6514.TWO,"Radiation Technology, Inc.",Information Technology,Communications Equipment,Nano Cap
+6515.TW,"WinWay Technology Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6531.TW,AP Memory Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6533.TW,Andes Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6552.TW,"JMC Electronics Co., Ltd.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+6558.TW,SYNergy ScienTech Corp.,Industrials,Electrical Equipment,Micro Cap
+6566.TWO,"Chuang Yi Biotech co., ltd.",Health Care,Biotechnology,Nano Cap
+6575.TWO,SyneuRx International (Taiwan) Corp.,Health Care,Biotechnology,Micro Cap
+6579.TW,AAEON Technology Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6582.TW,"Shin Foong Specialty and Applied Materials Co., Ltd.",Materials,Chemicals,Small Cap
+6585.TWO,DingZing Advanced Materials Inc.,Materials,Chemicals,Micro Cap
+6589.TWO,EirGenix Inc.,Health Care,Biotechnology,Small Cap
+6592.TW,"Hotai Finance Co., Ltd.",Financials,Consumer Finance,Small Cap
+6594.TWO,Alcorlink Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+6611.TWO,"Cayenne's Ark Mobile Co., Ltd.",Communication Services,Interactive Media & Services,Nano Cap
+6626.TWO,GAME HOURS Inc.,Communication Services,Interactive Media & Services,Nano Cap
+6633.TWO,"Somnics, Inc.",Health Care,Health Care Technology,Nano Cap
+6655.TW,"Keding Enterprises Co., Ltd.",Materials,Paper & Forest Products,Micro Cap
+6657.TWO,"Energenesis Biomedical CO.,LTD.",Health Care,Biotechnology,Micro Cap
+6669.TW,Wiwynn Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+6670.TW,"FuSheng Precision Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+6674.TW,"Compal Broadband Networks, Inc.",Financials,Diversified Financial Services,Micro Cap
+6688.TWO,Deepjoy Picture Corporation,Communication Services,Entertainment,Nano Cap
+6689.TWO,"eCloudvalley Digital Technology Co., Ltd.",Information Technology,Software,Small Cap
+6691.TWO,"Yankey Engineering Co., Ltd.",Industrials,Construction & Engineering,Small Cap
+6695.TWO,"iCatch Technology, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+6698.TW,"FineMat Applied Materials Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6706.TW,"Fittech Co.,Ltd",Industrials,Machinery,Small Cap
+6715.TW,"Lintes Technology Co., Ltd.",Information Technology,Communications Equipment,Micro Cap
+6717.TWO,"SmartDisplayer Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6719.TWO,uPI Semiconductor Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+6731.TWO,"Femco Steel Technology Co., Ltd.",Materials,Metals & Mining,Nano Cap
+6740.TWO,Mobix Corporation,Consumer Discretionary,Internet & Direct Marketing Retail,Nano Cap
+6743.TW,AMPACS Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+6753.TWO,"Lungteh Shipbuilding Co., Ltd.",Industrials,Aerospace & Defense,Micro Cap
+6754.TW,"Rich Honour International Designs Co., Ltd.",Industrials,Professional Services,Micro Cap
+6757.TWO,"Tigerair Taiwan Co., Ltd.",Industrials,Airlines,Small Cap
+6764.TWO,"Ace Edulink Co., Ltd.",Consumer Staples,Household Products,Micro Cap
+6770.TWO,Powerchip Semiconductor Manufacturing Corp.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+6776.TW,Weblink International Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6789.TWO,VisEra Technologies Company Ltd.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+6790.TWO,"Yuen Foong Yu Consumer Products Co., Ltd.",Consumer Staples,Household Products,Small Cap
+6792.TWO,Unictron Technologies Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+6794.TWO,"UnicoCell Biomed Co., Ltd.",Health Care,Biotechnology,Micro Cap
+6796.TWO,Medimaging Integrated Solution Inc.,Health Care,Health Care Technology,Micro Cap
+6805.TWO,Fositek Corp.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+6806.TWO,"Shinfox Energy Co., Ltd",Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+6813.TWO,"GeneTouch Corp., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+8016.TW,Sitronix Technology Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+8021.TW,"Topoint Technology Co., Ltd.",Industrials,Building Products,Micro Cap
+8039.TW,"Taiflex Scientific Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+8046.TW,Nan Ya Printed Circuit Board Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+8070.TW,Chang Wah Electromaterials Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+8101.TW,Arima Communications Corp.,Information Technology,Communications Equipment,Nano Cap
+8103.TW,CviLux Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+8104.TW,RiTdisplay Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+8105.TW,"Giantplus Technology Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+8114.TW,"Posiflex Technology, Inc.",Industrials,Commercial Services & Supplies,Micro Cap
+8150.TW,ChipMOS TECHNOLOGIES INC.,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+8163.TW,Darfon Electronics Corp.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+8179.TWO,"Subtron Technology Co., Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+8201.TW,"Inventec Besta Co.,Ltd",Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+8210.TW,"Chenbro Micom Co., Ltd.",Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+8213.TW,"Taiwan Pcb Techvest Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+8215.TW,BenQ Materials Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+8271.TW,Apacer Technology Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+8281.TWO,Appro Technology Inc.,Industrials,Professional Services,Nano Cap
+8341.TW,"Sunny Friend Environmental Technology Co., Ltd.",Industrials,Transportation Infrastructure,Small Cap
+8367.TW,"Chien Shing Harbour Service Co.,Ltd.",Industrials,Marine,Micro Cap
+8374.TW,"Ace Pillar Co., Ltd.",Industrials,Trading Companies & Distributors,Micro Cap
+8422.TW,Cleanaway Company Limited,Industrials,Transportation Infrastructure,Small Cap
+8438.TWO,"Amia Co.,Ltd",Materials,Chemicals,Micro Cap
+8454.TW,momo.com Inc.,Consumer Discretionary,Internet & Direct Marketing Retail,Mid Cap
+8463.TW,"Ruentex Materials Co.,Ltd.",Materials,Construction Materials,Micro Cap
+8464.TW,"Nien Made Enterprise Co., LTD.",Consumer Discretionary,Household Durables,Mid Cap
+8465.TWO,"Tekho Marine Biotech Co., Ltd",Consumer Staples,Household Products,Nano Cap
+8481.TW,"Transart Graphics Co., Ltd.",Industrials,Professional Services,Micro Cap
+8482.TW,Shane Global Holding Inc.,Consumer Discretionary,Household Durables,Micro Cap
+8487.TWO,"ELTA Technology Co.,Ltd.",Communication Services,Entertainment,Nano Cap
+8916A.TWO,"Kwong Lung Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+8926.TW,Taiwan Cogeneration Corporation,Industrials,Construction & Engineering,Small Cap
+8940.TW,"New Palace International Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8996.TW,"Kaori Heat Treatment Co., Ltd.",Industrials,Machinery,Micro Cap
+9103.TW,Medtecs International Corporation Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+9902.TW,"Tidehold Development Co., Ltd.",Real Estate,Real Estate Management & Development,Nano Cap
+9904.TW,Pou Chen Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+9908.TW,The Great Taipei Gas Corporation,Utilities,Gas Utilities,Small Cap
+9910.TW,"Feng Tay Enterprises Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+9911.TW,Taiwan Sakura Corporation,Consumer Discretionary,Household Durables,Small Cap
+9914.TW,"Merida Industry Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+9919.TW,"KNH Enterprise Co., Ltd.",Consumer Staples,Household Products,Micro Cap
+9921.TW,"Giant Manufacturing Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+9927.TW,"Thye Ming Industrial Co., Ltd.",Materials,Metals & Mining,Micro Cap
+9933.TW,CTCI Corporation,Industrials,Construction & Engineering,Small Cap
+9935.TW,"Ching Feng Home Fashions Co.,Ltd",Consumer Discretionary,Household Durables,Micro Cap
+9938.TW,Taiwan Paiho Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+9939.TW,"Taiwan Hon Chuan Enterprise Co., Ltd.",Consumer Discretionary,Distributors,Small Cap
+9940.TW,Sinyi Realty Inc.,Real Estate,Real Estate Management & Development,Small Cap
+9941.TW,Yulon Finance Corporation,Financials,Consumer Finance,Small Cap
+9941A.TW,Yulon Finance Corporation,Financials,Consumer Finance,Small Cap
+9942.TW,NAK Sealing Technologies Corporation,Consumer Discretionary,Auto Components,Micro Cap
+9943.TW,"Holiday Entertainment Co.,Ltd",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+9944.TW,"Shinih Enterprise Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+9945.TW,"Ruentex Development Co.,Ltd.",Industrials,Industrial Conglomerates,Mid Cap
