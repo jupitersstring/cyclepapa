@@ -55,8 +55,17 @@ for entry in "${MARKETS[@]}"; do
     fi
     echo "============== [REC] $mkt ($miss_n missed) =============="
 
-    # Dalton on missed only
+    # Skip if recovery files already exist (resuming after restart)
     rec_out="data/dalton/dalton_${mkt}_recovery.csv"
+    fund_rec="data/fundamentals/fund_${mkt}_recovery.csv"
+    if [ -f "$rec_out" ] && [ -f "$fund_rec" ] && \
+       [ "$(stat -c%s "$rec_out")" -gt 1000 ] && \
+       [ "$(stat -c%s "$fund_rec")" -gt 1000 ]; then
+        echo "[recovery] $mkt: recovery files already populated, skipping"
+        continue
+    fi
+
+    # Dalton on missed only
     python3 screeners/dalton_complete_screen.py \
         --universe "$rec_uni" --out "$rec_out" --benchmark "$bench" \
         > "/tmp/log_rec_dalton_${mkt}.txt" 2>&1
