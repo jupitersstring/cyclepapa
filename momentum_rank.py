@@ -1371,43 +1371,67 @@ def main():
     df["harmonic_bullish_consonance"] = df["harmonic_consonance"] >= 2
     df["harmonic_bearish_consonance"] = df["harmonic_consonance"] <= -2
 
-    # ===== TD Sequential exhaustion composite =====
-    # 5 user-requested metrics x 2 timeframes x 2 series (absolute + relative SPY).
-    # Monthly weighted higher than weekly; triple > perfect > setup/cd/stealth.
+    # ===== TD Sequential MTF proportional composite (per Pine spec) =====
+    # Each TF contributes equal weight from daily up (D=W=M=1.0).
+    # Intraday TFs down-weighted (when present). The composite is the
+    # weighted average of the 5 user-requested net signals across all TFs
+    # for both absolute price AND relative-to-SPY.
     def _safe(c):
         return df[c].fillna(0) if c in df.columns else 0
 
-    df["td_exhaustion_score"] = (
-        # Weekly absolute
-        _safe("td_w_net_setup") * 2
-        + _safe("td_w_net_cd") * 2
-        + _safe("td_w_net_perfect") * 3
-        + _safe("td_w_net_stealth") * 2
-        + _safe("td_w_net_triple") * 4
-        # Monthly absolute (×~1.5 weekly weights)
-        + _safe("td_m_net_setup") * 3
-        + _safe("td_m_net_cd") * 3
-        + _safe("td_m_net_perfect") * 5
-        + _safe("td_m_net_stealth") * 3
-        + _safe("td_m_net_triple") * 6
-        # Weekly relative-to-SPY
-        + _safe("td_w_rel_net_setup") * 2
-        + _safe("td_w_rel_net_cd") * 2
-        + _safe("td_w_rel_net_perfect") * 2
-        + _safe("td_w_rel_net_stealth") * 2
-        + _safe("td_w_rel_net_triple") * 4
-        # Monthly relative-to-SPY
-        + _safe("td_m_rel_net_setup") * 3
-        + _safe("td_m_rel_net_cd") * 3
-        + _safe("td_m_rel_net_perfect") * 4
-        + _safe("td_m_rel_net_stealth") * 3
-        + _safe("td_m_rel_net_triple") * 5
+    # Equal weight: daily, weekly, monthly (absolute and relative)
+    # Per Pine: setup max=9, cd max=13 already normalized to ±1 in td_nets()
+    TF_W = {"d": 1.0, "w": 1.0, "m": 1.0}  # all daily-and-up equal
+
+    # Weighted net per metric, averaged across W + M absolute + W + M relative
+    # (daily TD added below when daily td columns exist)
+    abs_tfs = ["w", "m"]
+    rel_tfs = ["w", "m"]
+
+    metric_columns = {
+        "net_setup":   "td_{tf}_net_setup",
+        "net_cd":      "td_{tf}_net_cd",
+        "net_perfect": "td_{tf}_net_perfect",
+        "net_stealth": "td_{tf}_net_stealth",
+        "net_triple":  "td_{tf}_net_triple",
+    }
+    for metric_name, col_tmpl in metric_columns.items():
+        total_weight = 0.0
+        weighted_sum = 0
+        for tf in abs_tfs:
+            col = col_tmpl.format(tf=tf)
+            if col in df.columns:
+                weighted_sum = weighted_sum + _safe(col) * TF_W[tf]
+                total_weight += TF_W[tf]
+        for tf in rel_tfs:
+            col = f"td_{tf}_rel_" + col_tmpl.format(tf="").replace("td__", "")
+            if col in df.columns:
+                weighted_sum = weighted_sum + _safe(col) * TF_W[tf]
+                total_weight += TF_W[tf]
+        if total_weight > 0:
+            df[f"td_mtf_{metric_name}"] = weighted_sum / total_weight
+        else:
+            df[f"td_mtf_{metric_name}"] = 0
+
+    # Composite TD exhaustion = sum of 5 weighted net metrics
+    # Each metric range ±1, so composite range ≈ ±5.
+    df["td_mtf_composite"] = (
+        df["td_mtf_net_setup"]
+        + df["td_mtf_net_cd"]
+        + df["td_mtf_net_perfect"]
+        + df["td_mtf_net_stealth"]
+        + df["td_mtf_net_triple"]
     )
-    # Bullish exhaustion: positive score means buy-side TD signals dominate
-    # (downtrend exhaustion, reversal up expected). 5 = strong, 10 = very strong.
-    df["td_bullish_exhaustion"] = df["td_exhaustion_score"] >= 5
-    df["td_bullish_exhaustion_strong"] = df["td_exhaustion_score"] >= 10
-    df["td_bearish_exhaustion"] = df["td_exhaustion_score"] <= -5
+    # Absolute asymmetry: how strong the signal is regardless of direction
+    df["td_mtf_asymmetry"] = df["td_mtf_composite"].abs()
+    # Keep legacy column name for save_mask compatibility
+    df["td_exhaustion_score"] = df["td_mtf_composite"]
+
+    # Bullish/bearish exhaustion tags
+    df["td_bullish_exhaustion"] = df["td_mtf_composite"] >= 0.5
+    df["td_bullish_exhaustion_strong"] = df["td_mtf_composite"] >= 1.0
+    df["td_bearish_exhaustion"] = df["td_mtf_composite"] <= -0.5
+    df["td_bearish_exhaustion_strong"] = df["td_mtf_composite"] <= -1.0
 
     # ===== BREAKOUT_SQUEEZE setup =====
     # Daily squeeze is HIGH and just RELEASING (vol about to expand)
@@ -1718,6 +1742,8 @@ def main():
     harm_bull_wm = df[df["harmonic_bullish_w_or_m"] & (~df["harmonic_bullish_consonance"])].sort_values("harmonic_score", ascending=False)
     td_bull_strong = df[df["td_bullish_exhaustion_strong"]].sort_values("td_exhaustion_score", ascending=False)
     td_bull = df[df["td_bullish_exhaustion"] & (~df["td_bullish_exhaustion_strong"])].sort_values("td_exhaustion_score", ascending=False)
+    td_most_asymmetric_bull = df.sort_values("td_mtf_composite", ascending=False).head(args.top)
+    td_most_asymmetric_bear = df.sort_values("td_mtf_composite", ascending=True).head(args.top)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -1798,6 +1824,21 @@ def main():
             print(td_bull[td_cols].head(args.top).to_string())
         else:
             print("(none)")
+
+        asym_cols = ["name", "sector", "last_close", "rs_rank_max",
+                     "td_mtf_net_setup", "td_mtf_net_cd", "td_mtf_net_perfect",
+                     "td_mtf_net_stealth", "td_mtf_net_triple",
+                     "td_mtf_composite", "td_mtf_asymmetry",
+                     "td_w_buy_setup", "td_w_sell_setup",
+                     "td_m_buy_setup", "td_m_sell_setup",
+                     "td_w_buy_cd", "td_w_sell_cd",
+                     "td_m_buy_cd", "td_m_sell_cd",
+                     "roque_score"]
+        asym_cols = [c for c in asym_cols if c in flagged.columns]
+        print(f"\n=== MOST ASYMMETRIC BULLISH (top {args.top} by td_mtf_composite, equal W=M weights) ===")
+        print(td_most_asymmetric_bull[asym_cols].to_string())
+        print(f"\n=== MOST ASYMMETRIC BEARISH (top {args.top} by -td_mtf_composite) ===")
+        print(td_most_asymmetric_bear[asym_cols].to_string())
 
         print(f"\n=== BREAKOUT_SQUEEZE LOOSE (daily releasing + weekly squeezing + asym improving) ({len(breakout_sq_loose)}) ===")
         if len(breakout_sq_loose):
