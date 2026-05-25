@@ -456,6 +456,112 @@ def compute_harmonics_for_tf(df_ohlc, lookback=5, min_swing_pct=4.0,
     return h
 
 
+def compute_td_sequential(df_ohlc, max_cd=13):
+    """TD Sequential current state. Ports the Pine logic supplied by the
+    user (Enhanced MTF TD Sequential, malikmck):
+
+      bull_count++ when close<close[-4], capped at 9
+      bear_count++ when close>close[-4], capped at 9
+      buy_cd starts at 1 when bull_count==9, increments when close<low[-2]
+      buy_perfect = bull_count==9 AND low<low[-2] AND low<low[-3]
+      stealth_buy = bull_count[-1]==8 AND low<=close[-4] AND bull_count!=9
+      double_buy  = bull_count==9 AND prior bull_count==9 occurrence value 9
+      triple_buy  = double_buy AND 2nd-prior bull_count==9 also value 9
+    """
+    if "Close" not in df_ohlc.columns or len(df_ohlc) < 30:
+        return None
+    close = pd.to_numeric(df_ohlc["Close"], errors="coerce").astype(float).values
+    high = pd.to_numeric(df_ohlc["High"], errors="coerce").astype(float).values
+    low = pd.to_numeric(df_ohlc["Low"], errors="coerce").astype(float).values
+    n = len(close)
+    bull = np.zeros(n, dtype=int)
+    bear = np.zeros(n, dtype=int)
+    cd_buy = np.zeros(n, dtype=int)
+    cd_sell = np.zeros(n, dtype=int)
+    for i in range(4, n):
+        if close[i] < close[i - 4]:
+            bull[i] = bull[i - 1] + 1 if bull[i - 1] < 9 else 1
+        else:
+            bull[i] = 0
+        if close[i] > close[i - 4]:
+            bear[i] = bear[i - 1] + 1 if bear[i - 1] < 9 else 1
+        else:
+            bear[i] = 0
+        if bull[i] == 9:
+            cd_buy[i] = 1
+        elif cd_buy[i - 1] > 0 and cd_buy[i - 1] < max_cd and i >= 2 and close[i] < low[i - 2]:
+            cd_buy[i] = cd_buy[i - 1] + 1
+        else:
+            cd_buy[i] = cd_buy[i - 1]
+        if bear[i] == 9:
+            cd_sell[i] = 1
+        elif cd_sell[i - 1] > 0 and cd_sell[i - 1] < max_cd and i >= 2 and close[i] > high[i - 2]:
+            cd_sell[i] = cd_sell[i - 1] + 1
+        else:
+            cd_sell[i] = cd_sell[i - 1]
+    last = n - 1
+    buy_perfect = bool(bull[last] == 9 and last >= 3 and low[last] < low[last - 2] and low[last] < low[last - 3])
+    sell_perfect = bool(bear[last] == 9 and last >= 3 and high[last] > high[last - 2] and high[last] > high[last - 3])
+    stealth_buy = bool(last >= 5 and bull[last - 1] == 8 and low[last] <= close[last - 4] and bull[last] != 9)
+    stealth_sell = bool(last >= 5 and bear[last - 1] == 8 and high[last] >= close[last - 4] and bear[last] != 9)
+
+    def _prev_9(arr, idx, occ):
+        c = 0
+        for j in range(idx - 1, -1, -1):
+            if arr[j] == 9:
+                c += 1
+                if c == occ:
+                    return j
+        return -1
+
+    double_buy = triple_buy = False
+    if bull[last] == 9:
+        p1 = _prev_9(bull, last, 1)
+        if p1 >= 0 and bull[p1] == 9:
+            double_buy = True
+            p2 = _prev_9(bull, last, 2)
+            if p2 >= 0 and bull[p2] == 9:
+                triple_buy = True
+    double_sell = triple_sell = False
+    if bear[last] == 9:
+        p1 = _prev_9(bear, last, 1)
+        if p1 >= 0 and bear[p1] == 9:
+            double_sell = True
+            p2 = _prev_9(bear, last, 2)
+            if p2 >= 0 and bear[p2] == 9:
+                triple_sell = True
+    return {
+        "buy_setup": int(bull[last]),
+        "sell_setup": int(bear[last]),
+        "buy_cd": int(cd_buy[last]),
+        "sell_cd": int(cd_sell[last]),
+        "buy_perfect": buy_perfect,
+        "sell_perfect": sell_perfect,
+        "stealth_buy": stealth_buy,
+        "stealth_sell": stealth_sell,
+        "double_buy": double_buy,
+        "double_sell": double_sell,
+        "triple_buy": triple_buy,
+        "triple_sell": triple_sell,
+    }
+
+
+def td_nets(td):
+    """Convert TD state into the 5 net signals the user wants surfaced:
+    net_setup, net_cd, net_perfect, net_stealth, net_triple.
+    Positive = bullish (downtrend exhaustion / buy signal dominant)."""
+    if not td:
+        return {"net_setup": 0.0, "net_cd": 0.0, "net_perfect": 0,
+                "net_stealth": 0, "net_triple": 0}
+    return {
+        "net_setup": (td["buy_setup"] - td["sell_setup"]) / 9.0,
+        "net_cd": (td["buy_cd"] - td["sell_cd"]) / 13.0,
+        "net_perfect": int(td["buy_perfect"]) - int(td["sell_perfect"]),
+        "net_stealth": int(td["stealth_buy"]) - int(td["stealth_sell"]),
+        "net_triple": int(td["triple_buy"]) - int(td["triple_sell"]),
+    }
+
+
 def compute_squeeze_release(df, period=14, smoothing=7, ma_length=14, hist_window=100):
     """Pine Script Squeeze & Release port (malikmck / YourName).
 
@@ -699,16 +805,22 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # Squeeze & Release on weekly bars
     sq_w = compute_squeeze_release(weekly) or {}
 
+    # TD Sequential on weekly bars (per Pine spec)
+    td_w = compute_td_sequential(weekly) or {}
+    td_w_nets = td_nets(td_w)
+
     # Harmonic patterns on weekly bars (3-bar ZigZag, 7% min swing)
     h_w = compute_harmonics_for_tf(weekly, lookback=3, min_swing_pct=7.0,
                                     recent_d_max_bars=8, close_near_d_pct=12.0) or {}
 
     # Squeeze & Release on monthly bars (use direct monthly download if available)
+    monthly_bars_for_td = None
     if df_monthly is not None and len(df_monthly) >= 60:
         sq_m = compute_squeeze_release(df_monthly) or {}
         # Monthly: 2-bar pivots, 10% min swing
         h_m = compute_harmonics_for_tf(df_monthly, lookback=2, min_swing_pct=10.0,
                                         recent_d_max_bars=5, close_near_d_pct=18.0) or {}
+        monthly_bars_for_td = df_monthly
     else:
         # resample from daily to monthly
         monthly_from_daily = df_ohlcv.resample("ME").agg({
@@ -718,6 +830,36 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         sq_m = compute_squeeze_release(monthly_from_daily, period=6, smoothing=4, ma_length=6) or {}
         h_m = compute_harmonics_for_tf(monthly_from_daily, lookback=2, min_swing_pct=10.0,
                                         recent_d_max_bars=5, close_near_d_pct=18.0) or {}
+        monthly_bars_for_td = monthly_from_daily
+
+    # TD Sequential on monthly bars
+    td_m = compute_td_sequential(monthly_bars_for_td) or {}
+    td_m_nets = td_nets(td_m)
+
+    # TD Sequential on RELATIVE price (ticker / SPY) - weekly + monthly
+    td_w_rel_nets = {"net_setup": 0.0, "net_cd": 0.0, "net_perfect": 0,
+                     "net_stealth": 0, "net_triple": 0}
+    td_m_rel_nets = dict(td_w_rel_nets)
+    if spy_close is not None:
+        try:
+            spy_aligned = spy_close.reindex(close.index, method="ffill")
+            rel_high_d = high / spy_aligned
+            rel_low_d = low / spy_aligned
+            rel_close_d = close / spy_aligned
+            rel_ohlc = pd.DataFrame({"High": rel_high_d, "Low": rel_low_d,
+                                      "Close": rel_close_d}).dropna()
+            rel_w = rel_ohlc.resample("W-FRI").agg({
+                "High": "max", "Low": "min", "Close": "last"}).dropna()
+            if len(rel_w) >= 30:
+                td_w_rel = compute_td_sequential(rel_w) or {}
+                td_w_rel_nets = td_nets(td_w_rel)
+            rel_m = rel_ohlc.resample("ME").agg({
+                "High": "max", "Low": "min", "Close": "last"}).dropna()
+            if len(rel_m) >= 30:
+                td_m_rel = compute_td_sequential(rel_m) or {}
+                td_m_rel_nets = td_nets(td_m_rel)
+        except Exception:
+            pass
 
     # Monthly asymmetry on direct monthly bars (or resampled)
     monthly_asym_dict = {}
@@ -850,6 +992,50 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "sq_m_squeezing": sq_m.get("sq_squeezing", False),
         "sq_m_just_release": sq_m.get("sq_just_release", False),
         "sq_m_was_high_75": sq_m.get("sq_was_high_75", False),
+        # TD Sequential - weekly absolute
+        "td_w_buy_setup": td_w.get("buy_setup", 0),
+        "td_w_sell_setup": td_w.get("sell_setup", 0),
+        "td_w_buy_cd": td_w.get("buy_cd", 0),
+        "td_w_sell_cd": td_w.get("sell_cd", 0),
+        "td_w_buy_perfect": td_w.get("buy_perfect", False),
+        "td_w_sell_perfect": td_w.get("sell_perfect", False),
+        "td_w_stealth_buy": td_w.get("stealth_buy", False),
+        "td_w_stealth_sell": td_w.get("stealth_sell", False),
+        "td_w_triple_buy": td_w.get("triple_buy", False),
+        "td_w_triple_sell": td_w.get("triple_sell", False),
+        "td_w_net_setup": td_w_nets["net_setup"],
+        "td_w_net_cd": td_w_nets["net_cd"],
+        "td_w_net_perfect": td_w_nets["net_perfect"],
+        "td_w_net_stealth": td_w_nets["net_stealth"],
+        "td_w_net_triple": td_w_nets["net_triple"],
+        # TD Sequential - monthly absolute
+        "td_m_buy_setup": td_m.get("buy_setup", 0),
+        "td_m_sell_setup": td_m.get("sell_setup", 0),
+        "td_m_buy_cd": td_m.get("buy_cd", 0),
+        "td_m_sell_cd": td_m.get("sell_cd", 0),
+        "td_m_buy_perfect": td_m.get("buy_perfect", False),
+        "td_m_sell_perfect": td_m.get("sell_perfect", False),
+        "td_m_stealth_buy": td_m.get("stealth_buy", False),
+        "td_m_stealth_sell": td_m.get("stealth_sell", False),
+        "td_m_triple_buy": td_m.get("triple_buy", False),
+        "td_m_triple_sell": td_m.get("triple_sell", False),
+        "td_m_net_setup": td_m_nets["net_setup"],
+        "td_m_net_cd": td_m_nets["net_cd"],
+        "td_m_net_perfect": td_m_nets["net_perfect"],
+        "td_m_net_stealth": td_m_nets["net_stealth"],
+        "td_m_net_triple": td_m_nets["net_triple"],
+        # TD Sequential - weekly relative-to-SPY
+        "td_w_rel_net_setup": td_w_rel_nets["net_setup"],
+        "td_w_rel_net_cd": td_w_rel_nets["net_cd"],
+        "td_w_rel_net_perfect": td_w_rel_nets["net_perfect"],
+        "td_w_rel_net_stealth": td_w_rel_nets["net_stealth"],
+        "td_w_rel_net_triple": td_w_rel_nets["net_triple"],
+        # TD Sequential - monthly relative-to-SPY
+        "td_m_rel_net_setup": td_m_rel_nets["net_setup"],
+        "td_m_rel_net_cd": td_m_rel_nets["net_cd"],
+        "td_m_rel_net_perfect": td_m_rel_nets["net_perfect"],
+        "td_m_rel_net_stealth": td_m_rel_nets["net_stealth"],
+        "td_m_rel_net_triple": td_m_rel_nets["net_triple"],
         # Harmonic patterns
         "h_d_pattern": h_d.get("pattern"),
         "h_d_direction": h_d.get("direction"),
@@ -1185,6 +1371,44 @@ def main():
     df["harmonic_bullish_consonance"] = df["harmonic_consonance"] >= 2
     df["harmonic_bearish_consonance"] = df["harmonic_consonance"] <= -2
 
+    # ===== TD Sequential exhaustion composite =====
+    # 5 user-requested metrics x 2 timeframes x 2 series (absolute + relative SPY).
+    # Monthly weighted higher than weekly; triple > perfect > setup/cd/stealth.
+    def _safe(c):
+        return df[c].fillna(0) if c in df.columns else 0
+
+    df["td_exhaustion_score"] = (
+        # Weekly absolute
+        _safe("td_w_net_setup") * 2
+        + _safe("td_w_net_cd") * 2
+        + _safe("td_w_net_perfect") * 3
+        + _safe("td_w_net_stealth") * 2
+        + _safe("td_w_net_triple") * 4
+        # Monthly absolute (×~1.5 weekly weights)
+        + _safe("td_m_net_setup") * 3
+        + _safe("td_m_net_cd") * 3
+        + _safe("td_m_net_perfect") * 5
+        + _safe("td_m_net_stealth") * 3
+        + _safe("td_m_net_triple") * 6
+        # Weekly relative-to-SPY
+        + _safe("td_w_rel_net_setup") * 2
+        + _safe("td_w_rel_net_cd") * 2
+        + _safe("td_w_rel_net_perfect") * 2
+        + _safe("td_w_rel_net_stealth") * 2
+        + _safe("td_w_rel_net_triple") * 4
+        # Monthly relative-to-SPY
+        + _safe("td_m_rel_net_setup") * 3
+        + _safe("td_m_rel_net_cd") * 3
+        + _safe("td_m_rel_net_perfect") * 4
+        + _safe("td_m_rel_net_stealth") * 3
+        + _safe("td_m_rel_net_triple") * 5
+    )
+    # Bullish exhaustion: positive score means buy-side TD signals dominate
+    # (downtrend exhaustion, reversal up expected). 5 = strong, 10 = very strong.
+    df["td_bullish_exhaustion"] = df["td_exhaustion_score"] >= 5
+    df["td_bullish_exhaustion_strong"] = df["td_exhaustion_score"] >= 10
+    df["td_bearish_exhaustion"] = df["td_exhaustion_score"] <= -5
+
     # ===== BREAKOUT_SQUEEZE setup =====
     # Daily squeeze is HIGH and just RELEASING (vol about to expand)
     # Weekly squeeze is HIGH and still SQUEEZING (long-term coil intact)
@@ -1459,6 +1683,7 @@ def main():
         | df["breakout_squeeze_loose"].fillna(False)
         | df["harmonic_bullish_w_or_m"].fillna(False)
         | df["harmonic_bullish_consonance"].fillna(False)
+        | df["td_bullish_exhaustion"].fillna(False)
         | (df["roque_score"] >= 8)
     )
     flagged = df[save_mask].sort_values("roque_score", ascending=False)
@@ -1491,6 +1716,8 @@ def main():
     breakout_sq_loose = df[df["breakout_squeeze_loose"] & (~df["breakout_squeeze"])].sort_values("rs_rank_max", ascending=False)
     harm_bull_cons = df[df["harmonic_bullish_consonance"]].sort_values("harmonic_score", ascending=False)
     harm_bull_wm = df[df["harmonic_bullish_w_or_m"] & (~df["harmonic_bullish_consonance"])].sort_values("harmonic_score", ascending=False)
+    td_bull_strong = df[df["td_bullish_exhaustion_strong"]].sort_values("td_exhaustion_score", ascending=False)
+    td_bull = df[df["td_bullish_exhaustion"] & (~df["td_bullish_exhaustion_strong"])].sort_values("td_exhaustion_score", ascending=False)
     big_base = df[df["roque_big_base"]].sort_values("box_length_weeks", ascending=False)
     long_bases = df[df["long_base"]].sort_values("box_length_weeks", ascending=False)
     very_long = df[df["very_long_base"]].sort_values("box_length_weeks", ascending=False)
@@ -1545,6 +1772,30 @@ def main():
         print(f"\n=== HARMONIC BULLISH W or M (weekly OR monthly bullish, less consonant) ({len(harm_bull_wm)}) ===")
         if len(harm_bull_wm):
             print(harm_bull_wm[harm_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+
+        td_cols = ["name", "sector", "last_close", "rs_rank_max",
+                   "td_w_buy_setup", "td_w_buy_cd", "td_w_buy_perfect",
+                   "td_w_stealth_buy", "td_w_triple_buy",
+                   "td_m_buy_setup", "td_m_buy_cd", "td_m_buy_perfect",
+                   "td_m_stealth_buy", "td_m_triple_buy",
+                   "td_w_net_setup", "td_w_net_cd", "td_w_net_perfect",
+                   "td_w_net_stealth", "td_w_net_triple",
+                   "td_m_net_setup", "td_m_net_cd", "td_m_net_perfect",
+                   "td_m_net_stealth", "td_m_net_triple",
+                   "td_w_rel_net_setup", "td_w_rel_net_perfect",
+                   "td_m_rel_net_setup", "td_m_rel_net_perfect",
+                   "td_exhaustion_score", "roque_score"]
+        td_cols = [c for c in td_cols if c in flagged.columns]
+        print(f"\n=== TD EXHAUSTION BULLISH STRONG (td_exhaustion_score >= 10) ({len(td_bull_strong)}) ===")
+        if len(td_bull_strong):
+            print(td_bull_strong[td_cols].head(args.top).to_string())
+        else:
+            print("(none)")
+        print(f"\n=== TD EXHAUSTION BULLISH (td_exhaustion_score >= 5, not strong) ({len(td_bull)}) ===")
+        if len(td_bull):
+            print(td_bull[td_cols].head(args.top).to_string())
         else:
             print("(none)")
 
