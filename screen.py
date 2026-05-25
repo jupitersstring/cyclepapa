@@ -206,6 +206,32 @@ REGIONS = {
         market_caps=["Mega Cap"],
         index="IEUR", suffix=None, label="Europe Mega Cap (FD multi-country)",
     ),
+    # ---- Asia / Pacific ---------------------------------------------------
+    "fd-jp-large": dict(
+        source="financedatabase", country="Japan",
+        market_caps=["Mega Cap", "Large Cap"],
+        index="EWJ", suffix=None, label="Japan Large+Mega (FD)",
+    ),
+    "fd-jp-mid":   dict(source="financedatabase", country="Japan",
+        market_caps=["Mid Cap"], index="EWJ", suffix=None,
+        label="Japan Mid (FD)"),
+    "fd-jp-small": dict(source="financedatabase", country="Japan",
+        market_caps=["Small Cap"], index="EWJ", suffix=None,
+        label="Japan Small (FD)"),
+    "fd-jp-micro": dict(source="financedatabase", country="Japan",
+        market_caps=["Micro Cap"], index="EWJ", suffix=None,
+        label="Japan Micro (FD)"),
+    "fd-au": dict(source="financedatabase", country=["Australia","New Zealand"],
+        market_caps=["Mega Cap","Large Cap","Mid Cap","Small Cap"],
+        index="EWA", suffix=None, label="Australia+NZ (FD)"),
+    "fd-asia-ex-jp": dict(source="financedatabase",
+        country=["Hong Kong","Singapore","South Korea","Taiwan","India","China"],
+        market_caps=["Mega Cap","Large Cap","Mid Cap"],
+        index="AAXJ", suffix=None, label="Asia ex Japan large/mid (FD)"),
+    "fd-asia-small": dict(source="financedatabase",
+        country=["Hong Kong","Singapore","South Korea","Taiwan","India"],
+        market_caps=["Small Cap"],
+        index="AAXJ", suffix=None, label="Asia ex Japan/China small (FD)"),
 }
 
 NASDAQ_SCREENER_URL = (
