@@ -177,6 +177,35 @@ REGIONS = {
         market_caps=["Nano Cap"],
         index="IEUS", suffix=None, label="Europe Nano Cap (FD multi-country)",
     ),
+    # Large / Mega caps
+    "fd-us-large": dict(
+        source="financedatabase", country="United States",
+        market_caps=["Large Cap"],
+        exchanges=["NMS", "NYQ", "NCM", "NGM", "ASE"],
+        index="SPY", suffix=None, label="US Large Cap (FD)",
+    ),
+    "fd-us-mega": dict(
+        source="financedatabase", country="United States",
+        market_caps=["Mega Cap"],
+        exchanges=["NMS", "NYQ", "NCM", "NGM", "ASE"],
+        index="SPY", suffix=None, label="US Mega Cap (FD)",
+    ),
+    "fd-eu-large": dict(
+        source="financedatabase",
+        country=["United Kingdom","Germany","France","Switzerland","Netherlands",
+                 "Italy","Spain","Sweden","Norway","Denmark","Finland","Belgium",
+                 "Austria","Ireland","Portugal","Poland","Greece"],
+        market_caps=["Large Cap"],
+        index="IEUR", suffix=None, label="Europe Large Cap (FD multi-country)",
+    ),
+    "fd-eu-mega": dict(
+        source="financedatabase",
+        country=["United Kingdom","Germany","France","Switzerland","Netherlands",
+                 "Italy","Spain","Sweden","Norway","Denmark","Finland","Belgium",
+                 "Austria","Ireland","Portugal","Poland","Greece"],
+        market_caps=["Mega Cap"],
+        index="IEUR", suffix=None, label="Europe Mega Cap (FD multi-country)",
+    ),
 }
 
 NASDAQ_SCREENER_URL = (
