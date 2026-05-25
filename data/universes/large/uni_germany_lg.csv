@@ -1,0 +1,640 @@
+ticker,name,sector,industry,market_cap
+0A3M.IL,BioNTech SE,Health Care,Biotechnology,Large Cap
+0GYQ.IL,Varta AG,Industrials,Electrical Equipment,Large Cap
+0JHU.IL,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+0KBI.L,Knorr-Bremse Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+0NIQ.L,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+0NXX.IL,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+0P6N.IL,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+0PMJ.L,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+0QFU.IL,KION GROUP AG,Industrials,Machinery,Large Cap
+0SD7.L,Kabel Deutschland Holding AG,Communication Services,,Large Cap
+164508.SZ,E.ON SE,Utilities,Multi-Utilities,Large Cap
+1CO1.F,Covestro AG,Materials,Chemicals,Large Cap
+1COV.DE,Covestro AG,Materials,Chemicals,Large Cap
+1COV.DU,Covestro AG,Materials,Chemicals,Large Cap
+1COV.F,Covestro AG,Materials,Chemicals,Large Cap
+1COV.MU,Covestro AG,Materials,Chemicals,Large Cap
+1COV.SG,Covestro AG,Materials,Chemicals,Large Cap
+1COV.TI,Covestro AG,Materials,Chemicals,Large Cap
+1COV.VI,Covestro AG,Materials,Chemicals,Large Cap
+22UA.BE,BioNTech SE,Health Care,Biotechnology,Large Cap
+22UA.DE,BioNTech SE,Health Care,Biotechnology,Large Cap
+22UA.DU,BioNTech SE,Health Care,Biotechnology,Large Cap
+22UA.F,BioNTech SE,Health Care,Biotechnology,Large Cap
+22UA.HM,BioNTech SE,Health Care,Biotechnology,Large Cap
+22UA.MU,BioNTech SE,Health Care,Biotechnology,Large Cap
+5CV.BE,CureVac N.V.,Health Care,Biotechnology,Large Cap
+5CV.DE,CureVac N.V.,Health Care,Biotechnology,Large Cap
+5CV.DU,CureVac N.V.,Health Care,Biotechnology,Large Cap
+5CV.F,CureVac N.V.,Health Care,Biotechnology,Large Cap
+5CV.HA,CureVac N.V.,Health Care,Biotechnology,Large Cap
+5CV.HM,CureVac N.V.,Health Care,Biotechnology,Large Cap
+5CV.MU,CureVac N.V.,Health Care,Biotechnology,Large Cap
+8TRA.BE,Traton SE,Industrials,Machinery,Large Cap
+8TRA.DE,Traton SE,Industrials,Machinery,Large Cap
+8TRA.DU,Traton SE,Industrials,Machinery,Large Cap
+8TRA.F,Traton SE,Industrials,Machinery,Large Cap
+8TRA.HA,Traton SE,Industrials,Machinery,Large Cap
+8TRA.HM,Traton SE,Industrials,Machinery,Large Cap
+8TRA.MU,Traton SE,Industrials,Machinery,Large Cap
+8TRA.ST,Traton SE,Industrials,Machinery,Large Cap
+8TRA.VI,Traton SE,Industrials,Machinery,Large Cap
+ADDDF,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADDYY,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.BE,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.DE,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.DU,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.F,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.HA,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.HM,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.MI,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.MU,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.SG,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS.VI,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS1.BE,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS1.DU,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS1.F,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS1.MU,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADS1.SG,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ADSN.MX,adidas AG,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+AFX.BE,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.DE,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.DU,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.F,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.HA,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.HM,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.MU,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.SG,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.TI,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFX.VI,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+AFXA.F,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+ALIZF,Allianz SE,Financials,Insurance,Large Cap
+ALIZY,Allianz SE,Financials,Insurance,Large Cap
+ALV.BE,Allianz SE,Financials,Insurance,Large Cap
+ALV.DE,Allianz SE,Financials,Insurance,Large Cap
+ALV.DU,Allianz SE,Financials,Insurance,Large Cap
+ALV.F,Allianz SE,Financials,Insurance,Large Cap
+ALV.HA,Allianz SE,Financials,Insurance,Large Cap
+ALV.HM,Allianz SE,Financials,Insurance,Large Cap
+ALV.MI,Allianz SE,Financials,Insurance,Large Cap
+ALV.MU,Allianz SE,Financials,Insurance,Large Cap
+ALV.SG,Allianz SE,Financials,Insurance,Large Cap
+ALV.VI,Allianz SE,Financials,Insurance,Large Cap
+ALVE.BE,Allianz SE,Financials,Insurance,Large Cap
+ALVE.F,Allianz SE,Financials,Insurance,Large Cap
+ALVE.MU,Allianz SE,Financials,Insurance,Large Cap
+ALVN.BE,Allianz SE,Financials,Insurance,Large Cap
+ALVN.DU,Allianz SE,Financials,Insurance,Large Cap
+ALVN.MU,Allianz SE,Financials,Insurance,Large Cap
+ALVN.MX,Allianz SE,Financials,Insurance,Large Cap
+AT0000A2D4G8.VI,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+AT0000A2RCT6.VI,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+B1NT34.SA,BioNTech SE,Health Care,Biotechnology,Large Cap
+BAMXF,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BAS.BE,BASF SE,Materials,Chemicals,Large Cap
+BAS.DE,BASF SE,Materials,Chemicals,Large Cap
+BAS.DU,BASF SE,Materials,Chemicals,Large Cap
+BAS.F,BASF SE,Materials,Chemicals,Large Cap
+BAS.HA,BASF SE,Materials,Chemicals,Large Cap
+BAS.HM,BASF SE,Materials,Chemicals,Large Cap
+BAS.MU,BASF SE,Materials,Chemicals,Large Cap
+BAS.SG,BASF SE,Materials,Chemicals,Large Cap
+BAS.VI,BASF SE,Materials,Chemicals,Large Cap
+BASA.DE,BASF SE,Materials,Chemicals,Large Cap
+BASA.F,BASF SE,Materials,Chemicals,Large Cap
+BASA.SG,BASF SE,Materials,Chemicals,Large Cap
+BASF.BD,BASF SE,Materials,Chemicals,Large Cap
+BASF.MI,BASF SE,Materials,Chemicals,Large Cap
+BASFY,BASF SE,Materials,Chemicals,Large Cap
+BASN.MX,BASF SE,Materials,Chemicals,Large Cap
+BAY.MI,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYA.DE,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYA.F,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYER.BD,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYN.DE,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYN.F,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYN.VI,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYNN.MX,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYRY,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BAYZF,Bayer Aktiengesellschaft,Health Care,Pharmaceuticals,Large Cap
+BDRFF,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BDRFY,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BEI.DE,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BEI.F,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BEI.MI,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BEI.VI,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BEIA.F,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BEIN.MX,Beiersdorf Aktiengesellschaft,Consumer Staples,Household Products,Large Cap
+BFFAF,BASF SE,Materials,Chemicals,Large Cap
+BMW.BD,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW.DE,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW.F,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW.MI,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW.VI,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW3.DE,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW3.F,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMW3.TI,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMWB.F,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMWM5N.MX,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BMWYY,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+BNR.BE,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.DE,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.DU,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.F,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.HA,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.HM,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.MU,Brenntag SE,Materials,Chemicals,Large Cap
+BNR.VI,Brenntag SE,Materials,Chemicals,Large Cap
+BNRA.F,Brenntag SE,Materials,Chemicals,Large Cap
+BNRA.SG,Brenntag SE,Materials,Chemicals,Large Cap
+BNRN.MX,Brenntag SE,Materials,Chemicals,Large Cap
+BNTGF,Brenntag SE,Materials,Chemicals,Large Cap
+BNTGY,Brenntag SE,Materials,Chemicals,Large Cap
+BNTX,BioNTech SE,Health Care,Biotechnology,Large Cap
+BNTX.VI,BioNTech SE,Health Care,Biotechnology,Large Cap
+BNTXN.MX,BioNTech SE,Health Care,Biotechnology,Large Cap
+BYMOF,Bayerische Motoren Werke AG Pref,Consumer Discretionary,Automobiles,Large Cap
+CONA.SG,Continental Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+COVTY,Covestro AG,Materials,Chemicals,Large Cap
+CTTAF,Continental Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+CTTAY,Continental Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+CVAC.VI,CureVac N.V.,Health Care,Biotechnology,Large Cap
+CVACN.MX,CureVac N.V.,Health Care,Biotechnology,Large Cap
+CVVTF,Covestro AG,Materials,Chemicals,Large Cap
+CZMWF,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+CZMWY,Carl Zeiss Meditec AG,Health Care,Health Care Equipment & Supplies,Large Cap
+DAI.BE,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.DE,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.DU,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.F,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.HA,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.HM,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.MI,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.MU,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.SG,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAI.VI,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAII.BE,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAII.F,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DAII.SG,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DB,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DB1.DE,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DB1.F,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DB1.MI,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DB1N.MX,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DBAG34.SA,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBK.DE,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBK.F,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBK.MI,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBK.PR,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBK.VI,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBN.MX,Deutsche Bank Aktiengesellschaft,Financials,Banks,Large Cap
+DBO.VI,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DBOEF,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DBOEY,Deutsche Borse AG,Financials,Capital Markets,Large Cap
+DDAIF,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DHER.BE,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.DE,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.DU,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.F,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.HA,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.HM,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.MU,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.SG,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.TI,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DHER.VI,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DLVHF,Delivery Hero SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+DMLRY,Daimler AG,Consumer Discretionary,Automobiles,Large Cap
+DPSGY,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPSTF,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.BE,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.DE,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.DU,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.F,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.HA,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.HM,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.MI,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.MU,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.SG,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPW.VI,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWA.DE,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWA.F,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWA.SG,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWN.BE,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWN.DU,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWN.HM,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DPWN.MU,Deutsche Post AG,Industrials,Air Freight & Logistics,Large Cap
+DTCWY,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DTE.DE,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTE.F,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTE.MI,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTE.SG,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTE.VI,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEA.DE,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEA.F,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEA.SG,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEGF,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEGY,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEL.BR,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DTEN.MX,Deutsche Telekom AG,Communication Services,Diversified Telecommunication Services,Large Cap
+DWHHF,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.BE,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.DE,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.DU,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.F,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.HA,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.HM,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.MU,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.SG,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.TI,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNI.VI,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNIN.MX,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNP.F,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+DWNP.SG,Deutsche Wohnen SE,Real Estate,Real Estate Management & Development,Large Cap
+EBK.DE,ENBW Energie Baden-Wuerttemberg AG,Utilities,Multi-Utilities,Large Cap
+EBK.F,ENBW Energie Baden-Wuerttemberg AG,Utilities,Multi-Utilities,Large Cap
+ENAKF,E.ON SE,Utilities,Multi-Utilities,Large Cap
+ENR.BE,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.DE,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.DU,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.F,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.HA,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.HM,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.MI,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.MU,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR.VI,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR0.BE,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR0.F,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENR0.MU,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ENRN.MX,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+EOAA.BE,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAA.DE,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAA.DU,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAA.F,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAA.MU,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAA.SG,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.BE,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.DE,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.DU,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.F,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.HA,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.HM,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.MI,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.MU,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.PR,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.SG,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOAN.VI,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EOANN.MX,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EON.BD,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EON.BR,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EONGY,E.ON SE,Utilities,Multi-Utilities,Large Cap
+EVK.DE,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVK.F,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVK.MI,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVK.SG,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVK.VI,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVKA.F,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVKIF,Evonik Industries AG,Materials,Chemicals,Large Cap
+EVKIY,Evonik Industries AG,Materials,Chemicals,Large Cap
+FMCQF,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FME.DE,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FME.F,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FME.MI,Fresenius Medical Care AG,Health Care,Health Care Equipment & Supplies,Large Cap
+FME.VI,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FMEA.F,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FMEN.F,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FMEN.MX,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FMS,Fresenius Medical Care AG & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FRE.DE,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FRE.F,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FRE.MI,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FRE.SG,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FRE.VI,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FREA.F,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FREA.SG,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FREN.MU,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FREN.MX,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FSNUF,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+FSNUY,Fresenius SE & Co. KGaA,Health Care,Health Care Equipment & Supplies,Large Cap
+HDELY,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.BE,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.DE,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.DU,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.F,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.HA,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.HM,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.MI,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.MU,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.SG,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEI.VI,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEIU.F,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HEIU.SG,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HELFY,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HELKF,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN.DE,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN.F,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN.SG,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN.TI,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN.VI,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN1.SG,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN3.DE,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN3.F,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN3.MI,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HEN3.SG,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HENE.SG,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HENKY,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HENOF,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HENOY,Henkel AG & Co. KGAA,Consumer Staples,Household Products,Large Cap
+HFG.BE,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.DE,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.DU,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.F,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.HA,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.HM,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.MU,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.SG,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.TI,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFG.VI,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HFGN.MX,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HH20.VI,SAP SE,Information Technology,Software,Large Cap
+HLAA.F,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HLAG.DE,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HLAG.F,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HLAG.TI,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HLAG.VI,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HLAGF,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HLBZF,HeidelbergCement AG,Materials,Construction Materials,Large Cap
+HLFFF,HelloFresh SE,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HNR1.DE,Hannover Ruck SE,Financials,Insurance,Large Cap
+HNR1.F,Hannover Ruck SE,Financials,Insurance,Large Cap
+HNR1.VI,Hannover Ruck SE,Financials,Insurance,Large Cap
+HNRB.F,Hannover Ruck SE,Financials,Insurance,Large Cap
+HPGLY,Hapag-Lloyd Aktiengesellschaft,Industrials,Marine,Large Cap
+HVRRF,Hannover Ruck SE,Financials,Insurance,Large Cap
+HVRRY,Hannover Ruck SE,Financials,Insurance,Large Cap
+IFNNF,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFNNY,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFX.DE,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFX.F,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFX.MI,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFX.SG,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFX.VI,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFXA.F,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFXA.SG,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+IFXN.MX,Infineon Technologies AG,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+KBX.DE,Knorr-Bremse Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+KBX.F,Knorr-Bremse Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+KBX.VI,Knorr-Bremse Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+KBXA.F,Knorr-Bremse Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+KD8.HM,Kabel Deutschland Holding AG,Communication Services,Entertainment,Large Cap
+KGX.BE,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.DE,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.DU,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.F,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.HA,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.HM,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.MU,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.SG,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.TI,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX.VI,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX1.F,KION GROUP AG,Industrials,Machinery,Large Cap
+KGX1.SG,KION GROUP AG,Industrials,Machinery,Large Cap
+KGXN.MX,KION GROUP AG,Industrials,Machinery,Large Cap
+KIGRY,KION GROUP AG,Industrials,Machinery,Large Cap
+KNNGF,KION GROUP AG,Industrials,Machinery,Large Cap
+KNRRY,Knorr-Bremse Aktiengesellschaft,Consumer Discretionary,Auto Components,Large Cap
+LEG.BE,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.DE,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.DU,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.F,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.HA,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.HM,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.MU,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.TI,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEG.VI,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+LEGIF,LEG Immobilien SE,Real Estate,Real Estate Management & Development,Large Cap
+MAGOF,MAN SE,Industrials,Machinery,Large Cap
+MAGOY,MAN SE,Industrials,Machinery,Large Cap
+MAN.BE,MAN SE,Industrials,Machinery,Large Cap
+MAN.DE,MAN SE,Industrials,Machinery,Large Cap
+MAN.DU,MAN SE,Industrials,Machinery,Large Cap
+MAN.F,MAN SE,Industrials,Machinery,Large Cap
+MAN.HA,MAN SE,Industrials,Machinery,Large Cap
+MAN.HM,MAN SE,Industrials,Machinery,Large Cap
+MAN.MU,MAN SE,Industrials,Machinery,Large Cap
+MAN.SG,MAN SE,Industrials,Machinery,Large Cap
+MAN3.BE,MAN SE,Industrials,Machinery,Large Cap
+MAN3.DE,MAN SE,Industrials,Machinery,Large Cap
+MAN3.DU,MAN SE,Industrials,Machinery,Large Cap
+MAN3.F,MAN SE,Industrials,Machinery,Large Cap
+MAN3.HA,MAN SE,Industrials,Machinery,Large Cap
+MAN3.HM,MAN SE,Industrials,Machinery,Large Cap
+MAN3.MU,MAN SE,Industrials,Machinery,Large Cap
+MAN3.SG,MAN SE,Industrials,Machinery,Large Cap
+MANC.F,MAN SE,Industrials,Machinery,Large Cap
+MANC.SG,MAN SE,Industrials,Machinery,Large Cap
+MAND.F,MAN SE,Industrials,Machinery,Large Cap
+MEURV.BR,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MKGAF,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MKKGY,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MRCK.VI,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MRK.DE,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MRK.F,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MRK.MI,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MRK1N.MX,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MRKC.SG,MERCK Kommanditgesellschaft auf Aktien,Health Care,Pharmaceuticals,Large Cap
+MT00.VI,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+MTUAF,MTU Aero Engines AG,Industrials,,Large Cap
+MTUAY,MTU Aero Engines AG,Industrials,,Large Cap
+MTX.F,MTU Aero Engines AG,Industrials,,Large Cap
+MTX.SG,MTU Aero Engines AG,Industrials,,Large Cap
+MTX.TI,MTU Aero Engines AG,Industrials,,Large Cap
+MTX.VI,MTU Aero Engines AG,Industrials,,Large Cap
+MURGF,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MURGY,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MUV.VI,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MUV2.DE,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MUV2.F,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MUV2.MI,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MUV2N.MX,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+MUVB.F,Munchener Ruckversicherungs-Gesellschaft Aktiengesellschaft in Munchen,Financials,Insurance,Large Cap
+NJ54.VI,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+PAH3.DE,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PAH3.F,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PAH3.SG,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PAH3.TI,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PAH3.VI,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PAHA.F,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PAHA.SG,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PMMAF,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+POAHF,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+POAHY,Porsche Automobil Holding SE,Consumer Discretionary,Automobiles,Large Cap
+PUM.BE,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.DE,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.DU,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.F,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.HA,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.HM,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.MI,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.MU,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.SG,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUM.VI,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUMA.F,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUMN.MX,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PUMSY,PUMA SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+RWE.DE,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWE.F,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWE.MI,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWE.PR,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWE.VI,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWEA.DE,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWEA.F,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWEN.MX,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWEOY,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+RWNFF,RWE Aktiengesellschaft,Utilities,Multi-Utilities,Large Cap
+SAP,SAP SE,Information Technology,Software,Mega Cap
+SAP.BA,SAP SE,Information Technology,Software,Large Cap
+SAP.BD,SAP SE,Information Technology,Software,Large Cap
+SAP.BE,SAP SE,Information Technology,Software,Large Cap
+SAP.DE,SAP SE,Information Technology,Software,Large Cap
+SAP.DU,SAP SE,Information Technology,Software,Large Cap
+SAP.F,SAP SE,Information Technology,Software,Large Cap
+SAP.HA,SAP SE,Information Technology,Software,Large Cap
+SAP.HM,SAP SE,Information Technology,Software,Large Cap
+SAP.MI,SAP SE,Information Technology,Software,Large Cap
+SAP.MU,SAP SE,Information Technology,Software,Large Cap
+SAP.SG,SAP SE,Information Technology,Software,Large Cap
+SAP.VI,SAP SE,Information Technology,Software,Large Cap
+SAP1N.MX,SAP SE,Information Technology,Software,Large Cap
+SAPA.BE,SAP SE,Information Technology,Software,Large Cap
+SAPA.DU,SAP SE,Information Technology,Software,Large Cap
+SAPA.F,SAP SE,Information Technology,Software,Large Cap
+SAPA.MU,SAP SE,Information Technology,Software,Large Cap
+SAPA.SG,SAP SE,Information Technology,Software,Large Cap
+SAPD.BA,SAP SE,Information Technology,Software,Large Cap
+SAPGF,SAP SE,Information Technology,Software,Large Cap
+SAPN.MX,SAP SE,Information Technology,Software,Large Cap
+SAPP34.SA,SAP SE,Information Technology,Software,Large Cap
+SARTF,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SEMHF,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL.DE,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL.F,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL.SG,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL.TI,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL.VI,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL1.DE,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL1.F,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SHL1.SG,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SIA.BR,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIE.DE,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIE.F,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIE.MI,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIE.VI,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIEB.F,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIEGY,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SIEN.MX,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SMAWF,Siemens Aktiengesellschaft,Industrials,Machinery,Large Cap
+SMEGF,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+SMMNY,Siemens Healthineers AG,Health Care,Biotechnology,Large Cap
+SMNEY,Siemens Energy AG,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+SRT.DE,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT.F,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT.TI,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT3.DE,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT3.F,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT3.TI,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT3.VI,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT3N.MX,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SRT4.F,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SSSGY,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SUVPF,Sartorius Aktiengesellschaft,Health Care,Health Care Equipment & Supplies,Large Cap
+SY1.BE,Symrise AG,Materials,Chemicals,Large Cap
+SY1.DE,Symrise AG,Materials,Chemicals,Large Cap
+SY1.DU,Symrise AG,Materials,Chemicals,Large Cap
+SY1.F,Symrise AG,Materials,Chemicals,Large Cap
+SY1.HA,Symrise AG,Materials,Chemicals,Large Cap
+SY1.HM,Symrise AG,Materials,Chemicals,Large Cap
+SY1.MU,Symrise AG,Materials,Chemicals,Large Cap
+SY1.SG,Symrise AG,Materials,Chemicals,Large Cap
+SY1.VI,Symrise AG,Materials,Chemicals,Large Cap
+SY1U.F,Symrise AG,Materials,Chemicals,Large Cap
+SY1U.MU,Symrise AG,Materials,Chemicals,Large Cap
+SYIEF,Symrise AG,Materials,Chemicals,Large Cap
+SYIEY,Symrise AG,Materials,Chemicals,Large Cap
+TRATF,Traton SE,Industrials,Machinery,Large Cap
+UN01.DE,Uniper SE,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+UN01.F,Uniper SE,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+UN01.VI,Uniper SE,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+VAR1.BE,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.DE,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.DU,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.F,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.HA,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.HM,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.MU,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.SG,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.TI,Varta AG,Industrials,Electrical Equipment,Large Cap
+VAR1.VI,Varta AG,Industrials,Electrical Equipment,Large Cap
+VARGF,Varta AG,Industrials,Electrical Equipment,Large Cap
+VLKAF,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VLKPF,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VNA.BE,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.DE,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.DU,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.F,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.HA,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.HM,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.MI,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.MU,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.SG,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNA.VI,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNAA.F,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNAA.MU,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VNNVF,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VONOY,Vonovia SE,Real Estate,Real Estate Management & Development,Large Cap
+VOW.BE,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.DE,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.DU,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.F,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.HA,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.HM,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.MU,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.PR,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.SG,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW.VI,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.BE,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.DE,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.DU,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.F,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.HA,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.HM,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.MI,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.MU,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3.SG,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOW3N.MX,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWA.F,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWA.SG,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWB.BE,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWB.F,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWB.MU,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWB.SG,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VOWG-U.TI,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VWA.BR,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VWAGY,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VWAP.BR,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+VWAPY,Volkswagen AG,Consumer Discretionary,Automobiles,Large Cap
+ZAL.BE,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.DE,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.DU,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.F,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.HA,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.HM,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.MU,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.SG,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.TI,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL.VI,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL1.DU,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL1.F,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZAL1.SG,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZLDSF,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ZLNDY,Zalando SE,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap

@@ -1,0 +1,500 @@
+ticker,name,sector,industry,market_cap
+0A2V.IL,Sanofi,Health Care,Pharmaceuticals,Large Cap
+0HAN.IL,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+0HAT.IL,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+0IIH.IL,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+0IU8.IL,Safran SA,Industrials,Aerospace & Defense,Large Cap
+0IUQ.IL,CNP Assurances SA,Financials,Insurance,Large Cap
+0J2R.IL,Alstom SA,Industrials,Machinery,Large Cap
+0J6X.IL,Teleperformance SE,Industrials,Professional Services,Large Cap
+0MH1.IL,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+0MUM.IL,Edenred SA,Financials,Consumer Finance,Large Cap
+0MW7.IL,Legrand SA,Industrials,Machinery,Large Cap
+0NP8.IL,Aeroports de Paris SA,Industrials,Air Freight & Logistics,Large Cap
+0NPH.IL,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+0NPL.IL,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+0NPT.IL,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+0NQM.IL,VINCI SA,Industrials,Construction & Engineering,Large Cap
+0NRV.IL,Suez SA,Utilities,Water Utilities,Large Cap
+0OPE.IL,Gecina SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+0QVI.IL,Worldline SA,Information Technology,Software,Large Cap
+1BR1.F,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+1WE.F,La Francaise des Jeux Societe anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+4BV.BE,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+4BV.DU,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+4BV.F,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+4BV.MU,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+4BV.SG,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+56S1.F,Sartorius Stedim Biotech,Health Care,Health Care Equipment & Supplies,Large Cap
+56S1.SG,Sartorius Stedim Biotech,Health Care,Health Care Equipment & Supplies,Large Cap
+AC.PA,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+AC.VI,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACA.MI,Credit Agricole SA,Financials,Banks,Large Cap
+ACA.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACA.VI,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAFN.MX,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAFO.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAFR.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAFZ.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAGO.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAGU.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAGW.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAHJ.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAHM.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAHQ.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAHS.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAHT.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJD.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJI.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJN.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJP.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJR.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJS.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJV.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAJY.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKG.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKI.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKN.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKP.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKQ.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKR.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACAKV.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALB.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALG.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALH.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALK.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALL.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALM.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALS.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALT.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALU.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALV.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALW.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALX.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACALY.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+ACCN.MX,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACCYY,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR.BE,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR.DU,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR.F,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR.HA,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR.HM,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR.MU,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACR1.F,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ACRFF,Accor SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ADP.PA,Aeroports de Paris SA,Industrials,Air Freight & Logistics,Large Cap
+ADPA.VI,Aeroports de Paris SA,Industrials,Air Freight & Logistics,Large Cap
+AEOXF,Aeroports de Paris SA,Industrials,Air Freight & Logistics,Large Cap
+AI.MI,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AI.PA,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AI.VI,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AIL.DE,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AIL.F,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AILA.F,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AIN.MX,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AIQUF,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+AIQUY,L'Air Liquide S.A.,Materials,Chemicals,Large Cap
+ALO.PA,Alstom SA,Industrials,Machinery,Large Cap
+ALONV.PA,Alstom SA,Industrials,Machinery,Large Cap
+ALSMY,Alstom SA,Industrials,Machinery,Large Cap
+ALSO.TI,Alstom SA,Industrials,Machinery,Large Cap
+ALSO.VI,Alstom SA,Industrials,Machinery,Large Cap
+AM.PA,Dassault Aviation SA,Industrials,Aerospace & Defense,Large Cap
+AMP.SG,Dassault Aviation SA,Industrials,Aerospace & Defense,Large Cap
+AMUN.PA,Amundi SA,Financials,Capital Markets,Large Cap
+AMUN.VI,Amundi SA,Financials,Capital Markets,Large Cap
+ANI.F,Amundi SA,Financials,Capital Markets,Large Cap
+AOMD.DE,Alstom SA,Industrials,Machinery,Large Cap
+AOMD.F,Alstom SA,Industrials,Machinery,Large Cap
+AOMFF,Alstom SA,Industrials,Machinery,Large Cap
+AOMU.F,Alstom SA,Industrials,Machinery,Large Cap
+ARRPY,Aeroports de Paris SA,Industrials,Air Freight & Logistics,Large Cap
+AXA.DE,AXA SA,Financials,Insurance,Large Cap
+AXA.F,AXA SA,Financials,Insurance,Large Cap
+AXA.MI,AXA SA,Financials,Insurance,Large Cap
+AXAA.F,AXA SA,Financials,Insurance,Large Cap
+AXAHF,AXA SA,Financials,Insurance,Large Cap
+AXAHY,AXA SA,Financials,Insurance,Large Cap
+AXAN.MX,AXA SA,Financials,Insurance,Large Cap
+BIM.PA,bioMerieux S.A.,Health Care,Biotechnology,Large Cap
+BIM.VI,bioMerieux S.A.,Health Care,Biotechnology,Large Cap
+BMXMF,bioMerieux S.A.,Health Care,Biotechnology,Large Cap
+BNJ,Brookfield Finance Inc. 4.50% Perpetual Subordinated Notes,Real Estate,Real Estate Management & Development,Large Cap
+BNP.DE,BNP Paribas,Financials,Banks,Large Cap
+BNP.F,BNP Paribas,Financials,Banks,Large Cap
+BNP.MI,BNP Paribas,Financials,Banks,Large Cap
+BNP.PA,BNP Paribas,Financials,Banks,Large Cap
+BNP.VI,BNP Paribas,Financials,Banks,Large Cap
+BNP3.F,BNP Paribas,Financials,Banks,Large Cap
+BNPAQ.PA,BNP Paribas,Financials,Banks,Large Cap
+BNPH.F,BNP Paribas,Financials,Banks,Large Cap
+BNPN.MX,BNP Paribas,Financials,Banks,Large Cap
+BNPQF,BNP Paribas,Financials,Banks,Large Cap
+BNPQY,BNP Paribas,Financials,Banks,Large Cap
+BOIVF,Bollore SE,Communication Services,Entertainment,Large Cap
+BOL.PA,Bollore SE,Communication Services,Entertainment,Large Cap
+BOL.VI,Bollore SE,Communication Services,Entertainment,Large Cap
+BOP.F,Bollore SE,Communication Services,Entertainment,Large Cap
+BOUYF,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BOUYY,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BVI.PA,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+BVI.VI,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+BVRDF,Bureau Veritas SA,Industrials,Professional Services,Large Cap
+BYG.BE,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BYG.DU,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BYG.F,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BYG.HA,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BYG.HM,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BYG.MU,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+BYG.TI,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+C17415.TI,Sanofi,Health Care,Pharmaceuticals,Large Cap
+CA.PA,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CAJAC.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+CAJAF.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+CAJAG.PA,Credit Agricole S.A.,Financials,Banks,Large Cap
+CAN.MX,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CAP.PA,Capgemini SE,Information Technology,IT Services,Large Cap
+CAP.SG,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CAPG.VI,Capgemini SE,Information Technology,IT Services,Large Cap
+CAPGN.MX,Capgemini SE,Information Technology,IT Services,Large Cap
+CAPMF,Capgemini SE,Information Technology,IT Services,Large Cap
+CAPP-U.TI,Capgemini SE,Information Technology,IT Services,Large Cap
+CAR.DE,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CAR.F,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CAR1.F,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CARR.VI,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CDI.PA,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+CDI.VI,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+CGEMY,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.BE,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.DU,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.F,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.HA,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.HM,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.MU,Capgemini SE,Information Technology,IT Services,Large Cap
+CGM.SG,Capgemini SE,Information Technology,IT Services,Large Cap
+CHDRF,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+CHDRY,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+CNP.PA,CNP Assurances SA,Financials,Insurance,Large Cap
+CNP.VI,CNP Assurances SA,Financials,Insurance,Large Cap
+CNPAF,CNP Assurances SA,Financials,Insurance,Large Cap
+CNPAP.PA,CNP Assurances SA,Financials,Insurance,Large Cap
+CNPAY,CNP Assurances SA,Financials,Insurance,Large Cap
+CNPBP.PA,CNP Assurances SA,Financials,Insurance,Large Cap
+COD.L,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+CODGF,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+CODYY,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+CRARF,Credit Agricole S.A.,Financials,Banks,Large Cap
+CRARY,Credit Agricole S.A.,Financials,Banks,Large Cap
+CRERF,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CRFSA.IS,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CRR.MI,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CRRFY,Carrefour SA,Consumer Staples,Food & Staples Retailing,Large Cap
+CS.PA,AXA SA,Financials,Insurance,Large Cap
+CS.VI,AXA SA,Financials,Insurance,Large Cap
+CSF.BE,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+CSF.DU,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+CSF.F,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+CSF.MU,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+CSF.SG,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+CSF.TI,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+CSNV.PA,AXA SA,Financials,Insurance,Large Cap
+DAAV.VI,Dassault Aviation SA,Industrials,Aerospace & Defense,Large Cap
+DASTF,Dassault Systemes SE,Information Technology,Software,Large Cap
+DASTY,Dassault Systemes SE,Information Technology,Software,Large Cap
+DAU.F,Dassault Aviation SA,Industrials,Aerospace & Defense,Large Cap
+DG.MI,VINCI SA,Industrials,Construction & Engineering,Large Cap
+DG.PA,VINCI SA,Industrials,Construction & Engineering,Large Cap
+DG.VI,VINCI SA,Industrials,Construction & Engineering,Large Cap
+DGN.MX,VINCI SA,Industrials,Construction & Engineering,Large Cap
+DIM.PA,Sartorius Stedim Biotech,Health Care,Health Care Equipment & Supplies,Large Cap
+DIM.VI,Sartorius Stedim Biotech,Health Care,Health Care Equipment & Supplies,Large Cap
+DIO.F,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+DIO.SG,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+DIO0.F,Christian Dior SE,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+DSY.F,Dassault Systemes SE,Information Technology,Software,Large Cap
+DSY.PA,Dassault Systemes SE,Information Technology,Software,Large Cap
+DSY.VI,Dassault Systemes SE,Information Technology,Software,Large Cap
+DSY1.F,Dassault Systemes SE,Information Technology,Software,Large Cap
+DSY1.TI,Dassault Systemes SE,Information Technology,Software,Large Cap
+DSYN.MX,Dassault Systemes SE,Information Technology,Software,Large Cap
+DUAVF,Dassault Aviation SA,Industrials,Aerospace & Defense,Large Cap
+E2F.DE,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+E2F.F,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+E2F1.F,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+ECIFF,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+ECIFY,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+EDEN.PA,Edenred SA,Financials,Consumer Finance,Large Cap
+EDEN.VI,Edenred SA,Financials,Consumer Finance,Large Cap
+EDF-U.TI,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+EDF.PA,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+EDF.VI,Electricite de France S.A.,Utilities,Multi-Utilities,Large Cap
+EDNMF,Edenred SA,Financials,Consumer Finance,Large Cap
+EDNMY,Edenred SA,Financials,Consumer Finance,Large Cap
+EF3.BE,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+EF3.DU,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+EF3.F,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+EFGSF,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+EFGSY,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+EI.VI,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+EL.MI,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+EL.PA,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+ELUN.MX,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+EN.PA,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+EN.VI,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+ENGI.MI,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+ENGI.PA,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+ENGI.VI,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+ENGIY,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+ENGQF,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+ENN.MX,Bouygues SA,Industrials,Construction & Engineering,Large Cap
+ESL.F,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+ESLC.F,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+ESLOF,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+ESLOY,EssilorLuxottica Societe anonyme,Health Care,Health Care Equipment & Supplies,Large Cap
+EYWN.F,bioMerieux S.A.,Health Care,Biotechnology,Large Cap
+FDJ.PA,La Francaise des Jeux Societe anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+FDJ.VI,La Francaise des Jeux Societe anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+FGR.PA,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+FGR.VI,Eiffage SA,Industrials,Construction & Engineering,Large Cap
+FNCTF,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FP.PA,TOTAL SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+FP.VI,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+FR0000140022.PA,Sanofi,Health Care,Pharmaceuticals,Large Cap
+FTE.DE,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FTE.F,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FTE.SG,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FTE1.BE,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FTE1.F,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FTE1.MU,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+FTE1.SG,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+GECFF,Gecina SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+GFC.PA,Gecina SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+GFC.VI,Gecina SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+GI6A.F,Gecina SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+GLE.MI,Societe Generale,Financials,Banks,Large Cap
+GLE.PA,Societe Generale,Financials,Banks,Large Cap
+GLE.VI,Societe Generale,Financials,Banks,Large Cap
+GLEN.MX,Societe Generale,Financials,Banks,Large Cap
+GOB.DE,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+GOB.F,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+GOB.SG,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+GPATR.PA,Groupama Assurances Mutuelles,Financials,,Large Cap
+GZF.DE,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+GZF.F,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+GZFB.F,ENGIE SA,Utilities,Multi-Utilities,Large Cap
+HESAF,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+HESAY,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+HMI.DE,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+HMI.F,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+HMI.TI,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+HO.PA,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+HONV.PA,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+KER.MI,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+KER.PA,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+KER.VI,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+KERN.MX,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+KN.PA,Natixis S.A.,Financials,Banks,Large Cap
+LFDJF,La Francaise des Jeux Societe anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+LGRDY,Legrand SA,Industrials,Machinery,Large Cap
+LGRVF,Legrand SA,Industrials,Machinery,Large Cap
+LOR.DE,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+LOR.F,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+LORA.F,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+LR.PA,Legrand SA,Industrials,Machinery,Large Cap
+LR.VI,Legrand SA,Industrials,Machinery,Large Cap
+LRC.F,Legrand SA,Industrials,Machinery,Large Cap
+LRLCF,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+LRLCY,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+LVMH.MI,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+LVMHF,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+LVMUY,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+MC.PA,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+MC.VI,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+MCN.MX,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+MGDDF,Compagnie Generale des Etablissements Michelin Societe en commandite par actions,Consumer Discretionary,,Large Cap
+MGDDY,Compagnie Generale des Etablissements Michelin Societe en commandite par actions,Consumer Discretionary,,Large Cap
+ML.PA,Compagnie Generale des Etablissements Michelin Societe en commandite par actions,Consumer Discretionary,,Large Cap
+MOH.DE,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+MOH.F,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+MOHF.F,"LVMH Mo√´t Hennessy - Louis Vuitton, Societe Europeenne",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mega Cap
+NBP.BE,Natixis S.A.,Financials,Banks,Large Cap
+NBP.DU,Natixis S.A.,Financials,Banks,Large Cap
+NBP.F,Natixis S.A.,Financials,Banks,Large Cap
+NBP.MU,Natixis S.A.,Financials,Banks,Large Cap
+NBP.SG,Natixis S.A.,Financials,Banks,Large Cap
+NBP.TI,Natixis S.A.,Financials,Banks,Large Cap
+NTIX.VI,Natixis S.A.,Financials,Banks,Large Cap
+NTXFF,Natixis S.A.,Financials,Banks,Large Cap
+NTXFY,Natixis S.A.,Financials,Banks,Large Cap
+OR.MI,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+OR.PA,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+OR.VI,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+ORA.MI,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+ORA.PA,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+ORA.VI,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+ORAN,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+ORAN.BA,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+ORANN.MX,Orange S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+ORN.MX,L'Oreal S.A.,Consumer Staples,Household Products,Mega Cap
+PDRDF,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+PDRDY,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+PER.DE,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+PER.F,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+PER1.F,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+PGPEF,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PPRUF,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PPRUY,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PPX.DE,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PPX.F,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PPXB.F,Kering SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+PU4.F,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PU4.SG,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PU4.TI,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PUB.PA,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PUB.VI,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PUBGY,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+PUBN.MX,Publicis Groupe S.A.,Communication Services,Diversified Telecommunication Services,Large Cap
+QSV.F,Edenred SA,Financials,Consumer Finance,Large Cap
+RCF.F,Teleperformance SE,Industrials,Professional Services,Large Cap
+RCF0.F,Teleperformance SE,Industrials,Professional Services,Large Cap
+RCO.PA,Remy Cointreau SA,Consumer Staples,Beverages,Large Cap
+RCO.VI,Remy Cointreau SA,Consumer Staples,Beverages,Large Cap
+REMYF,Remy Cointreau SA,Consumer Staples,Beverages,Large Cap
+REMYY,Remy Cointreau SA,Consumer Staples,Beverages,Large Cap
+RFC.TI,Teleperformance SE,Industrials,Professional Services,Large Cap
+RI.PA,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+RI.VI,Pernod Ricard SA,Consumer Staples,Beverages,Large Cap
+RMC.F,Remy Cointreau SA,Consumer Staples,Beverages,Large Cap
+RMS.PA,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+RMS.VI,Hermes International Societe en commandite par actions,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+RNL.DE,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNL.F,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNL.PA,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNL1.DE,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNL1.F,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNLSY,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNO.MI,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNO.PA,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNO.VI,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+RNSDF,Renault SA,Consumer Discretionary,Automobiles,Large Cap
+SAF.MI,Safran SA,Industrials,Aerospace & Defense,Large Cap
+SAF.PA,Safran SA,Industrials,Aerospace & Defense,Large Cap
+SAF.VI,Safran SA,Industrials,Aerospace & Defense,Large Cap
+SAFRF,Safran SA,Industrials,Aerospace & Defense,Large Cap
+SAFRY,Safran SA,Industrials,Aerospace & Defense,Large Cap
+SAN.PA,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SANF.MI,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SANF.TI,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SANNV.PA,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SANO.VI,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SBGSF,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SBGSY,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SCGLF,Societe Generale,Financials,Banks,Large Cap
+SCGLY,Societe Generale,Financials,Banks,Large Cap
+SDMHF,Sartorius Stedim Biotech,Health Care,Health Care Equipment & Supplies,Large Cap
+SDXAY,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SDXOF,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SEJ1.F,Safran SA,Industrials,Aerospace & Defense,Large Cap
+SEV.PA,Suez SA,Utilities,Water Utilities,Large Cap
+SEV.VI,Suez SA,Utilities,Water Utilities,Large Cap
+SGE.DE,Societe Generale,Financials,Banks,Large Cap
+SGE.F,Societe Generale,Financials,Banks,Large Cap
+SGE1.F,Societe Generale,Financials,Banks,Large Cap
+SGO.MI,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+SGO.PA,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+SGO.VI,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+SGON.MX,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+SGP.PA,Compagnie de Saint-Gobain S.A.,Industrials,Building Products,Large Cap
+SJ7.BE,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SJ7.DU,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SJ7.F,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SJ7.MU,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SJ7.SG,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SJ7.TI,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SND.DE,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SND.F,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SNW.BE,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.DE,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.DU,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.F,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.HA,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.HM,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.MU,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW.SG,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW2.BE,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW2.F,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW2.MU,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNW2.SG,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNY,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNYN.MX,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SNYNF,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SQU.F,VINCI SA,Industrials,Construction & Engineering,Large Cap
+SQUA.BE,VINCI SA,Industrials,Construction & Engineering,Large Cap
+SQUA.F,VINCI SA,Industrials,Construction & Engineering,Large Cap
+STP.F,STEF S.A. INH.  EO 1,Industrials,,Large Cap
+SU.MI,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SU.PA,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SU.VI,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SUN.MX,Schneider Electric S.E.,Industrials,Machinery,Large Cap
+SW.PA,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SW.VI,Sodexo S.A.,Industrials,Professional Services,Large Cap
+SZ1.F,Suez SA,Utilities,Water Utilities,Large Cap
+SZ1.TI,Suez SA,Utilities,Water Utilities,Large Cap
+SZ1G.F,Suez SA,Utilities,Water Utilities,Large Cap
+SZEVF,Suez SA,Utilities,Water Utilities,Large Cap
+SZSAY,Suez SA,Utilities,Water Utilities,Large Cap
+TEP.PA,Teleperformance SE,Industrials,Professional Services,Large Cap
+TEP.VI,Teleperformance SE,Industrials,Professional Services,Large Cap
+THAL.VI,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+THLEF,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+THLLY,Thales S.A.,Industrials,Aerospace & Defense,Large Cap
+TLPFF,Teleperformance SE,Industrials,Professional Services,Large Cap
+TLPFY,Teleperformance SE,Industrials,Professional Services,Large Cap
+TOT,TOTAL SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TOT.MI,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TOTA.F,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TOTA.SG,TOTAL SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TOTB.DE,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TOTB.F,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TOTN.MX,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TPB.PA,BNP Paribas,Financials,Banks,Large Cap
+TTA.L,TOTAL SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TTE,TotalEnergies SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TTFNF,TOTAL SE,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+UBLB.F,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+UL.VI,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+UNBLF,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+URW.AS,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+URW.AX,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+URW.MI,Unibail-Rodamco-Westfield SE,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VCISF,VINCI SA,Industrials,Construction & Engineering,Large Cap
+VCISY,VINCI SA,Industrials,Construction & Engineering,Large Cap
+VEOEF,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VEOEY,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VIE.PA,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VIE.VI,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VIV.MI,Vivendi SE,Communication Services,Media,Large Cap
+VIV.PA,Vivendi SE,Communication Services,Media,Large Cap
+VIV.VI,Vivendi SE,Communication Services,Media,Large Cap
+VIVEF,Vivendi SE,Communication Services,Media,Large Cap
+VIVENN.MX,Vivendi SE,Communication Services,Media,Large Cap
+VIVHY,Vivendi SE,Communication Services,Media,Large Cap
+VVD.DE,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VVD.F,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VVD.SG,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VVD.TI,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VVDH.F,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VVDH.SG,Veolia Environnement,Industrials,Transportation Infrastructure,Large Cap
+VVU.DE,Vivendi SE,Communication Services,Media,Large Cap
+VVU.F,Vivendi SE,Communication Services,Media,Large Cap
+VVUD.F,Vivendi SE,Communication Services,Media,Large Cap
+W7L.F,Aeroports de Paris SA,Industrials,Air Freight & Logistics,Large Cap
+WLN.PA,Worldline SA,Information Technology,Software,Large Cap
+WLN.VI,Worldline SA,Information Technology,Software,Large Cap
+WLNN.MX,Worldline SA,Information Technology,Software,Large Cap
+WO6.F,Worldline SA,Information Technology,Software,Large Cap
+WRDLY,Worldline SA,Information Technology,Software,Large Cap
+WWLNF,Worldline SA,Information Technology,Software,Large Cap
+XCA.F,Credit Agricole S.A.,Financials,Banks,Large Cap
+XNP.F,CNP Assurances SA,Financials,Insurance,Large Cap
