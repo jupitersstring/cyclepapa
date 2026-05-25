@@ -74,6 +74,7 @@ def merge_pew_signals(df: pd.DataFrame, pew_csv: str) -> pd.DataFrame:
         "platform_hits", "has_platform_hint", "ncav_pct_mcap",
         "negative_ev_flag", "below_net_cash_flag",
         "rev_3y_cagr", "is_breakeven_or_profitable",
+        "avg_daily_volume", "avg_dollar_volume", "n_analysts",
     ]
     keep_p = [c for c in keep_p if c in p.columns]
     p = p[keep_p].rename(columns={c: f"pew_{c}" for c in keep_p if c != "symbol"})
@@ -236,6 +237,22 @@ def main():
                    help=("optional comma-separated whitelist of financedatabase "
                          "market_cap buckets to keep (e.g. 'Nano Cap,Micro Cap,Small Cap'). "
                          "Empty = keep all."))
+    # Shell / scam filters - on by default.
+    p.add_argument("--min-revenue-ttm", type=float, default=1_000_000,
+                   help="reject names with TTM revenue below this (default $1M). "
+                        "Catches shell companies / reverse mergers / dormant entities.")
+    p.add_argument("--min-dollar-volume", type=float, default=10_000,
+                   help="reject names with avg daily dollar volume below this "
+                        "(default $10k). Catches untradeable orphans.")
+    p.add_argument("--max-bs-age-days", type=int, default=540,
+                   help="reject names whose latest balance sheet is older than "
+                        "this many days (default 540 = 18 months). Catches "
+                        "delisted / dormant entities yfinance still serves data for.")
+    p.add_argument("--ebitda-margin-range", default="-2.0,1.0",
+                   help="comma-separated low,high bounds on ebitda_margin. "
+                        "Outside this range = data artefact, reject.")
+    p.add_argument("--no-shell-filter", action="store_true",
+                   help="disable all shell / scam filters")
     args = p.parse_args()
 
     df = load_concat(args.csvs)
@@ -249,6 +266,38 @@ def main():
         & (df["market_cap"].fillna(0) >= args.min_mcap)
     ]
     df = df[~df.apply(is_pharma_bio, axis=1)].copy()
+
+    # ---- Shell / scam filters ----
+    if not args.no_shell_filter:
+        before = len(df)
+        # 1) Revenue floor - dormant / reverse-merger shells often have zero
+        #    or near-zero TTM revenue but still carry a balance-sheet NCAV
+        #    and trade above book.
+        if "revenue_ttm" in df.columns:
+            rev_mask = df["revenue_ttm"].fillna(0) >= args.min_revenue_ttm
+            print(f"shell filter: revenue >= ${args.min_revenue_ttm:,.0f}: "
+                  f"{rev_mask.sum()}/{len(df)} pass", file=sys.stderr)
+            df = df[rev_mask]
+        # 2) EBITDA margin sanity bounds
+        try:
+            low, high = (float(x) for x in args.ebitda_margin_range.split(","))
+        except Exception:
+            low, high = -2.0, 1.0
+        if "ebitda_margin" in df.columns:
+            m = df["ebitda_margin"]
+            sane = m.isna() | ((m >= low) & (m <= high))
+            print(f"shell filter: ebitda_margin in [{low}, {high}]: "
+                  f"{sane.sum()}/{len(df)} pass", file=sys.stderr)
+            df = df[sane]
+        # 3) Balance sheet recency
+        if "balance_sheet_date" in df.columns:
+            bs = pd.to_datetime(df["balance_sheet_date"], errors="coerce")
+            cutoff = pd.Timestamp.today() - pd.Timedelta(days=args.max_bs_age_days)
+            fresh = bs.isna() | (bs >= cutoff)
+            print(f"shell filter: BS date >= {cutoff.date()}: "
+                  f"{fresh.sum()}/{len(df)} pass", file=sys.stderr)
+            df = df[fresh]
+        print(f"shell filters total: {before} -> {len(df)}", file=sys.stderr)
 
     # Backfill market_cap_bucket using actual USD market_cap when financedatabase
     # bucket is missing (UK / Nordic names often have NaN bucket but real mcap).
@@ -283,6 +332,17 @@ def main():
         df = merge_pew_signals(df, args.pew)
         print(f"PEW signals merged from {args.pew}", file=sys.stderr)
 
+        # 4) Dollar-volume floor (only available post-PEW merge)
+        if not args.no_shell_filter and "pew_avg_dollar_volume" in df.columns:
+            before = len(df)
+            adv = df["pew_avg_dollar_volume"]
+            # Keep NaN dollar volume (PEW didn't cover this name) - those
+            # are the European names where we don't have liquidity data.
+            liq = adv.isna() | (adv >= args.min_dollar_volume)
+            df = df[liq]
+            print(f"shell filter: avg dollar volume >= ${args.min_dollar_volume:,.0f}: "
+                  f"{len(df)}/{before} pass", file=sys.stderr)
+
     df = compute_asymmetry(df)
 
     keep = df[
@@ -292,12 +352,13 @@ def main():
 
     out_cols = [
         "symbol", "name", "src", "sector", "industry", "market_cap_bucket",
-        "market_cap", "asymmetry_score", "upside_score", "downside_floor_score",
+        "market_cap", "revenue_ttm", "balance_sheet_date",
+        "asymmetry_score", "upside_score", "downside_floor_score",
         "cluster_n", "yartseva_score", "berezin_score",
         "cash_gt_ev_flag", "graham_net_net_flag", "pew_negative_ev_flag",
         "pb", "ebitda_margin", "ebitda_positive_proxy", "net_debt_ebitda",
         "insider_ownership_pct", "pew_forgotten_score", "pew_has_platform_hint",
-        "rev_3y_cagr", "momentum_12m", "notes",
+        "pew_avg_dollar_volume", "rev_3y_cagr", "momentum_12m", "notes",
     ]
     out_cols = [c for c in out_cols if c in keep.columns]
     keep[out_cols].to_csv(args.out, index=False)
