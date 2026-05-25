@@ -75,6 +75,7 @@ def chunk_fetch(safe_tickers: list[str], chunk_size: int, sleep_sec: float):
     """
     n = len(safe_tickers)
     saved = 0; empty = 0; failed = 0
+    zero_streak = 0
     t0 = time.time()
     n_chunks = (n + chunk_size - 1) // chunk_size
     for i in range(0, n, chunk_size):
@@ -144,7 +145,17 @@ def chunk_fetch(safe_tickers: list[str], chunk_size: int, sleep_sec: float):
         print(f"  chunk {i//chunk_size + 1}/{n_chunks}: "
               f"{done}/{n}  +{batch_saved} (hit={hit:.0f}%)  total_saved={saved}  "
               f"rate={rate:.0f}/s  eta={eta:.0f}min", flush=True)
-        time.sleep(sleep_sec)
+
+        # Throttle backoff: if a batch returns nothing, Yahoo's rate-limit has
+        # tripped. Pause progressively longer until productive batches resume.
+        if batch_saved == 0:
+            zero_streak += 1
+            backoff = min(60 * 2**(zero_streak-1), 600)   # 60s, 120s, 240s, 480s, 600s cap
+            print(f"  [throttle] zero-hit streak={zero_streak}; sleeping {backoff}s", flush=True)
+            time.sleep(backoff)
+        else:
+            zero_streak = 0
+            time.sleep(sleep_sec)
 
     print(f"\nDone: saved={saved}, empty={empty}, failed={failed}, total={n}")
 
