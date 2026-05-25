@@ -91,6 +91,83 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
 SPY_PICKLE = "/tmp/cyclepapa_spy_daily.pkl"
 SPY_MONTHLY_PICKLE = "/tmp/cyclepapa_spy_monthly.pkl"
 PICKLE_MONTHLY_TMPL = "/tmp/cyclepapa_dl_{universe}_monthly_{years}y.pkl"
+PICKLE_INTRADAY_TMPL = "/tmp/cyclepapa_dl_{universe}_{interval}_{period}.pkl"
+
+# Intraday spec for TD MTF per Pine.
+# (yfinance interval, yfinance period, internal key, MTF weight)
+# Weight: <1.0 = down-weighted vs daily-and-up. Daily/W/M all = 1.0.
+INTRADAY_SPEC = [
+    # key  yf_interval  yf_period  weight
+    ("1m",   "1m",        "5d",     0.1),
+    ("5m",   "5m",        "1mo",    0.2),
+    ("15m",  "15m",       "60d",    0.4),
+    ("1h",   "1h",        "3mo",    0.6),
+]
+# 4h is derived by resampling 1h
+
+
+def load_pickle_frames_intraday(universe, interval, period):
+    path = PICKLE_INTRADAY_TMPL.format(universe=universe, interval=interval, period=period)
+    if not os.path.exists(path):
+        return {}, set()
+    try:
+        with open(path, "rb") as f:
+            state = pickle.load(f)
+        return state.get("frames", {}), set(state.get("done", []))
+    except Exception:
+        return {}, set()
+
+
+def save_pickle_intraday(universe, interval, period, frames, done):
+    path = PICKLE_INTRADAY_TMPL.format(universe=universe, interval=interval, period=period)
+    tmp = path + ".tmp"
+    try:
+        with open(tmp, "wb") as f:
+            pickle.dump({"frames": frames, "done": list(done)}, f)
+        os.replace(tmp, path)
+    except Exception as e:
+        print(f"    intraday {interval} checkpoint save failed: {e}")
+
+
+def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_sleep=10,
+                       min_bars=30):
+    """Resumable intraday bar download (yf interval='1m'/'5m'/'15m'/'1h').
+    Loads existing pickle first, only attempts unprocessed tickers."""
+    frames, done = load_pickle_frames_intraday(universe, interval, period)
+    if frames:
+        print(f"  intraday {interval} resumed: {len(frames)} kept, {len(done)} attempted")
+    todo = [t for t in tickers if t not in done]
+    total = len(todo)
+    if total == 0:
+        return frames
+    n_batches = (total + chunk_size - 1) // chunk_size
+    for i in range(0, total, chunk_size):
+        b = i // chunk_size + 1
+        chunk = todo[i:i + chunk_size]
+        print(f"  intraday {interval} batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {len(frames)})")
+        try:
+            data = yf.download(chunk, period=period, interval=interval,
+                               group_by="ticker", threads=True, progress=False,
+                               auto_adjust=True)
+        except Exception as e:
+            print(f"    batch failed: {e}")
+            data = None
+        if data is not None and not data.empty:
+            for t in chunk:
+                try:
+                    if isinstance(data.columns, pd.MultiIndex):
+                        sub = data[t].dropna(how="all")
+                    else:
+                        sub = data.dropna(how="all")
+                    if "Close" in sub.columns and len(sub) >= min_bars:
+                        frames[t] = sub
+                except Exception:
+                    continue
+        done.update(chunk)
+        save_pickle_intraday(universe, interval, period, frames, done)
+        if b < n_batches:
+            time.sleep(batch_sleep)
+    return frames
 
 
 def load_or_download_spy_monthly(years=10):
@@ -705,7 +782,8 @@ def compute_volatility_asymmetry(df, period=14, smooth=7, slow=14, lookback=5,
     }
 
 
-def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None):
+def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None,
+                      intraday_frames=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
     if len(close) < 130:
         return None
@@ -865,6 +943,32 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     monthly_asym_dict = {}
     if df_monthly is not None and len(df_monthly) >= 60:
         monthly_asym_dict = compute_volatility_asymmetry(df_monthly) or {}
+
+    # TD Sequential on intraday timeframes (1m, 5m, 15m, 1h, 4h-from-1h-resample)
+    # Each TF returns a dict of 5 net signals; weighted into td_mtf later.
+    intraday_td_nets = {}  # {tf_key: nets_dict}
+    if intraday_frames:
+        for tf_key, frame in intraday_frames.items():
+            if frame is None or len(frame) < 30:
+                continue
+            td = compute_td_sequential(frame)
+            if td:
+                intraday_td_nets[tf_key] = td_nets(td)
+        # Derive 4h from 1h by resample
+        if "1h" in intraday_frames and intraday_frames["1h"] is not None:
+            h_frame = intraday_frames["1h"]
+            if len(h_frame) >= 120:
+                try:
+                    h4 = h_frame.resample("4h").agg({
+                        "Open": "first", "High": "max", "Low": "min",
+                        "Close": "last", "Volume": "sum",
+                    }).dropna()
+                    if len(h4) >= 30:
+                        td4h = compute_td_sequential(h4)
+                        if td4h:
+                            intraday_td_nets["4h"] = td_nets(td4h)
+                except Exception:
+                    pass
 
     # Weekly-bar range tightness over last N weeks
     range_4w_w = float((whigh.tail(4).max() - wlow.tail(4).min()) / wclose.tail(4).mean() * 100)
@@ -1036,6 +1140,39 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "td_m_rel_net_perfect": td_m_rel_nets["net_perfect"],
         "td_m_rel_net_stealth": td_m_rel_nets["net_stealth"],
         "td_m_rel_net_triple": td_m_rel_nets["net_triple"],
+        # Intraday TD nets (1m, 5m, 15m, 1h, 4h) — only present when intraday
+        # data was downloaded; otherwise all zero (won't affect MTF average).
+        "td_1m_net_setup":   intraday_td_nets.get("1m", {}).get("net_setup", 0.0),
+        "td_1m_net_cd":      intraday_td_nets.get("1m", {}).get("net_cd", 0.0),
+        "td_1m_net_perfect": intraday_td_nets.get("1m", {}).get("net_perfect", 0),
+        "td_1m_net_stealth": intraday_td_nets.get("1m", {}).get("net_stealth", 0),
+        "td_1m_net_triple":  intraday_td_nets.get("1m", {}).get("net_triple", 0),
+        "td_5m_net_setup":   intraday_td_nets.get("5m", {}).get("net_setup", 0.0),
+        "td_5m_net_cd":      intraday_td_nets.get("5m", {}).get("net_cd", 0.0),
+        "td_5m_net_perfect": intraday_td_nets.get("5m", {}).get("net_perfect", 0),
+        "td_5m_net_stealth": intraday_td_nets.get("5m", {}).get("net_stealth", 0),
+        "td_5m_net_triple":  intraday_td_nets.get("5m", {}).get("net_triple", 0),
+        "td_15m_net_setup":   intraday_td_nets.get("15m", {}).get("net_setup", 0.0),
+        "td_15m_net_cd":      intraday_td_nets.get("15m", {}).get("net_cd", 0.0),
+        "td_15m_net_perfect": intraday_td_nets.get("15m", {}).get("net_perfect", 0),
+        "td_15m_net_stealth": intraday_td_nets.get("15m", {}).get("net_stealth", 0),
+        "td_15m_net_triple":  intraday_td_nets.get("15m", {}).get("net_triple", 0),
+        "td_1h_net_setup":   intraday_td_nets.get("1h", {}).get("net_setup", 0.0),
+        "td_1h_net_cd":      intraday_td_nets.get("1h", {}).get("net_cd", 0.0),
+        "td_1h_net_perfect": intraday_td_nets.get("1h", {}).get("net_perfect", 0),
+        "td_1h_net_stealth": intraday_td_nets.get("1h", {}).get("net_stealth", 0),
+        "td_1h_net_triple":  intraday_td_nets.get("1h", {}).get("net_triple", 0),
+        "td_4h_net_setup":   intraday_td_nets.get("4h", {}).get("net_setup", 0.0),
+        "td_4h_net_cd":      intraday_td_nets.get("4h", {}).get("net_cd", 0.0),
+        "td_4h_net_perfect": intraday_td_nets.get("4h", {}).get("net_perfect", 0),
+        "td_4h_net_stealth": intraday_td_nets.get("4h", {}).get("net_stealth", 0),
+        "td_4h_net_triple":  intraday_td_nets.get("4h", {}).get("net_triple", 0),
+        # Flag presence of intraday data for each TF (used to weight MTF avg)
+        "td_1m_present":  "1m" in intraday_td_nets,
+        "td_5m_present":  "5m" in intraday_td_nets,
+        "td_15m_present": "15m" in intraday_td_nets,
+        "td_1h_present":  "1h" in intraday_td_nets,
+        "td_4h_present":  "4h" in intraday_td_nets,
         # Harmonic patterns
         "h_d_pattern": h_d.get("pattern"),
         "h_d_direction": h_d.get("direction"),
@@ -1179,6 +1316,12 @@ def main():
     parser.add_argument("--top", type=int, default=30)
     parser.add_argument("--min-price", type=float, default=5.0,
                         help="Drop tickers with last close below this (liquidity floor).")
+    parser.add_argument("--intraday", action="store_true",
+                        help="Also pull intraday bars (1m/5m/15m/1h) and compute TD on each. "
+                             "Caches per (universe,interval) pickle; resumable. Slow.")
+    parser.add_argument("--intraday-tfs", default="5m,15m,1h",
+                        help="Comma list of intraday TFs to download when --intraday is on. "
+                             "Choices: 1m,5m,15m,1h. 4h derived by resampling 1h.")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
@@ -1205,6 +1348,21 @@ def main():
     monthly_frames = download_monthly(args.universe, tickers, years=10)
     print(f"  {len(monthly_frames)} tickers with usable monthly data")
 
+    # Intraday TF downloads (opt-in via --intraday). Each TF is a separate
+    # cached pickle keyed by (universe, interval, period). Resumable; never
+    # wipes existing data.
+    intraday_data_by_tf = {}  # {ticker: {tf_key: dataframe}}
+    if args.intraday:
+        wanted_tfs = {tf.strip() for tf in args.intraday_tfs.split(",") if tf.strip()}
+        for tf_key, interval, period, _weight in INTRADAY_SPEC:
+            if tf_key not in wanted_tfs:
+                continue
+            print(f"Downloading intraday {interval} (period={period})...")
+            tf_frames = download_intraday(args.universe, tickers, interval, period)
+            for t, frame in tf_frames.items():
+                intraday_data_by_tf.setdefault(t, {})[tf_key] = frame
+            print(f"  {len(tf_frames)} tickers with usable {interval} data")
+
     junk_substrings = ("Acquisition Corp", "Acquisition Corporation", "Preferred",
                        "Senior Notes", "Note due", "Notes due",
                        "Warrants", "Rights ", "Trust Units", "Royalty Trust",
@@ -1224,7 +1382,8 @@ def main():
     for t, f in frames.items():
         m = compute_momentum(f, spy_close=spy_close,
                               df_monthly=monthly_frames.get(t),
-                              spy_monthly_close=spy_monthly_close)
+                              spy_monthly_close=spy_monthly_close,
+                              intraday_frames=intraday_data_by_tf.get(t))
         if m is None:
             continue
         if m["last_close"] < args.min_price:
@@ -1379,39 +1538,61 @@ def main():
     def _safe(c):
         return df[c].fillna(0) if c in df.columns else 0
 
-    # Equal weight: daily, weekly, monthly (absolute and relative)
-    # Per Pine: setup max=9, cd max=13 already normalized to ±1 in td_nets()
-    TF_W = {"d": 1.0, "w": 1.0, "m": 1.0}  # all daily-and-up equal
-
-    # Weighted net per metric, averaged across W + M absolute + W + M relative
-    # (daily TD added below when daily td columns exist)
-    abs_tfs = ["w", "m"]
-    rel_tfs = ["w", "m"]
-
-    metric_columns = {
-        "net_setup":   "td_{tf}_net_setup",
-        "net_cd":      "td_{tf}_net_cd",
-        "net_perfect": "td_{tf}_net_perfect",
-        "net_stealth": "td_{tf}_net_stealth",
-        "net_triple":  "td_{tf}_net_triple",
+    # Daily-and-up equal weight (1.0). Intraday down-weighted per spec.
+    # Per Pine: setup max=9, cd max=13 already normalized to ±1 in td_nets().
+    TF_WEIGHTS = {
+        "1m":  0.10,
+        "5m":  0.20,
+        "15m": 0.40,
+        "1h":  0.60,
+        "4h":  0.80,
+        "d":   1.00,
+        "w":   1.00,
+        "m":   1.00,
     }
-    for metric_name, col_tmpl in metric_columns.items():
+
+    # Build column-name template per timeframe key
+    def _col_for(tf, metric, relative=False):
+        if tf in ("1m", "5m", "15m", "1h", "4h"):
+            return f"td_{tf}_{metric}"
+        # daily/weekly/monthly absolute
+        if not relative:
+            return f"td_{tf}_{metric}"
+        # relative-to-SPY only exists for w/m
+        return f"td_{tf}_rel_{metric}"
+
+    intraday_tfs = ["1m", "5m", "15m", "1h", "4h"]
+    abs_dwm_tfs = ["w", "m"]   # daily TD not currently computed; W+M absolute
+    rel_dwm_tfs = ["w", "m"]   # W+M relative-to-SPY
+
+    metrics = ["net_setup", "net_cd", "net_perfect", "net_stealth", "net_triple"]
+    for metric_name in metrics:
         total_weight = 0.0
         weighted_sum = 0
-        for tf in abs_tfs:
-            col = col_tmpl.format(tf=tf)
+        # Intraday TFs (only when data present)
+        for tf in intraday_tfs:
+            present_col = f"td_{tf}_present"
+            col = f"td_{tf}_{metric_name}"
+            if col in df.columns and present_col in df.columns:
+                mask = df[present_col].fillna(False).astype(bool)
+                w = TF_WEIGHTS[tf]
+                weighted_sum = weighted_sum + _safe(col) * (mask.astype(float) * w)
+                total_weight = total_weight + mask.astype(float) * w
+        # Daily-and-up absolute
+        for tf in abs_dwm_tfs:
+            col = f"td_{tf}_{metric_name}"
             if col in df.columns:
-                weighted_sum = weighted_sum + _safe(col) * TF_W[tf]
-                total_weight += TF_W[tf]
-        for tf in rel_tfs:
-            col = f"td_{tf}_rel_" + col_tmpl.format(tf="").replace("td__", "")
+                weighted_sum = weighted_sum + _safe(col) * TF_WEIGHTS[tf]
+                total_weight += TF_WEIGHTS[tf]
+        # Daily-and-up relative-to-SPY
+        for tf in rel_dwm_tfs:
+            col = f"td_{tf}_rel_{metric_name}"
             if col in df.columns:
-                weighted_sum = weighted_sum + _safe(col) * TF_W[tf]
-                total_weight += TF_W[tf]
-        if total_weight > 0:
-            df[f"td_mtf_{metric_name}"] = weighted_sum / total_weight
-        else:
-            df[f"td_mtf_{metric_name}"] = 0
+                weighted_sum = weighted_sum + _safe(col) * TF_WEIGHTS[tf]
+                total_weight += TF_WEIGHTS[tf]
+        df[f"td_mtf_{metric_name}"] = weighted_sum / total_weight if (
+            isinstance(total_weight, (int, float)) and total_weight > 0
+        ) else (weighted_sum / total_weight.replace(0, 1))
 
     # Composite TD exhaustion = sum of 5 weighted net metrics
     # Each metric range ±1, so composite range ≈ ±5.
