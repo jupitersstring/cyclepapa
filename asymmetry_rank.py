@@ -238,9 +238,14 @@ def main():
                          "market_cap buckets to keep (e.g. 'Nano Cap,Micro Cap,Small Cap'). "
                          "Empty = keep all."))
     # Shell / scam filters - on by default.
-    p.add_argument("--min-revenue-ttm", type=float, default=1_000_000,
-                   help="reject names with TTM revenue below this (default $1M). "
-                        "Catches shell companies / reverse mergers / dormant entities.")
+    # NB: no revenue floor by default. Asset plays (RE holdings, closed-end
+    # funds, pure NCAV / Graham net-nets in turnaround) legitimately have
+    # tiny recurring revenue. BS recency + EBITDA margin sanity + dollar
+    # volume catch shells without killing real asset plays.
+    p.add_argument("--min-revenue-ttm", type=float, default=0,
+                   help="optional TTM-revenue floor (default 0 = off). Use a "
+                        "positive value to filter out shell entities at the "
+                        "cost of also losing asset plays.")
     p.add_argument("--min-dollar-volume", type=float, default=10_000,
                    help="reject names with avg daily dollar volume below this "
                         "(default $10k). Catches untradeable orphans.")
@@ -270,10 +275,9 @@ def main():
     # ---- Shell / scam filters ----
     if not args.no_shell_filter:
         before = len(df)
-        # 1) Revenue floor - dormant / reverse-merger shells often have zero
-        #    or near-zero TTM revenue but still carry a balance-sheet NCAV
-        #    and trade above book.
-        if "revenue_ttm" in df.columns:
+        # 1) Revenue floor (off by default - asset plays / Graham net-nets
+        #    legitimately have tiny recurring revenue).
+        if "revenue_ttm" in df.columns and args.min_revenue_ttm > 0:
             rev_mask = df["revenue_ttm"].fillna(0) >= args.min_revenue_ttm
             print(f"shell filter: revenue >= ${args.min_revenue_ttm:,.0f}: "
                   f"{rev_mask.sum()}/{len(df)} pass", file=sys.stderr)
