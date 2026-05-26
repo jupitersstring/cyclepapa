@@ -163,6 +163,17 @@ def main():
                                      .head(25)
                                      .reset_index(drop=True))
 
+    # 7. All-schools confluence (every weekly school score >= 60)
+    all_schools = big[
+        (big.W_W >= 60) & (big.Q_W >= 60) & (big.D_W >= 55) & (big.DA_W >= 55) &
+        (big.weekly_label != "Reject")
+    ].copy()
+    all_schools["mean_school"] = all_schools[["W_W","Q_W","D_W","DA_W"]].mean(axis=1)
+    tabs["All_Schools_60plus"] = (all_schools.sort_values("mean_school", ascending=False)
+                                              .drop_duplicates(subset=["ticker"])
+                                              .head(30)
+                                              .reset_index(drop=True))
+
     # 5. Uncorrelated portfolio
     try:
         unc = pd.read_csv("/tmp/cross_region_top_uncorrelated.csv")
