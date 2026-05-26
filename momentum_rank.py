@@ -58,10 +58,12 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
     todo = [t for t in tickers if t not in done]
     total = len(todo)
     n_batches = (total + chunk_size - 1) // chunk_size
+    consec_rate_limited = 0
     for i in range(0, total, chunk_size):
         b = i // chunk_size + 1
         chunk = todo[i:i + chunk_size]
-        print(f"  batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} of {total} (kept: {len(frames)})")
+        kept_before = len(frames)
+        print(f"  batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} of {total} (kept: {kept_before})")
         try:
             data = yf.download(
                 chunk, period=f"{years}y", interval="1d",
@@ -81,6 +83,20 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
                         frames[t] = sub
                 except Exception:
                     continue
+        # Rate-limit detection: success rate <5% on a large batch suggests
+        # yfinance is throttling. DO NOT mark these tickers as done so they
+        # get retried next run; pause longer to let the limit cool.
+        kept_in_batch = len(frames) - kept_before
+        success_rate = kept_in_batch / len(chunk) if chunk else 1.0
+        if success_rate < 0.05 and len(chunk) >= 10:
+            consec_rate_limited += 1
+            cool_sleep = min(60 + consec_rate_limited * 30, 300)
+            print(f"    likely rate-limited ({kept_in_batch}/{len(chunk)} kept); "
+                  f"NOT marking done. Cooling for {cool_sleep}s "
+                  f"(consec rate-limited batches: {consec_rate_limited})")
+            time.sleep(cool_sleep)
+            continue
+        consec_rate_limited = 0
         done.update(chunk)
         save_pickle(universe, years, frames, done)
         if b < n_batches:
@@ -141,10 +157,12 @@ def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_
     if total == 0:
         return frames
     n_batches = (total + chunk_size - 1) // chunk_size
+    consec_rate_limited = 0
     for i in range(0, total, chunk_size):
         b = i // chunk_size + 1
         chunk = todo[i:i + chunk_size]
-        print(f"  intraday {interval} batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {len(frames)})")
+        kept_before = len(frames)
+        print(f"  intraday {interval} batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {kept_before})")
         try:
             data = yf.download(chunk, period=period, interval=interval,
                                group_by="ticker", threads=True, progress=False,
@@ -163,6 +181,16 @@ def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_
                         frames[t] = sub
                 except Exception:
                     continue
+        kept_in_batch = len(frames) - kept_before
+        success_rate = kept_in_batch / len(chunk) if chunk else 1.0
+        if success_rate < 0.05 and len(chunk) >= 10:
+            consec_rate_limited += 1
+            cool_sleep = min(60 + consec_rate_limited * 30, 300)
+            print(f"    likely rate-limited ({kept_in_batch}/{len(chunk)} kept); "
+                  f"NOT marking done. Cooling {cool_sleep}s")
+            time.sleep(cool_sleep)
+            continue
+        consec_rate_limited = 0
         done.update(chunk)
         save_pickle_intraday(universe, interval, period, frames, done)
         if b < n_batches:
@@ -226,10 +254,12 @@ def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10
     todo = [t for t in tickers if t not in done]
     total = len(todo)
     n_batches = (total + chunk_size - 1) // chunk_size
+    consec_rate_limited = 0
     for i in range(0, total, chunk_size):
         b = i // chunk_size + 1
         chunk = todo[i:i + chunk_size]
-        print(f"  monthly batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {len(frames)})")
+        kept_before = len(frames)
+        print(f"  monthly batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {kept_before})")
         try:
             data = yf.download(chunk, period=f"{years}y", interval="1mo",
                                group_by="ticker", threads=True, progress=False,
@@ -248,6 +278,16 @@ def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10
                         frames[t] = sub
                 except Exception:
                     continue
+        kept_in_batch = len(frames) - kept_before
+        success_rate = kept_in_batch / len(chunk) if chunk else 1.0
+        if success_rate < 0.05 and len(chunk) >= 10:
+            consec_rate_limited += 1
+            cool_sleep = min(60 + consec_rate_limited * 30, 300)
+            print(f"    likely rate-limited ({kept_in_batch}/{len(chunk)} kept); "
+                  f"NOT marking done. Cooling {cool_sleep}s")
+            time.sleep(cool_sleep)
+            continue
+        consec_rate_limited = 0
         done.update(chunk)
         save_pickle_monthly(universe, years, frames, done)
         if b < n_batches:
