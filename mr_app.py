@@ -66,13 +66,16 @@ def main() -> None:
         st.number_input("Risk Factor", value=mre.RISK_FACTOR, step=0.1, disabled=True)
 
         st.header("Style — measures in the rank")
-        # The "ticked" set per the Style-tab screenshot.
+        # The "ticked" set per the Style-tab screenshot, plus "Net Divergence"
+        # (MFI divergence with Stoch OB/OS — Mary Mount Bean Counter) added
+        # per user request.
         ticked = {
             "setup":      st.checkbox("Net Setup",         value=True),
             "countdown":  st.checkbox("Net Countdown",     value=True),
             "perfect":    st.checkbox("Net Perfect",       value=True),
             "stealth":    st.checkbox("Net Stealth Setup", value=True),
             "triple":     st.checkbox("Net Triple Setup",  value=True),
+            "divergence": st.checkbox("Net Divergence (MFI / Bean Counter)", value=True),
         }
         with st.expander("Unticked (computed, not in rank)"):
             st.checkbox("Net Composite",         value=False, disabled=True)

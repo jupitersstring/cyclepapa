@@ -30,6 +30,8 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
+from divergence import detect_divergence
+
 
 # ---------------------------------------------------------------------------
 # Pine inputs — defaults mirror the screenshots
@@ -66,12 +68,15 @@ FF = FA ** 3
 FG = FA ** 4
 
 # Measures that feed the final MR rank (user-ticked in Style tab).
+# "divergence" added per user request — MFI divergence with Stoch OB/OS
+# confirmation, ported from the "Mary Mount Bean Counter" Pine indicator.
 TICKED_MEASURES: Tuple[str, ...] = (
     "setup",
     "countdown",
     "perfect",
     "stealth",
     "triple",
+    "divergence",
 )
 # Full methodology measures (used for the composite / completeness).
 ALL_MEASURES: Tuple[str, ...] = TICKED_MEASURES + (
@@ -93,6 +98,7 @@ MEASURE_MAX: Dict[str, int] = {
     "stealth": 1,
     "double": 1,
     "triple": 1,
+    "divergence": 1,
 }
 
 
@@ -126,6 +132,10 @@ class TDSeqFrame:
     triple_sell: pd.Series
     buy_risk: pd.Series
     sell_risk: pd.Series
+    # MFI divergences (Mary Mount Bean Counter): bullish div = buy signal,
+    # bearish div = sell signal. Each is 0/1 at the latest bar.
+    div_bull: pd.Series
+    div_bear: pd.Series
 
     def buy(self, measure: str) -> pd.Series:
         return {
@@ -138,6 +148,7 @@ class TDSeqFrame:
             "stealth": self.stealth_buy,
             "double": self.double_buy,
             "triple": self.triple_buy,
+            "divergence": self.div_bull,
         }[measure]
 
     def sell(self, measure: str) -> pd.Series:
@@ -151,6 +162,7 @@ class TDSeqFrame:
             "stealth": self.stealth_sell,
             "double": self.double_sell,
             "triple": self.triple_sell,
+            "divergence": self.div_bear,
         }[measure]
 
 
@@ -271,6 +283,17 @@ def td_sequential(df: pd.DataFrame) -> TDSeqFrame:
     buy_risk = pd.Series(np.where(bull_s == 9, lowest_9 - tr * RISK_FACTOR, np.nan), index=idx)
     sell_risk = pd.Series(np.where(bear_s == 9, highest_9 + tr * RISK_FACTOR, np.nan), index=idx)
 
+    # MFI divergence (Mary Mount Bean Counter) — needs enough bars for the
+    # MFI / Stochastic windows; on short series we emit zeros so the rank
+    # still computes deterministically.
+    if len(df) >= 30:
+        div = detect_divergence(df)
+        div_bull = div.bull
+        div_bear = div.bear
+    else:
+        div_bull = pd.Series(0, index=idx)
+        div_bear = pd.Series(0, index=idx)
+
     return TDSeqFrame(
         index=idx,
         bull_count=bull_s, bear_count=bear_s,
@@ -284,6 +307,7 @@ def td_sequential(df: pd.DataFrame) -> TDSeqFrame:
         double_buy=double_buy, double_sell=double_sell,
         triple_buy=triple_buy, triple_sell=triple_sell,
         buy_risk=buy_risk, sell_risk=sell_risk,
+        div_bull=div_bull, div_bear=div_bear,
     )
 
 
