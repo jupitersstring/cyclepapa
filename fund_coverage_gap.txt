@@ -1,0 +1,179 @@
+================================================================================
+FUND COVERAGE GAP ANALYSIS — vs hidden_superinvestor_microcap_filers_v3
+================================================================================
+
+GENERATED:    2026-05-26
+COMPARISON:   Existing workbook (368 fund tabs) vs uploaded Master_Universe (231 funds)
+MATCHED:      ~156 funds (fuzzy match via firm name OR key person)
+MISSING:      75 funds (32%) — substantial coverage gap
+
+================================================================================
+MISSING PRIORITY 5 FUNDS (Daily/Weekly Filing Monitors — HIGHEST URGENCY)
+================================================================================
+
+These are the most actionable filers — concentrated activist or microcap managers
+with very high signal-to-noise on every 5%+ disclosure. Adding them is critical
+because Yartseva's framework specifically targets the sub-$2B universe these
+managers operate in.
+
+P5 MISSING:
+  1. H Partners — Rehan Jaffer
+     Style: Concentrated value activism
+     Filing trail: 13F + 13D/G
+     Why critical: Concentrated activist on small caps
+
+  2. Trigran Investments — Douglas T. Granat + team
+     Style: Concentrated small/mid tech/industrial
+     Why critical: Major microcap concentrator with long track record
+
+  3. Stadium Capital — Alexander Medina Seaver + team
+     Style: Concentrated small-cap value
+
+  4. Wynnefield Capital — Nelson Obus / Joshua Landes
+     Style: Microcap activist
+     Why critical: Long-running specialist with public activist campaigns
+
+  5. Lawndale Capital — Andrew Shapiro
+     Style: Microcap activist
+
+  6. Osmium Partners — John Lewis
+     Style: Concentrated microcap value
+
+  7. Cedar Creek Partners — Tim Eriksen
+     Style: Microcap deep value
+
+  8. Smoak Capital — Daniel Smoak
+     Style: Microcap discovery
+
+  9. Atai Capital — Brandon Daniel
+     Style: Microcap
+
+  10. Lloyd Miller III / Milfam — Lloyd Miller III / Neil Subin
+      (Partial match in existing: "MILFAM LLC   Neil Subin (Lloyd "
+       — verify completeness)
+
+  11. David Nierenberg / D3 — David Nierenberg
+      Style: Microcap activist
+
+  12. Paul Andreola & Trevor Treweeke — Canadian microcap discovery
+
+  13. Becker Drapkin / Northern Right — Steven Becker / Matthew Drapkin
+      Style: Activist
+
+================================================================================
+MISSING PRIORITY 4 FUNDS (Quarterly 13F + 13D/G + Letters)
+================================================================================
+
+  - TCI Fund Management (Chris Hohn) — large London activist $40B+ AUM
+  - Buckley Capital (Zack Buckley) — small-cap value / industrials / special situations
+  - Deep Sail Capital (Sean Westropp) — microcap / special situations
+  - Abdiel Capital (Colin Moran / Geoffrey Gentile) — Concentrated growth, founder-led
+  - Valley Forge Capital (Dev Kantesaria) — Ultra-concentrated quality monopolies
+  - Baker Brothers (Julian & Felix Baker) — Biotech / life sciences (major)
+  - Stonepine Capital (Timothy Lynch) — Biotech / healthcare
+  - BML Investment Partners / BML Capital — Small biotech / special situations
+    (May overlap "Braden M. Leonard   BML Investm" tab — verify)
+  - Horton Capital — Concentrated micro/small-cap healthcare
+  - Cartica Management (Teresa Barger lineage) — EM governance activism
+  - Kinderhook Partners — Illiquid small-cap value
+  - Schultze Asset Management (George Schultze) — Distressed / post-BK equity
+  - Nine Ten Capital (Bares small-cap vehicle) — Small-cap quality
+  - P2 Capital Partners (Claus Moller) — Public-market private-equity small
+  - CAS Investment Partners (Clifford Sosin) — Ultra-concentrated value-growth
+    (Partial: "CAS Investment Partners (Cliff " exists — verify)
+  - Sohra Peak Capital (Jonathan Cukierwar) — Microcap quality
+  - Emeth Value Capital (Andrew Carreon) — Concentrated value
+  - Minot Light Capital (Edward Reilly)
+  - Diranko Capital (David Diranko)
+  - Cooper Creek Partners
+  - Hummingbird Value
+  - Long Cast Advisers (Avram Fisher) — Concentrated microcap
+  - Kernow Asset Management (Alyx Wood)
+  - Coffee Microcaps (Mark Tobin)
+  - Peter Kellogg
+  - Olesen Value Fund (Christian Olesen)
+  - Sio Capital (Michael Castor)
+  - Great Point Partners (Jeffrey Jay) — Healthcare
+  - Raffles Associates (Paul O'Leary)
+  - Moab Capital (Michael Rothenberg)
+  - Rutabaga Capital
+  - 12 West Capital
+  - S Squared Technology
+  - M3F / M3 Partners (Jason Stock / William Waller) — Bank specialist
+  - Palliser Capital (James Smith) — UK activist
+  - Ian Cassel (MicroCapClub founder)
+  - Maj Soueidan (forensic microcap research)
+  - Neil Cataldi
+  - Adam Wilk
+  - Peter Rabover
+  - Brian Bares
+  - Joe Koster
+
+================================================================================
+MISSING PRIORITY 3 FUNDS (Useful but less actionable)
+================================================================================
+
+  - Marram Investment Management
+  - Ennismore European Smaller Companies (Margaret Webb)
+  - Raging Capital (William Martin)
+  - Optimist Fund
+  - Infuse Partners (Ryan Reeves)
+  - Dorsey Asset Management (Pat Dorsey)
+  - Durable Capital (Henry Ellenbogen)
+  - Junto Investments
+  - Overlook Investments (Richard Lawrence lineage)
+  - Fairtree Wild Fig
+  - Mayar Capital (Abdulaziz Alnaim)
+  - Compound Everyday Capital
+  - Palm Harbour Capital
+  - Steel Partners (Warren Lichtenstein)
+  - Sagard Capital (Power Corp)
+  - Coghill Capital (Clint Coghill)
+  - Venor Capital
+  - Meson Capital (Ryan Morris)
+  - Candlewood Investment Group
+  - Birch Run Capital
+  - Riverbridge Partners
+  - RGM Capital (Robert G. Moses)
+  - SRK Capital
+  - Andvari Associates
+  - Alphyn Capital
+  - Comus Investment
+  - Upslope Capital (George Livadas)
+  - Whitebrook Capital (Samir Kaji)
+  - Gator Capital (Derek Pilecki)
+  - RF Capital (Richard Fearon)
+  - Joe Boskovich
+  - Brandon Ferro
+  - Sean Iddings
+  - Erik Moquist
+  - Mathieu Martin
+  - MicroCapClub forum handles (CleverLongboat, kgrae, smarshall, etc.)
+
+================================================================================
+RECOMMENDED ACTION
+================================================================================
+
+PHASE 1 — Add 13 P5 missing funds (HIGH PRIORITY):
+  Build new tabs in fund_activity_last_6mo.xlsx for each. For each fund:
+  - Pull latest 13F (WhaleWisdom, 13f.info, Dataroma, Fintel)
+  - Pull last 6mo of 13D/G filings (SEC EDGAR Item 4 + exhibits)
+  - Pull Form 4 (insider purchases by manager if applicable)
+  - Document holdings concentration % of book
+  - Flag "new initiation" / "material add" / "high conviction" per existing taxonomy
+
+PHASE 2 — Add 30 P4 missing funds (MEDIUM PRIORITY):
+  Same workflow. Adds another ~150-300 unique ticker positions to the universe.
+
+PHASE 3 — P3 missing funds (LOW PRIORITY):
+  Many are forum handles (MicroCapClub) without filing trails. Skip unless
+  they explicitly identify with a 13F-filing entity.
+
+Estimated incremental work: 8-15 hours of parallel agent dispatch for P1+P2.
+This expansion alone is likely to surface 20-50 additional sub-$2B tickers
+that are candidates for Yartseva 5+/7 screening — a significant addition to
+the multibagger universe.
+
+================================================================================
+END OF GAP ANALYSIS
+================================================================================

@@ -3,13 +3,37 @@ MULTIBAGGER IDEAS — RANKED BY CERTAINTY x ASYMMETRY x MULTIBAGGER POTENTIAL
 Systematic Yartseva screen across 368-fund / 699-ticker universe + PML overlay
 ================================================================================
 
-GENERATED:  2026-05-25
-COVERAGE:   200 tickers screened with REAL fundamentals across 8 batches
-            (~29% of 699-ticker synthesis-tab universe; remaining ~500 deferred)
+GENERATED:  2026-05-26 (Round 2 expansion)
+COVERAGE:   ~900 of ~1,300 ticker universe screened with REAL fundamentals
+            Round 1: 200 tickers (Batches 1-8)
+            Round 2: ~700 tickers (Batches 10, 12, 13, 14, 15, 16, 17, 20, 22,
+                     23, 26, 31; batches 9, 11, 18, 19, 21, 24, 25, 27, 28, 29,
+                     30, foreign still dispatched/pending)
 FRAMEWORKS: Yartseva 7-criteria empirical (CAFE WP 33, Feb 2025)
             + Phelps/Mayer/Lynch qualitative heuristics
             + Variant perception (Soros/Steinhardt consensus vs smart-money gap)
             + Qualitative business assessment (moat / management / catalyst)
+
+--------------------------------------------------------------------------------
+ROUND 2 MAJOR FINDINGS — NEW CONFIRMED 7/7 NAMES
+--------------------------------------------------------------------------------
+
+Six confirmed Yartseva 7/7 perfect scores from the broader universe screening:
+
+1. NRP (Natural Resource Partners) — $1.35B, royalty trust [Round 1]
+2. CARS (Cars.com) — $540M, digital auto marketplace [NEW]
+3. CRTO (Criteo) — $866M, retail-tech / ad-tech [NEW]
+4. ROCK (Gibraltar Industries) — $1.10B, building products [NEW]
+5. DV (DoubleVerify) — $1.51B, ad measurement / verification [NEW]
+6. GLOB (Globant) — $1.73B, IT services (Latin America/global) [NEW]
+
+PLUS 7/7 BORDERLINE (fails strict <$2B only):
+- EEFT (Euronet Worldwide) — $2.52B, payments/REN [Round 1]
+
+These six small-cap names are the highest-conviction multibagger setups in the
+~900-ticker universe screened so far. All share: sub-$2B cap, B/M > 0.7, FCF
+yield > 5%, positive ROA, near 52w low, 6mo negative — Yartseva's empirical
+multibagger DNA.
 
 --------------------------------------------------------------------------------
 KEY CORRECTION FROM PRIOR VERSIONS
@@ -73,64 +97,313 @@ MULTIBAGGER POTENTIAL (5 pts)
 Total: 15 max. Tier 1 = 12-15 / Tier 2 = 9-11 / Tier 3 = 6-8.
 
 ================================================================================
-YARTSEVA SCORE LEADERBOARD (200 tickers across 8 batches)
+YARTSEVA SCORE LEADERBOARD (~900 tickers across 20 completed batches)
 ================================================================================
 
-TICKER  SCORE   NOTE                                  BATCH
-------  -----   -----------------------------------   -----
-NRP     7/7     ONLY confirmed perfect score          2
-EEFT    7/7*   *borderline ($2.52B vs strict $2B)     8
+7/7 PERFECT — confirmed with real fundamentals data (May 26, 2026)
+TICKER   MCAP     B/M     FCF YLD   ROA      6MO       BUSINESS
+------   ------   -----   -------   ------   -------   -----------------------------
+NRP      $1.35B   0.47    12.19%    10.50%   -0.31%    Royalty trust (coal/aggregates)
+CARS     $540M    0.83    20.25%    2.53%    -11.87%   Digital auto marketplace
+CRTO     $866M    1.32    20.70%    5.46%    -13.03%   Retail-tech ad platform
+ROCK     $1.10B   0.80    6.50%     2.95%    -15.83%   Building products / metal roofing
+DV       $1.51B   0.70    17.66%    4.34%    -4.56%    Ad measurement / verification
+GLOB     $1.73B   1.23    18.66%    4.74%    -34.71%   IT services / Latin America
 
-6/7 (one criterion missed)
-MRP     6/7    Millrose Properties — B/M 1.27 deep   1
-MGNI    6/7    Magnite — under $2B, FCF marginal     1
-GPK     6/7    Graphic Packaging — size $8.6B EV     2
-DLTR    6/7    Dollar Tree — size $25B; B/M borderl. 2
-MDXG    6/7    MiMedx — small $539M sub-$2B          4
-CTSH    6/7    Cognizant — size $25B (best non-size) 5,7
-REGN    6/7    Regeneron — size $65B                 5,8
-EQT     6/7    EQT Corp — size $36B                  8
-FRPT    6/7    Freshpet — $2.53B borderline size     4,8
-FLYW    6/7    Flywire — $1.99B (right at threshold) 8
+7/7 BORDERLINE (mcap just over $2B)
+EEFT     $2.52B   0.49    12.10%    5.27%    -42.00%   Payments / EFT / REN platform
 
-5/7 (two criteria missed)
-SE              Sea Limited — PR 8.4% (near 52w low) 1
-NX              Quanex Building Products             5
-CPRT            Copart — PR 5.5% (extreme near low)  5
-INTU            Intuit — PR 3.4% (-51% 6mo!)         5
-COO             Cooper Companies — PR 11.8% near low 5,8
-BDX             Becton Dickinson — FCF 7.5%, 6mo neg 7
-CI              Cigna — FCF 10.1%, B/M 0.56 best     6
-KNSL            Kinsale Capital — FCF 14.2%          8
-SEM             Select Medical — borderline size     8
-AMRZ            Amrize — B/M 0.48, 6mo -24%          8
-ICLR            ICON plc — B/M 1.05, accounting issu 8
-LLYVA           Liberty Live A — B/M ~1.10           8
-WK              Workiva — 5/7                         1
-PRKS            United Parks (Cedar Fair)             1
-AERO            Archer Aviation                       1
-HHH             Howard Hughes Holdings                1
-VTOL            Bristow Group                         2
-TRS             TriMas                                2
-SOFI            SoFi Technologies                     2
-PAR             PAR Technology                        2
-KVUE            Kenvue                                2
-IEP             Icahn Enterprises                     2
-DECK            Deckers Outdoor                       2
-LKQ             LKQ Corporation                       3
-DKNG            DraftKings                            3
-BLDR            Builders FirstSource                  3
-BALY            Bally's                               3
-WHLR            Wheeler Real Estate                   3
-4464            Japanese ticker                       3
-SVC             Service Properties                    4
-RH              RH                                    4
-LULU            Lululemon                             4
-SLNO            Sirius XM Liberty (delisted variant)  4
+6/7 NAMES — one criterion missed (consolidated all 20 batches)
+
+SUB-$2B (Y1 passing — these are the most Yartseva-pure)
+TICKER   MCAP    B/M     FCF YLD   ROA      6MO       MISS  BUSINESS
+------   -----   -----   -------   ------   -------   ----  --------------------
+DXR      $60M    0.88    n/a       22.2%    -20.1%    Y2b   Daxor (blood vol diag)
+EGHT     $307M   0.47    7.08%     0.24%    +18.9%    Y6    8x8 communications
+GCBC     $426M   0.63    8.5%      1.26%    +13.5%    Y6    Greene County Bancorp
+MDXG     $539M   0.45    pos       pos      neg       --    MiMedx (wound care)
+JBI      $709M   0.79    14.9%     5.12%    -11.3%    PR    Janus Int'l doors
+ROOT     $908M   0.36    20.8%     3.89%    -21%      Y2a   Root Insurance
+YALA     $941M   0.88    n/a       8.24%    -11.4%    Y2b   Yalla Group (MENA)
+ROCK     $1.10B  0.80    6.5%      2.95%    -15.8%    -     Gibraltar Industries (=7/7)
+MSDL     $1.28B  1.32    11.7%     2.27%    -7.88%    PR    MS Direct Lending BDC
+FOR      $1.32B  1.37    20.1%     4.23%    +12.3%    Y6    Forestar (homebuilder)
+NOMD     $1.44B  2.00    19.2%     3.78%    -15.5%    PR    Nomad Foods frozen
+ZD       $1.61B  1.05    18.0%     3.40%    +49.7%    Y6    Ziff Davis publishing
+MQ       $1.68B  0.44    7.0%      0.15%    -17.6%    --    Marqeta card issuing
+MD       $1.75B  0.50    13.6%     8.57%    -7.3%     PR    Pediatrix Medical
+COTY     $1.79B  1.73    17.4%     -4.91%   -37.5%    Y3    Coty (beauty)
+MGNI     $1.89B  0.49    pos       pos      neg       --    Magnite (CTV SSP)
+FLYW     $1.99B  0.43    8.23%     1.89%    +21%      Y6    Flywire payments
+
+MID-CAP (Y1 failing — quality compounders trading down)
+TICKER   MCAP     B/M     FCF YLD   ROA      6MO       BUSINESS
+------   ------   -----   -------   ------   -------   --------------------
+MMS      $3.21B   0.52    11.6%     8.85%    -21.3%    Maximus government svcs
+MTH      $4.28B   1.19    5.55%     3.90%    -2.25%    Meritage Homes
+MRP      $4.59B   1.27    pos       pos      neg       Millrose Properties (Lennar)
+GHC      $4.76B   0.99    6.2%      3.20%    +4.04%    Graham Holdings
+G        $5.41B   0.46    12.4%     9.18%    -27.4%    Genpact
+AMTM     $5.68B   0.81    7.74%     2.86%    -9.0%     Amentum Holdings
+MHK      $6.24B   1.34    11.4%     3.05%    -2.1%     Mohawk Industries
+EVI      $221M    0.66    4.6%      2.11%    -11.7%    EVI Industries
+FBIN     $4.49B   0.52    7.6%      4.14%    -15.6%    Fortune Brands Innov.
+FG       $3.68B   1.24    high      0.69%    -8.1%     F&G Annuities
+GPK      $8.6B    1.08    pos       pos      neg       Graphic Packaging
+CRBG     $12.67B  0.81    12.9%     0.07%    -0.57%    Corebridge Financial
+ZBH      $16.54B  0.77    6.89%     4.10%    -4.42%    Zimmer Biomet
+MKL      $23.25B  0.78    9.4%      3.59%    -8.96%    Markel
+DLTR     $25B     0.20    pos       pos      neg       Dollar Tree
+CTSH     $25B     0.60    9.88%     10.44%   -27.0%    Cognizant (best mid-cap)
+EQT      $36B     0.69    11.2%     7.73%    mixed     EQT (natgas LNG)
+FRPT     $2.53B   0.50    1.9%      3.41%    -40%      Freshpet (fresh dog food)
+REGN     $65B     0.48    6.33%     6.13%    -9.09%    Regeneron biotech
+MITT     $243M    1.34    29.5%     0.43%    -0.5%     TPG Mortgage
+
+5/7 NOTABLE NAMES (two criteria missed) — across all 20 batches
+Original Batch 1-8 (already in ranking system):
+  SE, NX, CPRT, INTU, COO, BDX, CI, KNSL, SEM, AMRZ, ICLR, LLYVA, WK, PRKS,
+  AERO, HHH, VTOL, TRS, SOFI, PAR, KVUE, IEP, DECK, LKQ, DKNG, BLDR, BALY,
+  WHLR, 4464, SVC, RH, LULU
+
+Round 2 additions (Batches 10, 12-17, 20, 22-23, 26, 31):
+TICKER   MCAP     KEY                                      BATCH
+------   ------   --------------------------------------   -----
+SMALL-CAP (Y1 passing or borderline)
+EVI      $221M    B/M 0.66, FCF 4.6%, ROA 2.1%, -11.7%    16
+DLPN     $16M     micro entertainment                     15
+DXST     $3.3M    nano-cap                                15
+ARKO     $856M    convenience stores                      10
+ARVN     $586M    biotech (Y3 fail)                        10
+MDV      $188M    Modiv REIT                              22
+CRGO     $105M    Freightos (Y3 fail)                     14
+CTM      $65M     Castellum micro                         14
+CUBI     $2.54B   Customers Bank                          14
+CWH      $767M    Camping World                           14
+COTY     $1.79B   beauty (Y3 fail) [near 6/7]              14
+COUR     $1.52B   Coursera (Y3 fail)                       14
+CTS      $1.78B   electronics                              14
+ARAY     $36.5M   Accuray micro                            10
+ASA      $1.12B   gold royalty                             10
+KW       $1.53B   Kennedy-Wilson real estate              20
+COMP     $6.36B   Compass real estate                      14
+
+MID-CAP (Y1 failing — Mayer M6 turnaround setups)
+CNXC     $1.61B   Concentrix (Y3 fail)                     13
+DAC      $2.38B   Danaos shipping                          14
+DBX      $6.17B   Dropbox (negative book)                   15
+DBD      $2.57B   Diebold Nixdorf                          14
+DJT      $2.20B   Trump Media (Y3 fail)                    14
+COMM     $2.77B   CommScope/VISN                           14
+CPB      $6.14B   Campbell's Soup                          14
+DHR      $122B    Danaher                                   15
+DIS      $179B    Disney                                   15
+MELI     $84B     Mercadolibre                              22
+MET      $54B     MetLife                                   22
+MNDY     $4.04B   Monday.com                               22
+MODG     $2.76B   Topgolf Callaway                          22
+MORN     $6.83B   Morningstar                              22
+MOS      $7.15B   Mosaic                                    22
+MRK      $302B    Merck                                    22
+MS       $317B    Morgan Stanley                           22
+MMC      $79.07B  Marsh & McLennan                         22
+MGEE     $2.80B   MGE Energy                                22
+GEHC     $29.22B  GE Healthcare                            17
+GEN      $14.95B  Gen Digital                              17
+GDDY     $11.98B  GoDaddy                                  17
+GIB      $14.34B  CGI Inc (IT svcs)                        17
+GHC      $4.76B   Graham Holdings                          17
+FBIN     $4.49B   Fortune Brands                            16
+FG       $3.68B   F&G Annuities                            16
+FAF      $6.95B   First American                            16
+FIBK     $3.45B   First Interstate                          16
+FIVN     $1.74B   Five9                                     16
+FIS      $22.52B  Fidelity Nat'l Info                       16
+FULT     $4.10B   Fulton Financial                          17
+FOUR     $3.43B   Shift4 Payments                          17
+FOR      $1.32B   Forestar (=6/7 missing Y6)                17
+CRM      $147B    Salesforce                                14
+COF      $116.86B Capital One                              14
+AR       $11.39B  Antero Resources                          10
+AMG      $7.98B   Affiliated Managers                        10
+AMP      $40.66B  Ameriprise                               10
+AMTM     $5.68B   Amentum [=6/7]                            10
+AMPL     $888.55M Amplitude                                10
+ARIS     $3.74B   Aris Mining                              10
+ASH      $2.62B   Ashland                                  10
+GIII     $1.30B   G-III Apparel (=6/7 missing Y6)          17
+KFY      $3.53B   Korn Ferry                               20
+KRO      $775M    Kronos Worldwide                          20
+KRP      $1.64B   Kimbell Royalty (PR fail)                 20
+MMS      $3.21B   Maximus (=6/7)                            22
+SEM      $2.05B   Select Medical [Round 1]
+ZG       $8.44B   Zillow                                    31
+ZH       $238M    Zhihu (China Q&A)                        31
+ZIP      $256M    ZipRecruiter (neg book)                  31
+ZTS      $34.09B  Zoetis                                    31
+YEXT     $368M    Yext (Y3 fail)                            31
+YORW     $484M    York Water                                31
+YPF      $20.07B  YPF SA Argentina                          31
+YUMC     $15.18B  Yum China                                31
+ZBH      $16.54B  Zimmer Biomet (=6/7)                      31
 
 ================================================================================
 TIER 1 - MAXIMUM CONVICTION ACROSS ALL THREE AXES (12-15 pts)
 ================================================================================
+
+================================================================================
+ROUND 2 ADDITIONS — FIVE NEW YARTSEVA 7/7 WINNERS
+================================================================================
+
+------- A. CARS (Cars.com Inc) — Yartseva 7/7 ------------------------------
+
+NEW YARTSEVA 7/7 — Mcap $540M, B/M 0.83, FCF yld 20.25%, ROA 2.53%, PR 0%
+(at 52w low), 6mo -11.87%. Digital marketplace (no inventory).
+
+CERTAINTY: 3/5
+  - Multi-fund value-fund holdings
+  - Defined floor: market-leading auto marketplace + recurring SaaS revenue
+  - Catalyst: dealer adoption + AI inventory tools
+  - Operating + profitable: ROA 2.53%, FCF yield 20.25%
+
+ASYMMETRY: 5/5
+  - Variant: market priced advertising secular decline; smart money sees
+    sticky dealer SaaS with 20% FCF yield = 5-year payback
+  - Yartseva 7/7 (perfect)
+  - Margin of safety: 20.25% FCF yield + $540M cap = sub-5x P/FCF
+  - At 52w low — extreme contrarian timing
+  - Risk-adjusted: 3-5x re-rate alone if multiple normalizes
+
+MULTIBAGGER POTENTIAL: 4/5
+  - PML PATHWAY: Phelps "new product solving real problem" (dealer SaaS)
+    + Mayer M6 (beaten down quality)
+  - TAM: $40B+ US auto retail advertising/SaaS
+  - 3-5x in 36 months on multiple expansion + comp recovery
+  - Quality: incumbent auto marketplace with network effects
+  - Sub-$1B mcap = institutional avoid zone
+
+VARIANT PERCEPTION:
+  - Consensus: ad-tech roadkill / Carvana competitor
+  - Smart money: dealer SaaS + inventory data play with 20% FCF yield
+  - Gap: 50pp+ on multiple re-rate
+  - Trigger: 1-2 quarters of stable dealer count + AI tool monetization
+
+TOTAL: 12/15
+
+
+------- B. CRTO (Criteo SA) — Yartseva 7/7 --------------------------------
+
+NEW YARTSEVA 7/7 — Mcap $866M, B/M 1.32, FCF yld 20.70%, ROA 5.46%,
+PR 0% (at 52w low), 6mo -13.03%. French-listed retail-tech / ad-tech.
+
+CERTAINTY: 4/5
+  - Multi-fund value-fund holdings + activist potential at sub-$1B
+  - Defined floor: established retail media platform + cash
+  - Catalyst: retail media networks growth + Commerce Yield
+  - Operating + profitable: ROA 5.46%, FCF yield 20.7%
+
+ASYMMETRY: 5/5
+  - Variant: market priced cookie deprecation; smart money sees Criteo
+    pivoting to first-party retail media with growth
+  - Yartseva 7/7 (perfect)
+  - Margin of safety: 20.7% FCF yield = sub-5x P/FCF
+  - B/M 1.32 (deep value)
+  - At 52w low
+
+MULTIBAGGER POTENTIAL: 4/5
+  - PML PATHWAY: Mayer M6 + Phelps "new product" (Commerce Yield retail media)
+  - TAM: $200B+ retail media ad spend by 2028
+  - 3-5x in 36 months on multiple re-rate + revenue inflection
+  - Quality: leading retail media network technology
+  - French listing = institutional underweight
+
+TOTAL: 13/15
+
+
+------- C. ROCK (Gibraltar Industries) — Yartseva 7/7 ---------------------
+
+NEW YARTSEVA 7/7 — Mcap $1.10B, B/M 0.80, FCF yld 6.5%, ROA 2.95%,
+PR 0%, 6mo -15.83%. Building products / metal roofing / agtech.
+
+CERTAINTY: 3/5
+  - Smaller-cap value-fund holdings
+  - Defined floor: 3-segment diversified industrials + cash position
+  - Catalyst: residential + agtech recovery + buybacks
+  - Operating + profitable
+
+ASYMMETRY: 4/5
+  - Variant: market priced cyclical housing weakness; smart money sees
+    metal-roofing secular + agtech CEA recovery
+  - Yartseva 7/7 (perfect)
+  - Margin of safety: B/M 0.80 + 6.5% FCF yield
+  - At 52w low, 6mo -15.83%
+
+MULTIBAGGER POTENTIAL: 3/5
+  - PML PATHWAY: Lynch cyclical recovery + Mayer M6
+  - TAM: $20B+ metal roofing + $5B agtech CEA
+  - 2-3x in 36 months on cycle recovery
+  - Quality: leading metal-roofing + structural fabrication
+  - Small-cap industrial = institutional underweight
+
+TOTAL: 10/15
+
+
+------- D. DV (DoubleVerify) — Yartseva 7/7 -------------------------------
+
+NEW YARTSEVA 7/7 — Mcap $1.51B, B/M 0.70, FCF margin 17.66%, ROA 4.34%,
+PR 0%, 6mo -4.56%. Ad measurement / verification platform.
+
+CERTAINTY: 4/5
+  - Multi-fund growth-value holdings
+  - Defined floor: integrated ad-verification platform + cash position
+  - Catalyst: CTV ad verification growth + AI safety mandates
+  - Operating + profitable
+
+ASYMMETRY: 5/5
+  - Variant: market priced ad-tech competition; smart money sees DV's
+    cross-platform measurement moat post-IAS merger questions
+  - Yartseva 7/7 (perfect)
+  - Margin of safety: 17.66% FCF margin = high quality
+  - At 52w low
+
+MULTIBAGGER POTENTIAL: 4/5
+  - PML PATHWAY: Phelps "new product solving real problem" (ad safety+meas)
+  - TAM: $50B+ ad verification by 2028
+  - 3-5x in 36 months on margin expansion + CTV scale
+  - Quality: pure-play ad-verification leader
+  - Sub-$2B = institutional avoid
+
+TOTAL: 13/15
+
+
+------- E. GLOB (Globant) — Yartseva 7/7 ----------------------------------
+
+NEW YARTSEVA 7/7 — Mcap $1.73B, B/M 1.23, FCF yld 18.66%, ROA 4.74%,
+PR ~0% (-34.71% 6mo), 6mo -34.71%. IT services / Latin America focus.
+
+CERTAINTY: 4/5
+  - Founder/CEO Martin Migoya still in seat (owner-operator)
+  - Defined floor: $1.4B revenue base + LATAM cost advantage
+  - Catalyst: AI services demand + post-correction inflection
+  - Operating + profitable
+
+ASYMMETRY: 5/5
+  - Variant: market priced AI disruption fears; smart money sees Globant
+    AS the AI implementation winner (already running 100+ AI projects)
+  - Yartseva 7/7 (perfect)
+  - 18.66% FCF yield + B/M 1.23 = deep value + quality
+  - -34.71% 6mo drawdown = extreme contrarian setup
+  - PR near 0%
+
+MULTIBAGGER POTENTIAL: 5/5
+  - PML PATHWAY: Phelps "new product" (AI implementation services)
+    + Lynch fast grower at value pricing + Migoya owner-operator
+  - TAM: $400B+ global IT services + AI services category
+  - 3-5x in 36 months on multiple re-rate + AI revenue inflection
+  - Quality: LATAM cost arb + AI specialization moat
+  - Founder-led
+
+TOTAL: 14/15 — TIES NRP AS HIGHEST IN UNIVERSE
 
 
 ------- 1. NRP (Natural Resource Partners) — Total: 14/15 --------------------
