@@ -135,6 +135,34 @@ def main():
     rc = rc.sort_values("R_W", ascending=False).drop_duplicates(subset=["ticker"]).head(25)
     tabs["Regime_Change"] = rc
 
+    # 5. Per-measure leaders on weekly TF (excluding rejected)
+    weekly_ok = big[big.weekly_label != "Reject"].copy()
+    for measure, col in [
+        ("Top_Weinstein_W",    "W_W"),
+        ("Top_Qullamaggie_W",  "Q_W"),
+        ("Top_DeMark_W",       "D_W"),
+        ("Top_Darvas_W",       "DA_W"),
+        ("Top_Regime_W",       "R_W"),
+    ]:
+        tabs[measure] = (weekly_ok.sort_values(col, ascending=False)
+                                    .drop_duplicates(subset=["ticker"])
+                                    .head(25)
+                                    .reset_index(drop=True))
+
+    # 6. Per-measure leaders on monthly TF
+    monthly_ok = big[big.monthly_label != "Reject"].copy()
+    for measure, col in [
+        ("Top_Weinstein_M",    "W_M"),
+        ("Top_Qullamaggie_M",  "Q_M"),
+        ("Top_DeMark_M",       "D_M"),
+        ("Top_Darvas_M",       "DA_M"),
+        ("Top_Regime_M",       "R_M"),
+    ]:
+        tabs[measure] = (monthly_ok.sort_values(col, ascending=False)
+                                     .drop_duplicates(subset=["ticker"])
+                                     .head(25)
+                                     .reset_index(drop=True))
+
     # 5. Uncorrelated portfolio
     try:
         unc = pd.read_csv("/tmp/cross_region_top_uncorrelated.csv")
