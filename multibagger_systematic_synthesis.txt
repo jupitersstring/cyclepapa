@@ -1,19 +1,52 @@
 ================================================================================
-MULTIBAGGER IDEAS — RANKED BY CERTAINTY × ASYMMETRY × MULTIBAGGER POTENTIAL
-Systematic screen across 368-fund / 699-ticker universe with real data
+MULTIBAGGER IDEAS — RANKED BY CERTAINTY x ASYMMETRY x MULTIBAGGER POTENTIAL
+Systematic Yartseva screen across 368-fund / 699-ticker universe + PML overlay
 ================================================================================
 
-GENERATED: 2026-05-22
-DATA: 100 tickers screened with actual fundamentals (4 research batches)
-FRAMEWORKS: Yartseva (empirical) + Phelps/Mayer/Lynch (qualitative) + variant
-            perception + qualitative business assessment
+GENERATED:  2026-05-25
+COVERAGE:   200 tickers screened with REAL fundamentals across 8 batches
+            (~29% of 699-ticker synthesis-tab universe; remaining ~500 deferred)
+FRAMEWORKS: Yartseva 7-criteria empirical (CAFE WP 33, Feb 2025)
+            + Phelps/Mayer/Lynch qualitative heuristics
+            + Variant perception (Soros/Steinhardt consensus vs smart-money gap)
+            + Qualitative business assessment (moat / management / catalyst)
 
+--------------------------------------------------------------------------------
+KEY CORRECTION FROM PRIOR VERSIONS
+--------------------------------------------------------------------------------
+
+LOGC (ContextLogic Holdings) was repeatedly cited as "Yartseva 6/7" in earlier
+versions of this synthesis based on Phelps/Mayer approximations. Actual Yartseva
+quant score (from Batch 5 real data): 2/7. The framework misfires here because
+LOGC is a permanent-capital vehicle (Abrams/BC Partners platform) that closed
+the US Salt acquisition Feb 26, 2026 — book value jumped from $211M to $742M
+and 6mo return reflects post-deal positioning, not mean-reversion. LOGC remains
+a high-conviction qualitative play but does NOT pass Yartseva on the numbers.
+
+--------------------------------------------------------------------------------
+YARTSEVA 7-CRITERIA RECAP (per CAFE WP 33)
+--------------------------------------------------------------------------------
+
+Y1: Market cap < ~$2B (size premium)
+Y2a: B/M > 0.40 (value premium; equivalent to P/B < 2.5)
+Y2b: FCF yield > 5% (cash quality screen)
+Y3: ROA > 0 TTM (profitability)
+Y4: Inventory dummy = 0 (no abnormal inventory buildup vs EBITDA growth)
+Y5: Price near 52-week low (bottom half of range — contrarian timing)
+Y6: 6-month return negative (technical reversion setup)
+Y7: Rates supportive (2026 Fed easing cycle — applied uniformly)
+
+Yartseva's empirical work EXPLICITLY DISPROVED earnings growth, debt metrics,
+P/E ratio, ROE/ROC, capital allocation flags, and R&D propensity as multibagger
+predictors — these are NOT in her framework even though Phelps/Mayer/Lynch
+emphasize them. Where PML asserts "great compounders," Yartseva asserts
+"mean-reverting cheap-quality-contrarian small-caps."
 
 --------------------------------------------------------------------------------
 THE THREE-AXIS RANKING FRAMEWORK
 --------------------------------------------------------------------------------
 
-Each idea scored on three independent dimensions (5 points each, max 15):
+Each idea scored on three independent dimensions (5 pts each, max 15):
 
 CERTAINTY (5 pts)
   Smart money concentration depth (% of fund book) ........... 1
@@ -25,36 +58,93 @@ CERTAINTY (5 pts)
 ASYMMETRY (5 pts)
   Variant perception gap (consensus PT vs smart-money target). 1
   Yartseva quantitative score >= 5/7 ........................ 1
-  Margin of safety (FCF yield >5% OR B/M >0.5 OR cash floor). 1
-  Near 12-month low (price range <30%) ...................... 1
-  Risk-adjusted multiple potential (3:1 or better) .......... 1
+  Margin of safety (FCF yield > 5% OR B/M > 0.5 OR cash floor) 1
+  Near 12-month low (price range < 30% from bottom) .......... 1
+  Risk-adjusted multiple potential (3:1 or better) ........... 1
 
 MULTIBAGGER POTENTIAL (5 pts)
   Phelps/Mayer/Lynch pathway clear (compounder/turnaround/
     asset play / new product solving real problem) ........... 1
-  TAM × penetration × execution capacity .................... 1
-  Time horizon credible (3-5x in 36mo OR 10x in 10yr) ....... 1
-  Quality of business engine (moat + unit economics) ........ 1
-  Owner-operator / patient-capital sponsor .................. 1
+  TAM x penetration x execution capacity ..................... 1
+  Time horizon credible (3-5x in 36mo OR 10x in 10yr) ........ 1
+  Quality of business engine (moat + unit economics) ......... 1
+  Owner-operator / patient-capital sponsor ................... 1
 
 Total: 15 max. Tier 1 = 12-15 / Tier 2 = 9-11 / Tier 3 = 6-8.
 
+================================================================================
+YARTSEVA SCORE LEADERBOARD (200 tickers across 8 batches)
+================================================================================
+
+TICKER  SCORE   NOTE                                  BATCH
+------  -----   -----------------------------------   -----
+NRP     7/7     ONLY confirmed perfect score          2
+EEFT    7/7*   *borderline ($2.52B vs strict $2B)     8
+
+6/7 (one criterion missed)
+MRP     6/7    Millrose Properties — B/M 1.27 deep   1
+MGNI    6/7    Magnite — under $2B, FCF marginal     1
+GPK     6/7    Graphic Packaging — size $8.6B EV     2
+DLTR    6/7    Dollar Tree — size $25B; B/M borderl. 2
+MDXG    6/7    MiMedx — small $539M sub-$2B          4
+CTSH    6/7    Cognizant — size $25B (best non-size) 5,7
+REGN    6/7    Regeneron — size $65B                 5,8
+EQT     6/7    EQT Corp — size $36B                  8
+FRPT    6/7    Freshpet — $2.53B borderline size     4,8
+FLYW    6/7    Flywire — $1.99B (right at threshold) 8
+
+5/7 (two criteria missed)
+SE              Sea Limited — PR 8.4% (near 52w low) 1
+NX              Quanex Building Products             5
+CPRT            Copart — PR 5.5% (extreme near low)  5
+INTU            Intuit — PR 3.4% (-51% 6mo!)         5
+COO             Cooper Companies — PR 11.8% near low 5,8
+BDX             Becton Dickinson — FCF 7.5%, 6mo neg 7
+CI              Cigna — FCF 10.1%, B/M 0.56 best     6
+KNSL            Kinsale Capital — FCF 14.2%          8
+SEM             Select Medical — borderline size     8
+AMRZ            Amrize — B/M 0.48, 6mo -24%          8
+ICLR            ICON plc — B/M 1.05, accounting issu 8
+LLYVA           Liberty Live A — B/M ~1.10           8
+WK              Workiva — 5/7                         1
+PRKS            United Parks (Cedar Fair)             1
+AERO            Archer Aviation                       1
+HHH             Howard Hughes Holdings                1
+VTOL            Bristow Group                         2
+TRS             TriMas                                2
+SOFI            SoFi Technologies                     2
+PAR             PAR Technology                        2
+KVUE            Kenvue                                2
+IEP             Icahn Enterprises                     2
+DECK            Deckers Outdoor                       2
+LKQ             LKQ Corporation                       3
+DKNG            DraftKings                            3
+BLDR            Builders FirstSource                  3
+BALY            Bally's                               3
+WHLR            Wheeler Real Estate                   3
+4464            Japanese ticker                       3
+SVC             Service Properties                    4
+RH              RH                                    4
+LULU            Lululemon                             4
+SLNO            Sirius XM Liberty (delisted variant)  4
 
 ================================================================================
-TIER 1 — MAXIMUM CONVICTION ACROSS ALL THREE AXES (12-15 pts)
+TIER 1 - MAXIMUM CONVICTION ACROSS ALL THREE AXES (12-15 pts)
 ================================================================================
 
 
 ------- 1. NRP (Natural Resource Partners) — Total: 14/15 --------------------
 
-CERTAINTY: 5/5 ★★★★★
+YARTSEVA: 7/7 (only perfect score in entire 200-ticker universe)
+
+CERTAINTY: 5/5
   - Saber Capital (John Huber) NEW 17.75% — became #1 holding Q1 2026
   - Berkowitz/Fairholme also holds (Tier 2 in his book)
   - Defined floor: royalty stream / zero capex / asset-backed cash flow
   - Catalyst: quarterly distributions + commodity cycle
   - Operating + profitable: ROA 10.5%, FCF yield 12.19%
 
-ASYMMETRY: 5/5 ★★★★★
+ASYMMETRY: 5/5
   - Variant: market treats as cyclical commodity; smart money sees
     asset-backed royalty trust trading at 6-8x P/CF vs peer 12-15x
   - Yartseva 7/7 (only perfect score in the universe)
@@ -81,14 +171,16 @@ VARIANT PERCEPTION:
 
 ------- 2. HHH (Howard Hughes Holdings) — Total: 13/15 -----------------------
 
-CERTAINTY: 5/5 ★★★★★
+YARTSEVA: 5/7 (B/M 1.02, FCF yield 11.5%, PR 8.9%)
+
+CERTAINTY: 5/5
   - Ackman/Pershing Square 47% via $900M @ $100/sh + $1B preferred Q2'26
   - Plus Numantia 6%, JCP NEW
   - Defined floor: Ackman's $100 cost basis + 100k+ entitled acres NAV
   - Catalyst: Vantage Group $2.1B insurance acquisition closing Q2 2026
   - Operating + profitable: MPC EBT $84M Q1 (+33% YoY)
 
-ASYMMETRY: 5/5 ★★★★★
+ASYMMETRY: 5/5
   - Variant: market sees real estate developer w/ leverage; Ackman is
     converting to Berkshire-lite holdco w/ insurance float arm
   - Yartseva 5/7 — B/M 1.02, FCF yield 11.5%, price range 8.9% (very
@@ -99,655 +191,675 @@ ASYMMETRY: 5/5 ★★★★★
   - Risk-adjusted: 2-3x by 2028; 3-3.5x by 2030 (Ackman stated $211)
 
 MULTIBAGGER POTENTIAL: 3/5
-  - PHELPS/MAYER/LYNCH PATHWAY: Mayer asset compounder + Lynch asset play
-  - 100k entitled sun-belt acres = irreplaceable; insurance float adds
-  - Bridgeland $60M/acre Q1 + Summerlin $7M/acre custom
-  - 30-50 year MPC build-out runway
-  - Owner-operator: Ackman as visionary capital allocator ✓
-  - Size penalty: $3.7B is outside Yartseva sweet spot (-1); compounding
-    pace constrained by base; Mayer 100-bagger improbable from this size
-
-VARIANT PERCEPTION:
-  - Consensus PT: $90.33 median (+42%)
-  - Smart money: Ackman's stated 2030 target $211 (+233%)
-  - Gap: 191pp on 5-yr basis
-  - Why market is wrong: Real estate cyclical fears dominate; Ackman's
-    transformation thesis underappreciated by traditional REIT analysts
-  - Revaluation trigger: Vantage Q2 close → insurance float deployment
+  - PML PATHWAY: Lynch asset play + Mayer compounder hybrid (post-Vantage)
+  - Insurance float will fund MPC entitled land monetization
+  - 3x by 2030 credible per Ackman's stated math
+  - Quality: irreplaceable masterplan communities + insurance arm
+  - Owner-operator: Ackman now CEO via Vantage (-1 for less independence)
 
 
-------- 3. MGNI (Magnite) — Total: 13/15 -------------------------------------
+------- 3. MGNI (Magnite) — Total: 13/15 ------------------------------------
+
+YARTSEVA: 6/7 (small ✓ $1.89B, B/M 0.486, profitable, contrarian)
 
 CERTAINTY: 4/5
-  - Edenbrook Capital +103% Q4 2025 = 13% of book ($70M)
-  - Choice Equities (Mitchell Scott) multibagger thesis
-  - Multi-fund: 4 SITG funds positive
-  - Catalyst: CTV programmatic growth + M&A optionality
-  - Operating + profitable: ROA 5.0%, EBITDA growing 38%
-  - -1 on defined floor (no explicit cash/sponsor floor)
+  - Multi-fund 13F adds across 5+ funds Q4'25/Q1'26
+  - Defined floor: SSP infrastructure with Disney/Netflix exclusive deals
+  - Catalyst: CTV ad market expansion + AI ad-buying integration
+  - Operating + profitable: ROA positive, EBITDA growing
 
-ASYMMETRY: 4/5
-  - Variant: market sees small ad-tech; smart money sees only
-    independent SSP at scale post-CTV consolidation
-  - Yartseva 6/7 (small + B/M 0.49 + ROA + EBITDA growth + price
-    range 15%)
-  - Margin of safety: FCF generating, $94M cash, no debt
-  - Price range 15% (near 52w low)
-  - Risk-adjusted: 3-5x via standalone CTV growth + strategic acq
-
-MULTIBAGGER POTENTIAL: 5/5 ★★★★★
-  - PHELPS/MAYER/LYNCH PATHWAY: Mayer scale/network compounder
-  - $30B CTV market growing to $50B by 2027
-  - Only independent SSP at scale = network effects (more publishers
-    → more advertisers → more publishers)
-  - 5-10% global programmatic CTV market share
-  - Strategic acquisition target by Trade Desk / Disney / Amazon
-  - Take rate ~10% expanding
-
-VARIANT PERCEPTION:
-  - Consensus PT: ~$16 (modest)
-  - Smart money implied (Edenbrook/Choice): $30-40 (3-5x)
-  - Gap: 100+pp
-  - Why market is wrong: SSP perceived as commoditized; ignores
-    Magnite's de facto monopoly position in independent CTV SSP
-  - Revaluation trigger: M&A speculation or CTV market growth surprise
-
-
-------- 4. LOGC (ContextLogic Holdings) — Total: 13/15 -----------------------
-
-CERTAINTY: 5/5 ★★★★★
-  - Abrams Capital 40.7% + BC Partners 29% = 70% control
-  - Abrams + Bobbili on board (Feb 2026)
-  - Defined floor: US Salt cash machine + $2.9B federal NOL + $740M equity
-  - Catalyst: Each new acquisition re-rates the holdco
-  - Operating + profitable: US Salt 41.9% adj EBITDA margin
-
-ASYMMETRY: 5/5 ★★★★★
-  - Variant: market sees dead Wish.com remnant; smart money sees
-    permanent capital vehicle with NOL-shielded acquisition pipeline
-  - Yartseva ~6/7 estimated (small + B/M 1.87 if equity inc. NCI +
-    profitable + EBITDA covered investment)
-  - Margin of safety: equity ~$740M / market cap ~$395M = B/M 1.87
-  - No sell-side coverage = consensus is essentially ZERO
-  - Risk-adjusted: 5-10x over 5-10 years via M&A compounding
-
-MULTIBAGGER POTENTIAL: 3/5
-  - PHELPS/MAYER/LYNCH PATHWAY: Mayer "owner-operator permanent
-    capital" + Lynch asset play (US Salt + NOL)
-  - Berkshire-lite trajectory if Abrams executes acquisition cadence
-  - Compounding pace constrained by capital deployment speed (-1)
-  - Visionary capital allocator (Abrams) ✓
-  - -1: business engine narrow (single salt asset until next deal)
-
-VARIANT PERCEPTION:
-  - Consensus PT: N/A (uncovered OTCQB)
-  - Smart money implied: $15-25 fair value vs $8.65 = +73-189%
-  - Gap: 150+ pp
-  - Why market is wrong: OTCQB liquidity discount + no analyst
-    attention + market hasn't priced the holdco structure yet
-  - Revaluation trigger: Next acquisition announcement
-
-
-------- 5. DLTR (Dollar Tree) — Total: 12/15 ---------------------------------
-
-CERTAINTY: 4/5
-  - Semper Augustus 100% of its tracked exposure (Bloomstran)
-  - Multi-fund: Mantle Ridge (Hilal) WON 3 of 4 APD board seats —
-    DLTR is now Mantle Ridge SOLE 13F holding ($1.33B)
-  - Catalyst: Family Dollar separation completed (asset realization)
-  - Operating + profitable: ROA 6.5%, EBITDA growing while assets shrink
-
-ASYMMETRY: 4/5
-  - Variant: market sees commodity retailer at multi-year low post-Family
-    Dollar separation; smart money sees focused Dollar Tree with
-    pricing reset and store-network upside
-  - Yartseva 6/7 (FCF yield 7.1%, ROA 6.5%, price range 17.8%, +EBITDA)
-  - Margin of safety: 7% FCF yield + price near 52w low ($85 vs $142w)
-  - Price range 17.8%, fell 6.7% 6mo
+ASYMMETRY: 5/5
+  - Variant: market sees ad-tech roadkill; smart money sees winning SSP
+    in independent ad-tech (last major non-Google scaled SSP)
+  - Yartseva 6/7
+  - FCF yield healthy, B/M 0.49
+  - Sub-$2B market cap = institutional avoid zone
+  - Risk-adjusted: 3-5x on multiple re-rate to peer SSPs
 
 MULTIBAGGER POTENTIAL: 4/5
-  - PHELPS/MAYER/LYNCH PATHWAY: Mayer M6 turnaround (beaten-down +
-    return to profitability post-divestiture)
-  - 8,500+ Dollar Tree stores; pricing reset to multi-tier ($1.25/$3/$5)
-  - Sun-belt expansion runway
-  - Mantle Ridge as catalyst-driven sponsor
-  - 2-3x base case from $95 → $200+ over 3-4 years
-
-VARIANT PERCEPTION:
-  - Consensus PT: ~$110 (mid)
-  - Smart money implied: $200+ (Mantle Ridge concentration suggests
-    activist value realization target)
-  - Gap: ~95pp
-  - Why market is wrong: Sentiment overshooting on Family Dollar drag
-    despite separation; market hasn't repriced focused entity
-  - Revaluation trigger: Q3-Q4 same-store comps showing pricing reset
-    benefit
+  - PML PATHWAY: Phelps "new product solving real problem" (independent
+    SSP at scale in CTV) + Lynch "fast grower"
+  - TAM: CTV ad spend doubling 2024-2028
+  - 3-5x credible in 36-48 months
+  - Quality: Netflix exclusive demonstrates moat
+  - No single owner-operator (-1)
 
 
-------- 6. SE (Sea Limited) — Total: 12/15 -----------------------------------
+------- 4. CTSH (Cognizant) — Total: 13/15 ----------------------------------
 
-CERTAINTY: 4/5
-  - Davis Selected Advisers (Chris Davis) +324% / +$151M new add
-  - Plus Duquesne, Eminence — 5 SITG funds positive
-  - Catalyst: Shopee market share consolidation + Garena resurgence
-  - Operating + profitable: ROA 5.3%, FCF $4.5B
-  - -1 on defined floor (growth dependent)
+YARTSEVA: 6/7 (only Y1 size fails at $25B)
+
+CERTAINTY: 5/5
+  - Multi-fund consensus across deep-value funds Q1'26
+  - Defined floor: 60% B/M = book value support
+  - Catalyst: AI/IT services capex super-cycle 2026-2028
+  - Operating + profitable: ROA 10.44%, FCF yield 9.88%
 
 ASYMMETRY: 4/5
-  - Variant: market sees cooling SE Asia consumer tech; smart money
-    sees post-correction value with FCF yield 8.4% and oligopoly
+  - Variant: market prices AI-disruption of IT services (-34% 1yr)
+    smart money sees beneficiary of enterprise AI rollout via partners
+  - Yartseva 6/7 — only size fails
+  - 9.88% FCF yield = 10-year payback
+  - PR 17.5% from low (very near 52w low)
+  - 6mo return -27% (textbook Y6)
+
+MULTIBAGGER POTENTIAL: 4/5
+  - PML PATHWAY: Mayer M6 (beaten-down forgotten AFTER turnaround)
+    + Lynch "asset play" on enterprise AI tailwind
+  - $25B mcap = scaled enough to win AI implementation deals
+  - 2-3x in 36 months on re-rate + 3-5% EPS CAGR
+  - Quality: 300k+ delivery workforce moat
+  - Limited insider concentration (-1)
+
+
+------- 5. REGN (Regeneron) — Total: 12/15 ----------------------------------
+
+YARTSEVA: 6/7 (only Y1 size fails at $65B)
+
+CERTAINTY: 4/5
+  - Owner-operator (Schleifer/Yancopoulos founder-led)
+  - Defined floor: $31.42B book equity + EYLEA franchise + Linvoseltamab
+  - Catalyst: 2026-2027 Itepekimab data + Linvoseltamab launch ramp
+  - Operating + profitable: ROA 6.13%, FCF yield 6.33%
+
+ASYMMETRY: 5/5
+  - Variant: market pricing fianlimab Phase 3 miss + Eylea biosimilar
+    smart money sees broad pipeline + buyback w/ founder skin
+  - Yartseva 6/7 — only size fails
+  - B/M 0.48, FCF yield 6.33%, PR 47.1% (just under threshold)
+  - 6mo return -9% post-fianlimab miss
+  - Risk-adjusted: 1.5-2x on Itepekimab + cancer pipeline
+
+MULTIBAGGER POTENTIAL: 3/5
+  - PML PATHWAY: Phelps "new product solving real problem" (founder R&D)
+  - TAM: Itepekimab COPD multi-billion peak
+  - 1.5-2x in 36 months (not classical multibagger — too large)
+  - Quality: founder-led R&D engine, multi-asset franchise
+  - Owner-operator: Schleifer/Yancopoulos still drive science
+
+
+------- 6. FLYW (Flywire) — Total: 12/15 ------------------------------------
+
+YARTSEVA: 6/7 (only Y5 OR Y6 fails depending on price-range interpretation)
+         OR 5/7 if strict 52w-low interpretation
+
+CERTAINTY: 4/5
+  - Multi-fund quality-value funds Q4'25/Q1'26
+  - Defined floor: $852M book + $164M TTM FCF
+  - Catalyst: education-payments rebound + travel-payments tailwind
+  - Operating + profitable: ROA 1.89% (low but positive), FCF 8.23%
+
+ASYMMETRY: 4/5
+  - Variant: market priced China-tuition compression / Canada visa cap
+    fading into 2026; smart money sees recovery
+  - Yartseva 6/7 — last small-cap on the list at $1.99B
+  - FCF yield 8.23%, B/M 0.43
+  - Right at $2B Yartseva size threshold (passes Y1)
+  - EBITDA growth +65% YoY (turnaround momentum)
+
+MULTIBAGGER POTENTIAL: 4/5
+  - PML PATHWAY: Phelps "new product" (cross-border payment rails)
+    + Lynch "fast grower" post-correction
+  - TAM: $1T+ cross-border education + travel + B2B payments
+  - 3-5x in 48 months on recovery + scaling
+  - Quality: payment-rails network effects in vertical-specific niches
+  - Sole Yartseva-qualifying small-cap quality compounder in universe
+
+
+------- 7. EEFT (Euronet Worldwide) — Total: 12/15 --------------------------
+
+YARTSEVA: 7/7 borderline ($2.52B size — technically fails strict <$2B)
+
+CERTAINTY: 4/5
+  - Quality compounder long-held by smart-money small-cap funds
+  - Defined floor: $1.23B book + diversified payments network
+  - Catalyst: EFT Processing recovery + REN cloud migration
+  - Operating + profitable: ROA 5.27%, FCF yield 12.1%
+
+ASYMMETRY: 5/5
+  - Variant: market priced Money Transfer secular decline + ATM softness
+    smart money sees REN cloud platform + epay growth
+  - Yartseva 7/7 borderline (12.1% FCF yield, 0.49 B/M, ROA+, PR 44%)
+  - 12.1% FCF yield = 8-year payback at zero growth
+  - 6mo return -42% (extreme Y6)
+  - PR 44.2% (below 50% threshold)
+  - Risk-adjusted: 2-3x re-rate + EBITDA recovery
+
+MULTIBAGGER POTENTIAL: 3/5
+  - PML PATHWAY: Mayer compounder + Lynch turnaround hybrid
+  - TAM: payments / FX / ATM still ~$200B+ category
+  - 2-3x in 36 months on mean reversion + EBITDA recovery
+  - Quality: 3-segment diversification + REN moat
+  - Limited founder/owner concentration (-1)
+
+
+------- 8. EQT (EQT Corp) — Total: 12/15 ------------------------------------
+
+YARTSEVA: 6/7 (only Y1 size fails at $36B)
+
+CERTAINTY: 4/5
+  - Trian / multi-fund energy specialist positions
+  - Defined floor: $28.8B book + Marcellus reserves (largest US NGL prod.)
+  - Catalyst: LNG demand 2026-2028 (multiple Gulf export terminals)
+  - Operating + profitable: ROA 7.73%, FCF yield 11.2%
+
+ASYMMETRY: 4/5
+  - Variant: market sees commodity exposure; smart money sees integrated
+    midstream + LNG export beneficiary with low-cost reserves
+  - Yartseva 6/7 — only size fails
+  - B/M 0.69, FCF yield 11.2%, PR 28.9% (near 52w low)
+  - 6mo "mixed" — was contrarian early 2026
+
+MULTIBAGGER POTENTIAL: 4/5
+  - PML PATHWAY: Lynch cyclical recovery + Mayer M6 (forgotten energy)
+  - TAM: US LNG export capacity ~13-15 bcf/d by 2028
+  - 2-3x in 36 months on commodity + LNG margin
+  - Quality: largest US natgas producer, lowest decline curve
+  - Strong management (Toby Rice owner-operator)
+
+
+================================================================================
+TIER 2 — HIGH CONVICTION WITH ONE GAP (9-11 pts)
+================================================================================
+
+
+------- 9. SE (Sea Limited) — Total: 11/15 -----------------------------------
+
+YARTSEVA: 5/7 — exceptional PR 8.4% (very near 52w low)
+
+CERTAINTY: 3/5
+  - Multi-fund Asia growth funds Q1'26 adds
+  - Defined floor: book equity $13B + cash position $4.5B+
+  - Catalyst: SeaMoney profitability inflection + Shopee Brazil scale
+  - Operating + profitable: ROA 5.28%, FCF yield 8.44%
+
+ASYMMETRY: 5/5
+  - Variant: market priced Garena gaming decline + EM macro fear
+    smart money sees fintech profitability scaling
   - Yartseva 5/7
-  - Margin of safety: FCF yield 8.4%, ROA 5.3%, EBITDA grew 4x faster
-    than assets
-  - Price range 8% — VERY near 52w low ($87 vs $77-199)
-  - Down materially over 6 months
-
-MULTIBAGGER POTENTIAL: 4/5
-  - PHELPS/MAYER/LYNCH PATHWAY: Mayer compounder + Hayden Capital's
-    historic ten-bagger (Sea was Liu's largest winner)
-  - SE Asia internet TAM (700M people, low penetration)
-  - Shopee dominant share in 6 countries; Garena Free Fire global
-  - 3-5x further from $87 over 24-36 months
-  - -1 size penalty ($53B large for Yartseva sweet spot)
-
-VARIANT PERCEPTION:
-  - Consensus PT: ~$130 (+49%)
-  - Smart money implied: $200+ per Hayden's historical conviction
-    + Davis's recent +324% add
-  - Gap: ~80pp
-
-
-------- 7. NEXN (Nexxen International) — Total: 12/15 -------------------------
-
-CERTAINTY: 4/5
-  - Mithaq Capital 27.02% / 34.9M sh / cost basis $3.50 vs current $7.45
-    (2.1x return already; still adding $15M Q3 2026)
-  - Catalyst: Q2 2026 earnings + buyback execution + potential M&A
-  - Operating + profitable: $94.6M cash, NO debt, profitable
-  - -1: single concentrated holder (Mithaq) — concentration risk
-
-ASYMMETRY: 5/5 ★★★★★
-  - Variant: market sees Israeli ad-tech with margin compression;
-    smart money sees CTV-positioned unified stack at 1x revenue vs
-    peer 1.5-3x
-  - Yartseva ~7/7 estimated (small + B/M ~1 + forward yield 14% +
-    cash heavy + profitable + buyback compressing)
-  - Margin of safety: $94.6M cash = 20%+ of market cap; forward P/E 6.97
-  - Mithaq has 2.1x return already and STILL adding
+  - FCF yield 8.44%, EBITDA +124% YoY
+  - PR 8.4% — extreme near-low!
+  - 52-week return -46.55%
 
 MULTIBAGGER POTENTIAL: 3/5
-  - PHELPS/MAYER/LYNCH PATHWAY: Mayer M6 turnaround + Lynch GARP
-  - CTV market $30B → $50B; unified stack differentiator
-  - 3-5x via multiple expansion (1x → 2x revenue) + 15% top-line growth
-  - Mithaq's patient family-office sponsorship
-  - Israel geopolitical concentration (-1) + ad-tech competitive (-1)
-
-VARIANT PERCEPTION:
-  - Consensus PT: ~$11.67-14.14 (+44%)
-  - Smart money implied: $20+ per Mithaq's continued accumulation at
-    2.1x his cost basis already
-  - Gap: 80-120 pp
+  - PML PATHWAY: Phelps "new product" (SeaMoney digital lending in SEA)
+    + Lynch fast grower
+  - TAM: $300B+ SEA e-commerce + $200B fintech
+  - 3-5x potential on profitability scaling + SoftBank-style optionality
+  - Mega-cap (-1 size) limits multibagger ceiling
 
 
-================================================================================
-TIER 2 — STRONG CONVICTION (9-11 pts)
-================================================================================
+------- 10. CPRT (Copart) — Total: 11/15 ------------------------------------
 
-
-------- 8. PRKS (United Parks) — Total: 11/15 -------------------------------
-
-CERTAINTY: 5/5 ★★★★★
-  - Hill Path Capital 57.9% control + GoldenTree 96% concentration +
-    Engine Capital
-  - Catalyst: Sponsor decides capital return or sale within 24 months
-  - Operating + profitable: ROA 5.8%, FCF yield 11%
-  - $646M micro-cap; concentrated control = defined exit dynamics
-
-ASYMMETRY: 4/5
-  - Variant: market sees broken-IPO leisure; smart money sees
-    sponsor-controlled exit at private market multiple
-  - Yartseva 5/7 (sub-$2B, FCF yield 11%, ROA 5.8%, near low)
-  - Margin of safety: FCF yield 11% + Hill Path cost basis as floor
-  - Price range 28%, fell 19% 6mo
-
-MULTIBAGGER POTENTIAL: 2/5
-  - Sponsor-driven catalyst = realization not compounding
-  - 2-3x base case on sale or restructure; not 10x compounder
-  - -2: business engine (theme parks) capital intensive
-
-VARIANT: Consensus $48 (+30%) vs Hill Path implied $70+ (+90%) = 60pp
-
-
-------- 9. MRP (Millrose Properties) — Total: 11/15 --------------------------
+YARTSEVA: 5/7 — extreme PR 5.5% (textbook near-low)
 
 CERTAINTY: 4/5
-  - Brave Warrior (Greenberg) +60% Q4 + Permian + multi-fund SITG
-  - Catalyst: Lennar spin maturing; full operating quarters arrive
-  - Operating + profitable: ROA 4.9%, EBITDA turnaround $-246M → $486M
-  - -1: recent spin; track record limited
+  - Quality compounder held by quality-value funds
+  - Defined floor: dominant US salvage auction franchise
+  - Catalyst: insurance cycle normalization + EV cycle
+  - Operating + profitable: ROA 11.34%, FCF yield 4.11% (just under)
 
 ASYMMETRY: 4/5
-  - Variant: market hasn't repriced post-spin; B/M 1.27 vs typical REIT
-  - Yartseva 6/7 (B/M 1.27 + ROA + EBITDA turnaround + near low)
-  - Margin of safety: B/M 1.27 = trading below book + asset coverage
-  - Price range 14%, fell 17% 3mo
+  - Variant: market priced cyclical insurance softness; smart money
+    sees secular EV-totals trend + duopoly economics
+  - Yartseva 5/7 — fails only FCF yield (4.11%) + size
+  - B/M 0.27, but quality+contrarian profile dominant
+  - PR 5.5% (1 of the 3 lowest in 200-ticker universe!)
+  - 6mo return -18.32% (clean Y6)
 
 MULTIBAGGER POTENTIAL: 3/5
-  - Mayer asset compounder (land bank REIT)
-  - 2-3x in 24-36 months on multiple expansion + portfolio growth
-  - Spin-off dynamics typical of multibagger setups (Lynch)
-  - Owner-operator question (-1; corporate not founder)
-
-VARIANT: Consensus PT not well established; Lennar's structural exit
-overhang depressed price; smart money sees 2x NAV realization
+  - PML PATHWAY: Mayer compounder M6 (beaten down quality)
+  - TAM: $20B+ US salvage auction
+  - 1.5-2x in 36 months on multiple expansion
+  - Quality: irreplaceable land + tech moat
+  - Mega-cap (-1) limits multibagger ceiling
 
 
-------- 10. GPK (Graphic Packaging) — Total: 11/15 ---------------------------
+------- 11. INTU (Intuit) — Total: 11/15 ------------------------------------
+
+YARTSEVA: 5/7 — extreme PR 3.4% (textbook near-low after -51% 6mo)
 
 CERTAINTY: 4/5
-  - Eminence Capital 3.1% / $193M (+67% Q4) + Greenlight Capital
-  - Catalyst: Cyclical packaging recovery + margin reset
-  - Operating + profitable: ROA 3.8%
-  - -1: cyclical industry exposure
+  - Multi-fund quality-growth fund holdings
+  - Defined floor: SMB/Consumer software dominance
+  - Catalyst: enterprise AI rollout via TurboTax/QuickBooks Live
+  - Operating + profitable: ROA 9.47%, FCF yield 8.86%
 
-ASYMMETRY: 5/5 ★★★★★
-  - Variant: market sees cyclical packaging at bottom; smart money sees
-    2-3x re-rate post-cycle
-  - Yartseva 6/7 (B/M 1.08, FCF yield 5.1%, price range 9%, fell 33% 6mo)
-  - Margin of safety: B/M 1.08 + FCF yield 5%
-  - Price range 9% (VERY near 52w low)
-  - -33% in 6 months = textbook Yartseva Y6 contrarian signal
+ASYMMETRY: 5/5
+  - Variant: market priced post-earnings layoffs guidance + AI disruption
+    fear; smart money sees AI accelerator not disruptor
+  - Yartseva 5/7 — fails only Y1 size + Y2a B/M
+  - FCF yield 8.86%, ROA 9.47%
+  - PR 3.4% — most extreme near-low in universe!
+  - 6mo return -51% post-May 21 -20% selloff
 
 MULTIBAGGER POTENTIAL: 2/5
-  - Mayer cyclical compounder
-  - 2-3x at cycle peak; not 10x territory
-  - Mature consumer packaging not transformational
+  - PML PATHWAY: Mayer M6 (beaten-down forgotten AFTER turnaround)
+  - TAM: SMB software TAM still expanding
+  - 1.5-2x in 36 months (not classical multibagger — mega-cap)
+  - Quality: best SMB software franchise in US
+  - Owner-operator: Cook still on board (-0)
 
-VARIANT: Consensus PT ~$25 (+145%) vs market $10 — already extreme
-Yartseva-pattern setup but consensus + smart money agree, limiting variant
 
+------- 12. CI (Cigna) — Total: 11/15 ---------------------------------------
 
-------- 11. ARTV (Artiva Biotherapeutics) — Total: 11/15 ---------------------
-
-NOTE: Fails Yartseva (pre-revenue biotech) but FRAMEWORK SWAP to binary
-biotech with sponsor cost basis floor.
+YARTSEVA: 5/7 — strongest pure-Yartseva fit besides NRP/EEFT
 
 CERTAINTY: 4/5
-  - RA Capital 33.7% / 16.4M sh + $100M deployed 5/13/2026
-  - Caligan, Adage, Viking, Venrock, Samsara, EcoR1, RTW, Blue Owl
-    participated in $300M raise at $11.52
-  - Catalyst: Phase 3 readout 2027-2028; trial fully funded
-  - -1: pre-revenue (Yartseva fail)
+  - Multi-fund value funds Q1'26
+  - Defined floor: vertically integrated PBM + insurance moat
+  - Catalyst: Medicare Advantage cycle stabilization + GLP-1 pricing
+  - Operating + profitable: ROA 4.78%, FCF yield 10.12%
 
-ASYMMETRY: 5/5 ★★★★★
-  - Variant: market sees small biotech; smart money sees CAR-NK
-    platform with 71% ACR50 efficacy and Allogene-comparable trajectory
-  - Stock $8.72 = 24% BELOW RA Capital's just-paid $11.52 cost basis
-  - Margin of safety: $76M net cash + RA's $100M deployed = floor
-  - Risk-adjusted: 5-10x on positive readout; -50-60% on failure
+ASYMMETRY: 5/5
+  - Variant: market priced PBM regulatory risk + MA softness;
+    smart money sees PBM consolidation winner + GLP-1 margins
+  - Yartseva 5/7 — fails only Y1 size + Y6 (6mo just +3%)
+  - B/M 0.56 (clean value), FCF yield 10.12%
+  - PR 41.5%
+  - 6mo "near flat" (Y6 marginal)
 
 MULTIBAGGER POTENTIAL: 2/5
-  - Phelps "new product solving human problem" — autoimmune therapy
-  - Platform potential for multiple indications
-  - -2: binary biotech catalyst; 10x or -60% with low middle ground
-  - -1: pre-revenue (no compounding engine yet)
-
-VARIANT: Sell-side PT $21-35; smart money implied $30-50 on positive
-Phase 3; gap 125pp
+  - PML PATHWAY: Lynch slow grower + Mayer compounder
+  - 1.5-2x in 36 months (mega-cap ceiling)
+  - Quality: Express Scripts + Evernorth integration moat
+  - No owner-operator (-1)
 
 
-------- 12. WK (Workiva) — Total: 10/15 --------------------------------------
+------- 13. MRP (Millrose Properties) — Total: 11/15 ------------------------
+
+YARTSEVA: 6/7 — exceptional B/M 1.274 (classic deep value)
 
 CERTAINTY: 4/5
-  - Irenic Capital + Praesidium + 2 other SITG funds
-  - Catalyst: SaaS retention + AI-enabled features
-  - Operating: ROA 1.0%, EBITDA turnaround $-66M → +$8M
-  - Sub-$3B mcap
+  - Lennar spinoff Q1'26 — pure land bank vehicle
+  - Defined floor: 100k+ optioned lots at cost basis
+  - Catalyst: housing recovery + Lennar volume scaling
+  - Operating + profitable: thin but positive
 
 ASYMMETRY: 4/5
-  - Yartseva 5/7 (sub-$3B, FCF yield 6.1%, EBITDA turnaround, price
-    range 13%, fell 28%)
-  - Margin of safety: 6.1% FCF yield
-  - Negative book equity from buybacks — qualitative override needed
+  - Variant: market priced spinoff orphan technical pressure;
+    smart money sees land cash-cow trading below NAV
+  - Yartseva 6/7 — B/M 1.274 = exceptional (deeper than NRP)
+  - $4.59B mcap — over $2B Y1 threshold
+  - PR low + near-low timing
 
-MULTIBAGGER POTENTIAL: 2/5
-  - Mayer compounder (SaaS for regulatory/ESG reporting)
-  - 2-3x on multiple recovery
-  - -2: sub-scale platform; Workday/Oracle competitive risk
-
-VARIANT: Consensus PT ~$70 (+39%); smart money implied $100+ given
-Irenic/Praesidium concentration
-
-
-------- 13. BLDR (Builders FirstSource) — Total: 10/15 ----------------------
-
-CERTAINTY: 4/5
-  - Bonhoeffer Fund + Brave Warrior (Greenberg +20.24%) + Semper Augustus
-  - Catalyst: Housing cycle + margin reset
-  - Operating + profitable: ROA 3.4%, FCF yield 10.8%
-
-ASYMMETRY: 4/5
-  - Yartseva 5/7 (B/M 0.50, FCF yield 10.8%, near 52w low at 10.5%,
-    fell 27% 6mo)
-  - Margin of safety: 10.8% FCF yield
-  - Variant: market sees cyclical housing pain; smart money sees
-    consolidator at cycle bottom
-
-MULTIBAGGER POTENTIAL: 2/5
-  - Cyclical compounder
-  - 2-3x on cycle recovery
-  - -2: capital intensive
-
-VARIANT: Consensus $130 (+75%); smart money implied $200+ at cycle peak
+MULTIBAGGER POTENTIAL: 3/5
+  - PML PATHWAY: Lynch asset play + Yartseva deep value
+  - TAM: 100k+ lots × land appreciation cycle
+  - 2-3x in 36-48 months on multiple expansion
+  - Quality: Lennar partnership = sticky volume
+  - Owner: Lennar still ~ 80% — patient capital (+1)
 
 
-------- 14. DKNG (DraftKings) — Total: 10/15 ---------------------------------
+------- 14. GPK (Graphic Packaging) — Total: 10/15 --------------------------
+
+YARTSEVA: 6/7 — B/M 1.08 (deep value packaging)
 
 CERTAINTY: 3/5
-  - Eminence Capital + Spruce House — 2 SITG funds (lower than top tier)
-  - Catalyst: Sports betting state-by-state expansion
-  - EBITDA turnaround ($-338M → +$260M)
+  - Activist Tier 2 holdings (industrial-value funds Q4'25)
+  - Defined floor: 30+ paper mills + $8.6B EV vs $11B replacement cost
+  - Catalyst: fiber-to-package secular tailwind + cost reduction
+  - Operating + profitable: ROA positive, FCF yield strong
 
 ASYMMETRY: 4/5
-  - Yartseva 5/7 (FCF yield 5.7%, ROA 0.7%, price range 16.5%, fell 16%)
-  - Margin of safety: FCF yield emerging + EBITDA inflection
+  - Variant: market priced volume softness; smart money sees structural
+    fiber substitution
+  - Yartseva 6/7 — only Y1 size fails (mid-cap $8.6B EV)
+  - B/M 1.08, FCF yield healthy
 
 MULTIBAGGER POTENTIAL: 3/5
-  - Mayer compounder (sports betting TAM)
-  - 3-5x on state expansion + operating leverage
-  - Network effects in sports betting platform
+  - PML PATHWAY: Lynch cyclical + Mayer M6
+  - 1.5-2x in 36 months on operational leverage
+  - Quality: lowest-cost packaging fiber producer
+  - Limited owner concentration
 
-VARIANT: Consensus $48 (+91%); smart money implied $60+ on expansion
+
+------- 15. DLTR (Dollar Tree) — Total: 10/15 -------------------------------
+
+YARTSEVA: 6/7 (size $25B EV; B/M 0.20 marginal)
+
+CERTAINTY: 4/5
+  - Multi-fund deep-value funds Q1'26
+  - Defined floor: 16k+ store franchise + Family Dollar divestiture cash
+  - Catalyst: Family Dollar sale completion + comparable sales recovery
+  - Operating + profitable: improved
+
+ASYMMETRY: 3/5
+  - Variant: market priced Family Dollar mistake; smart money sees
+    post-divestiture clean Dollar Tree franchise
+  - Yartseva 6/7 — size + Y2a fails
+  - Margin of safety: Family Dollar sale proceeds = $1B+ cash
+
+MULTIBAGGER POTENTIAL: 3/5
+  - PML PATHWAY: Mayer M6 (beaten down AFTER turnaround clarity)
+  - TAM: $400B+ value retail in US still recession-resilient
+  - 2-3x in 36 months on multiple re-rate + EBITDA recovery
 
 
-------- 15. MDXG (MiMedx) — Total: 10/15 -------------------------------------
+------- 16. MDXG (MiMedx) — Total: 10/15 ------------------------------------
+
+YARTSEVA: 6/7 — sub-$2B at $539M (passes size!)
 
 CERTAINTY: 3/5
-  - Limited SITG concentration noted (need to verify in workbook)
-  - Catalyst: Wound care contract growth
-  - Operating + profitable: ROA 8.54%, FCF yield 12.86%
+  - Sub-$1B micro-cap quality + multi-fund SITG
+  - Defined floor: amniotic tissue franchise + IP portfolio
+  - Catalyst: TAM expansion in wound care
+  - Operating + profitable: ROA positive
 
-ASYMMETRY: 5/5 ★★★★★
-  - Yartseva 6/7 ($539M small + B/M 0.45 + FCF yield 12.86% + ROA
-    8.54% + price range 12% + fell 28-40% 6mo)
-  - Margin of safety: FCF yield 12.86% + small + near low
-  - The cleanest Yartseva fit at micro-cap level
+ASYMMETRY: 4/5
+  - Variant: market priced past SEC issues / FDA classification overhang;
+    smart money sees clean franchise post-reform
+  - Yartseva 6/7 — sub-$2B small-cap fits Y1
+  - B/M 0.45, profitable, near-low timing
+
+MULTIBAGGER POTENTIAL: 3/5
+  - PML PATHWAY: Phelps "new product solving real problem" (chronic wound)
+  - TAM: $5B+ wound care
+  - 3-5x potential on FDA pathway clarity
+  - Sub-$1B micro = institutional avoid = potential opportunity
+
+
+------- 17. KNSL (Kinsale Capital) — Total: 10/15 ---------------------------
+
+YARTSEVA: 5/7 — exceptional FCF yield 14.2%
+
+CERTAINTY: 4/5
+  - Quality compounder long-held by quality-value funds
+  - Defined floor: $1.97B book + specialty E&S underwriting moat
+  - Catalyst: hard market in commercial property continuing
+  - Operating + profitable: ROA 7.36%, FCF yield 14.2%
+
+ASYMMETRY: 4/5
+  - Variant: market priced cycle peak fears; smart money sees structural
+    underwriting capacity migration to E&S
+  - Yartseva 5/7 — fails only Y1 size + Y2a (B/M 0.28)
+  - FCF yield 14.2% (highest in batch 8)
+  - PR 42.7%, 6mo -40% (clean Y6)
 
 MULTIBAGGER POTENTIAL: 2/5
-  - Phelps "new product solving human problem" (advanced wound care)
-  - 2-3x on recovery + multiple expansion
-  - -2: narrow product line; VA contract dependence
-  - -1: insider issues history
-
-VARIANT: Stock fell from $7.99 high to $3.62 (-55%); FCF yield 13%
-suggests deep value disconnect
+  - PML PATHWAY: Mayer compounder M6 (beaten down quality)
+  - 1.5-2x in 36 months (already-quality)
+  - Quality: best-in-class underwriting + culture
+  - Founder/CEO Michael Kehoe still in seat
 
 
-------- 16. PAR (PAR Technology) — Total: 9/15 -------------------------------
-
-CERTAINTY: 4/5
-  - Voss Capital 46% of fund + Pender Fund Capital
-  - Catalyst: Restaurant POS + Coach AI in 900+ stores
-  - -1: ROA negative
-
-ASYMMETRY: 4/5
-  - Yartseva 5/7 (B/M 1.35, price range 5% — VERY near low, fell 56%)
-  - Margin of safety: B/M 1.35
-
-MULTIBAGGER POTENTIAL: 1/5
-  - Mayer M6 turnaround
-  - 3-5x on Coach AI success + multiple expansion
-  - -3: pre-profit, narrow market
-
-VARIANT: Down -56% in 6 months = textbook Yartseva contrarian
+================================================================================
+TIER 2 (continued) - 9-11 pts
+================================================================================
 
 
-------- 17. HYMC (Hycroft Mining) — Total: 9/15 ------------------------------
+------- 18. NEXN — Total: 11/15 ---------------------------------------------
 
-NOTE: Pre-revenue mining; Yartseva framework swap to Mayer M6 turnaround.
+NOTE: Not in Yartseva 200-ticker batches (UK-listed); previously identified
+as overlap candidate fitting both Yartseva mean-reversion + PML new-product
+pathway in CTV-SSP space. Sub-$1B UK micro-cap, multi-fund SITG positions.
+Quant rescreen needed via UK fundamentals data.
 
-CERTAINTY: 4/5
-  - Eric Sprott personal 40%+ ownership / $225M+ invested
-  - Form 4 buys throughout 2025-2026 (~$30M+ across 4 buys)
-  - Catalyst: PEA targeted 2027 (delayed); restart confirmation
-  - -1: pre-revenue + binary metallurgy risk
+
+------- 19. COO (Cooper Companies) — Total: 9/15 ----------------------------
+
+YARTSEVA: 5/7 — B/M 0.69 deep value + PR 11.8% near low + 6mo -13%
+
+CERTAINTY: 3/5
+  - Quality-value fund holdings
+  - Defined floor: $8.36B book + dominant contact lens franchise
+  - Catalyst: vision-correction cycle normalization
+  - Operating + profitable: ROA 3.64%, FCF yield 4.02% (just under)
 
 ASYMMETRY: 4/5
-  - Variant: market sees failed restart; smart money (Sprott personally)
-    sees rebuild on +55% resource expansion
-  - Sprott's $40M Sept 2025 cost basis = implicit floor
-  - Risk-adjusted: 3-10x on restart + warrant 2x leverage
+  - Variant: market priced near-term softness; smart money sees franchise
+  - Yartseva 5/7 — fails Y1 size + Y2b FCF yield
+  - B/M 0.69 (clean value), PR 11.8% (very near low)
 
-MULTIBAGGER POTENTIAL: 1/5
-  - Phelps cyclical commodity + Mayer M6 turnaround
-  - 3-10x potential but binary; -50-70% if metallurgy fails
-  - -2: pre-revenue; -1: cyclical commodity dependence
-  - Warrant: $6.00 strike / 24-month expiry Sep 2027 adds convexity
+MULTIBAGGER POTENTIAL: 2/5
+  - PML PATHWAY: Mayer M6 quality at depressed price
+  - 1.5-2x in 36 months
+  - Quality: irreplaceable vision-correction franchise
 
 
-------- 18. K92 Mining (KNT.TO) — Total: 9/15 -------------------------------
+------- 20. BDX (Becton Dickinson) — Total: 9/15 ----------------------------
+
+YARTSEVA: 5/7 — FCF 7.51%, B/M 0.59, near-low, slight 6mo neg
 
 CERTAINTY: 4/5
-  - 4 gold specialists: USERX 5.85%, UNWPX 4.99%, PSPFX 2.62%, L1 Gold
-  - Catalyst: Stage 3 mill commissioning 2026 (3x production)
-  - Operating + profitable: $1,000 AISC vs $4,500 gold = 75% margin
+  - Multi-fund quality compounder holdings
+  - Defined floor: irreplaceable medical-tech franchise + spin proceeds
+  - Catalyst: BDX Spinco execution + cost reduction
+  - Operating + profitable: ROA 4.38%, FCF yield 7.51%
 
 ASYMMETRY: 3/5
-  - Producing mine + Stage 3 expansion + gold cycle leverage
-  - 3-5x on production doubling + gold continuation
-  - But already up materially; price not near low
+  - Variant: market priced execution risk; smart money sees post-spin clean
+  - Yartseva 5/7 — fails Y1 size + Y5 (PR 50.2%)
 
 MULTIBAGGER POTENTIAL: 2/5
-  - Mayer cyclical compounder
-  - 3-5x in 24-36 months
-  - -3: cyclical commodity + PNG geopolitical
-
-
-------- 19. LULU (Lululemon) — Total: 9/15 -----------------------------------
-
-CERTAINTY: 4/5
-  - Greenlight Capital (Einhorn) + Semper Augustus
-  - Catalyst: Margin reset + Mexico/China expansion
-  - Operating + profitable: ROA 21.75%, FCF yield 6.33%
-
-ASYMMETRY: 4/5
-  - Yartseva 5/7 (FCF 6.33%, ROA 21%, price range 4.7% — VERY near low)
-  - Margin of safety: 21% ROA + 6% FCF yield
-  - Fell 42% YTD = textbook Yartseva pattern
-
-MULTIBAGGER POTENTIAL: 1/5
-  - Mayer compounder + Mayer M6 turnaround
-  - -1: mature brand, decelerating
-  - 2-3x on stabilization; not 10x territory
-
-VARIANT: Sell-side mixed; smart money implied $250+ on margin recovery
-
-
-------- 20. HTHT (H World Group) — Total: 9/15 -------------------------------
-
-CERTAINTY: 4/5
-  - Indus Capital 86% of two-stock 13F = single-name concentration
-  - Catalyst: China consumer recovery + Asia expansion
-  - Operating + profitable: 25-30% ROIC franchise model
-
-ASYMMETRY: 3/5
-  - Variant: market sees China consumer weak; smart money sees franchise
-    compounder mid-cycle
-  - Yartseva 3/7 estimated (size too large + low B/M)
-  - 3-5x on China rerate
-
-MULTIBAGGER POTENTIAL: 2/5
-  - Mayer franchise compounder
-  - -2: large mcap ($14B); past Yartseva sweet spot
-  - China geopolitical risk
+  - 1.5-2x in 36 months (mega-cap ceiling)
+  - PML PATHWAY: Mayer M6
 
 
 ================================================================================
-TIER 3 — DECENT BUT LOWER CONVICTION (6-8 pts)
+SPECIAL SITUATIONS WHERE YARTSEVA QUANT MISFIRES (Override Required)
 ================================================================================
 
-  21. JOE  — $3.6B, Berkowitz 80% (trimming), Yartseva 4/7 — 8 pts
-  22. RH   — $2.5B, FCF 9.8%, ROA 5.2%, near low — 8 pts
-  23. LKQ  — $6.9B, Yartseva 5/7, FCF 11.7% — 8 pts
-  24. SVC  — $1.1B small REIT, Yartseva 5/7 — 8 pts
-  25. CVNA — $40B too large now; 4/7 — 7 pts (post-Yartseva)
-  26. WBD  — $35B merger arb; 4/7 — 7 pts
-  27. TPL  — $26B too large; 3/7 but Horizon adding — 7 pts
-  28. APG  — $18B too large; 2/7 — 6 pts
-  29. SOFI — Banking-distorted FCF; 5/7 but framework misfit — 6 pts
-  30. AERO — Aeromexico negative book equity but FCF 25% — 6 pts
+These names score low on Yartseva but warrant qualitative override because the
+framework fundamentally doesn't apply to their business model:
 
+LOGC (ContextLogic / US Salt Platform) — Yartseva 2/7
+  - Permanent capital vehicle (Abrams/BC Partners platform)
+  - Post-Feb 2026 US Salt acquisition: book jumped $211M → $742M
+  - Pre-deal NOL shell + post-deal ~$70M EBITDA capability
+  - Framework misfires on transformation. Qualitative play remains
+    high conviction on platform optionality.
+  - 6mo return reflects post-deal positioning, not mean-reversion
 
-================================================================================
-EXCLUDED — DELISTED / DEAL CLOSED (NOT ACTIONABLE)
-================================================================================
+JOE (St. Joe Co.) — Yartseva 4/7
+  - Florida Panhandle landbank w/ 170k+ acres
+  - GAAP B/M understates LIFO land basis vs market value
+  - True NAV-based B/M likely >1.0 even at current price
+  - Yartseva fails on size + low GAAP B/M; framework should be Lynch asset play
 
-  RAPT  - Acquired by GSK March 2026
-  GTLS  - Pending Baker Hughes acquisition
-  ONTF  - Cvent merger April 2026
-  CCO   - Pending Mubadala/TWG
-  CTRA  - Devon merger May 7, 2026
-  NETD  - Liquidated December 2025
-  SC    - Delisted; ticker not active
-  MASI  - Danaher $180 cash deal approved May 1
-  SLNO  - Neurocrine acquisition May 18, 2026
+TPL (Texas Pacific Land Trust) — Yartseva 3/7
+  - Permian royalty trust — same NAV-vs-GAAP-book issue as JOE
+  - 25x P/CF vs NRP at 6x = market priced "endless drilling"
+  - Yartseva captures FCF yield + ROA but understates B/M
 
+WK (Workiva) — Yartseva 5/7
+  - Negative book equity from buybacks distorts B/M
+  - SaaS compounder profile, not mean-reversion fit
 
-================================================================================
-FAILED — DIFFERENT FRAMEWORK (post-rally tech / pre-revenue / cyclical commodity)
-================================================================================
+HHH (Howard Hughes Holdings) — Yartseva 5/7
+  - Negative or low book equity from buybacks
+  - Real value in entitled-acres NAV not on GAAP balance sheet
 
-  CRWV (1/7) - AI hosting, mega-capex burn, growth multiple
-  APGE (1/7) - Pre-revenue biotech
-  RIOT (0/7) - Crypto miner up 93% 6mo
-  VRT  (2/7) - Up 105% 6mo, premium valuation
-  INSM (2/7) - Biotech burning cash
-  PRAX (0/7) - Up 812% YTD, no profits
-  NKTR (0/7) - Up 55% 6mo, dilution-driven
-  COGT (1/7) - Pre-revenue biotech
-  PPTA (2/7) - Permitting story not yet productive
-  ZYME (2/7) - Pre-revenue biotech
-  LQDA (2/7) - Up 266%, far from value
-  PTGX (1/7) - Biotech near 52w high
-  S    (1/7) - SentinelOne growth tech
-  TANG - Not a valid US ticker
-  RMT  - Closed-end fund
+RH (RH) — Yartseva 5/7
+  - Negative book equity from $2B+ buybacks
+  - Lynch turnaround / Mayer M6 — pure turnaround call
+
+PRKS (United Parks / former Cedar Fair) — Yartseva 5/7
+  - Negative book equity post-merger
+  - Lynch turnaround on volume recovery
 
 
 ================================================================================
-THE TIGHTEST 7 — MULTI-AXIS WINNERS (if forced to choose)
+PRE-REVENUE / PRE-PROFIT NAMES WHERE FRAMEWORK NOT APPLICABLE
 ================================================================================
 
-Each ranks Tier 1 with verified data + clear variant perception + multiple
-multibagger pathways:
+MLYS (Mineralys Therapeutics) — Yartseva 2/7
+CGON (CG Oncology) — Yartseva 0/7
+RNA (Atrium Therapeutics) — Yartseva 3/7
+ZYME (Zymeworks) — Yartseva 2/7
+LRMR (Larimar Therapeutics) — Yartseva 3/7
+PRAX (Praxis Precision) — Yartseva 0/7
+COGT (Cogent Biosciences) — Yartseva 1/7
+SLNO (Soleno) — Yartseva 5/7 (now delisted/merged)
+PTGX (Protagonist) — Yartseva 1/7
+NKTR (Nektar) — Yartseva 0/7
+LQDA (Liquidia) — Yartseva 2/7
+INSM (Insmed) — Yartseva 2/7
+APGE (Aprea) — Yartseva 1/7
+MDGL (Madrigal) — Yartseva 3/7
 
-  1. NRP   (14/15) — Pure Yartseva winner + Lynch asset play + 17% FCF yield
-                    + Saber Capital #1 holding
-  2. HHH   (13/15) — Ackman 47% + $100 cost basis vs $63 + Vantage Q2 + NAV
-  3. MGNI  (13/15) — Edenbrook +103% + CTV tollbooth + Yartseva 6/7
-  4. LOGC  (13/15) — Abrams permanent capital + zero analyst coverage +
-                    US Salt 41.9% EBITDA + $2.9B NOL
-  5. DLTR  (12/15) — Mantle Ridge SOLE 13F holding + Semper Augustus 100%
-  6. SE    (12/15) — Hayden ten-bagger thesis + Davis +324% add + Yartseva
-                    5/7 + price range 8%
-  7. NEXN  (12/15) — Mithaq 27% at 2.1x cost + still adding + Yartseva
-                    estimated 7/7
-
-Combined probability-weighted return (60% success rate on Tier 1):
-  Average per-position upside: 3-5x over 24-36 months
-  Sleeve expected return: ~3.5x weighted
-
-
-================================================================================
-POSITION SIZING FRAMEWORK (15-name multi-framework sleeve)
-================================================================================
-
-CORE COMPOUNDER + CASH FLOW (5-7% each, ~35%):
-  NRP   — Yartseva pure + Lynch asset
-  LOGC  — Abrams permanent capital + Mayer compounder
-  HHH   — Ackman Berkshire-lite + asset NAV
-  MGNI  — CTV tollbooth + Mayer scale economics
-  NEXN  — Mithaq compounder + Yartseva GARP
-
-VALUE WITH CATALYST (3-5% each, ~20%):
-  DLTR  — Mantle Ridge sole + Mayer M6 + Yartseva 6/7
-  SE    — Hayden conviction + Davis add + Yartseva 5/7
-  MRP   — Brave Warrior + Yartseva 6/7
-  GPK   — Eminence + Greenlight + Yartseva 6/7
-
-BINARY/CYCLICAL (1-3% each, ~10%):
-  ARTV  — RA Capital + Phase 3 binary
-  HYMC  — Sprott personal + restart binary
-  K92   — Gold cycle + production tripling
-
-ASSET PLAYS / DEEP VALUE (2-3% each, ~10%):
-  MDXG  — Yartseva 6/7 micro + 12.86% FCF yield
-  PRKS  — Hill Path 57.9% sponsor sale catalyst
-  PAR   — Voss 46% concentration + Mayer M6
-
-DEFENSIVE / SPECIAL SIT (2-3% each, ~10%):
-  WK    — Irenic + Praesidium SaaS turnaround
-  BLDR  — Bonhoeffer + Brave Warrior cyclical
-  DKNG  — Eminence + Spruce House compounder
-
-Cash buffer: 5-15%
+For these, evaluate via PML "new product solving human problem" + clinical
+readouts + cash runway — NOT Yartseva fundamentals.
 
 
 ================================================================================
-KEY FRAMEWORK NUANCE NOTES
+DELISTED IN 2026 (Removed from screen)
 ================================================================================
 
-WHERE MECHANICAL YARTSEVA SCORING MISLEADS:
+EXAS (acquired Abbott Mar 23, 2026)
+TERN (acquired Merck May 5, 2026)
+APLS (acquired Biogen May 14, 2026)
+ACLX (acquired Gilead Apr 28, 2026)
+OS  (acquired Hg Apr 1, 2026)
+ONTF (merged Cvent Apr 1, 2026)
+TPH (acquired Sumitomo May 2026)
+REVG (merged TEX Feb 2026)
+DAWN (acquired Servier Apr 2026)
+RAPT (acquired GSK Mar 3, 2026)
+GTLS (acquired Baker Hughes)
+CTRA (acquired Devon)
+SC (delisted)
+MASI (acquired Danaher)
+NETD (liquidated)
+CCO (acquired Mubadala)
+SLNO (acquired Neurocrine)
 
-1. ASSET PLAYS WITH GAAP BOOK VALUE LOW BUT NAV HIGH:
-   JOE (B/M 0.21 GAAP) → economic B/M >>1 via 110k entitled acres NAV
-   ALCO (small mcap + FL ag land) → asset NAV >>book
-   TPL (B/M 0.06 GAAP) → Permian royalty NAV >>book
-   Framework correction: use ECONOMIC book value, not GAAP
-
-2. NEGATIVE BOOK EQUITY FROM DEBT-FUNDED BUYBACKS:
-   PRKS (book -$557M but FCF 11%)
-   RH (book $60M tiny but FCF 9.8%, ROA 5.2%)
-   WK (negative equity but FCF positive)
-   AERO (post-BK negative equity but FCF 25%)
-   Framework correction: Y2a mechanically fails but qualitatively
-   passes via FCF yield + positive ROA
-
-3. PRE-REVENUE BIOTECH/DEV-STAGE:
-   ARTV, HYMC, K92 — Yartseva fails on profit/FCF
-   Framework swap: Binary catalyst + sponsor cost basis floor
-
-4. POST-MULTIBAG COMPOUNDERS:
-   CVNA, TVK.TO — already 2-5x'd; mechanical price range fails
-   Framework: Mayer continuation pathway, not Yartseva initiation
-
-5. CYCLICAL AT BOTTOM:
-   GPK, BLDR, LPX — EBITDA down YoY makes Inv dummy = 1 fail
-   Framework: Buy at cycle trough; EBITDA recovery is the catalyst
-
-6. CONSENSUS ALREADY CAUGHT UP:
-   GPK (consensus PT $25 vs market $10 = +145%) — small variant gap
-   Framework: Less asymmetric than appears; consensus + smart money agree
+These represent ~$60B+ in 13F-tracked merger arb completed since Jan 2026.
 
 
 ================================================================================
-CONCLUSION
+VARIANT PERCEPTION MASTER LIST (Top names with consensus-vs-smart-money gaps)
 ================================================================================
 
-Top 7 multi-axis winners: NRP, HHH, MGNI, LOGC, DLTR, SE, NEXN.
-
-These are the highest-conviction multibagger candidates from the full
-universe screen because they:
-
-  - Score 12+/15 on combined certainty × asymmetry × multibagger axes
-  - Have verified Yartseva fundamentals data (NRP best at 7/7)
-  - Have multiple SITG funds at high concentration (independent confirmation)
-  - Have explicit variant perception gap (consensus vs smart-money implied)
-  - Fit at least one Phelps/Mayer/Lynch pathway (compounder / turnaround /
-    asset play / new product)
-  - Have defined downside floor and dated catalysts
+TICKER  CONSENSUS VIEW                      SMART MONEY VIEW (Variant)
+------  ----------------------------------  -----------------------------
+NRP     Cyclical coal commodity             Asset-backed royalty (TPL peer)
+HHH     Real estate developer               Berkshire-lite holdco
+CTSH    AI-disrupted IT services            AI implementation winner
+REGN    Eylea biosimilar / fianlimab miss   Pipeline + buyback compounder
+EQT     Commodity exposure                  LNG export beneficiary
+SE      Garena decline / EM macro fear      SeaMoney profitability inflection
+INTU    AI-disrupted SMB software           AI accelerator + cycle bottom
+CPRT    Insurance softness                  Secular EV-totals duopoly
+CI      PBM regulatory risk                 PBM consolidation winner
+MGNI    Ad-tech roadkill                    Independent CTV-SSP winner
+LOGC    SPAC orphan                         Abrams permanent capital
+JOE     Cyclical real estate                Florida supply-constrained land
+TPL     Drilling cycle peak                 Endless royalty + water optionality
+FLYW    China-tuition compression           Recovery + cross-border tailwind
+EEFT    Money Transfer secular decline      REN cloud + epay scaling
+MRP     Spinoff orphan                      Land bank below NAV
+GPK     Volume softness                     Fiber substitution secular
+DLTR    Family Dollar mistake               Post-divestiture clean franchise
+KNSL    Cycle peak insurance                E&S structural capacity migration
+COO     Vision correction softness          Irreplaceable franchise
+RH      Margin compression / debt           Recovery + buyback math
+PRKS    Theme-park weakness                 Volume + concession optionality
 
 
 ================================================================================
-END
+PHELPS / MAYER / LYNCH PATHWAY CLASSIFICATION
+================================================================================
+
+PATHWAY                         NAMES (rank order within pathway)
+-----------------------------   ------------------------------------------
+Lynch asset play / Hard-asset:  NRP, HHH, MRP, JOE, TPL, FLYW (network)
+Mayer M6 (beaten compounder):   CTSH, INTU, CPRT, REGN, EEFT, KNSL, BDX, COO
+Phelps new product:             MGNI, FLYW, MDXG, REGN, INTU, SE
+Lynch cyclical recovery:        EQT, GPK, DLTR, COO, BDX
+Lynch turnaround:               WK, RH, PRKS, RH, AERO, SOFI, IEP
+Lynch fast grower:              SE, MGNI, FLYW, MDXG, DKNG
+Yartseva mean-reversion:        NRP, EEFT, MRP, MGNI, CTSH, REGN, EQT,
+                                MDXG, FLYW, GPK, DLTR, CI, COO, BDX,
+                                CPRT, INTU, SE
+Special-situation:              LOGC, HHH (Ackman), MRP (Lennar spinoff),
+                                DLTR (Family Dollar divestiture)
+Owner-operator / Patient cap:   HHH (Ackman), MRP (Lennar 80%), REGN
+                                (Schleifer/Yancopoulos), EQT (Toby Rice),
+                                KNSL (Kehoe), JOE (Berkowitz)
+
+
+================================================================================
+SECTOR / THEME CLUSTERING
+================================================================================
+
+HARD-ASSET / ROYALTY:          NRP, JOE, TPL, MRP, MDXG (IP)
+ENERGY (cyclical or LNG):      EQT, OKE, PAAS, NEM, SLB, FNV, GTLS*
+FINTECH / PAYMENTS:            EEFT, FLYW, SOFI, NU, DAVE, UPST
+CONSUMER VALUE:                DLTR, KVUE, FRPT, WING, RH, LULU
+HEALTHCARE / BIOTECH:          REGN, MDXG, BDX, CI, COO, LNTH, MLYS, CGON
+MEDIA / ENTERTAINMENT:         MGNI, LYV, LION, LLYVA, FUN, PRKS, DKNG
+SOFTWARE / IT:                 CTSH, INTU, WK, FLYW, ADSK, DT, EA
+SPECIAL SIT / SPINOFF:         LOGC, MRP, DLTR (divest), AMRZ
+REAL ESTATE / LAND:            HHH, JOE, MRP, COLD, APLE, SVC
+EM / ASIA:                     SE, HTHT, NU, CPNG, BN, YPF
+INDUSTRIAL / VALUE:            GPK, NX, AMRZ, REVG, RBA, CP
+
+
+================================================================================
+WHAT'S STILL UNCOVERED
+================================================================================
+
+This synthesis covers ~200 of 699 synthesis-tab tickers (~29%). The remaining
+~500 tickers include:
+
+- Most non-US small caps (UK, Canada, EU, Japan beyond what's captured)
+- Many mid-cap US value names not yet sampled
+- Several activist-target names from later 13D filings
+- Sub-$500M micro-caps from Tier 2 SITG funds
+
+To get to full universe coverage (699 tickers), 20 more batches of 25 tickers
+each (or 4-8 larger batches of 50-100 tickers) would be required. Estimated
+research time: 4-8 hours of parallel agent dispatch.
+
+================================================================================
+TOP 10 FINAL RANKING (CONFIDENCE-WEIGHTED, MULTIBAGGER POTENTIAL)
+================================================================================
+
+   RANK  TICKER  SCORE  PRIMARY THESIS
+   ----  ------  -----  --------------------------------------------------
+    1    NRP    14/15  Only true 7/7 Yartseva. Asset-backed royalty mis-
+                       valued vs TPL peer at 25x. 80pp variant gap.
+    2    HHH    13/15  Ackman building Berkshire-lite. $100 cost basis
+                       defends. Vantage insurance Q2'26 closes.
+    3    MGNI   13/15  Independent CTV-SSP winner. Sub-$2B Yartseva 6/7.
+                       Netflix exclusive proves moat.
+    4    CTSH   13/15  Pure Yartseva 6/7 at $25B. AI-services bear case
+                       creates entry. 9.88% FCF yield.
+    5    REGN   12/15  Founder-led pipeline + buyback. Fianlimab miss
+                       drove rare entry into Yartseva 6/7 zone at $65B.
+    6    FLYW   12/15  Only Yartseva-passing small-cap quality compound-
+                       er at $1.99B. Phelps + Lynch fast grower.
+    7    EEFT   12/15  Borderline 7/7 at $2.52B. 12.1% FCF yield + REN
+                       cloud platform + 42% drawdown setup.
+    8    EQT    12/15  LNG cycle 2026-2028. Yartseva 6/7. Toby Rice as
+                       owner-operator. Lowest-cost natgas.
+    9    SE     11/15  Extreme PR 8.4% near 52w low. SeaMoney inflection.
+                       46.55% 1yr drawdown setup.
+   10    MRP    11/15  Yartseva 6/7 B/M 1.274. Lennar 80% owner-aligned.
+                       Land bank below NAV.
+
+================================================================================
+APPENDIX: BATCH-LEVEL SCORE DISTRIBUTION
+================================================================================
+
+Across 200 tickers screened:
+- 7/7 perfect:        1 (NRP)
+- 7/7 borderline:     1 (EEFT $2.52B)
+- 6/7:               10 (MRP, MGNI, GPK, DLTR, MDXG, CTSH, REGN, EQT, FRPT, FLYW)
+- 5/7:               35
+- 4/7:               42
+- 3/7:               38
+- 2/7:               25
+- 1/7:               10
+- 0/7:                8
+- N/A (delisted/ETF): 17
+
+This distribution suggests:
+- Yartseva pass rate (>=6/7) at ~6% even within the smart-money universe
+- Pass rate (>=5/7) at ~24% — these are still credible candidates
+- The framework is genuinely selective — pure 7/7 is a rare empirical event
+
+================================================================================
+END OF SYNTHESIS - 2026-05-25
 ================================================================================
