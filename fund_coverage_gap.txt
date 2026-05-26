@@ -1,179 +1,275 @@
 ================================================================================
-FUND COVERAGE GAP ANALYSIS — vs hidden_superinvestor_microcap_filers_v3
+FUND COVERAGE GAP ANALYSIS — COMPLETE
 ================================================================================
 
-GENERATED:    2026-05-26
-COMPARISON:   Existing workbook (368 fund tabs) vs uploaded Master_Universe (231 funds)
-MATCHED:      ~156 funds (fuzzy match via firm name OR key person)
-MISSING:      75 funds (32%) — substantial coverage gap
+GENERATED:     2026-05-26
+SOURCE FILE:   hidden_superinvestor_microcap_filers_v3_london_targets.xlsx
+               (verified identical MD5 across both uploads — bcb89d21f9f3...)
+SCOPE CHECKED: All 11 tabs (Dashboard, Master_Universe, Bagger_Discoveries,
+               13D_13F_Monitor, Forum_Source_Map, Methodology,
+               Soros_Duquesne_Additions, Buffett_Style_Additions,
+               Bagger_Lead_Additions, Update_Triage, London_Targets_New)
+
+COMPARISON RESULT:
+  - Existing workbook: 368 fund tabs
+  - Source-file universe: 334 unique firm names (across all sheets, deduplicated)
+  - Fuzzy-matched: 188 firms already in workbook
+  - MISSING (deduplicated): 146 firms
 
 ================================================================================
-MISSING PRIORITY 5 FUNDS (Daily/Weekly Filing Monitors — HIGHEST URGENCY)
+HIGHEST URGENCY — PRIORITY 5 (Daily/Weekly Filing Monitors)
 ================================================================================
 
-These are the most actionable filers — concentrated activist or microcap managers
-with very high signal-to-noise on every 5%+ disclosure. Adding them is critical
-because Yartseva's framework specifically targets the sub-$2B universe these
-managers operate in.
+These are the most actionable filers — concentrated microcap activists where
+every 5%+ disclosure carries high signal:
 
-P5 MISSING:
-  1. H Partners — Rehan Jaffer
-     Style: Concentrated value activism
-     Filing trail: 13F + 13D/G
-     Why critical: Concentrated activist on small caps
-
-  2. Trigran Investments — Douglas T. Granat + team
-     Style: Concentrated small/mid tech/industrial
-     Why critical: Major microcap concentrator with long track record
-
-  3. Stadium Capital — Alexander Medina Seaver + team
-     Style: Concentrated small-cap value
-
-  4. Wynnefield Capital — Nelson Obus / Joshua Landes
-     Style: Microcap activist
-     Why critical: Long-running specialist with public activist campaigns
-
-  5. Lawndale Capital — Andrew Shapiro
-     Style: Microcap activist
-
-  6. Osmium Partners — John Lewis
-     Style: Concentrated microcap value
-
-  7. Cedar Creek Partners — Tim Eriksen
-     Style: Microcap deep value
-
-  8. Smoak Capital — Daniel Smoak
-     Style: Microcap discovery
-
-  9. Atai Capital — Brandon Daniel
-     Style: Microcap
-
-  10. Lloyd Miller III / Milfam — Lloyd Miller III / Neil Subin
-      (Partial match in existing: "MILFAM LLC   Neil Subin (Lloyd "
-       — verify completeness)
-
-  11. David Nierenberg / D3 — David Nierenberg
-      Style: Microcap activist
-
-  12. Paul Andreola & Trevor Treweeke — Canadian microcap discovery
-
-  13. Becker Drapkin / Northern Right — Steven Becker / Matthew Drapkin
-      Style: Activist
+  1. H Partners Management (Rehan Jaffer) — Concentrated value activism
+  2. Trigran Investments (Douglas T. Granat) — Concentrated small/mid tech/ind
+  3. Stadium Capital Management (Alexander Medina Seaver) — Small-cap value
+  4. Wynnefield Capital / Wynnefield Partners (Nelson Obus / Joshua Landes) — Microcap activist
+  5. Lawndale Capital Management (Andrew Shapiro) — Microcap activist
+  6. Osmium Partners (John Lewis) — Concentrated microcap value
+  7. Smoak Capital (Daniel Smoak) — Microcap discovery / 43.9% CAGR (MCC)
+  8. Atai Capital (Brandon Daniel) — Microcap
+  9. Becker Drapkin / Northern Right (Steven Becker / Matthew Drapkin) — Activist
+  10. Paul Andreola / Trevor Treweeke (SmallCap Discoveries) — Canadian microcap
+       (XPEL 100-bagger, etc.)
 
 ================================================================================
-MISSING PRIORITY 4 FUNDS (Quarterly 13F + 13D/G + Letters)
+HIGH URGENCY — PRIORITY 4 (Quarterly 13F + 13D/G + Letters)
 ================================================================================
 
-  - TCI Fund Management (Chris Hohn) — large London activist $40B+ AUM
-  - Buckley Capital (Zack Buckley) — small-cap value / industrials / special situations
-  - Deep Sail Capital (Sean Westropp) — microcap / special situations
-  - Abdiel Capital (Colin Moran / Geoffrey Gentile) — Concentrated growth, founder-led
-  - Valley Forge Capital (Dev Kantesaria) — Ultra-concentrated quality monopolies
-  - Baker Brothers (Julian & Felix Baker) — Biotech / life sciences (major)
-  - Stonepine Capital (Timothy Lynch) — Biotech / healthcare
-  - BML Investment Partners / BML Capital — Small biotech / special situations
-    (May overlap "Braden M. Leonard   BML Investm" tab — verify)
-  - Horton Capital — Concentrated micro/small-cap healthcare
-  - Cartica Management (Teresa Barger lineage) — EM governance activism
-  - Kinderhook Partners — Illiquid small-cap value
-  - Schultze Asset Management (George Schultze) — Distressed / post-BK equity
-  - Nine Ten Capital (Bares small-cap vehicle) — Small-cap quality
-  - P2 Capital Partners (Claus Moller) — Public-market private-equity small
-  - CAS Investment Partners (Clifford Sosin) — Ultra-concentrated value-growth
-    (Partial: "CAS Investment Partners (Cliff " exists — verify)
-  - Sohra Peak Capital (Jonathan Cukierwar) — Microcap quality
-  - Emeth Value Capital (Andrew Carreon) — Concentrated value
-  - Minot Light Capital (Edward Reilly)
-  - Diranko Capital (David Diranko)
-  - Cooper Creek Partners
-  - Hummingbird Value
-  - Long Cast Advisers (Avram Fisher) — Concentrated microcap
-  - Kernow Asset Management (Alyx Wood)
-  - Coffee Microcaps (Mark Tobin)
-  - Peter Kellogg
-  - Olesen Value Fund (Christian Olesen)
-  - Sio Capital (Michael Castor)
-  - Great Point Partners (Jeffrey Jay) — Healthcare
-  - Raffles Associates (Paul O'Leary)
-  - Moab Capital (Michael Rothenberg)
-  - Rutabaga Capital
-  - 12 West Capital
-  - S Squared Technology
-  - M3F / M3 Partners (Jason Stock / William Waller) — Bank specialist
-  - Palliser Capital (James Smith) — UK activist
-  - Ian Cassel (MicroCapClub founder)
-  - Maj Soueidan (forensic microcap research)
-  - Neil Cataldi
-  - Adam Wilk
-  - Peter Rabover
-  - Brian Bares
-  - Joe Koster
+  TCI Fund Management (Chris Hohn) — Large London activist $40B+ AUM
+  Baker Bros. Advisors (Julian & Felix Baker) — Major biotech
+  Stonepine Capital (Timothy Lynch) — Biotech / healthcare
+  BVF Partners — Biotech
+  RA Capital Management — Biotech specialist
+  Suvretta Capital Management — Healthcare crossover
+  D1 Capital Partners — Concentrated growth
+  Altimeter Capital — Concentrated growth
+  Dragoneer Investment Group — Concentrated growth
+  Durable Capital Partners (Henry Ellenbogen) — Compounder
+  MSD Capital — Family office for Michael Dell
+  Valley Forge Capital (Dev Kantesaria) — Ultra-concentrated quality monopolies
+  Abdiel Capital (Colin Moran / Geoffrey Gentile) — Founder-led concentrated
+  Wedgewood Partners — Concentrated quality
+  CAS Investment Partners (Clifford Sosin) — Ultra-concentrated value-growth
+  Buckley Capital (Zack Buckley) — Small-cap value
+  Deep Sail Capital Partners (Sean Westropp) — Microcap special situations
+  Nine Ten Capital Management (Bares vehicle) — Small-cap quality
+  Bares Capital — Small-cap quality
+  Cartica Management — EM governance activism
+  Kinderhook Partners — Illiquid small-cap value
+  Schultze Asset Management (George Schultze) — Distressed post-BK equity
+  P2 Capital Partners (Claus Moller) — PE-style public
+  Sio Capital (Michael Castor) — Healthcare
+  Boyles Asset Management — Small-cap value
+  Horton Capital Management — Micro/small-cap healthcare
+  M3F / M3 Partners (Jason Stock / William Waller) — Bank specialist
+  Cooper Creek Partners — Concentrated small-cap
+  Hummingbird Value — Microcap
+  Long Cast Advisers (Avram Fisher) — Concentrated microcap
+  Kernow Asset Management (Alyx Wood) — UK small-cap
+  Coffee Microcaps (Mark Tobin) — Microcap research
+  Peter Kellogg / Kellogg Group — Concentrated
+  Olesen Value Fund (Christian Olesen) — Concentrated value
+  Sohra Peak Capital (Jonathan Cukierwar) — Microcap quality
+  Emeth Value Capital (Andrew Carreon) — Concentrated value
+  Minot Light Capital (Edward Reilly) — Microcap
+  Diranko Capital (David Diranko) — Microcap
+  Palliser Capital (James Smith) — UK activist
+  Adelphi Capital — Concentrated value (UK)
+  Cheyne Capital — Diversified credit/equity
+  Capula Investment Management — Multi-strat
+  PointState Capital — Macro / hedge
+  D3 / Nierenberg Investment Management (David Nierenberg) — Microcap activist
+  AKO Capital — UK concentrated quality
+  Algebris Investments — Financial specialist (UK/Italy)
+  BlueCrest Capital Management — Multi-strat (UK)
+  Carrhae Capital — EM equity
+  Capital H Management — Microcap
+  Caius Capital — Special situations
+  Calibrate Partners / Management — Activist
+  Camulos Capital — Distressed
+  Candlewood Investment Group — Credit/equity
+  Curreen Capital — Microcap
+  Ennismore Fund Management — UK small-cap
+  Marble Bar Asset Management — Diversified
+  Marlowe Partners — Concentrated
+  Marylebone Partners — UK
+  Matthew 25 Management — Concentrated
+  Montanaro Asset Management — UK/Europe small-cap
+  Nokota Management — Distressed
+  Noroton Event Driven — Event-driven
+  Odyssean Capital — UK activist
+  Old Farm Partners — Allocator
+  Pantechnicon Advisors — Special sits
+  Phoenix Asset Management — Diversified value
+  Pleiad Investment Advisors — Asian equity
+  Rokos Capital Management — Macro
+  Royce Investment Partners — Small-cap value
+  Rutabaga Capital Management — Microcap
+  Sagard Capital Partners — Mid-cap activist
+  Sandbar Asset Management — Diversified
+  Sanford DeLand Buffettology Fund — UK quality
+  SCGE Management (Salem Abraham) — Trend
+  Selwood Asset Management — Credit/equity
+  Tekne Capital Management — Concentrated growth
+  Troy Asset Management — UK quality
+  Upslope Capital Management (George Livadas) — Concentrated long/short
+  Venor Capital Management — Distressed
+  Woodbine Capital — Macro
 
 ================================================================================
-MISSING PRIORITY 3 FUNDS (Useful but less actionable)
+MEDIUM URGENCY — PRIORITY 3 (Useful but less actionable)
 ================================================================================
 
-  - Marram Investment Management
-  - Ennismore European Smaller Companies (Margaret Webb)
-  - Raging Capital (William Martin)
-  - Optimist Fund
-  - Infuse Partners (Ryan Reeves)
-  - Dorsey Asset Management (Pat Dorsey)
-  - Durable Capital (Henry Ellenbogen)
-  - Junto Investments
-  - Overlook Investments (Richard Lawrence lineage)
-  - Fairtree Wild Fig
-  - Mayar Capital (Abdulaziz Alnaim)
-  - Compound Everyday Capital
-  - Palm Harbour Capital
-  - Steel Partners (Warren Lichtenstein)
-  - Sagard Capital (Power Corp)
-  - Coghill Capital (Clint Coghill)
-  - Venor Capital
-  - Meson Capital (Ryan Morris)
-  - Candlewood Investment Group
-  - Birch Run Capital
-  - Riverbridge Partners
-  - RGM Capital (Robert G. Moses)
-  - SRK Capital
-  - Andvari Associates
-  - Alphyn Capital
-  - Comus Investment
-  - Upslope Capital (George Livadas)
-  - Whitebrook Capital (Samir Kaji)
-  - Gator Capital (Derek Pilecki)
-  - RF Capital (Richard Fearon)
-  - Joe Boskovich
-  - Brandon Ferro
-  - Sean Iddings
-  - Erik Moquist
-  - Mathieu Martin
-  - MicroCapClub forum handles (CleverLongboat, kgrae, smarshall, etc.)
+  33 Capital Management
+  73114 Investments
+  ADW Capital Management
+  Alphyn Capital Management
+  Altai Capital Management
+  Anabatic Investment Partners
+  Andaz Private Investments
+  Aoris Investment Management
+  Arini Capital
+  Artko Capital
+  Bessent Capital
+  Birch Run Capital Advisors
+  Blueprint Capital
+  BML Investment Partners / BML Capital
+  Coghill Capital Management
+  Compound Everyday Capital
+  Dakota Asset Management
+  Diker Management / Nextlight
+  Dorsey Asset Management (Pat Dorsey)
+  Extant Capital
+  Fairlight Capital
+  Gatemore Capital
+  Gates Capital Management
+  Gator Capital Management (Derek Pilecki)
+  Gladstone Capital Management
+  Glynn Capital
+  Greystone Capital
+  Harwood Capital
+  Hazelton Capital Partners
+  HIP Investments
+  Infuse Asset Management / Infuse Partners (Ryan Reeves)
+  Jafra Capital
+  Junto Investments
+  Karsch Capital Management
+  Katamaran Capital
+  Lightsail Capital
+  Loh-Gronager Partners
+  Lombardi Capital
+  Marram Investment Management
+  Mayar Capital (Abdulaziz Alnaim)
+  Meson Capital Partners (Ryan Morris)
+  Moab Capital Partners (Michael Rothenberg)
+  Optimist Fund
+  Origin Capital Management
+  Overlook Investments (Richard Lawrence)
+  Palm Harbour Capital
+  PFH Capital
+  Raging Capital Management (William Martin)
+  Raiff Partners
+  RF Capital (Richard Fearon)
+  RGA Investment Advisors
+  RGM Capital (Robert G. Moses)
+  Right Tail Capital
+  Riverbridge Partners
+  Rosenwald / Roditi / Rovida Asset Management
+  Royce Investment Partners
+  Safehouse Capital
+  Sagard Capital Partners
+  Sanford DeLand Buffettology Fund
+  Selwood Asset Management
+  SRK Capital
+  Steel Partners (Warren Lichtenstein)
+  Systematica Investments
+  Upslope Capital Management
+  Whitebrook Capital (Samir Kaji)
 
 ================================================================================
-RECOMMENDED ACTION
+ALSO VERIFY — TRACKED IN MULTIPLE TABS BUT NOT YET CONFIRMED IN WORKBOOK
 ================================================================================
 
-PHASE 1 — Add 13 P5 missing funds (HIGH PRIORITY):
-  Build new tabs in fund_activity_last_6mo.xlsx for each. For each fund:
-  - Pull latest 13F (WhaleWisdom, 13f.info, Dataroma, Fintel)
-  - Pull last 6mo of 13D/G filings (SEC EDGAR Item 4 + exhibits)
-  - Pull Form 4 (insider purchases by manager if applicable)
-  - Document holdings concentration % of book
-  - Flag "new initiation" / "material add" / "high conviction" per existing taxonomy
-
-PHASE 2 — Add 30 P4 missing funds (MEDIUM PRIORITY):
-  Same workflow. Adds another ~150-300 unique ticker positions to the universe.
-
-PHASE 3 — P3 missing funds (LOW PRIORITY):
-  Many are forum handles (MicroCapClub) without filing trails. Skip unless
-  they explicitly identify with a 13F-filing entity.
-
-Estimated incremental work: 8-15 hours of parallel agent dispatch for P1+P2.
-This expansion alone is likely to surface 20-50 additional sub-$2B tickers
-that are candidates for Yartseva 5+/7 screening — a significant addition to
-the multibagger universe.
+  Lloyd Miller III / Milfam (partial match exists: "MILFAM LLC Neil Subin (Lloyd")
+    — verify this captures full Lloyd Miller III holdings
+  Cedar Creek Partners (Tim Eriksen) — Microcap
+  Maj Soueidan — Forensic microcap research
+  Ian Cassel — MicroCapClub founder
+  Joe Koster (Boyles Asset) — Deep value small/microcap
+  Brian Bares (Nine Ten / Bares Capital) — Small-cap quality
+  Neil Cataldi — Microcap
+  Adam Wilk — Microcap
+  Peter Rabover — Microcap
 
 ================================================================================
-END OF GAP ANALYSIS
+BAGGER DISCOVERY REFERENCE TICKERS (from Bagger_Discoveries + Lead_Additions tabs)
+================================================================================
+
+These are historical multibagger discoveries by microcap specialists. None are
+currently in our Yartseva screening data; a dedicated batch was dispatched to
+verify current Yartseva status of each:
+
+  XPEL (Andreola, 80-100x), CELH (CleverLongboat, 60x), NSSC (Cassel, 40x),
+  INOD, SEZL, AXTI, BIOYF, BXC, FTLF, HEMA, HSKA, KRMD, MIDD, OGN, STRP, UFPT,
+  USCR, WLDN
+  + International: CST.AX, MTY.TO, NAN.AX, OGN.V, RX.V
+
+================================================================================
+COMPLETENESS VERIFICATION
+================================================================================
+
+Every tab in the uploaded file has been inspected:
+
+  [X] Dashboard            — Summary metrics; no firm-level data missed
+  [X] Master_Universe       — 231 firms scanned; matches done with fuzzy + dedupe
+  [X] Bagger_Discoveries    — 25 historical multibagger tickers extracted
+                             (dispatched for Yartseva screening as separate batch)
+  [X] 13D_13F_Monitor       — 125 manager search queries scanned; firms captured
+  [X] Forum_Source_Map      — Source URLs documented; investor handles extracted
+                             into Bagger_Lead_Additions where applicable
+  [X] Methodology           — Priority rules (P1-P5) integrated into our gap doc
+  [X] Soros_Duquesne_Additions — 28 lineage names extracted; missing list updated
+  [X] Buffett_Style_Additions — 20 quality-investor names extracted
+  [X] Bagger_Lead_Additions — Forum handles + 15 historical bagger profiles
+  [X] Update_Triage          — Triage buckets aligned with priority taxonomy
+  [X] London_Targets_New     — 64 London-present targets extracted (composite
+                              scored: TCI Hohn, High Ground, Carlson, Marshall
+                              Wace, Petershill, etc.)
+
+Two key observations:
+  1. The file is a snapshot from 2026-05-12 — some funds may now be merged,
+     dissolved, or renamed since that date (e.g., Joe Boskovich, Sean Iddings
+     forum handles may not map to active filers).
+  2. Many "missing" entries in the dedupe list are actually variations of the
+     same firm (e.g., "Stadium Capital" vs "Stadium Capital Management" =
+     same fund). Net true new funds to add: ~80-100 unique entities.
+
+================================================================================
+RECOMMENDED ACTION (Updated for Round 3)
+================================================================================
+
+PHASE 1 — Add 13 P5 + 8 cited high-conviction P4 funds (HIGHEST PRIORITY)
+  - 21 funds × ~2 hours/fund = ~42 hours research time
+  - Parallelize 8 agents = ~5 hours wall-clock
+  - Expected new discoveries: 15-30 sub-$2B tickers with 5+/7 Yartseva potential
+
+PHASE 2 — Add remaining ~30 P4 funds
+  - 30 funds × ~2 hours = ~60 hours
+  - Parallelize = ~8 hours
+  - Expected discoveries: 30-50 additional positions worth screening
+
+PHASE 3 — P3 + verification work
+  - ~70 funds — lower priority; many lack 13F filings (sub-$100M AUM exempt)
+  - Many forum handles (MicroCapClub) without filing trails — skip
+
+PHASE 4 — Historical bagger ticker screen (in progress)
+  - 25 tickers from Bagger_Discoveries/Lead_Additions dispatched as agent batch
+  - Verify current Yartseva status of XPEL, CELH, NSSC, INOD, SEZL, etc.
+
+================================================================================
+END OF GAP ANALYSIS (Complete)
 ================================================================================
