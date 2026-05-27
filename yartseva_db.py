@@ -1123,6 +1123,44 @@ def get_universe(
         df = df[df.index.str.endswith(".RG")]
     elif country == "Lithuania":
         df = df[df.index.str.endswith(".VS")]
+    elif country == "Japan":
+        df = df[df.index.str.endswith(".T")]
+    elif country == "Hong Kong":
+        df = df[df.index.str.endswith(".HK")]
+    elif country == "China":
+        df = df[df.index.str.endswith(".SS") | df.index.str.endswith(".SZ")]
+    elif country == "Singapore":
+        df = df[df.index.str.endswith(".SI")]
+    elif country == "South Korea":
+        df = df[df.index.str.endswith(".KS") | df.index.str.endswith(".KQ")]
+    elif country == "Taiwan":
+        df = df[df.index.str.endswith(".TW") | df.index.str.endswith(".TWO")]
+    elif country == "India":
+        df = df[df.index.str.endswith(".NS") | df.index.str.endswith(".BO")]
+    elif country == "Australia":
+        df = df[df.index.str.endswith(".AX")]
+    elif country == "New Zealand":
+        df = df[df.index.str.endswith(".NZ")]
+    elif country == "Canada":
+        df = df[df.index.str.endswith(".TO") | df.index.str.endswith(".V") | df.index.str.endswith(".CN")]
+    elif country == "Brazil":
+        df = df[df.index.str.endswith(".SA")]
+    elif country == "Mexico":
+        df = df[df.index.str.endswith(".MX")]
+    elif country == "South Africa":
+        df = df[df.index.str.endswith(".JO")]
+    elif country == "Israel":
+        df = df[df.index.str.endswith(".TA")]
+    elif country == "Turkey":
+        df = df[df.index.str.endswith(".IS")]
+    elif country == "Indonesia":
+        df = df[df.index.str.endswith(".JK")]
+    elif country == "Thailand":
+        df = df[df.index.str.endswith(".BK")]
+    elif country == "Malaysia":
+        df = df[df.index.str.endswith(".KL")]
+    elif country == "Philippines":
+        df = df[df.index.str.endswith(".PS")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
 
     # When include_uncategorized=True we also pull tickers with no
