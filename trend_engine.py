@@ -68,15 +68,15 @@ VOLASYM_BAND_HIGH = 70.0
 RELEASE_AFTER_SQUEEZE_WINDOW = 10   # bars: release must follow a hyper-squeeze within this window
 
 # Qullamaggie params
-QM_RET_1M_BARS = 21
-QM_RET_3M_BARS = 63
-QM_RET_6M_BARS = 126
+# Return lookbacks are expressed in *calendar months*; the engine auto-converts
+# to bar count based on the timeframe of each input DataFrame so a 6-month
+# return is computed correctly on 1h, 1d, 1w, and 1mo data alike.
+QM_RET_LOOKBACK_MONTHS = (1, 3, 6)
 QM_ADR_LEN = 20
 QM_CONSOLIDATION_LEN = 20
 QM_BREAKOUT_LOOKBACK = 20
 QM_EP_GAP_PCT = 0.10
 QM_EP_VOL_MULT = 3.0
-QM_EP_DORMANT_BARS = 63
 QM_EP_DORMANT_THRESH = 0.30        # |3m return| < 30% counts as "dormant"
 QM_PARABOLIC_5D_PCT = 0.50         # +50% in 5 bars = extended
 QM_PARABOLIC_CONSEC = 3            # 3 consecutive up bars
@@ -86,6 +86,15 @@ QM_PARABOLIC_CONSEC = 3            # 3 consecutive up bars
 QM_LEADER_1M = 0.30
 QM_LEADER_3M = 0.50
 QM_LEADER_6M = 1.00
+
+
+def _bars_per_month(df: pd.DataFrame) -> int:
+    """Estimate bars per calendar month from the index spacing."""
+    if len(df) < 2:
+        return 30
+    dt = df.index[1] - df.index[0]
+    secs = max(1.0, dt.total_seconds())
+    return max(1, int(round(30 * 24 * 3600 / secs)))
 
 
 # ---------------------------------------------------------------------------
@@ -247,9 +256,10 @@ class QMResult:
 def qullamaggie_metrics(df: pd.DataFrame) -> QMResult:
     o, h, l, c, v = df["open"], df["high"], df["low"], df["close"], df["volume"]
 
-    ret_1m = c.pct_change(QM_RET_1M_BARS)
-    ret_3m = c.pct_change(QM_RET_3M_BARS)
-    ret_6m = c.pct_change(QM_RET_6M_BARS)
+    bpm = _bars_per_month(df)
+    ret_1m = c.pct_change(max(1, QM_RET_LOOKBACK_MONTHS[0] * bpm))
+    ret_3m = c.pct_change(max(1, QM_RET_LOOKBACK_MONTHS[1] * bpm))
+    ret_6m = c.pct_change(max(1, QM_RET_LOOKBACK_MONTHS[2] * bpm))
 
     adr_pct = ((h - l) / c).rolling(QM_ADR_LEN).mean() * 100.0
 
