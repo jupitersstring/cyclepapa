@@ -1037,6 +1037,7 @@ def get_universe(
     min_bucket: Optional[str] = None,
     max_bucket: Optional[str] = None,
     include_uncategorized: bool = False,
+    only_uncategorized: bool = False,
 ) -> pd.DataFrame:
     import financedatabase as fd
 
@@ -1137,6 +1138,16 @@ def get_universe(
         "Short Mini", "Faktor ", "Express ", "ETC ", " ETN",
         "Bull Cert", "Bear Cert", "Tracker", "Strategic Certificate",
         " ETF", " UCITS", "Index Cert", "ETP ",
+        # Preferred stock / depositary receipt / fixed-income tranches.
+        # These are common in the US tail and have a different return
+        # profile than common equity (they behave like bonds).
+        "Preferred Stock", "Depositary Share", "Depositary Receipt",
+        "Cumulative Preferred", "Non-Cumulative Preferred",
+        "Cumulative Redeemable", "Fixed-to-Floating",
+        "Fixed-Rate Reset", "Perpetual Preferred", "Trust Preferred",
+        "Senior Notes", "Subordinated Notes", "Notes due",
+        " Notes 20", " Senior Note", "Convertible Note",
+        "Floating Rate Note", "Capital Notes",
         # Structured-product abbreviations and issuer prefixes (mostly
         # Austrian / German "Garantie-Zertifikat" naming):
         "Gar.Z", "GarZ", "Gar Z", "Gar.",
@@ -1166,22 +1177,26 @@ def get_universe(
         lo = order.index(min_bucket)
         allowed_min = set(order[lo:])
         strict_mask = df["market_cap"].isin(allowed_min)
-        if include_uncategorized:
+        if include_uncategorized or only_uncategorized:
             u = _unc_mask(df)
             # Pollution guard: if uncategorized adds >3x the strict
             # universe size, the country's listings are dominated by
             # structured products (Austria) and we silently skip.
             if u.sum() <= max(50, 3 * strict_mask.sum()):
-                strict_mask = strict_mask | u
+                strict_mask = u if only_uncategorized else (strict_mask | u)
+            elif only_uncategorized:
+                strict_mask = strict_mask & False  # empty
         df = df[strict_mask]
     if max_bucket and max_bucket in order:
         hi = order.index(max_bucket)
         allowed_max = set(order[: hi + 1])
         strict_mask = df["market_cap"].isin(allowed_max)
-        if include_uncategorized:
+        if include_uncategorized or only_uncategorized:
             u = _unc_mask(df)
             if u.sum() <= max(50, 3 * strict_mask.sum()):
-                strict_mask = strict_mask | u
+                strict_mask = u if only_uncategorized else (strict_mask | u)
+            elif only_uncategorized:
+                strict_mask = strict_mask & False
         df = df[strict_mask]
     return df
 
@@ -1203,6 +1218,10 @@ def main():
     parser.add_argument("--include-uncategorized", action="store_true",
                         help="include tickers without a financedatabase market_cap bucket "
                              "(many UK / Nordic small caps are uncategorized)")
+    parser.add_argument("--only-uncategorized", action="store_true",
+                        help="scan ONLY uncategorized tickers (the supplement to "
+                             "existing strict-bucket scans). Useful for filling "
+                             "coverage gaps without rescanning what's already done.")
     parser.add_argument("--workers", type=int, default=6)
     parser.add_argument("--out", default="italian_yartseva.csv")
     parser.add_argument("--top", type=int, default=15, help="rows printed in console summary")
@@ -1216,7 +1235,8 @@ def main():
     print(f"[1/3] Loading {args.country} universe (min bucket={args.min_bucket}, max bucket={args.max_bucket}) ...", file=sys.stderr)
     universe = get_universe(country=args.country, min_bucket=args.min_bucket,
                             max_bucket=args.max_bucket,
-                            include_uncategorized=args.include_uncategorized)
+                            include_uncategorized=args.include_uncategorized,
+                            only_uncategorized=args.only_uncategorized)
     print(f"      universe size = {len(universe)}", file=sys.stderr)
 
     if args.max and args.max > 0:
