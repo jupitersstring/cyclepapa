@@ -14,14 +14,30 @@ fed directly into volume_screen.py for tightness / POC checks.
 """
 
 import argparse
+import contextlib
+import io
 import os
 import pickle
+import re
 import sys
 import time
 
 import numpy as np
 import pandas as pd
 import yfinance as yf
+
+
+_RATE_LIMIT_PAT = re.compile(
+    r"(rate ?limit|too many requests|429|YFRateLimit|temporarily blocked|throttl)",
+    re.IGNORECASE,
+)
+
+
+def _looks_rate_limited(captured_text: str) -> bool:
+    """Return True only if captured yfinance stderr shows an actual rate-limit
+    signal. 'possibly delisted' alone is NOT rate-limit — it means the ticker
+    is genuinely gone (common for old SPAC warrants/units in the universe)."""
+    return bool(_RATE_LIMIT_PAT.search(captured_text or ""))
 
 # Reuse the universe definitions from scan_failed_bearish.py
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -64,14 +80,17 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
         chunk = todo[i:i + chunk_size]
         kept_before = len(frames)
         print(f"  batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} of {total} (kept: {kept_before})")
+        err_buf = io.StringIO()
         try:
-            data = yf.download(
-                chunk, period=f"{years}y", interval="1d",
-                group_by="ticker", threads=True, progress=False, auto_adjust=True,
-            )
+            with contextlib.redirect_stderr(err_buf):
+                data = yf.download(
+                    chunk, period=f"{years}y", interval="1d",
+                    group_by="ticker", threads=True, progress=False, auto_adjust=True,
+                )
         except Exception as e:
             print(f"    batch failed: {e}")
             data = None
+        sys.stderr.write(err_buf.getvalue())
         if data is not None and not data.empty:
             for t in chunk:
                 try:
@@ -83,15 +102,14 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
                         frames[t] = sub
                 except Exception:
                     continue
-        # Rate-limit detection: success rate <5% on a large batch suggests
-        # yfinance is throttling. DO NOT mark these tickers as done so they
-        # get retried next run; pause longer to let the limit cool.
         kept_in_batch = len(frames) - kept_before
-        success_rate = kept_in_batch / len(chunk) if chunk else 1.0
-        if success_rate < 0.05 and len(chunk) >= 10:
+        # Only treat as rate-limited if yfinance stderr shows an actual
+        # 429 / rate-limit / throttling signature. "possibly delisted" alone
+        # = genuinely gone tickers (warrants/dead SPACs); mark them done.
+        if _looks_rate_limited(err_buf.getvalue()) and kept_in_batch / max(len(chunk), 1) < 0.5:
             consec_rate_limited += 1
             cool_sleep = min(60 + consec_rate_limited * 30, 300)
-            print(f"    likely rate-limited ({kept_in_batch}/{len(chunk)} kept); "
+            print(f"    rate-limited ({kept_in_batch}/{len(chunk)} kept; 429 in stderr); "
                   f"NOT marking done. Cooling for {cool_sleep}s "
                   f"(consec rate-limited batches: {consec_rate_limited})")
             time.sleep(cool_sleep)
@@ -163,13 +181,16 @@ def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_
         chunk = todo[i:i + chunk_size]
         kept_before = len(frames)
         print(f"  intraday {interval} batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {kept_before})")
+        err_buf = io.StringIO()
         try:
-            data = yf.download(chunk, period=period, interval=interval,
-                               group_by="ticker", threads=True, progress=False,
-                               auto_adjust=True)
+            with contextlib.redirect_stderr(err_buf):
+                data = yf.download(chunk, period=period, interval=interval,
+                                   group_by="ticker", threads=True, progress=False,
+                                   auto_adjust=True)
         except Exception as e:
             print(f"    batch failed: {e}")
             data = None
+        sys.stderr.write(err_buf.getvalue())
         if data is not None and not data.empty:
             for t in chunk:
                 try:
@@ -182,11 +203,10 @@ def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_
                 except Exception:
                     continue
         kept_in_batch = len(frames) - kept_before
-        success_rate = kept_in_batch / len(chunk) if chunk else 1.0
-        if success_rate < 0.05 and len(chunk) >= 10:
+        if _looks_rate_limited(err_buf.getvalue()) and kept_in_batch / max(len(chunk), 1) < 0.5:
             consec_rate_limited += 1
             cool_sleep = min(60 + consec_rate_limited * 30, 300)
-            print(f"    likely rate-limited ({kept_in_batch}/{len(chunk)} kept); "
+            print(f"    rate-limited ({kept_in_batch}/{len(chunk)} kept; 429 in stderr); "
                   f"NOT marking done. Cooling {cool_sleep}s")
             time.sleep(cool_sleep)
             continue
@@ -260,13 +280,16 @@ def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10
         chunk = todo[i:i + chunk_size]
         kept_before = len(frames)
         print(f"  monthly batch {b}/{n_batches}: {i + 1}-{min(i + chunk_size, total)} (kept: {kept_before})")
+        err_buf = io.StringIO()
         try:
-            data = yf.download(chunk, period=f"{years}y", interval="1mo",
-                               group_by="ticker", threads=True, progress=False,
-                               auto_adjust=True)
+            with contextlib.redirect_stderr(err_buf):
+                data = yf.download(chunk, period=f"{years}y", interval="1mo",
+                                   group_by="ticker", threads=True, progress=False,
+                                   auto_adjust=True)
         except Exception as e:
             print(f"    batch failed: {e}")
             data = None
+        sys.stderr.write(err_buf.getvalue())
         if data is not None and not data.empty:
             for t in chunk:
                 try:
@@ -279,11 +302,10 @@ def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10
                 except Exception:
                     continue
         kept_in_batch = len(frames) - kept_before
-        success_rate = kept_in_batch / len(chunk) if chunk else 1.0
-        if success_rate < 0.05 and len(chunk) >= 10:
+        if _looks_rate_limited(err_buf.getvalue()) and kept_in_batch / max(len(chunk), 1) < 0.5:
             consec_rate_limited += 1
             cool_sleep = min(60 + consec_rate_limited * 30, 300)
-            print(f"    likely rate-limited ({kept_in_batch}/{len(chunk)} kept); "
+            print(f"    rate-limited ({kept_in_batch}/{len(chunk)} kept; 429 in stderr); "
                   f"NOT marking done. Cooling {cool_sleep}s")
             time.sleep(cool_sleep)
             continue
