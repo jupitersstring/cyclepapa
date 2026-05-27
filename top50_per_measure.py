@@ -30,7 +30,8 @@ short_cols = ["name", "sector", "_cap", "last_close",
               "mom_3m", "mom_6m", "rel_return_6m_pct",
               "box_length_weeks", "box_height_pct", "pos_in_box_pct",
               "vol_drying_ratio", "atr_compression", "bb_compression",
-              "vol_stepup_2w", "tags", "roque_score"]
+              "vol_stepup_2w", "tags", "roque_score",
+              "td_mtf_composite", "td_mtf_asymmetry", "rs_rank_max"]
 short_cols = [c for c in short_cols if c in mom.columns]
 
 def show(title, df, n=50, sort_col=None, asc=False, filter_mask=None):
@@ -80,6 +81,111 @@ for tag in ["prebreakout_w", "qulla_consol_setup", "qulla_consol_soft",
         if len(sub):
             show(f"ALL {tag.upper()} (sorted by box_length desc)", sub, n=50,
                  sort_col="box_length_weeks" if "box_length_weeks" in sub.columns else None)
+
+# --- TD Sequential MTF (5 nets + composite + per-TF) ---
+td_pairs = [
+    ("td_mtf_net_setup",   "TD MTF net SETUP"),
+    ("td_mtf_net_cd",      "TD MTF net COUNTDOWN"),
+    ("td_mtf_net_perfect", "TD MTF net PERFECT"),
+    ("td_mtf_net_stealth", "TD MTF net STEALTH"),
+    ("td_mtf_net_triple",  "TD MTF net TRIPLE"),
+    ("td_mtf_composite",   "TD MTF composite (sum of 5 nets)"),
+]
+for col, label in td_pairs:
+    if col in mom.columns:
+        show(f"TOP 50 BULLISH by {label}", mom, sort_col=col,
+             filter_mask=mom[col].notna())
+        show(f"TOP 50 BEARISH by {label}", mom, sort_col=col, asc=True,
+             filter_mask=mom[col].notna())
+
+# TD per-timeframe (weekly + monthly absolute and relative-to-SPY)
+for tf in ["w", "m", "w_rel", "m_rel"]:
+    for net in ["setup", "cd", "perfect", "stealth", "triple"]:
+        col = f"td_{tf}_net_{net}"
+        if col in mom.columns:
+            show(f"TOP 30 BULL by {col}", mom, n=30, sort_col=col,
+                 filter_mask=mom[col].notna())
+            show(f"TOP 30 BEAR by {col}", mom, n=30, sort_col=col, asc=True,
+                 filter_mask=mom[col].notna())
+
+# TD intraday timeframes
+for tf in ["1m", "5m", "15m", "1h", "4h"]:
+    col = f"td_{tf}_net_setup"
+    if col in mom.columns and mom[col].notna().any():
+        for net in ["setup", "cd", "perfect", "stealth", "triple"]:
+            c = f"td_{tf}_net_{net}"
+            if c in mom.columns:
+                show(f"TOP 30 BULL by {c}", mom, n=30, sort_col=c,
+                     filter_mask=mom[c].notna())
+                show(f"TOP 30 BEAR by {c}", mom, n=30, sort_col=c, asc=True,
+                     filter_mask=mom[c].notna())
+
+# --- Harmonic patterns ---
+for tf in ["d", "w", "m"]:
+    q = f"h_{tf}_quality"
+    if q in mom.columns:
+        show(f"TOP 30 highest harmonic quality on {tf}", mom, n=30,
+             sort_col=q, filter_mask=mom[q].notna())
+
+if "harmonic_score" in mom.columns:
+    show("TOP 30 by harmonic_score", mom, n=30, sort_col="harmonic_score",
+         filter_mask=mom["harmonic_score"].notna())
+if "harmonic_consonance" in mom.columns:
+    show("TOP 30 by harmonic_consonance (multi-TF agreement)", mom, n=30,
+         sort_col="harmonic_consonance",
+         filter_mask=mom["harmonic_consonance"].notna())
+
+# --- Volatility asymmetry (D / W / M) ---
+for tf, label in [("", "daily"), ("_w", "weekly"), ("_m", "monthly")]:
+    col = f"asym{tf}_now"
+    if col in mom.columns:
+        show(f"TOP 30 by {label} asym_now", mom, n=30, sort_col=col,
+             filter_mask=mom[col].notna())
+
+# Relative-to-SPY asymmetry
+if "rel_asym_score" in mom.columns:
+    show("TOP 30 by rel_asym_score (D+W+M relative-to-SPY asym)", mom, n=30,
+         sort_col="rel_asym_score", filter_mask=mom["rel_asym_score"].notna())
+
+# --- Squeeze (compression release) ---
+for tf, label in [("d", "daily"), ("w", "weekly"), ("m", "monthly")]:
+    col = f"sq_{tf}_value"
+    if col in mom.columns:
+        show(f"TOP 30 most {label} SQUEEZED (sq_value asc)", mom, n=30,
+             sort_col=col, asc=True, filter_mask=mom[col].notna())
+    rel = f"sq_{tf}_pct_of_max"
+    if rel in mom.columns:
+        show(f"TOP 30 lowest {label} sq_pct_of_max", mom, n=30,
+             sort_col=rel, asc=True, filter_mask=mom[rel].notna())
+
+# --- TD exhaustion score (composite of bullish vs bearish flags) ---
+if "td_exhaustion_score" in mom.columns:
+    show("TOP 30 BULL td_exhaustion_score", mom, n=30,
+         sort_col="td_exhaustion_score", filter_mask=mom["td_exhaustion_score"].notna())
+    show("TOP 30 BEAR td_exhaustion_score", mom, n=30,
+         sort_col="td_exhaustion_score", asc=True,
+         filter_mask=mom["td_exhaustion_score"].notna())
+
+# --- Relative-strength / momentum measures already in mom ---
+for col in ["rs_rank_max", "atr_rs", "dma200_slope_pct", "days_since_52w_high",
+            "macd_hist_w"]:
+    if col in mom.columns:
+        ascv = col in ("days_since_52w_high",)
+        show(f"TOP 30 by {col}", mom, n=30, sort_col=col, asc=ascv,
+             filter_mask=mom[col].notna())
+
+# --- Boolean flags as filters ---
+for flag in ["td_bullish_exhaustion", "td_bullish_exhaustion_strong",
+             "td_bearish_exhaustion", "td_bearish_exhaustion_strong",
+             "breakout_squeeze", "breakout_squeeze_strict",
+             "q_method_pass", "q_method_pass_monthly_strong",
+             "harmonic_bullish_w_or_m"]:
+    if flag in mom.columns:
+        sub = mom[mom[flag].fillna(False)]
+        if len(sub):
+            sort_c = "td_mtf_composite" if "td_mtf_composite" in sub.columns else "roque_score"
+            show(f"ALL {flag.upper()} ({len(sub)}) sorted by {sort_c}", sub,
+                 n=50, sort_col=sort_c)
 
 # --- Volume_screen tag-based (counts of substrings) ---
 if "tags" in mom.columns:
