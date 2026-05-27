@@ -8,12 +8,12 @@ set -u
 VENV=/tmp/venv/bin/python
 SCRIPT=yartseva_db.py
 COUNTRIES=(
-    "United States"  "Germany"  "France"   "Norway"  "Belgium"
-    "Netherlands"    "Spain"    "Denmark"
+    "United States"  "United Kingdom" "Germany"  "France"   "Norway"  "Belgium"
+    "Netherlands"    "Spain"          "Denmark"  "Italy"
 )
 SUFFIX=(
-    us               de         fr         no        be
-    nl               es         dk
+    us               uk               de         fr         no        be
+    nl               es               dk         it
 )
 
 for i in "${!COUNTRIES[@]}"; do

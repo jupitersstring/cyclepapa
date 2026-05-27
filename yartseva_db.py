@@ -1173,32 +1173,33 @@ def get_universe(
             )
         )
 
+    # Build the strict bucket mask (intersection of min and max filters).
+    strict_mask = pd.Series(True, index=df.index)
     if min_bucket and min_bucket in order:
         lo = order.index(min_bucket)
         allowed_min = set(order[lo:])
-        strict_mask = df["market_cap"].isin(allowed_min)
-        if include_uncategorized or only_uncategorized:
-            u = _unc_mask(df)
-            # Pollution guard: if uncategorized adds >3x the strict
-            # universe size, the country's listings are dominated by
-            # structured products (Austria) and we silently skip.
-            if u.sum() <= max(50, 3 * strict_mask.sum()):
-                strict_mask = u if only_uncategorized else (strict_mask | u)
-            elif only_uncategorized:
-                strict_mask = strict_mask & False  # empty
-        df = df[strict_mask]
+        strict_mask &= df["market_cap"].isin(allowed_min)
     if max_bucket and max_bucket in order:
         hi = order.index(max_bucket)
         allowed_max = set(order[: hi + 1])
-        strict_mask = df["market_cap"].isin(allowed_max)
-        if include_uncategorized or only_uncategorized:
-            u = _unc_mask(df)
-            if u.sum() <= max(50, 3 * strict_mask.sum()):
-                strict_mask = u if only_uncategorized else (strict_mask | u)
-            elif only_uncategorized:
-                strict_mask = strict_mask & False
-        df = df[strict_mask]
-    return df
+        strict_mask &= df["market_cap"].isin(allowed_max)
+
+    # Decide how to combine with uncategorized rows. Pollution guard:
+    # if uncategorized > 3x strict count (or > 50 absolute when strict
+    # is tiny), the country's listings are dominated by structured
+    # products / certificates and we silently reject those.
+    if include_uncategorized or only_uncategorized:
+        u = _unc_mask(df)
+        polluted = u.sum() > max(50, 3 * strict_mask.sum())
+        if polluted:
+            # Just use the strict mask (or empty if only_uncategorized).
+            final_mask = pd.Series(False, index=df.index) if only_uncategorized else strict_mask
+        else:
+            final_mask = u if only_uncategorized else (strict_mask | u)
+    else:
+        final_mask = strict_mask
+
+    return df[final_mask]
 
 
 # Backward-compatible alias used elsewhere
