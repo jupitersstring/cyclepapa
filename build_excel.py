@@ -87,11 +87,77 @@ def get_info(ticker):
             "earningsGrowth":        info.get("earningsGrowth"),
             "debtToEquity":          info.get("debtToEquity"),
             "dividendYield":         info.get("dividendYield"),
+            # Narrative-shift signals (analyst behaviour)
+            "recommendationMean":    info.get("recommendationMean"),
+            "numberOfAnalystOpinions": info.get("numberOfAnalystOpinions"),
+            "targetMeanPrice":       info.get("targetMeanPrice"),
+            "currentPrice":          info.get("currentPrice") or info.get("regularMarketPrice"),
             "summary":               (info.get("longBusinessSummary") or "")[:600],
             "website":               info.get("website"),
         }
     except Exception:
         return {}
+
+
+def _to_float(x):
+    """Best-effort float coercion. Returns None for unusable values."""
+    if x is None:
+        return None
+    try:
+        v = float(x)
+    except (TypeError, ValueError):
+        return None
+    if not np.isfinite(v):
+        return None
+    return v
+
+
+def narrative_score(row):
+    """Composite of analyst rerating + earnings/revenue momentum + forward-PE rerating.
+
+    Returns 0..1. Sub-scores:
+      - recommendation upgrade (1=Strong Buy, 5=Sell), lower=better
+      - target upside vs current price
+      - earnings YoY growth
+      - revenue YoY growth
+      - forward-PE materially lower than trailing-PE (earnings expected up)
+    """
+    s = 0.0
+    n_components = 0
+
+    rec = _to_float(row.get("recommendationMean"))
+    n_an = _to_float(row.get("numberOfAnalystOpinions")) or 0
+    if rec is not None and n_an >= 3:
+        s += max(0.0, (3.0 - rec) / 2.0) * 0.25
+        n_components += 1
+
+    tgt = _to_float(row.get("targetMeanPrice"))
+    cur = _to_float(row.get("currentPrice"))
+    if tgt and cur and cur > 0:
+        upside = tgt / cur - 1
+        s += float(np.clip(upside, 0, 0.50)) * 2 * 0.20
+        n_components += 1
+
+    eg = _to_float(row.get("earningsGrowth"))
+    if eg is not None:
+        s += float(np.clip(eg, 0, 2.0)) / 2.0 * 0.20
+        n_components += 1
+
+    rg = _to_float(row.get("revenueGrowth"))
+    if rg is not None:
+        s += float(np.clip(rg, 0, 1.0)) * 0.15
+        n_components += 1
+
+    fp = _to_float(row.get("forwardPE"))
+    tp = _to_float(row.get("trailingPE"))
+    if fp and tp and tp > 0 and fp > 0:
+        rerating = (tp - fp) / tp
+        s += float(np.clip(rerating, 0, 0.5)) * 2 * 0.20
+        n_components += 1
+
+    if n_components == 0:
+        return np.nan
+    return s
 
 
 def main():
@@ -182,6 +248,13 @@ def main():
     except FileNotFoundError:
         pass
 
+    # Broaden the global pool for the narrative-shift tab to top 250 by best_rank
+    # so we have a wider candidate set when narrative is layered on technicals.
+    extra_pool = (big.sort_values("best_rank", ascending=False)
+                     .drop_duplicates(subset=["ticker"], keep="first")
+                     .head(250))
+    tabs["_Narrative_pool_"] = extra_pool  # placeholder; removed before write
+
     # Collect unique tickers across all tabs, fetch info once each.
     all_tickers = sorted({t for df in tabs.values() for t in df["ticker"]})
     print(f"Fetching yfinance info for {len(all_tickers)} unique tickers...", file=sys.stderr)
@@ -194,6 +267,24 @@ def main():
     info_df = pd.DataFrame.from_dict(info_cache, orient="index")
     info_df.index.name = "ticker"
     info_df = info_df.reset_index()
+
+    # Compute narrative-shift score for each ticker that has analyst info.
+    info_df["narrative_shift"] = info_df.apply(narrative_score, axis=1)
+
+    # Build the Narrative_Shift_Top tab: take the broader pool, attach
+    # narrative + technical score, rank by combined.
+    narrative_pool = tabs.pop("_Narrative_pool_")
+    np_merged = narrative_pool.merge(info_df, on="ticker", how="left")
+    np_merged["combined_score"] = (
+        np_merged["best_rank"] / 100.0 * 0.55 +
+        np_merged["narrative_shift"].fillna(0) * 0.45
+    )
+    np_merged = (np_merged[np_merged["narrative_shift"] > 0]
+                    .sort_values("combined_score", ascending=False)
+                    .drop_duplicates(subset=["ticker"])
+                    .head(40)
+                    .reset_index(drop=True))
+    tabs["Narrative_Shift_Top40"] = np_merged
 
     # Write Excel
     score_cols = [
@@ -216,7 +307,20 @@ def main():
 
         for tab, df in tabs.items():
             avail_score = [c for c in score_cols if c in df.columns]
-            sub = df[avail_score].merge(info_df, on="ticker", how="left")
+            if "narrative_shift" in df.columns:
+                # Narrative tab already merged with info; preserve narrative+combined cols
+                cols = (
+                    avail_score
+                    + (["narrative_shift", "combined_score"]
+                       if tab.startswith("Narrative") else [])
+                    + ["recommendationMean", "numberOfAnalystOpinions",
+                       "targetMeanPrice", "currentPrice"]
+                    + info_cols
+                )
+                cols = [c for c in cols if c in df.columns]
+                sub = df[cols]
+            else:
+                sub = df[avail_score].merge(info_df, on="ticker", how="left")
             sub.to_excel(writer, sheet_name=tab[:31], index=False)
 
     print(f"Wrote {OUT_PATH}")
