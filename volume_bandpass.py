@@ -108,30 +108,40 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
         print(f"[data:{interval}] cached {len(have)} | to fetch {len(todo)} / {len(symbols)}")
 
     batch = 30
+    miss_streak = 0
     for i in range(0, len(todo), batch):
         chunk = todo[i:i + batch]
         print(f"[data:{interval}] fetch {i + 1}-{i + len(chunk)} / {len(todo)} ...")
         if i > 0:
             time.sleep(2.0)  # ease Yahoo rate limiting on large universes
+        got_before = len(have)
         try:
             data = yf.download(chunk, period=period, interval=interval,
                                auto_adjust=True, progress=False, threads=True,
                                group_by="ticker")
         except Exception as e:
             print(f"   batch failed: {e!r}")
-            continue
-        for sym in chunk:
-            try:
-                sub = data[sym] if len(chunk) > 1 else data
-                sub = sub.dropna(how="all")
-                if sub is not None and "Volume" in sub and len(sub) > 60:
-                    have[sym] = sub[["Close", "Volume"]].copy()
-            except Exception:
-                continue
+            data = None
+        if data is not None:
+            for sym in chunk:
+                try:
+                    sub = data[sym] if len(chunk) > 1 else data
+                    sub = sub.dropna(how="all")
+                    if sub is not None and "Volume" in sub and len(sub) > 60:
+                        have[sym] = sub[["Close", "Volume"]].copy()
+                except Exception:
+                    continue
         try:
             pd.to_pickle(have, cache)  # checkpoint after every batch
         except Exception as e:
             print(f"[data:{interval}] cache write skipped: {e!r}")
+        # early-abort: if several consecutive batches add nothing, Yahoo is rate
+        # limiting -> bail so the outer loop can pause and let the budget recover.
+        miss_streak = 0 if len(have) > got_before else miss_streak + 1
+        if miss_streak >= 5:
+            print(f"[data:{interval}] rate-limited ({miss_streak} empty batches); "
+                  f"stopping pass early.")
+            break
 
     out = {s: have[s] for s in symbols if s in have and len(have[s]) > 60}
     print(f"[data:{interval}] usable: {len(out)} / {len(symbols)}")
