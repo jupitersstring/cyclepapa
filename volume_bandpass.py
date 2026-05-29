@@ -79,24 +79,36 @@ def ehlers_bandpass(src: np.ndarray, flen: int, slen: int) -> np.ndarray:
 # Data download (generic interval) with on-disk pickle cache
 # --------------------------------------------------------------------------- #
 def download_ohlcv(symbols: list[str], period: str, interval: str,
-                   refresh: bool = False) -> dict[str, pd.DataFrame]:
+                   refresh: bool = False,
+                   seed: dict[str, pd.DataFrame] | None = None) -> dict[str, pd.DataFrame]:
     import yfinance as yf
 
     os.makedirs(CACHE_DIR, exist_ok=True)
-    cache = os.path.join(CACHE_DIR, f"ohlcv_{interval}_{period}_{len(symbols)}.pkl")
+    # cache is a per-symbol dict pickle so repeated runs ACCUMULATE coverage
+    # (Yahoo aggressively rate-limits large universes, so one pass is partial).
+    cache = os.path.join(CACHE_DIR, f"ohlcvdict_{interval}_{period}.pkl")
+    have: dict[str, pd.DataFrame] = {}
     if os.path.exists(cache) and not refresh:
-        age_h = (time.time() - os.path.getmtime(cache)) / 3600
-        if age_h < 24 * 7:
-            print(f"[data:{interval}] cache {os.path.basename(cache)} ({age_h:.1f}h old)")
-            return _split(pd.read_pickle(cache))
+        try:
+            have = pd.read_pickle(cache)
+        except Exception:
+            have = {}
 
-    frames = {}
-    batch = 40
-    for i in range(0, len(symbols), batch):
-        chunk = symbols[i:i + batch]
-        print(f"[data:{interval}] {i + 1}-{i + len(chunk)} / {len(symbols)} ...")
+    # optionally seed from another interval's frames (e.g. the seasonal weekly cache)
+    if seed:
+        for s, df in seed.items():
+            if s not in have and "Volume" in df:
+                have[s] = df[["Close", "Volume"]].copy()
+
+    todo = [s for s in symbols if s not in have]
+    print(f"[data:{interval}] cached {len(have)} | to fetch {len(todo)} / {len(symbols)}")
+
+    batch = 30
+    for i in range(0, len(todo), batch):
+        chunk = todo[i:i + batch]
+        print(f"[data:{interval}] fetch {i + 1}-{i + len(chunk)} / {len(todo)} ...")
         if i > 0:
-            time.sleep(1.5)  # ease Yahoo rate limiting on large universes
+            time.sleep(2.0)  # ease Yahoo rate limiting on large universes
         try:
             data = yf.download(chunk, period=period, interval=interval,
                                auto_adjust=True, progress=False, threads=True,
@@ -109,28 +121,16 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
                 sub = data[sym] if len(chunk) > 1 else data
                 sub = sub.dropna(how="all")
                 if sub is not None and "Volume" in sub and len(sub) > 60:
-                    frames[sym] = sub[["Close", "Volume"]].copy()
+                    have[sym] = sub[["Close", "Volume"]].copy()
             except Exception:
                 continue
-
-    if frames:
-        panel = pd.concat(frames, axis=1)
-        panel.columns = pd.MultiIndex.from_tuples(list(panel.columns),
-                                                   names=["symbol", "field"])
         try:
-            panel.to_pickle(cache)
+            pd.to_pickle(have, cache)  # checkpoint after every batch
         except Exception as e:
             print(f"[data:{interval}] cache write skipped: {e!r}")
-    print(f"[data:{interval}] usable: {len(frames)} / {len(symbols)}")
-    return frames
 
-
-def _split(panel: pd.DataFrame) -> dict[str, pd.DataFrame]:
-    out = {}
-    for sym in panel.columns.get_level_values(0).unique():
-        sub = panel[sym].dropna(how="all")
-        if "Volume" in sub and len(sub) > 60:
-            out[sym] = sub
+    out = {s: have[s] for s in symbols if s in have and len(have[s]) > 60}
+    print(f"[data:{interval}] usable: {len(out)} / {len(symbols)}")
     return out
 
 
@@ -140,6 +140,7 @@ def _split(panel: pd.DataFrame) -> dict[str, pd.DataFrame]:
 def analyse_series(vol: pd.Series, recent: int) -> list[dict]:
     """Return one row per band that has enough history, describing its most
     recent zero-line crossing."""
+    vol = vol.dropna()  # seeded frames may carry NaN padding from a union index
     v = np.log1p(vol.astype(float).to_numpy())
     idx = vol.index
     n = len(v)
@@ -247,14 +248,30 @@ def run(args) -> None:
                            refresh=args.refresh)
         results["daily"] = scan_timeframe(d, "daily", args.recent_daily, sectors, args.top)
     if not args.daily_only:
+        # seed weekly from the seasonal scan's weekly cache (has Close+Volume for
+        # ~all names already), so we avoid re-downloading the whole universe.
+        seed = None
+        seas_cache = os.path.join(CACHE_DIR, f"weekly_{args.weekly_period.rstrip('y')}y_{len(symbols)}.pkl")
+        if os.path.exists(seas_cache):
+            try:
+                panel = pd.read_pickle(seas_cache)
+                seed = {s: panel[s].dropna(how="all")
+                        for s in panel.columns.get_level_values(0).unique()}
+                print(f"[data:1wk] seeding from seasonal cache ({len(seed)} names)")
+            except Exception as e:
+                print(f"[data:1wk] seed failed: {e!r}")
         w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk",
-                           refresh=args.refresh)
+                           refresh=args.refresh, seed=seed)
         results["weekly"] = scan_timeframe(w, "weekly", args.recent_weekly, sectors, args.top)
 
     if args.csv:
-        full = pd.concat([v for v in results.values() if not v.empty], ignore_index=True)
-        full.sort_values(["tf", "band", "direction", "slope_z"]).to_csv(args.csv, index=False)
-        print(f"\n[out] full crossings table -> {args.csv}")
+        parts = [v for v in results.values() if not v.empty]
+        if parts:
+            full = pd.concat(parts, ignore_index=True)
+            full.sort_values(["tf", "band", "direction", "slope_z"]).to_csv(args.csv, index=False)
+            print(f"\n[out] full crossings table -> {args.csv}")
+        else:
+            print("\n[out] nothing to write (no crossings).")
 
 
 def parse_args():
