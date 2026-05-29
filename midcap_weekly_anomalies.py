@@ -196,24 +196,38 @@ def download_weekly(symbols: list[str], years: int, refresh: bool = False) -> di
 # Per-asset feature engineering
 # --------------------------------------------------------------------------- #
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Compute weekly return, volume z-score, dollar volume and forward drift."""
+    """Weekly return, volume z-score, dollar volume, raw volume and forward
+    1/2/4/8-week drift."""
+    df = df[["Close", "Volume"]].dropna()  # guard against union-index NaN padding
     out = pd.DataFrame(index=df.index)
     close = df["Close"].astype(float)
     vol = df["Volume"].astype(float)
 
     out["ret"] = close.pct_change(fill_method=None)
+    out["vol"] = vol
     out["dollar_vol"] = close * vol
 
     roll_mean = vol.rolling(52, min_periods=26).mean()
     roll_std = vol.rolling(52, min_periods=26).std()
     out["vol_z"] = ((vol - roll_mean) / roll_std).replace([np.inf, -np.inf], np.nan)
 
-    # forward 4-week cumulative return measured *after* the current week
-    out["fwd4"] = close.shift(-4) / close - 1.0
+    # forward cumulative returns measured *after* the current week
+    for h in (1, 2, 4, 8):
+        out[f"fwd{h}"] = close.shift(-h) / close - 1.0
 
     out["woy"] = df.index.isocalendar().week.astype(int).values
     out["year"] = df.index.year
     return out.dropna(subset=["ret"])
+
+
+def asset_aggregates(feats: pd.DataFrame) -> dict:
+    """Whole-history baselines an asset's buckets are compared against."""
+    r = feats["ret"].to_numpy()
+    return {
+        "ret_std": float(np.std(r, ddof=1)) if len(r) > 1 else np.nan,
+        "vol_mean": float(feats["vol"].mean()),
+        "dollar_vol_mean": float(feats["dollar_vol"].mean()),
+    }
 
 
 # --------------------------------------------------------------------------- #
@@ -223,76 +237,111 @@ def _safe(x):
     return float(x) if np.isfinite(x) else np.nan
 
 
-def bucket_metrics(g: pd.DataFrame) -> dict:
+def bucket_metrics(g: pd.DataFrame, agg: dict) -> dict:
+    """Full catalog of seasonal-state measures for one asset / week-of-year."""
+    g = g.sort_values("year")
     r = g["ret"].to_numpy()
     vz = g["vol_z"].fillna(0).to_numpy()
+    vol = g["vol"].to_numpy()
     dv = g["dollar_vol"].to_numpy()
-    fwd = g["fwd4"].dropna().to_numpy()
+    fwd4 = g["fwd4"].to_numpy()
     n = len(r)
     m: dict[str, float] = {"n": n}
 
-    mean = np.mean(r)
-    std = np.std(r, ddof=1) if n > 1 else np.nan
+    mean = float(np.mean(r))
+    std = float(np.std(r, ddof=1)) if n > 1 else np.nan
+
+    # ---- return quality -------------------------------------------------- #
     m["mean_ret"] = _safe(mean)
     m["median_ret"] = _safe(np.median(r))
+    m["std_ret"] = _safe(std)
     m["sharpe"] = _safe(mean / std) if std and std > 0 else np.nan
     m["win_rate"] = _safe(np.mean(r > 0))
-    m["worst"] = _safe(np.min(r))
-
-    # robust Sharpe (median / MAD)
+    m["positive_median"] = 1.0 if np.median(r) > 0 else 0.0
     mad = np.median(np.abs(r - np.median(r)))
     m["robust_sharpe"] = _safe(np.median(r) / mad) if mad > 0 else np.nan
-
-    # Sortino
     downside = r[r < 0]
     dd = np.sqrt(np.mean(downside ** 2)) if downside.size else np.nan
+    m["downside_dev"] = _safe(dd)
     m["sortino"] = _safe(mean / dd) if dd and dd > 0 else np.nan
-
-    # t-stat
     m["t_stat"] = _safe(mean / (std / np.sqrt(n))) if std and std > 0 and n > 1 else np.nan
 
-    # gain-to-pain
+    # ---- payoff asymmetry ------------------------------------------------ #
     pos, neg = r[r > 0].sum(), -r[r < 0].sum()
     m["gain_to_pain"] = _safe(pos / neg) if neg > 0 else (np.nan if pos == 0 else 10.0)
-
-    # tail ratio / skew
+    m["worst"] = _safe(np.min(r))
+    m["best"] = _safe(np.max(r))
+    m["skew"] = _safe(pd.Series(r).skew()) if n >= 3 else np.nan
+    m["kurtosis"] = _safe(pd.Series(r).kurt()) if n >= 4 else np.nan
     if n >= 5:
-        hi = np.mean(r[r >= np.quantile(r, 0.8)])
-        lo = np.mean(r[r <= np.quantile(r, 0.2)])
-        m["tail_ratio"] = _safe(hi / abs(lo)) if lo < 0 else np.nan
-        m["skew"] = _safe(pd.Series(r).skew())
+        hi = r[r >= np.quantile(r, 0.8)]
+        lo = r[r <= np.quantile(r, 0.2)]
+        m["tail_ratio"] = _safe(np.mean(hi) / abs(np.mean(lo))) if np.mean(lo) < 0 else np.nan
+        # expected-shortfall ratio: mean upside tail / |mean downside tail|
+        m["es_ratio"] = _safe(np.mean(hi) / abs(np.mean(lo))) if np.mean(lo) < 0 else np.nan
     else:
-        m["tail_ratio"] = np.nan
-        m["skew"] = np.nan
+        m["tail_ratio"] = m["es_ratio"] = np.nan
+    # max drawdown of the equity curve formed by bucket returns ordered by year
+    eq = np.cumprod(1 + r)
+    m["max_drawdown"] = _safe(float(np.min(eq / np.maximum.accumulate(eq) - 1)))
 
-    # volume confirmation
-    m["rel_volume"] = _safe(np.exp(np.mean(np.log1p(np.clip(vz, -0.99, None)))))  # not used directly
+    # ---- volume confirmation -------------------------------------------- #
+    rel = vol / agg["vol_mean"] if agg.get("vol_mean") else np.full(n, np.nan)
+    m["rel_volume"] = _safe(np.nanmean(rel))                 # in-window / overall
+    m["vol_z_mean"] = _safe(np.mean(vz))
+    m["vol_elevated_rate"] = _safe(np.mean(vz > 0))
     m["ret_x_vol"] = _safe(np.mean(r * vz))
     acc = np.mean(np.maximum(r, 0) * vz)
     dist = np.mean(np.abs(np.minimum(r, 0)) * vz)
+    m["accumulation"] = _safe(acc)
+    m["distribution"] = _safe(dist)
     m["net_accumulation"] = _safe(acc - dist)
-
-    # volume-adjusted gain-to-pain (positive volume weight only)
     w = np.maximum(vz, 0)
     va_pos = np.sum(np.maximum(r, 0) * w)
     va_neg = -np.sum(np.minimum(r, 0) * w)
     m["va_gpr"] = _safe(va_pos / va_neg) if va_neg > 0 else (np.nan if va_pos == 0 else 10.0)
+    # volume-confirmed Sharpe: mean(ret x log(1+rel_vol)) / std
+    m["vc_sharpe"] = _safe(np.mean(r * np.log1p(np.clip(rel, 0, None))) / std) if std and std > 0 else np.nan
+    up_v, dn_v = vol[r > 0].sum(), vol[r < 0].sum()
+    m["up_down_vol_ratio"] = _safe(up_v / dn_v) if dn_v > 0 else (np.nan if up_v == 0 else 10.0)
+    m["vol_concentration"] = _safe(np.max(vol) / np.sum(vol)) if np.sum(vol) > 0 else np.nan
 
-    # liquidity
+    # ---- volatility state ------------------------------------------------ #
+    m["realized_vol_anomaly"] = _safe(std / agg["ret_std"]) if agg.get("ret_std") else np.nan
+    up_r, dn_r = r[r > 0], r[r < 0]
+    uv = np.std(up_r) if up_r.size > 1 else np.nan
+    dv_ = np.std(dn_r) if dn_r.size > 1 else np.nan
+    m["upside_vol"] = _safe(uv)
+    m["downside_vol"] = _safe(dv_)
+    m["vol_asymmetry"] = _safe(uv / dv_) if dv_ and dv_ > 0 else np.nan
+    up_semi = np.mean(np.maximum(r, 0) ** 2)
+    dn_semi = np.mean(np.minimum(r, 0) ** 2)
+    m["semivar_delta"] = _safe(dn_semi - up_semi)
+
+    # ---- liquidity ------------------------------------------------------- #
     m["dollar_vol"] = _safe(np.median(dv))
+    m["liquidity_adj_return"] = _safe(mean * np.log1p(np.median(dv)))
 
-    # forward persistence (post-window 4w drift)
-    m["persistence"] = _safe(np.mean(fwd)) if fwd.size else np.nan
+    # ---- forward effect / persistence ------------------------------------ #
+    for h in (1, 2, 4, 8):
+        f = g[f"fwd{h}"].dropna().to_numpy()
+        m[f"fwd{h}"] = _safe(np.mean(f)) if f.size else np.nan
+    m["persistence"] = m["fwd4"]
+    mask = ~np.isnan(fwd4)
+    if mask.sum() >= 4 and np.std(r[mask]) > 0 and np.std(fwd4[mask]) > 0:
+        m["persistence_corr"] = _safe(float(np.corrcoef(r[mask], fwd4[mask])[0, 1]))
+    else:
+        m["persistence_corr"] = np.nan
+    up_years = mask & (r > 0)
+    m["trend_continuation_rate"] = _safe(np.mean(fwd4[up_years] > 0)) if up_years.sum() else np.nan
 
-    # sub-period stability: sign agreement of chunk means vs overall mean
+    # ---- reliability / anti-overfitting ---------------------------------- #
     k = min(3, n // 2)
     if k >= 2 and mean != 0:
         chunks = np.array_split(r, k)
-        agree = np.mean([np.sign(np.mean(c)) == np.sign(mean) for c in chunks])
-        m["stability"] = _safe(agree)
+        m["stability"] = _safe(np.mean([np.sign(np.mean(c)) == np.sign(mean) for c in chunks]))
     else:
         m["stability"] = 0.5
-
     m["sample_penalty"] = float(np.sqrt(n / (n + SAMPLE_K)))
     return m
 
@@ -335,6 +384,16 @@ def score_table(rows: list[dict]) -> pd.DataFrame:
     )
     df["direction"] = np.where(df["composite_long"] >= df["composite_short"], "LONG", "SHORT")
     df["score"] = df[["composite_long", "composite_short"]].max(axis=1)
+
+    # cross-sectional volatility compression score (low realized-vol = high)
+    df["compression_score"] = -_z(df["realized_vol_anomaly"].fillna(df["realized_vol_anomaly"].median()))
+    # reliability blend: z(t)+z(win)+z(GPR) - z(maxDD magnitude)
+    df["reliability_score"] = (
+        _z(df["t_stat"].fillna(0))
+        + _z(df["win_rate"].fillna(0))
+        + _z(df["va_gpr"].clip(upper=10).fillna(0))
+        - _z((-df["max_drawdown"]).fillna(0))
+    )
     return df
 
 
@@ -362,7 +421,7 @@ def run(args) -> None:
         g = feats[feats["woy"] == target]
         if len(g) < args.min_years:
             continue
-        m = bucket_metrics(g)
+        m = bucket_metrics(g, asset_aggregates(feats))
         m["symbol"] = sym
         m["sector"] = sector_map.get(sym, "?")
         m["name"] = name_map.get(sym, sym)
@@ -410,12 +469,34 @@ def _report(df: pd.DataFrame, week: int, top: int) -> None:
                 f"{int(r['n']):>4}"
             )
 
-    print(f"\n###  S&P 400 MidCap — Week-of-Year {week} seasonal anomalies  ###")
+    def extended(title, t):
+        print(f"\n{'-'*116}\n{title} — extended measures\n{'-'*116}")
+        hdr = (f"{'Sym':<7}{'Sortino':>8}{'RobShrp':>8}{'t':>6}{'VCShrp':>7}{'TailR':>7}"
+               f"{'Skew':>6}{'RVolAnom':>9}{'VolAsym':>8}{'UpDnVol':>8}{'PrsCorr':>8}"
+               f"{'TrndCnt':>8}{'Reliab':>7}{'Compr':>7}")
+        print(hdr)
+        for _, r in t.iterrows():
+            def g(k):
+                return r[k] if pd.notna(r[k]) else float("nan")
+            print(
+                f"{r['symbol']:<7}{g('sortino'):>8.2f}{g('robust_sharpe'):>8.2f}{g('t_stat'):>6.2f}"
+                f"{g('vc_sharpe'):>7.2f}{g('tail_ratio'):>7.2f}{g('skew'):>6.2f}"
+                f"{g('realized_vol_anomaly'):>9.2f}{g('vol_asymmetry'):>8.2f}"
+                f"{min(g('up_down_vol_ratio'),10):>8.2f}{g('persistence_corr'):>8.2f}"
+                f"{g('trend_continuation_rate'):>8.2f}{g('reliability_score'):>7.2f}"
+                f"{g('compression_score'):>7.2f}"
+            )
+
+    print(f"\n###  Week-of-Year {week} seasonal anomalies  ###")
     print(f"###  {len(df)} names had >= min history this week.  "
-          f"Score = cross-sectional composite (tradable Sharpe + vol-adj gain/pain "
-          f"+ net accumulation + persistence + liquidity).")
+          f"Composite = 0.30 z(tradable Sharpe) + 0.25 z(VA gain/pain) + 0.20 z(net "
+          f"accumulation) + 0.15 z(persistence) + 0.10 z(liquidity).")
+    print("###  Full catalog (58 measures) in the CSV: return quality, payoff asymmetry, "
+          "volume confirmation, volatility state, liquidity, forward/persistence, reliability.")
     block(f"TOP {len(longs)} BULLISH seasonal anomalies (LONG)", longs)
+    extended("BULLISH", longs)
     block(f"TOP {len(shorts)} BEARISH seasonal anomalies (SHORT)", shorts)
+    extended("BEARISH", shorts)
 
 
 def parse_args():

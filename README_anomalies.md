@@ -8,17 +8,18 @@ favourable (or unfavourable) **tradable state** in this week-of-year?"*
 ## What it computes
 
 For every asset, weekly bars are grouped by **week-of-year** (one observation
-per year). For each bucket it computes:
+per year). For each bucket it computes the **full measure catalog** (58 columns
+in the CSV):
 
-| Category          | Metrics |
+| Category          | Measures |
 |-------------------|---------|
-| Return quality    | mean, median, Sharpe, Sortino, robust Sharpe (median/MAD), t-stat |
-| Payoff asymmetry  | gain-to-pain, tail ratio, skew, worst week |
-| Reliability       | win rate, sample size, sub-period sign stability |
-| Volume confirm    | return×volume_z, net accumulation/distribution, volume-adjusted gain-to-pain |
-| Volatility        | (via dispersion of bucket returns) |
-| Forward effect    | post-window 4-week drift (persistence) |
-| Liquidity         | median dollar volume + cross-sectional percentile |
+| Return quality    | mean, median, std, Sharpe, Sortino, robust Sharpe (median/MAD), t-stat, win rate, positive-median, downside deviation |
+| Payoff asymmetry  | gain-to-pain, tail ratio, expected-shortfall ratio, skew, kurtosis, worst, best, max drawdown |
+| Volume confirm    | rel-volume (in/out), vol-z mean, vol-elevated rate, return×vol, accumulation, distribution, net accumulation, VA gain-to-pain, volume-confirmed Sharpe, up/down-volume ratio, volume concentration |
+| Volatility state  | realized-vol anomaly, upside/downside vol, vol asymmetry, semivariance delta, cross-sectional compression score |
+| Liquidity         | median dollar volume, liquidity-adjusted return, cross-sectional percentile |
+| Forward / persist | forward 1/2/4/8-week drift, persistence correlation, trend-continuation rate |
+| Reliability       | sample size, sample-size penalty √(n/(n+20)), sub-period sign stability, reliability blend z(t)+z(win)+z(GPR)−z(maxDD) |
 
 Each bucket is penalised for small samples (`sqrt(n/(n+20))`) and for
 instability across sub-periods, then components are **z-scored
