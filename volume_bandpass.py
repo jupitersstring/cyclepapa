@@ -80,7 +80,8 @@ def ehlers_bandpass(src: np.ndarray, flen: int, slen: int) -> np.ndarray:
 # --------------------------------------------------------------------------- #
 def download_ohlcv(symbols: list[str], period: str, interval: str,
                    refresh: bool = False,
-                   seed: dict[str, pd.DataFrame] | None = None) -> dict[str, pd.DataFrame]:
+                   seed: dict[str, pd.DataFrame] | None = None,
+                   cached_only: bool = False) -> dict[str, pd.DataFrame]:
     import yfinance as yf
 
     os.makedirs(CACHE_DIR, exist_ok=True)
@@ -100,8 +101,11 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
             if s not in have and "Volume" in df:
                 have[s] = df[["Close", "Volume"]].copy()
 
-    todo = [s for s in symbols if s not in have]
-    print(f"[data:{interval}] cached {len(have)} | to fetch {len(todo)} / {len(symbols)}")
+    todo = [] if cached_only else [s for s in symbols if s not in have]
+    if cached_only:
+        print(f"[data:{interval}] cached-only: {len(have)} available")
+    else:
+        print(f"[data:{interval}] cached {len(have)} | to fetch {len(todo)} / {len(symbols)}")
 
     batch = 30
     for i in range(0, len(todo), batch):

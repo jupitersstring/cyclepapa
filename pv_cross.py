@@ -146,12 +146,14 @@ def run(args):
 
     results = []
     if not args.weekly_only:
-        d = download_ohlcv(symbols, period=args.daily_period, interval="1d", refresh=args.refresh)
+        d = download_ohlcv(symbols, period=args.daily_period, interval="1d",
+                           refresh=args.refresh, cached_only=args.cached_only)
         r = cross_timeframe(d, "daily", args.recent_daily, sectors, caps, args.top, args.band)
         if not r.empty:
             results.append(r)
     if not args.daily_only:
-        w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk", refresh=args.refresh)
+        w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk",
+                           refresh=args.refresh, cached_only=args.cached_only)
         r = cross_timeframe(w, "weekly", args.recent_weekly, sectors, caps, args.top, args.band)
         if not r.empty:
             results.append(r)
@@ -177,6 +179,8 @@ def parse_args():
     p.add_argument("--weekly-only", action="store_true")
     p.add_argument("--csv", default=None)
     p.add_argument("--refresh", action="store_true")
+    p.add_argument("--cached-only", action="store_true",
+                   help="use only already-cached data; do not download missing names")
     return p.parse_args()
 
 
