@@ -180,6 +180,7 @@ def analyse_series(vol: pd.Series, recent: int) -> list[dict]:
             "slope_z": float(slope_z),
             "fresh": bars_ago <= recent,
             "settled": n >= int(1.5 * slen),
+            "last_date": idx[-1],
             "n": n,
         })
     return rows
@@ -201,6 +202,17 @@ def scan_timeframe(frames: dict, label: str, recent: int,
     if out.empty:
         print(f"\n[{label}] no bands with sufficient history.")
         return out
+    # staleness guard: a crossing is only "current" if the series trades up to
+    # ~now. Delisted/acquired names end early, so their last bar looks 'fresh'
+    # even though it is weeks/months old. Drop them from the fresh signal set.
+    out["last_date"] = pd.to_datetime(out["last_date"])
+    asof = out["last_date"].max()
+    tol = pd.Timedelta(days=8 if label == "daily" else 12)
+    out["current"] = out["last_date"] >= (asof - tol)
+    stale = int((~out["current"]).sum())
+    out["fresh"] = out["fresh"] & out["current"]
+    print(f"\n[{label}] as-of {asof.date()}  (dropped {stale} stale/delisted rows "
+          f"older than {tol.days}d)")
     _report_tf(out, label, recent, top)
     return out
 
