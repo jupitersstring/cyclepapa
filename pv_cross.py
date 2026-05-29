@@ -79,7 +79,9 @@ def cross_timeframe(frames: dict, label: str, recent: int, sectors: dict,
         print(f"\n[{label}] no data.")
         return pd.DataFrame()
     asof = max(last_dates.values())
-    tol = pd.Timedelta(days=8 if label == "daily" else 12)
+    tol = {"daily": pd.Timedelta(days=8),
+           "weekly": pd.Timedelta(days=12),
+           "90m": pd.Timedelta(days=3)}.get(label, pd.Timedelta(days=8))
 
     rows = []
     for sym, df in frames.items():
@@ -139,19 +141,29 @@ def _report(df: pd.DataFrame, label: str, recent: int, top: int) -> None:
 
 # --------------------------------------------------------------------------- #
 def run(args):
+    if args.m90_only:
+        args.m90 = True
     uni = get_universe(limit=args.limit, source=args.universe)
     symbols = uni["symbol"].tolist()
     sectors = dict(zip(uni["symbol"], uni["sector"]))
     caps = dict(zip(uni["symbol"], uni.get("market_cap", pd.Series(index=uni.index, dtype=str))))
 
     results = []
-    if not args.weekly_only:
+    if args.m90:
+        # 90-minute intraday: Yahoo caps history at ~60 days (~260 bars), so only
+        # Band B1 (40/60) is feasible; longer bands lack the bars to settle.
+        h = download_ohlcv(symbols, period=args.m90_period, interval="90m",
+                           refresh=args.refresh, cached_only=args.cached_only)
+        r = cross_timeframe(h, "90m", args.recent_m90, sectors, caps, args.top, args.band)
+        if not r.empty:
+            results.append(r)
+    if not args.weekly_only and not args.m90_only:
         d = download_ohlcv(symbols, period=args.daily_period, interval="1d",
                            refresh=args.refresh, cached_only=args.cached_only)
         r = cross_timeframe(d, "daily", args.recent_daily, sectors, caps, args.top, args.band)
         if not r.empty:
             results.append(r)
-    if not args.daily_only:
+    if not args.daily_only and not args.m90_only:
         w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk",
                            refresh=args.refresh, cached_only=args.cached_only)
         r = cross_timeframe(w, "weekly", args.recent_weekly, sectors, caps, args.top, args.band)
@@ -173,6 +185,10 @@ def parse_args():
     p.add_argument("--weekly-period", default="20y")
     p.add_argument("--recent-daily", type=int, default=5)
     p.add_argument("--recent-weekly", type=int, default=2)
+    p.add_argument("--recent-m90", type=int, default=6, help="fresh window in 90m bars (~1.5 days)")
+    p.add_argument("--m90", action="store_true", help="include the 90-minute intraday timeframe")
+    p.add_argument("--m90-only", action="store_true", help="only the 90m timeframe")
+    p.add_argument("--m90-period", default="60d", help="history for 90m (Yahoo max ~60d)")
     p.add_argument("--band", default=None, help="restrict to a single band e.g. B1")
     p.add_argument("--top", type=int, default=20)
     p.add_argument("--daily-only", action="store_true")

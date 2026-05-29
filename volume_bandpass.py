@@ -211,7 +211,8 @@ def scan_timeframe(frames: dict, label: str, recent: int,
     # even though it is weeks/months old. Drop them from the fresh signal set.
     out["last_date"] = pd.to_datetime(out["last_date"])
     asof = out["last_date"].max()
-    tol = pd.Timedelta(days=8 if label == "daily" else 12)
+    tol = {"daily": pd.Timedelta(days=8), "weekly": pd.Timedelta(days=12),
+           "90m": pd.Timedelta(days=3)}.get(label, pd.Timedelta(days=8))
     out["current"] = out["last_date"] >= (asof - tol)
     stale = int((~out["current"]).sum())
     out["fresh"] = out["fresh"] & out["current"]
@@ -258,12 +259,19 @@ def run(args) -> None:
     symbols = uni["symbol"].tolist()
     sectors = dict(zip(uni["symbol"], uni["sector"]))
 
+    if args.m90_only:
+        args.m90 = True
     results = {}
-    if not args.weekly_only:
+    if args.m90:
+        # 90m intraday: Yahoo caps history ~60d (~260 bars) -> only Band B1 usable.
+        h = download_ohlcv(symbols, period=args.m90_period, interval="90m",
+                           refresh=args.refresh)
+        results["90m"] = scan_timeframe(h, "90m", args.recent_m90, sectors, args.top)
+    if not args.weekly_only and not args.m90_only:
         d = download_ohlcv(symbols, period=args.daily_period, interval="1d",
                            refresh=args.refresh)
         results["daily"] = scan_timeframe(d, "daily", args.recent_daily, sectors, args.top)
-    if not args.daily_only:
+    if not args.daily_only and not args.m90_only:
         # weekly shares the accumulating cache with the seasonal scanner
         # (ohlcvdict_1wk_<period>.pkl), so coverage is reused across both tools.
         w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk",
@@ -290,9 +298,13 @@ def parse_args():
     p.add_argument("--weekly-period", default="20y")
     p.add_argument("--recent-daily", type=int, default=5, help="bars to count as 'fresh' (daily)")
     p.add_argument("--recent-weekly", type=int, default=2, help="bars to count as 'fresh' (weekly)")
+    p.add_argument("--recent-m90", type=int, default=6, help="fresh window in 90m bars")
+    p.add_argument("--m90-period", default="60d", help="history for 90m (Yahoo max ~60d)")
     p.add_argument("--top", type=int, default=20)
     p.add_argument("--daily-only", action="store_true")
     p.add_argument("--weekly-only", action="store_true")
+    p.add_argument("--m90", action="store_true", help="include the 90-minute timeframe")
+    p.add_argument("--m90-only", action="store_true", help="only the 90m timeframe")
     p.add_argument("--csv", default=None)
     p.add_argument("--refresh", action="store_true")
     return p.parse_args()
