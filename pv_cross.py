@@ -83,9 +83,12 @@ def cross_timeframe(frames: dict, label: str, recent: int, sectors: dict,
            "weekly": pd.Timedelta(days=12),
            "90m": pd.Timedelta(days=3)}.get(label, pd.Timedelta(days=8))
 
+    intraday = label.endswith("m") or label.endswith("h")
     rows = []
     for sym, df in frames.items():
         d = df.dropna()
+        if intraday and len(d) > 1:
+            d = d.iloc[:-1]  # drop the current, possibly-incomplete intraday bar
         if len(d) < 60 or last_dates.get(sym) < (asof - tol):
             continue  # stale / delisted
         close = d["Close"].astype(float).to_numpy()

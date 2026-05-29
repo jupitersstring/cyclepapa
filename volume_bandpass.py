@@ -195,9 +195,13 @@ def analyse_series(vol: pd.Series, recent: int) -> list[dict]:
 # --------------------------------------------------------------------------- #
 def scan_timeframe(frames: dict, label: str, recent: int,
                    sectors: dict, top: int) -> pd.DataFrame:
+    intraday = label.endswith("m") or label.endswith("h")
     rows = []
     for sym, df in frames.items():
-        for r in analyse_series(df["Volume"], recent):
+        vol = df["Volume"]
+        if intraday and len(vol.dropna()) > 1:
+            vol = vol.dropna().iloc[:-1]  # drop current incomplete intraday bar
+        for r in analyse_series(vol, recent):
             r["symbol"] = sym
             r["sector"] = sectors.get(sym, "?")
             r["tf"] = label
