@@ -41,7 +41,7 @@ import warnings
 import numpy as np
 import pandas as pd
 
-from midcap_weekly_anomalies import get_universe, CACHE_DIR  # reuse universe
+from midcap_weekly_anomalies import get_universe, CACHE_DIR, CAP_SOURCES  # reuse universe
 
 warnings.filterwarnings("ignore")
 
@@ -260,20 +260,10 @@ def run(args) -> None:
                            refresh=args.refresh)
         results["daily"] = scan_timeframe(d, "daily", args.recent_daily, sectors, args.top)
     if not args.daily_only:
-        # seed weekly from the seasonal scan's weekly cache (has Close+Volume for
-        # ~all names already), so we avoid re-downloading the whole universe.
-        seed = None
-        seas_cache = os.path.join(CACHE_DIR, f"weekly_{args.weekly_period.rstrip('y')}y_{len(symbols)}.pkl")
-        if os.path.exists(seas_cache):
-            try:
-                panel = pd.read_pickle(seas_cache)
-                seed = {s: panel[s].dropna(how="all")
-                        for s in panel.columns.get_level_values(0).unique()}
-                print(f"[data:1wk] seeding from seasonal cache ({len(seed)} names)")
-            except Exception as e:
-                print(f"[data:1wk] seed failed: {e!r}")
+        # weekly shares the accumulating cache with the seasonal scanner
+        # (ohlcvdict_1wk_<period>.pkl), so coverage is reused across both tools.
         w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk",
-                           refresh=args.refresh, seed=seed)
+                           refresh=args.refresh)
         results["weekly"] = scan_timeframe(w, "weekly", args.recent_weekly, sectors, args.top)
 
     if args.csv:
@@ -288,8 +278,9 @@ def run(args) -> None:
 
 def parse_args():
     p = argparse.ArgumentParser(description="Volume bandpass inflection scanner (S&P MidCap 400)")
-    p.add_argument("--universe", choices=["sp400", "us-midcap"], default="sp400",
-                   help="sp400 = S&P 400; us-midcap = all US Mid Caps (financedatabase)")
+    p.add_argument("--universe", choices=["sp400", *CAP_SOURCES.keys()], default="sp400",
+                   help="sp400 = S&P 400; us-<bucket> = financedatabase market-cap "
+                        "buckets (us-midcap, us-smallcap, us-microcap, us-smallmicro, ...)")
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--daily-period", default="20y")
     p.add_argument("--weekly-period", default="20y")

@@ -58,23 +58,39 @@ US_EXCH = {"NYQ", "NMS", "NGM", "NCM", "ASE"}  # NYSE, Nasdaq GS/GM/CM, NYSE Ame
 _TICKER_RE = __import__("re").compile(r"^[A-Z]{1,5}(-[A-Z])?$")
 
 
-def get_us_midcap_universe(limit: int | None = None) -> pd.DataFrame:
-    """All US-listed Mid Cap equities via financedatabase (primary US exchanges,
-    USD, clean tickers). Falls back to the S&P 400 if financedatabase is absent."""
+# map of --universe source -> financedatabase market_cap bucket(s)
+CAP_SOURCES = {
+    "us-megacap": ["Mega Cap"],
+    "us-largecap": ["Large Cap"],
+    "us-midcap": ["Mid Cap"],
+    "us-smallcap": ["Small Cap"],
+    "us-microcap": ["Micro Cap"],
+    "us-nanocap": ["Nano Cap"],
+    "us-smallmicro": ["Small Cap", "Micro Cap"],
+    "us-allcap": ["Mega Cap", "Large Cap", "Mid Cap", "Small Cap", "Micro Cap"],
+}
+
+
+def get_us_universe(caps: list[str], limit: int | None = None) -> pd.DataFrame:
+    """US-listed equities in the given financedatabase market_cap bucket(s),
+    filtered to primary US exchanges, USD and clean tickers. Falls back to the
+    S&P 400 if financedatabase is absent."""
     try:
         import financedatabase as fd
 
         df = fd.Equities().select(country="United States")
-        mid = df[df["market_cap"] == "Mid Cap"].copy()
-        mid = mid[mid["exchange"].isin(US_EXCH) & (mid["currency"] == "USD")]
-        mid = mid[[bool(_TICKER_RE.match(str(t))) for t in mid.index]]
-        mid = mid[~mid.index.duplicated()]
+        sel = df[df["market_cap"].isin(caps)].copy()
+        sel = sel[sel["exchange"].isin(US_EXCH) & (sel["currency"] == "USD")]
+        sel = sel[[bool(_TICKER_RE.match(str(t))) for t in sel.index]]
+        sel = sel[~sel.index.duplicated()]
         out = pd.DataFrame({
-            "symbol": [str(t).replace(".", "-") for t in mid.index],
-            "security": mid["name"].fillna(mid.index.to_series()).astype(str).values,
-            "sector": mid["sector"].fillna("Unknown").astype(str).values,
+            "symbol": [str(t).replace(".", "-") for t in sel.index],
+            "security": sel["name"].fillna(sel.index.to_series()).astype(str).values,
+            "sector": sel["sector"].fillna("Unknown").astype(str).values,
+            "market_cap": sel["market_cap"].astype(str).values,
         }).reset_index(drop=True)
-        print(f"[universe] {len(out)} US Mid Cap equities from financedatabase")
+        print(f"[universe] {len(out)} US equities from financedatabase "
+              f"({'+'.join(caps)})")
     except Exception as e:  # pragma: no cover
         print(f"[universe] financedatabase unavailable ({e!r}); using S&P 400")
         return get_universe(limit=limit)
@@ -86,11 +102,11 @@ def get_us_midcap_universe(limit: int | None = None) -> pd.DataFrame:
 def get_universe(limit: int | None = None, source: str = "sp400") -> pd.DataFrame:
     """Return DataFrame[symbol, security, sector].
 
-    source="sp400"     -> S&P 400 MidCap (Wikipedia)
-    source="us-midcap" -> all US Mid Cap equities (financedatabase)
+    source="sp400"        -> S&P 400 MidCap (Wikipedia)
+    source="us-<bucket>"  -> financedatabase market-cap bucket(s); see CAP_SOURCES
     """
-    if source == "us-midcap":
-        return get_us_midcap_universe(limit=limit)
+    if source in CAP_SOURCES:
+        return get_us_universe(CAP_SOURCES[source], limit=limit)
     try:
         r = requests.get(WIKI_URL, headers=UA, timeout=30)
         r.raise_for_status()
@@ -124,24 +140,32 @@ _FALLBACK = [
 # Data download (yfinance) with on-disk cache
 # --------------------------------------------------------------------------- #
 def download_weekly(symbols: list[str], years: int, refresh: bool = False) -> dict[str, pd.DataFrame]:
-    """Download weekly OHLCV for symbols, caching the combined frame to parquet."""
+    """Download weekly Close+Volume for symbols. Uses a shared, incremental,
+    per-symbol dict cache (same file the volume scanner uses) that checkpoints
+    after every batch, so repeated runs ACCUMULATE coverage despite Yahoo's
+    aggressive rate limiting on large universes. (build_features only needs
+    Close and Volume.)"""
     import yfinance as yf
 
     os.makedirs(CACHE_DIR, exist_ok=True)
-    cache = os.path.join(CACHE_DIR, f"weekly_{years}y_{len(symbols)}.pkl")
+    cache = os.path.join(CACHE_DIR, f"ohlcvdict_1wk_{years}y.pkl")
+    have: dict[str, pd.DataFrame] = {}
     if os.path.exists(cache) and not refresh:
-        age_h = (time.time() - os.path.getmtime(cache)) / 3600
-        if age_h < 24 * 7:
-            print(f"[data] using cache {os.path.basename(cache)} ({age_h:.1f}h old)")
-            raw = pd.read_pickle(cache)
-            return _split_panel(raw)
+        try:
+            have = pd.read_pickle(cache)
+        except Exception:
+            have = {}
+
+    todo = [s for s in symbols if s not in have]
+    print(f"[data] weekly cache {len(have)} | to fetch {len(todo)} / {len(symbols)}")
 
     period = f"{years}y"
-    frames = {}
-    batch = 40
-    for i in range(0, len(symbols), batch):
-        chunk = symbols[i : i + batch]
-        print(f"[data] downloading {i + 1}-{i + len(chunk)} / {len(symbols)} ...")
+    batch = 30
+    for i in range(0, len(todo), batch):
+        chunk = todo[i : i + batch]
+        print(f"[data] fetch {i + 1}-{i + len(chunk)} / {len(todo)} ...")
+        if i > 0:
+            time.sleep(2.0)
         try:
             data = yf.download(
                 chunk, period=period, interval="1wk",
@@ -154,30 +178,17 @@ def download_weekly(symbols: list[str], years: int, refresh: bool = False) -> di
             try:
                 sub = data[sym] if len(chunk) > 1 else data
                 sub = sub.dropna(how="all")
-                if sub is not None and len(sub) > 52:
-                    frames[sym] = sub[["Close", "High", "Low", "Open", "Volume"]].copy()
+                if sub is not None and "Volume" in sub and len(sub) > 52:
+                    have[sym] = sub[["Close", "Volume"]].copy()
             except Exception:
                 continue
-
-    if frames:
-        panel = pd.concat(frames, axis=1)
-        panel.columns = pd.MultiIndex.from_tuples(
-            [(s, f) for s, f in panel.columns], names=["symbol", "field"]
-        )
         try:
-            panel.to_pickle(cache)
+            pd.to_pickle(have, cache)
         except Exception as e:
             print(f"[data] cache write skipped: {e!r}")
-    print(f"[data] usable price histories: {len(frames)} / {len(symbols)}")
-    return frames
 
-
-def _split_panel(panel: pd.DataFrame) -> dict[str, pd.DataFrame]:
-    out = {}
-    for sym in panel.columns.get_level_values(0).unique():
-        sub = panel[sym].dropna(how="all")
-        if len(sub) > 52:
-            out[sym] = sub
+    out = {s: have[s] for s in symbols if s in have and len(have[s]) > 52}
+    print(f"[data] usable price histories: {len(out)} / {len(symbols)}")
     return out
 
 
@@ -409,8 +420,10 @@ def _report(df: pd.DataFrame, week: int, top: int) -> None:
 
 def parse_args():
     p = argparse.ArgumentParser(description="S&P MidCap 400 weekly seasonal anomaly scanner")
-    p.add_argument("--universe", choices=["sp400", "us-midcap"], default="sp400",
-                   help="sp400 = S&P 400 (Wikipedia); us-midcap = all US Mid Caps (financedatabase)")
+    p.add_argument("--universe", choices=["sp400", *CAP_SOURCES.keys()], default="sp400",
+                   help="sp400 = S&P 400 (Wikipedia); us-<bucket> = financedatabase "
+                        "market-cap buckets (e.g. us-midcap, us-smallcap, us-microcap, "
+                        "us-smallmicro, us-allcap)")
     p.add_argument("--limit", type=int, default=None, help="cap universe size (testing)")
     p.add_argument("--years", type=int, default=20, help="years of weekly history")
     p.add_argument("--target-week", type=int, default=None, help="ISO week-of-year to scan")
