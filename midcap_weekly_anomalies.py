@@ -54,8 +54,43 @@ SAMPLE_K = 20.0  # shrinkage constant for the sample-size penalty
 # --------------------------------------------------------------------------- #
 # Universe
 # --------------------------------------------------------------------------- #
-def get_universe(limit: int | None = None) -> pd.DataFrame:
-    """Return DataFrame[symbol, security, sector] of S&P 400 MidCap names."""
+US_EXCH = {"NYQ", "NMS", "NGM", "NCM", "ASE"}  # NYSE, Nasdaq GS/GM/CM, NYSE American
+_TICKER_RE = __import__("re").compile(r"^[A-Z]{1,5}(-[A-Z])?$")
+
+
+def get_us_midcap_universe(limit: int | None = None) -> pd.DataFrame:
+    """All US-listed Mid Cap equities via financedatabase (primary US exchanges,
+    USD, clean tickers). Falls back to the S&P 400 if financedatabase is absent."""
+    try:
+        import financedatabase as fd
+
+        df = fd.Equities().select(country="United States")
+        mid = df[df["market_cap"] == "Mid Cap"].copy()
+        mid = mid[mid["exchange"].isin(US_EXCH) & (mid["currency"] == "USD")]
+        mid = mid[[bool(_TICKER_RE.match(str(t))) for t in mid.index]]
+        mid = mid[~mid.index.duplicated()]
+        out = pd.DataFrame({
+            "symbol": [str(t).replace(".", "-") for t in mid.index],
+            "security": mid["name"].fillna(mid.index.to_series()).astype(str).values,
+            "sector": mid["sector"].fillna("Unknown").astype(str).values,
+        }).reset_index(drop=True)
+        print(f"[universe] {len(out)} US Mid Cap equities from financedatabase")
+    except Exception as e:  # pragma: no cover
+        print(f"[universe] financedatabase unavailable ({e!r}); using S&P 400")
+        return get_universe(limit=limit)
+    if limit:
+        out = out.head(limit).reset_index(drop=True)
+    return out
+
+
+def get_universe(limit: int | None = None, source: str = "sp400") -> pd.DataFrame:
+    """Return DataFrame[symbol, security, sector].
+
+    source="sp400"     -> S&P 400 MidCap (Wikipedia)
+    source="us-midcap" -> all US Mid Cap equities (financedatabase)
+    """
+    if source == "us-midcap":
+        return get_us_midcap_universe(limit=limit)
     try:
         r = requests.get(WIKI_URL, headers=UA, timeout=30)
         r.raise_for_status()
@@ -296,7 +331,7 @@ def score_table(rows: list[dict]) -> pd.DataFrame:
 # Pipeline
 # --------------------------------------------------------------------------- #
 def run(args) -> None:
-    universe = get_universe(limit=args.limit)
+    universe = get_universe(limit=args.limit, source=args.universe)
     symbols = universe["symbol"].tolist()
     sector_map = dict(zip(universe["symbol"], universe["sector"]))
     name_map = dict(zip(universe["symbol"], universe["security"]))
@@ -374,6 +409,8 @@ def _report(df: pd.DataFrame, week: int, top: int) -> None:
 
 def parse_args():
     p = argparse.ArgumentParser(description="S&P MidCap 400 weekly seasonal anomaly scanner")
+    p.add_argument("--universe", choices=["sp400", "us-midcap"], default="sp400",
+                   help="sp400 = S&P 400 (Wikipedia); us-midcap = all US Mid Caps (financedatabase)")
     p.add_argument("--limit", type=int, default=None, help="cap universe size (testing)")
     p.add_argument("--years", type=int, default=20, help="years of weekly history")
     p.add_argument("--target-week", type=int, default=None, help="ISO week-of-year to scan")

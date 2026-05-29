@@ -235,7 +235,7 @@ def _block(title: str, t: pd.DataFrame) -> None:
 
 
 def run(args) -> None:
-    uni = get_universe(limit=args.limit)
+    uni = get_universe(limit=args.limit, source=args.universe)
     symbols = uni["symbol"].tolist()
     sectors = dict(zip(uni["symbol"], uni["sector"]))
 
@@ -257,6 +257,8 @@ def run(args) -> None:
 
 def parse_args():
     p = argparse.ArgumentParser(description="Volume bandpass inflection scanner (S&P MidCap 400)")
+    p.add_argument("--universe", choices=["sp400", "us-midcap"], default="sp400",
+                   help="sp400 = S&P 400; us-midcap = all US Mid Caps (financedatabase)")
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--daily-period", default="20y")
     p.add_argument("--weekly-period", default="20y")
