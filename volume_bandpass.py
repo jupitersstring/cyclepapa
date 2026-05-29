@@ -95,6 +95,8 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
     for i in range(0, len(symbols), batch):
         chunk = symbols[i:i + batch]
         print(f"[data:{interval}] {i + 1}-{i + len(chunk)} / {len(symbols)} ...")
+        if i > 0:
+            time.sleep(1.5)  # ease Yahoo rate limiting on large universes
         try:
             data = yf.download(chunk, period=period, interval=interval,
                                auto_adjust=True, progress=False, threads=True,
