@@ -103,7 +103,7 @@ def compose_thesis(row) -> str:
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--per-country-n', type=int, default=15)
+    p.add_argument('--per-country-n', type=int, default=30)
     p.add_argument('--top-master', type=int, default=200)
     p.add_argument('--out', default='asymmetry_country_workbook.xlsx')
     p.add_argument('--min-mcap', type=float, default=10_000_000)
