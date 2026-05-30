@@ -1,0 +1,27 @@
+region,verdict,symbol,name,country,sector,asym_score,why
+NorthAmerica,GREEN,ACTG,Acacia Research Corporation,US,Industrials,0.648,Activist-controlled (Starboard 11.5%); $14M Q3'24 buyback; cash > EV 1.60x; no debt; clean disciplined allocator
+NorthAmerica,GREEN,UNTC,Unit Corporation,US,Energy,0.561,Post-CH11 clean cap table; sold Drilling segment for $119.7M (NOL-shielded); $82.8M buyback + $1.25/qtr dividend; cash > EV 1.16x
+NorthAmerica,GREEN,FNC.V,Fancamp Exploration,CA,Materials,0.575,Active reorg to crystallise NAV (Goldera spinout May 2026); credible new board member; 25% insider; royalty income
+EU_Core,GREEN,MBB.DE,MBB SE,DE,Industrials,0.509,Founder-aligned (Nesemeier/Freimuth 71%); 15yrs rising base dividend; EUR22m buyback at floor EUR222; cash > EV at holdco
+EU_Core,GREEN,NTBR.L,Northern Bear PLC,UK,Industrials,0.559,Strong FY25 (+14% rev, swung to net cash GBP2.5m); 2.5p ordinary + 1p special dividend; 44% insider
+EU_Core,GREEN,CRL.L,Creightons Plc,UK,Consumer Staples,0.501,Turnaround inflection (PAT GBP2.5m vs -GBP3.5m); Berezin classic firing; 36% insider; conservative cap allocation
+EU_Core,GREEN,HCO.PA,High Co. SA,FR,Communication Services,0.560,Consistent semi-annual dividend EUR0.50/yr; bolt-on M&A discipline; cash > EV; founder-related 57% insider
+EU_Core,GREEN,ALWEC.PA,We.Connect SA,FR,Information Technology,0.565,Hertzog family 72%; FY25 rev EUR451m (+50%); executing growth-flip cleanly; clean acquirer track record
+EU_Nordic,GREEN,FPIP.ST,Formpipe Software AB,SE,Information Technology,0.546,Divesting Public Sector for up to SEK 850M; active buyback + redemption program; rebranding to Lasernet Group
+EU_Nordic,GREEN,GSF.OL,Grieg Seafood ASA,NO,Consumer Staples,0.580,Cermaq sale NOK 10.2bn unlocking value; Grieg family 41% controlled; large distribution capacity post-deal
+EU_Nordic,GREEN,CNCJO-B.ST,Concejo AB,SE,Financials,0.496,Rosenblad/Platanen 52.7% cap / 72.2% votes; post-2020 sale holdco; P/B 0.73; private portfolio includes real assets
+EU_Nordic,GREEN,REKA.HE,Reka Industrial Oyj,FI,Industrials,0.593,Rentto family ~85% voting; post-Nexans-sale clean balance sheet; 1898-founded heritage
+EU_Periphery,GREEN,ENO.MC,Elecnor SA,ES,Industrials,0.498,Cantiles XXI family syndicate 55%; EUR805m dividend post-Enerfin sale; best-in-class cap allocator on the list
+EU_Periphery,GREEN,KARE.AT,Karelia Tobacco Company,GR,Consumer Staples,0.506,Karelias family 94% (century-old); no debt; ~35% payout policy; fortress balance sheet; cash > EV
+EU_Periphery,GREEN,SAF1R.RG,SAF Tehnika AS,LV,Information Technology,0.542,Founder-led; 57% insider; documented special dividend track record; no Russia exposure
+EU_Periphery,GREEN,ALNT.MC,Alantra Partners SA,ES,Financials,0.462,Founder partners 53%; sticky AUM; EUR0.50 dividend + historical specials; M&A cycle-trough entry
+Asia_Developed,GREEN,7722.T,Kokusai Co. Ltd.,JP,Industrials,0.692,Japan TSE PBR<1 reform tailwind; 4.25% dividend yield; 47% insider founder/family; cash > EV
+Asia_Developed,GREEN,052330.KQ,Kortek Corporation,KR,Information Technology,0.639,Earnings +244% YoY; pays dividend ~2.7% + active 421k-share buyback citing 'shareholder value'; Korea Value-Up beneficiary
+Asia_Developed,GREEN,0057.HK,Chen Hsong Holdings,HK,Industrials,0.645,72% held by Chiang Chen Industrial Charity Foundation (not personal vehicle - reduced tunneling); ~7.3% yield; buybacks; EV plastics tailwind
+Asia_Emerging,GREEN,TCID.JK,PT Mandom Indonesia,ID,Consumer Staples,0.577,Japanese parent Mandom Corp 60%; 99.93% payout culture; Gatsby/Pixy brands real category leadership; 3-5% yield
+Asia_Emerging,GREEN,METCO.BK,Muramoto Electron Thailand,TH,Information Technology,0.657,Japanese parent Muramoto 80%; ~3.6-4.6% yield; 56% payout; 10yr dividend growth; squeeze-out is upside
+Asia_Emerging,GREEN,METCO-R.BK,Muramoto Electron Thailand NVDR,TH,Information Technology,0.603,Same as METCO.BK - foreign-investor wrapper; use this if you can't get the ordinary
+Asia_Emerging,GREEN,MANALIPETC.NS,Manali Petrochemicals,IN,Materials,0.597,Only Indian PO producer (monopolistic niche); no promoter pledging; quarterly dividends 1.3-2.5%; AM Group taint = why it's cheap
+LatAm,GREEN,MTSA4,Metisa Metalurgica Timboense,BR,Industrials,0.461,Bona/Bauer family-run since 1942; consistent JCP + dividends (R$1.10 + R$1.68); buybacks announced; no governance scandals
+LatAm,GREEN,BGIP4,Banese Banco do Estado de Sergipe pref,BR,Financials,0.442,State of Sergipe 83% control; preferred captures the dividend (R$0.86 Q4 2025 alone); high ROE regional monopoly
+MEA,GREEN,KRONT.IS,Kron Telekomunikasyon,TR,Information Technology,0.501,Cleanest Turkish small-cap; founder-led ~33%; PAM/cybersecurity software with hard-currency export optionality
