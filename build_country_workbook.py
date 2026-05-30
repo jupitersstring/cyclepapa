@@ -76,6 +76,36 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     df['qual_multiplier'] = df['verdict'].map(mult).fillna(1.0)
     df['adj_asymmetry'] = df['asymmetry_score'] * df['qual_multiplier']
     df['adj_upside']    = df['upside_score']    * df['qual_multiplier']
+
+    # ----- Entry-today asymmetry -----
+    # Discount the upside leg by how much the stock has already run in the
+    # last 12 months. A name up +200% has used most of its asymmetry; a
+    # name flat or down preserves full upside. Downside floor is unchanged
+    # (cash > EV today is still cash > EV).
+    #
+    #   momentum_discount = 1 / (1 + max(0, momentum_12m))
+    #   mom = 0     -> discount = 1.00  (full upside preserved)
+    #   mom = +0.5  -> discount = 0.67
+    #   mom = +1.0  -> discount = 0.50
+    #   mom = +2.0  -> discount = 0.33  (most asymmetry already priced in)
+    #   mom = -0.5  -> discount = 1.00  (down moves do not penalise entry)
+    if 'momentum_12m' in df.columns:
+        mom = df['momentum_12m'].fillna(0)
+        df['momentum_discount'] = 1.0 / (1.0 + mom.clip(lower=0))
+    else:
+        df['momentum_discount'] = 1.0
+
+    # 'Remaining' upside is the part not yet priced in
+    df['remaining_upside'] = df['upside_score'] * df['momentum_discount']
+
+    # Entry-today asymmetry = sqrt(remaining_upside x downside_floor) x qual
+    df['entry_today_asymmetry'] = (
+        np.sqrt(df['remaining_upside'].clip(0, 1) * df['downside_floor_score'].clip(0, 1))
+        * df['qual_multiplier']
+    )
+    # Entry-today upside = upside discounted for run-up, with qual amend
+    df['entry_today_upside'] = df['remaining_upside'] * df['qual_multiplier']
+
     return df
 
 
@@ -130,14 +160,21 @@ def main():
 
     df = df[df['market_cap'].fillna(0) >= args.min_mcap]
 
-    # Master by Asymmetry (qualitatively-amended)
-    master_asym = df.sort_values('adj_asymmetry', ascending=False).head(args.top_master).copy()
-    # Master by Upside (qualitatively-amended)
-    master_upside = df.sort_values('adj_upside', ascending=False).head(args.top_master).copy()
+    # Master rankings - 4 versions:
+    #   1. By raw qualitatively-amended asymmetry (full upside)
+    #   2. By raw qualitatively-amended upside    (full upside)
+    #   3. By ENTRY-TODAY asymmetry  (upside discounted by 12m run-up)
+    #   4. By ENTRY-TODAY upside     (upside discounted by 12m run-up)
+    master_asym       = df.sort_values('adj_asymmetry', ascending=False).head(args.top_master).copy()
+    master_upside     = df.sort_values('adj_upside', ascending=False).head(args.top_master).copy()
+    master_entry_asym = df.sort_values('entry_today_asymmetry', ascending=False).head(args.top_master).copy()
+    master_entry_ups  = df.sort_values('entry_today_upside', ascending=False).head(args.top_master).copy()
 
     master_cols = [
         'symbol','name','src','sector','market_cap_bucket','market_cap',
-        'verdict','adj_asymmetry','asymmetry_score','adj_upside','upside_score',
+        'verdict',
+        'entry_today_asymmetry','entry_today_upside','momentum_12m','momentum_discount',
+        'adj_asymmetry','asymmetry_score','adj_upside','upside_score',
         'downside_floor_score','cluster_n','yartseva_score','berezin_score',
         'pb','insider_ownership_pct','cash_gt_ev_flag','graham_net_net_flag',
         'full_thesis','thesis',
@@ -145,13 +182,19 @@ def main():
     master_cols = [c for c in master_cols if c in df.columns]
 
     with pd.ExcelWriter(args.out, engine='openpyxl') as xl:
+        # Entry-today views first (the more honest "buying today" lists)
+        master_entry_asym[master_cols].to_excel(xl, sheet_name='Master_EntryToday_Asymmetry', index=False)
+        master_entry_ups[master_cols].to_excel(xl,  sheet_name='Master_EntryToday_Upside', index=False)
+        # Then the raw (full-asymmetry-cycle) views
         master_asym[master_cols].to_excel(xl, sheet_name='Master_By_Asymmetry', index=False)
         master_upside[master_cols].to_excel(xl, sheet_name='Master_By_Upside', index=False)
 
         # Per-country sheets, sorted by adj_asymmetry within country
         per_country_cols = [
             'symbol','name','sector','market_cap_bucket','market_cap',
-            'verdict','adj_asymmetry','adj_upside','asymmetry_score','upside_score',
+            'verdict',
+            'entry_today_asymmetry','entry_today_upside','momentum_12m','momentum_discount',
+            'adj_asymmetry','adj_upside','asymmetry_score','upside_score',
             'cluster_n','yartseva_score','berezin_score',
             'pb','insider_ownership_pct',
             'cash_gt_ev_flag','graham_net_net_flag','full_thesis','thesis',
@@ -170,7 +213,9 @@ def main():
         }
         # Order by number of survivors per country
         for ctry, _ in df['src'].value_counts().items():
-            sub = df[df['src'] == ctry].sort_values('adj_asymmetry', ascending=False).head(args.per_country_n)
+            # Sort per-country sheets by ENTRY-TODAY asymmetry (the relevant
+            # ranking for a buyer entering today)
+            sub = df[df['src'] == ctry].sort_values('entry_today_asymmetry', ascending=False).head(args.per_country_n)
             if len(sub) == 0:
                 continue
             name = country_names.get(ctry, ctry)
