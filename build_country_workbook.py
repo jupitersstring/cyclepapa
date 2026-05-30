@@ -31,6 +31,33 @@ import numpy as np
 
 def load_quant(p: str = 'asymmetry_global.csv') -> pd.DataFrame:
     df = pd.read_csv(p).drop_duplicates('symbol').sort_values('asymmetry_score', ascending=False)
+
+    # Merge in the framework's intrinsic-value-discount measures from the
+    # per-country yartseva snapshots (these fields exist on the raw scans
+    # but were not propagated into asymmetry_global.csv).
+    extra_cols = [
+        'symbol','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+        'not_priced_in_score','revenue_ttm','balance_sheet_date',
+    ]
+    import glob, os
+    yartseva_csvs = sorted(set(
+        glob.glob('*_yartseva.csv')
+        + glob.glob('us_nano_micro_small_yartseva.csv')
+        + glob.glob('italian_yartseva.csv')
+    ))
+    extra_frames = []
+    for f in yartseva_csvs:
+        try:
+            d = pd.read_csv(f, usecols=lambda c: c in extra_cols)
+        except Exception:
+            continue
+        if 'symbol' in d.columns:
+            extra_frames.append(d)
+    if extra_frames:
+        extra = pd.concat(extra_frames, ignore_index=True).drop_duplicates('symbol', keep='first')
+        # Avoid clobbering existing columns from asymmetry_global
+        merge_cols = ['symbol'] + [c for c in extra.columns if c != 'symbol' and c not in df.columns]
+        df = df.merge(extra[merge_cols], on='symbol', how='left')
     return df
 
 
@@ -77,34 +104,48 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     df['adj_asymmetry'] = df['asymmetry_score'] * df['qual_multiplier']
     df['adj_upside']    = df['upside_score']    * df['qual_multiplier']
 
-    # ----- Entry-today asymmetry -----
-    # Discount the upside leg by how much the stock has already run in the
-    # last 12 months. A name up +200% has used most of its asymmetry; a
-    # name flat or down preserves full upside. Downside floor is unchanged
-    # (cash > EV today is still cash > EV).
+    # ----- Discount to intrinsic value (entry-today lens) -----
+    # Built from the framework's existing measures of how cheap the stock
+    # is RIGHT NOW vs intrinsic value (book / NCAV / net cash / EV multiples
+    # / not-priced-in). Higher = bigger margin of safety on entry today.
     #
-    #   momentum_discount = 1 / (1 + max(0, momentum_12m))
-    #   mom = 0     -> discount = 1.00  (full upside preserved)
-    #   mom = +0.5  -> discount = 0.67
-    #   mom = +1.0  -> discount = 0.50
-    #   mom = +2.0  -> discount = 0.33  (most asymmetry already priced in)
-    #   mom = -0.5  -> discount = 1.00  (down moves do not penalise entry)
-    if 'momentum_12m' in df.columns:
-        mom = df['momentum_12m'].fillna(0)
-        df['momentum_discount'] = 1.0 / (1.0 + mom.clip(lower=0))
-    else:
-        df['momentum_discount'] = 1.0
+    #   30% net cash / mcap          (cash above debt as % of mcap, capped 0..1)
+    #   20% NCAV / mcap              (Graham working-capital cushion, capped 0..1)
+    #   20% (1 - pb)                 (sub-book bonus when pb < 1)
+    #   15% cash > EV strength       (cash_pct_ev - 1 mapped to 0..1, cap at 3x)
+    #   15% not_priced_in_score      (fundamentals running ahead of price)
+    def _series(col, default=0.0):
+        if col in df.columns:
+            return df[col].fillna(default)
+        return pd.Series(default, index=df.index)
 
-    # 'Remaining' upside is the part not yet priced in
-    df['remaining_upside'] = df['upside_score'] * df['momentum_discount']
+    def clip01(s):
+        return s.clip(0, 1).fillna(0)
 
-    # Entry-today asymmetry = sqrt(remaining_upside x downside_floor) x qual
-    df['entry_today_asymmetry'] = (
-        np.sqrt(df['remaining_upside'].clip(0, 1) * df['downside_floor_score'].clip(0, 1))
-        * df['qual_multiplier']
+    nc_pct  = clip01(_series('net_cash_pct_mcap'))
+    ncav    = clip01(_series('ncav_pct_mcap'))
+    sub_book = clip01(1.0 - _series('pb', 2.0).clip(lower=0.01))
+    cash_ev_strength = clip01(
+        (_series('cash_pct_ev') - 1.0).clip(0, 2) / 2.0
     )
-    # Entry-today upside = upside discounted for run-up, with qual amend
-    df['entry_today_upside'] = df['remaining_upside'] * df['qual_multiplier']
+    not_priced = clip01(_series('not_priced_in_score'))
+
+    df['intrinsic_discount'] = (
+        0.30 * nc_pct
+        + 0.20 * ncav
+        + 0.20 * sub_book
+        + 0.15 * cash_ev_strength
+        + 0.15 * not_priced
+    )
+
+    # Entry-today asymmetry = the existing asymmetry score scaled by the
+    # depth of discount-to-intrinsic-value, then qualitatively amended.
+    # The boost factor sits in roughly [0.5, 1.5] so a name with strong
+    # framework-measured discount gets a meaningful lift, weak ones get a
+    # haircut, but neither dominates the existing quant ranking.
+    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
+    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_multiplier']
+    df['entry_today_upside']    = df['upside_score']    * boost * df['qual_multiplier']
 
     return df
 
@@ -173,10 +214,12 @@ def main():
     master_cols = [
         'symbol','name','src','sector','market_cap_bucket','market_cap',
         'verdict',
-        'entry_today_asymmetry','entry_today_upside','momentum_12m','momentum_discount',
+        'entry_today_asymmetry','entry_today_upside','intrinsic_discount',
         'adj_asymmetry','asymmetry_score','adj_upside','upside_score',
         'downside_floor_score','cluster_n','yartseva_score','berezin_score',
-        'pb','insider_ownership_pct','cash_gt_ev_flag','graham_net_net_flag',
+        'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+        'not_priced_in_score','insider_ownership_pct',
+        'cash_gt_ev_flag','graham_net_net_flag',
         'full_thesis','thesis',
     ]
     master_cols = [c for c in master_cols if c in df.columns]
@@ -193,10 +236,11 @@ def main():
         per_country_cols = [
             'symbol','name','sector','market_cap_bucket','market_cap',
             'verdict',
-            'entry_today_asymmetry','entry_today_upside','momentum_12m','momentum_discount',
+            'entry_today_asymmetry','entry_today_upside','intrinsic_discount',
             'adj_asymmetry','adj_upside','asymmetry_score','upside_score',
             'cluster_n','yartseva_score','berezin_score',
-            'pb','insider_ownership_pct',
+            'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+            'not_priced_in_score','insider_ownership_pct',
             'cash_gt_ev_flag','graham_net_net_flag','full_thesis','thesis',
         ]
         per_country_cols = [c for c in per_country_cols if c in df.columns]
