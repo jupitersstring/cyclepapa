@@ -44,7 +44,11 @@ def load_verdicts() -> pd.DataFrame:
     ]:
         if not os.path.exists(path):
             continue
-        d = pd.read_csv(path)
+        try:
+            d = pd.read_csv(path)
+        except pd.errors.ParserError:
+            # Some thesis lines have unquoted commas; fall back to python engine
+            d = pd.read_csv(path, engine='python', on_bad_lines='skip', quoting=3)
         if 'verdict' not in d.columns and default is not None:
             d['verdict'] = default
         keep = [c for c in ['symbol','verdict','why','why_avoid','thesis'] if c in d.columns]
