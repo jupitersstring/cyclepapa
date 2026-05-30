@@ -95,12 +95,26 @@ def load_verdicts() -> pd.DataFrame:
 
 def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     """Apply qualitative multiplier to the asymmetry score and the upside score."""
+    # Soft multiplier used on the master sheets (keeps RED in the table for
+    # transparency, with a heavy haircut).
     mult = {
         'GREEN': 1.10,
         'YELLOW': 0.85,
         'RED': 0.40,
     }
     df['qual_multiplier'] = df['verdict'].map(mult).fillna(1.0)
+
+    # Stricter multiplier for per-country tops: drops RED entirely, gives
+    # GREEN a stronger boost, treats UNRESEARCHED as cautious (haven't
+    # validated yet so should not lead a country list).
+    strict_mult = {
+        'GREEN': 1.30,
+        'YELLOW': 0.70,
+        'RED': 0.0,             # excluded from per-country tops
+        'UNRESEARCHED': 0.85,
+    }
+    df['strict_qual_multiplier'] = df['verdict'].map(strict_mult).fillna(0.85)
+
     df['adj_asymmetry'] = df['asymmetry_score'] * df['qual_multiplier']
     df['adj_upside']    = df['upside_score']    * df['qual_multiplier']
 
@@ -146,6 +160,11 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
     df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_multiplier']
     df['entry_today_upside']    = df['upside_score']    * boost * df['qual_multiplier']
+
+    # Strict variants used to sort per-country sheets. RED -> 0 (excluded);
+    # GREEN gets +30% boost; YELLOW haircut to 0.70; UNRESEARCHED at 0.85.
+    df['country_entry_asymmetry'] = df['asymmetry_score'] * boost * df['strict_qual_multiplier']
+    df['country_entry_upside']    = df['upside_score']    * boost * df['strict_qual_multiplier']
 
     return df
 
@@ -232,11 +251,41 @@ def main():
         master_asym[master_cols].to_excel(xl, sheet_name='Master_By_Asymmetry', index=False)
         master_upside[master_cols].to_excel(xl, sheet_name='Master_By_Upside', index=False)
 
+        # Per-country summary - top 3 per country by the strict country
+        # entry-today asymmetry (drops RED, boosts GREEN, treats
+        # UNRESEARCHED cautiously).
+        summary_rows = []
+        for ctry, _ in df['src'].value_counts().items():
+            sub = df[(df['src'] == ctry) & (df['verdict'] != 'RED')] \
+                .sort_values('country_entry_asymmetry', ascending=False) \
+                .head(3)
+            for rank, (_, r) in enumerate(sub.iterrows(), start=1):
+                summary_rows.append({
+                    'country': ctry,
+                    'country_rank': rank,
+                    'symbol': r['symbol'],
+                    'name': r['name'],
+                    'sector': r.get('sector', ''),
+                    'market_cap_bucket': r.get('market_cap_bucket', ''),
+                    'market_cap': r.get('market_cap', 0),
+                    'verdict': r.get('verdict', 'UNRESEARCHED'),
+                    'country_entry_asymmetry': r.get('country_entry_asymmetry', 0),
+                    'entry_today_asymmetry': r.get('entry_today_asymmetry', 0),
+                    'intrinsic_discount': r.get('intrinsic_discount', 0),
+                    'cluster_n': r.get('cluster_n', 0),
+                    'pb': r.get('pb', 0),
+                    'cash_gt_ev_flag': r.get('cash_gt_ev_flag', 0),
+                    'insider_ownership_pct': r.get('insider_ownership_pct', 0),
+                    'thesis': r.get('full_thesis', ''),
+                })
+        pd.DataFrame(summary_rows).to_excel(xl, sheet_name='Per_Country_Top3', index=False)
+
         # Per-country sheets, sorted by adj_asymmetry within country
         per_country_cols = [
             'symbol','name','sector','market_cap_bucket','market_cap',
             'verdict',
-            'entry_today_asymmetry','entry_today_upside','intrinsic_discount',
+            'country_entry_asymmetry','country_entry_upside','intrinsic_discount',
+            'entry_today_asymmetry','entry_today_upside',
             'adj_asymmetry','adj_upside','asymmetry_score','upside_score',
             'cluster_n','yartseva_score','berezin_score',
             'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
@@ -257,9 +306,12 @@ def main():
         }
         # Order by number of survivors per country
         for ctry, _ in df['src'].value_counts().items():
-            # Sort per-country sheets by ENTRY-TODAY asymmetry (the relevant
-            # ranking for a buyer entering today)
-            sub = df[df['src'] == ctry].sort_values('entry_today_asymmetry', ascending=False).head(args.per_country_n)
+            # Sort per-country sheets by the STRICT entry-today asymmetry
+            # (drops RED, boosts GREEN, treats UNRESEARCHED cautiously).
+            sub_all = df[df['src'] == ctry]
+            sub = sub_all[sub_all['verdict'] != 'RED'] \
+                .sort_values('country_entry_asymmetry', ascending=False) \
+                .head(args.per_country_n)
             if len(sub) == 0:
                 continue
             name = country_names.get(ctry, ctry)
