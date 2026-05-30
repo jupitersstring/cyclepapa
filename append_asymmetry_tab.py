@@ -1,6 +1,13 @@
 """Append an asymmetry-tier tab to screener_report.xlsx based on the
 cross-region qualitative deep-research scoring.
 
+Two scoring lenses:
+  - asymmetry_stars: pure quality of setup (catalyst + insider + balance sheet)
+  - entry_today_stars: re-rated for May 30 2026 entry — downgrades names
+                       where the move has already happened (insider buys
+                       are public, stock has lifted, narrative widely owned)
+                       and upgrades names that are still un-rerated.
+
 Tier ratings come from the 7-agent qualitative pass:
   ★★★★★ = exceptional (clear catalyst + downside-protected + insider buying)
   ★★★★  = strong (capital return + catalyst + clean governance)
@@ -14,75 +21,80 @@ from pathlib import Path
 import pandas as pd
 from openpyxl import load_workbook
 
-# (ticker, region, stars, headline_thesis_short)
+# (ticker, region, asymmetry_stars, entry_today_stars, headline_thesis_short)
+# entry_today_stars downgrades names where the move has been picked up by the market
 ASYMMETRY = [
-    # ★★★★★ exceptional
-    ('MGM',        'US', 5, 'IAC accumulating through 25%; mgmt buyback ~7-8%/yr; BetMGM inflection'),
-    ('ACRV',       'US', 5, 'CEO+CFO+RA Capital cluster-bought at lows; 52% ORR; funded to 2027'),
-    ('G1A.DE',     'EU', 5, 'Mission 30 ahead of plan; debt-free; div-grower; optional buyback'),
-    ('VPK.AS',     'EU', 5, '€1.7bn 2030 distribution programme; HAL-disciplined cash compounder'),
-    ('GOOS.TO',    'CA', 5, 'Live take-private at $1.35-1.4B with multi-bidder competition'),
-    ('TOU.TO',     'CA', 5, 'CEO Mike Rose buying weekly; LNG Canada AECO catalyst; hedge floor'),
-    # ★★★★ strong
-    ('GRWG',       'US', 4, '$46M cash = 38% of cap; no debt; CEO open-market buy May 2026'),
-    ('UVSP',       'US', 4, 'Buyback +50% expansion; dividend +4.5%; director open-market buys'),
-    ('FRAF',       'US', 4, 'EPS +69% YoY; director $106K open-market buy; 15% ROE'),
-    ('AMAL',       'US', 4, 'Dividend +21%; active buyback; 21% ROE; isolated NPL pressure'),
-    ('RLMD',       'US', 4, 'Pre-funded into Phase 3; CFO bought; NDV-01 76% durable CR'),
-    ('IRMD',       'US', 4, '3870 product cycle; 31% op margin compounder'),
-    ('RDVT',       'US', 4, '85% gross / 41% EBITDA margin; active buyback; record customer adds'),
-    ('LXRX',       'US', 4, '$199M cash; Novo partnership; multi-shot pipeline'),
-    ('NBN',        'US', 4, '$525M+ loan purchases since 9/25; NIM 5.15%'),
-    ('CFBK',       'US', 4, 'Director Hoeweler bought open-market Dec 2025; 5% buyback'),
-    ('RBKB',       'US', 4, 'Second-step thrift conversion closing Q3 2026 at $10'),
-    ('LEU',        'US', 4, '$1.87B cash; DOE HALEU re-award post-June 2026'),
-    ('OFG',        'US', 4, '$200M buyback + 17% div hike; PR discount; 16.4% ROATCE'),
-    ('ENVX',       'US', 4, 'Smartphone OEM qualification on new framework; $582M cash'),
-    ('TWO-PA',     'US', 4, 'Merger-arb pref; mandatory redemption $25 on UWMC deal close Q3'),
-    ('HFBL',       'US', 4, 'Quality LA thrift; EPS doubled YoY; 92% through buyback'),
-    ('DAR',        'US', 4, 'DGD turnaround; RVO tailwind; Point72 accumulating'),
-    ('LAUR',       'US', 4, 'LATAM ed +15%; raised guide; $181M buyback runway'),
-    ('EIG',        'US', 4, 'New $125M buyback + CFO open-market buys Nov 2025 at $37-40'),
-    ('ABOS',       'US', 4, 'Cash through Phase 2 sabirnetug Alzheimer readout late 2026'),
-    ('IFX.DE',     'EU', 4, 'Guidance raised twice; FY26 segment margin lifted to ~20%'),
-    ('MUV2.DE',    'EU', 4, '€2.25bn buyback through Apr 2027; €24 div; Q1 net +57%'),
-    ('NEM.DE',     'EU', 4, '95% recurring rev; +17% cc; HCSS transformative deal'),
-    ('SZG.DE',     'EU', 4, 'Guidance raised twice; HKM closing; Aurubis windfall'),
-    ('FRE.DE',     'EU', 4, 'S&P positive outlook; CFO insider buy; Tyenne biosimilar share gains'),
-    ('SAX.DE',     'EU', 4, 'Müller family insider-buy cluster + live PE sale at €3-4bn'),
-    ('HNR1.DE',    'EU', 4, '€12.50 dividend (+39%); post-Henchoz reset; Talanx-controlled quality'),
-    ('CWC.DE',     'EU', 4, 'Foundation patient capital; 17-yr dividend streak; Cimpress monetisation'),
-    ('PAT.DE',     'EU', 4, 'Trades near book; founder buying history; EBITDA +41% Q1'),
-    ('SHL.DE',     'EU', 4, 'Spin-off doubles free float (forced buying); €230m buyback Jun-Jan'),
-    ('ZURN.SW',    'EU', 4, 'Beazley closing H2 2026; SST 265%; underowned post-raise'),
-    ('SMHN.DE',    'EU', 4, 'Q1 trough; record HBM/hybrid bonding order intake; H2 snapback'),
-    ('ARIS.TO',    'CA', 4, 'Marmato Lower Mine Q4 first-gold; Soto Norte stream eliminated'),
-    ('FTT.TO',     'CA', 4, 'Record $3.8B backlog; 25-yr div streak; 9.8% NCIB'),
-    ('IAG.TO',     'CA', 4, '$310M NCIB at trough; Côté ramp post-conveyor fix; net cash'),
-    ('NA.TO',      'CA', 4, 'CWB synergies running ahead of guide ($176M Q1 > $116M FY25)'),
-    ('CM.TO',      'CA', 4, 'Caribbean divestiture + new NCIB 30M sh; new CEO Culham reset'),
-    ('QBR-B.TO',   'CA', 4, 'Wireless +85% vs Big-3 -20%; div +14%; NCIB active'),
-    ('PXT.TO',     'CA', 4, 'GeoPark activist proxy fight; 40% share reduction; div cushion'),
-    ('REI-UN.TO',  'CA', 4, 'Chairman Sonshine net buyer LTM; 98.6% occ; 17.5% leasing spreads'),
-    ('WSP.TO',     'CA', 4, 'TRC/Power Engineers integration delivering; backlog +18%; margin raise'),
-    # ★ avoid / value-trap flags
-    ('BYW.DE',     'EU', 1, 'StaRUG restructuring; €2.7bn shortfall; criminal probe; audit delay'),
-    ('GXI.DE',     'EU', 2, 'BaFin probe; audit delay; technical default; SDAX expulsion'),
-    ('OHB.DE',     'EU', 2, 'Stock up ~8x; KKR placement = imminent overhang'),
-    ('VLN.TO',     'CA', 1, 'Deal pre-priced at C$13.10 — no minority premium'),
-    ('FRMM',       'US', 0, 'Not Fremont — ETHZilla rebrand pivot shell'),
-    ('ELTX',       'US', 0, 'Ticker mismatch — ELEV was acquired by Concentra July 2025'),
-    ('LUNA',       'US', 0, 'Nasdaq delisted Jan 2025; OTC Expert Market only'),
-    ('ASPU',       'US', 0, 'Voluntarily delisted 2023; $0.4M cash; sub-scale wind-down'),
-    ('HOTH',       'US', 1, 'Pivoted to "nanomagnetic space-AI chips" — narrative shell'),
-    ('ENVB',       'US', 1, 'Reverse split + 5B share authority proposal + going concern'),
+    # Original 5-star setups
+    ('MGM',        'US', 5, 3, 'IAC accumulation widely known; stock has run; thesis no longer hidden'),
+    ('ACRV',       'US', 5, 3, 'Cluster insider-buy Jan 14 2026 at $1.68 already absorbed; biotech runs post-disclosure'),
+    ('G1A.DE',     'EU', 5, 3, 'Mission 30 narrative widely owned; premium quality-compounder multiple'),
+    ('VPK.AS',     'EU', 5, 4, '€1.7bn distribution programme only 16% executed by April 2026 — multi-year runway'),
+    ('GOOS.TO',    'CA', 5, 2, 'Trading near take-private bid; arb spread is only remaining return'),
+    ('TOU.TO',     'CA', 5, 3, 'Mike Rose serial open-market buys public; LNG Canada thesis priced in'),
+    # Promoted to top tier on from-today basis
+    ('SHL.DE',     'EU', 4, 5, '-40% derate absorbed; Siemens spin-off doubles free float (forced buying); €230m buyback through Jan 2027'),
+    ('INBK',       'US', 4, 5, 'Founder bought $18.60 Oct 2025; 13D filer surfaced; sharp discount to $41.41 book; credit overhang priced in'),
+    ('BJRI',       'US', 4, 5, 'Shaich/Act III added at $34.92 March 2026; fresh CEO; +2.4% comps best in casual dining; $83M buyback runway'),
+    ('SAX.DE',     'EU', 4, 5, 'Müller family insider-buy cluster Feb 6 2026; live PE sale process at €3-4bn; OOH +5.4% organic'),
+    ('GRWG',       'US', 4, 5, '$46M cash = 38% of cap; CEO Lampert bought May 18 2026 at $1.54-1.55 (recent); cannabis at cyclical low'),
+    ('FRE.DE',     'EU', 4, 5, 'Deleveraging validating; CFO bought late 2025; S&P upgraded outlook; Tyenne biosimilar share gains'),
+    ('CFBK',       'US', 4, 5, 'Director Hoeweler bought $23.87 Dec 2025; 5% buyback through Aug 2026; tiny float'),
+    # Tier 2 strong-but-partially-discovered
+    ('UVSP',       'US', 4, 4, 'Buyback +50% expansion; div +4.5%; director open-market buys'),
+    ('FRAF',       'US', 4, 4, 'EPS +69% YoY; director $106K open-market buy; 15% ROE; potential M&A target'),
+    ('AMAL',       'US', 4, 4, 'Dividend +21%; active buyback; 21% ROE; isolated NPL pressure'),
+    ('RLMD',       'US', 4, 4, 'Pre-funded into Phase 3; CFO bought; NDV-01 76% durable CR'),
+    ('IRMD',       'US', 4, 3, '3870 product cycle; 31% op margin; CEO selling under 10b5-1'),
+    ('RDVT',       'US', 4, 3, '85% gross / 41% EBITDA margin; active buyback; CEO sold near highs'),
+    ('LXRX',       'US', 4, 4, '$199M cash; Novo partnership; HCM Phase 3 enroll mid-2026 still ahead'),
+    ('NBN',        'US', 4, 4, '$525M+ loan purchases since 9/25; NIM 5.15%'),
+    ('RBKB',       'US', 4, 4, 'Second-step thrift conversion closes Q3 2026 at $10'),
+    ('LEU',        'US', 4, 3, '$1.87B cash; DOE HALEU re-award post-June 2026; priced for execution'),
+    ('OFG',        'US', 4, 4, '$200M buyback + 17% div hike; PR discount; 16.4% ROATCE'),
+    ('ENVX',       'US', 4, 4, 'Smartphone OEM qualification on new framework; $582M cash'),
+    ('TWO-PA',     'US', 4, 4, 'Merger-arb pref; mandatory redemption $25 on UWMC deal close Q3'),
+    ('HFBL',       'US', 4, 4, 'Quality LA thrift; EPS doubled YoY; 92% through buyback'),
+    ('DAR',        'US', 4, 4, 'DGD turnaround; RVO tailwind; Point72 accumulating'),
+    ('LAUR',       'US', 4, 3, 'LATAM ed +15%; raised guide; $181M buyback runway; some banked'),
+    ('EIG',        'US', 4, 4, 'CFO bought Nov 2025 at $37-40; new $125M buyback'),
+    ('ABOS',       'US', 4, 4, 'Cash through Phase 2 sabirnetug Alzheimer readout late 2026'),
+    ('IFX.DE',     'EU', 4, 3, 'Guidance raised twice; FY26 segment margin ~20%; AI thesis priced'),
+    ('MUV2.DE',    'EU', 4, 4, '€2.25bn buyback through Apr 2027; €24 div; Q1 net +57%'),
+    ('NEM.DE',     'EU', 4, 3, '95% recurring rev; +17% cc; HCSS deal priced at premium'),
+    ('SZG.DE',     'EU', 4, 4, 'Guidance raised twice; HKM closing; Aurubis windfall — partially banked'),
+    ('HNR1.DE',    'EU', 4, 4, '€12.50 div (+39%); post-Henchoz reset; Talanx-controlled quality'),
+    ('CWC.DE',     'EU', 4, 4, 'Foundation patient capital; 17-yr div streak; Cimpress monetisation H2 2026'),
+    ('PAT.DE',     'EU', 4, 4, 'Trades near book; founder buying history; EBITDA +41% Q1; un-rerated RE manager'),
+    ('ZURN.SW',    'EU', 4, 4, 'Beazley closing H2 2026; SST 265%; underowned post-raise'),
+    ('SMHN.DE',    'EU', 4, 4, 'Q1 trough; record HBM/hybrid bonding order intake; H2 snapback'),
+    ('ARIS.TO',    'CA', 4, 3, 'Marmato Q4 first-gold; Soto Norte stream eliminated; already ran on gold'),
+    ('FTT.TO',     'CA', 4, 3, 'Record $3.8B backlog; 25-yr div streak; cyclical mining capex peak'),
+    ('IAG.TO',     'CA', 4, 4, '$310M NCIB at trough; Côté ramp post-conveyor fix; net cash transition'),
+    ('NA.TO',      'CA', 4, 4, 'CWB synergies ahead of guide ($176M Q1 > $116M FY25); rerating partial'),
+    ('CM.TO',      'CA', 4, 4, 'Caribbean divestiture + new NCIB 30M sh; new CEO Culham reset pending'),
+    ('QBR-B.TO',   'CA', 4, 3, 'Wireless +85% vs Big-3; dividend +14% — disruption thesis broadly recognized'),
+    ('PXT.TO',     'CA', 4, 4, 'GeoPark activist proxy fight mid-2026; 40% share reduction; dividend cushion'),
+    ('REI-UN.TO',  'CA', 4, 4, 'Chairman Sonshine net buyer LTM; 98.6% occ; 17.5% leasing spreads'),
+    ('WSP.TO',     'CA', 4, 3, 'TRC/Power Engineers integration; backlog +18% — premium multiple, mostly banked'),
+    # Avoid / value-trap flags (entry-today rating same as base)
+    ('BYW.DE',     'EU', 1, 1, 'StaRUG restructuring; €2.7bn shortfall; criminal probe; audit delay'),
+    ('GXI.DE',     'EU', 2, 2, 'BaFin probe; audit delay; technical default; SDAX expulsion'),
+    ('OHB.DE',     'EU', 2, 1, 'Stock up ~8x in 12m; KKR placement = imminent overhang — asymmetry inverted'),
+    ('VLN.TO',     'CA', 1, 1, 'Deal pre-priced at C$13.10 — no minority premium'),
+    ('FRMM',       'US', 0, 0, 'Not Fremont — ETHZilla rebrand pivot shell'),
+    ('ELTX',       'US', 0, 0, 'Ticker mismatch — ELEV was acquired by Concentra July 2025'),
+    ('LUNA',       'US', 0, 0, 'Nasdaq delisted Jan 2025; OTC Expert Market only'),
+    ('ASPU',       'US', 0, 0, 'Voluntarily delisted 2023; $0.4M cash; sub-scale wind-down'),
+    ('HOTH',       'US', 1, 1, 'Pivoted to "nanomagnetic space-AI chips" — narrative shell'),
+    ('ENVB',       'US', 1, 1, 'Reverse split + 5B share authority proposal + going concern'),
 ]
 
 def main():
-    df = pd.DataFrame(ASYMMETRY, columns=['ticker','region','asymmetry_stars','thesis'])
-    df = df.sort_values(['asymmetry_stars','region','ticker'], ascending=[False, True, True])
+    df = pd.DataFrame(ASYMMETRY, columns=['ticker','region','asymmetry_stars','entry_today_stars','thesis'])
+    # primary sort by entry-today stars (the more actionable lens), then base asymmetry
+    df = df.sort_values(['entry_today_stars','asymmetry_stars','region','ticker'],
+                        ascending=[False, False, True, True])
 
-    # Append to existing workbook
     xlsx = Path('screener_report.xlsx')
     with pd.ExcelWriter(xlsx, engine='openpyxl', mode='a', if_sheet_exists='replace') as xw:
         df.to_excel(xw, sheet_name='asymmetry_tier', index=False)
@@ -90,10 +102,10 @@ def main():
         ws.column_dimensions['A'].width = 12
         ws.column_dimensions['B'].width = 8
         ws.column_dimensions['C'].width = 18
-        ws.column_dimensions['D'].width = 90
+        ws.column_dimensions['D'].width = 20
+        ws.column_dimensions['E'].width = 100
         ws.freeze_panes = 'A2'
 
-    # Move asymmetry_tier to the front
     wb = load_workbook(xlsx)
     if 'asymmetry_tier' in wb.sheetnames:
         idx = wb.sheetnames.index('asymmetry_tier')
@@ -104,3 +116,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
