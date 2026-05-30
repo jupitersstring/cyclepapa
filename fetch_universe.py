@@ -225,12 +225,18 @@ def main():
                     help='if fraction of batch with new fetches < this, treat as throttled')
     ap.add_argument('--tickers', nargs='+', default=None,
                     help='override: fetch only these tickers')
+    ap.add_argument('--universe-csv', type=str, default=None,
+                    help='override: load tickers from CSV `symbol` column')
     ap.add_argument('--max', type=int, default=None,
                     help='limit total tickers (for testing)')
     args = ap.parse_args()
 
     if args.tickers:
         universe = args.tickers
+    elif args.universe_csv:
+        import pandas as pd
+        df = pd.read_csv(args.universe_csv, usecols=['symbol'])
+        universe = [s for s in df['symbol'].dropna().astype(str).str.upper().tolist() if s]
     else:
         universe = build_universe()
     if args.max:
