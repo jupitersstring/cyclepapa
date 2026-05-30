@@ -5,6 +5,7 @@ import financedatabase as fd
 warnings.filterwarnings("ignore")
 
 interval = sys.argv[1] if len(sys.argv)>1 else "1wk"
+caps_arg = sys.argv[2] if len(sys.argv)>2 else "smallmicro"
 period   = "20y"
 cache = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache", f"ohlcvdict_{interval}_{period}.pkl")
 minrows = 52 if interval=="1wk" else 60
@@ -14,14 +15,17 @@ US={'NYQ','NMS','NGM','NCM','ASE'}; pat=re.compile(r'^[A-Z]{1,5}(-[A-Z])?$')
 def uni(cap):
     s=eq[eq['market_cap']==cap]; s=s[s['exchange'].isin(US)&(s['currency']=='USD')]
     return [str(t).replace('.','-') for t in s.index if pat.match(str(t).replace('.','-'))]
-syms = sorted(set(uni('Small Cap')) | set(uni('Micro Cap')))
+CAPMAP={"mid":["Mid Cap"],"small":["Small Cap"],"micro":["Micro Cap"],
+        "smallmicro":["Small Cap","Micro Cap"],
+        "all":["Mid Cap","Small Cap","Micro Cap"]}
+syms = sorted(set().union(*[set(uni(c)) for c in CAPMAP[caps_arg]]))
 
 have = {}
 if os.path.exists(cache):
     try: have = pd.read_pickle(cache)
     except Exception: have = {}
 todo = [s for s in syms if s not in have]
-print(f"[{interval}] universe smallmicro={len(syms)} cached={len([s for s in syms if s in have])} todo={len(todo)}", flush=True)
+print(f"[{interval}/{caps_arg}] universe={len(syms)} cached={len([s for s in syms if s in have])} todo={len(todo)}", flush=True)
 
 ok=fail=0
 for i,t in enumerate(todo):
