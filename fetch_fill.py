@@ -37,6 +37,6 @@ for i,t in enumerate(todo):
     if (i+1)%50==0:
         pd.to_pickle(have, cache)
         print(f"[{interval}] {i+1}/{len(todo)}  ok={ok} fail={fail}  cache={len(have)}", flush=True)
-    time.sleep(0.2)
+    time.sleep(0.5)
 pd.to_pickle(have, cache)
 print(f"[{interval}] DONE ok={ok} fail={fail} cache={len(have)}", flush=True)
