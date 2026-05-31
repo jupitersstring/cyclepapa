@@ -1,17 +1,21 @@
-# earnings_model — UK earnings inflection & valuation-gap toolkit
+# earnings_model — earnings inflection, valuation-gap & pre-breakout toolkit
 
 A headless **library + CLI** that builds an equity universe from
 [`financedatabase`](https://github.com/JerBouma/FinanceDatabase), pulls
 fundamentals from [`yfinance`](https://github.com/ranaroussi/yfinance), and
 monitors **revenue / EBITDA / earnings growth, acceleration and inflection**
-by **industry** and **market-cap size bucket** (nano → mega). It then:
+by **region**, **industry** and **market-cap size bucket** (nano → mega). It then:
 
-- **clusters** names by growth/acceleration behaviour (K-means), and
-- flags the setup you actually care about: **industries (and names) where
-  earnings are inflecting while the valuation/price has not responded.**
+- **clusters** names by growth/acceleration behaviour (K-means);
+- flags **industries (and names) where earnings are inflecting while the
+  valuation/price has not responded**; and
+- scores the **pre-breakout** setup — *dead money for 1–2 years while the
+  business quietly improves* — the coiled spring before a re-rating.
 
-Starts with the **UK equities complex** (LSE, GBP) but the universe is just a
-`financedatabase` query, so any country/exchange works.
+Ships with **UK (LSE/GBP)** and **US small-cap** presets (`uk`, `us-small`,
+`uk+us-small`); the universe is just a `financedatabase` query, so any
+country/exchange works. Analysis ranks **within each region** (a P/E only means
+something against comparable peers in the same market).
 
 > Heavy fetching is cached to disk (`cache/`) so the analytics layer runs fast
 > and offline. Yahoo rate-limits cloud IPs hard (HTTP 429); the fetcher uses a
@@ -30,15 +34,16 @@ Requires Python 3.10+. Tested on pandas 3.0 / numpy 2.x.
 ## Quickstart
 
 ```bash
-# 1. Build the universe (UK LSE/GBP by default): industry + size bucket
-python -m earnings_model build-universe
+# 1. Build the universe. Default is UK LSE/GBP; use a preset for more:
+python -m earnings_model build-universe --preset uk+us-small   # UK + US small caps
 
-# 2. Fetch fundamentals (cached, resumable). Start small to sanity-check:
-python -m earnings_model fetch --limit 100
-#    ...then widen. Re-runs reuse the cache; --refresh forces a refetch.
-python -m earnings_model fetch
+# 2. Fetch fundamentals (cached, resumable). Start small to sanity-check;
+#    --sample N grabs a random spread; --refresh forces a refetch (e.g. to pick
+#    up the multi-year price history).
+python -m earnings_model fetch --sample 300
+python -m earnings_model fetch                                 # the whole universe
 
-# 3. Score + aggregate + find the inflecting-but-unloved names/industries
+# 3. Score + aggregate + find inflecting-but-unloved + pre-breakout setups
 python -m earnings_model analyze
 
 # 4. Cluster by growth/acceleration behaviour (k auto-picked via silhouette)
@@ -46,11 +51,12 @@ python -m earnings_model cluster
 
 # Inspect any output:
 python -m earnings_model show inflecting_lagging -n 20
+python -m earnings_model show prebreakout -n 30      # dead-money + improving + cheap
+python -m earnings_model show case_studies -n 20     # historical base->breakout shapes
 python -m earnings_model show valuation_gap -n 30
-python -m earnings_model show cluster_profile
 
 # Or run the whole pipeline at once:
-python -m earnings_model run --limit 300
+python -m earnings_model run --preset uk+us-small --sample 800
 ```
 
 You can also drive it as a library:
@@ -74,6 +80,8 @@ res = cluster.run_kmeans(scored)                    # res["labeled"], res["profi
 | `industry_size.csv` | the same, split by size bucket (nano → mega) |
 | `inflecting_lagging.csv` | **industries** ranked: inflecting but cheap & quiet (`cell_gap`) |
 | `valuation_gap.csv` | **names** ranked by `gap_score` |
+| `prebreakout.csv` | **names** ranked by `prebreakout_score` (improving + dormant + cheap) |
+| `case_studies.csv` | names whose price history shows the *long base → breakout* shape |
 | `clusters.csv` / `cluster_profile.csv` | K-means assignments + cluster behaviour profiles |
 
 ## Methodology
@@ -100,9 +108,23 @@ timeliness overlay.
   (peer rank of trailing 12m return). **High = earnings inflecting, multiple
   cheap, price hasn't moved.**
 
-**Peer group.** Ranks default to the **whole universe** (cross-sectional) — the
-right lens for "which industries are inflecting while valuations lag". Pass
-`--group-cols industry` (or `industry,size_bucket`) for sector-relative ranking.
+- **Pre-breakout** — `prebreakout_score = 0.45·inflection_score + 0.30·dormancy
+  + 0.25·cheapness`, **gated** on `inflection_score ≥ 0.5` (a cheap, dormant
+  stock whose business is *not* improving is a value trap, heavily discounted).
+  `dormancy` (dead money 1–2y) = flat/down vs peers over 24m + flat 2y trend +
+  sitting near the base. Context: `basing_tightness` (low realised vol = coiled),
+  `breaking_out` (dormant + improving, price just lifting). `case_studies()`
+  scans the cached monthly series for the historical *long flat base → explosive
+  move* archetype to characterise the price shape empirically.
+
+**Multi-year price features.** From 5y of monthly closes: trailing returns to
+36m, `max_drawdown`, `range_position` (place in the 3y range), annualised 2y
+`trend_slope`, and `realized_vol`.
+
+**Peer group.** With one region, ranks default to the **whole universe**; with
+several (e.g. `uk+us-small`) ranking is **within each region** automatically,
+since valuations aren't comparable across markets. Override with `--group-cols`
+(`industry`, `industry,size_bucket`, …).
 
 **Industry ranking** (`inflecting_lagging`) compares industries on **absolute**
 median multiples (a within-industry percentile would be ~0.5 everywhere):
@@ -132,12 +154,13 @@ behaviour label (e.g. *Accelerating leaders*, *Inflecting up (low base)*,
 
 ```
 earnings_model/
-  universe.py      # financedatabase universe + size buckets
-  fundamentals.py  # cached yfinance fetch (retry/backoff/curl_cffi)
+  universe.py      # financedatabase universe + size buckets + region/presets
+  fundamentals.py  # cached yfinance fetch (retry/backoff/curl_cffi), 5y price features
   metrics.py       # pure growth / acceleration / inflection math
   valuation.py     # inflection_score, valuation_richness, gap_score
-  aggregate.py     # industry & industry×size aggregation, inflecting_lagging
+  aggregate.py     # industry & industry×size aggregation, inflecting_lagging (per region)
   cluster.py       # K-means + cluster profiling
+  prebreakout.py   # pre-breakout score (improving×dormant×cheap) + case studies
   pipeline.py      # orchestration
   cli.py           # `python -m earnings_model ...`
 scripts/selftest.py  # offline end-to-end analytics test (no network)

@@ -49,8 +49,8 @@ def _group_pct_rank(df: pd.DataFrame, col: str, group_cols=None, min_n: int = 3)
             return pd.Series(np.nan, index=x.index)
         return x.rank(pct=True)
 
-    if not group_cols:
-        return _rank(df[col])
+    if not group_cols or not all(c in df.columns for c in group_cols):
+        return _rank(df[col])  # fall back to global if a group key is absent
     return df.groupby(list(group_cols), dropna=False)[col].transform(_rank)
 
 

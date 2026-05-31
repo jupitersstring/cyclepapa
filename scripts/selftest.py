@@ -8,7 +8,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from earnings_model import aggregate, cluster, metrics, valuation
+from earnings_model import aggregate, cluster, metrics, prebreakout, valuation
 
 
 def make_raw(symbol, rev, ebitda, earn, val):
@@ -112,6 +112,25 @@ def main():
     assert res["labeled"]["cluster"].notna().sum() == 60
     print(f"[ok] clustering k={res['k']} silhouette={res['silhouette']}")
     print(prof[["cluster", "cluster_label", "n"]].to_string(index=False))
+
+    # --- pre-breakout mechanic ---------------------------------------------
+    # Inject synthetic multi-year price context per cohort: (ret_24m, trend, range_pos, vol)
+    ctx = {"Inflect": (-0.05, 0.02, 0.30, 0.20),   # dormant + improving  -> top
+           "Hot": (1.20, 0.60, 0.95, 0.50),         # improving but already run
+           "Stable": (0.10, 0.05, 0.60, 0.25),
+           "Fade": (-0.40, -0.30, 0.10, 0.30)}      # dormant + cheap but NOT improving
+    pb_in = scored.copy()
+    for col, i in [("ret_24m", 0), ("trend_slope", 1), ("range_position", 2), ("realized_vol", 3)]:
+        pb_in[col] = pb_in["industry"].map(lambda k: ctx[k][i])
+    pb = prebreakout.add_prebreakout_score(pb_in)
+    assert {"prebreakout_score", "dormancy", "cheapness", "prebreakout_gated"} <= set(pb.columns)
+    med_pb = pb.groupby("industry")["prebreakout_score"].median().sort_values(ascending=False)
+    print("[ok] pre-breakout score by industry:", med_pb.round(3).to_dict())
+    assert med_pb.index[0] == "Inflect", med_pb
+    # gate: improving cohort is gated in, contracting cohort is gated out (value-trap guard)
+    assert bool(pb.loc[pb["industry"] == "Inflect", "prebreakout_gated"].all())
+    assert not bool(pb.loc[pb["industry"] == "Fade", "prebreakout_gated"].any())
+    print("[ok] gate: Inflect (improving) IN, Fade (contracting, cheap) OUT")
 
     print("\nALL SELF-TESTS PASSED")
 
