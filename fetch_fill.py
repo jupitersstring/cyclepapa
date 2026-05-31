@@ -6,14 +6,21 @@ warnings.filterwarnings("ignore")
 
 interval = sys.argv[1] if len(sys.argv)>1 else "1wk"
 caps_arg = sys.argv[2] if len(sys.argv)>2 else "smallmicro"
+country  = sys.argv[3] if len(sys.argv)>3 else "us"   # us | uk
 period   = "20y"
 cache = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache", f"ohlcvdict_{interval}_{period}.pkl")
 minrows = 52 if interval=="1wk" else 60
 
-eq=fd.Equities().select(country="United States")
-US={'NYQ','NMS','NGM','NCM','ASE'}; pat=re.compile(r'^[A-Z]{1,5}(-[A-Z])?$')
+UK = country == "uk"
+eq=fd.Equities().select(country="United Kingdom" if UK else "United States")
+US={'NYQ','NMS','NGM','NCM','ASE'}
+pat=re.compile(r'^[A-Z0-9]{1,4}\.L$') if UK else re.compile(r'^[A-Z]{1,5}(-[A-Z])?$')
 def uni(cap):
-    s=eq[eq['market_cap']==cap]; s=s[s['exchange'].isin(US)&(s['currency']=='USD')]
+    s=eq[eq['market_cap']==cap]
+    if UK:
+        s=s[(s['exchange']=='LSE')&(s['currency']=='GBP')]
+        return [str(t) for t in s.index if pat.match(str(t))]
+    s=s[s['exchange'].isin(US)&(s['currency']=='USD')]
     return [str(t).replace('.','-') for t in s.index if pat.match(str(t).replace('.','-'))]
 CAPMAP={"mid":["Mid Cap"],"small":["Small Cap"],"micro":["Micro Cap"],
         "smallmicro":["Small Cap","Micro Cap"],

@@ -56,40 +56,45 @@ SAMPLE_K = 20.0  # shrinkage constant for the sample-size penalty
 # --------------------------------------------------------------------------- #
 US_EXCH = {"NYQ", "NMS", "NGM", "NCM", "ASE"}  # NYSE, Nasdaq GS/GM/CM, NYSE American
 _TICKER_RE = __import__("re").compile(r"^[A-Z]{1,5}(-[A-Z])?$")
+_UK_TICKER_RE = __import__("re").compile(r"^[A-Z0-9]{1,4}\.L$")  # LSE tickers (keep .L)
+
+_CAPS = {"megacap": ["Mega Cap"], "largecap": ["Large Cap"], "midcap": ["Mid Cap"],
+         "smallcap": ["Small Cap"], "microcap": ["Micro Cap"], "nanocap": ["Nano Cap"],
+         "smallmicro": ["Small Cap", "Micro Cap"],
+         "allcap": ["Mega Cap", "Large Cap", "Mid Cap", "Small Cap", "Micro Cap"]}
+
+# map of --universe source -> (country, market_cap bucket(s))
+CAP_SOURCES = {f"us-{k}": ("United States", v) for k, v in _CAPS.items()}
+CAP_SOURCES.update({f"uk-{k}": ("United Kingdom", v) for k, v in _CAPS.items()})
 
 
-# map of --universe source -> financedatabase market_cap bucket(s)
-CAP_SOURCES = {
-    "us-megacap": ["Mega Cap"],
-    "us-largecap": ["Large Cap"],
-    "us-midcap": ["Mid Cap"],
-    "us-smallcap": ["Small Cap"],
-    "us-microcap": ["Micro Cap"],
-    "us-nanocap": ["Nano Cap"],
-    "us-smallmicro": ["Small Cap", "Micro Cap"],
-    "us-allcap": ["Mega Cap", "Large Cap", "Mid Cap", "Small Cap", "Micro Cap"],
-}
-
-
-def get_us_universe(caps: list[str], limit: int | None = None) -> pd.DataFrame:
-    """US-listed equities in the given financedatabase market_cap bucket(s),
-    filtered to primary US exchanges, USD and clean tickers. Falls back to the
-    S&P 400 if financedatabase is absent."""
+def get_fd_universe(country: str, caps: list[str], limit: int | None = None) -> pd.DataFrame:
+    """Equities in a financedatabase market_cap bucket for a country, filtered to
+    that country's primary exchange/currency with clean tickers. UK keeps the
+    .L suffix (yfinance format); US strips dots to dashes for share classes."""
+    uk = country == "United Kingdom"
     try:
         import financedatabase as fd
 
-        df = fd.Equities().select(country="United States")
+        df = fd.Equities().select(country=country)
         sel = df[df["market_cap"].isin(caps)].copy()
-        sel = sel[sel["exchange"].isin(US_EXCH) & (sel["currency"] == "USD")]
-        sel = sel[[bool(_TICKER_RE.match(str(t))) for t in sel.index]]
+        if uk:
+            sel = sel[(sel["exchange"] == "LSE") & (sel["currency"] == "GBP")]
+            sel = sel[[bool(_UK_TICKER_RE.match(str(t))) for t in sel.index]]
+            symbols = [str(t) for t in sel.index]            # keep TSCO.L
+        else:
+            sel = sel[sel["exchange"].isin(US_EXCH) & (sel["currency"] == "USD")]
+            sel = sel[[bool(_TICKER_RE.match(str(t))) for t in sel.index]]
+            symbols = [str(t).replace(".", "-") for t in sel.index]
         sel = sel[~sel.index.duplicated()]
+        symbols = list(dict.fromkeys(symbols))
         out = pd.DataFrame({
-            "symbol": [str(t).replace(".", "-") for t in sel.index],
+            "symbol": symbols,
             "security": sel["name"].fillna(sel.index.to_series()).astype(str).values,
             "sector": sel["sector"].fillna("Unknown").astype(str).values,
             "market_cap": sel["market_cap"].astype(str).values,
         }).reset_index(drop=True)
-        print(f"[universe] {len(out)} US equities from financedatabase "
+        print(f"[universe] {len(out)} {country} equities from financedatabase "
               f"({'+'.join(caps)})")
     except Exception as e:  # pragma: no cover
         print(f"[universe] financedatabase unavailable ({e!r}); using S&P 400")
@@ -99,6 +104,10 @@ def get_us_universe(caps: list[str], limit: int | None = None) -> pd.DataFrame:
     return out
 
 
+def get_us_universe(caps: list[str], limit: int | None = None) -> pd.DataFrame:
+    return get_fd_universe("United States", caps, limit)
+
+
 def get_universe(limit: int | None = None, source: str = "sp400") -> pd.DataFrame:
     """Return DataFrame[symbol, security, sector].
 
@@ -106,7 +115,8 @@ def get_universe(limit: int | None = None, source: str = "sp400") -> pd.DataFram
     source="us-<bucket>"  -> financedatabase market-cap bucket(s); see CAP_SOURCES
     """
     if source in CAP_SOURCES:
-        return get_us_universe(CAP_SOURCES[source], limit=limit)
+        country, caps = CAP_SOURCES[source]
+        return get_fd_universe(country, caps, limit=limit)
     try:
         r = requests.get(WIKI_URL, headers=UA, timeout=30)
         r.raise_for_status()
