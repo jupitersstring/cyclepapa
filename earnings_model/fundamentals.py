@@ -14,6 +14,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from . import config, metrics
@@ -261,7 +262,14 @@ def build_fundamentals(
     rows = []
     n = len(syms)
     for i, sym in enumerate(syms, 1):
-        raw = load_or_fetch(sym, session=session, refresh=refresh)
+        cached = None if refresh else load_raw(sym)
+        if cached is not None:
+            raw, from_cache = cached, True
+        else:
+            raw = fetch_raw(sym, session=session)
+            if raw.get("fetch_ok"):
+                save_raw(sym, raw)
+            from_cache = False
         row = metrics.compute_metrics(raw)
         # Rename yfinance info fields that collide with fd grouping columns.
         for src, dst in _RENAME.items():
@@ -271,15 +279,34 @@ def build_fundamentals(
         rows.append(row)
         if verbose and (i % 25 == 0 or i == n):
             ok = sum(1 for r in rows if r.get("fetch_ok"))
-            print(f"  [{i}/{n}] fetched, {ok} with data", flush=True)
-        if raw.get("asof") and not refresh and load_raw(sym) is raw:
-            pass  # came from cache, no need to sleep
-        else:
+            print(f"  [{i}/{n}] processed, {ok} with data", flush=True)
+        if not from_cache:  # only pause between live network calls
             time.sleep(random.uniform(*config.REQUEST_JITTER))
 
     metrics_df = pd.DataFrame(rows)
     id_cols = [c for c in _ID_COLS if c in universe.columns]
     out = metrics_df.merge(universe[id_cols], on="symbol", how="left")
+    return _sanitize(out)
+
+
+# yfinance .info occasionally returns strings ('Infinity', 'N/A') for these
+# numeric fields, which makes the column object-typed and unwritable to parquet.
+_NUMERIC_INFO = [
+    "trailingPE", "forwardPE", "enterpriseToEbitda",
+    "priceToSalesTrailing12Months", "priceToBook", "pegRatio",
+    "marketCap", "enterpriseValue",
+]
+
+
+def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
+    """Coerce numeric info fields and strip ±inf so the table is parquet-safe."""
+    out = df.copy()
+    for col in _NUMERIC_INFO:
+        if col in out.columns:
+            out[col] = pd.to_numeric(out[col], errors="coerce")
+    num = out.select_dtypes(include=["number"]).columns
+    if len(num):
+        out[num] = out[num].replace([np.inf, -np.inf], np.nan)
     return out
 
 
