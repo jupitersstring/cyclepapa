@@ -22,6 +22,7 @@ _NUMERIC_AGGS = [
     ("ev_ebitda_med", "enterpriseToEbitda", "median"),
     ("ps_med", "priceToSalesTrailing12Months", "median"),
     ("ret_12m_med", "ret_12m", "median"),
+    ("ret_24m_med", "ret_24m", "median"),
     ("gap_score_med", "gap_score", "median"),
 ]
 _FLAG_AGGS = [
@@ -53,32 +54,26 @@ def aggregate_by(df: pd.DataFrame, group_cols: list[str]) -> pd.DataFrame:
     return grouped.sort_values(group_cols).reset_index(drop=True)
 
 
+def _has_regions(df: pd.DataFrame) -> bool:
+    return "region" in df.columns and df["region"].nunique(dropna=True) > 1
+
+
 def industry_table(df: pd.DataFrame) -> pd.DataFrame:
-    return aggregate_by(df, ["industry"])
+    keys = ["region", "industry"] if _has_regions(df) else ["industry"]
+    return aggregate_by(df, keys)
 
 
 def industry_size_table(df: pd.DataFrame) -> pd.DataFrame:
-    return aggregate_by(df, ["industry", "size_bucket"])
+    keys = ["region", "industry", "size_bucket"] if _has_regions(df) else ["industry", "size_bucket"]
+    return aggregate_by(df, keys)
 
 
-def inflecting_lagging(df: pd.DataFrame, min_n: int = 3, top: int | None = 25) -> pd.DataFrame:
-    """Rank industries: high aggregate inflection, lagging valuation/price.
+def _rank_industries(tbl: pd.DataFrame) -> pd.DataFrame:
+    """Attach industry_inflection / industry_richness / industry_quiet / cell_gap.
 
-    All three legs are ranked **across industries** from absolute medians (a
-    within-industry percentile would be ~0.5 everywhere and carry no signal):
-
-    * ``industry_inflection`` — breadth of inflection + growth + acceleration;
-    * ``industry_richness``  — median forward P/E, EV/EBITDA, P/S (higher = dearer);
-    * ``industry_quiet``      — low trailing price return (price hasn't responded).
-
-    ``cell_gap`` = inflection − richness + ¼·(quiet − ½). High = inflecting,
-    cheap, and the market hasn't re-rated it yet.
+    Ranks are computed across the rows of ``tbl`` (one market at a time when
+    called per region), since valuations are only comparable within a market.
     """
-    tbl = industry_table(df)
-    tbl = tbl[tbl["n"] >= min_n].copy()
-    if tbl.empty:
-        return tbl
-
     def _rank(col: str) -> pd.Series:
         if col not in tbl.columns:
             return pd.Series(np.nan, index=tbl.index)
@@ -102,6 +97,7 @@ def inflecting_lagging(df: pd.DataFrame, min_n: int = 3, top: int | None = 25) -
     ret = tbl.get("ret_12m_med", pd.Series(0.0, index=tbl.index)).fillna(0.0)
     industry_quiet = 1.0 - ret.rank(pct=True)
 
+    tbl = tbl.copy()
     tbl["industry_inflection"] = industry_inflection.fillna(0.5)
     tbl["industry_richness"] = industry_richness.fillna(0.5)
     tbl["industry_quiet"] = industry_quiet
@@ -109,5 +105,37 @@ def inflecting_lagging(df: pd.DataFrame, min_n: int = 3, top: int | None = 25) -
         tbl["industry_inflection"] - tbl["industry_richness"]
         + 0.25 * (industry_quiet - 0.5)
     )
-    tbl = tbl.sort_values("cell_gap", ascending=False)
-    return tbl.head(top) if top else tbl
+    return tbl
+
+
+def inflecting_lagging(df: pd.DataFrame, min_n: int = 3, top: int | None = 25) -> pd.DataFrame:
+    """Rank industries: high aggregate inflection, lagging valuation/price.
+
+    All three legs are ranked **across industries** from absolute medians (a
+    within-industry percentile would be ~0.5 everywhere and carry no signal):
+
+    * ``industry_inflection`` — breadth of inflection + growth + acceleration;
+    * ``industry_richness``  — median forward P/E, EV/EBITDA, P/S (higher = dearer);
+    * ``industry_quiet``      — low trailing price return (price hasn't responded).
+
+    ``cell_gap`` = inflection − richness + ¼·(quiet − ½). High = inflecting,
+    cheap, and the market hasn't re-rated it yet.
+    """
+    if _has_regions(df):
+        parts = []
+        for reg, sub in df.groupby("region"):
+            t = aggregate_by(sub, ["industry"])
+            t = t[t["n"] >= min_n]
+            if t.empty:
+                continue
+            t.insert(0, "region", reg)
+            parts.append(_rank_industries(t))
+        out = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
+    else:
+        t = aggregate_by(df, ["industry"])
+        t = t[t["n"] >= min_n]
+        out = _rank_industries(t) if not t.empty else t
+    if out.empty:
+        return out
+    out = out.sort_values("cell_gap", ascending=False).reset_index(drop=True)
+    return out.head(top) if top else out

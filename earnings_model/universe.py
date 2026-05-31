@@ -40,6 +40,8 @@ def build_universe(
     country: str = config.DEFAULT_COUNTRY,
     exchanges: tuple[str, ...] | None = config.DEFAULT_EXCHANGES,
     currencies: tuple[str, ...] | None = config.DEFAULT_CURRENCIES,
+    size_filter: tuple[str, ...] | None = None,
+    region: str | None = None,
     require_industry: bool = False,
 ) -> pd.DataFrame:
     """Return a DataFrame of the investable universe.
@@ -89,9 +91,25 @@ def build_universe(
     if require_industry:
         df = df[df["industry"] != "Unknown"]
 
+    if size_filter:
+        df = df[df["size_bucket"].isin(size_filter)]
+    df["region"] = region if region else country
+
     df = df.drop_duplicates(subset="symbol").sort_values(["industry", "size_bucket", "symbol"])
     df = df.reset_index(drop=True)
     return df
+
+
+def build_combined(segments: list[dict]) -> pd.DataFrame:
+    """Build and concatenate several universe segments.
+
+    ``segments`` is a list of kwargs dicts for :func:`build_universe`
+    (see ``config.UNIVERSE_PRESETS``), e.g. UK + US small caps.
+    """
+    frames = [build_universe(**seg) for seg in segments]
+    out = pd.concat(frames, ignore_index=True)
+    out = out.drop_duplicates(subset="symbol").reset_index(drop=True)
+    return out
 
 
 def backfill_size_buckets(universe: pd.DataFrame, fundamentals: pd.DataFrame) -> pd.DataFrame:

@@ -9,35 +9,46 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import aggregate, cluster, config, fundamentals, universe, valuation
+from . import aggregate, cluster, config, fundamentals, prebreakout, universe, valuation
 
 
 def step_universe(
+    preset: str | None = None,
     country: str = config.DEFAULT_COUNTRY,
     exchanges=config.DEFAULT_EXCHANGES,
     currencies=config.DEFAULT_CURRENCIES,
     require_industry: bool = False,
     out: Path = config.UNIVERSE_PATH,
 ) -> pd.DataFrame:
-    uni = universe.build_universe(
-        country=country, exchanges=exchanges, currencies=currencies,
-        require_industry=require_industry,
-    )
+    if preset:
+        if preset not in config.UNIVERSE_PRESETS:
+            raise ValueError(f"unknown preset {preset!r}; choose from {list(config.UNIVERSE_PRESETS)}")
+        uni = universe.build_combined(config.UNIVERSE_PRESETS[preset])
+    else:
+        uni = universe.build_universe(
+            country=country, exchanges=exchanges, currencies=currencies,
+            require_industry=require_industry,
+        )
     out.parent.mkdir(parents=True, exist_ok=True)
     uni.to_parquet(out, index=False)
-    print(f"universe: {len(uni)} names -> {out}")
+    by_region = uni["region"].value_counts().to_dict() if "region" in uni.columns else {}
+    print(f"universe: {len(uni)} names {by_region} -> {out}")
     return uni
 
 
 def step_fetch(
     universe_path: Path = config.UNIVERSE_PATH,
     limit: int | None = None,
+    sample: int | None = None,
     symbols: list[str] | None = None,
     refresh: bool = False,
     backfill_size: bool = True,
     out: Path = config.FUNDAMENTALS_PATH,
 ) -> pd.DataFrame:
     uni = pd.read_parquet(universe_path)
+    if sample and not symbols:
+        n = min(sample, len(uni))
+        symbols = uni.sample(n, random_state=config.RANDOM_STATE)["symbol"].tolist()
     funda = fundamentals.build_fundamentals(
         uni, limit=limit, symbols=symbols, refresh=refresh
     )
@@ -62,7 +73,10 @@ def step_analyze(
     top: int | None = 40,
 ) -> dict:
     funda = pd.read_parquet(fundamentals_path)
+    if group_cols is None and "region" in funda.columns and funda["region"].nunique() > 1:
+        group_cols = ("region",)  # rank within each market (UK vs US)
     scored = valuation.add_all_scores(funda, group_cols=group_cols)
+    scored = prebreakout.add_prebreakout_score(scored, group_cols=group_cols)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     scored.to_parquet(out_dir / "scored.parquet", index=False)
@@ -71,18 +85,24 @@ def step_analyze(
     ind_size = aggregate.industry_size_table(scored)
     lagging = aggregate.inflecting_lagging(scored)
     gap = valuation.valuation_gap_table(scored, top=top)
+    pre = prebreakout.prebreakout_table(scored, top=top)
+    cases = prebreakout.case_studies()
 
     ind.to_csv(out_dir / "industry.csv", index=False)
     ind_size.to_csv(out_dir / "industry_size.csv", index=False)
     lagging.to_csv(out_dir / "inflecting_lagging.csv", index=False)
     gap.to_csv(out_dir / "valuation_gap.csv", index=False)
+    pre.to_csv(out_dir / "prebreakout.csv", index=False)
+    if not cases.empty:
+        cases.to_csv(out_dir / "case_studies.csv", index=False)
     print(
-        f"analysis -> {out_dir}/: industry.csv ({len(ind)}), "
-        f"industry_size.csv ({len(ind_size)}), inflecting_lagging.csv ({len(lagging)}), "
-        f"valuation_gap.csv ({len(gap)})"
+        f"analysis -> {out_dir}/: industry({len(ind)}) industry_size({len(ind_size)}) "
+        f"inflecting_lagging({len(lagging)}) valuation_gap({len(gap)}) "
+        f"prebreakout({len(pre)}) case_studies({len(cases)})"
     )
     return {"scored": scored, "industry": ind, "industry_size": ind_size,
-            "inflecting_lagging": lagging, "valuation_gap": gap}
+            "inflecting_lagging": lagging, "valuation_gap": gap,
+            "prebreakout": pre, "case_studies": cases}
 
 
 def step_cluster(
@@ -108,18 +128,20 @@ def step_cluster(
 
 
 def run_all(
+    preset: str | None = None,
     country: str = config.DEFAULT_COUNTRY,
     exchanges=config.DEFAULT_EXCHANGES,
     currencies=config.DEFAULT_CURRENCIES,
     limit: int | None = None,
+    sample: int | None = None,
     refresh: bool = False,
     backfill_size: bool = True,
     group_cols=None,
     k: int | None = None,
     out_dir: Path = config.CACHE_DIR,
 ) -> dict:
-    step_universe(country=country, exchanges=exchanges, currencies=currencies)
-    step_fetch(limit=limit, refresh=refresh, backfill_size=backfill_size)
+    step_universe(preset=preset, country=country, exchanges=exchanges, currencies=currencies)
+    step_fetch(limit=limit, sample=sample, refresh=refresh, backfill_size=backfill_size)
     analysis = step_analyze(group_cols=group_cols, out_dir=out_dir)
     try:
         clusters = step_cluster(out_dir=out_dir, k=k)

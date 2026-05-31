@@ -22,6 +22,8 @@ from __future__ import annotations
 import math
 from typing import Sequence
 
+from . import config
+
 NaN = float("nan")
 
 
@@ -169,7 +171,7 @@ def compute_metrics(raw: dict) -> dict:
     for k, v in val.items():
         out[k] = v
     prices = raw.get("prices", {}) or {}
-    for k in ("ret_1m", "ret_3m", "ret_6m", "ret_12m", "last_price"):
+    for k in config.PRICE_FEATURE_KEYS:
         out[k] = prices.get(k, NaN)
     out["asof"] = raw.get("asof")
     return out

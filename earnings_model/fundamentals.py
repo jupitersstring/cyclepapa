@@ -122,24 +122,55 @@ def _statement_block(stmt: pd.DataFrame) -> dict:
 # --------------------------------------------------------------------------- #
 # Prices -> trailing returns
 # --------------------------------------------------------------------------- #
-def _trailing_returns(hist: pd.DataFrame) -> dict:
-    out = {"ret_1m": NaN, "ret_3m": NaN, "ret_6m": NaN, "ret_12m": NaN, "last_price": NaN}
+def _price_features(hist: pd.DataFrame) -> tuple[dict, dict]:
+    """Multi-year price features + the monthly close series (for case studies).
+
+    Returns (features, monthly) where features covers config.PRICE_FEATURE_KEYS
+    (trailing returns out to 36m, max drawdown, position in the 3y range,
+    annualised 2y log-price trend, and realised vol) and monthly is
+    {"dates": [...], "close": [...]} of month-end closes.
+    """
+    feats = {k: NaN for k in config.PRICE_FEATURE_KEYS}
+    monthly_out = {"dates": [], "close": []}
     if hist is None or getattr(hist, "empty", True) or "Close" not in hist.columns:
-        return out
+        return feats, monthly_out
     close = hist["Close"].dropna()
     if close.empty:
-        return out
-    last = float(close.iloc[-1])
-    out["last_price"] = last
-    last_date = close.index[-1]
-    for label, months in (("ret_1m", 1), ("ret_3m", 3), ("ret_6m", 6), ("ret_12m", 12)):
-        target = last_date - pd.DateOffset(months=months)
-        prior = close.loc[:target]
+        return feats, monthly_out
+
+    m = close.resample("ME").last().dropna()
+    if m.empty:
+        return feats, monthly_out
+    monthly_out = {"dates": [str(d.date()) for d in m.index],
+                   "close": [float(x) for x in m.to_numpy()]}
+
+    last = float(m.iloc[-1])
+    last_date = m.index[-1]
+    feats["last_price"] = last
+    for label, months in (("ret_1m", 1), ("ret_3m", 3), ("ret_6m", 6),
+                          ("ret_12m", 12), ("ret_24m", 24), ("ret_36m", 36)):
+        prior = m.loc[:last_date - pd.DateOffset(months=months)]
         if not prior.empty:
             base = float(prior.iloc[-1])
             if base > 0:
-                out[label] = last / base - 1.0
-    return out
+                feats[label] = last / base - 1.0
+
+    dd = (m / m.cummax() - 1.0).min()
+    feats["max_drawdown"] = float(dd) if pd.notna(dd) else NaN
+
+    win = m.loc[last_date - pd.DateOffset(months=36):]
+    lo, hi = float(win.min()), float(win.max())
+    feats["range_position"] = (last - lo) / (hi - lo) if hi > lo else NaN
+
+    win2 = m.loc[last_date - pd.DateOffset(months=24):]
+    if len(win2) >= 6 and bool((win2 > 0).all()):
+        y = np.log(win2.to_numpy())
+        feats["trend_slope"] = float(np.polyfit(np.arange(len(y)), y, 1)[0] * 12.0)
+
+    rets = m.pct_change().dropna().loc[last_date - pd.DateOffset(months=12):]
+    if len(rets) >= 3:
+        feats["realized_vol"] = float(rets.std() * np.sqrt(12))
+    return feats, monthly_out
 
 
 # --------------------------------------------------------------------------- #
@@ -192,6 +223,7 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES) 
                 hist = tk.history(period=config.PRICE_LOOKBACK, auto_adjust=True)
             except Exception:
                 hist = None
+            feats, monthly = _price_features(hist)
 
             valuation = {f: info.get(f) for f in config.VALUATION_FIELDS}
             has_data = any(
@@ -204,7 +236,7 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES) 
                 "annual": annual,
                 "quarterly": quarterly,
                 "valuation": valuation,
-                "prices": _trailing_returns(hist),
+                "prices": {**feats, "monthly": monthly},
                 "fetch_ok": bool(has_data or valuation.get("marketCap")),
             }
         except Exception as err:  # noqa: BLE001 — broad on purpose, then back off
@@ -238,7 +270,7 @@ def load_or_fetch(symbol: str, session=None, refresh: bool = False,
 # --------------------------------------------------------------------------- #
 # Build the flat fundamentals + metrics table
 # --------------------------------------------------------------------------- #
-_ID_COLS = ["symbol", "name", "sector", "industry_group", "industry", "size_bucket", "currency"]
+_ID_COLS = ["symbol", "name", "sector", "industry_group", "industry", "size_bucket", "currency", "region"]
 # yfinance .info fields renamed to avoid clobbering financedatabase grouping keys.
 _RENAME = {"sector": "yf_sector", "industry": "yf_industry", "currency": "yf_currency"}
 

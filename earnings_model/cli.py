@@ -48,6 +48,8 @@ def build_parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     u = sub.add_parser("build-universe", help="build the universe from financedatabase")
+    u.add_argument("--preset", choices=list(config.UNIVERSE_PRESETS), default=None,
+                   help="named universe (overrides country/exchanges): uk, us-small, uk+us-small")
     u.add_argument("--country", default=config.DEFAULT_COUNTRY)
     u.add_argument("--exchanges", default=",".join(config.DEFAULT_EXCHANGES),
                    help="comma-separated; empty string = no filter")
@@ -59,6 +61,7 @@ def build_parser() -> argparse.ArgumentParser:
     f = sub.add_parser("fetch", help="fetch fundamentals via yfinance (cached)")
     f.add_argument("--universe", type=Path, default=config.UNIVERSE_PATH)
     f.add_argument("--limit", type=int, default=None)
+    f.add_argument("--sample", type=int, default=None, help="fetch a random N-name sample")
     f.add_argument("--symbols", default=None, help="comma-separated symbols to fetch instead")
     f.add_argument("--refresh", action="store_true", help="ignore cache, refetch")
     f.add_argument("--no-backfill-size", action="store_true",
@@ -82,6 +85,8 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("--out-dir", type=Path, default=config.CACHE_DIR)
 
     r = sub.add_parser("run", help="run the full pipeline")
+    r.add_argument("--preset", choices=list(config.UNIVERSE_PRESETS), default=None)
+    r.add_argument("--sample", type=int, default=None, help="fetch a random N-name sample")
     r.add_argument("--country", default=config.DEFAULT_COUNTRY)
     r.add_argument("--exchanges", default=",".join(config.DEFAULT_EXCHANGES))
     r.add_argument("--currencies", default=",".join(config.DEFAULT_CURRENCIES))
@@ -110,6 +115,8 @@ _NAMED = {
     "industry_size": "industry_size.csv",
     "inflecting_lagging": "inflecting_lagging.csv",
     "valuation_gap": "valuation_gap.csv",
+    "prebreakout": "prebreakout.csv",
+    "case_studies": "case_studies.csv",
     "clusters": "clusters.csv",
     "cluster_profile": "cluster_profile.csv",
 }
@@ -120,6 +127,7 @@ def main(argv: list[str] | None = None) -> None:
 
     if args.cmd == "build-universe":
         pipeline.step_universe(
+            preset=args.preset,
             country=args.country,
             exchanges=_csv_list(args.exchanges),
             currencies=_csv_list(args.currencies),
@@ -130,6 +138,7 @@ def main(argv: list[str] | None = None) -> None:
         pipeline.step_fetch(
             universe_path=args.universe,
             limit=args.limit,
+            sample=args.sample,
             symbols=list(_csv_list(args.symbols) or []) or None,
             refresh=args.refresh,
             backfill_size=not args.no_backfill_size,
@@ -151,6 +160,8 @@ def main(argv: list[str] | None = None) -> None:
         )
     elif args.cmd == "run":
         pipeline.run_all(
+            preset=args.preset,
+            sample=args.sample,
             country=args.country,
             exchanges=_csv_list(args.exchanges),
             currencies=_csv_list(args.currencies),

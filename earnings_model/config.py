@@ -19,6 +19,21 @@ DEFAULT_COUNTRY = "United Kingdom"
 DEFAULT_EXCHANGES = ("LSE",)
 DEFAULT_CURRENCIES = ("GBP",)
 
+# Main US listing venues in financedatabase (NASDAQ GS/GM/CM, NYSE, AMEX, ...).
+DEFAULT_US_EXCHANGES = ("NMS", "NYQ", "NGM", "NCM", "ASE", "PCX", "BATS")
+US_SMALL_BUCKETS = ("Small Cap", "Micro Cap")
+
+# Named universe presets for build-universe / run. Each preset is a list of
+# segments; every segment is kwargs for universe.build_universe().
+UNIVERSE_PRESETS = {
+    "uk": [dict(region="UK", country="United Kingdom",
+                exchanges=("LSE",), currencies=("GBP",))],
+    "us-small": [dict(region="US", country="United States",
+                      exchanges=DEFAULT_US_EXCHANGES, currencies=("USD",),
+                      size_filter=US_SMALL_BUCKETS)],
+}
+UNIVERSE_PRESETS["uk+us-small"] = UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us-small"]
+
 # --------------------------------------------------------------------------- #
 # Size buckets — financedatabase market_cap labels, nano -> mega
 # --------------------------------------------------------------------------- #
@@ -85,7 +100,13 @@ MAX_RETRIES = 4
 BACKOFF_BASE = 2.0           # seconds -> 2, 4, 8, 16
 REQUEST_JITTER = (0.4, 1.2)  # random pause between tickers to ease rate limits
 CACHE_TTL_DAYS = 5           # reuse cached fundamentals younger than this
-PRICE_LOOKBACK = "400d"      # ~13 months of daily closes for trailing returns
+PRICE_LOOKBACK = "5y"        # daily closes -> monthly; enough for multi-year dormancy
+
+# Price-derived features carried into the flat table (computed from monthly closes).
+PRICE_FEATURE_KEYS = [
+    "ret_1m", "ret_3m", "ret_6m", "ret_12m", "ret_24m", "ret_36m",
+    "last_price", "max_drawdown", "range_position", "trend_slope", "realized_vol",
+]
 
 # --------------------------------------------------------------------------- #
 # Clustering
