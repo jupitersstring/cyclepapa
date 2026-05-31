@@ -47,7 +47,12 @@ def run_kmeans(
     if n < 4:
         raise ValueError(f"Too few usable rows to cluster (n={n}).")
 
-    X = StandardScaler().fit_transform(SimpleImputer(strategy="median").fit_transform(X_raw))
+    # Winsorize each feature to its [2%, 98%] range first: a handful of
+    # loss-makers produce ratio-growth values like -50 that would otherwise
+    # dominate the standardized space and collapse everyone else into one blob.
+    lo, hi = X_raw.quantile(0.02), X_raw.quantile(0.98)
+    X_w = X_raw.clip(lower=lo, upper=hi, axis=1)
+    X = StandardScaler().fit_transform(SimpleImputer(strategy="median").fit_transform(X_w))
 
     best = None
     if k is None:
