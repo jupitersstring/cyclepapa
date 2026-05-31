@@ -40,6 +40,18 @@ from midcap_weekly_anomalies import get_universe, CAP_SOURCES  # noqa: F401
 MEASURES = ["PRICE", "RET", "VOL", "LIQ", "ACCUM", "PARTIC",
             "RVOL", "RSHARPE", "UPDNV", "GPR"]
 
+# Quasi-independent DIMENSIONS: correlated measures are collapsed so a single
+# driver (e.g. a dilution event lighting up the whole volume family) can add at
+# most +1 to breadth instead of +4. Breadth is now counted across dimensions.
+DIMENSIONS = {
+    "PRICE":  ["PRICE", "RET"],                  # trend / direction
+    "VOLUME": ["VOL", "LIQ", "ACCUM", "PARTIC"], # participation/turnover (dilution-sensitive)
+    "VOLAT":  ["RVOL"],                          # volatility regime
+    "SHARPE": ["RSHARPE"],                        # risk-adjusted trend
+    "ASYM":   ["UPDNV", "GPR"],                  # payoff asymmetry
+}
+DIM_ORDER = list(DIMENSIONS)
+
 
 # --------------------------------------------------------------------------- #
 # Build all measure series for one asset
@@ -108,7 +120,7 @@ def inflections(values: np.ndarray, recent: int, bands) -> dict[str, dict]:
 # Scan one timeframe across the universe
 # --------------------------------------------------------------------------- #
 def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
-         caps: dict, band: str, top: int) -> pd.DataFrame:
+         caps: dict, band: str, top: int, min_net: int = 1) -> pd.DataFrame:
     bands = [b for b in BANDS if (band is None or b[0] == band)]
     intraday = label.endswith("m")
     last_dates = {s: df.dropna().index[-1] for s, df in frames.items() if len(df.dropna())}
@@ -129,19 +141,27 @@ def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
         rec = {"symbol": sym, "sector": sectors.get(sym, "?"),
                "cap": caps.get(sym, "?"), "tf": label,
                "up": 0, "down": 0, "net": 0, "score": 0.0}
+        # per-measure fresh inflection (dir, slope) on the chosen band
+        meas_dir = {}
         for meas, vals in series.items():
-            infl = inflections(vals, recent, bands)
-            b1 = infl.get(band or "B1")
-            rec[meas] = ""
+            b1 = inflections(vals, recent, bands).get(band or "B1")
             if b1 and b1["fresh"]:
-                arrow = "▲" if b1["dir"] == "UP" else "▼"
-                rec[meas] = arrow
-                if b1["dir"] == "UP":
-                    rec["up"] += 1
-                    rec["score"] += abs(b1["slope_z"])
-                else:
-                    rec["down"] += 1
-                    rec["score"] -= abs(b1["slope_z"])
+                meas_dir[meas] = (1 if b1["dir"] == "UP" else -1, abs(b1["slope_z"]))
+        # collapse correlated measures into dimensions; each dimension votes once
+        for dim, members in DIMENSIONS.items():
+            votes = [meas_dir[m][0] for m in members if m in meas_dir]
+            slopes = [meas_dir[m][1] for m in members if m in meas_dir]
+            s = sum(votes)
+            if not votes or s == 0:                       # none, or internally split
+                rec[dim] = "±" if votes else ""
+                continue
+            d_dir = 1 if s > 0 else -1
+            rec[dim] = "▲" if d_dir > 0 else "▼"
+            inten = sum(slopes) / len(slopes)
+            if d_dir > 0:
+                rec["up"] += 1; rec["score"] += inten
+            else:
+                rec["down"] += 1; rec["score"] -= inten
         rec["net"] = rec["up"] - rec["down"]
         if rec["up"] or rec["down"]:
             rows.append(rec)
@@ -150,29 +170,29 @@ def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
     if out.empty:
         print(f"\n[{label}] no fresh measure inflections.")
         return out
-    _report(out, label, recent, top, band or "B1")
+    _report(out, label, recent, top, band or "B1", min_net)
     return out
 
 
-def _report(df: pd.DataFrame, label: str, recent: int, top: int, band: str) -> None:
-    print(f"\n{'#'*120}\n#  {label.upper()} — MULTI-MEASURE bandpass inflections "
-          f"(Band {band}, fresh within {recent} bars).  ▲=up-cross ▼=down-cross\n{'#'*120}")
-    cols = MEASURES
-    hdr = f"{'Sym':<7}{'Sector':<20}{'Net':>4}{'Up':>3}{'Dn':>3}  " + "".join(f"{c[:5]:>6}" for c in cols)
-    for sign, title in [(1, "BULLISH broad turns (most measures inflecting UP)"),
-                        (-1, "BEARISH broad turns (most measures inflecting DOWN)")]:
-        sub = df[df["net"] * sign > 0].copy()
+def _report(df: pd.DataFrame, label: str, recent: int, top: int, band: str,
+            min_net: int = 1) -> None:
+    print(f"\n{'#'*108}\n#  {label.upper()} — DIMENSION breadth (Band {band}, fresh within "
+          f"{recent} bars).  Net = up-dims − down-dims (max ±{len(DIMENSIONS)})\n"
+          f"#  ▲=dim up-cross ▼=down ±=split.  VOLUME collapses VOL/LIQ/ACCUM/PARTIC -> 1 dim\n{'#'*108}")
+    cols = DIM_ORDER
+    hdr = f"{'Sym':<7}{'Sector':<20}{'Net':>4}{'Up':>3}{'Dn':>3}  " + "".join(f"{c:>8}" for c in cols)
+    for sign, title in [(1, f"BULLISH: ALL names with Net >= +{min_net} (dimensions inflecting UP)"),
+                        (-1, f"BEARISH: ALL names with Net <= -{min_net} (dimensions inflecting DOWN)")]:
+        sub = df[df["net"] * sign >= min_net].copy()
         if sub.empty:
             continue
-        sub = sub.sort_values("net" if sign > 0 else "net",
-                              ascending=(sign < 0))
-        sub = sub.sort_values("score", ascending=(sign < 0)).head(top)
-        print(f"\n=== {title} ===")
+        sub = sub.sort_values(["net", "score"], ascending=(sign < 0))
+        print(f"\n=== {title}   ({len(sub)} names) ===")
         print(hdr)
         for _, r in sub.iterrows():
             print(f"{r['symbol']:<7}{str(r['sector'])[:19]:<20}{int(r['net']):>4}"
                   f"{int(r['up']):>3}{int(r['down']):>3}  "
-                  + "".join(f"{str(r.get(c,'')):>6}" for c in cols))
+                  + "".join(f"{str(r.get(c,'')):>8}" for c in cols))
 
 
 def run(args):
@@ -185,17 +205,17 @@ def run(args):
     if args.m90:
         h = download_ohlcv(symbols, period="60d", interval="90m",
                            refresh=args.refresh, cached_only=args.cached_only)
-        r = scan(h, "90m", args.recent_m90, args.window_m90, sectors, caps, args.band, args.top)
+        r = scan(h, "90m", args.recent_m90, args.window_m90, sectors, caps, args.band, args.top, args.min_net)
         if not r.empty: results.append(r)
     if args.daily:
         d = download_ohlcv(symbols, period=args.period, interval="1d",
                            refresh=args.refresh, cached_only=args.cached_only)
-        r = scan(d, "daily", args.recent_daily, args.window, sectors, caps, args.band, args.top)
+        r = scan(d, "daily", args.recent_daily, args.window, sectors, caps, args.band, args.top, args.min_net)
         if not r.empty: results.append(r)
     if args.weekly:
         ww = download_ohlcv(symbols, period=args.period, interval="1wk",
                             refresh=args.refresh, cached_only=args.cached_only)
-        r = scan(ww, "weekly", args.recent_weekly, args.window, sectors, caps, args.band, args.top)
+        r = scan(ww, "weekly", args.recent_weekly, args.window, sectors, caps, args.band, args.top, args.min_net)
         if not r.empty: results.append(r)
 
     if results and args.csv:
@@ -207,6 +227,7 @@ def parse_args():
     p = argparse.ArgumentParser(description="Multi-measure Ehlers bandpass inflection scanner")
     p.add_argument("--universe", choices=["sp400", *CAP_SOURCES.keys()], default="us-midcap")
     p.add_argument("--limit", type=int, default=None)
+    p.add_argument("--min-net", type=int, default=1, help="show ALL names with |Net dimensions| >= this (default 1)")
     p.add_argument("--period", default="20y")
     p.add_argument("--weekly", action="store_true")
     p.add_argument("--daily", action="store_true")
