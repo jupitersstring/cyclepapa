@@ -195,6 +195,75 @@ def compose_thesis(row) -> str:
     return '; '.join(bits)
 
 
+def compose_why(row) -> str:
+    """Verbose explanation of why this pick scored high, decomposed by leg."""
+    parts = []
+
+    # 1. Qualitative status
+    v = row.get('verdict', 'UNRESEARCHED')
+    qt = row.get('thesis', '')
+    if v == 'GREEN':
+        parts.append(f"[GREEN, +30%] {qt}")
+    elif v == 'YELLOW':
+        parts.append(f"[YELLOW, -30%] {qt}")
+    elif v == 'RED':
+        parts.append(f"[RED, excluded] {qt}")
+    else:
+        parts.append("[UNRESEARCHED, -15% caution]")
+
+    # 2. Downside floor (intrinsic value cushion)
+    floor = []
+    if row.get('cash_gt_ev_flag') == 1:
+        cev = row.get('cash_pct_ev')
+        if pd.notna(cev) and cev > 1:
+            floor.append(f"cash {cev:.1f}x EV")
+        else:
+            floor.append("cash > EV")
+    if row.get('graham_net_net_flag') == 1:
+        floor.append("Graham net-net")
+    nc = row.get('net_cash_pct_mcap')
+    if pd.notna(nc) and nc > 0.3:
+        floor.append(f"net cash {nc:.0%} of mcap")
+    pb = row.get('pb')
+    if pd.notna(pb) and 0 < pb < 1.0:
+        floor.append(f"P/B {pb:.2f} (sub-book)")
+    ncav = row.get('ncav_pct_mcap')
+    if pd.notna(ncav) and ncav > 0.5:
+        floor.append(f"NCAV {ncav:.0%} of mcap")
+    ins = row.get('insider_ownership_pct')
+    if pd.notna(ins) and ins >= 0.30:
+        floor.append(f"insider {ins:.0%}")
+    if floor:
+        parts.append("Downside floor: " + ", ".join(floor))
+
+    # 3. Upside drivers (inflection cluster + growth scores)
+    upside = []
+    cn = row.get('cluster_n')
+    if pd.notna(cn) and cn >= 3:
+        upside.append(f"{int(cn)} of 7 inflection signals firing")
+    yart = row.get('yartseva_score')
+    if pd.notna(yart) and yart >= 0.55:
+        upside.append(f"Yartseva {yart:.2f}")
+    berez = row.get('berezin_score')
+    if pd.notna(berez) and berez >= 0.50:
+        upside.append(f"Berezin {berez:.2f}")
+    npi = row.get('not_priced_in_score')
+    if pd.notna(npi) and npi > 0.5:
+        upside.append(f"fundamentals running {npi:.1f}x ahead of price")
+    if upside:
+        parts.append("Upside: " + ", ".join(upside))
+
+    # 4. Score composition
+    ida = row.get('intrinsic_discount')
+    if pd.notna(ida):
+        parts.append(
+            f"intrinsic discount {ida:.2f} "
+            f"(boost {1.0 + (ida - 0.25):.2f}x)"
+        )
+
+    return " | ".join(parts)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--per-country-n', type=int, default=30)
@@ -217,6 +286,7 @@ def main():
         axis=1,
     )
     df = amend_scores(df)
+    df['why'] = df.apply(compose_why, axis=1)
 
     df = df[df['market_cap'].fillna(0) >= args.min_mcap]
 
@@ -239,7 +309,7 @@ def main():
         'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
         'not_priced_in_score','insider_ownership_pct',
         'cash_gt_ev_flag','graham_net_net_flag',
-        'full_thesis','thesis',
+        'why','full_thesis','thesis',
     ]
     master_cols = [c for c in master_cols if c in df.columns]
 
@@ -276,6 +346,7 @@ def main():
                     'pb': r.get('pb', 0),
                     'cash_gt_ev_flag': r.get('cash_gt_ev_flag', 0),
                     'insider_ownership_pct': r.get('insider_ownership_pct', 0),
+                    'why': r.get('why', ''),
                     'thesis': r.get('full_thesis', ''),
                 })
         pd.DataFrame(summary_rows).to_excel(xl, sheet_name='Per_Country_Top3', index=False)
@@ -290,7 +361,7 @@ def main():
             'cluster_n','yartseva_score','berezin_score',
             'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
             'not_priced_in_score','insider_ownership_pct',
-            'cash_gt_ev_flag','graham_net_net_flag','full_thesis','thesis',
+            'cash_gt_ev_flag','graham_net_net_flag','why','full_thesis','thesis',
         ]
         per_country_cols = [c for c in per_country_cols if c in df.columns]
 
