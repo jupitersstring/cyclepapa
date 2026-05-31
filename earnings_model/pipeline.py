@@ -77,13 +77,17 @@ def step_analyze(
         group_cols = ("region",)  # rank within each market (UK vs US)
     scored = valuation.add_all_scores(funda, group_cols=group_cols)
     scored = prebreakout.add_prebreakout_score(scored, group_cols=group_cols)
+    scored["is_operating"] = valuation.is_operating(scored)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     scored.to_parquet(out_dir / "scored.parquet", index=False)
 
-    ind = aggregate.industry_table(scored)
-    ind_size = aggregate.industry_size_table(scored)
-    lagging = aggregate.inflecting_lagging(scored)
+    # Industry aggregates and shortlists use operating companies only (warrants,
+    # preferreds, CEFs/BDCs and shells would otherwise pollute the medians).
+    op = scored[scored["is_operating"]]
+    ind = aggregate.industry_table(op)
+    ind_size = aggregate.industry_size_table(op)
+    lagging = aggregate.inflecting_lagging(op)
     gap = valuation.valuation_gap_table(scored, top=top)
     pre = prebreakout.prebreakout_table(scored, top=top)
     cases = prebreakout.case_studies()

@@ -9,8 +9,30 @@ right lens for "which industries are inflecting while valuations lag"; pass
 """
 from __future__ import annotations
 
+import re
+
 import numpy as np
 import pandas as pd
+
+# Names that aren't ordinary operating equity (warrants, preferreds, depositary
+# shares, units, rights, BDCs / closed-end vehicles) — excluded from an
+# earnings screen. Catches the bulk of the US small-cap "non-stock" tail.
+_NONOP_RE = re.compile(
+    r"warrant|preferred|\bpfd\b|depositary|\brights?\b|\bunits?\b|\bbdc\b|%", re.I
+)
+
+
+def is_operating(df: pd.DataFrame, min_periods: int = 2) -> pd.Series:
+    """Boolean mask: operating companies with a real income statement.
+
+    Drops non-equity securities by name and anything without >= ``min_periods``
+    of revenue history (closed-end funds, shells, most warrants/preferreds).
+    """
+    name = df["name"].fillna("") if "name" in df.columns else pd.Series("", index=df.index)
+    name_ok = ~name.str.contains(_NONOP_RE)
+    rev = (df["revenue_n_periods"] if "revenue_n_periods" in df.columns
+           else pd.Series(0, index=df.index)).fillna(0)
+    return name_ok & (rev >= min_periods)
 
 # Signals where "higher = more inflecting / accelerating".
 _ACCEL_SIGNALS = [
@@ -167,8 +189,12 @@ def add_all_scores(df: pd.DataFrame, group_cols=None) -> pd.DataFrame:
     return out
 
 
-def valuation_gap_table(df: pd.DataFrame, top: int | None = 30, min_n_periods: int = 2) -> pd.DataFrame:
-    """Ranked 'earnings inflecting but valuation lagging' shortlist."""
+def valuation_gap_table(df: pd.DataFrame, top: int | None = 30, min_n_periods: int = 2,
+                        quality: bool = True) -> pd.DataFrame:
+    """Ranked 'earnings inflecting but valuation lagging' shortlist.
+
+    ``quality=True`` restricts to operating companies (see :func:`is_operating`).
+    """
     cols = [
         "symbol", "name", "industry", "size_bucket",
         "gap_score", "inflection_score", "valuation_richness", "price_response",
@@ -176,9 +202,8 @@ def valuation_gap_table(df: pd.DataFrame, top: int | None = 30, min_n_periods: i
         "ebitda_accel_abs", "forwardPE", "enterpriseToEbitda",
         "priceToSalesTrailing12Months", "ret_12m", "broad_inflection",
     ]
-    present = [c for c in cols if c in df.columns]
-    out = df[present].copy()
-    if "revenue_n_periods" in df.columns:
-        out = out[df["revenue_n_periods"].fillna(0) >= min_n_periods]
-    out = out.sort_values("gap_score", ascending=False)
+    work = df[is_operating(df, min_n_periods)] if quality else df
+    work = work.sort_values("gap_score", ascending=False)
+    present = [c for c in cols if c in work.columns]
+    out = work[present]
     return out.head(top) if top else out

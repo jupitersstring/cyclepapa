@@ -81,11 +81,12 @@ def add_prebreakout_score(
 
 
 def prebreakout_table(df: pd.DataFrame, top: int | None = 30, min_n_periods: int = 2,
-                      only_gated: bool = True) -> pd.DataFrame:
-    """Ranked pre-breakout shortlist (improving, dormant, cheap)."""
-    work = df
-    if "revenue_n_periods" in work.columns:
-        work = work[work["revenue_n_periods"].fillna(0) >= min_n_periods]
+                      only_gated: bool = True, quality: bool = True) -> pd.DataFrame:
+    """Ranked pre-breakout shortlist (improving, dormant, cheap).
+
+    ``quality=True`` restricts to operating companies (see valuation.is_operating).
+    """
+    work = df[val.is_operating(df, min_n_periods)] if quality else df
     if only_gated and "prebreakout_gated" in work.columns:
         work = work[work["prebreakout_gated"]]
     work = work.sort_values("prebreakout_score", ascending=False)
@@ -104,13 +105,15 @@ def prebreakout_table(df: pd.DataFrame, top: int | None = 30, min_n_periods: int
 def detect_base_then_breakout(
     dates: list, close: list,
     base_min_months: int = 15, base_max_drift: float = 0.35,
-    breakout_move: float = 0.8, breakout_window: int = 6,
+    breakout_move: float = 0.8, breakout_window: int = 6, max_move: float = 4.0,
 ) -> dict | None:
     """If the monthly series shows a long flat base then a sharp rise, describe it.
 
     A base of >= ``base_min_months`` whose high/low spread is <= ``base_max_drift``,
-    immediately followed by a >= ``breakout_move`` rise within ``breakout_window``
-    months. Returns the strongest such episode, else None.
+    immediately followed by a rise in [``breakout_move``, ``max_move``] within
+    ``breakout_window`` months. ``max_move`` caps implausible jumps (>400% in a
+    few months) that are almost always unadjusted-split / penny data artifacts.
+    Returns the strongest qualifying episode, else None.
     """
     c = np.asarray(close, dtype=float)
     n = len(c)
@@ -125,7 +128,7 @@ def detect_base_then_breakout(
         end = min(n, start_w + breakout_window)
         peak = c[start_w:end].max() if end > start_w else pre
         move = (peak / pre - 1.0) if pre > 0 else 0.0
-        if move >= breakout_move and (best is None or move > best["breakout_move"]):
+        if breakout_move <= move <= max_move and (best is None or move > best["breakout_move"]):
             best = {
                 "breakout_move": float(move),
                 "base_start": dates[start_w - base_min_months],

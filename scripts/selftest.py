@@ -132,6 +132,17 @@ def main():
     assert not bool(pb.loc[pb["industry"] == "Fade", "prebreakout_gated"].any())
     print("[ok] gate: Inflect (improving) IN, Fade (contracting, cheap) OUT")
 
+    # --- quality gate (exclude non-operating securities) -------------------
+    fake = scored.iloc[[0]].copy()
+    fake["symbol"] = "WRNT.TEST"
+    fake["name"] = "Test Holdings Warrant"   # non-operating by name
+    fake["gap_score"] = 1.0                   # would top the list if not excluded
+    fake["revenue_n_periods"] = 4             # rev filter alone wouldn't catch it
+    scored_q = pd.concat([scored, fake], ignore_index=True)
+    assert not bool(valuation.is_operating(scored_q).iloc[-1])
+    assert "WRNT.TEST" not in set(valuation.valuation_gap_table(scored_q, top=5)["symbol"])
+    print("[ok] quality gate excludes warrant/preferred/CEF/BDC names")
+
     print("\nALL SELF-TESTS PASSED")
 
 
