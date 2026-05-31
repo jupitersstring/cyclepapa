@@ -280,6 +280,19 @@ def main():
     df = df.merge(verdicts, on='symbol', how='left')
     df['verdict'] = df['verdict'].fillna('UNRESEARCHED')
     df['thesis']  = df['thesis'].fillna('')
+
+    # Archetype tags - Yellowbrick taxonomy clusters C5/E/F/G + Narrative Lag (A)
+    if os.path.exists('archetype_tags.csv'):
+        tags = pd.read_csv('archetype_tags.csv')
+        df = df.merge(tags, on='symbol', how='left')
+        for c in tags.columns:
+            if c == 'symbol':
+                continue
+            if c.startswith('arch_') or c == 'archetype_count':
+                df[c] = df[c].fillna(0).astype(int)
+            elif c == 'archetype_tags_str':
+                df[c] = df[c].fillna('')
+        print(f'merged archetype tags ({len(tags)} rows)', file=sys.stderr)
     df['quant_thesis'] = df.apply(compose_thesis, axis=1)
     df['full_thesis']  = df.apply(
         lambda r: (r['thesis'] + ' | ' + r['quant_thesis']).strip(' |'),
@@ -320,6 +333,72 @@ def main():
         # Then the raw (full-asymmetry-cycle) views
         master_asym[master_cols].to_excel(xl, sheet_name='Master_By_Asymmetry', index=False)
         master_upside[master_cols].to_excel(xl, sheet_name='Master_By_Upside', index=False)
+
+        # ----- Archetype cluster sheets (Yellowbrick taxonomy) -----
+        # Four sheets, one per metaphysical cluster.  Narrative Lag (cluster A)
+        # is NOT its own sheet - it's surfaced as a column in every cluster
+        # sheet as a modifier.  RED verdicts dropped; GREEN sorted to the top
+        # so the qualitative winners lead each list.
+        cluster_specs = [
+            (
+                'ArchC_FixedCostDemandShock',
+                ['arch_fixed_cost_demand_shock'],
+                'Heavy-asset operators with positive revenue acceleration AND '
+                'expanding EBITDA margin - the cluster-C5 setup.',
+            ),
+            (
+                'ArchE_NAV_CapitalDiscipline',
+                ['arch_discounted_vehicle', 'arch_capital_discipline'],
+                'Sub-book + net-cash (E7) plus insider-aligned conservative '
+                'compounders not yet re-rated (E8).',
+            ),
+            (
+                'ArchF_Cyclical',
+                ['arch_regime_cyclical', 'arch_dead_option'],
+                'Heavy-asset cycle bottoms with margin inflection (F9) or '
+                'deep-drawdown profitable orphans (F10).',
+            ),
+            (
+                'ArchG_KPI_BlindSpot',
+                ['arch_kpi_threshold', 'arch_blindspot'],
+                'First-positive operating prints (G11) and under-covered '
+                'small-cap geographies (G12).',
+            ),
+        ]
+
+        archetype_cols_show = [
+            'symbol','name','src','sector','market_cap_bucket','market_cap',
+            'verdict',
+            'archetype_tags_str',
+            'arch_narrative_lag',          # the A modifier
+            'country_entry_asymmetry','entry_today_asymmetry','intrinsic_discount',
+            'asymmetry_score','upside_score','cluster_n',
+            'yartseva_score','berezin_score',
+            'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+            'not_priced_in_score','insider_ownership_pct',
+            'cash_gt_ev_flag','graham_net_net_flag',
+            'why','full_thesis','thesis',
+        ]
+        archetype_cols_show = [c for c in archetype_cols_show if c in df.columns]
+
+        # qual rank: GREEN best, then YELLOW, then UNRESEARCHED.  RED dropped.
+        qual_rank = {'GREEN': 0, 'YELLOW': 1, 'UNRESEARCHED': 2}
+        for sheet_name, arch_flags, _desc in cluster_specs:
+            mask = pd.Series(False, index=df.index)
+            for f in arch_flags:
+                if f in df.columns:
+                    mask = mask | (df[f] == 1)
+            sub = df[mask & (df['verdict'] != 'RED')].copy()
+            if sub.empty:
+                continue
+            sub['_qrank'] = sub['verdict'].map(qual_rank).fillna(2).astype(int)
+            sub = sub.sort_values(
+                by=['_qrank','country_entry_asymmetry'],
+                ascending=[True, False],
+            ).head(60)
+            sub.drop(columns=['_qrank'])[archetype_cols_show].to_excel(
+                xl, sheet_name=sheet_name[:31], index=False
+            )
 
         # Per-country summary - top 3 per country by the strict country
         # entry-today asymmetry (drops RED, boosts GREEN, treats
