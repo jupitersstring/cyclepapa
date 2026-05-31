@@ -73,11 +73,13 @@ def load_cashflow(tk):
 
 
 def _row(df, candidates):
-    if df is None: return None
+    """Get a time series for a given line item. yfinance income/cashflow
+    parquets have dates as index and line items as columns."""
+    if df is None or df.empty: return None
     for c in candidates:
-        if c in df.index:
-            s = pd.to_numeric(df.loc[c], errors='coerce').dropna()
-            if not s.empty: return s
+        if c in df.columns:
+            s = pd.to_numeric(df[c], errors='coerce').dropna()
+            if not s.empty: return s.sort_index()
     return None
 
 
