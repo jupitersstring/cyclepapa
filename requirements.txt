@@ -1,0 +1,14 @@
+# Core analytics + data stack for the earnings_model package.
+yfinance>=0.2.40
+pandas>=2.0
+numpy>=1.26
+scikit-learn>=1.3
+scipy>=1.11
+pyarrow>=14.0
+curl_cffi>=0.7          # browser-impersonating session; defeats Yahoo 429s
+
+# financedatabase pulls a broken `odfpy` build requirement transitively, so
+# install it WITHOUT deps (its real runtime needs are pandas + requests, above):
+#   pip install --no-deps financedatabase
+financedatabase>=2.3
+requests>=2.31
