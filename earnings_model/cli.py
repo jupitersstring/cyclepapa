@@ -22,7 +22,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from . import config, pipeline
+from . import config, pipeline, screens
 
 
 def _csv_list(value: str | None):
@@ -98,6 +98,12 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--k", type=int, default=None)
     r.add_argument("--out-dir", type=Path, default=config.CACHE_DIR)
 
+    sc = sub.add_parser("screen", help="run a named screen over scored.parquet")
+    sc.add_argument("name", choices=list(screens.SCREENS), help="which screen")
+    sc.add_argument("--in", dest="inp", type=Path, default=config.CACHE_DIR / "scored.parquet")
+    sc.add_argument("-n", type=int, default=30)
+    sc.add_argument("--region", default=None, help="filter to one region (UK/US/EU)")
+
     s = sub.add_parser("show", help="print the head of a cached output")
     s.add_argument("name", help="one of: universe, fundamentals, scored, industry, "
                                 "industry_size, inflecting_lagging, valuation_gap, "
@@ -172,6 +178,16 @@ def main(argv: list[str] | None = None) -> None:
             k=args.k,
             out_dir=args.out_dir,
         )
+    elif args.cmd == "screen":
+        import pandas as pd
+        df = pd.read_parquet(args.inp)
+        if args.region:
+            df = df[df["region"] == args.region]
+        res = screens.SCREENS[args.name](df, top=args.n)
+        with pd.option_context("display.width", 240, "display.max_columns", 40,
+                               "display.max_colwidth", 28):
+            print(f"# screen: {args.name}  ({len(res)} rows)")
+            print(res.to_string(index=False))
     elif args.cmd == "show":
         target = _NAMED.get(args.name)
         path = (args.out_dir / target) if target else Path(args.name)

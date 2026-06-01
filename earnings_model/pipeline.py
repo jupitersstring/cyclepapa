@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import aggregate, cluster, config, fundamentals, prebreakout, universe, valuation
+from . import aggregate, cluster, config, fundamentals, prebreakout, screens, universe, valuation
 
 
 def step_universe(
@@ -99,6 +99,13 @@ def step_analyze(
     pre.to_csv(out_dir / "prebreakout.csv", index=False)
     if not cases.empty:
         cases.to_csv(out_dir / "case_studies.csv", index=False)
+
+    # Reproducible name screens (operating-only, region-aware, guardrailed).
+    for name, fn in screens.SCREENS.items():
+        try:
+            fn(scored, top=None).to_csv(out_dir / f"screen_{name.replace('-', '_')}.csv", index=False)
+        except Exception as err:  # a screen shouldn't break the pipeline
+            print(f"  screen {name} skipped: {err}")
     print(
         f"analysis -> {out_dir}/: industry({len(ind)}) industry_size({len(ind_size)}) "
         f"inflecting_lagging({len(lagging)}) valuation_gap({len(gap)}) "
