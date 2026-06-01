@@ -22,6 +22,7 @@ DEFAULT_CURRENCIES = ("GBP",)
 # Main US listing venues in financedatabase (NASDAQ GS/GM/CM, NYSE, AMEX, ...).
 DEFAULT_US_EXCHANGES = ("NMS", "NYQ", "NGM", "NCM", "ASE", "PCX", "BATS")
 US_SMALL_BUCKETS = ("Small Cap", "Micro Cap")
+US_MID_BUCKETS = ("Mid Cap",)
 
 # Named universe presets for build-universe / run. Each preset is a list of
 # segments; every segment is kwargs for universe.build_universe().
@@ -31,8 +32,16 @@ UNIVERSE_PRESETS = {
     "us-small": [dict(region="US", country="United States",
                       exchanges=DEFAULT_US_EXCHANGES, currencies=("USD",),
                       size_filter=US_SMALL_BUCKETS)],
+    "us-mid": [dict(region="US", country="United States",
+                    exchanges=DEFAULT_US_EXCHANGES, currencies=("USD",),
+                    size_filter=US_MID_BUCKETS)],
 }
 UNIVERSE_PRESETS["uk+us-small"] = UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us-small"]
+UNIVERSE_PRESETS["us-smid"] = UNIVERSE_PRESETS["us-small"] + UNIVERSE_PRESETS["us-mid"]
+# Full small+mid across both markets (UK preset already includes UK mid caps).
+UNIVERSE_PRESETS["uk+us-smid"] = (
+    UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us-small"] + UNIVERSE_PRESETS["us-mid"]
+)
 
 # --------------------------------------------------------------------------- #
 # Size buckets — financedatabase market_cap labels, nano -> mega
