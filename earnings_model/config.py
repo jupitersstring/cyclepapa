@@ -23,6 +23,19 @@ DEFAULT_CURRENCIES = ("GBP",)
 DEFAULT_US_EXCHANGES = ("NMS", "NYQ", "NGM", "NCM", "ASE", "PCX", "BATS")
 US_SMALL_BUCKETS = ("Small Cap", "Micro Cap")
 US_MID_BUCKETS = ("Mid Cap",)
+US_LARGE_BUCKETS = ("Large Cap", "Mega Cap")
+SMID_LARGE = ("Small Cap", "Micro Cap", "Mid Cap", "Large Cap", "Mega Cap")
+
+# EU primary exchanges per country — picks the home listing and drops the heavy
+# German cross-listing duplication (VIE/STU/FRA/BER/MUN/DUS/HAM carry the same
+# companies many times over).
+EU_PRIMARY_EXCHANGES = {
+    "Germany": ("GER", "FRA"), "France": ("PAR",), "Netherlands": ("AMS",),
+    "Italy": ("MIL",), "Spain": ("MCE",), "Belgium": ("BRU",),
+    "Ireland": ("ISE", "DUB"), "Finland": ("HEL",), "Portugal": ("LIS",),
+    "Austria": ("VIE",), "Switzerland": ("EBS", "VTX"), "Sweden": ("STO",),
+    "Denmark": ("CPH",), "Norway": ("OSL",),
+}
 
 # Named universe presets for build-universe / run. Each preset is a list of
 # segments; every segment is kwargs for universe.build_universe().
@@ -35,12 +48,28 @@ UNIVERSE_PRESETS = {
     "us-mid": [dict(region="US", country="United States",
                     exchanges=DEFAULT_US_EXCHANGES, currencies=("USD",),
                     size_filter=US_MID_BUCKETS)],
+    "us-large": [dict(region="US", country="United States",
+                      exchanges=DEFAULT_US_EXCHANGES, currencies=("USD",),
+                      size_filter=US_LARGE_BUCKETS)],
 }
+# US small+mid+large (one segment, all buckets).
+UNIVERSE_PRESETS["us"] = [dict(region="US", country="United States",
+                               exchanges=DEFAULT_US_EXCHANGES, currencies=("USD",),
+                               size_filter=SMID_LARGE)]
+# EU: one segment per country, restricted to its primary exchange(s), L/M/S.
+UNIVERSE_PRESETS["eu"] = [
+    dict(region="EU", country=ctry, exchanges=exs, currencies=None,
+         size_filter=SMID_LARGE)
+    for ctry, exs in EU_PRIMARY_EXCHANGES.items()
+]
 UNIVERSE_PRESETS["uk+us-small"] = UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us-small"]
 UNIVERSE_PRESETS["us-smid"] = UNIVERSE_PRESETS["us-small"] + UNIVERSE_PRESETS["us-mid"]
-# Full small+mid across both markets (UK preset already includes UK mid caps).
 UNIVERSE_PRESETS["uk+us-smid"] = (
     UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us-small"] + UNIVERSE_PRESETS["us-mid"]
+)
+# Everything: UK (all) + US (small/mid/large) + EU (L/M/S, primary listings).
+UNIVERSE_PRESETS["global"] = (
+    UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us"] + UNIVERSE_PRESETS["eu"]
 )
 
 # --------------------------------------------------------------------------- #
@@ -60,7 +89,8 @@ SIZE_THRESHOLDS_USD = [
     (200e9, "Large Cap"),
     (float("inf"), "Mega Cap"),
 ]
-FX_TO_USD = {"GBP": 1.27, "GBp": 0.0127, "USD": 1.0, "EUR": 1.08, "PENNY": 0.0127}
+FX_TO_USD = {"GBP": 1.27, "GBp": 0.0127, "USD": 1.0, "EUR": 1.08, "PENNY": 0.0127,
+             "CHF": 1.12, "SEK": 0.095, "NOK": 0.092, "DKK": 0.145}
 
 # --------------------------------------------------------------------------- #
 # yfinance income-statement line-item resolution (names vary by ticker)
