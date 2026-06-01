@@ -23,6 +23,8 @@ def uni(cap):
     s=s[s['exchange'].isin(US)&(s['currency']=='USD')]
     return [str(t).replace('.','-') for t in s.index if pat.match(str(t).replace('.','-'))]
 CAPMAP={"mid":["Mid Cap"],"small":["Small Cap"],"micro":["Micro Cap"],
+        "large":["Large Cap"],"mega":["Mega Cap"],
+        "largemega":["Large Cap","Mega Cap"],
         "smallmicro":["Small Cap","Micro Cap"],
         "all":["Mid Cap","Small Cap","Micro Cap"]}
 syms = sorted(set().union(*[set(uni(c)) for c in CAPMAP[caps_arg]]))
