@@ -30,6 +30,7 @@ def run_kmeans(
     k: int | None = None,
     k_range=config.KMEANS_K_RANGE,
     random_state: int = config.RANDOM_STATE,
+    rank_transform: bool = True,
 ) -> dict:
     """Cluster ``df`` and return labelled frame + cluster profile.
 
@@ -47,12 +48,17 @@ def run_kmeans(
     if n < 4:
         raise ValueError(f"Too few usable rows to cluster (n={n}).")
 
-    # Winsorize each feature to its [2%, 98%] range first: a handful of
-    # loss-makers produce ratio-growth values like -50 that would otherwise
-    # dominate the standardized space and collapse everyone else into one blob.
-    lo, hi = X_raw.quantile(0.02), X_raw.quantile(0.98)
-    X_w = X_raw.clip(lower=lo, upper=hi, axis=1)
-    X = StandardScaler().fit_transform(SimpleImputer(strategy="median").fit_transform(X_w))
+    # Heavy-tailed growth/accel features will otherwise dump ~85% of names into
+    # one blob and isolate the tails. Rank-transform each feature to its
+    # cross-sectional percentile (uniform marginals) so clustering reflects
+    # *relative* behaviour, not absolute outliers. NaN -> median rank (0.5).
+    if rank_transform:
+        Xr = X_raw.rank(pct=True)
+        imp = SimpleImputer(strategy="constant", fill_value=0.5).fit_transform(Xr)
+    else:
+        lo, hi = X_raw.quantile(0.02), X_raw.quantile(0.98)
+        imp = SimpleImputer(strategy="median").fit_transform(X_raw.clip(lower=lo, upper=hi, axis=1))
+    X = StandardScaler().fit_transform(imp)
 
     best = None
     if k is None:
@@ -93,33 +99,39 @@ def run_kmeans(
     }
 
 
+def _behaviour_label(row) -> str:
+    """Human-readable behaviour tag from a cluster's median growth/accel."""
+    def v(k):
+        x = row.get(k, np.nan)
+        return 0.0 if x is None or (isinstance(x, float) and np.isnan(x)) else float(x)
+    g, ra = v("revenue_growth"), v("revenue_accel")
+    eg, ea = v("earnings_growth"), v("earnings_accel")
+    accel = np.nanmean([ra, ea])
+    if g >= 0.20:
+        return "Hypergrowth, accelerating" if accel > 0 else "Hypergrowth, cooling"
+    if g >= 0.07:
+        return "Growth + improving" if (accel > 0 or ea > 0) else "Growth, slowing"
+    if g <= -0.05 or eg <= -0.15:
+        return "Contracting"
+    if (ea > 0 or eg > 0) and accel >= 0:
+        return "Quietly inflecting"
+    if accel < 0 or eg < 0:
+        return "Decelerating"
+    return "Flat / ex-growth"
+
+
 def _profile(labeled: pd.DataFrame, feats: list[str]) -> pd.DataFrame:
-    """Mean feature values per cluster + size + behaviour label."""
+    """Median feature values per cluster + size + behaviour label.
+
+    Medians (not means) summarise these skewed features sensibly even though the
+    clustering itself runs on rank-transformed values.
+    """
     rows = labeled.dropna(subset=["cluster"])
-    agg = {f: "mean" for f in feats}
+    agg = {f: "median" for f in feats}
     for extra in ("inflection_score", "gap_score", "valuation_richness"):
         if extra in labeled.columns:
-            agg[extra] = "mean"
+            agg[extra] = "median"
     prof = rows.groupby("cluster").agg(agg)
     prof["n"] = rows.groupby("cluster").size()
-
-    growth_cols = [c for c in _GROWTH_COLS if c in feats]
-    accel_cols = [c for c in _ACCEL_COLS if c in feats]
-    univ_growth_med = labeled[growth_cols].median().mean() if growth_cols else 0.0
-
-    labels = []
-    for cl, row in prof.iterrows():
-        g = np.nanmean([row[c] for c in growth_cols]) if growth_cols else 0.0
-        a = np.nanmean([row[c] for c in accel_cols]) if accel_cols else 0.0
-        growth_high = g > univ_growth_med
-        accel_pos = a > 0
-        if accel_pos and growth_high:
-            labels.append("Accelerating leaders")
-        elif accel_pos and not growth_high:
-            labels.append("Inflecting up (low base)")
-        elif not accel_pos and growth_high:
-            labels.append("High growth, slowing")
-        else:
-            labels.append("Lagging / contracting")
-    prof["cluster_label"] = labels
+    prof["cluster_label"] = [_behaviour_label(r) for _, r in prof.iterrows()]
     return prof.reset_index()
