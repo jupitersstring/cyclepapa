@@ -180,7 +180,8 @@ def _cache_path(symbol: str) -> Path:
     return config.RAW_CACHE_DIR / f"{symbol.replace('/', '_')}.json"
 
 
-def load_raw(symbol: str, ttl_days: float = config.CACHE_TTL_DAYS) -> dict | None:
+def load_raw(symbol: str, ttl_days: float = config.CACHE_TTL_DAYS,
+             fail_ttl_days: float = config.FAIL_CACHE_TTL_DAYS) -> dict | None:
     path = _cache_path(symbol)
     if not path.exists():
         return None
@@ -188,11 +189,13 @@ def load_raw(symbol: str, ttl_days: float = config.CACHE_TTL_DAYS) -> dict | Non
         raw = json.loads(path.read_text())
     except (json.JSONDecodeError, OSError):
         return None
+    # Failures expire faster than successes, so transient errors auto-retry.
+    effective_ttl = ttl_days if raw.get("fetch_ok") else fail_ttl_days
     asof = raw.get("asof")
-    if asof and ttl_days is not None:
+    if asof and effective_ttl is not None:
         try:
             age = datetime.now(timezone.utc) - datetime.fromisoformat(asof)
-            if age.total_seconds() > ttl_days * 86400:
+            if age.total_seconds() > effective_ttl * 86400:
                 return None
         except ValueError:
             pass
@@ -280,6 +283,7 @@ def build_fundamentals(
     limit: int | None = None,
     symbols: list[str] | None = None,
     refresh: bool = False,
+    fail_ttl_days: float = config.FAIL_CACHE_TTL_DAYS,
     verbose: bool = True,
 ) -> pd.DataFrame:
     """Fetch + compute metrics for the universe, returning a flat table."""
@@ -294,13 +298,15 @@ def build_fundamentals(
     rows = []
     n = len(syms)
     for i, sym in enumerate(syms, 1):
-        cached = None if refresh else load_raw(sym)
+        cached = None if refresh else load_raw(sym, fail_ttl_days=fail_ttl_days)
         if cached is not None:
             raw, from_cache = cached, True
         else:
             raw = fetch_raw(sym, session=session)
-            if raw.get("fetch_ok"):
-                save_raw(sym, raw)
+            # Cache successes long, and failures briefly: a short-lived negative
+            # cache stops a re-run hammering genuinely-dead tickers, while still
+            # auto-retrying transient 429/timeout casualties once it expires.
+            save_raw(sym, raw)
             from_cache = False
         row = metrics.compute_metrics(raw)
         # Rename yfinance info fields that collide with fd grouping columns.
