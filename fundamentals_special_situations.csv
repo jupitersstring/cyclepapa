@@ -1,0 +1,11 @@
+Ticker,tier,name,region,sector,transience,cap_reset,fcf_yield_pct,buyback_status,catalyst_clock,notes
+WBD,1,Warner Bros Discovery,US,Communication Services,0.65,0.90,20.0,"Debt tender $14.6B; no equity buyback yet","Mid-2026 tax-free split","Cleanest cap-structure solution; Streaming vs Networks split; bondholders approved amendments"
+RKT.L,1,Reckitt Benckiser,UK,Consumer Staples,0.75,0.70,6.0,"£1B prog active (£669M done)","Mead Johnson sale (Danone rumoured)","Pro-forma 1.6x ND/EBITDA post-Essential Home; MJ litigation ring-fenced"
+C,1,Citigroup,US,Financials,0.70,0.70,,"Multi-bn annual; Basel III endgame relief","Banamex IPO + 14 market exits","Below tangible book; Fraser restructuring"
+CNC,2,Centene,US,Health Care,0.80,0.50,,"~22% s/h yield (mostly buybacks)","MLR cycle unwind 2026-27","Divested Magellan/Circle/Apixio; pure-play govt mgd care"
+NKE,2,Nike,US,Consumer Discretionary,0.70,0.10,7.0,"$3B/yr; 4.6% TTM buyback yield","Brand turnaround under Hill","Wholesale re-engagement; China weakness; Hoka/On share loss"
+UNH,2,UnitedHealth,US,Health Care,0.45,0.10,,"Double-digit","DOJ binary on Optum","Lowest P/E in 15+ years; V28/Medicare pressure"
+BAYN.DE,3,Bayer,DE,Health Care,0.85,0.80,-1.0,"None (cash to litigation)","Durnell SCOTUS ruling June 2026","$7.25B Roundup class settlement preliminarily approved; €5B hybrid Feb 2026"
+STLA,3,Stellantis,NL/US,Consumer Discretionary,0.50,0.85,-1.0,"Suspended","H2 2026 model launches","€22B kitchen-sink H2 2025; €5B hybrid Mar 2026; €44.1B liquidity"
+GIS,4,General Mills,US,Consumer Staples,0.55,0.10,6.6,"Active + 6.6% div","Guidance stabilisation","GLP-1 fear + private-label shift; FCF covers div+buyback"
+ALSN,4,Allison Transmission,US,Industrials,0.70,0.10,15.0,"Repurchased 63% since 2012","Class 8 truck cycle turn","Mid-teens FCF yield typical"
