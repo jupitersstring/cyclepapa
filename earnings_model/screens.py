@@ -59,6 +59,15 @@ def eligible(df: pd.DataFrame, min_periods: int = 3, allow_nano: bool = False,
     rev_g = out.get("revenue_growth", pd.Series(np.nan, index=out.index))
     eb_infl = out.get("ebitda_inflecting", pd.Series(False, index=out.index)).fillna(False)
     out = out[(rev_g.between(-0.6, 3.0)) | eb_infl]
+    # Drop negative-EV/EBITDA (loss-making at the operating line — "cheap" is a
+    # sign artifact, not value): if EV/EBITDA present it must be positive.
+    if "enterpriseToEbitda" in out.columns:
+        ev = out["enterpriseToEbitda"]
+        out = out[ev.isna() | (ev > 0)]
+    # Collapse cross-listing duplicates of the same company (e.g. SKB.F/SKB.DE,
+    # PAH3.F/PAH3.DE) — keep one line per name+region.
+    if {"name", "region"}.issubset(out.columns):
+        out = out.drop_duplicates(subset=["name", "region"], keep="first")
     return out
 
 
