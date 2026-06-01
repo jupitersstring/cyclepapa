@@ -450,6 +450,7 @@ def main():
             'BE':'Belgium','CH':'Switzerland','IE':'Ireland','SE':'Sweden','NO':'Norway',
             'DK':'Denmark','FI':'Finland','AT':'Austria','ES':'Spain','GR':'Greece','PT':'Portugal',
             'CZ':'Czechia','HU':'Hungary','EE':'Estonia','LV':'Latvia','LT':'Lithuania',
+            'PL':'Poland','IS':'Iceland',
             'JP':'Japan','HK':'HongKong','KR':'Korea','TW':'Taiwan','SG':'Singapore',
             'IN':'India','ID':'Indonesia','TH':'Thailand','AU':'Australia','NZ':'NewZealand',
             'CA':'Canada','BR':'Brazil','MX':'Mexico','ZA':'SouthAfrica','TR':'Turkey','IL':'Israel',

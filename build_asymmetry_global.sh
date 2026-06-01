@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+# Rebuild asymmetry_global.csv from every per-country yartseva snapshot.
+# Re-run after any new country scan completes.
+
+set -u
+VENV=/tmp/venv/bin/python
+
+# (filename, country-code) pairs.  Code = ISO-2 used downstream as `src`.
+declare -A SRC=(
+    # North America
+    [us_nano_micro_small_yartseva.csv]=US
+    [us_largecap_yartseva.csv]=US
+    [us_unc_yartseva.csv]=US
+    [ca_yartseva.csv]=CA
+    # UK
+    [uk_yartseva.csv]=UK
+    [uk_largecap_yartseva.csv]=UK
+    [uk_unc_yartseva.csv]=UK
+    # EU Core
+    [italian_yartseva.csv]=IT
+    [it_largecap_yartseva.csv]=IT
+    [it_unc_yartseva.csv]=IT
+    [de_yartseva.csv]=DE
+    [de_largecap_yartseva.csv]=DE
+    [de_unc_yartseva.csv]=DE
+    [fr_yartseva.csv]=FR
+    [fr_largecap_yartseva.csv]=FR
+    [fr_unc_yartseva.csv]=FR
+    [nl_yartseva.csv]=NL
+    [nl_largecap_yartseva.csv]=NL
+    [be_yartseva.csv]=BE
+    [be_largecap_yartseva.csv]=BE
+    [be_unc_yartseva.csv]=BE
+    [ch_yartseva.csv]=CH
+    [ch_largecap_yartseva.csv]=CH
+    [ie_yartseva.csv]=IE
+    [ie_largecap_yartseva.csv]=IE
+    [at_yartseva.csv]=AT
+    [at_largecap_yartseva.csv]=AT
+    # EU Nordic
+    [se_yartseva.csv]=SE
+    [se_largecap_yartseva.csv]=SE
+    [no_yartseva.csv]=NO
+    [no_largecap_yartseva.csv]=NO
+    [no_unc_yartseva.csv]=NO
+    [dk_yartseva.csv]=DK
+    [dk_largecap_yartseva.csv]=DK
+    [fi_yartseva.csv]=FI
+    [fi_largecap_yartseva.csv]=FI
+    # EU Periphery
+    [es_yartseva.csv]=ES
+    [es_largecap_yartseva.csv]=ES
+    [es_unc_yartseva.csv]=ES
+    [pt_yartseva.csv]=PT
+    [pt_largecap_yartseva.csv]=PT
+    [gr_yartseva.csv]=GR
+    [gr_largecap_yartseva.csv]=GR
+    # EU CEE + Baltics
+    [cz_yartseva.csv]=CZ
+    [cz_largecap_yartseva.csv]=CZ
+    [hu_yartseva.csv]=HU
+    [hu_largecap_yartseva.csv]=HU
+    [ee_yartseva.csv]=EE
+    [ee_largecap_yartseva.csv]=EE
+    [lv_yartseva.csv]=LV
+    [lt_yartseva.csv]=LT
+    # NEW European fills
+    [pl_yartseva.csv]=PL
+    [pl_largecap_yartseva.csv]=PL
+    [is_yartseva.csv]=IS
+    [is_largecap_yartseva.csv]=IS
+    # Asia-Pacific
+    [jp_yartseva.csv]=JP
+    [kr_yartseva.csv]=KR
+    [hk_yartseva.csv]=HK
+    [tw_yartseva.csv]=TW
+    [sg_yartseva.csv]=SG
+    [au_yartseva.csv]=AU
+    [nz_yartseva.csv]=NZ
+    [in_yartseva.csv]=IN
+    [idn_yartseva.csv]=ID
+    [th_yartseva.csv]=TH
+    # MEA + LatAm
+    [tr_yartseva.csv]=TR
+    [za_yartseva.csv]=ZA
+    [il_yartseva.csv]=IL
+    [br_yartseva.csv]=BR
+    [mx_yartseva.csv]=MX
+)
+
+ARGS=()
+for f in "${!SRC[@]}"; do
+    if [ -s "$f" ]; then
+        ARGS+=("${f}:${SRC[$f]}")
+    fi
+done
+
+echo "merging ${#ARGS[@]} CSVs"
+"$VENV" asymmetry_rank.py \
+    --csvs "${ARGS[@]}" \
+    --pew pew_global.csv \
+    --out asymmetry_global.csv \
+    --top 6000 \
+    --min-upside 0.25 \
+    --min-downside-floor 0.10 \
+    --min-mcap 10000000
