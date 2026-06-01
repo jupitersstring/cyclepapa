@@ -86,6 +86,21 @@ declare -A SRC=(
     [il_yartseva.csv]=IL
     [br_yartseva.csv]=BR
     [mx_yartseva.csv]=MX
+    # NEW gap-fill uncategorized scans
+    [us_unc_deep_yartseva.csv]=US
+    [at_unc_yartseva.csv]=AT
+    [ch_unc_yartseva.csv]=CH
+    [se_unc_yartseva.csv]=SE
+    [fi_unc_yartseva.csv]=FI
+    [pt_unc_yartseva.csv]=PT
+    [gr_unc_yartseva.csv]=GR
+    [ie_unc_yartseva.csv]=IE
+    [pl_unc_yartseva.csv]=PL
+    [cz_unc_yartseva.csv]=CZ
+    [hu_unc_yartseva.csv]=HU
+    [ee_unc_yartseva.csv]=EE
+    [lv_unc_yartseva.csv]=LV
+    [lt_unc_yartseva.csv]=LT
 )
 
 ARGS=()
