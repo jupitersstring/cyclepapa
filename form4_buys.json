@@ -305,8 +305,8 @@
       "BARBER GRANT | Director",
       "Boudreau Alanna | Chief Financial Officer"
     ],
-    "total_dollar": 37026.71,
-    "total_shares": 11025.0,
+    "total_dollar": 45501.71,
+    "total_shares": 13525.0,
     "filings": [
       {
         "accession": "0001493152-26-023716",
@@ -323,6 +323,14 @@
         "title": "Chief Financial Officer",
         "dollar": 16799.5,
         "shares": 5000.0
+      },
+      {
+        "accession": "0001493152-26-026465",
+        "date": "2026-05-29",
+        "person": "BARBER GRANT",
+        "title": null,
+        "dollar": 8475.0,
+        "shares": 2500.0
       }
     ]
   },
@@ -994,10 +1002,11 @@
     "buyer_set": [
       "Jones Mark E. Jr. | President & COO",
       "Miller Mark | President and CEO",
-      "Langston Patrick Ryan | 10%"
+      "Langston Patrick Ryan | 10%",
+      "Martin John Arthur | Chief Financial Officer"
     ],
-    "total_dollar": 383393.0,
-    "total_shares": 10450.0,
+    "total_dollar": 557043.0,
+    "total_shares": 15450.0,
     "filings": [
       {
         "accession": "0001737782-26-000006",
@@ -1022,6 +1031,14 @@
         "title": null,
         "dollar": 99568.0,
         "shares": 2800.0
+      },
+      {
+        "accession": "0002129872-26-000007",
+        "date": "2026-05-29",
+        "person": "Martin John Arthur",
+        "title": "Chief Financial Officer",
+        "dollar": 173649.99999999997,
+        "shares": 5000.0
       }
     ]
   },
@@ -1181,8 +1198,8 @@
       "HORIZON KINETICS ASSET MANAGEMENT LLC | 10%",
       "EPPS DONNA E | Director"
     ],
-    "total_dollar": 486854.30000000005,
-    "total_shares": 959.0,
+    "total_dollar": 487260.56000000006,
+    "total_shares": 960.0,
     "filings": [
       {
         "accession": "0001437749-26-017281",
@@ -1679,6 +1696,14 @@
         "title": null,
         "dollar": 395.39,
         "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-018821",
+        "date": "2026-05-29",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 406.26,
+        "shares": 1.0
       }
     ]
   },
@@ -1716,10 +1741,11 @@
     "issuer_name": "AMES NATIONAL CORP",
     "issuer_cik": "0001132651",
     "buyer_set": [
-      "Hagan Patrick G | Director"
+      "Hagan Patrick G | Director",
+      "Cassabaum Michelle R | Director"
     ],
-    "total_dollar": 8303.0,
-    "total_shares": 300.0,
+    "total_dollar": 13204.099999999999,
+    "total_shares": 470.0,
     "filings": [
       {
         "accession": "0001703852-26-000002",
@@ -1736,6 +1762,14 @@
         "title": null,
         "dollar": 2765.0,
         "shares": 100.0
+      },
+      {
+        "accession": "0001773399-26-000005",
+        "date": "2026-05-29",
+        "person": "Cassabaum Michelle R",
+        "title": null,
+        "dollar": 4901.099999999999,
+        "shares": 170.0
       }
     ]
   },
@@ -2012,8 +2046,8 @@
       "Ward Scott R. | Director",
       "ROUBIN GARY S | Director"
     ],
-    "total_dollar": 427414.81999999995,
-    "total_shares": 366502.0,
+    "total_dollar": 444914.81999999995,
+    "total_shares": 386502.0,
     "filings": [
       {
         "accession": "0001493152-26-023727",
@@ -2062,6 +2096,14 @@
         "title": null,
         "dollar": 106200.0,
         "shares": 90000.0
+      },
+      {
+        "accession": "0001493152-26-026348",
+        "date": "2026-05-29",
+        "person": "Stuka Paul",
+        "title": null,
+        "dollar": 17500.0,
+        "shares": 20000.0
       }
     ]
   },
@@ -3031,8 +3073,8 @@
       "Kettler Ronald Kyle | Chief Financial Officer",
       "MCCARTNEY JOHN | Director"
     ],
-    "total_dollar": 379591.5,
-    "total_shares": 73338.0,
+    "total_dollar": 410071.5,
+    "total_shares": 79338.0,
     "filings": [
       {
         "accession": "0001628280-26-035006",
@@ -3129,6 +3171,14 @@
         "title": "President and CEO",
         "dollar": 65125.0,
         "shares": 12500.0
+      },
+      {
+        "accession": "0001628280-26-039044",
+        "date": "2026-05-29",
+        "person": "Kettler Ronald Kyle",
+        "title": "Chief Financial Officer",
+        "dollar": 30480.0,
+        "shares": 6000.0
       }
     ]
   },
@@ -4001,10 +4051,11 @@
     "issuer_name": "PEOPLES FINANCIAL CORP /MS/",
     "issuer_cik": "0000770460",
     "buyer_set": [
-      "Stilwell Joseph | 10%"
+      "Stilwell Joseph | 10%",
+      "Sliman George J III | Director"
     ],
-    "total_dollar": 74398.7,
-    "total_shares": 3501.0,
+    "total_dollar": 116898.7,
+    "total_shares": 5501.0,
     "filings": [
       {
         "accession": "0001113303-26-000040",
@@ -4029,6 +4080,14 @@
         "title": null,
         "dollar": 47005.0,
         "shares": 2212.0
+      },
+      {
+        "accession": "0001853523-26-000001",
+        "date": "2026-05-29",
+        "person": "Sliman George J III",
+        "title": null,
+        "dollar": 42500.0,
+        "shares": 2000.0
       }
     ]
   },
@@ -5971,10 +6030,11 @@
     "issuer_name": "Oak Valley Bancorp",
     "issuer_cik": "0001431567",
     "buyer_set": [
-      "HOLDER H RANDOLPH JR | Director"
+      "HOLDER H RANDOLPH JR | Director",
+      "LAFFERTY ALLISON | Director"
     ],
-    "total_dollar": 6500.0,
-    "total_shares": 200.0,
+    "total_dollar": 9409.279999999999,
+    "total_shares": 287.0,
     "filings": [
       {
         "accession": "0001437749-26-016498",
@@ -5983,6 +6043,14 @@
         "title": null,
         "dollar": 6500.0,
         "shares": 200.0
+      },
+      {
+        "accession": "0001437749-26-018912",
+        "date": "2026-05-29",
+        "person": "LAFFERTY ALLISON",
+        "title": null,
+        "dollar": 2909.2799999999997,
+        "shares": 87.0
       }
     ]
   },
@@ -8835,10 +8903,11 @@
     "issuer_name": "RLI CORP",
     "issuer_cik": "0000084246",
     "buyer_set": [
-      "KELLOGG CLARK C | Director"
+      "KELLOGG CLARK C | Director",
+      "Duclos David B. | Director"
     ],
-    "total_dollar": 152700.0,
-    "total_shares": 3000.0,
+    "total_dollar": 282675.0,
+    "total_shares": 5500.0,
     "filings": [
       {
         "accession": "0001785329-26-000011",
@@ -8847,6 +8916,14 @@
         "title": null,
         "dollar": 152700.0,
         "shares": 3000.0
+      },
+      {
+        "accession": "0001431045-26-000004",
+        "date": "2026-05-29",
+        "person": "Duclos David B.",
+        "title": null,
+        "dollar": 129975.0,
+        "shares": 2500.0
       }
     ]
   },
@@ -8937,8 +9014,8 @@
     "buyer_set": [
       "Stinchcomb Clinton Larry | President and CEO"
     ],
-    "total_dollar": 71491.088,
-    "total_shares": 25744.0,
+    "total_dollar": 330129.552,
+    "total_shares": 120000.0,
     "filings": [
       {
         "accession": "0001628280-26-039455",
@@ -8947,6 +9024,14 @@
         "title": "President and CEO",
         "dollar": 71491.088,
         "shares": 25744.0
+      },
+      {
+        "accession": "0001628280-26-039135",
+        "date": "2026-05-29",
+        "person": "Stinchcomb Clinton Larry",
+        "title": "President and CEO",
+        "dollar": 258638.464,
+        "shares": 94256.0
       }
     ]
   },
@@ -9055,8 +9140,8 @@
     "buyer_set": [
       "chiang yao-chung | Director"
     ],
-    "total_dollar": 575.0,
-    "total_shares": 250.0,
+    "total_dollar": 4575.0,
+    "total_shares": 2250.0,
     "filings": [
       {
         "accession": "0001493152-26-026617",
@@ -9065,6 +9150,14 @@
         "title": null,
         "dollar": 575.0,
         "shares": 250.0
+      },
+      {
+        "accession": "0001493152-26-026361",
+        "date": "2026-05-29",
+        "person": "chiang yao-chung",
+        "title": null,
+        "dollar": 4000.0,
+        "shares": 2000.0
       }
     ]
   },
@@ -9215,8 +9308,8 @@
     "buyer_set": [
       "HORIZON KINETICS ASSET MANAGEMENT LLC | 10%"
     ],
-    "total_dollar": 2184.84,
-    "total_shares": 756.0,
+    "total_dollar": 6289.92,
+    "total_shares": 2268.0,
     "filings": [
       {
         "accession": "0001437749-26-018964",
@@ -9225,6 +9318,14 @@
         "title": null,
         "dollar": 2184.84,
         "shares": 756.0
+      },
+      {
+        "accession": "0001437749-26-018837",
+        "date": "2026-05-29",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 4105.08,
+        "shares": 1512.0
       }
     ]
   },
@@ -9233,10 +9334,11 @@
     "issuer_name": "Total Return Securities Fund",
     "issuer_cik": "0000813623",
     "buyer_set": [
-      "SELL MORITZ A | Director"
+      "SELL MORITZ A | Director",
+      "Dakos Andrew | President and CEO"
     ],
-    "total_dollar": 6010.0,
-    "total_shares": 1000.0,
+    "total_dollar": 83759.0,
+    "total_shares": 14000.0,
     "filings": [
       {
         "accession": "0001398344-26-010110",
@@ -9245,6 +9347,14 @@
         "title": null,
         "dollar": 6010.0,
         "shares": 1000.0
+      },
+      {
+        "accession": "0001398344-26-010015",
+        "date": "2026-05-29",
+        "person": "Dakos Andrew",
+        "title": "President and CEO",
+        "dollar": 77749.0,
+        "shares": 13000.0
       }
     ]
   },
@@ -9452,6 +9562,351 @@
         "title": null,
         "dollar": 15000000.0,
         "shares": 1875000.0
+      }
+    ]
+  },
+  "SBMT": {
+    "ticker": "SBMT",
+    "issuer_name": "SILVER BOW MINING CORP.",
+    "issuer_cik": "0002067674",
+    "buyer_set": [
+      "Black Wade Newton | Chief Financial Officer"
+    ],
+    "total_dollar": 24230.75,
+    "total_shares": 2500.0,
+    "filings": [
+      {
+        "accession": "0000912282-26-000783",
+        "date": "2026-06-01",
+        "person": "Black Wade Newton",
+        "title": "Chief Financial Officer",
+        "dollar": 24230.75,
+        "shares": 2500.0
+      }
+    ]
+  },
+  "OTLK": {
+    "ticker": "OTLK",
+    "issuer_name": "Outlook Therapeutics, Inc.",
+    "issuer_cik": "0001649989",
+    "buyer_set": [
+      "Sukhtian Ghiath M. | Director"
+    ],
+    "total_dollar": 4999999.6195,
+    "total_shares": 8539709.0,
+    "filings": [
+      {
+        "accession": "0000899140-26-000620",
+        "date": "2026-06-01",
+        "person": "Sukhtian Ghiath M.",
+        "title": null,
+        "dollar": 4999999.6195,
+        "shares": 8539709.0
+      }
+    ]
+  },
+  "PCSA": {
+    "ticker": "PCSA",
+    "issuer_name": "Processa Pharmaceuticals, Inc.",
+    "issuer_cik": "0001533743",
+    "buyer_set": [
+      "Young David | Pres. Research & Development",
+      "SKIBSTED RUSSELL | Chief Financial Officer",
+      "Ng George K | Chief Executive Officer",
+      "Lin Patrick | Chief Business - Strategy Off",
+      "Guy Wendy | Chief Administrative Officer"
+    ],
+    "total_dollar": 24718.259999999995,
+    "total_shares": 9618.0,
+    "filings": [
+      {
+        "accession": "0000897069-26-001295",
+        "date": "2026-06-01",
+        "person": "Young David",
+        "title": "Pres. Research & Development",
+        "dollar": 4590.0199999999995,
+        "shares": 1786.0
+      },
+      {
+        "accession": "0000897069-26-001293",
+        "date": "2026-06-01",
+        "person": "SKIBSTED RUSSELL",
+        "title": "Chief Financial Officer",
+        "dollar": 5890.44,
+        "shares": 2292.0
+      },
+      {
+        "accession": "0000897069-26-001291",
+        "date": "2026-06-01",
+        "person": "Ng George K",
+        "title": "Chief Executive Officer",
+        "dollar": 5471.53,
+        "shares": 2129.0
+      },
+      {
+        "accession": "0000897069-26-001289",
+        "date": "2026-06-01",
+        "person": "Lin Patrick",
+        "title": "Chief Business - Strategy Off",
+        "dollar": 4065.74,
+        "shares": 1582.0
+      },
+      {
+        "accession": "0000897069-26-001287",
+        "date": "2026-06-01",
+        "person": "Guy Wendy",
+        "title": "Chief Administrative Officer",
+        "dollar": 4700.53,
+        "shares": 1829.0
+      }
+    ]
+  },
+  "CSWC": {
+    "ticker": "CSWC",
+    "issuer_name": "CAPITAL SOUTHWEST CORP",
+    "issuer_cik": "0000017313",
+    "buyer_set": [
+      "Rogers-Windsor Ramona Lynn | Director"
+    ],
+    "total_dollar": 4988.46,
+    "total_shares": 213.0,
+    "filings": [
+      {
+        "accession": "0000017313-26-000047",
+        "date": "2026-06-01",
+        "person": "Rogers-Windsor Ramona Lynn",
+        "title": null,
+        "dollar": 4988.46,
+        "shares": 213.0
+      }
+    ]
+  },
+  "VRSN": {
+    "ticker": "VRSN",
+    "issuer_name": "VERISIGN INC/CA",
+    "issuer_cik": "0001014473",
+    "buyer_set": [
+      "Armstrong Courtney D | Director"
+    ],
+    "total_dollar": 4929.3796134,
+    "total_shares": 16.119,
+    "filings": [
+      {
+        "accession": "0001869319-26-000006",
+        "date": "2026-05-29",
+        "person": "Armstrong Courtney D",
+        "title": null,
+        "dollar": 4929.3796134,
+        "shares": 16.119
+      }
+    ]
+  },
+  "ACCS": {
+    "ticker": "ACCS",
+    "issuer_name": "ACCESS Newswire Inc.",
+    "issuer_cik": "0000843006",
+    "buyer_set": [
+      "BALBIRNIE BRIAN R | Director, CEO"
+    ],
+    "total_dollar": 64634.0,
+    "total_shares": 10000.0,
+    "filings": [
+      {
+        "accession": "0001683168-26-004362",
+        "date": "2026-05-29",
+        "person": "BALBIRNIE BRIAN R",
+        "title": "Director, CEO",
+        "dollar": 64634.0,
+        "shares": 10000.0
+      }
+    ]
+  },
+  "TWFG": {
+    "ticker": "TWFG",
+    "issuer_name": "TWFG, Inc.",
+    "issuer_cik": "0002007596",
+    "buyer_set": [
+      "DOAK MICHAEL | Director"
+    ],
+    "total_dollar": 421367.1,
+    "total_shares": 22330.0,
+    "filings": [
+      {
+        "accession": "0001628280-26-039241",
+        "date": "2026-05-29",
+        "person": "DOAK MICHAEL",
+        "title": null,
+        "dollar": 421367.1,
+        "shares": 22330.0
+      }
+    ]
+  },
+  "ACOG": {
+    "ticker": "ACOG",
+    "issuer_name": "Alpha Cognition Inc.",
+    "issuer_cik": "0001655923",
+    "buyer_set": [
+      "Opaleye Management Inc. | 10%"
+    ],
+    "total_dollar": 434713.77229999995,
+    "total_shares": 73738.0,
+    "filings": [
+      {
+        "accession": "0001493152-26-026472",
+        "date": "2026-05-29",
+        "person": "Opaleye Management Inc.",
+        "title": null,
+        "dollar": 434713.77229999995,
+        "shares": 73738.0
+      }
+    ]
+  },
+  "AWHL": {
+    "ticker": "AWHL",
+    "issuer_name": "Aspira Women's Health Inc.",
+    "issuer_cik": "0000926617",
+    "buyer_set": [
+      "Fraser John D | Director",
+      "cohen Jeffrey k | Director"
+    ],
+    "total_dollar": 32375.25,
+    "total_shares": 71945.0,
+    "filings": [
+      {
+        "accession": "0001493152-26-026346",
+        "date": "2026-05-29",
+        "person": "Fraser John D",
+        "title": null,
+        "dollar": 7375.05,
+        "shares": 16389.0
+      },
+      {
+        "accession": "0001493152-26-026345",
+        "date": "2026-05-29",
+        "person": "cohen Jeffrey k",
+        "title": null,
+        "dollar": 25000.2,
+        "shares": 55556.0
+      }
+    ]
+  },
+  "FONR": {
+    "ticker": "FONR",
+    "issuer_name": "FONAR CORP",
+    "issuer_cik": "0000355019",
+    "buyer_set": [
+      "shane hilary | 10%"
+    ],
+    "total_dollar": 5092807.95,
+    "total_shares": 267339.0,
+    "filings": [
+      {
+        "accession": "0001477932-26-003503",
+        "date": "2026-05-29",
+        "person": "shane hilary",
+        "title": null,
+        "dollar": 5092807.95,
+        "shares": 267339.0
+      }
+    ]
+  },
+  "BDCO": {
+    "ticker": "BDCO",
+    "issuer_name": "BLUE DOLPHIN ENERGY CO",
+    "issuer_cik": "0000793306",
+    "buyer_set": [
+      "LAZARUS ENERGY HOLDINGS, LLC | 10%"
+    ],
+    "total_dollar": 78650.0,
+    "total_shares": 20000.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-018877",
+        "date": "2026-05-29",
+        "person": "LAZARUS ENERGY HOLDINGS, LLC",
+        "title": null,
+        "dollar": 78650.0,
+        "shares": 20000.0
+      }
+    ]
+  },
+  "ALRS": {
+    "ticker": "ALRS",
+    "issuer_name": "ALERUS FINANCIAL CORP",
+    "issuer_cik": "0000903419",
+    "buyer_set": [
+      "Bolton Jeffrey | Director"
+    ],
+    "total_dollar": 28715.0,
+    "total_shares": 1000.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-018873",
+        "date": "2026-05-29",
+        "person": "Bolton Jeffrey",
+        "title": null,
+        "dollar": 28715.0,
+        "shares": 1000.0
+      }
+    ]
+  },
+  "PNBK": {
+    "ticker": "PNBK",
+    "issuer_name": "PATRIOT NATIONAL BANCORP INC",
+    "issuer_cik": "0001098146",
+    "buyer_set": [
+      "De Tomasi Mario | Director"
+    ],
+    "total_dollar": 81600.0,
+    "total_shares": 85000.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-018861",
+        "date": "2026-05-29",
+        "person": "De Tomasi Mario",
+        "title": null,
+        "dollar": 81600.0,
+        "shares": 85000.0
+      }
+    ]
+  },
+  "LCNB": {
+    "ticker": "LCNB",
+    "issuer_name": "LCNB CORP",
+    "issuer_cik": "0001074902",
+    "buyer_set": [
+      "Meilstrup Eric J | CEO"
+    ],
+    "total_dollar": 6778.0,
+    "total_shares": 400.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-018814",
+        "date": "2026-05-29",
+        "person": "Meilstrup Eric J",
+        "title": "CEO",
+        "dollar": 6778.0,
+        "shares": 400.0
+      }
+    ]
+  },
+  "CDW": {
+    "ticker": "CDW",
+    "issuer_name": "CDW Corp",
+    "issuer_cik": "0001402057",
+    "buyer_set": [
+      "NELMS DAVID W | Director"
+    ],
+    "total_dollar": 2005740.0000000002,
+    "total_shares": 18000.0,
+    "filings": [
+      {
+        "accession": "0001402057-26-000040",
+        "date": "2026-05-29",
+        "person": "NELMS DAVID W",
+        "title": null,
+        "dollar": 2005740.0000000002,
+        "shares": 18000.0
       }
     ]
   }
