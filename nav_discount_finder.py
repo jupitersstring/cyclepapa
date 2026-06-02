@@ -450,6 +450,22 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "SLPE.L", "SMT.L", "SOI.L", "SST.L", "SWTZ.AX", "TBLD",
         "TCF.AX", "TMPL.L", "TORO.L", "TRG.L", "TRY.L", "VIP.L", "XTD.TO",
     ],
+    # ---- Second-pass FDB scanner finds (broader patterns) ----
+    "fdb_scanner_v2": [
+        "BEMO.L",       # Barings Emerging EMEA Opportunities
+        "ESO.L",        # EPE Special Opportunities
+        "MPO.L",        # Macau Property Opportunities (huge AIC discount)
+        "RCOI.L",       # Riverstone Credit Opportunities Income
+        "BEL.AX",       # Bentley Capital
+        "CAM.AX",       # Clime Capital
+        "CDM.AX",       # Cadence Capital
+        "ECL.AX",       # Excelsior Capital
+        "IBC.AX",       # Ironbark Capital
+        "NGE.AX",       # NGE Capital
+        "PGF.AX",       # PM Capital Global Opportunities Fund
+        "RYD.AX",       # Ryder Capital
+        "WI.V",         # Western Investment Company of Canada
+    ],
 }
 
 

@@ -39,6 +39,9 @@ from nav_discount_finder import (
 
 # Live UK discount data from AIC. Loaded lazily on first call.
 _AIC_DISCOUNTS: dict[str, float] | None = None
+# Full AIC summary (3y avg discount, 52w range, etc.) for stretch
+# scoring.
+_AIC_SUMMARY: dict[str, dict] | None = None
 
 # Live US-ish discount data from Yahoo bookValue. Loaded once for all
 # screened tickers.
@@ -46,18 +49,21 @@ _YAHOO_DISCOUNTS: dict[str, float] | None = None
 
 
 def _load_aic_discounts() -> dict[str, float]:
-    global _AIC_DISCOUNTS
+    global _AIC_DISCOUNTS, _AIC_SUMMARY
     if _AIC_DISCOUNTS is not None:
         return _AIC_DISCOUNTS
     try:
-        from aic_scraper import fetch_aic_discounts
+        from aic_scraper import fetch_aic_discounts, fetch_aic_summary
         _AIC_DISCOUNTS = fetch_aic_discounts()
-        print(f"[aic] loaded {len(_AIC_DISCOUNTS)} live UK discount records",
+        _AIC_SUMMARY = fetch_aic_summary()
+        print(f"[aic] loaded {len(_AIC_DISCOUNTS)} live UK discount records "
+              f"(+ historical stretch data)",
               file=__import__("sys").stderr)
     except Exception as exc:
         print(f"[aic] live data unavailable, using hardcoded estimates: {exc}",
               file=__import__("sys").stderr)
         _AIC_DISCOUNTS = {}
+        _AIC_SUMMARY = {}
     return _AIC_DISCOUNTS
 
 
@@ -273,6 +279,9 @@ CATALYST: dict[str, str] = {
         "QRI.AX", "RICA.L", "RMMC.L", "RS.TO", "SAIN.L", "SJG.L",
         "SLPE.L", "SMT.L", "SOI.L", "SST.L", "SWTZ.AX", "TBLD",
         "TCF.AX", "TMPL.L", "TORO.L", "TRG.L", "TRY.L", "VIP.L", "XTD.TO",
+        # v2 additions
+        "BEMO.L", "ESO.L", "MPO.L", "RCOI.L", "BEL.AX", "CAM.AX",
+        "CDM.AX", "ECL.AX", "IBC.AX", "NGE.AX", "PGF.AX", "RYD.AX", "WI.V",
     ]},
 }
 
@@ -534,6 +543,13 @@ class ScreenResult:
     upside_combined: float | None = None        # legacy
     value_score: float = 0.0                    # score * (1 + expected_upside)
     discount_source: str | None = None          # "aic_live" or "estimate"
+    # Historical discount context (AIC only)
+    discount_3y_avg: float | None = None
+    discount_52w_high: float | None = None
+    discount_52w_low: float | None = None
+    discount_stretch: float | None = None       # (current - 3y_avg) — positive = wider than usual
+    discount_pct_of_52w_high: float | None = None  # 1.0 = at 52w wide end
+    mean_revert_upside: float | None = None     # additional upside if discount mean-reverts
 
 
 def detect_base(df: pd.DataFrame, max_lookback: int = 208,
@@ -731,7 +747,37 @@ def screen_one(ticker: str, *, max_lookback: int = 208,
     # narrows) the discount over a ~12-18m horizon.
     prob = CATALYST_REALISATION_PROBABILITY.get(res.catalyst, 0.20)
     res.catalyst_realisation_prob = prob
-    res.expected_upside = (res.discount_closure_upside or 0.0) * prob
+
+    # Historical discount context — only available via AIC live feed.
+    # Provides a mean-reversion catalyst independent of event-driven
+    # closure: if current discount is wider than 3y average, there's a
+    # natural pull back to historical mean.
+    if _AIC_SUMMARY and ticker in _AIC_SUMMARY:
+        s = _AIC_SUMMARY[ticker]
+        res.discount_3y_avg = s.get("discount_3y_avg")
+        res.discount_52w_high = s.get("discount_52w_high")
+        res.discount_52w_low = s.get("discount_52w_low")
+        if res.discount_3y_avg is not None:
+            res.discount_stretch = discount - res.discount_3y_avg
+            # If current discount > 3y avg, mean-reversion has upside
+            if res.discount_stretch > 0:
+                target = res.discount_3y_avg
+                if target < 1.0:
+                    # narrowing from current to target
+                    res.mean_revert_upside = (discount - target) / (1.0 - discount)
+        if res.discount_52w_high and res.discount_52w_high > 0:
+            res.discount_pct_of_52w_high = discount / res.discount_52w_high
+
+    # Combined expected upside = max of catalyst-driven closure and
+    # historical mean-reversion (these aren't independent — both close
+    # the same discount — so take max not sum).
+    closure_exp = (res.discount_closure_upside or 0.0) * prob
+    # Mean-reversion has high probability for non-event names (~60%)
+    # because trusts typically revert to their own multi-year average
+    # absent permanent NAV impairment.
+    mean_revert_prob = 0.60 if (res.catalyst == "STRUCTURAL_DISCOUNT") else 0.40
+    mean_revert_exp = (res.mean_revert_upside or 0.0) * mean_revert_prob
+    res.expected_upside = max(closure_exp, mean_revert_exp)
 
     # Legacy fields kept for backward compatibility with prior tables.
     res.catalyst_upside_est = CATALYST_IMPLIED_UPSIDE.get(res.catalyst, 0.05)
@@ -889,7 +935,8 @@ def main() -> int:
     # Real upside = discount-to-NAV closure x probability.
     # `expected_upside = discount/(1-discount) * P(catalyst fires)`.
     upside_extras = ["nav_discount_est", "discount_source",
-                     "discount_closure_upside",
+                     "discount_3y_avg", "discount_stretch",
+                     "discount_closure_upside", "mean_revert_upside",
                      "catalyst_realisation_prob", "expected_upside",
                      "value_score"]
 
