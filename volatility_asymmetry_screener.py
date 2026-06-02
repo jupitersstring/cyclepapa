@@ -193,7 +193,6 @@ def main():
         tickers = df.index.astype(str).tolist()
     else:
         # Default: scan the entire price cache
-        from pathlib import Path
         tickers = sorted({p.name.split('__')[0]
                           for p in Path('.cache/yf').glob('*__price.parquet')})
     print(f"Tickers to analyze: {len(tickers)}")
