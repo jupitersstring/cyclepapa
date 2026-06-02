@@ -283,7 +283,20 @@ CATALYST: dict[str, str] = {
         "BEMO.L", "ESO.L", "MPO.L", "RCOI.L", "BEL.AX", "CAM.AX",
         "CDM.AX", "ECL.AX", "IBC.AX", "NGE.AX", "PGF.AX", "RYD.AX", "WI.V",
     ]},
+    # AIC sweep additions — auto-tagged from AIC sector codes
+    **{t: "STRUCTURAL_DISCOUNT" for t in [
+        "MVI.L","SERE.L","SYNC.L","CGI.L","HANA.L","GSF.L","HAN.L","BOOK.L",
+        "ORIT.L","PPET.L","III.L","BSRT.L","ENRG.L","INOV.L","GRP.L","LSAA.L",
+        "BBOX.L","AIRE.L","ASLI.L","THRL.L","GOT.L","VEIL.L","IEM.L","UEM.L",
+        "AFL.L","BGUK.L","JUGI.L","BASC.L","JCGI.L","IAD.L","JIGI.L","ATT.L",
+        "BGS.L","JMGI.L","PCT.L","AATG.L","ALW.L","PCFT.L","SDV.L","GSCT.L",
+        "BHMU.L","MAJE.L","CTHT.L","FEV.L","EOT.L","CTUK.L","MRCH.L","MRV.L",
+        "FAS.L","JCH.L","AWEM.L","CMPG.L","JEGI.L","CGT.L","IGET.L","AEI.L",
+        "CVCE.L","FSV.L","STS.L","CVCG.L","PNL.L","CMPI.L","EGL.L","CHI.L",
+        "PCGH.L","BRAI.L","RKW.L","SMIF.L",
+    ]},
 }
+
 
 # Catalyst-implied discount-narrowing rule of thumb. These are
 # illustrative averages — actual narrowing depends on starting
@@ -502,7 +515,23 @@ NAV_QUALITY: dict[str, str] = {
         "PRM.TO", "PVS-PH.TO", "PVS-PJ.TO", "SLPE.L", "XTD.TO",
     ]},
     **{t: "PROPERTY_DCF" for t in ["RS.TO", "TRY.L"]},
+    # AIC sweep — NAV quality by sector code
+    **{t: "LISTED_CLEAN" for t in [
+        "MVI.L","SYNC.L","CGI.L","HANA.L","HAN.L","BSRT.L","BBOX.L","THRL.L",
+        "GOT.L","VEIL.L","IEM.L","UEM.L","AFL.L","BGUK.L","JUGI.L","BASC.L",
+        "JCGI.L","IAD.L","JIGI.L","ATT.L","BGS.L","JMGI.L","PCT.L","ALW.L",
+        "PCFT.L","SDV.L","GSCT.L","BHMU.L","MAJE.L","CTHT.L","FEV.L","EOT.L",
+        "CTUK.L","MRCH.L","FAS.L","JCH.L","AWEM.L","CMPG.L","JEGI.L","CGT.L",
+        "IGET.L","AEI.L","FSV.L","STS.L","PNL.L","CMPI.L","EGL.L","CHI.L",
+        "PCGH.L","BRAI.L","RKW.L","JEMA.L",
+    ]},
+    **{t: "PROPERTY_DCF" for t in ["SERE.L","AIRE.L","ASLI.L"]},
+    **{t: "RENEWABLES_DCF" for t in ["GSF.L","ORIT.L","ENRG.L","GRP.L"]},
+    **{t: "PRIVATE_EQUITY" for t in ["BOOK.L","PPET.L","III.L","INOV.L","AATG.L","MRV.L","MNTN.L"]},
+    **{t: "INFRA_DCF" for t in ["LSAA.L"]},
+    **{t: "DEBT_AMORTISING" for t in ["CVCE.L","CVCG.L","SMIF.L"]},
 }
+
 
 
 # ---------------------------------------------------------------------------

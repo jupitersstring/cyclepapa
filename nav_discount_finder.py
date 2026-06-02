@@ -466,6 +466,34 @@ KNOWN_CANDIDATES: dict[str, list[str]] = {
         "RYD.AX",       # Ryder Capital
         "WI.V",         # Western Investment Company of Canada
     ],
+    # ---- AIC sweep ----
+    # Bulk-import of every UK investment company published by AIC that
+    # wasn't already in the universe and clears a £20m market cap / £0.1m
+    # daily traded value floor. NAV quality auto-tagged from AIC sector
+    # code; catalyst defaults to STRUCTURAL_DISCOUNT.
+    "aic_sweep": [
+        # >40% live discount
+        "MVI.L", "SERE.L", "SYNC.L", "CGI.L", "HANA.L",
+        # 30-40% discount
+        "GSF.L", "HAN.L", "BOOK.L", "ORIT.L", "PPET.L",
+        # 20-30% discount
+        "III.L", "BSRT.L", "ENRG.L", "INOV.L", "GRP.L", "LSAA.L",
+        # 10-20% discount
+        "BBOX.L", "AIRE.L", "ASLI.L", "THRL.L", "GOT.L", "VEIL.L",
+        "IEM.L", "UEM.L", "AFL.L", "BGUK.L", "JUGI.L",
+        # 5-10% discount
+        "BASC.L", "JCGI.L", "IAD.L", "JIGI.L", "ATT.L", "BGS.L",
+        "JMGI.L", "PCT.L", "AATG.L", "ALW.L", "PCFT.L", "SDV.L",
+        "GSCT.L", "BHMU.L", "MAJE.L",
+        # 0-5% discount (kept for setup-pattern screening even though
+        # upside is small; mean-reversion signal still firable)
+        "CTHT.L", "FEV.L", "EOT.L", "CTUK.L", "MRCH.L", "MRV.L",
+        "FAS.L", "JCH.L", "AWEM.L", "CMPG.L", "JEGI.L", "CGT.L",
+        "IGET.L", "AEI.L", "CVCE.L", "FSV.L", "STS.L",
+        # Premiums (kept for monitoring + completeness)
+        "CVCG.L", "PNL.L", "CMPI.L", "EGL.L", "CHI.L", "PCGH.L",
+        "BRAI.L", "RKW.L", "SMIF.L",
+    ],
 }
 
 
