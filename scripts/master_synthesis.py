@@ -103,25 +103,27 @@ dalton['asym_score'] = (
 
 # ─── Compute fundamental score ────────────────────────────────────────────
 if len(fund):
-    for c in ['ev_ebit','fcf_yield','rev_g','opm','fcf']:
+    for c in ['ev_ebit','ev_ebitda','fcf_yield','rev_g','opm','fcf']:
         if c not in fund: fund[c] = np.nan
+    # ev_ebit is universally None from yfinance.info; fall back to ev_ebitda
+    fund['ev_valuation'] = fund['ev_ebit'].fillna(fund['ev_ebitda'])
     fund['fund_pass'] = (
-        (fund['ev_ebit'].fillna(99).between(0, 20)) &
+        (fund['ev_valuation'].fillna(99).between(0, 15)) &
         (fund['rev_g'].fillna(0) >= 0.05) &
         (fund['fcf'].fillna(0) > 0)
     )
     fund['fund_score'] = (
-        np.clip((20 - fund['ev_ebit'].fillna(99)) / 20 * 10, 0, 10)
+        np.clip((15 - fund['ev_valuation'].fillna(99)) / 15 * 10, 0, 10)
       + np.clip(fund['fcf_yield'].fillna(0) * 60, 0, 15)
       + np.clip(fund['rev_g'].fillna(0) * 30, 0, 10)
       + np.clip(fund['opm'].fillna(0) * 15, -5, 8)
     ).round(2)
 else:
-    fund = pd.DataFrame(columns=['ticker','fund_pass','fund_score','ev_ebit','fcf_yield','rev_g','opm'])
+    fund = pd.DataFrame(columns=['ticker','fund_pass','fund_score','ev_valuation','ev_ebit','ev_ebitda','fcf_yield','rev_g','opm'])
 
 # ─── Merge Dalton + Fund ──────────────────────────────────────────────────
-fund_cols = ['ticker','fund_pass','fund_score','ev_ebit','fcf_yield','rev_g',
-             'opm','mktCap','industry','sector','name','currency']
+fund_cols = ['ticker','fund_pass','fund_score','ev_valuation','ev_ebit','ev_ebitda',
+             'fcf_yield','rev_g','opm','mktCap','industry','sector','name','currency']
 fc = [c for c in fund_cols if c in fund.columns]
 merged = dalton.merge(fund[fc], on='ticker', how='left', suffixes=('','_f'))
 merged['fund_pass'] = merged['fund_pass'].fillna(False)
