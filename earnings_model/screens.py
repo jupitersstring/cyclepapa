@@ -191,10 +191,42 @@ def divergence(df: pd.DataFrame, top: int | None = 40, min_periods: int = 4, **e
     return _finish(e, score, top, extra=["behaviour_change", "reaction"])
 
 
+def forensic(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
+    """Forensically-vetted asymmetric names — quality of the *trajectory*, not the
+    latest number.
+
+    Requires (from the multi-year series, via metrics.forensic_block):
+    revenue rising in >=2/3 years, EBITDA positive throughout, **margin
+    expanding** over the last 3 years (real operating leverage), and **no one-off
+    lump**. Then ranks by trajectory quality + cheap + price-dormant. This is the
+    strictest screen: it removes sign-flip "turnarounds" and licensing/M&A blips
+    that headline growth rewards.
+    """
+    e = eligible(df, min_periods=4, **elig)
+    need = {"rev_up_frac", "ebitda_all_pos", "margin_delta3", "ebitda_lump"}
+    if not need.issubset(e.columns):
+        raise ValueError("forensic fields missing — re-fetch so metrics.forensic_block runs")
+    all_pos = e["ebitda_all_pos"].fillna(False).astype(bool)
+    lump = e["ebitda_lump"].fillna(False).astype(bool)
+    e = e[
+        all_pos & ~lump
+        & (e["rev_up_frac"].fillna(0) >= 0.66)
+        & (e["margin_delta3"].fillna(-1) > 0)
+    ].copy()
+
+    traj = (0.45 * e["rev_up_frac"].fillna(0)
+            + 0.35 * (e["margin_delta3"] * 10).clip(0, 1)
+            + 0.20 * (_rank(e, "ebitda_accel_abs")).fillna(0.5))
+    score = 0.45 * traj + 0.30 * _cheap(e) + 0.25 * _quiet(e)
+    return _finish(e, score, top,
+                   extra=["rev_up_frac", "ebitda_margin", "margin_delta3", "rev_cagr_n"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
     "asymmetry": asymmetry,
     "inflecting-positive": inflecting_positive,
     "divergence": divergence,
+    "forensic": forensic,
 }

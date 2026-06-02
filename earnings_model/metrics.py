@@ -149,6 +149,52 @@ def inflection_flags(m: dict) -> dict:
     }
 
 
+def forensic_block(annual: dict) -> dict:
+    """Trajectory-quality metrics from the raw annual series (oldest->newest).
+
+    These look at the *shape* of the multi-year history, not just the latest
+    growth number, to separate genuine, consistent inflections from lumpy or
+    sign-flip artifacts:
+
+    * ``rev_up_frac``     — fraction of years revenue rose (consistency);
+    * ``ebitda_margin``   — latest EBITDA margin;
+    * ``margin_delta3``   — margin change over the last 3 all-positive years
+      (real operating leverage); NaN if EBITDA isn't positive throughout;
+    * ``ebitda_all_pos``  — EBITDA positive in every available year;
+    * ``ebitda_lump``     — latest EBITDA step > 3x the median prior step
+      (one-off / licensing / M&A distortion, not a trajectory).
+    """
+    rev = [_f(x) for x in (annual.get("revenue") or [])]
+    eb = [_f(x) for x in (annual.get("ebitda") or [])]
+    rev = [x for x in rev if not _isnan(x)]
+    eb = [x for x in eb if not _isnan(x)]
+
+    out = {"rev_up_frac": NaN, "ebitda_margin": NaN, "margin_delta3": NaN,
+           "ebitda_all_pos": False, "ebitda_lump": False, "rev_cagr_n": NaN}
+
+    if len(rev) >= 3:
+        diffs = [b - a for a, b in zip(rev[:-1], rev[1:])]
+        out["rev_up_frac"] = sum(1 for d in diffs if d > 0) / len(diffs)
+        if rev[0] > 0 and rev[-1] > 0:
+            out["rev_cagr_n"] = (rev[-1] / rev[0]) ** (1 / (len(rev) - 1)) - 1
+
+    out["ebitda_all_pos"] = len(eb) >= 3 and all(x > 0 for x in eb)
+    # Margin trend only where revenue and EBITDA align and EBITDA is positive.
+    if len(rev) == len(eb) and len(eb) >= 3 and all(x > 0 for x in eb[-3:]):
+        margins = [eb[i] / rev[i] for i in range(len(eb)) if rev[i] > 0]
+        if margins:
+            out["ebitda_margin"] = margins[-1]
+        if len(margins) >= 3:
+            out["margin_delta3"] = margins[-1] - margins[-3]
+
+    if len(eb) >= 4:
+        steps = [abs(b - a) for a, b in zip(eb[:-1], eb[1:])]
+        prior = sorted(steps[:-1])
+        med = prior[len(prior) // 2] if prior else 0.0
+        out["ebitda_lump"] = bool(med > 0 and steps[-1] > 3 * med)
+    return out
+
+
 def compute_metrics(raw: dict) -> dict:
     """Flatten a raw fundamentals record into the per-name metric row.
 
@@ -165,6 +211,7 @@ def compute_metrics(raw: dict) -> dict:
     out.update(_q_yoy_block(quarterly.get("earnings", []), "earnings"))
     out.update(_q_yoy_block(quarterly.get("ebitda", []), "ebitda"))
     out.update(inflection_flags(out))
+    out.update(forensic_block(annual))
 
     # Carry valuation + price + identity straight through.
     val = raw.get("valuation", {}) or {}

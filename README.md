@@ -49,11 +49,16 @@ python -m earnings_model analyze
 # 4. Cluster by growth/acceleration behaviour (k auto-picked via silhouette)
 python -m earnings_model cluster
 
-# Inspect any output:
+# Named screens (operating-only, region-aware, artifact-guardrailed):
+python -m earnings_model screen yoy-unpriced -n 30          # YoY accel/inflection, not priced
+python -m earnings_model screen divergence -n 30            # max behaviour change, min price reaction
+python -m earnings_model screen forensic -n 30 --region EU  # margin-expanding, no lumps (strictest)
+python -m earnings_model screen asymmetry --region UK -n 20
+
+# Inspect any cached output:
 python -m earnings_model show inflecting_lagging -n 20
 python -m earnings_model show prebreakout -n 30      # dead-money + improving + cheap
 python -m earnings_model show case_studies -n 20     # historical base->breakout shapes
-python -m earnings_model show valuation_gap -n 30
 
 # Or run the whole pipeline at once:
 python -m earnings_model run --preset uk+us-small --sample 800
@@ -116,6 +121,25 @@ timeliness overlay.
   `breaking_out` (dormant + improving, price just lifting). `case_studies()`
   scans the cached monthly series for the historical *long flat base → explosive
   move* archetype to characterise the price shape empirically.
+
+**Named screens** (`earnings_model/screens.py`, via `screen <name>`). All run on
+operating companies only, rank within region, and apply artifact guardrails (no
+nano-caps, require a sane **positive** multiple, de-dupe cross-listings, drop
+ratio blow-ups off a near-zero base). QoQ is only ~40% populated so it enters as
+a *bonus*, never equal-weighted with annual (YoY).
+- **yoy-unpriced** — annual growth accel/inflection × cheap × price-dormant.
+- **accel-unpriced** — yoy-unpriced + a 20% quarterly bonus.
+- **asymmetry** — operating inflection + cheap + dormant.
+- **inflecting-positive** — sales or EBITDA growth crossing from ≤0 to >0.
+- **divergence** — biggest *behaviour* change (accel + swing + inflection breadth)
+  vs least *price* reaction (3/12/24m return); cheapness-independent.
+- **forensic** — strictest: from the multi-year series, revenue rising ≥2/3 yrs,
+  **EBITDA positive throughout, margin expanding, no one-off lump** — removes
+  sign-flip "turnarounds" and licensing/M&A blips that headline growth rewards.
+
+**Forensic trajectory metrics** (`metrics.forensic_block`, on the raw annual
+series): `rev_up_frac`, `ebitda_margin`, `margin_delta3` (last-3-yr margin
+change, all-positive), `ebitda_all_pos`, `ebitda_lump`.
 
 **Multi-year price features.** From 5y of monthly closes: trailing returns to
 36m, `max_drawdown`, `range_position` (place in the 3y range), annualised 2y
