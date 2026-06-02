@@ -1,5 +1,6 @@
 failed_bearish_*.csv
 momentum_rank_*.csv
+global_equities_consolidated.csv
 *_volume.csv
 *_report.txt
 *.log
