@@ -89,7 +89,11 @@ def load_verdicts() -> pd.DataFrame:
         frames.append(d[['symbol','verdict','thesis']])
     if not frames:
         return pd.DataFrame(columns=['symbol','verdict','thesis'])
-    out = pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='first')
+    # keep='last' so the LATEST verdict for a symbol wins.  Earlier verdict
+    # files load first; qualitative_extended_verdicts.csv is the rolling
+    # diligence log and represents the most current view, including any
+    # downgrades on previously-GREEN names.
+    out = pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='last')
     return out
 
 
