@@ -362,6 +362,34 @@ def main():
         gems = pd.concat([multi_gems, single_gems]).drop_duplicates('symbol', keep='first')
         gems[gem_cols_show].to_excel(xl, sheet_name='Gems', index=False)
 
+        # ----- GARP Multibaggers sheet -----
+        # Strict GARP screen: rev_3y_cagr >= 10%, EV/EBIT 2-12 or P/E 3-18,
+        # EBITDA margin >= 8%, ROCE >= 10%, net_debt/EBITDA <= 2.5x.
+        # Excludes Health Care, Utilities, Real Estate sectors and pure-mining
+        # industries (binary commodity / clinical bets are not GARP).
+        # Output is sorted by garp_score = 0.30 yart + 0.40 rev_3y_cagr + 0.30 ROCE.
+        import os
+        if os.path.exists('garp_candidates.csv'):
+            garp_df = pd.read_csv('garp_candidates.csv')
+            # Merge verdicts so user sees qualitative status alongside
+            verdict_map = df[['symbol','verdict','thesis','full_thesis','why']].drop_duplicates('symbol')
+            garp_df = garp_df.drop(columns=[c for c in ['verdict','thesis'] if c in garp_df.columns], errors='ignore')
+            garp_df = garp_df.merge(verdict_map, on='symbol', how='left')
+            garp_df['verdict'] = garp_df['verdict'].fillna('UNRESEARCHED')
+            garp_df = garp_df[garp_df['verdict'] != 'RED']
+            garp_show = [
+                'symbol','name','src','sector','industry','market_cap_bucket','market_cap',
+                'verdict','garp_score',
+                'rev_3y_cagr','rev_yoy','rev_5y_cagr',
+                'ev_ebit','p_e','ebitda_margin','roce',
+                'net_debt_ebitda','fcf_yield','net_cash_pct_mcap',
+                'insider_ownership_pct','yartseva_score','berezin_score',
+                'why','full_thesis','thesis',
+            ]
+            garp_show = [c for c in garp_show if c in garp_df.columns]
+            garp_df.sort_values('garp_score', ascending=False).head(60)[garp_show]\
+                .to_excel(xl, sheet_name='GARP_Multibaggers', index=False)
+
         # ----- Archetype cluster sheets (Yellowbrick taxonomy) -----
         cluster_specs = [
             (
