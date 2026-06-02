@@ -163,9 +163,38 @@ def inflecting_positive(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.Da
     return _finish(e, score, top, extra=["sales_inflected", "ebitda_inflected"])
 
 
+def divergence(df: pd.DataFrame, top: int | None = 40, min_periods: int = 4, **elig) -> pd.DataFrame:
+    """Greatest change in sales/earnings *behaviour* with the least market reaction.
+
+    The purest statement of the thesis — independent of cheapness. Ranks the gap
+    between how much the **business trajectory** shifted (acceleration of sales /
+    EBITDA / earnings + the YoY growth-rate swing + inflection breadth) and how
+    much the **price** moved (peer-ranked 3/12/24m return). High = big regime
+    change, little reaction. Requires >=4yr revenue and caps ratio blow-ups so a
+    one-off licensing/M&A lump isn't mistaken for a trajectory change.
+    """
+    e = eligible(df, min_periods=min_periods, **elig)
+    e = e[e.get("revenue_growth", pd.Series(np.nan, index=e.index)).abs() < 2.0]
+
+    swing = (e.get("revenue_growth", 0) - e.get("revenue_prev_growth", 0)).clip(-1, 1)
+    beh = pd.concat(
+        [_rank(e, "revenue_accel"), _rank(e, "ebitda_accel_abs"),
+         _rank(e, "earnings_accel_abs"), swing.rank(pct=True)],
+        axis=1).mean(axis=1, skipna=True)
+    flags = e[[c for c in ("revenue_inflecting", "ebitda_inflecting", "earnings_inflecting")
+               if c in e.columns]].astype(float).mean(axis=1, skipna=True)
+    behaviour = 0.75 * beh.fillna(0.5) + 0.25 * flags.fillna(0.0)
+    reaction = pd.concat([_rank(e, c) for c in ("ret_3m", "ret_12m", "ret_24m")],
+                         axis=1).mean(axis=1, skipna=True).fillna(0.5)
+    e = e.assign(behaviour_change=behaviour, reaction=reaction)
+    score = behaviour - reaction
+    return _finish(e, score, top, extra=["behaviour_change", "reaction"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
     "asymmetry": asymmetry,
     "inflecting-positive": inflecting_positive,
+    "divergence": divergence,
 }
