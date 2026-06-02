@@ -141,7 +141,7 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         return df
     if name == "it-all":
         frames = []
-        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap"]:
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
             try:
                 sub = equities.select(country="Italy", market_cap=cap)
                 if len(sub):
@@ -154,7 +154,7 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         return df
     if name == "de-all":
         frames = []
-        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap"]:
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
             try:
                 sub = equities.select(country="Germany", market_cap=cap)
                 if len(sub):
@@ -194,7 +194,7 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         return df
     if name == "br-all":
         frames = []
-        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap"]:
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
             try:
                 sub = equities.select(country="Brazil", market_cap=cap)
                 if len(sub):
@@ -205,6 +205,85 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         df = df[~df.index.duplicated(keep="first")]
         df = df[df["exchange"].isin(BR_EXCHANGES)]
         return df
+
+    # --- Single-country wideners (all caps, primary listings only) ---
+    _COUNTRY_SPEC = {
+        "fr-all": ("France",        {"PAR"}),
+        "ch-all": ("Switzerland",   {"EBS"}),
+        "es-all": ("Spain",         {"MCE"}),
+        "nl-all": ("Netherlands",   {"AMS"}),
+        "se-all": ("Sweden",        {"STO"}),
+        "be-all": ("Belgium",       {"BRU"}),
+        "no-all": ("Norway",        {"OSL"}),
+        "dk-all": ("Denmark",       {"CPH"}),
+        "fi-all": ("Finland",       {"HEL"}),
+        "ie-all": ("Ireland",       {"IRE"}),
+        "pt-all": ("Portugal",      {"LIS"}),
+        "at-all": ("Austria",       {"VIE"}),
+        "gr-all": ("Greece",        {"ATH"}),
+        "jp-all": ("Japan",         {"JPX"}),  # Tokyo Stock Exchange
+        "au-all": ("Australia",     {"ASX"}),
+        "ca-all": ("Canada",        {"TOR", "VAN", "CNQ"}),  # TSX, TSXV, CSE
+        "in-all": ("India",         {"BSE", "NSE"}),  # BSE + NSE
+        "hk-all": ("Hong Kong",     {"HKG"}),
+        "sg-all": ("Singapore",     {"SES"}),
+        "cn-all": ("China",         {"SHH", "SHZ"}),  # Shanghai + Shenzhen
+        "kr-all": ("South Korea",   {"KSC", "KOE"}),  # KOSPI + KOSDAQ
+        "tw-all": ("Taiwan",        {"TAI", "TWO"}),
+        "mx-all": ("Mexico",        {"MEX"}),
+        "za-all": ("South Africa",  {"JNB"}),
+    }
+    if name in _COUNTRY_SPEC:
+        country, allowed_exchanges = _COUNTRY_SPEC[name]
+        frames = []
+        for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
+            try:
+                sub = equities.select(country=country, market_cap=cap)
+                if len(sub):
+                    frames.append(sub)
+            except Exception:
+                continue
+        if not frames:
+            return pd.DataFrame()
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(allowed_exchanges)]
+        return df
+
+    # --- EU-all = eu-smid + EU large/mega caps (catches Bayer/ASML/SAP/Nestle) ---
+    if name == "eu-all":
+        frames = []
+        for country in EU_COUNTRIES:
+            for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
+                try:
+                    sub = equities.select(country=country, market_cap=cap)
+                    if len(sub):
+                        frames.append(sub)
+                except Exception:
+                    continue
+        if not frames:
+            return pd.DataFrame()
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(EU_PRIMARY_EXCHANGES)]
+        return df
+
+    # --- Global-all-developed-equities convenience aggregator ---
+    if name == "global-all":
+        sub_universes = ["us-all", "uk-all", "eu-all", "jp-all", "au-all",
+                         "ca-all", "ch-all", "br-all"]
+        frames = []
+        for u in sub_universes:
+            try:
+                frames.append(get_universe(u))
+            except Exception as e:
+                print(f"  global-all: skip {u}: {e}")
+        if not frames:
+            return pd.DataFrame()
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        return df
+
     # --- ETF universes (fd.ETFs() instead of fd.Equities()) ---
     if name.endswith("-etfs"):
         try:
