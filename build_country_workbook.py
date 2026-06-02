@@ -368,7 +368,6 @@ def main():
         # Excludes Health Care, Utilities, Real Estate sectors and pure-mining
         # industries (binary commodity / clinical bets are not GARP).
         # Output is sorted by garp_score = 0.30 yart + 0.40 rev_3y_cagr + 0.30 ROCE.
-        import os
         if os.path.exists('garp_candidates.csv'):
             garp_df = pd.read_csv('garp_candidates.csv')
             # Merge verdicts so user sees qualitative status alongside
