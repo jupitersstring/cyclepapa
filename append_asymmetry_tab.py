@@ -31,7 +31,8 @@ ASYMMETRY = [
     ('VPK.AS',     'EU', 5, 4, '€1.7bn distribution programme only 16% executed by April 2026 — multi-year runway'),
     ('GOOS.TO',    'CA', 5, 2, 'Trading near take-private bid; arb spread is only remaining return'),
     ('TOU.TO',     'CA', 5, 3, 'Mike Rose serial open-market buys public; LNG Canada thesis priced in'),
-    # Promoted to top tier on from-today basis
+    # From-today ★★★★★ promotions
+    ('TREE',       'US', 5, 5, 'LendingTree: Q1 sales +37%, EBITDA +71% organic; CEO Lebda died Oct 2025, Peyree (QuoteWizard founder) elevated; mgmt RAISED FY26 guide; stock at 52w low on non-operational overhang; <0.5x P/S, ~3x fwd EBITDA — single best un-priced operating leverage'),
     ('SHL.DE',     'EU', 4, 5, '-40% derate absorbed; Siemens spin-off doubles free float (forced buying); €230m buyback through Jan 2027'),
     ('INBK',       'US', 4, 5, 'Founder bought $18.60 Oct 2025; 13D filer surfaced; sharp discount to $41.41 book; credit overhang priced in'),
     ('BJRI',       'US', 4, 5, 'Shaich/Act III added at $34.92 March 2026; fresh CEO; +2.4% comps best in casual dining; $83M buyback runway'),
@@ -76,6 +77,13 @@ ASYMMETRY = [
     ('PXT.TO',     'CA', 4, 4, 'GeoPark activist proxy fight mid-2026; 40% share reduction; dividend cushion'),
     ('REI-UN.TO',  'CA', 4, 4, 'Chairman Sonshine net buyer LTM; 98.6% occ; 17.5% leasing spreads'),
     ('WSP.TO',     'CA', 4, 3, 'TRC/Power Engineers integration; backlog +18% — premium multiple, mostly banked'),
+    # NEW: un-priced operating leverage confirmations
+    ('QNST',       'US', 4, 4, 'Sales +28% Q3; adj EBITDA +53% on AI productivity + auto-insurance mix; $40M buyback active; net cash; auto-budget cycle is the risk (BUT HomeBuddy M&A drove half of Home growth + Q2 tax benefit inflated GAAP NI)'),
+    ('NRDS',       'US', 4, 5, 'Sales +16%, margin +6.6pp, EBITDA +333%, P/S 0.6, stock -21% — cleanest un-priced operating leverage in our list'),
+    ('EVER',       'US', 4, 4, 'Sales +24.5%, margin +7pp, EBITDA +403% — auto insurance carrier ad-budget cycle confirms operating leverage'),
+    # NEW: downgraded — screener flagged but qualitative review caught accounting artifacts
+    ('PRCH',       'US', 3, 2, 'Screener showed +30pp margin expansion BUT it is an accounting recharacterization (HOA carrier → PIRE Reciprocal MGA), not operating leverage; +15.6% real revenue growth not +42%; Texas 57% concentration; hurricane season tail risk'),
+    ('AORT',       'US', 3, 2, '+18% sales partly cybersecurity-comp recovery (Q1 25 was depressed by Nov 2024 cyber incident); mgmt CUT guidance Q1; Endospan deal added $135M debt with no US revenue until 2027; zero insider buying through 57% drawdown'),
     # Avoid / value-trap flags (entry-today rating same as base)
     ('BYW.DE',     'EU', 1, 1, 'StaRUG restructuring; €2.7bn shortfall; criminal probe; audit delay'),
     ('GXI.DE',     'EU', 2, 2, 'BaFin probe; audit delay; technical default; SDAX expulsion'),
