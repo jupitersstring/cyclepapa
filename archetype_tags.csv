@@ -207,6 +207,7 @@ CIZN,0,0,0,0,0,0,0,0,0,
 8282.HK,0,0,1,0,0,0,1,0,2,"DiscountedVehicle, KPIThreshold"
 1218.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
 ZODJRDMKJ.BO,1,1,1,1,1,0,1,0,6,"NarrativeLag, FixedCost+DemandShock, DiscountedVehicle, CapitalDiscipline, RegimeCyclical, KPIThreshold"
+0100.KL,0,0,1,0,0,0,1,0,2,"DiscountedVehicle, KPIThreshold"
 120240.KQ,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 UHRN.SW,0,0,0,0,0,0,1,0,1,KPIThreshold
 GEA.WA,0,0,1,1,0,0,0,0,2,"DiscountedVehicle, CapitalDiscipline"
@@ -316,10 +317,12 @@ DCOM,0,0,0,0,0,0,0,0,0,
 GBX.BK,0,0,1,0,0,0,1,0,2,"DiscountedVehicle, KPIThreshold"
 4119.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 8119.T,1,0,0,0,0,0,0,0,1,NarrativeLag
+0074.KL,1,1,1,0,1,0,0,0,4,"NarrativeLag, FixedCost+DemandShock, DiscountedVehicle, RegimeCyclical"
 7551.T,0,0,0,0,0,0,0,0,0,
 6986.T,0,0,0,0,0,0,0,0,0,
 0232.HK,0,0,1,0,0,0,1,0,2,"DiscountedVehicle, KPIThreshold"
 5753.T,0,0,0,0,0,0,0,0,0,
+0155.KL,0,1,0,1,0,0,1,0,3,"FixedCost+DemandShock, CapitalDiscipline, KPIThreshold"
 IPM,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 004000.KS,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 311390.KQ,1,0,0,1,0,1,0,0,3,"NarrativeLag, CapitalDiscipline, DeadOption"
@@ -336,6 +339,7 @@ PAYS,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 5JS.SI,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 5AB.SI,0,0,0,0,0,0,1,0,1,KPIThreshold
 3917.T,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
+0149.KL,0,0,1,1,0,0,0,0,2,"DiscountedVehicle, CapitalDiscipline"
 037350.KQ,0,0,0,0,0,0,0,0,0,
 KPLT,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 IGAR.JK,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -411,6 +415,7 @@ INV.AX,0,0,1,0,0,0,0,0,1,DiscountedVehicle
 UI,0,0,0,0,0,0,0,0,0,
 ROYALIND.BO,1,1,0,1,0,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, CapitalDiscipline, KPIThreshold"
 MSGM,0,0,0,0,0,0,1,0,1,KPIThreshold
+0017.KL,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 SHERVANI.BO,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 INTLCONV.BO,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 SHOW3.SA,1,1,1,0,0,0,1,1,5,"NarrativeLag, FixedCost+DemandShock, DiscountedVehicle, KPIThreshold, BlindSpot"
@@ -647,6 +652,7 @@ GOENKA.NS,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 6574.T,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 CHUC,0,0,0,0,0,0,1,0,1,KPIThreshold
 6045.T,0,0,0,0,0,0,0,0,0,
+0097.KL,0,0,0,0,0,0,0,0,0,
 THAKDEV.BO,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 PRISMX.BO,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 NAHARPOLY.BO,0,1,0,1,0,0,1,0,3,"FixedCost+DemandShock, CapitalDiscipline, KPIThreshold"
@@ -792,6 +798,7 @@ SKMEGGPROD.NS,0,0,0,0,0,0,0,0,0,
 SKMEGGPROD.BO,0,0,0,0,0,0,0,0,0,
 BULL,1,0,0,0,0,1,1,0,3,"NarrativeLag, DeadOption, KPIThreshold"
 6291.TWO,0,0,0,0,0,0,0,0,0,
+PAZ.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 058470.KQ,0,0,0,0,0,0,0,0,0,
 AXTEL.BO,0,1,0,1,0,0,0,0,2,"FixedCost+DemandShock, CapitalDiscipline"
 S19.SI,0,0,1,1,0,0,0,0,2,"DiscountedVehicle, CapitalDiscipline"
@@ -840,6 +847,7 @@ SPCG.BK,0,0,0,0,0,0,0,0,0,
 3332.TWO,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 GME,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 ALLIX.PA,0,0,0,0,0,0,1,0,1,KPIThreshold
+TXAR.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 4951.T,1,0,0,0,0,0,0,0,1,NarrativeLag
 7991.T,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 6229.T,0,0,0,0,0,0,0,0,0,
@@ -1017,6 +1025,7 @@ JAICORPLTD.BO,0,1,0,1,0,0,0,0,2,"FixedCost+DemandShock, CapitalDiscipline"
 CHCI,0,0,0,0,0,0,0,0,0,
 VIJIFIN.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 004370.KS,1,0,0,0,0,0,0,0,1,NarrativeLag
+8160.SR,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 BRLT,1,0,0,0,0,0,0,0,1,NarrativeLag
 LGI,0,0,0,0,0,0,0,0,0,
 0085.HK,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -1063,6 +1072,7 @@ NRCA.JK,0,0,0,0,0,0,0,0,0,
 APO,1,0,0,0,0,0,0,0,1,NarrativeLag
 BTJ.SI,0,0,0,0,0,0,1,0,1,KPIThreshold
 3816.HK,0,0,0,0,0,0,0,0,0,
+2020.SR,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 EGGUB.IS,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 CARE.JK,0,0,0,0,0,0,1,0,1,KPIThreshold
 032080.KQ,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -1125,6 +1135,7 @@ MRP.BO,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 KBLI.JK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 8319.HK,0,0,1,0,0,0,0,0,1,DiscountedVehicle
 LQDT,0,0,0,0,0,0,0,0,0,
+POTASIOS-A.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 MANUGRAPH.NS,1,1,0,1,0,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, CapitalDiscipline, KPIThreshold"
 RRL.AX,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 SPR.L,1,1,0,1,0,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, CapitalDiscipline"
@@ -1206,6 +1217,7 @@ JRI,0,0,0,0,0,0,0,0,0,
 SMT.BK,0,0,0,0,0,0,0,0,0,
 STRZ,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 4224.T,0,0,0,0,0,0,0,0,0,
+8070.SR,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 9740.T,0,0,0,0,0,0,0,0,0,
 THANGAMAYL.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 THANGAMAYL.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -1295,6 +1307,7 @@ NSKOG.OL,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 NSIL.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
 HFIL.BO,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 NSIL.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
+0112.KL,0,0,0,0,0,0,0,0,0,
 002870.KS,0,0,0,0,0,0,0,0,0,
 AVONMORE.BO,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 009900.KS,0,0,0,0,0,0,0,0,0,
@@ -1307,6 +1320,7 @@ LIEN,0,0,0,0,0,0,0,0,0,
 7812.T,0,0,0,0,0,0,0,0,0,
 MANSIFIN.BO,0,0,0,0,0,0,0,0,0,
 7072.T,0,0,0,1,0,0,0,0,1,CapitalDiscipline
+IRSA.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 SIT.MI,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 208350.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 BKX.SI,0,0,0,0,0,0,0,0,0,
@@ -1366,6 +1380,7 @@ TAIIND.BO,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 6505.T,0,0,0,0,0,0,0,0,0,
 GENUSPRIME.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 5742.T,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
+CECO2.BA,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 SCAGRO.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 020120.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
 GWO-PQ.TO,0,0,0,0,0,0,0,0,0,
@@ -1467,6 +1482,7 @@ SFBC,1,0,0,0,0,0,0,0,1,NarrativeLag
 PATIDAR.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 CALT.MI,0,0,1,0,0,0,0,0,1,DiscountedVehicle
 5644.T,0,0,0,0,0,0,0,0,0,
+03012.KL,0,0,0,0,0,0,1,0,1,KPIThreshold
 008060.KS,0,0,0,0,0,0,0,0,0,
 1410.HK,0,0,0,0,0,0,0,0,0,
 SOUTHBANK.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -1523,6 +1539,7 @@ KALMAR.HE,0,0,0,0,0,0,0,0,0,
 7531.T,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 5VC.SI,0,0,0,0,0,0,0,0,0,
 AALI.JK,0,0,0,0,0,0,0,0,0,
+GCLA.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 W05.SI,0,0,0,0,0,0,0,0,0,
 101930.KQ,0,0,0,0,0,0,0,0,0,
 007540.KS,0,0,0,0,0,0,0,0,0,
@@ -1687,8 +1704,10 @@ INDOBORAX.BO,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 8168.HK,0,0,0,0,0,0,0,0,0,
 6637.T,0,0,0,0,0,0,0,0,0,
 HL,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+5278.KL,0,0,1,0,0,0,0,0,1,DiscountedVehicle
 LIVE,1,0,0,0,1,1,1,0,4,"NarrativeLag, RegimeCyclical, DeadOption, KPIThreshold"
 E27.SI,0,0,1,0,0,0,0,0,1,DiscountedVehicle
+CVH.BA,0,0,0,0,0,0,0,0,0,
 2132.HK,0,0,1,0,0,0,1,0,2,"DiscountedVehicle, KPIThreshold"
 6669.TW,0,0,0,0,0,0,0,0,0,
 0710.HK,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -1726,6 +1745,7 @@ CUE.AX,0,0,0,0,0,0,0,0,0,
 AIAENG.NS,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 7685.T,0,0,0,0,0,0,0,0,0,
 AIAENG.BO,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+0132.KL,1,0,0,0,0,0,0,0,1,NarrativeLag
 TCI,0,0,0,0,0,0,0,0,0,
 3439.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 ADVAIT.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -1745,6 +1765,7 @@ SEAMECLTD.NS,0,0,0,0,0,0,0,0,0,
 PDTC3.SA,0,0,0,0,0,0,1,1,2,"KPIThreshold, BlindSpot"
 EZTC3.SA,0,0,0,0,0,0,1,0,1,KPIThreshold
 3900.T,1,0,0,1,0,1,0,0,3,"NarrativeLag, CapitalDiscipline, DeadOption"
+SQM-A.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 SIRI,0,0,0,0,0,0,1,0,1,KPIThreshold
 1316.TW,1,0,0,0,0,0,0,0,1,NarrativeLag
 FCCN,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -1865,6 +1886,7 @@ JFBC,0,0,0,0,0,0,0,0,0,
 5469.TW,0,0,0,0,0,0,0,0,0,
 RANASUG.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 RANASUG.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+AFPCAPITAL.SN,0,0,0,0,0,0,0,0,0,
 PODC,0,0,0,0,0,0,0,0,0,
 SYNTEC.BK,0,0,0,0,0,0,0,0,0,
 0055.HK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -1896,6 +1918,7 @@ PANAMAPET.NS,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 CYBERMEDIA.NS,0,0,0,1,0,0,1,0,2,"CapitalDiscipline, KPIThreshold"
 013520.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
 PANAMAPET.BO,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
+FALABELLA.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 HRME.JK,0,0,0,0,0,0,1,0,1,KPIThreshold
 KARIN.PR,0,0,0,0,0,0,1,0,1,KPIThreshold
 6290.TWO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -1927,10 +1950,12 @@ CITY.BK,1,0,1,0,0,0,0,1,3,"NarrativeLag, DiscountedVehicle, BlindSpot"
 GROW.MI,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 0403.HK,1,0,1,0,0,0,0,0,2,"NarrativeLag, DiscountedVehicle"
 6798.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+0140.KL,0,0,0,0,0,0,0,0,0,
 1243.HK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 RUG.ST,1,0,0,0,0,0,0,0,1,NarrativeLag
 5966.T,0,0,0,0,0,0,0,0,0,
 SBCF,0,0,0,0,0,0,0,0,0,
+PLANVITAL.SN,0,0,0,0,0,0,0,0,0,
 XCHANGING.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 RONY.JK,1,0,0,0,0,0,0,0,1,NarrativeLag
 XCHANGING.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -1962,6 +1987,7 @@ DBAN.DE,1,0,0,0,0,0,0,0,1,NarrativeLag
 VEDL.BO,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 VEDL.NS,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 6214.TW,0,0,0,0,0,0,1,0,1,KPIThreshold
+DUNCANFOX.SN,0,0,0,0,0,0,0,0,0,
 023000.KS,1,0,0,0,0,0,0,0,1,NarrativeLag
 053210.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
 6961.T,0,0,0,0,0,0,0,0,0,
@@ -1977,6 +2003,7 @@ KEI.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 KEI.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 XPLRA.OL,0,1,0,1,0,0,0,0,2,"FixedCost+DemandShock, CapitalDiscipline"
 CCP.AX,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+8180.SR,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 VISHNU.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 BEZ.L,0,0,0,0,0,0,0,0,0,
 5CT.SI,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -2006,6 +2033,7 @@ GOAU3.SA,0,0,0,0,0,0,0,0,0,
 2114.TW,0,0,0,0,0,0,0,0,0,
 1966.T,0,0,0,0,0,0,0,0,0,
 2918.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+GARO.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 NPK,0,0,0,0,0,0,0,0,0,
 CCC.L,0,0,0,0,0,0,0,0,0,
 ETIL.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -2040,6 +2068,7 @@ AQ.ST,0,0,0,0,0,0,0,0,0,
 4410.T,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 012330.KS,0,0,0,0,0,0,0,0,0,
 010690.KS,0,0,0,0,0,0,0,0,0,
+ENELDXCH.SN,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 ESON.LS,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
 058860.KS,1,0,0,0,0,0,0,0,1,NarrativeLag
 DEX.DE,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -2068,6 +2097,7 @@ MITK,0,0,0,0,0,0,0,0,0,
 048550.KQ,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 FRSH,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 5440.T,1,0,0,0,0,0,0,0,1,NarrativeLag
+GAMI.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 NAII,1,0,0,0,0,0,0,0,1,NarrativeLag
 EDUC,0,0,0,0,0,0,0,0,0,
 BELFA,0,0,0,0,0,0,0,0,0,
@@ -2189,6 +2219,7 @@ CYBELEIND.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 MICE.JK,0,0,0,0,0,0,0,0,0,
 006980.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
 004440.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
+4150.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 1948.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 3541.TWO,1,0,0,0,0,0,0,0,1,NarrativeLag
 GFS,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -2226,7 +2257,9 @@ CHENFERRO.BO,1,0,1,0,0,0,0,0,2,"NarrativeLag, DiscountedVehicle"
 AAB.CO,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 PVL.PA,0,0,0,0,0,0,0,0,0,
 QLT.BK,1,0,1,0,1,1,1,1,6,"NarrativeLag, DiscountedVehicle, RegimeCyclical, DeadOption, KPIThreshold, BlindSpot"
+0226.KL,1,0,0,0,0,0,0,0,1,NarrativeLag
 0817.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
+VALO.BA,0,0,0,0,0,0,0,0,0,
 3636.T,0,0,0,0,0,0,0,0,0,
 EVER.BK,1,0,0,0,0,0,1,1,3,"NarrativeLag, KPIThreshold, BlindSpot"
 NAVKARCORP.NS,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
@@ -2261,6 +2294,7 @@ SOTL.NS,0,0,0,0,0,0,0,0,0,
 KATMR.IS,0,0,0,0,0,0,0,0,0,
 NUTRICIRCLE.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 9644.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+GRIM.BA,0,0,0,0,0,0,0,0,0,
 3070.T,1,1,0,0,1,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical"
 RMNI,0,0,0,0,0,0,1,0,1,KPIThreshold
 APP-R.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -2323,6 +2357,7 @@ FOG.L,0,0,0,0,0,0,0,0,0,
 NZK.NZ,0,0,1,0,0,0,0,0,1,DiscountedVehicle
 EDAC.MI,1,0,0,0,0,1,1,0,3,"NarrativeLag, DeadOption, KPIThreshold"
 092730.KQ,0,0,0,0,0,0,0,0,0,
+0192.KL,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 ASIANENE.BO,0,0,0,1,0,0,1,0,2,"CapitalDiscipline, KPIThreshold"
 6806.T,0,0,0,0,0,0,0,0,0,
 2022.TW,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
@@ -2336,6 +2371,7 @@ ARIES.BO,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 LINK.JK,1,0,0,0,0,0,0,0,1,NarrativeLag
 5273.T,1,0,0,0,0,0,0,0,1,NarrativeLag
 059120.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
+8150.SR,1,0,0,0,0,0,1,1,3,"NarrativeLag, KPIThreshold, BlindSpot"
 ALC.MC,0,0,0,0,0,0,0,0,0,
 1720.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 KNOS.L,0,0,0,0,0,0,0,0,0,
@@ -2379,6 +2415,8 @@ GSDDE.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
 039560.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 PWS.MI,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 134380.KS,0,0,0,0,0,0,0,0,0,
+TGNO4.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
+0089.KL,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 6863.T,0,0,0,0,0,0,0,0,0,
 TAPG.JK,0,0,0,0,0,0,0,0,0,
 AMBUJACEM.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -2605,6 +2643,7 @@ MERCANTILE.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 7265.T,0,0,0,0,0,0,0,0,0,
 PYT.VI,0,0,0,0,0,0,1,0,1,KPIThreshold
 7278.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+0040.KL,0,0,0,0,0,0,0,0,0,
 CAPRIHANS.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 7296.T,0,0,0,0,0,0,0,0,0,
 2232.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -2620,6 +2659,7 @@ DOHL4.SA,1,0,0,0,0,0,1,1,3,"NarrativeLag, KPIThreshold, BlindSpot"
 MK.BK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 GGBR3.SA,0,0,0,0,0,0,0,0,0,
 HOLCO.AS,1,0,0,0,0,0,0,0,1,NarrativeLag
+CADO.BA,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 2302.HK,0,0,0,0,0,0,0,0,0,
 PJL.BO,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 BCAP.JK,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
@@ -2755,6 +2795,7 @@ PREMIERPOL.NS,0,0,0,0,0,0,0,0,0,
 GETB.L,0,0,0,0,0,0,1,0,1,KPIThreshold
 STEAV.HE,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 MTRKS.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
+PUCOBRE.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 1613.HK,1,0,0,0,0,0,0,0,1,NarrativeLag
 3111.T,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 RAMCOIND.NS,0,0,0,0,0,0,0,0,0,
@@ -2774,6 +2815,7 @@ NEOINFRA.BO,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 AYUD.BK,0,0,0,0,0,0,0,0,0,
 OVZON.ST,0,0,0,0,0,0,1,0,1,KPIThreshold
 NOVIS.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+CTIO.BA,0,0,0,0,0,0,0,0,0,
 BTNC-R.BK,0,0,1,0,0,0,0,1,2,"DiscountedVehicle, BlindSpot"
 FN-R.BK,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 SAFKR.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -2782,6 +2824,7 @@ TSEM.TA,0,0,0,0,0,0,0,0,0,
 HGLB,0,0,0,0,0,0,0,0,0,
 6261.TWO,0,0,0,0,0,0,0,0,0,
 WEHB.BR,0,0,0,0,0,0,0,0,0,
+0099.KL,0,0,0,0,0,0,0,0,0,
 PNRG,0,0,0,0,0,0,1,0,1,KPIThreshold
 FHI,0,0,0,0,0,0,0,0,0,
 S32.AX,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
@@ -2850,6 +2893,7 @@ DNG.TO,0,0,0,0,0,0,0,0,0,
 DWARKESH.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
 5563.T,0,0,0,0,0,0,0,0,0,
 SKY,1,0,0,0,0,0,0,0,1,NarrativeLag
+0070.KL,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 3583.TW,0,0,0,0,0,0,1,0,1,KPIThreshold
 PAT.DE,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 MRVL,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -2878,6 +2922,7 @@ SAINIK.BO,0,0,0,0,0,0,0,0,0,
 HINDHARD.BO,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 COCO,0,0,0,0,0,0,0,0,0,
 RAMCOIND.BO,0,0,0,0,0,0,0,0,0,
+CTC.SN,0,0,0,0,0,0,0,0,0,
 CELH,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 CRISIL.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 CHEMM.CO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -2953,6 +2998,7 @@ WAGEND.BO,0,0,0,0,0,0,0,0,0,
 SYNTEC-R.BK,0,0,0,0,0,0,0,0,0,
 TLMAN.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
 9743.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+3010.SR,0,0,0,0,0,0,0,0,0,
 PANACHE.NS,0,0,0,0,0,0,0,0,0,
 TWZ.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
 PRICOLLTD.BO,0,0,0,1,0,0,0,0,1,CapitalDiscipline
@@ -3059,6 +3105,7 @@ CSRA.JK,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 ELEC.PA,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 ADL.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 APPF,1,0,0,0,0,0,0,0,1,NarrativeLag
+8030.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 7735.T,0,0,0,0,0,0,0,0,0,
 200470.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 LOMLF,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -3069,6 +3116,7 @@ TCBX,0,0,0,0,0,0,0,0,0,
 ROCK.JK,0,0,0,0,0,0,0,0,0,
 017960.KS,0,0,0,0,0,0,0,0,0,
 6310.T,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
+SIEMEL.SN,0,0,0,0,0,0,0,0,0,
 TLS,0,0,0,0,0,0,1,0,1,KPIThreshold
 3067.TWO,1,0,0,0,0,0,0,0,1,NarrativeLag
 7826.T,0,0,0,0,0,0,0,0,0,
@@ -3108,6 +3156,7 @@ KCO.DE,0,0,0,0,0,0,1,0,1,KPIThreshold
 6444.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 3744.T,0,0,0,0,0,0,0,0,0,
 Z25.SI,0,0,0,0,0,0,1,0,1,KPIThreshold
+MELON.SN,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 0794.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
 FATN,0,0,0,0,0,0,0,0,0,
 3110.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -3210,6 +3259,7 @@ GREE,0,0,0,0,0,0,1,0,1,KPIThreshold
 090435.KS,0,0,0,0,0,0,0,0,0,
 BAMNB.AS,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 ELTON.AT,0,0,0,0,0,0,1,1,2,"KPIThreshold, BlindSpot"
+GBAN.BA,0,0,0,0,0,0,0,0,0,
 AERO.SW,0,0,0,0,0,0,1,0,1,KPIThreshold
 0217.HK,0,0,0,0,0,0,0,0,0,
 VASINFRA.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -3356,6 +3406,7 @@ NEM.DE,1,0,0,0,0,1,0,0,2,"NarrativeLag, DeadOption"
 4997.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 FADE.IS,0,0,0,0,0,0,0,0,0,
 DSNG.JK,0,0,0,0,0,0,0,0,0,
+CRES.BA,0,0,0,0,0,0,0,0,0,
 AAOI,0,0,0,0,0,0,0,0,0,
 ZNWD.L,0,0,0,0,0,0,0,0,0,
 004990.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -3437,6 +3488,7 @@ ATIC.ST,0,0,0,0,0,0,1,0,1,KPIThreshold
 CLOUD.OL,0,0,0,0,0,0,1,0,1,KPIThreshold
 BLS.BO,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
 UVAN.BK,0,0,0,0,0,0,0,0,0,
+HIPODROMOA.SN,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 RVLV,1,0,0,0,0,0,0,0,1,NarrativeLag
 B52-R.BK,0,0,0,0,0,0,0,1,1,BlindSpot
 LOB,0,0,0,0,0,0,0,0,0,
@@ -3490,6 +3542,7 @@ WYFI,0,0,0,0,0,0,0,0,0,
 CENX,0,0,0,0,0,0,1,0,1,KPIThreshold
 MCP.LS,0,0,0,0,0,0,0,0,0,
 GATC.L,0,0,0,0,0,0,0,0,0,
+4012.SR,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 HINDZINC.BO,0,0,0,0,0,0,0,0,0,
 CYB.TO,0,0,0,0,0,0,0,0,0,
 SWARNSAR.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -3569,12 +3622,14 @@ PRINCEPIPE.BO,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThresho
 COCHINM.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 COM.MI,0,0,0,0,0,0,0,0,0,
 RPT,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+SMSAAM.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 WATT,0,0,0,0,0,0,0,0,0,
 SIS.BO,0,0,0,0,0,0,0,0,0,
 MOV,0,0,0,0,0,0,1,0,1,KPIThreshold
 CFE.CN,0,0,0,0,0,0,1,0,1,KPIThreshold
 PARKEN.CO,0,0,0,0,0,0,1,0,1,KPIThreshold
 SONIC-R.BK,1,0,1,0,0,0,1,0,3,"NarrativeLag, DiscountedVehicle, KPIThreshold"
+03036.KL,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
 DIAMONDYD.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 RSI,0,0,0,0,0,0,0,0,0,
 CHOKSI.BO,0,0,0,0,0,0,0,0,0,
@@ -3603,6 +3658,7 @@ RYM,0,0,0,0,0,0,0,0,0,
 SICAGEN.NS,0,0,0,0,0,0,0,0,0,
 SAV.L,0,0,0,0,0,0,0,0,0,
 RMCF,0,0,0,0,0,0,0,0,0,
+TRAN.BA,0,0,0,0,0,0,0,0,0,
 AUTOAXLES.BO,0,0,0,0,0,0,0,0,0,
 9468.T,1,0,0,0,0,0,0,0,1,NarrativeLag
 8026.HK,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
@@ -3724,6 +3780,7 @@ USLM,0,0,0,0,0,0,0,0,0,
 ACEMEN.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 3005.TW,1,0,0,0,0,0,0,0,1,NarrativeLag
 POPR.MI,0,0,0,0,0,0,0,0,0,
+MOLYMET.SN,0,0,0,0,0,0,0,0,0,
 JSWENERGY.NS,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 BIJ.DE,0,0,0,0,0,0,0,0,0,
 REMEDY.HE,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -3761,6 +3818,7 @@ SIMPLEXCAS.BO,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 SKAND.OL,0,0,0,0,0,0,1,0,1,KPIThreshold
 NAHARINDUS.NS,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 9742.T,0,0,0,0,0,0,0,0,0,
+CEPU.BA,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 0111.HK,0,0,1,0,0,0,1,0,2,"DiscountedVehicle, KPIThreshold"
 RLGT,0,0,0,0,0,0,0,0,0,
 0270.HK,0,0,0,0,0,0,0,0,0,
@@ -3844,6 +3902,7 @@ SPN.NZ,0,0,0,0,0,0,0,0,0,
 BIS.AX,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 AUSOMENT.BO,0,0,0,0,0,0,0,0,0,
 5701.TWO,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
+INGEVEC.SN,0,0,0,0,0,0,0,0,0,
 4506.TWO,0,0,0,0,0,0,0,0,0,
 RR.L,0,0,0,0,0,0,1,0,1,KPIThreshold
 NETBAY-R.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -3888,6 +3947,7 @@ GENUSPAPER.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
 KREATE.HE,0,0,0,0,0,0,1,0,1,KPIThreshold
 STARCEMENT.BO,1,1,0,1,0,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, CapitalDiscipline, KPIThreshold"
 UGROCAP.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+EDELMAG.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 1439.TW,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 FII.PA,0,0,0,0,0,0,0,0,0,
 3615.TWO,0,0,0,0,0,0,0,0,0,
@@ -4022,6 +4082,7 @@ FLS.CO,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 DMRC,1,0,0,0,0,0,0,0,1,NarrativeLag
 ZSVARAJT.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 GTB-R.BK,0,0,1,0,0,0,0,0,1,DiscountedVehicle
+8250.SR,0,0,0,0,0,0,0,0,0,
 TAJGVK.BO,1,1,0,0,1,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical"
 3071.T,1,0,0,0,0,0,0,0,1,NarrativeLag
 TAJGVK.NS,1,1,0,0,1,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical"
@@ -4074,7 +4135,9 @@ XELPMOC.BO,0,0,0,0,0,0,0,0,0,
 GMPL.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 HARN-R.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
 AUSOMENT.NS,0,0,0,0,0,0,0,0,0,
+TECO2.BA,0,0,0,0,0,0,0,0,0,
 FPT.BK,0,0,0,0,0,0,0,0,0,
+BYMA.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 FOXX,1,0,0,0,0,0,0,0,1,NarrativeLag
 SVBT,0,0,0,0,0,0,0,0,0,
 STRGRENWO.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -4192,7 +4255,9 @@ AARNAV.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 6018.T,0,0,0,0,0,0,0,0,0,
 PKP.WA,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 RDZN,0,0,0,0,0,0,0,0,0,
+ENLASA.SN,0,0,0,0,0,0,0,0,0,
 4112.T,0,0,0,0,0,0,0,0,0,
+ORO-BLANCO.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 AMNF,0,0,0,0,0,0,0,0,0,
 SLRK,0,0,0,0,0,0,0,0,0,
 MLI,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -4236,8 +4301,10 @@ FLOYD.BK,0,0,0,0,0,0,0,0,0,
 543.SI,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 5WV.SI,0,0,0,0,0,0,0,0,0,
 KENDR.AS,0,0,0,0,0,0,1,0,1,KPIThreshold
+4337.SR,0,0,0,0,0,0,1,1,2,"KPIThreshold, BlindSpot"
 NGE.AX,0,0,0,0,0,0,0,0,0,
 PTEN,0,0,0,0,0,0,0,0,0,
+MOLA.BA,0,0,0,0,0,0,0,0,0,
 4555.TW,0,0,0,0,0,0,1,0,1,KPIThreshold
 6530.TWO,0,0,0,0,0,0,0,0,0,
 005670.KQ,0,0,0,0,0,0,0,0,0,
@@ -4255,6 +4322,7 @@ MAYURFL.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 8416.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 KSS,0,0,0,0,0,0,0,0,0,
 5901.T,0,0,0,0,0,0,0,0,0,
+SQM-B.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 035600.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 012450.KS,0,0,0,0,0,0,0,0,0,
 6474.T,0,0,0,0,0,0,0,0,0,
@@ -4307,6 +4375,7 @@ ALC.TO,0,0,0,0,0,0,0,0,0,
 CNT.BK,0,0,0,0,0,0,0,0,0,
 6965.T,0,0,0,0,0,0,0,0,0,
 007690.KS,0,0,0,0,0,0,0,0,0,
+6090.SR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 ORS.MI,0,0,0,0,0,0,0,0,0,
 4310.T,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 NCAP.BK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -4419,6 +4488,7 @@ ORPB,0,0,0,0,0,0,0,0,0,
 3946.T,0,0,0,0,0,0,0,0,0,
 2678.HK,0,0,0,0,0,0,0,0,0,
 MISQUITA.BO,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
+1202.SR,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 079940.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 AHMDSTE.BO,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 SWASTIVI.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -4477,6 +4547,7 @@ NER.BK,0,0,0,0,0,0,1,0,1,KPIThreshold
 2303.TW,0,0,0,0,0,0,0,0,0,
 CAD.V,0,0,0,0,0,0,0,0,0,
 ATGL.NS,0,0,0,0,0,0,0,0,0,
+ENAEX.SN,0,0,0,0,0,0,0,0,0,
 ESGR-B.ST,0,0,0,0,0,0,0,0,0,
 NIPPOBATRY.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 DGII,0,0,0,0,0,0,0,0,0,
@@ -4593,6 +4664,7 @@ ANP.L,0,0,0,0,0,0,0,0,0,
 HFCL.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 2820.TW,0,0,0,0,0,0,0,0,0,
 NET.L,0,0,0,0,0,0,0,0,0,
+ALMENDRAL.SN,0,0,0,0,0,0,0,0,0,
 GREENPANEL.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 SCMN.SW,0,0,0,0,0,0,0,0,0,
 CURB,0,0,0,0,0,0,0,0,0,
@@ -4623,12 +4695,14 @@ ALKT,1,0,0,0,0,0,0,0,1,NarrativeLag
 CULL,0,0,0,0,0,0,0,0,0,
 059270.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 BRC,0,0,0,0,0,0,0,0,0,
+LIPIGAS.SN,0,0,0,0,0,0,0,0,0,
 HFCL.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 9083.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 SAMART-R.BK,0,0,0,0,0,0,0,0,0,
 187420.KQ,1,0,0,1,0,0,1,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 PAP.AT,0,0,0,0,0,0,1,1,2,"KPIThreshold, BlindSpot"
 GROW.L,0,0,0,0,0,0,1,0,1,KPIThreshold
+BLUMAR.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 2485.TW,0,0,0,0,0,0,0,0,0,
 0683.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
 ASTRAMICRO.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -4665,6 +4739,7 @@ BHARTIARTL.NS,0,0,0,0,0,0,0,0,0,
 4526.TW,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 9948.T,0,0,0,0,0,0,0,0,0,
 BLUECLOUDS.BO,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
+4330.SR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 IISL.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 CEEB3.SA,0,0,0,0,0,0,0,0,0,
 BDB.MI,0,0,0,0,0,0,0,0,0,
@@ -4682,6 +4757,7 @@ AB9.DE,1,0,0,0,0,0,0,0,1,NarrativeLag
 VANICOM.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 FTCI,0,0,0,0,0,0,1,0,1,KPIThreshold
 GNC.L,1,0,0,0,0,0,0,0,1,NarrativeLag
+4347.SR,0,0,0,0,0,0,0,0,0,
 NTG.CO,1,0,0,0,0,0,0,0,1,NarrativeLag
 PHCAP.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 GBLB.BR,0,0,0,0,0,0,0,0,0,
@@ -4707,6 +4783,7 @@ ENR.DE,0,0,0,0,0,0,0,0,0,
 BIZIM.IS,0,0,0,1,0,0,0,0,1,CapitalDiscipline
 031310.KQ,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 4430.T,0,0,0,0,0,0,0,0,0,
+MOLLER.SN,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 EVZ.AX,0,0,0,0,0,0,1,0,1,KPIThreshold
 005935.KS,0,0,0,0,0,0,0,0,0,
 DMKER.BD,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -4765,11 +4842,13 @@ MWET3.SA,0,0,0,0,0,0,0,1,1,BlindSpot
 RAMCOCEM.NS,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 LHA.DE,0,0,0,0,0,0,0,0,0,
 SENA-R.BK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+4190.SR,0,0,0,0,0,0,0,0,0,
 HIMTEK.BO,0,0,0,0,0,0,0,0,0,
 005930.KS,0,0,0,0,0,0,0,0,0,
 3011.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 MARTI.IS,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 1327.HK,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+ILC.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 TREE,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 1546.HK,0,0,0,0,0,0,0,0,0,
 KRAB.OL,0,0,0,0,0,0,0,0,0,
@@ -4940,6 +5019,7 @@ KRT,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 TRE.MC,0,0,0,0,0,0,0,0,0,
 HYMC,0,0,0,0,0,0,0,0,0,
 6151.TWO,0,0,0,0,0,0,0,0,0,
+03025.KL,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 ANURAS.NS,0,0,0,0,0,0,0,0,0,
 GBDC,1,0,0,0,0,0,0,0,1,NarrativeLag
 153460.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -5003,6 +5083,7 @@ BBTN.JK,0,0,0,0,0,0,0,0,0,
 MBH.AX,0,0,0,0,0,0,0,0,0,
 CDG.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 SUDAI.BO,0,0,0,0,0,0,0,0,0,
+WATTS.SN,0,0,0,0,0,0,0,0,0,
 SCCC.BK,0,0,0,0,0,0,0,0,0,
 CDNL,0,0,0,0,0,0,0,0,0,
 MEGASTAR.BO,0,0,0,0,0,0,0,0,0,
@@ -5017,6 +5098,7 @@ SFR.AX,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 LYV,0,0,0,0,0,0,0,0,0,
 DOX.MI,0,0,0,0,0,0,1,0,1,KPIThreshold
 UNSP.JK,0,0,0,0,0,0,0,0,0,
+1301.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 FCSSOFT.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 LYC.AX,0,0,0,0,0,0,0,0,0,
 FORINTL.BO,0,0,0,0,0,0,0,0,0,
@@ -5035,6 +5117,7 @@ GPG.V,0,0,0,0,0,0,0,0,0,
 2307.HK,0,0,0,0,0,0,0,0,0,
 RMIX,0,0,0,0,0,0,0,0,0,
 6728.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+4344.SR,0,0,0,0,0,0,0,0,0,
 WEPSOLN.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 2208.TW,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 5F4.SI,0,0,0,0,0,0,0,0,0,
@@ -5071,6 +5154,7 @@ AAON,0,0,0,0,0,0,0,0,0,
 VARE.L,0,0,0,0,0,0,1,0,1,KPIThreshold
 5659.T,0,0,0,0,0,0,0,0,0,
 KOLTEPATIL.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+CARC.BA,0,0,0,0,0,0,0,0,0,
 ALOT,0,0,0,0,0,0,1,0,1,KPIThreshold
 VNOM,0,0,0,0,0,0,0,0,0,
 MLHIN.PA,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -5160,6 +5244,7 @@ FIH.L,0,0,0,0,0,0,1,0,1,KPIThreshold
 MUTHOOTCAP.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
 049800.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
 RITE,0,0,0,0,0,0,0,0,0,
+1302.SR,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 CRBP2.PA,0,0,0,0,0,0,1,0,1,KPIThreshold
 7461.T,0,0,0,0,0,0,0,0,0,
 BALY,0,0,0,0,0,0,0,0,0,
@@ -5181,6 +5266,7 @@ TPCH.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
 ZFSTEERING.BO,1,0,0,0,1,0,0,0,2,"NarrativeLag, RegimeCyclical"
 DAL.MI,1,0,0,0,0,0,0,0,1,NarrativeLag
 AYI,0,0,0,0,0,0,0,0,0,
+NORTEGRAN.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 NESTLEIND.BO,0,0,0,0,0,0,0,0,0,
 DTCY3.SA,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 TRIBO-B.ST,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -5205,10 +5291,12 @@ NGI.AX,0,0,0,0,0,0,0,0,0,
 CFP.TO,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 0751.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
 GL9.IR,0,0,0,0,0,0,0,0,0,
+03033.KL,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 7936.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 1513.TW,0,0,0,0,0,0,0,0,0,
 2454.TW,0,0,0,0,0,0,0,0,0,
 RSYSTEMS.NS,1,0,0,1,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
+ENELCHILE.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 TTWO,0,0,0,0,0,0,1,0,1,KPIThreshold
 004960.KS,0,0,0,0,0,0,0,0,0,
 QNBC,0,0,0,0,0,0,0,0,0,
@@ -5218,6 +5306,7 @@ FNAC.PA,0,0,0,0,0,0,0,0,0,
 5992.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 1721.T,0,0,0,0,0,0,0,0,0,
 9908.T,0,0,0,0,0,0,0,0,0,
+OEST.BA,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 NESTE.HE,0,0,0,0,0,0,1,0,1,KPIThreshold
 5192.T,0,0,0,0,0,0,0,0,0,
 VPG,0,0,0,0,0,0,0,0,0,
@@ -5286,6 +5375,7 @@ SEAOIL-R.BK,0,0,0,0,0,0,0,0,0,
 4956.TW,0,0,0,0,0,0,1,0,1,KPIThreshold
 3537.TWO,0,0,0,0,0,0,0,0,0,
 2982.T,0,0,0,0,0,0,0,0,0,
+ENELGXCH.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 2727.TW,0,0,0,0,0,0,0,0,0,
 PGIL.NS,0,0,0,0,0,0,0,0,0,
 TKM.AX,0,0,0,0,0,0,0,0,0,
@@ -5297,6 +5387,7 @@ GFSTEELS.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 NLST,0,0,0,0,0,0,0,0,0,
 5698.T,0,0,0,0,0,0,0,0,0,
 IMP.JO,0,0,0,0,0,0,1,0,1,KPIThreshold
+SCHWAGER.SN,0,0,0,0,0,0,0,0,0,
 RAJRATAN.NS,0,0,0,0,0,0,0,0,0,
 000155.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
 BMR.V,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -5355,15 +5446,18 @@ CRGY,0,0,0,0,0,0,1,0,1,KPIThreshold
 1196.HK,0,0,0,0,0,0,0,0,0,
 JINDWORLD.BO,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
 VRT,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+QUINENCO.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 JINDWORLD.NS,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
 AMAT,0,0,0,0,0,0,0,0,0,
 NBEN.SW,0,0,0,0,0,0,1,0,1,KPIThreshold
 GUJINV.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 4979.T,0,0,0,0,0,0,0,0,0,
 0262.HK,0,0,0,0,0,0,1,0,1,KPIThreshold
+EISA.SN,0,0,0,0,0,0,0,0,0,
 TBZ.BO,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 PGIL.BO,0,0,0,0,0,0,0,0,0,
 CAT31.PA,0,0,0,0,0,0,0,0,0,
+03027.KL,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 NIBL.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 2972.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 CCBG,0,0,0,0,0,0,0,0,0,
@@ -5426,6 +5520,7 @@ SPG.NZ,0,0,0,0,0,0,1,0,1,KPIThreshold
 MPL.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 C70.SI,0,0,0,0,0,0,0,0,0,
 9962.TWO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+1320.SR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 0293.HK,0,0,0,0,0,0,0,0,0,
 VIVA3.SA,1,0,0,0,0,0,0,0,1,NarrativeLag
 TIIL.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -5453,6 +5548,7 @@ ERAA.JK,1,0,0,0,0,0,0,0,1,NarrativeLag
 PSMT,0,0,0,0,0,0,0,0,0,
 1811.T,0,0,0,0,0,0,0,0,0,
 JUMBO.BO,0,0,0,0,0,0,0,0,0,
+0170.KL,1,1,0,0,1,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical"
 CLSC3.SA,0,0,0,0,0,0,0,0,0,
 WLMM3.SA,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 JSL.NS,0,0,0,0,0,0,0,0,0,
@@ -5502,6 +5598,7 @@ WCH.F,0,0,0,0,0,0,1,0,1,KPIThreshold
 MULT3.SA,0,0,0,0,0,0,0,0,0,
 GLO.PA,0,0,0,0,0,0,0,0,0,
 ALJXR.PA,1,0,0,0,0,0,0,0,1,NarrativeLag
+BOLT.BA,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 BKM.V,0,0,0,0,0,0,1,0,1,KPIThreshold
 NWBI,0,0,0,0,0,0,0,0,0,
 JOPA4.SA,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
@@ -5527,6 +5624,7 @@ SCHNEIDER.BO,0,0,0,0,0,0,0,0,0,
 FASTPC.CO,0,0,0,0,0,0,1,0,1,KPIThreshold
 ELG.F,0,0,0,0,0,0,1,0,1,KPIThreshold
 2792.T,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+4342.SR,0,0,0,0,0,0,0,0,0,
 MTEDUCARE.BO,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 EMAN.L,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 6395.T,0,0,0,0,0,0,0,0,0,
@@ -5538,6 +5636,7 @@ OSBC,0,0,0,0,0,0,0,0,0,
 6829.HK,0,0,0,0,0,0,0,0,0,
 6485.TWO,0,0,0,0,0,0,1,0,1,KPIThreshold
 000140.KS,0,0,0,0,0,0,1,0,1,KPIThreshold
+CIC.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 9793.T,0,0,0,0,0,0,0,0,0,
 SRT.L,0,0,0,0,0,0,0,0,0,
 ALLCARGO.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -5657,6 +5756,7 @@ SBFL.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 NIBL.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 MKTX,0,0,0,0,0,0,0,0,0,
 6484.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+4310.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 HFG.F,1,0,0,0,1,1,1,0,4,"NarrativeLag, RegimeCyclical, DeadOption, KPIThreshold"
 HEIJM.AS,0,0,0,0,0,0,0,0,0,
 AZZ,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -5672,6 +5772,7 @@ VALIANTORG.BO,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCycl
 VALIANTORG.NS,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 CHOICEIN.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 6638.T,0,0,0,0,0,0,0,0,0,
+7200.SR,0,0,0,0,0,0,1,0,1,KPIThreshold
 BANSWRAS.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 6780.TWO,0,0,0,0,0,0,0,0,0,
 8163.HK,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
@@ -5746,6 +5847,7 @@ GTT.PA,0,0,0,0,0,0,0,0,0,
 SUZB3.SA,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 CUP.AX,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 RPAD3.SA,0,0,0,0,0,0,1,0,1,KPIThreshold
+PAMP.BA,0,0,0,0,0,0,0,0,0,
 SAGCEM.NS,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 023810.KS,0,0,0,0,0,0,0,0,0,
 VOC.MC,0,0,0,0,0,0,0,0,0,
@@ -5788,6 +5890,7 @@ GSIT,0,0,0,0,0,0,0,0,0,
 6508.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 TUTIALKA.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 ARC1T.TL,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
+BANVIDA.SN,0,0,0,0,0,0,0,0,0,
 AMBA,0,0,0,0,0,0,0,0,0,
 UKEM.BK,0,0,0,0,0,0,1,0,1,KPIThreshold
 OPRT,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -5873,6 +5976,7 @@ NUE,0,0,0,0,0,0,0,0,0,
 WRB-PE,0,0,0,0,0,0,0,0,0,
 NCAP-R.BK,0,0,0,0,0,0,1,0,1,KPIThreshold
 MULLER.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+BESALCO.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 BLUECOAST.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 GRT.JO,0,0,0,0,0,0,0,0,0,
 9446.T,0,0,0,0,0,0,0,0,0,
@@ -5982,10 +6086,12 @@ BONG.ST,1,0,0,0,0,0,0,0,1,NarrativeLag
 7480.T,0,0,0,0,0,0,0,0,0,
 SSH1V.HE,0,0,0,0,0,0,1,0,1,KPIThreshold
 7402.TWO,0,0,0,0,0,0,0,0,0,
+VENTANAS.SN,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 KRDMB.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
 053700.KQ,0,0,0,0,0,0,0,0,0,
 SAH,0,0,0,0,0,0,1,0,1,KPIThreshold
 KUBERJI.BO,0,0,0,0,0,0,0,0,0,
+1182.SR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 STEM.L,1,0,0,0,0,0,0,0,1,NarrativeLag
 EMH.AX,0,0,0,0,0,0,0,0,0,
 OYAYO.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -6025,8 +6131,8 @@ LAND.SW,1,0,0,0,0,0,0,0,1,NarrativeLag
 9034.T,0,0,0,0,0,0,0,0,0,
 8107.T,1,0,0,0,0,0,0,0,1,NarrativeLag
 SADBHAV.BO,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
-RKDL.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 RKDL.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+RKDL.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 ACLN.SW,0,0,0,0,0,0,0,0,0,
 ORSTED.CO,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 5279.T,0,0,0,0,0,0,0,0,0,
@@ -6109,6 +6215,7 @@ ABBNE.SW,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 GDRZF,0,0,0,0,0,0,0,0,0,
 4042.T,0,0,0,0,0,0,0,0,0,
 RUBYMILLS.BO,0,0,0,0,0,0,0,0,0,
+AUSO.BA,0,0,0,0,0,0,1,0,1,KPIThreshold
 SGMT,0,0,0,0,0,0,1,0,1,KPIThreshold
 NWG.L,0,0,0,0,0,0,0,0,0,
 ECOM.V,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -6117,6 +6224,7 @@ EXLS,1,0,0,0,0,0,0,0,1,NarrativeLag
 INKP.JK,0,0,0,0,0,0,1,0,1,KPIThreshold
 4960.T,0,0,0,0,0,0,0,0,0,
 JATTAINDUS.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
+8100.SR,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 AYES.IS,0,0,0,0,0,0,0,0,0,
 HARDCAS.BO,0,0,0,0,0,0,0,0,0,
 8908.T,0,0,0,0,0,0,0,0,0,
@@ -6169,6 +6277,7 @@ ABHIINFRA.BO,0,0,0,0,0,0,0,0,0,
 251370.KQ,0,0,0,0,0,0,0,0,0,
 LECO,0,0,0,0,0,0,0,0,0,
 TRIN.JK,0,0,0,0,0,0,1,0,1,KPIThreshold
+2050.SR,0,0,0,0,0,0,0,0,0,
 SCST.ST,0,0,0,0,0,0,0,0,0,
 2008.TW,0,0,0,0,0,0,0,0,0,
 AMAL.BO,0,0,0,0,0,0,0,0,0,
@@ -6290,12 +6399,15 @@ EWBC,0,0,0,0,0,0,0,0,0,
 014910.KS,0,0,0,0,0,0,0,0,0,
 3495.T,0,0,0,0,0,0,0,0,0,
 SCP.LS,0,0,0,0,0,0,0,0,0,
+CFIMRVCHA.SN,0,0,0,0,0,0,1,0,1,KPIThreshold
 AVN.V,0,0,0,0,0,0,0,0,0,
 ROLLT.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 108380.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 7222.T,1,0,0,0,0,0,0,0,1,NarrativeLag
+SK.SN,0,0,0,0,0,0,0,0,0,
 TFBANK.ST,0,0,0,0,0,0,1,0,1,KPIThreshold
 S,1,0,0,0,0,0,0,0,1,NarrativeLag
+CRUZADOS.SN,0,0,0,0,0,0,0,0,0,
 0813.HK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 3532.TW,0,0,0,0,0,0,0,0,0,
 KARW.JK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -6321,6 +6433,7 @@ PEARLPOLY.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 OERL.SW,0,0,0,0,0,0,0,0,0,
 BALI.JK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 5724.T,0,0,0,0,0,0,0,0,0,
+2380.SR,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 LB,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 LVS,0,0,0,0,0,0,0,0,0,
 PEARLPOLY.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -6337,6 +6450,7 @@ JSLG3.SA,0,0,0,0,0,0,1,0,1,KPIThreshold
 TTW-R.BK,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 PEKGY.IS,0,0,0,0,0,0,0,0,0,
 SETCO.BO,0,0,0,0,0,0,0,0,0,
+NAVIERA.SN,0,0,0,0,0,0,0,0,0,
 8012.T,0,0,0,0,0,0,0,0,0,
 SRD.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 AFCC-H.V,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -6344,6 +6458,7 @@ SETCO.NS,0,0,0,0,0,0,0,0,0,
 3002.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 JAYBHCR.BO,0,0,0,0,0,0,0,0,0,
 HEMORGANIC.BO,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
+4110.SR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 1312A.TW,1,0,0,0,0,0,0,0,1,NarrativeLag
 MITSU.BO,0,0,0,0,0,0,0,0,0,
 FLEXFO.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -6354,8 +6469,9 @@ TPCS,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 ZWS,0,0,0,0,0,0,0,0,0,
 HAVI.OL,1,0,0,0,0,0,0,0,1,NarrativeLag
 DLTNCBL.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
-VARDMNPOLY.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 VARDMNPOLY.NS,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
+VARDMNPOLY.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
+1831.SR,0,0,0,0,0,0,0,0,0,
 2481.TW,0,0,0,0,0,0,0,0,0,
 PAYC,1,0,0,0,0,1,0,0,2,"NarrativeLag, DeadOption"
 MYR.AX,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -6423,6 +6539,7 @@ AIEV,0,0,0,0,0,0,0,0,0,
 GG.V,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 480S.MC,0,0,0,0,0,0,0,0,0,
 8163.TW,0,0,0,0,0,0,0,0,0,
+4191.SR,0,0,0,0,0,0,1,0,1,KPIThreshold
 UCA1.F,0,0,0,0,0,0,0,0,0,
 COVH.PA,0,0,0,0,0,0,0,0,0,
 4498.T,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -6571,6 +6688,7 @@ ECU.V,0,0,0,0,0,0,0,0,0,
 PNM.AX,1,0,0,0,0,0,0,0,1,NarrativeLag
 GVR.IR,0,0,0,0,0,0,1,0,1,KPIThreshold
 YASHCHEM.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
+HITES.SN,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 CORDSCABLE.BO,0,0,0,0,0,0,0,0,0,
 DREDGECORP.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 DREDGECORP.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -6725,6 +6843,7 @@ APGO.V,0,0,0,0,0,0,0,0,0,
 EQPA7.SA,0,0,0,0,0,0,0,0,0,
 TGN.AX,0,0,0,0,0,0,0,0,0,
 017510.KQ,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+4220.SR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 INDCTST.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 GLFL.BO,0,0,0,0,0,0,0,0,0,
 FNV.TO,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -6738,6 +6857,7 @@ EFORU.PR,0,0,0,0,0,0,0,0,0,
 CIWV,0,0,0,0,0,0,0,0,0,
 5475.TWO,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
 KIOS.JK,0,0,0,0,0,0,1,0,1,KPIThreshold
+CINTAC.SN,0,0,0,0,0,0,0,0,0,
 3467.T,0,0,0,0,0,0,0,0,0,
 OVS.MI,0,0,0,0,0,0,0,0,0,
 HMT.NS,0,0,0,0,0,0,0,0,0,
@@ -6847,6 +6967,7 @@ MULTIBASE.BO,1,1,0,0,1,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, RegimeCycli
 PAA,0,0,0,0,0,0,0,0,0,
 XANO-B.ST,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 QUAD,0,1,0,0,0,0,1,0,2,"FixedCost+DemandShock, KPIThreshold"
+1211.SR,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 GOODLUCK.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 FINM.PA,0,0,0,0,0,0,0,0,0,
 TFG-R.BK,0,0,0,0,0,0,0,0,0,
@@ -6932,6 +7053,7 @@ TPCH-R.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
 RICHAIND.BO,0,0,0,0,0,0,0,0,0,
 GOODLUCK.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 LPSN,1,0,0,0,0,0,0,0,1,NarrativeLag
+ZOFRI.SN,0,0,0,0,0,0,0,0,0,
 PDG.BK,0,0,0,0,0,0,0,0,0,
 MGEL4.SA,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 ALA-PG.TO,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -6970,6 +7092,7 @@ WINA,1,0,0,0,0,0,0,0,1,NarrativeLag
 UNIP3.SA,0,0,0,0,0,0,1,0,1,KPIThreshold
 PHOTOQUP.BO,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
 GEDIK.IS,0,0,0,0,0,0,0,0,0,
+MANQUEHUE.SN,0,0,0,0,0,0,0,0,0,
 8916.TWO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 TWR.NZ,0,0,0,0,0,0,0,0,0,
 ENS,0,0,0,0,0,0,0,0,0,
@@ -6985,6 +7108,7 @@ FAST,0,0,0,0,0,0,0,0,0,
 NWH.AX,0,0,0,0,0,0,0,0,0,
 076610.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
 BEES3.SA,0,0,0,0,0,0,0,0,0,
+3060.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 CARS.JK,0,0,0,0,0,0,1,0,1,KPIThreshold
 6396.T,0,0,0,0,0,0,0,0,0,
 FSLY,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -7040,6 +7164,7 @@ ALROC.PA,0,0,0,0,0,0,1,0,1,KPIThreshold
 CIM,0,0,0,0,0,0,0,0,0,
 CVSA,1,0,0,0,0,0,0,0,1,NarrativeLag
 9854.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+DGCU2.BA,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 FNRN,0,0,0,0,0,0,0,0,0,
 AMG.AS,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 6457.T,0,0,0,0,0,0,0,0,0,
@@ -7062,8 +7187,10 @@ PRS.MC,1,0,0,0,0,0,0,0,1,NarrativeLag
 6862.T,0,0,0,0,0,0,0,0,0,
 AAN.V,0,0,0,0,0,0,0,0,0,
 LUV,0,0,0,0,0,0,0,0,0,
+COLO-COLO.SN,0,0,0,0,0,0,0,0,0,
 KORDS.IS,0,0,0,0,0,0,0,0,0,
 GANGOTRI.NS,1,0,0,0,0,0,0,0,1,NarrativeLag
+4070.SR,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 POS.VI,0,0,0,0,0,0,0,0,0,
 UMS-R.BK,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 KN,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -7250,6 +7377,7 @@ MDF.MC,1,0,0,0,1,0,0,0,2,"NarrativeLag, RegimeCyclical"
 6724.T,0,0,0,0,0,0,0,0,0,
 CINF,0,0,0,0,0,0,1,0,1,KPIThreshold
 8975.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+4011.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 NIACL.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
 TWZ-R.BK,1,0,0,0,0,0,0,0,1,NarrativeLag
 002025.KS,0,0,0,0,0,0,0,0,0,
@@ -7323,6 +7451,7 @@ INDIAHOME.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 300120.KQ,1,0,0,0,0,0,0,0,1,NarrativeLag
 ASHIS.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 3419.TW,1,0,0,0,0,0,0,0,1,NarrativeLag
+0006.KL,0,0,0,0,0,0,0,0,0,
 KELYA,1,0,0,0,0,0,0,0,1,NarrativeLag
 6166.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 6622.T,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -7462,6 +7591,7 @@ INSE,1,0,0,0,0,0,0,0,1,NarrativeLag
 DSV.CO,1,0,0,0,0,0,0,0,1,NarrativeLag
 FLO.L,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 OKE,0,0,0,0,0,0,0,0,0,
+BOLSASTGO.SN,0,0,0,0,0,0,0,0,0,
 ALAB,0,0,0,0,0,0,1,0,1,KPIThreshold
 AFRM,0,0,0,0,0,0,1,0,1,KPIThreshold
 SIDDHA.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -7484,6 +7614,7 @@ HII,0,0,0,0,0,0,0,0,0,
 VRRM,1,1,0,0,1,1,0,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, DeadOption"
 VGIP11.SA,0,0,0,0,0,0,0,0,0,
 2887.TW,0,0,0,0,0,0,0,0,0,
+8280.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 147760.KQ,0,0,0,0,0,0,0,0,0,
 MMP.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 ULY,1,1,0,0,1,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical"
@@ -7646,10 +7777,12 @@ SREI.L,1,0,0,0,0,0,0,0,1,NarrativeLag
 AARON.NS,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 BIHSPONG.BO,0,0,0,0,0,0,0,0,0,
 SM,0,0,0,0,0,0,1,0,1,KPIThreshold
+03040.KL,0,0,0,0,0,0,0,0,0,
 3260.TWO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 TENB,1,0,0,0,0,0,0,0,1,NarrativeLag
 7709.T,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 6706.TW,0,0,0,0,0,0,0,0,0,
+2210.SR,1,1,0,0,1,0,1,0,4,"NarrativeLag, FixedCost+DemandShock, RegimeCyclical, KPIThreshold"
 WPC,0,0,0,0,0,0,0,0,0,
 010170.KQ,0,0,0,0,0,0,0,0,0,
 ALA.TO,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -7676,6 +7809,7 @@ HRN.AX,0,0,0,0,0,0,0,0,0,
 ARES,1,0,0,0,0,0,0,0,1,NarrativeLag
 GNM.AX,0,0,0,0,0,0,0,0,0,
 3407.T,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
+2040.SR,1,1,0,0,0,0,1,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 UPL.L,0,0,0,0,0,0,0,0,0,
 FTAI,0,0,0,0,0,0,0,0,0,
 PIONAGR.BO,0,0,0,0,0,0,0,0,0,
@@ -7698,6 +7832,7 @@ MKIN,0,0,0,0,0,0,0,0,0,
 EROSMEDIA.NS,0,0,0,0,0,0,1,0,1,KPIThreshold
 VINO11.SA,0,0,0,0,0,0,0,0,0,
 ISBA,0,0,0,0,0,0,0,0,0,
+MIRG.BA,1,0,0,0,0,0,0,0,1,NarrativeLag
 GLDD,0,0,0,0,0,0,1,0,1,KPIThreshold
 WCC,0,0,0,0,0,0,0,0,0,
 AQN.TO,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -7710,6 +7845,7 @@ ZIN.L,1,0,0,0,0,0,0,0,1,NarrativeLag
 PVT.PR,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 8387.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 FRIGO.IS,0,0,0,0,0,0,1,0,1,KPIThreshold
+INVERCAP.SN,0,0,0,0,0,0,0,0,0,
 KMI,0,0,0,0,0,0,0,0,0,
 EROSMEDIA.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 PCOM-B.ST,0,0,0,0,0,0,1,0,1,KPIThreshold
@@ -7729,6 +7865,7 @@ SHEN,0,0,0,0,0,0,0,0,0,
 CCC,1,0,0,0,0,0,0,0,1,NarrativeLag
 HAE,1,0,0,0,0,0,0,0,1,NarrativeLag
 3392.T,0,0,0,0,0,0,1,0,1,KPIThreshold
+2360.SR,1,1,0,0,0,0,0,1,3,"NarrativeLag, FixedCost+DemandShock, BlindSpot"
 PHP.L,1,0,0,0,0,0,0,0,1,NarrativeLag
 EXR.AX,0,0,0,0,0,0,0,0,0,
 ADVT.L,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
@@ -7832,6 +7969,7 @@ IBM,0,0,0,0,0,0,0,0,0,
 018000.KQ,1,1,0,0,0,0,0,0,2,"NarrativeLag, FixedCost+DemandShock"
 REZI,0,0,0,0,0,0,0,0,0,
 052710.KQ,0,0,0,0,0,0,1,0,1,KPIThreshold
+CAP.SN,0,0,0,0,0,0,0,0,0,
 POWI,0,0,0,0,0,0,0,0,0,
 XEL,0,0,0,0,0,0,0,0,0,
 4833.T,1,0,0,0,0,0,0,0,1,NarrativeLag
@@ -7879,6 +8017,7 @@ PII,0,0,0,0,0,0,1,0,1,KPIThreshold
 9534.T,0,0,0,0,0,0,0,0,0,
 2926.T,0,0,0,0,0,0,1,0,1,KPIThreshold
 BAH,0,0,0,0,0,0,0,0,0,
+8020.SR,1,0,0,0,0,0,0,0,1,NarrativeLag
 CCK,1,0,0,0,0,0,0,0,1,NarrativeLag
 024840.KQ,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
 KNTK,0,1,0,0,0,0,0,0,1,FixedCost+DemandShock
@@ -7913,8 +8052,8 @@ TATAINVEST.BO,0,0,0,0,0,0,0,0,0,
 COR.V,0,0,0,0,0,0,0,0,0,
 UTL,1,0,0,0,0,0,0,0,1,NarrativeLag
 ZPHR.L,1,0,0,0,0,0,0,0,1,NarrativeLag
-TSR.BK,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 TSR-R.BK,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
+TSR.BK,1,0,0,0,0,0,0,1,2,"NarrativeLag, BlindSpot"
 AX,0,0,0,0,0,0,0,0,0,
 MAYUR.BO,0,0,0,0,0,0,1,0,1,KPIThreshold
 1E3.SI,0,0,0,0,0,0,0,0,0,
@@ -8078,6 +8217,7 @@ VTAS.L,0,0,0,0,0,0,0,0,0,
 002070.KS,1,0,0,0,1,0,1,0,3,"NarrativeLag, RegimeCyclical, KPIThreshold"
 3322.TWO,0,0,0,0,0,0,1,0,1,KPIThreshold
 ALDE.V,0,0,0,0,0,0,0,0,0,
+1050.SR,0,0,0,0,0,0,0,0,0,
 HELIO.ST,1,0,0,0,0,0,0,0,1,NarrativeLag
 BML-PG,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 7810.T,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"

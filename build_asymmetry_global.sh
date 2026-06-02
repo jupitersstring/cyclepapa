@@ -86,6 +86,11 @@ declare -A SRC=(
     [il_yartseva.csv]=IL
     [br_yartseva.csv]=BR
     [mx_yartseva.csv]=MX
+    # NEW phase-2 expansion: LatAm + ASEAN + MEA
+    [sa_yartseva.csv]=SA
+    [ar_yartseva.csv]=AR
+    [cl_yartseva.csv]=CL
+    [my_yartseva.csv]=MY
     # NEW gap-fill uncategorized scans
     [us_unc_deep_yartseva.csv]=US
     [at_unc_yartseva.csv]=AT
