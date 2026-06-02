@@ -47,6 +47,11 @@ _AIC_SUMMARY: dict[str, dict] | None = None
 # screened tickers.
 _YAHOO_DISCOUNTS: dict[str, float] | None = None
 
+# Qualitative signals (per-ticker dicts of director-dealings,
+# advisor-mentions, etc. counts plus composite score). Populated
+# on demand by --signals; empty dict means signals off.
+_SIGNALS: dict[str, dict] = {}
+
 
 def _load_aic_discounts() -> dict[str, float]:
     global _AIC_DISCOUNTS, _AIC_SUMMARY
@@ -572,13 +577,25 @@ class ScreenResult:
     upside_combined: float | None = None        # legacy
     value_score: float = 0.0                    # score * (1 + expected_upside)
     discount_source: str | None = None          # "aic_live" or "estimate"
-    # Historical discount context (AIC only)
+    # Historical discount context (AIC only) — kept for informational
+    # purposes but no longer drives expected upside (user direction:
+    # mean reversion is backward-looking statistical noise; what
+    # matters is qualitative forward signals).
     discount_3y_avg: float | None = None
     discount_52w_high: float | None = None
     discount_52w_low: float | None = None
-    discount_stretch: float | None = None       # (current - 3y_avg) — positive = wider than usual
-    discount_pct_of_52w_high: float | None = None  # 1.0 = at 52w wide end
-    mean_revert_upside: float | None = None     # additional upside if discount mean-reverts
+    discount_stretch: float | None = None
+    discount_pct_of_52w_high: float | None = None
+    # Qualitative signal context — drives catalyst probability
+    aic_name: str | None = None
+    signal_score: float | None = None           # 0..1 composite of news signals
+    signal_director_dealings: int | None = None
+    signal_advisor_hired: int | None = None
+    signal_buyback: int | None = None
+    signal_strategic_review: int | None = None
+    signal_wind_down: int | None = None
+    catalyst_prob_base: float | None = None
+    catalyst_prob_signal_adj: float | None = None  # base prob × signal multiplier
 
 
 def detect_base(df: pd.DataFrame, max_lookback: int = 208,
@@ -772,41 +789,47 @@ def screen_one(ticker: str, *, max_lookback: int = 208,
         res.discount_closure_upside = discount / (1.0 - discount) if discount > -0.99 else 0.0
     else:
         res.discount_closure_upside = 0.0
-    # Probability the catalyst actually closes (or meaningfully
-    # narrows) the discount over a ~12-18m horizon.
-    prob = CATALYST_REALISATION_PROBABILITY.get(res.catalyst, 0.20)
-    res.catalyst_realisation_prob = prob
+    # Base probability that the catalyst actually closes (or
+    # meaningfully narrows) the discount over a ~12-18m horizon.
+    base_prob = CATALYST_REALISATION_PROBABILITY.get(res.catalyst, 0.20)
+    res.catalyst_prob_base = base_prob
 
-    # Historical discount context — only available via AIC live feed.
-    # Provides a mean-reversion catalyst independent of event-driven
-    # closure: if current discount is wider than 3y average, there's a
-    # natural pull back to historical mean.
+    # Historical discount context — informational only (not in
+    # expected-upside calc). User direction: probability should reflect
+    # qualitative forward context, not backward statistical stretch.
     if _AIC_SUMMARY and ticker in _AIC_SUMMARY:
         s = _AIC_SUMMARY[ticker]
+        res.aic_name = s.get("name")
         res.discount_3y_avg = s.get("discount_3y_avg")
         res.discount_52w_high = s.get("discount_52w_high")
         res.discount_52w_low = s.get("discount_52w_low")
         if res.discount_3y_avg is not None:
             res.discount_stretch = discount - res.discount_3y_avg
-            # If current discount > 3y avg, mean-reversion has upside
-            if res.discount_stretch > 0:
-                target = res.discount_3y_avg
-                if target < 1.0:
-                    # narrowing from current to target
-                    res.mean_revert_upside = (discount - target) / (1.0 - discount)
         if res.discount_52w_high and res.discount_52w_high > 0:
             res.discount_pct_of_52w_high = discount / res.discount_52w_high
 
-    # Combined expected upside = max of catalyst-driven closure and
-    # historical mean-reversion (these aren't independent — both close
-    # the same discount — so take max not sum).
-    closure_exp = (res.discount_closure_upside or 0.0) * prob
-    # Mean-reversion has high probability for non-event names (~60%)
-    # because trusts typically revert to their own multi-year average
-    # absent permanent NAV impairment.
-    mean_revert_prob = 0.60 if (res.catalyst == "STRUCTURAL_DISCOUNT") else 0.40
-    mean_revert_exp = (res.mean_revert_upside or 0.0) * mean_revert_prob
-    res.expected_upside = max(closure_exp, mean_revert_exp)
+    # Qualitative-signal-adjusted probability. Multiplier curve:
+    #   signal_score=0.00 -> 0.70× base_prob (no firing signals)
+    #   signal_score=0.23 -> 1.00× (neutral)
+    #   signal_score=1.00 -> 2.00× (strong firing signals)
+    sig = _SIGNALS.get(ticker) if _SIGNALS else None
+    if sig is not None:
+        s_score = sig.get("signal_score", 0.0)
+        res.signal_score = s_score
+        res.signal_director_dealings = sig.get("director_dealings")
+        res.signal_advisor_hired = sig.get("advisor_hired")
+        res.signal_buyback = sig.get("buyback")
+        res.signal_strategic_review = sig.get("strategic_review")
+        res.signal_wind_down = sig.get("wind_down")
+        multiplier = 0.70 + 1.30 * s_score
+        adj_prob = min(0.95, base_prob * multiplier)
+        res.catalyst_prob_signal_adj = adj_prob
+        prob = adj_prob
+    else:
+        prob = base_prob
+    res.catalyst_realisation_prob = prob
+
+    res.expected_upside = (res.discount_closure_upside or 0.0) * prob
 
     # Legacy fields kept for backward compatibility with prior tables.
     res.catalyst_upside_est = CATALYST_IMPLIED_UPSIDE.get(res.catalyst, 0.05)
@@ -884,6 +907,14 @@ def main() -> int:
     parser.add_argument("--top", type=int, default=25)
     parser.add_argument("--tickers", nargs="*", default=None)
     parser.add_argument("--groups", nargs="*", default=None)
+    parser.add_argument("--signals", action="store_true",
+                        help="Scrape Google News qualitative signals "
+                             "(director dealings, advisor hiring, buybacks) "
+                             "for AIC-named UK CEFs to refine catalyst "
+                             "probability.")
+    parser.add_argument("--signal-top-n", type=int, default=60,
+                        help="When --signals is on, only scrape signals "
+                             "for the top N candidates by initial discount.")
     args = parser.parse_args()
 
     if args.tickers:
@@ -903,6 +934,37 @@ def main() -> int:
     # Pre-load discount data sources once so they're cached for screen_one calls
     _load_aic_discounts()
     _load_yahoo_discounts(symbols)
+
+    # Optional qualitative signal pre-fetch — only for the top N
+    # candidates by current discount (signals are slow to scrape).
+    global _SIGNALS
+    if args.signals:
+        try:
+            from qualitative_signals import fetch_signals_batch
+            # Build candidate list for signal scraping: AIC-named UK CEFs
+            # whose live discount is at least 5% (no point chasing
+            # premium-trading or near-flat names).
+            sig_candidates: list[tuple[str, str]] = []
+            for sym in symbols:
+                if not (_AIC_SUMMARY and sym in _AIC_SUMMARY):
+                    continue
+                rec = _AIC_SUMMARY[sym]
+                disc = rec.get("discount")
+                name = rec.get("name")
+                if disc is None or name is None or disc < 0.05:
+                    continue
+                sig_candidates.append((sym, name, disc))
+            # Take top N by discount.
+            sig_candidates.sort(key=lambda r: -r[2])
+            sig_candidates = sig_candidates[: args.signal_top_n]
+            print(f"[signals] scraping news for {len(sig_candidates)} "
+                  f"top-discount UK CEFs (cached results re-used)",
+                  file=sys.stderr)
+            pairs = [(t, n) for t, n, _ in sig_candidates]
+            _SIGNALS = fetch_signals_batch(pairs, verbose=True)
+        except Exception as exc:
+            print(f"[signals] disabled — error: {exc}", file=sys.stderr)
+            _SIGNALS = {}
 
     results: list[ScreenResult] = []
     for i, sym in enumerate(symbols, 1):
@@ -964,10 +1026,11 @@ def main() -> int:
     # Real upside = discount-to-NAV closure x probability.
     # `expected_upside = discount/(1-discount) * P(catalyst fires)`.
     upside_extras = ["nav_discount_est", "discount_source",
-                     "discount_3y_avg", "discount_stretch",
-                     "discount_closure_upside", "mean_revert_upside",
-                     "catalyst_realisation_prob", "expected_upside",
-                     "value_score"]
+                     "signal_score", "signal_director_dealings",
+                     "signal_advisor_hired", "signal_strategic_review",
+                     "signal_wind_down", "discount_closure_upside",
+                     "catalyst_prob_base", "catalyst_realisation_prob",
+                     "expected_upside", "value_score"]
 
     show("HIGHEST EXPECTED UPSIDE x SETUP "
          "(value_score = setup_score * (1 + expected_upside))",
