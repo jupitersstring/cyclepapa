@@ -1161,6 +1161,22 @@ def get_universe(
         df = df[df.index.str.endswith(".KL")]
     elif country == "Philippines":
         df = df[df.index.str.endswith(".PS")]
+    elif country == "Argentina":
+        df = df[df.index.str.endswith(".BA")]
+    elif country == "Chile":
+        df = df[df.index.str.endswith(".SN")]
+    elif country == "Saudi Arabia":
+        df = df[df.index.str.endswith(".SR")]
+    elif country == "Egypt":
+        df = df[df.index.str.endswith(".CA")]
+    elif country == "Vietnam":
+        df = df[df.index.str.endswith(".VN")]
+    elif country == "Colombia":
+        df = df[df.index.str.endswith(".CN")]
+    elif country == "Peru":
+        df = df[df.index.str.endswith(".LM")]
+    elif country == "United Arab Emirates":
+        df = df[df.index.str.endswith(".AE")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
 
     # When include_uncategorized=True we also pull tickers with no
