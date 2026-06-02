@@ -17,7 +17,16 @@ pd.set_option("display.width", 280)
 pd.set_option("display.float_format", "{:.2f}".format)
 
 
-EQUITY_UNIVERSES = ["us-all", "uk-all", "de-all", "it-all", "br-all", "eu-smid"]
+EQUITY_UNIVERSES = [
+    # Original 6
+    "us-all", "uk-all", "de-all", "it-all", "br-all", "eu-smid",
+    # Widened additions (Wave 1-4)
+    "fr-all", "ch-all", "es-all", "nl-all",
+    "se-all", "be-all", "no-all", "dk-all", "fi-all",
+    "ie-all", "pt-all", "at-all", "gr-all",
+    "jp-all", "au-all", "ca-all", "mx-all", "za-all",
+    "in-all", "hk-all", "cn-all", "kr-all", "tw-all", "sg-all",
+]
 
 
 def latest_csv(universe):

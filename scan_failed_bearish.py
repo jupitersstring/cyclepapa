@@ -217,7 +217,7 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         "no-all": ("Norway",        {"OSL"}),
         "dk-all": ("Denmark",       {"CPH"}),
         "fi-all": ("Finland",       {"HEL"}),
-        "ie-all": ("Ireland",       {"IRE"}),
+        "ie-all": ("Ireland",       {"ISE"}),
         "pt-all": ("Portugal",      {"LIS"}),
         "at-all": ("Austria",       {"VIE"}),
         "gr-all": ("Greece",        {"ATH"}),
