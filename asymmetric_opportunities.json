@@ -1,0 +1,1576 @@
+{
+  "CRM": {
+    "ticker": "CRM",
+    "company": "Salesforce, Inc.",
+    "market_cap": 148738500000.0,
+    "current_price": 181.82000732421875,
+    "filing_date": "2026-04-16",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000085/crm-20260416.htm",
+    "accession": "0001108524-26-000085",
+    "step_score": 43.2,
+    "conditionality_score": 39.599999999999994,
+    "insider_signal": {
+      "n_filings": 2,
+      "total_dollar": 1000444.415,
+      "n_unique_buyers": 2,
+      "n_buys_30d": 0,
+      "n_buys_90d": 2,
+      "n_buys_180d": 2,
+      "buyers": [
+        "ALBER LAURA | Director",
+        "Kirk David Blair | Director"
+      ]
+    },
+    "insider_score": 6.0,
+    "combined_score": 33.0,
+    "reasons": [
+      "regulatory_milestone (x1)",
+      "revenue_target_dollar (x2)",
+      "margin_target (x3)"
+    ],
+    "_last_run": "2026-06-02T14:43:50.401273+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "h date, with the remaining eligible PRSUs and eligible PSOs vesting in equal calendar quarterly (in the case of PRSUs) or monthly (in the case o"
+      ],
+      "revenue_target_dollar": [
+        "s in our history. Revenue Leadership: We achieved full-year revenue of $41.5 billion in fiscal 2026, and we are guiding to more than $46 billion",
+        "s all key metrics. We reached several milestones, including revenue of $41.5 billion and operating cash flow of $15.0 billion, the highest in th"
+      ],
+      "margin_target": [
+        "ined, profitable growth, we closed the year with a non-GAAP operating margin of 34.1% and $72.4 billion in total RPO. Following our strong start",
+        "iscipline across our business resulting in fiscal 2026 GAAP operating margin of 20.1%, a 110-basis point increase from the prior year and a 1,680",
+        "s point increase over three years, and fiscal 2026 non-GAAP operating margin of 34.1%, a 110-basis point increase from the prior year and a 1,160"
+      ]
+    },
+    "asymmetry_score": 52.280444415
+  },
+  "HFFG": {
+    "ticker": "HFFG",
+    "company": "HF Foods Group Inc. ",
+    "market_cap": 101600000.0,
+    "current_price": 1.899999976158142,
+    "filing_date": "2026-04-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1680873/000168087326000021/hffg-20260424.htm",
+    "accession": "0001680873-26-000021",
+    "step_score": 47.7,
+    "conditionality_score": 11.2,
+    "insider_signal": {
+      "n_filings": 4,
+      "total_dollar": 40936.3687,
+      "n_unique_buyers": 4,
+      "n_buys_30d": 0,
+      "n_buys_90d": 4,
+      "n_buys_180d": 4,
+      "buyers": [
+        "Lam Dennis | Director",
+        "McGarry Paul E | CFO",
+        "Lin Xi | President and CEO",
+        "Chang Christine | Chief Administrative Officer"
+      ]
+    },
+    "insider_score": 15.0,
+    "combined_score": 30.400000000000002,
+    "reasons": [
+      "revenue_target_dollar (x3)",
+      "4 distinct buyers (cluster)"
+    ],
+    "_last_run": "2026-06-02T14:43:48.122102+00:00",
+    "conditionalities_clean": {
+      "revenue_target_dollar": [
+        "in order to vest at 100%, the Company must have achieved a revenue of $1.232 billion, which represents 2.5% growth, must have achieved an Intern",
+        "2026, in order to vest at 100%, the Company must achieve a revenue of $1.281 billion, which represents 4% growth, must have an Internal Adjusted",
+        "2027, in order to vest at 100%, the Company must achieve a revenue of $1.319 billion, which represents 3% growth, must have an Internal Adjusted"
+      ]
+    },
+    "asymmetry_score": 47.1209363687
+  },
+  "NCLH": {
+    "ticker": "NCLH",
+    "company": "Norwegian Cruise Line Holdings Ltd. ",
+    "market_cap": 8568799999.999999,
+    "current_price": 18.809999465942383,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1513761/000110465926052146/tm261503-1_def14a.htm",
+    "accession": "0001104659-26-052146",
+    "step_score": 27.0,
+    "conditionality_score": 20.0,
+    "insider_signal": {
+      "n_filings": 3,
+      "total_dollar": 966486.2100000001,
+      "n_unique_buyers": 3,
+      "n_buys_30d": 3,
+      "n_buys_90d": 3,
+      "n_buys_180d": 3,
+      "buyers": [
+        "MacDonald Brian P | Director",
+        "Byng-Thorne Zillah | Director",
+        "Lansberry Kevin Allen | Director"
+      ]
+    },
+    "insider_score": 21.0,
+    "combined_score": 23.75,
+    "reasons": [
+      "regulatory_milestone (x1)",
+      "3 P-buys in 30d"
+    ],
+    "_last_run": "2026-06-02T14:44:06.691964+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "e date of the award. Each director&#8217;s annual RSU award vested in one installment on the first business day of the calendar year following the year the award was granted. Each direct"
+      ]
+    },
+    "asymmetry_score": 46.76648621
+  },
+  "SPOK": {
+    "ticker": "SPOK",
+    "company": "Spok Holdings, Inc ",
+    "market_cap": 220800000.0,
+    "current_price": 10.649999618530273,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1289945/000128994526000028/spok-20260430.htm",
+    "accession": "0001289945-26-000028",
+    "step_score": 29.7,
+    "conditionality_score": 46.0,
+    "insider_signal": {
+      "n_filings": 1,
+      "total_dollar": 106819.5,
+      "n_unique_buyers": 1,
+      "n_buys_30d": 1,
+      "n_buys_90d": 1,
+      "n_buys_180d": 1,
+      "buyers": [
+        "KELLY VINCENT D | President & CEO"
+      ]
+    },
+    "insider_score": 6.0,
+    "combined_score": 27.85,
+    "reasons": [
+      "regulatory_milestone (x3)",
+      "ebitda_target_dollar (x1)",
+      "revenue_target_dollar (x1)",
+      "1 P-buy(s) in 30d"
+    ],
+    "_last_run": "2026-06-02T14:44:03.364334+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "of (i)&#160;a fraction based on the prorated number of days earned in the calendar year as of the date of disability, times (ii)&#160;the ann",
+        "of (i)&#160;a fraction based on the prorated number of days earned in the calendar year as of the date of death, times (ii)&#160;the annual S",
+        "of (i)&#160;a fraction based on the prorated number of days earned in the calendar year as of the date of termination, times (ii)&#160;the an"
+      ],
+      "ebitda_target_dollar": [
+        ", primarily driven by wireless revenue of $72.5 million and adjusted EBITDA of $29.0 million, which were both higher than target performance. &#8226; Th"
+      ],
+      "revenue_target_dollar": [
+        "incentive target for each NEO, primarily driven by wireless revenue of $72.5 million and adjusted EBITDA of $29.0 million, which were both highe"
+      ]
+    },
+    "asymmetry_score": 44.9868195
+  },
+  "ARRY": {
+    "ticker": "ARRY",
+    "company": "Array Technologies, Inc.",
+    "market_cap": 1318300000.0,
+    "current_price": 8.569999694824219,
+    "filing_date": "2026-04-07",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1820721/000114036126013682/ny20063454x2_def14a.htm",
+    "accession": "0001140361-26-013682",
+    "step_score": 37.8,
+    "conditionality_score": 52.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 31.9,
+    "reasons": [
+      "spin_separation (x1)",
+      "regulatory_milestone (x1)",
+      "ebitda_target_dollar (x3)"
+    ],
+    "_last_run": "2026-06-02T14:43:53.438935+00:00",
+    "conditionalities_clean": {
+      "spin_separation": [
+        ", all unvested RSUs granted in 2025 will become immediately vested as of the separation date. PSUs The PSUs granted to our NEOs in 2025 vest on the"
+      ],
+      "regulatory_milestone": [
+        "we also engage with our stockholders through our quarterly earnings calls, attendance at industry presentations and conferences, and through C"
+      ],
+      "ebitda_target_dollar": [
+        "rebounded, and reflected 40% growth year-over-year; &#8226; Adjusted EBITDA of $178 million for purposes of the 2025 leadership incentive plan (&#8220;",
+        "recent compensation outcomes demonstrate that alignment. 1. Adjusted EBITDA of $188 million for 2025, including APA. &#8194; &#8194; &#8194; &#8194; &#",
+        "r reconciliation of net income to Adjusted EBITDA. 2.&#8195;Adjusted EBITDA of $178 million for purposes of the 2025 LIP. For 2025, earned annual incen"
+      ]
+    },
+    "asymmetry_score": 39.12
+  },
+  "WTRG": {
+    "ticker": "WTRG",
+    "company": "Essential Utilities, Inc.",
+    "market_cap": 10627700000.0,
+    "current_price": 37.470001220703125,
+    "filing_date": "2026-03-17",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000133/e26008_wtrg-def14a.htm",
+    "accession": "0001552781-26-000133",
+    "step_score": 44.2,
+    "conditionality_score": 36.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 31.1,
+    "reasons": [
+      "merger_close (x1)",
+      "regulatory_milestone (x1)"
+    ],
+    "_last_run": "2026-06-02T14:43:49.909085+00:00",
+    "conditionalities_clean": {
+      "merger_close": [
+        "ranklin. As part of the pending merger with American Water, upon closing of the transaction, Mr. Franklin will become Executive Vice Chair of the combi"
+      ],
+      "regulatory_milestone": [
+        "ensation is shown for the year in which the compensation is earned and is generally paid in the following calendar year. See the description of these annual cash Incentive a"
+      ]
+    },
+    "asymmetry_score": 33.68000000000001
+  },
+  "CCI": {
+    "ticker": "CCI",
+    "company": "CROWN CASTLE INC.",
+    "market_cap": 39529500000.0,
+    "current_price": 90.56999969482422,
+    "filing_date": "2026-04-06",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000039/cci-20260406.htm",
+    "accession": "0001051470-26-000039",
+    "step_score": 39.6,
+    "conditionality_score": 32.0,
+    "insider_signal": {
+      "n_filings": 1,
+      "total_dollar": 73996.8,
+      "n_unique_buyers": 1,
+      "n_buys_30d": 1,
+      "n_buys_90d": 1,
+      "n_buys_180d": 1,
+      "buyers": [
+        "Stephens Kevin A | Director"
+      ]
+    },
+    "insider_score": 6.0,
+    "combined_score": 29.3,
+    "reasons": [
+      "spin_separation (x1)",
+      "debt_reduction_target (x1)",
+      "1 P-buy(s) in 30d"
+    ],
+    "_last_run": "2026-06-02T14:43:52.352506+00:00",
+    "conditionalities_clean": {
+      "debt_reduction_target": [
+        "n, the sale of $2.5 billion of non-strategic assets and the pay down of $1 billion in debt, improving the operating platform and outperforming peers."
+      ]
+    },
+    "asymmetry_score": 32.91399680000001
+  },
+  "DNUT": {
+    "ticker": "DNUT",
+    "company": "Krispy Kreme, Inc. ",
+    "market_cap": 658500000.0,
+    "current_price": 3.819999933242798,
+    "filing_date": "2026-04-27",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1857154/000119312526182138/d90101ddef14a.htm",
+    "accession": "0001193125-26-182138",
+    "step_score": 37.8,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 25.9,
+    "reasons": [
+      "spin_separation (x1)",
+      "ebitda_target_dollar (x1)"
+    ],
+    "_last_run": "2026-06-02T14:43:52.904513+00:00",
+    "conditionalities_clean": {
+      "spin_separation": [
+        "esting date after March&#160;31, 2026 for Ms.&#160;Zandhuis vested on a pro-rated basis as of her Separation Date, except for the awards granted on July&#160;14, 2025,"
+      ],
+      "ebitda_target_dollar": [
+        "somnia Cookies&#8221;) in the third quarter of fiscal 2024; adjusted EBITDA of $140.3 million 1 , impacted by the Insomnia Cookies transaction and the jo"
+      ]
+    },
+    "asymmetry_score": 31.119999999999997
+  },
+  "LAZ": {
+    "ticker": "LAZ",
+    "company": "Lazard, Inc.",
+    "market_cap": 4732900000.0,
+    "current_price": 48.08000183105469,
+    "filing_date": "2026-04-07",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1311370/000162828026024088/laz-20260406.htm",
+    "accession": "0001628280-26-024088",
+    "step_score": 51.3,
+    "conditionality_score": 8.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 27.65,
+    "reasons": [
+      "revenue_target_dollar (x1)"
+    ],
+    "_last_run": "2026-06-02T14:43:47.334938+00:00",
+    "conditionalities_clean": {
+      "revenue_target_dollar": [
+        "m. Business Performance Financial Advisory delivered record revenue of $1.8 billion in 2025, supported by strong contributions across M&amp;A,"
+      ]
+    },
+    "asymmetry_score": 28.52
+  },
+  "WST": {
+    "ticker": "WST",
+    "company": "WEST PHARMACEUTICAL SERVICES INC",
+    "market_cap": 23025500000.0,
+    "current_price": 325.9200134277344,
+    "filing_date": "2026-03-12",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/105770/000110465926026778/wst-20260504xdef14a.htm",
+    "accession": "0001104659-26-026778",
+    "step_score": 30.0,
+    "conditionality_score": 18.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 19.5,
+    "reasons": [
+      "fcf_target_dollar (x1)",
+      "margin_target (x1)"
+    ],
+    "_last_run": "2026-06-02T14:43:59.402536+00:00",
+    "conditionalities_clean": {
+      "fcf_target_dollar": [
+        "estments to expand capacity, automation and innovation. Our free cash flow of $469 million was up 70% versus last year and we returned $195 million in"
+      ],
+      "margin_target": [
+        "equivalent to 4.3% year-over-year organic growth, adjusted operating margin of 20.2% and adjusted-diluted EPS of $7.29, representing year-on-yea"
+      ]
+    },
+    "asymmetry_score": 28.0
+  },
+  "ENPH": {
+    "ticker": "ENPH",
+    "company": "Enphase Energy, Inc.",
+    "market_cap": 4804000000.0,
+    "current_price": 36.45000076293945,
+    "filing_date": "2026-04-01",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1463101/000146310126000026/enph-20260401.htm",
+    "accession": "0001463101-26-000026",
+    "step_score": 30.0,
+    "conditionality_score": 40.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 25.0,
+    "reasons": [
+      "regulatory_milestone (x3)",
+      "fcf_target_dollar (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:00.588174+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "derlying PSUs (at Maximum) Number of Shares Underlying PSUs Earned Based on Actual Performance Badrinarayanan Kothandaraman 1/14/2025 39,600 59,400 39,600 Mandy Yang 1/14/2025 21",
+        "lue of Unearned Shares, Units or Other Rights That Have Not Vested (1)(2) ($) Badrinarayanan Kothandaraman 8,800 (3) 282,040 &#8212; &#8212; 22,000 (4) 705,100 &",
+        "Awards Named Executive Officer Number of Shares Acquired on Vesting (#) (1) Value Realized on Vesting ($) (2) Badrinarayanan Kothandaraman 11,000 630,630 16,500 945,945 8,800 504,504 Mandy Yang"
+      ],
+      "fcf_target_dollar": [
+        "025, as compared to $1,330.4 million for 2024. We generated free cash flow of $95.9 million in 2025. For the year ended December 31, 2025, we sold appr"
+      ]
+    },
+    "asymmetry_score": 28.0
+  },
+  "KMPR": {
+    "ticker": "KMPR",
+    "company": "KEMPER Corp",
+    "market_cap": 1783300000.0,
+    "current_price": 30.290000915527344,
+    "filing_date": "2026-03-25",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/860748/000086074826000030/kmpr-20260325.htm",
+    "accession": "0000860748-26-000030",
+    "step_score": 30.0,
+    "conditionality_score": 52.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 28.0,
+    "reasons": [
+      "spin_separation (x1)",
+      "regulatory_milestone (x1)",
+      "debt_reduction_target (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:01.081855+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "community development. Strong Governance and Accountability Earning and maintaining trust is fundamental to our business. We uphold rigorous corporate governa"
+      ],
+      "debt_reduction_target": [
+        "ring 2025, including $50 million in the fourth quarter, and retired $450 million of debt, reflecting continued focus on balance sheet strength and s"
+      ]
+    },
+    "asymmetry_score": 28.0
+  },
+  "WRB": {
+    "ticker": "WRB",
+    "company": "BERKLEY W R CORP",
+    "market_cap": 24451100000.0,
+    "current_price": 65.68000030517578,
+    "filing_date": "2026-04-22",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/11544/000119312526170583/d82252ddef14a.htm",
+    "accession": "0001193125-26-170583",
+    "step_score": 48.6,
+    "conditionality_score": 53.2,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 37.6,
+    "reasons": [
+      "spin_separation (x3)",
+      "regulatory_milestone (x3)"
+    ],
+    "_last_run": "2026-06-02T14:43:47.891332+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "ncourages NEO retention through overlapping performance and vesting periods &#160; &#216; Discourages excessive risk taking through mandatory deferrals and forfeiture or clawback provisions set for",
+        "ey Features of Our RSUs and Critical Differentiators. After vesting, settlement of the RSUs is deferred (on a mandatory basis), except for shares withheld to pay certain taxes",
+        "es may not be pledged or otherwise encumbered. In addition, vested but mandatorily deferred shares may not be pledged since they are not"
+      ]
+    },
+    "asymmetry_score": 27.44
+  },
+  "PLBY": {
+    "ticker": "PLBY",
+    "company": "Playboy, Inc. ",
+    "market_cap": 197200000.0,
+    "current_price": 1.7100000381469727,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1803914/000162828026028967/ply-20260430.htm",
+    "accession": "0001628280-26-028967",
+    "step_score": 41.4,
+    "conditionality_score": 16.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 24.7,
+    "reasons": [
+      "merger_close (x1)"
+    ],
+    "_last_run": "2026-06-02T14:43:51.271045+00:00",
+    "conditionalities_clean": {
+      "merger_close": [
+        "holders approved the Incentive Plan, which became effective upon the closing of the Business Combination. The Incentive Plan generally governs equity-based awards g"
+      ]
+    },
+    "asymmetry_score": 24.56
+  },
+  "CG": {
+    "ticker": "CG",
+    "company": "Carlyle Group Inc.",
+    "market_cap": 18218700000.0,
+    "current_price": 50.630001068115234,
+    "filing_date": "2026-04-23",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000017/cg-20260423.htm",
+    "accession": "0001527166-26-000017",
+    "step_score": 41.4,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 27.7,
+    "reasons": [
+      "regulatory_milestone (x2)"
+    ],
+    "_last_run": "2026-06-02T14:43:51.849649+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "receives a portion of any carried interest proceeds Carlyle earns from investments made during the applicable calendar year. On an annual basis, participants receive cash distri",
+        "of Stock That&#160;Have&#160;Not Vested Number of Deferred Vested RSUs (1) Afsaneh Beschloss 5,235 &#8212; Sharda Cherwoo 5,235 &#8212; Linda H. Filler 5,235 &#8212; Lawton W. Fitt 5,235 &#8212; Mark "
+      ]
+    },
+    "asymmetry_score": 24.56
+  },
+  "GOSS": {
+    "ticker": "GOSS",
+    "company": "Gossamer Bio, Inc. ",
+    "market_cap": 86800000.0,
+    "current_price": 0.3700000047683716,
+    "filing_date": "2026-04-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000027/goss-20260423.htm",
+    "accession": "0001728117-26-000027",
+    "step_score": 36.9,
+    "conditionality_score": 20.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 23.45,
+    "reasons": [
+      "regulatory_milestone (x1)"
+    ],
+    "_last_run": "2026-06-02T14:43:53.538891+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "al Year-End&#8221; below. Each equity award granted in 2025 vests over four years in accordance with the standard vesting schedule described above. In October 2025, the bo"
+      ]
+    },
+    "asymmetry_score": 22.759999999999998
+  },
+  "BIIB": {
+    "ticker": "BIIB",
+    "company": "BIOGEN INC. ",
+    "market_cap": 27617000000.0,
+    "current_price": 187.05999755859375,
+    "filing_date": "2026-04-28",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/875045/000119312526187303/d788083ddef14a.htm",
+    "accession": "0001193125-26-187303",
+    "step_score": 36.0,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 25.0,
+    "reasons": [
+      "regulatory_milestone (x2)"
+    ],
+    "_last_run": "2026-06-02T14:43:54.620134+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "ehbacher), each then outstanding time-based equity award or earned performance-based equity award granted more than one calendar year prior to the retirement date not yet vested will beco",
+        "vice (and performance-based awards would remain eligible to vest based on actual performance), with awards granted within one calendar year of the retirement &#160; &#8194;2026 Proxy Statement&"
+      ]
+    },
+    "asymmetry_score": 22.4
+  },
+  "EYE": {
+    "ticker": "EYE",
+    "company": "National Vision Holdings, Inc. ",
+    "market_cap": 1774600000.0,
+    "current_price": 22.34000015258789,
+    "filing_date": "2026-05-04",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1710155/000114036126018642/ny20063318x1_def14a.htm",
+    "accession": "0001140361-26-018642",
+    "step_score": 54.0,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 27.0,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:46.717379+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 21.6
+  },
+  "PCG": {
+    "ticker": "PCG",
+    "company": "PG&E Corp",
+    "market_cap": 35389800000.0,
+    "current_price": 16.06999969482422,
+    "filing_date": "2026-04-09",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000020/pcg-20260409.htm",
+    "accession": "0001004980-26-000020",
+    "step_score": 33.3,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 23.65,
+    "reasons": [
+      "regulatory_milestone (x2)"
+    ],
+    "_last_run": "2026-06-02T14:43:55.625921+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "ted RSUs). Directors who elect to defer settlement of their vested RSUs must do so prior to December 31 of the calendar year prior to the grant date of the equity award and may c",
+        "rs, and designated coworkers who are subject to a quarterly earnings blackout period or event-specific blackout period. The policy c"
+      ]
+    },
+    "asymmetry_score": 21.32
+  },
+  "CAT": {
+    "ticker": "CAT",
+    "company": "CATERPILLAR INC ",
+    "market_cap": 413952200000.0,
+    "current_price": 889.6699829101562,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/18230/000130817926000358/cat014496-def14a.htm",
+    "accession": "0001308179-26-000358",
+    "step_score": 29.7,
+    "conditionality_score": 8.399999999999999,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 16.95,
+    "reasons": [
+      "backlog_book_to_bill (x2)"
+    ],
+    "_last_run": "2026-06-02T14:44:01.574983+00:00",
+    "conditionalities_clean": {
+      "backlog_book_to_bill": [
+        "s&#160;&amp; revenues of $67.6 billion and reached a record backlog level of $51 billion, up 71% year-over-year. Delivered operating profit of $11.2",
+        "hrough share repurchases and dividends during the year. Our backlog grew to a record level of $51 billion, an increase of $21 billion, or 71%, compared to 2024. Serv"
+      ]
+    },
+    "asymmetry_score": 19.880000000000003
+  },
+  "EXLS": {
+    "ticker": "EXLS",
+    "company": "ExlService Holdings, Inc. ",
+    "market_cap": 4849300000.0,
+    "current_price": 31.739999771118164,
+    "filing_date": "2026-04-27",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1297989/000119312526181891/d885936ddef14a.htm",
+    "accession": "0001193125-26-181891",
+    "step_score": 29.7,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 21.85,
+    "reasons": [
+      "regulatory_milestone (x3)"
+    ],
+    "_last_run": "2026-06-02T14:44:02.098337+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "to a three-year ratable vesting schedule, with each deemed vesting date occurring on the last day of each calendar year within the performance period. Any such RSUs that are",
+        "to a three-year ratable vesting schedule, with each deemed vesting date occurring on the last day of each calendar year within the three-year performance period. Any RSUs th",
+        "fee in the form of time-based restricted stock units, which vest 50% on the date of the Annual Meeting and 50% on the last day of the calendar year (or an earlier change in control). The grants will g"
+      ]
+    },
+    "asymmetry_score": 19.880000000000003
+  },
+  "D": {
+    "ticker": "D",
+    "company": "DOMINION ENERGY, INC",
+    "market_cap": 54429500000.0,
+    "current_price": 61.88999938964844,
+    "filing_date": "2026-03-19",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/715957/000119312526115180/d-20260319.htm",
+    "accession": "0001193125-26-115180",
+    "step_score": 29.2,
+    "conditionality_score": 20.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 19.6,
+    "reasons": [
+      "regulatory_milestone (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:04.010291+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "her purposes. Dominion Energy management believes operating earnings provide a more meaningful representation of the company&#8217;s fundamental earnings power. &#160; A- 2 DOMINION ENERGY&#8194;|&#"
+      ]
+    },
+    "asymmetry_score": 19.68
+  },
+  "INSW": {
+    "ticker": "INSW",
+    "company": "International Seaways, Inc. ",
+    "market_cap": 4214800000.0,
+    "current_price": 85.13999938964844,
+    "filing_date": "2026-04-29",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1679049/000114036126017661/ny20066968x2_def14a.htm",
+    "accession": "0001140361-26-017661",
+    "step_score": 28.8,
+    "conditionality_score": 25.2,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 20.7,
+    "reasons": [
+      "spin_separation (x3)"
+    ],
+    "_last_run": "2026-06-02T14:44:04.674314+00:00",
+    "conditionalities_clean": {
+      "spin_separation": [
+        "60;Zabrocky and Mr.&#160;Small, to the extent not otherwise vested, shall vest as of the separation date, as applicable. The unvested PRSUs will be forfeited i",
+        "e unvested RSUs and stock options that otherwise would have vested on the next regularly scheduled vesting date following the separation will vest upon the separation date. For RSUs, this will amo",
+        "ularly scheduled vesting date following the separation will vest upon the separation date. For RSUs, this will amount to 3,524, 3,387 and 5,141"
+      ]
+    },
+    "asymmetry_score": 19.520000000000003
+  },
+  "IRWD": {
+    "ticker": "IRWD",
+    "company": "IRONWOOD PHARMACEUTICALS INC ",
+    "market_cap": 730900000.0,
+    "current_price": 4.440000057220459,
+    "filing_date": "2026-04-28",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1446847/000110465926050325/tm261380-1_def14a.htm",
+    "accession": "0001104659-26-050325",
+    "step_score": 27.9,
+    "conditionality_score": 38.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 23.45,
+    "reasons": [
+      "spin_separation (x1)",
+      "regulatory_milestone (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:05.186768+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "tock acquired under Awards, with interest and other related earnings, to the extent required by law or applicable stock exchange listing standards, including, without limitation, Section&#160;10D of t"
+      ]
+    },
+    "asymmetry_score": 19.16
+  },
+  "HST": {
+    "ticker": "HST",
+    "company": "HOST HOTELS & RESORTS, INC.",
+    "market_cap": 15450600000.0,
+    "current_price": 22.270000457763672,
+    "filing_date": "2026-04-08",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000062/hst-20260407.htm",
+    "accession": "0001070750-26-000062",
+    "step_score": 27.9,
+    "conditionality_score": 20.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 18.95,
+    "reasons": [
+      "regulatory_milestone (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:06.312559+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "Michael E. Lentz&#160;&#160;&#8211;&#160;&#160;&#160;13,980 vested options (6) BlackRock, Inc. filed an amended Schedule 13G with the SEC on O"
+      ]
+    },
+    "asymmetry_score": 19.16
+  },
+  "SF": {
+    "ticker": "SF",
+    "company": "STIFEL FINANCIAL CORP",
+    "market_cap": 11765300000.0,
+    "current_price": 76.5,
+    "filing_date": "2026-04-29",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526191643/d939496ddef14a.htm",
+    "accession": "0001193125-26-191643",
+    "step_score": 27.0,
+    "conditionality_score": 11.2,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 16.3,
+    "reasons": [
+      "revenue_target_dollar (x2)"
+    ],
+    "_last_run": "2026-06-02T14:44:08.250800+00:00",
+    "conditionalities_clean": {
+      "revenue_target_dollar": [
+        "0;&#160; Balance Sheet &#160;&#160; Infrastructure u Record net revenue of $3.5bn,&#160;up&#160;8%&#160;over 2024 &#160; u Pre-tax operating",
+        "&#160;in&#160;a challenging&#160;environment &#160;&#160; u Net revenue of $1.9bn, up&#160;20%&#160;over&#160;2024 &#160; u Pre-tax operatin"
+      ]
+    },
+    "asymmetry_score": 18.8
+  },
+  "CGABL": {
+    "ticker": "CGABL",
+    "company": "Carlyle Group Inc. ",
+    "market_cap": 0.0,
+    "current_price": 17.1299991607666,
+    "filing_date": "2026-04-23",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000017/cg-20260423.htm",
+    "accession": "0001527166-26-000017",
+    "step_score": 26.1,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 20.05,
+    "reasons": [
+      "regulatory_milestone (x2)"
+    ],
+    "_last_run": "2026-06-02T14:44:08.469614+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        "receives a portion of any carried interest proceeds Carlyle earns from investments made during the applicable calendar year. On an annual basis, participants receive cash distri",
+        "of Stock That&#160;Have&#160;Not Vested Number of Deferred Vested RSUs (1) Afsaneh Beschloss 5,235 &#8212; Sharda Cherwoo 5,235 &#8212; Linda H. Filler 5,235 &#8212; Lawton W. Fitt 5,235 &#8212; Mark "
+      ]
+    },
+    "asymmetry_score": 18.44
+  },
+  "KDP": {
+    "ticker": "KDP",
+    "company": "Keurig Dr Pepper Inc. ",
+    "market_cap": 39578700000.0,
+    "current_price": 29.09000015258789,
+    "filing_date": "2026-04-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1418135/000119312526177266/d201572ddef14a.htm",
+    "accession": "0001193125-26-177266",
+    "step_score": 26.1,
+    "conditionality_score": 8.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 15.05,
+    "reasons": [
+      "revenue_target_dollar (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:08.693144+00:00",
+    "conditionalities_clean": {
+      "revenue_target_dollar": [
+        "ogress in U.S. Coffee. &#160; * &#160; Represents pro forma revenue of $27.8B at year-end 2025, with JDE Peet&#8217;s results converted t"
+      ]
+    },
+    "asymmetry_score": 18.44
+  },
+  "CLPR": {
+    "ticker": "CLPR",
+    "company": "Clipper Realty Inc. ",
+    "market_cap": 138000000.0,
+    "current_price": 3.25,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1649096/000143774926014021/clpr20260423_def14a.htm",
+    "accession": "0001437749-26-014021",
+    "step_score": 45.9,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 22.95,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:48.728763+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 18.36
+  },
+  "TARS": {
+    "ticker": "TARS",
+    "company": "Tarsus Pharmaceuticals, Inc. ",
+    "market_cap": 2737200000.0,
+    "current_price": 63.619998931884766,
+    "filing_date": "2026-04-28",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1819790/000181979026000028/tars-20260428.htm",
+    "accession": "0001819790-26-000028",
+    "step_score": 25.2,
+    "conditionality_score": 11.2,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 15.399999999999999,
+    "reasons": [
+      "revenue_target_dollar (x2)"
+    ],
+    "_last_run": "2026-06-02T14:44:09.738716+00:00",
+    "conditionalities_clean": {
+      "revenue_target_dollar": [
+        "r compensation committee, the selected companies had median revenue of $314 million, and median market capitalization of approximately $1.425 b",
+        "tient Impact and Key Growth Drivers &#8226; Generate XDEMVY net revenue of $344 million and serve targeted number of patients 40% 133% 53% &#8226;"
+      ]
+    },
+    "asymmetry_score": 18.08
+  },
+  "REGN": {
+    "ticker": "REGN",
+    "company": "REGENERON PHARMACEUTICALS, INC. ",
+    "market_cap": 73536200000.0,
+    "current_price": 701.4199829101562,
+    "filing_date": "2026-04-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/872589/000130817926000340/regn-20260424.htm",
+    "accession": "0001308179-26-000340",
+    "step_score": 24.3,
+    "conditionality_score": 28.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 19.15,
+    "reasons": [
+      "regulatory_milestone (x3)"
+    ],
+    "_last_run": "2026-06-02T14:44:10.636830+00:00",
+    "conditionalities_clean": {
+      "regulatory_milestone": [
+        ",570 shares) surrendered to satisfy certain tax liabilities triggered in connection with the vesting, remain subject to a mandatory three-year deferral and holding period such that the sh",
+        "r giving effect to a tax withholding in connection with the vesting) remain subject to a mandatory three-year deferral and holding period (the &#8220;Hold",
+        "sation at 2025 Fiscal Year-End&#8221; in respect of certain vested PSUs that remain subject to a mandatory deferral and holding period. Pay Ratio As required by S"
+      ]
+    },
+    "asymmetry_score": 17.72
+  },
+  "CP": {
+    "ticker": "CP",
+    "company": "CANADIAN PACIFIC KANSAS CITY LTD/CN ",
+    "market_cap": 74166100000.0,
+    "current_price": 83.08999633789062,
+    "filing_date": "2026-03-25",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/16875/000119312526124134/d13199dex991.htm",
+    "accession": "0001193125-26-124134",
+    "step_score": 44.2,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 22.1,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:49.359949+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 17.680000000000003
+  },
+  "ADSK": {
+    "ticker": "ADSK",
+    "company": "Autodesk, Inc.",
+    "market_cap": 51625000000.0,
+    "current_price": 244.5,
+    "filing_date": "2026-05-06",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/769397/000076939726000030/adsk-20260429.htm",
+    "accession": "0000769397-26-000030",
+    "step_score": 43.0,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 21.5,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:50.907361+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 17.2
+  },
+  "EVRG": {
+    "ticker": "EVRG",
+    "company": "Evergy, Inc.",
+    "market_cap": 18851400000.0,
+    "current_price": 81.77999877929688,
+    "filing_date": "2026-03-26",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1711269/000114036126011357/ny20059674x1_def14a.htm",
+    "accession": "0001140361-26-011357",
+    "step_score": 36.8,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 18.4,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:54.097916+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 14.719999999999999
+  },
+  "CAVA": {
+    "ticker": "CAVA",
+    "company": "CAVA GROUP, INC. ",
+    "market_cap": 10591200000.0,
+    "current_price": 90.9800033569336,
+    "filing_date": "2026-04-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1639438/000162828026027224/cava-20260424.htm",
+    "accession": "0001628280-26-027224",
+    "step_score": 34.2,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 17.1,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:55.055673+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 13.680000000000001
+  },
+  "DOV": {
+    "ticker": "DOV",
+    "company": "DOVER Corp",
+    "market_cap": 29602600000.0,
+    "current_price": 219.8300018310547,
+    "filing_date": "2026-03-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/29905/000119312526120708/d935769ddef14a.htm",
+    "accession": "0001193125-26-120708",
+    "step_score": 33.0,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 16.5,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:56.136065+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 13.200000000000001
+  },
+  "ROST": {
+    "ticker": "ROST",
+    "company": "ROSS STORES, INC.",
+    "market_cap": 73037100000.0,
+    "current_price": 225.80999755859375,
+    "filing_date": "2026-04-07",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/745732/000074573226000013/rost-20260406.htm",
+    "accession": "0000745732-26-000013",
+    "step_score": 32.4,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 16.2,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:56.689355+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 12.96
+  },
+  "DXPE": {
+    "ticker": "DXPE",
+    "company": "DXP ENTERPRISES INC ",
+    "market_cap": 2695800000.0,
+    "current_price": 173.6750030517578,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1020710/000162828026029008/dxpe-20260430.htm",
+    "accession": "0001628280-26-029008",
+    "step_score": 31.5,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 15.75,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:57.434556+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 12.600000000000001
+  },
+  "SCOR": {
+    "ticker": "SCOR",
+    "company": "COMSCORE, INC. ",
+    "market_cap": 109400000.0,
+    "current_price": 7.28000020980835,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1158172/000119312526197109/d82773ddef14a.htm",
+    "accession": "0001193125-26-197109",
+    "step_score": 30.6,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 15.3,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:57.901594+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 12.240000000000002
+  },
+  "OCUL": {
+    "ticker": "OCUL",
+    "company": "OCULAR THERAPEUTIX, INC ",
+    "market_cap": 2052800000.0000002,
+    "current_price": 9.430000305175781,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1393434/000110465926053176/ocul-20260611xdef14a.htm",
+    "accession": "0001104659-26-053176",
+    "step_score": 30.6,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 15.3,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:58.477154+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 12.240000000000002
+  },
+  "UFPT": {
+    "ticker": "UFPT",
+    "company": "UFP TECHNOLOGIES INC ",
+    "market_cap": 1452300000.0,
+    "current_price": 188.27999877929688,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/914156/000162828026028710/ufpt-20260430.htm",
+    "accession": "0001628280-26-028710",
+    "step_score": 30.6,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 15.3,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:43:58.897645+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 12.240000000000002
+  },
+  "PLD": {
+    "ticker": "PLD",
+    "company": "Prologis, Inc.",
+    "market_cap": 134340600000.0,
+    "current_price": 144.08999633789062,
+    "filing_date": "2026-03-19",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1045609/000119312526115132/d36709ddef14a.htm",
+    "accession": "0001193125-26-115132",
+    "step_score": 30.0,
+    "conditionality_score": 16.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 19.0,
+    "reasons": [
+      "merger_close (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:00.042673+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 12.0
+  },
+  "FTRE": {
+    "ticker": "FTRE",
+    "company": "Fortrea Holdings Inc. ",
+    "market_cap": 1152000000.0,
+    "current_price": 12.180000305175781,
+    "filing_date": "2026-04-27",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1965040/000119312526178733/d907944ddef14a.htm",
+    "accession": "0001193125-26-178733",
+    "step_score": 29.7,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 14.85,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:44:02.564420+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 11.88
+  },
+  "HBIO": {
+    "ticker": "HBIO",
+    "company": "HARVARD BIOSCIENCE INC ",
+    "market_cap": 28700000.0,
+    "current_price": 6.360000133514404,
+    "filing_date": "2026-04-21",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1123494/000117184326002617/hbio20260420_def14a.htm",
+    "accession": "0001171843-26-002617",
+    "step_score": 29.7,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 14.85,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:44:03.153027+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 11.88
+  },
+  "ROP": {
+    "ticker": "ROP",
+    "company": "ROPER TECHNOLOGIES INC",
+    "market_cap": 34646900000.0,
+    "current_price": 343.32000732421875,
+    "filing_date": "2026-04-07",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/882835/000119312526145481/d204543ddef14a.htm",
+    "accession": "0001193125-26-145481",
+    "step_score": 27.9,
+    "conditionality_score": 18.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 18.45,
+    "reasons": [
+      "spin_separation (x1)"
+    ],
+    "_last_run": "2026-06-02T14:44:05.774810+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 11.16
+  },
+  "WBI": {
+    "ticker": "WBI",
+    "company": "WaterBridge Infrastructure LLC ",
+    "market_cap": 1396800000.0,
+    "current_price": 29.709999084472656,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/2064947/000114036126018264/edge20062674x1_def14a.htm",
+    "accession": "0001140361-26-018264",
+    "step_score": 27.0,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 13.5,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:44:07.143916+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 10.8
+  },
+  "BKD": {
+    "ticker": "BKD",
+    "company": "Brookdale Senior Living Inc. ",
+    "market_cap": 3327100000.0,
+    "current_price": 13.989899635314941,
+    "filing_date": "2026-04-30",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1332349/000119312526197412/d949610ddef14a.htm",
+    "accession": "0001193125-26-197412",
+    "step_score": 27.0,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 13.5,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:44:07.701077+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 10.8
+  },
+  "IR": {
+    "ticker": "IR",
+    "company": "Ingersoll Rand Inc. ",
+    "market_cap": 30520400000.0,
+    "current_price": 77.98999786376953,
+    "filing_date": "2026-04-24",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036126016726/ny20063676x1_def14a.htm",
+    "accession": "0001140361-26-016726",
+    "step_score": 25.2,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 12.6,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:44:09.289252+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 10.08
+  },
+  "SNDA": {
+    "ticker": "SNDA",
+    "company": "SONIDA SENIOR LIVING, INC. ",
+    "market_cap": 1774000000.0,
+    "current_price": 37.470001220703125,
+    "filing_date": "2026-04-27",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1043000/000119312526182027/d44909ddef14a.htm",
+    "accession": "0001193125-26-182027",
+    "step_score": 24.3,
+    "conditionality_score": 0.0,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 12.15,
+    "reasons": [],
+    "_last_run": "2026-06-02T14:44:10.035868+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 9.72
+  },
+  "CLOV": {
+    "ticker": "CLOV",
+    "company": "CLOVER HEALTH INVESTMENTS, CORP. /DE ",
+    "market_cap": 1424700000.0,
+    "current_price": 2.7100000381469727,
+    "filing_date": "2026-04-28",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1801170/000180117026000102/clov-20260428.htm",
+    "accession": "0001801170-26-000102",
+    "step_score": 24.3,
+    "conditionality_score": 25.2,
+    "insider_signal": {
+      "n_filings": 0,
+      "total_dollar": 0,
+      "n_unique_buyers": 0,
+      "n_buys_30d": 0,
+      "n_buys_90d": 0,
+      "n_buys_180d": 0,
+      "buyers": []
+    },
+    "insider_score": 0.0,
+    "combined_score": 18.45,
+    "reasons": [
+      "spin_separation (x2)"
+    ],
+    "_last_run": "2026-06-02T14:44:11.101063+00:00",
+    "conditionalities_clean": {},
+    "asymmetry_score": 9.72
+  }
+}
