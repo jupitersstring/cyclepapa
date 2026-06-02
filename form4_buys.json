@@ -382,8 +382,8 @@
     "buyer_set": [
       "Weir Daniel F | Director"
     ],
-    "total_dollar": 418250.0,
-    "total_shares": 28000.0,
+    "total_dollar": 529200.0,
+    "total_shares": 35000.0,
     "filings": [
       {
         "accession": "0001936663-26-000004",
@@ -400,6 +400,14 @@
         "title": null,
         "dollar": 313110.0,
         "shares": 21000.0
+      },
+      {
+        "accession": "0001936663-26-000006",
+        "date": "2026-06-01",
+        "person": "Weir Daniel F",
+        "title": null,
+        "dollar": 110950.0,
+        "shares": 7000.0
       }
     ]
   },
@@ -625,10 +633,11 @@
       "Starr Gayle P | Director",
       "SPC Field Partners LLC | 10%",
       "Audax Private Credit Business, LP | 10%",
-      "RICHERSON HERBERT ELMER | Director"
+      "RICHERSON HERBERT ELMER | Director",
+      "de Silva Harin Ananda | Co-President"
     ],
-    "total_dollar": 54116508.960912004,
-    "total_shares": 3318001.0852999995,
+    "total_dollar": 54366421.617912,
+    "total_shares": 3342193.9852999994,
     "filings": [
       {
         "accession": "0000895345-26-000231",
@@ -701,6 +710,14 @@
         "title": null,
         "dollar": 100060.95,
         "shares": 1221.0
+      },
+      {
+        "accession": "0001104659-26-069114",
+        "date": "2026-06-01",
+        "person": "de Silva Harin Ananda",
+        "title": "Co-President",
+        "dollar": 249912.657,
+        "shares": 24192.9
       }
     ]
   },
@@ -976,10 +993,11 @@
     "issuer_cik": "0001726978",
     "buyer_set": [
       "Jones Mark E. Jr. | President & COO",
-      "Miller Mark | President and CEO"
+      "Miller Mark | President and CEO",
+      "Langston Patrick Ryan | 10%"
     ],
-    "total_dollar": 283825.0,
-    "total_shares": 7650.0,
+    "total_dollar": 383393.0,
+    "total_shares": 10450.0,
     "filings": [
       {
         "accession": "0001737782-26-000006",
@@ -996,6 +1014,14 @@
         "title": "President and CEO",
         "dollar": 184450.0,
         "shares": 5000.0
+      },
+      {
+        "accession": "0001736766-26-000003",
+        "date": "2026-06-01",
+        "person": "Langston Patrick Ryan",
+        "title": null,
+        "dollar": 99568.0,
+        "shares": 2800.0
       }
     ]
   },
@@ -1008,8 +1034,8 @@
       "Cozzone Robert D | President & CEO",
       "GILLES MICHAEL O | Director"
     ],
-    "total_dollar": 167306.35940000002,
-    "total_shares": 8523.0,
+    "total_dollar": 207312.7594,
+    "total_shares": 10651.0,
     "filings": [
       {
         "accession": "0001437749-26-017315",
@@ -1042,6 +1068,14 @@
         "title": null,
         "dollar": 97496.1,
         "shares": 5000.0
+      },
+      {
+        "accession": "0001437749-26-018982",
+        "date": "2026-06-01",
+        "person": "Cozzone Robert D",
+        "title": "President & CEO",
+        "dollar": 40006.4,
+        "shares": 2128.0
       }
     ]
   },
@@ -1147,8 +1181,8 @@
       "HORIZON KINETICS ASSET MANAGEMENT LLC | 10%",
       "EPPS DONNA E | Director"
     ],
-    "total_dollar": 486458.91000000003,
-    "total_shares": 958.0,
+    "total_dollar": 486854.30000000005,
+    "total_shares": 959.0,
     "filings": [
       {
         "accession": "0001437749-26-017281",
@@ -1636,6 +1670,14 @@
         "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
         "title": null,
         "dollar": 426.38,
+        "shares": 1.0
+      },
+      {
+        "accession": "0001437749-26-018966",
+        "date": "2026-06-01",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 395.39,
         "shares": 1.0
       }
     ]
@@ -2698,8 +2740,8 @@
     "buyer_set": [
       "Hoffmann David Henry | Director"
     ],
-    "total_dollar": 122468.0,
-    "total_shares": 15500.0,
+    "total_dollar": 629542.0,
+    "total_shares": 61100.0,
     "filings": [
       {
         "accession": "0001183010-26-000026",
@@ -2708,6 +2750,14 @@
         "title": null,
         "dollar": 122468.0,
         "shares": 15500.0
+      },
+      {
+        "accession": "0001183010-26-000031",
+        "date": "2026-06-01",
+        "person": "Hoffmann David Henry",
+        "title": null,
+        "dollar": 507074.0,
+        "shares": 45600.0
       }
     ]
   },
@@ -2938,10 +2988,11 @@
     "issuer_name": "Keystone Private Income Fund",
     "issuer_cik": "0001788420",
     "buyer_set": [
-      "Mattson Michelle Ann | Secretary"
+      "Mattson Michelle Ann | Secretary",
+      "MILLER DAVID N | Director"
     ],
-    "total_dollar": 330000.0215,
-    "total_shares": 3365.63,
+    "total_dollar": 375974.5645,
+    "total_shares": 5905.66,
     "filings": [
       {
         "accession": "0002074666-26-000004",
@@ -2958,6 +3009,14 @@
         "title": "Secretary",
         "dollar": 165000.01075,
         "shares": 1682.815
+      },
+      {
+        "accession": "0001193125-26-250859",
+        "date": "2026-06-01",
+        "person": "MILLER DAVID N",
+        "title": null,
+        "dollar": 45974.543000000005,
+        "shares": 2540.03
       }
     ]
   },
@@ -3100,8 +3159,8 @@
     "buyer_set": [
       "Treace John T. | Chief Executive Officer"
     ],
-    "total_dollar": 375505.2446,
-    "total_shares": 153763.0,
+    "total_dollar": 553420.2446,
+    "total_shares": 203763.0,
     "filings": [
       {
         "accession": "0001193125-26-224391",
@@ -3110,6 +3169,14 @@
         "title": "Chief Executive Officer",
         "dollar": 375505.2446,
         "shares": 153763.0
+      },
+      {
+        "accession": "0001193125-26-251587",
+        "date": "2026-06-01",
+        "person": "Treace John T.",
+        "title": "Chief Executive Officer",
+        "dollar": 177915.0,
+        "shares": 50000.0
       }
     ]
   },
@@ -3282,8 +3349,8 @@
     "buyer_set": [
       "Saba Capital Management, L.P. | 10%"
     ],
-    "total_dollar": 376771.62,
-    "total_shares": 31704.0,
+    "total_dollar": 454028.85,
+    "total_shares": 38046.0,
     "filings": [
       {
         "accession": "0001510281-26-000173",
@@ -3300,6 +3367,14 @@
         "title": null,
         "dollar": 200508.0,
         "shares": 16709.0
+      },
+      {
+        "accession": "0001510281-26-000196",
+        "date": "2026-06-01",
+        "person": "Saba Capital Management, L.P.",
+        "title": null,
+        "dollar": 77257.23,
+        "shares": 6342.0
       }
     ]
   },
@@ -3310,8 +3385,8 @@
     "buyer_set": [
       "Saba Capital Management, L.P. | 10%"
     ],
-    "total_dollar": 598775.24,
-    "total_shares": 27148.0,
+    "total_dollar": 1156638.46,
+    "total_shares": 52314.0,
     "filings": [
       {
         "accession": "0001510281-26-000174",
@@ -3328,6 +3403,14 @@
         "title": null,
         "dollar": 65460.0,
         "shares": 3000.0
+      },
+      {
+        "accession": "0001510281-26-000195",
+        "date": "2026-06-01",
+        "person": "Saba Capital Management, L.P.",
+        "title": null,
+        "dollar": 557863.22,
+        "shares": 25166.0
       }
     ]
   },
@@ -4030,8 +4113,8 @@
     "buyer_set": [
       "Huang Jack Jiajia | Chief Executive Officer"
     ],
-    "total_dollar": 2922713.4000000004,
-    "total_shares": 119400.0,
+    "total_dollar": 7770366.000000001,
+    "total_shares": 302400.0,
     "filings": [
       {
         "accession": "0001104659-26-059790",
@@ -4040,6 +4123,14 @@
         "title": "Chief Executive Officer",
         "dollar": 2922713.4000000004,
         "shares": 119400.0
+      },
+      {
+        "accession": "0001104659-26-068566",
+        "date": "2026-06-01",
+        "person": "Huang Jack Jiajia",
+        "title": "Chief Executive Officer",
+        "dollar": 4847652.6,
+        "shares": 183000.0
       }
     ]
   },
@@ -4251,8 +4342,8 @@
     "buyer_set": [
       "Newgarden Thomas | Director"
     ],
-    "total_dollar": 440456.88,
-    "total_shares": 30502.0,
+    "total_dollar": 653414.48,
+    "total_shares": 44502.0,
     "filings": [
       {
         "accession": "0001021771-26-000070",
@@ -4261,6 +4352,14 @@
         "title": null,
         "dollar": 440456.88,
         "shares": 30502.0
+      },
+      {
+        "accession": "0001021771-26-000086",
+        "date": "2026-06-01",
+        "person": "Newgarden Thomas",
+        "title": null,
+        "dollar": 212957.6,
+        "shares": 14000.0
       }
     ]
   },
@@ -6262,8 +6361,8 @@
     "buyer_set": [
       "O'Dowd William IV | Chief Executive Officer"
     ],
-    "total_dollar": 4964.0,
-    "total_shares": 3400.0,
+    "total_dollar": 9831.2,
+    "total_shares": 7300.0,
     "filings": [
       {
         "accession": "0001079973-26-000639",
@@ -6272,6 +6371,14 @@
         "title": "Chief Executive Officer",
         "dollar": 4964.0,
         "shares": 3400.0
+      },
+      {
+        "accession": "0001079973-26-000757",
+        "date": "2026-06-01",
+        "person": "O'Dowd William IV",
+        "title": "Chief Executive Officer",
+        "dollar": 4867.2,
+        "shares": 3900.0
       }
     ]
   },
@@ -8640,6 +8747,711 @@
         "title": "CEO and Interim CFO",
         "dollar": 0.0,
         "shares": 16000000.0
+      }
+    ]
+  },
+  "GOOD": {
+    "ticker": "GOOD",
+    "issuer_name": "GLADSTONE COMMERCIAL CORP",
+    "issuer_cik": "0001234006",
+    "buyer_set": [
+      "Carter Ryan Stuart | Executive Vice President"
+    ],
+    "total_dollar": 1251.0,
+    "total_shares": 100.0,
+    "filings": [
+      {
+        "accession": "0002127924-26-000008",
+        "date": "2026-06-01",
+        "person": "Carter Ryan Stuart",
+        "title": "Executive Vice President",
+        "dollar": 1251.0,
+        "shares": 100.0
+      }
+    ]
+  },
+  "PRIM": {
+    "ticker": "PRIM",
+    "issuer_name": "Primoris Services Corp",
+    "issuer_cik": "0001361538",
+    "buyer_set": [
+      "Vadlamudi Koti | PRESIDENT & CEO"
+    ],
+    "total_dollar": 1000004.274,
+    "total_shares": 7815.0,
+    "filings": [
+      {
+        "accession": "0002097133-26-000006",
+        "date": "2026-06-01",
+        "person": "Vadlamudi Koti",
+        "title": "PRESIDENT & CEO",
+        "dollar": 1000004.274,
+        "shares": 7815.0
+      }
+    ]
+  },
+  "MTDR": {
+    "ticker": "MTDR",
+    "issuer_name": "Matador Resources Co",
+    "issuer_cik": "0001520006",
+    "buyer_set": [
+      "Stetson Glenn W | EVP and COO"
+    ],
+    "total_dollar": 26970.0,
+    "total_shares": 500.0,
+    "filings": [
+      {
+        "accession": "0002020289-26-000004",
+        "date": "2026-06-01",
+        "person": "Stetson Glenn W",
+        "title": "EVP and COO",
+        "dollar": 26970.0,
+        "shares": 500.0
+      }
+    ]
+  },
+  "BFS": {
+    "ticker": "BFS",
+    "issuer_name": "SAUL CENTERS, INC.",
+    "issuer_cik": "0000907254",
+    "buyer_set": [
+      "Pearson David Todd | President & COO"
+    ],
+    "total_dollar": 90337.0,
+    "total_shares": 2600.0,
+    "filings": [
+      {
+        "accession": "0001804456-26-000003",
+        "date": "2026-06-01",
+        "person": "Pearson David Todd",
+        "title": "President & COO",
+        "dollar": 90337.0,
+        "shares": 2600.0
+      }
+    ]
+  },
+  "RLI": {
+    "ticker": "RLI",
+    "issuer_name": "RLI CORP",
+    "issuer_cik": "0000084246",
+    "buyer_set": [
+      "KELLOGG CLARK C | Director"
+    ],
+    "total_dollar": 152700.0,
+    "total_shares": 3000.0,
+    "filings": [
+      {
+        "accession": "0001785329-26-000011",
+        "date": "2026-06-01",
+        "person": "KELLOGG CLARK C",
+        "title": null,
+        "dollar": 152700.0,
+        "shares": 3000.0
+      }
+    ]
+  },
+  "SND": {
+    "ticker": "SND",
+    "issuer_name": "Smart Sand, Inc.",
+    "issuer_cik": "0001529628",
+    "buyer_set": [
+      "WHELAN RONALD P | SEE REMARKS"
+    ],
+    "total_dollar": 19998.0,
+    "total_shares": 4444.0,
+    "filings": [
+      {
+        "accession": "0001687143-26-000015",
+        "date": "2026-06-01",
+        "person": "WHELAN RONALD P",
+        "title": "SEE REMARKS",
+        "dollar": 19998.0,
+        "shares": 4444.0
+      }
+    ]
+  },
+  "FRAF": {
+    "ticker": "FRAF",
+    "issuer_name": "FRANKLIN FINANCIAL SERVICES CORP /PA/",
+    "issuer_cik": "0000723646",
+    "buyer_set": [
+      "Duffey Gregory A | Director"
+    ],
+    "total_dollar": 1000.96,
+    "total_shares": 17.0,
+    "filings": [
+      {
+        "accession": "0001638509-26-000005",
+        "date": "2026-06-01",
+        "person": "Duffey Gregory A",
+        "title": null,
+        "dollar": 1000.96,
+        "shares": 17.0
+      }
+    ]
+  },
+  "VTS": {
+    "ticker": "VTS",
+    "issuer_name": "Vitesse Energy, Inc.",
+    "issuer_cik": "0001944558",
+    "buyer_set": [
+      "STEINBERG JOSEPH S | Director"
+    ],
+    "total_dollar": 1005006.0,
+    "total_shares": 59118.0,
+    "filings": [
+      {
+        "accession": "0001628280-26-039545",
+        "date": "2026-06-01",
+        "person": "STEINBERG JOSEPH S",
+        "title": null,
+        "dollar": 1005006.0,
+        "shares": 59118.0
+      }
+    ]
+  },
+  "RMBI": {
+    "ticker": "RMBI",
+    "issuer_name": "Richmond Mutual Bancorporation, Inc.",
+    "issuer_cik": "0001767837",
+    "buyer_set": [
+      "Blum E. Michael | Director"
+    ],
+    "total_dollar": 21532.5,
+    "total_shares": 1500.0,
+    "filings": [
+      {
+        "accession": "0001628280-26-039534",
+        "date": "2026-06-01",
+        "person": "Blum E. Michael",
+        "title": null,
+        "dollar": 21532.5,
+        "shares": 1500.0
+      }
+    ]
+  },
+  "CURI": {
+    "ticker": "CURI",
+    "issuer_name": "CuriosityStream Inc.",
+    "issuer_cik": "0001776909",
+    "buyer_set": [
+      "Stinchcomb Clinton Larry | President and CEO"
+    ],
+    "total_dollar": 71491.088,
+    "total_shares": 25744.0,
+    "filings": [
+      {
+        "accession": "0001628280-26-039455",
+        "date": "2026-06-01",
+        "person": "Stinchcomb Clinton Larry",
+        "title": "President and CEO",
+        "dollar": 71491.088,
+        "shares": 25744.0
+      }
+    ]
+  },
+  "CWBC": {
+    "ticker": "CWBC",
+    "issuer_name": "Community West Bancshares",
+    "issuer_cik": "0001127371",
+    "buyer_set": [
+      "CAGLE DAWN M | EXECUTIVE VICE PRESIDENT",
+      "LIVINGSTON SHANNON R | EXECUTIVE VICE PRESIDENT"
+    ],
+    "total_dollar": 5435.82,
+    "total_shares": 260.0,
+    "filings": [
+      {
+        "accession": "0001628280-26-039397",
+        "date": "2026-06-01",
+        "person": "CAGLE DAWN M",
+        "title": "EXECUTIVE VICE PRESIDENT",
+        "dollar": 3470.562,
+        "shares": 166.0
+      },
+      {
+        "accession": "0001628280-26-039395",
+        "date": "2026-06-01",
+        "person": "LIVINGSTON SHANNON R",
+        "title": "EXECUTIVE VICE PRESIDENT",
+        "dollar": 1965.258,
+        "shares": 94.0
+      }
+    ]
+  },
+  "ASND": {
+    "ticker": "ASND",
+    "issuer_name": "Ascendis Pharma A/S",
+    "issuer_cik": "0001612042",
+    "buyer_set": [
+      "BIENAIME JEAN JACQUES | Director",
+      "SMITH SCOTT THOMAS | EVP & Chief Financial Officer"
+    ],
+    "total_dollar": 167392.0,
+    "total_shares": 750.0,
+    "filings": [
+      {
+        "accession": "0001610717-26-000177",
+        "date": "2026-06-01",
+        "person": "BIENAIME JEAN JACQUES",
+        "title": null,
+        "dollar": 111562.0,
+        "shares": 500.0
+      },
+      {
+        "accession": "0001610717-26-000176",
+        "date": "2026-06-01",
+        "person": "SMITH SCOTT THOMAS",
+        "title": "EVP & Chief Financial Officer",
+        "dollar": 55830.0,
+        "shares": 250.0
+      }
+    ]
+  },
+  "STRR": {
+    "ticker": "STRR",
+    "issuer_name": "Star Equity Holdings, Inc.",
+    "issuer_cik": "0001210708",
+    "buyer_set": [
+      "Eberwein Jeffrey E. | Chief Executive Officer"
+    ],
+    "total_dollar": 195611.52,
+    "total_shares": 16656.0,
+    "filings": [
+      {
+        "accession": "0001548312-26-000023",
+        "date": "2026-06-01",
+        "person": "Eberwein Jeffrey E.",
+        "title": "Chief Executive Officer",
+        "dollar": 195611.52,
+        "shares": 16656.0
+      }
+    ]
+  },
+  "HFRO": {
+    "ticker": "HFRO",
+    "issuer_name": "HIGHLAND OPPORTUNITIES & INCOME FUND",
+    "issuer_cik": "0001710680",
+    "buyer_set": [
+      "Saba Capital Management, L.P. | 10%"
+    ],
+    "total_dollar": 273939.9,
+    "total_shares": 41899.0,
+    "filings": [
+      {
+        "accession": "0001510281-26-000194",
+        "date": "2026-06-01",
+        "person": "Saba Capital Management, L.P.",
+        "title": null,
+        "dollar": 273939.9,
+        "shares": 41899.0
+      }
+    ]
+  },
+  "AIMD": {
+    "ticker": "AIMD",
+    "issuer_name": "Ainos, Inc.",
+    "issuer_cik": "0001014763",
+    "buyer_set": [
+      "chiang yao-chung | Director"
+    ],
+    "total_dollar": 575.0,
+    "total_shares": 250.0,
+    "filings": [
+      {
+        "accession": "0001493152-26-026617",
+        "date": "2026-06-01",
+        "person": "chiang yao-chung",
+        "title": null,
+        "dollar": 575.0,
+        "shares": 250.0
+      }
+    ]
+  },
+  "CJMB": {
+    "ticker": "CJMB",
+    "issuer_name": "CALLAN JMB INC.",
+    "issuer_cik": "0002032545",
+    "buyer_set": [
+      "Dial Gerald | Director"
+    ],
+    "total_dollar": 7620.0,
+    "total_shares": 10000.0,
+    "filings": [
+      {
+        "accession": "0001493152-26-026557",
+        "date": "2026-06-01",
+        "person": "Dial Gerald",
+        "title": null,
+        "dollar": 7620.0,
+        "shares": 10000.0
+      }
+    ]
+  },
+  "HUBC": {
+    "ticker": "HUBC",
+    "issuer_name": "Hub Cyber Security Ltd.",
+    "issuer_cik": "0001905660",
+    "buyer_set": [
+      "HRT FINANCIAL LP | 10%"
+    ],
+    "total_dollar": 71893.8,
+    "total_shares": 599115.0,
+    "filings": [
+      {
+        "accession": "0001475597-26-000043",
+        "date": "2026-06-01",
+        "person": "HRT FINANCIAL LP",
+        "title": null,
+        "dollar": 71893.8,
+        "shares": 599115.0
+      }
+    ]
+  },
+  "WOK": {
+    "ticker": "WOK",
+    "issuer_name": "WORK Medical Technology Group LTD",
+    "issuer_cik": "0001929783",
+    "buyer_set": [
+      "HRT FINANCIAL LP | 10%"
+    ],
+    "total_dollar": 138226.5,
+    "total_shares": 1535850.0,
+    "filings": [
+      {
+        "accession": "0001475597-26-000042",
+        "date": "2026-06-01",
+        "person": "HRT FINANCIAL LP",
+        "title": null,
+        "dollar": 138226.5,
+        "shares": 1535850.0
+      }
+    ]
+  },
+  "BOC": {
+    "ticker": "BOC",
+    "issuer_name": "BOSTON OMAHA Corp",
+    "issuer_cik": "0001494582",
+    "buyer_set": [
+      "Kenan Frank H. II | Director"
+    ],
+    "total_dollar": 671249.9843,
+    "total_shares": 50752.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-019088",
+        "date": "2026-06-01",
+        "person": "Kenan Frank H. II",
+        "title": null,
+        "dollar": 671249.9843,
+        "shares": 50752.0
+      }
+    ]
+  },
+  "ENS": {
+    "ticker": "ENS",
+    "issuer_name": "EnerSys",
+    "issuer_cik": "0001289308",
+    "buyer_set": [
+      "Funk Andrea J. | EVP and CFO"
+    ],
+    "total_dollar": 24674.76,
+    "total_shares": 108.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-019076",
+        "date": "2026-06-01",
+        "person": "Funk Andrea J.",
+        "title": "EVP and CFO",
+        "dollar": 24674.76,
+        "shares": 108.0
+      }
+    ]
+  },
+  "LSF": {
+    "ticker": "LSF",
+    "issuer_name": "Laird Superfood, Inc.",
+    "issuer_cik": "0001650696",
+    "buyer_set": [
+      "LaMontagne Grant J | Director"
+    ],
+    "total_dollar": 101136.8,
+    "total_shares": 30786.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-019073",
+        "date": "2026-06-01",
+        "person": "LaMontagne Grant J",
+        "title": null,
+        "dollar": 101136.8,
+        "shares": 30786.0
+      }
+    ]
+  },
+  "IPWR": {
+    "ticker": "IPWR",
+    "issuer_name": "Ideal Power Inc.",
+    "issuer_cik": "0001507957",
+    "buyer_set": [
+      "TURMELLE MICHAEL C | Director"
+    ],
+    "total_dollar": 39900.0,
+    "total_shares": 5250.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-019023",
+        "date": "2026-06-01",
+        "person": "TURMELLE MICHAEL C",
+        "title": null,
+        "dollar": 39900.0,
+        "shares": 5250.0
+      }
+    ]
+  },
+  "RCG": {
+    "ticker": "RCG",
+    "issuer_name": "RENN Fund, Inc.",
+    "issuer_cik": "0000919567",
+    "buyer_set": [
+      "HORIZON KINETICS ASSET MANAGEMENT LLC | 10%"
+    ],
+    "total_dollar": 2184.84,
+    "total_shares": 756.0,
+    "filings": [
+      {
+        "accession": "0001437749-26-018964",
+        "date": "2026-06-01",
+        "person": "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "title": null,
+        "dollar": 2184.84,
+        "shares": 756.0
+      }
+    ]
+  },
+  "SWZ": {
+    "ticker": "SWZ",
+    "issuer_name": "Total Return Securities Fund",
+    "issuer_cik": "0000813623",
+    "buyer_set": [
+      "SELL MORITZ A | Director"
+    ],
+    "total_dollar": 6010.0,
+    "total_shares": 1000.0,
+    "filings": [
+      {
+        "accession": "0001398344-26-010110",
+        "date": "2026-06-01",
+        "person": "SELL MORITZ A",
+        "title": null,
+        "dollar": 6010.0,
+        "shares": 1000.0
+      }
+    ]
+  },
+  "L": {
+    "ticker": "L",
+    "issuer_name": "LOEWS CORP",
+    "issuer_cik": "0000060086",
+    "buyer_set": [
+      "Robusto Dino | Director"
+    ],
+    "total_dollar": 523700.0,
+    "total_shares": 5000.0,
+    "filings": [
+      {
+        "accession": "0001348889-26-000008",
+        "date": "2026-06-01",
+        "person": "Robusto Dino",
+        "title": null,
+        "dollar": 523700.0,
+        "shares": 5000.0
+      }
+    ]
+  },
+  "FRST": {
+    "ticker": "FRST",
+    "issuer_name": "Primis Financial Corp.",
+    "issuer_cik": "0001325670",
+    "buyer_set": [
+      "GARRETT F L III | Director"
+    ],
+    "total_dollar": 20156.510000000002,
+    "total_shares": 1394.0,
+    "filings": [
+      {
+        "accession": "0001197066-26-000002",
+        "date": "2026-06-01",
+        "person": "GARRETT F L III",
+        "title": null,
+        "dollar": 20156.510000000002,
+        "shares": 1394.0
+      }
+    ]
+  },
+  "MYO": {
+    "ticker": "MYO",
+    "issuer_name": "MYOMO, INC.",
+    "issuer_cik": "0001369290",
+    "buyer_set": [
+      "KIRK THOMAS F | Director"
+    ],
+    "total_dollar": 24825.0,
+    "total_shares": 25000.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-249844",
+        "date": "2026-06-01",
+        "person": "KIRK THOMAS F",
+        "title": null,
+        "dollar": 24825.0,
+        "shares": 25000.0
+      }
+    ]
+  },
+  "MDWD": {
+    "ticker": "MDWD",
+    "issuer_name": "MediWound Ltd.",
+    "issuer_cik": "0001593984",
+    "buyer_set": [
+      "Rubinstein Samuel | Director"
+    ],
+    "total_dollar": 2149.5,
+    "total_shares": 150.0,
+    "filings": [
+      {
+        "accession": "0001178913-26-003002",
+        "date": "2026-06-01",
+        "person": "Rubinstein Samuel",
+        "title": null,
+        "dollar": 2149.5,
+        "shares": 150.0
+      }
+    ]
+  },
+  "KWY": {
+    "ticker": "KWY",
+    "issuer_name": "KINGSWAY Corp",
+    "issuer_cik": "0001072627",
+    "buyer_set": [
+      "Horowitz Joshua | Director",
+      "Hansen Kent A | CFO & EVP",
+      "Fitzgerald John Taylor Maloney | President and CEO"
+    ],
+    "total_dollar": 48697.08,
+    "total_shares": 4906.0,
+    "filings": [
+      {
+        "accession": "0001104659-26-069022",
+        "date": "2026-06-01",
+        "person": "Horowitz Joshua",
+        "title": null,
+        "dollar": 44624.9,
+        "shares": 4500.0
+      },
+      {
+        "accession": "0001072627-26-000039",
+        "date": "2026-06-01",
+        "person": "Hansen Kent A",
+        "title": "CFO & EVP",
+        "dollar": 1564.6799999999998,
+        "shares": 156.0
+      },
+      {
+        "accession": "0001072627-26-000038",
+        "date": "2026-06-01",
+        "person": "Fitzgerald John Taylor Maloney",
+        "title": "President and CEO",
+        "dollar": 2507.5,
+        "shares": 250.0
+      }
+    ]
+  },
+  "HOOD": {
+    "ticker": "HOOD",
+    "issuer_name": "Robinhood Markets, Inc.",
+    "issuer_cik": "0001783879",
+    "buyer_set": [
+      "Malka Meyer | Director"
+    ],
+    "total_dollar": 20018205.6,
+    "total_shares": 249000.0,
+    "filings": [
+      {
+        "accession": "0001104659-26-068980",
+        "date": "2026-06-01",
+        "person": "Malka Meyer",
+        "title": null,
+        "dollar": 20018205.6,
+        "shares": 249000.0
+      }
+    ]
+  },
+  "AUNA": {
+    "ticker": "AUNA",
+    "issuer_name": "AUNA S.A.",
+    "issuer_cik": "0001799207",
+    "buyer_set": [
+      "Zamora Leon Jesus | President"
+    ],
+    "total_dollar": 222313.86000000002,
+    "total_shares": 51454.0,
+    "filings": [
+      {
+        "accession": "0000950103-26-008238",
+        "date": "2026-06-01",
+        "person": "Zamora Leon Jesus",
+        "title": "President",
+        "dollar": 222313.86000000002,
+        "shares": 51454.0
+      }
+    ]
+  },
+  "PAX": {
+    "ticker": "PAX",
+    "issuer_name": "Patria Investments Ltd",
+    "issuer_cik": "0001825570",
+    "buyer_set": [
+      "Neto Olimpio Matarazzo | Director"
+    ],
+    "total_dollar": 344400.0,
+    "total_shares": 30000.0,
+    "filings": [
+      {
+        "accession": "0000950103-26-008209",
+        "date": "2026-06-01",
+        "person": "Neto Olimpio Matarazzo",
+        "title": null,
+        "dollar": 344400.0,
+        "shares": 30000.0
+      }
+    ]
+  },
+  "QTTB": {
+    "ticker": "QTTB",
+    "issuer_name": "Q32 Bio Inc.",
+    "issuer_cik": "0001661998",
+    "buyer_set": [
+      "Xu Diyong | Director",
+      "ORBIMED ADVISORS LLC | Director"
+    ],
+    "total_dollar": 30000000.0,
+    "total_shares": 3750000.0,
+    "filings": [
+      {
+        "accession": "0000947871-26-000594",
+        "date": "2026-06-01",
+        "person": "Xu Diyong",
+        "title": null,
+        "dollar": 15000000.0,
+        "shares": 1875000.0
+      },
+      {
+        "accession": "0000947871-26-000593",
+        "date": "2026-06-01",
+        "person": "ORBIMED ADVISORS LLC",
+        "title": null,
+        "dollar": 15000000.0,
+        "shares": 1875000.0
       }
     ]
   }
