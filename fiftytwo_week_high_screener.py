@@ -137,7 +137,54 @@ def main():
     all_tickers = set(gw['ticker'].unique())
     if uk_growth is not None:
         all_tickers.update(uk_growth.index.astype(str))
-    print(f"Universe: {len(all_tickers)} tickers with growth data")
+
+    # ALSO include every ticker with a price + info_metrics in the cache
+    # (compute growth on-the-fly from yfinance income for these), so we
+    # cover Japan/Korea/HK/Australia/etc that weren't in any multi_variant run.
+    price_only_universe = {p.name.split('__')[0]
+                            for p in CACHE.glob('*__price.parquet')}
+    info_universe = {p.name.split('__')[0]
+                      for p in CACHE.glob('*__info_metrics.parquet')}
+    cache_universe = price_only_universe & info_universe
+    new_tickers = cache_universe - all_tickers
+    all_tickers |= cache_universe
+    print(f"Universe: {len(all_tickers)} tickers ({len(new_tickers)} added from full cache)")
+
+    # Helper to compute LTM rev/EBITDA growth from cached income for tickers
+    # without growth_windows entries
+    def cache_growth(tk):
+        p = CACHE / f'{_safe(tk)}__income.parquet'
+        if not p.exists(): return None, None
+        try:
+            inc = pd.read_parquet(p)
+        except Exception: return None, None
+        if inc.empty: return None, None
+        # Schema detection: dates in index (US/EU) or in columns (Korea/Asia)
+        items_in_index = pd.api.types.is_datetime64_any_dtype(inc.columns) or \
+                         any(isinstance(c, pd.Timestamp) for c in inc.columns[:3])
+        def getseries(cands):
+            for c in cands:
+                if items_in_index:
+                    matches = [ix for ix in inc.index if str(ix) == c or str(ix).startswith(c[:10])]
+                    if matches:
+                        s = pd.to_numeric(inc.loc[matches[0]], errors='coerce').dropna()
+                        if not s.empty: return s.sort_index()
+                else:
+                    if c in inc.columns:
+                        s = pd.to_numeric(inc[c], errors='coerce').dropna()
+                        if not s.empty: return s.sort_index()
+            return None
+        rev = getseries(['Total Revenue','Revenue'])
+        ebd = getseries(['Normalized EBITDA','EBITDA'])
+        # YoY: latest vs same period prior year (5 quarters back) if quarterly
+        def yoy(s):
+            if s is None or len(s) < 2: return None
+            if len(s) >= 5:
+                cur, prv = float(s.iloc[-1]), float(s.iloc[-5])
+            else:
+                cur, prv = float(s.iloc[-1]), float(s.iloc[0])
+            return (cur/prv - 1) * 100 if prv > 0 else None
+        return yoy(rev), yoy(ebd)
 
     # Benchmark
     bench = load_price('^GSPC')
@@ -184,6 +231,16 @@ def main():
             ur = uk_growth.loc[tkr]
             if pd.isna(r_g): r_g = ur.get('revenue_ltm_chg') or ur.get('revenue_yoy_a')
             if pd.isna(eb_g): eb_g = ur.get('ebitda_ltm_chg') or ur.get('ebitda_yoy_a')
+
+        # Fallback: compute growth from cached income for tickers without
+        # any growth_windows entry (Japan/Korea/HK/Australia/etc.)
+        if pd.isna(r_g) and pd.isna(eb_g):
+            rev_cache, ebd_cache = cache_growth(tkr)
+            # express as fraction (the LTM column is in fraction form)
+            if rev_cache is not None: r_g = rev_cache / 100
+            if ebd_cache is not None: eb_g = ebd_cache / 100
+            if pd.isna(ry_g) and rev_cache is not None: ry_g = rev_cache / 100
+            if pd.isna(eb_y) and ebd_cache is not None: eb_y = ebd_cache / 100
 
         def safe_div(num, den):
             try:

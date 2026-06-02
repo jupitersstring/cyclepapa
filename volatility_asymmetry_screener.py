@@ -192,13 +192,10 @@ def main():
         df = pd.read_csv(args.top_from, index_col=0)
         tickers = df.index.astype(str).tolist()
     else:
-        # Default: top names from the prior screens
-        tickers = ['BLBD','EVC','LPG','EZPW','AVNS','LINC','ODC','PNTG','ASTH','TRS',
-                   'DLX','AMCX','INBK','HTB','INTG','GSHD','BJRI','LIND','EHTH','CMCO',
-                   'TREE','DOMO','CRMD','ATNI','AZTA','SMPL','GIII','SGU','HDSN','STRA',
-                   'AMSC','AZZ','CALM','APPF','PCTY','HLIT','DGII','ALNT','LNN','ERII',
-                   'EN.PA','FRE.DE','HNR1.DE','ASM.AS','LOGN.SW','SAP.DE','PHIA.AS',
-                   'EZJ.L','JET2.L','MAB.L','KGF.L','HIK.L','BARC.L','STAN.L']
+        # Default: scan the entire price cache
+        from pathlib import Path
+        tickers = sorted({p.name.split('__')[0]
+                          for p in Path('.cache/yf').glob('*__price.parquet')})
     print(f"Tickers to analyze: {len(tickers)}")
     out = run_universe(tickers, workers=args.workers, sleep=args.sleep)
     out.to_csv(OUTDIR / 'volatility_asymmetry.csv')
