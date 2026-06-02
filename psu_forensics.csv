@@ -1,0 +1,51 @@
+rank,ticker,company,alignment_score,source_master,vesting_period_yrs,post_vest_holding_yrs,hold_until_termination,double_trigger,single_trigger,section_280g,psu_weight_pct,ceo_ownership_multiple,ceo_direct_ownership_pct,founder_cited,clawback_policy,anti_hedging,anti_pledging,pvp_disclosure,alignment_philosophy_hits,max_neo_unvested_psu_usd,reasons,accession
+1,DVA,DAVITA INC. ,53.0,44.7,4,3,False,True,True,False,60,,,False,True,True,True,True,3,,4-year vest | 3y post-vest hold | Mixed trigger | PSU weight 60% (heavy),0000927066-26-000053
+2,FDP,FRESH DEL MONTE PRODUCE INC ,51.0,46.2,3,,False,True,False,True,50,,,True,True,True,False,True,9,,3-year vest | Pure double-trigger CIC | PSU weight 50% | Founder-led,0001193125-26-175837
+3,DLTR,"DOLLAR TREE, INC. ",45.0,52.5,3,,False,True,False,False,50,,,True,True,False,False,True,12,,3-year vest | Pure double-trigger CIC | PSU weight 50% | Founder-led,0001104659-26-053500
+4,SOFI,"SoFi Technologies, Inc. ",45.0,45.6,3,,False,True,False,False,50,,,True,True,False,False,True,5,,3-year vest | Pure double-trigger CIC | PSU weight 50% | Founder-led,0001818874-26-000032
+5,HFFG,HF Foods Group Inc. ,43.0,57.8,3,,False,True,False,True,50,,,False,True,False,False,True,7,,3-year vest | Pure double-trigger CIC | PSU weight 50%,0001680873-26-000021
+6,UPWK,"UPWORK, INC ",43.0,50.1,,,False,True,True,True,60,,,True,True,True,True,True,6,,Mixed trigger | PSU weight 60% (heavy) | Founder-led,0001627475-26-000026
+7,ALLO,"Allogene Therapeutics, Inc. ",42.0,50.6,4,,False,True,True,False,20,,,True,True,False,True,True,10,,4-year vest | Mixed trigger | Founder-led,0001628280-26-028948
+8,FRPT,"Freshpet, Inc. ",41.0,49.9,3,,False,True,True,False,50,,,True,True,False,False,True,6,,3-year vest | Mixed trigger | PSU weight 50% | Founder-led,0001140361-26-017084
+9,CLNE,Clean Energy Fuels Corp. ,41.0,47.8,3,,False,True,True,False,50,,,True,True,False,False,True,5,,3-year vest | Mixed trigger | PSU weight 50% | Founder-led,0001104659-26-052378
+10,LCID,"Lucid Group, Inc. ",41.0,47.1,5,,False,False,True,False,60,,,True,True,True,False,True,3,,Long vest (5y) | Single-trigger (gameable) | PSU weight 60% (heavy) | Founder-led,0001628280-26-026842
+11,NNBR,NN INC,39.0,50.4,5,,False,True,False,False,,,,False,True,True,True,True,4,,Long vest (5y) | Pure double-trigger CIC,0000918541-25-000022
+12,KDP,Keurig Dr Pepper Inc. ,38.0,49.5,5,,False,True,True,False,25,,,False,True,True,False,True,4,,Long vest (5y) | Mixed trigger,0001193125-26-177266
+13,SKLZ,Skillz Inc. ,37.0,44.4,4,,False,True,False,False,,,,True,True,False,False,True,3,,4-year vest | Pure double-trigger CIC | Founder-led,0001140361-26-018357
+14,NCLH,Norwegian Cruise Line Holdings Ltd. ,35.0,53.0,4,,False,True,True,False,,,,True,True,False,False,True,6,,4-year vest | Mixed trigger | Founder-led,0001104659-26-052146
+15,ADV,Advantage Solutions Inc. ,35.0,51.0,3,,False,True,False,True,,,,True,True,False,False,True,0,,3-year vest | Pure double-trigger CIC | Founder-led,0001193125-26-170691
+16,SKIN,SkinHealth Systems Inc. ,35.0,47.7,3,,False,True,False,True,,,,True,True,False,False,True,1,,3-year vest | Pure double-trigger CIC | Founder-led,0001683168-26-003189
+17,SPOK,"Spok Holdings, Inc ",35.0,46.3,5,,False,False,False,True,,,,True,True,False,False,True,4,,Long vest (5y) | Founder-led,0001289945-26-000028
+18,SNDA,"SONIDA SENIOR LIVING, INC. ",35.0,44.6,3,,False,True,False,False,,,,True,True,True,True,True,1,,3-year vest | Pure double-trigger CIC | Founder-led,0001193125-26-182027
+19,AMCX,AMC Global Media Inc. ,25.0,54.4,3,,False,False,False,False,,,,True,True,True,False,True,4,,3-year vest | Founder-led,0001193125-26-194208
+20,ORGO,Organogenesis Holdings Inc. ,25.0,46.4,3,,False,True,False,False,,,,False,True,False,False,True,1,,3-year vest | Pure double-trigger CIC,0001193125-26-197357
+21,MX,MAGNACHIP SEMICONDUCTOR Corp ,23.0,60.3,3,,False,False,False,True,,,,False,True,True,False,True,2,,3-year vest,0001193125-26-197484
+22,SNDX,Syndax Pharmaceuticals Inc ,23.0,45.5,,,False,True,True,True,,,,True,True,True,False,True,1,,Mixed trigger | Founder-led,0001193125-26-197859
+23,KKR,KKR & Co. Inc.,22.0,44.2,2,5,False,False,False,False,,,,True,True,False,False,True,0,,5y post-vest hold | Founder-led,0001404912-25-000015
+24,CRON,Cronos Group Inc. ,21.0,50.8,,,False,True,True,False,,,,True,True,True,True,True,0,,Mixed trigger | Founder-led,0001656472-26-000021
+25,GOSS,"Gossamer Bio, Inc. ",21.0,49.2,,,False,True,True,True,,,,True,True,False,False,True,1,,Mixed trigger | Founder-led,0001728117-26-000027
+26,QTRX,Quanterix Corp ,19.0,54.0,,,False,True,True,False,,,,True,True,True,False,True,1,,Mixed trigger | Founder-led,0001104659-26-048166
+27,ALIT,"Alight, Inc. / Delaware ",19.0,51.2,3,,False,False,False,False,,,,False,True,True,False,True,2,,3-year vest,0001628280-26-027616
+28,THRY,"Thryv Holdings, Inc. ",19.0,46.5,3,,False,False,False,False,,,,False,True,True,True,True,0,,3-year vest,0001556739-26-000029
+29,NLCP,"NewLake Capital Partners, Inc. ",17.0,48.1,,,False,False,False,True,,,,True,True,True,True,False,0,,Founder-led,0001854964-26-000011
+30,PLBY,"Playboy, Inc. ",15.0,46.4,,,False,False,False,True,,,,True,True,False,False,True,0,,Founder-led,0001628280-26-028967
+31,CRVO,CervoMed Inc. ,15.0,45.7,,,False,False,False,True,,,,True,True,False,False,True,1,268769.0,Founder-led,0001437749-26-014032
+32,ROCK,"GIBRALTAR INDUSTRIES, INC. ",14.0,47.6,,,False,True,False,True,,,,False,False,False,False,False,0,,Pure double-trigger CIC,0001140361-25-042426
+33,LULU,lululemon athletica inc.,14.0,47.0,4,,False,False,False,False,,,,False,False,False,False,False,0,,4-year vest,0001397187-26-000020
+34,OLLI,"Ollie's Bargain Outlet Holdings, Inc. ",13.0,51.3,,,False,True,True,False,,,,False,True,True,False,True,1,,Mixed trigger,0001140361-26-018292
+35,EP,EMPIRE PETROLEUM CORP ,11.0,45.7,,,False,False,False,True,,,,False,True,True,False,True,1,,,0001072613-26-000353
+36,OPTU,"Optimum Communications, Inc. ",11.0,45.0,,,False,False,False,False,,,,True,True,False,False,True,0,,Founder-led,0001702780-26-000023
+37,RYAM,RAYONIER ADVANCED MATERIALS INC. ,10.0,51.6,3,,False,False,False,False,,,,False,False,False,False,False,0,,3-year vest,0001140361-26-000258
+38,BLND,"Blend Labs, Inc. ",10.0,47.8,,,False,False,False,True,,,,True,False,False,False,False,0,,Founder-led,0001855747-26-000023
+39,ACET,"Adicet Bio, Inc. ",9.0,44.7,,,False,False,False,True,,,,False,True,False,False,True,0,,,0001720580-26-000027
+40,TONX,TON Strategy Co ,7.0,52.1,,,False,False,True,False,,,,True,True,True,False,True,0,,Single-trigger (gameable) | Founder-led,0001493152-26-020423
+41,MGX,"Metagenomi Therapeutics, Inc. ",7.0,48.0,,,False,False,False,True,,,,False,True,False,False,False,1,,,0001193125-26-182325
+42,LAW,"CS Disco, Inc. ",5.0,46.2,,,False,False,False,False,,,,False,True,True,False,False,0,,,0001625641-26-000097
+43,PAVM,PAVmed Inc. ,4.0,44.5,,,False,False,False,False,,,,False,False,False,True,True,0,,,0001493152-26-020705
+44,CRM,"Salesforce, Inc.",0.0,46.5,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001193125-26-104282
+45,NSPR,"InspireMD, Inc. ",0.0,45.8,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001493152-26-015127
+46,OPEN,Opendoor Technologies Inc.,0.0,45.7,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001140361-25-045459
+47,BALY,Bally's Corp ,0.0,45.0,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001213900-26-017495
+48,PMCB,"PharmaCyte Biotech, Inc. ",0.0,44.7,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001683168-25-008512
+49,ENZND,"Viskase Holdings, Inc. ",0.0,44.4,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001104659-26-053523
+50,KUST,"DIGITAL ALLY, INC. ",0.0,44.3,,,False,False,False,False,,,,False,False,False,False,False,0,,,0001493152-25-028677
