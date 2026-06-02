@@ -56,12 +56,28 @@ def load_table(tk, slot):
 
 
 def col(df, candidates):
-    """Get a sorted Series for one of the candidate column names."""
+    """Get a sorted Series for one of the candidate line-item names.
+
+    yfinance parquets vary by region:
+      - US/EU style: dates as INDEX, line items as COLUMNS
+      - Korea/some Asia: line items as INDEX (often string-truncated),
+        dates as COLUMNS
+    """
     if df is None or df.empty: return None
+    # Detect orientation: if columns look like timestamps, line items are in index
+    items_in_index = pd.api.types.is_datetime64_any_dtype(df.columns) or \
+                     any(isinstance(c, pd.Timestamp) for c in df.columns[:3])
     for c in candidates:
-        if c in df.columns:
-            s = pd.to_numeric(df[c], errors='coerce').dropna()
-            if not s.empty: return s.sort_index()
+        if items_in_index:
+            # Look in INDEX (allow startswith for truncated names)
+            matches = [ix for ix in df.index if str(ix) == c or str(ix).startswith(c[:10])]
+            if matches:
+                s = pd.to_numeric(df.loc[matches[0]], errors='coerce').dropna()
+                if not s.empty: return s.sort_index()
+        else:
+            if c in df.columns:
+                s = pd.to_numeric(df[c], errors='coerce').dropna()
+                if not s.empty: return s.sort_index()
     return None
 
 

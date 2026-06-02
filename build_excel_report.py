@@ -17,6 +17,11 @@ CACHE = Path('.cache/yf')
 OUT_XLSX = Path('screener_report.xlsx')
 TOP_N = 50
 
+# India suffix filter — exclude from main tabs; surface separately
+def _is_india(ticker: str) -> bool:
+    t = str(ticker).upper()
+    return t.endswith('.NS') or t.endswith('.BO') or t.endswith('_NS') or t.endswith('_BO')
+
 # Headline-financial columns we want on every tab
 HEADLINE_COLS = [
     'name','sector','industry','country',
@@ -371,15 +376,29 @@ def main():
         tabs['volasym_bullish'] = merge_headline(d)
         print(f"  volasym_bullish          {len(tabs['volasym_bullish'])} rows")
 
+    # Build a separate India tab from every screener (concatenated)
+    india_rows = []
+    for name, df in tabs.items():
+        if df is None or df.empty: continue
+        if 'ticker' not in df.columns: continue
+        india = df[df['ticker'].apply(_is_india)].copy()
+        if not india.empty:
+            india.insert(0, 'source_screen', name)
+            india_rows.append(india)
+    # Strip India from main tabs
+    for name in list(tabs):
+        df = tabs[name]
+        if df is None or df.empty or 'ticker' not in df.columns: continue
+        tabs[name] = df[~df['ticker'].apply(_is_india)].reset_index(drop=True)
+    if india_rows:
+        tabs['india_only'] = pd.concat(india_rows, ignore_index=True, sort=False)
+
     # Write
     with pd.ExcelWriter(OUT_XLSX, engine='openpyxl') as xw:
         for name, df in tabs.items():
-            # Excel sheet name <= 31 chars
             df.to_excel(xw, sheet_name=name[:31], index=False)
             ws = xw.sheets[name[:31]]
-            # widen first column
             ws.column_dimensions['A'].width = 14
-            # freeze header
             ws.freeze_panes = 'B2'
 
     print(f'\nWrote {OUT_XLSX} ({sum(len(d) for d in tabs.values())} total rows across {len(tabs)} tabs)')

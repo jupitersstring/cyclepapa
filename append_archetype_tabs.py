@@ -52,8 +52,11 @@ with pd.ExcelWriter(XLSX, engine='openpyxl', mode='a', if_sheet_exists='replace'
             print(f'  [skip] {name}: {path} missing')
             continue
         df = pd.read_csv(p)
-        if 'ticker' in df.columns: df = df.head(top_n)
-        else: df = df.head(top_n)
+        # exclude India from main tabs
+        if 'ticker' in df.columns:
+            mask = ~df['ticker'].astype(str).str.upper().str.endswith(('.NS','.BO','_NS','_BO'))
+            df = df[mask]
+        df = df.head(top_n)
         df = enrich(df)
         df.to_excel(xw, sheet_name=name, index=False)
         ws = xw.sheets[name]

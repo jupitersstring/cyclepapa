@@ -89,6 +89,7 @@ for label, path, sort_col, asc, filt in ARCHETYPES:
     for _, row in df.iterrows():
         if rank >= 5: break
         tk = str(row[tk_col])
+        if tk.endswith('.NS') or tk.endswith('.BO') or tk.endswith('_NS') or tk.endswith('_BO'): continue
         info = load_info(tk)
         mcap = info.get('marketCap')
         if mcap is None or mcap < MIN_MCAP: continue

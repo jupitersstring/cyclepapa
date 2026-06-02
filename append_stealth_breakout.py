@@ -109,6 +109,7 @@ for label, path, sort_col, asc, filt in ARCHETYPES:
         if rank >= 5: break
         tk = str(row[tk_col])
         if tk in seen: continue
+        if tk.endswith('.NS') or tk.endswith('.BO') or tk.endswith('_NS') or tk.endswith('_BO'): continue
         seen.add(tk)
         info = load_info(tk)
         mcap = info.get('marketCap')

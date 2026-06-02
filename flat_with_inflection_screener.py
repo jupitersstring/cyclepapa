@@ -73,13 +73,23 @@ def load_cashflow(tk):
 
 
 def _row(df, candidates):
-    """Get a time series for a given line item. yfinance income/cashflow
-    parquets have dates as index and line items as columns."""
+    """Get a time series for a given line item, handling both orientations:
+      - US/EU: dates as INDEX, line items as COLUMNS
+      - Korea/some Asia: line items as INDEX, dates as COLUMNS
+    """
     if df is None or df.empty: return None
+    items_in_index = pd.api.types.is_datetime64_any_dtype(df.columns) or \
+                     any(isinstance(c, pd.Timestamp) for c in df.columns[:3])
     for c in candidates:
-        if c in df.columns:
-            s = pd.to_numeric(df[c], errors='coerce').dropna()
-            if not s.empty: return s.sort_index()
+        if items_in_index:
+            matches = [ix for ix in df.index if str(ix) == c or str(ix).startswith(c[:10])]
+            if matches:
+                s = pd.to_numeric(df.loc[matches[0]], errors='coerce').dropna()
+                if not s.empty: return s.sort_index()
+        else:
+            if c in df.columns:
+                s = pd.to_numeric(df[c], errors='coerce').dropna()
+                if not s.empty: return s.sort_index()
     return None
 
 

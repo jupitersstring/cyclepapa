@@ -85,6 +85,7 @@ for label, path, sort_col, asc, filt in ARCHETYPES:
     tk_col = 'ticker' if 'ticker' in df.columns else df.columns[0]
     for rank, (_, row) in enumerate(df.iterrows(), 1):
         tk = str(row[tk_col])
+        if tk.endswith('.NS') or tk.endswith('.BO') or tk.endswith('_NS') or tk.endswith('_BO'): continue
         sig = row.get(sort_col, '')
         try: sig_val = float(sig) if pd.notna(sig) else None
         except: sig_val = None
