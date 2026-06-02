@@ -334,11 +334,31 @@ def main():
         master_asym[master_cols].to_excel(xl, sheet_name='Master_By_Asymmetry', index=False)
         master_upside[master_cols].to_excel(xl, sheet_name='Master_By_Upside', index=False)
 
+        # ----- Gems sheet: top GREEN multi-archetype + top single-archetype -----
+        # Curated, opinionated short list: highest-conviction names where
+        # qualitative verdict is GREEN AND quant signals stack across multiple
+        # archetype clusters OR single archetype is exceptionally strong.
+        gem_cols_show = [
+            'symbol','name','src','sector','market_cap_bucket','market_cap',
+            'verdict',
+            'archetype_count','archetype_tags_str',
+            'entry_today_asymmetry','country_entry_asymmetry','intrinsic_discount',
+            'cluster_n','yartseva_score','berezin_score',
+            'pb','net_cash_pct_mcap','cash_pct_ev','insider_ownership_pct',
+            'why','full_thesis','thesis',
+        ]
+        gem_cols_show = [c for c in gem_cols_show if c in df.columns]
+        green_pool = df[df['verdict']=='GREEN'].copy()
+        # Multi-archetype gems (>= 2 tags) - the cluster-stacker thesis
+        multi_gems = green_pool[green_pool.get('archetype_count', 0) >= 2] \
+            .sort_values('entry_today_asymmetry', ascending=False)
+        # Single-archetype gems with high asymmetry as complements
+        single_gems = green_pool[green_pool.get('archetype_count', 0) == 1] \
+            .sort_values('entry_today_asymmetry', ascending=False).head(20)
+        gems = pd.concat([multi_gems, single_gems]).drop_duplicates('symbol', keep='first')
+        gems[gem_cols_show].to_excel(xl, sheet_name='Gems', index=False)
+
         # ----- Archetype cluster sheets (Yellowbrick taxonomy) -----
-        # Four sheets, one per metaphysical cluster.  Narrative Lag (cluster A)
-        # is NOT its own sheet - it's surfaced as a column in every cluster
-        # sheet as a modifier.  RED verdicts dropped; GREEN sorted to the top
-        # so the qualitative winners lead each list.
         cluster_specs = [
             (
                 'ArchC_FixedCostDemandShock',
