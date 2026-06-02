@@ -1242,9 +1242,16 @@ def get_universe(
     # if uncategorized > 3x strict count (or > 50 absolute when strict
     # is tiny), the country's listings are dominated by structured
     # products / certificates and we silently reject those.
+    # Exception: when the country filter has already narrowed the
+    # universe to a small local exchange (<300 names) AND strict=0
+    # because no names have bucket data, trust the country filter -
+    # this catches markets like Bursa Malaysia where every listing
+    # is uncategorized but legitimate.
     if include_uncategorized or only_uncategorized:
         u = _unc_mask(df)
         polluted = u.sum() > max(50, 3 * strict_mask.sum())
+        if polluted and strict_mask.sum() == 0 and len(df) < 300:
+            polluted = False  # narrow country filter, trust it
         if polluted:
             # Just use the strict mask (or empty if only_uncategorized).
             final_mask = pd.Series(False, index=df.index) if only_uncategorized else strict_mask
