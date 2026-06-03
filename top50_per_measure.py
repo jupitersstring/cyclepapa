@@ -82,6 +82,20 @@ for tag in ["prebreakout_w", "qulla_consol_setup", "qulla_consol_soft",
             show(f"ALL {tag.upper()} (sorted by box_length desc)", sub, n=50,
                  sort_col="box_length_weeks" if "box_length_weeks" in sub.columns else None)
 
+# --- AQR-style time-series momentum (vol-normalised, tanh-summed) ---
+for col, label in [
+    ("aqr_trend_score", "AQR trend score (1m+3m+6m+12m vol-normalised)"),
+    ("aqr_trend_1m",    "AQR 1m sub-signal"),
+    ("aqr_trend_3m",    "AQR 3m sub-signal"),
+    ("aqr_trend_6m",    "AQR 6m sub-signal"),
+    ("aqr_trend_12m",   "AQR 12m sub-signal"),
+]:
+    if col in mom.columns:
+        show(f"TOP 50 BULL by {label}", mom, sort_col=col,
+             filter_mask=mom[col].notna())
+        show(f"TOP 50 BEAR by {label}", mom, sort_col=col, asc=True,
+             filter_mask=mom[col].notna())
+
 # --- TD Sequential MTF (5 nets + composite + per-TF) ---
 td_pairs = [
     ("td_mtf_net_setup",   "TD MTF net SETUP"),

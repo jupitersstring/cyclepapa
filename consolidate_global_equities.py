@@ -68,6 +68,8 @@ cols = ["name", "_universe", "sector", "last_close", "rs_rank_max",
         "td_w_buy_cd", "td_w_sell_cd",
         "td_m_buy_setup", "td_m_sell_setup",
         "td_m_buy_cd", "td_m_sell_cd",
+        "aqr_trend_score", "aqr_trend_1m", "aqr_trend_3m",
+        "aqr_trend_6m", "aqr_trend_12m",
         "roque_score", "mom_3m", "mom_6m",
         "box_length_weeks", "pos_in_box_pct"]
 cols = [c for c in cols if c in all_eq.columns]

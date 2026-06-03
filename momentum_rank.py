@@ -1094,6 +1094,28 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     except Exception:
         days_since_52w_high = None
 
+    # --- AQR-style time-series trend score --------------------------------
+    # Vol-normalised excess return at 1m/3m/6m/12m horizons, tanh-clipped
+    # and summed. Range roughly [-4, +4]. Captures TS-MOM the way AQR's
+    # "A Century of Evidence on Trend-Following" defines it but without
+    # the risk-free subtraction (small effect on daily lookbacks).
+    daily_returns = close.pct_change().dropna()
+    aqr_subscores = {}
+    for label, n in [("1m", 21), ("3m", 63), ("6m", 126), ("12m", 252)]:
+        if len(close) < n + 2:
+            aqr_subscores[label] = None
+            continue
+        ret = float(close.iloc[-1] / close.iloc[-n - 1] - 1.0)
+        window_returns = daily_returns.tail(n)
+        sigma = float(window_returns.std() * np.sqrt(n))
+        if not sigma or np.isnan(sigma) or sigma <= 0:
+            aqr_subscores[label] = None
+            continue
+        # Sharpe-like t-stat scaled by 2 then tanh-bounded to [-1, 1]
+        aqr_subscores[label] = float(np.tanh((ret / sigma) / 2.0))
+    aqr_score = sum(v for v in aqr_subscores.values() if v is not None) \
+        if any(v is not None for v in aqr_subscores.values()) else None
+
     # Weekly MACD on absolute close
     macd_w, signal_w, hist_w = macd(wclose)
     macd_above = bool(macd_w.iloc[-1] > signal_w.iloc[-1])
@@ -1107,6 +1129,12 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "mom_1m": last / sma25,
         "mom_3m": last / sma66,
         "mom_6m": last / sma126,
+        # AQR-style trend (vol-normalised TS-MOM, tanh-clipped, summed)
+        "aqr_trend_1m": aqr_subscores.get("1m"),
+        "aqr_trend_3m": aqr_subscores.get("3m"),
+        "aqr_trend_6m": aqr_subscores.get("6m"),
+        "aqr_trend_12m": aqr_subscores.get("12m"),
+        "aqr_trend_score": aqr_score,
         "week_return_pct": week_return_pct,
         # MA stack
         "ema10": ema10, "sma20": sma20, "sma50": sma50,
