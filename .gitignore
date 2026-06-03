@@ -10,3 +10,6 @@ __pycache__/
 venv/
 .pytest_cache/
 .DS_Store
+
+# Generated Excel artifacts (regenerate via scripts/industry_excel.py)
+*.xlsx
