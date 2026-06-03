@@ -149,29 +149,90 @@ def inflection_flags(m: dict) -> dict:
     }
 
 
-def forensic_block(annual: dict) -> dict:
-    """Trajectory-quality metrics from the raw annual series (oldest->newest).
+def _ols_slope(ys: list) -> float:
+    """Annualised linear trend (units of y per period) over an evenly-spaced series."""
+    n = len(ys)
+    if n < 2:
+        return NaN
+    xs = list(range(n))
+    mx, my = sum(xs) / n, sum(ys) / n
+    den = sum((x - mx) ** 2 for x in xs)
+    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / den if den else NaN
 
-    These look at the *shape* of the multi-year history, not just the latest
-    growth number, to separate genuine, consistent inflections from lumpy or
-    sign-flip artifacts:
 
-    * ``rev_up_frac``     — fraction of years revenue rose (consistency);
-    * ``ebitda_margin``   — latest EBITDA margin;
-    * ``margin_delta3``   — margin change over the last 3 all-positive years
-      (real operating leverage); NaN if EBITDA isn't positive throughout;
-    * ``ebitda_all_pos``  — EBITDA positive in every available year;
-    * ``ebitda_lump``     — latest EBITDA step > 3x the median prior step
-      (one-off / licensing / M&A distortion, not a trajectory).
+def _margin_series(rev: list, profit: list) -> list:
+    """profit/revenue per period where both align and revenue is positive."""
+    if len(rev) != len(profit) or not rev:
+        return []
+    return [profit[i] / rev[i] for i in range(len(rev)) if rev[i] > 0]
+
+
+def margin_horizons(rev: list, profit: list, prefix: str) -> dict:
+    """Margin level + change over short and LONG horizons (annual series).
+
+    ``{prefix}_margin``        latest level
+    ``{prefix}_margin_delta``  1-year change (pp)
+    ``{prefix}_margin_delta3`` 3-year change
+    ``{prefix}_margin_delta_full`` change over the whole window
+    ``{prefix}_margin_slope``  annualised linear trend (pp/yr) — the robust
+                               long-period expansion rate.
     """
-    rev = [_f(x) for x in (annual.get("revenue") or [])]
-    eb = [_f(x) for x in (annual.get("ebitda") or [])]
-    rev = [x for x in rev if not _isnan(x)]
-    eb = [x for x in eb if not _isnan(x)]
+    out = {f"{prefix}_margin": NaN, f"{prefix}_margin_delta": NaN,
+           f"{prefix}_margin_delta3": NaN, f"{prefix}_margin_delta_full": NaN,
+           f"{prefix}_margin_slope": NaN}
+    m = _margin_series(rev, profit)
+    if not m:
+        return out
+    out[f"{prefix}_margin"] = m[-1]
+    if len(m) >= 2:
+        out[f"{prefix}_margin_delta"] = m[-1] - m[-2]
+        out[f"{prefix}_margin_delta_full"] = m[-1] - m[0]
+    if len(m) >= 3:
+        out[f"{prefix}_margin_delta3"] = m[-1] - m[-3]
+        out[f"{prefix}_margin_slope"] = _ols_slope(m)
+    return out
 
-    out = {"rev_up_frac": NaN, "ebitda_margin": NaN, "margin_delta3": NaN,
-           "ebitda_all_pos": False, "ebitda_lump": False, "rev_cagr_n": NaN,
-           "gross_margin": NaN, "gross_margin_delta": NaN, "gross_margin_delta3": NaN}
+
+def q_margin_horizons(qrev: list, qprofit: list, prefix: str) -> dict:
+    """SHORT-horizon margin from quarterly statements (catches the turn earliest).
+
+    ``{prefix}_margin_q``       latest-quarter margin
+    ``{prefix}_margin_q_delta`` QoQ change (vs previous quarter)
+    ``{prefix}_margin_q_yoy``   vs the same quarter a year ago (de-seasonalised)
+    """
+    out = {f"{prefix}_margin_q": NaN, f"{prefix}_margin_q_delta": NaN,
+           f"{prefix}_margin_q_yoy": NaN}
+    m = _margin_series(qrev, qprofit)
+    if not m:
+        return out
+    out[f"{prefix}_margin_q"] = m[-1]
+    if len(m) >= 2:
+        out[f"{prefix}_margin_q_delta"] = m[-1] - m[-2]
+    if len(m) >= 5:
+        out[f"{prefix}_margin_q_yoy"] = m[-1] - m[-5]
+    return out
+
+
+def forensic_block(annual: dict) -> dict:
+    """Trajectory-quality + multi-horizon margin metrics from the annual series.
+
+    Looks at the *shape* of the multi-year history, not just the latest growth
+    number: revenue consistency (``rev_up_frac``), gross & EBITDA margin over
+    short and long horizons (via :func:`margin_horizons`), operating leverage
+    (``operating_leverage`` = degree of operating leverage, ΔEBITDA% / ΔRev%),
+    and artifact guards (``ebitda_all_pos``, ``ebitda_lump``).
+    """
+    rev = [x for x in (_f(z) for z in (annual.get("revenue") or [])) if not _isnan(x)]
+    eb = [x for x in (_f(z) for z in (annual.get("ebitda") or [])) if not _isnan(x)]
+    gross = [x for x in (_f(z) for z in (annual.get("gross") or [])) if not _isnan(x)]
+
+    out = {"rev_up_frac": NaN, "rev_cagr_n": NaN,
+           "ebitda_all_pos": False, "ebitda_lump": False,
+           "operating_leverage": NaN, "operating_leverage_full": NaN}
+    out.update(margin_horizons(rev, gross, "gross"))
+    out.update(margin_horizons(rev, eb, "ebitda"))
+    # Back-compat alias used by the forensic screen.
+    out["margin_delta3"] = out["ebitda_margin_delta3"]
 
     if len(rev) >= 3:
         diffs = [b - a for a, b in zip(rev[:-1], rev[1:])]
@@ -180,33 +241,24 @@ def forensic_block(annual: dict) -> dict:
             out["rev_cagr_n"] = (rev[-1] / rev[0]) ** (1 / (len(rev) - 1)) - 1
 
     out["ebitda_all_pos"] = len(eb) >= 3 and all(x > 0 for x in eb)
-    # Margin trend only where revenue and EBITDA align and EBITDA is positive.
-    if len(rev) == len(eb) and len(eb) >= 3 and all(x > 0 for x in eb[-3:]):
-        margins = [eb[i] / rev[i] for i in range(len(eb)) if rev[i] > 0]
-        if margins:
-            out["ebitda_margin"] = margins[-1]
-        if len(margins) >= 3:
-            out["margin_delta3"] = margins[-1] - margins[-3]
-
     if len(eb) >= 4:
         steps = [abs(b - a) for a, b in zip(eb[:-1], eb[1:])]
         prior = sorted(steps[:-1])
         med = prior[len(prior) // 2] if prior else 0.0
         out["ebitda_lump"] = bool(med > 0 and steps[-1] > 3 * med)
 
-    # Gross margin: latest level, latest YoY change, and 3-year change. Aligned
-    # with revenue (same number of periods). An earlier read on pricing power /
-    # input-cost dynamics than the EBITDA margin.
-    gross = [_f(x) for x in (annual.get("gross") or [])]
-    gross = [x for x in gross if not _isnan(x)]
-    if len(rev) == len(gross) and len(gross) >= 2:
-        gm = [gross[i] / rev[i] for i in range(len(gross)) if rev[i] > 0]
-        if gm:
-            out["gross_margin"] = gm[-1]
-        if len(gm) >= 2:
-            out["gross_margin_delta"] = gm[-1] - gm[-2]
-        if len(gm) >= 3:
-            out["gross_margin_delta3"] = gm[-1] - gm[-3]
+    # Operating leverage = degree of operating leverage (ΔEBITDA% / ΔRevenue%).
+    # >1 means EBITDA grew faster than revenue (the cost base scaled) — positive
+    # operating leverage; computed only where revenue actually moved and the
+    # EBITDA base is positive (so the ratio is meaningful, not a sign artifact).
+    if len(rev) >= 2 and len(eb) >= 2 and rev[-2] > 0 and eb[-2] > 0:
+        rg = rev[-1] / rev[-2] - 1
+        if abs(rg) > 0.02:
+            out["operating_leverage"] = max(-10.0, min(10.0, (eb[-1] / eb[-2] - 1) / rg))
+    if len(rev) >= 3 and len(eb) >= 3 and rev[0] > 0 and all(x > 0 for x in eb):
+        rg = rev[-1] / rev[0] - 1
+        if abs(rg) > 0.02:
+            out["operating_leverage_full"] = max(-10.0, min(10.0, (eb[-1] / eb[0] - 1) / rg))
     return out
 
 
@@ -227,6 +279,10 @@ def compute_metrics(raw: dict) -> dict:
     out.update(_q_yoy_block(quarterly.get("ebitda", []), "ebitda"))
     out.update(inflection_flags(out))
     out.update(forensic_block(annual))
+    # Short-horizon margins from the quarterly statement.
+    qrev = [_f(x) for x in (quarterly.get("revenue") or [])]
+    out.update(q_margin_horizons(qrev, [_f(x) for x in (quarterly.get("gross") or [])], "gross"))
+    out.update(q_margin_horizons(qrev, [_f(x) for x in (quarterly.get("ebitda") or [])], "ebitda"))
 
     # Carry valuation + price + identity straight through.
     val = raw.get("valuation", {}) or {}
