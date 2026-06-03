@@ -262,6 +262,41 @@ def forensic_block(annual: dict) -> dict:
     return out
 
 
+def surprise_block(raw: dict) -> dict:
+    """EPS-surprise momentum from the recent-quarters history (US-centric).
+
+    ``surprise_latest``     most recent quarter's EPS surprise %
+    ``surprise_avg4``       mean surprise, last 4 quarters
+    ``surprise_cum8``       **cumulative surprise gap** — sum of the last 8q surprises
+    ``surprise_beat_rate``  fraction of quarters that beat
+    ``surprise_streak``     consecutive most-recent beats
+    ``surprise_trend``      slope of surprise % (are beats getting bigger?)
+    ``surprise_n``          quarters available
+    """
+    sl = raw.get("surprises") or []
+    sp = [_f(s.get("surprise_pct")) for s in sl]
+    sp = [x for x in sp if not _isnan(x)]
+    out = {"surprise_n": len(sp), "surprise_latest": NaN, "surprise_avg4": NaN,
+           "surprise_cum8": NaN, "surprise_beat_rate": NaN, "surprise_streak": 0,
+           "surprise_trend": NaN}
+    if not sp:
+        return out
+    out["surprise_latest"] = sp[-1]
+    out["surprise_avg4"] = sum(sp[-4:]) / len(sp[-4:])
+    out["surprise_cum8"] = sum(sp[-8:])
+    out["surprise_beat_rate"] = sum(1 for x in sp if x > 0) / len(sp)
+    streak = 0
+    for x in reversed(sp):
+        if x > 0:
+            streak += 1
+        else:
+            break
+    out["surprise_streak"] = streak
+    if len(sp) >= 3:
+        out["surprise_trend"] = _ols_slope(sp[-8:])
+    return out
+
+
 def compute_metrics(raw: dict) -> dict:
     """Flatten a raw fundamentals record into the per-name metric row.
 
@@ -283,6 +318,7 @@ def compute_metrics(raw: dict) -> dict:
     qrev = [_f(x) for x in (quarterly.get("revenue") or [])]
     out.update(q_margin_horizons(qrev, [_f(x) for x in (quarterly.get("gross") or [])], "gross"))
     out.update(q_margin_horizons(qrev, [_f(x) for x in (quarterly.get("ebitda") or [])], "ebitda"))
+    out.update(surprise_block(raw))
 
     # Carry valuation + price + identity straight through.
     val = raw.get("valuation", {}) or {}

@@ -173,6 +173,10 @@ VALUATION_FIELDS = [
 # --------------------------------------------------------------------------- #
 # Fetch resilience
 # --------------------------------------------------------------------------- #
+# Regions where Yahoo carries EPS-surprise history worth fetching (US strongest;
+# the extra call is skipped elsewhere to avoid wasted requests).
+SURPRISE_REGIONS = ("US", "UK", "EU", "CA", "ANZ")
+
 MAX_RETRIES = 4
 BACKOFF_BASE = 2.0           # seconds -> 2, 4, 8, 16
 REQUEST_JITTER = (0.4, 1.2)  # random pause between tickers to ease rate limits

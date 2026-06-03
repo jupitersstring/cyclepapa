@@ -222,6 +222,27 @@ def forensic(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
                    extra=["rev_up_frac", "ebitda_margin", "margin_delta3", "rev_cagr_n"])
 
 
+def surprises(df: pd.DataFrame, top: int | None = 40, min_quarters: int = 3, **elig) -> pd.DataFrame:
+    """Greatest EPS surprises vs consensus — most recently AND cumulatively.
+
+    Combines recent surprise (latest + 4q average), the **cumulative surprise gap**
+    (sum of the last 8 quarters), and consistency (beat rate + streak). EPS only
+    (yfinance carries no historical sales surprise) and US-centric by coverage.
+    """
+    e = eligible(df, **elig)
+    if "surprise_n" not in e.columns:
+        raise ValueError("surprise fields missing — re-fetch with surprise_regions set")
+    e = e[e["surprise_n"].fillna(0) >= min_quarters].copy()
+
+    recent = 0.4 * _rank(e, "surprise_latest") + 0.6 * _rank(e, "surprise_avg4")
+    cumulative = _rank(e, "surprise_cum8")
+    consistency = 0.5 * e["surprise_beat_rate"].fillna(0) + 0.5 * _rank(e, "surprise_streak")
+    score = 0.40 * recent.fillna(0.5) + 0.35 * cumulative.fillna(0.5) + 0.25 * consistency.fillna(0.5)
+    return _finish(e, score, top, extra=["surprise_latest", "surprise_avg4", "surprise_cum8",
+                                         "surprise_beat_rate", "surprise_streak", "surprise_trend",
+                                         "surprise_n"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
@@ -229,4 +250,5 @@ SCREENS = {
     "inflecting-positive": inflecting_positive,
     "divergence": divergence,
     "forensic": forensic,
+    "surprises": surprises,
 }

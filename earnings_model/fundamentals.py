@@ -209,9 +209,41 @@ def save_raw(symbol: str, raw: dict) -> None:
 
 
 # --------------------------------------------------------------------------- #
+# Earnings surprises (EPS actual vs estimate) — best coverage in the US
+# --------------------------------------------------------------------------- #
+def _earnings_surprises(tk) -> list:
+    """Recent quarters' EPS surprise %, oldest->newest. yfinance only carries
+    EPS surprises (no historical revenue/sales surprise); coverage is strong in
+    the US, sparse elsewhere. Big values off a near-zero estimate are capped."""
+    try:
+        ed = tk.get_earnings_dates(limit=24)
+    except Exception:
+        try:
+            eh = tk.earnings_history  # fallback: ~4 quarters
+            ed = eh.rename(columns={"surprisePercent": "Surprise(%)"}) if eh is not None else None
+        except Exception:
+            return []
+    if ed is None or getattr(ed, "empty", True) or "Surprise(%)" not in ed.columns:
+        return []
+    df = ed.dropna(subset=["Surprise(%)"]).sort_index()  # past quarters, oldest->newest
+    out = []
+    for dt, row in df.iterrows():
+        try:
+            sp = float(row["Surprise(%)"])
+        except (TypeError, ValueError):
+            continue
+        if sp != sp:
+            continue
+        out.append({"date": str(getattr(dt, "date", lambda: dt)()),
+                    "surprise_pct": max(-200.0, min(200.0, sp))})
+    return out[-12:]  # last 12 quarters
+
+
+# --------------------------------------------------------------------------- #
 # Fetch
 # --------------------------------------------------------------------------- #
-def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES) -> dict:
+def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES,
+              with_surprises: bool = False) -> dict:
     """Fetch one ticker's raw fundamentals with retry/backoff."""
     last_err = None
     for attempt in range(max_retries):
@@ -228,6 +260,7 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES) 
             except Exception:
                 hist = None
             feats, monthly = _price_features(hist)
+            surprises = _earnings_surprises(tk) if with_surprises else []
 
             valuation = {f: info.get(f) for f in config.VALUATION_FIELDS}
             has_data = any(
@@ -241,6 +274,7 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES) 
                 "quarterly": quarterly,
                 "valuation": valuation,
                 "prices": {**feats, "monthly": monthly},
+                "surprises": surprises,
                 "fetch_ok": bool(has_data or valuation.get("marketCap")),
             }
         except Exception as err:  # noqa: BLE001 — broad on purpose, then back off
@@ -285,9 +319,15 @@ def build_fundamentals(
     symbols: list[str] | None = None,
     refresh: bool = False,
     fail_ttl_days: float = config.FAIL_CACHE_TTL_DAYS,
+    surprise_regions: tuple[str, ...] | None = None,
     verbose: bool = True,
 ) -> pd.DataFrame:
-    """Fetch + compute metrics for the universe, returning a flat table."""
+    """Fetch + compute metrics for the universe, returning a flat table.
+
+    ``surprise_regions`` enables the (extra, US-centric) EPS-surprise pull only
+    for symbols in those regions, to avoid wasting calls on markets Yahoo has no
+    surprise coverage for.
+    """
     if symbols is not None:
         syms = list(symbols)
     else:
@@ -295,15 +335,19 @@ def build_fundamentals(
         if limit:
             syms = syms[:limit]
 
+    sym_region = (dict(zip(universe["symbol"], universe["region"]))
+                  if surprise_regions and "region" in universe.columns else {})
+
     session = make_session()
     rows = []
     n = len(syms)
     for i, sym in enumerate(syms, 1):
         cached = None if refresh else load_raw(sym, fail_ttl_days=fail_ttl_days)
-        if cached is not None:
+        if cached is not None and (not surprise_regions or "surprises" in cached):
             raw, from_cache = cached, True
         else:
-            raw = fetch_raw(sym, session=session)
+            ws = bool(surprise_regions) and sym_region.get(sym) in surprise_regions
+            raw = fetch_raw(sym, session=session, with_surprises=ws)
             # Cache successes long, and failures briefly: a short-lived negative
             # cache stops a re-run hammering genuinely-dead tickers, while still
             # auto-retrying transient 429/timeout casualties once it expires.
