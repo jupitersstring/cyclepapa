@@ -49,9 +49,8 @@ def eligible(df: pd.DataFrame, min_periods: int = 3, allow_nano: bool = False,
     if not allow_nano and "size_bucket" in out.columns:
         out = out[out["size_bucket"] != "Nano Cap"]
     if require_multiple:
-        ev = out.get("enterpriseToEbitda", pd.Series(np.nan, index=out.index))
-        pe = out.get("forwardPE", pd.Series(np.nan, index=out.index))
-        pb = out.get("priceToBook", pd.Series(np.nan, index=out.index))
+        num = lambda c: pd.to_numeric(out.get(c, pd.Series(np.nan, index=out.index)), errors="coerce")
+        ev, pe, pb = num("enterpriseToEbitda"), num("forwardPE"), num("priceToBook")
         sane = (ev.between(2, 25)) | (pe.between(2, 30)) | (pb.between(0.1, 10))
         out = out[sane]
     # Drop ratio-growth blow-ups off a near-zero base unless EBITDA genuinely
@@ -243,6 +242,44 @@ def surprises(df: pd.DataFrame, top: int | None = 40, min_quarters: int = 3, **e
                                          "surprise_n"])
 
 
+def new_reality(df: pd.DataFrame, top: int | None = 40, min_quarters: int = 4, **elig) -> pd.DataFrame:
+    """Earnings reality has shifted but the price hasn't re-rated.
+
+    Serial positive EPS surprises (consensus persistently too low) **gated on a
+    genuinely improving business** — revenue rising in a majority of years,
+    EBITDA positive throughout *and* growing — which excludes the
+    "beating-a-falling-bar" trap (names that beat only because analysts cut
+    faster than the business shrank, e.g. MGP Ingredients / MasterCraft). Then
+    intersected with a **dormant price** (lagging 12m/24m, near its base).
+    """
+    e = eligible(df, **elig)
+    need = {"surprise_n", "rev_up_frac", "ebitda_all_pos", "ebitda_growth"}
+    if not need.issubset(e.columns):
+        raise ValueError("surprise/forensic fields missing — re-fetch with surprise_regions set")
+    e = e[
+        (e["surprise_n"].fillna(0) >= min_quarters)
+        & (e["surprise_beat_rate"].fillna(0) >= 0.6)
+        & (e["surprise_avg4"].fillna(-1) > 0)
+        # gate: the reality is genuinely improving (not a lowered bar)
+        & (e["rev_up_frac"].fillna(0) >= 0.6)
+        & e["ebitda_all_pos"].fillna(False).astype(bool)
+        & (e["ebitda_growth"].fillna(-1) > 0)
+    ].copy()
+
+    surprise_mom = pd.concat(
+        [_rank(e, "surprise_cum8"), _rank(e, "surprise_avg4"),
+         e["surprise_beat_rate"].fillna(0), _rank(e, "surprise_streak")],
+        axis=1).mean(axis=1, skipna=True)
+    dormancy = pd.concat(
+        [1 - _rank(e, "ret_12m"), 1 - _rank(e, "ret_24m"),
+         1 - e.get("range_position", pd.Series(0.5, index=e.index)).clip(0, 1)],
+        axis=1).mean(axis=1, skipna=True)
+    score = 0.5 * surprise_mom.fillna(0.5) + 0.5 * dormancy.fillna(0.5)
+    return _finish(e, score, top, extra=[
+        "surprise_cum8", "surprise_avg4", "surprise_beat_rate", "surprise_streak",
+        "surprise_trend", "rev_up_frac", "ebitda_margin_slope", "gross_margin_delta"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
@@ -251,4 +288,5 @@ SCREENS = {
     "divergence": divergence,
     "forensic": forensic,
     "surprises": surprises,
+    "new-reality": new_reality,
 }
