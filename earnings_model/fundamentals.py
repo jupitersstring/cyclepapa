@@ -113,6 +113,7 @@ def _statement_block(stmt: pd.DataFrame) -> dict:
     return {
         "dates": _dates(stmt),
         "revenue": _series(stmt, config.REVENUE_KEYS),
+        "gross": _series(stmt, config.GROSS_PROFIT_KEYS),
         "ebitda": _ebitda_series(stmt),
         "earnings": _series(stmt, config.NET_INCOME_KEYS),
         "eps": _series(stmt, config.EPS_KEYS),

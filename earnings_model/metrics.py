@@ -170,7 +170,8 @@ def forensic_block(annual: dict) -> dict:
     eb = [x for x in eb if not _isnan(x)]
 
     out = {"rev_up_frac": NaN, "ebitda_margin": NaN, "margin_delta3": NaN,
-           "ebitda_all_pos": False, "ebitda_lump": False, "rev_cagr_n": NaN}
+           "ebitda_all_pos": False, "ebitda_lump": False, "rev_cagr_n": NaN,
+           "gross_margin": NaN, "gross_margin_delta": NaN, "gross_margin_delta3": NaN}
 
     if len(rev) >= 3:
         diffs = [b - a for a, b in zip(rev[:-1], rev[1:])]
@@ -192,6 +193,20 @@ def forensic_block(annual: dict) -> dict:
         prior = sorted(steps[:-1])
         med = prior[len(prior) // 2] if prior else 0.0
         out["ebitda_lump"] = bool(med > 0 and steps[-1] > 3 * med)
+
+    # Gross margin: latest level, latest YoY change, and 3-year change. Aligned
+    # with revenue (same number of periods). An earlier read on pricing power /
+    # input-cost dynamics than the EBITDA margin.
+    gross = [_f(x) for x in (annual.get("gross") or [])]
+    gross = [x for x in gross if not _isnan(x)]
+    if len(rev) == len(gross) and len(gross) >= 2:
+        gm = [gross[i] / rev[i] for i in range(len(gross)) if rev[i] > 0]
+        if gm:
+            out["gross_margin"] = gm[-1]
+        if len(gm) >= 2:
+            out["gross_margin_delta"] = gm[-1] - gm[-2]
+        if len(gm) >= 3:
+            out["gross_margin_delta3"] = gm[-1] - gm[-3]
     return out
 
 

@@ -134,6 +134,7 @@ FX_TO_USD = {"GBP": 1.27, "GBp": 0.0127, "USD": 1.0, "EUR": 1.08, "PENNY": 0.012
 # --------------------------------------------------------------------------- #
 REVENUE_KEYS = ["Total Revenue", "TotalRevenue", "Operating Revenue", "Revenue"]
 EBITDA_KEYS = ["EBITDA", "Normalized EBITDA"]
+GROSS_PROFIT_KEYS = ["Gross Profit", "GrossProfit"]
 NET_INCOME_KEYS = [
     "Net Income",
     "Net Income Common Stockholders",
