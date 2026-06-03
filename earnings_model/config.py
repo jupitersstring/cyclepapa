@@ -72,6 +72,39 @@ UNIVERSE_PRESETS["global"] = (
     UNIVERSE_PRESETS["uk"] + UNIVERSE_PRESETS["us"] + UNIVERSE_PRESETS["eu"]
 )
 
+# Rest-of-world home markets: (region bloc, country, primary exchange(s)). Each
+# country restricted to its home exchange to avoid cross-listing duplication.
+# India excluded by request; Russia excluded (sanctioned / no Yahoo data);
+# domicile-havens (Luxembourg/Bermuda) excluded (listings sit on other venues).
+ROW_SEGMENTS = [
+    ("CA", "Canada", ("TOR",)),
+    ("JP", "Japan", ("JPX",)),
+    ("CN", "China", ("SHH", "SHZ")),
+    ("HK", "Hong Kong", ("HKG",)),
+    ("ANZ", "Australia", ("ASX",)),
+    ("ANZ", "New Zealand", ("NZE",)),
+    ("KR", "South Korea", ("KSC", "KOE")),
+    ("TW", "Taiwan", ("TAI", "TWO")),
+    ("SEA", "Singapore", ("SES",)),
+    ("SEA", "Thailand", ("SET",)),
+    ("SEA", "Indonesia", ("JKT",)),
+    ("LATAM", "Brazil", ("SAO",)),
+    ("LATAM", "Mexico", ("MEX",)),
+    ("LATAM", "Chile", ("SGO",)),
+    ("LATAM", "Argentina", ("BUE",)),
+    ("MEA", "Saudi Arabia", ("SAU",)),
+    ("MEA", "Israel", ("TLV",)),
+    ("MEA", "Turkey", ("IST",)),
+    ("MEA", "South Africa", ("JNB",)),
+    ("MEA", "Greece", ("ATH",)),
+]
+UNIVERSE_PRESETS["row"] = [
+    dict(region=reg, country=ctry, exchanges=exs, currencies=None, size_filter=SMID_LARGE)
+    for reg, ctry, exs in ROW_SEGMENTS
+]
+# The whole investable world we cover (ex-India, ex-Russia).
+UNIVERSE_PRESETS["world"] = UNIVERSE_PRESETS["global"] + UNIVERSE_PRESETS["row"]
+
 # --------------------------------------------------------------------------- #
 # Size buckets — financedatabase market_cap labels, nano -> mega
 # --------------------------------------------------------------------------- #
@@ -90,7 +123,11 @@ SIZE_THRESHOLDS_USD = [
     (float("inf"), "Mega Cap"),
 ]
 FX_TO_USD = {"GBP": 1.27, "GBp": 0.0127, "USD": 1.0, "EUR": 1.08, "PENNY": 0.0127,
-             "CHF": 1.12, "SEK": 0.095, "NOK": 0.092, "DKK": 0.145}
+             "CHF": 1.12, "SEK": 0.095, "NOK": 0.092, "DKK": 0.145,
+             "JPY": 0.0064, "CAD": 0.73, "AUD": 0.65, "NZD": 0.60, "HKD": 0.128,
+             "CNY": 0.139, "TWD": 0.031, "KRW": 0.00072, "SGD": 0.74, "THB": 0.029,
+             "IDR": 0.000062, "BRL": 0.175, "MXN": 0.054, "CLP": 0.0011,
+             "ARS": 0.001, "SAR": 0.267, "ILS": 0.27, "TRY": 0.029, "ZAR": 0.055}
 
 # --------------------------------------------------------------------------- #
 # yfinance income-statement line-item resolution (names vary by ticker)
