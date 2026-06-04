@@ -681,5 +681,59 @@ def entry_now(bars: pd.DataFrame, lookback: int = 20) -> dict:
     }
 
 
+def downside_resilience(stock_bars: pd.DataFrame, market_close: pd.Series,
+                         lookback_days: int = 252) -> dict:
+    """How well the stock holds up during MARKET drawdown days.
+
+    Captures: "doesn't care about downside vol in the market."
+
+    Methodology:
+      - Take trailing `lookback_days` of daily returns for stock and market.
+      - Filter to bottom 30% of market returns (the worst market days).
+      - downside_capture = avg(stock_ret | bad market days) / avg(market_ret | bad market days)
+      - DSR score (0..100):
+          1.5x capture -> 0 (worst, falls harder than market)
+          1.0x capture -> ~33 (matches downside)
+          0.0x capture -> ~75 (immune)
+         -0.5x capture -> 100 (goes up on market down days)
+      - Also returns market_corr (absolute trailing-year correlation w/ market).
+    """
+    if stock_bars is None or stock_bars.empty:
+        return {"DSR": float("nan")}
+    s = stock_bars["Close"].pct_change().dropna()
+    m = market_close.pct_change().dropna()
+    common = s.index.intersection(m.index)
+    if len(common) < 60:
+        return {"DSR": float("nan")}
+    common = common[-lookback_days:] if len(common) > lookback_days else common
+    s = s.reindex(common); m = m.reindex(common)
+    if len(s) < 60:
+        return {"DSR": float("nan")}
+
+    threshold = m.quantile(0.30)
+    bad = m <= threshold
+    n_bad = int(bad.sum())
+    if n_bad < 10:
+        return {"DSR": float("nan")}
+
+    s_bad = float(s[bad].mean())
+    m_bad = float(m[bad].mean())
+    if m_bad >= 0:
+        return {"DSR": float("nan")}
+    capture = s_bad / m_bad
+
+    dsr = float(np.clip((1.5 - capture) / 2.0, 0, 1)) * 100
+    corr = float(s.corr(m))
+
+    return {
+        "DSR":                  dsr,
+        "downside_capture":     float(capture),
+        "market_corr":          float(corr),
+        "n_drawdown_days":      n_bad,
+        "stock_ret_drawdown_pct": float(s_bad * 100),
+        "mkt_ret_drawdown_pct":   float(m_bad * 100),
+    }
+
+
 if __name__ == "__main__":
     print("module loaded;", len(MEASURE_FNS), "measure functions × 5 MAs")
