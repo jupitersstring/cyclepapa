@@ -62,7 +62,118 @@ EU_COUNTRIES = [
 ]
 
 
+# Wikipedia index constituent universes. Cached to disk after first fetch.
+_WIKI_INDEX_SPEC = {
+    # name : (wikipedia_url, suffix_for_yfinance, expected_row_count_min)
+    "wiki-spx500":  ("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies", "",   400),
+    "wiki-ndx":     ("https://en.wikipedia.org/wiki/Nasdaq-100",                  "",   90),
+    "wiki-djia":    ("https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average",  "",   25),
+    "wiki-ftse100": ("https://en.wikipedia.org/wiki/FTSE_100_Index",              ".L", 90),
+    "wiki-ftse250": ("https://en.wikipedia.org/wiki/FTSE_250_Index",              ".L", 200),
+    "wiki-dax":     ("https://en.wikipedia.org/wiki/DAX",                         ".DE", 35),
+    "wiki-mdax":    ("https://en.wikipedia.org/wiki/MDAX",                        ".DE", 40),
+    "wiki-cac40":   ("https://en.wikipedia.org/wiki/CAC_40",                      ".PA", 35),
+    "wiki-mib":     ("https://en.wikipedia.org/wiki/FTSE_MIB",                    ".MI", 35),
+    "wiki-aex":     ("https://en.wikipedia.org/wiki/AEX_index",                   ".AS", 20),
+    "wiki-omxs30":  ("https://en.wikipedia.org/wiki/OMX_Stockholm_30",            ".ST", 25),
+    "wiki-stoxx50": ("https://en.wikipedia.org/wiki/EURO_STOXX_50",               "",    40),
+    "wiki-wig20":   ("https://en.wikipedia.org/wiki/WIG20",                       ".WA", 15),
+    "wiki-wig40":   ("https://en.wikipedia.org/wiki/MWIG40",                      ".WA", 30),
+    "wiki-px":      ("https://en.wikipedia.org/wiki/Prague_Stock_Exchange",       ".PR", 5),
+    "wiki-bux":     ("https://en.wikipedia.org/wiki/Budapest_Stock_Exchange",     ".BD", 5),
+    "wiki-asx50":   ("https://en.wikipedia.org/wiki/S%26P/ASX_50",                ".AX", 40),
+    "wiki-asx200":  ("https://en.wikipedia.org/wiki/S%26P/ASX_200",               ".AX", 150),
+    "wiki-tsx60":   ("https://en.wikipedia.org/wiki/S%26P/TSX_60",                ".TO", 50),
+    "wiki-nifty50": ("https://en.wikipedia.org/wiki/NIFTY_50",                    ".NS", 40),
+    "wiki-nikkei225": ("https://en.wikipedia.org/wiki/Nikkei_225",                ".T", 180),
+    "wiki-hsi":     ("https://en.wikipedia.org/wiki/Hang_Seng_Index",             ".HK", 50),
+    "wiki-kospi200":("https://en.wikipedia.org/wiki/KOSPI_200",                   ".KS", 150),
+    "wiki-ibovespa":("https://en.wikipedia.org/wiki/%C3%8Dndice_Bovespa",         ".SA", 60),
+    "wiki-jpx400":  ("https://en.wikipedia.org/wiki/JPX-Nikkei_Index_400",        ".T", 300),
+}
+
+
+def _wiki_union_universe():
+    """Union of all working Wikipedia index members, deduplicated."""
+    frames = []
+    for name in _WIKI_INDEX_SPEC.keys():
+        try:
+            frames.append(_fetch_wiki_index(name))
+        except Exception:
+            continue
+    if not frames:
+        return pd.DataFrame()
+    df = pd.concat(frames)
+    df = df[~df.index.duplicated(keep="first")]
+    # Drop obviously malformed tickers
+    df = df[~df.index.astype(str).str.startswith("SEHK")]
+    df = df[df.index.astype(str).str.len() <= 20]
+    return df
+
+_WIKI_CACHE_DIR = "/tmp/cyclepapa_wiki"
+
+
+def _fetch_wiki_index(name):
+    """Fetch a Wikipedia index constituent table, cache locally, return DataFrame."""
+    import os
+    import requests
+    import io
+    spec = _WIKI_INDEX_SPEC[name]
+    url, suffix, _min = spec
+    os.makedirs(_WIKI_CACHE_DIR, exist_ok=True)
+    cache_path = os.path.join(_WIKI_CACHE_DIR, f"{name}.csv")
+    if os.path.exists(cache_path):
+        try:
+            df = pd.read_csv(cache_path, index_col=0)
+            if len(df) >= _min:
+                return df
+        except Exception:
+            pass
+    ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    r = requests.get(url, headers={"User-Agent": ua, "Accept-Language": "en-US,en;q=0.9"}, timeout=20)
+    r.raise_for_status()
+    tables = pd.read_html(io.StringIO(r.text))
+    chosen = None
+    for t in tables:
+        cols = [str(c).strip() for c in t.columns]
+        has_sym = any(c in ("Symbol", "Ticker", "Ticker symbol", "Code") or
+                      ("ymbol" in c) or ("icker" in c) for c in cols)
+        if has_sym and _min <= len(t) <= 1000:
+            chosen = t
+            break
+    if chosen is None:
+        raise RuntimeError(f"{name}: could not locate constituent table among "
+                           f"{len(tables)} tables (sizes={[len(t) for t in tables[:6]]})")
+    cols = [str(c) for c in chosen.columns]
+    sym_col = next((c for c in cols if c in ("Symbol", "Ticker", "Ticker symbol", "Code")), None)
+    if sym_col is None:
+        sym_col = next((c for c in cols if "ymbol" in c or "icker" in c), None)
+    syms = chosen[sym_col].astype(str).str.strip()
+    # Clean ticker strings (remove dots from non-suffix dots, etc.)
+    if suffix:
+        syms = syms.apply(lambda s: s if (s.endswith(suffix) or "." in s) else s + suffix)
+    name_col = next((c for c in cols if c in ("Security", "Company", "Name", "Company name")), None)
+    sector_col = next((c for c in cols if "ector" in c or "ndustry" in c), None)
+    out = pd.DataFrame({"name": chosen[name_col] if name_col else syms.values,
+                         "sector": chosen[sector_col] if sector_col else None,
+                         "exchange": suffix.replace(".", "") if suffix else "US",
+                         "_index": name},
+                        index=syms.values)
+    out = out[~out.index.duplicated(keep="first")]
+    out.to_csv(cache_path)
+    return out
+
+
 def get_universe(name, sector=None, industry_group=None, industry=None, theme=None):
+    # Wikipedia-based index universes (S&P 500, NDX, FTSE, DAX, MDAX, CAC,
+    # MIB, AEX, OMXS30, STOXX 50). Cached to /tmp/cyclepapa_wiki/ after
+    # first fetch. Useful for guaranteed coverage of named index members
+    # plus those missing from financedatabase's classification.
+    if name in _WIKI_INDEX_SPEC:
+        return _fetch_wiki_index(name)
+    if name == "wiki-union":
+        return _wiki_union_universe()
+
     import financedatabase as fd
 
     equities = fd.Equities()
@@ -252,6 +363,10 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         "tw-all": ("Taiwan",        {"TAI", "TWO"}),
         "mx-all": ("Mexico",        {"MEX"}),
         "za-all": ("South Africa",  {"JNB"}),
+        "pl-all": ("Poland",        {"WSE"}),  # Warsaw
+        "cz-all": ("Czech Republic", {"PRA"}),  # Prague
+        "hu-all": ("Hungary",       {"BUD"}),  # Budapest
+        "lu-all": ("Luxembourg",    {"LUX"}),  # Luxembourg
     }
     if name in _COUNTRY_SPEC:
         country, allowed_exchanges = _COUNTRY_SPEC[name]
