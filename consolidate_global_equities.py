@@ -26,6 +26,10 @@ EQUITY_UNIVERSES = [
     "ie-all", "pt-all", "at-all", "gr-all",
     "jp-all", "au-all", "ca-all", "mx-all", "za-all",
     "in-all", "hk-all", "cn-all", "kr-all", "tw-all", "sg-all",
+    # EU per-cap explicit pulls
+    "eu-large", "eu-micro", "eu-nano",
+    # Wikipedia named-index union (S&P500/NDX/FTSE/DAX/MDAX/CAC/MIB/AEX/etc.)
+    "wiki-union",
 ]
 
 
