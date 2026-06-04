@@ -26,6 +26,11 @@ import pandas as pd
 from screen import (
     REGIONS, fetch_universe, fetch_ohlc, fetch_fx, currency_for_ticker,
 )
+try:
+    from minervini_leg import full_minervini_score
+    HAS_MINERVINI = True
+except ImportError:
+    HAS_MINERVINI = False
 
 warnings.filterwarnings("ignore")
 
@@ -960,6 +965,19 @@ def evaluate(daily, idx_close, ticker, fx):
     daily_rank = 0.50 * C_D + 0.30 * C_W + 0.20 * C_M
     weekly_rank = 0.20 * C_D + 0.50 * C_W + 0.30 * C_M
     monthly_rank = 0.10 * C_D + 0.25 * C_W + 0.65 * C_M
+
+    # Minervini leg (vol-weighted MA respect + VCP). Computed on daily bars
+    # since the empirical validation was on daily data; same score applies
+    # across TFs as a single quality multiplier.
+    M_data = {"M": np.nan, "M_base": None, "M_vcp": None, "vcp_score": None}
+    if HAS_MINERVINI:
+        try:
+            d_bars = per_ticker_bars(daily, ticker, None)
+            if not d_bars.empty and len(d_bars) >= 252:
+                M_data = full_minervini_score(d_bars)
+        except Exception:
+            pass
+
     vetoes = {tf: collect_vetoes(rows[tf]["W_dict"], rows[tf]["Q_dict"],
                                   rows[tf]["D_dict"], rows[tf]["DA_dict"], tf)
               for tf in "DWM"}
@@ -985,6 +1003,13 @@ def evaluate(daily, idx_close, ticker, fx):
         # Monthly detail
         dt_break_m=rows["M"]["R_dict"].get("dt_break", False),
         base_ok_m=rows["M"]["R_dict"].get("base_ok", False),
+        # Minervini leg
+        M=M_data.get("M", np.nan),
+        M_base=M_data.get("M_base"),
+        M_vcp=M_data.get("M_vcp"),
+        vcp_contractions=M_data.get("vcp_contractions"),
+        vcp_pivot_distance_pct=M_data.get("vcp_pivot_distance_pct"),
+        vcp_volume_dryup_ratio=M_data.get("vcp_volume_dryup_ratio"),
         daily_rank=daily_rank, weekly_rank=weekly_rank, monthly_rank=monthly_rank,
         daily_gate=(C_W >= 55) and (C_M >= 45),
         weekly_gate=(C_W >= 65) and (C_M >= 55),
