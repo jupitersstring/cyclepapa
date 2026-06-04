@@ -266,24 +266,65 @@ def main():
         # 10. Triple-TF + Six-school all confluence — the tightest filter.
         # Every TF rank > 55, no rejection on any TF, every weekly school
         # score above its 50th percentile, M above 70.
-        strict = big[
-            (big.daily_rank   > 55) &
-            (big.weekly_rank  > 55) &
-            (big.monthly_rank > 55) &
+        not_any_reject = (
             (big.daily_label   != "Reject") &
             (big.weekly_label  != "Reject") &
-            (big.monthly_label != "Reject") &
-            (big.W_W >= 60) & (big.Q_W >= 60) &
-            (big.D_W >= 50) & (big.DA_W >= 40) &
-            (big.M.fillna(0) >= 70)
+            (big.monthly_label != "Reject")
+        )
+        # Pre-compute confluence avgs
+        big2 = big.copy()
+        big2["all_conf_avg"] = big2[["W_W","Q_W","D_W","DA_W","R_W","M"]].mean(axis=1, skipna=True)
+        big2["all_conf_min"] = big2[["W_W","Q_W","D_W","DA_W","M"]].min(axis=1, skipna=True)
+
+        # ---- Tightest: needs daily + weekly + monthly + all 6 schools
+        strict = big2[
+            not_any_reject &
+            (big2.daily_rank   > 55) & (big2.weekly_rank  > 55) & (big2.monthly_rank > 55) &
+            (big2.W_W >= 60) & (big2.Q_W >= 60) & (big2.D_W >= 50) & (big2.DA_W >= 40) &
+            (big2.M.fillna(0) >= 70)
         ].copy()
-        strict["all_conf_avg"] = strict[["W_W","Q_W","D_W","DA_W","R_W","M"]].mean(axis=1, skipna=True)
-        strict["all_conf_min"] = strict[["W_W","Q_W","D_W","DA_W","M"]].min(axis=1, skipna=True)
         tabs["Triple_TF_All_Confluence"] = (
             strict.sort_values(["all_conf_min","all_conf_avg"], ascending=False)
                   .drop_duplicates(subset=["ticker"])
-                  .head(40)
-                  .reset_index(drop=True)
+                  .head(40).reset_index(drop=True)
+        )
+
+        # ---- Looser tier 1: drop the strict Darvas gate, lower W/Q to 55
+        looser1 = big2[
+            not_any_reject &
+            (big2.daily_rank   > 50) & (big2.weekly_rank  > 50) & (big2.monthly_rank > 50) &
+            (big2.W_W >= 55) & (big2.Q_W >= 55) & (big2.D_W >= 45) &
+            (big2.M.fillna(0) >= 60)
+        ].copy()
+        tabs["Triple_TF_Loose_DropDA"] = (
+            looser1.sort_values(["all_conf_min","all_conf_avg"], ascending=False)
+                   .drop_duplicates(subset=["ticker"])
+                   .head(40).reset_index(drop=True)
+        )
+
+        # ---- Looser tier 2: drop daily requirement (weekly + monthly only)
+        looser2 = big2[
+            (big2.weekly_label != "Reject") & (big2.monthly_label != "Reject") &
+            (big2.weekly_rank > 55) & (big2.monthly_rank > 55) &
+            (big2.W_W >= 60) & (big2.Q_W >= 55) &
+            (big2.M.fillna(0) >= 65)
+        ].copy()
+        tabs["Dual_TF_W_M_Confluence"] = (
+            looser2.sort_values(["all_conf_min","all_conf_avg"], ascending=False)
+                   .drop_duplicates(subset=["ticker"])
+                   .head(40).reset_index(drop=True)
+        )
+
+        # ---- Looser tier 3: just "passes all 3 TFs" + decent M, no per-school caps
+        looser3 = big2[
+            not_any_reject &
+            (big2.daily_rank   > 50) & (big2.weekly_rank  > 50) & (big2.monthly_rank > 50) &
+            (big2.M.fillna(0) >= 50)
+        ].copy()
+        tabs["Triple_TF_Min_Gate"] = (
+            looser3.sort_values(["all_conf_avg"], ascending=False)
+                   .drop_duplicates(subset=["ticker"])
+                   .head(50).reset_index(drop=True)
         )
 
     # 5. Uncorrelated portfolio
