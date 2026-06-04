@@ -240,6 +240,29 @@ def main():
                                               .head(30)
                                               .reset_index(drop=True))
 
+    # 8. Minervini leg leaderboard
+    if "M" in big.columns:
+        not_all_rejected = (
+            (big.daily_label != "Reject") |
+            (big.weekly_label != "Reject") |
+            (big.monthly_label != "Reject")
+        )
+        tabs["Top_Minervini"] = (
+            big[not_all_rejected & big.M.notna()]
+              .sort_values("M", ascending=False)
+              .drop_duplicates(subset=["ticker"])
+              .head(40)
+              .reset_index(drop=True)
+        )
+
+        # 9. Six-school confluence (combine W,Q,D,DA,R,M into one)
+        six = big[(big.weekly_label != "Reject") & big.M.notna()].copy()
+        six["six_school_avg"] = six[["W_W","Q_W","D_W","DA_W","R_W","M"]].mean(axis=1, skipna=True)
+        tabs["Six_School_Avg"] = (six.sort_values("six_school_avg", ascending=False)
+                                       .drop_duplicates(subset=["ticker"])
+                                       .head(40)
+                                       .reset_index(drop=True))
+
     # 5. Uncorrelated portfolio
     try:
         unc = pd.read_csv("/tmp/cross_region_top_uncorrelated.csv")
@@ -291,6 +314,9 @@ def main():
         "ticker", "region", "best_rank", "daily_rank", "weekly_rank", "monthly_rank",
         "daily_label", "weekly_label", "monthly_label",
         "W_W", "Q_W", "D_W", "DA_W", "R_W",
+        "M", "M_base", "M_vcp", "vcp_contractions",
+        "vcp_pivot_distance_pct", "vcp_volume_dryup_ratio",
+        "six_school_avg",
     ]
     info_cols = [
         "longName", "country", "sector", "industry", "marketCap", "currency",
