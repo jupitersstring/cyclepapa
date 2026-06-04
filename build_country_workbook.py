@@ -459,6 +459,36 @@ def main():
                 xl, sheet_name=sheet_name[:31], index=False
             )
 
+        # ----- Per-archetype top N (one sheet per tag) -----
+        # Eight archetypes from archetype_tags.py (cluster A + C5 + E + F + G).
+        # Each sheet: top 40 names with that tag, GREEN-first then YELLOW then
+        # UNRESEARCHED, sorted by entry_today_asymmetry within each verdict
+        # tier.  RED dropped.
+        per_archetype_specs = [
+            ('Arch_NarrativeLag',         'arch_narrative_lag'),
+            ('Arch_FixedCostDemandShock', 'arch_fixed_cost_demand_shock'),
+            ('Arch_DiscountedVehicle',    'arch_discounted_vehicle'),
+            ('Arch_CapitalDiscipline',    'arch_capital_discipline'),
+            ('Arch_RegimeCyclical',       'arch_regime_cyclical'),
+            ('Arch_DeadOption',           'arch_dead_option'),
+            ('Arch_KPIThreshold',         'arch_kpi_threshold'),
+            ('Arch_BlindSpot',            'arch_blindspot'),
+        ]
+        for sheet_name, flag in per_archetype_specs:
+            if flag not in df.columns:
+                continue
+            sub = df[(df[flag] == 1) & (df['verdict'] != 'RED')].copy()
+            if sub.empty:
+                continue
+            sub['_qrank'] = sub['verdict'].map(qual_rank).fillna(2).astype(int)
+            sub = sub.sort_values(
+                by=['_qrank','country_entry_asymmetry'],
+                ascending=[True, False],
+            ).head(40)
+            sub.drop(columns=['_qrank'])[archetype_cols_show].to_excel(
+                xl, sheet_name=sheet_name[:31], index=False
+            )
+
         # Per-country summary - top 3 per country by the strict country
         # entry-today asymmetry (drops RED, boosts GREEN, treats
         # UNRESEARCHED cautiously).
