@@ -100,6 +100,26 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         df = df[~df.index.duplicated(keep="first")]
         df = df[df["exchange"].isin(US_EXCHANGES)]
         return df
+
+    # US per-cap variants (us-mid/us-micro/us-smid/us-midlarge already exist
+    # above; add us-large and us-nano for completeness).
+    if name == "us-large":
+        frames = []
+        for cap in ["Large Cap", "Mega Cap"]:
+            try:
+                sub = equities.select(country="United States", market_cap=cap)
+                if len(sub):
+                    frames.append(sub)
+            except Exception:
+                continue
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(US_EXCHANGES)]
+        return df
+    if name == "us-nano":
+        sub = equities.select(country="United States", market_cap="Nano Cap")
+        sub = sub[sub["exchange"].isin(US_EXCHANGES)]
+        return sub
     if name == "uk-smid":
         frames = []
         for cap in ["Small Cap", "Mid Cap"]:
@@ -255,6 +275,34 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         frames = []
         for country in EU_COUNTRIES:
             for cap in ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]:
+                try:
+                    sub = equities.select(country=country, market_cap=cap)
+                    if len(sub):
+                        frames.append(sub)
+                except Exception:
+                    continue
+        if not frames:
+            return pd.DataFrame()
+        df = pd.concat(frames)
+        df = df[~df.index.duplicated(keep="first")]
+        df = df[df["exchange"].isin(EU_PRIMARY_EXCHANGES)]
+        return df
+
+    # EU per-cap variants (aggregated across all EU countries, primary
+    # exchanges only). Mirror the us-micro/-small/-mid/-large structure.
+    _EU_CAP_SPEC = {
+        "eu-nano":      ["Nano Cap"],
+        "eu-micro":     ["Micro Cap"],
+        "eu-small":     ["Small Cap"],
+        "eu-mid":       ["Mid Cap"],
+        "eu-midlarge":  ["Mid Cap", "Large Cap"],
+        "eu-large":     ["Large Cap", "Mega Cap"],
+    }
+    if name in _EU_CAP_SPEC:
+        caps = _EU_CAP_SPEC[name]
+        frames = []
+        for country in EU_COUNTRIES:
+            for cap in caps:
                 try:
                     sub = equities.select(country=country, market_cap=cap)
                     if len(sub):
