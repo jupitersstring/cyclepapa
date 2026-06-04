@@ -97,7 +97,10 @@ META = load_meta()
 df = pd.read_csv('results_operating_leverage/screener.csv')
 df = df[~df['ticker'].astype(str).str.upper().str.endswith(('.NS','.BO','_NS','_BO'))]
 df['perf_1y_pct'] = df['ticker'].apply(price_perf)
-df['gross_margin_chg_pp'] = df['ticker'].apply(gross_margin_change_pp)
+# The screener now writes gross_margin_chg_pp directly — fall back to local
+# computation only if missing (e.g., from an older results file)
+if 'gross_margin_chg_pp' not in df.columns:
+    df['gross_margin_chg_pp'] = df['ticker'].apply(gross_margin_change_pp)
 
 mask = (
     (df['sales_growth_pct'] >= 15) &

@@ -117,51 +117,63 @@ def load_edgar_metrics(cik: int) -> dict[str, pd.Series]:
         'op_income': get(['OperatingIncomeLoss']),
         'd_and_a':   get(['DepreciationDepletionAndAmortization',
                           'DepreciationAndAmortization']),
+        'gross':     get(['GrossProfit']),
     }
 
 
-def get_series(ticker: str) -> tuple[pd.Series, pd.Series]:
-    """Return (revenue_series_quarterly, ebitda_series_quarterly)."""
+def get_series(ticker: str) -> tuple[pd.Series, pd.Series, pd.Series]:
+    """Return (revenue_series_quarterly, ebitda_series_quarterly, gross_series_quarterly)."""
     cik = cik_for(ticker)
     if cik is not None:
         m = load_edgar_metrics(cik)
         rev = m.get('revenue', pd.Series(dtype=float))
         op = m.get('op_income', pd.Series(dtype=float))
         da = m.get('d_and_a', pd.Series(dtype=float))
+        gross = m.get('gross', pd.Series(dtype=float))
         if not op.empty and not da.empty:
             idx = op.index.union(da.index)
             ebitda = op.reindex(idx).add(da.reindex(idx).abs(), fill_value=np.nan).dropna()
         else:
             ebitda = pd.Series(dtype=float)
         if not rev.empty or not ebitda.empty:
-            return rev, ebitda
+            return rev, ebitda, gross
 
-    # Fallback: yfinance income (shallow)
+    # Fallback: yfinance income (shallow, schema-aware)
     p = CACHE / f'{_safe(ticker)}__income.parquet'
-    if not p.exists(): return pd.Series(dtype=float), pd.Series(dtype=float)
+    if not p.exists():
+        return pd.Series(dtype=float), pd.Series(dtype=float), pd.Series(dtype=float)
     try:
         inc = pd.read_parquet(p)
     except Exception:
-        return pd.Series(dtype=float), pd.Series(dtype=float)
-    rev = pd.Series(dtype=float); ebitda = pd.Series(dtype=float)
-    if not inc.empty:
-        for tag in ('Total Revenue','Operating Revenue','Revenue'):
-            if tag in inc.index:
-                rev = pd.to_numeric(inc.loc[tag], errors='coerce').dropna()
-                rev.index = pd.to_datetime(rev.index, errors='coerce')
-                rev = rev[~rev.index.isna()].sort_index()
-                break
-        for tag in ('EBITDA','Normalized EBITDA'):
-            if tag in inc.index:
-                ebitda = pd.to_numeric(inc.loc[tag], errors='coerce').dropna()
-                ebitda.index = pd.to_datetime(ebitda.index, errors='coerce')
-                ebitda = ebitda[~ebitda.index.isna()].sort_index()
-                break
-    return rev, ebitda
+        return pd.Series(dtype=float), pd.Series(dtype=float), pd.Series(dtype=float)
+    if inc.empty:
+        return pd.Series(dtype=float), pd.Series(dtype=float), pd.Series(dtype=float)
+
+    items_in_index = (
+        pd.api.types.is_datetime64_any_dtype(inc.columns)
+        or any(isinstance(c, pd.Timestamp) for c in inc.columns[:3])
+    )
+    def _series(cands):
+        for tag in cands:
+            if items_in_index:
+                matches = [ix for ix in inc.index if str(ix) == tag or str(ix).startswith(tag[:10])]
+                if matches:
+                    s = pd.to_numeric(inc.loc[matches[0]], errors='coerce').dropna()
+                    if not s.empty: return s.sort_index()
+            else:
+                if tag in inc.columns:
+                    s = pd.to_numeric(inc[tag], errors='coerce').dropna()
+                    if not s.empty: return s.sort_index()
+        return pd.Series(dtype=float)
+
+    rev = _series(['Total Revenue','Operating Revenue','Revenue'])
+    ebitda = _series(['EBITDA','Normalized EBITDA'])
+    gross = _series(['Gross Profit'])
+    return rev, ebitda, gross
 
 
 def analyze(ticker: str) -> Optional[dict]:
-    rev, ebitda = get_series(ticker)
+    rev, ebitda, gross = get_series(ticker)
     if rev.empty or len(rev) < 8: return None
 
     info = load_info(ticker)
@@ -222,9 +234,41 @@ def analyze(ticker: str) -> Optional[dict]:
     if pd.notna(ev_sales) and sales_g_pct > 1:
         rec['ev_sales_per_growth'] = ev_sales / sales_g_pct
 
-    # Leverage potential score: how much room margin has to expand toward 20%
+    # Gross margin LTM expansion (additional leg — structural vs OpEx-only leverage)
+    gross_margin_now = float('nan'); gross_margin_y_ago = float('nan')
+    gross_margin_chg_pp = float('nan')
+    if gross is not None and not gross.empty:
+        g_sorted = gross.sort_index()
+        g_ltm = g_sorted.rolling(4).sum().dropna()
+        if len(g_ltm) >= 5:
+            g_now = float(g_ltm.iloc[-1]); g_y = float(g_ltm.iloc[-5])
+            if rev_now > 0 and rev_y_ago > 0:
+                gross_margin_now = g_now / rev_now * 100
+                gross_margin_y_ago = g_y / rev_y_ago * 100
+                gross_margin_chg_pp = gross_margin_now - gross_margin_y_ago
+    rec['gross_margin_now_pct'] = gross_margin_now
+    rec['gross_margin_chg_pp']  = gross_margin_chg_pp
+    rec['structural_op_lev']    = (
+        'Y' if pd.notna(gross_margin_chg_pp) and gross_margin_chg_pp > 0
+              and pd.notna(margin_expansion_pp) and margin_expansion_pp > 0
+        else ('N' if pd.notna(gross_margin_chg_pp) and gross_margin_chg_pp < 0
+                     and pd.notna(margin_expansion_pp) and margin_expansion_pp > 0
+              else '')
+    )
+
+    # Leverage potential score: sales growth × margin runway / current margin
     rec['margin_runway_pp'] = max(0.0, 20.0 - eb_margin_now)
-    rec['leverage_score'] = sales_g_pct * rec['margin_runway_pp'] / max(0.5, abs(eb_margin_now))
+    base_score = sales_g_pct * rec['margin_runway_pp'] / max(0.5, abs(eb_margin_now))
+    # Bonus for structural operating leverage (gross AND EBITDA both expanding);
+    # penalty when gross margin is contracting (OpEx-only fake leverage)
+    gross_bonus = 1.0
+    if pd.notna(gross_margin_chg_pp):
+        if gross_margin_chg_pp > 1.0: gross_bonus = 1.30
+        elif gross_margin_chg_pp > 0: gross_bonus = 1.10
+        elif gross_margin_chg_pp < -2.0: gross_bonus = 0.70  # contracting gross = OpEx-only fake
+        elif gross_margin_chg_pp < 0: gross_bonus = 0.85
+    rec['leverage_score'] = base_score * gross_bonus
+    rec['gross_bonus_factor'] = gross_bonus
 
     rec['market_cap'] = info.get('marketCap')
     rec['pb_now'] = info.get('priceToBook')
