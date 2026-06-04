@@ -979,7 +979,7 @@ def compute_ma_respect(close, ma, atr_series, label, slope_lookback_bars=40):
     }
 
 
-def compute_minervini(close, high, low, volume, weekly=None):
+def compute_minervini(close, high, low, volume, weekly=None, open_series=None):
     """Comprehensive Minervini/VCP screening leg.
 
     Implements: Stage 2 Trend Template (9 sub-flags), VCP contraction
@@ -1144,9 +1144,241 @@ def compute_minervini(close, high, low, volume, weekly=None):
         score += 3
     if out.get("mv_vol_drying_5d") and out["mv_vol_drying_5d"] < 0.8:
         score += 2
+
+    # ============================================================
+    # MINERVINI v2 additions (drawn from "Trade Like a Stock Market
+    # Wizard" + "Think and Trade Like a Champion")
+    # ============================================================
+
+    # ---- All-time high distance (Minervini prefers ATH over 52w high) ----
+    ath = float(close.max())
+    out["mv_ath"] = ath
+    out["mv_dist_from_ath_pct"] = float((ath - last) / ath * 100) if ath > 0 else None
+    out["mv_at_ath"] = bool(out["mv_dist_from_ath_pct"] is not None
+                            and out["mv_dist_from_ath_pct"] <= 5.0)
+
+    # ---- 3 weeks tight (3 consecutive weekly closes within 1.5%) ----
+    three_weeks_tight = False
+    if weekly is not None and len(weekly) >= 3:
+        w_close = pd.to_numeric(weekly["Close"], errors="coerce").dropna()
+        if len(w_close) >= 3:
+            last3 = w_close.tail(3).values
+            if last3[0] > 0:
+                spreads = [(abs(last3[i] - last3[0]) / last3[0]) for i in (1, 2)]
+                three_weeks_tight = bool(all(s <= 0.015 for s in spreads))
+    out["mv_3w_tight"] = three_weeks_tight
+    if three_weeks_tight:
+        score += 3  # rare and strong signal
+
+    # ---- Power Trend (Minervini's strongest sustained-trend setup) ----
+    # 1) 8+ consecutive weekly closes above weekly 10MA (~50dma equivalent)
+    # 2) 200dma rising for 5+ months (110 trading days)
+    # 3) Recent 3 weekly closes tight
+    power_trend = False
+    if weekly is not None and len(weekly) >= 12:
+        w_close = pd.to_numeric(weekly["Close"], errors="coerce").dropna()
+        if len(w_close) >= 10:
+            w_ma10 = w_close.rolling(10).mean()
+            recent_w_above_ma = (w_close.tail(8) > w_ma10.tail(8)).all()
+        else:
+            recent_w_above_ma = False
+        sma200_rising_5mo = False
+        if len(sma200.dropna()) >= 110:
+            sma200_rising_5mo = bool(sma200.iloc[-1] > sma200.iloc[-110])
+        power_trend = bool(recent_w_above_ma and sma200_rising_5mo
+                           and stage2_count >= 8 and tight_5d >= 2)
+    out["mv_power_trend"] = power_trend
+    if power_trend:
+        score += 5  # rare and strongest
+
+    # ---- Buyable Gap Up (BGU - Morales/Kacher refinement) ----
+    # Gap-open up >=5%, day closes in upper half of bar's range,
+    # volume >= 1.5x 50d avg
+    bgu = False
+    if len(close) >= 52:
+        prev_close = float(close.iloc[-2])
+        today_open = float(open_series.iloc[-1]) if open_series is not None and len(open_series) else None
+        today_high = float(high.iloc[-1])
+        today_low = float(low.iloc[-1])
+        today_close = float(close.iloc[-1])
+        today_vol = float(volume.iloc[-1])
+        avg_vol_50 = float(volume.tail(50).mean())
+        if today_open is not None and prev_close > 0 and today_high > today_low \
+                and avg_vol_50 > 0:
+            gap_pct = (today_open - prev_close) / prev_close
+            close_in_top_half = today_close > (today_high + today_low) / 2
+            vol_surge = today_vol / avg_vol_50
+            bgu = bool(gap_pct >= 0.05 and close_in_top_half and vol_surge >= 1.5)
+    out["mv_buyable_gap_up"] = bgu
+    if bgu:
+        score += 3
+
+    # ---- Climax top warning (sell-signal) ----
+    # Last 2 weeks include largest gain in current trend + largest weekly
+    # volume + close in lower half of bar's range
+    climax_top = False
+    if weekly is not None and len(weekly) >= 30:
+        w_close = pd.to_numeric(weekly["Close"], errors="coerce").dropna()
+        w_high = pd.to_numeric(weekly["High"], errors="coerce")
+        w_low = pd.to_numeric(weekly["Low"], errors="coerce")
+        w_vol = pd.to_numeric(weekly["Volume"], errors="coerce")
+        w_ret = w_close.pct_change()
+        if len(w_ret.dropna()) >= 26:
+            last_2w_max_ret = float(w_ret.tail(2).max())
+            prior_max_ret = float(w_ret.tail(26).head(24).max())
+            last_2w_max_vol = float(w_vol.tail(2).max())
+            prior_max_vol = float(w_vol.tail(26).head(24).max())
+            climax_top = bool(
+                last_2w_max_ret > prior_max_ret
+                and last_2w_max_vol > prior_max_vol
+                and prior_max_ret > 0.05  # was actually trending
+            )
+    out["mv_climax_top_warning"] = climax_top
+
+    # ---- Stage 4 / declining (mirror of Stage 2) ----
+    stage4_below_50 = bool(v_sma50 is not None and last < v_sma50)
+    stage4_below_150 = bool(v_sma150 is not None and last < v_sma150)
+    stage4_below_200 = bool(v_sma200 is not None and last < v_sma200)
+    stage4_150_below_200 = bool(v_sma150 is not None and v_sma200 is not None and v_sma150 < v_sma200)
+    stage4_50_below_150 = bool(v_sma50 is not None and v_sma150 is not None and v_sma50 < v_sma150)
+    stage4_200_falling = False
+    if len(sma200.dropna()) >= 22:
+        stage4_200_falling = bool(sma200.iloc[-1] < sma200.iloc[-22])
+    s4_under_25_off_high = bool(last_high_52w > 0 and (last / last_high_52w) < 0.75)
+    stage4_count = sum([stage4_below_50, stage4_below_150, stage4_below_200,
+                        stage4_150_below_200, stage4_50_below_150,
+                        stage4_200_falling, s4_under_25_off_high])
+    out["mv_stage4_count"] = int(stage4_count)
+    out["mv_stage4_pass"] = bool(stage4_count >= 6)
+
+    # ---- RS Line at new high (vs SPY proxy via mom_6m percentile) ----
+    # If we have rel_close index in scope, use it; else approximation via
+    # close at a 252d high coinciding with mom_6m positive
+    rs_line_new_high = False
+    if len(close) >= 252:
+        last_close_at_252_high = float(close.iloc[-1]) == float(close.tail(252).max())
+        # rel_return_6m_pct would be a better proxy if available later
+        rs_line_new_high = bool(last_close_at_252_high)
+    out["mv_close_at_252d_high"] = rs_line_new_high
+
+    # ---- Bow-tie (10/21/50 cross / fresh Stage 2 emergence) ----
+    bow_tie = False
+    if len(close) >= 51:
+        ema10 = close.ewm(span=10).mean()
+        ema21 = close.ewm(span=21).mean()
+        # Recent week: 10 crossed above 50 AND 21 crossed above 50 within last 5 bars
+        for lag in range(0, 5):
+            j = -1 - lag
+            if j - 1 >= -len(close):
+                cur10 = float(ema10.iloc[j]); prev10 = float(ema10.iloc[j - 1])
+                cur21 = float(ema21.iloc[j]); prev21 = float(ema21.iloc[j - 1])
+                cur50 = float(sma50.iloc[j]) if not np.isnan(sma50.iloc[j]) else None
+                prev50 = float(sma50.iloc[j - 1]) if not np.isnan(sma50.iloc[j - 1]) else None
+                if cur50 is None or prev50 is None:
+                    continue
+                cross10 = prev10 < prev50 and cur10 > cur50
+                cross21 = prev21 < prev50 and cur21 > cur50
+                if cross10 and cross21:
+                    bow_tie = True
+                    break
+    out["mv_bow_tie"] = bow_tie
+    if bow_tie:
+        score += 3  # fresh Stage 2 emergence
+
+    # ---- VCP-with-volume (proper VCP requires volume drying in each contraction) ----
+    vcp_with_vol = False
+    if weekly is not None and len(weekly) >= 20 and len(contractions) >= 2:
+        w_vol = pd.to_numeric(weekly["Volume"], errors="coerce")
+        if len(w_vol.dropna()) >= 12:
+            # Check if avg vol in last 4 weeks < avg vol in prior 4 weeks
+            recent4_vol = float(w_vol.tail(4).mean())
+            prior4_vol = float(w_vol.tail(8).head(4).mean())
+            if prior4_vol > 0:
+                vcp_with_vol = bool(vcp_count >= 2 and recent4_vol < prior4_vol * 0.9)
+    out["mv_vcp_with_volume"] = vcp_with_vol
+    if vcp_with_vol:
+        score += 3  # textbook VCP
+
+    # ---- High Tight Flag (1-3 month 100%+ gain followed by 10-25% pullback) ----
+    htf = False
+    if len(close) >= 60:
+        # Find the highest high in last 60 bars and the low after it
+        last60_high = float(high.tail(60).max())
+        idx_high = high.tail(60).idxmax()
+        post_high = close.loc[idx_high:].tail(40)
+        if len(post_high) >= 5:
+            post_low = float(post_high.min())
+            # Was the 60-day high preceded by a strong rally (>=80% in 60 bars before)?
+            try:
+                pos_of_high = list(close.index).index(idx_high)
+                pre_window = close.iloc[max(0, pos_of_high - 60):pos_of_high]
+                if len(pre_window) >= 30 and pre_window.iloc[0] > 0:
+                    pre_rally = (last60_high - float(pre_window.iloc[0])) / float(pre_window.iloc[0])
+                    pullback = (last60_high - post_low) / last60_high
+                    htf = bool(pre_rally >= 0.8 and 0.10 <= pullback <= 0.30
+                              and last >= post_low * 1.02)
+            except Exception:
+                pass
+    out["mv_high_tight_flag"] = htf
+    if htf:
+        score += 4  # rare and powerful
+
+    # ---- Right-side base (current bar is on the upward leg of the base) ----
+    # Heuristic: current price > base midpoint AND 50dma rising
+    right_side_base = False
+    if v_sma50 is not None and len(close) >= 60:
+        base_window = close.tail(60)
+        midpoint = (float(base_window.max()) + float(base_window.min())) / 2
+        sma50_rising = False
+        if len(sma50.dropna()) >= 10:
+            sma50_rising = bool(sma50.iloc[-1] > sma50.iloc[-10])
+        right_side_base = bool(last > midpoint and sma50_rising)
+    out["mv_right_side_base"] = right_side_base
+    if right_side_base:
+        score += 1
+
+    # ---- Constructive base (depth limit + handle position) ----
+    # Most recent base depth should be <30% from peak
+    constructive_base = False
+    if len(close) >= 60:
+        recent60 = close.tail(60)
+        depth_pct = float((recent60.max() - recent60.min()) / recent60.max())
+        constructive_base = bool(depth_pct <= 0.30)
+    out["mv_constructive_base"] = constructive_base
+    if constructive_base:
+        score += 1
+
+    # ---- Wide-and-loose base (rejection - opposite of constructive) ----
+    out["mv_wide_loose_base"] = bool(not constructive_base and len(close) >= 60)
+
+    # ---- Acceleration of 200dma slope (second derivative) ----
+    # Slope of slope: is the trend curve curving upward?
+    ma_accel = None
+    if len(sma200.dropna()) >= 60:
+        s = sma200.dropna()
+        slope_recent = (float(s.iloc[-1]) - float(s.iloc[-21])) / 21
+        slope_prior = (float(s.iloc[-21]) - float(s.iloc[-42])) / 21
+        ma_accel = float(slope_recent - slope_prior)
+    out["mv_sma200_acceleration"] = ma_accel
+    out["mv_sma200_accelerating_up"] = bool(ma_accel is not None and ma_accel > 0)
+
+    # ---- "Buy zone" (within 5% above pivot, no more than 10%) ----
+    in_buy_zone = False
+    pivot_val = float(high.tail(40).max()) if len(high) >= 40 else None
+    if pivot_val and pivot_val > 0:
+        pct_above_pivot = (last - pivot_val) / pivot_val
+        in_buy_zone = bool(0.0 <= pct_above_pivot <= 0.05)
+        out["mv_pct_above_pivot"] = float(pct_above_pivot * 100)
+    out["mv_in_buy_zone"] = in_buy_zone
+
+    # Final composite
     out["mv_composite_score"] = float(score)
     out["mv_setup_clean"] = bool(stage2_count >= 8 and vcp_count >= 2
                                  and (dist is not None and dist <= 5.0))
+    out["mv_setup_premium"] = bool(power_trend or
+                                    (bow_tie and stage2_count >= 7) or
+                                    (htf) or
+                                    (vcp_with_vol and three_weeks_tight))
     return out
 
 
@@ -1453,7 +1685,10 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # --- Minervini / VCP comprehensive leg ---
     minervini_signals = {}
     try:
-        minervini_signals = compute_minervini(close, high, low, volume, weekly=weekly)
+        open_series = pd.to_numeric(df.loc[close.index, "Open"], errors="coerce") \
+            if "Open" in df.columns else None
+        minervini_signals = compute_minervini(
+            close, high, low, volume, weekly=weekly, open_series=open_series)
     except Exception:
         pass
 

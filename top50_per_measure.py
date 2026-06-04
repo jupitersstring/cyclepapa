@@ -92,8 +92,14 @@ if "mv_stage2_count" in mom.columns:
 if "mv_vcp_count" in mom.columns:
     show("TOP 50 by VCP contraction count (weekly)", mom,
          sort_col="mv_vcp_count", filter_mask=mom["mv_vcp_count"].notna())
-for flag in ["mv_stage2_pass", "mv_setup_clean", "mv_at_pivot", "mv_pocket_pivot",
-             "mv_vcp_strong_setup"]:
+for flag in ["mv_stage2_pass", "mv_setup_clean", "mv_setup_premium",
+             "mv_at_pivot", "mv_at_ath", "mv_in_buy_zone",
+             "mv_pocket_pivot", "mv_vcp_strong_setup", "mv_vcp_with_volume",
+             "mv_3w_tight", "mv_power_trend", "mv_buyable_gap_up",
+             "mv_bow_tie", "mv_high_tight_flag",
+             "mv_climax_top_warning", "mv_stage4_pass",
+             "mv_sma200_accelerating_up", "mv_close_at_252d_high",
+             "mv_right_side_base", "mv_constructive_base"]:
     if flag in mom.columns:
         sub = mom[mom[flag].fillna(False)]
         if len(sub):
@@ -108,6 +114,15 @@ if "mv_dist_to_pivot_pct" in mom.columns:
          mom, sort_col="mv_dist_to_pivot_pct", asc=True,
          filter_mask=(mom["mv_dist_to_pivot_pct"].notna())
                       & (mom.get("mv_stage2_count", 0) >= 7))
+if "mv_dist_from_ath_pct" in mom.columns:
+    show("TOP 50 closest to ALL-TIME HIGH (mv_dist_from_ath_pct asc, stage2>=7)",
+         mom, sort_col="mv_dist_from_ath_pct", asc=True,
+         filter_mask=(mom["mv_dist_from_ath_pct"].notna())
+                      & (mom.get("mv_stage2_count", 0) >= 7))
+if "mv_sma200_acceleration" in mom.columns:
+    show("TOP 50 by sma200 acceleration (curve curving up)", mom,
+         sort_col="mv_sma200_acceleration",
+         filter_mask=mom["mv_sma200_acceleration"].notna())
 
 # --- MA-respect leg (50d, 200d, 10w) ---
 for ma in ["d50", "d200", "w10"]:
