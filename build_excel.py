@@ -263,6 +263,29 @@ def main():
                                        .head(40)
                                        .reset_index(drop=True))
 
+        # 10. Triple-TF + Six-school all confluence — the tightest filter.
+        # Every TF rank > 55, no rejection on any TF, every weekly school
+        # score above its 50th percentile, M above 70.
+        strict = big[
+            (big.daily_rank   > 55) &
+            (big.weekly_rank  > 55) &
+            (big.monthly_rank > 55) &
+            (big.daily_label   != "Reject") &
+            (big.weekly_label  != "Reject") &
+            (big.monthly_label != "Reject") &
+            (big.W_W >= 60) & (big.Q_W >= 60) &
+            (big.D_W >= 50) & (big.DA_W >= 40) &
+            (big.M.fillna(0) >= 70)
+        ].copy()
+        strict["all_conf_avg"] = strict[["W_W","Q_W","D_W","DA_W","R_W","M"]].mean(axis=1, skipna=True)
+        strict["all_conf_min"] = strict[["W_W","Q_W","D_W","DA_W","M"]].min(axis=1, skipna=True)
+        tabs["Triple_TF_All_Confluence"] = (
+            strict.sort_values(["all_conf_min","all_conf_avg"], ascending=False)
+                  .drop_duplicates(subset=["ticker"])
+                  .head(40)
+                  .reset_index(drop=True)
+        )
+
     # 5. Uncorrelated portfolio
     try:
         unc = pd.read_csv("/tmp/cross_region_top_uncorrelated.csv")
@@ -316,7 +339,7 @@ def main():
         "W_W", "Q_W", "D_W", "DA_W", "R_W",
         "M", "M_base", "M_vcp", "vcp_contractions",
         "vcp_pivot_distance_pct", "vcp_volume_dryup_ratio",
-        "six_school_avg",
+        "six_school_avg", "all_conf_avg", "all_conf_min",
     ]
     info_cols = [
         "longName", "country", "sector", "industry", "marketCap", "currency",
