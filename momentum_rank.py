@@ -2050,7 +2050,8 @@ def main():
         # preferreds / units / warrants by ticker pattern
         if "-P" in t or "-W" in t or "-U" in t or t.endswith(("U", ".U")):
             return True
-        if nm and any(s.lower() in nm.lower() for s in junk_substrings):
+        # Guard against non-string names (e.g. NaN from Wikipedia scrape)
+        if isinstance(nm, str) and nm and any(s.lower() in nm.lower() for s in junk_substrings):
             return True
         return False
 
