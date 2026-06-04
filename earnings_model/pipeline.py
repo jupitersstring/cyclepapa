@@ -101,9 +101,13 @@ def step_analyze(
         cases.to_csv(out_dir / "case_studies.csv", index=False)
 
     # Reproducible name screens (operating-only, region-aware, guardrailed).
+    # 'conviction' runs the others internally, so it lands last and synthesises.
+    screen_counts = {}
     for name, fn in screens.SCREENS.items():
         try:
-            fn(scored, top=None).to_csv(out_dir / f"screen_{name.replace('-', '_')}.csv", index=False)
+            res = fn(scored, top=None)
+            res.to_csv(out_dir / f"screen_{name.replace('-', '_')}.csv", index=False)
+            screen_counts[name] = len(res)
         except Exception as err:  # a screen shouldn't break the pipeline
             print(f"  screen {name} skipped: {err}")
     print(
@@ -111,9 +115,13 @@ def step_analyze(
         f"inflecting_lagging({len(lagging)}) valuation_gap({len(gap)}) "
         f"prebreakout({len(pre)}) case_studies({len(cases)})"
     )
+    if screen_counts:
+        conv = screen_counts.get("conviction", 0)
+        print(f"  screens: {', '.join(f'{k}({v})' for k, v in screen_counts.items())}"
+              f"  -> conviction has {conv} multi-screen names")
     return {"scored": scored, "industry": ind, "industry_size": ind_size,
             "inflecting_lagging": lagging, "valuation_gap": gap,
-            "prebreakout": pre, "case_studies": cases}
+            "prebreakout": pre, "case_studies": cases, "screen_counts": screen_counts}
 
 
 def step_cluster(
