@@ -844,6 +844,312 @@ def compute_volatility_asymmetry(df, period=14, smooth=7, slow=14, lookback=5,
     }
 
 
+def compute_ma_respect(close, ma, atr_series, label, slope_lookback_bars=40):
+    """MA-respect leg: 5 signals per MA.
+
+    Returns dict with keys ma_{label}_{slope_pct_wk,touch_count,break_count,
+    respect_ratio,recovery_bars,vol_asym_near,spring_k,days_above,
+    max_run_above_pct,strategy_ir}.
+    """
+    keys = ["slope_pct_wk", "touch_count", "break_count", "respect_ratio",
+            "recovery_bars", "vol_asym_near", "spring_k", "days_above",
+            "max_run_above_pct", "strategy_ir"]
+    nulls = {f"ma_{label}_{k}": None for k in keys}
+
+    ma_v = ma.dropna()
+    if len(ma_v) < slope_lookback_bars or len(close) < 130:
+        return nulls
+
+    # 1. Slope %/wk over last slope_lookback_bars
+    recent = ma_v.tail(slope_lookback_bars).values
+    x = np.arange(len(recent))
+    try:
+        slope_per_bar, _ = np.polyfit(x, recent, 1)
+    except Exception:
+        slope_per_bar = 0.0
+    slope_pct_wk = float((slope_per_bar * 5) / recent[-1] * 100) if recent[-1] else 0.0
+
+    # 2. Touches + clean breaks over last 60 bars
+    n = min(60, len(close) - 1)
+    c = close.tail(n).values
+    m = ma.reindex(close.tail(n).index).values
+    touches = 0
+    breaks = 0
+    in_break = False
+    break_start = None
+    recovery_bars = []
+    for i in range(len(c)):
+        if np.isnan(m[i]) or m[i] == 0:
+            continue
+        ratio = c[i] / m[i]
+        # touch: within +/- 1.5% of MA, close stayed above MA*0.99
+        if 0.99 <= ratio <= 1.015:
+            touches += 1
+        # break: closed below MA*0.98 for 2 consecutive bars
+        below = ratio < 0.98
+        if below:
+            if in_break:
+                pass
+            else:
+                if i > 0 and not np.isnan(m[i - 1]) and m[i - 1] != 0 \
+                        and c[i - 1] / m[i - 1] < 0.98:
+                    in_break = True
+                    break_start = i - 1
+                    breaks += 1
+        else:
+            if in_break and break_start is not None:
+                recovery_bars.append(i - break_start)
+            in_break = False
+            break_start = None
+    denom = touches + 2 * breaks
+    respect_ratio = float(touches / denom) if denom > 0 else None
+    avg_recovery = float(np.mean(recovery_bars)) if recovery_bars else None
+
+    # 3. Vol asymmetry near MA (within 2 ATR)
+    ma_vol_asym = None
+    atr_v = atr_series.reindex(close.tail(n).index).values
+    rets = close.pct_change().reindex(close.tail(n).index).values
+    near_mask = (
+        ~np.isnan(m) & ~np.isnan(atr_v) & (atr_v > 0)
+        & (np.abs(c - m) <= 2 * atr_v)
+    )
+    near_rets = rets[near_mask]
+    near_rets = near_rets[~np.isnan(near_rets)]
+    if len(near_rets) >= 6:
+        up = near_rets[near_rets > 0]
+        dn = near_rets[near_rets < 0]
+        if len(up) >= 3 and len(dn) >= 3 and dn.std() > 0:
+            ma_vol_asym = float(up.std() / dn.std())
+
+    # 4. Spring constant: r(t+1) = -k * (P(t)-MA(t))/MA(t)
+    spring_k = None
+    dev = ((close - ma) / ma)
+    nxt = close.pct_change().shift(-1)
+    valid = (~dev.isna()) & (~nxt.isna()) & (~ma.isna())
+    if valid.sum() >= 50:
+        xs = dev[valid].values
+        ys = nxt[valid].values
+        var = xs.var()
+        if var > 0:
+            cov = float(np.mean((xs - xs.mean()) * (ys - ys.mean())))
+            spring_k = float(-cov / var)
+
+    # 5. Days above (current consecutive run) + max run / current run ratio
+    above = (close > ma).astype(int)
+    above_t = above.tail(252).values
+    days_above = 0
+    for v in above_t[::-1]:
+        if v == 1:
+            days_above += 1
+        else:
+            break
+    max_run = 0
+    cur = 0
+    for v in above_t:
+        if v == 1:
+            cur += 1
+            if cur > max_run:
+                max_run = cur
+        else:
+            cur = 0
+    max_run_above_pct = float(days_above / max_run) if max_run > 0 else None
+
+    # 6. Strategy IR: long while close>MA, flat otherwise, last 252 bars
+    strategy_ir = None
+    in_pos = (close > ma).shift(1).fillna(False).astype(int)
+    strat = close.pct_change() * in_pos
+    sv = strat.dropna().tail(252)
+    if len(sv) >= 100:
+        ann_ret = float(sv.mean() * 252)
+        ann_vol = float(sv.std() * np.sqrt(252))
+        if ann_vol > 0:
+            strategy_ir = float(ann_ret / ann_vol)
+
+    return {
+        f"ma_{label}_slope_pct_wk": slope_pct_wk,
+        f"ma_{label}_touch_count": int(touches),
+        f"ma_{label}_break_count": int(breaks),
+        f"ma_{label}_respect_ratio": respect_ratio,
+        f"ma_{label}_recovery_bars": avg_recovery,
+        f"ma_{label}_vol_asym_near": ma_vol_asym,
+        f"ma_{label}_spring_k": spring_k,
+        f"ma_{label}_days_above": int(days_above),
+        f"ma_{label}_max_run_above_pct": max_run_above_pct,
+        f"ma_{label}_strategy_ir": strategy_ir,
+    }
+
+
+def compute_minervini(close, high, low, volume, weekly=None):
+    """Comprehensive Minervini/VCP screening leg.
+
+    Implements: Stage 2 Trend Template (9 sub-flags), VCP contraction
+    detection (weekly), tight-close patterns, inside-day count, closes-in-
+    upper-half rate, pocket-pivot detector, dist-to-pivot. Composite
+    mv_composite_score in [0, ~30].
+    """
+    out = {}
+    sma50 = close.rolling(50).mean()
+    sma150 = close.rolling(150).mean()
+    sma200 = close.rolling(200).mean()
+    last = float(close.iloc[-1])
+
+    # 52w high/low
+    look = min(252, len(close))
+    last_low_52w = float(low.tail(look).min())
+    last_high_52w = float(high.tail(look).max())
+
+    # ---- Stage 2 Trend Template (9 sub-flags) ----
+    def _safe(s, default=False):
+        try:
+            v = float(s.iloc[-1])
+            return v if not np.isnan(v) else None
+        except Exception:
+            return None
+    v_sma50 = _safe(sma50)
+    v_sma150 = _safe(sma150)
+    v_sma200 = _safe(sma200)
+    s2_above_50 = bool(v_sma50 is not None and last > v_sma50)
+    s2_above_150 = bool(v_sma150 is not None and last > v_sma150)
+    s2_above_200 = bool(v_sma200 is not None and last > v_sma200)
+    s2_150_above_200 = bool(v_sma150 is not None and v_sma200 is not None and v_sma150 > v_sma200)
+    s2_50_above_150 = bool(v_sma50 is not None and v_sma150 is not None and v_sma50 > v_sma150)
+    s2_50_above_200 = bool(v_sma50 is not None and v_sma200 is not None and v_sma50 > v_sma200)
+    s2_200_rising = False
+    if len(sma200.dropna()) >= 22:
+        s2_200_rising = bool(sma200.iloc[-1] > sma200.iloc[-22])
+    s2_30_above_low = bool(last_low_52w > 0 and (last / last_low_52w - 1) >= 0.30)
+    s2_within_25_of_high = bool(last_high_52w > 0 and (last / last_high_52w) >= 0.75)
+
+    stage2_flags = [s2_above_50, s2_above_150, s2_above_200,
+                    s2_150_above_200, s2_50_above_150, s2_50_above_200,
+                    s2_200_rising, s2_30_above_low, s2_within_25_of_high]
+    stage2_count = sum(stage2_flags)
+    out.update({
+        "mv_stage2_above_50d": s2_above_50,
+        "mv_stage2_above_150d": s2_above_150,
+        "mv_stage2_above_200d": s2_above_200,
+        "mv_stage2_150_above_200d": s2_150_above_200,
+        "mv_stage2_50_above_150d": s2_50_above_150,
+        "mv_stage2_50_above_200d": s2_50_above_200,
+        "mv_stage2_200_rising": s2_200_rising,
+        "mv_stage2_30pct_above_low": s2_30_above_low,
+        "mv_stage2_within_25pct_of_high": s2_within_25_of_high,
+        "mv_stage2_count": int(stage2_count),
+        "mv_stage2_pass": bool(stage2_count >= 9),
+    })
+
+    # ---- Tight closes (multi-day pivot) ----
+    pct_moves = close.pct_change().abs()
+    tight_3d = int((pct_moves.tail(3) < 0.02).sum())
+    tight_5d = int((pct_moves.tail(5) < 0.02).sum())
+    out["mv_tight_close_3d"] = tight_3d
+    out["mv_tight_close_5d"] = tight_5d
+
+    # ---- 5-day volume drying ----
+    avg_vol_50 = float(volume.tail(50).mean()) if len(volume) >= 50 else 0.0
+    recent_vol_5 = float(volume.tail(5).mean()) if len(volume) >= 5 else 0.0
+    out["mv_vol_drying_5d"] = float(recent_vol_5 / avg_vol_50) if avg_vol_50 > 0 else None
+
+    # ---- Inside days (last 5) ----
+    inside_days = 0
+    if len(close) >= 6:
+        for i in range(1, 6):
+            if high.iloc[-i] <= high.iloc[-i - 1] and low.iloc[-i] >= low.iloc[-i - 1]:
+                inside_days += 1
+    out["mv_inside_days_5d"] = int(inside_days)
+
+    # ---- Closes in upper half of day's range ----
+    def _upper_half(n):
+        if len(close) < n:
+            return None
+        h = high.tail(n); l = low.tail(n); c = close.tail(n)
+        m = (h + l) / 2
+        mask = h > l
+        if mask.sum() == 0:
+            return None
+        return float(((c > m) & mask).sum() / mask.sum())
+    out["mv_closes_top_half_5d"] = _upper_half(5)
+    out["mv_closes_top_half_20d"] = _upper_half(20)
+
+    # ---- Distance to pivot (recent 8w high in daily) ----
+    pivot = float(high.tail(40).max()) if len(high) >= 40 else float(high.max())
+    out["mv_dist_to_pivot_pct"] = float((pivot - last) / pivot * 100) if pivot > 0 else None
+    out["mv_at_pivot"] = bool(out["mv_dist_to_pivot_pct"] is not None
+                              and out["mv_dist_to_pivot_pct"] <= 3.0)
+
+    # ---- Pocket pivot (O'Neill / Morales) ----
+    pocket = False
+    if len(close) >= 12:
+        last_up = bool(close.iloc[-1] > close.iloc[-2])
+        if last_up:
+            vol_today = float(volume.iloc[-1])
+            down_vols = []
+            for i in range(2, 12):
+                if close.iloc[-i] < close.iloc[-i - 1]:
+                    down_vols.append(float(volume.iloc[-i]))
+            if down_vols and vol_today > max(down_vols):
+                pocket = True
+    out["mv_pocket_pivot"] = pocket
+
+    # ---- VCP contraction count (weekly) ----
+    vcp_count = 0
+    contractions = []
+    if weekly is not None and len(weekly) >= 12:
+        w_close = pd.to_numeric(weekly["Close"], errors="coerce").dropna()
+        w_recent = w_close.tail(min(25, len(w_close)))
+        # Find local peaks/troughs in 5-bar window
+        events = []
+        for i in range(2, len(w_recent) - 2):
+            win = w_recent.iloc[i - 2:i + 3]
+            v = float(w_recent.iloc[i])
+            if v == float(win.max()):
+                events.append(("peak", i, v))
+            elif v == float(win.min()):
+                events.append(("trough", i, v))
+        # Walk through events, compute peak-to-trough drawdowns
+        sorted_events = sorted(events, key=lambda x: x[1])
+        for j in range(len(sorted_events) - 1):
+            t1, _, p1 = sorted_events[j]
+            t2, _, p2 = sorted_events[j + 1]
+            if t1 == "peak" and t2 == "trough" and p1 > 0 and p1 > p2:
+                contractions.append((p1 - p2) / p1)
+        # VCP: count successive tightening contractions from the end
+        prior = None
+        for amp in reversed(contractions):
+            if prior is None:
+                prior = amp
+                vcp_count += 1
+            elif amp < prior * 0.85:  # 15%+ tighter than prior
+                vcp_count += 1
+                prior = amp
+            else:
+                break
+    out["mv_vcp_count"] = int(vcp_count)
+    out["mv_vcp_setup"] = bool(vcp_count >= 2)
+    out["mv_vcp_strong_setup"] = bool(vcp_count >= 3)
+    out["mv_last_contraction_pct"] = float(contractions[-1] * 100) if contractions else None
+
+    # ---- Composite Minervini score ----
+    score = 0.0
+    score += stage2_count                          # 0..9
+    score += vcp_count * 2                         # 0..6+
+    score += tight_5d                              # 0..5
+    upper20 = out.get("mv_closes_top_half_20d")
+    if upper20 is not None:
+        score += upper20 * 5                       # 0..5
+    if pocket:
+        score += 2
+    dist = out.get("mv_dist_to_pivot_pct")
+    if dist is not None and dist <= 3.0:
+        score += 3
+    if out.get("mv_vol_drying_5d") and out["mv_vol_drying_5d"] < 0.8:
+        score += 2
+    out["mv_composite_score"] = float(score)
+    out["mv_setup_clean"] = bool(stage2_count >= 8 and vcp_count >= 2
+                                 and (dist is not None and dist <= 5.0))
+    return out
+
+
 def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None,
                       intraday_frames=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
@@ -1124,6 +1430,33 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     # 200-day MA slope (Roque's "demand line")
     dma200_slope, dist_dma200 = dma200_slope_pct(close)
 
+    # --- MA-respect leg (50d, 200d, 10w) ---
+    ma_signals = {}
+    try:
+        sma50_series = close.rolling(50).mean()
+        sma200_series = close.rolling(200).mean()
+        # Daily-aligned ATR series for vol-asym-near-MA
+        tr_series = pd.Series(
+            np.r_[np.nan, true_range(high.values[1:], low.values[1:], close.values[:-1])],
+            index=close.index,
+        )
+        atr14_series = tr_series.rolling(14).mean()
+        ma_signals.update(compute_ma_respect(close, sma50_series, atr14_series, "d50"))
+        ma_signals.update(compute_ma_respect(close, sma200_series, atr14_series, "d200"))
+        # Weekly 10wMA aligned back to daily via ffill
+        wma10_series = wclose.rolling(10).mean()
+        wma10_daily = wma10_series.reindex(close.index, method="ffill")
+        ma_signals.update(compute_ma_respect(close, wma10_daily, atr14_series, "w10"))
+    except Exception as e:
+        pass
+
+    # --- Minervini / VCP comprehensive leg ---
+    minervini_signals = {}
+    try:
+        minervini_signals = compute_minervini(close, high, low, volume, weekly=weekly)
+    except Exception:
+        pass
+
     out = {
         "last_close": last,
         "mom_1m": last / sma25,
@@ -1389,6 +1722,8 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
                     "rel_asym_m_just_crossed_up": rel_asym_m.get("asym_just_crossed_up", False),
                 })
 
+    out.update(ma_signals)
+    out.update(minervini_signals)
     return out
 
 

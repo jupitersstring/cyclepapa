@@ -82,6 +82,49 @@ for tag in ["prebreakout_w", "qulla_consol_setup", "qulla_consol_soft",
             show(f"ALL {tag.upper()} (sorted by box_length desc)", sub, n=50,
                  sort_col="box_length_weeks" if "box_length_weeks" in sub.columns else None)
 
+# --- Minervini / VCP signals ---
+if "mv_composite_score" in mom.columns:
+    show("TOP 50 by Minervini composite score", mom, sort_col="mv_composite_score",
+         filter_mask=mom["mv_composite_score"].notna())
+if "mv_stage2_count" in mom.columns:
+    show("TOP 50 by Minervini Stage 2 count (out of 9)", mom,
+         sort_col="mv_stage2_count", filter_mask=mom["mv_stage2_count"].notna())
+if "mv_vcp_count" in mom.columns:
+    show("TOP 50 by VCP contraction count (weekly)", mom,
+         sort_col="mv_vcp_count", filter_mask=mom["mv_vcp_count"].notna())
+for flag in ["mv_stage2_pass", "mv_setup_clean", "mv_at_pivot", "mv_pocket_pivot",
+             "mv_vcp_strong_setup"]:
+    if flag in mom.columns:
+        sub = mom[mom[flag].fillna(False)]
+        if len(sub):
+            sort_c = "mv_composite_score" if "mv_composite_score" in sub.columns else "rs_rank_max"
+            show(f"ALL {flag.upper()} ({len(sub)}) sorted by {sort_c}",
+                 sub, n=50, sort_col=sort_c)
+if "mv_tight_close_5d" in mom.columns:
+    show("TOP 50 by tight-close 5d count", mom,
+         sort_col="mv_tight_close_5d", filter_mask=mom["mv_tight_close_5d"].notna())
+if "mv_dist_to_pivot_pct" in mom.columns:
+    show("TOP 50 closest to pivot (mv_dist_to_pivot_pct asc, stage2>=7)",
+         mom, sort_col="mv_dist_to_pivot_pct", asc=True,
+         filter_mask=(mom["mv_dist_to_pivot_pct"].notna())
+                      & (mom.get("mv_stage2_count", 0) >= 7))
+
+# --- MA-respect leg (50d, 200d, 10w) ---
+for ma in ["d50", "d200", "w10"]:
+    for col_suffix, label in [
+        ("respect_ratio", f"{ma} MA respect ratio"),
+        ("slope_pct_wk", f"{ma} MA slope %/wk"),
+        ("vol_asym_near", f"{ma} MA vol asym near"),
+        ("spring_k", f"{ma} MA spring constant (neg=reverting)"),
+        ("days_above", f"{ma} days above MA"),
+        ("strategy_ir", f"{ma} MA-cross strategy IR"),
+    ]:
+        col = f"ma_{ma}_{col_suffix}"
+        if col in mom.columns:
+            asc = (col_suffix == "spring_k")  # negative is bullish for spring_k
+            show(f"TOP 30 BULL by {label}", mom, n=30, sort_col=col, asc=asc,
+                 filter_mask=mom[col].notna())
+
 # --- AQR-style time-series momentum (vol-normalised, tanh-summed) ---
 for col, label in [
     ("aqr_trend_score", "AQR trend score (1m+3m+6m+12m vol-normalised)"),
