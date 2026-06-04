@@ -331,30 +331,49 @@ def conviction(df: pd.DataFrame, top: int | None = 40,
         "consensus_gap_pct", "surprise_quality", "surprise_cum8"])
 
 
-def consensus_lagging(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
+def consensus_lagging(df: pd.DataFrame, top: int | None = 40,
+                      min_analysts: int = 5, **elig) -> pd.DataFrame:
     """Forward EPS estimate is BELOW trailing reality — consensus hasn't caught up.
 
     The direct complement to ``surprises``: instead of looking back at how badly
     consensus missed, this looks at *forward* estimates that haven't yet
-    adjusted to the trailing run-rate. ``consensus_gap_pct < 0`` and *growing*
-    fundamentals = the next earnings beat is mathematically already half-baked.
+    adjusted to the trailing run-rate. Gated tightly to avoid artifacts:
+
+    * ``consensus_gap_pct`` between -0.95 and -0.05 (forward 5-95% below trailing
+      — bounds out low-base ratio explosions);
+    * trailing+forward EPS both positive (excludes loss-makers);
+    * revenue AND EBITDA growing (the reality is improving);
+    * **positive surprise_cum8** (management has demonstrably been beating, so
+      the conservative forward is consensus lag, NOT a guided-down warning);
+    * ``analyst_coverage >= min_analysts`` (drop thin coverage where the
+      'consensus' is one analyst's guess);
+    * exclude REITs (trailing EPS is NAV revaluation noise).
     """
     e = eligible(df, **elig)
     if "consensus_gap_pct" not in e.columns:
-        raise ValueError("consensus_gap_pct missing — re-fetch to pick up forwardEps/trailingEps")
+        raise ValueError("consensus_gap_pct missing — refresh valuation for forwardEps/trailingEps")
+    teps = pd.to_numeric(e.get("trailingEps"), errors="coerce")
+    feps = pd.to_numeric(e.get("forwardEps"), errors="coerce")
+    cov = pd.to_numeric(e.get("analyst_coverage"), errors="coerce")
+    is_reit = e["industry"].astype(str).str.contains("REIT", na=False)
     e = e[
-        (e["consensus_gap_pct"].fillna(0) < -0.05)             # forward < trailing by >5%
-        & (e["revenue_growth"].fillna(-1) > 0)                 # but revenue is growing
-        & (e["ebitda_growth"].fillna(-1) > 0)                  # and EBITDA is growing
+        e["consensus_gap_pct"].between(-0.95, -0.05)
+        & (teps > 0) & (feps > 0)
+        & (e["revenue_growth"].fillna(-1) > 0)
+        & (e["ebitda_growth"].fillna(-1) > 0)
+        & (e["surprise_cum8"].fillna(0) > 0)   # demonstrably beating consensus
+        & (cov.fillna(0) >= min_analysts)
+        & ~is_reit
     ].copy()
     score = (
-        0.50 * (-_rank(e, "consensus_gap_pct"))                # bigger negative gap = better
-        + 0.30 * _rank(e, "ebitda_growth")
-        + 0.20 * _quiet(e)
+        0.45 * (-_rank(e, "consensus_gap_pct"))
+        + 0.25 * _rank(e, "ebitda_growth")
+        + 0.15 * _rank(e, "surprise_cum8")
+        + 0.15 * _quiet(e)
     )
     return _finish(e, score, top, extra=[
         "consensus_gap_pct", "analyst_coverage", "trailingEps", "forwardEps",
-        "ebitda_growth", "rev_up_frac"])
+        "surprise_cum8", "surprise_beat_rate"])
 
 
 SCREENS = {
