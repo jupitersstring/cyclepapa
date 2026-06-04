@@ -28,9 +28,12 @@ def augment_region(csv_path: str):
     region = csv_path.split("stars_aligned_")[-1].replace(".csv", "")
 
     new_cols = ["M", "M_base", "M_vcp", "vcp_contractions",
-                "vcp_pivot_distance_pct", "vcp_volume_dryup_ratio"]
-    if "M" in df.columns and df["M"].notna().sum() > len(df) * 0.5:
-        print(f"  {region}: already augmented", file=sys.stderr)
+                "vcp_pivot_distance_pct", "vcp_volume_dryup_ratio",
+                "E", "E_vol_spike", "E_pivot_break", "E_ret_acceleration",
+                "E_behavior_shift", "E_close_strength", "E_coil_break",
+                "E_ma_aligned", "E_bb_break", "E_new_high", "E_vol_ratio"]
+    if "E" in df.columns and df["E"].notna().sum() > len(df) * 0.5:
+        print(f"  {region}: already has E", file=sys.stderr)
         return
 
     tickers = df["ticker"].astype(str).tolist()
@@ -64,14 +67,7 @@ def augment_region(csv_path: str):
                 minervini_rows.append({k: np.nan for k in new_cols})
                 continue
             m = full_minervini_score(bars)
-            minervini_rows.append({
-                "M":                       m.get("M"),
-                "M_base":                  m.get("M_base"),
-                "M_vcp":                   m.get("M_vcp"),
-                "vcp_contractions":        m.get("vcp_contractions"),
-                "vcp_pivot_distance_pct":  m.get("vcp_pivot_distance_pct"),
-                "vcp_volume_dryup_ratio":  m.get("vcp_volume_dryup_ratio"),
-            })
+            minervini_rows.append({k: m.get(k) for k in new_cols})
         except Exception:
             minervini_rows.append({k: np.nan for k in new_cols})
         if (i + 1) % 250 == 0:

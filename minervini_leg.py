@@ -497,10 +497,10 @@ def vcp_metrics(bars: pd.DataFrame, lookback_days: int = 60) -> dict:
 
 
 def full_minervini_score(daily_bars: pd.DataFrame) -> dict:
-    """Combine MA-respect composite with VCP score, weighted 60/40."""
+    """Combine MA-respect composite with VCP, plus E (entry-NOW trigger)."""
     m = all_minervini_metrics(daily_bars)
     if not m:
-        return {"M": float("nan")}
+        return {"M": float("nan"), "E": float("nan")}
     base = minervini_composite(m)
     vcp = vcp_metrics(daily_bars) or {}
     vcp_s = vcp.get("vcp_score")
@@ -511,11 +511,173 @@ def full_minervini_score(daily_bars: pd.DataFrame) -> dict:
             combined = base
     else:
         combined = float("nan")
+    e = entry_now(daily_bars) or {"E": float("nan")}
     return {
         "M":       float(combined),
         "M_base":  float(base) if np.isfinite(base) else None,
         "M_vcp":   float(vcp_s) if vcp_s is not None else None,
         **vcp,
+        **e,
+    }
+
+
+# ---------- "Time is NOW" entry-trigger leg ---------------------------------
+
+def entry_now(bars: pd.DataFrame, lookback: int = 20) -> dict:
+    """Composite 0..100 score that fires when TODAY's daily bar is the
+    right entry. Emphasises: volume spike, strong setup behind it, AND
+    recently different / uncorrelated behavior vs the prior weeks.
+
+    Components (weight):
+      vol_spike (20):       today vol >= 2x trailing 50-day MEDIAN
+      pivot_break (15):     close > prior 20-bar high
+      ret_acceleration (10):last 5 daily returns >> prior 20-day mean
+      behavior_shift (10):  rolling 10-day return autocorr differs >0.3 from
+                            prior 40-day (regime change in own dynamics)
+      close_strength (10):  close in upper 70% of day's range
+      coil_break (10):      yesterday NR4/inside, today breaks high
+      ma_aligned (10):      close > EMA10 > SMA20 > SMA50 (golden order)
+      bb_break (10):        close > Bollinger upper band
+      new_high (5):         close > 20-bar high
+    """
+    if len(bars) < 25:
+        return {"E": float("nan")}
+    c = bars["Close"]; h = bars["High"]; l = bars["Low"]; v = bars.get("Volume")
+    if len(c) < 25:
+        return {"E": float("nan")}
+
+    c_now = float(c.iloc[-1])
+    c_prev = float(c.iloc[-2])
+    h_now = float(h.iloc[-1])
+    l_now = float(l.iloc[-1])
+
+    ema10 = c.ewm(span=10, adjust=False).mean()
+    sma20 = c.rolling(20).mean()
+    sma50 = c.rolling(50).mean() if len(c) >= 50 else sma20
+    ema10_now = float(ema10.iloc[-1])
+    sma20_now = float(sma20.iloc[-1])
+    sma50_now = float(sma50.iloc[-1]) if not pd.isna(sma50.iloc[-1]) else sma20_now
+
+    # 1. Pivot break
+    prior_high = float(h.iloc[-(lookback + 1):-1].max())
+    pivot_break = c_now > prior_high * 1.002
+
+    # 2. Volume spike — vs 50-day MEDIAN (robust to past spikes)
+    if v is not None and len(v.dropna()) >= 50:
+        vol_now = float(v.iloc[-1])
+        vol_med = float(v.iloc[-50:-1].median())
+        vol_ratio = vol_now / max(1e-9, vol_med)
+        # 2x median = full credit; 1.0x = 0; smooth ramp
+        vol_spike = float(np.clip((vol_ratio - 1.0) / 1.0, 0, 1))
+    else:
+        vol_ratio = None
+        vol_spike = 0.0
+
+    # Recent acceleration: last 5 days returns vs prior 20-day avg
+    ret = c.pct_change().dropna()
+    if len(ret) >= 25:
+        recent_avg = float(ret.iloc[-5:].mean())
+        prior_avg = float(ret.iloc[-25:-5].mean())
+        # Ratio of recent to prior; positive recent + 3x prior = full credit
+        if prior_avg > 0 and recent_avg > prior_avg:
+            ret_acc = float(np.clip((recent_avg / max(prior_avg, 1e-4) - 1) / 2, 0, 1))
+        elif recent_avg > 0 and prior_avg <= 0:
+            # Recent positive, prior was negative/zero — strong shift
+            ret_acc = float(np.clip(recent_avg / 0.005, 0, 1))
+        else:
+            ret_acc = 0.0
+    else:
+        ret_acc = 0.0
+
+    # Behavior shift — autocorrelation regime change in own returns
+    if len(ret) >= 60:
+        recent_ret = ret.iloc[-10:]
+        prior_ret = ret.iloc[-50:-10]
+        if recent_ret.std() > 0 and prior_ret.std() > 0:
+            r_recent = float(recent_ret.autocorr(lag=1)) if len(recent_ret) > 2 else 0.0
+            r_prior = float(prior_ret.autocorr(lag=1)) if len(prior_ret) > 2 else 0.0
+            ac_shift = abs(r_recent - r_prior)
+            # Also detect mean-shift
+            mean_shift = abs(recent_ret.mean() - prior_ret.mean()) / max(prior_ret.std(), 1e-6)
+            behavior_shift = float(np.clip((ac_shift * 1.5 + mean_shift * 0.5) / 1.5, 0, 1))
+        else:
+            behavior_shift = 0.0
+    else:
+        behavior_shift = 0.0
+
+    # 3. Close strength in day's range
+    rng = h_now - l_now
+    close_strength = (c_now - l_now) / rng if rng > 1e-9 else 0.5
+    close_strength_score = float(np.clip((close_strength - 0.5) * 2, 0, 1))
+
+    # 4. Coil break (yesterday NR4 or inside, today breaks high)
+    if len(c) >= 6:
+        rngs = (h - l).iloc[-5:].values
+        nr4 = rngs[-2] <= rngs[-5:-1].min() if len(rngs) >= 4 else False
+        inside = (h.iloc[-2] <= h.iloc[-3]) and (l.iloc[-2] >= l.iloc[-3])
+        coil_break = (nr4 or inside) and c_now > float(h.iloc[-2])
+    else:
+        coil_break = False
+
+    # 5. Pullback bounce (yesterday touched EMA10, today reclaims)
+    pullback_bounce = (
+        float(l.iloc[-2]) <= float(ema10.iloc[-2]) * 1.01 and
+        c_now > ema10_now and c_now > c_prev
+    )
+
+    # 6. MA alignment
+    ma_aligned = c_now > ema10_now > sma20_now > sma50_now
+
+    # 7. Compression
+    tr = pd.concat([h - l, (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
+    atr5 = float(tr.rolling(5).mean().iloc[-1])
+    atr20 = float(tr.rolling(20).mean().iloc[-1])
+    compression = (atr5 / atr20) < 0.8 if atr20 > 0 else False
+
+    # 8. Bollinger band break
+    std20 = float(c.rolling(20).std().iloc[-1])
+    upper_bb = sma20_now + 2 * std20
+    bb_break = c_now > upper_bb
+
+    # 9. New 20-day high
+    new_high = c_now > float(h.iloc[-21:-1].max())
+
+    weights = {
+        "vol_spike":         0.20,
+        "pivot_break":       0.15,
+        "ret_acceleration":  0.10,
+        "behavior_shift":    0.10,
+        "close_strength":    0.10,
+        "coil_break":        0.10,
+        "ma_aligned":        0.10,
+        "bb_break":          0.10,
+        "new_high":          0.05,
+    }
+    components = {
+        "vol_spike":         vol_spike,
+        "pivot_break":       float(pivot_break),
+        "ret_acceleration":  ret_acc,
+        "behavior_shift":    behavior_shift,
+        "close_strength":    close_strength_score,
+        "coil_break":        float(coil_break),
+        "ma_aligned":        float(ma_aligned),
+        "bb_break":          float(bb_break),
+        "new_high":          float(new_high),
+    }
+    score = sum(weights[k] * components[k] for k in weights)
+
+    return {
+        "E":                  float(score * 100),
+        "E_vol_spike":        components["vol_spike"],
+        "E_pivot_break":      components["pivot_break"],
+        "E_ret_acceleration": components["ret_acceleration"],
+        "E_behavior_shift":   components["behavior_shift"],
+        "E_close_strength":   components["close_strength"],
+        "E_coil_break":       components["coil_break"],
+        "E_ma_aligned":       components["ma_aligned"],
+        "E_bb_break":         components["bb_break"],
+        "E_new_high":         components["new_high"],
+        "E_vol_ratio":        vol_ratio,
     }
 
 
