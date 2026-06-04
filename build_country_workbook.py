@@ -363,13 +363,21 @@ def main():
         gems[gem_cols_show].to_excel(xl, sheet_name='Gems', index=False)
 
         # ----- GARP Multibaggers sheet -----
-        # Strict GARP screen: rev_3y_cagr >= 10%, EV/EBIT 2-12 or P/E 3-18,
-        # EBITDA margin >= 8%, ROCE >= 10%, net_debt/EBITDA <= 2.5x.
-        # Excludes Health Care, Utilities, Real Estate sectors and pure-mining
-        # industries (binary commodity / clinical bets are not GARP).
-        # Output is sorted by garp_score = 0.30 yart + 0.40 rev_3y_cagr + 0.30 ROCE.
-        if os.path.exists('garp_candidates.csv'):
-            garp_df = pd.read_csv('garp_candidates.csv')
+        # v2 methodical screen with forensic fixes:
+        # - Live financedatabase lookup for current sector/industry/name
+        #   (catches stale-cached errors like ORZCF, TRU.L, PALM.JK, CTO.SI)
+        # - REQUIRE positive FCF yield (real GARP generates cash, not just EBITDA)
+        # - REQUIRE EBITDA growing YoY (confirms growth in earnings, not just rev)
+        # - Industry-level exclusions (Mining/Metals/Pharma/Biotech/Casinos)
+        # - SPAC dilution pattern excluded (rev_ttm < 20M AND mcap > 500M)
+        # - Dedup by company name (kills NVDR-R + dual-listing duplicates)
+        # - Cap rev_yoy <= 100% to filter one-shot M&A pops
+        # Output: garp_score = 0.25 yart + 0.30 rev_3y_cagr + 0.25 ROCE + 0.20 EV/EBIT inverse
+        garp_path = 'garp_candidates_v2_relaxed.csv'
+        if not os.path.exists(garp_path):
+            garp_path = 'garp_candidates_v2.csv'
+        if os.path.exists(garp_path):
+            garp_df = pd.read_csv(garp_path)
             # Merge verdicts so user sees qualitative status alongside
             verdict_map = df[['symbol','verdict','thesis','full_thesis','why']].drop_duplicates('symbol')
             garp_df = garp_df.drop(columns=[c for c in ['verdict','thesis'] if c in garp_df.columns], errors='ignore')
