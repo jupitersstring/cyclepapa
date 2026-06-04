@@ -1,0 +1,45 @@
+rank,ticker,name,sector,industry,mcap_musd,price,fwk_low,fwk_high,drawdown_pct,p_b,p_s,cluster,window_days_ago,ceo,cfo,tot_insider_musd,has_13d,step_change_score,forensic_psu_score,psu_pct_lti,score,reasons
+1,TONX,TON Strategy Company,Technology,Software - Application,213.0,3.76,1.75,29.77,7.2,0.52287585,12.707307,4,21,True,True,0.07,False,,,,56.0,4-buyer cluster 21d ago | CEO+CFO bought | only 7% above 52w low | P/B 0.5
+2,FLUT,Flutter Entertainment plc,Consumer Cyc,Gambling,17461.0,100.7,91.52,313.685,4.1,1.9375817,1.0258152,7,23,True,False,1.05,False,,,,56.0,7-buyer cluster 23d ago | CEO bought | only 4% above 52w low
+3,AGBK,AGI Inc,Financial Se,Banks - Regional,1081.0,6.76,6.4,12.21,6.2,1.1710745,0.29676384,4,24,True,False,0.21,False,,,,50.0,4-buyer cluster 24d ago | CEO bought | only 6% above 52w low | P/B 1.2
+4,HDSN,"Hudson Technologies, Inc.",Basic Materi,Specialty Chemicals,222.0,5.27,4.64,10.52,10.7,0.93241334,0.8817944,7,20,True,False,0.15,False,,,,49.0,7-buyer cluster 20d ago | CEO bought | 11% above 52w low | P/B 0.9
+5,EPAM,"EPAM Systems, Inc.",Technology,Information Technology Service,5082.0,97.28,89.25,222.53,6.0,1.4957869,0.9148428,6,31,True,True,0.04,False,,,,48.0,6-buyer cluster 31d ago | CEO+CFO bought | only 6% above 52w low
+6,PATK,"Patrick Industries, Inc.",Consumer Cyc,Recreational Vehicles,2982.0,90.65,83.96,148.5,10.4,2.524226,0.75592643,5,29,True,False,3.54,False,,,,47.0,5-buyer cluster 29d ago | CEO bought | 10% above 52w low
+7,GO,Grocery Outlet Holding Corp.,Consumer Def,Grocery Stores,818.0,8.27,5.655,19.41,19.0,1.0136046,0.1729745,6,87,True,False,7.92,False,,,,47.0,6-buyer cluster 87d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0
+8,BETR,Better Home & Finance Holding C,Financial Se,Mortgage Finance,498.0,26.41,10.86,94.06,18.7,51.582027,2.752703,6,59,True,True,9.21,False,,,,47.0,6-buyer cluster 59d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low
+9,SRAD,Sportradar Group AG,Technology,Software - Application,3984.0,13.46,11.66,32.22,8.8,3.6539679,3.0058506,7,31,True,False,11.35,False,,,,47.0,7-buyer cluster 31d ago | CEO bought | $11.3M insider buys | only 9% above 52w low
+10,POOL,Pool Corporation,Industrials,Industrial Distribution,6585.0,180.69,172.68,345.0,4.6,5.810715,1.2294676,4,27,False,False,7.67,False,,,,46.0,4-buyer cluster 27d ago | $7.7M insider buys | only 5% above 52w low
+11,ODTX,"Odyssey Therapeutics, Inc.",Healthcare,Biotechnology,787.0,16.69,15.35,20.3,27.1,-0.74181074,264.56207,7,24,False,True,75.32,True,,,,45.0,7-buyer cluster 24d ago | $75.3M insider buys | 13D filed
+12,GSHD,"Goosehead Insurance, Inc.",Financial Se,Insurance Brokers,1224.0,34.37,33.68,113.0,0.9,-6.708959,3.2019448,3,20,True,True,0.56,False,,,,44.0,3-buyer cluster 20d ago | CEO+CFO bought | only 1% above 52w low
+13,OI,"O-I Glass, Inc.",Consumer Cyc,Packaging & Containers,1222.0,7.97,7.915,16.91,0.6,0.9421918,0.19093569,4,23,False,True,0.18,False,,,,44.0,4-buyer cluster 23d ago | only 1% above 52w low | P/B 0.9
+14,XRN,Chiron Real Estate Inc.,Real Estate,REIT - Healthcare Facilities,501.0,34.87,29.05,39.93,53.5,1.1966369,3.3092165,9,24,True,True,0.62,False,,,,43.0,9-buyer cluster 24d ago | CEO+CFO bought | P/B 1.2
+15,EVTC,"Evertec, Inc.",Technology,Software - Infrastructure,1391.0,22.57,21.82,38.02,4.6,2.0811434,1.4625087,4,24,False,False,1.82,False,,,,42.0,4-buyer cluster 24d ago | only 5% above 52w low
+16,OLED,Universal Display Corporation,Technology,Electronic Components,4247.0,90.84,83.64,163.21,9.0,2.4923177,6.7782054,3,24,True,False,1.47,False,,,,42.0,3-buyer cluster 24d ago | CEO bought | only 9% above 52w low
+17,HFFG,,,,102.0,1.899999976158142,,,,,,4,78,True,True,0.04,False,,35.755,50,41.0,4-buyer cluster 78d ago | CEO+CFO bought | forensic-PSU 36
+18,CRM,,,,148738.0,181.82000732421875,,,,,,2,78,False,False,1.0,False,57.2,21.04,67,40.6,2-buyer cluster 78d ago | step-change 57 | forensic-PSU 21
+19,MRP,"Millrose Properties, Inc.",Real Estate,REIT - Residential,4573.0,27.54,26.3,36.0,12.8,0.78101075,6.4164605,3,22,False,False,6.53,False,,,,40.0,3-buyer cluster 22d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8
+20,OPCH,"Option Care Health, Inc.",Healthcare,Medical Care Facilities,3224.0,20.53,18.01,36.8,13.4,2.385545,0.5688478,4,31,True,True,1.88,False,,,,40.0,4-buyer cluster 31d ago | CEO+CFO bought | 13% above 52w low
+21,NKE,"Nike, Inc.",Consumer Cyc,Footwear & Accessories,64878.0,43.81,41.35,80.17,6.3,4.6018906,1.3945289,4,57,True,False,3.73,False,,,,40.0,4-buyer cluster 57d ago | CEO bought | only 6% above 52w low
+22,ONON,On Holding AG,Consumer Cyc,Footwear & Accessories,13055.0,37.52,31.41,58.25,22.8,5.536192,4.185318,3,20,True,False,6.59,False,,,,40.0,3-buyer cluster 20d ago | CEO bought | $6.6M insider buys | 23% above 52w low
+23,MOBI,"Mobia Medical, Inc.",Healthcare,Medical Devices,454.0,13.73,10.19,14.77,77.3,-0.28039864,14.177546,6,24,False,False,19.02,True,,,,39.0,6-buyer cluster 24d ago | $19.0M insider buys | 13D filed
+24,NSP,"Insperity, Inc.",Industrials,Staffing & Employment Services,1282.0,33.6,18.57,64.22,32.9,19.145298,0.18738814,4,85,True,True,7.81,False,,,,38.0,4-buyer cluster 85d ago | CEO+CFO bought | $7.8M insider buys
+25,PSN,Parsons Corporation,Technology,Information Technology Service,6413.0,59.95,48.23,89.5,28.4,2.4202664,1.0178225,4,24,True,False,2.13,False,,,,36.0,4-buyer cluster 24d ago | CEO bought
+26,FCN,"FTI Consulting, Inc.",Industrials,Consulting Services,4662.0,154.66,140.84,189.3,28.5,2.7522511,1.2034523,3,21,True,True,2.08,False,,,,36.0,3-buyer cluster 21d ago | CEO+CFO bought
+27,HUBS,"HubSpot, Inc.",Technology,Software - Application,11387.0,222.45,173.25,611.0,11.2,5.787844,3.4526818,3,23,True,False,2.59,False,,,,36.0,3-buyer cluster 23d ago | CEO bought | 11% above 52w low
+28,GRNT,"Granite Ridge Resources, Inc.",Energy,Oil & Gas E&P,658.0,4.99,4.18,6.72,31.9,1.2003849,1.5174124,5,85,True,True,0.41,False,,,,36.0,5-buyer cluster 85d ago | CEO+CFO bought
+29,ZTS,Zoetis Inc.,Healthcare,Drug Manufacturers - Specialty,32528.0,77.59,72.38,171.52,5.3,9.897945,3.4128537,3,23,False,False,0.89,False,,,,32.0,3-buyer cluster 23d ago | only 5% above 52w low
+30,KKR,KKR & Co. Inc.,Financial Se,Asset Management,84414.0,90.53,82.67,153.87,11.0,2.8805523,3.3293545,4,106,True,False,45.68,False,,,,32.0,4-buyer cluster 106d ago | CEO bought | $45.7M insider buys | 11% above 52w low
+31,IBP,"Installed Building Products, In",Consumer Cyc,Residential Construction,5435.0,201.74,162.56,349.0,21.0,8.091934,1.8445677,4,23,False,True,0.84,False,,,,32.0,4-buyer cluster 23d ago | 21% above 52w low
+32,CCI,,,,39530.0,90.56999969482422,,,,,,1,29,False,False,0.07,False,53.3,20.6,,31.0,step-change 53 | forensic-PSU 21
+33,TKO,"TKO Group Holdings, Inc.",Communicatio,Entertainment,37952.0,198.57,152.29,226.94,62.0,4.4092374,7.4956045,3,22,True,True,4.5,False,,,,30.0,3-buyer cluster 22d ago | CEO+CFO bought
+34,TPL,,,,27190.0,394.20001220703125,,,,,,2,107,False,False,0.49,True,59.6,,,29.8,2-buyer cluster 107d ago | step-change 60 | 13D filed
+35,ADT,ADT Inc.,Industrials,Security & Protection Services,5065.0,6.66,6.25,8.935,15.3,1.397105,0.98552954,3,23,False,False,0.35,False,,,,29.0,3-buyer cluster 23d ago | 15% above 52w low
+36,GRND,,,,2551.0,13.779999732971191,,,,,,0,,False,False,0.0,True,78.4,,,28.0,step-change 78 | 13D filed
+37,SOFI,,,,21054.0,16.43000030517578,,,,,,1,27,True,False,0.5,False,53.3,,25,28.0,CEO bought | step-change 53
+38,KDP,,,,39579.0,29.09000015258789,,,,,,0,,False,False,0.0,False,58.3,12.184999999999999,75,27.0,step-change 58 | PSU 75% LTI
+39,VSNT,"Versant Media Group, Inc.",Communicatio,Entertainment,5690.0,40.21,27.17,59.0,41.0,0.56325203,0.8531467,4,87,False,False,6.19,False,,,,26.0,4-buyer cluster 87d ago | $6.2M insider buys | P/B 0.6
+40,AVBC,"Avidia Bancorp, Inc.",Financial Se,Banks - Regional,349.0,18.78,14.0,21.43,64.3,0.9095312,3.3540869,3,24,True,False,0.21,False,,,,26.0,3-buyer cluster 24d ago | CEO bought | P/B 0.9
+41,PLSE,"Pulse Biosciences, Inc",Healthcare,Medical Instruments & Supplies,1730.0,24.99,12.56,27.98,80.6,21.017662,2302.997,2,24,True,False,26.59,True,,,,26.0,2-buyer cluster 24d ago | CEO bought | $26.6M insider buys | 13D filed
+42,NXG,733085,Financial Se,Asset Management,339.0,59.69,45.05,60.84,92.7,,,3,27,True,True,0.04,False,,,,26.0,3-buyer cluster 27d ago | CEO+CFO bought
+43,INFU,"InfuSystems Holdings, Inc.",Healthcare,Medical Devices,182.0,9.03,5.38,11.04,64.5,3.1020267,1.2797449,3,23,True,True,0.13,False,,,,26.0,3-buyer cluster 23d ago | CEO+CFO bought
+44,NCLH,,,,8569.0,18.809999465942383,,,,,,3,24,False,False,0.97,False,,20.19,60,25.0,3-buyer cluster 24d ago | forensic-PSU 20
