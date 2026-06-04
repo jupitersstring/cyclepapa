@@ -123,6 +123,7 @@ CATALYST: dict[str, str] = {
     "AAS.L": "WIND_DOWN_COMMITTED",
     "GRIO.L": "WIND_DOWN_COMMITTED",
     "TMI.L": "WIND_DOWN_LIKELY",  # capital-return programme; status debated
+    "SEIT.L": "WIND_DOWN_COMMITTED",  # board approved managed wind-down 9 April 2026
     # Strategic review / continuation pending — pre-rating territory
     "GCP.L": "STRATEGIC_REVIEW",
     "FGEN.L": "STRATEGIC_REVIEW",
@@ -131,6 +132,7 @@ CATALYST: dict[str, str] = {
     "SSIT.L": "STRATEGIC_REVIEW",
     "AUGM.L": "STRATEGIC_REVIEW",
     "GROW.L": "STRATEGIC_REVIEW",
+    "NESF.L": "STRATEGIC_REVIEW",   # board completed strategic review Mar 2026 (battery-storage pivot, div cut)
     # Active activist / Saba campaigns
     "HRI.L": "ACTIVIST_TARGET",
     "USA.L": "ACTIVIST_TARGET",
@@ -153,11 +155,10 @@ CATALYST: dict[str, str] = {
     "UKW.L": "STRUCTURAL_DISCOUNT",
     "TRIG.L": "STRUCTURAL_DISCOUNT",
     "FSFL.L": "STRUCTURAL_DISCOUNT",
-    "NESF.L": "STRUCTURAL_DISCOUNT",
+    # SEIT.L and NESF.L tagged earlier as wind-down / strategic review respectively
     "BSIF.L": "STRUCTURAL_DISCOUNT",
     "JLEN.L": "STRUCTURAL_DISCOUNT",
     "GRID.L": "STRUCTURAL_DISCOUNT",
-    "SEIT.L": "STRUCTURAL_DISCOUNT",
     "HICL.L": "STRUCTURAL_DISCOUNT",
     "INPP.L": "STRUCTURAL_DISCOUNT",
     "3IN.L": "STRUCTURAL_DISCOUNT",
