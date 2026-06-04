@@ -114,8 +114,12 @@ def _finish(df: pd.DataFrame, score: pd.Series, top: int | None,
             extra: list[str] | None = None) -> pd.DataFrame:
     out = df.copy()
     out["score"] = score
-    cols = _SHOW + [c for c in (extra or []) if c in out.columns]
-    out = out[[c for c in cols if c in out.columns]].sort_values("score", ascending=False)
+    # Preserve order, dedupe (extra often overlaps _SHOW), keep only present.
+    seen, cols = set(), []
+    for c in _SHOW + (extra or []):
+        if c in out.columns and c not in seen:
+            seen.add(c); cols.append(c)
+    out = out[cols].sort_values("score", ascending=False)
     return out.head(top) if top else out
 
 
@@ -280,6 +284,79 @@ def new_reality(df: pd.DataFrame, top: int | None = 40, min_quarters: int = 4, *
         "surprise_trend", "rev_up_frac", "ebitda_margin_slope", "gross_margin_delta"])
 
 
+def conviction(df: pd.DataFrame, top: int | None = 40,
+               include=("yoy-unpriced", "divergence", "forensic", "new-reality"),
+               top_per_screen: int = 100, min_screens: int = 2, **elig) -> pd.DataFrame:
+    """Cross-screen consensus — names that pass *multiple* independent screens.
+
+    Runs each of the ``include`` screens and counts how many top-N lists a name
+    appears in. Multi-screen agreement is the real signal (each screen targets a
+    different angle: growth/accel, behaviour-vs-price, trajectory quality, and
+    surprise-vs-reality). The final score combines screen agreement (60%) with
+    a residual quality term (40%) so equally-agreeing names are ordered by
+    behaviour + cheapness + dormancy.
+    """
+    e = eligible(df, **elig)
+    e = e.copy()
+    e["n_screens"] = 0
+    appears_in = {name: pd.Series(False, index=e.index) for name in include}
+    for name in include:
+        fn = SCREENS.get(name)
+        if fn is None:
+            continue
+        try:
+            res = fn(df, top=top_per_screen, **elig)
+        except Exception:
+            continue
+        if res is None or res.empty:
+            continue
+        in_screen = e["symbol"].isin(set(res["symbol"]))
+        appears_in[name] = in_screen
+        e["n_screens"] = e["n_screens"] + in_screen.astype(int)
+        e[f"in_{name.replace('-', '_')}"] = in_screen
+
+    e = e[e["n_screens"] >= min_screens].copy()
+    if e.empty:
+        return e
+
+    # Residual quality term: behaviour change + cheapness + dormancy.
+    behaviour = pd.concat(
+        [_rank(e, c) for c in ("revenue_accel", "ebitda_accel_abs", "earnings_accel_abs")],
+        axis=1).mean(axis=1, skipna=True).fillna(0.5)
+    score = 0.60 * (e["n_screens"] / len(include)) + 0.25 * behaviour \
+            + 0.10 * _cheap(e) + 0.05 * _quiet(e)
+    return _finish(e, score, top, extra=[
+        "n_screens",
+        *[f"in_{n.replace('-', '_')}" for n in include if f"in_{n.replace('-', '_')}" in e.columns],
+        "consensus_gap_pct", "surprise_quality", "surprise_cum8"])
+
+
+def consensus_lagging(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
+    """Forward EPS estimate is BELOW trailing reality — consensus hasn't caught up.
+
+    The direct complement to ``surprises``: instead of looking back at how badly
+    consensus missed, this looks at *forward* estimates that haven't yet
+    adjusted to the trailing run-rate. ``consensus_gap_pct < 0`` and *growing*
+    fundamentals = the next earnings beat is mathematically already half-baked.
+    """
+    e = eligible(df, **elig)
+    if "consensus_gap_pct" not in e.columns:
+        raise ValueError("consensus_gap_pct missing — re-fetch to pick up forwardEps/trailingEps")
+    e = e[
+        (e["consensus_gap_pct"].fillna(0) < -0.05)             # forward < trailing by >5%
+        & (e["revenue_growth"].fillna(-1) > 0)                 # but revenue is growing
+        & (e["ebitda_growth"].fillna(-1) > 0)                  # and EBITDA is growing
+    ].copy()
+    score = (
+        0.50 * (-_rank(e, "consensus_gap_pct"))                # bigger negative gap = better
+        + 0.30 * _rank(e, "ebitda_growth")
+        + 0.20 * _quiet(e)
+    )
+    return _finish(e, score, top, extra=[
+        "consensus_gap_pct", "analyst_coverage", "trailingEps", "forwardEps",
+        "ebitda_growth", "rev_up_frac"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
@@ -289,4 +366,6 @@ SCREENS = {
     "forensic": forensic,
     "surprises": surprises,
     "new-reality": new_reality,
+    "consensus-lagging": consensus_lagging,
+    "conviction": conviction,
 }

@@ -168,6 +168,9 @@ VALUATION_FIELDS = [
     "currency",
     "sector",
     "industry",
+    "trailingEps",
+    "forwardEps",
+    "numberOfAnalystOpinions",
 ]
 
 # --------------------------------------------------------------------------- #

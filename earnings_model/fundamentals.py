@@ -211,6 +211,30 @@ def save_raw(symbol: str, raw: dict) -> None:
 # --------------------------------------------------------------------------- #
 # Earnings surprises (EPS actual vs estimate) — best coverage in the US
 # --------------------------------------------------------------------------- #
+def refresh_valuation(symbol: str, session=None) -> dict | None:
+    """Fast path: refresh only the valuation/.info fields on an already-cached raw.
+
+    For when new fields are added to ``config.VALUATION_FIELDS`` and you don't
+    want a full statement+price+surprise re-fetch. Returns the updated raw dict
+    (or None if no cache exists / the .info pull fails).
+    """
+    cached = load_raw(symbol)
+    if cached is None:
+        return None
+    try:
+        tk = _ticker(symbol, session)
+        info = tk.info or {}
+    except Exception:
+        return None
+    val = cached.get("valuation") or {}
+    for f in config.VALUATION_FIELDS:
+        if info.get(f) is not None:
+            val[f] = info[f]
+    cached["valuation"] = val
+    save_raw(symbol, cached)
+    return cached
+
+
 def _earnings_surprises(tk) -> list:
     """Recent quarters' EPS surprise %, oldest->newest. yfinance only carries
     EPS surprises (no historical revenue/sales surprise); coverage is strong in

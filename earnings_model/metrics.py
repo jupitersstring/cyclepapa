@@ -271,6 +271,8 @@ def surprise_block(raw: dict) -> dict:
     ``surprise_beat_rate``  fraction of quarters that beat
     ``surprise_streak``     consecutive most-recent beats
     ``surprise_trend``      slope of surprise % (are beats getting bigger?)
+    ``surprise_quality``    mean / std — high = steady beater (reliable), low = lottery
+    ``surprise_recency``    recency-weighted score (last quarter 2x, last 4 1.5x)
     ``surprise_n``          quarters available
     """
     sl = raw.get("surprises") or []
@@ -278,7 +280,7 @@ def surprise_block(raw: dict) -> dict:
     sp = [x for x in sp if not _isnan(x)]
     out = {"surprise_n": len(sp), "surprise_latest": NaN, "surprise_avg4": NaN,
            "surprise_cum8": NaN, "surprise_beat_rate": NaN, "surprise_streak": 0,
-           "surprise_trend": NaN}
+           "surprise_trend": NaN, "surprise_quality": NaN, "surprise_recency": NaN}
     if not sp:
         return out
     out["surprise_latest"] = sp[-1]
@@ -294,6 +296,44 @@ def surprise_block(raw: dict) -> dict:
     out["surprise_streak"] = streak
     if len(sp) >= 3:
         out["surprise_trend"] = _ols_slope(sp[-8:])
+        mean = sum(sp) / len(sp)
+        var = sum((x - mean) ** 2 for x in sp) / len(sp)
+        sd = var ** 0.5
+        # Mean / std: high = consistently positive small/medium beats (reliable);
+        # low = volatile (a couple of huge beats + several misses, lottery).
+        if sd > 0:
+            out["surprise_quality"] = mean / sd
+    # Recency-weighted average: last 2x, prior 3 1.5x, older 1x — favours
+    # *fresh* inflections over stale ones.
+    if sp:
+        weights = []
+        for i in range(len(sp)):
+            age = len(sp) - 1 - i  # 0 = latest
+            weights.append(2.0 if age == 0 else (1.5 if age < 4 else 1.0))
+        wsum = sum(weights)
+        out["surprise_recency"] = sum(w * x for w, x in zip(weights, sp)) / wsum
+    return out
+
+
+def consensus_gap(valuation: dict) -> dict:
+    """How far is consensus *forward* EPS estimate from the *trailing* run-rate?
+
+    ``consensus_gap_pct``     (forwardEps − trailingEps) / |trailingEps|
+                              NEGATIVE = forward estimate BELOW trailing reality
+                              (consensus hasn't caught up — the bullish setup)
+                              POSITIVE = forward estimate above trailing
+                              (consensus already optimistic)
+    ``analyst_coverage``      number of forward-EPS analysts (yfinance .info)
+    """
+    out = {"consensus_gap_pct": NaN, "analyst_coverage": NaN}
+    f = _f(valuation.get("forwardEps")); t = _f(valuation.get("trailingEps"))
+    if not _isnan(f) and not _isnan(t) and abs(t) > 0.01:
+        out["consensus_gap_pct"] = (f - t) / abs(t)
+    n = valuation.get("numberOfAnalystOpinions")
+    try:
+        out["analyst_coverage"] = float(n) if n is not None else NaN
+    except (TypeError, ValueError):
+        pass
     return out
 
 
@@ -319,6 +359,7 @@ def compute_metrics(raw: dict) -> dict:
     out.update(q_margin_horizons(qrev, [_f(x) for x in (quarterly.get("gross") or [])], "gross"))
     out.update(q_margin_horizons(qrev, [_f(x) for x in (quarterly.get("ebitda") or [])], "ebitda"))
     out.update(surprise_block(raw))
+    out.update(consensus_gap(raw.get("valuation") or {}))
 
     # Carry valuation + price + identity straight through.
     val = raw.get("valuation", {}) or {}
