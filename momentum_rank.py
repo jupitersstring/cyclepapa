@@ -1385,15 +1385,22 @@ def compute_minervini(close, high, low, volume, weekly=None, open_series=None):
 def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None,
                       intraday_frames=None):
     close = pd.to_numeric(df["Close"], errors="coerce").dropna()
-    if len(close) < 130:
+    # Minimum history: 60 daily bars (~3 months) is enough for daily signals
+    # + 12+ weekly bars. Shorter-history tickers (recent IPOs, new listings)
+    # are still included; monthly-dependent fields return None for them and
+    # have_long_history flag is set to False.
+    if len(close) < 60:
         return None
+    has_short_history = len(close) < 130
     high = pd.to_numeric(df.loc[close.index, "High"], errors="coerce")
     low = pd.to_numeric(df.loc[close.index, "Low"], errors="coerce")
     volume = pd.to_numeric(df.loc[close.index, "Volume"], errors="coerce")
     last = float(close.iloc[-1])
-    sma25 = float(close.tail(25).mean())
-    sma66 = float(close.tail(66).mean())
-    sma126 = float(close.tail(126).mean())
+    # Lookback SMAs - use min(N, available) so short-history tickers still work.
+    # sma126 (6-month) will fall back to all-available for tickers <126 bars.
+    sma25 = float(close.tail(min(25, len(close))).mean())
+    sma66 = float(close.tail(min(66, len(close))).mean())
+    sma126 = float(close.tail(min(126, len(close))).mean())
     if min(sma25, sma66, sma126) <= 0:
         return None
 
@@ -1448,8 +1455,11 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "Open": "first", "High": "max", "Low": "min",
         "Close": "last", "Volume": "sum",
     }).dropna()
-    if len(weekly) < 30:
+    # Need at least 12 weekly bars (~3 months) for box/momentum signals.
+    # Shorter still excluded - not enough for TD weekly setups or VCP.
+    if len(weekly) < 12:
         return None
+    has_short_weekly = len(weekly) < 30
 
     wclose = weekly["Close"]
     whigh = weekly["High"]
@@ -1692,8 +1702,15 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     except Exception:
         pass
 
+    has_monthly_data = len(m_close) >= 24  # 2y monthly bars for meaningful monthly signals
     out = {
         "last_close": last,
+        "has_short_history": has_short_history,   # <130 daily bars (<6 months)
+        "has_short_weekly": has_short_weekly,     # <30 weekly bars (<7 months)
+        "has_monthly_data": has_monthly_data,     # >=24 monthly bars for TD/asym/squeeze on monthly
+        "n_daily_bars": int(len(close)),
+        "n_weekly_bars": int(len(weekly)),
+        "n_monthly_bars": int(len(m_close)),
         "mom_1m": last / sma25,
         "mom_3m": last / sma66,
         "mom_6m": last / sma126,
