@@ -181,7 +181,13 @@ def main():
     ap.add_argument('--min-mcap', type=float, default=200e6)
     ap.add_argument('--min-rev-growth', type=float, default=15.0)
     ap.add_argument('--min-gross-growth', type=float, default=15.0)
+    ap.add_argument('--max-gross-growth', type=float, default=200.0,
+                    help='cap to filter out tiny-base distortions')
     ap.add_argument('--min-gross-margin-chg-pp', type=float, default=0.5)
+    ap.add_argument('--max-gross-margin-chg-pp', type=float, default=20.0,
+                    help='cap to filter out accounting-change distortions')
+    ap.add_argument('--min-gross-ltm-M', type=float, default=25.0,
+                    help='min LTM gross profit in millions (excludes nano-base)')
     ap.add_argument('--max-perf-1y', type=float, default=20.0)
     ap.add_argument('--min-perf-1y', type=float, default=-50.0)
     args = ap.parse_args()
@@ -198,7 +204,10 @@ def main():
         if mc is None or mc < args.min_mcap: continue
         if rec['rev_ltm_yoy_pct'] < args.min_rev_growth: continue
         if rec['gross_ltm_yoy_pct'] < args.min_gross_growth: continue
+        if rec['gross_ltm_yoy_pct'] > args.max_gross_growth: continue
         if rec['gross_margin_chg_pp'] < args.min_gross_margin_chg_pp: continue
+        if rec['gross_margin_chg_pp'] > args.max_gross_margin_chg_pp: continue
+        if rec['gross_ltm_now_M'] < args.min_gross_ltm_M: continue
         if rec['perf_1y_pct'] is None: continue
         if rec['perf_1y_pct'] > args.max_perf_1y or rec['perf_1y_pct'] < args.min_perf_1y: continue
         # Quality score = gross profit growth * margin expansion / (1 + perf_1y / 100)
