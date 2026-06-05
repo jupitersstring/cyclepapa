@@ -459,6 +459,41 @@ def main():
                 xl, sheet_name=sheet_name[:31], index=False
             )
 
+        # ----- Alta Fox Multibagger leg -----
+        # Source: altafoxcapital.com 'Makings of a Multibagger' (2020 study of
+        # 104 stocks with 350%+ TSR over 5 years).  Their specific screen:
+        # country in {UK,SE,DE,NO,AU}, sector in {Tech, Healthcare}, mcap<$2B,
+        # below 3x P/S, 20x EV/EBITDA, 30x P/E.  Composite score weights:
+        # 20% geo / 15% sector / 15% size / 20% valuation / 15% growth /
+        # 10% margin / 5% financial health.  See alta_fox_score.py.
+        if os.path.exists('alta_fox_scores.csv'):
+            af = pd.read_csv('alta_fox_scores.csv').drop_duplicates('symbol', keep='first')
+            af_cols = ['symbol','alta_fox_score','alta_fox_strict_match',
+                       'af_country_overrep','af_sector_overrep','af_size_lt_2b',
+                       'af_cheap_count','af_growth_21pct','af_financially_healthy']
+            df_af = df.merge(af[af_cols], on='symbol', how='left')
+            af_show = [
+                'symbol','name','src','sector','industry','market_cap_bucket','market_cap',
+                'verdict',
+                'alta_fox_score','alta_fox_strict_match',
+                'af_country_overrep','af_sector_overrep','af_size_lt_2b',
+                'af_cheap_count','af_growth_21pct','af_financially_healthy',
+                'p_s','ev_ebitda','p_e','ebitda_margin','roce',
+                'rev_3y_cagr','rev_yoy','yartseva_score','archetype_count','archetype_tags_str',
+                'entry_today_asymmetry','intrinsic_discount','insider_ownership_pct',
+                'why','full_thesis','thesis',
+            ]
+            af_show = [c for c in af_show if c in df_af.columns]
+            # Sheet A: strict checklist matches (any qual except RED)
+            strict = df_af[(df_af['alta_fox_strict_match']==1) & (df_af['verdict']!='RED')]\
+                .sort_values('alta_fox_score', ascending=False)
+            if not strict.empty:
+                strict[af_show].to_excel(xl, sheet_name='AltaFox_StrictMatch', index=False)
+            # Sheet B: top 60 by alta_fox_score regardless of strict match
+            top = df_af[df_af['verdict']!='RED']\
+                .sort_values('alta_fox_score', ascending=False).head(60)
+            top[af_show].to_excel(xl, sheet_name='AltaFox_Top60', index=False)
+
         # ----- Per-archetype top N (one sheet per tag) -----
         # Eight archetypes from archetype_tags.py (cluster A + C5 + E + F + G).
         # Each sheet: top 40 names with that tag, GREEN-first then YELLOW then
