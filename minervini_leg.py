@@ -735,5 +735,84 @@ def downside_resilience(stock_bars: pd.DataFrame, market_close: pd.Series,
     }
 
 
+def adv_metrics(bars: pd.DataFrame, market_cap: float = None,
+                 lookback_days: int = 20, slope_weeks: int = 8) -> dict:
+    """Average Dollar Volume (ADV) + slope + turnover.
+
+    Minervini observation: the biggest stock-market winners trade well
+    above $20-50M daily dollar volume. We grade:
+      - liquidity bucket (binary score by absolute ADV)
+      - 8-week slope of rolling ADV (rising = institutional accumulation)
+      - turnover (ADV / market_cap) when mcap available — institutional
+        flow as a fraction of float
+
+    Returns 0..100 ADV score plus raw metrics.
+    """
+    if "Volume" not in bars.columns or len(bars) < lookback_days + 5:
+        return {}
+    dv = bars["Close"] * bars["Volume"]
+    dv = dv.replace([np.inf, -np.inf], np.nan).dropna()
+    if len(dv) < lookback_days:
+        return {}
+    adv_20 = float(dv.iloc[-lookback_days:].mean())
+    adv_60 = float(dv.iloc[-60:].mean()) if len(dv) >= 60 else adv_20
+
+    # 8-week slope of rolling ADV
+    rolling = dv.rolling(lookback_days).mean()
+    n_slope = slope_weeks * 5
+    if len(rolling.dropna()) >= n_slope:
+        y = rolling.iloc[-n_slope:].dropna().values
+        if len(y) >= 5 and y[0] > 0:
+            slope = float(np.polyfit(np.arange(len(y)), y, 1)[0])
+            adv_slope_pct_wk = slope * 5 / y[0]
+        else:
+            adv_slope_pct_wk = 0.0
+    else:
+        adv_slope_pct_wk = 0.0
+
+    # Turnover ratio if market cap available
+    if market_cap and market_cap > 0:
+        adv_to_mcap = adv_20 / market_cap
+    else:
+        adv_to_mcap = None
+
+    # Liquidity bucket scoring (per Minervini's tweet thresholds)
+    if adv_20 >= 100e6:
+        liq_score = 1.00
+    elif adv_20 >= 50e6:
+        liq_score = 0.85
+    elif adv_20 >= 20e6:
+        liq_score = 0.65
+    elif adv_20 >= 5e6:
+        liq_score = 0.40
+    elif adv_20 >= 1e6:
+        liq_score = 0.20
+    else:
+        liq_score = 0.05
+
+    # Slope: positive rising ADV is a tell of institutional inflow.
+    # -2%/wk -> 0; 0%/wk -> 0.2; +10%/wk -> full credit.
+    slope_score = float(np.clip((adv_slope_pct_wk + 0.02) / 0.12, 0, 1))
+
+    # Turnover (daily): 2%+ of mcap traded daily = full credit; 0.5% = 0.25.
+    if adv_to_mcap is not None:
+        turnover_score = float(np.clip(adv_to_mcap / 0.02, 0, 1))
+    else:
+        turnover_score = 0.5  # neutral when no mcap
+
+    adv_score = 0.55 * liq_score + 0.25 * slope_score + 0.20 * turnover_score
+
+    return {
+        "ADV":              float(adv_score * 100),
+        "adv_20":           adv_20,
+        "adv_60":           adv_60,
+        "adv_slope_pct_wk": float(adv_slope_pct_wk),
+        "adv_to_mcap":      float(adv_to_mcap) if adv_to_mcap is not None else None,
+        "adv_liq_score":    float(liq_score),
+        "adv_slope_score":  float(slope_score),
+        "adv_turnover_score": float(turnover_score),
+    }
+
+
 if __name__ == "__main__":
     print("module loaded;", len(MEASURE_FNS), "measure functions × 5 MAs")
