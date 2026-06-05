@@ -411,6 +411,44 @@ def main():
     # Compute narrative-shift score for each ticker that has analyst info.
     info_df["narrative_shift"] = info_df.apply(narrative_score, axis=1)
 
+    # Compute mcap-relative turnover by joining ADV from the universe CSV
+    # with marketCap from yfinance info. This is the right liquidity number:
+    # 1% turnover in a $100M stock = $1M/day of REAL flow, whereas $1M/day
+    # in a $10B stock is invisible. Mid-tier mega-winners had 2.1% median
+    # turnover pre-launch; small-tier had 1.2% median.
+    adv_lookup = big[["ticker", "adv_20"]].drop_duplicates(subset=["ticker"], keep="first") \
+        if "adv_20" in big.columns else None
+    if adv_lookup is not None:
+        info_df = info_df.merge(adv_lookup, on="ticker", how="left")
+        info_df["adv_to_mcap"] = info_df.apply(
+            lambda r: (_to_float(r.get("adv_20")) / _to_float(r.get("marketCap")))
+                       if _to_float(r.get("marketCap")) and _to_float(r.get("adv_20")) else None,
+            axis=1,
+        )
+
+    # Now (re)build the Play_Now_Institutional and Play_Now_SmallCap_Flow
+    # tabs using the mcap-derived turnover figure rather than the missing
+    # in-CSV adv_to_mcap.
+    if "Play_Now" in tabs and "adv_to_mcap" in info_df.columns:
+        pn_full = tabs["Play_Now"].merge(
+            info_df[["ticker", "adv_to_mcap", "marketCap"]], on="ticker", how="left"
+        )
+        inst = pn_full[
+            (pn_full["adv_20"].fillna(0) >= 20e6) &
+            (pn_full["adv_to_mcap"].fillna(0) >= 0.005)
+        ].copy()
+        tabs["Play_Now_Institutional"] = (
+            inst.sort_values("play_now_score", ascending=False)
+                .drop_duplicates(subset=["ticker"])
+                .head(40).reset_index(drop=True)
+        )
+        sc = pn_full[pn_full["adv_to_mcap"].fillna(0) >= 0.01].copy()
+        tabs["Play_Now_SmallCap_Flow"] = (
+            sc.sort_values("play_now_score", ascending=False)
+              .drop_duplicates(subset=["ticker"])
+              .head(40).reset_index(drop=True)
+        )
+
     # Build the Narrative_Shift_Top tab: take the broader pool, attach
     # narrative + technical score, rank by combined.
     narrative_pool = tabs.pop("_Narrative_pool_")
