@@ -126,16 +126,18 @@ def get_metrics(tk):
     out = {}
     # revenue
     rev_e = e.get('revenue', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
-    if not rev_e.empty:
+    if rev_e is not None and not rev_e.empty:
         rev = rev_e
     else:
-        rev = _col(load_table(tk, 'income'), ['Total Revenue','Revenue','Operating Revenue']) or pd.Series(dtype=float)
+        rev = _col(load_table(tk, 'income'), ['Total Revenue','Revenue','Operating Revenue'])
+        if rev is None: rev = pd.Series(dtype=float)
     # gross
     gross_e = e.get('gross', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
-    if not gross_e.empty:
+    if gross_e is not None and not gross_e.empty:
         gross = gross_e
     else:
-        gross = _col(load_table(tk, 'income'), ['Gross Profit']) or pd.Series(dtype=float)
+        gross = _col(load_table(tk, 'income'), ['Gross Profit'])
+        if gross is None: gross = pd.Series(dtype=float)
     # EBITDA = op_inc + |d_and_a| from EDGAR if available
     op_e = e.get('op_inc', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
     da_e = e.get('d_and_a', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
@@ -143,7 +145,8 @@ def get_metrics(tk):
         idx = op_e.index.union(da_e.index)
         ebitda = op_e.reindex(idx).add(da_e.reindex(idx).abs(), fill_value=np.nan).dropna()
     else:
-        ebitda = _col(load_table(tk, 'income'), ['EBITDA','Normalized EBITDA']) or pd.Series(dtype=float)
+        ebitda = _col(load_table(tk, 'income'), ['EBITDA','Normalized EBITDA'])
+        if ebitda is None: ebitda = pd.Series(dtype=float)
     out['revenue'] = rev
     out['gross']   = gross
     out['ebitda']  = ebitda
