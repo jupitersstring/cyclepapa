@@ -1436,6 +1436,48 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     atr14 = float(np.mean(tr_vals[-14:])) if len(tr_vals) >= 14 else None
     atr14_pct = (atr14 / last * 100) if atr14 else None
 
+    # --- ADV (Average Daily $-Volume) liquidity leg --------------------------
+    # Per "the biggest winners trade at much higher dollar-volume than the
+    # $20-50M floor." We compute absolute $-ADV at 20d/60d, the SLOPE of
+    # ADV over the last 20 bars (is liquidity ramping?), and acceleration
+    # (is the ramp itself accelerating?). Used downstream to filter for
+    # "high conviction AND tradeable" subsets, not as a hard exclusion.
+    dollar_vol = (close * volume).replace([np.inf, -np.inf], np.nan).dropna()
+    if len(dollar_vol) >= 20:
+        adv_20d = float(dollar_vol.tail(20).mean())
+        adv_60d = float(dollar_vol.tail(min(60, len(dollar_vol))).mean())
+        # Rolling 20d mean as a series, then linear-fit its last 20 obs
+        rolling_adv = dollar_vol.rolling(20).mean().dropna()
+        adv_slope_pct_wk = None
+        adv_accel = None
+        if len(rolling_adv) >= 20:
+            recent = rolling_adv.tail(20).values
+            x = np.arange(len(recent))
+            try:
+                slope, _ = np.polyfit(x, recent, 1)
+                # %/wk relative to current ADV
+                adv_slope_pct_wk = float((slope * 5) / recent[-1] * 100) if recent[-1] else None
+            except Exception:
+                adv_slope_pct_wk = None
+            if len(rolling_adv) >= 40:
+                prior = rolling_adv.tail(40).head(20).values
+                try:
+                    prior_slope, _ = np.polyfit(np.arange(len(prior)), prior, 1)
+                    if recent[-1]:
+                        prior_slope_pct = (prior_slope * 5) / recent[-1] * 100
+                        adv_accel = float(adv_slope_pct_wk - prior_slope_pct) \
+                            if adv_slope_pct_wk is not None else None
+                except Exception:
+                    adv_accel = None
+        log_adv_20d = float(np.log10(adv_20d)) if adv_20d > 0 else None
+        # ADV vs longer-term average - is recent liquidity above or below trend?
+        adv_20_over_60 = float(adv_20d / adv_60d) if adv_60d > 0 else None
+        # ADV in raw $ as a tier ($M)
+        adv_20d_millions = float(adv_20d / 1_000_000)
+    else:
+        adv_20d = adv_60d = adv_slope_pct_wk = adv_accel = None
+        log_adv_20d = adv_20_over_60 = adv_20d_millions = None
+
     # Volatility asymmetry (Pine Script port - daily bars)
     asym = compute_volatility_asymmetry(df) or {}
 
@@ -1711,6 +1753,14 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "n_daily_bars": int(len(close)),
         "n_weekly_bars": int(len(weekly)),
         "n_monthly_bars": int(len(m_close)),
+        # ADV / liquidity leg
+        "adv_20d_dollar": adv_20d,
+        "adv_60d_dollar": adv_60d,
+        "adv_20d_millions": adv_20d_millions,
+        "adv_20_over_60": adv_20_over_60,
+        "adv_slope_pct_wk": adv_slope_pct_wk,
+        "adv_accel": adv_accel,
+        "log_adv_20d": log_adv_20d,
         "mom_1m": last / sma25,
         "mom_3m": last / sma66,
         "mom_6m": last / sma126,
