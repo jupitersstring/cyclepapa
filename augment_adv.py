@@ -26,10 +26,12 @@ warnings.filterwarnings("ignore")
 def augment_region(csv_path: str):
     df = pd.read_csv(csv_path)
     region = csv_path.split("stars_aligned_")[-1].replace(".csv", "")
-    new_cols = ["ADV", "adv_20", "adv_60", "adv_slope_pct_wk",
-                "adv_liq_score", "adv_slope_score"]
-    if "ADV" in df.columns and df["ADV"].notna().sum() > len(df) * 0.5:
-        print(f"  {region}: ADV already present", file=sys.stderr)
+    new_cols = ["ADV", "ADV_play_now", "adv_20", "adv_60",
+                "adv_slope_pct_wk", "adv_accel_pct_wk",
+                "adv_liq_score", "adv_slope_score", "adv_accel_score",
+                "adv_turnover_score"]
+    if "ADV_play_now" in df.columns and df["ADV_play_now"].notna().sum() > len(df) * 0.5:
+        print(f"  {region}: ADV_play_now already present", file=sys.stderr)
         return
 
     tickers = df["ticker"].astype(str).tolist()

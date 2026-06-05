@@ -335,6 +335,59 @@ def main():
     except FileNotFoundError:
         pass
 
+    # 11. Play Now — best places to deploy capital TODAY across the universe.
+    # Composite of E (entry trigger), M (structural quality), DSR
+    # (resilience to market drawdowns), ADV_play_now (mcap-normalized
+    # liquidity + acceleration), and best_rank (confluence).
+    have_legs = {c for c in ["E", "M", "DSR", "ADV_play_now", "adv_20", "adv_to_mcap"] if c in big.columns}
+    if {"E", "M", "ADV_play_now"}.issubset(have_legs):
+        pn = big.copy()
+        # Soft gates: need real entry trigger today and structural quality
+        pn = pn[
+            (pn.weekly_label != "Reject") &
+            (pn.E.fillna(0)  >= 35) &
+            (pn.M.fillna(0)  >= 55) &
+            (pn.ADV_play_now.fillna(0) >= 40) &
+            (pn.best_rank > 55)
+        ].copy()
+        # Composite play-now score
+        pn["dsr_norm"]  = pn.get("DSR", pd.Series(50, index=pn.index)).fillna(50)
+        pn["play_now_score"] = (
+            0.30 * pn.E.fillna(0) +
+            0.20 * pn.M.fillna(0) +
+            0.15 * pn.ADV_play_now.fillna(0) +
+            0.15 * pn.dsr_norm +
+            0.20 * pn.best_rank
+        )
+        tabs["Play_Now"] = (pn.sort_values("play_now_score", ascending=False)
+                              .drop_duplicates(subset=["ticker"])
+                              .head(50).reset_index(drop=True))
+
+        # Institutional-grade: same as Play_Now but with hard $20M ADV floor
+        # AND turnover >= 0.5% (mcap-normalized) when known. This excludes
+        # cute micro-caps like BO.MI / MNTN.L that no institution can touch.
+        inst = pn.copy()
+        if "adv_20" in inst.columns:
+            inst = inst[inst.adv_20.fillna(0) >= 20e6]
+        if "adv_to_mcap" in inst.columns:
+            inst = inst[inst.adv_to_mcap.fillna(0) >= 0.005]
+        tabs["Play_Now_Institutional"] = (
+            inst.sort_values("play_now_score", ascending=False)
+                .drop_duplicates(subset=["ticker"])
+                .head(40).reset_index(drop=True)
+        )
+
+        # Small-cap winners profile: under $5B mcap-trough but >= 1% turnover
+        # — the ELF/CELH/DUOL profile pre-launch. We don't have mcap_trough
+        # at hand here; use adv_to_mcap >= 1% as the institutional-flow tell.
+        if "adv_to_mcap" in pn.columns:
+            sc = pn[pn.adv_to_mcap.fillna(0) >= 0.01].copy()
+            tabs["Play_Now_SmallCap_Flow"] = (
+                sc.sort_values("play_now_score", ascending=False)
+                  .drop_duplicates(subset=["ticker"])
+                  .head(40).reset_index(drop=True)
+            )
+
     # Broaden the global pool for the narrative-shift tab to top 250 by best_rank
     # so we have a wider candidate set when narrative is layered on technicals.
     extra_pool = (big.sort_values("best_rank", ascending=False)
@@ -380,6 +433,12 @@ def main():
         "W_W", "Q_W", "D_W", "DA_W", "R_W",
         "M", "M_base", "M_vcp", "vcp_contractions",
         "vcp_pivot_distance_pct", "vcp_volume_dryup_ratio",
+        "E", "E_vol_spike", "E_pivot_break", "E_ret_acceleration",
+        "E_behavior_shift", "E_close_strength", "E_coil_break",
+        "DSR", "downside_capture", "market_corr",
+        "ADV", "ADV_play_now", "adv_20", "adv_to_mcap",
+        "adv_slope_pct_wk", "adv_accel_pct_wk",
+        "play_now_score",
         "six_school_avg", "all_conf_avg", "all_conf_min",
     ]
     info_cols = [

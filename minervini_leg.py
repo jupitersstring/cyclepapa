@@ -770,6 +770,17 @@ def adv_metrics(bars: pd.DataFrame, market_cap: float = None,
     else:
         adv_slope_pct_wk = 0.0
 
+    # Acceleration: last 4w slope vs prior 4w slope (pct-per-week each).
+    # Positive => ADV ramp is steepening (institutional accumulation accelerating).
+    adv_accel_pct_wk = 0.0
+    if len(rolling.dropna()) >= 40:
+        recent = rolling.iloc[-20:].dropna().values
+        prior = rolling.iloc[-40:-20].dropna().values
+        if len(recent) >= 5 and len(prior) >= 5 and recent[0] > 0 and prior[0] > 0:
+            s_rec = float(np.polyfit(np.arange(len(recent)), recent, 1)[0]) * 5 / recent[0]
+            s_pri = float(np.polyfit(np.arange(len(prior)), prior, 1)[0]) * 5 / prior[0]
+            adv_accel_pct_wk = s_rec - s_pri
+
     # Turnover ratio if market cap available
     if market_cap and market_cap > 0:
         adv_to_mcap = adv_20 / market_cap
@@ -791,25 +802,41 @@ def adv_metrics(bars: pd.DataFrame, market_cap: float = None,
         liq_score = 0.05
 
     # Slope: positive rising ADV is a tell of institutional inflow.
-    # -2%/wk -> 0; 0%/wk -> 0.2; +10%/wk -> full credit.
     slope_score = float(np.clip((adv_slope_pct_wk + 0.02) / 0.12, 0, 1))
+
+    # Acceleration: -2%/wk delta -> 0; 0 -> 0.33; +4%/wk delta -> 1.
+    accel_score = float(np.clip((adv_accel_pct_wk + 0.02) / 0.06, 0, 1))
 
     # Turnover (daily): 2%+ of mcap traded daily = full credit; 0.5% = 0.25.
     if adv_to_mcap is not None:
         turnover_score = float(np.clip(adv_to_mcap / 0.02, 0, 1))
     else:
-        turnover_score = 0.5  # neutral when no mcap
+        turnover_score = 0.5
 
-    adv_score = 0.55 * liq_score + 0.25 * slope_score + 0.20 * turnover_score
+    # Classic ADV score (Minervini-style): liquidity-led.
+    adv_score = 0.50 * liq_score + 0.20 * slope_score + 0.15 * accel_score + 0.15 * turnover_score
+
+    # "Play Now" ADV score: weights mcap-normalized turnover + acceleration
+    # heavily so small-cap winners with high turnover but modest raw ADV
+    # (ELF, CELH, DUOL pre-launch) can compete with mega-cap names.
+    if adv_to_mcap is not None:
+        adv_play_now = (0.35 * turnover_score + 0.25 * accel_score
+                        + 0.20 * slope_score + 0.20 * liq_score)
+    else:
+        adv_play_now = (0.30 * liq_score + 0.30 * accel_score
+                        + 0.25 * slope_score + 0.15 * turnover_score)
 
     return {
-        "ADV":              float(adv_score * 100),
-        "adv_20":           adv_20,
-        "adv_60":           adv_60,
-        "adv_slope_pct_wk": float(adv_slope_pct_wk),
-        "adv_to_mcap":      float(adv_to_mcap) if adv_to_mcap is not None else None,
-        "adv_liq_score":    float(liq_score),
-        "adv_slope_score":  float(slope_score),
+        "ADV":               float(adv_score * 100),
+        "ADV_play_now":      float(adv_play_now * 100),
+        "adv_20":            adv_20,
+        "adv_60":            adv_60,
+        "adv_slope_pct_wk":  float(adv_slope_pct_wk),
+        "adv_accel_pct_wk":  float(adv_accel_pct_wk),
+        "adv_to_mcap":       float(adv_to_mcap) if adv_to_mcap is not None else None,
+        "adv_liq_score":     float(liq_score),
+        "adv_slope_score":   float(slope_score),
+        "adv_accel_score":   float(accel_score),
         "adv_turnover_score": float(turnover_score),
     }
 
