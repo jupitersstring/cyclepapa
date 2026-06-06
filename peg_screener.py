@@ -318,6 +318,26 @@ def analyze(tk, min_mcap=0):
     eb  = both_growth_views(m['ebitda'])
     fcf = both_growth_views(m.get('fcf', pd.Series(dtype=float)))
 
+    # ---- LTM AMOUNT FALLBACKS (figures, not growth) ----
+    # yfinance's info_metrics has totalRevenue/ebitda/freeCashflow as current
+    # LTM snapshots. Use them when rolling-4Q can't compute (Asia, shallow data).
+    info_total_rev = i.get('totalRevenue')
+    info_ebitda    = i.get('ebitda')
+    info_fcf       = i.get('freeCashflow') or i.get('operatingCashflow')
+    info_gross_margin = i.get('grossMargins')  # decimal fraction
+
+    if rev['ltm_amount'] is None and info_total_rev is not None:
+        rev['ltm_amount'] = float(info_total_rev)
+    if eb['ltm_amount'] is None and info_ebitda is not None:
+        eb['ltm_amount'] = float(info_ebitda)
+    if fcf['ltm_amount'] is None and info_fcf is not None:
+        fcf['ltm_amount'] = float(info_fcf)
+    # Derive gross from totalRevenue × grossMargins when missing
+    if gp['ltm_amount'] is None and info_total_rev is not None and info_gross_margin is not None:
+        try:
+            gp['ltm_amount'] = float(info_total_rev) * float(info_gross_margin)
+        except Exception: pass
+
     # We'll compute EPS growth below — keep candidate if ANY growth metric is available
 
     # Multiples (point-in-time, same for both views)
@@ -330,6 +350,22 @@ def analyze(tk, min_mcap=0):
     # Derive EV/Gross Profit (the RAW multiple) using best available gross profit amount
     gp_amount = gp['ltm_amount'] or gp['yr_amount']
     ev_gp = ev / gp_amount if (ev is not None and gp_amount is not None and gp_amount > 0) else None
+
+    # ---- LTM GROWTH FALLBACK (use YR growth when LTM unavailable) ----
+    # Only US-EDGAR tickers have 8+ quarters needed for true LTM YoY. For
+    # the other 85%, the YR view (single-Q YoY or annual) is the only signal.
+    # Use YR as a noisier proxy for the LTM column when LTM is None, with
+    # a `_source` field indicating where the value came from.
+    def _ltm_or_yr(view, label):
+        if view['ltm_growth_pct'] is not None:
+            return view['ltm_growth_pct'], 'LTM'
+        if view['yr_growth_pct'] is not None:
+            return view['yr_growth_pct'], 'YR_proxy'
+        return None, None
+    rev_lg, rev_lg_src = _ltm_or_yr(rev, 'rev')
+    gp_lg,  gp_lg_src  = _ltm_or_yr(gp,  'gp')
+    eb_lg,  eb_lg_src  = _ltm_or_yr(eb,  'eb')
+    fcf_lg, fcf_lg_src = _ltm_or_yr(fcf, 'fcf')
 
     # EPS growth — prefer eps_history series (more accurate); fall back to info field
     eps_ltm_g, eps_yr_g, _ = eps_growth_views(tk, info_eps_qg=i.get('earningsQuarterlyGrowth'))
@@ -396,18 +432,23 @@ def analyze(tk, min_mcap=0):
         'eps_growth_ltm_pct':  eps_ltm_g,
         'eps_growth_yr_pct':   eps_yr_g,
         # PEG-style ratios using LTM growth
-        'PEG_ltm':                peg_ratio(pe,      eps_ltm_g),
+        'PEG_ltm':                peg_ratio(pe,      eps_ltm_g if eps_ltm_g is not None else eps_yr_g),
         'PEG_yr':                 peg_ratio(pe,      eps_yr_g),
-        'PSG_ltm':                peg_ratio(ps,      rev['ltm_growth_pct']),
-        'EV_Sales_over_revG_ltm': peg_ratio(ev_sale, rev['ltm_growth_pct']),
-        'EV_GP_over_GPg_ltm':     peg_ratio(ev_gp,   gp['ltm_growth_pct']),
-        'EV_EBITDA_over_EBg_ltm': peg_ratio(ev_ebd,  eb['ltm_growth_pct']),
+        # _ltm columns now use LTM growth where available, YR as proxy otherwise
+        'PSG_ltm':                peg_ratio(ps,      rev_lg),
+        'EV_Sales_over_revG_ltm': peg_ratio(ev_sale, rev_lg),
+        'EV_GP_over_GPg_ltm':     peg_ratio(ev_gp,   gp_lg),
+        'EV_EBITDA_over_EBg_ltm': peg_ratio(ev_ebd,  eb_lg),
         # NEW: EV/EBITDA over GROSS PROFIT growth (harder-to-manipulate divisor)
-        'EV_EBITDA_over_GPg_ltm': peg_ratio(ev_ebd,  gp['ltm_growth_pct']),
+        'EV_EBITDA_over_GPg_ltm': peg_ratio(ev_ebd,  gp_lg),
         # PE using GP growth (fallback when EV/EBITDA not available)
-        'PE_over_GPg_ltm':        peg_ratio(pe,      gp['ltm_growth_pct']),
+        'PE_over_GPg_ltm':        peg_ratio(pe,      gp_lg),
         # PS using GP growth
-        'PS_over_GPg_ltm':        peg_ratio(ps,      gp['ltm_growth_pct']),
+        'PS_over_GPg_ltm':        peg_ratio(ps,      gp_lg),
+        # Source markers for the _ltm columns (LTM vs YR_proxy)
+        'rev_g_ltm_source':       rev_lg_src,
+        'gp_g_ltm_source':        gp_lg_src,
+        'eb_g_ltm_source':        eb_lg_src,
         # Same set using LATEST-YEAR growth (annual or single-Q ×4)
         'PSG_yr':                peg_ratio(ps,      rev['yr_growth_pct']),
         'EV_Sales_over_revG_yr': peg_ratio(ev_sale, rev['yr_growth_pct']),
