@@ -235,6 +235,24 @@ def refresh_valuation(symbol: str, session=None) -> dict | None:
     return cached
 
 
+def refresh_surprises(symbol: str, session=None) -> dict | None:
+    """Fast path: add/refresh only the EPS-surprise history on a cached raw.
+
+    One get_earnings_dates call per name (no statement/price re-pull), so the
+    surprise leg can be back-filled for already-fetched names cheaply. Always
+    writes a ``surprises`` key (possibly empty) so a re-run won't retry it.
+    """
+    cached = load_raw(symbol)
+    if cached is None:
+        return None
+    try:
+        cached["surprises"] = _earnings_surprises(_ticker(symbol, session))
+    except Exception:
+        cached.setdefault("surprises", [])
+    save_raw(symbol, cached)
+    return cached
+
+
 def _earnings_surprises(tk) -> list:
     """Recent quarters' EPS surprise %, oldest->newest. yfinance only carries
     EPS surprises (no historical revenue/sales surprise); coverage is strong in
