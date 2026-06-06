@@ -71,13 +71,21 @@ def fetch_with_timeout(fn, *args, timeout: float = 20.0, **kwargs):
             return None
 
 
+REFRESH_SLOTS: set[str] = set()  # globally overridable from CLI
+
+
 def fetch_one(ticker: str) -> dict:
     """Fetch any missing data for a ticker. Returns a dict of which slots
     were newly populated (skip / fetched / failed)."""
     paths = _cache_paths(ticker)
     status: dict[str, str] = {k: 'skip' for k in paths}
 
-    needs_anything = any(not has_nonempty(p) for p in paths.values())
+    # Treat slots in REFRESH_SLOTS as if they were missing so we re-fetch them
+    def _has(slot: str, p: Path) -> bool:
+        if slot in REFRESH_SLOTS: return False
+        return has_nonempty(p)
+
+    needs_anything = any(not _has(k, p) for k, p in paths.items())
     if not needs_anything:
         return {**status, '_ticker': ticker, '_all_cached': True}
 
@@ -89,7 +97,7 @@ def fetch_one(ticker: str) -> dict:
 
     # ---- 1. price (1y; the 200w SMA needs ~5y but most price-based screeners
     # only require 1Y; we save Close+Volume; period='5y' to be future-proof)
-    if not has_nonempty(paths['price']):
+    if not _has('price', paths['price']):
         try:
             hist = fetch_with_timeout(t.history, period='5y', auto_adjust=True, timeout=25)
             if hist is not None and not hist.empty:
@@ -110,7 +118,7 @@ def fetch_one(ticker: str) -> dict:
             status['price'] = f'err:{type(exc).__name__}'
 
     # ---- 2. info ----
-    if not has_nonempty(paths['info']):
+    if not _has('info', paths['info']):
         try:
             info = fetch_with_timeout(lambda: t.info or {}, timeout=20)
             if info:
@@ -140,7 +148,7 @@ def fetch_one(ticker: str) -> dict:
             status['info'] = f'err:{type(exc).__name__}'
 
     # ---- 3. eps_history (get_earnings_dates) ----
-    if not has_nonempty(paths['eps_history']):
+    if not _has('eps_history', paths['eps_history']):
         try:
             ed = fetch_with_timeout(t.get_earnings_dates, limit=80, timeout=20)
             if ed is not None and not ed.empty and 'Reported EPS' in ed.columns:
@@ -163,7 +171,7 @@ def fetch_one(ticker: str) -> dict:
     # ---- 4 + 5: quarterly_income_stmt, quarterly_cashflow ----
     for kind, attr in (('income', 'quarterly_income_stmt'),
                         ('cashflow', 'quarterly_cashflow')):
-        if not has_nonempty(paths[kind]):
+        if not _has(kind, paths[kind]):
             try:
                 df = fetch_with_timeout(getattr, t, attr, timeout=20)
                 if df is not None and isinstance(df, pd.DataFrame) and not df.empty:
@@ -227,9 +235,17 @@ def main():
                     help='override: fetch only these tickers')
     ap.add_argument('--universe-csv', type=str, default=None,
                     help='override: load tickers from CSV `symbol` column')
+    ap.add_argument('--refresh', nargs='+', default=[],
+                    help='slots to force-refresh: any of price info eps_history income cashflow')
     ap.add_argument('--max', type=int, default=None,
                     help='limit total tickers (for testing)')
     args = ap.parse_args()
+
+    # Populate the module-level REFRESH_SLOTS so fetch_one honors it
+    global REFRESH_SLOTS
+    REFRESH_SLOTS = set(args.refresh)
+    if REFRESH_SLOTS:
+        print(f"Force-refresh slots: {sorted(REFRESH_SLOTS)}")
 
     if args.tickers:
         universe = args.tickers
