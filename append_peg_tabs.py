@@ -77,7 +77,7 @@ cheap = peg_tab[
 # Rank by composite (best of the three EV-based PEG ratios)
 cheap['best_peg_score'] = cheap[['EV_GP_g','EV_EBITDA_g','PSG']].apply(
     lambda r: min([v for v in r if pd.notna(v) and v > 0], default=99), axis=1)
-cheap = cheap.sort_values('best_peg_score', ascending=True).head(80)
+cheap = cheap.sort_values('best_peg_score', ascending=True).head(500)
 
 with pd.ExcelWriter(XLSX, engine='openpyxl', mode='a', if_sheet_exists='replace') as xw:
     peg_tab.sort_values('EV_GP_g', ascending=True).to_excel(xw, sheet_name='peg_ratios', index=False)
