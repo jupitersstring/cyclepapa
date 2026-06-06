@@ -98,7 +98,7 @@ cheap['best_peg_score'] = cheap[ratio_cols].apply(
 cheap = cheap.sort_values('best_peg_score', ascending=True).head(500)
 
 with pd.ExcelWriter(XLSX, engine='openpyxl', mode='a', if_sheet_exists='replace') as xw:
-    peg_tab.sort_values('EV_GP_g', ascending=True).to_excel(xw, sheet_name='peg_ratios', index=False)
+    peg_tab.sort_values('EV_GP_over_GPg_ltm', ascending=True, na_position='last').to_excel(xw, sheet_name='peg_ratios', index=False)
     cheap.to_excel(xw, sheet_name='cheap_on_growth', index=False)
     for sname, w in [('peg_ratios','B2'), ('cheap_on_growth','B2')]:
         ws = xw.sheets[sname]
