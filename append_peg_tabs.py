@@ -55,27 +55,45 @@ all_df = all_df[
 ]
 
 peg_cols = ['ticker','name','sector','industry','country',
-            'rev_growth_pct','gross_growth_pct','ebitda_growth_pct',
-            'gross_margin_now_pct','perf_1y_pct','market_cap',
-            'trailingPE','priceToSales','evToEbitda','evToSales','evToGrossProfit',
-            'PEG','PSG','EV_Sales_g','EV_GP_g','EV_EBITDA_g',
-            'rev_ltm_M','gross_ltm_M','ebitda_ltm_M']
+            'perf_1y_pct','market_cap','gross_margin_now_pct',
+            # Growth rates — LTM and latest-year side by side
+            'rev_growth_ltm_pct','rev_growth_yr_pct',
+            'gross_growth_ltm_pct','gross_growth_yr_pct',
+            'ebitda_growth_ltm_pct','ebitda_growth_yr_pct',
+            # Raw multiples
+            'trailingPE','priceToSales','evToSales','evToEbitda','evToGrossProfit',
+            # PEG-style ratios — LTM growth
+            'PEG_ltm','PSG_ltm',
+            'EV_Sales_over_revG_ltm','EV_GP_over_GPg_ltm','EV_EBITDA_over_EBg_ltm',
+            # New: harder-to-manipulate divisor (gross profit growth)
+            'EV_EBITDA_over_GPg_ltm','PE_over_GPg_ltm','PS_over_GPg_ltm',
+            # Same set using latest-year growth
+            'PSG_yr','EV_Sales_over_revG_yr','EV_GP_over_GPg_yr','EV_EBITDA_over_EBg_yr',
+            'EV_EBITDA_over_GPg_yr','PE_over_GPg_yr','PS_over_GPg_yr',
+            # Dollar amounts
+            'rev_ltm_M','rev_yr_M','gross_ltm_M','gross_yr_M','ebitda_ltm_M','ebitda_yr_M']
 peg_cols = [c for c in peg_cols if c in all_df.columns]
 peg_tab = all_df[peg_cols].copy()
 
 # cheap_on_growth: strict filter for the most attractive
 cheap = peg_tab[
-    (peg_tab['rev_growth_pct'] >= 10) &
+    (peg_tab[['rev_growth_ltm_pct','rev_growth_yr_pct']].max(axis=1).fillna(-99) >= 10) &
     (peg_tab['perf_1y_pct'].between(-50, 20)) &
     (peg_tab['market_cap'] >= 200e6) &
     (
-        peg_tab['EV_GP_g'].fillna(99).between(0.01, 1.5) |
-        peg_tab['EV_EBITDA_g'].fillna(99).between(0.01, 1.5) |
-        peg_tab['PSG'].fillna(99).between(0.01, 1.5)
+        peg_tab['EV_GP_over_GPg_ltm'].fillna(99).between(0.01, 1.5) |
+        peg_tab['EV_GP_over_GPg_yr'].fillna(99).between(0.01, 1.5) |
+        peg_tab['EV_EBITDA_over_EBg_ltm'].fillna(99).between(0.01, 1.5) |
+        peg_tab['EV_EBITDA_over_EBg_yr'].fillna(99).between(0.01, 1.5) |
+        peg_tab['PSG_ltm'].fillna(99).between(0.01, 1.5) |
+        peg_tab['PSG_yr'].fillna(99).between(0.01, 1.5)
     )
 ].copy()
-# Rank by composite (best of the three EV-based PEG ratios)
-cheap['best_peg_score'] = cheap[['EV_GP_g','EV_EBITDA_g','PSG']].apply(
+# Composite = best (lowest) ratio across the six "value per growth" variants
+ratio_cols = ['EV_GP_over_GPg_ltm','EV_GP_over_GPg_yr',
+              'EV_EBITDA_over_EBg_ltm','EV_EBITDA_over_EBg_yr',
+              'PSG_ltm','PSG_yr']
+cheap['best_peg_score'] = cheap[ratio_cols].apply(
     lambda r: min([v for v in r if pd.notna(v) and v > 0], default=99), axis=1)
 cheap = cheap.sort_values('best_peg_score', ascending=True).head(500)
 

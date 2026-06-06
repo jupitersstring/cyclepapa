@@ -156,11 +156,8 @@ def annual_yoy(series):
 
 
 def ltm_or_q_yoy(series):
-    """Pick the best available YoY method:
-      1) LTM-vs-LTM (rolling 4Q sum, requires 8 quarters) — preferred for US/EDGAR
-      2) Single-Q YoY (Q vs Q-4, requires 5 quarters) — yfinance quarterly fallback
-      3) Annual-vs-annual (requires 2 annual periods) — yfinance annual fallback
-    Returns (current_amount, prior_amount, growth%, source)."""
+    """Backward-compat single-method picker (preferred -> Annual fallback).
+    Returns (cur, prv, growth%, source)."""
     freq = detect_frequency(series)
     if freq == 'quarterly':
         cur, prv, g = ltm_yoy(series)
@@ -171,12 +168,44 @@ def ltm_or_q_yoy(series):
     if freq == 'annual':
         cur, prv, g = annual_yoy(series)
         if g is not None: return cur, prv, g, 'Annual'
-    # Last-resort: try whichever doesn't fail
     cur, prv, g = annual_yoy(series)
     if g is not None: return cur, prv, g, 'Annual'
     cur, prv, g = q_yoy(series)
     if g is not None: return (cur*4 if cur else None), (prv*4 if prv else None), g, 'Q_YoY'
     return None, None, None, None
+
+
+def both_growth_views(series):
+    """Compute BOTH LTM-vs-LTM AND latest-year (annual or single-Q) growth.
+    Returns dict with: ltm_amount, ltm_growth_pct, yr_amount, yr_growth_pct.
+    Either may be None if the underlying data doesn't support that method."""
+    out = {
+        'ltm_amount': None, 'ltm_growth_pct': None,
+        'yr_amount':  None, 'yr_growth_pct':  None,
+        'method_yr':  None,
+    }
+    if series is None or series.empty:
+        return out
+    freq = detect_frequency(series)
+    # LTM only meaningful when underlying is quarterly
+    if freq == 'quarterly':
+        cur, prv, g = ltm_yoy(series)
+        if g is not None:
+            out['ltm_amount'] = cur
+            out['ltm_growth_pct'] = g
+    # "Latest year" — prefer annual data; else single-Q YoY (×4 for amount)
+    cur, prv, g = annual_yoy(series)
+    if g is not None and freq == 'annual':
+        out['yr_amount'] = cur
+        out['yr_growth_pct'] = g
+        out['method_yr'] = 'Annual'
+    elif freq == 'quarterly':
+        cur, prv, g = q_yoy(series)
+        if g is not None:
+            out['yr_amount'] = cur * 4 if cur else None
+            out['yr_growth_pct'] = g
+            out['method_yr'] = 'Q_YoY'
+    return out
 
 
 def get_metrics(tk):
@@ -229,59 +258,89 @@ def analyze(tk, min_mcap=50e6):
     mc = i.get('marketCap')
     if mc is None or mc < min_mcap: return None
 
-    rev_now, rev_prv, rev_g, rev_src = ltm_or_q_yoy(m['revenue'])
-    gp_now, gp_prv, gp_g, gp_src     = ltm_or_q_yoy(m['gross'])
-    eb_now, eb_prv, eb_g, eb_src     = ltm_or_q_yoy(m['ebitda'])
+    # Compute BOTH LTM and latest-year growth views per metric
+    rev = both_growth_views(m['revenue'])
+    gp  = both_growth_views(m['gross'])
+    eb  = both_growth_views(m['ebitda'])
 
-    # Need at least ONE growth metric to score
-    if rev_g is None and gp_g is None and eb_g is None: return None
+    # Need at least ONE growth metric in either view
+    if (rev['ltm_growth_pct'] is None and rev['yr_growth_pct'] is None
+        and gp['ltm_growth_pct'] is None and gp['yr_growth_pct'] is None
+        and eb['ltm_growth_pct'] is None and eb['yr_growth_pct'] is None):
+        return None
 
-    # Multiples
+    # Multiples (point-in-time, same for both views)
     ps      = i.get('priceToSalesTrailing12Months')
     pe      = i.get('trailingPE')
     ev_ebd  = i.get('enterpriseToEbitda')
     ev_sale = i.get('enterpriseToRevenue')
     ev      = i.get('enterpriseValue')
 
-    # Derive EV/Gross Profit
-    ev_gp = ev / gp_now if (ev is not None and gp_now is not None and gp_now > 0) else None
+    # Derive EV/Gross Profit (the RAW multiple) using best available gross profit amount
+    gp_amount = gp['ltm_amount'] or gp['yr_amount']
+    ev_gp = ev / gp_amount if (ev is not None and gp_amount is not None and gp_amount > 0) else None
 
-    # EPS growth — pull from info if present (yfinance has 'earningsQuarterlyGrowth')
-    eps_g = i.get('earningsQuarterlyGrowth')  # decimal fraction
-    if eps_g is not None: eps_g = eps_g * 100  # to percent
+    eps_g = i.get('earningsQuarterlyGrowth')
+    if eps_g is not None: eps_g = eps_g * 100
 
     def peg_ratio(multiple, growth):
         if multiple is None or growth is None: return None
         try:
-            m = float(multiple); g = float(growth)
-            if not np.isfinite(m) or not np.isfinite(g) or g <= 0 or m <= 0: return None
-            return m / g
+            m_ = float(multiple); g_ = float(growth)
+            if not np.isfinite(m_) or not np.isfinite(g_) or g_ <= 0 or m_ <= 0: return None
+            return m_ / g_
         except Exception: return None
 
+    # Convenience for the most prominent ratios using LTM and latest-year
     rec = {
         'ticker': tk,
         'market_cap': mc,
-        'rev_ltm_M':   rev_now/1e6 if rev_now else None,
-        'gross_ltm_M': gp_now/1e6  if gp_now  else None,
-        'ebitda_ltm_M': eb_now/1e6 if eb_now  else None,
-        'rev_growth_pct':    rev_g,
-        'gross_growth_pct':  gp_g,
-        'ebitda_growth_pct': eb_g,
-        'gross_margin_now_pct': (gp_now/rev_now*100) if (gp_now and rev_now and rev_now>0) else None,
-        # multiples
-        'trailingPE':  pe,
-        'priceToSales': ps,
-        'evToEbitda':  ev_ebd,
-        'evToSales':   ev_sale,
+        'gross_margin_now_pct': (
+            (gp_amount / (rev['ltm_amount'] or rev['yr_amount']) * 100)
+            if (gp_amount and (rev['ltm_amount'] or rev['yr_amount'])) else None
+        ),
+        'perf_1y_pct':  price_perf(tk),
+        'method_yr':    rev['method_yr'],
+        # Amounts
+        'rev_ltm_M':    rev['ltm_amount']/1e6 if rev['ltm_amount'] else None,
+        'rev_yr_M':     rev['yr_amount']/1e6  if rev['yr_amount']  else None,
+        'gross_ltm_M':  gp['ltm_amount']/1e6  if gp['ltm_amount']  else None,
+        'gross_yr_M':   gp['yr_amount']/1e6   if gp['yr_amount']   else None,
+        'ebitda_ltm_M': eb['ltm_amount']/1e6  if eb['ltm_amount']  else None,
+        'ebitda_yr_M':  eb['yr_amount']/1e6   if eb['yr_amount']   else None,
+        # Growth rates — both views, side by side
+        'rev_growth_ltm_pct':    rev['ltm_growth_pct'],
+        'rev_growth_yr_pct':     rev['yr_growth_pct'],
+        'gross_growth_ltm_pct':  gp['ltm_growth_pct'],
+        'gross_growth_yr_pct':   gp['yr_growth_pct'],
+        'ebitda_growth_ltm_pct': eb['ltm_growth_pct'],
+        'ebitda_growth_yr_pct':  eb['yr_growth_pct'],
+        # Raw multiples
+        'trailingPE':      pe,
+        'priceToSales':    ps,
+        'evToSales':       ev_sale,
+        'evToEbitda':      ev_ebd,
         'evToGrossProfit': ev_gp,
-        # PEG-style ratios (lower = cheaper per unit growth)
-        'PEG':            peg_ratio(pe, eps_g),
-        'PSG':            peg_ratio(ps, rev_g),
-        'EV_Sales_g':     peg_ratio(ev_sale, rev_g),
-        'EV_GP_g':        peg_ratio(ev_gp, gp_g),
-        'EV_EBITDA_g':    peg_ratio(ev_ebd, eb_g),
-        'perf_1y_pct':    price_perf(tk),
-        'growth_source':  rev_src,  # 'LTM' or 'Q_YoY'
+        # PEG-style ratios using LTM growth
+        'PEG_ltm':                peg_ratio(pe,      eps_g),  # uses EPS growth (yfinance trailing)
+        'PSG_ltm':                peg_ratio(ps,      rev['ltm_growth_pct']),
+        'EV_Sales_over_revG_ltm': peg_ratio(ev_sale, rev['ltm_growth_pct']),
+        'EV_GP_over_GPg_ltm':     peg_ratio(ev_gp,   gp['ltm_growth_pct']),
+        'EV_EBITDA_over_EBg_ltm': peg_ratio(ev_ebd,  eb['ltm_growth_pct']),
+        # NEW: EV/EBITDA over GROSS PROFIT growth (harder-to-manipulate divisor)
+        'EV_EBITDA_over_GPg_ltm': peg_ratio(ev_ebd,  gp['ltm_growth_pct']),
+        # PE using GP growth (fallback when EV/EBITDA not available)
+        'PE_over_GPg_ltm':        peg_ratio(pe,      gp['ltm_growth_pct']),
+        # PS using GP growth
+        'PS_over_GPg_ltm':        peg_ratio(ps,      gp['ltm_growth_pct']),
+        # Same set using LATEST-YEAR growth (annual or single-Q ×4)
+        'PSG_yr':                peg_ratio(ps,      rev['yr_growth_pct']),
+        'EV_Sales_over_revG_yr': peg_ratio(ev_sale, rev['yr_growth_pct']),
+        'EV_GP_over_GPg_yr':     peg_ratio(ev_gp,   gp['yr_growth_pct']),
+        'EV_EBITDA_over_EBg_yr': peg_ratio(ev_ebd,  eb['yr_growth_pct']),
+        'EV_EBITDA_over_GPg_yr': peg_ratio(ev_ebd,  gp['yr_growth_pct']),
+        'PE_over_GPg_yr':        peg_ratio(pe,      gp['yr_growth_pct']),
+        'PS_over_GPg_yr':        peg_ratio(ps,      gp['yr_growth_pct']),
     }
     return rec
 
@@ -304,7 +363,8 @@ def main():
         rec = analyze(tk, min_mcap=args.min_mcap)
         if rec is None: continue
         # Apply rev_growth gate only if computed; allow nullable for broader browse
-        rg = rec.get('rev_growth_pct')
+        # Use whichever revenue growth is available (LTM preferred, else YR)
+        rg = rec.get('rev_growth_ltm_pct') or rec.get('rev_growth_yr_pct')
         if rg is not None and rg < args.min_rev_growth: continue
         rows.append(rec)
     if not rows:
@@ -319,20 +379,30 @@ def main():
     #   - perf_1y in [-50, +30]
     #   - gross margin expanding > 0
     df_b = df[
-        (df['rev_growth_pct'] >= 10) &
+        (df[['rev_growth_ltm_pct','rev_growth_yr_pct']].max(axis=1).fillna(-99) >= 10) &
         (df['perf_1y_pct'].between(-50, 30)) &
-        ((df['EV_GP_g'].fillna(99) < 1.5) | (df['EV_EBITDA_g'].fillna(99) < 1.5) | (df['PSG'].fillna(99) < 1.5))
+        ((df['EV_GP_over_GPg_ltm'].fillna(99) < 1.5)
+         | (df['EV_GP_over_GPg_yr'].fillna(99) < 1.5)
+         | (df['EV_EBITDA_over_EBg_ltm'].fillna(99) < 1.5)
+         | (df['EV_EBITDA_over_EBg_yr'].fillna(99) < 1.5)
+         | (df['PSG_ltm'].fillna(99) < 1.5)
+         | (df['PSG_yr'].fillna(99) < 1.5))
     ].copy()
-    # If gross margin Δ available, prefer expanding
-    if 'gross_margin_now_pct' in df_b:
-        df_b = df_b.sort_values(['EV_GP_g','EV_EBITDA_g','PSG'])
+    df_b = df_b.sort_values('EV_GP_over_GPg_ltm', na_position='last')
     df_b.to_csv(OUTDIR / 'best_undervalued.csv')
     print(f'Best-undervalued: {len(df_b)}')
 
     # Display top 25 by EV_GP_g (cheapest on gross profit growth)
-    cols = ['rev_growth_pct','gross_growth_pct','ebitda_growth_pct',
+    cols = ['rev_growth_ltm_pct','rev_growth_yr_pct',
+            'gross_growth_ltm_pct','gross_growth_yr_pct',
+            'ebitda_growth_ltm_pct','ebitda_growth_yr_pct',
             'gross_margin_now_pct',
-            'PEG','PSG','EV_Sales_g','EV_GP_g','EV_EBITDA_g',
+            'PSG_ltm','PSG_yr',
+            'EV_Sales_over_revG_ltm','EV_Sales_over_revG_yr',
+            'EV_GP_over_GPg_ltm','EV_GP_over_GPg_yr',
+            'EV_EBITDA_over_EBg_ltm','EV_EBITDA_over_EBg_yr',
+            'EV_EBITDA_over_GPg_ltm','EV_EBITDA_over_GPg_yr',
+            'PE_over_GPg_ltm','PE_over_GPg_yr',
             'perf_1y_pct','market_cap','trailingPE','priceToSales',
             'evToEbitda','evToSales','evToGrossProfit']
     top = df_b.head(25)[cols].copy()
