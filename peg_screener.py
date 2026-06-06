@@ -111,6 +111,7 @@ def edgar_series(tk):
 
 
 def ltm_yoy(series):
+    """Latest-12m vs prior-12m growth %. Returns (cur, prv, growth%)."""
     if series is None or series.empty: return None, None, None
     s = series.sort_index()
     ltm = s.rolling(4).sum().dropna()
@@ -118,6 +119,30 @@ def ltm_yoy(series):
     cur = float(ltm.iloc[-1]); prv = float(ltm.iloc[-5])
     g = (cur/prv - 1) * 100 if prv != 0 else None
     return cur, prv, g
+
+
+def q_yoy(series):
+    """Single-quarter YoY: latest Q vs Q-4. Less smooth than LTM but only
+    requires 5 quarters (which is yfinance's depth ceiling)."""
+    if series is None or series.empty: return None, None, None
+    s = series.sort_index()
+    if len(s) < 5: return None, None, None
+    cur = float(s.iloc[-1]); prv = float(s.iloc[-5])
+    g = (cur/prv - 1) * 100 if prv != 0 else None
+    return cur, prv, g
+
+
+def ltm_or_q_yoy(series):
+    """Prefer LTM (requires 8 quarters); fall back to single-Q YoY (5 quarters).
+    Returns (current_ltm_or_4xQ, prior_ltm_or_4xQ_estimate, growth%, source)."""
+    cur, prv, g = ltm_yoy(series)
+    if g is not None:
+        return cur, prv, g, 'LTM'
+    cur, prv, g = q_yoy(series)
+    if g is not None:
+        # For "ltm" amounts in dollars, approximate by 4 × latest Q (rough but OK for ratios)
+        return cur * 4 if cur else None, prv * 4 if prv else None, g, 'Q_YoY'
+    return None, None, None, None
 
 
 def get_metrics(tk):
@@ -170,9 +195,9 @@ def analyze(tk):
     mc = i.get('marketCap')
     if mc is None or mc < 200e6: return None
 
-    rev_now, rev_prv, rev_g = ltm_yoy(m['revenue'])
-    gp_now, gp_prv, gp_g    = ltm_yoy(m['gross'])
-    eb_now, eb_prv, eb_g    = ltm_yoy(m['ebitda'])
+    rev_now, rev_prv, rev_g, rev_src = ltm_or_q_yoy(m['revenue'])
+    gp_now, gp_prv, gp_g, gp_src     = ltm_or_q_yoy(m['gross'])
+    eb_now, eb_prv, eb_g, eb_src     = ltm_or_q_yoy(m['ebitda'])
 
     # Multiples
     ps      = i.get('priceToSalesTrailing12Months')
@@ -219,6 +244,7 @@ def analyze(tk):
         'EV_GP_g':        peg_ratio(ev_gp, gp_g),
         'EV_EBITDA_g':    peg_ratio(ev_ebd, eb_g),
         'perf_1y_pct':    price_perf(tk),
+        'growth_source':  rev_src,  # 'LTM' or 'Q_YoY'
     }
     return rec
 
