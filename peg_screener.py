@@ -238,6 +238,11 @@ def get_metrics(tk):
     out['revenue'] = rev
     out['gross']   = gross
     out['ebitda']  = ebitda
+    # FCF series from cashflow parquet (yfinance) — for FCF growth views
+    cf_df = load_table(tk, 'cashflow')
+    fcf_s = _col(cf_df, ['Free Cash Flow','FreeCashFlow'])
+    if fcf_s is None: fcf_s = pd.Series(dtype=float)
+    out['fcf']     = fcf_s
     return out
 
 
@@ -301,16 +306,17 @@ def price_perf(tk, days=252):
     except Exception: return None
 
 
-def analyze(tk, min_mcap=50e6):
+def analyze(tk, min_mcap=0):
     m = get_metrics(tk)
     i = info(tk)
     mc = i.get('marketCap')
-    if mc is None or mc < min_mcap: return None
+    if min_mcap > 0 and (mc is None or mc < min_mcap): return None
 
     # Compute BOTH LTM and latest-year growth views per metric
     rev = both_growth_views(m['revenue'])
     gp  = both_growth_views(m['gross'])
     eb  = both_growth_views(m['ebitda'])
+    fcf = both_growth_views(m.get('fcf', pd.Series(dtype=float)))
 
     # We'll compute EPS growth below — keep candidate if ANY growth metric is available
 
@@ -330,12 +336,19 @@ def analyze(tk, min_mcap=50e6):
     # Keep `eps_g` as a single "best available" growth rate for the classic PEG
     eps_g = eps_ltm_g if eps_ltm_g is not None else eps_yr_g
 
-    # Now require at least ONE growth signal (revenue/gross/ebitda/eps)
-    if (rev['ltm_growth_pct'] is None and rev['yr_growth_pct'] is None
-        and gp['ltm_growth_pct'] is None and gp['yr_growth_pct'] is None
-        and eb['ltm_growth_pct'] is None and eb['yr_growth_pct'] is None
-        and eps_ltm_g is None and eps_yr_g is None):
-        return None
+    # Keep row if ANY of these are present: growth signal, raw multiple, EPS
+    has_growth = any([
+        rev['ltm_growth_pct'], rev['yr_growth_pct'],
+        gp['ltm_growth_pct'], gp['yr_growth_pct'],
+        eb['ltm_growth_pct'], eb['yr_growth_pct'],
+        fcf['ltm_growth_pct'], fcf['yr_growth_pct'],
+        eps_ltm_g, eps_yr_g,
+    ])
+    has_multiple = any([i.get('priceToSalesTrailing12Months'),
+                         i.get('trailingPE'), i.get('enterpriseToEbitda'),
+                         i.get('enterpriseToRevenue')])
+    has_eps = i.get('trailingEps') is not None
+    if not (has_growth or has_multiple or has_eps): return None
 
     def peg_ratio(multiple, growth):
         if multiple is None or growth is None: return None
@@ -369,6 +382,10 @@ def analyze(tk, min_mcap=50e6):
         'gross_growth_yr_pct':   gp['yr_growth_pct'],
         'ebitda_growth_ltm_pct': eb['ltm_growth_pct'],
         'ebitda_growth_yr_pct':  eb['yr_growth_pct'],
+        'fcf_growth_ltm_pct':    fcf['ltm_growth_pct'],
+        'fcf_growth_yr_pct':     fcf['yr_growth_pct'],
+        'fcf_ltm_M':             fcf['ltm_amount']/1e6 if fcf['ltm_amount'] else None,
+        'fcf_yr_M':              fcf['yr_amount']/1e6  if fcf['yr_amount']  else None,
         # Raw multiples
         'trailingPE':      pe,
         'priceToSales':    ps,
