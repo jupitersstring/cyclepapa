@@ -1,6 +1,8 @@
 failed_bearish_*.csv
 momentum_rank_*.csv
 global_equities_consolidated.csv
+global_equity_screen.xlsx
+wiki_index_coverage.csv
 *_volume.csv
 *_report.txt
 *.log
