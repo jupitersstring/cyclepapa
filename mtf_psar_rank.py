@@ -381,13 +381,14 @@ def is_native(t):
     }
 
 
-def main(tickers_override=None, skip_intraday=False):
+def main(tickers_override=None, skip_intraday=False, native_only=False):
     if tickers_override is not None:
         tickers = list(tickers_override)
         meta = pd.DataFrame({"ticker": tickers, "region": "test"})
     else:
         big = load_universe()
-        big = big[big.ticker.apply(is_native)].copy()
+        if native_only:
+            big = big[big.ticker.apply(is_native)].copy()
         big["best_rank"] = big[["daily_rank","weekly_rank","monthly_rank"]].max(axis=1)
         big = big.drop_duplicates(subset=["ticker"], keep="first")
         tickers = big.ticker.astype(str).tolist()
