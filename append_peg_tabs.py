@@ -60,10 +60,11 @@ peg_cols = ['ticker','name','sector','industry','country',
             'rev_growth_ltm_pct','rev_growth_yr_pct',
             'gross_growth_ltm_pct','gross_growth_yr_pct',
             'ebitda_growth_ltm_pct','ebitda_growth_yr_pct',
+            'eps_growth_ltm_pct','eps_growth_yr_pct',
             # Raw multiples
             'trailingPE','priceToSales','evToSales','evToEbitda','evToGrossProfit',
             # PEG-style ratios — LTM growth
-            'PEG_ltm','PSG_ltm',
+            'PEG_ltm','PEG_yr','PSG_ltm',
             'EV_Sales_over_revG_ltm','EV_GP_over_GPg_ltm','EV_EBITDA_over_EBg_ltm',
             # New: harder-to-manipulate divisor (gross profit growth)
             'EV_EBITDA_over_GPg_ltm','PE_over_GPg_ltm','PS_over_GPg_ltm',

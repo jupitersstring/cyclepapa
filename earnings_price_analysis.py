@@ -345,9 +345,12 @@ def fetch_info_metrics(cfg: Config, ticker: str) -> dict[str, float]:
         "trailingPE", "forwardPE", "enterpriseToEbitda", "enterpriseToRevenue",
         "marketCap", "sharesOutstanding", "floatShares",
         "currentPrice", "previousClose",
-        "bookValue", "trailingEps", "totalRevenue",
-        "profitMargins", "operatingMargins", "grossMargins",
+        "bookValue", "trailingEps", "forwardEps", "totalRevenue", "revenuePerShare",
+        "ebitda", "freeCashflow", "operatingCashflow",
+        "profitMargins", "operatingMargins", "grossMargins", "ebitdaMargins",
         "returnOnEquity", "returnOnAssets",
+        # Growth fields (yfinance provides — adds PEG/PSG coverage even when income series is shallow)
+        "revenueGrowth", "earningsGrowth", "earningsQuarterlyGrowth",
         # For negative-EV and net-net screens
         "enterpriseValue", "totalCash", "totalDebt",
         "totalCashPerShare", "currentRatio", "quickRatio",

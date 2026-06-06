@@ -241,6 +241,55 @@ def get_metrics(tk):
     return out
 
 
+def load_eps_history(tk):
+    """Return Series of reported EPS, indexed by earnings date."""
+    p = CACHE / f'{_safe(tk)}__eps_history.parquet'
+    if not p.exists(): return pd.Series(dtype=float)
+    try:
+        df = pd.read_parquet(p)
+        if df.empty or 'Reported EPS' not in df.columns: return pd.Series(dtype=float)
+        s = pd.to_numeric(df['Reported EPS'], errors='coerce').dropna()
+        s = s.sort_index()
+        if getattr(s.index, 'tz', None) is not None:
+            s.index = s.index.tz_localize(None)
+        return s
+    except Exception: return pd.Series(dtype=float)
+
+
+def eps_growth_views(tk, info_eps_qg=None):
+    """Compute EPS growth from cached eps_history. Returns
+    (ltm_growth_pct, yr_growth_pct, latest_eps_ttm)."""
+    s = load_eps_history(tk)
+    if s.empty:
+        # fallback to info_metrics earningsQuarterlyGrowth if present
+        if info_eps_qg is not None:
+            try:
+                g = float(info_eps_qg) * 100
+                return None, g, None
+            except Exception: pass
+        return None, None, None
+    # LTM EPS: rolling 4-quarter sum
+    if len(s) >= 8:
+        ltm = s.rolling(4).sum().dropna()
+        if len(ltm) >= 5:
+            cur_ltm = float(ltm.iloc[-1]); prv_ltm = float(ltm.iloc[-5])
+            ltm_g = (cur_ltm/prv_ltm - 1) * 100 if prv_ltm > 0 else None
+        else:
+            cur_ltm, ltm_g = None, None
+    else:
+        cur_ltm, ltm_g = None, None
+    # Latest year: single-Q vs Q-4 if quarterly, or annual diff
+    if len(s) >= 5:
+        cur_q = float(s.iloc[-1]); prv_q = float(s.iloc[-5])
+        yr_g = (cur_q/prv_q - 1) * 100 if prv_q > 0 else None
+    elif len(s) >= 2:
+        cur_q = float(s.iloc[-1]); prv_q = float(s.iloc[-2])
+        yr_g = (cur_q/prv_q - 1) * 100 if prv_q > 0 else None
+    else:
+        yr_g = None
+    return ltm_g, yr_g, cur_ltm
+
+
 def price_perf(tk, days=252):
     p = CACHE / f'{_safe(tk)}__price.parquet'
     if not p.exists(): return None
@@ -263,11 +312,7 @@ def analyze(tk, min_mcap=50e6):
     gp  = both_growth_views(m['gross'])
     eb  = both_growth_views(m['ebitda'])
 
-    # Need at least ONE growth metric in either view
-    if (rev['ltm_growth_pct'] is None and rev['yr_growth_pct'] is None
-        and gp['ltm_growth_pct'] is None and gp['yr_growth_pct'] is None
-        and eb['ltm_growth_pct'] is None and eb['yr_growth_pct'] is None):
-        return None
+    # We'll compute EPS growth below — keep candidate if ANY growth metric is available
 
     # Multiples (point-in-time, same for both views)
     ps      = i.get('priceToSalesTrailing12Months')
@@ -280,8 +325,17 @@ def analyze(tk, min_mcap=50e6):
     gp_amount = gp['ltm_amount'] or gp['yr_amount']
     ev_gp = ev / gp_amount if (ev is not None and gp_amount is not None and gp_amount > 0) else None
 
-    eps_g = i.get('earningsQuarterlyGrowth')
-    if eps_g is not None: eps_g = eps_g * 100
+    # EPS growth — prefer eps_history series (more accurate); fall back to info field
+    eps_ltm_g, eps_yr_g, _ = eps_growth_views(tk, info_eps_qg=i.get('earningsQuarterlyGrowth'))
+    # Keep `eps_g` as a single "best available" growth rate for the classic PEG
+    eps_g = eps_ltm_g if eps_ltm_g is not None else eps_yr_g
+
+    # Now require at least ONE growth signal (revenue/gross/ebitda/eps)
+    if (rev['ltm_growth_pct'] is None and rev['yr_growth_pct'] is None
+        and gp['ltm_growth_pct'] is None and gp['yr_growth_pct'] is None
+        and eb['ltm_growth_pct'] is None and eb['yr_growth_pct'] is None
+        and eps_ltm_g is None and eps_yr_g is None):
+        return None
 
     def peg_ratio(multiple, growth):
         if multiple is None or growth is None: return None
@@ -321,8 +375,12 @@ def analyze(tk, min_mcap=50e6):
         'evToSales':       ev_sale,
         'evToEbitda':      ev_ebd,
         'evToGrossProfit': ev_gp,
+        # EPS growth (both views) — feeds the classic PEG
+        'eps_growth_ltm_pct':  eps_ltm_g,
+        'eps_growth_yr_pct':   eps_yr_g,
         # PEG-style ratios using LTM growth
-        'PEG_ltm':                peg_ratio(pe,      eps_g),  # uses EPS growth (yfinance trailing)
+        'PEG_ltm':                peg_ratio(pe,      eps_ltm_g),
+        'PEG_yr':                 peg_ratio(pe,      eps_yr_g),
         'PSG_ltm':                peg_ratio(ps,      rev['ltm_growth_pct']),
         'EV_Sales_over_revG_ltm': peg_ratio(ev_sale, rev['ltm_growth_pct']),
         'EV_GP_over_GPg_ltm':     peg_ratio(ev_gp,   gp['ltm_growth_pct']),
