@@ -80,7 +80,8 @@ def build_parser() -> argparse.ArgumentParser:
     c = sub.add_parser("cluster", help="K-means on growth/acceleration behaviour")
     c.add_argument("--in", dest="inp", type=Path, default=None,
                    help="defaults to scored.parquet, falling back to fundamentals")
-    c.add_argument("--k", type=int, default=None, help="fixed k (default: auto via silhouette)")
+    c.add_argument("--k", type=int, default=config.DEFAULT_CLUSTERS,
+                   help=f"fixed number of clusters (default {config.DEFAULT_CLUSTERS}); use 0 for auto via silhouette")
     c.add_argument("--features", default=None, help="comma-separated feature columns")
     c.add_argument("--out-dir", type=Path, default=config.CACHE_DIR)
 
@@ -161,7 +162,7 @@ def main(argv: list[str] | None = None) -> None:
         pipeline.step_cluster(
             scored_path=args.inp,
             features=list(_csv_list(args.features) or []) or None,
-            k=args.k,
+            k=(None if args.k == 0 else args.k),  # 0 -> auto via silhouette
             out_dir=args.out_dir,
         )
     elif args.cmd == "run":

@@ -198,12 +198,12 @@ PRICE_FEATURE_KEYS = [
 # Clustering
 # --------------------------------------------------------------------------- #
 CLUSTER_FEATURES = [
-    "revenue_growth",
-    "revenue_accel",
-    "ebitda_growth",
-    "ebitda_accel",
-    "earnings_growth",
-    "earnings_accel",
+    "revenue_growth", "revenue_accel",
+    "ebitda_growth", "ebitda_accel",
+    "earnings_growth", "earnings_accel",
+    # richer behaviour so finer clusters stay meaningful (margin + recent momentum)
+    "gross_margin_delta", "ebitda_margin_slope", "revenue_q_yoy",
 ]
-KMEANS_K_RANGE = range(3, 11)
+KMEANS_K_RANGE = range(4, 25)  # silhouette search range when k="auto"
+DEFAULT_CLUSTERS = 16          # default fixed k (silhouette favours few; we want granular behaviour)
 RANDOM_STATE = 42

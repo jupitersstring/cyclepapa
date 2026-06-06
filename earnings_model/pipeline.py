@@ -128,7 +128,7 @@ def step_cluster(
     scored_path: Path | None = None,
     fundamentals_path: Path = config.FUNDAMENTALS_PATH,
     features: list[str] | None = None,
-    k: int | None = None,
+    k: int | None = config.DEFAULT_CLUSTERS,
     out_dir: Path = config.CACHE_DIR,
 ) -> dict:
     path = scored_path or (out_dir / "scored.parquet")
@@ -156,7 +156,7 @@ def run_all(
     refresh: bool = False,
     backfill_size: bool = True,
     group_cols=None,
-    k: int | None = None,
+    k: int | None = config.DEFAULT_CLUSTERS,
     out_dir: Path = config.CACHE_DIR,
 ) -> dict:
     step_universe(preset=preset, country=country, exchanges=exchanges, currencies=currencies)

@@ -100,24 +100,45 @@ def run_kmeans(
 
 
 def _behaviour_label(row) -> str:
-    """Human-readable behaviour tag from a cluster's median growth/accel."""
+    """Human-readable behaviour tag — growth band x acceleration x margin trend.
+
+    With more clusters the tag combines three axes so labels stay distinct:
+    a sales-growth band, an acceleration direction, and a margin-trend suffix.
+    """
     def v(k):
         x = row.get(k, np.nan)
         return 0.0 if x is None or (isinstance(x, float) and np.isnan(x)) else float(x)
     g, ra = v("revenue_growth"), v("revenue_accel")
     eg, ea = v("earnings_growth"), v("earnings_accel")
     accel = np.nanmean([ra, ea])
-    if g >= 0.20:
-        return "Hypergrowth, accelerating" if accel > 0 else "Hypergrowth, cooling"
-    if g >= 0.07:
-        return "Growth + improving" if (accel > 0 or ea > 0) else "Growth, slowing"
-    if g <= -0.05 or eg <= -0.15:
-        return "Contracting"
-    if (ea > 0 or eg > 0) and accel >= 0:
-        return "Quietly inflecting"
-    if accel < 0 or eg < 0:
-        return "Decelerating"
-    return "Flat / ex-growth"
+    margin = v("ebitda_margin_slope") or v("gross_margin_delta")
+
+    if g >= 0.25:
+        band = "Hypergrowth"
+    elif g >= 0.10:
+        band = "Growth"
+    elif g >= 0.02:
+        band = "Low-growth"
+    elif g > -0.05:
+        band = "Flat"
+    else:
+        band = "Contracting"
+
+    if accel > 0.02:
+        direction = "accelerating"
+    elif accel < -0.02:
+        direction = "decelerating"
+    else:
+        direction = "steady"
+    if band == "Contracting":  # for decliners, whether the decline is easing matters most
+        direction = "stabilising" if accel > 0 else "deteriorating"
+
+    suffix = ""
+    if margin > 0.01:
+        suffix = ", margins expanding"
+    elif margin < -0.01:
+        suffix = ", margins compressing"
+    return f"{band}, {direction}{suffix}"
 
 
 def _profile(labeled: pd.DataFrame, feats: list[str]) -> pd.DataFrame:
