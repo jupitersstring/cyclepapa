@@ -16,7 +16,9 @@ def load_meta():
     meta = {}
     for f in ['universe_us_wide.csv','universe_expanded.csv','universe_wider.csv',
               'universe_eu.csv','universe_eu_extra.csv','universe_canada.csv',
-              'universe_us_large_mega.csv']:
+              'universe_us_large_mega.csv',
+              'universe_japan.csv','universe_korea.csv','universe_hongkong.csv',
+              'universe_australia.csv','universe_india.csv']:
         p = Path(f)
         if not p.exists(): continue
         try:
@@ -27,6 +29,11 @@ def load_meta():
                 k = tk.upper()
                 if k in meta: continue
                 meta[k] = {f: r.get(f) for f in ['name','sector','industry','country'] if f in d.columns}
+                # also store with safe-name form (underscores)
+                import re
+                safe_k = re.sub(r'\.', '_', k)
+                if safe_k != k and safe_k not in meta:
+                    meta[safe_k] = meta[k]
         except Exception: pass
     return meta
 
