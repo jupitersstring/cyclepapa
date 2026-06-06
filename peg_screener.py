@@ -132,16 +132,50 @@ def q_yoy(series):
     return cur, prv, g
 
 
+def detect_frequency(series):
+    """Return 'annual' or 'quarterly' or None based on median date gap."""
+    if series is None or len(series) < 2: return None
+    s = series.sort_index()
+    diffs = np.diff(s.index.values.astype('datetime64[D]').astype(int))
+    if len(diffs) == 0: return None
+    median_gap = float(np.median(diffs))
+    if median_gap > 270:   # annual data (typically 360-365 days)
+        return 'annual'
+    if 60 < median_gap < 120:  # quarterly (~91 days)
+        return 'quarterly'
+    return None
+
+
+def annual_yoy(series):
+    """Latest annual vs prior annual. Requires 2 annual periods."""
+    if series is None or len(series) < 2: return None, None, None
+    s = series.sort_index()
+    cur = float(s.iloc[-1]); prv = float(s.iloc[-2])
+    g = (cur/prv - 1) * 100 if prv != 0 else None
+    return cur, prv, g
+
+
 def ltm_or_q_yoy(series):
-    """Prefer LTM (requires 8 quarters); fall back to single-Q YoY (5 quarters).
-    Returns (current_ltm_or_4xQ, prior_ltm_or_4xQ_estimate, growth%, source)."""
-    cur, prv, g = ltm_yoy(series)
-    if g is not None:
-        return cur, prv, g, 'LTM'
+    """Pick the best available YoY method:
+      1) LTM-vs-LTM (rolling 4Q sum, requires 8 quarters) — preferred for US/EDGAR
+      2) Single-Q YoY (Q vs Q-4, requires 5 quarters) — yfinance quarterly fallback
+      3) Annual-vs-annual (requires 2 annual periods) — yfinance annual fallback
+    Returns (current_amount, prior_amount, growth%, source)."""
+    freq = detect_frequency(series)
+    if freq == 'quarterly':
+        cur, prv, g = ltm_yoy(series)
+        if g is not None: return cur, prv, g, 'LTM'
+        cur, prv, g = q_yoy(series)
+        if g is not None:
+            return (cur*4 if cur else None), (prv*4 if prv else None), g, 'Q_YoY'
+    if freq == 'annual':
+        cur, prv, g = annual_yoy(series)
+        if g is not None: return cur, prv, g, 'Annual'
+    # Last-resort: try whichever doesn't fail
+    cur, prv, g = annual_yoy(series)
+    if g is not None: return cur, prv, g, 'Annual'
     cur, prv, g = q_yoy(series)
-    if g is not None:
-        # For "ltm" amounts in dollars, approximate by 4 × latest Q (rough but OK for ratios)
-        return cur * 4 if cur else None, prv * 4 if prv else None, g, 'Q_YoY'
+    if g is not None: return (cur*4 if cur else None), (prv*4 if prv else None), g, 'Q_YoY'
     return None, None, None, None
 
 
