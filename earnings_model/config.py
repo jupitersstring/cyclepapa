@@ -183,7 +183,8 @@ SURPRISE_REGIONS = ("US", "UK", "EU", "CA", "ANZ")
 MAX_RETRIES = 4
 BACKOFF_BASE = 2.0           # seconds -> 2, 4, 8, 16
 REQUEST_JITTER = (0.4, 1.2)  # random pause between tickers to ease rate limits
-CACHE_TTL_DAYS = 5           # reuse cached fundamentals younger than this
+CACHE_TTL_DAYS = 30          # reuse cached fundamentals younger than this (a multi-day
+                             # world fetch + quarterly data; 5d was far too aggressive)
 FAIL_CACHE_TTL_DAYS = 1.0    # negative cache: failed fetches expire fast & auto-retry
 PRICE_LOOKBACK = "5y"        # daily closes -> monthly; enough for multi-year dormancy
 

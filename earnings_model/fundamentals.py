@@ -218,7 +218,7 @@ def refresh_valuation(symbol: str, session=None) -> dict | None:
     want a full statement+price+surprise re-fetch. Returns the updated raw dict
     (or None if no cache exists / the .info pull fails).
     """
-    cached = load_raw(symbol)
+    cached = load_raw(symbol, ttl_days=None, fail_ttl_days=None)
     if cached is None:
         return None
     try:
@@ -242,7 +242,7 @@ def refresh_surprises(symbol: str, session=None) -> dict | None:
     surprise leg can be back-filled for already-fetched names cheaply. Always
     writes a ``surprises`` key (possibly empty) so a re-run won't retry it.
     """
-    cached = load_raw(symbol)
+    cached = load_raw(symbol, ttl_days=None, fail_ttl_days=None)
     if cached is None:
         return None
     try:
