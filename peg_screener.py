@@ -223,15 +223,18 @@ def price_perf(tk, days=252):
     except Exception: return None
 
 
-def analyze(tk):
+def analyze(tk, min_mcap=50e6):
     m = get_metrics(tk)
     i = info(tk)
     mc = i.get('marketCap')
-    if mc is None or mc < 200e6: return None
+    if mc is None or mc < min_mcap: return None
 
     rev_now, rev_prv, rev_g, rev_src = ltm_or_q_yoy(m['revenue'])
     gp_now, gp_prv, gp_g, gp_src     = ltm_or_q_yoy(m['gross'])
     eb_now, eb_prv, eb_g, eb_src     = ltm_or_q_yoy(m['ebitda'])
+
+    # Need at least ONE growth metric to score
+    if rev_g is None and gp_g is None and eb_g is None: return None
 
     # Multiples
     ps      = i.get('priceToSalesTrailing12Months')
@@ -285,19 +288,24 @@ def analyze(tk):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--min-mcap', type=float, default=200e6)
-    ap.add_argument('--min-rev-growth', type=float, default=5.0)
+    ap.add_argument('--min-mcap', type=float, default=50e6)
+    ap.add_argument('--min-rev-growth', type=float, default=0.0)
     args = ap.parse_args()
 
-    tickers = sorted({p.name.split('__')[0] for p in CACHE.glob('*__income.parquet')})
-    print(f'Scanning {len(tickers)} tickers...')
+    # Iterate every cached ticker (price OR info OR income) — broadest possible
+    inc = {p.name.split('__')[0] for p in CACHE.glob('*__income.parquet')}
+    inf = {p.name.split('__')[0] for p in CACHE.glob('*__info_metrics.parquet')}
+    tickers = sorted(inc | inf)
+    print(f'Scanning {len(tickers)} tickers (income OR info)...')
     rows = []
     for i, tk in enumerate(tickers):
         if (i+1) % 1000 == 0: print(f'  {i+1}/{len(tickers)} rows={len(rows)}')
         if tk.upper().endswith(('_NS','_BO','.NS','.BO')): continue
-        rec = analyze(tk)
+        rec = analyze(tk, min_mcap=args.min_mcap)
         if rec is None: continue
-        if rec.get('rev_growth_pct') is None or rec['rev_growth_pct'] < args.min_rev_growth: continue
+        # Apply rev_growth gate only if computed; allow nullable for broader browse
+        rg = rec.get('rev_growth_pct')
+        if rg is not None and rg < args.min_rev_growth: continue
         rows.append(rec)
     if not rows:
         print('No hits'); return
