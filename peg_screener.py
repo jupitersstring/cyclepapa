@@ -330,6 +330,14 @@ def analyze(tk, min_mcap=0):
         rev['ltm_amount'] = float(info_total_rev)
     if eb['ltm_amount'] is None and info_ebitda is not None:
         eb['ltm_amount'] = float(info_ebitda)
+    # Derive EBITDA from EV / enterpriseToEbitda when neither income series
+    # nor info_metrics.ebitda is available
+    if eb['ltm_amount'] is None and i.get('enterpriseValue') and i.get('enterpriseToEbitda'):
+        try:
+            ev_ = float(i['enterpriseValue']); evb = float(i['enterpriseToEbitda'])
+            if evb > 0:
+                eb['ltm_amount'] = ev_ / evb
+        except Exception: pass
     if fcf['ltm_amount'] is None and info_fcf is not None:
         fcf['ltm_amount'] = float(info_fcf)
     # Derive gross from totalRevenue × grossMargins when missing
