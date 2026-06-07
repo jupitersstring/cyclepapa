@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import glob
 import json
+import sys
 import warnings
 from datetime import date
 from pathlib import Path
@@ -21,6 +22,7 @@ from pathlib import Path
 import pandas as pd
 
 warnings.filterwarnings("ignore")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from earnings_model import cluster, config, metrics, prebreakout, screens, valuation
 
 # Sheets in display order (name -> friendly tab title).
