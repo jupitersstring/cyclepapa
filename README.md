@@ -89,6 +89,26 @@ res = cluster.run_kmeans(scored)                    # res["labeled"], res["profi
 | `case_studies.csv` | names whose price history shows the *long base → breakout* shape |
 | `clusters.csv` / `cluster_profile.csv` | K-means assignments + cluster behaviour profiles |
 
+### Durable snapshots (surviving a container rollback)
+
+`cache/` is gitignored and **ephemeral** — on a hosted/remote runner it can be
+rolled back, wiping the assembled tables (and reverting fetched surprise data)
+even though the code is safe in git. `scripts/snapshot.py` keeps a compact copy
+of the universe + assembled `fundamentals`/`scored` tables under `data/` (which
+**is** tracked), so the analysis can always be rehydrated:
+
+```bash
+python scripts/snapshot.py rebuild   # cache/raw -> fundamentals + scored (NO network)
+python scripts/snapshot.py save      # cache/*.parquet -> data/   ; then: git add data && commit
+python scripts/snapshot.py restore   # data/*.parquet -> cache/   (after a rollback)
+python scripts/snapshot.py status    # row + coverage counts on both sides
+```
+
+`rebuild` re-derives every metric column straight from the already-fetched
+`cache/raw/*.json` with no Yahoo calls; the only thing it can't recover offline
+is *new* EPS-surprise coverage, which `scripts/backfill_surprises.py` tops up
+(resumable, US/UK/EU/CA/ANZ only — the regions Yahoo actually carries).
+
 ## Methodology
 
 Histories are ordered oldest → newest; annual statements are the primary
@@ -187,7 +207,11 @@ earnings_model/
   prebreakout.py   # pre-breakout score (improving×dormant×cheap) + case studies
   pipeline.py      # orchestration
   cli.py           # `python -m earnings_model ...`
-scripts/selftest.py  # offline end-to-end analytics test (no network)
+scripts/selftest.py          # offline end-to-end analytics test (no network)
+scripts/snapshot.py          # durable data/ snapshot: rebuild / save / restore / status
+scripts/backfill_surprises.py# resumable EPS-surprise back-fill (developed markets)
+scripts/screen_excel.py      # multi-sheet cross-screen workbook
+data/                        # committed snapshot (universe + fundamentals + scored)
 ```
 
 Run the offline self-test (no network needed):
