@@ -1,13 +1,17 @@
-"""One-off slower retry for US plain-ticker (operating-likely) names.
+"""Slower retry for plain-ticker (operating-likely) names by region.
 
-The general back-fill (scripts/backfill_surprises.py) caught the cooperative
-names. A second pass with longer jitter rescues the ones Yahoo silently
-rate-limited (PPG/KSS/TTWO-class liquids that returned 'no earnings dates'
-under load). Plain tickers only — preferreds (-PC), warrants (W), units (U),
-and CEFs are excluded by regex since they legitimately have no EPS surprise.
+The general back-fill (scripts/backfill_surprises.py) catches the cooperative
+names. A second pass with longer jitter + periodic 30s breathers rescues the
+ones Yahoo silently rate-limited (e.g. PPG/KSS-class US liquids that returned
+'no earnings dates' under load). Plain tickers only — preferreds (-PC),
+warrants (W), units (U), and CEFs are excluded by regex since they
+legitimately have no EPS surprise.
+
+Default regions: US. Override with --regions UK,EU,CA,ANZ to do the rest.
 """
 from __future__ import annotations
 
+import argparse
 import glob
 import json
 import random
@@ -35,6 +39,12 @@ def load_checked() -> set[str]:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--regions", default="US",
+                    help="comma-separated region codes (default: US)")
+    args = ap.parse_args()
+    wanted = {r.strip() for r in args.regions.split(",") if r.strip()}
+
     uni = pd.read_parquet(config.UNIVERSE_PATH)
     region = dict(zip(uni["symbol"], uni["region"]))
 
@@ -47,11 +57,11 @@ def main() -> None:
         s = r.get("symbol")
         if not (s and r.get("fetch_ok")) or r.get("surprises"):
             continue
-        if region.get(s) != "US" or NONOP.search(s):
+        if region.get(s) not in wanted or NONOP.search(s):
             continue
         targets.append(s)
 
-    print(f"slow US retry: {len(targets)} plain tickers", flush=True)
+    print(f"slow retry ({sorted(wanted)}): {len(targets)} plain tickers", flush=True)
     # Clear the checked sidecar entries for these so prior rate-limited 'misses'
     # actually retry. The checked-set is updated in this loop too.
     checked = load_checked()
