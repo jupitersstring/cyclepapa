@@ -29,7 +29,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F, pipeline
+from earnings_model import config, fundamentals as F, pipeline, surprise_store as S
 
 DATA_DIR = Path("data")
 # Files that make up a snapshot. universe + fundamentals are the inputs; scored is
@@ -52,6 +52,11 @@ def _cached_ok_symbols() -> list[str]:
 
 def rebuild() -> None:
     """Re-derive fundamentals + scored straight from cache/raw (no network)."""
+    # The durable surprise store (data/surprises.json) is git-tracked and survives
+    # rollbacks; fold it back into cache/raw so the rebuilt parquet has full surprise
+    # coverage even when the cache itself was just reverted.
+    reinj = S.reinject_into_cache()
+    print(f"reinjected {reinj} durable surprises into cache/raw")
     syms = _cached_ok_symbols()
     print(f"rebuilding from {len(syms)} cached names with data (no network)...")
     uni = pd.read_parquet(config.UNIVERSE_PATH)
@@ -92,6 +97,10 @@ def restore() -> None:
     if not restored:
         print("nothing to restore — data/ is empty. Run a fetch + rebuild + save first.")
         sys.exit(1)
+    # Make cache/raw consistent with the durable surprise store too, so a later
+    # rebuild keeps full surprise coverage rather than the rolled-back cache state.
+    reinj = S.reinject_into_cache()
+    print(f"reinjected {reinj} durable surprises into cache/raw")
 
 
 def _coverage(path: Path) -> str:
@@ -114,6 +123,7 @@ def _coverage(path: Path) -> str:
 def status() -> None:
     raws = len(glob.glob(str(config.RAW_CACHE_DIR / "*.json")))
     print(f"cache/raw: {raws} json files")
+    print(f"data/surprises.json (durable): {len(S.load())} names with surprises")
     for name in SNAPSHOT_FILES:
         print(f"  cache/{name:22s} {_coverage(config.CACHE_DIR / name)}")
         print(f"  data/ {name:22s} {_coverage(DATA_DIR / name)}")

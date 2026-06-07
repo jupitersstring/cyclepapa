@@ -105,9 +105,13 @@ python scripts/snapshot.py status    # row + coverage counts on both sides
 ```
 
 `rebuild` re-derives every metric column straight from the already-fetched
-`cache/raw/*.json` with no Yahoo calls; the only thing it can't recover offline
-is *new* EPS-surprise coverage, which `scripts/backfill_surprises.py` tops up
-(resumable, US/UK/EU/CA/ANZ only — the regions Yahoo actually carries).
+`cache/raw/*.json` with no Yahoo calls. EPS surprises are the one
+network-expensive, rollback-fragile leg, so they get their own compact,
+git-tracked store (`data/surprises.json`, via `earnings_model/surprise_store.py`).
+`scripts/backfill_surprises.py` tops it up (resumable, US/UK/EU/CA/ANZ only —
+the regions Yahoo carries) and **commits progress to git as it fetches**, so a
+mid-run rollback can't wipe it; `rebuild`/`restore` fold the durable store back
+into `cache/raw` so the parquet always has full surprise coverage.
 
 ## Methodology
 

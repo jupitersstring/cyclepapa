@@ -1,15 +1,19 @@
-"""Back-fill EPS-surprise history for developed-market names that lack it.
+"""Back-fill EPS-surprise history for developed-market names — rollback-proof.
 
-yfinance only carries EPS surprises, with good coverage in the US/UK/EU/CA/ANZ
-and little elsewhere, so we only attempt those regions (config.SURPRISE_REGIONS).
-Each name is one cheap ``get_earnings_dates`` call via ``refresh_surprises`` (no
-statement/price re-pull). Progress is saved per-name into cache/raw, and a sidecar
-``surprises_checked.json`` records every attempted symbol so that resuming after a
-container kill skips names we've already tried (including genuine no-coverage ones)
-instead of re-hammering Yahoo from the top.
+yfinance only carries EPS surprises (good coverage in US/UK/EU/CA/ANZ, sparse
+elsewhere), one ``get_earnings_dates`` call per name and *heavily* rate-limited:
+hammer it with no delay and it silently returns "no earnings dates" for liquid
+names that obviously have data, so we pace with jitter + periodic breathers.
 
-    python scripts/backfill_surprises.py            # all developed names missing surprises
-    python scripts/backfill_surprises.py --limit 500
+Crucially, progress is **committed to git as it is fetched** (the compact
+``data/surprises.json`` via ``earnings_model.surprise_store``), so a hosted
+container rollback — which reverts the ephemeral ``cache/`` — cannot wipe the
+hard-won coverage. Resuming after a kill skips names already in the durable
+store or the durable checked-set, so we don't re-hammer Yahoo from the top.
+
+    python scripts/backfill_surprises.py                      # all developed plain tickers
+    python scripts/backfill_surprises.py --regions US         # one market
+    python scripts/backfill_surprises.py --commit-every 250   # git push cadence (hits)
 """
 from __future__ import annotations
 
@@ -17,6 +21,8 @@ import argparse
 import glob
 import json
 import random
+import re
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -24,29 +30,35 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F
+from earnings_model import config, fundamentals as F, surprise_store as S
 
-CHECKED_PATH = config.CACHE_DIR / "surprises_checked.json"
-
-
-def _load_checked() -> set[str]:
-    if CHECKED_PATH.exists():
-        try:
-            return set(json.loads(CHECKED_PATH.read_text()))
-        except (json.JSONDecodeError, OSError):
-            return set()
-    return set()
+# Preferreds (-PC), warrants (W), units (U/UN), rights (R/RT), CEFs/notes (N/O/P/M
+# suffix) legitimately have no EPS surprise; skip them so we don't waste calls.
+NONOP = re.compile(r"(-P[A-Z]?$|[WURM]$|UN$|WS$|RT$|-A$|-B$|-C$|-D$|N$|O$|P$)")
 
 
-def _save_checked(checked: set[str]) -> None:
-    CHECKED_PATH.write_text(json.dumps(sorted(checked)))
+def _git(*args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", *args], capture_output=True, text=True)
 
 
-def targets(checked: set[str], regions: tuple[str, ...] | None = None) -> list[str]:
-    """Developed-region, fetch_ok, currently-empty-surprise names not yet checked."""
+def _persist_and_push(msg: str) -> None:
+    """Commit the durable surprise files and push (retry/backoff on network)."""
+    _git("add", str(S.SURPRISES_PATH), str(S.CHECKED_PATH))
+    res = _git("commit", "-m", msg)
+    if "nothing to commit" in (res.stdout + res.stderr):
+        return
+    for i in range(4):
+        p = _git("push", "-u", "origin", "claude/bold-meitner-0ntuU")
+        if p.returncode == 0:
+            return
+        time.sleep(2 ** (i + 1))
+    print(f"  [warn] push failed: {p.stderr.strip()[:200]}", flush=True)
+
+
+def targets(store: dict, checked: set[str], wanted: set[str]) -> list[str]:
+    """Operating-likely plain tickers in `wanted` regions not yet fetched/attempted."""
     uni = pd.read_parquet(config.UNIVERSE_PATH)
     region = dict(zip(uni["symbol"], uni["region"])) if "region" in uni.columns else {}
-    allowed = regions if regions is not None else config.SURPRISE_REGIONS
     out = []
     for p in glob.glob(str(config.RAW_CACHE_DIR / "*.json")):
         try:
@@ -56,57 +68,62 @@ def targets(checked: set[str], regions: tuple[str, ...] | None = None) -> list[s
         s = r.get("symbol")
         if not (s and r.get("fetch_ok")):
             continue
-        if r.get("surprises"):       # already has data
+        if s in store or s in checked:          # already have it / already tried
             continue
-        if s in checked:             # already attempted this run-series
-            continue
-        if region.get(s) in allowed:
+        if region.get(s) in wanted and not NONOP.search(s):
             out.append(s)
     return out
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--regions", default=",".join(config.SURPRISE_REGIONS),
+                    help="comma-separated region codes")
     ap.add_argument("--limit", type=int, default=None)
-    ap.add_argument("--regions", default=None,
-                    help="comma-separated region codes (default: config.SURPRISE_REGIONS)")
-    ap.add_argument("--reset", action="store_true",
-                    help="clear the checked-set for the targeted regions before running "
-                         "(use after a rate-limited run silently missed names)")
-    ap.add_argument("--min-sleep", type=float, default=0.4,
-                    help="min seconds between Yahoo calls (jitter prevents rate-limiting)")
-    ap.add_argument("--max-sleep", type=float, default=0.9)
+    ap.add_argument("--min-sleep", type=float, default=1.0)
+    ap.add_argument("--max-sleep", type=float, default=2.0)
+    ap.add_argument("--breather-every", type=int, default=200, help="calls between 30s rests")
+    ap.add_argument("--commit-every", type=int, default=250, help="hits between git pushes")
+    ap.add_argument("--no-git", action="store_true", help="skip git commits (local only)")
     args = ap.parse_args()
+    wanted = {r.strip() for r in args.regions.split(",") if r.strip()}
 
-    regions = tuple(r.strip() for r in args.regions.split(",")) if args.regions else None
-    checked = _load_checked()
-    if args.reset:
-        uni = pd.read_parquet(config.UNIVERSE_PATH)
-        region = dict(zip(uni["symbol"], uni["region"]))
-        allowed = regions if regions is not None else config.SURPRISE_REGIONS
-        before = len(checked)
-        checked = {s for s in checked if region.get(s) not in allowed}
-        print(f"reset: dropped {before - len(checked)} checked entries in regions {allowed}",
-              flush=True)
-    todo = targets(checked, regions=regions)
+    # Capture whatever surprises are currently in the cache into the durable store
+    # first (so a fresh rollback's survivors are folded in, not lost), then push it.
+    store = S.seed_from_cache()
+    checked = S.load_checked()
+    if not args.no_git:
+        _persist_and_push("Seed durable surprise store from cache")
+
+    todo = targets(store, checked, wanted)
     if args.limit:
         todo = todo[: args.limit]
-    print(f"surprise back-fill: {len(todo)} developed names to attempt "
-          f"({len(checked)} already checked)", flush=True)
+    print(f"surprise back-fill {sorted(wanted)}: {len(todo)} to attempt "
+          f"(durable store has {len(store)}, checked {len(checked)})", flush=True)
 
     session = F.make_session()
-    got = 0
+    got = since_commit = 0
     for i, sym in enumerate(todo, 1):
         raw = F.refresh_surprises(sym, session=session)
-        if raw and raw.get("surprises"):
-            got += 1
         checked.add(sym)
+        if raw and raw.get("surprises"):
+            store[sym] = raw["surprises"]
+            got += 1
+            since_commit += 1
         if i % 50 == 0 or i == len(todo):
-            _save_checked(checked)
-            print(f"  [{i}/{len(todo)}] attempted, {got} with surprise data", flush=True)
-        time.sleep(random.uniform(args.min_sleep, args.max_sleep))
-    _save_checked(checked)
-    print(f"FINISHED: {got}/{len(todo)} names gained surprise data", flush=True)
+            S.save(store)
+            S.save_checked(checked)
+            print(f"  [{i}/{len(todo)}] attempted, {got} new (store={len(store)})", flush=True)
+        if not args.no_git and since_commit >= args.commit_every:
+            _persist_and_push(f"Back-fill surprises: store={len(store)} (+{got} this run)")
+            since_commit = 0
+        time.sleep(30 if i % args.breather_every == 0 else random.uniform(args.min_sleep, args.max_sleep))
+
+    S.save(store)
+    S.save_checked(checked)
+    if not args.no_git:
+        _persist_and_push(f"Back-fill surprises complete: store={len(store)} (+{got} this run)")
+    print(f"FINISHED: +{got} new, durable store now {len(store)} names", flush=True)
 
 
 if __name__ == "__main__":
