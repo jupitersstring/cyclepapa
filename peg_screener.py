@@ -338,6 +338,17 @@ def analyze(tk, min_mcap=0):
             if evb > 0:
                 eb['ltm_amount'] = ev_ / evb
         except Exception: pass
+
+    # ---- INFO-METRICS GROWTH FALLBACKS (yfinance scalar fields) ----
+    # When the series-based YR growth couldn't compute, use info_metrics fields.
+    # These give YoY-style growth rates as scalars (no time series, but better
+    # than blank).
+    info_rev_g = i.get('revenueGrowth')          # decimal
+    info_earn_g = i.get('earningsGrowth')        # decimal
+    info_earn_qg = i.get('earningsQuarterlyGrowth')  # decimal
+    if rev['yr_growth_pct'] is None and info_rev_g is not None:
+        try: rev['yr_growth_pct'] = float(info_rev_g) * 100
+        except Exception: pass
     if fcf['ltm_amount'] is None and info_fcf is not None:
         fcf['ltm_amount'] = float(info_fcf)
     # Derive gross from totalRevenue × grossMargins when missing
