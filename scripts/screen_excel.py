@@ -171,7 +171,7 @@ def main():
         ("Divergence", "Biggest fundamental behaviour change vs least price reaction (cheapness-independent)."),
         ("YoY Unpriced", "Annual growth accel/inflection that is cheap and price-dormant."),
         ("Surprises", "Greatest EPS surprises vs consensus: recent + cumulative (cum8) + consistency (beat_rate/streak)."),
-        ("Consensus Lagging", "Forward EPS below trailing reality while fundamentals grow and company is beating (>=5 analysts)."),
+        ("Consensus Lagging", "Forward EPS below trailing reality while fundamentals grow (>=5 analysts, ex-REIT). 'confirmation' = beats (surprise-confirmed, US/UK/EU/CA/ANZ) or fundamentals (earnings-growth-confirmed, no-surprise markets e.g. Japan)."),
         ("Cluster Profile", f"K-means behavioural clusters (k={config.DEFAULT_CLUSTERS}); each row = a centroid, labelled growth-band x acceleration x margin-trend."),
         ("Clusters", "Every operating name with its behavioural cluster + label (rank-transformed growth/accel/margin/momentum features)."),
         ("score", "Each screen's composite rank (0-1); colour-scaled."),
