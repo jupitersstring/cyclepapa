@@ -32,9 +32,15 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from earnings_model import config, fundamentals as F, surprise_store as S
 
-# Preferreds (-PC), warrants (W), units (U/UN), rights (R/RT), CEFs/notes (N/O/P/M
-# suffix) legitimately have no EPS surprise; skip them so we don't waste calls.
-NONOP = re.compile(r"(-P[A-Z]?$|[WURM]$|UN$|WS$|RT$|-A$|-B$|-C$|-D$|N$|O$|P$)")
+# Skip clear non-operating securities (no EPS surprise) WITHOUT false-excluding
+# real tickers. Two patterns only:
+#   * a dash suffix  -> preferreds/classes/warrants (IVR-PC, BRK-A, FOO-WT)
+#   * a 5-LETTER symbol whose 5th letter is a class indicator (Nasdaq convention):
+#     W=warrant U=unit P/N/O/M=preferred/note R=right Q=bankruptcy E=delinquent
+#     (LUNRW, NOVTU, POWWP, AGNCN). Crucially this needs exactly 5 letters, so
+#     3-4 char names ending in those letters (AMZN, CRM, IBM, QCOM, MU, PLTR,
+#     TTWO, LOW, UBER, ...) are NOT excluded — the old `[WURM]$|N$|O$|P$` was.
+NONOP = re.compile(r"(-[A-Z]{1,3}$|^[A-Z]{4}[WUPNORMQE]$)")
 
 
 def _git(*args: str) -> subprocess.CompletedProcess:
