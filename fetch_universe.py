@@ -125,12 +125,15 @@ def fetch_one(ticker: str) -> dict:
                 keep = ('priceToBook','priceToSalesTrailing12Months','trailingPE',
                         'forwardPE','enterpriseToEbitda','enterpriseToRevenue',
                         'marketCap','sharesOutstanding','floatShares',
-                        'currentPrice','previousClose','bookValue','trailingEps',
-                        'totalRevenue','profitMargins','operatingMargins','grossMargins',
-                        'returnOnEquity','returnOnAssets','enterpriseValue',
-                        'totalCash','totalDebt','totalCashPerShare','currentRatio',
-                        'quickRatio','debtToEquity','longName','shortName',
-                        'sector','industry','currency','country')
+                        'currentPrice','previousClose','bookValue','trailingEps','forwardEps',
+                        'totalRevenue','revenuePerShare','ebitda','freeCashflow','operatingCashflow',
+                        'profitMargins','operatingMargins','grossMargins','ebitdaMargins',
+                        'returnOnEquity','returnOnAssets',
+                        # Growth fields (yfinance provides — but were missed before)
+                        'revenueGrowth','earningsGrowth','earningsQuarterlyGrowth',
+                        'enterpriseValue','totalCash','totalDebt','totalCashPerShare',
+                        'currentRatio','quickRatio','debtToEquity',
+                        'longName','shortName','sector','industry','currency','country')
                 row = {}
                 for k in keep:
                     v = info.get(k)
