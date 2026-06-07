@@ -493,6 +493,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tickers", default="",
                     help="Comma-separated tickers (overrides --top)")
+    ap.add_argument("--tickers-file", default="",
+                    help="Path to a file with one ticker per line")
     ap.add_argument("--top", type=int, default=60,
                     help="Top N from top_asymmetric.csv")
     ap.add_argument("--quarters", type=int, default=4,
@@ -501,7 +503,10 @@ def main() -> int:
     ap.add_argument("--sleep", type=float, default=0.20)
     args = ap.parse_args()
 
-    if args.tickers:
+    if args.tickers_file:
+        tickers = [t.strip().upper() for t in
+                   Path(args.tickers_file).read_text().splitlines() if t.strip()]
+    elif args.tickers:
         tickers = [t.strip().upper() for t in args.tickers.split(",") if t.strip()]
     else:
         tickers = load_top_asymmetric()[: args.top]
