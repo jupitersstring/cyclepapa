@@ -501,7 +501,12 @@ def main() -> int:
                     help="Recent 10-Qs per ticker")
     ap.add_argument("--days", type=int, default=540)
     ap.add_argument("--sleep", type=float, default=0.20)
+    ap.add_argument("--json", default=str(OUT_JSON),
+                    help="Output JSON path (use per-shard for parallel runs)")
+    ap.add_argument("--csv", default=str(OUT_CSV))
     args = ap.parse_args()
+    out_json_path = Path(args.json)
+    out_csv_path = Path(args.csv)
 
     if args.tickers_file:
         tickers = [t.strip().upper() for t in
@@ -516,9 +521,9 @@ def main() -> int:
 
     # Resume from existing
     out: dict = {}
-    if OUT_JSON.exists():
+    if out_json_path.exists():
         try:
-            out = json.loads(OUT_JSON.read_text())
+            out = json.loads(out_json_path.read_text())
         except Exception:
             out = {}
 
@@ -563,7 +568,7 @@ def main() -> int:
             cur["counts"] = counts
             cur["_complete"] = True
             out[tk] = cur
-            OUT_JSON.write_text(json.dumps(out, indent=2, default=str))
+            out_json_path.write_text(json.dumps(out, indent=2, default=str))
 
         n = len(cur.get("events") or [])
         c = cur.get("counts") or {}
@@ -588,14 +593,14 @@ def main() -> int:
     fields = ["rank", "ticker", "n_quarters_scanned", "n_events",
               "term_sell", "adopt_sell", "term_buy", "adopt_buy",
               "modify_pair", "score", "reasons"]
-    with OUT_CSV.open("w", newline="") as f:
+    with out_csv_path.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
         for i, r in enumerate(rows, 1):
             r["rank"] = i
             w.writerow(r)
 
-    print(f"\nWrote {OUT_CSV} + {OUT_JSON}\n")
+    print(f"\nWrote {out_csv_path} + {out_json_path}\n")
     nonzero = [r for r in rows if r["score"] != 0]
     print(f"=== {len(nonzero)} tickers with non-zero 10b5-1 signal "
           f"(bullish + bearish) ===")
