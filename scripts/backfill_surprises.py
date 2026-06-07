@@ -115,6 +115,8 @@ def main() -> None:
             S.save_checked(checked)
             print(f"  [{i}/{len(todo)}] attempted, {got} new (store={len(store)})", flush=True)
         if not args.no_git and since_commit >= args.commit_every:
+            S.save(store)            # flush before commit so the diff is current
+            S.save_checked(checked)
             _persist_and_push(f"Back-fill surprises: store={len(store)} (+{got} this run)")
             since_commit = 0
         time.sleep(30 if i % args.breather_every == 0 else random.uniform(args.min_sleep, args.max_sleep))
