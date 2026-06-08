@@ -133,10 +133,11 @@ def main():
         _fmt_sheet(writer, title[:31], res, hdr, pct_fmt, f2_fmt)
         written.append(f"{title}({len(res)})")
 
-    # Behavioural clusters: a profile sheet (the k centroids) + per-name assignments.
+    # Behavioural clusters across the ENTIRE universe (every name with data, not
+    # just operating companies) — a profile sheet (the k centroids) + per-name
+    # assignments. is_operating is kept as a column so you can still filter.
     try:
-        op = df[df.get("is_operating", True)].copy() if "is_operating" in df.columns else df
-        ck = cluster.run_kmeans(op, k=config.DEFAULT_CLUSTERS)
+        ck = cluster.run_kmeans(df, k=config.DEFAULT_CLUSTERS)
         lab = ck["labeled"].dropna(subset=["cluster"]).copy()
         # Profile sheet with region mix + median valuation/return per cluster.
         prof = ck["profile"].copy()
@@ -149,14 +150,15 @@ def main():
         prof.to_excel(writer, sheet_name="Cluster Profile", index=False, startrow=1, header=False)
         _fmt_sheet(writer, "Cluster Profile", prof, hdr, pct_fmt, f2_fmt)
         written.append(f"Cluster Profile({len(prof)})")
-        # Per-name assignments.
-        acols = [c for c in ["symbol", "name", "region", "industry", "size_bucket", "cluster",
-                             "cluster_label", "revenue_growth", "ebitda_growth", "earnings_growth",
-                             "gross_margin_delta", "ebitda_margin_slope", "ret_24m"] if c in lab.columns]
+        # Per-name assignments (entire universe).
+        acols = [c for c in ["symbol", "name", "region", "industry", "size_bucket", "is_operating",
+                             "cluster", "cluster_label", "revenue_growth", "ebitda_growth",
+                             "earnings_growth", "gross_margin_delta", "ebitda_margin_slope", "ret_24m"]
+                 if c in lab.columns]
         names = lab[acols].sort_values(["cluster", "symbol"]).round(3)
         names.to_excel(writer, sheet_name="Clusters", index=False, startrow=1, header=False)
         _fmt_sheet(writer, "Clusters", names, hdr, pct_fmt, f2_fmt)
-        written.append(f"Clusters({len(names)})")
+        written.append(f"Clusters({len(names)} of {len(df)} universe)")
     except Exception as e:
         print(f"  skip Clusters: {e}")
 
