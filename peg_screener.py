@@ -209,40 +209,108 @@ def both_growth_views(series):
 
 
 def get_metrics(tk):
-    """Pull all the series we need, preferring EDGAR depth."""
+    """Pull all the series we need, preferring EDGAR depth.
+
+    For each metric returns BOTH a `quarterly` and `annual` series. The
+    growth views pick whichever supports the requested method:
+      - LTM-vs-LTM YoY: needs 8+ quarterly periods (EDGAR-rich US only)
+      - Single-Q YoY: needs 5+ quarterly periods
+      - Annual-vs-annual: needs 2+ annual periods
+    """
     e = edgar_series(tk)
     out = {}
-    # revenue
+
+    # revenue (quarterly preferred via EDGAR; yfinance fallback)
     rev_e = e.get('revenue', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
     if rev_e is not None and not rev_e.empty:
-        rev = rev_e
+        rev_q = rev_e
     else:
-        rev = _col(load_table(tk, 'income'), ['Total Revenue','Revenue','Operating Revenue'])
-        if rev is None: rev = pd.Series(dtype=float)
+        rev_q = _col(load_table(tk, 'income'), ['Total Revenue','Revenue','Operating Revenue'])
+        if rev_q is None: rev_q = pd.Series(dtype=float)
+    # annual revenue from cached yfinance annual income statement
+    rev_a = _col(load_table(tk, 'income_annual'), ['Total Revenue','Revenue','Operating Revenue'])
+    if rev_a is None: rev_a = pd.Series(dtype=float)
+
     # gross
     gross_e = e.get('gross', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
     if gross_e is not None and not gross_e.empty:
-        gross = gross_e
+        gross_q = gross_e
     else:
-        gross = _col(load_table(tk, 'income'), ['Gross Profit'])
-        if gross is None: gross = pd.Series(dtype=float)
-    # EBITDA = op_inc + |d_and_a| from EDGAR if available
+        gross_q = _col(load_table(tk, 'income'), ['Gross Profit'])
+        if gross_q is None: gross_q = pd.Series(dtype=float)
+    gross_a = _col(load_table(tk, 'income_annual'), ['Gross Profit'])
+    if gross_a is None: gross_a = pd.Series(dtype=float)
+
+    # EBITDA quarterly = op_inc + |d_and_a| from EDGAR if available, else yf
     op_e = e.get('op_inc', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
     da_e = e.get('d_and_a', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
     if not op_e.empty and not da_e.empty:
         idx = op_e.index.union(da_e.index)
-        ebitda = op_e.reindex(idx).add(da_e.reindex(idx).abs(), fill_value=np.nan).dropna()
+        ebitda_q = op_e.reindex(idx).add(da_e.reindex(idx).abs(), fill_value=np.nan).dropna()
     else:
-        ebitda = _col(load_table(tk, 'income'), ['EBITDA','Normalized EBITDA'])
-        if ebitda is None: ebitda = pd.Series(dtype=float)
-    out['revenue'] = rev
-    out['gross']   = gross
-    out['ebitda']  = ebitda
-    # FCF series from cashflow parquet (yfinance) — for FCF growth views
-    cf_df = load_table(tk, 'cashflow')
-    fcf_s = _col(cf_df, ['Free Cash Flow','FreeCashFlow'])
-    if fcf_s is None: fcf_s = pd.Series(dtype=float)
-    out['fcf']     = fcf_s
+        ebitda_q = _col(load_table(tk, 'income'), ['EBITDA','Normalized EBITDA'])
+        if ebitda_q is None: ebitda_q = pd.Series(dtype=float)
+    ebitda_a = _col(load_table(tk, 'income_annual'), ['EBITDA','Normalized EBITDA'])
+    if ebitda_a is None: ebitda_a = pd.Series(dtype=float)
+
+    out['revenue_q'] = rev_q
+    out['revenue_a'] = rev_a
+    out['gross_q']   = gross_q
+    out['gross_a']   = gross_a
+    out['ebitda_q']  = ebitda_q
+    out['ebitda_a']  = ebitda_a
+
+    # FCF quarterly + annual
+    fcf_q = _col(load_table(tk, 'cashflow'), ['Free Cash Flow','FreeCashFlow'])
+    if fcf_q is None: fcf_q = pd.Series(dtype=float)
+    fcf_a = _col(load_table(tk, 'cashflow_annual'), ['Free Cash Flow','FreeCashFlow'])
+    if fcf_a is None: fcf_a = pd.Series(dtype=float)
+    out['fcf_q'] = fcf_q
+    out['fcf_a'] = fcf_a
+    return out
+
+
+def both_views_qa(quarterly, annual):
+    """Compute LTM and YR growth views using BOTH quarterly and annual series.
+    Returns dict with: ltm_amount, ltm_growth_pct, yr_amount, yr_growth_pct, method_yr.
+
+    Preference order for YR view: quarterly (single-Q YoY) > annual YoY.
+    Preference order for LTM amount: rolling-4Q > latest annual.
+    """
+    out = {
+        'ltm_amount': None, 'ltm_growth_pct': None,
+        'yr_amount':  None, 'yr_growth_pct':  None,
+        'method_yr':  None,
+    }
+    # LTM via rolling-4Q (US/EDGAR only typically)
+    if quarterly is not None and not quarterly.empty:
+        s = quarterly.sort_index()
+        if len(s) >= 4:
+            ltm = s.rolling(4).sum().dropna()
+            if not ltm.empty:
+                out['ltm_amount'] = float(ltm.iloc[-1])
+            if len(ltm) >= 5:
+                cur = float(ltm.iloc[-1]); prv = float(ltm.iloc[-5])
+                if prv != 0: out['ltm_growth_pct'] = (cur/prv - 1) * 100
+        # Single-Q YoY for the YR view (preferred)
+        if len(s) >= 5:
+            cur = float(s.iloc[-1]); prv = float(s.iloc[-5])
+            if prv > 0:
+                out['yr_growth_pct'] = (cur/prv - 1) * 100
+                out['yr_amount'] = cur * 4 if out['yr_amount'] is None else out['yr_amount']
+                out['method_yr'] = 'Q_YoY'
+    # Annual-vs-annual fallback for YR view
+    if out['yr_growth_pct'] is None and annual is not None and not annual.empty:
+        s = annual.sort_index()
+        if len(s) >= 2:
+            cur = float(s.iloc[-1]); prv = float(s.iloc[-2])
+            if prv > 0:
+                out['yr_growth_pct'] = (cur/prv - 1) * 100
+                out['yr_amount'] = cur
+                out['method_yr'] = 'Annual'
+        if out['ltm_amount'] is None and not s.empty:
+            # use latest annual as LTM amount fallback
+            out['ltm_amount'] = float(s.iloc[-1])
     return out
 
 
@@ -312,11 +380,12 @@ def analyze(tk, min_mcap=0):
     mc = i.get('marketCap')
     if min_mcap > 0 and (mc is None or mc < min_mcap): return None
 
-    # Compute BOTH LTM and latest-year growth views per metric
-    rev = both_growth_views(m['revenue'])
-    gp  = both_growth_views(m['gross'])
-    eb  = both_growth_views(m['ebitda'])
-    fcf = both_growth_views(m.get('fcf', pd.Series(dtype=float)))
+    # Compute BOTH LTM and latest-year growth views per metric using
+    # quarterly + annual series (annual unlocks YR for non-US tickers)
+    rev = both_views_qa(m['revenue_q'], m['revenue_a'])
+    gp  = both_views_qa(m['gross_q'],   m['gross_a'])
+    eb  = both_views_qa(m['ebitda_q'],  m['ebitda_a'])
+    fcf = both_views_qa(m['fcf_q'],     m['fcf_a'])
 
     # ---- LTM AMOUNT FALLBACKS (figures, not growth) ----
     # yfinance's info_metrics has totalRevenue/ebitda/freeCashflow as current
