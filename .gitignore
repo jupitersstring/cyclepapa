@@ -17,4 +17,7 @@ fetch_universe.log.csv
 convergence/
 screener_report.xlsx
 volasym_focus*.csv
+fetch_annual.csv
+refresh_info_*.csv
+refresh_part*.csv
 refresh_*.csv
