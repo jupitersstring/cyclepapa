@@ -40,11 +40,13 @@ def _safe(t: str) -> str:
 def _cache_paths(ticker: str) -> dict[str, Path]:
     s = _safe(ticker)
     return {
-        'price':        CACHE / f'{s}__price.parquet',
-        'info':         CACHE / f'{s}__info_metrics.parquet',
-        'eps_history':  CACHE / f'{s}__eps_history.parquet',
-        'income':       CACHE / f'{s}__income.parquet',
-        'cashflow':     CACHE / f'{s}__cashflow.parquet',
+        'price':           CACHE / f'{s}__price.parquet',
+        'info':            CACHE / f'{s}__info_metrics.parquet',
+        'eps_history':     CACHE / f'{s}__eps_history.parquet',
+        'income':          CACHE / f'{s}__income.parquet',
+        'cashflow':        CACHE / f'{s}__cashflow.parquet',
+        'income_annual':   CACHE / f'{s}__income_annual.parquet',
+        'cashflow_annual': CACHE / f'{s}__cashflow_annual.parquet',
     }
 
 
@@ -173,7 +175,9 @@ def fetch_one(ticker: str) -> dict:
 
     # ---- 4 + 5: quarterly_income_stmt, quarterly_cashflow ----
     for kind, attr in (('income', 'quarterly_income_stmt'),
-                        ('cashflow', 'quarterly_cashflow')):
+                        ('cashflow', 'quarterly_cashflow'),
+                        ('income_annual', 'income_stmt'),
+                        ('cashflow_annual', 'cashflow')):
         if not _has(kind, paths[kind]):
             try:
                 df = fetch_with_timeout(getattr, t, attr, timeout=20)
