@@ -285,7 +285,8 @@ def main():
 
     for bi, batch in enumerate(batches, 1):
         b_t0 = time.time()
-        b_fetched = {'price':0,'info':0,'eps_history':0,'income':0,'cashflow':0}
+        b_fetched = {'price':0,'info':0,'eps_history':0,'income':0,'cashflow':0,
+                     'income_annual':0,'cashflow_annual':0}
         b_skipped = 0
         b_results = []
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
