@@ -147,12 +147,69 @@ def accel_unpriced(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFra
     return _finish(e, score, top)
 
 
+# Coarse driver classification by industry keyword — secular (structural growth),
+# cyclical (macro/commodity/credit-sensitive) or defensive (staple demand). Used
+# to tag each asymmetric idea so cheap+dormant cyclicals aren't read as compounders.
+_SECULAR_KW = ("Software", "Semiconduct", "Internet", "Interactive Media", "IT Services",
+               "Technology Hardware", "Health Care Technology", "Life Sciences",
+               "Health Care Equipment", "Electronic", "Professional Services")
+_CYCLICAL_KW = ("Oil", "Gas", "Metals", "Mining", "Materials", "Chemicals", "Automobile",
+                "Auto Components", "Bank", "Capital Markets", "Construction", "Machinery",
+                "Building", "Industrial Conglomerate", "Airlines", "Marine", "Road & Rail",
+                "Real Estate", "Semiconduct")   # semis are structurally growthy but cyclical
+_DEFENSIVE_KW = ("Household", "Food", "Beverage", "Staples", "Utilities", "Telecommunication",
+                 "Pharmaceutical", "Health Care Providers", "Tobacco", "Multi-Utilities")
+
+
+def secular_cyclical(df: pd.DataFrame) -> pd.Series:
+    """Tag each row secular / cyclical / defensive / mixed from its industry."""
+    ind = df.get("industry", pd.Series("", index=df.index)).astype(str)
+    def classify(s: str) -> str:
+        sec = any(k in s for k in _SECULAR_KW)
+        cyc = any(k in s for k in _CYCLICAL_KW)
+        dfn = any(k in s for k in _DEFENSIVE_KW)
+        if sec and not cyc:
+            return "secular"
+        if dfn and not sec:
+            return "defensive"
+        if cyc:
+            return "cyclical"
+        return "mixed"
+    return ind.map(classify)
+
+
 def asymmetry(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
-    """Operating inflection (catalyst) + cheap (downside) + dormant (unrecognised)."""
+    """The synthesis: inflecting business (catalyst) + cheap (downside) + dormant
+    (unrecognised), now with an **earnings-surprise / consensus catalyst**, a
+    **margin-trend quality** leg, and a **secular/cyclical tag**. Gated to require
+    *genuine improvement* (inflecting OR a demonstrated beat record) so a merely
+    cheap-and-dormant value trap can't rank. Duplicate payloads and split-artifact
+    returns are already removed upstream by ``eligible`` / the quality flags."""
     e = eligible(df, **elig)
     infl = e["inflection_score"].fillna(0.0) if "inflection_score" in e else pd.Series(0.5, index=e.index)
-    score = 0.40 * infl + 0.30 * _cheap(e) + 0.30 * _quiet(e)
-    return _finish(e, score, top)
+    beating = e.get("surprise_beat_rate", pd.Series(np.nan, index=e.index)).fillna(0) >= 0.5
+    # Catalyst: scale-stable surprise + consensus sitting below the trailing reality.
+    catalyst = pd.concat(
+        [_rank(e, "surprise_robust" if "surprise_robust" in e.columns else "surprise_cum8"),
+         1 - _rank(e, "consensus_gap_pct")],
+        axis=1).mean(axis=1, skipna=True).fillna(0.5)
+    margin = pd.concat([_rank(e, "ebitda_margin_slope"), _rank(e, "gross_margin_delta")],
+                       axis=1).mean(axis=1, skipna=True).fillna(0.5)
+    score = (0.30 * infl + 0.22 * _cheap(e) + 0.20 * _quiet(e)
+             + 0.16 * catalyst + 0.12 * margin)
+    e = e.assign(secular_cyclical=secular_cyclical(e))
+    # Genuine improvement (not a cheap-dormant value trap)...
+    improving = (infl > 0.45) | beating
+    # ...AND a real, profitable business — exclude pre-profit / loss-making
+    # lottery tickets (negative forward P/E, no EBITDA base) whose sky-high
+    # "inflection" is a low-base distortion (the biotech micro-cap problem).
+    fpe = pd.to_numeric(e.get("forwardPE"), errors="coerce")
+    profitable = (fpe > 0) | e.get("ebitda_all_pos", pd.Series(False, index=e.index)).fillna(False).astype(bool)
+    keep = improving & profitable
+    e, score = e[keep], score[keep]
+    return _finish(e, score, top, extra=[
+        "secular_cyclical", "surprise_beat_rate", "consensus_gap_pct",
+        "ebitda_margin_slope", "gross_margin_delta", "dormancy"])
 
 
 def inflecting_positive(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:

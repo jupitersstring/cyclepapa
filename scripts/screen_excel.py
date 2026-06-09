@@ -25,14 +25,15 @@ warnings.filterwarnings("ignore")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from earnings_model import cluster, config, metrics, prebreakout, quality, screens, valuation
 
-# Sheets in display order (name -> friendly tab title).
+# Sheets in display order (name -> friendly tab title). Leads with the asymmetry
+# synthesis, then the cross-screen conviction list, then each contributing screen.
 SHEETS = [
+    ("asymmetry", "Asymmetric Opps"),
     ("conviction", "Conviction"),
     ("new-reality", "New Reality"),
     ("forensic", "Forensic"),
     ("divergence", "Divergence"),
     ("yoy-unpriced", "YoY Unpriced"),
-    ("asymmetry", "Asymmetry"),
     ("surprises", "Surprises"),
     ("consensus-lagging", "Consensus Lagging"),
     ("inflecting-positive", "Inflecting+"),
@@ -167,11 +168,44 @@ def main():
     except Exception as e:
         print(f"  skip Clusters: {e}")
 
+    # Provenance — data vintage + what the quality guards removed, so the sheet
+    # is self-documenting about freshness and filtering.
+    try:
+        prov = wb.add_worksheet("Provenance")
+        prov.set_column(0, 0, 26); prov.set_column(1, 1, 60)
+        man = {}
+        mpath = config.DATA_DIR / "manifest.json"
+        if mpath.exists():
+            man = json.loads(mpath.read_text())
+        n_dup = int(df.get("dup_payload", pd.Series(dtype=bool)).fillna(False).sum())
+        n_surp = int((df.get("surprise_n", pd.Series(dtype=float)).fillna(0) > 0).sum())
+        prows = [
+            ("Field", "Value"),
+            ("Generated (UTC)", date.today().isoformat()),
+            ("Data as-of", str(man.get("data_asof", "see cache"))[:10]),
+            ("Snapshot git sha", man.get("git_sha", "n/a")),
+            ("Schema version", str(man.get("schema_version", "n/a"))),
+            ("Universe rows (with data)", str(len(df))),
+            ("Names with EPS surprises", str(n_surp)),
+            ("Duplicate-payload rows removed", f"{n_dup} (Yahoo serving identical statements under another ticker)"),
+            ("Return outliers quarantined", "|ret|>900% nulled as split artifacts (see earnings_model.quality)"),
+            ("Ranking", "within-region (a multiple only means something vs same-market peers)"),
+            ("Source", "yfinance + financedatabase. Research scaffold, not investment advice."),
+        ]
+        bold0 = wb.add_format({"bold": True, "valign": "top"})
+        wrap0 = wb.add_format({"text_wrap": True, "valign": "top"})
+        for r, (a, b) in enumerate(prows):
+            prov.write(r, 0, a, hdr if r == 0 else bold0)
+            prov.write(r, 1, b, hdr if r == 0 else wrap0)
+    except Exception as e:
+        print(f"  skip Provenance: {e}")
+
     # Legend
     leg = wb.add_worksheet("Legend")
     leg.set_column(0, 0, 22); leg.set_column(1, 1, 95)
     rows = [
         ("Sheet / field", "Meaning"),
+        ("Asymmetric Opps", "THE SYNTHESIS: inflecting business + cheap + dormant price + surprise/consensus catalyst + margin trend; gated to require genuine improvement. 'secular_cyclical' tags the driver. Duplicates + split-artifact returns removed upstream."),
         ("Conviction", "Names passing >=2 of yoy-unpriced/divergence/forensic/new-reality/consensus-lagging. n_screens + in_* show which."),
         ("New Reality", "Serial EPS beats GATED on rising revenue+EBITDA (excludes beating-a-falling-bar), price dormant."),
         ("Forensic", "Revenue rising >=2/3yrs, EBITDA positive throughout AND margin expanding, no one-off lump."),
