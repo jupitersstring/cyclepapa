@@ -30,6 +30,8 @@ EQUITY_UNIVERSES = [
     "eu-large", "eu-micro", "eu-nano",
     # Wikipedia named-index union (S&P500/NDX/FTSE/DAX/MDAX/CAC/MIB/AEX/etc.)
     "wiki-union",
+    # Q4 expansion: emerging markets + frontier
+    "il-all", "th-all", "id-all", "tr-all", "sa-all", "ar-all", "cl-all", "nz-all",
 ]
 
 

@@ -140,11 +140,18 @@ df["adv_tier_lbl"] = df["adv_20d_millions"].apply(adv_tier)
 EU_UNIS = {"uk-all","de-all","fr-all","it-all","ch-all","es-all","nl-all","se-all",
            "be-all","no-all","dk-all","fi-all","ie-all","pt-all","at-all","gr-all",
            "eu-smid","eu-large","eu-micro","eu-nano"}
-ASIA_UNIS = {"jp-all","cn-all","kr-all","tw-all","hk-all","in-all","sg-all"}
+ASIA_UNIS = {"jp-all","cn-all","kr-all","tw-all","hk-all","in-all","sg-all",
+             "il-all","th-all","id-all","tr-all","sa-all"}  # EM/frontier in Asia/MENA
+LATAM_UNIS = {"br-all","mx-all","ar-all","cl-all"}
+OCEANIA_UNIS = {"au-all","nz-all"}
 def region_of(u):
     if u == "us-all": return "US"
     if u in EU_UNIS:  return "EU"
     if u in ASIA_UNIS: return "ASIA"
+    if u in LATAM_UNIS: return "LATAM"
+    if u in OCEANIA_UNIS: return "OCEANIA"
+    if u == "za-all": return "AFRICA"
+    if u == "ca-all": return "AMER/CA"
     return "OTHER"
 df["region"] = df["_universe"].apply(region_of)
 
@@ -232,6 +239,78 @@ sheets["Sell Strength"] = df[ss_mask].sort_values("td_mtf_composite").head(50)[B
 # Contrarian Bottom
 cb_mask = (df["td_mtf_composite"] >= 1.0) & (df["aqr_trend_score"] <= -1.0) & (df["rs_rank_max"] <= 30)
 sheets["Contrarian Bottom"] = df[cb_mask].sort_values("td_mtf_composite", ascending=False).head(50)[BULL_COLS]
+
+# ============================================================
+# ROTATION SHEETS — aligned with sector net-rotation signal
+# ============================================================
+ROT_IN_SECS = {"Consumer Staples","Health Care","Consumer Discretionary","Communication Services"}
+ROT_OUT_SECS = {"Information Technology","Financials","Energy"}
+
+# Rotation-aligned longs: rotating-in sectors + TD bullish + not run + liquid + structure rebuilding
+df["aqr_n"] = df["aqr_trend_score"].fillna(0)
+df["td_n"]  = df["td_mtf_composite"].fillna(0)
+df["rs_n"]  = df["rs_rank_max"].fillna(100)
+df["mom6_n"] = df["mom_6m"].fillna(2)
+df["adv_n"] = df["adv_20d_millions"].fillna(0)
+df["s2_n"]  = df["mv_stage2_count"].fillna(0)
+
+mask_rot_long = (
+    df["sector"].isin(ROT_IN_SECS)
+    & (df["td_n"] >= 0.3)
+    & (df["rs_n"] <= 75)
+    & (df["mom6_n"] <= 1.25)
+    & (df["adv_n"] >= 50)
+    & (df["s2_n"] >= 5)
+)
+mask_rot_short = (
+    df["sector"].isin(ROT_OUT_SECS)
+    & (df["aqr_n"] >= 2.0)
+    & (df["td_n"] <= -0.8)
+    & (df["rs_n"] >= 90)
+    & (df["adv_n"] >= 100)
+)
+
+ROT_COLS = ["name","_universe","region","sector","last_close","rs_rank_max",
+            "mom_3m","mom_6m","dist_sma50_pct","mv_dist_from_ath_pct",
+            "aqr_trend_score","td_mtf_composite","mv_composite_score",
+            "mv_stage2_count","adv_20d_millions","adv_slope_pct_wk","adv_tier_lbl",
+            "roque_score","pre_run_score","bull_score"]
+ROT_COLS = [c for c in ROT_COLS if c in df.columns]
+
+sheets["Rotation Longs"] = df[mask_rot_long].sort_values("td_mtf_composite", ascending=False).head(80)[ROT_COLS]
+sheets["Rotation Shorts"] = df[mask_rot_short].sort_values("td_mtf_composite").head(80)[ROT_COLS]
+
+# Intra-sector pair candidates
+pair_rows = []
+for sec in ["Information Technology","Industrials","Materials","Financials",
+            "Consumer Discretionary","Health Care","Consumer Staples"]:
+    longs = df[(df["sector"]==sec) & (df["td_n"]>=0.6) & (df["adv_n"]>=100) & (df["rs_n"]<=75)]
+    shorts = df[(df["sector"]==sec) & (df["td_n"]<=-1.0) & (df["adv_n"]>=100) & (df["rs_n"]>=90)]
+    if not len(longs) or not len(shorts): continue
+    lt = longs.sort_values("td_mtf_composite", ascending=False).head(3)
+    st = shorts.sort_values("td_mtf_composite").head(3)
+    for li, lr in lt.iterrows():
+        for si, sr in st.iterrows():
+            pair_rows.append({
+                "sector": sec,
+                "long_tkr": li,
+                "long_name": lr.get("name",""),
+                "long_region": lr["region"],
+                "long_rs": lr["rs_rank_max"],
+                "long_td": lr["td_mtf_composite"],
+                "long_aqr": lr["aqr_trend_score"],
+                "long_adv_M": lr["adv_20d_millions"],
+                "short_tkr": si,
+                "short_name": sr.get("name",""),
+                "short_region": sr["region"],
+                "short_rs": sr["rs_rank_max"],
+                "short_td": sr["td_mtf_composite"],
+                "short_aqr": sr["aqr_trend_score"],
+                "short_adv_M": sr["adv_20d_millions"],
+                "rs_spread": sr["rs_rank_max"] - lr["rs_rank_max"],
+                "td_spread": lr["td_mtf_composite"] - sr["td_mtf_composite"],
+            })
+sheets["Intra-Sector Pairs"] = pd.DataFrame(pair_rows).sort_values("td_spread", ascending=False)
 
 # Sector x Region pivot
 sec_agg = df.groupby(["sector","region"]).agg(
