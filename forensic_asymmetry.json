@@ -1,206 +1,4 @@
 {
-  "EYE": {
-    "ticker": "EYE",
-    "company": "National Vision Holdings, Inc. ",
-    "current_price": 22.34000015258789,
-    "market_cap_musd": 1774.6,
-    "filing_date": "2026-05-04",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1710155/000114036126018642/ny20063318x1_def14a.htm",
-    "accession": "0001140361-26-018642",
-    "section_spans": [
-      [
-        8550,
-        15350
-      ],
-      [
-        24568,
-        37552
-      ],
-      [
-        99991,
-        106791
-      ],
-      [
-        112295,
-        120868
-      ],
-      [
-        121196,
-        166039
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 54.0,
-    "step_score": 54.0,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 19.98,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {},
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:01.117983+00:00"
-  },
-  "LAZ": {
-    "ticker": "LAZ",
-    "company": "Lazard, Inc.",
-    "current_price": 48.08000183105469,
-    "market_cap_musd": 4732.9,
-    "filing_date": "2026-04-07",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1311370/000162828026024088/laz-20260406.htm",
-    "accession": "0001628280-26-024088",
-    "section_spans": [
-      [
-        17273,
-        34961
-      ],
-      [
-        42769,
-        50821
-      ],
-      [
-        120791,
-        133298
-      ],
-      [
-        148968,
-        165127
-      ],
-      [
-        166654,
-        175983
-      ],
-      [
-        178102,
-        190263
-      ],
-      [
-        195354,
-        199458
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 57.0,
-    "step_score": 51.3,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 20.805000000000003,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          8.9
-        ]
-      },
-      "pct_ladder": {
-        "maximum": [
-          125.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:01.454830+00:00"
-  },
-  "WRB": {
-    "ticker": "WRB",
-    "company": "BERKLEY W R CORP",
-    "current_price": 65.68000030517578,
-    "market_cap_musd": 24451.1,
-    "filing_date": "2026-04-22",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/11544/000119312526170583/d82252ddef14a.htm",
-    "accession": "0001193125-26-170583",
-    "section_spans": [
-      [
-        8785,
-        15715
-      ],
-      [
-        65136,
-        76435
-      ],
-      [
-        130291,
-        148535
-      ],
-      [
-        154094,
-        166148
-      ],
-      [
-        180898,
-        193864
-      ],
-      [
-        199713,
-        206662
-      ],
-      [
-        227647,
-        234447
-      ],
-      [
-        241565,
-        246323
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 54.0,
-    "step_score": 48.6,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 20.11,
-    "conditionalities": {},
-    "plan_deltas": {
-      "anti_hedge_pledge_added": "prohibited from hedging"
-    },
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "maximum": [
-          100.0
-        ]
-      },
-      "pct_ladder": {
-        "maximum": [
-          12.5,
-          100.0
-        ],
-        "target": [
-          110.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:01.775999+00:00"
-  },
   "HFFG": {
     "ticker": "HFFG",
     "company": "HF Foods Group Inc. ",
@@ -251,17 +49,20 @@
         {
           "snippet": "vest at 100%, the Company must have achieved a revenue of $1.232 billion",
           "context_before": "SUs granted in 2025 for each of the three year performance periods are as follows: (i) for fiscal year 2025, in order to",
-          "subsection": "The performance goals for net revenue and"
+          "subsection": "The performance goals for net revenue and",
+          "direction": "forward"
         },
         {
           "snippet": "vest at 100%, the Company must achieve a revenue of $1.281 billion",
           "context_before": "s 2.5% growth, must have achieved an Internal Adjusted EBITDA of 3.7% of revenue; (ii) for fiscal year 2026, in order to",
-          "subsection": "The performance goals for net revenue and"
+          "subsection": "The performance goals for net revenue and",
+          "direction": "forward"
         },
         {
           "snippet": "vest at 100%, the Company must achieve a revenue of $1.319 billion",
           "context_before": "epresents 4% growth, must have an Internal Adjusted EBITDA of 4% of revenue; and (iii) for fiscal year 2027, in order to",
-          "subsection": ""
+          "subsection": "",
+          "direction": "forward"
         }
       ]
     },
@@ -305,7 +106,7 @@
       "filings_enriched": [
         {
           "date": "2026-03-19",
-          "days_ago": 77,
+          "days_ago": 82,
           "person": "Lam Dennis",
           "title": "Director",
           "dollar": 14548.8,
@@ -314,7 +115,7 @@
         },
         {
           "date": "2026-03-18",
-          "days_ago": 78,
+          "days_ago": 83,
           "person": "McGarry Paul E",
           "title": "CFO",
           "dollar": 4400.0,
@@ -323,7 +124,7 @@
         },
         {
           "date": "2026-03-18",
-          "days_ago": 78,
+          "days_ago": 83,
           "person": "Lin Xi",
           "title": "President and CEO",
           "dollar": 15027.9687,
@@ -332,7 +133,7 @@
         },
         {
           "date": "2026-03-18",
-          "days_ago": 78,
+          "days_ago": 83,
           "person": "Chang Christine",
           "title": "Chief Administrative Officer",
           "dollar": 6959.6,
@@ -372,156 +173,7 @@
       "EBITDA"
     ],
     "say_on_pay_pct": 87.0,
-    "_run_at": "2026-06-04T13:15:02.076053+00:00"
-  },
-  "CLPR": {
-    "ticker": "CLPR",
-    "company": "Clipper Realty Inc. ",
-    "current_price": 3.25,
-    "market_cap_musd": 138.0,
-    "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1649096/000143774926014021/clpr20260423_def14a.htm",
-    "accession": "0001437749-26-014021",
-    "section_spans": [
-      [
-        44580,
-        51380
-      ],
-      [
-        74969,
-        87435
-      ],
-      [
-        89597,
-        96397
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 51.0,
-    "step_score": 45.9,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 18.615000000000002,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "target": [
-          50.0
-        ]
-      },
-      "stock_price_hurdles": [
-        3.82
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:02.188231+00:00"
-  },
-  "CP": {
-    "ticker": "CP",
-    "company": "CANADIAN PACIFIC KANSAS CITY LTD/CN ",
-    "current_price": 83.08999633789062,
-    "market_cap_musd": 74166.1,
-    "filing_date": "2026-03-25",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/16875/000119312526124134/d13199dex991.htm",
-    "accession": "0001193125-26-124134",
-    "section_spans": [
-      [
-        293,
-        14882
-      ],
-      [
-        44051,
-        53461
-      ],
-      [
-        53523,
-        60882
-      ],
-      [
-        85206,
-        92006
-      ],
-      [
-        135056,
-        176898
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 59.0,
-    "step_score": 44.2,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 21.49,
-    "conditionalities": {},
-    "plan_deltas": {
-      "clawback_strengthened": "adopted and implemented a Dodd-Frank clawback"
-    },
-    "hurdle_ladder": {},
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:02.524356+00:00"
-  },
-  "WTRG": {
-    "ticker": "WTRG",
-    "company": "Essential Utilities, Inc.",
-    "current_price": 37.470001220703125,
-    "market_cap_musd": 10627.7,
-    "filing_date": "2026-03-17",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000133/e26008_wtrg-def14a.htm",
-    "accession": "0001552781-26-000133",
-    "section_spans": [
-      [
-        31068,
-        52031
-      ],
-      [
-        88554,
-        95354
-      ],
-      [
-        100545,
-        107345
-      ],
-      [
-        141172,
-        186609
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 59.0,
-    "step_score": 44.2,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 21.09,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {},
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:02.846371+00:00"
+    "_run_at": "2026-06-09T23:49:34.867893+00:00"
   },
   "CRM": {
     "ticker": "CRM",
@@ -584,7 +236,7 @@
       "filings_enriched": [
         {
           "date": "2026-03-19",
-          "days_ago": 77,
+          "days_ago": 82,
           "person": "ALBER LAURA",
           "title": "Director",
           "dollar": 500266.13200000004,
@@ -593,7 +245,7 @@
         },
         {
           "date": "2026-03-18",
-          "days_ago": 78,
+          "days_ago": 83,
           "person": "Kirk David Blair",
           "title": "Director",
           "dollar": 500178.28300000005,
@@ -629,7 +281,7 @@
       "Revenue"
     ],
     "say_on_pay_pct": 77.0,
-    "_run_at": "2026-06-04T13:15:03.203551+00:00"
+    "_run_at": "2026-06-09T23:49:35.728694+00:00"
   },
   "ADSK": {
     "ticker": "ADSK",
@@ -663,11 +315,11 @@
     ],
     "archetypes": [],
     "pattern_match": 43.0,
-    "step_score": 43.0,
+    "step_score": 38.7,
     "conditionality_score": 0.0,
     "delta_score": 4,
     "insider_score": 0.0,
-    "forensic_score": 16.31,
+    "forensic_score": 16.095,
     "conditionalities": {},
     "plan_deltas": {
       "responsive_to_shareholders": "in response to stockholder feedback"
@@ -693,190 +345,66 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:03.523532+00:00"
+    "_run_at": "2026-06-09T23:49:36.736954+00:00"
   },
-  "PLBY": {
-    "ticker": "PLBY",
-    "company": "Playboy, Inc. ",
-    "current_price": 1.7100000381469727,
-    "market_cap_musd": 197.2,
-    "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1803914/000162828026028967/ply-20260430.htm",
-    "accession": "0001628280-26-028967",
+  "LAZ": {
+    "ticker": "LAZ",
+    "company": "Lazard, Inc.",
+    "current_price": 48.08000183105469,
+    "market_cap_musd": 4732.9,
+    "filing_date": "2026-04-07",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1311370/000162828026024088/laz-20260406.htm",
+    "accession": "0001628280-26-024088",
     "section_spans": [
       [
-        101509,
-        108309
+        17273,
+        34961
       ],
       [
-        115169,
-        133903
+        42769,
+        50821
       ],
       [
-        138839,
-        156017
+        120791,
+        133298
       ],
       [
-        211347,
-        218147
+        148968,
+        165127
       ],
       [
-        252512,
-        259312
-      ]
-    ],
-    "archetypes": [
-      "C_relative_TSR",
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 46.0,
-    "step_score": 41.4,
-    "conditionality_score": 49.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 30.42,
-    "conditionalities": {
-      "merger_acquisition_close": [
-        {
-          "snippet": "vesting start date was determined pursuant to the terms of our employment agreements with our named executive officers and is related to the closing date of the consummation of the business combination",
-          "context_before": "rice was achieved on or prior to the seventh anniversary of the vesting start date (February 10, 2021) of such PSUs. The",
-          "subsection": "Kohn and"
-        },
-        {
-          "snippet": "closing of the Business Combination, a special grant of performance-based restricted stock units (the &#8220;Initial PSUs&#8221;) that if earned",
-          "context_before": "for financial accounting purposes equal to $2,000,000, which may include performance-based grants; and (3) following the",
-          "subsection": "Kohn will be granted the following equity grants during his employment"
-        },
-        {
-          "snippet": "achievement of each of the following 30-day volume weighted average stock price milestones: $20, $30, $40 and $50, and the Initial RSUs vested in three equal installments on each of the first three anniversaries of the closing of the Business Combination",
-          "context_before": "he same manner) represented by the Pre-Closing Option. The Initial PSUs originally were to vest upon the Company&#8217;s",
-          "subsection": "The Initial"
-        }
-      ],
-      "ebitda_dollar_target": [
-        {
-          "snippet": "Adjusted EBITDA target for 2025 of $15.2 million, in each case as such metrics are defined and/or determined as set forth in the Company&#8217;s 2025 Annual Report on Form 10-K filed with the SEC, as well as achievement of",
-          "context_before": "17; annual cash bonuses to the Company&#8217;s achievement of an annual revenue target for 2025 of $120.5 million and an",
-          "subsection": "In 2025, the"
-        }
-      ],
-      "revenue_dollar_target": [
-        {
-          "snippet": "achievement of an annual revenue target for 2025 of $120.5 million",
-          "context_before": " In 2025, the Compensation Committee tied the named executive officers&#8217; annual cash bonuses to the Company&#8217;s",
-          "subsection": "In 2025, the"
-        }
-      ]
-    },
-    "plan_deltas": {
-      "clawback_strengthened": "adopted effective as of November 20, 2023 (the &#8220;Clawback"
-    },
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          15.2,
-          120.5
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          2.5,
-          80.0,
-          100.0
-        ],
-        "maximum": [
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        20.0
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": 50,
-    "performance_metrics": [
-      "TSR",
-      "Revenue",
-      "EBITDA"
-    ],
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:03.764739+00:00"
-  },
-  "CG": {
-    "ticker": "CG",
-    "company": "Carlyle Group Inc.",
-    "current_price": 50.630001068115234,
-    "market_cap_musd": 18218.7,
-    "filing_date": "2026-04-23",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000017/cg-20260423.htm",
-    "accession": "0001527166-26-000017",
-    "section_spans": [
-      [
-        6319,
-        13119
+        166654,
+        175983
       ],
       [
-        17564,
-        24364
+        178102,
+        190263
       ],
       [
-        25361,
-        34494
-      ],
-      [
-        92157,
-        98957
-      ],
-      [
-        115308,
-        127027
-      ],
-      [
-        129914,
-        136714
-      ],
-      [
-        144266,
-        172729
-      ],
-      [
-        173385,
-        176870
+        195354,
+        199458
       ]
     ],
     "archetypes": [
       "D_dollar_metric_target"
     ],
-    "pattern_match": 46.0,
-    "step_score": 41.4,
+    "pattern_match": 51.0,
+    "step_score": 38.2,
     "conditionality_score": 0.0,
     "delta_score": 0,
     "insider_score": 0.0,
-    "forensic_score": 16.79,
+    "forensic_score": 18.23,
     "conditionalities": {},
     "plan_deltas": {},
     "hurdle_ladder": {
       "dollar_ladder": {
         "target": [
-          40.0,
-          1900.0
+          8.9
         ]
       },
       "pct_ladder": {
         "maximum": [
-          200.0
-        ],
-        "target": [
-          50.0,
-          100.0,
-          200.0
-        ],
-        "threshold": [
-          50.0
+          125.0
         ]
       }
     },
@@ -888,115 +416,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:04.102674+00:00"
-  },
-  "CCI": {
-    "ticker": "CCI",
-    "company": "CROWN CASTLE INC.",
-    "current_price": 90.56999969482422,
-    "market_cap_musd": 39529.5,
-    "filing_date": "2026-04-06",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000039/cci-20260406.htm",
-    "accession": "0001051470-26-000039",
-    "section_spans": [
-      [
-        19077,
-        36155
-      ],
-      [
-        73212,
-        80012
-      ],
-      [
-        82606,
-        89406
-      ],
-      [
-        91249,
-        98049
-      ],
-      [
-        102181,
-        144703
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 44.0,
-    "step_score": 39.6,
-    "conditionality_score": 12.0,
-    "delta_score": 0,
-    "insider_score": 5.0,
-    "forensic_score": 20.6,
-    "conditionalities": {
-      "ebitda_dollar_target": [
-        {
-          "snippet": "Incentive Plan (\"AIP\") Payout Paid Above Target : In 2025, we achieved Adjusted EBITDA performance of $4.044 billion",
-          "context_before": "d to \"at risk\" compensation consisting of performance-based STIs and LTIs. &#8226; 2025 Executive Management Team Annual",
-          "subsection": "Alignment of"
-        }
-      ]
-    },
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          10.5,
-          251.0,
-          3968.0,
-          625000.0,
-          1000000.0
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          100.0,
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        8.5,
-        88.87
-      ]
-    },
-    "insider_detail": {
-      "score": 5.0,
-      "reasons": [],
-      "filings_enriched": [
-        {
-          "date": "2026-05-06",
-          "days_ago": 29,
-          "person": "Stephens Kevin A",
-          "title": "Director",
-          "dollar": 73996.8,
-          "shares": 820.0,
-          "role_w": 0.85
-        }
-      ],
-      "cluster_size": 1,
-      "cluster_window": [
-        "2026-05-06",
-        [
-          "Stephens Kevin A"
-        ]
-      ],
-      "total_raw_dollar": 73996.8,
-      "total_weighted_dollar": 62897.28,
-      "ceo_and_cfo_bought": false,
-      "has_ceo_buy": false,
-      "has_chair_buy": false,
-      "n_buys_30d": 1,
-      "n_buys_90d": 1,
-      "n_buys_180d": 1,
-      "title_lookup": {
-        "Stephens Kevin A": "Director"
-      }
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:04.414080+00:00"
+    "_run_at": "2026-06-09T23:49:37.299873+00:00"
   },
   "DNUT": {
     "ticker": "DNUT",
@@ -1062,77 +482,81 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:04.738051+00:00"
+    "_run_at": "2026-06-09T23:49:37.919270+00:00"
   },
-  "ARRY": {
-    "ticker": "ARRY",
-    "company": "Array Technologies, Inc.",
-    "current_price": 8.569999694824219,
-    "market_cap_musd": 1318.3,
-    "filing_date": "2026-04-07",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1820721/000114036126013682/ny20063454x2_def14a.htm",
-    "accession": "0001140361-26-013682",
+  "CG": {
+    "ticker": "CG",
+    "company": "Carlyle Group Inc.",
+    "current_price": 50.630001068115234,
+    "market_cap_musd": 18218.7,
+    "filing_date": "2026-04-23",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000017/cg-20260423.htm",
+    "accession": "0001527166-26-000017",
     "section_spans": [
       [
-        7636,
-        16396
+        6319,
+        13119
       ],
       [
-        87652,
-        94452
+        17564,
+        24364
       ],
       [
-        129582,
-        194022
+        25361,
+        34494
+      ],
+      [
+        92157,
+        98957
+      ],
+      [
+        115308,
+        127027
+      ],
+      [
+        129914,
+        136714
+      ],
+      [
+        144266,
+        172729
+      ],
+      [
+        173385,
+        176870
       ]
     ],
     "archetypes": [
-      "B_price_ladder",
       "D_dollar_metric_target"
     ],
     "pattern_match": 42.0,
     "step_score": 37.8,
-    "conditionality_score": 12.0,
+    "conditionality_score": 0.0,
     "delta_score": 0,
     "insider_score": 0.0,
-    "forensic_score": 18.57,
-    "conditionalities": {
-      "ebitda_dollar_target": [
-        {
-          "snippet": "Adjusted EBITDA of $178 million for purposes of",
-          "context_before": "cord orderbook. 2025 Performance Highlights: &#8226; Revenue rebounded, and reflected 40% growth year-over-year; &#8226;",
-          "subsection": "EXECUTIVE"
-        }
-      ]
-    },
+    "forensic_score": 15.33,
+    "conditionalities": {},
     "plan_deltas": {},
     "hurdle_ladder": {
       "dollar_ladder": {
-        "stretch": [
-          31.3
-        ],
         "target": [
-          500000.0
+          40.0,
+          1900.0
         ]
       },
       "pct_ladder": {
+        "maximum": [
+          200.0
+        ],
         "target": [
           50.0,
-          90.0,
-          94.0,
-          95.3,
           100.0,
           200.0
         ],
-        "maximum": [
-          200.0
+        "threshold": [
+          50.0
         ]
-      },
-      "stock_price_hurdles": [
-        6.04,
-        9.22,
-        16.8
-      ]
+      }
     },
     "insider_detail": {
       "score": 0.0,
@@ -1142,96 +566,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:05.050729+00:00"
-  },
-  "GOSS": {
-    "ticker": "GOSS",
-    "company": "Gossamer Bio, Inc. ",
-    "current_price": 0.3700000047683716,
-    "market_cap_musd": 86.8,
-    "filing_date": "2026-04-24",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000027/goss-20260423.htm",
-    "accession": "0001728117-26-000027",
-    "section_spans": [
-      [
-        82689,
-        90062
-      ],
-      [
-        97257,
-        112823
-      ],
-      [
-        113451,
-        133475
-      ],
-      [
-        136411,
-        143392
-      ],
-      [
-        157983,
-        168117
-      ],
-      [
-        172960,
-        179760
-      ]
-    ],
-    "archetypes": [
-      "B_price_ladder",
-      "C_relative_TSR",
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 41.0,
-    "step_score": 36.9,
-    "conditionality_score": 20.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 20.365000000000002,
-    "conditionalities": {
-      "fda_phase_milestone": [
-        {
-          "snippet": "Phase 3 PROSERA study and need to evaluate capital allocation, the compensation committee determined our corporate performance percentage to be 65% of the target performance",
-          "context_before": "fficulty of achieving the goals that were met and that were only partially met. In light of the topline results from the",
-          "subsection": ""
-        }
-      ]
-    },
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "maximum": [
-          4000.0
-        ]
-      },
-      "pct_ladder": {
-        "maximum": [
-          150.0
-        ],
-        "target": [
-          60.0
-        ]
-      },
-      "stock_price_hurdles": [
-        0.9,
-        3.1,
-        5.0,
-        7.5,
-        10.0
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": [
-      "TSR"
-    ],
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:05.312464+00:00"
+    "_run_at": "2026-06-09T23:49:38.428132+00:00"
   },
   "EVRG": {
     "ticker": "EVRG",
@@ -1294,7 +629,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:05.629578+00:00"
+    "_run_at": "2026-06-09T23:49:39.156300+00:00"
   },
   "BIIB": {
     "ticker": "BIIB",
@@ -1357,7 +692,59 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:05.953723+00:00"
+    "_run_at": "2026-06-09T23:49:39.639572+00:00"
+  },
+  "CP": {
+    "ticker": "CP",
+    "company": "CANADIAN PACIFIC KANSAS CITY LTD/CN ",
+    "current_price": 83.08999633789062,
+    "market_cap_musd": 74166.1,
+    "filing_date": "2026-03-25",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/16875/000119312526124134/d13199dex991.htm",
+    "accession": "0001193125-26-124134",
+    "section_spans": [
+      [
+        293,
+        14882
+      ],
+      [
+        44051,
+        53461
+      ],
+      [
+        53523,
+        60882
+      ],
+      [
+        85206,
+        92006
+      ],
+      [
+        135056,
+        176898
+      ]
+    ],
+    "archetypes": [],
+    "pattern_match": 47.0,
+    "step_score": 35.2,
+    "conditionality_score": 0.0,
+    "delta_score": 4,
+    "insider_score": 0.0,
+    "forensic_score": 17.200000000000003,
+    "conditionalities": {},
+    "plan_deltas": {
+      "clawback_strengthened": "adopted and implemented a Dodd-Frank clawback"
+    },
+    "hurdle_ladder": {},
+    "insider_detail": {
+      "score": 0.0,
+      "reasons": [],
+      "filings_enriched": []
+    },
+    "psu_pct_of_lti": null,
+    "performance_metrics": null,
+    "say_on_pay_pct": null,
+    "_run_at": "2026-06-09T23:49:40.195752+00:00"
   },
   "CAVA": {
     "ticker": "CAVA",
@@ -1433,71 +820,116 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:06.263480+00:00"
+    "_run_at": "2026-06-09T23:49:40.646836+00:00"
   },
-  "PCG": {
-    "ticker": "PCG",
-    "company": "PG&E Corp",
-    "current_price": 16.06999969482422,
-    "market_cap_musd": 35389.8,
-    "filing_date": "2026-04-09",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000020/pcg-20260409.htm",
-    "accession": "0001004980-26-000020",
+  "CCI": {
+    "ticker": "CCI",
+    "company": "CROWN CASTLE INC.",
+    "current_price": 90.56999969482422,
+    "market_cap_musd": 39529.5,
+    "filing_date": "2026-04-06",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1051470/000105147026000039/cci-20260406.htm",
+    "accession": "0001051470-26-000039",
     "section_spans": [
       [
-        11930,
-        18730
+        19077,
+        36155
       ],
       [
-        101097,
-        108802
+        73212,
+        80012
       ],
       [
-        129055,
-        135855
+        82606,
+        89406
       ],
       [
-        140497,
-        189599
+        91249,
+        98049
       ],
       [
-        190955,
-        200548
+        102181,
+        144703
       ]
     ],
-    "archetypes": [],
-    "pattern_match": 37.0,
-    "step_score": 33.3,
-    "conditionality_score": 0.0,
+    "archetypes": [
+      "D_dollar_metric_target"
+    ],
+    "pattern_match": 44.0,
+    "step_score": 33.0,
+    "conditionality_score": 6.0,
     "delta_score": 0,
     "insider_score": 0.0,
-    "forensic_score": 13.504999999999999,
-    "conditionalities": {},
+    "forensic_score": 17.349999999999998,
+    "conditionalities": {
+      "ebitda_dollar_target": [
+        {
+          "snippet": "Incentive Plan (\"AIP\") Payout Paid Above Target : In 2025, we achieved Adjusted EBITDA performance of $4.044 billion",
+          "context_before": "d to \"at risk\" compensation consisting of performance-based STIs and LTIs. &#8226; 2025 Executive Management Team Annual",
+          "subsection": "Alignment of",
+          "direction": "retrospective"
+        }
+      ]
+    },
     "plan_deltas": {},
     "hurdle_ladder": {
+      "dollar_ladder": {
+        "target": [
+          10.5,
+          251.0,
+          3968.0,
+          625000.0,
+          1000000.0
+        ]
+      },
       "pct_ladder": {
         "target": [
-          55.0,
-          72.0,
-          100.0
-        ],
-        "threshold": [
-          50.0
-        ],
-        "maximum": [
+          100.0,
           200.0
         ]
-      }
+      },
+      "stock_price_hurdles": [
+        8.5,
+        88.87
+      ]
     },
     "insider_detail": {
       "score": 0.0,
       "reasons": [],
-      "filings_enriched": []
+      "filings_enriched": [
+        {
+          "date": "2026-05-06",
+          "days_ago": 34,
+          "person": "Stephens Kevin A",
+          "title": "Director",
+          "dollar": 73996.8,
+          "shares": 820.0,
+          "role_w": 0.85
+        }
+      ],
+      "cluster_size": 1,
+      "cluster_window": [
+        "2026-05-06",
+        [
+          "Stephens Kevin A"
+        ]
+      ],
+      "total_raw_dollar": 73996.8,
+      "total_weighted_dollar": 62897.28,
+      "ceo_and_cfo_bought": false,
+      "has_ceo_buy": false,
+      "has_chair_buy": false,
+      "n_buys_30d": 0,
+      "n_buys_90d": 1,
+      "n_buys_180d": 1,
+      "title_lookup": {
+        "Stephens Kevin A": "Director"
+      }
     },
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:06.589160+00:00"
+    "_run_at": "2026-06-09T23:49:41.124873+00:00"
   },
   "DOV": {
     "ticker": "DOV",
@@ -1559,59 +991,76 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:06.908507+00:00"
+    "_run_at": "2026-06-09T23:49:41.835473+00:00"
   },
-  "ROST": {
-    "ticker": "ROST",
-    "company": "ROSS STORES, INC.",
-    "current_price": 225.80999755859375,
-    "market_cap_musd": 73037.1,
-    "filing_date": "2026-04-07",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/745732/000074573226000013/rost-20260406.htm",
-    "accession": "0000745732-26-000013",
+  "WRB": {
+    "ticker": "WRB",
+    "company": "BERKLEY W R CORP",
+    "current_price": 65.68000030517578,
+    "market_cap_musd": 24451.1,
+    "filing_date": "2026-04-22",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/11544/000119312526170583/d82252ddef14a.htm",
+    "accession": "0001193125-26-170583",
     "section_spans": [
       [
-        10841,
-        17641
+        8785,
+        15715
       ],
       [
-        18877,
-        28467
+        65136,
+        76435
       ],
       [
-        50648,
-        58018
+        130291,
+        148535
       ],
       [
-        76698,
-        88683
+        154094,
+        166148
       ],
       [
-        94171,
-        112351
+        180898,
+        193864
       ],
       [
-        120968,
-        132318
+        199713,
+        206662
       ],
       [
-        134608,
-        149333
+        227647,
+        234447
+      ],
+      [
+        241565,
+        246323
       ]
     ],
-    "archetypes": [],
+    "archetypes": [
+      "D_dollar_metric_target"
+    ],
     "pattern_match": 36.0,
     "step_score": 32.4,
     "conditionality_score": 0.0,
-    "delta_score": 0,
+    "delta_score": 4,
     "insider_score": 0.0,
-    "forensic_score": 13.14,
+    "forensic_score": 13.54,
     "conditionalities": {},
-    "plan_deltas": {},
+    "plan_deltas": {
+      "anti_hedge_pledge_added": "prohibited from hedging"
+    },
     "hurdle_ladder": {
+      "dollar_ladder": {
+        "maximum": [
+          100.0
+        ]
+      },
       "pct_ladder": {
-        "minimum": [
-          5.0
+        "maximum": [
+          12.5,
+          100.0
+        ],
+        "target": [
+          110.0
         ]
       }
     },
@@ -1623,7 +1072,57 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:07.242330+00:00"
+    "_run_at": "2026-06-09T23:49:42.405084+00:00"
+  },
+  "EYE": {
+    "ticker": "EYE",
+    "company": "National Vision Holdings, Inc. ",
+    "current_price": 22.34000015258789,
+    "market_cap_musd": 1774.6,
+    "filing_date": "2026-05-04",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1710155/000114036126018642/ny20063318x1_def14a.htm",
+    "accession": "0001140361-26-018642",
+    "section_spans": [
+      [
+        8550,
+        15350
+      ],
+      [
+        24568,
+        37552
+      ],
+      [
+        99991,
+        106791
+      ],
+      [
+        112295,
+        120868
+      ],
+      [
+        121196,
+        166039
+      ]
+    ],
+    "archetypes": [],
+    "pattern_match": 35.0,
+    "step_score": 31.5,
+    "conditionality_score": 0.0,
+    "delta_score": 0,
+    "insider_score": 0.0,
+    "forensic_score": 12.775000000000002,
+    "conditionalities": {},
+    "plan_deltas": {},
+    "hurdle_ladder": {},
+    "insider_detail": {
+      "score": 0.0,
+      "reasons": [],
+      "filings_enriched": []
+    },
+    "psu_pct_of_lti": null,
+    "performance_metrics": null,
+    "say_on_pay_pct": null,
+    "_run_at": "2026-06-09T23:49:43.042744+00:00"
   },
   "DXPE": {
     "ticker": "DXPE",
@@ -1691,59 +1190,44 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:07.490709+00:00"
+    "_run_at": "2026-06-09T23:49:43.409864+00:00"
   },
-  "SCOR": {
-    "ticker": "SCOR",
-    "company": "COMSCORE, INC. ",
-    "current_price": 7.28000020980835,
-    "market_cap_musd": 109.4,
-    "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1158172/000119312526197109/d82773ddef14a.htm",
-    "accession": "0001193125-26-197109",
+  "WTRG": {
+    "ticker": "WTRG",
+    "company": "Essential Utilities, Inc.",
+    "current_price": 37.470001220703125,
+    "market_cap_musd": 10627.7,
+    "filing_date": "2026-03-17",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/78128/000155278126000133/e26008_wtrg-def14a.htm",
+    "accession": "0001552781-26-000133",
     "section_spans": [
       [
-        93433,
-        127228
+        31068,
+        52031
       ],
       [
-        127839,
-        136062
+        88554,
+        95354
       ],
       [
-        137785,
-        145968
+        100545,
+        107345
       ],
       [
-        183814,
-        192864
-      ],
-      [
-        232612,
-        239892
+        141172,
+        186609
       ]
     ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 34.0,
-    "step_score": 30.6,
+    "archetypes": [],
+    "pattern_match": 42.0,
+    "step_score": 31.5,
     "conditionality_score": 0.0,
     "delta_score": 0,
     "insider_score": 0.0,
-    "forensic_score": 12.41,
+    "forensic_score": 15.015,
     "conditionalities": {},
     "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "maximum": [
-          357.0
-        ],
-        "target": [
-          248460.0
-        ]
-      }
-    },
+    "hurdle_ladder": {},
     "insider_detail": {
       "score": 0.0,
       "reasons": [],
@@ -1752,7 +1236,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:07.772841+00:00"
+    "_run_at": "2026-06-09T23:49:43.967081+00:00"
   },
   "OCUL": {
     "ticker": "OCUL",
@@ -1801,21 +1285,23 @@
     ],
     "pattern_match": 34.0,
     "step_score": 30.6,
-    "conditionality_score": 26.0,
+    "conditionality_score": 18.2,
     "delta_score": 0,
     "insider_score": 0.0,
-    "forensic_score": 19.430000000000003,
+    "forensic_score": 17.324,
     "conditionalities": {
       "fda_phase_milestone": [
         {
           "snippet": "achievement of initiatives that went significantly beyond the company&#8217;s original expectations and plans for 2025, including: o completion of enrollment and randomization in the SOL-R Phase 3",
           "context_before": " incentive payouts at 145% of target, reflecting strong performance against pre-established corporate objectives and the",
-          "subsection": ""
+          "subsection": "",
+          "direction": "ambiguous"
         },
         {
           "snippet": "achievement of last patient visit for the Week 52 timepoint in the SOL-1 Phase 3",
           "context_before": "s for 2025, including: o completion of enrollment and randomization in the SOL-R Phase 3 trial for AXPAXLI in wet AMD; o",
-          "subsection": ""
+          "subsection": "",
+          "direction": "ambiguous"
         }
       ]
     },
@@ -1841,7 +1327,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:08.105817+00:00"
+    "_run_at": "2026-06-09T23:49:44.469491+00:00"
   },
   "UFPT": {
     "ticker": "UFPT",
@@ -1924,7 +1410,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:08.365343+00:00"
+    "_run_at": "2026-06-09T23:49:44.888601+00:00"
   },
   "WST": {
     "ticker": "WST",
@@ -1997,7 +1483,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:08.683738+00:00"
+    "_run_at": "2026-06-09T23:49:45.467506+00:00"
   },
   "PLD": {
     "ticker": "PLD",
@@ -2061,139 +1547,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:09.016001+00:00"
-  },
-  "ENPH": {
-    "ticker": "ENPH",
-    "company": "Enphase Energy, Inc.",
-    "current_price": 36.45000076293945,
-    "market_cap_musd": 4804.0,
-    "filing_date": "2026-04-01",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1463101/000146310126000026/enph-20260401.htm",
-    "accession": "0001463101-26-000026",
-    "section_spans": [
-      [
-        8774,
-        27207
-      ],
-      [
-        58405,
-        67229
-      ],
-      [
-        77078,
-        115067
-      ],
-      [
-        117657,
-        132411
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 40.0,
-    "step_score": 30.0,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 14.3,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          1200.0,
-          1500.0
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          24.0,
-          34.0,
-          67.0,
-          100.0
-        ],
-        "stretch": [
-          50.0
-        ]
-      },
-      "stock_price_hurdles": [
-        32.05
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:09.344157+00:00"
-  },
-  "KMPR": {
-    "ticker": "KMPR",
-    "company": "KEMPER Corp",
-    "current_price": 30.290000915527344,
-    "market_cap_musd": 1783.3,
-    "filing_date": "2026-03-25",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/860748/000086074826000030/kmpr-20260325.htm",
-    "accession": "0000860748-26-000030",
-    "section_spans": [
-      [
-        17839,
-        24639
-      ],
-      [
-        55899,
-        62699
-      ],
-      [
-        94691,
-        151191
-      ],
-      [
-        167515,
-        177415
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 40.0,
-    "step_score": 30.0,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 14.700000000000001,
-    "conditionalities": {},
-    "plan_deltas": {
-      "anti_hedge_pledge_added": "prohibited from hedging"
-    },
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "threshold": [
-          50.0
-        ],
-        "target": [
-          8.5,
-          10.0,
-          19.0,
-          100.0
-        ],
-        "minimum": [
-          6.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:09.663041+00:00"
+    "_run_at": "2026-06-09T23:49:46.019821+00:00"
   },
   "CAT": {
     "ticker": "CAT",
@@ -2268,7 +1622,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:09.976487+00:00"
+    "_run_at": "2026-06-09T23:49:46.736257+00:00"
   },
   "EXLS": {
     "ticker": "EXLS",
@@ -2354,75 +1708,7 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:10.297671+00:00"
-  },
-  "FTRE": {
-    "ticker": "FTRE",
-    "company": "Fortrea Holdings Inc. ",
-    "current_price": 12.180000305175781,
-    "market_cap_musd": 1152.0,
-    "filing_date": "2026-04-27",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1965040/000119312526178733/d907944ddef14a.htm",
-    "accession": "0001193125-26-178733",
-    "section_spans": [
-      [
-        9341,
-        16141
-      ],
-      [
-        108989,
-        155259
-      ],
-      [
-        158681,
-        185611
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 33.0,
-    "step_score": 29.7,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 12.445,
-    "conditionalities": {},
-    "plan_deltas": {
-      "clawback_strengthened": "adopted a clawback"
-    },
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "threshold": [
-          166.5
-        ],
-        "maximum": [
-          20000.0
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          68.5,
-          150.0
-        ],
-        "maximum": [
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        33.05,
-        235.17
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:10.609074+00:00"
+    "_run_at": "2026-06-09T23:49:47.330412+00:00"
   },
   "HBIO": {
     "ticker": "HBIO",
@@ -2484,101 +1770,58 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:10.937860+00:00"
+    "_run_at": "2026-06-09T23:49:47.889234+00:00"
   },
-  "SPOK": {
-    "ticker": "SPOK",
-    "company": "Spok Holdings, Inc ",
-    "current_price": 10.649999618530273,
-    "market_cap_musd": 220.8,
+  "CLPR": {
+    "ticker": "CLPR",
+    "company": "Clipper Realty Inc. ",
+    "current_price": 3.25,
+    "market_cap_musd": 138.0,
     "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1289945/000128994526000028/spok-20260430.htm",
-    "accession": "0001289945-26-000028",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1649096/000143774926014021/clpr20260423_def14a.htm",
+    "accession": "0001437749-26-014021",
     "section_spans": [
       [
-        19578,
-        35255
+        44580,
+        51380
       ],
       [
-        61353,
-        72703
+        74969,
+        87435
       ],
       [
-        87536,
-        140509
+        89597,
+        96397
       ]
     ],
-    "archetypes": [
-      "C_relative_TSR",
-      "D_dollar_metric_target"
-    ],
+    "archetypes": [],
     "pattern_match": 33.0,
     "step_score": 29.7,
-    "conditionality_score": 12.0,
+    "conditionality_score": 0.0,
     "delta_score": 0,
-    "insider_score": 13.0,
-    "forensic_score": 18.665,
-    "conditionalities": {
-      "ebitda_dollar_target": [
-        {
-          "snippet": "adjusted EBITDA of $29.0 million, which were both higher than target performance",
-          "context_before": "paid 2025 STIP awards above the incentive target for each NEO, primarily driven by wireless revenue of $72.5 million and",
-          "subsection": "We paid 2025 STIP awards above the incentive target for each"
-        }
-      ]
-    },
+    "insider_score": 0.0,
+    "forensic_score": 12.045,
+    "conditionalities": {},
     "plan_deltas": {},
     "hurdle_ladder": {
-      "dollar_ladder": {
-        "maximum": [
-          250000.0
+      "pct_ladder": {
+        "target": [
+          50.0
         ]
-      }
+      },
+      "stock_price_hurdles": [
+        3.82
+      ]
     },
     "insider_detail": {
-      "score": 13.0,
-      "reasons": [
-        "CEO bought"
-      ],
-      "filings_enriched": [
-        {
-          "date": "2026-05-12",
-          "days_ago": 23,
-          "person": "KELLY VINCENT D",
-          "title": "President & CEO",
-          "dollar": 106819.5,
-          "shares": 10000.0,
-          "role_w": 1.5
-        }
-      ],
-      "cluster_size": 1,
-      "cluster_window": [
-        "2026-05-12",
-        [
-          "KELLY VINCENT D"
-        ]
-      ],
-      "total_raw_dollar": 106819.5,
-      "total_weighted_dollar": 160229.25,
-      "ceo_and_cfo_bought": false,
-      "has_ceo_buy": true,
-      "has_chair_buy": false,
-      "n_buys_30d": 1,
-      "n_buys_90d": 1,
-      "n_buys_180d": 1,
-      "title_lookup": {
-        "KELLY VINCENT D": "President & CEO"
-      }
+      "score": 0.0,
+      "reasons": [],
+      "filings_enriched": []
     },
-    "psu_pct_of_lti": 50,
-    "performance_metrics": [
-      "TSR",
-      "EPS",
-      "Revenue",
-      "EBITDA"
-    ],
+    "psu_pct_of_lti": null,
+    "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:11.263815+00:00"
+    "_run_at": "2026-06-09T23:49:48.055112+00:00"
   },
   "D": {
     "ticker": "D",
@@ -2652,1147 +1895,6 @@
     "psu_pct_of_lti": null,
     "performance_metrics": null,
     "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:11.598992+00:00"
-  },
-  "INSW": {
-    "ticker": "INSW",
-    "company": "International Seaways, Inc. ",
-    "current_price": 85.13999938964844,
-    "market_cap_musd": 4214.8,
-    "filing_date": "2026-04-29",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1679049/000114036126017661/ny20066968x2_def14a.htm",
-    "accession": "0001140361-26-017661",
-    "section_spans": [
-      [
-        4375,
-        12371
-      ],
-      [
-        15115,
-        21915
-      ],
-      [
-        31260,
-        38060
-      ],
-      [
-        91609,
-        98409
-      ],
-      [
-        103139,
-        126186
-      ],
-      [
-        126841,
-        155398
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 32.0,
-    "step_score": 28.8,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 11.68,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          370.7
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          8.72,
-          100.0,
-          112.5,
-          130.0
-        ],
-        "maximum": [
-          11.72,
-          130.0,
-          150.0
-        ],
-        "minimum": [
-          5.72
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:11.932130+00:00"
-  },
-  "IRWD": {
-    "ticker": "IRWD",
-    "company": "IRONWOOD PHARMACEUTICALS INC ",
-    "current_price": 4.440000057220459,
-    "market_cap_musd": 730.9,
-    "filing_date": "2026-04-28",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1446847/000110465926050325/tm261380-1_def14a.htm",
-    "accession": "0001104659-26-050325",
-    "section_spans": [
-      [
-        63569,
-        70487
-      ],
-      [
-        86913,
-        113105
-      ],
-      [
-        129033,
-        138752
-      ],
-      [
-        146086,
-        171412
-      ],
-      [
-        179573,
-        188334
-      ],
-      [
-        207069,
-        210153
-      ]
-    ],
-    "archetypes": [
-      "B_price_ladder"
-    ],
-    "pattern_match": 31.0,
-    "step_score": 27.9,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 11.715,
-    "conditionalities": {},
-    "plan_deltas": {
-      "anti_hedge_pledge_added": "prohibited from engaging in any hedging"
-    },
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "target": [
-          75.0
-        ],
-        "maximum": [
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        13.23,
-        13.8,
-        15.53,
-        17.25
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:12.270394+00:00"
-  },
-  "ROP": {
-    "ticker": "ROP",
-    "company": "ROPER TECHNOLOGIES INC",
-    "current_price": 343.32000732421875,
-    "market_cap_musd": 34646.9,
-    "filing_date": "2026-04-07",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/882835/000119312526145481/d204543ddef14a.htm",
-    "accession": "0001193125-26-145481",
-    "section_spans": [
-      [
-        8443,
-        21191
-      ],
-      [
-        27551,
-        35038
-      ],
-      [
-        84459,
-        92642
-      ],
-      [
-        102055,
-        153637
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 31.0,
-    "step_score": 27.9,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 11.715,
-    "conditionalities": {},
-    "plan_deltas": {
-      "clawback_strengthened": "adopted a supplemental clawback"
-    },
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          1000000.0
-        ]
-      },
-      "pct_ladder": {
-        "maximum": [
-          150.0,
-          200.0
-        ],
-        "target": [
-          4.5,
-          5.2,
-          10.0,
-          175.0
-        ],
-        "threshold": [
-          3.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:12.603746+00:00"
-  },
-  "HST": {
-    "ticker": "HST",
-    "company": "HOST HOTELS & RESORTS, INC.",
-    "current_price": 22.270000457763672,
-    "market_cap_musd": 15450.6,
-    "filing_date": "2026-04-08",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1070750/000107075026000062/hst-20260407.htm",
-    "accession": "0001070750-26-000062",
-    "section_spans": [
-      [
-        22851,
-        29817
-      ],
-      [
-        34384,
-        41184
-      ],
-      [
-        50714,
-        59679
-      ],
-      [
-        95258,
-        103782
-      ],
-      [
-        108327,
-        115127
-      ],
-      [
-        162738,
-        204683
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 31.0,
-    "step_score": 27.9,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 11.715,
-    "conditionalities": {},
-    "plan_deltas": {
-      "responsive_to_shareholders": "in response to stockholder feedback"
-    },
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "maximum": [
-          56.0
-        ],
-        "target": [
-          8.0,
-          100.0
-        ],
-        "threshold": [
-          50.0,
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        17.73
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:12.941650+00:00"
-  },
-  "NCLH": {
-    "ticker": "NCLH",
-    "company": "Norwegian Cruise Line Holdings Ltd. ",
-    "current_price": 18.809999465942383,
-    "market_cap_musd": 8568.8,
-    "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1513761/000110465926052146/tm261503-1_def14a.htm",
-    "accession": "0001104659-26-052146",
-    "section_spans": [
-      [
-        17915,
-        24715
-      ],
-      [
-        64669,
-        71469
-      ],
-      [
-        74304,
-        81954
-      ],
-      [
-        109893,
-        150885
-      ],
-      [
-        153222,
-        167938
-      ],
-      [
-        169934,
-        172976
-      ]
-    ],
-    "archetypes": [
-      "A_per_share_return",
-      "C_relative_TSR",
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 30.0,
-    "step_score": 27.0,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 34.0,
-    "forensic_score": 20.19,
-    "conditionalities": {},
-    "plan_deltas": {
-      "front_load_grant": "front-loaded"
-    },
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          2.1
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          10.0,
-          20.0,
-          60.8,
-          90.8,
-          100.0,
-          175.0
-        ],
-        "maximum": [
-          61.2,
-          200.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 34.0,
-      "reasons": [
-        "3-buyer cluster in 14d window",
-        "3 P-buys in past 30d"
-      ],
-      "filings_enriched": [
-        {
-          "date": "2026-05-12",
-          "days_ago": 23,
-          "person": "MacDonald Brian P",
-          "title": "Director",
-          "dollar": 248100.0,
-          "shares": 15000.0,
-          "role_w": 0.85
-        },
-        {
-          "date": "2026-05-11",
-          "days_ago": 24,
-          "person": "Byng-Thorne Zillah",
-          "title": "Director",
-          "dollar": 521394.21,
-          "shares": 29467.0,
-          "role_w": 0.85
-        },
-        {
-          "date": "2026-05-11",
-          "days_ago": 24,
-          "person": "Lansberry Kevin Allen",
-          "title": "Director",
-          "dollar": 196992.0,
-          "shares": 11400.0,
-          "role_w": 0.85
-        }
-      ],
-      "cluster_size": 3,
-      "cluster_window": [
-        "2026-05-11",
-        [
-          "Byng-Thorne Zillah",
-          "Lansberry Kevin Allen",
-          "MacDonald Brian P"
-        ]
-      ],
-      "total_raw_dollar": 966486.21,
-      "total_weighted_dollar": 821513.2785,
-      "ceo_and_cfo_bought": false,
-      "has_ceo_buy": false,
-      "has_chair_buy": false,
-      "n_buys_30d": 3,
-      "n_buys_90d": 3,
-      "n_buys_180d": 3,
-      "title_lookup": {
-        "MacDonald Brian P": "Director",
-        "Byng-Thorne Zillah": "Director",
-        "Lansberry Kevin Allen": "Director"
-      }
-    },
-    "psu_pct_of_lti": 60,
-    "performance_metrics": [
-      "TSR",
-      "EPS",
-      "ROIC",
-      "EBITDA"
-    ],
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:13.276836+00:00"
-  },
-  "WBI": {
-    "ticker": "WBI",
-    "company": "WaterBridge Infrastructure LLC ",
-    "current_price": 29.709999084472656,
-    "market_cap_musd": 1396.8,
-    "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/2064947/000114036126018264/edge20062674x1_def14a.htm",
-    "accession": "0001140361-26-018264",
-    "section_spans": [
-      [
-        87929,
-        97362
-      ],
-      [
-        103506,
-        125099
-      ],
-      [
-        131360,
-        138160
-      ],
-      [
-        161550,
-        168350
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 30.0,
-    "step_score": 27.0,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 11.35,
-    "conditionalities": {},
-    "plan_deltas": {
-      "clawback_strengthened": "adopted the WaterBridge Infrastructure LLC Clawback"
-    },
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "maximum": [
-          7.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:13.463162+00:00"
-  },
-  "BKD": {
-    "ticker": "BKD",
-    "company": "Brookdale Senior Living Inc. ",
-    "current_price": 13.989899635314941,
-    "market_cap_musd": 3327.1,
-    "filing_date": "2026-04-30",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1332349/000119312526197412/d949610ddef14a.htm",
-    "accession": "0001193125-26-197412",
-    "section_spans": [
-      [
-        17250,
-        24050
-      ],
-      [
-        81610,
-        88410
-      ],
-      [
-        113363,
-        155539
-      ],
-      [
-        160441,
-        184665
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 30.0,
-    "step_score": 27.0,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 10.95,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "maximum": [
-          20.0,
-          441.4,
-          451.4,
-          5357.0,
-          5387.0
-        ],
-        "target": [
-          12.0,
-          420.3,
-          429.9,
-          5201.0,
-          5230.0
-        ],
-        "threshold": [
-          10.0,
-          380.0,
-          386.9,
-          4934.0,
-          4962.0
-        ],
-        "stretch": [
-          15.0
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          40.0,
-          100.0,
-          140.0
-        ],
-        "threshold": [
-          25.0,
-          50.0
-        ],
-        "maximum": [
-          150.0,
-          200.0
-        ],
-        "stretch": [
-          33.0,
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        7.5,
-        20.0
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:13.795207+00:00"
-  },
-  "SF": {
-    "ticker": "SF",
-    "company": "STIFEL FINANCIAL CORP",
-    "current_price": 76.5,
-    "market_cap_musd": 11765.3,
-    "filing_date": "2026-04-29",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/720672/000119312526191643/d939496ddef14a.htm",
-    "accession": "0001193125-26-191643",
-    "section_spans": [
-      [
-        6881,
-        27277
-      ],
-      [
-        71792,
-        81040
-      ],
-      [
-        94423,
-        104557
-      ],
-      [
-        106727,
-        146949
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 30.0,
-    "step_score": 27.0,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 10.95,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {},
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:14.114493+00:00"
-  },
-  "CGABL": {
-    "ticker": "CGABL",
-    "company": "Carlyle Group Inc. ",
-    "current_price": 17.1299991607666,
-    "market_cap_musd": 0.0,
-    "filing_date": "2026-04-23",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000017/cg-20260423.htm",
-    "accession": "0001527166-26-000017",
-    "section_spans": [
-      [
-        6319,
-        13119
-      ],
-      [
-        17564,
-        24364
-      ],
-      [
-        25361,
-        34494
-      ],
-      [
-        92157,
-        98957
-      ],
-      [
-        115308,
-        127027
-      ],
-      [
-        129914,
-        136714
-      ],
-      [
-        144266,
-        172729
-      ],
-      [
-        173385,
-        176870
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 29.0,
-    "step_score": 26.1,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 10.584999999999999,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          40.0,
-          1900.0
-        ]
-      },
-      "pct_ladder": {
-        "maximum": [
-          200.0
-        ],
-        "target": [
-          50.0,
-          100.0,
-          200.0
-        ],
-        "threshold": [
-          50.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:14.460181+00:00"
-  },
-  "KDP": {
-    "ticker": "KDP",
-    "company": "Keurig Dr Pepper Inc. ",
-    "current_price": 29.09000015258789,
-    "market_cap_musd": 39578.7,
-    "filing_date": "2026-04-24",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1418135/000119312526177266/d201572ddef14a.htm",
-    "accession": "0001193125-26-177266",
-    "section_spans": [
-      [
-        15021,
-        21821
-      ],
-      [
-        26778,
-        33578
-      ],
-      [
-        70954,
-        77754
-      ],
-      [
-        107489,
-        167089
-      ]
-    ],
-    "archetypes": [
-      "A_per_share_return",
-      "C_relative_TSR"
-    ],
-    "pattern_match": 29.0,
-    "step_score": 26.1,
-    "conditionality_score": 0.0,
-    "delta_score": 16,
-    "insider_score": 0.0,
-    "forensic_score": 12.184999999999999,
-    "conditionalities": {},
-    "plan_deltas": {
-      "responsive_to_shareholders": "in response to stockholder feedback",
-      "front_load_grant": "one-time Transformation",
-      "clawback_strengthened": "adopted a Rule 10D-1 Clawback",
-      "anti_hedge_pledge_added": "prohibited from pledging"
-    },
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "maximum": [
-          200.0
-        ],
-        "target": [
-          80.0,
-          100.0,
-          150.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": 75,
-    "performance_metrics": [
-      "TSR",
-      "EPS",
-      "ROIC",
-      "Revenue"
-    ],
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:14.799954+00:00"
-  },
-  "IR": {
-    "ticker": "IR",
-    "company": "Ingersoll Rand Inc. ",
-    "current_price": 77.98999786376953,
-    "market_cap_musd": 30520.4,
-    "filing_date": "2026-04-24",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036126016726/ny20063676x1_def14a.htm",
-    "accession": "0001140361-26-016726",
-    "section_spans": [
-      [
-        8216,
-        15114
-      ],
-      [
-        69147,
-        78480
-      ],
-      [
-        116107,
-        130768
-      ],
-      [
-        130967,
-        142874
-      ],
-      [
-        146755,
-        174628
-      ],
-      [
-        199854,
-        209182
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 28.0,
-    "step_score": 25.2,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 10.22,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "target": [
-          81.8
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          25.0,
-          50.0,
-          75.0,
-          80.0,
-          85.0,
-          100.0,
-          150.0
-        ],
-        "threshold": [
-          50.0
-        ],
-        "maximum": [
-          200.0
-        ]
-      },
-      "stock_price_hurdles": [
-        46.45
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:15.138863+00:00"
-  },
-  "TARS": {
-    "ticker": "TARS",
-    "company": "Tarsus Pharmaceuticals, Inc. ",
-    "current_price": 63.619998931884766,
-    "market_cap_musd": 2737.2,
-    "filing_date": "2026-04-28",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1819790/000181979026000028/tars-20260428.htm",
-    "accession": "0001819790-26-000028",
-    "section_spans": [
-      [
-        69469,
-        76269
-      ],
-      [
-        95555,
-        156421
-      ],
-      [
-        158607,
-        165845
-      ],
-      [
-        167682,
-        172778
-      ]
-    ],
-    "archetypes": [
-      "D_dollar_metric_target"
-    ],
-    "pattern_match": 28.0,
-    "step_score": 25.2,
-    "conditionality_score": 0.0,
-    "delta_score": 4,
-    "insider_score": 0.0,
-    "forensic_score": 10.620000000000001,
-    "conditionalities": {},
-    "plan_deltas": {
-      "anti_hedge_pledge_added": "prohibited from engaging in hedging"
-    },
-    "hurdle_ladder": {
-      "dollar_ladder": {
-        "maximum": [
-          350000.0
-        ]
-      },
-      "pct_ladder": {
-        "target": [
-          40.0,
-          50.0,
-          70.0,
-          108.0
-        ],
-        "threshold": [
-          5.0
-        ],
-        "maximum": [
-          150.0
-        ]
-      },
-      "stock_price_hurdles": [
-        81.88
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:15.447468+00:00"
-  },
-  "SNDA": {
-    "ticker": "SNDA",
-    "company": "SONIDA SENIOR LIVING, INC. ",
-    "current_price": 37.470001220703125,
-    "market_cap_musd": 1774.0,
-    "filing_date": "2026-04-27",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1043000/000119312526182027/d44909ddef14a.htm",
-    "accession": "0001193125-26-182027",
-    "section_spans": [
-      [
-        74390,
-        84427
-      ],
-      [
-        101294,
-        129317
-      ],
-      [
-        131623,
-        145853
-      ],
-      [
-        172265,
-        182799
-      ],
-      [
-        186129,
-        198630
-      ],
-      [
-        200174,
-        204849
-      ]
-    ],
-    "archetypes": [
-      "C_relative_TSR"
-    ],
-    "pattern_match": 27.0,
-    "step_score": 24.3,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 9.855,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "target": [
-          50.0,
-          60.0,
-          70.0,
-          85.0,
-          100.0
-        ],
-        "threshold": [
-          50.0
-        ],
-        "maximum": [
-          5.0
-        ]
-      },
-      "stock_price_hurdles": [
-        34.67
-      ]
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": 50,
-    "performance_metrics": [
-      "TSR",
-      "EPS",
-      "Revenue",
-      "EBITDA"
-    ],
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:15.773928+00:00"
-  },
-  "REGN": {
-    "ticker": "REGN",
-    "company": "REGENERON PHARMACEUTICALS, INC. ",
-    "current_price": 701.4199829101562,
-    "market_cap_musd": 73536.2,
-    "filing_date": "2026-04-24",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/872589/000130817926000340/regn-20260424.htm",
-    "accession": "0001308179-26-000340",
-    "section_spans": [
-      [
-        24609,
-        31409
-      ],
-      [
-        40178,
-        47842
-      ],
-      [
-        79069,
-        85869
-      ],
-      [
-        86527,
-        107482
-      ],
-      [
-        137793,
-        145207
-      ],
-      [
-        151774,
-        158574
-      ],
-      [
-        172245,
-        179045
-      ],
-      [
-        179400,
-        194850
-      ],
-      [
-        195868,
-        197185
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 27.0,
-    "step_score": 24.3,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 9.855,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {},
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:16.102384+00:00"
-  },
-  "CLOV": {
-    "ticker": "CLOV",
-    "company": "CLOVER HEALTH INVESTMENTS, CORP. /DE ",
-    "current_price": 2.7100000381469727,
-    "market_cap_musd": 1424.7,
-    "filing_date": "2026-04-28",
-    "filing_url": "https://www.sec.gov/Archives/edgar/data/1801170/000180117026000102/clov-20260428.htm",
-    "accession": "0001801170-26-000102",
-    "section_spans": [
-      [
-        49402,
-        57122
-      ],
-      [
-        68695,
-        76886
-      ],
-      [
-        84815,
-        109030
-      ],
-      [
-        109152,
-        149026
-      ]
-    ],
-    "archetypes": [],
-    "pattern_match": 27.0,
-    "step_score": 24.3,
-    "conditionality_score": 0.0,
-    "delta_score": 0,
-    "insider_score": 0.0,
-    "forensic_score": 9.855,
-    "conditionalities": {},
-    "plan_deltas": {},
-    "hurdle_ladder": {
-      "pct_ladder": {
-        "minimum": [
-          50.0
-        ],
-        "target": [
-          150.0
-        ]
-      }
-    },
-    "insider_detail": {
-      "score": 0.0,
-      "reasons": [],
-      "filings_enriched": []
-    },
-    "psu_pct_of_lti": null,
-    "performance_metrics": null,
-    "say_on_pay_pct": null,
-    "_run_at": "2026-06-04T13:15:16.432644+00:00"
+    "_run_at": "2026-06-09T23:49:48.896580+00:00"
   }
 }

@@ -1,0 +1,442 @@
+rank,ticker,name,sector,mcap_musd,price,drawdown_pct,p_b,score,insider_score,valuation_score,step_change_score,psu_forensic_score,sc13d_score,cancel_10b5_1_score,cluster_size,ceo_bought,cfo_bought,tot_insider_musd,10b5_1_status,is_foreign_filer,reasons,_schema
+1,CRM,,,,,,,61.6,7.6,0.0,22,7.0,0.0,25.0,2,False,False,1.0,has_signal,False,step-change 57 | forensic-PSU 21 | 10b5-1 leg +25,v4-unified
+2,TONX,TON Strategy Company,Technology,212.6,3.76,7.2,0.52287585,56.0,32.0,24.0,0.0,0.0,0.0,0.0,4,True,True,0.07,no_signal,False,4-buyer cluster 26d ago | CEO+CFO bought | 7% above 52w low | P/B 0.5,v4-unified
+3,PCSA,"Processa Pharmaceuticals, Inc.",Healthcare,7.7,2.8,5.8,2.950474,53.0,35.0,18.0,0.0,0.0,0.0,0.0,5,True,True,0.02,no_signal,False,5-buyer cluster 8d ago | CEO+CFO bought | 6% above 52w low,v4-unified
+4,AGBK,AGI Inc,Financial Servi,1081.1,6.76,6.2,1.1710745,50.0,26.0,24.0,0.0,0.0,0.0,0.0,4,True,False,0.21,no_data,True,4-buyer cluster 29d ago | CEO bought | 6% above 52w low | P/B 1.2,v4-unified
+5,HDSN,"Hudson Technologies, Inc.",Basic Materials,221.7,5.27,10.7,0.93241334,49.0,31.0,18.0,0.0,0.0,0.0,0.0,7,True,False,0.15,no_signal,False,7-buyer cluster 25d ago | CEO bought | 11% above 52w low | P/B 0.9,v4-unified
+6,NSPR,InspireMD Inc.,Healthcare,45.0,0.9601,4.8,1.0312567,48.0,18.0,24.0,0.0,0.0,6.0,0.0,4,True,False,0.44,no_signal,False,4-buyer cluster 32d ago | CEO bought | 5% above 52w low | P/B 1.0 | 13D filed,v4-unified
+7,SRAD,Sportradar Group AG,Technology,3983.5,13.46,8.8,3.6539679,47.0,29.0,18.0,0.0,0.0,0.0,0.0,7,True,False,11.35,no_data,True,7-buyer cluster 36d ago | CEO bought | $11.3M insider buys | 9% above 52w low,v4-unified
+8,ODTX,"Odyssey Therapeutics, Inc.",Healthcare,787.3,16.69,27.1,-0.74181074,45.0,33.0,6.0,0.0,0.0,6.0,0.0,7,False,True,75.32,no_data,True,7-buyer cluster 29d ago | $75.3M insider buys | 13D filed,v4-unified
+9,GSHD,"Goosehead Insurance, Inc.",Financial Servi,1223.8,34.37,0.9,-6.708959,44.0,26.0,18.0,0.0,0.0,0.0,0.0,3,True,True,0.56,no_signal,False,3-buyer cluster 25d ago | CEO+CFO bought | 1% above 52w low,v4-unified
+10,OI,"O-I Glass, Inc.",Consumer Cyclic,1221.8,7.97,0.6,0.9421918,44.0,20.0,24.0,0.0,0.0,0.0,0.0,4,False,True,0.18,no_signal,False,4-buyer cluster 28d ago | 1% above 52w low | P/B 0.9,v4-unified
+11,EVTC,"Evertec, Inc.",Technology,1390.8,22.57,4.6,2.0811434,42.0,24.0,18.0,0.0,0.0,0.0,0.0,4,False,False,1.82,no_signal,False,4-buyer cluster 29d ago | 5% above 52w low,v4-unified
+12,OLED,Universal Display Corporation,Technology,4246.9,90.84,9.0,2.4923177,42.0,24.0,18.0,0.0,0.0,0.0,0.0,3,True,False,1.47,no_signal,False,3-buyer cluster 29d ago | CEO bought | 9% above 52w low,v4-unified
+13,XRN,Chiron Real Estate Inc.,Real Estate,501.5,34.87,53.5,1.1966369,41.0,35.0,6.0,0.0,0.0,0.0,0.0,9,True,True,0.62,no_signal,False,9-buyer cluster 29d ago | CEO+CFO bought | P/B 1.2,v4-unified
+14,MRP,"Millrose Properties, Inc.",Real Estate,4573.0,27.54,12.8,0.78101075,40.0,22.0,18.0,0.0,0.0,0.0,0.0,3,False,False,6.53,no_signal,False,3-buyer cluster 27d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8,v4-unified
+15,ONON,On Holding AG,Consumer Cyclic,13055.3,37.52,22.8,5.536192,40.0,28.0,12.0,0.0,0.0,0.0,0.0,3,True,False,6.59,no_data,True,3-buyer cluster 25d ago | CEO bought | $6.6M insider buys | 23% above 52w low,v4-unified
+16,BETR,Better Home & Finance Holding C,Financial Servi,498.4,26.41,18.7,51.582027,39.0,35.0,12.0,0.0,0.0,0.0,-8.0,6,True,True,9.21,has_signal,False,6-buyer cluster 64d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low | 10b5-1 leg -8,v4-unified
+17,MOBI,"Mobia Medical, Inc.",Healthcare,454.3,13.73,77.3,-0.28039864,39.0,33.0,0.0,0.0,0.0,6.0,0.0,6,False,False,19.02,no_signal,False,6-buyer cluster 29d ago | $19.0M insider buys | 13D filed,v4-unified
+18,OPCH,"Option Care Health, Inc.",Healthcare,3223.8,20.53,13.4,2.385545,39.0,28.0,12.0,0.0,0.0,0.0,-1.0,4,True,True,1.88,has_signal,False,4-buyer cluster 36d ago | CEO+CFO bought | 13% above 52w low | 10b5-1 leg -1,v4-unified
+19,GO,Grocery Outlet Holding Corp.,Consumer Defens,818.1,8.27,19.0,1.0136046,38.2,20.2,18.0,0.0,0.0,0.0,0.0,6,True,False,7.92,no_signal,False,6-buyer cluster 92d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0,v4-unified
+20,NSP,"Insperity, Inc.",Industrials,1282.5,33.6,32.9,19.145298,38.0,32.0,6.0,0.0,0.0,0.0,0.0,4,True,True,7.81,no_signal,False,4-buyer cluster 90d ago | CEO+CFO bought | $7.8M insider buys,v4-unified
+21,POOL,Pool Corporation,Industrials,6584.9,180.69,4.6,5.810715,38.0,20.0,18.0,0.0,0.0,0.0,0.0,4,False,False,7.67,no_signal,False,4-buyer cluster 32d ago | $7.7M insider buys | 5% above 52w low,v4-unified
+22,PATK,"Patrick Industries, Inc.",Consumer Cyclic,2981.8,90.65,10.4,2.524226,37.0,25.0,12.0,0.0,0.0,0.0,0.0,5,True,False,3.54,no_signal,False,5-buyer cluster 34d ago | CEO bought | 10% above 52w low,v4-unified
+23,ACON,"Aclarion, Inc.",Healthcare,8.6,3.49,11.9,0.43413362,36.0,18.0,18.0,0.0,0.0,0.0,0.0,4,True,False,0.05,no_signal,False,4-buyer cluster 32d ago | CEO bought | 12% above 52w low | P/B 0.4,v4-unified
+24,FCN,"FTI Consulting, Inc.",Industrials,4662.1,154.66,28.5,2.7522511,36.0,30.0,6.0,0.0,0.0,0.0,0.0,3,True,True,2.08,no_signal,False,3-buyer cluster 26d ago | CEO+CFO bought,v4-unified
+25,FLUT,Flutter Entertainment plc,Consumer Cyclic,17461.4,100.7,4.1,1.9375817,36.0,35.0,21.0,0.0,0.0,0.0,-20.0,7,True,False,1.05,has_signal,False,7-buyer cluster 28d ago | CEO bought | 4% above 52w low | 10b5-1 leg -20,v4-unified
+26,GRNT,"Granite Ridge Resources, Inc.",Energy,658.2,4.99,31.9,1.2003849,36.0,27.0,9.0,0.0,0.0,0.0,0.0,5,True,True,0.41,no_signal,False,5-buyer cluster 90d ago | CEO+CFO bought,v4-unified
+27,HFFG,,,,,,,36.0,24.0,0.0,0.0,12.0,0.0,0.0,4,True,True,0.04,no_signal,False,4-buyer cluster 83d ago | CEO+CFO bought | forensic-PSU 36,v4-unified
+28,HUBS,"HubSpot, Inc.",Technology,11387.4,222.45,11.2,5.787844,36.0,24.0,12.0,0.0,0.0,0.0,0.0,3,True,False,2.59,no_signal,False,3-buyer cluster 28d ago | CEO bought | 11% above 52w low,v4-unified
+29,PSN,Parsons Corporation,Technology,6413.4,59.95,28.4,2.4202664,36.0,30.0,6.0,0.0,0.0,0.0,0.0,4,True,False,2.13,no_signal,False,4-buyer cluster 29d ago | CEO bought,v4-unified
+30,BHF,,,,,,,32.0,0.0,0.0,12,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,step-change 50 | 10b5-1 leg +20,v4-unified
+31,IBP,"Installed Building Products, In",Consumer Cyclic,5435.0,201.74,21.0,8.091934,32.0,20.0,12.0,0.0,0.0,0.0,0.0,4,False,True,0.84,no_signal,False,4-buyer cluster 28d ago | 21% above 52w low,v4-unified
+32,TKO,"TKO Group Holdings, Inc.",Communication S,37951.9,198.57,62.0,4.4092374,32.0,30.0,0.0,0.0,0.0,0.0,2.0,3,True,True,4.5,has_signal,False,3-buyer cluster 27d ago | CEO+CFO bought | 10b5-1 leg +2,v4-unified
+33,CURI,,,,,,,31.0,6.0,0.0,0.0,0.0,0.0,25.0,1,True,False,0.33,has_signal,False,CEO bought | 10b5-1 leg +25,v4-unified
+34,GENC,,,,,,,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
+35,KKR,KKR & Co. Inc.,Financial Servi,84413.9,90.53,11.0,2.8805523,31.0,19.0,12.0,0.0,0.0,0.0,0.0,4,True,False,45.68,no_signal,False,4-buyer cluster 111d ago | CEO bought | $45.7M insider buys | 11% above 52w low,v4-unified
+36,UUU,,,,,,,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
+37,LCNB,,,,,,,30.0,6.0,0.0,0.0,0.0,0.0,24.0,1,True,False,0.01,has_signal,False,CEO bought | 10b5-1 leg +24,v4-unified
+38,TPL,,,,,,,29.5,1.5,0.0,22,0.0,6.0,0.0,2,False,False,0.49,no_signal,False,step-change 60 | 13D filed,v4-unified
+39,ADT,ADT Inc.,Industrials,5065.3,6.66,15.3,1.397105,29.0,14.0,15.0,0.0,0.0,0.0,0.0,3,False,False,0.35,no_signal,False,3-buyer cluster 28d ago | 15% above 52w low,v4-unified
+40,ZTS,Zoetis Inc.,Healthcare,32527.9,77.59,5.3,9.897945,29.0,14.0,18.0,0.0,0.0,0.0,-3.0,3,False,False,0.89,has_signal,False,3-buyer cluster 28d ago | 5% above 52w low | 10b5-1 leg -3,v4-unified
+41,GRND,,,,,,,28.0,0.0,0.0,22,0.0,6.0,0.0,0,False,False,0.0,no_signal,False,step-change 78 | 13D filed,v4-unified
+42,SRE,,,,,,,27.0,0.0,0.0,22,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,step-change 60 | 10b5-1 leg +5,v4-unified
+43,AVBC,"Avidia Bancorp, Inc.",Financial Servi,348.8,18.78,64.3,0.9095312,26.0,20.0,6.0,0.0,0.0,0.0,0.0,3,True,False,0.21,no_signal,False,3-buyer cluster 29d ago | CEO bought | P/B 0.9,v4-unified
+44,INFU,"InfuSystems Holdings, Inc.",Healthcare,182.2,9.03,64.5,3.1020267,26.0,26.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.13,no_signal,False,3-buyer cluster 28d ago | CEO+CFO bought,v4-unified
+45,KWY,,,,,,,26.0,26.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.05,no_signal,False,3-buyer cluster 8d ago | CEO+CFO bought,v4-unified
+46,PLSE,"Pulse Biosciences, Inc",Healthcare,1729.6,24.99,80.6,21.017662,26.0,20.0,0.0,0.0,0.0,6.0,0.0,2,True,False,26.59,no_signal,False,CEO bought | $26.6M insider buys | 13D filed,v4-unified
+47,STRT,,,,,,,26.0,26.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.29,no_signal,False,3-buyer cluster 26d ago | CEO+CFO bought,v4-unified
+48,AMD,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+49,APP,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+50,APT,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+51,BCO,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+52,BE,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+53,BRBS,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+54,CDE,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+55,CMLSQ,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+56,DDOG,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+57,EG,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+58,EYPT,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+59,FCFS,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+60,GOOG,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+61,GOOGL,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+62,INDI,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+63,IRON,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+64,ITRI,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+65,KDP,,,,,,,25.0,0.0,0.0,22,3.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 58 | PSU 75% LTI,v4-unified
+66,KYMR,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+67,LXFR,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+68,MGRC,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+69,NOW,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+70,NVDA,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+71,PCTY,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+72,SCHW,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+73,SRRK,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+74,WEST,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,1,False,False,0.27,has_signal,False,10b5-1 leg +25,v4-unified
+75,WMT,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+76,XEL,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+77,ZLAB,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
+78,MQ,,,,,,,24.0,0.0,0.0,0.0,0.0,0.0,24.0,0,False,False,0.0,has_signal,False,10b5-1 leg +24,v4-unified
+79,OPEN,,,,,,,24.0,6.0,0.0,0.0,0.0,0.0,18.0,1,True,False,0.49,has_signal,False,CEO bought | 10b5-1 leg +18,v4-unified
+80,PGEN,,,,,,,24.0,0.0,0.0,0.0,0.0,6.0,18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +18,v4-unified
+81,PRLD,,,,,,,24.0,0.0,0.0,0.0,0.0,6.0,18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +18,v4-unified
+82,CRNX,,,,,,,23.0,0.0,0.0,0.0,0.0,0.0,23.0,0,False,False,0.0,has_signal,False,10b5-1 leg +23,v4-unified
+83,EPAM,"EPAM Systems, Inc.",Technology,5082.3,97.28,6.0,1.4957869,23.0,27.0,21.0,0.0,0.0,0.0,-25.0,6,True,True,0.04,has_signal,False,6-buyer cluster 36d ago | CEO+CFO bought | 6% above 52w low | 10b5-1 leg -25,v4-unified
+84,UNIT,,,,,,,23.0,0.0,0.0,0.0,0.0,0.0,23.0,0,False,False,0.0,has_signal,False,10b5-1 leg +23,v4-unified
+85,AMCX,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 71,v4-unified
+86,AMT,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 56,v4-unified
+87,AQST,,,,,,,22.0,0.0,0.0,0.0,0.0,0.0,22.0,0,False,False,0.0,has_signal,False,10b5-1 leg +22,v4-unified
+88,AUPH,,,,,,,22.0,0.0,0.0,0.0,0.0,6.0,16.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +16,v4-unified
+89,CCI,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,1,False,False,0.07,no_signal,False,step-change 53,v4-unified
+90,CSGP,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 66,v4-unified
+91,D,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 55,v4-unified
+92,DLTR,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 60,v4-unified
+93,ENPH,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
+94,ETR,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
+95,LODE,,,,,,,22.0,16.0,0.0,0.0,0.0,6.0,0.0,2,True,False,1.54,no_signal,False,CEO bought | 13D filed,v4-unified
+96,MX,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
+97,PRCT,,,,,,,22.0,0.0,0.0,0.0,0.0,0.0,22.0,0,False,False,0.0,has_signal,False,10b5-1 leg +22,v4-unified
+98,RH,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 69,v4-unified
+99,RNR,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 51,v4-unified
+100,SBAC,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
+101,TSLA,,,,,,,22.0,0.0,0.0,0.0,0.0,0.0,22.0,0,False,False,0.0,has_signal,False,10b5-1 leg +22,v4-unified
+102,ULTA,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
+103,WDAY,,,,,,,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 72,v4-unified
+104,FWONB,,,,,,,21.0,0.0,0.0,0.0,0.0,6.0,15.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +15,v4-unified
+105,INSE,,,,,,,20.4,14.4,0.0,0.0,0.0,6.0,0.0,3,True,False,0.55,no_signal,False,3-buyer cluster 74d ago | CEO bought | 13D filed,v4-unified
+106,NXG,733085,Financial Servi,339.2,59.69,92.7,,20.4,20.4,0.0,0.0,0.0,0.0,0.0,3,True,True,0.04,no_data,True,3-buyer cluster 32d ago | CEO+CFO bought,v4-unified
+107,AGIG,,,,,,,20.0,20.0,0.0,0.0,0.0,0.0,0.0,3,True,False,0.06,no_signal,False,3-buyer cluster 26d ago | CEO bought,v4-unified
+108,CINF,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+109,CUBE,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+110,FOSL,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+111,GBLI,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+112,IOVA,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+113,IQV,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+114,JMSB,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+115,KMPR,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+116,NXST,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+117,PCAR,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+118,QTTB,,,,,,,20.0,14.0,0.0,0.0,0.0,6.0,0.0,2,False,False,30.0,no_signal,False,$30.0M insider buys | 13D filed,v4-unified
+119,REFI,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+120,UHT,,,,,,,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
+121,DT,,,,,,,19.0,0.0,0.0,0.0,0.0,6.0,13.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +13,v4-unified
+122,VSNT,"Versant Media Group, Inc.",Communication S,5689.6,40.21,41.0,0.56325203,19.0,13.0,6.0,0.0,0.0,0.0,0.0,4,False,False,6.19,no_signal,False,4-buyer cluster 92d ago | $6.2M insider buys | P/B 0.6,v4-unified
+123,CHTR,,,,,,,18.4,18.4,0.0,0.0,0.0,0.0,0.0,3,True,False,2.37,no_signal,False,3-buyer cluster 42d ago | CEO bought,v4-unified
+124,ACM,,,,,,,18.0,18.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.4,no_signal,False,CEO+CFO bought,v4-unified
+125,BREZ,,,,,,,18.0,18.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.0,no_data,True,CEO+CFO bought,v4-unified
+126,CACC,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+127,CFBK,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+128,CRBU,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+129,CRSP,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+130,HROW,,,,,,,18.0,18.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.41,no_signal,False,CEO+CFO bought,v4-unified
+131,ILMN,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+132,JKHY,,,,,,,18.0,18.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.32,no_signal,False,CEO+CFO bought,v4-unified
+133,MA,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+134,MCHPP,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+135,PCOR,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+136,PEN,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+137,SMG,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+138,SPRY,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+139,STT,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
+140,LW,,,,,,,16.4,16.4,0.0,0.0,0.0,0.0,0.0,3,False,True,16.98,no_signal,False,3-buyer cluster 63d ago | $17.0M insider buys,v4-unified
+141,ALEC,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16,v4-unified
+142,BKNG,,,,,,,16.0,0.0,0.0,22,0.0,0.0,-6.0,0,False,False,0.0,has_signal,False,step-change 54 | 10b5-1 leg -6,v4-unified
+143,BLMN,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v4-unified
+144,CAT,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16,v4-unified
+145,DOCN,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v4-unified
+146,IMA,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v4-unified
+147,SBET,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v4-unified
+148,SHOP,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16,v4-unified
+149,BAC,,,,,,,15.0,0.0,0.0,0.0,0.0,0.0,15.0,1,False,False,0.05,has_signal,False,10b5-1 leg +15,v4-unified
+150,NKE,"Nike, Inc.",Consumer Cyclic,64877.7,43.81,6.3,4.6018906,15.0,22.0,18.0,0.0,0.0,0.0,-25.0,4,True,False,3.73,has_signal,False,4-buyer cluster 62d ago | CEO bought | 6% above 52w low | 10b5-1 leg -25,v4-unified
+151,OMC,,,,,,,15.0,0.0,0.0,0.0,0.0,0.0,15.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v4-unified
+152,VABK,,,,,,,15.0,0.0,0.0,0.0,0.0,0.0,15.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v4-unified
+153,ASTS,,,,,,,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
+154,IEP,,,,,,,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
+155,LCID,,,,,,,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
+156,SERV,,,,,,,14.0,0.0,0.0,0.0,0.0,0.0,14.0,0,False,False,0.0,has_signal,False,10b5-1 leg +14,v4-unified
+157,VVX,,,,,,,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
+158,KRP,,,,,,,13.0,0.0,0.0,0.0,0.0,6.0,7.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +7,v4-unified
+159,MYO,,,,,,,12.0,0.0,0.0,0.0,0.0,0.0,12.0,1,False,False,0.02,has_signal,False,10b5-1 leg +12,v4-unified
+160,TRUP,,,,,,,12.0,0.0,0.0,0.0,0.0,0.0,12.0,0,False,False,0.0,has_signal,False,10b5-1 leg +12,v4-unified
+161,TRVI,,,,,,,12.0,0.0,0.0,0.0,0.0,6.0,6.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +6,v4-unified
+162,BB,,,,,,,11.0,0.0,0.0,0.0,0.0,6.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +5,v4-unified
+163,FEED,,,,,,,11.0,0.0,0.0,0.0,0.0,6.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +5,v4-unified
+164,VNOM,,,,,,,11.0,0.0,0.0,0.0,0.0,6.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +5,v4-unified
+165,CCRN,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+166,INMB,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+167,LCUT,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+168,MASS,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+169,MU,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+170,OCUL,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+171,PCVX,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+172,RXST,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
+173,CVBF,,,,,,,9.0,4.0,0.0,0.0,0.0,0.0,5.0,1,False,False,1.5,has_signal,False,10b5-1 leg +5,v4-unified
+174,ADP,,,,,,,8.0,0.0,0.0,0.0,0.0,0.0,8.0,1,False,False,0.75,has_signal,False,10b5-1 leg +8,v4-unified
+175,DLPN,,,,,,,8.0,6.0,0.0,0.0,0.0,0.0,2.0,1,True,False,0.01,has_signal,False,CEO bought | 10b5-1 leg +2,v4-unified
+176,GRDN,,,,,,,8.0,0.0,0.0,0.0,0.0,6.0,2.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +2,v4-unified
+177,SAMG,,,,,,,8.0,0.0,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg +8,v4-unified
+178,SES,,,,,,,8.0,0.0,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg +8,v4-unified
+179,WMS,,,,,,,8.0,0.0,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg +8,v4-unified
+180,BCPC,,,,,,,7.0,0.0,0.0,0.0,0.0,0.0,7.0,0,False,False,0.0,has_signal,False,10b5-1 leg +7,v4-unified
+181,BLND,,,,,,,7.0,4.0,0.0,0.0,0.0,6.0,-3.0,1,False,False,2.79,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
+182,CVGI,,,,,,,7.0,0.0,0.0,0.0,0.0,0.0,7.0,0,False,False,0.0,has_signal,False,10b5-1 leg +7,v4-unified
+183,ENTG,,,,,,,7.0,0.0,0.0,0.0,0.0,0.0,7.0,0,False,False,0.0,has_signal,False,10b5-1 leg +7,v4-unified
+184,TASK,,,,,,,7.0,0.0,0.0,0.0,0.0,0.0,7.0,0,False,False,0.0,has_signal,False,10b5-1 leg +7,v4-unified
+185,AAPL,,,,,,,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v4-unified
+186,PINS,,,,,,,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v4-unified
+187,TXRH,,,,,,,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v4-unified
+188,FEMY,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v4-unified
+189,LUNR,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v4-unified
+190,QVCCQ,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v4-unified
+191,SN,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v4-unified
+192,ALKT,,,,,,,4.0,14.0,0.0,0.0,0.0,6.0,-16.0,2,False,False,65.86,has_signal,False,$65.9M insider buys | 13D filed | 10b5-1 leg -16,v4-unified
+193,FABC,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
+194,MMSI,,,,,,,3.0,6.0,0.0,0.0,0.0,0.0,-3.0,2,False,False,0.22,has_signal,False,10b5-1 leg -3,v4-unified
+195,NMRA,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
+196,SOFI,,,,,,,3.0,6.0,0.0,22,0.0,0.0,-25.0,1,True,False,0.5,has_signal,False,CEO bought | step-change 53 | 10b5-1 leg -25,v4-unified
+197,STRR,,,,,,,3.0,6.0,0.0,0.0,0.0,0.0,-3.0,1,True,False,0.2,has_signal,False,CEO bought | 10b5-1 leg -3,v4-unified
+198,STRRP,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
+199,VVV,,,,,,,3.0,6.0,0.0,0.0,0.0,0.0,-3.0,2,False,True,0.42,has_signal,False,10b5-1 leg -3,v4-unified
+200,CARS,,,,,,,2.0,0.0,0.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,10b5-1 leg +2,v4-unified
+201,INGN,,,,,,,2.0,0.0,0.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,10b5-1 leg +2,v4-unified
+202,RYM,,,,,,,2.0,0.0,0.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,10b5-1 leg +2,v4-unified
+203,UZD,,,,,,,0.0,0.0,0.0,0.0,0.0,6.0,-6.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -6,v4-unified
+204,LULU,,,,,,,-0.4,13.6,0.0,0.0,0.0,6.0,-20.0,2,True,False,1.49,has_signal,False,CEO bought | 13D filed | 10b5-1 leg -20,v4-unified
+205,MSCI,,,,,,,-0.5,15.5,0.0,0.0,0.0,0.0,-16.0,2,True,False,5.56,has_signal,False,CEO bought | $5.6M insider buys | 10b5-1 leg -16,v4-unified
+206,GCMG,,,,,,,-1.0,0.0,0.0,0.0,0.0,0.0,-1.0,0,False,False,0.0,has_signal,False,10b5-1 leg -1,v4-unified
+207,PAYC,,,,,,,-1.0,0.0,0.0,22,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,step-change 69 | 10b5-1 leg -23,v4-unified
+208,TRIP,,,,,,,-1.0,0.0,0.0,0.0,0.0,6.0,-7.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -7,v4-unified
+209,ANGI,,,,,,,-2.0,0.0,0.0,0.0,0.0,0.0,-2.0,0,False,False,0.0,has_signal,False,10b5-1 leg -2,v4-unified
+210,EWTX,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
+211,HWKE,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
+212,NCDL,,,,,,,-2.0,6.0,0.0,0.0,0.0,0.0,-8.0,2,False,True,0.12,has_signal,False,10b5-1 leg -8,v4-unified
+213,PRKS,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
+214,SNTI,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
+215,URBN,,,,,,,-2.0,0.0,0.0,0.0,0.0,0.0,-2.0,0,False,False,0.0,has_signal,False,10b5-1 leg -2,v4-unified
+216,ZSQR,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
+217,BWXT,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
+218,CL,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
+219,MORN,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
+220,MZTI,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
+221,OCGN,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
+222,QCLS,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,1,False,False,0.01,has_signal,False,10b5-1 leg -3,v4-unified
+223,SPAI,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
+224,MPWR,,,,,,,-4.0,0.0,0.0,0.0,0.0,0.0,-4.0,0,False,False,0.0,has_signal,False,10b5-1 leg -4,v4-unified
+225,RGR,,,,,,,-4.0,6.0,0.0,0.0,0.0,6.0,-16.0,2,False,False,0.23,has_signal,False,13D filed | 10b5-1 leg -16,v4-unified
+226,AMWL,,,,,,,-5.0,6.0,0.0,0.0,0.0,0.0,-11.0,1,True,False,0.0,has_signal,False,CEO bought | 10b5-1 leg -11,v4-unified
+227,AMRX,,,,,,,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
+228,COHR,,,,,,,-6.0,0.0,0.0,0.0,0.0,0.0,-6.0,0,False,False,0.0,has_signal,False,10b5-1 leg -6,v4-unified
+229,NPB,,,,,,,-6.0,6.0,0.0,0.0,0.0,0.0,-12.0,1,True,False,0.86,has_signal,False,CEO bought | 10b5-1 leg -12,v4-unified
+230,RDW,,,,,,,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
+231,RNAC,,,,,,,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
+232,SMR,,,,,,,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
+233,TH,,,,,,,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
+234,XPRO,,,,,,,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
+235,CF,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
+236,FULC,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
+237,OPRX,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
+238,SYK,,,,,,,-8.0,0.0,0.0,0.0,0.0,6.0,-14.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -14,v4-unified
+239,TNL,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
+240,WKC,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
+241,XNCR,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
+242,INDV,,,,,,,-8.4,3.6,0.0,0.0,0.0,0.0,-12.0,2,False,False,0.03,has_signal,False,10b5-1 leg -12,v4-unified
+243,CELC,,,,,,,-9.0,0.0,0.0,0.0,0.0,6.0,-15.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -15,v4-unified
+244,ECPG,,,,,,,-9.0,0.0,0.0,0.0,0.0,0.0,-9.0,0,False,False,0.0,has_signal,False,10b5-1 leg -9,v4-unified
+245,SYRE,,,,,,,-9.0,0.0,0.0,0.0,0.0,6.0,-15.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -15,v4-unified
+246,GRAL,,,,,,,-10.0,0.0,0.0,0.0,0.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -10,v4-unified
+247,GYRE,,,,,,,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v4-unified
+248,RENT,,,,,,,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v4-unified
+249,APPF,,,,,,,-11.0,0.0,0.0,0.0,0.0,0.0,-11.0,0,False,False,0.0,has_signal,False,10b5-1 leg -11,v4-unified
+250,SND,,,,,,,-11.0,0.0,0.0,0.0,0.0,0.0,-11.0,1,False,False,0.02,has_signal,False,10b5-1 leg -11,v4-unified
+251,ULS,,,,,,,-11.0,0.0,0.0,0.0,0.0,0.0,-11.0,1,False,False,0.01,has_signal,False,10b5-1 leg -11,v4-unified
+252,ABOS,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+253,ACAD,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+254,AHCO,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+255,APLD,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+256,CAMP,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+257,CDNA,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+258,CDXS,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+259,CGEM,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+260,EVER,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+261,GLP,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,1,False,False,0.74,has_signal,False,10b5-1 leg -12,v4-unified
+262,HLMN,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+263,HSIC,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,1,False,False,0.69,has_signal,False,10b5-1 leg -12,v4-unified
+264,KLAC,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+265,LTH,,,,,,,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v4-unified
+266,MRVI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+267,OPLN,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+268,OSCR,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+269,PACS,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+270,PAY,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+271,PED,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+272,PVLA,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+273,RELY,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+274,ROST,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+275,SEPN,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+276,SI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+277,TEAM,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+278,URGN,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+279,XENE,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
+280,HIG,,,,,,,-13.0,0.0,0.0,12,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,step-change 49 | 10b5-1 leg -25,v4-unified
+281,JSM,,,,,,,-13.0,0.0,0.0,0.0,0.0,6.0,-19.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -19,v4-unified
+282,OKLO,,,,,,,-13.0,0.0,0.0,0.0,0.0,6.0,-19.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -19,v4-unified
+283,XOMAP,,,,,,,-13.0,0.0,0.0,0.0,0.0,6.0,-19.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -19,v4-unified
+284,CHGG,,,,,,,-14.0,0.0,0.0,0.0,0.0,6.0,-20.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -20,v4-unified
+285,REPX,,,,,,,-14.0,0.0,0.0,0.0,0.0,6.0,-20.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -20,v4-unified
+286,AEE,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+287,AMPL,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+288,ASIX,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+289,BDTX,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+290,CENX,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+291,CRMD,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+292,ENVX,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+293,EYE,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+294,HLF,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+295,KODK,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,1,False,False,0.02,has_signal,False,10b5-1 leg -15,v4-unified
+296,MTB,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+297,NGS,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+298,PCG,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+299,RMNI,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+300,SIBN,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+301,STRD,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+302,TSEOF,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+303,WEAV,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
+304,ABEO,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+305,ADUS,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+306,CMRC,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+307,GME,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+308,GMED,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+309,LFMDP,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+310,RPC,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
+311,ATAI,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
+312,AVTR,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,1,False,False,0.08,has_signal,False,10b5-1 leg -18,v4-unified
+313,BSY,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
+314,CNTY,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
+315,COMP,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
+316,ORGO,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
+317,STUB,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
+318,APG,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+319,APGE,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+320,BBIO,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+321,BRCB,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+322,CIFR,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+323,CVNA,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+324,EBAY,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+325,FUBO,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+326,IBTA,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+327,INCY,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+328,KHC,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+329,LBRT,,,,,,,-19.0,0.0,0.0,0.0,0.0,0.0,-19.0,0,False,False,0.0,has_signal,False,10b5-1 leg -19,v4-unified
+330,LXU,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+331,LZ,,,,,,,-19.0,6.0,0.0,0.0,0.0,0.0,-25.0,1,True,False,0.77,has_signal,False,CEO bought | 10b5-1 leg -25,v4-unified
+332,MLTX,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+333,ORKA,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+334,PAHC,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+335,PAR,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+336,PRCH,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+337,RDDT,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+338,RKLB,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+339,SATS,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+340,TMUSL,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+341,WVE,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
+342,AIRG,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+343,ALL,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+344,ICFI,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+345,MCO,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+346,ROP,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+347,STZ,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+348,XERS,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
+349,AEP,,,,,,,-21.0,0.0,0.0,0.0,0.0,0.0,-21.0,0,False,False,0.0,has_signal,False,10b5-1 leg -21,v4-unified
+350,CRSR,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
+351,NDAQ,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
+352,BETA,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+353,CTMX,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+354,CYRX,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+355,EXC,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+356,FDMT,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+357,FENC,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+358,HRTG,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+359,IR,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+360,PPL,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+361,PPLC,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+362,TPR,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+363,UTHR,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
+364,HBANP,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
+365,LOVE,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
+366,NXPI,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
+367,AAOI,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+368,ACMR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+369,ADPT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+370,AEVA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+371,AIP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+372,ALKS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+373,AMZN,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+374,ANTX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+375,APO,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+376,APOS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+377,ARES,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+378,ARQT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+379,AVGO,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+380,AVIR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+381,BRLT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+382,BROS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,False,0.1,has_signal,False,10b5-1 leg -25,v4-unified
+383,BWMN,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+384,BXMT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+385,CLOV,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+386,COIN,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+387,CRCT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,False,0.04,has_signal,False,10b5-1 leg -25,v4-unified
+388,CRWV,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+389,DIS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+390,DKS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+391,DSP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+392,FIG,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+393,FSLY,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+394,GCT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+395,GDDY,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+396,HTFL,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+397,IMAX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+398,JBI,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+399,JBL,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+400,LASR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+401,LAZ,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+402,LENZ,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+403,LITE,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+404,LRCX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+405,MARA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+406,MCK,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+407,META,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+408,MP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+409,NEE,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+410,NTRA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+411,OMDA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+412,ONT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,True,0.1,has_signal,False,10b5-1 leg -25,v4-unified
+413,OUT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+414,PENG,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+415,PGR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+416,PLRX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+417,PLTR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+418,PRTHU,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+419,QCOM,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+420,QLYS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+421,QS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+422,QTWO,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+423,RIVN,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+424,ROOT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+425,RVLV,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+426,RXRX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+427,RXT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+428,RYTM,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+429,SVV,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+430,TARS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+431,TOST,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+432,TSCO,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+433,TWLO,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+434,VEL,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+435,VRSN,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+436,VSAT,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+437,VST,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+438,VTR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+439,WBD,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+440,ZNTL,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+441,ZUMZ,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified

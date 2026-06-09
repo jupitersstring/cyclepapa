@@ -301,6 +301,45 @@ CATEGORY_WEIGHT = {
 }
 
 
+# Tokens that mark a passage as RETROSPECTIVE (we already achieved X,
+# we paid out at Y%) rather than FORWARD (must achieve X to vest).
+# Forward triggers are the genuine asymmetric signal; retrospective
+# disclosures describe historic comp outcomes and don't tell you
+# anything about future vesting structure.
+RETROSPECTIVE_TOKENS = re.compile(
+    r"\b(?:we\s+achieved|achieved\s+(?:adjusted\s+)?(?:EBITDA|revenue|FCF)|"
+    r"actual\s+performance|resulted\s+in\s+a\s+payout|earned\s+at|"
+    r"paid\s+out\s+at|payout\s+was|delivered\s+(?:adjusted\s+)?(?:EBITDA|revenue)|"
+    r"performance\s+highlights|target\s+performance\.|"
+    r"compensation\s+outcomes|recent\s+compensation\s+outcomes|"
+    r"as\s+a\s+result\s+of\s+our\s+performance|exceeded\s+target|"
+    r"in\s+\d{4}\s*,?\s+(?:we|the\s+Company)\s+(?:delivered|generated|achieved))",
+    re.I,
+)
+
+# Forward / conditional language tokens. Strong forward signals.
+FORWARD_TOKENS = re.compile(
+    r"\b(?:must\s+(?:have\s+)?achieve|in\s+order\s+to\s+vest|"
+    r"vesting\s+(?:is\s+)?subject\s+to|will\s+vest\s+(?:if|upon|when)|"
+    r"vests\s+(?:if|upon|when)|earns?\s+(?:upon|if)|payable\s+if|"
+    r"required\s+to\s+achieve|conditioned\s+(?:on|upon)\s+achievement)",
+    re.I,
+)
+
+
+def classify_direction(context: str) -> str:
+    """Return 'forward', 'retrospective', or 'ambiguous'."""
+    has_fwd = bool(FORWARD_TOKENS.search(context))
+    has_retro = bool(RETROSPECTIVE_TOKENS.search(context))
+    if has_fwd and not has_retro:
+        return "forward"
+    if has_retro and not has_fwd:
+        return "retrospective"
+    if has_fwd and has_retro:
+        return "ambiguous"  # mixed -- treat as half-credit
+    return "ambiguous"
+
+
 def extract_conditionalities(section: str) -> dict[str, list[dict]]:
     out: dict[str, list[dict]] = {}
     for cat, pat in PATTERNS.items():
@@ -310,12 +349,17 @@ def extract_conditionalities(section: str) -> dict[str, list[dict]]:
             if is_boilerplate(snip, cat):
                 continue
             ctx_start = max(0, m.start() - 250)
-            ctx = re.sub(r"\s+", " ", section[ctx_start:m.start()]).strip()[-180:]
+            ctx_end = min(len(section), m.end() + 150)
+            full_ctx = re.sub(r"\s+", " ", section[ctx_start:ctx_end]).strip()
+            ctx = re.sub(r"\s+", " ",
+                         section[ctx_start:m.start()]).strip()[-180:]
             header = find_subsection_header(section, m.start())
+            direction = classify_direction(full_ctx)
             entry = {
                 "snippet": snip,
                 "context_before": ctx[-120:],
                 "subsection": header,
+                "direction": direction,
             }
             # Dedupe by snippet
             if not any(h["snippet"] == snip for h in hits):
@@ -666,11 +710,36 @@ def main() -> int:
         deltas = extract_plan_deltas(section)
         ladder = extract_ladder(section)
 
+        # Score with direction weighting: forward triggers full weight,
+        # retrospective half-weight (they describe paid-out comp, not
+        # vesting conditions), ambiguous gets 0.7x. The FACT that the
+        # regex fired still tells you the company has dollar-named
+        # metrics in its plan, so we keep some credit even for retro.
+        DIRECTION_MULTIPLIER = {
+            "forward": 1.0, "ambiguous": 0.7, "retrospective": 0.5,
+        }
         cond_score = 0.0
+        n_forward = 0
+        n_retro = 0
         for cat, hits in cond.items():
             w = CATEGORY_WEIGHT.get(cat, 4)
             mult = 1.0 if len(hits) == 1 else (1.3 if len(hits) == 2 else 1.5)
-            cond_score += w * mult
+            # Use the best (most-forward) direction among the hits for
+            # this category -- one genuine forward trigger should beat
+            # several retro references to the same metric.
+            best_dir = "retrospective"
+            for h in hits:
+                d = h.get("direction", "ambiguous")
+                if d == "forward":
+                    best_dir = "forward"; break
+                if d == "ambiguous" and best_dir == "retrospective":
+                    best_dir = "ambiguous"
+            dir_mult = DIRECTION_MULTIPLIER.get(best_dir, 0.7)
+            if best_dir == "forward":
+                n_forward += 1
+            elif best_dir == "retrospective":
+                n_retro += 1
+            cond_score += w * mult * dir_mult
         cond_score = min(100.0, cond_score)
 
         delta_score = min(20.0, 4 * len(deltas))
@@ -733,6 +802,8 @@ def main() -> int:
             "metrics": ",".join(forensics.get("performance_metrics") or []),
             "archetypes": ",".join(archetypes),
             "n_cond": len(cond),
+            "n_cond_forward": n_forward,
+            "n_cond_retro": n_retro,
             "cond_cats": ";".join(cond.keys()),
             "n_deltas": len(deltas),
             "delta_keys": ";".join(deltas.keys()),
@@ -752,7 +823,8 @@ def main() -> int:
               "filing_date", "archetypes",
               "pattern_match", "conditionality", "delta", "insider", "forensic_score",
               "psu_pct_lti", "metrics",
-              "n_cond", "cond_cats", "n_deltas", "delta_keys",
+              "n_cond", "n_cond_forward", "n_cond_retro",
+              "cond_cats", "n_deltas", "delta_keys",
               "cluster_size", "ceo_cfo", "n_buys_30d", "total_insider_kusd",
               "ins_reasons", "filing_url"]
     with Path(args.csv).open("w", newline="") as f:

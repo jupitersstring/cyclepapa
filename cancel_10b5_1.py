@@ -180,6 +180,33 @@ NEO_NEAR = re.compile(
     re.I,
 )
 
+# Words that, when they appear as the LAST token of a captured NEO
+# name, indicate the regex straddled into the title. "Jensen Huang
+# President" should be "Jensen Huang" with title "President" -- the
+# NEO regex's flexible middle-name slot let "President" become a
+# pseudo-surname. Same for "Vice President", "our officers", etc.
+NEO_TAIL_BLACKLIST = {
+    "president", "vice", "chair", "chairman", "chairperson",
+    "ceo", "cfo", "coo", "officer", "counsel", "director", "officers",
+    "executive", "senior", "co-founder", "founder",
+}
+NEO_HEAD_BLACKLIST = {"our", "the", "former", "to", "and", "by"}
+
+
+def neo_passes_sanity(name: str) -> bool:
+    if not name:
+        return False
+    parts = name.split()
+    if not parts:
+        return False
+    if parts[0].lower() in NEO_HEAD_BLACKLIST:
+        return False
+    if parts[-1].lower() in NEO_TAIL_BLACKLIST:
+        return False
+    if len(parts) < 2:
+        return False
+    return True
+
 # Fallback role-only search (used if NEO+role pair fails)
 ROLE_NEAR = re.compile(
     r"(Chief\s+Executive\s+Officer|\bCEO\b|Chief\s+Financial\s+Officer|\bCFO\b|"
@@ -223,6 +250,35 @@ def extract_context(text: str, hit_start: int, hit_end: int,
     tight_hi = min(len(text), hit_end + 100)
     tight = text[tight_lo:tight_hi]
 
+    # CORPORATE BUYBACK / ASR EXCLUSION. The same Item 5 region
+    # sometimes contains the company's own Rule 10b5-1 repurchase plan
+    # (ASR / share repurchase program). These are not insider conviction
+    # signals and should be filtered out at extraction time.
+    corp_tokens = (
+        "accelerated share repurchase", "asr agreement",
+        "share repurchase program", "share buyback program",
+        "the company entered into", "the company adopted",
+        "the company's 10b5-1", "issuer trading plan",
+        "company's trading plan",
+    )
+    tight_lower = tight.lower()
+    is_corporate = any(t in tight_lower for t in corp_tokens)
+
+    # RETROSPECTIVE PAYOUT vs FORWARD VESTING TRIGGER. Filings disclose
+    # both "we achieved X" (backward-looking) and "vesting requires X"
+    # (forward-looking). Mark events whose paragraph reads as
+    # retrospective so the scorer can downweight them.
+    retro_tokens = (
+        "we achieved", "achieved adjusted ebitda of",
+        "achieved revenue of", "actual performance",
+        "resulted in a payout of", "earned at",
+        "paid out at", "payout was", "delivered",
+        "for purposes of the 2024 lip",
+        "for purposes of the 2025 lip",
+        "performance highlights",
+    )
+    is_retrospective = any(t in tight_lower for t in retro_tokens)
+
     # Plan type
     sell_count = len(SELL_PLAN_KEYWORDS.findall(window))
     buy_count = len(BUY_PLAN_KEYWORDS.findall(window))
@@ -234,13 +290,18 @@ def extract_context(text: str, hit_start: int, hit_end: int,
         plan_type = "unknown"
 
     # NEO + role (paired). Try tight window first, then wider.
+    # Walk through every match in each window so we can skip ones whose
+    # captured "name" is actually a role token (sanity blacklist).
     neo = None
     role = None
     for w in (tight, window):
-        m = NEO_NEAR.search(w)
-        if m:
-            neo = m.group(1).strip()
-            role = m.group(2).strip()
+        for m in NEO_NEAR.finditer(w):
+            cand = m.group(1).strip()
+            if neo_passes_sanity(cand):
+                neo = cand
+                role = m.group(2).strip()
+                break
+        if neo:
             break
     # Fallback: role-only search in tight window
     if not role:
@@ -274,6 +335,8 @@ def extract_context(text: str, hit_start: int, hit_end: int,
         "role": role,
         "shares": shares,
         "dates_near": dates,
+        "is_corporate": is_corporate,
+        "is_retrospective": is_retrospective,
         "snippet": re.sub(r"\s+", " ", window).strip()[:600],
     }
 
@@ -304,6 +367,9 @@ def detect_actions(text: str) -> list[dict]:
         if action == "TERMINATE" and is_natural_expiration(ctx["snippet"]):
             return
         if is_negative_boilerplate(ctx["snippet"]):
+            return
+        # Corporate ASR / share repurchase plan -- not an insider signal
+        if ctx.get("is_corporate"):
             return
         key = (action, ctx.get("neo") or "", ctx.get("shares") or 0, snip[:60])
         if key in seen_keys:
@@ -369,30 +435,36 @@ def classify(e: dict) -> tuple[int, str]:
     if e.get("modification_pair"):
         return 0, "modification_pair"
 
+    # Retrospective payout disclosures (CD&A "we achieved X" language)
+    # are not forward vesting conditions; they describe past payouts.
+    # Heavily downweight rather than discard -- the regex was triggered
+    # by 10b5-1-adjacent text, but the signal direction is unreliable.
+    retro_mult = 0.3 if e.get("is_retrospective") else 1.0
+
     if act == "TERMINATE":
         if pt == "sell":
             base = 30 if is_ceo else (24 if is_cfo else 18)
             if shares >= 250_000: base += 8
             elif shares >= 50_000: base += 4
-            return base, "BULLISH terminate sell"
+            return int(base * retro_mult), "BULLISH terminate sell"
         if pt == "buy":
-            return -8, "BEARISH terminate buy"
+            return int(-8 * retro_mult), "BEARISH terminate buy"
         # Unknown plan type, but still meaningful for CEO/CFO
-        return (10 if is_ceo else 5), "neutral terminate (type unknown)"
+        return int((10 if is_ceo else 5) * retro_mult), "neutral terminate (type unknown)"
     if act == "ADOPT":
         if pt == "sell":
             # Size-conditional: tiny adoptions (<10K shares) are tax/RSU
             # liquidity, not meaningful bearish signal. Larger adoptions
             # are real conviction.
             if shares and shares < 10_000:
-                return -3, "weak BEARISH adopt sell (small)"
+                return int(-3 * retro_mult), "weak BEARISH adopt sell (small)"
             base = -20 if is_ceo else (-16 if is_cfo else -12)
             if shares >= 500_000: base -= 6
             elif shares >= 100_000: base -= 3
             elif shares and shares < 25_000: base = max(base, -8)
-            return base, "BEARISH adopt sell"
+            return int(base * retro_mult), "BEARISH adopt sell"
         if pt == "buy":
-            return 8, "BULLISH adopt buy"
+            return int(8 * retro_mult), "BULLISH adopt buy"
         return 0, "neutral adopt (type unknown)"
     if act == "MODIFY":
         return 0, "modify (direction unclear)"
@@ -472,10 +544,67 @@ def fetch_and_cache_filing(cik: str, acc: str, primary_doc: str) -> str:
 
 
 def recent_10q_for(ticker: str, limit: int = 4, days: int = 540) -> list:
-    """Pull recent 10-Q filings for a ticker via submissions JSON."""
+    """Pull recent 10-Q + 10-K (US filers) AND 20-F + 6-K (foreign
+    private issuers). The 10-K's Part II Item 9B carries Q4 10b5-1
+    disclosures that 10-Qs never cover. 20-F is the FPI annual report;
+    6-K carries interim disclosures including some plan adoptions."""
     from recent import company_filings
-    return company_filings(ticker, forms=("10-Q",), limit_per_form=limit,
-                           days=days)
+    return company_filings(ticker,
+                           forms=("10-Q", "10-K", "20-F", "6-K"),
+                           limit_per_form=limit, days=days)
+
+
+def is_foreign_filer(ticker: str) -> bool:
+    """Detect whether a ticker is a foreign private issuer. Returns True
+    if the company files 20-F (and no 10-K/10-Q) within the past 18 months."""
+    from recent import company_filings
+    try:
+        us = company_filings(ticker, forms=("10-K", "10-Q"),
+                             limit_per_form=1, days=540)
+        if us:
+            return False
+        fpi = company_filings(ticker, forms=("20-F", "6-K"),
+                              limit_per_form=1, days=540)
+        return bool(fpi)
+    except Exception:
+        return False
+
+
+def atomic_write_json(path: Path, data: dict) -> None:
+    """Write JSON via temp file + rename so a crash mid-write can't
+    corrupt the resumable state."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(data, indent=2, default=str))
+    tmp.replace(path)
+
+
+def dedupe_cross_quarter(events: list[dict]) -> list[dict]:
+    """The SEC requires each 10b5-1 plan to be re-disclosed in every
+    10-Q until the action is older than the reporting window. A single
+    May termination shows up in May, Aug, and Nov filings. Without
+    cross-quarter dedupe, one action scores 3x.
+
+    Dedupe key: (action, neo_lower, role_lower, shares, plan_type).
+    Keeps the EARLIEST filing_date (the original disclosure), drops
+    re-disclosures."""
+    by_sig: dict[tuple, dict] = {}
+    for e in events:
+        sig = (
+            e.get("action") or "",
+            (e.get("neo") or "").strip().lower(),
+            (e.get("role") or "").strip().lower(),
+            e.get("shares") or 0,
+            e.get("plan_type") or "",
+        )
+        # Skip dedupe for events with no NEO and no shares -- they're
+        # likely different events that happen to match
+        if not sig[1] and not sig[3]:
+            by_sig[(sig, e.get("filing_date") or "", e.get("accession") or "")] = e
+            continue
+        prev = by_sig.get(sig)
+        if not prev or (e.get("filing_date") or "") < (prev.get("filing_date") or ""):
+            by_sig[sig] = e
+    return list(by_sig.values())
 
 
 # ---------------------------------------------------------------------------
@@ -504,6 +633,9 @@ def main() -> int:
     ap.add_argument("--json", default=str(OUT_JSON),
                     help="Output JSON path (use per-shard for parallel runs)")
     ap.add_argument("--csv", default=str(OUT_CSV))
+    ap.add_argument("--rescore-only", action="store_true",
+                    help="Skip filings fetch; re-run extraction + scoring "
+                         "on already-cached HTML for already-processed tickers.")
     args = ap.parse_args()
     out_json_path = Path(args.json)
     out_csv_path = Path(args.csv)
@@ -529,6 +661,56 @@ def main() -> int:
 
     rows = []
     for i, tk in enumerate(tickers, 1):
+        # Rescore-only: use the existing quarters_scanned list and
+        # re-extract events from cached HTML; skip network entirely.
+        if args.rescore_only and tk in out:
+            prev = out[tk]
+            quarters = prev.get("quarters_scanned") or []
+            cur = {
+                "ticker": tk,
+                "quarters_scanned": quarters,
+                "events": [],
+                "score": 0.0,
+                "reasons": [],
+                "counts": {},
+                "data_available": len(quarters) > 0,
+                "_cache_version": "v3-dedup-foreign-aware",
+            }
+            for q in quarters:
+                acc = q.get("accession")
+                text = load_cached(acc) if acc else ""
+                if not text:
+                    continue
+                events = detect_actions(text)
+                for e in events:
+                    e["accession"] = acc
+                    e["filing_date"] = q.get("filing_date")
+                    cur["events"].append(e)
+            cur["events"] = dedupe_cross_quarter(cur["events"])
+            sc, reasons, counts = score_events(cur["events"])
+            cur["score"] = sc
+            cur["reasons"] = reasons
+            cur["counts"] = counts
+            cur["_complete"] = True
+            out[tk] = cur
+            if i % 50 == 0:
+                atomic_write_json(out_json_path, out)
+            n = len(cur.get("events") or [])
+            c = cur.get("counts") or {}
+            rows.append({
+                "ticker": tk,
+                "n_quarters_scanned": len(cur.get("quarters_scanned") or []),
+                "n_events": n,
+                "term_sell": c.get("term_sell", 0),
+                "adopt_sell": c.get("adopt_sell", 0),
+                "term_buy": c.get("term_buy", 0),
+                "adopt_buy": c.get("adopt_buy", 0),
+                "modify_pair": c.get("modify_pair", 0),
+                "score": round(cur.get("score", 0), 1),
+                "data_available": cur.get("data_available"),
+                "reasons": " | ".join(cur.get("reasons") or []),
+            })
+            continue
         # Skip if already processed
         if tk in out and out[tk].get("_complete"):
             cur = out[tk]
@@ -540,6 +722,8 @@ def main() -> int:
                 "score": 0.0,
                 "reasons": [],
                 "counts": {},
+                "data_available": None,  # True / False / None=untried
+                "_cache_version": "v3-dedup-foreign-aware",
             }
             try:
                 filings = recent_10q_for(tk, limit=args.quarters, days=args.days)
@@ -562,13 +746,20 @@ def main() -> int:
                     e["accession"] = acc
                     e["filing_date"] = fl.filing_date
                     cur["events"].append(e)
+            # data_available distinguishes "no 10b5-1 activity" from
+            # "no 10-Q ever scanned" (foreign filers, IPO-only firms, etc.)
+            cur["data_available"] = len(cur["quarters_scanned"]) > 0
+            # Cross-quarter dedupe: same NEO+role+shares+action reported
+            # in successive 10-Qs (each plan is repeated until it ages
+            # out). Keep the oldest occurrence; drop the rest.
+            cur["events"] = dedupe_cross_quarter(cur["events"])
             sc, reasons, counts = score_events(cur["events"])
             cur["score"] = sc
             cur["reasons"] = reasons
             cur["counts"] = counts
             cur["_complete"] = True
             out[tk] = cur
-            out_json_path.write_text(json.dumps(out, indent=2, default=str))
+            atomic_write_json(out_json_path, out)
 
         n = len(cur.get("events") or [])
         c = cur.get("counts") or {}
@@ -582,6 +773,7 @@ def main() -> int:
             "adopt_buy": c.get("adopt_buy", 0),
             "modify_pair": c.get("modify_pair", 0),
             "score": round(cur.get("score", 0), 1),
+            "data_available": cur.get("data_available"),
             "reasons": " | ".join(cur.get("reasons") or []),
         })
 
@@ -590,9 +782,9 @@ def main() -> int:
                   flush=True)
 
     rows.sort(key=lambda r: -r["score"])
-    fields = ["rank", "ticker", "n_quarters_scanned", "n_events",
-              "term_sell", "adopt_sell", "term_buy", "adopt_buy",
-              "modify_pair", "score", "reasons"]
+    fields = ["rank", "ticker", "data_available", "n_quarters_scanned",
+              "n_events", "term_sell", "adopt_sell", "term_buy",
+              "adopt_buy", "modify_pair", "score", "reasons"]
     with out_csv_path.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         w.writeheader()

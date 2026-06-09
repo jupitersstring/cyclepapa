@@ -162,8 +162,26 @@ def pattern_match_score(r: dict, fz: dict | None) -> tuple[float, list[str]]:
     elif n_agg >= 2:
         score -= 4
 
-    # 3. STOCK PRICE HURDLE LADDER
-    distinct = sorted(set(h for h in hurdles if isinstance(h, (int, float))))
+    # 3. STOCK PRICE HURDLE LADDER (plausibility-gated)
+    #
+    # PSU stock-price hurdles are economic vesting triggers and almost
+    # always fall within ~5x the grant-date share price (think Tesla,
+    # PLBY $20 hurdles vs $1.70 spot, NNBR multi-tranche).  Hurdles
+    # >5x current usually came from comp/ownership tables ("$200K
+    # ownership multiple", "$900 director fee") that pollute the regex.
+    # Cap each captured hurdle at MAX_PLAUSIBLE_MULTIPLE * current_price
+    # so the ladder credit reflects real economic stretch, not extraction
+    # noise.
+    MAX_PLAUSIBLE_MULTIPLE = 8.0
+    px_now = r.get("current_price") or 0
+    raw_distinct = sorted(set(h for h in hurdles if isinstance(h, (int, float))))
+    if px_now and px_now > 0:
+        distinct = [h for h in raw_distinct if h <= px_now * MAX_PLAUSIBLE_MULTIPLE]
+        n_filtered = len(raw_distinct) - len(distinct)
+        if n_filtered:
+            reasons.append(f"filtered {n_filtered} implausible hurdles (>{MAX_PLAUSIBLE_MULTIPLE:.0f}x current)")
+    else:
+        distinct = raw_distinct
     if len(distinct) >= 5:
         score += 18
         reasons.append(f"{len(distinct)}-tranche price ladder ${distinct[0]:.0f}-${distinct[-1]:.0f}")
@@ -173,8 +191,10 @@ def pattern_match_score(r: dict, fz: dict | None) -> tuple[float, list[str]]:
     elif len(distinct) >= 1:
         score += 5
 
-    # 4. UPSIDE KICKER (max hurdle vs current price)
-    px = r.get("current_price") or 0
+    # 4. UPSIDE KICKER (max hurdle vs current price) -- uses
+    # plausibility-filtered ladder, so a $900 stray no longer scores
+    # 12 points for a $48 stock.
+    px = px_now
     if distinct and px and px > 0:
         top_h = distinct[-1]
         mult = top_h / px
