@@ -367,6 +367,16 @@ def get_universe(name, sector=None, industry_group=None, industry=None, theme=No
         "cz-all": ("Czech Republic", {"PRA"}),  # Prague
         "hu-all": ("Hungary",       {"BUD"}),  # Budapest
         "lu-all": ("Luxembourg",    {"LUX"}),  # Luxembourg
+        # New: 9 additional country universes (Q4 expansion)
+        "il-all": ("Israel",        {"TLV"}),  # Tel Aviv (.TA)
+        "th-all": ("Thailand",      {"SET"}),  # SET (.BK)
+        "id-all": ("Indonesia",     {"JKT"}),  # IDX (.JK)
+        "my-all": ("Malaysia",      {"KLS"}),  # Bursa (.KL)
+        "tr-all": ("Turkey",        {"IST"}),  # BIST (.IS)
+        "sa-all": ("Saudi Arabia",  {"SAU"}),  # Tadawul (.SR)
+        "ar-all": ("Argentina",     {"BUE"}),  # BCBA (.BA)
+        "cl-all": ("Chile",         {"SGO"}),  # Santiago (.SN)
+        "nz-all": ("New Zealand",   {"NZE"}),  # NZX (.NZ)
     }
     if name in _COUNTRY_SPEC:
         country, allowed_exchanges = _COUNTRY_SPEC[name]
