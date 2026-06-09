@@ -467,6 +467,76 @@ def main(tickers_override=None, skip_intraday=False, native_only=False):
     return out
 
 
+def main_expanded(batch_size=1500, out_path="/tmp/mtf_psar_rank_full.csv"):
+    """Expanded scan: the FULL native universe (all rows, including
+    six-school rejects), deduped to one listing per company by native
+    exchange suffix. Processes in ticker batches so memory stays bounded
+    (~600MB vs 2GB+ monolithic) and appends results incrementally so an
+    interrupted run resumes where it left off."""
+    import gc
+    import os
+
+    big = load_universe(include_rejected=True)
+    big = big[big.ticker.apply(is_native)].copy()
+    big["best_rank"] = big[["daily_rank", "weekly_rank", "monthly_rank"]].max(axis=1)
+    big = big.drop_duplicates(subset=["ticker"], keep="first")
+    meta = big[["ticker", "region", "best_rank"]].copy()
+    tickers = big.ticker.astype(str).tolist()
+
+    done = set()
+    if os.path.exists(out_path):
+        try:
+            done = set(pd.read_csv(out_path).ticker.astype(str))
+        except Exception:
+            pass
+    todo = [t for t in tickers if t not in done]
+    print(f"Expanded universe: {len(tickers)} native tickers "
+          f"({len(done)} already done, {len(todo)} to go)", file=sys.stderr)
+
+    intervals = list({iv for _, iv, _, _ in TF_CONFIG})
+    bench = fetch_benchmark_bulk(intervals)
+
+    meta_map = meta.set_index("ticker")
+    n_batches = (len(todo) + batch_size - 1) // batch_size
+    for bi in range(n_batches):
+        batch = todo[bi * batch_size:(bi + 1) * batch_size]
+        print(f"--- batch {bi+1}/{n_batches} ({len(batch)} tickers) ---", file=sys.stderr)
+        per_interval = {}
+        for iv in intervals:
+            per_interval[iv] = fetch_interval_bulk(batch, iv)
+
+        rows = []
+        for t in batch:
+            try:
+                asset_ma, rel_ma, used_tfs = composites_for_ticker(t, per_interval, bench)
+                a = current_and_slope(asset_ma)
+                r = current_and_slope(rel_ma)
+                if a is None and r is None:
+                    continue
+                row = {"ticker": t, "n_active_tfs": len(used_tfs)}
+                if a is not None:
+                    row.update(asset_net_ma=a[0], asset_slope_norm=a[1], asset_score=a[2])
+                if r is not None:
+                    row.update(rel_net_ma=r[0], rel_slope_norm=r[1], rel_score=r[2])
+                if t in meta_map.index:
+                    row["region"] = meta_map.loc[t, "region"]
+                    row["best_rank"] = meta_map.loc[t, "best_rank"]
+                row["combined_score"] = (row.get("asset_score") or 0) + (row.get("rel_score") or 0)
+                rows.append(row)
+            except Exception:
+                pass
+
+        if rows:
+            chunk_df = pd.DataFrame(rows)
+            header = not os.path.exists(out_path)
+            chunk_df.to_csv(out_path, mode="a", header=header, index=False)
+            print(f"  appended {len(rows)} rows -> {out_path}", file=sys.stderr)
+        del per_interval
+        gc.collect()
+
+    print(f"Expanded scan complete -> {out_path}", file=sys.stderr)
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     if args and args[0] == "--test":
@@ -475,5 +545,7 @@ if __name__ == "__main__":
         main(tickers_override=TEST)
     elif args and args[0] == "--no-intraday":
         main(skip_intraday=True)
+    elif args and args[0] == "--expanded":
+        main_expanded()
     else:
         main()
