@@ -200,20 +200,29 @@ def compose_thesis(row) -> str:
 
 
 def compose_why(row) -> str:
-    """Verbose explanation of why this pick scored high, decomposed by leg."""
+    """Verbose explanation of why this pick scored high, decomposed by leg.
+
+    The qual-status tag now lists BOTH multipliers in use so the reader
+    can see which leg matters where:
+      - SOFT applies to Master sheets (adj_asymmetry, adj_upside)
+      - STRICT applies to Per-Country and Per-Archetype sheets
+        (country_entry_asymmetry; RED excluded entirely)
+    Prior version printed only the STRICT mult, which was misleading on
+    the Master sheets where the actual mult is +10 pct / -15 pct.
+    """
     parts = []
 
     # 1. Qualitative status
     v = row.get('verdict', 'UNRESEARCHED')
     qt = row.get('thesis', '')
     if v == 'GREEN':
-        parts.append(f"[GREEN, +30%] {qt}")
+        parts.append(f"[GREEN | soft +10% / strict +30%] {qt}")
     elif v == 'YELLOW':
-        parts.append(f"[YELLOW, -30%] {qt}")
+        parts.append(f"[YELLOW | soft -15% / strict -30%] {qt}")
     elif v == 'RED':
-        parts.append(f"[RED, excluded] {qt}")
+        parts.append(f"[RED | soft -60% / strict EXCLUDED] {qt}")
     else:
-        parts.append("[UNRESEARCHED, -15% caution]")
+        parts.append("[UNRESEARCHED | soft no-change / strict -15%]")
 
     # 2. Downside floor (intrinsic value cushion)
     floor = []

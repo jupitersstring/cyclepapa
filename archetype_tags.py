@@ -107,7 +107,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     sector = df['sector'].fillna('') if 'sector' in df.columns else pd.Series('', index=df.index)
     country = df['src'].fillna('').astype(str).str.upper() if 'src' in df.columns else pd.Series('', index=df.index)
 
-    mcap = s('market_cap')
+    # Use mcap_usd (FX-converted) when available - critical for cross-country
+    # comparisons.  Falls back to raw market_cap (local currency) only if
+    # fix_pipeline.py hasn't been run yet.
+    mcap = s('market_cap_usd') if 'market_cap_usd' in df.columns else s('market_cap')
     price_yoy = s('price_yoy')
     mom12 = s('momentum_12m')
     rev_yoy = s('rev_yoy')
@@ -191,9 +194,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ).astype(int)
 
     # ---------- Cluster G11: Operating KPI Threshold ----------
-    df['arch_kpi_threshold'] = (
+    # TIGHTENED: require BOTH a first-positive print AND confirmation that
+    # the inflection is operating-level (margin or ROCE improving sequentially),
+    # AND that the company is at investable scale.  Previous version fired
+    # on 37 pct of universe (too broad - signal carries no information).
+    # New version requires at least one first-positive in a profitability
+    # measure (EBITDA/CFO/FCF/NI/ROCE) AND positive margin delta YoY AND
+    # positive ROCE today (>= 5 pct).
+    first_pos_print = (
         (ebitda_first_pos > 0) | (cfo_first_pos > 0) | (fcf_first_pos > 0) |
         (ni_first_pos > 0) | (roce_first_pos > 0)
+    )
+    margin_confirming = ebitda_margin_delta >= 0.01
+    roce_today = s('roce') >= 0.05
+    df['arch_kpi_threshold'] = (
+        first_pos_print & (margin_confirming | roce_today)
     ).astype(int)
 
     # ---------- Cluster G12: Regional Blind-Spot ----------

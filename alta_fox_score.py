@@ -69,6 +69,14 @@ def _load_fundamentals() -> pd.DataFrame:
         except Exception:
             continue
     df = pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='first')
+    # Clip obvious data anomalies that survived the per-country scans:
+    # ROCE values > 500 pct or < -100 pct are unit / negative-equity artifacts;
+    # EV/EBIT < 2 (and > 0) is almost always a stale-data or unit scaling
+    # error rather than a genuine 0.5x multiple.
+    if 'roce' in df.columns:
+        df.loc[(df['roce'] > 5.0) | (df['roce'] < -1.0), 'roce'] = float('nan')
+    if 'ev_ebit' in df.columns:
+        df.loc[(df['ev_ebit'] < 2.0), 'ev_ebit'] = float('nan')
     return df
 
 
@@ -98,9 +106,13 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
             df['rev_3y_cagr'] if 'rev_3y_cagr' in df.columns else pd.Series(dtype=float)
         )
 
-    # Country code from asymmetry_global (src field)
+    # Country code + USD-converted market cap from asymmetry_global.
     if os.path.exists('asymmetry_global.csv'):
-        asym = pd.read_csv('asymmetry_global.csv', usecols=['symbol', 'src'])
+        asym_cols = ['symbol', 'src']
+        peek = pd.read_csv('asymmetry_global.csv', nrows=0).columns
+        if 'market_cap_usd' in peek:
+            asym_cols.append('market_cap_usd')
+        asym = pd.read_csv('asymmetry_global.csv', usecols=asym_cols)
         df = df.merge(asym, on='symbol', how='left')
 
     # === Component checks ===
@@ -118,16 +130,29 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
     sector = df['sector'].fillna('')
     df['af_sector_overrep'] = sector.isin(OVERREP_SECTORS).astype(int)
     df['af_sector_excluded'] = sector.isin(EXCLUDED_SECTORS).astype(int)
+    # NOTE: Alta Fox excluded Energy/Materials/Financials in their original
+    # screen, so we have NO data on whether those sectors produce
+    # multibaggers. Score them as 0.5 (neutral / unknown) rather than 0.0,
+    # which would incorrectly conflate 'we did not look' with 'evidence
+    # against'. This lets sector-excluded names still surface if their
+    # other Alta Fox signals are strong (size, geo, valuation, growth).
     sector_score = sector.map(
         lambda s: 1.0 if s in OVERREP_SECTORS
-        else (0.0 if s in EXCLUDED_SECTORS
+        else (0.5 if s in EXCLUDED_SECTORS  # neutral, not negative
               else (0.6 if s in {'Consumer Discretionary', 'Industrials',
                                  'Communication Services', 'Consumer Staples'}
                     else 0.3))
     )
 
-    # AF3: Size - <$2B is the multibagger sweet spot (84% of Alta Fox set)
-    mcap = df['market_cap'].fillna(0)
+    # AF3: Size - <$2B is the multibagger sweet spot (84% of Alta Fox set).
+    # CRITICAL: use FX-converted mcap_usd when available. Without USD
+    # conversion the size gate silently misclassifies non-USD names
+    # (e.g. Dongwoo 088910.KQ reports 57.87B KRW = ~$42M USD, but the
+    # raw number > $2B in unit-naive comparison).
+    if 'market_cap_usd' in df.columns:
+        mcap = df['market_cap_usd'].fillna(0)
+    else:
+        mcap = df['market_cap'].fillna(0)
     df['af_size_lt_300m'] = (mcap < 300e6).astype(int)
     df['af_size_lt_2b'] = (mcap < 2e9).astype(int)
     df['af_size_lt_10b'] = (mcap < 10e9).astype(int)
@@ -221,6 +246,13 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
                 'af_financially_healthy']
     out_cols = [c for c in out_cols if c in df.columns]
     out = df[out_cols].copy()
+    # Dedupe by symbol: keep the highest-scoring row when the same symbol
+    # appeared in multiple per-country scan files (e.g. PL names in
+    # pl_yartseva + pl_largecap_yartseva + pl_unc_yartseva each contributed
+    # one row pre-fix).
+    out = out.sort_values('alta_fox_score', ascending=False) \
+             .drop_duplicates('symbol', keep='first') \
+             .sort_values('alta_fox_score', ascending=False)
     out.to_csv(out_path, index=False)
 
     n_strict = int(df['alta_fox_strict_match'].sum())
