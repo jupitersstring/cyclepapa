@@ -7,10 +7,27 @@ from pathlib import Path
 # --------------------------------------------------------------------------- #
 # Cache locations
 # --------------------------------------------------------------------------- #
+REPO_ROOT = Path(__file__).resolve().parent.parent   # anchor; independent of CWD
 CACHE_DIR = Path(os.environ.get("EARNINGS_CACHE", "cache"))
 UNIVERSE_PATH = CACHE_DIR / "universe.parquet"
 FUNDAMENTALS_PATH = CACHE_DIR / "fundamentals.parquet"
 RAW_CACHE_DIR = CACHE_DIR / "raw"          # one parquet/json per ticker
+
+# Durable, git-tracked snapshot of the assembled analysis (survives a rollback).
+DATA_DIR = REPO_ROOT / "data"
+# Bump when the scored/fundamentals schema changes so a stale snapshot is detectable.
+SCHEMA_VERSION = 2
+
+# --------------------------------------------------------------------------- #
+# Data-quality guardrails (earnings_model.quality)
+# --------------------------------------------------------------------------- #
+# Trailing returns above this magnitude in a single window are almost always a
+# Yahoo split/adjustment artifact (or a penny-stock near-zero base), not a real
+# move — quarantined to NaN so they don't pollute the dormancy ranking.
+RETURN_SANITY_ABS = 9.0          # 900% in 12m / 24m / 36m
+# Per-quarter EPS-surprise % is winsorized to this before forming the robust
+# (scale-stable) surprise stat, so a single beat off a ~$0 estimate can't dominate.
+SURPRISE_WINSOR = 50.0
 
 # --------------------------------------------------------------------------- #
 # Universe defaults  (UK equities complex)

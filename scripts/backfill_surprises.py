@@ -47,14 +47,22 @@ def _git(*args: str) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], capture_output=True, text=True)
 
 
+def _current_branch() -> str:
+    r = _git("rev-parse", "--abbrev-ref", "HEAD")
+    return r.stdout.strip() or "HEAD"
+
+
 def _persist_and_push(msg: str) -> None:
-    """Commit the durable surprise files and push (retry/backoff on network)."""
+    """Commit the durable surprise files and push (retry/backoff on network).
+
+    Pushes to whatever branch is checked out (no hardcoded name)."""
     _git("add", str(S.SURPRISES_PATH), str(S.CHECKED_PATH))
     res = _git("commit", "-m", msg)
     if "nothing to commit" in (res.stdout + res.stderr):
         return
+    branch = _current_branch()
     for i in range(4):
-        p = _git("push", "-u", "origin", "claude/bold-meitner-0ntuU")
+        p = _git("push", "-u", "origin", branch)
         if p.returncode == 0:
             return
         time.sleep(2 ** (i + 1))

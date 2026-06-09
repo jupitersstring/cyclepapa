@@ -23,7 +23,7 @@ import pandas as pd
 
 warnings.filterwarnings("ignore")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import cluster, config, metrics, prebreakout, screens, valuation
+from earnings_model import cluster, config, metrics, prebreakout, quality, screens, valuation
 
 # Sheets in display order (name -> friendly tab title).
 SHEETS = [
@@ -68,8 +68,13 @@ def build_scored_from_cache() -> pd.DataFrame:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
     df = df.replace([float("inf"), float("-inf")], pd.NA)
-    df = valuation.add_all_scores(df)
-    df = prebreakout.add_prebreakout_score(df)
+    df = quality.apply_quality_flags(df)
+    # Match pipeline.step_analyze exactly: rank WITHIN region when multi-region,
+    # else global. (Previously this path ranked globally and silently disagreed
+    # with the pipeline's scored.parquet on every richness/quietness number.)
+    gcols = ("region",) if "region" in df.columns and df["region"].nunique() > 1 else None
+    df = valuation.add_all_scores(df, group_cols=gcols)
+    df = prebreakout.add_prebreakout_score(df, group_cols=gcols)
     df["is_operating"] = valuation.is_operating(df)
     return df
 

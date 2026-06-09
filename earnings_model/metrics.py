@@ -19,6 +19,7 @@ biotech names. We therefore expose three complementary views:
 """
 from __future__ import annotations
 
+import hashlib
 import math
 from typing import Sequence
 
@@ -29,6 +30,21 @@ NaN = float("nan")
 
 def _isnan(x) -> bool:
     return x is None or (isinstance(x, float) and math.isnan(x))
+
+
+def _payload_fp(annual: dict) -> str | None:
+    """Fingerprint of a name's statement payload, to detect Yahoo serving the
+    same numbers under different tickers. Built from the annual revenue / EBITDA /
+    earnings series (3 sig-figs). ``None`` when there isn't enough real data to
+    fingerprint (so empty/no-data rows are never flagged as mutual duplicates)."""
+    rev = [x for x in (annual.get("revenue") or []) if not _isnan(x)]
+    if len(rev) < 2:
+        return None
+    parts = []
+    for key in ("revenue", "ebitda", "earnings"):
+        for x in (annual.get(key) or []):
+            parts.append("nan" if _isnan(x) else f"{float(x):.3g}")
+    return hashlib.md5("|".join(parts).encode()).hexdigest()[:16]
 
 
 def _f(x) -> float:
@@ -279,13 +295,19 @@ def surprise_block(raw: dict) -> dict:
     sp = [_f(s.get("surprise_pct")) for s in sl]
     sp = [x for x in sp if not _isnan(x)]
     out = {"surprise_n": len(sp), "surprise_latest": NaN, "surprise_avg4": NaN,
-           "surprise_cum8": NaN, "surprise_beat_rate": NaN, "surprise_streak": 0,
-           "surprise_trend": NaN, "surprise_quality": NaN, "surprise_recency": NaN}
+           "surprise_cum8": NaN, "surprise_robust": NaN, "surprise_beat_rate": NaN,
+           "surprise_streak": 0, "surprise_trend": NaN, "surprise_quality": NaN,
+           "surprise_recency": NaN}
     if not sp:
         return out
     out["surprise_latest"] = sp[-1]
     out["surprise_avg4"] = sum(sp[-4:]) / len(sp[-4:])
     out["surprise_cum8"] = sum(sp[-8:])
+    # Scale-stable surprise: winsorize each quarter to ±SURPRISE_WINSOR before
+    # averaging, so one beat off a ~$0 estimate (+800%) can't dominate the rank.
+    w = config.SURPRISE_WINSOR
+    recent = sp[-8:]
+    out["surprise_robust"] = sum(max(-w, min(w, x)) for x in recent) / len(recent)
     out["surprise_beat_rate"] = sum(1 for x in sp if x > 0) / len(sp)
     streak = 0
     for x in reversed(sp):
@@ -345,7 +367,7 @@ def compute_metrics(raw: dict) -> dict:
     annual = raw.get("annual", {}) or {}
     quarterly = raw.get("quarterly", {}) or {}
 
-    out: dict = {"symbol": raw.get("symbol")}
+    out: dict = {"symbol": raw.get("symbol"), "payload_fp": _payload_fp(annual)}
     out.update(metric_block(annual.get("revenue", []), "revenue"))
     out.update(metric_block(annual.get("ebitda", []), "ebitda"))
     out.update(metric_block(annual.get("earnings", []), "earnings"))

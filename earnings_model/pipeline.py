@@ -9,7 +9,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import aggregate, cluster, config, fundamentals, prebreakout, screens, universe, valuation
+from . import (aggregate, cluster, config, fundamentals, prebreakout, quality,
+               screens, universe, valuation)
 
 
 def step_universe(
@@ -73,6 +74,7 @@ def step_analyze(
     top: int | None = 40,
 ) -> dict:
     funda = pd.read_parquet(fundamentals_path)
+    funda = quality.apply_quality_flags(funda)   # dedup + return quarantine BEFORE ranking
     if group_cols is None and "region" in funda.columns and funda["region"].nunique() > 1:
         group_cols = ("region",)  # rank within each market (UK vs US)
     scored = valuation.add_all_scores(funda, group_cols=group_cols)

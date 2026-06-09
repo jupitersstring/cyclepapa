@@ -46,6 +46,12 @@ def eligible(df: pd.DataFrame, min_periods: int = 3, allow_nano: bool = False,
              require_multiple: bool = True) -> pd.DataFrame:
     """Operating-company universe with artifact guardrails applied."""
     out = df[val.is_operating(df, min_periods)].copy()
+    # Drop Yahoo duplicate-payload tickers (same statements served under another
+    # symbol) and rows with no usable industry (can't be peer-ranked sensibly).
+    if "dup_payload" in out.columns:
+        out = out[~out["dup_payload"].fillna(False).astype(bool)]
+    if "industry" in out.columns:
+        out = out[~out["industry"].astype(str).isin(["Unknown", "nan", "None", ""])]
     if not allow_nano and "size_bucket" in out.columns:
         out = out[out["size_bucket"] != "Nano Cap"]
     if require_multiple:
@@ -153,7 +159,10 @@ def inflecting_positive(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.Da
     """Sales or EBITDA growth crossing from <=0 to >0 (a genuine rate-of-change turn)."""
     e = eligible(df, **elig)
     def crossed(g, p):
-        return (e.get(p, pd.Series(np.nan, index=e.index)).fillna(0) <= 0) & (e.get(g, pd.Series(np.nan, index=e.index)) > 0)
+        prev = e.get(p, pd.Series(np.nan, index=e.index))
+        # Require the prior value to actually exist — a *missing* history is a
+        # data gap, not a "crossing from <=0", which produced false inflections.
+        return prev.notna() & (prev <= 0) & (e.get(g, pd.Series(np.nan, index=e.index)) > 0)
     sales = crossed("revenue_growth", "revenue_prev_growth") | e.get("revenue_trough_up", False).fillna(False)
     ebitda = (crossed("ebitda_growth", "ebitda_prev_growth")
               | e.get("ebitda_turned_positive", False).fillna(False)
@@ -238,7 +247,9 @@ def surprises(df: pd.DataFrame, top: int | None = 40, min_quarters: int = 3, **e
     e = e[e["surprise_n"].fillna(0) >= min_quarters].copy()
 
     recent = 0.4 * _rank(e, "surprise_latest") + 0.6 * _rank(e, "surprise_avg4")
-    cumulative = _rank(e, "surprise_cum8")
+    # Rank on the winsorized (scale-stable) cumulative surprise, not the raw sum
+    # of %s — otherwise one beat off a ~$0 estimate dominates. Fall back to cum8.
+    cumulative = _rank(e, "surprise_robust" if "surprise_robust" in e.columns else "surprise_cum8")
     consistency = 0.5 * e["surprise_beat_rate"].fillna(0) + 0.5 * _rank(e, "surprise_streak")
     score = 0.40 * recent.fillna(0.5) + 0.35 * cumulative.fillna(0.5) + 0.25 * consistency.fillna(0.5)
     return _finish(e, score, top, extra=["surprise_latest", "surprise_avg4", "surprise_cum8",
@@ -271,7 +282,8 @@ def new_reality(df: pd.DataFrame, top: int | None = 40, min_quarters: int = 4, *
     ].copy()
 
     surprise_mom = pd.concat(
-        [_rank(e, "surprise_cum8"), _rank(e, "surprise_avg4"),
+        [_rank(e, "surprise_robust" if "surprise_robust" in e.columns else "surprise_cum8"),
+         _rank(e, "surprise_avg4"),
          e["surprise_beat_rate"].fillna(0), _rank(e, "surprise_streak")],
         axis=1).mean(axis=1, skipna=True)
     dormancy = pd.concat(
@@ -367,6 +379,10 @@ def consensus_lagging(df: pd.DataFrame, top: int | None = 40,
         & (teps > 0) & (feps > 0)
         & (e["revenue_growth"].fillna(-1) > 0)
         & (e["ebitda_growth"].fillna(-1) > 0)
+        # Guard against one-off-inflated trailing EPS: a >150% YoY earnings jump
+        # (asset sale / tax credit) makes "forward below trailing" a mechanical
+        # normalisation, not consensus lag. EBITDA growth (above) stays the anchor.
+        & (e["earnings_growth"].fillna(0) < 1.5)
         & (cov.fillna(0) >= min_analysts)
         & ~is_reit
     )
