@@ -3,7 +3,7 @@
 # Re-run after any new country scan completes.
 
 set -u
-VENV=/tmp/venv/bin/python
+VENV=/usr/local/bin/python3
 
 # (filename, country-code) pairs.  Code = ISO-2 used downstream as `src`.
 declare -A SRC=(
@@ -106,6 +106,9 @@ declare -A SRC=(
     [ee_unc_yartseva.csv]=EE
     [lv_unc_yartseva.csv]=LV
     [lt_unc_yartseva.csv]=LT
+    # Widen-phase: China + Romania
+    [cn_yartseva.csv]=CN
+    [ro_yartseva.csv]=RO
 )
 
 ARGS=()
@@ -120,7 +123,7 @@ echo "merging ${#ARGS[@]} CSVs"
     --csvs "${ARGS[@]}" \
     --pew pew_global.csv \
     --out asymmetry_global.csv \
-    --top 6000 \
-    --min-upside 0.25 \
-    --min-downside-floor 0.10 \
-    --min-mcap 10000000
+    --top 30000 \
+    --min-upside 0.15 \
+    --min-downside-floor 0.00 \
+    --min-mcap 5000000

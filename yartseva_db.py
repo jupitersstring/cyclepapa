@@ -1177,6 +1177,8 @@ def get_universe(
         df = df[df.index.str.endswith(".LM")]
     elif country == "United Arab Emirates":
         df = df[df.index.str.endswith(".AE")]
+    elif country == "Romania":
+        df = df[df.index.str.endswith(".BUC") | df.index.str.endswith(".RO")]
     order = ["Nano Cap", "Micro Cap", "Small Cap", "Mid Cap", "Large Cap", "Mega Cap"]
 
     # When include_uncategorized=True we also pull tickers with no
