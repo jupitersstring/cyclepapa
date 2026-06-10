@@ -90,6 +90,8 @@ _WIKI_INDEX_SPEC = {
     "wiki-kospi200":("https://en.wikipedia.org/wiki/KOSPI_200",                   ".KS", 150),
     "wiki-ibovespa":("https://en.wikipedia.org/wiki/%C3%8Dndice_Bovespa",         ".SA", 60),
     "wiki-jpx400":  ("https://en.wikipedia.org/wiki/JPX-Nikkei_Index_400",        ".T", 300),
+    "wiki-r1k":     ("https://en.wikipedia.org/wiki/Russell_1000_Index",          "",    900),
+    "wiki-aim100":  ("https://www.hl.co.uk/shares/stock-market-summary/ftse-aim-100", ".L", 90),
 }
 
 
@@ -134,18 +136,20 @@ def _fetch_wiki_index(name):
     r.raise_for_status()
     tables = pd.read_html(io.StringIO(r.text))
     chosen = None
+    # Allow larger constituent tables (e.g., Russell 1000 has ~1003).
+    upper_size = max(1500, _min * 2)
     for t in tables:
         cols = [str(c).strip() for c in t.columns]
-        has_sym = any(c in ("Symbol", "Ticker", "Ticker symbol", "Code") or
+        has_sym = any(c in ("Symbol", "Ticker", "Ticker symbol", "Code", "EPIC") or
                       ("ymbol" in c) or ("icker" in c) for c in cols)
-        if has_sym and _min <= len(t) <= 1000:
+        if has_sym and _min <= len(t) <= upper_size:
             chosen = t
             break
     if chosen is None:
         raise RuntimeError(f"{name}: could not locate constituent table among "
                            f"{len(tables)} tables (sizes={[len(t) for t in tables[:6]]})")
     cols = [str(c) for c in chosen.columns]
-    sym_col = next((c for c in cols if c in ("Symbol", "Ticker", "Ticker symbol", "Code")), None)
+    sym_col = next((c for c in cols if c in ("Symbol", "Ticker", "Ticker symbol", "Code", "EPIC")), None)
     if sym_col is None:
         sym_col = next((c for c in cols if "ymbol" in c or "icker" in c), None)
     syms = chosen[sym_col].astype(str).str.strip()
