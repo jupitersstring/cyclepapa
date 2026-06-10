@@ -371,6 +371,12 @@ def is_native(t):
     if not isinstance(t, str):
         return False
     if "." not in t:
+        # 5-letter tickers ending in F (foreign ordinary) or Y (unsponsored
+        # ADR) are OTC pink-sheet wrappers of foreign primaries — thin books
+        # whose stale prints flip PSAR constantly. The real listing carries
+        # its own exchange suffix, so dropping these loses nothing.
+        if len(t) == 5 and t[-1] in ("F", "Y"):
+            return False
         return True
     suf = "." + t.rsplit(".", 1)[1]
     return suf in {
