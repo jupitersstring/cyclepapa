@@ -1,22 +1,31 @@
 """Add value_line tab to screener_report.xlsx.
 
 Computes classic Value-Line "Bargain Basement" style deep-value metrics
-from cached info_metrics + derived fields:
+from cached info_metrics + derived fields, with a sector-relative composite
+that replaces the original binary 7-point score (Issue 5).
 
   - Net cash per share = (totalCash - totalDebt) / shares
   - Net cash as % of market cap (Graham net-net proxy)
-  - Working capital coverage proxy via currentRatio × shareholderEquity
   - P/E (trailing), P/B, P/S, P/FCF
   - FCF yield (= 1 / P/FCF × 100)
   - EV/EBITDA, EV/Sales, EV/GrossProfit
   - Current ratio, Quick ratio, Debt-to-Equity
   - ROE, ROA, gross/operating/profit margins
-  - 5y price performance, 1y price performance
-  - Composite "bargain score" = points for:
-      P/B < 1, P/E < 12, current ratio > 2, net cash > 0,
-      FCF yield > 8%, debt/equity < 0.5, gross margin > 30%
+  - 5y / 1y price performance
 
-Output tab is sortable by bargain_score (descending).
+Scoring:
+  * bargain_score (LEGACY): binary 0-7 sum of fixed thresholds (P/B<1, P/E<12,
+    CR>2, NetCash>0, FCFyld>8%, D/E<50, GM>30%). Same as before, kept for
+    backward compatibility but it conflates sectors (e.g. a 28% gross margin
+    is great for utilities, mediocre for software).
+  * bargain_pct_score (NEW): mean of sector-percentile ranks across the same
+    seven metrics, on a 0-100 scale. A score of 80 means: in this ticker's
+    sector, it sits in the top fifth across the basket of deep-value metrics.
+    Direction: lower-is-better for P/B, P/E, D/E; higher-is-better for the
+    other four. Missing metrics are skipped (composite averages only the
+    available percentiles).
+
+Output tab is sortable by bargain_pct_score (descending).
 """
 from __future__ import annotations
 from pathlib import Path
@@ -205,6 +214,20 @@ def compute_value_line(tk):
     }
 
 
+def _sector_pct(series, sector, direction):
+    """Per-row percentile rank within sector (0-100). NaN where invalid.
+
+    direction='hi' means higher value scores higher percentile; 'lo' inverts.
+    Tickers with NaN metric are excluded from the rank and get NaN percentile.
+    """
+    s = pd.to_numeric(series, errors='coerce')
+    # rank(pct=True) gives the cumulative fraction (higher value -> closer to 1)
+    pct = s.groupby(sector).rank(pct=True, method='average') * 100
+    if direction == 'lo':
+        pct = 100 - pct
+    return pct
+
+
 def main():
     info_files = sorted(CACHE.glob('*__info_metrics.parquet'))
     print(f'Scanning {len(info_files)} tickers...')
@@ -219,8 +242,49 @@ def main():
     df = pd.DataFrame(rows)
     print(f'\nTotal value-line scored: {len(df)}')
 
-    # Sort by bargain_score desc, then by P/B asc (cheapest first)
-    df = df.sort_values(['bargain_score','priceToBook'], ascending=[False, True])
+    # ---- SECTOR-PERCENTILE BARGAIN SCORE (Issue 5) ----
+    # Replaces the binary 0-7 thresholds with sector-relative percentile ranks.
+    # 'sector' is filled with '__unknown__' so those tickers form their own
+    # comparison group instead of being NaN.
+    df['_sector_rank'] = df['sector'].fillna('__unknown__')
+
+    # Only positive-value multiples are economically meaningful for "cheap":
+    #   P/B < 0  => negative book value (impaired)
+    #   P/E < 0  => loss-making (not cheap)
+    #   D/E < 0  => negative shareholder equity (bankrupt)
+    # Strip these to NaN so they don't poison the "lower is better" rank.
+    pb_valid = pd.to_numeric(df['priceToBook'],    errors='coerce').where(lambda s: s > 0)
+    pe_valid = pd.to_numeric(df['trailingPE'],     errors='coerce').where(lambda s: s > 0)
+    de_valid = pd.to_numeric(df['debtToEquity'],   errors='coerce').where(lambda s: s >= 0)
+    cr_valid = pd.to_numeric(df['currentRatio'],   errors='coerce').where(lambda s: s > 0)
+
+    # The seven sector-percentile components — same metrics as legacy score
+    df['_pct_pb']     = _sector_pct(pb_valid,                  df['_sector_rank'], 'lo')
+    df['_pct_pe']     = _sector_pct(pe_valid,                  df['_sector_rank'], 'lo')
+    df['_pct_cr']     = _sector_pct(cr_valid,                  df['_sector_rank'], 'hi')
+    df['_pct_ncap']   = _sector_pct(df['net_cash_pct_mcap'],   df['_sector_rank'], 'hi')
+    df['_pct_fcfy']   = _sector_pct(df['fcfYield_pct'],        df['_sector_rank'], 'hi')
+    df['_pct_de']     = _sector_pct(de_valid,                  df['_sector_rank'], 'lo')
+    df['_pct_gm']     = _sector_pct(df['grossMargin'],         df['_sector_rank'], 'hi')
+
+    pct_cols = ['_pct_pb','_pct_pe','_pct_cr','_pct_ncap','_pct_fcfy','_pct_de','_pct_gm']
+    # Require at least 4 of 7 valid components — one or two non-null metrics
+    # is too noisy to call a sector-relative composite.
+    n_valid = df[pct_cols].notna().sum(axis=1)
+    df['bargain_pct_score'] = df[pct_cols].mean(axis=1, skipna=True).round(1)
+    df.loc[n_valid < 4, 'bargain_pct_score'] = np.nan
+    df['bargain_pct_n'] = n_valid.astype(int)
+    # Also surface per-component percentiles (rounded) for inspection
+    rename = {'_pct_pb':'sec_pct_PB','_pct_pe':'sec_pct_PE','_pct_cr':'sec_pct_CR',
+              '_pct_ncap':'sec_pct_NetCash','_pct_fcfy':'sec_pct_FCFyld',
+              '_pct_de':'sec_pct_DE','_pct_gm':'sec_pct_GM'}
+    for old, new in rename.items():
+        df[new] = df[old].round(1)
+    df = df.drop(columns=pct_cols + ['_sector_rank'])
+
+    # Sort by NEW sector-percentile composite, then by legacy bargain_score, then P/B
+    df = df.sort_values(['bargain_pct_score','bargain_score','priceToBook'],
+                        ascending=[False, False, True], na_position='last')
 
     with pd.ExcelWriter(XLSX, engine='openpyxl', mode='a', if_sheet_exists='replace') as xw:
         df.to_excel(xw, sheet_name='value_line', index=False)
@@ -241,9 +305,10 @@ def main():
         wb.save(XLSX)
 
     print(f'\nWrote value_line tab with {len(df)} rows')
-    print('Top 20 by bargain_score (Value-Line-style cheapest):')
-    cols_show = ['ticker','name','sector','bargain_score','priceToBook','trailingPE',
-                 'currentRatio','net_cash_pct_mcap','fcfYield_pct','perf_1y_pct']
+    print('Top 20 by bargain_pct_score (sector-relative Value-Line composite):')
+    cols_show = ['ticker','name','sector','bargain_pct_score','bargain_score',
+                 'priceToBook','trailingPE','currentRatio','net_cash_pct_mcap',
+                 'fcfYield_pct','perf_1y_pct']
     cols_show = [c for c in cols_show if c in df.columns]
     head = df.head(20)[cols_show].copy()
     for c in cols_show:

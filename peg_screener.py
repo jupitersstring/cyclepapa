@@ -21,13 +21,54 @@ Two outputs:
   results_peg/best_undervalued.csv — sub-list passing strict cheap-on-growth filter
 """
 from __future__ import annotations
-import argparse, json, gzip
+import argparse, json, gzip, datetime as dt
 from pathlib import Path
 import numpy as np, pandas as pd
 
 CACHE = Path('.cache/yf')
 EDGAR = Path('.cache/edgar')
 OUTDIR = Path('results_peg'); OUTDIR.mkdir(exist_ok=True)
+
+# As-of date used for data-staleness calculation. Overridable via env in case
+# the screener is being replayed against an older snapshot.
+import os
+_ASOF = os.environ.get('SCREENER_ASOF')
+ASOF = dt.datetime.strptime(_ASOF, '%Y-%m-%d') if _ASOF else dt.datetime.utcnow()
+
+
+def _pick_deeper(s1, src1, s2, src2):
+    """Pick whichever series has more non-null periods. Ties go to s1.
+
+    Returns (series, source_label). Used to fix the EDGAR-regression bug
+    where always-prefer-EDGAR silently dropped tickers whose yfinance
+    income statement had more recent quarters than the cached XBRL facts.
+    """
+    n1 = 0 if s1 is None or s1.empty else len(s1.dropna())
+    n2 = 0 if s2 is None or s2.empty else len(s2.dropna())
+    if n1 == 0 and n2 == 0: return pd.Series(dtype=float), None
+    if n1 >= n2: return s1, src1
+    return s2, src2
+
+
+def _latest_date(series):
+    """Return the latest index timestamp from a series (or None)."""
+    if series is None or len(series) == 0: return None
+    try:
+        s = series.sort_index()
+        idx = s.index[-1]
+        if hasattr(idx, 'to_pydatetime'):
+            return idx.to_pydatetime().replace(tzinfo=None)
+        if isinstance(idx, dt.datetime): return idx.replace(tzinfo=None)
+        return pd.to_datetime(idx).to_pydatetime().replace(tzinfo=None)
+    except Exception: return None
+
+
+def _file_mtime(path):
+    try:
+        if path.exists():
+            return dt.datetime.utcfromtimestamp(path.stat().st_mtime)
+    except Exception: pass
+    return None
 
 
 def _safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in t)
@@ -209,47 +250,52 @@ def both_growth_views(series):
 
 
 def get_metrics(tk):
-    """Pull all the series we need, preferring EDGAR depth.
+    """Pull all the series we need, picking the DEEPER source per metric.
 
     For each metric returns BOTH a `quarterly` and `annual` series. The
     growth views pick whichever supports the requested method:
       - LTM-vs-LTM YoY: needs 8+ quarterly periods (EDGAR-rich US only)
       - Single-Q YoY: needs 5+ quarterly periods
       - Annual-vs-annual: needs 2+ annual periods
+
+    Issue 11 fix: previously this always preferred EDGAR if any XBRL
+    revenue/gross series existed, which silently dropped tickers whose
+    yfinance income statement carried MORE quarters than the cached
+    XBRL facts. Now we pick whichever series has more non-null periods,
+    and record the source in `*_q_source` keys so callers can flag
+    provenance per row.
     """
     e = edgar_series(tk)
     out = {}
 
-    # revenue (quarterly preferred via EDGAR; yfinance fallback)
+    # revenue — pick deeper of EDGAR vs yfinance quarterly
     rev_e = e.get('revenue', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
-    if rev_e is not None and not rev_e.empty:
-        rev_q = rev_e
-    else:
-        rev_q = _col(load_table(tk, 'income'), ['Total Revenue','Revenue','Operating Revenue'])
-        if rev_q is None: rev_q = pd.Series(dtype=float)
+    rev_yf = _col(load_table(tk, 'income'), ['Total Revenue','Revenue','Operating Revenue'])
+    if rev_yf is None: rev_yf = pd.Series(dtype=float)
+    rev_q, rev_q_src = _pick_deeper(rev_e, 'EDGAR', rev_yf, 'yfinance_q')
     # annual revenue from cached yfinance annual income statement
     rev_a = _col(load_table(tk, 'income_annual'), ['Total Revenue','Revenue','Operating Revenue'])
     if rev_a is None: rev_a = pd.Series(dtype=float)
 
-    # gross
+    # gross — pick deeper of EDGAR vs yfinance quarterly
     gross_e = e.get('gross', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
-    if gross_e is not None and not gross_e.empty:
-        gross_q = gross_e
-    else:
-        gross_q = _col(load_table(tk, 'income'), ['Gross Profit'])
-        if gross_q is None: gross_q = pd.Series(dtype=float)
+    gross_yf = _col(load_table(tk, 'income'), ['Gross Profit'])
+    if gross_yf is None: gross_yf = pd.Series(dtype=float)
+    gross_q, gross_q_src = _pick_deeper(gross_e, 'EDGAR', gross_yf, 'yfinance_q')
     gross_a = _col(load_table(tk, 'income_annual'), ['Gross Profit'])
     if gross_a is None: gross_a = pd.Series(dtype=float)
 
-    # EBITDA quarterly = op_inc + |d_and_a| from EDGAR if available, else yf
+    # EBITDA quarterly — build EDGAR (op_inc + |d_and_a|) AND yfinance, pick deeper
     op_e = e.get('op_inc', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
     da_e = e.get('d_and_a', pd.Series(dtype=float)) if e else pd.Series(dtype=float)
+    ebitda_edgar = pd.Series(dtype=float)
     if not op_e.empty and not da_e.empty:
         idx = op_e.index.union(da_e.index)
-        ebitda_q = op_e.reindex(idx).add(da_e.reindex(idx).abs(), fill_value=np.nan).dropna()
-    else:
-        ebitda_q = _col(load_table(tk, 'income'), ['EBITDA','Normalized EBITDA'])
-        if ebitda_q is None: ebitda_q = pd.Series(dtype=float)
+        ebitda_edgar = op_e.reindex(idx).add(da_e.reindex(idx).abs(), fill_value=np.nan).dropna()
+    ebitda_yf = _col(load_table(tk, 'income'), ['EBITDA','Normalized EBITDA'])
+    if ebitda_yf is None: ebitda_yf = pd.Series(dtype=float)
+    ebitda_q, ebitda_q_src = _pick_deeper(ebitda_edgar, 'EDGAR_op_plus_da',
+                                          ebitda_yf, 'yfinance_q')
     ebitda_a = _col(load_table(tk, 'income_annual'), ['EBITDA','Normalized EBITDA'])
     if ebitda_a is None: ebitda_a = pd.Series(dtype=float)
 
@@ -259,6 +305,10 @@ def get_metrics(tk):
     out['gross_a']   = gross_a
     out['ebitda_q']  = ebitda_q
     out['ebitda_a']  = ebitda_a
+    # Source labels for the chosen quarterly series (provenance flags)
+    out['revenue_q_source'] = rev_q_src
+    out['gross_q_source']   = gross_q_src
+    out['ebitda_q_source']  = ebitda_q_src
 
     # FCF quarterly + annual
     fcf_q = _col(load_table(tk, 'cashflow'), ['Free Cash Flow','FreeCashFlow'])
@@ -395,17 +445,37 @@ def analyze(tk, min_mcap=0):
     info_fcf       = i.get('freeCashflow') or i.get('operatingCashflow')
     info_gross_margin = i.get('grossMargins')  # decimal fraction
 
+    # Track provenance per row: where did each LTM amount actually come from?
+    # When quarterly is non-empty, both_views_qa used rolling-4Q (so the quarterly
+    # source applies). Otherwise it fell back to the latest annual datapoint.
+    def _amt_src(qs, q_src, a_s, ltm_amount):
+        if ltm_amount is None: return None
+        if qs is not None and not qs.empty and len(qs) >= 4: return q_src
+        if a_s is not None and not a_s.empty: return 'yfinance_annual'
+        return None
+    rev_amt_src = _amt_src(m['revenue_q'], m['revenue_q_source'], m['revenue_a'], rev['ltm_amount'])
+    gp_amt_src  = _amt_src(m['gross_q'],   m['gross_q_source'],   m['gross_a'],   gp['ltm_amount'])
+    eb_amt_src  = _amt_src(m['ebitda_q'],  m['ebitda_q_source'],  m['ebitda_a'],  eb['ltm_amount'])
+
     if rev['ltm_amount'] is None and info_total_rev is not None:
         rev['ltm_amount'] = float(info_total_rev)
+        rev_amt_src = 'info_totalRevenue'
+    # EBITDA priority: EDGAR_op_plus_da > yfinance_q > info_ebitda > EV-derived (LAST)
     if eb['ltm_amount'] is None and info_ebitda is not None:
         eb['ltm_amount'] = float(info_ebitda)
-    # Derive EBITDA from EV / enterpriseToEbitda when neither income series
-    # nor info_metrics.ebitda is available
+        eb_amt_src = 'info_ebitda'
+    # EV/enterpriseToEbitda derivation is CIRCULAR (any EV/EBITDA ratio
+    # constructed against this amount tautologically equals enterpriseToEbitda).
+    # Mark it explicitly so downstream consumers can drop these rows from any
+    # PEG-style multiple-vs-derived-EBITDA computation.
+    eb_is_circular = False
     if eb['ltm_amount'] is None and i.get('enterpriseValue') and i.get('enterpriseToEbitda'):
         try:
             ev_ = float(i['enterpriseValue']); evb = float(i['enterpriseToEbitda'])
             if evb > 0:
                 eb['ltm_amount'] = ev_ / evb
+                eb_amt_src = 'EV_to_EvEbitda_derived_CIRCULAR'
+                eb_is_circular = True
         except Exception: pass
 
     # ---- INFO-METRICS GROWTH FALLBACKS (yfinance scalar fields) ----
@@ -418,13 +488,38 @@ def analyze(tk, min_mcap=0):
     if rev['yr_growth_pct'] is None and info_rev_g is not None:
         try: rev['yr_growth_pct'] = float(info_rev_g) * 100
         except Exception: pass
+    fcf_amt_src = 'series' if fcf['ltm_amount'] is not None else None
     if fcf['ltm_amount'] is None and info_fcf is not None:
         fcf['ltm_amount'] = float(info_fcf)
+        fcf_amt_src = 'info_freeCashflow'
     # Derive gross from totalRevenue × grossMargins when missing
     if gp['ltm_amount'] is None and info_total_rev is not None and info_gross_margin is not None:
         try:
             gp['ltm_amount'] = float(info_total_rev) * float(info_gross_margin)
+            gp_amt_src = 'info_rev_x_grossMargins'
         except Exception: pass
+
+    # ---- DATA FRESHNESS (Issue 6) ----
+    # Latest data point used to derive the LTM amounts. The series-based
+    # paths give a real date (from the index); the info_metrics fallbacks
+    # don't, so we backstop with the parquet mtime.
+    series_dates = [d for d in (
+        _latest_date(m['revenue_q']), _latest_date(m['gross_q']),
+        _latest_date(m['ebitda_q']),  _latest_date(m['fcf_q']),
+        _latest_date(m['revenue_a']), _latest_date(m['gross_a']),
+        _latest_date(m['ebitda_a']),  _latest_date(m['fcf_a']),
+    ) if d is not None]
+    latest_series_date = max(series_dates) if series_dates else None
+    info_mtime = _file_mtime(CACHE / f'{_safe(tk)}__info_metrics.parquet')
+    # data_age_days = how old the most recent reported PERIOD is (real fundamentals age)
+    # cache_age_days = how old our local CACHE is (when we last refreshed)
+    # These are independent signals. Fall back to info_mtime only when no series exists.
+    primary = latest_series_date if latest_series_date is not None else info_mtime
+    data_age_days = int((ASOF - primary).days) if primary is not None else None
+    cache_age_days = int((ASOF - info_mtime).days) if info_mtime is not None else None
+    # Quarterly filers should publish within ~135d of quarter-end; >180d signals
+    # delisted/OTC/restatement-paused. Annual-only filers need a higher gate.
+    is_stale = data_age_days is not None and data_age_days > 180
 
     # We'll compute EPS growth below — keep candidate if ANY growth metric is available
 
@@ -492,6 +587,18 @@ def analyze(tk, min_mcap=0):
         ),
         'perf_1y_pct':  price_perf(tk),
         'method_yr':    rev['method_yr'],
+        # Provenance (Issue 10): where the LTM amounts actually came from
+        'rev_amt_source':    rev_amt_src,
+        'gross_amt_source':  gp_amt_src,
+        'ebitda_amt_source': eb_amt_src,
+        'fcf_amt_source':    fcf_amt_src,
+        'ebitda_is_circular': eb_is_circular,
+        # Freshness (Issue 6): days since the latest cached data point
+        'latest_data_date': latest_series_date.date().isoformat() if latest_series_date else None,
+        'info_cache_date':  info_mtime.date().isoformat() if info_mtime else None,
+        'data_age_days':    data_age_days,
+        'cache_age_days':   cache_age_days,
+        'is_stale':         is_stale,
         # Amounts
         'rev_ltm_M':    rev['ltm_amount']/1e6 if rev['ltm_amount'] else None,
         'rev_yr_M':     rev['yr_amount']/1e6  if rev['yr_amount']  else None,
@@ -553,6 +660,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--min-mcap', type=float, default=50e6)
     ap.add_argument('--min-rev-growth', type=float, default=0.0)
+    ap.add_argument('--max-stale-days', type=int, default=180,
+                    help='Drop rows whose latest data point is older than this (Issue 6).')
+    ap.add_argument('--include-circular-ebitda', action='store_true',
+                    help='Include tickers whose EBITDA is the circular EV/EvEbitda derivation (Issue 10).')
     args = ap.parse_args()
 
     # Iterate every cached ticker (price OR info OR income) — broadest possible
@@ -582,7 +693,14 @@ def main():
     #   - sales growth >= 10
     #   - perf_1y in [-50, +30]
     #   - gross margin expanding > 0
+    #   - data freshness gate (Issue 6): drop rows where latest data point > max_stale_days old
+    #   - circular-EBITDA exclusion (Issue 10): drop rows whose only EBITDA is EV-derived
+    age = pd.to_numeric(df['data_age_days'], errors='coerce')
+    fresh = age.fillna(99999) <= args.max_stale_days
+    circ  = df['ebitda_is_circular'].fillna(False).astype(bool) if 'ebitda_is_circular' in df.columns else pd.Series(False, index=df.index)
+    keep_circ = pd.Series(True, index=df.index) if args.include_circular_ebitda else ~circ
     df_b = df[
+        fresh & keep_circ &
         (df[['rev_growth_ltm_pct','rev_growth_yr_pct']].max(axis=1).fillna(-99) >= 10) &
         (df['perf_1y_pct'].between(-50, 30)) &
         ((df['EV_GP_over_GPg_ltm'].fillna(99) < 1.5)

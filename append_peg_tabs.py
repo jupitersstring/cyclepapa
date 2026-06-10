@@ -56,6 +56,10 @@ all_df = all_df[
 
 peg_cols = ['ticker','name','sector','industry','country',
             'perf_1y_pct','market_cap','gross_margin_now_pct',
+            # Provenance + freshness (Issues 6 & 10)
+            'latest_data_date','data_age_days','cache_age_days','is_stale',
+            'rev_amt_source','gross_amt_source','ebitda_amt_source','fcf_amt_source',
+            'ebitda_is_circular',
             # Growth rates — LTM and latest-year side by side
             'rev_growth_ltm_pct','rev_growth_yr_pct',
             'gross_growth_ltm_pct','gross_growth_yr_pct',
@@ -77,7 +81,14 @@ peg_cols = [c for c in peg_cols if c in all_df.columns]
 peg_tab = all_df[peg_cols].copy()
 
 # cheap_on_growth: strict filter for the most attractive
+# Freshness/circularity gates (Issues 6 & 10): tabs are user-facing so apply
+# the same hygiene we put on the best_undervalued CSV.
+fresh = pd.to_numeric(peg_tab.get('data_age_days', pd.Series(0, index=peg_tab.index)),
+                      errors='coerce').fillna(99999) <= 180
+not_stale = ~peg_tab.get('is_stale', pd.Series(False, index=peg_tab.index)).fillna(False).astype(bool)
+not_circ = ~peg_tab.get('ebitda_is_circular', pd.Series(False, index=peg_tab.index)).fillna(False).astype(bool)
 cheap = peg_tab[
+    fresh & not_stale & not_circ &
     (peg_tab[['rev_growth_ltm_pct','rev_growth_yr_pct']].max(axis=1).fillna(-99) >= 10) &
     (peg_tab['perf_1y_pct'].between(-50, 20)) &
     (peg_tab['market_cap'] >= 200e6) &

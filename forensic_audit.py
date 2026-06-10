@@ -8,15 +8,24 @@ Layers explicit verification over the screener outputs:
     recharacterization, AORT cyber-comp, AVNW revenue decline, etc.)
   - Issues a CONFIRMED / CAVEAT / FALSE_POSITIVE verdict per name
 
-Output: results_forensic/audit.csv (with verdicts)
+By default audits the curated KNOWN_FINDINGS keys plus the manual ★★★★★
+list. With `--expand N`, also audits the top-N rows from
+results_peg/best_undervalued.csv (Issue 19), so the verdict==PENDING
+expansion covers the broader candidate population beyond the hand-curated
+deep-research set. Stale/circular rows are filtered out before expansion.
+
+Outputs:
+  results_forensic/audit.csv          — curated names with deep-research verdict
+  results_forensic/audit_expanded.csv — bulk expansion (PENDING by default)
 """
 from __future__ import annotations
-import json, gzip
+import argparse, json, gzip, sys
 from pathlib import Path
 import numpy as np, pandas as pd
 
 CACHE = Path('.cache/yf')
 EDGAR = Path('.cache/edgar')
+PEG_DIR = Path('results_peg')
 OUTDIR = Path('results_forensic'); OUTDIR.mkdir(exist_ok=True)
 
 
@@ -207,11 +216,42 @@ KNOWN_FINDINGS = {
 }
 
 
-TICKERS_TO_AUDIT = sorted(KNOWN_FINDINGS.keys()) + [
+CURATED_AUDIT_LIST = sorted(KNOWN_FINDINGS.keys()) + [
     'CFBK','BJRI','INBK','GRWG',  # ★★★★★ from-today
     'TREE','NRDS','QNST','EVER','LWAY','KRUS',  # confirmed structural op leverage
 ]
-TICKERS_TO_AUDIT = sorted(set(TICKERS_TO_AUDIT))
+CURATED_AUDIT_LIST = sorted(set(CURATED_AUDIT_LIST))
+
+
+def expansion_tickers(top_n=200, min_mcap=200e6, max_data_age_days=180,
+                      max_rev_growth=300):
+    """Pick the top-N tickers from best_undervalued for bulk auditing.
+
+    Filters out the obvious data-error rows (rev growth >300%, ridiculous
+    multiples) and stale rows (>180d if the column exists), then takes the
+    top N by EV_GP_over_GPg_ltm (cheapest on gross-profit growth).
+    """
+    p = PEG_DIR / 'best_undervalued.csv'
+    if not p.exists():
+        return []
+    df = pd.read_csv(p)
+    # market cap filter
+    if 'market_cap' in df.columns:
+        df = df[pd.to_numeric(df['market_cap'], errors='coerce').fillna(0) >= min_mcap]
+    # data freshness (only if peg_screener was run with Issue 6 columns)
+    if 'data_age_days' in df.columns:
+        df = df[pd.to_numeric(df['data_age_days'], errors='coerce').fillna(99999) <= max_data_age_days]
+    if 'is_stale' in df.columns:
+        df = df[~df['is_stale'].fillna(False).astype(bool)]
+    if 'ebitda_is_circular' in df.columns:
+        df = df[~df['ebitda_is_circular'].fillna(False).astype(bool)]
+    # cap insane growth (obvious data error)
+    if 'rev_growth_ltm_pct' in df.columns:
+        rg = pd.to_numeric(df['rev_growth_ltm_pct'], errors='coerce')
+        df = df[(rg.isna()) | ((rg >= 5) & (rg <= max_rev_growth))]
+    # sort by EV_GP_over_GPg_ltm ascending (cheapest first)
+    df = df.sort_values('EV_GP_over_GPg_ltm', na_position='last')
+    return df['ticker'].astype(str).head(top_n).tolist()
 
 
 def audit_one(tk):
@@ -247,24 +287,72 @@ def audit_one(tk):
     return out
 
 
-rows = [audit_one(t) for t in TICKERS_TO_AUDIT]
-df = pd.DataFrame(rows).set_index('ticker')
-# Verdict-aware sort: confirmed first
-order = {'CONFIRMED': 0, 'CONFIRMED_WITH_CAVEAT': 1, 'CAVEAT': 2, 'FALSE_POSITIVE': 3,
-         'FALSE_POSITIVE_DATA': 4, 'PENDING': 5}
-df['_v'] = df['verdict'].map(order).fillna(99)
-df = df.sort_values('_v').drop(columns=['_v'])
+def _audit_batch(tickers, label):
+    rows = []
+    for i, t in enumerate(tickers):
+        try:
+            rows.append(audit_one(t))
+        except Exception as exc:
+            print(f'  {t}: {exc}', file=sys.stderr)
+        if (i+1) % 50 == 0:
+            print(f'  {label} {i+1}/{len(tickers)} processed', file=sys.stderr)
+    return pd.DataFrame(rows).set_index('ticker') if rows else pd.DataFrame()
 
-# Display
-disp = df.copy()
-for c in ('edgar_sales_ltm_yoy_pct','yf_sales_qyoy_pct','yf_gross_qyoy_pct',
-          'gross_margin_chg_pp','ps_now','ev_ebitda','market_cap_B'):
-    if c in disp: disp[c] = pd.to_numeric(disp[c], errors='coerce').round(1)
 
-pd.set_option('display.width', 240); pd.set_option('display.max_columns', 30)
-pd.set_option('display.max_colwidth', 110)
-print(disp[['verdict','market_cap_B','edgar_sales_ltm_yoy_pct','yf_sales_qyoy_pct',
-            'gross_margin_chg_pp','ps_now','ev_ebitda','notes']].to_string())
+def _sort_by_verdict(df):
+    order = {'CONFIRMED': 0, 'CONFIRMED_WITH_CAVEAT': 1, 'CAVEAT': 2,
+             'FALSE_POSITIVE': 3, 'FALSE_POSITIVE_DATA': 4, 'PENDING': 5}
+    df = df.copy()
+    df['_v'] = df['verdict'].map(order).fillna(99)
+    return df.sort_values('_v').drop(columns=['_v'])
 
-df.to_csv(OUTDIR / 'audit.csv')
-print(f'\nWritten to {OUTDIR / "audit.csv"}')
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--expand', type=int, default=0,
+                    help='Also audit top-N rows from best_undervalued.csv (Issue 19). 0 disables.')
+    ap.add_argument('--min-mcap', type=float, default=200e6)
+    ap.add_argument('--max-data-age-days', type=int, default=180)
+    args = ap.parse_args()
+
+    # ---- Curated audit (existing behavior) ----
+    print(f'Curated audit: {len(CURATED_AUDIT_LIST)} tickers...', file=sys.stderr)
+    df = _audit_batch(CURATED_AUDIT_LIST, 'curated')
+    if not df.empty:
+        df = _sort_by_verdict(df)
+        # Display
+        disp = df.copy()
+        for c in ('edgar_sales_ltm_yoy_pct','yf_sales_qyoy_pct','yf_gross_qyoy_pct',
+                  'gross_margin_chg_pp','ps_now','ev_ebitda','market_cap_B'):
+            if c in disp: disp[c] = pd.to_numeric(disp[c], errors='coerce').round(1)
+        pd.set_option('display.width', 240); pd.set_option('display.max_columns', 30)
+        pd.set_option('display.max_colwidth', 110)
+        print(disp[['verdict','market_cap_B','edgar_sales_ltm_yoy_pct','yf_sales_qyoy_pct',
+                    'gross_margin_chg_pp','ps_now','ev_ebitda','notes']].to_string())
+        df.to_csv(OUTDIR / 'audit.csv')
+        print(f'\nWritten to {OUTDIR / "audit.csv"}', file=sys.stderr)
+
+    # ---- Bulk expansion (Issue 19) ----
+    if args.expand > 0:
+        candidates = expansion_tickers(top_n=args.expand,
+                                       min_mcap=args.min_mcap,
+                                       max_data_age_days=args.max_data_age_days)
+        # Avoid duplicating curated names
+        curated = set(CURATED_AUDIT_LIST)
+        expansion_list = [t for t in candidates if t not in curated]
+        print(f'\nExpansion audit: {len(expansion_list)} additional tickers '
+              f'(of top {args.expand} requested)...', file=sys.stderr)
+        df_x = _audit_batch(expansion_list, 'expansion')
+        if not df_x.empty:
+            df_x = _sort_by_verdict(df_x)
+            df_x.to_csv(OUTDIR / 'audit_expanded.csv')
+            print(f'Written to {OUTDIR / "audit_expanded.csv"}', file=sys.stderr)
+            # Summary
+            counts = df_x['verdict'].value_counts()
+            print(f'\nExpansion verdict distribution:', file=sys.stderr)
+            for v, n in counts.items():
+                print(f'  {v}: {n}', file=sys.stderr)
+
+
+if __name__ == '__main__':
+    main()
