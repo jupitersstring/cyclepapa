@@ -119,6 +119,26 @@ UNIVERSE_PRESETS["row"] = [
     dict(region=reg, country=ctry, exchanges=exs, currencies=None, size_filter=SMID_LARGE)
     for reg, ctry, exs in ROW_SEGMENTS
 ]
+
+# Universe widening (more countries, ex-India): only markets with a genuine HOME
+# exchange in financedatabase. Poland/Vietnam/UAE/Philippines/Colombia/Peru carry
+# only foreign cross-listings (PNK/FRA) in fd and are deliberately skipped. These
+# emerging/frontier markets mostly lack fd market_cap labels, so size_filter=None
+# (include all; backfill_size assigns buckets from live cap and the screens drop
+# Nano downstream) — otherwise SMID_LARGE silently excludes the whole market.
+WIDEN_SEGMENTS = [
+    dict(region="SEA", country="Malaysia", exchanges=("KLS",), currencies=None, size_filter=None),
+    dict(region="MEA", country="Egypt", exchanges=("CAI",), currencies=None, size_filter=None),
+    dict(region="MEA", country="Qatar", exchanges=("DOH",), currencies=None, size_filter=None),
+    dict(region="EU", country="Czech Republic", exchanges=("PRA",), currencies=None, size_filter=None),
+    dict(region="EU", country="Hungary", exchanges=("BUD",), currencies=None, size_filter=None),
+    dict(region="EU", country="Iceland", exchanges=("ICE",), currencies=None, size_filter=None),
+    dict(region="EU", country="Estonia", exchanges=("TAL",), currencies=None, size_filter=None),
+    dict(region="EU", country="Lithuania", exchanges=("LIT",), currencies=None, size_filter=None),
+    dict(region="EU", country="Latvia", exchanges=("RIS",), currencies=None, size_filter=None),
+]
+UNIVERSE_PRESETS["row"] = UNIVERSE_PRESETS["row"] + WIDEN_SEGMENTS
+
 # The whole investable world we cover (ex-India, ex-Russia).
 UNIVERSE_PRESETS["world"] = UNIVERSE_PRESETS["global"] + UNIVERSE_PRESETS["row"]
 
