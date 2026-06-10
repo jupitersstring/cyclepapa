@@ -16,6 +16,8 @@ declare -A SRC=(
     [uk_yartseva.csv]=UK
     [uk_largecap_yartseva.csv]=UK
     [uk_unc_yartseva.csv]=UK
+    [uk_aim_missing_yartseva.csv]=UK
+    [uk_aim_extra_yartseva.csv]=UK
     # EU Core
     [italian_yartseva.csv]=IT
     [it_largecap_yartseva.csv]=IT

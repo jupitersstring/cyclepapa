@@ -10184,7 +10184,7 @@ GLV.L,0,0,0,0,0,0,0,0,0,
 SOUN,1,0,0,0,0,0,0,0,1,NarrativeLag
 300433.SZ,0,0,0,0,0,0,0,0,0,
 258790.KQ,0,0,0,0,0,0,0,1,1,BlindSpot
-ABDP.L,1,0,0,0,1,0,0,0,2,"NarrativeLag, RegimeCyclical"
+ABDP.L,1,0,0,0,1,1,0,0,3,"NarrativeLag, RegimeCyclical, DeadOption"
 300627.SZ,0,0,0,0,0,0,0,0,0,
 TDY,0,0,0,0,0,0,0,0,0,
 CMRS.L,0,0,0,0,0,0,0,0,0,
@@ -12252,7 +12252,7 @@ NKR.OL,0,0,0,0,0,0,0,0,0,
 CFR.SW,1,0,0,0,0,0,0,0,1,NarrativeLag
 8419.HK,0,0,0,0,0,0,0,0,0,
 NATPLASTI.BO,1,0,0,0,0,0,0,0,1,NarrativeLag
-STAF.L,0,0,0,0,0,0,0,0,0,
+STAF.L,1,0,0,0,0,0,0,0,1,NarrativeLag
 8101.T,0,0,0,0,0,0,0,0,0,
 KARNAVATI.BO,1,0,0,0,0,0,1,0,2,"NarrativeLag, KPIThreshold"
 EPL.BO,1,0,0,0,0,0,0,0,1,NarrativeLag

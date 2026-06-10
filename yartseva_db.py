@@ -1291,16 +1291,28 @@ def main():
     parser.add_argument("--top", type=int, default=15, help="rows printed in console summary")
     parser.add_argument("--projection-n", type=int, default=4,
                         help="lookahead periods (quarters) for forward FCF break-even projection")
+    parser.add_argument("--tickers-file", default=None,
+                        help="path to newline-separated tickers; bypasses financedatabase universe build "
+                             "and scans exactly the listed tickers. Use to fill gaps in prior scans.")
     args = parser.parse_args()
 
     # Set module-level so fetch_ticker can read it without threading state.
     globals()["PROJECTION_N_PERIODS"] = args.projection_n
 
-    print(f"[1/3] Loading {args.country} universe (min bucket={args.min_bucket}, max bucket={args.max_bucket}) ...", file=sys.stderr)
-    universe = get_universe(country=args.country, min_bucket=args.min_bucket,
-                            max_bucket=args.max_bucket,
-                            include_uncategorized=args.include_uncategorized,
-                            only_uncategorized=args.only_uncategorized)
+    if args.tickers_file:
+        with open(args.tickers_file) as f:
+            tickers = [line.strip() for line in f if line.strip()]
+        print(f"[1/3] Loading {len(tickers)} tickers from {args.tickers_file} ...", file=sys.stderr)
+        universe = pd.DataFrame({'symbol': tickers}).set_index('symbol')
+        # Add empty bucket / sector columns so downstream code doesn't trip
+        for col in ('market_cap', 'sector', 'industry', 'name'):
+            universe[col] = None
+    else:
+        print(f"[1/3] Loading {args.country} universe (min bucket={args.min_bucket}, max bucket={args.max_bucket}) ...", file=sys.stderr)
+        universe = get_universe(country=args.country, min_bucket=args.min_bucket,
+                                max_bucket=args.max_bucket,
+                                include_uncategorized=args.include_uncategorized,
+                                only_uncategorized=args.only_uncategorized)
     print(f"      universe size = {len(universe)}", file=sys.stderr)
 
     if args.max and args.max > 0:
