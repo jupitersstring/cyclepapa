@@ -196,6 +196,12 @@ BULL_COLS = [c for c in BULL_COLS if c in df.columns]
 # ============================================================
 sheets = {}
 
+# Named-index dedicated views (Russell 1000 + FTSE AIM 100)
+r1k_mask = df["_universe"] == "wiki-r1k"
+aim_mask = df["_universe"] == "wiki-aim100"
+sheets["Russell 1000 (US large)"] = df[r1k_mask].sort_values("mv_composite_score", ascending=False).head(80)[MV_COLS] if r1k_mask.any() else pd.DataFrame()
+sheets["FTSE AIM 100 (UK alt)"]   = df[aim_mask].sort_values("mv_composite_score", ascending=False).head(80)[MV_COLS] if aim_mask.any() else pd.DataFrame()
+
 # Pre-Run global top 100
 sheets["Pre-Run Top 100"] = df.sort_values("pre_run_score", ascending=False).head(100)[PRE_RUN_COLS]
 
