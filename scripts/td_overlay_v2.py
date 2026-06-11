@@ -11,16 +11,28 @@ td_cols = ['ticker','net_setup','net_perfect','buy_setup_prop','sell_setup_prop'
 td_keep = td[[c for c in td_cols if c in td.columns]]
 fin = m.merge(td_keep, on='ticker', how='left')
 
-# FIX 1: STRICT direction — must dominate, not just hit threshold
+# FIX 1: CORRECT direction
+# buy_setup_prop aggregates `bull_count` = close < close[4] streaks (DOWN moves)
+# So HIGH buy_setup_prop = repeated falls = OVERSOLD = mean-revert UP (BUY signal)
+# net_setup = buy_setup_prop - sell_setup_prop:
+#   POSITIVE net_setup = buy signals dominate = OVERSOLD = BUY candidate
+#   NEGATIVE net_setup = sell signals dominate = OVERBOUGHT = SELL candidate
+# Earlier mr_buy_score = -net_setup * 0.6 was inverted; fixing here.
 fin['td_oversold_strict'] = (
-    (fin['net_setup'].fillna(99) <= -25)
+    (fin['net_setup'].fillna(-99) >= 25)
     & (fin['buy_setup_prop'].fillna(0) > fin['sell_setup_prop'].fillna(0) + 15)
-    & (fin['cd_buy_sum'].fillna(0) > fin['cd_sell_sum'].fillna(0))
+    & (
+        (fin['cd_buy_sum'].fillna(0) >= fin['cd_sell_sum'].fillna(0))
+        | ((fin['cd_buy_sum'].fillna(0) == 0) & (fin['cd_sell_sum'].fillna(0) == 0))
+      )
 )
 fin['td_overbought_strict'] = (
-    (fin['net_setup'].fillna(-99) >= 25)
+    (fin['net_setup'].fillna(99) <= -25)
     & (fin['sell_setup_prop'].fillna(0) > fin['buy_setup_prop'].fillna(0) + 15)
-    & (fin['cd_sell_sum'].fillna(0) > fin['cd_buy_sum'].fillna(0))
+    & (
+        (fin['cd_sell_sum'].fillna(0) >= fin['cd_buy_sum'].fillna(0))
+        | ((fin['cd_buy_sum'].fillna(0) == 0) & (fin['cd_sell_sum'].fillna(0) == 0))
+      )
 )
 
 both = (fin['td_oversold_strict'] & fin['td_overbought_strict']).sum()
@@ -28,12 +40,14 @@ print(f"Strict-direction collisions: {both} (should be 0)")
 print(f"TD oversold (strict):   {fin['td_oversold_strict'].sum()}")
 print(f"TD overbought (strict): {fin['td_overbought_strict'].sum()}")
 
+# CORRECTED scoring: positive net_setup = oversold = reward as BUY
 fin['mr_buy_composite'] = (
     fin['mega_score'].fillna(0)
-  + (-fin['net_setup'].fillna(0) * 0.4 - fin['net_perfect'].fillna(0) * 0.3
+  + (fin['net_setup'].fillna(0) * 0.4 + fin['net_perfect'].fillna(0) * 0.3
      + fin['cd_buy_sum'].fillna(0) * 0.5).clip(lower=0)
   + fin['td_oversold_strict'].astype(int) * 50
 )
+# Trend-continuation: avoid stretched-up names (negative net_setup = overbought)
 fin['trend_buy_composite'] = (
     fin['mega_score'].fillna(0)
   + fin['n_bull_tf'].fillna(0) * 10
