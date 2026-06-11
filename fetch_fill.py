@@ -29,14 +29,22 @@ CAPMAP={"mid":["Mid Cap"],"small":["Small Cap"],"micro":["Micro Cap"],
         "all":["Mid Cap","Small Cap","Micro Cap"]}
 syms = sorted(set().union(*[set(uni(c)) for c in CAPMAP[caps_arg]]))
 
+import json
 have = {}
 if os.path.exists(cache):
     try: have = pd.read_pickle(cache)
     except Exception: have = {}
-todo = [s for s in syms if s not in have]
-print(f"[{interval}/{caps_arg}] universe={len(syms)} cached={len([s for s in syms if s in have])} todo={len(todo)}", flush=True)
+# write-time sanitize: drop any union-index NaN padding lurking in the cache
+have = {s: d.dropna() for s, d in have.items() if d is not None and len(d.dropna()) > minrows}
 
-ok=fail=0
+# tombstones: never re-attempt known-dead tickers (skips ~1,600 delisted/run)
+tomb_path = os.path.join(os.path.dirname(cache), f"dead_{interval}.json")
+dead = set(json.load(open(tomb_path))) if os.path.exists(tomb_path) else set()
+todo = [s for s in syms if s not in have and s not in dead]
+print(f"[{interval}/{caps_arg}] universe={len(syms)} cached={len([s for s in syms if s in have])} "
+      f"dead={len([s for s in syms if s in dead])} todo={len(todo)}", flush=True)
+
+ok=fail=0; new_dead=set()
 for i,t in enumerate(todo):
     try:
         h=yf.Ticker(t).history(period=period, interval=interval, auto_adjust=True)
@@ -44,12 +52,15 @@ for i,t in enumerate(todo):
             sub=h[["Close","Volume"]].dropna()
             sub.index=sub.index.tz_localize(None)
             have[t]=sub; ok+=1
-        else: fail+=1
+        else:
+            fail+=1; new_dead.add(t)   # no data -> tombstone
     except Exception:
-        fail+=1
+        fail+=1   # transient error -> retry next run (don't tombstone)
     if (i+1)%50==0:
         pd.to_pickle(have, cache)
-        print(f"[{interval}] {i+1}/{len(todo)}  ok={ok} fail={fail}  cache={len(have)}", flush=True)
+        json.dump(sorted(dead | new_dead), open(tomb_path, "w"))
+        print(f"[{interval}] {i+1}/{len(todo)}  ok={ok} fail={fail}  cache={len(have)} dead={len(dead|new_dead)}", flush=True)
     time.sleep(0.5)
 pd.to_pickle(have, cache)
-print(f"[{interval}] DONE ok={ok} fail={fail} cache={len(have)}", flush=True)
+json.dump(sorted(dead | new_dead), open(tomb_path, "w"))
+print(f"[{interval}] DONE ok={ok} fail={fail} cache={len(have)} dead={len(dead|new_dead)}", flush=True)
