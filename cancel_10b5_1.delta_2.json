@@ -47498,5 +47498,776 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "O": {
+    "ticker": "O",
+    "quarters_scanned": [
+      {
+        "accession": "0000726728-26-000030",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0000726728-26-000011",
+        "filing_date": "2026-02-25"
+      },
+      {
+        "accession": "0000726728-25-000148",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0000726728-25-000131",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000726728-25-000096",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0000726728-25-000055",
+        "filing_date": "2025-02-25"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OBE": {
+    "ticker": "OBE",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-254856",
+        "filing_date": "2026-06-03"
+      },
+      {
+        "accession": "0001193125-26-251708",
+        "filing_date": "2026-06-01"
+      },
+      {
+        "accession": "0001193125-26-212379",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001193125-26-211278",
+        "filing_date": "2026-05-07"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OBTC": {
+    "ticker": "OBTC",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-022790",
+        "filing_date": "2026-05-13"
+      },
+      {
+        "accession": "0001493152-26-014439",
+        "filing_date": "2026-04-01"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OCCI": {
+    "ticker": "OCCI",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OCG": {
+    "ticker": "OCG",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-064749",
+        "filing_date": "2026-06-03"
+      },
+      {
+        "accession": "0001213900-26-056688",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001213900-26-045909",
+        "filing_date": "2026-04-21"
+      },
+      {
+        "accession": "0001213900-26-045887",
+        "filing_date": "2026-04-21"
+      },
+      {
+        "accession": "0001213900-26-045875",
+        "filing_date": "2026-04-21"
+      },
+      {
+        "accession": "0001213900-25-043484",
+        "filing_date": "2025-05-15"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OCTVV": {
+    "ticker": "OCTVV",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ODV": {
+    "ticker": "ODV",
+    "quarters_scanned": [
+      {
+        "accession": "0001171843-26-004011",
+        "filing_date": "2026-06-09"
+      },
+      {
+        "accession": "0001171843-26-003886",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001104659-26-069058",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001171843-26-003824",
+        "filing_date": "2026-06-01"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OFAL": {
+    "ticker": "OFAL",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-008104",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001493152-25-028155",
+        "filing_date": "2025-12-17"
+      },
+      {
+        "accession": "0001493152-25-025629",
+        "filing_date": "2025-12-02"
+      },
+      {
+        "accession": "0001493152-25-021936",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0001641172-25-021732",
+        "filing_date": "2025-07-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OFS": {
+    "ticker": "OFS",
+    "quarters_scanned": [
+      {
+        "accession": "0001487918-26-000054",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001487918-26-000021",
+        "filing_date": "2026-03-03"
+      },
+      {
+        "accession": "0001487918-25-000108",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001487918-25-000093",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001487918-25-000035",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0001487918-25-000009",
+        "filing_date": "2025-03-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OGCP": {
+    "ticker": "OGCP",
+    "quarters_scanned": [
+      {
+        "accession": "0001553079-26-000007",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001553079-26-000003",
+        "filing_date": "2026-03-02"
+      },
+      {
+        "accession": "0001553079-25-000019",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "accession": "0001553079-25-000016",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0001553079-25-000013",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001553079-25-000005",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading arrangement",
+        "plan_type": "sell",
+        "neo": "Thomas P. Durels",
+        "role": "Executive Vice President",
+        "shares": 1780000,
+        "dates_near": [
+          "December 20, 2025",
+          "April 1, 2026",
+          "January 12, 2027"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "e use of office space and remote work); leasing activity, tenant defaults, early terminations and renewals, occupancy levels and rental rates; performance of the Observatory (including tourism levels, currency and geopolitical impacts, weather and competition); interest rate volatility and capital markets conditions, including our ability to refinance, restructure or extend indebtedness; real estate valuation declines and potential impairment charges; our ability to execute capital projects and complete acquisitions on acceptable terms; risks relating to governmental regulation, environmental ",
+        "accession": "0001553079-26-000003",
+        "filing_date": "2026-03-02"
+      }
+    ],
+    "score": -22.0,
+    "reasons": [
+      "BEARISH adopt sell: Thomas P. Durels (Executive Vice President) 1,780,000sh [-22]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 1,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OGS": {
+    "ticker": "OGS",
+    "quarters_scanned": [
+      {
+        "accession": "0001587732-26-000021",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001587732-26-000009",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001587732-25-000055",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0001587732-25-000046",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0001587732-25-000028",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001587732-25-000013",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OILD": {
+    "ticker": "OILD",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-253845",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001193125-26-241108",
+        "filing_date": "2026-05-27"
+      },
+      {
+        "accession": "0001193125-26-241093",
+        "filing_date": "2026-05-27"
+      },
+      {
+        "accession": "0001193125-26-241078",
+        "filing_date": "2026-05-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OIS": {
+    "ticker": "OIS",
+    "quarters_scanned": [
+      {
+        "accession": "0001121484-26-000023",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001121484-26-000007",
+        "filing_date": "2026-03-04"
+      },
+      {
+        "accession": "0001121484-25-000080",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001121484-25-000074",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0001121484-25-000050",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0001121484-25-000024",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OKYO": {
+    "ticker": "OKYO",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-024343",
+        "filing_date": "2026-05-19"
+      },
+      {
+        "accession": "0001493152-26-019454",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001493152-26-015411",
+        "filing_date": "2026-04-07"
+      },
+      {
+        "accession": "0001493152-26-011566",
+        "filing_date": "2026-03-19"
+      },
+      {
+        "accession": "0001641172-25-020240",
+        "filing_date": "2025-07-18"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OLOX": {
+    "ticker": "OLOX",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-25-110208",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001213900-25-076841",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001213900-25-054136",
+        "filing_date": "2025-06-13"
+      },
+      {
+        "accession": "0001213900-25-026495",
+        "filing_date": "2025-04-01"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OMAB": {
+    "ticker": "OMAB",
+    "quarters_scanned": [
+      {
+        "accession": "0001999371-26-012173",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001999371-26-011787",
+        "filing_date": "2026-06-01"
+      },
+      {
+        "accession": "0001999371-26-010708",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001999371-26-010041",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001104659-26-051987",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001558370-25-005842",
+        "filing_date": "2025-04-29"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OMSE": {
+    "ticker": "OMSE",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-010531",
+        "filing_date": "2026-02-02"
+      },
+      {
+        "accession": "0001193125-25-290488",
+        "filing_date": "2025-11-21"
+      },
+      {
+        "accession": "0000950170-25-098559",
+        "filing_date": "2025-07-25"
+      },
+      {
+        "accession": "0000950170-25-098129",
+        "filing_date": "2025-07-24"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONBPP": {
+    "ticker": "ONBPP",
+    "quarters_scanned": [
+      {
+        "accession": "0000707179-26-000038",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0000707179-26-000010",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0000707179-25-000064",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000707179-25-000018",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000707179-25-000009",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0000707179-25-000005",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONCY": {
+    "ticker": "ONCY",
+    "quarters_scanned": [
+      {
+        "accession": "0001129928-26-000033",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001129928-26-000020",
+        "filing_date": "2026-03-30"
+      },
+      {
+        "accession": "0001129928-26-000002",
+        "filing_date": "2026-01-07"
+      },
+      {
+        "accession": "0001129928-25-000097",
+        "filing_date": "2025-12-16"
+      },
+      {
+        "accession": "0001129928-25-000095",
+        "filing_date": "2025-12-10"
+      },
+      {
+        "accession": "0001129928-25-000093",
+        "filing_date": "2025-11-20"
+      },
+      {
+        "accession": "0001129928-25-000019",
+        "filing_date": "2025-03-07"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONFO": {
+    "ticker": "ONFO",
+    "quarters_scanned": [
+      {
+        "accession": "0001654954-26-004997",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001654954-26-003083",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001654954-25-013082",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001654954-25-009569",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001654954-25-005773",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001654954-25-004315",
+        "filing_date": "2025-04-16"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }

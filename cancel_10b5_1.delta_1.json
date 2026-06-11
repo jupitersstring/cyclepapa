@@ -47522,5 +47522,1032 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "NTIC": {
+    "ticker": "NTIC",
+    "quarters_scanned": [
+      {
+        "accession": "0001171843-26-002340",
+        "filing_date": "2026-04-09"
+      },
+      {
+        "accession": "0001171843-26-000136",
+        "filing_date": "2026-01-08"
+      },
+      {
+        "accession": "0001171843-25-007481",
+        "filing_date": "2025-11-20"
+      },
+      {
+        "accession": "0001171843-25-004413",
+        "filing_date": "2025-07-11"
+      },
+      {
+        "accession": "0001171843-25-002130",
+        "filing_date": "2025-04-10"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NTR": {
+    "ticker": "NTR",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-248515",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001193125-26-242151",
+        "filing_date": "2026-05-27"
+      },
+      {
+        "accession": "0001193125-26-239965",
+        "filing_date": "2026-05-27"
+      },
+      {
+        "accession": "0001193125-26-209878",
+        "filing_date": "2026-05-07"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NTRSO": {
+    "ticker": "NTRSO",
+    "quarters_scanned": [
+      {
+        "accession": "0000073124-26-000035",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0000073124-26-000016",
+        "filing_date": "2026-02-24"
+      },
+      {
+        "accession": "0000073124-25-000247",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0000073124-25-000235",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000073124-25-000187",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0000073124-25-000105",
+        "filing_date": "2025-02-24"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NTZ": {
+    "ticker": "NTZ",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-246205",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001193125-26-235422",
+        "filing_date": "2026-05-22"
+      },
+      {
+        "accession": "0001193125-26-227167",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001193125-26-227060",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001193125-26-226962",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0000950170-25-060771",
+        "filing_date": "2025-04-30"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NUCL": {
+    "ticker": "NUCL",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-043856",
+        "filing_date": "2026-04-15"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NUTX": {
+    "ticker": "NUTX",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-028849",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001628280-26-015168",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001628280-25-053166",
+        "filing_date": "2025-11-19"
+      },
+      {
+        "accession": "0001628280-25-052957",
+        "filing_date": "2025-11-18"
+      },
+      {
+        "accession": "0001479681-25-000022",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "accession": "0001479681-25-000006",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": 60516,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "3 &#160; 3,325 &#160; Income before taxes 76,560 &#160; 71,216 &#160; Income tax expense 13,797 &#160; 20,410 &#160; Net income 62,763 &#160; 50,806 &#160; Less: net income attributable to noncontrolling interests 15,956 &#160; 29,589 &#160; Net income attributable to Nutex Health Inc. $ 46,807 &#160; $ 21,217 &#160; Earnings per common share: Basic $ 6.70 &#160; $ 3.74 &#160; Diluted $ 6.52 &#160; $ 3.33 &#160; See accompanying notes to the una ||SECT|| ; &#8212;&#160; $ &#8212;&#160; 3/1/26 - 3/31/26 81,577 (1) $ 143.22&#160; 21,061&#160; $ 23,042&#160; 200,444&#160; 167,798&#160; 1. This am",
+        "accession": "0001628280-26-028849",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "April 5, 2022",
+          "April 1, 2022",
+          "December 31, 2025",
+          "March 5, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "actions or by other means in accordance with applicable securities laws. Stock Performance Graph The graph set forth below compares the cumulative total stockholder return on our common stock between April 5, 2022 (the date of the first available closing price for Nutex Health Inc. on the NASDAQ following the merger of Nutex Health Holdco LLC and Clinigence Holdings, Inc. on April 1, 2022) and December 31, 2025, with the cumulative total return of (i) the NASDAQ-100 Ind ||SECT|| ct on the financial statements. Because of its inherent limitations, internal control over financial reporting may n",
+        "accession": "0001628280-26-015168",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "iabilities 185,456 &#160; 154,225 &#160; Long-term debt, net 25,574 &#160; 22,466 &#160; Operating lease liabilities, net 30,423 &#160; 30,617 &#160; Financing lease liabilities, net 270,077 &#160; 259,479 &#160; Deferred tax liabilities 14,955 &#160; &#8212; &#160; Total liabilities 526,485 &#160; 466,787 &#160; Commitments and contingencies (Note 10 ) Equity: Common stock, $ 0.001 par value; 950,000,000 shares authorized; 6,905,262 and 5,5 ||SECT|| that the number of shares in the calculation should not be adjusted for the 2024 Reverse Stock Splits. We disagree with these allegations but can",
+        "accession": "0001628280-25-053166",
+        "filing_date": "2025-11-19"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ies (Note 10 ) Equity: Common stock, $ 0.001 par value; 950,000,000 shares authorized; 6,595,109 and 5,511,452 shares issued and outstanding as of June&#160;30, 2025 and December&#160;31, 2024, respectively 7 &#160; 6 &#160; Additional paid-in capital 588,699 &#160; 489,409 &#160; Accumulated deficit ( 353,456 ) ( 356,976 ) Nutex Health Inc. equity 235,250 &#160; 132,439 &#160; Noncontrolling interests 101,627 &#160; 56,094 &#160; Total equity 33 ||SECT|| ares in the calculation should not be adjusted for the 2024 Reverse Stock Splits. We disagree with these allegations but cannot predict the ",
+        "accession": "0001628280-25-052957",
+        "filing_date": "2025-11-18"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "siness, financial condition or future results. &#8203; 34 Table of Contents Item&#160;2.&#160;Unregistered Sales of Equity Securities and Use of Proceeds &#160; Recent Sales of Unregistered Securities; Use of Proceeds from Registered Securities &#8203; Not applicable. &#8203; Item&#160;3.&#160;Defaults upon Senior Securities &#160; Not Applicable &#8203; Item&#160;4.&#160; &#160;&#160; Mine Safety Disclosures &#160; Not Applicable &#160; Item&#160;5.&#160; &#160;&#160; Other Information &#8203; Trading Arrangements &#8203; During the three months ended March&#160;31,&#160;2025, none of the Com",
+        "accession": "0001479681-25-000022",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 31, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "re the primary beneficiary. &#8203; The hospital division includes our healthcare billing and collections organization and hospital entities. In addition, we have financial and operating relationships with multiple professional entities (the &#8220;Physician LLCs&#8221;) and real estate entities (the &#8220;Real Estate Entities&#8221;). The Physician LLCs employ the doctors who work in our hospitals. These entities are consolidated by the Company as VIEs becaus ||SECT|| nly reasonable, not absolute, assurance that the objectives of the control system are met. Because of its inherent limitation",
+        "accession": "0001479681-25-000006",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "score": 30.0,
+    "reasons": [
+      "neutral terminate (type unknown): an insider (director) 60,516sh [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 6
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NUWE": {
+    "ticker": "NUWE",
+    "quarters_scanned": [
+      {
+        "accession": "0001140361-26-021649",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001140361-26-009080",
+        "filing_date": "2026-03-11"
+      },
+      {
+        "accession": "0001140361-25-041651",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0001140361-25-031209",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001140361-25-018676",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "accession": "0001140361-25-008124",
+        "filing_date": "2025-03-11"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 31, 2024",
+          "March 31, 2026",
+          "March 31, 2026",
+          "February 1, 2012"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "&#160; &#160; Common Stock &#160; &#160; Additional Paid in Capital &#160; &#160; Accumulated Other Comprehensive Income &#160; &#160; Accumulated Deficit &#160; &#160; Stockholders&#8217; Equity &#160; Balance December 31, 2024 &#160; &#160; 104,142 &#160; &#160; $ &#8212; &#160; &#160; $ 305,366 &#160; &#160; $ ( 47 )&#160; &#160; $ ( 298,791 )&#160; &#160; $ 6,528 &#160; Net loss &#160; &#160; &#8212; &#160; &#160; &#160; &#8212; &#160; &#160; &#160; &#8212; &#160; &#160; &#160; &#8212; &#160; &#160; &#160; ( 3,014 )&#160; &#16 ||SECT|| Inc. See Note 10 &#8211; Asset Acquisitions for additi",
+        "accession": "0001140361-26-021649",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": 61444,
+        "dates_near": [
+          "December 31, 2025",
+          "December 31, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "c offering of 61,444 shares of its Common Stock, pre-funded warrants to purchase 335,381 shares of Common Stock (all pre-funded warrants were exercised on this date), in each case with accompanying Series A Warrants to purchase up to 1,190,480 shares of Common Stock, Series B Warrants to purchase up to 396,829 shares of Common Stock and Placement Warrants to purchase up to 11,903 shares of Common Stock with gross proceeds of approximately $5.0 million, which included the full exercise of the underwriter&#8217;s over-allotment option to purchase additional shares and warrants. The public offeri",
+        "accession": "0001140361-26-009080",
+        "filing_date": "2026-03-11"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "September 30, 2025",
+          "September 30, 2025",
+          "September 30, 2025",
+          "February 1, 2012"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "&#160; &#160; &#160; &#160; &#160; Weighted average shares outstanding &#8211; basic and diluted &#160; &#160; 836,386 &#160; &#160; &#160; 204,710 &#160; &#160; &#160; 382,123 &#160; &#160; &#160; 68,237 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Other comprehensive loss: &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Net income (loss) &#160; $ 468 &#160; &#160; $ 2,358 &#160; &#160; ||SECT|| igate the impact of potential supply shortages, a futur",
+        "accession": "0001140361-25-041651",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "June 30, 2025",
+          "June 30, 2025",
+          "June 30, 2025",
+          "February 1, 2012"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "7,725 )&#160; &#160; $ ( 15,567 )&#160; &#160; $ ( 12,055 )&#160; Foreign currency translation adjustments $ ( 5 )&#160; &#160; $ ( 2 )&#160; &#160; $ ( 7 )&#160; &#160; $ ( 11 )&#160; Total comprehensive loss $ ( 12,558 )&#160; &#160; $ ( 7,727 )&#160; &#160; ( 15,574 )&#160; &#160; $ ( 12,066 )&#160; &#160; See notes to the condensed consolidated financial statements. &#160; 4 Table of Contents &#160; NUWELLIS, INC. AND SUBSIDIARY Condensed Consolidated Statements of Stockholders&#8217; Equity(Deficit) (Unaudited) (in thousands, ||SECT|| supply shortages, a future shortage may have a negativ",
+        "accession": "0001140361-25-031209",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 31, 2025",
+          "March 31, 2025",
+          "February 1, 2012"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "60; &#8212; &#160; &#160; &#160; 158 &#160; &#160; &#160; &#8212; &#160; &#160; &#160; &#8212; &#160; &#160; &#160; 158 &#160; Issuance of common stock from conversion of series J convertible preferred stock &#160; &#160; 31,971 &#160; &#160; &#160; &#8212; &#160; &#160; &#160; 1,535 &#160; &#160; &#160; &#8212; &#160; &#160; &#160; &#8212; &#160; &#160; &#160; 1,535 &#160; Series J convertible preferred stock deemed dividend &#160; &#160; &#8212; &#160; &#160; &#160; &#8212; &#160; &#160; &#160; 541 &#160; &#160; &#160; &#8212; & ||SECT|| ioning end-user product availability. While we have ta",
+        "accession": "0001140361-25-018676",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": 250,
+        "dates_near": [
+          "July 18, 2024",
+          "December 31, 2024",
+          "December 31, 2024",
+          "March 7, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "securities of companies that have had one or more reverse stock splits with a cumulative ratio of one for 250 or more shares over the prior two-year period. Under the new rules, if a company falls out of compliance with the $1.00 minimum bid price after completing reverse stock splits over the immediately preceding two years that cumulatively result in a ratio one for 250 shares, the company will not be able to avail itself of any compliance periods and Nasdaq will instead require the issuance of a Staff delisting determination, which is appealable to a hearings panel. Our ability to remain li",
+        "accession": "0001140361-25-008124",
+        "filing_date": "2025-03-11"
+      }
+    ],
+    "score": 17.0,
+    "reasons": [
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "BEARISH terminate buy: an insider (director) 61,444sh [-8]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) 250sh [+5]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 1,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 5
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NVEC": {
+    "ticker": "NVEC",
+    "quarters_scanned": [
+      {
+        "accession": "0001376474-26-000348",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001376474-26-000059",
+        "filing_date": "2026-01-21"
+      },
+      {
+        "accession": "0001376474-25-000857",
+        "filing_date": "2025-10-22"
+      },
+      {
+        "accession": "0001376474-25-000658",
+        "filing_date": "2025-07-23"
+      },
+      {
+        "accession": "0001376474-25-000437",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001376474-25-000101",
+        "filing_date": "2025-01-22"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NVNO": {
+    "ticker": "NVNO",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-021490",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001493152-26-012928",
+        "filing_date": "2026-03-26"
+      },
+      {
+        "accession": "0001493152-25-020215",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0001493152-25-011521",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0001641172-25-007908",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0001493152-25-008581",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NVRI": {
+    "ticker": "NVRI",
+    "quarters_scanned": [
+      {
+        "accession": "0002104052-26-000081",
+        "filing_date": "2026-06-08"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NVT": {
+    "ticker": "NVT",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-029370",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001628280-26-008608",
+        "filing_date": "2026-02-17"
+      },
+      {
+        "accession": "0001628280-25-047847",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001628280-25-037259",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001720635-25-000032",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0001720635-25-000018",
+        "filing_date": "2025-02-18"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NWBI": {
+    "ticker": "NWBI",
+    "quarters_scanned": [
+      {
+        "accession": "0001471265-26-000017",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001471265-26-000008",
+        "filing_date": "2026-02-25"
+      },
+      {
+        "accession": "0001471265-25-000161",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "accession": "0001471265-25-000137",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001471265-25-000077",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001471265-25-000016",
+        "filing_date": "2025-02-25"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NWGL": {
+    "ticker": "NWGL",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-021864",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001493152-26-019023",
+        "filing_date": "2026-04-27"
+      },
+      {
+        "accession": "0001493152-26-000032",
+        "filing_date": "2026-01-02"
+      },
+      {
+        "accession": "0001493152-25-029261",
+        "filing_date": "2025-12-29"
+      },
+      {
+        "accession": "0001493152-25-027922",
+        "filing_date": "2025-12-16"
+      },
+      {
+        "accession": "0001641172-25-008047",
+        "filing_date": "2025-05-01"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NWTG": {
+    "ticker": "NWTG",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-023127",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001493152-26-014164",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001493152-25-022293",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001641172-25-023708",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001641172-25-010572",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001641172-25-002840",
+        "filing_date": "2025-04-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NXDR": {
+    "ticker": "NXDR",
+    "quarters_scanned": [
+      {
+        "accession": "0001846069-26-000098",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001846069-26-000023",
+        "filing_date": "2026-02-18"
+      },
+      {
+        "accession": "0001846069-25-000136",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "accession": "0001846069-25-000103",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0001846069-25-000061",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001846069-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "June 30, 2028"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": ", result in a potential loss of neighbors and engagement, and adversely affect our business, operating results, and financial condition. &#8226; If we fail to scale our business effectively, our business, operating resu ||SECT|| ;s Class A common stock, with the authorization to expire on June 30, 2028. The timing of any repurchases will depend on market conditions and other investment opportunities, and will be made at the Company&#8217;s discretion. The program does not obligate us to repurchase any dollar amount or number of shares, and the program may be extended, modified, suspended, or d",
+        "accession": "0001846069-26-000098",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "illion. See &#8220; Non-GAAP Financial Measure &#8221; below for more information and for a reconciliation of net loss, the most directly comparable financial measure calculated and presented in accordance with U.S. generally accepted account ||SECT|| ons, by collusion of two or more people, or by management override of the controls. Also, projections of any evaluation of effectiveness to future periods are subject to the risk that controls may become inadequate because of changes in conditions or that the degree of compliance with the policies or procedures may deteriorate. Because of the inh",
+        "accession": "0001846069-26-000023",
+        "filing_date": "2026-02-18"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Sophia Schwartz",
+        "role": "Chief Legal Officer",
+        "shares": 633956,
+        "dates_near": [
+          "June 30, 2024",
+          "February 21, 2024",
+          "March 31, 2026",
+          "September 4, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "&#8226; We have a limited operating history at the current scale of our business and are still scaling up our monetization efforts, which makes it difficult to evaluate our current business and future prospects, and there is no assurance we wi ||SECT|| n stock, with the authorization to expire on June 30, 2024. On February 21, 2024, our Board of Directors authorized and approved an increase of $150.0 million to the Share Repurchase Program and extended the expiration date to March 31, 2026. (2) Average price paid per share includes costs associated with the repurchases, excluding the 1% excise",
+        "accession": "0001846069-25-000136",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Craig Lisowski",
+        "role": "President",
+        "shares": 892857,
+        "dates_near": [
+          "September 4, 2025",
+          "January 2, 2026",
+          "December 31, 2026",
+          "September 4, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ading window in accordance with our Insider Trading Policy. On September 4, 2025 , Sophia Schwartz , our Chief Legal Officer and Secretary , entered into a Rule 10b5-1 Plan (the &#8220;Schwartz 2026 Plan&#8221;) providing for the potential sale of up to 633,956 shares of Class A common stock owned by Ms. Schwartz, including upon the vesting and settlement of RSUs for shares of Class A common stock, so long as the market price of the Class A common stock satisfied certain threshold prices specified in the Schwartz 2026 Plan, between January 2, 2026 and December 31, 2026 , or earlier, upon the c",
+        "accession": "0001846069-25-000136",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Sophia Schwartz",
+        "role": "General Counsel",
+        "shares": 659502,
+        "dates_near": [
+          "December 31, 2024",
+          "December 6, 2024",
+          "March 7, 2025",
+          "December 31, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rease of 13% compared to 2023. &#8226; Total costs and expenses were $368.9 million, a decrease of 6% compared to 2023, including $25.6 million of restructuring charges. &#8226; Net loss decreased 34% to $98.1 million in 2024, compared to $147.8 million in 2023. &#8226; Adjus ||SECT|| ons, by collusion of two or more people, or by management override of the controls. Also, projections of any evaluation of effectiveness to future periods are subject to the risk that controls may become inadequate because of changes in conditions or that the degree of compliance with the policies or procedures m",
+        "accession": "0001846069-25-000017",
+        "filing_date": "2025-02-27"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Sophia Schwartz",
+        "role": "General Counsel",
+        "shares": 659502,
+        "dates_near": [
+          "June 30, 2024",
+          "February 21, 2024",
+          "March 31, 2026",
+          "March 7, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "6; We have a limited operating history at the current scale of our business and are still scaling up our monetization efforts, which makes it difficult to evaluate our current business and future prospects, and there is no assurance we wi ||SECT|| n stock, with the authorization to expire on June 30, 2024. On February 21, 2024, our Board of Directors authorized and approved an increase of $150.0 million to the Share Repurchase Program and extended the expiration date to March 31, 2026. (2) Average price paid per share includes costs associated with the repurchases, excluding the 1% excise tax ",
+        "accession": "0001846069-25-000103",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 7, 2025",
+          "December 31, 2025",
+          "December 31, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "Class A common stock owned by Ms. Schwartz, including upon the vesting and settlement of RSUs for shares of Class A common stock, so long as the market price of the Class A common stock satisfies certain threshold prices specified in the Schwartz Plan, between an estimated start date of March 7, 2025 and December 31, 2025 , or earlier, upon the completion of all transactions subject to the trading arrangements specified in the Schwartz Plan or the occurrence of certain events set forth therein. The Schwartz Plan provides for the sale of shares of Class A common stock to be received upon the fu",
+        "accession": "0001846069-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "score": -26.0,
+    "reasons": [
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "BEARISH adopt sell: Sophia Schwartz (Chief Legal Officer) 633,956sh [-18]",
+      "BEARISH adopt sell: Craig Lisowski (President) 892,857sh [-18]",
+      "BEARISH adopt sell: Sophia Schwartz (General Counsel) 659,502sh [-18]",
+      "BULLISH terminate sell: an insider (director) [+18]"
+    ],
+    "counts": {
+      "term_sell": 1,
+      "term_buy": 0,
+      "adopt_sell": 3,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 3
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NXGL": {
+    "ticker": "NXGL",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-023207",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001493152-26-014377",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001493152-25-021738",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0001641172-25-023236",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001641172-25-009988",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "accession": "0001641172-25-000937",
+        "filing_date": "2025-03-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated trading plan",
+        "plan_type": "sell",
+        "neo": "Adam R. Levy",
+        "role": "Chief Executive Officer",
+        "shares": 35515,
+        "dates_near": [
+          "June 30, 2025",
+          "June 30, 2025",
+          "June 30, 2025",
+          "June 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nture &#160; &#160; ( 25 ) &#160; &#160; 94 &#160; &#160; &#160; ( 59 ) &#160; &#160; 146 &#160; Net loss attributable to NexGel stockholders &#160; $ ( 665 ) &#160; $ ( 885 ) &#160; $ ( 1,377 ) &#160; $ ( 1,738 ) Net loss per common share - basic &#160; $ ( 0.09 ) &#160; $ ( 0.14 ) &#160; $ ( 0.18 ) &#160; $ ( 0.28 ) Net loss per common share - diluted &#160; $ ( 0.09 ) &#160; $ ( 0.14 ) &#160; $ ( 0.18 ) &#160; $ ( 0.28 ) Weighted average shares used in computing net loss per common share - basic &#160; &#160; 7 ||SECT|| (a) Sales of Unregistered Securities during the six months ended June 3",
+        "modification_pair": true,
+        "accession": "0001641172-25-023236",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into a trading plan",
+        "plan_type": "sell",
+        "neo": "Adam R. Levy",
+        "role": "Chief Executive Officer",
+        "shares": 35515,
+        "dates_near": [
+          "June 30, 2025",
+          "June 30, 2025",
+          "June 30, 2025",
+          "June 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "share - basic &#160; $ ( 0.09 ) &#160; $ ( 0.14 ) &#160; $ ( 0.18 ) &#160; $ ( 0.28 ) Net loss per common share - diluted &#160; $ ( 0.09 ) &#160; $ ( 0.14 ) &#160; $ ( 0.18 ) &#160; $ ( 0.28 ) Weighted average shares used in computing net loss per common share - basic &#160; &#160; 7 ||SECT|| (a) Sales of Unregistered Securities during the six months ended June 30, 2025 &#160; The Company did not sell any unregistered securities during the six months ended June 30, 2025. &#160; (b) Issuer Repurchases of Securities during the six months ended June 30, 2025 &#160; The Company did not repurchase",
+        "modification_pair": true,
+        "accession": "0001641172-25-023236",
+        "filing_date": "2025-08-12"
+      }
+    ],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 2,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }
