@@ -80,6 +80,33 @@ def build_scored_from_cache() -> pd.DataFrame:
     return df
 
 
+def web_validated_sheet(df: pd.DataFrame):
+    """Lead synthesis sheet: web-research verdicts (data/web_verdicts.csv) joined
+    to the live quant scores/metrics, ordered KEEP -> SPECULATIVE -> REJECT, so
+    the workbook shows *why* a high-scoring screen name was kept or killed once
+    stress-tested against current public information."""
+    vpath = config.DATA_DIR / "web_verdicts.csv"
+    if not vpath.exists():
+        return None
+    v = pd.read_csv(vpath)
+    keep = [c for c in ["symbol", "name", "score", "enterpriseToEbitda",
+                        "forwardPE", "ret_12m"] if c in df.columns]
+    m = v.merge(df[keep], on="symbol", how="left")
+    try:
+        uni = pd.read_parquet(config.UNIVERSE_PATH)
+        m = m.merge(uni[["symbol", "country", "industry"]], on="symbol", how="left")
+    except (OSError, KeyError):
+        pass
+    order = {"KEEP": 0, "SPECULATIVE": 1, "REJECT": 2}
+    m["_o"] = m["verdict"].map(order).fillna(3)
+    m["rank"] = pd.to_numeric(m["rank"], errors="coerce")
+    m = m.sort_values(["_o", "rank", "score"],
+                      ascending=[True, True, False], na_position="last")
+    cols = ["verdict", "rank", "symbol", "name", "country", "industry", "score",
+            "enterpriseToEbitda", "forwardPE", "ret_12m", "reason"]
+    return m[[c for c in cols if c in m.columns]].round(3)
+
+
 def _fmt_sheet(writer, sheet, df, hdr, pct_fmt, f2_fmt):
     ws = writer.sheets[sheet]
     pct_cols = {"score", "behaviour_change", "reaction", "surprise_beat_rate", "rev_up_frac",
@@ -87,7 +114,9 @@ def _fmt_sheet(writer, sheet, df, hdr, pct_fmt, f2_fmt):
                 "gross_margin_delta", "ebitda_margin_slope"}
     for i, c in enumerate(df.columns):
         ws.write(0, i, c, hdr)
-        if c in ("name", "industry"):
+        if c == "reason":
+            ws.set_column(i, i, 95)
+        elif c in ("name", "industry"):
             ws.set_column(i, i, 28)
         elif c in pct_cols:
             ws.set_column(i, i, 12, pct_fmt)
@@ -123,6 +152,11 @@ def main():
     f2_fmt = wb.add_format({"num_format": "0.00"})
 
     written = []
+    wv = web_validated_sheet(df)
+    if wv is not None and not wv.empty:
+        wv.to_excel(writer, sheet_name="Web-Validated", index=False, startrow=1, header=False)
+        _fmt_sheet(writer, "Web-Validated", wv, hdr, pct_fmt, f2_fmt)
+        written.append(f"Web-Validated({len(wv)})")
     for name, title in SHEETS:
         fn = screens.SCREENS.get(name)
         if fn is None:
