@@ -42,7 +42,7 @@ from typing import Optional
 
 ROOT = Path("/home/user/cyclepapa")
 
-SCHEMA_VERSION = "v4-unified"
+SCHEMA_VERSION = "v5-144-buyback"
 
 # Signal noise: programmatic employee-share programs (TSM), placeholder
 # entries (NONE), non-tradeable identifiers (AXIA3 = futures token).
@@ -266,6 +266,32 @@ def cancel_10b5_1_score(cxl_row: dict) -> tuple[float, str, list[str]]:
 # Driver
 # ---------------------------------------------------------------------------
 
+def form144_score(f144_row: dict) -> tuple[float, list[str]]:
+    """Form 144 leg: bearish points for accelerating proposed-sale
+    activity. Already capped at -20 inside form144_scan.score_144;
+    re-cap here defensively."""
+    if not f144_row:
+        return 0.0, []
+    sc = float(f144_row.get("score") or 0)
+    if sc >= 0:
+        return 0.0, []
+    return max(-20.0, sc), list(f144_row.get("reasons") or [])
+
+
+def buyback_verify_score(bb_row: dict) -> tuple[float, list[str]]:
+    """Buyback-verification leg: rewards REAL share-count shrinkage,
+    penalizes says-buyback-does-dilution divergence."""
+    if not bb_row:
+        return 0.0, []
+    pts = float(bb_row.get("points") or 0)
+    status = bb_row.get("status")
+    if pts == 0:
+        return 0.0, []
+    chg = (bb_row.get("share_change") or {}).get("change_pct")
+    chg_s = f" ({chg:+.1f}% shares)" if chg is not None else ""
+    return pts, [f"buyback {status}{chg_s}"]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default=str(ROOT / "unified_composite.csv"))
@@ -284,6 +310,10 @@ def main() -> int:
     sc13d_p = ROOT / "sc13d_recent.json"
     sc13d = json.loads(sc13d_p.read_text()) if sc13d_p.exists() else {}
     sc13d_set = set(sc13d.keys()) if isinstance(sc13d, dict) else set()
+    f144_p = ROOT / "form144_scan.json"
+    f144 = json.loads(f144_p.read_text()) if f144_p.exists() else {}
+    bb_p = ROOT / "buyback_verify.json"
+    bb = json.loads(bb_p.read_text()) if bb_p.exists() else {}
 
     all_tk = (set(f4.keys()) | set(fz.keys()) | set(forensic.keys())
               | set(step.keys()) | set(cxl.keys()) | sc13d_set
@@ -300,6 +330,8 @@ def main() -> int:
         psu_sc, psu_reasons = psu_forensic_score(
             forensic.get(tk) or {}, fz.get(tk) or {})
         cxl_sc, cxl_status, cxl_reasons = cancel_10b5_1_score(cxl.get(tk) or {})
+        f144_sc, f144_reasons = form144_score(f144.get(tk) or {})
+        bb_sc, bb_reasons = buyback_verify_score(bb.get(tk) or {})
 
         sc13d_sc = 6.0 if tk in sc13d_set else 0.0
         sc13d_reasons = ["13D filed"] if tk in sc13d_set else []
@@ -308,16 +340,19 @@ def main() -> int:
             cxl_status == "no_data" and (
                 cxl.get(tk, {}).get("data_available") is False))
 
-        # Composite. 10b5-1 is signed; everything else additive.
-        composite = (ins_sc + val_sc + st_sc + psu_sc + sc13d_sc + cxl_sc)
+        # Composite. 10b5-1 / Form 144 / buyback-verify are signed;
+        # everything else additive.
+        composite = (ins_sc + val_sc + st_sc + psu_sc + sc13d_sc
+                     + cxl_sc + f144_sc + bb_sc)
 
-        if composite < args.min_score and cxl_sc == 0:
+        if composite < args.min_score and cxl_sc == 0 and f144_sc == 0:
             continue
 
         # Format
         all_reasons = (
             ins_reasons + val_reasons + st_reasons +
-            psu_reasons + sc13d_reasons + cxl_reasons
+            psu_reasons + sc13d_reasons + cxl_reasons +
+            f144_reasons + bb_reasons
         )
         rows.append({
             "ticker": tk,
@@ -338,6 +373,8 @@ def main() -> int:
             "psu_forensic_score": round(psu_sc, 1),
             "sc13d_score": round(sc13d_sc, 1),
             "cancel_10b5_1_score": round(cxl_sc, 1),
+            "form144_score": round(f144_sc, 1),
+            "buyback_verify_score": round(bb_sc, 1),
             "cluster_size": ins.get("cluster", 0),
             "ceo_bought": ins.get("ceo"),
             "cfo_bought": ins.get("cfo"),

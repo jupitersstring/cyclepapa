@@ -8,4 +8,7 @@ echo
 echo "=== psu_pipeline ==="
 python3 test_psu_pipeline.py
 echo
+echo "=== new_legs (form144, buyback, state) ==="
+python3 test_new_legs.py
+echo
 echo "All test suites passed."

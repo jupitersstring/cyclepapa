@@ -1,0 +1,5005 @@
+{
+  "AAON": {
+    "ticker": "AAON",
+    "auth_musd": 30.0,
+    "auth_date": "2026-03-02",
+    "share_change": {
+      "shares_start": 82816674.0,
+      "shares_end": 81911710.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 81911710.0,
+      "change_pct": -1.09,
+      "span_days": 193,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "AAPL": {
+    "ticker": "AAPL",
+    "auth_musd": 100000.0,
+    "auth_date": "2025-10-31",
+    "share_change": {
+      "shares_start": 14840390000.0,
+      "shares_end": 14687356000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 14687356000.0,
+      "change_pct": -1.03,
+      "span_days": 186,
+      "first_date": "2025-10-31",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ACET": {
+    "ticker": "ACET",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 153254779.0,
+      "shares_end": 9348236.0,
+      "split_factor": 0.0625,
+      "shares_end_adj": 149571776.0,
+      "change_pct": -2.4,
+      "span_days": 198,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-14",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "ACM": {
+    "ticker": "ACM",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 132446101.0,
+      "shares_end": 128522920.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 128522920.0,
+      "change_pct": -2.96,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "ACON": {
+    "ticker": "ACON",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 582371.0,
+      "shares_end": 2462250.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 2462250.0,
+      "change_pct": 322.8,
+      "span_days": 186,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-29",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "ADBE": {
+    "ticker": "ADBE",
+    "auth_musd": 25000.0,
+    "auth_date": "2026-04-21",
+    "share_change": {
+      "shares_start": 418600000.0,
+      "shares_end": 404200000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 404200000.0,
+      "change_pct": -3.44,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ADT": {
+    "ticker": "ADT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 820080630.0,
+      "shares_end": 760551352.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 760551352.0,
+      "change_pct": -7.26,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "ADV": {
+    "ticker": "ADV",
+    "auth_musd": 100.0,
+    "auth_date": "2026-03-03",
+    "share_change": {
+      "shares_start": 325946871.0,
+      "shares_end": 13295280.0,
+      "split_factor": 0.04,
+      "shares_end_adj": 332382000.0,
+      "change_pct": 1.97,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "AGBK": {
+    "ticker": "AGBK",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 159624672.0,
+      "shares_end": 159930070.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 159930070.0,
+      "change_pct": 0.19,
+      "span_days": 12,
+      "first_date": "2026-02-12",
+      "last_date": "2026-02-24",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "AGIG": {
+    "ticker": "AGIG",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 36918281.0,
+      "shares_end": 44022821.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 44022821.0,
+      "change_pct": 19.24,
+      "span_days": 155,
+      "first_date": "2025-12-10",
+      "last_date": "2026-05-15",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "AGX": {
+    "ticker": "AGX",
+    "auth_musd": 150.0,
+    "auth_date": "2026-04-21",
+    "share_change": {
+      "shares_start": 13884615.0,
+      "shares_end": 14019247.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 14019247.0,
+      "change_pct": 0.97,
+      "span_days": 222,
+      "first_date": "2025-10-27",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "AJG": {
+    "ticker": "AJG",
+    "auth_musd": 1500.0,
+    "auth_date": "2026-02-17",
+    "share_change": {
+      "shares_start": 256363000.0,
+      "shares_end": 256942000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 256942000.0,
+      "change_pct": 0.23,
+      "span_days": 189,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ALEC": {
+    "ticker": "ALEC",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 101212329.0,
+      "shares_end": 111025187.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 111025187.0,
+      "change_pct": 9.7,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "ALIT": {
+    "ticker": "ALIT",
+    "auth_musd": 75.0,
+    "auth_date": "2026-02-24",
+    "share_change": {
+      "shares_start": 549490093.0,
+      "shares_end": 526847029.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 526847029.0,
+      "change_pct": -4.12,
+      "span_days": 186,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-29",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ALKT": {
+    "ticker": "ALKT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 104083138.0,
+      "shares_end": 107019174.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 107019174.0,
+      "change_pct": 2.82,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "ALL": {
+    "ticker": "ALL",
+    "auth_musd": 30.0,
+    "auth_date": "2026-04-10",
+    "share_change": {
+      "shares_start": 263505334.0,
+      "shares_end": 257420930.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 257420930.0,
+      "change_pct": -2.31,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "AMAT": {
+    "ticker": "AMAT",
+    "auth_musd": 10000.0,
+    "auth_date": "2025-12-12",
+    "share_change": {
+      "shares_start": 796642427.0,
+      "shares_end": 793959430.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 793959430.0,
+      "change_pct": -0.34,
+      "span_days": 210,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-23",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "AMCX": {
+    "ticker": "AMCX",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-11",
+    "share_change": {
+      "shares_start": 43383813.0,
+      "shares_end": 43927712.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 43927712.0,
+      "change_pct": 1.25,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "AMD": {
+    "ticker": "AMD",
+    "auth_musd": 14000.0,
+    "auth_date": "2026-02-04",
+    "share_change": {
+      "shares_start": 1622843689.0,
+      "shares_end": 1630600639.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1630600639.0,
+      "change_pct": 0.48,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "AME": {
+    "ticker": "AME",
+    "auth_musd": 443.0,
+    "auth_date": "2026-03-11",
+    "share_change": {
+      "shares_start": 230953960.0,
+      "shares_end": 229203002.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 229203002.0,
+      "change_pct": -0.76,
+      "span_days": 189,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "AMH": {
+    "ticker": "AMH",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 422287343.0,
+      "shares_end": 360595592.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 360595592.0,
+      "change_pct": -14.61,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "AMT": {
+    "ticker": "AMT",
+    "auth_musd": 2000.0,
+    "auth_date": "2026-02-24",
+    "share_change": {
+      "shares_start": 472668922.0,
+      "shares_end": 465893069.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 465893069.0,
+      "change_pct": -1.43,
+      "span_days": 185,
+      "first_date": "2025-10-27",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ANF": {
+    "ticker": "ANF",
+    "auth_musd": 500.0,
+    "auth_date": "2026-03-26",
+    "share_change": {
+      "shares_start": 47069818.0,
+      "shares_end": 44431710.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 44431710.0,
+      "change_pct": -5.6,
+      "span_days": 222,
+      "first_date": "2025-10-30",
+      "last_date": "2026-06-09",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "AON": {
+    "ticker": "AON",
+    "auth_musd": 5000.0,
+    "auth_date": "2026-02-13",
+    "share_change": {
+      "shares_start": 215626597.0,
+      "shares_end": 213576949.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 213576949.0,
+      "change_pct": -0.95,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "APLE": {
+    "ticker": "APLE",
+    "auth_musd": 262.6,
+    "auth_date": "2026-02-23",
+    "share_change": {
+      "shares_start": 236989845.0,
+      "shares_end": 236067554.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 236067554.0,
+      "change_pct": -0.39,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "APO": {
+    "ticker": "APO",
+    "auth_musd": 4000.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 572026735.0,
+      "shares_end": 576517513.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 576517513.0,
+      "change_pct": 0.79,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "APP": {
+    "ticker": "APP",
+    "auth_musd": 3200.0,
+    "auth_date": "2026-04-21",
+    "share_change": {
+      "shares_start": 338249914.0,
+      "shares_end": 335939521.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 335939521.0,
+      "change_pct": -0.68,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "APT": {
+    "ticker": "APT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 10472902.0,
+      "shares_end": 10216932.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 10216932.0,
+      "change_pct": -2.44,
+      "span_days": 185,
+      "first_date": "2025-11-01",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "AQST": {
+    "ticker": "AQST",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 120973635.0,
+      "shares_end": 125450119.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 125450119.0,
+      "change_pct": 3.7,
+      "span_days": 201,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-14",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "ARES": {
+    "ticker": "ARES",
+    "auth_musd": 750.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 326706973.0,
+      "shares_end": 225518332.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 225518332.0,
+      "change_pct": -30.97,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "AUPH": {
+    "ticker": "AUPH",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 131629546.0,
+      "shares_end": 128601671.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 128601671.0,
+      "change_pct": -2.3,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "AVGO": {
+    "ticker": "AVGO",
+    "auth_musd": 20000.0,
+    "auth_date": "2025-12-18",
+    "share_change": {
+      "shares_start": 4722365022.0,
+      "shares_end": 4757580198.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 4757580198.0,
+      "change_pct": 0.75,
+      "span_days": 228,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-10",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "BAM": {
+    "ticker": "BAM",
+    "auth_musd": 2500.0,
+    "auth_date": "2026-03-02",
+    "share_change": {
+      "shares_start": 1615018201.0,
+      "shares_end": 1596786435.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1596786435.0,
+      "change_pct": -1.13,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "BB": {
+    "ticker": "BB",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 590361084.0,
+      "shares_end": 586061407.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 586061407.0,
+      "change_pct": -0.73,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "BBY": {
+    "ticker": "BBY",
+    "auth_musd": 3000.0,
+    "auth_date": "2026-03-18",
+    "share_change": {
+      "shares_start": 210101265.0,
+      "shares_end": 210767126.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 210767126.0,
+      "change_pct": 0.32,
+      "span_days": 227,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-09",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "BCO": {
+    "ticker": "BCO",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 41878976.0,
+      "shares_end": 41181028.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 41181028.0,
+      "change_pct": -1.67,
+      "span_days": 213,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-26",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "BEN": {
+    "ticker": "BEN",
+    "auth_musd": 400.0,
+    "auth_date": "2025-12-22",
+    "share_change": {
+      "shares_start": 519195475.0,
+      "shares_end": 519637162.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 519637162.0,
+      "change_pct": 0.09,
+      "span_days": 184,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "BETR": {
+    "ticker": "BETR",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 15350717.0,
+      "shares_end": 18869823.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 18869823.0,
+      "change_pct": 22.92,
+      "span_days": 203,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-16",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "BF-B": {
+    "ticker": "BF-B",
+    "auth_musd": 400.0,
+    "auth_date": "2025-10-02",
+    "share_change": {
+      "shares_start": 470634603.0,
+      "shares_end": 458703629.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 458703629.0,
+      "change_pct": -2.54,
+      "span_days": 136,
+      "first_date": "2025-10-25",
+      "last_date": "2026-03-10",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "BHF": {
+    "ticker": "BHF",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 57152371.0,
+      "shares_end": 57445785.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 57445785.0,
+      "change_pct": 0.51,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "BKNG": {
+    "ticker": "BKNG",
+    "auth_musd": 5900.0,
+    "auth_date": "2026-04-21",
+    "share_change": {
+      "shares_start": 32409885.0,
+      "shares_end": 774878436.0,
+      "split_factor": 25.0,
+      "shares_end_adj": 30995137.44,
+      "change_pct": -4.37,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "BLK": {
+    "ticker": "BLK",
+    "auth_musd": 1600.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 155829360.0,
+      "shares_end": 155233989.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 155233989.0,
+      "change_pct": -0.38,
+      "span_days": 221,
+      "first_date": "2025-10-27",
+      "last_date": "2026-06-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "BLMN": {
+    "ticker": "BLMN",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 85068422.0,
+      "shares_end": 85614287.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 85614287.0,
+      "change_pct": 0.64,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "BRBS": {
+    "ticker": "BRBS",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 91636533.0,
+      "shares_end": 89911711.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 89911711.0,
+      "change_pct": -1.88,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "BRO": {
+    "ticker": "BRO",
+    "auth_musd": 848.0,
+    "auth_date": "2026-02-12",
+    "share_change": {
+      "shares_start": 329842812.0,
+      "shares_end": 338947841.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 338947841.0,
+      "change_pct": 2.76,
+      "span_days": 186,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-29",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "CAT": {
+    "ticker": "CAT",
+    "auth_musd": 10000.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 468478923.0,
+      "shares_end": 460591983.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 460591983.0,
+      "change_pct": -1.68,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CB": {
+    "ticker": "CB",
+    "auth_musd": 2100.0,
+    "auth_date": "2026-02-27",
+    "share_change": {
+      "shares_start": 394324438.0,
+      "shares_end": 387860106.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 387860106.0,
+      "change_pct": -1.64,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CBL": {
+    "ticker": "CBL",
+    "auth_musd": 1190.0,
+    "auth_date": "2026-04-22",
+    "share_change": {
+      "shares_start": 30933176.0,
+      "shares_end": 30944758.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 30944758.0,
+      "change_pct": 0.04,
+      "span_days": 195,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "CCZ": {
+    "ticker": "CCZ",
+    "auth_musd": 4900.0,
+    "auth_date": "2026-04-24",
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "CDE": {
+    "ticker": "CDE",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 642715694.0,
+      "shares_end": 1030534551.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1030534551.0,
+      "change_pct": 60.34,
+      "span_days": 207,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-20",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "CDNS": {
+    "ticker": "CDNS",
+    "auth_musd": 1500.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 272201000.0,
+      "shares_end": 275816000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 275816000.0,
+      "change_pct": 1.33,
+      "span_days": 186,
+      "first_date": "2025-10-31",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "CFBK": {
+    "ticker": "CFBK",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 6367075.0,
+      "shares_end": 6498114.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 6498114.0,
+      "change_pct": 2.06,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "CHDN": {
+    "ticker": "CHDN",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 71578970.0,
+      "shares_end": 69696908.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 69696908.0,
+      "change_pct": -2.63,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CHH": {
+    "ticker": "CHH",
+    "auth_musd": 1.0,
+    "auth_date": "2026-04-22",
+    "share_change": {
+      "shares_start": 46596687.0,
+      "shares_end": 45495493.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 45495493.0,
+      "change_pct": -2.36,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CHTR": {
+    "ticker": "CHTR",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 136590985.0,
+      "shares_end": 141178370.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 141178370.0,
+      "change_pct": 3.36,
+      "span_days": 222,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-04",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "CICB": {
+    "ticker": "CICB",
+    "auth_musd": 50.0,
+    "auth_date": "2026-04-30",
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "CIFR": {
+    "ticker": "CIFR",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 393286007.0,
+      "shares_end": 409049197.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 409049197.0,
+      "change_pct": 4.01,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "CINF": {
+    "ticker": "CINF",
+    "auth_musd": 730.0,
+    "auth_date": "2026-03-18",
+    "share_change": {
+      "shares_start": 156376422.0,
+      "shares_end": 154686742.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 154686742.0,
+      "change_pct": -1.08,
+      "span_days": 186,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-29",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "CMG": {
+    "ticker": "CMG",
+    "auth_musd": 2300.0,
+    "auth_date": "2025-12-08",
+    "share_change": {
+      "shares_start": 1340885000.0,
+      "shares_end": 1282734000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1282734000.0,
+      "change_pct": -4.34,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CMLSQ": {
+    "ticker": "CMLSQ",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 17440084.0,
+      "shares_end": 17668032.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 17668032.0,
+      "change_pct": 1.31,
+      "span_days": 36,
+      "first_date": "2026-03-10",
+      "last_date": "2026-04-15",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "COLM": {
+    "ticker": "COLM",
+    "auth_musd": 66.0,
+    "auth_date": "2026-04-24",
+    "share_change": {
+      "shares_start": 54770067.0,
+      "shares_end": 51140792.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 51140792.0,
+      "change_pct": -6.63,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "COTY": {
+    "ticker": "COTY",
+    "auth_musd": 294.0,
+    "auth_date": "2025-08-21",
+    "share_change": {
+      "shares_start": 873857477.0,
+      "shares_end": 880466438.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 880466438.0,
+      "change_pct": 0.76,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "CPT": {
+    "ticker": "CPT",
+    "auth_musd": 600.0,
+    "auth_date": "2026-02-12",
+    "share_change": {
+      "shares_start": 106852727.0,
+      "shares_end": 99090596.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 99090596.0,
+      "change_pct": -7.26,
+      "span_days": 189,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CRM": {
+    "ticker": "CRM",
+    "auth_musd": 25000.0,
+    "auth_date": "2026-04-16",
+    "share_change": {
+      "shares_start": 952000000.0,
+      "shares_end": 819000000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 819000000.0,
+      "change_pct": -13.97,
+      "span_days": 216,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-29",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CRNX": {
+    "ticker": "CRNX",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 94175994.0,
+      "shares_end": 105440208.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 105440208.0,
+      "change_pct": 11.96,
+      "span_days": 193,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "CSGP": {
+    "ticker": "CSGP",
+    "auth_musd": 3000.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 423650362.0,
+      "shares_end": 408355715.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 408355715.0,
+      "change_pct": -3.61,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "CTAS": {
+    "ticker": "CTAS",
+    "auth_musd": 1000.0,
+    "auth_date": "2025-07-28",
+    "share_change": {
+      "shares_start": 401866678.0,
+      "shares_end": 400136881.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 400136881.0,
+      "change_pct": -0.43,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "CURI": {
+    "ticker": "CURI",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 57929733.0,
+      "shares_end": 59287600.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 59287600.0,
+      "change_pct": 2.34,
+      "span_days": 171,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-14",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "DIS": {
+    "ticker": "DIS",
+    "auth_musd": 7000.0,
+    "auth_date": "2026-01-22",
+    "share_change": {
+      "shares_start": 1797933833.0,
+      "shares_end": 1736511424.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1736511424.0,
+      "change_pct": -3.42,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "DLTR": {
+    "ticker": "DLTR",
+    "auth_musd": 2500.0,
+    "auth_date": "2026-03-16",
+    "share_change": {
+      "shares_start": 203967842.0,
+      "shares_end": 192174588.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 192174588.0,
+      "change_pct": -5.78,
+      "span_days": 215,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-28",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "DOC": {
+    "ticker": "DOC",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-03",
+    "share_change": {
+      "shares_start": 694946444.0,
+      "shares_end": 689419702.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 689419702.0,
+      "change_pct": -0.8,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "DOV": {
+    "ticker": "DOV",
+    "auth_musd": 500.0,
+    "auth_date": "2026-03-24",
+    "share_change": {
+      "shares_start": 137153223.0,
+      "shares_end": 134661414.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 134661414.0,
+      "change_pct": -1.82,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "DPZ": {
+    "ticker": "DPZ",
+    "auth_musd": 236.9,
+    "auth_date": "2026-02-23",
+    "share_change": {
+      "shares_start": 33786218.0,
+      "shares_end": 33261870.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 33261870.0,
+      "change_pct": -1.55,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "DRI": {
+    "ticker": "DRI",
+    "auth_musd": 1000.0,
+    "auth_date": "2025-07-18",
+    "share_change": {
+      "shares_start": 116313762.0,
+      "shares_end": 114535003.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 114535003.0,
+      "change_pct": -1.53,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "DT": {
+    "ticker": "DT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 301506242.0,
+      "shares_end": 291475733.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 291475733.0,
+      "change_pct": -3.33,
+      "span_days": 204,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-21",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "DVA": {
+    "ticker": "DVA",
+    "auth_musd": 485.0,
+    "auth_date": "2026-04-22",
+    "share_change": {
+      "shares_start": 70600000.0,
+      "shares_end": 64185000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 64185000.0,
+      "change_pct": -9.09,
+      "span_days": 187,
+      "first_date": "2025-10-31",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "DXPE": {
+    "ticker": "DXPE",
+    "auth_musd": 78.7,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 15694084.0,
+      "shares_end": 15505312.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 15505312.0,
+      "change_pct": -1.2,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "EBAY": {
+    "ticker": "EBAY",
+    "auth_musd": 531.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 452000000.0,
+      "shares_end": 444000000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 444000000.0,
+      "change_pct": -1.77,
+      "span_days": 181,
+      "first_date": "2025-11-01",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "EFOR": {
+    "ticker": "EFOR",
+    "auth_musd": 1000.0,
+    "auth_date": "2026-04-27",
+    "share_change": {
+      "shares_start": 41154728.0,
+      "shares_end": 41000000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 41000000.0,
+      "change_pct": -0.38,
+      "span_days": 7,
+      "first_date": "2026-04-28",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "EG": {
+    "ticker": "EG",
+    "auth_musd": 335.0,
+    "auth_date": "2026-02-26",
+    "share_change": {
+      "shares_start": 41943291.0,
+      "shares_end": 39571602.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 39571602.0,
+      "change_pct": -5.65,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "EIX": {
+    "ticker": "EIX",
+    "auth_musd": 75.0,
+    "auth_date": "2026-02-18",
+    "share_change": {
+      "shares_start": 384834007.0,
+      "shares_end": 384793941.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 384793941.0,
+      "change_pct": -0.01,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "EME": {
+    "ticker": "EME",
+    "auth_musd": 3650.0,
+    "auth_date": "2026-02-26",
+    "share_change": {
+      "shares_start": 44764250.0,
+      "shares_end": 44532567.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 44532567.0,
+      "change_pct": -0.52,
+      "span_days": 177,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ENPH": {
+    "ticker": "ENPH",
+    "auth_musd": 1300.0,
+    "auth_date": "2026-04-01",
+    "share_change": {
+      "shares_start": 130750771.0,
+      "shares_end": 131798220.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 131798220.0,
+      "change_pct": 0.8,
+      "span_days": 184,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "ENVA": {
+    "ticker": "ENVA",
+    "auth_musd": 35.0,
+    "auth_date": "2026-01-27",
+    "share_change": {
+      "shares_start": 24883481.0,
+      "shares_end": 24884896.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 24884896.0,
+      "change_pct": 0.01,
+      "span_days": 182,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-25",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ENVX": {
+    "ticker": "ENVX",
+    "auth_musd": 135.0,
+    "auth_date": "2026-04-24",
+    "share_change": {
+      "shares_start": 220345232.0,
+      "shares_end": 218153440.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 218153440.0,
+      "change_pct": -0.99,
+      "span_days": 198,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-14",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "EQR": {
+    "ticker": "EQR",
+    "auth_musd": 1380.0,
+    "auth_date": "2026-04-14",
+    "share_change": {
+      "shares_start": 393561899.0,
+      "shares_end": 374712144.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 374712144.0,
+      "change_pct": -4.79,
+      "span_days": 210,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-23",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ERIE": {
+    "ticker": "ERIE",
+    "auth_musd": 150.0,
+    "auth_date": "2026-02-23",
+    "share_change": {
+      "shares_start": 52454145.0,
+      "shares_end": 52289868.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 52289868.0,
+      "change_pct": -0.31,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ESS": {
+    "ticker": "ESS",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 69068471.0,
+      "shares_end": 64261739.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 64261739.0,
+      "change_pct": -6.96,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ETR": {
+    "ticker": "ETR",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 446409069.0,
+      "shares_end": 457886847.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 457886847.0,
+      "change_pct": 2.57,
+      "span_days": 193,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "EVR": {
+    "ticker": "EVR",
+    "auth_musd": 812.4,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 38597943.0,
+      "shares_end": 38682484.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 38682484.0,
+      "change_pct": 0.22,
+      "span_days": 192,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "EVTC": {
+    "ticker": "EVTC",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 63982005.0,
+      "shares_end": 61620344.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 61620344.0,
+      "change_pct": -3.69,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "EXLS": {
+    "ticker": "EXLS",
+    "auth_musd": 63.3,
+    "auth_date": "2026-04-27",
+    "share_change": {
+      "shares_start": 161513147.0,
+      "shares_end": 152782931.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 152782931.0,
+      "change_pct": -5.41,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "EXR": {
+    "ticker": "EXR",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 221601460.0,
+      "shares_end": 211260936.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 211260936.0,
+      "change_pct": -4.67,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "EYPT": {
+    "ticker": "EYPT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 80753269.0,
+      "shares_end": 83841298.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 83841298.0,
+      "change_pct": 3.82,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "FCN": {
+    "ticker": "FCN",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 30876070.0,
+      "shares_end": 30144043.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 30144043.0,
+      "change_pct": -2.37,
+      "span_days": 189,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "FDS": {
+    "ticker": "FDS",
+    "auth_musd": 400.0,
+    "auth_date": "2025-10-22",
+    "share_change": {
+      "shares_start": 37658509.0,
+      "shares_end": 36431127.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 36431127.0,
+      "change_pct": -3.26,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "FEED": {
+    "ticker": "FEED",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 1088192.0,
+      "shares_end": 6091840.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 6091840.0,
+      "change_pct": 459.81,
+      "span_days": 163,
+      "first_date": "2025-12-13",
+      "last_date": "2026-05-26",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "FIS": {
+    "ticker": "FIS",
+    "auth_musd": 1300.0,
+    "auth_date": "2026-04-28",
+    "share_change": {
+      "shares_start": 522378577.0,
+      "shares_end": 516879151.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 516879151.0,
+      "change_pct": -1.05,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "FIVE": {
+    "ticker": "FIVE",
+    "auth_musd": 270.0,
+    "auth_date": "2026-03-19",
+    "share_change": {
+      "shares_start": 55145462.0,
+      "shares_end": 55295351.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 55295351.0,
+      "change_pct": 0.27,
+      "span_days": 224,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "FIX": {
+    "ticker": "FIX",
+    "auth_musd": 158.1,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 35271950.0,
+      "shares_end": 35183967.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 35183967.0,
+      "change_pct": -0.25,
+      "span_days": 210,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-23",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "FLUT": {
+    "ticker": "FLUT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 175360562.0,
+      "shares_end": 173400475.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 173400475.0,
+      "change_pct": -1.12,
+      "span_days": 221,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-03",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "FLYW": {
+    "ticker": "FLYW",
+    "auth_musd": 300.0,
+    "auth_date": "2026-04-23",
+    "share_change": {
+      "shares_start": 120437014.0,
+      "shares_end": 123417880.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 123417880.0,
+      "change_pct": 2.48,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "FNF": {
+    "ticker": "FNF",
+    "auth_musd": 502.0,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 271722556.0,
+      "shares_end": 269157540.0,
+      "split_factor": 1.037,
+      "shares_end_adj": 259554040.5014465,
+      "change_pct": -4.48,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "FWONB": {
+    "ticker": "FWONB",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 258093498.0,
+      "shares_end": 250605708.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 250605708.0,
+      "change_pct": -2.9,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "GBLI": {
+    "ticker": "GBLI",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 14296328.0,
+      "shares_end": 14609127.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 14609127.0,
+      "change_pct": 2.19,
+      "span_days": 189,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "GENC": {
+    "ticker": "GENC",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 14657702.0,
+      "shares_end": 14657702.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 14657702.0,
+      "change_pct": 0.0,
+      "span_days": 23,
+      "first_date": "2025-10-25",
+      "last_date": "2025-11-17",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "GL": {
+    "ticker": "GL",
+    "auth_musd": 11000.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 81003536.0,
+      "shares_end": 77644761.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 77644761.0,
+      "change_pct": -4.15,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "GNRC": {
+    "ticker": "GNRC",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-18",
+    "share_change": {
+      "shares_start": 59150511.0,
+      "shares_end": 58868681.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 58868681.0,
+      "change_pct": -0.48,
+      "span_days": 192,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-07",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "GO": {
+    "ticker": "GO",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 98103295.0,
+      "shares_end": 98922672.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 98922672.0,
+      "change_pct": 0.84,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "GOOGL": {
+    "ticker": "GOOGL",
+    "auth_musd": 588000.0,
+    "auth_date": "2025-04-25",
+    "share_change": {
+      "shares_start": 12106325716.0,
+      "shares_end": 12194935223.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 12194935223.0,
+      "change_pct": 0.73,
+      "span_days": 224,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "GRND": {
+    "ticker": "GRND",
+    "auth_musd": 500.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 191977654.0,
+      "shares_end": 177725977.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 177725977.0,
+      "change_pct": -7.42,
+      "span_days": 195,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "GSHD": {
+    "ticker": "GSHD",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 36990947.0,
+      "shares_end": 23670665.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 23670665.0,
+      "change_pct": -36.01,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "HDSN": {
+    "ticker": "HDSN",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 43668370.0,
+      "shares_end": 42068788.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 42068788.0,
+      "change_pct": -3.66,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "HFFG": {
+    "ticker": "HFFG",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 53946706.0,
+      "shares_end": 53475417.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 53475417.0,
+      "change_pct": -0.87,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "HIG": {
+    "ticker": "HIG",
+    "auth_musd": 3300.0,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 281171656.0,
+      "shares_end": 274130820.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 274130820.0,
+      "change_pct": -2.5,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "HLI": {
+    "ticker": "HLI",
+    "auth_musd": 500.0,
+    "auth_date": "2025-05-15",
+    "share_change": {
+      "shares_start": 69548521.0,
+      "shares_end": 69059387.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 69059387.0,
+      "change_pct": -0.7,
+      "span_days": 213,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-26",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "HOFT": {
+    "ticker": "HOFT",
+    "auth_musd": 9.7,
+    "auth_date": "2025-04-18",
+    "share_change": {
+      "shares_start": 10750033.0,
+      "shares_end": 10777467.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 10777467.0,
+      "change_pct": 0.26,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "HROW": {
+    "ticker": "HROW",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 37002136.0,
+      "shares_end": 37275107.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 37275107.0,
+      "change_pct": 0.74,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "HST": {
+    "ticker": "HST",
+    "auth_musd": 480.0,
+    "auth_date": "2026-04-08",
+    "share_change": {
+      "shares_start": 696429876.0,
+      "shares_end": 684879281.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 684879281.0,
+      "change_pct": -1.66,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "HTH": {
+    "ticker": "HTH",
+    "auth_musd": 125.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 61326000.0,
+      "shares_end": 58530197.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 58530197.0,
+      "change_pct": -4.56,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "HUBS": {
+    "ticker": "HUBS",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 53380846.0,
+      "shares_end": 51190708.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 51190708.0,
+      "change_pct": -4.1,
+      "span_days": 201,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-14",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "IBP": {
+    "ticker": "IBP",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 27324684.0,
+      "shares_end": 26940710.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 26940710.0,
+      "change_pct": -1.41,
+      "span_days": 193,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "IDXX": {
+    "ticker": "IDXX",
+    "auth_musd": 12.1,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 80004694.0,
+      "shares_end": 78882997.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 78882997.0,
+      "change_pct": -1.4,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "IEP": {
+    "ticker": "IEP",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 577646564.0,
+      "shares_end": 672050553.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 672050553.0,
+      "change_pct": 16.34,
+      "span_days": 193,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "IEX": {
+    "ticker": "IEX",
+    "auth_musd": 924.7,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 75475558.0,
+      "shares_end": 74015052.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 74015052.0,
+      "change_pct": -1.94,
+      "span_days": 189,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "IMA": {
+    "ticker": "IMA",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 11181676.0,
+      "shares_end": 11279130.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 11279130.0,
+      "change_pct": 0.87,
+      "span_days": 189,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "INMB": {
+    "ticker": "INMB",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 27452168.0,
+      "shares_end": 26585258.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 26585258.0,
+      "change_pct": -3.16,
+      "span_days": 156,
+      "first_date": "2025-10-27",
+      "last_date": "2026-04-01",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "INTU": {
+    "ticker": "INTU",
+    "auth_musd": 3500.0,
+    "auth_date": "2026-03-16",
+    "share_change": {
+      "shares_start": 278947000.0,
+      "shares_end": 273537000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 273537000.0,
+      "change_pct": -1.94,
+      "span_days": 184,
+      "first_date": "2025-11-17",
+      "last_date": "2026-05-21",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "INVH": {
+    "ticker": "INVH",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 613857556.0,
+      "shares_end": 594041956.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 594041956.0,
+      "change_pct": -3.23,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "IQV": {
+    "ticker": "IQV",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 172415950.0,
+      "shares_end": 166900000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 166900000.0,
+      "change_pct": -3.2,
+      "span_days": 191,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "ITRI": {
+    "ticker": "ITRI",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 45717933.0,
+      "shares_end": 44339347.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 44339347.0,
+      "change_pct": -3.02,
+      "span_days": 184,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "JBI": {
+    "ticker": "JBI",
+    "auth_musd": 75.0,
+    "auth_date": "2026-04-24",
+    "share_change": {
+      "shares_start": 138891705.0,
+      "shares_end": 136392459.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 136392459.0,
+      "change_pct": -1.8,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "JBL": {
+    "ticker": "JBL",
+    "auth_musd": 2500.0,
+    "auth_date": "2025-10-17",
+    "share_change": {
+      "shares_start": 107449339.0,
+      "shares_end": 105502622.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 105502622.0,
+      "change_pct": -1.81,
+      "span_days": 178,
+      "first_date": "2025-10-27",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "JKHY": {
+    "ticker": "JKHY",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 73143387.0,
+      "shares_end": 71050780.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 71050780.0,
+      "change_pct": -2.86,
+      "span_days": 189,
+      "first_date": "2025-11-01",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "KDP": {
+    "ticker": "KDP",
+    "auth_musd": 4000.0,
+    "auth_date": "2026-02-24",
+    "share_change": {
+      "shares_start": 1377941529.0,
+      "shares_end": 1360559471.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1360559471.0,
+      "change_pct": -1.26,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "KEYS": {
+    "ticker": "KEYS",
+    "auth_musd": 110.0,
+    "auth_date": "2025-12-17",
+    "share_change": {
+      "shares_start": 171856249.0,
+      "shares_end": 170895368.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 170895368.0,
+      "change_pct": -0.56,
+      "span_days": 221,
+      "first_date": "2025-10-28",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "KKR": {
+    "ticker": "KKR",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-27",
+    "share_change": {
+      "shares_start": 925517289.0,
+      "shares_end": 897872941.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 897872941.0,
+      "change_pct": -2.99,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "KLAC": {
+    "ticker": "KLAC",
+    "auth_musd": 7000.0,
+    "auth_date": "2026-03-12",
+    "share_change": {
+      "shares_start": 132302240.0,
+      "shares_end": 130627521.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 130627521.0,
+      "change_pct": -1.27,
+      "span_days": 185,
+      "first_date": "2025-11-01",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "KMB": {
+    "ticker": "KMB",
+    "auth_musd": 2600.0,
+    "auth_date": "2025-02-13",
+    "share_change": {
+      "shares_start": 331779938.0,
+      "shares_end": 331926000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 331926000.0,
+      "change_pct": 0.04,
+      "span_days": 184,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "KMPR": {
+    "ticker": "KMPR",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-11",
+    "share_change": {
+      "shares_start": 64470266.0,
+      "shares_end": 58874232.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 58874232.0,
+      "change_pct": -8.68,
+      "span_days": 193,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "KMX": {
+    "ticker": "KMX",
+    "auth_musd": 2000.0,
+    "auth_date": "2026-04-15",
+    "share_change": {
+      "shares_start": 146845043.0,
+      "shares_end": 141820715.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 141820715.0,
+      "change_pct": -3.42,
+      "span_days": 169,
+      "first_date": "2025-10-30",
+      "last_date": "2026-04-17",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "KWY": {
+    "ticker": "KWY",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "LAWIL": {
+    "ticker": "LAWIL",
+    "auth_musd": 1900.0,
+    "auth_date": "2026-04-30",
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "LAZ": {
+    "ticker": "LAZ",
+    "auth_musd": 180.0,
+    "auth_date": "2025-02-24",
+    "share_change": {
+      "shares_start": 94877814.0,
+      "shares_end": 98437685.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 98437685.0,
+      "change_pct": 3.75,
+      "span_days": 188,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "LCID": {
+    "ticker": "LCID",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 307300000.0,
+      "shares_end": 390256808.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 390256808.0,
+      "change_pct": 27.0,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "LCNB": {
+    "ticker": "LCNB",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 14492782.0,
+      "shares_end": 14246007.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 14246007.0,
+      "change_pct": -1.7,
+      "span_days": 193,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "LIN": {
+    "ticker": "LIN",
+    "auth_musd": 10000.0,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 473199108.0,
+      "shares_end": 462347310.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 462347310.0,
+      "change_pct": -2.29,
+      "span_days": 189,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "LRCX": {
+    "ticker": "LRCX",
+    "auth_musd": 507.0,
+    "auth_date": "2025-08-11",
+    "share_change": {
+      "shares_start": 1256030000.0,
+      "shares_end": 1250539000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1250539000.0,
+      "change_pct": -0.44,
+      "span_days": 178,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "LULU": {
+    "ticker": "LULU",
+    "auth_musd": 4000.0,
+    "auth_date": "2026-03-17",
+    "share_change": {
+      "shares_start": 118589159.0,
+      "shares_end": 113553918.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 113553918.0,
+      "change_pct": -4.25,
+      "span_days": 224,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "LW": {
+    "ticker": "LW",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 139352480.0,
+      "shares_end": 138072803.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 138072803.0,
+      "change_pct": -0.92,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "MA": {
+    "ticker": "MA",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 904011837.0,
+      "shares_end": 883583855.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 883583855.0,
+      "change_pct": -2.26,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "MBLY": {
+    "ticker": "MBLY",
+    "auth_musd": 100.0,
+    "auth_date": "2026-04-24",
+    "share_change": {
+      "shares_start": 813773953.0,
+      "shares_end": 842186141.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 842186141.0,
+      "change_pct": 3.49,
+      "span_days": 182,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-25",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "MCO": {
+    "ticker": "MCO",
+    "auth_musd": 4000.0,
+    "auth_date": "2026-02-18",
+    "share_change": {
+      "shares_start": 182600667.0,
+      "shares_end": 174676438.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 174676438.0,
+      "change_pct": -4.34,
+      "span_days": 160,
+      "first_date": "2025-11-15",
+      "last_date": "2026-04-25",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "MET": {
+    "ticker": "MET",
+    "auth_musd": 2100.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 665026054.0,
+      "shares_end": 643436779.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 643436779.0,
+      "change_pct": -3.25,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "META": {
+    "ticker": "META",
+    "auth_musd": 51280.0,
+    "auth_date": "2026-01-29",
+    "share_change": {
+      "shares_start": 2512141475.0,
+      "shares_end": 2538423304.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 2538423304.0,
+      "change_pct": 1.05,
+      "span_days": 175,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-18",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "MKL": {
+    "ticker": "MKL",
+    "auth_musd": 2000.0,
+    "auth_date": "2026-02-26",
+    "share_change": {
+      "shares_start": 12652001.0,
+      "shares_end": 12513710.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 12513710.0,
+      "change_pct": -1.09,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "MKTX": {
+    "ticker": "MKTX",
+    "auth_musd": 505.0,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 37363773.0,
+      "shares_end": 35539453.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 35539453.0,
+      "change_pct": -4.88,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "MO": {
+    "ticker": "MO",
+    "auth_musd": 3400.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 1679890953.0,
+      "shares_end": 1669891235.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1669891235.0,
+      "change_pct": -0.6,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "MOBI": {
+    "ticker": "MOBI",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 33085391.0,
+      "shares_end": 33249006.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 33249006.0,
+      "change_pct": 0.49,
+      "span_days": 29,
+      "first_date": "2026-05-08",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "MORN": {
+    "ticker": "MORN",
+    "auth_musd": 77.0,
+    "auth_date": "2026-03-27",
+    "share_change": {
+      "shares_start": 42177737.0,
+      "shares_end": 38028018.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 38028018.0,
+      "change_pct": -9.84,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "MPWR": {
+    "ticker": "MPWR",
+    "auth_musd": 640.0,
+    "auth_date": "2026-02-27",
+    "share_change": {
+      "shares_start": 47892000.0,
+      "shares_end": 49129267.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 49129267.0,
+      "change_pct": 2.58,
+      "span_days": 188,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "MQ": {
+    "ticker": "MQ",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 448232752.0,
+      "shares_end": 424030313.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 424030313.0,
+      "change_pct": -5.4,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "MRP": {
+    "ticker": "MRP",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 166003497.0,
+      "shares_end": 166047927.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 166047927.0,
+      "change_pct": 0.03,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "MSCI": {
+    "ticker": "MSCI",
+    "auth_musd": 557.0,
+    "auth_date": "2026-03-11",
+    "share_change": {
+      "shares_start": 75200000.0,
+      "shares_end": 72727592.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 72727592.0,
+      "change_pct": -3.29,
+      "span_days": 176,
+      "first_date": "2025-10-29",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "MSFT": {
+    "ticker": "MSFT",
+    "auth_musd": 60000.0,
+    "auth_date": "2025-07-30",
+    "share_change": {
+      "shares_start": 7432377655.0,
+      "shares_end": 7428434704.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 7428434704.0,
+      "change_pct": -0.05,
+      "span_days": 182,
+      "first_date": "2025-10-31",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "MTD": {
+    "ticker": "MTD",
+    "auth_musd": 3700.0,
+    "auth_date": "2026-02-06",
+    "share_change": {
+      "shares_start": 20599040.0,
+      "shares_end": 20207601.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 20207601.0,
+      "change_pct": -1.9,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "MTDR": {
+    "ticker": "MTDR",
+    "auth_musd": 400.0,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 124379236.0,
+      "shares_end": 124178227.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 124178227.0,
+      "change_pct": -0.16,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "MU": {
+    "ticker": "MU",
+    "auth_musd": 10000.0,
+    "auth_date": "2025-10-03",
+    "share_change": {
+      "shares_start": 1122466035.0,
+      "shares_end": 1127734051.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1127734051.0,
+      "change_pct": 0.47,
+      "span_days": 147,
+      "first_date": "2025-10-25",
+      "last_date": "2026-03-21",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "MX": {
+    "ticker": "MX",
+    "auth_musd": 0.6,
+    "auth_date": "2026-03-16",
+    "share_change": {
+      "shares_start": 35924033.0,
+      "shares_end": 36440854.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 36440854.0,
+      "change_pct": 1.44,
+      "span_days": 201,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-14",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "NDAQ": {
+    "ticker": "NDAQ",
+    "auth_musd": 3000.0,
+    "auth_date": "2026-04-24",
+    "share_change": {
+      "shares_start": 570995433.0,
+      "shares_end": 565540798.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 565540798.0,
+      "change_pct": -0.96,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "NFLX": {
+    "ticker": "NFLX",
+    "auth_musd": 6800.0,
+    "auth_date": "2026-04-23",
+    "share_change": {
+      "shares_start": 423732334.0,
+      "shares_end": 4210798528.0,
+      "split_factor": 10.0,
+      "shares_end_adj": 421079852.8,
+      "change_pct": -0.63,
+      "span_days": 180,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "NOW": {
+    "ticker": "NOW",
+    "auth_musd": 5000.0,
+    "auth_date": "2026-01-29",
+    "share_change": {
+      "shares_start": 207519000.0,
+      "shares_end": 1031308000.0,
+      "split_factor": 5.0,
+      "shares_end_adj": 206261600.0,
+      "change_pct": -0.61,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "NSA": {
+    "ticker": "NSA",
+    "auth_musd": 400.0,
+    "auth_date": "2026-02-26",
+    "share_change": {
+      "shares_start": 148416157.0,
+      "shares_end": 77212533.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 77212533.0,
+      "change_pct": -47.98,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "NSP": {
+    "ticker": "NSP",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 37673681.0,
+      "shares_end": 38169182.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 38169182.0,
+      "change_pct": 1.32,
+      "span_days": 169,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-15",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "NSPR": {
+    "ticker": "NSPR",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 41720662.0,
+      "shares_end": 46838962.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 46838962.0,
+      "change_pct": 12.27,
+      "span_days": 202,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-19",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "NVDA": {
+    "ticker": "NVDA",
+    "auth_musd": 40400.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 24387557065.0,
+      "shares_end": 24221000000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 24221000000.0,
+      "change_pct": -0.68,
+      "span_days": 184,
+      "first_date": "2025-11-17",
+      "last_date": "2026-05-21",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "NWS": {
+    "ticker": "NWS",
+    "auth_musd": 1000.0,
+    "auth_date": "2026-05-08",
+    "share_change": {
+      "shares_start": 513258166.0,
+      "shares_end": 544778430.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 544778430.0,
+      "change_pct": 6.14,
+      "span_days": 229,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-11",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "NXST": {
+    "ticker": "NXST",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 30413523.0,
+      "shares_end": 30538965.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 30538965.0,
+      "change_pct": 0.41,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "ODFL": {
+    "ticker": "ODFL",
+    "auth_musd": 3000.0,
+    "auth_date": "2026-02-24",
+    "share_change": {
+      "shares_start": 210168137.0,
+      "shares_end": 207968283.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 207968283.0,
+      "change_pct": -1.05,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "ODTX": {
+    "ticker": "ODTX",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "OI": {
+    "ticker": "OI",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 154073257.0,
+      "shares_end": 153299563.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 153299563.0,
+      "change_pct": -0.5,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "OLED": {
+    "ticker": "OLED",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 47534172.0,
+      "shares_end": 46750891.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 46750891.0,
+      "change_pct": -1.65,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "OLLI": {
+    "ticker": "OLLI",
+    "auth_musd": 300.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 63430071.0,
+      "shares_end": 60453292.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 60453292.0,
+      "change_pct": -4.69,
+      "span_days": 223,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ON": {
+    "ticker": "ON",
+    "auth_musd": 6000.0,
+    "auth_date": "2026-02-09",
+    "share_change": {
+      "shares_start": 408973992.0,
+      "shares_end": 388803191.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 388803191.0,
+      "change_pct": -4.93,
+      "span_days": 202,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-15",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ONON": {
+    "ticker": "ONON",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 338520324.0,
+      "shares_end": 333329737.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 333329737.0,
+      "change_pct": -1.53,
+      "span_days": 224,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "OPCH": {
+    "ticker": "OPCH",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 162295059.0,
+      "shares_end": 157027504.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 157027504.0,
+      "change_pct": -3.25,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "OPEN": {
+    "ticker": "OPEN",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 742119598.0,
+      "shares_end": 964736632.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 964736632.0,
+      "change_pct": 30.0,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "ORCL": {
+    "ticker": "ORCL",
+    "auth_musd": 600.0,
+    "auth_date": "2025-06-18",
+    "share_change": {
+      "shares_start": 2850792605.0,
+      "shares_end": 2876046000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 2876046000.0,
+      "change_pct": 0.89,
+      "span_days": 143,
+      "first_date": "2025-10-25",
+      "last_date": "2026-03-17",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "OSUR": {
+    "ticker": "OSUR",
+    "auth_musd": 15.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 73136987.0,
+      "shares_end": 68848553.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 68848553.0,
+      "change_pct": -5.86,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "OTEX": {
+    "ticker": "OTEX",
+    "auth_musd": 200.0,
+    "auth_date": "2026-02-10",
+    "share_change": {
+      "shares_start": 254573786.0,
+      "shares_end": 242662360.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 242662360.0,
+      "change_pct": -4.68,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "PATK": {
+    "ticker": "PATK",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 33278676.0,
+      "shares_end": 32893223.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 32893223.0,
+      "change_pct": -1.16,
+      "span_days": 193,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "PAYC": {
+    "ticker": "PAYC",
+    "auth_musd": 2000.0,
+    "auth_date": "2026-05-04",
+    "share_change": {
+      "shares_start": 56256594.0,
+      "shares_end": 46627098.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 46627098.0,
+      "change_pct": -17.12,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "PCOR": {
+    "ticker": "PCOR",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 150192801.0,
+      "shares_end": 150890216.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 150890216.0,
+      "change_pct": 0.46,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "PCSA": {
+    "ticker": "PCSA",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 55816331.0,
+      "shares_end": 2750173.0,
+      "split_factor": 0.04,
+      "shares_end_adj": 68754325.0,
+      "change_pct": 23.18,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "PCTY": {
+    "ticker": "PCTY",
+    "auth_musd": 350.0,
+    "auth_date": "2026-05-07",
+    "share_change": {
+      "shares_start": 54381598.0,
+      "shares_end": 53544058.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 53544058.0,
+      "change_pct": -1.54,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "PEP": {
+    "ticker": "PEP",
+    "auth_musd": 10000.0,
+    "auth_date": "2026-02-03",
+    "share_change": {
+      "shares_start": 1367340122.0,
+      "shares_end": 1366940966.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1366940966.0,
+      "change_pct": -0.03,
+      "span_days": 174,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-20",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "PFG": {
+    "ticker": "PFG",
+    "auth_musd": 684.0,
+    "auth_date": "2026-04-06",
+    "share_change": {
+      "shares_start": 222908424.0,
+      "shares_end": 216012384.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 216012384.0,
+      "change_pct": -3.09,
+      "span_days": 186,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "PG": {
+    "ticker": "PG",
+    "auth_musd": 7000.0,
+    "auth_date": "2025-08-04",
+    "share_change": {
+      "shares_start": 2352053497.0,
+      "shares_end": 2328598978.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 2328598978.0,
+      "change_pct": -1.0,
+      "span_days": 183,
+      "first_date": "2025-10-27",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "PGEN": {
+    "ticker": "PGEN",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 352910331.0,
+      "shares_end": 356510980.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 356510980.0,
+      "change_pct": 1.02,
+      "span_days": 197,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-14",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "PK": {
+    "ticker": "PK",
+    "auth_musd": 300.0,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 199913496.0,
+      "shares_end": 201361835.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 201361835.0,
+      "change_pct": 0.72,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "PM": {
+    "ticker": "PM",
+    "auth_musd": 7000.0,
+    "auth_date": "2025-02-06",
+    "share_change": {
+      "shares_start": 1556638749.0,
+      "shares_end": 1558558846.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1558558846.0,
+      "change_pct": 0.12,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "POOL": {
+    "ticker": "POOL",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 38151391.0,
+      "shares_end": 36443003.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 36443003.0,
+      "change_pct": -4.48,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "PRCT": {
+    "ticker": "PRCT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 55635941.0,
+      "shares_end": 56918844.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 56918844.0,
+      "change_pct": 2.31,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "PRU": {
+    "ticker": "PRU",
+    "auth_musd": 1000.0,
+    "auth_date": "2026-02-12",
+    "share_change": {
+      "shares_start": 351942941.0,
+      "shares_end": 347325107.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 347325107.0,
+      "change_pct": -1.31,
+      "span_days": 189,
+      "first_date": "2025-10-31",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "PSA": {
+    "ticker": "PSA",
+    "auth_musd": 879.1,
+    "auth_date": "2026-02-12",
+    "share_change": {
+      "shares_start": 175452848.0,
+      "shares_end": 175545748.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 175545748.0,
+      "change_pct": 0.05,
+      "span_days": 186,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-29",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "PWR": {
+    "ticker": "PWR",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 149005943.0,
+      "shares_end": 150060149.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 150060149.0,
+      "change_pct": 0.71,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "QCOM": {
+    "ticker": "QCOM",
+    "auth_musd": 3800.0,
+    "auth_date": "2026-01-22",
+    "share_change": {
+      "shares_start": 1079000000.0,
+      "shares_end": 1054000000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1054000000.0,
+      "change_pct": -2.32,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "REFI": {
+    "ticker": "REFI",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 21074625.0,
+      "shares_end": 21207228.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 21207228.0,
+      "change_pct": 0.63,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "RGA": {
+    "ticker": "RGA",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-20",
+    "share_change": {
+      "shares_start": 66093751.0,
+      "shares_end": 65513163.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 65513163.0,
+      "change_pct": -0.88,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "RH": {
+    "ticker": "RH",
+    "auth_musd": 2450.0,
+    "auth_date": "2026-05-04",
+    "share_change": {
+      "shares_start": 18745070.0,
+      "shares_end": 18900769.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 18900769.0,
+      "change_pct": 0.83,
+      "span_days": 188,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "RJF": {
+    "ticker": "RJF",
+    "auth_musd": 1500.0,
+    "auth_date": "2026-01-07",
+    "share_change": {
+      "shares_start": 198100000.0,
+      "shares_end": 194883034.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 194883034.0,
+      "change_pct": -1.62,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "RNR": {
+    "ticker": "RNR",
+    "auth_musd": 1600.0,
+    "auth_date": "2026-02-11",
+    "share_change": {
+      "shares_start": 47066214.0,
+      "shares_end": 42633041.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 42633041.0,
+      "change_pct": -9.42,
+      "span_days": 186,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ROST": {
+    "ticker": "ROST",
+    "auth_musd": 3600.0,
+    "auth_date": "2026-04-07",
+    "share_change": {
+      "shares_start": 325226266.0,
+      "shares_end": 320781076.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 320781076.0,
+      "change_pct": -1.37,
+      "span_days": 222,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-04",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "RXST": {
+    "ticker": "RXST",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 40915963.0,
+      "shares_end": 41396609.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 41396609.0,
+      "change_pct": 1.17,
+      "span_days": 184,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "RYAM": {
+    "ticker": "RYAM",
+    "auth_musd": 100.0,
+    "auth_date": "2026-03-05",
+    "share_change": {
+      "shares_start": 67000882.0,
+      "shares_end": 67438549.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 67438549.0,
+      "change_pct": 0.65,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "SAMG": {
+    "ticker": "SAMG",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 8440574.0,
+      "shares_end": 7681821.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 7681821.0,
+      "change_pct": -8.99,
+      "span_days": 200,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-13",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "SARO": {
+    "ticker": "SARO",
+    "auth_musd": 50.0,
+    "auth_date": "2026-04-30",
+    "share_change": {
+      "shares_start": 334470264.0,
+      "shares_end": 332471972.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 332471972.0,
+      "change_pct": -0.6,
+      "span_days": 195,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "SBAC": {
+    "ticker": "SBAC",
+    "auth_musd": 1900.0,
+    "auth_date": "2026-04-09",
+    "share_change": {
+      "shares_start": 107379013.0,
+      "shares_end": 106063017.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 106063017.0,
+      "change_pct": -1.23,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "SBET": {
+    "ticker": "SBET",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 196693191.0,
+      "shares_end": 197211412.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 197211412.0,
+      "change_pct": 0.26,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "SCHW": {
+    "ticker": "SCHW",
+    "auth_musd": 20000.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 1815219300.0,
+      "shares_end": 1739135507.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1739135507.0,
+      "change_pct": -4.19,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "SCI": {
+    "ticker": "SCI",
+    "auth_musd": 101.0,
+    "auth_date": "2026-03-26",
+    "share_change": {
+      "shares_start": 140240018.0,
+      "shares_end": 137970998.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 137970998.0,
+      "change_pct": -1.62,
+      "span_days": 189,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "SEDG": {
+    "ticker": "SEDG",
+    "auth_musd": 300.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 59374793.0,
+      "shares_end": 60818202.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 60818202.0,
+      "change_pct": 2.43,
+      "span_days": 192,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "SES": {
+    "ticker": "SES",
+    "auth_musd": 30.0,
+    "auth_date": "2026-03-04",
+    "share_change": {
+      "shares_start": 364777457.0,
+      "shares_end": 369283364.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 369283364.0,
+      "change_pct": 1.24,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "SHOP": {
+    "ticker": "SHOP",
+    "auth_musd": 2000.0,
+    "auth_date": "2026-02-11",
+    "share_change": {
+      "shares_start": 1300684784.0,
+      "shares_end": 1297654610.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1297654610.0,
+      "change_pct": -0.23,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "SNPS": {
+    "ticker": "SNPS",
+    "auth_musd": 250.0,
+    "auth_date": "2026-03-02",
+    "share_change": {
+      "shares_start": 185748673.0,
+      "shares_end": 191479325.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 191479325.0,
+      "change_pct": 3.09,
+      "span_days": 212,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-28",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "SPGI": {
+    "ticker": "SPGI",
+    "auth_musd": 11600.0,
+    "auth_date": "2026-02-11",
+    "share_change": {
+      "shares_start": 303400000.0,
+      "shares_end": 296000000.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 296000000.0,
+      "change_pct": -2.44,
+      "span_days": 181,
+      "first_date": "2025-10-31",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "SPRY": {
+    "ticker": "SPRY",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 98826337.0,
+      "shares_end": 99303262.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 99303262.0,
+      "change_pct": 0.48,
+      "span_days": 206,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-19",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "SRAD": {
+    "ticker": "SRAD",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 300331264.0,
+      "shares_end": 295951662.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 295951662.0,
+      "change_pct": -1.46,
+      "span_days": 154,
+      "first_date": "2025-10-25",
+      "last_date": "2026-03-28",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "SRE": {
+    "ticker": "SRE",
+    "auth_musd": 8800.0,
+    "auth_date": "2026-03-27",
+    "share_change": {
+      "shares_start": 656020786.0,
+      "shares_end": 653707401.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 653707401.0,
+      "change_pct": -0.35,
+      "span_days": 217,
+      "first_date": "2025-11-01",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "STRT": {
+    "ticker": "STRT",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 4160284.0,
+      "shares_end": 4178799.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 4178799.0,
+      "change_pct": 0.45,
+      "span_days": 192,
+      "first_date": "2025-11-01",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "NO_AUTH",
+    "points": 0,
+    "_complete": true
+  },
+  "STT": {
+    "ticker": "STT",
+    "auth_musd": 5000.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 282217819.0,
+      "shares_end": 276767033.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 276767033.0,
+      "change_pct": -1.93,
+      "span_days": 186,
+      "first_date": "2025-10-28",
+      "last_date": "2026-05-02",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "STZ": {
+    "ticker": "STZ",
+    "auth_musd": 91.7,
+    "auth_date": "2025-04-23",
+    "share_change": {
+      "shares_start": 175067670.0,
+      "shares_end": 171492819.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 171492819.0,
+      "change_pct": -2.04,
+      "span_days": 227,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-09",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "SUI": {
+    "ticker": "SUI",
+    "auth_musd": 1000.0,
+    "auth_date": "2026-02-25",
+    "share_change": {
+      "shares_start": 129640871.0,
+      "shares_end": 123230757.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 123230757.0,
+      "change_pct": -4.94,
+      "span_days": 187,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-30",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "SUNB": {
+    "ticker": "SUNB",
+    "auth_musd": 1500.0,
+    "auth_date": "2026-02-13",
+    "share_change": {
+      "shares_start": 822102759.0,
+      "shares_end": 413299803.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 413299803.0,
+      "change_pct": -49.73,
+      "span_days": 11,
+      "first_date": "2026-03-10",
+      "last_date": "2026-03-21",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "TAP": {
+    "ticker": "TAP",
+    "auth_musd": 2600.0,
+    "auth_date": "2026-02-18",
+    "share_change": {
+      "shares_start": 197811493.0,
+      "shares_end": 187551360.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 187551360.0,
+      "change_pct": -5.19,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "TDG": {
+    "ticker": "TDG",
+    "auth_musd": 500.0,
+    "auth_date": "2026-01-23",
+    "share_change": {
+      "shares_start": 56350285.0,
+      "shares_end": 55933583.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 55933583.0,
+      "change_pct": -0.74,
+      "span_days": 193,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-06",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "TDGMW": {
+    "ticker": "TDGMW",
+    "auth_musd": 500.0,
+    "auth_date": "2026-04-28",
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "TEAM": {
+    "ticker": "TEAM",
+    "auth_musd": 1500.0,
+    "auth_date": "2025-08-15",
+    "share_change": {
+      "shares_start": 267067169.0,
+      "shares_end": 253767862.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 253767862.0,
+      "change_pct": -4.98,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "TEX": {
+    "ticker": "TEX",
+    "auth_musd": 45.0,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 65600000.0,
+      "shares_end": 114216576.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 114216576.0,
+      "change_pct": 74.11,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "TJX": {
+    "ticker": "TJX",
+    "auth_musd": 3000.0,
+    "auth_date": "2026-03-31",
+    "share_change": {
+      "shares_start": 1112938750.0,
+      "shares_end": 1104704446.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 1104704446.0,
+      "change_pct": -0.74,
+      "span_days": 219,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-01",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "TKO": {
+    "ticker": "TKO",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 82136886.0,
+      "shares_end": 74967673.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 74967673.0,
+      "change_pct": -8.73,
+      "span_days": 219,
+      "first_date": "2025-10-28",
+      "last_date": "2026-06-04",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "TMUSL": {
+    "ticker": "TMUSL",
+    "auth_musd": 71300.0,
+    "auth_date": "2026-04-27",
+    "share_change": null,
+    "status": "UNKNOWN",
+    "points": 0,
+    "_complete": true
+  },
+  "TONX": {
+    "ticker": "TONX",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 59557137.0,
+      "shares_end": 56530617.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 56530617.0,
+      "change_pct": -5.08,
+      "span_days": 176,
+      "first_date": "2025-10-29",
+      "last_date": "2026-04-23",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "TPL": {
+    "ticker": "TPL",
+    "auth_musd": 250.0,
+    "auth_date": "2026-02-18",
+    "share_change": {
+      "shares_start": 23202367.0,
+      "shares_end": 68974429.0,
+      "split_factor": 3.0,
+      "shares_end_adj": 22991476.333333332,
+      "change_pct": -0.91,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "TRV": {
+    "ticker": "TRV",
+    "auth_musd": 5000.0,
+    "auth_date": "2026-02-12",
+    "share_change": {
+      "shares_start": 223063417.0,
+      "shares_end": 212644693.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 212644693.0,
+      "change_pct": -4.67,
+      "span_days": 171,
+      "first_date": "2025-10-28",
+      "last_date": "2026-04-17",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "TSCO": {
+    "ticker": "TSCO",
+    "auth_musd": 7500.0,
+    "auth_date": "2026-02-19",
+    "share_change": {
+      "shares_start": 529951669.0,
+      "shares_end": 524449616.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 524449616.0,
+      "change_pct": -1.04,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "TXN": {
+    "ticker": "TXN",
+    "auth_musd": 1480.0,
+    "auth_date": "2026-03-04",
+    "share_change": {
+      "shares_start": 908623020.0,
+      "shares_end": 910092791.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 910092791.0,
+      "change_pct": 0.16,
+      "span_days": 185,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-28",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "TXRH": {
+    "ticker": "TXRH",
+    "auth_musd": 913.3,
+    "auth_date": "2026-02-27",
+    "share_change": {
+      "shares_start": 66772379.0,
+      "shares_end": 65729615.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 65729615.0,
+      "change_pct": -1.56,
+      "span_days": 199,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-12",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "ULTA": {
+    "ticker": "ULTA",
+    "auth_musd": 3000.0,
+    "auth_date": "2026-03-26",
+    "share_change": {
+      "shares_start": 44838364.0,
+      "shares_end": 42989311.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 42989311.0,
+      "change_pct": -4.12,
+      "span_days": 222,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-04",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "UNM": {
+    "ticker": "UNM",
+    "auth_musd": 979.3,
+    "auth_date": "2025-02-27",
+    "share_change": {
+      "shares_start": 170313240.0,
+      "shares_end": 159776235.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 159776235.0,
+      "change_pct": -6.19,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "URBN": {
+    "ticker": "URBN",
+    "auth_musd": 52.3,
+    "auth_date": "2026-04-01",
+    "share_change": {
+      "shares_start": 89697915.0,
+      "shares_end": 85635083.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 85635083.0,
+      "change_pct": -4.53,
+      "span_days": 229,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-11",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "UTHR": {
+    "ticker": "UTHR",
+    "auth_musd": 1500.0,
+    "auth_date": "2026-04-29",
+    "share_change": {
+      "shares_start": 45226262.0,
+      "shares_end": 42446733.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 42446733.0,
+      "change_pct": -6.15,
+      "span_days": 194,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-07",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "UUU": {
+    "ticker": "UUU",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 2312887.0,
+      "shares_end": 3028362.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 3028362.0,
+      "change_pct": 30.93,
+      "span_days": 209,
+      "first_date": "2025-10-29",
+      "last_date": "2026-05-26",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "VC": {
+    "ticker": "VC",
+    "auth_musd": 226.0,
+    "auth_date": "2026-04-28",
+    "share_change": {
+      "shares_start": 27285922.0,
+      "shares_end": 26694021.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 26694021.0,
+      "change_pct": -2.17,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "VRSK": {
+    "ticker": "VRSK",
+    "auth_musd": 500.0,
+    "auth_date": "2026-02-23",
+    "share_change": {
+      "shares_start": 139714971.0,
+      "shares_end": 131021840.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 131021840.0,
+      "change_pct": -6.22,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "VRT": {
+    "ticker": "VRT",
+    "auth_musd": 2400.0,
+    "auth_date": "2026-02-13",
+    "share_change": {
+      "shares_start": 382338313.0,
+      "shares_end": 384108816.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 384108816.0,
+      "change_pct": 0.46,
+      "span_days": 181,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-24",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "WAT": {
+    "ticker": "WAT",
+    "auth_musd": 1000.0,
+    "auth_date": "2026-02-23",
+    "share_change": {
+      "shares_start": 60835607.0,
+      "shares_end": 98185855.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 98185855.0,
+      "change_pct": 61.4,
+      "span_days": 198,
+      "first_date": "2025-10-27",
+      "last_date": "2026-05-13",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "WBD": {
+    "ticker": "WBD",
+    "auth_musd": 2000.0,
+    "auth_date": "2025-02-27",
+    "share_change": {
+      "shares_start": 2487478061.0,
+      "shares_end": 2507136702.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 2507136702.0,
+      "change_pct": 0.79,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "DILUTING",
+    "points": -10,
+    "_complete": true
+  },
+  "WDAY": {
+    "ticker": "WDAY",
+    "auth_musd": 2100.0,
+    "auth_date": "2026-03-06",
+    "share_change": {
+      "shares_start": 267000000.0,
+      "shares_end": 246973479.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 246973479.0,
+      "change_pct": -7.5,
+      "span_days": 213,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-26",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "WING": {
+    "ticker": "WING",
+    "auth_musd": 91.3,
+    "auth_date": "2026-04-02",
+    "share_change": {
+      "shares_start": 27923753.0,
+      "shares_end": 27232553.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 27232553.0,
+      "change_pct": -2.48,
+      "span_days": 188,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-01",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "WMT": {
+    "ticker": "WMT",
+    "auth_musd": 30000.0,
+    "auth_date": "2026-04-23",
+    "share_change": {
+      "shares_start": 7972851122.0,
+      "shares_end": 7958079155.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 7958079155.0,
+      "change_pct": -0.19,
+      "span_days": 219,
+      "first_date": "2025-10-25",
+      "last_date": "2026-06-01",
+      "large_residual": false
+    },
+    "status": "TOKEN",
+    "points": 0,
+    "_complete": true
+  },
+  "WST": {
+    "ticker": "WST",
+    "auth_musd": 1000.0,
+    "auth_date": "2026-02-17",
+    "share_change": {
+      "shares_start": 74271441.0,
+      "shares_end": 70647595.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 70647595.0,
+      "change_pct": -4.88,
+      "span_days": 182,
+      "first_date": "2025-10-25",
+      "last_date": "2026-04-25",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "WTW": {
+    "ticker": "WTW",
+    "auth_musd": 358.0,
+    "auth_date": "2026-03-27",
+    "share_change": {
+      "shares_start": 97547991.0,
+      "shares_end": 94447976.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 94447976.0,
+      "change_pct": -3.18,
+      "span_days": 192,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-05",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  },
+  "XRN": {
+    "ticker": "XRN",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 27231137.0,
+      "shares_end": 13234830.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 13234830.0,
+      "change_pct": -51.4,
+      "span_days": 74,
+      "first_date": "2026-02-27",
+      "last_date": "2026-05-13",
+      "large_residual": true
+    },
+    "status": "ANOMALY_REVIEW",
+    "points": 0,
+    "_complete": true
+  },
+  "ZLAB": {
+    "ticker": "ZLAB",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 117278089.0,
+      "shares_end": 112354858.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 112354858.0,
+      "change_pct": -4.2,
+      "span_days": 195,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-08",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "ZTS": {
+    "ticker": "ZTS",
+    "auth_musd": null,
+    "auth_date": null,
+    "share_change": {
+      "shares_start": 443183472.0,
+      "shares_end": 419228118.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 419228118.0,
+      "change_pct": -5.41,
+      "span_days": 196,
+      "first_date": "2025-10-25",
+      "last_date": "2026-05-09",
+      "large_residual": false
+    },
+    "status": "SHRINKING_NO_AUTH",
+    "points": 5,
+    "_complete": true
+  },
+  "ZUMZ": {
+    "ticker": "ZUMZ",
+    "auth_musd": 38.3,
+    "auth_date": "2026-04-24",
+    "share_change": {
+      "shares_start": 17284120.0,
+      "shares_end": 16872215.0,
+      "split_factor": 1.0,
+      "shares_end_adj": 16872215.0,
+      "change_pct": -2.38,
+      "span_days": 221,
+      "first_date": "2025-10-28",
+      "last_date": "2026-06-06",
+      "large_residual": false
+    },
+    "status": "EXECUTING",
+    "points": 8,
+    "_complete": true
+  }
+}

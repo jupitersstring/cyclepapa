@@ -10,12 +10,17 @@ clients to stay under ~10 req/s. We honour both.
 
 from __future__ import annotations
 
+import os
 import time
 from dataclasses import dataclass
 
 import requests
 
-UA = "psu-alpha-research contact@example.com"
+# SEC fair-access policy requires a descriptive UA with a reachable
+# contact. Override via SEC_EDGAR_CONTACT env var.
+_CONTACT = os.environ.get("SEC_EDGAR_CONTACT",
+                          "cm2whv9sg2@privaterelay.appleid.com")
+UA = f"cyclepapa-psu-research {_CONTACT}"
 HEADERS = {"User-Agent": UA, "Accept-Encoding": "gzip, deflate"}
 SEC_WWW = "https://www.sec.gov"
 SEC_DATA = "https://data.sec.gov"

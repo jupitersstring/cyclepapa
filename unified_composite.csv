@@ -1,527 +1,541 @@
-rank,ticker,name,sector,mcap_musd,price,drawdown_pct,p_b,score,insider_score,valuation_score,step_change_score,psu_forensic_score,sc13d_score,cancel_10b5_1_score,cluster_size,ceo_bought,cfo_bought,tot_insider_musd,10b5_1_status,is_foreign_filer,reasons,_schema
-1,TONX,TON Strategy Company,Technology,212.6,3.76,7.2,0.52287585,56.0,32.0,24.0,0.0,0.0,0.0,0.0,4,True,True,0.07,no_signal,False,4-buyer cluster 28d ago | CEO+CFO bought | 7% above 52w low | P/B 0.5,v4-unified
-2,GSHD,"Goosehead Insurance, Inc.",Financial Servi,1223.8,34.37,0.9,-6.708959,55.0,26.0,18.0,0.0,0.0,0.0,11.0,3,True,True,0.56,has_signal,False,3-buyer cluster 27d ago | CEO+CFO bought | 1% above 52w low | 10b5-1 leg +11,v4-unified
-3,HFFG,HF Foods Group Inc.,Consumer Defens,98.4,1.84,18.5,0.48054323,54.0,24.0,18.0,0.0,12.0,0.0,0.0,4,True,True,0.04,no_signal,False,4-buyer cluster 85d ago | CEO+CFO bought | 18% above 52w low | P/B 0.5 | forensic-PSU 36,v4-unified
-4,PCSA,"Processa Pharmaceuticals, Inc.",Healthcare,7.7,2.8,5.8,2.950474,53.0,35.0,18.0,0.0,0.0,0.0,0.0,5,True,True,0.02,no_signal,False,5-buyer cluster 10d ago | CEO+CFO bought | 6% above 52w low,v4-unified
-5,BRBS,"Blue Ridge Bankshares, Inc.",Financial Servi,298.5,3.32,6.1,1.0593491,49.0,0.0,24.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,6% above 52w low | P/B 1.1 | 10b5-1 leg +25,v4-unified
-6,GBLI,"Global Indemnity Group, LLC",Financial Servi,379.8,26.0,4.4,0.542537,49.0,0.0,24.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,4% above 52w low | P/B 0.5 | 10b5-1 leg +25,v4-unified
-7,HDSN,"Hudson Technologies, Inc.",Basic Materials,221.7,5.27,10.7,0.93241334,49.0,31.0,18.0,0.0,0.0,0.0,0.0,7,True,False,0.15,no_signal,False,7-buyer cluster 27d ago | CEO bought | 11% above 52w low | P/B 0.9,v4-unified
-8,LCID,"Lucid Group, Inc.",Consumer Cyclic,2009.8,5.15,0.5,-4.8402257,49.0,0.0,18.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,1% above 52w low | 13D filed | 10b5-1 leg +25,v4-unified
-9,RXST,"RxSight, Inc.",Healthcare,203.3,4.91,1.9,0.73448014,49.0,0.0,24.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,2% above 52w low | P/B 0.7 | 10b5-1 leg +25,v4-unified
-10,NSPR,InspireMD Inc.,Healthcare,45.0,0.9601,4.8,1.0312567,48.0,18.0,24.0,0.0,0.0,6.0,0.0,4,True,False,0.44,no_signal,False,4-buyer cluster 34d ago | CEO bought | 5% above 52w low | P/B 1.0 | 13D filed,v4-unified
-11,BETR,Better Home & Finance Holding C,Financial Servi,498.4,26.41,18.7,51.582027,47.0,35.0,12.0,0.0,0.0,0.0,0.0,6,True,True,9.21,no_signal,False,6-buyer cluster 66d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low,v4-unified
-12,SRAD,Sportradar Group AG,Technology,3983.5,13.46,8.8,3.6539679,47.0,29.0,18.0,0.0,0.0,0.0,0.0,7,True,False,11.35,no_signal,True,7-buyer cluster 38d ago | CEO bought | $11.3M insider buys | 9% above 52w low,v4-unified
-13,SBET,"SharpLink, Inc.",Financial Servi,1049.2,5.32,0.6,0.43259066,45.0,0.0,24.0,0.0,0.0,6.0,15.0,0,False,False,0.0,has_signal,False,1% above 52w low | P/B 0.4 | 13D filed | 10b5-1 leg +15,v4-unified
-14,KMPR,Kemper Corporation,Financial Servi,1433.6,24.35,3.9,0.54057056,44.0,0.0,24.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,4% above 52w low | P/B 0.5 | 10b5-1 leg +20,v4-unified
-15,KWY,Kingsway Corporation,Financial Servi,294.3,10.28,6.9,22.396515,44.0,26.0,18.0,0.0,0.0,0.0,0.0,3,True,True,0.05,no_signal,False,3-buyer cluster 10d ago | CEO+CFO bought | 7% above 52w low,v4-unified
-16,OI,"O-I Glass, Inc.",Consumer Cyclic,1221.8,7.97,0.6,0.9421918,44.0,20.0,24.0,0.0,0.0,0.0,0.0,4,False,True,0.18,no_signal,False,4-buyer cluster 30d ago | 1% above 52w low | P/B 0.9,v4-unified
-17,CRM,"Salesforce, Inc.",Technology,143611.7,175.35,10.4,4.194876,43.6,7.6,12.0,22,7.0,0.0,-5.0,2,False,False,1.0,has_signal,False,10% above 52w low | step-change 57 | forensic-PSU 21 | 10b5-1 leg -5,v4-unified
-18,BHF,"Brighthouse Financial, Inc.",Financial Servi,3606.4,62.78,85.4,0.64819884,43.0,0.0,6.0,12,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,P/B 0.6 | step-change 50 | 10b5-1 leg +25,v4-unified
-19,CMLSQ,Cumulus Media Inc.,Communication S,0.1,0.0039,1.5,-0.0003314917,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,2% above 52w low | 10b5-1 leg +25,v4-unified
-20,CSGP,"CoStar Group, Inc.",Real Estate,13855.5,33.93,3.9,1.7456398,43.0,0.0,21.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,4% above 52w low | step-change 66,v4-unified
-21,CURI,CuriosityStream Inc.,Communication S,167.2,2.82,14.5,4.585366,43.0,6.0,12.0,0.0,0.0,0.0,25.0,1,True,False,0.33,has_signal,False,CEO bought | 15% above 52w low | 10b5-1 leg +25,v4-unified
-22,ITRI,"Itron, Inc.",Technology,3650.9,82.34,7.1,2.2706964,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,7% above 52w low | 10b5-1 leg +25,v4-unified
-23,MQ,"Marqeta, Inc.",Technology,1683.4,3.97,8.1,2.277682,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,8% above 52w low | 10b5-1 leg +25,v4-unified
-24,REFI,Chicago Atlantic Real Estate Fi,Real Estate,240.9,11.36,16.0,0.7892177,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,16% above 52w low | P/B 0.8 | 10b5-1 leg +25,v4-unified
-25,ZLAB,Zai Lab Limited,Healthcare,1870.7,16.65,2.4,2.5746095,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,2% above 52w low | 10b5-1 leg +25,v4-unified
-26,AGBK,AGI Inc,Financial Servi,1081.1,6.76,6.2,1.1710745,42.0,18.0,24.0,0.0,0.0,0.0,0.0,4,True,False,0.21,no_signal,True,4-buyer cluster 31d ago | CEO bought | 6% above 52w low | P/B 1.2,v4-unified
-27,IEP,Icahn Enterprises L.P. - Deposi,Energy,4966.5,7.39,11.6,2.4174027,42.0,0.0,12.0,0.0,0.0,6.0,24.0,0,False,False,0.0,has_signal,False,12% above 52w low | 13D filed | 10b5-1 leg +24,v4-unified
-28,AGIG,Abundia Global Impact Group Inc,Utilities,51.1,1.16,0.6,1.4445828,41.0,20.0,21.0,0.0,0.0,0.0,0.0,3,True,False,0.06,no_signal,False,3-buyer cluster 28d ago | CEO bought | 1% above 52w low,v4-unified
-29,GRND,Grindr Inc.,Technology,2022.5,11.38,11.8,2276.0,40.0,0.0,12.0,22,0.0,6.0,0.0,0,False,False,0.0,no_signal,False,12% above 52w low | step-change 78 | 13D filed,v4-unified
-30,MRP,"Millrose Properties, Inc.",Real Estate,4573.0,27.54,12.8,0.78101075,40.0,22.0,18.0,0.0,0.0,0.0,0.0,3,False,False,6.53,no_signal,False,3-buyer cluster 29d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8,v4-unified
-31,ONON,On Holding AG,Consumer Cyclic,13055.3,37.52,22.8,5.536192,40.0,28.0,12.0,0.0,0.0,0.0,0.0,3,True,False,6.59,no_signal,True,3-buyer cluster 27d ago | CEO bought | $6.6M insider buys | 23% above 52w low,v4-unified
-32,ULTA,"Ulta Beauty, Inc.",Consumer Cyclic,20544.6,477.9,9.8,7.5289483,40.0,0.0,18.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,10% above 52w low | step-change 52,v4-unified
-33,OPCH,"Option Care Health, Inc.",Healthcare,3223.8,20.53,13.4,2.385545,39.0,28.0,12.0,0.0,0.0,0.0,-1.0,4,True,True,1.88,has_signal,False,4-buyer cluster 38d ago | CEO+CFO bought | 13% above 52w low | 10b5-1 leg -1,v4-unified
-34,GO,Grocery Outlet Holding Corp.,Consumer Defens,818.1,8.27,19.0,1.0136046,38.2,20.2,18.0,0.0,0.0,0.0,0.0,6,True,False,7.92,no_signal,False,6-buyer cluster 94d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0,v4-unified
-35,POOL,Pool Corporation,Industrials,6584.9,180.69,4.6,5.810715,38.0,20.0,18.0,0.0,0.0,0.0,0.0,4,False,False,7.67,no_signal,False,4-buyer cluster 34d ago | $7.7M insider buys | 5% above 52w low,v4-unified
-36,APT,"Alpha Pro Tech, Ltd.",Industrials,54.9,5.37,32.6,0.8634829,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg +25,v4-unified
-37,DT,"Dynatrace, Inc.",Technology,11883.5,40.77,35.2,4.600023,37.0,0.0,6.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-38,GENC,"Gencor Industries, Inc.",Industrials,220.0,15.01,53.9,0.99450076,37.0,0.0,6.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 13D filed | 10b5-1 leg +25,v4-unified
-39,LCNB,LCNB Corporation,Financial Servi,243.2,17.07,80.2,0.88166934,37.0,6.0,6.0,0.0,0.0,0.0,25.0,1,True,False,0.01,has_signal,False,CEO bought | P/B 0.9 | 10b5-1 leg +25,v4-unified
-40,MA,Mastercard Incorporated,Financial Servi,437586.1,495.24,22.4,65.36958,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg +25,v4-unified
-41,NOW,"ServiceNow, Inc.",Technology,110319.0,106.97,19.8,9.406437,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,20% above 52w low | 10b5-1 leg +25,v4-unified
-42,NXST,"Nexstar Media Group, Inc.",Communication S,5483.9,179.57,17.2,2.5293686,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,17% above 52w low | 10b5-1 leg +25,v4-unified
-43,PATK,"Patrick Industries, Inc.",Consumer Cyclic,2981.8,90.65,10.4,2.524226,37.0,25.0,12.0,0.0,0.0,0.0,0.0,5,True,False,3.54,no_signal,False,5-buyer cluster 36d ago | CEO bought | 10% above 52w low,v4-unified
-44,PCTY,Paylocity Holding Corporation,Technology,6058.0,113.14,19.2,5.305261,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,19% above 52w low | 10b5-1 leg +25,v4-unified
-45,SCHW,Charles Schwab Corporation (The,Financial Servi,154383.1,88.77,20.4,3.6329036,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,20% above 52w low | 10b5-1 leg +25,v4-unified
-46,SHOP,Shopify Inc.,Technology,143287.0,110.42,18.6,11.490114,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,19% above 52w low | 10b5-1 leg +25,v4-unified
-47,SPRY,"ARS Pharmaceuticals, Inc.",Healthcare,934.4,9.41,22.5,8.175499,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg +25,v4-unified
-48,TXRH,"Texas Roadhouse, Inc.",Consumer Cyclic,10779.7,164.0,23.6,7.1165113,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg +25,v4-unified
-49,OLED,Universal Display Corporation,Technology,4246.9,90.84,9.0,2.4923177,36.4,18.4,18.0,0.0,0.0,0.0,0.0,3,True,False,1.47,no_signal,False,3-buyer cluster 31d ago | CEO bought | 9% above 52w low,v4-unified
-50,ACM,AECOM,Industrials,9162.4,71.29,5.4,4.0251822,36.0,18.0,18.0,0.0,0.0,0.0,0.0,2,True,True,0.4,no_signal,False,CEO+CFO bought | 5% above 52w low,v4-unified
-51,ACON,"Aclarion, Inc.",Healthcare,8.6,3.49,11.9,0.43413362,36.0,18.0,18.0,0.0,0.0,0.0,0.0,4,True,False,0.05,no_signal,False,4-buyer cluster 34d ago | CEO bought | 12% above 52w low | P/B 0.4,v4-unified
-52,FCN,"FTI Consulting, Inc.",Industrials,4662.1,154.66,28.5,2.7522511,36.0,30.0,6.0,0.0,0.0,0.0,0.0,3,True,True,2.08,no_signal,False,3-buyer cluster 28d ago | CEO+CFO bought,v4-unified
-53,FLUT,Flutter Entertainment plc,Consumer Cyclic,17461.4,100.7,4.1,1.9375817,36.0,35.0,21.0,0.0,0.0,0.0,-20.0,7,True,False,1.05,has_signal,False,7-buyer cluster 30d ago | CEO bought | 4% above 52w low | 10b5-1 leg -20,v4-unified
-54,HUBS,"HubSpot, Inc.",Technology,11387.4,222.45,11.2,5.787844,36.0,24.0,12.0,0.0,0.0,0.0,0.0,3,True,False,2.59,no_signal,False,3-buyer cluster 30d ago | CEO bought | 11% above 52w low,v4-unified
-55,JKHY,"Jack Henry & Associates, Inc.",Technology,9048.3,127.35,3.8,4.2479734,36.0,18.0,18.0,0.0,0.0,0.0,0.0,2,True,True,0.32,no_signal,False,CEO+CFO bought | 4% above 52w low,v4-unified
-56,PCOR,"Procore Technologies, Inc.",Technology,6901.7,45.74,2.7,5.7440667,36.0,0.0,18.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg +18,v4-unified
-57,FEED,"ENvue Medical, Inc.",Healthcare,4.6,0.7485,0.1,0.08652179,35.0,0.0,24.0,0.0,0.0,6.0,5.0,0,False,False,0.0,has_signal,False,0% above 52w low | P/B 0.1 | 13D filed | 10b5-1 leg +5,v4-unified
-58,ODTX,"Odyssey Therapeutics, Inc.",Healthcare,787.3,16.69,27.1,-0.74181074,35.0,23.0,6.0,0.0,0.0,6.0,0.0,7,False,True,75.32,no_data,True,7-buyer cluster 31d ago | $75.3M insider buys | 13D filed,v4-unified
-59,AQST,"Aquestive Therapeutics, Inc.",Healthcare,500.5,3.99,22.9,-14.562044,34.0,0.0,12.0,0.0,0.0,0.0,22.0,0,False,False,0.0,has_signal,False,23% above 52w low | 10b5-1 leg +22,v4-unified
-60,CDE,"Coeur Mining, Inc.",Basic Materials,16581.3,16.09,39.5,1.5986091,34.0,0.0,9.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-61,EVTC,"Evertec, Inc.",Technology,1390.8,22.57,4.6,2.0811434,34.0,16.0,18.0,0.0,0.0,0.0,0.0,4,False,False,1.82,no_signal,False,4-buyer cluster 31d ago | 5% above 52w low,v4-unified
-62,IMA,"ImageneBio, Inc.",Healthcare,62.6,5.55,11.5,0.507591,34.0,0.0,18.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,11% above 52w low | P/B 0.5 | 13D filed | 10b5-1 leg +10,v4-unified
-63,PRCT,PROCEPT BioRobotics Corporation,Healthcare,1638.1,28.78,20.8,4.710311,34.0,0.0,12.0,0.0,0.0,0.0,22.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg +22,v4-unified
-64,WDAY,"Workday, Inc.",Technology,34633.1,140.23,20.4,4.65571,34.0,0.0,12.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,20% above 52w low | step-change 72,v4-unified
-65,XRN,Chiron Real Estate Inc.,Real Estate,501.5,34.87,53.5,1.1966369,33.0,27.0,6.0,0.0,0.0,0.0,0.0,9,True,True,0.62,no_signal,False,9-buyer cluster 31d ago | CEO+CFO bought | P/B 1.2,v4-unified
-66,ALKT,"Alkami Technology, Inc.",Technology,1638.5,15.31,7.1,4.4210224,32.0,14.0,18.0,0.0,0.0,6.0,-6.0,2,False,False,65.86,has_signal,False,$65.9M insider buys | 7% above 52w low | 13D filed | 10b5-1 leg -6,v4-unified
-67,IBP,"Installed Building Products, In",Consumer Cyclic,5435.0,201.74,21.0,8.091934,32.0,20.0,12.0,0.0,0.0,0.0,0.0,4,False,True,0.84,no_signal,False,4-buyer cluster 30d ago | 21% above 52w low,v4-unified
-68,TKO,"TKO Group Holdings, Inc.",Communication S,37951.9,198.57,62.0,4.4092374,32.0,30.0,0.0,0.0,0.0,0.0,2.0,3,True,True,4.5,has_signal,False,3-buyer cluster 29d ago | CEO+CFO bought | 10b5-1 leg +2,v4-unified
-69,ACET,,,,,,,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-70,AUPH,Aurinia Pharmaceuticals Inc,Healthcare,2029.3,15.78,88.5,3.635107,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-71,BCO,Brinks Company (The),Industrials,4223.9,102.57,36.3,16.129894,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-72,CFBK,CF Bankshares Inc.,Financial Servi,195.6,30.1,65.4,1.0353605,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg +25,v4-unified
-73,CIFR,Cipher Digital Inc.,Technology,9422.4,23.035,78.0,13.073213,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-74,CRNX,"Crinetics Pharmaceuticals, Inc.",Healthcare,3687.2,34.97,28.4,2.8758225,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-75,EG,"Everest Group, Ltd.",Financial Servi,13131.8,331.85,44.7,0.8637518,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg +25,v4-unified
-76,EYPT,"EyePoint, Inc.",Healthcare,986.8,11.77,34.3,29.722223,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-77,FWONB,Liberty Media Corporation,Communication S,20675.0,82.5,41.3,2.6008008,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-78,INMB,INmune Bio Inc.,Healthcare,32.4,1.22,1.2,1.6531166,31.0,0.0,21.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,1% above 52w low | 10b5-1 leg +10,v4-unified
-79,IQV,"IQVIA Holdings, Inc.",Healthcare,31085.1,186.25,35.3,4.996781,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-80,KKR,KKR & Co. Inc.,Financial Servi,84413.9,90.53,11.0,2.8805523,31.0,19.0,12.0,0.0,0.0,0.0,0.0,4,True,False,45.68,no_signal,False,4-buyer cluster 113d ago | CEO bought | $45.7M insider buys | 11% above 52w low,v4-unified
-81,NSP,"Insperity, Inc.",Industrials,1282.5,33.6,32.9,19.145298,31.0,25.0,6.0,0.0,0.0,0.0,0.0,4,True,True,7.81,no_signal,False,4-buyer cluster 92d ago | CEO+CFO bought | $7.8M insider buys,v4-unified
-82,PGEN,"Precigen, Inc.",Healthcare,1322.7,3.71,57.0,65.08772,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-83,UUU,"Universal Safety Products, Inc.",Industrials,19.5,6.43,66.2,6.5478616,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v4-unified
-84,CHTR,"Charter Communications, Inc.",Communication S,21209.6,135.37,2.9,1.0160776,30.4,18.4,24.0,0.0,0.0,0.0,-12.0,3,True,False,2.37,has_signal,False,3-buyer cluster 44d ago | CEO bought | 3% above 52w low | P/B 1.0 | 10b5-1 leg -12,v4-unified
-85,ALEC,"Alector, Inc.",Healthcare,181.0,1.63,23.4,17.340425,30.0,0.0,12.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,23% above 52w low | 10b5-1 leg +18,v4-unified
-86,HROW,"Harrow, Inc.",Healthcare,1247.2,33.46,18.7,43.454544,30.0,18.0,12.0,0.0,0.0,0.0,0.0,2,True,True,0.41,no_signal,False,CEO+CFO bought | 19% above 52w low,v4-unified
-87,OPEN,Opendoor Technologies Inc,Real Estate,4187.0,4.34,37.0,4.3838387,30.0,6.0,6.0,0.0,0.0,0.0,18.0,1,True,False,0.49,has_signal,False,CEO bought | 10b5-1 leg +18,v4-unified
-88,SRE,DBA Sempra,Utilities,59402.4,90.87,63.7,1.8773631,30.0,0.0,3.0,22,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,step-change 60 | 10b5-1 leg +5,v4-unified
-89,TPL,Texas Pacific Land Corporation,Energy,26355.8,382.11,40.6,16.939001,29.5,1.5,0.0,22,0.0,6.0,0.0,2,False,False,0.49,no_signal,False,step-change 60 | 13D filed,v4-unified
-90,ADT,ADT Inc.,Industrials,5065.3,6.66,15.3,1.397105,29.0,14.0,15.0,0.0,0.0,0.0,0.0,3,False,False,0.35,no_signal,False,3-buyer cluster 30d ago | 15% above 52w low,v4-unified
-91,BB,BlackBerry Limited,Technology,5180.8,8.84,73.2,6.96063,29.0,0.0,0.0,0.0,0.0,6.0,23.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +23,v4-unified
-92,BLMN,"Bloomin' Brands, Inc.",Consumer Cyclic,636.1,7.43,40.7,1.604405,29.0,0.0,3.0,0.0,0.0,6.0,20.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +20,v4-unified
-93,MOBI,"Mobia Medical, Inc.",Healthcare,454.3,13.73,77.3,-0.28039864,29.0,23.0,0.0,0.0,0.0,6.0,0.0,6,False,False,19.02,no_signal,False,6-buyer cluster 31d ago | $19.0M insider buys | 13D filed,v4-unified
-94,SAMG,Silvercrest Asset Management Gr,Financial Servi,83.7,10.9,3.5,1.7810457,29.0,0.0,21.0,0.0,0.0,0.0,8.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg +8,v4-unified
-95,STRT,STRATTEC SECURITY CORPORATION,Consumer Cyclic,324.0,77.53,59.7,1.3272502,29.0,26.0,3.0,0.0,0.0,0.0,0.0,3,True,True,0.29,no_signal,False,3-buyer cluster 28d ago | CEO+CFO bought,v4-unified
-96,ZTS,Zoetis Inc.,Healthcare,32527.9,77.59,5.3,9.897945,29.0,14.0,18.0,0.0,0.0,0.0,-3.0,3,False,False,0.89,has_signal,False,3-buyer cluster 30d ago | 5% above 52w low | 10b5-1 leg -3,v4-unified
-97,LW,"Lamb Weston Holdings, Inc.",Consumer Defens,6013.1,43.55,20.1,3.3125427,28.4,16.4,12.0,0.0,0.0,0.0,0.0,3,False,True,16.98,no_signal,False,3-buyer cluster 65d ago | $17.0M insider buys | 20% above 52w low,v4-unified
-98,AMCX,AMC Global Media Inc.,Communication S,435.8,9.92,86.1,0.45617583,28.0,0.0,6.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,P/B 0.5 | step-change 71,v4-unified
-99,AMT,American Tower Corporation (REI,Real Estate,88906.4,190.83,37.2,25.245403,28.0,0.0,6.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 56,v4-unified
-100,CINF,Cincinnati Financial Corporatio,Financial Servi,25342.3,163.83,66.2,1.6118178,28.0,0.0,3.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-101,KODK,Eastman Kodak Company,Industrials,925.2,9.48,45.7,1.5419649,28.0,0.0,3.0,0.0,0.0,0.0,25.0,1,False,False,0.02,has_signal,False,10b5-1 leg +25,v4-unified
-102,MX,Magnachip Semiconductor Corpora,Technology,228.8,6.28,53.4,0.9829395,28.0,0.0,6.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,P/B 1.0 | step-change 52,v4-unified
-103,PAY,"Paymentus Holdings, Inc.",Technology,2655.4,21.11,4.0,4.55055,28.0,0.0,18.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,4% above 52w low | 10b5-1 leg +10,v4-unified
-104,PSN,Parsons Corporation,Technology,6413.4,59.95,28.4,2.4202664,28.0,22.0,6.0,0.0,0.0,0.0,0.0,4,True,False,2.13,no_signal,False,4-buyer cluster 31d ago | CEO bought,v4-unified
-105,RNR,RenaissanceRe Holdings Ltd.,Financial Servi,12054.1,282.74,59.3,1.1287746,28.0,0.0,6.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,P/B 1.1 | step-change 51,v4-unified
-106,STT,State Street Corporation,Financial Servi,45182.2,163.25,98.8,1.8762642,28.0,0.0,3.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-107,GRNT,"Granite Ridge Resources, Inc.",Energy,658.2,4.99,31.9,1.2003849,27.2,18.2,9.0,0.0,0.0,0.0,0.0,5,True,True,0.41,no_signal,False,5-buyer cluster 92d ago | CEO+CFO bought,v4-unified
-108,BDTX,"Black Diamond Therapeutics, Inc",Healthcare,108.9,1.9,1.8,1.043956,27.0,0.0,24.0,0.0,0.0,0.0,3.0,0,False,False,0.0,has_signal,False,2% above 52w low | P/B 1.0 | 10b5-1 leg +3,v4-unified
-109,CRBU,"Caribou Biosciences, Inc.",Healthcare,182.5,1.84,32.1,1.7490494,27.0,0.0,9.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-110,DLPN,"Dolphin Entertainment, Inc.",Communication S,14.8,1.14,16.9,1.4375788,26.0,6.0,15.0,0.0,0.0,0.0,5.0,1,True,False,0.01,has_signal,False,CEO bought | 17% above 52w low | 10b5-1 leg +5,v4-unified
-111,GRDN,"Guardian Pharmacy Services, Inc",Healthcare,2648.7,41.83,99.3,11.992547,26.0,0.0,0.0,0.0,0.0,6.0,20.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +20,v4-unified
-112,INFU,"InfuSystems Holdings, Inc.",Healthcare,182.2,9.03,64.5,3.1020267,26.0,26.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.13,no_signal,False,3-buyer cluster 30d ago | CEO+CFO bought,v4-unified
-113,JMSB,"John Marshall Bancorp, Inc.",Financial Servi,307.8,21.81,94.8,1.1423035,26.0,0.0,6.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg +20,v4-unified
-114,LCUT,"Lifetime Brands, Inc.",Consumer Cyclic,209.1,9.15,90.6,1.0589052,26.0,0.0,6.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg +20,v4-unified
-115,AMD,"Advanced Micro Devices, Inc.",Technology,775358.7,475.505,83.6,12.023794,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-116,APP,Applovin Corporation,Communication S,174970.7,520.84,47.2,74.10928,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-117,BCPC,Balchem Corporation,Basic Materials,5215.3,162.32,51.8,4.0581017,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-118,BE,Bloom Energy Corporation,Industrials,73844.5,259.61,79.1,80.0771,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-119,CACC,Credit Acceptance Corporation,Financial Servi,5955.1,569.32,94.1,3.919209,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-120,CUBE,CubeSmart,Real Estate,9489.0,41.69,73.0,3.563857,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-121,DDOG,"Datadog, Inc.",Technology,80924.0,227.34,71.6,20.283726,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-122,ENOV,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-123,FCFS,"FirstCash Holdings, Inc.",Financial Servi,10053.9,229.35,94.3,4.3749046,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-124,FOSL,"Fossil Group, Inc.",Consumer Cyclic,247.0,4.18,65.0,2.9333334,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-125,GOOG,Alphabet Inc.,Communication S,4418103.1,362.29,82.5,9.16865,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-126,GOOGL,Alphabet Inc.,Communication S,4442127.1,364.26,82.0,9.218505,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-127,ILMN,"Illumina, Inc.",Healthcare,24212.5,160.03,81.2,9.090032,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-128,IRON,"Disc Medicine, Inc.",Healthcare,2610.5,68.34,47.6,3.7911904,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-129,KYMR,"Kymera Therapeutics, Inc.",Healthcare,6326.4,76.91,60.7,3.959535,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-130,LODE,Comstock Inc.,Basic Materials,291.5,3.84,62.5,1.819043,25.0,16.0,3.0,0.0,0.0,6.0,0.0,2,True,False,1.54,no_signal,False,CEO bought | 13D filed,v4-unified
-131,LUNR,"Intuitive Machines, Inc.",Industrials,4407.6,27.47,50.5,-13.130975,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-132,LXFR,Luxfer Holdings PLC,Industrials,473.2,17.52,87.8,2.0616615,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-133,MAZE,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-134,MGRC,McGrath RentCorp,Industrials,2770.1,112.78,53.2,2.2393868,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-135,NVDA,NVIDIA Corporation,Technology,5042570.0,208.19,70.4,25.79802,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-136,OMC,Omnicom Group Inc.,Communication S,21555.0,75.63,44.6,2.2840662,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-137,PCAR,PACCAR Inc.,Industrials,62991.2,119.69,70.9,3.1881626,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-138,RIOT,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-139,SERV,Serve Robotics Inc.,Industrials,590.5,6.94,0.8,1.4787983,25.0,0.0,21.0,0.0,0.0,0.0,4.0,0,False,False,0.0,has_signal,False,1% above 52w low | 10b5-1 leg +4,v4-unified
-140,SRRK,Scholar Rock Holding Corporatio,Healthcare,5461.8,45.58,73.7,20.141405,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-141,TSLA,"Tesla, Inc.",Consumer Cyclic,1489820.5,396.68,51.4,18.115725,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-142,UHT,Universal Health Realty Income ,Real Estate,551.4,39.74,47.5,3.6183195,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-143,UNIT,Uniti Group Inc.,Real Estate,2770.5,11.41,86.2,7.1715903,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-144,WEST,Westrock Coffee Company,Consumer Defens,778.5,7.98,81.5,-420.0,25.0,0.0,0.0,0.0,0.0,0.0,25.0,1,False,False,0.27,has_signal,False,10b5-1 leg +25,v4-unified
-145,WMT,Walmart Inc.,Consumer Defens,946056.4,118.88,61.0,9.509639,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-146,XEL,Xcel Energy Inc.,Utilities,48611.9,77.87,66.6,2.0568426,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v4-unified
-147,CRSP,CRISPR Therapeutics AG,Healthcare,5070.0,51.48,30.2,2.7345161,24.0,0.0,6.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-148,KULR,,,,,,,24.0,0.0,0.0,0.0,0.0,6.0,18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +18,v4-unified
-149,PRLD,Prelude Therapeutics Incorporat,Healthcare,313.8,3.94,66.6,4.1256547,24.0,0.0,0.0,0.0,0.0,6.0,18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +18,v4-unified
-150,SNTI,"Senti Biosciences Holdings, Inc",Healthcare,28.2,0.9057,5.2,5.0038676,24.0,0.0,18.0,0.0,0.0,6.0,0.0,0,False,False,0.0,no_signal,False,5% above 52w low | 13D filed,v4-unified
-151,PLSE,"Pulse Biosciences, Inc",Healthcare,1729.6,24.99,80.6,21.017662,23.6,17.6,0.0,0.0,0.0,6.0,0.0,2,True,False,26.59,no_signal,False,CEO bought | $26.6M insider buys | 13D filed,v4-unified
-152,BAC,Bank of America Corporation,Financial Servi,386196.5,54.42,77.5,1.4075108,23.0,0.0,3.0,0.0,0.0,0.0,20.0,1,False,False,0.05,has_signal,False,10b5-1 leg +20,v4-unified
-153,EPAM,"EPAM Systems, Inc.",Technology,5082.3,97.28,6.0,1.4957869,23.0,27.0,21.0,0.0,0.0,0.0,-25.0,6,True,True,0.04,has_signal,False,6-buyer cluster 38d ago | CEO+CFO bought | 6% above 52w low | 10b5-1 leg -25,v4-unified
-154,FEMY,Femasys Inc.,Healthcare,15.9,5.25,1.0,53.57143,23.0,0.0,18.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,1% above 52w low | 10b5-1 leg +5,v4-unified
-155,BKNG,Booking Holdings Inc. Common St,Consumer Cyclic,127072.3,163.99,16.6,-14.6616,22.0,0.0,12.0,22,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,17% above 52w low | step-change 54 | 10b5-1 leg -12,v4-unified
-156,CCI,Crown Castle Inc.,Real Estate,40402.4,92.57,41.7,-21.01953,22.0,0.0,0.0,22,0.0,0.0,0.0,1,False,False,0.07,no_signal,False,step-change 53,v4-unified
-157,CVBF,CVB Financial Corporation,Financial Servi,3666.7,20.78,80.2,1.2156312,22.0,4.0,3.0,0.0,0.0,0.0,15.0,1,False,False,1.5,has_signal,False,10b5-1 leg +15,v4-unified
-158,D,"Dominion Energy, Inc.",Utilities,58267.7,66.25,82.6,2.0682442,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 55,v4-unified
-159,DLTR,"Dollar Tree, Inc.",Consumer Defens,21552.4,112.15,47.6,6.184515,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 60,v4-unified
-160,ENPH,"Enphase Energy, Inc.",Technology,7052.5,53.51,57.8,6.3968916,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
-161,ETR,Entergy Corporation,Utilities,50211.9,109.66,77.1,2.8942437,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
-162,OCUL,"Ocular Therapeutix, Inc.",Healthcare,1854.6,8.47,21.9,3.187806,22.0,0.0,12.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg +10,v4-unified
-163,RH,RH,Consumer Cyclic,2836.8,150.09,29.1,46.6118,22.0,0.0,6.0,22,0.0,0.0,-6.0,0,False,False,0.0,has_signal,False,step-change 69 | 10b5-1 leg -6,v4-unified
-164,SBAC,SBA Communications Corporation,Real Estate,21719.6,204.78,52.5,-4.570982,22.0,0.0,0.0,22,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v4-unified
-165,TRUP,"Trupanion, Inc.",Financial Servi,967.1,22.17,2.8,2.449453,22.0,0.0,18.0,0.0,0.0,0.0,4.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg +4,v4-unified
-166,ZIP,,,,,,,22.0,0.0,0.0,0.0,0.0,0.0,22.0,0,False,False,0.0,has_signal,False,10b5-1 leg +22,v4-unified
-167,AVBC,"Avidia Bancorp, Inc.",Financial Servi,348.8,18.78,64.3,0.9095312,20.4,14.4,6.0,0.0,0.0,0.0,0.0,3,True,False,0.21,no_signal,False,3-buyer cluster 31d ago | CEO bought | P/B 0.9,v4-unified
-168,INSE,"Inspired Entertainment, Inc.",Consumer Cyclic,218.2,8.18,54.0,-13.724833,20.4,14.4,0.0,0.0,0.0,6.0,0.0,3,True,False,0.55,no_signal,False,3-buyer cluster 76d ago | CEO bought | 13D filed,v4-unified
-169,NXG,733085,Financial Servi,339.2,59.69,92.7,,20.4,20.4,0.0,0.0,0.0,0.0,0.0,3,True,True,0.04,no_data,True,3-buyer cluster 34d ago | CEO+CFO bought,v4-unified
-170,IOVA,"Iovance Biotherapeutics, Inc.",Healthcare,1732.4,3.88,55.9,2.3557985,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v4-unified
-171,MYO,Myomo Inc.,Healthcare,50.6,1.31,30.1,5.6223173,20.0,0.0,6.0,0.0,0.0,0.0,14.0,1,False,False,0.02,has_signal,False,10b5-1 leg +14,v4-unified
-172,QTTB,Q32 Bio Inc.,Healthcare,201.6,11.89,78.1,3.7555277,20.0,14.0,0.0,0.0,0.0,6.0,0.0,2,False,False,30.0,no_signal,False,$30.0M insider buys | 13D filed,v4-unified
-173,VSNT,"Versant Media Group, Inc.",Communication S,5689.6,40.21,41.0,0.56325203,19.0,13.0,6.0,0.0,0.0,0.0,0.0,4,False,False,6.19,no_signal,False,4-buyer cluster 94d ago | $6.2M insider buys | P/B 0.6,v4-unified
-174,BREZ,,,,,,,18.0,18.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.0,no_data,True,CEO+CFO bought,v4-unified
-175,CCRN,"Cross Country Healthcare, Inc.",Healthcare,408.7,13.18,76.1,1.316289,18.0,0.0,3.0,0.0,0.0,0.0,15.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v4-unified
-176,CGON,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-177,IDCC,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-178,MCHPP,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-179,QCLS,"Q/C Technologies, Inc.",Technology,29.8,3.79,8.5,1.4465649,18.0,0.0,21.0,0.0,0.0,0.0,-3.0,1,False,False,0.01,has_signal,False,8% above 52w low | 10b5-1 leg -3,v4-unified
-180,RAL,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-181,RLAY,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-182,SOFI,"SoFi Technologies, Inc.",Financial Servi,21126.7,16.47,13.3,1.9521155,18.0,6.0,15.0,22,0.0,0.0,-25.0,1,True,False,0.5,has_signal,False,CEO bought | 13% above 52w low | step-change 53 | 10b5-1 leg -25,v4-unified
-183,SVRA,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v4-unified
-184,VABK,Virginia National Bankshares Co,Financial Servi,235.3,43.4,57.2,1.2709756,18.0,0.0,3.0,0.0,0.0,0.0,15.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v4-unified
-185,AFCG,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v4-unified
-186,ARMP,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v4-unified
-187,CAT,"Caterpillar, Inc.",Industrials,421303.5,914.7,94.6,22.579052,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16,v4-unified
-188,CHCO,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,1,False,False,0.01,has_signal,False,10b5-1 leg +16,v4-unified
-189,FIS,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16,v4-unified
-190,NCDL,Nuveen Churchill Direct Lending Corp.,Financial Servi,636.1,12.88,9.4,,16.0,6.0,18.0,0.0,0.0,0.0,-8.0,2,False,True,0.12,has_signal,False,9% above 52w low | 10b5-1 leg -8,v4-unified
-191,OPRX,OptimizeRx Corporation,Healthcare,95.1,5.07,2.8,0.74133646,16.0,0.0,24.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.7 | 10b5-1 leg -8,v4-unified
-192,FABC,"Fabric.AI, Inc.",Consumer Cyclic,18.6,3.82,24.4,4.710234,15.0,0.0,12.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,24% above 52w low | 13D filed | 10b5-1 leg -3,v4-unified
-193,FBIOP,,,,,,,15.0,0.0,0.0,0.0,0.0,0.0,15.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v4-unified
-194,MZTI,The Marzetti Company,Consumer Defens,3016.7,110.01,4.9,2.8874018,15.0,0.0,18.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,5% above 52w low | 10b5-1 leg -3,v4-unified
-195,NKE,"Nike, Inc.",Consumer Cyclic,64877.7,43.81,6.3,4.6018906,15.0,22.0,18.0,0.0,0.0,0.0,-25.0,4,True,False,3.73,has_signal,False,4-buyer cluster 64d ago | CEO bought | 6% above 52w low | 10b5-1 leg -25,v4-unified
-196,ADP,"Automatic Data Processing, Inc.",Technology,92406.6,231.17,33.6,14.583938,14.0,0.0,6.0,0.0,0.0,0.0,8.0,1,False,False,0.75,has_signal,False,10b5-1 leg +8,v4-unified
-197,ANGI,Angi Inc.,Communication S,233.4,5.77,8.3,0.2549713,14.0,0.0,24.0,0.0,0.0,0.0,-10.0,0,False,False,0.0,has_signal,False,8% above 52w low | P/B 0.3 | 10b5-1 leg -10,v4-unified
-198,ASTS,"AST SpaceMobile, Inc.",Technology,34430.5,88.71,54.2,12.732883,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
-199,CARS,Cars.com Inc.,Communication S,538.9,9.64,34.1,1.1966237,14.0,0.0,12.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,P/B 1.2 | 10b5-1 leg +2,v4-unified
-200,INGN,"Inogen, Inc",Healthcare,171.9,6.35,26.6,0.9500299,14.0,0.0,12.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg +2,v4-unified
-201,SATS,EchoStar Corporation,Communication S,33841.5,116.77,76.7,5.9986644,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
-202,TEAM,Atlassian Corporation,Technology,24262.7,95.61,23.8,15.956275,14.0,0.0,12.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg +2,v4-unified
-203,VNOM,"Viper Energy, Inc.",Energy,16197.8,45.12,62.5,1.7143508,14.0,0.0,3.0,0.0,0.0,6.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +5,v4-unified
-204,VVX,"V2X, Inc.",Industrials,2677.7,85.52,95.3,2.4264433,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v4-unified
-205,WMS,"Advanced Drainage Systems, Inc.",Industrials,10393.3,135.69,37.4,5.3039126,14.0,0.0,6.0,0.0,0.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg +8,v4-unified
-206,KRP,Kimbell Royalty Partners,Energy,1650.0,15.31,92.2,2.9089873,13.0,0.0,0.0,0.0,0.0,6.0,7.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +7,v4-unified
-207,LULU,lululemon athletica inc.,Consumer Cyclic,13780.9,121.36,7.9,2.8493614,12.6,13.6,18.0,0.0,0.0,6.0,-25.0,2,True,False,1.49,has_signal,False,CEO bought | 8% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-208,SMG,Scotts Miracle-Gro Company (The,Basic Materials,3468.8,59.62,37.4,-6.9076586,12.0,0.0,6.0,0.0,0.0,0.0,6.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v4-unified
-209,SMR,NuScale Power Corporation,Industrials,3461.1,10.0,2.4,2.7247956,12.0,0.0,18.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,2% above 52w low | 13D filed | 10b5-1 leg -12,v4-unified
-210,TRVI,"Trevi Therapeutics, Inc.",Healthcare,1929.5,13.59,76.4,9.516807,12.0,0.0,0.0,0.0,0.0,6.0,6.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +6,v4-unified
-211,AMSF,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-212,CVGI,"Commercial Vehicle Group, Inc.",Consumer Cyclic,175.2,5.16,84.4,1.2594581,10.0,0.0,3.0,0.0,0.0,0.0,7.0,0,False,False,0.0,has_signal,False,10b5-1 leg +7,v4-unified
-213,JBIO,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-214,KUST,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-215,MU,"Micron Technology, Inc.",Technology,1055435.0,935.89,84.4,14.569329,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-216,SN,"SharkNinja, Inc.",Consumer Cyclic,18182.5,128.48,89.7,6.5893936,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-217,THRY,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-218,VREOF,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v4-unified
-219,ZSQR,Z Squared Inc.,Technology,531.3,10.33,24.2,,10.0,0.0,12.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,24% above 52w low | 13D filed | 10b5-1 leg -8,v4-unified
-220,ADSK,,,,,,,9.0,0.0,0.0,12,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,step-change 49 | 10b5-1 leg -3,v4-unified
-221,MORN,"Morningstar, Inc.",Financial Servi,7022.3,184.66,21.2,6.8933854,9.0,0.0,12.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -3,v4-unified
-222,NMRA,"Neumora Therapeutics, Inc.",Healthcare,305.7,1.65,31.8,2.7684562,9.0,0.0,6.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
-223,OCGN,"Ocugen, Inc.",Healthcare,419.8,1.24,18.5,-31.794872,9.0,0.0,12.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,18% above 52w low | 10b5-1 leg -3,v4-unified
-224,PAYC,"Paycom Software, Inc.",Technology,6347.8,136.14,20.7,7.636731,9.0,0.0,12.0,22,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,21% above 52w low | step-change 69 | 10b5-1 leg -25,v4-unified
-225,STRR,"Star Equity Holdings, Inc.",Industrials,40.8,11.06,75.1,0.6721361,9.0,6.0,6.0,0.0,0.0,0.0,-3.0,1,True,False,0.2,has_signal,False,CEO bought | P/B 0.7 | 10b5-1 leg -3,v4-unified
-226,RYM,"RYTHM, Inc.",Consumer Defens,60.1,27.98,35.3,4.6186857,8.0,0.0,6.0,0.0,0.0,0.0,2.0,0,False,False,0.0,has_signal,False,10b5-1 leg +2,v4-unified
-227,TSEOF,Trinseo PLC,Basic Materials,0.5,0.013,0.3,,8.0,0.0,18.0,0.0,0.0,0.0,-10.0,0,False,False,0.0,has_signal,False,0% above 52w low | 10b5-1 leg -10,v4-unified
-228,AAPL,Apple Inc.,Technology,4267411.0,290.55,78.1,40.020657,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v4-unified
-229,PEN,"Penumbra, Inc.",Healthcare,12627.7,321.06,70.7,8.566626,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v4-unified
-230,FUBO,fuboTV Inc.,Communication S,286.4,9.73,2.9,0.35272792,5.0,0.0,24.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.4 | 13D filed | 10b5-1 leg -25,v4-unified
-231,JSM,,,,,,,5.0,0.0,0.0,0.0,0.0,6.0,-1.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -1,v4-unified
-232,KLRS,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v4-unified
-233,PAR,PAR Technology Corporation,Technology,558.1,13.53,3.2,0.6752845,5.0,0.0,24.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.7 | 13D filed | 10b5-1 leg -25,v4-unified
-234,QVCCQ,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v4-unified
-235,MMSI,"Merit Medical Systems, Inc.",Healthcare,4027.3,67.51,21.0,2.4757051,4.6,3.6,12.0,0.0,0.0,0.0,-11.0,2,False,False,0.22,has_signal,False,21% above 52w low | 10b5-1 leg -11,v4-unified
-236,HHH,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
-237,KDP,Keurig Dr Pepper Inc.,Consumer Defens,42830.4,31.48,59.7,1.6953899,3.0,0.0,3.0,22,3.0,0.0,-25.0,0,False,False,0.0,has_signal,False,step-change 58 | PSU 75% LTI | 10b5-1 leg -25,v4-unified
-238,ORGO,Organogenesis Holdings Inc.,Healthcare,319.1,2.48,8.7,1.3045765,3.0,0.0,21.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,9% above 52w low | 10b5-1 leg -18,v4-unified
-239,STRRP,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
-240,XTIA,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v4-unified
-241,GYRE,"Gyre Therapeutics, Inc.",Healthcare,594.8,6.13,17.3,5.5275025,2.0,0.0,12.0,0.0,0.0,6.0,-16.0,0,False,False,0.0,has_signal,False,17% above 52w low | 13D filed | 10b5-1 leg -16,v4-unified
-242,APPF,"AppFolio, Inc.",Technology,5985.8,169.29,14.5,12.729528,1.0,0.0,12.0,0.0,0.0,0.0,-11.0,0,False,False,0.0,has_signal,False,14% above 52w low | 10b5-1 leg -11,v4-unified
-243,RENT,"Rent the Runway, Inc.",Consumer Cyclic,116.5,3.47,2.5,-3.209991,1.0,0.0,18.0,0.0,0.0,6.0,-23.0,0,False,False,0.0,has_signal,False,2% above 52w low | 13D filed | 10b5-1 leg -23,v4-unified
-244,AHCO,AdaptHealth Corp.,Healthcare,1334.7,9.81,32.6,0.86622524,0.0,0.0,12.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg -12,v4-unified
-245,CASIF,,,,,,,0.0,0.0,0.0,0.0,0.0,6.0,-6.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -6,v4-unified
-246,CMRC,"Commerce.com, Inc. - Series 1",Technology,219.5,2.66,8.0,4.683099,0.0,0.0,18.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,8% above 52w low | 10b5-1 leg -18,v4-unified
-247,CRMD,CorMedix Inc.,Healthcare,678.6,8.65,22.3,1.5515695,0.0,0.0,15.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg -15,v4-unified
-248,GRAL,"GRAIL, Inc.",Healthcare,2613.6,60.9,34.8,1.0017601,0.0,0.0,12.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg -12,v4-unified
-249,NPB,"Northpointe Bancshares, Inc.",Financial Servi,616.6,17.83,75.1,1.0424463,0.0,6.0,6.0,0.0,0.0,0.0,-12.0,1,True,False,0.86,has_signal,False,CEO bought | P/B 1.0 | 10b5-1 leg -12,v4-unified
-250,UZD,,,,,,,0.0,0.0,0.0,0.0,0.0,6.0,-6.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -6,v4-unified
-251,TXO,,,,,,,-0.4,11.6,0.0,0.0,0.0,0.0,-12.0,2,False,False,13.49,has_signal,False,$13.5M insider buys | 10b5-1 leg -12,v4-unified
-252,BRCB,"Black Rock Coffee Bar, Inc.",Consumer Cyclic,135.0,6.26,0.6,2.3856707,-1.0,0.0,18.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,1% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-253,FULC,"Fulcrum Therapeutics, Inc.",Healthcare,234.5,3.52,5.3,0.7034372,-1.0,0.0,24.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,5% above 52w low | P/B 0.7 | 10b5-1 leg -25,v4-unified
-254,GCMG,GCM Grosvenor Inc.,Financial Servi,683.5,11.32,51.5,26.386946,-1.0,0.0,0.0,0.0,0.0,0.0,-1.0,0,False,False,0.0,has_signal,False,10b5-1 leg -1,v4-unified
-255,GPGI,,,,,,,-1.0,14.0,0.0,0.0,0.0,0.0,-15.0,3,False,False,0.2,has_signal,False,3-buyer cluster 28d ago | 10b5-1 leg -15,v4-unified
-256,LENZ,"LENZ Therapeutics, Inc.",Healthcare,212.9,6.79,0.6,0.8637578,-1.0,0.0,24.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,1% above 52w low | P/B 0.9 | 10b5-1 leg -25,v4-unified
-257,LZ,"LegalZoom.com, Inc.",Industrials,962.9,5.61,4.6,6.623377,-1.0,6.0,18.0,0.0,0.0,0.0,-25.0,1,True,False,0.77,has_signal,False,CEO bought | 5% above 52w low | 10b5-1 leg -25,v4-unified
-258,OKLO,Oklo Inc.,Utilities,9827.0,56.48,7.8,3.7216659,-1.0,0.0,18.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,8% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-259,PLRX,"Pliant Therapeutics, Inc.",Healthcare,73.7,1.19,11.6,0.446027,-1.0,0.0,18.0,0.0,0.0,0.0,-19.0,0,False,False,0.0,has_signal,False,12% above 52w low | P/B 0.4 | 10b5-1 leg -19,v4-unified
-260,SES,SES AI Corporation,Consumer Cyclic,398.8,1.08,9.6,1.9600726,-1.0,0.0,21.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10% above 52w low | 10b5-1 leg -22,v4-unified
-261,TASK,"TaskUs, Inc.",Technology,523.8,5.72,2.5,0.86274505,-1.0,0.0,24.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.9 | 10b5-1 leg -25,v4-unified
-262,WVE,Wave Life Sciences Ltd.,Healthcare,1112.1,5.78,4.5,2.0926864,-1.0,0.0,18.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,5% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-263,AMWL,American Well Corporation,Healthcare,142.0,8.5,76.6,0.62289315,-2.0,6.0,6.0,0.0,0.0,0.0,-14.0,1,True,False,0.0,has_signal,False,CEO bought | P/B 0.6 | 10b5-1 leg -14,v4-unified
-264,HWKE,"Hawkeye Systems, Inc.",Industrials,30.6,0.65,57.5,-2.03125,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
-265,LOCO,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v4-unified
-266,RNAC,"Cartesian Therapeutics, Inc.",Healthcare,201.3,6.85,12.5,-1.3201002,-2.0,0.0,12.0,0.0,0.0,6.0,-20.0,0,False,False,0.0,has_signal,False,13% above 52w low | 13D filed | 10b5-1 leg -20,v4-unified
-267,SYK,Stryker Corporation,Healthcare,120379.1,314.01,26.6,5.357253,-2.0,0.0,6.0,0.0,0.0,6.0,-14.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -14,v4-unified
-268,URBN,"Urban Outfitters, Inc.",Consumer Cyclic,6616.5,73.78,57.4,2.4192543,-2.0,0.0,0.0,0.0,0.0,0.0,-2.0,0,False,False,0.0,has_signal,False,10b5-1 leg -2,v4-unified
-269,ADUS,Addus HomeCare Corporation,Healthcare,1730.2,92.7,13.0,1.5185269,-3.0,0.0,15.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,13% above 52w low | 10b5-1 leg -18,v4-unified
-270,BLND,"Blend Labs, Inc.",Technology,409.2,1.69,15.5,-7.4778767,-3.0,4.0,12.0,0.0,0.0,6.0,-25.0,1,False,False,2.79,has_signal,False,16% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-271,BWXT,"BWX Technologies, Inc.",Industrials,17311.5,188.96,53.2,13.520321,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-272,CL,Colgate-Palmolive Company,Consumer Defens,70256.6,87.8,53.5,485.08292,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-273,CLIR,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-274,EIX,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-275,FIVE,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-276,HRI,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-277,OVLY,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,1,False,False,0.01,has_signal,False,10b5-1 leg -3,v4-unified
-278,SMA,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-279,SPAI,Safe Pro Group Inc.,Industrials,107.6,5.22,41.8,6.969292,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v4-unified
-280,XPRO,Expro Group Holdings N.V.,Energy,1843.8,16.26,76.5,1.203642,-3.0,0.0,3.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
-281,BRLT,"Brilliant Earth Group, Inc.",Consumer Cyclic,124.5,1.23,6.0,1.7422097,-4.0,0.0,21.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,6% above 52w low | 10b5-1 leg -25,v4-unified
-282,HIG,"The Hartford Insurance Group, I",Financial Servi,35354.7,128.97,37.6,1.9107516,-4.0,0.0,9.0,12,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,step-change 49 | 10b5-1 leg -25,v4-unified
-283,RPC,"Ridgepost Capital, Inc.",Financial Servi,905.4,8.27,23.5,2.5779305,-4.0,0.0,12.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg -16,v4-unified
-284,HLMN,Hillman Solutions Corp.,Industrials,1459.8,7.44,20.7,1.2013564,-5.0,0.0,15.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -20,v4-unified
-285,ROP,"Roper Technologies, Inc.",Technology,33844.7,335.37,10.9,1.7981727,-5.0,0.0,15.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -20,v4-unified
-286,XNCR,"Xencor, Inc.",Healthcare,881.5,11.89,42.2,1.3445663,-5.0,0.0,3.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
-287,AMRX,"Amneal Pharmaceuticals, Inc.",Healthcare,4686.4,14.69,90.6,-103.4507,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
-288,AVTR,"Avantor, Inc.",Healthcare,6766.1,9.91,30.5,1.1991771,-6.0,0.0,12.0,0.0,0.0,0.0,-18.0,1,False,False,0.08,has_signal,False,P/B 1.2 | 10b5-1 leg -18,v4-unified
-289,COHR,Coherent Corp.,Technology,69635.9,355.94,76.9,6.518928,-6.0,0.0,0.0,0.0,0.0,0.0,-6.0,0,False,False,0.0,has_signal,False,10b5-1 leg -6,v4-unified
-290,EVER,"EverQuote, Inc.",Communication S,685.9,19.39,37.1,2.8493755,-6.0,0.0,6.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-291,PED,Pedevco Corp.,Energy,175.6,13.2,44.5,0.9637147,-6.0,0.0,6.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg -12,v4-unified
-292,RDW,Redwire Corporation,Industrials,3133.0,15.75,50.0,2.8657205,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v4-unified
-293,TMCI,,,,,,,-6.0,6.0,0.0,0.0,0.0,0.0,-12.0,1,True,False,0.55,has_signal,False,CEO bought | 10b5-1 leg -12,v4-unified
-294,BSY,"Bentley Systems, Incorporated",Technology,10058.7,33.11,9.0,8.450741,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,9% above 52w low | 10b5-1 leg -25,v4-unified
-295,BXMT,"Blackstone Mortgage Trust, Inc.",Real Estate,3100.4,18.38,23.7,0.92102623,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,24% above 52w low | P/B 0.9 | 10b5-1 leg -25,v4-unified
-296,CAVA,,,,,,,-7.0,0.0,0.0,0.0,0.0,0.0,-7.0,0,False,False,0.0,has_signal,False,10b5-1 leg -7,v4-unified
-297,COIN,"Coinbase Global, Inc.",Financial Servi,40968.2,155.5,5.3,3.0384743,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,5% above 52w low | 10b5-1 leg -25,v4-unified
-298,FIG,"Figma, Inc.",Technology,10826.4,20.49,3.1,7.399783,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg -25,v4-unified
-299,GDDY,GoDaddy Inc.,Technology,10800.7,81.57,7.8,45.595303,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,8% above 52w low | 10b5-1 leg -25,v4-unified
-300,KHC,The Kraft Heinz Company,Consumer Defens,27782.8,23.43,29.4,0.6628381,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,P/B 0.7 | 13D filed | 10b5-1 leg -25,v4-unified
-301,MLTX,MoonLake Immunotherapeutics,Healthcare,1310.4,17.8,20.9,5.0539465,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,21% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-302,PAHC,Phibro Animal Health Corporatio,Healthcare,1324.4,32.65,24.9,3.660314,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,25% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-303,PRCH,"Porch Group, Inc.",Financial Servi,1042.6,9.53,24.2,-39.708332,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,24% above 52w low | 13D filed | 10b5-1 leg -25,v4-unified
-304,QTWO,"Q2 Holdings, Inc.",Technology,2778.8,44.39,1.8,4.54769,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,2% above 52w low | 10b5-1 leg -25,v4-unified
-305,TOST,"Toast, Inc.",Technology,14500.0,25.0,10.0,7.286505,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10% above 52w low | 10b5-1 leg -25,v4-unified
-306,TSCO,Tractor Supply Company,Consumer Cyclic,15712.5,29.96,4.5,6.1167827,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,4% above 52w low | 10b5-1 leg -25,v4-unified
-307,VEL,"Velocity Financial, Inc.",Financial Servi,685.8,17.47,24.6,1.0121669,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,25% above 52w low | P/B 1.0 | 10b5-1 leg -25,v4-unified
-308,AAT,,,,,,,-8.0,4.0,0.0,0.0,0.0,0.0,-12.0,1,False,False,3.59,has_signal,False,10b5-1 leg -12,v4-unified
-309,AMPL,"Amplitude, Inc.",Technology,923.0,6.96,16.1,4.2464914,-8.0,0.0,12.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,16% above 52w low | 10b5-1 leg -20,v4-unified
-310,CHGG,"Chegg, Inc.",Consumer Defens,124.3,1.11,45.5,1.0249308,-8.0,0.0,6.0,0.0,0.0,6.0,-20.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 13D filed | 10b5-1 leg -20,v4-unified
-311,PTGX,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
-312,PWR,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v4-unified
-313,REPX,"Riley Exploration Permian, Inc.",Energy,755.2,34.81,61.5,1.1920418,-8.0,0.0,6.0,0.0,0.0,6.0,-20.0,0,False,False,0.0,has_signal,False,P/B 1.2 | 13D filed | 10b5-1 leg -20,v4-unified
-314,ABOS,"Acumen Pharmaceuticals, Inc.",Healthcare,158.2,2.19,44.7,1.8084229,-9.0,0.0,3.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-315,ECPG,Encore Capital Group Inc,Financial Servi,1770.3,82.57,82.3,1.715455,-9.0,0.0,3.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-316,HLF,Herbalife Ltd.,Consumer Defens,1171.5,11.3,29.1,-2.6463702,-9.0,0.0,6.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-317,INDI,"indie Semiconductor, Inc.",Technology,849.4,4.02,45.6,2.5902061,-9.0,0.0,0.0,0.0,0.0,0.0,-9.0,0,False,False,0.0,has_signal,False,10b5-1 leg -9,v4-unified
-318,SYRE,"Spyre Therapeutics, Inc.",Healthcare,6638.1,76.44,95.3,11.702389,-9.0,0.0,0.0,0.0,0.0,6.0,-15.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -15,v4-unified
-319,VVV,Valvoline Inc.,Consumer Cyclic,4731.6,37.1,67.0,13.398338,-9.0,6.0,0.0,0.0,0.0,0.0,-15.0,2,False,True,0.42,has_signal,False,10b5-1 leg -15,v4-unified
-320,MSCI,MSCI Inc.,Financial Servi,44184.9,607.54,74.1,-15.965626,-9.5,15.5,0.0,0.0,0.0,0.0,-25.0,2,True,False,5.56,has_signal,False,CEO bought | $5.6M insider buys | 10b5-1 leg -25,v4-unified
-321,DIS,Walt Disney Company (The),Communication S,172487.7,99.33,22.0,1.5944588,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg -25,v4-unified
-322,EYE,"National Vision Holdings, Inc.",Consumer Cyclic,1318.7,16.46,11.2,1.4684628,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -25,v4-unified
-323,GME,GameStop Corporation,Consumer Cyclic,9996.8,22.28,24.8,1.8344998,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,25% above 52w low | 10b5-1 leg -25,v4-unified
-324,JBI,"Janus International Group, Inc.",Industrials,717.4,5.26,15.3,1.2807403,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,15% above 52w low | 10b5-1 leg -25,v4-unified
-325,ONT,"Onterris, Inc.",Industrials,613.3,16.97,15.9,1.3936108,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,1,False,True,0.1,has_signal,False,16% above 52w low | 10b5-1 leg -25,v4-unified
-326,PCVX,"Vaxcyte, Inc.",Healthcare,6769.4,46.88,49.6,2.258189,-10.0,0.0,0.0,0.0,0.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -10,v4-unified
-327,PHR,,,,,,,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v4-unified
-328,PRKS,United Parks & Resorts Inc.,Consumer Cyclic,2098.0,44.51,55.9,-5.218054,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v4-unified
-329,RGR,"Sturm, Ruger & Company, Inc.",Industrials,619.9,38.88,53.1,2.1886964,-10.0,6.0,0.0,0.0,0.0,6.0,-22.0,2,False,False,0.23,has_signal,False,13D filed | 10b5-1 leg -22,v4-unified
-330,RXRX,"Recursion Pharmaceuticals, Inc.",Healthcare,1709.1,3.22,10.2,1.6675298,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10% above 52w low | 10b5-1 leg -25,v4-unified
-331,TRIP,"TripAdvisor, Inc.",Consumer Cyclic,1390.5,11.95,26.4,2.2282305,-10.0,0.0,6.0,0.0,0.0,6.0,-22.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -22,v4-unified
-332,XOMAP,,,,,,,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v4-unified
-333,INDV,"Indivior Pharmaceuticals, Inc.",Healthcare,4522.5,38.26,90.1,-32.42373,-10.5,1.5,0.0,0.0,0.0,0.0,-12.0,2,False,False,0.03,has_signal,False,10b5-1 leg -12,v4-unified
-334,BETA,"Beta Technologies, Inc.",Industrials,3940.6,16.47,11.7,2.19366,-11.0,0.0,12.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,12% above 52w low | 10b5-1 leg -23,v4-unified
-335,CTMX,"CytomX Therapeutics, Inc.",Healthcare,648.8,2.98,19.4,2.027211,-11.0,0.0,12.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,19% above 52w low | 10b5-1 leg -23,v4-unified
-336,IR,Ingersoll Rand Inc.,Industrials,28923.7,73.91,17.8,2.842255,-11.0,0.0,12.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,18% above 52w low | 10b5-1 leg -23,v4-unified
-337,ACRS,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-338,AESI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-339,ALIT,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-340,ARCT,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-341,CDNS,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-342,CGEM,"Cullinan Therapeutics, Inc.",Healthcare,810.0,13.18,67.8,2.2117805,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-343,DOCN,"DigitalOcean Holdings, Inc.",Technology,17567.6,168.33,89.8,19.789562,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v4-unified
-344,EQIX,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-345,GLP,Global Partners LP,Energy,1638.1,48.22,51.0,2.5777826,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,1,False,False,0.74,has_signal,False,10b5-1 leg -12,v4-unified
-346,HSIC,"Henry Schein, Inc.",Healthcare,9116.8,80.03,66.1,2.80384,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,1,False,False,0.69,has_signal,False,10b5-1 leg -12,v4-unified
-347,JBLU,,,,,,,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v4-unified
-348,MCRB,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-349,MGTX,,,,,,,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v4-unified
-350,MRVI,"Maravai LifeSciences Holdings, ",Healthcare,1881.3,5.1,96.6,3.5564852,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-351,NGS,"Natural Gas Services Group, Inc",Energy,511.1,40.57,83.4,1.8217332,-12.0,0.0,3.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-352,OPLN,"OPENLANE, Inc.",Consumer Cyclic,3934.8,37.14,90.0,3.1392105,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-353,PACS,"PACS Group, Inc.",Healthcare,5571.2,35.2,77.9,5.822994,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-354,PAYO,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-355,PVLA,"Palvella Therapeutics, Inc.",Healthcare,1497.0,104.37,64.3,6.430684,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-356,QUBT,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-357,REZI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-358,ROST,"Ross Stores, Inc.",Consumer Cyclic,73603.2,229.45,93.0,11.682791,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-359,SI,"Shoulder Innovations, Inc.",,317.7,15.32,62.7,2.3844357,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-360,TSSI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-361,UNM,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-362,URGN,UroGen Pharma Ltd.,Healthcare,1373.0,28.18,83.5,-11.046648,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-363,VANI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v4-unified
-364,ACAD,ACADIA Pharmaceuticals Inc.,Healthcare,3739.8,21.84,24.8,2.9938314,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,25% above 52w low | 10b5-1 leg -25,v4-unified
-365,CNTY,"Century Casinos, Inc.",Consumer Cyclic,40.0,1.42,11.7,-0.3522699,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,12% above 52w low | 10b5-1 leg -25,v4-unified
-366,CRCT,"Cricut, Inc.",Technology,923.6,4.4,18.5,2.583676,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,1,False,False,0.04,has_signal,False,18% above 52w low | 10b5-1 leg -25,v4-unified
-367,CVNA,Carvana Co.,Consumer Cyclic,76350.7,69.61,35.3,13.378819,-13.0,0.0,6.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-368,ENVX,Enovix Corporation,Industrials,1472.5,6.75,18.0,5.952381,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,18% above 52w low | 10b5-1 leg -25,v4-unified
-369,META,"Meta Platforms, Inc.",Communication S,1483936.9,584.59,23.3,6.088655,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,23% above 52w low | 10b5-1 leg -25,v4-unified
-370,PGR,Progressive Corporation (The),Financial Servi,116775.9,200.13,13.6,3.6479466,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,14% above 52w low | 10b5-1 leg -25,v4-unified
-371,PLTR,Palantir Technologies Inc.,Technology,316613.0,132.07,11.1,37.466667,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -25,v4-unified
-372,QS,QuantumScape Corporation,Consumer Cyclic,4502.9,7.32,21.2,4.0576496,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -25,v4-unified
-373,RDDT,"Reddit, Inc.",Communication S,34287.8,178.11,39.1,10.777563,-13.0,0.0,6.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-374,ROOT,"Root, Inc.",Financial Servi,852.2,53.85,10.6,2.935885,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -25,v4-unified
-375,RVLV,"Revolve Group, Inc.",Consumer Cyclic,1450.4,20.27,20.4,2.7507126,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,20% above 52w low | 10b5-1 leg -25,v4-unified
-376,SND,"Smart Sand, Inc.",Energy,230.4,5.36,86.5,0.87083673,-13.0,0.0,6.0,0.0,0.0,0.0,-19.0,1,False,False,0.02,has_signal,False,P/B 0.9 | 10b5-1 leg -19,v4-unified
-377,STUB,"StubHub Holdings, Inc.",Communication S,3900.8,10.39,21.0,2.4832697,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -25,v4-unified
-378,VST,Vistra Corp.,Utilities,49302.8,146.22,15.6,18.859797,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,16% above 52w low | 10b5-1 leg -25,v4-unified
-379,WEAV,"Weave Communications, Inc.",Healthcare,444.0,5.58,24.2,5.3193517,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg -25,v4-unified
-380,ZUMZ,Zumiez Inc.,Consumer Cyclic,322.3,19.1,37.1,0.89954317,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg -25,v4-unified
-381,CART,,,,,,,-14.0,0.0,0.0,0.0,0.0,6.0,-20.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -20,v4-unified
-382,EXC,Exelon Corporation,Utilities,46382.0,45.33,37.2,1.5821991,-14.0,0.0,9.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
-383,HRTG,"Heritage Insurance Holdings, In",Financial Servi,654.5,21.62,31.6,1.2561004,-14.0,0.0,9.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
-384,MCO,Moody's Corporation,Financial Servi,78593.9,449.94,33.0,26.250875,-14.0,0.0,6.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-385,STZ,"Constellation Brands, Inc.",Consumer Defens,24028.1,140.09,26.4,2.994592,-14.0,0.0,6.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-386,AEE,Ameren Corporation,Utilities,29886.4,107.99,65.6,2.2042375,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-387,CENX,Century Aluminum Company,Basic Materials,6028.5,60.91,82.3,5.238218,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-388,CHDN,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-389,JANX,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-390,KOPN,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-391,RMNI,"Rimini Street, Inc.",Technology,386.0,4.17,51.8,-17.020409,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v4-unified
-392,CF,"CF Industries Holdings, Inc.",Basic Materials,16681.1,108.58,49.8,3.1222682,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v4-unified
-393,COMP,"Compass, Inc.",Real Estate,6104.2,8.17,28.4,2.1619475,-16.0,0.0,6.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
-394,ICFI,"ICF International, Inc.",Industrials,1292.6,71.4,29.3,1.2535553,-16.0,0.0,9.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-395,LTH,"Life Time Group Holdings, Inc.",Consumer Cyclic,7261.3,32.62,75.8,2.2540076,-16.0,0.0,0.0,0.0,0.0,6.0,-22.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -22,v4-unified
-396,LXU,"LSB Industries, Inc.",Basic Materials,858.9,11.94,47.9,1.5804104,-16.0,0.0,3.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-397,PPL,PPL Corporation,Utilities,26896.5,35.75,37.2,1.7904544,-16.0,0.0,9.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-398,ASIX,AdvanSix Inc.,Basic Materials,579.6,21.5,58.6,0.72790056,-17.0,0.0,6.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,P/B 0.7 | 10b5-1 leg -23,v4-unified
-399,EWTX,"Edgewise Therapeutics, Inc.",Healthcare,3664.6,34.06,76.6,7.4220963,-17.0,0.0,0.0,0.0,0.0,6.0,-23.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -23,v4-unified
-400,FDMT,"4D Molecular Therapeutics, Inc.",Healthcare,482.5,9.23,64.1,1.0677927,-17.0,0.0,6.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg -23,v4-unified
-401,IBTA,"Ibotta, Inc.",Technology,775.5,33.32,51.1,3.1454732,-18.0,0.0,0.0,0.0,0.0,6.0,-24.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -24,v4-unified
-402,LOVE,The Lovesac Company,Consumer Cyclic,245.1,16.58,57.8,1.1081406,-18.0,0.0,6.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg -24,v4-unified
-403,VERX,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v4-unified
-404,APG,APi Group Corporation,Industrials,18923.4,43.68,65.5,5.42811,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-405,APGE,"Apogee Therapeutics, Inc.",Healthcare,6408.1,85.0,83.1,5.03853,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-406,ARES,Ares Management Corporation,Financial Servi,43081.3,130.61,35.0,11.478162,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-407,ATAI,AtaiBeckley Inc.,Healthcare,1432.2,3.89,39.8,6.996403,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-408,BBIO,"BridgeBio Pharma, Inc.",Healthcare,13255.9,67.68,62.8,-5.813434,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-409,BWMN,Bowman Consulting Group Ltd.,Industrials,564.4,32.24,31.6,2.204143,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-410,CELC,Celcuity Inc.,Healthcare,4515.3,92.59,58.2,83.640465,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-411,CRWV,"CoreWeave, Inc.",Technology,53711.4,98.45,28.1,11.006148,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-412,DIBS,,,,,,,-19.0,6.0,0.0,0.0,0.0,0.0,-25.0,1,True,False,0.21,has_signal,False,CEO bought | 10b5-1 leg -25,v4-unified
-413,EBAY,eBay Inc.,Consumer Cyclic,48245.0,108.66,77.1,10.984634,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-414,FNKO,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-415,FOA,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-416,INCY,Incyte Corporation,Healthcare,20623.5,103.23,80.1,3.6709223,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-417,MARA,"MARA Holdings, Inc.",Financial Servi,5074.7,13.31,39.6,2.271331,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-418,ORKA,"Oruka Therapeutics, Inc.",Healthcare,4036.7,66.93,70.0,6.9407864,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-419,PCG,Pacific Gas & Electric Co.,Utilities,36512.9,16.58,58.3,1.1529101,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,P/B 1.2 | 10b5-1 leg -25,v4-unified
-420,PINS,"Pinterest, Inc.",Communication S,12278.6,21.92,31.0,3.0695982,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-421,RIVN,"Rivian Automotive, Inc.",Consumer Cyclic,21123.3,15.73,37.4,4.502003,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-422,RKLB,Rocket Lab Corporation,Industrials,67624.1,108.23,66.0,27.518435,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-423,SIBN,"SI-BONE, Inc.",Healthcare,688.7,15.53,38.9,3.8364625,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-424,SVV,"Savers Value Village, Inc.",Consumer Cyclic,1445.9,9.39,35.6,3.3475935,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-425,TH,Target Hospitality Corp.,Industrials,1637.2,16.44,80.8,4.368855,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-426,TMUSL,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v4-unified
-427,XERS,"Xeris Biopharma Holdings, Inc.",Healthcare,1122.2,6.5,38.1,79.26829,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-428,ZNTL,"Zentalis Pharmaceuticals, Inc.",Healthcare,254.8,3.58,42.1,1.1441355,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg -25,v4-unified
-429,AIRG,"Airgain, Inc.",Technology,86.7,6.84,82.4,3.090827,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-430,EME,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-431,GNRC,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-432,MKL,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,1,False,False,0.27,has_signal,False,10b5-1 leg -20,v4-unified
-433,ON,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-434,SPH,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v4-unified
-435,AEP,American Electric Power Company,Utilities,69514.9,127.76,69.8,2.18494,-21.0,0.0,0.0,0.0,0.0,0.0,-21.0,0,False,False,0.0,has_signal,False,10b5-1 leg -21,v4-unified
-436,LBRT,Liberty Energy Inc.,Energy,4590.6,28.13,74.2,2.3396823,-21.0,0.0,0.0,0.0,0.0,0.0,-21.0,0,False,False,0.0,has_signal,False,10b5-1 leg -21,v4-unified
-437,ALL,Allstate Corporation (The),Financial Servi,55906.7,217.18,73.6,1.8926032,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-438,ANTX,"AN2 Therapeutics, Inc.",Healthcare,140.8,3.91,49.2,1.7209507,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-439,AVIR,"Atea Pharmaceuticals, Inc.",Healthcare,348.9,4.36,43.1,1.4931507,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-440,CRSR,"Corsair Gaming, Inc.",Technology,898.9,8.41,45.6,1.3877888,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-441,CYRX,"CryoPort, Inc.",Industrials,765.6,15.19,85.4,1.691725,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-442,KROS,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
-443,LFST,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
-444,LRCX,Lam Research Corporation,Technology,409136.8,327.16,91.6,38.653122,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
-445,MTB,M&T Bank Corporation,Financial Servi,33013.1,225.43,78.9,1.2968342,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-446,OSCR,"Oscar Health, Inc.",Healthcare,8206.6,27.22,94.6,4.8886495,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v4-unified
-447,VSAT,"ViaSat, Inc.",Technology,8732.2,63.94,67.5,1.9003744,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-448,WBD,"Warner Bros. Discovery, Inc. - ",Communication S,66589.6,26.56,82.8,1.8338742,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-449,WKC,World Kinect Corporation,Energy,1598.7,31.13,99.2,1.3293194,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-450,LXEO,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
-451,TPR,"Tapestry, Inc.",Consumer Cyclic,29421.8,145.62,80.4,43.17225,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v4-unified
-452,APLD,Applied Digital Corporation,Technology,11976.6,41.91,78.9,7.5636168,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-453,CDXS,"Codexis, Inc.",Healthcare,224.5,2.47,51.9,5.1890755,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-454,CNTA,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-455,KLAC,KLA Corporation,Technology,279460.6,2139.37,91.4,47.961487,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-456,SEPN,"Septerna, Inc.",Healthcare,1397.8,31.01,92.9,3.6379633,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-457,WOOF,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-458,XENE,Xenon Pharmaceuticals Inc.,Healthcare,5103.0,52.79,67.1,7.2603498,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v4-unified
-459,AAOI,"Applied Optoelectronics, Inc.",Technology,13069.9,162.88,67.6,11.630133,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-460,ABEO,Abeona Therapeutics Inc.,Healthcare,310.6,5.45,41.0,2.1380932,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-461,ACMR,"ACM Research, Inc.",Technology,5620.7,81.33,81.9,3.405066,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-462,ADPT,Adaptive Biotechnologies Corpor,Healthcare,2778.4,17.36,68.7,12.811809,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-463,AEVA,"Aeva Technologies, Inc.",Technology,1497.3,22.17,44.5,-112.53807,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-464,AIP,"Arteris, Inc.",Technology,1558.8,33.76,83.2,602.8571,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-465,ALKS,Alkermes plc,Healthcare,7382.1,44.29,96.8,4.2092757,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-466,AMZN,"Amazon.com, Inc.",Consumer Cyclic,2626778.6,244.19,58.4,5.9423747,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-467,APO,"Apollo Global Management, Inc. ",Financial Servi,76503.9,132.7,57.4,4.123423,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-468,APOS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-469,ARQT,"Arcutis Biotherapeutics, Inc.",Healthcare,2850.7,22.79,52.9,15.023073,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-470,AVGO,Broadcom Inc.,Technology,1865732.7,392.16,59.1,21.27835,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-471,BKV,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-472,BROS,Dutch Bros Inc.,Consumer Cyclic,10095.0,57.79,43.9,10.562968,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,False,0.1,has_signal,False,10b5-1 leg -25,v4-unified
-473,CAMP,CAMP4 THERAPEUTICS CORPORATION,Healthcare,208.2,4.01,42.0,6.7394958,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-474,CDNA,"CareDx, Inc.",Healthcare,1175.3,22.75,90.3,3.7203598,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-475,CERS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-476,CLOV,"Clover Health Investments, Corp",Healthcare,2259.5,4.29,94.8,6.6408668,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-477,DK,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-478,DKS,Dick's Sporting Goods Inc,Consumer Cyclic,19653.0,219.58,72.9,3.4707427,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-479,DSP,Viant Technology Inc.,Technology,779.6,11.88,53.3,2.5433526,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-480,ENTG,"Entegris, Inc.",Technology,20461.5,134.35,72.8,5.0532217,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-481,FENC,Fennec Pharmaceuticals Inc.,Healthcare,304.6,8.77,65.0,8.038498,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-482,FGRS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-483,FSLY,"Fastly, Inc.",Technology,2915.6,18.63,43.3,2.9812768,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-484,GCT,GigaCloud Technology Inc,Technology,1191.4,32.72,44.9,2.3475392,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-485,GMED,"Globus Medical, Inc.",Healthcare,11201.6,82.52,61.9,2.36569,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-486,GVA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-487,HBANP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-488,HTFL,"Heartflow, Inc.",Healthcare,2472.5,28.67,40.5,8.640747,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-489,IMAX,Imax Corporation,Communication S,2206.7,40.11,83.9,6.559281,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-490,IMNM,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-491,JBL,Jabil Inc.,Technology,38232.0,362.38,89.4,28.531612,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-492,LASR,"nLIGHT, Inc.",Technology,3580.8,63.48,66.5,8.341656,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-493,LAZ,"Lazard, Inc.",Financial Servi,4656.1,47.3,43.0,5.084381,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-494,LFMDP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-495,LITE,Lumentum Holdings Inc.,Technology,63932.9,821.76,73.7,69.30589,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-496,MASS,908 Devices Inc.,Healthcare,302.1,7.99,68.7,2.0197167,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-497,MCK,McKesson Corporation,Healthcare,94267.6,784.23,40.7,-43.32762,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-498,MP,MP Materials Corp.,Basic Materials,9666.6,54.3,40.3,4.904263,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-499,MPWR,"Monolithic Power Systems, Inc.",Technology,75266.2,1531.98,82.6,20.466787,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-500,NDAQ,"Nasdaq, Inc.",Financial Servi,49496.1,87.52,42.2,4.10757,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-501,NEE,"NextEra Energy, Inc.",Utilities,176921.9,84.83,55.9,3.2034287,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-502,NTRA,"Natera, Inc.",Healthcare,31911.3,222.82,73.1,17.92743,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-503,NXPI,NXP Semiconductors N.V.,Technology,75087.4,297.41,72.9,6.8758955,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-504,OMDA,"Omada Health, Inc.",Healthcare,1089.1,18.32,48.3,4.6356277,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-505,OUT,OUTFRONT Media Inc.,Real Estate,5396.3,30.65,77.9,8.153764,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-506,P,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-507,PEGA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-508,PENG,"Penguin Solutions, Inc.",Technology,3242.4,61.69,79.8,8.002335,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-509,PPLC,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-510,PRTHU,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-511,QCOM,QUALCOMM Incorporated,Technology,216512.7,205.42,60.5,7.974998,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-512,QLYS,"Qualys, Inc.",Technology,3863.7,109.71,43.5,6.8109016,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-513,QNCX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-514,RELY,"Remitly Global, Inc.",Technology,3865.9,18.36,48.9,4.255911,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-515,RXT,"Rackspace Technology, Inc.",Technology,1161.4,4.66,58.8,-0.95413595,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-516,RYTM,"Rhythm Pharmaceuticals, Inc.",Healthcare,6026.6,87.86,44.2,48.919823,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-517,STRD,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-518,TARS,"Tarsus Pharmaceuticals, Inc.",Healthcare,2648.1,61.55,49.3,7.6270137,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-519,TNL,Travel   Leisure Co.,Consumer Cyclic,4505.2,72.17,73.6,-4.639069,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-520,TWLO,Twilio Inc.,Technology,31066.6,204.69,77.0,3.9998047,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-521,ULS,UL Solutions Inc.,Industrials,19868.1,98.57,80.5,15.035082,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,False,0.01,has_signal,False,10b5-1 leg -25,v4-unified
-522,UTHR,United Therapeutics Corporation,Healthcare,23479.0,553.14,83.3,3.9515083,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-523,VICR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-524,VRSN,"VeriSign, Inc.",Technology,25834.0,283.89,72.4,-11.68464,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,1,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-525,VTR,"Ventas, Inc.",Real Estate,40094.4,82.47,70.7,3.0543315,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
-526,WULF,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v4-unified
+rank,ticker,name,sector,mcap_musd,price,drawdown_pct,p_b,score,insider_score,valuation_score,step_change_score,psu_forensic_score,sc13d_score,cancel_10b5_1_score,form144_score,buyback_verify_score,cluster_size,ceo_bought,cfo_bought,tot_insider_musd,10b5_1_status,is_foreign_filer,reasons,_schema
+1,TONX,TON Strategy Company,Technology,212.6,3.76,7.2,0.52287585,61.0,32.0,24.0,0.0,0.0,0.0,0.0,0.0,5.0,4,True,True,0.07,no_signal,False,4-buyer cluster 28d ago | CEO+CFO bought | 7% above 52w low | P/B 0.5 | buyback SHRINKING_NO_AUTH (-5.1% shares),v5-144-buyback
+2,GSHD,"Goosehead Insurance, Inc.",Financial Servi,1223.8,34.37,0.9,-6.708959,55.0,26.0,18.0,0.0,0.0,0.0,11.0,0.0,0.0,3,True,True,0.56,has_signal,False,3-buyer cluster 27d ago | CEO+CFO bought | 1% above 52w low | 10b5-1 leg +11,v5-144-buyback
+3,BRBS,"Blue Ridge Bankshares, Inc.",Financial Servi,298.5,3.32,6.1,1.0593491,54.0,0.0,24.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,6% above 52w low | P/B 1.1 | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-1.9% shares),v5-144-buyback
+4,HDSN,"Hudson Technologies, Inc.",Basic Materials,221.7,5.27,10.7,0.93241334,54.0,31.0,18.0,0.0,0.0,0.0,0.0,0.0,5.0,7,True,False,0.15,no_signal,False,7-buyer cluster 27d ago | CEO bought | 11% above 52w low | P/B 0.9 | buyback SHRINKING_NO_AUTH (-3.7% shares),v5-144-buyback
+5,HFFG,HF Foods Group Inc.,Consumer Defens,98.4,1.84,18.5,0.48054323,54.0,24.0,18.0,0.0,12.0,0.0,0.0,0.0,0.0,4,True,True,0.04,no_signal,False,4-buyer cluster 85d ago | CEO+CFO bought | 18% above 52w low | P/B 0.5 | forensic-PSU 36,v5-144-buyback
+6,PCSA,"Processa Pharmaceuticals, Inc.",Healthcare,7.7,2.8,5.8,2.950474,53.0,35.0,18.0,0.0,0.0,0.0,0.0,0.0,0.0,5,True,True,0.02,no_signal,False,5-buyer cluster 10d ago | CEO+CFO bought | 6% above 52w low,v5-144-buyback
+7,KMPR,Kemper Corporation,Financial Servi,1433.6,24.35,3.9,0.54057056,52.0,0.0,24.0,0.0,0.0,0.0,20.0,0.0,8.0,0,False,False,0.0,has_signal,False,4% above 52w low | P/B 0.5 | 10b5-1 leg +20 | buyback EXECUTING (-8.7% shares),v5-144-buyback
+8,CRM,"Salesforce, Inc.",Technology,143611.7,175.35,10.4,4.194876,51.6,7.6,12.0,22,7.0,0.0,-5.0,0.0,8.0,2,False,False,1.0,has_signal,False,10% above 52w low | step-change 57 | forensic-PSU 21 | 10b5-1 leg -5 | buyback EXECUTING (-14.0% shares),v5-144-buyback
+9,CSGP,"CoStar Group, Inc.",Real Estate,13855.5,33.93,3.9,1.7456398,51.0,0.0,21.0,22,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,4% above 52w low | step-change 66 | buyback EXECUTING (-3.6% shares),v5-144-buyback
+10,GBLI,"Global Indemnity Group, LLC",Financial Servi,379.8,26.0,4.4,0.542537,49.0,0.0,24.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,4% above 52w low | P/B 0.5 | 10b5-1 leg +25,v5-144-buyback
+11,LCID,"Lucid Group, Inc.",Consumer Cyclic,2009.8,5.15,0.5,-4.8402257,49.0,0.0,18.0,0.0,0.0,6.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,1% above 52w low | 13D filed | 10b5-1 leg +25,v5-144-buyback
+12,RXST,"RxSight, Inc.",Healthcare,203.3,4.91,1.9,0.73448014,49.0,0.0,24.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,2% above 52w low | P/B 0.7 | 10b5-1 leg +25,v5-144-buyback
+13,GRND,Grindr Inc.,Technology,2022.5,11.38,11.8,2276.0,48.0,0.0,12.0,22,0.0,6.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,12% above 52w low | step-change 78 | 13D filed | buyback EXECUTING (-7.4% shares),v5-144-buyback
+14,ITRI,"Itron, Inc.",Technology,3650.9,82.34,7.1,2.2706964,48.0,0.0,18.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,7% above 52w low | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-3.0% shares),v5-144-buyback
+15,MQ,"Marqeta, Inc.",Technology,1683.4,3.97,8.1,2.277682,48.0,0.0,18.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,8% above 52w low | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-5.4% shares),v5-144-buyback
+16,NSPR,InspireMD Inc.,Healthcare,45.0,0.9601,4.8,1.0312567,48.0,18.0,24.0,0.0,0.0,6.0,0.0,0.0,0.0,4,True,False,0.44,no_signal,False,4-buyer cluster 34d ago | CEO bought | 5% above 52w low | P/B 1.0 | 13D filed,v5-144-buyback
+17,ULTA,"Ulta Beauty, Inc.",Consumer Cyclic,20544.6,477.9,9.8,7.5289483,48.0,0.0,18.0,22,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,10% above 52w low | step-change 52 | buyback EXECUTING (-4.1% shares),v5-144-buyback
+18,ZLAB,Zai Lab Limited,Healthcare,1870.7,16.65,2.4,2.5746095,48.0,0.0,18.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,2% above 52w low | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-4.2% shares),v5-144-buyback
+19,BETR,Better Home & Finance Holding C,Financial Servi,498.4,26.41,18.7,51.582027,47.0,35.0,12.0,0.0,0.0,0.0,0.0,0.0,0.0,6,True,True,9.21,no_signal,False,6-buyer cluster 66d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low,v5-144-buyback
+20,SRAD,Sportradar Group AG,Technology,3983.5,13.46,8.8,3.6539679,47.0,29.0,18.0,0.0,0.0,0.0,0.0,0.0,0.0,7,True,False,11.35,no_signal,True,7-buyer cluster 38d ago | CEO bought | $11.3M insider buys | 9% above 52w low,v5-144-buyback
+21,ONON,On Holding AG,Consumer Cyclic,13055.3,37.52,22.8,5.536192,45.0,28.0,12.0,0.0,0.0,0.0,0.0,0.0,5.0,3,True,False,6.59,no_signal,True,3-buyer cluster 27d ago | CEO bought | $6.6M insider buys | 23% above 52w low | buyback SHRINKING_NO_AUTH (-1.5% shares),v5-144-buyback
+22,PCTY,Paylocity Holding Corporation,Technology,6058.0,113.14,19.2,5.305261,45.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,8.0,0,False,False,0.0,has_signal,False,19% above 52w low | 10b5-1 leg +25 | buyback EXECUTING (-1.5% shares),v5-144-buyback
+23,SBET,"SharpLink, Inc.",Financial Servi,1049.2,5.32,0.6,0.43259066,45.0,0.0,24.0,0.0,0.0,6.0,15.0,0.0,0.0,0,False,False,0.0,has_signal,False,1% above 52w low | P/B 0.4 | 13D filed | 10b5-1 leg +15,v5-144-buyback
+24,SCHW,Charles Schwab Corporation (The,Financial Servi,154383.1,88.77,20.4,3.6329036,45.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,8.0,0,False,False,0.0,has_signal,False,20% above 52w low | 10b5-1 leg +25 | buyback EXECUTING (-4.2% shares),v5-144-buyback
+25,TXRH,"Texas Roadhouse, Inc.",Consumer Cyclic,10779.7,164.0,23.6,7.1165113,45.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,8.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg +25 | buyback EXECUTING (-1.6% shares),v5-144-buyback
+26,KWY,Kingsway Corporation,Financial Servi,294.3,10.28,6.9,22.396515,44.0,26.0,18.0,0.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.05,no_signal,False,3-buyer cluster 10d ago | CEO+CFO bought | 7% above 52w low,v5-144-buyback
+27,OI,"O-I Glass, Inc.",Consumer Cyclic,1221.8,7.97,0.6,0.9421918,44.0,20.0,24.0,0.0,0.0,0.0,0.0,0.0,0.0,4,False,True,0.18,no_signal,False,4-buyer cluster 30d ago | 1% above 52w low | P/B 0.9,v5-144-buyback
+28,OPCH,"Option Care Health, Inc.",Healthcare,3223.8,20.53,13.4,2.385545,44.0,28.0,12.0,0.0,0.0,0.0,-1.0,0.0,5.0,4,True,True,1.88,has_signal,False,4-buyer cluster 38d ago | CEO+CFO bought | 13% above 52w low | 10b5-1 leg -1 | buyback SHRINKING_NO_AUTH (-3.2% shares),v5-144-buyback
+29,BHF,"Brighthouse Financial, Inc.",Financial Servi,3606.4,62.78,85.4,0.64819884,43.0,0.0,6.0,12,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 0.6 | step-change 50 | 10b5-1 leg +25,v5-144-buyback
+30,CMLSQ,Cumulus Media Inc.,Communication S,0.1,0.0039,1.5,-0.0003314917,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,2% above 52w low | 10b5-1 leg +25,v5-144-buyback
+31,CURI,CuriosityStream Inc.,Communication S,167.2,2.82,14.5,4.585366,43.0,6.0,12.0,0.0,0.0,0.0,25.0,0.0,0.0,1,True,False,0.33,has_signal,False,CEO bought | 15% above 52w low | 10b5-1 leg +25,v5-144-buyback
+32,POOL,Pool Corporation,Industrials,6584.9,180.69,4.6,5.810715,43.0,20.0,18.0,0.0,0.0,0.0,0.0,0.0,5.0,4,False,False,7.67,no_signal,False,4-buyer cluster 34d ago | $7.7M insider buys | 5% above 52w low | buyback SHRINKING_NO_AUTH (-4.5% shares),v5-144-buyback
+33,REFI,Chicago Atlantic Real Estate Fi,Real Estate,240.9,11.36,16.0,0.7892177,43.0,0.0,18.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,16% above 52w low | P/B 0.8 | 10b5-1 leg +25,v5-144-buyback
+34,AGBK,AGI Inc,Financial Servi,1081.1,6.76,6.2,1.1710745,42.0,18.0,24.0,0.0,0.0,0.0,0.0,0.0,0.0,4,True,False,0.21,no_signal,True,4-buyer cluster 31d ago | CEO bought | 6% above 52w low | P/B 1.2,v5-144-buyback
+35,DT,"Dynatrace, Inc.",Technology,11883.5,40.77,35.2,4.600023,42.0,0.0,6.0,0.0,0.0,6.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-3.3% shares),v5-144-buyback
+36,IEP,Icahn Enterprises L.P. - Deposi,Energy,4966.5,7.39,11.6,2.4174027,42.0,0.0,12.0,0.0,0.0,6.0,24.0,0.0,0.0,0,False,False,0.0,has_signal,False,12% above 52w low | 13D filed | 10b5-1 leg +24,v5-144-buyback
+37,LCNB,LCNB Corporation,Financial Servi,243.2,17.07,80.2,0.88166934,42.0,6.0,6.0,0.0,0.0,0.0,25.0,0.0,5.0,1,True,False,0.01,has_signal,False,CEO bought | P/B 0.9 | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-1.7% shares),v5-144-buyback
+38,MA,Mastercard Incorporated,Financial Servi,437586.1,495.24,22.4,65.36958,42.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-2.3% shares),v5-144-buyback
+39,WDAY,"Workday, Inc.",Technology,34633.1,140.23,20.4,4.65571,42.0,0.0,12.0,22,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,20% above 52w low | step-change 72 | buyback EXECUTING (-7.5% shares),v5-144-buyback
+40,OLED,Universal Display Corporation,Technology,4246.9,90.84,9.0,2.4923177,41.4,18.4,18.0,0.0,0.0,0.0,0.0,0.0,5.0,3,True,False,1.47,no_signal,False,3-buyer cluster 31d ago | CEO bought | 9% above 52w low | buyback SHRINKING_NO_AUTH (-1.6% shares),v5-144-buyback
+41,ACM,AECOM,Industrials,9162.4,71.29,5.4,4.0251822,41.0,18.0,18.0,0.0,0.0,0.0,0.0,0.0,5.0,2,True,True,0.4,no_signal,False,CEO+CFO bought | 5% above 52w low | buyback SHRINKING_NO_AUTH (-3.0% shares),v5-144-buyback
+42,AGIG,Abundia Global Impact Group Inc,Utilities,51.1,1.16,0.6,1.4445828,41.0,20.0,21.0,0.0,0.0,0.0,0.0,0.0,0.0,3,True,False,0.06,no_signal,False,3-buyer cluster 28d ago | CEO bought | 1% above 52w low,v5-144-buyback
+43,FCN,"FTI Consulting, Inc.",Industrials,4662.1,154.66,28.5,2.7522511,41.0,30.0,6.0,0.0,0.0,0.0,0.0,0.0,5.0,3,True,True,2.08,no_signal,False,3-buyer cluster 28d ago | CEO+CFO bought | buyback SHRINKING_NO_AUTH (-2.4% shares),v5-144-buyback
+44,HUBS,"HubSpot, Inc.",Technology,11387.4,222.45,11.2,5.787844,41.0,24.0,12.0,0.0,0.0,0.0,0.0,0.0,5.0,3,True,False,2.59,no_signal,False,3-buyer cluster 30d ago | CEO bought | 11% above 52w low | buyback SHRINKING_NO_AUTH (-4.1% shares),v5-144-buyback
+45,JKHY,"Jack Henry & Associates, Inc.",Technology,9048.3,127.35,3.8,4.2479734,41.0,18.0,18.0,0.0,0.0,0.0,0.0,0.0,5.0,2,True,True,0.32,no_signal,False,CEO+CFO bought | 4% above 52w low | buyback SHRINKING_NO_AUTH (-2.9% shares),v5-144-buyback
+46,MRP,"Millrose Properties, Inc.",Real Estate,4573.0,27.54,12.8,0.78101075,40.0,22.0,18.0,0.0,0.0,0.0,0.0,0.0,0.0,3,False,False,6.53,no_signal,False,3-buyer cluster 29d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8,v5-144-buyback
+47,EG,"Everest Group, Ltd.",Financial Servi,13131.8,331.85,44.7,0.8637518,39.0,0.0,6.0,0.0,0.0,0.0,25.0,0.0,8.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg +25 | buyback EXECUTING (-5.7% shares),v5-144-buyback
+48,EVTC,"Evertec, Inc.",Technology,1390.8,22.57,4.6,2.0811434,39.0,16.0,18.0,0.0,0.0,0.0,0.0,0.0,5.0,4,False,False,1.82,no_signal,False,4-buyer cluster 31d ago | 5% above 52w low | buyback SHRINKING_NO_AUTH (-3.7% shares),v5-144-buyback
+49,KKR,KKR & Co. Inc.,Financial Servi,84413.9,90.53,11.0,2.8805523,39.0,19.0,12.0,0.0,0.0,0.0,0.0,0.0,8.0,4,True,False,45.68,no_signal,False,4-buyer cluster 113d ago | CEO bought | $45.7M insider buys | 11% above 52w low | buyback EXECUTING (-3.0% shares),v5-144-buyback
+50,GO,Grocery Outlet Holding Corp.,Consumer Defens,818.1,8.27,19.0,1.0136046,38.2,20.2,18.0,0.0,0.0,0.0,0.0,0.0,0.0,6,True,False,7.92,no_signal,False,6-buyer cluster 94d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0,v5-144-buyback
+51,GENC,"Gencor Industries, Inc.",Industrials,220.0,15.01,53.9,0.99450076,37.0,0.0,6.0,0.0,0.0,6.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 13D filed | 10b5-1 leg +25,v5-144-buyback
+52,NOW,"ServiceNow, Inc.",Technology,110319.0,106.97,19.8,9.406437,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,20% above 52w low | 10b5-1 leg +25,v5-144-buyback
+53,NXST,"Nexstar Media Group, Inc.",Communication S,5483.9,179.57,17.2,2.5293686,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,17% above 52w low | 10b5-1 leg +25,v5-144-buyback
+54,PATK,"Patrick Industries, Inc.",Consumer Cyclic,2981.8,90.65,10.4,2.524226,37.0,25.0,12.0,0.0,0.0,0.0,0.0,0.0,0.0,5,True,False,3.54,no_signal,False,5-buyer cluster 36d ago | CEO bought | 10% above 52w low,v5-144-buyback
+55,SHOP,Shopify Inc.,Technology,143287.0,110.42,18.6,11.490114,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,19% above 52w low | 10b5-1 leg +25,v5-144-buyback
+56,SPRY,"ARS Pharmaceuticals, Inc.",Healthcare,934.4,9.41,22.5,8.175499,37.0,0.0,12.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg +25,v5-144-buyback
+57,TKO,"TKO Group Holdings, Inc.",Communication S,37951.9,198.57,62.0,4.4092374,37.0,30.0,0.0,0.0,0.0,0.0,2.0,0.0,5.0,3,True,True,4.5,has_signal,False,3-buyer cluster 29d ago | CEO+CFO bought | 10b5-1 leg +2 | buyback SHRINKING_NO_AUTH (-8.7% shares),v5-144-buyback
+58,ACET,,,,,,,36.0,0.0,0.0,0.0,0.0,6.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-2.4% shares),v5-144-buyback
+59,ACON,"Aclarion, Inc.",Healthcare,8.6,3.49,11.9,0.43413362,36.0,18.0,18.0,0.0,0.0,0.0,0.0,0.0,0.0,4,True,False,0.05,no_signal,False,4-buyer cluster 34d ago | CEO bought | 12% above 52w low | P/B 0.4,v5-144-buyback
+60,BCO,Brinks Company (The),Industrials,4223.9,102.57,36.3,16.129894,36.0,0.0,6.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-1.7% shares),v5-144-buyback
+61,FLUT,Flutter Entertainment plc,Consumer Cyclic,17461.4,100.7,4.1,1.9375817,36.0,35.0,21.0,0.0,0.0,0.0,-20.0,0.0,0.0,7,True,False,1.05,has_signal,False,7-buyer cluster 30d ago | CEO bought | 4% above 52w low | 10b5-1 leg -20,v5-144-buyback
+62,FWONB,Liberty Media Corporation,Communication S,20675.0,82.5,41.3,2.6008008,36.0,0.0,0.0,0.0,0.0,6.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-2.9% shares),v5-144-buyback
+63,INMB,INmune Bio Inc.,Healthcare,32.4,1.22,1.2,1.6531166,36.0,0.0,21.0,0.0,0.0,0.0,10.0,0.0,5.0,0,False,False,0.0,has_signal,False,1% above 52w low | 10b5-1 leg +10 | buyback SHRINKING_NO_AUTH (-3.2% shares),v5-144-buyback
+64,IQV,"IQVIA Holdings, Inc.",Healthcare,31085.1,186.25,35.3,4.996781,36.0,0.0,6.0,0.0,0.0,0.0,25.0,0.0,5.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25 | buyback SHRINKING_NO_AUTH (-3.2% shares),v5-144-buyback
+65,PCOR,"Procore Technologies, Inc.",Technology,6901.7,45.74,2.7,5.7440667,36.0,0.0,18.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg +18,v5-144-buyback
+66,RNR,RenaissanceRe Holdings Ltd.,Financial Servi,12054.1,282.74,59.3,1.1287746,36.0,0.0,6.0,22,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,P/B 1.1 | step-change 51 | buyback EXECUTING (-9.4% shares),v5-144-buyback
+67,STT,State Street Corporation,Financial Servi,45182.2,163.25,98.8,1.8762642,36.0,0.0,3.0,0.0,0.0,0.0,25.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25 | buyback EXECUTING (-1.9% shares),v5-144-buyback
+68,FEED,"ENvue Medical, Inc.",Healthcare,4.6,0.7485,0.1,0.08652179,35.0,0.0,24.0,0.0,0.0,6.0,5.0,0.0,0.0,0,False,False,0.0,has_signal,False,0% above 52w low | P/B 0.1 | 13D filed | 10b5-1 leg +5,v5-144-buyback
+69,ODTX,"Odyssey Therapeutics, Inc.",Healthcare,787.3,16.69,27.1,-0.74181074,35.0,23.0,6.0,0.0,0.0,6.0,0.0,0.0,0.0,7,False,True,75.32,no_data,True,7-buyer cluster 31d ago | $75.3M insider buys | 13D filed,v5-144-buyback
+70,ADT,ADT Inc.,Industrials,5065.3,6.66,15.3,1.397105,34.0,14.0,15.0,0.0,0.0,0.0,0.0,0.0,5.0,3,False,False,0.35,no_signal,False,3-buyer cluster 30d ago | 15% above 52w low | buyback SHRINKING_NO_AUTH (-7.3% shares),v5-144-buyback
+71,APT,"Alpha Pro Tech, Ltd.",Industrials,54.9,5.37,32.6,0.8634829,34.0,0.0,12.0,0.0,0.0,0.0,25.0,-8.0,5.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg +25 | 144 filing rate 2.0x trailing-year pace | buyback SHRINKING_NO_AUTH (-2.4% shares),v5-144-buyback
+72,AQST,"Aquestive Therapeutics, Inc.",Healthcare,500.5,3.99,22.9,-14.562044,34.0,0.0,12.0,0.0,0.0,0.0,22.0,0.0,0.0,0,False,False,0.0,has_signal,False,23% above 52w low | 10b5-1 leg +22,v5-144-buyback
+73,CDE,"Coeur Mining, Inc.",Basic Materials,16581.3,16.09,39.5,1.5986091,34.0,0.0,9.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+74,IMA,"ImageneBio, Inc.",Healthcare,62.6,5.55,11.5,0.507591,34.0,0.0,18.0,0.0,0.0,6.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,11% above 52w low | P/B 0.5 | 13D filed | 10b5-1 leg +10,v5-144-buyback
+75,PRCT,PROCEPT BioRobotics Corporation,Healthcare,1638.1,28.78,20.8,4.710311,34.0,0.0,12.0,0.0,0.0,0.0,22.0,0.0,0.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg +22,v5-144-buyback
+76,SAMG,Silvercrest Asset Management Gr,Financial Servi,83.7,10.9,3.5,1.7810457,34.0,0.0,21.0,0.0,0.0,0.0,8.0,0.0,5.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg +8 | buyback SHRINKING_NO_AUTH (-9.0% shares),v5-144-buyback
+77,ZTS,Zoetis Inc.,Healthcare,32527.9,77.59,5.3,9.897945,34.0,14.0,18.0,0.0,0.0,0.0,-3.0,0.0,5.0,3,False,False,0.89,has_signal,False,3-buyer cluster 30d ago | 5% above 52w low | 10b5-1 leg -3 | buyback SHRINKING_NO_AUTH (-5.4% shares),v5-144-buyback
+78,XRN,Chiron Real Estate Inc.,Real Estate,501.5,34.87,53.5,1.1966369,33.0,27.0,6.0,0.0,0.0,0.0,0.0,0.0,0.0,9,True,True,0.62,no_signal,False,9-buyer cluster 31d ago | CEO+CFO bought | P/B 1.2,v5-144-buyback
+79,ALKT,"Alkami Technology, Inc.",Technology,1638.5,15.31,7.1,4.4210224,32.0,14.0,18.0,0.0,0.0,6.0,-6.0,0.0,0.0,2,False,False,65.86,has_signal,False,$65.9M insider buys | 7% above 52w low | 13D filed | 10b5-1 leg -6,v5-144-buyback
+80,IBP,"Installed Building Products, In",Consumer Cyclic,5435.0,201.74,21.0,8.091934,32.0,20.0,12.0,0.0,0.0,0.0,0.0,0.0,0.0,4,False,True,0.84,no_signal,False,4-buyer cluster 30d ago | 21% above 52w low,v5-144-buyback
+81,CFBK,CF Bankshares Inc.,Financial Servi,195.6,30.1,65.4,1.0353605,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg +25,v5-144-buyback
+82,CIFR,Cipher Digital Inc.,Technology,9422.4,23.035,78.0,13.073213,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v5-144-buyback
+83,CRNX,"Crinetics Pharmaceuticals, Inc.",Healthcare,3687.2,34.97,28.4,2.8758225,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+84,EYPT,"EyePoint, Inc.",Healthcare,986.8,11.77,34.3,29.722223,31.0,0.0,6.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+85,NSP,"Insperity, Inc.",Industrials,1282.5,33.6,32.9,19.145298,31.0,25.0,6.0,0.0,0.0,0.0,0.0,0.0,0.0,4,True,True,7.81,no_signal,False,4-buyer cluster 92d ago | CEO+CFO bought | $7.8M insider buys,v5-144-buyback
+86,PGEN,"Precigen, Inc.",Healthcare,1322.7,3.71,57.0,65.08772,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v5-144-buyback
+87,UUU,"Universal Safety Products, Inc.",Industrials,19.5,6.43,66.2,6.5478616,31.0,0.0,0.0,0.0,0.0,6.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25,v5-144-buyback
+88,CHTR,"Charter Communications, Inc.",Communication S,21209.6,135.37,2.9,1.0160776,30.4,18.4,24.0,0.0,0.0,0.0,-12.0,0.0,0.0,3,True,False,2.37,has_signal,False,3-buyer cluster 44d ago | CEO bought | 3% above 52w low | P/B 1.0 | 10b5-1 leg -12,v5-144-buyback
+89,ALEC,"Alector, Inc.",Healthcare,181.0,1.63,23.4,17.340425,30.0,0.0,12.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,23% above 52w low | 10b5-1 leg +18,v5-144-buyback
+90,BKNG,Booking Holdings Inc. Common St,Consumer Cyclic,127072.3,163.99,16.6,-14.6616,30.0,0.0,12.0,22,0.0,0.0,-12.0,0.0,8.0,0,False,False,0.0,has_signal,False,17% above 52w low | step-change 54 | 10b5-1 leg -12 | buyback EXECUTING (-4.4% shares),v5-144-buyback
+91,DLTR,"Dollar Tree, Inc.",Consumer Defens,21552.4,112.15,47.6,6.184515,30.0,0.0,0.0,22,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,step-change 60 | buyback EXECUTING (-5.8% shares),v5-144-buyback
+92,HROW,"Harrow, Inc.",Healthcare,1247.2,33.46,18.7,43.454544,30.0,18.0,12.0,0.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.41,no_signal,False,CEO+CFO bought | 19% above 52w low,v5-144-buyback
+93,OPEN,Opendoor Technologies Inc,Real Estate,4187.0,4.34,37.0,4.3838387,30.0,6.0,6.0,0.0,0.0,0.0,18.0,0.0,0.0,1,True,False,0.49,has_signal,False,CEO bought | 10b5-1 leg +18,v5-144-buyback
+94,SRE,DBA Sempra,Utilities,59402.4,90.87,63.7,1.8773631,30.0,0.0,3.0,22,0.0,0.0,5.0,0.0,0.0,0,False,False,0.0,has_signal,False,step-change 60 | 10b5-1 leg +5,v5-144-buyback
+95,TPL,Texas Pacific Land Corporation,Energy,26355.8,382.11,40.6,16.939001,29.5,1.5,0.0,22,0.0,6.0,0.0,0.0,0.0,2,False,False,0.49,no_signal,False,step-change 60 | 13D filed,v5-144-buyback
+96,BB,BlackBerry Limited,Technology,5180.8,8.84,73.2,6.96063,29.0,0.0,0.0,0.0,0.0,6.0,23.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +23,v5-144-buyback
+97,BLMN,"Bloomin' Brands, Inc.",Consumer Cyclic,636.1,7.43,40.7,1.604405,29.0,0.0,3.0,0.0,0.0,6.0,20.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +20,v5-144-buyback
+98,MOBI,"Mobia Medical, Inc.",Healthcare,454.3,13.73,77.3,-0.28039864,29.0,23.0,0.0,0.0,0.0,6.0,0.0,0.0,0.0,6,False,False,19.02,no_signal,False,6-buyer cluster 31d ago | $19.0M insider buys | 13D filed,v5-144-buyback
+99,STRT,STRATTEC SECURITY CORPORATION,Consumer Cyclic,324.0,77.53,59.7,1.3272502,29.0,26.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.29,no_signal,False,3-buyer cluster 28d ago | CEO+CFO bought,v5-144-buyback
+100,LW,"Lamb Weston Holdings, Inc.",Consumer Defens,6013.1,43.55,20.1,3.3125427,28.4,16.4,12.0,0.0,0.0,0.0,0.0,0.0,0.0,3,False,True,16.98,no_signal,False,3-buyer cluster 65d ago | $17.0M insider buys | 20% above 52w low,v5-144-buyback
+101,AMT,American Tower Corporation (REI,Real Estate,88906.4,190.83,37.2,25.245403,28.0,0.0,6.0,22,0.0,0.0,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 56,v5-144-buyback
+102,CINF,Cincinnati Financial Corporatio,Financial Servi,25342.3,163.83,66.2,1.6118178,28.0,0.0,3.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+103,KODK,Eastman Kodak Company,Industrials,925.2,9.48,45.7,1.5419649,28.0,0.0,3.0,0.0,0.0,0.0,25.0,0.0,0.0,1,False,False,0.02,has_signal,False,10b5-1 leg +25,v5-144-buyback
+104,PAY,"Paymentus Holdings, Inc.",Technology,2655.4,21.11,4.0,4.55055,28.0,0.0,18.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,4% above 52w low | 10b5-1 leg +10,v5-144-buyback
+105,PSN,Parsons Corporation,Technology,6413.4,59.95,28.4,2.4202664,28.0,22.0,6.0,0.0,0.0,0.0,0.0,0.0,0.0,4,True,False,2.13,no_signal,False,4-buyer cluster 31d ago | CEO bought,v5-144-buyback
+106,GRNT,"Granite Ridge Resources, Inc.",Energy,658.2,4.99,31.9,1.2003849,27.2,18.2,9.0,0.0,0.0,0.0,0.0,0.0,0.0,5,True,True,0.41,no_signal,False,5-buyer cluster 92d ago | CEO+CFO bought,v5-144-buyback
+107,BDTX,"Black Diamond Therapeutics, Inc",Healthcare,108.9,1.9,1.8,1.043956,27.0,0.0,24.0,0.0,0.0,0.0,3.0,0.0,0.0,0,False,False,0.0,has_signal,False,2% above 52w low | P/B 1.0 | 10b5-1 leg +3,v5-144-buyback
+108,CRBU,"Caribou Biosciences, Inc.",Healthcare,182.5,1.84,32.1,1.7490494,27.0,0.0,9.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+109,DLPN,"Dolphin Entertainment, Inc.",Communication S,14.8,1.14,16.9,1.4375788,26.0,6.0,15.0,0.0,0.0,0.0,5.0,0.0,0.0,1,True,False,0.01,has_signal,False,CEO bought | 17% above 52w low | 10b5-1 leg +5,v5-144-buyback
+110,GRDN,"Guardian Pharmacy Services, Inc",Healthcare,2648.7,41.83,99.3,11.992547,26.0,0.0,0.0,0.0,0.0,6.0,20.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +20,v5-144-buyback
+111,INFU,"InfuSystems Holdings, Inc.",Healthcare,182.2,9.03,64.5,3.1020267,26.0,26.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.13,no_signal,False,3-buyer cluster 30d ago | CEO+CFO bought,v5-144-buyback
+112,JMSB,"John Marshall Bancorp, Inc.",Financial Servi,307.8,21.81,94.8,1.1423035,26.0,0.0,6.0,0.0,0.0,0.0,20.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg +20,v5-144-buyback
+113,LCUT,"Lifetime Brands, Inc.",Consumer Cyclic,209.1,9.15,90.6,1.0589052,26.0,0.0,6.0,0.0,0.0,0.0,20.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg +20,v5-144-buyback
+114,AMD,"Advanced Micro Devices, Inc.",Technology,775358.7,475.505,83.6,12.023794,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+115,APP,Applovin Corporation,Communication S,174970.7,520.84,47.2,74.10928,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+116,BCPC,Balchem Corporation,Basic Materials,5215.3,162.32,51.8,4.0581017,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+117,BE,Bloom Energy Corporation,Industrials,73844.5,259.61,79.1,80.0771,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+118,CACC,Credit Acceptance Corporation,Financial Servi,5955.1,569.32,94.1,3.919209,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+119,CUBE,CubeSmart,Real Estate,9489.0,41.69,73.0,3.563857,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+120,DDOG,"Datadog, Inc.",Technology,80924.0,227.34,71.6,20.283726,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+121,ENOV,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+122,FCFS,"FirstCash Holdings, Inc.",Financial Servi,10053.9,229.35,94.3,4.3749046,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+123,FOSL,"Fossil Group, Inc.",Consumer Cyclic,247.0,4.18,65.0,2.9333334,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+124,GOOG,Alphabet Inc.,Communication S,4418103.1,362.29,82.5,9.16865,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+125,ILMN,"Illumina, Inc.",Healthcare,24212.5,160.03,81.2,9.090032,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+126,IRON,"Disc Medicine, Inc.",Healthcare,2610.5,68.34,47.6,3.7911904,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+127,KYMR,"Kymera Therapeutics, Inc.",Healthcare,6326.4,76.91,60.7,3.959535,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+128,LODE,Comstock Inc.,Basic Materials,291.5,3.84,62.5,1.819043,25.0,16.0,3.0,0.0,0.0,6.0,0.0,0.0,0.0,2,True,False,1.54,no_signal,False,CEO bought | 13D filed,v5-144-buyback
+129,LUNR,"Intuitive Machines, Inc.",Industrials,4407.6,27.47,50.5,-13.130975,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+130,LXFR,Luxfer Holdings PLC,Industrials,473.2,17.52,87.8,2.0616615,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+131,MAZE,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+132,MGRC,McGrath RentCorp,Industrials,2770.1,112.78,53.2,2.2393868,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+133,NVDA,NVIDIA Corporation,Technology,5042570.0,208.19,70.4,25.79802,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+134,OMC,Omnicom Group Inc.,Communication S,21555.0,75.63,44.6,2.2840662,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+135,PCAR,PACCAR Inc.,Industrials,62991.2,119.69,70.9,3.1881626,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+136,RIOT,,,,,,,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+137,SERV,Serve Robotics Inc.,Industrials,590.5,6.94,0.8,1.4787983,25.0,0.0,21.0,0.0,0.0,0.0,4.0,0.0,0.0,0,False,False,0.0,has_signal,False,1% above 52w low | 10b5-1 leg +4,v5-144-buyback
+138,SRRK,Scholar Rock Holding Corporatio,Healthcare,5461.8,45.58,73.7,20.141405,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+139,TSLA,"Tesla, Inc.",Consumer Cyclic,1489820.5,396.68,51.4,18.115725,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+140,UHT,Universal Health Realty Income ,Real Estate,551.4,39.74,47.5,3.6183195,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+141,UNIT,Uniti Group Inc.,Real Estate,2770.5,11.41,86.2,7.1715903,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+142,WEST,Westrock Coffee Company,Consumer Defens,778.5,7.98,81.5,-420.0,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,1,False,False,0.27,has_signal,False,10b5-1 leg +25,v5-144-buyback
+143,WMT,Walmart Inc.,Consumer Defens,946056.4,118.88,61.0,9.509639,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+144,XEL,Xcel Energy Inc.,Utilities,48611.9,77.87,66.6,2.0568426,25.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25,v5-144-buyback
+145,CAT,"Caterpillar, Inc.",Industrials,421303.5,914.7,94.6,22.579052,24.0,0.0,0.0,0.0,0.0,0.0,16.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16 | buyback EXECUTING (-1.7% shares),v5-144-buyback
+146,CRSP,CRISPR Therapeutics AG,Healthcare,5070.0,51.48,30.2,2.7345161,24.0,0.0,6.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+147,KULR,,,,,,,24.0,0.0,0.0,0.0,0.0,6.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +18,v5-144-buyback
+148,PRLD,Prelude Therapeutics Incorporat,Healthcare,313.8,3.94,66.6,4.1256547,24.0,0.0,0.0,0.0,0.0,6.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +18,v5-144-buyback
+149,SNTI,"Senti Biosciences Holdings, Inc",Healthcare,28.2,0.9057,5.2,5.0038676,24.0,0.0,18.0,0.0,0.0,6.0,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,5% above 52w low | 13D filed,v5-144-buyback
+150,PLSE,"Pulse Biosciences, Inc",Healthcare,1729.6,24.99,80.6,21.017662,23.6,17.6,0.0,0.0,0.0,6.0,0.0,0.0,0.0,2,True,False,26.59,no_signal,False,CEO bought | $26.6M insider buys | 13D filed,v5-144-buyback
+151,BAC,Bank of America Corporation,Financial Servi,386196.5,54.42,77.5,1.4075108,23.0,0.0,3.0,0.0,0.0,0.0,20.0,0.0,0.0,1,False,False,0.05,has_signal,False,10b5-1 leg +20,v5-144-buyback
+152,EPAM,"EPAM Systems, Inc.",Technology,5082.3,97.28,6.0,1.4957869,23.0,27.0,21.0,0.0,0.0,0.0,-25.0,0.0,0.0,6,True,True,0.04,has_signal,False,6-buyer cluster 38d ago | CEO+CFO bought | 6% above 52w low | 10b5-1 leg -25,v5-144-buyback
+153,FEMY,Femasys Inc.,Healthcare,15.9,5.25,1.0,53.57143,23.0,0.0,18.0,0.0,0.0,0.0,5.0,0.0,0.0,0,False,False,0.0,has_signal,False,1% above 52w low | 10b5-1 leg +5,v5-144-buyback
+154,CCI,Crown Castle Inc.,Real Estate,40402.4,92.57,41.7,-21.01953,22.0,0.0,0.0,22,0.0,0.0,0.0,0.0,0.0,1,False,False,0.07,no_signal,False,step-change 53,v5-144-buyback
+155,CVBF,CVB Financial Corporation,Financial Servi,3666.7,20.78,80.2,1.2156312,22.0,4.0,3.0,0.0,0.0,0.0,15.0,0.0,0.0,1,False,False,1.5,has_signal,False,10b5-1 leg +15,v5-144-buyback
+156,D,"Dominion Energy, Inc.",Utilities,58267.7,66.25,82.6,2.0682442,22.0,0.0,0.0,22,0.0,0.0,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 55,v5-144-buyback
+157,OCUL,"Ocular Therapeutix, Inc.",Healthcare,1854.6,8.47,21.9,3.187806,22.0,0.0,12.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg +10,v5-144-buyback
+158,SBAC,SBA Communications Corporation,Real Estate,21719.6,204.78,52.5,-4.570982,22.0,0.0,0.0,22,0.0,0.0,0.0,0.0,0.0,0,False,False,0.0,no_signal,False,step-change 52,v5-144-buyback
+159,TEAM,Atlassian Corporation,Technology,24262.7,95.61,23.8,15.956275,22.0,0.0,12.0,0.0,0.0,0.0,2.0,0.0,8.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg +2 | buyback EXECUTING (-5.0% shares),v5-144-buyback
+160,TRUP,"Trupanion, Inc.",Financial Servi,967.1,22.17,2.8,2.449453,22.0,0.0,18.0,0.0,0.0,0.0,4.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg +4,v5-144-buyback
+161,ZIP,,,,,,,22.0,0.0,0.0,0.0,0.0,0.0,22.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +22,v5-144-buyback
+162,LULU,lululemon athletica inc.,Consumer Cyclic,13780.9,121.36,7.9,2.8493614,20.6,13.6,18.0,0.0,0.0,6.0,-25.0,0.0,8.0,2,True,False,1.49,has_signal,False,CEO bought | 8% above 52w low | 13D filed | 10b5-1 leg -25 | buyback EXECUTING (-4.2% shares),v5-144-buyback
+163,AVBC,"Avidia Bancorp, Inc.",Financial Servi,348.8,18.78,64.3,0.9095312,20.4,14.4,6.0,0.0,0.0,0.0,0.0,0.0,0.0,3,True,False,0.21,no_signal,False,3-buyer cluster 31d ago | CEO bought | P/B 0.9,v5-144-buyback
+164,INSE,"Inspired Entertainment, Inc.",Consumer Cyclic,218.2,8.18,54.0,-13.724833,20.4,14.4,0.0,0.0,0.0,6.0,0.0,0.0,0.0,3,True,False,0.55,no_signal,False,3-buyer cluster 76d ago | CEO bought | 13D filed,v5-144-buyback
+165,NXG,733085,Financial Servi,339.2,59.69,92.7,,20.4,20.4,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3,True,True,0.04,no_data,True,3-buyer cluster 34d ago | CEO+CFO bought,v5-144-buyback
+166,CPT,,,,,,,20.0,0.0,0.0,12,0.0,0.0,0.0,0.0,8.0,0,False,False,0.0,no_signal,False,step-change 49 | buyback EXECUTING (-7.3% shares),v5-144-buyback
+167,IOVA,"Iovance Biotherapeutics, Inc.",Healthcare,1732.4,3.88,55.9,2.3557985,20.0,0.0,0.0,0.0,0.0,0.0,20.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +20,v5-144-buyback
+168,MYO,Myomo Inc.,Healthcare,50.6,1.31,30.1,5.6223173,20.0,0.0,6.0,0.0,0.0,0.0,14.0,0.0,0.0,1,False,False,0.02,has_signal,False,10b5-1 leg +14,v5-144-buyback
+169,QTTB,Q32 Bio Inc.,Healthcare,201.6,11.89,78.1,3.7555277,20.0,14.0,0.0,0.0,0.0,6.0,0.0,0.0,0.0,2,False,False,30.0,no_signal,False,$30.0M insider buys | 13D filed,v5-144-buyback
+170,VSNT,"Versant Media Group, Inc.",Communication S,5689.6,40.21,41.0,0.56325203,19.0,13.0,6.0,0.0,0.0,0.0,0.0,0.0,0.0,4,False,False,6.19,no_signal,False,4-buyer cluster 94d ago | $6.2M insider buys | P/B 0.6,v5-144-buyback
+171,BREZ,,,,,,,18.0,18.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2,True,True,0.0,no_data,True,CEO+CFO bought,v5-144-buyback
+172,CCRN,"Cross Country Healthcare, Inc.",Healthcare,408.7,13.18,76.1,1.316289,18.0,0.0,3.0,0.0,0.0,0.0,15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v5-144-buyback
+173,CGON,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+174,IDCC,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+175,MCHPP,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+176,MX,Magnachip Semiconductor Corpora,Technology,228.8,6.28,53.4,0.9829395,18.0,0.0,6.0,22,0.0,0.0,0.0,0.0,-10.0,0,False,False,0.0,no_signal,False,P/B 1.0 | step-change 52 | buyback DILUTING (+1.4% shares),v5-144-buyback
+177,QCLS,"Q/C Technologies, Inc.",Technology,29.8,3.79,8.5,1.4465649,18.0,0.0,21.0,0.0,0.0,0.0,-3.0,0.0,0.0,1,False,False,0.01,has_signal,False,8% above 52w low | 10b5-1 leg -3,v5-144-buyback
+178,RAL,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+179,RLAY,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+180,SOFI,"SoFi Technologies, Inc.",Financial Servi,21126.7,16.47,13.3,1.9521155,18.0,6.0,15.0,22,0.0,0.0,-25.0,0.0,0.0,1,True,False,0.5,has_signal,False,CEO bought | 13% above 52w low | step-change 53 | 10b5-1 leg -25,v5-144-buyback
+181,SVRA,,,,,,,18.0,0.0,0.0,0.0,0.0,0.0,18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +18,v5-144-buyback
+182,VABK,Virginia National Bankshares Co,Financial Servi,235.3,43.4,57.2,1.2709756,18.0,0.0,3.0,0.0,0.0,0.0,15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v5-144-buyback
+183,MORN,"Morningstar, Inc.",Financial Servi,7022.3,184.66,21.2,6.8933854,17.0,0.0,12.0,0.0,0.0,0.0,-3.0,0.0,8.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -3 | buyback EXECUTING (-9.8% shares),v5-144-buyback
+184,PAYC,"Paycom Software, Inc.",Technology,6347.8,136.14,20.7,7.636731,17.0,0.0,12.0,22,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,21% above 52w low | step-change 69 | 10b5-1 leg -25 | buyback EXECUTING (-17.1% shares),v5-144-buyback
+185,AFCG,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v5-144-buyback
+186,ARMP,,,,,,,16.0,0.0,0.0,0.0,0.0,6.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +10,v5-144-buyback
+187,AUPH,Aurinia Pharmaceuticals Inc,Healthcare,2029.3,15.78,88.5,3.635107,16.0,0.0,0.0,0.0,0.0,6.0,25.0,-20.0,5.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +25 | 144 filing rate 4.1x trailing-year pace | 144 proposed sales = 6.09% of mcap in 90d | buyback SHRINKING_NO_AUTH (-2.3% shares),v5-144-buyback
+188,CHCO,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0.0,0.0,1,False,False,0.01,has_signal,False,10b5-1 leg +16,v5-144-buyback
+189,FIS,,,,,,,16.0,0.0,0.0,0.0,0.0,0.0,16.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +16,v5-144-buyback
+190,NCDL,Nuveen Churchill Direct Lending Corp.,Financial Servi,636.1,12.88,9.4,,16.0,6.0,18.0,0.0,0.0,0.0,-8.0,0.0,0.0,2,False,True,0.12,has_signal,False,9% above 52w low | 10b5-1 leg -8,v5-144-buyback
+191,OPRX,OptimizeRx Corporation,Healthcare,95.1,5.07,2.8,0.74133646,16.0,0.0,24.0,0.0,0.0,0.0,-8.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.7 | 10b5-1 leg -8,v5-144-buyback
+192,FABC,"Fabric.AI, Inc.",Consumer Cyclic,18.6,3.82,24.4,4.710234,15.0,0.0,12.0,0.0,0.0,6.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,24% above 52w low | 13D filed | 10b5-1 leg -3,v5-144-buyback
+193,FBIOP,,,,,,,15.0,0.0,0.0,0.0,0.0,0.0,15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +15,v5-144-buyback
+194,GOOGL,Alphabet Inc.,Communication S,4442127.1,364.26,82.0,9.218505,15.0,0.0,0.0,0.0,0.0,0.0,25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg +25 | buyback DILUTING (+0.7% shares),v5-144-buyback
+195,MZTI,The Marzetti Company,Consumer Defens,3016.7,110.01,4.9,2.8874018,15.0,0.0,18.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,5% above 52w low | 10b5-1 leg -3,v5-144-buyback
+196,NKE,"Nike, Inc.",Consumer Cyclic,64877.7,43.81,6.3,4.6018906,15.0,22.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,4,True,False,3.73,has_signal,False,4-buyer cluster 64d ago | CEO bought | 6% above 52w low | 10b5-1 leg -25,v5-144-buyback
+197,ADP,"Automatic Data Processing, Inc.",Technology,92406.6,231.17,33.6,14.583938,14.0,0.0,6.0,0.0,0.0,0.0,8.0,0.0,0.0,1,False,False,0.75,has_signal,False,10b5-1 leg +8,v5-144-buyback
+198,ANGI,Angi Inc.,Communication S,233.4,5.77,8.3,0.2549713,14.0,0.0,24.0,0.0,0.0,0.0,-10.0,0.0,0.0,0,False,False,0.0,has_signal,False,8% above 52w low | P/B 0.3 | 10b5-1 leg -10,v5-144-buyback
+199,ASTS,"AST SpaceMobile, Inc.",Technology,34430.5,88.71,54.2,12.732883,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v5-144-buyback
+200,CARS,Cars.com Inc.,Communication S,538.9,9.64,34.1,1.1966237,14.0,0.0,12.0,0.0,0.0,0.0,2.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.2 | 10b5-1 leg +2,v5-144-buyback
+201,INGN,"Inogen, Inc",Healthcare,171.9,6.35,26.6,0.9500299,14.0,0.0,12.0,0.0,0.0,0.0,2.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg +2,v5-144-buyback
+202,SATS,EchoStar Corporation,Communication S,33841.5,116.77,76.7,5.9986644,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v5-144-buyback
+203,VNOM,"Viper Energy, Inc.",Energy,16197.8,45.12,62.5,1.7143508,14.0,0.0,3.0,0.0,0.0,6.0,5.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +5,v5-144-buyback
+204,VVX,"V2X, Inc.",Industrials,2677.7,85.52,95.3,2.4264433,14.0,0.0,0.0,0.0,0.0,6.0,8.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +8,v5-144-buyback
+205,WMS,"Advanced Drainage Systems, Inc.",Industrials,10393.3,135.69,37.4,5.3039126,14.0,0.0,6.0,0.0,0.0,0.0,8.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +8,v5-144-buyback
+206,KRP,Kimbell Royalty Partners,Energy,1650.0,15.31,92.2,2.9089873,13.0,0.0,0.0,0.0,0.0,6.0,7.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +7,v5-144-buyback
+207,RH,RH,Consumer Cyclic,2836.8,150.09,29.1,46.6118,12.0,0.0,6.0,22,0.0,0.0,-6.0,0.0,-10.0,0,False,False,0.0,has_signal,False,step-change 69 | 10b5-1 leg -6 | buyback DILUTING (+0.8% shares),v5-144-buyback
+208,SMG,Scotts Miracle-Gro Company (The,Basic Materials,3468.8,59.62,37.4,-6.9076586,12.0,0.0,6.0,0.0,0.0,0.0,6.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v5-144-buyback
+209,SMR,NuScale Power Corporation,Industrials,3461.1,10.0,2.4,2.7247956,12.0,0.0,18.0,0.0,0.0,6.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,2% above 52w low | 13D filed | 10b5-1 leg -12,v5-144-buyback
+210,TRVI,"Trevi Therapeutics, Inc.",Healthcare,1929.5,13.59,76.4,9.516807,12.0,0.0,0.0,0.0,0.0,6.0,6.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg +6,v5-144-buyback
+211,AMSF,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+212,CVGI,"Commercial Vehicle Group, Inc.",Consumer Cyclic,175.2,5.16,84.4,1.2594581,10.0,0.0,3.0,0.0,0.0,0.0,7.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +7,v5-144-buyback
+213,JBIO,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+214,KUST,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+215,MU,"Micron Technology, Inc.",Technology,1055435.0,935.89,84.4,14.569329,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+216,SN,"SharkNinja, Inc.",Consumer Cyclic,18182.5,128.48,89.7,6.5893936,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+217,THRY,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+218,VREOF,,,,,,,10.0,0.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +10,v5-144-buyback
+219,ZSQR,Z Squared Inc.,Technology,531.3,10.33,24.2,,10.0,0.0,12.0,0.0,0.0,6.0,-8.0,0.0,0.0,0,False,False,0.0,has_signal,False,24% above 52w low | 13D filed | 10b5-1 leg -8,v5-144-buyback
+220,ADSK,,,,,,,9.0,0.0,0.0,12,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,step-change 49 | 10b5-1 leg -3,v5-144-buyback
+221,NMRA,"Neumora Therapeutics, Inc.",Healthcare,305.7,1.65,31.8,2.7684562,9.0,0.0,6.0,0.0,0.0,6.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v5-144-buyback
+222,OCGN,"Ocugen, Inc.",Healthcare,419.8,1.24,18.5,-31.794872,9.0,0.0,12.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,18% above 52w low | 10b5-1 leg -3,v5-144-buyback
+223,STRR,"Star Equity Holdings, Inc.",Industrials,40.8,11.06,75.1,0.6721361,9.0,6.0,6.0,0.0,0.0,0.0,-3.0,0.0,0.0,1,True,False,0.2,has_signal,False,CEO bought | P/B 0.7 | 10b5-1 leg -3,v5-144-buyback
+224,RYM,"RYTHM, Inc.",Consumer Defens,60.1,27.98,35.3,4.6186857,8.0,0.0,6.0,0.0,0.0,0.0,2.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +2,v5-144-buyback
+225,TSEOF,Trinseo PLC,Basic Materials,0.5,0.013,0.3,,8.0,0.0,18.0,0.0,0.0,0.0,-10.0,0.0,0.0,0,False,False,0.0,has_signal,False,0% above 52w low | 10b5-1 leg -10,v5-144-buyback
+226,AAPL,Apple Inc.,Technology,4267411.0,290.55,78.1,40.020657,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v5-144-buyback
+227,ARTV,,,,,,,6.0,8.0,0.0,0.0,0.0,6.0,0.0,-8.0,0.0,1,False,False,75.0,no_signal,False,$75.0M insider buys | 13D filed | 144 filing rate 2.2x trailing-year pace,v5-144-buyback
+228,PEN,"Penumbra, Inc.",Healthcare,12627.7,321.06,70.7,8.566626,6.0,0.0,0.0,0.0,0.0,0.0,6.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +6,v5-144-buyback
+229,URBN,"Urban Outfitters, Inc.",Consumer Cyclic,6616.5,73.78,57.4,2.4192543,6.0,0.0,0.0,0.0,0.0,0.0,-2.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -2 | buyback EXECUTING (-4.5% shares),v5-144-buyback
+230,FUBO,fuboTV Inc.,Communication S,286.4,9.73,2.9,0.35272792,5.0,0.0,24.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.4 | 13D filed | 10b5-1 leg -25,v5-144-buyback
+231,JSM,,,,,,,5.0,0.0,0.0,0.0,0.0,6.0,-1.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -1,v5-144-buyback
+232,KLRS,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v5-144-buyback
+233,PAR,PAR Technology Corporation,Technology,558.1,13.53,3.2,0.6752845,5.0,0.0,24.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.7 | 13D filed | 10b5-1 leg -25,v5-144-buyback
+234,QVCCQ,,,,,,,5.0,0.0,0.0,0.0,0.0,0.0,5.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg +5,v5-144-buyback
+235,MMSI,"Merit Medical Systems, Inc.",Healthcare,4027.3,67.51,21.0,2.4757051,4.6,3.6,12.0,0.0,0.0,0.0,-11.0,0.0,0.0,2,False,False,0.22,has_signal,False,21% above 52w low | 10b5-1 leg -11,v5-144-buyback
+236,AMCX,AMC Global Media Inc.,Communication S,435.8,9.92,86.1,0.45617583,4.0,0.0,6.0,22,0.0,0.0,0.0,-14.0,-10.0,0,False,False,0.0,no_signal,False,P/B 0.5 | step-change 71 | 144 filing rate 3.2x trailing-year pace | 144 proposed sales = 0.36% of mcap in 90d | buyback DILUTING (+1.2% shares),v5-144-buyback
+237,HIG,"The Hartford Insurance Group, I",Financial Servi,35354.7,128.97,37.6,1.9107516,4.0,0.0,9.0,12,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,step-change 49 | 10b5-1 leg -25 | buyback EXECUTING (-2.5% shares),v5-144-buyback
+238,HHH,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v5-144-buyback
+239,KDP,Keurig Dr Pepper Inc.,Consumer Defens,42830.4,31.48,59.7,1.6953899,3.0,0.0,3.0,22,3.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,step-change 58 | PSU 75% LTI | 10b5-1 leg -25,v5-144-buyback
+240,ORGO,Organogenesis Holdings Inc.,Healthcare,319.1,2.48,8.7,1.3045765,3.0,0.0,21.0,0.0,0.0,0.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,9% above 52w low | 10b5-1 leg -18,v5-144-buyback
+241,STRRP,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v5-144-buyback
+242,XTIA,,,,,,,3.0,0.0,0.0,0.0,0.0,6.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -3,v5-144-buyback
+243,GYRE,"Gyre Therapeutics, Inc.",Healthcare,594.8,6.13,17.3,5.5275025,2.0,0.0,12.0,0.0,0.0,6.0,-16.0,0.0,0.0,0,False,False,0.0,has_signal,False,17% above 52w low | 13D filed | 10b5-1 leg -16,v5-144-buyback
+244,APPF,"AppFolio, Inc.",Technology,5985.8,169.29,14.5,12.729528,1.0,0.0,12.0,0.0,0.0,0.0,-11.0,0.0,0.0,0,False,False,0.0,has_signal,False,14% above 52w low | 10b5-1 leg -11,v5-144-buyback
+245,RENT,"Rent the Runway, Inc.",Consumer Cyclic,116.5,3.47,2.5,-3.209991,1.0,0.0,18.0,0.0,0.0,6.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,2% above 52w low | 13D filed | 10b5-1 leg -23,v5-144-buyback
+246,ADBE,,,,,,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,8.0,0,False,False,0.0,no_signal,False,144 filing rate 2.4x trailing-year pace | buyback EXECUTING (-3.4% shares),v5-144-buyback
+247,AHCO,AdaptHealth Corp.,Healthcare,1334.7,9.81,32.6,0.86622524,0.0,0.0,12.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg -12,v5-144-buyback
+248,CASIF,,,,,,,0.0,0.0,0.0,0.0,0.0,6.0,-6.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -6,v5-144-buyback
+249,CMRC,"Commerce.com, Inc. - Series 1",Technology,219.5,2.66,8.0,4.683099,0.0,0.0,18.0,0.0,0.0,0.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,8% above 52w low | 10b5-1 leg -18,v5-144-buyback
+250,CRMD,CorMedix Inc.,Healthcare,678.6,8.65,22.3,1.5515695,0.0,0.0,15.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg -15,v5-144-buyback
+251,GRAL,"GRAIL, Inc.",Healthcare,2613.6,60.9,34.8,1.0017601,0.0,0.0,12.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg -12,v5-144-buyback
+252,NPB,"Northpointe Bancshares, Inc.",Financial Servi,616.6,17.83,75.1,1.0424463,0.0,6.0,6.0,0.0,0.0,0.0,-12.0,0.0,0.0,1,True,False,0.86,has_signal,False,CEO bought | P/B 1.0 | 10b5-1 leg -12,v5-144-buyback
+253,UZD,,,,,,,0.0,0.0,0.0,0.0,0.0,6.0,-6.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -6,v5-144-buyback
+254,TXO,,,,,,,-0.4,11.6,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,2,False,False,13.49,has_signal,False,$13.5M insider buys | 10b5-1 leg -12,v5-144-buyback
+255,BRCB,"Black Rock Coffee Bar, Inc.",Consumer Cyclic,135.0,6.26,0.6,2.3856707,-1.0,0.0,18.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,1% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+256,FULC,"Fulcrum Therapeutics, Inc.",Healthcare,234.5,3.52,5.3,0.7034372,-1.0,0.0,24.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,5% above 52w low | P/B 0.7 | 10b5-1 leg -25,v5-144-buyback
+257,GCMG,GCM Grosvenor Inc.,Financial Servi,683.5,11.32,51.5,26.386946,-1.0,0.0,0.0,0.0,0.0,0.0,-1.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -1,v5-144-buyback
+258,GPGI,,,,,,,-1.0,14.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,3,False,False,0.2,has_signal,False,3-buyer cluster 28d ago | 10b5-1 leg -15,v5-144-buyback
+259,LENZ,"LENZ Therapeutics, Inc.",Healthcare,212.9,6.79,0.6,0.8637578,-1.0,0.0,24.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,1% above 52w low | P/B 0.9 | 10b5-1 leg -25,v5-144-buyback
+260,LZ,"LegalZoom.com, Inc.",Industrials,962.9,5.61,4.6,6.623377,-1.0,6.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,True,False,0.77,has_signal,False,CEO bought | 5% above 52w low | 10b5-1 leg -25,v5-144-buyback
+261,OKLO,Oklo Inc.,Utilities,9827.0,56.48,7.8,3.7216659,-1.0,0.0,18.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,8% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+262,PLRX,"Pliant Therapeutics, Inc.",Healthcare,73.7,1.19,11.6,0.446027,-1.0,0.0,18.0,0.0,0.0,0.0,-19.0,0.0,0.0,0,False,False,0.0,has_signal,False,12% above 52w low | P/B 0.4 | 10b5-1 leg -19,v5-144-buyback
+263,TASK,"TaskUs, Inc.",Technology,523.8,5.72,2.5,0.86274505,-1.0,0.0,24.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | P/B 0.9 | 10b5-1 leg -25,v5-144-buyback
+264,WVE,Wave Life Sciences Ltd.,Healthcare,1112.1,5.78,4.5,2.0926864,-1.0,0.0,18.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,5% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+265,MSCI,MSCI Inc.,Financial Servi,44184.9,607.54,74.1,-15.965626,-1.5,15.5,0.0,0.0,0.0,0.0,-25.0,0.0,8.0,2,True,False,5.56,has_signal,False,CEO bought | $5.6M insider buys | 10b5-1 leg -25 | buyback EXECUTING (-3.3% shares),v5-144-buyback
+266,AGQPF,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,13D filed | $38M proposed sales in 90d,v5-144-buyback
+267,AMWL,American Well Corporation,Healthcare,142.0,8.5,76.6,0.62289315,-2.0,6.0,6.0,0.0,0.0,0.0,-14.0,0.0,0.0,1,True,False,0.0,has_signal,False,CEO bought | P/B 0.6 | 10b5-1 leg -14,v5-144-buyback
+268,DIS,Walt Disney Company (The),Communication S,172487.7,99.33,22.0,1.5944588,-2.0,0.0,15.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,22% above 52w low | 10b5-1 leg -25 | buyback EXECUTING (-3.4% shares),v5-144-buyback
+269,HWKE,"Hawkeye Systems, Inc.",Industrials,30.6,0.65,57.5,-2.03125,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v5-144-buyback
+270,JBI,"Janus International Group, Inc.",Industrials,717.4,5.26,15.3,1.2807403,-2.0,0.0,15.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,15% above 52w low | 10b5-1 leg -25 | buyback EXECUTING (-1.8% shares),v5-144-buyback
+271,LOCO,,,,,,,-2.0,0.0,0.0,0.0,0.0,6.0,-8.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -8,v5-144-buyback
+272,RNAC,"Cartesian Therapeutics, Inc.",Healthcare,201.3,6.85,12.5,-1.3201002,-2.0,0.0,12.0,0.0,0.0,6.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,13% above 52w low | 13D filed | 10b5-1 leg -20,v5-144-buyback
+273,SYK,Stryker Corporation,Healthcare,120379.1,314.01,26.6,5.357253,-2.0,0.0,6.0,0.0,0.0,6.0,-14.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -14,v5-144-buyback
+274,ADUS,Addus HomeCare Corporation,Healthcare,1730.2,92.7,13.0,1.5185269,-3.0,0.0,15.0,0.0,0.0,0.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,13% above 52w low | 10b5-1 leg -18,v5-144-buyback
+275,BLND,"Blend Labs, Inc.",Technology,409.2,1.69,15.5,-7.4778767,-3.0,4.0,12.0,0.0,0.0,6.0,-25.0,0.0,0.0,1,False,False,2.79,has_signal,False,16% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+276,BWXT,"BWX Technologies, Inc.",Industrials,17311.5,188.96,53.2,13.520321,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+277,CL,Colgate-Palmolive Company,Consumer Defens,70256.6,87.8,53.5,485.08292,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+278,CLIR,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+279,EIX,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+280,FIVE,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+281,HRI,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+282,OVLY,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,1,False,False,0.01,has_signal,False,10b5-1 leg -3,v5-144-buyback
+283,SMA,,,,,,,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+284,SPAI,Safe Pro Group Inc.,Industrials,107.6,5.22,41.8,6.969292,-3.0,0.0,0.0,0.0,0.0,0.0,-3.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -3,v5-144-buyback
+285,XPRO,Expro Group Holdings N.V.,Energy,1843.8,16.26,76.5,1.203642,-3.0,0.0,3.0,0.0,0.0,6.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v5-144-buyback
+286,ALIT,,,,,,,-4.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12 | buyback EXECUTING (-4.1% shares),v5-144-buyback
+287,BRLT,"Brilliant Earth Group, Inc.",Consumer Cyclic,124.5,1.23,6.0,1.7422097,-4.0,0.0,21.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,6% above 52w low | 10b5-1 leg -25,v5-144-buyback
+288,RPC,"Ridgepost Capital, Inc.",Financial Servi,905.4,8.27,23.5,2.5779305,-4.0,0.0,12.0,0.0,0.0,0.0,-16.0,0.0,0.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg -16,v5-144-buyback
+289,UNM,,,,,,,-4.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12 | buyback EXECUTING (-6.2% shares),v5-144-buyback
+290,HLMN,Hillman Solutions Corp.,Industrials,1459.8,7.44,20.7,1.2013564,-5.0,0.0,15.0,0.0,0.0,0.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -20,v5-144-buyback
+291,ROP,"Roper Technologies, Inc.",Technology,33844.7,335.37,10.9,1.7981727,-5.0,0.0,15.0,0.0,0.0,0.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -20,v5-144-buyback
+292,XNCR,"Xencor, Inc.",Healthcare,881.5,11.89,42.2,1.3445663,-5.0,0.0,3.0,0.0,0.0,0.0,-8.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v5-144-buyback
+293,ZUMZ,Zumiez Inc.,Consumer Cyclic,322.3,19.1,37.1,0.89954317,-5.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,P/B 0.9 | 10b5-1 leg -25 | buyback EXECUTING (-2.4% shares),v5-144-buyback
+294,AMRX,"Amneal Pharmaceuticals, Inc.",Healthcare,4686.4,14.69,90.6,-103.4507,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v5-144-buyback
+295,AVTR,"Avantor, Inc.",Healthcare,6766.1,9.91,30.5,1.1991771,-6.0,0.0,12.0,0.0,0.0,0.0,-18.0,0.0,0.0,1,False,False,0.08,has_signal,False,P/B 1.2 | 10b5-1 leg -18,v5-144-buyback
+296,COHR,Coherent Corp.,Technology,69635.9,355.94,76.9,6.518928,-6.0,0.0,0.0,0.0,0.0,0.0,-6.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -6,v5-144-buyback
+297,EVER,"EverQuote, Inc.",Communication S,685.9,19.39,37.1,2.8493755,-6.0,0.0,6.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+298,MCO,Moody's Corporation,Financial Servi,78593.9,449.94,33.0,26.250875,-6.0,0.0,6.0,0.0,0.0,0.0,-20.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20 | buyback EXECUTING (-4.3% shares),v5-144-buyback
+299,PED,Pedevco Corp.,Energy,175.6,13.2,44.5,0.9637147,-6.0,0.0,6.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 10b5-1 leg -12,v5-144-buyback
+300,RDW,Redwire Corporation,Industrials,3133.0,15.75,50.0,2.8657205,-6.0,0.0,0.0,0.0,0.0,6.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -12,v5-144-buyback
+301,STZ,"Constellation Brands, Inc.",Consumer Defens,24028.1,140.09,26.4,2.994592,-6.0,0.0,6.0,0.0,0.0,0.0,-20.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20 | buyback EXECUTING (-2.0% shares),v5-144-buyback
+302,TMCI,,,,,,,-6.0,6.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,1,True,False,0.55,has_signal,False,CEO bought | 10b5-1 leg -12,v5-144-buyback
+303,BSY,"Bentley Systems, Incorporated",Technology,10058.7,33.11,9.0,8.450741,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,9% above 52w low | 10b5-1 leg -25,v5-144-buyback
+304,BXMT,"Blackstone Mortgage Trust, Inc.",Real Estate,3100.4,18.38,23.7,0.92102623,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,24% above 52w low | P/B 0.9 | 10b5-1 leg -25,v5-144-buyback
+305,CAVA,,,,,,,-7.0,0.0,0.0,0.0,0.0,0.0,-7.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -7,v5-144-buyback
+306,CHDN,,,,,,,-7.0,0.0,0.0,0.0,0.0,0.0,-15.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15 | buyback EXECUTING (-2.6% shares),v5-144-buyback
+307,COIN,"Coinbase Global, Inc.",Financial Servi,40968.2,155.5,5.3,3.0384743,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,5% above 52w low | 10b5-1 leg -25,v5-144-buyback
+308,FIG,"Figma, Inc.",Technology,10826.4,20.49,3.1,7.399783,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,3% above 52w low | 10b5-1 leg -25,v5-144-buyback
+309,GDDY,GoDaddy Inc.,Technology,10800.7,81.57,7.8,45.595303,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,8% above 52w low | 10b5-1 leg -25,v5-144-buyback
+310,KHC,The Kraft Heinz Company,Consumer Defens,27782.8,23.43,29.4,0.6628381,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 0.7 | 13D filed | 10b5-1 leg -25,v5-144-buyback
+311,MLTX,MoonLake Immunotherapeutics,Healthcare,1310.4,17.8,20.9,5.0539465,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,21% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+312,PAHC,Phibro Animal Health Corporatio,Healthcare,1324.4,32.65,24.9,3.660314,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,25% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+313,PRCH,"Porch Group, Inc.",Financial Servi,1042.6,9.53,24.2,-39.708332,-7.0,0.0,12.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,24% above 52w low | 13D filed | 10b5-1 leg -25,v5-144-buyback
+314,QTWO,"Q2 Holdings, Inc.",Technology,2778.8,44.39,1.8,4.54769,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,2% above 52w low | 10b5-1 leg -25,v5-144-buyback
+315,TOST,"Toast, Inc.",Technology,14500.0,25.0,10.0,7.286505,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10% above 52w low | 10b5-1 leg -25,v5-144-buyback
+316,TSCO,Tractor Supply Company,Consumer Cyclic,15712.5,29.96,4.5,6.1167827,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,4% above 52w low | 10b5-1 leg -25,v5-144-buyback
+317,VEL,"Velocity Financial, Inc.",Financial Servi,685.8,17.47,24.6,1.0121669,-7.0,0.0,18.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,25% above 52w low | P/B 1.0 | 10b5-1 leg -25,v5-144-buyback
+318,AAON,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,144 filing rate 2.9x trailing-year pace,v5-144-buyback
+319,AAT,,,,,,,-8.0,4.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,1,False,False,3.59,has_signal,False,10b5-1 leg -12,v5-144-buyback
+320,ABNB,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,$459M proposed sales in 90d,v5-144-buyback
+321,AGO,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,144 filing rate 2.3x trailing-year pace,v5-144-buyback
+322,ALHC,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,$30M proposed sales in 90d,v5-144-buyback
+323,ALRM,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,144 filing rate 2.6x trailing-year pace,v5-144-buyback
+324,AMAT,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,$32M proposed sales in 90d,v5-144-buyback
+325,AMBQ,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,144 filing rate 4.1x trailing-year pace,v5-144-buyback
+326,AMPL,"Amplitude, Inc.",Technology,923.0,6.96,16.1,4.2464914,-8.0,0.0,12.0,0.0,0.0,0.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,16% above 52w low | 10b5-1 leg -20,v5-144-buyback
+327,AR,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,144 filing rate 2.4x trailing-year pace,v5-144-buyback
+328,ATMU,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,1,False,False,0.11,no_signal,False,144 filing rate 4.1x trailing-year pace,v5-144-buyback
+329,AXSM,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0,False,False,0.0,no_signal,False,$27M proposed sales in 90d,v5-144-buyback
+330,CHGG,"Chegg, Inc.",Consumer Defens,124.3,1.11,45.5,1.0249308,-8.0,0.0,6.0,0.0,0.0,6.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.0 | 13D filed | 10b5-1 leg -20,v5-144-buyback
+331,PTGX,,,,,,,-8.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8,v5-144-buyback
+332,REPX,"Riley Exploration Permian, Inc.",Energy,755.2,34.81,61.5,1.1920418,-8.0,0.0,6.0,0.0,0.0,6.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.2 | 13D filed | 10b5-1 leg -20,v5-144-buyback
+333,ABOS,"Acumen Pharmaceuticals, Inc.",Healthcare,158.2,2.19,44.7,1.8084229,-9.0,0.0,3.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+334,ECPG,Encore Capital Group Inc,Financial Servi,1770.3,82.57,82.3,1.715455,-9.0,0.0,3.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+335,HLF,Herbalife Ltd.,Consumer Defens,1171.5,11.3,29.1,-2.6463702,-9.0,0.0,6.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+336,INDI,"indie Semiconductor, Inc.",Technology,849.4,4.02,45.6,2.5902061,-9.0,0.0,0.0,0.0,0.0,0.0,-9.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -9,v5-144-buyback
+337,SYRE,"Spyre Therapeutics, Inc.",Healthcare,6638.1,76.44,95.3,11.702389,-9.0,0.0,0.0,0.0,0.0,6.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -15,v5-144-buyback
+338,VVV,Valvoline Inc.,Consumer Cyclic,4731.6,37.1,67.0,13.398338,-9.0,6.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,2,False,True,0.42,has_signal,False,10b5-1 leg -15,v5-144-buyback
+339,EYE,"National Vision Holdings, Inc.",Consumer Cyclic,1318.7,16.46,11.2,1.4684628,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -25,v5-144-buyback
+340,GME,GameStop Corporation,Consumer Cyclic,9996.8,22.28,24.8,1.8344998,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,25% above 52w low | 10b5-1 leg -25,v5-144-buyback
+341,ONT,"Onterris, Inc.",Industrials,613.3,16.97,15.9,1.3936108,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,False,True,0.1,has_signal,False,16% above 52w low | 10b5-1 leg -25,v5-144-buyback
+342,PCVX,"Vaxcyte, Inc.",Healthcare,6769.4,46.88,49.6,2.258189,-10.0,0.0,0.0,0.0,0.0,0.0,-10.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -10,v5-144-buyback
+343,PHR,,,,,,,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v5-144-buyback
+344,PRKS,United Parks & Resorts Inc.,Consumer Cyclic,2098.0,44.51,55.9,-5.218054,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v5-144-buyback
+345,RGR,"Sturm, Ruger & Company, Inc.",Industrials,619.9,38.88,53.1,2.1886964,-10.0,6.0,0.0,0.0,0.0,6.0,-22.0,0.0,0.0,2,False,False,0.23,has_signal,False,13D filed | 10b5-1 leg -22,v5-144-buyback
+346,RXRX,"Recursion Pharmaceuticals, Inc.",Healthcare,1709.1,3.22,10.2,1.6675298,-10.0,0.0,15.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10% above 52w low | 10b5-1 leg -25,v5-144-buyback
+347,TRIP,"TripAdvisor, Inc.",Consumer Cyclic,1390.5,11.95,26.4,2.2282305,-10.0,0.0,6.0,0.0,0.0,6.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -22,v5-144-buyback
+348,XOMAP,,,,,,,-10.0,0.0,0.0,0.0,0.0,6.0,-16.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -16,v5-144-buyback
+349,INDV,"Indivior Pharmaceuticals, Inc.",Healthcare,4522.5,38.26,90.1,-32.42373,-10.5,1.5,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,2,False,False,0.03,has_signal,False,10b5-1 leg -12,v5-144-buyback
+350,BETA,"Beta Technologies, Inc.",Industrials,3940.6,16.47,11.7,2.19366,-11.0,0.0,12.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,12% above 52w low | 10b5-1 leg -23,v5-144-buyback
+351,CTMX,"CytomX Therapeutics, Inc.",Healthcare,648.8,2.98,19.4,2.027211,-11.0,0.0,12.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,19% above 52w low | 10b5-1 leg -23,v5-144-buyback
+352,EBAY,eBay Inc.,Consumer Cyclic,48245.0,108.66,77.1,10.984634,-11.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25 | buyback EXECUTING (-1.8% shares),v5-144-buyback
+353,IR,Ingersoll Rand Inc.,Industrials,28923.7,73.91,17.8,2.842255,-11.0,0.0,12.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,18% above 52w low | 10b5-1 leg -23,v5-144-buyback
+354,SES,SES AI Corporation,Consumer Cyclic,398.8,1.08,9.6,1.9600726,-11.0,0.0,21.0,0.0,0.0,0.0,-22.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10% above 52w low | 10b5-1 leg -22 | buyback DILUTING (+1.2% shares),v5-144-buyback
+355,ACRS,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+356,AESI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+357,ARCT,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+358,CGEM,"Cullinan Therapeutics, Inc.",Healthcare,810.0,13.18,67.8,2.2117805,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+359,DOCN,"DigitalOcean Holdings, Inc.",Technology,17567.6,168.33,89.8,19.789562,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v5-144-buyback
+360,EQIX,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+361,GLP,Global Partners LP,Energy,1638.1,48.22,51.0,2.5777826,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,1,False,False,0.74,has_signal,False,10b5-1 leg -12,v5-144-buyback
+362,HSIC,"Henry Schein, Inc.",Healthcare,9116.8,80.03,66.1,2.80384,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,1,False,False,0.69,has_signal,False,10b5-1 leg -12,v5-144-buyback
+363,JBLU,,,,,,,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v5-144-buyback
+364,MCRB,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+365,MGTX,,,,,,,-12.0,0.0,0.0,0.0,0.0,6.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -18,v5-144-buyback
+366,MRVI,"Maravai LifeSciences Holdings, ",Healthcare,1881.3,5.1,96.6,3.5564852,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+367,NGS,"Natural Gas Services Group, Inc",Energy,511.1,40.57,83.4,1.8217332,-12.0,0.0,3.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+368,ON,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-20.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20 | buyback EXECUTING (-4.9% shares),v5-144-buyback
+369,OPLN,"OPENLANE, Inc.",Consumer Cyclic,3934.8,37.14,90.0,3.1392105,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+370,PACS,"PACS Group, Inc.",Healthcare,5571.2,35.2,77.9,5.822994,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+371,PAYO,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+372,PVLA,"Palvella Therapeutics, Inc.",Healthcare,1497.0,104.37,64.3,6.430684,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+373,QUBT,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+374,REZI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+375,ROST,"Ross Stores, Inc.",Consumer Cyclic,73603.2,229.45,93.0,11.682791,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+376,SI,"Shoulder Innovations, Inc.",,317.7,15.32,62.7,2.3844357,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+377,TSSI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+378,URGN,UroGen Pharma Ltd.,Healthcare,1373.0,28.18,83.5,-11.046648,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+379,VANI,,,,,,,-12.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12,v5-144-buyback
+380,ACAD,ACADIA Pharmaceuticals Inc.,Healthcare,3739.8,21.84,24.8,2.9938314,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,25% above 52w low | 10b5-1 leg -25,v5-144-buyback
+381,CNTY,"Century Casinos, Inc.",Consumer Cyclic,40.0,1.42,11.7,-0.3522699,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,12% above 52w low | 10b5-1 leg -25,v5-144-buyback
+382,CRCT,"Cricut, Inc.",Technology,923.6,4.4,18.5,2.583676,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,False,False,0.04,has_signal,False,18% above 52w low | 10b5-1 leg -25,v5-144-buyback
+383,CVNA,Carvana Co.,Consumer Cyclic,76350.7,69.61,35.3,13.378819,-13.0,0.0,6.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+384,ENVX,Enovix Corporation,Industrials,1472.5,6.75,18.0,5.952381,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,18% above 52w low | 10b5-1 leg -25,v5-144-buyback
+385,PGR,Progressive Corporation (The),Financial Servi,116775.9,200.13,13.6,3.6479466,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,14% above 52w low | 10b5-1 leg -25,v5-144-buyback
+386,PLTR,Palantir Technologies Inc.,Technology,316613.0,132.07,11.1,37.466667,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -25,v5-144-buyback
+387,QS,QuantumScape Corporation,Consumer Cyclic,4502.9,7.32,21.2,4.0576496,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -25,v5-144-buyback
+388,RDDT,"Reddit, Inc.",Communication S,34287.8,178.11,39.1,10.777563,-13.0,0.0,6.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+389,ROOT,"Root, Inc.",Financial Servi,852.2,53.85,10.6,2.935885,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,11% above 52w low | 10b5-1 leg -25,v5-144-buyback
+390,RVLV,"Revolve Group, Inc.",Consumer Cyclic,1450.4,20.27,20.4,2.7507126,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,20% above 52w low | 10b5-1 leg -25,v5-144-buyback
+391,SND,"Smart Sand, Inc.",Energy,230.4,5.36,86.5,0.87083673,-13.0,0.0,6.0,0.0,0.0,0.0,-19.0,0.0,0.0,1,False,False,0.02,has_signal,False,P/B 0.9 | 10b5-1 leg -19,v5-144-buyback
+392,STUB,"StubHub Holdings, Inc.",Communication S,3900.8,10.39,21.0,2.4832697,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,21% above 52w low | 10b5-1 leg -25,v5-144-buyback
+393,VST,Vistra Corp.,Utilities,49302.8,146.22,15.6,18.859797,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,16% above 52w low | 10b5-1 leg -25,v5-144-buyback
+394,WEAV,"Weave Communications, Inc.",Healthcare,444.0,5.58,24.2,5.3193517,-13.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,24% above 52w low | 10b5-1 leg -25,v5-144-buyback
+395,ALL,Allstate Corporation (The),Financial Servi,55906.7,217.18,73.6,1.8926032,-14.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback EXECUTING (-2.3% shares),v5-144-buyback
+396,CART,,,,,,,-14.0,0.0,0.0,0.0,0.0,6.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -20,v5-144-buyback
+397,EXC,Exelon Corporation,Utilities,46382.0,45.33,37.2,1.5821991,-14.0,0.0,9.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v5-144-buyback
+398,HRTG,"Heritage Insurance Holdings, In",Financial Servi,654.5,21.62,31.6,1.2561004,-14.0,0.0,9.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v5-144-buyback
+399,AEE,Ameren Corporation,Utilities,29886.4,107.99,65.6,2.2042375,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+400,CENX,Century Aluminum Company,Basic Materials,6028.5,60.91,82.3,5.238218,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+401,JANX,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+402,KOPN,,,,,,,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+403,RMNI,"Rimini Street, Inc.",Technology,386.0,4.17,51.8,-17.020409,-15.0,0.0,0.0,0.0,0.0,0.0,-15.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -15,v5-144-buyback
+404,ALAB,,,,,,,-16.0,0.0,0.0,0.0,0.0,0.0,0.0,-16.0,0.0,0,False,False,0.0,no_signal,False,144 filing rate 2.0x trailing-year pace | $478M proposed sales in 90d,v5-144-buyback
+405,CF,"CF Industries Holdings, Inc.",Basic Materials,16681.1,108.58,49.8,3.1222682,-16.0,0.0,0.0,0.0,0.0,0.0,-16.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -16,v5-144-buyback
+406,COMP,"Compass, Inc.",Real Estate,6104.2,8.17,28.4,2.1619475,-16.0,0.0,6.0,0.0,0.0,0.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v5-144-buyback
+407,ICFI,"ICF International, Inc.",Industrials,1292.6,71.4,29.3,1.2535553,-16.0,0.0,9.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+408,LTH,"Life Time Group Holdings, Inc.",Consumer Cyclic,7261.3,32.62,75.8,2.2540076,-16.0,0.0,0.0,0.0,0.0,6.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -22,v5-144-buyback
+409,LXU,"LSB Industries, Inc.",Basic Materials,858.9,11.94,47.9,1.5804104,-16.0,0.0,3.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+410,PPL,PPL Corporation,Utilities,26896.5,35.75,37.2,1.7904544,-16.0,0.0,9.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+411,ASIX,AdvanSix Inc.,Basic Materials,579.6,21.5,58.6,0.72790056,-17.0,0.0,6.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 0.7 | 10b5-1 leg -23,v5-144-buyback
+412,EWTX,"Edgewise Therapeutics, Inc.",Healthcare,3664.6,34.06,76.6,7.4220963,-17.0,0.0,0.0,0.0,0.0,6.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -23,v5-144-buyback
+413,FDMT,"4D Molecular Therapeutics, Inc.",Healthcare,482.5,9.23,64.1,1.0677927,-17.0,0.0,6.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg -23,v5-144-buyback
+414,JBL,Jabil Inc.,Technology,38232.0,362.38,89.4,28.531612,-17.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback EXECUTING (-1.8% shares),v5-144-buyback
+415,QCOM,QUALCOMM Incorporated,Technology,216512.7,205.42,60.5,7.974998,-17.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback EXECUTING (-2.3% shares),v5-144-buyback
+416,UTHR,United Therapeutics Corporation,Healthcare,23479.0,553.14,83.3,3.9515083,-17.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,8.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback EXECUTING (-6.2% shares),v5-144-buyback
+417,AGX,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,0.0,-8.0,-10.0,0,False,False,0.0,no_signal,False,$39M proposed sales in 90d | buyback DILUTING (+1.0% shares),v5-144-buyback
+418,IBTA,"Ibotta, Inc.",Technology,775.5,33.32,51.1,3.1454732,-18.0,0.0,0.0,0.0,0.0,6.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -24,v5-144-buyback
+419,LOVE,The Lovesac Company,Consumer Cyclic,245.1,16.58,57.8,1.1081406,-18.0,0.0,6.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg -24,v5-144-buyback
+420,PWR,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-8.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -8 | buyback DILUTING (+0.7% shares),v5-144-buyback
+421,VERX,,,,,,,-18.0,0.0,0.0,0.0,0.0,0.0,-18.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -18,v5-144-buyback
+422,APGE,"Apogee Therapeutics, Inc.",Healthcare,6408.1,85.0,83.1,5.03853,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+423,ARES,Ares Management Corporation,Financial Servi,43081.3,130.61,35.0,11.478162,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+424,ATAI,AtaiBeckley Inc.,Healthcare,1432.2,3.89,39.8,6.996403,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+425,BBIO,"BridgeBio Pharma, Inc.",Healthcare,13255.9,67.68,62.8,-5.813434,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+426,BWMN,Bowman Consulting Group Ltd.,Industrials,564.4,32.24,31.6,2.204143,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+427,CELC,Celcuity Inc.,Healthcare,4515.3,92.59,58.2,83.640465,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+428,CRWV,"CoreWeave, Inc.",Technology,53711.4,98.45,28.1,11.006148,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+429,DIBS,,,,,,,-19.0,6.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,True,False,0.21,has_signal,False,CEO bought | 10b5-1 leg -25,v5-144-buyback
+430,FNKO,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+431,FOA,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+432,INCY,Incyte Corporation,Healthcare,20623.5,103.23,80.1,3.6709223,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+433,MARA,"MARA Holdings, Inc.",Financial Servi,5074.7,13.31,39.6,2.271331,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+434,ORKA,"Oruka Therapeutics, Inc.",Healthcare,4036.7,66.93,70.0,6.9407864,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+435,PCG,Pacific Gas & Electric Co.,Utilities,36512.9,16.58,58.3,1.1529101,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.2 | 10b5-1 leg -25,v5-144-buyback
+436,PINS,"Pinterest, Inc.",Communication S,12278.6,21.92,31.0,3.0695982,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+437,RIVN,"Rivian Automotive, Inc.",Consumer Cyclic,21123.3,15.73,37.4,4.502003,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+438,RKLB,Rocket Lab Corporation,Industrials,67624.1,108.23,66.0,27.518435,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+439,SIBN,"SI-BONE, Inc.",Healthcare,688.7,15.53,38.9,3.8364625,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+440,SVV,"Savers Value Village, Inc.",Consumer Cyclic,1445.9,9.39,35.6,3.3475935,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+441,TH,Target Hospitality Corp.,Industrials,1637.2,16.44,80.8,4.368855,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+442,TMUSL,,,,,,,-19.0,0.0,0.0,0.0,0.0,6.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25,v5-144-buyback
+443,XERS,"Xeris Biopharma Holdings, Inc.",Healthcare,1122.2,6.5,38.1,79.26829,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+444,ZNTL,"Zentalis Pharmaceuticals, Inc.",Healthcare,254.8,3.58,42.1,1.1441355,-19.0,0.0,6.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,P/B 1.1 | 10b5-1 leg -25,v5-144-buyback
+445,EME,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v5-144-buyback
+446,GNRC,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v5-144-buyback
+447,MKL,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0.0,0.0,1,False,False,0.27,has_signal,False,10b5-1 leg -20,v5-144-buyback
+448,SPH,,,,,,,-20.0,0.0,0.0,0.0,0.0,0.0,-20.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20,v5-144-buyback
+449,AEP,American Electric Power Company,Utilities,69514.9,127.76,69.8,2.18494,-21.0,0.0,0.0,0.0,0.0,0.0,-21.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -21,v5-144-buyback
+450,LBRT,Liberty Energy Inc.,Energy,4590.6,28.13,74.2,2.3396823,-21.0,0.0,0.0,0.0,0.0,0.0,-21.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -21,v5-144-buyback
+451,ANTX,"AN2 Therapeutics, Inc.",Healthcare,140.8,3.91,49.2,1.7209507,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+452,AVIR,"Atea Pharmaceuticals, Inc.",Healthcare,348.9,4.36,43.1,1.4931507,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+453,CDNS,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-12.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -12 | buyback DILUTING (+1.3% shares),v5-144-buyback
+454,CRSR,"Corsair Gaming, Inc.",Technology,898.9,8.41,45.6,1.3877888,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+455,CYRX,"CryoPort, Inc.",Industrials,765.6,15.19,85.4,1.691725,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+456,KROS,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v5-144-buyback
+457,LFST,,,,,,,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v5-144-buyback
+458,LRCX,Lam Research Corporation,Technology,409136.8,327.16,91.6,38.653122,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v5-144-buyback
+459,MTB,M&T Bank Corporation,Financial Servi,33013.1,225.43,78.9,1.2968342,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+460,OSCR,"Oscar Health, Inc.",Healthcare,8206.6,27.22,94.6,4.8886495,-22.0,0.0,0.0,0.0,0.0,0.0,-22.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -22,v5-144-buyback
+461,VSAT,"ViaSat, Inc.",Technology,8732.2,63.94,67.5,1.9003744,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+462,WKC,World Kinect Corporation,Energy,1598.7,31.13,99.2,1.3293194,-22.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+463,LXEO,,,,,,,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v5-144-buyback
+464,META,"Meta Platforms, Inc.",Communication S,1483936.9,584.59,23.3,6.088655,-23.0,0.0,12.0,0.0,0.0,0.0,-25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,23% above 52w low | 10b5-1 leg -25 | buyback DILUTING (+1.1% shares),v5-144-buyback
+465,TPR,"Tapestry, Inc.",Consumer Cyclic,29421.8,145.62,80.4,43.17225,-23.0,0.0,0.0,0.0,0.0,0.0,-23.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -23,v5-144-buyback
+466,APLD,Applied Digital Corporation,Technology,11976.6,41.91,78.9,7.5636168,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+467,CDXS,"Codexis, Inc.",Healthcare,224.5,2.47,51.9,5.1890755,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+468,CNTA,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+469,KLAC,KLA Corporation,Technology,279460.6,2139.37,91.4,47.961487,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+470,SEPN,"Septerna, Inc.",Healthcare,1397.8,31.01,92.9,3.6379633,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+471,WOOF,,,,,,,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+472,XENE,Xenon Pharmaceuticals Inc.,Healthcare,5103.0,52.79,67.1,7.2603498,-24.0,0.0,0.0,0.0,0.0,0.0,-24.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -24,v5-144-buyback
+473,ACMR,"ACM Research, Inc.",Technology,5620.7,81.33,81.9,3.405066,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+474,AEVA,"Aeva Technologies, Inc.",Technology,1497.3,22.17,44.5,-112.53807,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+475,ALKS,Alkermes plc,Healthcare,7382.1,44.29,96.8,4.2092757,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+476,AMZN,"Amazon.com, Inc.",Consumer Cyclic,2626778.6,244.19,58.4,5.9423747,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+477,APG,APi Group Corporation,Industrials,18923.4,43.68,65.5,5.42811,-25.0,0.0,0.0,0.0,0.0,6.0,-25.0,-6.0,0.0,0,False,False,0.0,has_signal,False,13D filed | 10b5-1 leg -25 | 144 proposed sales = 0.65% of mcap in 90d,v5-144-buyback
+478,APOS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+479,ARQT,"Arcutis Biotherapeutics, Inc.",Healthcare,2850.7,22.79,52.9,15.023073,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+480,BKV,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+481,BROS,Dutch Bros Inc.,Consumer Cyclic,10095.0,57.79,43.9,10.562968,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,False,False,0.1,has_signal,False,10b5-1 leg -25,v5-144-buyback
+482,CAMP,CAMP4 THERAPEUTICS CORPORATION,Healthcare,208.2,4.01,42.0,6.7394958,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+483,CDNA,"CareDx, Inc.",Healthcare,1175.3,22.75,90.3,3.7203598,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+484,CERS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+485,CLOV,"Clover Health Investments, Corp",Healthcare,2259.5,4.29,94.8,6.6408668,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+486,DK,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+487,DKS,Dick's Sporting Goods Inc,Consumer Cyclic,19653.0,219.58,72.9,3.4707427,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+488,DSP,Viant Technology Inc.,Technology,779.6,11.88,53.3,2.5433526,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+489,ENTG,"Entegris, Inc.",Technology,20461.5,134.35,72.8,5.0532217,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+490,FENC,Fennec Pharmaceuticals Inc.,Healthcare,304.6,8.77,65.0,8.038498,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+491,FGRS,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+492,FSLY,"Fastly, Inc.",Technology,2915.6,18.63,43.3,2.9812768,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+493,GCT,GigaCloud Technology Inc,Technology,1191.4,32.72,44.9,2.3475392,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+494,GMED,"Globus Medical, Inc.",Healthcare,11201.6,82.52,61.9,2.36569,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+495,GVA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+496,HBANP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+497,HTFL,"Heartflow, Inc.",Healthcare,2472.5,28.67,40.5,8.640747,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+498,IMAX,Imax Corporation,Communication S,2206.7,40.11,83.9,6.559281,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+499,IMNM,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+500,LASR,"nLIGHT, Inc.",Technology,3580.8,63.48,66.5,8.341656,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+501,LFMDP,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+502,LITE,Lumentum Holdings Inc.,Technology,63932.9,821.76,73.7,69.30589,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+503,MASS,908 Devices Inc.,Healthcare,302.1,7.99,68.7,2.0197167,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+504,MCK,McKesson Corporation,Healthcare,94267.6,784.23,40.7,-43.32762,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+505,MP,MP Materials Corp.,Basic Materials,9666.6,54.3,40.3,4.904263,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+506,NDAQ,"Nasdaq, Inc.",Financial Servi,49496.1,87.52,42.2,4.10757,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+507,NEE,"NextEra Energy, Inc.",Utilities,176921.9,84.83,55.9,3.2034287,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+508,NTRA,"Natera, Inc.",Healthcare,31911.3,222.82,73.1,17.92743,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+509,NXPI,NXP Semiconductors N.V.,Technology,75087.4,297.41,72.9,6.8758955,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+510,OMDA,"Omada Health, Inc.",Healthcare,1089.1,18.32,48.3,4.6356277,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+511,OUT,OUTFRONT Media Inc.,Real Estate,5396.3,30.65,77.9,8.153764,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+512,P,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+513,PEGA,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+514,PENG,"Penguin Solutions, Inc.",Technology,3242.4,61.69,79.8,8.002335,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+515,PPLC,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+516,PRTHU,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+517,QLYS,"Qualys, Inc.",Technology,3863.7,109.71,43.5,6.8109016,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+518,QNCX,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+519,RELY,"Remitly Global, Inc.",Technology,3865.9,18.36,48.9,4.255911,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+520,RXT,"Rackspace Technology, Inc.",Technology,1161.4,4.66,58.8,-0.95413595,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+521,RYTM,"Rhythm Pharmaceuticals, Inc.",Healthcare,6026.6,87.86,44.2,48.919823,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+522,STRD,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+523,TARS,"Tarsus Pharmaceuticals, Inc.",Healthcare,2648.1,61.55,49.3,7.6270137,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+524,TNL,Travel   Leisure Co.,Consumer Cyclic,4505.2,72.17,73.6,-4.639069,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+525,TWLO,Twilio Inc.,Technology,31066.6,204.69,77.0,3.9998047,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+526,ULS,UL Solutions Inc.,Industrials,19868.1,98.57,80.5,15.035082,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,False,False,0.01,has_signal,False,10b5-1 leg -25,v5-144-buyback
+527,VICR,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+528,VRSN,"VeriSign, Inc.",Technology,25834.0,283.89,72.4,-11.68464,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,1,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+529,VTR,"Ventas, Inc.",Real Estate,40094.4,82.47,70.7,3.0543315,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+530,WULF,,,,,,,-25.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25,v5-144-buyback
+531,AAOI,"Applied Optoelectronics, Inc.",Technology,13069.9,162.88,67.6,11.630133,-31.0,0.0,0.0,0.0,0.0,0.0,-25.0,-6.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | 144 proposed sales = 0.48% of mcap in 90d,v5-144-buyback
+532,ABEO,Abeona Therapeutics Inc.,Healthcare,310.6,5.45,41.0,2.1380932,-31.0,0.0,0.0,0.0,0.0,0.0,-25.0,-6.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | 144 proposed sales = 0.33% of mcap in 90d,v5-144-buyback
+533,ADPT,Adaptive Biotechnologies Corpor,Healthcare,2778.4,17.36,68.7,12.811809,-31.0,0.0,0.0,0.0,0.0,0.0,-25.0,-6.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | 144 proposed sales = 0.73% of mcap in 90d,v5-144-buyback
+534,WBD,"Warner Bros. Discovery, Inc. - ",Communication S,66589.6,26.56,82.8,1.8338742,-32.0,0.0,3.0,0.0,0.0,0.0,-25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback DILUTING (+0.8% shares),v5-144-buyback
+535,APO,"Apollo Global Management, Inc. ",Financial Servi,76503.9,132.7,57.4,4.123423,-35.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback DILUTING (+0.8% shares),v5-144-buyback
+536,AVGO,Broadcom Inc.,Technology,1865732.7,392.16,59.1,21.27835,-35.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback DILUTING (+0.8% shares),v5-144-buyback
+537,LAZ,"Lazard, Inc.",Financial Servi,4656.1,47.3,43.0,5.084381,-35.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback DILUTING (+3.8% shares),v5-144-buyback
+538,MPWR,"Monolithic Power Systems, Inc.",Technology,75266.2,1531.98,82.6,20.466787,-35.0,0.0,0.0,0.0,0.0,0.0,-25.0,0.0,-10.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | buyback DILUTING (+2.6% shares),v5-144-buyback
+539,AIP,"Arteris, Inc.",Technology,1558.8,33.76,83.2,602.8571,-37.0,0.0,0.0,0.0,0.0,0.0,-25.0,-12.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -25 | 144 proposed sales = 1.82% of mcap in 90d,v5-144-buyback
+540,AIRG,"Airgain, Inc.",Technology,86.7,6.84,82.4,3.090827,-40.0,0.0,0.0,0.0,0.0,0.0,-20.0,-20.0,0.0,0,False,False,0.0,has_signal,False,10b5-1 leg -20 | 144 filing rate 3.2x trailing-year pace | 144 proposed sales = 1.04% of mcap in 90d,v5-144-buyback
