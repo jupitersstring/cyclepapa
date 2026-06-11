@@ -624,6 +624,262 @@ common is a separate trade.
 
 ---
 
+## Expansion block — frontier, special categories, deeper APAC/MEA
+
+### Sri Lanka — post-default sovereign recovery (the whole market is a recap trade)
+
+Sovereign default 2022 → IMF EFF 2023 → external-debt restructuring
+completed Dec 2024 with macro-linked bonds. The listed banking sector
+took the sovereign haircut through their bond books and recapitalised;
+this is a Yes-Bank-style basket where the regulator forced the repair.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Commercial Bank of Ceylon | CSE:COMB | ○ | A | Largest private bank; rights issues through crisis |
+| Hatton National Bank | CSE:HNB | ○ | A | ISB haircut absorbed; trades < book |
+| Sampath Bank | CSE:SAMP | ○ | A | Same template |
+| John Keells Holdings | CSE:JKH | ▲ | A | Conglomerate; rights for Cinnamon Life project |
+| Hayleys | CSE:HAYL | ▲ | A | Export conglomerate; FX beneficiary |
+| Aitken Spence | CSE:SPEN | ▲ | A | Tourism recovery |
+
+### Pakistan — post-IMF compression (KSE-100 re-rating from distressed multiples)
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Lucky Cement | PSX:LUCK | ▲ | A | Conglomerate at single-digit P/E |
+| Engro | PSX:ENGRO | ▲ | A | Holding discount + dollar-linked fertilizer |
+| Hub Power | PSX:HUBC | ▲ | A | Circular-debt resolution play |
+| K-Electric | PSX:KEL | ○ | A | Perennial restructuring candidate; Shanghai Electric bid saga |
+| Pakistan International Airlines | (privatisation) | ○ | C → B | Privatisation process = the recap event |
+| United Bank / MCB / HBL | PSX | ▲ | A | Banks at <1× book, high payout |
+
+### Bangladesh / Vietnam frontier additions
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| BRAC Bank | DSE:BRACBANK | ▲ | A | Best-governed BD bank; post-Hasina reform regime |
+| Islami Bank Bangladesh | DSE:ISLAMIBANK | ○ | A (low) | S Alam group unwind — regulator-forced board reset |
+| HAGL (Hoang Anh Gia Lai) | HOSE:HAG | ★ | A | Classic founder-debt workout; bananas/pork pivot; debt to Eximbank settled |
+| Hoa Binh Construction | HOSE:HBC | ★ | A (low) | Debt-for-equity with contractors 2024 |
+| Duc Long Gia Lai | HOSE:DLG | ○ | A (low) | Bankruptcy petition survived; restructuring |
+
+### Egypt — post-devaluation (EGP float Mar 2024 + Ras El-Hekma $35bn deal)
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Commercial International Bank | EGX:COMI | ▲ | A | Flagship; FX-translation beneficiary |
+| Talaat Moustafa Group | EGX:TMGH | ▲ | A | Ras El-Hekma adjacent land bank |
+| EFG Hermes | EGX:HRHO | ▲ | A | Investment bank at deep discount |
+| Eastern Company | EGX:EAST | ▲ | A | Tobacco monopoly; USD earnings |
+| Orascom Construction | EGX:ORAS | ▲ | A | USD-revenue construction |
+
+### Argentina under Milei — distressed sovereign normalisation basket
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| YPF | NYSE:YPF | ★ | A | State oil; Vaca Muerta capex inflection; already partially re-rated |
+| Pampa Energía | NYSE:PAM | ▲ | A | Utilities/gas; tariff normalisation |
+| Transportadora Gas del Sur | NYSE:TGS | ▲ | A | Same regulated-tariff reset |
+| Edenor | NYSE:EDN | ○ | A | Distribution; most leveraged to tariff reset |
+| Banco Macro / Galicia / Supervielle | NYSE:BMA/GGAL/SUPV | ▲ | A | Bank basket; credit/GDP at generational low |
+| Loma Negra | NYSE:LOMA | ▲ | A | Cement; construction recovery |
+| IRSA / Cresud | NYSE:IRS/CRESY | ▲ | A | RE + agriculture holdcos at NAV discounts |
+| Aluar / Ternium Argentina | BCBA | ▲ | A | Export industrials |
+
+### Türkiye — orthodox-policy pivot (Şimşek/CBRT normalisation)
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Akbank / Garanti / İşbank / Yapı Kredi | BIST | ▲ | A | Bank basket at <1× book entering disinflation |
+| Koç Holding | BIST:KCHOL | ▲ | A | Conglomerate discount |
+| Sabancı Holding | BIST:SAHOL | ▲ | A | Same |
+| Turkish Airlines | BIST:THYAO | ▲ | A | Already strong; fleet-expansion financing watch |
+| Galata Wind / Enerjisa | BIST | ▲ | A | Renewables at trough multiples |
+
+### Gulf deep-dive additions
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Drake & Scull | DFM:DSI | ★ | A | Already in shortlist — AED4.18bn written off |
+| Union Properties | DFM:UPP | ○ | A | Serial restructurer; Dubai RE recovery |
+| Arabtec successor entities | (gone) | ★ | C | Liquidated 2020 — negative control |
+| Dana Gas | ADX:DANA | ★ | A | Historic sukuk-restructuring precedent (2017–18) |
+| GFH Financial | BHB:GFH | ▲ | A | Bahrain; legacy-asset workout |
+| Kuwait Finance House / Warba | Boursa Kuwait | ▲ | A | Watch |
+| Saudi mid-caps post-Tadawul reforms | TADAWUL | ▲ | A | Screen for rights issues — frequent and under-covered |
+
+### Africa beyond SA/Nigeria/Egypt
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Safaricom | NSE(K):SCOM | ▲ | A | Ethiopia capex overhang; watch |
+| Kenya Airways | NSE(K):KQ | ○ | C → B | Strategic-investor search; negative equity — the recap *is* the catalyst |
+| KCB / Equity Group | NSE(K) | ▲ | A | Kenyan banks post-shilling stabilisation |
+| MTN Ghana / Ghana banks | GSE | ○ | A | Post-DDEP (domestic-debt exchange) recap basket — Sri Lanka analogue |
+| Zimbabwe (Delta, Econet) | ZSE | ○ | A | Currency-regime trade only for specialists |
+| Tunisia banks | BVMT | ○ | A (low) | IMF stalemate; watch only |
+
+### Japan — deeper cut (activist + parent-child unwind as the recap mechanic)
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Japan Display | TSE:6740 | ★ | A | Ichigo 78%; in shortlist |
+| Sharp | TSE:6753 | ★ | A | Foxconn; LCD exit restructuring 2024–25 |
+| Shinsei Bank → SBI Shinsei | (taken private) | ★ | C → B | Public-funds repayment structure |
+| Marelli | (private; KKR) | ★ | C | Second restructuring 2024 — negative control |
+| Toshiba | (private; JIP) | ★ | C | Watch for re-IPO as Bucket-B re-entry |
+| Seven & i | TSE:3382 | ▲ | A | Couche-Tard bid + founder MBO attempt; restructuring via break-up |
+| Nissan | TSE:7201 | ○ | A | Pre-recap: Honda talks collapsed; new-money event likely — *watch closely* |
+| Rapidus-adjacent suppliers | TSE | ▲ | A | Sovereign chip-policy anchor (A2 archetype, Japan edition) |
+| Kioxia | TSE:285A | ▲ | A | Post-IPO leverage workout; memory cycle |
+| JDI/JOLED pattern smallcaps | TSE | ○ | A (low) | INCJ-supported failures — usually false friends |
+
+### Korea — value-up programme + chaebol restructuring
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Lotte Chemical | KRX:011170 | ○ | A | Group liquidity scare Nov 2024; Lotte World Tower pledged — classic pre-recap |
+| Lotte Shopping | KRX:023530 | ○ | A | Same group event |
+| SK Inc / SK Innovation | KRX | ▲ | A | Group-wide rebalancing; SK On funding gap is the event |
+| LG Display | KRX:034220 | ★ | A | Serial rights issues; OLED cycle |
+| Samsung C&T | KRX:028260 | ▲ | A | Value-up + holdco discount |
+| Hanwha Ocean | KRX:042660 | ★ | done | Completed arc — reference case |
+| HMM | KRX:011200 | ★ | B → done | Creditor-owned post-recap; stake-sale process is the event |
+| Homeplus | (private; MBK) | ○ | C | Court rehabilitation Mar 2025 — Korean retail credit contagion marker |
+
+### China non-property — deeper cut
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Fosun International | HK:656 | ○ | A | Asset-sale self-rescue; no equity event yet — watch |
+| Ping An-adjacent trust products | — | ○ | — | Systemic marker, not investable |
+| Zhongzhi/Zhongrong fallout names | — | ★ | C | Negative controls |
+| West China Cement | HK:2233 | ○ | A | Bond pressure; Africa pivot |
+| Yango/Yuzhou/Modern Land | HK | ★ | C | Completed wipeouts — false friends |
+| Dalian Wanda Commercial | (private) | ○ | B | Pre-IPO investor put crisis; PAG deal restructure |
+| Guangzhou R&F | HK:2777 | ○ | A (low) | Restructured but weak alignment |
+
+### Busted biotech — below-cash recaps (US/EU)
+
+The post-2021 biotech bust left dozens of names trading below net cash.
+The recap mechanic here is reverse merger, strategic review, or activist
+liquidation — Bucket A/B with the *cash itself* as the asset base.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Sage Therapeutics | (acquired Biogen 2025) | ★ | C → done | Negative-EV acquisition — template |
+| Third-point-style busted shells | various | ▲ | A | Screen: EV < 0, burn < 2y, activist 13D filed |
+| Acelyrin / Alumis merger | NASDAQ:ALMS | ★ | A | Busted-cash merger template 2025 |
+| iTeos Therapeutics | (wound down 2025) | ★ | A | Returned cash — liquidation as the catalyst |
+| Keros Therapeutics | NASDAQ:KROS | ○ | A | Capital-return fight post-failure |
+| Sutro Biopharma | NASDAQ:STRO | ○ | A | Restructured 2025; royalty assets vs cap |
+| Editas / 2seventy pattern | various | ★ | A | 2seventy: acquired by BMS after cost-cut — template |
+| EU: Evotec | XETR:EVT | ○ | A | Activist + takeover interest after collapse |
+| Bavarian Nordic / Valneva | CPH/EPA | ▲ | A | Episodic; watch rights issues |
+
+**Screen recipe:** EDGAR full-text `"reverse merger" OR "strategic
+alternatives" OR "return of capital"` ∩ XBRL cash > market cap. This is
+a *structurally repeating* fishing ground — every biotech winter
+produces a new cohort.
+
+### De-SPAC casualties — the 2021 vintage workout
+
+~400 de-SPACs trade below $2. Most die; the recap survivors share:
+real revenue, a strategic/founder anchor, and a debt restructuring that
+preserved listed common.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Vertiv | NYSE:VRT | ★ | done | The proof-of-concept — de-SPAC to compounder |
+| Symbotic | NASDAQ:SYM | ▲ | A | Founder-controlled; watch accounting reset |
+| Archer / Joby | NYSE:ACHR/JOBY | ▲ | A | Strategic anchors (Stellantis/Toyota) = A2-lite |
+| Enovix | NASDAQ:ENVX | ○ | A | Serial raises; strategic partnerships |
+| AST SpaceMobile | NASDAQ:ASTS | ★ | A | Completed the arc — strategic anchors (AT&T/Verizon/Google) drove 10× |
+| Planet Labs | NYSE:PL | ○ | A | Defence-contract inflection post-bust |
+| Rocket Lab | NASDAQ:RKLB | ★ | done | Completed arc |
+| Sarcos / Velodyne-Ouster pattern | various | ★ | A | Merger-of-busted-peers template (Ouster survived) |
+| Canoo / Arrival / Lordstown | (gone) | ★ | C | Negative controls — no anchor, no survival |
+
+### Cannabis — sector-wide distress, one or two survivors
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Canopy Growth | TSX:WEED | ★ | A (low) | Already analysed — creditors took the upside |
+| Curaleaf | TSX:CURA | ○ | A | Best balance sheet of US MSOs |
+| Green Thumb | CSE:GTII | ▲ | A | Actually profitable — the survivor candidate |
+| Tilray | NASDAQ:TLRY | ○ | A (low) | Serial diluter — false-friend pattern |
+| MedMen / Hexo etc. | (gone) | ★ | C | Negative controls |
+
+**Trigger to watch:** US federal rescheduling. It functions as a
+sector-wide Condition 7 — if it lands, the whole surviving cohort
+re-rates at once; the framework's job is pre-identifying which cap
+structures let common capture it (Green Thumb yes; Canopy no).
+
+### US post-reorg equity census (Bucket C → B candidates, fuller list)
+
+Post-emergence equities with listed common — the Charter/Valaris seat.
+
+| Name | Ticker | Emerged | Notes |
+|---|---|---|---|
+| Core Scientific | NASDAQ:CORZ | 2024 | In shortlist |
+| Wolfspeed | NYSE:WOLF | 2025 | In shortlist |
+| Vroom | NASDAQ:VRM | 2025 | In shortlist |
+| Diebold Nixdorf | NYSE:DBD | 2023 | In shortlist |
+| WW International | NASDAQ:WW | 2025 | In shortlist |
+| Hertz | NASDAQ:HTZ | 2021 | CK Amarillo + Ackman |
+| Valaris / Noble / Tidewater | NYSE | 2021/2017 | Offshore census |
+| Peabody / Warrior Met / Alpha Met / Core Natural | NYSE | 2016–25 | Coal census |
+| California Resources / Expand Energy / Chord / Talos | NYSE | 2016–21 | E&P census |
+| Party City Holdco (2023 vintage) | (refiled) | — | Negative control |
+| Avaya | (private) | — | Twice-filed — negative control |
+| GOL / LATAM / Avianca / Aeromexico / PAL | NYSE/local | 2021–25 | Airline census |
+| Garrett Motion | NASDAQ:GTX | 2021 | Buybacks + preferred cleanup — quiet compounder |
+| Team Inc | NYSE:TISI | 2022 (OOC) | Corre-backed workout |
+| Exela → XBP Europe | NASDAQ:XBP | rolling | Serial LME — false-friend pattern |
+| Invacare → holdco | (private) | 2023 | Gone private |
+| Akumin | (private; Stonepeak) | 2023 | Gone |
+| SiriusPoint | NYSE:SPNT | n/a | Loeb re-anchored insurer — adjacent |
+| Enjoy → Asurion | (gone) | — | Negative control |
+| Bed Bath stub / DK-Butterfly | claims only | — | Claims trade, not equity |
+
+### Busted convertibles — issuers with converts <70 and listed equity (cap-arb fishing ground)
+
+Where the convert trades deeply busted, either the equity is a zero or
+the company executes a Tier-S exchange — both outcomes are tradeable
+(short equity vs long convert pre-exchange; long equity post-exchange).
+
+Screen: TRACE/FINRA convert prices <70 ∩ market cap > $100m ∩ cash
+burn < convert maturity. Current pattern names: Lucid (PIF backstop),
+Beyond Meat (done — exchanged), Peloton (refinanced 2024 — template of
+the *successful* version), Upstart, Wayfair (refinanced), Redfin
+(acquired), Opendoor, Compass. The 2026–27 convert maturity wall for
+2021-vintage issuers is the single densest Tier-S event calendar in
+the US market.
+
+### European banks — periphery normalisation late-comers
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Banca Monte dei Paschi | BIT:BMPS | ★ | done | Completed arc — now consolidator |
+| Banco BPM / Sabadell | BIT/BME | ★ | A | M&A defence recaps |
+| Attica/Crediabank | ATHEX:TATT | ★ | A | In shortlist |
+| Cyprus banks (BoC, Hellenic) | CSE/ATHEX | ▲ | A | Post-2013 bail-in vintage fully repaired; dividend restoration |
+| Raiffeisen International | VIE:RBI | ○ | A | Russia-exit discount — event is the Strabag/CBR resolution |
+| OTP / Erste exposure basket | BUD/VIE | ▲ | A | CEE normalisation |
+| Permanent TSB | EURONEXT:PTSB | ○ | A | Irish state sell-down as the event |
+| ABN AMRO / NatWest state exits | AMS/LSE | ▲ | A | Government-overhang removal = slow-motion A1 |
+
+### Ukraine reconstruction contingent basket (pre-event)
+
+Names that re-rate on a credible ceasefire/reconstruction programme —
+the *whole basket* is one dated-catalyst trade with binary timing:
+Ferrexpo (LSE:FXPO), MHP (LSE:MHPC), Kernel (WSE:KER — minority
+squeeze-out dispute), Ukrnafta-linked GDRs, Wizz Air (LSE:WIZZ —
+operational beta), Polish construction (Budimex, WSE:BDX). Bucket A
+throughout, but C7 is undated by construction — option-size only.
+
+---
+
 ## "Fishing grounds" — sectors under stress (next candidates likely here)
 
 These sectors have multiple ongoing or imminent recap-style activity.
@@ -661,15 +917,45 @@ Run the §1 pipeline against company-action feeds for each.
     vehicles, non-bank lenders
 20. **Crypto miners** — power contract repricing, debt overhang from
     pre-2022 buildouts
+21. **2026–27 US busted-convert maturity wall** — the 2021 vintage
+    refinances or exchanges; densest Tier-S calendar in the US market
+22. **Below-cash busted biotech** — reverse mergers, liquidations,
+    negative-EV acquisitions; structurally repeating cohort
+23. **Korean chaebol liquidity events** — Lotte Chemical template;
+    value-up programme forces balance-sheet action
+24. **Japan parent-child unwinds + sovereign chip policy** — TSE reform
+    pressure is a slow-motion recap mechanic; Nissan is the live
+    pre-recap watch
+25. **Post-default sovereign baskets** — Sri Lanka banks, Ghana DDEP
+    banks, Argentina utilities/banks under tariff reset; the regulator
+    *is* the restructuring agent
+26. **US federal cannabis rescheduling** — sector-wide dated catalyst;
+    pre-identify which cap structures let common capture it
+27. **De-SPAC workouts** — busted 2021 vintage with strategic anchors
+    (AST/Archer/Joby pattern) vs no-anchor deaths (Canoo pattern)
+28. **European bank state-exit overhangs** — ABN, NatWest-style
+    sell-down completions as slow-motion A1 events
+29. **Ukraine reconstruction basket** — single undated binary catalyst;
+    option-size only
 
 ---
 
 ## Key takeaways
 
 - The documented universe (~25 names in `capital_structure_screening.md`)
-  was a starting point; the real working universe is **150–200 active
-  candidates** plus a sector-watch list that surfaces 5–15 new names per
-  month in stress regimes.
+  was a starting point; with the expansion block the watchlist now spans
+  **~650 named candidates across ~45 markets**, plus 29 fishing grounds
+  that surface 5–15 new names per month in stress regimes.
+- The expansion block adds whole-market recap baskets (Sri Lanka, Ghana
+  DDEP, Argentina, Türkiye, Egypt) where the *sovereign or regulator is
+  the restructuring agent* — these are A1/G archetypes applied to an
+  entire exchange rather than one issuer, and they historically carry
+  the best base rates in the framework (Yes Bank, Greek banks, Nigerian
+  banks all came from this category).
+- Three structurally *repeating* fishing grounds deserve standing
+  automation: busted converts (every cycle), below-cash biotech (every
+  biotech winter), and post-default sovereign banking sectors (every
+  EM default wave). Names change; the screen recipes don't.
 - Within each sector, expect the bucket distribution to be roughly
   20% Bucket A (listed common is the trade) / 10% Bucket B (anchor
   instrument) / 70% Bucket C (legacy cancelled). The framework's job
