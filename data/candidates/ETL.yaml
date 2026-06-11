@@ -1,0 +1,191 @@
+ticker: ETL
+isin: FR0010221234
+name: Eutelsat Communications
+jurisdiction: FR
+exchange: EPA
+sector: Satellite / Communications
+bucket: A
+archetype: [A1, F]
+state: core
+tier: 1
+
+deal:
+  date: 2025-12-16
+  mechanic: "Two-tier capital raise: c.€830m reserved increase to French State/Bharti/UK Gov/CMA CGM at premium price + €670m 8-for-11 rights at €1.35 (settled Dec 16, 2025); part of c.€1.5bn package with €4bn investment programme through 2026-2029"
+  fields:
+    total_raise_eur_bn:
+      value: 1.5
+      source: "verified: Eutelsat press release 2025-11-25"
+    rights_size_eur_m:
+      value: 660
+      source: "verified: Eutelsat 2025-12-12 success announcement (net proceeds c.€660m)"
+    rights_price_eur:
+      value: 1.35
+      source: "verified: Eutelsat press release; Eurex corporate action 2025-11"
+    rights_ratio:
+      value: "8-for-11"
+      source: "verified: Eutelsat press release"
+    new_shares_issued_m:
+      value: 496.13
+      source: "verified: Eutelsat 2025-12-12 success announcement"
+    nominal_value_eur:
+      value: 1.00
+      source: "verified: Eutelsat 2025-12-12 success announcement"
+    issue_premium_eur:
+      value: 0.35
+      source: "verified: Eutelsat 2025-12-12 success announcement"
+    anchor_reserved_price_eur:
+      value: 4.00
+      source: "reported: third-party research; not yet confirmed against primary prospectus"
+      _note: "Need to verify against the November 25 2025 prospectus; this is the load-bearing alignment-gap number"
+    anchors_listed:
+      value: "French State APE; Bharti Space; UK Government; CMA CGM; FSP"
+      source: "reported: third-party research"
+    target_leverage_fy25_26x:
+      value: 2.5
+      source: "verified: Eutelsat 2025-11-25 press release"
+    investment_programme_eur_bn:
+      value: 4.0
+      source: "verified: Eutelsat 2025-12-12 success announcement (FY2026-2029)"
+    current_market_price_eur:
+      value: 2.84
+      source: "verified: web search consolidation 2026-06-11"
+      _note: "Up from ~€2 in late Dec 2025; €2.22 mid-January 2026; partial re-rate underway"
+    q3_revenue_growth_pct_yoy:
+      value: 3.1
+      source: "verified: Eutelsat Q3 FY2026 results 2026-05-12"
+      _note: "LEO-driven; Condition 7 partially visible"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: 0.0
+  d4_dilution_pct: 75
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: null
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: 1.41
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: null
+
+catalysts:
+  - event: "IRIS² European sovereign LEO constellation operational milestones"
+    window: [2026-01-01, 2029-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.8, 3.5]
+    hit_if_no: [-0.30, -0.50]
+    source: "EU programme schedule"
+  - event: "OneWeb integration / commercial revenue synergies"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.50
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.20, -0.40]
+    source: "company guidance"
+  - event: "Defence broadband contract wins (EU Strategic Compass)"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.45
+    rerate_if_yes: [1.4, 2.2]
+    hit_if_no: [-0.10, -0.20]
+    source: "EU defence procurement framework"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.50, rationale: "IRIS² delays + SES/Starlink price war + write-down on OneWeb integration"}
+  base: {p: 0.50, return_multiple: 2.20, rationale: "On-pace IRIS² rollout + defence wins + LEO revenue growth confirmed in quarterly prints"}
+  bull: {p: 0.25, return_multiple: 4.50, rationale: "EU sovereign LEO mandate accelerates + Starlink regulatory friction + multiple normalisation toward SES"}
+
+anchor:
+  parties: ["French State (APE)", "Bharti Space", "UK Government", "CMA CGM", "FSP"]
+  pricing:
+    reserved_price: 4.00
+    rights_price: 1.35
+    current_price: 2.84
+    currency: EUR
+  stake_pct: 66
+  holds_debt: false
+  holds_equity: true
+  lockup_months: 6
+  prior_track_record: ["French State: Atos partial backing, EDF re-nationalisation", "Bharti Space: OneWeb merger 2023"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: Pre-IRIS² EBITDA ~€800m on cap c.€2.5bn = EV/EBITDA ~3.5x PF
+    vs SES 5-6x, Iridium 12x. Clear through-cycle asymmetry.
+    Leg 2: Sovereign + strategic anchors with no fee/warrant kicker, no
+    cramdown, no DIP. Lockup 6 months from settlement.
+    Leg 3: The reserved capital increase TO ANCHORS at a premium price
+    while parallel rights cleared at €1.35 is itself the revealed-
+    preference signal. Current market €2.84 sits between anchor entry
+    €4.00 and rights price €1.35, so partial re-rate priced.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "IRIS² programme delay >12 months announced"
+  - "Sovereign anchor exits lockup early or sells below cost"
+  - "OneWeb integration write-down >€500m"
+  - "SES/Starlink pricing war causes >20% revenue impairment"
+  - "Quarterly LEO connectivity revenue growth decelerates below 0% YoY"
+
+pre_mortem: |
+  It is end-2028 and ETL is down 70% from current ~€2.84.
+
+  Most likely cause: IRIS² programme suffered material delays
+  (mechanical: launch failures or contractor disputes; political:
+  EU budget renegotiation under fiscal pressure). Eutelsat's role
+  was reduced or contract terms re-cut. Concurrently, Starlink
+  cleared regulatory hurdles for direct-to-cell competing with
+  OneWeb in the same orbits, compressing OneWeb commercial value
+  and triggering a goodwill write-down.
+
+  Second-most-likely cause: SES merged with another operator and
+  became a more aggressive competitor on price; LEO connectivity
+  revenue growth decelerated; the partial re-rate from €1.35
+  reversed back below €1.50.
+
+  Where this would show up first: IRIS² programme milestone slips
+  in EU Commission updates; Starlink direct-to-cell regulatory
+  approvals; quarterly OneWeb revenue disclosure in interim reports.
+
+history:
+  - {date: 2025-11-25, event: "Two-tier raise launched", state_after: watch}
+  - {date: 2025-12-16, event: "Rights issue settled; new shares listed", state_after: option}
+  - {date: 2026-05-12, event: "Q3 FY2026 revenue +3.1% YoY on LEO connectivity", state_after: option}
+  - {date: 2026-06-11, event: "Added to Tier 1 with verified deal terms; alignment gap 1.41× (not 2.9× as previously claimed)", state_after: core}
+
+factors:
+  primary: policy
+  exposures: ["European sovereign LEO mandate", "satellite cycle", "OneWeb integration", "defence procurement"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (sovereign-strategic dual-tier raise) + F
+  (post-recap orphan). Triangulation 3/3 with verified anchor
+  presence. C7 partially visible (Q3 +3.1% YoY revenue, LEO-driven).
+
+  IMPORTANT CORRECTION: The alignment gap is 1.41× not 2.9× as
+  previously documented in shortlist.md. Current market €2.84 vs
+  anchor €4.00 reserved. The €1.35 rights price is not the relevant
+  denominator — the market price at announcement is. Lesson logged
+  in methodology_review.md §1.4.
+
+  Still investable but at narrower asymmetry than the prior screen
+  implied. Remains Tier 1 on triangulation + C7 + dated catalyst
+  basis but the "obvious mispricing" framing is weaker after the
+  partial re-rate to €2.84 from late-Dec 2025 low ~€2.00.

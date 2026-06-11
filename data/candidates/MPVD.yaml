@@ -4,10 +4,10 @@ name: Mountain Province Diamonds
 jurisdiction: CA
 exchange: TSX
 sector: Diamonds
-bucket: A
-archetype: [F, B]
-state: core
-tier: 1
+bucket: C
+archetype: [F]
+state: pass
+tier: pass
 
 deal:
   date: 2025-03-19
@@ -133,23 +133,56 @@ pre_mortem: |
   recovered carats per tonne); De Beers JV partner commentary on rough
   pricing in their interim/full-year results.
 
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: true
+  springing_maturity_inside_24m: true
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _added: "Bridge has been amended five times (Feb 24 2025 / May 13 2025 / Jul 25 2025 / Nov 18 2025 / Mar 17 2026 / Apr 30 2026); receivables sold to Desmond at 17% discount (US$999k face for US$833k); independent directors refused re-election"
+
 history:
   - {date: 2025-03-19, event: "Second-lien refi + Dunebridge bridge closed", state_after: watch}
   - {date: 2026-06-04, event: "Promoted to Tier 1 / core on framework review", state_after: core}
+  - {date: 2026-06-11, event: "DOWNGRADED TO PASS — web verification revealed CAD$219k cash vs US$290.6m debt at Q1 2026; company plans to delist TSX to enable restructuring/sale; both independents refused re-election; bridge extended five times; founder buying receivables at discount = classic loan-to-own pattern", state_after: pass}
 
 factors:
   primary: idiosyncratic
-  exposures: ["diamond cycle", "small-cap illiquidity", "Canadian junior miner"]
+  exposures: ["diamond cycle", "small-cap illiquidity", "loan-to-own creditor mechanics"]
 
 tier_rationale: |
-  Bucket A, Archetype F+B. Triangulation 3/3 by founder-both-sides
-  substitution (Desmond owns both equity and second-lien notes via
-  Dunebridge, eliminating fulcrum conflict by construction). C7
-  catalyst dated 2026-Q1 to 2027-Q2 (NEX orebody first production).
-  No active red flags. No alignment-gap metric available because no
-  equity issuance; the economic alignment is on debt-equity ownership
-  instead. Small float means re-rating can be violent.
+  PASSED 2026-06-11 after web-research verification.
 
-  WARNING: as of 2026-06-04 the deal-term fields are tagged
-  `unverified`. Sizing is blocked until the five key numbers are
-  cross-checked against the primary filing.
+  What looked like clean "founder-both-sides alignment" (Desmond holding
+  both Vertigol >35% equity and Dunebridge bridge debt) has reversed
+  into the canonical loan-to-own pattern:
+
+  - Q1 2026: CAD$219k cash vs US$290.6m debt
+  - Bridge facility extended six times across 14 months
+  - Bridge interest steps from 10.5% → 12.5% on non-repayment
+  - Desmond purchased receivables from the company at 17% discount
+    (US$999k face for US$833k consideration)
+  - May 2026 AGM seeks shareholder approvals to facilitate "potential
+    restructuring transaction"
+  - Both independent directors (Goracke, Johnson) refused re-election
+  - Company announced intent to delist from TSX
+
+  The "founder both sides" structure has become Desmond exercising
+  creditor leverage to extract residual value. This is the exact
+  failure mode the framework's §2.3 red flags list under "DIP-to-exit
+  control transfer." Listed common is heading to zero or
+  near-zero. Likely a Bucket C / new-common-only outcome at best.
+
+  Lesson for the framework: "founder-both-sides" is NOT automatically
+  3/3 triangulation by construction. When the same party holds both
+  tranches, the relevant question is which tranche they have more
+  economic value in. Desmond's debt position (par + interest +
+  accrued + collateral) materially exceeds his equity position
+  (residual claim on a hemorrhaging mining JV). The fulcrum still
+  exists — it just sits inside one balance sheet.

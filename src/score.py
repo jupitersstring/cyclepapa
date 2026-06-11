@@ -125,7 +125,11 @@ def _to_date(x) -> date:
     if isinstance(x, datetime):
         return x.date()
     if isinstance(x, str):
-        return datetime.strptime(x, "%Y-%m-%d").date()
+        for fmt in ("%Y-%m-%d", "%Y-%m", "%Y"):
+            try:
+                return datetime.strptime(x, fmt).date()
+            except ValueError:
+                continue
     return date.today()
 
 

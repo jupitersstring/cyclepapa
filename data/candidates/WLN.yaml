@@ -11,50 +11,69 @@ tier: 1
 
 deal:
   date: 2026-03-31
-  mechanic: "Two-tier raise: €108m reserved increase at €2.75 (Bpifrance/CASA/BNP) + 6-for-1 rights at €0.202"
+  mechanic: "Two-tier raise: €108m reserved increase at €2.75 (Bpifrance/CASA/BNP/BFCM anchors) + €392m 6-for-1 rights at €0.202 (settled Apr 2, 2026); 40:1 reverse split effective Jun 15, 2026"
   fields:
     reserved_increase_eur_m:
       value: 108
-      source: "unverified"
+      source: "verified: Worldline press release 2026-03-06; Euronext company-news index"
     reserved_price_eur:
       value: 2.75
-      source: "unverified"
-      _note: "10% premium to 30-day VWAP at announcement"
+      source: "verified: company prospectus 2026-03"
+      _note: "Premium to 30-day VWAP at announcement; specific anchor allocations needs verification"
     rights_issue_eur_m:
       value: 392
-      source: "unverified"
+      source: "verified: Worldline press release 2026-03-12"
     rights_price_eur:
       value: 0.202
-      source: "unverified"
+      source: "verified: Worldline press release 2026-03-12"
     rights_ratio:
       value: "6-for-1"
-      source: "unverified"
+      source: "verified: Worldline press release 2026-03-12"
     rights_discount_to_terp_pct:
+      value: 46.3
+      source: "verified: rights document"
+    rights_discount_to_close_pct:
       value: 85.8
-      source: "unverified"
+      source: "verified: rights document; reference close €1.421 on 2026-03-10"
     rights_subscription_pct:
-      value: 121
+      value: null
       source: "unverified"
-    current_market_eur:
-      value: 0.40
-      source: "unverified"
-      _note: "Approximate as-of 2026-05-15"
-    anchor_combined_capital_pct:
-      value: 27.5
-      source: "unverified"
-    anchor_combined_votes_pct:
-      value: 36.6
-      source: "unverified"
+      _note: "Need to verify final subscription; news says 17% jump on launch, full subscription confirmed"
+    market_price_at_launch_eur:
+      value: 1.421
+      source: "verified: Worldline press release 2026-03-12"
+      _note: "Closing 2026-03-10; the correct denominator for alignment-gap math"
+    terp_eur:
+      value: 0.376
+      source: "verified: rights document"
+    bpifrance_subscription_eur_m:
+      value: 41
+      source: "verified: Investing.com 2026-03-31 results coverage"
+    bpifrance_stake_post_pct:
+      value: 9.6
+      source: "verified: Investing.com 2026-03-31 results coverage"
+    new_shares_issued_m:
+      value: 1939.5
+      source: "verified: Worldline 2026-03-31 press release"
+    reverse_split_ratio:
+      value: "40-for-1"
+      source: "verified: Worldline reverse-split FAQ 2026-04-28"
+    reverse_split_effective_date:
+      value: 2026-06-15
+      source: "verified: Worldline reverse-split press release"
+    new_isin:
+      value: "FR00140182K6"
+      source: "verified: Worldline reverse-split press release"
 
 scorecard:
   d2_issue_discount_pct: 85.8
   d3_backstop_cost_pct: 0.0
-  d4_dilution_pct: 78
+  d4_dilution_pct: 87
   d5_delta_wam_months: null
   d6_debt_tranches_post: null
   d7_ucc_terminations_pm30d: null
   d8_mip_strike_over_recap: null
-  d9_alignment_gap: 6.875
+  d9_alignment_gap: 1.93
   d9b_anchor_premium_to_recap: 10.0
   d9c_premium_to_vwap: 10.0
   d9d_liquidation_recovery_pct: null
@@ -146,7 +165,8 @@ pre_mortem: |
 
 history:
   - {date: 2026-03-31, event: "Two-tier raise settled; entered Tier 1 watchlist", state_after: option}
-  - {date: 2026-06-04, event: "Promoted to core on framework review; gap 6.9x", state_after: core}
+  - {date: 2026-06-04, event: "Promoted to core on framework review; gap claimed 6.9x", state_after: core}
+  - {date: 2026-06-11, event: "Verified via web research: alignment gap math was wrong (anchor €2.75 / mkt €1.421 = 1.93x, not 6.9x); reverse split 40:1 effective Jun 15; Bpifrance ended at 9.6% post-deal not 27.5%; remains Tier 1 but at narrower asymmetry", state_after: core}
 
 factors:
   primary: multiple_norm

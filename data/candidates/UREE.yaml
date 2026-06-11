@@ -1,0 +1,196 @@
+ticker: UREE
+isin: null
+name: USA Rare Earth
+jurisdiction: US
+exchange: NASDAQ
+sector: Critical Minerals / Rare Earths / Magnets
+bucket: A
+archetype: [A2]
+state: core
+tier: 1
+
+deal:
+  date: 2026-06-03
+  mechanic: "US Department of Commerce package finalised: $277m federal funding + up to $1.3bn CHIPS Act senior secured loan capacity. US Gov receives 16.1m shares + 17.6m warrants → 10% direct equity, up to 16% diluted. Complements $1.5bn private capital raise completed Jan 2026; total committed capital c.$3.5bn."
+  fields:
+    total_government_package_usd_bn:
+      value: 1.6
+      source: "verified: NAM 2026; Bloomberg 2026-01-26; MINING.com"
+    federal_funding_usd_m:
+      value: 277
+      source: "verified: NAM consolidation"
+    chips_act_loan_usd_bn:
+      value: 1.3
+      source: "verified: NAM; FinancialContent 2026-02-25"
+    us_gov_shares_m:
+      value: 16.1
+      source: "verified: FinancialContent 2026-02-25"
+    us_gov_warrants_m:
+      value: 17.6
+      source: "verified: FinancialContent 2026-02-25"
+    us_gov_initial_stake_pct:
+      value: 10
+      source: "verified: NAM, Bloomberg"
+    us_gov_diluted_stake_pct:
+      value: 16
+      source: "verified: TheStreet headline figure"
+    finalization_date:
+      value: 2026-06-03
+      source: "verified: search result"
+      _note: "Definitive agreements; preceded by non-binding LOI January 2026"
+    private_capital_raise_usd_bn:
+      value: 1.5
+      source: "verified: TheStreet; completed January 2026"
+    total_committed_capital_usd_bn:
+      value: 3.5
+      source: "verified: announcement coverage"
+    stock_pop_on_loi_announcement_pct:
+      value: 21
+      source: "verified: FinancialContent 2026-02-25"
+    round_top_mine_location:
+      value: "Sierra Blanca, Texas"
+      source: "verified"
+    magnet_facility_location:
+      value: "Stillwater, Oklahoma"
+      source: "verified"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: null
+  d4_dilution_pct: 16
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: 2
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: 12
+
+catalysts:
+  - event: "Round Top Mine first production"
+    window: [2027-06-01, 2028-12-31]
+    p_favorable: 0.50
+    rerate_if_yes: [2.0, 4.0]
+    hit_if_no: [-0.30, -0.50]
+    source: "company guidance via finalization announcement"
+  - event: "Stillwater magnet facility commissioning"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.60
+    rerate_if_yes: [1.8, 3.0]
+    hit_if_no: [-0.20, -0.40]
+    source: "company guidance"
+  - event: "China NdPr export-control persistence / escalation"
+    window: [2026-06-01, 2028-12-31]
+    p_favorable: 0.70
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.30, -0.50]
+    source: "geopolitical baseline"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.35, rationale: "Construction delays beyond 2028 + China export controls relax + new administration deprioritises critical-minerals industrial policy"}
+  base: {p: 0.50, return_multiple: 2.50, rationale: "Stillwater magnet facility commissions on time; Round Top first production within window; NdPr floor effective"}
+  bull: {p: 0.25, return_multiple: 5.50, rationale: "Magnet plant ramps with offtake premium pricing; vertical integration realised; rare-earth supply shock under Pacific tensions"}
+
+anchor:
+  parties: ["US Department of Commerce", "US Department of Energy (CHIPS Act lending)"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: USD
+  stake_pct: 10
+  holds_debt: true
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["DOC: emerging A2 portfolio (MP Materials, USA Rare Earth, ReElement, Vulcan Elements)", "DOE: Tesla 2010 ATVM (full recovery + warrant payback)"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: $3.5bn total committed capital with US Gov sub-commercial
+    senior secured financing capacity ($1.3bn CHIPS Act). NPV of
+    sub-commercial financing materially below market cap.
+    Leg 2: US Gov as both equity holder (10%/16% diluted) and
+    senior secured lender = strongest possible alignment along the
+    cap stack. No fee-extractive features; warrants struck in
+    structure typical of MP Materials template.
+    Leg 3: $1.5bn private capital raise completed Jan 2026 prior to
+    federal finalization = revealed-preference signal from private
+    capital that the federal terms would close. Stock +21% on LOI
+    announcement Feb 2026, +21% again on definitive June 3, 2026 =
+    market progressively validating thesis.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "US Gov stake conditionality risk under new administration is non-zero, especially given Project Vault stockpile context; not yet triggered"
+
+kill_criteria:
+  - "CHIPS Act loan covenant breach during Round Top construction"
+  - "Round Top first production pushed past mid-2029"
+  - "China NdPr export controls comprehensively relaxed"
+  - "US Gov reduces equity stake below 5% or sells warrants"
+  - "Equity raise needed before first commercial magnet production"
+
+pre_mortem: |
+  It is end-2029 and UREE is down 70% from June 2026 entry.
+
+  Most likely cause: Round Top construction delays + cost overruns
+  similar to LAC Phase 1 history. CHIPS Act covenant trip forces
+  renegotiation; warrants accelerated; further dilutive equity raise
+  at depressed prices.
+
+  Second-most-likely cause: NdPr cycle broke — China relaxed
+  export controls under bilateral trade arrangement, magnet pricing
+  fell below the implicit DoD floor framework. Even with sub-
+  commercial financing, ramp economics were uncompetitive.
+
+  Third possibility: new administration repurposes critical-
+  minerals industrial policy framework, US Gov stake terms
+  re-cut, equity holders absorb the value transfer.
+
+  Where this would show up first: quarterly cost-to-complete updates
+  in 10-Q; China rare-earth export licensing announcements; CHIPS
+  policy guidance shifts.
+
+history:
+  - {date: 2026-01-26, event: "Non-binding LOI for $1.6bn US Gov package announced; stock +21%", state_after: option}
+  - {date: 2026-01-31, event: "$1.5bn private capital raise completed", state_after: option}
+  - {date: 2026-02-25, event: "Trump administration takes formal stake; stock +21% again", state_after: option}
+  - {date: 2026-06-03, event: "Definitive agreements signed; $277m federal + $1.3bn CHIPS loan finalized", state_after: core}
+  - {date: 2026-06-11, event: "Added to Tier 1 as the cleanest sovereign A2 template applied to a new issuer after MP/LAC; total $3.5bn committed", state_after: core}
+
+factors:
+  primary: policy
+  exposures: ["US sovereign industrial policy", "rare-earth/magnet cycle", "China geopolitics", "Texas/Oklahoma construction"]
+
+tier_rationale: |
+  Bucket A, Archetype A2 (sovereign industrial-policy anchor — the
+  third template-defining example after MP Materials and Lithium
+  Americas). Triangulation 3/3. C7 catalysts dated (Stillwater
+  magnet commissioning 2026-2027; Round Top production 2027-2028).
+  No active red flags; one watch flag on policy continuity.
+
+  $3.5bn total committed capital relative to market cap implies
+  sub-commercial financing arbitrage embedded in equity not yet
+  fully reflected. The Stillwater facility ramp is the dated
+  near-term inflection — 2-3 quarters away — that distinguishes
+  UREE from LAC (which is 5-6 quarters out).
+
+  This is now the canonical "Tier 1 new entrant" of the May 2026
+  cohort.

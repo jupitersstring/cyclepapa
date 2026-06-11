@@ -1,0 +1,150 @@
+ticker: TMQ
+isin: null
+name: Trilogy Metals
+jurisdiction: CA
+exchange: NYSE/TSX
+sector: Critical Minerals / Copper / Zinc
+bucket: A
+archetype: [A2]
+state: option
+tier: 2
+
+deal:
+  date: 2026-06-01
+  mechanic: "Pentagon $35.6m investment for 10% stake to support Upper Kobuk Mineral Projects (UKMP) in Alaska's Ambler mining district (copper/zinc/gold/silver). Targeted closing pushed from May 31 to July 31, 2026 — events still developing."
+  fields:
+    pentagon_investment_usd_m:
+      value: 35.6
+      source: "verified: Bloomberg 2026-06-01; multiple sources"
+    pentagon_stake_pct:
+      value: 10
+      source: "verified"
+    original_closing_target:
+      value: 2026-05-31
+      source: "verified: Bloomberg"
+    revised_closing_target:
+      value: 2026-07-31
+      source: "verified: Bloomberg 2026-06-01"
+    project_name:
+      value: "Upper Kobuk Mineral Projects (UKMP) — Ambler district, Alaska NW"
+      source: "verified"
+    target_metals:
+      value: "copper, zinc, gold, silver"
+      source: "verified"
+    announcement_date:
+      value: 2025-10
+      source: "reported: month-level only"
+      _note: "Original government announcement October 2025"
+
+scorecard:
+  d4_dilution_pct: 10
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+
+catalysts:
+  - event: "Pentagon deal closing"
+    window: [2026-07-01, 2026-08-31]
+    p_favorable: 0.65
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.30, -0.45]
+    source: "Bloomberg"
+  - event: "Permitting / Ambler access road decisions"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.45
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.20, -0.30]
+    source: "BLM federal record of decision pending"
+  - event: "Copper cycle inflection"
+    window: [2026-06-01, 2028-12-31]
+    p_favorable: 0.60
+    rerate_if_yes: [1.5, 2.0]
+    hit_if_no: [-0.15, -0.30]
+    source: "macro consensus"
+
+waterfall:
+  bear: {p: 0.30, return_multiple: 0.45, rationale: "Pentagon deal collapses on diligence; Ambler access road denied; copper cycle stays weak"}
+  base: {p: 0.50, return_multiple: 2.20, rationale: "Pentagon closes by August; access road approved; copper cycle gradual recovery; option-like exposure to UKMP development"}
+  bull: {p: 0.20, return_multiple: 4.50, rationale: "Pentagon deal anchors larger consortium financing; access road green-lit; copper supercycle thesis materialises"}
+
+anchor:
+  parties: ["US Department of Defense"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: USD
+  stake_pct: 10
+  holds_debt: false
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["DoD: MP Materials 2025 + USA Rare Earth 2026 (A2 portfolio building)"]
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: Partial — UKMP value depends heavily on Ambler access road
+    decision; without road the resource is stranded.
+    Leg 2: DoD as anchor is clean A2 alignment; no fee/warrant
+    extraction visible.
+    Leg 3: Partial — the deadline being pushed (May 31 → Jul 31)
+    is itself ambiguous signal: due-diligence delays could be
+    either positive (terms being widened) or negative (issues
+    being uncovered).
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Deadline-extension dynamics; copper cycle direction; Ambler access road permitting"
+
+kill_criteria:
+  - "Pentagon deal cancelled or terms materially worsened post-July 31"
+  - "Ambler access road permit denied at federal level"
+  - "Copper price below $3.50/lb sustained 12+ months"
+  - "Material drill results disappoint at UKMP"
+
+pre_mortem: |
+  It is end-2027 and TMQ is down 60% from June 2026 entry.
+
+  Most likely cause: Pentagon deal closed but the broader UKMP
+  development thesis stalled. Either Ambler road permit denied or
+  diluted to seasonal-only access, materially impairing project
+  NPV. The 10% Pentagon stake helped capitalise the company through
+  the cycle but the underlying asset value didn't rise.
+
+  Second-most-likely cause: Copper cycle deepened on China
+  demand weakness; even with Pentagon backing, junior copper
+  developers compressed to distress multiples.
+
+  Where this would show up first: BLM record of decision on Ambler
+  road; quarterly drill program results.
+
+history:
+  - {date: 2025-10, event: "Pentagon $35.6m / 10% stake investment announced", state_after: watch}
+  - {date: 2026-05-31, event: "Original closing date missed; pushed to July 31", state_after: option}
+  - {date: 2026-06-11, event: "Added to Tier 2 — A2 archetype but C7 ambiguous pending deal close + access road decision", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["US critical-minerals industrial policy", "copper cycle", "Alaska BLM permitting", "Ambler road"]
+
+tier_rationale: |
+  Bucket A, Archetype A2. Triangulation 2.5/3. C7 dated short
+  (July 31 closing) but materially weakened by Ambler road
+  uncertainty. Pentagon stake at only 10% is materially smaller
+  than MP/LAC/UREE.
+
+  Watch for: closing announcement + Ambler ROD. If both come in
+  positive in Q3 2026, candidate for Tier 1 promotion.

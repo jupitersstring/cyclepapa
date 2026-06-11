@@ -1,0 +1,192 @@
+ticker: ELUX-B
+isin: SE0016589188
+name: AB Electrolux (Series B)
+jurisdiction: SE
+exchange: STO
+sector: Consumer Appliances
+bucket: A
+archetype: [A1, D]
+state: core
+tier: 1
+
+deal:
+  date: 2026-06-02
+  mechanic: "SEK 9,062m fully underwritten rights issue (subscription Jun 2-16, 2026); Investor AB (Wallenberg) subscribes pro-rata SEK 1.7bn + guarantees additional SEK 1.7bn = 37.56% of issue. Tied to strategic partnership with Midea for North America, global organization optimization, and footprint restructuring."
+  fields:
+    rights_size_sek_m:
+      value: 9062
+      source: "verified: PRNewswire 2026; Electrolux press release"
+    fully_underwritten:
+      value: true
+      source: "verified: PRNewswire press release"
+    subscription_start:
+      value: 2026-06-02
+      source: "verified: PRNewswire"
+    subscription_end:
+      value: 2026-06-16
+      source: "verified: PRNewswire"
+    egm_approval_date:
+      value: 2026-05-27
+      source: "verified: PRNewswire"
+    investor_ab_capital_pct:
+      value: 17.94
+      source: "verified: Investor AB press release; Cision"
+    investor_ab_voting_pct:
+      value: 30.43
+      source: "verified: Investor AB press release"
+    investor_ab_pro_rata_subscription_sek_bn:
+      value: 1.7
+      source: "verified: Investor AB press release"
+    investor_ab_guarantee_sek_bn:
+      value: 1.7
+      source: "verified: Investor AB press release"
+    investor_ab_total_undertaking_pct_of_issue:
+      value: 37.56
+      source: "verified: Investor AB press release"
+    strategic_partnership_with:
+      value: "Midea Group (China appliance maker)"
+      source: "verified: PRNewswire; ad-hoc-news 2026"
+    partnership_region:
+      value: "North America"
+      source: "verified"
+    use_of_proceeds:
+      value: "Profitable growth initiatives + balance sheet strengthening + Midea JV"
+      source: "verified: PRNewswire"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: null
+  d4_dilution_pct: null
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: null
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: null
+
+catalysts:
+  - event: "Midea North America partnership operational ramp"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.6, 2.5]
+    hit_if_no: [-0.20, -0.40]
+    source: "company announcement"
+  - event: "Global organization & footprint optimization completion"
+    window: [2026-06-01, 2027-06-30]
+    p_favorable: 0.65
+    rerate_if_yes: [1.4, 2.0]
+    hit_if_no: [-0.15, -0.30]
+    source: "company guidance"
+  - event: "Appliance cycle (US housing + EU disinflation) bottom"
+    window: [2026-06-01, 2027-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.5, 2.2]
+    hit_if_no: [-0.15, -0.30]
+    source: "macro consensus"
+
+waterfall:
+  bear: {p: 0.20, return_multiple: 0.55, rationale: "Midea partnership fails or US tariffs disrupt JV economics; appliance cycle deepens; balance sheet remains stressed"}
+  base: {p: 0.55, return_multiple: 2.20, rationale: "Midea JV delivers North America market access; cost-out programme on plan; appliance cycle recovers gradually"}
+  bull: {p: 0.25, return_multiple: 4.00, rationale: "Midea JV creates substantial multiple expansion; consumer durables cycle inflects sharply; Wallenberg anchor signals long-term re-rate"}
+
+anchor:
+  parties: ["Investor AB (Wallenberg Foundations)", "Midea Group (strategic JV partner)"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: SEK
+  stake_pct: 17.94
+  holds_debt: false
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["Investor AB: SEB 2016 / Atlas Copco split / Wärtsilä cornerstones; benchmark long-term Nordic Bucket A anchor"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: Appliance multiples compressed; Whirlpool/peers trade at
+    distressed margins; Electrolux's mid-cycle EBITDA on its
+    pre-collapse base implies material upside on multiple
+    normalisation alone.
+    Leg 2: Investor AB (Wallenberg) as backstop is the cleanest
+    natural-owner Nordic anchor pattern; Midea as strategic JV
+    partner is Archetype D customer-aligned anchor; fully
+    underwritten = no rump risk; EGM passed May 27 = governance
+    settled.
+    Leg 3: Investor AB undertaking 37.56% of the issue (pro-rata
+    + guarantee) is the revealed-preference signal. They could
+    have taken just pro-rata; the additional SEK 1.7bn guarantee
+    on market terms is the asymmetric commitment.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Midea JV terminated or delayed beyond H1 2027"
+  - "US administration imposes punitive tariffs on China-affiliated JVs that void North America economics"
+  - "Investor AB sells beyond pro-rata commitment"
+  - "Cost-out programme misses Q2 FY27 milestone by >25%"
+  - "Second equity raise needed within 18 months"
+
+pre_mortem: |
+  It is end-2027 and ELUX-B is down 70% from rights price.
+
+  Most likely cause: Midea JV economics undermined by US-China
+  trade frictions (tariff escalation, FDI screening, executive
+  order action against Chinese ownership in North American
+  consumer appliance market). Wallenberg held its position but
+  growth thesis evaporated; legacy European appliance market
+  did not recover as expected.
+
+  Second-most-likely cause: Cost-out programme execution failed
+  (factory transitions slipped; severance costs ballooned; one-off
+  impairments cascaded). Q3 FY27 print missed materially; analyst
+  downgrades cascaded.
+
+  Where this would show up first: US executive-order activity on
+  Chinese appliance JVs; quarterly factory-transition milestones
+  in interim reports; Midea quarterly disclosures.
+
+history:
+  - {date: 2026-03, event: "Rights issue + Midea partnership announced", state_after: watch}
+  - {date: 2026-05-27, event: "EGM approved rights issue and Midea JV terms", state_after: option}
+  - {date: 2026-06-02, event: "Rights issue subscription opened", state_after: option}
+  - {date: 2026-06-11, event: "Added to Tier 1 — Wallenberg + Midea = clean A1+D structure; verified terms", state_after: core}
+
+factors:
+  primary: multiple_norm
+  exposures: ["consumer appliance cycle", "US housing", "EU disinflation", "Wallenberg long-term anchor", "Midea strategic JV", "US-China trade exposure"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (Wallenberg as long-term natural-owner
+  anchor at pro-rata + guarantee) + D (Midea as strategic customer
+  partner). Triangulation 3/3 with verified anchor identity and
+  voting power. C7 catalysts dated (Midea JV ramp H2 2026; cost-out
+  H1 2027). No active red flags.
+
+  This is the canonical Nordic Bucket A pattern that historically
+  delivered 3-5x compounding (Wärtsilä, Atlas Copco split, SEB 2016
+  rights). The Midea D-archetype layer is what makes the asymmetry
+  meaningful — without the JV this would be a 2x normalisation
+  trade; with it, the cycle + market-access combination supports
+  base case 2.2x and bull 4.0x.
+
+  Best Nordic recap candidate on the current screen.
