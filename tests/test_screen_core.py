@@ -1,0 +1,260 @@
+"""Unit tests for screen_core.
+
+Each test pins behaviour that previously failed silently in the
+original screener (the bug classes we found by manual audit).
+"""
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import numpy as np
+import pandas as pd
+import pytest
+
+import screen_core as core
+import params
+
+
+# ----- Recovery / upside math --------------------------------------
+
+def test_compute_recovery_upside_listed_clean():
+    # 30% discount, near-full recovery -> ~38% total return
+    recovery, etr = core.compute_recovery_upside(0.30, "LISTED_CLEAN")
+    assert recovery == pytest.approx(0.97)
+    assert etr == pytest.approx(0.97 / 0.70 - 1.0)
+
+
+def test_compute_recovery_upside_private_equity_cut():
+    # 50% headline discount on PE -> only ~40% expected, not 100%
+    _, etr_clean = core.compute_recovery_upside(0.50, "LISTED_CLEAN")
+    _, etr_pe = core.compute_recovery_upside(0.50, "PRIVATE_EQUITY")
+    assert etr_pe < etr_clean
+    assert etr_pe == pytest.approx(0.70 / 0.50 - 1.0)
+
+
+def test_compute_recovery_upside_premium_is_negative():
+    # 10% premium -> expected return negative (price falls to NAV*recovery)
+    _, etr = core.compute_recovery_upside(-0.10, "LISTED_CLEAN")
+    assert etr < 0
+
+
+def test_compute_recovery_upside_default_class():
+    # Unknown class -> default recovery
+    recovery, _ = core.compute_recovery_upside(0.20, "FOO")
+    assert recovery == params.DEFAULT_RECOVERY
+
+
+# ----- IRR ---------------------------------------------------------
+
+def test_annualise_basic():
+    # 21% over 12m -> 21% IRR
+    assert core.annualise(0.21, 12) == pytest.approx(0.21)
+
+
+def test_annualise_long_duration_compounds_down():
+    # 87% over 30m -> ~30% IRR (annualised)
+    irr = core.annualise(0.87, 30)
+    assert 0.25 < irr < 0.32
+
+
+def test_annualise_zero_duration_safe():
+    assert core.annualise(0.5, 0) == 0.0
+
+
+def test_annualise_total_loss_handled():
+    assert core.annualise(-1.0, 12) == -1.0
+
+
+# ----- Discount clamping -------------------------------------------
+
+def test_clamp_discount_in_band_passthrough():
+    assert core.clamp_discount(0.30) == 0.30
+
+
+def test_clamp_discount_jema_minus_304_dropped():
+    # The JEMA -304% data error must be rejected
+    assert core.clamp_discount(-3.04) is None
+
+
+def test_clamp_discount_premium_at_band_edge_passes():
+    assert core.clamp_discount(-0.10) == -0.10
+
+
+def test_clamp_discount_extreme_discount_dropped():
+    # 99% is implausible (would imply 99x upside on closure)
+    assert core.clamp_discount(0.99) is None
+
+
+# ----- Base detection ----------------------------------------------
+
+def _fake_ohlc(closes: list[float]) -> pd.DataFrame:
+    idx = pd.date_range("2024-01-01", periods=len(closes), freq="W")
+    return pd.DataFrame({
+        "Open": closes, "High": [c * 1.02 for c in closes],
+        "Low": [c * 0.98 for c in closes], "Close": closes,
+        "Volume": [1000] * len(closes),
+    }, index=idx)
+
+
+def test_detect_base_returns_none_when_short():
+    df = _fake_ohlc([10] * 5)
+    assert core.detect_base(df) is None
+
+
+def test_detect_base_finds_tight_range():
+    # 30 weeks tight (5% spread) -> base detected
+    closes = [100 + (i % 3) * 1.5 for i in range(30)]
+    df = _fake_ohlc(closes)
+    base = core.detect_base(df, range_threshold=0.10)
+    assert base is not None
+    assert len(base) >= 20
+
+
+def test_detect_base_terminates_on_trend():
+    # 20 weeks of strong uptrend should not produce a base
+    closes = [100 + i * 5 for i in range(20)]
+    df = _fake_ohlc(closes)
+    base = core.detect_base(df, range_threshold=0.10)
+    # Either None or only the most-recent tail
+    assert base is None or len(base) < 15
+
+
+def test_detect_base_robust_to_single_outlier():
+    # 28 tight bars + 1 outlier should still give a base (IQR shrugs
+    # off single bars; the v2 max/min walker would terminate here).
+    closes = [100] * 25 + [200] + [100] * 4   # the spike is one bar
+    df = _fake_ohlc(closes)
+    base = core.detect_base(df, range_threshold=0.10)
+    assert base is not None and len(base) >= 20
+
+
+# ----- Directional volume -----------------------------------------
+
+def _rng(n):
+    """Deterministic small wiggle so std > 0 for vol_z denominator."""
+    return [(i % 7) * 100 for i in range(n)]
+
+
+def test_directional_vol_accumulation_pattern():
+    # 60-bar base with ordinary volume variation; tail: 3 high-volume
+    # up-closes -> positive signed sum.
+    base_rows = [[100, 102, 98, 100, 1000 + v] for v in _rng(60)]
+    base_rows.extend([[100, 105, 99, 104, 8000]] * 3)
+    df = pd.DataFrame(base_rows, columns=["Open", "High", "Low", "Close", "Volume"])
+    df.index = pd.date_range("2024-01-01", periods=len(df), freq="W")
+    base = df.iloc[:-3]
+    signed_sum, count, _ = core.directional_vol_score(df, base, window=8)
+    assert signed_sum > 1.5, f"expected accumulation, got {signed_sum}"
+    assert count >= 3
+
+
+def test_directional_vol_distribution_pattern():
+    base_rows = [[100, 102, 98, 100, 1000 + v] for v in _rng(60)]
+    base_rows.extend([[100, 101, 95, 96, 8000]] * 3)
+    df = pd.DataFrame(base_rows, columns=["Open", "High", "Low", "Close", "Volume"])
+    df.index = pd.date_range("2024-01-01", periods=len(df), freq="W")
+    base = df.iloc[:-3]
+    signed_sum, _, _ = core.directional_vol_score(df, base, window=8)
+    assert signed_sum < 0, f"expected distribution to be negative, got {signed_sum}"
+
+
+# ----- Phase classifier --------------------------------------------
+
+def _phase(**kw):
+    """Helper with defaults for classify_phase()."""
+    defaults = dict(
+        in_base=True, base_length_weeks=30,
+        vol_z_last=0.0, vol_z_8w_max=0.5,
+        directional_8w=0.0, chg_13w=0.0,
+        last_close=100.0, base_high=105.0, base_low=95.0,
+        recent_selloff=False, mfi_low_8w=50.0,
+    )
+    defaults.update(kw)
+    return core.classify_phase(**defaults)
+
+
+def test_phase_post_rerating_at_15pct():
+    assert _phase(chg_13w=0.20) == "POST_RERATING"
+
+
+def test_phase_no_base_short():
+    assert _phase(in_base=False, base_length_weeks=8) == "NO_BASE"
+
+
+def test_phase_capitulation_pattern():
+    # Selloff + vol spike + washed MFI -> CAPITULATION (CHRY archetype)
+    p = _phase(recent_selloff=True, vol_z_8w_max=2.5, mfi_low_8w=18.0)
+    assert p == "CAPITULATION"
+
+
+def test_phase_absorbing_on_window_not_last_bar():
+    # The bug we fixed: directional 8w sum is high but last bar is muted
+    p = _phase(vol_z_last=0.3, vol_z_8w_max=2.5, directional_8w=3.0)
+    assert p == "BASE_ABSORBING"
+
+
+def test_phase_breakout_requires_above_high_and_vol():
+    p = _phase(last_close=110.0, base_high=100.0, vol_z_last=2.5,
+               vol_z_8w_max=2.5)
+    assert p == "BASE_BREAKOUT"
+
+
+# ----- Setup score decomposition -----------------------------------
+
+def test_setup_score_excludes_catalyst():
+    """Catalyst should NOT enter the setup score — it multiplies at the
+    end via expected_irr instead."""
+    r1 = core.ScreenResult(ticker="X", phase="BASE_ABSORBING",
+                           base_length_weeks=52, base_range_pct=0.20,
+                           poc=100.0, last_close=100.0, poc_distance_pct=0.0)
+    r1.catalyst = "WIND_DOWN_COMMITTED"
+    r1.nav_quality = "LISTED_CLEAN"
+    r2 = core.ScreenResult(ticker="Y", phase="BASE_ABSORBING",
+                           base_length_weeks=52, base_range_pct=0.20,
+                           poc=100.0, last_close=100.0, poc_distance_pct=0.0)
+    r2.catalyst = "STRUCTURAL_DISCOUNT"   # weaker catalyst
+    r2.nav_quality = "PRIVATE_EQUITY"     # weaker NAV
+    s1 = core.compute_setup_score(r1)
+    s2 = core.compute_setup_score(r2)
+    assert s1 == s2, "setup score should be identical regardless of catalyst/NAV"
+
+
+def test_setup_score_broken_base_returns_zero():
+    r = core.ScreenResult(ticker="X", phase="BASE_QUIET",
+                          base_length_weeks=20, base_range_pct=0.80,
+                          poc=100.0, last_close=100.0, poc_distance_pct=0.0)
+    assert core.compute_setup_score(r) == 0.0
+
+
+# ----- Investability gates -----------------------------------------
+
+def test_investability_market_cap_floor():
+    rec = {"MarketCap": 10.0, "AvgValTrd1M": 1.0, "NetGearCum": 0, "OngoingCharge": 1.0}
+    ok, reasons = core.check_investability("X.L", rec)
+    assert not ok
+    assert any("market cap" in r for r in reasons)
+
+
+def test_investability_gearing_ceiling():
+    rec = {"MarketCap": 200.0, "AvgValTrd1M": 1.0, "NetGearCum": 200, "OngoingCharge": 1.0}
+    ok, reasons = core.check_investability("X.L", rec)
+    assert not ok
+    assert any("gearing" in r for r in reasons)
+
+
+def test_investability_non_uk_passes():
+    # Non-UK ticker has no AIC record; gates are UK-specific.
+    ok, reasons = core.check_investability("BRK-B", None)
+    assert ok and reasons == []
+
+
+# ----- Post-rerating taper -----------------------------------------
+
+def test_post_rerating_taper_partial():
+    # 16% realised against 80% target -> ~80% of return remaining
+    remaining = core._post_rerating_taper(0.16, 0.80)
+    assert remaining == pytest.approx(1 - 0.20)
+
+
+def test_post_rerating_taper_overshoot():
+    # Already exceeded target -> 0% left
+    assert core._post_rerating_taper(1.0, 0.5) == 0.0
