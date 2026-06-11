@@ -621,5 +621,318 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "ACI": {
+    "ticker": "ACI",
+    "quarters_scanned": [
+      {
+        "accession": "0001646972-26-000032",
+        "filing_date": "2026-04-27"
+      },
+      {
+        "accession": "0001646972-26-000010",
+        "filing_date": "2026-01-07"
+      },
+      {
+        "accession": "0001646972-25-000083",
+        "filing_date": "2025-10-14"
+      },
+      {
+        "accession": "0001646972-25-000063",
+        "filing_date": "2025-07-22"
+      },
+      {
+        "accession": "0001646972-25-000052",
+        "filing_date": "2025-04-21"
+      },
+      {
+        "accession": "0001646972-25-000008",
+        "filing_date": "2025-01-08"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACIW": {
+    "ticker": "ACIW",
+    "quarters_scanned": [
+      {
+        "accession": "0000935036-26-000021",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0000935036-26-000011",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0000935036-25-000031",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000935036-25-000019",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000935036-25-000013",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0000935036-25-000006",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rchase program was approximately $390.5 million. There is no guarantee as to the exact number of shares we will repurchase. Repurchased shares are returned to the status of authorized but unissued shares of common stock. In March 2005, the Board approved a plan under Rule&#160;10b5-1 of the Securities Exchange Act of 1934 to facilitate the repurchase of shares of common stock under the existing stock repurchase program. Under our Rule 10b5-1 plan, we have delegated authority over the timing and amount of repurchases to an independent broker who does not have access to inside information about ",
+        "accession": "0000935036-26-000021",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "February 23, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "d product and/or service. As the selling prices of our software licenses are highly variable, we estimate SSP of our software licenses using the residual approach when the software license is sold with other services and observable SSPs exist for the other services. We use a range of amounts to estimate SSP for maintenance and services. These ranges are based on stand-alone sales and vary based on the type of service and geographic region. If the SSP of a performance obligation is not directly observable, we will maximize observable inputs to determine its SSP. When a software license arrange ",
+        "accession": "0000935036-26-000011",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rchase program was approximately $207.1 million. There is no guarantee as to the exact number of shares we will repurchase. Repurchased shares are returned to the status of authorized but unissued shares of common stock. In March 2005, the board approved a plan under Rule&#160;10b5-1 of the Securities Exchange Act of 1934 to facilitate the repurchase of shares of common stock under the existing stock repurchase program. Under our Rule 10b5-1 plan, we have delegated authority over the timing and amount of repurchases to an independent broker who does not have access to inside information about ",
+        "accession": "0000935036-25-000031",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "August 1, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rchase program was approximately $223.5 million. There is no guarantee as to the exact number of shares we will repurchase. Repurchased shares are returned to the status of authorized but unissued shares of common stock. In March 2005, the board approved a plan under Rule&#160;10b5-1 of the Securities Exchange Act of 1934 to facilitate the repurchase of shares of common stock under the existing stock repurchase program. Under our Rule 10b5-1 plan, we have delegated authority over the timing and amount of repurchases to an independent broker who does not have access to inside information about ",
+        "accession": "0000935036-25-000019",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rchase program was approximately $358.1 million. There is no guarantee as to the exact number of shares we will repurchase. Repurchased shares are returned to the status of authorized but unissued shares of common stock. In March 2005, the board approved a plan under Rule&#160;10b5-1 of the Securities Exchange Act of 1934 to facilitate the repurchase of shares of common stock under the existing stock repurchase program. Under our Rule 10b5-1 plan, we have delegated authority over the timing and amount of repurchases to an independent broker who does not have access to inside information about ",
+        "accession": "0000935036-25-000013",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "June 3, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": ". As the selling prices of our software licenses are highly variable, we estimate SSP of our software licenses using the residual approach when the software license is sold with other services and observable SSPs exist for the other services. We use a range of amounts to estimate SSP for maintenance and services. These ranges are based on stand-alone sales and vary based on the type of service and geographic region. If the SSP of a performance obligation is not directly observable, we will maximize observable inputs to determine its SSP. When a software license arrangement contains payment te ",
+        "accession": "0000935036-25-000006",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "score": 4.0,
+    "reasons": [
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "BULLISH terminate sell: an insider (director) [+18]",
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "BULLISH terminate sell: an insider (director) [+18]"
+    ],
+    "counts": {
+      "term_sell": 2,
+      "term_buy": 4,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACNB": {
+    "ticker": "ACNB",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-031924",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001628280-26-017229",
+        "filing_date": "2026-03-12"
+      },
+      {
+        "accession": "0001628280-25-050257",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001628280-25-038816",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000715579-25-000080",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "accession": "0000715579-25-000030",
+        "filing_date": "2025-03-14"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACRE": {
+    "ticker": "ACRE",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-031613",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001628280-26-006635",
+        "filing_date": "2026-02-10"
+      },
+      {
+        "accession": "0001628280-25-050392",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0001628280-25-037529",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001628280-25-022833",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001628280-25-005002",
+        "filing_date": "2025-02-12"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACU": {
+    "ticker": "ACU",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-209010",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001193125-26-102079",
+        "filing_date": "2026-03-11"
+      },
+      {
+        "accession": "0001193125-25-269422",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000950170-25-103966",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0000950170-25-065598",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0000950170-25-034843",
+        "filing_date": "2025-03-06"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }

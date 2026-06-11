@@ -581,5 +581,456 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "ACIU": {
+    "ticker": "ACIU",
+    "quarters_scanned": [
+      {
+        "accession": "0000950103-26-007252",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0000950103-26-007082",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0000950103-26-006499",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0000950103-26-006498",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001104659-26-027342",
+        "filing_date": "2026-03-13"
+      },
+      {
+        "accession": "0001558370-25-002855",
+        "filing_date": "2025-03-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACN": {
+    "ticker": "ACN",
+    "quarters_scanned": [
+      {
+        "accession": "0001467373-26-000014",
+        "filing_date": "2026-03-19"
+      },
+      {
+        "accession": "0001467373-25-000222",
+        "filing_date": "2025-12-18"
+      },
+      {
+        "accession": "0001467373-25-000217",
+        "filing_date": "2025-10-10"
+      },
+      {
+        "accession": "0001467373-25-000169",
+        "filing_date": "2025-06-20"
+      },
+      {
+        "accession": "0001467373-25-000100",
+        "filing_date": "2025-03-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACR": {
+    "ticker": "ACR",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-209358",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001193125-26-098916",
+        "filing_date": "2026-03-10"
+      },
+      {
+        "accession": "0001193125-25-269208",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000950170-25-102890",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0000950170-25-065958",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0000950170-25-039661",
+        "filing_date": "2025-03-17"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACTU": {
+    "ticker": "ACTU",
+    "quarters_scanned": [
+      {
+        "accession": "0001683168-26-003909",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001683168-26-002257",
+        "filing_date": "2026-03-26"
+      },
+      {
+        "accession": "0001683168-25-008323",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001683168-25-006159",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001683168-25-003705",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001683168-25-001581",
+        "filing_date": "2025-03-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACVA": {
+    "ticker": "ACVA",
+    "quarters_scanned": [
+      {
+        "accession": "0001637873-26-000020",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001637873-26-000011",
+        "filing_date": "2026-02-23"
+      },
+      {
+        "accession": "0001637873-25-000020",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "accession": "0001637873-25-000011",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "accession": "0001628280-25-023260",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001628280-25-006439",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": null,
+        "shares": 306793,
+        "dates_near": [
+          "December 31, 2025",
+          "December 15, 2025",
+          "March 16, 2026",
+          "December 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "cers (as defined in Rule 16a-1 under the Exchange Act) may from time to time enter into plans for the purchase or sale of ACV stock that are intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. During the quarter ended December 31, 2025, the following Section 16 officers adopted, modified, or terminated &#8220;Rule 10b5-1 trading arrangements&#8221; (as defined in Item 408 under Regulation S-K of the Exchange Act): &#8226; On December 15, 2025 , Michael Waterman , ACV's Chief Sales Officer , adopted a trading plan. Mr. Waterman's trading plan provide",
+        "accession": "0001637873-26-000011",
+        "filing_date": "2026-02-23"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": null,
+        "shares": 306793,
+        "dates_near": [
+          "December 31, 2025",
+          "December 15, 2025",
+          "March 16, 2026",
+          "December 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nd commercial partners purchase data services in connection with vehicle assessments, software subscriptions, and transactions that do not occur on our Marketplace. Our dealer customers include a majority of the top 100 used vehicle dealers in the United States. Key Operating and Financial Metrics We regularly monitor a number of operating and financial metrics in order to measure our current performance and estimate our future performance. Our business metrics may be calculated in a manner different ||SECT|| system, misstatements due to error or fraud may occur and not be detected. 91 Table o",
+        "accession": "0001637873-26-000011",
+        "filing_date": "2026-02-23"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a trading plan",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "Chief Executive Officer",
+        "shares": 600000,
+        "dates_near": [
+          "September 30, 2025",
+          "September 15, 2025",
+          "June 13, 2025",
+          "September 16, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "23,278 &#160; 188,468 &#160; 621,304 &#160; 535,949 &#160; Loss from operations ( 23,717 ) ( 17,139 ||SECT|| and adversely affected. See also &#8220;Special Note Regarding Forward-Looking Statements&#8221; in this Quarterly Report on Form 10-Q for additional information. Item 2. Unregistered Sales of Equity Securities and Use of Proceeds. (a) Recent Sales of Unregistered Equity Securities Not applicable. (b) Use of Proceeds Not applicable. (c) Issuer Purchases of Equity Securities Not applicable. Item 3. Defaults Upon Senior Securities. Not applicable. Item 4. Mine Safety Disclosures. Not appl",
+        "accession": "0001637873-25-000020",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Financial Officer",
+        "shares": 140000,
+        "dates_near": [
+          "June 30, 2025",
+          "April 7, 2025",
+          "September 9, 2024",
+          "January 7, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "shares - basic and diluted 170,472 164,384 169,415 163,637 Net loss per share - basic and diluted $ ( 0.04 ) ||SECT|| and adversely affected. See also &#8220;Special Note Regarding Forward-Looking Statements&#8221; in this Quarterly Report on Form 10-Q for additional information. Item 2. Unregistered Sales of Equity Securities and Use of Proceeds. (a) Recent Sales of Unregistered Equity Securities Not applicable. (b) Use of Proceeds Not applicable. (c) Issuer Purchases of Equity Securities Not applicable. Item 3. Defaults Upon Senior Securities. Not applicable. Item 4. Mine Safety Disclosures.",
+        "accession": "0001637873-25-000011",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Accounting Officer",
+        "shares": 140000,
+        "dates_near": [
+          "June 30, 2025",
+          "April 7, 2025",
+          "September 9, 2024",
+          "January 7, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ities Not applicable. Item 3. Defaults Upon Senior Securities. Not applicable. Item 4. Mine Safety Disclosures. Not applicable. Item 5. Other Information. Our Section 16 officers (as defined in Rule 16a-1 under the Exchange Act) may from time to time enter into plans for the purchase or sale of ACV stock that are intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. During the quarter ended June 30, 2025, the following Section 16 officers adopted, modified, or terminated &#8220;Rule 10b5-1 trading arrangements&#8221; (as defined in Item 408 under Regu",
+        "accession": "0001637873-25-000011",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Executive Officer",
+        "shares": 132000,
+        "dates_near": [
+          "January 7, 2025",
+          "June 12, 2025",
+          "June 12, 2025",
+          "June 11, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "mber 9, 2024 and contemplated the sale of up to 140,000 shares between January 7, 2025 and June 12, 2025, subject to certain volume limitations and excluding specified &#8220;No Sale&#8221; periods. Prior to its termination, the Plan was scheduled to terminate on June 12, 2025. 45,000 shares were sold under the Plan prior to its termination. &#8226; On June 11, 2025 , Andrew Peer , ACV's Chief Accounting Officer , adopted a trading plan. Mr. Peer's trading plan provides for the sale of up to 24,500 shares plus a number of shares to be determined based on net vesting 40 Table of Contents of RSU",
+        "accession": "0001637873-25-000011",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified his trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Operating Officer",
+        "shares": 24500,
+        "dates_near": [
+          "June 30, 2025",
+          "April 7, 2025",
+          "September 9, 2024",
+          "January 7, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "change Act. During the quarter ended June 30, 2025, the following Section 16 officers adopted, modified, or terminated &#8220;Rule 10b5-1 trading arrangements&#8221; (as defined in Item 408 under Regulation S-K of the Exchange Act): &#8226; On April 7, 2025 , William Zerella , ACV's Chief Financial Officer , terminated a trading plan. The Plan was originally entered into on September 9, 2024 and contemplated the sale of up to 140,000 shares between January 7, 2025 and June 12, 2025, subject to certain volume limitations and excluding specified &#8220;No Sale&#8221; periods. Prior to its termin",
+        "accession": "0001637873-25-000011",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Operating Officer",
+        "shares": 132000,
+        "dates_near": [
+          "April 7, 2025",
+          "September 9, 2024",
+          "January 7, 2025",
+          "June 12, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "s adopted, modified, or terminated &#8220;Rule 10b5-1 trading arrangements&#8221; (as defined in Item 408 under Regulation S-K of the Exchange Act): &#8226; On April 7, 2025 , William Zerella , ACV's Chief Financial Officer , terminated a trading plan. The Plan was originally entered into on September 9, 2024 and contemplated the sale of up to 140,000 shares between January 7, 2025 and June 12, 2025, subject to certain volume limitations and excluding specified &#8220;No Sale&#8221; periods. Prior to its termination, the Plan was scheduled to terminate on June 12, 2025. 45,000 shares were sold",
+        "accession": "0001637873-25-000011",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "March 31, 2025",
+          "March 31, 2025",
+          "March 26, 2021",
+          "July 29, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "Table of Contents ACV AUCTIONS INC. CONDENSED CONSOLIDATED STATEMENTS OF COMPREHENSIVE LOSS (Unaudited) (in thousands) Three months ended March 31, 2025 2024 Net loss $ ( 14,817 ) $ ( 20,471 ) Other comprehensive income (loss): Net unrealized gains (losses) on available-for-sale securities 81 &#160; ( 30 ) Foreign currency translation gain (loss) 1,143 &#160; ( 229 ) Com ||SECT|| and adversely affected. See also &#8220;Special Note Regarding Forward-Looking Statements&#8221; in this Quarterly Report on Form 10-Q for additional information. Item 2. Unregistered Sales of Equity Securities and Us",
+        "accession": "0001628280-25-023260",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": null,
+        "shares": 462137,
+        "dates_near": [
+          "December 31, 2024",
+          "December 10, 2024",
+          "March 11, 2025",
+          "December 26, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "informed by artificial intelligence, machine learning and market data. &#8226; Data and Technology . Underpins everything we do, and powers our vehicle inspections, comprehensive vehicle intelligence reports, digital marketplace, inventory management software, and operations automation. We have historically generated the majority of our revenue from our digital marketplace where we earn auction and ancillary fees from both buyers and sellers in each case only upon a successful auction. Buyer auction ||SECT|| ost-effective control system, misstatements due to error or fraud may occur and not be",
+        "accession": "0001628280-25-006439",
+        "filing_date": "2025-02-19"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Accounting Officer",
+        "shares": 100689,
+        "dates_near": [
+          "December 31, 2024",
+          "December 10, 2024",
+          "March 11, 2025",
+          "December 26, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ative defense conditions of Rule 10b5-1(c) under the Exchange Act. During the quarter ended December 31, 2024, the following Section 16 officers adopted, modified, or terminated &#8220;Rule 10b5-1 trading arrangements&#8221; (as defined in Item 408 under Regulation S-K of the Exchange Act): &#8226; On December 10, 2024 , Michael Waterman , ACV's Chief Sales Officer , adopted a trading plan. Mr. Waterman's trading plan provides for the sale of up to 462,137 shares plus a number of shares to be determined based on net vesting of RSUs and shares remaining from prior trading plan sales. The first ",
+        "accession": "0001628280-25-006439",
+        "filing_date": "2025-02-19"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Executive Officer",
+        "shares": 15992,
+        "dates_near": [
+          "March 11, 2025",
+          "December 26, 2025",
+          "December 11, 2024",
+          "March 12, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "plan. Mr. Waterman's trading plan provides for the sale of up to 462,137 shares plus a number of shares to be determined based on net vesting of RSUs and shares remaining from prior trading plan sales. The first trade will not occur until March 11, 2025 at the earliest. Mr. Waterman's trading plan is scheduled to terminate on December 26, 2025 . &#8226; On December 11, 2024 , Vikas Mehta , ACV's Chief Operating Officer , adopted a trading plan. Mr. Mehta's trading plan provides for the sale of up to 100,689 shares plus a number of shares to be determined based on net vesting of RSUs. The first",
+        "accession": "0001628280-25-006439",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "score": -17.0,
+    "reasons": [
+      "BULLISH terminate sell: an insider (?) 306,793sh [+30]",
+      "BEARISH adopt sell: an insider (?) 306,793sh [-15]",
+      "BEARISH terminate buy: an insider (Chief Executive Officer) 600,000sh [-8]",
+      "BULLISH terminate sell: an insider (Chief Financial Officer) 140,000sh [+34]",
+      "BEARISH adopt sell: an insider (Chief Accounting Officer) 140,000sh [-15]",
+      "BEARISH adopt sell: an insider (Chief Executive Officer) 132,000sh [-23]",
+      "BULLISH terminate sell: an insider (?) [+18]",
+      "BEARISH adopt sell: an insider (?) 462,137sh [-15]",
+      "BEARISH adopt sell: an insider (Chief Accounting Officer) 100,689sh [-15]",
+      "BEARISH adopt sell: an insider (Chief Executive Officer) 15,992sh [-8]"
+    ],
+    "counts": {
+      "term_sell": 3,
+      "term_buy": 1,
+      "adopt_sell": 6,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 2
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }

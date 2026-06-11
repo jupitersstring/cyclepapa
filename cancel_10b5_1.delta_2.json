@@ -535,5 +535,422 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "ACIC": {
+    "ticker": "ACIC",
+    "quarters_scanned": [
+      {
+        "accession": "0001401521-26-000029",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001401521-26-000015",
+        "filing_date": "2026-03-09"
+      },
+      {
+        "accession": "0001401521-25-000133",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000950170-25-105221",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0001401521-25-000073",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001401521-25-000032",
+        "filing_date": "2025-03-10"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACLS": {
+    "ticker": "ACLS",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-057725",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001104659-26-020461",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001104659-25-107689",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001558370-25-010325",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001558370-25-006534",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001558370-25-001855",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACP": {
+    "ticker": "ACP",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACT": {
+    "ticker": "ACT",
+    "quarters_scanned": [
+      {
+        "accession": "0001823529-26-000109",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001823529-26-000060",
+        "filing_date": "2026-02-27"
+      },
+      {
+        "accession": "0001823529-25-000227",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001823529-25-000187",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001823529-25-000124",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0001823529-25-000070",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACV": {
+    "ticker": "ACV",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "AD": {
+    "ticker": "AD",
+    "quarters_scanned": [
+      {
+        "accession": "0000821130-26-000035",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0000821130-26-000012",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0000821130-25-000070",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0000821130-25-000051",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "accession": "0000821130-25-000032",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000821130-25-000023",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 31, 2026",
+          "March 31, 2026",
+          "February 4, 2026",
+          "May 24, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "conditions. This authorization does not have an expiration date. The maximum number of shares that may yet be purchased was 658,107 as of March 31, 2026. Array did not determine to terminate the foregoing Common Share repurchase program, as amended. There were no purchases made by or on behalf of Array, or any purchases made by any \"affiliated purchaser\" (as defined by the SEC) of Array, of Array Common Shares during the quarter covered by this Form 10-Q. 32 Table of Contents Other Information Rule 10b5-1 Trading Arrangements During the three months ended March 31, 2026, none of Array&#8217;s ",
+        "accession": "0000821130-26-000035",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "September 30, 2025",
+          "September 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "g Common Share repurchase program, as amended, or cease making further purchases thereunder, during the third quarter of 2025. The maximum number of shares that may yet be purchased under this program was 658,107 as of September 30, 2025. There were no purchases made by or on behalf of Array, or any open market purchases made by any \"affiliated purchaser\" (as defined by the SEC) of Array, of Array Common Shares during the quarter covered by this Form 10-Q. 46 Table of Contents Other Information Rule 10b5-1 Trading Arrangements During the three months ended September 30, 2025, none of Array&#82",
+        "accession": "0000821130-25-000070",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "June 30, 2025",
+          "June 30, 2025",
+          "August 1, 2025",
+          "August 1, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "going Common Share repurchase program, as amended, or cease making further purchases thereunder, during the second quarter of 2025. The maximum number of shares that may yet be purchased under this program was 658,107 as of June 30, 2025. There were no purchases made by or on behalf of Array, or any open market purchases made by any \"affiliated purchaser\" (as defined by the SEC) of Array, of Array Common Shares during the quarter covered by this Form 10-Q. 55 Table of Contents Other Information Rule 10b5-1 Trading Arrangements During the three months ended June 30, 2025, none of Array&#8217;s ",
+        "accession": "0000821130-25-000051",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 31, 2025",
+          "March 31, 2025",
+          "March 25, 2025",
+          "May 24, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "verage Price Paid per Share Total Number of Shares Purchased as Part of Publicly Announced Plans or Programs Maximum Number of Shares that May Yet Be Purchased Under the Plans or Programs January 1 - 31, 2025 152,565 $ 62.78&#160; 152,565 834,377 February 1 - 28, 2025 76,294 $ 64.31&#160; 76,294 758,083 March 1 - 31, 2025 99,976 $ 63.95&#160; 99,976 658,107 Total for or as of the end of the quarter ended March 31, 2025 328,835 $ 63.49&#160; 328,835 658,107 46 Table of Contents Other Information Rule 10b5-1 Trading Arrangements During the three months ended March 31, 2025, none of UScellular&#8",
+        "accession": "0000821130-25-000032",
+        "filing_date": "2025-05-02"
+      }
+    ],
+    "score": -6.0,
+    "reasons": [
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "BEARISH terminate buy: an insider (director) [-8]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 2,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 2
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ADAMG": {
+    "ticker": "ADAMG",
+    "quarters_scanned": [
+      {
+        "accession": "0001273685-26-000045",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001273685-26-000029",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0001273685-25-000088",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0001273685-25-000072",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001273685-25-000047",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0001273685-25-000028",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ADAML": {
+    "ticker": "ADAML",
+    "quarters_scanned": [
+      {
+        "accession": "0001273685-26-000045",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001273685-26-000029",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0001273685-25-000088",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0001273685-25-000072",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001273685-25-000047",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0001273685-25-000028",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ADC": {
+    "ticker": "ADC",
+    "quarters_scanned": [
+      {
+        "accession": "0000917251-26-000047",
+        "filing_date": "2026-04-21"
+      },
+      {
+        "accession": "0000917251-26-000013",
+        "filing_date": "2026-02-10"
+      },
+      {
+        "accession": "0001104659-25-101233",
+        "filing_date": "2025-10-21"
+      },
+      {
+        "accession": "0001558370-25-009887",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0001558370-25-005142",
+        "filing_date": "2025-04-22"
+      },
+      {
+        "accession": "0001558370-25-000803",
+        "filing_date": "2025-02-11"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }
