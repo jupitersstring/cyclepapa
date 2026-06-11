@@ -52847,5 +52847,1673 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "QXO": {
+    "ticker": "QXO",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-034130",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001628280-26-012601",
+        "filing_date": "2026-02-27"
+      },
+      {
+        "accession": "0001628280-25-050298",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001628280-25-040367",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001628280-25-023834",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001628280-25-009626",
+        "filing_date": "2025-03-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RACE": {
+    "ticker": "RACE",
+    "quarters_scanned": [
+      {
+        "accession": "0001648416-26-000083",
+        "filing_date": "2026-06-03"
+      },
+      {
+        "accession": "0001648416-26-000082",
+        "filing_date": "2026-06-03"
+      },
+      {
+        "accession": "0001648416-26-000077",
+        "filing_date": "2026-05-26"
+      },
+      {
+        "accession": "0001648416-26-000074",
+        "filing_date": "2026-05-18"
+      },
+      {
+        "accession": "0001648416-26-000024",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001648416-25-000027",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RAIN": {
+    "ticker": "RAIN",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-057838",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001213900-26-044121",
+        "filing_date": "2026-04-15"
+      },
+      {
+        "accession": "0001213900-25-110062",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001213900-25-076727",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001213900-25-044438",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001213900-25-032239",
+        "filing_date": "2025-04-16"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RANI": {
+    "ticker": "RANI",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-226703",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001193125-26-126417",
+        "filing_date": "2026-03-26"
+      },
+      {
+        "accession": "0001193125-25-269774",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000950170-25-105045",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000950170-25-070382",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "accession": "0000950170-25-047740",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RBA": {
+    "ticker": "RBA",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-029808",
+        "filing_date": "2026-05-04"
+      },
+      {
+        "accession": "0001628280-26-011682",
+        "filing_date": "2026-02-25"
+      },
+      {
+        "accession": "0001046102-25-000009",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001628280-25-038323",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0001628280-25-023159",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001628280-25-008201",
+        "filing_date": "2025-02-26"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RBC": {
+    "ticker": "RBC",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-057626",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001213900-26-012732",
+        "filing_date": "2026-02-05"
+      },
+      {
+        "accession": "0001213900-25-104623",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001213900-25-070466",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001213900-25-044893",
+        "filing_date": "2025-05-16"
+      },
+      {
+        "accession": "0001213900-25-008804",
+        "filing_date": "2025-01-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RBLX": {
+    "ticker": "RBLX",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-028904",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001315098-26-000024",
+        "filing_date": "2026-02-11"
+      },
+      {
+        "accession": "0001315098-25-000327",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0001315098-25-000262",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0001315098-25-000118",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0001315098-25-000033",
+        "filing_date": "2025-02-18"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated his Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Amy Rawlings",
+        "role": "Chief Accounting Officer",
+        "shares": 2608944,
+        "dates_near": [
+          "May 15, 2027",
+          "February 18, 2026",
+          "March 2, 2027",
+          "February 25, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "for the sale from time to time of an aggregate of up to 2,608,944 shares of Class A common stock, with the actual number of shares sold determined based on a written formula at specified market prices, and the gift of an aggregate of up to 884,821 shares of Class A common stock to charitable organizations. The trading arrangement expires on May 15, 2027 , or earlier if all transactions under the trading arrangement are completed. On February 18, 2026 , Amy Rawlings , our Chief Accounting Officer , adopted a Rule 10b5-1 trading arrangement providing for the sale from time to time of an aggregat",
+        "modification_pair": true,
+        "accession": "0001628280-26-028904",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mark Reinstra",
+        "role": "Chief Legal Officer",
+        "shares": 154233,
+        "dates_near": [
+          "January 13, 2026",
+          "August 6, 2025",
+          "February 19, 2026",
+          "February 26, 2027"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "e payers, and average bookings per monthly unique payer. As a management team, we believe each of these operating metrics provides us ||SECT|| itutions to enter receivership or become insolvent, our ability to access our existing cash, cash equivalents and investments, or to draw on our existing lines of credit, may be threatened and could have a material adverse effect on our business and financial condition. 83 Table of Contents Item&#160;2. Unregistered Sales of Equity Securities and Use of Proceeds. None. Item&#160;3. Defaults Upon Senior Securities. None. Item&#160;4. Mine Safety Disclosu",
+        "accession": "0001628280-26-028904",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Amy Rawlings",
+        "role": "Chief Accounting Officer",
+        "shares": 884821,
+        "dates_near": [
+          "February 26, 2027",
+          "February 10, 2026",
+          "August 6, 2025",
+          "February 11, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "to 154,233 shares of Class A common stock, with the actual number of shares sold determined based on a written formula at specified market prices. The trading arrangement expires on February 26, 2027 , or earlier if all transactions under the trading arrangement are completed. On February 10, 2026 , David Baszucki , our Chief Executive Officer and member of our Board of Directors , terminated his Rule 10b5-1 trading arrangement originally adopted on August 6, 2025. On February 11, 2026, Mr. Baszucki adopted a Rule 10b5-1 trading arrangement as trustee of The Freedom Revocable Trust dated Febru",
+        "modification_pair": true,
+        "accession": "0001628280-26-028904",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Director",
+        "shares": 552000,
+        "dates_near": [
+          "October 31, 2025",
+          "November 13, 2026",
+          "November 24, 2025",
+          "March 31, 2027"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "gement&#8221; or a &#8220;non-Rule 10b5-1 trading arrangement,&#8221; each as defined in Regulation S-K Item 408. On October 31, 2025 , Matt Kaufman , our Chief Safety Officer , adopted a Rule 10b5-1 trading arrangement providing for the sale from time to time of an aggregate of up to 30,000 shares of Class A common stock, with the actual number of shares sold determined based on a written formula at specified market prices. The trading arrangement expires on November 13, 2026 , or earlier if all transactions under the trading arrangement are completed. 99 Table of Contents On November 24, 202",
+        "accession": "0001315098-26-000024",
+        "filing_date": "2026-02-11"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Director",
+        "shares": 120000,
+        "dates_near": [
+          "November 13, 2026",
+          "November 24, 2025",
+          "March 31, 2027",
+          "November 24, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "s on November 13, 2026 , or earlier if all transactions under the trading arrangement are completed. 99 Table of Contents On November 24, 2025 , Anthony Lee , a member of our Board of Directors , adopted a Rule 10b5-1 trading arrangement as trustee of The Fallen Leaf Revocable Trust and co-trustee of trusts for his children providing for the sale from time to time of an aggregate of up to 552,000 shares of Class A common stock, with the actual number of shares sold determined based on a written formula at specified market prices. The trading arrangement expires on March 31, 2027 , or earlier i",
+        "accession": "0001315098-26-000024",
+        "filing_date": "2026-02-11"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mark Reinstra",
+        "role": "Chief Legal Officer",
+        "shares": 802750,
+        "dates_near": [
+          "August 6, 2025",
+          "February 18, 2017",
+          "November 30, 2026",
+          "August 6, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "Company&#8217;s policies regarding insider transactions. On August 6, 2025 , David Baszucki , our Chief Executive Officer and member of our Board of Directors, adopted a Rule 10b5-1 trading arrangement as trustee of The Baszucki Family Foundation (the &#8220;Foundation&#8221;) and as trustee for The Freedom Revocable Trust, dated February 18, 2017 (the &#8220;Freedom Trust&#8221;). The trading arrangement provides for the sale from time to time of an aggregate of up to 802,750 shares of Class A Common Stock at or above specified market prices, the gift of an aggregate of up to 272,256 shares o",
+        "accession": "0001315098-25-000327",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated his Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Chief Financial Officer",
+        "shares": 240220,
+        "dates_near": [
+          "March 2, 2026",
+          "June 10, 2025",
+          "February 28, 2025",
+          "March 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "tion date of the trading arrangement and 2) ESPP shares. The trading arrangement was to expire on March 2, 2026 or earlier if all transactions under the trading arrangement were completed. On June 10, 2025 , Arvind Chakravarthy , our Chief People and Systems Officer , terminated his Rule 10b5-1 trading arrangement, which was intended to satisfy the affirmative defense of Rule 10b5-1(c) and originally adopted on February 28, 2025 for the sale of up to 240,220 shares of Class A common stock, plus 1) additional shares determined based on a written formula that was calculated based on a specified ",
+        "accession": "0001315098-25-000262",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated his Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Amy Rawlings",
+        "role": "Chief Accounting Officer",
+        "shares": 240220,
+        "dates_near": [
+          "February 28, 2025",
+          "March 31, 2026",
+          "February 27, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "0;ABPDAU&#8221;), average new and returning monthly unique payers, monthly repurchase rate, and average bookings per monthly unique pay ||SECT|| itutions to enter receivership or become insolvent, our ability to access our existing cash, cash equivalents and investments, or to draw on our existing lines of credit, may be threatened and could have a material adverse effect on our business and financial condition. 81 Table of Contents Item&#160;2. Unregistered Sales of Equity Securities and Use of Proceeds. None. Item&#160;3. Defaults Upon Senior Securities. None. Item&#160;4. Mine Safety Disclo",
+        "modification_pair": true,
+        "accession": "0001315098-25-000118",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated his Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mark Reinstra",
+        "role": "Chief Legal Officer",
+        "shares": 25020,
+        "dates_near": [
+          "March 31, 2026",
+          "February 27, 2025",
+          "March 2, 2026",
+          "January 22, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "-1 trading arrangement at or above specified market prices. The trading arrangement expires on March 31, 2026 , or earlier if all transactions under the trading arrangement are completed. The trading arrangement was entered into during an open insider trading window and is intended to satisfy the affirmative defense in Rule 10b5-1(c) and the Company&#8217;s policies regarding insider transactions. On February 27, 2025 , Amy Rawlings , our Chief Accounting Officer , terminated her Rule 10b5-1 trading arrangement and adopted a Rule 10b5-1 trading arrangement providing for the sale from time to t",
+        "modification_pair": true,
+        "accession": "0001315098-25-000118",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Amy Rawlings",
+        "role": "Chief Accounting Officer",
+        "shares": 240220,
+        "dates_near": [
+          "February 28, 2025",
+          "March 31, 2026",
+          "February 27, 2025",
+          "March 2, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "unique payers, monthly repurchase rate, and average bookings per monthly unique pay ||SECT|| itutions to enter receivership or become insolvent, our ability to access our existing cash, cash equivalents and investments, or to draw on our existing lines of credit, may be threatened and could have a material adverse effect on our business and financial condition. 81 Table of Contents Item&#160;2. Unregistered Sales of Equity Securities and Use of Proceeds. None. Item&#160;3. Defaults Upon Senior Securities. None. Item&#160;4. Mine Safety Disclosures. None. Item&#160;5. Other Information. Rule 10",
+        "modification_pair": true,
+        "accession": "0001315098-25-000118",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Amy Rawlings",
+        "role": "Chief Accounting Officer",
+        "shares": 25020,
+        "dates_near": [
+          "February 28, 2025",
+          "March 31, 2026",
+          "February 27, 2025",
+          "March 2, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ading arrangements begins trading after the termination of any outstanding prior trading arrangements for the relevant director or officer, as applicable. On February 28, 2025 , Arvind Chakravarthy , our Chief People and Systems Officer , terminated his Rule 10b5-1 trading arrangement and adopted a Rule 10b5-1 trading arrangement providing for the sale from time to time of an aggregate of up to 240,220 shares of Class A Common Stock plus an additional number of shares determined based on a written formula that is calculated based on a specified net number of shares of Class A Common Stock resu",
+        "modification_pair": true,
+        "accession": "0001315098-25-000118",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mark Reinstra",
+        "role": "Chief Legal Officer",
+        "shares": 25020,
+        "dates_near": [
+          "February 27, 2025",
+          "March 2, 2026",
+          "January 22, 2025",
+          "May 16, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "g an open insider trading window and is intended to satisfy the affirmative defense in Rule 10b5-1(c) and the Company&#8217;s policies regarding insider transactions. On February 27, 2025 , Amy Rawlings , our Chief Accounting Officer , terminated her Rule 10b5-1 trading arrangement and adopted a Rule 10b5-1 trading arrangement providing for the sale from time to time of an aggregate of up to 25,020 shares of Class A Common Stock, with the actual number of shares sold determined based on a written formula at specified market prices. The trading arrangement expires on March 2, 2026 , or earlier ",
+        "modification_pair": true,
+        "accession": "0001315098-25-000118",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "David Baszucki",
+        "role": "Chief Executive Officer",
+        "shares": 8781047,
+        "dates_near": [
+          "November 4, 2024",
+          "April 3, 2020",
+          "April 3, 2020",
+          "February 24, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": ". For example, in the year ended December&#160;31, 2024, of our 82.9 million average DAUs, only approximately 1.0 million represented our average daily unique paying users. Similarly, in the year ended December&#160;31, 2024, our average daily bookings per DAU was $0.14, whereas ||SECT|| desired control objectives. In addition, the design of disclosure controls and procedures and internal control over financial reporting must reflect the fact that there are resource constraints and that management is required to apply judgment in evaluating the benefits of possible controls and procedures rela",
+        "accession": "0001315098-25-000033",
+        "filing_date": "2025-02-18"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Michael Guthrie",
+        "role": "Chief Financial Officer",
+        "shares": 1914015,
+        "dates_near": [
+          "February 24, 2026",
+          "November 15, 2024",
+          "March 31, 2026",
+          "November 14, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "and the gift of an aggregate of up to 1,914,015 shares of Class A Common Stock to charitable organizations. The trading arrangement expires on February 24, 2026 , or earlier if all transactions under the trading arrangement are completed. The trading arrangement was entered into during an open insider trading window and is intended to satisfy the affirmative defense in Rule 10b5-1(c) and the Company&#8217;s policies regarding insider transactions. On November 15, 2024 , Anthony Lee , a member of our Board of Directors , adopted a Rule 10b5-1 trading arrangement, as a trustee of the Fallen Leaf",
+        "accession": "0001315098-25-000033",
+        "filing_date": "2025-02-18"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Michael Guthrie",
+        "role": "Chief Financial Officer",
+        "shares": 1168650,
+        "dates_near": [
+          "March 31, 2026",
+          "November 14, 2024",
+          "August 18, 2016",
+          "March 6, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "es on March 31, 2026 , or earlier if all transactions under the trading arrangement are completed. The trading arrangement was entered into during an open insider trading window and is intended to satisfy the affirmative defense in Rule 10b5-1(c) and the Company&#8217;s policies regarding insider transactions. On November 14, 2024 , Greg Baszucki , a member of our Board of Directors , adopted a Rule 10b5-1 trading arrangement as trustee of the Greg &amp; Christina Baszucki Living Trust, dated August 18, 2016. The trading arrangement provides for the sale from time to time of an aggregate of up",
+        "accession": "0001315098-25-000033",
+        "filing_date": "2025-02-18"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Michael Guthrie",
+        "role": "Chief Financial Officer",
+        "shares": 350595,
+        "dates_near": [
+          "March 6, 2026",
+          "November 12, 2024",
+          "November 21, 2025",
+          "November 5, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "50 shares of Class A Common Stock at or above specified market prices and the gift of an aggregate of up to 350,595 shares of Class A Common Stock to a charitable organization. The trading arrangement expires on March 6, 2026 , or earlier if all transactions under the trading arrangement are completed. The trading arrangement was entered into during an open insider trading window and is intended to satisfy the affirmative defense in Rule 10b5-1(c). and the Company&#8217;s policies regarding insider transactions. On November 12, 2024 , Michael Guthrie , our Chief Financial Officer , adopted a R",
+        "accession": "0001315098-25-000033",
+        "filing_date": "2025-02-18"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mark Reinstra",
+        "role": "Chief Legal Officer",
+        "shares": 143194,
+        "dates_near": [
+          "November 5, 2024",
+          "December 31, 2025",
+          "November 1, 2024",
+          "May 19, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "e trading arrangement was entered into during an open insider trading window and is intended to satisfy the affirmative defense in Rule 10b5-1(c) and the Company&#8217;s policies regarding insider transactions. On November 5, 2024 , Arvind Chakravarthy , our Chief People and Systems Officer , adopted a Rule 10b5-1 trading arrangement providing for the sale from time to time of an aggregate of up to 143,194 shares of Class A Common Stock plus an additional number of shares determined based on a written formula that is calculated based on a specified net number of shares of Class A Common Stock ",
+        "accession": "0001315098-25-000033",
+        "filing_date": "2025-02-18"
+      }
+    ],
+    "score": -80.0,
+    "reasons": [
+      "BEARISH adopt sell: Mark Reinstra (Chief Legal Officer) 154,233sh [-15]",
+      "BEARISH adopt sell: an insider (Director) 552,000sh [-18]",
+      "BEARISH adopt sell: an insider (Director) 120,000sh [-15]",
+      "BEARISH adopt sell: Mark Reinstra (Chief Legal Officer) 802,750sh [-18]",
+      "BULLISH terminate sell: an insider (Chief Financial Officer) 240,220sh [+34]",
+      "BEARISH adopt sell: David Baszucki (Chief Executive Officer) 8,781,047sh [-30]",
+      "BEARISH adopt sell: Michael Guthrie (Chief Financial Officer) 1,914,015sh [-28]",
+      "BEARISH adopt sell: Michael Guthrie (Chief Financial Officer) 1,168,650sh [-28]",
+      "BEARISH adopt sell: Michael Guthrie (Chief Financial Officer) 350,595sh [-21]",
+      "BEARISH adopt sell: Mark Reinstra (Chief Legal Officer) 143,194sh [-15]"
+    ],
+    "counts": {
+      "term_sell": 1,
+      "term_buy": 0,
+      "adopt_sell": 9,
+      "adopt_buy": 0,
+      "modify_pair": 7,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RC": {
+    "ticker": "RC",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-032982",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001628280-26-013256",
+        "filing_date": "2026-03-02"
+      },
+      {
+        "accession": "0001628280-25-050686",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0001628280-25-039276",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001628280-25-024331",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "accession": "0001628280-25-009464",
+        "filing_date": "2025-03-03"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RCI": {
+    "ticker": "RCI",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-171445",
+        "filing_date": "2026-04-23"
+      },
+      {
+        "accession": "0001193125-26-170620",
+        "filing_date": "2026-04-22"
+      },
+      {
+        "accession": "0000733099-26-000012",
+        "filing_date": "2026-04-22"
+      },
+      {
+        "accession": "0001193125-26-168373",
+        "filing_date": "2026-04-22"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RCMT": {
+    "ticker": "RCMT",
+    "quarters_scanned": [
+      {
+        "accession": "0001437749-26-017057",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001437749-26-011236",
+        "filing_date": "2026-04-03"
+      },
+      {
+        "accession": "0001437749-25-033607",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001437749-25-025431",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0001437749-25-015505",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001437749-25-007557",
+        "filing_date": "2025-03-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RCUS": {
+    "ticker": "RCUS",
+    "quarters_scanned": [
+      {
+        "accession": "0001724521-26-000034",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001724521-26-000009",
+        "filing_date": "2026-02-25"
+      },
+      {
+        "accession": "0001724521-25-000116",
+        "filing_date": "2025-10-28"
+      },
+      {
+        "accession": "0001724521-25-000101",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0001724521-25-000063",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001724521-25-000040",
+        "filing_date": "2025-02-25"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RDI": {
+    "ticker": "RDI",
+    "quarters_scanned": [
+      {
+        "accession": "0000716634-26-000019",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0000716634-26-000005",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0000716634-25-000048",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0000716634-25-000037",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0000716634-25-000030",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0000716634-25-000008",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RDNT": {
+    "ticker": "RDNT",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-033607",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001628280-26-013337",
+        "filing_date": "2026-03-02"
+      },
+      {
+        "accession": "0000790526-25-000008",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "accession": "0001628280-25-039605",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "accession": "0001628280-25-024672",
+        "filing_date": "2025-05-12"
+      },
+      {
+        "accession": "0001628280-25-009481",
+        "filing_date": "2025-03-03"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RDY": {
+    "ticker": "RDY",
+    "quarters_scanned": [
+      {
+        "accession": "0001575872-26-000408",
+        "filing_date": "2026-06-10"
+      },
+      {
+        "accession": "0001575872-26-000406",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001575872-26-000395",
+        "filing_date": "2026-06-03"
+      },
+      {
+        "accession": "0001575872-26-000386",
+        "filing_date": "2026-06-01"
+      },
+      {
+        "accession": "0001575872-26-000381",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001575872-25-000393",
+        "filing_date": "2025-06-06"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "REAX": {
+    "ticker": "REAX",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-026418",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001493152-26-021601",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001104659-26-049647",
+        "filing_date": "2026-04-28"
+      },
+      {
+        "accession": "0001104659-26-049066",
+        "filing_date": "2026-04-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "REG": {
+    "ticker": "REG",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-203537",
+        "filing_date": "2026-05-04"
+      },
+      {
+        "accession": "0001193125-26-051668",
+        "filing_date": "2026-02-13"
+      },
+      {
+        "accession": "0001193125-25-266456",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "accession": "0000950170-25-101867",
+        "filing_date": "2025-08-04"
+      },
+      {
+        "accession": "0000950170-25-062596",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000950170-25-021359",
+        "filing_date": "2025-02-14"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "REKR": {
+    "ticker": "REKR",
+    "quarters_scanned": [
+      {
+        "accession": "0001437749-26-016117",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001437749-26-010647",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001437749-25-034814",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001437749-25-026204",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001437749-25-016859",
+        "filing_date": "2025-05-14"
+      },
+      {
+        "accession": "0001437749-25-010193",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RENX": {
+    "ticker": "RENX",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-057186",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001213900-26-037999",
+        "filing_date": "2026-04-01"
+      },
+      {
+        "accession": "0001213900-25-110837",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001213900-25-076933",
+        "filing_date": "2025-08-15"
+      },
+      {
+        "accession": "0001213900-25-044332",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001213900-25-026215",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RES": {
+    "ticker": "RES",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-057794",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001104659-26-021480",
+        "filing_date": "2026-02-27"
+      },
+      {
+        "accession": "0001104659-25-104292",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0001558370-25-009562",
+        "filing_date": "2025-07-24"
+      },
+      {
+        "accession": "0001558370-25-005397",
+        "filing_date": "2025-04-24"
+      },
+      {
+        "accession": "0001558370-25-001922",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "REX": {
+    "ticker": "REX",
+    "quarters_scanned": [
+      {
+        "accession": "0000930413-26-001786",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0000930413-26-000937",
+        "filing_date": "2026-03-30"
+      },
+      {
+        "accession": "0000930413-25-003566",
+        "filing_date": "2025-12-04"
+      },
+      {
+        "accession": "0000930413-25-002856",
+        "filing_date": "2025-09-02"
+      },
+      {
+        "accession": "0000930413-25-001941",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "accession": "0000930413-25-001069",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RF": {
+    "ticker": "RF",
+    "quarters_scanned": [
+      {
+        "accession": "0001281761-26-000037",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001281761-26-000019",
+        "filing_date": "2026-02-24"
+      },
+      {
+        "accession": "0001281761-25-000080",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0001281761-25-000063",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001281761-25-000045",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001281761-25-000010",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RGC": {
+    "ticker": "RGC",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-060337",
+        "filing_date": "2026-05-22"
+      },
+      {
+        "accession": "0001213900-26-059056",
+        "filing_date": "2026-05-19"
+      },
+      {
+        "accession": "0001213900-26-058749",
+        "filing_date": "2026-05-19"
+      },
+      {
+        "accession": "0001213900-26-053892",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001213900-25-104686",
+        "filing_date": "2025-10-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RGLD": {
+    "ticker": "RGLD",
+    "quarters_scanned": [
+      {
+        "accession": "0000085535-26-000028",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0000085535-26-000008",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0000085535-25-000165",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000085535-25-000125",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000085535-25-000083",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0000085535-25-000012",
+        "filing_date": "2025-02-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RGS": {
+    "ticker": "RGS",
+    "quarters_scanned": [
+      {
+        "accession": "0000716643-26-000023",
+        "filing_date": "2026-05-13"
+      },
+      {
+        "accession": "0000716643-26-000006",
+        "filing_date": "2026-02-05"
+      },
+      {
+        "accession": "0000716643-25-000041",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0000716643-25-000031",
+        "filing_date": "2025-09-03"
+      },
+      {
+        "accession": "0000716643-25-000021",
+        "filing_date": "2025-05-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RHI": {
+    "ticker": "RHI",
+    "quarters_scanned": [
+      {
+        "accession": "0000315213-26-000026",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0000315213-26-000006",
+        "filing_date": "2026-02-13"
+      },
+      {
+        "accession": "0000315213-25-000074",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0000315213-25-000066",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0000315213-25-000036",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000315213-25-000007",
+        "filing_date": "2025-02-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RILY": {
+    "ticker": "RILY",
+    "quarters_scanned": [
+      {
+        "accession": "0001464790-26-000035",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001464790-26-000024",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001464790-26-000007",
+        "filing_date": "2026-01-14"
+      },
+      {
+        "accession": "0001464790-25-000029",
+        "filing_date": "2025-12-15"
+      },
+      {
+        "accession": "0001464790-25-000023",
+        "filing_date": "2025-11-18"
+      },
+      {
+        "accession": "0001464790-25-000011",
+        "filing_date": "2025-09-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RILYN": {
+    "ticker": "RILYN",
+    "quarters_scanned": [
+      {
+        "accession": "0001464790-26-000035",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001464790-26-000024",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001464790-26-000007",
+        "filing_date": "2026-01-14"
+      },
+      {
+        "accession": "0001464790-25-000029",
+        "filing_date": "2025-12-15"
+      },
+      {
+        "accession": "0001464790-25-000023",
+        "filing_date": "2025-11-18"
+      },
+      {
+        "accession": "0001464790-25-000011",
+        "filing_date": "2025-09-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RIO": {
+    "ticker": "RIO",
+    "quarters_scanned": [
+      {
+        "accession": "0000863064-26-000031",
+        "filing_date": "2026-06-01"
+      },
+      {
+        "accession": "0000863064-26-000029",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0000863064-26-000026",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0000863064-26-000024",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001628280-26-009531",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001628280-25-006642",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RIV": {
+    "ticker": "RIV",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RKTO": {
+    "ticker": "RKTO",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-057726",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001213900-26-035625",
+        "filing_date": "2026-03-27"
+      },
+      {
+        "accession": "0001213900-25-109220",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0001213900-25-074968",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001213900-25-042043",
+        "filing_date": "2025-05-12"
+      },
+      {
+        "accession": "0001013762-25-004108",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RLJ": {
+    "ticker": "RLJ",
+    "quarters_scanned": [
+      {
+        "accession": "0001511337-26-000014",
+        "filing_date": "2026-05-04"
+      },
+      {
+        "accession": "0001511337-26-000007",
+        "filing_date": "2026-02-27"
+      },
+      {
+        "accession": "0001511337-25-000031",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001511337-25-000023",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001511337-25-000014",
+        "filing_date": "2025-05-05"
+      },
+      {
+        "accession": "0001511337-25-000007",
+        "filing_date": "2025-02-26"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "RMAX": {
+    "ticker": "RMAX",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-057523",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001104659-26-017561",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001104659-25-104431",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0001558370-25-009743",
+        "filing_date": "2025-07-29"
+      },
+      {
+        "accession": "0001558370-25-006110",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0001558370-25-001224",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }
