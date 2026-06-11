@@ -89,9 +89,16 @@ def web_validated_sheet(df: pd.DataFrame):
     if not vpath.exists():
         return None
     v = pd.read_csv(vpath)
-    keep = [c for c in ["symbol", "name", "score", "enterpriseToEbitda",
-                        "forwardPE", "ret_12m"] if c in df.columns]
-    m = v.merge(df[keep], on="symbol", how="left")
+    # The relevant "score" is the asymmetry-screen score (scored.parquet has no
+    # generic score column); merge it in so kept names show their screen rank.
+    try:
+        asc = screens.asymmetry(df, top=None)[["symbol", "score"]]
+    except Exception:
+        asc = pd.DataFrame({"symbol": [], "score": []})
+    m = v.merge(asc, on="symbol", how="left")
+    mcols = [c for c in ["name", "enterpriseToEbitda", "forwardPE", "ret_12m"]
+             if c in df.columns]
+    m = m.merge(df[["symbol"] + mcols], on="symbol", how="left")
     try:
         uni = pd.read_parquet(config.UNIVERSE_PATH)
         m = m.merge(uni[["symbol", "country", "industry"]], on="symbol", how="left")
@@ -100,8 +107,8 @@ def web_validated_sheet(df: pd.DataFrame):
     order = {"KEEP": 0, "SPECULATIVE": 1, "REJECT": 2}
     m["_o"] = m["verdict"].map(order).fillna(3)
     m["rank"] = pd.to_numeric(m["rank"], errors="coerce")
-    m = m.sort_values(["_o", "rank", "score"],
-                      ascending=[True, True, False], na_position="last")
+    keys = [k for k in ["_o", "rank", "score"] if k in m.columns]
+    m = m.sort_values(keys, ascending=[True] * len(keys), na_position="last")
     cols = ["verdict", "rank", "symbol", "name", "country", "industry", "score",
             "enterpriseToEbitda", "forwardPE", "ret_12m", "reason"]
     return m[[c for c in cols if c in m.columns]].round(3)
