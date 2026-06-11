@@ -1,0 +1,163 @@
+ticker: WLN
+isin: FR0011981968
+name: Worldline
+jurisdiction: FR
+exchange: EPA
+sector: Payments
+bucket: A
+archetype: [A1]
+state: core
+tier: 1
+
+deal:
+  date: 2026-03-31
+  mechanic: "Two-tier raise: €108m reserved increase at €2.75 (Bpifrance/CASA/BNP) + 6-for-1 rights at €0.202"
+  fields:
+    reserved_increase_eur_m:
+      value: 108
+      source: "unverified"
+    reserved_price_eur:
+      value: 2.75
+      source: "unverified"
+      _note: "10% premium to 30-day VWAP at announcement"
+    rights_issue_eur_m:
+      value: 392
+      source: "unverified"
+    rights_price_eur:
+      value: 0.202
+      source: "unverified"
+    rights_ratio:
+      value: "6-for-1"
+      source: "unverified"
+    rights_discount_to_terp_pct:
+      value: 85.8
+      source: "unverified"
+    rights_subscription_pct:
+      value: 121
+      source: "unverified"
+    current_market_eur:
+      value: 0.40
+      source: "unverified"
+      _note: "Approximate as-of 2026-05-15"
+    anchor_combined_capital_pct:
+      value: 27.5
+      source: "unverified"
+    anchor_combined_votes_pct:
+      value: 36.6
+      source: "unverified"
+
+scorecard:
+  d2_issue_discount_pct: 85.8
+  d3_backstop_cost_pct: 0.0
+  d4_dilution_pct: 78
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: null
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: 6.875
+  d9b_anchor_premium_to_recap: 10.0
+  d9c_premium_to_vwap: 10.0
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: null
+
+catalysts:
+  - event: "2027 positive free cash flow inflection (North Star 2030 plan)"
+    window: [2027-01-01, 2027-12-31]
+    p_favorable: 0.40
+    rerate_if_yes: [3.0, 6.0]
+    hit_if_no: [-0.40, -0.60]
+    source: "company guidance"
+  - event: "Ingenico-era asset M&A / disposal"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.35
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.10, -0.20]
+    source: "market speculation"
+
+waterfall:
+  bear: {p: 0.30, return_multiple: 0.40, rationale: "2027 FCF target missed; second dilutive event; payments multiples compress further"}
+  base: {p: 0.45, return_multiple: 2.50, rationale: "Plan delivers; FCF turns positive; payments multiple normalises to 4-5x EV/EBITDA"}
+  bull: {p: 0.25, return_multiple: 5.50, rationale: "FCF + asset sale + multi-bagger M&A interest; multiple to 6-7x"}
+
+anchor:
+  parties: ["Bpifrance", "Crédit Agricole (CASA)", "BNP Paribas", "Crédit Mutuel (BFCM)"]
+  pricing:
+    reserved_price: 2.75
+    rights_price: 0.202
+    current_price: 0.40
+    currency: EUR
+  stake_pct: 27.5
+  holds_debt: false
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["Bpifrance: Atos partial backing", "BFCM: SIX Group rights purchase"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: <2x FY24 EBITDA vs Adyen 30x, Nexi 7-8x = clear through-cycle asymmetry.
+    Leg 2: Four French anchor banks taking 27.5% capital with no fees and
+    voting bloc carrying the deal. No DIP, no cramdown.
+    Leg 3: Partial — anchor commitment is itself revealed preference, but
+    insider Form 4-equivalent (MAR Art. 19) buying through subscription
+    window has not been verified.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Major customer loss (>5% revenue) announced before end-2026"
+  - "Further governance turnover at CEO/CFO level"
+  - "2027 FCF guidance pushed beyond 2028"
+  - "Second dilutive event announced before 2027 FCF print"
+  - "Anchor bank reduces position before lockup expiry"
+
+pre_mortem: |
+  It is end-2028 and WLN is down 70% from entry around €0.40.
+
+  Most likely cause: the North Star 2030 plan slipped. 2027 FCF was still
+  negative due to (a) merchant churn from prior governance/fraud taint
+  persisting longer than expected and (b) cost-out programme delivering
+  €50-100m less than guided. Anchors did not exit but were unable to
+  rebuy at lockup expiry, removing the price-floor narrative. A second
+  rights issue at €0.10 was required to fund 2028 maturities.
+
+  Second-most-likely cause: M&A failed to materialise despite repeated
+  speculation; payments-sector multiple compression on AI disruption
+  thesis (Adyen and Nexi compressed in sympathy) left even successful
+  operational delivery uncompetitive on multiple.
+
+  Where this would show up first: half-year cost-out progress vs plan;
+  merchant retention disclosure in interim reports.
+
+history:
+  - {date: 2026-03-31, event: "Two-tier raise settled; entered Tier 1 watchlist", state_after: option}
+  - {date: 2026-06-04, event: "Promoted to core on framework review; gap 6.9x", state_after: core}
+
+factors:
+  primary: multiple_norm
+  exposures: ["European payments", "French sovereign", "post-deal multiple normalisation"]
+
+tier_rationale: |
+  Bucket A, Archetype A1. Triangulation 2.5/3 (Leg 3 partial pending
+  MAR Art. 19 insider verification). Alignment gap 6.9x — the LARGEST
+  in the entire universe. C7 dated 2027 (positive FCF inflection per
+  North Star 2030 plan). No active red flags. Anchors are
+  natural-owner French financial institutions, not loan-to-own funds.
+
+  WARNING: deal-term fields unverified pending cross-check with primary
+  prospectus. Sizing blocked at full conviction until verified.

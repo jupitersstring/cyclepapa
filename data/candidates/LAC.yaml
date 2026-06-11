@@ -1,0 +1,180 @@
+ticker: LAC
+isin: US53682J1043
+name: Lithium Americas
+jurisdiction: US
+exchange: NYSE
+sector: Lithium
+bucket: A
+archetype: [A2]
+state: core
+tier: 1
+
+deal:
+  date: 2025-10-15
+  mechanic: "DOE ATVM loan restructured for back-end deferral; GM JV intact; sub-commercial sovereign financing as economic anchor"
+  fields:
+    doe_atvm_face_usd_bn:
+      value: 2.26
+      source: "unverified"
+    doe_atvm_spread_to_treasury_bps:
+      value: 0
+      source: "unverified"
+      _note: "Sub-commercial; cannot be replicated by any private lender"
+    doe_atvm_tenor_years:
+      value: 24
+      source: "unverified"
+    debt_service_deferral_usd_m:
+      value: 184
+      source: "unverified"
+    lac_warrants_pct:
+      value: 5.0
+      source: "unverified"
+    warrant_strike_usd:
+      value: 0.01
+      source: "unverified"
+    jv_warrants_pct:
+      value: 5.0
+      source: "unverified"
+    gm_jv_stake_pct:
+      value: 38
+      source: "unverified"
+    gm_jv_payment_usd_m:
+      value: 625
+      source: "unverified"
+    first_draw_usd_m:
+      value: 435
+      source: "unverified"
+      _note: "Closed October 2025"
+    second_draw_usd_m:
+      value: 432
+      source: "unverified"
+      _note: "Closed February 2026"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: null
+  d4_dilution_pct: 10.0
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: 2
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: 10
+
+catalysts:
+  - event: "Thacker Pass Phase 1 mechanical completion"
+    window: [2027-09-01, 2028-03-31]
+    p_favorable: 0.65
+    rerate_if_yes: [2.0, 4.0]
+    hit_if_no: [-0.30, -0.50]
+    source: "company guidance"
+  - event: "First commercial lithium-carbonate production"
+    window: [2028-01-01, 2028-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.5, 3.0]
+    hit_if_no: [-0.20, -0.40]
+    source: "company guidance"
+  - event: "Lithium price cycle recovery (carbonate >$15k/t)"
+    window: [2025-12-01, 2028-12-31]
+    p_favorable: 0.50
+    rerate_if_yes: [1.5, 3.0]
+    hit_if_no: [-0.10, -0.30]
+    source: "industry consensus"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.40, rationale: "Construction delays beyond 2028; lithium cycle stays weak; DOE policy reversal under new administration"}
+  base: {p: 0.50, return_multiple: 3.00, rationale: "On-time first production; lithium $12-15k/t at start-up; sub-commercial financing pulls through to opex"}
+  bull: {p: 0.25, return_multiple: 6.00, rationale: "Early ramp + lithium recovery to $20k/t + EV demand surprise on tariff regime"}
+
+anchor:
+  parties: ["US Department of Energy (ATVM)", "General Motors"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: USD
+  stake_pct: null
+  holds_debt: true
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["DOE: Tesla 2010 ATVM (full recovery + warrant payback)", "GM: prior offtakes with Albemarle and POSCO"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: EV trades on spot lithium; sub-commercial financing NPV alone
+    estimated $400m+ (assuming spread vs investment-grade benchmark) not
+    in equity price.
+    Leg 2: DOE/GM are strategic-aligned not loan-to-own; no DIP; no
+    cramdown jurisdiction; GM JV economics aligned with equity holders.
+    Leg 3: Restructuring of debt service deferral with warrants (1¢ strike)
+    is itself revealed preference — DOE accepted equity-linked terms in
+    return for back-end relief, expecting equity to be worth multiples of
+    1¢ on exercise.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "DOE policy under new administration is a non-zero conditionality risk; not yet triggered"
+
+kill_criteria:
+  - "DOE ATVM acceleration or covenant trigger"
+  - "Phase 1 mechanical completion pushed past mid-2028"
+  - "Lithium carbonate price below $8k/t sustained 12+ months"
+  - "GM exits or reduces JV stake below 30%"
+  - "Equity raise needed before first commercial production"
+
+pre_mortem: |
+  It is mid-2029 and LAC is down 70% from entry.
+
+  Most likely cause: lithium cycle did not recover; carbonate prices stayed
+  below $10k/t through start-up despite EV market recovery, because Chinese
+  lepidolite supply continued to flood. Even with sub-commercial DOE
+  financing, ramp economics were uneconomic at spot, requiring additional
+  equity that diluted heavily.
+
+  Second-most-likely cause: DOE ATVM covenants tripped during construction
+  (delays + cost overruns), forcing renegotiation under a less-friendly
+  administration. Warrants accelerated, equity diluted, and the
+  sub-commercial spread advantage was clawed back.
+
+  Where this would show up first: quarterly lithium spot prices vs
+  break-even disclosed in earnings; cost-to-complete updates in 10-Q;
+  CHIPS/DOE policy guidance under new administration.
+
+history:
+  - {date: 2025-10-15, event: "DOE ATVM restructuring closed; first draw $435m", state_after: option}
+  - {date: 2026-02-15, event: "Second draw $432m closed; promoted to Tier 1", state_after: core}
+
+factors:
+  primary: cycle
+  exposures: ["lithium cycle", "EV demand", "US sovereign industrial policy", "Nevada construction"]
+
+tier_rationale: |
+  Bucket A, Archetype A2 (sovereign industrial-policy anchor — the
+  template-defining example alongside MP Materials). Triangulation 3/3.
+  C7 dated 2027-Q4 to 2028 (Phase 1 mechanical completion + first
+  commercial production). No active red flags; one watch flag on DOE
+  policy under new administration. Sub-commercial 24-year 0%-spread
+  financing is the unique structural feature — embedded NPV of the
+  financing alone is material vs current market cap.
+
+  WARNING: deal-term fields unverified pending cross-check with DOE
+  conditional commitment letter and company 10-K. Sizing blocked at
+  full conviction until verified.

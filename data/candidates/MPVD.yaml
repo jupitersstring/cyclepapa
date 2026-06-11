@@ -1,0 +1,155 @@
+ticker: MPVD
+isin: CA62426A1057
+name: Mountain Province Diamonds
+jurisdiction: CA
+exchange: TSX
+sector: Diamonds
+bucket: A
+archetype: [F, B]
+state: core
+tier: 1
+
+deal:
+  date: 2025-03-19
+  mechanic: "Second-lien extension to Dec 2027 + Dunebridge bridge loan; founder owns both equity and debt"
+  fields:
+    second_lien_face_m_usd:
+      value: 177
+      source: "unverified"
+      _note: "Cross-check against company news release"
+    second_lien_coupon_pct:
+      value: 9.0
+      source: "unverified"
+    second_lien_new_maturity:
+      value: 2027-12-31
+      source: "unverified"
+    next_interest_deferral:
+      value: 2026-06-30
+      source: "unverified"
+    bridge_provider:
+      value: "Dunebridge Worldwide Ltd. (Desmond)"
+      source: "unverified"
+    bridge_size_m_usd:
+      value: 20
+      source: "unverified"
+    gahcho_kue_stake_pct:
+      value: 49.0
+      source: "unverified"
+      _note: "JV with De Beers (51%)"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: null
+  d4_dilution_pct: 0.0
+  d5_delta_wam_months: 33
+  d6_debt_tranches_post: 2
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: 4
+
+catalysts:
+  - event: "NEX high-grade orebody first production"
+    window: [2026-01-01, 2027-06-30]
+    p_favorable: 0.65
+    rerate_if_yes: [2.5, 4.0]
+    hit_if_no: [-0.30, -0.50]
+    source: "unverified"
+  - event: "Rough diamond price index recovery (>20% from 2024 trough)"
+    window: [2025-07-01, 2027-12-31]
+    p_favorable: 0.45
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.10, -0.30]
+    source: "industry consensus"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.30, rationale: "Diamond cycle deepens; NEX grade disappoints; another raise needed"}
+  base: {p: 0.50, return_multiple: 2.50, rationale: "NEX produces in line; diamond cycle flat-to-up; debt serviced"}
+  bull: {p: 0.25, return_multiple: 5.00, rationale: "NEX grade exceeds expectations + rough price recovery"}
+
+anchor:
+  parties: ["Dermot Desmond / Dunebridge"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: CAD
+  stake_pct: null
+  holds_debt: true
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["International Investment & Underwriting (IIU)", "Daon Group"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Substitute test: founder owning BOTH sides of cap stack eliminates the
+    fulcrum conflict that breaks most recaps. This is treated as 3/3 by
+    construction since the parties whose interests would normally diverge
+    are the same party.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Rough diamond price index breaks below 2024 trough"
+  - "NEX Q3 2026 grade < 0.75 carats/tonne (versus expected 1.0-1.4)"
+  - "Desmond / Dunebridge reduces equity holding by >25%"
+  - "Second covenant amendment required before 2026-Q4"
+  - "Going-concern qualification returns to auditor's report"
+
+pre_mortem: |
+  It is mid-2028 and MPVD is down ~70% from entry.
+
+  Most likely cause: NEX orebody grades disappointed. Q1 2027 production
+  came in at 0.7 ct/t versus expected 1.2+ ct/t; cash costs ballooned;
+  another bridge facility was required and Dunebridge converted debt to
+  equity at a punitive ratio that wiped most of the pre-existing public
+  float. Diamond cycle had not yet turned.
+
+  Second-most-likely cause: rough price index broke 2024 lows as lab-grown
+  supply continued displacing natural diamonds in the 0.5-2ct range and
+  Russian sanctions enforcement remained patchy. Even high-grade NEX
+  production was uneconomic at realized prices.
+
+  Where this would show up first: quarterly production updates (grade,
+  recovered carats per tonne); De Beers JV partner commentary on rough
+  pricing in their interim/full-year results.
+
+history:
+  - {date: 2025-03-19, event: "Second-lien refi + Dunebridge bridge closed", state_after: watch}
+  - {date: 2026-06-04, event: "Promoted to Tier 1 / core on framework review", state_after: core}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["diamond cycle", "small-cap illiquidity", "Canadian junior miner"]
+
+tier_rationale: |
+  Bucket A, Archetype F+B. Triangulation 3/3 by founder-both-sides
+  substitution (Desmond owns both equity and second-lien notes via
+  Dunebridge, eliminating fulcrum conflict by construction). C7
+  catalyst dated 2026-Q1 to 2027-Q2 (NEX orebody first production).
+  No active red flags. No alignment-gap metric available because no
+  equity issuance; the economic alignment is on debt-equity ownership
+  instead. Small float means re-rating can be violent.
+
+  WARNING: as of 2026-06-04 the deal-term fields are tagged
+  `unverified`. Sizing is blocked until the five key numbers are
+  cross-checked against the primary filing.
