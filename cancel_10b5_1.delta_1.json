@@ -48549,5 +48549,3640 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "NXRT": {
+    "ticker": "NXRT",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-192096",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001193125-26-077343",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001193125-25-254873",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000950170-25-100309",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000950170-25-062150",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000950170-25-027741",
+        "filing_date": "2025-02-26"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NXTT": {
+    "ticker": "NXTT",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-048836",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001213900-26-037199",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001213900-25-097321",
+        "filing_date": "2025-10-08"
+      },
+      {
+        "accession": "0001213900-25-073282",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001213900-25-041307",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "accession": "0001013762-25-003282",
+        "filing_date": "2025-03-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "NYXH": {
+    "ticker": "NYXH",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-071359",
+        "filing_date": "2026-06-08"
+      },
+      {
+        "accession": "0001104659-26-070518",
+        "filing_date": "2026-06-04"
+      },
+      {
+        "accession": "0001104659-26-059386",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001104659-26-035161",
+        "filing_date": "2026-03-26"
+      },
+      {
+        "accession": "0001104659-26-032163",
+        "filing_date": "2026-03-19"
+      },
+      {
+        "accession": "0001410578-25-000398",
+        "filing_date": "2025-03-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OBAI": {
+    "ticker": "OBAI",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-023347",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001493152-26-014133",
+        "filing_date": "2026-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OBT": {
+    "ticker": "OBT",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-058511",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001104659-26-028308",
+        "filing_date": "2026-03-16"
+      },
+      {
+        "accession": "0001104659-25-108979",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "accession": "0001558370-25-011005",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "accession": "0001558370-25-007391",
+        "filing_date": "2025-05-12"
+      },
+      {
+        "accession": "0001558370-25-003120",
+        "filing_date": "2025-03-17"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OCC": {
+    "ticker": "OCC",
+    "quarters_scanned": [
+      {
+        "accession": "0001437749-26-019811",
+        "filing_date": "2026-06-08"
+      },
+      {
+        "accession": "0001437749-26-007463",
+        "filing_date": "2026-03-10"
+      },
+      {
+        "accession": "0001437749-25-038228",
+        "filing_date": "2025-12-18"
+      },
+      {
+        "accession": "0001437749-25-028857",
+        "filing_date": "2025-09-11"
+      },
+      {
+        "accession": "0001437749-25-019494",
+        "filing_date": "2025-06-05"
+      },
+      {
+        "accession": "0001437749-24-038248",
+        "filing_date": "2024-12-23"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OCCIN": {
+    "ticker": "OCCIN",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OCSL": {
+    "ticker": "OCSL",
+    "quarters_scanned": [
+      {
+        "accession": "0001414932-26-000012",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001414932-26-000005",
+        "filing_date": "2026-02-04"
+      },
+      {
+        "accession": "0001414932-25-000022",
+        "filing_date": "2025-11-18"
+      },
+      {
+        "accession": "0001414932-25-000016",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001414932-25-000010",
+        "filing_date": "2025-05-01"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ODD": {
+    "ticker": "ODD",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-069208",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001104659-26-029490",
+        "filing_date": "2026-03-17"
+      },
+      {
+        "accession": "0001104659-26-026760",
+        "filing_date": "2026-03-12"
+      },
+      {
+        "accession": "0001104659-26-019403",
+        "filing_date": "2026-02-25"
+      },
+      {
+        "accession": "0001104659-26-002927",
+        "filing_date": "2026-01-12"
+      },
+      {
+        "accession": "0001410578-25-000198",
+        "filing_date": "2025-02-25"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OESX": {
+    "ticker": "OESX",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-257468",
+        "filing_date": "2026-06-04"
+      },
+      {
+        "accession": "0001193125-26-039420",
+        "filing_date": "2026-02-05"
+      },
+      {
+        "accession": "0001193125-25-266990",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "accession": "0000950170-25-104003",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0000950170-25-090385",
+        "filing_date": "2025-06-26"
+      },
+      {
+        "accession": "0000950170-25-017947",
+        "filing_date": "2025-02-11"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OFRM": {
+    "ticker": "OFRM",
+    "quarters_scanned": [
+      {
+        "accession": "0001696556-26-000015",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001696556-26-000004",
+        "filing_date": "2026-03-16"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OGC": {
+    "ticker": "OGC",
+    "quarters_scanned": [
+      {
+        "accession": "0001279569-26-000523",
+        "filing_date": "2026-06-10"
+      },
+      {
+        "accession": "0001279569-26-000428",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001279569-26-000392",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001279569-26-000365",
+        "filing_date": "2026-05-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OGEN": {
+    "ticker": "OGEN",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-021967",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001493152-26-010282",
+        "filing_date": "2026-03-16"
+      },
+      {
+        "accession": "0001493152-25-021257",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0001641172-25-022766",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001641172-25-009464",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "accession": "0001493152-25-010389",
+        "filing_date": "2025-03-14"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 31, 2024",
+          "December 31, 2024",
+          "December 31, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "statement or an applicable exemption from the registration requirements of the Act and such applicable state securities laws. &#160; Going Concern &#160; We have incurred significant net losses and negative cash flow in each year since our inception, including net losses of $10.6 million and $20.7 million for the years ended December 31, 2024 and 2023 respectively. As of December 31, 2024, our accumulated deficit was $216.8 million. &#160; We have devoted a significant amount of our financial resources to research and development, including our nonclinical development activities and clinical t",
+        "accession": "0001493152-25-010389",
+        "filing_date": "2025-03-14"
+      }
+    ],
+    "score": -8.0,
+    "reasons": [
+      "BEARISH terminate buy: an insider (director) [-8]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 1,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OII": {
+    "ticker": "OII",
+    "quarters_scanned": [
+      {
+        "accession": "0000073756-26-000082",
+        "filing_date": "2026-04-23"
+      },
+      {
+        "accession": "0000073756-26-000016",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0000073756-25-000180",
+        "filing_date": "2025-10-23"
+      },
+      {
+        "accession": "0000073756-25-000160",
+        "filing_date": "2025-07-24"
+      },
+      {
+        "accession": "0000073756-25-000090",
+        "filing_date": "2025-04-24"
+      },
+      {
+        "accession": "0000073756-25-000016",
+        "filing_date": "2025-02-24"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Jennifer F. Simons",
+        "role": "Senior Vice President",
+        "shares": 825427,
+        "dates_near": [
+          "December 31, 2015",
+          "December 31, 2024",
+          "May 1, 2025",
+          "August 1, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "71,759 (1) All purchases during the covered periods were made under the share repurchase program, which was approved by our Board of Directors in December 2014 and which authorized the repurchase of up to 10 million shares of our common stock on a discretionary basis. Under the program, which has no expiration date, we had repurchased 2.0 million shares for approximately $100 million through December 31, 2015 and 825,427 shares for approximately $ 20 million in the year ended December 31, 2024. Item 5. Other Information On May 1, 2025, Jennifer F. Simons, Senior Vice President, Chief Legal Off",
+        "accession": "0000073756-25-000160",
+        "filing_date": "2025-07-24"
+      }
+    ],
+    "score": -18.0,
+    "reasons": [
+      "BEARISH adopt sell: Jennifer F. Simons (Senior Vice President) 825,427sh [-18]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 1,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OIO": {
+    "ticker": "OIO",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-020812",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001493152-26-020804",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001493152-26-020594",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001493152-26-019185",
+        "filing_date": "2026-04-27"
+      },
+      {
+        "accession": "0001493152-26-018491",
+        "filing_date": "2026-04-22"
+      },
+      {
+        "accession": "0001641172-25-006599",
+        "filing_date": "2025-04-29"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OKTA": {
+    "ticker": "OKTA",
+    "quarters_scanned": [
+      {
+        "accession": "0001660134-26-000051",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001660134-26-000020",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001660134-25-000171",
+        "filing_date": "2025-12-03"
+      },
+      {
+        "accession": "0001660134-25-000157",
+        "filing_date": "2025-08-27"
+      },
+      {
+        "accession": "0001660134-25-000093",
+        "filing_date": "2025-05-28"
+      },
+      {
+        "accession": "0001660134-25-000049",
+        "filing_date": "2025-03-05"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Todd McKinnon",
+        "role": "Chairperson and Chief Executive Officer",
+        "shares": 97083,
+        "dates_near": [
+          "January 5, 2026",
+          "April 30, 2026",
+          "April 8, 2026",
+          "July 8, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "y arise by reason of their status or service as directors, officers or employees. No material demands have been made upon us to provide indemnification under such agreements and there are no claims that we are aware of that could have a material effect on our condensed consolidated balance sheets, condensed consolidated statements of operations, condensed consolidated statements of comprehensive income, or condensed consolidated statements of cash flows. Critical Accounting Estimates There have been no significant changes to our crit ||SECT|| f Shares Purchased as Part of Publicly Announced Pr",
+        "accession": "0001660134-26-000051",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a 10b5-1 Plan",
+        "plan_type": "sell",
+        "neo": "Brett Tighe",
+        "role": "Chief Financial Officer",
+        "shares": 97083,
+        "dates_near": [
+          "January 5, 2026",
+          "April 30, 2026",
+          "April 8, 2026",
+          "July 8, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "s) Approximate Dollar Value of Shares that May Yet Be Purchased Under the Program (2) (in millions) February 1 - 28 480 $ 85.00&#160; 480 $ 880&#160; March 1 - 31 1,908 78.10 1,908 731&#160; April 1 - 30 639 79.85 639 680&#160; First Quarter 2027 3,027 $ 79.56&#160; 3,027 $ 680&#160; (1) Includes related commissions. (2) On January 5, 2026, our board authorized a program to repurchase up to $1&#160;billion of our common stock. Item 5. Other Information Rule 10b5-1 Trading Arrangements During the three months ended April 30, 2026, the following director and executive officers adopted Rule 10b5-",
+        "accession": "0001660134-26-000051",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 13205,
+        "dates_near": [
+          "January 31, 2026",
+          "January 31, 2026",
+          "December 12, 2025",
+          "December 24, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "to two six-month purchase periods. The ESPP contains a reset provision under which the offering period resets if the fair market value of the Company&#8217;s common stock on the purchase date is less than the fair market value on the offering date. The Company estimated the fair value of ESPP purchase rights using a Black-Scholes option pricing model with the following assumptions: Year Ended January 31, 2026 2025 2024 Expected volatility 31 % - 58 % 42 % - 44 % 46 % - 74 % Expected term (in years) 0.5 - 1.0 0.5 - 1.0 0.5 ||SECT|| es that any controls and procedures, no matter how well designe",
+        "accession": "0001660134-26-000020",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Shibu Ninan",
+        "role": "Chief Accounting Officer",
+        "shares": 5016,
+        "dates_near": [
+          "October 14, 2025",
+          "January 13, 2026",
+          "April 15, 2026",
+          "March 13, 2017"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rketing 271 &#160; 256 &#160; 754 &#160; 730 &#160; General and administrative 118 &#160; 110 &#160; 334 &#160; 335 &#160; Total operating expenses 549 &#160; 524 &#160; 1,562 &#160; 1,550 &#160; Operating income (loss) 23 &#160; ( 16 ) 103 &#160; ( 82 ) Interest expense ( 1 ) ( 1 ) ( 3 ) ( 4 ) Interest income and other, net 28 &#160; 26 &#160; 85 &#160; 82 &#160; Gain on early extinguishment of debt &#8212; &#160; 16 &#160; &#8212; &#160; 19 &#160; Interest and other, net 27 &#160; 41 &#160; 82 &#160; 97 &#160; Income before provision for income taxes 50 &#160; ||SECT|| as a cyber-attack, war",
+        "accession": "0001660134-25-000171",
+        "filing_date": "2025-12-03"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Larissa Schwartz",
+        "role": "Chief Legal Officer",
+        "shares": 14163,
+        "dates_near": [
+          "July 3, 2025",
+          "October 8, 2025",
+          "September 30, 2026",
+          "July 15, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "474 &#160; General and administrative 113 &#160; 108 &#160; 216 &#160; 225 &#160; Total operating expenses 519 &#160; 510 &#160; 1,013 &#160; 1,026 &#160; Operating income (loss) 41 &#160; ( 19 ) 80 &#160; ( 66 ) Interest expense ( 1 ) ( 1 ) ( 2 ) ( 3 ) Interest income and other, net 27 &#160; 29 &#160; 57 &#160; 56 &#160; Gain on early extinguishment of debt &#8212; &#160; 3 &#160; &#8212; &#160; 3 &#160; Interest and other, net 26 &#160; 31 &#160; 55 &#160; 56 &#160; Income (loss) before provision for (benefit from) income taxes 67 &#160; 1 ||SECT|| as a cyber-attack, war or terrorist attack",
+        "accession": "0001660134-25-000157",
+        "filing_date": "2025-08-27"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a 10b5-1 Plan",
+        "plan_type": "sell",
+        "neo": "Brett Tighe",
+        "role": "Chief Financial Officer",
+        "shares": 14163,
+        "dates_near": [
+          "July 3, 2025",
+          "October 8, 2025",
+          "September 30, 2026",
+          "July 15, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "imilar events or disruptions. Such events could result in reputational harm, delays in our application development, breaches of data security and loss of critical data. While we have backup systems for certain aspects of our operations, disaster recovery planning by its nature cannot be sufficient for all eventualities. In addition, the insurance we maintain may be insufficient to compensate for losses from a major interruption. Item 5. Other Information Rule 10b5-1 Trading Arrangements During the three months ended July&#160;31, 2025, the following executive officers adopted Rule 10b5-1 tradi",
+        "accession": "0001660134-25-000157",
+        "filing_date": "2025-08-27"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Jon Addison",
+        "role": "Chief Revenue Officer",
+        "shares": 12000,
+        "dates_near": [
+          "April 30, 2025",
+          "April 14, 2025",
+          "July 14, 2025",
+          "November 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "me (loss) before provision for income taxes 68 &#160; ( 22 ) Provision for income taxes 6 &#160; 18 &#160; Net income (loss) $ 62 &#160; $ ( 40 ) Net income (loss) per share, basic $ 0.36 &#160; $ ( 0.24 ) Net income (loss) per share, diluted $ 0.35 &#160; $ ( 0.24 ) &#160; &#160; Weighted-average shares used to compute net income (loss) per share, basic 174,172 &#160; 167,465 &#160; Weighted-average shares used to compute net income (loss) per share, diluted 181,754 &#160; 167,465 &#160; See Notes to Condense ||SECT|| a cyber-attack, war or terrorist attack; a health epidemic; or similar even",
+        "accession": "0001660134-25-000093",
+        "filing_date": "2025-05-28"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a 10b5-1 Plan",
+        "plan_type": "sell",
+        "neo": "Brett Tighe",
+        "role": "Chief Financial Officer",
+        "shares": 12000,
+        "dates_near": [
+          "April 30, 2025",
+          "April 14, 2025",
+          "July 14, 2025",
+          "November 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "vents or disruptions. Such events could result in reputational harm, delays in our application development, breaches of data security and loss of critical data. While we have backup systems for certain aspects of our operations, disaster recovery planning by its nature cannot be sufficient for all eventualities. In addition, the insurance we maintain may be insufficient to compensate for losses from a major interruption. 57 Item 5. Other Information Rule 10b5-1 Trading Arrangements During the three months ended April 30, 2025, the following members of our board of directors or executive office",
+        "accession": "0001660134-25-000093",
+        "filing_date": "2025-05-28"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a 10b5-1 Plan",
+        "plan_type": "sell",
+        "neo": "Brett Tighe",
+        "role": "Chief Financial Officer",
+        "shares": 40000,
+        "dates_near": [
+          "April 30, 2025",
+          "April 14, 2025",
+          "July 14, 2025",
+          "November 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ies. In addition, the insurance we maintain may be insufficient to compensate for losses from a major interruption. 57 Item 5. Other Information Rule 10b5-1 Trading Arrangements During the three months ended April 30, 2025, the following members of our board of directors or executive officers adopted Rule 10b5-1 trading arrangements that are intended to satisfy the affirmative defense of Rule 10b5-1(c) of the Exchange Act (each, a &#8220;10b5-1 Plan&#8221;): &#8226; Jon Addison , Chief Revenue Officer , adopted a 10b5-1 Plan on April 14, 2025 that provides for the sale of up to 12,000 shares o",
+        "accession": "0001660134-25-000093",
+        "filing_date": "2025-05-28"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a 10b5-1 Plan",
+        "plan_type": "sell",
+        "neo": "Todd McKinnon",
+        "role": "Chief Executive Officer",
+        "shares": 40989,
+        "dates_near": [
+          "April 14, 2025",
+          "July 14, 2025",
+          "November 30, 2025",
+          "April 14, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": ", adopted a 10b5-1 Plan on April 14, 2025 that provides for the sale of up to 12,000 shares of our Class A common stock, plus an indeterminable number of shares to be acquired upon the future vesting of RSUs. The 10b5-1 Plan provides for sales from July 14, 2025 until all shares are sold or November 30, 2025 , whichever occurs first. &#8226; Brett Tighe , Chief Financial Officer , adopted a 10b5-1 Plan on April 14, 2025 that provides for the sale of up to 40,000 shares of our Class A common stock. The 10b5-1 Plan provides for sales from July 14, 2025 until all shares are sold or October 29, 20",
+        "accession": "0001660134-25-000093",
+        "filing_date": "2025-05-28"
+      }
+    ],
+    "score": -80.0,
+    "reasons": [
+      "BEARISH adopt sell: Todd McKinnon (Chairperson and Chief Executiv) 97,083sh [-20]",
+      "BEARISH adopt sell: Brett Tighe (Chief Financial Officer) 97,083sh [-18]",
+      "BEARISH adopt sell: an insider (director) 13,205sh [-8]",
+      "weak BEARISH adopt sell (small): Shibu Ninan (Chief Accounting Officer) 5,016sh [-3]",
+      "BEARISH adopt sell: Larissa Schwartz (Chief Legal Officer) 14,163sh [-8]",
+      "BEARISH adopt sell: Brett Tighe (Chief Financial Officer) 14,163sh [-8]",
+      "BEARISH adopt sell: Jon Addison (Chief Revenue Officer) 12,000sh [-8]",
+      "BEARISH adopt sell: Brett Tighe (Chief Financial Officer) 12,000sh [-8]",
+      "BEARISH adopt sell: Brett Tighe (Chief Financial Officer) 40,000sh [-18]",
+      "BEARISH adopt sell: Todd McKinnon (Chief Executive Officer) 40,989sh [-20]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 10,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OLN": {
+    "ticker": "OLN",
+    "quarters_scanned": [
+      {
+        "accession": "0000074303-26-000063",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0000074303-26-000027",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0000074303-25-000134",
+        "filing_date": "2025-10-28"
+      },
+      {
+        "accession": "0000074303-25-000113",
+        "filing_date": "2025-07-29"
+      },
+      {
+        "accession": "0000074303-25-000071",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000074303-25-000023",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OLPX": {
+    "ticker": "OLPX",
+    "quarters_scanned": [
+      {
+        "accession": "0001868726-26-000036",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001868726-26-000009",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001868726-25-000107",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001868726-25-000082",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0001868726-25-000061",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001868726-25-000013",
+        "filing_date": "2025-03-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OMH": {
+    "ticker": "OMH",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-048586",
+        "filing_date": "2026-04-28"
+      },
+      {
+        "accession": "0001213900-26-047239",
+        "filing_date": "2026-04-24"
+      },
+      {
+        "accession": "0001213900-26-015849",
+        "filing_date": "2026-02-13"
+      },
+      {
+        "accession": "0001213900-26-002707",
+        "filing_date": "2026-01-09"
+      },
+      {
+        "accession": "0001213900-26-002706",
+        "filing_date": "2026-01-09"
+      },
+      {
+        "accession": "0001641172-25-006592",
+        "filing_date": "2025-04-29"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONBPO": {
+    "ticker": "ONBPO",
+    "quarters_scanned": [
+      {
+        "accession": "0000707179-26-000038",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0000707179-26-000010",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0000707179-25-000064",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000707179-25-000018",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000707179-25-000009",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0000707179-25-000005",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONCO": {
+    "ticker": "ONCO",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-055483",
+        "filing_date": "2026-05-13"
+      },
+      {
+        "accession": "0001213900-26-027725",
+        "filing_date": "2026-03-13"
+      },
+      {
+        "accession": "0001213900-25-110142",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001213900-25-076032",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001213900-25-053914",
+        "filing_date": "2025-06-12"
+      },
+      {
+        "accession": "0001213900-25-049687",
+        "filing_date": "2025-06-02"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONEW": {
+    "ticker": "ONEW",
+    "quarters_scanned": [
+      {
+        "accession": "0001772921-26-000037",
+        "filing_date": "2026-05-04"
+      },
+      {
+        "accession": "0001772921-26-000022",
+        "filing_date": "2026-02-09"
+      },
+      {
+        "accession": "0001772921-25-000085",
+        "filing_date": "2025-12-15"
+      },
+      {
+        "accession": "0001772921-25-000040",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001772921-25-000025",
+        "filing_date": "2025-05-02"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ONL": {
+    "ticker": "ONL",
+    "quarters_scanned": [
+      {
+        "accession": "0001873923-26-000082",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001873923-26-000038",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001873923-25-000130",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001873923-25-000117",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0001873923-25-000082",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001873923-25-000032",
+        "filing_date": "2025-03-05"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OOMA": {
+    "ticker": "OOMA",
+    "quarters_scanned": [
+      {
+        "accession": "0001327688-26-000014",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001327688-26-000009",
+        "filing_date": "2026-04-03"
+      },
+      {
+        "accession": "0001193125-25-312961",
+        "filing_date": "2025-12-09"
+      },
+      {
+        "accession": "0001327688-25-000008",
+        "filing_date": "2025-09-05"
+      },
+      {
+        "accession": "0000950170-25-083284",
+        "filing_date": "2025-06-09"
+      },
+      {
+        "accession": "0000950170-25-048692",
+        "filing_date": "2025-04-01"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Jenny Yeh",
+        "role": "Senior Vice President",
+        "shares": 58063,
+        "dates_near": [
+          "April 1, 2026",
+          "June 15, 2027",
+          "April 30, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "; &#160; &#160; &#160; 17,871 &#160; Cash and cash equivalents, at end of period &#160; $ &#160; 17,162 &#160; &#160; $ &#160; 18,988 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; See notes to condensed consolidated financial statements Ooma | FY2027 Form 10-Q | 5 &#160; OOMA, INC. C ONDENSED CONSOLIDATED STATEMENTS OF STOCKHOLDERS&#8217; EQUITY (Unaudited, amounts in thousands) &#160; &#160; Common stock &#160; &#160; &#160; &#160; &#160 ||SECT|| nts. These withheld shares are not issued or considered common stock repurchases under our stock repurchase program and ther",
+        "accession": "0001327688-26-000014",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Jenny Yeh",
+        "role": "Senior Vice President",
+        "shares": 14829,
+        "dates_near": [
+          "January 31, 2025",
+          "December 31, 2024",
+          "March 31, 2026",
+          "December 30, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "wance resulting from the recording of certain intangible assets associated with the acquisition of 2600Hz, as well as a $1.0 million gain on consolidation of facility costs, partially offset by $0.7 million in acquisition related costs and $0.5 million of certain restructuring costs, which did not recur in fiscal 2025. &#8226; Non-GAAP net income was $18.0 million, compared to $15.4 million in fiscal 2024. &#8226; Adjusted EBITDA was $23.3 million, or 9% of revenue, compared to $19.8 million in fiscal 2024. &#8226; Cash flow provided by operating activities was $26.6 million, compared to $12.3",
+        "accession": "0000950170-25-048692",
+        "filing_date": "2025-04-01"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Shig Hamamatsu",
+        "role": "Senior Vice President",
+        "shares": 14829,
+        "dates_near": [
+          "January 31, 2025",
+          "December 31, 2024",
+          "March 31, 2026",
+          "December 30, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "6; Cash flow provided by operating activities was $26.6 million, compared to $12.3 million in fiscal 2024. &#8226; As of January 31, 2025, we had total cash and cash equivalents of $ ||SECT|| ernal control over financial reporting may not prevent or detect misstatements and projections of any evaluation of effectiveness to future periods are subject to the risk that controls may become inadequate because of changes in conditions, or that the degree of compliance with the policies or procedures may deteriorate. ITEM 9B. Other Information On December 31, 2024 , Jenny Yeh , our Senior Vice Presid",
+        "accession": "0000950170-25-048692",
+        "filing_date": "2025-04-01"
+      }
+    ],
+    "score": -28.0,
+    "reasons": [
+      "BEARISH adopt sell: Jenny Yeh (Senior Vice President) 58,063sh [-12]",
+      "BEARISH adopt sell: Jenny Yeh (Senior Vice President) 14,829sh [-8]",
+      "BEARISH adopt sell: Shig Hamamatsu (Senior Vice President) 14,829sh [-8]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 3,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OPENL": {
+    "ticker": "OPENL",
+    "quarters_scanned": [
+      {
+        "accession": "0001801169-26-000014",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001801169-26-000010",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001801169-25-000092",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001801169-25-000074",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001801169-25-000038",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001801169-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "canceled the 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "September 12, 2025",
+          "August 13, 2024",
+          "September 12, 2025",
+          "January 1, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "n number of shares to be purchased in the future pursuant to the Company&#8217;s Employee Stock Purchase Plan. The aggregate number of Ms. Schaub&#8217;s RSU shares that will be available for sale under the Plan is not yet determinable because the shares available will be net of shares sold to satisfy tax withholding obligations that arise in connection with the vesting and settlement of such RSU awards. Rule 10b5-1 Sell to Cover Instruction Letter On August&#160;5, 2025, Mr. Radhakrishna and Mr. Freiha each entered into a 10b5-1 Instruction Letter (the &#8220;Instructions&#8221;) with respect",
+        "accession": "0001801169-25-000092",
+        "filing_date": "2025-11-06"
+      }
+    ],
+    "score": 18.0,
+    "reasons": [
+      "BULLISH terminate sell: an insider (?) [+18]"
+    ],
+    "counts": {
+      "term_sell": 1,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OPP": {
+    "ticker": "OPP",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OPTX": {
+    "ticker": "OPTX",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-023833",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001493152-26-014180",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001493152-25-022438",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001493152-25-016964",
+        "filing_date": "2025-10-06"
+      },
+      {
+        "accession": "0001493152-25-016962",
+        "filing_date": "2025-10-06"
+      },
+      {
+        "accession": "0001493152-25-016960",
+        "filing_date": "2025-10-06"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OR": {
+    "ticker": "OR",
+    "quarters_scanned": [
+      {
+        "accession": "0001171843-26-003170",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001062993-26-002369",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001171843-26-002876",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001062993-26-002014",
+        "filing_date": "2026-04-16"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ORI": {
+    "ticker": "ORI",
+    "quarters_scanned": [
+      {
+        "accession": "0000074260-26-000072",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0000074260-26-000008",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0000074260-25-000153",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0000074260-25-000133",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0000074260-25-000096",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000074260-25-000042",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": "Craig R. Smiddy",
+        "role": "Chief Executive Officer",
+        "shares": null,
+        "dates_near": [
+          "February 28, 2025",
+          "March 31, 2025",
+          "March 1, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "2 &#160; 194.4 &#160; Other changes ( 19.0 ) &#8212; &#160; Balance, end of period $ ( 19.0 ) $ &#8212; &#160; Noncontrolling Interests: Balance, beginning of period $ &#8212; &#160; $ &#8212; &#160; Net income attributable to noncontrolling interests 1.1 &#160; &#8212; &#160; Net effect of changes in ownership and other 24.8 &#160; &#8212; &#160; Balance, end of period $ 26.0 &#160; $ &#8212; &#160; See accompanying Notes to Consolidated Financial Statements. 6 Old Repu ||SECT|| 40,277 $ 206.2&#160; February 1 - February 28, 2025 &#8212; $ &#8212;&#160; 0 206.2&#160; March 1 - March 31, 2025 ",
+        "accession": "0000074260-25-000096",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "September 11, 2001"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "rers such as the Company remain liable for unlimited amounts in excess of reinsured limits. Other than the substantial concentration of workers' compensation losses caused by the September 11, 2001 terrorist attack on America, to the best of the Company's knowledge there had not been a similar accumulation of claims in a single location from a single occurrence prior to that event. Nevertheless, the possibility continues to exist that non-reinsured losses could, depending on a wide range of severity and frequency assumptions, aggregate several hundred million dollars to an insurer such as the ",
+        "accession": "0000074260-26-000008",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "CEO",
+        "shares": null,
+        "dates_near": [
+          "September 11, 2001"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ge there had not been a similar accumulation of claims in a single location from a single occurrence prior to that event. Nevertheless, the possibility continues to exist that non-reinsured losses could, depending on a wide range of severity and frequency assumptions, aggregate several hundred million dollars to an insurer such as the Company. Such aggregation of losses could occur in the event of a catastrophe such as an earthquake that could lead to the death or injury of a large number of persons concentrated in a single facility such as a high-rise building. As a result of the September 11",
+        "accession": "0000074260-25-000042",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "score": 25.0,
+    "reasons": [
+      "neutral terminate (type unknown): Craig R. Smiddy (Chief Executive Officer) [+10]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (CEO) [+10]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 3
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ORIQU": {
+    "ticker": "ORIQU",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-023741",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001493152-26-013616",
+        "filing_date": "2026-03-30"
+      },
+      {
+        "accession": "0001493152-25-023504",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001641172-25-024008",
+        "filing_date": "2025-08-14"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ORLA": {
+    "ticker": "ORLA",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-072192",
+        "filing_date": "2026-06-10"
+      },
+      {
+        "accession": "0001279569-26-000515",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001176256-26-000080",
+        "filing_date": "2026-06-04"
+      },
+      {
+        "accession": "0001279569-26-000505",
+        "filing_date": "2026-06-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ORRF": {
+    "ticker": "ORRF",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-032835",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001628280-26-017278",
+        "filing_date": "2026-03-12"
+      },
+      {
+        "accession": "0001628280-25-049898",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000826154-25-000179",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0000826154-25-000132",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "accession": "0000826154-25-000090",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OSK": {
+    "ticker": "OSK",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-214298",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001193125-26-054061",
+        "filing_date": "2026-02-17"
+      },
+      {
+        "accession": "0001193125-25-256137",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000950170-25-101362",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0000950170-25-060988",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0000950170-25-024305",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading arrangement",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Director",
+        "shares": null,
+        "dates_near": [
+          "March 31, 2026",
+          "February 3, 2026",
+          "May 29, 2026",
+          "May 5, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "&#160; &#160; &#8212; ||SECT|| 160; (1) In May 2022, the Board of Directors approved a Common Stock repurchase authorization of 12,000,000 shares. At March 31, 2026, the Company had repurchased 4,357,723 shares under this authorization. As a result, the Company had 7,642,277 shares of Common Stock remaining available for repurchase under the authorization. The Company can use the current authorization at any time as there is no expiration date associated with the authorization. From time to time, the Company may enter into a Rule 10b5-1 trading plan for the purpose of repurchasing shares under",
+        "accession": "0001193125-26-214298",
+        "filing_date": "2026-05-08"
+      }
+    ],
+    "score": -12.0,
+    "reasons": [
+      "BEARISH adopt sell: an insider (Director) [-12]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 1,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OST": {
+    "ticker": "OST",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-038058",
+        "filing_date": "2026-04-01"
+      },
+      {
+        "accession": "0001213900-26-007702",
+        "filing_date": "2026-01-26"
+      },
+      {
+        "accession": "0001213900-26-002527",
+        "filing_date": "2026-01-08"
+      },
+      {
+        "accession": "0001213900-25-109958",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001213900-25-100708",
+        "filing_date": "2025-10-21"
+      },
+      {
+        "accession": "0001213900-25-007016",
+        "filing_date": "2025-01-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OTLY": {
+    "ticker": "OTLY",
+    "quarters_scanned": [
+      {
+        "accession": "0001843586-26-000018",
+        "filing_date": "2026-05-20"
+      },
+      {
+        "accession": "0001843586-26-000016",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001843586-26-000015",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001843586-26-000012",
+        "filing_date": "2026-04-27"
+      },
+      {
+        "accession": "0001843586-26-000004",
+        "filing_date": "2026-03-13"
+      },
+      {
+        "accession": "0000950170-25-038739",
+        "filing_date": "2025-03-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OWL": {
+    "ticker": "OWL",
+    "quarters_scanned": [
+      {
+        "accession": "0001823945-26-000026",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001823945-26-000009",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001823945-25-000063",
+        "filing_date": "2025-11-03"
+      },
+      {
+        "accession": "0001823945-25-000048",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0001823945-25-000037",
+        "filing_date": "2025-05-05"
+      },
+      {
+        "accession": "0001823945-25-000013",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OXBR": {
+    "ticker": "OXBR",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-022220",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001493152-26-013603",
+        "filing_date": "2026-03-30"
+      },
+      {
+        "accession": "0001493152-25-021063",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001641172-25-023960",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001641172-25-009673",
+        "filing_date": "2025-05-12"
+      },
+      {
+        "accession": "0001641172-25-000736",
+        "filing_date": "2025-03-26"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OXLCI": {
+    "ticker": "OXLCI",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OXLCO": {
+    "ticker": "OXLCO",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OXSQ": {
+    "ticker": "OXSQ",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-050934",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001213900-26-024280",
+        "filing_date": "2026-03-06"
+      },
+      {
+        "accession": "0001213900-25-107316",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0001213900-25-074439",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001213900-25-037835",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0001213900-25-020801",
+        "filing_date": "2025-03-05"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OXY": {
+    "ticker": "OXY",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-030584",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001628280-26-009059",
+        "filing_date": "2026-02-18"
+      },
+      {
+        "accession": "0001628280-25-051071",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "accession": "0000797468-25-000111",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0000797468-25-000076",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0000797468-25-000029",
+        "filing_date": "2025-02-18"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "OZKAP": {
+    "ticker": "OZKAP",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PAC": {
+    "ticker": "PAC",
+    "quarters_scanned": [
+      {
+        "accession": "0001171843-26-003977",
+        "filing_date": "2026-06-09"
+      },
+      {
+        "accession": "0001171843-26-003952",
+        "filing_date": "2026-06-08"
+      },
+      {
+        "accession": "0001171843-26-003223",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001171843-26-003120",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001193125-26-161714",
+        "filing_date": "2026-04-17"
+      },
+      {
+        "accession": "0000950170-25-057571",
+        "filing_date": "2025-04-24"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PAGS": {
+    "ticker": "PAGS",
+    "quarters_scanned": [
+      {
+        "accession": "0001554855-26-001191",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001554855-26-001001",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001554855-26-000999",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001554855-26-000828",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001554855-26-000826",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001628280-25-020406",
+        "filing_date": "2025-04-29"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PAPL": {
+    "ticker": "PAPL",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-016374",
+        "filing_date": "2026-04-13"
+      },
+      {
+        "accession": "0001493152-26-002942",
+        "filing_date": "2026-01-21"
+      },
+      {
+        "accession": "0001493152-25-025962",
+        "filing_date": "2025-12-03"
+      },
+      {
+        "accession": "0001641172-25-019521",
+        "filing_date": "2025-07-14"
+      },
+      {
+        "accession": "0001641172-25-004579",
+        "filing_date": "2025-04-14"
+      },
+      {
+        "accession": "0001493152-24-051101",
+        "filing_date": "2024-12-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PASW": {
+    "ticker": "PASW",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-061559",
+        "filing_date": "2026-05-27"
+      },
+      {
+        "accession": "0001213900-26-031625",
+        "filing_date": "2026-03-19"
+      },
+      {
+        "accession": "0001213900-26-025046",
+        "filing_date": "2026-03-09"
+      },
+      {
+        "accession": "0001213900-26-015618",
+        "filing_date": "2026-02-12"
+      },
+      {
+        "accession": "0001213900-26-010078",
+        "filing_date": "2026-01-30"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PAYP": {
+    "ticker": "PAYP",
+    "quarters_scanned": [
+      {
+        "accession": "0002080845-26-000016",
+        "filing_date": "2026-06-04"
+      },
+      {
+        "accession": "0002080845-26-000012",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0002080845-26-000005",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001193125-26-130285",
+        "filing_date": "2026-03-30"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PB": {
+    "ticker": "PB",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-215187",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001193125-26-077437",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001193125-25-270362",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0000950170-25-104932",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000950170-25-066804",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0000950170-25-029222",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PBFS": {
+    "ticker": "PBFS",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-058663",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001104659-26-027092",
+        "filing_date": "2026-03-12"
+      },
+      {
+        "accession": "0001104659-25-108497",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0001558370-25-010922",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001558370-25-007177",
+        "filing_date": "2025-05-09"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PBM": {
+    "ticker": "PBM",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-065824",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001213900-26-047089",
+        "filing_date": "2026-04-23"
+      },
+      {
+        "accession": "0001213900-26-045373",
+        "filing_date": "2026-04-20"
+      },
+      {
+        "accession": "0001213900-26-045238",
+        "filing_date": "2026-04-17"
+      },
+      {
+        "accession": "0001213900-25-057893",
+        "filing_date": "2025-06-25"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PC": {
+    "ticker": "PC",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-003872",
+        "filing_date": "2026-01-28"
+      },
+      {
+        "accession": "0001493152-26-003550",
+        "filing_date": "2026-01-26"
+      },
+      {
+        "accession": "0001493152-25-027539",
+        "filing_date": "2025-12-12"
+      },
+      {
+        "accession": "0001493152-25-020330",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001493152-25-019224",
+        "filing_date": "2025-10-24"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PCLA": {
+    "ticker": "PCLA",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-022398",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001493152-26-016805",
+        "filing_date": "2026-04-15"
+      },
+      {
+        "accession": "0001493152-26-009138",
+        "filing_date": "2026-03-06"
+      },
+      {
+        "accession": "0001493152-26-006698",
+        "filing_date": "2026-02-13"
+      },
+      {
+        "accession": "0001493152-26-006194",
+        "filing_date": "2026-02-11"
+      },
+      {
+        "accession": "0001493152-25-006944",
+        "filing_date": "2025-02-14"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PCRX": {
+    "ticker": "PCRX",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-028871",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001628280-26-012297",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001628280-25-050176",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001396814-25-000102",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001396814-25-000061",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001396814-25-000041",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PCYO": {
+    "ticker": "PCYO",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-040879",
+        "filing_date": "2026-04-08"
+      },
+      {
+        "accession": "0001104659-26-001739",
+        "filing_date": "2026-01-07"
+      },
+      {
+        "accession": "0001104659-25-110312",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0001558370-25-009148",
+        "filing_date": "2025-07-09"
+      },
+      {
+        "accession": "0001558370-25-004631",
+        "filing_date": "2025-04-09"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PDCC": {
+    "ticker": "PDCC",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PDM": {
+    "ticker": "PDM",
+    "quarters_scanned": [
+      {
+        "accession": "0001042776-26-000042",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001042776-26-000012",
+        "filing_date": "2026-02-17"
+      },
+      {
+        "accession": "0001042776-25-000157",
+        "filing_date": "2025-10-27"
+      },
+      {
+        "accession": "0001042776-25-000137",
+        "filing_date": "2025-07-28"
+      },
+      {
+        "accession": "0001042776-25-000074",
+        "filing_date": "2025-04-28"
+      },
+      {
+        "accession": "0001042776-25-000042",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PDS": {
+    "ticker": "PDS",
+    "quarters_scanned": [
+      {
+        "accession": "0001171843-26-003439",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001171843-26-003030",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001171843-26-002904",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001171843-26-002855",
+        "filing_date": "2026-04-30"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PDYN": {
+    "ticker": "PDYN",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-205042",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001193125-26-092443",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001193125-25-275896",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0000950170-25-104024",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0000950170-25-065781",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0000950170-25-024148",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 31, 2025",
+          "December 31, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ated revenue, capital and human capital requirements to develop and sell products and provide services prior to receiving payments sufficient to cover our costs and our ability to lower costs as volumes increase. &#160; We have taken and continue to take numerous steps to manage our use of cash. For example, in 2023 we suspended our legacy hardware product development efforts and focused our product development efforts on our AI/ML Foundational Technology and related products, and terminated our operations in Pittsburgh, Pennsylvania in early 2024. During the fourth quarter of 2024 and fiscal ",
+        "accession": "0001193125-26-092443",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 31, 2024",
+          "December 31, 2024",
+          "December 31, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "revenues from Palladyne IQ and Palladyne Pilot beginning in 2025. We expect to continue commercialization efforts, internal testing and customer trials for both products throughout 2025. Whether we are successful in these efforts depends on many factors, including those discussed under Part I Item 1A Risk Factors \" Risks Related to Our Business. \" Such risks may result in delay in achieving product revenues, which would adversely affect our financial condition and operating results. &#160; Financing of Operations We intend to use our cash on hand to continue to enhance our software products, c",
+        "accession": "0000950170-25-024148",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "score": 23.0,
+    "reasons": [
+      "BULLISH terminate sell: an insider (director) [+18]",
+      "neutral terminate (type unknown): an insider (director) [+5]"
+    ],
+    "counts": {
+      "term_sell": 1,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 1
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PEBO": {
+    "ticker": "PEBO",
+    "quarters_scanned": [
+      {
+        "accession": "0000318300-26-000157",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0000318300-26-000099",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0000318300-25-000293",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0000318300-25-000236",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0000318300-25-000154",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0000318300-25-000093",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PERF": {
+    "ticker": "PERF",
+    "quarters_scanned": [
+      {
+        "accession": "0001899830-26-000024",
+        "filing_date": "2026-04-28"
+      },
+      {
+        "accession": "0001899830-26-000021",
+        "filing_date": "2026-04-20"
+      },
+      {
+        "accession": "0001899830-26-000018",
+        "filing_date": "2026-03-24"
+      },
+      {
+        "accession": "0001899830-26-000015",
+        "filing_date": "2026-03-18"
+      },
+      {
+        "accession": "0001899830-26-000013",
+        "filing_date": "2026-03-13"
+      },
+      {
+        "accession": "0001899830-25-000015",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PETS": {
+    "ticker": "PETS",
+    "quarters_scanned": [
+      {
+        "accession": "0001040130-26-000019",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001040130-26-000007",
+        "filing_date": "2026-02-05"
+      },
+      {
+        "accession": "0001040130-25-000108",
+        "filing_date": "2025-12-19"
+      },
+      {
+        "accession": "0001040130-25-000106",
+        "filing_date": "2025-12-19"
+      },
+      {
+        "accession": "0001040130-25-000072",
+        "filing_date": "2025-10-14"
+      },
+      {
+        "accession": "0001040130-25-000014",
+        "filing_date": "2025-02-10"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PFAI": {
+    "ticker": "PFAI",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-065504",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001213900-26-050423",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001213900-26-045374",
+        "filing_date": "2026-04-20"
+      },
+      {
+        "accession": "0001213900-26-044160",
+        "filing_date": "2026-04-15"
+      },
+      {
+        "accession": "0001213900-26-008561",
+        "filing_date": "2026-01-28"
+      },
+      {
+        "accession": "0001213900-25-064318",
+        "filing_date": "2025-07-15"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PFH": {
+    "ticker": "PFH",
+    "quarters_scanned": [
+      {
+        "accession": "0001137774-26-000095",
+        "filing_date": "2026-05-06"
+      },
+      {
+        "accession": "0001137774-26-000048",
+        "filing_date": "2026-02-12"
+      },
+      {
+        "accession": "0001137774-25-000178",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0001137774-25-000108",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0001137774-25-000060",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0001137774-25-000044",
+        "filing_date": "2025-02-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PFN": {
+    "ticker": "PFN",
+    "quarters_scanned": [],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": false,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PFSI": {
+    "ticker": "PFSI",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-055690",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001104659-26-018142",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0001104659-25-103162",
+        "filing_date": "2025-10-28"
+      },
+      {
+        "accession": "0001558370-25-009736",
+        "filing_date": "2025-07-29"
+      },
+      {
+        "accession": "0001558370-25-005840",
+        "filing_date": "2025-04-29"
+      },
+      {
+        "accession": "0001558370-25-001148",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": 11650,
+        "dates_near": [
+          "March 31, 2026",
+          "March 19, 2026",
+          "June 30, 2027",
+          "March 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "program from $1 billion to $2 billion. The stock repurchase program does not require the Company to purchase a specific number of shares, and the timing and amount of any shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Stock repurchases may be affected through privately negotiated transactions or open market purchases, including pursuant to a trading plan implemented pursuant to Rule 10b5-1 of the Exchange Act. The stock repurchase program does not have an expiration date but may be suspended, modified or d",
+        "accession": "0001104659-26-055690",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 26, 2029",
+          "August 26, 2030",
+          "March 6, 2026",
+          "February 20, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "00 &#8203; &#8203; &#8203; &#8203; March 26, 2029 GMSR 2025-GT1 Notes &#8203; $ 300,000 &#8203; $ 300,000 &#8203; &#8203; &#8203; &#8203; August 26, 2030 Barclays FHLMC MSR Facility &#8203; $ &#8212; &#8203; $ 200,000 &#8203; $ 100,000 &#8203; March 6, 2026 Citibank, N.A. FHLMC MSR Facility &#8203; $ &#821 ||SECT|| Because of its inherent limitations, internal control over financial reporting may not prevent or detect misstatements. Also, projections of any evaluation of effectiveness to future periods are subject to the risk that controls may become inadequate because of changes in conditions",
+        "accession": "0001104659-26-018142",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "unknown",
+        "neo": "David A. Spector",
+        "role": "Chairman and Chief Executive Officer",
+        "shares": 60000,
+        "dates_near": [
+          "September 30, 2025",
+          "August 8, 2025",
+          "June 10, 2026",
+          "September 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "program from $1 billion to $2 billion. The stock repurchase program does not require the Company to purchase a specific number of shares, and the timing and amount of any shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Stock repurchases may be affected through privately negotiated transactions or open market purchases, including pursuant to a trading plan implemented pursuant to Rule 10b5-1 of the Exchange Act. The stock repurchase program does not have an expiration date but may be suspended, modified or d",
+        "accession": "0001104659-25-103162",
+        "filing_date": "2025-10-28"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": 35100,
+        "dates_near": [
+          "June 30, 2025",
+          "June 2, 2025",
+          "August 14, 2026",
+          "June 30, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "from $1 billion to $2 billion. The stock repurchase program does not require the Company to purchase a specific number of shares, and the timing and amount of any shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Stock repurchases may be affected through privately negotiated transactions or open market purchases, including pursuant to a trading plan implemented pursuant to Rule 10b5-1 of the Exchange Act. The stock repurchase program does not have an expiration date but may be suspended, modified or discontin",
+        "accession": "0001558370-25-009736",
+        "filing_date": "2025-07-29"
+      }
+    ],
+    "score": -12.0,
+    "reasons": [
+      "BEARISH adopt sell: an insider (director) [-12]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 1,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 3
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PGY": {
+    "ticker": "PGY",
+    "quarters_scanned": [
+      {
+        "accession": "0001883085-26-000031",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001883085-26-000018",
+        "filing_date": "2026-03-02"
+      },
+      {
+        "accession": "0001883085-25-000195",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "accession": "0001883085-25-000169",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0001883085-25-000082",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001883085-25-000050",
+        "filing_date": "2025-03-12"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "10b5-1 Plan, adopted on December 19, 2025, was terminated",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 350000,
+        "dates_near": [
+          "March 25, 2026",
+          "July 25, 2026",
+          "December 19, 2025",
+          "February 23, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "her documents that we file with the SEC. There have been no material changes from the risk factors previously disclosed under the heading &#8220;Risk Factors&#8221; in our Annual Report on Form 10-K for the year ended December&#160;31, 2025. Item 2. Unregistered Sales of Equity Securities and Use of Proceeds 45 Table of Contents None Item 3. Defaults Upon Senior Securities None Item 4. Mine Safety Disclosures Not applicable. Item 5. Other Information Director and Officer Trading Plans or other Arrangements Our directors and officers (as defined in Exchange Act Rule 16a-1(f)) may from time to t",
+        "accession": "0001883085-26-000031",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into a 10b5-1 trading arrangement",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 350000,
+        "dates_near": [
+          "March 25, 2026",
+          "July 25, 2026",
+          "December 19, 2025",
+          "February 23, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "scussion and Analysis of Financial Condition and Results of Operations &#8221; of this Quarterly Report. iii Table of Contents PART I - Financial Information Item 1. Financial Statements PAGAYA TECHNO ||SECT|| sed consolidated financial statements and related notes), and in the other documents that we file with the SEC. There have been no material changes from the risk factors previously disclosed under the heading &#8220;Risk Factors&#8221; in our Annual Report on Form 10-K for the year ended December&#160;31, 2025. Item 2. Unregistered Sales of Equity Securities and Use of Proceeds 45 Table ",
+        "accession": "0001883085-26-000031",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into 10b5-1 trading arrangement",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 40000,
+        "dates_near": [
+          "December 31, 2025",
+          "December 16, 2025",
+          "July 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nd executive officers have adopted, and may adopt, individual share trading plans in accordance with Rule 10b5-1 of the Securities Exchange Act of 1934, as amended (a &#8220;Rule 10b5-1 Plan&#8221;), in which they will contract with a broker to buy or sell our Class A Ordinary Shares on a periodic basis. Under a Rule 10b5-1 Plan, a broker executes trades pursuant to parameters established by the director or officer when entering into the plan, without further direction from the director or officer. The director or officer may amend or terminate the plan in some circumstances. Our directors and",
+        "accession": "0001883085-26-000018",
+        "filing_date": "2026-03-02"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into 10b5-1 trading arrangement",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 800000,
+        "dates_near": [
+          "August 8, 2025",
+          "March 31, 2027",
+          "August 14, 2025",
+          "December 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ve adopted, and may adopt, individual share trading plans in accordance with Rule 10b5-1 of the Securities Exchange Act of 1934, as amended (a &#8220;Rule 10b5-1 Plan&#8221;), in which they will contract with a broker to buy or sell our Class A Ordinary Shares on a periodic basis. Under a Rule 10b5-1 Plan, a broker executes trades pursuant to parameters established by the director or officer when entering into the plan, without further direction from the director or officer. The director or officer may amend or terminate the plan in some circumstances. Our directors and executive officers may ",
+        "accession": "0001883085-25-000195",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into a 10b5-1 Plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 500000,
+        "dates_near": [
+          "August 8, 2025",
+          "March 31, 2027",
+          "August 14, 2025",
+          "December 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "icer Trading Plans or other Arrangements Our directors and officers (as defined in Exchange Act Rule 16a-1(f)) may from time to time enter into plans or other arrangements for the purchase or sale of our shares that are intended to satisfy the affirmative defense conditions of Rule 10b5&#8211;1(c) or may represent a non-Rule 10b5-1 trading arrangement under the Exchange Act. During the quarter ended September&#160;30, 2025, four officers or directors entered into 10b5-1 trading arrangements. First, Yahav Yulzari , a director and the Company&#8217;s Chief Business Officer , entered into a new 1",
+        "accession": "0001883085-25-000195",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "entered into 10b5-1 trading arrangement",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 11312,
+        "dates_near": [
+          "December 31, 2024",
+          "November 15, 2024",
+          "November 15, 2025",
+          "December 20, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "xecutive officers have adopted, and may adopt, individual share trading plans in accordance with Rule 10b5-1 of the Securities Exchange Act of 1934, as amended (a &#8220;Rule 10b5-1 Plan&#8221;), in which they will contract with a broker to buy or sell our Class A Ordinary Shares on a periodic basis. Under a Rule 10b5-1 Plan, a broker executes trades pursuant to parameters established by the director or officer when entering into the plan, without further direction from the director or officer. The director or officer may amend or terminate the plan in some circumstances. Our directors and exe",
+        "accession": "0001883085-25-000050",
+        "filing_date": "2025-03-12"
+      }
+    ],
+    "score": -41.0,
+    "reasons": [
+      "BULLISH terminate sell: an insider (director) 350,000sh [+30]",
+      "BEARISH adopt sell: an insider (director) 350,000sh [-15]",
+      "BEARISH adopt sell: an insider (director) 40,000sh [-12]",
+      "BEARISH adopt sell: an insider (director) 800,000sh [-18]",
+      "BEARISH adopt sell: an insider (director) 500,000sh [-18]",
+      "BEARISH adopt sell: an insider (director) 11,312sh [-8]"
+    ],
+    "counts": {
+      "term_sell": 1,
+      "term_buy": 0,
+      "adopt_sell": 5,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PHAT": {
+    "ticker": "PHAT",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-193946",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001193125-26-073379",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001193125-25-257390",
+        "filing_date": "2025-10-30"
+      },
+      {
+        "accession": "0000950170-25-104548",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000950170-25-061440",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0000950170-25-034183",
+        "filing_date": "2025-03-06"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PHIN": {
+    "ticker": "PHIN",
+    "quarters_scanned": [
+      {
+        "accession": "0001968915-26-000070",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001968915-26-000023",
+        "filing_date": "2026-02-12"
+      },
+      {
+        "accession": "0001968915-25-000066",
+        "filing_date": "2025-10-28"
+      },
+      {
+        "accession": "0001968915-25-000053",
+        "filing_date": "2025-07-24"
+      },
+      {
+        "accession": "0001968915-25-000030",
+        "filing_date": "2025-04-25"
+      },
+      {
+        "accession": "0001968915-25-000006",
+        "filing_date": "2025-02-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PHOE": {
+    "ticker": "PHOE",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-021113",
+        "filing_date": "2026-05-04"
+      },
+      {
+        "accession": "0001493152-26-013917",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001493152-25-020538",
+        "filing_date": "2025-11-03"
+      },
+      {
+        "accession": "0001493152-25-012526",
+        "filing_date": "2025-09-02"
+      },
+      {
+        "accession": "0001641172-25-023128",
+        "filing_date": "2025-08-12"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PI": {
+    "ticker": "PI",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-191810",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001193125-26-042813",
+        "filing_date": "2026-02-09"
+      },
+      {
+        "accession": "0001193125-25-256386",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000950170-25-100302",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000950170-25-057433",
+        "filing_date": "2025-04-23"
+      },
+      {
+        "accession": "0000950170-25-017077",
+        "filing_date": "2025-02-10"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PIII": {
+    "ticker": "PIII",
+    "quarters_scanned": [
+      {
+        "accession": "0001832511-26-000022",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001832511-26-000011",
+        "filing_date": "2026-03-26"
+      },
+      {
+        "accession": "0001832511-25-000025",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001832511-25-000013",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001628280-25-026021",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001628280-25-015305",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PKG": {
+    "ticker": "PKG",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-213675",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001193125-26-074129",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001193125-25-268514",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001193125-25-175122",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0000950170-25-066593",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0000950170-25-028533",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PL": {
+    "ticker": "PL",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-258304",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0001193125-26-119957",
+        "filing_date": "2026-03-23"
+      },
+      {
+        "accession": "0001193125-25-314295",
+        "filing_date": "2025-12-10"
+      },
+      {
+        "accession": "0001836833-25-000104",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "accession": "0001836833-25-000063",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "accession": "0001836833-25-000050",
+        "filing_date": "2025-03-26"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Director",
+        "shares": 71000,
+        "dates_near": [
+          "January 14, 2026",
+          "January 31, 2027",
+          "January 22, 2026",
+          "January 31, 2027"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "#160; &#160; 8,132 &#160; Total assets &#160; $ 1,251,431 &#160; &#160; $ 1,145,686 &#160; Liabilities and Stockholders&#8217; Equity &#160; &#160; &#160; &#160; &#160; &#160; Current liabilities &#160; &#160; &#160; &#160; &#160; &#160; Accounts payable &#160; $ 9,040 &#160; &#160; $ 10,612 &#160; Accrued and other current liabilities &#160; &#160; 58,539 &#160; &#160; &#160; 55,874 &#160; Deferred revenue &#160; &#160; 230,682 &#160; &#160; &#160; 220,572 &#160; Liability from early exercise of stock options &#160; &#160; ||SECT|| rform, or a termination of obligations by a counterparty, we ",
+        "accession": "0001193125-26-258304",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "president and chief financial officer",
+        "shares": 117107,
+        "dates_near": [
+          "January 31, 2027",
+          "January 22, 2026",
+          "January 31, 2027",
+          "April 23, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "obinson serves as trustee, adopted a trading plan intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. The plan provides for the sale of up to 117,107 shares of Class A common stock held by the Robinson Trust. The plan is scheduled to terminate on January 31, 2027 , subject to early termination for certain specified events set forth therein. On January 22, 2026 , Gen. John W. Raymond , a member of the board of directors , through Raymond Family Rev Trust U/A DTD 05/30/2023 (the &#8220;Raymond Trust&#8221;), an entity for which Gen. Raymond serves as ",
+        "accession": "0001193125-26-258304",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": 32468,
+        "dates_near": [
+          "January 31, 2027",
+          "April 23, 2026",
+          "April 24, 2027",
+          "April 23, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "adopted a trading plan intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. The plan provides for the sale of up to 32,468 shares of Class A common stock held by the Raymond Trust. The plan is scheduled to terminate on January 31, 2027 , subject to early termination for certain specified events set forth therein. On April 23, 2026 , Ashley Johnson , the Company's president and chief financial officer , through the Johnson Joint Revocable T rust DTD 3/27/14 (the &#8220;Johnson Trust&#8221;), an entity for which Ms. Johnson serves as trustee, adopted a",
+        "accession": "0001193125-26-258304",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Director",
+        "shares": 800000,
+        "dates_near": [
+          "July 12, 2025",
+          "July 13, 2026",
+          "July 14, 2025",
+          "July 14, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "d 278,937,702 Class A shares issued and outstanding at July&#160;31, 2025 and January&#160;31, 2025, respectively, 21,157,586 Class B shares issued and outstanding at July&#160;31, 2025 and January&#160;31, 2025, 0 Class C shares issued and outstanding at July&#160;31, 2025 and January&#160;31, 2025 28 28 Additional paid-in capital 1,670,030 1,645,356 Accumulated other comprehensive income (loss) 3,852 ( 1,097 ) Accumulated deficit ( 1,238,221 ||SECT|| to be subject to stockholder litigation against us and we may be the target of this type of litigation in the future. Any such litigation again",
+        "accession": "0001836833-25-000104",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "Director",
+        "shares": 3011400,
+        "dates_near": [
+          "April 11, 2025",
+          "December 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "25, 0 Class C shares issued and outstanding at April&#160;30, 2025 and January&#160;31, 2025 28 28 Additional paid-in capital 1,656,709 1,645,356 Accumulated other comprehensive income (loss) 3,694 ( 1,097 ) Accumulated deficit ( 1,215,629 ) ( 1,203,001 ) Total stockholders&#8217; equity 444,802 441,286 Total liabilities and stockholders&#8217; equity $ 658,390 &#160; $ 633,796 &#160; See accompanying notes to u ||SECT|| ckholder litigation against us and we may be the target of this type of litigation in the future. Any such litigation against us could result in substantial costs and divert m",
+        "accession": "0001836833-25-000063",
+        "filing_date": "2025-06-04"
+      }
+    ],
+    "score": -80.0,
+    "reasons": [
+      "BEARISH adopt sell: an insider (Director) 71,000sh [-12]",
+      "BEARISH adopt sell: an insider (president and chief financial ) 117,107sh [-21]",
+      "BEARISH adopt sell: an insider (director) 32,468sh [-12]",
+      "BEARISH adopt sell: an insider (Director) 800,000sh [-18]",
+      "BEARISH adopt sell: an insider (Director) 3,011,400sh [-22]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 5,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PLAY": {
+    "ticker": "PLAY",
+    "quarters_scanned": [
+      {
+        "accession": "0001525769-26-000008",
+        "filing_date": "2026-03-31"
+      },
+      {
+        "accession": "0001525769-25-000021",
+        "filing_date": "2025-12-09"
+      },
+      {
+        "accession": "0001525769-25-000010",
+        "filing_date": "2025-09-15"
+      },
+      {
+        "accession": "0001628280-25-030462",
+        "filing_date": "2025-06-10"
+      },
+      {
+        "accession": "0001628280-25-016941",
+        "filing_date": "2025-04-07"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }
