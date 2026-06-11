@@ -52184,5 +52184,1041 @@
     "data_available": true,
     "_cache_version": "v3-dedup-foreign-aware",
     "_complete": true
+  },
+  "PLG": {
+    "ticker": "PLG",
+    "quarters_scanned": [
+      {
+        "accession": "0001062993-26-003033",
+        "filing_date": "2026-06-03"
+      },
+      {
+        "accession": "0001062993-26-001938",
+        "filing_date": "2026-04-10"
+      },
+      {
+        "accession": "0001062993-26-001382",
+        "filing_date": "2026-03-11"
+      },
+      {
+        "accession": "0001062993-26-001380",
+        "filing_date": "2026-03-10"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PLOW": {
+    "ticker": "PLOW",
+    "quarters_scanned": [
+      {
+        "accession": "0001437749-26-014867",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001437749-26-005316",
+        "filing_date": "2026-02-24"
+      },
+      {
+        "accession": "0001437749-25-033011",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0001437749-25-024848",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0001437749-25-014753",
+        "filing_date": "2025-05-06"
+      },
+      {
+        "accession": "0001437749-25-005050",
+        "filing_date": "2025-02-25"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PLSM": {
+    "ticker": "PLSM",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-021745",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001493152-26-013495",
+        "filing_date": "2026-03-30"
+      },
+      {
+        "accession": "0001493152-26-013485",
+        "filing_date": "2026-03-30"
+      },
+      {
+        "accession": "0001493152-26-010803",
+        "filing_date": "2026-03-18"
+      },
+      {
+        "accession": "0001493152-26-005686",
+        "filing_date": "2026-02-09"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PLUS": {
+    "ticker": "PLUS",
+    "quarters_scanned": [
+      {
+        "accession": "0001140361-26-023171",
+        "filing_date": "2026-05-28"
+      },
+      {
+        "accession": "0001140361-26-003725",
+        "filing_date": "2026-02-04"
+      },
+      {
+        "accession": "0001140361-25-040814",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001140361-25-029644",
+        "filing_date": "2025-08-07"
+      },
+      {
+        "accession": "0001140361-25-020204",
+        "filing_date": "2025-05-22"
+      },
+      {
+        "accession": "0001140361-25-003227",
+        "filing_date": "2025-02-06"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PLYX": {
+    "ticker": "PLYX",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-056973",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001213900-26-033064",
+        "filing_date": "2026-03-24"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PMNT": {
+    "ticker": "PMNT",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-006292",
+        "filing_date": "2026-02-12"
+      },
+      {
+        "accession": "0001493152-25-022322",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0001493152-25-011988",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001641172-25-017186",
+        "filing_date": "2025-06-30"
+      },
+      {
+        "accession": "0001493152-25-006515",
+        "filing_date": "2025-02-14"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PMTS": {
+    "ticker": "PMTS",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-055239",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001104659-26-023812",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001104659-25-105905",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0001558370-25-010844",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001558370-25-006611",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001558370-25-002098",
+        "filing_date": "2025-03-04"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PMTW": {
+    "ticker": "PMTW",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-206572",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0001193125-26-057041",
+        "filing_date": "2026-02-18"
+      },
+      {
+        "accession": "0001193125-25-256280",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000950170-25-100375",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000950170-25-061012",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0000950170-25-024124",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a trading plan",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "Chief Accounting Officer",
+        "shares": 12218,
+        "dates_near": [
+          "March 31, 2026",
+          "March 19, 2026",
+          "December 31, 2026",
+          "March 31, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "k only as ||SECT|| tion from $400 million to $500 million (the &#8220;share repurchase program&#8221;). The share repurchase program does not require the Company to purchase a specific number of Common Shares, and the timing and amount of any Common Shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Common Share repurchases may be effected through privately negotiated transactions or open market purchases, including pursuant to a trading plan implemented pursuant to Rule 10b5-1 of the Exchange Act. The share r",
+        "accession": "0001193125-26-206572",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "February 18, 2026",
+          "December 31, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "60; To nonaffiliates &#160; $ 10,292,463 &#160; &#160; $ 12,414,391 &#160; &#160; $ 15,936,124 &#160; To PennyMac Financial Services, Inc. &#160; &#160; 52,895,921 &#160; &#160; &#160; 81,997,773 &#160; &#160; &#160; 72,441,699 &#160; &#160; $ 63,188,384 &#160; &#160; $ 94,412,164 &#160; &#160; $ 88,377,823 &#160; Net gains on loans held for sale &#160; $ 52,194 &#160; &#160; $ 73,124 &#160; &#160; $ 39,857 &#160; Investments resulting from correspondent production: &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#16 ||SECT|| cause of its inherent limitations, internal control over financial",
+        "accession": "0001193125-26-057041",
+        "filing_date": "2026-02-18"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "September 30, 2025",
+          "November 6, 2009",
+          "March 16, 2018",
+          "March 7, 2017"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nal risk; &#8226; and our organizational structure and certain requirements in our charter documents. Other factors that could also cause results to differ from our expectations may not b ||SECT|| tion from $400 million to $500 million (the &#8220;share repurchase program&#8221;). The share repurchase program does not require the Company to purchase a specific number of Common Shares, and the timing and amount of any Common Shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Common Share repurchases may be effe",
+        "accession": "0001193125-25-256280",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "June 30, 2025",
+          "November 6, 2009",
+          "March 16, 2018",
+          "March 7, 2017"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nt. Each of these factors could by itself, or together with one or more other factors, adversely affect our business, income and/or financial condition. Forward-looking statements speak only a ||SECT|| tion from $400 million to $500 million (the &#8220;share repurchase program&#8221;). The share repurchase program does not require the Company to purchase a specific number of Common Shares, and the timing and amount of any Common Shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Common Share repurchases may be",
+        "accession": "0000950170-25-100375",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "March 31, 2025",
+          "November 6, 2009",
+          "March 16, 2018",
+          "March 7, 2017"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "iffer from our expectations may not be described in this Report or any other document. Each of these factors could by itself, or together with one or more other factors, adversely affect our ||SECT|| tion from $400 million to $500 million (the &#8220;share repurchase program&#8221;). The share repurchase program does not require the Company to purchase a specific number of Common Shares, and the timing and amount of any Common Shares repurchased are based on market conditions and other factors, including price, regulatory requirements and capital availability. Common Share repurchases may be e",
+        "accession": "0000950170-25-061012",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "action": "MODIFY",
+        "trigger": "modified a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": null,
+        "shares": null,
+        "dates_near": [
+          "February 20, 2025",
+          "December 31, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "red &#160;&#160;&#160;&#160;by investment properties, net of associated &#160;&#160;&#160;&#160;asset-backed financings (1) &#160; 64,253 &#160; &#160; &#160; &#8212; &#160; &#160; &#160; 23,485 &#160; Total investments resulting from correspondent activities $ 283,254 &#160; &#160; $ 292,527 &#160; &#160; $ 693,828 &#160; &#160; (1) The trusts issuing the securities are consolidated on our consolidated balance sheets. Therefore, our investments in these securities are shown as their underlying assets, Loans at fair va ||SECT|| cause of its inherent limitations, internal control over financial",
+        "accession": "0000950170-25-024124",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 6
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PNNT": {
+    "ticker": "PNNT",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-211879",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001193125-26-042780",
+        "filing_date": "2026-02-09"
+      },
+      {
+        "accession": "0001193125-25-293703",
+        "filing_date": "2025-11-24"
+      },
+      {
+        "accession": "0000950170-25-106538",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "accession": "0000950170-25-069165",
+        "filing_date": "2025-05-12"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "POAS": {
+    "ticker": "POAS",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-019784",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001493152-26-018085",
+        "filing_date": "2026-04-20"
+      },
+      {
+        "accession": "0001493152-26-016373",
+        "filing_date": "2026-04-13"
+      },
+      {
+        "accession": "0001493152-26-002553",
+        "filing_date": "2026-01-16"
+      },
+      {
+        "accession": "0001493152-25-014078",
+        "filing_date": "2025-09-18"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "POLA": {
+    "ticker": "POLA",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-024680",
+        "filing_date": "2026-05-20"
+      },
+      {
+        "accession": "0001493152-26-016671",
+        "filing_date": "2026-04-15"
+      },
+      {
+        "accession": "0001493152-25-024286",
+        "filing_date": "2025-11-19"
+      },
+      {
+        "accession": "0001641172-25-023986",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001641172-25-010887",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001641172-25-001504",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PONOR": {
+    "ticker": "PONOR",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-056801",
+        "filing_date": "2026-05-14"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "POWL": {
+    "ticker": "POWL",
+    "quarters_scanned": [
+      {
+        "accession": "0000080420-26-000070",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0000080420-26-000015",
+        "filing_date": "2026-02-04"
+      },
+      {
+        "accession": "0000080420-25-000152",
+        "filing_date": "2025-11-19"
+      },
+      {
+        "accession": "0000080420-25-000098",
+        "filing_date": "2025-08-06"
+      },
+      {
+        "accession": "0000080420-25-000061",
+        "filing_date": "2025-05-07"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PPBT": {
+    "ticker": "PPBT",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-067548",
+        "filing_date": "2026-06-11"
+      },
+      {
+        "accession": "0001213900-26-057119",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001213900-26-047709",
+        "filing_date": "2026-04-27"
+      },
+      {
+        "accession": "0001213900-26-046868",
+        "filing_date": "2026-04-23"
+      },
+      {
+        "accession": "0001213900-26-031365",
+        "filing_date": "2026-03-19"
+      },
+      {
+        "accession": "0001213900-25-022192",
+        "filing_date": "2025-03-10"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PPG": {
+    "ticker": "PPG",
+    "quarters_scanned": [
+      {
+        "accession": "0000079879-26-000170",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0000079879-26-000046",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0000079879-25-000311",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "accession": "0000079879-25-000223",
+        "filing_date": "2025-07-30"
+      },
+      {
+        "accession": "0000079879-25-000133",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0000079879-25-000034",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PPSI": {
+    "ticker": "PPSI",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-023939",
+        "filing_date": "2026-05-15"
+      },
+      {
+        "accession": "0001493152-26-015715",
+        "filing_date": "2026-04-08"
+      },
+      {
+        "accession": "0001493152-25-023644",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001641172-25-023969",
+        "filing_date": "2025-08-14"
+      },
+      {
+        "accession": "0001641172-25-011072",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "accession": "0001641172-25-004681",
+        "filing_date": "2025-04-15"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRDO": {
+    "ticker": "PRDO",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-211837",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001193125-26-059331",
+        "filing_date": "2026-02-19"
+      },
+      {
+        "accession": "0001193125-25-264625",
+        "filing_date": "2025-11-04"
+      },
+      {
+        "accession": "0000950170-25-100876",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0000950170-25-061803",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0000950170-25-022187",
+        "filing_date": "2025-02-18"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRG": {
+    "ticker": "PRG",
+    "quarters_scanned": [
+      {
+        "accession": "0001808834-26-000066",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001808834-26-000012",
+        "filing_date": "2026-02-18"
+      },
+      {
+        "accession": "0001808834-25-000111",
+        "filing_date": "2025-10-22"
+      },
+      {
+        "accession": "0001808834-25-000096",
+        "filing_date": "2025-07-23"
+      },
+      {
+        "accession": "0001808834-25-000054",
+        "filing_date": "2025-04-23"
+      },
+      {
+        "accession": "0001808834-25-000009",
+        "filing_date": "2025-02-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRHI": {
+    "ticker": "PRHI",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-221549",
+        "filing_date": "2026-05-13"
+      },
+      {
+        "accession": "0001193125-26-129019",
+        "filing_date": "2026-03-27"
+      },
+      {
+        "accession": "0001193125-25-277589",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "accession": "0001193125-25-179796",
+        "filing_date": "2025-08-13"
+      },
+      {
+        "accession": "0000950170-25-071392",
+        "filing_date": "2025-05-14"
+      },
+      {
+        "accession": "0000950170-25-046719",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRLB": {
+    "ticker": "PRLB",
+    "quarters_scanned": [
+      {
+        "accession": "0001443669-26-000025",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001443669-26-000010",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0001443669-25-000013",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001628280-25-037024",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0001628280-25-021822",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0001628280-25-007052",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRQR": {
+    "ticker": "PRQR",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-069450",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001104659-26-058981",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001104659-26-058980",
+        "filing_date": "2026-05-12"
+      },
+      {
+        "accession": "0001104659-26-054484",
+        "filing_date": "2026-05-04"
+      },
+      {
+        "accession": "0001104659-26-026713",
+        "filing_date": "2026-03-12"
+      },
+      {
+        "accession": "0001558370-25-002851",
+        "filing_date": "2025-03-13"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRT": {
+    "ticker": "PRT",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-223238",
+        "filing_date": "2026-05-14"
+      },
+      {
+        "accession": "0001193125-26-128868",
+        "filing_date": "2026-03-27"
+      },
+      {
+        "accession": "0001193125-25-280168",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0000950170-25-107958",
+        "filing_date": "2025-08-13"
+      },
+      {
+        "accession": "0000950170-25-071003",
+        "filing_date": "2025-05-14"
+      },
+      {
+        "accession": "0000950170-25-046884",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "PRTS": {
+    "ticker": "PRTS",
+    "quarters_scanned": [
+      {
+        "accession": "0001378950-26-000054",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0001378950-26-000035",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "accession": "0001378950-25-000133",
+        "filing_date": "2025-11-10"
+      },
+      {
+        "accession": "0001378950-25-000104",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001378950-25-000064",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "accession": "0001378950-25-000036",
+        "filing_date": "2025-03-26"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
   }
 }
