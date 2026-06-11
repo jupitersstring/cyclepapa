@@ -421,9 +421,20 @@ def run(args) -> None:
         print("No data downloaded — aborting.")
         sys.exit(1)
 
-    target = args.target_week or pd.Timestamp(args.today).isocalendar().week
-    print(f"\n[scan] target week-of-year = {target} "
-          f"(min {args.min_years} yrs of history per bucket)\n")
+    # derive the reference week from the latest *completed* bar in the data, not a
+    # hardcoded date (which silently scans the wrong week as time passes)
+    if args.target_week:
+        target = args.target_week
+        ref = "explicit"
+    elif args.today:
+        target = pd.Timestamp(args.today).isocalendar().week
+        ref = args.today
+    else:
+        last = max(df.dropna().index[-1] for df in frames.values())
+        target = int(pd.Timestamp(last).isocalendar().week)
+        ref = f"data max {pd.Timestamp(last).date()}"
+    print(f"\n[scan] target week-of-year = {target}  (ref: {ref}; "
+          f"min {args.min_years} yrs of history per bucket)\n")
 
     rows = []
     for sym, df in frames.items():
@@ -518,7 +529,8 @@ def parse_args():
     p.add_argument("--limit", type=int, default=None, help="cap universe size (testing)")
     p.add_argument("--years", type=int, default=20, help="years of weekly history")
     p.add_argument("--target-week", type=int, default=None, help="ISO week-of-year to scan")
-    p.add_argument("--today", default="2026-05-28", help="reference date for current week")
+    p.add_argument("--today", default=None,
+                   help="reference date for current week (default: derive from data's latest bar)")
     p.add_argument("--min-years", type=int, default=8, help="min historical obs per bucket")
     p.add_argument("--top", type=int, default=25, help="rows per direction to print")
     p.add_argument("--csv", default=None, help="optional path to write full table")

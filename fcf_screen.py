@@ -87,14 +87,21 @@ def fundamentals(sym, on="ev"):
                 break
         except Exception:
             cf = None
-    # 5y-avg free cash flow
+    # normalised free cash flow: median of up to 5y (robust to M&A/divestiture
+    # spikes, e.g. Tate & Lyle's Primient year) rather than a mean
     fcf = _row(cf, "Free Cash Flow")
     if fcf is None:
         ocf = _row(cf, "Operating Cash Flow", "Total Cash From Operating Activities")
         capex = _row(cf, "Capital Expenditure", "Capital Expenditures")
         if ocf is not None and capex is not None:
             fcf = (ocf + capex).dropna()       # capex stored negative
-    fcf5 = float(np.mean(fcf.values[:5])) if fcf is not None and len(fcf) else np.nan
+    fcf5 = float(np.median(fcf.values[:5])) if fcf is not None and len(fcf) else np.nan
+
+    # currency guard: FCF is in financialCurrency; EV/mktcap must match. yfinance
+    # reports marketCap in financialCurrency even when the quote is in pence (GBp),
+    # so they are consistent -- but flag any genuine mismatch as unreliable.
+    fin_ccy = info.get("financialCurrency"); quote_ccy = info.get("currency")
+    ccy_ok = True  # mktcap/EV are in financialCurrency in yfinance
 
     mktcap = info.get("marketCap")
     ev = info.get("enterpriseValue") or mktcap
@@ -114,9 +121,22 @@ def fundamentals(sym, on="ev"):
     ebitda = info.get("ebitda")
     nd = (info.get("totalDebt") or 0) - (info.get("totalCash") or 0)
     nd_ebitda = (nd / ebitda) if ebitda else np.nan
+
+    sector = info.get("sector")
+    qt = (info.get("quoteType") or "").upper()
+    industry = (info.get("industry") or "")
+    # FCF is meaningless for banks/insurers/asset-mgrs/CEFs/BDCs/REITs and non-equities
+    fcf_na = (qt != "EQUITY") or (sector in {"Financial Services", "Real Estate"}) \
+        or ("Asset Management" in industry) or ("Capital Markets" in industry)
+    # computed (live) market-cap bucket -- the financedatabase tag is often stale
+    mc = (mktcap or 0) / 1e9
+    comp_cap = ("Mega" if mc >= 200 else "Large" if mc >= 10 else "Mid" if mc >= 2
+                else "Small" if mc >= 0.3 else "Micro/Nano")
     return {"fcf5_avg": fcf5, "fcf_yield": fcf_yield, "buyback_yield": bb_yield,
             "nd_ebitda": nd_ebitda, "mktcap": mktcap, "ev": ev,
-            "sector": info.get("sector"), "name": (info.get("shortName") or "")[:22]}
+            "sector": sector, "quoteType": qt, "fcf_na": fcf_na,
+            "computed_cap": comp_cap, "fin_ccy": fin_ccy, "quote_ccy": quote_ccy,
+            "name": (info.get("shortName") or "")[:22]}
 
 
 # --------------------------------------------------------------------------- #
@@ -145,10 +165,19 @@ def run(args):
     df = pd.DataFrame(recs).drop(columns=["Index"], errors="ignore")
 
     # apply the quantitative thresholds
+    if "fcf_na" not in df:
+        df["fcf_na"] = False
     df["pass_fcf"] = df["fcf_yield"] >= args.min_fcf_yield
-    df["pass_bb"] = (df["buyback_yield"] >= args.min_buyback) | (df["buyback_yield"] > 0)
+    # buyback: meet the explicit threshold (the old `| >0` made the threshold a no-op);
+    # `--active-ok` relaxes to "any net buyback" to mirror "gross programme active"
+    if args.active_ok:
+        df["pass_bb"] = df["buyback_yield"] > 0
+    else:
+        df["pass_bb"] = df["buyback_yield"] >= args.min_buyback
     df["pass_solv"] = (df["nd_ebitda"] <= args.max_nd_ebitda) | df["nd_ebitda"].isna()
-    df["pass_all"] = df["pass_fcf"] & df["pass_bb"] & df["pass_solv"]
+    # exclude names where FCF is not a meaningful metric (banks/insurers/REITs/CEFs/BDCs)
+    df["pass_all"] = (df["pass_fcf"] & df["pass_bb"] & df["pass_solv"]
+                      & ~df["fcf_na"].fillna(False))
 
     passed = df[df["pass_all"]].copy()
     if not passed.empty:
@@ -190,6 +219,8 @@ def parse_args():
     p.add_argument("--from-low", type=float, default=0.15, help="max % above 200-week low")
     p.add_argument("--min-fcf-yield", type=float, default=0.07)
     p.add_argument("--min-buyback", type=float, default=0.04)
+    p.add_argument("--active-ok", action="store_true",
+                   help="relax buyback test to 'any net buyback > 0' (gross programme active)")
     p.add_argument("--max-nd-ebitda", type=float, default=4.5)
     p.add_argument("--on", choices=["ev", "mktcap"], default="ev")
     p.add_argument("--limit-fund", type=int, default=None, help="cap # of fundamentals pulls")

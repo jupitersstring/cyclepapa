@@ -25,6 +25,7 @@ import pandas as pd
 
 from volume_bandpass import BANDS, download_ohlcv
 from pv_cross import band_crossings
+from signals import drop_incomplete_last
 from midcap_weekly_anomalies import get_universe, CAP_SOURCES  # noqa: F401
 
 
@@ -40,12 +41,10 @@ def scan(frames: dict, label: str, recent: int, sectors: dict, caps: dict,
 
     rows = []
     for sym, df in frames.items():
-        d = df.dropna()
-        if intraday and len(d) > 1:
-            d = d.iloc[:-1]
+        d = drop_incomplete_last(df, label, asof=asof)  # drop in-progress bar (all TFs)
         if len(d) < 60 or last_dates.get(sym) < (asof - tol):
             continue
-        sources = {"PRICE": d["Close"].astype(float).to_numpy(),
+        sources = {"PRICE": np.log(d["Close"].astype(float).clip(lower=1e-9).to_numpy()),
                    "VOLUME": np.log1p(d["Volume"].astype(float).to_numpy())}
         for src, vals in sources.items():
             for band, info in band_crossings(vals).items():

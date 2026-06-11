@@ -24,7 +24,8 @@ import argparse
 import numpy as np
 import pandas as pd
 
-from volume_bandpass import (ehlers_bandpass, BANDS, download_ohlcv)
+from volume_bandpass import download_ohlcv
+from signals import ehlers_bandpass, BANDS, latest_crossing, drop_incomplete_last  # noqa: F401
 from midcap_weekly_anomalies import get_universe, CAP_SOURCES  # noqa: F401
 
 QUAD = {
@@ -39,33 +40,9 @@ QUAD = {
 # Generic per-series band crossing analysis
 # --------------------------------------------------------------------------- #
 def band_crossings(values: np.ndarray) -> dict[str, dict]:
-    """Most-recent zero-line crossing per band for a (transformed) series."""
-    n = len(values)
-    out: dict[str, dict] = {}
-    for name, flen, slen in BANDS:
-        if n < slen:
-            continue
-        pb = ehlers_bandpass(values, flen, slen)
-        settled = pb[slen:]
-        sd = np.std(settled) if settled.size > 5 else np.std(pb)
-        if not np.isfinite(sd) or sd == 0:
-            continue
-        sign = np.sign(pb)
-        ci = None
-        for t in range(n - 1, max(slen, 1), -1):
-            if sign[t] != sign[t - 1] and sign[t] != 0:
-                ci = t
-                break
-        if ci is None:
-            continue
-        out[name] = {
-            "dir": "UP" if pb[ci] > 0 else "DOWN",
-            "bars_ago": (n - 1) - ci,
-            "slope_z": float((pb[-1] - pb[-2]) / sd) if n >= 2 else 0.0,
-            "pb_z": float(pb[-1] / sd),
-            "settled": n >= int(1.5 * slen),
-        }
-    return out
+    """Most-recent decisive zero-line crossing per band (shared detector).
+    recent is set large here; callers apply their own freshness window."""
+    return latest_crossing(values, recent=10 ** 9)
 
 
 # --------------------------------------------------------------------------- #
@@ -83,15 +60,12 @@ def cross_timeframe(frames: dict, label: str, recent: int, sectors: dict,
            "weekly": pd.Timedelta(days=12),
            "90m": pd.Timedelta(days=3)}.get(label, pd.Timedelta(days=8))
 
-    intraday = label.endswith("m") or label.endswith("h")
     rows = []
     for sym, df in frames.items():
-        d = df.dropna()
-        if intraday and len(d) > 1:
-            d = d.iloc[:-1]  # drop the current, possibly-incomplete intraday bar
+        d = drop_incomplete_last(df, label, asof=asof)  # drop in-progress bar (all TFs)
         if len(d) < 60 or last_dates.get(sym) < (asof - tol):
             continue  # stale / delisted
-        close = d["Close"].astype(float).to_numpy()
+        close = np.log(d["Close"].astype(float).clip(lower=1e-9).to_numpy())  # log price
         logv = np.log1p(d["Volume"].astype(float).to_numpy())
         pc = band_crossings(close)
         vc = band_crossings(logv)
