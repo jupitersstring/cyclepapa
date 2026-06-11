@@ -93590,5 +93590,4142 @@
     ],
     "_complete": true,
     "_version": "form144-v1"
+  },
+  "KG": {
+    "ticker": "KG",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KHC": {
+    "ticker": "KHC",
+    "n_filings_indexed": 8,
+    "summary": {
+      "n_30d": 3,
+      "n_90d": 4,
+      "n_180d": 7,
+      "n_365d": 8,
+      "value_90d_usd": 26962630,
+      "value_180d_usd": 33476708,
+      "accel_ratio": 2.03
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 2.0x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0001637459",
+        "accession": "0001950047-26-004750",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 319662,
+        "value_usd": 7451704.81,
+        "person": "MIGUEL N D M PATRICIO REV TR AGRT",
+        "relationship": "Former Director",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001950047-26-004747",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 240488,
+        "value_usd": 5606111.96,
+        "person": "MIGUEL PATRICIO 2024 GRAT #1",
+        "relationship": "Former Director",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001950047-26-004661",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-18",
+        "shares": 560155,
+        "value_usd": 12944789.94,
+        "person": "MIGUEL N D M PATRICIO REV TR AGRT",
+        "relationship": "Former Director",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001950047-26-004187",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-07",
+        "shares": 41000,
+        "value_usd": 960023.2,
+        "person": "PEDRO NAVIO",
+        "relationship": "Officer",
+        "approx_sale_date": "05/07/2026"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001959173-26-001756",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-03",
+        "shares": 4991,
+        "value_usd": 121480.94,
+        "person": "Onell Cory",
+        "relationship": "Officer",
+        "approx_sale_date": "03/03/2026"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001959173-26-001647",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 9045,
+        "value_usd": 222597.45,
+        "person": "Onell Cory",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001950047-25-010454",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-17",
+        "shares": 250000,
+        "value_usd": 6170000.0,
+        "person": "Miguel Nuno de Mata Patricio Revocable Trust",
+        "relationship": "Director",
+        "approx_sale_date": "12/17/2025"
+      },
+      {
+        "cik": "0001637459",
+        "accession": "0001968582-25-000509",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-17",
+        "shares": 50000,
+        "value_usd": 1289500.0,
+        "person": "Elio Leoni Sceti",
+        "relationship": "Director",
+        "approx_sale_date": "06/17/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KINS": {
+    "ticker": "KINS",
+    "n_filings_indexed": 5,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 1,
+      "n_180d": 1,
+      "n_365d": 4,
+      "value_90d_usd": 242551,
+      "value_180d_usd": 242551,
+      "accel_ratio": 1.01
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000033992",
+        "accession": "0001671006-26-000001",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-16",
+        "shares": 13500,
+        "value_usd": 242550.59,
+        "person": "Yankus William L",
+        "relationship": "Director",
+        "approx_sale_date": "04/16/2026"
+      },
+      {
+        "cik": "0000033992",
+        "accession": "0001628280-25-046700",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-28",
+        "shares": 5000,
+        "value_usd": 77500.0,
+        "person": "Carla D'Andre",
+        "relationship": "former officer",
+        "approx_sale_date": "10/24/2025"
+      },
+      {
+        "cik": "0000033992",
+        "accession": "0001628280-25-046004",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-23",
+        "shares": 5000,
+        "value_usd": 75000.0,
+        "person": "Carla D'Andre",
+        "relationship": "Former officer",
+        "approx_sale_date": "09/26/2025"
+      },
+      {
+        "cik": "0000033992",
+        "accession": "0002007317-25-001004",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 5000,
+        "value_usd": 80000.0,
+        "person": "D'Andre Carla",
+        "relationship": "former director",
+        "approx_sale_date": "09/03/2025"
+      },
+      {
+        "cik": "0000033992",
+        "accession": "0001959173-25-003263",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16",
+        "shares": 15000,
+        "value_usd": 258000.0,
+        "person": "Yankus William L",
+        "relationship": "Director",
+        "approx_sale_date": "05/16/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KKR": {
+    "ticker": "KKR",
+    "n_filings_indexed": 3,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 1,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001404912",
+        "accession": "0001140361-25-029675",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-07",
+        "shares": 809906,
+        "value_usd": 117080011.0,
+        "person": "ROBERTS GEORGE R",
+        "relationship": "See Remarks",
+        "approx_sale_date": "08/07/2025"
+      },
+      {
+        "cik": "0001404912",
+        "accession": "0001140361-25-021193",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1190094,
+        "value_usd": 145036756.0,
+        "person": "ROBERTS GEORGE R",
+        "relationship": "See Remarks",
+        "approx_sale_date": "06/02/2025"
+      },
+      {
+        "cik": "0001404912",
+        "accession": "0001140361-25-021190",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1150469,
+        "value_usd": 140207657.0,
+        "person": "KRAVIS HENRY R",
+        "relationship": "See Remarks",
+        "approx_sale_date": "06/02/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KLAC": {
+    "ticker": "KLAC",
+    "n_filings_indexed": 18,
+    "summary": {
+      "n_30d": 1,
+      "n_90d": 2,
+      "n_180d": 3,
+      "n_365d": 17,
+      "value_90d_usd": 9125616,
+      "value_180d_usd": 11913837,
+      "accel_ratio": 0.48
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-26-003511",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-12",
+        "shares": 4512,
+        "value_usd": 8094528.0,
+        "person": "WALLACE RICHARD P",
+        "relationship": "Officer",
+        "approx_sale_date": "05/12/2026"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-26-003472",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-11",
+        "shares": 550,
+        "value_usd": 1031088.19,
+        "person": "Hanley Jeneanne Michelle",
+        "relationship": "Director",
+        "approx_sale_date": "05/11/2026"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-007769",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-16",
+        "shares": 2254,
+        "value_usd": 2788220.54,
+        "person": "Higgins Bren D.",
+        "relationship": "Officer",
+        "approx_sale_date": "12/16/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-006873",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-12",
+        "shares": 10803,
+        "value_usd": 12997089.3,
+        "person": "WALLACE RICHARD P",
+        "relationship": "Officer",
+        "approx_sale_date": "11/11/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005816",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-05",
+        "shares": 4564,
+        "value_usd": 4107600.0,
+        "person": "Khan Ahmad A.",
+        "relationship": "Officer",
+        "approx_sale_date": "09/05/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005622",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-29",
+        "shares": 13716,
+        "value_usd": 12090654.0,
+        "person": "Khan Ahmad A.",
+        "relationship": "Officer",
+        "approx_sale_date": "08/29/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005370",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-20",
+        "shares": 2301,
+        "value_usd": 2021497.53,
+        "person": "Higgins Bren D.",
+        "relationship": "Officer",
+        "approx_sale_date": "08/20/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005105",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-12",
+        "shares": 8049,
+        "value_usd": 7354210.32,
+        "person": "Lorig Brian",
+        "relationship": "Officer",
+        "approx_sale_date": "08/12/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005103",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-12",
+        "shares": 10801,
+        "value_usd": 9868657.68,
+        "person": "WALLACE RICHARD P",
+        "relationship": "Officer",
+        "approx_sale_date": "08/12/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005043",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-08",
+        "shares": 1022,
+        "value_usd": 933086.0,
+        "person": "Wilkinson Mary Beth",
+        "relationship": "Officer",
+        "approx_sale_date": "08/08/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-005038",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-08",
+        "shares": 338,
+        "value_usd": 308594.0,
+        "person": "Kirloskar Virendra A",
+        "relationship": "Officer",
+        "approx_sale_date": "08/08/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-004943",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-05",
+        "shares": 511,
+        "value_usd": 468587.0,
+        "person": "Kirloskar Virendra A",
+        "relationship": "Officer",
+        "approx_sale_date": "08/05/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-004941",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-05",
+        "shares": 1920,
+        "value_usd": 1760640.0,
+        "person": "Wilkinson Mary Beth",
+        "relationship": "Officer",
+        "approx_sale_date": "08/05/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-004893",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-04",
+        "shares": 763,
+        "value_usd": 684220.25,
+        "person": "Wilkinson Mary Beth",
+        "relationship": "Officer",
+        "approx_sale_date": "08/04/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-004889",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-04",
+        "shares": 320,
+        "value_usd": 286960.0,
+        "person": "Kirloskar Virendra A",
+        "relationship": "Officer",
+        "approx_sale_date": "08/04/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-004408",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-02",
+        "shares": 39,
+        "value_usd": 34768.5,
+        "person": "Kirloskar Virendra A",
+        "relationship": "Officer",
+        "approx_sale_date": "07/02/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-004333",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-30",
+        "shares": 1320,
+        "value_usd": 1176331.2,
+        "person": "Wilkinson Mary Beth",
+        "relationship": "Officer",
+        "approx_sale_date": "06/30/2025"
+      },
+      {
+        "cik": "0000319201",
+        "accession": "0001959173-25-003411",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-22",
+        "shares": 1019,
+        "value_usd": 781022.74,
+        "person": "Higgins Bren D.",
+        "relationship": "Officer",
+        "approx_sale_date": "05/22/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KLRA": {
+    "ticker": "KLRA",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KLRS": {
+    "ticker": "KLRS",
+    "n_filings_indexed": 1,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 1,
+      "n_180d": 1,
+      "n_365d": 1,
+      "value_90d_usd": 12869,
+      "value_180d_usd": 12869,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001754068",
+        "accession": "0001950047-26-002859",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-20",
+        "shares": 1915,
+        "value_usd": 12868.8,
+        "person": "BRETT R R HAGEN",
+        "relationship": "Officer",
+        "approx_sale_date": "03/20/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KLTR": {
+    "ticker": "KLTR",
+    "n_filings_indexed": 11,
+    "summary": {
+      "n_30d": 2,
+      "n_90d": 5,
+      "n_180d": 5,
+      "n_365d": 10,
+      "value_90d_usd": 1033033,
+      "value_180d_usd": 1033033,
+      "accel_ratio": 2.03
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 2.0x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-26-000519",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-01",
+        "shares": 148500,
+        "value_usd": 227205.0,
+        "person": "Azaria Eynav",
+        "relationship": "Officer",
+        "approx_sale_date": "06/01/2026"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-26-000455",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 135562,
+        "value_usd": 203343.0,
+        "person": "Israeli Natan",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-26-000368",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-28",
+        "shares": 75000,
+        "value_usd": 96000.0,
+        "person": "Israeli Natan",
+        "relationship": "Officer",
+        "approx_sale_date": "04/27/2026"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-26-000366",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-27",
+        "shares": 150000,
+        "value_usd": 184500.0,
+        "person": "Azaria Eynav",
+        "relationship": "Officer",
+        "approx_sale_date": "04/27/2026"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-26-000211",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-18",
+        "shares": 255544,
+        "value_usd": 321985.44,
+        "person": "Halevi-Davidov Naama",
+        "relationship": "Officer",
+        "approx_sale_date": "03/18/2026"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-25-000389",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-09",
+        "shares": 37206,
+        "value_usd": 61017.84,
+        "person": "Doherty John N.",
+        "relationship": "Officer",
+        "approx_sale_date": "12/08/2025"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-25-000349",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 62014,
+        "value_usd": 107904.36,
+        "person": "Manor Eyal",
+        "relationship": "Director",
+        "approx_sale_date": "11/13/2025"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-25-000332",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-07",
+        "shares": 18580,
+        "value_usd": 28055.8,
+        "person": "Doherty John N.",
+        "relationship": "Officer",
+        "approx_sale_date": "10/06/2025"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-25-000289",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-04",
+        "shares": 38114,
+        "value_usd": 57171.0,
+        "person": "Doherty John N.",
+        "relationship": "Officer",
+        "approx_sale_date": "09/03/2025"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-25-000235",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-02",
+        "shares": 14828,
+        "value_usd": 29656.0,
+        "person": "Doherty John N.",
+        "relationship": "Officer",
+        "approx_sale_date": "07/02/2025"
+      },
+      {
+        "cik": "0001432133",
+        "accession": "0001976408-25-000178",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04",
+        "shares": 40118,
+        "value_usd": 87457.24,
+        "person": "Doherty John N.",
+        "relationship": "Officer",
+        "approx_sale_date": "06/03/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KMB": {
+    "ticker": "KMB",
+    "n_filings_indexed": 5,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 3,
+      "n_180d": 4,
+      "n_365d": 5,
+      "value_90d_usd": 726330,
+      "value_180d_usd": 1044218,
+      "accel_ratio": 2.43
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 2.4x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0000055785",
+        "accession": "0001628280-26-031275",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-06",
+        "shares": 4095,
+        "value_usd": 401178.88,
+        "person": "ANDREW SCRIBNER",
+        "relationship": "Officer",
+        "approx_sale_date": "05/06/2026"
+      },
+      {
+        "cik": "0000055785",
+        "accession": "0001628280-26-029964",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-04",
+        "shares": 1596,
+        "value_usd": 152113.0,
+        "person": "Katy Chen",
+        "relationship": "Officer",
+        "approx_sale_date": "05/04/2026"
+      },
+      {
+        "cik": "0000055785",
+        "accession": "0001628280-26-027993",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-28",
+        "shares": 1745,
+        "value_usd": 173038.0,
+        "person": "Katy",
+        "relationship": "Officer",
+        "approx_sale_date": "04/28/2026"
+      },
+      {
+        "cik": "0000055785",
+        "accession": "0001628280-26-005756",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-05",
+        "shares": 3049,
+        "value_usd": 317888.0,
+        "person": "Andrew Scribner",
+        "relationship": "Officer",
+        "approx_sale_date": "02/05/2026"
+      },
+      {
+        "cik": "0000055785",
+        "accession": "0002007317-25-000784",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-04",
+        "shares": 15038,
+        "value_usd": 2005667.44,
+        "person": "Hicks Zackery A",
+        "relationship": "Officer",
+        "approx_sale_date": "08/04/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KMPR": {
+    "ticker": "KMPR",
+    "n_filings_indexed": 2,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 1,
+      "n_365d": 2,
+      "value_90d_usd": 0,
+      "value_180d_usd": 17469,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000860748",
+        "accession": "0001959173-26-000707",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-06",
+        "shares": 504,
+        "value_usd": 17468.64,
+        "person": "MCKINNEY SUZET M",
+        "relationship": "Director",
+        "approx_sale_date": "02/06/2026"
+      },
+      {
+        "cik": "0000860748",
+        "accession": "0001969223-25-001080",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-12",
+        "shares": 96235,
+        "value_usd": 3945635.0,
+        "person": "Joseph Lacher",
+        "relationship": "Former Officer",
+        "approx_sale_date": "12/12/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KMRK": {
+    "ticker": "KMRK",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KMX": {
+    "ticker": "KMX",
+    "n_filings_indexed": 1,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 1,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001170010",
+        "accession": "0001950047-25-004812",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-02",
+        "shares": 1540,
+        "value_usd": 108790.22,
+        "person": "JON DANIELS",
+        "relationship": "Officer",
+        "approx_sale_date": "07/02/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KNTK": {
+    "ticker": "KNTK",
+    "n_filings_indexed": 16,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 6,
+      "n_180d": 15,
+      "n_365d": 15,
+      "value_90d_usd": 53254251,
+      "value_180d_usd": 242560194,
+      "accel_ratio": 1.62
+    },
+    "score": -8.0,
+    "reasons": [
+      "$53M proposed sales in 90d"
+    ],
+    "filings": [
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001974",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-30",
+        "shares": 534564,
+        "value_usd": 27016864.56,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "04/30/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001937",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-29",
+        "shares": 183434,
+        "value_usd": 9103829.42,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "04/29/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001891",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-28",
+        "shares": 192041,
+        "value_usd": 9385043.67,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "04/28/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001883",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-27",
+        "shares": 868,
+        "value_usd": 41403.6,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "04/27/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001811",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-23",
+        "shares": 138771,
+        "value_usd": 6677660.52,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "04/23/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001793",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-22",
+        "shares": 21429,
+        "value_usd": 1029449.16,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "04/22/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-001927",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-04",
+        "shares": 3222,
+        "value_usd": 148292.23,
+        "person": "Wall Matthew",
+        "relationship": "Officer",
+        "approx_sale_date": "03/04/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-001923",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-04",
+        "shares": 1619,
+        "value_usd": 74514.31,
+        "person": "Howard Trevor",
+        "relationship": "Officer",
+        "approx_sale_date": "03/04/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-001922",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-04",
+        "shares": 1260,
+        "value_usd": 57991.37,
+        "person": "Ellis Lindsay",
+        "relationship": "Officer",
+        "approx_sale_date": "03/04/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-001920",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-04",
+        "shares": 2907,
+        "value_usd": 133794.38,
+        "person": "Stellato Steven",
+        "relationship": "Officer",
+        "approx_sale_date": "03/04/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-26-001053",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-26",
+        "shares": 4000000,
+        "value_usd": 188000000.0,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "02/26/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-000051",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-02",
+        "shares": 2307,
+        "value_usd": 83516.63,
+        "person": "Howard Trevor",
+        "relationship": "Officer",
+        "approx_sale_date": "01/02/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-000049",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-02",
+        "shares": 11972,
+        "value_usd": 433403.16,
+        "person": "Stellato Steven",
+        "relationship": "Officer",
+        "approx_sale_date": "01/02/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-000048",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-02",
+        "shares": 8083,
+        "value_usd": 292615.92,
+        "person": "Wall Matthew",
+        "relationship": "Officer",
+        "approx_sale_date": "01/02/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0001959173-26-000047",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-02",
+        "shares": 2260,
+        "value_usd": 81815.16,
+        "person": "Ellis Lindsay",
+        "relationship": "Officer",
+        "approx_sale_date": "01/02/2026"
+      },
+      {
+        "cik": "0001692787",
+        "accession": "0000905148-25-002003",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04",
+        "shares": 4262090,
+        "value_usd": 194564408.5,
+        "person": "ISQ Global Fund II GP LLC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "06/04/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KO": {
+    "ticker": "KO",
+    "n_filings_indexed": 30,
+    "summary": {
+      "n_30d": 8,
+      "n_90d": 9,
+      "n_180d": 21,
+      "n_365d": 26,
+      "value_90d_usd": 90886608,
+      "value_180d_usd": 162573687,
+      "accel_ratio": 1.4
+    },
+    "score": -8.0,
+    "reasons": [
+      "$91M proposed sales in 90d"
+    ],
+    "filings": [
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-005882",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-10",
+        "shares": 23984,
+        "value_usd": 1950858.56,
+        "person": "JENNIFER MANN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/10/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-005819",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-09",
+        "shares": 100000,
+        "value_usd": 7954000.0,
+        "person": "JENNIFER MANN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/09/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-005791",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-08",
+        "shares": 100000,
+        "value_usd": 7948000.0,
+        "person": "JENNIFER MANN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/08/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-005709",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-05",
+        "shares": 100000,
+        "value_usd": 7682000.0,
+        "person": "JENNIFER MANN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/05/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-005706",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-05",
+        "shares": 436296,
+        "value_usd": 33516258.72,
+        "person": "JAMES QUINCEY",
+        "relationship": "Director",
+        "approx_sale_date": "06/05/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-005650",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 8000,
+        "value_usd": 630080.0,
+        "person": "JAMES QUINCEY",
+        "relationship": "Director",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-004778",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 158991,
+        "value_usd": 12975891.47,
+        "person": "LISA VIRGINIA CHANG",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-004584",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 31625,
+        "value_usd": 2559518.78,
+        "person": "NANCY QUAN",
+        "relationship": "Officer",
+        "approx_sale_date": "05/15/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001949846-26-000257",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-07",
+        "shares": 200000,
+        "value_usd": 15670000.0,
+        "person": "Quincey James",
+        "relationship": "Officer",
+        "approx_sale_date": "05/07/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-002356",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-09",
+        "shares": 23880,
+        "value_usd": 1847686.34,
+        "person": "MONICA HOWARD -DOUGLAS",
+        "relationship": "Officer",
+        "approx_sale_date": "03/09/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-002076",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-03",
+        "shares": 23556,
+        "value_usd": 1872746.76,
+        "person": "NANCY QUAN",
+        "relationship": "Officer",
+        "approx_sale_date": "03/03/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-002070",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-03",
+        "shares": 28765,
+        "value_usd": 2284317.82,
+        "person": "BRUNO PIETRACCI",
+        "relationship": "Officer",
+        "approx_sale_date": "03/03/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001968582-26-000202",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-03",
+        "shares": 688,
+        "value_usd": 54387.96,
+        "person": "James Quincey",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/03/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-001957",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 72449,
+        "value_usd": 5833933.99,
+        "person": "JOHN MURPHY",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001949846-26-000128",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 250000,
+        "value_usd": 20087500.0,
+        "person": "Quincey James",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-001873",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 21326,
+        "value_usd": 1727406.0,
+        "person": "BEATRIZ R PEREZ",
+        "relationship": "Officer",
+        "approx_sale_date": "02/27/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-001835",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-26",
+        "shares": 21326,
+        "value_usd": 1722074.5,
+        "person": "BEATRIZ R PEREZ",
+        "relationship": "Officer",
+        "approx_sale_date": "02/26/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-001792",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-25",
+        "shares": 20000,
+        "value_usd": 1603210.0,
+        "person": "MONICA HOWARD -DOUGLAS",
+        "relationship": "Officer",
+        "approx_sale_date": "02/25/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-001790",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-25",
+        "shares": 15000,
+        "value_usd": 1209000.0,
+        "person": "BEATRIZ R PEREZ",
+        "relationship": "Officer",
+        "approx_sale_date": "02/25/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-001759",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-25",
+        "shares": 99437,
+        "value_usd": 7996534.61,
+        "person": "JOHN MURPHY",
+        "relationship": "Officer",
+        "approx_sale_date": "02/25/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-26-000889",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-03",
+        "shares": 337824,
+        "value_usd": 25448281.92,
+        "person": "JAMES QUINCEY",
+        "relationship": "Director",
+        "approx_sale_date": "02/03/2026"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-008984",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-17",
+        "shares": 31625,
+        "value_usd": 2250805.01,
+        "person": "NANCY QUAN",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-008878",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 139689,
+        "value_usd": 9890609.8,
+        "person": "MANUEL ARROYO",
+        "relationship": "Officer",
+        "approx_sale_date": "11/14/2025"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-008721",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-12",
+        "shares": 40390,
+        "value_usd": 2864915.21,
+        "person": "HENRIQUE GNANI BRAUN",
+        "relationship": "Officer",
+        "approx_sale_date": "11/11/2025"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-008160",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-24",
+        "shares": 13548,
+        "value_usd": 947464.48,
+        "person": "MONICA HOWARD -DOUGLAS",
+        "relationship": "Officer",
+        "approx_sale_date": "10/24/2025"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-005454",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-003615",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-30"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-002835",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-002820",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "cik": "0000021344",
+        "accession": "0001950047-25-002795",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-07"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KOD": {
+    "ticker": "KOD",
+    "n_filings_indexed": 2,
+    "summary": {
+      "n_30d": 1,
+      "n_90d": 2,
+      "n_180d": 2,
+      "n_365d": 2,
+      "value_90d_usd": 2300400,
+      "value_180d_usd": 2300400,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001468748",
+        "accession": "0001950047-26-005646",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 30000,
+        "value_usd": 1016100.0,
+        "person": "JOHN BORGESON",
+        "relationship": "Officer",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001468748",
+        "accession": "0001950047-26-003206",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-02",
+        "shares": 30000,
+        "value_usd": 1284300.0,
+        "person": "JOHN BORGESON",
+        "relationship": "Officer",
+        "approx_sale_date": "04/02/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KODK": {
+    "ticker": "KODK",
+    "n_filings_indexed": 1,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 1,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000031235",
+        "accession": "0001950047-25-008621",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-10",
+        "shares": 19744,
+        "value_usd": 153805.76,
+        "person": "ROGER W BYRD",
+        "relationship": "Officer",
+        "approx_sale_date": "11/10/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KOPN": {
+    "ticker": "KOPN",
+    "n_filings_indexed": 7,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 7,
+      "n_180d": 7,
+      "n_365d": 7,
+      "value_90d_usd": 1762633,
+      "value_180d_usd": 1762633,
+      "accel_ratio": 4.06
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 4.1x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0000771266",
+        "accession": "0001969223-26-000507",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-06",
+        "shares": 58939,
+        "value_usd": 288801.1,
+        "person": "Baker Paul Christopher",
+        "relationship": "Officer",
+        "approx_sale_date": "05/06/2026"
+      },
+      {
+        "cik": "0000771266",
+        "accession": "0001969223-26-000500",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-05",
+        "shares": 1041,
+        "value_usd": 5100.9,
+        "person": "Baker Paul Christopher",
+        "relationship": "Officer",
+        "approx_sale_date": "05/05/2026"
+      },
+      {
+        "cik": "0000771266",
+        "accession": "0001969223-26-000475",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-28",
+        "shares": 116860,
+        "value_usd": 461597.0,
+        "person": "Baker Paul Christopher",
+        "relationship": "Officer",
+        "approx_sale_date": "04/28/2026"
+      },
+      {
+        "cik": "0000771266",
+        "accession": "0001950047-26-003489",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-15",
+        "shares": 160000,
+        "value_usd": 435200.0,
+        "person": "MICHAEL MURRAY",
+        "relationship": "Director",
+        "approx_sale_date": "04/15/2026"
+      },
+      {
+        "cik": "0000771266",
+        "accession": "0001950047-26-003398",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-13",
+        "shares": 160000,
+        "value_usd": 425600.0,
+        "person": "MICHAEL MURRAY",
+        "relationship": "Director",
+        "approx_sale_date": "04/13/2026"
+      },
+      {
+        "cik": "0000771266",
+        "accession": "0001950047-26-003027",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-26",
+        "shares": 33333,
+        "value_usd": 76665.9,
+        "person": "MICHAEL MURRAY",
+        "relationship": "Director",
+        "approx_sale_date": "03/26/2026"
+      },
+      {
+        "cik": "0000771266",
+        "accession": "0001950047-26-002985",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-25",
+        "shares": 33334,
+        "value_usd": 69668.06,
+        "person": "MICHAEL MURRAY",
+        "relationship": "Director",
+        "approx_sale_date": "03/25/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KPTI": {
+    "ticker": "KPTI",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KRMD": {
+    "ticker": "KRMD",
+    "n_filings_indexed": 1,
+    "summary": {
+      "n_30d": 1,
+      "n_90d": 1,
+      "n_180d": 1,
+      "n_365d": 1,
+      "value_90d_usd": 28915,
+      "value_180d_usd": 28915,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000704440",
+        "accession": "0001972481-26-000160",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-14",
+        "shares": 7326,
+        "value_usd": 28915.0,
+        "person": "Tharby Linda M",
+        "relationship": "Officer",
+        "approx_sale_date": "05/14/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KROS": {
+    "ticker": "KROS",
+    "n_filings_indexed": 5,
+    "summary": {
+      "n_30d": 3,
+      "n_90d": 4,
+      "n_180d": 4,
+      "n_365d": 5,
+      "value_90d_usd": 581534,
+      "value_180d_usd": 581534,
+      "accel_ratio": 3.24
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 3.2x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0001664710",
+        "accession": "0001969223-26-000639",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 2625,
+        "value_usd": 28035.0,
+        "person": "Farzan Nima",
+        "relationship": "Director",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001664710",
+        "accession": "0001969223-26-000637",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 2625,
+        "value_usd": 28035.0,
+        "person": "Knowles Julius",
+        "relationship": "Director",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001664710",
+        "accession": "0001969223-26-000636",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 2625,
+        "value_usd": 28035.0,
+        "person": "Seth Alpna",
+        "relationship": "Director",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001664710",
+        "accession": "0000947871-26-000370",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-31",
+        "shares": 45057,
+        "value_usd": 497429.28,
+        "person": "OrbiMed Genesis Master Fund, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "03/31/2026"
+      },
+      {
+        "cik": "0001664710",
+        "accession": "0001969223-25-000767",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-12",
+        "shares": 85306,
+        "value_usd": 1340157.26,
+        "person": "Rovaldi Christopher",
+        "relationship": "Affiliate",
+        "approx_sale_date": "09/12/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KRP": {
+    "ticker": "KRP",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KRT": {
+    "ticker": "KRT",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KTWOU": {
+    "ticker": "KTWOU",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KULR": {
+    "ticker": "KULR",
+    "n_filings_indexed": 3,
+    "summary": {
+      "n_30d": 2,
+      "n_90d": 2,
+      "n_180d": 2,
+      "n_365d": 3,
+      "value_90d_usd": 146706,
+      "value_180d_usd": 146706,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001662684",
+        "accession": "0001974078-26-000205",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-29",
+        "shares": 6565,
+        "value_usd": 31183.75,
+        "person": "Schwartz Aron I",
+        "relationship": "Director",
+        "approx_sale_date": "05/28/2026"
+      },
+      {
+        "cik": "0001662684",
+        "accession": "0001974078-26-000204",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-28",
+        "shares": 24378,
+        "value_usd": 115522.47,
+        "person": "Massey Joanna D.",
+        "relationship": "Director",
+        "approx_sale_date": "05/27/2026"
+      },
+      {
+        "cik": "0001662684",
+        "accession": "0001974078-25-000349",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-03",
+        "shares": 10000,
+        "value_usd": 54700.0,
+        "person": "Massey Joanna D.",
+        "relationship": "Director",
+        "approx_sale_date": "10/03/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KUST": {
+    "ticker": "KUST",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KVHI": {
+    "ticker": "KVHI",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KVYO": {
+    "ticker": "KVYO",
+    "n_filings_indexed": 51,
+    "summary": {
+      "n_30d": 2,
+      "n_90d": 6,
+      "n_180d": 14,
+      "n_365d": 37,
+      "value_90d_usd": 16334087,
+      "value_180d_usd": 45027143,
+      "accel_ratio": 0.66
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-005083",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-26",
+        "shares": 212529,
+        "value_usd": 3160306.23,
+        "person": "ANDREW BIALECKI",
+        "relationship": "Director",
+        "approx_sale_date": "05/26/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-26-003686",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-18",
+        "shares": 9334,
+        "value_usd": 133196.18,
+        "person": "St. Ledger Susan",
+        "relationship": "Director",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-003656",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-20",
+        "shares": 9623,
+        "value_usd": 179661.41,
+        "person": "LANDON RAMON EDMOND",
+        "relationship": "Officer",
+        "approx_sale_date": "04/20/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-003558",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-16",
+        "shares": 28000,
+        "value_usd": 514360.0,
+        "person": "AMANDA WHALEN",
+        "relationship": "Officer",
+        "approx_sale_date": "04/16/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-003301",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-07",
+        "shares": 637778,
+        "value_usd": 12251715.38,
+        "person": "ANDREW BIALECKI",
+        "relationship": "Director",
+        "approx_sale_date": "04/07/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-002738",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-17",
+        "shares": 4940,
+        "value_usd": 94848.0,
+        "person": "STEPHEN E. ROWLAND",
+        "relationship": "Officer",
+        "approx_sale_date": "03/17/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-002529",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-12",
+        "shares": 14366,
+        "value_usd": 285308.76,
+        "person": "LANDON RAMON EDMOND",
+        "relationship": "Officer",
+        "approx_sale_date": "03/12/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-002258",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-05",
+        "shares": 4940,
+        "value_usd": 96478.2,
+        "person": "STEPHEN E. ROWLAND",
+        "relationship": "Officer",
+        "approx_sale_date": "03/05/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-26-001747",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-24",
+        "shares": 1350000,
+        "value_usd": 21438000.0,
+        "person": "ANDREW BIALECKI",
+        "relationship": "Director",
+        "approx_sale_date": "02/24/2026"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-010521",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-18",
+        "shares": 39283,
+        "value_usd": 1178097.17,
+        "person": "LANDON RAMON EDMOND",
+        "relationship": "Officer",
+        "approx_sale_date": "12/18/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-010503",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-18",
+        "shares": 56000,
+        "value_usd": 1679440.0,
+        "person": "AMANDA WHALEN",
+        "relationship": "Officer",
+        "approx_sale_date": "12/18/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-007824",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-17",
+        "shares": 117550,
+        "value_usd": 3568942.25,
+        "person": "Hallen Ed",
+        "relationship": "Officer",
+        "approx_sale_date": "12/17/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-007759",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-15",
+        "shares": 757,
+        "value_usd": 22822.56,
+        "person": "Hallen Ed",
+        "relationship": "Officer",
+        "approx_sale_date": "12/15/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-010296",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-15",
+        "shares": 14208,
+        "value_usd": 423966.72,
+        "person": "STEPHEN ROWLAND",
+        "relationship": "Officer",
+        "approx_sale_date": "12/15/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-009642",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-02",
+        "shares": 1350000,
+        "value_usd": 38016000.0,
+        "person": "ANDREW BIALECKI",
+        "relationship": "Director",
+        "approx_sale_date": "12/02/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-009162",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-20",
+        "shares": 14394,
+        "value_usd": 396410.76,
+        "person": "LANDON RAMON EDMOND",
+        "relationship": "Officer",
+        "approx_sale_date": "11/20/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-008979",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-17",
+        "shares": 7104,
+        "value_usd": 203245.44,
+        "person": "STEPHEN ROWLAND",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-007029",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-17",
+        "shares": 11156,
+        "value_usd": 319284.72,
+        "person": "Galvin Carmel",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-008876",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 15000,
+        "value_usd": 427200.0,
+        "person": "AMANDA WHALEN",
+        "relationship": "Officer",
+        "approx_sale_date": "11/14/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-006886",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-12",
+        "shares": 2811,
+        "value_usd": 84331.54,
+        "person": "Hallen Ed",
+        "relationship": "Officer",
+        "approx_sale_date": "11/11/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-006868",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-10",
+        "shares": 59492,
+        "value_usd": 1787420.89,
+        "person": "Hallen Ed",
+        "relationship": "Officer",
+        "approx_sale_date": "11/10/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-008002",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-15",
+        "shares": 7105,
+        "value_usd": 173646.2,
+        "person": "STEPHEN ROWLAND",
+        "relationship": "Officer",
+        "approx_sale_date": "10/15/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-007122",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-15",
+        "shares": 7105,
+        "value_usd": 221604.95,
+        "person": "STEPHEN ROWLAND",
+        "relationship": "Officer",
+        "approx_sale_date": "09/15/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-006002",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-15",
+        "shares": 89748,
+        "value_usd": 2845870.5,
+        "person": "Hallen Ed",
+        "relationship": "Officer",
+        "approx_sale_date": "09/15/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-005888",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-10",
+        "shares": 3413,
+        "value_usd": 109898.6,
+        "person": "St. Ledger Susan",
+        "relationship": "Director",
+        "approx_sale_date": "09/10/2025"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-113681",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-113675",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-113672",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-113668",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-113665",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-006394",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-26"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-005988",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-18"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-005987",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-18"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-005258",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-18"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-005035",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-15"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-004974",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-11"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-004371",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-16"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-081908",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-081901",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-081900",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-081898",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-081897",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-04"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-074755",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-19"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-074754",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-19"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-074753",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-19"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-074751",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-19"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0000950170-25-074749",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-19"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-003138",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001950047-25-003124",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16"
+      },
+      {
+        "cik": "0001835830",
+        "accession": "0001959173-25-003247",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KW": {
+    "ticker": "KW",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KWY": {
+    "ticker": "KWY",
+    "n_filings_indexed": 5,
+    "summary": {
+      "n_30d": 3,
+      "n_90d": 3,
+      "n_180d": 5,
+      "n_365d": 5,
+      "value_90d_usd": 154550,
+      "value_180d_usd": 657950,
+      "accel_ratio": 2.43
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 2.4x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0001072627",
+        "accession": "0001958244-26-000305",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-21",
+        "shares": 5000,
+        "value_usd": 51150.0,
+        "person": "John T. Fitzgerald",
+        "relationship": "Officer",
+        "approx_sale_date": "05/21/2026"
+      },
+      {
+        "cik": "0001072627",
+        "accession": "0001958244-26-000298",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-20",
+        "shares": 5000,
+        "value_usd": 51200.0,
+        "person": "John T. Fitzgerald",
+        "relationship": "Officer",
+        "approx_sale_date": "05/20/2026"
+      },
+      {
+        "cik": "0001072627",
+        "accession": "0001958244-26-000292",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 5000,
+        "value_usd": 52200.0,
+        "person": "John T. Fitzgerald",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001072627",
+        "accession": "0001949846-25-000717",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-29",
+        "shares": 7500,
+        "value_usd": 105000.0,
+        "person": "Hansen Kent A",
+        "relationship": "Officer",
+        "approx_sale_date": "12/29/2025"
+      },
+      {
+        "cik": "0001072627",
+        "accession": "0001958244-25-004571",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-23",
+        "shares": 30000,
+        "value_usd": 398400.0,
+        "person": "John T. Fitzgerald",
+        "relationship": "Officer",
+        "approx_sale_date": "12/23/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KYMR": {
+    "ticker": "KYMR",
+    "n_filings_indexed": 51,
+    "summary": {
+      "n_30d": 2,
+      "n_90d": 19,
+      "n_180d": 30,
+      "n_365d": 46,
+      "value_90d_usd": 20153087,
+      "value_180d_usd": 45533939,
+      "accel_ratio": 1.68
+    },
+    "score": -6.0,
+    "reasons": [
+      "144 proposed sales = 0.32% of mcap in 90d"
+    ],
+    "filings": [
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-005075",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-26",
+        "shares": 13130,
+        "value_usd": 1035825.7,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "05/26/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001193125-26-239224",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-26",
+        "shares": 4054,
+        "value_usd": 317922.0,
+        "person": "Chadwick Jeremy G",
+        "relationship": "Officer",
+        "approx_sale_date": "05/26/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-004332",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-11",
+        "shares": 3000,
+        "value_usd": 258240.0,
+        "person": "ELENA RIDLOFF",
+        "relationship": "Director",
+        "approx_sale_date": "05/11/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-26-000476",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-29",
+        "shares": 30000,
+        "value_usd": 2474100.0,
+        "person": "Mainolfi Nello",
+        "relationship": "Officer",
+        "approx_sale_date": "04/29/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-026599",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-22",
+        "shares": 88,
+        "value_usd": 7750.16,
+        "person": "Atlas Venture Fund X, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "04/22/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-026598",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-22",
+        "shares": 12,
+        "value_usd": 1056.84,
+        "person": "Atlas Venture Opportunity Fund I, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "04/22/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003700",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-22",
+        "shares": 300,
+        "value_usd": 26421.0,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "04/22/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-025281",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-15",
+        "shares": 385,
+        "value_usd": 34599.95,
+        "person": "Atlas Venture Opportunity Fund I, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "04/15/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-025280",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-15",
+        "shares": 2750,
+        "value_usd": 247142.5,
+        "person": "Atlas Venture Fund X, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "04/15/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003490",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-15",
+        "shares": 1300,
+        "value_usd": 116824.5,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "04/15/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-025115",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-14",
+        "shares": 24000,
+        "value_usd": 2124720.0,
+        "person": "Bruce Booth",
+        "relationship": "Director",
+        "approx_sale_date": "04/14/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003449",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-14",
+        "shares": 5251,
+        "value_usd": 464871.03,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "04/14/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001193125-26-149706",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-09",
+        "shares": 11611,
+        "value_usd": 1014221.0,
+        "person": "Noah Goodman",
+        "relationship": "Officer",
+        "approx_sale_date": "04/09/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003152",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-01",
+        "shares": 4600,
+        "value_usd": 383134.0,
+        "person": "ELENA RIDLOFF",
+        "relationship": "Director",
+        "approx_sale_date": "04/01/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003151",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-01",
+        "shares": 14640,
+        "value_usd": 1219365.6,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "04/01/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003094",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-31",
+        "shares": 7600,
+        "value_usd": 604048.0,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "03/31/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-003091",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-31",
+        "shares": 7400,
+        "value_usd": 588152.0,
+        "person": "ELENA RIDLOFF",
+        "relationship": "Director",
+        "approx_sale_date": "03/31/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-002913",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-23",
+        "shares": 115977,
+        "value_usd": 9035768.07,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "03/23/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-002864",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-20",
+        "shares": 2500,
+        "value_usd": 198925.0,
+        "person": "PAMELA ESPOSITO",
+        "relationship": "Director",
+        "approx_sale_date": "03/20/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-002488",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-11",
+        "shares": 25758,
+        "value_usd": 2178611.64,
+        "person": "JEREMY CHADWICK",
+        "relationship": "Officer",
+        "approx_sale_date": "03/11/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-013331",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 25000,
+        "value_usd": 2283750.0,
+        "person": "Atlas Venture Opportunity Fund I, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001628280-26-013330",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 200000,
+        "value_usd": 18270000.0,
+        "person": "Atlas Venture Fund X, LP",
+        "relationship": "Shareholder",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001193125-26-085708",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 10613,
+        "value_usd": 956231.0,
+        "person": "Gollob Jared",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001193125-26-085705",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 6206,
+        "value_usd": 559161.0,
+        "person": "Chadwick Jeremy G",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001193125-26-085696",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 12576,
+        "value_usd": 1133098.0,
+        "person": "Jacobs Bruce N.",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-26-000229",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-25"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-001590",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-26-000560",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-20"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-25-001120",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-31"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-010458",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-17"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001178937-25-000093",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-12"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001178937-25-000092",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-12"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001178937-25-000090",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-11"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001178937-25-000089",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-11"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001178937-25-000088",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-10"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001178937-25-000087",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-10"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-25-001055",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-08"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-009969",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-08"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-009968",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-08"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-25-000889",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-29"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-008003",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-15"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-007920",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-14"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-007916",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-14"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-007269",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-17"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-25-000775",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-16"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-004153",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-11"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001969223-25-000389",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-03"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-003755",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-03"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-003753",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-03"
+      },
+      {
+        "cik": "0001815442",
+        "accession": "0001950047-25-003751",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-03"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KYN": {
+    "ticker": "KYN",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KYNB": {
+    "ticker": "KYNB",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KYTX": {
+    "ticker": "KYTX",
+    "n_filings_indexed": 5,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 4,
+      "n_180d": 5,
+      "n_365d": 5,
+      "value_90d_usd": 421677,
+      "value_180d_usd": 632380,
+      "accel_ratio": 3.24
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 3.2x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0001994702",
+        "accession": "0001950047-26-003607",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-17",
+        "shares": 10000,
+        "value_usd": 95300.0,
+        "person": "KAREN WALKER",
+        "relationship": "Officer",
+        "approx_sale_date": "04/17/2026"
+      },
+      {
+        "cik": "0001994702",
+        "accession": "0001950047-26-003454",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-14",
+        "shares": 2459,
+        "value_usd": 23335.91,
+        "person": "KAREN WALKER",
+        "relationship": "Officer",
+        "approx_sale_date": "04/14/2026"
+      },
+      {
+        "cik": "0001994702",
+        "accession": "0001950047-26-003285",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-07",
+        "shares": 17578,
+        "value_usd": 162636.93,
+        "person": "DANIEL SPIEGELMAN",
+        "relationship": "Director",
+        "approx_sale_date": "04/07/2026"
+      },
+      {
+        "cik": "0001994702",
+        "accession": "0001950047-26-003105",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-31",
+        "shares": 16634,
+        "value_usd": 140404.27,
+        "person": "DANIEL SPIEGELMAN",
+        "relationship": "Director",
+        "approx_sale_date": "03/31/2026"
+      },
+      {
+        "cik": "0001994702",
+        "accession": "0001950047-25-010307",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-15",
+        "shares": 23998,
+        "value_usd": 210702.44,
+        "person": "KAREN WALKER",
+        "relationship": "Officer",
+        "approx_sale_date": "12/15/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "KZR": {
+    "ticker": "KZR",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "L": {
+    "ticker": "L",
+    "n_filings_indexed": 21,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 3,
+      "n_365d": 15,
+      "value_90d_usd": 0,
+      "value_180d_usd": 28097245,
+      "accel_ratio": 0.0
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000060086",
+        "accession": "0001009879-26-000002",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-13",
+        "shares": 250000,
+        "value_usd": 27502500.0,
+        "person": "TISCH ANDREW H",
+        "relationship": "Director Emeritus",
+        "approx_sale_date": "02/13/2026"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-26-000826",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-10",
+        "shares": 1922,
+        "value_usd": 211727.52,
+        "person": "BERMAN ANN E",
+        "relationship": "Director",
+        "approx_sale_date": "02/10/2026"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-26-000789",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-10",
+        "shares": 3495,
+        "value_usd": 383017.05,
+        "person": "Alpert Marc A",
+        "relationship": "Officer",
+        "approx_sale_date": "02/10/2026"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001950047-25-010131",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-11",
+        "shares": 1000,
+        "value_usd": 104740.0,
+        "person": "RICHARD W SCOTT",
+        "relationship": "Officer",
+        "approx_sale_date": "12/11/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001009879-25-000005",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-01",
+        "shares": 200000,
+        "value_usd": 21574000.0,
+        "person": "TISCH ANDREW H",
+        "relationship": "Director Emeritus",
+        "approx_sale_date": "12/01/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-007376",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-01",
+        "shares": 1442,
+        "value_usd": 155642.14,
+        "person": "DIKER CHARLES M",
+        "relationship": "Director",
+        "approx_sale_date": "12/01/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-007372",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-01",
+        "shares": 1442,
+        "value_usd": 155916.25,
+        "person": "FRIBOURG PAUL J",
+        "relationship": "Director",
+        "approx_sale_date": "12/01/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-007371",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-01",
+        "shares": 1442,
+        "value_usd": 155563.1,
+        "person": "HARRIS WALTER L",
+        "relationship": "Director",
+        "approx_sale_date": "12/01/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-007364",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-01",
+        "shares": 1444,
+        "value_usd": 156093.66,
+        "person": "BERMAN ANN E",
+        "relationship": "Director",
+        "approx_sale_date": "12/01/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-005667",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 1422,
+        "value_usd": 137588.17,
+        "person": "DIKER CHARLES M",
+        "relationship": "Director",
+        "approx_sale_date": "09/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-005666",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 1422,
+        "value_usd": 137466.45,
+        "person": "BERMAN ANN E",
+        "relationship": "Director",
+        "approx_sale_date": "09/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-005665",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 1422,
+        "value_usd": 137490.76,
+        "person": "FRIBOURG PAUL J",
+        "relationship": "Director",
+        "approx_sale_date": "09/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-005664",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 1422,
+        "value_usd": 137500.29,
+        "person": "WELTERS ANTHONY",
+        "relationship": "Director",
+        "approx_sale_date": "09/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-005663",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 1421,
+        "value_usd": 137389.39,
+        "person": "HARRIS WALTER L",
+        "relationship": "Director",
+        "approx_sale_date": "09/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001950047-25-004522",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-20",
+        "shares": 6957,
+        "value_usd": 616749.18,
+        "person": "ANTHONY WELTERS",
+        "relationship": "Director",
+        "approx_sale_date": "06/20/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-003713",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1273,
+        "value_usd": 113061.5,
+        "person": "FRIBOURG PAUL J",
+        "relationship": "Director",
+        "approx_sale_date": "06/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-003697",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1273,
+        "value_usd": 113061.5,
+        "person": "BERMAN ANN E",
+        "relationship": "Director",
+        "approx_sale_date": "06/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-003695",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1274,
+        "value_usd": 113150.31,
+        "person": "HARRIS WALTER L",
+        "relationship": "Director",
+        "approx_sale_date": "06/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-003679",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1274,
+        "value_usd": 112583.51,
+        "person": "DIKER CHARLES M",
+        "relationship": "Director",
+        "approx_sale_date": "06/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001959173-25-003669",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-02",
+        "shares": 1273,
+        "value_usd": 113061.5,
+        "person": "WELTERS ANTHONY",
+        "relationship": "Former Director",
+        "approx_sale_date": "06/02/2025"
+      },
+      {
+        "cik": "0000060086",
+        "accession": "0001950047-25-002805",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-08",
+        "shares": 9019,
+        "value_usd": 792942.36,
+        "person": "RICHARD W SCOTT",
+        "relationship": "Officer",
+        "approx_sale_date": "05/08/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "LAB": {
+    "ticker": "LAB",
+    "n_filings_indexed": 9,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003482",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-23",
+        "shares": 13217,
+        "value_usd": 12441.17,
+        "person": "Mackay Sean",
+        "relationship": "Officer",
+        "approx_sale_date": "05/23/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003481",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-23",
+        "shares": 1428,
+        "value_usd": 1344.18,
+        "person": "Kim Hanjoon Alex",
+        "relationship": "Officer",
+        "approx_sale_date": "05/23/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003475",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-23",
+        "shares": 5473,
+        "value_usd": 5151.73,
+        "person": "Egholm Michael",
+        "relationship": "Officer",
+        "approx_sale_date": "05/23/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003444",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-22",
+        "shares": 5116,
+        "value_usd": 5125.72,
+        "person": "Egholm Michael",
+        "relationship": "Officer",
+        "approx_sale_date": "05/22/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003441",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-22",
+        "shares": 12536,
+        "value_usd": 12559.81,
+        "person": "Mackay Sean",
+        "relationship": "Officer",
+        "approx_sale_date": "05/22/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003438",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-22",
+        "shares": 1355,
+        "value_usd": 1357.57,
+        "person": "Kim Hanjoon Alex",
+        "relationship": "Officer",
+        "approx_sale_date": "05/22/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003407",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-21",
+        "shares": 1407,
+        "value_usd": 1451.04,
+        "person": "Kim Hanjoon Alex",
+        "relationship": "Officer",
+        "approx_sale_date": "05/21/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003406",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-21",
+        "shares": 12838,
+        "value_usd": 13239.84,
+        "person": "Mackay Sean",
+        "relationship": "Officer",
+        "approx_sale_date": "05/21/2025"
+      },
+      {
+        "cik": "0001162194",
+        "accession": "0001959173-25-003405",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-21",
+        "shares": 4719,
+        "value_usd": 4866.7,
+        "person": "Egholm Michael",
+        "relationship": "Officer",
+        "approx_sale_date": "05/21/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "LAR": {
+    "ticker": "LAR",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "LASR": {
+    "ticker": "LASR",
+    "n_filings_indexed": 76,
+    "summary": {
+      "n_30d": 22,
+      "n_90d": 23,
+      "n_180d": 35,
+      "n_365d": 73,
+      "value_90d_usd": 32491583,
+      "value_180d_usd": 33172374,
+      "accel_ratio": 1.28
+    },
+    "score": -6.0,
+    "reasons": [
+      "144 proposed sales = 0.91% of mcap in 90d"
+    ],
+    "filings": [
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004474",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-09",
+        "shares": 4634,
+        "value_usd": 321599.6,
+        "person": "LINK RAYMOND A",
+        "relationship": "Director",
+        "approx_sale_date": "06/09/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001949846-26-000354",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-08",
+        "shares": 6000,
+        "value_usd": 405480.0,
+        "person": "LINK RAYMOND A",
+        "relationship": "Director",
+        "approx_sale_date": "06/08/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004335",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 16089,
+        "value_usd": 1165326.27,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004329",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 3817,
+        "value_usd": 278259.3,
+        "person": "Corso Joseph John",
+        "relationship": "Officer",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004313",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-03",
+        "shares": 8901,
+        "value_usd": 694155.17,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "06/03/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004311",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-03",
+        "shares": 940,
+        "value_usd": 73307.03,
+        "person": "Nias James",
+        "relationship": "Officer",
+        "approx_sale_date": "06/03/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004310",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-03",
+        "shares": 3840,
+        "value_usd": 299467.0,
+        "person": "Corso Joseph John",
+        "relationship": "Officer",
+        "approx_sale_date": "06/03/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004150",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-29",
+        "shares": 41371,
+        "value_usd": 3034839.75,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/29/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-004110",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-28",
+        "shares": 41373,
+        "value_usd": 3253717.16,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/28/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003846",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-21",
+        "shares": 41373,
+        "value_usd": 2958996.96,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/21/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003806",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-20",
+        "shares": 35476,
+        "value_usd": 2521988.84,
+        "person": "Corso Joseph John",
+        "relationship": "Officer",
+        "approx_sale_date": "05/20/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003804",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-20",
+        "shares": 41373,
+        "value_usd": 2941206.57,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/20/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003793",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-20",
+        "shares": 415,
+        "value_usd": 29502.35,
+        "person": "Nias James",
+        "relationship": "Officer",
+        "approx_sale_date": "05/20/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003787",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 20243,
+        "value_usd": 1386228.49,
+        "person": "Corso Joseph John",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003785",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 1618,
+        "value_usd": 110799.67,
+        "person": "Nias James",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003784",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-19",
+        "shares": 46735,
+        "value_usd": 3200384.76,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003744",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-18",
+        "shares": 45191,
+        "value_usd": 3200385.95,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003743",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-18",
+        "shares": 1565,
+        "value_usd": 110831.89,
+        "person": "Nias James",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003741",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-18",
+        "shares": 19575,
+        "value_usd": 1386283.88,
+        "person": "Corso Joseph John",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003663",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 18445,
+        "value_usd": 1386233.98,
+        "person": "Corso Joseph John",
+        "relationship": "Officer",
+        "approx_sale_date": "05/15/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003662",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 1487,
+        "value_usd": 111755.49,
+        "person": "Nias James",
+        "relationship": "Officer",
+        "approx_sale_date": "05/15/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-003661",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 42584,
+        "value_usd": 3200400.52,
+        "person": "Keeney Scott H",
+        "relationship": "Officer",
+        "approx_sale_date": "05/15/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002280",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-13",
+        "shares": 6644,
+        "value_usd": 420432.32,
+        "person": "LINK RAYMOND A",
+        "relationship": "Director",
+        "approx_sale_date": "03/13/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002231",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-12",
+        "shares": 1808,
+        "value_usd": 116471.36,
+        "person": "Nias James",
+        "relationship": "Officer",
+        "approx_sale_date": "03/12/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002227",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-12",
+        "shares": 8760,
+        "value_usd": 564319.2,
+        "person": "LINK RAYMOND A",
+        "relationship": "Director",
+        "approx_sale_date": "03/12/2026"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002187",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-11"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002135",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002060",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-09"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002012",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-06"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-002005",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-06"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-001999",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-001997",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-001995",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-05"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-26-000142",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-06"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-007764",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-15"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-007519",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-04"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-007476",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-03"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-007475",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-03"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-007474",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-03"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-007187",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-21"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-006916",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-12"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-006108",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-18"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005957",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-12"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005792",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-05"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005785",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-04"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005780",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-04"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005777",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-04"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005611",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-28"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005576",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-27"
+      },
+      {
+        "cik": "0001124796",
+        "accession": "0001959173-25-005552",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-26"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "LAW": {
+    "ticker": "LAW",
+    "n_filings_indexed": 28,
+    "summary": {
+      "n_30d": 4,
+      "n_90d": 4,
+      "n_180d": 14,
+      "n_365d": 24,
+      "value_90d_usd": 114300,
+      "value_180d_usd": 347450,
+      "accel_ratio": 0.68
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000124",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 10300,
+        "value_usd": 30900.0,
+        "person": "Karen Herckis",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000122",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 8400,
+        "value_usd": 25200.0,
+        "person": "Susan Garcia",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000120",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 9000,
+        "value_usd": 27000.0,
+        "person": "Richard Crum",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000118",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-15",
+        "shares": 10400,
+        "value_usd": 31200.0,
+        "person": "Melanie Antoon",
+        "relationship": "Officer",
+        "approx_sale_date": "05/18/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000060",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 6400,
+        "value_usd": 19200.0,
+        "person": "Susan Garcia",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000058",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 5300,
+        "value_usd": 15900.0,
+        "person": "Melanie Antoon",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000057",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 5900,
+        "value_usd": 17700.0,
+        "person": "Michael Lafair",
+        "relationship": "Other",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000056",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 4300,
+        "value_usd": 12900.0,
+        "person": "Karen Herckis",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000055",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 6700,
+        "value_usd": 20100.0,
+        "person": "Richard Crum",
+        "relationship": "Officer",
+        "approx_sale_date": "03/02/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000021",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-17",
+        "shares": 17600,
+        "value_usd": 61600.0,
+        "person": "Michael Lafair",
+        "relationship": "Other",
+        "approx_sale_date": "02/17/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000019",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-13",
+        "shares": 3300,
+        "value_usd": 11550.0,
+        "person": "Susan Garcia",
+        "relationship": "Officer",
+        "approx_sale_date": "02/17/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000017",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-13",
+        "shares": 5800,
+        "value_usd": 20300.0,
+        "person": "Richard Crum",
+        "relationship": "Officer",
+        "approx_sale_date": "02/17/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000015",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-13",
+        "shares": 7200,
+        "value_usd": 25200.0,
+        "person": "Karen Herckis",
+        "relationship": "Officer",
+        "approx_sale_date": "02/17/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-26-000014",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-13",
+        "shares": 8200,
+        "value_usd": 28700.0,
+        "person": "Melanie Antoon",
+        "relationship": "Officer",
+        "approx_sale_date": "02/17/2026"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001950047-25-010047",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-10",
+        "shares": 20000,
+        "value_usd": 174122.0,
+        "person": "MELANIE ANTOON",
+        "relationship": "Officer",
+        "approx_sale_date": "12/10/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000197",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 11300,
+        "value_usd": 73500.0,
+        "person": "Susan Garcia",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000195",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 5900,
+        "value_usd": 38500.0,
+        "person": "Karen Herckis",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000193",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 4800,
+        "value_usd": 31200.0,
+        "person": "Richard Crum",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000191",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 15400,
+        "value_usd": 100100.0,
+        "person": "Michael Lafair",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000189",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-14",
+        "shares": 7200,
+        "value_usd": 46800.0,
+        "person": "Melanie Antoon",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000137",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-15",
+        "shares": 6700,
+        "value_usd": 33500.0,
+        "person": "Melanie Antoon",
+        "relationship": "Officer",
+        "approx_sale_date": "08/18/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000135",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-15",
+        "shares": 14400,
+        "value_usd": 72000.0,
+        "person": "Michael Lafair",
+        "relationship": "Officer",
+        "approx_sale_date": "08/18/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000133",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-15",
+        "shares": 5500,
+        "value_usd": 27500.0,
+        "person": "Karen Herckis",
+        "relationship": "Officer",
+        "approx_sale_date": "08/18/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000131",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-15",
+        "shares": 10200,
+        "value_usd": 51000.0,
+        "person": "Richard Crum",
+        "relationship": "Officer",
+        "approx_sale_date": "08/18/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000083",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16",
+        "shares": 116750,
+        "value_usd": 467000.0,
+        "person": "Eric Freidrichsen",
+        "relationship": "Officer",
+        "approx_sale_date": "05/19/2025"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000081",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000079",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16"
+      },
+      {
+        "cik": "0001625641",
+        "accession": "0001625641-25-000077",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-16"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "LAWIL": {
+    "ticker": "LAWIL",
+    "n_filings_indexed": 7,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 7,
+      "n_365d": 7,
+      "value_90d_usd": 0,
+      "value_180d_usd": 6715587,
+      "accel_ratio": 0.0
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000750004",
+        "accession": "0001959173-26-002080",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-09",
+        "shares": 30347,
+        "value_usd": 2682674.0,
+        "person": "Lane Siobhan",
+        "relationship": "Director",
+        "approx_sale_date": "03/09/2026"
+      },
+      {
+        "cik": "0000750004",
+        "accession": "0000950157-26-000246",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-06",
+        "shares": 1520,
+        "value_usd": 135772.97,
+        "person": "Kalabic Vanja",
+        "relationship": "Officer",
+        "approx_sale_date": "03/06/2026"
+      },
+      {
+        "cik": "0000750004",
+        "accession": "0000950157-26-000245",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-06",
+        "shares": 5144,
+        "value_usd": 459624.73,
+        "person": "Chow Oliver",
+        "relationship": "Officer",
+        "approx_sale_date": "03/06/2026"
+      },
+      {
+        "cik": "0000750004",
+        "accession": "0001959173-26-001934",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-04",
+        "shares": 2600,
+        "value_usd": 337060.17,
+        "person": "Sottile James",
+        "relationship": "Former Officer",
+        "approx_sale_date": "03/04/2026"
+      },
+      {
+        "cik": "0000750004",
+        "accession": "0000950157-26-000199",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-02",
+        "shares": 6000,
+        "value_usd": 540283.17,
+        "person": "McLennan Hamish",
+        "relationship": "Director",
+        "approx_sale_date": "03/01/2026"
+      },
+      {
+        "cik": "0000750004",
+        "accession": "0000950157-26-000182",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-26",
+        "shares": 25002,
+        "value_usd": 2409692.76,
+        "person": "Sottile James",
+        "relationship": "Former Officer",
+        "approx_sale_date": "02/25/2026"
+      },
+      {
+        "cik": "0000750004",
+        "accession": "0001959173-26-001560",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-26",
+        "shares": 1591,
+        "value_usd": 150479.45,
+        "person": "Sottile James",
+        "relationship": "Former Officer",
+        "approx_sale_date": "02/26/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
   }
 }

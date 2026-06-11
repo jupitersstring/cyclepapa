@@ -1,0 +1,539 @@
+{
+  "AAME": {
+    "ticker": "AAME",
+    "quarters_scanned": [
+      {
+        "accession": "0001140361-25-042275",
+        "filing_date": "2025-11-14"
+      },
+      {
+        "accession": "0001140361-25-030558",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001140361-25-018588",
+        "filing_date": "2025-05-13"
+      },
+      {
+        "accession": "0001140361-25-010239",
+        "filing_date": "2025-03-25"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": 2001136,
+        "dates_near": [
+          "February 28, 2025",
+          "March 31, 2025",
+          "March 31, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "18,712 ) Unearned stock grant compensation &#160; &#160; &#8212; &#160; &#160; ( 2 ) Treasury stock, at cost: 2,003,666 and 2,001,136 shares &#160; &#160; ( 7,412 ) &#160; &#160; ( 7,408 ) Total shareholders&#8217; equity &#160; &#160; 102,385 &#160; &#160; &#160; 99,613 &#160; Total liabilities and shareholders&#8217; equity &#160; $ 388,436 &#160; &#160; $ 393,428 &#160; The accompanying notes are an integral part of these condensed consolidated financial statements. 3 Table of Contents ATLANTIC AMERICAN CORPORATION CONDENSED CO NSOLIDATED STATEMENTS OF OPERATIONS (Unaudited; In thousands, e",
+        "accession": "0001140361-25-018588",
+        "filing_date": "2025-05-13"
+      }
+    ],
+    "score": 5.0,
+    "reasons": [
+      "neutral terminate (type unknown): an insider (director) 2,001,136sh [+5]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 1
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "AARD": {
+    "ticker": "AARD",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-210675",
+        "filing_date": "2026-05-07"
+      },
+      {
+        "accession": "0001193125-26-119770",
+        "filing_date": "2026-03-23"
+      },
+      {
+        "accession": "0001193125-25-280260",
+        "filing_date": "2025-11-13"
+      },
+      {
+        "accession": "0000950170-25-108116",
+        "filing_date": "2025-08-13"
+      },
+      {
+        "accession": "0000950170-25-071560",
+        "filing_date": "2025-05-14"
+      },
+      {
+        "accession": "0000950170-25-047835",
+        "filing_date": "2025-03-31"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABAT": {
+    "ticker": "ABAT",
+    "quarters_scanned": [
+      {
+        "accession": "0001493152-26-022149",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001493152-26-005349",
+        "filing_date": "2026-02-05"
+      },
+      {
+        "accession": "0001493152-25-021111",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0001493152-25-014092",
+        "filing_date": "2025-09-18"
+      },
+      {
+        "accession": "0001641172-25-011038",
+        "filing_date": "2025-05-15"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABEV": {
+    "ticker": "ABEV",
+    "quarters_scanned": [
+      {
+        "accession": "0001292814-26-003413",
+        "filing_date": "2026-06-10"
+      },
+      {
+        "accession": "0001292814-26-003411",
+        "filing_date": "2026-06-10"
+      },
+      {
+        "accession": "0001292814-26-003255",
+        "filing_date": "2026-06-01"
+      },
+      {
+        "accession": "0001292814-26-003235",
+        "filing_date": "2026-05-29"
+      },
+      {
+        "accession": "0001292814-26-000640",
+        "filing_date": "2026-03-03"
+      },
+      {
+        "accession": "0001292814-25-000831",
+        "filing_date": "2025-03-12"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABM": {
+    "ticker": "ABM",
+    "quarters_scanned": [
+      {
+        "accession": "0000771497-26-000007",
+        "filing_date": "2026-06-05"
+      },
+      {
+        "accession": "0000771497-26-000001",
+        "filing_date": "2026-03-10"
+      },
+      {
+        "accession": "0000771497-25-000031",
+        "filing_date": "2025-12-19"
+      },
+      {
+        "accession": "0000771497-25-000022",
+        "filing_date": "2025-09-05"
+      },
+      {
+        "accession": "0000771497-25-000014",
+        "filing_date": "2025-06-06"
+      },
+      {
+        "accession": "0000771497-24-000029",
+        "filing_date": "2024-12-19"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABVE": {
+    "ticker": "ABVE",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-069444",
+        "filing_date": "2026-06-02"
+      },
+      {
+        "accession": "0001104659-26-046054",
+        "filing_date": "2026-04-21"
+      },
+      {
+        "accession": "0001104659-26-036243",
+        "filing_date": "2026-03-27"
+      },
+      {
+        "accession": "0001104659-26-033812",
+        "filing_date": "2026-03-24"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACA": {
+    "ticker": "ACA",
+    "quarters_scanned": [
+      {
+        "accession": "0001739445-26-000067",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001739445-26-000029",
+        "filing_date": "2026-02-27"
+      },
+      {
+        "accession": "0001739445-25-000135",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001739445-25-000115",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0001739445-25-000067",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0001739445-25-000026",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACCO": {
+    "ticker": "ACCO",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-201006",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0001193125-26-098616",
+        "filing_date": "2026-03-09"
+      },
+      {
+        "accession": "0001193125-25-260601",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0000950170-25-101292",
+        "filing_date": "2025-08-01"
+      },
+      {
+        "accession": "0000950170-25-062490",
+        "filing_date": "2025-05-02"
+      },
+      {
+        "accession": "0000950170-25-024931",
+        "filing_date": "2025-02-21"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACGLN": {
+    "ticker": "ACGLN",
+    "quarters_scanned": [
+      {
+        "accession": "0000947484-26-000058",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0000947484-26-000017",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0000947484-25-000085",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000947484-25-000066",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0000947484-25-000047",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0000947484-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "April 19, 2026",
+          "March 10, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "exhaustive and should be read in conjunction with other cautionary statements that are included herein or elsewhere. The Company&#8217;s forward-looking statements speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2026 FIRST QUARTER FORM 10-Q Table of Contents ITEM 1. CONS ||SECT|| column represents the remaining approximate dollar amount available at the end of each applicable period un",
+        "accession": "0000947484-26-000058",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "tions of the insurance policies we write, changes in the products offered by us or changes in our business strategy. The financial results of the property casualty insurance and reinsurance industry are influenced by factors such as the frequency and/or severity of claims and losses, including natural disasters or other catastrophic events, variations in interest rates and financial markets, changes in the legal, regulatory and judicial environments, inflationary pressures and general economic conditions. These factors influence, among other things, the demand for insurance or reinsurance, the",
+        "accession": "0000947484-26-000017",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "September 4, 2025",
+          "August 1, 2025",
+          "October 29, 2025",
+          "November 3, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "other cautionary statements that are included herein or elsewhere. The Company&#8217;s forward-looking statements speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2025 THIRD QUARTER FORM 10-Q Table of Contents ITEM 1. CONSOLIDATED FINANCIAL STATEMENTS &#160; Page&#16 ||SECT|| s the remaining approximate dollar amount available at the end of each applicable period under Arch Capital&#821",
+        "accession": "0000947484-25-000085",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 20, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "on with other cautionary statements that are included herein or elsewhere. The Company&#8217;s forward-looking statements speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2025 SECOND QUARTER FORM 10-Q Table of Contents ITEM 1. CONSOLIDATED FINANCIAL STATEMENTS &#160; Page& ||SECT|| ere exercised. (2) This column represents the remaining approximate dollar amount available at the end of ",
+        "accession": "0000947484-25-000066",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 31, 2025",
+          "December 31, 2024",
+          "December 20, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nts speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2025 FIRST QUARTER FORM 10-Q Table of Contents ITEM 1. CONSOLIDATED FINANCIAL STATEMENTS &#160; Page&#160;No. &#160; &#160; Consolidated Balance Sheets March 31, 2025 and December 31, 2024 (unaudited) 5 Consolidated Sta ||SECT|| ere exercised. (2) This column represents the remaining approximate dollar amount available at the end of e",
+        "accession": "0000947484-25-000047",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "in our business strategy. The financial results of the property casualty insurance and reinsurance industry are influenced by factors such as the frequency and/or severity of claims and losses, including natural disasters or other catastrophic events, variations in interest rates and financial markets, changes in the legal, regulatory and judicial environments, inflationary pressures and general economic conditions. These factors influence, among other things, the demand for insurance or reinsurance, the supply of which is generally related to the total capital of competitors in the market. Mo",
+        "accession": "0000947484-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "score": 17.0,
+    "reasons": [
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 1,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 5
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACHC": {
+    "ticker": "ACHC",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-192508",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001193125-26-078266",
+        "filing_date": "2026-02-27"
+      },
+      {
+        "accession": "0001193125-25-267062",
+        "filing_date": "2025-11-05"
+      },
+      {
+        "accession": "0000950170-25-103160",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0000950170-25-069294",
+        "filing_date": "2025-05-12"
+      },
+      {
+        "accession": "0000950170-25-029095",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  }
+}

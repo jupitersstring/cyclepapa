@@ -1,0 +1,625 @@
+{
+  "AA": {
+    "ticker": "AA",
+    "quarters_scanned": [
+      {
+        "accession": "0001193125-26-197447",
+        "filing_date": "2026-04-30"
+      },
+      {
+        "accession": "0001193125-26-077167",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0001193125-25-253570",
+        "filing_date": "2025-10-28"
+      },
+      {
+        "accession": "0000950170-25-100979",
+        "filing_date": "2025-07-31"
+      },
+      {
+        "accession": "0000950170-25-061867",
+        "filing_date": "2025-05-01"
+      },
+      {
+        "accession": "0000950170-25-024242",
+        "filing_date": "2025-02-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "AAPG": {
+    "ticker": "AAPG",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-067328",
+        "filing_date": "2026-06-10"
+      },
+      {
+        "accession": "0001213900-26-063156",
+        "filing_date": "2026-06-01"
+      },
+      {
+        "accession": "0001213900-26-062191",
+        "filing_date": "2026-05-28"
+      },
+      {
+        "accession": "0001213900-26-061791",
+        "filing_date": "2026-05-28"
+      },
+      {
+        "accession": "0001213900-26-049412",
+        "filing_date": "2026-04-29"
+      },
+      {
+        "accession": "0001213900-25-032599",
+        "filing_date": "2025-04-16"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "AB": {
+    "ticker": "AB",
+    "quarters_scanned": [
+      {
+        "accession": "0000825313-26-000032",
+        "filing_date": "2026-05-01"
+      },
+      {
+        "accession": "0000825313-26-000020",
+        "filing_date": "2026-02-12"
+      },
+      {
+        "accession": "0000825313-25-000104",
+        "filing_date": "2025-10-23"
+      },
+      {
+        "accession": "0000825313-25-000077",
+        "filing_date": "2025-07-24"
+      },
+      {
+        "accession": "0000825313-25-000034",
+        "filing_date": "2025-04-24"
+      },
+      {
+        "accession": "0000825313-25-000014",
+        "filing_date": "2025-02-14"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mr. Seth Bernstein",
+        "role": "Chief Executive Officer",
+        "shares": null,
+        "dates_near": [
+          "May 21, 2025",
+          "August 19, 2025",
+          "November 17, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "it, net of Commissions Total Number of AB Units Purchased as Part of Publicly Announced Plans or Programs Maximum Number (or Approximate Dollar Value) of AB Units that May Yet Be Purchased Under the Plans or Programs 4/1/25 - 4/30/25 &#8212;&#160; &#8212;&#160; &#8212;&#160; &#8212;&#160; 5/1/25 - 5/31/25 &#8212;&#160; &#8212;&#160; &#8212;&#160; &#8212;&#160; 6/1/25 - 6/30/25 (1) 30,200&#160; $ 39.88&#160; &#8212;&#160; &#8212;&#160; Total 30,200 &#160; $ 39.88 &#160; &#8212; &#160; &#8212; &#160; (1) During second quarter of 2025, AB purchased 30,200 AB Units in private transactions and reti",
+        "modification_pair": true,
+        "accession": "0000825313-25-000077",
+        "filing_date": "2025-07-24"
+      },
+      {
+        "action": "ADOPT",
+        "trigger": "adopted a Rule 10b5-1",
+        "plan_type": "sell",
+        "neo": "Mr. Seth Bernstein",
+        "role": "Chief Executive Officer",
+        "shares": null,
+        "dates_near": [
+          "May 21, 2025",
+          "August 19, 2025",
+          "November 17, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ulfill statutory withholding tax requirements at the time of distribution of long-term incentive compensation awards. 16 Index AB Units bought by us or one of our affiliates during the second quarter of 2025 are as follows: ISSUER PURCHASES OF EQUITY SECURITIES &#160; Period Total Number of AB Units Purchased Average Price Paid Per AB Unit, net of Commissions Total Number of AB Units Purchased as Part of Publicly Announced Plans or Programs Maximum Number (or Approximate Dollar Value) of AB Units that May Yet Be Purchased Under the Plans or Programs 4/1/25 - 4/30/25 &#8212;&#160; &#8212;&#160;",
+        "modification_pair": true,
+        "accession": "0000825313-25-000077",
+        "filing_date": "2025-07-24"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a 10b5-1",
+        "plan_type": "sell",
+        "neo": "Seth Bernstein",
+        "role": "Chief Executive Officer",
+        "shares": null,
+        "dates_near": [
+          "November 12, 2025",
+          "November 12, 2025",
+          "October 27, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "a subsidiary of EQH (\" Equitable Financial \"), agreed to provide an initial $10 billion in permanent capital to build out AB's private illiquid offerings, including private alternatives and private placements. Deployment of the initial $10 billion in permanent capital is now complete. In addition, during the second quarter of 2023, EQH committe ||SECT|| changes in our internal control over financial reporting occurred during the fourth quarter of 2025 that materially affected, or are reasonably likely to materially affect, our internal control over financial reporting. 2025 Annual Report 123 T",
+        "accession": "0000825313-26-000020",
+        "filing_date": "2026-02-12"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 31, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "any, sub-advisory relationships with mutual funds sponsored by third parties, separately managed account programs sponsored by financial intermediaries worldwide and other investment vehicles. &#8226; Private Wealth Management &#8211; servicing its private clients, including high-net-worth individuals and families, trusts and estates, charitable foundations, partnerships, private and family corporations, and other entities, by means of separately managed accounts, hedge funds, mutual funds and other investment vehicles. AB also provides ||SECT|| 12;&#160; &#8212;&#160; &#8212;&#160; &#8212;&#1",
+        "accession": "0000825313-25-000034",
+        "filing_date": "2025-04-24"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a 10b5-1",
+        "plan_type": "sell",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "ncerns around the impact of proposed tariffs, particularly on China. Emerging Markets underperformed Developed Markets in the fourth quarter. Global Bonds Fixed income markets experienced considerable volatility in the fourth quarter of 2024, primarily driven by geopolitical tensions, central bank decisions, and fluctuating inflation rates. The Bloomberg Global Aggregate Bond index ended 5.0% lower (USD&#160;terms, unhedged) in the fourth quarter of 2024. Major government bonds sold off, driven by persistent inflation, political instability, and budgetary concerns. The 10-year Treasury yield e",
+        "accession": "0000825313-25-000014",
+        "filing_date": "2025-02-14"
+      }
+    ],
+    "score": 53.0,
+    "reasons": [
+      "BULLISH terminate sell: Seth Bernstein (Chief Executive Officer) [+30]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "BULLISH terminate sell: an insider (director) [+18]"
+    ],
+    "counts": {
+      "term_sell": 2,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 2,
+      "neutral": 1
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABCB": {
+    "ticker": "ABCB",
+    "quarters_scanned": [
+      {
+        "accession": "0000351569-26-000086",
+        "filing_date": "2026-05-08"
+      },
+      {
+        "accession": "0000351569-26-000050",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0000351569-25-000037",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0000351569-25-000022",
+        "filing_date": "2025-08-08"
+      },
+      {
+        "accession": "0000351569-25-000011",
+        "filing_date": "2025-05-09"
+      },
+      {
+        "accession": "0000351569-25-000006",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABLV": {
+    "ticker": "ABLV",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-048085",
+        "filing_date": "2026-04-27"
+      },
+      {
+        "accession": "0001213900-26-030827",
+        "filing_date": "2026-03-18"
+      },
+      {
+        "accession": "0001213900-26-016401",
+        "filing_date": "2026-02-13"
+      },
+      {
+        "accession": "0001213900-25-119656",
+        "filing_date": "2025-12-09"
+      },
+      {
+        "accession": "0001213900-25-093928",
+        "filing_date": "2025-09-30"
+      },
+      {
+        "accession": "0001213900-25-034677",
+        "filing_date": "2025-04-23"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABVC": {
+    "ticker": "ABVC",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-058104",
+        "filing_date": "2026-05-18"
+      },
+      {
+        "accession": "0001213900-26-023063",
+        "filing_date": "2026-03-03"
+      },
+      {
+        "accession": "0001213900-25-104811",
+        "filing_date": "2025-11-03"
+      },
+      {
+        "accession": "0001213900-25-075644",
+        "filing_date": "2025-08-13"
+      },
+      {
+        "accession": "0001213900-25-037676",
+        "filing_date": "2025-04-30"
+      },
+      {
+        "accession": "0001213900-25-032118",
+        "filing_date": "2025-04-15"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ABX": {
+    "ticker": "ABX",
+    "quarters_scanned": [
+      {
+        "accession": "0001628280-26-033136",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001628280-26-017775",
+        "filing_date": "2026-03-13"
+      },
+      {
+        "accession": "0001628280-25-050614",
+        "filing_date": "2025-11-07"
+      },
+      {
+        "accession": "0001814287-25-000044",
+        "filing_date": "2025-08-12"
+      },
+      {
+        "accession": "0001814287-25-000030",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001814287-25-000006",
+        "filing_date": "2025-03-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACCL": {
+    "ticker": "ACCL",
+    "quarters_scanned": [
+      {
+        "accession": "0001213900-26-004361",
+        "filing_date": "2026-01-14"
+      },
+      {
+        "accession": "0001213900-25-122264",
+        "filing_date": "2025-12-16"
+      },
+      {
+        "accession": "0001213900-25-112641",
+        "filing_date": "2025-11-19"
+      },
+      {
+        "accession": "0001213900-25-111270",
+        "filing_date": "2025-11-17"
+      },
+      {
+        "accession": "0001213900-25-100368",
+        "filing_date": "2025-10-20"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACGL": {
+    "ticker": "ACGL",
+    "quarters_scanned": [
+      {
+        "accession": "0000947484-26-000058",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "accession": "0000947484-26-000017",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "accession": "0000947484-25-000085",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "accession": "0000947484-25-000066",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "accession": "0000947484-25-000047",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "accession": "0000947484-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "events": [
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "April 19, 2026",
+          "March 10, 2026"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "exhaustive and should be read in conjunction with other cautionary statements that are included herein or elsewhere. The Company&#8217;s forward-looking statements speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2026 FIRST QUARTER FORM 10-Q Table of Contents ITEM 1. CONS ||SECT|| column represents the remaining approximate dollar amount available at the end of each applicable period un",
+        "accession": "0000947484-26-000058",
+        "filing_date": "2026-05-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "tions of the insurance policies we write, changes in the products offered by us or changes in our business strategy. The financial results of the property casualty insurance and reinsurance industry are influenced by factors such as the frequency and/or severity of claims and losses, including natural disasters or other catastrophic events, variations in interest rates and financial markets, changes in the legal, regulatory and judicial environments, inflationary pressures and general economic conditions. These factors influence, among other things, the demand for insurance or reinsurance, the",
+        "accession": "0000947484-26-000017",
+        "filing_date": "2026-02-26"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "September 4, 2025",
+          "August 1, 2025",
+          "October 29, 2025",
+          "November 3, 2025"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "other cautionary statements that are included herein or elsewhere. The Company&#8217;s forward-looking statements speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2025 THIRD QUARTER FORM 10-Q Table of Contents ITEM 1. CONSOLIDATED FINANCIAL STATEMENTS &#160; Page&#16 ||SECT|| s the remaining approximate dollar amount available at the end of each applicable period under Arch Capital&#821",
+        "accession": "0000947484-25-000085",
+        "filing_date": "2025-11-06"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "buy",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "December 20, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "on with other cautionary statements that are included herein or elsewhere. The Company&#8217;s forward-looking statements speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2025 SECOND QUARTER FORM 10-Q Table of Contents ITEM 1. CONSOLIDATED FINANCIAL STATEMENTS &#160; Page& ||SECT|| ere exercised. (2) This column represents the remaining approximate dollar amount available at the end of ",
+        "accession": "0000947484-25-000066",
+        "filing_date": "2025-08-05"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [
+          "March 31, 2025",
+          "December 31, 2024",
+          "December 20, 2024"
+        ],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "nts speak only as of the date of this report or as of the date they are made, and we undertake no obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future events or otherwise.&#160; ARCH CAPITAL &#160;3 2025 FIRST QUARTER FORM 10-Q Table of Contents ITEM 1. CONSOLIDATED FINANCIAL STATEMENTS &#160; Page&#160;No. &#160; &#160; Consolidated Balance Sheets March 31, 2025 and December 31, 2024 (unaudited) 5 Consolidated Sta ||SECT|| ere exercised. (2) This column represents the remaining approximate dollar amount available at the end of e",
+        "accession": "0000947484-25-000047",
+        "filing_date": "2025-05-07"
+      },
+      {
+        "action": "TERMINATE",
+        "trigger": "terminated a Rule 10b5-1",
+        "plan_type": "unknown",
+        "neo": null,
+        "role": "director",
+        "shares": null,
+        "dates_near": [],
+        "is_corporate": false,
+        "is_retrospective": false,
+        "snippet": "in our business strategy. The financial results of the property casualty insurance and reinsurance industry are influenced by factors such as the frequency and/or severity of claims and losses, including natural disasters or other catastrophic events, variations in interest rates and financial markets, changes in the legal, regulatory and judicial environments, inflationary pressures and general economic conditions. These factors influence, among other things, the demand for insurance or reinsurance, the supply of which is generally related to the total capital of competitors in the market. Mo",
+        "accession": "0000947484-25-000017",
+        "filing_date": "2025-02-27"
+      }
+    ],
+    "score": 17.0,
+    "reasons": [
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "BEARISH terminate buy: an insider (director) [-8]",
+      "neutral terminate (type unknown): an insider (director) [+5]",
+      "neutral terminate (type unknown): an insider (director) [+5]"
+    ],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 1,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 5
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  },
+  "ACH": {
+    "ticker": "ACH",
+    "quarters_scanned": [
+      {
+        "accession": "0001104659-26-058465",
+        "filing_date": "2026-05-11"
+      },
+      {
+        "accession": "0001104659-26-018169",
+        "filing_date": "2026-02-20"
+      },
+      {
+        "accession": "0001104659-25-104506",
+        "filing_date": "2025-10-31"
+      },
+      {
+        "accession": "0001558370-25-011059",
+        "filing_date": "2025-08-11"
+      },
+      {
+        "accession": "0001558370-25-006964",
+        "filing_date": "2025-05-08"
+      },
+      {
+        "accession": "0001558370-25-001940",
+        "filing_date": "2025-02-28"
+      }
+    ],
+    "events": [],
+    "score": 0.0,
+    "reasons": [],
+    "counts": {
+      "term_sell": 0,
+      "term_buy": 0,
+      "adopt_sell": 0,
+      "adopt_buy": 0,
+      "modify_pair": 0,
+      "neutral": 0
+    },
+    "data_available": true,
+    "_cache_version": "v3-dedup-foreign-aware",
+    "_complete": true
+  }
+}
