@@ -194,7 +194,34 @@ BULL_COLS = [c for c in BULL_COLS if c in df.columns]
 # ============================================================
 # Sheets
 # ============================================================
+# Exclude non-equity contaminants (preferreds, baby bonds, CEFs, warrants, BDRs)
+# from the equity-focused sheets. We keep them in the master df so they appear
+# in the Non-Equity Quarantine sheet for review.
+if "security_type" not in df.columns:
+    print("WARNING: security_type column not found - run security_type.py first")
+    df["security_type"] = "common"
+is_equity = df["security_type"] == "common"
+
+# Prefer USD-normalised ADV where available
+if "adv_20d_usd_millions" in df.columns:
+    df["adv_20d_millions_local"] = df["adv_20d_millions"]
+    df["adv_20d_millions"] = df["adv_20d_usd_millions"]
+    print("Using USD-normalised ADV (adv_20d_millions = adv_20d_usd_millions)")
+
 sheets = {}
+
+# Non-equity quarantine — surfaced for review but never blended into bull screens
+non_eq = df[~is_equity].copy()
+if len(non_eq):
+    qcols = [c for c in ["name","_universe","sector","security_type","last_close",
+                          "mv_composite_score","td_mtf_composite","aqr_trend_score",
+                          "adv_20d_millions","_ccy"] if c in non_eq.columns]
+    sheets["Non-Equity Quarantine"] = non_eq[qcols].sort_values("security_type")
+
+# Restrict the main df to equity-only for all equity sheets below
+df = df[is_equity].copy()
+print(f"After equity-only filter: {len(df)} rows (removed {(~is_equity).sum()} non-equity)")
+
 
 # Named-index dedicated views (Russell 1000 + FTSE AIM 100)
 r1k_mask = df["_universe"] == "wiki-r1k"

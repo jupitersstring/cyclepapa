@@ -1113,13 +1113,19 @@ def compute_minervini(close, high, low, volume, weekly=None, open_series=None):
             t2, _, p2 = sorted_events[j + 1]
             if t1 == "peak" and t2 == "trough" and p1 > 0 and p1 > p2:
                 contractions.append((p1 - p2) / p1)
-        # VCP: count successive tightening contractions from the end
+        # VCP: count successive tightening contractions, walking BACKWARDS in
+        # time from the most recent. Each older contraction must be LARGER
+        # than the more recent "prior" by >= 15% (i.e. the pattern is
+        # tightening as time progresses). The previous version had the
+        # comparator inverted (counted EXPANDING bases as VCP).
+        # contractions[] is chronological (oldest -> newest); reversed walks
+        # newest -> oldest, so the current amp is OLDER than 'prior'.
         prior = None
         for amp in reversed(contractions):
             if prior is None:
                 prior = amp
                 vcp_count += 1
-            elif amp < prior * 0.85:  # 15%+ tighter than prior
+            elif amp * 0.85 > prior:  # older contraction is >=15% LARGER than newer prior
                 vcp_count += 1
                 prior = amp
             else:
