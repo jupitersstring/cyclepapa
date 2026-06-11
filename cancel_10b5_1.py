@@ -543,12 +543,11 @@ def acc_to_fname(acc: str) -> str:
 
 
 def load_cached(acc: str) -> str:
-    p = CACHE / acc_to_fname(acc)
-    if not p.exists():
-        return ""
-    try:
-        raw = p.read_text(errors="ignore")
-    except Exception:
+    """Three-tier read: filesystem -> git archive commits -> miss.
+    See cache_store.py for the disk-vs-git-packs rationale."""
+    from cache_store import read_html
+    raw = read_html(acc)
+    if not raw:
         return ""
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", raw))
 
@@ -564,13 +563,8 @@ def fetch_and_cache_filing(cik: str, acc: str, primary_doc: str) -> str:
     except Exception as e:
         print(f"  fetch fail: {e}", file=sys.stderr)
         return ""
-    CACHE.mkdir(parents=True, exist_ok=True)
-    p = CACHE / acc_to_fname(acc)
-    if not p.exists():
-        try:
-            p.write_text(raw, errors="ignore")
-        except Exception:
-            pass
+    from cache_store import cache_html
+    cache_html(acc, raw)  # honours CACHE_HTML=0 for disk-tight backfills
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", raw))
 
 
