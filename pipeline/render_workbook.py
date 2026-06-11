@@ -48,20 +48,26 @@ def run():
     conn.row_factory = sqlite3.Row
     wb = openpyxl.Workbook(); del wb["Sheet"]
 
-    # 1. Verified Tier 1 — joined view
+    # 1. Empirical Tier 1 — ranked by base-rate-weighted ER (the new methodology)
     rows = list(conn.execute("""
-        SELECT c.ticker, c.name, c.sector, c.tier, c.price, c.price_asof, c.mcap_m,
+        SELECT c.ticker, c.name, c.sector, c.price, c.mcap_m,
+               e.weighted_excess_12m AS er_12m, e.best_tag, e.best_tag_excess,
+               e.worst_tag, e.worst_tag_excess, e.cluster_live,
                l.adv_usd_m, l.days_to_exit_1pct_adv10,
-               c.factor_tags, c.kill_criteria, c.verification_status,
-               (SELECT MIN(days_remaining) FROM v_catalysts_live v
-                  WHERE v.ticker=c.ticker AND v.effective_status='PENDING') AS days_to_next
-        FROM candidates c LEFT JOIN liquidity l ON l.ticker=c.ticker
-        WHERE c.tier LIKE '1%' ORDER BY c.ticker"""))
-    write_sheet(wb, "1_VERIFIED_TIER1",
-        ["Ticker","Name","Sector","Tier","Price","Price asof","Mcap $M","ADV $M","Days to exit",
-         "Factor tags","Kill criteria","Verification","Days to next catalyst"],
-        [tuple(r) for r in rows],
-        widths=[8,28,32,14,9,12,10,9,11,32,48,28,9])
+               c.kill_criteria, c.factor_tags
+        FROM candidates c
+        JOIN expected_return e ON e.ticker=c.ticker
+        LEFT JOIN liquidity l ON l.ticker=c.ticker
+        ORDER BY e.weighted_excess_12m DESC"""))
+    fmt = lambda v: f"{v*100:+.0f}%" if v is not None else ""
+    write_sheet(wb, "1_EMPIRICAL_TIER1",
+        ["Ticker","Name","Sector","Price","Mcap $M","ER 12m","Best tag","Best %",
+         "Worst tag","Worst %","Live cluster?","ADV $M","Days to exit","Kill criteria","All tags"],
+        [(r["ticker"], r["name"], r["sector"], r["price"], r["mcap_m"], fmt(r["er_12m"]),
+          r["best_tag"], fmt(r["best_tag_excess"]), r["worst_tag"], fmt(r["worst_tag_excess"]),
+          "YES" if r["cluster_live"] else "", r["adv_usd_m"], r["days_to_exit_1pct_adv10"],
+          r["kill_criteria"], r["factor_tags"]) for r in rows],
+        widths=[8,28,30,8,10,9,22,9,22,9,11,9,11,48,32])
 
     # 2. Base rates
     rows = list(conn.execute("SELECT factor, hit_rate, avg_excess_12m, sample_n FROM base_rates ORDER BY avg_excess_12m DESC"))
@@ -108,6 +114,17 @@ def run():
     write_sheet(wb, "6_FORM4_BUYS",
         ["Ticker","Owner","Role","Date","Code","Shares","Price","$M","Source"],
         [tuple(r) for r in rows], widths=[8,28,28,11,5,10,9,7,55])
+
+    # 6b. Live insider clusters (the +109% bucket signal, live)
+    rows = list(conn.execute("""SELECT ticker, trigger, window_start, window_end,
+                                       n_insiders, total_usd_m, avg_price,
+                                       top_buyer, top_buyer_usd_m
+                                FROM insider_clusters
+                                ORDER BY (n_insiders*2 + total_usd_m) DESC"""))
+    write_sheet(wb, "6b_LIVE_CLUSTERS",
+        ["Ticker","Trigger","Window start","Window end","# insiders","Total $M",
+         "Avg px","Top buyer","Top $M"],
+        [tuple(r) for r in rows], widths=[8,12,12,12,11,9,8,30,9])
 
     # 7. Liquidity / sizing budget
     rows = list(conn.execute("""SELECT c.ticker, c.mcap_m, l.adv_shares, l.adv_usd_m,
