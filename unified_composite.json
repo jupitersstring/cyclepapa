@@ -20,7 +20,7 @@
     "tot_insider_musd": 0.07,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 27d ago | CEO+CFO bought | 7% above 52w low | P/B 0.5",
+    "reasons": "4-buyer cluster 28d ago | CEO+CFO bought | 7% above 52w low | P/B 0.5",
     "_schema": "v4-unified",
     "rank": 1
   },
@@ -45,7 +45,7 @@
     "tot_insider_musd": 0.56,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 26d ago | CEO+CFO bought | 1% above 52w low | 10b5-1 leg +11",
+    "reasons": "3-buyer cluster 27d ago | CEO+CFO bought | 1% above 52w low | 10b5-1 leg +11",
     "_schema": "v4-unified",
     "rank": 2
   },
@@ -70,7 +70,7 @@
     "tot_insider_musd": 0.04,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 84d ago | CEO+CFO bought | 18% above 52w low | P/B 0.5 | forensic-PSU 36",
+    "reasons": "4-buyer cluster 85d ago | CEO+CFO bought | 18% above 52w low | P/B 0.5 | forensic-PSU 36",
     "_schema": "v4-unified",
     "rank": 3
   },
@@ -95,34 +95,9 @@
     "tot_insider_musd": 0.02,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "5-buyer cluster 9d ago | CEO+CFO bought | 6% above 52w low",
+    "reasons": "5-buyer cluster 10d ago | CEO+CFO bought | 6% above 52w low",
     "_schema": "v4-unified",
     "rank": 4
-  },
-  {
-    "ticker": "AGBK",
-    "name": "AGI Inc",
-    "sector": "Financial Servi",
-    "mcap_musd": 1081.1,
-    "price": 6.76,
-    "drawdown_pct": 6.2,
-    "p_b": 1.1710745,
-    "score": 50.0,
-    "insider_score": 26.0,
-    "valuation_score": 24.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 4,
-    "ceo_bought": true,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.21,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": true,
-    "reasons": "4-buyer cluster 30d ago | CEO bought | 6% above 52w low | P/B 1.2",
-    "_schema": "v4-unified",
-    "rank": 5
   },
   {
     "ticker": "BRBS",
@@ -147,7 +122,7 @@
     "is_foreign_filer": false,
     "reasons": "6% above 52w low | P/B 1.1 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 6
+    "rank": 5
   },
   {
     "ticker": "GBLI",
@@ -172,7 +147,7 @@
     "is_foreign_filer": false,
     "reasons": "4% above 52w low | P/B 0.5 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 7
+    "rank": 6
   },
   {
     "ticker": "HDSN",
@@ -195,9 +170,9 @@
     "tot_insider_musd": 0.15,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "7-buyer cluster 26d ago | CEO bought | 11% above 52w low | P/B 0.9",
+    "reasons": "7-buyer cluster 27d ago | CEO bought | 11% above 52w low | P/B 0.9",
     "_schema": "v4-unified",
-    "rank": 8
+    "rank": 7
   },
   {
     "ticker": "LCID",
@@ -222,7 +197,7 @@
     "is_foreign_filer": false,
     "reasons": "1% above 52w low | 13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 9
+    "rank": 8
   },
   {
     "ticker": "RXST",
@@ -247,7 +222,7 @@
     "is_foreign_filer": false,
     "reasons": "2% above 52w low | P/B 0.7 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 10
+    "rank": 9
   },
   {
     "ticker": "NSPR",
@@ -270,9 +245,9 @@
     "tot_insider_musd": 0.44,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 33d ago | CEO bought | 5% above 52w low | P/B 1.0 | 13D filed",
+    "reasons": "4-buyer cluster 34d ago | CEO bought | 5% above 52w low | P/B 1.0 | 13D filed",
     "_schema": "v4-unified",
-    "rank": 11
+    "rank": 10
   },
   {
     "ticker": "BETR",
@@ -295,9 +270,9 @@
     "tot_insider_musd": 9.21,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "6-buyer cluster 65d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low",
+    "reasons": "6-buyer cluster 66d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low",
     "_schema": "v4-unified",
-    "rank": 12
+    "rank": 11
   },
   {
     "ticker": "SRAD",
@@ -320,34 +295,9 @@
     "tot_insider_musd": 11.35,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": true,
-    "reasons": "7-buyer cluster 37d ago | CEO bought | $11.3M insider buys | 9% above 52w low",
+    "reasons": "7-buyer cluster 38d ago | CEO bought | $11.3M insider buys | 9% above 52w low",
     "_schema": "v4-unified",
-    "rank": 13
-  },
-  {
-    "ticker": "ODTX",
-    "name": "Odyssey Therapeutics, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 787.3,
-    "price": 16.69,
-    "drawdown_pct": 27.1,
-    "p_b": -0.74181074,
-    "score": 45.0,
-    "insider_score": 33.0,
-    "valuation_score": 6.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 7,
-    "ceo_bought": false,
-    "cfo_bought": true,
-    "tot_insider_musd": 75.32,
-    "10b5_1_status": "no_data",
-    "is_foreign_filer": true,
-    "reasons": "7-buyer cluster 30d ago | $75.3M insider buys | 13D filed",
-    "_schema": "v4-unified",
-    "rank": 14
+    "rank": 12
   },
   {
     "ticker": "SBET",
@@ -372,7 +322,7 @@
     "is_foreign_filer": false,
     "reasons": "1% above 52w low | P/B 0.4 | 13D filed | 10b5-1 leg +15",
     "_schema": "v4-unified",
-    "rank": 15
+    "rank": 13
   },
   {
     "ticker": "KMPR",
@@ -397,7 +347,7 @@
     "is_foreign_filer": false,
     "reasons": "4% above 52w low | P/B 0.5 | 10b5-1 leg +20",
     "_schema": "v4-unified",
-    "rank": 16
+    "rank": 14
   },
   {
     "ticker": "KWY",
@@ -420,9 +370,9 @@
     "tot_insider_musd": 0.05,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 9d ago | CEO+CFO bought | 7% above 52w low",
+    "reasons": "3-buyer cluster 10d ago | CEO+CFO bought | 7% above 52w low",
     "_schema": "v4-unified",
-    "rank": 17
+    "rank": 15
   },
   {
     "ticker": "OI",
@@ -445,9 +395,34 @@
     "tot_insider_musd": 0.18,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 29d ago | 1% above 52w low | P/B 0.9",
+    "reasons": "4-buyer cluster 30d ago | 1% above 52w low | P/B 0.9",
     "_schema": "v4-unified",
-    "rank": 18
+    "rank": 16
+  },
+  {
+    "ticker": "CRM",
+    "name": "Salesforce, Inc.",
+    "sector": "Technology",
+    "mcap_musd": 143611.7,
+    "price": 175.35,
+    "drawdown_pct": 10.4,
+    "p_b": 4.194876,
+    "score": 43.6,
+    "insider_score": 7.6,
+    "valuation_score": 12.0,
+    "step_change_score": 22,
+    "psu_forensic_score": 7.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -5.0,
+    "cluster_size": 2,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 1.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10% above 52w low | step-change 57 | forensic-PSU 21 | 10b5-1 leg -5",
+    "_schema": "v4-unified",
+    "rank": 17
   },
   {
     "ticker": "BHF",
@@ -472,7 +447,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 0.6 | step-change 50 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 19
+    "rank": 18
   },
   {
     "ticker": "CMLSQ",
@@ -497,7 +472,7 @@
     "is_foreign_filer": false,
     "reasons": "2% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 20
+    "rank": 19
   },
   {
     "ticker": "CSGP",
@@ -522,7 +497,7 @@
     "is_foreign_filer": false,
     "reasons": "4% above 52w low | step-change 66",
     "_schema": "v4-unified",
-    "rank": 21
+    "rank": 20
   },
   {
     "ticker": "CURI",
@@ -547,7 +522,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | 15% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 22
+    "rank": 21
   },
   {
     "ticker": "ITRI",
@@ -572,7 +547,7 @@
     "is_foreign_filer": false,
     "reasons": "7% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 23
+    "rank": 22
   },
   {
     "ticker": "MQ",
@@ -597,7 +572,7 @@
     "is_foreign_filer": false,
     "reasons": "8% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 24
+    "rank": 23
   },
   {
     "ticker": "REFI",
@@ -622,7 +597,7 @@
     "is_foreign_filer": false,
     "reasons": "16% above 52w low | P/B 0.8 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 25
+    "rank": 24
   },
   {
     "ticker": "ZLAB",
@@ -647,32 +622,32 @@
     "is_foreign_filer": false,
     "reasons": "2% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 26
+    "rank": 25
   },
   {
-    "ticker": "EVTC",
-    "name": "Evertec, Inc.",
-    "sector": "Technology",
-    "mcap_musd": 1390.8,
-    "price": 22.57,
-    "drawdown_pct": 4.6,
-    "p_b": 2.0811434,
+    "ticker": "AGBK",
+    "name": "AGI Inc",
+    "sector": "Financial Servi",
+    "mcap_musd": 1081.1,
+    "price": 6.76,
+    "drawdown_pct": 6.2,
+    "p_b": 1.1710745,
     "score": 42.0,
-    "insider_score": 24.0,
-    "valuation_score": 18.0,
+    "insider_score": 18.0,
+    "valuation_score": 24.0,
     "step_change_score": 0.0,
     "psu_forensic_score": 0.0,
     "sc13d_score": 0.0,
     "cancel_10b5_1_score": 0.0,
     "cluster_size": 4,
-    "ceo_bought": false,
+    "ceo_bought": true,
     "cfo_bought": false,
-    "tot_insider_musd": 1.82,
+    "tot_insider_musd": 0.21,
     "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 30d ago | 5% above 52w low",
+    "is_foreign_filer": true,
+    "reasons": "4-buyer cluster 31d ago | CEO bought | 6% above 52w low | P/B 1.2",
     "_schema": "v4-unified",
-    "rank": 27
+    "rank": 26
   },
   {
     "ticker": "IEP",
@@ -697,32 +672,7 @@
     "is_foreign_filer": false,
     "reasons": "12% above 52w low | 13D filed | 10b5-1 leg +24",
     "_schema": "v4-unified",
-    "rank": 28
-  },
-  {
-    "ticker": "OLED",
-    "name": "Universal Display Corporation",
-    "sector": "Technology",
-    "mcap_musd": 4246.9,
-    "price": 90.84,
-    "drawdown_pct": 9.0,
-    "p_b": 2.4923177,
-    "score": 42.0,
-    "insider_score": 24.0,
-    "valuation_score": 18.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 3,
-    "ceo_bought": true,
-    "cfo_bought": false,
-    "tot_insider_musd": 1.47,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 30d ago | CEO bought | 9% above 52w low",
-    "_schema": "v4-unified",
-    "rank": 29
+    "rank": 27
   },
   {
     "ticker": "AGIG",
@@ -745,34 +695,9 @@
     "tot_insider_musd": 0.06,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 27d ago | CEO bought | 1% above 52w low",
+    "reasons": "3-buyer cluster 28d ago | CEO bought | 1% above 52w low",
     "_schema": "v4-unified",
-    "rank": 30
-  },
-  {
-    "ticker": "XRN",
-    "name": "Chiron Real Estate Inc.",
-    "sector": "Real Estate",
-    "mcap_musd": 501.5,
-    "price": 34.87,
-    "drawdown_pct": 53.5,
-    "p_b": 1.1966369,
-    "score": 41.0,
-    "insider_score": 35.0,
-    "valuation_score": 6.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 9,
-    "ceo_bought": true,
-    "cfo_bought": true,
-    "tot_insider_musd": 0.62,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "9-buyer cluster 30d ago | CEO+CFO bought | P/B 1.2",
-    "_schema": "v4-unified",
-    "rank": 31
+    "rank": 28
   },
   {
     "ticker": "GRND",
@@ -797,7 +722,7 @@
     "is_foreign_filer": false,
     "reasons": "12% above 52w low | step-change 78 | 13D filed",
     "_schema": "v4-unified",
-    "rank": 32
+    "rank": 29
   },
   {
     "ticker": "MRP",
@@ -820,9 +745,9 @@
     "tot_insider_musd": 6.53,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 28d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8",
+    "reasons": "3-buyer cluster 29d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8",
     "_schema": "v4-unified",
-    "rank": 33
+    "rank": 30
   },
   {
     "ticker": "ONON",
@@ -845,9 +770,9 @@
     "tot_insider_musd": 6.59,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": true,
-    "reasons": "3-buyer cluster 26d ago | CEO bought | $6.6M insider buys | 23% above 52w low",
+    "reasons": "3-buyer cluster 27d ago | CEO bought | $6.6M insider buys | 23% above 52w low",
     "_schema": "v4-unified",
-    "rank": 34
+    "rank": 31
   },
   {
     "ticker": "ULTA",
@@ -872,57 +797,7 @@
     "is_foreign_filer": false,
     "reasons": "10% above 52w low | step-change 52",
     "_schema": "v4-unified",
-    "rank": 35
-  },
-  {
-    "ticker": "CRM",
-    "name": "Salesforce, Inc.",
-    "sector": "Technology",
-    "mcap_musd": 143611.7,
-    "price": 175.35,
-    "drawdown_pct": 10.4,
-    "p_b": 4.194876,
-    "score": 39.6,
-    "insider_score": 7.6,
-    "valuation_score": 12.0,
-    "step_change_score": 22,
-    "psu_forensic_score": 7.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -9.0,
-    "cluster_size": 2,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 1.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10% above 52w low | step-change 57 | forensic-PSU 21 | 10b5-1 leg -9",
-    "_schema": "v4-unified",
-    "rank": 36
-  },
-  {
-    "ticker": "MOBI",
-    "name": "Mobia Medical, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 454.3,
-    "price": 13.73,
-    "drawdown_pct": 77.3,
-    "p_b": -0.28039864,
-    "score": 39.0,
-    "insider_score": 33.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 6,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 19.02,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "6-buyer cluster 30d ago | $19.0M insider buys | 13D filed",
-    "_schema": "v4-unified",
-    "rank": 37
+    "rank": 32
   },
   {
     "ticker": "OPCH",
@@ -945,9 +820,9 @@
     "tot_insider_musd": 1.88,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 37d ago | CEO+CFO bought | 13% above 52w low | 10b5-1 leg -1",
+    "reasons": "4-buyer cluster 38d ago | CEO+CFO bought | 13% above 52w low | 10b5-1 leg -1",
     "_schema": "v4-unified",
-    "rank": 38
+    "rank": 33
   },
   {
     "ticker": "GO",
@@ -970,9 +845,9 @@
     "tot_insider_musd": 7.92,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "6-buyer cluster 93d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0",
+    "reasons": "6-buyer cluster 94d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0",
     "_schema": "v4-unified",
-    "rank": 39
+    "rank": 34
   },
   {
     "ticker": "POOL",
@@ -995,9 +870,9 @@
     "tot_insider_musd": 7.67,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 33d ago | $7.7M insider buys | 5% above 52w low",
+    "reasons": "4-buyer cluster 34d ago | $7.7M insider buys | 5% above 52w low",
     "_schema": "v4-unified",
-    "rank": 40
+    "rank": 35
   },
   {
     "ticker": "APT",
@@ -1022,7 +897,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 0.9 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 41
+    "rank": 36
   },
   {
     "ticker": "DT",
@@ -1047,7 +922,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 42
+    "rank": 37
   },
   {
     "ticker": "GENC",
@@ -1072,7 +947,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.0 | 13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 43
+    "rank": 38
   },
   {
     "ticker": "LCNB",
@@ -1097,7 +972,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | P/B 0.9 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 44
+    "rank": 39
   },
   {
     "ticker": "MA",
@@ -1122,7 +997,7 @@
     "is_foreign_filer": false,
     "reasons": "22% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 45
+    "rank": 40
   },
   {
     "ticker": "NOW",
@@ -1147,7 +1022,7 @@
     "is_foreign_filer": false,
     "reasons": "20% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 46
+    "rank": 41
   },
   {
     "ticker": "NXST",
@@ -1172,7 +1047,7 @@
     "is_foreign_filer": false,
     "reasons": "17% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 47
+    "rank": 42
   },
   {
     "ticker": "PATK",
@@ -1195,9 +1070,9 @@
     "tot_insider_musd": 3.54,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "5-buyer cluster 35d ago | CEO bought | 10% above 52w low",
+    "reasons": "5-buyer cluster 36d ago | CEO bought | 10% above 52w low",
     "_schema": "v4-unified",
-    "rank": 48
+    "rank": 43
   },
   {
     "ticker": "PCTY",
@@ -1222,7 +1097,7 @@
     "is_foreign_filer": false,
     "reasons": "19% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 49
+    "rank": 44
   },
   {
     "ticker": "SCHW",
@@ -1247,7 +1122,7 @@
     "is_foreign_filer": false,
     "reasons": "20% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 50
+    "rank": 45
   },
   {
     "ticker": "SHOP",
@@ -1272,7 +1147,7 @@
     "is_foreign_filer": false,
     "reasons": "19% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 51
+    "rank": 46
   },
   {
     "ticker": "SPRY",
@@ -1297,7 +1172,7 @@
     "is_foreign_filer": false,
     "reasons": "22% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 52
+    "rank": 47
   },
   {
     "ticker": "TXRH",
@@ -1322,7 +1197,32 @@
     "is_foreign_filer": false,
     "reasons": "24% above 52w low | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 53
+    "rank": 48
+  },
+  {
+    "ticker": "OLED",
+    "name": "Universal Display Corporation",
+    "sector": "Technology",
+    "mcap_musd": 4246.9,
+    "price": 90.84,
+    "drawdown_pct": 9.0,
+    "p_b": 2.4923177,
+    "score": 36.4,
+    "insider_score": 18.4,
+    "valuation_score": 18.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 3,
+    "ceo_bought": true,
+    "cfo_bought": false,
+    "tot_insider_musd": 1.47,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "3-buyer cluster 31d ago | CEO bought | 9% above 52w low",
+    "_schema": "v4-unified",
+    "rank": 49
   },
   {
     "ticker": "ACM",
@@ -1347,7 +1247,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO+CFO bought | 5% above 52w low",
     "_schema": "v4-unified",
-    "rank": 54
+    "rank": 50
   },
   {
     "ticker": "ACON",
@@ -1370,9 +1270,9 @@
     "tot_insider_musd": 0.05,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 33d ago | CEO bought | 12% above 52w low | P/B 0.4",
+    "reasons": "4-buyer cluster 34d ago | CEO bought | 12% above 52w low | P/B 0.4",
     "_schema": "v4-unified",
-    "rank": 55
+    "rank": 51
   },
   {
     "ticker": "FCN",
@@ -1395,9 +1295,9 @@
     "tot_insider_musd": 2.08,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 27d ago | CEO+CFO bought",
+    "reasons": "3-buyer cluster 28d ago | CEO+CFO bought",
     "_schema": "v4-unified",
-    "rank": 56
+    "rank": 52
   },
   {
     "ticker": "FLUT",
@@ -1420,9 +1320,9 @@
     "tot_insider_musd": 1.05,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "7-buyer cluster 29d ago | CEO bought | 4% above 52w low | 10b5-1 leg -20",
+    "reasons": "7-buyer cluster 30d ago | CEO bought | 4% above 52w low | 10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 57
+    "rank": 53
   },
   {
     "ticker": "HUBS",
@@ -1445,9 +1345,9 @@
     "tot_insider_musd": 2.59,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 29d ago | CEO bought | 11% above 52w low",
+    "reasons": "3-buyer cluster 30d ago | CEO bought | 11% above 52w low",
     "_schema": "v4-unified",
-    "rank": 58
+    "rank": 54
   },
   {
     "ticker": "JKHY",
@@ -1472,7 +1372,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO+CFO bought | 4% above 52w low",
     "_schema": "v4-unified",
-    "rank": 59
+    "rank": 55
   },
   {
     "ticker": "PCOR",
@@ -1497,32 +1397,7 @@
     "is_foreign_filer": false,
     "reasons": "3% above 52w low | 10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 60
-  },
-  {
-    "ticker": "PSN",
-    "name": "Parsons Corporation",
-    "sector": "Technology",
-    "mcap_musd": 6413.4,
-    "price": 59.95,
-    "drawdown_pct": 28.4,
-    "p_b": 2.4202664,
-    "score": 36.0,
-    "insider_score": 30.0,
-    "valuation_score": 6.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 4,
-    "ceo_bought": true,
-    "cfo_bought": false,
-    "tot_insider_musd": 2.13,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 30d ago | CEO bought",
-    "_schema": "v4-unified",
-    "rank": 61
+    "rank": 56
   },
   {
     "ticker": "FEED",
@@ -1547,32 +1422,32 @@
     "is_foreign_filer": false,
     "reasons": "0% above 52w low | P/B 0.1 | 13D filed | 10b5-1 leg +5",
     "_schema": "v4-unified",
-    "rank": 62
+    "rank": 57
   },
   {
-    "ticker": "ALKT",
-    "name": "Alkami Technology, Inc.",
-    "sector": "Technology",
-    "mcap_musd": 1638.5,
-    "price": 15.31,
-    "drawdown_pct": 7.1,
-    "p_b": 4.4210224,
-    "score": 34.0,
-    "insider_score": 14.0,
-    "valuation_score": 18.0,
+    "ticker": "ODTX",
+    "name": "Odyssey Therapeutics, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 787.3,
+    "price": 16.69,
+    "drawdown_pct": 27.1,
+    "p_b": -0.74181074,
+    "score": 35.0,
+    "insider_score": 23.0,
+    "valuation_score": 6.0,
     "step_change_score": 0.0,
     "psu_forensic_score": 0.0,
     "sc13d_score": 6.0,
-    "cancel_10b5_1_score": -4.0,
-    "cluster_size": 2,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 7,
     "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 65.86,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "$65.9M insider buys | 7% above 52w low | 13D filed | 10b5-1 leg -4",
+    "cfo_bought": true,
+    "tot_insider_musd": 75.32,
+    "10b5_1_status": "no_data",
+    "is_foreign_filer": true,
+    "reasons": "7-buyer cluster 31d ago | $75.3M insider buys | 13D filed",
     "_schema": "v4-unified",
-    "rank": 63
+    "rank": 58
   },
   {
     "ticker": "AQST",
@@ -1597,7 +1472,7 @@
     "is_foreign_filer": false,
     "reasons": "23% above 52w low | 10b5-1 leg +22",
     "_schema": "v4-unified",
-    "rank": 64
+    "rank": 59
   },
   {
     "ticker": "CDE",
@@ -1622,7 +1497,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 65
+    "rank": 60
+  },
+  {
+    "ticker": "EVTC",
+    "name": "Evertec, Inc.",
+    "sector": "Technology",
+    "mcap_musd": 1390.8,
+    "price": 22.57,
+    "drawdown_pct": 4.6,
+    "p_b": 2.0811434,
+    "score": 34.0,
+    "insider_score": 16.0,
+    "valuation_score": 18.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 4,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 1.82,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "4-buyer cluster 31d ago | 5% above 52w low",
+    "_schema": "v4-unified",
+    "rank": 61
   },
   {
     "ticker": "IMA",
@@ -1647,7 +1547,7 @@
     "is_foreign_filer": false,
     "reasons": "11% above 52w low | P/B 0.5 | 13D filed | 10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 66
+    "rank": 62
   },
   {
     "ticker": "PRCT",
@@ -1672,7 +1572,7 @@
     "is_foreign_filer": false,
     "reasons": "21% above 52w low | 10b5-1 leg +22",
     "_schema": "v4-unified",
-    "rank": 67
+    "rank": 63
   },
   {
     "ticker": "WDAY",
@@ -1697,7 +1597,57 @@
     "is_foreign_filer": false,
     "reasons": "20% above 52w low | step-change 72",
     "_schema": "v4-unified",
-    "rank": 68
+    "rank": 64
+  },
+  {
+    "ticker": "XRN",
+    "name": "Chiron Real Estate Inc.",
+    "sector": "Real Estate",
+    "mcap_musd": 501.5,
+    "price": 34.87,
+    "drawdown_pct": 53.5,
+    "p_b": 1.1966369,
+    "score": 33.0,
+    "insider_score": 27.0,
+    "valuation_score": 6.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 9,
+    "ceo_bought": true,
+    "cfo_bought": true,
+    "tot_insider_musd": 0.62,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "9-buyer cluster 31d ago | CEO+CFO bought | P/B 1.2",
+    "_schema": "v4-unified",
+    "rank": 65
+  },
+  {
+    "ticker": "ALKT",
+    "name": "Alkami Technology, Inc.",
+    "sector": "Technology",
+    "mcap_musd": 1638.5,
+    "price": 15.31,
+    "drawdown_pct": 7.1,
+    "p_b": 4.4210224,
+    "score": 32.0,
+    "insider_score": 14.0,
+    "valuation_score": 18.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": -6.0,
+    "cluster_size": 2,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 65.86,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "$65.9M insider buys | 7% above 52w low | 13D filed | 10b5-1 leg -6",
+    "_schema": "v4-unified",
+    "rank": 66
   },
   {
     "ticker": "IBP",
@@ -1720,9 +1670,9 @@
     "tot_insider_musd": 0.84,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 29d ago | 21% above 52w low",
+    "reasons": "4-buyer cluster 30d ago | 21% above 52w low",
     "_schema": "v4-unified",
-    "rank": 69
+    "rank": 67
   },
   {
     "ticker": "TKO",
@@ -1745,9 +1695,9 @@
     "tot_insider_musd": 4.5,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 28d ago | CEO+CFO bought | 10b5-1 leg +2",
+    "reasons": "3-buyer cluster 29d ago | CEO+CFO bought | 10b5-1 leg +2",
     "_schema": "v4-unified",
-    "rank": 70
+    "rank": 68
   },
   {
     "ticker": "ACET",
@@ -1772,7 +1722,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 71
+    "rank": 69
   },
   {
     "ticker": "AUPH",
@@ -1797,7 +1747,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 72
+    "rank": 70
   },
   {
     "ticker": "BCO",
@@ -1822,7 +1772,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 73
+    "rank": 71
   },
   {
     "ticker": "CFBK",
@@ -1847,7 +1797,32 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.0 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 74
+    "rank": 72
+  },
+  {
+    "ticker": "CIFR",
+    "name": "Cipher Digital Inc.",
+    "sector": "Technology",
+    "mcap_musd": 9422.4,
+    "price": 23.035,
+    "drawdown_pct": 78.0,
+    "p_b": 13.073213,
+    "score": 31.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": 25.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13D filed | 10b5-1 leg +25",
+    "_schema": "v4-unified",
+    "rank": 73
   },
   {
     "ticker": "CRNX",
@@ -1872,7 +1847,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 75
+    "rank": 74
   },
   {
     "ticker": "EG",
@@ -1897,7 +1872,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 0.9 | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 76
+    "rank": 75
   },
   {
     "ticker": "EYPT",
@@ -1922,7 +1897,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 77
+    "rank": 76
   },
   {
     "ticker": "FWONB",
@@ -1947,7 +1922,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 78
+    "rank": 77
   },
   {
     "ticker": "INMB",
@@ -1972,7 +1947,7 @@
     "is_foreign_filer": false,
     "reasons": "1% above 52w low | 10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 79
+    "rank": 78
   },
   {
     "ticker": "IQV",
@@ -1997,7 +1972,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 80
+    "rank": 79
   },
   {
     "ticker": "KKR",
@@ -2020,9 +1995,9 @@
     "tot_insider_musd": 45.68,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 112d ago | CEO bought | $45.7M insider buys | 11% above 52w low",
+    "reasons": "4-buyer cluster 113d ago | CEO bought | $45.7M insider buys | 11% above 52w low",
     "_schema": "v4-unified",
-    "rank": 81
+    "rank": 80
   },
   {
     "ticker": "NSP",
@@ -2045,9 +2020,9 @@
     "tot_insider_musd": 7.81,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 91d ago | CEO+CFO bought | $7.8M insider buys",
+    "reasons": "4-buyer cluster 92d ago | CEO+CFO bought | $7.8M insider buys",
     "_schema": "v4-unified",
-    "rank": 82
+    "rank": 81
   },
   {
     "ticker": "PGEN",
@@ -2072,7 +2047,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 83
+    "rank": 82
   },
   {
     "ticker": "UUU",
@@ -2097,7 +2072,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 84
+    "rank": 83
   },
   {
     "ticker": "CHTR",
@@ -2120,7 +2095,32 @@
     "tot_insider_musd": 2.37,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 43d ago | CEO bought | 3% above 52w low | P/B 1.0 | 10b5-1 leg -12",
+    "reasons": "3-buyer cluster 44d ago | CEO bought | 3% above 52w low | P/B 1.0 | 10b5-1 leg -12",
+    "_schema": "v4-unified",
+    "rank": 84
+  },
+  {
+    "ticker": "ALEC",
+    "name": "Alector, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 181.0,
+    "price": 1.63,
+    "drawdown_pct": 23.4,
+    "p_b": 17.340425,
+    "score": 30.0,
+    "insider_score": 0.0,
+    "valuation_score": 12.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 18.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "23% above 52w low | 10b5-1 leg +18",
     "_schema": "v4-unified",
     "rank": 85
   },
@@ -2245,7 +2245,7 @@
     "tot_insider_musd": 0.35,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 29d ago | 15% above 52w low",
+    "reasons": "3-buyer cluster 30d ago | 15% above 52w low",
     "_schema": "v4-unified",
     "rank": 90
   },
@@ -2300,6 +2300,31 @@
     "rank": 92
   },
   {
+    "ticker": "MOBI",
+    "name": "Mobia Medical, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 454.3,
+    "price": 13.73,
+    "drawdown_pct": 77.3,
+    "p_b": -0.28039864,
+    "score": 29.0,
+    "insider_score": 23.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 6,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 19.02,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "6-buyer cluster 31d ago | $19.0M insider buys | 13D filed",
+    "_schema": "v4-unified",
+    "rank": 93
+  },
+  {
     "ticker": "SAMG",
     "name": "Silvercrest Asset Management Gr",
     "sector": "Financial Servi",
@@ -2322,7 +2347,7 @@
     "is_foreign_filer": false,
     "reasons": "3% above 52w low | 10b5-1 leg +8",
     "_schema": "v4-unified",
-    "rank": 93
+    "rank": 94
   },
   {
     "ticker": "STRT",
@@ -2345,9 +2370,9 @@
     "tot_insider_musd": 0.29,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 27d ago | CEO+CFO bought",
+    "reasons": "3-buyer cluster 28d ago | CEO+CFO bought",
     "_schema": "v4-unified",
-    "rank": 94
+    "rank": 95
   },
   {
     "ticker": "ZTS",
@@ -2370,9 +2395,9 @@
     "tot_insider_musd": 0.89,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 29d ago | 5% above 52w low | 10b5-1 leg -3",
+    "reasons": "3-buyer cluster 30d ago | 5% above 52w low | 10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 95
+    "rank": 96
   },
   {
     "ticker": "LW",
@@ -2395,32 +2420,7 @@
     "tot_insider_musd": 16.98,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 64d ago | $17.0M insider buys | 20% above 52w low",
-    "_schema": "v4-unified",
-    "rank": 96
-  },
-  {
-    "ticker": "ALEC",
-    "name": "Alector, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 181.0,
-    "price": 1.63,
-    "drawdown_pct": 23.4,
-    "p_b": 17.340425,
-    "score": 28.0,
-    "insider_score": 0.0,
-    "valuation_score": 12.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 16.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "23% above 52w low | 10b5-1 leg +16",
+    "reasons": "3-buyer cluster 65d ago | $17.0M insider buys | 20% above 52w low",
     "_schema": "v4-unified",
     "rank": 97
   },
@@ -2575,6 +2575,31 @@
     "rank": 103
   },
   {
+    "ticker": "PSN",
+    "name": "Parsons Corporation",
+    "sector": "Technology",
+    "mcap_musd": 6413.4,
+    "price": 59.95,
+    "drawdown_pct": 28.4,
+    "p_b": 2.4202664,
+    "score": 28.0,
+    "insider_score": 22.0,
+    "valuation_score": 6.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 4,
+    "ceo_bought": true,
+    "cfo_bought": false,
+    "tot_insider_musd": 2.13,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "4-buyer cluster 31d ago | CEO bought",
+    "_schema": "v4-unified",
+    "rank": 104
+  },
+  {
     "ticker": "RNR",
     "name": "RenaissanceRe Holdings Ltd.",
     "sector": "Financial Servi",
@@ -2597,7 +2622,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.1 | step-change 51",
     "_schema": "v4-unified",
-    "rank": 104
+    "rank": 105
   },
   {
     "ticker": "STT",
@@ -2622,7 +2647,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 105
+    "rank": 106
   },
   {
     "ticker": "GRNT",
@@ -2645,9 +2670,9 @@
     "tot_insider_musd": 0.41,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "5-buyer cluster 91d ago | CEO+CFO bought",
+    "reasons": "5-buyer cluster 92d ago | CEO+CFO bought",
     "_schema": "v4-unified",
-    "rank": 106
+    "rank": 107
   },
   {
     "ticker": "BDTX",
@@ -2672,7 +2697,7 @@
     "is_foreign_filer": false,
     "reasons": "2% above 52w low | P/B 1.0 | 10b5-1 leg +3",
     "_schema": "v4-unified",
-    "rank": 107
+    "rank": 108
   },
   {
     "ticker": "CRBU",
@@ -2697,57 +2722,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 108
-  },
-  {
-    "ticker": "AVBC",
-    "name": "Avidia Bancorp, Inc.",
-    "sector": "Financial Servi",
-    "mcap_musd": 348.8,
-    "price": 18.78,
-    "drawdown_pct": 64.3,
-    "p_b": 0.9095312,
-    "score": 26.0,
-    "insider_score": 20.0,
-    "valuation_score": 6.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 3,
-    "ceo_bought": true,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.21,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 30d ago | CEO bought | P/B 0.9",
-    "_schema": "v4-unified",
     "rank": 109
-  },
-  {
-    "ticker": "CIFR",
-    "name": "Cipher Digital Inc.",
-    "sector": "Technology",
-    "mcap_musd": 9422.4,
-    "price": 23.035,
-    "drawdown_pct": 78.0,
-    "p_b": 13.073213,
-    "score": 26.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": 20.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "13D filed | 10b5-1 leg +20",
-    "_schema": "v4-unified",
-    "rank": 110
   },
   {
     "ticker": "DLPN",
@@ -2772,7 +2747,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | 17% above 52w low | 10b5-1 leg +5",
     "_schema": "v4-unified",
-    "rank": 111
+    "rank": 110
   },
   {
     "ticker": "GRDN",
@@ -2797,7 +2772,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +20",
     "_schema": "v4-unified",
-    "rank": 112
+    "rank": 111
   },
   {
     "ticker": "INFU",
@@ -2820,9 +2795,9 @@
     "tot_insider_musd": 0.13,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 29d ago | CEO+CFO bought",
+    "reasons": "3-buyer cluster 30d ago | CEO+CFO bought",
     "_schema": "v4-unified",
-    "rank": 113
+    "rank": 112
   },
   {
     "ticker": "JMSB",
@@ -2847,7 +2822,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.1 | 10b5-1 leg +20",
     "_schema": "v4-unified",
-    "rank": 114
+    "rank": 113
   },
   {
     "ticker": "LCUT",
@@ -2872,32 +2847,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.1 | 10b5-1 leg +20",
     "_schema": "v4-unified",
-    "rank": 115
-  },
-  {
-    "ticker": "PLSE",
-    "name": "Pulse Biosciences, Inc",
-    "sector": "Healthcare",
-    "mcap_musd": 1729.6,
-    "price": 24.99,
-    "drawdown_pct": 80.6,
-    "p_b": 21.017662,
-    "score": 26.0,
-    "insider_score": 20.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": 0.0,
-    "cluster_size": 2,
-    "ceo_bought": true,
-    "cfo_bought": false,
-    "tot_insider_musd": 26.59,
-    "10b5_1_status": "no_signal",
-    "is_foreign_filer": false,
-    "reasons": "CEO bought | $26.6M insider buys | 13D filed",
-    "_schema": "v4-unified",
-    "rank": 116
+    "rank": 114
   },
   {
     "ticker": "AMD",
@@ -2922,7 +2872,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 117
+    "rank": 115
   },
   {
     "ticker": "APP",
@@ -2947,7 +2897,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 118
+    "rank": 116
   },
   {
     "ticker": "BCPC",
@@ -2972,7 +2922,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 119
+    "rank": 117
+  },
+  {
+    "ticker": "BE",
+    "name": "Bloom Energy Corporation",
+    "sector": "Industrials",
+    "mcap_musd": 73844.5,
+    "price": 259.61,
+    "drawdown_pct": 79.1,
+    "p_b": 80.0771,
+    "score": 25.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 25.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg +25",
+    "_schema": "v4-unified",
+    "rank": 118
   },
   {
     "ticker": "CACC",
@@ -2997,7 +2972,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 120
+    "rank": 119
   },
   {
     "ticker": "CUBE",
@@ -3022,7 +2997,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 121
+    "rank": 120
   },
   {
     "ticker": "DDOG",
@@ -3047,7 +3022,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 122
+    "rank": 121
   },
   {
     "ticker": "ENOV",
@@ -3072,7 +3047,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 123
+    "rank": 122
   },
   {
     "ticker": "FCFS",
@@ -3097,7 +3072,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 124
+    "rank": 123
   },
   {
     "ticker": "FOSL",
@@ -3122,7 +3097,57 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
+    "rank": 124
+  },
+  {
+    "ticker": "GOOG",
+    "name": "Alphabet Inc.",
+    "sector": "Communication S",
+    "mcap_musd": 4418103.1,
+    "price": 362.29,
+    "drawdown_pct": 82.5,
+    "p_b": 9.16865,
+    "score": 25.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 25.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg +25",
+    "_schema": "v4-unified",
     "rank": 125
+  },
+  {
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc.",
+    "sector": "Communication S",
+    "mcap_musd": 4442127.1,
+    "price": 364.26,
+    "drawdown_pct": 82.0,
+    "p_b": 9.218505,
+    "score": 25.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 25.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg +25",
+    "_schema": "v4-unified",
+    "rank": 126
   },
   {
     "ticker": "ILMN",
@@ -3147,7 +3172,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 126
+    "rank": 127
   },
   {
     "ticker": "IRON",
@@ -3172,7 +3197,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 127
+    "rank": 128
   },
   {
     "ticker": "KYMR",
@@ -3197,7 +3222,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 128
+    "rank": 129
   },
   {
     "ticker": "LODE",
@@ -3222,7 +3247,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | 13D filed",
     "_schema": "v4-unified",
-    "rank": 129
+    "rank": 130
   },
   {
     "ticker": "LUNR",
@@ -3247,7 +3272,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 130
+    "rank": 131
   },
   {
     "ticker": "LXFR",
@@ -3272,7 +3297,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 131
+    "rank": 132
   },
   {
     "ticker": "MAZE",
@@ -3297,7 +3322,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 132
+    "rank": 133
   },
   {
     "ticker": "MGRC",
@@ -3322,7 +3347,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 133
+    "rank": 134
   },
   {
     "ticker": "NVDA",
@@ -3347,7 +3372,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 134
+    "rank": 135
   },
   {
     "ticker": "OMC",
@@ -3372,7 +3397,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 135
+    "rank": 136
   },
   {
     "ticker": "PCAR",
@@ -3397,7 +3422,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 136
+    "rank": 137
   },
   {
     "ticker": "RIOT",
@@ -3422,7 +3447,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 137
+    "rank": 138
+  },
+  {
+    "ticker": "SERV",
+    "name": "Serve Robotics Inc.",
+    "sector": "Industrials",
+    "mcap_musd": 590.5,
+    "price": 6.94,
+    "drawdown_pct": 0.8,
+    "p_b": 1.4787983,
+    "score": 25.0,
+    "insider_score": 0.0,
+    "valuation_score": 21.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 4.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "1% above 52w low | 10b5-1 leg +4",
+    "_schema": "v4-unified",
+    "rank": 139
   },
   {
     "ticker": "SRRK",
@@ -3447,7 +3497,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 138
+    "rank": 140
   },
   {
     "ticker": "TSLA",
@@ -3472,7 +3522,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 139
+    "rank": 141
   },
   {
     "ticker": "UHT",
@@ -3497,7 +3547,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 140
+    "rank": 142
   },
   {
     "ticker": "UNIT",
@@ -3522,7 +3572,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 141
+    "rank": 143
   },
   {
     "ticker": "WEST",
@@ -3547,7 +3597,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 142
+    "rank": 144
   },
   {
     "ticker": "WMT",
@@ -3572,7 +3622,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 143
+    "rank": 145
   },
   {
     "ticker": "XEL",
@@ -3597,7 +3647,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +25",
     "_schema": "v4-unified",
-    "rank": 144
+    "rank": 146
   },
   {
     "ticker": "CRSP",
@@ -3622,7 +3672,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 145
+    "rank": 147
   },
   {
     "ticker": "KULR",
@@ -3647,7 +3697,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 146
+    "rank": 148
   },
   {
     "ticker": "PRLD",
@@ -3672,7 +3722,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 147
+    "rank": 149
   },
   {
     "ticker": "SNTI",
@@ -3697,7 +3747,32 @@
     "is_foreign_filer": false,
     "reasons": "5% above 52w low | 13D filed",
     "_schema": "v4-unified",
-    "rank": 148
+    "rank": 150
+  },
+  {
+    "ticker": "PLSE",
+    "name": "Pulse Biosciences, Inc",
+    "sector": "Healthcare",
+    "mcap_musd": 1729.6,
+    "price": 24.99,
+    "drawdown_pct": 80.6,
+    "p_b": 21.017662,
+    "score": 23.6,
+    "insider_score": 17.6,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 2,
+    "ceo_bought": true,
+    "cfo_bought": false,
+    "tot_insider_musd": 26.59,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "CEO bought | $26.6M insider buys | 13D filed",
+    "_schema": "v4-unified",
+    "rank": 151
   },
   {
     "ticker": "BAC",
@@ -3722,7 +3797,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +20",
     "_schema": "v4-unified",
-    "rank": 149
+    "rank": 152
   },
   {
     "ticker": "EPAM",
@@ -3745,9 +3820,9 @@
     "tot_insider_musd": 0.04,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "6-buyer cluster 37d ago | CEO+CFO bought | 6% above 52w low | 10b5-1 leg -25",
+    "reasons": "6-buyer cluster 38d ago | CEO+CFO bought | 6% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 150
+    "rank": 153
   },
   {
     "ticker": "FEMY",
@@ -3772,57 +3847,7 @@
     "is_foreign_filer": false,
     "reasons": "1% above 52w low | 10b5-1 leg +5",
     "_schema": "v4-unified",
-    "rank": 151
-  },
-  {
-    "ticker": "SERV",
-    "name": "Serve Robotics Inc.",
-    "sector": "Industrials",
-    "mcap_musd": 590.5,
-    "price": 6.94,
-    "drawdown_pct": 0.8,
-    "p_b": 1.4787983,
-    "score": 23.0,
-    "insider_score": 0.0,
-    "valuation_score": 21.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 2.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "1% above 52w low | 10b5-1 leg +2",
-    "_schema": "v4-unified",
-    "rank": 152
-  },
-  {
-    "ticker": "BE",
-    "name": "Bloom Energy Corporation",
-    "sector": "Industrials",
-    "mcap_musd": 73844.5,
-    "price": 259.61,
-    "drawdown_pct": 79.1,
-    "p_b": 80.0771,
-    "score": 22.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 22.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg +22",
-    "_schema": "v4-unified",
-    "rank": 153
+    "rank": 154
   },
   {
     "ticker": "BKNG",
@@ -3847,7 +3872,7 @@
     "is_foreign_filer": false,
     "reasons": "17% above 52w low | step-change 54 | 10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 154
+    "rank": 155
   },
   {
     "ticker": "CCI",
@@ -3872,7 +3897,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 53",
     "_schema": "v4-unified",
-    "rank": 155
+    "rank": 156
   },
   {
     "ticker": "CVBF",
@@ -3897,7 +3922,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +15",
     "_schema": "v4-unified",
-    "rank": 156
+    "rank": 157
   },
   {
     "ticker": "D",
@@ -3922,7 +3947,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 55",
     "_schema": "v4-unified",
-    "rank": 157
+    "rank": 158
   },
   {
     "ticker": "DLTR",
@@ -3947,7 +3972,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 60",
     "_schema": "v4-unified",
-    "rank": 158
+    "rank": 159
   },
   {
     "ticker": "ENPH",
@@ -3972,7 +3997,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 52",
     "_schema": "v4-unified",
-    "rank": 159
+    "rank": 160
   },
   {
     "ticker": "ETR",
@@ -3997,57 +4022,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 52",
     "_schema": "v4-unified",
-    "rank": 160
-  },
-  {
-    "ticker": "GOOG",
-    "name": "Alphabet Inc.",
-    "sector": "Communication S",
-    "mcap_musd": 4418103.1,
-    "price": 362.29,
-    "drawdown_pct": 82.5,
-    "p_b": 9.16865,
-    "score": 22.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 22.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg +22",
-    "_schema": "v4-unified",
     "rank": 161
-  },
-  {
-    "ticker": "GOOGL",
-    "name": "Alphabet Inc.",
-    "sector": "Communication S",
-    "mcap_musd": 4442127.1,
-    "price": 364.26,
-    "drawdown_pct": 82.0,
-    "p_b": 9.218505,
-    "score": 22.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 22.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg +22",
-    "_schema": "v4-unified",
-    "rank": 162
   },
   {
     "ticker": "OCUL",
@@ -4072,7 +4047,7 @@
     "is_foreign_filer": false,
     "reasons": "22% above 52w low | 10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 163
+    "rank": 162
   },
   {
     "ticker": "RH",
@@ -4097,7 +4072,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 69 | 10b5-1 leg -6",
     "_schema": "v4-unified",
-    "rank": 164
+    "rank": 163
   },
   {
     "ticker": "SBAC",
@@ -4122,7 +4097,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 52",
     "_schema": "v4-unified",
-    "rank": 165
+    "rank": 164
   },
   {
     "ticker": "TRUP",
@@ -4147,7 +4122,7 @@
     "is_foreign_filer": false,
     "reasons": "3% above 52w low | 10b5-1 leg +4",
     "_schema": "v4-unified",
-    "rank": 166
+    "rank": 165
   },
   {
     "ticker": "ZIP",
@@ -4172,6 +4147,31 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +22",
     "_schema": "v4-unified",
+    "rank": 166
+  },
+  {
+    "ticker": "AVBC",
+    "name": "Avidia Bancorp, Inc.",
+    "sector": "Financial Servi",
+    "mcap_musd": 348.8,
+    "price": 18.78,
+    "drawdown_pct": 64.3,
+    "p_b": 0.9095312,
+    "score": 20.4,
+    "insider_score": 14.4,
+    "valuation_score": 6.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 0.0,
+    "cluster_size": 3,
+    "ceo_bought": true,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.21,
+    "10b5_1_status": "no_signal",
+    "is_foreign_filer": false,
+    "reasons": "3-buyer cluster 31d ago | CEO bought | P/B 0.9",
+    "_schema": "v4-unified",
     "rank": 167
   },
   {
@@ -4195,7 +4195,7 @@
     "tot_insider_musd": 0.55,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 75d ago | CEO bought | 13D filed",
+    "reasons": "3-buyer cluster 76d ago | CEO bought | 13D filed",
     "_schema": "v4-unified",
     "rank": 168
   },
@@ -4220,7 +4220,7 @@
     "tot_insider_musd": 0.04,
     "10b5_1_status": "no_data",
     "is_foreign_filer": true,
-    "reasons": "3-buyer cluster 33d ago | CEO+CFO bought",
+    "reasons": "3-buyer cluster 34d ago | CEO+CFO bought",
     "_schema": "v4-unified",
     "rank": 169
   },
@@ -4250,6 +4250,31 @@
     "rank": 170
   },
   {
+    "ticker": "MYO",
+    "name": "Myomo Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 50.6,
+    "price": 1.31,
+    "drawdown_pct": 30.1,
+    "p_b": 5.6223173,
+    "score": 20.0,
+    "insider_score": 0.0,
+    "valuation_score": 6.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 14.0,
+    "cluster_size": 1,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.02,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg +14",
+    "_schema": "v4-unified",
+    "rank": 171
+  },
+  {
     "ticker": "QTTB",
     "name": "Q32 Bio Inc.",
     "sector": "Healthcare",
@@ -4272,7 +4297,7 @@
     "is_foreign_filer": false,
     "reasons": "$30.0M insider buys | 13D filed",
     "_schema": "v4-unified",
-    "rank": 171
+    "rank": 172
   },
   {
     "ticker": "VSNT",
@@ -4295,9 +4320,9 @@
     "tot_insider_musd": 6.19,
     "10b5_1_status": "no_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 93d ago | $6.2M insider buys | P/B 0.6",
+    "reasons": "4-buyer cluster 94d ago | $6.2M insider buys | P/B 0.6",
     "_schema": "v4-unified",
-    "rank": 172
+    "rank": 173
   },
   {
     "ticker": "BREZ",
@@ -4322,7 +4347,7 @@
     "is_foreign_filer": true,
     "reasons": "CEO+CFO bought",
     "_schema": "v4-unified",
-    "rank": 173
+    "rank": 174
   },
   {
     "ticker": "CCRN",
@@ -4347,7 +4372,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +15",
     "_schema": "v4-unified",
-    "rank": 174
+    "rank": 175
   },
   {
     "ticker": "CGON",
@@ -4372,7 +4397,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 175
+    "rank": 176
   },
   {
     "ticker": "IDCC",
@@ -4397,7 +4422,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +18",
     "_schema": "v4-unified",
-    "rank": 176
+    "rank": 177
   },
   {
     "ticker": "MCHPP",
@@ -4421,31 +4446,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +18",
-    "_schema": "v4-unified",
-    "rank": 177
-  },
-  {
-    "ticker": "MYO",
-    "name": "Myomo Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 50.6,
-    "price": 1.31,
-    "drawdown_pct": 30.1,
-    "p_b": 5.6223173,
-    "score": 18.0,
-    "insider_score": 0.0,
-    "valuation_score": 6.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": 12.0,
-    "cluster_size": 1,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.02,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg +12",
     "_schema": "v4-unified",
     "rank": 178
   },
@@ -4870,7 +4870,7 @@
     "tot_insider_musd": 3.73,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "4-buyer cluster 63d ago | CEO bought | 6% above 52w low | 10b5-1 leg -25",
+    "reasons": "4-buyer cluster 64d ago | CEO bought | 6% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
     "rank": 195
   },
@@ -4900,6 +4900,31 @@
     "rank": 196
   },
   {
+    "ticker": "ANGI",
+    "name": "Angi Inc.",
+    "sector": "Communication S",
+    "mcap_musd": 233.4,
+    "price": 5.77,
+    "drawdown_pct": 8.3,
+    "p_b": 0.2549713,
+    "score": 14.0,
+    "insider_score": 0.0,
+    "valuation_score": 24.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -10.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "8% above 52w low | P/B 0.3 | 10b5-1 leg -10",
+    "_schema": "v4-unified",
+    "rank": 197
+  },
+  {
     "ticker": "ASTS",
     "name": "AST SpaceMobile, Inc.",
     "sector": "Technology",
@@ -4922,7 +4947,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +8",
     "_schema": "v4-unified",
-    "rank": 197
+    "rank": 198
   },
   {
     "ticker": "CARS",
@@ -4947,7 +4972,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.2 | 10b5-1 leg +2",
     "_schema": "v4-unified",
-    "rank": 198
+    "rank": 199
   },
   {
     "ticker": "INGN",
@@ -4972,7 +4997,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.0 | 10b5-1 leg +2",
     "_schema": "v4-unified",
-    "rank": 199
+    "rank": 200
   },
   {
     "ticker": "SATS",
@@ -4997,7 +5022,32 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +8",
     "_schema": "v4-unified",
-    "rank": 200
+    "rank": 201
+  },
+  {
+    "ticker": "TEAM",
+    "name": "Atlassian Corporation",
+    "sector": "Technology",
+    "mcap_musd": 24262.7,
+    "price": 95.61,
+    "drawdown_pct": 23.8,
+    "p_b": 15.956275,
+    "score": 14.0,
+    "insider_score": 0.0,
+    "valuation_score": 12.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": 2.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "24% above 52w low | 10b5-1 leg +2",
+    "_schema": "v4-unified",
+    "rank": 202
   },
   {
     "ticker": "VNOM",
@@ -5022,7 +5072,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +5",
     "_schema": "v4-unified",
-    "rank": 201
+    "rank": 203
   },
   {
     "ticker": "VVX",
@@ -5047,7 +5097,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +8",
     "_schema": "v4-unified",
-    "rank": 202
+    "rank": 204
   },
   {
     "ticker": "WMS",
@@ -5072,7 +5122,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +8",
     "_schema": "v4-unified",
-    "rank": 203
+    "rank": 205
   },
   {
     "ticker": "KRP",
@@ -5097,7 +5147,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +7",
     "_schema": "v4-unified",
-    "rank": 204
+    "rank": 206
   },
   {
     "ticker": "LULU",
@@ -5122,7 +5172,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | 8% above 52w low | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 205
+    "rank": 207
   },
   {
     "ticker": "SMG",
@@ -5147,7 +5197,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +6",
     "_schema": "v4-unified",
-    "rank": 206
+    "rank": 208
   },
   {
     "ticker": "SMR",
@@ -5172,7 +5222,7 @@
     "is_foreign_filer": false,
     "reasons": "2% above 52w low | 13D filed | 10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 207
+    "rank": 209
   },
   {
     "ticker": "TRVI",
@@ -5197,7 +5247,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg +6",
     "_schema": "v4-unified",
-    "rank": 208
+    "rank": 210
   },
   {
     "ticker": "AMSF",
@@ -5222,7 +5272,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 209
+    "rank": 211
   },
   {
     "ticker": "CVGI",
@@ -5247,7 +5297,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +7",
     "_schema": "v4-unified",
-    "rank": 210
+    "rank": 212
   },
   {
     "ticker": "JBIO",
@@ -5272,7 +5322,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 211
+    "rank": 213
   },
   {
     "ticker": "KUST",
@@ -5297,7 +5347,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 212
+    "rank": 214
   },
   {
     "ticker": "MU",
@@ -5322,7 +5372,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 213
+    "rank": 215
   },
   {
     "ticker": "SN",
@@ -5347,7 +5397,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 214
+    "rank": 216
   },
   {
     "ticker": "THRY",
@@ -5372,7 +5422,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 215
+    "rank": 217
   },
   {
     "ticker": "VREOF",
@@ -5397,7 +5447,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +10",
     "_schema": "v4-unified",
-    "rank": 216
+    "rank": 218
   },
   {
     "ticker": "ZSQR",
@@ -5422,7 +5472,7 @@
     "is_foreign_filer": false,
     "reasons": "24% above 52w low | 13D filed | 10b5-1 leg -8",
     "_schema": "v4-unified",
-    "rank": 217
+    "rank": 219
   },
   {
     "ticker": "ADSK",
@@ -5447,7 +5497,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 49 | 10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 218
+    "rank": 220
   },
   {
     "ticker": "MORN",
@@ -5472,7 +5522,7 @@
     "is_foreign_filer": false,
     "reasons": "21% above 52w low | 10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 219
+    "rank": 221
   },
   {
     "ticker": "NMRA",
@@ -5497,7 +5547,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 220
+    "rank": 222
   },
   {
     "ticker": "OCGN",
@@ -5522,7 +5572,7 @@
     "is_foreign_filer": false,
     "reasons": "18% above 52w low | 10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 221
+    "rank": 223
   },
   {
     "ticker": "PAYC",
@@ -5547,7 +5597,7 @@
     "is_foreign_filer": false,
     "reasons": "21% above 52w low | step-change 69 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 222
+    "rank": 224
   },
   {
     "ticker": "STRR",
@@ -5572,7 +5622,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | P/B 0.7 | 10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 223
+    "rank": 225
   },
   {
     "ticker": "RYM",
@@ -5597,32 +5647,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +2",
     "_schema": "v4-unified",
-    "rank": 224
-  },
-  {
-    "ticker": "TEAM",
-    "name": "Atlassian Corporation",
-    "sector": "Technology",
-    "mcap_musd": 24262.7,
-    "price": 95.61,
-    "drawdown_pct": 23.8,
-    "p_b": 15.956275,
-    "score": 8.0,
-    "insider_score": 0.0,
-    "valuation_score": 12.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -4.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "24% above 52w low | 10b5-1 leg -4",
-    "_schema": "v4-unified",
-    "rank": 225
+    "rank": 226
   },
   {
     "ticker": "TSEOF",
@@ -5646,31 +5671,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "0% above 52w low | 10b5-1 leg -10",
-    "_schema": "v4-unified",
-    "rank": 226
-  },
-  {
-    "ticker": "MMSI",
-    "name": "Merit Medical Systems, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 4027.3,
-    "price": 67.51,
-    "drawdown_pct": 21.0,
-    "p_b": 2.4757051,
-    "score": 7.0,
-    "insider_score": 6.0,
-    "valuation_score": 12.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -11.0,
-    "cluster_size": 2,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.22,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "21% above 52w low | 10b5-1 leg -11",
     "_schema": "v4-unified",
     "rank": 227
   },
@@ -5700,31 +5700,6 @@
     "rank": 228
   },
   {
-    "ticker": "ANGI",
-    "name": "Angi Inc.",
-    "sector": "Communication S",
-    "mcap_musd": 233.4,
-    "price": 5.77,
-    "drawdown_pct": 8.3,
-    "p_b": 0.2549713,
-    "score": 6.0,
-    "insider_score": 0.0,
-    "valuation_score": 24.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -18.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "8% above 52w low | P/B 0.3 | 10b5-1 leg -18",
-    "_schema": "v4-unified",
-    "rank": 229
-  },
-  {
     "ticker": "PEN",
     "name": "Penumbra, Inc.",
     "sector": "Healthcare",
@@ -5747,7 +5722,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +6",
     "_schema": "v4-unified",
-    "rank": 230
+    "rank": 229
   },
   {
     "ticker": "FUBO",
@@ -5772,7 +5747,7 @@
     "is_foreign_filer": false,
     "reasons": "3% above 52w low | P/B 0.4 | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 231
+    "rank": 230
   },
   {
     "ticker": "JSM",
@@ -5797,7 +5772,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -1",
     "_schema": "v4-unified",
-    "rank": 232
+    "rank": 231
   },
   {
     "ticker": "KLRS",
@@ -5822,7 +5797,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +5",
     "_schema": "v4-unified",
-    "rank": 233
+    "rank": 232
   },
   {
     "ticker": "PAR",
@@ -5847,7 +5822,7 @@
     "is_foreign_filer": false,
     "reasons": "3% above 52w low | P/B 0.7 | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 234
+    "rank": 233
   },
   {
     "ticker": "QVCCQ",
@@ -5871,6 +5846,31 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg +5",
+    "_schema": "v4-unified",
+    "rank": 234
+  },
+  {
+    "ticker": "MMSI",
+    "name": "Merit Medical Systems, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 4027.3,
+    "price": 67.51,
+    "drawdown_pct": 21.0,
+    "p_b": 2.4757051,
+    "score": 4.6,
+    "insider_score": 3.6,
+    "valuation_score": 12.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -11.0,
+    "cluster_size": 2,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.22,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "21% above 52w low | 10b5-1 leg -11",
     "_schema": "v4-unified",
     "rank": 235
   },
@@ -6000,56 +6000,6 @@
     "rank": 240
   },
   {
-    "ticker": "CMRC",
-    "name": "Commerce.com, Inc. - Series 1",
-    "sector": "Technology",
-    "mcap_musd": 219.5,
-    "price": 2.66,
-    "drawdown_pct": 8.0,
-    "p_b": 4.683099,
-    "score": 2.0,
-    "insider_score": 0.0,
-    "valuation_score": 18.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -16.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "8% above 52w low | 10b5-1 leg -16",
-    "_schema": "v4-unified",
-    "rank": 241
-  },
-  {
-    "ticker": "GRAL",
-    "name": "GRAIL, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 2613.6,
-    "price": 60.9,
-    "drawdown_pct": 34.8,
-    "p_b": 1.0017601,
-    "score": 2.0,
-    "insider_score": 0.0,
-    "valuation_score": 12.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -10.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "P/B 1.0 | 10b5-1 leg -10",
-    "_schema": "v4-unified",
-    "rank": 242
-  },
-  {
     "ticker": "GYRE",
     "name": "Gyre Therapeutics, Inc.",
     "sector": "Healthcare",
@@ -6072,32 +6022,7 @@
     "is_foreign_filer": false,
     "reasons": "17% above 52w low | 13D filed | 10b5-1 leg -16",
     "_schema": "v4-unified",
-    "rank": 243
-  },
-  {
-    "ticker": "TXO",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": 2.0,
-    "insider_score": 14.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -12.0,
-    "cluster_size": 2,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 13.49,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "$13.5M insider buys | 10b5-1 leg -12",
-    "_schema": "v4-unified",
-    "rank": 244
+    "rank": 241
   },
   {
     "ticker": "APPF",
@@ -6122,7 +6047,7 @@
     "is_foreign_filer": false,
     "reasons": "14% above 52w low | 10b5-1 leg -11",
     "_schema": "v4-unified",
-    "rank": 245
+    "rank": 242
   },
   {
     "ticker": "RENT",
@@ -6147,7 +6072,7 @@
     "is_foreign_filer": false,
     "reasons": "2% above 52w low | 13D filed | 10b5-1 leg -23",
     "_schema": "v4-unified",
-    "rank": 246
+    "rank": 243
   },
   {
     "ticker": "AHCO",
@@ -6172,7 +6097,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 0.9 | 10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 247
+    "rank": 244
   },
   {
     "ticker": "CASIF",
@@ -6197,7 +6122,32 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -6",
     "_schema": "v4-unified",
-    "rank": 248
+    "rank": 245
+  },
+  {
+    "ticker": "CMRC",
+    "name": "Commerce.com, Inc. - Series 1",
+    "sector": "Technology",
+    "mcap_musd": 219.5,
+    "price": 2.66,
+    "drawdown_pct": 8.0,
+    "p_b": 4.683099,
+    "score": 0.0,
+    "insider_score": 0.0,
+    "valuation_score": 18.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -18.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "8% above 52w low | 10b5-1 leg -18",
+    "_schema": "v4-unified",
+    "rank": 246
   },
   {
     "ticker": "CRMD",
@@ -6222,7 +6172,32 @@
     "is_foreign_filer": false,
     "reasons": "22% above 52w low | 10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 249
+    "rank": 247
+  },
+  {
+    "ticker": "GRAL",
+    "name": "GRAIL, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 2613.6,
+    "price": 60.9,
+    "drawdown_pct": 34.8,
+    "p_b": 1.0017601,
+    "score": 0.0,
+    "insider_score": 0.0,
+    "valuation_score": 12.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -12.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "P/B 1.0 | 10b5-1 leg -12",
+    "_schema": "v4-unified",
+    "rank": 248
   },
   {
     "ticker": "NPB",
@@ -6247,7 +6222,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | P/B 1.0 | 10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 250
+    "rank": 249
   },
   {
     "ticker": "UZD",
@@ -6272,32 +6247,32 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -6",
     "_schema": "v4-unified",
-    "rank": 251
+    "rank": 250
   },
   {
-    "ticker": "ADUS",
-    "name": "Addus HomeCare Corporation",
-    "sector": "Healthcare",
-    "mcap_musd": 1730.2,
-    "price": 92.7,
-    "drawdown_pct": 13.0,
-    "p_b": 1.5185269,
-    "score": -1.0,
-    "insider_score": 0.0,
-    "valuation_score": 15.0,
+    "ticker": "TXO",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -0.4,
+    "insider_score": 11.6,
+    "valuation_score": 0.0,
     "step_change_score": 0.0,
     "psu_forensic_score": 0.0,
     "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -16.0,
-    "cluster_size": 0,
+    "cancel_10b5_1_score": -12.0,
+    "cluster_size": 2,
     "ceo_bought": false,
     "cfo_bought": false,
-    "tot_insider_musd": 0.0,
+    "tot_insider_musd": 13.49,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "13% above 52w low | 10b5-1 leg -16",
+    "reasons": "$13.5M insider buys | 10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 252
+    "rank": 251
   },
   {
     "ticker": "BRCB",
@@ -6322,7 +6297,7 @@
     "is_foreign_filer": false,
     "reasons": "1% above 52w low | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 253
+    "rank": 252
   },
   {
     "ticker": "FULC",
@@ -6347,7 +6322,7 @@
     "is_foreign_filer": false,
     "reasons": "5% above 52w low | P/B 0.7 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 254
+    "rank": 253
   },
   {
     "ticker": "GCMG",
@@ -6372,7 +6347,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -1",
     "_schema": "v4-unified",
-    "rank": 255
+    "rank": 254
   },
   {
     "ticker": "GPGI",
@@ -6395,9 +6370,9 @@
     "tot_insider_musd": 0.2,
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
-    "reasons": "3-buyer cluster 27d ago | 10b5-1 leg -15",
+    "reasons": "3-buyer cluster 28d ago | 10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 256
+    "rank": 255
   },
   {
     "ticker": "LENZ",
@@ -6422,7 +6397,7 @@
     "is_foreign_filer": false,
     "reasons": "1% above 52w low | P/B 0.9 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 257
+    "rank": 256
   },
   {
     "ticker": "LZ",
@@ -6447,7 +6422,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | 5% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 258
+    "rank": 257
   },
   {
     "ticker": "OKLO",
@@ -6472,7 +6447,57 @@
     "is_foreign_filer": false,
     "reasons": "8% above 52w low | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
+    "rank": 258
+  },
+  {
+    "ticker": "PLRX",
+    "name": "Pliant Therapeutics, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 73.7,
+    "price": 1.19,
+    "drawdown_pct": 11.6,
+    "p_b": 0.446027,
+    "score": -1.0,
+    "insider_score": 0.0,
+    "valuation_score": 18.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -19.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "12% above 52w low | P/B 0.4 | 10b5-1 leg -19",
+    "_schema": "v4-unified",
     "rank": 259
+  },
+  {
+    "ticker": "SES",
+    "name": "SES AI Corporation",
+    "sector": "Consumer Cyclic",
+    "mcap_musd": 398.8,
+    "price": 1.08,
+    "drawdown_pct": 9.6,
+    "p_b": 1.9600726,
+    "score": -1.0,
+    "insider_score": 0.0,
+    "valuation_score": 21.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -22.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10% above 52w low | 10b5-1 leg -22",
+    "_schema": "v4-unified",
+    "rank": 260
   },
   {
     "ticker": "TASK",
@@ -6497,7 +6522,7 @@
     "is_foreign_filer": false,
     "reasons": "3% above 52w low | P/B 0.9 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 260
+    "rank": 261
   },
   {
     "ticker": "WVE",
@@ -6522,7 +6547,7 @@
     "is_foreign_filer": false,
     "reasons": "5% above 52w low | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 261
+    "rank": 262
   },
   {
     "ticker": "AMWL",
@@ -6547,7 +6572,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | P/B 0.6 | 10b5-1 leg -14",
     "_schema": "v4-unified",
-    "rank": 262
+    "rank": 263
   },
   {
     "ticker": "HWKE",
@@ -6572,7 +6597,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -8",
     "_schema": "v4-unified",
-    "rank": 263
+    "rank": 264
   },
   {
     "ticker": "LOCO",
@@ -6597,7 +6622,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -8",
     "_schema": "v4-unified",
-    "rank": 264
+    "rank": 265
   },
   {
     "ticker": "RNAC",
@@ -6622,7 +6647,7 @@
     "is_foreign_filer": false,
     "reasons": "13% above 52w low | 13D filed | 10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 265
+    "rank": 266
   },
   {
     "ticker": "SYK",
@@ -6647,7 +6672,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -14",
     "_schema": "v4-unified",
-    "rank": 266
+    "rank": 267
   },
   {
     "ticker": "URBN",
@@ -6672,7 +6697,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -2",
     "_schema": "v4-unified",
-    "rank": 267
+    "rank": 268
+  },
+  {
+    "ticker": "ADUS",
+    "name": "Addus HomeCare Corporation",
+    "sector": "Healthcare",
+    "mcap_musd": 1730.2,
+    "price": 92.7,
+    "drawdown_pct": 13.0,
+    "p_b": 1.5185269,
+    "score": -3.0,
+    "insider_score": 0.0,
+    "valuation_score": 15.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -18.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13% above 52w low | 10b5-1 leg -18",
+    "_schema": "v4-unified",
+    "rank": 269
   },
   {
     "ticker": "BLND",
@@ -6697,7 +6747,7 @@
     "is_foreign_filer": false,
     "reasons": "16% above 52w low | 13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 268
+    "rank": 270
   },
   {
     "ticker": "BWXT",
@@ -6722,7 +6772,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 269
+    "rank": 271
   },
   {
     "ticker": "CL",
@@ -6747,7 +6797,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 270
+    "rank": 272
   },
   {
     "ticker": "CLIR",
@@ -6772,7 +6822,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 271
+    "rank": 273
   },
   {
     "ticker": "EIX",
@@ -6797,7 +6847,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 272
+    "rank": 274
   },
   {
     "ticker": "FIVE",
@@ -6822,7 +6872,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 273
+    "rank": 275
   },
   {
     "ticker": "HRI",
@@ -6847,7 +6897,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 274
+    "rank": 276
   },
   {
     "ticker": "OVLY",
@@ -6872,7 +6922,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 275
+    "rank": 277
   },
   {
     "ticker": "SMA",
@@ -6897,7 +6947,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 276
+    "rank": 278
   },
   {
     "ticker": "SPAI",
@@ -6922,7 +6972,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -3",
     "_schema": "v4-unified",
-    "rank": 277
+    "rank": 279
   },
   {
     "ticker": "XPRO",
@@ -6947,7 +6997,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 278
+    "rank": 280
   },
   {
     "ticker": "BRLT",
@@ -6972,7 +7022,7 @@
     "is_foreign_filer": false,
     "reasons": "6% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 279
+    "rank": 281
   },
   {
     "ticker": "HIG",
@@ -6997,7 +7047,7 @@
     "is_foreign_filer": false,
     "reasons": "step-change 49 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 280
+    "rank": 282
   },
   {
     "ticker": "RPC",
@@ -7022,32 +7072,7 @@
     "is_foreign_filer": false,
     "reasons": "24% above 52w low | 10b5-1 leg -16",
     "_schema": "v4-unified",
-    "rank": 281
-  },
-  {
-    "ticker": "SES",
-    "name": "SES AI Corporation",
-    "sector": "Consumer Cyclic",
-    "mcap_musd": 398.8,
-    "price": 1.08,
-    "drawdown_pct": 9.6,
-    "p_b": 1.9600726,
-    "score": -4.0,
-    "insider_score": 0.0,
-    "valuation_score": 21.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -25.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10% above 52w low | 10b5-1 leg -25",
-    "_schema": "v4-unified",
-    "rank": 282
+    "rank": 283
   },
   {
     "ticker": "HLMN",
@@ -7071,31 +7096,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "21% above 52w low | 10b5-1 leg -20",
-    "_schema": "v4-unified",
-    "rank": 283
-  },
-  {
-    "ticker": "PLRX",
-    "name": "Pliant Therapeutics, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 73.7,
-    "price": 1.19,
-    "drawdown_pct": 11.6,
-    "p_b": 0.446027,
-    "score": -5.0,
-    "insider_score": 0.0,
-    "valuation_score": 18.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -23.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "12% above 52w low | P/B 0.4 | 10b5-1 leg -23",
     "_schema": "v4-unified",
     "rank": 284
   },
@@ -7700,6 +7700,31 @@
     "rank": 308
   },
   {
+    "ticker": "AMPL",
+    "name": "Amplitude, Inc.",
+    "sector": "Technology",
+    "mcap_musd": 923.0,
+    "price": 6.96,
+    "drawdown_pct": 16.1,
+    "p_b": 4.2464914,
+    "score": -8.0,
+    "insider_score": 0.0,
+    "valuation_score": 12.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -20.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "16% above 52w low | 10b5-1 leg -20",
+    "_schema": "v4-unified",
+    "rank": 309
+  },
+  {
     "ticker": "CHGG",
     "name": "Chegg, Inc.",
     "sector": "Consumer Defens",
@@ -7721,31 +7746,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "P/B 1.0 | 13D filed | 10b5-1 leg -20",
-    "_schema": "v4-unified",
-    "rank": 309
-  },
-  {
-    "ticker": "JBI",
-    "name": "Janus International Group, Inc.",
-    "sector": "Industrials",
-    "mcap_musd": 717.4,
-    "price": 5.26,
-    "drawdown_pct": 15.3,
-    "p_b": 1.2807403,
-    "score": -8.0,
-    "insider_score": 0.0,
-    "valuation_score": 15.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -23.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "15% above 52w low | 10b5-1 leg -23",
     "_schema": "v4-unified",
     "rank": 310
   },
@@ -7825,56 +7825,6 @@
     "rank": 313
   },
   {
-    "ticker": "XOMAP",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -8.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": -14.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "13D filed | 10b5-1 leg -14",
-    "_schema": "v4-unified",
-    "rank": 314
-  },
-  {
-    "ticker": "MSCI",
-    "name": "MSCI Inc.",
-    "sector": "Financial Servi",
-    "mcap_musd": 44184.9,
-    "price": 607.54,
-    "drawdown_pct": 74.1,
-    "p_b": -15.965626,
-    "score": -8.5,
-    "insider_score": 15.5,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -24.0,
-    "cluster_size": 2,
-    "ceo_bought": true,
-    "cfo_bought": false,
-    "tot_insider_musd": 5.56,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "CEO bought | $5.6M insider buys | 10b5-1 leg -24",
-    "_schema": "v4-unified",
-    "rank": 315
-  },
-  {
     "ticker": "ABOS",
     "name": "Acumen Pharmaceuticals, Inc.",
     "sector": "Healthcare",
@@ -7897,7 +7847,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 316
+    "rank": 314
   },
   {
     "ticker": "ECPG",
@@ -7922,7 +7872,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 317
+    "rank": 315
   },
   {
     "ticker": "HLF",
@@ -7947,7 +7897,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 318
+    "rank": 316
   },
   {
     "ticker": "INDI",
@@ -7972,7 +7922,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -9",
     "_schema": "v4-unified",
-    "rank": 319
+    "rank": 317
   },
   {
     "ticker": "SYRE",
@@ -7997,7 +7947,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 320
+    "rank": 318
   },
   {
     "ticker": "VVV",
@@ -8022,7 +7972,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 321
+    "rank": 319
+  },
+  {
+    "ticker": "MSCI",
+    "name": "MSCI Inc.",
+    "sector": "Financial Servi",
+    "mcap_musd": 44184.9,
+    "price": 607.54,
+    "drawdown_pct": 74.1,
+    "p_b": -15.965626,
+    "score": -9.5,
+    "insider_score": 15.5,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -25.0,
+    "cluster_size": 2,
+    "ceo_bought": true,
+    "cfo_bought": false,
+    "tot_insider_musd": 5.56,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "CEO bought | $5.6M insider buys | 10b5-1 leg -25",
+    "_schema": "v4-unified",
+    "rank": 320
   },
   {
     "ticker": "DIS",
@@ -8047,7 +8022,7 @@
     "is_foreign_filer": false,
     "reasons": "22% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 322
+    "rank": 321
   },
   {
     "ticker": "EYE",
@@ -8072,7 +8047,7 @@
     "is_foreign_filer": false,
     "reasons": "11% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 323
+    "rank": 322
   },
   {
     "ticker": "GME",
@@ -8097,57 +8072,32 @@
     "is_foreign_filer": false,
     "reasons": "25% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
+    "rank": 323
+  },
+  {
+    "ticker": "JBI",
+    "name": "Janus International Group, Inc.",
+    "sector": "Industrials",
+    "mcap_musd": 717.4,
+    "price": 5.26,
+    "drawdown_pct": 15.3,
+    "p_b": 1.2807403,
+    "score": -10.0,
+    "insider_score": 0.0,
+    "valuation_score": 15.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -25.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "15% above 52w low | 10b5-1 leg -25",
+    "_schema": "v4-unified",
     "rank": 324
-  },
-  {
-    "ticker": "JBLU",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -10.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": -16.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "13D filed | 10b5-1 leg -16",
-    "_schema": "v4-unified",
-    "rank": 325
-  },
-  {
-    "ticker": "MGTX",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -10.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": -16.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "13D filed | 10b5-1 leg -16",
-    "_schema": "v4-unified",
-    "rank": 326
   },
   {
     "ticker": "ONT",
@@ -8171,6 +8121,56 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "16% above 52w low | 10b5-1 leg -25",
+    "_schema": "v4-unified",
+    "rank": 325
+  },
+  {
+    "ticker": "PCVX",
+    "name": "Vaxcyte, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 6769.4,
+    "price": 46.88,
+    "drawdown_pct": 49.6,
+    "p_b": 2.258189,
+    "score": -10.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -10.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -10",
+    "_schema": "v4-unified",
+    "rank": 326
+  },
+  {
+    "ticker": "PHR",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -10.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": -16.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13D filed | 10b5-1 leg -16",
     "_schema": "v4-unified",
     "rank": 327
   },
@@ -8275,6 +8275,31 @@
     "rank": 331
   },
   {
+    "ticker": "XOMAP",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -10.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": -16.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13D filed | 10b5-1 leg -16",
+    "_schema": "v4-unified",
+    "rank": 332
+  },
+  {
     "ticker": "INDV",
     "name": "Indivior Pharmaceuticals, Inc.",
     "sector": "Healthcare",
@@ -8297,7 +8322,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 332
+    "rank": 333
   },
   {
     "ticker": "BETA",
@@ -8322,7 +8347,7 @@
     "is_foreign_filer": false,
     "reasons": "12% above 52w low | 10b5-1 leg -23",
     "_schema": "v4-unified",
-    "rank": 333
+    "rank": 334
   },
   {
     "ticker": "CTMX",
@@ -8347,7 +8372,7 @@
     "is_foreign_filer": false,
     "reasons": "19% above 52w low | 10b5-1 leg -23",
     "_schema": "v4-unified",
-    "rank": 334
+    "rank": 335
   },
   {
     "ticker": "IR",
@@ -8372,7 +8397,7 @@
     "is_foreign_filer": false,
     "reasons": "18% above 52w low | 10b5-1 leg -23",
     "_schema": "v4-unified",
-    "rank": 335
+    "rank": 336
   },
   {
     "ticker": "ACRS",
@@ -8397,7 +8422,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 336
+    "rank": 337
   },
   {
     "ticker": "AESI",
@@ -8422,7 +8447,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 337
+    "rank": 338
   },
   {
     "ticker": "ALIT",
@@ -8447,7 +8472,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 338
+    "rank": 339
   },
   {
     "ticker": "ARCT",
@@ -8472,7 +8497,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 339
+    "rank": 340
   },
   {
     "ticker": "CDNS",
@@ -8497,7 +8522,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 340
+    "rank": 341
   },
   {
     "ticker": "CGEM",
@@ -8521,31 +8546,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
-    "_schema": "v4-unified",
-    "rank": 341
-  },
-  {
-    "ticker": "COMP",
-    "name": "Compass, Inc.",
-    "sector": "Real Estate",
-    "mcap_musd": 6104.2,
-    "price": 8.17,
-    "drawdown_pct": 28.4,
-    "p_b": 2.1619475,
-    "score": -12.0,
-    "insider_score": 0.0,
-    "valuation_score": 6.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -18.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -18",
     "_schema": "v4-unified",
     "rank": 342
   },
@@ -8650,13 +8650,13 @@
     "rank": 346
   },
   {
-    "ticker": "LTH",
-    "name": "Life Time Group Holdings, Inc.",
-    "sector": "Consumer Cyclic",
-    "mcap_musd": 7261.3,
-    "price": 32.62,
-    "drawdown_pct": 75.8,
-    "p_b": 2.2540076,
+    "ticker": "JBLU",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
     "score": -12.0,
     "insider_score": 0.0,
     "valuation_score": 0.0,
@@ -8700,6 +8700,31 @@
     "rank": 348
   },
   {
+    "ticker": "MGTX",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -12.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": -18.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13D filed | 10b5-1 leg -18",
+    "_schema": "v4-unified",
+    "rank": 349
+  },
+  {
     "ticker": "MRVI",
     "name": "Maravai LifeSciences Holdings, ",
     "sector": "Healthcare",
@@ -8722,7 +8747,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 349
+    "rank": 350
   },
   {
     "ticker": "NGS",
@@ -8747,7 +8772,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 350
+    "rank": 351
   },
   {
     "ticker": "OPLN",
@@ -8772,7 +8797,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 351
+    "rank": 352
   },
   {
     "ticker": "PACS",
@@ -8797,7 +8822,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
     "_schema": "v4-unified",
-    "rank": 352
+    "rank": 353
   },
   {
     "ticker": "PAYO",
@@ -8821,31 +8846,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -12",
-    "_schema": "v4-unified",
-    "rank": 353
-  },
-  {
-    "ticker": "PHR",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -12.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": -18.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "13D filed | 10b5-1 leg -18",
     "_schema": "v4-unified",
     "rank": 354
   },
@@ -9100,31 +9100,6 @@
     "rank": 364
   },
   {
-    "ticker": "AMPL",
-    "name": "Amplitude, Inc.",
-    "sector": "Technology",
-    "mcap_musd": 923.0,
-    "price": 6.96,
-    "drawdown_pct": 16.1,
-    "p_b": 4.2464914,
-    "score": -13.0,
-    "insider_score": 0.0,
-    "valuation_score": 12.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -25.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "16% above 52w low | 10b5-1 leg -25",
-    "_schema": "v4-unified",
-    "rank": 365
-  },
-  {
     "ticker": "CNTY",
     "name": "Century Casinos, Inc.",
     "sector": "Consumer Cyclic",
@@ -9147,7 +9122,7 @@
     "is_foreign_filer": false,
     "reasons": "12% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 366
+    "rank": 365
   },
   {
     "ticker": "CRCT",
@@ -9172,7 +9147,7 @@
     "is_foreign_filer": false,
     "reasons": "18% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 367
+    "rank": 366
   },
   {
     "ticker": "CVNA",
@@ -9197,7 +9172,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 368
+    "rank": 367
   },
   {
     "ticker": "ENVX",
@@ -9222,7 +9197,7 @@
     "is_foreign_filer": false,
     "reasons": "18% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 369
+    "rank": 368
   },
   {
     "ticker": "META",
@@ -9247,7 +9222,7 @@
     "is_foreign_filer": false,
     "reasons": "23% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 370
+    "rank": 369
   },
   {
     "ticker": "PGR",
@@ -9272,7 +9247,7 @@
     "is_foreign_filer": false,
     "reasons": "14% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 371
+    "rank": 370
   },
   {
     "ticker": "PLTR",
@@ -9297,7 +9272,7 @@
     "is_foreign_filer": false,
     "reasons": "11% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 372
+    "rank": 371
   },
   {
     "ticker": "QS",
@@ -9322,7 +9297,7 @@
     "is_foreign_filer": false,
     "reasons": "21% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 373
+    "rank": 372
   },
   {
     "ticker": "RDDT",
@@ -9347,7 +9322,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 374
+    "rank": 373
   },
   {
     "ticker": "ROOT",
@@ -9372,7 +9347,7 @@
     "is_foreign_filer": false,
     "reasons": "11% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 375
+    "rank": 374
   },
   {
     "ticker": "RVLV",
@@ -9397,7 +9372,7 @@
     "is_foreign_filer": false,
     "reasons": "20% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 376
+    "rank": 375
   },
   {
     "ticker": "SND",
@@ -9422,7 +9397,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 0.9 | 10b5-1 leg -19",
     "_schema": "v4-unified",
-    "rank": 377
+    "rank": 376
   },
   {
     "ticker": "STUB",
@@ -9447,7 +9422,7 @@
     "is_foreign_filer": false,
     "reasons": "21% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 378
+    "rank": 377
   },
   {
     "ticker": "VST",
@@ -9472,7 +9447,7 @@
     "is_foreign_filer": false,
     "reasons": "16% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 379
+    "rank": 378
   },
   {
     "ticker": "WEAV",
@@ -9497,7 +9472,7 @@
     "is_foreign_filer": false,
     "reasons": "24% above 52w low | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 380
+    "rank": 379
   },
   {
     "ticker": "ZUMZ",
@@ -9521,6 +9496,31 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "P/B 0.9 | 10b5-1 leg -25",
+    "_schema": "v4-unified",
+    "rank": 380
+  },
+  {
+    "ticker": "CART",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -14.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": -20.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13D filed | 10b5-1 leg -20",
     "_schema": "v4-unified",
     "rank": 381
   },
@@ -9600,31 +9600,6 @@
     "rank": 384
   },
   {
-    "ticker": "PCVX",
-    "name": "Vaxcyte, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 6769.4,
-    "price": 46.88,
-    "drawdown_pct": 49.6,
-    "p_b": 2.258189,
-    "score": -14.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -14.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -14",
-    "_schema": "v4-unified",
-    "rank": 385
-  },
-  {
     "ticker": "STZ",
     "name": "Constellation Brands, Inc.",
     "sector": "Consumer Defens",
@@ -9647,7 +9622,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 386
+    "rank": 385
   },
   {
     "ticker": "AEE",
@@ -9672,7 +9647,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 387
+    "rank": 386
   },
   {
     "ticker": "CENX",
@@ -9697,7 +9672,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 388
+    "rank": 387
   },
   {
     "ticker": "CHDN",
@@ -9722,7 +9697,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 389
+    "rank": 388
   },
   {
     "ticker": "JANX",
@@ -9747,7 +9722,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 390
+    "rank": 389
   },
   {
     "ticker": "KOPN",
@@ -9772,7 +9747,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 391
+    "rank": 390
   },
   {
     "ticker": "RMNI",
@@ -9797,7 +9772,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -15",
     "_schema": "v4-unified",
-    "rank": 392
+    "rank": 391
   },
   {
     "ticker": "CF",
@@ -9821,6 +9796,31 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -16",
+    "_schema": "v4-unified",
+    "rank": 392
+  },
+  {
+    "ticker": "COMP",
+    "name": "Compass, Inc.",
+    "sector": "Real Estate",
+    "mcap_musd": 6104.2,
+    "price": 8.17,
+    "drawdown_pct": 28.4,
+    "p_b": 2.1619475,
+    "score": -16.0,
+    "insider_score": 0.0,
+    "valuation_score": 6.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -22.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -22",
     "_schema": "v4-unified",
     "rank": 393
   },
@@ -9850,6 +9850,31 @@
     "rank": 394
   },
   {
+    "ticker": "LTH",
+    "name": "Life Time Group Holdings, Inc.",
+    "sector": "Consumer Cyclic",
+    "mcap_musd": 7261.3,
+    "price": 32.62,
+    "drawdown_pct": 75.8,
+    "p_b": 2.2540076,
+    "score": -16.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 6.0,
+    "cancel_10b5_1_score": -22.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "13D filed | 10b5-1 leg -22",
+    "_schema": "v4-unified",
+    "rank": 395
+  },
+  {
     "ticker": "LXU",
     "name": "LSB Industries, Inc.",
     "sector": "Basic Materials",
@@ -9872,7 +9897,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 395
+    "rank": 396
   },
   {
     "ticker": "PPL",
@@ -9896,31 +9921,6 @@
     "10b5_1_status": "has_signal",
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
-    "_schema": "v4-unified",
-    "rank": 396
-  },
-  {
-    "ticker": "VERX",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -16.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -16.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -16",
     "_schema": "v4-unified",
     "rank": 397
   },
@@ -10000,31 +10000,6 @@
     "rank": 400
   },
   {
-    "ticker": "CART",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -18.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 6.0,
-    "cancel_10b5_1_score": -24.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "13D filed | 10b5-1 leg -24",
-    "_schema": "v4-unified",
-    "rank": 401
-  },
-  {
     "ticker": "IBTA",
     "name": "Ibotta, Inc.",
     "sector": "Technology",
@@ -10047,32 +10022,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -24",
     "_schema": "v4-unified",
-    "rank": 402
-  },
-  {
-    "ticker": "LFST",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -18.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -18.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -18",
-    "_schema": "v4-unified",
-    "rank": 403
+    "rank": 401
   },
   {
     "ticker": "LOVE",
@@ -10097,7 +10047,32 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.1 | 10b5-1 leg -24",
     "_schema": "v4-unified",
-    "rank": 404
+    "rank": 402
+  },
+  {
+    "ticker": "VERX",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -18.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -18.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -18",
+    "_schema": "v4-unified",
+    "rank": 403
   },
   {
     "ticker": "APG",
@@ -10122,7 +10097,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 405
+    "rank": 404
   },
   {
     "ticker": "APGE",
@@ -10147,7 +10122,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 406
+    "rank": 405
   },
   {
     "ticker": "ARES",
@@ -10172,7 +10147,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 407
+    "rank": 406
   },
   {
     "ticker": "ATAI",
@@ -10197,7 +10172,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 408
+    "rank": 407
   },
   {
     "ticker": "BBIO",
@@ -10222,7 +10197,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 409
+    "rank": 408
   },
   {
     "ticker": "BWMN",
@@ -10247,7 +10222,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 410
+    "rank": 409
   },
   {
     "ticker": "CELC",
@@ -10272,7 +10247,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 411
+    "rank": 410
   },
   {
     "ticker": "CRWV",
@@ -10297,7 +10272,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 412
+    "rank": 411
   },
   {
     "ticker": "DIBS",
@@ -10322,7 +10297,7 @@
     "is_foreign_filer": false,
     "reasons": "CEO bought | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 413
+    "rank": 412
   },
   {
     "ticker": "EBAY",
@@ -10347,7 +10322,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 414
+    "rank": 413
   },
   {
     "ticker": "FNKO",
@@ -10372,7 +10347,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 415
+    "rank": 414
   },
   {
     "ticker": "FOA",
@@ -10397,7 +10372,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 416
+    "rank": 415
   },
   {
     "ticker": "INCY",
@@ -10422,32 +10397,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 417
-  },
-  {
-    "ticker": "LBRT",
-    "name": "Liberty Energy Inc.",
-    "sector": "Energy",
-    "mcap_musd": 4590.6,
-    "price": 28.13,
-    "drawdown_pct": 74.2,
-    "p_b": 2.3396823,
-    "score": -19.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -19.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -19",
-    "_schema": "v4-unified",
-    "rank": 418
+    "rank": 416
   },
   {
     "ticker": "MARA",
@@ -10472,7 +10422,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 419
+    "rank": 417
   },
   {
     "ticker": "ORKA",
@@ -10497,7 +10447,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 420
+    "rank": 418
   },
   {
     "ticker": "PCG",
@@ -10522,7 +10472,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.2 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 421
+    "rank": 419
   },
   {
     "ticker": "PINS",
@@ -10547,7 +10497,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 422
+    "rank": 420
   },
   {
     "ticker": "RIVN",
@@ -10572,7 +10522,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 423
+    "rank": 421
   },
   {
     "ticker": "RKLB",
@@ -10597,7 +10547,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 424
+    "rank": 422
   },
   {
     "ticker": "SIBN",
@@ -10622,7 +10572,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 425
+    "rank": 423
   },
   {
     "ticker": "SVV",
@@ -10647,7 +10597,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 426
+    "rank": 424
   },
   {
     "ticker": "TH",
@@ -10672,7 +10622,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 427
+    "rank": 425
   },
   {
     "ticker": "TMUSL",
@@ -10697,7 +10647,7 @@
     "is_foreign_filer": false,
     "reasons": "13D filed | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 428
+    "rank": 426
   },
   {
     "ticker": "XERS",
@@ -10722,7 +10672,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 429
+    "rank": 427
   },
   {
     "ticker": "ZNTL",
@@ -10747,7 +10697,7 @@
     "is_foreign_filer": false,
     "reasons": "P/B 1.1 | 10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 430
+    "rank": 428
   },
   {
     "ticker": "AIRG",
@@ -10772,7 +10722,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 431
+    "rank": 429
   },
   {
     "ticker": "EME",
@@ -10797,7 +10747,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 432
+    "rank": 430
   },
   {
     "ticker": "GNRC",
@@ -10822,7 +10772,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 433
+    "rank": 431
   },
   {
     "ticker": "MKL",
@@ -10847,7 +10797,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 434
+    "rank": 432
   },
   {
     "ticker": "ON",
@@ -10872,7 +10822,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 435
+    "rank": 433
   },
   {
     "ticker": "SPH",
@@ -10897,7 +10847,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -20",
     "_schema": "v4-unified",
-    "rank": 436
+    "rank": 434
   },
   {
     "ticker": "AEP",
@@ -10922,7 +10872,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -21",
     "_schema": "v4-unified",
-    "rank": 437
+    "rank": 435
+  },
+  {
+    "ticker": "LBRT",
+    "name": "Liberty Energy Inc.",
+    "sector": "Energy",
+    "mcap_musd": 4590.6,
+    "price": 28.13,
+    "drawdown_pct": 74.2,
+    "p_b": 2.3396823,
+    "score": -21.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -21.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -21",
+    "_schema": "v4-unified",
+    "rank": 436
   },
   {
     "ticker": "ALL",
@@ -10947,7 +10922,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 438
+    "rank": 437
   },
   {
     "ticker": "ANTX",
@@ -10972,7 +10947,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 439
+    "rank": 438
   },
   {
     "ticker": "AVIR",
@@ -10997,7 +10972,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 440
+    "rank": 439
   },
   {
     "ticker": "CRSR",
@@ -11022,7 +10997,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 441
+    "rank": 440
   },
   {
     "ticker": "CYRX",
@@ -11047,7 +11022,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 442
+    "rank": 441
   },
   {
     "ticker": "KROS",
@@ -11072,7 +11047,57 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -22",
     "_schema": "v4-unified",
+    "rank": 442
+  },
+  {
+    "ticker": "LFST",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -22.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -22.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -22",
+    "_schema": "v4-unified",
     "rank": 443
+  },
+  {
+    "ticker": "LRCX",
+    "name": "Lam Research Corporation",
+    "sector": "Technology",
+    "mcap_musd": 409136.8,
+    "price": 327.16,
+    "drawdown_pct": 91.6,
+    "p_b": 38.653122,
+    "score": -22.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -22.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -22",
+    "_schema": "v4-unified",
+    "rank": 444
   },
   {
     "ticker": "MTB",
@@ -11097,7 +11122,32 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 444
+    "rank": 445
+  },
+  {
+    "ticker": "OSCR",
+    "name": "Oscar Health, Inc.",
+    "sector": "Healthcare",
+    "mcap_musd": 8206.6,
+    "price": 27.22,
+    "drawdown_pct": 94.6,
+    "p_b": 4.8886495,
+    "score": -22.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -22.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -22",
+    "_schema": "v4-unified",
+    "rank": 446
   },
   {
     "ticker": "VSAT",
@@ -11122,7 +11172,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 445
+    "rank": 447
   },
   {
     "ticker": "WBD",
@@ -11147,7 +11197,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 446
+    "rank": 448
   },
   {
     "ticker": "WKC",
@@ -11172,32 +11222,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 447
-  },
-  {
-    "ticker": "WOOF",
-    "name": "",
-    "sector": "",
-    "mcap_musd": null,
-    "price": null,
-    "drawdown_pct": null,
-    "p_b": null,
-    "score": -22.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -22.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -22",
-    "_schema": "v4-unified",
-    "rank": 448
+    "rank": 449
   },
   {
     "ticker": "LXEO",
@@ -11222,7 +11247,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -23",
     "_schema": "v4-unified",
-    "rank": 449
+    "rank": 450
   },
   {
     "ticker": "TPR",
@@ -11247,7 +11272,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -23",
     "_schema": "v4-unified",
-    "rank": 450
+    "rank": 451
   },
   {
     "ticker": "APLD",
@@ -11272,7 +11297,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -24",
     "_schema": "v4-unified",
-    "rank": 451
+    "rank": 452
   },
   {
     "ticker": "CDXS",
@@ -11297,7 +11322,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -24",
     "_schema": "v4-unified",
-    "rank": 452
+    "rank": 453
   },
   {
     "ticker": "CNTA",
@@ -11322,7 +11347,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -24",
     "_schema": "v4-unified",
-    "rank": 453
+    "rank": 454
   },
   {
     "ticker": "KLAC",
@@ -11332,31 +11357,6 @@
     "price": 2139.37,
     "drawdown_pct": 91.4,
     "p_b": 47.961487,
-    "score": -24.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -24.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -24",
-    "_schema": "v4-unified",
-    "rank": 454
-  },
-  {
-    "ticker": "OSCR",
-    "name": "Oscar Health, Inc.",
-    "sector": "Healthcare",
-    "mcap_musd": 8206.6,
-    "price": 27.22,
-    "drawdown_pct": 94.6,
-    "p_b": 4.8886495,
     "score": -24.0,
     "insider_score": 0.0,
     "valuation_score": 0.0,
@@ -11400,6 +11400,31 @@
     "rank": 456
   },
   {
+    "ticker": "WOOF",
+    "name": "",
+    "sector": "",
+    "mcap_musd": null,
+    "price": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "score": -24.0,
+    "insider_score": 0.0,
+    "valuation_score": 0.0,
+    "step_change_score": 0.0,
+    "psu_forensic_score": 0.0,
+    "sc13d_score": 0.0,
+    "cancel_10b5_1_score": -24.0,
+    "cluster_size": 0,
+    "ceo_bought": false,
+    "cfo_bought": false,
+    "tot_insider_musd": 0.0,
+    "10b5_1_status": "has_signal",
+    "is_foreign_filer": false,
+    "reasons": "10b5-1 leg -24",
+    "_schema": "v4-unified",
+    "rank": 457
+  },
+  {
     "ticker": "XENE",
     "name": "Xenon Pharmaceuticals Inc.",
     "sector": "Healthcare",
@@ -11422,7 +11447,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -24",
     "_schema": "v4-unified",
-    "rank": 457
+    "rank": 458
   },
   {
     "ticker": "AAOI",
@@ -11447,7 +11472,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 458
+    "rank": 459
   },
   {
     "ticker": "ABEO",
@@ -11472,7 +11497,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 459
+    "rank": 460
   },
   {
     "ticker": "ACMR",
@@ -11497,7 +11522,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 460
+    "rank": 461
   },
   {
     "ticker": "ADPT",
@@ -11522,7 +11547,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 461
+    "rank": 462
   },
   {
     "ticker": "AEVA",
@@ -11547,7 +11572,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 462
+    "rank": 463
   },
   {
     "ticker": "AIP",
@@ -11572,7 +11597,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 463
+    "rank": 464
   },
   {
     "ticker": "ALKS",
@@ -11597,7 +11622,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 464
+    "rank": 465
   },
   {
     "ticker": "AMZN",
@@ -11622,7 +11647,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 465
+    "rank": 466
   },
   {
     "ticker": "APO",
@@ -11647,7 +11672,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 466
+    "rank": 467
   },
   {
     "ticker": "APOS",
@@ -11672,7 +11697,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 467
+    "rank": 468
   },
   {
     "ticker": "ARQT",
@@ -11697,7 +11722,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 468
+    "rank": 469
   },
   {
     "ticker": "AVGO",
@@ -11722,7 +11747,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 469
+    "rank": 470
   },
   {
     "ticker": "BKV",
@@ -11747,7 +11772,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 470
+    "rank": 471
   },
   {
     "ticker": "BROS",
@@ -11772,7 +11797,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 471
+    "rank": 472
   },
   {
     "ticker": "CAMP",
@@ -11797,7 +11822,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 472
+    "rank": 473
   },
   {
     "ticker": "CDNA",
@@ -11822,7 +11847,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 473
+    "rank": 474
   },
   {
     "ticker": "CERS",
@@ -11847,7 +11872,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 474
+    "rank": 475
   },
   {
     "ticker": "CLOV",
@@ -11872,7 +11897,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 475
+    "rank": 476
   },
   {
     "ticker": "DK",
@@ -11897,7 +11922,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 476
+    "rank": 477
   },
   {
     "ticker": "DKS",
@@ -11922,7 +11947,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 477
+    "rank": 478
   },
   {
     "ticker": "DSP",
@@ -11947,7 +11972,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 478
+    "rank": 479
   },
   {
     "ticker": "ENTG",
@@ -11972,7 +11997,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 479
+    "rank": 480
   },
   {
     "ticker": "FENC",
@@ -11997,7 +12022,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 480
+    "rank": 481
   },
   {
     "ticker": "FGRS",
@@ -12022,7 +12047,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 481
+    "rank": 482
   },
   {
     "ticker": "FSLY",
@@ -12047,7 +12072,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 482
+    "rank": 483
   },
   {
     "ticker": "GCT",
@@ -12072,7 +12097,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 483
+    "rank": 484
   },
   {
     "ticker": "GMED",
@@ -12097,7 +12122,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 484
+    "rank": 485
   },
   {
     "ticker": "GVA",
@@ -12122,7 +12147,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 485
+    "rank": 486
   },
   {
     "ticker": "HBANP",
@@ -12147,7 +12172,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 486
+    "rank": 487
   },
   {
     "ticker": "HTFL",
@@ -12172,7 +12197,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 487
+    "rank": 488
   },
   {
     "ticker": "IMAX",
@@ -12197,7 +12222,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 488
+    "rank": 489
   },
   {
     "ticker": "IMNM",
@@ -12222,7 +12247,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 489
+    "rank": 490
   },
   {
     "ticker": "JBL",
@@ -12247,7 +12272,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 490
+    "rank": 491
   },
   {
     "ticker": "LASR",
@@ -12272,7 +12297,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 491
+    "rank": 492
   },
   {
     "ticker": "LAZ",
@@ -12297,7 +12322,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 492
+    "rank": 493
   },
   {
     "ticker": "LFMDP",
@@ -12322,7 +12347,7 @@
     "is_foreign_filer": false,
     "reasons": "10b5-1 leg -25",
     "_schema": "v4-unified",
-    "rank": 493
+    "rank": 494
   },
   {
     "ticker": "LITE",
@@ -12332,31 +12357,6 @@
     "price": 821.76,
     "drawdown_pct": 73.7,
     "p_b": 69.30589,
-    "score": -25.0,
-    "insider_score": 0.0,
-    "valuation_score": 0.0,
-    "step_change_score": 0.0,
-    "psu_forensic_score": 0.0,
-    "sc13d_score": 0.0,
-    "cancel_10b5_1_score": -25.0,
-    "cluster_size": 0,
-    "ceo_bought": false,
-    "cfo_bought": false,
-    "tot_insider_musd": 0.0,
-    "10b5_1_status": "has_signal",
-    "is_foreign_filer": false,
-    "reasons": "10b5-1 leg -25",
-    "_schema": "v4-unified",
-    "rank": 494
-  },
-  {
-    "ticker": "LRCX",
-    "name": "Lam Research Corporation",
-    "sector": "Technology",
-    "mcap_musd": 409136.8,
-    "price": 327.16,
-    "drawdown_pct": 91.6,
-    "p_b": 38.653122,
     "score": -25.0,
     "insider_score": 0.0,
     "valuation_score": 0.0,

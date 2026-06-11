@@ -441,26 +441,57 @@ def classify(e: dict) -> tuple[int, str]:
     # by 10b5-1-adjacent text, but the signal direction is unreliable.
     retro_mult = 0.3 if e.get("is_retrospective") else 1.0
 
+    # ---------------- SCORING WEIGHTS (v3.3) ----------------
+    # Weights blend academic priors and backtest signal direction;
+    # they are NOT regression-fit to the backtest sample. Three
+    # principled adjustments vs v3.2:
+    #
+    #  1. Plan SIZE is the strongest stratifier (>=250K terminations:
+    #     71% beat-SPY, median excess +27% at 180d, n=17). The size
+    #     kicker is structurally meaningful (250K shares ~= $20-100M
+    #     of committed selling = real conviction, not tax planning).
+    #     Boost from +8 to +12 at the >=250K tier and add a new
+    #     +18 tier at >=1M shares for elephant terminations.
+    #
+    #  2. CFO modest bump (24 -> 26). Backtest shows CFO term_sell
+    #     median excess +23% (n=10) and CFO adopt_sell median excess
+    #     -21% (n=51). Role logic supports this: CFOs have privileged
+    #     forward-cash-flow visibility. Small samples cap the bump.
+    #
+    #  3. CEO/Chair STAYS at 30. Backtest shows noisy CEO term_sell
+    #     (n=13, median excess -16%) but mean +27% with right skew;
+    #     too small to override prior. Founders/CEOs have material
+    #     informational advantage (Cohen-Malloy-Pomorski etc.). Don't
+    #     overfit to 13 events.
+    # ---------------------------------------------------------
+
     if act == "TERMINATE":
         if pt == "sell":
-            base = 30 if is_ceo else (24 if is_cfo else 18)
-            if shares >= 250_000: base += 8
-            elif shares >= 50_000: base += 4
+            base = 30 if is_ceo else (26 if is_cfo else 18)
+            # Plan-size kicker -- structurally meaningful AND empirically
+            # the strongest stratifier in the backtest.
+            if shares >= 1_000_000:   base += 18
+            elif shares >= 250_000:   base += 12
+            elif shares >= 100_000:   base += 8
+            elif shares >= 50_000:    base += 4
             return int(base * retro_mult), "BULLISH terminate sell"
         if pt == "buy":
             return int(-8 * retro_mult), "BEARISH terminate buy"
-        # Unknown plan type, but still meaningful for CEO/CFO
         return int((10 if is_ceo else 5) * retro_mult), "neutral terminate (type unknown)"
     if act == "ADOPT":
         if pt == "sell":
-            # Size-conditional: tiny adoptions (<10K shares) are tax/RSU
-            # liquidity, not meaningful bearish signal. Larger adoptions
-            # are real conviction.
             if shares and shares < 10_000:
                 return int(-3 * retro_mult), "weak BEARISH adopt sell (small)"
-            base = -20 if is_ceo else (-16 if is_cfo else -12)
-            if shares >= 500_000: base -= 6
-            elif shares >= 100_000: base -= 3
+            # CFO adoption is the strongest median bearish signal in
+            # the backtest (n=51, median excess -21%, only 29% beat
+            # SPY). Bump CFO bearish weight modestly.
+            base = -20 if is_ceo else (-18 if is_cfo else -12)
+            # Mirror the bullish-side size kicker -- a 1M+ share CEO
+            # sell-plan adoption (FUBO's 3.4M, ADPT's 1.15M) signals
+            # a different magnitude of commitment than a 50K plan.
+            if shares >= 1_000_000:   base -= 10
+            elif shares >= 500_000:   base -= 6
+            elif shares >= 100_000:   base -= 3
             elif shares and shares < 25_000: base = max(base, -8)
             return int(base * retro_mult), "BEARISH adopt sell"
         if pt == "buy":
