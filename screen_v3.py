@@ -227,7 +227,12 @@ def main() -> int:
     parser.add_argument("--tickers", nargs="*")
     parser.add_argument("--groups", nargs="*")
     parser.add_argument("--signals", action="store_true",
-                        help="Scrape qualitative signals for top-discount UK CEFs")
+                        help="Scrape qualitative signals (news + RNS) for "
+                             "top-discount UK CEFs")
+    parser.add_argument("--signals-rns-only", action="store_true",
+                        help="Faster — fetches only Investegate RNS, "
+                             "skips Google News. Works on all UK tickers, "
+                             "not just top-N.")
     parser.add_argument("--signal-top-n", type=int, default=60)
     parser.add_argument("--refresh-prices", action="store_true")
     parser.add_argument("--price-ttl-h", type=float, default=24.0)
@@ -272,25 +277,33 @@ def main() -> int:
 
     # 4) Optional signals
     sig_map = {}
-    if args.signals:
+    if args.signals or args.signals_rns_only:
         try:
             import signals as sigmod
-            # Pick top-N by AIC discount (signals only useful for UK CEFs
-            # with a known name and meaningful discount).
+            include_news = bool(args.signals) and not args.signals_rns_only
+            # Build candidate list. For RNS-only, sweep ALL UK tickers
+            # with an AIC discount record (cheap, ~1 HTTP per ticker).
+            # For news-mode, restrict to top-N by discount (slow).
             cands = []
             for sym in symbols:
+                if not sym.endswith(".L"):
+                    continue
                 rec = aic_summ.get(sym)
-                if not rec or rec.get("discount") is None or rec.get("name") is None:
-                    continue
-                if rec["discount"] < 0.05:
-                    continue
-                cands.append((sym, rec["name"], rec["discount"]))
-            cands.sort(key=lambda r: -r[2])
-            cands = cands[: args.signal_top_n]
-            print(f"[v3] signals: scraping {len(cands)} top-discount names",
-                  file=sys.stderr)
+                # RNS works without an AIC name (use EPIC alone) but we
+                # use the AIC name for the news queries when present.
+                name = rec["name"] if rec and rec.get("name") else (
+                    universe.get(sym).name if universe.get(sym) else "")
+                disc = rec["discount"] if rec else None
+                cands.append((sym, name, disc if disc is not None else 0.0))
+            if include_news:
+                cands = [c for c in cands if c[2] >= 0.05]
+                cands.sort(key=lambda r: -r[2])
+                cands = cands[: args.signal_top_n]
+            print(f"[v3] signals: scraping {len(cands)} tickers "
+                  f"(include_news={include_news})", file=sys.stderr)
             sig_map = sigmod.fetch_signals_batch(
-                [(t, n) for t, n, _ in cands], verbose=True)
+                [(t, n) for t, n, _ in cands],
+                verbose=True, include_news=include_news)
         except Exception as exc:
             print(f"[v3] signals disabled: {exc}", file=sys.stderr)
 

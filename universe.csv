@@ -437,3 +437,63 @@ WI.V,,,fdb_scanner_v2,STRUCTURAL_DISCOUNT,,,,,,,
 WLE.AX,,,australian_lics,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.05,,,,,
 WWH.L,GB00BN455J50,Worldwide Healthcare Trust,healthcare_cefs,,LISTED_CLEAN,0.07,BIO,1267.6,,,
 XTD.TO,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,,,,,
+PDI,,PIMCO Dynamic Income,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PDO,,PIMCO Dynamic Income Opps,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PAXS,,PIMCO Access Income,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PTY,,PIMCO Corporate & Income Opps,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PCN,,PIMCO Corporate & Income Strat,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PFL,,PIMCO Income Strategy,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PFN,,PIMCO Income Strategy II,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PML,,PIMCO Municipal Income II,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+PMF,,PIMCO Municipal Income,us_cef_pimco,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+JPS,,Nuveen Preferred & Income Secs,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+JPC,,Nuveen Preferred & Income Opps,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+JFR,,Nuveen Floating Rate Income,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+JQC,,Nuveen Credit Strategies Income,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+NAD,,Nuveen Quality Muni Income,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+NEA,,Nuveen AMT-Free Quality Muni,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+NVG,,Nuveen AMT-Free Muni Credit,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+NZF,,Nuveen Muni Credit Income,us_cef_nuveen,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+JRI,,Nuveen Real Asset Income & Gr,us_cef_nuveen,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BIGZ,,BlackRock Innovation & Growth,us_cef_blackrock,ACTIVIST_TARGET,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BMEZ,,BlackRock Health Sciences II,us_cef_blackrock,ACTIVIST_TARGET,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BSTZ,,BlackRock Science & Tech II,us_cef_blackrock,ACTIVIST_TARGET,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BDJ,,BlackRock Enhanced Equity Div,us_cef_blackrock,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BOE,,BlackRock Enhanced Global Div,us_cef_blackrock,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BGY,,BlackRock Enh Intl Dividend,us_cef_blackrock,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+BTZ,,BlackRock Credit Allocation,us_cef_blackrock,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+FRA,,BlackRock Floating Rate Income,us_cef_blackrock,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+BIT,,BlackRock Multi-Sector Income,us_cef_blackrock,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+BKT,,BlackRock Income Trust,us_cef_blackrock,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+EVT,,Eaton Vance Tax-Adv Dividend,us_cef_eatonvance,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+ETO,,Eaton Vance Tax-Adv Global Div,us_cef_eatonvance,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+ETG,,Eaton Vance Tax-Adv Global Inc,us_cef_eatonvance,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+EXG,,EV Tax-Mgd Global Div Equity,us_cef_eatonvance,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+EOS,,Eaton Vance Enhanced Equity II,us_cef_eatonvance,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+ETY,,EV Tax-Mgd Diversified Equity,us_cef_eatonvance,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+UTF,,Cohen & Steers Infrastructure,us_cef_cohensteers,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+RQI,,Cohen & Steers Quality Income Rlty,us_cef_cohensteers,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,fdb widening batch 2026-06
+RNP,,Cohen & Steers REIT & Pref,us_cef_cohensteers,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,fdb widening batch 2026-06
+RFI,,Cohen & Steers Total Return Rlty,us_cef_cohensteers,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,fdb widening batch 2026-06
+PSF,,Cohen & Steers Select Preferred,us_cef_cohensteers,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+IFN,,India Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+TWN,,Taiwan Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+KF,,Korea Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+MXF,,Mexico Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+SWZ,,Swiss Helvetia Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+EEA,,European Equity Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+GF,,New Germany Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+TDF,,Templeton Dragon Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+EMF,,Templeton Emerging Markets,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+JOF,,Japan Smaller Capitalization,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+CHN,,China Fund,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+USA,,Liberty All-Star Equity,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+ASG,,Liberty All-Star Growth,us_country_funds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+NCV,,Virtus Conv & Income,us_cef_other,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+NCZ,,Virtus Conv & Income II,us_cef_other,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,fdb widening batch 2026-06
+HQH,,abrdn Healthcare Investors,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+HQL,,abrdn Life Sciences Investors,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+THQ,,abrdn Healthcare Opportunities,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+NML,,Neuberger Berman Energy Infra,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+KYN,,Kayne Anderson Energy Infra,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+SRV,,NXG Cushing Midstream Energy,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06

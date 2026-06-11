@@ -297,7 +297,11 @@ def fetch_signals_for(
     *,
     lookback_days: int = params.SIGNAL_LOOKBACK_DAYS,
     half_life_days: int = params.SIGNAL_HALF_LIFE_DAYS,
+    include_news: bool = True,
 ) -> TickerSignals:
+    """include_news=False is the fast path: only Investegate RNS is
+    fetched (1 HTTP request vs ~16 Google News queries). signal_score
+    falls back to rns_score alone."""
     sig = TickerSignals(ticker=ticker, name=name or "")
     exclusions = list(params.SIGNAL_EXCLUSIONS.get(ticker, []))
 
@@ -309,7 +313,7 @@ def fetch_signals_for(
     director_amount_total = 0.0
 
     for cat, templates in QUERY_TEMPLATES.items():
-        if not name:
+        if not name or not include_news:
             continue
         for tpl in templates:
             q = tpl.format(name=name)
@@ -385,10 +389,14 @@ def fetch_signals_for(
             sig.rns_available = False
 
     # ---- Combined score ----
-    # Weighted blend. If RNS unavailable (non-UK or fetch failure)
-    # fall back to news-only.
-    if sig.rns_available:
+    # Weighted blend when both sources were attempted; single-source
+    # fallback otherwise (don't dilute RNS with a zero news score that
+    # was never scraped).
+    if sig.rns_available and include_news:
         sig.signal_score = 0.60 * sig.rns_score + 0.40 * sig.news_score
+    elif sig.rns_available:
+        sig.signal_score = sig.rns_score
+        sig.coverage_ok = False   # news not attempted
     else:
         sig.signal_score = sig.news_score
 
@@ -463,24 +471,29 @@ def fetch_signals_batch(
     use_cache: bool = True,
     persist_history: bool = True,
     verbose: bool = False,
+    include_news: bool = True,
 ) -> dict[str, TickerSignals]:
     cache = _read_cache() if use_cache else {}
     out: dict[str, TickerSignals] = {}
     need: list[tuple[str, str]] = []
+    cache_key_suffix = "_rns" if not include_news else ""
     for t, n in pairs:
-        if use_cache and t in cache:
-            out[t] = cache[t]
+        ck = t + cache_key_suffix
+        if use_cache and ck in cache:
+            out[t] = cache[ck]
         else:
             need.append((t, n))
     if verbose:
-        print(f"[signals] cache hits: {len(out)}; fetching: {len(need)}")
+        print(f"[signals] cache hits: {len(out)}; fetching: {len(need)} "
+              f"(include_news={include_news})")
     for i, (t, n) in enumerate(need, 1):
-        sig = fetch_signals_for(t, n)
+        sig = fetch_signals_for(t, n, include_news=include_news)
         out[t] = sig
-        cache[t] = sig
-        if verbose and i % 5 == 0:
+        cache[t + cache_key_suffix] = sig
+        if verbose and i % 20 == 0:
             print(f"  [{i}/{len(need)}] {t}: score={sig.signal_score:.2f} "
-                  f"(coverage_ok={sig.coverage_ok})", flush=True)
+                  f"(rns={sig.rns_score:.2f}, news={sig.news_score:.2f})",
+                  flush=True)
     if use_cache:
         _write_cache(cache)
     if persist_history and need:
