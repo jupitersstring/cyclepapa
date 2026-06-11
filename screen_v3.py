@@ -156,15 +156,22 @@ def screen_one(
     # Catalyst probability — base × signal multiplier
     base_prob = params.CATALYST_PROB_BASE.get(r.catalyst, params.DEFAULT_PROB_BASE)
     r.catalyst_prob_base = base_prob
-    if signal is not None and signal.coverage_ok:
+    if signal is not None:
         r.signal_score = signal.signal_score
+        r.news_score = signal.news_score
+        r.rns_score = signal.rns_score
+        r.rns_tr1 = signal.rns_counts.get("tr1") if signal.rns_counts else None
+        r.rns_pdmr = signal.rns_counts.get("pdmr") if signal.rns_counts else None
+        r.rns_winddown = signal.rns_counts.get("winddown") if signal.rns_counts else None
+        r.rns_tender = signal.rns_counts.get("tender") if signal.rns_counts else None
+        r.rns_buyback = signal.rns_counts.get("buyback") if signal.rns_counts else None
+    # Apply the multiplier only if at least one source provided usable
+    # coverage — else keep the base prob to avoid silent no-news penalty
+    # from a failed scrape.
+    if signal is not None and (signal.coverage_ok or signal.rns_available):
         mult = 0.70 + 1.30 * signal.signal_score
         r.catalyst_prob_signal_adj = min(0.95, base_prob * mult)
     else:
-        # Either no signal scrape requested, or coverage incomplete —
-        # don't apply the no-news penalty in that case.
-        if signal is not None:
-            r.signal_score = signal.signal_score
         r.catalyst_prob_signal_adj = base_prob
 
     # Duration → IRR

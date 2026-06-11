@@ -1,0 +1,6 @@
+date,ticker,name,signal_score,news_score,rns_score,news_director_dec,news_advisor_dec,news_review_dec,news_winddown_dec,news_buyback_dec,director_amount_gbp,rns_tr1,rns_pdmr,rns_winddown,rns_tender,rns_review,rns_buyback,queries_run,queries_failed,rns_total_items,rns_available
+2026-06-11,SEIT.L,SDCL Efficiency Income,0.1593,0.0417,0.2378,0,0,0,1.154,0,0.0,23,0,0,0,1,0,15,0,50,True
+2026-06-11,CHRY.L,Chrysalis Investments,0.0993,0.0037,0.163,0,0,0,0.077,0,0.0,0,3,0,0,0,40,15,0,50,True
+2026-06-11,PSH.L,Pershing Square Holdings,0.0559,0.0151,0.0832,0,0,0,0,0.533,0.0,0,0,0,0,0,29,15,0,50,True
+2026-06-11,OCI.L,Oakley Capital Investments,0.0815,0.0,0.1358,0,0,0,0,0,0.0,1,2,0,0,0,15,15,0,50,True
+2026-06-11,SOHO.L,Social Housing REIT,0.0131,0.0,0.0218,0,0,0,0,0,0.0,0,0,0,0,0,0,15,0,50,True

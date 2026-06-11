@@ -31,8 +31,14 @@ Hardening vs qualitative_signals.py:
     signals_history.csv so rising signal density (the real forward
     indicator) can be tracked week-over-week.
 
-Composite weighting unchanged from prior version (0.30 dir + 0.25 adv
-+ 0.20 review + 0.15 wd + 0.10 bb).
+  * Investegate RNS layer (NEW) — adds structured regulatory-news
+    signal alongside Google News. RNS categories (TR-1 stake-building,
+    PDMR insider deals, buyback execution, tender offers) are
+    pre-classified by the regulatory wire and immune to the entity-
+    contamination Google News suffers from. UK tickers get an extra
+    `rns_score` component; final `signal_score` is a weighted blend
+    of news_score (0.40) + rns_score (0.60) — RNS weighted higher
+    because it's the higher-grade source.
 """
 
 from __future__ import annotations
@@ -52,6 +58,12 @@ from email.utils import parsedate_to_datetime
 from typing import Iterable
 
 import params
+
+try:
+    import investegate_scraper as inv_mod
+    _HAS_INV = True
+except Exception:
+    _HAS_INV = False
 
 
 CACHE_PATH = "/tmp/signals_v2_cache.pkl"
@@ -153,14 +165,23 @@ QUERY_TEMPLATES = {
 class TickerSignals:
     ticker: str
     name: str
+    # Google News component
     counts: dict[str, float] = field(default_factory=dict)         # decayed
     raw_counts: dict[str, int] = field(default_factory=dict)       # undecayed
     director_total_gbp: float = 0.0
-    signal_score: float = 0.0
+    news_score: float = 0.0
     coverage_ok: bool = True   # False if any RSS fetch failed
     queries_run: int = 0
     queries_failed: int = 0
     sample_titles: dict[str, list[str]] = field(default_factory=dict)
+    # Investegate RNS component (NEW; UK tickers only)
+    rns_score: float = 0.0
+    rns_counts: dict[str, int] = field(default_factory=dict)
+    rns_decayed: dict[str, float] = field(default_factory=dict)
+    rns_total_items: int = 0
+    rns_available: bool = False
+    # Combined
+    signal_score: float = 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -329,20 +350,48 @@ def fetch_signals_for(
     def _sat(x: float) -> float:
         return 1.0 - 1.0 / (1.0 + x / 3.0)
 
-    composite = 0.0
+    news_composite = 0.0
     for c, w in WEIGHTS.items():
-        composite += w * _sat(counts.get(c, 0.0))
+        news_composite += w * _sat(counts.get(c, 0.0))
 
     # Bonus for verified £ insider buying — saturates at £500k.
     if director_amount_total > 0:
         amt_bonus = min(0.20, math.log1p(director_amount_total / 1e5) * 0.05)
-        composite = min(1.0, composite + amt_bonus)
+        news_composite = min(1.0, news_composite + amt_bonus)
 
     sig.counts = counts
     sig.raw_counts = raw_counts
-    sig.signal_score = composite
+    sig.news_score = news_composite
     sig.director_total_gbp = director_amount_total
     sig.sample_titles = sample_titles
+
+    # ---- Investegate RNS layer (UK tickers only) ----
+    epic = inv_mod.epic_from_ticker(ticker) if _HAS_INV else None
+    if epic:
+        try:
+            items = inv_mod.fetch_company(epic)
+            sig.rns_total_items = len(items)
+            sig.rns_available = bool(items)
+            if items:
+                rns_comp, dec, raw = inv_mod.signal_score_from_rns(
+                    items,
+                    lookback_days=lookback_days,
+                    half_life_days=half_life_days,
+                )
+                sig.rns_score = rns_comp
+                sig.rns_counts = raw
+                sig.rns_decayed = dec
+        except Exception:
+            sig.rns_available = False
+
+    # ---- Combined score ----
+    # Weighted blend. If RNS unavailable (non-UK or fetch failure)
+    # fall back to news-only.
+    if sig.rns_available:
+        sig.signal_score = 0.60 * sig.rns_score + 0.40 * sig.news_score
+    else:
+        sig.signal_score = sig.news_score
+
     return sig
 
 
@@ -376,22 +425,35 @@ def _append_history(rows: list[TickerSignals]) -> None:
     with open(HISTORY_PATH, "a", newline="") as f:
         w = csv.writer(f)
         if new:
-            w.writerow(["date", "ticker", "name", "signal_score",
-                        "director_dealings_decayed", "advisor_hired_decayed",
-                        "strategic_review_decayed", "wind_down_decayed",
-                        "buyback_decayed", "director_amount_gbp",
-                        "queries_run", "queries_failed"])
+            w.writerow(["date", "ticker", "name",
+                        "signal_score", "news_score", "rns_score",
+                        "news_director_dec", "news_advisor_dec",
+                        "news_review_dec", "news_winddown_dec",
+                        "news_buyback_dec", "director_amount_gbp",
+                        "rns_tr1", "rns_pdmr", "rns_winddown",
+                        "rns_tender", "rns_review", "rns_buyback",
+                        "queries_run", "queries_failed",
+                        "rns_total_items", "rns_available"])
         for s in rows:
             w.writerow([
                 today, s.ticker, s.name,
                 round(s.signal_score, 4),
+                round(s.news_score, 4),
+                round(s.rns_score, 4),
                 round(s.counts.get("director_dealings", 0), 3),
                 round(s.counts.get("advisor_hired", 0), 3),
                 round(s.counts.get("strategic_review", 0), 3),
                 round(s.counts.get("wind_down", 0), 3),
                 round(s.counts.get("buyback", 0), 3),
                 round(s.director_total_gbp, 0),
+                s.rns_counts.get("tr1", 0),
+                s.rns_counts.get("pdmr", 0),
+                s.rns_counts.get("winddown", 0),
+                s.rns_counts.get("tender", 0),
+                s.rns_counts.get("review", 0),
+                s.rns_counts.get("buyback", 0),
                 s.queries_run, s.queries_failed,
+                s.rns_total_items, s.rns_available,
             ])
 
 
@@ -436,16 +498,12 @@ if __name__ == "__main__":
     ]
     res = fetch_signals_batch(samples, verbose=True)
     print()
-    print(f"{'Ticker':<8} {'Score':>6} {'Dir£':>10} {'Cov':>4}  dir/adv/rev/wd/bb")
+    print(f"{'Ticker':<8} {'Final':>6} {'News':>6} {'RNS':>6} "
+          f"{'tr1':>4} {'pdmr':>5} {'wd':>4} {'buy':>4} {'Dir£':>10}")
     for t, s in sorted(res.items(), key=lambda kv: -kv[1].signal_score):
-        c = s.counts
-        cov = "OK" if s.coverage_ok else "PART"
-        print(f"{t:<8} {s.signal_score:>6.2f} £{s.director_total_gbp:>9,.0f} {cov:>4}  "
-              f"{c.get('director_dealings',0):>4.1f} / "
-              f"{c.get('advisor_hired',0):>4.1f} / "
-              f"{c.get('strategic_review',0):>4.1f} / "
-              f"{c.get('wind_down',0):>4.1f} / "
-              f"{c.get('buyback',0):>4.1f}")
-        for cat, titles in s.sample_titles.items():
-            for t_ in titles[:1]:
-                print(f"    [{cat}] {t_}")
+        print(f"{t:<8} {s.signal_score:>6.2f} {s.news_score:>6.2f} {s.rns_score:>6.2f} "
+              f"{s.rns_counts.get('tr1',0):>4} "
+              f"{s.rns_counts.get('pdmr',0):>5} "
+              f"{s.rns_counts.get('winddown',0):>4} "
+              f"{s.rns_counts.get('buyback',0):>4} "
+              f"£{s.director_total_gbp:>9,.0f}")

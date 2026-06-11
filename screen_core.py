@@ -135,6 +135,13 @@ class ScreenResult:
     catalyst_prob_base: float | None = None
     catalyst_prob_signal_adj: float | None = None
     signal_score: float | None = None
+    news_score: float | None = None
+    rns_score: float | None = None
+    rns_tr1: int | None = None
+    rns_pdmr: int | None = None
+    rns_winddown: int | None = None
+    rns_tender: int | None = None
+    rns_buyback: int | None = None
 
     # Upside / IRR
     expected_duration_months: float | None = None
