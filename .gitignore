@@ -12,3 +12,6 @@ __pycache__/
 # Overlay JSONs (yfinance_enrichment, enrichment_overlay, uk_rns_overlay,
 # accumulation_scan, etc.) are kept so re-runs don't repeat the slow
 # network sweeps.
+# SQLite WAL sidecars (transient; checkpointed into pipeline.db)
+pipeline.db-shm
+pipeline.db-wal
