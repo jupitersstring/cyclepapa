@@ -1,0 +1,1559 @@
+{
+  "CRVL": {
+    "ticker": "CRVL",
+    "n_filings_indexed": 24,
+    "summary": {
+      "n_30d": 3,
+      "n_90d": 4,
+      "n_180d": 6,
+      "n_365d": 15,
+      "value_90d_usd": 2502866,
+      "value_180d_usd": 3875168,
+      "accel_ratio": 1.08
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000874866",
+        "accession": "0001969223-26-000660",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-09",
+        "shares": 9000,
+        "value_usd": 545130.0,
+        "person": "Jeffrey Michael",
+        "relationship": "Director",
+        "approx_sale_date": "06/09/2026"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-26-005789",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-08",
+        "shares": 28500,
+        "value_usd": 1706152.5,
+        "person": "MICHAEL COMBS",
+        "relationship": "Officer",
+        "approx_sale_date": "06/08/2026"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-26-005039",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-26",
+        "shares": 1999,
+        "value_usd": 121979.98,
+        "person": "JENNIFER YOSS",
+        "relationship": "Officer",
+        "approx_sale_date": "05/26/2026"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-26-002639",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-16",
+        "shares": 2400,
+        "value_usd": 129603.84,
+        "person": "MAXIM SHISHIN",
+        "relationship": "Officer",
+        "approx_sale_date": "03/16/2026"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-26-002362",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-09",
+        "shares": 8013,
+        "value_usd": 432702.0,
+        "person": "MICHAEL G COMBS",
+        "relationship": "Officer",
+        "approx_sale_date": "03/09/2026"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001968582-26-000099",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-12",
+        "shares": 20000,
+        "value_usd": 939600.0,
+        "person": "Steven J. Hamerslag",
+        "relationship": "Director",
+        "approx_sale_date": "02/12/2026"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-009063",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-19",
+        "shares": 1200,
+        "value_usd": 86820.0,
+        "person": "MARK BERTELS",
+        "relationship": "Officer",
+        "approx_sale_date": "11/19/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001959173-25-006802",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-07",
+        "shares": 3000,
+        "value_usd": 225000.0,
+        "person": "JESSUP R JUDD",
+        "relationship": "Director",
+        "approx_sale_date": "11/07/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-006982",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-11",
+        "shares": 18000,
+        "value_usd": 1580823.0,
+        "person": "MAXIM SHISHIN",
+        "relationship": "Officer",
+        "approx_sale_date": "09/11/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001969223-25-000741",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08",
+        "shares": 70000,
+        "value_usd": 6402200.0,
+        "person": "CORSTAR HOLDINGS INC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "09/08/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-006826",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08",
+        "shares": 1764,
+        "value_usd": 161470.74,
+        "person": "BRANDON T O'BRIEN",
+        "relationship": "Officer",
+        "approx_sale_date": "09/08/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001969223-25-000702",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-02",
+        "shares": 40000,
+        "value_usd": 3555773.0,
+        "person": "CORSTAR HOLDINGS INC",
+        "relationship": "10% Stockholder",
+        "approx_sale_date": "09/02/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-006128",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-20",
+        "shares": 12000,
+        "value_usd": 1069975.2,
+        "person": "MAXIM SHISHIN",
+        "relationship": "Officer",
+        "approx_sale_date": "08/20/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-006070",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-19",
+        "shares": 900,
+        "value_usd": 80251.02,
+        "person": "MARK BERTELS",
+        "relationship": "Officer",
+        "approx_sale_date": "08/19/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0002007317-25-000824",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-07",
+        "shares": 14000,
+        "value_usd": 1232000.0,
+        "person": "HOOPS ALAN",
+        "relationship": "Director",
+        "approx_sale_date": "08/07/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-004020",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-09",
+        "shares": 3957,
+        "value_usd": 429162.77,
+        "person": "BRANDON T O'BRIEN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/09/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-004014",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-09",
+        "shares": 2400,
+        "value_usd": 259416.0,
+        "person": "MAXIM SHISHIN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/09/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-003873",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-05",
+        "shares": 2211,
+        "value_usd": 244633.22,
+        "person": "BRANDON T O'BRIEN",
+        "relationship": "Officer",
+        "approx_sale_date": "06/05/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-003782",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-03",
+        "shares": 2816,
+        "value_usd": 316396.19,
+        "person": "MICHAEL G COMBS",
+        "relationship": "Officer",
+        "approx_sale_date": "06/03/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0002007317-25-000486",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-03",
+        "shares": 10000,
+        "value_usd": 1130000.0,
+        "person": "HOOPS ALAN",
+        "relationship": "Director",
+        "approx_sale_date": "06/03/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-003562",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-29",
+        "shares": 1050,
+        "value_usd": 116959.71,
+        "person": "JENNIFER YOSS",
+        "relationship": "Officer",
+        "approx_sale_date": "05/29/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001950047-25-003508",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-27",
+        "shares": 900,
+        "value_usd": 102002.58,
+        "person": "MARK BERTELS",
+        "relationship": "Officer",
+        "approx_sale_date": "05/27/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0002007317-25-000445",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-27",
+        "shares": 3000,
+        "value_usd": 339000.0,
+        "person": "HOOPS ALAN",
+        "relationship": "Director",
+        "approx_sale_date": "05/27/2025"
+      },
+      {
+        "cik": "0000874866",
+        "accession": "0001959173-25-003510",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-27",
+        "shares": 8123,
+        "value_usd": 940318.0,
+        "person": "JESSUP R JUDD",
+        "relationship": "Director",
+        "approx_sale_date": "05/27/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CSAN": {
+    "ticker": "CSAN",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CSHR": {
+    "ticker": "CSHR",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CSQ": {
+    "ticker": "CSQ",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CSTM": {
+    "ticker": "CSTM",
+    "n_filings_indexed": 24,
+    "summary": {
+      "n_30d": 4,
+      "n_90d": 12,
+      "n_180d": 24,
+      "n_365d": 24,
+      "value_90d_usd": 76234322,
+      "value_180d_usd": 81362854,
+      "accel_ratio": 2.03
+    },
+    "score": -16.0,
+    "reasons": [
+      "144 filing rate 2.0x trailing-year pace",
+      "$76M proposed sales in 90d"
+    ],
+    "filings": [
+      {
+        "cik": "0001563411",
+        "accession": "0001140361-26-024024",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 8000,
+        "value_usd": 278363.16,
+        "person": "Ormerod John",
+        "relationship": "Director",
+        "approx_sale_date": "06/04/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000503",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-28",
+        "shares": 10391,
+        "value_usd": 363002.51,
+        "person": "Marcus Becker",
+        "relationship": "Affiliate",
+        "approx_sale_date": "05/28/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001104659-26-066464",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-26",
+        "shares": 2095000,
+        "value_usd": 69637800.0,
+        "person": "Bpifrance Participations SA",
+        "relationship": "May be deemed an affiliate",
+        "approx_sale_date": "05/26/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000443",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-14",
+        "shares": 4716,
+        "value_usd": 157797.44,
+        "person": "Martin Roy Jarrett",
+        "relationship": "Affiliate",
+        "approx_sale_date": "05/14/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000421",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-11",
+        "shares": 26661,
+        "value_usd": 902558.99,
+        "person": "Nicolas Brun",
+        "relationship": "Affiliate",
+        "approx_sale_date": "05/11/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000414",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-08",
+        "shares": 5000,
+        "value_usd": 167590.6,
+        "person": "Stephane Corre",
+        "relationship": "Affiliate",
+        "approx_sale_date": "05/08/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001140361-26-019524",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-07",
+        "shares": 10400,
+        "value_usd": 336440.0,
+        "person": "Brandjes Michiel",
+        "relationship": "Director",
+        "approx_sale_date": "05/05/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001950047-26-004038",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-05",
+        "shares": 25201,
+        "value_usd": 822308.63,
+        "person": "JACK GUO",
+        "relationship": "Officer",
+        "approx_sale_date": "05/05/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000171",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-01",
+        "shares": 50000,
+        "value_usd": 1595990.4,
+        "person": "Philippe Hoffmann",
+        "relationship": "affiliate",
+        "approx_sale_date": "05/01/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000169",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-01",
+        "shares": 5000,
+        "value_usd": 160207.94,
+        "person": "Stephane Corre",
+        "relationship": "Affiliate",
+        "approx_sale_date": "05/01/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000167",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-01",
+        "shares": 48784,
+        "value_usd": 1561358.75,
+        "person": "Ryan Jurkovic",
+        "relationship": "affiliate",
+        "approx_sale_date": "05/01/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000136",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-16",
+        "shares": 10000,
+        "value_usd": 250903.96,
+        "person": "Marcus Becker",
+        "relationship": "affiliate",
+        "approx_sale_date": "03/16/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000263",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10",
+        "shares": 1500,
+        "value_usd": 38828.48,
+        "person": "Stephane Corre",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/10/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000260",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10",
+        "shares": 29900,
+        "value_usd": 773606.65,
+        "person": "Ryan Jurkovic",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/10/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000259",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10",
+        "shares": 41717,
+        "value_usd": 1079349.45,
+        "person": "Jack Guo",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/10/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000258",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10",
+        "shares": 4614,
+        "value_usd": 119378.63,
+        "person": "Ingrid Joerg",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/10/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000257",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10",
+        "shares": 4728,
+        "value_usd": 122328.17,
+        "person": "Philippe Hoffmann",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/10/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000256",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-10",
+        "shares": 1113,
+        "value_usd": 28796.8,
+        "person": "Marcus Becker",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/10/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001968582-26-000243",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-09",
+        "shares": 17701,
+        "value_usd": 436679.21,
+        "person": "Nicolas Brun",
+        "relationship": "Affiliate",
+        "approx_sale_date": "03/09/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000097",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-04",
+        "shares": 80000,
+        "value_usd": 2115512.55,
+        "person": "Philippe Hoffmann",
+        "relationship": "affiliate",
+        "approx_sale_date": "03/04/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000077",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-27",
+        "shares": 3000,
+        "value_usd": 74066.21,
+        "person": "Stephane Corre",
+        "relationship": "Affiliate",
+        "approx_sale_date": "02/27/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001974494-26-000075",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-26",
+        "shares": 3200,
+        "value_usd": 82260.0,
+        "person": "Stephane Corre",
+        "relationship": "Affiliate",
+        "approx_sale_date": "02/25/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001949846-26-000109",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-25",
+        "shares": 10000,
+        "value_usd": 257700.0,
+        "person": "Boccon-Gibod Isabelle",
+        "relationship": "Director",
+        "approx_sale_date": "02/25/2026"
+      },
+      {
+        "cik": "0001563411",
+        "accession": "0001140361-26-006599",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-24",
+        "shares": 15570,
+        "value_usd": 25.58,
+        "person": "Becker Marcus",
+        "relationship": "Officer",
+        "approx_sale_date": "02/20/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CSX": {
+    "ticker": "CSX",
+    "n_filings_indexed": 9,
+    "summary": {
+      "n_30d": 2,
+      "n_90d": 2,
+      "n_180d": 6,
+      "n_365d": 9,
+      "value_90d_usd": 6846798,
+      "value_180d_usd": 14535169,
+      "accel_ratio": 0.9
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000277948",
+        "accession": "0001974078-26-000216",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-04",
+        "shares": 10000,
+        "value_usd": 463887.48,
+        "person": "ZILLMER JOHN J",
+        "relationship": "Director",
+        "approx_sale_date": "06/03/2026"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0001950047-26-005579",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-03",
+        "shares": 136708,
+        "value_usd": 6382910.19,
+        "person": "KEVIN BOONE",
+        "relationship": "Officer",
+        "approx_sale_date": "06/03/2026"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0000950103-26-003381",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-06",
+        "shares": 5850,
+        "value_usd": 240084.0,
+        "person": "John Zillmer",
+        "relationship": "Director",
+        "approx_sale_date": "03/06/2026"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0001950047-26-001507",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-19",
+        "shares": 90000,
+        "value_usd": 3740463.0,
+        "person": "DIANA SORFLEET",
+        "relationship": "Officer",
+        "approx_sale_date": "02/19/2026"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0001950047-26-000886",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-03",
+        "shares": 31456,
+        "value_usd": 1215812.15,
+        "person": "STEPHEN FORTUNE",
+        "relationship": "Officer",
+        "approx_sale_date": "02/03/2026"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0001958244-26-000054",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-28",
+        "shares": 66667,
+        "value_usd": 2492012.46,
+        "person": "Diana Sorfleet",
+        "relationship": "Officer",
+        "approx_sale_date": "01/28/2026"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0002051357-25-000002",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-23",
+        "shares": 24249,
+        "value_usd": 891466.91,
+        "person": "Burns Michael S.",
+        "relationship": "Officer",
+        "approx_sale_date": "10/20/2025"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0001950047-25-008110",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-22",
+        "shares": 31053,
+        "value_usd": 1120761.77,
+        "person": "Kevin Boone",
+        "relationship": "Officer",
+        "approx_sale_date": "10/22/2025"
+      },
+      {
+        "cik": "0000277948",
+        "accession": "0001950047-25-008086",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-21",
+        "shares": 135295,
+        "value_usd": 4915984.41,
+        "person": "JOSEPH HINRICHS",
+        "relationship": "Officer",
+        "approx_sale_date": "10/21/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CTNT": {
+    "ticker": "CTNT",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CTRE": {
+    "ticker": "CTRE",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CTS": {
+    "ticker": "CTS",
+    "n_filings_indexed": 3,
+    "summary": {
+      "n_30d": 1,
+      "n_90d": 1,
+      "n_180d": 3,
+      "n_365d": 3,
+      "value_90d_usd": 8110700,
+      "value_180d_usd": 10199105,
+      "accel_ratio": null
+    },
+    "score": -6.0,
+    "reasons": [
+      "144 proposed sales = 0.44% of mcap in 90d"
+    ],
+    "filings": [
+      {
+        "cik": "0000026058",
+        "accession": "0001949846-26-000333",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-01",
+        "shares": 130000,
+        "value_usd": 8110700.0,
+        "person": "O'SULLIVAN KIERAN M",
+        "relationship": "Officer",
+        "approx_sale_date": "06/01/2026"
+      },
+      {
+        "cik": "0000026058",
+        "accession": "0001950047-26-001226",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-12",
+        "shares": 13522,
+        "value_usd": 764155.26,
+        "person": "MARTIN BAUMEISTER",
+        "relationship": "Previous Board Member",
+        "approx_sale_date": "02/12/2026"
+      },
+      {
+        "cik": "0000026058",
+        "accession": "0001628280-26-004716",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-02",
+        "shares": 25000,
+        "value_usd": 1324250.0,
+        "person": "Ashish Agrawal",
+        "relationship": "Officer",
+        "approx_sale_date": "02/02/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CTVA": {
+    "ticker": "CTVA",
+    "n_filings_indexed": 3,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 1,
+      "n_365d": 2,
+      "value_90d_usd": 0,
+      "value_180d_usd": 636200,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001755672",
+        "accession": "0001964306-26-000122",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-20",
+        "shares": 8311,
+        "value_usd": 636199.59,
+        "person": "TITUS BRIAN",
+        "relationship": "Officer",
+        "approx_sale_date": "02/20/2026"
+      },
+      {
+        "cik": "0001755672",
+        "accession": "0001965353-25-000154",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-29",
+        "shares": 37280,
+        "value_usd": 2765994.21,
+        "person": "King Robert D.",
+        "relationship": "Officer",
+        "approx_sale_date": "08/29/2025"
+      },
+      {
+        "cik": "0001755672",
+        "accession": "0002007317-25-000356",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-13",
+        "shares": 55242,
+        "value_usd": 3763637.0,
+        "person": "FUERER CORNEL B",
+        "relationship": "Officer",
+        "approx_sale_date": "05/13/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CTXR": {
+    "ticker": "CTXR",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CUBWU": {
+    "ticker": "CUBWU",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CUPR": {
+    "ticker": "CUPR",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CURV": {
+    "ticker": "CURV",
+    "n_filings_indexed": 4,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 2,
+      "n_180d": 2,
+      "n_365d": 4,
+      "value_90d_usd": 147524,
+      "value_180d_usd": 147524,
+      "accel_ratio": 2.03
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001792781",
+        "accession": "0001950047-26-003458",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-14",
+        "shares": 42785,
+        "value_usd": 88248.34,
+        "person": "PAULA SALEMA RIBEIRO DEMPSEY",
+        "relationship": "Officer",
+        "approx_sale_date": "04/14/2026"
+      },
+      {
+        "cik": "0001792781",
+        "accession": "0001950047-26-003410",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-13",
+        "shares": 30013,
+        "value_usd": 59275.68,
+        "person": "ASHLEE R WHEELER",
+        "relationship": "Officer",
+        "approx_sale_date": "04/13/2026"
+      },
+      {
+        "cik": "0001792781",
+        "accession": "0001950047-25-007432",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-23",
+        "shares": 26000,
+        "value_usd": 45760.0,
+        "person": "PAULA SALEMA RIBEIRO DEMPSEY",
+        "relationship": "Officer",
+        "approx_sale_date": "09/23/2025"
+      },
+      {
+        "cik": "0001792781",
+        "accession": "0001950047-25-007430",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-23",
+        "shares": 16959,
+        "value_usd": 30242.98,
+        "person": "ASHLEE R WHEELER",
+        "relationship": "Officer",
+        "approx_sale_date": "09/23/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CVCO": {
+    "ticker": "CVCO",
+    "n_filings_indexed": 7,
+    "summary": {
+      "n_30d": 1,
+      "n_90d": 1,
+      "n_180d": 1,
+      "n_365d": 7,
+      "value_90d_usd": 281050,
+      "value_180d_usd": 281050,
+      "accel_ratio": 0.58
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000278166",
+        "accession": "0001949846-26-000359",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-08",
+        "shares": 500,
+        "value_usd": 281050.0,
+        "person": "KERLEY RICHARD A",
+        "relationship": "Director",
+        "approx_sale_date": "06/08/2026"
+      },
+      {
+        "cik": "0000278166",
+        "accession": "0001949846-25-000570",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-07",
+        "shares": 500,
+        "value_usd": 283417.5,
+        "person": "KERLEY RICHARD A",
+        "relationship": "Director",
+        "approx_sale_date": "11/07/2025"
+      },
+      {
+        "cik": "0000278166",
+        "accession": "0001950047-25-006762",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-04",
+        "shares": 145,
+        "value_usd": 77372.0,
+        "person": "SETH SCHUKNECHT",
+        "relationship": "Officer",
+        "approx_sale_date": "09/04/2025"
+      },
+      {
+        "cik": "0000278166",
+        "accession": "0001950047-25-006324",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-25",
+        "shares": 1000,
+        "value_usd": 522000.0,
+        "person": "BRIAN CIRA",
+        "relationship": "Officer",
+        "approx_sale_date": "08/25/2025"
+      },
+      {
+        "cik": "0000278166",
+        "accession": "0001950047-25-006215",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-22",
+        "shares": 2500,
+        "value_usd": 1298259.0,
+        "person": "SUSAN BLOUNT",
+        "relationship": "Director",
+        "approx_sale_date": "08/22/2025"
+      },
+      {
+        "cik": "0000278166",
+        "accession": "0001949846-25-000396",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-20",
+        "shares": 500,
+        "value_usd": 242525.0,
+        "person": "KERLEY RICHARD A",
+        "relationship": "Director",
+        "approx_sale_date": "08/20/2025"
+      },
+      {
+        "cik": "0000278166",
+        "accession": "0001950047-25-005814",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-14",
+        "shares": 2000,
+        "value_usd": 966946.8,
+        "person": "SUSAN BLOUNT",
+        "relationship": "Director",
+        "approx_sale_date": "08/14/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CVGW": {
+    "ticker": "CVGW",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CVLG": {
+    "ticker": "CVLG",
+    "n_filings_indexed": 1,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 1,
+      "n_365d": 1,
+      "value_90d_usd": 0,
+      "value_180d_usd": 12300000,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0000928658",
+        "accession": "0001973251-26-000006",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-09",
+        "shares": 500000,
+        "value_usd": 12300000.0,
+        "person": "PARKER DAVID RAY",
+        "relationship": "Officer",
+        "approx_sale_date": "02/09/2026"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CVS": {
+    "ticker": "CVS",
+    "n_filings_indexed": 4,
+    "summary": {
+      "n_30d": 2,
+      "n_90d": 3,
+      "n_180d": 3,
+      "n_365d": 4,
+      "value_90d_usd": 6708889,
+      "value_180d_usd": 6708889,
+      "accel_ratio": 3.04
+    },
+    "score": -8.0,
+    "reasons": [
+      "144 filing rate 3.0x trailing-year pace"
+    ],
+    "filings": [
+      {
+        "cik": "0000064803",
+        "accession": "0001224983-26-000006",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-22",
+        "shares": 2263,
+        "value_usd": 214283.47,
+        "person": "AGUIRRE FERNANDO",
+        "relationship": "Director",
+        "approx_sale_date": "05/20/2026"
+      },
+      {
+        "cik": "0000064803",
+        "accession": "0001949846-26-000310",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-21",
+        "shares": 2817,
+        "value_usd": 263886.42,
+        "person": "FARAH ROGER N",
+        "relationship": "Director",
+        "approx_sale_date": "05/21/2026"
+      },
+      {
+        "cik": "0000064803",
+        "accession": "0001950047-26-004274",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-08",
+        "shares": 69551,
+        "value_usd": 6230719.38,
+        "person": "TILAK MANDADI",
+        "relationship": "Officer",
+        "approx_sale_date": "05/08/2026"
+      },
+      {
+        "cik": "0000064803",
+        "accession": "0001511491-25-000003",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-19",
+        "shares": 7500,
+        "value_usd": 532275.0,
+        "person": "Finucane Anne A.",
+        "relationship": "Director",
+        "approx_sale_date": "08/20/2025"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CVV": {
+    "ticker": "CVV",
+    "n_filings_indexed": 0,
+    "summary": {
+      "n_30d": 0,
+      "n_90d": 0,
+      "n_180d": 0,
+      "n_365d": 0,
+      "value_90d_usd": 0,
+      "value_180d_usd": 0,
+      "accel_ratio": null
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [],
+    "_complete": true,
+    "_version": "form144-v1"
+  },
+  "CWAN": {
+    "ticker": "CWAN",
+    "n_filings_indexed": 31,
+    "summary": {
+      "n_30d": 1,
+      "n_90d": 5,
+      "n_180d": 13,
+      "n_365d": 27,
+      "value_90d_usd": 1609101,
+      "value_180d_usd": 108850330,
+      "accel_ratio": 0.75
+    },
+    "score": 0.0,
+    "reasons": [],
+    "filings": [
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-005777",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-06-08",
+        "shares": 10000,
+        "value_usd": 243700.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "06/08/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-004263",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-05-08",
+        "shares": 10000,
+        "value_usd": 243000.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "05/08/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-003509",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-15",
+        "shares": 18700,
+        "value_usd": 449922.0,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "04/15/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-003331",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-04-08",
+        "shares": 10000,
+        "value_usd": 239200.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "04/08/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-002662",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-16",
+        "shares": 18700,
+        "value_usd": 433279.0,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "03/16/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-002376",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-03-09",
+        "shares": 10000,
+        "value_usd": 234500.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "03/09/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-001380",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-17",
+        "shares": 18700,
+        "value_usd": 432905.0,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "02/17/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-001045",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-02-09",
+        "shares": 10000,
+        "value_usd": 238500.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "02/09/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-000460",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-15",
+        "shares": 18700,
+        "value_usd": 451418.0,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "01/15/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-26-000272",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2026-01-08",
+        "shares": 10000,
+        "value_usd": 241100.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "01/08/2026"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001193125-25-329166",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-22",
+        "shares": 4373951,
+        "value_usd": 105237261.0,
+        "person": "WCAS XIII Associates LLC",
+        "relationship": "Affiliate",
+        "approx_sale_date": "12/22/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-010470",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-17",
+        "shares": 7425,
+        "value_usd": 159637.5,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "12/17/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-010342",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-15",
+        "shares": 11275,
+        "value_usd": 245907.75,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "12/15/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-009922",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-12-08",
+        "shares": 10000,
+        "value_usd": 217100.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "12/08/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-009357",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-25",
+        "shares": 29700,
+        "value_usd": 644490.0,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "11/25/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-008945",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-17",
+        "shares": 11275,
+        "value_usd": 217043.75,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "11/17/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-008773",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-11-12",
+        "shares": 20000,
+        "value_usd": 368000.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "11/12/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-007974",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-10-15",
+        "shares": 11275,
+        "value_usd": 201822.5,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "10/15/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-007153",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-15",
+        "shares": 11275,
+        "value_usd": 221102.75,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "09/15/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-006840",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-09-08",
+        "shares": 10000,
+        "value_usd": 207700.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "09/08/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-006099",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-20",
+        "shares": 10000,
+        "value_usd": 198000.0,
+        "person": "SOUVIK DAS",
+        "relationship": "Officer",
+        "approx_sale_date": "08/20/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-006095",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-20",
+        "shares": 50000,
+        "value_usd": 990000.0,
+        "person": "SANDEEP SAHAI",
+        "relationship": "Director",
+        "approx_sale_date": "08/20/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-005889",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-08-15",
+        "shares": 11275,
+        "value_usd": 218396.75,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "08/15/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-005034",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-15",
+        "shares": 18700,
+        "value_usd": 412522.0,
+        "person": "JAMES COX",
+        "relationship": "Officer",
+        "approx_sale_date": "07/15/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-004991",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-07-14",
+        "shares": 50000,
+        "value_usd": 1092000.0,
+        "person": "SANDEEP SAHAI",
+        "relationship": "Director",
+        "approx_sale_date": "07/14/2025"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-004372",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-16"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-004294",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-13"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0000950170-25-084563",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-06-10"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001949846-25-000222",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-19"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-003064",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-15"
+      },
+      {
+        "cik": "0001866368",
+        "accession": "0001950047-25-002952",
+        "primary_doc": "xsl144X01/primary_doc.xml",
+        "filing_date": "2025-05-13"
+      }
+    ],
+    "_complete": true,
+    "_version": "form144-v1"
+  }
+}
