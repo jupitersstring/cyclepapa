@@ -17,7 +17,7 @@ warnings.filterwarnings('ignore')
 # Load universe
 uni = pd.read_csv('/tmp/screen_universe.csv')
 syms = uni['ticker'].dropna().unique().tolist()
-syms = [s for s in syms if isinstance(s,str) and not ('-' in s or s.endswith('U') or s.endswith('W'))]
+syms = [s for s in syms if isinstance(s,str) and not ('.' not in s and ('-' in s or s.endswith('U') or s.endswith('W')))]
 print(f"universe: {len(syms)}", file=sys.stderr)
 
 def mfi(h, l, c, v, n=14):
