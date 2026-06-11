@@ -34,23 +34,30 @@ import argparse
 import numpy as np
 import pandas as pd
 
-from volume_bandpass import ehlers_bandpass, BANDS, download_ohlcv
+from volume_bandpass import download_ohlcv
+from signals import ehlers_bandpass, BANDS, latest_crossing, drop_incomplete_last  # noqa: F401
 from midcap_weekly_anomalies import get_universe, CAP_SOURCES  # noqa: F401
 
 MEASURES = ["PRICE", "RET", "VOL", "LIQ", "ACCUM", "PARTIC",
             "RVOL", "RSHARPE", "UPDNV", "GPR"]
 
-# Quasi-independent DIMENSIONS: correlated measures are collapsed so a single
-# driver (e.g. a dilution event lighting up the whole volume family) can add at
-# most +1 to breadth instead of +4. Breadth is now counted across dimensions.
+# DIRECTIONAL dimensions count toward bullish/bearish breadth (an up-cross is
+# genuinely bullish). Each correlated cluster is collapsed so one driver adds at
+# most +1. ACCUM/PARTIC (signed volume) carry the participation signal.
 DIMENSIONS = {
-    "PRICE":  ["PRICE", "RET"],                  # trend / direction
-    "VOLUME": ["VOL", "LIQ", "ACCUM", "PARTIC"], # participation/turnover (dilution-sensitive)
-    "VOLAT":  ["RVOL"],                          # volatility regime
-    "SHARPE": ["RSHARPE"],                        # risk-adjusted trend
-    "ASYM":   ["UPDNV", "GPR"],                  # payoff asymmetry
+    "PRICE":  ["PRICE", "RET"],        # trend / direction
+    "PARTIC": ["ACCUM", "PARTIC"],     # signed participation (accumulation/distribution)
+    "SHARPE": ["RSHARPE"],             # risk-adjusted trend
+    "ASYM":   ["UPDNV", "GPR"],        # payoff asymmetry
 }
 DIM_ORDER = list(DIMENSIONS)
+# NON-directional context dims: an up-cross is ambiguous (volume rises on
+# distribution too; RVOL up = vol expansion either way). Shown but NOT summed.
+CONTEXT_DIMS = {
+    "VOLUME": ["VOL", "LIQ"],          # raw turnover (direction-agnostic)
+    "VOLAT":  ["RVOL"],                # volatility regime (expansion/compression)
+}
+CONTEXT_ORDER = list(CONTEXT_DIMS)
 
 
 # --------------------------------------------------------------------------- #
@@ -65,7 +72,7 @@ def measure_series(close: pd.Series, volume: pd.Series, w: int) -> dict[str, np.
     sign = np.sign(ret).fillna(0)
 
     out: dict[str, pd.Series] = {}
-    out["PRICE"] = close
+    out["PRICE"] = np.log(close.clip(lower=1e-9))   # log price: amplitude scale-invariant
     out["RET"] = ret
     out["VOL"] = logv
     out["LIQ"] = np.log1p(close * volume)
@@ -84,36 +91,9 @@ def measure_series(close: pd.Series, volume: pd.Series, w: int) -> dict[str, np.
     return {k: v.replace([np.inf, -np.inf], np.nan).to_numpy() for k, v in out.items()}
 
 
-# --------------------------------------------------------------------------- #
-# Latest zero-line inflection of one (cleaned) series for the given bands
-# --------------------------------------------------------------------------- #
 def inflections(values: np.ndarray, recent: int, bands) -> dict[str, dict]:
-    v = values[~np.isnan(values)]
-    n = len(v)
-    res: dict[str, dict] = {}
-    for name, flen, slen in bands:
-        if n < slen:
-            continue
-        pb = ehlers_bandpass(v, flen, slen)
-        sd = np.std(pb[slen:]) if pb[slen:].size > 5 else np.std(pb)
-        if not np.isfinite(sd) or sd == 0:
-            continue
-        sgn = np.sign(pb)
-        ci = None
-        for t in range(n - 1, max(slen, 1), -1):
-            if sgn[t] != sgn[t - 1] and sgn[t] != 0:
-                ci = t
-                break
-        if ci is None:
-            continue
-        bars_ago = (n - 1) - ci
-        res[name] = {
-            "dir": "UP" if pb[ci] > 0 else "DOWN",
-            "bars_ago": bars_ago,
-            "slope_z": float((pb[-1] - pb[-2]) / sd) if n >= 2 else 0.0,
-            "fresh": bars_ago <= recent,
-        }
-    return res
+    """Thin wrapper over the shared hysteresis-aware crossing detector."""
+    return latest_crossing(values, recent, bands)
 
 
 # --------------------------------------------------------------------------- #
@@ -122,46 +102,48 @@ def inflections(values: np.ndarray, recent: int, bands) -> dict[str, dict]:
 def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
          caps: dict, band: str, top: int, min_net: int = 1) -> pd.DataFrame:
     bands = [b for b in BANDS if (band is None or b[0] == band)]
-    intraday = label.endswith("m")
     last_dates = {s: df.dropna().index[-1] for s, df in frames.items() if len(df.dropna())}
     if not last_dates:
         print(f"\n[{label}] no data.")
         return pd.DataFrame()
     asof = max(last_dates.values())
-    tol = pd.Timedelta(days=3 if intraday else (8 if label == "daily" else 12))
+    tol = pd.Timedelta(days=3 if label.endswith("m") else (8 if label == "daily" else 12))
+
+    def vote(rec, group, members, meas_dir, directional):
+        votes = [meas_dir[m][0] for m in members if m in meas_dir]
+        slopes = [meas_dir[m][1] for m in members if m in meas_dir]
+        s = sum(votes)
+        if not votes or s == 0:
+            rec[group] = "±" if votes else ""
+            return
+        d_dir = 1 if s > 0 else -1
+        rec[group] = "▲" if d_dir > 0 else "▼"
+        if not directional:                 # context dims are shown, not summed
+            return
+        inten = sum(slopes) / len(slopes)
+        if d_dir > 0:
+            rec["up"] += 1; rec["score"] += inten
+        else:
+            rec["down"] += 1; rec["score"] -= inten
 
     rows = []
     for sym, df in frames.items():
-        d = df.dropna()
-        if intraday and len(d) > 1:
-            d = d.iloc[:-1]
+        d = drop_incomplete_last(df, label, asof=asof)   # drop in-progress bar
         if len(d) < 80 or last_dates.get(sym) < (asof - tol):
             continue
         series = measure_series(d["Close"].astype(float), d["Volume"].astype(float), w)
         rec = {"symbol": sym, "sector": sectors.get(sym, "?"),
                "cap": caps.get(sym, "?"), "tf": label,
                "up": 0, "down": 0, "net": 0, "score": 0.0}
-        # per-measure fresh inflection (dir, slope) on the chosen band
         meas_dir = {}
         for meas, vals in series.items():
             b1 = inflections(vals, recent, bands).get(band or "B1")
-            if b1 and b1["fresh"]:
+            if b1 and b1["fresh"] and b1.get("settled", True):  # respect settled guard
                 meas_dir[meas] = (1 if b1["dir"] == "UP" else -1, abs(b1["slope_z"]))
-        # collapse correlated measures into dimensions; each dimension votes once
-        for dim, members in DIMENSIONS.items():
-            votes = [meas_dir[m][0] for m in members if m in meas_dir]
-            slopes = [meas_dir[m][1] for m in members if m in meas_dir]
-            s = sum(votes)
-            if not votes or s == 0:                       # none, or internally split
-                rec[dim] = "±" if votes else ""
-                continue
-            d_dir = 1 if s > 0 else -1
-            rec[dim] = "▲" if d_dir > 0 else "▼"
-            inten = sum(slopes) / len(slopes)
-            if d_dir > 0:
-                rec["up"] += 1; rec["score"] += inten
-            else:
-                rec["down"] += 1; rec["score"] -= inten
+        for dim, members in DIMENSIONS.items():       # directional -> count toward net
+            vote(rec, dim, members, meas_dir, directional=True)
+        for dim, members in CONTEXT_DIMS.items():     # context -> shown only
+            vote(rec, dim, members, meas_dir, directional=False)
         rec["net"] = rec["up"] - rec["down"]
         if rec["up"] or rec["down"]:
             rows.append(rec)
@@ -176,11 +158,12 @@ def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
 
 def _report(df: pd.DataFrame, label: str, recent: int, top: int, band: str,
             min_net: int = 1) -> None:
-    print(f"\n{'#'*108}\n#  {label.upper()} — DIMENSION breadth (Band {band}, fresh within "
+    print(f"\n{'#'*116}\n#  {label.upper()} — DIRECTIONAL breadth (Band {band}, fresh within "
           f"{recent} bars).  Net = up-dims − down-dims (max ±{len(DIMENSIONS)})\n"
-          f"#  ▲=dim up-cross ▼=down ±=split.  VOLUME collapses VOL/LIQ/ACCUM/PARTIC -> 1 dim\n{'#'*108}")
-    cols = DIM_ORDER
-    hdr = f"{'Sym':<7}{'Sector':<20}{'Net':>4}{'Up':>3}{'Dn':>3}  " + "".join(f"{c:>8}" for c in cols)
+          f"#  Directional: PRICE PARTIC SHARPE ASYM.  Context (not summed): VOLUME VOLAT "
+          f"(▲ here is ambiguous)\n{'#'*116}")
+    cols = DIM_ORDER + CONTEXT_ORDER
+    hdr = f"{'Sym':<7}{'Sector':<18}{'Net':>4}{'Up':>3}{'Dn':>3}  " + "".join(f"{c:>8}" for c in cols)
     for sign, title in [(1, f"BULLISH: ALL names with Net >= +{min_net} (dimensions inflecting UP)"),
                         (-1, f"BEARISH: ALL names with Net <= -{min_net} (dimensions inflecting DOWN)")]:
         sub = df[df["net"] * sign >= min_net].copy()
@@ -190,7 +173,7 @@ def _report(df: pd.DataFrame, label: str, recent: int, top: int, band: str,
         print(f"\n=== {title}   ({len(sub)} names) ===")
         print(hdr)
         for _, r in sub.iterrows():
-            print(f"{r['symbol']:<7}{str(r['sector'])[:19]:<20}{int(r['net']):>4}"
+            print(f"{r['symbol']:<7}{str(r['sector'])[:17]:<18}{int(r['net']):>4}"
                   f"{int(r['up']):>3}{int(r['down']):>3}  "
                   + "".join(f"{str(r.get(c,'')):>8}" for c in cols))
 

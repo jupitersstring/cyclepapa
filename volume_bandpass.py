@@ -42,37 +42,9 @@ import numpy as np
 import pandas as pd
 
 from midcap_weekly_anomalies import get_universe, CACHE_DIR, CAP_SOURCES  # reuse universe
+from signals import ehlers_bandpass, BANDS, latest_crossing, drop_incomplete_last  # noqa: F401
 
 warnings.filterwarnings("ignore")
-
-BANDS = [
-    ("B1", 40, 60),
-    ("B2", 200, 300),
-    ("B3", 600, 900),
-    ("B4", 1200, 2400),
-]
-
-
-# --------------------------------------------------------------------------- #
-# Ehlers two-pole bandpass (faithful port of the Pine recursion w/ nz=0)
-# --------------------------------------------------------------------------- #
-def ehlers_bandpass(src: np.ndarray, flen: int, slen: int) -> np.ndarray:
-    a1 = 5.0 / flen
-    a2 = 5.0 / slen
-    b0 = a1 - a2
-    b1 = a2 * (1 - a1) - a1 * (1 - a2)
-    c1 = (1 - a1) + (1 - a2)
-    c2 = -(1 - a1) * (1 - a2)
-
-    n = len(src)
-    pb = np.zeros(n, dtype=float)
-    for t in range(n):
-        s0 = src[t]
-        s1 = src[t - 1] if t >= 1 else 0.0
-        p1 = pb[t - 1] if t >= 1 else 0.0
-        p2 = pb[t - 2] if t >= 2 else 0.0
-        pb[t] = b0 * s0 + b1 * s1 + c1 * p1 + c2 * p2
-    return pb
 
 
 # --------------------------------------------------------------------------- #
@@ -152,50 +124,25 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
 # Per-series band analysis
 # --------------------------------------------------------------------------- #
 def analyse_series(vol: pd.Series, recent: int) -> list[dict]:
-    """Return one row per band that has enough history, describing its most
-    recent zero-line crossing."""
+    """Return one row per band describing its most recent zero-line crossing
+    (uses the shared hysteresis-aware detector)."""
     vol = vol.dropna()  # seeded frames may carry NaN padding from a union index
     v = np.log1p(vol.astype(float).to_numpy())
     idx = vol.index
     n = len(v)
     rows = []
-    for name, flen, slen in BANDS:
-        if n < slen:               # not enough history for this band to settle
-            continue
-        pb = ehlers_bandpass(v, flen, slen)
-        # settled region: drop the first `slen` warmup bars for the std estimate
-        settled = pb[slen:]
-        sd = np.std(settled) if settled.size > 5 else np.std(pb)
-        if not np.isfinite(sd) or sd == 0:
-            continue
-
-        # most recent zero crossing
-        sign = np.sign(pb)
-        cross_idx = None
-        direction = None
-        for t in range(n - 1, max(slen, 1), -1):
-            if sign[t] != sign[t - 1] and sign[t] != 0:
-                cross_idx = t
-                direction = "UP" if pb[t] > pb[t - 1] else "DOWN"
-                break
-        if cross_idx is None:
-            continue
-
-        bars_ago = (n - 1) - cross_idx
-        slope_z = (pb[-1] - pb[-2]) / sd if n >= 2 else 0.0
+    bdict = {b[0]: b for b in BANDS}
+    for name, info in latest_crossing(v, recent).items():
+        flen, slen = bdict[name][1], bdict[name][2]
+        ci = (n - 1) - info["bars_ago"]
         rows.append({
-            "band": name,
-            "flen_slen": f"{flen}/{slen}",
-            "state": "ABOVE" if pb[-1] >= 0 else "BELOW",
-            "direction": direction,
-            "bars_ago": int(bars_ago),
-            "cross_date": idx[cross_idx].date().isoformat(),
-            "pb_last_z": float(pb[-1] / sd),
-            "slope_z": float(slope_z),
-            "fresh": bars_ago <= recent,
-            "settled": n >= int(1.5 * slen),
-            "last_date": idx[-1],
-            "n": n,
+            "band": name, "flen_slen": f"{flen}/{slen}",
+            "state": "ABOVE" if info["pb_z"] >= 0 else "BELOW",
+            "direction": info["dir"], "bars_ago": int(info["bars_ago"]),
+            "cross_date": idx[ci].date().isoformat(),
+            "pb_last_z": info["pb_z"], "slope_z": info["slope_z"],
+            "fresh": info["fresh"], "settled": info["settled"],
+            "last_date": idx[-1], "n": n,
         })
     return rows
 
@@ -205,12 +152,10 @@ def analyse_series(vol: pd.Series, recent: int) -> list[dict]:
 # --------------------------------------------------------------------------- #
 def scan_timeframe(frames: dict, label: str, recent: int,
                    sectors: dict, top: int) -> pd.DataFrame:
-    intraday = label.endswith("m") or label.endswith("h")
     rows = []
     for sym, df in frames.items():
-        vol = df["Volume"]
-        if intraday and len(vol.dropna()) > 1:
-            vol = vol.dropna().iloc[:-1]  # drop current incomplete intraday bar
+        # drop the in-progress bar for ALL timeframes (intraday/daily/weekly)
+        vol = drop_incomplete_last(df[["Volume"]], label)["Volume"]
         for r in analyse_series(vol, recent):
             r["symbol"] = sym
             r["sector"] = sectors.get(sym, "?")
