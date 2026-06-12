@@ -44908,5 +44908,1377 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "REYN": {
+    "ticker": "REYN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "REZI": {
+    "ticker": "REZI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RF": {
+    "ticker": "RF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RFIL": {
+    "ticker": "RFIL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RFL": {
+    "ticker": "RFL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGA": {
+    "ticker": "RGA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGC": {
+    "ticker": "RGC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGCO": {
+    "ticker": "RGCO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGEN": {
+    "ticker": "RGEN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGLD": {
+    "ticker": "RGLD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGNT": {
+    "ticker": "RGNT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGNX": {
+    "ticker": "RGNX",
+    "filings": [
+      {
+        "cik": "0001590877",
+        "form": "SC TO-I",
+        "accession": "0001193125-26-254638",
+        "primary_doc": "rgnx-20260603.htm",
+        "filing_date": "2026-06-03",
+        "days_ago": 9
+      }
+    ],
+    "terms": {},
+    "score": 20.0,
+    "reasons": [
+      "issuer SELF-TENDER live, latest filing 9d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGP": {
+    "ticker": "RGP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGR": {
+    "ticker": "RGR",
+    "filings": [
+      {
+        "cik": "0000095029",
+        "form": "SC 14D9",
+        "accession": "0001174947-26-000424",
+        "primary_doc": "sc14d9-35622_rgr.htm",
+        "filing_date": "2026-03-26",
+        "days_ago": 78
+      }
+    ],
+    "terms": {},
+    "score": 12.0,
+    "reasons": [
+      "third-party tender / 14D-9, 78d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGS": {
+    "ticker": "RGS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGT": {
+    "ticker": "RGT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RGTI": {
+    "ticker": "RGTI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RH": {
+    "ticker": "RH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RHI": {
+    "ticker": "RHI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RHLD": {
+    "ticker": "RHLD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RHP": {
+    "ticker": "RHP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RICK": {
+    "ticker": "RICK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIG": {
+    "ticker": "RIG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIGL": {
+    "ticker": "RIGL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RILY": {
+    "ticker": "RILY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RILYG": {
+    "ticker": "RILYG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RILYL": {
+    "ticker": "RILYL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RILYN": {
+    "ticker": "RILYN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RILYP": {
+    "ticker": "RILYP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RILYT": {
+    "ticker": "RILYT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIME": {
+    "ticker": "RIME",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIO": {
+    "ticker": "RIO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIOT": {
+    "ticker": "RIOT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RITE": {
+    "ticker": "RITE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RITM": {
+    "ticker": "RITM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RITR": {
+    "ticker": "RITR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIV": {
+    "ticker": "RIV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RIVN": {
+    "ticker": "RIVN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RJET": {
+    "ticker": "RJET",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RJF": {
+    "ticker": "RJF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RKDA": {
+    "ticker": "RKDA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RKLB": {
+    "ticker": "RKLB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RKT": {
+    "ticker": "RKT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RKTO": {
+    "ticker": "RKTO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RL": {
+    "ticker": "RL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLAY": {
+    "ticker": "RLAY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLBY": {
+    "ticker": "RLBY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLGT": {
+    "ticker": "RLGT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLI": {
+    "ticker": "RLI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLJ": {
+    "ticker": "RLJ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLMD": {
+    "ticker": "RLMD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLX": {
+    "ticker": "RLX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RLYB": {
+    "ticker": "RLYB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RM": {
+    "ticker": "RM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMAX": {
+    "ticker": "RMAX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMBI": {
+    "ticker": "RMBI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMBS": {
+    "ticker": "RMBS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMCF": {
+    "ticker": "RMCF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMCO": {
+    "ticker": "RMCO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMD": {
+    "ticker": "RMD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMIX": {
+    "ticker": "RMIX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMNI": {
+    "ticker": "RMNI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMR": {
+    "ticker": "RMR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMSG": {
+    "ticker": "RMSG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMT": {
+    "ticker": "RMT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RMTI": {
+    "ticker": "RMTI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNA": {
+    "ticker": "RNA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNAC": {
+    "ticker": "RNAC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNAZ": {
+    "ticker": "RNAZ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNG": {
+    "ticker": "RNG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNGR": {
+    "ticker": "RNGR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNR": {
+    "ticker": "RNR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNST": {
+    "ticker": "RNST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNTX": {
+    "ticker": "RNTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNW": {
+    "ticker": "RNW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RNXT": {
+    "ticker": "RNXT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROAD": {
+    "ticker": "ROAD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROC": {
+    "ticker": "ROC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROCK": {
+    "ticker": "ROCK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROG": {
+    "ticker": "ROG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROIV": {
+    "ticker": "ROIV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROK": {
+    "ticker": "ROK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROKU": {
+    "ticker": "ROKU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROL": {
+    "ticker": "ROL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROLR": {
+    "ticker": "ROLR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROMA": {
+    "ticker": "ROMA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROOT": {
+    "ticker": "ROOT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROP": {
+    "ticker": "ROP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ROST": {
+    "ticker": "ROST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPAY": {
+    "ticker": "RPAY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPC": {
+    "ticker": "RPC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPD": {
+    "ticker": "RPD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPGL": {
+    "ticker": "RPGL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPID": {
+    "ticker": "RPID",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPM": {
+    "ticker": "RPM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPRX": {
+    "ticker": "RPRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RPT": {
+    "ticker": "RPT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RR": {
+    "ticker": "RR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RRBI": {
+    "ticker": "RRBI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RRC": {
+    "ticker": "RRC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RRGB": {
+    "ticker": "RRGB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RRR": {
+    "ticker": "RRR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RRX": {
+    "ticker": "RRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RS": {
+    "ticker": "RS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RSG": {
+    "ticker": "RSG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RSI": {
+    "ticker": "RSI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RSKD": {
+    "ticker": "RSKD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RSSS": {
+    "ticker": "RSSS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RSVR": {
+    "ticker": "RSVR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RTB": {
+    "ticker": "RTB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RTO": {
+    "ticker": "RTO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RTX": {
+    "ticker": "RTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RUBI": {
+    "ticker": "RUBI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RUM": {
+    "ticker": "RUM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RUN": {
+    "ticker": "RUN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RUSHA": {
+    "ticker": "RUSHA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RUSHB": {
+    "ticker": "RUSHB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVI": {
+    "ticker": "RVI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVLV": {
+    "ticker": "RVLV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVMD": {
+    "ticker": "RVMD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVP": {
+    "ticker": "RVP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVPH": {
+    "ticker": "RVPH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVSB": {
+    "ticker": "RVSB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVSN": {
+    "ticker": "RVSN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVT": {
+    "ticker": "RVT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVTY": {
+    "ticker": "RVTY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RVYL": {
+    "ticker": "RVYL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWAY": {
+    "ticker": "RWAY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWAYI": {
+    "ticker": "RWAYI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWAYL": {
+    "ticker": "RWAYL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWT": {
+    "ticker": "RWT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWTN": {
+    "ticker": "RWTN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWTO": {
+    "ticker": "RWTO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWTP": {
+    "ticker": "RWTP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWTQ": {
+    "ticker": "RWTQ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RWTS": {
+    "ticker": "RWTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RXO": {
+    "ticker": "RXO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RXRX": {
+    "ticker": "RXRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RXST": {
+    "ticker": "RXST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RXT": {
+    "ticker": "RXT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RY": {
+    "ticker": "RY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYAAY": {
+    "ticker": "RYAAY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYAM": {
+    "ticker": "RYAM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYAN": {
+    "ticker": "RYAN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYDE": {
+    "ticker": "RYDE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYET": {
+    "ticker": "RYET",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYM": {
+    "ticker": "RYM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYN": {
+    "ticker": "RYN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYOJ": {
+    "ticker": "RYOJ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "RYTM": {
+    "ticker": "RYTM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
