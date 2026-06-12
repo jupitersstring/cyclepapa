@@ -69,6 +69,24 @@ def run():
           r["kill_criteria"], r["factor_tags"]) for r in rows],
         widths=[8,28,30,8,10,9,22,9,22,9,11,9,11,48,32])
 
+    # 0. Market-wide discovery (EDGAR daily indices, last 9 business days)
+    rows = list(conn.execute("""SELECT ticker, issuer, n_buyers, total_usd_m, avg_px,
+                                       last_close, off_52w_high, top_buyer, top_role, asof
+                                FROM discovery ORDER BY (n_buyers*2 + total_usd_m) DESC"""))
+    pc = lambda v: f"{v*100:+.0f}%" if v is not None else ""
+    write_sheet(wb, "0_DISCOVERY_CLUSTERS",
+        ["Ticker","Issuer","# buyers","Total $M","Avg px","Last","Off 52w high","Top buyer","Role","Asof"],
+        [(r["ticker"], r["issuer"], r["n_buyers"], r["total_usd_m"], r["avg_px"],
+          r["last_close"], pc(r["off_52w_high"]), r["top_buyer"], r["top_role"], r["asof"]) for r in rows],
+        widths=[8,38,9,9,8,8,12,28,22,11])
+    rows = list(conn.execute("""SELECT ticker, subject, filer_hint, filed, last_close, off_52w_high
+                                FROM discovery_13d_subjects ORDER BY off_52w_high"""))
+    write_sheet(wb, "0b_NEW_13D_FILINGS",
+        ["Ticker","Subject company","Filer","Filed","Last","Off 52w high"],
+        [(r["ticker"], r["subject"], r["filer_hint"], r["filed"], r["last_close"],
+          pc(r["off_52w_high"])) for r in rows],
+        widths=[8,42,34,10,8,12])
+
     # 2. Base rates
     rows = list(conn.execute("SELECT factor, hit_rate, avg_excess_12m, sample_n FROM base_rates ORDER BY avg_excess_12m DESC"))
     write_sheet(wb, "2_BASE_RATES",
