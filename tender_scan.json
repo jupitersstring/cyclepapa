@@ -38232,5 +38232,522 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "NUE": {
+    "ticker": "NUE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUS": {
+    "ticker": "NUS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUTR": {
+    "ticker": "NUTR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUTX": {
+    "ticker": "NUTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUVB": {
+    "ticker": "NUVB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUVL": {
+    "ticker": "NUVL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUW": {
+    "ticker": "NUW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NUWE": {
+    "ticker": "NUWE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVA": {
+    "ticker": "NVA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVAX": {
+    "ticker": "NVAX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVCR": {
+    "ticker": "NVCR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVCT": {
+    "ticker": "NVCT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVDA": {
+    "ticker": "NVDA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVEC": {
+    "ticker": "NVEC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVGS": {
+    "ticker": "NVGS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVMI": {
+    "ticker": "NVMI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVNI": {
+    "ticker": "NVNI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVNO": {
+    "ticker": "NVNO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVO": {
+    "ticker": "NVO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVR": {
+    "ticker": "NVR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVRI": {
+    "ticker": "NVRI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVS": {
+    "ticker": "NVS",
+    "filings": [
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-102943",
+        "primary_doc": "tm2527010d11_sctota.htm",
+        "filing_date": "2025-10-28",
+        "days_ago": 227
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-101411",
+        "primary_doc": "tm2527010d10_sctota.htm",
+        "filing_date": "2025-10-22",
+        "days_ago": 233
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-100641",
+        "primary_doc": "tm2527010d9_sctota.htm",
+        "filing_date": "2025-10-20",
+        "days_ago": 235
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T",
+        "accession": "0001104659-25-094086",
+        "primary_doc": "tm2527010-1_sctot.htm",
+        "filing_date": "2025-09-29",
+        "days_ago": 256
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-062424",
+        "primary_doc": "tm2516065d12_sctota.htm",
+        "filing_date": "2025-06-25",
+        "days_ago": 352
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-061301",
+        "primary_doc": "tm2516065d11_sctota.htm",
+        "filing_date": "2025-06-23",
+        "days_ago": 354
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-060052",
+        "primary_doc": "tm2516065d10_sctota.htm",
+        "filing_date": "2025-06-17",
+        "days_ago": 360
+      },
+      {
+        "cik": "0001114448",
+        "form": "SC TO-T",
+        "accession": "0001104659-25-052701",
+        "primary_doc": "tm2516065-1_sctot.htm",
+        "filing_date": "2025-05-27",
+        "days_ago": 381
+      }
+    ],
+    "terms": {
+      "fixed_price": 48.0
+    },
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVST": {
+    "ticker": "NVST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVT": {
+    "ticker": "NVT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVTS": {
+    "ticker": "NVTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVVE": {
+    "ticker": "NVVE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NVX": {
+    "ticker": "NVX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWBI": {
+    "ticker": "NWBI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWE": {
+    "ticker": "NWE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWFL": {
+    "ticker": "NWFL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWG": {
+    "ticker": "NWG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWGL": {
+    "ticker": "NWGL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWL": {
+    "ticker": "NWL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWN": {
+    "ticker": "NWN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWPX": {
+    "ticker": "NWPX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWS": {
+    "ticker": "NWS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWSA": {
+    "ticker": "NWSA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NWTG": {
+    "ticker": "NWTG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NX": {
+    "ticker": "NX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXB": {
+    "ticker": "NXB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXDR": {
+    "ticker": "NXDR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXDT": {
+    "ticker": "NXDT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXE": {
+    "ticker": "NXE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXG": {
+    "ticker": "NXG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXGL": {
+    "ticker": "NXGL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXJ": {
+    "ticker": "NXJ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXL": {
+    "ticker": "NXL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXPI": {
+    "ticker": "NXPI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXPL": {
+    "ticker": "NXPL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "NXRT": {
+    "ticker": "NXRT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
