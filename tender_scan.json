@@ -24053,5 +24053,521 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "GSG": {
+    "ticker": "GSG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GSHD": {
+    "ticker": "GSHD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GSIT": {
+    "ticker": "GSIT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GSIW": {
+    "ticker": "GSIW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GSK": {
+    "ticker": "GSK",
+    "filings": [
+      {
+        "cik": "0001131399",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-26-086527",
+        "primary_doc": "d99380dsctota.htm",
+        "filing_date": "2026-03-03",
+        "days_ago": 101
+      },
+      {
+        "cik": "0001131399",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-26-065083",
+        "primary_doc": "d60501dsctota.htm",
+        "filing_date": "2026-02-24",
+        "days_ago": 108
+      },
+      {
+        "cik": "0001131399",
+        "form": "SC TO-T",
+        "accession": "0001193125-26-032610",
+        "primary_doc": "d35539dsctot.htm",
+        "filing_date": "2026-02-02",
+        "days_ago": 130
+      }
+    ],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GSL": {
+    "ticker": "GSL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GSM": {
+    "ticker": "GSM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GT": {
+    "ticker": "GT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTAO": {
+    "ticker": "GTAO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTBIF": {
+    "ticker": "GTBIF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTBP": {
+    "ticker": "GTBP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTE": {
+    "ticker": "GTE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTEC": {
+    "ticker": "GTEC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTEN": {
+    "ticker": "GTEN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTENU": {
+    "ticker": "GTENU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTES": {
+    "ticker": "GTES",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTIM": {
+    "ticker": "GTIM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTLB": {
+    "ticker": "GTLB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTLS": {
+    "ticker": "GTLS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTM": {
+    "ticker": "GTM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTN": {
+    "ticker": "GTN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTX": {
+    "ticker": "GTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GTY": {
+    "ticker": "GTY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GUER": {
+    "ticker": "GUER",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GURE": {
+    "ticker": "GURE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GUT": {
+    "ticker": "GUT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GUTS": {
+    "ticker": "GUTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GV": {
+    "ticker": "GV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GVA": {
+    "ticker": "GVA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GVH": {
+    "ticker": "GVH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GWAV": {
+    "ticker": "GWAV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GWH": {
+    "ticker": "GWH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GWRE": {
+    "ticker": "GWRE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GWRS": {
+    "ticker": "GWRS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GWW": {
+    "ticker": "GWW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GXAI": {
+    "ticker": "GXAI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GXO": {
+    "ticker": "GXO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GYRE": {
+    "ticker": "GYRE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "GYRO": {
+    "ticker": "GYRO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "H": {
+    "ticker": "H",
+    "filings": [
+      {
+        "cik": "0001468174",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-060103",
+        "primary_doc": "tm2517598d2_sctota.htm",
+        "filing_date": "2025-06-17",
+        "days_ago": 360
+      },
+      {
+        "cik": "0001468174",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-058026",
+        "primary_doc": "tm2517598d1_sctota.htm",
+        "filing_date": "2025-06-10",
+        "days_ago": 367
+      },
+      {
+        "cik": "0001468174",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-057358",
+        "primary_doc": "tm2517370d1_sctota.htm",
+        "filing_date": "2025-06-06",
+        "days_ago": 371
+      },
+      {
+        "cik": "0001468174",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-052685",
+        "primary_doc": "tm2513196d5_sctota.htm",
+        "filing_date": "2025-05-27",
+        "days_ago": 381
+      },
+      {
+        "cik": "0001468174",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-050081",
+        "primary_doc": "tm2513196d2_sctota.htm",
+        "filing_date": "2025-05-16",
+        "days_ago": 392
+      }
+    ],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HACQU": {
+    "ticker": "HACQU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAE": {
+    "ticker": "HAE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAFC": {
+    "ticker": "HAFC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAFN": {
+    "ticker": "HAFN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAIN": {
+    "ticker": "HAIN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAL": {
+    "ticker": "HAL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HALO": {
+    "ticker": "HALO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAO": {
+    "ticker": "HAO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HAS": {
+    "ticker": "HAS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "HASI": {
+    "ticker": "HASI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
