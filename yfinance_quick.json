@@ -13984,5 +13984,16 @@
     "short_pct": 0.2585,
     "inst_pct": 0.8244,
     "insider_pct": 0.22898
+  },
+  "EXFY": {
+    "name": "Expensify, Inc.",
+    "sector": "Technology",
+    "industry": "Software - Application",
+    "mcap": 121029840,
+    "price": 1.255,
+    "fwk_low": 0.691,
+    "fwk_high": 2.64,
+    "p_b": 0.8733472,
+    "p_s": 0.86452353
   }
 }

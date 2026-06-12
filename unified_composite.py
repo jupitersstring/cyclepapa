@@ -42,7 +42,7 @@ from typing import Optional
 
 ROOT = Path("/home/user/cyclepapa")
 
-SCHEMA_VERSION = "v5-144-buyback"
+SCHEMA_VERSION = "v6-tender"
 
 # Signal noise: programmatic employee-share programs (TSM), placeholder
 # entries (NONE), non-tradeable identifiers (AXIA3 = futures token).
@@ -278,6 +278,20 @@ def form144_score(f144_row: dict) -> tuple[float, list[str]]:
     return max(-20.0, sc), list(f144_row.get("reasons") or [])
 
 
+def tender_score(t_row: dict) -> tuple[float, list[str]]:
+    """Tender-offer leg: issuer self-tenders (SC TO-I) are the most
+    aggressive repurchase structure (strongest Peyer-Vermaelen bucket).
+    Already freshness-weighted + size-kicked + capped at 35 inside
+    tender_scan.score_tender; contribute up to +25 here so a single
+    leg can't dominate."""
+    if not t_row:
+        return 0.0, []
+    sc = float(t_row.get("score") or 0)
+    if sc <= 0:
+        return 0.0, []
+    return min(25.0, sc), list(t_row.get("reasons") or [])
+
+
 def buyback_verify_score(bb_row: dict) -> tuple[float, list[str]]:
     """Buyback-verification leg: rewards REAL share-count shrinkage,
     penalizes says-buyback-does-dilution divergence."""
@@ -314,6 +328,8 @@ def main() -> int:
     f144 = json.loads(f144_p.read_text()) if f144_p.exists() else {}
     bb_p = ROOT / "buyback_verify.json"
     bb = json.loads(bb_p.read_text()) if bb_p.exists() else {}
+    tender_p = ROOT / "tender_scan.json"
+    tender = json.loads(tender_p.read_text()) if tender_p.exists() else {}
 
     all_tk = (set(f4.keys()) | set(fz.keys()) | set(forensic.keys())
               | set(step.keys()) | set(cxl.keys()) | sc13d_set
@@ -332,6 +348,7 @@ def main() -> int:
         cxl_sc, cxl_status, cxl_reasons = cancel_10b5_1_score(cxl.get(tk) or {})
         f144_sc, f144_reasons = form144_score(f144.get(tk) or {})
         bb_sc, bb_reasons = buyback_verify_score(bb.get(tk) or {})
+        tnd_sc, tnd_reasons = tender_score(tender.get(tk) or {})
 
         sc13d_sc = 6.0 if tk in sc13d_set else 0.0
         sc13d_reasons = ["13D filed"] if tk in sc13d_set else []
@@ -343,16 +360,17 @@ def main() -> int:
         # Composite. 10b5-1 / Form 144 / buyback-verify are signed;
         # everything else additive.
         composite = (ins_sc + val_sc + st_sc + psu_sc + sc13d_sc
-                     + cxl_sc + f144_sc + bb_sc)
+                     + cxl_sc + f144_sc + bb_sc + tnd_sc)
 
-        if composite < args.min_score and cxl_sc == 0 and f144_sc == 0:
+        if (composite < args.min_score and cxl_sc == 0
+                and f144_sc == 0 and tnd_sc == 0):
             continue
 
         # Format
         all_reasons = (
             ins_reasons + val_reasons + st_reasons +
             psu_reasons + sc13d_reasons + cxl_reasons +
-            f144_reasons + bb_reasons
+            f144_reasons + bb_reasons + tnd_reasons
         )
         rows.append({
             "ticker": tk,
@@ -375,6 +393,7 @@ def main() -> int:
             "cancel_10b5_1_score": round(cxl_sc, 1),
             "form144_score": round(f144_sc, 1),
             "buyback_verify_score": round(bb_sc, 1),
+            "tender_score": round(tnd_sc, 1),
             "cluster_size": ins.get("cluster", 0),
             "ceo_bought": ins.get("ceo"),
             "cfo_bought": ins.get("cfo"),
