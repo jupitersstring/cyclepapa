@@ -1,0 +1,1356 @@
+{
+ "AA": {
+  "ticker": "AA",
+  "accession": "0001193125-26-115997",
+  "filing_date": "2026-03-19",
+  "has_psu_program": true,
+  "psu_core": 36.0,
+  "pattern_match": 40.0,
+  "freshness": 0.9,
+  "gov_score": -2.0,
+  "gov_reasons": [
+   "single-trigger CIC",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "ROIC metric (per-share return)",
+   "6 per-share metrics (deep stack)",
+   "3-tranche price ladder $53-$69",
+   "double-trigger CIC",
+   "single-trigger CIC (penalty)",
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "PSU 70% of LTI (very heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roic",
+   "roe",
+   "other_per_share",
+   "cfroi"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_ebitda",
+   "absolute_revenue",
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": 70,
+  "say_on_pay_pct": 88.0,
+  "double_trigger": true,
+  "single_trigger": true,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   53.14,
+   61.98,
+   69.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AAL": {
+  "ticker": "AAL",
+  "accession": "0001193125-26-187096",
+  "filing_date": "2026-04-28",
+  "has_psu_program": true,
+  "psu_core": 23.0,
+  "pattern_match": 23.0,
+  "freshness": 1.0,
+  "gov_score": 4.0,
+  "gov_reasons": [
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "3 per-share metrics (deep stack)",
+   "4-tranche price ladder $1-$600",
+   "retirement carveout",
+   "repricing language",
+   "plan evolution: shareholder_feedback_response"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe"
+  ],
+  "aggregate_metrics": [
+   "absolute_net_income",
+   "absolute_sales"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   1.0,
+   7.5,
+   15.2,
+   600.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AAOI": {
+  "ticker": "AAOI",
+  "accession": "0001104659-26-048559",
+  "filing_date": "2026-04-24",
+  "has_psu_program": true,
+  "psu_core": 44.0,
+  "pattern_match": 44.0,
+  "freshness": 1.0,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "3 per-share metrics (deep stack)",
+   "4-tranche price ladder $28-$37",
+   "double-trigger CIC",
+   "retirement carveout",
+   "front-loaded grant"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_revenue",
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": 97.45,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   27.78,
+   32.16,
+   34.86,
+   37.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AAPG": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "AASP": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "AAVXF": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "ABBV": {
+  "ticker": "ABBV",
+  "accession": "0001104659-26-033387",
+  "filing_date": "2026-03-23",
+  "has_psu_program": true,
+  "psu_core": 21.6,
+  "pattern_match": 24.0,
+  "freshness": 0.9,
+  "gov_score": 1.0,
+  "gov_reasons": [
+   "single-trigger CIC",
+   "3y vesting",
+   "anti-hedge/pledge"
+  ],
+  "pattern_reasons": [
+   "ROIC metric (per-share return)",
+   "3 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "single-trigger CIC (penalty)",
+   "retirement carveout"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roic"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": 93.1,
+  "double_trigger": true,
+  "single_trigger": true,
+  "plan_deltas": [
+   "anti_hedge_pledge_added"
+  ],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ABEO": {
+  "ticker": "ABEO",
+  "accession": "0001493152-26-019153",
+  "filing_date": "2026-04-27",
+  "has_psu_program": true,
+  "psu_core": 22.0,
+  "pattern_match": 22.0,
+  "freshness": 1.0,
+  "gov_score": -6.0,
+  "gov_reasons": [
+   "single-trigger CIC"
+  ],
+  "pattern_reasons": [
+   "ROIC metric (per-share return)",
+   "4 per-share metrics (deep stack)",
+   "single-trigger CIC (penalty)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roic",
+   "roe"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": true,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ABLV": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "ABOS": {
+  "ticker": "ABOS",
+  "accession": "0001628280-26-026870",
+  "filing_date": "2026-04-23",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ABT": {
+  "ticker": "ABT",
+  "accession": "0001308179-26-000064",
+  "filing_date": "2026-03-13",
+  "has_psu_program": true,
+  "psu_core": 17.1,
+  "pattern_match": 19.0,
+  "freshness": 0.9,
+  "gov_score": 11.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "clawback strengthened"
+  ],
+  "pattern_reasons": [
+   "4 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "repricing language"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe",
+   "cfroi"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income",
+   "absolute_sales",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [
+   "clawback_strengthened"
+  ],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ABUS": {
+  "ticker": "ABUS",
+  "accession": "0001140361-26-014623",
+  "filing_date": "2026-04-14",
+  "has_psu_program": true,
+  "psu_core": 16.0,
+  "pattern_match": 16.0,
+  "freshness": 1.0,
+  "gov_score": 4.0,
+  "gov_reasons": [
+   "4y vesting"
+  ],
+  "pattern_reasons": [
+   "3 per-share metrics (deep stack)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe"
+  ],
+  "aggregate_metrics": [
+   "absolute_net_income",
+   "absolute_sales",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ABVX": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "ACA": {
+  "ticker": "ACA",
+  "accession": "0001739445-26-000050",
+  "filing_date": "2026-03-31",
+  "has_psu_program": true,
+  "psu_core": 19.8,
+  "pattern_match": 22.0,
+  "freshness": 0.9,
+  "gov_score": 18.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting",
+   "clawback strengthened",
+   "anti-hedge/pledge"
+  ],
+  "pattern_reasons": [
+   "double-trigger CIC",
+   "retirement carveout"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_ebitda",
+   "absolute_revenue",
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": 99.0,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [
+   "clawback_strengthened",
+   "anti_hedge_pledge_added"
+  ],
+  "stock_price_hurdles": [
+   92.15,
+   92.92
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACCL": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "ACDC": {
+  "ticker": "ACDC",
+  "accession": "0001104659-26-049044",
+  "filing_date": "2026-04-27",
+  "has_psu_program": true,
+  "psu_core": 6.0,
+  "pattern_match": 6.0,
+  "freshness": 1.0,
+  "gov_score": 4.0,
+  "gov_reasons": [
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "retirement carveout",
+   "PSU 60% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_ebitda",
+   "absolute_revenue",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 60,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACFN": {
+  "ticker": "ACFN",
+  "accession": "0001641172-25-022405",
+  "filing_date": "2025-08-06",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACGLO": {
+  "ticker": "ACGLO",
+  "accession": "0000947484-26-000038",
+  "filing_date": "2026-03-24",
+  "has_psu_program": true,
+  "psu_core": 27.0,
+  "pattern_match": 30.0,
+  "freshness": 0.9,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "3 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "retirement carveout",
+   "PSU 68% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr",
+   "roe",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": 68,
+  "say_on_pay_pct": 84.7,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   95.92,
+   215.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACHR": {
+  "ticker": "ACHR",
+  "accession": "0001104659-26-052227",
+  "filing_date": "2026-04-30",
+  "has_psu_program": true,
+  "psu_core": 1.0,
+  "pattern_match": 1.0,
+  "freshness": 1.0,
+  "gov_score": -2.0,
+  "gov_reasons": [
+   "single-trigger CIC",
+   "4y vesting"
+  ],
+  "pattern_reasons": [
+   "double-trigger CIC",
+   "single-trigger CIC (penalty)",
+   "retirement carveout"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 25,
+  "say_on_pay_pct": 77.0,
+  "double_trigger": true,
+  "single_trigger": true,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   10.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACIC": {
+  "ticker": "ACIC",
+  "accession": "0001401521-26-000023",
+  "filing_date": "2026-04-01",
+  "has_psu_program": true,
+  "psu_core": 20.7,
+  "pattern_match": 23.0,
+  "freshness": 0.9,
+  "gov_score": 18.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting",
+   "clawback strengthened",
+   "anti-hedge/pledge"
+  ],
+  "pattern_reasons": [
+   "4 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "retirement carveout",
+   "repricing language"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [
+   "clawback_strengthened",
+   "anti_hedge_pledge_added"
+  ],
+  "stock_price_hurdles": [
+   12.63
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACLS": {
+  "ticker": "ACLS",
+  "accession": "0001104659-26-037356",
+  "filing_date": "2026-03-31",
+  "has_psu_program": true,
+  "psu_core": 3.6,
+  "pattern_match": 4.0,
+  "freshness": 0.9,
+  "gov_score": -6.0,
+  "gov_reasons": [
+   "single-trigger CIC"
+  ],
+  "pattern_reasons": [
+   "double-trigger CIC",
+   "single-trigger CIC (penalty)",
+   "discretionary language (gameable)",
+   "repricing language"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_ebitda",
+   "absolute_revenue",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": 87.1,
+  "double_trigger": true,
+  "single_trigger": true,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   100.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACMR": {
+  "ticker": "ACMR",
+  "accession": "0001628280-26-027358",
+  "filing_date": "2026-04-27",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACNT": {
+  "ticker": "ACNT",
+  "accession": "0000095953-26-000071",
+  "filing_date": "2026-04-30",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACP": {
+  "ticker": "ACP",
+  "accession": "0001104659-26-040410",
+  "filing_date": "2026-04-07",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACRS": {
+  "ticker": "ACRS",
+  "accession": "0001104659-26-047262",
+  "filing_date": "2026-04-23",
+  "has_psu_program": true,
+  "psu_core": 6.0,
+  "pattern_match": 6.0,
+  "freshness": 1.0,
+  "gov_score": 0.0,
+  "gov_reasons": [],
+  "pattern_reasons": [],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACTG": {
+  "ticker": "ACTG",
+  "accession": "0000934549-26-000016",
+  "filing_date": "2026-04-30",
+  "has_psu_program": true,
+  "psu_core": 17.0,
+  "pattern_match": 17.0,
+  "freshness": 1.0,
+  "gov_score": 4.0,
+  "gov_reasons": [
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "discretionary language (gameable)",
+   "transformation signal"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [
+   "front_load_grant"
+  ],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ACV": {
+  "ticker": "ACV",
+  "accession": "0001104659-26-045460",
+  "filing_date": "2026-04-20",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AD": {
+  "ticker": "AD",
+  "accession": "0000821130-26-000025",
+  "filing_date": "2026-04-07",
+  "has_psu_program": true,
+  "psu_core": 0.9,
+  "pattern_match": 1.0,
+  "freshness": 0.9,
+  "gov_score": 3.0,
+  "gov_reasons": [
+   "anti-hedge/pledge"
+  ],
+  "pattern_reasons": [
+   "6-tranche price ladder $1-$70",
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "repricing language"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [
+   "anti_hedge_pledge_added"
+  ],
+  "stock_price_hurdles": [
+   1.0,
+   2.0,
+   4.0,
+   5.0,
+   65.58,
+   70.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADAM": {
+  "ticker": "ADAM",
+  "accession": "0001273685-26-000038",
+  "filing_date": "2026-04-24",
+  "has_psu_program": true,
+  "psu_core": 29.0,
+  "pattern_match": 29.0,
+  "freshness": 1.0,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "7-tranche price ladder $1-$855",
+   "double-trigger CIC",
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "PSU 68% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [
+   "spin_separation"
+  ],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 68,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   1.0,
+   2.0,
+   7.3,
+   11.0,
+   39.0,
+   86.0,
+   855.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADAMI": {
+  "ticker": "ADAMI",
+  "accession": "0001273685-26-000038",
+  "filing_date": "2026-04-24",
+  "has_psu_program": true,
+  "psu_core": 29.0,
+  "pattern_match": 29.0,
+  "freshness": 1.0,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "7-tranche price ladder $1-$855",
+   "double-trigger CIC",
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "PSU 68% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [
+   "spin_separation"
+  ],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 68,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   1.0,
+   2.0,
+   7.3,
+   11.0,
+   39.0,
+   86.0,
+   855.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADAMN": {
+  "ticker": "ADAMN",
+  "accession": "0001273685-26-000038",
+  "filing_date": "2026-04-24",
+  "has_psu_program": true,
+  "psu_core": 29.0,
+  "pattern_match": 29.0,
+  "freshness": 1.0,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "7-tranche price ladder $1-$855",
+   "double-trigger CIC",
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "PSU 68% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [
+   "spin_separation"
+  ],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 68,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   1.0,
+   2.0,
+   7.3,
+   11.0,
+   39.0,
+   86.0,
+   855.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADC": {
+  "ticker": "ADC",
+  "accession": "0000917251-26-000031",
+  "filing_date": "2026-04-02",
+  "has_psu_program": true,
+  "psu_core": 2.7,
+  "pattern_match": 3.0,
+  "freshness": 0.9,
+  "gov_score": 1.0,
+  "gov_reasons": [
+   "single-trigger CIC",
+   "3y vesting",
+   "responsive to shareholders"
+  ],
+  "pattern_reasons": [
+   "single-trigger CIC (penalty)",
+   "plan evolution: shareholder_feedback_response"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_ebitda",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 45,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": true,
+  "plan_deltas": [
+   "ownership_requirement_added",
+   "responsive_to_shareholders"
+  ],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADGM": {
+  "ticker": "ADGM",
+  "accession": "0001140361-26-018313",
+  "filing_date": "2026-04-30",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADIL": {
+  "ticker": "ADIL",
+  "accession": "0001213900-26-001792",
+  "filing_date": "2026-01-06",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADNT": {
+  "ticker": "ADNT",
+  "accession": "0001670541-26-000011",
+  "filing_date": "2026-01-21",
+  "has_psu_program": true,
+  "psu_core": 18.0,
+  "pattern_match": 24.0,
+  "freshness": 0.75,
+  "gov_score": -2.0,
+  "gov_reasons": [
+   "single-trigger CIC",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "12-tranche price ladder $1-$926",
+   "double-trigger CIC",
+   "single-trigger CIC (penalty)",
+   "retirement carveout",
+   "PSU 60% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_ebitda",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 60,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": true,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   1.0,
+   2.0,
+   4.0,
+   6.0,
+   10.0,
+   22.0,
+   30.0,
+   622.0,
+   710.0,
+   872.0,
+   888.0,
+   926.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADSE": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "ADTN": {
+  "ticker": "ADTN",
+  "accession": "0001193125-26-127315",
+  "filing_date": "2026-03-27",
+  "has_psu_program": true,
+  "psu_core": 0.0,
+  "pattern_match": 0.0,
+  "freshness": 0.9,
+  "gov_score": 4.0,
+  "gov_reasons": [
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "repricing language",
+   "front-loaded grant"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_revenue",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 25,
+  "say_on_pay_pct": 94.7,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   8.5
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADUS": {
+  "ticker": "ADUS",
+  "accession": "0001437749-26-013190",
+  "filing_date": "2026-04-23",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "ADXN": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "AEE": {
+  "ticker": "AEE",
+  "accession": "0001104659-26-037756",
+  "filing_date": "2026-03-31",
+  "has_psu_program": true,
+  "psu_core": 32.4,
+  "pattern_match": 36.0,
+  "freshness": 0.9,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "3 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "retirement carveout",
+   "PSU 60% of LTI (heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 60,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   84.72,
+   99.86
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AEG": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "AEI": {
+  "ticker": "AEI",
+  "accession": "0001493152-25-018912",
+  "filing_date": "2025-10-22",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AEMD": {
+  "ticker": "AEMD",
+  "accession": "0001683168-26-000364",
+  "filing_date": "2026-01-16",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AEON": {
+  "ticker": "AEON",
+  "accession": "0001837607-26-000033",
+  "filing_date": "2026-04-29",
+  "has_psu_program": true,
+  "psu_core": 6.0,
+  "pattern_match": 6.0,
+  "freshness": 1.0,
+  "gov_score": 3.0,
+  "gov_reasons": [
+   "clawback strengthened"
+  ],
+  "pattern_reasons": [
+   "front-loaded grant"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [],
+  "aggregate_metrics": [
+   "market_cap"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [
+   "clawback_strengthened"
+  ],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AERA": {
+  "_complete": true,
+  "no_def14a": true
+ },
+ "AES": {
+  "ticker": "AES",
+  "accession": "0000874761-26-000070",
+  "filing_date": "2026-03-20",
+  "has_psu_program": true,
+  "psu_core": 9.0,
+  "pattern_match": 10.0,
+  "freshness": 0.9,
+  "gov_score": -2.0,
+  "gov_reasons": [
+   "single-trigger CIC",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "double-trigger CIC",
+   "single-trigger CIC (penalty)",
+   "discretionary language (gameable)",
+   "retirement carveout",
+   "PSU 90% of LTI (very heavy)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 1,
+  "cond_cats": [
+   "fcf_dollar_target"
+  ],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_ebitda",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": 90,
+  "say_on_pay_pct": null,
+  "double_trigger": true,
+  "single_trigger": true,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AEYE": {
+  "ticker": "AEYE",
+  "accession": "0001104659-26-060237",
+  "filing_date": "2026-05-13",
+  "has_psu_program": true,
+  "psu_core": 11.0,
+  "pattern_match": 11.0,
+  "freshness": 1.0,
+  "gov_score": 0.0,
+  "gov_reasons": [],
+  "pattern_reasons": [],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   10.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AFG": {
+  "ticker": "AFG",
+  "accession": "0001140361-26-013118",
+  "filing_date": "2026-04-03",
+  "has_psu_program": true,
+  "psu_core": 18.9,
+  "pattern_match": 21.0,
+  "freshness": 0.9,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "4 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "retirement carveout"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": 93.0,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AFGD": {
+  "ticker": "AFGD",
+  "accession": "0001140361-26-013118",
+  "filing_date": "2026-04-03",
+  "has_psu_program": true,
+  "psu_core": 18.9,
+  "pattern_match": 21.0,
+  "freshness": 0.9,
+  "gov_score": 12.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pattern_reasons": [
+   "4 per-share metrics (deep stack)",
+   "double-trigger CIC",
+   "retirement carveout"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [
+   "eps",
+   "tsr",
+   "roe",
+   "other_per_share"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_net_income"
+  ],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": 93.0,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "AFJKR": {
+  "ticker": "AFJKR",
+  "accession": "0001493152-25-021405",
+  "filing_date": "2025-11-10",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ }
+}
