@@ -55248,5 +55248,2167 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "VGZ": {
+    "ticker": "VGZ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VHC": {
+    "ticker": "VHC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VHCP": {
+    "ticker": "VHCP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VHCPU": {
+    "ticker": "VHCPU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VHI": {
+    "ticker": "VHI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VHUB": {
+    "ticker": "VHUB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIA": {
+    "ticker": "VIA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIASP": {
+    "ticker": "VIASP",
+    "filings": [
+      {
+        "cik": "0001606268",
+        "form": "SC TO-I/A",
+        "accession": "0001654954-25-006486",
+        "primary_doc": "via_sctoia.htm",
+        "filing_date": "2025-06-03",
+        "days_ago": 374
+      }
+    ],
+    "terms": {
+      "cap_shares": 200000,
+      "fixed_price": 24.0
+    },
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIAV": {
+    "ticker": "VIAV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VICI": {
+    "ticker": "VICI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VICR": {
+    "ticker": "VICR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIDA": {
+    "ticker": "VIDA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIK": {
+    "ticker": "VIK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VINP": {
+    "ticker": "VINP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIOT": {
+    "ticker": "VIOT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIPS": {
+    "ticker": "VIPS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIR": {
+    "ticker": "VIR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIRC": {
+    "ticker": "VIRC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIRT": {
+    "ticker": "VIRT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VISM": {
+    "ticker": "VISM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VISN": {
+    "ticker": "VISN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIST": {
+    "ticker": "VIST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VITL": {
+    "ticker": "VITL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIV": {
+    "ticker": "VIV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIVK": {
+    "ticker": "VIVK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIVO": {
+    "ticker": "VIVO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIVS": {
+    "ticker": "VIVS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIXM": {
+    "ticker": "VIXM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VIXY": {
+    "ticker": "VIXY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VKI": {
+    "ticker": "VKI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VKQ": {
+    "ticker": "VKQ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VKTX": {
+    "ticker": "VKTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLGEA": {
+    "ticker": "VLGEA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLN": {
+    "ticker": "VLN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLO": {
+    "ticker": "VLO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLRS": {
+    "ticker": "VLRS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLT": {
+    "ticker": "VLT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLTO": {
+    "ticker": "VLTO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLY": {
+    "ticker": "VLY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLYPN": {
+    "ticker": "VLYPN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLYPO": {
+    "ticker": "VLYPO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VLYPP": {
+    "ticker": "VLYPP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VMAR": {
+    "ticker": "VMAR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VMC": {
+    "ticker": "VMC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VMD": {
+    "ticker": "VMD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VMET": {
+    "ticker": "VMET",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VMI": {
+    "ticker": "VMI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VMO": {
+    "ticker": "VMO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNCE": {
+    "ticker": "VNCE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNDA": {
+    "ticker": "VNDA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNET": {
+    "ticker": "VNET",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNO": {
+    "ticker": "VNO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNOM": {
+    "ticker": "VNOM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNRX": {
+    "ticker": "VNRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNT": {
+    "ticker": "VNT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VNTG": {
+    "ticker": "VNTG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VOC": {
+    "ticker": "VOC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VOD": {
+    "ticker": "VOD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VOR": {
+    "ticker": "VOR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VOXR": {
+    "ticker": "VOXR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VOYA": {
+    "ticker": "VOYA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VOYG": {
+    "ticker": "VOYG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VPG": {
+    "ticker": "VPG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRA": {
+    "ticker": "VRA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRAX": {
+    "ticker": "VRAX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRCA": {
+    "ticker": "VRCA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRDN": {
+    "ticker": "VRDN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRE": {
+    "ticker": "VRE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VREOF": {
+    "ticker": "VREOF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VREX": {
+    "ticker": "VREX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRM": {
+    "ticker": "VRM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRME": {
+    "ticker": "VRME",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRNO": {
+    "ticker": "VRNO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRNS": {
+    "ticker": "VRNS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRRM": {
+    "ticker": "VRRM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRSK": {
+    "ticker": "VRSK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRSN": {
+    "ticker": "VRSN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRT": {
+    "ticker": "VRT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRTS": {
+    "ticker": "VRTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VRTX": {
+    "ticker": "VRTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VS": {
+    "ticker": "VS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSA": {
+    "ticker": "VSA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSAT": {
+    "ticker": "VSAT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSCO": {
+    "ticker": "VSCO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSEC": {
+    "ticker": "VSEC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSECU": {
+    "ticker": "VSECU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSEE": {
+    "ticker": "VSEE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSH": {
+    "ticker": "VSH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSME": {
+    "ticker": "VSME",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSNT": {
+    "ticker": "VSNT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VST": {
+    "ticker": "VST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSTD": {
+    "ticker": "VSTD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSTM": {
+    "ticker": "VSTM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VSTS": {
+    "ticker": "VSTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTAK": {
+    "ticker": "VTAK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTEX": {
+    "ticker": "VTEX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTGN": {
+    "ticker": "VTGN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTIX": {
+    "ticker": "VTIX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTMX": {
+    "ticker": "VTMX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTN": {
+    "ticker": "VTN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTOL": {
+    "ticker": "VTOL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTR": {
+    "ticker": "VTR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTRS": {
+    "ticker": "VTRS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTS": {
+    "ticker": "VTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTSI": {
+    "ticker": "VTSI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VTVT": {
+    "ticker": "VTVT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VUZI": {
+    "ticker": "VUZI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VVOS": {
+    "ticker": "VVOS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VVR": {
+    "ticker": "VVR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VVV": {
+    "ticker": "VVV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VVX": {
+    "ticker": "VVX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VWAV": {
+    "ticker": "VWAV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VXX": {
+    "ticker": "VXX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VXZ": {
+    "ticker": "VXZ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VYGR": {
+    "ticker": "VYGR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VYLD": {
+    "ticker": "VYLD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VYNE": {
+    "ticker": "VYNE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VYX": {
+    "ticker": "VYX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VZ": {
+    "ticker": "VZ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "VZLA": {
+    "ticker": "VZLA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "W": {
+    "ticker": "W",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAB": {
+    "ticker": "WAB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WABC": {
+    "ticker": "WABC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAFD": {
+    "ticker": "WAFD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAFDP": {
+    "ticker": "WAFDP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAFU": {
+    "ticker": "WAFU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAI": {
+    "ticker": "WAI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAL": {
+    "ticker": "WAL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WALD": {
+    "ticker": "WALD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WASH": {
+    "ticker": "WASH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAT": {
+    "ticker": "WAT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WATT": {
+    "ticker": "WATT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAVE": {
+    "ticker": "WAVE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WAY": {
+    "ticker": "WAY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WB": {
+    "ticker": "WB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBD": {
+    "ticker": "WBD",
+    "filings": [
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-021688",
+        "primary_doc": "tm2533570d76_sctota.htm",
+        "filing_date": "2026-02-27",
+        "days_ago": 105
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-020849",
+        "primary_doc": "tm2533570d73_sctota.htm",
+        "filing_date": "2026-02-27",
+        "days_ago": 105
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-077410",
+        "primary_doc": "d113971dsc14d9a.htm",
+        "filing_date": "2026-02-26",
+        "days_ago": 106
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-019772",
+        "primary_doc": "tm2533570d71_sctota.htm",
+        "filing_date": "2026-02-25",
+        "days_ago": 107
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-019400",
+        "primary_doc": "tm2533570d69_sctota.htm",
+        "filing_date": "2026-02-25",
+        "days_ago": 107
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-068080",
+        "primary_doc": "d102148dsc14d9a.htm",
+        "filing_date": "2026-02-25",
+        "days_ago": 107
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-067422",
+        "primary_doc": "d839528dsc14d9a.htm",
+        "filing_date": "2026-02-24",
+        "days_ago": 108
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-019196",
+        "primary_doc": "tm2533570d67_sctota.htm",
+        "filing_date": "2026-02-24",
+        "days_ago": 108
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-017610",
+        "primary_doc": "tm2533570d61_sctota.htm",
+        "filing_date": "2026-02-19",
+        "days_ago": 113
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-016578",
+        "primary_doc": "tm2533570d58_sctota.htm",
+        "filing_date": "2026-02-17",
+        "days_ago": 115
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-054683",
+        "primary_doc": "d52493dsc14d9a.htm",
+        "filing_date": "2026-02-17",
+        "days_ago": 115
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-053008",
+        "primary_doc": "d95987dsc14d9a.htm",
+        "filing_date": "2026-02-17",
+        "days_ago": 115
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-044943",
+        "primary_doc": "d107268dsc14d9a.htm",
+        "filing_date": "2026-02-10",
+        "days_ago": 122
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-012712",
+        "primary_doc": "tm2533570d56_sctota.htm",
+        "filing_date": "2026-02-10",
+        "days_ago": 122
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-012397",
+        "primary_doc": "tm2533570d52_sctota.htm",
+        "filing_date": "2026-02-10",
+        "days_ago": 122
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-006640",
+        "primary_doc": "tm2533570d43_sctota.htm",
+        "filing_date": "2026-01-26",
+        "days_ago": 137
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-005607",
+        "primary_doc": "tm2533570d36_sctota.htm",
+        "filing_date": "2026-01-22",
+        "days_ago": 141
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-015985",
+        "primary_doc": "d45064dsc14d9a.htm",
+        "filing_date": "2026-01-20",
+        "days_ago": 143
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-004738",
+        "primary_doc": "tm2533570d34_sctota.htm",
+        "filing_date": "2026-01-20",
+        "days_ago": 143
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-004709",
+        "primary_doc": "tm2533570d32_sctota.htm",
+        "filing_date": "2026-01-20",
+        "days_ago": 143
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-002910",
+        "primary_doc": "tm2533570d30_sctota.htm",
+        "filing_date": "2026-01-12",
+        "days_ago": 151
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-002525",
+        "primary_doc": "tm2533570d28_sctota.htm",
+        "filing_date": "2026-01-09",
+        "days_ago": 154
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-002520",
+        "primary_doc": "tm2533570d26_sctota.htm",
+        "filing_date": "2026-01-09",
+        "days_ago": 154
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-26-002174",
+        "primary_doc": "tm2533570d24_sctota.htm",
+        "filing_date": "2026-01-08",
+        "days_ago": 155
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-006518",
+        "primary_doc": "d41265dsc14d9a.htm",
+        "filing_date": "2026-01-07",
+        "days_ago": 156
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-26-005426",
+        "primary_doc": "d75660dsc14d9a.htm",
+        "filing_date": "2026-01-07",
+        "days_ago": 156
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-123907",
+        "primary_doc": "tm2533570d21_sctota.htm",
+        "filing_date": "2025-12-23",
+        "days_ago": 171
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-25-329239",
+        "primary_doc": "d49788dsc14d9a.htm",
+        "filing_date": "2025-12-23",
+        "days_ago": 171
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-123811",
+        "primary_doc": "tm2533570d19_sctota.htm",
+        "filing_date": "2025-12-22",
+        "days_ago": 172
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-123803",
+        "primary_doc": "tm2533570d17_sctota.htm",
+        "filing_date": "2025-12-22",
+        "days_ago": 172
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-123493",
+        "primary_doc": "tm2533570-13_sctota.htm",
+        "filing_date": "2025-12-22",
+        "days_ago": 172
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-122773",
+        "primary_doc": "tm2533570d11_sctota.htm",
+        "filing_date": "2025-12-19",
+        "days_ago": 175
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001104659-25-122094",
+        "primary_doc": "tm2533570d8_sctota.htm",
+        "filing_date": "2025-12-17",
+        "days_ago": 177
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9/A",
+        "accession": "0001193125-25-322838",
+        "primary_doc": "d40544dsc14d9a.htm",
+        "filing_date": "2025-12-17",
+        "days_ago": 177
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC 14D9",
+        "accession": "0001193125-25-321674",
+        "primary_doc": "d78122dsc14d9.htm",
+        "filing_date": "2025-12-17",
+        "days_ago": 177
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-318129",
+        "primary_doc": "d31903dsctota.htm",
+        "filing_date": "2025-12-15",
+        "days_ago": 179
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-314744",
+        "primary_doc": "d933277dsctota.htm",
+        "filing_date": "2025-12-11",
+        "days_ago": 183
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-314439",
+        "primary_doc": "d35732dsctota.htm",
+        "filing_date": "2025-12-10",
+        "days_ago": 184
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-311450",
+        "primary_doc": "d97149dsctota.htm",
+        "filing_date": "2025-12-08",
+        "days_ago": 186
+      },
+      {
+        "cik": "0001437107",
+        "form": "SC TO-T",
+        "accession": "0001193125-25-310708",
+        "primary_doc": "d92876dsctot.htm",
+        "filing_date": "2025-12-08",
+        "days_ago": 186
+      }
+    ],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBI": {
+    "ticker": "WBI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBS": {
+    "ticker": "WBS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBTN": {
+    "ticker": "WBTN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBUY": {
+    "ticker": "WBUY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBX": {
+    "ticker": "WBX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WBXWF": {
+    "ticker": "WBXWF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WCC": {
+    "ticker": "WCC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WCN": {
+    "ticker": "WCN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WCT": {
+    "ticker": "WCT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WD": {
+    "ticker": "WD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WDAY": {
+    "ticker": "WDAY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WDC": {
+    "ticker": "WDC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WDFC": {
+    "ticker": "WDFC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WDH": {
+    "ticker": "WDH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WDS": {
+    "ticker": "WDS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEAT": {
+    "ticker": "WEAT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEAV": {
+    "ticker": "WEAV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEC": {
+    "ticker": "WEC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WELL": {
+    "ticker": "WELL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEN": {
+    "ticker": "WEN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WENC": {
+    "ticker": "WENC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WERN": {
+    "ticker": "WERN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WES": {
+    "ticker": "WES",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEST": {
+    "ticker": "WEST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WETH": {
+    "ticker": "WETH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WETO": {
+    "ticker": "WETO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEX": {
+    "ticker": "WEX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WEYS": {
+    "ticker": "WEYS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WF": {
+    "ticker": "WF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WFC": {
+    "ticker": "WFC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WFCF": {
+    "ticker": "WFCF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WFF": {
+    "ticker": "WFF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WFG": {
+    "ticker": "WFG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WFRD": {
+    "ticker": "WFRD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WGO": {
+    "ticker": "WGO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WGRX": {
+    "ticker": "WGRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WGS": {
+    "ticker": "WGS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WH": {
+    "ticker": "WH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHD": {
+    "ticker": "WHD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHF": {
+    "ticker": "WHF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHFCL": {
+    "ticker": "WHFCL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHG": {
+    "ticker": "WHG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHLR": {
+    "ticker": "WHLR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHLRD": {
+    "ticker": "WHLRD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHLRL": {
+    "ticker": "WHLRL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHLRP": {
+    "ticker": "WHLRP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHR": {
+    "ticker": "WHR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WHWK": {
+    "ticker": "WHWK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WIA": {
+    "ticker": "WIA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WILC": {
+    "ticker": "WILC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WIMI": {
+    "ticker": "WIMI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WINA": {
+    "ticker": "WINA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WING": {
+    "ticker": "WING",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WIT": {
+    "ticker": "WIT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WIX": {
+    "ticker": "WIX",
+    "filings": [
+      {
+        "cik": "0001576789",
+        "form": "SC TO-I/A",
+        "accession": "0001178913-26-001986",
+        "primary_doc": "zk2635022.htm",
+        "filing_date": "2026-04-03",
+        "days_ago": 70
+      },
+      {
+        "cik": "0001576789",
+        "form": "SC TO-I/A",
+        "accession": "0001178913-26-001974",
+        "primary_doc": "zk2635013.htm",
+        "filing_date": "2026-04-02",
+        "days_ago": 71
+      },
+      {
+        "cik": "0001576789",
+        "form": "SC TO-I",
+        "accession": "0001178913-26-000759",
+        "primary_doc": "zk2634466.htm",
+        "filing_date": "2026-03-05",
+        "days_ago": 99
+      }
+    ],
+    "terms": {
+      "cap_usd": 1750000000.0
+    },
+    "score": 14.0,
+    "reasons": [
+      "issuer SELF-TENDER live, latest filing 70d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WK": {
+    "ticker": "WK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WKC": {
+    "ticker": "WKC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WKEY": {
+    "ticker": "WKEY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WKHS": {
+    "ticker": "WKHS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WKSP": {
+    "ticker": "WKSP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WLDN": {
+    "ticker": "WLDN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WLDS": {
+    "ticker": "WLDS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WLFC": {
+    "ticker": "WLFC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "WLK": {
+    "ticker": "WLK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
