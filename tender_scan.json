@@ -17550,5 +17550,538 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "EMR": {
+    "ticker": "EMR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EMYB": {
+    "ticker": "EMYB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENB": {
+    "ticker": "ENB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENGN": {
+    "ticker": "ENGN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENGS": {
+    "ticker": "ENGS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENHA": {
+    "ticker": "ENHA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENIC": {
+    "ticker": "ENIC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENJ": {
+    "ticker": "ENJ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENLT": {
+    "ticker": "ENLT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENLV": {
+    "ticker": "ENLV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENO": {
+    "ticker": "ENO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENOV": {
+    "ticker": "ENOV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENPH": {
+    "ticker": "ENPH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENR": {
+    "ticker": "ENR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENS": {
+    "ticker": "ENS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENSC": {
+    "ticker": "ENSC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENSG": {
+    "ticker": "ENSG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENTA": {
+    "ticker": "ENTA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENTG": {
+    "ticker": "ENTG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENTX": {
+    "ticker": "ENTX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENVA": {
+    "ticker": "ENVA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENVB": {
+    "ticker": "ENVB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENVX": {
+    "ticker": "ENVX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENZN": {
+    "ticker": "ENZN",
+    "filings": [
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-034177",
+        "primary_doc": "tm269722d1_sctoia.htm",
+        "filing_date": "2026-03-25",
+        "days_ago": 79
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-033627",
+        "primary_doc": "tm267492d18_sctoia.htm",
+        "filing_date": "2026-03-24",
+        "days_ago": 80
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-032068",
+        "primary_doc": "tm267492d12_sctoia.htm",
+        "filing_date": "2026-03-19",
+        "days_ago": 85
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-028435",
+        "primary_doc": "tm267492d11_sctoia.htm",
+        "filing_date": "2026-03-16",
+        "days_ago": 88
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-026167",
+        "primary_doc": "tm267492d7_sctoia.htm",
+        "filing_date": "2026-03-11",
+        "days_ago": 93
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-025204",
+        "primary_doc": "tm267492d4_sctoia.htm",
+        "filing_date": "2026-03-09",
+        "days_ago": 95
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-022899",
+        "primary_doc": "tm267492d2_sctoia.htm",
+        "filing_date": "2026-03-03",
+        "days_ago": 101
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-021045",
+        "primary_doc": "tm267492d1_sctoia.htm",
+        "filing_date": "2026-02-27",
+        "days_ago": 105
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I/A",
+        "accession": "0001104659-26-013530",
+        "primary_doc": "tm266062d1_sctoia.htm",
+        "filing_date": "2026-02-11",
+        "days_ago": 121
+      },
+      {
+        "cik": "0000727510",
+        "form": "SC TO-I",
+        "accession": "0001104659-26-008693",
+        "primary_doc": "tm2521156d8_sctoi.htm",
+        "filing_date": "2026-01-30",
+        "days_ago": 133
+      }
+    ],
+    "terms": {},
+    "score": 14.0,
+    "reasons": [
+      "issuer SELF-TENDER live, latest filing 79d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "ENZND": {
+    "ticker": "ENZND",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EOD": {
+    "ticker": "EOD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EOG": {
+    "ticker": "EOG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EOLS": {
+    "ticker": "EOLS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EONR": {
+    "ticker": "EONR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EOSE": {
+    "ticker": "EOSE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EOT": {
+    "ticker": "EOT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EP": {
+    "ticker": "EP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPAC": {
+    "ticker": "EPAC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPAM": {
+    "ticker": "EPAM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPC": {
+    "ticker": "EPC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPD": {
+    "ticker": "EPD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPM": {
+    "ticker": "EPM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPOW": {
+    "ticker": "EPOW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPR": {
+    "ticker": "EPR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPRT": {
+    "ticker": "EPRT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPRX": {
+    "ticker": "EPRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPSM": {
+    "ticker": "EPSM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EPSN": {
+    "ticker": "EPSN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQ": {
+    "ticker": "EQ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQBK": {
+    "ticker": "EQBK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQH": {
+    "ticker": "EQH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQIX": {
+    "ticker": "EQIX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQNR": {
+    "ticker": "EQNR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQPT": {
+    "ticker": "EQPT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "EQR": {
+    "ticker": "EQR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
