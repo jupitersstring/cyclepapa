@@ -175,9 +175,14 @@ def run(args):
     else:
         df["pass_bb"] = df["buyback_yield"] >= args.min_buyback
     df["pass_solv"] = (df["nd_ebitda"] <= args.max_nd_ebitda) | df["nd_ebitda"].isna()
+    # EV-collapse artifact guard: a >max_yield FCF or buyback "yield" means the
+    # denominator (EV/mktcap) has imploded — usually a post-failure biotech cash
+    # return (KROS, DH), not a real FCF business. Drop these.
+    df["artifact"] = (df["fcf_yield"].abs() > args.max_yield) | \
+                     (df["buyback_yield"].abs() > args.max_yield)
     # exclude names where FCF is not a meaningful metric (banks/insurers/REITs/CEFs/BDCs)
     df["pass_all"] = (df["pass_fcf"] & df["pass_bb"] & df["pass_solv"]
-                      & ~df["fcf_na"].fillna(False))
+                      & ~df["fcf_na"].fillna(False) & ~df["artifact"].fillna(False))
 
     passed = df[df["pass_all"]].copy()
     if not passed.empty:
@@ -222,6 +227,8 @@ def parse_args():
     p.add_argument("--active-ok", action="store_true",
                    help="relax buyback test to 'any net buyback > 0' (gross programme active)")
     p.add_argument("--max-nd-ebitda", type=float, default=4.5)
+    p.add_argument("--max-yield", type=float, default=0.60,
+                   help="drop EV-collapse artifacts whose FCF/buyback yield exceeds this")
     p.add_argument("--on", choices=["ev", "mktcap"], default="ev")
     p.add_argument("--limit-fund", type=int, default=None, help="cap # of fundamentals pulls")
     p.add_argument("--top", type=int, default=40)

@@ -64,7 +64,7 @@ def main():
         # FCF / 200w-low value screen (cached weekly stage-1; fundamentals are live)
         fns = argparse.Namespace(
             universe=u, period="20y", from_low=args.from_low, min_fcf_yield=0.07,
-            min_buyback=0.04, active_ok=False, max_nd_ebitda=4.5, on="ev",
+            min_buyback=0.04, active_ok=False, max_nd_ebitda=4.5, max_yield=0.60, on="ev",
             limit_fund=120, top=40, passed_only=False,
             csv=os.path.join(RESULTS, f"fcf_{u}_{today}.csv"))
         out.append(f"### {u} 200w-low x FCF x buyback\n```")
