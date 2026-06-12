@@ -39,6 +39,42 @@ SUBJECT_RE = re.compile(
     r"([A-Z][A-Za-z0-9 .,&'\-]{2,80}?)\s*(?:\(|Name|Commission|\d|$)",
     re.I)
 
+# Equity vs debt tender: SC TO-I covers ANY issuer security. A
+# convert/note exchange offer (PANW-style) must not inherit the
+# equity-buyback signal weight (Peyer-Vermaelen applies to EQUITY
+# self-tenders).
+DEBT_TOKENS = re.compile(
+    r"\b(?:convertible\s+(?:senior\s+)?notes?|senior\s+notes?|"
+    r"debentures?|\d+(?:\.\d+)?%\s+notes?\s+due|exchange\s+offer\s+"
+    r"for\s+(?:any|all)\s+(?:outstanding\s+)?notes?|"
+    r"notes?\s+due\s+20\d\d)\b", re.I)
+EQUITY_TOKENS = re.compile(
+    r"\b(?:shares?\s+of\s+(?:its\s+)?common\s+stock|per\s+share|"
+    r"common\s+shares|Class\s+[AB]\s+common)\b", re.I)
+
+
+def classify_security(cik: str, accession: str,
+                      primary_doc: str) -> str:
+    """'equity' | 'debt' | 'unknown' from the TO-I primary doc."""
+    from edgar import _get
+    cik_n = str(int(cik))
+    acc_clean = accession.replace("-", "")
+    doc = primary_doc.split("/")[-1]
+    url = (f"https://www.sec.gov/Archives/edgar/data/"
+           f"{cik_n}/{acc_clean}/{doc}")
+    try:
+        raw = _get(url).text
+    except Exception:
+        return "unknown"
+    plain = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", raw))[:40000]
+    n_debt = len(DEBT_TOKENS.findall(plain))
+    n_eq = len(EQUITY_TOKENS.findall(plain))
+    if n_debt > n_eq:
+        return "debt"
+    if n_eq > 0:
+        return "equity"
+    return "unknown"
+
 
 def norm(name: str) -> set[str]:
     """Significant tokens of a company name for fuzzy overlap."""
@@ -85,7 +121,25 @@ def main() -> int:
                 or f["form"].startswith("SC 14D9")]
         selfs = [f for f in filings if f["form"].startswith("SC TO-I")]
         if selfs:
-            v["role"] = "SELF_TENDER"
+            # Equity self-tender keeps full signal weight; a note /
+            # convert exchange offer (also filed as SC TO-I) is a
+            # liability-management action -- score it down to +4.
+            f = sorted(selfs, key=lambda x: x["filing_date"],
+                       reverse=True)[0]
+            sec = classify_security(f["cik"], f["accession"],
+                                    f["primary_doc"])
+            time.sleep(args.sleep)
+            v["security_type"] = sec
+            if sec == "debt":
+                v["role"] = "SELF_TENDER_DEBT"
+                old = v.get("score") or 0
+                if old > 4:
+                    v["score"] = 4.0
+                    v["reasons"] = [
+                        f"note/convert exchange offer (TO-I, debt) "
+                        f"{min(x['days_ago'] for x in selfs)}d ago"]
+            else:
+                v["role"] = "SELF_TENDER"
             v["_role_resolved"] = True
             n_self += 1
             continue
