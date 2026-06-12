@@ -20360,5 +20360,592 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "FNRN": {
+    "ticker": "FNRN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FNUC": {
+    "ticker": "FNUC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FNV": {
+    "ticker": "FNV",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FNWB": {
+    "ticker": "FNWB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FNWD": {
+    "ticker": "FNWD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOA": {
+    "ticker": "FOA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOFO": {
+    "ticker": "FOFO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOLD": {
+    "ticker": "FOLD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FONR": {
+    "ticker": "FONR",
+    "filings": [
+      {
+        "cik": "0000355019",
+        "form": "SC 13E3/A",
+        "accession": "0001193125-26-255456",
+        "primary_doc": "d60092dsc13e3a.htm",
+        "filing_date": "2026-06-03",
+        "days_ago": 9
+      },
+      {
+        "cik": "0000355019",
+        "form": "SC 13E3/A",
+        "accession": "0001193125-26-159066",
+        "primary_doc": "d60092dsc13e3a.htm",
+        "filing_date": "2026-04-16",
+        "days_ago": 57
+      },
+      {
+        "cik": "0000355019",
+        "form": "SC 13E3/A",
+        "accession": "0001193125-26-120021",
+        "primary_doc": "d60092dsc13e3a.htm",
+        "filing_date": "2026-03-23",
+        "days_ago": 81
+      },
+      {
+        "cik": "0000355019",
+        "form": "SC 13E3",
+        "accession": "0001193125-26-073346",
+        "primary_doc": "d60092dsc13e3.htm",
+        "filing_date": "2026-02-26",
+        "days_ago": 106
+      }
+    ],
+    "terms": {},
+    "score": 15.0,
+    "reasons": [
+      "SC 13E-3 going-private, 9d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOR": {
+    "ticker": "FOR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FORA": {
+    "ticker": "FORA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FORM": {
+    "ticker": "FORM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FORR": {
+    "ticker": "FORR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FORTY": {
+    "ticker": "FORTY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOSL": {
+    "ticker": "FOSL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOUR": {
+    "ticker": "FOUR",
+    "filings": [
+      {
+        "cik": "0001794669",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-155230",
+        "primary_doc": "d96050dsctota.htm",
+        "filing_date": "2025-07-03",
+        "days_ago": 344
+      },
+      {
+        "cik": "0001794669",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-145067",
+        "primary_doc": "d943877dsctota.htm",
+        "filing_date": "2025-06-24",
+        "days_ago": 353
+      },
+      {
+        "cik": "0001794669",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-136260",
+        "primary_doc": "d943877dsctota.htm",
+        "filing_date": "2025-06-06",
+        "days_ago": 371
+      },
+      {
+        "cik": "0001794669",
+        "form": "SC TO-T/A",
+        "accession": "0001193125-25-123583",
+        "primary_doc": "d921157dsctota.htm",
+        "filing_date": "2025-05-21",
+        "days_ago": 387
+      }
+    ],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOX": {
+    "ticker": "FOX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOXA": {
+    "ticker": "FOXA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOXF": {
+    "ticker": "FOXF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FOXX": {
+    "ticker": "FOXX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FPH": {
+    "ticker": "FPH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FPI": {
+    "ticker": "FPI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FPS": {
+    "ticker": "FPS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FR": {
+    "ticker": "FR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRA": {
+    "ticker": "FRA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRAF": {
+    "ticker": "FRAF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRD": {
+    "ticker": "FRD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRGT": {
+    "ticker": "FRGT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRHC": {
+    "ticker": "FRHC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRME": {
+    "ticker": "FRME",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRMEP": {
+    "ticker": "FRMEP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRMI": {
+    "ticker": "FRMI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRMM": {
+    "ticker": "FRMM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRO": {
+    "ticker": "FRO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FROG": {
+    "ticker": "FROG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRPH": {
+    "ticker": "FRPH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRPT": {
+    "ticker": "FRPT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRSH": {
+    "ticker": "FRSH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRST": {
+    "ticker": "FRST",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRSX": {
+    "ticker": "FRSX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRT": {
+    "ticker": "FRT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FRVO": {
+    "ticker": "FRVO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSBC": {
+    "ticker": "FSBC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSBW": {
+    "ticker": "FSBW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSCO": {
+    "ticker": "FSCO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSEA": {
+    "ticker": "FSEA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSI": {
+    "ticker": "FSI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSK": {
+    "ticker": "FSK",
+    "filings": [
+      {
+        "cik": "0001422183",
+        "form": "SC 14D9/A",
+        "accession": "0001104659-26-070767",
+        "primary_doc": "tm2616967d1_sc14d9.htm",
+        "filing_date": "2026-06-05",
+        "days_ago": 7
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC TO-T/A",
+        "accession": "0001140361-26-024107",
+        "primary_doc": "ny20072853x6_sctota.htm",
+        "filing_date": "2026-06-05",
+        "days_ago": 7
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC 14D9/A",
+        "accession": "0001104659-26-069560",
+        "primary_doc": "tm2616700d1_sc14d9a.htm",
+        "filing_date": "2026-06-02",
+        "days_ago": 10
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC TO-T/A",
+        "accession": "0001140361-26-023779",
+        "primary_doc": "ny20072853x5_sctota.htm",
+        "filing_date": "2026-06-02",
+        "days_ago": 10
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC 14D9/A",
+        "accession": "0001104659-26-065804",
+        "primary_doc": "tm2615489d1_sc14d9.htm",
+        "filing_date": "2026-05-22",
+        "days_ago": 21
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC TO-T/A",
+        "accession": "0001140361-26-022613",
+        "primary_doc": "ny20072853x3_sctota.htm",
+        "filing_date": "2026-05-22",
+        "days_ago": 21
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC 14D9",
+        "accession": "0001104659-26-059071",
+        "primary_doc": "tm2614184d1_sc14d9.htm",
+        "filing_date": "2026-05-12",
+        "days_ago": 31
+      },
+      {
+        "cik": "0001422183",
+        "form": "SC TO-T",
+        "accession": "0001140361-26-020704",
+        "primary_doc": "ny20072853x2_sctot.htm",
+        "filing_date": "2026-05-12",
+        "days_ago": 31
+      }
+    ],
+    "terms": {
+      "cap_usd": 150000000.0
+    },
+    "score": 12.0,
+    "reasons": [
+      "third-party tender / 14D-9, 7d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSLR": {
+    "ticker": "FSLR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "FSLY": {
+    "ticker": "FSLY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
