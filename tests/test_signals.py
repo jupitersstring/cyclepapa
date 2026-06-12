@@ -53,3 +53,23 @@ def test_drop_incomplete_daily_keeps_past():
     df = pd.DataFrame({"Close": [1, 2, 3, 4, 5.0]}, index=idx)
     asof = pd.Timestamp("2026-06-01")  # last bar in the past -> keep all
     assert len(drop_incomplete_last(df, "daily", asof=asof)) == 5
+
+
+def test_super_smoother_reduces_noise_lowlag():
+    from signals import super_smoother
+    rng = np.random.default_rng(3)
+    t = np.arange(300)
+    clean = np.sin(t / 20.0)
+    noisy = clean + rng.normal(scale=0.5, size=300)
+    sm = super_smoother(noisy, 20)
+    # smoothed tracks the clean signal far better than the noisy input
+    assert np.std(sm[50:] - clean[50:]) < np.std(noisy[50:] - clean[50:])
+
+
+def test_smoothed_inflection_finds_trough_early():
+    from signals import smoothed_inflection
+    t = np.arange(400)
+    # V-shape: falling then rising -> a trough; detector should say UP recently
+    x = np.concatenate([np.linspace(10, 0, 200), np.linspace(0, 8, 200)])
+    r = smoothed_inflection(x, length=21, recent=40)
+    assert r is not None and r["dir"] == "UP"
