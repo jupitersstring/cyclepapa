@@ -1,4 +1,4 @@
-# Generated screen (2026-06-11)
+# Generated screen (2026-06-12)
 
 Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit.
 
@@ -10,13 +10,14 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 | 1 | **ETL** | Eutelsat Communications | A·A1+F | 4/6 | 3+0p / 3 | 2.35 | 4.70 | 10.0% | — |
 | 1 | **ELUX-B** | AB Electrolux (Series B) | A·A1+D | n/a | 3+0p / 3 | 2.32 | 5.16 | 10.0% | — |
 | 2 | **TMQ** | Trilogy Metals | A·A2 | 2/2 | 1+2p / 3 | 2.14 | 3.88 | 10.0% | — |
+| 2 | **IDBI** | IDBI Bank | A·H | 2/2 | 2+1p / 3 | 1.66 | 5.52 | 10.0% | — |
 | pass | **MPVD** | Mountain Province Diamonds | C·F | 6/8 | 3+0p / 3 | 2.58 | 3.68 | 10.0% | dip_to_exit_control_transfer, springing_maturity_inside_24m |
 
 ## Diagnostics
 
 ### LAC.yaml
 - ⚠️  warning: Tier 1 has 11 unverified deal fields; sizing blocked at full conviction
-- ⚠️  warning: stale: last history entry 116 days ago
+- ⚠️  warning: stale: last history entry 117 days ago
 
 ### WLN.yaml
 - ⚠️  warning: Tier 1 has 1 unverified deal fields; sizing blocked at full conviction

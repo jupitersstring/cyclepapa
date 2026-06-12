@@ -1,0 +1,163 @@
+ticker: IDBI
+isin: INE008A01015
+name: IDBI Bank
+jurisdiction: IN
+exchange: NSE/BSE
+sector: Banks
+bucket: A
+archetype: [H]
+state: option
+tier: 2
+
+deal:
+  date: 2026-02-09
+  mechanic: "H1 strategic privatization: GoI (30.48%) + LIC (30.24%) selling ~61% combined with management control transfer. Feb 2026 bids from Fairfax, Emirates NBD, Kotak fell below reserve; Centre examining legal route to revive bids with reserve-price cut up to 20%; Fairfax primary counterparty."
+  fields:
+    goi_stake_for_sale_pct:
+      value: 30.48
+      source: "verified: Business Standard 2025-12-12"
+    lic_stake_for_sale_pct:
+      value: 30.24
+      source: "verified: Business Standard 2025-12-12"
+    bids_received_inr_cr:
+      value: "40000-45000"
+      source: "verified: Outlook Business / niftytrader consolidation 2026"
+    government_reserve_valuation_inr_cr:
+      value: 72000
+      source: "reported: Outlook Business — undisclosed reserve, press estimate"
+    valuation_gap_pct:
+      value: "40-45"
+      source: "verified: press consolidation"
+    reserve_cut_under_consideration_pct:
+      value: 20
+      source: "reported: niftytrader 2026 — 'most likely near-term outcome'"
+    bidders:
+      value: "Fairfax Financial (primary), Emirates NBD (reconsidering post-RBL), Kotak Mahindra"
+      source: "verified: multiple outlets Feb 2026"
+    bid_date:
+      value: 2026-02-09
+      source: "verified: enterpriseam.com 2026-02-09 (Emirates NBD bid submission)"
+
+scorecard:
+  d4_dilution_pct: 0
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d15_state_stake_trajectory: 2
+  d16_governance_reset_event: 1
+  d17_value_up_mandate: null
+  d18_national_service_risk: 1
+  d19_minority_protection: 1
+
+catalysts:
+  - event: "Reserve-price cut decision + revived bid acceptance (Fairfax)"
+    window: [2026-06-01, 2026-12-31]
+    p_favorable: 0.45
+    rerate_if_yes: [1.4, 2.2]
+    hit_if_no: [-0.15, -0.30]
+    source: "press consolidation June 2026"
+  - event: "Completion: control transfer to private owner (first-ever Indian PSB privatization)"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.35
+    rerate_if_yes: [1.8, 3.0]
+    hit_if_no: [-0.20, -0.35]
+    source: "conditional on first catalyst"
+
+waterfall:
+  bear: {p: 0.35, return_multiple: 0.70, rationale: "Sale shelved again on valuation-gap standoff; reverts to PSB-multiple trading; election-cycle freeze"}
+  base: {p: 0.45, return_multiple: 1.80, rationale: "Reserve cut accepted; Fairfax control transfer completes 2027; partial governance re-rate toward private-bank multiples"}
+  bull: {p: 0.20, return_multiple: 3.00, rationale: "Clean Fairfax takeover + open offer; first PSB privatization re-rates IDBI to private-bank P/B and seeds candidate-set re-rate"}
+
+anchor:
+  parties: ["Fairfax Financial (Prem Watsa) — primary bidder", "Emirates NBD — reconsidering", "Kotak Mahindra"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: INR
+  stake_pct: null
+  holds_debt: false
+  holds_equity: false
+  lockup_months: null
+  prior_track_record: ["Fairfax: CSB Bank turnaround (the direct playbook at smaller scale)", "Emirates NBD: RBL Bank control deal at premium ₹280"]
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: Partial — IDBI already re-rated through the 2022-24 PSU cycle;
+    the residual discount is the governance/control discount, not a
+    solvency discount. Upside is to private-bank multiples, not from
+    distress.
+    Leg 2: GoI+LIC are non-economic sellers with a published intent to
+    exit control; the buyer set is strategic, not loan-to-own.
+    Leg 3: Three sophisticated bidders revealed a price floor of
+    ₹40,000-45,000 cr in February 2026. That bid tape is the
+    revealed-preference datum: the market-clearing control value is
+    known even while the deal stalls.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Valuation-gap standoff (non-economic seller is also non-forced seller); deal has dragged since 2022; election-cycle freeze risk"
+
+kill_criteria:
+  - "DIPAM formally shelves or re-tenders the sale without reserve cut"
+  - "Fairfax withdraws (leaving no credible control bidder)"
+  - "Open-offer pricing set materially below market on completion"
+  - "Deal pushed past the 2027 calendar without signed SPA"
+
+pre_mortem: |
+  It is end-2027 and IDBI has round-tripped -30% from entry.
+
+  Most likely cause: the valuation-gap standoff never resolved. The
+  Centre declined to cut the reserve (politically unsellable to be seen
+  selling a recovering bank 'cheap'), Fairfax walked, and the sale was
+  quietly deferred past the next election cycle. The privatization
+  premium in the price unwound, and IDBI re-traded as a mid-tier PSB
+  on sector multiples through a softening credit cycle.
+
+  Second-most-likely: the deal closed but the open-offer mechanics and
+  post-deal integration disappointed — control transferred at the
+  cut reserve with minorities excluded from the control premium.
+
+  Where this would show up first: DIPAM ministerial statements; Fairfax
+  quarterly letters; reserve-price decision leaks in Business Standard /
+  Mint.
+
+history:
+  - {date: 2026-02-09, event: "Bids submitted (Fairfax, Emirates NBD, Kotak); below reserve", state_after: watch}
+  - {date: 2026-06-12, event: "Added as Tier 2 H1 candidate; Centre weighing 20% reserve cut to revive Fairfax bid", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["Indian PSB privatization politics", "Fairfax control playbook", "India credit cycle"]
+
+tier_rationale: |
+  Bucket A, Archetype H1 (strategic privatization). The cleanest dated
+  governance binary in the live universe: the bid tape exists
+  (₹40-45k cr), the seller's decision (cut reserve up to 20%) is
+  actively under consideration, and the buyer (Fairfax) has executed
+  the exact playbook before at CSB Bank.
+
+  Tier 2 not Tier 1 because: (a) the catalyst probability is genuinely
+  uncertain (~45% on the revival decision — the state has stalled this
+  sale since 2022); (b) Leg 1 is partial — the easy solvency re-rate
+  already happened in 2022-24; what remains is the control-premium /
+  governance re-rate; (c) waterfall EV ~1.66x is below the Tier 1 EV
+  bar. Promote on a signed SPA or formal reserve-cut announcement.
+
+  Position note: the H1 trade is convex to the *decision*, not the
+  completion — most of the re-rate historically happens between
+  announcement of accepted bid and completion.

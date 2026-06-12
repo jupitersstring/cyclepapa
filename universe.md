@@ -937,6 +937,18 @@ Run the §1 pipeline against company-action feeds for each.
     sell-down completions as slow-motion A1 events
 29. **Ukraine reconstruction basket** — single undated binary catalyst;
     option-size only
+30. **Archetype H governance/state-exit baskets** (see
+    `psu_governance.md`) — IDBI privatization decision (live); Indian
+    PSB MPS forced-dilution basket (Punjab & Sind 98.25%, IOB 96.38%,
+    UCO 95.39%, Central Bank 93.08%, BoM 86.46% — all must reach 75%
+    by Aug 1, 2026; *buy the QIP/OFS print, not the anticipation*);
+    ABN AMRO / Permanent TSB state-exit overhangs; Korea value-up
+    tax-penalty laggards (Feb 2026 rule: high-dividend issuers lose
+    tax benefits without filed plans); Japan parent-child takeouts
+    (May 2026 FIEA mandatory-TOB threshold cut to 30%). The TSE
+    monthly disclosure list and KRX value-up index are
+    regulator-published laggard screens — the highest-quality free
+    feeds in the entire pipeline.
 
 ---
 
