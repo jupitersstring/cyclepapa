@@ -29411,5 +29411,455 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "KC": {
+    "ticker": "KC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KD": {
+    "ticker": "KD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KDK": {
+    "ticker": "KDK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KDP": {
+    "ticker": "KDP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KE": {
+    "ticker": "KE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEEL": {
+    "ticker": "KEEL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KELYA": {
+    "ticker": "KELYA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KELYB": {
+    "ticker": "KELYB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEN": {
+    "ticker": "KEN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEP": {
+    "ticker": "KEP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEQU": {
+    "ticker": "KEQU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEX": {
+    "ticker": "KEX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEY": {
+    "ticker": "KEY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KEYS": {
+    "ticker": "KEYS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KFFB": {
+    "ticker": "KFFB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KFRC": {
+    "ticker": "KFRC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KFY": {
+    "ticker": "KFY",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KG": {
+    "ticker": "KG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KGC": {
+    "ticker": "KGC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KGEI": {
+    "ticker": "KGEI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KGS": {
+    "ticker": "KGS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KHC": {
+    "ticker": "KHC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KIDS": {
+    "ticker": "KIDS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KIDZ": {
+    "ticker": "KIDZ",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KIM": {
+    "ticker": "KIM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KINS": {
+    "ticker": "KINS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KIO": {
+    "ticker": "KIO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KITT": {
+    "ticker": "KITT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KKR": {
+    "ticker": "KKR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KKRS": {
+    "ticker": "KKRS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KKRT": {
+    "ticker": "KKRT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLAC": {
+    "ticker": "KLAC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLAR": {
+    "ticker": "KLAR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLC": {
+    "ticker": "KLC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLIC": {
+    "ticker": "KLIC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLRA": {
+    "ticker": "KLRA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLRS": {
+    "ticker": "KLRS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLTR": {
+    "ticker": "KLTR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KLXE": {
+    "ticker": "KLXE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMB": {
+    "ticker": "KMB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMDA": {
+    "ticker": "KMDA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMI": {
+    "ticker": "KMI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMPB": {
+    "ticker": "KMPB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMPR": {
+    "ticker": "KMPR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMRK": {
+    "ticker": "KMRK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMT": {
+    "ticker": "KMT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMTS": {
+    "ticker": "KMTS",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KMX": {
+    "ticker": "KMX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KN": {
+    "ticker": "KN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "KNDI": {
+    "ticker": "KNDI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
