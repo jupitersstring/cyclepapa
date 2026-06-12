@@ -31934,5 +31934,543 @@
     "reasons": [],
     "_complete": true,
     "_version": "tender-v1"
+  },
+  "LNZA": {
+    "ticker": "LNZA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOAN": {
+    "ticker": "LOAN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOAR": {
+    "ticker": "LOAR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOB": {
+    "ticker": "LOB",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOBO": {
+    "ticker": "LOBO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOCL": {
+    "ticker": "LOCL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOCO": {
+    "ticker": "LOCO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LODE": {
+    "ticker": "LODE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOGC": {
+    "ticker": "LOGC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOGI": {
+    "ticker": "LOGI",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOMA": {
+    "ticker": "LOMA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LONA": {
+    "ticker": "LONA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOOP": {
+    "ticker": "LOOP",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOPE": {
+    "ticker": "LOPE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOT": {
+    "ticker": "LOT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOVE": {
+    "ticker": "LOVE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LOW": {
+    "ticker": "LOW",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPA": {
+    "ticker": "LPA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPCN": {
+    "ticker": "LPCN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPG": {
+    "ticker": "LPG",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPL": {
+    "ticker": "LPL",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPLA": {
+    "ticker": "LPLA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPRO": {
+    "ticker": "LPRO",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPSN": {
+    "ticker": "LPSN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPTH": {
+    "ticker": "LPTH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LPX": {
+    "ticker": "LPX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LQDA": {
+    "ticker": "LQDA",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LQDT": {
+    "ticker": "LQDT",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LRCX": {
+    "ticker": "LRCX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LRE": {
+    "ticker": "LRE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LRHC": {
+    "ticker": "LRHC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LRMR": {
+    "ticker": "LRMR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LRN": {
+    "ticker": "LRN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSAK": {
+    "ticker": "LSAK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSBK": {
+    "ticker": "LSBK",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSBWF": {
+    "ticker": "LSBWF",
+    "filings": [
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-26-061798",
+        "primary_doc": "ea0292492-sc13e3a7_lake.htm",
+        "filing_date": "2026-05-28",
+        "days_ago": 15
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-26-053596",
+        "primary_doc": "ea0289617-sc13e3a6_lake.htm",
+        "filing_date": "2026-05-08",
+        "days_ago": 35
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-26-038038",
+        "primary_doc": "ea0284544-sc13e3a5_lake.htm",
+        "filing_date": "2026-04-01",
+        "days_ago": 72
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-26-013012",
+        "primary_doc": "ea0275937-sc13e3a4_lake.htm",
+        "filing_date": "2026-02-06",
+        "days_ago": 126
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-26-005369",
+        "primary_doc": "ea0273285-sc13e3a3_lake.htm",
+        "filing_date": "2026-01-20",
+        "days_ago": 143
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-26-003903",
+        "primary_doc": "ea0272699-sc13e3a2_lake.htm",
+        "filing_date": "2026-01-13",
+        "days_ago": 150
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3/A",
+        "accession": "0001213900-25-124905",
+        "primary_doc": "ea0270797-sc13e3a1_lake.htm",
+        "filing_date": "2025-12-23",
+        "days_ago": 171
+      },
+      {
+        "cik": "0001946399",
+        "form": "SC 13E3",
+        "accession": "0001213900-25-115118",
+        "primary_doc": "ea0266906-sc13e3_lake.htm",
+        "filing_date": "2025-11-26",
+        "days_ago": 198
+      }
+    ],
+    "terms": {},
+    "score": 15.0,
+    "reasons": [
+      "SC 13E-3 going-private, 15d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSCC": {
+    "ticker": "LSCC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSE": {
+    "ticker": "LSE",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSF": {
+    "ticker": "LSF",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSH": {
+    "ticker": "LSH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSPD": {
+    "ticker": "LSPD",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSTA": {
+    "ticker": "LSTA",
+    "filings": [
+      {
+        "cik": "0000320017",
+        "form": "SC 14D9",
+        "accession": "0001140361-26-024737",
+        "primary_doc": "ny20069664x1_sc14d9.htm",
+        "filing_date": "2026-06-10",
+        "days_ago": 2
+      },
+      {
+        "cik": "0000320017",
+        "form": "SC TO-T",
+        "accession": "0001140361-26-024731",
+        "primary_doc": "ny20068687x1_sctot.htm",
+        "filing_date": "2026-06-10",
+        "days_ago": 2
+      }
+    ],
+    "terms": {
+      "fixed_price": 4.0
+    },
+    "score": 12.0,
+    "reasons": [
+      "third-party tender / 14D-9, 2d ago"
+    ],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LSTR": {
+    "ticker": "LSTR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LTBR": {
+    "ticker": "LTBR",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LTC": {
+    "ticker": "LTC",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LTH": {
+    "ticker": "LTH",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LTM": {
+    "ticker": "LTM",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LTRN": {
+    "ticker": "LTRN",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LTRX": {
+    "ticker": "LTRX",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
+  },
+  "LU": {
+    "ticker": "LU",
+    "filings": [],
+    "terms": {},
+    "score": 0.0,
+    "reasons": [],
+    "_complete": true,
+    "_version": "tender-v1"
   }
 }
