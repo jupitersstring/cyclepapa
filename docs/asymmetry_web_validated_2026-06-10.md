@@ -174,3 +174,30 @@ The survivors share a common shape: **bounded downside** (net cash — Barco, Ke
 self-help lever independent of the cycle — Expand synergies, Progress recurring ARR; or quality —
 Cigna), **multiple independent ways to win**, and **earnings that are real and persistent** rather
 than mechanical. That is the actual definition of asymmetry the quant score only approximates.
+
+---
+
+## Round 2 — International extension (2026-06-13)
+
+Round 1's top list was ~77% US, so this round web-validated the international +
+cross-screen-conviction tail. 16 more names verified first-person (a session
+usage limit blocked the parallel subagent fan-out).
+
+**New KEEP (genuinely asymmetric):**
+- **KOF.PA Kaufman & Broad** — net cash ~63% of market cap + ~10% dividend yield + orders +1.9% while French new-housing fell -22% (share gain). Arguably the most asymmetric name in the whole exercise: downside bounded by cash, paid to wait, multiple ways to win.
+- **CMCSA Comcast** — broadband net losses improved >100k YoY (first since 2020), Epic Universe parks EBITDA +33%, $3.9B Q1 FCF, ~5x EV/EBITDA. Quality at a discount with a real inflection.
+- **0116.HK Chow Sang Sang** — FY25 net profit +115% (record), dividend +96%, margin +4.3pp on fixed-price-gold mix, ~3.3x P/E + net cash.
+- **CCP.AX Credit Corp** — US debt-book NPAT +63% (the 2023-24 bear case inflected), ~7x fwd P/E, H2-weighted FY26 guidance reaffirmed.
+
+**SPECULATIVE (real but cyclical/leveraged):** HAPV3 Hapvida, BCE, BEEF3 Minerva,
+CLX Clorox, 601766 CRRC, 010690 Hwashin, ACR.OL Axactor, BHC.TO Bausch Health,
+KIO.JO Kumba, 6149.T Odawara.
+
+**REJECT (value traps confirmed):** CUERVO.MX Becle (US tequila sales -36%,
+volumes -24% — a real share/destocking collapse, not an inflection); 600104 SAIC
+Motor (revenue melting, lost China leadership to BYD, token dividend).
+
+**Scope note:** research was first-person on the ~22 highest-conviction tail names
+across JP/CN/HK/KR/CA/BR/MX/FR/NO/ZA. The long frontier tail (sub-$100M caps,
+Indonesia/Turkey/Taiwan small-caps such as VakifBank, Indofood, Lassonde) remains
+data-screened but not yet web-verified — the natural next batch.
