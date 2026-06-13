@@ -39,7 +39,9 @@ def main() -> int:
                        help="report only, no DB modifications")
     parser.add_argument("--source", default=None,
                        help="re-resolve only this source (default: all v1 rows)")
-    parser.add_argument("--batch", type=int, default=10000)
+    parser.add_argument("--batch", type=int, default=5000)
+    parser.add_argument("--apply-each-batch", action="store_true",
+                       help="apply deletes after each batch instead of buffering all")
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args()
 
@@ -114,7 +116,19 @@ def main() -> int:
         print(f"  processed {offset:,}/{total:,}  "
               f"valid={sum(kept_per_source.values()):,}  "
               f"invalid={sum(invalid_per_source.values()):,}  "
-              f"migrated={sum(migrate_per_source.values()):,}")
+              f"migrated={sum(migrate_per_source.values()):,}",
+              flush=True)
+        # Stream-apply if requested: delete invalid + mark valid as we go.
+        if args.apply_each_batch and not args.dry_run and invalid_pkeys:
+            with storage.connect(cfg) as con:
+                con.register("invalid_pk", pd.DataFrame(invalid_pkeys, columns=["source", "source_id", "ticker"]))
+                con.execute("""
+                    DELETE FROM mentions
+                    WHERE (source, source_id, ticker) IN
+                      (SELECT source, source_id, ticker FROM invalid_pk)
+                """)
+                con.unregister("invalid_pk")
+            invalid_pkeys = []  # reset buffer
 
     print()
     print("=== Per-source resolver v1 -> v2 outcomes ===")
