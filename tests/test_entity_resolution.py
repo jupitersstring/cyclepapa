@@ -85,6 +85,30 @@ class ResolverTest(unittest.TestCase):
         # And AAPL's bare-symbol alias does survive (not a dictionary word).
         self.assertIn("aapl", alias_strs)
 
+    def test_wikipedia_underscore_title_resolves(self) -> None:
+        """Wikipedia article titles use underscores in place of spaces
+        (Lululemon_Athletica, Build-A-Bear_Workshop). The resolver must
+        normalize these so brand-name aliases match. Regression for the
+        72% -> close-to-100% precision lift on the wikipedia source."""
+        aliases = [
+            Alias("lululemon athletica", "LULU", ambiguous=False),
+            Alias("build a bear workshop", "BBW", ambiguous=False),
+            Alias("newell brands", "NWL", ambiguous=False),
+            Alias("under armour", "UAA", ambiguous=False),
+        ]
+        resolver = Resolver(aliases)
+        cases = [
+            ("wikipedia Lululemon_Athletica views=1234", "LULU"),
+            ("wikipedia Build-A-Bear_Workshop views=42", "BBW"),
+            ("wikipedia Newell_Brands views=200", "NWL"),
+            ("wikipedia Under_Armour views=600", "UAA"),
+        ]
+        for text, expected in cases:
+            out = resolver.resolve(text)
+            tickers = [m.ticker for m in out]
+            self.assertIn(expected, tickers,
+                          f"{expected!r} not in resolve({text!r}) -> {tickers}")
+
     def test_us_primary_wins_over_foreign_crosslisting(self) -> None:
         """When a US primary and a foreign cross-listing share a brand name
         in the universe, the US ticker must win the alias dict. Regression

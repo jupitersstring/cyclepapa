@@ -59,13 +59,20 @@ class Resolver:
     def resolve(self, text: str) -> list[Mention]:
         if not text:
             return []
-        lower = text.lower()
+        # Normalize underscores and hyphens to spaces so multi-word brand
+        # aliases ("lululemon athletica") match Wikipedia URL-slug titles
+        # ("Lululemon_Athletica") and hyphen-joined forms ("Build-A-Bear").
+        # Apply for both finance-context detection and brand matching.
+        text_norm = re.sub(r"[_-]", " ", text)
+        lower = text_norm.lower()
         finance_hit = any(w in lower for w in FINANCE_CONTEXT_WORDS)
 
         seen: set[tuple[str, str]] = set()
         out: list[Mention] = []
 
-        # Pass 1: cashtags - always unambiguous.
+        # Pass 1: cashtags - always unambiguous. Run on the ORIGINAL text
+        # (cashtags don't contain hyphens / underscores, and the original
+        # preserves casing for the symbol).
         for m in CASHTAG_RE.finditer(text):
             sym = m.group(1).upper()
             key = (sym, "$" + sym.lower())
@@ -74,9 +81,9 @@ class Resolver:
             seen.add(key)
             out.append(Mention(text=text, ticker=sym, alias=key[1], confidence=0.95, via="cashtag"))
 
-        # Pass 2: brand aliases.
+        # Pass 2: brand aliases -- run against the normalized text.
         if self._brand_re is not None:
-            for m in self._brand_re.finditer(text):
+            for m in self._brand_re.finditer(text_norm):
                 alias = m.group(1).lower()
                 ticker, ambiguous = self._exact.get(alias, ("", True))
                 if not ticker or ticker == "PRIVATE":
