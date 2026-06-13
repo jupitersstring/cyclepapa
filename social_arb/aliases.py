@@ -252,7 +252,19 @@ def from_universe(universe: pd.DataFrame) -> list[Alias]:
         " co", " co.", " ltd", " ltd.", " plc", " sa", " ag", " holdings",
         " holding", " group", " brands", " company",
     )
-    for row in universe.itertuples(index=False):
+    # Ordering matters: alias dict is last-write-wins, so we put
+    # FOREIGN cross-listings FIRST and US primary symbols LAST. Without
+    # this, e.g. NVDC34.SA (NVIDIA-Brazil) shares the brand alias
+    # "nvidia" with NVDA, and whichever sorts later wins the dict cell.
+    # We want NVDA, AAPL, MSFT (no dot in symbol) to dominate.
+    def _us_priority(symbol: str) -> int:
+        s = str(symbol).upper()
+        return 1 if "." not in s else 0
+    rows_ordered = sorted(
+        list(universe.itertuples(index=False)),
+        key=lambda r: _us_priority(getattr(r, "symbol", "")),
+    )
+    for row in rows_ordered:
         sym = str(getattr(row, "symbol", "")).upper().strip()
         name = str(getattr(row, "name", "")).lower().strip()
         if not sym:

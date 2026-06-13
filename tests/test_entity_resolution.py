@@ -85,6 +85,30 @@ class ResolverTest(unittest.TestCase):
         # And AAPL's bare-symbol alias does survive (not a dictionary word).
         self.assertIn("aapl", alias_strs)
 
+    def test_us_primary_wins_over_foreign_crosslisting(self) -> None:
+        """When a US primary and a foreign cross-listing share a brand name
+        in the universe, the US ticker must win the alias dict. Regression
+        for Wikipedia 'Nvidia' being mapped to NVDC34.SA instead of NVDA."""
+        from social_arb.aliases import from_universe
+        import pandas as pd
+        # Construct a tiny universe where the .SA cross-listing comes
+        # AFTER the US primary in row order -- without the priority sort,
+        # the .SA listing would win the dict slot.
+        uni = pd.DataFrame([
+            {"symbol": "NVDA", "name": "Nvidia Corporation"},
+            {"symbol": "NVDC34.SA", "name": "Nvidia Corporation"},
+            {"symbol": "AAPL", "name": "Apple Inc"},
+            {"symbol": "AAPLD.BA", "name": "Apple Inc"},
+        ])
+        aliases = from_universe(uni)
+        resolver = Resolver(aliases)
+        # The bare brand name should map to the US ticker.
+        out = resolver.resolve("wikipedia Nvidia views=6308")
+        self.assertEqual([m.ticker for m in out], ["NVDA"])
+        # The Apple/AAPL case here would also need finance context to
+        # disambiguate from the fruit -- already covered by the existing
+        # ambiguous-brand tests. The cross-listing fix is independent.
+
     def test_rent_in_airbnb_thread_does_not_fire(self) -> None:
         """Direct regression test for the actual data we found: the word
         'rent' in an Airbnb/housing thread must NOT resolve to RENT."""
