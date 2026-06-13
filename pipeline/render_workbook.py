@@ -69,6 +69,44 @@ def run():
           r["kill_criteria"], r["factor_tags"]) for r in rows],
         widths=[8,28,30,8,10,9,22,9,22,9,11,9,11,48,32])
 
+    # 9. FUND POSITIONING MONITOR — the original conviction/adds/13D view, typed
+    rows = list(conn.execute("""SELECT ticker, funds, dollar_m, max_pct, funds_list
+        FROM v_top_material_adds WHERE funds>=2 ORDER BY funds DESC, dollar_m DESC LIMIT 60"""))
+    write_sheet(wb, "9_MATERIAL_ADDS",
+        ["Ticker","# funds adding","Sum $M","Max % book","Funds (multi-fund consensus)"],
+        [(r["ticker"], r["funds"], round(r["dollar_m"] or 0, 1),
+          f"{r['max_pct']:.1f}%" if r["max_pct"] else "",
+          r["funds_list"]) for r in rows], widths=[8,15,9,11,90])
+
+    rows = list(conn.execute("""SELECT ticker, funds, dollar_m, funds_list
+        FROM v_top_new_positions WHERE funds>=2 ORDER BY funds DESC, dollar_m DESC LIMIT 40"""))
+    write_sheet(wb, "9a_NEW_POSITIONS",
+        ["Ticker","# funds initiating","Sum $M","Funds"],
+        [(r["ticker"], r["funds"], round(r["dollar_m"] or 0, 1), r["funds_list"]) for r in rows],
+        widths=[8,18,9,90])
+
+    rows = list(conn.execute("""SELECT ticker, funds, max_pct_company, funds_list
+        FROM v_top_13d_filings WHERE funds>=2 ORDER BY funds DESC, max_pct_company DESC LIMIT 50"""))
+    write_sheet(wb, "9b_13D_THRESHOLD",
+        ["Ticker","# filers","Max % of company","Filers"],
+        [(r["ticker"], r["funds"],
+          f"{r['max_pct_company']:.1f}%" if r["max_pct_company"] else "",
+          r["funds_list"]) for r in rows], widths=[8,9,16,90])
+
+    rows = list(conn.execute("""SELECT ticker, funds, dollar_m, max_pct
+        FROM v_top_conviction WHERE funds>=3 ORDER BY funds DESC, dollar_m DESC LIMIT 60"""))
+    write_sheet(wb, "9c_HIGHEST_CONVICTION",
+        ["Ticker","# funds holding","Sum $M","Max % book in any fund"],
+        [(r["ticker"], r["funds"], round(r["dollar_m"] or 0, 1),
+          f"{r['max_pct']:.1f}%" if r["max_pct"] else "") for r in rows],
+        widths=[8,16,12,22])
+
+    rows = list(conn.execute("""SELECT fund, conviction_n, threshold_n, new_pos_n, adds_n, total
+        FROM v_fund_activity ORDER BY total DESC LIMIT 80"""))
+    write_sheet(wb, "9d_FUND_ACTIVITY",
+        ["Fund","Conviction rows","13D/G rows","New positions","Material adds","Total"],
+        [tuple(r) for r in rows], widths=[40,16,11,15,15,9])
+
     # 8a. Archetype status — original 10 archetypes reconciled to empirical re-rank
     rows = list(conn.execute("""SELECT archetype, mapped_factor, base_rate_excess,
         members_total, members_live_t1, members_live_t2, members_demoted,
