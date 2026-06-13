@@ -59,27 +59,32 @@ def per_source_z(
     window_days: int = 5,
     baseline_days: int = 30,
     min_baseline_weight: float = 1.0,
+    as_of: pd.Timestamp | None = None,
+    df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Per (ticker, source) recent-vs-baseline z-score on weighted mentions.
 
-    Returns long-form DataFrame with columns:
-      ticker, source, recent_weight_mean, baseline_weight_mean,
-      baseline_weight_std, z, recent_sent_mean, baseline_sent_mean
+    `as_of` -- compute the signal AS OF this date (the "end" date for the
+    recent window). Defaults to the latest date in the store. Pass an
+    explicit date for backtesting/event-study sweeps over history.
 
-    Computed at the LATEST date in the store. Uses log1p(weight) before
-    aggregating so a single high-magnitude day doesn't blow the z; this
-    matches how Camillo's framework treats "consistent attention" vs
-    "one-day spike".
+    `df` -- pre-loaded weighted-daily frame (from _load_weighted_daily).
+    Passing it lets a walker compute many `as_of` dates without re-querying
+    DuckDB each time.
     """
-    df = _load_weighted_daily(cfg)
+    if df is None:
+        df = _load_weighted_daily(cfg)
     if df.empty:
         return pd.DataFrame()
+    df = df.copy()
     df["date"] = pd.to_datetime(df["date"])
-    end = df["date"].max()
+    end = pd.Timestamp(as_of) if as_of is not None else df["date"].max()
     recent_cutoff = end - pd.Timedelta(days=int(window_days) - 1)
     baseline_cutoff = end - pd.Timedelta(days=int(baseline_days) + int(window_days))
 
-    recent = df[df["date"] >= recent_cutoff]
+    # IMPORTANT: cap the recent window at `end` so historical sweeps don't
+    # leak future data into the "recent" stats.
+    recent = df[(df["date"] >= recent_cutoff) & (df["date"] <= end)]
     baseline = df[(df["date"] < recent_cutoff) & (df["date"] >= baseline_cutoff)]
     rstats = recent.groupby(["ticker", "source"]).agg(
         recent_weight_mean=("weight", "mean"),
@@ -113,6 +118,8 @@ def breadth_score(
     baseline_days: int = 30,
     min_breadth: int = 2,
     top: int = 30,
+    as_of: pd.Timestamp | None = None,
+    df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Aggregate per-source z into a per-ticker breadth signal.
 
@@ -127,6 +134,7 @@ def breadth_score(
     """
     per = per_source_z(
         cfg, window_days=window_days, baseline_days=baseline_days,
+        as_of=as_of, df=df,
     )
     if per.empty:
         return pd.DataFrame()

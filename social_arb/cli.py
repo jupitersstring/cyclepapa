@@ -344,6 +344,44 @@ def cmd_per_source_z(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_calibrate(args: argparse.Namespace) -> int:
+    """Phase 3 event-study calibration: sweep signals over history,
+    measure forward CAR, apply BH correction, report KEEP/FADE/REJECT."""
+    from .calibration import calibrate, CalibrationConfig
+    cfg = Config()
+    config = CalibrationConfig(
+        forward_days=tuple(int(x) for x in args.horizons.split(",")),
+        train_frac=args.train_frac,
+        fdr_q=args.fdr,
+        sample_every_days=args.stride,
+        min_events_per_signal=args.min_events,
+        breadth_min=tuple(int(x) for x in args.breadths.split(",")),
+        z_thresholds=tuple(float(x) for x in args.z_thresholds.split(",")),
+    )
+    out = calibrate(cfg, config=config)
+    if out.empty:
+        print("no calibration results")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 100)
+    pd.set_option("display.width", 240)
+    print()
+    print("=== Calibration: per-signal forward CAR with BH correction ===")
+    print(out.to_string(index=False))
+    print()
+    keep = out[(out["split"] == "train") & (out["verdict"] == "KEEP")]
+    fade = out[(out["split"] == "train") & (out["verdict"] == "FADE")]
+    if not keep.empty:
+        print(f"KEEP signals (positive CAR, BH q <= {args.fdr}): {len(keep)}")
+        print(keep[["signal", "horizon_d", "n", "mean_car", "hit_rate",
+                    "bh_q", "deflated_sr"]].to_string(index=False))
+    if not fade.empty:
+        print(f"\nFADE signals (negative CAR, BH q <= {args.fdr}): {len(fade)}")
+        print(fade[["signal", "horizon_d", "n", "mean_car", "hit_rate",
+                    "bh_q", "deflated_sr"]].to_string(index=False))
+    return 0
+
+
 def cmd_health(args: argparse.Namespace) -> int:
     """Pipeline health & coverage audit."""
     from .health import collect as _hc
@@ -1361,6 +1399,22 @@ def build_parser() -> argparse.ArgumentParser:
 
     phc = sub.add_parser("health", help="Pipeline health & coverage audit")
     phc.set_defaults(func=cmd_health)
+
+    pcal = sub.add_parser("calibrate",
+                         help="Phase 3 event-study calibration of signal weights with BH correction")
+    pcal.add_argument("--horizons", default="5,20,60",
+                     help="forward-day horizons to evaluate, comma-separated")
+    pcal.add_argument("--stride", type=int, default=5,
+                     help="evaluate every Nth day (default 5)")
+    pcal.add_argument("--train-frac", dest="train_frac", type=float, default=0.6)
+    pcal.add_argument("--fdr", type=float, default=0.10,
+                     help="Benjamini-Hochberg FDR target (default 0.10)")
+    pcal.add_argument("--min-events", dest="min_events", type=int, default=15)
+    pcal.add_argument("--breadths", default="1,2,3",
+                     help="breadth thresholds to sweep")
+    pcal.add_argument("--z-thresholds", dest="z_thresholds", default="1.0,1.5,2.0",
+                     help="per-source z thresholds to sweep")
+    pcal.set_defaults(func=cmd_calibrate)
 
     pbr = sub.add_parser("breadth", help="Multi-source-confirmed signals (Phase 2: per-source z + breadth)")
     pbr.add_argument("--top", type=int, default=30)
