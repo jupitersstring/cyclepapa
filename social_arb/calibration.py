@@ -267,9 +267,11 @@ def calibrate(
     if verbose:
         print(f"calibration: pulling price history for {len(all_tickers)} tickers")
     from .prices import daily_close
-    from datetime import datetime, timedelta, timezone
-    end_dt = datetime.now(timezone.utc)
-    start_dt = end_dt - timedelta(days=int((end_dt - dates[0]).days) + max(cfg_.forward_days) + 30)
+    from datetime import datetime, timedelta
+    # Both naive UTC dates -- avoid tz mismatch with pd.date_range output.
+    end_dt = datetime.utcnow()
+    span_days = (end_dt.date() - dates[0].date()).days
+    start_dt = end_dt - timedelta(days=int(span_days) + max(cfg_.forward_days) + 30)
     prices = {}
     for t in sorted(all_tickers):
         s = daily_close(t, start_dt, end_dt)
