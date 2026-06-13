@@ -13,7 +13,7 @@ Each item states the flaw, why it matters, and the fix.
 ### 1.1 No base rates. The framework has never been backtested.
 
 Every asymmetry estimate in the system ("3–5×", "5–10× or zero") is
-narrative, not empirical. We cite winners (Goodman 60×, Yes Bank 80×,
+narrative, not empirical. We cite winners (Goodman 60×, Rolls-Royce 10×,
 Rolls-Royce 10×) but have never measured the **full distribution** of
 outcomes for distressed rights issues: what fraction multibag, what
 fraction flatline, what fraction re-restructure? Without the denominator,
@@ -98,7 +98,7 @@ something auditable.
 
 ### 1.6 Returns lack a time axis
 
-"Peak ~80×" (Yes Bank) is not a realizable return — it's the maximum of
+"Peak ~60×" (Goodman) is not a realizable return — it's the maximum of
 a path. Goodman's 60× took 12 years; Lotus's 8.6× took two months. The
 system never distinguishes IRR from multiple, which makes cross-case
 comparison meaningless and flatters slow compounders.
@@ -209,8 +209,8 @@ a crowded 6.9× one.
 
 "C7 dated" is binary in the current screen. Upgrade to a dated catalyst
 ledger per name: event, date window, P(favorable), expected re-rate if
-favorable, expected hit if not (e.g., Vodafone Idea: AGR ruling, window
-H2 FY26, P≈35–45%, +150–250% / −50%). This converts the tier system
+favorable, expected hit if not (e.g., Eutelsat: IRIS² programme
+milestone, window 2026-2029, P≈55%, +180–350% / −30%). This converts the tier system
 into a forward calendar the daily cadence can actually monitor, and
 makes post-hoc calibration (§5.2) possible.
 
@@ -383,7 +383,7 @@ Thai Airways situation); exit when the holding's thesis migrates from
 structure-alpha to pure cycle-beta (you can own that cheaper and more
 liquid elsewhere); full exit on any kill-criterion regardless of price.
 Add a "completed arc" detector to the cadence: names re-rated past
-Condition 7 move out automatically, the way Yes Bank/Saipem/BMPS
+Condition 7 move out automatically, the way Greek banks/Saipem/BMPS
 eventually did in our own files — but months after the fact.
 
 ### 5.5 Quarterly framework retro

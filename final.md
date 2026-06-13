@@ -19,26 +19,25 @@ snapshot. This is the actionable list.
 | 3 | **Worldline** | EPA: WLN | A · A1 | ~€0.40 vs €2.75 anchor (**alignment gap 6.9× — largest in universe**); <2× FY24 EBITDA vs Adyen 30×, Nexi 7–8× | 3–5× |
 | 4 | **MP Materials** | NYSE: MP | A · A2 | Already 5×'d; trades at premium to rare-earth peers but with DoD $110/kg NdPr floor as structural backstop; pre-magnet-plant ramp | 2–3× more |
 | 5 | **Lithium Americas** | NYSE: LAC | A · A2 | Trades on lithium spot; **embedded sub-commercial-financing arbitrage worth $400m+ NPV alone** vs current market cap; pre-Phase 1 production 2027–28 | 3–5× |
-| 6 | **Vodafone Idea** | NSE: IDEA | A · A1+G | ~₹70,000 cr cap on 198m subs (vs Jio 470m at ~₹1m cr, Bharti 380m at ~₹9 lakh cr); ~₹1.9 lakh cr net debt; stock *below* GoI ₹11 FPO entry — pure long-dated option on AGR relief | 3–5× |
-| 7 | **Sunac China** | HKEX: 1918 | B · F+A | HK$1.49–1.75; US$1.9–2.3bn cap on deeply discounted property book; P/B implied <0.2× | 3–7× or zero |
-| 8 | **Hawaiian Electric** | NYSE: HE | A · A1 | ~$15; 1.6× P/B vs regulated peers 1.8–2.5×; 21× P/E with ROE depressed at 6% vs authorised 9.5% — ~50% EPS upside on rate-base normalisation alone | 2.5–3× |
-| 9 | **Kaisa** | HKEX: 1638 | B · F | 4–10% implied liquidation recovery; pure binary; Kwok founder + 6-year MCB lock + 20% MIP at recap — strongest founder alignment in Chinese property cohort | 5–10× or zero |
-| 10 | **CIFI Holdings** | HKEX: 884 | B · F | Equity at small fraction of Rmb130bn property NAV plus Rmb1.8bn rent-yielding IP portfolio growing 10% — most asset-rich survivor stub in cascade | 3–5× |
-| 11 | **Solocal** | EPA: LOCAL | A · E | Microcap (~€20–30m cap); €324.5m revenue, €60m EBITDA (18.5% margin), €51.8m net cash — trades at <0.5× EV/EBITDA; Lévy/Niel control 64.8% | binary 5–10× |
-| 12 | **Patriot Battery Metals** | TSX: PMET | A · B | Trades well below the **C$4.42 VW PowerCo anchor (paid 65% to 30-day VWAP)**; Shaakichiuwaanaan (80.1Mt at 1.44% Li₂O) is the 8th-largest pegmatite globally; EV/resource attractive vs peers | 3–4× |
-| 13 | **Lynas Rare Earths** | ASX: LYC | A · A2 | Trading near A$10 vs A$13.25 placement; ex-China rare-earth scarcity premium; **likely next DoD-template recipient after MP Materials** | 3–4× |
-| 14 | **Sapura Energy** | KLSE: SAPNRG | A · G+B | Pre-consolidation 3.5–4.5 sen (~RM643–827m cap); option-shaped residual after 99.99% capital reduction; sovereign MDH 33% post-conversion | 4–6× option |
-| 15 | **Star Entertainment** | ASX: SGR | A→B · A1 | A$0.10–0.13; ~A$730m cap on three operating casino licences (Sydney, Brisbane Queens Wharf, Gold Coast); Bally's + Mathieson converts at A$0.08 strike | 2–3× |
-| 16 | **Americanas** | B3: AMER3 | A · C+E | Net cash post-recap (debt R$45.2bn → R$1.7bn); ~R$30bn revenue base; book equity flipped –R$30.4bn → +R$5.7bn — market still discounting fraud taint | 2–4× |
-| 17 | **Sino-Ocean** | HKEX: 3377 | B · F+G | US$700m–1bn cap vs deeply discounted property book; **China Life + Dajia Insurance retain 53.8%** with 2-yr undertakings; SOE-aligned | 2–4× |
-| 18 | **Metro Bank** | LSE: MTRO | A · G | 0.6–0.75× tangible book at recovered capital position; Gilinski 53% controlling at floor priced higher than rejected Pollen Street/BC Partners offers | 2–3× |
-| 19 | **Synlait Milk** | NZX: SML | A · D+A1 | NZ$0.50–0.65; ~NZ$280–370m cap on NZ$1.6bn revenue (**0.2× P/S**); Bright Dairy 65% + a2 Milk 19.8% | 2–3× |
-| 20 | **Wolfspeed** | NYSE: WOLF | C→B · F | Sole US-based 200mm SiC fab; trades at depressed multiples of replacement cost; Renesas 38.7% strategic anchor post-prepack | 3–5× |
-| 21 | **iHeartMedia** | NASDAQ: IHRT | A · C | 0.05× P/S on $3.8bn revenue; EV/EBITDA ~7–8× — distressed multiples for the **#1 US audio franchise**; Pittman family aligned | 4–6× option |
-| 22 | **Lumen** | NYSE: LUMN | A · C/G | 0.8× P/S vs industry 1.4×; EV/EBITDA ~5× vs peers 8–10×; **+117% 1-yr TSR already** so partial re-rate priced; insider buying through 2025 | 2.5–3× |
-| 23 | **Calumet** | NASDAQ: CLMT | A · A2+C | ~$3bn co cap vs **implied $2–3bn standalone value for Montana Renewables alone** (Lazard mandated to monetise); MaxSAF 150 expansion Q2 2026 | 2–3× |
-| 24 | **Wolfspeed/Aston Martin tier** — Aston Martin Lagonda | LSE: AML | A · C | 6–7× EV/EBITDA on management £400m EBITDA target vs Ferrari ~25×; Yew Tree/Stroll 33% + PIF + Geely + Mercedes — all common equity | 2–3× |
-| 25 | **Capital A** | KLSE: CAPI | A · A1+E | RM0.40–0.45 vs 52-week range RM0.24–1.03 — embeds substantial AAX value via 1.7bn AAX shares distribution-in-specie; Fernandes/Meranun 30% promoter | 2–3× |
+| 6 | **Sunac China** | HKEX: 1918 | B · F+A | HK$1.49–1.75; US$1.9–2.3bn cap on deeply discounted property book; P/B implied <0.2× | 3–7× or zero |
+| 7 | **Hawaiian Electric** | NYSE: HE | A · A1 | ~$15; 1.6× P/B vs regulated peers 1.8–2.5×; 21× P/E with ROE depressed at 6% vs authorised 9.5% — ~50% EPS upside on rate-base normalisation alone | 2.5–3× |
+| 8 | **Kaisa** | HKEX: 1638 | B · F | 4–10% implied liquidation recovery; pure binary; Kwok founder + 6-year MCB lock + 20% MIP at recap — strongest founder alignment in Chinese property cohort | 5–10× or zero |
+| 9 | **CIFI Holdings** | HKEX: 884 | B · F | Equity at small fraction of Rmb130bn property NAV plus Rmb1.8bn rent-yielding IP portfolio growing 10% — most asset-rich survivor stub in cascade | 3–5× |
+| 10 | **Solocal** | EPA: LOCAL | A · E | Microcap (~€20–30m cap); €324.5m revenue, €60m EBITDA (18.5% margin), €51.8m net cash — trades at <0.5× EV/EBITDA; Lévy/Niel control 64.8% | binary 5–10× |
+| 11 | **Patriot Battery Metals** | TSX: PMET | A · B | Trades well below the **C$4.42 VW PowerCo anchor (paid 65% to 30-day VWAP)**; Shaakichiuwaanaan (80.1Mt at 1.44% Li₂O) is the 8th-largest pegmatite globally; EV/resource attractive vs peers | 3–4× |
+| 12 | **Lynas Rare Earths** | ASX: LYC | A · A2 | Trading near A$10 vs A$13.25 placement; ex-China rare-earth scarcity premium; **likely next DoD-template recipient after MP Materials** | 3–4× |
+| 13 | **Sapura Energy** | KLSE: SAPNRG | A · G+B | Pre-consolidation 3.5–4.5 sen (~RM643–827m cap); option-shaped residual after 99.99% capital reduction; sovereign MDH 33% post-conversion | 4–6× option |
+| 14 | **Star Entertainment** | ASX: SGR | A→B · A1 | A$0.10–0.13; ~A$730m cap on three operating casino licences (Sydney, Brisbane Queens Wharf, Gold Coast); Bally's + Mathieson converts at A$0.08 strike | 2–3× |
+| 15 | **Americanas** | B3: AMER3 | A · C+E | Net cash post-recap (debt R$45.2bn → R$1.7bn); ~R$30bn revenue base; book equity flipped –R$30.4bn → +R$5.7bn — market still discounting fraud taint | 2–4× |
+| 16 | **Sino-Ocean** | HKEX: 3377 | B · F+G | US$700m–1bn cap vs deeply discounted property book; **China Life + Dajia Insurance retain 53.8%** with 2-yr undertakings; SOE-aligned | 2–4× |
+| 17 | **Metro Bank** | LSE: MTRO | A · G | 0.6–0.75× tangible book at recovered capital position; Gilinski 53% controlling at floor priced higher than rejected Pollen Street/BC Partners offers | 2–3× |
+| 18 | **Synlait Milk** | NZX: SML | A · D+A1 | NZ$0.50–0.65; ~NZ$280–370m cap on NZ$1.6bn revenue (**0.2× P/S**); Bright Dairy 65% + a2 Milk 19.8% | 2–3× |
+| 19 | **Wolfspeed** | NYSE: WOLF | C→B · F | Sole US-based 200mm SiC fab; trades at depressed multiples of replacement cost; Renesas 38.7% strategic anchor post-prepack | 3–5× |
+| 20 | **iHeartMedia** | NASDAQ: IHRT | A · C | 0.05× P/S on $3.8bn revenue; EV/EBITDA ~7–8× — distressed multiples for the **#1 US audio franchise**; Pittman family aligned | 4–6× option |
+| 21 | **Lumen** | NYSE: LUMN | A · C/G | 0.8× P/S vs industry 1.4×; EV/EBITDA ~5× vs peers 8–10×; **+117% 1-yr TSR already** so partial re-rate priced; insider buying through 2025 | 2.5–3× |
+| 22 | **Calumet** | NASDAQ: CLMT | A · A2+C | ~$3bn co cap vs **implied $2–3bn standalone value for Montana Renewables alone** (Lazard mandated to monetise); MaxSAF 150 expansion Q2 2026 | 2–3× |
+| 23 | **Wolfspeed/Aston Martin tier** — Aston Martin Lagonda | LSE: AML | A · C | 6–7× EV/EBITDA on management £400m EBITDA target vs Ferrari ~25×; Yew Tree/Stroll 33% + PIF + Geely + Mercedes — all common equity | 2–3× |
+| 24 | **Capital A** | KLSE: CAPI | A · A1+E | RM0.40–0.45 vs 52-week range RM0.24–1.03 — embeds substantial AAX value via 1.7bn AAX shares distribution-in-specie; Fernandes/Meranun 30% promoter | 2–3× |
 
 **Honourable mentions just outside top 25:** Pierre & Vacances (LSE/EPA:
 VAC; EBITDA already 2× 2019 levels, not yet re-rated), WW International
@@ -80,7 +79,7 @@ The cohort sorts cleanly into four stages of the recap-to-multibagger arc.
 Position size should scale with how early the name is on this curve.
 
 1. **Pre-Condition-7 (balance sheet repaired, operating not visible).**
-   The richest asymmetry. Eutelsat, Worldline, Vodafone Idea, Sunac,
+   The richest asymmetry. Eutelsat, Worldline, Sunac,
    Kaisa, CIFI, Solocal, Sapura, Lithium Americas, Lynas, Patriot
    Battery, Synlait, Calumet, Wolfspeed, Aston Martin, Pierre & Vacances.
    These have done the financial work; the market is paying for the wait.
@@ -96,9 +95,8 @@ Position size should scale with how early the name is on this curve.
    re-rated). Asymmetry compressed to peer-multiple normalisation.
 
 4. **Completed arc (re-rated past distressed multiples — pass-list).**
-   Greek banks, Hanwha Ocean, Banca Monte dei Paschi, Saipem (mostly),
-   Patanjali Foods, Yes Bank (SMBC at all-time-high). Useful as proof
-   of the framework; not actionable today.
+   Greek banks, Hanwha Ocean, Banca Monte dei Paschi, Saipem (mostly).
+   Useful as proof of the framework; not actionable today.
 
 ### Three valuation themes that define this vintage
 
@@ -176,7 +174,7 @@ and the LATAM Airlines 2022 re-listing in their respective cycles.
 | Conviction tier | Names | Sizing |
 |---|---|---|
 | **Core (3/3 triangulation, C7 dated)** | Mountain Province, Worldline, Eutelsat, Lithium Americas, Hawaiian Electric | Full weight |
-| **Strong (2–3/3, C7 plausible)** | MP Materials, Vodafone Idea, Sunac, Kaisa, CIFI, Solocal, Patriot Battery, Lynas, Sapura, Star, Americanas, Sino-Ocean, Metro Bank, Synlait | Half weight |
+| **Strong (2–3/3, C7 plausible)** | MP Materials, Sunac, Kaisa, CIFI, Solocal, Patriot Battery, Lynas, Sapura, Star, Americanas, Sino-Ocean, Metro Bank, Synlait | Half weight |
 | **Option (1–2/3, binary)** | Wolfspeed, iHeartMedia, Lumen, Calumet, Aston Martin, Capital A, WW, Mesoblast, Embracer, Sibanye, Nigerian banks, Borr, Hycroft | Quarter weight; size for tail |
 | **Yellow / pass for now** | Vanke (state backstop conditional), Novaland (founder net seller), Casino (repeat-RX risk), Petrofac (court-reversed), Wood Group (private at 30p), Spirit (refiled) | Avoid until status changes |
 

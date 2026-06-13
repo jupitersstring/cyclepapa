@@ -163,35 +163,7 @@ largest alignment gap in the screen.
 
 ---
 
-### 3. Vodafone Idea — NSE: IDEA (India)
-
-**Bucket A · Archetype A + G · Gap ~1× (below FPO floor) · C7 pending**
-
-Largest sovereign-aligned recap in the screen; the only Tier-1 candidate
-where the alignment gap is *inverted* (stock trades below the FPO/anchor
-price) — a different kind of asymmetric signal.
-
-- **Mechanic.** Apr 2024 – Mar 2025: **~₹24,000 cr (US$2.9bn) cash
-  equity** (₹18,000 cr FPO @ ₹11, ₹2,080 cr preferential to Aditya
-  Birla/Vodafone, ₹2,460 cr to Nokia/Ericsson) + **~₹53,000 cr
-  government dues converted to equity → GoI 49% largest shareholder**.
-  AGR/spectrum moratorium runs to FY26.
-- **Alignment gap.** FPO ₹11 vs. market ₹7–9 = stock **below** the
-  anchor price. Inverted gap = buy *the same instrument the sovereign
-  bought, cheaper*.
-- **Condition 7.** Supreme Court AGR review (reassessment of dues up to
-  FY17, potentially transformational); tariff hikes holding; 198m subs;
-  positive EBITDA; funded 5G rollout.
-- **Trade.** NSE listed common. ~₹70,000 cr mkt cap vs. net debt
-  ~₹1.9 lakh cr — pure long-dated levered option on AGR relief plus
-  tariff cycle.
-- **Kill criteria.** AGR review rejected; tariff war resumes;
-  cash-burn from FY26 forces fresh equity event without AGR relief
-  (~70%+ downside scenario).
-
----
-
-### 4. Sunac China Holdings — HKEX: 1918 (China)
+### 3. Sunac China Holdings — HKEX: 1918 (China)
 
 **Bucket B (new post-MCB common) · Archetype F + A · Gap n/a · C7 pending**
 
@@ -220,7 +192,7 @@ creditors.
 
 ---
 
-### 5. Hawaiian Electric Industries — NYSE: HE (US)
+### 4. Hawaiian Electric Industries — NYSE: HE (US)
 
 **Bucket A · Archetype A · Gap ≈ 1.6× to current · C7 visible**
 
@@ -340,7 +312,7 @@ in a bear cycle for the underlying commodity.
 
 ## Tier 2 — Strong fits with one moderate caveat
 
-### 6. Sapura Energy — KLSE: SAPNRG (Malaysia)
+### 5. Sapura Energy — KLSE: SAPNRG (Malaysia)
 
 **Bucket A · Archetype G + B · Gap n/a (capital reduction structure) · C7 pending**
 
@@ -360,7 +332,7 @@ Sovereign-anchored Malaysian oilfield-services recap of unusual scale.
 - **Kill criteria.** Shamsuddin family dispute escalates;
   post-consolidation float behaviour disorderly; Angola losses recur.
 
-### 7. Star Entertainment Group — ASX: SGR (Australia)
+### 6. Star Entertainment Group — ASX: SGR (Australia)
 
 **Bucket A → B · Archetype A · Gap ≈ 0.7× (anchor below market) · C7 pending**
 
@@ -381,7 +353,7 @@ Eutelsat/Worldline).
 - **Kill criteria.** AML penalty escalates; class action damages;
   minority cram-down at full Bally's conversion.
 
-### 8. Americanas SA — B3: AMER3 (Brazil)
+### 7. Americanas SA — B3: AMER3 (Brazil)
 
 **Bucket A · Archetype C + E · Gap ≈ 1.7× (R$1.30 issue vs R$0.76 pre) · C7 pending**
 
@@ -400,7 +372,7 @@ Largest Brazilian aligned-promoter recap in the screen.
 - **Kill criteria.** Digital decline accelerates; fraud litigation
   surprises; SG&A bloat persists.
 
-### 9. Sino-Ocean Group — HKEX: 3377 (China)
+### 8. Sino-Ocean Group — HKEX: 3377 (China)
 
 **Bucket B (state-aligned anchor retention) · Archetype F + G · C7 pending**
 
@@ -971,16 +943,10 @@ sale); Mallinckrodt legacy MNKKQ; Endo legacy ENDPQ (cancelled); WeWork
 (Yardi private); Big Lots, Express, Joann, Party City (all zero);
 Carvana (no longer distressed); Wayfair (no material recap).
 
-**Asia:** Sintex; Jaiprakash Associates (NCLT-approved Adani plan Mar
-2026 mandates *immediate delisting with zero consideration*); Reliance
-Capital; Reliance Naval; Essar Steel; Videocon; Future Retail (all IBC
-wipeouts); Taeyoung E&C (100:1 reduction for majors); Yes Bank (SMBC at
-₹21.50 with stock at ₹24.30 ATH — completed arc); RBL Bank (Emirates NBD
-primary at premium ₹280); Hanwha Ocean (+53%, defence/shipbuilding
-re-rate done); Vedanta (corporate action not distress); Patanjali Foods
-(debt-free since 2022); Logan/Agile/Powerlong/Yango (weaker promoter
-alignment than Sunac/Sino-Ocean/Kaisa/CIFI); Nissan (no equity raise
-yet); Fosun (asset-sale self-rescue, no equity event); **Vanke
+**Asia:** Taeyoung E&C (100:1 reduction for majors); Hanwha Ocean (+53%,
+defence/shipbuilding re-rate done); Logan/Agile/Powerlong/Yango (weaker
+promoter alignment than Sunac/Sino-Ocean/Kaisa/CIFI); Nissan (no equity
+raise yet); Fosun (asset-sale self-rescue, no equity event); **Vanke
 (000002.SZ / 2202.HK)** — flagged as *yellow* now that the Nov 2025
 Shenzhen Metro collateral demand on the entire Onewo stake + Rmb2bn
 onshore bond extension request show **state backstop has become
@@ -1017,7 +983,6 @@ conditions met with unusually clean alignment).
 | 0c | **Lithium Americas** | US/Canada | A | A2 | $2.26bn 0%-spread 24y DOE ATVM | 3–5× |
 | 1 | **Eutelsat** | France | A | A1+F | Alignment gap 2.9× | 3–5× |
 | 2 | **Worldline** | France | A | A1 | Alignment gap **6.9×** | 3–5× |
-| 3 | **Vodafone Idea** | India | A | A1+G | Stock cheaper than GoI FPO entry | 3–5× |
 | 4 | **Sunac China** | HK/China | B | F+A | Founder 23% MCBs + 6yr lock | 3–7× |
 | 5 | **Hawaiian Electric** | US | A | A1 | Alignment gap 1.6× + C7 visible | 2.5–3× |
 | 5a | **Kaisa** | HK/China | B | F | Kwok founder + 6yr restriction + 20% MIP | 5–10× or zero |
@@ -1086,9 +1051,8 @@ Worldline are the textbook examples.**
 
 This is structurally different from the **US Chapter 11 cycle**, which
 has been **systematically hostile to legacy equity** (Spirit, Rite Aid,
-Audacy, 2U, Enviva, Sunnova all delivered zero), and from the **Indian
-IBC system**, which mandates equity wipeouts at confirmation. The
-cleanest US plays therefore cluster either in **out-of-court LME where
+Audacy, 2U, Enviva, Sunnova all delivered zero). The cleanest US plays
+therefore cluster either in **out-of-court LME where
 old equity survived** (Hawaiian Electric, Lumen, iHeartMedia, Calumet,
 Hycroft) or in the rare **post-reorg orphan with strategic anchor**
 (Wolfspeed/Renesas).
@@ -1106,11 +1070,10 @@ recap basket where the entire sector has been recapitalised at
 compliance multiples below book.
 
 **The single most important pattern**: prior-cycle textbook winners have
-already played out (Greek banks, Hanwha Ocean, Thai Airways, Patanjali
-Foods, Saipem, Monte dei Paschi). The investable opportunity today is
-concentrated in the new vintage — Eutelsat, Worldline, Vodafone Idea,
-Sunac, Sapura, Hawaiian Electric, Star, Americanas, Sino-Ocean, Metro,
-Synlait — where the recap is fresh enough that the equity has not yet
+already played out (Greek banks, Hanwha Ocean, Thai Airways, Saipem,
+Monte dei Paschi). The investable opportunity today is concentrated in
+the new vintage — Eutelsat, Worldline, Sunac, Sapura, Hawaiian Electric,
+Star, Americanas, Sino-Ocean, Metro, Synlait — where the recap is fresh enough that the equity has not yet
 re-rated and the inflection catalyst has not yet hit. *The asymmetry
 premium is being paid for the time gap between balance-sheet repair
 (already done) and operational / regulatory inflection (still

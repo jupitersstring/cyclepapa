@@ -9,8 +9,8 @@ fine; the discount is a **governance discount**, and the asymmetry
 comes from a dated event that compresses it.
 
 Why this deserves its own archetype: the historical multibaggers in our
-own case studies that came from this category (Yes Bank's RBI-forced
-board reset, Indian Bank's recap, Greek bank HFSF exits, NYCB/Flagstar's
+own case studies that came from this category (Greek bank HFSF exits,
+Serco 2015 post-scandal management reset, NYCB/Flagstar's
 Mnuchin board takeover, Serco's post-scandal management reset) had the
 **best base rates in the framework** — because the state/regulator acts
 as a non-economic seller or a forced fixer, handing aligned buyers an
@@ -28,15 +28,15 @@ re-rates as the governance discount closes. Sub-types:
 | Sub-type | Mechanic | Template case |
 |---|---|---|
 | **H1. Strategic privatization** | State sells control to a private/strategic owner | IDBI Bank (live), PIA, Aeromexico re-IPO |
-| **H2. Regulatory-forced float** | MPS/free-float rules force the state/promoter to dilute below a threshold | Indian PSB MPS basket (Aug 2026 deadline) |
+| **H2. Regulatory-forced float** | MPS/free-float rules force the state/promoter to dilute below a threshold | *(documented sub-type; no live cohort in the active opportunity set)* |
 | **H3. State-exit overhang removal** | Government sells down crisis-era stakes; the overhang discount closes as the seller finishes | NatWest (completed 2025), ABN AMRO, Permanent TSB, HFSF Greek exits (completed) |
 | **H4. Mandated value-up regime** | Exchange/regulator mandates capital-efficiency disclosure with teeth | TSE PBR directive (Japan), KRX Value-Up + Feb 2026 tax penalty (Korea), SASAC market-cap KPI (China) |
-| **H5. Regulator-forced board/management reset** | PCA-type framework exit, scandal reset, or central-bank-installed management | Yes Bank 2020, Serco 2015, NYCB/Flagstar 2024 |
+| **H5. Regulator-forced board/management reset** | Framework exit, scandal reset, or central-bank-installed management | Serco 2015, NYCB/Flagstar 2024 |
 | **H6. Parent-child unwind** | Listed-subsidiary takeouts forced by governance rules on independence | Japan Prime Market takeout boom (live) |
 
 H combines naturally with G (regulator-forced sector recap): G fixes the
 balance sheet, H fixes the governance. The strongest historical setups
-had both (Yes Bank, Greek banks).
+had both (Greek banks 2010s, Bank of Ireland 2011).
 
 ---
 
@@ -69,9 +69,6 @@ machine-readable* feeds — better than the distress archetypes:
 
 | Feed | What it gives | Cadence |
 |---|---|---|
-| **DIPAM** (dipam.gov.in) | Indian divestment pipeline: strategic sales, OFS announcements, asset monetisation | Ad hoc; budget-cycle heavy |
-| **RBI press releases** | PCA framework entries/exits, board supersessions, amalgamation schemes | Ad hoc |
-| **SEBI MPS exemption notices** | Which PSUs are exempt from 25% float and until when (current blanket: **Aug 1, 2026**) | Annual-ish |
 | **TSE "Management Conscious of Cost of Capital" disclosure list** | Monthly list of which Prime/Standard companies have/haven't disclosed value-up plans — *the laggards are the screen* | **Monthly** |
 | **KRX Value-Up disclosure index + corporate tax-credit rules** | Which Korean issuers filed plans; from Feb 2026, high-dividend issuers *lose tax benefits* without one | Monthly |
 | **SASAC announcements** | Chinese central-SOE market-value-management KPI changes | Ad hoc |
@@ -85,13 +82,13 @@ the regulator.
 
 ---
 
-## The live opportunity set (verified June 2026) — non-India focus
+## The live opportunity set (verified June 2026)
 
-India is excluded from the active opportunity set at user direction;
-the Indian H1/H2 mechanisms (IDBI Bank privatization, PSB MPS-forced
-dilution by Aug 1, 2026) remain documented in
-`psu_governance_india_archive.md` as historical template cases and
-base-rate inputs only, not as investable names.
+The active opportunity set focuses on H3 (state-exit overhangs), H4
+(value-up laggards), H5 (regulator-forced resets, watch only) and
+H6 (parent-child unwinds). H1 (strategic privatization) and H2
+(regulatory-forced float) sub-types are documented in the taxonomy
+but no live cohort sits in the active set.
 
 ### H3 — European state-exit overhangs (the cleanest live set)
 
@@ -137,8 +134,8 @@ introduced July 2025) accelerate the catalyst calendar.
 
 ### H5 — Regulator-forced board / management resets (watch only)
 
-The strongest historical setups in this archetype (Yes Bank 2020
-RBI-forced, Serco 2015 post-scandal, NYCB/Mnuchin 2024) all required
+The strongest historical setups in this archetype (Serco 2015
+post-scandal, NYCB/Mnuchin 2024, Greek-bank board resets 2012–15) all required
 *an event to seed them*: a regulator using its supervisory authority
 to install a new board, a scandal forcing CEO departure, or a
 central-bank-mandated capital plan.
@@ -207,7 +204,7 @@ just makes the governance leg explicit.
   subsidised pricing, or policy-driven capex within the last two
   political cycles, without a subsequent statutory fence
 - **Election within the catalyst window** — privatizations and state
-  sell-downs freeze in election years (India 2029 national; state
+  sell-downs freeze in election years (US 2028; UK general election; state
   elections matter for PSB appetite)
 - **Golden share / strategic-sector veto** retained post-privatization
 - **Squeeze-out at "fair value" risk in weak-appraisal jurisdictions** —
@@ -227,7 +224,7 @@ just makes the governance leg explicit.
 1. **Methodology §3.1**: Archetype H added to the taxonomy table.
 2. **Scorecard**: dimensions 15–19 above; dimension 18
    (national-service risk) is a veto gate alongside #11 and #13.
-3. **Feeds**: DIPAM / RBI / SEBI-MPS / TSE-monthly / KRX / NLFI-UKGI
+3. **Feeds**: TSE-monthly / KRX / NLFI-UKGI
    pollers join §1; TSE and KRX lists are the priority builds because
    the regulator publishes the laggard screen for us.
 4. **Candidates**: IDBI.yaml enters as Tier 2 (dated binary, awaiting

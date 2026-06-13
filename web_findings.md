@@ -190,24 +190,7 @@ positive in Q3 2026.
 
 ## 5. Catalysts confirmed firing
 
-### 5.1 Vodafone Idea AGR — Condition 7 fired November 2025
-
-The screen documented Vi's AGR liability as the dated catalyst. Verified:
-
-- **Supreme Court 3 November 2025**: ruled government can reassess
-  Vi's AGR dues; SC explicitly said "matter of policy not law"
-- **Late 2025**: Union Cabinet approved framework to **freeze Vi's AGR
-  liability at ₹87,695 cr** and reschedule payments over a 10-year
-  window starting FY32
-- March 2026: ₹16,428 cr installment due, subject to reconsideration
-- Stock surged ~10% intraday on the ruling
-
-The AGR cliff is effectively neutralized for the next ~6 years. Vi is
-now an operational story (tariff cycle + 5G ramp + subscriber retention)
-rather than a binary on AGR — a much different risk profile than the
-shortlist documented.
-
-### 5.2 Hawaiian Electric — first $479m settlement payment authorized
+### 5.1 Hawaiian Electric — first $479m settlement payment authorized
 April 10, 2026
 
 The screen documented this as a Q2 2026 catalyst. **Confirmed fired:**
@@ -223,7 +206,7 @@ The screen documented this as a Q2 2026 catalyst. **Confirmed fired:**
 
 Tier 1 status confirmed; the partial re-rate is likely underway.
 
-### 5.3 Petra Diamonds — new 10-for-17 rights, but yellow flag
+### 5.2 Petra Diamonds — new 10-for-17 rights, but yellow flag
 
 Verified terms of the new round (the screen previously documented Petra
 as Tier 2):
@@ -346,7 +329,6 @@ quote post-split prices to avoid confusion.
 | UREE: added as Tier 1 (third A2 template after MP/LAC) | +1 Tier 1 |
 | ELUX-B: added as Tier 1 (Nordic Wallenberg+Midea A1+D pattern) | +1 Tier 1 |
 | TMQ: added as Tier 2 (Pentagon deal pending July close) | +1 Tier 2 |
-| VOD-IDEA: catalyst fired — operational story now | tier maintained, risk profile changed |
 | HE: catalyst fired — partial re-rate underway | tier maintained, asymmetry compressed |
 | PDL: yellow flag on chairman warrants kicker | Tier 2 → Tier 2 with caveat |
 | REC Silicon: identified as canonical negative example | pass / negative control |

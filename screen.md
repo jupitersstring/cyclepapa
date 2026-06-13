@@ -52,20 +52,7 @@ Under this discipline the top tier compresses meaningfully.
 - Prevailing valuation: ~3.5× EV/EBITDA pro-forma vs SES 5–6×, Iridium 12×
 - **Asymmetry 3–5×; risk = IRIS² programme slip; SES/Starlink pricing war**
 
-### 4. Vodafone Idea — NSE: IDEA
-- **Bucket A · Archetype A1+G · C7 dated (Supreme Court AGR review)**
-- Sovereign (GoI 49%) + Aditya Birla + Vodafone Plc + Nokia + Ericsson
-  all subscribed
-- Stock trades *below* the ₹11 GoI FPO entry — inverse alignment gap is
-  itself a buying opportunity
-- C7: Supreme Court AGR review (reassessment of dues up to FY17 —
-  potentially transformational); tariff hikes holding; 198m subs;
-  funded 5G rollout
-- Prevailing valuation: ~₹70,000 cr cap on 198m subs (Jio at ~₹2.1m
-  cr / 470m subs ≈ ₹4,500 per sub; Vi at ₹350 per sub)
-- **Asymmetry 3–5×; downside 70% if AGR review rejected**
-
-### 5. Lithium Americas — NYSE/TSX: LAC
+### 4. Lithium Americas — NYSE/TSX: LAC
 - **Bucket A · Archetype A2 (sovereign industrial-policy anchor) · C7 dated late 2027**
 - $2.26bn DOE ATVM loan at US Treasury rate with **0% spread over 24
   years** — sub-commercial cost of capital that cannot be replicated
@@ -77,7 +64,7 @@ Under this discipline the top tier compresses meaningfully.
 - **Asymmetry 3–5×; downside on lithium cycle deepening + DOE policy
   shift under new administration**
 
-### 6. Hawaiian Electric — NYSE: HE
+### 5. Hawaiian Electric — NYSE: HE
 - **Bucket A · Archetype A1 · C7 visible**
 - Alignment gap ~1.6× (post-deal); pure common at $9.25 follow-on with
   no rescue-lender priming
@@ -90,7 +77,7 @@ Under this discipline the top tier compresses meaningfully.
 - **Asymmetry 2.5–3× to $30–40; downside 30% on cap legislation slip
   + another ignition**
 
-### 7. MP Materials — NYSE: MP
+### 6. MP Materials — NYSE: MP
 - **Bucket A · Archetype A2 · C7 partial (re-rate underway)**
 - DoD 10-year NdPr price floor at **$110/kg (~2× spot at deal date)** +
   7,000-tonne magnet offtake + $400m convertible preferred + Apple $500m
@@ -102,7 +89,7 @@ Under this discipline the top tier compresses meaningfully.
 - **Asymmetry 2–3× more; downside on China rare-earth export controls
   relaxing**
 
-### 8. Patriot Battery Metals — TSX: PMET
+### 7. Patriot Battery Metals — TSX: PMET
 - **Bucket A · Archetype B · C7 pending · Premium-to-VWAP signal (9c)**
 - **VW PowerCo paid C$4.42 — 65% to 30-day VWAP, 35% to 90-day** — for
   9.9% + 10-year 100ktpa SC5.5 binding offtake
@@ -113,7 +100,7 @@ Under this discipline the top tier compresses meaningfully.
 - Trades materially below VW entry price → buy what they bought, cheaper
 - **Asymmetry 3–4× on EV/resource normalisation + lithium-cycle return**
 
-### 9. Americanas — B3: AMER3
+### 8. Americanas — B3: AMER3
 - **Bucket A · Archetype C+E · C7 dated Feb 2026 (RJ exit) + HNT
   divestiture**
 - **3G trio (Lemann/Telles/Sicupira) injected R$12bn** → reference
@@ -125,7 +112,7 @@ Under this discipline the top tier compresses meaningfully.
   one-time RJ profit
 - **Asymmetry 2–4× on full RJ exit + digital stabilisation**
 
-### 10. Metro Bank — LSE: MTRO
+### 9. Metro Bank — LSE: MTRO
 - **Bucket A · Archetype G · C7 partial**
 - **Gilinski (Spaldy) 53% controlling** at price floor higher than
   rejected Pollen Street / BC Partners offers
@@ -323,19 +310,11 @@ Under this discipline the top tier compresses meaningfully.
   Big Lots, Express, Joann, Party City, SunPower, Sunnova, ams-Osram-
   context-affected names
 
-**Indian IBC wipeouts (zero recovery default):**
-- Sintex, Jaiprakash Associates (Adani plan = immediate delisting zero
-  consideration), Reliance Capital, Reliance Naval, Essar Steel,
-  Videocon, Future Retail
-
 **Already re-rated past Condition 7 — the completed-arc list:**
-- Yes Bank (SMBC at ₹21.50 with stock at ₹24.30 ATH)
-- RBL Bank (Emirates NBD primary at premium ₹280)
 - Greek banks (HFSF exit complete, dividends resumed)
 - Hanwha Ocean (+53%, defence/shipbuilding re-rate done)
 - Banca Monte dei Paschi (Mediobanca offer secured Sep 2025; now
   consolidator)
-- Patanjali Foods (debt-free since 2022)
 - Saipem (cycle re-rate largely done)
 - Vallourec (ArcelorMittal exit at €14.64 vs current ~€15+)
 - Carvana (no longer distressed — multibagger arc complete)
@@ -349,21 +328,19 @@ Under this discipline the top tier compresses meaningfully.
 
 ## Cohort statistics
 
-### Tier-1 archetype mix (10 names)
+### Tier-1 archetype mix (9 names)
 - **A1 (sovereign-strategic dual-tier):** 4 — Worldline, Eutelsat, HE,
   Americanas
 - **A2 (sovereign industrial-policy):** 2 — Lithium Americas, MP
 - **B (strategic premium / convertible):** 1 — Patriot Battery Metals
 - **F (founder-on-both-sides + asset-rich):** 1 — Mountain Province
-- **G (regulator-forced):** 1 — Vodafone Idea
-- **G + multi:** 1 — Metro Bank
+- **G (regulator-forced):** 1 — Metro Bank
 
 ### Tier-1 geographic split
 - France: 2 (Worldline, Eutelsat)
 - US: 3 (MP, LAC, HE)
 - Canada: 2 (MPVD, Patriot Battery)
 - Brazil: 1 (Americanas)
-- India: 1 (Vodafone Idea)
 - UK: 1 (Metro Bank)
 - **No Chinese property in Tier 1** — Sunac/Kaisa/CIFI sit in Tier 2
   because the binary structure violates the C7-dated requirement
@@ -394,7 +371,6 @@ By requiring zero active red flags I drop:
 
 By requiring Bucket A/B accessible I drop:
 - All US Ch.11 emergences that went private
-- Most Indian IBC outcomes
 - Steinhoff residual
 
 The strictness shrinks the top tier from 25 (in `final.md`) to 10

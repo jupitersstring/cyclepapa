@@ -25,7 +25,6 @@ common is a separate trade.
 | Name | Ticker | Bucket | Triangulation | Status |
 |---|---|---|---|---|
 | Calfrac Well Services | TSX:CFW | A | 3/3 | ★ |
-| Exicom Tele-Systems | NSE:EXICOM | A | 3/3 | ★ |
 | Worldline | EPA:WLN | A | 2/3 | ★ |
 | Ørsted | CSE:ORSTED | A | 2/3 | ★ |
 | Petra Diamonds | LSE:PDL | A | 2/3 | ★ |
@@ -186,11 +185,11 @@ common is a separate trade.
 | Annaly Capital | NYSE:NLY | ★ | A | 2020 rights template |
 | Two Harbors | NYSE:TWO | ▲ | A | Mortgage REIT |
 
-### Banks (Yes Bank / ING template)
+### Banks (ING / Lloyds 2009 template)
 
 | Name | Ticker | Conf. | Bucket | Notes |
 |---|---|---|---|---|
-| NYCB / Flagstar Financial | NYSE:FLG | ★ | A | 2024 Mnuchin/Liberty Strategic recap — strong analogue to Indian Bank |
+| NYCB / Flagstar Financial | NYSE:FLG | ★ | A | 2024 Mnuchin/Liberty Strategic recap — sovereign-adjacent backstop template |
 | First Foundation | NYSE:FFWM | ★ | A | 2024 rescue capital raise |
 | PacWest | (acquired Banc of California 2023) | ★ | C → B | Acquired post-distress |
 | Western Alliance | NYSE:WAL | ▲ | A | Stable but watch |
@@ -473,44 +472,6 @@ common is a separate trade.
 | Asiana Airlines | (acquired KAL 2024) | ★ | C → acquired | Closed 2024 |
 | Korean Air | KRX:003490 | ★ | A | Recovery |
 | KOSPI mid/small distressed | various | ▲ | A/C | Many micro-cap recaps |
-
-### India — current rights issues / QIPs / preferential allotments
-
-| Name | Ticker | Conf. | Bucket | Notes |
-|---|---|---|---|---|
-| Exicom Tele-Systems | NSE:EXICOM | ★ | A | Per shortlist |
-| Vodafone Idea | NSE:IDEA | ★ | A | Multiple equity raises; ~₹18,000 cr FPO 2024 |
-| Suzlon Energy | NSE:SUZLON | ★ | A | Multiple recaps; recovered post-2023 |
-| Yes Bank | NSE:YESBANK | ★ | A | Per case studies — multibagger reference |
-| IDFC First Bank | NSE:IDFCFIRSTB | ▲ | A | Bandhan / Warburg backing |
-| RBL Bank | NSE:RBLBANK | ▲ | A | Multiple capital raises |
-| Bandhan Bank | NSE:BANDHANBNK | ▲ | A | Watch |
-| Indian Bank (PSU) | NSE:INDIANB | ★ | A | Per case studies |
-| Bank of Baroda | NSE:BANKBARODA | ▲ | A | PSU recap candidate |
-| Punjab National Bank | NSE:PNB | ▲ | A | PSU recap candidate |
-| Bank of India | NSE:BANKINDIA | ▲ | A | PSU recap candidate |
-| Bank of Maharashtra | NSE:MAHABANK | ▲ | A | PSU recap candidate |
-| Indian Overseas Bank | NSE:IOB | ▲ | A | PSU recap candidate |
-| UCO Bank | NSE:UCOBANK | ▲ | A | PSU recap candidate |
-| Future Retail / Future Group | (NCLT) | ★ | C | Equity wiped — pass |
-| Reliance Capital | (NCLT — Hinduja) | ★ | C | Acquired 2024 |
-| Jaiprakash Associates / JPower | NSE:JPASSOCIAT | ★ | C | NCLT |
-| Lanco Infratech | (NCLT) | ★ | C | Liquidation |
-| Reliance Communications | (NCLT) | ★ | C | Liquidation |
-| DHFL | (resolved Piramal) | ★ | C | Acquired 2021 |
-| Suzlon Energy | NSE:SUZLON | ★ | A | Per above |
-| GMR Airports / GMR Infra | NSE:GMRINFRA | ▲ | A | Group restructure |
-| Adani Green Energy | NSE:ADANIGREEN | ▲ | A | After Hindenburg short |
-| Adani Transmission / Energy Sols | NSE:ADANIENSOL | ▲ | A | Group cap-stack actions |
-| Adani Enterprises | NSE:ADANIENT | ★ | A | 2023 ₹20,000 cr FPO cancelled; subsequent QIPs |
-| Adani Ports | NSE:ADANIPORTS | ▲ | A | Watch |
-| GVK Industries | (NCLT) | ★ | C | Liquidation |
-| Jet Airways | (NCLT — failed plan) | ★ | C | Liquidation |
-| SpiceJet | NSE:SPICEJET | ▲ | A | Multiple equity rounds; chronic distress |
-| Praj Industries | NSE:PRAJIND | ▲ | A | Watch |
-| Bharti Hexacom | NSE:BHARTIHEXA | ▲ | A | Recent IPO |
-| Manappuram Finance | NSE:MANAPPURAM | ▲ | A | Watch |
-| Edelweiss | NSE:EDELWEISS | ▲ | A | Watch |
 
 ### Indonesia / Malaysia / Singapore / Thailand / Philippines / Vietnam
 
@@ -898,61 +859,58 @@ Run the §1 pipeline against company-action feeds for each.
 6. **European auto suppliers** — EV transition pressure; Forvia / Plastic
    Omnium / Schaeffler / GKN / Garrett style
 7. **UK micro-cap / AIM** — shell rights issues, schemes of arrangement
-8. **Indian PSU banks** — government recap programs ongoing
-9. **Indonesian / Vietnamese listed corporates** — capital-market reform
+8. **Indonesian / Vietnamese listed corporates** — capital-market reform
    driving recap visibility
-10. **LatAm airlines + telcos** — recurring restructure cycle
-11. **US offshore oilfield services + drilling** — secular FID recovery
-12. **Cannabis** — secular distress; mostly Bucket C; watch for one
+9. **LatAm airlines + telcos** — recurring restructure cycle
+10. **US offshore oilfield services + drilling** — secular FID recovery
+11. **Cannabis** — secular distress; mostly Bucket C; watch for one
     survivor recap
-13. **SPAC casualties** — large group still working through cap-stack
-14. **Argentine corporates** — Milei reform regime + US$ debt overhang
-15. **South African SOEs and parastatals** — Eskom, Transnet, SAA
-16. **Streaming / ad-tech consolidation** — Lumen/Altice/iHeart-style
+12. **SPAC casualties** — large group still working through cap-stack
+13. **Argentine corporates** — Milei reform regime + US$ debt overhang
+14. **South African SOEs and parastatals** — Eskom, Transnet, SAA
+15. **Streaming / ad-tech consolidation** — Lumen/Altice/iHeart-style
     debt exchanges
-17. **European listed REITs** — SBB-template sub-par retirement is
+16. **European listed REITs** — SBB-template sub-par retirement is
     spreading
-18. **Korean shipbuilders + chemicals** — cycle inflection
-19. **Chinese non-property credit** — local government financing
+17. **Korean shipbuilders + chemicals** — cycle inflection
+18. **Chinese non-property credit** — local government financing
     vehicles, non-bank lenders
-20. **Crypto miners** — power contract repricing, debt overhang from
+19. **Crypto miners** — power contract repricing, debt overhang from
     pre-2022 buildouts
-21. **2026–27 US busted-convert maturity wall** — the 2021 vintage
+20. **2026–27 US busted-convert maturity wall** — the 2021 vintage
     refinances or exchanges; densest Tier-S calendar in the US market
-22. **Below-cash busted biotech** — reverse mergers, liquidations,
+21. **Below-cash busted biotech** — reverse mergers, liquidations,
     negative-EV acquisitions; structurally repeating cohort
-23. **Korean chaebol liquidity events** — Lotte Chemical template;
+22. **Korean chaebol liquidity events** — Lotte Chemical template;
     value-up programme forces balance-sheet action
-24. **Japan parent-child unwinds + sovereign chip policy** — TSE reform
+23. **Japan parent-child unwinds + sovereign chip policy** — TSE reform
     pressure is a slow-motion recap mechanic; Nissan is the live
     pre-recap watch
-25. **Post-default sovereign baskets** — Sri Lanka banks, Ghana DDEP
+24. **Post-default sovereign baskets** — Sri Lanka banks, Ghana DDEP
     banks, Argentina utilities/banks under tariff reset; the regulator
     *is* the restructuring agent
-26. **US federal cannabis rescheduling** — sector-wide dated catalyst;
+25. **US federal cannabis rescheduling** — sector-wide dated catalyst;
     pre-identify which cap structures let common capture it
-27. **De-SPAC workouts** — busted 2021 vintage with strategic anchors
+26. **De-SPAC workouts** — busted 2021 vintage with strategic anchors
     (AST/Archer/Joby pattern) vs no-anchor deaths (Canoo pattern)
-28. **European bank state-exit overhangs** — ABN, NatWest-style
+27. **European bank state-exit overhangs** — ABN, NatWest-style
     sell-down completions as slow-motion A1 events
-29. **Ukraine reconstruction basket** — single undated binary catalyst;
+28. **Ukraine reconstruction basket** — single undated binary catalyst;
     option-size only
-30. **Archetype H governance/state-exit baskets** (see
-    `psu_governance.md`) — India excluded from the active set at
-    user direction. Active sub-baskets: **H3 state-exit overhangs**
-    (ABN AMRO via Dutch NLFI sell-down; Permanent TSB via Irish
-    state exit; Raiffeisen via Russia-overhang resolution — adjacent
-    same-shape trade); **H4 Korea value-up tax-penalty laggards**
-    (Feb 2026 rule strips tax benefits from high-dividend issuers
-    without filed plans; chaebol holdco discount sub-basket is the
-    densest); **H6 Japan parent-child takeouts** (May 1, 2026 FIEA
-    amendment cuts mandatory-TOB threshold from 33⅓% to 30%, forcing
-    parents at 30–33% holdings to either step back or fully take
-    out). The TSE monthly disclosure list and KRX value-up index are
-    regulator-published laggard screens — the highest-quality free
-    feeds in the entire pipeline. (The India H1/H2 set — IDBI
-    privatization decision; PSB MPS forced-dilution basket — is
-    archived in `psu_governance.md` as template-only.)
+29. **Archetype H governance/state-exit baskets** (see
+    `psu_governance.md`). Active sub-baskets: **H3 state-exit
+    overhangs** (ABN AMRO via Dutch NLFI sell-down; Permanent TSB
+    via Irish state exit; Raiffeisen via Russia-overhang resolution
+    — adjacent same-shape trade); **H4 Korea value-up tax-penalty
+    laggards** (Feb 2026 rule strips tax benefits from
+    high-dividend issuers without filed plans; chaebol holdco
+    discount sub-basket is the densest); **H6 Japan parent-child
+    takeouts** (May 1, 2026 FIEA amendment cuts mandatory-TOB
+    threshold from 33⅓% to 30%, forcing parents at 30–33% holdings
+    to either step back or fully take out). The TSE monthly
+    disclosure list and KRX value-up index are regulator-published
+    laggard screens — the highest-quality free feeds in the entire
+    pipeline.
 
 ---
 
@@ -966,8 +924,8 @@ Run the §1 pipeline against company-action feeds for each.
   DDEP, Argentina, Türkiye, Egypt) where the *sovereign or regulator is
   the restructuring agent* — these are A1/G archetypes applied to an
   entire exchange rather than one issuer, and they historically carry
-  the best base rates in the framework (Yes Bank, Greek banks, Nigerian
-  banks all came from this category).
+  the best base rates in the framework (Greek banks 2010s, Nigerian
+  banks 2024–26 sector-wide recap all came from this category).
 - Three structurally *repeating* fishing grounds deserve standing
   automation: busted converts (every cycle), below-cash biotech (every
   biotech winter), and post-default sovereign banking sectors (every

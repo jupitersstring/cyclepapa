@@ -118,7 +118,6 @@ issuer-search HTML on a saved query basis.
 | Vietnam | HOSE + HNX | `hsx.vn` + `hnx.vn` | Corporate disclosures |
 | Australia | ASX + ASIC | `asx.com.au/asx/v2/statistics/announcements.do?timeframe=D` + ASIC company extracts | Capital raises, VA notices |
 | New Zealand | NZX | `nzx.com/announcements` | Announcements |
-| India | BSE + NSE + SEBI | `bseindia.com/corporates/ann.html`, NSE corporate API, `sebi.gov.in` | Rights, QIP, FPO, takeover |
 | Pakistan | PSX + SECP | `psx.com.pk` + `secp.gov.pk` | Material info |
 | Sri Lanka | CSE | `cse.lk/pages/announcement` | Disclosures |
 | Bangladesh | DSE | `dsebd.org` | Price-sensitive info |
@@ -140,20 +139,20 @@ issuer-search HTML on a saved query basis.
 
 ### 1.2 Form-type & item-code filters (cross-jurisdictional)
 
-| Filter | US equivalent | UK | EU (Transparency / MAR) | Canada | Australia | India |
+| Filter | US equivalent | UK | EU (Transparency / MAR) | Canada | Australia |
 |---|---|---|---|---|---|---|
-| Material agreement | 8-K Item 1.01 | RNS "Notification of major holdings" + LR 13 | MAR Art. 17 ad-hoc | Material change report | ASX 3A.1 / 3A.2 | SEBI LODR Reg 30 |
-| Bankruptcy / insolvency | 8-K Item 1.03 | LSE Notice of Liquidation | Per-country code | Filing under CCAA / BIA | ASX VA notice / Appendix 3X | NCLT order |
-| Debt obligation | 8-K Item 2.03 / 2.04 | RNS debt issuance | MAR ad-hoc | Material change report | ASX 3D | LODR Reg 30 |
-| Unregistered equity | 8-K Item 3.02 / 3.03 | RNS placing / open offer | Prospectus Reg | Form 45-106F1 | ASX placement notice | Preferential allotment |
-| Vote results | 8-K Item 5.07 | RNS results of GM | Per-country | Form 51-102 | ASX 3G | LODR Reg 44 |
-| FPI window | 6-K | n/a | n/a | n/a | n/a | n/a |
-| Anchor disclosure | SC 13D/G + amendments | TR-1 substantial shareholder | Transparency Directive | Early Warning Report | Substantial holder notice 5%+ | SAST Reg 29 |
-| New equity pricing | S-3 / 424B5 | Prospectus + final terms | EU Prospectus | Short-form prospectus | ASX cleansing notice | DRHP / addendum |
-| New indenture | T-3 | Trust deed RNS | Per-country | Trust indenture | n/a | Information memorandum |
-| Restructuring vote | DEF 14A | Circular under LR | Per-country | Mgmt info circular | Scheme booklet | NCLT scheme circular |
-| Late filer | NT-10 | RNS "Delay in publication" | Per-country | Cease trade order | Suspension notice | LODR Reg 33 non-compliance |
-| Insider transaction | Form 4 | RNS PDMR notification | MAR Art. 19 | SEDI | ASX Appendix 3Y | SEBI insider Reg 7(2) |
+| Material agreement | 8-K Item 1.01 | RNS "Notification of major holdings" + LR 13 | MAR Art. 17 ad-hoc | Material change report | ASX 3A.1 / 3A.2 |
+| Bankruptcy / insolvency | 8-K Item 1.03 | LSE Notice of Liquidation | Per-country code | Filing under CCAA / BIA | ASX VA notice / Appendix 3X |
+| Debt obligation | 8-K Item 2.03 / 2.04 | RNS debt issuance | MAR ad-hoc | Material change report | ASX 3D |
+| Unregistered equity | 8-K Item 3.02 / 3.03 | RNS placing / open offer | Prospectus Reg | Form 45-106F1 | ASX placement notice |
+| Vote results | 8-K Item 5.07 | RNS results of GM | Per-country | Form 51-102 | ASX 3G |
+| FPI window | 6-K | n/a | n/a | n/a | n/a |
+| Anchor disclosure | SC 13D/G + amendments | TR-1 substantial shareholder | Transparency Directive | Early Warning Report | Substantial holder notice 5%+ |
+| New equity pricing | S-3 / 424B5 | Prospectus + final terms | EU Prospectus | Short-form prospectus | ASX cleansing notice |
+| New indenture | T-3 | Trust deed RNS | Per-country | Trust indenture | n/a |
+| Restructuring vote | DEF 14A | Circular under LR | Per-country | Mgmt info circular | Scheme booklet |
+| Late filer | NT-10 | RNS "Delay in publication" | Per-country | Cease trade order | Suspension notice |
+| Insider transaction | Form 4 | RNS PDMR notification | MAR Art. 19 | SEDI | ASX Appendix 3Y |
 
 ### 1.3 Bond, credit & distressed feeds
 
@@ -205,7 +204,6 @@ issuer-search HTML on a saved query basis.
 | Canada | Provincial PPRs (Ontario, BC, Alberta, etc.) | Per-province search; commercial: TLOxp, Dye & Durham |
 | Australia | ASIC PPSR | `ppsr.gov.au` |
 | New Zealand | PPSR | `ppsr.govt.nz` |
-| India | CERSAI + MCA charges | `cersai.org.in` + `mca.gov.in` |
 | Mexico | RUG | `rug.gob.mx` |
 | Brazil | Junta Comercial (state-level) | Per-state JUCESP, JUCERJA, etc. |
 | Singapore | ACRA Bizfile | `bizfile.gov.sg` |
@@ -233,9 +231,6 @@ terminations of old liens on the same day or within 30 days.
 | Canada | Canadian Insider | `canadianinsider.com` |
 | Australia | ASX Appendix 3Y (change in director's interest) | ASX RSS per ticker |
 | Australia | ASIC Form 605 | Substantial holder notices |
-| India | BSE / NSE bulk + block deals | Daily HTML downloads |
-| India | SEBI Reg 7(2) insider disclosures | BSE / NSE company pages |
-| India | TrendlyneInsider, Tijori Finance | Aggregators |
 | Japan | EDINET large-shareholding reports | `disclosure.edinet-fsa.go.jp` |
 | Korea | DART executive shareholding | `dart.fss.or.kr` |
 | Hong Kong | HKEX Disclosures of Interest | `sdinotice.hkex.com.hk` |
@@ -254,7 +249,6 @@ terminations of old liens on the same day or within 30 days.
 | EU Transparency Directive | 5%+ shareholder notifications | Per-OAM hub |
 | Canada Early Warning Reports | 10%+ shareholder | SEDAR+ |
 | Australia substantial holder notices | 5%+ shareholder | ASX RSS |
-| India SAST Reg 29 + 31 | Substantial Acquisition of Shares & Takeovers | BSE / NSE |
 | WhaleWisdom | 13F aggregator with delta tracking | Paid web |
 | FactSet Stock Surveillance / Ownership | Institutional ownership database | Paid |
 | Refinitiv eMaxx | Bond-fund holdings database | Paid |
@@ -589,12 +583,12 @@ than before the deal, but not yet a multibagger setup. The investable
 opportunity sits in the time gap between *balance-sheet repair done* and
 *operational inflection visible* — exactly the structural mispricing
 that defined Rolls-Royce 2020, ArcelorMittal 2016, and 3i 2009 in their
-respective cycles, and Eutelsat / Worldline / Vodafone Idea / Sunac in
+respective cycles, and Eutelsat / Worldline / Sunac in
 the current vintage.
 
 Prior-cycle textbook winners have already played through Condition 7 and
 re-rated past the entry: Greek banks, Hanwha Ocean, Thai Airways,
-Patanjali Foods, Saipem, Banca Monte dei Paschi. These belong on the
+Saipem, Banca Monte dei Paschi. These belong on the
 *completed arc* list, not the live shortlist.
 
 ### 2.3 Red flags (any one is a pass by default)
@@ -709,8 +703,8 @@ applies; bucket tells you which security to buy.
 | **D** | Strategic customer / parent recap | Capital injected by an industrial partner with deep operational alignment (customer, parent, supplier) | Daimler / Mercedes-Benz in 2009 | **Synlait (Bright Dairy + a2 Milk), NIO (Hefei 2020)** |
 | **E** | National bankruptcy framework (court-supervised survival) | PN17 (Malaysia), CCAA (Canada), recovery judicial (Brazil), StaRUG (Germany), Thai rehabilitation, French sauvegarde accélérée — sovereign procedure that preserves listed common while restructuring debt | GM 2009 (failed for legacy), Drake & Scull 2024 | **Capital A, Drake & Scull, Light SA, Americanas, Sapura, Thai Airways, Aeromexico, Garuda, Solocal, emeis, Casino, Pierre & Vacances** |
 | **F** | Post-bankruptcy / spin orphan / MCB cascade | Ch.11 emergence with negotiated legacy retention; or sponsor-backed spin off; or strategic anchor receives material new equity; or Chinese property MCB cascade where founder takes material MCB alongside creditors | Charter 2009, Valaris 2021, Core Scientific 2024 | **Wolfspeed (Renesas 38.7%), Sunac (founder 23% MCBs), Sino-Ocean (state insurers 53.8%), Kaisa (Kwok + 6yr lock), CIFI (Lin family), Shimao (Hui family), Country Garden, Sunrise, Embracer/Fellowship, Endo/Mallinckrodt, Japan Display, GOL, Vroom, Diebold Nixdorf** |
-| **G** | Regulator-forced sector recap | Regulatory mandate (capital floor, AGR settlement, MREL, central-bank stress test) drives recapitalisation across an entire sector | Greek banks 2010s, BoI 2011, Yes Bank 2020 | **Vodafone Idea (GoI 49%), Metro Bank (MREL + Gilinski), Nigerian banks (CBN ₦500bn floor), Attica/Crediabank** |
-| **H** | Governance reset / state exit | The catalyst is a change in who governs: state-exit overhang removal (H3), mandated value-up regime (H4), regulator-forced board reset (H5), parent-child unwind (H6). Strategic privatization (H1) and regulatory-forced float (H2) sub-types are documented but the only live H1/H2 cohort (India) is excluded from the active opportunity set. The discount being closed is a *governance* discount, not a solvency discount. See `psu_governance.md` for the full module, scorecard dims 15–19, and feeds | NatWest state exit 2025, HFSF Greek exits, Serco 2015 reset | **ABN AMRO / Permanent TSB / Raiffeisen (H3), Korea value-up tax-penalty laggards (H4), Japan parent-child takeouts post-May 2026 FIEA threshold cut (H6)** |
+| **G** | Regulator-forced sector recap | Regulatory mandate (capital floor, MREL, central-bank stress test, sovereign-default-driven sector recap) drives recapitalisation across an entire sector | Greek banks 2010s, BoI 2011 | **Metro Bank (MREL + Gilinski), Nigerian banks (CBN ₦500bn floor), Attica/Crediabank** |
+| **H** | Governance reset / state exit | The catalyst is a change in who governs: state-exit overhang removal (H3), mandated value-up regime (H4), regulator-forced board reset (H5), parent-child unwind (H6). Strategic privatization (H1) and regulatory-forced float (H2) sub-types are documented but no live cohort sits in the active opportunity set. The discount being closed is a *governance* discount, not a solvency discount. See `psu_governance.md` for the full module, scorecard dims 15–19, and feeds | NatWest state exit 2025, HFSF Greek exits, Serco 2015 reset | **ABN AMRO / Permanent TSB / Raiffeisen (H3), Korea value-up tax-penalty laggards (H4), Japan parent-child takeouts post-May 2026 FIEA threshold cut (H6)** |
 
 Same name can carry two codes (e.g., Eutelsat A + F because the recap is
 also a partial reorganization). The most valuable signal is the *current
@@ -832,7 +826,6 @@ outcomes for old common. Adjust scorecard dimension #1 weight by venue.
 | Sweden | Företagsrekonstruktion | ~40% | Intrum allowed common to keep economics |
 | Australia | DOCA | ~50% | Variable; often paired with rights |
 | HK / China | Scheme + Chapter 15 | ~15% | Country Garden — control transfers common |
-| India | IBC / NCLT plan | ~5% | Promoter cram-down standard since 2016; rights pre-IBC is the trade |
 
 Practical takeaway: a UK rights issue under Listing Rules is structurally
 the most common-friendly path. US Chapter 11 is the least.
@@ -1007,7 +1000,6 @@ holdings; LSEG/Lipper for fund-level position changes.
 | Name | Leg 1: PF/through-cycle asymmetry | Leg 2: Cap-stack game theory | Leg 3: Insider / insti revealed preference | Verdict |
 |---|---|---|---|---|
 | **Calfrac** | ✓ NA frac-cycle: bear ≈ current; base ≈ 2–3× | ✓ Director backstop = relationship anchor; no DIP needed | ✓ Directors put fresh cash in alongside rights | **3/3 — core (Tenneco-grade)** |
-| **Exicom** | ✓ Promoter underwriting at deleveraging price | ✓ Promoter cheque ≈ alignment; no creditor wipe | ✓ Promoter took ₹120 cr of ₹259 cr | **3/3 — core** |
 | **Petra** | ✓ Diamond cycle near trough; mid-cycle EV/EBITDA ≈ 4× equity | ~ Refinancing friendly; no named external anchor | ? Insider rights take-up but no aggressive open-market buys | **2/3 — option** |
 | **Worldline** | ✓ Payments multiple 5–10× off peak; mid-cycle ~50% on multiple alone | ✓ French banks anchored = strategic alignment | ? Need confirmation of board / insider participation | **2/3 — option** |
 | **Ørsted** | ~ Offshore-wind IRR repair plausible; multiple uncertain | ✓ State at 50.1% = sovereign anchor | ✓ State held pro-rata through entire raise | **2/3 — option** |
@@ -1016,7 +1008,7 @@ holdings; LSEG/Lipper for fund-level position changes.
 | **Fossil** | ~ Brand value uncertain through-cycle | ✓ Stapled-exchange preserves listed common | ? Need confirmation of insider activity post-deal | **1 / 3 — watchlist** |
 | **Atos** | ✗ Creditors at 90.8% destroys PF math for old common | ✗ Cramdown jurisdiction used | ✗ No insider buying at recap price | **0 / 3 — pass** |
 
-**Calfrac and Exicom are currently the cleanest triangulations** — the
+**Calfrac is currently the cleanest triangulation** — the
 two names that match the Tenneco / Munger / Goodman pattern of all three
 legs lit at the same time. Worldline, Ørsted, Eutelsat, and Petra are
 two-leg options where the missing leg is identifiable and watchable.
@@ -1051,7 +1043,7 @@ deal?", but the bucket tells you "which seat captures it?"
 - **Bucket A — listed common is the trade.** Old common participates
   pro-rata at a defendable price. The listed share is the right instrument.
   Quality within the bucket varies; score separates winners (Goodman, 3i,
-  Yes Bank) from losers (Provident, Atos).
+  3i 2009, Goodman 2009) from losers (Provident, Atos).
 - **Bucket B — anchor instrument is the trade.** Listed common may
   participate, but the real economics live with the anchor or fulcrum
   tranche. Trade only if you can access the anchor's paper (PIPE,
@@ -1079,8 +1071,6 @@ deal?", but the bucket tells you "which seat captures it?"
 | 2014 | **Premier Foods (LSE)** | £353m rights as part of ~£1.1bn refi (new bonds + RCF) | 17/28 | Removed financing stranglehold so operating improvement could matter |
 | 2015 | **Serco (LSE)** | ~£555m underwritten rights + refi; ~£450m to gross debt | 19/28 | Governance/contracting reset; brand impaired but customer contracts intact |
 | 2018 | **Provident Financial (LSE)** | ~£330m fully-underwritten rescue rights | 8 (hindsight) | Headline rights clean; home-credit franchise decayed; canonical *rescue ≠ recovery* |
-| 2020 | **Yes Bank (NSE)** | ~₹25,000 cr total (SBI-led rescue + FPO at floor ₹12) | 22/28 | Regulated rescue removed insolvency risk; common ran ~80x off FPO floor |
-| 2024 | **Indian Bank (NSE)** | ₹5,000 cr equity + ₹7,000 cr debt | 20/28 | Bank recap; stock roughly doubled within a year |
 | 2025 | **Petra Diamonds (LSE)** | £18.8m fully underwritten rights + maturity push to 2029/30 | 14/28 | Default cliff gone; awaits diamond price recovery |
 | 2025 | **Coinbase (Nasdaq)** | $2B converts at ~30–35% premium, capped calls | 16/28 | Structure clean; no dated operating catalyst |
 | 2025 | **Baxter (NYSE)** | Cash tender for 2026/2027 bonds, new unsecured to fund | 13/28 | Marginally equity-positive; not transformational |
@@ -1108,7 +1098,7 @@ deal?", but the bucket tells you "which seat captures it?"
 ### Pattern recognition across the three buckets
 
 - **Best Bucket A setups share:** pro-rata access, anchor cost basis at the
-  recap price (Goodman/CIC; Yes Bank/SBI; Indian Bank/promoter), a clean
+  recap price (Goodman/CIC; 3i/CIC; ING/Dutch State), a clean
   post-deal cap stack, and an identifiable operating catalyst within 24
   months. Scores cluster 18–22.
 - **Best Bucket B setups share:** either a fulcrum tranche trading at deep
@@ -1162,7 +1152,6 @@ or sub-par debt retirement at the listed-equity level.
 | A7 | **SBB (Sweden, ST)** | 95% participation in bond exchange; €2.78bn debt retired below par | 15/28 | Property valuations stabilizing; continued sub-par retirement |
 | A8 | **Fossil (US, OTC)** | "Stapled Exchange" — UK Pt 26A plan + $32.5m new money; legacy equity explicitly preserved | 14/28 | Brand/licensing cash flows; cost cuts |
 | A9 | **ams-OSRAM (Austria/CH)** | €2.25bn package incl. ~€800m rights + senior unsec + asset-level financing | 14/28 | Auto/industrial cycle; whether new debt stack absorbs the upside |
-| A10 | **Exicom (India, NSE)** | ~₹259 cr oversubscribed rights; promoter took ~₹120 cr; deleveraging use of proceeds | 13/28 | Tritium integration; EV charger margins |
 | A11 | **OXE Marine (Sweden, ST)** | MSEK 78 rights + MSEK 155 debt-to-equity + EIB warrant swap; residual debt written off after 7 yrs | 11/28 | Product traction; liquidity tail |
 | A12 | **Ebusco (Netherlands, AMS)** | €36m rights at €0.8209, 64.3% take-up; shareholder loans converted; Gotion in settlement | 10/28 | Production normalization; customer confidence |
 | A12= | **mm2 Asia (Singapore, SGX)** | SGD15m private placement + SGD10m fully-underwritten rights | 10/28 | Post-pandemic media demand; no visible strategic anchor |
@@ -1213,7 +1202,7 @@ security; never the old line.
 ### Shortlist by archetype (now bucket-tagged)
 
 - **Bucket A · Pro-rata rights with insider/anchor backstop:** Calfrac,
-  Brait, Petra, Exicom.
+  Brait, Petra.
 - **Bucket A · Discounted-debt-retirement / NAV convexity:** SBB.
 - **Bucket A · State / strategic-anchor mega recap:** Ørsted, Worldline,
   Eutelsat.
@@ -1226,8 +1215,8 @@ security; never the old line.
 
 By bucket, the names closest to the historical templates:
 
-- **Like 3i / Goodman / Yes Bank (Bucket A pro-rata rescue):** Calfrac,
-  Petra, Worldline, Exicom.
+- **Like 3i / Goodman (Bucket A pro-rata rescue):** Calfrac, Petra,
+  Worldline.
 - **Like ING / Lloyds 2009 (Bucket A bank/national-champion recap):**
   Ørsted, Worldline, Eutelsat.
 - **Like Charter / Valaris / Hynix (Bucket C → new common):** McDermott
