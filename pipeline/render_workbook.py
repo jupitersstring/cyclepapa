@@ -69,6 +69,32 @@ def run():
           r["kill_criteria"], r["factor_tags"]) for r in rows],
         widths=[8,28,30,8,10,9,22,9,22,9,11,9,11,48,32])
 
+    # 9e. Multi-factor conviction score — combines hyper-conviction, 13D vs 13G,
+    # NEW init, material add, public letter, follow-on, holding persistence,
+    # insider co-buy, and multi-fund peer signals into one ranked score
+    mega = ("AMZN","MSFT","GOOGL","GOOG","NVDA","META","AAPL","TSLA","SPY","QQQ","IWM","IVV","IEF","BABA","TSM","BAC","BRK.B","BRK.A","NFLX","JPM","CRM","JNJ","WMT","H2")
+    placeholders = ",".join("?"*len(mega))
+    rows = list(conn.execute(f"""SELECT * FROM ticker_conviction
+        WHERE ticker NOT IN ({placeholders}) ORDER BY score DESC LIMIT 80""", mega))
+    write_sheet(wb, "9e_CONVICTION_SCORE",
+        ["Ticker","Score","# funds","Hyper (>=10%)","Activist 13D","Passive 13G","NEW init",
+         "Material add","Public letter","Follow-on","Persist","Insider co-buy","Sum $M",
+         "Max % book","Max % co","Top fund signals"],
+        [(r["ticker"], r["score"], r["n_funds"], r["n_hyper"], r["n_activist_13d"],
+          r["n_passive_13g"], r["n_new_init"], r["n_material_add"], r["n_public_letter"],
+          r["n_follow_on"], r["n_persist"], "YES" if r["has_insider_cobuy"] else "",
+          r["sum_dollar_m"], r["max_pct_book"], r["max_pct_company"], r["fund_signals_summary"])
+         for r in rows],
+        widths=[8,7,9,13,13,12,9,13,13,11,9,13,9,11,10,55])
+
+    rows = list(conn.execute("""SELECT fund, ticker, signals, score, pct_book, pct_company, dollar_m
+        FROM fund_conviction WHERE score >= 6 ORDER BY score DESC LIMIT 200"""))
+    write_sheet(wb, "9f_FUND_CONVICTION_DETAIL",
+        ["Fund","Ticker","Signals (combined)","Score","% book","% company","$M"],
+        [(r["fund"], r["ticker"], r["signals"], r["score"], r["pct_book"],
+          r["pct_company"], r["dollar_m"]) for r in rows],
+        widths=[36,8,42,7,9,11,9])
+
     # 9. FUND POSITIONING MONITOR — the original conviction/adds/13D view, typed
     rows = list(conn.execute("""SELECT ticker, funds, dollar_m, max_pct, funds_list
         FROM v_top_material_adds WHERE funds>=2 ORDER BY funds DESC, dollar_m DESC LIMIT 60"""))
