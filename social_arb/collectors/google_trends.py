@@ -147,23 +147,20 @@ def collect_google_trends(
                 "brand_query"
             )
             text = f"google_trends({col})={int(val)} on {ts.date().isoformat()}"
-            # Emit `int(val/10)` rows so the mention z-score reads a sane
-            # number while preserving the relative-attention shape; minimum 1
-            # so the day is still observed.
-            n_proxy = max(1, int(val / 10))
-            for i in range(n_proxy):
-                rows.append({
-                    "timestamp": ts_utc,
-                    "source": "google_trends",
-                    "source_id": f"{sid}:{i}",
-                    "ticker": ticker.upper(),
-                    "alias": col.lower(),
-                    "confidence": 0.85,
-                    "via": via,
-                    "text": text,
-                    "sentiment": 0.0,
-                    "sentiment_label": "neutral",
-                    "url": "https://trends.google.com/trends/explore",
-                    "author": None,
-                })
+            # Phase 2: ONE row carrying the Trends index as weight.
+            rows.append({
+                "timestamp": ts_utc,
+                "source": "google_trends",
+                "source_id": sid,
+                "ticker": ticker.upper(),
+                "alias": col.lower(),
+                "confidence": 0.85,
+                "via": via,
+                "text": text,
+                "sentiment": 0.0,
+                "sentiment_label": "neutral",
+                "url": "https://trends.google.com/trends/explore",
+                "author": None,
+                "weight": float(val),
+            })
     return normalized_dataframe(rows)

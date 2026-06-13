@@ -58,35 +58,33 @@ def collect_apewisdom(
                 sentiment_val = float(sentiment) if sentiment is not None else 0.0
             except (TypeError, ValueError):
                 sentiment_val = 0.0
-            # Emit one synthetic row per ticker per day.
+            # Phase 2: ONE row per ticker per snapshot with weight = raw
+            # 24h mention count (not synthetic-row-multiplied). Source-id
+            # is now date-only so daily re-snapshots dedup naturally.
             source_id = f"{filter_name}:{now.date().isoformat()}:{ticker}"
             text = (
                 f"apewisdom {filter_name} rank={rank} mentions={mentions_24h} "
                 f"prev24h={mentions_24h_prev} sentiment={sentiment}"
             )
-            for _ in range(max(1, mentions_24h)):
-                # Apewisdom collapses individual posts; we emit one synthetic
-                # row per mention for compatibility with the daily-count
-                # aggregation downstream. Set confidence at 0.7 to reflect
-                # that we don't have post-level text.
-                rows.append({
-                    "timestamp": now,
-                    "source": f"apewisdom:{filter_name}",
-                    "source_id": f"{source_id}:{_}",
-                    "ticker": ticker,
-                    "alias": ticker.lower(),
-                    "confidence": 0.7,
-                    "via": "apewisdom",
-                    "text": text,
-                    "sentiment": sentiment_val,
-                    "sentiment_label": (
-                        "bullish" if sentiment_val > 60
-                        else "bearish" if sentiment_val < 40
-                        else "neutral"
-                    ),
-                    "url": "https://apewisdom.io",
-                    "author": None,
-                })
+            rows.append({
+                "timestamp": now,
+                "source": f"apewisdom:{filter_name}",
+                "source_id": source_id,
+                "ticker": ticker,
+                "alias": ticker.lower(),
+                "confidence": 0.7,
+                "via": "apewisdom",
+                "text": text,
+                "sentiment": sentiment_val,
+                "sentiment_label": (
+                    "bullish" if sentiment_val > 60
+                    else "bearish" if sentiment_val < 40
+                    else "neutral"
+                ),
+                "url": "https://apewisdom.io",
+                "author": None,
+                "weight": float(mentions_24h),
+            })
     return normalized_dataframe(rows)
 
 

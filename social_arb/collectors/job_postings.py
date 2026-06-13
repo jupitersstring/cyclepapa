@@ -90,26 +90,25 @@ def collect_job_postings(
                 cat = (j.get("categories") or {}).get("department", "Other")
                 departments[cat] = departments.get(cat, 0) + 1
         text += f" | departments: {dict(sorted(departments.items(), key=lambda x: -x[1])[:5])}"
-        # Emit ONE per ticker per day, mention count proxy = log(n) so the
-        # series is comparable across companies.
+        # Phase 2: ONE weighted row per ticker-day, weight = log1p(open
+        # requisitions).
         import math
-        n_proxy = max(1, int(math.log1p(n) * 1.5))
-        for i in range(n_proxy):
-            rows.append({
-                "timestamp": now,
-                "source": "job_postings",
-                "source_id": f"jobs:{platform}:{slug}:{now.date().isoformat()}:{i}",
-                "ticker": ticker.upper(),
-                "alias": slug,
-                "confidence": 0.85,
-                "via": platform,
-                "text": text,
-                "sentiment": 0.0,
-                "sentiment_label": "neutral",
-                "url": (
-                    f"https://boards.greenhouse.io/{slug}" if platform == "greenhouse"
-                    else f"https://jobs.lever.co/{slug}"
-                ),
-                "author": None,
-            })
+        rows.append({
+            "timestamp": now,
+            "source": "job_postings",
+            "source_id": f"jobs:{platform}:{slug}:{now.date().isoformat()}",
+            "ticker": ticker.upper(),
+            "alias": slug,
+            "confidence": 0.85,
+            "via": platform,
+            "text": text,
+            "sentiment": 0.0,
+            "sentiment_label": "neutral",
+            "url": (
+                f"https://boards.greenhouse.io/{slug}" if platform == "greenhouse"
+                else f"https://jobs.lever.co/{slug}"
+            ),
+            "author": None,
+            "weight": float(math.log1p(n) * 1.5),
+        })
     return normalized_dataframe(rows)

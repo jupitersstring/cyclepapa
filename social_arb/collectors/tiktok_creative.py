@@ -138,27 +138,25 @@ def collect_tiktok_hashtags_as_mentions(
         publish_cnt = int(m["publish_cnt"])
         if publish_cnt <= 0:
             continue
-        # Emit log-scaled rows so attention proxy enters the same scale
-        # as other mention sources without exploding the count.
+        # Phase 2: ONE weighted row per hashtag observation.
         import math
-        n_proxy = max(1, int(math.log1p(publish_cnt) * 2))
         text = (
             f"TikTok Creative Center 30d hashtag '{tag}' "
             f"publish_cnt={publish_cnt} views={int(m['video_views'])}"
         )
-        for i in range(n_proxy):
-            rows.append({
-                "timestamp": now,
-                "source": "tiktok_creative_center",
-                "source_id": f"tiktok:{tag}:{now.date().isoformat()}:{i}",
-                "ticker": ticker.upper(),
-                "alias": norm,
-                "confidence": 0.8,
-                "via": "tiktok_hashtag",
-                "text": text,
-                "sentiment": 0.0,
-                "sentiment_label": "neutral",
-                "url": f"https://www.tiktok.com/tag/{norm}",
-                "author": None,
-            })
+        rows.append({
+            "timestamp": now,
+            "source": "tiktok_creative_center",
+            "source_id": f"tiktok:{tag}:{now.date().isoformat()}",
+            "ticker": ticker.upper(),
+            "alias": norm,
+            "confidence": 0.8,
+            "via": "tiktok_hashtag",
+            "text": text,
+            "sentiment": 0.0,
+            "sentiment_label": "neutral",
+            "url": f"https://www.tiktok.com/tag/{norm}",
+            "author": None,
+            "weight": float(math.log1p(publish_cnt) * 2.0),
+        })
     return normalized_dataframe(rows)

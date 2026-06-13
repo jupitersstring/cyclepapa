@@ -43,6 +43,7 @@ DDL = [
         url VARCHAR,
         author VARCHAR,
         resolver_version INTEGER DEFAULT 1,
+        weight DOUBLE DEFAULT 1.0,
         PRIMARY KEY (source, source_id, ticker)
     )
     """,
@@ -50,14 +51,14 @@ DDL = [
     CREATE INDEX IF NOT EXISTS idx_mentions_ticker_ts
     ON mentions(ticker, timestamp)
     """,
-    # Migration: add resolver_version to pre-existing stores. DuckDB
-    # raises if the column exists, so wrap in IF NOT EXISTS via try/except
-    # at runtime (see connect() below).
 ]
 
 
+# Idempotent migrations that run on every connect; each wrapped in
+# try/except so re-adds are no-ops on already-migrated stores.
 _MIGRATIONS = [
     "ALTER TABLE mentions ADD COLUMN resolver_version INTEGER DEFAULT 1",
+    "ALTER TABLE mentions ADD COLUMN weight DOUBLE DEFAULT 1.0",
 ]
 
 
@@ -86,7 +87,7 @@ def connect(cfg: Config) -> Iterator:
 REQUIRED_COLUMNS = [
     "timestamp", "source", "source_id", "ticker", "alias", "confidence",
     "via", "text", "sentiment", "sentiment_label", "url", "author",
-    "resolver_version",
+    "resolver_version", "weight",
 ]
 
 
@@ -102,6 +103,7 @@ def _normalize(df: pd.DataFrame) -> pd.DataFrame:
     out["resolver_version"] = pd.to_numeric(
         out["resolver_version"], errors="coerce"
     ).fillna(RESOLVER_VERSION).astype(int)
+    out["weight"] = pd.to_numeric(out["weight"], errors="coerce").fillna(1.0)
     for col in ("source", "source_id", "ticker", "alias", "via", "sentiment_label", "url", "author", "text"):
         out[col] = out[col].astype("string")
     return out
@@ -137,12 +139,16 @@ def daily_counts(cfg: Config, ticker: str | None = None, source: str | None = No
     if source:
         where.append(f"source = '{source}'")
     clause = ("WHERE " + " AND ".join(where)) if where else ""
+    # mentions = SUM(weight) so weighted aggregator collectors (Wikipedia
+    # pageviews, app installs, Trends index) contribute one row carrying
+    # their numeric magnitude instead of N synthetic duplicate rows.
+    # COALESCE because pre-migration rows might still have NULL weight.
     sql = f"""
         SELECT
             CAST(timestamp AS DATE) AS date,
             ticker,
             source,
-            COUNT(*) AS mentions,
+            SUM(COALESCE(weight, 1.0)) AS mentions,
             AVG(sentiment) AS sentiment_mean
         FROM mentions
         {clause}

@@ -64,15 +64,26 @@ def collect_wikipedia(
     ticker: str,
     days_back: int = 60,
 ) -> pd.DataFrame:
-    """Map a Wikipedia title to a ticker and emit mention rows."""
+    """Map a Wikipedia title to a ticker and emit ONE weighted row per day.
+
+    Phase 2 change: we used to emit `views // 100` synthetic duplicate
+    rows so a COUNT-based aggregator would see scale. With the
+    `weight` column now on the schema, emit a SINGLE row per day with
+    weight = log1p(views) so a SUM(weight) aggregator picks up the
+    magnitude without the row-multiplication storage bloat.
+
+    log1p(views) is used (not raw views) so a single 1M-view day
+    doesn't drown a normal 1K-view day in z-scores; it keeps the
+    relative shape but compresses the dynamic range.
+    """
+    import math
     pv = fetch_pageviews(cfg, title=title, days_back=days_back)
     if pv.empty:
         return normalized_dataframe([])
     rows: list[dict] = []
     for r in pv.itertuples(index=False):
-        # One synthetic row per article-day, with views encoded in the text.
-        # Sentiment is neutral (0.0) -- Wikipedia is an attention signal,
-        # not a sentiment signal.
+        if int(r.views) <= 0:
+            continue
         ts = datetime.combine(r.date, datetime.min.time(), tzinfo=timezone.utc)
         sid = f"wiki:{title}:{r.date.isoformat()}"
         rows.append({
@@ -84,18 +95,10 @@ def collect_wikipedia(
             "confidence": 0.95,
             "via": "wikipedia_pageviews",
             "text": f"wikipedia {title} views={r.views}",
-            # Encode views magnitude as a weight on a synthetic mention count
-            # via repetition: but to avoid blowing the row count, we just
-            # store views in the sentiment-mean slot? No -- cleaner: keep a
-            # single row and let the dashboard handle the views column.
             "sentiment": 0.0,
             "sentiment_label": "neutral",
             "url": f"https://en.wikipedia.org/wiki/{title.replace(' ', '_')}",
             "author": None,
+            "weight": math.log1p(int(r.views)),
         })
-        # Repeat the row `min(views // 100, 50)` times so the count-based
-        # anomaly detector sees scale (each row = ~100 daily views).
-        scale = min(int(r.views) // 100, 50)
-        for i in range(scale):
-            rows.append({**rows[-1], "source_id": f"{sid}:{i}"})
     return normalized_dataframe(rows)

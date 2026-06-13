@@ -303,6 +303,47 @@ def cmd_pit_snapshot(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_breadth(args: argparse.Namespace) -> int:
+    """Breadth-of-source ranking: how many independent sources confirm a signal."""
+    from .breadth import breadth_score
+    cfg = Config()
+    out = breadth_score(
+        cfg, z_threshold=args.z, window_days=args.window,
+        baseline_days=args.baseline, min_breadth=args.min_breadth,
+        top=args.top,
+    )
+    if out.empty:
+        print("no candidates with the required breadth")
+        return 0
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 240)
+    print(out.to_string(index=False))
+    return 0
+
+
+def cmd_per_source_z(args: argparse.Namespace) -> int:
+    """Long-form per-(ticker, source) z-score table."""
+    from .breadth import per_source_z
+    cfg = Config()
+    out = per_source_z(
+        cfg, window_days=args.window, baseline_days=args.baseline,
+    )
+    if out.empty:
+        print("no data")
+        return 0
+    if args.ticker:
+        out = out[out["ticker"] == args.ticker.upper()]
+    if args.min_z is not None:
+        out = out[out["z"] >= float(args.min_z)]
+    out = out.sort_values("z", ascending=False).head(args.top)
+    import pandas as pd
+    pd.set_option("display.max_rows", 60)
+    pd.set_option("display.width", 200)
+    print(out.to_string(index=False))
+    return 0
+
+
 def cmd_health(args: argparse.Namespace) -> int:
     """Pipeline health & coverage audit."""
     from .health import collect as _hc
@@ -1320,6 +1361,23 @@ def build_parser() -> argparse.ArgumentParser:
 
     phc = sub.add_parser("health", help="Pipeline health & coverage audit")
     phc.set_defaults(func=cmd_health)
+
+    pbr = sub.add_parser("breadth", help="Multi-source-confirmed signals (Phase 2: per-source z + breadth)")
+    pbr.add_argument("--top", type=int, default=30)
+    pbr.add_argument("--z", type=float, default=1.0, help="per-source z threshold (default 1.0)")
+    pbr.add_argument("--window", type=int, default=5)
+    pbr.add_argument("--baseline", type=int, default=30)
+    pbr.add_argument("--min-breadth", dest="min_breadth", type=int, default=2,
+                    help="require >= N sources firing (default 2)")
+    pbr.set_defaults(func=cmd_breadth)
+
+    psz = sub.add_parser("per-source-z", help="Long-form per-(ticker, source) z-score")
+    psz.add_argument("--top", type=int, default=40)
+    psz.add_argument("--ticker", default=None)
+    psz.add_argument("--min-z", dest="min_z", type=float, default=None)
+    psz.add_argument("--window", type=int, default=5)
+    psz.add_argument("--baseline", type=int, default=30)
+    psz.set_defaults(func=cmd_per_source_z)
 
     pcp = sub.add_parser("changepoints",
                         help="Structural change-point detection via ruptures (CUSUM/PELT)")

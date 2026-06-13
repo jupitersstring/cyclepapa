@@ -91,7 +91,7 @@ def collect_brave_search_attention(
     if n is None or n <= 0:
         return normalized_dataframe([])
     import math
-    proxy = max(1, int(math.log1p(n) * 2))  # scale into 1-30 range typically
+    # Phase 2: ONE weighted row carrying log1p(n) as weight.
     now = datetime.now(timezone.utc)
     rows = [{
         "timestamp": now,
@@ -106,5 +106,6 @@ def collect_brave_search_attention(
         "sentiment_label": "neutral",
         "url": "https://search.brave.com/search?q=" + q.replace(" ", "+"),
         "author": None,
-    } for _ in range(proxy)]
+        "weight": float(math.log1p(n)),
+    }]
     return normalized_dataframe(rows)
