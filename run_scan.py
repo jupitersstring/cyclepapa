@@ -20,6 +20,8 @@ import pandas as pd
 
 import measure_bandpass as mb
 import fcf_screen as fs
+import rotation_screener as rot
+import early_inflection as ei
 from midcap_weekly_anomalies import get_universe
 
 RESULTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
@@ -70,6 +72,18 @@ def main():
         out.append(f"### {u} 200w-low x FCF x buyback\n```")
         out.append(_capture(fs.run, fns).strip())
         out.append("```")
+
+    # --- cross-universe rotation + early-inflection (run once over all cuts) ---
+    out.append("\n## Rotation — where money IS (realised flow)\n```")
+    rns = argparse.Namespace(universes=args.universes, k=8, top=15, pairs=8,
+                             min_industry=4, yf_labels=0)
+    out.append(_capture(rot.run, rns).strip())
+    out.append("```")
+    out.append("\n## Early inflection — where money is ABOUT to turn (smoothed)\n```")
+    ens = argparse.Namespace(universes=args.universes, fast=10, slow=21, recent=5,
+                             top=20, min_industry=4)
+    out.append(_capture(ei.run, ens).strip())
+    out.append("```")
 
     report = os.path.join(RESULTS, f"scan_{today}.md")
     with open(report, "w") as f:
