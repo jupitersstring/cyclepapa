@@ -69,6 +69,33 @@ def run():
           r["kill_criteria"], r["factor_tags"]) for r in rows],
         widths=[8,28,30,8,10,9,22,9,22,9,11,9,11,48,32])
 
+    # 8a. Archetype status — original 10 archetypes reconciled to empirical re-rank
+    rows = list(conn.execute("""SELECT archetype, mapped_factor, base_rate_excess,
+        members_total, members_live_t1, members_live_t2, members_demoted,
+        members_graduated, members_dead, members_untracked, members_excluded,
+        best_member, best_member_er, verdict FROM archetype_status ORDER BY archetype"""))
+    pc = lambda v: f"{v*100:+.0f}%" if v is not None else ""
+    write_sheet(wb, "8a_ARCHETYPE_STATUS",
+        ["Archetype","Mapped factor","Base rate 12m","Total","Live T1","Live T2","Demoted",
+         "Graduated (rerated)","Dead","Untracked","Excluded","Best surviving","Best ER","Verdict"],
+        [(r["archetype"], r["mapped_factor"], pc(r["base_rate_excess"]),
+          r["members_total"], r["members_live_t1"], r["members_live_t2"], r["members_demoted"],
+          r["members_graduated"], r["members_dead"], r["members_untracked"], r["members_excluded"],
+          r["best_member"], pc(r["best_member_er"]), r["verdict"]) for r in rows],
+        widths=[42,22,13,7,8,8,8,18,6,9,9,14,8,22])
+
+    # 8b. Each original-archetype member with its current status + thesis
+    rows = list(conn.execute("""SELECT archetype, ticker, status, er, factor_tags, thesis
+        FROM archetype_member_status ORDER BY archetype,
+        CASE status WHEN 'LIVE-T1' THEN 1 WHEN 'LIVE-T2' THEN 2 WHEN 'LIVE-T3' THEN 3
+                    WHEN 'DEMOTED' THEN 4 WHEN 'GRADUATED' THEN 5 WHEN 'DEAD' THEN 6
+                    ELSE 7 END, ticker"""))
+    write_sheet(wb, "8b_ARCHETYPE_MEMBERS",
+        ["Archetype","Ticker","Status","ER 12m","Factor tags","Original thesis (preserved)"],
+        [(r["archetype"], r["ticker"], r["status"], pc(r["er"]),
+          r["factor_tags"], r["thesis"]) for r in rows],
+        widths=[42,8,18,9,32,80])
+
     # 0. Market-wide discovery (EDGAR daily indices, last 9 business days)
     rows = list(conn.execute("""SELECT ticker, issuer, n_buyers, total_usd_m, avg_px,
                                        last_close, off_52w_high, top_buyer, top_role, asof
