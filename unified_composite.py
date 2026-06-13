@@ -42,7 +42,7 @@ from typing import Optional
 
 ROOT = Path("/home/user/cyclepapa")
 
-SCHEMA_VERSION = "v6-tender"
+SCHEMA_VERSION = "v7-proxy"
 
 # Signal noise: programmatic employee-share programs (TSM), placeholder
 # entries (NONE), non-tradeable identifiers (AXIA3 = futures token).
@@ -225,9 +225,36 @@ def step_change_score(step_row: dict) -> tuple[float, list[str]]:
     return 0, []
 
 
-def psu_forensic_score(forensic_row: dict, fz_row: dict) -> tuple[float, list[str]]:
+def psu_forensic_score(forensic_row: dict, fz_row: dict,
+                       proxy_row: dict | None = None
+                       ) -> tuple[float, list[str]]:
+    """PSU structure + governance leg. Prefers proxy_scan.json (full
+    6,164-name universe coverage) when available; falls back to the
+    older forensic_asymmetry.json on the 50-name subset for backward
+    compat."""
     score = 0.0
     reasons = []
+    if proxy_row and proxy_row.get("has_psu_program"):
+        psu_core = float(proxy_row.get("psu_core") or 0)
+        gov = float(proxy_row.get("gov_score") or 0)
+        n_fwd = int(proxy_row.get("n_fwd_cond") or 0)
+        # Compress proxy_scan's 0-130 raw range into 0-15 here so the
+        # composite stays balanced across legs. Top-tier names
+        # (HFFG 75) get the full 15; mid-tier (50-60) get 8-11.
+        raw = psu_core * 0.55 + gov + 8 * n_fwd
+        if raw >= 60:
+            score = 15.0
+            reasons.append(f"proxy-PSU {raw:.0f} (top tier)")
+        elif raw >= 40:
+            score = 10.0
+            reasons.append(f"proxy-PSU {raw:.0f}")
+        elif raw >= 25:
+            score = 5.0
+            reasons.append(f"proxy-PSU {raw:.0f}")
+        if n_fwd:
+            reasons.append(f"{n_fwd} forward business hurdle{'s' if n_fwd > 1 else ''}")
+        return score, reasons
+    # Legacy path
     try:
         fs = float((forensic_row or {}).get("forensic_score") or 0)
         if fs >= 30:
@@ -330,6 +357,20 @@ def main() -> int:
     bb = json.loads(bb_p.read_text()) if bb_p.exists() else {}
     tender_p = ROOT / "tender_scan.json"
     tender = json.loads(tender_p.read_text()) if tender_p.exists() else {}
+    # Full-universe proxy/PSU/governance scan (6,164 DEF 14As). Merge in
+    # any per-shard files that are newer than the parent rollup.
+    proxy: dict = {}
+    proxy_p = ROOT / "proxy_scan.json"
+    if proxy_p.exists():
+        proxy = json.loads(proxy_p.read_text())
+    for sp in sorted(ROOT.glob("proxy_scan.shard_*.json")):
+        try:
+            for tk, v in json.loads(sp.read_text()).items():
+                if v.get("_complete") and (
+                        tk not in proxy or v.get("has_psu_program")):
+                    proxy[tk] = v
+        except Exception:
+            continue
 
     all_tk = (set(f4.keys()) | set(fz.keys()) | set(forensic.keys())
               | set(step.keys()) | set(cxl.keys()) | sc13d_set
@@ -344,7 +385,8 @@ def main() -> int:
         val_sc, val_reasons = valuation_score(q)
         st_sc, st_reasons = step_change_score(step.get(tk) or {})
         psu_sc, psu_reasons = psu_forensic_score(
-            forensic.get(tk) or {}, fz.get(tk) or {})
+            forensic.get(tk) or {}, fz.get(tk) or {},
+            proxy.get(tk) or {})
         cxl_sc, cxl_status, cxl_reasons = cancel_10b5_1_score(cxl.get(tk) or {})
         f144_sc, f144_reasons = form144_score(f144.get(tk) or {})
         bb_sc, bb_reasons = buyback_verify_score(bb.get(tk) or {})
