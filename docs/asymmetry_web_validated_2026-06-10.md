@@ -201,3 +201,43 @@ Motor (revenue melting, lost China leadership to BYD, token dividend).
 across JP/CN/HK/KR/CA/BR/MX/FR/NO/ZA. The long frontier tail (sub-$100M caps,
 Indonesia/Turkey/Taiwan small-caps such as VakifBank, Indofood, Lassonde) remains
 data-screened but not yet web-verified — the natural next batch.
+
+---
+
+## Round 3 — Full-pool international sweep (2026-06-13)
+
+Extended coverage to the entire regional + cross-screen-conviction tail — **77 names
+now web-validated (16 KEEP / 30 SPECULATIVE / 31 REJECT)**. Server-side rate-limiting
+forced a mix of first-person searches and region-batched subagents.
+
+**New KEEP (round 3):** INDF.JK Indofood (net income +24%, ~4.8x P/E + a ~50% holdco
+discount to listed ICBP; defensive staple) and 5522.TW Farglory Land (FY25 EPS NT$7.45
+from high-margin completions, ~8% yield, ~NT$30bn of pre-sold 2026 handovers largely
+locking near-term earnings).
+
+**Disqualifiers the screen could not see (round-3 REJECTs):** ARX.TO ARC Resources
+(definitive Shell takeover ~CAD22bn — deal-arb now); CRST.L Crest Nicholson (Bellway
+takeover dead + seeking covenant relaxation); 071840.KS LOTTE Himart (lease-accounting
+EV/EBITDA illusion atop net losses); 600104.SS SAIC (melting, lost to BYD).
+
+**One-off / non-operating earnings masquerading as inflection (the dominant tail failure
+mode):** 002612.SZ Lancy (Ruoyuchen disposal gain, reversed -49% in Q1-26); BLDN.QA
+Baladna (fair-value gains on a Juhayna-heavy equity book, not dairy); 4569.T KYORIN
+(prior-year Novartis milestone base effect + dividend cut); 6262.T Pegasus (the +56% was
+a forecast that missed — actuals fell); 4994.T Taisei Lamick (Q4 spike; guides FY27 -46%);
+3479.T TKP (M&A consolidation + a real-estate disposal gain + a live SESC insider probe);
+2331.TW ECS (non-operating investment gains; no dividend despite "profit").
+
+**SPECULATIVE (real but cyclical / governance-discounted / one-off-aided):** CMCSA-tier
+quality was rare in the tail — most names were cheap for a reason. Notables: CRRC (SOE),
+Sunjin/Hwashin (Korea chaebol tunneling + cycle), Xinyangfeng (late-cycle fertilizer),
+Handa (one-off milestone + PDUFA option), CTRA Ciputra (rate-dependent presales), GFL/
+Mainstreet/Lassonde (quality but not cheap / decelerating), Husqvarna/Hilton Food/Mimaki.
+
+**Cross-cutting lesson:** beyond the developed-market artifacts of rounds 1-2 (restructuring
+dilution, acquisition optics), the international tail's signature trap is **non-operating
+income** — asset-sale gains, mark-to-market on equity portfolios, and licensing milestones
+that inflate a single year's EPS and reverse the next quarter. Layer on a live take-private
+wave (ARC/Shell) and structural governance discounts (Korea chaebol, China SOE, Salim/Harim
+holdcos), and the screen's raw hit-rate in the tail is low — which is exactly why the web
+filter matters most there.
