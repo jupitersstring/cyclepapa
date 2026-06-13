@@ -100,6 +100,41 @@ def load_aliases(cfg: Config) -> list[Alias]:
     return out
 
 
+def _english_word_stoplist() -> frozenset[str]:
+    """Programmatic stoplist of common English words 1-6 chars long.
+
+    Uses wordfreq's top-12k English wordlist when available; falls back
+    to the hand-curated `COMMON_WORD_TICKERS` set below.
+
+    Cached at import time. ~5,700 unique tokens when available.
+    """
+    try:
+        from wordfreq import top_n_list
+        words = top_n_list("en", 12000)
+        # Tickers are uppercase letters only, 1-5 chars in our universe.
+        # Lift to uppercase and bound length to match.
+        out = {w.upper() for w in words if 1 <= len(w) <= 6 and w.isalpha()}
+        return frozenset(out)
+    except Exception:
+        return frozenset()
+
+
+_ENGLISH_WORDS: frozenset[str] = _english_word_stoplist()
+
+
+def is_dictionary_word(symbol: str) -> bool:
+    """True if `symbol` (uppercase) is a common English word.
+
+    Combines the programmatic wordfreq list with our hand-curated
+    COMMON_WORD_TICKERS set so we keep the manual entries for terms
+    that wordfreq misses (REPO, CLI, tickers from finance slang).
+    """
+    s = symbol.upper().strip()
+    if not s:
+        return False
+    return s in _ENGLISH_WORDS or s in COMMON_WORD_TICKERS
+
+
 # Common English words / abbreviations that also happen to be ticker symbols.
 # These fire constantly on social-media text without actually referring to the
 # stock. We force them to require a cashtag (`$XX`) before firing.
@@ -222,7 +257,9 @@ def from_universe(universe: pd.DataFrame) -> list[Alias]:
         name = str(getattr(row, "name", "")).lower().strip()
         if not sym:
             continue
-        is_common = sym in COMMON_WORD_TICKERS or len(sym) <= 2
+        # Word-collision check: programmatic English-word list + curated
+        # finance-slang list + length<=2 catchall.
+        is_common = is_dictionary_word(sym) or len(sym) <= 2
         # Common-word symbols are cashtag-only -- the bare alias produces too
         # many false positives even with finance-context gating (e.g. HN posts
         # about "AI company" trip "$AI").
@@ -235,6 +272,8 @@ def from_universe(universe: pd.DataFrame) -> list[Alias]:
                 if short.endswith(suf):
                     short = short[: -len(suf)].strip(" ,.")
                     break
-            if short and len(short) >= 4 and short.upper() not in COMMON_WORD_TICKERS:
+            # Skip company-name aliases that are dictionary words
+            # (e.g. "Jack" matching the name).
+            if short and len(short) >= 4 and not is_dictionary_word(short):
                 out.append(Alias(alias=short, ticker=sym, ambiguous=False))
     return out

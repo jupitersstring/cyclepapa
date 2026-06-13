@@ -52,6 +52,58 @@ class ResolverTest(unittest.TestCase):
         # Cashtag fires once; brand fires once with finance context.
         self.assertEqual(tickers.count("NVDA"), tickers.count("NVDA"))
 
+    def test_dictionary_word_tickers_are_cashtag_only(self) -> None:
+        """Phase 1 fix: tickers that are common English words must not fire
+        on bare-word matches in non-finance text. Regression test for the
+        RENT/AIR/JACK/SAT/PAYS false-positive bug.
+        """
+        from social_arb.aliases import is_dictionary_word, from_universe
+        import pandas as pd
+        # 1. The wordlist must catch the known FPs.
+        for sym in ("RENT", "JACK", "SAT", "AIR", "PAYS", "EARN",
+                    "ADD", "WAYS", "PRE", "AUTO", "DEMO", "MAX",
+                    "BROS", "GAP", "TRIP"):
+            self.assertTrue(
+                is_dictionary_word(sym),
+                f"{sym} should be flagged as a dictionary word",
+            )
+        # 2. from_universe must not emit a bare-symbol alias for them.
+        uni = pd.DataFrame([
+            {"symbol": "RENT", "name": "Rent the Runway Inc"},
+            {"symbol": "JACK", "name": "Jack in the Box Inc"},
+            {"symbol": "AAPL", "name": "Apple Inc"},
+        ])
+        aliases = from_universe(uni)
+        alias_strs = {a.alias for a in aliases if not a.ambiguous}
+        self.assertNotIn("rent", alias_strs)
+        self.assertNotIn("jack", alias_strs)
+        # $cashtag form must still be present for them.
+        cashtags = {a.alias for a in aliases}
+        self.assertIn("$rent", cashtags)
+        self.assertIn("$jack", cashtags)
+        self.assertIn("$aapl", cashtags)
+        # And AAPL's bare-symbol alias does survive (not a dictionary word).
+        self.assertIn("aapl", alias_strs)
+
+    def test_rent_in_airbnb_thread_does_not_fire(self) -> None:
+        """Direct regression test for the actual data we found: the word
+        'rent' in an Airbnb/housing thread must NOT resolve to RENT."""
+        from social_arb.aliases import from_universe
+        import pandas as pd
+        aliases = from_universe(pd.DataFrame([{"symbol": "RENT", "name": "Rent the Runway Inc"}]))
+        resolver = Resolver(aliases)
+        sample_texts = [
+            "Most people did not rent houses on trips before airbnb",
+            "people didnt rent a hou se",
+            "SF startup is testing robots in Airbnbs",
+        ]
+        for text in sample_texts:
+            mentions = resolver.resolve(text)
+            self.assertEqual(
+                [m.ticker for m in mentions], [],
+                f"Resolver should NOT find RENT in: {text!r}",
+            )
+
     def test_word_boundary(self) -> None:
         # Don't fire on substrings (e.g. "nvidiacare" should not match nvidia).
         out = self.resolver.resolve("nvidiacare is fine")

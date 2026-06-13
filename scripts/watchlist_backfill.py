@@ -34,12 +34,16 @@ def backfill_one_ticker(pipe: Pipeline, ticker: str, *, hn_days: int = 365,
     """Backfill a single ticker across the working free collectors."""
     cfg = pipe.cfg
     totals: dict[str, int] = {"hn": 0, "yf_news": 0, "stocktwits": 0, "bluesky": 0}
-    # 1. HackerNews -- search ticker symbol + cashtag
+    # 1. HackerNews -- DISAMBIGUATED query: cashtag OR "TICKER stock"
+    #    so we don't catch the dictionary-word sense of symbols like
+    #    RENT, JACK, SAT, AIR, etc. Algolia treats quoted phrases as
+    #    exact-match.
     if "hn" not in skip:
         try:
+            query = f'"${ticker}" OR "{ticker} stock"'
             df = backfill_hackernews(
                 cfg, pipe.resolver, pipe.sentiment,
-                query=ticker, days_back=int(hn_days), chunk_days=30,
+                query=query, days_back=int(hn_days), chunk_days=30,
             )
             totals["hn"] = storage.upsert_mentions(cfg, df)
         except Exception as exc:  # noqa: BLE001

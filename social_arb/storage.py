@@ -24,6 +24,9 @@ from .config import Config
 log = logging.getLogger(__name__)
 
 
+RESOLVER_VERSION = 2  # bumped after dictionary-word stoplist fix (2026-06)
+
+
 DDL = [
     """
     CREATE TABLE IF NOT EXISTS mentions (
@@ -39,6 +42,7 @@ DDL = [
         sentiment_label VARCHAR,
         url VARCHAR,
         author VARCHAR,
+        resolver_version INTEGER DEFAULT 1,
         PRIMARY KEY (source, source_id, ticker)
     )
     """,
@@ -46,6 +50,14 @@ DDL = [
     CREATE INDEX IF NOT EXISTS idx_mentions_ticker_ts
     ON mentions(ticker, timestamp)
     """,
+    # Migration: add resolver_version to pre-existing stores. DuckDB
+    # raises if the column exists, so wrap in IF NOT EXISTS via try/except
+    # at runtime (see connect() below).
+]
+
+
+_MIGRATIONS = [
+    "ALTER TABLE mentions ADD COLUMN resolver_version INTEGER DEFAULT 1",
 ]
 
 
@@ -60,6 +72,12 @@ def connect(cfg: Config) -> Iterator:
     try:
         for stmt in DDL:
             con.execute(stmt)
+        # Best-effort idempotent migrations for pre-existing stores.
+        for stmt in _MIGRATIONS:
+            try:
+                con.execute(stmt)
+            except Exception:  # noqa: BLE001
+                pass
         yield con
     finally:
         con.close()
@@ -68,6 +86,7 @@ def connect(cfg: Config) -> Iterator:
 REQUIRED_COLUMNS = [
     "timestamp", "source", "source_id", "ticker", "alias", "confidence",
     "via", "text", "sentiment", "sentiment_label", "url", "author",
+    "resolver_version",
 ]
 
 
@@ -80,6 +99,9 @@ def _normalize(df: pd.DataFrame) -> pd.DataFrame:
     out["timestamp"] = pd.to_datetime(out["timestamp"], utc=True, errors="coerce")
     out["confidence"] = pd.to_numeric(out["confidence"], errors="coerce").fillna(0.0)
     out["sentiment"] = pd.to_numeric(out["sentiment"], errors="coerce").fillna(0.0)
+    out["resolver_version"] = pd.to_numeric(
+        out["resolver_version"], errors="coerce"
+    ).fillna(RESOLVER_VERSION).astype(int)
     for col in ("source", "source_id", "ticker", "alias", "via", "sentiment_label", "url", "author", "text"):
         out[col] = out[col].astype("string")
     return out
