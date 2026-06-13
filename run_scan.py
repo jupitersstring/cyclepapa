@@ -27,6 +27,41 @@ from midcap_weekly_anomalies import get_universe
 RESULTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
 
 
+def anomaly_board(today: str) -> str:
+    """Consolidated cross-timeframe anomaly board from the dated breadth + FCF
+    CSVs: names whose DIRECTIONAL breadth aligns on weekly AND daily, flagged
+    with 💰 when they also clear the 200w-low/FCF/buyback value screen."""
+    import glob
+    wk, dl = {}, {}
+    for f in glob.glob(os.path.join(RESULTS, f"breadth_*_weekly_{today}.csv")):
+        for _, r in pd.read_csv(f).iterrows():
+            wk[r["symbol"]] = r["net"]
+    for f in glob.glob(os.path.join(RESULTS, f"breadth_*_daily_{today}.csv")):
+        for _, r in pd.read_csv(f).iterrows():
+            dl[r["symbol"]] = r["net"]
+    fcf = set()
+    for f in glob.glob(os.path.join(RESULTS, f"fcf_*_{today}.csv")):
+        d = pd.read_csv(f)
+        if "pass_all" in d:
+            fcf |= set(d[d["pass_all"] == True]["symbol"])
+    common = set(wk) & set(dl)
+    tag = lambda s: f"{s}(w{int(wk[s]):+d}/d{int(dl[s]):+d})" + ("💰" if s in fcf else "")
+    lines = [f"\n## Anomaly board — cross-timeframe agreement (universe={len(common)})\n"]
+    for lab, lo in (("≥+3", 3), ("≥+2", 2)):
+        bull = sorted([s for s in common if wk[s] >= lo and dl[s] >= lo],
+                      key=lambda s: -(wk[s] + dl[s]))
+        bear = sorted([s for s in common if wk[s] <= -lo and dl[s] <= -lo],
+                      key=lambda s: wk[s] + dl[s])
+        lines.append(f"- **Bullish net {lab} both TFs ({len(bull)}):** "
+                     + ("  ".join(tag(s) for s in bull) or "none"))
+        lines.append(f"- **Bearish net {lab} both TFs ({len(bear)}):** "
+                     + ("  ".join(tag(s) for s in bear) or "none"))
+    conf = [s for s in common if wk[s] >= 2 and dl[s] >= 2 and s in fcf]
+    lines.append(f"- **Triple confluence (breadth≥+2 both + value 💰): "
+                 + (", ".join(conf) or "none") + "**")
+    return "\n".join(lines)
+
+
 def _capture(fn, *a, **k):
     buf = io.StringIO()
     with redirect_stdout(buf):
@@ -72,6 +107,9 @@ def main():
         out.append(f"### {u} 200w-low x FCF x buyback\n```")
         out.append(_capture(fs.run, fns).strip())
         out.append("```")
+
+    # --- consolidated anomaly board from the dated breadth + FCF CSVs ---
+    out.append(anomaly_board(today))
 
     # --- cross-universe rotation + early-inflection (run once over all cuts) ---
     out.append("\n## Rotation — where money IS (realised flow)\n```")
