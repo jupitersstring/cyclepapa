@@ -52,7 +52,8 @@ def run(tickers=None):
         tail = rows[-20:]
         adv_sh = sum(v for _, _, v in tail if v) / max(1, len([v for _, _, v in tail if v]))
         adv_usd_m = adv_sh * last_close / 1e6
-        mcap = conn.execute("SELECT mcap_m FROM candidates WHERE ticker=?", (t,)).fetchone()["mcap_m"]
+        cand = conn.execute("SELECT mcap_m FROM candidates WHERE ticker=?", (t,)).fetchone()
+        mcap = cand["mcap_m"] if cand else None
         dte = round((0.01 * mcap) / (0.10 * adv_usd_m), 1) if (mcap and adv_usd_m) else None
         conn.execute("""INSERT OR REPLACE INTO liquidity (ticker,adv_shares,adv_usd_m,asof,days_to_exit_1pct_adv10)
                         VALUES (?,?,?,?,?)""", (t, round(adv_sh), round(adv_usd_m, 2), last_date, dte))

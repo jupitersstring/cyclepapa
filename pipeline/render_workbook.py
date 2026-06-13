@@ -69,6 +69,23 @@ def run():
           r["kill_criteria"], r["factor_tags"]) for r in rows],
         widths=[8,28,30,8,10,9,22,9,22,9,11,9,11,48,32])
 
+    # 9_INTACT: high conviction × stock at or below fund entry price (the answer
+    # to "find large conviction where price hasn't moved from entry")
+    rows = list(conn.execute("""SELECT ticker, current_px, anchor_px, anchor_source,
+        vs_entry_pct, bucket, conviction_score, n_funds, n_hyper, has_insider_cobuy,
+        sum_dollar_m, anchors_seen
+        FROM ticker_entry_intact
+        WHERE bucket IN ('NEAR_ENTRY','BELOW_ENTRY')
+        ORDER BY conviction_score DESC, vs_entry_pct ASC"""))
+    write_sheet(wb, "9_INTACT_ENTRY",
+        ["Ticker","Current","Entry anchor","Anchor source","vs entry %","Bucket",
+         "Conv score","# funds","# hyper","Insider co-buy","Sum $M","Anchors seen"],
+        [(r["ticker"], r["current_px"], r["anchor_px"], r["anchor_source"],
+          f"{r['vs_entry_pct']:+.1f}%", r["bucket"], r["conviction_score"],
+          r["n_funds"], r["n_hyper"], "YES" if r["has_insider_cobuy"] else "",
+          r["sum_dollar_m"], r["anchors_seen"]) for r in rows],
+        widths=[8,9,12,14,11,16,11,9,9,13,9,60])
+
     # 9e. Multi-factor conviction score — combines hyper-conviction, 13D vs 13G,
     # NEW init, material add, public letter, follow-on, holding persistence,
     # insider co-buy, and multi-fund peer signals into one ranked score
