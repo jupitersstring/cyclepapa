@@ -938,17 +938,21 @@ Run the §1 pipeline against company-action feeds for each.
 29. **Ukraine reconstruction basket** — single undated binary catalyst;
     option-size only
 30. **Archetype H governance/state-exit baskets** (see
-    `psu_governance.md`) — IDBI privatization decision (live); Indian
-    PSB MPS forced-dilution basket (Punjab & Sind 98.25%, IOB 96.38%,
-    UCO 95.39%, Central Bank 93.08%, BoM 86.46% — all must reach 75%
-    by Aug 1, 2026; *buy the QIP/OFS print, not the anticipation*);
-    ABN AMRO / Permanent TSB state-exit overhangs; Korea value-up
-    tax-penalty laggards (Feb 2026 rule: high-dividend issuers lose
-    tax benefits without filed plans); Japan parent-child takeouts
-    (May 2026 FIEA mandatory-TOB threshold cut to 30%). The TSE
-    monthly disclosure list and KRX value-up index are
+    `psu_governance.md`) — India excluded from the active set at
+    user direction. Active sub-baskets: **H3 state-exit overhangs**
+    (ABN AMRO via Dutch NLFI sell-down; Permanent TSB via Irish
+    state exit; Raiffeisen via Russia-overhang resolution — adjacent
+    same-shape trade); **H4 Korea value-up tax-penalty laggards**
+    (Feb 2026 rule strips tax benefits from high-dividend issuers
+    without filed plans; chaebol holdco discount sub-basket is the
+    densest); **H6 Japan parent-child takeouts** (May 1, 2026 FIEA
+    amendment cuts mandatory-TOB threshold from 33⅓% to 30%, forcing
+    parents at 30–33% holdings to either step back or fully take
+    out). The TSE monthly disclosure list and KRX value-up index are
     regulator-published laggard screens — the highest-quality free
-    feeds in the entire pipeline.
+    feeds in the entire pipeline. (The India H1/H2 set — IDBI
+    privatization decision; PSB MPS forced-dilution basket — is
+    archived in `psu_governance.md` as template-only.)
 
 ---
 
