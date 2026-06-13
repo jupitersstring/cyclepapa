@@ -151,6 +151,12 @@ def fetch_aic_summary(use_cache: bool = True) -> dict[str, dict[str, float | str
             "avg_value_traded_1m_gbp_m": _num("AvgValTrd1M"),
             "avg_value_traded_1y_gbp_m": _num("AvgValTrd1Y"),
             "data_as_at": rec.get("OngoingChargeDate"),
+            # NAV total-return — feeds the recovery-rate penalty
+            "nav_tr_1y": _num("NAVTR1Y"),
+            "nav_tr_3y": _num("NAVTR3Y"),
+            "nav_tr_5y": _num("NAVTR5Y"),
+            "share_tr_1y": _num("SPTR1Y"),
+            "share_tr_3y": _num("SPTR3Y"),
         }
     return out
 

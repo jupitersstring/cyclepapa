@@ -33,6 +33,7 @@ import yfinance as yf
 
 
 DATA_DIR = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "prices"
+DAILY_DIR = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "prices_daily"
 
 
 def _safe_name(ticker: str) -> str:
@@ -44,8 +45,13 @@ def _path(ticker: str) -> Path:
     return DATA_DIR / _safe_name(ticker)
 
 
+def _path_daily(ticker: str) -> Path:
+    return DAILY_DIR / _safe_name(ticker)
+
+
 def _ensure_dir() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    DAILY_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def _age_hours(p: Path) -> float:
@@ -54,9 +60,10 @@ def _age_hours(p: Path) -> float:
     return (time.time() - p.stat().st_mtime) / 3600.0
 
 
-def _download(ticker: str, period: str = "5y") -> pd.DataFrame | None:
+def _download(ticker: str, period: str = "5y",
+              interval: str = "1wk") -> pd.DataFrame | None:
     try:
-        d = yf.download(ticker, period=period, interval="1wk",
+        d = yf.download(ticker, period=period, interval=interval,
                         progress=False, auto_adjust=True)
     except Exception:
         return None
@@ -81,6 +88,28 @@ def get(ticker: str, *, ttl_hours: float = 24.0,
         except Exception:
             pass
     d = _download(ticker)
+    if d is None or d.empty:
+        return None
+    try:
+        d.to_parquet(p)
+    except Exception:
+        pass
+    return d
+
+
+def get_daily(ticker: str, *, ttl_hours: float = 24.0,
+              force_refresh: bool = False, days: int = 180) -> pd.DataFrame | None:
+    """Daily bars for the last `days` days. Used to detect single-bar
+    volume spikes that a weekly bar would smooth over."""
+    _ensure_dir()
+    p = _path_daily(ticker)
+    if not force_refresh and _age_hours(p) < ttl_hours and p.exists():
+        try:
+            return pd.read_parquet(p)
+        except Exception:
+            pass
+    period = "6mo" if days <= 180 else "1y"
+    d = _download(ticker, period=period, interval="1d")
     if d is None or d.empty:
         return None
     try:

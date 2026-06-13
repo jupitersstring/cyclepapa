@@ -18,29 +18,131 @@ import params
 
 def test_compute_recovery_upside_listed_clean():
     # 30% discount, near-full recovery -> ~38% total return
-    recovery, etr = core.compute_recovery_upside(0.30, "LISTED_CLEAN")
+    recovery, etr, pen = core.compute_recovery_upside(0.30, "LISTED_CLEAN")
     assert recovery == pytest.approx(0.97)
+    assert pen == pytest.approx(1.0)
     assert etr == pytest.approx(0.97 / 0.70 - 1.0)
 
 
 def test_compute_recovery_upside_private_equity_cut():
-    # 50% headline discount on PE -> only ~40% expected, not 100%
-    _, etr_clean = core.compute_recovery_upside(0.50, "LISTED_CLEAN")
-    _, etr_pe = core.compute_recovery_upside(0.50, "PRIVATE_EQUITY")
+    _, etr_clean, _ = core.compute_recovery_upside(0.50, "LISTED_CLEAN")
+    _, etr_pe, _ = core.compute_recovery_upside(0.50, "PRIVATE_EQUITY")
     assert etr_pe < etr_clean
     assert etr_pe == pytest.approx(0.70 / 0.50 - 1.0)
 
 
 def test_compute_recovery_upside_premium_is_negative():
-    # 10% premium -> expected return negative (price falls to NAV*recovery)
-    _, etr = core.compute_recovery_upside(-0.10, "LISTED_CLEAN")
+    _, etr, _ = core.compute_recovery_upside(-0.10, "LISTED_CLEAN")
     assert etr < 0
 
 
 def test_compute_recovery_upside_default_class():
-    # Unknown class -> default recovery
-    recovery, _ = core.compute_recovery_upside(0.20, "FOO")
+    recovery, _, _ = core.compute_recovery_upside(0.20, "FOO")
     assert recovery == params.DEFAULT_RECOVERY
+
+
+def test_nav_trajectory_penalty_stable_nav_no_change():
+    """Stable NAV (NAVTR1Y ~ 0) leaves recovery unchanged."""
+    assert core.nav_trajectory_penalty(0.0) == pytest.approx(1.0)
+    assert core.nav_trajectory_penalty(5.0) == pytest.approx(1.0)
+
+
+def test_nav_trajectory_penalty_declining_nav_cuts_recovery():
+    """20% NAV decline -> 0.70 multiplier on recovery."""
+    p = core.nav_trajectory_penalty(-20.0)
+    assert 0.65 <= p <= 0.75
+
+
+def test_nav_trajectory_penalty_large_decline():
+    """50% NAV decline -> heavy penalty (interpolated between -20% @
+    0.70 and -100% @ 0.50; -50% lands roughly at 0.625)."""
+    p = core.nav_trajectory_penalty(-50.0)
+    assert 0.50 <= p <= 0.66
+
+
+def test_wind_down_age_curve_fresh_announcement():
+    """Day 0 wind-down: no adjustment."""
+    prob, dur = core.wind_down_age_adjustment(0, "WIND_DOWN_COMMITTED")
+    assert prob == pytest.approx(1.0)
+    assert dur == pytest.approx(1.0)
+
+
+def test_wind_down_age_curve_18m_in():
+    """18 months into wind-down: duration shrinks materially."""
+    prob, dur = core.wind_down_age_adjustment(18, "WIND_DOWN_COMMITTED")
+    assert prob >= 1.0
+    assert dur < 0.6  # less than 60% of original duration left
+
+
+def test_wind_down_age_curve_non_event_unaffected():
+    """Structural-discount names aren't subject to the age curve."""
+    prob, dur = core.wind_down_age_adjustment(24, "STRUCTURAL_DISCOUNT")
+    assert prob == 1.0 and dur == 1.0
+
+
+def test_check_investability_catalyst_aware():
+    """A £25m wind-down stub passes the relaxed gates; a £25m
+    structural-discount name still fails."""
+    rec = {"MarketCap": 25.0, "AvgValTrd1M": 0.06,
+           "NetGearCum": 0, "OngoingCharge": 1.0}
+    ok_wd, _ = core.check_investability("X.L", rec, catalyst="WIND_DOWN_COMMITTED")
+    ok_st, _ = core.check_investability("X.L", rec, catalyst="STRUCTURAL_DISCOUNT")
+    assert ok_wd is True
+    assert ok_st is False
+
+
+def test_daily_vol_spike_features_picks_up_single_bar():
+    """A single big day in the last 30 should fire has_spike=True.
+    Base needs non-zero std for vol_z to be defined."""
+    import pandas as pd, numpy as np
+    idx = pd.date_range("2024-01-01", periods=150, freq="D")
+    rng = np.random.RandomState(0)
+    vol = rng.uniform(80, 120, 150)
+    # Inject one large spike in the last 30 days at high-close
+    vol[140] = 10000
+    df = pd.DataFrame({
+        "Open": np.full(150, 100.0),
+        "High": np.full(150, 102.0),
+        "Low": np.full(150, 98.0),
+        "Close": np.full(150, 101.5),  # closing high
+        "Volume": vol,
+    }, index=idx)
+    max_z, dt, signed, has_spike = core.daily_vol_spike_features(df)
+    assert has_spike
+    assert max_z > 3.0
+    assert signed > 0  # close-at-high direction
+
+
+def test_daily_vol_spike_no_spike_in_quiet_data():
+    import pandas as pd, numpy as np
+    idx = pd.date_range("2024-01-01", periods=150, freq="D")
+    df = pd.DataFrame({
+        "Open": 100.0, "High": 101.0, "Low": 99.0, "Close": 100.0,
+        "Volume": np.random.RandomState(0).uniform(80, 120, 150),
+    }, index=idx)
+    _, _, _, has_spike = core.daily_vol_spike_features(df)
+    assert not has_spike
+
+
+def test_phase_classifier_fires_on_daily_spike_alone():
+    """Even with weak weekly directional, a daily vol_z >= 3 triggers
+    BASE_ABSORBING."""
+    p = _phase(directional_8w=0.1, vol_z_8w_max=0.5,
+               daily_vol_z_max_30d=3.5, daily_vol_spike_directional=2.0)
+    assert p == "BASE_ABSORBING"
+
+
+def test_phase_classifier_daily_spike_needs_direction():
+    """A daily vol_z 2.0 with neutral-close shouldn't fire (could be
+    panic selling); 2.0 with strong up-close does."""
+    p_neutral = _phase(directional_8w=0.0, vol_z_8w_max=0.5,
+                       daily_vol_z_max_30d=2.0,
+                       daily_vol_spike_directional=0.1)
+    p_up = _phase(directional_8w=0.0, vol_z_8w_max=0.5,
+                  daily_vol_z_max_30d=2.0,
+                  daily_vol_spike_directional=1.6)
+    assert p_neutral != "BASE_ABSORBING"
+    assert p_up == "BASE_ABSORBING"
 
 
 # ----- IRR ---------------------------------------------------------

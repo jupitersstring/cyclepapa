@@ -111,6 +111,11 @@ class ScreenResult:
     vol_z_8w_max: float | None = None
     vol_z_8w_bars_over_1p5: int | None = None
     directional_vol_8w: float | None = None  # signed sum, accumulation > 0
+    # Daily-volume spike (intra-week signal that weekly bars smooth over)
+    daily_vol_z_max_30d: float | None = None
+    daily_vol_z_max_30d_date: str | None = None
+    daily_vol_spike_directional: float | None = None  # signed by close-in-range
+    has_daily_spike: bool = False
 
     # Distribution / sell-off (renamed)
     recent_selloff: bool = False
@@ -167,6 +172,18 @@ class ScreenResult:
     discount_3y_avg: float | None = None
     discount_52w_high: float | None = None
     discount_52w_low: float | None = None
+
+    # NAV trajectory (informational + recovery-rate penalty)
+    nav_tr_1y: float | None = None
+    nav_tr_3y: float | None = None
+    nav_penalty_applied: float | None = None   # multiplier (1.00 = none)
+
+    # Time-since-announcement (committed wind-downs only)
+    catalyst_age_months: float | None = None
+
+    # Ranking sleeve tags
+    in_setup_sleeve: bool = False        # passes setup gates + score
+    in_fundamentals_sleeve: bool = False  # event catalyst + IRR alone
 
 
 # ---------------------------------------------------------------------------
@@ -258,6 +275,54 @@ def base_volume_profile(base: pd.DataFrame, bins: int = 60) -> float | None:
 # ---------------------------------------------------------------------------
 # Volume features
 
+def daily_vol_spike_features(
+    daily: pd.DataFrame,
+    *,
+    lookback_days: int = 30,
+    base_window: int = 90,
+) -> tuple[float, str | None, float, bool]:
+    """Scan daily bars for a single-bar volume spike inside the lookback
+    window. Volume z-score is computed against the previous `base_window`
+    daily bars. A daily vol_z >= 3.0 (or 2.0 with a strong directional
+    close) counts as a spike.
+
+    Returns (max_z, max_z_date_iso, signed_by_close_position, has_spike).
+    """
+    if daily is None or len(daily) < base_window + 5:
+        return 0.0, None, 0.0, False
+    vol = daily["Volume"].astype(float)
+    high = daily["High"].astype(float)
+    low = daily["Low"].astype(float)
+    close = daily["Close"].astype(float)
+    # Compute rolling stats up to the bar *before* each lookback bar
+    tail = daily.tail(lookback_days)
+    base_v = vol.iloc[-(lookback_days + base_window):-lookback_days]
+    if len(base_v) < base_window // 2 or base_v.std() == 0:
+        return 0.0, None, 0.0, False
+    mean_v, std_v = float(base_v.mean()), float(base_v.std())
+    max_z = 0.0
+    max_z_dt = None
+    signed = 0.0
+    has_spike = False
+    for ts, bar in tail.iterrows():
+        v = float(bar["Volume"]); h = float(bar["High"]); l = float(bar["Low"]); c = float(bar["Close"])
+        if not (v > 0 and h > l):
+            continue
+        z = (v - mean_v) / std_v
+        pos = (c - l) / (h - l)
+        direction = 2 * pos - 1
+        if abs(z) > max_z:
+            max_z = abs(z)
+            max_z_dt = str(ts.date()) if hasattr(ts, "date") else str(ts)
+            signed = z * direction
+        # Spike criterion: vol_z >= 3 OR (vol_z >= 2 AND closing high half)
+        if z >= 3.0:
+            has_spike = True
+        elif z >= 2.0 and direction > 0.2:
+            has_spike = True
+    return max_z, max_z_dt, signed, has_spike
+
+
 def directional_vol_score(
     data: pd.DataFrame,
     base: pd.DataFrame,
@@ -315,6 +380,8 @@ def classify_phase(
     base_low: float | None,
     recent_selloff: bool,
     mfi_low_8w: float | None,
+    daily_vol_z_max_30d: float | None = None,
+    daily_vol_spike_directional: float | None = None,
 ) -> str:
     # Hard-rerated names — but tapered, not zeroed
     if chg_13w is not None and chg_13w > 0.15:
@@ -334,9 +401,20 @@ def classify_phase(
         and last_close > base_high * 1.03
         and (vol_z_last or 0) >= 2.0):
         return "BASE_BREAKOUT"
-    # Absorption — volume building across the window with positive
-    # directional bias, even if the latest single bar is muted.
-    if (directional_8w or 0) >= 1.8 and (vol_z_8w_max or 0) >= 1.5:
+    # Absorption — three triggers, ANY one is enough:
+    #   (i)  weekly directional sum >= 1.8 AND any 8-bar vol_z >= 1.5
+    #        (the multi-week pattern: SEIT 1.85/0.94/1.95)
+    #   (ii) a single daily-bar vol_z >= 3.0 in the last 30 days
+    #        (the intra-week signature that weekly bars smooth over —
+    #         a tender, block trade, or news-day surge)
+    #   (iii) daily vol_z >= 2.0 with strong directional close
+    weekly_abs = (directional_8w or 0) >= 1.8 and (vol_z_8w_max or 0) >= 1.5
+    daily_spike = (
+        (daily_vol_z_max_30d or 0) >= 3.0
+        or ((daily_vol_z_max_30d or 0) >= 2.0
+            and (daily_vol_spike_directional or 0) > 0.5)
+    )
+    if weekly_abs or daily_spike:
         return "BASE_ABSORBING"
     # Recent selloff in the base
     if recent_selloff:
@@ -379,19 +457,68 @@ def compute_setup_score(r: ScreenResult) -> float:
     return phase_w * poc_w * base_w
 
 
+def nav_trajectory_penalty(navtr_1y: float | None) -> float:
+    """Multiplier on recovery_rate based on 1-year NAV total return.
+    A declining NAV means the discount-anchored upside is partly
+    illusory — the NAV target is itself moving down."""
+    if navtr_1y is None:
+        return 1.0
+    # NAVTR1Y from AIC is in percent (e.g. -15.5 means -15.5%)
+    tr = navtr_1y / 100.0 if abs(navtr_1y) > 1.5 else navtr_1y
+    # Interpolate the penalty table
+    items = sorted(params.NAV_DECLINE_PENALTY.items())
+    if tr >= items[-1][0]:
+        return items[-1][1]
+    for i in range(len(items) - 1):
+        lo, lo_v = items[i]
+        hi, hi_v = items[i + 1]
+        if lo <= tr <= hi:
+            if hi == lo:
+                return lo_v
+            f = (tr - lo) / (hi - lo)
+            return lo_v + f * (hi_v - lo_v)
+    return items[0][1]
+
+
 def compute_recovery_upside(
     discount: float | None,
     nav_quality: str | None,
-) -> tuple[float, float]:
-    """Returns (recovery_rate, expected_total_return)."""
-    recovery = params.RECOVERY_RATE.get(nav_quality or "", params.DEFAULT_RECOVERY)
+    navtr_1y: float | None = None,
+) -> tuple[float, float, float]:
+    """Returns (recovery_rate, expected_total_return, nav_penalty_applied).
+    NAV trajectory adjusts the recovery rate downward when NAV is in
+    decline (asset sales below book, ongoing write-downs)."""
+    base_recovery = params.RECOVERY_RATE.get(nav_quality or "", params.DEFAULT_RECOVERY)
+    penalty = nav_trajectory_penalty(navtr_1y)
+    recovery = base_recovery * penalty
     if discount is None or discount >= 1.0:
-        return recovery, 0.0
-    # If discount is negative (premium) the expected total return is
-    # negative too (mean-reversion implies a fall).
+        return recovery, 0.0, penalty
     target_per_unit_price = recovery / (1.0 - discount)
     expected_return = target_per_unit_price - 1.0
-    return recovery, expected_return
+    return recovery, expected_return, penalty
+
+
+def wind_down_age_adjustment(months_since_announcement: float | None,
+                             catalyst: str | None) -> tuple[float, float]:
+    """Returns (prob_multiplier, duration_multiplier) given how many
+    months ago the wind-down / strategic-review was announced."""
+    if (months_since_announcement is None
+        or catalyst not in ("WIND_DOWN_COMMITTED", "WIND_DOWN_LIKELY",
+                            "RETURN_OF_CAPITAL_LIVE")):
+        return 1.0, 1.0
+    curve = sorted(params.WIND_DOWN_AGE_CURVE.items())
+    m = max(0.0, float(months_since_announcement))
+    if m >= curve[-1][0]:
+        return curve[-1][1]
+    for i in range(len(curve) - 1):
+        lo, (lo_p, lo_d) = curve[i]
+        hi, (hi_p, hi_d) = curve[i + 1]
+        if lo <= m <= hi:
+            if hi == lo:
+                return lo_p, lo_d
+            f = (m - lo) / (hi - lo)
+            return lo_p + f * (hi_p - lo_p), lo_d + f * (hi_d - lo_d)
+    return curve[0][1]
 
 
 def annualise(total_return: float, months: float) -> float:
@@ -409,13 +536,19 @@ def annualise(total_return: float, months: float) -> float:
 def check_investability(
     ticker: str,
     aic_record: dict | None,
+    catalyst: str | None = None,
 ) -> tuple[bool, list[str]]:
-    """Apply hard gates from params.INVESTABILITY_GATES."""
+    """Apply hard gates from params.INVESTABILITY_GATES, with relaxed
+    thresholds for committed-wind-down / return-of-capital classes
+    (these are *meant* to be illiquid stubs — applying the default
+    daily-value floor screens them out by construction)."""
     reasons: list[str] = []
     if aic_record is None:
-        # Non-UK; skip UK-specific gates
         return True, reasons
-    gates = params.INVESTABILITY_GATES
+    # Pick gate set based on catalyst class
+    gates = dict(params.INVESTABILITY_GATES)
+    if catalyst and catalyst in params.INVESTABILITY_GATES_BY_CATALYST:
+        gates.update(params.INVESTABILITY_GATES_BY_CATALYST[catalyst])
     mc = aic_record.get("MarketCap") or 0
     if mc < gates["min_market_cap_gbp_m"]:
         reasons.append(f"market cap £{mc:.0f}m < £{gates['min_market_cap_gbp_m']:.0f}m")

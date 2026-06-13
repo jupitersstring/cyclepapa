@@ -91,6 +91,67 @@ INVESTABILITY_GATES = {
     "max_ongoing_charge":      3.5,   # ongoing-charge ceiling
 }
 
+# Catalyst-class-specific relaxations. Wind-down stubs are *meant*
+# to be illiquid — applying the standard daily-value floor blanks
+# them out by construction (the USF.L miss). For committed wind-
+# downs we drop the daily value floor and mcap floor materially;
+# the trade is buy-and-wait, not enter-and-exit.
+INVESTABILITY_GATES_BY_CATALYST: dict[str, dict] = {
+    "WIND_DOWN_COMMITTED": {
+        "min_market_cap_gbp_m":   20.0,
+        "min_daily_value_gbp_m":   0.05,
+        "max_net_gearing_pct":   200.0,
+        "max_ongoing_charge":      6.0,
+    },
+    "WIND_DOWN_LIKELY": {
+        "min_market_cap_gbp_m":   30.0,
+        "min_daily_value_gbp_m":   0.05,
+        "max_net_gearing_pct":   200.0,
+        "max_ongoing_charge":      5.0,
+    },
+    "RETURN_OF_CAPITAL_LIVE": {
+        "min_market_cap_gbp_m":   30.0,
+        "min_daily_value_gbp_m":   0.05,
+        "max_net_gearing_pct":   175.0,
+        "max_ongoing_charge":      5.0,
+    },
+}
+
+
+# ----------------------------------------------------------------------
+# NAV trajectory penalty. When NAV is in decline (asset sales below
+# book, ongoing write-downs) the discount can look wide but real
+# closure return is suppressed. Multiplier applied to recovery_rate
+# when NAVTR1Y is negative.
+
+NAV_DECLINE_PENALTY = {
+    # NAVTR1Y bucket -> multiplier on recovery
+    -1.00: 0.50,    # NAV down >20% in 1y
+    -0.20: 0.70,
+    -0.10: 0.85,
+    -0.05: 0.95,
+     0.00: 1.00,    # stable or positive NAVTR
+}
+
+
+# ----------------------------------------------------------------------
+# Time-since-announcement adjustment for committed wind-downs.
+# A wind-down announced 18 months ago is closer to crystallisation
+# than one announced last month — probability should rise and
+# remaining duration should shrink. Both effects raise IRR on stale
+# wind-downs (the SEIT vs USF case).
+
+WIND_DOWN_AGE_CURVE = {
+    # months_since_announcement -> (prob_multiplier, duration_multiplier)
+    # Interpolated linearly between rows.
+    0:   (1.00, 1.00),
+    6:   (1.05, 0.85),
+    12:  (1.10, 0.65),
+    18:  (1.10, 0.45),
+    24:  (1.10, 0.30),
+    36:  (0.95, 0.20),   # if it hasn't fired by 36m, slippage risk rises
+}
+
 
 # ----------------------------------------------------------------------
 # Discount sanity band — clamp obviously-broken values from upstream

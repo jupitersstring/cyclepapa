@@ -39,6 +39,7 @@ def screen_one(
     yahoo_discount: float | None,
     signal,           # signals.TickerSignals or None
     ohlcv: pd.DataFrame | None,
+    daily_ohlcv: pd.DataFrame | None = None,
 ) -> core.ScreenResult:
 
     row = metadata.load_universe().get(ticker.upper())
@@ -50,8 +51,8 @@ def screen_one(
         nav_quality=row.nav_quality if row else "",
     )
 
-    # Investability gates (UK-only via AIC)
-    investable, reasons = core.check_investability(ticker, aic_record)
+    # Investability gates (catalyst-class-aware via params)
+    investable, reasons = core.check_investability(ticker, aic_record, catalyst=r.catalyst)
     r.investable = investable
     r.investability_reasons = reasons
     r.gate_market_cap = "market cap" not in " ".join(reasons)
@@ -107,6 +108,17 @@ def screen_one(
     r.vol_z_8w_bars_over_1p5 = count_ge_1p5
     r.vol_z_8w_max = max_abs
 
+    # Daily spike — single-bar volume signature that weekly bars
+    # smooth over. Either modality (weekly absorption OR daily spike)
+    # is enough to trigger BASE_ABSORBING.
+    if daily_ohlcv is not None:
+        dz_max, dz_dt, dz_signed, has_spike = core.daily_vol_spike_features(
+            daily_ohlcv)
+        r.daily_vol_z_max_30d = dz_max
+        r.daily_vol_z_max_30d_date = dz_dt
+        r.daily_vol_spike_directional = dz_signed
+        r.has_daily_spike = has_spike
+
     # Recent selloff (renamed)
     recent = data["Close"].iloc[-6:]
     if len(recent) >= 2:
@@ -138,15 +150,24 @@ def screen_one(
         base_low=r.base_low,
         recent_selloff=r.recent_selloff,
         mfi_low_8w=r.mfi_low_8w,
+        daily_vol_z_max_30d=r.daily_vol_z_max_30d,
+        daily_vol_spike_directional=r.daily_vol_spike_directional,
     )
 
     # Discount
     _populate_discount(r, aic_summary, yahoo_discount, row)
 
-    # Recovery + total return
-    recovery, etr = core.compute_recovery_upside(r.nav_discount_est, r.nav_quality)
+    # NAV trajectory from AIC (informational + recovery penalty)
+    if aic_summary is not None:
+        r.nav_tr_1y = aic_summary.get("nav_tr_1y")
+        r.nav_tr_3y = aic_summary.get("nav_tr_3y")
+
+    # Recovery + total return, with NAV-trajectory penalty applied
+    recovery, etr, nav_pen = core.compute_recovery_upside(
+        r.nav_discount_est, r.nav_quality, navtr_1y=r.nav_tr_1y)
     r.recovery_rate = recovery
     r.expected_total_return = etr
+    r.nav_penalty_applied = nav_pen
 
     # POST_RERATING taper — adjust the remaining-return potential
     if r.phase == "POST_RERATING" and r.chg_13w_pct and r.expected_total_return:
@@ -174,9 +195,27 @@ def screen_one(
     else:
         r.catalyst_prob_signal_adj = base_prob
 
-    # Duration → IRR
-    months = params.CATALYST_DURATION_MONTHS.get(r.catalyst, params.DEFAULT_DURATION_MONTHS)
-    r.expected_duration_months = float(months)
+    # Catalyst-age adjustment for wind-downs / RoC. If the universe
+    # row has a catalyst_date, compute months elapsed and apply both
+    # probability uplift and duration compression. A wind-down 18
+    # months in is closer to crystallisation than one announced last
+    # week — higher prob, less time left.
+    months = float(params.CATALYST_DURATION_MONTHS.get(
+        r.catalyst, params.DEFAULT_DURATION_MONTHS))
+    if row and row.catalyst_date:
+        try:
+            from datetime import datetime as _dt
+            d0 = _dt.strptime(row.catalyst_date, "%Y-%m-%d")
+            age_months = max(0.0, (_dt.utcnow() - d0).days / 30.4)
+            r.catalyst_age_months = age_months
+            prob_mult, dur_mult = core.wind_down_age_adjustment(age_months, r.catalyst)
+            if r.catalyst_prob_signal_adj is not None:
+                r.catalyst_prob_signal_adj = min(
+                    0.95, r.catalyst_prob_signal_adj * prob_mult)
+            months = months * dur_mult
+        except ValueError:
+            pass
+    r.expected_duration_months = months
     r.expected_upside = (r.expected_total_return or 0.0) * (r.catalyst_prob_signal_adj or 0.0)
     r.expected_irr = core.annualise(r.expected_upside, months)
 
@@ -189,6 +228,20 @@ def screen_one(
         r.composite_score = (r.setup_score or 0.0) * max(0.0, r.expected_irr or 0.0)
     else:
         r.composite_score = 0.0
+
+    # Sleeve membership.
+    # Setup sleeve: actually-firing phase + non-trivial setup score.
+    if r.investable and (r.setup_score or 0) >= 0.05 and r.phase in (
+            "BASE_ABSORBING", "BASE_BREAKOUT", "CAPITULATION",
+            "BASE_QUIET"):
+        r.in_setup_sleeve = True
+    # Fundamentals sleeve: committed event catalyst + investable + IRR.
+    # This is the leg that would have caught USF.L pre-rerating.
+    if r.investable and r.catalyst in (
+            "WIND_DOWN_COMMITTED", "WIND_DOWN_LIKELY",
+            "RETURN_OF_CAPITAL_LIVE", "STRATEGIC_REVIEW"):
+        if (r.expected_irr or 0) > 0:
+            r.in_fundamentals_sleeve = True
 
     # Historical context (informational)
     if aic_summary is not None:
@@ -236,6 +289,10 @@ def main() -> int:
     parser.add_argument("--signal-top-n", type=int, default=60)
     parser.add_argument("--refresh-prices", action="store_true")
     parser.add_argument("--price-ttl-h", type=float, default=24.0)
+    parser.add_argument("--daily-spike", action="store_true",
+                        help="Fetch daily bars too and check for "
+                             "single-day vol spikes (the intra-week "
+                             "signature weekly bars miss).")
     parser.add_argument("--top", type=int, default=25)
     parser.add_argument("--out", default=None,
                         help="Write ranked CSV to this path "
@@ -307,10 +364,13 @@ def main() -> int:
         except Exception as exc:
             print(f"[v3] signals disabled: {exc}", file=sys.stderr)
 
-    # 5) Score
+    # 5) Score (with optional daily-bar pull for spike detection)
+    fetch_daily = bool(args.daily_spike)
     results: list[core.ScreenResult] = []
     for i, sym in enumerate(symbols, 1):
         try:
+            daily = (price_store.get_daily(sym, ttl_hours=args.price_ttl_h)
+                     if fetch_daily else None)
             r = screen_one(
                 sym,
                 aic_record=aic_by_ticker.get(sym),
@@ -318,6 +378,7 @@ def main() -> int:
                 yahoo_discount=yh_discounts.get(sym),
                 signal=sig_map.get(sym),
                 ohlcv=price_store.get(sym, ttl_hours=args.price_ttl_h),
+                daily_ohlcv=daily,
             )
         except Exception as exc:
             r = core.ScreenResult(ticker=sym, error=f"screen_one: {exc}")
@@ -345,10 +406,13 @@ def main() -> int:
         keep = keep[keep["investable"] == True]
 
     cols_top = ["ticker", "name", "phase", "catalyst", "nav_quality",
-                "nav_discount_est", "discount_source", "recovery_rate",
+                "nav_discount_est", "discount_source", "nav_tr_1y",
+                "nav_penalty_applied", "recovery_rate",
                 "expected_total_return", "expected_duration_months",
+                "catalyst_age_months",
                 "catalyst_prob_base", "catalyst_prob_signal_adj",
-                "signal_score", "expected_upside", "expected_irr",
+                "signal_score", "has_daily_spike",
+                "expected_upside", "expected_irr",
                 "setup_score", "composite_score"]
     cols_top = [c for c in cols_top if c in keep.columns]
 
@@ -360,10 +424,39 @@ def main() -> int:
         with pd.option_context("display.width", 240, "display.max_colwidth", 40):
             print(frame[cols_top].head(n).to_string(index=False))
 
-    show("TOP BY IRR (investable, with active setup)",
-         keep.sort_values("expected_irr", ascending=False), args.top)
-    show("TOP BY COMPOSITE (setup × IRR)",
-         keep.sort_values("composite_score", ascending=False), args.top)
+    # ---- Two-sleeve ranking ----
+    # Setup-confirmed: composite (setup_score × IRR) — needs a chart
+    # signature to fire.
+    if "in_setup_sleeve" in df.columns:
+        setup = df[(df["in_setup_sleeve"] == True) & (df["error"].isna())]
+    else:
+        setup = keep
+    show("SETUP SLEEVE — top by composite (setup × IRR)",
+         setup.sort_values("composite_score", ascending=False), args.top)
+
+    # Fundamentals-only: event catalyst + investable, ranked by IRR
+    # alone. This is the leg that catches stub wind-downs that don't
+    # print a chart footprint (USF.L pattern).
+    if "in_fundamentals_sleeve" in df.columns:
+        fund = df[(df["in_fundamentals_sleeve"] == True) & (df["error"].isna())]
+    else:
+        fund = pd.DataFrame()
+    show("FUNDAMENTALS SLEEVE — top by IRR alone "
+         "(committed event catalysts, ignores setup score)",
+         fund.sort_values("expected_irr", ascending=False), args.top)
+
+    # Divergence — names where the two sleeves disagree.
+    if "in_setup_sleeve" in df.columns and "in_fundamentals_sleeve" in df.columns:
+        diverge = df[
+            (df["error"].isna())
+            & (df["in_fundamentals_sleeve"] == True)
+            & (df["in_setup_sleeve"] == False)
+            & (df["expected_irr"] > 0.05)
+        ]
+        show("DIVERGENCE — fundamentals say yes, setup says no "
+             "(the USF.L bucket — pure catalyst trades, size small)",
+             diverge.sort_values("expected_irr", ascending=False),
+             min(args.top, 20))
 
     by_phase = keep.groupby("phase").size().sort_values(ascending=False)
     print(f"\nPhase distribution among investable:\n{by_phase}")
