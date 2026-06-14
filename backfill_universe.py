@@ -134,10 +134,10 @@ def backfill_region(csv_path: str, market_close: pd.Series, persist_after: bool)
     print(f"  {region}: wrote {len(df)} rows", file=sys.stderr)
 
     if persist_after:
-        # Best-effort persist; don't fail the whole run if git push hits a hiccup.
+        # Best-effort persist + push; don't fail the whole run if git push hits a hiccup.
         try:
             subprocess.run(
-                ["python", "/home/user/cyclepapa/persist_results.py", "--no-push"],
+                ["python", "/home/user/cyclepapa/persist_results.py"],
                 check=False, timeout=120,
             )
         except Exception as e:
