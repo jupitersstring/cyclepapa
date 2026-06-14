@@ -80,6 +80,36 @@ def build_scored_from_cache() -> pd.DataFrame:
     return df
 
 
+def top5_by_region_sheet(df: pd.DataFrame):
+    """Mechanical top-5 per region by RAW asymmetry score (no web overlay) - the
+    straight data ranking, region by region."""
+    try:
+        a = screens.asymmetry(df, top=None)
+    except Exception:
+        return None
+    if a is None or a.empty:
+        return None
+    a = a.merge(df[["symbol", "marketCap"]], on="symbol", how="left")
+    a["mcap_m"] = (a["marketCap"] / 1e6).round(1)
+    order = ["US", "EU", "UK", "JP", "CN", "HK", "TW", "KR", "SEA", "ANZ", "CA", "LATAM", "MEA"]
+    seen, parts = set(), []
+    for reg in order + sorted(set(a["region"].dropna()) - set(order)):
+        if reg in seen:
+            continue
+        seen.add(reg)
+        sub = a[a["region"] == reg].sort_values("score", ascending=False).head(5).copy()
+        if sub.empty:
+            continue
+        sub["rank"] = range(1, len(sub) + 1)
+        parts.append(sub)
+    if not parts:
+        return None
+    m = pd.concat(parts)
+    cols = ["region", "rank", "symbol", "name", "industry", "mcap_m", "score",
+            "revenue_growth", "ebitda_growth", "enterpriseToEbitda", "forwardPE", "ret_12m"]
+    return m[[c for c in cols if c in m.columns]].round(3)
+
+
 def web_validated_sheet(df: pd.DataFrame):
     """Lead synthesis sheet: web-research verdicts (data/web_verdicts.csv) joined
     to the live quant scores/metrics, ordered KEEP -> SPECULATIVE -> REJECT, so
@@ -164,6 +194,11 @@ def main():
         wv.to_excel(writer, sheet_name="Web-Validated", index=False, startrow=1, header=False)
         _fmt_sheet(writer, "Web-Validated", wv, hdr, pct_fmt, f2_fmt)
         written.append(f"Web-Validated({len(wv)})")
+    t5 = top5_by_region_sheet(df)
+    if t5 is not None and not t5.empty:
+        t5.to_excel(writer, sheet_name="Top5 by Region", index=False, startrow=1, header=False)
+        _fmt_sheet(writer, "Top5 by Region", t5, hdr, pct_fmt, f2_fmt)
+        written.append(f"Top5 by Region({len(t5)})")
     for name, title in SHEETS:
         fn = screens.SCREENS.get(name)
         if fn is None:
