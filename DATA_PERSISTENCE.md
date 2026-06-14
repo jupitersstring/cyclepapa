@@ -39,14 +39,25 @@ That's it. Everything else is in git.
 
 Three layers stop this from regressing silently:
 
-1. **`.gitignore` is minimal.** If a future contributor adds something
-   like `data/` back to the ignore list, it shows up in code review.
-2. **Stop-hook** (`scripts/check_committed.sh`) refuses to let a
-   session end with uncommitted runtime data. Wired into `~/.claude/`
-   via the user's existing stop-hook setup.
-3. **Pre-commit habit** — after any `screen_v3.py` run or any
-   `signals.py` batch, the next action is `git add -A && git commit`.
-   Documented in `README.md` quickstart.
+1. **`.gitignore` is minimal.** This is the structural fix. The
+   previous regression happened because `data/` was in the ignore
+   list — `git status` therefore reported a clean tree even though
+   17 MB of un-committed scrape output sat in the working directory.
+   The Stop hook (below) couldn't see it. With `data/` no longer
+   ignored, every file that matters appears in `git status` and the
+   hook does its job.
+
+2. **Stop hook** at `~/.claude/stop-hook-git-check.sh` (already
+   installed in this environment) — refuses to end any session
+   that has uncommitted changes, untracked files, OR unpushed
+   commits. This is the primary safety net; with the minimal
+   gitignore it now actually fires on runtime data.
+
+3. **Project-local redundancy** — `scripts/check_committed.sh`
+   does the same check from inside the repo, so anyone who clones
+   this repo without the user-level hook still gets the protection.
+
+If any of those three goes missing, the other two still hold.
 
 ## Recovery checklist (if you arrive in a fresh sandbox)
 
