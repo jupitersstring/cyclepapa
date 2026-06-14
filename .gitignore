@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 *.log
-*.csv
 .price_cache.pkl
 .ohlc_cache.pkl
+.cache/
+.venv/
+# Result CSVs are NOT ignored — they're small and must survive sandbox resets.
+# Use `make checkpoint` (or the stop hook) to commit them.

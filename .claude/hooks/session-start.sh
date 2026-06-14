@@ -25,3 +25,10 @@ fi
     echo "session-start: package import check failed" >&2
     exit 1
   }
+
+# Pull the latest tracked state (committed CSVs, code, settings) so the
+# session always sees the freshest persisted screener output. Stays quiet
+# on conflicts/network errors.
+cd "${CLAUDE_PROJECT_DIR:-$(pwd)}" 2>/dev/null || exit 0
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)
+git pull --rebase --autostash origin "$BRANCH" 2>/dev/null || true
