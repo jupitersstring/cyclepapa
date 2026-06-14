@@ -10,3 +10,18 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+# DURABLE CACHE: track compressed pickles + wiki lists so cache survives
+# sandbox resets. Working/uncompressed copies are still local-only.
+!data/
+!data/cache/
+!data/cache/*.pkl.bz2
+!data/spy/
+!data/spy/*.pkl.bz2
+!data/wiki/
+!data/wiki/*.csv
+!data/.gitkeep
+# Block any *.pkl that lands in data/ - we only track the compressed form
+data/cache/*.pkl
+data/spy/*.pkl
+data/cache/*.tmp
+data/spy/*.tmp

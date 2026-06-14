@@ -113,10 +113,16 @@ def _wiki_union_universe():
     return df
 
 _WIKI_CACHE_DIR = "/tmp/cyclepapa_wiki"
+# Durable repo-tracked copy of the Wikipedia index lists.
+_WIKI_DURABLE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "wiki")
 
 
 def _fetch_wiki_index(name):
-    """Fetch a Wikipedia index constituent table, cache locally, return DataFrame."""
+    """Fetch a Wikipedia index constituent table, cache locally, return DataFrame.
+
+    Lookup order: /tmp working copy -> data/wiki/ durable copy (auto-inflated
+    to /tmp) -> fresh HTTP fetch (then mirrored to both).
+    """
     import os
     import requests
     import io
@@ -124,6 +130,14 @@ def _fetch_wiki_index(name):
     url, suffix, _min = spec
     os.makedirs(_WIKI_CACHE_DIR, exist_ok=True)
     cache_path = os.path.join(_WIKI_CACHE_DIR, f"{name}.csv")
+    durable_path = os.path.join(_WIKI_DURABLE_DIR, f"{name}.csv")
+    # Hydrate working from durable if working missing
+    if not os.path.exists(cache_path) and os.path.exists(durable_path):
+        try:
+            import shutil
+            shutil.copy(durable_path, cache_path)
+        except Exception:
+            pass
     if os.path.exists(cache_path):
         try:
             df = pd.read_csv(cache_path, index_col=0)
@@ -165,6 +179,12 @@ def _fetch_wiki_index(name):
                         index=syms.values)
     out = out[~out.index.duplicated(keep="first")]
     out.to_csv(cache_path)
+    # Mirror to durable repo-tracked copy
+    try:
+        os.makedirs(_WIKI_DURABLE_DIR, exist_ok=True)
+        out.to_csv(durable_path)
+    except Exception:
+        pass
     return out
 
 

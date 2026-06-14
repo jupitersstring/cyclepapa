@@ -44,25 +44,87 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from scan_failed_bearish import get_universe, apply_universe_filters  # noqa: E402
 
 
+# --- Durable cache layout ----------------------------------------------------
+# Pickles live in two places:
+#   - /tmp/cyclepapa_dl_*.pkl              (working uncompressed copy, fast IO)
+#   - data/cache/cyclepapa_dl_*.pkl.bz2    (repo-tracked compressed copy that
+#                                           survives sandbox resets)
+# Readers prefer the working copy and fall back to the durable copy (auto-
+# inflating to /tmp on demand). Writers always update the working copy and
+# mirror to the durable copy so any in-progress data is git-trackable.
+import bz2 as _bz2
+_REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
+_DURABLE_CACHE_DIR = os.path.join(_REPO_ROOT, "data", "cache")
+_DURABLE_SPY_DIR = os.path.join(_REPO_ROOT, "data", "spy")
+
 PICKLE_TMPL = "/tmp/cyclepapa_dl_{universe}_daily_{years}y.pkl"
+
+
+def _durable_path(tmp_path):
+    """Map a /tmp/cyclepapa_*.pkl path to its data/{cache,spy}/*.pkl.bz2 twin."""
+    fname = os.path.basename(tmp_path)
+    sub = "spy" if "_spy_" in fname else "cache"
+    return os.path.join(_REPO_ROOT, "data", sub, fname + ".bz2")
+
+
+def _durable_load(tmp_path):
+    """Return the unpickled object if EITHER /tmp or data/ copy exists.
+    Auto-inflates the durable bz2 to /tmp the first time so subsequent
+    loads are fast."""
+    if os.path.exists(tmp_path):
+        with open(tmp_path, "rb") as f:
+            return pickle.load(f)
+    durable = _durable_path(tmp_path)
+    if os.path.exists(durable):
+        try:
+            os.makedirs(os.path.dirname(tmp_path), exist_ok=True)
+        except Exception:
+            pass
+        with _bz2.open(durable, "rb") as f:
+            obj = pickle.load(f)
+        # Inflate to /tmp for subsequent fast access
+        try:
+            tmp = tmp_path + ".tmp"
+            with open(tmp, "wb") as f:
+                pickle.dump(obj, f)
+            os.replace(tmp, tmp_path)
+        except Exception:
+            pass
+        return obj
+    return None
+
+
+def _durable_save(tmp_path, obj):
+    """Write obj to /tmp (fast) AND mirror to data/ as bz2 (durable)."""
+    # Working copy
+    tmp = tmp_path + ".tmp"
+    with open(tmp, "wb") as f:
+        pickle.dump(obj, f)
+    os.replace(tmp, tmp_path)
+    # Durable copy (best-effort: don't crash the run if the repo is RO)
+    try:
+        durable = _durable_path(tmp_path)
+        os.makedirs(os.path.dirname(durable), exist_ok=True)
+        dtmp = durable + ".tmp"
+        with _bz2.open(dtmp, "wb", compresslevel=9) as f:
+            pickle.dump(obj, f)
+        os.replace(dtmp, durable)
+    except Exception as _e:
+        pass
 
 
 def load_pickle_frames(universe, years):
     path = PICKLE_TMPL.format(universe=universe, years=years)
-    if not os.path.exists(path):
+    state = _durable_load(path)
+    if state is None:
         return {}, set()
-    with open(path, "rb") as f:
-        state = pickle.load(f)
     return state.get("frames", {}), set(state.get("done", []))
 
 
 def save_pickle(universe, years, frames, done):
     path = PICKLE_TMPL.format(universe=universe, years=years)
-    tmp = path + ".tmp"
     try:
-        with open(tmp, "wb") as f:
-            pickle.dump({"frames": frames, "done": list(done)}, f)
-        os.replace(tmp, path)
+        _durable_save(path, {"frames": frames, "done": list(done)})
     except Exception as e:
         print(f"    checkpoint save failed: {e}")
 
@@ -142,23 +204,16 @@ INTRADAY_SPEC = [
 
 def load_pickle_frames_intraday(universe, interval, period):
     path = PICKLE_INTRADAY_TMPL.format(universe=universe, interval=interval, period=period)
-    if not os.path.exists(path):
+    state = _durable_load(path)
+    if state is None:
         return {}, set()
-    try:
-        with open(path, "rb") as f:
-            state = pickle.load(f)
-        return state.get("frames", {}), set(state.get("done", []))
-    except Exception:
-        return {}, set()
+    return state.get("frames", {}), set(state.get("done", []))
 
 
 def save_pickle_intraday(universe, interval, period, frames, done):
     path = PICKLE_INTRADAY_TMPL.format(universe=universe, interval=interval, period=period)
-    tmp = path + ".tmp"
     try:
-        with open(tmp, "wb") as f:
-            pickle.dump({"frames": frames, "done": list(done)}, f)
-        os.replace(tmp, path)
+        _durable_save(path, {"frames": frames, "done": list(done)})
     except Exception as e:
         print(f"    intraday {interval} checkpoint save failed: {e}")
 
@@ -220,10 +275,9 @@ def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_
 
 def load_or_download_spy_monthly(years=10):
     """Cached SPY monthly close (1mo bars). ~120 bars at 10y - tiny pickle."""
-    if os.path.exists(SPY_MONTHLY_PICKLE):
+    spy = _durable_load(SPY_MONTHLY_PICKLE)
+    if spy is not None:
         try:
-            with open(SPY_MONTHLY_PICKLE, "rb") as f:
-                spy = pickle.load(f)
             if (pd.Timestamp.today() - spy.index[-1]).days <= 35:
                 print(f"  SPY monthly loaded from cache ({len(spy)} bars)")
                 return spy
@@ -239,8 +293,7 @@ def load_or_download_spy_monthly(years=10):
         spy_close = spy_close.iloc[:, 0]
     spy = pd.to_numeric(spy_close, errors="coerce").dropna()
     try:
-        with open(SPY_MONTHLY_PICKLE, "wb") as f:
-            pickle.dump(spy, f)
+        _durable_save(SPY_MONTHLY_PICKLE, spy)
     except Exception:
         pass
     return spy
@@ -248,20 +301,16 @@ def load_or_download_spy_monthly(years=10):
 
 def load_pickle_frames_monthly(universe, years):
     path = PICKLE_MONTHLY_TMPL.format(universe=universe, years=years)
-    if not os.path.exists(path):
+    state = _durable_load(path)
+    if state is None:
         return {}, set()
-    with open(path, "rb") as f:
-        state = pickle.load(f)
     return state.get("frames", {}), set(state.get("done", []))
 
 
 def save_pickle_monthly(universe, years, frames, done):
     path = PICKLE_MONTHLY_TMPL.format(universe=universe, years=years)
-    tmp = path + ".tmp"
     try:
-        with open(tmp, "wb") as f:
-            pickle.dump({"frames": frames, "done": list(done)}, f)
-        os.replace(tmp, path)
+        _durable_save(path, {"frames": frames, "done": list(done)})
     except Exception as e:
         print(f"    monthly checkpoint save failed: {e}")
 
@@ -318,10 +367,9 @@ def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10
 
 
 def load_or_download_spy(years=3):
-    if os.path.exists(SPY_PICKLE):
+    spy = _durable_load(SPY_PICKLE)
+    if spy is not None:
         try:
-            with open(SPY_PICKLE, "rb") as f:
-                spy = pickle.load(f)
             # Refresh if more than 2 days stale
             if (pd.Timestamp.today() - spy.index[-1]).days <= 2:
                 print(f"  SPY benchmark loaded from cache ({len(spy)} bars, last={spy.index[-1].date()})")
@@ -338,8 +386,7 @@ def load_or_download_spy(years=3):
         spy_close = spy_close.iloc[:, 0]
     spy = pd.to_numeric(spy_close, errors="coerce").dropna()
     try:
-        with open(SPY_PICKLE, "wb") as f:
-            pickle.dump(spy, f)
+        _durable_save(SPY_PICKLE, spy)
     except Exception:
         pass
     return spy
