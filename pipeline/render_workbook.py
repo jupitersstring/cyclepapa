@@ -86,6 +86,26 @@ def run():
           r["sum_dollar_m"], r["anchors_seen"]) for r in rows],
         widths=[8,9,12,14,11,16,11,9,9,13,9,60])
 
+    # S0. Mega Style Overview — 445 funds collapsed to 13 macro investing styles
+    rows = list(conn.execute("""SELECT macro_style, n_funds, total_rows, n_conviction,
+        n_threshold, n_new, n_adds, top_funds, top_consensus
+        FROM style_summary ORDER BY n_funds DESC"""))
+    write_sheet(wb, "S0_STYLES_OVERVIEW",
+        ["Macro style","# funds","Total rows","Conviction","13D/G","New init","Material adds",
+         "Top funds in style","Style top-consensus tickers"],
+        [tuple(r) for r in rows], widths=[36,9,11,11,7,9,13,60,75])
+
+    # S1. Style x ticker convergence — which styles agree on which names
+    rows = list(conn.execute("""SELECT tsc.ticker, tsc.macro_style, tsc.score,
+        tsc.n_funds, tsc.n_hyper, tsc.dollar_m, tc.score AS total_score, tc.n_funds AS total_funds
+        FROM ticker_style_conviction tsc JOIN ticker_conviction tc ON tc.ticker = tsc.ticker
+        WHERE tc.ticker NOT IN ('AMZN','MSFT','GOOGL','GOOG','NVDA','META','AAPL','TSLA','SPY','QQQ','IWM','IVV','IEF','BABA','TSM','BAC','BRK.B','BRK.A','NFLX','JPM','CRM','JNJ','WMT','H2','SEC','BN','AVGO')
+        ORDER BY tc.score DESC, tsc.score DESC LIMIT 200"""))
+    write_sheet(wb, "S1_STYLE_CONVERGENCE",
+        ["Ticker","Macro style","Style score","# funds in style","# hyper-conv","$M",
+         "Total ticker score","Total # funds (all styles)"],
+        [tuple(r) for r in rows], widths=[8,36,11,16,12,8,16,18])
+
     # 9e. Multi-factor conviction score — combines hyper-conviction, 13D vs 13G,
     # NEW init, material add, public letter, follow-on, holding persistence,
     # insider co-buy, and multi-fund peer signals into one ranked score
@@ -94,15 +114,16 @@ def run():
     rows = list(conn.execute(f"""SELECT * FROM ticker_conviction
         WHERE ticker NOT IN ({placeholders}) ORDER BY score DESC LIMIT 80""", mega))
     write_sheet(wb, "9e_CONVICTION_SCORE",
-        ["Ticker","Score","# funds","Hyper (>=10%)","Activist 13D","Passive 13G","NEW init",
-         "Material add","Public letter","Follow-on","Persist","Insider co-buy","Sum $M",
-         "Max % book","Max % co","Top fund signals"],
-        [(r["ticker"], r["score"], r["n_funds"], r["n_hyper"], r["n_activist_13d"],
+        ["Ticker","Score (style-wtd)","Raw","# funds","Hyper (>=10%)","Activist 13D","Passive 13G",
+         "NEW init","Material add","Public letter","Follow-on","Persist","Insider co-buy","Sum $M",
+         "Max % book","Max % co","Styles converging","Top fund signals"],
+        [(r["ticker"], r["score"], r["raw_score"], r["n_funds"], r["n_hyper"], r["n_activist_13d"],
           r["n_passive_13g"], r["n_new_init"], r["n_material_add"], r["n_public_letter"],
           r["n_follow_on"], r["n_persist"], "YES" if r["has_insider_cobuy"] else "",
-          r["sum_dollar_m"], r["max_pct_book"], r["max_pct_company"], r["fund_signals_summary"])
+          r["sum_dollar_m"], r["max_pct_book"], r["max_pct_company"],
+          r["styles_summary"], r["fund_signals_summary"])
          for r in rows],
-        widths=[8,7,9,13,13,12,9,13,13,11,9,13,9,11,10,55])
+        widths=[8,14,6,9,13,13,12,9,13,13,11,9,13,9,11,10,55,55])
 
     rows = list(conn.execute("""SELECT fund, ticker, signals, score, pct_book, pct_company, dollar_m
         FROM fund_conviction WHERE score >= 6 ORDER BY score DESC LIMIT 200"""))
