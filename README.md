@@ -3,6 +3,22 @@
 Capital-structure screening framework + working pipeline. Five documents
 of methodology; four scripts that actually run.
 
+## Durability discipline (READ THIS FIRST)
+
+A prior session's analytical work was destroyed when an ephemeral
+sandbox was reset — fetched fundamentals, screener outputs, and
+ranking CSVs lived only in `.gitignore`'d cache directories and were
+not recoverable. **This repo is hardened against that failure mode.**
+See `CLAUDE.md` for the full rule. Short version:
+
+- Every file representing work MUST be tracked, committed, and pushed.
+- `.gitignore` is deliberately narrow; adding `data/`, `output/`,
+  `cache/`, or wildcard data-file patterns is **forbidden** without
+  explicit user approval.
+- `make audit` (run automatically at session start via
+  `.claude/settings.json` and before every long pipeline target)
+  exits non-zero if any failure mode is detected.
+
 ## Layout
 
 ```
@@ -11,18 +27,27 @@ data/
   candidates/*.yaml     # single source of truth per name
   inbox/<date>/         # daily EDGAR poller output (auto-populated)
 src/
+  audit.py              # durability audit (MUST stay passing)
   score.py              # YAML → ranked Markdown + EV + Kelly sizing
   edgar_poll.py         # SEC EDGAR full-text daily poller
   waterfall.py          # Monte Carlo over candidate waterfall
+  portfolio.py          # factor decomposition + correlation + weights
 output/
   screen_generated.md   # AUTO-GENERATED; never hand-edit
+  portfolio.md          # AUTO-GENERATED basket construction
 docs (methodology, not generated):
+  CLAUDE.md                       # project rules — read first
   capital_structure_screening.md  # core framework
   universe.md                     # broad watchlist
   shortlist.md                    # narrative shortlist (legacy; superseded by score.py)
   final.md                        # top 25 with valuation (legacy)
   screen.md                       # strict-discipline screen (legacy)
+  portfolio.md                    # narrative portfolio analysis
   methodology_review.md           # validity threats + roadmap
+  web_findings.md                 # synthesis of web-verification rounds
+  psu_governance.md               # Archetype H governance/state-exit module
+.claude/
+  settings.json                   # SessionStart + Stop hooks (run audit)
 ```
 
 ## Daily workflow

@@ -1,7 +1,8 @@
-.PHONY: score poll waterfall validate portfolio clean help
+.PHONY: score poll waterfall validate portfolio audit clean help
 
 help:
 	@echo "Targets:"
+	@echo "  audit      — durability audit; fails on any high-severity finding"
 	@echo "  score      — compile data/candidates/*.yaml → output/screen_generated.md"
 	@echo "  poll       — run EDGAR full-text poller for today; writes data/inbox/"
 	@echo "  waterfall  — Monte Carlo across all candidates"
@@ -9,18 +10,21 @@ help:
 	@echo "  validate   — schema check only (no output written)"
 	@echo "  clean      — remove generated outputs"
 
-score:
+audit:
+	python3 src/audit.py
+
+score: audit
 	python3 src/score.py
 
-poll:
+poll: audit
 	python3 -m src.edgar_poll
 
-waterfall:
+waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
 	done
 
-portfolio:
+portfolio: audit
 	python3 src/portfolio.py
 
 validate:

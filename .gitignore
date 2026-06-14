@@ -1,0 +1,40 @@
+# Narrow allowlist-style ignores. Anything not on this list MUST be
+# tracked. If you find yourself wanting to add an entry, ask the user
+# explicitly first — silently excluding data files is the failure mode
+# this discipline exists to prevent.
+
+# Python build / cache artifacts (regeneratable from source)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtualenvs (regeneratable; the lockfile/requirements is what matters)
+.venv/
+venv/
+env/
+
+# Editor scratch (NOT data files — those go in git)
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+
+# Explicitly NOT ignored — kept here as a manifest of what we
+# deliberately commit even though tooling might suggest otherwise:
+#
+#   data/        # candidates, inbox, all analytical inputs
+#   output/      # generated screens and portfolio reports
+#   src/         # the pipeline code
+#   *.md         # all documentation and analytical write-ups
+#   .claude/     # session-start hooks and project settings
+#   Makefile     # the workflow entrypoints
+#
+# If you ever feel tempted to add data/, output/, .cache/, or any
+# directory whose contents represent expensive fetched state to this
+# file, STOP. That is exactly the durability hole that destroyed the
+# prior session's work.

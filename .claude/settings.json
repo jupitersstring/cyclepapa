@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && python3 src/audit.py 2>&1 | sed 's/^/[audit] /'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && (test -z \"$(git status --porcelain)\" && test \"$(git rev-list --count @{u}..HEAD 2>/dev/null || echo 0)\" = \"0\") || (echo '[durability] UNPUSHED OR UNCOMMITTED WORK — fix before ending session:'; git status -s; git log --oneline @{u}..HEAD 2>/dev/null) 1>&2"
+          }
+        ]
+      }
+    ]
+  }
+}
