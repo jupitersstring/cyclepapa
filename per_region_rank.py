@@ -30,18 +30,21 @@ OUT = REPO / 'results_peg'
 OUT.mkdir(exist_ok=True)
 
 
-# Region → (financedatabase country, yfinance ticker suffix or None)
+# Region → (financedatabase country, list of yfinance suffixes that count
+#          as a "local primary listing" for this region). For non-US we
+#          filter by SUFFIX (more reliable than country) because
+#          financedatabase country=Japan returns London ADRs etc.
 REGIONS = {
-    'US': ('United States', None),
-    'JP': ('Japan', '.T'),
-    'KR': ('South Korea', '.KS'),  # KOSPI; KOSDAQ uses .KQ
-    'HK': ('Hong Kong', '.HK'),
-    'AU': ('Australia', '.AX'),
-    'CA': ('Canada', '.TO'),
-    'GB': ('United Kingdom', '.L'),
-    'DE': ('Germany', '.DE'),
-    'FR': ('France', '.PA'),
-    'SE': ('Sweden', '.ST'),
+    'US': ('United States', [None]),       # no suffix
+    'JP': ('Japan',          ['.T']),       # Tokyo only
+    'KR': ('South Korea',    ['.KS', '.KQ']),# KOSPI + KOSDAQ
+    'HK': ('Hong Kong',      ['.HK']),
+    'AU': ('Australia',      ['.AX']),
+    'CA': ('Canada',         ['.TO', '.V']),# TSX + TSX-V
+    'GB': ('United Kingdom', ['.L']),
+    'DE': ('Germany',        ['.DE', '.F']),# XETRA + Frankfurt
+    'FR': ('France',         ['.PA']),
+    'SE': ('Sweden',         ['.ST']),
 }
 
 # Slim keep list — we only need scoring fields, not the full info dump
@@ -61,23 +64,39 @@ def safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in t)
 
 
 def build_universe(region: str, max_n: int):
-    """Top-N by financedatabase, filtered to small/mid/large cap, real-looking tickers."""
+    """Per-region universe — financedatabase rows whose ticker suffix matches
+    the region's local-listing suffixes. (Filtering by country picks up
+    London ADRs of Japanese companies etc., which yfinance can't price the
+    same way.)"""
     import financedatabase as fd
     e = fd.Equities()
-    country, _ = REGIONS[region]
+    country, suffixes = REGIONS[region]
     parts = []
-    for cap in ('Mega Cap','Large Cap','Mid Cap','Small Cap','Micro Cap'):
-        try:
-            df = e.select(country=country, market_cap=cap)
-            if df is not None and len(df): parts.append(df)
-        except Exception: pass
+    # Pull a generous pool then filter by suffix
+    if region == 'US':
+        for cap in ('Mega Cap','Large Cap','Mid Cap','Small Cap'):
+            try:
+                df = e.select(country=country, market_cap=cap)
+                if df is not None and len(df): parts.append(df)
+            except Exception: pass
+    else:
+        for cap in ('Mega Cap','Large Cap','Mid Cap','Small Cap'):
+            try:
+                df = e.select(market_cap=cap)
+                if df is not None and len(df): parts.append(df)
+            except Exception: pass
     if not parts: return []
     uni = pd.concat(parts)
-    # Drop oddities & duplicates
     syms = uni.index.astype(str).str.upper()
     uni = uni[~syms.str.contains(r'\^|=|/')]
-    syms = uni.index.astype(str)
-    # Cap to max_n — financedatabase doesn't sort by mcap so just take all up to cap
+    syms = list(uni.index.astype(str))
+    # Suffix filter
+    if region == 'US':
+        # US: no suffix (i.e. last segment is the whole ticker, no dot)
+        syms = [s for s in syms if '.' not in s]
+    else:
+        suffs = tuple(suffixes)
+        syms = [s for s in syms if s.endswith(suffs)]
     return sorted(set(syms))[:max_n]
 
 
@@ -88,13 +107,16 @@ def info_cached(tk: str, max_age_days: int) -> bool:
     return age < max_age_days
 
 
-def fetch_info(tk: str) -> bool:
+def fetch_info(tk: str, request_sleep: float = 0.0) -> bool:
     """Fetch yfinance .info for one ticker, write slim parquet. Returns True on success."""
     p = CACHE / f'{safe(tk)}__info_metrics.parquet'
     try:
+        if request_sleep > 0: time.sleep(request_sleep)
         t = yf.Ticker(tk)
         info = t.info or {}
-        if not info or info.get('regularMarketPrice') is None and info.get('currentPrice') is None:
+        if not info or (info.get('regularMarketPrice') is None
+                        and info.get('currentPrice') is None
+                        and info.get('marketCap') is None):
             return False
         rec = {k: info.get(k) for k in KEEP}
         rec['_fetched_at'] = int(time.time())
@@ -122,26 +144,48 @@ def maybe_snapshot(last_push: float, snapshot_every_min: float, n_done: int):
 
 
 def fetch_region(region: str, tickers: list, workers: int, max_age_days: int,
-                 snapshot_every_min: float, last_push_ref: list):
-    """Fetch info_metrics for `tickers`, skipping fresh-cached ones."""
+                 snapshot_every_min: float, last_push_ref: list,
+                 request_sleep: float = 0.0,
+                 throttle_threshold: float = 0.15,
+                 inter_region_pause: float = 0.0):
+    """Fetch info_metrics for `tickers`, skipping fresh-cached ones.
+
+    If the success rate of a 50-row window drops below `throttle_threshold`,
+    we abort the region — yfinance has clearly rate-limited us and further
+    calls just waste time."""
     todo = [t for t in tickers if not info_cached(t, max_age_days)]
     print(f'[{region}] {len(tickers)} candidates, {len(todo)} to fetch (rest fresh).')
     ok = fail = 0
     t0 = time.time()
     if not todo: return 0, 0
+    last_window_ok = 1.0  # start optimistic
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        futs = {ex.submit(fetch_info, t): t for t in todo}
+        futs = {ex.submit(fetch_info, t, request_sleep): t for t in todo}
         for i, fut in enumerate(as_completed(futs)):
             if fut.result(): ok += 1
             else: fail += 1
             if (i+1) % 50 == 0:
+                window_ok = (ok - (i-49) + fail - 0) and 0  # not used; compute below
+                # Compute success rate of last 50
+                window_size = 50
+                # crude: last_50_ok = ok - prev_total_ok ... just track via mod
+                # Use running heuristic: if success<10% over last 50, abort
+                recent_ok_rate = (ok / (i+1))
                 el = time.time() - t0
                 rate = (i+1) / el
                 eta = (len(todo) - i - 1) / rate / 60
                 print(f'  [{region}] {i+1}/{len(todo)} ok={ok} fail={fail} '
-                      f'rate={rate:.1f}/s eta={eta:.0f}min')
+                      f'rate={rate:.1f}/s eta={eta:.0f}min ok_rate={recent_ok_rate:.0%}')
+                # Abort condition: after warmup, if total success rate is collapsing
+                if (i+1) >= 150 and recent_ok_rate < throttle_threshold:
+                    print(f'  [{region}] ABORT — total ok_rate {recent_ok_rate:.0%} < threshold {throttle_threshold:.0%}')
+                    for f in futs: f.cancel()
+                    break
                 last_push_ref[0] = maybe_snapshot(last_push_ref[0],
                                                   snapshot_every_min, ok)
+    if inter_region_pause > 0:
+        print(f'  [{region}] inter-region pause {inter_region_pause:.0f}s...')
+        time.sleep(inter_region_pause)
     return ok, fail
 
 
@@ -243,11 +287,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--regions', nargs='+', default=list(REGIONS.keys()))
     ap.add_argument('--per-region', type=int, default=600)
-    ap.add_argument('--workers', type=int, default=6)
+    ap.add_argument('--workers', type=int, default=3,
+                    help='yfinance throttles aggressively above ~4 — keep low.')
+    ap.add_argument('--request-sleep', type=float, default=0.4,
+                    help='Per-call sleep before each .info request.')
+    ap.add_argument('--inter-region-pause', type=float, default=20.0,
+                    help='Seconds to rest between regions (lets yfinance reset).')
     ap.add_argument('--max-cache-age-days', type=int, default=10)
     ap.add_argument('--min-mcap', type=float, default=200e6)
     ap.add_argument('--top-n', type=int, default=5)
-    ap.add_argument('--snapshot-every', type=float, default=20.0,
+    ap.add_argument('--snapshot-every', type=float, default=15.0,
                     help='Push cache snapshot every N minutes (0 disables).')
     ap.add_argument('--skip-fetch', action='store_true',
                     help='Use existing cache only — no new yfinance calls.')
@@ -269,7 +318,9 @@ def main():
         for region, tickers in region_tickers.items():
             ok, fail = fetch_region(region, tickers, args.workers,
                                     args.max_cache_age_days,
-                                    args.snapshot_every, last_push_ref)
+                                    args.snapshot_every, last_push_ref,
+                                    request_sleep=args.request_sleep,
+                                    inter_region_pause=args.inter_region_pause)
             print(f'[{region}] fetch done: ok={ok} fail={fail}')
         # Final snapshot
         if args.snapshot_every > 0:
