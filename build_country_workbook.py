@@ -585,6 +585,7 @@ def main():
             'CZ':'Czechia','HU':'Hungary','EE':'Estonia','LV':'Latvia','LT':'Lithuania',
             'PL':'Poland','IS':'Iceland',
             'SA':'SaudiArabia','AR':'Argentina','CL':'Chile','MY':'Malaysia',
+            'CN':'China','RO':'Romania',
             'JP':'Japan','HK':'HongKong','KR':'Korea','TW':'Taiwan','SG':'Singapore',
             'IN':'India','ID':'Indonesia','TH':'Thailand','AU':'Australia','NZ':'NewZealand',
             'CA':'Canada','BR':'Brazil','MX':'Mexico','ZA':'SouthAfrica','TR':'Turkey','IL':'Israel',
