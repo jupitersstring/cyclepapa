@@ -61,3 +61,18 @@ default 8), `--target-week` (ISO week, default = current), `--refresh`
 Seasonal/calendar anomalies are fragile and prone to overfitting. The
 sample-size and stability penalties reduce — but do not eliminate — the risk of
 mining noise. Treat the output as a hypothesis generator, not a trade signal.
+
+## Durability (DO NOT lose the cache again)
+
+The expensive yfinance caches are **ephemeral** in `.cache/` but **durable** in
+git under `data/` (compressed, sharded parquet — `data/MANIFEST.json` lists what
+is stored).
+
+- **Fresh sandbox** auto-rehydrates: the `SessionStart` hook (`.claude/settings.json`
+  → `bootstrap.sh`) installs deps and runs `python3 persist.py restore`.
+- **After any expensive fetch** (`fetch_fill.py`, `refresh_cache.py`), lock it in:
+  `./snapshot.sh`  (snapshots `.cache` → `data/`, commits, pushes).
+- `persist.py restore --force` rebuilds `.cache/` from `data/` unconditionally;
+  without `--force` it won't clobber a newer local cache.
+
+Contract: **nothing expensive lives only in `.cache/`.** If you fetched it, snapshot it.

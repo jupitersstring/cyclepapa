@@ -101,23 +101,38 @@ def _from_long(long: pd.DataFrame) -> dict:
     return out
 
 
-def restore():
+def restore(force: bool = False):
     os.makedirs(CACHE, exist_ok=True)
     for pkl, key in OHLCV.items():
         d = os.path.join(DATA, "ohlcv", key)
         shards = sorted(glob.glob(os.path.join(d, "part_*.parquet")))
         if not shards:
             continue
+        dst = os.path.join(CACHE, pkl)
+        # no-clobber: don't overwrite a working cache that is newer than the
+        # committed snapshot (a live session may have fetched fresher data)
+        if os.path.exists(dst) and not force:
+            newest_shard = max(os.path.getmtime(s) for s in shards)
+            if os.path.getmtime(dst) >= newest_shard:
+                print(f"[restore] {pkl}: keeping newer local cache (skip)")
+                continue
         long = pd.concat([pd.read_parquet(s) for s in shards], ignore_index=True)
-        pd.to_pickle(_from_long(long), os.path.join(CACHE, pkl))
+        pd.to_pickle(_from_long(long), dst)
         print(f"[restore] {pkl}: {len(long):,} rows -> {long['symbol'].nunique()} symbols")
     for f in glob.glob(os.path.join(DATA, "meta", "*.json")):
-        shutil.copy2(f, os.path.join(CACHE, os.path.basename(f)))
+        d = os.path.join(CACHE, os.path.basename(f))
+        if force or not os.path.exists(d):
+            shutil.copy2(f, d)
     for f in glob.glob(os.path.join(DATA, "fundamentals", "*.csv")):
-        shutil.copy2(f, os.path.join(CACHE, os.path.basename(f)))
+        d = os.path.join(CACHE, os.path.basename(f))
+        if force or not os.path.exists(d):
+            shutil.copy2(f, d)
     print("[restore] done — caches rehydrated from data/")
 
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "snapshot"
-    (snapshot if cmd == "snapshot" else restore)()
+    if cmd == "snapshot":
+        snapshot()
+    else:
+        restore(force="--force" in sys.argv)
