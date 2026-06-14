@@ -1,9 +1,18 @@
+# Durability policy — see DATA_PERSISTENCE.md
+#
+# Everything under data/, every results_*.csv, every top30_*.csv,
+# and signals_history.csv is COMMITTED to git. The sandbox is
+# ephemeral; only the git remote is durable. Hours of rate-limited
+# yfinance / Investegate fetching live in those files. They must
+# survive sandbox resets.
+#
+# Only ignore truly regenerable Python build artefacts:
+
 __pycache__/
 *.pyc
-data/prices/
-data/prices_daily/
-data/investegate/
-/tmp/
-results_*.csv
-top30_*.csv
-signals_history.csv
+*.pyo
+.pytest_cache/
+
+# Ephemeral system locations only (not anything under repo data/)
+# We do NOT ignore /tmp/ within the repo; the /tmp/ directory is
+# outside the repo so this entry was a no-op anyway.
