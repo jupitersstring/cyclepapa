@@ -21,6 +21,7 @@ with a hard floor of priceToBook > 0 and returnOnEquity > 0.
 """
 
 import argparse
+import os
 import time
 from datetime import datetime
 
