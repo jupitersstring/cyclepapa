@@ -1,0 +1,15 @@
+ticker,tags_n,weighted_excess_12m,best_tag,best_tag_excess,worst_tag,worst_tag_excess,cluster_live,asof
+CDRE,3,-0.086,defense_recovery,0.0,activist_13d,-0.257,0,2026-06-12
+HHH,3,0.073,sponsor_anchor,0.17,holdco,0.0,0,2026-06-12
+INMD,3,0.104,smart_money_uw,0.17,asset_light,0.0,0,2026-06-12
+KBR,3,0.698,insider_cluster,1.095,defense,0.0,1,2026-06-12
+MNRO,3,-0.153,small_cap,0.0,sale_process,-0.459,0,2026-06-12
+NRP,3,0.073,family_anchor,0.17,income,0.0,0,2026-06-12
+NSP,3,0.364,founder_buy,0.143,services,0.0,1,2026-06-12
+ROCK,3,0.665,insider_cluster,1.095,post_acquisition,0.0,1,2026-06-12
+RPAY,3,-0.29,take_private_arb,0.0,bid_rejected,-0.613,0,2026-06-12
+RYAN,3,0.413,insider_cluster,1.095,services,0.0,0,2026-06-12
+SONO,3,0.057,activist_form4_cluster,0.17,brand,0.0,0,2026-06-12
+TWFG,3,0.048,founder_buy,0.143,small_cap,0.0,0,2026-06-12
+UA,3,0.048,founder_buy,0.143,activist_anchor,0.0,0,2026-06-12
+WGS,3,0.722,insider_cluster,1.095,services,0.0,1,2026-06-12

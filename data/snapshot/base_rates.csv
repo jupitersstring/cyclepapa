@@ -1,0 +1,10 @@
+factor,hit_rate,avg_excess_12m,sample_n
+founder_buy,0.6,0.143,5
+insider_cluster,1.0,1.095,2
+smart_money_uw,0.5,0.17,2
+activist_form4_cluster,0.5,0.17,2
+activist_13d,0.14,-0.257,7
+bid_rejected,0.0,-0.613,1
+sale_process,0.0,-0.459,2
+sponsor_anchor,0.5,0.17,0
+family_anchor,0.5,0.17,0

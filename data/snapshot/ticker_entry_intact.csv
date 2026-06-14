@@ -1,0 +1,62 @@
+ticker,current_px,anchor_px,anchor_source,vs_entry_pct,bucket,conviction_score,n_funds,n_hyper,has_insider_cobuy,sum_dollar_m,anchors_seen
+CVNA,64.1,118.0,raw_text,-45.7,BELOW_ENTRY,89.7,11,5,0,5501.5,raw_text=1.0; raw_text=118.0; raw_text=1.0; p80_close=77.50599670410156
+CPNG,16.82,17.0,raw_text,-1.1,NEAR_ENTRY,72.8,8,3,0,1692.4,raw_text=298.0; raw_text=17.0; p80_close=20.450000762939453
+APG,42.34,60.0,raw_text,-29.4,BELOW_ENTRY,67.8,8,2,0,861.2,raw_text=114.0; raw_text=60.0; raw_text=9.0; raw_text=60.0; p80_close=45.59000015258789
+SE,82.94,337.0,raw_text,-75.4,BELOW_ENTRY,62.4,8,2,0,1243.5,raw_text=337.0; raw_text=151.0; p80_close=89.45999908447266
+COF,184.73,501.0,raw_text,-63.1,BELOW_ENTRY,50.8,8,0,0,1240.5,raw_text=501.0; raw_text=105.0; p80_close=193.0
+PLTR,127.99,96.0,raw_text,33.3,MODERATELY_ABOVE,50.6,9,1,0,4734.8,raw_text=96.0; raw_text=96.0; raw_text=1.0; raw_text=912.0; raw_text=8.0
+HHH,67.68,100.0,candidates,-32.3,BELOW_ENTRY,48.8,4,2,0,2732.9,candidates=100.0; raw_text=1.0; raw_text=14.0; raw_text=14.0; p80_close=64.72000122070312
+LQDA,64.01,64.0,raw_text,0.0,NEAR_ENTRY,47.3,5,3,0,545.9,raw_text=280.0; raw_text=3.0; raw_text=98.0; raw_text=41.0; raw_text=5.0
+DRVN,13.43,50.0,raw_text,-73.1,BELOW_ENTRY,47.2,3,2,0,18209.5,raw_text=50.0; raw_text=18.0; raw_text=50.0; raw_text=7.0; raw_text=50.0
+WBD,26.56,91.0,raw_text,-70.8,BELOW_ENTRY,42.5,5,2,0,3334.5,raw_text=1.0; raw_text=91.0; raw_text=91.0; raw_text=450.0; p80_close=27.420000076293945
+CODI,10.64,29.0,raw_text,-63.3,BELOW_ENTRY,40.8,3,2,0,131.7,raw_text=29.0; raw_text=29.0; raw_text=8.0; raw_text=29.0; raw_text=13.0
+CRWV,100.55,220.0,raw_text,-54.3,BELOW_ENTRY,40.0,5,1,0,5460.1,raw_text=4.0; raw_text=220.0; raw_text=7.0; p80_close=117.19999694824219
+LFCR,5.64,17.0,raw_text,-66.8,BELOW_ENTRY,37.0,4,2,0,114.5,raw_text=17.0; p80_close=5.349999904632568
+MGNI,16.25,41.0,raw_text,-60.4,BELOW_ENTRY,36.9,5,2,0,192.6,raw_text=5.0; raw_text=41.0; p80_close=14.130000114440918
+SATS,114.08,283.0,raw_text,-59.7,BELOW_ENTRY,36.2,7,1,0,1982.2,raw_text=183.0; raw_text=283.0; raw_text=2.0; p80_close=129.3800048828125
+AAP,60.8,71.0,raw_text,-14.4,NEAR_ENTRY,36.2,4,2,0,345.1,raw_text=7.0; raw_text=71.0; p80_close=58.380001068115234
+SRL,6.13,15.0,raw_text,-59.1,BELOW_ENTRY,34.5,2,2,0,31.5,raw_text=15.0; p80_close=7.579999923706055
+NRP,103.73,102.18,form4_p_buy,1.5,NEAR_ENTRY,34.4,4,1,0,225.0,form4_p_buy=102.18; p80_close=120.76000213623047
+STGW,6.63,31.0,raw_text,-78.6,BELOW_ENTRY,33.6,2,2,0,132.2,raw_text=31.0; raw_text=31.0; raw_text=31.0; raw_text=6.0; raw_text=37.0
+UBER,68.85,219.0,raw_text,-68.6,BELOW_ENTRY,33.2,5,1,0,799.8,raw_text=219.0; raw_text=7.0; p80_close=75.58000183105469
+RVMD,153.87,102.0,raw_text,50.9,WELL_ABOVE,32.0,5,1,0,1559.8,raw_text=102.0; raw_text=49.0; raw_text=102.0; raw_text=205.0; raw_text=6.0
+MRP,29.3,30.49,p80_close,-3.9,NEAR_ENTRY,31.5,2,2,0,427.0,p80_close=30.489999771118164
+ACHC,24.6,15.0,raw_text,64.0,WELL_ABOVE,31.5,2,2,0,72.7,raw_text=41.0; raw_text=15.0; raw_text=15.0; p80_close=27.0
+SLM,22.38,13.0,raw_text,72.2,WELL_ABOVE,31.2,3,2,0,528.3,raw_text=13.0; p80_close=22.639999389648438
+KVUE,18.14,90.0,raw_text,-79.8,BELOW_ENTRY,30.6,5,0,0,1788.0,raw_text=471.0; raw_text=131.0; raw_text=25.0; raw_text=90.0; raw_text=90.0
+CLBT,12.84,47.0,raw_text,-72.7,BELOW_ENTRY,29.8,4,1,0,243.0,raw_text=21.0; raw_text=145.0; raw_text=47.0; p80_close=14.180000305175781
+JOE,64.92,42.0,raw_text,54.6,WELL_ABOVE,29.6,2,2,0,1195.4,raw_text=1.0; raw_text=42.0; p80_close=68.3499984741211
+SGHC,13.48,11.0,raw_text,22.5,MODERATELY_ABOVE,29.4,2,2,0,34.1,raw_text=11.0; raw_text=8.0; raw_text=11.0; raw_text=14.0; p80_close=13.140000343322754
+DASH,150.58,171.35,p80_close,-12.1,NEAR_ENTRY,28.9,6,0,0,1350.0,p80_close=171.35000610351562
+VTOL,43.96,47.0,raw_text,-6.5,NEAR_ENTRY,28.7,2,2,0,152.5,raw_text=47.0; p80_close=48.900001525878906
+GE,335.3,282.0,raw_text,18.9,MODERATELY_ABOVE,28.6,4,2,0,29632.9,raw_text=1.0; raw_text=14.0; raw_text=13.0; raw_text=282.0; p80_close=317.2099914550781
+MATW,26.82,26.0,raw_text,3.2,NEAR_ENTRY,28.0,2,2,0,46.0,raw_text=26.0; raw_text=19.0; p80_close=27.780000686645508
+NN,21.5,40.0,raw_text,-46.2,BELOW_ENTRY,27.4,4,1,0,80.3,raw_text=40.0; p80_close=21.59000015258789
+CRH,106.48,324.0,raw_text,-67.1,BELOW_ENTRY,26.9,6,1,0,1093.7,raw_text=324.0; raw_text=683.0; raw_text=7.0; p80_close=115.5
+FUN,22.43,82.0,raw_text,-72.6,BELOW_ENTRY,26.7,3,1,0,123.1,raw_text=4.0; raw_text=82.0; p80_close=20.290000915527344
+HYG,79.94,161.0,raw_text,-50.3,BELOW_ENTRY,26.4,5,1,0,335.3,raw_text=161.0; p80_close=80.30999755859375
+CMCSA,24.5,28.98,p80_close,-15.5,BELOW_ENTRY,25.4,5,1,0,589.0,p80_close=28.979999542236328
+MNRO,14.66,40.0,candidates,-63.4,BELOW_ENTRY,25.3,2,1,0,80.0,candidates=40.0; raw_text=80.0; p80_close=17.1200008392334
+ALKT,15.19,52.0,raw_text,-70.8,BELOW_ENTRY,24.9,3,0,0,283.4,raw_text=48.0; raw_text=52.0; p80_close=17.43000030517578
+NOW,102.15,91.0,raw_text,12.3,NEAR_ENTRY,24.8,3,2,0,371.8,raw_text=91.0; p80_close=110.94999694824219
+TEVA,34.63,78.0,raw_text,-55.6,BELOW_ENTRY,24.6,5,1,0,923.4,raw_text=78.0; raw_text=67.0; p80_close=34.95000076293945
+ACN,170.28,217.0,raw_text,-21.5,BELOW_ENTRY,23.8,4,1,0,217.7,raw_text=217.0; p80_close=196.64999389648438
+CROX,124.71,53.0,raw_text,135.3,WELL_ABOVE,23.8,4,1,0,145.5,raw_text=53.0; raw_text=50.0; p80_close=116.86000061035156
+UNP,272.7,418.0,raw_text,-34.8,BELOW_ENTRY,22.7,4,0,0,795.1,raw_text=418.0; raw_text=376.0; p80_close=268.70001220703125
+PAR,14.9,8.0,raw_text,86.2,WELL_ABOVE,22.5,4,0,0,275.0,raw_text=157.0; raw_text=27.0; raw_text=7.0; raw_text=8.0; p80_close=14.699999809265137
+CELC,92.59,99.74,raw_text,-7.2,NEAR_ENTRY,22.4,4,0,0,1700.0,raw_text=99.74; p80_close=131.05999755859375
+EA,203.27,196.0,raw_text,3.7,NEAR_ENTRY,22.3,4,2,0,2779.9,raw_text=2.0; raw_text=1.0; raw_text=196.0; p80_close=203.24000549316406
+PDD,81.56,47.0,raw_text,73.5,WELL_ABOVE,21.6,3,2,0,569.6,raw_text=522.0; raw_text=47.0; p80_close=101.77999877929688
+SONO,15.38,19.82,candidates,-22.4,BELOW_ENTRY,19.8,2,1,0,298.4,candidates=19.82; raw_text=3.0; raw_text=10.0; raw_text=9.0; raw_text=12.0
+WGS,56.33,170.0,candidates,-66.9,BELOW_ENTRY,19.6,2,1,1,789.1,candidates=32.21; candidates=170.0; raw_text=391.0; form4_p_buy=47.65114; p80_close=68.52999877929688
+HTHT,44.66,34.0,raw_text,31.4,MODERATELY_ABOVE,19.5,3,1,0,88.9,raw_text=28.0; raw_text=34.0; raw_text=6.0; raw_text=34.0; p80_close=52.09000015258789
+PRLD,3.94,3.94,candidates,0.0,NEAR_ENTRY,18.2,4,0,0,0.0,candidates=3.94; p80_close=4.619999885559082
+CDRE,30.19,48.76,candidates,-38.1,BELOW_ENTRY,17.5,2,1,0,35.3,candidates=25.73; candidates=48.76; raw_text=35.0; p80_close=32.220001220703125
+KBR,35.32,55.0,candidates,-35.8,BELOW_ENTRY,16.8,1,0,1,14.2,candidates=55.0; raw_text=14.0; form4_p_buy=31.32035; p80_close=37.459999084472656
+SSTI,7.71,7.64,raw_text,0.9,NEAR_ENTRY,16.1,1,0,0,6.8,raw_text=6.8; raw_text=7.64; p80_close=7.0
+CRTO,17.05,18.0,raw_text,-5.3,NEAR_ENTRY,15.7,2,0,0,18.9,raw_text=18.0; p80_close=19.110000610351562
+INMD,13.56,18.0,candidates,-24.7,BELOW_ENTRY,14.7,1,1,0,24.6,candidates=18.0; raw_text=24.0; p80_close=14.25
+RPAY,3.43,4.8,candidates,-28.5,BELOW_ENTRY,13.3,1,0,0,52.5,candidates=3.43; candidates=4.8; candidates=490.0; raw_text=21.0; raw_text=31.0
+SEER,1.69,1.94,p80_close,-12.9,NEAR_ENTRY,12.8,1,0,0,0.0,p80_close=1.940000057220459
+GLOB,37.47,13.0,raw_text,188.2,WELL_ABOVE,9.0,2,0,0,13.5,raw_text=13.0; p80_close=46.11000061035156
+NSP,37.27,34.05,form4_p_buy,9.5,NEAR_ENTRY,6.6,1,0,1,0.0,form4_p_buy=34.05; p80_close=33.470001220703125

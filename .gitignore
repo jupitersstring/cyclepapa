@@ -1,1 +1,9 @@
+# the SQLite DB is a derived build artifact — never the source of truth.
+# rebuild it with: python3 pipeline/snapshot.py restore  (no network needed)
 data/cyclepapa.db
+data/cyclepapa.db.bak
+
+# expensive sandbox-only scratch
+/tmp/
+*.pyc
+__pycache__/
