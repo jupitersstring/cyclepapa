@@ -1,0 +1,720 @@
+ticker,valcreate,tier1_metrics,eps,tsr,aggregate_penalty,psu_pct_lti,gov,fwd,psu_core,mcap_musd,price,pb,sector,filing_date,fwd_snippet,notes
+NBHC,59.0,"cfroi,other_per_share,roe,roic",EPS,TSR,,43,20.0,0,31.5,,,,,2026-04-03,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR | gov hygiene 20"
+TROX,59.0,"other_per_share,roe,roic",EPS,TSR,absolute_ebitda,86,15.0,0,63.9,,,,,2026-03-19,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 86% of LTI | gov hygiene 15"
+STAA,59.0,"cfroi,roe,roic",EPS,TSR,,50,15.0,0,58.0,,,,,2026-05-04,,"return-on-capital: cfroi,roe,roic | EPS | TSR | gov hygiene 15"
+TGT,57.0,"cfroi,roe,roic",EPS,TSR,,75,-2.0,0,72.0,58127.0,127.98,3.545349,Consumer Defensive,2026-04-27,,"return-on-capital: cfroi,roe,roic | EPS | TSR | PSU 75% of LTI"
+NUS,56.0,"cfroi,roe,roic",EPS,TSR,,50,11.0,0,40.5,264.0,5.43,0.33233365,Consumer Defensive,2026-04-03,,"return-on-capital: cfroi,roe,roic | EPS | TSR"
+TEX,56.0,"cfroi,roe,roic",EPS,TSR,,65,1.0,0,26.0,,,,,2026-04-29,,"return-on-capital: cfroi,roe,roic | EPS | TSR | PSU 65% of LTI"
+MAT,56.0,"cfroi,roce,roe,roic",EPS,TSR,absolute_ebitda,75,12.0,0,49.0,,,,,2026-04-14,,"return-on-capital: cfroi,roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI"
+COLM,56.0,"other_per_share,roe,roic",EPS,TSR,,60,1.0,0,28.0,3297.0,64.465,2.0840201,Consumer Cyclical,2026-04-24,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | PSU 60% of LTI"
+RNR,55.0,"cfroi,other_per_share,roe",EPS,TSR,,,15.0,0,28.8,12054.0,282.74,1.1287746,Financial Services,2026-03-18,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR | gov hygiene 15"
+WEX,55.0,"cfroi,other_per_share,roe",EPS,TSR,,,15.0,0,7.2,,,,,2025-04-17,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR | gov hygiene 15"
+CIA,54.0,"other_per_share,roe,roic",EPS,TSR,,60,-2.0,0,21.0,,,,,2026-04-30,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | PSU 60% of LTI"
+SNDR,54.0,"other_per_share,roe,roic",EPS,TSR,,60,-2.0,0,46.8,,,,,2026-03-17,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | PSU 60% of LTI"
+PTN,53.0,"cfroi,other_per_share,roe,roic",EPS,TSR,,50,6.0,0,20.4,,,,,2025-06-30,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR"
+WAL,53.0,"other_per_share,roce,roe",EPS,TSR,,50,3.0,0,24.0,,,,,2026-04-22,,"return-on-capital: other_per_share,roce,roe | EPS | TSR"
+AVT,53.0,"roce,roe,roic",EPS,TSR,,50,0,0,15.6,,,,,2025-10-07,,"return-on-capital: roce,roe,roic | EPS | TSR"
+CC,53.0,"cfroi,other_per_share,roe,roic",EPS,TSR,absolute_ebitda,70,1.0,0,38.7,,,,,2026-03-10,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI"
+AMD,52.0,"roce,roe,roic",EPS,TSR,,,12.0,0,38.7,775359.0,475.505,12.023794,Technology,2026-03-27,,"return-on-capital: roce,roe,roic | EPS | TSR"
+KBH,52.0,"other_per_share,roe,roic",EPS,TSR,,,12.0,0,33.3,3265.0,52.16,0.84766144,Consumer Cyclical,2026-03-13,,"return-on-capital: other_per_share,roe,roic | EPS | TSR"
+BY,52.0,"cfroi,other_per_share,roe,roic",EPS,TSR,,,12.0,0,41.0,,,,,2026-04-20,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR"
+AA,51.0,"cfroi,other_per_share,roe,roic",EPS,TSR,absolute_ebitda,70,-2.0,0,36.0,,,,,2026-03-19,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI"
+LCII,51.0,"cfroi,roe,roic",,TSR,absolute_ebitda,75,15.0,0,51.3,2203.0,90.72,1.5881797,Consumer Cyclical,2026-03-27,,"return-on-capital: cfroi,roe,roic | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI | gov hygiene 15"
+VRSN,51.0,"cfroi,roe,roic",,TSR,,75,1.0,0,39.6,25834.0,283.89,-11.68464,Technology,2026-04-10,,"return-on-capital: cfroi,roe,roic | TSR | PSU 75% of LTI"
+ECPG,51.0,"other_per_share,roe,roic",EPS,TSR,absolute_ebitda,75,-2.0,0,60.0,1770.0,82.57,1.715455,Financial Services,2026-04-29,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI"
+DCO,51.0,"fcf_per_share,roe,roic",EPS,TSR,absolute_ebitda,70,-2.0,0,48.6,,,,,2026-03-13,,"return-on-capital: fcf_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI"
+KHC,51.0,"cfroi,other_per_share,roe,roic",EPS,TSR,absolute_ebitda,75,-2.0,0,29.7,27783.0,23.43,0.6628381,Consumer Defensive,2026-04-03,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI"
+NGVT,50.0,"cfroi,other_per_share,roic",EPS,TSR,absolute_ebitda,50,12.0,0,31.5,,,,,2026-03-17,,"return-on-capital: cfroi,other_per_share,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+RDN,50.0,"other_per_share,roce,roe",EPS,TSR,absolute_ebitda,60,3.0,0,23.4,,,,,2026-04-02,,"return-on-capital: other_per_share,roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI"
+TDC,50.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,50,12.0,0,31.5,,,,,2026-03-26,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+VRNS,50.0,"cfroi,other_per_share,roe",EPS,TSR,absolute_ebitda,61,3.0,0,15.0,,,,,2026-04-17,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 61% of LTI"
+BDC,50.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,50,12.0,0,43.2,4121.0,105.83,3.2116413,Technology,2026-04-09,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+EGBN,50.0,"other_per_share,roe",EPS,TSR,,60,15.0,0,8.1,,,,,2025-04-01,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 60% of LTI | gov hygiene 15"
+ERII,50.0,"other_per_share,roe,roic",EPS,TSR,absolute_ebitda,50,12.0,0,22.0,,,,,2026-04-21,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+MTG,50.0,"other_per_share,roe",EPS,TSR,,61,18.0,0,44.1,,,,,2026-03-20,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 61% of LTI | gov hygiene 18"
+SNDA,50.0,"cfroi,other_per_share,roe",EPS,TSR,absolute_ebitda,50,12.0,0,13.0,,,,,2026-04-27,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+TRV,50.0,"other_per_share,roe",EPS,TSR,,89,12.0,0,27.9,,,,,2026-04-07,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 89% of LTI"
+PRDO,50.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,50,12.0,0,19.8,,,,,2026-04-09,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+LGL,49.0,"roce,roe,roic",EPS,TSR,,,4.0,0,10.8,,,,,2026-04-02,,"return-on-capital: roce,roe,roic | EPS | TSR"
+UPS,49.0,"roce,roe,roic",EPS,TSR,,,1.0,0,26.1,,,,,2026-03-19,,"return-on-capital: roce,roe,roic | EPS | TSR"
+ABX,49.0,"roce,roe,roic",EPS,TSR,,,3.0,0,11.0,,,,,2026-04-21,,"return-on-capital: roce,roe,roic | EPS | TSR"
+AEIS,49.0,"cfroi,other_per_share,roe",EPS,TSR,,,4.0,0,0.0,,,,,2026-03-26,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR"
+ABXL,49.0,"roce,roe,roic",EPS,TSR,,,3.0,0,11.0,,,,,2026-04-21,,"return-on-capital: roce,roe,roic | EPS | TSR"
+STEL,49.0,"cfroi,other_per_share,roe",EPS,TSR,absolute_ebitda,,15.0,0,14.8,,,,,2025-04-10,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15"
+ACIC,47.0,"other_per_share,roe",EPS,TSR,,50,18.0,0,20.7,,,,,2026-04-01,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 18"
+AWR,47.0,"roe,roic",EPS,TSR,,75,4.0,0,29.7,,,,,2026-04-03,,"return-on-capital: roe,roic | EPS | TSR | PSU 75% of LTI"
+DCH,47.0,"roe,roic",EPS,TSR,absolute_ebitda,90,15.0,0,47.7,,,,,2026-03-19,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 90% of LTI | gov hygiene 15"
+DIS,47.0,"cfroi,roic",EPS,TSR,,60,10.0,0,30.0,172488.0,99.33,1.5944588,Communication Services,2026-01-22,,"return-on-capital: cfroi,roic | EPS | TSR | PSU 60% of LTI"
+FND,47.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,50,1.0,0,12.6,5333.0,49.34,2.1708906,Consumer Cyclical,2026-03-23,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+GLW,47.0,"cfroi,roic",EPS,TSR,,70,4.0,0,39.6,,,,,2026-03-20,,"return-on-capital: cfroi,roic | EPS | TSR | PSU 70% of LTI"
+GPRE,47.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,50,1.0,0,29.0,,,,,2026-04-24,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+JPM,47.0,"other_per_share,roe",EPS,TSR,,88,7.0,0,26.1,828344.0,309.14,2.4080265,Financial Services,2026-04-06,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 88% of LTI"
+VYLD,47.0,"other_per_share,roe",EPS,TSR,,88,7.0,0,26.1,,,,,2026-04-06,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 88% of LTI"
+ACAD,47.0,"cfroi,roce,roic",EPS,TSR,,25,-2.0,0,6.0,3740.0,21.84,2.9938314,Healthcare,2026-04-24,,"return-on-capital: cfroi,roce,roic | EPS | TSR"
+AMJB,47.0,"other_per_share,roe",EPS,TSR,,88,7.0,0,26.1,,,,,2026-04-06,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 88% of LTI"
+WDAY,47.0,"roe,roic",EPS,TSR,,75,1.0,0,29.0,34633.0,140.23,4.65571,Technology,2026-05-05,,"return-on-capital: roe,roic | EPS | TSR | PSU 75% of LTI"
+CE,47.0,"roce,roic",EPS,TSR,absolute_ebitda,70,15.0,0,41.4,,,,,2026-03-04,,"return-on-capital: roce,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI | gov hygiene 15"
+GIII,47.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,50,8.0,0,46.0,,,,,2026-05-05,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+INTC,47.0,"roe,roic",EPS,TSR,,80,4.0,0,33.3,537983.0,107.04,4.826622,Technology,2026-03-23,,"return-on-capital: roe,roic | EPS | TSR | PSU 80% of LTI"
+KDP,47.0,"roe,roic",EPS,TSR,,75,7.0,0,41.0,42830.0,31.48,1.6953899,Consumer Defensive,2026-04-24,,"return-on-capital: roe,roic | EPS | TSR | PSU 75% of LTI"
+AWK,46.0,"cfroi,roce,roe",EPS,TSR,absolute_ebitda,,12.0,0,35.1,,,,,2026-03-24,,"return-on-capital: cfroi,roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+EQBK,46.0,"cfroi,other_per_share,roe",EPS,TSR,absolute_ebitda,,12.0,0,14.4,,,,,2026-03-12,,"return-on-capital: cfroi,other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+PPTA,46.0,"fcf_per_share,roe,roic",EPS,TSR,absolute_ebitda,,12.0,0,40.0,,,,,2026-04-24,,"return-on-capital: fcf_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CTO,46.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,,12.0,0,45.0,,,,,2026-04-28,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+PFG,46.0,"cfroi,other_per_share,roe,roic",EPS,TSR,absolute_ebitda,30,12.0,0,42.3,,,,,2026-04-06,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+BLMN,45.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,50,-2.0,0,40.5,636.0,7.43,1.604405,Consumer Cyclical,2026-03-03,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+DAKT,45.0,"roe,roic",EPS,TSR,,75,-2.0,0,15.6,,,,,2025-08-14,,"return-on-capital: roe,roic | EPS | TSR | PSU 75% of LTI"
+LEA,45.0,"cfroi,roic",EPS,TSR,,75,-2.0,0,34.2,,,,,2026-04-02,,"return-on-capital: cfroi,roic | EPS | TSR | PSU 75% of LTI"
+BKU,45.0,"other_per_share,roe",EPS,TSR,,75,-2.0,0,32.4,,,,,2026-04-10,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 75% of LTI"
+CASY,45.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,50,-2.0,0,20.4,,,,,2025-07-23,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+HAIN,45.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,40,-2.0,0,20.4,57.0,0.6341,0.26766568,Consumer Defensive,2025-09-18,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CUBI,44.0,"other_per_share,roe",EPS,TSR,,67,1.0,0,33.0,2568.0,75.91,1.1927471,Financial Services,2026-04-14,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 67% of LTI"
+EIG,44.0,"other_per_share,roe",EPS,TSR,,65,4.0,0,22.0,,,,,2026-04-16,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 65% of LTI"
+ICFI,44.0,"cfroi,roe",EPS,TSR,absolute_ebitda,80,14.0,0,41.0,1293.0,71.4,1.2535553,Industrials,2026-04-22,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 80% of LTI"
+KRMD,44.0,"other_per_share,roe",EPS,TSR,,50,11.0,0,27.9,,,,,2026-04-09,,"return-on-capital: other_per_share,roe | EPS | TSR"
+CUBB,44.0,"other_per_share,roe",EPS,TSR,,67,1.0,0,25.0,,,,,2026-04-14,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 67% of LTI"
+MVBF,44.0,"other_per_share,roe",EPS,TSR,,50,12.0,0,37.8,,,,,2026-04-07,,"return-on-capital: other_per_share,roe | EPS | TSR"
+PNC,44.0,"other_per_share,roe",EPS,TSR,,60,3.0,0,14.4,,,,,2026-03-11,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 60% of LTI"
+RYAM,44.0,"roe,roic",EPS,TSR,absolute_ebitda,65,15.0,0,28.8,,,,,2026-03-30,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 65% of LTI | gov hygiene 15"
+SCI,44.0,"fcf_per_share,roe",EPS,TSR,,64,1.0,0,10.8,,,,,2026-03-26,,"return-on-capital: fcf_per_share,roe | EPS | TSR | PSU 64% of LTI"
+HOG,44.0,"roe,roic",EPS,TSR,,50,12.0,0,34.2,,,,,2026-04-09,,"return-on-capital: roe,roic | EPS | TSR"
+RMD,44.0,"cfroi,roic",EPS,TSR,,50,12.0,0,25.2,,,,,2025-10-02,,"return-on-capital: cfroi,roic | EPS | TSR"
+CNO,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,24.3,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+DHI,43.0,"other_per_share,roe",EPS,TSR,,14,15.0,0,21.8,,,,,2025-12-10,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+HOVNP,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,12.0,,,,,2026-02-09,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+NMIH,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,14.4,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+NVCR,43.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,,1.0,0,30.0,1928.0,16.65,5.831874,Healthcare,2026-04-20,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+OUT,43.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,,1.0,0,30.0,5396.0,30.65,8.153764,Real Estate,2026-04-21,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+SOJD,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,20.7,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+DLTH,43.0,"cfroi,roce,roe,roic",EPS,TSR,absolute_ebitda,,8.0,0,35.0,,,,,2026-04-21,,"return-on-capital: cfroi,roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+REX,43.0,"other_per_share,roce,roic",EPS,TSR,absolute_ebitda,,0,0,11.0,,,,,2026-04-15,,"return-on-capital: other_per_share,roce,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+SD,43.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,,7.0,0,42.0,,,,,2026-04-27,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+SOJE,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,20.7,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+CB,43.0,"other_per_share,roe",EPS,TSR,,,16.0,0,7.2,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 16"
+CVGI,43.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,,7.0,0,30.0,175.0,5.16,1.2594581,Consumer Cyclical,2026-04-27,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ESNT,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,18.9,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+HOV,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,12.0,,,,,2026-02-09,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+HVT,43.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,25,0,0,21.6,,,,,2026-03-27,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+PRG,43.0,"fcf_per_share,other_per_share,roe,roic",EPS,TSR,absolute_ebitda,,1.0,0,36.0,,,,,2026-03-26,,"return-on-capital: fcf_per_share,other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+SFBS,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,27.9,,,,,2026-04-06,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+SO,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,20.7,105989.0,94.02,2.8551471,Utilities,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+SOJC,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,20.7,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+SOJF,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,20.7,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+SOMN,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,20.7,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+WRB,43.0,"other_per_share,roe",EPS,TSR,,,15.0,0,37.0,,,,,2026-04-22,,"return-on-capital: other_per_share,roe | EPS | TSR | gov hygiene 15"
+HUM,42.0,"roe,roic",EPS,TSR,,60,-2.0,0,30.6,,,,,2026-03-06,,"return-on-capital: roe,roic | EPS | TSR | PSU 60% of LTI"
+KW,42.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,,-1.0,0,18.0,,,,,2025-04-25,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+APA,42.0,"fcf_per_share,roic",,TSR,,60,15.0,0,42.3,,,,,2026-04-09,,"return-on-capital: fcf_per_share,roic | TSR | PSU 60% of LTI | gov hygiene 15"
+FHN,42.0,"roce,roe",EPS,TSR,,60,-2.0,0,22.5,11733.0,24.72,1.3951913,Financial Services,2026-03-16,,"return-on-capital: roce,roe | EPS | TSR | PSU 60% of LTI"
+HON,42.0,"roe,roic",EPS,TSR,,59,-2.0,0,27.9,,,,,2026-04-10,,"return-on-capital: roe,roic | EPS | TSR | PSU 59% of LTI"
+KEY,42.0,"other_per_share,roe",EPS,TSR,,60,-2.0,0,23.4,,,,,2026-03-27,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 60% of LTI"
+FET,41.0,"roce,roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,37.8,,,,,2026-03-27,,"return-on-capital: roce,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+FULT,41.0,roe,EPS,TSR,,77,15.0,0,36.9,4343.0,22.72,1.2267156,Financial Services,2026-04-01,,return-on-capital: roe | EPS | TSR | PSU 77% of LTI | gov hygiene 15
+MDLZ,41.0,roic,EPS,TSR,,75,16.0,0,44.1,82385.0,64.18,3.1994019,Consumer Defensive,2026-04-03,,return-on-capital: roic | EPS | TSR | PSU 75% of LTI | gov hygiene 16
+PFE,41.0,"other_per_share,roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,9.9,,,,,2026-03-12,,"return-on-capital: other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+PVH,41.0,"roe,roic",EPS,TSR,,50,1.0,0,26.0,,,,,2026-05-08,,"return-on-capital: roe,roic | EPS | TSR"
+SAIC,41.0,"roe,roic",EPS,TSR,absolute_ebitda,60,12.0,0,50.0,,,,,2026-04-22,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI"
+SJM,41.0,roic,EPS,TSR,,74,15.0,0,25.8,,,,,2025-06-27,,return-on-capital: roic | EPS | TSR | PSU 74% of LTI | gov hygiene 15
+DNUT,41.0,"cfroi,other_per_share,roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,29.0,,,,,2026-04-27,,"return-on-capital: cfroi,other_per_share,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+DOV,41.0,roic,EPS,TSR,,75,18.0,0,51.3,,,,,2026-03-24,,return-on-capital: roic | EPS | TSR | PSU 75% of LTI | gov hygiene 18
+FULTP,41.0,roe,EPS,TSR,,77,15.0,0,36.9,,,,,2026-04-01,,return-on-capital: roe | EPS | TSR | PSU 77% of LTI | gov hygiene 15
+GWW,41.0,roic,EPS,TSR,,90,15.0,0,35.1,62209.0,1317.63,15.834045,Industrials,2026-03-10,,return-on-capital: roic | EPS | TSR | PSU 90% of LTI | gov hygiene 15
+KMX,41.0,"roe,roic",EPS,TSR,,50,4.0,0,41.0,,,,,2026-05-12,,"return-on-capital: roe,roic | EPS | TSR"
+OCFC,41.0,"other_per_share,roe",EPS,TSR,,50,4.0,0,15.0,,,,,2026-04-27,,"return-on-capital: other_per_share,roe | EPS | TSR"
+WHR,41.0,roic,EPS,TSR,,70,16.0,0,31.5,,,,,2026-03-10,,return-on-capital: roic | EPS | TSR | PSU 70% of LTI | gov hygiene 16
+ANAB,41.0,"roe,roic",EPS,TSR,,50,4.0,0,16.7,1516.0,52.1,118.67881,Healthcare,2025-04-29,,"return-on-capital: roe,roic | EPS | TSR"
+CBU,41.0,"other_per_share,roe",EPS,TSR,,50,4.0,0,21.6,,,,,2026-03-27,,"return-on-capital: other_per_share,roe | EPS | TSR"
+EQT,41.0,"fcf_per_share,roe",EPS,TSR,absolute_ebitda,60,12.0,0,36.9,,,,,2026-02-26,,"return-on-capital: fcf_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI"
+HTO,41.0,roe,EPS,TSR,,70,15.0,0,27.0,,,,,2026-04-03,,return-on-capital: roe | EPS | TSR | PSU 70% of LTI | gov hygiene 15
+INO,41.0,"cfroi,roe",EPS,TSR,,70,-6.0,0,32.4,,,,,2026-04-07,,"return-on-capital: cfroi,roe | EPS | TSR | PSU 70% of LTI"
+LMT,41.0,roic,EPS,TSR,,70,15.0,0,44.1,,,,,2026-03-26,,return-on-capital: roic | EPS | TSR | PSU 70% of LTI | gov hygiene 15
+MNRO,41.0,"other_per_share,roic",EPS,TSR,,50,1.0,0,7.8,,,,,2025-07-03,,"return-on-capital: other_per_share,roic | EPS | TSR"
+NUE,41.0,roe,EPS,TSR,,78,15.0,0,30.6,57047.0,250.49,2.6591578,Basic Materials,2026-03-27,,return-on-capital: roe | EPS | TSR | PSU 78% of LTI | gov hygiene 15
+SNBR,41.0,"roe,roic",EPS,TSR,absolute_ebitda,50,15.0,0,43.2,,,,,2026-04-08,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15"
+STZ,41.0,"roe,roic",EPS,TSR,,50,2.0,0,43.0,24028.0,140.09,2.994592,Consumer Defensive,2026-06-08,,"return-on-capital: roe,roic | EPS | TSR"
+ABT,40.0,"cfroi,roe",EPS,TSR,,,11.0,0,17.1,,,,,2026-03-13,,"return-on-capital: cfroi,roe | EPS | TSR"
+AFG,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,18.9,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR"
+AFGD,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,18.9,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR"
+EVH,40.0,"cfroi,other_per_share,roe,roic",,TSR,absolute_ebitda,56,-2.0,0,30.0,,,,,2026-04-24,,"return-on-capital: cfroi,other_per_share,roe,roic | TSR | aggregate (penalty): absolute_ebitda | PSU 56% of LTI"
+HCSG,40.0,"roe,roic",EPS,TSR,,,11.0,0,40.0,,,,,2026-04-15,,"return-on-capital: roe,roic | EPS | TSR"
+SF,40.0,"other_per_share,roce",EPS,TSR,,,12.0,0,19.0,,,,,2026-04-29,,"return-on-capital: other_per_share,roce | EPS | TSR"
+TPR,40.0,"roe,roic",EPS,TSR,,,12.0,0,16.8,29422.0,145.62,43.17225,Consumer Cyclical,2025-09-26,,"return-on-capital: roe,roic | EPS | TSR"
+AFGB,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,18.9,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR"
+AFGE,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,18.9,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR"
+BRO,40.0,"roe,roic",EPS,TSR,,,12.0,0,15.3,,,,,2026-03-24,,"return-on-capital: roe,roic | EPS | TSR"
+FFBC,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,13.0,,,,,2026-04-16,,"return-on-capital: other_per_share,roe | EPS | TSR"
+UTL,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,27.9,,,,,2026-03-27,,"return-on-capital: other_per_share,roe | EPS | TSR"
+AFGC,40.0,"other_per_share,roe",EPS,TSR,,,12.0,0,18.9,,,,,2026-04-03,,"return-on-capital: other_per_share,roe | EPS | TSR"
+ALLY,40.0,"other_per_share,roe",EPS,TSR,,75,-7.0,0,12.6,,,,,2026-03-18,,"return-on-capital: other_per_share,roe | EPS | TSR | PSU 75% of LTI"
+MTRX,40.0,"roe,roic",EPS,TSR,,,11.0,0,21.0,363.0,12.89,2.6003633,Industrials,2025-09-24,,"return-on-capital: roe,roic | EPS | TSR"
+SAFE,40.0,"roe,roic",EPS,TSR,,,12.0,0,44.1,,,,,2026-03-31,,"return-on-capital: roe,roic | EPS | TSR"
+SPNT,40.0,"other_per_share,roe",EPS,TSR,,25,12.0,0,14.4,,,,,2026-04-10,,"return-on-capital: other_per_share,roe | EPS | TSR"
+ACGLO,39.0,"other_per_share,roe",,TSR,,68,12.0,0,27.0,,,,,2026-03-24,,"return-on-capital: other_per_share,roe | TSR | PSU 68% of LTI"
+GM,39.0,"roe,roic",EPS,TSR,,50,-2.0,0,16.0,71592.0,79.4,1.1429887,Consumer Cyclical,2026-04-20,,"return-on-capital: roe,roic | EPS | TSR"
+KMPR,39.0,"other_per_share,roe",,TSR,,50,15.0,0,27.0,1434.0,24.35,0.54057056,Financial Services,2026-03-25,,"return-on-capital: other_per_share,roe | TSR | gov hygiene 15"
+MDU,39.0,"roe,roic",EPS,TSR,absolute_ebitda,80,-2.0,0,36.0,,,,,2026-04-01,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 80% of LTI"
+STX,39.0,"roe,roic",EPS,TSR,,50,-2.0,0,17.4,,,,,2025-09-09,,"return-on-capital: roe,roic | EPS | TSR"
+ACGL,39.0,"other_per_share,roe",,TSR,,68,12.0,0,30.6,31903.0,91.31,1.3740331,Financial Services,2026-03-24,,"return-on-capital: other_per_share,roe | TSR | PSU 68% of LTI"
+VIAV,39.0,"roe,roic",EPS,TSR,,50,-2.0,0,20.4,,,,,2025-10-03,,"return-on-capital: roe,roic | EPS | TSR"
+ACGLN,39.0,"other_per_share,roe",,TSR,,68,12.0,0,27.0,,,,,2026-03-24,,"return-on-capital: other_per_share,roe | TSR | PSU 68% of LTI"
+KMPB,39.0,"other_per_share,roe",,TSR,,50,15.0,0,27.0,,,,,2026-03-25,,"return-on-capital: other_per_share,roe | TSR | gov hygiene 15"
+APTV,38.0,roic,EPS,TSR,,60,15.0,0,45.0,,,,,2026-03-16,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI | gov hygiene 15
+ASB,38.0,roe,EPS,TSR,,75,12.0,0,15.3,,,,,2026-03-16,,return-on-capital: roe | EPS | TSR | PSU 75% of LTI
+AXP,38.0,roe,EPS,TSR,,73,12.0,0,28.8,213800.0,313.34,6.2861614,Financial Services,2026-03-25,,return-on-capital: roe | EPS | TSR | PSU 73% of LTI
+BFH,38.0,roe,EPS,TSR,,60,18.0,0,36.9,,,,,2026-04-07,,return-on-capital: roe | EPS | TSR | PSU 60% of LTI | gov hygiene 18
+COF,38.0,other_per_share,EPS,TSR,,60,15.0,0,37.8,,,,,2026-03-25,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI | gov hygiene 15
+F,38.0,roic,EPS,TSR,,60,15.0,0,35.1,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI | gov hygiene 15
+OLED,38.0,"roce,roe",EPS,TSR,absolute_ebitda,50,12.0,0,26.0,4247.0,90.84,2.4923177,Technology,2026-04-23,,"return-on-capital: roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+PPL,38.0,other_per_share,EPS,TSR,,80,12.0,0,36.9,26897.0,35.75,1.7904544,Utilities,2026-04-01,,return-on-capital: other_per_share | EPS | TSR | PSU 80% of LTI
+SSD,38.0,roic,EPS,TSR,,65,15.0,0,51.3,,,,,2026-03-24,,return-on-capital: roic | EPS | TSR | PSU 65% of LTI | gov hygiene 15
+SYBT,38.0,other_per_share,EPS,TSR,,75,12.0,0,19.8,,,,,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 75% of LTI
+TCBK,38.0,other_per_share,EPS,TSR,,80,12.0,0,35.0,,,,,2026-04-17,,return-on-capital: other_per_share | EPS | TSR | PSU 80% of LTI
+UNP,38.0,roic,EPS,TSR,,86,12.0,0,60.3,,,,,2026-03-25,,return-on-capital: roic | EPS | TSR | PSU 86% of LTI
+ADSK,38.0,fcf_per_share,EPS,TSR,,60,15.0,0,57.0,46722.0,221.28,14.64073,Technology,2026-05-06,,return-on-capital: fcf_per_share | EPS | TSR | PSU 60% of LTI | gov hygiene 15
+ASBA,38.0,roe,EPS,TSR,,75,12.0,0,15.3,,,,,2026-03-16,,return-on-capital: roe | EPS | TSR | PSU 75% of LTI
+NSIT,38.0,roic,EPS,TSR,,60,18.0,0,29.7,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI | gov hygiene 18
+PEG,38.0,roic,EPS,TSR,,70,12.0,0,47.7,,,,,2026-03-12,,return-on-capital: roic | EPS | TSR | PSU 70% of LTI
+PPLC,38.0,other_per_share,EPS,TSR,,80,12.0,0,36.9,,,,,2026-04-01,,return-on-capital: other_per_share | EPS | TSR | PSU 80% of LTI
+ACHC,38.0,"roe,roic",EPS,TSR,absolute_ebitda,50,12.0,0,41.4,,,,,2026-03-25,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ADEA,38.0,"roe,roic",EPS,TSR,absolute_ebitda,60,1.0,0,37.8,,,,,2026-03-25,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI"
+CNH,38.0,roic,EPS,TSR,,75,12.0,0,48.6,,,,,2026-03-25,,return-on-capital: roic | EPS | TSR | PSU 75% of LTI
+EVRG,38.0,roic,EPS,TSR,,70,12.0,0,47.7,,,,,2026-03-26,,return-on-capital: roic | EPS | TSR | PSU 70% of LTI
+SWK,38.0,"cfroi,roic",EPS,TSR,absolute_ebitda,50,12.0,0,43.2,,,,,2026-03-06,,"return-on-capital: cfroi,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+AROW,37.0,"other_per_share,roe",EPS,TSR,,,8.0,0,15.0,,,,,2026-04-23,,"return-on-capital: other_per_share,roe | EPS | TSR"
+BIO,37.0,"roe,roic",EPS,TSR,,,0,0,27.0,,,,,2026-03-25,,"return-on-capital: roe,roic | EPS | TSR"
+COHN,37.0,"roe,roic",EPS,TSR,,,3.0,0,30.0,,,,,2026-04-16,,"return-on-capital: roe,roic | EPS | TSR"
+ISTR,37.0,"roe,roic",EPS,TSR,,,4.0,0,30.6,,,,,2026-04-08,,"return-on-capital: roe,roic | EPS | TSR"
+LADR,37.0,"other_per_share,roe",EPS,TSR,,,7.0,0,16.0,,,,,2026-04-21,,"return-on-capital: other_per_share,roe | EPS | TSR"
+MPTI,37.0,"roce,roe",EPS,TSR,,,4.0,0,8.0,,,,,2026-04-30,,"return-on-capital: roce,roe | EPS | TSR"
+RHI,37.0,"roe,roic",EPS,TSR,,,7.0,0,27.0,,,,,2026-04-10,,"return-on-capital: roe,roic | EPS | TSR"
+RJF,37.0,"other_per_share,roe",EPS,TSR,,,1.0,0,6.8,,,,,2026-01-07,,"return-on-capital: other_per_share,roe | EPS | TSR"
+ROK,37.0,"roe,roic",EPS,TSR,,,8.0,0,20.2,,,,,2025-12-22,,"return-on-capital: roe,roic | EPS | TSR"
+SCCE,37.0,"roe,roic",EPS,TSR,,,0,0,13.5,,,,,2025-04-30,,"return-on-capital: roe,roic | EPS | TSR"
+USB,37.0,"roe,roic",EPS,TSR,,,1.0,0,9.9,,,,,2026-03-10,,"return-on-capital: roe,roic | EPS | TSR"
+AIG,37.0,"other_per_share,roe",EPS,TSR,,,2.0,0,28.8,,,,,2026-03-31,,"return-on-capital: other_per_share,roe | EPS | TSR"
+CYRX,37.0,"cfroi,roe,roic",EPS,TSR,absolute_ebitda,38,-6.0,0,30.0,766.0,15.19,1.691725,Industrials,2026-04-22,,"return-on-capital: cfroi,roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+FDX,37.0,"roe,roic",EPS,TSR,,,7.0,0,18.0,76175.0,319.25,2.5600827,Industrials,2025-08-18,,"return-on-capital: roe,roic | EPS | TSR"
+GL,37.0,"other_per_share,roe",EPS,TSR,,,1.0,0,9.0,12619.0,162.52,2.0803626,Financial Services,2026-03-19,,"return-on-capital: other_per_share,roe | EPS | TSR"
+NOW,37.0,"roe,roic",EPS,TSR,,10,1.0,0,36.0,110319.0,106.97,9.406437,Technology,2026-04-06,,"return-on-capital: roe,roic | EPS | TSR"
+RZB,37.0,"other_per_share,roe",EPS,TSR,,,4.0,0,14.4,,,,,2026-04-09,,"return-on-capital: other_per_share,roe | EPS | TSR"
+SACH,37.0,"roe,roic",EPS,TSR,,,0,0,13.5,,,,,2025-04-30,,"return-on-capital: roe,roic | EPS | TSR"
+SAH,37.0,"cfroi,roe",EPS,TSR,,,0,0,12.6,,,,,2026-03-06,,"return-on-capital: cfroi,roe | EPS | TSR"
+SCCF,37.0,"roe,roic",EPS,TSR,,,0,0,13.5,,,,,2025-04-30,,"return-on-capital: roe,roic | EPS | TSR"
+SRCE,37.0,"other_per_share,roe",EPS,TSR,,,8.0,0,22.5,,,,,2026-03-13,,"return-on-capital: other_per_share,roe | EPS | TSR"
+VNRX,37.0,"roe,roic",EPS,TSR,,,0,0,48.0,,,,,2026-06-02,,"return-on-capital: roe,roic | EPS | TSR"
+YCBD,37.0,"other_per_share,roe",EPS,TSR,,,0,0,14.4,,,,,2026-02-12,,"return-on-capital: other_per_share,roe | EPS | TSR"
+GFF,37.0,"roe,roic",EPS,TSR,absolute_ebitda,,21.0,0,37.5,,,,,2026-01-09,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 21"
+GS,37.0,"other_per_share,roe",EPS,TSR,,50,-4.0,0,6.3,,,,,2026-03-20,,"return-on-capital: other_per_share,roe | EPS | TSR"
+KITT,37.0,"other_per_share,roe",EPS,TSR,,,6.0,0,16.0,,,,,2026-04-17,,"return-on-capital: other_per_share,roe | EPS | TSR"
+ONIT,37.0,"other_per_share,roe",EPS,TSR,,,1.0,0,28.0,,,,,2026-04-14,,"return-on-capital: other_per_share,roe | EPS | TSR"
+RGA,37.0,"other_per_share,roe",EPS,TSR,,,4.0,0,14.4,,,,,2026-04-09,,"return-on-capital: other_per_share,roe | EPS | TSR"
+RZC,37.0,"other_per_share,roe",EPS,TSR,,,4.0,0,14.4,,,,,2026-04-09,,"return-on-capital: other_per_share,roe | EPS | TSR"
+SCCD,37.0,"roe,roic",EPS,TSR,,,0,0,13.5,,,,,2025-04-30,,"return-on-capital: roe,roic | EPS | TSR"
+SCCG,37.0,"roe,roic",EPS,TSR,,,0,0,13.5,,,,,2025-04-30,,"return-on-capital: roe,roic | EPS | TSR"
+AGO,36.0,"other_per_share,roe",,TSR,,60,2.0,0,14.4,3364.0,75.97,0.61095655,Financial Services,2026-03-18,,"return-on-capital: other_per_share,roe | TSR | PSU 60% of LTI"
+BOH,36.0,"roce,roe",,TSR,,70,-3.0,0,10.8,,,,,2026-03-13,,"return-on-capital: roce,roe | TSR | PSU 70% of LTI"
+CVS,36.0,"cfroi,roe",EPS,TSR,absolute_ebitda,90,-5.0,0,23.4,,,,,2026-04-03,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 90% of LTI"
+NODK,36.0,"other_per_share,roe",,TSR,,60,0,0,14.4,,,,,2026-04-08,,"return-on-capital: other_per_share,roe | TSR | PSU 60% of LTI"
+NLY,36.0,"other_per_share,roe",,TSR,,60,1.0,0,5.0,,,,,2026-04-30,,"return-on-capital: other_per_share,roe | TSR | PSU 60% of LTI"
+BZH,36.0,"other_per_share,roe",,TSR,absolute_ebitda,71,12.0,0,14.2,,,,,2025-12-22,,"return-on-capital: other_per_share,roe | TSR | aggregate (penalty): absolute_ebitda | PSU 71% of LTI"
+HG,36.0,"other_per_share,roe",,TSR,,50,12.0,0,19.8,3139.0,31.63,1.1533693,Financial Services,2026-03-24,,"return-on-capital: other_per_share,roe | TSR"
+NSP,36.0,"roce,roe",EPS,TSR,absolute_ebitda,65,-2.0,0,40.0,1282.0,33.6,19.145298,Industrials,2026-04-14,,"return-on-capital: roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 65% of LTI"
+SABR,36.0,"roe,roic",EPS,TSR,absolute_ebitda,60,-2.0,0,37.8,,,,,2026-03-19,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI"
+AEE,35.0,roe,EPS,TSR,,60,12.0,0,32.4,29886.0,107.99,2.2042375,Utilities,2026-03-31,,return-on-capital: roe | EPS | TSR | PSU 60% of LTI
+HAS,35.0,roic,EPS,TSR,,50,15.0,0,34.0,,,,,2026-04-17,,return-on-capital: roic | EPS | TSR | gov hygiene 15
+HXL,35.0,"cfroi,roic",EPS,TSR,,,-2.0,0,9.9,6907.0,91.57,5.4528675,Industrials,2026-04-01,,"return-on-capital: cfroi,roic | EPS | TSR"
+IRTC,35.0,"roe,roic",EPS,TSR,absolute_ebitda,50,1.0,0,28.0,,,,,2026-04-17,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+LHX,35.0,roic,EPS,TSR,,84,7.0,0,54.9,,,,,2026-04-01,,return-on-capital: roic | EPS | TSR | PSU 84% of LTI
+MCK,35.0,roic,EPS,TSR,,60,12.0,0,35.0,94268.0,784.23,-43.32762,Healthcare,2026-06-12,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI
+MFIN,35.0,roe,EPS,TSR,,87,4.0,0,12.6,,,,,2025-04-30,,return-on-capital: roe | EPS | TSR | PSU 87% of LTI
+ONB,35.0,roe,EPS,TSR,,60,12.0,0,22.5,,,,,2026-04-02,,return-on-capital: roe | EPS | TSR | PSU 60% of LTI
+PFSI,35.0,"other_per_share,roe",EPS,TSR,,,-2.0,0,10.0,,,,,2026-04-20,,"return-on-capital: other_per_share,roe | EPS | TSR"
+TMP,35.0,other_per_share,EPS,TSR,,50,15.0,0,19.8,,,,,2026-04-06,,return-on-capital: other_per_share | EPS | TSR | gov hygiene 15
+CLB,35.0,roic,EPS,TSR,,84,1.0,0,32.4,,,,,2026-03-31,,return-on-capital: roic | EPS | TSR | PSU 84% of LTI
+CRI,35.0,roe,EPS,TSR,,40,15.0,0,39.6,,,,,2026-04-01,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+HOMB,35.0,roe,EPS,TSR,,67,10.0,0,27.0,,,,,2026-02-27,,return-on-capital: roe | EPS | TSR | PSU 67% of LTI
+ONBPO,35.0,roe,EPS,TSR,,60,12.0,0,22.5,,,,,2026-04-02,,return-on-capital: roe | EPS | TSR | PSU 60% of LTI
+PFH,35.0,"other_per_share,roe",EPS,TSR,,,-2.0,0,0.0,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR"
+PLXS,35.0,roic,EPS,TSR,,50,15.0,0,33.8,,,,,2025-12-22,,return-on-capital: roic | EPS | TSR | gov hygiene 15
+PNR,35.0,roic,EPS,TSR,,75,4.0,0,28.8,,,,,2026-03-20,,return-on-capital: roic | EPS | TSR | PSU 75% of LTI
+PRU,35.0,"other_per_share,roe",EPS,TSR,,,-2.0,0,0.0,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR"
+TMHC,35.0,"other_per_share,roe",EPS,TSR,,,-2.0,0,3.6,,,,,2026-04-10,,"return-on-capital: other_per_share,roe | EPS | TSR"
+BHE,35.0,roic,EPS,TSR,,50,18.0,0,22.0,2973.0,82.86,2.7112987,Technology,2026-04-17,,return-on-capital: roic | EPS | TSR | gov hygiene 18
+CRM,35.0,roe,EPS,TSR,,67,12.0,0,39.0,143612.0,175.35,4.194876,Technology,2026-04-16,,return-on-capital: roe | EPS | TSR | PSU 67% of LTI
+DNOW,35.0,roce,EPS,TSR,absolute_ebitda,86,15.0,0,35.1,,,,,2026-04-09,,return-on-capital: roce | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 86% of LTI | gov hygiene 15
+FERG,35.0,roce,EPS,TSR,,50,15.0,0,27.0,,,,,2026-03-16,,return-on-capital: roce | EPS | TSR | gov hygiene 15
+FISV,35.0,fcf_per_share,EPS,TSR,,60,12.0,0,36.9,28412.0,53.28,1.083852,,2026-04-02,,return-on-capital: fcf_per_share | EPS | TSR | PSU 60% of LTI
+FLS,35.0,roic,EPS,TSR,,55,12.0,0,36.0,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR | PSU 55% of LTI
+MBNKO,35.0,roe,EPS,TSR,,87,4.0,0,12.6,,,,,2025-04-30,,return-on-capital: roe | EPS | TSR | PSU 87% of LTI
+NKE,35.0,roic,EPS,TSR,,50,18.0,0,28.8,64878.0,43.81,4.6018906,Consumer Cyclical,2025-07-17,,return-on-capital: roic | EPS | TSR | gov hygiene 18
+NWN,35.0,"roe,roic",EPS,TSR,,,-2.0,0,26.0,,,,,2026-04-17,,"return-on-capital: roe,roic | EPS | TSR"
+ONBPP,35.0,roe,EPS,TSR,,60,12.0,0,22.5,,,,,2026-04-02,,return-on-capital: roe | EPS | TSR | PSU 60% of LTI
+PNFP,35.0,other_per_share,EPS,TSR,,70,6.0,0,18.9,,,,,2026-04-09,,return-on-capital: other_per_share | EPS | TSR | PSU 70% of LTI
+PRH,35.0,"other_per_share,roe",EPS,TSR,,,-2.0,0,0.0,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR"
+PRS,35.0,"other_per_share,roe",EPS,TSR,,,-2.0,0,0.0,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | EPS | TSR"
+SNDK,35.0,roic,EPS,TSR,,50,18.0,0,31.2,,,,,2025-10-07,,return-on-capital: roic | EPS | TSR | gov hygiene 18
+SYF,35.0,roe,EPS,TSR,,86,8.0,0,32.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | PSU 86% of LTI
+TBI,35.0,roe,EPS,TSR,absolute_ebitda,80,17.0,0,43.0,,,,,2026-04-14,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 80% of LTI | gov hygiene 17
+UNFI,35.0,roic,EPS,TSR,absolute_ebitda,88,18.0,0,45.8,,,,,2025-11-05,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 88% of LTI | gov hygiene 18
+VOYA,35.0,roe,EPS,TSR,,80,1.0,0,37.8,,,,,2026-04-10,,return-on-capital: roe | EPS | TSR | PSU 80% of LTI
+WTRG,35.0,roe,EPS,TSR,,65,12.0,0,23.4,,,,,2026-03-17,,return-on-capital: roe | EPS | TSR | PSU 65% of LTI
+HTGC,34.0,"cfroi,roe",EPS,TSR,,,-3.0,0,0.0,,,,,2026-04-23,,"return-on-capital: cfroi,roe | EPS | TSR"
+IIPR,34.0,"other_per_share,roe",EPS,TSR,absolute_ebitda,,11.0,0,26.0,,,,,2026-04-22,,"return-on-capital: other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+M,34.0,"roe,roic",EPS,TSR,absolute_ebitda,,12.0,0,44.1,,,,,2026-03-31,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+METCI,34.0,"roce,roe",EPS,TSR,absolute_ebitda,,12.0,0,21.0,,,,,2026-04-27,,"return-on-capital: roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+WMB,34.0,"roce,roic",EPS,TSR,absolute_ebitda,,12.0,0,36.0,,,,,2026-03-18,,"return-on-capital: roce,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ENOV,34.0,"cfroi,roe",EPS,TSR,absolute_ebitda,,12.0,0,16.2,1265.0,21.97,0.85612965,Healthcare,2026-04-06,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+HCXY,34.0,"cfroi,roe",EPS,TSR,,,-3.0,0,0.0,,,,,2026-04-23,,"return-on-capital: cfroi,roe | EPS | TSR"
+METC,34.0,"roce,roe",EPS,TSR,absolute_ebitda,,12.0,0,21.0,931.0,14.28,2.1794872,Basic Materials,2026-04-27,,"return-on-capital: roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+NXDT,34.0,"cfroi,other_per_share",EPS,TSR,absolute_ebitda,,11.0,0,24.0,,,,,2026-04-20,,"return-on-capital: cfroi,other_per_share | EPS | TSR | aggregate (penalty): absolute_ebitda"
+TFC,34.0,"other_per_share,roce",EPS,TSR,,,-3.0,0,0.0,,,,,2026-03-16,,"return-on-capital: other_per_share,roce | EPS | TSR"
+ACI,34.0,"roe,roic",EPS,TSR,absolute_ebitda,,11.0,0,24.0,,,,,2025-06-20,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CMI,34.0,"roe,roic",EPS,TSR,absolute_ebitda,,12.0,0,33.3,,,,,2026-04-02,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+METCB,34.0,"roce,roe",EPS,TSR,absolute_ebitda,,12.0,0,21.0,733.0,11.25,1.7170329,Basic Materials,2026-04-27,,"return-on-capital: roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+MRCY,34.0,"roe,roic",EPS,TSR,absolute_ebitda,,12.0,0,18.6,6413.0,106.81,4.2952504,Industrials,2025-09-10,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ZBRA,34.0,"roe,roic",EPS,TSR,absolute_ebitda,,12.0,0,26.1,,,,,2026-04-03,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+MATV,33.0,"roe,roic",EPS,TSR,absolute_ebitda,50,-2.0,0,26.1,,,,,2026-03-17,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+NTRSO,33.0,roe,EPS,TSR,,75,-2.0,0,9.9,,,,,2026-03-11,,return-on-capital: roe | EPS | TSR | PSU 75% of LTI
+RMAX,33.0,"cfroi,roe",EPS,TSR,absolute_ebitda,50,-2.0,0,5.9,,,,,2025-04-03,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+WFRD,33.0,"other_per_share,roic",EPS,TSR,absolute_ebitda,40,-2.0,0,24.0,,,,,2026-04-21,,"return-on-capital: other_per_share,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+AMGN,33.0,roic,EPS,TSR,,80,-2.0,0,34.2,,,,,2026-04-07,,return-on-capital: roic | EPS | TSR | PSU 80% of LTI
+HLIO,33.0,"roe,roic",EPS,TSR,absolute_ebitda,50,-2.0,0,11.0,,,,,2026-05-04,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ISRG,33.0,roic,EPS,TSR,,75,-2.0,0,45.0,145922.0,412.02,8.356217,Healthcare,2026-03-13,,return-on-capital: roic | EPS | TSR | PSU 75% of LTI
+LKQ,33.0,"cfroi,roic",EPS,TSR,absolute_ebitda,50,-2.0,0,33.3,,,,,2026-03-24,,"return-on-capital: cfroi,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+LOW,33.0,roic,EPS,TSR,,79,-2.0,0,12.0,121219.0,216.19,-13.083394,Consumer Cyclical,2026-04-16,,return-on-capital: roic | EPS | TSR | PSU 79% of LTI
+NWL,33.0,roe,EPS,TSR,,89,-2.0,0,9.9,1904.0,4.48,0.8127721,Consumer Defensive,2026-03-26,,return-on-capital: roe | EPS | TSR | PSU 89% of LTI
+WSM,33.0,roic,EPS,TSR,,73,-2.0,0,38.0,,,,,2026-05-06,,return-on-capital: roic | EPS | TSR | PSU 73% of LTI
+AGM,33.0,"other_per_share,roe",,TSR,,50,4.0,0,4.0,1952.0,179.9,1.6142347,Financial Services,2026-04-13,,"return-on-capital: other_per_share,roe | TSR"
+BLCO,33.0,"cfroi,roce,roic",,TSR,absolute_ebitda,50,-6.0,0,22.5,,,,,2026-04-10,,"return-on-capital: cfroi,roce,roic | TSR | aggregate (penalty): absolute_ebitda"
+MDT,33.0,roic,EPS,TSR,,72,-2.0,0,28.8,,,,,2025-08-25,,return-on-capital: roic | EPS | TSR | PSU 72% of LTI
+NBIX,33.0,roe,EPS,TSR,,80,-2.0,0,16.0,,,,,2026-04-15,,return-on-capital: roe | EPS | TSR | PSU 80% of LTI
+NTRS,33.0,roe,EPS,TSR,,75,-2.0,0,9.9,,,,,2026-03-11,,return-on-capital: roe | EPS | TSR | PSU 75% of LTI
+POR,33.0,roe,EPS,TSR,,88,-2.0,0,31.5,,,,,2026-03-13,,return-on-capital: roe | EPS | TSR | PSU 88% of LTI
+SBCF,33.0,other_per_share,EPS,TSR,,75,-2.0,0,10.8,,,,,2026-04-10,,return-on-capital: other_per_share | EPS | TSR | PSU 75% of LTI
+TRN,33.0,roe,EPS,TSR,,84,-2.0,0,37.8,,,,,2026-04-09,,return-on-capital: roe | EPS | TSR | PSU 84% of LTI
+AAOI,32.0,roe,EPS,TSR,,50,12.0,0,44.0,13070.0,162.88,11.630133,Technology,2026-04-24,,return-on-capital: roe | EPS | TSR
+ALK,32.0,roic,EPS,TSR,,50,12.0,0,33.3,,,,,2026-03-30,,return-on-capital: roic | EPS | TSR
+CASS,32.0,roe,EPS,TSR,,50,12.0,0,27.9,,,,,2026-03-06,,return-on-capital: roe | EPS | TSR
+CAT,32.0,"roe,roic",,TSR,,,12.0,0,45.0,421303.0,914.7,22.579052,Industrials,2026-04-30,,"return-on-capital: roe,roic | TSR"
+CGABL,32.0,roic,EPS,TSR,,50,12.0,0,46.0,,,,,2026-04-23,,return-on-capital: roic | EPS | TSR
+DE,32.0,roe,EPS,TSR,,50,12.0,0,23.2,151178.0,560.05,5.5162663,Industrials,2026-01-14,,return-on-capital: roe | EPS | TSR
+DLR,32.0,roic,EPS,TSR,,50,12.0,0,45.0,,,,,2026-04-17,,return-on-capital: roic | EPS | TSR
+EXEL,32.0,roe,EPS,TSR,,50,12.0,0,34.0,,,,,2026-04-15,,return-on-capital: roe | EPS | TSR
+HBANM,32.0,other_per_share,EPS,TSR,,60,2.0,0,10.8,,,,,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+J,32.0,roic,EPS,TSR,absolute_ebitda,60,18.0,0,42.0,,,,,2025-12-18,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI | gov hygiene 18
+MNST,32.0,roic,EPS,TSR,,50,12.0,0,37.8,89204.0,91.21,10.220753,Consumer Defensive,2026-03-27,,return-on-capital: roic | EPS | TSR
+QRVO,32.0,other_per_share,EPS,TSR,,60,8.0,0,11.4,,,,,2025-06-26,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+RTX,32.0,roic,EPS,TSR,,60,7.0,0,18.9,,,,,2026-03-09,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI
+SRI,32.0,roic,EPS,TSR,,45,12.0,0,31.5,,,,,2026-04-09,,return-on-capital: roic | EPS | TSR
+STC,32.0,roe,EPS,TSR,,50,12.0,0,20.7,,,,,2026-03-25,,return-on-capital: roe | EPS | TSR
+THG,32.0,"other_per_share,roe",,TSR,,,12.0,0,21.6,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | TSR"
+WSC,32.0,roic,EPS,TSR,absolute_ebitda,70,12.0,0,49.0,,,,,2026-04-22,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+WWD,32.0,roic,EPS,TSR,,50,12.0,0,24.0,,,,,2025-12-12,,return-on-capital: roic | EPS | TSR
+YUMC,32.0,roic,EPS,TSR,,50,12.0,0,27.0,,,,,2026-04-16,,return-on-capital: roic | EPS | TSR
+ADM,32.0,roic,EPS,TSR,absolute_ebitda,74,12.0,0,45.9,,,,,2026-03-26,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 74% of LTI
+AMAL,32.0,other_per_share,EPS,TSR,,50,12.0,0,22.5,1305.0,43.7,1.6156462,Financial Services,2026-04-10,,return-on-capital: other_per_share | EPS | TSR
+AOS,32.0,"roe,roic",,TSR,,,12.0,0,31.5,,,,,2026-03-04,,"return-on-capital: roe,roic | TSR"
+AP,32.0,roic,EPS,TSR,,50,12.0,0,36.0,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR
+CASH,32.0,roic,EPS,TSR,,50,12.0,0,36.0,,,,,2026-01-14,,return-on-capital: roic | EPS | TSR
+DCI,32.0,roic,EPS,TSR,,50,12.0,0,24.0,,,,,2025-10-06,,return-on-capital: roic | EPS | TSR
+HBAN,32.0,other_per_share,EPS,TSR,,60,2.0,0,10.8,34137.0,16.84,1.1511382,Financial Services,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+HBANP,32.0,other_per_share,EPS,TSR,,60,2.0,0,10.8,,,,,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+HMN,32.0,"other_per_share,roe",,TSR,,,12.0,0,6.3,,,,,2026-04-06,,"return-on-capital: other_per_share,roe | TSR"
+LPX,32.0,roic,EPS,TSR,absolute_ebitda,85,12.0,0,45.9,,,,,2026-03-20,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+MS,32.0,roe,EPS,TSR,,65,1.0,0,25.2,,,,,2026-04-02,,return-on-capital: roe | EPS | TSR | PSU 65% of LTI
+ST,32.0,roic,EPS,TSR,absolute_ebitda,75,12.0,0,49.0,6838.0,47.02,2.3892276,Technology,2026-04-29,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI
+STLD,32.0,"roe,roic",,TSR,,,12.0,0,27.9,38698.0,268.34,4.3421416,Basic Materials,2026-03-27,,"return-on-capital: roe,roic | TSR"
+SWX,32.0,roe,EPS,TSR,,50,12.0,0,36.0,,,,,2026-03-23,,return-on-capital: roe | EPS | TSR
+UBSI,32.0,other_per_share,EPS,TSR,,60,7.0,0,19.8,,,,,2026-04-01,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+ACT,32.0,"other_per_share,roe",,TSR,,,12.0,0,9.0,,,,,2026-03-25,,"return-on-capital: other_per_share,roe | TSR"
+AMAT,32.0,roic,EPS,TSR,,50,12.0,0,33.8,394606.0,497.01,16.504284,Technology,2026-01-28,,return-on-capital: roic | EPS | TSR
+BAX,32.0,roic,EPS,TSR,,57,4.0,0,36.0,,,,,2026-03-23,,return-on-capital: roic | EPS | TSR | PSU 57% of LTI
+CG,32.0,roic,EPS,TSR,,50,12.0,0,46.0,,,,,2026-04-23,,return-on-capital: roic | EPS | TSR
+HAE,32.0,roe,EPS,TSR,absolute_ebitda,75,12.0,0,22.0,3581.0,78.8,4.4780364,Healthcare,2026-06-09,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI
+HBANL,32.0,other_per_share,EPS,TSR,,60,2.0,0,10.8,,,,,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+HPQ,32.0,roe,EPS,TSR,absolute_ebitda,70,12.0,0,27.9,,,,,2026-02-25,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+MAN,32.0,roic,EPS,TSR,,45,12.0,0,36.0,,,,,2026-03-23,,return-on-capital: roic | EPS | TSR
+PANW,32.0,roe,EPS,TSR,,68,1.0,0,18.0,,,,,2025-11-07,,return-on-capital: roe | EPS | TSR | PSU 68% of LTI
+RGEN,32.0,roic,EPS,TSR,,50,12.0,0,27.0,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR
+SKY,32.0,roic,EPS,TSR,,50,12.0,0,24.0,,,,,2025-06-12,,return-on-capital: roic | EPS | TSR
+TNL,32.0,roic,EPS,TSR,absolute_ebitda,75,12.0,0,45.0,4505.0,72.17,-4.639069,Consumer Cyclical,2026-04-10,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI
+WKC,32.0,roic,EPS,TSR,absolute_ebitda,86,12.0,0,54.0,1599.0,31.13,1.3293194,Energy,2026-04-28,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 86% of LTI
+ABEO,31.0,"roe,roic",EPS,TSR,,,-6.0,0,22.0,311.0,5.45,2.1380932,Healthcare,2026-04-27,,"return-on-capital: roe,roic | EPS | TSR"
+ASPS,31.0,"roce,roe",EPS,TSR,absolute_ebitda,,4.0,0,10.8,,,,,2026-04-07,,"return-on-capital: roce,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+BBBY,31.0,"other_per_share,roe",EPS,TSR,absolute_ebitda,25,4.0,0,29.7,410.0,5.55,1.9045985,,2026-03-27,,"return-on-capital: other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+BWFG,31.0,other_per_share,EPS,TSR,,,15.0,0,27.9,,,,,2026-04-07,,return-on-capital: other_per_share | EPS | TSR | gov hygiene 15
+CBSH,31.0,roe,EPS,TSR,,,16.0,0,24.3,,,,,2026-03-13,,return-on-capital: roe | EPS | TSR | gov hygiene 16
+CIMN,31.0,"other_per_share,roe",,TSR,,50,-2.0,0,17.0,,,,,2026-04-23,,"return-on-capital: other_per_share,roe | TSR"
+EML,31.0,"roce,roic",EPS,TSR,absolute_ebitda,,7.0,0,19.8,,,,,2026-03-23,,"return-on-capital: roce,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+EP,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,0,0,30.0,,,,,2026-04-30,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+FFAI,31.0,"other_per_share,roe",EPS,TSR,absolute_ebitda,,0,0,40.0,91.0,0.3002,-6.822727,Consumer Cyclical,2026-04-28,,"return-on-capital: other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+FOXF,31.0,"cfroi,roic",EPS,TSR,absolute_ebitda,70,-10.0,0,14.4,,,,,2026-03-25,,"return-on-capital: cfroi,roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI"
+MAS,31.0,roic,EPS,TSR,,,16.0,0,38.7,,,,,2026-04-10,,return-on-capital: roic | EPS | TSR | gov hygiene 16
+MCB,31.0,other_per_share,EPS,TSR,,,15.0,0,17.1,1164.0,93.89,1.2268713,Financial Services,2026-03-20,,return-on-capital: other_per_share | EPS | TSR | gov hygiene 15
+OKE,31.0,roic,EPS,TSR,,,15.0,0,41.4,,,,,2026-04-01,,return-on-capital: roic | EPS | TSR | gov hygiene 15
+RARE,31.0,"cfroi,roe",,TSR,,60,-5.0,0,9.0,,,,,2026-03-27,,"return-on-capital: cfroi,roe | TSR | PSU 60% of LTI"
+ROP,31.0,"fcf_per_share,roic",EPS,TSR,absolute_ebitda,,1.0,0,40.5,33845.0,335.37,1.7981727,Technology,2026-04-07,,"return-on-capital: fcf_per_share,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+TT,31.0,"cfroi,roic",,TSR,absolute_ebitda,81,-2.0,0,37.0,,,,,2026-04-23,,"return-on-capital: cfroi,roic | TSR | aggregate (penalty): absolute_ebitda | PSU 81% of LTI"
+VSECU,31.0,"other_per_share,roic",EPS,TSR,absolute_ebitda,,4.0,0,20.7,,,,,2026-03-24,,"return-on-capital: other_per_share,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+WSR,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,1.0,0,13.5,,,,,2025-04-04,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ALTG,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,0,0,25.0,,,,,2026-04-15,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+AVNW,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,1.0,0,18.0,,,,,2025-09-23,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CIMO,31.0,"other_per_share,roe",,TSR,,50,-2.0,0,17.0,,,,,2026-04-23,,"return-on-capital: other_per_share,roe | TSR"
+CNVS,31.0,"cfroi,roe",EPS,TSR,absolute_ebitda,,0,0,16.8,,,,,2025-10-10,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CSV,31.0,"cfroi,roe",EPS,TSR,absolute_ebitda,,0,0,0.0,,,,,2026-03-27,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CVEO,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,1.0,0,16.0,,,,,2026-04-13,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CWCO,31.0,"other_per_share,roe",EPS,TSR,absolute_ebitda,,4.0,0,16.0,,,,,2026-04-22,,"return-on-capital: other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+LNT,31.0,roe,EPS,TSR,,,18.0,0,23.4,,,,,2026-03-31,,return-on-capital: roe | EPS | TSR | gov hygiene 18
+OTTR,31.0,roe,EPS,TSR,,,15.0,0,18.9,,,,,2026-03-02,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+SNEX,31.0,"other_per_share,roe",EPS,TSR,absolute_ebitda,,3.0,0,3.8,,,,,2026-01-26,,"return-on-capital: other_per_share,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+UNH,31.0,roe,EPS,TSR,,,19.0,0,39.0,,,,,2026-04-21,,return-on-capital: roe | EPS | TSR | gov hygiene 19
+VECO,31.0,roe,EPS,TSR,,,15.0,0,14.4,,,,,2026-03-19,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+AEO,31.0,"cfroi,roe",,TSR,,50,-2.0,0,4.0,,,,,2026-05-15,,"return-on-capital: cfroi,roe | TSR"
+AFL,31.0,roe,EPS,TSR,,,15.0,0,24.3,59607.0,117.11,1.9955355,Financial Services,2026-03-19,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+AOSL,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,0,0,17.4,1156.0,38.61,1.4434725,Technology,2025-09-18,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CIM,31.0,"other_per_share,roe",,TSR,,50,-2.0,0,17.0,,,,,2026-04-23,,"return-on-capital: other_per_share,roe | TSR"
+CIMP,31.0,"other_per_share,roe",,TSR,,50,-2.0,0,17.0,,,,,2026-04-23,,"return-on-capital: other_per_share,roe | TSR"
+COP,31.0,roce,EPS,TSR,,,20.0,0,19.8,,,,,2026-03-30,,return-on-capital: roce | EPS | TSR | gov hygiene 20
+DLHC,31.0,"roe,roic",EPS,TSR,absolute_ebitda,,7.0,0,25.5,,,,,2026-01-28,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+DRS,31.0,"cfroi,roic",EPS,TSR,absolute_ebitda,,4.0,0,28.8,,,,,2026-04-03,,"return-on-capital: cfroi,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ES,31.0,roe,EPS,TSR,,,15.0,0,28.8,,,,,2026-03-27,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+FLO,31.0,"cfroi,roic",EPS,TSR,absolute_ebitda,,8.0,0,22.0,,,,,2026-04-14,,"return-on-capital: cfroi,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+FORM,31.0,roe,EPS,TSR,,,15.0,0,31.5,9028.0,115.81,8.526727,Technology,2026-04-02,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+HD,31.0,roic,EPS,TSR,,30,17.0,0,27.0,,,,,2026-04-07,,return-on-capital: roic | EPS | TSR | gov hygiene 17
+PFIS,31.0,roe,EPS,TSR,,,15.0,0,26.1,,,,,2026-04-10,,return-on-capital: roe | EPS | TSR | gov hygiene 15
+PHM,31.0,"roe,roic",,TSR,,40,-2.0,0,16.2,,,,,2026-03-13,,"return-on-capital: roe,roic | TSR"
+RELL,31.0,"other_per_share,roic",EPS,TSR,absolute_ebitda,,0,0,17.4,,,,,2025-08-25,,"return-on-capital: other_per_share,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+SCYX,31.0,"other_per_share,roe",EPS,TSR,,,-6.0,0,20.0,,,,,2026-04-30,,"return-on-capital: other_per_share,roe | EPS | TSR"
+SMG,31.0,"cfroi,roe",EPS,TSR,absolute_ebitda,75,-10.0,0,4.5,3469.0,59.62,-6.9076586,Basic Materials,2025-12-17,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI"
+TMO,31.0,roic,EPS,TSR,,,17.0,0,27.0,,,,,2026-04-07,,return-on-capital: roic | EPS | TSR | gov hygiene 17
+VSEC,31.0,"other_per_share,roic",EPS,TSR,absolute_ebitda,,4.0,0,20.7,,,,,2026-03-24,,"return-on-capital: other_per_share,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ITT,30.0,roic,EPS,TSR,,60,-2.0,0,27.9,16552.0,184.24,3.4763577,Industrials,2026-04-03,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI
+OI,30.0,roic,EPS,TSR,,60,-2.0,0,37.8,1222.0,7.97,0.9421918,Consumer Cyclical,2026-03-31,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI
+ROCK,30.0,roic,EPS,TSR,,64,-2.0,0,30.6,,,,,2026-04-06,,return-on-capital: roic | EPS | TSR | PSU 64% of LTI
+RWTO,30.0,roe,,TSR,,55,15.0,0,24.3,,,,,2026-03-31,,return-on-capital: roe | TSR | PSU 55% of LTI | gov hygiene 15
+RWTS,30.0,roe,,TSR,,55,15.0,0,24.3,,,,,2026-03-31,,return-on-capital: roe | TSR | PSU 55% of LTI | gov hygiene 15
+SAFT,30.0,other_per_share,EPS,TSR,,55,-2.0,0,9.0,,,,,2026-03-31,,return-on-capital: other_per_share | EPS | TSR | PSU 55% of LTI
+CBL,30.0,roic,,TSR,,70,12.0,0,59.0,1549.0,50.07,3.8931653,Real Estate,2026-04-22,,return-on-capital: roic | TSR | PSU 70% of LTI
+RWT,30.0,roe,,TSR,,55,15.0,0,24.3,,,,,2026-03-31,,return-on-capital: roe | TSR | PSU 55% of LTI | gov hygiene 15
+RWTP,30.0,roe,,TSR,,55,15.0,0,24.3,,,,,2026-03-31,,return-on-capital: roe | TSR | PSU 55% of LTI | gov hygiene 15
+STT,30.0,roe,EPS,TSR,,67,-2.0,0,24.3,45182.0,163.25,1.8762642,Financial Services,2026-04-08,,return-on-capital: roe | EPS | TSR | PSU 67% of LTI
+UCB,30.0,other_per_share,EPS,TSR,,60,-2.0,0,22.5,,,,,2026-04-01,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+WCN,30.0,"fcf_per_share,roic",,TSR,absolute_ebitda,50,12.0,0,36.0,40406.0,159.03,4.930093,Industrials,2026-04-02,,"return-on-capital: fcf_per_share,roic | TSR | aggregate (penalty): absolute_ebitda"
+AIR,30.0,roic,EPS,TSR,,60,-2.0,0,17.4,4667.0,117.36,2.8014226,Industrials,2025-08-05,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI
+ALLO,30.0,other_per_share,EPS,TSR,,55,-2.0,0,14.0,,,,,2026-04-30,,return-on-capital: other_per_share | EPS | TSR | PSU 55% of LTI
+AXS,30.0,other_per_share,EPS,TSR,,60,-2.0,0,25.2,,,,,2026-04-02,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+BNY,30.0,other_per_share,EPS,TSR,,60,-2.0,0,6.3,,,,,2026-03-05,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+COHU,30.0,other_per_share,EPS,TSR,,60,-2.0,0,28.8,,,,,2026-04-02,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+DVN,30.0,roce,EPS,TSR,,60,-2.0,0,14.0,53749.0,46.6,1.8757043,Energy,2026-05-28,,return-on-capital: roce | EPS | TSR | PSU 60% of LTI
+HSIC,30.0,roic,EPS,TSR,,65,-2.0,0,45.0,9117.0,80.03,2.80384,Healthcare,2026-04-08,,return-on-capital: roic | EPS | TSR | PSU 65% of LTI
+LTC,30.0,"roe,roic",,TSR,absolute_ebitda,50,12.0,0,41.4,,,,,2026-04-08,,"return-on-capital: roe,roic | TSR | aggregate (penalty): absolute_ebitda"
+NEM,30.0,roce,,TSR,,67,18.0,0,29.7,99037.0,92.77,2.8500767,Basic Materials,2026-03-26,,return-on-capital: roce | TSR | PSU 67% of LTI | gov hygiene 18
+RWTN,30.0,roe,,TSR,,55,15.0,0,24.3,,,,,2026-03-31,,return-on-capital: roe | TSR | PSU 55% of LTI | gov hygiene 15
+RWTQ,30.0,roe,,TSR,,55,15.0,0,24.3,,,,,2026-03-31,,return-on-capital: roe | TSR | PSU 55% of LTI | gov hygiene 15
+SBH,30.0,roic,EPS,TSR,,60,-2.0,0,12.0,,,,,2025-12-10,,return-on-capital: roic | EPS | TSR | PSU 60% of LTI
+SSB,30.0,other_per_share,EPS,TSR,,60,-2.0,0,1.8,,,,,2026-03-03,,return-on-capital: other_per_share | EPS | TSR | PSU 60% of LTI
+WSFS,30.0,other_per_share,EPS,TSR,,57,-2.0,0,22.5,,,,,2026-04-02,,return-on-capital: other_per_share | EPS | TSR | PSU 57% of LTI
+AAL,29.0,roe,EPS,TSR,,50,4.0,0,23.0,,,,,2026-04-28,,return-on-capital: roe | EPS | TSR
+AIN,29.0,roic,EPS,TSR,absolute_ebitda,50,15.0,0,37.8,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+BYD,29.0,roic,EPS,TSR,,40,8.0,0,45.0,,,,,2026-03-20,,return-on-capital: roic | EPS | TSR
+C,29.0,other_per_share,EPS,TSR,,50,1.0,0,4.5,,,,,2026-04-02,,return-on-capital: other_per_share | EPS | TSR
+CLMB,29.0,roe,EPS,TSR,absolute_ebitda,70,1.0,0,34.0,,,,,2026-04-24,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+ESQ,29.0,roe,EPS,TSR,,50,0,0,16.0,,,,,2026-04-30,,return-on-capital: roe | EPS | TSR
+FDP,29.0,roe,EPS,TSR,absolute_ebitda,50,15.0,0,28.0,,,,,2026-04-24,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+FFIN,29.0,roe,EPS,TSR,,50,0,0,21.6,,,,,2026-03-06,,return-on-capital: roe | EPS | TSR
+FNRN,29.0,"other_per_share,roe",,TSR,,,0,0,3.6,,,,,2026-04-09,,"return-on-capital: other_per_share,roe | TSR"
+FOR,29.0,"other_per_share,roe",,TSR,,,4.0,0,9.0,,,,,2025-12-16,,"return-on-capital: other_per_share,roe | TSR"
+FTV,29.0,roic,EPS,TSR,absolute_ebitda,85,1.0,0,54.0,,,,,2026-04-29,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+GDOT,29.0,"roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,10.8,,,,,2025-04-11,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+KRNY,29.0,other_per_share,EPS,TSR,,50,1.0,0,4.2,,,,,2025-09-10,,return-on-capital: other_per_share | EPS | TSR
+KTB,29.0,roic,EPS,TSR,absolute_ebitda,60,12.0,0,28.8,,,,,2026-03-09,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI
+LILAB,29.0,roe,EPS,TSR,absolute_ebitda,85,8.0,0,37.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+LILKV,29.0,roe,EPS,TSR,absolute_ebitda,85,8.0,0,37.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+MGEE,29.0,roe,EPS,TSR,,50,4.0,0,21.6,,,,,2026-04-02,,return-on-capital: roe | EPS | TSR
+MNTS,29.0,"cfroi,other_per_share",,TSR,,,0,0,13.5,,,,,2026-04-10,,"return-on-capital: cfroi,other_per_share | TSR"
+PALI,29.0,roe,EPS,TSR,,50,3.0,0,33.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR
+PRA,29.0,"other_per_share,roe",,TSR,,,4.0,0,4.5,,,,,2025-04-11,,"return-on-capital: other_per_share,roe | TSR"
+RLI,29.0,"other_per_share,roe",,TSR,,,4.0,0,3.6,,,,,2026-03-26,,"return-on-capital: other_per_share,roe | TSR"
+SYY,29.0,roic,EPS,TSR,absolute_ebitda,50,18.0,0,24.0,,,,,2025-10-02,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 18
+TPC,29.0,,EPS,TSR,,70,15.0,0,34.2,,,,,2026-04-09,,EPS | TSR | PSU 70% of LTI | gov hygiene 15
+UCTT,29.0,"cfroi,roe",EPS,TSR,absolute_ebitda,,-2.0,0,0.0,4075.0,90.9,6.4854455,Technology,2026-04-27,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+WNEB,29.0,other_per_share,EPS,TSR,,50,4.0,0,27.0,,,,,2026-04-03,,return-on-capital: other_per_share | EPS | TSR
+WTM,29.0,"other_per_share,roe",,TSR,,,2.0,0,11.7,,,,,2026-04-01,,"return-on-capital: other_per_share,roe | TSR"
+ACH,29.0,roic,EPS,TSR,absolute_ebitda,75,8.0,0,45.0,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI
+ALRS,29.0,roe,EPS,TSR,,40,1.0,0,17.1,,,,,2026-04-01,,return-on-capital: roe | EPS | TSR
+ALV,29.0,,EPS,TSR,,75,15.0,0,27.9,9293.0,124.13,3.5280242,Consumer Cyclical,2026-03-25,,EPS | TSR | PSU 75% of LTI | gov hygiene 15
+AN,29.0,"roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,17.1,,,,,2026-03-17,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CCRN,29.0,"roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,10.8,409.0,13.18,1.316289,Healthcare,2026-03-30,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CHMI,29.0,"other_per_share,roe",,TSR,,,7.0,0,9.0,,,,,2026-04-21,,"return-on-capital: other_per_share,roe | TSR"
+EFSC,29.0,other_per_share,EPS,TSR,,50,4.0,0,20.7,2307.0,63.05,1.1826384,Financial Services,2026-03-31,,return-on-capital: other_per_share | EPS | TSR
+GIS,29.0,,EPS,TSR,,89,15.0,0,21.0,,,,,2025-08-11,,EPS | TSR | PSU 89% of LTI | gov hygiene 15
+INGR,29.0,roic,EPS,TSR,absolute_ebitda,50,15.0,0,33.3,,,,,2026-04-08,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+LILAK,29.0,roe,EPS,TSR,absolute_ebitda,85,8.0,0,37.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+LILPV,29.0,roe,EPS,TSR,absolute_ebitda,85,8.0,0,37.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+MIST,29.0,"cfroi,roe",,TSR,,,8.0,0,11.0,,,,,2026-04-30,,"return-on-capital: cfroi,roe | TSR"
+MRSH,29.0,,EPS,TSR,,83,18.0,0,29.7,80532.0,167.15,5.53202,Financial Services,2026-03-31,,EPS | TSR | PSU 83% of LTI | gov hygiene 18
+NRG,29.0,"roe,roic",EPS,TSR,absolute_ebitda,33,-2.0,0,16.2,,,,,2026-03-18,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+ORI,29.0,"other_per_share,roe",,TSR,,,4.0,0,3.6,,,,,2026-03-31,,"return-on-capital: other_per_share,roe | TSR"
+SKLZ,29.0,roe,EPS,TSR,absolute_ebitda,50,18.0,0,28.0,,,,,2026-05-01,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 18
+TRMK,29.0,other_per_share,EPS,TSR,,50,4.0,0,18.0,,,,,2026-03-16,,return-on-capital: other_per_share | EPS | TSR
+A,29.0,,EPS,TSR,,82,21.0,0,39.8,,,,,2026-02-06,,EPS | TSR | PSU 82% of LTI | gov hygiene 21
+AMT,29.0,roic,EPS,TSR,absolute_ebitda,70,3.0,0,41.4,88906.0,190.83,25.245403,Real Estate,2026-04-08,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+AON,29.0,,EPS,TSR,,83,15.0,0,55.0,,,,,2026-04-28,,EPS | TSR | PSU 83% of LTI | gov hygiene 15
+CAL,29.0,"roe,roic",EPS,TSR,absolute_ebitda,,-2.0,0,6.0,462.0,13.74,0.73225325,Consumer Cyclical,2026-04-16,,"return-on-capital: roe,roic | EPS | TSR | aggregate (penalty): absolute_ebitda"
+COLB,29.0,roe,EPS,TSR,,50,1.0,0,36.9,8777.0,30.32,1.1454477,Financial Services,2026-03-31,,return-on-capital: roe | EPS | TSR
+CPF,29.0,roe,EPS,TSR,,50,4.0,0,24.3,943.0,36.13,1.5887605,Financial Services,2026-03-06,,return-on-capital: roe | EPS | TSR
+CRS,29.0,roic,EPS,TSR,absolute_ebitda,51,15.0,0,24.0,,,,,2025-09-12,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+DX,29.0,roe,EPS,TSR,,40,1.0,0,15.3,,,,,2026-04-07,,return-on-capital: roe | EPS | TSR
+EFSCP,29.0,other_per_share,EPS,TSR,,50,4.0,0,20.7,,,,,2026-03-31,,return-on-capital: other_per_share | EPS | TSR
+EL,29.0,roic,EPS,TSR,,50,3.0,0,30.6,,,,,2025-09-25,,return-on-capital: roic | EPS | TSR
+FMNB,29.0,roe,EPS,TSR,absolute_ebitda,50,15.0,0,25.2,,,,,2026-03-16,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+LILA,29.0,roe,EPS,TSR,absolute_ebitda,85,8.0,0,37.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+LILAV,29.0,roe,EPS,TSR,absolute_ebitda,85,8.0,0,37.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+LNN,29.0,roic,EPS,TSR,,50,7.0,0,25.5,,,,,2025-11-21,,return-on-capital: roic | EPS | TSR
+LYB,29.0,fcf_per_share,EPS,TSR,absolute_ebitda,60,12.0,0,25.2,,,,,2026-04-10,,return-on-capital: fcf_per_share | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI
+MCD,29.0,roic,EPS,TSR,,40,1.0,0,17.1,200732.0,282.52,-156.0884,Consumer Cyclical,2026-04-07,,return-on-capital: roic | EPS | TSR
+MRVL,29.0,,EPS,TSR,,70,15.0,0,41.0,220966.0,252.59,12.141415,Technology,2026-05-13,,EPS | TSR | PSU 70% of LTI | gov hygiene 15
+MYFW,29.0,other_per_share,EPS,TSR,,50,4.0,0,14.0,,,,,2026-04-24,,return-on-capital: other_per_share | EPS | TSR
+RBB,29.0,other_per_share,EPS,TSR,,50,1.0,0,13.5,,,,,2026-04-10,,return-on-capital: other_per_share | EPS | TSR
+SBSI,29.0,roe,EPS,TSR,,50,4.0,0,17.1,,,,,2026-03-25,,return-on-capital: roe | EPS | TSR
+UTHR,29.0,"roe,roic",,TSR,,,4.0,0,6.0,23479.0,553.14,3.9515083,Healthcare,2026-04-29,,"return-on-capital: roe,roic | TSR"
+ALL,28.0,roe,EPS,TSR,,,12.0,0,24.3,55907.0,217.18,1.8926032,Financial Services,2026-04-10,,return-on-capital: roe | EPS | TSR
+CCNE,28.0,roe,EPS,TSR,,,10.0,0,10.8,,,,,2026-03-16,,return-on-capital: roe | EPS | TSR
+COR,28.0,roic,EPS,TSR,,,12.0,0,23.2,54718.0,281.24,16.104908,Healthcare,2026-01-22,,return-on-capital: roic | EPS | TSR
+ETD,28.0,roe,EPS,TSR,,,12.0,0,13.8,,,,,2025-09-26,,return-on-capital: roe | EPS | TSR
+JRVR,28.0,roic,EPS,TSR,,,12.0,0,19.2,,,,,2025-09-17,,return-on-capital: roic | EPS | TSR
+OFG,28.0,roe,EPS,TSR,,,12.0,0,24.3,,,,,2026-03-03,,return-on-capital: roe | EPS | TSR
+STIM,28.0,roe,EPS,TSR,,,11.0,0,35.1,,,,,2026-04-09,,return-on-capital: roe | EPS | TSR
+ZBH,28.0,roe,EPS,TSR,,,12.0,0,31.5,,,,,2026-04-01,,return-on-capital: roe | EPS | TSR
+APLD,28.0,other_per_share,EPS,TSR,,,11.0,0,16.2,11977.0,41.91,7.5636168,Technology,2025-09-22,,return-on-capital: other_per_share | EPS | TSR
+BBAI,28.0,other_per_share,EPS,TSR,,,11.0,0,43.0,,,,,2026-04-28,,return-on-capital: other_per_share | EPS | TSR
+BHRB,28.0,roe,EPS,TSR,,,12.0,0,16.0,,,,,2026-04-30,,return-on-capital: roe | EPS | TSR
+CCNEP,28.0,roe,EPS,TSR,,,10.0,0,10.8,,,,,2026-03-16,,return-on-capital: roe | EPS | TSR
+CSX,28.0,roic,EPS,TSR,,,12.0,0,26.1,,,,,2026-03-30,,return-on-capital: roic | EPS | TSR
+EMN,28.0,roic,EPS,TSR,,,12.0,0,36.9,,,,,2026-03-24,,return-on-capital: roic | EPS | TSR
+FBP,28.0,other_per_share,EPS,TSR,,,12.0,0,24.3,,,,,2026-03-25,,return-on-capital: other_per_share | EPS | TSR
+IONS,28.0,roe,EPS,TSR,,,12.0,0,25.0,12117.0,73.32,24.753546,Healthcare,2026-04-23,,return-on-capital: roe | EPS | TSR
+LECO,28.0,roic,EPS,TSR,,,12.0,0,31.5,,,,,2026-03-19,,return-on-capital: roic | EPS | TSR
+LNC,28.0,roe,EPS,TSR,,,12.0,0,23.0,,,,,2026-04-16,,return-on-capital: roe | EPS | TSR
+STE,28.0,roic,EPS,TSR,,,12.0,0,41.0,,,,,2026-06-11,,return-on-capital: roic | EPS | TSR
+UNM,28.0,other_per_share,EPS,TSR,,25,12.0,0,36.9,14489.0,90.68,1.3512949,Financial Services,2026-04-09,,return-on-capital: other_per_share | EPS | TSR
+WK,28.0,cfroi,EPS,TSR,,,12.0,0,26.0,,,,,2026-04-17,,return-on-capital: cfroi | EPS | TSR
+BMRN,28.0,roe,EPS,TSR,,25,12.0,0,27.0,,,,,2026-04-21,,return-on-capital: roe | EPS | TSR
+ENPH,28.0,roe,EPS,TSR,,34,12.0,0,36.9,7053.0,53.51,6.3968916,Technology,2026-04-01,,return-on-capital: roe | EPS | TSR
+FBIZ,28.0,other_per_share,EPS,TSR,,,12.0,0,18.9,,,,,2026-03-05,,return-on-capital: other_per_share | EPS | TSR
+KURA,28.0,roe,EPS,TSR,,50,-1.0,0,22.5,,,,,2026-04-10,,return-on-capital: roe | EPS | TSR
+NOC,28.0,roic,EPS,TSR,,,12.0,0,31.5,,,,,2026-04-03,,return-on-capital: roic | EPS | TSR
+PH,28.0,roic,EPS,TSR,,,12.0,0,18.0,,,,,2025-09-19,,return-on-capital: roic | EPS | TSR
+TOL,28.0,roe,EPS,TSR,,,12.0,0,15.0,,,,,2026-01-29,,return-on-capital: roe | EPS | TSR
+UNMA,28.0,other_per_share,EPS,TSR,,25,12.0,0,26.1,,,,,2026-04-09,,return-on-capital: other_per_share | EPS | TSR
+ADAM,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ADAMI,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ADAMN,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ARWR,27.0,roe,,TSR,,70,8.0,0,13.5,,,,,2026-01-27,,return-on-capital: roe | TSR | PSU 70% of LTI
+ATMU,27.0,roic,,TSR,absolute_ebitda,70,15.0,0,39.6,3876.0,47.46,9.607287,Consumer Cyclical,2026-03-30,,return-on-capital: roic | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI | gov hygiene 15
+BANC,27.0,other_per_share,EPS,TSR,,50,-2.0,0,23.4,,,,,2026-03-26,,return-on-capital: other_per_share | EPS | TSR
+BWXT,27.0,roic,EPS,TSR,absolute_ebitda,70,-2.0,0,50.4,17312.0,188.96,13.520321,Industrials,2026-03-18,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+CINF,27.0,other_per_share,,TSR,,50,18.0,0,27.0,25342.0,163.83,1.6118178,Financial Services,2026-03-18,,return-on-capital: other_per_share | TSR | gov hygiene 18
+FBK,27.0,other_per_share,EPS,TSR,,40,-2.0,0,33.3,,,,,2026-04-06,,return-on-capital: other_per_share | EPS | TSR
+FISI,27.0,other_per_share,,TSR,,50,15.0,0,18.9,,,,,2026-04-06,,return-on-capital: other_per_share | TSR | gov hygiene 15
+KALU,27.0,cfroi,EPS,TSR,absolute_ebitda,80,-2.0,0,22.0,2857.0,174.84,3.2265446,Basic Materials,2026-04-28,,return-on-capital: cfroi | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 80% of LTI
+OXY,27.0,roce,,TSR,,60,12.0,0,20.7,,,,,2026-03-19,,return-on-capital: roce | TSR | PSU 60% of LTI
+PLMR,27.0,roe,,TSR,,70,1.0,0,27.0,,,,,2026-04-10,,return-on-capital: roe | TSR | PSU 70% of LTI
+PMTW,27.0,roe,,TSR,,55,11.0,0,11.0,,,,,2026-04-21,,return-on-capital: roe | TSR | PSU 55% of LTI
+RCD,27.0,roe,,TSR,,75,4.0,0,25.0,,,,,2026-06-01,,return-on-capital: roe | TSR | PSU 75% of LTI
+SANM,27.0,roic,EPS,TSR,absolute_ebitda,70,-2.0,0,30.8,,,,,2026-01-23,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+ABCB,27.0,other_per_share,,TSR,,60,12.0,0,23.4,,,,,2026-04-07,,return-on-capital: other_per_share | TSR | PSU 60% of LTI
+ADAMG,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ADAML,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ADAMO,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+AYI,27.0,roic,EPS,TSR,,50,-2.0,0,30.8,8500.0,280.39,2.9906356,Industrials,2025-12-11,,return-on-capital: roic | EPS | TSR
+CAKE,27.0,roic,EPS,TSR,absolute_ebitda,88,-2.0,0,29.7,,,,,2026-04-10,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 88% of LTI
+CDNS,27.0,roe,EPS,TSR,,50,-2.0,0,13.5,106225.0,385.13,16.189415,Technology,2026-03-25,,return-on-capital: roe | EPS | TSR
+IDXX,27.0,roic,EPS,TSR,,50,-2.0,0,26.1,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR
+IRWD,27.0,roe,,TSR,,50,15.0,0,28.0,,,,,2026-04-28,,return-on-capital: roe | TSR | gov hygiene 15
+MSM,27.0,roic,EPS,TSR,,50,-2.0,0,8.2,,,,,2025-12-11,,return-on-capital: roic | EPS | TSR
+MTRN,27.0,roic,EPS,TSR,absolute_ebitda,75,-2.0,0,43.2,,,,,2026-03-26,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI
+PMTU,27.0,roe,,TSR,,55,11.0,0,11.0,,,,,2026-04-21,,return-on-capital: roe | TSR | PSU 55% of LTI
+RC,27.0,roe,,TSR,,75,4.0,0,25.0,,,,,2026-06-01,,return-on-capital: roe | TSR | PSU 75% of LTI
+SKWD,27.0,"other_per_share,roe",,TSR,,33,-2.0,0,3.6,,,,,2026-03-25,,"return-on-capital: other_per_share,roe | TSR"
+SW,27.0,roce,EPS,TSR,absolute_ebitda,75,-2.0,0,26.1,,,,,2026-03-11,,return-on-capital: roce | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI
+WST,27.0,roic,EPS,TSR,,50,-2.0,0,36.9,,,,,2026-03-12,,return-on-capital: roic | EPS | TSR
+AAP,27.0,roic,EPS,TSR,,50,-2.0,0,9.9,,,,,2026-04-01,,return-on-capital: roic | EPS | TSR
+ADAMH,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ADAMM,27.0,other_per_share,,TSR,,68,12.0,0,29.0,,,,,2026-04-24,,return-on-capital: other_per_share | TSR | PSU 68% of LTI
+ANIK,27.0,roe,EPS,TSR,absolute_ebitda,85,-2.0,0,16.0,,,,,2026-04-28,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 85% of LTI
+ARW,27.0,roic,EPS,TSR,,50,-2.0,0,2.7,,,,,2026-03-30,,return-on-capital: roic | EPS | TSR
+CMC,27.0,roic,,TSR,absolute_ebitda,75,15.0,0,27.0,,,,,2025-11-25,,return-on-capital: roic | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI | gov hygiene 15
+CNX,27.0,fcf_per_share,,TSR,,50,15.0,0,25.2,,,,,2026-03-26,,return-on-capital: fcf_per_share | TSR | gov hygiene 15
+EG,27.0,"other_per_share,roe",,TSR,,29,-2.0,0,14.4,13132.0,331.85,0.8637518,Financial Services,2026-04-10,,"return-on-capital: other_per_share,roe | TSR"
+FTI,27.0,roic,EPS,TSR,absolute_ebitda,70,-2.0,0,43.2,27889.0,69.95,8.292827,Energy,2026-03-19,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 70% of LTI
+GD,27.0,roic,EPS,TSR,,50,-2.0,0,40.5,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR
+GO,27.0,roic,EPS,TSR,absolute_ebitda,84,-2.0,0,50.0,818.0,8.27,1.0136046,Consumer Defensive,2026-04-21,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 84% of LTI
+HURC,27.0,roic,,TSR,,60,12.0,0,22.5,,,,,2026-01-28,,return-on-capital: roic | TSR | PSU 60% of LTI
+JXN,27.0,roe,EPS,TSR,,40,-2.0,0,22.5,,,,,2026-04-07,,return-on-capital: roe | EPS | TSR
+LE,27.0,roic,,TSR,absolute_ebitda,75,15.0,0,51.3,,,,,2026-03-27,,return-on-capital: roic | TSR | aggregate (penalty): absolute_ebitda | PSU 75% of LTI | gov hygiene 15
+OSBC,27.0,other_per_share,,TSR,,55,12.0,0,27.0,,,,,2026-04-06,,return-on-capital: other_per_share | TSR | PSU 55% of LTI
+PMT,27.0,roe,,TSR,,55,11.0,0,11.0,,,,,2026-04-21,,return-on-capital: roe | TSR | PSU 55% of LTI
+PMTV,27.0,roe,,TSR,,55,11.0,0,11.0,,,,,2026-04-21,,return-on-capital: roe | TSR | PSU 55% of LTI
+PR,27.0,fcf_per_share,,TSR,,80,8.0,0,31.5,,,,,2026-04-06,,return-on-capital: fcf_per_share | TSR | PSU 80% of LTI
+RL,27.0,roic,,TSR,,50,18.0,0,25.2,,,,,2025-06-20,,return-on-capital: roic | TSR | gov hygiene 18
+ARMK,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,16.5,,,,,2025-12-22,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+AZZ,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,27.0,4210.0,140.26,3.1345115,Industrials,2026-05-26,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+BUSE,26.0,,EPS,TSR,,75,12.0,0,32.4,,,,,2026-04-09,,EPS | TSR | PSU 75% of LTI
+CMSC,26.0,,EPS,TSR,,75,12.0,0,32.4,,,,,2026-03-26,,EPS | TSR | PSU 75% of LTI
+CNP,26.0,,EPS,TSR,,75,12.0,0,42.3,,,,,2026-03-04,,EPS | TSR | PSU 75% of LTI
+CTSH,26.0,,EPS,TSR,,57,17.0,0,41.0,,,,,2026-04-17,,EPS | TSR | PSU 57% of LTI | gov hygiene 17
+DDD,26.0,roe,EPS,TSR,absolute_ebitda,50,12.0,0,36.9,,,,,2026-04-08,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda
+DECK,26.0,,EPS,TSR,,87,12.0,0,12.6,,,,,2025-07-25,,EPS | TSR | PSU 87% of LTI
+DXC,26.0,,EPS,TSR,,85,12.0,0,43.0,,,,,2026-06-04,,EPS | TSR | PSU 85% of LTI
+HSY,26.0,,EPS,TSR,,65,15.0,0,40.5,,,,,2026-03-25,,EPS | TSR | PSU 65% of LTI | gov hygiene 15
+MOD,26.0,"cfroi,roic",,TSR,absolute_ebitda,,12.0,0,20.4,13635.0,258.17,11.412343,Consumer Cyclical,2025-07-09,,"return-on-capital: cfroi,roic | TSR | aggregate (penalty): absolute_ebitda"
+RRX,26.0,roic,EPS,TSR,absolute_ebitda,40,12.0,0,31.5,,,,,2026-03-18,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+SOLS,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,46.8,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+TKR,26.0,roic,EPS,TSR,absolute_ebitda,60,1.0,0,37.8,,,,,2026-03-17,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 60% of LTI
+TYL,26.0,,EPS,TSR,,80,12.0,0,27.9,,,,,2026-03-23,,EPS | TSR | PSU 80% of LTI
+UHS,26.0,roic,EPS,TSR,absolute_ebitda,50,10.0,0,30.6,,,,,2026-04-09,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+WAT,26.0,,EPS,TSR,,55,15.0,0,23.4,,,,,2026-04-09,,EPS | TSR | PSU 55% of LTI | gov hygiene 15
+WTFC,26.0,,EPS,TSR,,60,15.0,0,22.5,,,,,2026-04-09,,EPS | TSR | PSU 60% of LTI | gov hygiene 15
+ADP,26.0,,EPS,TSR,,75,12.0,0,15.6,92407.0,231.17,14.583938,Technology,2025-09-25,,EPS | TSR | PSU 75% of LTI
+AZTA,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,33.8,,,,,2025-12-18,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+BLKB,26.0,roe,EPS,TSR,absolute_ebitda,45,12.0,0,21.0,,,,,2026-04-21,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda
+BUSEP,26.0,,EPS,TSR,,75,12.0,0,32.4,,,,,2026-04-09,,EPS | TSR | PSU 75% of LTI
+CBZ,26.0,,EPS,TSR,,70,12.0,0,35.1,,,,,2026-04-02,,EPS | TSR | PSU 70% of LTI
+CDW,26.0,,EPS,TSR,,60,15.0,0,27.9,,,,,2026-04-10,,EPS | TSR | PSU 60% of LTI | gov hygiene 15
+CMS,26.0,,EPS,TSR,,75,12.0,0,32.4,,,,,2026-03-26,,EPS | TSR | PSU 75% of LTI
+CMSD,26.0,,EPS,TSR,,75,12.0,0,32.4,,,,,2026-03-26,,EPS | TSR | PSU 75% of LTI
+CNMD,26.0,,EPS,TSR,,87,12.0,0,19.8,1093.0,36.3,1.0752051,Healthcare,2026-04-07,,EPS | TSR | PSU 87% of LTI
+D,26.0,,EPS,TSR,,70,12.0,0,44.1,58268.0,66.25,2.0682442,Utilities,2026-03-19,,EPS | TSR | PSU 70% of LTI
+DBI,26.0,,EPS,TSR,,75,12.0,0,32.0,,,,,2026-05-07,,EPS | TSR | PSU 75% of LTI
+EXR,26.0,,EPS,TSR,,75,12.0,0,29.7,,,,,2026-04-01,,EPS | TSR | PSU 75% of LTI
+EYE,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,37.0,1319.0,16.46,1.4684628,Consumer Cyclical,2026-05-04,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+IART,26.0,roe,EPS,TSR,absolute_ebitda,50,12.0,0,27.9,1330.0,17.09,1.2758492,Healthcare,2026-04-06,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda
+ILMN,26.0,,EPS,TSR,,70,12.0,0,27.9,24213.0,160.03,9.090032,Healthcare,2026-04-09,,EPS | TSR | PSU 70% of LTI
+KOS,26.0,"roce,roe",,TSR,absolute_ebitda,,12.0,0,27.0,1768.0,2.98,3.4331799,Energy,2026-04-16,,"return-on-capital: roce,roe | TSR | aggregate (penalty): absolute_ebitda"
+MIDD,26.0,roic,EPS,TSR,absolute_ebitda,67,4.0,0,24.3,,,,,2026-04-08,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | PSU 67% of LTI
+NE,26.0,"fcf_per_share,roic",,TSR,absolute_ebitda,,12.0,0,42.3,,,,,2026-03-16,,"return-on-capital: fcf_per_share,roic | TSR | aggregate (penalty): absolute_ebitda"
+RITM,26.0,"other_per_share,roe",,,,50,-2.0,0,0.0,,,,,2026-04-09,,"return-on-capital: other_per_share,roe"
+RS,26.0,,EPS,TSR,,70,12.0,0,27.9,,,,,2026-04-02,,EPS | TSR | PSU 70% of LTI
+TECH,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,30.6,,,,,2025-09-19,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+TTEK,26.0,,EPS,TSR,,89,12.0,0,19.5,,,,,2026-01-09,,EPS | TSR | PSU 89% of LTI
+UGI,26.0,,EPS,TSR,,60,15.0,0,24.0,,,,,2025-12-17,,EPS | TSR | PSU 60% of LTI | gov hygiene 15
+USFD,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,41.4,,,,,2026-04-02,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+WTFCN,26.0,,EPS,TSR,,60,15.0,0,22.5,,,,,2026-04-09,,EPS | TSR | PSU 60% of LTI | gov hygiene 15
+APAM,26.0,,EPS,TSR,,88,12.0,0,26.0,,,,,2026-04-17,,EPS | TSR | PSU 88% of LTI
+BANR,26.0,,EPS,TSR,,55,15.0,0,13.5,,,,,2026-04-06,,EPS | TSR | PSU 55% of LTI | gov hygiene 15
+CMCO,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,30.0,,,,,2025-06-30,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+CMSA,26.0,,EPS,TSR,,75,12.0,0,32.4,,,,,2026-03-26,,EPS | TSR | PSU 75% of LTI
+GRBK,26.0,roe,EPS,TSR,absolute_ebitda,50,12.0,0,8.0,,,,,2026-05-22,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda
+HLT,26.0,fcf_per_share,EPS,TSR,absolute_ebitda,50,12.0,0,25.2,,,,,2026-04-02,,return-on-capital: fcf_per_share | EPS | TSR | aggregate (penalty): absolute_ebitda
+NDAQ,26.0,,EPS,TSR,,71,12.0,0,57.0,49496.0,87.52,4.10757,Financial Services,2026-04-24,,EPS | TSR | PSU 71% of LTI
+PG,26.0,,EPS,TSR,,75,12.0,0,15.6,,,,,2025-08-29,,EPS | TSR | PSU 75% of LTI
+RSG,26.0,roic,EPS,TSR,absolute_ebitda,50,12.0,0,33.3,,,,,2026-03-24,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda
+SPAI,26.0,"roe,roic",EPS,,absolute_ebitda,,0,0,3.6,108.0,5.22,6.969292,Industrials,2025-04-30,,"return-on-capital: roe,roic | EPS | aggregate (penalty): absolute_ebitda"
+TEVA,26.0,,EPS,TSR,,70,12.0,0,36.9,,,,,2026-03-31,,EPS | TSR | PSU 70% of LTI
+VRA,26.0,roe,EPS,TSR,absolute_ebitda,50,12.0,0,28.0,,,,,2026-04-24,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda
+WDC,26.0,,EPS,TSR,,60,18.0,0,17.4,,,,,2025-10-06,,EPS | TSR | PSU 60% of LTI | gov hygiene 18
+ABBV,25.0,roic,EPS,TSR,,,1.0,0,21.6,,,,,2026-03-23,,return-on-capital: roic | EPS | TSR
+ABUS,25.0,roe,EPS,TSR,,,4.0,0,16.0,,,,,2026-04-14,,return-on-capital: roe | EPS | TSR
+ALT,25.0,other_per_share,EPS,TSR,,,0,0,18.0,508.0,2.61,1.1966987,Healthcare,2026-03-17,,return-on-capital: other_per_share | EPS | TSR
+AMP,25.0,roe,EPS,TSR,,,5.0,0,16.2,,,,,2026-03-20,,return-on-capital: roe | EPS | TSR
+ASMB,25.0,roe,EPS,TSR,,,8.0,0,27.0,,,,,2026-04-22,,return-on-capital: roe | EPS | TSR
+AZO,25.0,roic,EPS,TSR,,,7.0,0,13.5,50908.0,3110.05,-18.282476,Consumer Cyclical,2025-10-28,,return-on-capital: roic | EPS | TSR
+BANFP,25.0,roe,EPS,TSR,,10,0,0,18.0,,,,,2026-04-03,,return-on-capital: roe | EPS | TSR
+BC,25.0,cfroi,EPS,TSR,,,1.0,0,14.4,5112.0,78.68,3.1940894,Consumer Cyclical,2026-03-19,,return-on-capital: cfroi | EPS | TSR
+BTCS,25.0,roe,EPS,TSR,,,0,0,16.0,58.0,1.16,0.8232789,Financial Services,2026-04-15,,return-on-capital: roe | EPS | TSR
+BWBBP,25.0,other_per_share,EPS,TSR,,,3.0,0,3.6,,,,,2026-03-16,,return-on-capital: other_per_share | EPS | TSR
+CPK,25.0,roe,EPS,TSR,,,7.0,0,14.4,,,,,2026-03-25,,return-on-capital: roe | EPS | TSR
+CTBI,25.0,roe,EPS,TSR,,,0,0,14.4,,,,,2026-03-18,,return-on-capital: roe | EPS | TSR
+CZFS,25.0,roe,EPS,TSR,,,3.0,0,12.6,,,,,2026-03-12,,return-on-capital: roe | EPS | TSR
+EFX,25.0,roic,EPS,TSR,absolute_ebitda,,17.0,0,36.9,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 17
+ESE,25.0,roic,EPS,TSR,absolute_ebitda,30,15.0,0,27.8,,,,,2025-12-10,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+EXLS,25.0,roic,EPS,TSR,,,7.0,0,29.0,,,,,2026-04-27,,return-on-capital: roic | EPS | TSR
+FAF,25.0,roe,EPS,TSR,,,4.0,0,16.2,,,,,2026-03-30,,return-on-capital: roe | EPS | TSR
+FUNC,25.0,other_per_share,EPS,TSR,,,4.0,0,10.8,,,,,2026-03-25,,return-on-capital: other_per_share | EPS | TSR
+GPC,25.0,roic,EPS,TSR,absolute_ebitda,,18.0,0,31.5,,,,,2026-02-27,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 18
+IPWR,25.0,roe,EPS,TSR,,,4.0,0,22.0,,,,,2026-04-27,,return-on-capital: roe | EPS | TSR
+JBHT,25.0,roic,EPS,TSR,absolute_ebitda,,15.0,0,41.4,,,,,2026-03-11,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+LEVI,25.0,roic,EPS,TSR,,,1.0,0,18.9,,,,,2026-03-11,,return-on-capital: roic | EPS | TSR
+LOB,25.0,other_per_share,EPS,TSR,,,0,0,14.4,,,,,2026-04-02,,return-on-capital: other_per_share | EPS | TSR
+MBWM,25.0,roe,EPS,TSR,,,4.0,0,6.3,,,,,2026-04-02,,return-on-capital: roe | EPS | TSR
+MRAM,25.0,roe,EPS,TSR,,,0,0,14.4,,,,,2026-04-07,,return-on-capital: roe | EPS | TSR
+NSPR,25.0,other_per_share,EPS,TSR,,,7.0,0,20.0,45.0,0.9601,1.0312567,Healthcare,2026-04-20,,return-on-capital: other_per_share | EPS | TSR
+PII,25.0,roic,EPS,TSR,absolute_ebitda,,19.0,0,35.1,,,,,2026-03-17,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 19
+PLX,25.0,roe,EPS,TSR,,,0,0,16.0,,,,,2026-04-30,,return-on-capital: roe | EPS | TSR
+SCHW,25.0,roce,EPS,TSR,,,4.0,0,9.0,154383.0,88.77,3.6329036,Financial Services,2026-04-06,,return-on-capital: roce | EPS | TSR
+SEM,25.0,roe,EPS,TSR,,,0,0,14.4,,,,,2026-03-04,,return-on-capital: roe | EPS | TSR
+SENS,25.0,roe,EPS,TSR,,,0,0,14.4,,,,,2026-04-06,,return-on-capital: roe | EPS | TSR
+TPG,25.0,roe,EPS,TSR,,,3.0,0,32.0,,,,,2026-04-21,,return-on-capital: roe | EPS | TSR
+TRAW,25.0,cfroi,EPS,TSR,,,8.0,0,27.0,,,,,2026-05-29,,return-on-capital: cfroi | EPS | TSR
+TSN,25.0,roic,EPS,TSR,absolute_ebitda,,15.0,0,20.2,,,,,2025-12-17,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+VLTO,25.0,roic,EPS,TSR,,,1.0,0,17.1,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR
+WTS,25.0,roic,EPS,TSR,,,4.0,0,12.6,,,,,2026-04-01,,return-on-capital: roic | EPS | TSR
+ACHV,25.0,other_per_share,EPS,TSR,,,0,0,15.0,,,,,2026-06-08,,return-on-capital: other_per_share | EPS | TSR
+ALXO,25.0,roe,EPS,TSR,,,0,0,16.0,,,,,2026-04-20,,return-on-capital: roe | EPS | TSR
+APOG,25.0,roic,EPS,TSR,absolute_ebitda,,15.0,0,39.0,,,,,2026-05-12,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+ATR,25.0,roic,EPS,TSR,absolute_ebitda,,15.0,0,19.8,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+BAC,25.0,other_per_share,EPS,TSR,,,1.0,0,16.2,386196.0,54.42,1.4075108,Financial Services,2026-03-23,,return-on-capital: other_per_share | EPS | TSR
+CDE,25.0,"fcf_per_share,roic",,TSR,absolute_ebitda,50,-2.0,0,49.5,16581.0,16.09,1.5986091,Basic Materials,2026-04-01,,"return-on-capital: fcf_per_share,roic | TSR | aggregate (penalty): absolute_ebitda"
+CRAI,25.0,roe,EPS,TSR,absolute_ebitda,,15.0,0,11.0,,,,,2026-04-24,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+CSTL,25.0,"cfroi,roe",,TSR,absolute_ebitda,50,-2.0,0,9.0,639.0,21.08,1.3841103,Healthcare,2026-04-08,,"return-on-capital: cfroi,roe | TSR | aggregate (penalty): absolute_ebitda"
+CWT,25.0,roe,EPS,TSR,,34,4.0,0,14.4,,,,,2026-04-08,,return-on-capital: roe | EPS | TSR
+DHR,25.0,roic,EPS,TSR,,20,3.0,0,9.9,,,,,2026-03-25,,return-on-capital: roic | EPS | TSR
+EWBC,25.0,roe,EPS,TSR,,,2.0,0,0.0,17548.0,128.09,1.9496492,Financial Services,2026-04-08,,return-on-capital: roe | EPS | TSR
+FRT,25.0,roic,EPS,TSR,,,4.0,0,22.5,,,,,2026-03-27,,return-on-capital: roic | EPS | TSR
+GCO,25.0,roe,EPS,TSR,,,4.0,0,8.1,,,,,2025-05-16,,return-on-capital: roe | EPS | TSR
+IBKR,25.0,roe,EPS,TSR,,,0,0,14.4,,,,,2026-03-11,,return-on-capital: roe | EPS | TSR
+INDB,25.0,roe,EPS,TSR,,,4.0,0,13.5,,,,,2026-03-26,,return-on-capital: roe | EPS | TSR
+KEX,25.0,roe,EPS,TSR,absolute_ebitda,,19.0,0,23.4,,,,,2026-03-06,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 19
+LEN,25.0,other_per_share,EPS,TSR,absolute_ebitda,30,15.0,0,18.0,,,,,2026-02-26,,return-on-capital: other_per_share | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+LRMR,25.0,other_per_share,EPS,TSR,,,3.0,0,16.0,,,,,2026-04-20,,return-on-capital: other_per_share | EPS | TSR
+MATW,25.0,roic,EPS,TSR,absolute_ebitda,,15.0,0,20.2,,,,,2026-01-20,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+NC,25.0,roe,EPS,TSR,,,0,0,10.8,,,,,2026-03-31,,return-on-capital: roe | EPS | TSR
+OVV,25.0,roic,,TSR,,84,-2.0,0,32.4,,,,,2026-03-25,,return-on-capital: roic | TSR | PSU 84% of LTI
+ROST,25.0,roe,EPS,TSR,,25,8.0,0,36.0,73603.0,229.45,11.682791,Consumer Cyclical,2026-04-07,,return-on-capital: roe | EPS | TSR
+SBUX,25.0,roe,EPS,TSR,,,8.0,0,18.8,112557.0,98.76,-13.293849,Consumer Cyclical,2026-01-26,,return-on-capital: roe | EPS | TSR
+TCBI,25.0,other_per_share,EPS,TSR,,80,-10.0,0,2.7,,,,,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 80% of LTI
+TPGXL,25.0,roe,EPS,TSR,,,3.0,0,32.0,,,,,2026-04-21,,return-on-capital: roe | EPS | TSR
+UHT,25.0,roe,EPS,TSR,,,6.0,0,6.0,551.0,39.74,3.6183195,Real Estate,2026-04-28,,return-on-capital: roe | EPS | TSR
+UVSP,25.0,other_per_share,EPS,TSR,,30,1.0,0,0.0,,,,,2026-03-13,,return-on-capital: other_per_share | EPS | TSR
+VERI,25.0,roe,EPS,TSR,,,4.0,0,18.0,,,,,2026-05-26,,return-on-capital: roe | EPS | TSR
+YORW,25.0,roe,EPS,TSR,,,0,0,18.0,,,,,2026-03-20,,return-on-capital: roe | EPS | TSR
+AIFF,25.0,other_per_share,EPS,TSR,,,0,0,6.0,,,,,2025-10-03,,return-on-capital: other_per_share | EPS | TSR
+AMSF,25.0,roe,,TSR,,70,-2.0,0,8.0,599.0,32.05,2.4293187,Financial Services,2026-04-24,,return-on-capital: roe | TSR | PSU 70% of LTI
+ANGI,25.0,roe,EPS,TSR,,,8.0,0,44.0,233.0,5.77,0.2549713,Communication Services,2026-04-28,,return-on-capital: roe | EPS | TSR
+AXTI,25.0,other_per_share,EPS,TSR,,,4.0,0,0.0,,,,,2026-03-31,,return-on-capital: other_per_share | EPS | TSR
+BANF,25.0,roe,EPS,TSR,,10,0,0,18.0,,,,,2026-04-03,,return-on-capital: roe | EPS | TSR
+BEN,25.0,roic,EPS,TSR,,,4.0,0,22.5,,,,,2025-12-22,,return-on-capital: roic | EPS | TSR
+BOXL,25.0,other_per_share,EPS,TSR,,,0,0,20.0,,,,,2026-05-05,,return-on-capital: other_per_share | EPS | TSR
+BR,25.0,roic,EPS,TSR,,,5.0,0,17.4,16937.0,146.44,6.010754,Technology,2025-10-02,,return-on-capital: roic | EPS | TSR
+BW,25.0,"cfroi,roe",EPS,TSR,absolute_ebitda,,-6.0,0,10.0,,,,,2026-04-13,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+BWB,25.0,other_per_share,EPS,TSR,,,3.0,0,3.6,,,,,2026-03-16,,return-on-capital: other_per_share | EPS | TSR
+BWNB,25.0,"cfroi,roe",EPS,TSR,absolute_ebitda,,-6.0,0,10.0,,,,,2026-04-13,,"return-on-capital: cfroi,roe | EPS | TSR | aggregate (penalty): absolute_ebitda"
+CCBG,25.0,other_per_share,EPS,TSR,,,7.0,0,30.6,,,,,2026-03-10,,return-on-capital: other_per_share | EPS | TSR
+CRMT,25.0,roe,EPS,TSR,,,8.0,0,18.6,,,,,2025-08-15,,return-on-capital: roe | EPS | TSR
+FBIN,25.0,roic,EPS,TSR,absolute_ebitda,,15.0,0,42.3,,,,,2026-03-30,,return-on-capital: roic | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+FFIC,25.0,other_per_share,EPS,TSR,,,7.0,0,1.8,,,,,2025-04-17,,return-on-capital: other_per_share | EPS | TSR
+FNB,25.0,other_per_share,EPS,TSR,,,3.0,0,9.0,,,,,2026-03-25,,return-on-capital: other_per_share | EPS | TSR
+FNLC,25.0,roe,EPS,TSR,,,0,0,19.8,,,,,2026-03-06,,return-on-capital: roe | EPS | TSR
+FWDI,25.0,roe,EPS,TSR,,,0,0,12.0,,,,,2026-01-26,,return-on-capital: roe | EPS | TSR
+GABC,25.0,roe,EPS,TSR,,,4.0,0,8.1,,,,,2026-03-18,,return-on-capital: roe | EPS | TSR
+GNPX,25.0,roe,EPS,TSR,,,0,0,16.0,,,,,2026-04-29,,return-on-capital: roe | EPS | TSR
+HPE,25.0,roe,EPS,TSR,,,1.0,0,12.0,,,,,2026-02-11,,return-on-capital: roe | EPS | TSR
+IBM,25.0,roic,EPS,TSR,,,4.0,0,5.4,,,,,2026-03-10,,return-on-capital: roic | EPS | TSR
+INHD,25.0,roe,EPS,TSR,,,0,0,14.4,,,,,2026-02-13,,return-on-capital: roe | EPS | TSR
+LONA,25.0,roe,EPS,TSR,,,3.0,0,16.0,,,,,2026-05-11,,return-on-capital: roe | EPS | TSR
+MC,25.0,roe,EPS,TSR,,,4.0,0,10.0,,,,,2026-04-30,,return-on-capital: roe | EPS | TSR
+MTD,25.0,roe,EPS,TSR,,,7.0,0,10.8,,,,,2026-03-18,,return-on-capital: roe | EPS | TSR
+MYSZ,25.0,other_per_share,EPS,TSR,,,0,0,16.0,2.0,0.47,0.5731707,Technology,2026-06-02,,return-on-capital: other_per_share | EPS | TSR
+NKTR,25.0,roe,EPS,TSR,,,8.0,0,27.0,,,,,2026-04-24,,return-on-capital: roe | EPS | TSR
+NTAP,25.0,roe,EPS,TSR,,,3.0,0,1.2,31476.0,160.66,23.307703,Technology,2025-07-25,,return-on-capital: roe | EPS | TSR
+ORMP,25.0,roe,EPS,TSR,,,8.0,0,27.0,,,,,2025-07-16,,return-on-capital: roe | EPS | TSR
+POWI,25.0,roe,EPS,TSR,,,2.0,0,38.0,4158.0,74.63,6.176446,Technology,2026-04-21,,return-on-capital: roe | EPS | TSR
+PTGX,25.0,roe,EPS,TSR,,,0,0,16.0,6802.0,105.77,10.363511,Healthcare,2026-04-28,,return-on-capital: roe | EPS | TSR
+SMP,25.0,roic,EPS,TSR,,,7.0,0,24.0,,,,,2026-04-21,,return-on-capital: roic | EPS | TSR
+SNPS,25.0,roe,EPS,TSR,absolute_ebitda,,15.0,0,29.7,,,,,2026-02-19,,return-on-capital: roe | EPS | TSR | aggregate (penalty): absolute_ebitda | gov hygiene 15
+SNX,25.0,roic,EPS,TSR,,,4.0,0,28.8,,,,,2026-02-13,,return-on-capital: roic | EPS | TSR
+TCBIO,25.0,other_per_share,EPS,TSR,,80,-10.0,0,2.7,,,,,2026-03-12,,return-on-capital: other_per_share | EPS | TSR | PSU 80% of LTI
+WASH,25.0,roe,EPS,TSR,,,1.0,0,13.5,,,,,2026-03-17,,return-on-capital: roe | EPS | TSR
+WEC,25.0,roe,EPS,TSR,,,4.0,0,0.0,,,,,2026-03-26,,return-on-capital: roe | EPS | TSR
+XOM,25.0,roce,EPS,TSR,,,0,0,9.0,,,,,2026-04-08,,return-on-capital: roce | EPS | TSR
