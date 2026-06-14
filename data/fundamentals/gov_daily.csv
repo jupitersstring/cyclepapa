@@ -1,0 +1,13 @@
+sym,name,ovRisk,shRights,insid,short,cashM,debtM,profitable,shrChg
+PD,"PagerDuty, Inc.",8.0,9.0,6.7,12.5,444.0,413.0,True,-19.3
+RPD,"Rapid7, Inc.",4.0,5.0,2.7,15.2,670.0,965.0,True,7.2
+PRGS,Progress Software ,4.0,7.0,2.1,14.4,113.0,1376.0,True,-2.6
+NABL,"N-able, Inc.",5.0,6.0,1.9,4.0,118.0,436.0,False,2.0
+VYX,NCR Voyix Corporat,4.0,5.0,0.8,33.4,232.0,1319.0,True,-5.0
+CRSR,"Corsair Gaming, In",10.0,8.0,3.8,12.2,118.0,188.0,True,2.9
+UIS,Unisys Corporation,4.0,4.0,11.2,7.5,380.0,765.0,False,5.3
+ULBI,Ultralife Corporat,,,3.2,2.8,9.0,51.0,False,0.2
+PLCE,"Children's Place, ",7.0,3.0,2.6,33.0,5.0,514.0,False,75.1
+REPL,"Replimune Group, I",9.0,8.0,2.6,51.3,269.0,76.0,False,34.5
+CUB,Lionheart Holdings,,,,,0.0,0.0,True,15.0
+MGRD,Affiliated Manager,,,,,0.0,0.0,False,
