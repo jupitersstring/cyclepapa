@@ -76,31 +76,43 @@ def _canonical_symbol(sym: str) -> str:
 
 
 def dedup_dual_listings(df: pd.DataFrame) -> pd.DataFrame:
-    """Remove NVDR wrappers and Indian .BO when .NS exists.
+    """Remove NVDR wrappers, Indian .BO duals, AND plain same-symbol duplicates.
 
-    Strategy: build a canonical key, keep the row with the highest mcap_usd.
+    The same ticker can appear in multiple per-country yartseva files
+    (e.g. FPIP.ST appears in both se_yartseva.csv and se_largecap_yartseva.csv
+    because it sits on the Small/Mid Cap boundary; XTB.WA in pl_yartseva +
+    pl_largecap + pl_unc; etc.). asymmetry_rank.py concatenates rather than
+    dedupes, so without this step downstream rankings double-count.
+
+    Strategy: 1) drop NVDR -R.BK wrappers when parent .BK exists; 2) drop .BO
+    when .NS twin exists; 3) drop plain same-symbol rows keeping the one
+    with the highest asymmetry_score (most informative measurement).
     """
+    n_before = len(df)
     syms = set(df['symbol'].dropna())
 
     # Thai NVDR: drop -R.BK when .BK exists.
-    nvdr_drop = []
-    for s in syms:
-        if isinstance(s, str) and s.endswith('-R.BK'):
-            parent = s[:-5] + '.BK'
-            if parent in syms:
-                nvdr_drop.append(s)
+    nvdr_drop = [s for s in syms
+                 if isinstance(s, str) and s.endswith('-R.BK')
+                 and (s[:-5] + '.BK') in syms]
 
-    # Indian: drop .BO when .NS exists.
-    bo_drop = []
-    for s in syms:
-        if isinstance(s, str) and s.endswith('.BO'):
-            ns = s[:-3] + '.NS'
-            if ns in syms:
-                bo_drop.append(s)
+    # Indian: drop .BO when .NS twin exists.
+    bo_drop = [s for s in syms
+               if isinstance(s, str) and s.endswith('.BO')
+               and (s[:-3] + '.NS') in syms]
 
-    n_before = len(df)
     df = df[~df['symbol'].isin(nvdr_drop + bo_drop)].copy()
-    print(f'  dedup dropped {len(nvdr_drop)} NVDR -R.BK wrappers + {len(bo_drop)} .BO duals = {n_before - len(df)} rows',
+
+    # Plain dup dedup: keep the row with the highest asymmetry_score.
+    if 'asymmetry_score' in df.columns:
+        df = df.sort_values('asymmetry_score', ascending=False) \
+               .drop_duplicates('symbol', keep='first')
+    else:
+        df = df.drop_duplicates('symbol', keep='first')
+
+    print(f'  dedup dropped {len(nvdr_drop)} NVDR -R.BK wrappers '
+          f'+ {len(bo_drop)} .BO duals + {n_before - len(df) - len(nvdr_drop) - len(bo_drop)} plain dupes '
+          f'= {n_before - len(df)} rows total',
           file=sys.stderr)
     return df
 
