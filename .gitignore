@@ -1,2 +1,17 @@
 __pycache__/
 *.pyc
+*.pyo
+
+# Local-only working artifacts (results live under data/, committed)
+/tmp/
+.cache/
+*.log
+
+# Editor noise
+.DS_Store
+.vscode/
+.idea/
+
+# Explicit allow for the persisted data tree (overrides any nested ignore)
+!data/
+!data/**

@@ -1,0 +1,115 @@
+ticker,legs,n_legs,region,name,sector
+6962.T,"D,E,master,psar_comb,psar_rel",5,fd-jp-micro,Daishinku Corp.,Technology
+RAMP,"ADV_play_now,W,psar_asset,psar_comb",4,us-mid,"LiveRamp Holdings, Inc.",Technology
+5367.T,"D,R,rank",3,fd-jp-micro,Nikkato Corporation,Industrials
+6669.TW,"psar_asset,psar_comb,psar_rel",3,fd-asia-ex-jp,Wiwynn Corporation,Technology
+6976.T,"ADV_play_now,master,psar_asset",3,fd-jp-mid,"Taiyo Yuden Co., Ltd.",Technology
+8926.TW,"master,psar_asset,psar_comb",3,fd-asia-small,Taiwan Cogeneration Corporation,Industrials
+OLPX,"Q,R,rank",3,us-small,"Olaplex Holdings, Inc.",Consumer Cycli
+MMS.AX,"master,psar_asset,psar_comb",3,fd-au,McMillan Shakespeare Limited,Industrials
+TIETO.HE,"coiled,psar_asset,psar_comb",3,fd-eu-mid,Tieto Oyj,Technology
+5310.T,"DSR,E,master",3,fd-jp-small,"Toyo Tanso Co., Ltd.",Industrials
+3186.T,"coiled,psar_asset",2,fd-jp-small,"NEXTAGE Co., Ltd.",Consumer Cycli
+DDOG,"ADV_play_now,psar_rel",2,fd-us-large,"Datadog, Inc.",Technology
+DANR.MI,"DA,rank",2,fd-eu-small,Danieli & C. Officine Meccaniche,Industrials
+CLBK,"W,psar_asset",2,us-mid,"Columbia Financial, Inc.",Financial Serv
+0992.HK,"ADV_play_now,psar_rel",2,fd-asia-ex-jp,Lenovo Group Limited,Technology
+2409.TW,"E,master",2,fd-asia-ex-jp,AUO Corporation,Technology
+088350.KS,"ADV_play_now,DSR",2,fd-asia-ex-jp,"Hanwha Life Insurance Co., Ltd.",Financial Serv
+005930.KS,"M,Q",2,fd-asia-ex-jp,"Samsung Electronics Co., Ltd.",Technology
+HUNT.OL,"E,master",2,fd-eu-micro,Hunter Group ASA,Energy
+TALK,"DA,rank",2,us-small,"Talkspace, Inc.",Healthcare
+STLTECH.NS,"M,master",2,fd-asia-small,Sterlite Technologies Limited,Technology
+UPR.IR,"psar_comb,psar_rel",2,fd-eu-small,Uniphar plc,Healthcare
+TOYO,"psar_comb,psar_rel",2,fd-jp-micro,"TOYO Co., Ltd.",Technology
+300726.SZ,E,1,fd-asia-ex-jp,Zhuzhou Hongda Electronics Corp.,Technology
+281820.KS,DSR,1,fd-asia-small,"KCTech Co., Ltd.",Technology
+2492.TW,D,1,fd-asia-ex-jp,Walsin Technology Corporation,Technology
+3023.TW,psar_comb,1,fd-asia-ex-jp,"SINBON Electronics Co., Ltd.",Technology
+600522.SS,DSR,1,fd-asia-ex-jp,Jiangsu Zhongtian Technology Co.,Industrials
+603156.SS,ADV_play_now,1,fd-asia-ex-jp,Hebei Yangyuan ZhiHui Beverage C,Consumer Defen
+603638.SS,psar_asset,1,fd-asia-ex-jp,Yantai Eddie Precision Machinery,Industrials
+3090.TW,D,1,fd-asia-small,Nichidenbo Corporation,Technology
+3036.TW,ADV_play_now,1,fd-asia-small,"WT Microelectronics Co., Ltd.",Technology
+4919.TW,R,1,fd-asia-small,Nuvoton Technology Corporation,Technology
+3406.TW,E,1,fd-asia-ex-jp,"Genius Electronic Optical Co.,Lt",Technology
+6196.TW,coiled,1,fd-asia-small,Marketech International Corp.,Technology
+6166.TW,psar_rel,1,fd-asia-small,Adlink Technology Inc.,Technology
+6143.T,DSR,1,fd-jp-small,"Sodick Co., Ltd.",Industrials
+605358.SS,E,1,fd-asia-ex-jp,"Hangzhou Lion Electronics Co.,Lt",Technology
+2395.TW,coiled,1,fd-asia-ex-jp,"Advantech Co., Ltd.",Technology
+2303.TW,rank,1,fd-asia-ex-jp,United Microelectronics Corporat,Technology
+1909.T,Q,1,fd-jp-micro,,
+3033.TW,coiled,1,fd-asia-small,"Weikeng Industrial Co., Ltd.",Technology
+5991.T,E,1,fd-jp-small,"NHK Spring Co., Ltd.",Consumer Cycli
+189300.KQ,ADV_play_now,1,fd-asia-small,,
+002585.SZ,D,1,fd-asia-ex-jp,,
+000582.SZ,ADV_play_now,1,fd-asia-ex-jp,,
+039030.KQ,DSR,1,fd-asia-small,,
+089970.KQ,E,1,fd-asia-small,,
+183300.KQ,coiled,1,fd-asia-small,,
+005935.KS,Q,1,fd-asia-ex-jp,,
+ATKR,D,1,us-mid,,
+ASRNL.AS,DA,1,fd-eu-mid,,
+ALLFG.AS,rank,1,fd-eu-large,,
+ADMIE.AT,D,1,fd-eu-small,,
+8609.T,coiled,1,fd-jp-small,,
+8411.T,psar_comb,1,fd-jp-large,"Mizuho Financial Group, Inc.",Financial Serv
+8344.T,psar_rel,1,fd-jp-micro,,
+8306.T,master,1,fd-jp-large,"Mitsubishi UFJ Financial Group, ",Financial Serv
+6666.T,R,1,fd-jp-micro,,
+8283.T,master,1,fd-jp-mid,Paltac Corporation,Consumer Defen
+8078.T,DSR,1,fd-jp-small,,
+6737.T,psar_asset,1,fd-jp-small,,
+CPRX,W,1,us-mid,,
+CTS,rank,1,us-small,,
+CARE,rank,1,us-small,,
+CABK.MC,DA,1,fd-eu-large,,
+F3C.DE,R,1,fd-eu-small,,
+FTC.L,DSR,1,fd-eu-nano,,
+GRE.MC,DA,1,fd-eu-small,,
+GRANULES.NS,M,1,fd-asia-small,,
+GRNG.ST,rank,1,fd-eu-small,,
+HLIO,W,1,us-mid,,
+HMS.ST,psar_rel,1,fd-eu-micro,,
+HST,E,1,fd-us-large,"Host Hotels & Resorts, Inc.",Real Estate
+CZR,psar_rel,1,us-mid,,
+CYD,R,1,fd-asia-small,,
+DCC.L,D,1,fd-eu-mid,,
+DNORD.CO,coiled,1,fd-eu-small,,
+DRR.AX,D,1,fd-au,,
+ENG.MC,coiled,1,fd-eu-mid,"Enagás, S.A.",Utilities
+EQ,DSR,1,fd-us-micro,,
+CIEN,Q,1,fd-us-large,,
+LAURUSLABS.NS,M,1,fd-asia-ex-jp,Laurus Labs Limited,Healthcare
+KALV,Q,1,us-small,,
+JHG,R,1,fd-eu-mid,,
+IVT,W,1,us-mid,,
+INVX,W,1,us-mid,,
+INSW,DSR,1,us-mid,,
+INGA.AS,DA,1,fd-eu-large,,
+IGG.L,Q,1,fd-eu-mid,,
+NOKIA-SEK.ST,M,1,fd-eu-large,,
+NOEJ.DE,R,1,fd-eu-small,,
+NTB,DA,1,us-mid,,
+LNTH,W,1,us-mid,,
+NN.AS,DA,1,fd-eu-large,,
+NOD.OL,Q,1,fd-eu-mid,,
+NEL.OL,R,1,fd-eu-mid,,
+NKT.CO,rank,1,fd-eu-small,,
+SBRA,DA,1,us-mid,,
+RPRX,M,1,fd-us-large,,
+PSO,D,1,fd-eu-mid,,
+PGC,M,1,us-small,,
+NOKIA.HE,M,1,fd-eu-large,,
+SNX,M,1,fd-us-large,,
+SOI.PA,R,1,fd-eu-mid,,
+SITM,ADV_play_now,1,fd-us-large,,
+STM,M,1,fd-eu-large,,
+SMHN.DE,Q,1,fd-eu-small,,
+TKR,W,1,us-mid,,
+TX,W,1,us-mid,,
+UTI,W,1,us-mid,,
+WDC,Q,1,fd-us-large,,
+WLY,coiled,1,us-mid,,
+WMB,DA,1,fd-us-large,,
