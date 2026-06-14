@@ -1,8 +1,6 @@
 __pycache__/
 *.pyc
 .cache/
-results/
-results_*/
 .venv/
 run*.log
 *.log
@@ -15,7 +13,6 @@ universe_three_window.csv
 universe_composite.csv
 fetch_universe.log.csv
 convergence/
-screener_report.xlsx
 volasym_focus*.csv
 fetch_annual*.csv
 refresh_*.csv
@@ -23,3 +20,11 @@ fetch_annual.csv
 refresh_info_*.csv
 refresh_part*.csv
 refresh_*.csv
+# Cache snapshot internals — never commit to the analysis branch
+.snapshot_worktree/
+.cache_snapshot_staging/
+.cache_restore.tar.gz
+# NOTE: results_peg/, results_forensic/, screener_report.xlsx are NOT
+# ignored. They are the durable analytical outputs and get committed
+# alongside source changes. The heavy raw .cache/ lives on
+# origin/cache-snapshot (see cache_sync.py push/pull).
