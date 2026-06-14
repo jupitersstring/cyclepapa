@@ -1,0 +1,199 @@
+ticker: MP
+isin: US5530961070
+name: MP Materials Corp
+jurisdiction: US
+exchange: NYSE
+sector: Critical Minerals / Rare Earths / Magnets
+bucket: A
+archetype: [A2]
+state: core
+tier: 1
+
+deal:
+  date: 2025-07-10
+  mechanic: "A2 template deal: $400m DoD convertible preferred + warrants → 15% DoD stake on as-converted, as-exercised basis (Pentagon largest shareholder); $150m 12-year DoD loan; $1bn JPM/GS committed financing; 10-year NdPr price floor at $110/kg; 7,000 MT/yr × 10-yr magnet offtake to DoD for defence + commercial supply. Apple $500m prepayment followed."
+  fields:
+    dod_convertible_preferred_usd_m:
+      value: 400
+      source: "verified: WebSearch 2026-06-13 — MP Materials investor news + CNBC + Columbia CGEP"
+    dod_loan_usd_m:
+      value: 150
+      source: "verified: prior research; SEC 8-K filing FY2025"
+    dod_loan_tenor_years:
+      value: 12
+      source: "verified"
+    committed_financing_jpm_gs_usd_bn:
+      value: 1.0
+      source: "verified"
+    dod_equity_stake_pct:
+      value: 15
+      source: "verified: WebSearch 2026-06-13 — 'on as-converted and as-exercised basis'"
+    ndpr_price_floor_usd_kg:
+      value: 110
+      source: "verified: WebSearch 2026-06-13 — Payne Institute + SFA Oxford + MP Materials press"
+    ndpr_floor_tenor_years:
+      value: 10
+      source: "verified"
+    ndpr_floor_vs_spot_at_deal_date:
+      value: "~2x (spot was ~$55-60/kg in July 2025)"
+      source: "reported: industry pricing context"
+    magnet_offtake_mt_per_year:
+      value: 7000
+      source: "verified: WebSearch 2026-06-13"
+    magnet_offtake_tenor_years:
+      value: 10
+      source: "verified"
+    apple_prepayment_usd_m:
+      value: 500
+      source: "verified: prior research"
+    deal_announcement_date:
+      value: 2025-07-10
+      source: "verified: investor.mpmaterials.com news index"
+    stillwater_magnet_facility_location:
+      value: "Stillwater, Oklahoma"
+      source: "verified"
+    mountain_pass_mine_location:
+      value: "Mountain Pass, California (only operating REE mine in the US)"
+      source: "verified"
+    pentagon_largest_shareholder_status:
+      value: true
+      source: "verified: CNBC headline + multiple confirmations"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: 0
+  d4_dilution_pct: 18
+  d5_delta_wam_months: 144
+  d6_debt_tranches_post: 2
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: 40
+  d13_altman_z: null
+  d14_liquidity_quarters: 12
+  d15_state_stake_trajectory: null
+  d18_national_service_risk: 1
+
+catalysts:
+  - event: "10X magnet facility (Stillwater, OK) commercial production ramp"
+    window: [2026-Q4, 2027-Q4]
+    p_favorable: 0.60
+    rerate_if_yes: [1.4, 2.2]
+    hit_if_no: [-0.20, -0.40]
+    source: "company guidance via partnership announcement"
+  - event: "NdPr price floor invocation (spot < $110/kg triggers DoD make-whole)"
+    window: [2025-07-01, 2035-07-01]
+    p_favorable: 0.50
+    rerate_if_yes: [1.20, 1.60]
+    hit_if_no: [-0.05, -0.10]
+    source: "deal structure (10-yr floor)"
+    _note: "If spot below floor, DoD pays the difference — this is the 'hard backstop' the framework treats as A2"
+  - event: "Vertical-integration margin pull-through (Apple/auto/wind OEM offtakes)"
+    window: [2026-Q4, 2028-Q4]
+    p_favorable: 0.55
+    rerate_if_yes: [1.30, 1.80]
+    hit_if_no: [-0.10, -0.20]
+    source: "Apple prepayment precedent + sector procurement cycle"
+
+waterfall:
+  bear: {p: 0.20, return_multiple: 0.55, rationale: "China NdPr export controls relax materially; magnet plant ramp slips 12+ months; new administration deprioritises critical-minerals; multiple compression from current premium"}
+  base: {p: 0.55, return_multiple: 1.80, rationale: "10X ramp on schedule; NdPr around floor; offtake economics realised; multiple stays at premium given DoD shareholder presence; partial revenue inflection"}
+  bull: {p: 0.25, return_multiple: 3.20, rationale: "Magnet plant + commercial offtakes ramp ahead of plan; China supply shock pushes NdPr to $150+; vertical integration capture margins of 40-50% gross at magnet"}
+
+anchor:
+  parties: ["US Department of Defense", "Apple (offtake/prepayment)", "JPM + GS (committed financing)"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: USD
+  stake_pct: 15
+  holds_debt: true
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["DoD: Now establishing A2 pattern across UREE, Trilogy, ReElement, Vulcan Elements, Atlantic Alumina", "Apple: Tesla 2010 deal precedent for prepayment-as-anchor"]
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: PARTIAL — already 5×'d since 2024 base; trades at premium to
+    pure-REE peers; absolute valuation is no longer cheap, but the
+    DoD floor provides hard downside that peers don't have. Asymmetry
+    is in the magnet-margin pull-through not the resource value.
+    Leg 2: DoD as both largest shareholder AND offtake counterparty AND
+    structural floor counterparty AND $150m lender = strongest possible
+    cap-stack alignment in the entire universe. Apple prepayment further
+    reinforces.
+    Leg 3: Apple's $500m post-DoD prepayment is the cleanest revealed
+    preference: a sophisticated counterparty paid forward for offtake
+    *after* seeing the DoD terms.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Administration-change conditionality on DoD critical-minerals policy is non-zero (priced)"
+
+kill_criteria:
+  - "DoD reduces stake below 10% or sells preferred"
+  - "Bilateral US-China rare-earth deal explicitly limits sovereign industrial-policy stakes"
+  - "Magnet plant commercial production slips past Q3 2027"
+  - "Single quarter of negative gross margin at magnet level after ramp"
+  - "Apple withdraws or restructures prepayment"
+
+pre_mortem: |
+  It is end-2028 and MP is down 70% from current.
+
+  Most likely cause: magnet plant ramp slipped 18+ months due to
+  process engineering complexity (yield rates below pilot, recovery
+  losses, downstream contamination). Meanwhile, China's NdPr export
+  controls relaxed under a Phase 1-style trade deal; NdPr spot
+  collapsed to $50; DoD floor protected revenue floor but margin
+  compression came from operating-cost overruns. Multiple compressed
+  from premium-priced sovereign-anchored to fair-priced REE miner.
+
+  Second-most-likely: post-2028 administration repurposed DoD
+  critical-minerals priorities; preferred + warrants restructured at
+  punitive terms; equity diluted further.
+
+  Where this would show up first: 10-Q quarterly Stillwater commercial
+  production milestones; Chinese MOFCOM export-licensing announcements;
+  quarterly average NdPr realised price vs floor.
+
+history:
+  - {date: 2025-07-10, event: "Transformational public-private partnership announced", state_after: option}
+  - {date: 2025-07, event: "Apple $500m prepayment announced", state_after: option}
+  - {date: 2026, event: "Stock 5×'d from pre-deal base; partial re-rate priced", state_after: core}
+  - {date: 2026-06-14, event: "Tier 1 YAML built with WebSearch-verified deal terms", state_after: core}
+
+factors:
+  primary: policy
+  exposures: ["US sovereign industrial policy", "NdPr/REE cycle", "China-US strategic competition", "Stillwater commercial ramp execution"]
+
+tier_rationale: |
+  Bucket A, Archetype A2 (the template deal for the entire critical-
+  minerals sovereign cluster). Triangulation 3/3 with DoD acting as
+  shareholder + lender + offtake + price-floor counterparty
+  simultaneously. C7 dated within 24 months (Stillwater commercial
+  ramp 2026-Q4 to 2027-Q4).
+
+  Already partially re-rated (5× since 2024 base). The new question
+  the framework asks: is the premium-to-peers multiple fully pricing
+  the DoD floor advantage? Waterfall says no — base 1.80×, bull
+  3.20×. EV 2.04× / DD 0.45 = EV/DD 4.5.
+
+  This is the cluster ANCHOR — not the highest EV (LAC is higher) but
+  the highest *information density* because every other A2 candidate
+  (UREE, Trilogy, Lynas, Algoma, Calumet, Atlantic Alumina) is
+  trading on a structural analogy to this deal.

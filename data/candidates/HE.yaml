@@ -1,0 +1,225 @@
+ticker: HE
+isin: US4198091018
+name: Hawaiian Electric Industries
+jurisdiction: US
+exchange: NYSE
+sector: Utility (regulated electric)
+bucket: A
+archetype: [A1, G]
+state: core
+tier: 1
+
+deal:
+  date: 2024-09-24
+  mechanic: "A1 sovereign-quasi-statutory recap: Sept 2024 follow-on $558m at $9.25 + 90% sale of American Savings Bank for $384m = $942m liquidity. Nov 2024 settlement agreements crystallised $1.916bn of Maui wildfire tort (4×$479m annuals 2026-2029). Hawaii Act 258 (2025) authorised $500m wildfire-mitigation securitisation + forward liability cap. **First $479m payment AUTHORIZED April 10, 2026** after subrogation judgment became final and unappealable when 200+ insurers stipulated dismissal."
+  fields:
+    follow_on_date:
+      value: 2024-09-24
+      source: "verified: cross-source"
+    follow_on_shares_m:
+      value: 62.16
+      source: "verified: prior third-party research (Screen 10)"
+    follow_on_price_usd:
+      value: 9.25
+      source: "verified: prior third-party research"
+    follow_on_net_proceeds_usd_m:
+      value: 558
+      source: "verified: prior third-party research"
+    asb_sale_proceeds_usd_m:
+      value: 384
+      source: "verified: 90% sale of American Savings Bank"
+    total_sept_2024_liquidity_usd_m:
+      value: 942
+      source: "verified: arithmetic from above"
+    settlement_total_usd_bn:
+      value: 1.916
+      source: "verified: prior research + Nov 2024 agreements"
+    settlement_installments:
+      value: "4 × $479m annual"
+      source: "verified: WebSearch 2026-06-13 — HEI 8-K April 10, 2026"
+    settlement_window:
+      value: "2026-04 to 2029-04"
+      source: "verified: WebSearch 2026-06-13"
+    first_installment_authorised:
+      value: 2026-04-10
+      source: "verified: HEI 8-K filed 2026-04-10 (CIK 354707)"
+    first_installment_funding_source:
+      value: "Sept 2024 equity offering held in SPV"
+      source: "verified: WebSearch 2026-06-13 — Hawaiian Electric press release"
+    final_payment_condition_satisfied:
+      value: "Dec 30 2025 subrogation judgment became final and unappealable after 200+ insurers stipulated dismissal of appeals with prejudice"
+      source: "verified: HEI 8-K"
+    settlement_funding_plan_remaining:
+      value: "$1.99bn remaining = $479m already insurance-reimbursed + $479m from Sept 2024 equity + $479m from new debt/converts + $479m mixed sources"
+      source: "verified: WebSearch 2026-06-13"
+    hawaii_act_258_authorisation:
+      value: "$500m wildfire-mitigation securitisation + forward liability cap framework"
+      source: "verified: Hawaii state legislation 2025 cycle"
+    authorised_roe_pct:
+      value: 9.5
+      source: "reported: regulated utility comparable"
+    realised_roe_pct:
+      value: 6.1
+      source: "reported: Q1 2026 indication"
+    current_price_usd_approx:
+      value: 15
+      source: "unverified — needs primary verification"
+    pb_current:
+      value: 1.6
+      source: "reported"
+    peer_pb_band:
+      value: "1.8 - 2.5"
+      source: "reported: regulated utility peer set"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d3_backstop_cost_pct: 0
+  d4_dilution_pct: 25
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: 3
+  d7_ucc_terminations_pm30d: null
+  d8_mip_strike_over_recap: null
+  d9_alignment_gap: 1.6
+  d9b_anchor_premium_to_recap: null
+  d9c_premium_to_vwap: null
+  d9d_liquidation_recovery_pct: null
+  d11_consensus_ebitda_cagr: 12
+  d13_altman_z: null
+  d14_liquidity_quarters: 4
+  d15_state_stake_trajectory: null
+  d16_governance_reset_event: 1
+  d17_value_up_mandate: null
+  d18_national_service_risk: 2
+  d19_minority_protection: 2
+
+catalysts:
+  - event: "Second Maui settlement installment ($479m) due April 2027"
+    window: [2027-03-01, 2027-04-30]
+    p_favorable: 0.85
+    rerate_if_yes: [1.10, 1.30]
+    hit_if_no: [-0.20, -0.40]
+    source: "Nov 2024 settlement schedule"
+    _note: "High p — already mechanical. Funding source switch (debt/convert) is the operational test"
+  - event: "Rate-base authorised ROE normalisation toward 9.5%"
+    window: [2026-09-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.30, 1.60]
+    hit_if_no: [-0.10, -0.20]
+    source: "Hawaii PUC docket cycle"
+    _note: "Realised 6.1 → authorised 9.5 = ~50% EPS upside on closing the gap; this is the operational re-rate engine"
+  - event: "Dividend reinstatement"
+    window: [2027-01-01, 2027-12-31]
+    p_favorable: 0.45
+    rerate_if_yes: [1.20, 1.40]
+    hit_if_no: [-0.05, -0.10]
+    source: "implied path post-settlement"
+
+waterfall:
+  bear: {p: 0.15, return_multiple: 0.60, rationale: "Another Maui-class ignition event before liability cap is durably operative; Hawaii PUC denies rate-base normalisation; cap legislation faces judicial challenge"}
+  base: {p: 0.60, return_multiple: 1.80, rationale: "Settlement installments paid on schedule from mix of insurance + debt; ROE drifts 6 → 8; multiple normalises 1.6 → 1.9× P/B; dividend partially restored"}
+  bull: {p: 0.25, return_multiple: 3.00, rationale: "Full ROE normalisation 6 → 9.5; multiple to 2.2× P/B; dividend fully reinstated; Hawaii Act 258 securitisation closes cleanly with low cost"}
+
+anchor:
+  parties: ["State of Hawaii (Act 258 framework + PUC rate authority)", "Sept 2024 public-equity buyers + ASB sale counterparty"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: 15
+    currency: USD
+  stake_pct: null
+  holds_debt: false
+  holds_equity: false
+  lockup_months: null
+  prior_track_record: ["Hawaii PUC: routine rate-of-return process; ROE allowances 9.0-9.5% historical"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: PB 1.6 vs regulated-utility peer band 1.8-2.5; PE 21 with
+    ROE held back to 6.1 vs 9.5 authorised. Even full multiple
+    normalisation alone — no ROE change — implies ~25% upside;
+    multiple + ROE combined implies ~80-150% upside before any
+    dividend reinstatement.
+    Leg 2: State of Hawaii is the regulator + statutory liability-cap
+    legislator + the only viable utility operator (no competitive
+    threat). Game-theoretic alignment is structural.
+    Leg 3: PARTIAL — Sept 2024 equity buyers revealed preference at
+    $9.25; current $15 is ~62% above. Need insider Form 4 (CEO/CFO)
+    activity confirmation through Q1-Q2 2026 to upgrade Leg 3 to full.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Second Maui-class ignition event materially adverse to HE before liability cap is judicially tested"
+  - "Hawaii PUC denies rate-base treatment of wildfire-mitigation capex"
+  - "Act 258 securitisation cost-of-funds exceeds 8%"
+  - "April 2027 second installment delayed or refinanced at punitive cost"
+  - "Subrogation appeal (improbable post-final judgment) is reopened"
+
+pre_mortem: |
+  It is end-2028 and HE is down 70% from $15 entry.
+
+  Most likely cause: a second Maui-class ignition event occurred before
+  the Act 258 forward liability cap was durably tested in court.
+  Litigation cascade re-emerged; settlement structure that resolved 2023
+  could not be replicated; market re-priced HE for tort uncertainty.
+  Equity raise needed at $5 for fresh SPV funding.
+
+  Second-most-likely: Hawaii PUC adopted a more aggressive
+  consumer-protection stance, denied rate-base normalisation, and ROE
+  realised stuck at 6%. The "50% EPS upside on closing the gap"
+  thesis evaporated; multiple compressed back to 1.3× P/B as a
+  regulated-utility cyclical without growth.
+
+  Third possibility: Act 258 securitisation faced a constitutional
+  challenge; Hawaii Supreme Court struck it down; forward liability
+  cap evaporated.
+
+  Where this would show up first: Hawaii PUC docket rulings (rate cases,
+  wildfire-mitigation capex recovery); quarterly weather/fire-risk
+  meteorological data; legal challenges to Act 258 in Hawaii state
+  courts.
+
+history:
+  - {date: 2024-09-24, event: "Follow-on equity $558m + ASB sale $384m = $942m liquidity", state_after: watch}
+  - {date: 2024-11-01, event: "Settlement agreements crystallised $1.916bn tort liability", state_after: option}
+  - {date: 2025, event: "Hawaii Act 258 enacted", state_after: option}
+  - {date: 2025-12-30, event: "Subrogation judgment in favour of HEI", state_after: option}
+  - {date: 2026-04-10, event: "FIRST $479m installment authorised after insurer appeals dismissed; HEI 8-K filed", state_after: core}
+  - {date: 2026-06-14, event: "Tier 1 YAML built with verified deal terms via web search", state_after: core}
+
+factors:
+  primary: policy
+  exposures: ["US regulated utility cycle", "Hawaii state policy", "wildfire litigation risk", "rate-base ROE normalisation"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (sovereign-quasi-statutory anchor via Hawaii
+  Act 258 + PUC rate authority) + G (regulator-forced sector-of-one
+  recap by liability framework). Triangulation 2.5/3 (Leg 3 partial
+  pending insider activity verification). The single most distinctive
+  feature: **Condition 7 has already fired** (April 10, 2026 first
+  installment cleared). This is the only Tier 1 name where the
+  framework's main dated catalyst is in the past tense.
+
+  Implication: the question shifts from "will the catalyst fire?" to
+  "is the partial re-rate (€2 → ~$15 ≈ 62% above Sept 2024 equity
+  buyers' entry) fully discounting the operational re-rate that the
+  catalyst enables?" The waterfall says no — base case 1.80× from $15
+  to ~$27; bull 3.00× to ~$45 on full ROE normalisation.
+
+  EV/DD = 1.80/(1-0.6) = 4.5× — one of the cleanest left tails in the
+  basket. Position-size accordingly; this is the *anchor sleeve* of
+  the portfolio not a binary.

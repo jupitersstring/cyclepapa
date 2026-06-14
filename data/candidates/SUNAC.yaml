@@ -1,0 +1,193 @@
+ticker: SUNAC
+isin: KYG8569A1378
+name: Sunac China Holdings
+jurisdiction: HK
+exchange: HKEX
+sector: Real Estate (China property developer)
+bucket: B
+archetype: [F, A]
+state: option
+tier: 2
+
+deal:
+  date: 2025-12-23
+  mechanic: "F-archetype with founder-on-cap-stack: HK High Court sanctioned 5 Nov 2025 second offshore restructuring. ~$9.55bn offshore debt fully equitised via two MCB tranches (conversion prices HK$6.80 and HK$3.85, effective 23 Dec 2025). Founder Sun Hongbin subscribed Rmb2.3bn ≈ 23% of the new MCBs with a 6-year selling restriction. 7% ESOP for ~500 staff. Onshore Jan 2025 deal separately cut Rmb15.4bn (US$2.1bn) by 50%."
+  fields:
+    offshore_debt_eliminated_usd_bn:
+      value: 9.55
+      source: "reported: prior Screen 10 research; needs primary-doc verification against HK scheme circular"
+    hk_court_sanction_date:
+      value: 2025-11-05
+      source: "reported"
+    effective_conversion_date:
+      value: 2025-12-23
+      source: "reported"
+    mcb_tranche_1_conversion_hkd:
+      value: 6.80
+      source: "reported"
+    mcb_tranche_2_conversion_hkd:
+      value: 3.85
+      source: "reported"
+    founder_mcb_subscription_rmb_bn:
+      value: 2.3
+      source: "reported"
+    founder_share_of_new_mcb_pct:
+      value: 23
+      source: "reported"
+    founder_lock_up_years:
+      value: 6
+      source: "reported"
+    esop_pct:
+      value: 7
+      source: "reported"
+    onshore_debt_cut_rmb_bn:
+      value: 15.4
+      source: "reported"
+    onshore_haircut_pct:
+      value: 50
+      source: "reported"
+    current_price_hkd_band:
+      value: "1.49 - 1.75"
+      source: "reported"
+    market_cap_usd_bn_band:
+      value: "1.9 - 2.3"
+      source: "reported"
+    pb_implied:
+      value: "< 0.2"
+      source: "reported"
+    liquidation_recovery_pct_band:
+      value: "4 - 10"
+      source: "reported: from scheme disclosures across Chinese property cascade"
+
+scorecard:
+  d4_dilution_pct: 85
+  d6_debt_tranches_post: 2
+  d9_alignment_gap: null
+  d9d_liquidation_recovery_pct: 7
+  d11_consensus_ebitda_cagr: null
+  d13_altman_z: null
+  d14_liquidity_quarters: null
+  d18_national_service_risk: 1
+  _note: "All scorecard values are 'reported' not 'verified' — primary HK scheme circular needed for d4/d9d/d14 to upgrade"
+
+catalysts:
+  - event: "Tier-1 city China property policy support package"
+    window: [2026-01-01, 2027-12-31]
+    p_favorable: 0.35
+    rerate_if_yes: [2.0, 4.0]
+    hit_if_no: [-0.50, -0.70]
+    source: "PBOC/MOFCOM policy guidance"
+  - event: "Sunac project-completion execution proves operational viability"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.4, 2.2]
+    hit_if_no: [-0.30, -0.50]
+    source: "company quarterly delivery updates"
+  - event: "Consolidator interest (state SOE developer acquiring distressed peer assets)"
+    window: [2026-06-01, 2028-12-31]
+    p_favorable: 0.25
+    rerate_if_yes: [1.8, 3.0]
+    hit_if_no: [-0.15, -0.25]
+    source: "industry consolidation pattern in distressed Chinese property"
+
+waterfall:
+  bear: {p: 0.40, return_multiple: 0.30, rationale: "Tier-1 land cycle stays weak; project completion delays; further MCB conversion at lower prices; equity dilutes another 50%+"}
+  base: {p: 0.40, return_multiple: 2.20, rationale: "Project deliveries on schedule; partial Tier-1 stabilisation; MCB conversion overhang absorbed; multiple re-rates from P/B <0.2 toward 0.4"}
+  bull: {p: 0.20, return_multiple: 5.50, rationale: "PBOC stimulus + first-mover status as deleveraged developer + consolidator interest; multiple to P/B 0.7+"}
+
+anchor:
+  parties: ["Sun Hongbin (founder, 23% of new MCBs with 6-yr selling restriction)", "MCB-converting creditor base"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: HKD
+  stake_pct: null
+  holds_debt: true
+  holds_equity: true
+  lockup_months: 72
+  prior_track_record: ["Sun Hongbin: previously known for aggressive land bank acquisition and willingness to fund through cycles"]
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: P/B <0.2 implied is extreme but warranted given liquidation
+    recovery 4-10% per scheme disclosures = surviving equity is
+    genuine residual claim not just diluted. Asymmetry is real but
+    binary.
+    Leg 2: Founder MCB subscription with 6-year lock is the strongest
+    founder-alignment signal in the entire Chinese property cascade.
+    Cleaner than Kaisa, CIFI, Sino-Ocean on this dimension.
+    Leg 3: 23% of new MCBs taken at the same conversion terms as
+    creditor-converting holders is itself revealed preference. The 6-yr
+    selling restriction is an unusually strong commitment device.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Onshore creditor recovery; project completion default risk; NDRC offshore-debt sign-off (more an issue for peer Kaisa); going-concern auditor flag"
+
+kill_criteria:
+  - "Project completion failure exceeding 10% of pre-sold inventory"
+  - "Sun Hongbin breaks 6-yr lockup (legally precludes normal sale but watch for collateral pledging)"
+  - "Onshore creditor rebellion / second onshore restructuring"
+  - "PBOC explicitly excludes private developers from any property-support package"
+  - "MCB tranche 2 (HK$3.85 strike) becomes deeply in-the-money on stress"
+
+pre_mortem: |
+  It is end-2027 and Sunac is down 70% from HK$1.50-1.75 entry.
+
+  Most likely cause: Tier-1 city land sales continued to deteriorate;
+  project completions slipped due to working-capital constraints
+  (sales receipts coming in below plan); MCB conversion overhang
+  pushed equity to HK$0.50; another debt event required. Founder's
+  6-yr lock-up prevented him from doubling down but also prevented
+  exit, so alignment held but value did not.
+
+  Second-most-likely: a consolidator emerged but at a lowball price
+  that triggered the cram-down provisions in the MCB documents;
+  minority common holders absorbed disproportionate value transfer.
+
+  Where this would show up first: monthly contracted sales releases
+  (Sunac vs Tier-1 city aggregate); CRIC/Centaline monthly land-
+  market data; quarterly project-completion status disclosures.
+
+history:
+  - {date: 2025-01, event: "Onshore Rmb15.4bn restructure (50% cut)", state_after: watch}
+  - {date: 2025-11-05, event: "HK High Court sanctioned offshore scheme", state_after: option}
+  - {date: 2025-12-23, event: "MCB conversion effective; $9.55bn offshore debt equitised", state_after: option}
+  - {date: 2026-06-14, event: "Tier 2 YAML built from prior research; all source tags 'reported' pending primary-doc verification", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["China property cycle", "PBOC/MOFCOM property policy", "Tier-1 city land cycle", "PRC consolidation dynamics"]
+
+tier_rationale: |
+  Bucket B (new post-MCB common is the trade, not legacy), Archetype F
+  (post-bankruptcy/MCB-cascade orphan with founder cap-stack
+  participation). Triangulation 2.5/3 with strongest founder alignment
+  in the entire Chinese property cascade.
+
+  Tier 2 not Tier 1 because: (a) C7 catalyst is undated by construction
+  (depends on Beijing policy stance — that's the H4 weakness applied
+  to property); (b) liquidation floor 4-10% means real binary risk;
+  (c) Leg 1 valuation is partial — P/B <0.2 implied is extreme but
+  warranted by the residual-claim structure, not by an obvious
+  multiple gap to comparables.
+
+  Waterfall: bear 40% × 0.30 + base 40% × 2.20 + bull 20% × 5.50 =
+  0.12 + 0.88 + 1.10 = 2.10× EV; DD = 0.70 so EV/DD = 3.0. Position
+  sizing should be capped at fractional Kelly × strong correlation
+  haircut (all four Chinese property names are correlated to a single
+  factor: Beijing's property stance).
