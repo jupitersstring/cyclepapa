@@ -25,3 +25,4 @@ data/cache/*.pkl
 data/spy/*.pkl
 data/cache/*.tmp
 data/spy/*.tmp
+per_region_analysis.xlsx
