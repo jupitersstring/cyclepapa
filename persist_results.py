@@ -84,7 +84,7 @@ def commit_and_push(push: bool):
         return
     n = len(out.splitlines())
     subprocess.run([
-        "git", "commit", "-m",
+        "git", "-c", "commit.gpgsign=true", "commit", "-S", "-m",
         f"data: persist {n} analysis artifacts (sandbox-safe snapshot)\n\n"
         "Refreshed via persist_results.py. These are the durable\n"
         "outputs of the screen + augment + PSAR + master-analysis pipeline.\n\n"
