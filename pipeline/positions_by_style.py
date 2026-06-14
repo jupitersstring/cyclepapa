@@ -38,8 +38,8 @@ FAMILY_RULES = [
     (r"bank specialist|financial services|holdco|pe-style|concentrated microcap|concentrated quality \(sub|sma", "Concentrated / Specialist"),
 ]
 
-SECTION_LABEL = {1: "1-Conviction", 2: "2-13D/13G", 3: "3-New position", 4: "4-Material add"}
-SECTION_ORDER = {1: 0, 4: 1, 3: 2, 2: 3, 0: 4}
+SECTION_LABEL = {1: "CONVICTION", 2: "13D/13G", 3: "NEW POS", 4: "ADD"}
+SECTION_ORDER = {4: 0, 3: 1, 2: 2, 1: 3, 0: 4}   # ADDs/NEWs first (actionable), then 13Ds, then conviction holds
 
 def family_for(substyle):
     s = (substyle or "").lower()
@@ -48,39 +48,51 @@ def family_for(substyle):
             return fam
     return "Other / Unclassified"
 
-def parse_raw(raw, ticker):
-    """Parse 'TICKER | Company | X% portfolio | $YM | change | url' into fields."""
+def parse_raw(raw, ticker, pct_value=None, dollar_m=None):
+    """Parse 'TICKER | Company | X% portfolio | $YM | change | url' into fields.
+    Falls back to the typed pct_value / dollar_m columns when raw doesn't parse."""
     if not raw:
-        return "", "", "", ""
-    # drop fund-tab section prefix if present (before first ticker occurrence)
+        pct = f"{pct_value:.2f}%" if pct_value is not None else ""
+        dol = f"${dollar_m:.1f}M" if dollar_m else ""
+        return "", pct, dol, ""
     parts = [p.strip() for p in raw.split("|")]
-    company = pct = dollar = change = ""
+    company = pct = dollar = ""
     notes = []
+    # First pass: find structured fields
     for p in parts:
         if not p or p.startswith("http"):
             continue
         if p == ticker or p.startswith(ticker + " ") or p.startswith(ticker + "("):
-            # ticker cell may carry company in parens
             m = re.search(r"\(([^)]+)\)", p)
             if m and not company:
-                company = m.group(1)
+                company = m.group(1)[:50]
             continue
+        # Standalone % with portfolio/book context = position size
         if "%" in p and not pct:
             pm = re.search(r"([\+\-]?\d+(?:\.\d+)?)\s*%", p)
-            if pm: pct = pm.group(0)
-            if "portfolio" not in p.lower() and "of co" not in p.lower():
-                notes.append(p)
-            continue
+            if pm:
+                pct = pm.group(0)
+                # Whole-cell tags get suppressed only if they were JUST the %
+                if re.fullmatch(r"\s*[\+\-]?\d+(?:\.\d+)?\s*%\s*(portfolio|of\s+co\.?|of\s+company|of\s+book)?\s*", p, re.I):
+                    continue
+        # Dollar amount
         if "$" in p and not dollar:
             dm = re.search(r"\$[\d,.]+\s*[MBK]?", p)
-            if dm: dollar = dm.group(0)
-            continue
-        # company is usually the first non-ticker text token without numbers
-        if not company and not re.search(r"\d", p) and len(p) > 2:
+            if dm:
+                dollar = dm.group(0)
+                if re.fullmatch(r"\s*\$[\d,.]+\s*[MBK]?\s*", p):
+                    continue
+        # Company name: short, non-numeric, not yet captured
+        if not company and not re.search(r"\d", p) and 2 < len(p) < 50:
             company = p[:50]
             continue
         notes.append(p)
-    change = " / ".join(n for n in notes if n)[:120]
+    # Fallbacks from typed columns
+    if not pct and pct_value is not None:
+        pct = f"{pct_value:.2f}%"
+    if not dollar and dollar_m:
+        dollar = f"${dollar_m:.1f}M"
+    change = " / ".join(n for n in notes if n)[:160]
     return company, pct, dollar, change
 
 def run():
@@ -100,6 +112,15 @@ def run():
         fam = family_for(r["substyle"])
         by_family.setdefault(fam, []).append(r)
 
+    # cross-tribe consensus: tickers held by N+ different macro families
+    family_of_ticker = {}
+    for fam, frs in by_family.items():
+        for x in frs:
+            family_of_ticker.setdefault(x["ticker"], set()).add(fam)
+    cross_consensus = sorted(
+        ((t, fams) for t, fams in family_of_ticker.items() if len(fams) >= 3),
+        key=lambda x: -len(x[1]))
+
     HEAD = Font(bold=True, color="FFFFFF", size=11)
     HFILL = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
     SUB = Font(bold=True, size=11, color="1F4E78")
@@ -108,12 +129,47 @@ def run():
     WRAP = Alignment(wrap_text=True, vertical="top")
 
     wb = openpyxl.Workbook(); del wb["Sheet"]
+    from openpyxl.utils import get_column_letter
+
     # index sheet
     idx = wb.create_sheet("INDEX")
     idx["A1"] = "POSITIONS BY FUND SUBSTYLE — what each kind of fund holds"
     idx["A1"].font = Font(bold=True, size=13)
     idx["A3"] = "Family sheet"; idx["B3"] = "# substyles"; idx["C3"] = "# positions"
     for c in ("A3","B3","C3"): idx[c].font = HEAD; idx[c].fill = HFILL
+
+    # Cross-tribe consensus sheet — names held across multiple investing families
+    xc = wb.create_sheet("CROSS_TRIBE_CONSENSUS")
+    xc["A1"] = "TICKERS HELD ACROSS MULTIPLE INVESTING FAMILIES (>=3) — the universal picks"
+    xc["A1"].font = Font(bold=True, size=12)
+    xc_hdr = ["Ticker", "# families", "Families", "Total positions", "Funds holding"]
+    for i, h in enumerate(xc_hdr, 1):
+        cell = xc.cell(row=3, column=i, value=h); cell.font = HEAD; cell.fill = HFILL
+    xc.freeze_panes = "A4"
+    xr = 4
+    for tkr, fams in cross_consensus[:80]:
+        all_pos = [x for fr in by_family.values() for x in fr if x["ticker"] == tkr]
+        all_funds = sorted({x["fund"] for x in all_pos})
+        xc.cell(row=xr, column=1, value=tkr).font = Font(bold=True)
+        xc.cell(row=xr, column=2, value=len(fams))
+        xc.cell(row=xr, column=3, value=", ".join(sorted(fams)))
+        xc.cell(row=xr, column=4, value=len(all_pos))
+        xc.cell(row=xr, column=5, value="; ".join(f[:30] for f in all_funds[:10]))
+        for col in range(1, 6):
+            xc.cell(row=xr, column=col).alignment = WRAP
+        xr += 1
+    for i, w in enumerate([8, 12, 70, 14, 90], 1):
+        xc.column_dimensions[get_column_letter(i)].width = w
+
+    # Flat sheet for arbitrary filtering across ALL positions
+    flat = wb.create_sheet("ALL_POSITIONS")
+    flat_hdr = ["Family", "Substyle", "Fund", "Section", "Ticker", "Company",
+                "% (book/co)", "$M", "Change / notes"]
+    for i, h in enumerate(flat_hdr, 1):
+        cell = flat.cell(row=1, column=i, value=h); cell.font = HEAD; cell.fill = HFILL
+    flat.freeze_panes = "A2"
+    flat.auto_filter.ref = "A1:I1"
+    fr_idx = 2
 
     irow = 4
     used_names = set()
@@ -130,11 +186,35 @@ def run():
         irow += 1
 
         ws = wb.create_sheet(sheet_name)
+        # Top of each family sheet: consensus block — most-held tickers within this tribe
+        consensus = {}
+        for x in frows:
+            consensus.setdefault(x["ticker"], set()).add(x["fund"])
+        top = sorted(consensus.items(), key=lambda c: -len(c[1]))[:15]
+        ws["A1"] = f"▼ {fam} — top consensus picks within this tribe"
+        ws["A1"].font = SUB; ws["A1"].fill = SUBFILL
+        ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=8)
+        ws.cell(row=2, column=1, value="Ticker").font = HEAD
+        ws.cell(row=2, column=1).fill = HFILL
+        ws.cell(row=2, column=2, value="# funds in tribe").font = HEAD
+        ws.cell(row=2, column=2).fill = HFILL
+        ws.cell(row=2, column=3, value="Funds").font = HEAD
+        ws.cell(row=2, column=3).fill = HFILL
+        ws.merge_cells(start_row=2, start_column=3, end_row=2, end_column=8)
+        cr = 3
+        for tkr, funds in top:
+            if len(funds) < 2: break
+            ws.cell(row=cr, column=1, value=tkr).font = Font(bold=True)
+            ws.cell(row=cr, column=2, value=len(funds))
+            ws.cell(row=cr, column=3, value=", ".join(sorted(funds))[:200])
+            ws.merge_cells(start_row=cr, start_column=3, end_row=cr, end_column=8)
+            cr += 1
+        cr += 1
         headers = ["Substyle","Fund","Section","Ticker","Company","% (book/co)","$M","Change / notes"]
         for i, h in enumerate(headers, 1):
-            c = ws.cell(row=1, column=i, value=h); c.font = HEAD; c.fill = HFILL
-        ws.freeze_panes = "A2"
-        r = 2
+            c = ws.cell(row=cr, column=i, value=h); c.font = HEAD; c.fill = HFILL
+        ws.freeze_panes = f"A{cr+1}"
+        r = cr + 1
         # group: substyle -> fund -> section-order -> $ desc
         def sortkey(x):
             return (x["substyle"], x["fund"], SECTION_ORDER.get(x["section"], 9),
@@ -147,7 +227,16 @@ def run():
                 cell = ws.cell(row=r, column=1, value=f"▼ {cur_sub}")
                 cell.font = SUB; cell.fill = SUBFILL
                 r += 1
-            company, pct, dollar, change = parse_raw(x["raw_text"], x["ticker"])
+            company, pct, dollar, change = parse_raw(x["raw_text"], x["ticker"],
+                                                     x["pct_value"], x["dollar_m"])
+            # also write to flat sheet
+            for fi, fv in enumerate([fam, x["substyle"][:40], x["fund"][:34],
+                                     SECTION_LABEL.get(x["section"], "?"),
+                                     x["ticker"], company,
+                                     pct, dollar, change], 1):
+                flat.cell(row=fr_idx, column=fi, value=fv).alignment = WRAP
+            flat.cell(row=fr_idx, column=5).font = Font(bold=True)
+            fr_idx += 1
             ws.cell(row=r, column=1, value=x["substyle"][:40])
             ws.cell(row=r, column=2, value=x["fund"][:34])
             ws.cell(row=r, column=3, value=SECTION_LABEL.get(x["section"], "?"))
@@ -159,10 +248,13 @@ def run():
             for col in range(1, 9):
                 ws.cell(row=r, column=col).alignment = WRAP
             r += 1
-        widths = [34, 30, 14, 8, 30, 13, 9, 60]
-        from openpyxl.utils import get_column_letter
+        widths = [34, 30, 12, 8, 30, 12, 9, 60]
         for i, w in enumerate(widths, 1):
             ws.column_dimensions[get_column_letter(i)].width = w
+
+    # Flat sheet column widths
+    for i, w in enumerate([22, 30, 30, 11, 8, 28, 12, 9, 55], 1):
+        flat.column_dimensions[get_column_letter(i)].width = w
 
     for col, w in (("A", 32), ("B", 12), ("C", 12)):
         idx.column_dimensions[col].width = w
