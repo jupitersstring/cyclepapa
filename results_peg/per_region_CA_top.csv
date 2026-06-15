@@ -1,6 +1,6 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
-SEC.TO,CA,Senvest Capital Inc.,Financial Services,390.0,82.488,8,0.459,2.198,,0.702,-2.856,-2.652,480.693,134.991,1.0,1.277,,,944.0
-NPI.TO,CA,Northland Power Inc.,Utilities,22.67,78.485,12,1.487,,15.276,2.321,7.85,4.91,-102.363,18.011,0.702,0.462,0.164,0.319,5928.0
-SBI.TO,CA,Serabi Gold plc,Basic Materials,6.07,73.576,13,1.657,4.975,607.0,2.59,4.221,2.226,13.325,10.351,0.597,0.535,0.833,1.394,463.0
-PEY.TO,CA,Peyto Exploration & Development Corp.,Energy,25.26,73.162,13,1.734,10.935,11.43,4.382,5.711,5.258,-19.989,4.91,0.778,0.594,0.37,0.439,5175.0
-JAG.TO,CA,Jaguar Mining Inc.,Basic Materials,5.65,72.79,11,1.38,,5.218,3.162,5.143,2.697,14.7,10.927,0.639,0.474,0.634,,482.0
+SEC.TO,CA,Senvest Capital Inc.,Financial Services,390.0,82.458,8,0.459,2.198,,0.702,-2.856,-2.652,480.693,134.991,1.0,1.277,,,944.0
+FVI.TO,CA,Fortuna Mining Corp.,Basic Materials,12.48,74.611,13,1.536,8.265,5.392,3.454,5.005,3.09,12.336,9.768,0.547,0.53,0.756,0.816,3781.0
+JAG.TO,CA,Jaguar Mining Inc.,Basic Materials,5.65,73.83,11,1.38,,5.218,3.162,5.143,2.697,14.7,10.927,0.639,0.474,0.634,,482.0
+NPI.TO,CA,Northland Power Inc.,Utilities,22.67,73.81,12,1.487,,15.276,2.321,7.85,4.91,-102.363,18.011,0.702,0.462,0.164,0.319,5928.0
+PEY.TO,CA,Peyto Exploration & Development Corp.,Energy,25.26,72.965,13,1.734,10.935,11.43,4.382,5.711,5.258,-19.989,4.91,0.778,0.594,0.37,0.439,5175.0
