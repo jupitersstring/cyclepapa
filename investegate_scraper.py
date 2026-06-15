@@ -151,9 +151,20 @@ _LINK_RE = re.compile(
 _TD_TEXT_RE = re.compile(r"<td[^>]*>\s*([^<]+?)\s*</td>", re.IGNORECASE)
 
 
-def _parse_page(html: str, base_url: str = BASE) -> list[Announcement]:
+def _parse_page(html: str, epic: str | None = None,
+                base_url: str = BASE) -> list[Announcement]:
+    """Parse the company page. When `epic` is supplied we additionally
+    verify that the announcement URLs actually carry that EPIC — when
+    Investegate doesn't recognise an EPIC it serves a *generic* news
+    feed (no 404) and the scraper previously cached it as if it were
+    the EPIC's real data. We detect the fallback by checking the
+    fraction of links whose slug ends `--{epic}/...`; below 50% we
+    treat the page as not-found."""
     out: list[Announcement] = []
     seen_urls: set[str] = set()
+    epic_lc = (epic or "").lower()
+    matching_epic = 0
+    total_links = 0
     for tr_match in _TR_RE.finditer(html):
         block = tr_match.group(1)
         link_m = _LINK_RE.search(block)
@@ -162,7 +173,10 @@ def _parse_page(html: str, base_url: str = BASE) -> list[Announcement]:
         url, title = link_m.group(1), link_m.group(2).strip()
         if url in seen_urls:
             continue
-        # The date is in the first <td> of the same row.
+        total_links += 1
+        # Slug check — investegate URLs are .../{slug-name}--{epic}/...
+        if epic_lc and f"--{epic_lc}/" in url.lower():
+            matching_epic += 1
         tds = _TD_TEXT_RE.findall(block)
         date_str = None
         for td in tds:
@@ -170,26 +184,23 @@ def _parse_page(html: str, base_url: str = BASE) -> list[Announcement]:
             if d:
                 date_str = d
                 break
-        # Extract slug from URL — the path between EPIC and the
-        # numeric ID is the category slug.
-        # https://www.investegate.co.uk/announcement/rns/{slug-name}/{category-slug}/{id}
         slug_parts = url.split("/")
         category_slug = slug_parts[-2] if len(slug_parts) >= 2 else ""
         label = _categorise(category_slug)
         if label is None:
-            # Title fallback — sometimes slug is generic but the title
-            # is descriptive.
             label = _categorise(title.lower().replace(" ", "-"))
         if label is None:
             label = "other"
         seen_urls.add(url)
         out.append(Announcement(
-            date=date_str or "",
-            title=title,
-            category=label,
-            raw_slug=category_slug,
-            url=url,
+            date=date_str or "", title=title, category=label,
+            raw_slug=category_slug, url=url,
         ))
+    # Fallback-page detection — when we asked for SEIT but the page
+    # returned 50 entries none of which contain "--seit/" in the URL,
+    # this is the generic news feed (Investegate's silent 404).
+    if epic_lc and total_links >= 5 and matching_epic / total_links < 0.50:
+        return []
     return out
 
 
@@ -218,7 +229,7 @@ def fetch_company(epic: str, *, use_cache: bool = True,
             html = resp.read().decode("utf-8", errors="replace")
     except Exception:
         return []
-    items = _parse_page(html)
+    items = _parse_page(html, epic=epic)
     if use_cache:
         try:
             with open(cp, "w") as f:

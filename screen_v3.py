@@ -156,6 +156,12 @@ def screen_one(
 
     # Discount
     _populate_discount(r, aic_summary, yahoo_discount, row)
+    # If we still have nothing, mark explicitly — the previous
+    # behaviour silently scored these at zero IRR which made them
+    # invisible to the diagnostics. We want to see them.
+    if r.nav_discount_est is None:
+        r.error = "no_discount"
+        return r
 
     # NAV trajectory from AIC (informational + recovery penalty)
     if aic_summary is not None:
@@ -175,6 +181,28 @@ def screen_one(
         r.expected_total_return = etr * remaining
 
     # Catalyst probability — base × signal multiplier
+    # Auto-promote catalyst tag based on RNS signal density. Static
+    # tags get stale (the SEIT/NESF bug class we already fixed by
+    # hand) — but the RNS feed is live. If a name shows multiple
+    # wind-down RNS or substantial TR-1 + PDMR activity, we promote
+    # the catalyst classification accordingly. The static tag in
+    # universe.csv is preserved in `catalyst`; the promoted tag is
+    # what feeds the prob / duration / sleeve assignment.
+    promoted = r.catalyst
+    if signal is not None and signal.rns_available:
+        rns = signal.rns_counts or {}
+        wd = rns.get("winddown", 0)
+        tender = rns.get("tender", 0)
+        tr1 = rns.get("tr1", 0)
+        pdmr = rns.get("pdmr", 0)
+        review = rns.get("review", 0)
+        if wd >= 3 or tender >= 2:
+            promoted = "WIND_DOWN_LIKELY"
+        elif review >= 3 or (tr1 >= 5 and pdmr >= 2):
+            promoted = "STRATEGIC_REVIEW" if r.catalyst in (
+                "", "STRUCTURAL_DISCOUNT", None) else r.catalyst
+    if promoted != r.catalyst and promoted:
+        r.catalyst = promoted  # promotion applied
     base_prob = params.CATALYST_PROB_BASE.get(r.catalyst, params.DEFAULT_PROB_BASE)
     r.catalyst_prob_base = base_prob
     if signal is not None:

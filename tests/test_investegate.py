@@ -116,6 +116,38 @@ def test_parse_page_extracts_dated_announcements():
     assert items[1].category == "pdmr"
 
 
+def test_parse_page_rejects_fallback_when_epic_doesnt_match():
+    """Investegate serves a generic news feed (not 404) for unknown
+    EPICs. The scraper previously cached this as that EPIC's data,
+    causing the hash-collision bug across 20 tickers in production.
+    Verify the fallback-page heuristic kicks in."""
+    # 5 announcement links, none containing --seit/ slug
+    html = """
+    <table>""" + "\n".join([f"""
+      <tr><td>15 Jun 2026</td><td>10:00</td><td>UK</td><td>RNS</td>
+        <td><a class="announcement-link"
+             href="https://www.investegate.co.uk/announcement/rns/rec-silicon--rec/holding-s-in-company/{i}">Holding(s) in Company</a></td></tr>
+    """ for i in range(5)]) + "</table>"
+    items_genuine = inv._parse_page(html, epic="REC")
+    items_for_unknown = inv._parse_page(html, epic="SEIT")
+    assert len(items_genuine) == 5, "genuine EPIC accepts page"
+    assert items_for_unknown == [], "unknown EPIC must reject fallback"
+
+
+def test_parse_page_accepts_when_epic_in_slugs():
+    html = """
+    <table>
+      <tr><td>15 Jun 2026</td><td>10:00</td><td>UK</td><td>RNS</td>
+        <td><a class="announcement-link"
+             href="https://www.investegate.co.uk/announcement/rns/sdcl--seit/tr-1-notification-of-major-holdings/1">TR-1</a></td></tr>
+      <tr><td>14 Jun 2026</td><td>10:00</td><td>UK</td><td>RNS</td>
+        <td><a class="announcement-link"
+             href="https://www.investegate.co.uk/announcement/rns/sdcl--seit/director-pdmr-shareholding/2">PDMR</a></td></tr>
+    </table>"""
+    items = inv._parse_page(html, epic="SEIT")
+    assert len(items) == 2 and items[0].category == "tr1"
+
+
 def test_fetch_company_uses_cache(tmp_path, monkeypatch):
     """Cache file written and reused on second call."""
     monkeypatch.setattr(inv, "CACHE_DIR", tmp_path)
