@@ -257,7 +257,13 @@ def rank_region(df: pd.DataFrame, min_mcap: float) -> pd.DataFrame:
 
 def display_top(df: pd.DataFrame, region: str, n: int) -> pd.DataFrame:
     df = df.dropna(subset=['composite']).copy()
-    df = df.sort_values('composite', ascending=False).head(n)
+    df = df.sort_values('composite', ascending=False)
+    # Dedupe by company name — same name on .DE and .F should appear once
+    # (Sto SE shows up as both STO3.DE and STO3.F; keep the higher-composite row)
+    if 'longName' in df.columns:
+        df['_dedupe_key'] = df['longName'].fillna(df['ticker'])
+        df = df.drop_duplicates(subset=['_dedupe_key'], keep='first').drop(columns=['_dedupe_key'])
+    df = df.head(n)
     cols = ['ticker','region','longName','sector','marketCap','currentPrice',
             'composite','n_valid',
             'priceToBook','trailingPE','forwardPE','priceToSalesTrailing12Months',
