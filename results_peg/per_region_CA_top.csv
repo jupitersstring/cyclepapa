@@ -1,9 +1,4 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
-143240.KQ,KR,"Saramin Co.,Ltd.",Industrials,16800.0,84.658,8,,,,1.452,-0.663,-0.129,108.74,16.578,0.999,0.151,0.009,2.414,176379.0
-226320.KS,KR,"It'S Hanbul Co., Ltd.",Consumer Defensive,9820.0,84.629,8,,,,1.083,-2.574,-0.415,204.04,3.312,0.658,0.16,0.175,3.237,172996.0
-042420.KQ,KR,NEOWIZ HOLDINGS Corporation,Communication Services,21600.0,81.59,9,,,,0.297,2.683,0.392,281.222,43.33,1.0,0.055,0.138,,133168.0
-192440.KQ,KR,"Spigen Korea Co.,Ltd",Technology,30700.0,80.902,10,,,,0.382,0.081,0.007,96.775,25.73,0.629,0.099,0.039,0.819,178695.0
-126560.KS,KR,"Hyundai Futurenet Co., Ltd.",Industrials,3040.0,79.819,10,,,,1.22,5.568,0.505,92.085,7.169,0.234,0.061,0.063,3.485,327740.0
 SEC.TO,CA,Senvest Capital Inc.,Financial Services,390.0,82.488,8,0.459,2.198,,0.702,-2.856,-2.652,480.693,134.991,1.0,1.277,,,944.0
 NPI.TO,CA,Northland Power Inc.,Utilities,22.67,78.485,12,1.487,,15.276,2.321,7.85,4.91,-102.363,18.011,0.702,0.462,0.164,0.319,5928.0
 SBI.TO,CA,Serabi Gold plc,Basic Materials,6.07,73.576,13,1.657,4.975,607.0,2.59,4.221,2.226,13.325,10.351,0.597,0.535,0.833,1.394,463.0
