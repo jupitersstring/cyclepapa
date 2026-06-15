@@ -1,5 +1,5 @@
-ticker,name,phase,catalyst,nav_quality,disc_%,src,NAV1y_%,recov,etr_%,age_m,prob_%,sig,dly_spk,IRR_%,setup_score,composite_score
-SUPP.L,,BASE_ABSORBING,WIND_DOWN_COMMITTED,PRIVATE_EQUITY,50.0,override,,0.7,40.0,41.4,83.0,0.3,True,77.8,0.0,0.0
-RMII.L,RM Infrastructure Income,BASE_ABSORBING,WIND_DOWN_COMMITTED,DEBT_AMORTISING,31.5,aic_live,-5.1,0.9,31.5,27.5,78.0,0.17,True,38.5,0.0,0.0
-TMI.L,,BASE_DECLINING,WIND_DOWN_LIKELY,REAL_ASSET_OBSERVABLE,20.0,override,,0.9,12.5,,66.0,0.3,False,2.7,0.221150400379765,0.005901780802913
-ATR.L,Schroder Asian Total Ret,BASE_ABSORBING,STRATEGIC_REVIEW,LISTED_CLEAN,5.3,aic_live,47.3,0.97,2.4,,40.0,0.07,True,0.8,0.0,0.0
+ticker,name,phase,catalyst,nav_quality,disc%,src,NAV1y%,recov,etr%,age_m,prob%,sig,spk,IRR%,setup_score,comp
+SUPP.L,,BASE_ABSORBING,WIND_DOWN_COMMITTED,PRIVATE_EQUITY,50.0,override,,0.7,40.0,41.5,90.0,0.39,Y,85.2,0.0,0.0
+RMII.L,RM Infrastructure Inco,BASE_ABSORBING,WIND_DOWN_COMMITTED,DEBT_AMORTISING,31.4,aic_live,-5.1,0.9,31.3,27.6,78.0,0.17,Y,38.1,0.0,0.0
+TMI.L,,BASE_DECLINING,WIND_DOWN_LIKELY,REAL_ASSET_OBSERVABLE,20.0,override,,0.9,12.5,,72.0,0.39,-,2.9,0.221150400379765,0.0065
+ATR.L,Schroder Asian Total R,BASE_ABSORBING,STRATEGIC_REVIEW,LISTED_CLEAN,5.6,aic_live,53.0,0.97,2.7,,39.0,0.06,Y,0.8,0.0,0.0
