@@ -37,6 +37,7 @@ SHEETS = [
     ("surprises", "Surprises"),
     ("consensus-lagging", "Consensus Lagging"),
     ("inflecting-positive", "Inflecting+"),
+    ("accel-unpriced", "Accel Unpriced"),
     ("prebreakout-na", None),  # placeholder, ignored
 ]
 
@@ -243,6 +244,79 @@ def main():
         written.append(f"Clusters({len(names)} of {len(df)} universe)")
     except Exception as e:
         print(f"  skip Clusters: {e}")
+
+    # Analyze "views" the pipeline writes to cache/*.csv — the special-situation
+    # archetypes beyond the headline screens.
+    for fname, title in [("prebreakout.csv", "Pre-Breakout"),
+                         ("valuation_gap.csv", "Valuation Gap"),
+                         ("inflecting_lagging.csv", "Inflecting+Lagging"),
+                         ("case_studies.csv", "Case Studies")]:
+        fp = config.CACHE_DIR / fname
+        if not fp.exists():
+            continue
+        try:
+            v = pd.read_csv(fp).round(3)
+        except Exception as e:
+            print(f"  skip {title}: {e}"); continue
+        if v.empty:
+            continue
+        v.to_excel(writer, sheet_name=title[:31], index=False, startrow=1, header=False)
+        _fmt_sheet(writer, title[:31], v, hdr, pct_fmt, f2_fmt)
+        written.append(f"{title}({len(v)})")
+
+    # ALL MEASURES — every name with data x every measure column (the full table
+    # behind every screen). Also dropped to data/all_measures.csv (durable).
+    ident = [c for c in ["region", "symbol", "name", "sector", "industry", "size_bucket",
+                         "is_operating", "secular_cyclical", "marketCap"] if c in df.columns]
+    rest = [c for c in df.columns if c not in ident and c not in ("payload_fp", "asof", "fetch_ok")]
+    allm = df[ident + rest].copy()
+    for c in allm.columns:
+        if allm[c].dtype.kind in "fc":
+            allm[c] = allm[c].round(4)
+    allm = allm.sort_values([c for c in ["region", "symbol"] if c in allm.columns])
+    try:
+        allm.to_csv(config.DATA_DIR / "all_measures.csv.gz", index=False, compression="gzip")
+    except OSError:
+        pass
+    allm.to_excel(writer, sheet_name="All Measures", index=False, startrow=1, header=False)
+    _fmt_sheet(writer, "All Measures", allm, hdr, pct_fmt, f2_fmt)
+    written.append(f"All Measures({len(allm)}x{len(allm.columns)})")
+
+    # MEASURES DICTIONARY — one-line definition per measure family.
+    DICT = [
+        ("Measure", "Definition"),
+        ("score", "Per-screen composite (0-1), ranked within region; each screen tab has its own."),
+        ("revenue/ebitda/earnings_growth", "YoY growth of the latest annual figure."),
+        ("*_accel / *_accel_abs", "Change in the growth rate vs the prior period (inflection)."),
+        ("*_cagr", "Multi-year compound annual growth rate of the line."),
+        ("*_q_yoy / *_q_accel", "Latest-quarter YoY growth and its acceleration."),
+        ("rev_up_frac", "Fraction of recent periods with rising revenue (consistency)."),
+        ("operating_leverage", "EBITDA growth / revenue growth (>1 = margin expansion)."),
+        ("gross/ebitda_margin (+_delta/_delta3/_slope)", "Margin level and its change vs 1/3 periods / fitted trend."),
+        ("surprise_robust", "Scale-stable EPS-surprise stat (winsorized per config.SURPRISE_WINSOR)."),
+        ("surprise_beat_rate", "Fraction of recent quarters that beat consensus."),
+        ("surprise_trend / _recency / _quality", "Direction, recency-weighting, quality of the surprise series."),
+        ("consensus_gap_pct", "Gap between fundamentals-implied and analyst-implied value."),
+        ("enterpriseToEbitda/forwardPE/priceToSales/priceToBook/pegRatio", "Raw valuation multiples."),
+        ("cheapness / valuation_richness", "Region-ranked valuation cheapness, and its inverse."),
+        ("inflection_score / inflection_flag_score", "Strength of the earnings-inflection signal."),
+        ("ret_1m..ret_36m", "Trailing total returns per window (|ret|>900% nulled as split artifacts)."),
+        ("max_drawdown / range_position", "Drawdown from peak; position within the 52-week range."),
+        ("trend_slope / realized_vol", "Fitted price-trend slope; realized volatility."),
+        ("dormancy / price_quiet", "How quiet/forgotten the price action is (low = dormant)."),
+        ("gap_score", "Composite 'cheap + improving + ignored' signal."),
+        ("basing_tightness / prebreakout_score / breaking_out", "Base tightness and pre-breakout technical setup."),
+        ("*_turned_positive/_improving/_trough_up/_inflecting", "Boolean inflection flags per line."),
+        ("secular_cyclical", "Classified as secular grower vs cyclical."),
+        ("dup_payload", "Yahoo served identical statements under another ticker (quality flag)."),
+        ("is_operating", "Passed the operating-company filter (excludes funds/shells/non-operating)."),
+    ]
+    dws = wb.add_worksheet("Measures Dictionary")
+    dws.set_column(0, 0, 46); dws.set_column(1, 1, 95)
+    for r, (k, v) in enumerate(DICT):
+        dws.write(r, 0, k, hdr if r == 0 else None)
+        dws.write(r, 1, v, hdr if r == 0 else None)
+    written.append(f"Measures Dictionary({len(DICT) - 1})")
 
     # Provenance — data vintage + what the quality guards removed, so the sheet
     # is self-documenting about freshness and filtering.
