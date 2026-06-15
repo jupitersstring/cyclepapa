@@ -310,7 +310,8 @@ def main():
             allm[c] = allm[c].round(4)
     allm = allm.sort_values([c for c in ["region", "symbol"] if c in allm.columns])
     try:
-        allm.to_csv(config.DATA_DIR / "all_measures.csv.gz", index=False, compression="gzip")
+        allm.to_csv(config.DATA_DIR / "all_measures.csv.gz", index=False,
+                    compression={"method": "gzip", "mtime": 0})  # deterministic -> no git churn
     except OSError:
         pass
 
