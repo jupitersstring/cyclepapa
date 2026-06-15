@@ -1,6 +1,34 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
-B,US,,Basic Materials,40.2,77.78,13,2.464,11.105,8.734,3.545,6.338,3.906,3.562,7.809,0.551,0.562,0.667,2.542,67517.0
-ABUS,US,Arbutus Biopharma Corporation,Healthcare,4.26,75.832,11,3.225,5.133,-25.774,4.396,4.836,3.919,10.852,-10.743,0.893,0.944,100.545,,842.0
-AII,US,"American Integrity Insurance Group, Inc.",Financial Services,17.01,75.298,13,0.993,3.514,5.648,1.128,1.89,0.652,42.16,58.851,0.515,0.3,0.265,-0.634,333.0
-CARE,US,"Carter Bankshares, Inc.",Financial Services,29.875,73.588,9,1.311,6.134,11.64,2.564,,1.682,34.405,,0.0,0.791,2.6,9.008,664.0
-AR,US,Antero Resources Corporation,Energy,34.83,71.515,10,1.338,11.272,7.449,1.918,,,,5.884,0.672,0.365,0.343,1.606,10792.0
+4628.T,JP,"Sk Kaken Co.,Ltd.",Basic Materials,9760.0,83.678,12,0.753,11.521,,1.2,2.292,0.268,77.653,5.187,0.3,0.099,0.081,2.682,131663.0
+1879.T,JP,Shinnihon Corporation,Industrials,2241.0,81.169,11,0.974,8.606,,0.947,1.688,0.255,73.106,10.749,0.185,0.185,0.066,0.225,131075.0
+2763.T,JP,"FTGroup Co., Ltd.",Technology,1076.0,79.453,12,0.907,4.951,,1.013,1.764,0.528,47.873,14.714,0.418,0.429,-0.083,0.817,31988.0
+4516.T,JP,"Nippon Shinyaku Co., Ltd.",Healthcare,3943.0,74.744,13,0.911,8.944,9.603,1.556,4.555,1.124,27.854,9.467,0.664,0.073,0.121,-0.032,265762.0
+3932.T,JP,Akatsuki Inc.,Communication Services,2914.0,74.062,13,0.927,7.435,14.006,1.356,2.383,0.724,66.511,3.563,0.543,0.468,0.249,2.075,35062.0
+1596.HK,HK,Hebei Yichen Industrial Group Corporation Limited,Industrials,0.43,83.769,11,0.125,1.162,,0.229,1.68,0.403,-68.163,52.073,0.339,0.244,1.01,,381.0
+0883.HK,HK,CNOOC Limited,Energy,24.92,78.782,13,1.224,8.391,6.676,2.907,3.984,2.43,16.629,5.536,0.764,0.447,0.086,0.065,1184447.0
+1778.HK,HK,"Colour Life Services Group Co., Limited",Real Estate,0.162,77.46,10,0.06,8.1,0.463,0.144,-2.921,-0.275,353.636,57.817,0.199,0.075,0.083,,301.0
+0336.HK,HK,Huabao International Holdings Limited,Basic Materials,3.67,76.936,11,0.839,,,2.76,4.678,2.186,34.021,10.332,0.649,0.425,0.273,0.34,11835.0
+1896.HK,HK,Maoyan Entertainment,Communication Services,5.3,76.248,12,0.554,9.298,7.761,1.286,3.869,0.773,40.013,22.107,0.433,0.216,0.13,,5956.0
+FGX.AX,AU,Future Generation Australia Limited,Financial Services,1.345,86.446,9,0.963,10.346,,7.852,,-0.802,110.213,12.362,1.0,1.086,0.557,0.601,553.0
+CUV.AX,AU,Clinuvel Pharmaceuticals Limited,Healthcare,8.96,77.696,13,1.805,14.0,11.708,4.692,4.963,2.251,51.496,7.126,0.896,0.366,0.036,-0.263,452.0
+ALK.AX,AU,Alkane Resources Ltd,Basic Materials,1.415,76.143,13,1.835,15.722,5.818,2.557,4.398,2.153,15.81,9.307,0.356,0.43,3.341,4.114,1933.0
+EHL.AX,AU,Emeco Holdings Limited,Industrials,0.98,73.739,13,0.668,6.533,5.383,0.618,2.32,0.788,-28.216,11.193,0.568,0.157,0.089,0.138,508.0
+CWP.AX,AU,Cedar Woods Properties Limited,Real Estate,7.05,70.967,13,1.132,8.103,8.23,1.101,5.833,1.26,-14.484,26.194,0.272,0.226,0.403,1.631,600.0
+101400.KQ,KR,"N Citron, Inc.",Technology,2200.0,75.0,8,,,,0.755,-39.66,4.134,60.925,22.081,0.38,-0.166,-0.058,,25573.0
+042420.KQ,KR,NEOWIZ HOLDINGS Corporation,Communication Services,21600.0,66.667,9,,,,0.297,2.683,0.392,281.222,43.33,1.0,0.055,0.138,,133168.0
+004380.KS,KR,"Samick THK Co., Ltd.",Technology,8980.0,50.0,10,,,,0.613,6.376,0.793,-29.472,-13.194,0.188,0.07,-0.265,-0.269,185886.0
+11T.F,DE,"Toyoda Gosei Co., Ltd.",Consumer Cyclical,24.0,82.319,12,0.918,9.023,,0.002,0.18,0.021,902.682,1341.745,0.162,0.086,0.159,3.693,2814.0
+11V.F,DE,Fiverr International Ltd.,Communication Services,8.495,78.837,13,0.84,12.679,15.445,0.712,0.865,0.084,88.212,27.858,0.819,0.097,-0.016,10.5,305.0
+1RQ.F,DE,Cheerwin Group Limited,Consumer Defensive,0.234,77.925,10,0.809,11.7,,0.157,-13.962,-1.295,923.808,76.254,0.526,-0.016,0.137,1.096,312.0
+21L.F,DE,Alphamin Resources Corp.,Basic Materials,0.857,77.617,12,2.833,6.592,,1.486,2.446,1.401,12.725,23.778,0.548,0.588,0.993,1.723,1100.0
+19KA.F,DE,CorMedix Inc.,Healthcare,7.468,77.402,12,1.55,3.994,-8.998,1.464,2.427,1.388,5.235,20.454,0.919,0.5,2.261,0.428,586.0
+IPS.PA,FR,Ipsos SA,Industrials,38.62,76.399,13,1.063,9.044,6.804,0.648,6.048,0.802,-21.916,13.968,0.678,0.148,0.052,0.062,1635.0
+CDA.PA,FR,Compagnie des Alpes SA,Consumer Cyclical,22.75,74.515,6,1.055,9.848,9.161,0.808,,,,,0.877,0.246,0.039,,1155.0
+ELEC.PA,FR,Électricite de Strasbourg Société Anonyme,Utilities,214.5,73.611,12,2.275,9.728,,1.226,4.634,0.954,22.834,8.822,0.333,0.17,-0.12,0.036,1538.0
+BOI.PA,FR,Boiron SA,Healthcare,28.0,72.768,13,1.238,14.894,13.148,0.97,6.338,0.875,9.844,10.914,0.73,0.116,-0.014,1.659,486.0
+THEP.PA,FR,Thermador Groupe SA,Industrials,68.5,70.858,13,1.545,15.022,12.044,1.252,8.518,1.162,7.212,8.514,0.369,0.121,0.046,0.12,628.0
+SAGA-D.ST,SE,AB Sagax (publ),Real Estate,35.45,75.39,12,0.373,2.794,,12.568,13.406,10.534,-59.352,2.898,0.816,0.757,0.028,0.568,68054.0
+ORES.ST,SE,Investment AB Öresund (publ),Financial Services,154.2,74.639,10,1.3,5.786,,5.579,5.68,5.412,2.971,11.369,1.0,0.966,2.219,,6873.0
+INDU-C.ST,SE,AB Industrivärden (publ),Financial Services,501.2,72.957,12,1.064,5.403,,5.365,5.54,5.524,-3.198,11.228,1.0,0.997,0.593,0.602,216969.0
+SUS.ST,SE,Surgical Science Sweden AB (publ),Healthcare,32.62,72.176,13,0.377,31.67,6.698,1.703,7.125,1.022,39.987,3.217,0.655,0.113,-0.061,-0.438,1664.0
+TRAC-B.ST,SE,AB Traction,Financial Services,236.0,71.273,8,0.81,106.306,,69.392,,10.64,84.666,0.984,1.0,1.052,,,3490.0

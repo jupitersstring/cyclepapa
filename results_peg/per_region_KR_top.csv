@@ -1,0 +1,4 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+101400.KQ,KR,"N Citron, Inc.",Technology,2200.0,75.0,8,,,,0.755,-39.66,4.134,60.925,22.081,0.38,-0.166,-0.058,,25573.0
+042420.KQ,KR,NEOWIZ HOLDINGS Corporation,Communication Services,21600.0,66.667,9,,,,0.297,2.683,0.392,281.222,43.33,1.0,0.055,0.138,,133168.0
+004380.KS,KR,"Samick THK Co., Ltd.",Technology,8980.0,50.0,10,,,,0.613,6.376,0.793,-29.472,-13.194,0.188,0.07,-0.265,-0.269,185886.0

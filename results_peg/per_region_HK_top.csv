@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+1596.HK,HK,Hebei Yichen Industrial Group Corporation Limited,Industrials,0.43,83.769,11,0.125,1.162,,0.229,1.68,0.403,-68.163,52.073,0.339,0.244,1.01,,381.0
+0883.HK,HK,CNOOC Limited,Energy,24.92,78.782,13,1.224,8.391,6.676,2.907,3.984,2.43,16.629,5.536,0.764,0.447,0.086,0.065,1184447.0
+1778.HK,HK,"Colour Life Services Group Co., Limited",Real Estate,0.162,77.46,10,0.06,8.1,0.463,0.144,-2.921,-0.275,353.636,57.817,0.199,0.075,0.083,,301.0
+0336.HK,HK,Huabao International Holdings Limited,Basic Materials,3.67,76.936,11,0.839,,,2.76,4.678,2.186,34.021,10.332,0.649,0.425,0.273,0.34,11835.0
+1896.HK,HK,Maoyan Entertainment,Communication Services,5.3,76.248,12,0.554,9.298,7.761,1.286,3.869,0.773,40.013,22.107,0.433,0.216,0.13,,5956.0
