@@ -338,27 +338,85 @@ def classify_archetypes(notes: str, section: str = "") -> tuple[str, list[str]]:
                 break
     if hits:
         return hits[0], hits[1:]
-    # Section-based fallback (also catches D/F/H from sector banner)
+    return classify_by_section_prior(section), []
+
+
+# Section-context archetype priors: when the row's notes are too terse
+# to trigger a keyword hit, infer from the section banner. These are
+# the high-confidence section-to-archetype mappings used as defaults.
+SECTION_PRIORS = [
+    # H archetype dominant sections
+    ("parent-child takeout",             "H"),
+    ("h6 parent-child",                  "H"),
+    ("value-up",                         "H"),
+    ("h4 value-up",                      "H"),
+    ("state-exit",                       "H"),
+    ("governance reset",                 "H"),
+    # G archetype dominant sections
+    ("ddep",                             "G"),
+    ("post-default",                     "G"),
+    ("bank recap",                       "G"),
+    ("forced sector recap",              "G"),
+    ("regulator",                        "G"),
+    ("nigerian banks",                   "G"),
+    ("sovereign recovery",               "G"),
+    # F archetype (post-ch.11 / MCB cascade)
+    ("post-ch.11",                       "F"),
+    ("post-bankruptcy",                  "F"),
+    ("post-emerg",                       "F"),
+    ("post-reorg",                       "F"),
+    ("emerged",                          "F"),
+    ("chapter 11",                       "F"),
+    ("china property",                   "F"),
+    ("mcb cascade",                      "F"),
+    # E archetype (court-supervised survival)
+    ("post-rehab",                       "E"),
+    ("rehabilitation",                   "E"),
+    ("recovery judicial",                "E"),
+    ("starug",                           "E"),
+    ("whoa",                             "E"),
+    ("pn17",                             "E"),
+    ("ccaa",                             "E"),
+    # A2 (sovereign industrial-policy)
+    ("sovereign-anchored critical mineral", "A2"),
+    ("critical minerals",                "A2"),
+    ("ddc + chips",                      "A2"),
+    ("sovereign industrial policy",      "A2"),
+    ("post-iaa cohort",                  "A2"),
+    ("green industrial-policy",          "A2"),
+    # A1 (sovereign-strategic + rights)
+    ("rights-issue universe",            "A1"),
+    ("rights issue",                     "A1"),
+    ("ing / lloyds 2009 template",       "A1"),
+    ("mittelstand & industrial recaps",  "A1"),
+    ("sovereign-anchored",               "A1"),
+    ("italian + spanish bank consolidation", "A1"),
+    ("milei",                            "A1"),
+    ("argentina + brazil",               "A1"),
+    ("saudi/uae sovereign-anchored",     "A1"),
+    # C (LME / exchange offers)
+    ("exchange offer",                   "C"),
+    ("convertible",                      "C"),
+    ("liability management",             "C"),
+    # B (cyclical / strategic instrument)
+    ("oilfield",                         "B"),
+    ("offshore drilling",                "B"),
+    ("coal / metallur",                  "B"),
+    ("e&p",                              "B"),
+    ("shipping",                         "B"),
+    ("crypto / mining",                  "B"),
+    ("auto parts",                       "B"),
+    ("renewables / ev / battery",        "B"),
+    ("cyclical",                         "B"),
+]
+
+
+def classify_by_section_prior(section: str) -> str:
     s = section.lower()
-    if "post-ch.11" in s or "post-bankruptcy" in s or "emerged" in s:
-        return "F", []
-    if "convertible" in s or "convert" in s:
-        return "B", []
-    if "exchange" in s or "liability" in s:
-        return "C", []
-    if "rights" in s and ("issue" in s or "offering" in s):
-        return "A1", []
-    if "ch.11" in s or "ch.22" in s:
-        return "F", []
-    if "default" in s or "post-default" in s or "sovereign" in s:
-        return "G", []
-    if "value-up" in s or "parent-child" in s or "state-exit" in s:
-        return "H", []
-    if "cyclical" in s:
-        return "B", []
-    if "post-rehab" in s or "rehab" in s:
-        return "E", []
-    return "Unknown", []
+    for keyword, code in SECTION_PRIORS:
+        if keyword in s:
+            return code
+    return "Unknown"
 
 
 def classify_status(notes: str, bucket: str) -> str:

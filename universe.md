@@ -830,6 +830,234 @@ the US market.
 | Permanent TSB | EURONEXT:PTSB | ○ | A | Irish state sell-down as the event |
 | ABN AMRO / NatWest state exits | AMS/LSE | ▲ | A | Government-overhang removal = slow-motion A1 |
 
+### Continental Europe — German Mittelstand & industrial recaps (post-IAA cohort)
+
+The March 2026 EU Industrial Accelerator Act gave EIB and KfW a
+templated A2-archetype role for steel, aluminium, cement, automotive,
+and renewables. These names sit at the intersection of cyclical
+distress and emerging sovereign-industrial-policy backstops.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Salzgitter | XETR:SZG | ▲ | A | €5.4bn steel decarbonisation project; possible KfW anchor under IAA; cyclical steel trough |
+| Thyssenkrupp Steel | XETR:TKA | ★ | A | EPCG (Kretinsky) 20% Jul 2024; JV with state pending; €2bn state aid framework approved |
+| KION Group | XETR:KGX | ▲ | A | Industrial trucks cycle; pension overhang; Weichai 47% strategic anchor |
+| HeidelbergMaterials | XETR:HEI | ▲ | A | EU green-cement subsidies; Hanson UK take-private of US assets |
+| Tui AG | XETR:TUI1 | ○ | A | Three rights issues 2020-2022; Mordashov 30% Russia sanctions overhang resolution catalyst |
+| Wienerberger | VIE:WIE | ▲ | A | Brick/clay-tile cyclical trough; €750m sustainability-linked bond Jun 2024 |
+| Holcim | SIX:HOLN | ▲ | A | North America carve-out plan; €30bn break-up watch |
+| Boskalis Westminster | (delisted; HAL) | ○ | C → acquired | Take-private at €33 May 2022 — negative control reference |
+| voestalpine | VIE:VOE | ▲ | A | Steel cycle; €1.5bn green-steel transition; possible CEEFC-style Austrian state backstop |
+| Suedzucker | XETR:SZU | ▲ | A | Sugar cycle + Cropenergies pivot; family/Rothschild anchor |
+| Klöckner & Co | XETR:KCO | ▲ | A | Steel distribution cycle; Loncin 4.5% strategic anchor 2024 |
+| Rhön-Klinikum | (private) | ○ | C → acquired | Asklepios take-private template |
+| Encavis | (acquired KKR Mar 2024) | ★ | C → acquired | EUR €15.50 take-private; pre-event sovereign-anchored renewables |
+
+### Continental Europe — Italian + Spanish bank consolidation + corporates
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| UniCredit | BIT:UCG | ▲ | A | Activist M&A pursuer (BPM rejected; Commerzbank watch); Orcel strategy |
+| Banca Popolare di Sondrio | BIT:BPSO | ▲ | A | BPM-style consolidation candidate; mid-cap UBI watch |
+| Intesa Sanpaolo | BIT:ISP | ▲ | A | Watch dividend payout vs M&A optionality |
+| MedioCredito Centrale (MCC) | (state) | ○ | A | Italian state vehicle for southern-Italy bank rescues; possible H archetype |
+| Banca Generali | BIT:BGN | ▲ | A | Mediobanca consolidation play |
+| Mediobanca | BIT:MB | ★ | A | Caltagirone activist + Delfin (Del Vecchio) 20% — post-MPS deal continued board fight |
+| Anima Holding | BIT:ANIM | ▲ | A | Banco BPM tender May 2024 closed; comparison for next consolidation cycle |
+| Banco Sabadell | BME:SAB | ★ | A | BBVA hostile bid rejected May 2024; Mexican subsidiary monetisation; Apr 2026 EGM decision |
+| Bankinter | BME:BKT | ▲ | A | Watch; Botín-family Spanish bank consolidation watch |
+| Ferrovial | EPA:FER | ▲ | A | Spain-to-Netherlands relisting 2024; $5bn US infrastructure pivot |
+| Talgo | BME:TLGO | ○ | A | Pesa Bydgoszcz €620m offer Apr 2024 blocked Spanish state; Talgo rights issue alternative pending |
+| OHLA (former OHL) | BME:OHLA | ★ | A | Amodio family + Atitlán capital injection Jan 2024; €70m at €0.25; €40m Atitlán; second restructuring since 2020 |
+| Eroski | (cooperative) | ▲ | C | Spanish food cooperative; bond restructure 2024 |
+| Acerinox | BME:ACX | ▲ | A | Specialty steel cycle |
+| ACS | BME:ACS | ▲ | A | Hochtief German subsidiary recap watch |
+| Sacyr | BME:SCYR | ▲ | A | Watch infrastructure debt levels |
+
+### Greater China non-property distress — LGFV + consumer + tech recaps
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Vanke | HK:2202 | ★ | A | Shenzhen Metro Rmb42bn rescue Feb 2025; Nov 2025 Onewo stake demanded as collateral — state backstop conditional, yellow flag; PASS for legacy until state position re-extended |
+| Country Garden Services | HK:6098 | ○ | A | Property mgmt arm of Country Garden; Apr 2026 placements; trades 0.3× book despite recurring revenue |
+| Logan Group | HK:3380 | ★ | A (low) | Restructure approved May 2025; Lin family 30% MCB participation; 5-yr lock; weaker founder commitment than Sunac |
+| Times China | HK:1233 | ○ | A (low) | Restructure in progress; founder Shum exited 2023 |
+| Powerlong RE | HK:1238 | ○ | A (low) | Hoi family Rmb800m MCB participation Q3 2025; 4-yr lock |
+| Chinese Estates Holdings | HK:127 | ○ | A | Chan family take-private offer 2022 lapsed; potential resubmission; 50% NAV discount |
+| ABC China (Agricultural Bank) | HK:1288 | ▲ | A | National bank capital recap; state-aid template applied at scale post-2024 |
+| China Galaxy Securities | HK:6881 | ▲ | A | CSRC-led broker consolidation; Galaxy/Shenwan Hongyuan merger watch |
+| Citic Securities | HK:6030 | ▲ | A | Same consolidation cohort |
+| Tianjin Steel Pipe | (private) | ○ | C | Restructured by local-government takeover 2024 |
+| Tianjin Tasly Pharma | SH:600535 | ▲ | A | China Resources tender Aug 2024 at Rmb12 |
+| China Vanke Tianjin Bond Plan | n/a | ○ | — | LGFV reference case; not directly investable |
+| Yango / Yuzhou / Modern Land / Fantasia | HK various | ★ | C | Negative-control basket — all stub equity wiped or trading at <1% recovery |
+| Shanghai Yongli Belting | SHE:300230 | ○ | A | Loss-narrowing turnaround story; activist Hoegh shareholder |
+| Country Garden Holdings | HK:2007 | ★ | A (very low) → C | Per shortlist — pass for legacy |
+| Kaisa Group | HK:1638 | ★ | A (low) | Per shortlist — Tier 2 with founder lock |
+| Sino-Ocean Group | HK:3377 | ★ | A | Per shortlist — state insurers retain 53.8% |
+| CIFI Holdings | HK:884 | ★ | A (low) | Per shortlist — Lin family MCB |
+| Sunac China | HK:1918 | ★ | A | Per shortlist — Sun Hongbin 23% MCB with 6-yr lock |
+| New World Development | HK:17 | ○ | A | Cheng family Lim 41% holding; Nov 2024 dividend suspension; covenant amendment pending |
+| Hopson Development | HK:754 | ▲ | A | Chu family 70% control; lowest-leverage among private Chinese developers |
+
+### Japan — H6 parent-child takeout cluster (May 2026 FIEA threshold cut)
+
+Listed subsidiaries with majority-owner parents facing the new
+mandatory-TOB threshold at 30% (down from 33⅓%). Names where parent
+has cash capacity > target market cap × 1.2 are the highest-probability
+takeout candidates. The May 2026 amendment accelerates this calendar
+materially.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Hitachi Construction Machinery | TSE:6305 | ★ | A | Hitachi 30.7% parent stake; Itochu 25%; post-FIEA threshold cut, Hitachi must either step back or full TOB |
+| Hitachi Transport System → Logisteed | (Hitachi 40%) | ★ | A | Hitachi sold 40% to KKR Apr 2023 — template for current cohort |
+| Yamaha Motor | TSE:7272 | ▲ | A | Yamaha Corp 9.92% parent; cross-shareholding unwind candidate |
+| Mitsubishi Logistics | TSE:9301 | ▲ | A | Mitsubishi keiretsu cross-holding |
+| Toyota Industries | TSE:6201 | ▲ | A | Toyota Motor 23% cross-hold; potential MBO Sep 2024 reports (¥6tn) |
+| Sumitomo Mitsui Auto Service | TSE:8579 | ▲ | A | Sumitomo Mitsui Banking 67% — clean takeout candidate at TOB threshold |
+| Aozora Bank | TSE:8304 | ★ | A | Daiwa Securities 24% Mar 2024 capital injection at ¥1,800; Tier-1 ratio rebuild |
+| ZOZO | TSE:3092 | ▲ | A | Z Holdings 50.1% — parent watch under MAR Art. 19 disclosure |
+| Tokyo Electric Power | TSE:9501 | ▲ | A | Government 51% holding; H3 state-exit candidate post-Fukushima |
+| Renesas Electronics | TSE:6723 | ▲ | A | INCJ exit completed; clean post-state float now under TSE Cost of Capital pressure |
+| TBS Holdings | TSE:9401 | ▲ | A | Cross-shareholding-unwind pressure from value-up directive |
+| Saizeriya | TSE:7581 | ▲ | A | Cross-holding unwind candidate; high cash + low PBR |
+| Nintendo | TSE:7974 | ▲ | A | Yamauchi family stake history; capital-return demand from TSE directive |
+| Sumitomo Realty | TSE:8830 | ▲ | A | PBR 0.7; family + bank cross-holding; capital-efficiency overhaul under TSE pressure |
+| Idemitsu Kosan | TSE:5019 | ▲ | A | Idemitsu family 31% pressure to restructure or exit |
+| Mitsubishi Estate | TSE:8802 | ▲ | A | PBR 0.6; same parent-child + value-up dynamic as Sumitomo Realty |
+| Nippon Express → NX Holdings | TSE:9147 | ▲ | A | Cross-holding unwind candidate |
+| Konica Minolta | TSE:4902 | ▲ | A | PBR <0.5; persistent value-up disclosure laggard |
+| Japan Display | TSE:6740 | ★ | A | Per shortlist — Ichigo 78% |
+| Toshiba | (private 2023; JIP) | ★ | C → B | Per universe — watch for re-IPO as Bucket-B re-entry |
+
+### Korea — H4 value-up tax-penalty laggards (Feb 2026 rule)
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Samsung C&T | KRX:028260 | ★ | A | Chaebol holdco discount; Cevian campaign 2024 30% holding — heaviest value-up disclosure pressure |
+| SK Inc | KRX:034730 | ★ | A | SK On funding gap is the H+G event; chaebol restructuring Q3 2025 |
+| LG Corp | KRX:003550 | ▲ | A | Family-discount holdco; PBR 0.8; value-up filing laggard |
+| Hyundai Mobis | KRX:012330 | ▲ | A | Cross-holding unwind candidate; Mobis-Hyundai Motor circular shareholding pressure |
+| Lotte Holdings | KRX:004990 | ▲ | A | Lotte World Tower pledged as collateral Nov 2024 — pre-recap signal |
+| Hyundai Glovis | KRX:086280 | ▲ | A | Family treasury share holdings; July 2025 treasury-share cancellation pressure |
+| Posco Holdings | KRX:005490 | ▲ | A | PBR <0.5; value-up plan filed but execution lag |
+| KT Corp | KRX:030200 | ▲ | A | Strategic stake by SHIN Hyun-suk |
+| KB Financial | KRX:105560 | ▲ | A | Watch dividend ratio + value-up plan |
+| Shinhan Financial | KRX:055550 | ▲ | A | Same value-up cohort |
+| Hyosung TNC | KRX:298020 | ▲ | A | Cross-holding restructure watch |
+| Doosan Bobcat → Doosan Robotics merger | KRX:241560 | ★ | A | Aug 2024 stock-swap proposal blocked by minority opposition; Q2 2026 revised terms; H6 governance overhaul |
+| HD Hyundai Heavy | KRX:329180 | ▲ | A | Defence shipbuilding cycle + parent HD Hyundai overhaul |
+| LG Display | KRX:034220 | ★ | A | Per priority queue — serial rights issues; OLED cycle |
+
+### Latin America — Argentina + Brazil expanded
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Banco Macro | NYSE:BMA | ▲ | A | Argentina bank basket; ROE recovery thesis; book multiple <1× post-Milei normalisation |
+| Banco Galicia | NYSE:GGAL | ★ | A | HSBC Argentina acquisition Dec 2024 for $550m; integration ramp |
+| Grupo Supervielle | NYSE:SUPV | ▲ | A | Smallest of the listed Argentine banks; highest tariff-reset beta |
+| Pampa Energía | NYSE:PAM | ★ | A | Vaca Muerta + tariff normalisation; broker 2026 target $143 vs current $90s |
+| TGS (Transportadora de Gas del Sur) | NYSE:TGS | ★ | A | $3bn Vaca Muerta gas pipeline; YPF + Pluspetrol + Chevron consortium |
+| Edenor | NYSE:EDN | ★ | A | Argentine electricity distribution; most leveraged to tariff reset; Mindlin family controlling |
+| YPF | NYSE:YPF | ★ | A | RIGI expanded to unconventional Vaca Muerta; Pluspetrol asset swap Jan 2026; broker 2026 target $68; 4.14× EV/EBITDA 2026 |
+| Cresud | NYSE:CRESY | ▲ | A | Argentine agriculture + Brazilian BrasilAgro |
+| IRSA Inversiones | NYSE:IRS | ▲ | A | Argentina real-estate developer; NAV discount + holdco discount |
+| Aluar | BCBA:ALUA | ▲ | A | Aluminium; Madanes Quintanilla family; export-USD-revenue beneficiary |
+| Cemig | NYSE:CIG | ▲ | A | Brazilian utility; potential privatisation under future federal admin |
+| Eletrobras | NYSE:EBR | ▲ | A | Already privatised 2022; H3 reference; state retains 33% |
+| Light SA | B3:LIGT3 | ★ | A | Per universe — RJ plan; ANEEL renewal catalyst |
+| Klabin | B3:KLBN3 | ▲ | A | Paper/pulp cycle; watch debt restructure if cycle deepens |
+| Suzano | B3:SUZB3 | ▲ | A | International Paper acquisition rejected Sep 2024; valuation-gap reference |
+| OI SA | B3:OIBR3 | ★ | C | Serial restructure; equity wiped reference |
+| Marfrig | B3:MRFG3 | ▲ | A | Beef cycle; potential BRF merger restructure |
+| Localiza | B3:RENT3 | ▲ | A | Watch debt levels post-Unidas acquisition |
+| Vibra Energia | B3:VBBR3 | ▲ | A | Brazilian fuel distribution; Petrobras spin-off; potential restructure under new admin |
+| Aeroportos do Brasil (Vinci) | private | ○ | A | Concession-renewal trade |
+
+### MEA / Frontier — Saudi/UAE sovereign-anchored + Africa expanded
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Saudi Aramco | TADAWUL:2222 | ▲ | A | Watch dividend sustainability; Aramco Asia carve-out potential |
+| Saudi Basic Industries (SABIC) | TADAWUL:2010 | ▲ | A | Petrochemical cycle + Saudi Aramco 70% parent — H6 candidate |
+| Saudi Telecom | TADAWUL:7010 | ▲ | A | PIF anchored watch; potential international expansion via debt |
+| Almarai | TADAWUL:2280 | ▲ | A | Saudi dairy cycle; family + PIF |
+| Saudi Real Estate (Akaria) | TADAWUL:4020 | ▲ | A | PIF anchored; under-leveraged Riyadh land bank |
+| Etisalat by E& | ADX:EAND | ▲ | A | Emirates Telecom Group; UAE govt 60%; H3 candidate |
+| Aldar Properties | ADX:ALDAR | ▲ | A | Mubadala 30% sovereign anchor; under-leveraged Abu Dhabi land bank |
+| Emaar Properties | DFM:EMAAR | ▲ | A | Dubai sovereign-anchored; PIF-style structure |
+| Tabreed | ADX:TABREED | ▲ | A | District cooling; Mubadala anchor; consolidation candidate |
+| Drake & Scull | DFM:DSI | ★ | A | Per shortlist — Tabarak strategic anchor |
+| First Abu Dhabi Bank (FAB) | ADX:FAB | ▲ | A | Mubadala + sovereign consolidation candidate |
+| Dubai Islamic Bank | DFM:DIB | ▲ | A | Dubai sovereign anchor |
+| Kuwait Finance House (KFH) | KSE:KFH | ▲ | A | Watch post-Ahli United integration |
+| GFH Financial | BHB:GFH | ▲ | A | Bahrain; legacy-asset workout |
+| Qatar National Bank | QSE:QNBK | ▲ | A | QIA anchored; consolidation watch |
+| Ezdan Holdings | QSE:ERES | ▲ | A | Qatari property; family + state-aligned |
+| Oman Cables | MSM:OCAI | ▲ | A | Watch privatisation pipeline |
+
+### Africa — DDEP + post-default banks + frontier
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Ecobank Transnational | NSE(NGE):ETI | ▲ | A | Pan-African bank; recapitalisation post-Ghana DDEP exposure |
+| GTCO (Guaranty Trust) | NGX:GTCO | ★ | A | Per universe — N₦209bn local + N₦366bn LSE listing |
+| Zenith Bank | NGX:ZENITHBANK | ★ | A | Per universe — N₦350bn hybrid rights+public |
+| Access Holdings | NGX:ACCESSCORP | ★ | A | N₦351bn rights at N₦19.75 |
+| UBA | NGX:UBA | ★ | A | N₦397bn in two tranches |
+| Fidelity Bank | NGX:FIDELITYBK | ★ | A | N₦175.85bn rights + private placement |
+| First Bank of Nigeria | NGX:FBNH | ▲ | A | Pre-recap watch; Otedola consolidation |
+| Stanbic IBTC | NGX:STANBIC | ▲ | A | Nigerian bank recap basket |
+| Wema Bank | NGX:WEMABANK | ○ | A | Smaller Nigerian bank recap candidate |
+| Heritage Bank Nigeria | (gone) | ★ | C | License revoked Jun 2024 — negative control |
+| MTN Ghana | GSE:MTNGH | ○ | A | Post-DDEP normalisation; Ghana telecom cycle |
+| Calbank Ghana | GSE:CAL | ○ | A | Ghana DDEP-exposed bank recap candidate |
+| Standard Chartered Ghana | GSE:SCB | ▲ | A | Ghana DDEP-exposed UK parent backed |
+| Republic Bank Ghana | GSE:RBGH | ○ | A | Ghana DDEP-exposed |
+| Société Générale Ghana | GSE:SOGEGH | ○ | A | Ghana DDEP-exposed |
+| Egypt Commercial International Bank | EGX:COMI | ★ | A | Watch EGP devaluation absorption + RAS El-Hekma rebalancing |
+| CIB Egypt | EGX:CIB | ★ | A | Same |
+| Talaat Moustafa Group | EGX:TMGH | ★ | A | Ras El-Hekma adjacent; sovereign development partner |
+| MTN Group | JSE:MTN | ▲ | A | Africa expansion + South-Africa-rand recovery |
+| Vodacom Group | JSE:VOD | ▲ | A | Watch Egypt + Tanzania expansion |
+| EOH Holdings | JSE:EOH | ★ | A | South African IT recovery template |
+| Tongaat Hulett | (provisional liquidation 2026) | ★ | C | Negative-control reference; rescue lapsed Feb 2026 |
+| Sibanye-Stillwater | NYSE:SBSW | ★ | B | Per universe — $500m convertible; multi-commodity |
+| Anglo American Platinum | JSE:AMS | ▲ | A | Anglo break-up cycle; PGM trough |
+| Implats (Impala Platinum) | JSE:IMP | ▲ | A | PGM trough cycle; Royal Bafokeng integration |
+| Bidvest Group | JSE:BVT | ▲ | A | Consumer/services cycle; family-owned anchor |
+| Liberty Holdings (renamed) | (taken-private template) | ★ | C → acquired | Standard Bank consolidation reference |
+
+### EU sovereign green industrial-policy beneficiaries (post-IAA cohort)
+
+The Industrial Accelerator Act creates an A2-equivalent framework for
+EU steel/aluminium/cement/auto/renewables. Names below are
+sector-strategic and likely sovereign-anchored if a recap is needed.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Stellantis | NYSE:STLA | ▲ | A | EU auto consolidator; sovereign-anchored fall-back via Bpifrance |
+| Renault Group | EPA:RNO | ▲ | A | French State 6% + Nissan unwind; potential rights for Ampere EV restart |
+| Volkswagen Preferred | XETR:VOW3 | ▲ | A | Lower Saxony state anchor + Porsche/Piech family; PowerCo restructure |
+| Continental | XETR:CON | ▲ | A | Schaeffler family pressure to split tire / auto-parts |
+| Schaeffler | XETR:SHA | ▲ | A | Vitesco merger; auto-parts cycle; family-controlled |
+| Faurecia / Forvia | EPA:FRVIA | ▲ | A | Cycle trough; Stellantis customer concentration |
+| Plastic Omnium | EPA:POM | ▲ | A | Burelle family anchor; EV transition risk |
+| Iberdrola | BME:IBE | ▲ | A | Spanish state-aligned utility; renewables capex cycle |
+| Endesa | BME:ELE | ▲ | A | Enel parent stake; Spanish state alignment |
+| Engie | EPA:ENGI | ▲ | A | French State 32% direct + sovereign-anchored |
+| EDF | (re-nationalised 2023) | ★ | C | French state — H3 reference; not listed |
+| Aenza (former Graña y Montero) | NYSE:AENZ | ○ | A | Peru engineering; Odebrecht legacy; sovereign overhang |
+| OMV | VIE:OMV | ▲ | A | ADNOC + Austria sovereign anchor; Adnoc gas integration |
+| EDP | BME:EDP | ▲ | A | Watch renewables capex cycle; Spanish state-aligned |
+| Solaria Energía | BME:SLR | ▲ | A | Spanish solar developer; debt-overhang watch |
+| Acciona | BME:ANA | ▲ | A | Renewables + concessions cycle |
+| Atlantia → Mundys (taken private) | (private 2023) | ★ | C → acquired | Benetton/Blackstone take-private reference |
+| Vinci | EPA:DG | ▲ | A | Watch French concessions cycle |
+| Bouygues | EPA:EN | ▲ | A | French conglomerate; family-controlled |
+| Eiffage | EPA:FGR | ▲ | A | Watch infrastructure cycle |
+
 ### Ukraine reconstruction contingent basket (pre-event)
 
 Names that re-rate on a credible ceasefire/reconstruction programme —
