@@ -286,10 +286,10 @@ common is a separate trade.
 | Name | Ticker | Conf. | Bucket | Notes |
 |---|---|---|---|---|
 | Petra Diamonds | LSE:PDL | ★ | A | Per shortlist |
-| Petrofac | LSE:PFC | ★ | A | 2024 restructuring plan; multiple revisions |
+| Petrofac | (gone) | ★ | C | **FALSE FRIEND**: UK Court of Appeal set aside Part 26A sanction Jul 2025 on disproportionate new-money IRR (211%); TenneT terminated 2GW programme Oct 2025; PIL admin applied Nov 2025 — equity wiped |
 | Tullow Oil | LSE:TLW | ★ | A | Refi + bond exchange 2024 |
 | Enquest | LSE:ENQ | ▲ | A | UK oil watch |
-| Wood Group | LSE:WG | ★ | A | 2024 strategic review; possible sale |
+| Wood Group | (gone private 2026) | ★ | C | **FALSE FRIEND**: Sidara cash takeover at 30p closed Mar 2026 after Deloitte accounting-irregularity review — equity crystallised 85% below 2023 levels |
 | Boohoo | LSE:BOO | ▲ | A | Refi + activist Frasers stake |
 | ASOS | LSE:ASC | ★ | A | 2024 refi via convertibles + bond extension |
 | Fevertree Drinks | LSE:FEVR | ▲ | A | Watch margin pressure |
