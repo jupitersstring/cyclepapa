@@ -67,6 +67,10 @@ except Exception:
 
 
 CACHE_PATH = "/tmp/signals_v2_cache.pkl"
+# Cache version stamp. Bump whenever scraper / scoring logic changes
+# in a way that would invalidate previously-cached TickerSignals.
+# v2 = post fallback-page-detection fix in investegate_scraper.
+CACHE_SCHEMA_VERSION = "2026-06-15-v2-fallback-fix"
 HISTORY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             "signals_history.csv")
 CACHE_TTL_SECONDS = 24 * 3600
@@ -407,6 +411,10 @@ def fetch_signals_for(
 # Batch + cache + history
 
 def _read_cache() -> dict:
+    """Read pickle cache. Returns the inner ticker->TickerSignals dict
+    if the version stamp matches; otherwise treats the cache as stale
+    and returns empty (forcing re-fetch). This is what saves us from
+    the fallback-page-poisoning hangover."""
     if not os.path.exists(CACHE_PATH):
         return {}
     age = time.time() - os.path.getmtime(CACHE_PATH)
@@ -414,15 +422,20 @@ def _read_cache() -> dict:
         return {}
     try:
         with open(CACHE_PATH, "rb") as f:
-            return pickle.load(f)
+            raw = pickle.load(f)
     except Exception:
         return {}
+    # Version-stamped envelope: {"version": "...", "entries": {...}}.
+    # Old format (raw dict) is treated as unversioned -> invalidate.
+    if isinstance(raw, dict) and raw.get("version") == CACHE_SCHEMA_VERSION:
+        return raw.get("entries", {})
+    return {}
 
 
 def _write_cache(d: dict) -> None:
     try:
         with open(CACHE_PATH, "wb") as f:
-            pickle.dump(d, f)
+            pickle.dump({"version": CACHE_SCHEMA_VERSION, "entries": d}, f)
     except Exception:
         pass
 
