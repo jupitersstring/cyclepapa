@@ -79,6 +79,8 @@ def main():
     ap.add_argument("--min-net", type=int, default=3)
     ap.add_argument("--band", default="B1")
     ap.add_argument("--from-low", type=float, default=0.15)
+    ap.add_argument("--no-persist", action="store_true",
+                    help="skip the auto snapshot+commit+push of cache & report")
     args = ap.parse_args()
 
     os.makedirs(RESULTS, exist_ok=True)
@@ -127,6 +129,13 @@ def main():
     with open(report, "w") as f:
         f.write("\n".join(out))
     print(f"[run_scan] report -> {report}")
+
+    # durability: auto-persist the (possibly refreshed) cache + this report to git
+    if not args.no_persist:
+        import subprocess
+        print("[run_scan] persisting cache + report to git (snapshot.sh) ...")
+        subprocess.run(["bash", os.path.join(os.path.dirname(__file__), "snapshot.sh")],
+                       check=False)
 
 
 if __name__ == "__main__":
