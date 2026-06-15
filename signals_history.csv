@@ -790,3 +790,265 @@ date,ticker,name,signal_score,news_score,rns_score,news_director_dec,news_adviso
 2026-06-15,VTA.L,Volta Finance,0.386,0.0,0.386,0,0,0,0,0,0.0,4,2,1,0,0,6,0,0,50,True
 2026-06-15,WHR.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
 2026-06-15,WWH.L,Worldwide Healthcare Trust,0.0672,0.0,0.0672,0,0,0,0,0,0.0,0,0,0,0,0,10,0,0,50,True
+2026-06-15,3IN.L,3i Infrastructure,0.0293,0.0,0.0293,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,AA4.L,Amedeo Air Four Plus,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AAIF.L,Aberdeen Asian Income Fund,0.013,0.0,0.013,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AAS.L,Aberdeen Asia Focus,0.0591,0.0,0.0591,0,0,0,0,0,0.0,0,0,0,0,0,7,0,0,50,True
+2026-06-15,AATG.L,Albion Technology & General VCT,0.0733,0.0,0.0733,0,0,0,0,0,0.0,0,1,0,0,0,1,0,0,50,True
+2026-06-15,ADIG.L,,0.0233,0.0,0.0233,0,0,0,0,0,0.0,0,0,2,0,0,0,0,0,50,True
+2026-06-15,AEET.L,Parvus Energy Efficiency Trust,0.0199,0.0,0.0199,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AEI.L,Aberdeen Equity Income Trust,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AERI.L,Aquila European Renewables,0.0066,0.0,0.0066,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AEWU.L,AEW UK REIT,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AFL.L,Artemis UK Future Leaders,0.1327,0.0,0.1327,0,0,0,0,0,0.0,1,0,0,0,0,17,0,0,50,True
+2026-06-15,AGT.L,AVI Global Trust,0.0703,0.0,0.0703,0,0,0,0,0,0.0,0,0,0,0,0,13,0,0,50,True
+2026-06-15,AGVI.L,Aberforth Geared Value & Income Trust,0.0304,0.0,0.0304,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,AIE.L,Ashoka India Equity,0.079,0.0,0.079,0,0,0,0,0,0.0,2,1,0,0,0,0,0,0,50,True
+2026-06-15,AIRE.L,Alternative Income REIT,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,AJOT.L,AVI Japan Opportunity Trust,0.0113,0.0,0.0113,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,ALW.L,Alliance Witan,0.0796,0.0,0.0796,0,0,0,0,0,0.0,0,0,0,0,0,19,0,0,50,True
+2026-06-15,ANII.L,Aberdeen New India Investment Trust,0.1844,0.0,0.1844,0,0,0,0,0,0.0,3,0,0,0,0,20,0,0,50,True
+2026-06-15,APAX.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,API.L,abrdn Property Income Trust,0.041,0.0,0.041,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,ARR.L,Aurora UK Alpha,0.1699,0.0,0.1699,0,0,0,0,0,0.0,1,0,0,0,0,19,0,0,50,True
+2026-06-15,ASCI.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,ASL.L,Aberforth Smaller Companies,0.1342,0.0,0.1342,0,0,0,0,0,0.0,1,0,0,0,0,21,0,0,50,True
+2026-06-15,ASLI.L,abrdn European Logistics Income,0.0319,0.0,0.0319,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,ATR.L,Schroder Asian Total Return,0.0591,0.0,0.0591,0,0,0,0,0,0.0,0,0,0,0,0,9,0,0,50,True
+2026-06-15,ATT.L,Allianz Technology Trust,0.071,0.0,0.071,0,0,0,0,0,0.0,0,0,0,0,0,13,0,0,50,True
+2026-06-15,AUGM.L,,0.1566,0.0,0.1566,0,0,0,0,0,0.0,6,0,1,0,0,0,0,0,50,True
+2026-06-15,AUSC.L,Aberdeen UK Smaller Companies Growth,0.0796,0.0,0.0796,0,0,0,0,0,0.0,0,0,0,0,0,18,0,0,50,True
+2026-06-15,AWEM.L,Ashoka WhiteOak Emerging Markets,0.0413,0.0,0.0413,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,BASC.L,Brown Advisory US Smaller Companies,0.1251,0.0,0.1251,0,0,0,0,0,0.0,1,0,0,0,0,19,0,0,50,True
+2026-06-15,BBH.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,BBOX.L,Tritax Big Box REIT,0.0371,0.0,0.0371,0,0,0,0,0,0.0,0,3,0,0,0,0,0,0,50,True
+2026-06-15,BEMO.L,Barings Emerging EMEA Opportunities,0.1149,0.0,0.1149,0,0,0,0,0,0.0,1,0,0,0,0,4,0,0,50,True
+2026-06-15,BERI.L,BlackRock Energy and Resources Income,0.0492,0.0,0.0492,0,0,0,0,0,0.0,0,0,0,0,0,4,0,0,50,True
+2026-06-15,BGCG.L,Baillie Gifford China Growth,0.1805,0.0,0.1805,0,0,0,0,0,0.0,2,0,0,0,0,14,0,0,50,True
+2026-06-15,BGEU.L,Baillie Gifford European Growth,0.1779,0.0,0.1779,0,0,0,0,0,0.0,2,0,0,0,0,14,0,0,50,True
+2026-06-15,BGFD.L,Baillie Gifford Japan Trust,0.1143,0.0,0.1143,0,0,0,0,0,0.0,1,0,0,0,0,14,0,0,50,True
+2026-06-15,BGS.L,Baillie Gifford Shin Nippon,0.2256,0.0,0.2256,0,0,0,0,0,0.0,3,1,0,0,0,7,0,0,50,True
+2026-06-15,BGUK.L,Baillie Gifford UK Growth,0.174,0.0,0.174,0,0,0,0,0,0.0,2,0,0,0,0,18,0,0,50,True
+2026-06-15,BHMG.L,BH Macro,0.1717,0.0,0.1717,0,0,0,0,0,0.0,1,0,0,0,0,29,0,0,50,True
+2026-06-15,BHMU.L,BH Macro,0.1717,0.0,0.1717,0,0,0,0,0,0.0,1,0,0,0,0,29,0,0,50,True
+2026-06-15,BIOG.L,Biotech Growth Trust,0.0597,0.0,0.0597,0,0,0,0,0,0.0,0,0,0,0,0,8,0,0,50,True
+2026-06-15,BIPS.L,Invesco Bond Income Plus,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,BNKR.L,Bankers Investment Trust,0.1765,0.0,0.1765,0,0,0,0,0,0.0,0,2,0,0,0,21,0,0,50,True
+2026-06-15,BOOK.L,Literacy Capital,0.0321,0.0,0.0321,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,BPCR.L,BioPharma Credit,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,BPT.L,,0.155,0.0,0.155,0,0,0,0,0,0.0,1,4,0,0,0,19,0,0,50,True
+2026-06-15,BRAI.L,BlackRock American Income,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,BRFI.L,BlackRock Frontiers,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,BRGE.L,BlackRock Greater Europe,0.0797,0.0,0.0797,0,0,0,0,0,0.0,0,0,0,0,0,16,0,0,50,True
+2026-06-15,BRIG.L,BlackRock Income & Growth,0.0084,0.0,0.0084,0,0,0,0,0,0.0,0,0,0,0,0,1,0,0,50,True
+2026-06-15,BRLA.L,BlackRock Latin American,0.1965,0.0,0.1965,0,0,0,0,0,0.0,3,0,0,2,0,0,0,0,50,True
+2026-06-15,BRSC.L,BlackRock Smaller Companies,0.1419,0.0,0.1419,0,0,0,0,0,0.0,1,0,0,0,0,16,0,0,50,True
+2026-06-15,BRWM.L,BlackRock World Mining,0.0255,0.0,0.0255,0,0,0,0,0,0.0,0,0,0,0,0,1,0,0,50,True
+2026-06-15,BSIF.L,Bluefield Solar Income Fund,0.0665,0.0,0.0665,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,BSRT.L,Baker Steel Resources Trust,0.1317,0.0,0.1317,0,0,0,0,0,0.0,5,0,0,0,0,25,0,0,50,True
+2026-06-15,BUT.L,Brunner Investment Trust,0.0518,0.0,0.0518,0,0,0,0,0,0.0,0,0,0,0,0,4,0,0,50,True
+2026-06-15,CCJI.L,CC Japan Income & Growth Trust,0.0199,0.0,0.0199,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,CGI.L,Canadian General Investments,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CGL.L,Castelnau Group,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CGT.L,Capital Gearing Trust,0.0659,0.0,0.0659,0,0,0,0,0,0.0,0,0,0,0,0,12,0,0,50,True
+2026-06-15,CHI.L,CT UK High Income Trust,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CHRY.L,Chrysalis Investments,0.1551,0.0,0.1551,0,0,0,0,0,0.0,0,3,0,0,0,40,0,0,50,True
+2026-06-15,CIC.L,,0.0458,0.0,0.0458,0,0,0,0,0,0.0,4,0,0,0,0,0,0,0,50,True
+2026-06-15,CLDN.L,Caledonia Investments,0.2367,0.0,0.2367,0,0,0,0,0,0.0,1,4,0,0,0,33,0,0,50,True
+2026-06-15,CMPG.L,CT Global Managed Portfolio Growth,0.0261,0.0,0.0261,0,0,0,0,0,0.0,0,0,0,0,0,2,0,0,50,True
+2026-06-15,CMPI.L,CT Global Managed Portfolio Income,0.0261,0.0,0.0261,0,0,0,0,0,0.0,0,0,0,0,0,2,0,0,50,True
+2026-06-15,CORD.L,Cordiant Digital Infrastructure,0.058,0.0,0.058,0,0,0,0,0,0.0,1,3,0,0,0,0,0,0,50,True
+2026-06-15,CREI.L,Custodian Property Income REIT,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CTHT.L,CT Healthcare Trust,0.2055,0.0,0.2055,0,0,0,0,0,0.0,0,3,0,3,0,29,0,0,50,True
+2026-06-15,CTPE.L,CT Private Equity Trust,0.1054,0.0,0.1054,0,0,0,0,0,0.0,0,2,0,0,0,0,0,0,50,True
+2026-06-15,CTUK.L,CT UK Capital and Income,0.0484,0.0,0.0484,0,0,0,0,0,0.0,0,0,0,0,0,5,0,0,50,True
+2026-06-15,CTY.L,City of London Investment Trust,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CVCE.L,CVC Income & Growth,0.0152,0.0,0.0152,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CVCG.L,CVC Income & Growth,0.0152,0.0,0.0152,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,CYN.L,CQS Natural Resources Growth & Income,0.1228,0.0,0.1228,0,0,0,0,0,0.0,0,2,0,0,0,3,0,0,50,True
+2026-06-15,DGI9.L,Digital 9 Infrastructure,0.1591,0.0,0.1591,0,0,0,0,0,0.0,4,2,0,0,0,0,0,0,50,True
+2026-06-15,DIG.L,Dunedin Income Growth,0.1209,0.0,0.1209,0,0,0,0,0,0.0,0,1,0,0,0,5,0,0,50,True
+2026-06-15,DIVI.L,Diverse Income Trust,0.0583,0.0,0.0583,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,DNA2.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,38,True
+2026-06-15,DNA3.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,49,True
+2026-06-15,DPA.L,DP Aircraft I,0.0428,0.0,0.0428,0,0,0,0,0,0.0,2,1,0,0,0,0,0,0,50,True
+2026-06-15,EDIN.L,Edinburgh Investment Trust,0.1223,0.0,0.1223,0,0,0,0,0,0.0,0,1,0,0,0,22,0,0,50,True
+2026-06-15,EGL.L,Ecofin Global Utilities and Infrastructure,0.0447,0.0,0.0447,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,ENRG.L,VH Global Energy Infrastructure,0.0354,0.0,0.0354,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,EOT.L,European Opportunities Trust,0.0488,0.0,0.0488,0,0,0,0,0,0.0,1,0,0,0,1,0,0,0,50,True
+2026-06-15,ESCT.L,The European Smaller Companies Trust,0.1117,0.0,0.1117,0,0,0,0,0,0.0,0,1,0,0,0,11,0,0,50,True
+2026-06-15,ESO.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,ESP.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,EWI.L,Edinburgh Worldwide,0.0864,0.0,0.0864,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,FAIR.L,Fair Oaks Income 2021,0.0656,0.0,0.0656,0,0,0,0,0,0.0,0,0,0,0,0,32,0,0,50,True
+2026-06-15,FAS.L,Fidelity Asian Values,0.0477,0.0,0.0477,0,0,0,0,0,0.0,0,0,0,0,0,5,0,0,50,True
+2026-06-15,FCIT.L,F&C Investment Trust,0.1964,0.0,0.1964,0,0,0,0,0,0.0,0,4,0,0,0,20,0,0,50,True
+2026-06-15,FCSS.L,Fidelity China Special Situations,0.1438,0.0,0.1438,0,0,0,0,0,0.0,2,0,0,0,0,13,0,0,50,True
+2026-06-15,FEML.L,Fidelity Emerging Markets,0.1495,0.0,0.1495,0,0,0,0,0,0.0,2,0,0,0,0,18,0,0,50,True
+2026-06-15,FEV.L,Fidelity European Trust,0.1614,0.0,0.1614,0,0,0,0,0,0.0,1,0,0,0,0,17,0,0,50,True
+2026-06-15,FGEN.L,Foresight Environmental Infrastructure,0.038,0.0,0.038,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,FGT.L,Finsbury Growth & Income Trust,0.1819,0.0,0.1819,0,0,0,0,0,0.0,0,4,0,0,0,17,0,0,50,True
+2026-06-15,FSFL.L,Foresight Solar Fund,0.1074,0.0,0.1074,0,0,0,0,0,0.0,0,0,0,0,0,43,0,0,50,True
+2026-06-15,FSV.L,Fidelity Special Values,0.0345,0.0,0.0345,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,GABI.L,GCP Asset Backed Income,0.1445,0.0,0.1445,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,GCL.L,Geiger Counter,0.1019,0.0,0.1019,0,0,0,0,0,0.0,2,1,0,0,0,0,0,0,50,True
+2026-06-15,GCP.L,GCP Infrastructure Investments,0.1119,0.0,0.1119,0,0,0,0,0,0.0,1,0,0,0,0,42,0,0,50,True
+2026-06-15,GOT.L,Global Opportunities Trust,0.0945,0.0,0.0945,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,GPM.L,Golden Prospect Precious Metals,0.1052,0.0,0.1052,0,0,0,0,0,0.0,0,0,0,0,0,23,0,0,50,True
+2026-06-15,GRID.L,Gresham House Energy Storage,0.1861,0.0,0.1861,0,0,0,0,0,0.0,3,6,0,0,0,0,0,0,50,True
+2026-06-15,GRIO.L,Ground Rents Income Fund,0.0452,0.0,0.0452,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,GROW.L,Molten Ventures,0.2557,0.0,0.2557,0,0,0,0,0,0.0,17,0,0,0,0,22,0,0,50,True
+2026-06-15,GRP.L,Greencoat Renewables,0.1354,0.0,0.1354,0,0,0,0,0,0.0,1,0,0,0,0,41,0,0,50,True
+2026-06-15,GSCT.L,The Global Smaller Companies Trust,0.0804,0.0,0.0804,0,0,0,0,0,0.0,0,0,0,0,0,20,0,0,50,True
+2026-06-15,GSEO.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,GSF.L,Gore Street Energy Storage,0.1412,0.0,0.1412,0,0,0,0,0,0.0,12,1,0,0,0,0,0,0,50,True
+2026-06-15,HAN.L,Hansa Investment Company,0.0754,0.0,0.0754,0,0,0,0,0,0.0,0,0,0,0,0,14,0,0,50,True
+2026-06-15,HANA.L,Hansa Investment Company (A share),0.0754,0.0,0.0754,0,0,0,0,0,0.0,0,0,0,0,0,14,0,0,50,True
+2026-06-15,HEIT.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,HFEL.L,Henderson Far East Income,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,HGEN.L,,0.0767,0.0,0.0767,0,0,0,0,0,0.0,7,0,0,0,0,0,0,0,50,True
+2026-06-15,HGT.L,HgCapital Trust,0.2228,0.0,0.2228,0,0,0,0,0,0.0,5,1,0,0,0,30,0,0,50,True
+2026-06-15,HHI.L,Henderson High Income Trust,0.0373,0.0,0.0373,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,HICL.L,HICL Infrastructure,0.1418,0.0,0.1418,0,0,0,0,0,0.0,2,0,0,0,0,43,0,0,50,True
+2026-06-15,HLCL.L,,0.132,0.0,0.132,0,0,0,0,0,0.0,2,3,0,0,0,2,0,0,50,True
+2026-06-15,HOME.L,Home REIT,0.2073,0.0,0.2073,0,0,0,0,0,0.0,15,0,0,0,0,0,0,0,50,True
+2026-06-15,HOT.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,HRI.L,Herald Investment Trust,0.1777,0.0,0.1777,0,0,0,0,0,0.0,7,0,0,1,0,0,0,0,50,True
+2026-06-15,HSL.L,Henderson Smaller Companies,0.0765,0.0,0.0765,0,0,0,0,0,0.0,0,0,0,0,0,17,0,0,50,True
+2026-06-15,HVPE.L,HarbourVest Global Private Equity,0.0878,0.0,0.0878,0,0,0,0,0,0.0,0,0,0,0,0,40,0,0,50,True
+2026-06-15,IAD.L,Invesco Asia Dragon Trust,0.0785,0.0,0.0785,0,0,0,0,0,0.0,0,0,0,0,0,16,0,0,50,True
+2026-06-15,IBT.L,International Biotechnology,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,ICGT.L,ICG Enterprise Trust,0.1203,0.0,0.1203,0,0,0,0,0,0.0,0,4,0,0,0,35,0,0,50,True
+2026-06-15,IEM.L,Impax Environmental Markets,0.3678,0.0,0.3678,0,0,0,0,0,0.0,11,3,0,0,0,15,0,0,50,True
+2026-06-15,IGC.L,India Capital Growth Fund,0.0674,0.0,0.0674,0,0,0,0,0,0.0,0,0,0,0,0,11,0,0,50,True
+2026-06-15,IGET.L,Invesco Global Equity Income Trust,0.0492,0.0,0.0492,0,0,0,0,0,0.0,0,2,0,0,0,0,0,0,50,True
+2026-06-15,III.L,3i Group,0.3235,0.0,0.3235,0,0,0,0,0,0.0,4,12,0,0,0,6,0,0,50,True
+2026-06-15,INOV.L,Schroders Capital Global Innovation Trust,0.136,0.0,0.136,0,0,0,0,0,0.0,1,2,0,1,0,0,0,0,50,True
+2026-06-15,INPP.L,International Public Partnerships,0.1067,0.0,0.1067,0,0,0,0,0,0.0,0,0,0,0,0,44,0,0,50,True
+2026-06-15,JAGI.L,JPMorgan Asia Growth & Income,0.0515,0.0,0.0515,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,JAM.L,JPMorgan American,0.1935,0.0,0.1935,0,0,0,0,0,0.0,3,0,0,0,0,8,0,0,50,True
+2026-06-15,JCGI.L,JPMorgan China Growth & Income,0.1382,0.0,0.1382,0,0,0,0,0,0.0,1,0,0,0,0,13,0,0,50,True
+2026-06-15,JCH.L,JPMorgan Claverhouse,0.0117,0.0,0.0117,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,JEDT.L,JPMorgan European Discovery,0.0723,0.0,0.0723,0,0,0,0,0,0.0,0,0,0,0,0,14,0,0,50,True
+2026-06-15,JEGI.L,JPMorgan European Growth & Income,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,JEMI.L,JPMorgan Emerging Markets Dividend Income,0.1178,0.0,0.1178,0,0,0,0,0,0.0,2,0,0,0,0,7,0,0,50,True
+2026-06-15,JETG.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,JFJ.L,JPMorgan Japanese,0.0791,0.0,0.0791,0,0,0,0,0,0.0,0,0,0,0,0,17,0,0,50,True
+2026-06-15,JGGI.L,JPMorgan Global Growth & Income,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,JIGI.L,JPMorgan India Growth & Income,0.0803,0.0,0.0803,0,0,0,0,0,0.0,0,0,0,0,0,18,0,0,50,True
+2026-06-15,JLEN.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,JMG.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,JMGI.L,JPMorgan Emerging Markets Growth & Income,0.056,0.0,0.056,0,0,0,0,0,0.0,0,0,0,0,0,8,0,0,50,True
+2026-06-15,JPEL.L,JPEL Private Equity,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,JUGI.L,JPMorgan UK Small Cap Growth & Income,0.0802,0.0,0.0802,0,0,0,0,0,0.0,0,0,0,0,0,19,0,0,50,True
+2026-06-15,JUSC.L,JPMorgan US Smaller Companies,0.0826,0.0,0.0826,0,0,0,0,0,0.0,0,0,0,0,0,21,0,0,50,True
+2026-06-15,KKVL.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,KPC.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,LSAA.L,Life Settlement Assets,0.0844,0.0,0.0844,0,0,0,0,0,0.0,0,0,0,0,0,13,0,0,50,True
+2026-06-15,LTI.L,Lindsell Train Investment Trust,0.0288,0.0,0.0288,0,0,0,0,0,0.0,0,4,0,0,0,0,0,0,50,True
+2026-06-15,LWDB.L,Law Debenture Corporation,0.081,0.0,0.081,0,0,0,0,0,0.0,0,3,0,0,0,0,0,0,50,True
+2026-06-15,LWI.L,Lowland Investment Company,0.0923,0.0,0.0923,0,0,0,0,0,0.0,0,1,0,0,0,10,0,0,50,True
+2026-06-15,MAJE.L,Majedie Investments,0.0021,0.0,0.0021,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,MGCI.L,M&G Credit Income,0.0762,0.0,0.0762,0,0,0,0,0,0.0,0,1,0,0,0,3,0,0,50,True
+2026-06-15,MIGO.L,MIGO Opportunities Trust,0.0477,0.0,0.0477,0,0,0,0,0,0.0,0,1,0,0,0,1,0,0,50,True
+2026-06-15,MMIT.L,Mobius Investment Trust,0.0071,0.0,0.0071,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,MNKS.L,Monks Investment Trust,0.129,0.0,0.129,0,0,0,0,0,0.0,1,0,0,0,0,11,0,0,50,True
+2026-06-15,MNL.L,Manchester & London,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,MPLS.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,MPO.L,Macau Property Opportunities,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,MRC.L,Mercantile Investment Trust,0.0916,0.0,0.0916,0,0,0,0,0,0.0,0,0,0,0,0,15,0,0,50,True
+2026-06-15,MRCH.L,Merchants Trust,0.0693,0.0,0.0693,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,MRV.L,Maven Renovar VCT,0.1027,0.0,0.1027,0,0,0,0,0,0.0,0,0,0,3,0,15,0,0,50,True
+2026-06-15,MTE.L,Montanaro European Smaller Companies,0.1148,0.0,0.1148,0,0,0,0,0,0.0,0,0,0,1,0,22,0,0,50,True
+2026-06-15,MTU.L,Montanaro UK Smaller Companies,0.0822,0.0,0.0822,0,0,0,0,0,0.0,0,0,0,0,0,22,0,0,50,True
+2026-06-15,MUT.L,Murray Income Trust,0.0828,0.0,0.0828,0,0,0,0,0,0.0,0,1,0,0,0,8,0,0,50,True
+2026-06-15,MVI.L,Marwyn Value Investors,0.1366,0.0,0.1366,0,0,0,0,0,0.0,4,0,0,0,0,0,0,0,50,True
+2026-06-15,MWY.L,Mid Wynd International,0.0764,0.0,0.0764,0,0,0,0,0,0.0,0,0,0,0,0,16,0,0,50,True
+2026-06-15,MYI.L,Murray International Trust,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,NAIT.L,North American Income Trust,0.0834,0.0,0.0834,0,0,0,0,0,0.0,0,2,0,0,0,1,0,0,50,True
+2026-06-15,NAS.L,North Atlantic Smaller Companies,0.1542,0.0,0.1542,0,0,0,0,0,0.0,0,3,0,0,0,18,0,0,50,True
+2026-06-15,NAVF.L,Nippon Active Value Fund,0.0329,0.0,0.0329,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,NBPE.L,NB Private Equity Partners,0.2089,0.0,0.2089,0,0,0,0,0,0.0,2,2,0,0,0,35,0,0,50,True
+2026-06-15,NCYF.L,CQS New City High Yield Fund,0.0388,0.0,0.0388,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,NESF.L,NextEnergy Solar Fund,0.0113,0.0,0.0113,0,0,0,0,0,0.0,1,0,0,0,1,0,0,0,50,True
+2026-06-15,NSI.L,New Star Investment Trust,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,OCI.L,Oakley Capital Investments,0.1314,0.0,0.1314,0,0,0,0,0,0.0,1,2,0,0,0,16,0,0,50,True
+2026-06-15,OIG.L,Oryx International Growth,0.09,0.0,0.09,0,0,0,0,0,0.0,0,7,0,0,0,0,0,0,50,True
+2026-06-15,OIT.L,Odyssean Investment Trust,0.0843,0.0,0.0843,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,ONWD.L,Onward Opportunities,0.0908,0.0,0.0908,0,0,0,0,0,0.0,1,3,0,0,0,0,0,0,50,True
+2026-06-15,ORIT.L,Octopus Renewables Infrastructure Trust,0.0924,0.0,0.0924,0,0,0,0,0,0.0,4,0,0,0,0,0,0,0,50,True
+2026-06-15,PAC.L,Pacific Assets Trust,0.0814,0.0,0.0814,0,0,0,0,0,0.0,2,0,0,0,1,0,0,0,50,True
+2026-06-15,PCFT.L,Polar Capital Global Financials,0.1021,0.0,0.1021,0,0,0,0,0,0.0,0,1,0,0,0,13,0,0,50,True
+2026-06-15,PCGH.L,Polar Capital Global Healthcare,0.0574,0.0,0.0574,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,PCT.L,Polar Capital Technology,0.0635,0.0,0.0635,0,0,0,0,0,0.0,0,0,0,0,0,7,0,0,50,True
+2026-06-15,PCTN.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,PEY.L,Partners Group Private Equity,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,PEYS.L,,0.0764,0.0,0.0764,0,0,0,0,0,0.0,0,0,0,0,0,12,0,0,50,True
+2026-06-15,PHI.L,Pacific Horizon Investment Trust,0.2218,0.0,0.2218,0,0,0,0,0,0.0,4,0,0,0,0,13,0,0,50,True
+2026-06-15,PIN.L,Pantheon International,0.2794,0.0,0.2794,0,0,0,0,0,0.0,5,1,0,0,0,40,0,0,50,True
+2026-06-15,PINT.L,Pantheon Infrastructure,0.054,0.0,0.054,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,PNL.L,Personal Assets Trust,0.0667,0.0,0.0667,0,0,0,0,0,0.0,0,0,0,0,0,12,0,0,50,True
+2026-06-15,PPET.L,Patria Private Equity,0.1116,0.0,0.1116,0,0,0,0,0,0.0,2,1,0,0,0,33,0,0,50,True
+2026-06-15,PSDL.L,Phoenix Spree Deutschland,0.0181,0.0,0.0181,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,PSH.L,Pershing Square Holdings,0.0835,0.0,0.0835,0,0,0,0,0,0.0,0,0,0,0,0,29,0,0,50,True
+2026-06-15,RCOI.L,Riverstone Credit Opportunities Income,0.0382,0.0,0.0382,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,RCP.L,RIT Capital Partners,0.1308,0.0,0.1308,0,0,0,0,0,0.0,0,1,0,0,0,40,0,0,50,True
+2026-06-15,RECI.L,Real Estate Credit Investments,0.0279,0.0,0.0279,0,0,0,0,0,0.0,0,2,0,0,0,3,0,0,50,True
+2026-06-15,RESI.L,Residential Secure Income REIT,0.0381,0.0,0.0381,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,RGL.L,Regional REIT,0.0149,0.0,0.0149,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,RICA.L,Ruffer Investment Company,0.0417,0.0,0.0417,0,0,0,0,0,0.0,1,1,0,0,0,1,0,0,50,True
+2026-06-15,RIII.L,Rights & Issues Investment Trust,0.0772,0.0,0.0772,0,0,0,0,0,0.0,0,0,0,0,0,18,0,0,50,True
+2026-06-15,RKW.L,Rockwood Strategic,0.04,0.0,0.04,0,0,0,0,0,0.0,1,3,0,0,0,0,0,0,50,True
+2026-06-15,RMII.L,RM Infrastructure Income,0.1693,0.0,0.1693,0,0,0,0,0,0.0,3,0,0,5,0,1,0,0,50,True
+2026-06-15,RMMC.L,River UK Micro Cap,0.0901,0.0,0.0901,0,0,0,0,0,0.0,1,0,0,0,0,8,0,0,50,True
+2026-06-15,RSE.L,Riverstone Energy,0.0203,0.0,0.0203,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,RTW.L,RTW Biotech Opportunities,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,SAIN.L,Scottish American,0.083,0.0,0.083,0,0,0,0,0,0.0,0,0,0,0,0,23,0,0,50,True
+2026-06-15,SBO.L,Schroder British Opportunities,0.0599,0.0,0.0599,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,SCF.L,Schroder Income Growth Fund,0.1327,0.0,0.1327,0,0,0,0,0,0.0,0,2,0,0,0,16,0,0,50,True
+2026-06-15,SCP.L,Schroder UK Mid Cap Fund,0.2571,0.0,0.2571,0,0,0,0,0,0.0,1,3,0,1,0,16,0,0,50,True
+2026-06-15,SDP.L,Schroder AsiaPacific Fund,0.0763,0.0,0.0763,0,0,0,0,0,0.0,0,0,0,0,0,15,0,0,50,True
+2026-06-15,SDV.L,Chelverton UK Dividend Trust,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,SEC.L,Strategic Equity Capital,0.0713,0.0,0.0713,0,0,0,0,0,0.0,0,0,0,0,0,14,0,0,50,True
+2026-06-15,SEIT.L,SDCL Efficiency Income,0.2298,0.0,0.2298,0,0,0,0,0,0.0,22,0,0,0,1,0,0,0,50,True
+2026-06-15,SEQI.L,Sequoia Economic Infrastructure Income,0.1162,0.0,0.1162,0,0,0,0,0,0.0,0,2,0,0,0,38,0,0,50,True
+2026-06-15,SERE.L,Schroder European Real Estate,0.0154,0.0,0.0154,0,0,0,0,0,0.0,0,1,0,0,0,0,0,0,50,True
+2026-06-15,SHIP.L,Tufton Assets,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,SJG.L,Schroder Japan Trust,0.1749,0.0,0.1749,0,0,0,0,0,0.0,2,3,0,0,0,5,0,0,50,True
+2026-06-15,SLPE.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,SMIF.L,TwentyFour Select Monthly Income,0.0433,0.0,0.0433,0,0,0,0,0,0.0,0,4,0,1,0,0,0,0,50,True
+2026-06-15,SMT.L,Scottish Mortgage Investment Trust,0.1131,0.0,0.1131,0,0,0,0,0,0.0,1,0,0,0,0,4,0,0,50,True
+2026-06-15,SOHO.L,Social Housing REIT,0.0202,0.0,0.0202,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,SOI.L,Schroder Oriental Income,0.1225,0.0,0.1225,0,0,0,0,0,0.0,0,1,0,0,0,17,0,0,50,True
+2026-06-15,SREI.L,Schroder Real Estate,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,SSIT.L,Seraphim Space Investment Trust,0.2896,0.0,0.2896,0,0,0,0,0,0.0,5,7,0,0,0,0,0,0,50,True
+2026-06-15,SSON.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,SST.L,Scottish Oriental Smaller Companies,0.1969,0.0,0.1969,0,0,0,0,0,0.0,2,2,0,0,0,14,0,0,50,True
+2026-06-15,STS.L,STS Global Income & Growth Trust,0.0746,0.0,0.0746,0,0,0,0,0,0.0,0,0,0,0,0,15,0,0,50,True
+2026-06-15,SUPP.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,SYNC.L,Syncona,0.1025,0.0,0.1025,0,0,0,0,0,0.0,4,0,0,0,0,0,0,0,50,True
+2026-06-15,TEM.L,Templeton Emerging Markets,0.08,0.0,0.08,0,0,0,0,0,0.0,0,0,0,0,0,19,0,0,50,True
+2026-06-15,TENT.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,TFG.L,Tetragon Financial Group,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,TFIF.L,TwentyFour Income Fund,0.0665,0.0,0.0665,0,0,0,0,0,0.0,2,0,0,0,0,0,0,0,50,True
+2026-06-15,THRG.L,,0.0048,0.0,0.0048,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,THRL.L,Target Healthcare REIT,0.0074,0.0,0.0074,0,0,0,0,0,0.0,1,0,0,0,0,0,0,0,50,True
+2026-06-15,TMI.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,TMPL.L,Temple Bar Investment Trust,0.0113,0.0,0.0113,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,TORO.L,Chenavari Toro Income Fund,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,TPOU.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,TRG.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,TRIG.L,Renewables Infrastructure Group,0.1209,0.0,0.1209,0,0,0,0,0,0.0,0,0,0,0,0,40,0,0,50,True
+2026-06-15,TRY.L,TR Property Investment Trust,0.104,0.0,0.104,0,0,0,0,0,0.0,0,3,0,0,0,0,0,0,50,True
+2026-06-15,UEM.L,Utilico Emerging Markets Trust,0.0787,0.0,0.0787,0,0,0,0,0,0.0,0,0,0,0,0,18,0,0,50,True
+2026-06-15,UKW.L,Greencoat UK Wind,0.1701,0.0,0.1701,0,0,0,0,0,0.0,2,3,0,0,0,2,0,0,50,True
+2026-06-15,USA.L,Baillie Gifford US Growth,0.1909,0.0,0.1909,0,0,0,0,0,0.0,9,0,0,0,0,0,0,0,50,True
+2026-06-15,USF.L,US Solar Fund,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,VEIL.L,Vietnam Enterprise Investments,0.0994,0.0,0.0994,0,0,0,0,0,0.0,0,0,0,1,0,14,0,0,50,True
+2026-06-15,VIP.L,Value and Indexed Property Income Trust,0.029,0.0,0.029,0,0,0,0,0,0.0,1,0,0,0,0,3,0,0,50,True
+2026-06-15,VNH.L,VietNam Holding,0.1771,0.0,0.1771,0,0,0,0,0,0.0,1,1,0,0,0,7,0,0,50,True
+2026-06-15,VOF.L,VinaCapital Vietnam Opportunity,0.0828,0.0,0.0828,0,0,0,0,0,0.0,0,0,0,0,0,22,0,0,50,True
+2026-06-15,VSL.L,VPC Specialty Lending Investments,0.0226,0.0,0.0226,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,VTA.L,Volta Finance,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,0,False
+2026-06-15,WHR.L,,0.0,0.0,0.0,0,0,0,0,0,0.0,0,0,0,0,0,0,0,0,50,True
+2026-06-15,WWH.L,Worldwide Healthcare Trust,0.067,0.0,0.067,0,0,0,0,0,0.0,0,0,0,0,0,10,0,0,50,True
