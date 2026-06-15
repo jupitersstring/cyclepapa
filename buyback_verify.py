@@ -149,6 +149,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sleep", type=float, default=0.30)
     ap.add_argument("--limit", type=int, default=100000)
+    ap.add_argument("--also-source", default="unified_composite.csv",
+                    help="Source CSV whose 'ticker' column adds to the universe.")
     ap.add_argument("--also-composite-top", type=int, default=100,
                     help="Also verify the top N unified-composite names "
                          "even without a recorded authorization.")
@@ -164,7 +166,7 @@ def main() -> int:
     print(f"{len(universe)} tickers with recorded buyback authorizations",
           file=sys.stderr)
 
-    comp = ROOT / "unified_composite.csv"
+    comp = ROOT / args.also_source
     if comp.exists():
         for i, r in enumerate(csv.DictReader(open(comp))):
             if i >= args.also_composite_top:
