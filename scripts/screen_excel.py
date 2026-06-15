@@ -200,6 +200,41 @@ def main():
         t5.to_excel(writer, sheet_name="Top5 by Region", index=False, startrow=1, header=False)
         _fmt_sheet(writer, "Top5 by Region", t5, hdr, pct_fmt, f2_fmt)
         written.append(f"Top5 by Region({len(t5)})")
+    # BEST BY ARCHETYPE — top 3 names in each broad archetype, one compact table.
+    arche = [("asymmetry", "Unpriced inflection"), ("accel-unpriced", "Earnings acceleration"),
+             ("yoy-unpriced", "YoY growth unpriced"), ("inflecting-positive", "Positive inflection"),
+             ("surprises", "Earnings surprises"), ("consensus-lagging", "Consensus lagging"),
+             ("new-reality", "New reality / re-rating"), ("divergence", "Price-fundamental divergence"),
+             ("forensic", "Forensic value"), ("conviction", "Multi-screen conviction")]
+    brows = []
+    for key, label in arche:
+        fn = screens.SCREENS.get(key)
+        if fn is None:
+            continue
+        try:
+            r = fn(df, top=3)
+        except Exception:
+            continue
+        if r is None or r.empty:
+            continue
+        t = r[["symbol"]].copy()
+        t["score"] = r["score"] if "score" in r.columns else pd.NA
+        t.insert(0, "rank", range(1, len(t) + 1))
+        t.insert(0, "archetype", label)
+        brows.append(t)
+    if brows:
+        disp = df[[c for c in ["symbol", "name", "region", "industry", "marketCap",
+                               "revenue_growth", "ebitda_growth", "enterpriseToEbitda",
+                               "forwardPE", "ret_12m"] if c in df.columns]]
+        best = pd.concat(brows, ignore_index=True).merge(disp, on="symbol", how="left")
+        if "marketCap" in best.columns:
+            best["mcap_m"] = (best["marketCap"] / 1e6).round(1)
+        cols = ["archetype", "rank", "symbol", "name", "region", "industry", "mcap_m", "score",
+                "revenue_growth", "ebitda_growth", "enterpriseToEbitda", "forwardPE", "ret_12m"]
+        best = best[[c for c in cols if c in best.columns]].round(3)
+        best.to_excel(writer, sheet_name="Best by Archetype", index=False, startrow=1, header=False)
+        _fmt_sheet(writer, "Best by Archetype", best, hdr, pct_fmt, f2_fmt)
+        written.append(f"Best by Archetype({len(best)})")
     for name, title in SHEETS:
         fn = screens.SCREENS.get(name)
         if fn is None:
@@ -278,9 +313,6 @@ def main():
         allm.to_csv(config.DATA_DIR / "all_measures.csv.gz", index=False, compression="gzip")
     except OSError:
         pass
-    allm.to_excel(writer, sheet_name="All Measures", index=False, startrow=1, header=False)
-    _fmt_sheet(writer, "All Measures", allm, hdr, pct_fmt, f2_fmt)
-    written.append(f"All Measures({len(allm)}x{len(allm.columns)})")
 
     # MEASURES DICTIONARY — one-line definition per measure family.
     DICT = [
