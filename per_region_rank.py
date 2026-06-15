@@ -64,35 +64,26 @@ def safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in t)
 
 
 def build_universe(region: str, max_n: int):
-    """Per-region universe — financedatabase rows whose ticker suffix matches
-    the region's local-listing suffixes. (Filtering by country picks up
-    London ADRs of Japanese companies etc., which yfinance can't price the
-    same way.)"""
+    """Per-region universe — financedatabase rows that are BOTH
+    country=<region.country> AND have the region's local-listing suffix.
+    Filtering by country alone returns London ADRs of foreign companies;
+    filtering by suffix alone (without country) sweeps in ghost-symbols
+    like 0A05.L. The intersection gives genuine local listings."""
     import financedatabase as fd
     e = fd.Equities()
     country, suffixes = REGIONS[region]
     parts = []
-    # Pull a generous pool then filter by suffix
-    if region == 'US':
-        for cap in ('Mega Cap','Large Cap','Mid Cap','Small Cap'):
-            try:
-                df = e.select(country=country, market_cap=cap)
-                if df is not None and len(df): parts.append(df)
-            except Exception: pass
-    else:
-        for cap in ('Mega Cap','Large Cap','Mid Cap','Small Cap'):
-            try:
-                df = e.select(market_cap=cap)
-                if df is not None and len(df): parts.append(df)
-            except Exception: pass
+    for cap in ('Mega Cap','Large Cap','Mid Cap','Small Cap'):
+        try:
+            df = e.select(country=country, market_cap=cap)
+            if df is not None and len(df): parts.append(df)
+        except Exception: pass
     if not parts: return []
     uni = pd.concat(parts)
     syms = uni.index.astype(str).str.upper()
     uni = uni[~syms.str.contains(r'\^|=|/')]
     syms = list(uni.index.astype(str))
-    # Suffix filter
     if region == 'US':
-        # US: no suffix (i.e. last segment is the whole ticker, no dot)
         syms = [s for s in syms if '.' not in s]
     else:
         suffs = tuple(suffixes)
