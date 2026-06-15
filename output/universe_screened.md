@@ -15,10 +15,10 @@ size-class proxy from currency-amount detection.
 | Triage tier | Threshold | Count | Action |
 |---|---|---|---|
 | **T0** | ≥ 0.80 | 1 | full YAML build + verify ASAP |
-| **T1** | 0.55–0.80 | 11 | priority YAML build-out |
-| **T2** | 0.35–0.55 | 30 | watch + light YAML |
+| **T1** | 0.55–0.80 | 10 | priority YAML build-out |
+| **T2** | 0.35–0.55 | 29 | watch + light YAML |
 | **T3** | 0.20–0.35 | 106 | sector-context only |
-| **pass** | < 0.20 | 381 | universe ballast |
+| **pass** | < 0.20 | 383 | universe ballast |
 
 ## Archetype classification (primary + multi-tag)
 
@@ -26,11 +26,11 @@ size-class proxy from currency-amount detection.
 |---|---|
 | Unknown | 373 |
 | F | 58 |
-| A1 | 32 |
+| A1 | 31 |
 | H | 22 |
 | G | 15 |
 | B | 14 |
-| E | 6 |
+| E | 7 |
 | C | 5 |
 | A2 | 3 |
 | D | 1 |
@@ -41,12 +41,12 @@ size-class proxy from currency-amount detection.
 
 | Status | Count |
 |---|---|
-| OK | 426 |
-| PASS_FALSE_FRIEND | 47 |
+| OK | 425 |
+| PASS_FALSE_FRIEND | 49 |
 | PASS | 31 |
 | ACQUIRED | 13 |
 | ARC_DONE | 7 |
-| PRE_RECAP | 4 |
+| PRE_RECAP | 3 |
 | REPEAT_RX | 1 |
 
 ## Vintage distribution (detected year)
@@ -69,7 +69,7 @@ size-class proxy from currency-amount detection.
 | **Korea** | 19 | 1 | 0.20 | 0.56 | LG Display (KRX:034220) |
 | **Latin America** | 41 | 0 | 0.14 | 0.34 | EOH Holdings (JSE:EOH) |
 | **SE Asia / Pacific** | 129 | 1 | 0.15 | 0.61 | Synlait Milk (NZX:SML) |
-| **United Kingdom** | 30 | 6 | 0.28 | 0.76 | Petrofac (LSE:PFC) |
+| **United Kingdom** | 30 | 5 | 0.23 | 0.76 | ASOS (LSE:ASC) |
 | **United States/Canada** | 186 | 2 | 0.14 | 0.91 | NYCB / Flagstar Financial (NYSE:FLG) |
 | **Unspecified** | 5 | 0 | 0.05 | 0.05 | Calfrac Well Services (TSX:CFW) |
 
@@ -197,14 +197,12 @@ size-class proxy from currency-amount detection.
 
 | Score | Name | Ticker | Conf | Bucket | Archetype | Status | Vintage | Size |
 |---|---|---|---|---|---|---|---|---|
-| 0.76 | Petrofac | LSE:PFC | ★ | A | A1 | OK | 2024 | small |
 | 0.76 | ASOS | LSE:ASC | ★ | A | A1 | OK | 2024 | small |
 | 0.70 | Aston Martin Lagonda | LSE:AML | ★ | A | A1 | OK | ? | small |
 | 0.67 | Vodafone | LSE:VOD | ★ | A | A1 | OK | 2024 | small |
 | 0.67 | Tullow Oil | LSE:TLW | ★ | A | A1 | OK | 2024 | small |
 | 0.60 | Petra Diamonds | LSE:PDL | ★ | A | A1 | OK | ? | small |
 | 0.51 | Metro Bank | LSE:MTRO | ★ | A | H | OK | 2023 | small |
-| 0.50 | Wood Group | LSE:WG | ★ | A | A1 | PRE_RECAP | 2024 | small |
 | 0.43 | Provident Financial → Vanquis Banking | LSE:VANQ | ★ | A (warn) | A1 | OK | ? | small |
 | 0.23 | Boohoo | LSE:BOO | ▲ | A | A1 | OK | ? | small |
 | 0.21 | Fevertree Drinks | LSE:FEVR | ▲ | A | A1 | OK | ? | small |
@@ -212,6 +210,8 @@ size-class proxy from currency-amount detection.
 | 0.21 | BT Group | LSE:BT.A | ▲ | A | A1 | OK | ? | small |
 | 0.20 | BAE Systems | LSE:BA | ▲ | A | A1 | OK | ? | small |
 | 0.20 | Enquest | LSE:ENQ | ▲ | A | A1 | OK | ? | small |
+| 0.19 | Naked Wines | LSE:WINE | ▲ | A | A1 | OK | ? | small |
+| 0.19 | OneSavings Bank | LSE:OSB | ▲ | A | A1 | OK | ? | small |
 
 ## United States/Canada — top 15 by triage score
 
@@ -248,80 +248,80 @@ size-class proxy from currency-amount detection.
 | # | Score | Name | Ticker | Bucket | Archetype | Status | Region | Vintage |
 |---|---|---|---|---|---|---|---|---|
 | 1 | 0.91 | **NYCB / Flagstar Financial** | NYSE:FLG | A | A1 | OK | United States/Canada | 2024 |
-| 2 | 0.76 | **Petrofac** | LSE:PFC | A | A1 | OK | United Kingdom | 2024 |
-| 3 | 0.76 | **ASOS** | LSE:ASC | A | A1 | OK | United Kingdom | 2024 |
-| 4 | 0.73 | **Calfrac Well Services** | TSX:CFW | A | A1 | OK | United States/Canada | ? |
-| 5 | 0.70 | **Aston Martin Lagonda** | LSE:AML | A | A1 | OK | United Kingdom | ? |
-| 6 | 0.67 | **Vodafone** | LSE:VOD | A | A1 | OK | United Kingdom | 2024 |
-| 7 | 0.67 | **Tullow Oil** | LSE:TLW | A | A1 | OK | United Kingdom | 2024 |
-| 8 | 0.64 | **Toshiba** | (private 2023) | C → B | A2+H | OK | Japan | ? |
-| 9 | 0.61 | **Synlait Milk** | NZX:SML | A | D | OK | SE Asia / Pacific | 2024 |
-| 10 | 0.60 | **Petra Diamonds** | LSE:PDL | A | A1 | OK | United Kingdom | ? |
-| 11 | 0.59 | **Sharp** | TSE:6753 | A | H | OK | Japan | 2024 |
-| 12 | 0.56 | **LG Display** | KRX:034220 | A | H | OK | Korea | ? |
-| 13 | 0.53 | **Japan Display** | TSE:6740 | A | H | OK | Japan | ? |
-| 14 | 0.51 | **Metro Bank** | LSE:MTRO | A | H | OK | United Kingdom | 2023 |
-| 15 | 0.50 | **Wood Group** | LSE:WG | A | A1 | PRE_RECAP | United Kingdom | 2024 |
-| 16 | 0.49 | **Lucid Group** | NASDAQ:LCID | A | A2 | OK | United States/Canada | ? |
-| 17 | 0.48 | **Carvana** | NYSE:CVNA | A | C | OK | United States/Canada | 2023 |
-| 18 | 0.47 | **Commercial Bank of Ceylon** | CSE:COMB | A | G | OK | SE Asia / Pacific | ? |
-| 19 | 0.46 | **Edenor** | NYSE:EDN | A | G | OK | SE Asia / Pacific | ? |
-| 20 | 0.46 | **HAGL (Hoang Anh Gia Lai)** | HOSE:HAG | A | Unknown | OK | SE Asia / Pacific | ? |
-| 21 | 0.45 | **Shinsei Bank → SBI Shinsei** | (taken private) | C → B | H | OK | Japan | ? |
-| 22 | 0.43 | **Provident Financial → Vanquis Banking** | LSE:VANQ | A (warn) | A1 | OK | United Kingdom | ? |
-| 23 | 0.43 | **Hatton National Bank** | CSE:HNB | A | G | OK | SE Asia / Pacific | ? |
-| 24 | 0.42 | **Drake & Scull** | DFM:DSI | A | Unknown | OK | SE Asia / Pacific | ? |
-| 25 | 0.42 | **Office Properties Income Trust** | NASDAQ:OPI | A | C | OK | United States/Canada | 2023 |
-| 26 | 0.42 | **ams-OSRAM** | SWX:AMS | A | Unknown | OK | Continental Europe | ? |
-| 27 | 0.42 | **Step Energy Services** | TSX:STEP | A | B | OK | United States/Canada | ? |
-| 28 | 0.41 | **Chesapeake / Expand Energy** | NYSE:EXE | C → B | F | OK | United States/Canada | 2024 |
-| 29 | 0.41 | **Garrett Motion** | NASDAQ:GTX | C → B | F | OK | United States/Canada | 2021 |
-| 30 | 0.40 | **Editas / 2seventy pattern** | various | A | Unknown | OK | SE Asia / Pacific | ? |
-| 31 | 0.38 | **Pioneer** | (private; Baring 2019) | C → B | H | OK | Japan | ? |
-| 32 | 0.38 | **Core Natural Resources** | NYSE:CNR | C → B | F | OK | United States/Canada | ? |
-| 33 | 0.38 | **Permanent TSB** | EURONEXT:PTSB | A | H | OK | United States/Canada | ? |
-| 34 | 0.38 | **Thyssenkrupp** | XETR:TKA | A | Unknown | OK | Continental Europe | ? |
-| 35 | 0.37 | **Alpha Metallurgical Resources** | NYSE:AMR | C → B | F | OK | United States/Canada | ? |
-| 36 | 0.36 | **Sampath Bank** | CSE:SAMP | A | G | OK | SE Asia / Pacific | ? |
-| 37 | 0.36 | **Red Lobster** | (Ch.11 2024) | C → B | F | OK | United States/Canada | ? |
-| 38 | 0.36 | **Fossil Group** | NYSE:FOSL | A | Unknown | OK | United States/Canada | ? |
-| 39 | 0.36 | **Sharp Corp** | TSE:6753 | A | Unknown | OK | Japan | ? |
-| 40 | 0.36 | **Diamond Offshore** | (acquired Noble 2024) | C → B | F | OK | United States/Canada | ? |
-| 41 | 0.35 | **Noble Corp** | NYSE:NE | C → B | F | OK | United States/Canada | 2022 |
-| 42 | 0.35 | **Acelyrin / Alumis merger** | NASDAQ:ALMS | A | Unknown | OK | SE Asia / Pacific | 2025 |
-| 43 | 0.35 | **Saipem** | BIT:SPM | A | Unknown | OK | Continental Europe | 2022 |
-| 44 | 0.35 | **Lotte Chemical** | KRX:011170 | A | H | PRE_RECAP | Korea | 2024 |
-| 45 | 0.34 | **Coinbase** | NASDAQ:COIN | A | Unknown | OK | United States/Canada | ? |
-| 46 | 0.34 | **Aroundtown** | XETR:AT1 | A | Unknown | OK | Continental Europe | ? |
-| 47 | 0.34 | **Monte dei Paschi** | BIT:BMPS | A | Unknown | OK | Continental Europe | ? |
-| 48 | 0.34 | **Nissan** | TSE:7201 | A | H | PRE_RECAP | Japan | ? |
-| 49 | 0.34 | **DiDi Global** | (delisted) | A | Unknown | OK | Greater China / HK | ? |
-| 50 | 0.34 | **Endo International** | NYSE:NDOI? | C → B | F | OK | United States/Canada | 2024 |
-| 51 | 0.34 | **Cano Health** | (Ch.11 2024) | C → B | F | OK | United States/Canada | 2024 |
-| 52 | 0.34 | **Endo International** | NYSE:ENDP | C → B | F | OK | United States/Canada | 2024 |
-| 53 | 0.34 | **GenesisCare** | (Ch.11 2023) | C → B | F | OK | United States/Canada | 2024 |
-| 54 | 0.34 | **Audacy** | (Ch.11 2024) | C → B | F | OK | United States/Canada | 2024 |
-| 55 | 0.34 | **Diamond Sports / Bally Sports** | (Ch.11 2024) | C → B | F | OK | United States/Canada | 2024 |
-| 56 | 0.34 | **Doosan Group** | various | A | Unknown | OK | Korea | ? |
-| 57 | 0.34 | **Cebu Air** | PSE:CEB | A | A1 | OK | SE Asia / Pacific | 2021 |
-| 58 | 0.34 | **EOH Holdings** | JSE:EOH | A | Unknown | OK | Latin America | ? |
-| 59 | 0.33 | **First Foundation** | NYSE:FFWM | A | Unknown | OK | United States/Canada | 2024 |
-| 60 | 0.33 | **AMC Entertainment** | NYSE:AMC | A | Unknown | OK | United States/Canada | ? |
-| 61 | 0.33 | **Viaplay Group** | ST:VPLAY-B | A | Unknown | OK | Continental Europe | ? |
-| 62 | 0.33 | **Cemex** | NYSE:CX | A | Unknown | OK | Latin America | ? |
-| 63 | 0.33 | **HMM** | KRX:011200 | B → done | H | OK | Korea | ? |
-| 64 | 0.33 | **Lotte Shopping** | KRX:023530 | A | H | OK | Korea | ? |
-| 65 | 0.33 | **Maxeon Solar** | NASDAQ:MAXN | A | C | OK | United States/Canada | 2024 |
-| 66 | 0.33 | **Altice France (SFR)** | (private) | A | C | OK | United States/Canada | 2024 |
-| 67 | 0.33 | **DISH Network** | (merged EchoStar) | A | Unknown | OK | United States/Canada | ? |
-| 68 | 0.33 | **iHeart Media** | NYSE:IHRT | A | C | OK | United States/Canada | 2024 |
-| 69 | 0.33 | **Capital A (AirAsia)** | KLSE:5099 | A | Unknown | OK | SE Asia / Pacific | ? |
-| 70 | 0.33 | **Aeris Industria** | B3:AERI3 | A | Unknown | OK | Latin America | 2024 |
-| 71 | 0.32 | **Sabadell** | BME:SAB | A | Unknown | OK | Continental Europe | 2024 |
-| 72 | 0.32 | **SBB (Samhällsbyggnadsbolaget)** | ST:SBB-B | A | Unknown | OK | Continental Europe | ? |
-| 73 | 0.32 | **OHLA (formerly OHL)** | BME:OHLA | A | Unknown | OK | Continental Europe | ? |
-| 74 | 0.32 | **Kumho Tire** | KRX:073240 | A | Unknown | OK | Korea | ? |
-| 75 | 0.32 | **Sapura Energy** | KLSE:5218 | A | Unknown | OK | SE Asia / Pacific | ? |
+| 2 | 0.76 | **ASOS** | LSE:ASC | A | A1 | OK | United Kingdom | 2024 |
+| 3 | 0.73 | **Calfrac Well Services** | TSX:CFW | A | A1 | OK | United States/Canada | ? |
+| 4 | 0.70 | **Aston Martin Lagonda** | LSE:AML | A | A1 | OK | United Kingdom | ? |
+| 5 | 0.67 | **Vodafone** | LSE:VOD | A | A1 | OK | United Kingdom | 2024 |
+| 6 | 0.67 | **Tullow Oil** | LSE:TLW | A | A1 | OK | United Kingdom | 2024 |
+| 7 | 0.64 | **Toshiba** | (private 2023) | C → B | A2+H | OK | Japan | ? |
+| 8 | 0.61 | **Synlait Milk** | NZX:SML | A | D | OK | SE Asia / Pacific | 2024 |
+| 9 | 0.60 | **Petra Diamonds** | LSE:PDL | A | A1 | OK | United Kingdom | ? |
+| 10 | 0.59 | **Sharp** | TSE:6753 | A | H | OK | Japan | 2024 |
+| 11 | 0.56 | **LG Display** | KRX:034220 | A | H | OK | Korea | ? |
+| 12 | 0.53 | **Japan Display** | TSE:6740 | A | H | OK | Japan | ? |
+| 13 | 0.51 | **Metro Bank** | LSE:MTRO | A | H | OK | United Kingdom | 2023 |
+| 14 | 0.49 | **Lucid Group** | NASDAQ:LCID | A | A2 | OK | United States/Canada | ? |
+| 15 | 0.48 | **Carvana** | NYSE:CVNA | A | C | OK | United States/Canada | 2023 |
+| 16 | 0.47 | **Commercial Bank of Ceylon** | CSE:COMB | A | G | OK | SE Asia / Pacific | ? |
+| 17 | 0.46 | **Edenor** | NYSE:EDN | A | G | OK | SE Asia / Pacific | ? |
+| 18 | 0.46 | **HAGL (Hoang Anh Gia Lai)** | HOSE:HAG | A | Unknown | OK | SE Asia / Pacific | ? |
+| 19 | 0.45 | **Shinsei Bank → SBI Shinsei** | (taken private) | C → B | H | OK | Japan | ? |
+| 20 | 0.43 | **Provident Financial → Vanquis Banking** | LSE:VANQ | A (warn) | A1 | OK | United Kingdom | ? |
+| 21 | 0.43 | **Hatton National Bank** | CSE:HNB | A | G | OK | SE Asia / Pacific | ? |
+| 22 | 0.42 | **Drake & Scull** | DFM:DSI | A | Unknown | OK | SE Asia / Pacific | ? |
+| 23 | 0.42 | **Office Properties Income Trust** | NASDAQ:OPI | A | C | OK | United States/Canada | 2023 |
+| 24 | 0.42 | **ams-OSRAM** | SWX:AMS | A | Unknown | OK | Continental Europe | ? |
+| 25 | 0.42 | **Step Energy Services** | TSX:STEP | A | B | OK | United States/Canada | ? |
+| 26 | 0.41 | **Chesapeake / Expand Energy** | NYSE:EXE | C → B | F | OK | United States/Canada | 2024 |
+| 27 | 0.41 | **Garrett Motion** | NASDAQ:GTX | C → B | F | OK | United States/Canada | 2021 |
+| 28 | 0.40 | **Editas / 2seventy pattern** | various | A | Unknown | OK | SE Asia / Pacific | ? |
+| 29 | 0.38 | **Pioneer** | (private; Baring 2019) | C → B | H | OK | Japan | ? |
+| 30 | 0.38 | **Core Natural Resources** | NYSE:CNR | C → B | F | OK | United States/Canada | ? |
+| 31 | 0.38 | **Permanent TSB** | EURONEXT:PTSB | A | H | OK | United States/Canada | ? |
+| 32 | 0.38 | **Thyssenkrupp** | XETR:TKA | A | Unknown | OK | Continental Europe | ? |
+| 33 | 0.37 | **Alpha Metallurgical Resources** | NYSE:AMR | C → B | F | OK | United States/Canada | ? |
+| 34 | 0.36 | **Sampath Bank** | CSE:SAMP | A | G | OK | SE Asia / Pacific | ? |
+| 35 | 0.36 | **Red Lobster** | (Ch.11 2024) | C → B | F | OK | United States/Canada | ? |
+| 36 | 0.36 | **Fossil Group** | NYSE:FOSL | A | Unknown | OK | United States/Canada | ? |
+| 37 | 0.36 | **Sharp Corp** | TSE:6753 | A | Unknown | OK | Japan | ? |
+| 38 | 0.36 | **Diamond Offshore** | (acquired Noble 2024) | C → B | F | OK | United States/Canada | ? |
+| 39 | 0.35 | **Noble Corp** | NYSE:NE | C → B | F | OK | United States/Canada | 2022 |
+| 40 | 0.35 | **Acelyrin / Alumis merger** | NASDAQ:ALMS | A | Unknown | OK | SE Asia / Pacific | 2025 |
+| 41 | 0.35 | **Saipem** | BIT:SPM | A | Unknown | OK | Continental Europe | 2022 |
+| 42 | 0.35 | **Lotte Chemical** | KRX:011170 | A | H | PRE_RECAP | Korea | 2024 |
+| 43 | 0.34 | **Coinbase** | NASDAQ:COIN | A | Unknown | OK | United States/Canada | ? |
+| 44 | 0.34 | **Aroundtown** | XETR:AT1 | A | Unknown | OK | Continental Europe | ? |
+| 45 | 0.34 | **Monte dei Paschi** | BIT:BMPS | A | Unknown | OK | Continental Europe | ? |
+| 46 | 0.34 | **Nissan** | TSE:7201 | A | H | PRE_RECAP | Japan | ? |
+| 47 | 0.34 | **DiDi Global** | (delisted) | A | Unknown | OK | Greater China / HK | ? |
+| 48 | 0.34 | **Endo International** | NYSE:NDOI? | C → B | F | OK | United States/Canada | 2024 |
+| 49 | 0.34 | **Cano Health** | (Ch.11 2024) | C → B | F | OK | United States/Canada | 2024 |
+| 50 | 0.34 | **Endo International** | NYSE:ENDP | C → B | F | OK | United States/Canada | 2024 |
+| 51 | 0.34 | **GenesisCare** | (Ch.11 2023) | C → B | F | OK | United States/Canada | 2024 |
+| 52 | 0.34 | **Audacy** | (Ch.11 2024) | C → B | F | OK | United States/Canada | 2024 |
+| 53 | 0.34 | **Diamond Sports / Bally Sports** | (Ch.11 2024) | C → B | F | OK | United States/Canada | 2024 |
+| 54 | 0.34 | **Doosan Group** | various | A | Unknown | OK | Korea | ? |
+| 55 | 0.34 | **Cebu Air** | PSE:CEB | A | A1 | OK | SE Asia / Pacific | 2021 |
+| 56 | 0.34 | **EOH Holdings** | JSE:EOH | A | Unknown | OK | Latin America | ? |
+| 57 | 0.33 | **First Foundation** | NYSE:FFWM | A | Unknown | OK | United States/Canada | 2024 |
+| 58 | 0.33 | **AMC Entertainment** | NYSE:AMC | A | Unknown | OK | United States/Canada | ? |
+| 59 | 0.33 | **Viaplay Group** | ST:VPLAY-B | A | Unknown | OK | Continental Europe | ? |
+| 60 | 0.33 | **Cemex** | NYSE:CX | A | Unknown | OK | Latin America | ? |
+| 61 | 0.33 | **HMM** | KRX:011200 | B → done | H | OK | Korea | ? |
+| 62 | 0.33 | **Lotte Shopping** | KRX:023530 | A | H | OK | Korea | ? |
+| 63 | 0.33 | **Maxeon Solar** | NASDAQ:MAXN | A | C | OK | United States/Canada | 2024 |
+| 64 | 0.33 | **Altice France (SFR)** | (private) | A | C | OK | United States/Canada | 2024 |
+| 65 | 0.33 | **DISH Network** | (merged EchoStar) | A | Unknown | OK | United States/Canada | ? |
+| 66 | 0.33 | **iHeart Media** | NYSE:IHRT | A | C | OK | United States/Canada | 2024 |
+| 67 | 0.33 | **Capital A (AirAsia)** | KLSE:5099 | A | Unknown | OK | SE Asia / Pacific | ? |
+| 68 | 0.33 | **Aeris Industria** | B3:AERI3 | A | Unknown | OK | Latin America | 2024 |
+| 69 | 0.32 | **Sabadell** | BME:SAB | A | Unknown | OK | Continental Europe | 2024 |
+| 70 | 0.32 | **SBB (Samhällsbyggnadsbolaget)** | ST:SBB-B | A | Unknown | OK | Continental Europe | ? |
+| 71 | 0.32 | **OHLA (formerly OHL)** | BME:OHLA | A | Unknown | OK | Continental Europe | ? |
+| 72 | 0.32 | **Kumho Tire** | KRX:073240 | A | Unknown | OK | Korea | ? |
+| 73 | 0.32 | **Sapura Energy** | KLSE:5218 | A | Unknown | OK | SE Asia / Pacific | ? |
+| 74 | 0.32 | **Lumen Technologies (CenturyLink)** | NYSE:LUMN | A | Unknown | OK | United States/Canada | 2024 |
+| 75 | 0.32 | **Rapidus-adjacent suppliers** | TSE | A | A2+H | OK | Japan | ? |
 
 ## Priority YAML build-out queue
 
@@ -332,7 +332,6 @@ primary filings and promote.
 | Score | Name | Ticker | Region | Bucket | Archetype | Vintage | Size |
 |---|---|---|---|---|---|---|---|
 | 0.91 | **NYCB / Flagstar Financial** | NYSE:FLG | United States/Canada | A | A1 | 2024 | small |
-| 0.76 | **Petrofac** | LSE:PFC | United Kingdom | A | A1 | 2024 | small |
 | 0.76 | **ASOS** | LSE:ASC | United Kingdom | A | A1 | 2024 | small |
 | 0.73 | **Calfrac Well Services** | TSX:CFW | United States/Canada | A | A1 | ? | small |
 | 0.70 | **Aston Martin Lagonda** | LSE:AML | United Kingdom | A | A1 | ? | small |
@@ -344,7 +343,7 @@ primary filings and promote.
 | 0.59 | **Sharp** | TSE:6753 | Japan | A | H | 2024 | small |
 | 0.56 | **LG Display** | KRX:034220 | Korea | A | H | ? | small |
 
-**12 names need YAML build-out.** Top 40 shown.
+**11 names need YAML build-out.** Top 40 shown.
 
 ## Sanity check: high-scoring names auto-flagged as completed arc / false friend
 
