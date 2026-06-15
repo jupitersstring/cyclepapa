@@ -1,115 +1,80 @@
-ticker,legs,n_legs,region,name,sector
-6962.T,"D,E,master,psar_comb,psar_rel",5,fd-jp-micro,Daishinku Corp.,Technology
-RAMP,"ADV_play_now,W,psar_asset,psar_comb",4,us-mid,"LiveRamp Holdings, Inc.",Technology
-5367.T,"D,R,rank",3,fd-jp-micro,Nikkato Corporation,Industrials
-6669.TW,"psar_asset,psar_comb,psar_rel",3,fd-asia-ex-jp,Wiwynn Corporation,Technology
-6976.T,"ADV_play_now,master,psar_asset",3,fd-jp-mid,"Taiyo Yuden Co., Ltd.",Technology
-8926.TW,"master,psar_asset,psar_comb",3,fd-asia-small,Taiwan Cogeneration Corporation,Industrials
-OLPX,"Q,R,rank",3,us-small,"Olaplex Holdings, Inc.",Consumer Cycli
-MMS.AX,"master,psar_asset,psar_comb",3,fd-au,McMillan Shakespeare Limited,Industrials
-TIETO.HE,"coiled,psar_asset,psar_comb",3,fd-eu-mid,Tieto Oyj,Technology
-5310.T,"DSR,E,master",3,fd-jp-small,"Toyo Tanso Co., Ltd.",Industrials
-3186.T,"coiled,psar_asset",2,fd-jp-small,"NEXTAGE Co., Ltd.",Consumer Cycli
-DDOG,"ADV_play_now,psar_rel",2,fd-us-large,"Datadog, Inc.",Technology
-DANR.MI,"DA,rank",2,fd-eu-small,Danieli & C. Officine Meccaniche,Industrials
-CLBK,"W,psar_asset",2,us-mid,"Columbia Financial, Inc.",Financial Serv
-0992.HK,"ADV_play_now,psar_rel",2,fd-asia-ex-jp,Lenovo Group Limited,Technology
-2409.TW,"E,master",2,fd-asia-ex-jp,AUO Corporation,Technology
-088350.KS,"ADV_play_now,DSR",2,fd-asia-ex-jp,"Hanwha Life Insurance Co., Ltd.",Financial Serv
-005930.KS,"M,Q",2,fd-asia-ex-jp,"Samsung Electronics Co., Ltd.",Technology
-HUNT.OL,"E,master",2,fd-eu-micro,Hunter Group ASA,Energy
-TALK,"DA,rank",2,us-small,"Talkspace, Inc.",Healthcare
-STLTECH.NS,"M,master",2,fd-asia-small,Sterlite Technologies Limited,Technology
-UPR.IR,"psar_comb,psar_rel",2,fd-eu-small,Uniphar plc,Healthcare
-TOYO,"psar_comb,psar_rel",2,fd-jp-micro,"TOYO Co., Ltd.",Technology
-300726.SZ,E,1,fd-asia-ex-jp,Zhuzhou Hongda Electronics Corp.,Technology
-281820.KS,DSR,1,fd-asia-small,"KCTech Co., Ltd.",Technology
-2492.TW,D,1,fd-asia-ex-jp,Walsin Technology Corporation,Technology
-3023.TW,psar_comb,1,fd-asia-ex-jp,"SINBON Electronics Co., Ltd.",Technology
-600522.SS,DSR,1,fd-asia-ex-jp,Jiangsu Zhongtian Technology Co.,Industrials
-603156.SS,ADV_play_now,1,fd-asia-ex-jp,Hebei Yangyuan ZhiHui Beverage C,Consumer Defen
-603638.SS,psar_asset,1,fd-asia-ex-jp,Yantai Eddie Precision Machinery,Industrials
-3090.TW,D,1,fd-asia-small,Nichidenbo Corporation,Technology
-3036.TW,ADV_play_now,1,fd-asia-small,"WT Microelectronics Co., Ltd.",Technology
-4919.TW,R,1,fd-asia-small,Nuvoton Technology Corporation,Technology
-3406.TW,E,1,fd-asia-ex-jp,"Genius Electronic Optical Co.,Lt",Technology
-6196.TW,coiled,1,fd-asia-small,Marketech International Corp.,Technology
-6166.TW,psar_rel,1,fd-asia-small,Adlink Technology Inc.,Technology
-6143.T,DSR,1,fd-jp-small,"Sodick Co., Ltd.",Industrials
-605358.SS,E,1,fd-asia-ex-jp,"Hangzhou Lion Electronics Co.,Lt",Technology
-2395.TW,coiled,1,fd-asia-ex-jp,"Advantech Co., Ltd.",Technology
-2303.TW,rank,1,fd-asia-ex-jp,United Microelectronics Corporat,Technology
-1909.T,Q,1,fd-jp-micro,,
-3033.TW,coiled,1,fd-asia-small,"Weikeng Industrial Co., Ltd.",Technology
-5991.T,E,1,fd-jp-small,"NHK Spring Co., Ltd.",Consumer Cycli
-189300.KQ,ADV_play_now,1,fd-asia-small,,
-002585.SZ,D,1,fd-asia-ex-jp,,
-000582.SZ,ADV_play_now,1,fd-asia-ex-jp,,
-039030.KQ,DSR,1,fd-asia-small,,
-089970.KQ,E,1,fd-asia-small,,
-183300.KQ,coiled,1,fd-asia-small,,
-005935.KS,Q,1,fd-asia-ex-jp,,
-ATKR,D,1,us-mid,,
-ASRNL.AS,DA,1,fd-eu-mid,,
-ALLFG.AS,rank,1,fd-eu-large,,
-ADMIE.AT,D,1,fd-eu-small,,
-8609.T,coiled,1,fd-jp-small,,
-8411.T,psar_comb,1,fd-jp-large,"Mizuho Financial Group, Inc.",Financial Serv
-8344.T,psar_rel,1,fd-jp-micro,,
-8306.T,master,1,fd-jp-large,"Mitsubishi UFJ Financial Group, ",Financial Serv
-6666.T,R,1,fd-jp-micro,,
-8283.T,master,1,fd-jp-mid,Paltac Corporation,Consumer Defen
-8078.T,DSR,1,fd-jp-small,,
-6737.T,psar_asset,1,fd-jp-small,,
-CPRX,W,1,us-mid,,
-CTS,rank,1,us-small,,
-CARE,rank,1,us-small,,
-CABK.MC,DA,1,fd-eu-large,,
-F3C.DE,R,1,fd-eu-small,,
-FTC.L,DSR,1,fd-eu-nano,,
-GRE.MC,DA,1,fd-eu-small,,
-GRANULES.NS,M,1,fd-asia-small,,
-GRNG.ST,rank,1,fd-eu-small,,
-HLIO,W,1,us-mid,,
-HMS.ST,psar_rel,1,fd-eu-micro,,
-HST,E,1,fd-us-large,"Host Hotels & Resorts, Inc.",Real Estate
-CZR,psar_rel,1,us-mid,,
-CYD,R,1,fd-asia-small,,
-DCC.L,D,1,fd-eu-mid,,
-DNORD.CO,coiled,1,fd-eu-small,,
-DRR.AX,D,1,fd-au,,
-ENG.MC,coiled,1,fd-eu-mid,"Enagás, S.A.",Utilities
-EQ,DSR,1,fd-us-micro,,
-CIEN,Q,1,fd-us-large,,
-LAURUSLABS.NS,M,1,fd-asia-ex-jp,Laurus Labs Limited,Healthcare
-KALV,Q,1,us-small,,
-JHG,R,1,fd-eu-mid,,
-IVT,W,1,us-mid,,
-INVX,W,1,us-mid,,
-INSW,DSR,1,us-mid,,
-INGA.AS,DA,1,fd-eu-large,,
-IGG.L,Q,1,fd-eu-mid,,
-NOKIA-SEK.ST,M,1,fd-eu-large,,
-NOEJ.DE,R,1,fd-eu-small,,
-NTB,DA,1,us-mid,,
-LNTH,W,1,us-mid,,
-NN.AS,DA,1,fd-eu-large,,
-NOD.OL,Q,1,fd-eu-mid,,
-NEL.OL,R,1,fd-eu-mid,,
-NKT.CO,rank,1,fd-eu-small,,
-SBRA,DA,1,us-mid,,
-RPRX,M,1,fd-us-large,,
-PSO,D,1,fd-eu-mid,,
-PGC,M,1,us-small,,
-NOKIA.HE,M,1,fd-eu-large,,
-SNX,M,1,fd-us-large,,
-SOI.PA,R,1,fd-eu-mid,,
-SITM,ADV_play_now,1,fd-us-large,,
-STM,M,1,fd-eu-large,,
-SMHN.DE,Q,1,fd-eu-small,,
-TKR,W,1,us-mid,,
-TX,W,1,us-mid,,
-UTI,W,1,us-mid,,
-WDC,Q,1,fd-us-large,,
-WLY,coiled,1,us-mid,,
-WMB,DA,1,fd-us-large,,
+ticker,n_legs,legs,region,master
+3891.T,3,"master,psar_asset,psar_comb",fd-jp-micro,68.93471293590625
+6669.TW,3,"psar_asset,psar_comb,psar_rel",fd-asia-ex-jp,58.01860583043603
+1714.TW,2,"E,psar_rel",fd-asia-small,68.71678210751932
+MMS.AX,2,"psar_asset,psar_comb",fd-au,67.91542263975553
+7245.T,2,"psar_asset,psar_comb",fd-jp-micro,55.888149323481926
+ZEEL.NS,2,"psar_comb,psar_rel",fd-asia-ex-jp,49.61682142230982
+ALX.AX,2,"psar_comb,psar_rel",fd-au,44.43158912577017
+6584.T,2,"psar_asset,psar_comb",fd-jp-small,43.832468578085816
+WRLD,2,"psar_asset,psar_comb",us-small,43.38615114416191
+6962.T,1,master,fd-jp-micro,83.10493834143003
+5310.T,1,master,fd-jp-small,74.2285349547636
+STLTECH.NS,1,master,fd-asia-small,73.16087926258052
+6976.T,1,master,fd-jp-mid,71.22369075171522
+8926.TW,1,master,fd-asia-small,71.02131336308443
+TIT.MI,1,master,fd-eu-large,70.73807886723621
+8173.T,1,master,fd-jp-small,70.46608930856206
+2409.TW,1,master,fd-asia-ex-jp,70.07221286480603
+8306.T,1,master,fd-jp-large,69.45289513821798
+6153.TW,1,psar_comb,fd-asia-small,64.51111489557053
+UPR.IR,1,psar_rel,fd-eu-small,62.93441127394279
+SIQ.AX,1,psar_rel,fd-au,57.4552907228304
+300726.SZ,1,E,fd-asia-ex-jp,57.19362412641159
+AZJ.AX,1,psar_comb,fd-au,57.01135558521274
+PST.MI,1,E,fd-eu-large,56.625229255507605
+000636.SZ,1,ADV_pn,fd-asia-ex-jp,56.509378618640206
+VRE,1,rank,us-small,55.007495751475965
+353200.KS,1,M,fd-asia-small,54.7452031208553
+PLBC,1,E,us-small,54.51318443972507
+9917.TW,1,E,fd-jp-large,52.70948462747508
+7276.T,1,psar_asset,fd-jp-mid,52.302007490823584
+MAHABANK.NS,1,E,fd-asia-ex-jp,51.44401405190446
+4906.TW,1,rank,fd-asia-small,50.06916138078803
+CARE,1,rank,us-small,49.628243620355434
+GRNG.ST,1,rank,fd-eu-small,48.86762072724939
+GRANULES.NS,1,M,fd-asia-small,48.43958827332107
+ZEEL.BO,1,psar_rel,fd-asia-ex-jp,48.435134738448625
+9678.T,1,DSR,fd-jp-small,48.20663940704731
+3449.T,1,M,fd-jp-micro,47.733004868895925
+6787.T,1,M,fd-jp-small,47.43222784948671
+TALK,1,rank,us-small,47.18211122573383
+ALLFG.AS,1,rank,fd-eu-large,46.65268979036659
+8163.TW,1,psar_rel,fd-asia-small,46.55256041966462
+SAN.MC,1,E,fd-eu-large,46.46441782502567
+6754.T,1,M,fd-jp-mid,46.44187116582169
+ATS.VI,1,M,fd-eu-small,45.183833883197615
+NOKIA.HE,1,M,fd-eu-large,45.10392412050034
+FTC.L,1,DSR,fd-eu-nano,44.248182874525504
+6432.T,1,psar_asset,fd-jp-small,43.15711377259029
+SNX,1,M,fd-us-large,42.82892870800815
+NOKIA-SEK.ST,1,M,fd-eu-large,42.58157091792328
+NVG.LS,1,E,fd-eu-mid,41.16259614131342
+002156.SZ,1,rank,fd-asia-ex-jp,40.64905407957062
+688200.SS,1,DSR,fd-asia-ex-jp,40.4884269772312
+000880.KS,1,ADV_pn,fd-asia-ex-jp,40.287107514378185
+PUB.PA,1,psar_rel,fd-eu-large,40.18033810238795
+OLPX,1,rank,us-small,39.2054319149499
+4976.TW,1,psar_rel,fd-asia-small,38.521888770866966
+688388.SS,1,DSR,fd-asia-ex-jp,37.491766320312465
+YESBANK.NS,1,psar_asset,fd-asia-ex-jp,36.70536831684282
+WTS,1,E,fd-us-large,36.67628203534163
+CTS,1,rank,us-small,34.348832994651914
+DANR.MI,1,rank,fd-eu-small,34.29156786467268
+6818.HK,1,E,fd-asia-ex-jp,32.50038727574518
+EURN.BR,1,DSR,fd-eu-small,32.42741499297926
+APA,1,DSR,fd-us-large,31.208889597837537
+DBX,1,psar_asset,us-mid,30.55594799219482
+S92.DE,1,M,fd-eu-small,27.67852350899247
+LNG,1,DSR,fd-us-large,27.301298064239404
+9605.T,1,ADV_pn,fd-jp-mid,26.680383244418476
+CF,1,DSR,fd-us-large,25.66885636956676
+SPCE,1,ADV_pn,us-small,25.42025551520265
+9960.T,1,DSR,fd-jp-small,23.148353172626624
+BS6.SI,1,DSR,fd-asia-ex-jp,21.233203464495197
+000050.SZ,1,ADV_pn,fd-asia-ex-jp,21.04429799643103
+000728.SZ,1,ADV_pn,fd-asia-ex-jp,20.140116299186715
+000799.SZ,1,ADV_pn,fd-asia-ex-jp,19.86699867041979
+000733.SZ,1,ADV_pn,fd-asia-ex-jp,18.397911555024617
+TECHNOE.NS,1,ADV_pn,fd-asia-small,16.795407407863657
+SN,1,ADV_pn,fd-eu-large,14.260333952186008
