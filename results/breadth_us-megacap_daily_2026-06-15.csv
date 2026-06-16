@@ -1,0 +1,46 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+AAPL,Information Technology,Mega Cap,daily,2,0,2,0.5148884966821554,,,▲,▲,,▲
+ABBV,Health Care,Mega Cap,daily,1,0,1,0.08651851751579202,,▲,,,,
+AMAT,Information Technology,Mega Cap,daily,2,0,2,5.3424729449876125,▲,▲,,,,
+AMGN,Health Care,Mega Cap,daily,1,0,1,2.4682191433612863,±,▲,,,▼,
+AMZN,Consumer Discretionary,Mega Cap,daily,1,1,0,-0.021673932207095417,▲,▼,,,▼,
+AVGO,Information Technology,Mega Cap,daily,0,2,-2,-1.2302004697206903,▼,▼,,,,
+AXP,Financials,Mega Cap,daily,1,2,-1,0.24941826081673016,▲,,▼,▼,,▼
+BAC,Financials,Mega Cap,daily,1,0,1,0.05306419145368595,,,,▲,,
+BRK-A,Financials,Mega Cap,daily,0,2,-2,-0.0808033137049812,▼,▼,,,,
+BRK-B,Financials,Mega Cap,daily,1,0,1,0.15888701297505364,▲,,,,,
+CAT,Industrials,Mega Cap,daily,0,1,-1,-1.7515974281020805,▼,,,,,
+COST,Consumer Staples,Mega Cap,daily,1,0,1,0.38270070548727025,▲,,,,,
+CSCO,Information Technology,Mega Cap,daily,1,2,-1,-1.1781035785731242,▼,,▲,▼,,
+CVX,Energy,Mega Cap,daily,0,3,-3,-0.955513968624097,▼,▼,▼,±,,▲
+GE,Industrials,Mega Cap,daily,1,0,1,1.2524835082371852,▲,,,,,
+GOOG,Communication Services,Mega Cap,daily,0,1,-1,-0.11110097980680635,▼,,,,,
+GOOGL,Communication Services,Mega Cap,daily,0,1,-1,-0.1288820679743389,▼,,,,,
+GS,Financials,Mega Cap,daily,0,2,-2,-1.5524540132236777,▼,▼,,,,
+IBM,Information Technology,Mega Cap,daily,0,1,-1,-0.6038959566442154,▼,,,,,
+INTC,Information Technology,Mega Cap,daily,2,0,2,5.156916171651046,▲,▲,,,▲,
+JNJ,Health Care,Mega Cap,daily,1,1,0,0.3364269292775196,▲,▼,,,▼,
+JPM,Financials,Mega Cap,daily,2,0,2,0.08531862943607824,▲,±,▲,±,,
+KO,Consumer Staples,Mega Cap,daily,2,0,2,1.2544172798078814,▲,▲,,,,▼
+LLY,Health Care,Mega Cap,daily,1,1,0,0.3008320095965168,▲,▼,,,▲,
+LRCX,Information Technology,Mega Cap,daily,2,0,2,6.41932639323287,▲,▲,,,▲,▲
+MA,Financials,Mega Cap,daily,1,0,1,0.18090656311442108,▲,,,,,
+META,Communication Services,Mega Cap,daily,2,2,0,-0.03277147913561762,▼,▼,▲,▲,,▲
+MRK,Health Care,Mega Cap,daily,1,0,1,0.4984127601778609,▲,,,,,
+MS,Financials,Mega Cap,daily,1,1,0,-0.1652322255027231,▼,▲,,,,
+MSFT,Information Technology,Mega Cap,daily,3,0,3,0.6778146309520451,▲,,▲,▲,,
+MU,Information Technology,Mega Cap,daily,0,1,-1,-2.28926224292073,▼,,,,,
+NVDA,Information Technology,Mega Cap,daily,1,0,1,0.11092560924287687,,▲,,,,
+ORCL,Information Technology,Mega Cap,daily,3,1,2,1.3382068871216872,▼,▲,▲,▲,,
+PEP,Consumer Staples,Mega Cap,daily,2,1,1,0.4245293482986647,▲,▲,,▼,,
+PG,Consumer Staples,Mega Cap,daily,3,1,2,0.6390065012038585,▲,▲,▲,▼,▲,▼
+PLTR,Information Technology,Mega Cap,daily,2,0,2,0.19651686756136166,▲,,,▲,±,
+PM,Consumer Staples,Mega Cap,daily,1,0,1,0.6878047380892792,▲,,,,,
+RTX,Industrials,Mega Cap,daily,1,0,1,1.4413296965341484,▲,,,,▼,▲
+TMUS,Communication Services,Mega Cap,daily,2,0,2,0.2312076662193422,▲,,,▲,▼,
+UNH,Health Care,Mega Cap,daily,2,0,2,0.4833025299903404,▲,▲,,,▲,
+V,Financials,Mega Cap,daily,0,1,-1,-0.4694668846293357,▼,,,,▼,
+VZ,Communication Services,Mega Cap,daily,0,1,-1,-0.028394045786719793,±,,▼,±,▲,▼
+WFC,Financials,Mega Cap,daily,1,0,1,0.076209229625784,▲,,,,±,
+WMT,Consumer Staples,Mega Cap,daily,1,0,1,0.19504665101367863,▲,±,,,,
+XOM,Energy,Mega Cap,daily,0,2,-2,-1.090143385580839,▼,,,▼,,▼
