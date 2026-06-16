@@ -144,3 +144,50 @@ def buy_and_hold(df: pd.DataFrame, tx_cost_bps: float = 25.0) -> BacktestMetrics
     pos = pd.Series(1, index=df.index, dtype=int)
     m, _, _ = run_backtest(df, pos, tx_cost_bps=tx_cost_bps)
     return m
+
+
+def split_half(df: pd.DataFrame, position_fn, *, tx_cost_bps: float = 25.0,
+                **strategy_kwargs) -> tuple[BacktestMetrics, BacktestMetrics]:
+    """
+    Re-fit (with fixed params; no peeking) on each half and report split-half
+    metrics. Used as a simple out-of-sample stability test — Sharpe sign
+    agreement across halves is the headline robustness check.
+    """
+    n = len(df)
+    h = n // 2
+    df1 = df.iloc[:h].copy()
+    df2 = df.iloc[h:].copy()
+    pos1 = position_fn(df1, **strategy_kwargs)
+    pos2 = position_fn(df2, **strategy_kwargs)
+    m1, _, _ = run_backtest(df1, pos1, tx_cost_bps=tx_cost_bps)
+    m2, _, _ = run_backtest(df2, pos2, tx_cost_bps=tx_cost_bps)
+    return m1, m2
+
+
+def bootstrap_dd_ci(df: pd.DataFrame, position: pd.Series, *,
+                     n_boot: int = 500, tx_cost_bps: float = 25.0,
+                     seed: int = 42) -> tuple[float, float, float]:
+    """
+    Resample per-bar strategy returns with replacement; compute max drawdown
+    on each resampled equity path. Returns (p05, p50, p95) of the DD
+    distribution as a measure of how lucky the realised DD was.
+    """
+    pos = position.reindex(df.index).fillna(0).astype(int)
+    pos_prev = pos.shift(1).fillna(0).astype(int)
+    bar_ret = (df["close"] / df["open"] - 1).fillna(0)
+    cost = (pos - pos_prev).abs() * (tx_cost_bps / 10000.0)
+    strat_ret = (pos_prev * bar_ret - cost).to_numpy(dtype=float)
+    strat_ret = np.where(np.isfinite(strat_ret), strat_ret, 0.0)
+    n = len(strat_ret)
+    if n < 30:
+        return (float("nan"), float("nan"), float("nan"))
+    rng = np.random.default_rng(seed)
+    dds = np.empty(n_boot)
+    for k in range(n_boot):
+        idx = rng.integers(0, n, n)
+        sampled = strat_ret[idx]
+        equity = np.cumprod(1.0 + sampled)
+        peak = np.maximum.accumulate(equity)
+        dds[k] = float((equity / peak - 1.0).min())
+    p05, p50, p95 = np.percentile(dds, [5, 50, 95])
+    return float(p05), float(p50), float(p95)

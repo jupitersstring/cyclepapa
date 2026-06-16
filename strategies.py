@@ -108,12 +108,17 @@ def market_meanness_index(price: pd.Series, length: int = 200) -> pd.Series:
 
 
 def instantaneous_trendline(price: pd.Series, alpha: float = 0.07) -> pd.Series:
-    """Ehlers' Instantaneous Trendline (Rocket Science Ch. 9)."""
+    """
+    Ehlers' Instantaneous Trendline (Rocket Science Ch. 9). DC gain = 1.
+
+        Trendline[t] = (α − α²/4)·P[t] + 0.5·α²·P[t-1] − (α − 0.75·α²)·P[t-2]
+                       + 2(1−α)·Trendline[t-1] − (1−α)²·Trendline[t-2]
+    """
     p = price.ffill().to_numpy(dtype=float)
     out = np.copy(p)
-    a2 = (alpha / 2) ** 2
+    a2 = alpha * alpha
     for i in range(7, len(p)):
-        out[i] = ((alpha - a2) * p[i]
+        out[i] = ((alpha - a2 / 4) * p[i]
                   + 0.5 * a2 * p[i - 1]
                   - (alpha - 0.75 * a2) * p[i - 2]
                   + 2 * (1 - alpha) * out[i - 1]
@@ -265,17 +270,19 @@ def strat_market_mode_gated(df: pd.DataFrame,
 # ---------------------------------------------------------------------------
 
 
-def strat_4band_agreement(df: pd.DataFrame, bands=DEFAULT_BANDS) -> pd.Series:
+def strat_4band_agreement(df: pd.DataFrame, bands=DEFAULT_BANDS,
+                            min_agree: int = 4) -> pd.Series:
     """
-    Long when all 4 bandpass outputs are > 0; short when all 4 < 0; else flat.
-    The longest bands need lots of history; results are sparse on short data.
+    Long when at least `min_agree` of the bandpass outputs are > 0 (and
+    strictly more positive than negative); short symmetrically. Default
+    min_agree=4 = require all bands to agree.
     """
     bp = four_bandpass(df["close"], bands)
-    all_up = (bp > 0).all(axis=1)
-    all_dn = (bp < 0).all(axis=1)
+    n_pos = (bp > 0).sum(axis=1)
+    n_neg = (bp < 0).sum(axis=1)
     pos = pd.Series(0, index=df.index, dtype=int)
-    pos[all_up] = 1
-    pos[all_dn] = -1
+    pos[(n_pos >= min_agree) & (n_pos > n_neg)] = 1
+    pos[(n_neg >= min_agree) & (n_neg > n_pos)] = -1
     return pos
 
 
