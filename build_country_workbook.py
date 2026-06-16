@@ -162,13 +162,44 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     # framework-measured discount gets a meaningful lift, weak ones get a
     # haircut, but neither dominates the existing quant ranking.
     boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
-    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_multiplier']
-    df['entry_today_upside']    = df['upside_score']    * boost * df['qual_multiplier']
+
+    # POST-RALLY PENALTY (added 2026-06-15 after WDC bug, revised):
+    # A name already up >100 pct in 12m is no longer a 'multibagger setup' -
+    # it's an in-flight or completed multibagger. DEMOTE but do NOT exclude:
+    # extreme-momentum names stay in the list, just ranked lower.
+    # Schedule (smoother, floored at 0.40):
+    #   mom_12m <= 0.30 (up <30 pct):       factor = 1.00
+    #   mom_12m 0.30 to 1.00 (up 30-100):   linear 1.00 -> 0.75
+    #   mom_12m 1.00 to 3.00 (up 100-300):  linear 0.75 -> 0.45
+    #   mom_12m > 3.00 (up >4x):            factor = 0.40 (floor)
+    # WDC at mom_12m 8.76 (up 876 pct): factor 0.40 -> still visible
+    # but demoted from rank ~7 to outside top 200.
+    mom = _series('momentum_12m').clip(-0.5, None)
+    pr_factor = pd.Series(1.0, index=df.index)
+    mid_rally = (mom > 0.30) & (mom <= 1.00)
+    high_rally = (mom > 1.00) & (mom <= 3.00)
+    extreme_rally = mom > 3.00
+    pr_factor.loc[mid_rally] = 1.0 - (mom[mid_rally] - 0.30) / 0.70 * 0.25
+    pr_factor.loc[high_rally] = 0.75 - (mom[high_rally] - 1.00) / 2.00 * 0.30
+    pr_factor.loc[extreme_rally] = 0.40
+    df['post_rally_factor'] = pr_factor.round(3)
+    df['already_multibagged'] = (mom > 1.0).astype(int)
+
+    df['entry_today_asymmetry'] = (
+        df['asymmetry_score'] * boost * df['qual_multiplier'] * pr_factor
+    )
+    df['entry_today_upside']    = (
+        df['upside_score']    * boost * df['qual_multiplier'] * pr_factor
+    )
 
     # Strict variants used to sort per-country sheets. RED -> 0 (excluded);
     # GREEN gets +30% boost; YELLOW haircut to 0.70; UNRESEARCHED at 0.85.
-    df['country_entry_asymmetry'] = df['asymmetry_score'] * boost * df['strict_qual_multiplier']
-    df['country_entry_upside']    = df['upside_score']    * boost * df['strict_qual_multiplier']
+    df['country_entry_asymmetry'] = (
+        df['asymmetry_score'] * boost * df['strict_qual_multiplier'] * pr_factor
+    )
+    df['country_entry_upside']    = (
+        df['upside_score']    * boost * df['strict_qual_multiplier'] * pr_factor
+    )
 
     return df
 
