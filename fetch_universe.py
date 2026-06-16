@@ -257,7 +257,6 @@ def main():
     if args.tickers:
         universe = args.tickers
     elif args.universe_csv:
-        import pandas as pd
         df = pd.read_csv(args.universe_csv, usecols=['symbol'])
         universe = [s for s in df['symbol'].dropna().astype(str).str.upper().tolist() if s]
     else:
