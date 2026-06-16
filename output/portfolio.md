@@ -8,10 +8,12 @@ and risk-budgeted weights. Do NOT hand-edit.
 
 | Ticker | EV× | Downside | ¼-Kelly | Cluster | Dominant factor |
 |---|---|---|---|---|---|
-| **LOCAL** | 4.04 | 0.15 | 10.0% | Unknown | `—` |
+| **LOCAL** | 4.04 | 0.15 | 10.0% | French_microcap | `french_microcap_recovery` |
 | **LAC** | 3.10 | 0.60 | 10.0% | US_sovereign_minerals | `lithium_cycle` |
 | **UREE** | 2.71 | 0.65 | 10.0% | US_sovereign_minerals | `us_critical_minerals_policy` |
 | **WLN** | 2.62 | 0.60 | 10.0% | French_sovereign | `french_sovereign_strategic` |
+| **SZG** | 2.51 | 0.45 | 10.0% | EU_industrial_policy | `eu_sovereign_industrial_policy` |
+| **DRX** | 2.45 | 0.55 | 10.0% | UK_sovereign | `uk_sovereign_industrial_policy` |
 | **ETL** | 2.35 | 0.50 | 10.0% | French_sovereign | `european_leo_satellite` |
 | **ELUX-B** | 2.32 | 0.45 | 10.0% | Nordic_consumer | `nordic_anchor` |
 | **TMQ** | 2.14 | 0.55 | 10.0% | US_sovereign_minerals | `copper_cycle` |
@@ -24,26 +26,30 @@ and risk-budgeted weights. Do NOT hand-edit.
 | Cluster | Names | Σ raw Kelly | Σ EV-weighted Kelly | Cap (Kelly × 0.5) |
 |---|---|---|---|---|
 | **China_property** | SUNAC | 10.0% | 21.0% | 5.0% |
+| **EU_industrial_policy** | SZG | 10.0% | 25.1% | 5.0% |
+| **French_microcap** | LOCAL | 10.0% | 40.4% | 5.0% |
 | **French_sovereign** | ETL, WLN | 20.0% | 24.9% | 10.0% |
 | **Nordic_consumer** | ELUX-B | 10.0% | 23.2% | 5.0% |
+| **UK_sovereign** | DRX | 10.0% | 24.5% | 5.0% |
 | **US_sovereign_minerals** | LAC, MP, TMQ, UREE | 40.0% | 24.6% | 20.0% |
 | **US_utility** | HE | 10.0% | 19.2% | 5.0% |
-| **Unknown** | LOCAL | 10.0% | 40.4% | 5.0% |
 
 ## Pairwise correlation (cosine over factor exposures)
 
-| | ELUX-B | ETL | HE | LAC | LOCAL | MP | SUNAC | TMQ | UREE | WLN |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **ELUX-B** | 1.00 | 0.00 | 0.00 | 0.06 | 0.00 | 0.08 | 0.00 | 0.00 | 0.08 | 0.00 |
-| **ETL** | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.48 |
-| **HE** | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| **LAC** | 0.06 | 0.00 | 0.00 | 1.00 | 0.00 | 0.53 | 0.00 | 0.41 | 0.59 | 0.00 |
-| **LOCAL** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| **MP** | 0.08 | 0.00 | 0.00 | 0.53 | 0.00 | 1.00 | 0.00 | 0.41 | 0.99 | 0.00 |
-| **SUNAC** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 |
-| **TMQ** | 0.00 | 0.00 | 0.00 | 0.41 | 0.00 | 0.41 | 0.00 | 1.00 | 0.47 | 0.00 |
-| **UREE** | 0.08 | 0.00 | 0.00 | 0.59 | 0.00 | 0.99 | 0.00 | 0.47 | 1.00 | 0.00 |
-| **WLN** | 0.00 | 0.48 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 |
+| | DRX | ELUX-B | ETL | HE | LAC | LOCAL | MP | SUNAC | SZG | TMQ | UREE | WLN |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **DRX** | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| **ELUX-B** | 0.00 | 1.00 | 0.00 | 0.00 | 0.06 | 0.00 | 0.08 | 0.00 | 0.00 | 0.00 | 0.08 | 0.00 |
+| **ETL** | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.48 |
+| **HE** | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| **LAC** | 0.00 | 0.06 | 0.00 | 0.00 | 1.00 | 0.00 | 0.53 | 0.00 | 0.00 | 0.41 | 0.59 | 0.00 |
+| **LOCAL** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| **MP** | 0.00 | 0.08 | 0.00 | 0.00 | 0.53 | 0.00 | 1.00 | 0.00 | 0.00 | 0.41 | 0.99 | 0.00 |
+| **SUNAC** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| **SZG** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 |
+| **TMQ** | 0.00 | 0.00 | 0.00 | 0.00 | 0.41 | 0.00 | 0.41 | 0.00 | 0.00 | 1.00 | 0.47 | 0.00 |
+| **UREE** | 0.00 | 0.08 | 0.00 | 0.00 | 0.59 | 0.00 | 0.99 | 0.00 | 0.00 | 0.47 | 1.00 | 0.00 |
+| **WLN** | 0.00 | 0.00 | 0.48 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 |
 
 ## Risk-budgeted basket weights
 
@@ -56,25 +62,27 @@ Renormalize within the cap.
 
 | Ticker | Cluster | Raw Kelly | After corr. haircut | After cluster cap | EV×weight | Contribution to portfolio EV× |
 |---|---|---|---|---|---|---|
+| **DRX** | UK_sovereign | 10.00% | 10.00% | 5.00% | 5.00% × 2.45 | 12.26 bps |
 | **ELUX-B** | Nordic_consumer | 10.00% | 10.00% | 5.00% | 5.00% × 2.32 | 11.60 bps |
 | **ETL** | French_sovereign | 10.00% | 6.74% | 5.00% | 5.00% × 2.35 | 11.75 bps |
 | **HE** | US_utility | 10.00% | 10.00% | 5.00% | 5.00% × 1.92 | 9.60 bps |
-| **LOCAL** | Unknown | 10.00% | 10.00% | 5.00% | 5.00% × 4.04 | 20.19 bps |
+| **LOCAL** | French_microcap | 10.00% | 10.00% | 5.00% | 5.00% × 4.04 | 20.19 bps |
 | **SUNAC** | China_property | 10.00% | 10.00% | 5.00% | 5.00% × 2.10 | 10.50 bps |
+| **SZG** | EU_industrial_policy | 10.00% | 10.00% | 5.00% | 5.00% × 2.51 | 12.56 bps |
 | **WLN** | French_sovereign | 10.00% | 6.74% | 5.00% | 5.00% × 2.62 | 13.10 bps |
 | **TMQ** | US_sovereign_minerals | 10.00% | 4.36% | 4.36% | 4.36% × 2.14 | 9.31 bps |
 | **LAC** | US_sovereign_minerals | 10.00% | 3.96% | 3.96% | 3.96% × 3.10 | 12.28 bps |
 | **MP** | US_sovereign_minerals | 10.00% | 3.42% | 3.42% | 3.42% × 1.90 | 6.49 bps |
 | **UREE** | US_sovereign_minerals | 10.00% | 3.29% | 3.29% | 3.29% × 2.71 | 8.91 bps |
-| **Total** | | | | 45.02% | | **113.7 bps** |
+| **Total** | | | | 55.02% | | **138.6 bps** |
 
-Cash remainder: **54.98%**
+Cash remainder: **44.98%**
 
 ## Interpretation
 
-- Total invested: 45.02% of NAV across 10 active names
-- Cash: 54.98% (a feature, not a bug — Kelly haircuts force humility)
-- Expected portfolio multiple on invested capital: 2.53×
+- Total invested: 55.02% of NAV across 12 active names
+- Cash: 44.98% (a feature, not a bug — Kelly haircuts force humility)
+- Expected portfolio multiple on invested capital: 2.52×
 - Dominant factor concentration risk: the US sovereign-minerals cluster
   carries the highest raw-Kelly sum; cluster cap is the binding constraint.
 - The correlation haircut materially down-weights names where multiple
