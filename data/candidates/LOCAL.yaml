@@ -1,0 +1,207 @@
+ticker: LOCAL
+isin: FR0012633360
+name: Solocal Group
+jurisdiction: FR
+exchange: EPA
+sector: Digital advertising / local-business directory
+bucket: A
+archetype: [E, A1]
+state: option
+tier: 1
+
+deal:
+  date: 2024-07-31
+  mechanic: "E + A1 — French accelerated safeguard plan completed Jul 2024. €18m rights at €0.003/share (91-for-2 ratio) + €25m reserved capital increase to Ycor (Maurice Lévy / Xavier Niel vehicle). Ycor took 64.8% control; legacy shareholders diluted to ~0.4%. Operational reset: 2025 revenue €324.5m, EBITDA €60m at 18.5% margin, **€51.8m net cash**. Targets €500m revenue / 25% EBITDA margin by 2027."
+  fields:
+    completion_date:
+      value: 2024-07-31
+      source: "reported: third-party research"
+    rights_size_eur_m:
+      value: 18
+      source: "reported"
+    rights_price_eur:
+      value: 0.003
+      source: "reported"
+      _note: "Catastrophic dilution price; legacy share count exploded"
+    rights_ratio:
+      value: "91-for-2"
+      source: "reported"
+    reserved_increase_eur_m:
+      value: 25
+      source: "reported"
+    ycor_post_control_pct:
+      value: 64.8
+      source: "reported"
+      _note: "Ycor = Maurice Lévy (former Publicis Chair) + Xavier Niel (Iliad/Free) vehicle"
+    legacy_shareholder_post_pct:
+      value: 0.4
+      source: "reported"
+    fy2025_revenue_eur_m:
+      value: 324.5
+      source: "reported"
+    fy2025_ebitda_eur_m:
+      value: 60
+      source: "reported"
+    fy2025_ebitda_margin_pct:
+      value: 18.5
+      source: "reported"
+    net_cash_eur_m:
+      value: 51.8
+      source: "reported"
+      _note: "THE structural skew floor — market cap roughly matches net cash"
+    fy2027_revenue_target_eur_m:
+      value: 500
+      source: "reported: management plan"
+    fy2027_ebitda_margin_target_pct:
+      value: 25
+      source: "reported: management plan"
+    market_cap_estimate_eur_m:
+      value: 25
+      source: "estimated"
+      _note: "Microcap; ranges €20–30m through 2025–2026"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d4_dilution_pct: 99.6
+  d5_delta_wam_months: 36
+  d9_alignment_gap: null
+  d9b_anchor_premium_to_recap: null
+  d11_consensus_ebitda_cagr: 30
+  d13_altman_z: null
+  d14_liquidity_quarters: 6
+
+catalysts:
+  - event: "FY2026 revenue trajectory tracking toward €500m FY2027"
+    window: [2026-07-01, 2027-12-31]
+    p_favorable: 0.45
+    rerate_if_yes: [3.0, 6.0]
+    hit_if_no: [-0.20, -0.40]
+    source: "company guidance"
+  - event: "EBITDA margin expansion toward 25%"
+    window: [2026-07-01, 2027-12-31]
+    p_favorable: 0.40
+    rerate_if_yes: [2.0, 4.0]
+    hit_if_no: [-0.15, -0.30]
+    source: "company guidance"
+  - event: "Niel/Lévy strategic action (digital-network roll-up, sale)"
+    window: [2026-07-01, 2028-12-31]
+    p_favorable: 0.30
+    rerate_if_yes: [2.5, 5.0]
+    hit_if_no: [-0.10, -0.15]
+    source: "ownership pattern"
+  - event: "Special dividend / share buyback from net-cash surplus"
+    window: [2027-01-01, 2028-12-31]
+    p_favorable: 0.35
+    rerate_if_yes: [1.20, 1.50]
+    hit_if_no: [0.0, 0.0]
+    source: "balance sheet condition"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.85, rationale: "FY27 targets missed; revenue stagnant at €324m; margin holds at 18.5%. Floor protected by €51.8m net cash + ongoing EBITDA. Modest erosion from microcap discount widening, not a wipe-out"}
+  base: {p: 0.45, return_multiple: 3.50, rationale: "FY27 revenue €450m / EBITDA margin 23% (in line with management but moderately discounted); multiple normalises from <0.5x EV/EBITDA to ~3x"}
+  bull: {p: 0.30, return_multiple: 7.50, rationale: "FY27 targets met or exceeded (€500m/25%); Niel/Lévy strategic combination (digital-network roll-up); multiple to 5-6x EV/EBITDA"}
+
+anchor:
+  parties: ["Maurice Lévy (Ycor)", "Xavier Niel (Ycor)"]
+  pricing:
+    reserved_price: 0.003
+    rights_price: 0.003
+    current_price: null
+    currency: EUR
+  stake_pct: 64.8
+  holds_debt: false
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["Niel: Iliad / Free turnaround template; multiple strategic exits", "Lévy: Publicis Chair to 2021; digital-advertising network expertise"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: €60m EBITDA at ~€20-30m market cap = trades <0.5x EV/EBITDA
+    vs French digital-advertising peers 4-6x EV/EBITDA. Pure gap-closure
+    arithmetic supports 3-5x re-rate without any operational improvement.
+    Leg 2: Ycor 64.8% control = total alignment by construction;
+    legacy public 0.4% is structurally irrelevant; no creditor overhang
+    (€51.8m net cash means no debt-equity conflict).
+    Leg 3: Lévy and Niel personally took control at €0.003/share via
+    Ycor — they are not absentee anchors. Niel's track record at Iliad
+    is the operational template (microcap → multibagger via aggressive
+    strategic action). Revealed preference is the act of acquiring
+    control, not a transaction price.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Microcap illiquidity is the practical constraint, not a structural red flag"
+
+kill_criteria:
+  - "FY2026 revenue down >5% (suggests trajectory off target by ~€100m to plan)"
+  - "EBITDA margin compression below 15%"
+  - "Net cash falls below €30m without explanation"
+  - "Niel or Lévy reduces Ycor stake"
+  - "Second dilutive event"
+
+pre_mortem: |
+  It is end-2028 and LOCAL is down 70% from current ~€0.07-0.08
+  microcap level.
+
+  Most likely cause: digital advertising for local businesses
+  continued to bleed to Google/Meta/Amazon; €60m EBITDA proved
+  fragile and shrank to €25-30m; FY27 targets missed by 50%+. Net
+  cash burned down to €15-20m. Ycor did not execute a digital-
+  network roll-up; the strategic-anchor optionality didn't fire.
+
+  Second-most-likely: Ycor decided to take the company private at a
+  modest premium to current; minority public squeezed out at a
+  fairness-opinion price below intrinsic value. The skew analysis
+  was right but the buyer didn't get to participate.
+
+  Where this would show up first: H1 2026 revenue print (off
+  trajectory by 5%+ = warning); EBITDA margin print; Niel or Lévy
+  M&A activity outside Solocal context.
+
+history:
+  - {date: 2024-07-31, event: "Accelerated safeguard plan completed", state_after: watch}
+  - {date: 2025, event: "Revenue €324.5m / EBITDA €60m / Net cash €51.8m", state_after: option}
+  - {date: 2026-06-15, event: "Identified as #1 qualitative-skew name on cash-plus-EBITDA double-floor + microcap operating leverage + Niel/Lévy anchor", state_after: option}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["French digital advertising", "Niel/Lévy strategic execution", "microcap illiquidity", "local-business sector cycle"]
+
+tier_rationale: |
+  Bucket A (listed common is the trade), Archetype E (French accelerated
+  safeguard) + A1 (Ycor reserved + rights). Triangulation 3/3.
+
+  This is the HIGHEST QUALITATIVE SKEW name in the documented universe.
+  Reasons:
+  - Hard double-floor: €51.8m net cash + ongoing €60m EBITDA. The
+    listed entity cannot durably trade below cash without forced
+    liquidation, and operations are profitable so the cash is not
+    being burned.
+  - Microcap operating leverage: ~€25m market cap vs €60m EBITDA =
+    any operational improvement is multi-bagger arithmetic.
+  - Anchor execution optionality: Niel (Iliad/Free turnaround template)
+    + Lévy (digital-advertising network expertise) = strategic
+    optionality on roll-up or sale.
+  - Dated catalyst: FY2027 plan targets.
+
+  Tier 1 not Tier 2 because the structural skew supports core sizing
+  *if* the illiquidity constraint can be managed. For institutional
+  sizing this is a microcap exposure constraint; for a smaller book
+  it is the cleanest asymmetric setup in the basket.
+
+  Source tags are 'reported' not 'verified' — primary safeguard
+  documents and FY2025 audited accounts need verification before
+  full sizing. Diagnostic warning will surface this in the screen.

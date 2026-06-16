@@ -8,6 +8,7 @@ and risk-budgeted weights. Do NOT hand-edit.
 
 | Ticker | EV× | Downside | ¼-Kelly | Cluster | Dominant factor |
 |---|---|---|---|---|---|
+| **LOCAL** | 4.04 | 0.15 | 10.0% | Unknown | `—` |
 | **LAC** | 3.10 | 0.60 | 10.0% | US_sovereign_minerals | `lithium_cycle` |
 | **UREE** | 2.71 | 0.65 | 10.0% | US_sovereign_minerals | `us_critical_minerals_policy` |
 | **WLN** | 2.62 | 0.60 | 10.0% | French_sovereign | `french_sovereign_strategic` |
@@ -27,20 +28,22 @@ and risk-budgeted weights. Do NOT hand-edit.
 | **Nordic_consumer** | ELUX-B | 10.0% | 23.2% | 5.0% |
 | **US_sovereign_minerals** | LAC, MP, TMQ, UREE | 40.0% | 24.6% | 20.0% |
 | **US_utility** | HE | 10.0% | 19.2% | 5.0% |
+| **Unknown** | LOCAL | 10.0% | 40.4% | 5.0% |
 
 ## Pairwise correlation (cosine over factor exposures)
 
-| | ELUX-B | ETL | HE | LAC | MP | SUNAC | TMQ | UREE | WLN |
-|---|---|---|---|---|---|---|---|---|---|
-| **ELUX-B** | 1.00 | 0.00 | 0.00 | 0.06 | 0.08 | 0.00 | 0.00 | 0.08 | 0.00 |
-| **ETL** | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.48 |
-| **HE** | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| **LAC** | 0.06 | 0.00 | 0.00 | 1.00 | 0.53 | 0.00 | 0.41 | 0.59 | 0.00 |
-| **MP** | 0.08 | 0.00 | 0.00 | 0.53 | 1.00 | 0.00 | 0.41 | 0.99 | 0.00 |
-| **SUNAC** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 |
-| **TMQ** | 0.00 | 0.00 | 0.00 | 0.41 | 0.41 | 0.00 | 1.00 | 0.47 | 0.00 |
-| **UREE** | 0.08 | 0.00 | 0.00 | 0.59 | 0.99 | 0.00 | 0.47 | 1.00 | 0.00 |
-| **WLN** | 0.00 | 0.48 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 |
+| | ELUX-B | ETL | HE | LAC | LOCAL | MP | SUNAC | TMQ | UREE | WLN |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **ELUX-B** | 1.00 | 0.00 | 0.00 | 0.06 | 0.00 | 0.08 | 0.00 | 0.00 | 0.08 | 0.00 |
+| **ETL** | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.48 |
+| **HE** | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| **LAC** | 0.06 | 0.00 | 0.00 | 1.00 | 0.00 | 0.53 | 0.00 | 0.41 | 0.59 | 0.00 |
+| **LOCAL** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| **MP** | 0.08 | 0.00 | 0.00 | 0.53 | 0.00 | 1.00 | 0.00 | 0.41 | 0.99 | 0.00 |
+| **SUNAC** | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 | 0.00 | 0.00 | 0.00 |
+| **TMQ** | 0.00 | 0.00 | 0.00 | 0.41 | 0.00 | 0.41 | 0.00 | 1.00 | 0.47 | 0.00 |
+| **UREE** | 0.08 | 0.00 | 0.00 | 0.59 | 0.00 | 0.99 | 0.00 | 0.47 | 1.00 | 0.00 |
+| **WLN** | 0.00 | 0.48 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 |
 
 ## Risk-budgeted basket weights
 
@@ -56,21 +59,22 @@ Renormalize within the cap.
 | **ELUX-B** | Nordic_consumer | 10.00% | 10.00% | 5.00% | 5.00% × 2.32 | 11.60 bps |
 | **ETL** | French_sovereign | 10.00% | 6.74% | 5.00% | 5.00% × 2.35 | 11.75 bps |
 | **HE** | US_utility | 10.00% | 10.00% | 5.00% | 5.00% × 1.92 | 9.60 bps |
+| **LOCAL** | Unknown | 10.00% | 10.00% | 5.00% | 5.00% × 4.04 | 20.19 bps |
 | **SUNAC** | China_property | 10.00% | 10.00% | 5.00% | 5.00% × 2.10 | 10.50 bps |
 | **WLN** | French_sovereign | 10.00% | 6.74% | 5.00% | 5.00% × 2.62 | 13.10 bps |
 | **TMQ** | US_sovereign_minerals | 10.00% | 4.36% | 4.36% | 4.36% × 2.14 | 9.31 bps |
 | **LAC** | US_sovereign_minerals | 10.00% | 3.96% | 3.96% | 3.96% × 3.10 | 12.28 bps |
 | **MP** | US_sovereign_minerals | 10.00% | 3.42% | 3.42% | 3.42% × 1.90 | 6.49 bps |
 | **UREE** | US_sovereign_minerals | 10.00% | 3.29% | 3.29% | 3.29% × 2.71 | 8.91 bps |
-| **Total** | | | | 40.02% | | **93.5 bps** |
+| **Total** | | | | 45.02% | | **113.7 bps** |
 
-Cash remainder: **59.98%**
+Cash remainder: **54.98%**
 
 ## Interpretation
 
-- Total invested: 40.02% of NAV across 9 active names
-- Cash: 59.98% (a feature, not a bug — Kelly haircuts force humility)
-- Expected portfolio multiple on invested capital: 2.34×
+- Total invested: 45.02% of NAV across 10 active names
+- Cash: 54.98% (a feature, not a bug — Kelly haircuts force humility)
+- Expected portfolio multiple on invested capital: 2.53×
 - Dominant factor concentration risk: the US sovereign-minerals cluster
   carries the highest raw-Kelly sum; cluster cap is the binding constraint.
 - The correlation haircut materially down-weights names where multiple
