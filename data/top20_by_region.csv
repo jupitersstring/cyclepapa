@@ -1,0 +1,261 @@
+region,sector,rank,symbol,name,industry,mcap_m,score,revenue_growth,ebitda_growth,earnings_growth,enterpriseToEbitda,forwardPE,priceToBook,ret_12m,ret_24m
+US,Information Technology,1,TASK,TaskUs Inc. Class A Common Stock,Software,579.7,0.826,0.19,0.389,1.23,4.458,4.163,0.955,-0.415,-0.321
+US,Energy,2,CNX,CNX Resources Corporation,"Oil, Gas & Consumable Fuels",4766.4,0.82,0.489,1.999,,3.344,7.956,1.034,0.044,0.281
+US,Health Care,3,OPRX,OptimizeRx Corporation,Health Care Providers & Services,97.4,0.804,0.188,,,5.353,4.912,0.759,-0.572,-0.57
+US,Energy,4,EQT,EQT Corporation,"Oil, Gas & Consumable Fuels",34357.5,0.8,0.6,1.088,7.844,5.7,11.809,1.368,0.008,0.373
+US,Industrials,5,ENR,"Energizer Holdings, Inc.",Electrical Equipment,1247.6,0.784,0.023,0.712,5.273,7.188,4.991,7.204,-0.17,-0.297
+US,Financials,6,SLQT,SelectQuote Inc,Insurance,176.3,0.779,0.155,0.658,,11.633,5.263,0.458,-0.539,-0.679
+US,Health Care,7,BTMD,Biote Corp. Class A Common Stock,Health Care Providers & Services,71.1,0.771,-0.025,2.349,7.567,5.232,3.509,-1.069,-0.422,-0.7
+US,Financials,8,AII,American Integrity Insurance Group Inc. Common Stock,Insurance,320.5,0.77,0.353,,1.507,1.765,5.432,0.955,0.042,
+US,Energy,9,EXE,Expand Energy Corporation Common Stock,"Oil, Gas & Consumable Fuels",22243.5,0.765,1.888,4.4,,3.379,9.643,1.142,-0.174,0.082
+US,Information Technology,10,PTC,PTC Inc.,Software,16024.1,0.762,0.192,0.551,0.95,12.86,16.056,4.293,-0.176,-0.213
+US,Industrials,11,AL,Air Lease Corporation,Commercial Services & Supplies,7282.3,0.758,0.103,0.528,1.545,,7.624,0.859,0.41,0.336
+US,Information Technology,12,PD,"PagerDuty, Inc.",Software,767.4,0.755,0.054,,,18.986,7.118,3.32,-0.302,-0.475
+US,Financials,13,JCAP,Jefferson Capital Inc. Common Stock,Capital Markets,860.1,0.755,0.415,0.482,0.458,6.006,5.338,1.94,-0.065,
+US,Industrials,14,MEG,"Montrose Environmental Group, Inc.",Transportation Infrastructure,800.8,0.753,0.193,4.711,,17.054,13.564,1.763,-0.18,-0.659
+US,Energy,15,CRK,"Comstock Resources, Inc.","Oil, Gas & Consumable Fuels",3915.0,0.753,0.538,1.151,,6.934,10.958,1.42,-0.428,0.138
+US,Communication Services,16,CMCSA,Comcast Corporation,Entertainment,88841.3,0.748,-0.0,0.233,0.235,4.926,6.547,1.008,-0.199,-0.285
+US,Consumer Staples,17,NUS,"Nu Skin Enterprises, Inc. Class A",Household Products,281.1,0.741,-0.143,,,2.91,4.386,0.354,-0.31,-0.541
+US,Information Technology,18,FRSH,Freshworks Inc. Class A Common Stock,Software,2684.2,0.741,0.164,,,56.108,12.094,2.657,-0.364,-0.246
+US,Health Care,19,PHR,"Phreesia, Inc.",Health Care Providers & Services,609.5,0.738,0.145,,,19.11,6.165,1.774,-0.597,-0.479
+US,Financials,20,PYPL,"PayPal Holdings, Inc.",Consumer Finance,39474.2,0.737,0.043,0.141,0.262,6.361,7.747,1.993,-0.36,-0.286
+EU,Health Care,1,ZEAL.CO,Zealand Pharma A/S,Biotechnology,22181.5,0.831,145.989,,,1.31,34.445,1.503,-0.11,-0.646
+EU,Real Estate,2,PKG1T.TL,AS Pro Kapital Grupp,Real Estate Management & Development,44.2,0.793,1.928,57.893,,5.308,,0.678,-0.418,-0.228
+EU,Industrials,3,KOF.PA,Kaufman & Broad S.A.,Construction & Engineering,491.4,0.772,0.055,0.083,0.206,2.648,8.391,2.06,-0.242,0.045
+EU,Industrials,4,AGFB.BR,Agfa-Gevaert NV,Machinery,69.6,0.745,-0.046,3.333,,12.911,9.98,0.276,-0.573,-0.596
+EU,Industrials,5,SKB.DE,Koenig & Bauer AG,Machinery,153.5,0.733,0.022,3.739,,8.61,4.12,0.464,-0.324,-0.314
+EU,Communication Services,6,SYN.IC,S√Ωn hf.,Diversified Telecommunication Services,5398.7,0.723,0.015,0.352,,,,0.695,-0.121,-0.331
+EU,Consumer Discretionary,7,PARP.PA,Groupe Partouche SA,"Hotels, Restaurants & Leisure",174.6,0.718,0.06,0.929,45.712,4.779,20.068,0.449,-0.027,0.057
+EU,Information Technology,8,INDB.MI,Indel B S.p.A.,"Electronic Equipment, Instruments & Components",104.6,0.705,0.019,0.479,0.915,6.514,8.106,0.755,0.073,-0.069
+EU,Real Estate,9,UBS.VI,UBM Development AG,Real Estate Management & Development,130.8,0.704,0.245,-0.471,,9.937,7.491,0.572,-0.167,-0.178
+EU,Industrials,10,HUSQ-A.ST,Husqvarna AB Class B,Building Products,24729.0,0.702,-0.036,0.03,0.334,7.968,,0.983,-0.113,-0.455
+EU,Consumer Staples,11,ZZ-B.ST,Zinzino Holding AB,Household Products,5871.8,0.702,0.515,0.798,0.917,10.739,25.421,7.765,-0.396,1.301
+EU,Industrials,12,XANO-B.ST,XANO Industri AB (publ),Machinery,2932.9,0.7,0.026,0.558,0.78,9.83,,1.564,-0.204,-0.421
+EU,Real Estate,13,YEIS.MC,"Elaia Investment Spain Socimi, S.A.",Equity Real Estate Investment Trusts (REITs),10.1,0.7,0.001,0.638,1.941,,,0.19,-0.195,-0.522
+EU,Utilities,14,FHW.F,Fernheizwerk Neukolln Aktiengesellschaft,Water Utilities,44.8,0.697,0.077,-0.035,-0.098,4.967,,0.726,-0.174,-0.262
+EU,Industrials,15,AF.PA,AIR FRANCE - KLM,Airlines,3059.4,0.696,0.049,0.4,4.025,3.916,2.426,-12.11,0.265,0.423
+EU,Information Technology,16,EXS.ST,Exsitec Holding AB,IT Services,1416.8,0.69,0.103,0.339,0.453,10.912,15.538,2.566,-0.184,-0.376
+EU,Financials,17,INTRUM.ST,Intrum AB (publ),Consumer Finance,2659.0,0.69,-0.062,1.024,,7.433,3.05,0.245,-0.672,-0.344
+EU,Information Technology,18,ALWEC.PA,We.Connect SA,"Electronic Equipment, Instruments & Components",77.3,0.689,0.512,2.953,3.862,1.187,,0.791,0.396,0.383
+EU,Communication Services,19,ALBLD.PA,Bilendi SA,Diversified Telecommunication Services,67.8,0.687,0.422,0.501,-0.33,5.459,10.097,1.569,-0.335,-0.151
+EU,Consumer Discretionary,20,HBH.F,HORNBACH Holding AG & Co. KGaA,Household Durables,1283.1,0.686,0.038,,-0.016,7.702,8.072,0.621,-0.225,0.076
+UK,Industrials,1,VTY.L,Vistry Group PLC,Construction & Engineering,827.3,0.735,-0.044,0.315,0.852,3.73,4.635,0.251,-0.592,-0.78
+UK,Industrials,2,REAT.L,REACT Group plc,Professional Services,10.6,0.717,0.202,0.286,-19.889,4.793,5.471,1.069,-0.231,-0.384
+UK,Industrials,3,FLO.L,Flowtech Fluidpower plc,Trading Companies & Distributors,40.8,0.71,0.09,,,12.69,9.788,0.807,-0.229,-0.557
+UK,Industrials,4,GEN.L,Genuit Group plc,Building Products,637.0,0.7,0.073,0.132,0.349,7.413,9.051,0.956,-0.357,-0.414
+UK,Industrials,5,SPR.L,Springfield Properties Plc,Construction & Engineering,111.0,0.692,0.053,0.364,0.868,6.235,11.592,0.645,-0.113,-0.009
+UK,Consumer Discretionary,6,CFYN.L,Caffyns plc,Automobiles,10.9,0.688,0.051,0.67,,5.956,,0.363,-0.111,-0.13
+UK,Consumer Discretionary,7,DFS.L,DFS Furniture plc,Household Durables,282.3,0.688,0.044,0.179,,7.183,7.471,1.012,-0.272,0.109
+UK,Industrials,8,CRST.L,Crest Nicholson Holdings plc,Construction & Engineering,177.7,0.679,-0.012,,,6.79,19.021,0.247,-0.629,-0.712
+UK,Industrials,9,VP.L,Vp plc,Commercial Services & Supplies,184.5,0.67,0.031,0.311,,5.338,7.808,1.244,-0.222,-0.31
+UK,Consumer Discretionary,10,TRT.L,Transense Technologies plc,Auto Components,9.2,0.669,0.235,0.175,-0.1,7.627,6.954,1.282,-0.616,-0.516
+UK,Information Technology,11,ACSO.L,accesso Technology Group plc,Software,85.5,0.668,0.018,0.1,0.408,3.494,8.057,0.669,-0.495,-0.637
+UK,Industrials,12,BMTO.L,Braime Group PLC,Trading Companies & Distributors,22.3,0.666,0.041,0.165,0.19,5.175,,0.893,,-0.289
+UK,Industrials,13,NBB.L,Norman Broadbent plc,Professional Services,3.5,0.664,0.387,4.869,,3.238,7.09,1.645,0.288,-0.361
+UK,Financials,14,MAB1.L,Mortgage Advice Bureau (Holdings) plc,Thrifts & Mortgage Finance,296.9,0.663,0.113,0.228,0.18,,8.196,4.038,-0.413,-0.369
+UK,Consumer Staples,15,HFG.L,Hilton Food Group plc,Food & Staples Retailing,454.7,0.661,0.103,-0.038,1.008,7.219,9.57,1.242,-0.416,-0.437
+UK,Industrials,16,SNX.L,Synectics plc,Professional Services,33.2,0.656,0.22,0.325,0.166,3.582,9.08,0.758,-0.381,0.069
+UK,Industrials,17,BRCK.L,Brickability Group Plc,Trading Companies & Distributors,159.5,0.656,0.072,-0.063,-0.575,5.033,5.238,0.839,-0.226,-0.271
+UK,Consumer Staples,18,RE.L,R.E.A. Holdings plc,Household Products,49.5,0.652,0.063,4.252,,6.29,4.372,0.621,0.329,0.232
+UK,Industrials,19,NEXS.L,Nexus Infrastructure plc,Construction & Engineering,9.6,0.65,0.162,0.75,,60.014,132.95,0.365,-0.345,-0.291
+UK,Consumer Discretionary,20,MOTR.L,Motorpoint Group plc,Automobiles,103.5,0.648,0.08,1.598,,7.663,15.437,4.13,-0.272,-0.107
+JP,Real Estate,1,3479.T,TKP Corporation,Real Estate Management & Development,56068.8,0.869,0.931,2.239,2.244,6.418,11.116,1.116,-0.169,0.035
+JP,Health Care,2,4569.T,"KYORIN Holdings, Inc.",Pharmaceuticals,64856.9,0.833,0.088,0.513,0.66,9.191,10.752,0.455,-0.21,-0.27
+JP,Industrials,3,6149.T,"Odawara Engineering Co., Ltd.",Machinery,12009.6,0.816,0.384,1.118,1.676,0.762,11.352,0.652,0.076,0.269
+JP,Information Technology,4,7351.T,"Goodpatch, Inc.",Software,4131.2,0.792,0.29,4.334,34.298,3.147,13.139,0.956,-0.332,0.08
+JP,Information Technology,5,6638.T,"Mimaki Engineering Co., Ltd.","Electronic Equipment, Instruments & Components",53261.8,0.781,0.11,0.505,0.66,5.231,12.905,1.335,-0.013,0.013
+JP,Industrials,6,9612.T,"LuckLand Co., Ltd.",Construction & Engineering,13877.7,0.781,0.187,13.167,,1.901,,1.051,0.232,-0.393
+JP,Communication Services,7,4057.T,"Interfactory, Inc.",Diversified Telecommunication Services,1424.6,0.779,0.104,1.526,,4.476,23.072,1.167,-0.366,-0.253
+JP,Consumer Discretionary,8,4994.T,"Taisei Lamick Co., Ltd.",Distributors,13206.3,0.776,0.101,0.383,0.56,2.111,9.599,0.512,-0.107,-0.186
+JP,Real Estate,9,1766.T,Token Corporation,Real Estate Management & Development,133211.8,0.773,0.076,0.622,0.764,1.238,14.404,1.142,-0.117,0.073
+JP,Consumer Staples,10,1301.T,"Kyokuyo Co., Ltd.",Food & Staples Retailing,49468.9,0.766,0.157,0.244,0.135,9.576,14.492,0.64,-0.052,0.1
+JP,Consumer Staples,11,2700.T,"Kitoku Shinryo Co., Ltd.",Food & Staples Retailing,14255.3,0.762,0.481,1.784,2.202,4.497,,0.693,-0.236,0.66
+JP,Information Technology,12,3933.T,"CHIeru Co.,Ltd.",Software,3301.8,0.76,0.492,0.42,0.214,2.283,8.14,0.978,-0.318,-0.071
+JP,Communication Services,13,6562.T,"Geniee, Inc.",Diversified Telecommunication Services,10920.0,0.76,0.413,0.574,0.894,6.944,6.989,1.063,-0.475,-0.232
+JP,Real Estate,14,3472.T,Ooedo Onsen Reit Investment Corporation,Equity Real Estate Investment Trusts (REITs),27148.9,0.757,0.388,0.456,0.745,9.83,37.515,0.7,-0.02,-0.085
+JP,Consumer Discretionary,15,3538.T,WILLPLUS Holdings Corporation,Automobiles,8311.2,0.756,0.856,0.226,0.288,5.759,7.389,0.727,-0.058,-0.152
+JP,Communication Services,16,2121.T,"mixi, Inc.",Interactive Media & Services,172857.6,0.746,0.054,0.884,1.485,3.515,13.712,0.948,-0.195,-0.039
+JP,Communication Services,17,3904.T,KAYAC Inc.,Interactive Media & Services,6101.8,0.741,0.201,1.037,3.588,2.592,,1.031,-0.076,-0.403
+JP,Information Technology,18,3636.T,"Mitsubishi Research Institute, Inc.",IT Services,73517.4,0.739,0.053,0.168,0.276,4.921,12.039,0.928,0.067,0.018
+JP,Consumer Staples,19,2533.T,"Oenon Holdings, Inc.",Beverages,26708.2,0.737,0.042,0.111,0.137,4.682,28.727,1.003,-0.126,0.309
+JP,Consumer Discretionary,20,7222.T,"Nissan Shatai Co., Ltd.",Automobiles,134098.1,0.734,0.164,1.044,6.452,2.037,,0.73,-0.062,0.043
+CN,Consumer Discretionary,1,002612.SZ,"Lancy Co., Ltd.","Textiles, Apparel & Luxury Goods",5583.7,0.828,0.028,1.2,2.834,12.704,15.975,1.671,-0.193,0.006
+CN,Materials,2,000902.SZ,"Xinyangfeng Agricultural Technology Co., Ltd.",Construction Materials,15646.5,0.814,0.16,0.22,0.226,5.564,8.782,1.293,-0.085,0.091
+CN,Health Care,3,600332.SS,Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited,Pharmaceuticals,34678.1,0.807,0.036,0.017,0.052,11.177,10.663,0.877,-0.178,-0.24
+CN,Industrials,4,601766.SS,CRRC Corporation Limited,Road & Rail,161861.6,0.8,0.108,0.091,0.064,6.228,10.03,0.921,-0.164,-0.195
+CN,Financials,5,601878.SS,"Zheshang Securities Co., Ltd.",Capital Markets,41667.3,0.798,0.33,0.412,0.249,,11.494,1.096,-0.153,-0.122
+CN,Consumer Discretionary,6,600104.SS,SAIC Motor Corporation Limited,Automobiles,135874.2,0.79,0.046,0.419,5.065,2.386,7.252,0.449,-0.26,-0.119
+CN,Consumer Discretionary,7,600983.SS,"Whirlpool China Co., Ltd.",Household Durables,6568.4,0.788,0.232,0.776,1.576,8.009,857.0,2.137,-0.174,0.183
+CN,Financials,8,601211.SS,"Guotai Junan Securities Co., Ltd.",Capital Markets,285588.6,0.787,0.859,6.897,1.135,,9.875,0.881,-0.136,0.231
+CN,Industrials,9,688009.SS,China Railway Signal & Communication Corporation Limited,Road & Rail,52313.7,0.779,0.064,0.047,0.055,9.113,14.529,1.092,-0.009,-0.127
+CN,Materials,10,600585.SS,Anhui Conch Cement Company Limited,Construction Materials,101905.6,0.779,-0.093,0.011,0.054,4.632,10.992,0.524,-0.095,-0.149
+CN,Industrials,11,601333.SS,Guangshen Railway Company Limited Class H,Road & Rail,21746.5,0.777,0.059,0.08,0.345,5.658,14.619,0.752,0.088,-0.01
+CN,Consumer Discretionary,12,600398.SS,"Hla Group Corp.,Ltd.","Textiles, Apparel & Luxury Goods",27567.9,0.776,0.032,0.03,0.003,8.819,10.83,1.505,-0.099,-0.294
+CN,Financials,13,000166.SZ,"Shenwan Hongyuan Group Co., Ltd.",Capital Markets,108172.6,0.774,0.298,0.084,0.825,,9.13,0.944,-0.126,0.033
+CN,Health Care,14,600196.SS,"Shanghai Fosun Pharmaceutical (Group) Co., Ltd.",Pharmaceuticals,58268.8,0.772,0.014,0.15,0.217,15.597,15.586,1.172,-0.12,0.009
+CN,Consumer Discretionary,15,600741.SS,HUAYU Automotive Systems Company Limited,Auto Components,53060.3,0.771,0.085,0.091,0.075,3.426,7.015,0.779,-0.004,0.126
+CN,Materials,16,600019.SS,"Baoshan Iron & Steel Co., Ltd.",Metals & Mining,124593.5,0.77,-0.014,0.114,0.405,5.32,9.671,0.611,-0.117,-0.095
+CN,Consumer Staples,17,600600.SS,"Tsingtao Brewery Co., Ltd.",Beverages,81074.1,0.766,0.01,0.066,0.056,9.174,16.613,2.499,-0.144,-0.133
+CN,Industrials,18,600517.SS,"State Grid Yingda Co.,Ltd.",Electrical Equipment,29392.8,0.761,0.059,0.525,0.607,3.945,16.581,1.229,0.015,0.236
+CN,Consumer Staples,19,600887.SS,"Inner Mongolia Yili Industrial Group Co., Ltd.",Food & Staples Retailing,168001.6,0.761,0.001,0.154,0.368,12.808,12.871,2.819,-0.031,0.089
+CN,Health Care,20,300871.SZ,"Hvsen Biotechnology Co., Ltd.",Biotechnology,4076.0,0.76,0.401,2.328,,8.568,15.659,1.808,-0.029,1.136
+HK,Consumer Discretionary,1,0887.HK,Emperor Watch & Jewellery Limited,"Textiles, Apparel & Luxury Goods",1850.5,0.737,0.102,0.254,0.786,1.492,25.5,0.329,-0.385,0.692
+HK,Consumer Discretionary,2,0538.HK,Ajisen (China) Holdings Limited,"Hotels, Restaurants & Leisure",1026.0,0.728,0.067,0.454,,0.348,-31.333,0.311,0.116,0.04
+HK,Information Technology,3,0698.HK,Tongda Group Holdings Limited,"Electronic Equipment, Instruments & Components",480.9,0.725,-0.073,,,1.986,1.614,0.17,-0.495,-0.425
+HK,Real Estate,4,0258.HK,Tomson Group Limited,Real Estate Management & Development,4879.5,0.704,6.46,3.928,3.476,2.172,,0.372,-0.193,0.233
+HK,Health Care,5,3390.HK,Tycoon Group Holdings Limited,Pharmaceuticals,228.0,0.703,0.252,0.538,3.836,10.627,,0.424,-0.311,-0.933
+HK,Consumer Discretionary,6,0116.HK,Chow Sang Sang Holdings International Limited,"Textiles, Apparel & Luxury Goods",7187.3,0.677,0.06,0.484,1.132,4.948,3.313,0.497,0.35,0.705
+HK,Consumer Discretionary,7,2199.HK,Regina Miracle International (Holdings) Limited,"Textiles, Apparel & Luxury Goods",2313.8,0.673,0.117,0.045,0.284,4.886,4.909,0.78,-0.044,-0.136
+HK,Consumer Discretionary,8,0819.HK,Tianneng Power International Limited,Auto Components,6599.1,0.67,-0.298,0.032,0.258,5.939,3.104,0.329,-0.068,0.074
+HK,Consumer Discretionary,9,2222.HK,NVC International Holdings Limited,Household Durables,334.8,0.662,-0.058,26.976,,8.429,,0.09,-0.143,-0.29
+HK,Industrials,10,1662.HK,Yee Hop Holdings Limited,Construction & Engineering,453.2,0.646,0.332,0.082,0.805,5.285,,0.815,-0.515,-0.429
+HK,Financials,11,0388.HK,Hong Kong Exchanges and Clearing Limited,Capital Markets,506623.7,0.636,0.369,0.237,0.36,8.69,25.716,9.196,0.006,0.741
+HK,Health Care,12,2633.HK,Jacobson Pharma Corporation Limited,Pharmaceuticals,2220.2,0.635,0.074,0.176,0.127,5.108,7.255,0.994,-0.244,1.05
+HK,Industrials,13,0057.HK,Chen Hsong Holdings Limited,Machinery,1040.4,0.635,0.291,0.362,0.531,1.872,,0.331,0.136,0.403
+HK,Consumer Discretionary,14,0305.HK,Wuling Motors Holdings Limited,Auto Components,1368.7,0.631,0.038,0.034,0.56,5.341,13.833,0.582,-0.097,0.133
+HK,Health Care,15,1612.HK,Vincent Medical Holdings Limited,Health Care Technology,547.0,0.63,0.165,0.443,0.509,3.104,13.833,0.823,0.785,1.227
+HK,Health Care,16,3600.HK,Modern Dental Group Limited,Health Care Equipment & Supplies,5590.4,0.625,0.111,0.313,0.463,6.416,9.061,1.7,0.469,0.519
+HK,Consumer Discretionary,17,0573.HK,Tao Heung Holdings Limited,"Hotels, Restaurants & Leisure",268.8,0.623,-0.044,-0.138,,8.098,,0.247,-0.067,-0.616
+HK,Financials,18,0217.HK,China Chengtong Development Group Limited,Capital Markets,738.2,0.622,0.048,0.013,0.239,42.367,,0.252,-0.009,0.27
+HK,Financials,19,1788.HK,Guotai Junan International Holdings Limited,Capital Markets,20584.7,0.621,0.409,0.483,2.868,,24.0,1.298,-0.359,2.804
+HK,Information Technology,20,0750.HK,China Shuifa Singyes Energy Holdings Limited,"Technology Hardware, Storage & Peripherals",579.8,0.616,-0.125,0.058,,20.853,1.15,0.117,-0.053,-0.303
+TW,Real Estate,1,3512.TWO,"Huang Long Development Co.,Ltd.",Real Estate Management & Development,2351.9,0.807,0.629,2.789,3.887,13.762,,0.94,-0.176,-0.445
+TW,Information Technology,2,2331.TW,"Elitegroup Computer Systems Co.,Ltd.","Technology Hardware, Storage & Peripherals",13015.4,0.79,0.15,2.3,,9.529,-122.895,1.194,0.287,-0.26
+TW,Consumer Discretionary,3,2442.TW,"Jean Co.,Ltd",Auto Components,5511.0,0.783,8.808,5.126,3.503,6.628,,0.872,-0.18,-0.33
+TW,Real Estate,4,5522.TW,"Farglory Land Development Co., Ltd.",Real Estate Management & Development,58150.7,0.773,0.391,0.677,0.727,9.187,11.791,1.222,0.161,-0.03
+TW,Industrials,5,1541.TW,"CHANG TYPE Industrial Co., Ltd.",Building Products,1749.4,0.761,0.214,0.388,1.183,6.317,4.577,0.81,-0.261,-0.274
+TW,Consumer Discretionary,6,9951.TWO,"Macauto Industrial Co., Ltd.",Auto Components,3841.7,0.746,0.146,0.243,0.24,7.806,9.496,1.496,0.038,-0.187
+TW,Consumer Staples,7,1215.TW,"Charoen Pokphand Enterprise(Taiwan) Co., Ltd.",Food & Staples Retailing,34195.6,0.745,0.017,0.401,0.588,11.378,13.615,3.24,-0.043,0.204
+TW,Communication Services,8,6596.TWO,Kuang Hong Arts Management Incorporation,Entertainment,3712.6,0.742,0.787,2.205,2.431,2.791,,3.746,-0.259,0.649
+TW,Industrials,9,2546.TW,"Kedge Construction Co., Ltd.",Construction & Engineering,11447.0,0.74,0.51,0.41,0.421,2.482,19.403,1.848,0.181,0.103
+TW,Information Technology,10,3078.TWO,"Channel Well Technology Co.,Ltd.","Technology Hardware, Storage & Peripherals",13325.1,0.738,0.162,0.07,0.079,5.662,,1.981,-0.242,-0.126
+TW,Consumer Discretionary,11,4433.TWO,"Singtex Industrial Co., Ltd.","Textiles, Apparel & Luxury Goods",1254.1,0.737,0.121,0.343,0.466,14.504,,0.661,-0.265,-0.265
+TW,Health Care,12,4129.TWO,United Orthopedic Corporation,Health Care Technology,8602.3,0.729,0.215,0.244,0.232,8.717,12.789,2.046,-0.091,-0.146
+TW,Information Technology,13,3540.TWO,"Thermaltake Technology Co., Ltd.","Technology Hardware, Storage & Peripherals",2007.1,0.729,0.291,1.567,,29.477,,1.092,-0.121,-0.41
+TW,Communication Services,14,3687.TWO,"MacroWell OMG Digital Entertainment Co., Ltd.",Interactive Media & Services,2143.3,0.726,0.061,0.933,1.008,3.737,,1.381,-0.086,-0.322
+TW,Consumer Staples,15,1229.TW,Lien Hwa Industrial Holdings Corporation,Food & Staples Retailing,76915.0,0.72,0.049,0.148,0.098,40.415,14.676,1.345,0.08,-0.251
+TW,Real Estate,16,2511.TW,Prince Housing & Development Corp.,Real Estate Management & Development,13013.8,0.718,0.103,0.199,0.71,15.112,13.367,0.501,-0.107,-0.29
+TW,Real Estate,17,2596.TWO,ReaLy Development & Construction Corp.,Real Estate Management & Development,2960.0,0.718,0.597,1.394,1.776,12.78,,0.285,-0.13,-0.221
+TW,Consumer Discretionary,18,1316.TW,"Sun Yad Construction Co.,Ltd","Textiles, Apparel & Luxury Goods",3787.7,0.714,1.953,1.139,,34.029,48.409,0.842,-0.217,-0.43
+TW,Information Technology,19,5283.TW,"Heran Co., Ltd.","Electronic Equipment, Instruments & Components",4660.3,0.711,0.008,0.083,0.055,6.695,,0.97,-0.186,-0.376
+TW,Real Estate,20,2548.TW,"Huaku Development Co., Ltd.",Real Estate Management & Development,31887.9,0.709,1.529,1.145,1.328,8.805,8.107,1.549,0.107,-0.132
+KR,Consumer Staples,1,027740.KS,"Maniker.Co.,Ltd",Food & Staples Retailing,32353.9,0.742,0.108,29.876,,10.43,,,-0.422,-0.556
+KR,Consumer Staples,2,136490.KS,"Sunjin Co.,Ltd.",Household Products,232322.9,0.736,0.127,1.423,20.73,2.678,,,-0.192,0.406
+KR,Consumer Discretionary,3,090080.KS,"Pyung Hwa Industrial Co., Ltd.",Auto Components,48094.4,0.713,0.064,0.475,3.097,2.928,,,-0.198,-0.226
+KR,Consumer Discretionary,4,071840.KS,"LOTTE Himart Co.,Ltd.",Specialty Retail,154777.9,0.68,-0.024,,,2.784,11.757,,-0.179,-0.203
+KR,Consumer Discretionary,5,010690.KS,"HWASHIN CO.,Ltd",Auto Components,341229.7,0.679,0.146,0.062,0.245,5.207,3.903,,0.219,-0.31
+KR,Communication Services,6,100220.KS,Visang Education Inc,Diversified Telecommunication Services,61380.1,0.679,0.091,3.268,,2.381,,,-0.189,0.086
+KR,Industrials,7,010770.KS,"Pyung Hwa Holdings Co., Ltd.",Electrical Equipment,63527.3,0.675,0.058,1.26,21.254,3.491,,,-0.146,0.616
+KR,Industrials,8,016880.KS,"Woongjin Co., Ltd.",Industrial Conglomerates,160871.0,0.675,0.141,1.9,38.323,4.976,,,-0.255,0.783
+KR,Consumer Staples,9,036580.KS,Farmsco,Food & Staples Retailing,85971.2,0.668,-0.013,8.125,,6.205,,,-0.106,-0.11
+KR,Consumer Discretionary,10,308170.KS,CENTRAL MOTEK Co.Ltd.,Auto Components,31900.0,0.667,0.068,2.122,,10.724,,,-0.382,-0.563
+KR,Materials,11,007690.KS,"Kukdo Chemical Co., Ltd.",Chemicals,267893.7,0.664,0.069,0.342,1.466,6.225,5.873,,-0.067,-0.151
+KR,Consumer Discretionary,12,023800.KS,"INZI Controls Co.,Ltd.",Auto Components,89495.3,0.661,0.106,0.26,0.584,4.25,,,0.014,-0.09
+KR,Utilities,13,117580.KS,"Daesung Energy Co., Ltd.",Gas Utilities,201783.5,0.661,0.023,0.142,0.426,5.196,,,-0.08,-0.189
+KR,Consumer Discretionary,14,023810.KS,INFAC Corporation,Auto Components,53100.0,0.66,0.04,0.307,4.141,8.921,,,-0.056,-0.301
+KR,Materials,15,213500.KS,"Hansol Paper Co., Ltd.",Paper & Forest Products,152655.9,0.658,0.034,0.429,,8.829,4.312,,-0.222,-0.358
+KR,Consumer Discretionary,16,089470.KS,"HDC Hyundai Engineering Plastics Co., Ltd.",Auto Components,105283.5,0.657,0.002,0.4,0.759,2.909,,,0.075,0.021
+KR,Industrials,17,002460.KS,"Hwasung Industrial Co., Ltd.",Construction & Engineering,98243.9,0.654,0.076,0.445,1.303,3.892,,,-0.01,0.226
+KR,Consumer Discretionary,18,105630.KS,"Hansae Co., Ltd.","Textiles, Apparel & Luxury Goods",333966.5,0.645,0.08,0.049,-0.013,5.63,4.686,,-0.145,-0.538
+KR,Industrials,19,007210.KS,Byucksan Corporation,Building Products,94665.4,0.644,-0.05,0.097,0.405,3.862,,,-0.213,-0.137
+KR,Consumer Staples,20,000890.KS,"Bohae Brewery Co., Ltd.",Beverages,35914.5,0.642,0.026,-0.34,-0.478,4.629,,,-0.46,-0.458
+SEA,Consumer Staples,1,TBLA.JK,PT Tunas Baru Lampung Tbk,Household Products,3482407.7,0.782,0.314,0.19,0.286,6.627,4.849,0.377,-0.211,0.001
+SEA,Communication Services,2,XJB.SI,"G.H.Y Culture & Media Holding Co., Limited",Entertainment,97.3,0.775,0.224,,,8.758,9.1,0.993,-0.442,-0.597
+SEA,Industrials,3,UNIQ.BK,Unique Engineering and Construction Public Company Limited,Construction & Engineering,3026.8,0.759,0.055,0.46,4.376,8.38,3.182,0.326,-0.012,0.08
+SEA,Materials,4,MOLI.JK,PT Madusari Murni Indah Tbk,Chemicals,531187.1,0.759,0.076,0.961,4.827,3.222,,0.42,0.0,-0.375
+SEA,Industrials,5,JECC.JK,PT Jembo Cable Company Tbk,Electrical Equipment,353808.0,0.738,0.156,0.565,0.507,8.13,,0.386,-0.44,-0.338
+SEA,Consumer Staples,6,INDF.JK,PT Indofood Sukses Makmur Tbk,Food & Staples Retailing,54877665.4,0.737,0.067,0.15,0.236,4.776,4.808,0.71,-0.204,0.113
+SEA,Real Estate,7,CTRA.JK,PT Ciputra Development Tbk,Real Estate Management & Development,10750702.6,0.736,0.128,0.147,0.252,3.284,4.828,0.437,-0.393,-0.473
+SEA,Materials,8,TOA.BK,TOA Paint (Thailand) Public Company Limited,Chemicals,23650.7,0.733,0.021,0.288,0.52,3.587,8.809,1.524,0.174,-0.319
+SEA,Consumer Staples,9,SSMS.JK,PT Sawit Sumbermas Sarana Tbk.,Household Products,7191375.4,0.725,0.429,0.398,0.416,5.515,13.727,2.758,-0.39,-0.194
+SEA,Consumer Discretionary,10,PZZA.JK,PT Sarimelati Kencana Tbk.,"Hotels, Restaurants & Leisure",550004.8,0.723,0.091,0.314,,2.944,22.048,0.532,0.139,-0.231
+SEA,Health Care,11,RAM.BK,Ramkhamhaeng Hospital Public Company Limited,Health Care Equipment & Supplies,22200.0,0.719,0.495,1.319,2.844,18.87,15.164,1.018,0.094,-0.37
+SEA,Consumer Discretionary,12,PMJS.JK,PT Putra Mandiri Jembar Tbk,Automobiles,1471849.2,0.718,0.071,0.084,0.076,3.562,,0.535,-0.068,-0.113
+SEA,Industrials,13,SEAFCO.BK,Seafco Public Company Limited,Construction & Engineering,2292.3,0.716,0.21,1.805,121.931,4.183,11.154,1.408,0.638,0.487
+SEA,Consumer Discretionary,14,ERAA.JK,PT Erajaya Swasembada Tbk,Specialty Retail,5412235.0,0.716,0.174,0.173,0.158,4.827,5.619,0.567,-0.347,-0.049
+SEA,Materials,15,SMBR.JK,PT Semen Baturaja (Persero) Tbk,Construction Materials,1519677.9,0.712,0.129,0.135,0.33,4.889,,0.445,-0.472,-0.255
+SEA,Energy,16,IRPC-R.BK,IRPC Public Company Limited,"Oil, Gas & Consumable Fuels",38371.9,0.711,-0.112,0.462,,3.692,,0.52,-0.427,-0.425
+SEA,Utilities,17,ETC.BK,Earth Tech Environment Public Company Limited,Independent Power and Renewable Electricity Producers,1724.8,0.71,0.001,1.351,4.267,4.427,,0.49,-0.337,-0.57
+SEA,Consumer Staples,18,AALI.JK,PT Astra Agro Lestari Tbk,Household Products,12077419.7,0.71,0.314,0.19,0.282,2.109,10.299,0.505,0.145,0.285
+SEA,Industrials,19,ASSA.JK,PT Adi Sarana Armada Tbk,Commercial Services & Supplies,2177771.1,0.708,0.209,0.418,0.714,3.548,14.404,0.951,-0.177,0.035
+SEA,Industrials,20,SFT.BK,Shrinkflex (Thailand) Public Company Limited,Machinery,660.0,0.708,0.076,0.432,1.776,6.198,,0.816,-0.339,-0.564
+ANZ,Financials,1,FWD.AX,Fleetwood Limited,Diversified Financial Services,156.5,0.76,0.208,0.838,2.842,3.629,7.38,0.967,-0.282,0.275
+ANZ,Information Technology,2,RKN.AX,Reckon Limited,Software,45.9,0.755,0.155,0.292,0.667,5.173,5.127,1.784,-0.113,-0.151
+ANZ,Consumer Staples,3,MTS.AX,Metcash Limited,Food & Staples Retailing,3332.2,0.736,0.089,0.127,0.101,9.537,11.789,2.001,-0.186,-0.055
+ANZ,Consumer Discretionary,4,SKC.NZ,SkyCity Entertainment Group Limited,"Hotels, Restaurants & Leisure",551.5,0.733,-0.046,0.503,,7.188,12.438,0.349,-0.468,-0.658
+ANZ,Financials,5,CCP.AX,Credit Corp Group Limited,Consumer Finance,786.2,0.728,0.253,0.644,0.856,,6.993,0.88,-0.101,-0.156
+ANZ,Materials,6,PEN.AX,Peninsula Energy Ltd.,Metals & Mining,173.7,0.718,,,,,2.79,0.554,-0.379,-0.817
+ANZ,Consumer Staples,7,SEK.NZ,Seeka Limited,Household Products,218.8,0.714,0.367,3.059,,4.996,13.75,0.702,0.372,1.437
+ANZ,Energy,8,BPT.AX,Beach Energy Limited,"Oil, Gas & Consumable Fuels",2532.3,0.711,0.193,,,3.212,4.948,0.799,-0.109,-0.181
+ANZ,Consumer Discretionary,9,HVN.AX,Harvey Norman Holdings Ltd,Household Durables,5482.4,0.704,0.051,0.269,0.47,8.623,11.755,1.117,-0.123,0.164
+ANZ,Health Care,10,MVP.AX,Medical Developments International Limited,Pharmaceuticals,42.8,0.701,0.178,,,16.096,33.043,0.782,-0.309,-0.062
+ANZ,Materials,11,CAA.AX,Capral Limited,Metals & Mining,180.1,0.699,0.135,0.079,0.097,4.199,4.613,0.746,0.087,0.31
+ANZ,Industrials,12,MXI.AX,MaxiTRANS Industries Limited,Machinery,82.5,0.698,0.095,0.258,1.791,6.655,7.692,0.767,-0.329,-0.192
+ANZ,Consumer Staples,13,FWL.NZ,Foley Wines Limited,Beverages,30.6,0.696,0.062,-0.315,,6.206,,0.214,-0.305,-0.369
+ANZ,Real Estate,14,ARF.AX,Arena REIT,Equity Real Estate Investment Trusts (REITs),1256.5,0.681,0.116,0.342,0.417,,15.183,0.949,-0.133,-0.128
+ANZ,Consumer Discretionary,15,JBH.AX,JB Hi-Fi Limited,Specialty Retail,7801.0,0.677,0.1,0.071,0.054,9.811,15.516,4.649,-0.325,0.268
+ANZ,Industrials,16,QAN.AX,Qantas Airways Ltd.,Airlines,13845.8,0.674,0.083,0.164,0.279,4.656,8.448,10.304,-0.107,0.685
+ANZ,Consumer Discretionary,17,CCX.AX,City Chic Collective Limited,"Textiles, Apparel & Luxury Goods",16.9,0.672,-0.511,,,11.882,2.2,0.571,-0.463,-0.648
+ANZ,Materials,18,MMI.AX,Metro Mining Limited,Metals & Mining,469.1,0.671,0.231,,,7.328,3.407,2.492,0.173,0.622
+ANZ,Real Estate,19,COF.AX,Centuria Office REIT,Equity Real Estate Investment Trusts (REITs),528.6,0.67,-0.045,,,,7.848,0.515,-0.156,-0.064
+ANZ,Real Estate,20,HDN.AX,HomeCo Daily Needs REIT,Equity Real Estate Investment Trusts (REITs),2528.1,0.67,0.026,1.175,2.052,,13.335,0.783,0.013,0.174
+CA,Energy,1,ARX.TO,ARC Resources Ltd.,"Oil, Gas & Consumable Fuels",18095.9,0.754,0.176,0.13,0.134,6.129,13.223,2.102,0.14,0.38
+CA,Communication Services,2,BCE.TO,BCE Inc.,Diversified Telecommunication Services,31771.2,0.749,0.002,0.91,17.779,8.882,12.597,1.58,0.173,-0.123
+CA,Consumer Staples,3,LAS-A.TO,Lassonde Industries Inc.,Beverages,1507.6,0.736,0.128,0.332,0.312,6.108,8.784,1.276,0.076,0.486
+CA,Materials,4,CAS.TO,Cascades Inc.,Paper & Forest Products,1104.3,0.735,0.016,0.362,,5.695,8.25,0.628,0.278,0.324
+CA,Industrials,5,GFL.TO,GFL Environmental Inc.,Transportation Infrastructure,16903.1,0.718,0.078,0.984,,15.311,37.876,2.302,-0.319,-0.121
+CA,Consumer Discretionary,6,DOO.TO,BRP Inc.,Automobiles,6214.6,0.689,0.068,0.304,,7.583,16.834,8.922,0.291,-0.014
+CA,Health Care,7,OGI.TO,OrganiGram Holdings Inc.,Pharmaceuticals,215.4,0.68,0.622,,,67.092,51.0,0.541,-0.168,-0.275
+CA,Materials,8,DNG.TO,Dynacor Gold Mines Inc.,Metals & Mining,282.7,0.678,0.398,0.115,0.261,6.402,5.281,1.523,0.536,0.358
+CA,Utilities,9,AQN.TO,ALGONQUIN POWER & UTILITIES COR,Independent Power and Renewable Electricity Producers,6303.6,0.677,0.049,-0.111,,14.604,14.725,1.021,0.087,0.108
+CA,Communication Services,10,TVA-B.TO,TVA Group Inc.,Media,69.1,0.676,0.016,7.648,,0.745,8.889,0.196,1.133,0.368
+CA,Consumer Discretionary,11,MTY.TO,MTY Food Group Inc.,"Hotels, Restaurants & Leisure",886.2,0.675,0.026,0.669,3.923,7.86,8.571,1.038,-0.053,-0.08
+CA,Industrials,12,AC.TO,Air Canada,Airlines,6255.3,0.673,0.005,0.119,-0.626,4.858,9.504,2.355,0.034,0.217
+CA,Materials,13,ABX.TO,Barrick Gold Corporation,Metals & Mining,100061.4,0.665,0.312,0.594,1.329,9.125,9.199,2.644,1.155,1.735
+CA,Materials,14,K.TO,Kinross Gold Corporation,Metals & Mining,47895.7,0.663,0.369,0.635,1.519,9.393,8.101,3.815,0.895,2.58
+CA,Health Care,15,BHC.TO,Bausch Health Companies Inc.,Pharmaceuticals,2603.1,0.661,0.067,0.127,,6.385,1.227,-0.916,-0.232,-0.269
+CA,Materials,16,CG.TO,Centerra Gold Inc.,Metals & Mining,4782.2,0.66,0.14,1.773,6.264,5.423,8.237,1.655,1.496,1.747
+CA,Industrials,17,WSP.TO,WSP Global Inc.,Construction & Engineering,25303.7,0.657,0.131,0.232,0.415,14.865,14.178,2.571,-0.321,-0.11
+CA,Utilities,18,SPB.TO,Superior Plus Corp.,Gas Utilities,1866.7,0.653,0.033,0.221,,9.226,15.919,1.47,0.111,0.044
+CA,Industrials,19,KBL.TO,K-Bro Linen Inc.,Professional Services,537.3,0.652,0.356,0.32,-0.038,7.774,17.0,1.98,0.23,0.375
+CA,Real Estate,20,MRD.TO,Melcor Developments Ltd.,Real Estate Management & Development,532.6,0.652,0.175,0.578,0.73,6.21,8.91,0.421,0.337,0.654
+LATAM,Consumer Staples,1,CUERVO.MX,"Becle, S.A.B. de C.V.",Beverages,51677.0,0.722,-0.02,0.861,1.189,6.377,9.906,0.735,-0.342,-0.533
+LATAM,Consumer Staples,2,BEEF3.SA,Minerva S.A.,Household Products,3535.0,0.715,0.609,1.208,,3.637,3.645,2.806,-0.243,-0.445
+LATAM,Consumer Discretionary,3,VULC3.SA,Vulcabras Azaleia S.A.,"Textiles, Apparel & Luxury Goods",4526.4,0.709,0.168,0.422,1.045,5.918,6.249,1.856,-0.145,0.323
+LATAM,Real Estate,4,HBRE3.SA,HBR Realty Empreendimentos Imobiliarios S.A.,Real Estate Management & Development,268.7,0.707,2.268,0.189,-0.423,14.845,-87.0,0.177,-0.169,-0.427
+LATAM,Utilities,5,ESSBIO-C.SN,Essbio S.A.,Water Utilities,240921.2,0.703,0.051,0.139,0.274,8.326,,0.584,-0.289,-0.279
+LATAM,Health Care,6,HAPV3.SA,Hapvida Participacoes e Investimentos S.A.,Health Care Equipment & Supplies,5330.2,0.699,0.092,0.223,,5.573,6.998,0.111,-0.696,-0.805
+LATAM,Materials,7,CSNA3.SA,Companhia Siderurgica Nacional,Metals & Mining,8858.3,0.697,0.025,0.001,,6.744,-5.695,0.689,-0.102,-0.456
+LATAM,Consumer Staples,8,SEER3.SA,Ser Educacional S.A.,Household Products,1419.1,0.693,0.119,0.589,,4.143,4.398,1.065,0.261,1.453
+LATAM,Industrials,9,LUXM4.SA,Trevisa Investimentos S.A.,Marine,135.1,0.688,0.158,0.188,-0.385,2.878,,0.785,-0.352,-0.509
+LATAM,Consumer Discretionary,10,GMAT3.SA,Grupo Mateus S.A.,Household Durables,9660.2,0.684,0.198,0.102,0.437,6.037,4.719,0.908,-0.475,-0.363
+LATAM,Real Estate,11,EVEN3.SA,Even Construtora e Incorporadora S.A.,Real Estate Management & Development,1051.8,0.68,-0.11,0.932,4.645,7.457,3.493,0.546,-0.192,-0.025
+LATAM,Real Estate,12,JHSF3.SA,JHSF Participacoes S.A.,Real Estate Management & Development,7307.2,0.675,1.164,0.901,1.217,5.094,10.055,1.06,1.211,2.257
+LATAM,Consumer Discretionary,13,PCAR3.SA,Companhia Brasileira de Distribuicao,Household Durables,757.6,0.67,0.017,0.546,,15.478,-3.234,0.359,-0.5,-0.43
+LATAM,Utilities,14,DGCU2.BA,Distribuidora de Gas Cuyana S.A.,Gas Utilities,317691.5,0.664,0.078,0.394,1.26,2.995,,1.326,0.235,0.559
+LATAM,Real Estate,15,VINTE.MX,"Vinte Viviendas Integrales, S.A.B. de C.V.",Real Estate Management & Development,9605.6,0.663,1.973,2.03,2.569,8.128,4.854,1.249,0.167,0.135
+LATAM,Real Estate,16,MELK3.SA,Melnick Even Desenvolvimento Imobiliario S.A.,Real Estate Management & Development,646.2,0.662,0.086,0.131,0.57,9.636,4.216,0.599,0.058,0.495
+LATAM,Consumer Staples,17,SMTO3.SA,Sao Martinho S.A.,Food & Staples Retailing,5584.0,0.653,0.038,-0.014,0.502,4.061,6.93,0.771,0.01,-0.44
+LATAM,Financials,18,BAZA3.SA,Banco da Amazonia S.A.,Banks,3763.8,0.652,0.129,0.04,-0.024,,,0.526,-0.098,-0.176
+LATAM,Information Technology,19,BOLT.BA,Boldt S.A.,IT Services,108190.8,0.649,0.725,1.261,,9.518,,2.362,0.031,-0.389
+LATAM,Utilities,20,EQMA3B.SA,Equatorial Maranhao Distribuidora de Energia S.A.,Electric Utilities,5038.8,0.644,0.123,0.164,0.014,3.19,,0.538,0.133,0.352
+MEA,Materials,1,KIO.JO,Kumba Iron Ore Limited,Metals & Mining,95041.0,0.75,0.023,0.013,-0.006,3.215,10.045,1.73,0.075,-0.302
+MEA,Financials,2,ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,Banks,20050.0,0.731,0.465,,1.911,,4.312,0.681,0.026,0.563
+MEA,Consumer Staples,3,BLDN.QA,Baladna Q.P.S.C.,Food & Staples Retailing,2782.9,0.713,0.107,1.027,1.917,16.16,11.8,0.93,0.102,0.123
+MEA,Industrials,4,QNNS.QA,Qatar Navigation Q.P.S.C.,Marine,11566.2,0.702,0.171,0.179,0.133,9.606,8.144,0.644,-0.053,-0.045
+MEA,Industrials,5,1302.SR,Bawan Company,Building Products,2614.8,0.678,0.347,1.517,1.059,8.055,18.158,2.326,-0.175,0.006
+MEA,Financials,6,VAKBN.IS,Turkiye Vakiflar Bankasi Turk Anonim Ortakligi,Banks,323060.7,0.674,0.601,,0.568,,5.849,0.983,0.221,0.466
+MEA,Consumer Discretionary,7,NPK.JO,Nampak Limited,Distributors,3903.7,0.659,0.077,0.119,,5.138,4.707,1.56,-0.083,0.681
+MEA,Real Estate,8,4321.SR,Arabian Centres Company,Real Estate Management & Development,8065.1,0.657,-0.024,0.052,0.041,18.836,7.075,0.513,-0.11,-0.077
+MEA,Consumer Discretionary,9,FLEXO.AT,Flexopack Societe Anonyme Commercial and Industrial Plastics Company,Distributors,96.0,0.654,0.046,0.079,0.051,4.393,,0.718,0.034,0.047
+MEA,Consumer Staples,10,TBS.JO,Tiger Brands Limited,Food & Staples Retailing,42240.1,0.652,0.027,0.469,0.28,8.912,12.991,2.562,-0.081,0.473
+MEA,Financials,11,AKBNK.IS,Akbank T.A.S.,Banks,349180.0,0.651,0.436,,0.351,,3.842,1.154,0.012,0.102
+MEA,Financials,12,TSKB.IS,Turkiye Sinai Kalkinma Bankasi A.S.,Banks,32256.0,0.651,0.297,,0.108,,3.449,0.918,-0.01,0.054
+MEA,Real Estate,13,SRVGY.IS,Servet Gayrimenkul Yatirim Ortakligi A.S.,Equity Real Estate Investment Trusts (REITs),9815.0,0.649,1.413,-0.139,0.284,8.354,,0.352,0.129,-0.36
+MEA,Materials,14,BRYAT.IS,Borusan Yatirim ve Pazarlama A.S.,Metals & Mining,54716.2,0.647,0.129,1.648,1.282,,,1.566,0.212,-0.018
+MEA,Consumer Discretionary,15,MRP.JO,Mr Price Group Limited,"Textiles, Apparel & Luxury Goods",42221.5,0.644,0.091,0.097,0.112,7.898,10.45,3.172,-0.234,-0.176
+MEA,Industrials,16,CLEBI.IS,Celebi Hava Servisi A.S.,Air Freight & Logistics,39341.7,0.644,0.435,0.23,0.02,9.595,174.461,4.819,0.017,-0.323
+MEA,Communication Services,17,NPN.JO,Naspers Limited,Diversified Telecommunication Services,669045.7,0.643,0.117,0.714,0.836,1909.94,8.966,1.794,-0.199,0.239
+MEA,Industrials,18,AEGN.AT,Aegean Airlines SA,Airlines,1081.3,0.642,0.044,0.15,0.138,7.305,7.503,1.695,0.051,0.17
+MEA,Consumer Staples,19,MIG.AT,Marfin Investment Group Holdings S.A.,Food & Staples Retailing,99.5,0.638,0.105,5.239,,32.721,,0.75,-0.041,-0.123
+MEA,Health Care,20,4002.SR,Mouwasat Medical Services Company,Health Care Equipment & Supplies,13040.0,0.638,0.119,0.177,0.273,12.371,14.852,3.277,-0.109,-0.431

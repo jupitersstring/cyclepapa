@@ -111,6 +111,35 @@ def top5_by_region_sheet(df: pd.DataFrame):
     return m[[c for c in cols if c in m.columns]].round(3)
 
 
+def top_n_by_sheet(df: pd.DataFrame, group_col: str, n: int = 20, order=None):
+    """Top-n names by asymmetry score within each value of group_col (region/sector)."""
+    try:
+        a = screens.asymmetry(df, top=None)
+    except Exception:
+        return None
+    if a is None or a.empty or group_col not in df.columns:
+        return None
+    need = ["symbol", "marketCap"] + ([group_col] if group_col not in a.columns else [])
+    a = a.merge(df[need], on="symbol", how="left")
+    a["mcap_m"] = (a["marketCap"] / 1e6).round(1)
+    order = order or []
+    groups = order + [g for g in a[group_col].dropna().value_counts().index if g not in order]
+    parts = []
+    for g in groups:
+        sub = a[a[group_col] == g].sort_values("score", ascending=False).head(n).copy()
+        if sub.empty:
+            continue
+        sub["rank"] = range(1, len(sub) + 1)
+        parts.append(sub)
+    if not parts:
+        return None
+    m = pd.concat(parts)
+    cols = [group_col, "rank", "symbol", "name", "region", "industry", "mcap_m", "score",
+            "revenue_growth", "ebitda_growth", "enterpriseToEbitda", "forwardPE", "ret_12m"]
+    cols = list(dict.fromkeys([c for c in cols if c in m.columns]))
+    return m[cols].round(3)
+
+
 def web_validated_sheet(df: pd.DataFrame):
     """Lead synthesis sheet: web-research verdicts (data/web_verdicts.csv) joined
     to the live quant scores/metrics, ordered KEEP -> SPECULATIVE -> REJECT, so
@@ -235,6 +264,15 @@ def main():
         best.to_excel(writer, sheet_name="Best by Archetype", index=False, startrow=1, header=False)
         _fmt_sheet(writer, "Best by Archetype", best, hdr, pct_fmt, f2_fmt)
         written.append(f"Best by Archetype({len(best)})")
+    for gcol, gtitle, gorder in [
+            ("region", "Top20 Region",
+             ["US", "EU", "UK", "JP", "CN", "HK", "TW", "KR", "SEA", "ANZ", "CA", "LATAM", "MEA"]),
+            ("sector", "Top20 Sector", None)]:
+        tn = top_n_by_sheet(df, gcol, n=20, order=gorder)
+        if tn is not None and not tn.empty:
+            tn.to_excel(writer, sheet_name=gtitle, index=False, startrow=1, header=False)
+            _fmt_sheet(writer, gtitle, tn, hdr, pct_fmt, f2_fmt)
+            written.append(f"{gtitle}({len(tn)})")
     for name, title in SHEETS:
         fn = screens.SCREENS.get(name)
         if fn is None:
