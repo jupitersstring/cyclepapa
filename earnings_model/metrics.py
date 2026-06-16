@@ -177,10 +177,20 @@ def _ols_slope(ys: list) -> float:
 
 
 def _margin_series(rev: list, profit: list) -> list:
-    """profit/revenue per period where both align and revenue is positive."""
+    """profit/revenue per ALIGNED period where both are present and revenue>0.
+
+    ``rev`` and ``profit`` must be position-aligned (same length, NaN where a
+    cell is missing). Cells where either value is NaN — or revenue<=0 — are
+    skipped, so a gap in one series can neither misalign the ratio (pairing the
+    wrong years) nor inject a NaN into the margin series.
+    """
     if len(rev) != len(profit) or not rev:
         return []
-    return [profit[i] / rev[i] for i in range(len(rev)) if rev[i] > 0]
+    out = []
+    for r, p in zip(rev, profit):
+        if not _isnan(r) and not _isnan(p) and r > 0:
+            out.append(p / r)
+    return out
 
 
 def margin_horizons(rev: list, profit: list, prefix: str) -> dict:
@@ -238,15 +248,21 @@ def forensic_block(annual: dict) -> dict:
     (``operating_leverage`` = degree of operating leverage, ΔEBITDA% / ΔRev%),
     and artifact guards (``ebitda_all_pos``, ``ebitda_lump``).
     """
-    rev = [x for x in (_f(z) for z in (annual.get("revenue") or [])) if not _isnan(x)]
-    eb = [x for x in (_f(z) for z in (annual.get("ebitda") or [])) if not _isnan(x)]
-    gross = [x for x in (_f(z) for z in (annual.get("gross") or [])) if not _isnan(x)]
+    # Position-ALIGNED series (NaN preserved) — required for cross-series margin
+    # and operating-leverage math; independent NaN-dropping would pair the wrong
+    # years (a gap in EBITDA shifts every later value against revenue).
+    rev_a = [_f(z) for z in (annual.get("revenue") or [])]
+    eb_a = [_f(z) for z in (annual.get("ebitda") or [])]
+    gross_a = [_f(z) for z in (annual.get("gross") or [])]
+    # Present-only views for the single-series stats (alignment irrelevant there).
+    rev = [x for x in rev_a if not _isnan(x)]
+    eb = [x for x in eb_a if not _isnan(x)]
 
     out = {"rev_up_frac": NaN, "rev_cagr_n": NaN,
            "ebitda_all_pos": False, "ebitda_lump": False,
            "operating_leverage": NaN, "operating_leverage_full": NaN}
-    out.update(margin_horizons(rev, gross, "gross"))
-    out.update(margin_horizons(rev, eb, "ebitda"))
+    out.update(margin_horizons(rev_a, gross_a, "gross"))
+    out.update(margin_horizons(rev_a, eb_a, "ebitda"))
     # Back-compat alias used by the forensic screen.
     out["margin_delta3"] = out["ebitda_margin_delta3"]
 
@@ -264,17 +280,19 @@ def forensic_block(annual: dict) -> dict:
         out["ebitda_lump"] = bool(med > 0 and steps[-1] > 3 * med)
 
     # Operating leverage = degree of operating leverage (ΔEBITDA% / ΔRevenue%).
-    # >1 means EBITDA grew faster than revenue (the cost base scaled) — positive
-    # operating leverage; computed only where revenue actually moved and the
-    # EBITDA base is positive (so the ratio is meaningful, not a sign artifact).
-    if len(rev) >= 2 and len(eb) >= 2 and rev[-2] > 0 and eb[-2] > 0:
-        rg = rev[-1] / rev[-2] - 1
+    # >1 means EBITDA grew faster than revenue (the cost base scaled). Computed on
+    # the last two — and first & last — periods where BOTH lines are present (kept
+    # aligned), and only where the EBITDA base is positive (ratio is meaningful).
+    pairs = [(rev_a[i], eb_a[i]) for i in range(min(len(rev_a), len(eb_a)))
+             if not _isnan(rev_a[i]) and not _isnan(eb_a[i])]
+    if len(pairs) >= 2 and pairs[-2][0] > 0 and pairs[-2][1] > 0:
+        rg = pairs[-1][0] / pairs[-2][0] - 1
         if abs(rg) > 0.02:
-            out["operating_leverage"] = max(-10.0, min(10.0, (eb[-1] / eb[-2] - 1) / rg))
-    if len(rev) >= 3 and len(eb) >= 3 and rev[0] > 0 and all(x > 0 for x in eb):
-        rg = rev[-1] / rev[0] - 1
+            out["operating_leverage"] = max(-10.0, min(10.0, (pairs[-1][1] / pairs[-2][1] - 1) / rg))
+    if len(pairs) >= 3 and pairs[0][0] > 0 and all(p[1] > 0 for p in pairs):
+        rg = pairs[-1][0] / pairs[0][0] - 1
         if abs(rg) > 0.02:
-            out["operating_leverage_full"] = max(-10.0, min(10.0, (eb[-1] / eb[0] - 1) / rg))
+            out["operating_leverage_full"] = max(-10.0, min(10.0, (pairs[-1][1] / pairs[0][1] - 1) / rg))
     return out
 
 
