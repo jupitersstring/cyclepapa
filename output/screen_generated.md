@@ -12,6 +12,8 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 | 1 | **ELUX-B** | AB Electrolux (Series B) | A·A1+D | n/a | 3+0p / 3 | 2.32 | 5.16 | 10.0% | — |
 | 1 | **HE** | Hawaiian Electric Industries | A·A1+G | 8/12 | 2+1p / 3 | 1.92 | 4.80 | 10.0% | — |
 | 1 | **MP** | MP Materials Corp | A·A2 | 11/12 | 2+1p / 3 | 1.90 | 4.22 | 10.0% | — |
+| 2 | **SZG** | Salzgitter AG | A·A2+B | 7/10 | 2+1p / 3 | 2.51 | 5.58 | 10.0% | — |
+| 2 | **DRX** | Drax Group | A·A1+G | 6/10 | 2+1p / 3 | 2.45 | 4.46 | 10.0% | — |
 | 2 | **TMQ** | Trilogy Metals | A·A2 | 2/2 | 1+2p / 3 | 2.14 | 3.88 | 10.0% | — |
 | 2 | **SUNAC** | Sunac China Holdings | B·F+A | 1/6 | 2+1p / 3 | 2.10 | 3.00 | 10.0% | — |
 | pass | **MPVD** | Mountain Province Diamonds | C·F | 6/8 | 3+0p / 3 | 2.58 | 3.68 | 10.0% | dip_to_exit_control_transfer, springing_maturity_inside_24m |

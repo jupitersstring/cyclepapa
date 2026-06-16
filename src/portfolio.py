@@ -55,6 +55,9 @@ FACTOR_DEFS = {
 # Per-candidate factor loadings, 0-1 scale.
 # Derived from each YAML's `factors.exposures` list + analyst judgement.
 FACTOR_LOADINGS: dict[str, dict[str, float]] = {
+    "DRX":    {"uk_sovereign_industrial_policy": 0.8, "uk_treasury_fiscal_cycle": 0.4, "policy_continuity": 0.4},
+    "SZG":    {"eu_sovereign_industrial_policy": 0.7, "european_steel_cycle": 0.7, "cbam_enforcement": 0.4},
+    "LOCAL":  {"french_microcap_recovery": 0.8, "niel_levy_strategic_execution": 0.7},
     "LAC":    {"us_critical_minerals_policy": 0.7, "lithium_cycle": 0.9, "us_china_trade_friction": 0.3, "us_election_cycle_policy_continuity": 0.5},
     "UREE":   {"us_critical_minerals_policy": 0.8, "ndpr_ree_cycle": 0.7, "us_china_trade_friction": 0.4, "us_election_cycle_policy_continuity": 0.5},
     "MP":     {"us_critical_minerals_policy": 0.7, "ndpr_ree_cycle": 0.8, "us_china_trade_friction": 0.4, "us_election_cycle_policy_continuity": 0.4},
@@ -73,6 +76,9 @@ CLUSTERS = {
     "US_sovereign_minerals":   ["us_critical_minerals_policy", "lithium_cycle", "ndpr_ree_cycle", "copper_cycle",
                                 "alaska_permitting", "us_election_cycle_policy_continuity"],
     "French_sovereign":        ["french_sovereign_strategic", "european_payments_cycle", "european_leo_satellite"],
+    "UK_sovereign":            ["uk_sovereign_industrial_policy", "uk_treasury_fiscal_cycle", "policy_continuity"],
+    "EU_industrial_policy":    ["eu_sovereign_industrial_policy", "european_steel_cycle", "cbam_enforcement"],
+    "French_microcap":         ["french_microcap_recovery", "niel_levy_strategic_execution"],
     "Nordic_consumer":         ["nordic_anchor", "consumer_durables_cycle"],
     "US_utility":              ["us_regulated_utility", "hawaii_state_policy"],
     "China_property":          ["china_property_policy"],

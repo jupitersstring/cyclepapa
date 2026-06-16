@@ -1,0 +1,212 @@
+ticker: DRX
+isin: GB00B1VNSX38
+name: Drax Group
+jurisdiction: GB
+exchange: LSE
+sector: Power generation / biomass / CCS
+bucket: A
+archetype: [A1, G]
+state: option
+tier: 2
+
+deal:
+  date: 2026-06-16
+  mechanic: "A1 + G — UK biomass subsidy (ROCs) cliff July 2027; BECCS (Bioenergy with Carbon Capture & Storage) framework under active negotiation with DESNZ. Drax Power Station holds Track-1 cluster designation for the East Coast CCS programme. Outcome of the framework decision (expected H2 2026 to H1 2027) determines whether the business transitions from 'cliff-edge biomass utility' to 'multi-decade negative-emissions contract holder' — equivalent to a sovereign anchor on the asset base."
+  fields:
+    current_market_cap_gbp_bn:
+      value: 2.2
+      source: "reported: London Stock Exchange June 2026 closing approx"
+    biomass_subsidy_cliff_date:
+      value: 2027-07-01
+      source: "verified: UK Renewables Obligation Closure framework"
+    drax_power_station_capacity_mw:
+      value: 2600
+      source: "verified: Drax Group Plc Annual Report 2024"
+      _note: "Four converted-to-biomass units"
+    east_coast_ccs_track1_designation:
+      value: true
+      source: "verified: UK Government cluster sequencing 2023"
+      _note: "Critical: confirms Drax Power Station is in the highest-priority CCS cluster"
+    becc_s_framework_status:
+      value: "Bridging Mechanism heads of terms agreed Feb 2025; final framework details H2 2026 expected"
+      source: "reported: DESNZ press release pipeline"
+    bridging_mechanism_signed_feb_2025:
+      value: true
+      source: "reported: Drax Group press release Feb 2025"
+      _note: "Bridging Mechanism = transitional subsidy from RO expiry through BECCS commercial date; provides interim floor"
+    pumped_storage_cruachan_capacity_mw:
+      value: 440
+      source: "verified: Drax Group portfolio"
+      _note: "Floor asset — pumped storage commands regulated capacity payments independent of biomass framework"
+    fy2024_adj_ebitda_gbp_m:
+      value: 1080
+      source: "reported: Drax Group FY2024 results"
+    net_debt_gbp_m:
+      value: 850
+      source: "reported"
+      _note: "Net debt / EBITDA ~0.8× — un-stressed balance sheet"
+    capex_programme_to_2030_gbp_bn:
+      value: 3.0
+      source: "reported"
+      _note: "BECCS conversion of two units at Drax Power Station; pumped-storage expansion"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d4_dilution_pct: 0
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: 2
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 5
+  d13_altman_z: 2.5
+  d14_liquidity_quarters: 12
+  d15_state_stake_trajectory: null
+  d16_governance_reset_event: 0
+  d17_value_up_mandate: null
+  d18_national_service_risk: 1
+  d19_minority_protection: 2
+
+catalysts:
+  - event: "BECCS framework full commercial terms finalised + signed"
+    window: [2026-09-01, 2027-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [2.5, 4.0]
+    hit_if_no: [-0.35, -0.55]
+    source: "DESNZ pipeline + Drax Bridging Mechanism HoT"
+    _note: "THE binary — this is the dated sovereign-anchor commit equivalent to an A1 reserved capital increase"
+  - event: "Track-1 cluster funding commitment for East Coast CCS"
+    window: [2026-10-01, 2027-09-30]
+    p_favorable: 0.50
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.20, -0.30]
+    source: "UK Treasury cluster sequencing"
+  - event: "Bridging Mechanism extended / converted to permanent ROC alternative"
+    window: [2026-06-01, 2027-06-30]
+    p_favorable: 0.65
+    rerate_if_yes: [1.3, 1.7]
+    hit_if_no: [-0.10, -0.20]
+    source: "DESNZ + Drax public negotiating position"
+    _note: "Higher p than full BECCS — interim cover is the most-likely partial outcome"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.45, rationale: "BECCS framework explicitly excludes Drax Power Station or sets economics that produce single-digit unlevered returns; Bridging Mechanism not extended past 2027; biomass economics collapse; Cruachan + non-biomass + R&D residual value supports ~£900m market cap (~40% of current)"}
+  base: {p: 0.45, return_multiple: 2.20, rationale: "BECCS framework signed with mid-cycle BECCS contract price (£75-100/MWh negative-emissions strike); Drax converts one or two units to BECCS with framework underwrite; multiple normalises from ~5× FY24 EBITDA to ~9× as the business reframes as a negative-emissions utility"}
+  bull: {p: 0.30, return_multiple: 4.50, rationale: "BECCS framework underwrites multi-decade contracts at favourable economics; Drax fully converts Power Station and adds CCS-equipped pumped-storage; Treasury Track-1 capex contribution; multiple to 12× FY28 EBITDA on transformed earnings base"}
+
+anchor:
+  parties: ["UK Government — DESNZ (Department for Energy Security & Net Zero)", "HM Treasury (Track-1 CCS capex)"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: GBP
+  stake_pct: 0
+  holds_debt: false
+  holds_equity: false
+  lockup_months: null
+  prior_track_record: ["UK Government: SMR (Sizewell C); Hinkley Point C contract for difference; NatWest sell-down — both H1/H3 sovereign-anchor precedents"]
+  _note: "Sovereign 'anchor' here is contract-based not equity-based — DESNZ negotiates the BECCS commercial framework which sets a multi-decade price floor on the asset, equivalent in economic effect to an MP-style DoD floor (but in £ for negative emissions, not $/kg for NdPr)"
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: ~5× FY24 EBITDA against UK utility peers 9-11× and global
+    renewables 12-15× = significant gap-closure available IF BECCS
+    framework lands. Pure cliff scenario already mostly priced (stock
+    drawdown from 2023 highs).
+    Leg 2: UK Treasury cannot let Track-1 cluster fail without
+    abandoning the entire CCS programme; political cost of denying
+    Drax materially exceeds the cost of commercial framework support.
+    Drax is structurally first-mover with operational biomass + CCS
+    R&D — competitors are years behind.
+    Leg 3: PARTIAL — Bridging Mechanism heads of terms signed
+    February 2025 = early commitment signal but full framework not
+    yet executed. UK government has not (yet) taken equity. Insider
+    buying record at Drax should be checked for confirmation.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "ROC subsidy cliff July 2027 creates a hard 'cliff date' — if framework not signed by then, optionality decays sharply. UK fiscal headroom in next budget cycle is the dominant tail risk"
+
+kill_criteria:
+  - "BECCS framework explicitly excludes Drax Power Station from cluster designation"
+  - "Treasury announces Track-1 capex package below £1bn total"
+  - "Bridging Mechanism not extended past 2027 July cliff date"
+  - "Drax CEO Bashir or chair resigns prior to framework signing"
+  - "UK general election produces government that abandons CCS programme"
+
+pre_mortem: |
+  It is end-2027 and DRX is down 60% from current ~£5-6.
+
+  Most likely cause: BECCS framework either signed at materially less
+  generous economics than the bull case implies, or signed late
+  enough that the 2027 subsidy cliff bit before transition revenue
+  arrived. The Bridging Mechanism was extended but at lower per-MWh
+  rates that compressed the implied negative-emissions strike price.
+  Multiple did not re-rate because the market read the framework as
+  "biomass utility with extra optionality" not "negative-emissions
+  utility."
+
+  Second-most-likely cause: UK Treasury cluster sequencing slipped
+  Drax to Track-2 or later in a fiscal review; East Coast cluster
+  partnership with British Steel / partners did not materialise;
+  Drax announced an equity raise to fund Track-2 transition capex
+  with reduced government underwrite.
+
+  Third possibility: A general election produced a new government
+  hostile to CCS or to biomass; framework was scrapped; Drax's
+  market cap retraced to pure biomass-cliff terminal value.
+
+  Where this would show up first: DESNZ quarterly cluster updates;
+  Treasury budget cycle communications on CCS; Drax interim trading
+  statements on Bridging Mechanism economics.
+
+history:
+  - {date: 2025-02, event: "Bridging Mechanism heads of terms agreed with DESNZ", state_after: watch}
+  - {date: 2026-06-16, event: "Built as YAML in response to user request for earlier UK setup than Metro Bank; pre-deal sovereign-anchor framework forming; 3-5:1 risk-reward vs Metro's 2:1", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["UK CCS / BECCS framework", "Treasury budget cycle", "negative-emissions contract pricing", "biomass cycle", "pumped storage cycle"]
+
+tier_rationale: |
+  Bucket A (listed common is the trade), Archetype A1 (sovereign
+  anchor in contract-form via DESNZ) + G (regulator-mandate forcing
+  business-model pivot). Triangulation 2.5/3 (Leg 3 partial pending
+  insider activity verification at Drax through 2025-2026).
+
+  Tier 2 not Tier 1 because:
+  (a) the anchor commitment is *negotiated, not yet executed* —
+      Bridging Mechanism HoT signed February 2025 but full framework
+      pending H2 2026 to H1 2027
+  (b) the deal is structurally pre-execution; this is exactly the
+      'early' position that gives more asymmetric upside than a
+      post-deal compounder like Metro Bank
+  (c) the kill case is real — ROC subsidy cliff July 2027 means
+      framework must be signed by then with operative bridging in
+      between
+
+  Risk/reward vs Metro Bank: Metro has ~2:1 upside/downside on
+  multiple normalisation alone. DRX has 3-5:1 on pre-execution
+  BECCS framework binary with bridging mechanism partial floor.
+  The 'early' attribute the user asked for is the pre-execution
+  status of the sovereign anchor — buying ahead of the floor's
+  formal commitment rather than after it.
+
+  Position note: catalyst clock is tight (H2 2026 to H1 2027
+  framework window). Anchor-stage names like this are most
+  asymmetric pre-commit; if framework is signed, immediate
+  re-rate; if framework slips, drawdown begins as the cliff
+  approaches. Sizing should reflect the binary plus the bridging
+  partial floor.

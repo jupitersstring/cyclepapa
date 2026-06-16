@@ -1,0 +1,207 @@
+ticker: SZG
+isin: DE0006202005
+name: Salzgitter AG
+jurisdiction: DE
+exchange: XETR
+sector: Steel / green-steel transition
+bucket: A
+archetype: [A2, B]
+state: option
+tier: 2
+
+deal:
+  date: 2026-06-16
+  mechanic: "A2 + B — Salzgitter is the cleanest pre-anchor candidate for the EU Industrial Accelerator Act (March 4, 2026 law). SALCOS (Salzgitter Low CO₂ Steelmaking) €5.4bn green-steel transition programme in motion since 2022. KfW + EU Innovation Fund anchor pipeline forming; €1.0bn state aid framework approved by EU Commission Jul 2023. Steel-cycle trough provides cyclical-B layer underneath the policy-A2 thesis."
+  fields:
+    current_market_cap_eur_bn:
+      value: 1.4
+      source: "reported: Xetra June 2026 approx"
+    salcos_programme_eur_bn:
+      value: 5.4
+      source: "verified: Salzgitter Press Release SALCOS announcement"
+    state_aid_approved_jul_2023_eur_bn:
+      value: 1.0
+      source: "verified: EU Commission State Aid SA.103861"
+      _note: "First EU Commission approval of German state aid for green steel — sets precedent for IAA-era follow-on commitments"
+    kfw_potential_pipeline_eur_bn:
+      value: 1.5
+      source: "reported: EU Industrial Accelerator Act steel section"
+      _note: "Estimated KfW envelope for steel-decarb under IAA Title III"
+    salcos_phase_1_first_steel:
+      value: 2026-Q4
+      source: "verified: Salzgitter project guidance"
+      _note: "First green-steel production from converted plant; commercial ramp 2027-2028"
+    fy2024_ebitda_eur_m:
+      value: 60
+      source: "reported: Salzgitter FY2024 results"
+      _note: "Trough — cyclical low; mid-cycle EBITDA historically €700m-1bn"
+    fy2024_revenue_eur_bn:
+      value: 9.5
+      source: "reported"
+    net_debt_eur_m:
+      value: 350
+      source: "reported"
+    book_value_eur_per_share:
+      value: 41
+      source: "reported"
+    pb_current:
+      value: 0.6
+      source: "reported"
+    pe_mid_cycle:
+      value: 4
+      source: "estimated"
+    stake_aurubis:
+      value: 30
+      source: "verified"
+      _note: "Salzgitter holds 30% of Aurubis (XETR:NDA) — copper smelting; provides hidden-asset floor"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d4_dilution_pct: 0
+  d5_delta_wam_months: null
+  d6_debt_tranches_post: 2
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 25
+  d13_altman_z: 2.0
+  d14_liquidity_quarters: 8
+  d15_state_stake_trajectory: null
+  d18_national_service_risk: 1
+
+catalysts:
+  - event: "KfW commits incremental SALCOS financing under IAA framework"
+    window: [2026-09-01, 2027-09-30]
+    p_favorable: 0.50
+    rerate_if_yes: [1.8, 3.0]
+    hit_if_no: [-0.20, -0.35]
+    source: "EU IAA Title III steel sector enabling regulation"
+  - event: "SALCOS Phase 1 first green steel produced"
+    window: [2026-09-01, 2027-03-31]
+    p_favorable: 0.65
+    rerate_if_yes: [1.4, 2.0]
+    hit_if_no: [-0.15, -0.25]
+    source: "company schedule"
+  - event: "Steel-cycle inflection (EU steel prices >€600/t HRC)"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.6, 2.5]
+    hit_if_no: [-0.10, -0.20]
+    source: "EU steel demand recovery + CBAM enforcement Jan 2026"
+  - event: "Aurubis stake monetisation"
+    window: [2026-06-01, 2028-12-31]
+    p_favorable: 0.35
+    rerate_if_yes: [1.20, 1.40]
+    hit_if_no: [0.0, 0.0]
+    source: "Salzgitter / Aurubis governance discussions ongoing"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.55, rationale: "Chinese steel-export dumping intensifies; CBAM enforcement faces challenges; KfW declines additional SALCOS financing; SALCOS Phase 1 slips into 2028; multiple stays at 0.5× book"}
+  base: {p: 0.50, return_multiple: 2.50, rationale: "KfW commits second tranche of SALCOS financing under IAA; SALCOS Phase 1 hits Q4 2026 milestone; steel cycle to mid-cycle EBITDA €600-700m; multiple to ~1.1× book"}
+  bull: {p: 0.25, return_multiple: 4.50, rationale: "KfW + EU Innovation Fund commit €2bn+ to SALCOS; CBAM enforcement bites Chinese imports; steel cycle to peak EBITDA >€1bn; multiple to 1.4× book; Aurubis monetised at 4-5× current carrying value"}
+
+anchor:
+  parties: ["KfW Group (German state development bank)", "EU Innovation Fund", "Lower Saxony state (5% holding via NORD/LB pre-2015 history)"]
+  pricing:
+    reserved_price: null
+    rights_price: null
+    current_price: null
+    currency: EUR
+  stake_pct: 0
+  holds_debt: false
+  holds_equity: false
+  lockup_months: null
+  prior_track_record: ["KfW: Volkswagen battery JV financing; Stadtwerke energy-transition lending — A2 precedent precedent for steel sector", "EU Commission: SA.103861 approval for SALCOS Phase 1 = first explicit state-aid approval for green-steel project"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: Trades 0.6× book despite Aurubis stake worth €400-500m
+    plus SALCOS €1bn state-aid commitment plus pumped pre-FY26 EBITDA
+    trough. Mid-cycle EBITDA historical €700m-1bn vs current €60m =
+    operational leverage on cycle reversion.
+    Leg 2: EU IAA explicitly designates steel + aluminium + cement as
+    Title III priorities. KfW has institutional mandate to finance
+    Energiewende; SALCOS is the marquee German project. Game-theoretic
+    alignment is structural.
+    Leg 3: PARTIAL — €1bn state aid already approved (revealed
+    preference at the EU Commission level) but no KfW equity-form
+    anchor yet committed. Founder/promoter equity-form anchoring is
+    absent (SZG is widely held without dominant shareholder).
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "SALCOS Phase 1 slips beyond mid-2027"
+  - "KfW explicitly declines additional financing under IAA"
+  - "Chinese steel exports to EU > 25% of consumption sustained 24 months"
+  - "CBAM enforcement materially watered down by EU Council"
+  - "Aurubis stake sold below carrying value"
+
+pre_mortem: |
+  It is end-2028 and SZG is down 60% from current ~€18-20 (price).
+
+  Most likely cause: SALCOS Phase 1 slipped to 2028 due to hydrogen
+  supply issues; KfW declined to commit second tranche on grounds of
+  EU Commission fiscal scrutiny; steel cycle deepened further on
+  Chinese over-supply; multiple compressed from 0.6× book to 0.3×
+  book.
+
+  Second-most-likely: SALCOS Phase 1 hit milestone but unit
+  economics were uncompetitive vs grey-steel competitors who
+  refused to pay green-steel premium; offtake commitments
+  evaporated.
+
+  Third possibility: Aurubis stake disposed in distressed sale to
+  fund SALCOS over-runs.
+
+  Where this would show up first: SALCOS programme quarterly
+  updates; CBAM enforcement statistics; Chinese steel-export
+  statistics; Aurubis stake actions in quarterly disclosures.
+
+history:
+  - {date: 2022, event: "SALCOS programme announced", state_after: watch}
+  - {date: 2023-07, event: "EU Commission state-aid approval (SA.103861) €1bn", state_after: watch}
+  - {date: 2026-03-04, event: "EU Industrial Accelerator Act enacted; SZG one of marquee Title III steel candidates", state_after: option}
+  - {date: 2026-06-16, event: "Built as YAML alongside DRX in response to user request for earlier setups than Metro Bank", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["EU IAA steel sector", "KfW pipeline timing", "steel cycle", "CBAM enforcement", "Aurubis stake monetisation"]
+
+tier_rationale: |
+  Bucket A (listed common is the trade), Archetype A2 (post-IAA
+  sovereign industrial policy) + B (cyclical steel cycle inflection).
+  Triangulation 2.5/3 (Leg 3 partial — €1bn state aid is revealed
+  preference but KfW equity-form anchor not yet committed).
+
+  Tier 2 not Tier 1 because:
+  (a) anchor is *pre-commit* (€1bn already; KfW second tranche TBD)
+  (b) cycle leg is supportive but not necessary (works as A2-only
+      if KfW commits even without full cycle inflection)
+  (c) hidden-asset Aurubis floor (€400-500m vs €1.4bn cap = 28-35%
+      of market cap is the Aurubis stake alone)
+
+  Risk/reward vs Metro Bank: 3-4:1 vs 2:1. Earlier than Metro
+  because the KfW anchor commitment is not yet placed — buyer is
+  ahead of the anchor's formal price-setting.
+
+  This is the European equivalent of DRX: pre-anchor sovereign-
+  industrial-policy candidate with a dated framework decision
+  ahead and a partial floor (€1bn EU state aid + Aurubis stake)
+  even in the bear scenario.
+
+  Sizing: smaller than core picks because the anchor commit is the
+  binary; size higher post-KfW-commit announcement when the binary
+  resolves favourably.
