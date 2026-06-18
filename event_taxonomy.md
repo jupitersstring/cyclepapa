@@ -42,6 +42,17 @@ From the playbook §3 ranking model:
 | `delisting` | Going-private / delisting | 8-K Item 3.01, 15-12B | C, F |
 | `rights_issue` | Underwritten rights offering | S-1, prospectus, RNS | A1, G |
 | `pre_recap_watch` | Pre-event watch with named trigger | n/a — internal tag | n/a |
+| `spinoff` | Tax-free parent distribution of subsidiary stock; includes partial spinoffs / carve-outs, reverse spinoffs, Reverse Morris Trust | **Form 10-12B**, 10-12B/A, S-1 (spinco IPO), 8-K Item 2.01, DEF 14A separation vote | F (post-spin), C (parent reset) |
+| `nol_shell` | Section 382 NOL preservation + monetisation; tax-benefits-preservation rights plan | 8-K Item 8.01 NOL rights plan, S-4 with §382 disclosure | F (post-bankruptcy shell), C (M&A vehicle) |
+| `spac_trust_arb` | Buying at/below SPAC trust NAV for T-bill yield + redemption + deal optionality | SPAC S-1, S-4 deal disclosure, proxy with redemption mechanics | C (option-shaped) |
+| `odd_lot_tender` | Tender offer with odd-lot (<100 share) provision — bought without proration | SC TO-I / SC TO-T with odd-lot section, SC 14D-9 | C |
+| `mlp_buyin` | General partner buys in MLP units; conflicts committee bumps lowball | 13D from GP, SC 13E-3, special committee disclosure | C |
+| `index_reconstitution` | Forced selling/buying on Russell/MSCI/S&P add or delete | n/a — public reconstitution schedule | n/a (technical flow) |
+| `dark_company` | Form 15 deregistration / "going dark"; non-reporting OTC | Form 15-12B / 15-12G | F (post-deregistration orphan) |
+| `holdco_discount` | Listed parent vs look-through NAV gap; dual-class voting-premium arb | 10-Q segment notes, 13D simplification proposals | C |
+| `scheme_of_arrangement` | UK/AU/CA court-sanctioned bid structure; 75% value + majority number vote | RNS Rule 2.7, scheme circular, ASX scheme booklet, SEDAR+ plan of arrangement | C (binding takeover) |
+| `spruchverfahren` | German judicial appraisal post-squeeze-out / domination-and-profit-transfer agreement | German court filings; not in EDGAR | C (post-deal top-up arb) |
+| `post_bankruptcy_orphan` | Newly emerged Ch.11 equity, indiscriminately ignored | Plan of Reorganization confirmation, ASC 852-10 fresh-start | F |
 
 ## Practitioner patterns
 
@@ -165,6 +176,123 @@ innovation*; framework labels it Archetype A2.
 
 **Active in framework today:** LAC, UREE, MP, TMQ (pending), DRX
 (pre-anchor), SZG (pre-anchor).
+
+### Pattern 9 — Greenblatt 4-form spinoff specialist
+
+**Fingerprint:** Systematic SEC filing monitoring of **8-K + Form 10/10-12B
++ 13D + S-4**, then deep-read information statements for insider-incentive
+clues (stock options / restricted stock in the SpinCo prospectus reveal
+where management's interest sits).
+
+**Maps to framework:**
+- Bucket: A (spin equity is the trade) or B (post-spin parent stub)
+- Archetype: F (post-spin) most often; C (parent recap)
+- Event type: `spinoff`
+- Sizing template: medium (3–6%) per name; concentrated portfolio
+- Risk profile: spinoffs +10% / yr above S&P 500 in first 3 yrs per
+  Penn State 25-yr study cited in Lynch's *Stock Market Genius* foreword
+
+**Active in framework today:** None — framework has no spinoff candidate
+YAMLs. `src/spinoff_radar.py` exists to surface them but no YAML has
+been built yet.
+
+### Pattern 10 — Tauraitis repeat-pattern micro arbitrageur
+
+**Fingerprint:** Weekly run through regulatory filings + datasets +
+blogs + forums + FinTwit + hedge-fund letters. Two-question filter:
+"Why does the setup/spread exist?" + "What's the downside?" — demands
+heads-I-win-tails-I-don't-lose-much. Specialises in **odd-lot tenders +
+MLP buy-ins + small/microcap mergers in unloved sectors**. Reported
++640% since 2017 / 100+ ideas/year.
+
+**Maps to framework:**
+- Bucket: A
+- Archetype: C (LME / tender) most often; F (spin-off)
+- Event types: `odd_lot_tender`, `mlp_buyin`, `definitive_ma`
+- Sizing template: small (0.5–2% per name, basket of 50+ names)
+- Risk profile: tiny capacity; doesn't scale; "few hundred to few
+  thousand dollars per account" per Dalius
+
+**Active in framework today:** None. Framework runs concentrated
+position sizing; Tauraitis pattern is diversified small-arb.
+
+### Pattern 11 — Klarman counter-cyclical distressed
+
+**Fingerprint:** Large cash position (30–50%) as option value; deploys
+aggressively in dislocations (Feb 2008 post-Peloton; post-Lehman ~$100m/day).
+Targets bankrupt debt, financially-distressed credit, post-emergence
+orphans. Distressed-debt examples: Lehman, Icelandic banks (Kaupthing/
+Glitnir/Landsbanki), Puerto Rico, CIT bonds at 65¢. Holds 30–50 positions.
+
+**Maps to framework:**
+- Bucket: B (fulcrum debt) or C (post-emergence common)
+- Archetype: F (post-bankruptcy orphan); credit-class
+- Event types: `bankruptcy`, `restructuring`, `post_bankruptcy_orphan`
+- Sizing template: cash-now + concentrate-into-dislocation
+- Risk profile: relies on macro / credit-spread leading indicator
+
+**Active in framework today:** None — framework runs equity-only. Could
+add: Klarman's HY-spread + CDS leading-indicator overlay to the macro
+filter.
+
+### Pattern 12 — Horizon Kinetics index-orphan + spinoff specialist
+
+**Fingerprint:** Targets **index orphans** — "equities that, due to
+liquidity characteristics or industry categorization, have not benefitted
+from the influx of assets into passive vehicles." Theory rooted in Stahl/
+Bregman 1996 "Spin-offs Revisited" paper. Publishes **Spin-Off Report**
+since 1996 + European / Global Spin-Off and Restructuring Report. Runs
+Kinetics Spin-Off and Corporate Restructuring Fund (LSHUX).
+
+**Maps to framework:**
+- Bucket: A
+- Archetype: F (post-spin orphan), C (post-rights orphan)
+- Event types: `spinoff`, `index_reconstitution`
+- Sizing template: medium-large basket
+- Risk profile: structural pricing anomaly; long-duration
+
+**Active in framework today:** None directly. Framework's
+universe_screen identifies index-orphan-shaped names (small-cap
+post-recap) but doesn't tag them as such.
+
+### Pattern 13 — DeMuth busted-deal / antitrust binary specialist
+
+**Fingerprint:** Be as knowledgeable as possible on all public filings,
+then talk to "everyone described — board, management, competitors,
+vendors, customers." Prices binary outcomes by finding true odds vs
+market-implied probability. **Specialises in broken deals, antitrust-
+blocked mergers, busted biotechs, SPACs** with deep-pocketed sponsors.
+
+**Maps to framework:**
+- Bucket: A (target equity) or C (downside floor)
+- Archetype: C (LME), F (busted biotech), B (SPAC trust)
+- Event types: `definitive_ma`, `regulatory_block`, `spac_trust_arb`,
+  `tender_offer`
+- Sizing template: small-medium with explicit downside floor
+- Risk profile: binary by construction; "correlations go to one" in
+  crisis
+
+**Active in framework today:** None. Would require event-by-event
+antitrust / regulator tracking.
+
+### Pattern 14 — Walker tender-radar / repeat-name follower
+
+**Fingerprint:** "Subscribes to all activist filings and all tender
+offering filings through the SEC." Screens microcaps, reads 10-K
+sections 1/1A/7 then balance sheet + 5 yrs financials. Edge from
+**following companies for years** (Discovery, IAC/Match, Angie's List)
++ externally-sourced ideas. Deep SPAC coverage (PSTH/UMG).
+
+**Maps to framework:**
+- Bucket: A
+- Archetype: C (tender) or B (SPAC)
+- Event types: `tender_offer`, `odd_lot_tender`, `spac_trust_arb`,
+  `activist_stake`
+- Sizing template: small-medium, repeat-name concentrated
+- Risk profile: needs years of context per name
+
+**Active in framework today:** None. Closest is the YAML history-block
+discipline which preserves multi-year context per name.
 
 ### Pattern 8 — MCB-cascade pattern (framework-native)
 

@@ -27,6 +27,21 @@ waterfall: audit
 portfolio: audit
 	python3 src/portfolio.py
 
+spinoff: audit
+	python3 -m src.spinoff_radar
+
+cluster-buys: audit
+	python3 -m src.cluster_buys
+
+events: audit
+	python3 src/events.py
+
+universe: audit
+	python3 src/universe_screen.py
+
+all: audit score waterfall portfolio events universe
+	@echo "All pipelines run."
+
 validate:
 	python3 -c "from src.score import load_candidates; \
 	cs = load_candidates(); \
