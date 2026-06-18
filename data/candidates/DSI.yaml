@@ -1,0 +1,132 @@
+ticker: DSI
+isin: AEDS00000208
+name: Drake & Scull International
+jurisdiction: AE
+exchange: DFM
+sector: Engineering / construction
+bucket: A
+archetype: [E]
+state: option
+tier: 2
+
+deal:
+  date: 2024-04-01
+  mechanic: "E — UAE-equivalent restructuring with capital restoration. April 2024: AED 4.18bn debt write-off (90pct); AED 600m mandatory convertible sukuk issued; AED 800m capital reduction. Tabarak Investment (strategic since 2017) increased stake. Trading resumed May 2024 after 5-year halt. CEO Mansour Lootah leading recovery."
+  fields:
+    debt_writeoff_aed_bn:
+      value: 4.18
+      source: "reported"
+    debt_writeoff_pct:
+      value: 90
+      source: "reported"
+    capital_reduction_aed_m:
+      value: 800
+      source: "reported"
+    mandatory_convertible_sukuk_aed_m:
+      value: 600
+      source: "reported"
+    trading_halt_resumed:
+      value: 2024-05
+      source: "reported"
+      _note: "Following 5-year halt"
+    tabarak_investment_stake_pct:
+      value: 30
+      source: "estimated"
+    current_market_cap_aed_m:
+      value: 1500
+      source: "estimated"
+
+scorecard:
+  d4_dilution_pct: 85
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 30
+  d14_liquidity_quarters: 6
+
+catalysts:
+  - event: "Backlog rebuild (UAE/GCC infrastructure pipeline)"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.8, 2.5]
+    hit_if_no: [-0.20, -0.30]
+    source: "GCC infrastructure cycle"
+  - event: "Convertible sukuk conversion + capital structure simplification"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.6]
+    hit_if_no: [-0.10, -0.15]
+    source: "sukuk terms"
+  - event: "Tabarak strategic-buyer follow-on or international JV partner"
+    window: [2026-09-01, 2028-12-31]
+    p_favorable: 0.40
+    rerate_if_yes: [1.8, 2.5]
+    hit_if_no: [-0.05, -0.10]
+    source: "Tabarak track record"
+
+waterfall:
+  bear: {p: 0.30, return_multiple: 0.55, rationale: "Backlog rebuild fails; GCC infrastructure cycle slips; convertible dilutes punitively"}
+  base: {p: 0.45, return_multiple: 2.30, rationale: "Backlog rebuilds modestly; multiple normalises to regional construction peers (Drake Trujillo Spain ~4-5x EV/EBITDA)"}
+  bull: {p: 0.25, return_multiple: 4.20, rationale: "GCC mega-project pipeline (NEOM/Vision 2030 carry-over); strategic JV; multiple to 6x EV/EBITDA"}
+
+anchor:
+  parties: ["Tabarak Investment (strategic anchor 2017+)"]
+  pricing:
+    current_price: null
+    currency: AED
+  stake_pct: 30
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: Post-recap cap structure clean; 90pct of legacy debt
+    written off creates large operating leverage to backlog
+    rebuild. But absolute valuation tough without normalised
+    EBITDA reference.
+    Leg 2: Tabarak in since 2017 = patient anchor + UAE
+    sovereign-adjacent capital base.
+    Leg 3: AED 4.18bn debt forgiveness = creditor revealed
+    preference for survival over liquidation.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "5-year trading halt history; legacy litigation overhang; limited float"
+
+kill_criteria:
+  - "Second restructuring needed before 2027"
+  - "Tabarak reduces stake"
+  - "Backlog material below normalised expectations through 2027"
+
+pre_mortem: |
+  It is end-2027 and DSI is down 60pct.
+
+  Most likely: Backlog rebuild stalled; legacy litigation
+  reactivated; GCC infrastructure cycle slowed; second
+  restructuring or distressed equity raise.
+
+history:
+  - {date: 2017, event: "Tabarak Investment took strategic stake", state_after: watch}
+  - {date: 2024-04-01, event: "Restructuring approved: AED 4.18bn debt write-off + capital reduction", state_after: option}
+  - {date: 2024-05, event: "Trading resumed after 5-year halt", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.78 (15th globally)", state_after: option}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["GCC infrastructure cycle", "Tabarak strategic execution", "UAE construction multiple", "Vision 2030 spillover"]
+
+tier_rationale: |
+  Bucket A, Archetype E (national bankruptcy framework / DIFC
+  restructuring). Universe-screener 0.78 (15th). Tier 2 because
+  legacy 5-year-halt history + low float + limited operational
+  evidence post-recap. Builds for diversification within MEA
+  basket; complements GTCO Nigerian recap basket exposure.

@@ -1,0 +1,141 @@
+ticker: OHLA
+isin: ES0142090317
+name: OHLA (former OHL — Obrascón Huarte Lain)
+jurisdiction: ES
+exchange: BME
+sector: Construction / concessions
+bucket: A
+archetype: [A1, E]
+state: option
+tier: 2
+
+deal:
+  date: 2024-01-15
+  mechanic: "A1 + E — Spanish accelerated-safeguard-equivalent recap. Amodio family + Atitlán capital injection Jan 2024: €70m initial at €0.25 + €40m Atitlán additional commitment. Sister-company Apollo separately offered €1.2bn rejected. Second restructuring since 2020 (Villar Mir family lost control 2020). Construction/concessions cycle support; Latin America infrastructure backlog plus Eastern European motorway concessions."
+  fields:
+    capital_increase_eur_m:
+      value: 70
+      source: "reported: prior research"
+    issue_price_eur:
+      value: 0.25
+      source: "reported"
+    amodio_atitlan_combined_stake_pct:
+      value: 25
+      source: "reported"
+    atitlan_additional_commitment_eur_m:
+      value: 40
+      source: "reported"
+    apollo_alternative_offer_eur_bn:
+      value: 1.2
+      source: "reported"
+      _note: "Rejected by board; signals private-market value gap"
+    second_restructuring_since:
+      value: 2020
+      source: "reported"
+    market_cap_estimate_eur_m:
+      value: 250
+      source: "estimated"
+
+scorecard:
+  d2_issue_discount_pct: null
+  d4_dilution_pct: 30
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 12
+  d14_liquidity_quarters: 4
+
+catalysts:
+  - event: "Concessions cycle inflection (Spain + Latin America infrastructure)"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.50
+    rerate_if_yes: [1.8, 2.8]
+    hit_if_no: [-0.20, -0.35]
+    source: "infrastructure-cycle macro"
+  - event: "Apollo (or alternative buyer) revives strategic-review offer"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.35
+    rerate_if_yes: [2.0, 3.5]
+    hit_if_no: [-0.10, -0.15]
+    source: "Apollo €1.2bn offer indicative of takeover floor"
+  - event: "Operational margin recovery on backlog execution"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.20, -0.30]
+    source: "company guidance"
+
+waterfall:
+  bear: {p: 0.30, return_multiple: 0.50, rationale: "Construction cycle deepens; third restructuring needed; Amodio family steps back; multiple compresses further"}
+  base: {p: 0.45, return_multiple: 2.40, rationale: "Backlog execution delivers; Apollo / strategic buyer either revives or sets implied floor; multiple normalises to peer construction multiples"}
+  bull: {p: 0.25, return_multiple: 4.50, rationale: "Takeout at Apollo-style €1.2bn (~4x current cap) or operational delivery + concession monetisation"}
+
+anchor:
+  parties: ["Amodio family", "Atitlán Capital", "Apollo (rejected offer — sets price floor)"]
+  pricing:
+    reserved_price: 0.25
+    rights_price: 0.25
+    current_price: null
+    currency: EUR
+  stake_pct: 25
+  holds_debt: false
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["Amodio: Mexican infrastructure operator track record; took control 2020 from Villar Mir family"]
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: Construction cycle troughed; multiple compressed vs peer
+    average; backlog supports mid-cycle EBITDA ~2x current.
+    Leg 2: Amodio family in for ~5 years; Atitlán additional
+    commitment = follow-on conviction; Apollo offer establishes
+    private-market floor.
+    Leg 3: Apollo €1.2bn offer = revealed-preference floor at ~4x
+    current market cap; Amodio + Atitlán continued participation =
+    insider conviction.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Second restructuring since 2020 = serial-RX yellow flag pattern"
+
+kill_criteria:
+  - "Third restructuring announced before mid-2027"
+  - "Amodio family reduces stake or steps back from board"
+  - "Apollo formally withdraws strategic interest"
+  - "Concession-renewal cliff in Spain or LatAm before backlog converts"
+
+pre_mortem: |
+  It is end-2027 and OHLA is down 60% from current ~€0.20.
+
+  Most likely: construction cycle did not recover; legacy
+  litigation surprised (recurring on prior Villar Mir-era contracts);
+  third restructuring required at distressed terms.
+
+  Second most likely: Apollo or alternative buyer formally
+  withdrew and no strategic alternative emerged; Amodio family
+  considered take-private at lowball; minority squeezed.
+
+history:
+  - {date: 2024-01-15, event: "Amodio + Atitlán €70m capital injection; second restructuring since 2020", state_after: watch}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 1.22 (top of full universe)", state_after: option}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["Spanish construction cycle", "LatAm infrastructure backlog", "Amodio family execution", "Apollo strategic-alternative optionality"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (insider/promoter recap) + E (Spanish
+  accelerated-safeguard-equivalent). Top universe-screen score
+  (1.22 / highest of 697 names). Serial-restructuring yellow flag
+  prevents direct Tier 1 promotion despite top score.

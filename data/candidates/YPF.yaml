@@ -1,0 +1,142 @@
+ticker: YPF
+isin: US9842451000
+name: YPF Sociedad Anónima
+jurisdiction: AR
+exchange: NYSE
+sector: Oil & Gas (national champion)
+bucket: A
+archetype: [A1, G]
+state: option
+tier: 2
+
+deal:
+  date: 2026-03-15
+  mechanic: "A1 + G — Argentine state-aligned national champion. Milei RIGI (Régimen de Incentivo para Grandes Inversiones) expanded to unconventional Vaca Muerta March 2026. Pluspetrol share-swap Jan 2026 consolidated YPF to 100% in certain Neuquén areas. TGS + Pluspetrol + Chevron consortium $3bn gas-pipeline announced March 2026. Vaca Muerta shale oil 215kbbl/d 2026 → 290kbbl/d 2027 (70pct increase)."
+  fields:
+    rigi_expansion_unconventional_oil:
+      value: 2026-03
+      source: "reported: Bloomberg Mar 2026"
+    pluspetrol_share_swap_date:
+      value: 2026-01-22
+      source: "reported"
+    pluspetrol_swap_areas:
+      value: "Certain Neuquén Province areas"
+      source: "reported"
+    vaca_muerta_2026_production_kbbl_d:
+      value: 215
+      source: "reported: industry projection"
+    vaca_muerta_2027_production_kbbl_d:
+      value: 290
+      source: "reported"
+    fy2026_ev_ebitda_x:
+      value: 4.14
+      source: "reported: broker consolidation"
+    fy2025_ev_ebitda_x:
+      value: 5.50
+      source: "reported"
+    broker_2026_price_target_usd:
+      value: 68
+      source: "reported: broker target"
+    rigi_us_dollar_invoicing_period_years:
+      value: 30
+      source: "reported"
+
+scorecard:
+  d4_dilution_pct: 0
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 22
+  d14_liquidity_quarters: 12
+  d18_national_service_risk: 1
+
+catalysts:
+  - event: "Vaca Muerta production ramp to 215 kbbl/d 2026 target"
+    window: [2026-09-01, 2027-03-31]
+    p_favorable: 0.60
+    rerate_if_yes: [1.4, 2.0]
+    hit_if_no: [-0.15, -0.30]
+    source: "company guidance"
+  - event: "RIGI sub-fund approvals (YPF-relevant projects under §92 framework)"
+    window: [2026-06-01, 2027-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.10, -0.20]
+    source: "Argentine government schedule"
+  - event: "TGS + Pluspetrol + Chevron $3bn gas pipeline first commercial flow"
+    window: [2027-03-01, 2028-03-31]
+    p_favorable: 0.50
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.10, -0.20]
+    source: "consortium guidance"
+
+waterfall:
+  bear: {p: 0.20, return_multiple: 0.65, rationale: "Milei loses 2027 midterms; RIGI framework constrained; Vaca Muerta production slips; multiple to 7x EV/EBITDA"}
+  base: {p: 0.55, return_multiple: 1.80, rationale: "RIGI framework holds; Vaca Muerta production on track; multiple normalises to 4-5x EV/EBITDA; broker target $68"}
+  bull: {p: 0.25, return_multiple: 3.20, rationale: "Argentina re-rates to mid-cycle EM oil multiple (5-6x); Vaca Muerta production exceeds target; LNG export project advances"}
+
+anchor:
+  parties: ["Republic of Argentina (51pct via state holding)", "Milei administration RIGI framework"]
+  pricing:
+    current_price: 41
+    currency: USD
+  stake_pct: 51
+  holds_debt: false
+  holds_equity: true
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: 4.14x EV/EBITDA 2026 vs EM oil peer mid-cycle 6-7x =
+    clear gap.
+    Leg 2: Milei + Caputo + Sturzenegger all aligned on RIGI
+    framework as Argentine sovereign anchor.
+    Leg 3: Pluspetrol asset swap January 2026 = revealed preference
+    that YPF is being consolidated as the platform; TGS+Chevron
+    $3bn consortium = follow-on private capital alignment.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Argentine sovereign risk / peso devaluation / Milei midterm risk; international Chevron settlement overhang"
+
+kill_criteria:
+  - "Milei loses October 2027 midterms; RIGI rolled back"
+  - "Vaca Muerta production materially slips (>20pct vs target)"
+  - "Chevron / Repsol litigation revives"
+  - "Argentine sovereign default forces YPF debt restructure"
+
+pre_mortem: |
+  It is end-2027 and YPF is down 60pct from current ~$41.
+
+  Most likely: Milei lost October 2027 midterms, succeeding
+  administration constrained RIGI framework; Vaca Muerta IRR
+  compressed; multiple back to crisis-era 3x EV/EBITDA.
+
+  Second most likely: Chevron settlement revived ($16bn historic
+  judgment); equity dilution required.
+
+history:
+  - {date: 2026-01-22, event: "Pluspetrol share-swap consolidating YPF to 100pct in certain areas", state_after: watch}
+  - {date: 2026-03-15, event: "Milei RIGI expanded to unconventional oil", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 1.12", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["Argentine sovereign risk", "Vaca Muerta production", "Milei midterm policy continuity", "EM oil multiple"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (Argentine sovereign anchor via RIGI) +
+  G (regulatory-mandate framework). Universe-screen score 1.12 =
+  2nd-highest in 697-name universe. National-service-risk dim 18 =
+  1 (Milei-era; would be 0 under prior administrations) keeps
+  Tier 2 not Tier 1.

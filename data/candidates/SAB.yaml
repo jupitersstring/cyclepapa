@@ -1,0 +1,135 @@
+ticker: SAB
+isin: ES0113860A34
+name: Banco Sabadell
+jurisdiction: ES
+exchange: BME
+sector: Banking
+bucket: A
+archetype: [A1, C]
+state: option
+tier: 1
+
+deal:
+  date: 2024-05-09
+  mechanic: "A1 + C — BBVA hostile takeover bid May 2024 rejected by Sabadell board; bidder process active through April 2026 EGM defence vote. Sabadell defence playbook: TSB UK subsidiary sale to Santander £2.65bn cash announced July 2025; €2.5bn distribution to shareholders (€0.50/sh special dividend); strategic plan 2025-2027 targeting >20pct ROTE. BBVA rejected Spanish Govt-imposed conditions Oct 2024 forcing decision."
+  fields:
+    bbva_initial_bid_date:
+      value: 2024-05-09
+      source: "verified"
+    bbva_bid_per_share_eur:
+      value: 2.13
+      source: "reported (initial offer; subsequently revised)"
+    sabadell_board_rejection_date:
+      value: 2024-06-05
+      source: "verified"
+    tsb_uk_sale_to_santander_gbp_bn:
+      value: 2.65
+      source: "verified: Jul 2025 announcement"
+    special_dividend_eur_per_share:
+      value: 0.50
+      source: "reported"
+    total_capital_return_eur_bn:
+      value: 2.5
+      source: "reported"
+    spain_govt_conditions_imposed:
+      value: 2024-10
+      source: "verified"
+      _note: "Spanish Govt imposed competition conditions extending BBVA acceptance period; BBVA could withdraw if proceeded"
+    fy2025_rote_target_pct:
+      value: 20
+      source: "reported"
+
+scorecard:
+  d4_dilution_pct: 0
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 10
+  d14_liquidity_quarters: null
+  d18_national_service_risk: null
+
+catalysts:
+  - event: "BBVA bid resolution (acceptance or withdrawal)"
+    window: [2026-06-01, 2026-12-31]
+    p_favorable: 0.60
+    rerate_if_yes: [1.4, 2.0]
+    hit_if_no: [-0.20, -0.30]
+    source: "regulatory timeline"
+    _note: "Resolution either way is materially positive: withdrawal -> standalone re-rate; acceptance -> bump and bid revaluation"
+  - event: "Special dividend + capital return distribution"
+    window: [2026-04-01, 2026-12-31]
+    p_favorable: 0.85
+    rerate_if_yes: [1.15, 1.30]
+    hit_if_no: [-0.05, -0.10]
+    source: "TSB sale proceeds"
+  - event: "Standalone ROTE delivers >18pct as defence narrative"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.7]
+    hit_if_no: [-0.10, -0.20]
+    source: "management plan"
+
+waterfall:
+  bear: {p: 0.20, return_multiple: 0.75, rationale: "BBVA bid revised down on Spanish-Govt conditions; minority squeeze concerns; standalone narrative dilutes"}
+  base: {p: 0.55, return_multiple: 1.65, rationale: "BBVA withdraws or accepts at modestly improved terms; special dividend distributed; multiple normalises post-uncertainty"}
+  bull: {p: 0.25, return_multiple: 2.40, rationale: "BBVA accepts and bumps materially; or BBVA withdraws and standalone plan delivers 20pct ROTE + sector M&A consolidation"}
+
+anchor:
+  parties: ["BBVA (bidder/strategic anchor)", "Spanish Government (competition gatekeeper)"]
+  pricing:
+    reserved_price: 2.13
+    current_price: null
+    currency: EUR
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: TSB sale crystallises hidden-asset value; standalone
+    multiple post-distribution attractive vs European bank peers.
+    Leg 2: BBVA forced to either accept Spanish Govt conditions
+    and bump, or withdraw — both outcomes positive for SAB.
+    Leg 3: BBVA bid itself = revealed-preference floor at ~€2.13
+    (initial); TSB sale to Santander = strategic-buyer interest
+    floor on TSB asset.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "BBVA withdraws AND standalone plan fails to deliver target ROTE"
+  - "Spanish recession deepens; CRE losses materialise"
+  - "Spanish Govt forces a punitive resolution on BBVA terms"
+
+pre_mortem: |
+  It is end-2027 and SAB is down 50pct from current.
+
+  Most likely: BBVA withdrew but standalone plan missed target
+  ROTE; Spanish CRE cycle compressed mortgage book; multiple
+  reverted to 0.6x TBV.
+
+history:
+  - {date: 2024-05-09, event: "BBVA hostile bid announced", state_after: watch}
+  - {date: 2024-06-05, event: "Sabadell board rejected initial bid", state_after: option}
+  - {date: 2024-10, event: "Spanish Govt imposed conditions extending acceptance period", state_after: option}
+  - {date: 2025-07, event: "TSB UK sale to Santander £2.65bn", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.99", state_after: option}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["Spanish bank cycle", "BBVA bid resolution", "TSB cash distribution", "Spanish Govt regulatory action"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (BBVA bidder anchor) + C (out-of-court
+  LME via TSB sale + special dividend). Universe screen 0.99 =
+  5th-highest. Tier 1 on dated regulatory catalyst + multiple
+  paths to value realisation + TSB sale already monetised.

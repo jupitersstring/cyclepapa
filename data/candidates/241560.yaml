@@ -1,0 +1,136 @@
+ticker: "241560"
+isin: KR7241560004
+name: "Doosan Bobcat (+ Doosan Robotics merger)"
+jurisdiction: KR
+exchange: KRX
+sector: Construction/industrial equipment
+bucket: A
+archetype: [H, E]
+state: option
+tier: 1
+
+deal:
+  date: 2026-04-15
+  mechanic: "H + E — Korean H6 governance overhaul. Aug 2024 original stock-swap proposal blocked by minority opposition + K-FSC ruling original ratio undervalued Bobcat. Q2 2026 revised terms tabled; Doosan Group cannot drop restructuring. Korean Commercial Act third amendment effective March 6, 2026 mandates treasury-share cancellation + cumulative voting for large companies + strengthened minority-shareholder rights — reform forcing chaebol governance overhaul."
+  fields:
+    original_swap_proposal_date:
+      value: 2024-08-09
+      source: "reported"
+    original_swap_blocked_date:
+      value: 2024-09
+      source: "reported"
+    kfsc_ruling_against_original:
+      value: 2024-08-29
+      source: "reported"
+    revised_terms_q2_2026:
+      value: 2026-04-15
+      source: "reported"
+    commercial_act_third_amendment_effective:
+      value: 2026-03-06
+      source: "verified"
+    treasury_share_cancellation_deadline_existing:
+      value: 2027-09-06
+      source: "verified"
+      _note: "18 months post-effective"
+    treasury_share_cancellation_deadline_new:
+      value: 2027-03-06
+      source: "verified"
+      _note: "12 months post-effective"
+    doosan_robotics_market_cap_krw_tn_pre:
+      value: 6
+      source: "estimated"
+    doosan_bobcat_market_cap_krw_tn:
+      value: 4.5
+      source: "estimated"
+
+scorecard:
+  d4_dilution_pct: null
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 12
+  d14_liquidity_quarters: 12
+
+catalysts:
+  - event: "Revised stock-swap terms approved at Q2 2026 EGM (or alternative restructuring)"
+    window: [2026-06-01, 2026-12-31]
+    p_favorable: 0.60
+    rerate_if_yes: [1.4, 2.0]
+    hit_if_no: [-0.10, -0.20]
+    source: "K-FSC + minority shareholder dynamics"
+  - event: "Treasury-share cancellation announcement (Commercial Act compliance)"
+    window: [2026-09-01, 2027-09-06]
+    p_favorable: 0.65
+    rerate_if_yes: [1.2, 1.5]
+    hit_if_no: [-0.05, -0.10]
+    source: "Korean regulatory deadline"
+  - event: "Korea Value-Up cohort re-rating (chaebol holdcos + treasury cancellation cascade)"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.10, -0.20]
+    source: "KRX Value-Up disclosure index"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.75, rationale: "Restructuring delayed indefinitely; K-FSC accepts modified terms but at unfavourable swap ratio; construction cycle slips"}
+  base: {p: 0.50, return_multiple: 1.70, rationale: "Q2 2026 revised swap closes; minority gets fair valuation; multiple normalises to peer Korean industrials"}
+  bull: {p: 0.25, return_multiple: 2.50, rationale: "Restructuring + treasury cancellation + Value-Up cohort momentum + Doosan Group simplification = chaebol re-rate"}
+
+anchor:
+  parties: ["Doosan Group (Park family)", "Korea Value-Up framework + K-FSC enforcement"]
+  pricing:
+    current_price: null
+    currency: KRW
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: Bobcat at materially below SOTP; Robotics premium
+    reflects valuation gap.
+    Leg 2: Three forcing functions converge — Q2 2026 revised
+    terms, Commercial Act amendment, treasury-share deadlines.
+    Leg 3: K-FSC original-ratio rejection = revealed-preference
+    floor; minority shareholders showed they can block; Park
+    family must engage in good faith.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Park family abandons restructuring; Bobcat trades as standalone"
+  - "Construction cycle deepens; Bobcat margins compress"
+  - "Doosan Group financial stress forces distressed disposal"
+
+pre_mortem: |
+  It is end-2027 and 241560 is down 50pct.
+
+  Most likely: Restructuring postponed; chaebol family
+  prioritised group-level liquidity needs; construction cycle
+  weakened; multiple compressed.
+
+history:
+  - {date: 2024-08-09, event: "Original stock-swap proposed; minority opposition", state_after: watch}
+  - {date: 2024-08-29, event: "K-FSC ruled original ratio undervalued Bobcat", state_after: option}
+  - {date: 2026-04-15, event: "Q2 2026 revised terms tabled", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.86 (12th globally)", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["Korea Commercial Act amendment timing", "Doosan Group restructuring", "Bobcat construction cycle", "chaebol Value-Up cascade"]
+
+tier_rationale: |
+  Bucket A, Archetype H (governance overhaul via K-FSC + Korean
+  reform regime) + E (court/regulatory-sanctioned restructuring).
+  Universe-screener 0.86. Tier 1 on multiple dated triggers
+  + clear forcing functions + minority-shareholder protection
+  precedent established.

@@ -1,0 +1,150 @@
+ticker: FLG
+isin: US6499104049
+name: Flagstar Financial (formerly NYCB)
+jurisdiction: US
+exchange: NYSE
+sector: Regional bank
+bucket: A
+archetype: [A1]
+state: option
+tier: 1
+
+deal:
+  date: 2024-03-11
+  mechanic: "A1 — March 2024 $1.05bn equity injection led by Steve Mnuchin's Liberty Strategic Capital + Hudson Bay + Reverence Capital + Citadel. Mnuchin became Board Chair; ex-Comptroller Joe Otting became CEO. Rebranded to Flagstar Financial Oct 2024. NYCB had taken on $40bn in deposits and ~$20bn in loans from Signature Bank Mar 2023 then crossed the $100bn SIFI threshold; recap forced by CRE concentration + dividend cut + auditor weakness."
+  fields:
+    capital_raise_usd_bn:
+      value: 1.05
+      source: "reported"
+    raise_date:
+      value: 2024-03-11
+      source: "reported"
+    liberty_strategic_capital_lead:
+      value: "Steven Mnuchin (former Treasury Sec)"
+      source: "reported"
+    co_investors:
+      value: "Hudson Bay, Reverence Capital, Citadel"
+      source: "reported"
+    mnuchin_post_role:
+      value: "Board Chairman"
+      source: "reported"
+    new_ceo:
+      value: "Joseph Otting (former Comptroller of the Currency 2017-2020)"
+      source: "reported"
+    rebrand_to_flagstar_date:
+      value: 2024-10
+      source: "reported"
+    cre_office_concentration_pre_recap:
+      value: "Material; substantial Manhattan rent-stabilised + Signature legacy"
+      source: "reported"
+    current_market_cap_usd_bn:
+      value: 4
+      source: "estimated"
+    tangible_book_per_share_usd:
+      value: 10
+      source: "estimated"
+
+scorecard:
+  d2_issue_discount_pct: 40
+  d4_dilution_pct: 65
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 18
+  d14_liquidity_quarters: null
+  d18_national_service_risk: null
+
+catalysts:
+  - event: "CRE workout cycle completion + Mortgage-Banking margin recovery"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.6, 2.3]
+    hit_if_no: [-0.20, -0.35]
+    source: "industry credit cycle + Flagstar management plan"
+  - event: "Dividend reinstatement"
+    window: [2026-12-01, 2028-06-30]
+    p_favorable: 0.45
+    rerate_if_yes: [1.3, 1.6]
+    hit_if_no: [-0.05, -0.10]
+    source: "Otting / Mnuchin signalling"
+  - event: "Multiple normalisation toward UK / US bank peers (TBV multiple)"
+    window: [2026-09-01, 2028-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.5, 2.2]
+    hit_if_no: [-0.15, -0.25]
+    source: "peer-multiple gap"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.55, rationale: "CRE losses materialise beyond reserves; another raise needed; Mnuchin terms re-negotiated punitive"}
+  base: {p: 0.50, return_multiple: 1.85, rationale: "CRE workout absorbs; Mortgage-Banking margin recovers; multiple to 0.9-1.0x TBV vs 0.5x current"}
+  bull: {p: 0.25, return_multiple: 3.20, rationale: "Full-cycle recovery; Mortgage-Banking acceleration on lower rates; multiple to 1.3x TBV; sector M&A consolidation"}
+
+anchor:
+  parties: ["Liberty Strategic Capital (Mnuchin)", "Hudson Bay Capital", "Reverence Capital", "Citadel"]
+  pricing:
+    reserved_price: 2.00
+    current_price: null
+    currency: USD
+  stake_pct: null
+  holds_debt: false
+  holds_equity: true
+  lockup_months: null
+  prior_track_record: ["Mnuchin: OneWest Bank turnaround 2009 (IndyMac post-FDIC; sold to CIT $3.4bn 2015 for ~$1bn profit)"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: ~0.5x TBV vs UK bank peer 0.9-1.1x = clear gap.
+    Leg 2: Mnuchin + Otting = experienced bank-turnaround
+    operators; Liberty Strategic 14pct stake + board control.
+    Leg 3: Mnuchin OneWest precedent = ~3x return on similar
+    bank-recap thesis; Citadel + Hudson Bay co-invest = informed
+    capital base.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Additional $500m+ raise required (current capital plan blown)"
+  - "CRE charge-offs exceed reserves by >25pct"
+  - "Mnuchin or Otting departs"
+  - "OCC consent order escalates"
+
+pre_mortem: |
+  It is end-2027 and FLG is down 60pct from current.
+
+  Most likely: CRE workout took longer than expected; Manhattan
+  rent-stabilised re-financings flooded the market; multiple
+  charge-off waves required another raise at $5; Mnuchin diluted
+  but stayed. Compounded by Mortgage-Banking margin compression
+  from rate volatility.
+
+  Second most likely: OCC consent order escalated to formal
+  enforcement; regulatory capital remediation cost exceeded
+  reserves; further dilution.
+
+history:
+  - {date: 2024-03-11, event: "$1.05bn recap closed; Mnuchin/Otting installed", state_after: watch}
+  - {date: 2024-10, event: "Rebrand to Flagstar Financial", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.91", state_after: option}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["US CRE cycle", "Mortgage Banking margin", "Mnuchin/Otting execution", "OneWest analogue"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (Mnuchin/Liberty Strategic as anchor at
+  recap price). Universe-screener score 0.91 = 9th-highest globally.
+  Tier 1 because: Mnuchin OneWest precedent = revealed competence;
+  $1.05bn floor; clear multi-leg catalyst path; vintage 2024 = past
+  initial-recap shock; multiple gap to peer banks is mechanical.

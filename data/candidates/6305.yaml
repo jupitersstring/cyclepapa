@@ -1,0 +1,133 @@
+ticker: "6305"
+isin: JP3787000003
+name: Hitachi Construction Machinery
+jurisdiction: JP
+exchange: TSE
+sector: Construction machinery
+bucket: A
+archetype: [H, A1]
+state: option
+tier: 2
+
+deal:
+  date: 2026-05-01
+  mechanic: "H — Japan FIEA mandatory-TOB threshold cut from 33.3pct to 30pct effective May 1, 2026. Hitachi parent owns 30.7pct + Itochu 25pct = combined 55.7pct. Post-amendment Hitachi cannot rationally hold 30.7pct indefinitely: either step back below threshold or commit full TOB. Construction-machinery cycle inflection; HEC was carved out from Hitachi Construction Holdings 2007 - now a candidate parent-subsidiary buy-in (HEC-Itochu MBO precedent in 2022 Alps Logistics 194pct premium)."
+  fields:
+    fiea_threshold_amendment_effective:
+      value: 2026-05-01
+      source: "verified: Japan FIEA Cabinet Order Mar 2026"
+    hitachi_parent_stake_pct:
+      value: 30.7
+      source: "reported"
+    itochu_stake_pct:
+      value: 25.0
+      source: "reported"
+    combined_anchor_stake_pct:
+      value: 55.7
+      source: "calculated"
+    pbr_current:
+      value: 1.2
+      source: "estimated"
+      _note: "Higher than typical Japan value-up trigger but parent-child dynamics dominate"
+    fy2025_ebitda_jpy_bn:
+      value: 230
+      source: "reported"
+    market_cap_jpy_bn:
+      value: 1000
+      source: "estimated"
+
+scorecard:
+  d4_dilution_pct: 0
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 10
+  d14_liquidity_quarters: 16
+
+catalysts:
+  - event: "Hitachi parent decision on stake — step back below 30pct or full TOB"
+    window: [2026-09-01, 2027-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.5, 2.5]
+    hit_if_no: [-0.10, -0.20]
+    source: "FIEA amendment forcing function"
+  - event: "Construction cycle inflection (mining + infrastructure + EV-mining)"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.10, -0.20]
+    source: "industry"
+  - event: "Itochu strategic action (counter-bid or MBO partnership)"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.40
+    rerate_if_yes: [1.6, 2.2]
+    hit_if_no: [-0.05, -0.10]
+    source: "Itochu trading-company expansion mandate"
+
+waterfall:
+  bear: {p: 0.30, return_multiple: 0.75, rationale: "Hitachi parent given two-year deferral; FIEA enforcement weak; construction cycle deepens; no TOB"}
+  base: {p: 0.45, return_multiple: 1.70, rationale: "Hitachi reduces below 30pct via market sale; cycle modest; multiple normalises slightly"}
+  bull: {p: 0.25, return_multiple: 2.80, rationale: "Full TOB at 30-40pct premium (Alps Logistics 194pct precedent) or Itochu MBO; immediate re-rate"}
+
+anchor:
+  parties: ["Hitachi Ltd parent (30.7pct)", "Itochu Corp (25.0pct)"]
+  pricing:
+    current_price: null
+    currency: JPY
+  stake_pct: 55.7
+  holds_debt: false
+  holds_equity: true
+
+triangulation:
+  leg1_valuation: partial
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: At 1.2x PBR not deeply undervalued vs sector; the
+    alpha is in the takeout premium not the multiple gap.
+    Leg 2: FIEA mandatory-TOB threshold has triggered for
+    Hitachi parent. Game-theoretic option: step back (sale into
+    market) or take out (TOB at premium). Either way creates
+    forced flow.
+    Leg 3: PARTIAL — Alps Logistics 194pct TOB premium (Itochu
+    template) and Hitachi-Logisteed 40pct sale to KKR Apr 2023
+    are precedents but no Hitachi statement of intent on HEC yet.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Japan FIEA enforcement grace period extended >24 months"
+  - "Hitachi parent announces 'long-term hold' positioning"
+  - "Construction cycle deepens beyond 2026 trough"
+  - "Itochu strategically retreats from machinery sector"
+
+pre_mortem: |
+  It is end-2027 and 6305 is down 50pct from current.
+
+  Most likely: Hitachi parent given long FIEA enforcement
+  grace period; no TOB; construction cycle weakened on global
+  CapEx slowdown; multiple compressed.
+
+history:
+  - {date: 2007, event: "Hitachi Construction Machinery carved out from Hitachi Construction Holdings", state_after: watch}
+  - {date: 2026-05-01, event: "FIEA mandatory-TOB threshold cut to 30pct effective", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.86 (11th globally; cleanest dated H6 trigger)", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["Japan parent-child unwind", "FIEA amendment timing", "construction machinery cycle", "Hitachi group restructuring"]
+
+tier_rationale: |
+  Bucket A, Archetype H (governance reset via FIEA forced
+  decision) + A1 (parent + Itochu as combined 55.7pct cap-stack
+  anchor). Universe screen 0.86. Tier 2 because catalyst is dated
+  but binary on Hitachi parent's specific decision.

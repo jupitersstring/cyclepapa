@@ -1,0 +1,146 @@
+ticker: GTCO
+isin: NGGUARANTRUST9
+name: Guaranty Trust Holding Company
+jurisdiction: NG
+exchange: NGX
+sector: Banking (pan-African)
+bucket: A
+archetype: [G, A1]
+state: option
+tier: 1
+
+deal:
+  date: 2025-11
+  mechanic: "G — Central Bank of Nigeria mandated capital floor of ₦500bn for international-licensed banks by 31 March 2026. GTCO recapped via ₦209bn local rights + ₦366bn LSE primary listing at ₦70 (2.28bn new shares). Total ₦575bn raised. Sector-wide CBN floor triggered ₦4.6tn in raises across all major Nigerian banks. CAR 15.20pct; Tier-1 capital +21pct YoY. Trades single-digit P/E + <1x book despite >20pct ROE due to Naira FX volatility."
+  fields:
+    cbn_capital_floor_ngn_bn:
+      value: 500
+      source: "verified: CBN circular 2024-03-28"
+    cbn_compliance_deadline:
+      value: 2026-03-31
+      source: "verified: CBN"
+    gtco_local_raise_ngn_bn:
+      value: 209
+      source: "reported: GTCO press release"
+    gtco_lse_listing_ngn_bn:
+      value: 366
+      source: "reported"
+    gtco_lse_listing_price_ngn:
+      value: 70
+      source: "reported"
+    new_shares_issued_bn:
+      value: 2.28
+      source: "reported"
+    sector_wide_raises_ngn_tn:
+      value: 4.6
+      source: "reported"
+    car_post_recap_pct:
+      value: 15.20
+      source: "reported"
+    tier1_yoy_growth_pct:
+      value: 21
+      source: "reported"
+    roe_pct:
+      value: 22
+      source: "reported"
+    market_cap_usd_estimate_bn:
+      value: 2.5
+      source: "estimated"
+
+scorecard:
+  d4_dilution_pct: 65
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 18
+  d14_liquidity_quarters: 16
+
+catalysts:
+  - event: "Naira stabilisation + FX policy normalisation"
+    window: [2026-06-01, 2027-12-31]
+    p_favorable: 0.50
+    rerate_if_yes: [1.6, 2.5]
+    hit_if_no: [-0.20, -0.30]
+    source: "CBN policy + IMF programme"
+  - event: "Sector consolidation — Nigerian smaller banks fail compliance"
+    window: [2026-04-01, 2027-12-31]
+    p_favorable: 0.45
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.05, -0.10]
+    source: "Heritage Bank licence revoked Jun 2024 = template"
+  - event: "Pan-African expansion (UEMOA + East African subsidiaries)"
+    window: [2026-09-01, 2028-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.10, -0.20]
+    source: "GTCO regional strategy"
+  - event: "Dividend re-rate (current yield distorted by Naira)"
+    window: [2026-12-01, 2028-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.2, 1.5]
+    hit_if_no: [0.0, 0.0]
+    source: "USD-adjusted yield normalisation"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.60, rationale: "Naira devalues another 30pct; CBN tightening forces credit losses; FX-translation losses; multiple stays at 0.6x book"}
+  base: {p: 0.50, return_multiple: 2.10, rationale: "Naira stabilises around current; ROE 22pct sustains; multiple normalises to 1.2x book on USD basis"}
+  bull: {p: 0.25, return_multiple: 3.80, rationale: "Naira recovers 20-30pct; sector consolidation gains; multiple to 1.8x book + dividend rerating"}
+
+anchor:
+  parties: ["GTCO retail + institutional float (LSE listing 2025)", "Pan-African pension + sovereign holders"]
+  pricing:
+    reserved_price: 70
+    current_price: null
+    currency: NGN
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: true
+  notes: |
+    Leg 1: <1x book at >20pct ROE = >25pct USD-adjusted earnings
+    yield. Single-digit P/E.
+    Leg 2: CBN-mandated capital floor = regulatory anchor;
+    GTCO already over-complied; sector consolidation forces
+    rivals to follow.
+    Leg 3: LSE listing 2025 at ₦70 = revealed-preference floor
+    by international institutional capital; UK pension fund
+    interest demonstrates capital depth.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+  _watch: "Naira FX volatility is the dominant variable"
+
+kill_criteria:
+  - "Naira devalues another 30pct+ over 12 months"
+  - "CBN-mandated forbearance escalates banking losses"
+  - "Heritage-Bank-style failure cascades across mid-tier"
+
+pre_mortem: |
+  Naira devalued to ₦3000/USD; GTCO USD-translated book and
+  earnings collapsed; FX losses materialised; multiple
+  contracted to 0.4x book.
+
+history:
+  - {date: 2024-03-28, event: "CBN announces ₦500bn capital floor", state_after: watch}
+  - {date: 2025-11, event: "GTCO LSE listing + ₦575bn total recap", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.79 (14th globally)", state_after: option}
+
+factors:
+  primary: idiosyncratic
+  exposures: ["Naira FX policy", "Nigerian sovereign", "CBN regulatory enforcement", "pan-African banking expansion"]
+
+tier_rationale: |
+  Bucket A, Archetype G (regulator-forced sector recap — canonical
+  Yes Bank / Greek banks template) + A1 (LSE listing as sovereign-
+  adjacent international float). Universe screen 0.79. Tier 1 on
+  triangulation + dated regulatory floor + cleanest USD-adjusted
+  asymmetric setup in MEA basket.

@@ -1,0 +1,150 @@
+ticker: TKA
+isin: DE0007500001
+name: Thyssenkrupp AG (Steel Europe)
+jurisdiction: DE
+exchange: XETR
+sector: Steel / industrial conglomerate
+bucket: A
+archetype: [A1, A2, H]
+state: option
+tier: 1
+
+deal:
+  date: 2024-07-04
+  mechanic: "A1 + A2 + H — Daniel Kretinsky's EPCG took 20pct stake in Thyssenkrupp Steel Europe subsidiary July 2024 (€1.0-1.5bn implied valuation). JV with German State pending (Lower Saxony + federal govt). €2bn EU state aid for green-steel transition approved Jul 2023 (SA.103861). Multi-decade decarbonisation pivot: Hydrogen-DRI plant Salzgitter site; Marine Systems carve-out worth €1-1.5bn separately. Iduna Aurelius industrial JV pending under EU IAA framework."
+  fields:
+    epcg_stake_pct:
+      value: 20
+      source: "reported"
+    epcg_stake_date:
+      value: 2024-07-04
+      source: "reported"
+    state_aid_approved_eur_bn:
+      value: 2.0
+      source: "verified: EU Commission SA.103861 Jul 2023"
+    state_aid_date:
+      value: 2023-07
+      source: "verified"
+    marine_systems_carve_out_eur_bn:
+      value: 1.0
+      source: "reported"
+      _note: "Submarines + naval; defence consolidation candidate; Sep 2024 Carlyle interest indicative"
+    fy2024_ebitda_eur_m:
+      value: 478
+      source: "reported"
+    current_market_cap_eur_bn:
+      value: 3.2
+      source: "estimated"
+    book_value_per_share_eur:
+      value: 12
+      source: "estimated"
+    pb_current:
+      value: 0.4
+      source: "estimated"
+
+scorecard:
+  d4_dilution_pct: 0
+  d9_alignment_gap: null
+  d11_consensus_ebitda_cagr: 30
+  d14_liquidity_quarters: 12
+
+catalysts:
+  - event: "Thyssenkrupp Steel JV with German state closes (Kretinsky 50pct / state 50pct)"
+    window: [2026-09-01, 2027-09-30]
+    p_favorable: 0.55
+    rerate_if_yes: [1.6, 2.4]
+    hit_if_no: [-0.20, -0.30]
+    source: "EPCG / state negotiations"
+  - event: "Marine Systems carve-out / IPO completion"
+    window: [2026-09-01, 2027-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.4, 1.8]
+    hit_if_no: [-0.05, -0.10]
+    source: "Carlyle / Lürssen / consortium interest"
+  - event: "European steel cycle inflection (HRC >€600/t)"
+    window: [2026-06-01, 2028-06-30]
+    p_favorable: 0.50
+    rerate_if_yes: [1.5, 2.2]
+    hit_if_no: [-0.20, -0.30]
+    source: "CBAM enforcement Jan 2026 + EU steel demand"
+  - event: "SALCOS first green-steel production at converted Duisburg blast furnace"
+    window: [2026-12-01, 2027-12-31]
+    p_favorable: 0.55
+    rerate_if_yes: [1.3, 1.8]
+    hit_if_no: [-0.15, -0.20]
+    source: "company project schedule"
+
+waterfall:
+  bear: {p: 0.25, return_multiple: 0.55, rationale: "Chinese steel-dumping intensifies; CBAM enforcement watered down; SALCOS Phase 1 slips; KfW declines; multiple stays at 0.3x book"}
+  base: {p: 0.50, return_multiple: 2.30, rationale: "Steel-JV closes with state at 50:50; Marine carve-out completes; cycle inflection delivers EBITDA €700m; multiple to 0.7x book"}
+  bull: {p: 0.25, return_multiple: 4.20, rationale: "Steel-JV + Marine carve-out + KfW second tranche + steel cycle peak; multiple to 1.0x book; sum-of-parts revaluation"}
+
+anchor:
+  parties: ["EPCG / Daniel Kretinsky", "German Federal State + Lower Saxony", "Krupp-Stiftung foundation (21pct legacy)"]
+  pricing:
+    current_price: null
+    currency: EUR
+  stake_pct: 41
+  holds_debt: false
+  holds_equity: true
+  prior_track_record: ["Kretinsky: EP Power Europe / Casino consolidation playbook; multi-stage strategic accumulation"]
+
+triangulation:
+  leg1_valuation: true
+  leg2_game_theory: true
+  leg3_revealed_pref: partial
+  notes: |
+    Leg 1: 0.4x book with €2bn approved state aid + Marine
+    Systems €1-1.5bn carve-out implies SOTP gap to ~€4-5bn vs
+    current cap €3.2bn.
+    Leg 2: Kretinsky 20pct in Steel sub + Krupp-Stiftung 21pct
+    in parent = aligned cap-stack.
+    Leg 3: PARTIAL — Kretinsky stake = revealed preference;
+    KfW second-tranche commit not yet placed; Carlyle Marine
+    interest is signal but not signed.
+
+red_flags:
+  parallel_pipe_below_rights: false
+  asymmetric_voting: false
+  backstop_warrants_below_terp: false
+  dip_to_exit_control_transfer: false
+  springing_maturity_inside_24m: false
+  stub_under_10pct_no_warrants: false
+  insider_indemnity_survives: false
+  insider_net_seller: false
+  state_backstop_conditional: false
+  refiled_within_12m: false
+  new_money_irr_above_50pct: false
+
+kill_criteria:
+  - "Kretinsky / state JV terms materially worsen (state share <40pct)"
+  - "SALCOS Phase 1 slips beyond mid-2027"
+  - "CBAM materially watered down by EU Council"
+  - "Marine Systems carve-out cancelled or distressed sale"
+
+pre_mortem: |
+  It is end-2027 and TKA is down 60pct from current ~€5.
+
+  Most likely: Steel-JV negotiations stalled on state commitment;
+  Marine Systems carve-out priced at distressed multiple; SALCOS
+  cost overran by €1bn; Chinese steel dumping intensified; multiple
+  to 0.3x book; another asset disposal at distressed terms.
+
+  Second most likely: EU IAA fiscal envelope cut in EU budget
+  negotiation; KfW declined; SALCOS deferred.
+
+history:
+  - {date: 2023-07, event: "EU Commission approves €2bn state aid SA.103861", state_after: watch}
+  - {date: 2024-07-04, event: "Kretinsky EPCG 20pct in Steel Europe subsidiary", state_after: option}
+  - {date: 2026-06-18, event: "YAML built; universe-screener score 0.95 (7th globally)", state_after: option}
+
+factors:
+  primary: policy
+  exposures: ["EU steel cycle", "Kretinsky execution", "German state aid timing", "CBAM enforcement", "Marine Systems carve-out", "SALCOS execution"]
+
+tier_rationale: |
+  Bucket A, Archetype A1 (Kretinsky 20pct + Krupp-Stiftung 21pct
+  aligned anchors) + A2 (EU state aid €2bn) + H (governance reset
+  via Steel-JV restructure). Universe score 0.95 = 7th-highest;
+  multi-leg catalyst structure puts it in Tier 1 (4 dated catalysts
+  + 2 floors).
