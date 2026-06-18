@@ -323,8 +323,39 @@ def test_setup_score_excludes_catalyst():
 def test_setup_score_broken_base_returns_zero():
     r = core.ScreenResult(ticker="X", phase="BASE_QUIET",
                           base_length_weeks=20, base_range_pct=0.80,
+                          base_quantile_range_pct=0.60,  # IQR > 0.40 — broken
                           poc=100.0, last_close=100.0, poc_distance_pct=0.0)
     assert core.compute_setup_score(r) == 0.0
+
+
+def test_setup_score_iqr_narrow_but_close_outside_iqr():
+    """Regression for the SUPP/RMII/IEM bug: IQR is narrow (good base)
+    but POC distance > IQR width. Previously scored 0 because the IQR
+    was being used as the POC-edge denominator. Should now score
+    meaningfully because base_range_pct is the real edge."""
+    r = core.ScreenResult(
+        ticker="SUPP.L", phase="BASE_ABSORBING",
+        base_length_weeks=68, base_range_pct=0.55,
+        base_quantile_range_pct=0.13,  # narrow IQR (not broken)
+        poc=14.5, last_close=16.6,
+        poc_distance_pct=0.145,  # close is 14.5% off POC — outside IQR
+    )
+    s = core.compute_setup_score(r)
+    # Expected ~ phase_w(1.0) * poc_w(1 - 0.145/0.50) * base_w(68/52->1.0)
+    assert s > 0.5, f"expected meaningful score, got {s}"
+
+
+def test_setup_score_capitulation_ignores_poc_distance():
+    """Phase CAPITULATION means the close has MOVED AWAY from POC
+    (that's the buy signal). Setup_score must not penalise that."""
+    r = core.ScreenResult(
+        ticker="X", phase="CAPITULATION",
+        base_length_weeks=52, base_range_pct=0.30,
+        base_quantile_range_pct=0.10,
+        poc=100.0, last_close=85.0, poc_distance_pct=0.15,
+    )
+    s = core.compute_setup_score(r)
+    assert s > 0.7, f"capitulation should keep its phase weight, got {s}"
 
 
 # ----- Investability gates -----------------------------------------

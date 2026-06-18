@@ -440,19 +440,37 @@ def _post_rerating_taper(chg_13w: float, target_total_return: float) -> float:
 def compute_setup_score(r: ScreenResult) -> float:
     """Setup score = pure technicals (phase × POC × base length).
     Catalyst/NAV are NOT in here — they multiply at the end via
-    expected_irr."""
+    expected_irr.
+
+    POC-distance scaling uses the *full* base range (max-min) rather
+    than the IQR (which is only ever a broken-base check). Using IQR
+    as the edge in the previous version zeroed legitimate names where
+    the price sat outside the middle 50% but still inside the base
+    (SUPP.L, RMII.L, IEM.L all returned setup_score=0 on the live run
+    because IQR < POC-distance).
+
+    Phases where price moving off POC is the point (CAPITULATION, the
+    just-broken-out BREAKOUT) bypass the POC penalty entirely — those
+    phases are defined by the close being away from the centre."""
     if r.error or r.poc is None or r.last_close is None or r.base_length_weeks is None:
         return 0.0
-    # Broken-base test uses the IQR-based range (robust to outliers).
-    # Max-min range is reported but not used for filtering.
+    # Broken-base reject uses IQR — robust to single outlier bars
     iqr_range = r.base_quantile_range_pct
     if iqr_range is not None and iqr_range > 0.40:
         return 0.0
     phase_w = params.PHASE_WEIGHT.get(r.phase, 0.10)
-    pd_pct = r.poc_distance_pct or 1.0
-    # POC proximity scaled by IQR width (the meaningful "edge").
-    edge = max(iqr_range or 0.10, 0.10)
-    poc_w = max(0.0, 1.0 - (pd_pct / edge))
+    # POC weight depends on phase:
+    if r.phase in ("CAPITULATION", "BASE_BREAKOUT"):
+        # Price moving away from POC IS the signal — don't penalise.
+        poc_w = 1.0
+    else:
+        pd_pct = r.poc_distance_pct or 1.0
+        # Edge = full base width (max-min). Cap at 50% so a base with
+        # a single outlier high doesn't get unreasonably generous
+        # credit. Floor at 10% so very-tight bases aren't impossible
+        # to score on.
+        edge = max(min(r.base_range_pct or 0.10, 0.50), 0.10)
+        poc_w = max(0.0, 1.0 - (pd_pct / edge))
     base_w = min(1.0, r.base_length_weeks / 52.0)
     return phase_w * poc_w * base_w
 
