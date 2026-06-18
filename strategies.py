@@ -429,6 +429,115 @@ def strat_robot_wealth_dctuned(df: pd.DataFrame,
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Strategy #8  —  TD Demark 9 / 13 exhaustion signals
+# ---------------------------------------------------------------------------
+
+
+def _hold_position(events: pd.Series, exit_events: pd.Series,
+                    max_hold: int, direction: int) -> pd.Series:
+    """
+    Convert point events into a held position for up to `max_hold` bars,
+    exited early on `exit_events`. Returns a series of `direction` while
+    held, 0 otherwise.
+    """
+    n = len(events)
+    pos = np.zeros(n, dtype=int)
+    bars_held = 0
+    in_trade = False
+    for i in range(n):
+        if not in_trade:
+            if bool(events.iloc[i]):
+                in_trade = True
+                bars_held = 0
+                pos[i] = direction
+        else:
+            bars_held += 1
+            if bars_held >= max_hold or bool(exit_events.iloc[i]):
+                in_trade = False
+                pos[i] = 0
+            else:
+                pos[i] = direction
+    return pd.Series(pos, index=events.index)
+
+
+def strat_td9_setup(df: pd.DataFrame, max_hold: int = 10) -> pd.Series:
+    """
+    Long on bull 9 setup completion (sell exhaustion → reversal up).
+    Short on bear 9 setup completion (buy exhaustion → reversal down).
+    Hold up to `max_hold` bars, exit early on opposite setup.
+    """
+    from mr_engine import td_sequential
+    f = td_sequential(df)
+    bull_9 = f.bull_count == 9
+    bear_9 = f.bear_count == 9
+    longs = _hold_position(bull_9, bear_9, max_hold, +1)
+    shorts = _hold_position(bear_9, bull_9, max_hold, -1)
+    return (longs + shorts).clip(-1, 1)
+
+
+def strat_td9_perfected(df: pd.DataFrame, max_hold: int = 10) -> pd.Series:
+    """TD9 setup with Ehlers' 'perfection' confirmation (stricter)."""
+    from mr_engine import td_sequential
+    f = td_sequential(df)
+    buy_p = f.buy_perfect.astype(bool)
+    sell_p = f.sell_perfect.astype(bool)
+    longs = _hold_position(buy_p, sell_p, max_hold, +1)
+    shorts = _hold_position(sell_p, buy_p, max_hold, -1)
+    return (longs + shorts).clip(-1, 1)
+
+
+def strat_td13_countdown(df: pd.DataFrame, max_hold: int = 20) -> pd.Series:
+    """
+    Long on 13-countdown buy (deep sell exhaustion → strong reversal up).
+    Short on 13-countdown sell. Longer hold than 9-setup (countdown
+    completes after 13+9=22 bars so the resulting move is bigger).
+    """
+    from mr_engine import td_sequential
+    f = td_sequential(df)
+    cd13_buy = f.cd_buy == 13
+    cd13_sell = f.cd_sell == 13
+    longs = _hold_position(cd13_buy, cd13_sell, max_hold, +1)
+    shorts = _hold_position(cd13_sell, cd13_buy, max_hold, -1)
+    return (longs + shorts).clip(-1, 1)
+
+
+def strat_td_combined(df: pd.DataFrame, max_hold: int = 10) -> pd.Series:
+    """Either 9-setup OR 13-countdown completion fires the entry."""
+    from mr_engine import td_sequential
+    f = td_sequential(df)
+    buy_event = (f.bull_count == 9) | (f.cd_buy == 13)
+    sell_event = (f.bear_count == 9) | (f.cd_sell == 13)
+    longs = _hold_position(buy_event, sell_event, max_hold, +1)
+    shorts = _hold_position(sell_event, buy_event, max_hold, -1)
+    return (longs + shorts).clip(-1, 1)
+
+
+def strat_4band_td_confluence(df: pd.DataFrame, bands=DEFAULT_BANDS,
+                                min_agree: int = 4, td_hold: int = 10) -> pd.Series:
+    """
+    Confluence: take the 4-band agreement signal, but boost (skip the
+    flat) when a TD 9 setup confirms the direction within the last
+    `td_hold` bars. The 4-band signal is the carrier; TD acts as an
+    "OR-in" extra entry trigger so we don't miss setups that the cycle
+    stack hasn't yet flagged.
+    """
+    from mr_engine import td_sequential
+    base = strat_4band_agreement(df, bands=bands, min_agree=min_agree)
+    f = td_sequential(df)
+    bull_9_recent = (f.bull_count == 9).rolling(td_hold, min_periods=1).max().fillna(0).astype(bool)
+    bear_9_recent = (f.bear_count == 9).rolling(td_hold, min_periods=1).max().fillna(0).astype(bool)
+    # Augment: flip to long if base flat AND fresh bull-9 AND price-bp(short) > 0
+    bp = four_bandpass(df["close"], bands)
+    bp1 = bp.iloc[:, 0]
+    augmented_long = (base == 0) & bull_9_recent & (bp1 > 0)
+    augmented_short = (base == 0) & bear_9_recent & (bp1 < 0)
+    out = base.copy()
+    out[augmented_long] = 1
+    out[augmented_short] = -1
+    return out
+
+
 STRATEGIES = {
     "1_naive_zerocross":   (strat_naive_zero_cross, {}),
     "2_super_passband":    (strat_super_passband, {}),
@@ -439,4 +548,9 @@ STRATEGIES = {
     "6_volume_bp_gated":   (strat_volume_bp_gated, {}),
     "6p_ehlers_loops":     (strat_ehlers_loops, {}),
     "7_rw_dctuned_bp":     (strat_robot_wealth_dctuned, {}),
+    "8a_td9_setup":        (strat_td9_setup, {}),
+    "8b_td9_perfected":    (strat_td9_perfected, {}),
+    "8c_td13_countdown":   (strat_td13_countdown, {}),
+    "8d_td_combined":      (strat_td_combined, {}),
+    "9_4band_td_confluence": (strat_4band_td_confluence, {}),
 }

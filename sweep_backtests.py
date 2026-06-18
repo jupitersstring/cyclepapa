@@ -21,17 +21,26 @@ import time
 
 import pandas as pd
 
-from crypto_universe import revolut_universe, top_yf_cryptos_by_mcap
+from crypto_universe import (
+    revolut_universe, top_yf_cryptos_by_mcap, top_yf_cryptos_by_volume,
+    combined_universe,
+)
 from run_universe import fetch_universe_mtf, DEFAULT_TIMEFRAMES
 from backtest_engine import (
     run_backtest, buy_and_hold, split_half, bootstrap_dd_ci,
 )
-from strategies import strat_4band_agreement, strat_market_mode_gated
+from strategies import (
+    strat_4band_agreement, strat_market_mode_gated,
+    strat_td9_setup, strat_td9_perfected, strat_td13_countdown,
+    strat_td_combined, strat_4band_td_confluence,
+)
 
 
 TX_COST_BPS = 25.0
 PRIMARY_TF = "1d"
 N_BOOT = 300
+N_MCAP = 200       # widened from 100
+N_VOLUME = 200     # added the volume universe
 
 
 # Band sets to sweep on #5. Default = original (40/60 → 1200/2400).
@@ -62,10 +71,32 @@ for thresh in (0.05, 0.10, 0.15, 0.20):
             {"trend_thresh": thresh, "use_mmi": use_mmi},
         ))
 
+# Strategy #8 — TD Demark 9/13 exhaustion sweep
+for hold in (5, 10, 20):
+    VARIANTS.append((f"8a_td9_hold{hold:02d}",         strat_td9_setup,      {"max_hold": hold}))
+    VARIANTS.append((f"8b_td9_perfected_hold{hold:02d}", strat_td9_perfected,  {"max_hold": hold}))
+for hold in (10, 20, 40):
+    VARIANTS.append((f"8c_td13_hold{hold:02d}",        strat_td13_countdown, {"max_hold": hold}))
+for hold in (5, 10):
+    VARIANTS.append((f"8d_td_combined_hold{hold:02d}", strat_td_combined,    {"max_hold": hold}))
+
+# Strategy #9 — 4-band + TD confluence (use the long bands, the winner)
+for hold in (5, 10):
+    VARIANTS.append((
+        f"9_4band_long_td_hold{hold:02d}",
+        strat_4band_td_confluence,
+        {"bands": BAND_SETS["long"], "min_agree": 4, "td_hold": hold},
+    ))
+
 
 def _build_universe() -> list[str]:
+    """
+    Revolut + top-N by market cap + top-N by 24h volume. Stables filtered.
+    """
     seen, out = set(), []
-    for src in (revolut_universe(), top_yf_cryptos_by_mcap(100)):
+    for src in (revolut_universe(),
+                 top_yf_cryptos_by_mcap(N_MCAP),
+                 top_yf_cryptos_by_volume(N_VOLUME)):
         for s in src:
             if s not in seen:
                 seen.add(s); out.append(s)
