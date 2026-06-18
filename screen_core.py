@@ -184,6 +184,8 @@ class ScreenResult:
     # Ranking sleeve tags
     in_setup_sleeve: bool = False        # passes setup gates + score
     in_fundamentals_sleeve: bool = False  # event catalyst + IRR alone
+    in_micro_sleeve: bool = False         # gate-failed but catalyst alive
+    micro_position_size_pct: float | None = None  # suggested cap
 
 
 # ---------------------------------------------------------------------------
@@ -550,6 +552,39 @@ def annualise(total_return: float, months: float) -> float:
 
 # ---------------------------------------------------------------------------
 # Investability gates
+
+def check_micro_investability(
+    aic_record: dict | None,
+    catalyst: str | None,
+) -> bool:
+    """Micro-sleeve gate — even more permissive than the wind-down
+    relaxed gates. Only applies to committed event catalysts."""
+    if aic_record is None:
+        return True   # non-UK: no constraint
+    if catalyst not in (
+        "WIND_DOWN_COMMITTED", "WIND_DOWN_LIKELY",
+        "RETURN_OF_CAPITAL_LIVE", "STRATEGIC_REVIEW",
+    ):
+        return False
+    g = params.MICRO_GATES
+    mc = aic_record.get("MarketCap") or 0
+    dv = aic_record.get("AvgValTrd1M") or 0
+    ng = aic_record.get("NetGearCum") or 0
+    oc = aic_record.get("OngoingCharge")
+    try:
+        oc = float(oc) if oc not in (None, "") else None
+    except (TypeError, ValueError):
+        oc = None
+    if mc < g["min_market_cap_gbp_m"]:
+        return False
+    if dv < g["min_daily_value_gbp_m"]:
+        return False
+    if ng > g["max_net_gearing_pct"]:
+        return False
+    if oc is not None and oc > g["max_ongoing_charge"]:
+        return False
+    return True
+
 
 def check_investability(
     ticker: str,

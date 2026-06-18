@@ -1,6 +1,4 @@
-ticker,name,phase,catalyst,disc%,src,etr%,age_m,prob%,sig,tr1,pdmr,wd,spk,IRR%,comp
-SUPP.L,,BASE_ABSORBING,WIND_DOWN_COMMITTED,50.0,override,40.0,41.5,53.0,0.0,0,0,0,Y,47.1,0.0
-RMII.L,RM Infrastructure Income,BASE_ABSORBING,WIND_DOWN_LIKELY,31.4,aic_live,31.3,27.6,58.0,0.17,3,0,0,Y,23.0,0.0
-IEM.L,Impax Environmental Mark,CAPITULATION,STRATEGIC_REVIEW,9.9,aic_live,7.6,,59.0,0.37,11,3,0,Y,3.6,0.0
-TMI.L,,BASE_DECLINING,WIND_DOWN_LIKELY,20.0,override,12.5,,42.0,0.0,0,0,0,-,1.7,0.0038
-ATR.L,Schroder Asian Total Ret,BASE_ABSORBING,STRATEGIC_REVIEW,5.6,aic_live,2.7,,39.0,0.06,0,0,0,Y,0.8,0.0
+ticker,name,phase,catalyst,disc%,src,NAV1y%,etr%,age,prob%,sig,tr1,pdmr,spk,set,IRR%,comp
+SUPP.L,,POST_RERATING,WIND_DOWN_COMMITTED,50.0,override,,22.5,42.0,53.0,0.0,0,0,Y,0.04,25.4,0.0094
+USF.L,US Solar Fund,POST_RERATING,WIND_DOWN_COMMITTED,41.3,aic_live,0.5,13.7,31.0,57.0,0.0,0,0,Y,0.04,13.0,0.0049
+TMI.L,,BASE_DECLINING,WIND_DOWN_LIKELY,20.0,override,,12.5,,42.0,0.0,0,0,-,0.26,1.7,0.0044

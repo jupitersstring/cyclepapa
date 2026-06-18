@@ -270,6 +270,14 @@ def screen_one(
             "RETURN_OF_CAPITAL_LIVE", "STRATEGIC_REVIEW"):
         if (r.expected_irr or 0) > 0:
             r.in_fundamentals_sleeve = True
+    # MICRO sleeve — gate-failed but catalyst alive. AEET/RMII/SBO
+    # class: real committed wind-downs that have dried up below the
+    # standard daily-value floor. Don't silently drop them.
+    if (not r.investable
+        and (r.expected_irr or 0) > 0.05
+        and core.check_micro_investability(aic_record, r.catalyst)):
+        r.in_micro_sleeve = True
+        r.micro_position_size_pct = 1.0
 
     # Historical context (informational)
     if aic_summary is not None:
@@ -472,6 +480,14 @@ def main() -> int:
     show("FUNDAMENTALS SLEEVE — top by IRR alone "
          "(committed event catalysts, ignores setup score)",
          fund.sort_values("expected_irr", ascending=False), args.top)
+
+    # MICRO sleeve — gate-failed wind-downs with non-trivial IRR.
+    # Position size ≤ 1% per name; assemble over multiple sessions.
+    if "in_micro_sleeve" in df.columns:
+        micro = df[(df["in_micro_sleeve"] == True) & (df["error"].isna())]
+        show("MICRO SLEEVE — gate-failed but catalyst alive (size ≤1% per)",
+             micro.sort_values("expected_irr", ascending=False),
+             min(args.top, 20))
 
     # Divergence — names where the two sleeves disagree.
     if "in_setup_sleeve" in df.columns and "in_fundamentals_sleeve" in df.columns:

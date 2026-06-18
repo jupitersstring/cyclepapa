@@ -97,17 +97,23 @@ INVESTABILITY_GATES = {
 # downs we drop the daily value floor and mcap floor materially;
 # the trade is buy-and-wait, not enter-and-exit.
 INVESTABILITY_GATES_BY_CATALYST: dict[str, dict] = {
+    # Wind-down stubs DRY UP — that's part of the catalyst. Live
+    # observation: AEET £0.01m, RMII £0.04m, SBO £0.04m. We've
+    # already relaxed the floor for these — relax further so we
+    # don't gate out the very names the catalyst is designed to
+    # crystallise. Anything below the MICRO threshold below ends
+    # up in a separate MICRO sleeve.
     "WIND_DOWN_COMMITTED": {
         "min_market_cap_gbp_m":   20.0,
-        "min_daily_value_gbp_m":   0.05,
+        "min_daily_value_gbp_m":   0.03,
         "max_net_gearing_pct":   200.0,
         "max_ongoing_charge":      6.0,
     },
     "WIND_DOWN_LIKELY": {
-        "min_market_cap_gbp_m":   30.0,
-        "min_daily_value_gbp_m":   0.05,
+        "min_market_cap_gbp_m":   25.0,
+        "min_daily_value_gbp_m":   0.03,
         "max_net_gearing_pct":   200.0,
-        "max_ongoing_charge":      5.0,
+        "max_ongoing_charge":      5.5,
     },
     "RETURN_OF_CAPITAL_LIVE": {
         "min_market_cap_gbp_m":   30.0,
@@ -115,6 +121,18 @@ INVESTABILITY_GATES_BY_CATALYST: dict[str, dict] = {
         "max_net_gearing_pct":   175.0,
         "max_ongoing_charge":      5.0,
     },
+}
+
+# MICRO sleeve gates — even more permissive, for committed event
+# catalysts only. Names that fail the standard wind-down gates but
+# pass these end up flagged as MICRO instead of dropped silently.
+# Position size guidance: ≤1% of portfolio per name; assemble over
+# multiple sessions; expect bid-offer slippage.
+MICRO_GATES = {
+    "min_market_cap_gbp_m":    8.0,
+    "min_daily_value_gbp_m":   0.005,
+    "max_net_gearing_pct":   250.0,
+    "max_ongoing_charge":      8.0,
 }
 
 
