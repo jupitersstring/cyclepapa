@@ -140,6 +140,43 @@ def top_n_by_sheet(df: pd.DataFrame, group_col: str, n: int = 20, order=None):
     return m[cols].round(3)
 
 
+def coverage_gap_sheet(df: pd.DataFrame, topn: int = 25):
+    """Union of every screen's top-N, tagged with web-verdict status — surfaces the
+    high-conviction names across ALL archetypes that still lack a verdict, so the
+    selection set can be checked for completeness across the whole universe."""
+    from collections import defaultdict
+    appears, best = defaultdict(list), {}
+    for key, fn in screens.SCREENS.items():
+        try:
+            r = fn(df, top=topn)
+        except Exception:
+            continue
+        if r is None or r.empty:
+            continue
+        for row in r.itertuples():
+            sym = str(row.symbol)
+            appears[sym].append(key)
+            sc = getattr(row, "score", float("nan"))
+            if sym not in best or (pd.notna(sc) and sc > best[sym]):
+                best[sym] = sc
+    if not appears:
+        return None
+    g = pd.DataFrame([{"symbol": s, "n_screens": len(v), "screens": ",".join(v),
+                       "best_score": round(best.get(s, float("nan")), 3)}
+                      for s, v in appears.items()])
+    idc = [c for c in ["symbol", "name", "region", "sector", "industry"] if c in df.columns]
+    g = g.merge(df[idc].drop_duplicates("symbol"), on="symbol", how="left")
+    vpath = config.DATA_DIR / "web_verdicts.csv"
+    if vpath.exists():
+        g = g.merge(pd.read_csv(vpath)[["symbol", "verdict"]].drop_duplicates("symbol"),
+                    on="symbol", how="left")
+    g["status"] = g["verdict"].fillna("UNVERIFIED") if "verdict" in g.columns else "UNVERIFIED"
+    g["_u"] = (g["status"] == "UNVERIFIED").astype(int)
+    g = g.sort_values(["_u", "n_screens", "best_score"], ascending=[False, False, False])
+    cols = ["status", "n_screens", "screens", "symbol", "name", "region", "sector", "best_score"]
+    return g[[c for c in cols if c in g.columns]]
+
+
 def web_validated_sheet(df: pd.DataFrame):
     """Lead synthesis sheet: web-research verdicts (data/web_verdicts.csv) joined
     to the live quant scores/metrics, ordered KEEP -> SPECULATIVE -> REJECT, so
@@ -273,6 +310,16 @@ def main():
             tn.to_excel(writer, sheet_name=gtitle, index=False, startrow=1, header=False)
             _fmt_sheet(writer, gtitle, tn, hdr, pct_fmt, f2_fmt)
             written.append(f"{gtitle}({len(tn)})")
+    cg = coverage_gap_sheet(df)
+    if cg is not None and not cg.empty:
+        try:
+            cg.to_csv(config.DATA_DIR / "coverage_gap.csv", index=False)
+        except OSError:
+            pass
+        cg.to_excel(writer, sheet_name="Coverage Gap", index=False, startrow=1, header=False)
+        _fmt_sheet(writer, "Coverage Gap", cg, hdr, pct_fmt, f2_fmt)
+        nun = int((cg["status"] == "UNVERIFIED").sum())
+        written.append(f"Coverage Gap({len(cg)}, {nun} unverified)")
     for name, title in SHEETS:
         fn = screens.SCREENS.get(name)
         if fn is None:
