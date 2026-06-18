@@ -47,16 +47,25 @@ PAR,14.9,8.0,raw_text,86.2,WELL_ABOVE,22.5,4,0,0,275.0,raw_text=157.0; raw_text=
 CELC,92.59,99.74,raw_text,-7.2,NEAR_ENTRY,22.4,4,0,0,1700.0,raw_text=99.74; p80_close=131.05999755859375
 EA,203.27,196.0,raw_text,3.7,NEAR_ENTRY,22.3,4,2,0,2779.9,raw_text=2.0; raw_text=1.0; raw_text=196.0; p80_close=203.24000549316406
 PDD,81.56,47.0,raw_text,73.5,WELL_ABOVE,21.6,3,2,0,569.6,raw_text=522.0; raw_text=47.0; p80_close=101.77999877929688
+REZI,31.17,44.0,raw_text,-29.2,BELOW_ENTRY,20.3,4,0,0,219.5,raw_text=44.0; p80_close=39.970001220703125
 SONO,15.38,19.82,candidates,-22.4,BELOW_ENTRY,19.8,2,1,0,298.4,candidates=19.82; raw_text=3.0; raw_text=10.0; raw_text=9.0; raw_text=12.0
 WGS,56.33,170.0,candidates,-66.9,BELOW_ENTRY,19.6,2,1,1,789.1,candidates=32.21; candidates=170.0; raw_text=391.0; form4_p_buy=47.65114; p80_close=68.52999877929688
 HTHT,44.66,34.0,raw_text,31.4,MODERATELY_ABOVE,19.5,3,1,0,88.9,raw_text=28.0; raw_text=34.0; raw_text=6.0; raw_text=34.0; p80_close=52.09000015258789
 PRLD,3.94,3.94,candidates,0.0,NEAR_ENTRY,18.2,4,0,0,0.0,candidates=3.94; p80_close=4.619999885559082
+TDS,39.49,21.0,raw_text,88.0,WELL_ABOVE,17.8,3,0,0,294.9,raw_text=21.0; raw_text=21.0; raw_text=12.0; p80_close=45.36000061035156
 CDRE,30.19,48.76,candidates,-38.1,BELOW_ENTRY,17.5,2,1,0,35.3,candidates=25.73; candidates=48.76; raw_text=35.0; p80_close=32.220001220703125
 KBR,35.32,55.0,candidates,-35.8,BELOW_ENTRY,16.8,1,0,1,14.2,candidates=55.0; raw_text=14.0; form4_p_buy=31.32035; p80_close=37.459999084472656
+STRR,11.08,21.0,raw_text,-47.2,BELOW_ENTRY,16.2,1,1,0,24.6,raw_text=21.0; form4_p_buy=10.966666666666667; p80_close=11.100000381469727
 SSTI,7.71,7.64,raw_text,0.9,NEAR_ENTRY,16.1,1,0,0,6.8,raw_text=6.8; raw_text=7.64; p80_close=7.0
-CRTO,17.05,18.0,raw_text,-5.3,NEAR_ENTRY,15.7,2,0,0,18.9,raw_text=18.0; p80_close=19.110000610351562
+CRTO,17.05,18.0,raw_text,-5.3,NEAR_ENTRY,15.7,2,0,0,18.9,raw_text=18.0; form4_p_buy=17.81; p80_close=19.110000610351562
 INMD,13.56,18.0,candidates,-24.7,BELOW_ENTRY,14.7,1,1,0,24.6,candidates=18.0; raw_text=24.0; p80_close=14.25
 RPAY,3.43,4.8,candidates,-28.5,BELOW_ENTRY,13.3,1,0,0,52.5,candidates=3.43; candidates=4.8; candidates=490.0; raw_text=21.0; raw_text=31.0
 SEER,1.69,1.94,p80_close,-12.9,NEAR_ENTRY,12.8,1,0,0,0.0,p80_close=1.940000057220459
+FLR,52.51,205.0,raw_text,-74.4,BELOW_ENTRY,10.6,2,0,0,425.7,raw_text=205.0; p80_close=50.529998779296875
+BHC,4.69,5.65,p80_close,-17.0,BELOW_ENTRY,10.5,1,1,0,508.0,p80_close=5.650000095367432
+LAB,0.81,1.42,raw_text,-42.6,BELOW_ENTRY,9.1,1,0,0,115.0,raw_text=113.0; raw_text=1.42; p80_close=1.0199999809265137
+MYO,1.43,3.0,raw_text,-52.3,BELOW_ENTRY,9.1,1,0,0,3.6,raw_text=3.0; p80_close=1.100000023841858
 GLOB,37.47,13.0,raw_text,188.2,WELL_ABOVE,9.0,2,0,0,13.5,raw_text=13.0; p80_close=46.11000061035156
+JOB,0.22,1.0,raw_text,-78.0,BELOW_ENTRY,7.8,1,0,0,1.5,raw_text=1.0; raw_text=0.3; p80_close=0.25
 NSP,37.27,34.05,form4_p_buy,9.5,NEAR_ENTRY,6.6,1,0,1,0.0,form4_p_buy=34.05; p80_close=33.470001220703125
+PRTH,6.47,10.0,raw_text,-35.3,BELOW_ENTRY,6.3,1,0,0,16.1,raw_text=10.0; raw_text=6.0; p80_close=6.059999942779541

@@ -181,3 +181,128 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 180,0001314727-26-000069,SONO,Casey Saori,Chief Financial Officer,2026-05-15,M,46565.0,,1,https://www.sec.gov/Archives/edgar/data/1314727/000131472726000069/form4.xml
 181,0001314727-26-000069,SONO,Casey Saori,Chief Financial Officer,2026-05-15,F,20622.0,14.69,0,https://www.sec.gov/Archives/edgar/data/1314727/000131472726000069/form4.xml
 182,0001314727-26-000066,SONO,Arabia Carmine,Director,2026-05-06,P,50.0,14.49,1,https://www.sec.gov/Archives/edgar/data/1314727/000131472726000066/form4.xml
+183,0001825415-26-000009,LOGC,Stewart Scott Matthew,,2026-06-12,P,10000.0,9.76,1,https://www.sec.gov/Archives/edgar/data/2064307/000182541526000009/ownership.xml
+184,0001110176-26-000006,LOGC,LEVY PAUL S,,2026-06-08,P,12926.0,9.1713,1,https://www.sec.gov/Archives/edgar/data/2064307/000111017626000006/ownership.xml
+185,0001110176-26-000004,LOGC,LEVY PAUL S,,2026-06-03,P,35409.0,9.0194,1,https://www.sec.gov/Archives/edgar/data/2064307/000111017626000004/ownership.xml
+186,0001110176-26-000004,LOGC,LEVY PAUL S,,2026-06-04,P,1000.0,9.04,1,https://www.sec.gov/Archives/edgar/data/2064307/000111017626000004/ownership.xml
+187,0001110176-26-000004,LOGC,LEVY PAUL S,,2026-06-05,P,63019.0,9.0641,1,https://www.sec.gov/Archives/edgar/data/2064307/000111017626000004/ownership.xml
+188,0001110176-26-000002,LOGC,LEVY PAUL S,,2026-06-01,P,6712.0,9.0232,1,https://www.sec.gov/Archives/edgar/data/2064307/000111017626000002/ownership.xml
+189,0001110176-26-000002,LOGC,LEVY PAUL S,,2026-06-02,P,18981.0,9.0501,1,https://www.sec.gov/Archives/edgar/data/2064307/000111017626000002/ownership.xml
+190,0001548312-26-000033,STRR,Eberwein Jeffrey E.,Director/Chief Executive Officer/10%Owner,2026-06-15,P,6.0,11.01,1,https://www.sec.gov/Archives/edgar/data/1210708/000154831226000033/wk-form4_1781728293.xml
+191,0001548312-26-000033,STRR,Eberwein Jeffrey E.,Director/Chief Executive Officer/10%Owner,2026-06-16,P,4994.0,11.21,1,https://www.sec.gov/Archives/edgar/data/1210708/000154831226000033/wk-form4_1781728293.xml
+192,0002029470-26-000012,STRR,Fruhbeis Todd Michael,Director,2026-06-12,P,500.0,11.23,1,https://www.sec.gov/Archives/edgar/data/1210708/000202947026000012/wk-form4_1781554252.xml
+193,0001767481-26-000004,STRR,Drake Mimi K,Director,2026-06-05,P,1000.0,11.65,1,https://www.sec.gov/Archives/edgar/data/1210708/000176748126000004/wk-form4_1781554201.xml
+194,0002029470-26-000010,STRR,Fruhbeis Todd Michael,Director,2026-06-10,P,300.0,9.81,1,https://www.sec.gov/Archives/edgar/data/1210708/000202947026000010/wk-form4_1781312238.xml
+195,0001548312-26-000031,STRR,Eberwein Jeffrey E.,Director/Chief Executive Officer/10%Owner,2026-06-10,P,1884.0,10.89,1,https://www.sec.gov/Archives/edgar/data/1210708/000154831226000031/wk-form4_1781309764.xml
+196,0002108307-26-000006,SSTI,Arthur Kirk,,2026-06-05,F,1444.0,7.51,0,https://www.sec.gov/Archives/edgar/data/1351636/000210830726000006/ownership.xml
+197,0002137771-26-000009,SSTI,Jochim David,,2026-06-01,A,36390.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1351636/000213777126000009/ownership.xml
+198,0002108307-26-000003,SSTI,Arthur Kirk,,2026-05-19,A,56222.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1351636/000210830726000003/ownership.xml
+199,0001705470-26-000002,SSTI,Clark Ralph A.,,2026-05-19,A,239880.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1351636/000170547026000002/ownership.xml
+200,0001705492-26-000002,SSTI,Stewart Alan R.,,2026-05-19,A,74963.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1351636/000170549226000002/ownership.xml
+201,0001654954-26-006053,EML,EVERETS JOHN,,2026-06-16-05:00,P,1310.0,21.4,1,https://www.sec.gov/Archives/edgar/data/31107/000165495426006053/form4.xml
+202,0001498290-26-000008,EML,DiSanto Frederick D.,Director,2026-06-15,A,1068.0,21.4,1,https://www.sec.gov/Archives/edgar/data/31107/000149829026000008/primary_doc.xml
+203,0001498290-26-000008,EML,DiSanto Frederick D.,Director,2026-06-16,P,1000.0,21.25,1,https://www.sec.gov/Archives/edgar/data/31107/000149829026000008/primary_doc.xml
+204,0001654954-26-006047,EML,Galbato Chan,,2026-06-16-05:00,P,940.0,21.4,1,https://www.sec.gov/Archives/edgar/data/31107/000165495426006047/form4.xml
+205,0001654954-26-006045,EML,MITAROTONDA JAMES A,,2026-06-16-05:00,P,1679.0,21.4,1,https://www.sec.gov/Archives/edgar/data/31107/000165495426006045/form4.xml
+206,0001654954-26-006043,EML,Scott Peggy,,2026-06-16-05:00,P,1176.0,21.4,1,https://www.sec.gov/Archives/edgar/data/31107/000165495426006043/form4.xml
+207,0001865887-26-000003,RSVR,Lafargue Rell Q. Jr.,,2026-05-31,F,68219.0,10.32,0,https://www.sec.gov/Archives/edgar/data/1824403/000186588726000003/ownership.xml
+208,0001865887-26-000003,RSVR,Lafargue Rell Q. Jr.,,2026-05-31,F,51911.0,10.32,0,https://www.sec.gov/Archives/edgar/data/1824403/000186588726000003/ownership.xml
+209,0001864346-26-000004,RSVR,Heindlmeyer James A,,2026-05-31,F,6432.0,10.32,0,https://www.sec.gov/Archives/edgar/data/1824403/000186434626000004/ownership.xml
+210,0001864346-26-000004,RSVR,Heindlmeyer James A,,2026-05-31,F,6963.0,10.32,0,https://www.sec.gov/Archives/edgar/data/1824403/000186434626000004/ownership.xml
+211,0001743515-26-000002,RSVR,Khosrowshahi Golnar,,2026-04-01,F,70115.0,9.65,0,https://www.sec.gov/Archives/edgar/data/1824403/000174351526000002/ownership.xml
+212,0001214659-26-002402,RSVR,ER Reservoir LLC,,2026-02-20,A,654.0,7.64,1,https://www.sec.gov/Archives/edgar/data/1824403/000121465926002402/marketforms-72325.xml
+213,0001193125-26-067411,RSVR,Cook Stephen M.,,2026-02-20,A,654.0,7.64,1,https://www.sec.gov/Archives/edgar/data/1824403/000119312526067411/ownership.xml
+214,0001653558-26-000079,PRTH,Main Clayton James,Director,2026-04-01,M,4296.0,,1,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000079/wk-form4_1775222757.xml
+215,0001653558-26-000077,PRTH,Passilla Michael,Director,2026-04-01,M,4296.0,,1,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000077/wk-form4_1775222042.xml
+216,0001653558-26-000077,PRTH,Passilla Michael,Director,2026-04-01,D,1168.0,4.72,0,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000077/wk-form4_1775222042.xml
+217,0001653558-26-000076,PRTH,Davis Marietta,Director,2026-04-01,M,4296.0,,1,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000076/wk-form4_1775221586.xml
+218,0001653558-26-000076,PRTH,Davis Marietta,Director,2026-04-01,D,1168.0,4.72,0,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000076/wk-form4_1775221586.xml
+219,0001653558-26-000074,PRTH,Favilla Christina M,Director,2026-04-01,M,4296.0,,1,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000074/wk-form4_1775221226.xml
+220,0001653558-26-000074,PRTH,Favilla Christina M,Director,2026-04-01,D,1229.0,4.72,0,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000074/wk-form4_1775221226.xml
+221,0001653558-26-000072,PRTH,CRISAFULLI MARC A,Director,2026-04-01,M,4296.0,,1,https://www.sec.gov/Archives/edgar/data/1653558/000165355826000072/wk-form4_1775220834.xml
+222,0001926297-26-000012,TDS,Villacrez Vicki L,Director/Executive Vice President & CFO,2026-06-11,M,10170.0,40.03,1,https://www.sec.gov/Archives/edgar/data/1051512/000192629726000012/wk-form4_1781521941.xml
+223,0001926297-26-000012,TDS,Villacrez Vicki L,Director/Executive Vice President & CFO,2026-06-11,F,4780.0,40.03,0,https://www.sec.gov/Archives/edgar/data/1051512/000192629726000012/wk-form4_1781521941.xml
+224,0001779547-26-000011,TDS,Kroll Anita J,"VP, Controller & CAO",2026-06-11,M,2716.0,40.03,1,https://www.sec.gov/Archives/edgar/data/1051512/000177954726000011/wk-form4_1781521890.xml
+225,0001779547-26-000011,TDS,Kroll Anita J,"VP, Controller & CAO",2026-06-11,F,1277.0,40.03,0,https://www.sec.gov/Archives/edgar/data/1051512/000177954726000011/wk-form4_1781521890.xml
+226,0000901731-26-000013,TDS,CARLSON LEROY T JR,Director/Vice Chair,2026-06-11,M,45135.0,40.03,1,https://www.sec.gov/Archives/edgar/data/1051512/000090173126000013/wk-form4_1781521845.xml
+227,0000901731-26-000013,TDS,CARLSON LEROY T JR,Director/Vice Chair,2026-06-11,F,18935.0,40.03,0,https://www.sec.gov/Archives/edgar/data/1051512/000090173126000013/wk-form4_1781521845.xml
+228,0002072289-26-000007,TDS,Dixon Kenneth S.,"Director/President & CEO, subsidiary",2026-06-09,M,4653.0,39.33,1,https://www.sec.gov/Archives/edgar/data/1051512/000207228926000007/wk-form4_1781132676.xml
+229,0002072289-26-000007,TDS,Dixon Kenneth S.,"Director/President & CEO, subsidiary",2026-06-09,F,1489.0,39.33,0,https://www.sec.gov/Archives/edgar/data/1051512/000207228926000007/wk-form4_1781132676.xml
+230,0001020127-26-000003,TDS,OFF GEORGE W,Director,2026-05-21,A,2905.0,41.2,1,https://www.sec.gov/Archives/edgar/data/1051512/000102012726000003/wk-form4_1779827386.xml
+231,0000885590-26-000083,BHC,WECHSLER AMY B,Director,2026-05-22,A,45871.0,0.0,1,https://www.sec.gov/Archives/edgar/data/885590/000088559026000083/form4.xml
+232,0000885590-26-000082,BHC,ROBERTS EIRY,Director,2026-05-22,A,45871.0,0.0,1,https://www.sec.gov/Archives/edgar/data/885590/000088559026000082/form4.xml
+233,0000885590-26-000081,BHC,POWER ROBERT N,Director,2026-05-22,A,45871.0,0.0,1,https://www.sec.gov/Archives/edgar/data/885590/000088559026000081/form4.xml
+234,0000885590-26-000080,BHC,Paulson John,Director,2026-05-22,A,45871.0,0.0,1,https://www.sec.gov/Archives/edgar/data/885590/000088559026000080/form4.xml
+235,0000885590-26-000079,BHC,LEUNG SANDRA,Director,2026-05-22,A,45871.0,0.0,1,https://www.sec.gov/Archives/edgar/data/885590/000088559026000079/form4.xml
+236,0001628280-26-039744,GLOB,Rottenberg Linda,Director,2026-06-01,A,1686.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1557860/000162828026039744/wk-form4_1780424162.xml
+237,0001628280-26-039742,GLOB,Pinelli Maria,Director,2026-06-01,A,843.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1557860/000162828026039742/wk-form4_1780424068.xml
+238,0001628280-26-039740,GLOB,Petroni Merhy Andrea Mayumi,Director,2026-06-01,A,843.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1557860/000162828026039740/wk-form4_1780423955.xml
+239,0001628280-26-039737,GLOB,Alvarez-Demalde Francisco,Director,2026-06-01,A,843.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1557860/000162828026039737/wk-form4_1780423856.xml
+240,0001628280-26-039735,GLOB,McLaughlin Andrew John,Director,2026-06-01,A,843.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1557860/000162828026039735/wk-form4_1780423765.xml
+241,0001749338-26-000015,CRTO,Glickman Sarah JS,Chief Financial Officer,2026-06-01,S,982.0,18.5,0,https://www.sec.gov/Archives/edgar/data/1576427/000174933826000015/wk-form4_1780430579.xml
+242,0001769573-26-000016,CRTO,Damon Ryan,Chief Legal Officer,2026-06-01,S,1079.0,18.5,0,https://www.sec.gov/Archives/edgar/data/1576427/000176957326000016/wk-form4_1780430521.xml
+243,0001749338-26-000013,CRTO,Glickman Sarah JS,Chief Financial Officer,2026-05-26,S,1313.0,17.06,0,https://www.sec.gov/Archives/edgar/data/1576427/000174933826000013/wk-form4_1779998803.xml
+244,0001749338-26-000013,CRTO,Glickman Sarah JS,Chief Financial Officer,2026-05-26,S,1152.0,17.06,0,https://www.sec.gov/Archives/edgar/data/1576427/000174933826000013/wk-form4_1779998803.xml
+245,0001769573-26-000014,CRTO,Damon Ryan,Chief Legal Officer,2026-05-26,S,1136.0,17.06,0,https://www.sec.gov/Archives/edgar/data/1576427/000176957326000014/wk-form4_1779998703.xml
+246,0001769573-26-000014,CRTO,Damon Ryan,Chief Legal Officer,2026-05-26,S,996.0,17.06,0,https://www.sec.gov/Archives/edgar/data/1576427/000176957326000014/wk-form4_1779998703.xml
+247,0001981335-26-000003,CRTO,van der Kooi Frederik,Director,2026-03-13,P,5000.0,17.81,1,https://www.sec.gov/Archives/edgar/data/1576427/000198133526000003/wk-form4_1773751601.xml
+248,0001477932-26-000148,JOB,THORPE KIM D,,2025-12-02-05:00,F,162342.0,0.19,0,https://www.sec.gov/Archives/edgar/data/40570/000147793226000148/form4.xml
+249,0001477932-26-000148,JOB,THORPE KIM D,,2026-01-07-05:00,F,37314.0,0.2,0,https://www.sec.gov/Archives/edgar/data/40570/000147793226000148/form4.xml
+250,0001477932-26-000147,JOB,Stuckey Alexander Preston Alexander,,2025-12-02-05:00,F,150316.0,0.19,0,https://www.sec.gov/Archives/edgar/data/40570/000147793226000147/form4.xml
+251,0001477932-26-000147,JOB,Stuckey Alexander Preston Alexander,,2026-01-07-05:00,F,42557.0,0.2,0,https://www.sec.gov/Archives/edgar/data/40570/000147793226000147/form4.xml
+252,0001477932-26-000146,JOB,DEWAN DEREK E,,2025-12-02-05:00,F,210443.0,0.19,0,https://www.sec.gov/Archives/edgar/data/40570/000147793226000146/form4.xml
+253,0001477932-26-000146,JOB,DEWAN DEREK E,,2026-01-07-05:00,F,55165.0,0.2,0,https://www.sec.gov/Archives/edgar/data/40570/000147793226000146/form4.xml
+254,0001193125-26-269675,MYO,Kovelman Harry,,2026-06-12,F,10442.0,1.2,0,https://www.sec.gov/Archives/edgar/data/1369290/000119312526269675/ownership.xml
+255,0001193125-26-269642,MYO,Mitchell Micah,,2026-06-12,F,9061.0,1.2,0,https://www.sec.gov/Archives/edgar/data/1369290/000119312526269642/ownership.xml
+256,0001193125-26-269607,MYO,HENRY DAVID A,,2026-06-12,F,10969.0,0.0,0,https://www.sec.gov/Archives/edgar/data/1369290/000119312526269607/ownership.xml
+257,0001193125-26-263916,MYO,Mitchell Micah,,2026-06-08,F,6529.0,1.33,0,https://www.sec.gov/Archives/edgar/data/1369290/000119312526263916/ownership.xml
+258,0001193125-26-263886,MYO,Kovelman Harry,,2026-06-08,F,7635.0,1.33,0,https://www.sec.gov/Archives/edgar/data/1369290/000119312526263886/ownership.xml
+259,0001193125-26-237189,LAB,Kim Hanjoon Alex,,2026-05-20,F,18871.0,1.0,0,https://www.sec.gov/Archives/edgar/data/1162194/000119312526237189/ownership.xml
+260,0001193125-26-237182,LAB,Mackay Sean,,2026-05-20,F,25729.0,1.0,0,https://www.sec.gov/Archives/edgar/data/1162194/000119312526237182/ownership.xml
+261,0001193125-26-237181,LAB,Egholm Michael,,2026-05-20,F,97626.0,1.0,0,https://www.sec.gov/Archives/edgar/data/1162194/000119312526237181/ownership.xml
+262,0001193125-26-148615,LAB,Egholm Michael,,2026-03-20,A,1042373.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1162194/000119312526148615/ownership.xml
+263,0001193125-26-148615,LAB,Egholm Michael,,2026-04-06,M,196513.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1162194/000119312526148615/ownership.xml
+264,0001193125-26-148615,LAB,Egholm Michael,,2026-04-06,F,95014.0,0.908,0,https://www.sec.gov/Archives/edgar/data/1162194/000119312526148615/ownership.xml
+265,0001193125-26-148614,LAB,Mackay Sean,,2026-03-20,A,272107.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1162194/000119312526148614/ownership.xml
+266,0001630805-26-000056,BW,Dziewisz John J,General Counsel & Secretary,2026-05-29,M,115000.0,19.18,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000056/form4.xml
+267,0001630805-26-000056,BW,Dziewisz John J,General Counsel & Secretary,2026-05-29,F,50715.0,19.18,0,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000056/form4.xml
+268,0001630805-26-000056,BW,Dziewisz John J,General Counsel & Secretary,2026-05-29,M,53334.0,19.18,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000056/form4.xml
+269,0001630805-26-000056,BW,Dziewisz John J,General Counsel & Secretary,2026-05-29,F,23520.0,19.18,0,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000056/form4.xml
+270,0001630805-26-000056,BW,Dziewisz John J,General Counsel & Secretary,2026-05-29,M,50000.0,19.18,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000056/form4.xml
+271,0001630805-26-000056,BW,Dziewisz John J,General Counsel & Secretary,2026-05-29,F,22050.0,19.18,0,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000056/form4.xml
+272,0001630805-26-000051,BW,Boness Naomi Louise,Director,2026-05-15,M,85000.0,21.22,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000051/form4.xml
+273,0001630805-26-000051,BW,Boness Naomi Louise,Director,2026-05-15,D,46750.0,21.22,0,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000051/form4.xml
+274,0001630805-26-000050,BW,Stahl Rebecca L,Director,2026-05-15,M,85000.0,21.22,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000050/form4.xml
+275,0001630805-26-000050,BW,Stahl Rebecca L,Director,2026-05-15,D,46750.0,21.22,0,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000050/form4.xml
+276,0001630805-26-000049,BW,Howe Alan B,Director,2026-05-15,M,85000.0,21.22,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000049/form4.xml
+277,0001630805-26-000049,BW,Howe Alan B,Director,2026-05-15,D,46750.0,21.22,0,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000049/form4.xml
+278,0001630805-26-000048,BW,Akbari Dr. Homaira,Director,2026-05-15,M,3021.0,21.22,1,https://www.sec.gov/Archives/edgar/data/1630805/000163080526000048/form4.xml
+279,0001193125-26-260264,VTOL,Brass Lorin L.,,2026-06-03,A,3618.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1525221/000119312526260264/ownership.xml
+280,0001193125-26-260253,VTOL,Kern Wesley E.,,2026-06-03,A,3618.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1525221/000119312526260253/ownership.xml
+281,0001193125-26-260235,VTOL,Mickelson George Mark,,2026-06-03,A,3618.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1525221/000119312526260235/ownership.xml
+282,0001193125-26-260233,VTOL,Shah Shefali A,,2026-06-03,A,3618.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1525221/000119312526260233/ownership.xml
+283,0001193125-26-260225,VTOL,MANZO ROBERT,,2026-06-03,A,3618.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1525221/000119312526260225/ownership.xml
+284,0000063296-26-000067,MATW,SCHAWK DAVID A,Director,2026-06-01,G,198014.0,0.0,1,https://www.sec.gov/Archives/edgar/data/63296/000006329626000067/wk-form4_1780601047.xml
+285,0000063296-26-000051,MATW,SCHAWK DAVID A,Director,2026-03-19,G,4668.0,0.0,0,https://www.sec.gov/Archives/edgar/data/63296/000006329626000051/wk-form4_1774281457.xml
+286,0000063296-26-000051,MATW,SCHAWK DAVID A,Director,2026-03-19,G,4668.0,0.0,1,https://www.sec.gov/Archives/edgar/data/63296/000006329626000051/wk-form4_1774281457.xml
+287,0000921895-26-001575,LFCR,Kiper Christopher S,Director/10%Owner,2026-06-04,A,25907.0,,1,https://www.sec.gov/Archives/edgar/data/1005286/000092189526001575/form409050032_06082026.xml
+288,0001017043-26-000002,LFCR,OBUS NELSON,Director,2026-06-04,A,25907.0,,1,https://www.sec.gov/Archives/edgar/data/1005286/000101704326000002/wk-form4_1780692442.xml
+289,0001376960-26-000002,LFCR,Aryeh Jason,Director,2026-06-04,A,25907.0,,1,https://www.sec.gov/Archives/edgar/data/1005286/000137696026000002/wk-form4_1780692392.xml
+290,0001336601-26-000004,LFCR,Schechter Joshua,Director,2026-06-04,A,25907.0,,1,https://www.sec.gov/Archives/edgar/data/1005286/000133660126000004/wk-form4_1780692374.xml
+291,0001649903-26-000002,LFCR,Korenberg Matthew E,Director,2026-06-04,A,25907.0,,1,https://www.sec.gov/Archives/edgar/data/1005286/000164990326000002/wk-form4_1780692359.xml
+292,0001193125-26-274508,MGNI,Knopper Douglas S,,2026-06-16,S,37337.0,18.1,0,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274508/ownership.xml
+293,0001193125-26-274503,MGNI,Buonasera David,,2026-06-15,S,1057.0,17.0,0,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274503/ownership.xml
+294,0001193125-26-274503,MGNI,Buonasera David,,2026-06-16,S,11233.0,18.0,0,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274503/ownership.xml
+295,0001193125-26-274503,MGNI,Buonasera David,,2026-06-17,S,1409.0,19.0,0,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274503/ownership.xml
+296,0001193125-26-274501,MGNI,BARRETT MICHAEL G.,,2026-06-15,M,178596.0,5.8,1,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274501/ownership.xml
+297,0001193125-26-274501,MGNI,BARRETT MICHAEL G.,,2026-06-15,S,178596.0,16.59,0,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274501/ownership.xml
+298,0001193125-26-274501,MGNI,BARRETT MICHAEL G.,,2026-06-16,M,100000.0,5.8,1,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274501/ownership.xml
+299,0001193125-26-274501,MGNI,BARRETT MICHAEL G.,,2026-06-16,S,100000.0,17.5,0,https://www.sec.gov/Archives/edgar/data/1595974/000119312526274501/ownership.xml
+300,0001193125-26-266380,MGNI,Caine Paul,,2026-06-08,A,13798.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1595974/000119312526266380/ownership.xml
+301,0001193125-26-266376,MGNI,Yu Diane,,2026-06-08,A,13798.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1595974/000119312526266376/ownership.xml
+302,0001628280-26-042843,APG,FRANKLIN MARTIN E,Director/10%Owner,2026-06-11,S,2000000.0,42.08,0,https://www.sec.gov/Archives/edgar/data/1796209/000162828026042843/wk-form4_1781294924.xml
+303,0001628280-26-036650,APG,ASHKEN IAN G H,Director,2026-05-16,M,4740.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1796209/000162828026036650/wk-form4_1779233058.xml
+304,0001628280-26-036560,APG,Walker Cyrus D.,Director,2026-05-16,M,4740.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1796209/000162828026036560/wk-form4_1779224442.xml
+305,0001628280-26-036559,APG,Thomas V Milroy,Director,2026-05-16,M,4740.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1796209/000162828026036559/wk-form4_1779224438.xml
+306,0001628280-26-036559,APG,Thomas V Milroy,Director,2026-05-16,F,2538.0,43.25,0,https://www.sec.gov/Archives/edgar/data/1796209/000162828026036559/wk-form4_1779224438.xml
+307,0001628280-26-036558,APG,LILLIE JAMES E,Director,2026-05-16,M,4740.0,0.0,1,https://www.sec.gov/Archives/edgar/data/1796209/000162828026036558/wk-form4_1779224432.xml

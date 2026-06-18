@@ -44,15 +44,21 @@ def run():
         txns.sort(key=lambda x: x["trans_date"])
         best = None
         for i, anchor in enumerate(txns):
+            ad = (anchor["trans_date"] or "").split("T")[0].split(" ")[0][:10]
             try:
-                anchor_dt = datetime.strptime(anchor["trans_date"], "%Y-%m-%d")
+                anchor_dt = datetime.strptime(ad, "%Y-%m-%d")
             except (TypeError, ValueError):
                 continue
             if (today - anchor_dt).days > 180:
                 continue
             window_start = anchor_dt - timedelta(days=WINDOW_DAYS)
-            wnd = [t for t in txns if t["trans_date"] and
-                   window_start <= datetime.strptime(t["trans_date"], "%Y-%m-%d") <= anchor_dt]
+            def _pdate(s):
+                if not s: return None
+                s = s.split("T")[0].split(" ")[0][:10]
+                try: return datetime.strptime(s, "%Y-%m-%d")
+                except ValueError: return None
+            wnd = [t for t in txns if _pdate(t["trans_date"]) and
+                   window_start <= _pdate(t["trans_date"]) <= anchor_dt]
             if not wnd:
                 continue
             insiders = set(t["owner"] for t in wnd)

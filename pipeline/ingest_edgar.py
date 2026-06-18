@@ -101,9 +101,11 @@ def run(tickers):
     print("\nOpen-market BUYS (code=P) found:")
     for r in conn.execute("""SELECT ticker, owner, role, trans_date, shares, price
                              FROM form4_transactions WHERE code='P' AND acquired=1
-                             ORDER BY trans_date DESC LIMIT 20"""):
+                             AND price IS NOT NULL AND shares IS NOT NULL
+                             ORDER BY trans_date DESC LIMIT 30"""):
         val = (r[4] or 0) * (r[5] or 0) / 1e6
-        print(f"  {r[0]:<6} {r[3]} {r[1][:28]:<28} {r[2][:20]:<20} {r[4]:>10,.0f} sh @ {r[5]} (${val:.2f}M)")
+        role = r[2] or ""
+        print(f"  {r[0]:<6} {r[3]} {r[1][:28]:<28} {role[:20]:<20} {r[4]:>10,.0f} sh @ {r[5]} (${val:.2f}M)")
 
 if __name__ == '__main__':
     tk = sys.argv[1:] or ["INMD", "KBR", "ROCK", "NSP", "SONO", "RPAY", "SEER", "MNRO", "UAA", "HHH", "NRP", "CDRE"]
