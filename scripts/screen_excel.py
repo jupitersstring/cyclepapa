@@ -140,6 +140,26 @@ def top_n_by_sheet(df: pd.DataFrame, group_col: str, n: int = 20, order=None):
     return m[cols].round(3)
 
 
+def growth_adj_value_sheet(df: pd.DataFrame, top: int = 60):
+    """Cheapest names by growth-adjusted value (EV/EBITDA/G). LOWER = cheaper per
+    unit of growth. Uses the eligible() artifact guards; shows the EV/Sales/G and
+    1/P-B-tilted variants alongside so they can be re-sorted in the sheet."""
+    try:
+        e = screens.eligible(df)
+    except Exception:
+        e = df[df.get("is_operating", pd.Series(True, index=df.index)).fillna(False)]
+    if "ev_ebitda_g" not in e.columns:
+        return None
+    e = e[e["ev_ebitda_g"].notna()].copy()
+    if e.empty:
+        return None
+    e = e.sort_values("ev_ebitda_g")
+    cols = ["symbol", "name", "region", "sector", "industry",
+            "ev_ebitda_g", "ev_sales_g", "ev_ebitda_g_pb", "ev_sales_g_pb",
+            "enterpriseToEbitda", "ebitda_growth", "revenue_growth", "priceToBook", "marketCap"]
+    return e[[c for c in cols if c in e.columns]].head(top).round(3)
+
+
 def coverage_gap_sheet(df: pd.DataFrame, topn: int = 25):
     """Union of every screen's top-N, tagged with web-verdict status — surfaces the
     high-conviction names across ALL archetypes that still lack a verdict, so the
@@ -320,6 +340,11 @@ def main():
         _fmt_sheet(writer, "Coverage Gap", cg, hdr, pct_fmt, f2_fmt)
         nun = int((cg["status"] == "UNVERIFIED").sum())
         written.append(f"Coverage Gap({len(cg)}, {nun} unverified)")
+    gav = growth_adj_value_sheet(df)
+    if gav is not None and not gav.empty:
+        gav.to_excel(writer, sheet_name="Growth-Adj Value", index=False, startrow=1, header=False)
+        _fmt_sheet(writer, "Growth-Adj Value", gav, hdr, pct_fmt, f2_fmt)
+        written.append(f"Growth-Adj Value({len(gav)})")
     for name, title in SHEETS:
         fn = screens.SCREENS.get(name)
         if fn is None:
@@ -428,6 +453,10 @@ def main():
         ("secular_cyclical", "Classified as secular grower vs cyclical."),
         ("dup_payload", "Yahoo served identical statements under another ticker (quality flag)."),
         ("is_operating", "Passed the operating-company filter (excludes funds/shells/non-operating)."),
+        ("ev_ebitda_g", "(EV/EBITDA) / EBITDA-growth% - PEG-style price of debt-neutral operating cash flow per unit growth; LOWER=cheaper (NaN if growth/multiple <=0)."),
+        ("ev_sales_g", "(EV/Sales) / revenue-growth% - price of top-line/market share per unit revenue growth; margin-agnostic; LOWER=cheaper."),
+        ("ev_ebitda_g_pb / ev_sales_g_pb", "The above x (1/priceToBook) - a capital-efficiency tilt favouring asset-light/high-ROE names among the growth-cheap."),
+        ("ev_sales", "EV/Sales, rebuilt from priceToSales x enterpriseValue/marketCap (currency-consistent)."),
     ]
     dws = wb.add_worksheet("Measures Dictionary")
     dws.set_column(0, 0, 46); dws.set_column(1, 1, 95)

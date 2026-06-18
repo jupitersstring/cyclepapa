@@ -180,12 +180,48 @@ def add_gap_score(
     return out
 
 
+def add_growth_adjusted_value(df: pd.DataFrame) -> pd.DataFrame:
+    """Growth-adjusted (PEG-style) valuation ratios. LOWER = cheaper per unit of
+    growth. All inputs are currency-neutral (ratios / % growth), so they compare
+    across markets. Undefined (NaN) for non-growers or non-positive multiples —
+    a PEG only means something when both the multiple and the growth are positive.
+
+    * ``ev_ebitda_g``   = (EV/EBITDA) / EBITDA-growth%  — price of structural,
+      debt-neutral operating cash flow relative to its near-term growth.
+    * ``ev_sales_g``    = (EV/Sales) / revenue-growth%  — price of top-line/market
+      share relative to revenue growth (margin/depreciation-agnostic).
+    * ``*_pb`` variants  = the above x (1/priceToBook) — i.e. divided by P/B, a
+      capital-efficiency tilt (favours asset-light / high-ROE names among the
+      growth-cheap; an asset-heavy low-P/B name scores higher = less preferred).
+
+    ``ev_sales`` is reconstructed from consistent yfinance fields
+    (priceToSales x enterpriseValue/marketCap) to avoid currency mismatches.
+    """
+    out = df.copy()
+    num = lambda c: pd.to_numeric(out.get(c), errors="coerce")
+    ev_ebitda, psales = num("enterpriseToEbitda"), num("priceToSalesTrailing12Months")
+    evv, mc, pb = num("enterpriseValue"), num("marketCap"), num("priceToBook")
+    eb_g, rev_g = num("ebitda_growth") * 100.0, num("revenue_growth") * 100.0
+
+    ev_sales = (psales * (evv / mc)).where((psales > 0) & (mc > 0) & (evv > 0))
+    out["ev_sales"] = ev_sales
+    eeg = ev_ebitda.where(ev_ebitda > 0) / eb_g.where(eb_g > 0)
+    esg = ev_sales / rev_g.where(rev_g > 0)
+    out["ev_ebitda_g"] = eeg
+    out["ev_sales_g"] = esg
+    pbpos = pb.where(pb > 0)
+    out["ev_ebitda_g_pb"] = eeg / pbpos      # x (1/P/B)
+    out["ev_sales_g_pb"] = esg / pbpos
+    return out
+
+
 def add_all_scores(df: pd.DataFrame, group_cols=None) -> pd.DataFrame:
     """Convenience: inflection + valuation + price + gap in one pass."""
     out = add_inflection_score(df, group_cols)
     out = add_valuation_richness(out, group_cols)
     out = add_price_response(out, group_cols)
     out = add_gap_score(out, group_cols)
+    out = add_growth_adjusted_value(out)
     return out
 
 
