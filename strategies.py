@@ -26,6 +26,7 @@ import numpy as np
 import pandas as pd
 
 from bandpass import ehlers_bandpass, four_bandpass, DEFAULT_BANDS
+from trend_engine import volatility_asymmetry, squeeze_release
 
 
 # ---------------------------------------------------------------------------
@@ -535,6 +536,94 @@ def strat_4band_td_confluence(df: pd.DataFrame, bands=DEFAULT_BANDS,
     out = base.copy()
     out[augmented_long] = 1
     out[augmented_short] = -1
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Strategies #10  —  Volatility Asymmetry & Squeeze/Release (Pine port)
+# ---------------------------------------------------------------------------
+
+
+def strat_volasym_attractive(df: pd.DataFrame,
+                                band_low: float = 45.0,
+                                band_high: float = 70.0) -> pd.Series:
+    """
+    Continuous regime: long while the asymmetry value is above its MA AND
+    rising over the last 3 bars AND in the [band_low, band_high] band.
+    Short while value < MA AND falling AND < band_low.
+    """
+    va = volatility_asymmetry(df)
+    above_ma = va.value > va.ma
+    rising = va.value > va.value.shift(3)
+    falling = va.value < va.value.shift(3)
+    in_band = (va.value >= band_low) & (va.value <= band_high)
+    below_band = va.value < band_low
+    long_state = above_ma & rising & in_band
+    short_state = (~above_ma) & falling & below_band
+    pos = pd.Series(0, index=df.index, dtype=int)
+    pos[long_state.fillna(False)] = 1
+    pos[short_state.fillna(False)] = -1
+    return pos
+
+
+def strat_volasym_event(df: pd.DataFrame, max_hold: int = 10) -> pd.Series:
+    """Point trigger: upper-asymmetry event → long, lower → short."""
+    va = volatility_asymmetry(df)
+    longs = _hold_position(va.upper_event, va.lower_event, max_hold, +1)
+    shorts = _hold_position(va.lower_event, va.upper_event, max_hold, -1)
+    return (longs + shorts).clip(-1, 1)
+
+
+def strat_sr_release(df: pd.DataFrame, max_hold: int = 10) -> pd.Series:
+    """Long on Release cross (vol expanding); flat or short on Squeeze cross."""
+    sr = squeeze_release(df)
+    longs = _hold_position(sr.is_release_cross, sr.is_squeeze_cross, max_hold, +1)
+    return longs.clip(-1, 1)
+
+
+def strat_release_after_squeeze(df: pd.DataFrame, max_hold: int = 20) -> pd.Series:
+    """
+    Long after a Release cross that follows a recent Hyper Squeeze
+    (release_after_squeeze event = compressed-then-expanding setup).
+    """
+    sr = squeeze_release(df)
+    flat = pd.Series(False, index=df.index)
+    longs = _hold_position(sr.release_after_squeeze, flat, max_hold, +1)
+    return longs
+
+
+def strat_va_sr_combined(df: pd.DataFrame, max_hold: int = 15) -> pd.Series:
+    """
+    Confluence: long when (a) release_after_squeeze fired within last 10
+    bars AND (b) volasym above its MA AND in [45, 70] band (direction
+    cue). The S&R triggers the breakout entry; volasym confirms the side.
+    """
+    sr = squeeze_release(df)
+    va = volatility_asymmetry(df)
+    release_recent = sr.release_after_squeeze.rolling(10, min_periods=1).max().fillna(0).astype(bool)
+    long_event = (release_recent
+                   & (va.value > va.ma)
+                   & (va.value >= 45) & (va.value <= 70))
+    short_event = (release_recent
+                    & (va.value < va.ma)
+                    & (va.value < 45))
+    longs = _hold_position(long_event, short_event, max_hold, +1)
+    shorts = _hold_position(short_event, long_event, max_hold, -1)
+    return (longs + shorts).clip(-1, 1)
+
+
+def strat_4band_va_filter(df: pd.DataFrame, bands=DEFAULT_BANDS,
+                            min_agree: int = 4) -> pd.Series:
+    """
+    4-band agreement gated by volasym sign: only act on the cycle signal
+    when volasym agrees on direction (volasym > 50 to confirm long; < 50
+    to confirm short). Should reduce whipsaw from cycle false-positives.
+    """
+    base = strat_4band_agreement(df, bands=bands, min_agree=min_agree)
+    va = volatility_asymmetry(df)
+    out = base.copy()
+    out[(base == 1) & (va.value < 50)] = 0
+    out[(base == -1) & (va.value > 50)] = 0
     return out
 
 
