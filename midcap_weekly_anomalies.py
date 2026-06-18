@@ -55,38 +55,46 @@ SAMPLE_K = 20.0  # shrinkage constant for the sample-size penalty
 # Universe
 # --------------------------------------------------------------------------- #
 US_EXCH = {"NYQ", "NMS", "NGM", "NCM", "ASE"}  # NYSE, Nasdaq GS/GM/CM, NYSE American
-_TICKER_RE = __import__("re").compile(r"^[A-Z]{1,5}(-[A-Z])?$")
-_UK_TICKER_RE = __import__("re").compile(r"^[A-Z0-9]{1,4}\.L$")  # LSE tickers (keep .L)
+import re as _re
+
+# Region registry: code -> (country, {primary exchanges}, currency, yahoo suffix).
+# financedatabase already stores tickers with the yahoo suffix (.TO/.DE/.PA/...).
+REGIONS = {
+    "us": ("United States", US_EXCH, "USD", None),     # US strips '.' -> '-'
+    "uk": ("United Kingdom", {"LSE"}, "GBP", "L"),
+    "ca": ("Canada", {"TOR"}, "CAD", "TO"),
+    "de": ("Germany", {"GER"}, "EUR", "DE"),
+    "fr": ("France", {"PAR"}, "EUR", "PA"),
+    "nl": ("Netherlands", {"AMS"}, "EUR", "AS"),
+    "au": ("Australia", {"ASX"}, "AUD", "AX"),
+}
+_TICKER_RE = _re.compile(r"^[A-Z]{1,5}(-[A-Z])?$")            # US common stock
 
 _CAPS = {"megacap": ["Mega Cap"], "largecap": ["Large Cap"], "midcap": ["Mid Cap"],
          "smallcap": ["Small Cap"], "microcap": ["Micro Cap"], "nanocap": ["Nano Cap"],
          "smallmicro": ["Small Cap", "Micro Cap"],
          "allcap": ["Mega Cap", "Large Cap", "Mid Cap", "Small Cap", "Micro Cap"]}
 
-# map of --universe source -> (country, market_cap bucket(s))
-CAP_SOURCES = {f"us-{k}": ("United States", v) for k, v in _CAPS.items()}
-CAP_SOURCES.update({f"uk-{k}": ("United Kingdom", v) for k, v in _CAPS.items()})
+# map of --universe source -> (region code, market_cap bucket(s))
+CAP_SOURCES = {f"{rc}-{ck}": (rc, caps) for rc in REGIONS for ck, caps in _CAPS.items()}
 
 
-def get_fd_universe(country: str, caps: list[str], limit: int | None = None) -> pd.DataFrame:
-    """Equities in a financedatabase market_cap bucket for a country, filtered to
-    that country's primary exchange/currency with clean tickers. UK keeps the
-    .L suffix (yfinance format); US strips dots to dashes for share classes."""
-    uk = country == "United Kingdom"
+def get_fd_universe(region: str, caps: list[str], limit: int | None = None) -> pd.DataFrame:
+    """Equities in a financedatabase market_cap bucket for a region, filtered to
+    its primary exchange(s)/currency with clean tickers. Non-US regions keep the
+    yahoo suffix (.L/.TO/.DE/...); US strips '.' to '-' for share classes."""
+    country, exch, ccy, suffix = REGIONS[region]
+    tick_re = _TICKER_RE if suffix is None else _re.compile(
+        rf"^[A-Z0-9]{{1,5}}(-[A-Z])?\.{suffix}$")
     try:
         import financedatabase as fd
 
         df = fd.Equities().select(country=country)
         sel = df[df["market_cap"].isin(caps)].copy()
-        if uk:
-            sel = sel[(sel["exchange"] == "LSE") & (sel["currency"] == "GBP")]
-            sel = sel[[bool(_UK_TICKER_RE.match(str(t))) for t in sel.index]]
-            symbols = [str(t) for t in sel.index]            # keep TSCO.L
-        else:
-            sel = sel[sel["exchange"].isin(US_EXCH) & (sel["currency"] == "USD")]
-            sel = sel[[bool(_TICKER_RE.match(str(t))) for t in sel.index]]
-            symbols = [str(t).replace(".", "-") for t in sel.index]
+        sel = sel[sel["exchange"].isin(exch) & (sel["currency"] == ccy)]
+        sel = sel[[bool(tick_re.match(str(t))) for t in sel.index]]
         sel = sel[~sel.index.duplicated()]
+        symbols = [str(t).replace(".", "-") if suffix is None else str(t) for t in sel.index]
         symbols = list(dict.fromkeys(symbols))
         out = pd.DataFrame({
             "symbol": symbols,
@@ -105,7 +113,7 @@ def get_fd_universe(country: str, caps: list[str], limit: int | None = None) -> 
 
 
 def get_us_universe(caps: list[str], limit: int | None = None) -> pd.DataFrame:
-    return get_fd_universe("United States", caps, limit)
+    return get_fd_universe("us", caps, limit)
 
 
 def get_universe(limit: int | None = None, source: str = "sp400") -> pd.DataFrame:
@@ -115,8 +123,8 @@ def get_universe(limit: int | None = None, source: str = "sp400") -> pd.DataFram
     source="us-<bucket>"  -> financedatabase market-cap bucket(s); see CAP_SOURCES
     """
     if source in CAP_SOURCES:
-        country, caps = CAP_SOURCES[source]
-        return get_fd_universe(country, caps, limit=limit)
+        region, caps = CAP_SOURCES[source]
+        return get_fd_universe(region, caps, limit=limit)
     try:
         r = requests.get(WIKI_URL, headers=UA, timeout=30)
         r.raise_for_status()
