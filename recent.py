@@ -438,6 +438,195 @@ def company_insider_buys(ticker: str, days: int = 90) -> list[dict]:
     return out
 
 
+def recent_form_range(
+    form_codes: tuple[str, ...],
+    start_date: str,
+    end_date: str,
+    limit: int = 300,
+    label: str = "",
+) -> list[RecentFiling]:
+    """Generic EDGAR FTS form-stream puller. Shared by Form 15 (going
+    dark / deregistration), Form 25 (delisting), and any future
+    plain form-type stream we want without keyword filtering."""
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+    for form_q in form_codes:
+        offset = 0
+        while len(out) < limit and offset < 500:
+            url = (
+                f"{EFTS}?forms={requests_quote(form_q)}"
+                f"&dateRange=custom&startdt={start_date}&enddt={end_date}"
+                f"&from={offset}"
+            )
+            try:
+                data = _get(url).json()
+            except Exception:
+                break
+            hits = data.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for h in hits:
+                src = h.get("_source", {}) or {}
+                ciks = src.get("ciks") or []
+                cik = f"{int(ciks[0]):010d}" if ciks else None
+                if not cik or cik in seen_cik:
+                    continue
+                seen_cik.add(cik)
+                tickers = src.get("tickers") or []
+                ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+                display = (src.get("display_names") or ["?"])[0]
+                company = display.split(" (")[0]
+                file_date = src.get("file_date", "")
+                id_parts = (h.get("_id") or "").split(":")
+                if len(id_parts) != 2:
+                    continue
+                accession, primary_doc = id_parts
+                out.append(RecentFiling(
+                    cik=cik, company=company, ticker=ticker,
+                    filing_date=file_date,
+                    accession=accession, primary_doc=primary_doc,
+                ))
+                if len(out) >= limit:
+                    return out
+            offset += 100
+    return out
+
+
+def recent_form15_range(start: str, end: str,
+                        limit: int = 300) -> list[RecentFiling]:
+    """Form 15 deregistration / "going dark" -- Oddball Stocks terrain.
+    Triggered when a company drops below the SEC registration threshold
+    and stops filing 10-K/10-Q. Often a sign of distress or controlling-
+    shareholder squeeze-out setup; equity continues trading OTC pink
+    without public financials."""
+    return recent_form_range(("15-12B", "15-12G", "15-15D", "15F-12B"),
+                             start, end, limit, label="form15")
+
+
+def recent_form25_range(start: str, end: str,
+                        limit: int = 300) -> list[RecentFiling]:
+    """Form 25 exchange-delisting notice. Often follows a take-private,
+    going-dark, or post-bankruptcy exit. Pairs with Form 15."""
+    return recent_form_range(("25", "25-NSE"),
+                             start, end, limit, label="form25")
+
+
+def recent_nol_rights_plan_range(
+    start_date: str, end_date: str, limit: int = 300,
+) -> list[RecentFiling]:
+    """8-K full-text scan for Tax Benefits Preservation Rights Plans
+    (Section 382 NOL shells). The adoption of such a plan is a near-
+    certain tell that the company has material NOL carryforwards it
+    is actively trying to protect from an ownership change -- the
+    Clark Street Value / WMIH archetype."""
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+    queries = [
+        '"Tax Benefits Preservation"',
+        '"Section 382 rights plan"',
+        '"NOL rights plan"',
+        '"net operating loss" "rights agreement"',
+        '"preserve" "tax attributes" "ownership change"',
+    ]
+    for q in queries:
+        offset = 0
+        while len(out) < limit and offset < 1000:
+            url = (
+                f"{EFTS}?forms=8-K&dateRange=custom"
+                f"&startdt={start_date}&enddt={end_date}"
+                f"&from={offset}&q={requests_quote(q)}"
+            )
+            try:
+                data = _get(url).json()
+            except Exception:
+                break
+            hits = data.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for h in hits:
+                src = h.get("_source", {}) or {}
+                ciks = src.get("ciks") or []
+                cik = f"{int(ciks[0]):010d}" if ciks else None
+                if not cik or cik in seen_cik:
+                    continue
+                seen_cik.add(cik)
+                tickers = src.get("tickers") or []
+                ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+                display = (src.get("display_names") or ["?"])[0]
+                company = display.split(" (")[0]
+                file_date = src.get("file_date", "")
+                id_parts = (h.get("_id") or "").split(":")
+                if len(id_parts) != 2:
+                    continue
+                out.append(RecentFiling(
+                    cik=cik, company=company, ticker=ticker,
+                    filing_date=file_date,
+                    accession=id_parts[0], primary_doc=id_parts[1],
+                ))
+                if len(out) >= limit:
+                    return out
+            offset += 100
+    return out
+
+
+def recent_spac_extension_range(
+    start_date: str, end_date: str, limit: int = 300,
+) -> list[RecentFiling]:
+    """SPAC extension / liquidation / trust-redemption proxies (DEFM14A
+    and PRER14A) and 8-Ks announcing trust-redemption. Pairs with
+    yfinance trust-NAV vs price for the Walker SPAC-arb trade."""
+    out: list[RecentFiling] = []
+    seen_cik: set[str] = set()
+    cik_to_ticker = _cik_to_ticker_map()
+    queries = [
+        '"trust account" "redemption"',
+        '"extension amendment" "business combination"',
+        '"liquidating distribution" "trust"',
+        '"failure to consummate" "business combination"',
+    ]
+    for q in queries:
+        offset = 0
+        while len(out) < limit and offset < 1000:
+            url = (
+                f"{EFTS}?forms=8-K,DEF+14A,DEFM14A,PRER14A&dateRange=custom"
+                f"&startdt={start_date}&enddt={end_date}"
+                f"&from={offset}&q={requests_quote(q)}"
+            )
+            try:
+                data = _get(url).json()
+            except Exception:
+                break
+            hits = data.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for h in hits:
+                src = h.get("_source", {}) or {}
+                ciks = src.get("ciks") or []
+                cik = f"{int(ciks[0]):010d}" if ciks else None
+                if not cik or cik in seen_cik:
+                    continue
+                seen_cik.add(cik)
+                tickers = src.get("tickers") or []
+                ticker = tickers[0] if tickers else cik_to_ticker.get(cik)
+                display = (src.get("display_names") or ["?"])[0]
+                company = display.split(" (")[0]
+                file_date = src.get("file_date", "")
+                id_parts = (h.get("_id") or "").split(":")
+                if len(id_parts) != 2:
+                    continue
+                out.append(RecentFiling(
+                    cik=cik, company=company, ticker=ticker,
+                    filing_date=file_date,
+                    accession=id_parts[0], primary_doc=id_parts[1],
+                ))
+                if len(out) >= limit:
+                    return out
+            offset += 100
+    return out
+
+
 def recent_def14a(n: int = 25) -> list[RecentFiling]:
     """Walk the EDGAR 'getcurrent' atom feed for DEF 14A filings."""
     n = max(1, min(int(n), 100))
