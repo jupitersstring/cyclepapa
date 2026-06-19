@@ -244,6 +244,8 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
     eb_g = clipg(num("ebitda_growth").where(num("ebitda_growth").notna(), num("ebitda_q_yoy"))).fillna(lo)
     rev_g = clipg(num("revenue_growth").where(num("revenue_growth").notna(), num("revenue_q_yoy"))).fillna(lo)
     eb_gq, rev_gq = clipg(num("ebitda_q_yoy")), clipg(num("revenue_q_yoy"))
+    earn_g = clipg(num("earnings_growth").where(num("earnings_growth").notna(), num("earnings_q_yoy"))).fillna(lo)
+    earn_gq = clipg(num("earnings_q_yoy"))
 
     # Raw-statement fallback for the residual ~5%: rebuild the multiple ourselves
     # from market cap + the latest annual statement when yfinance carries no
@@ -298,6 +300,17 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
     out["bv_tilt"] = tilt
     out["ev_ebitda_g_bv"] = out["ev_ebitda_g"] * tilt
     out["ev_sales_g_bv"] = out["ev_sales_g"] * tilt
+
+    # Earnings-based PEG (P/E ÷ earnings-growth) — the right growth-adjusted value
+    # lens for FINANCIALS (banks/insurers/capital markets), where EV/EBITDA and
+    # EV/Sales are not meaningful: deposits and float distort enterprise value and
+    # there is no clean operating "sales" line. Trailing P/E (fallback forward),
+    # positive only; earnings growth capped/floored exactly like the EV ratios so a
+    # trough-rebound can't drive it to ~0 and a non-grower reads expensive, not NaN.
+    pe = num("trailingPE").where(num("trailingPE") > 0, num("forwardPE"))
+    pe = pe.where(pe > 0)
+    out["pe_g"] = pe / earn_g
+    out["pe_g_ltm"] = pe / earn_gq
     return out
 
 
