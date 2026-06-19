@@ -1,34 +1,34 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M,_filled_from
-B,US,,Basic Materials,40.2,81.13,13,2.464,11.105,8.734,3.545,6.338,3.906,3.562,7.809,0.551,0.562,0.667,2.542,67517.0,
-ABUS,US,Arbutus Biopharma Corporation,Healthcare,4.26,75.45,11,3.225,5.133,-25.774,4.396,4.836,3.919,10.852,-10.743,0.893,0.944,100.545,-0.520866704805492,842.0,earningsGrowth<-NI_annual
-AII,US,"American Integrity Insurance Group, Inc.",Financial Services,17.01,75.339,13,0.993,3.514,5.648,1.128,1.89,0.652,42.16,58.851,0.515,0.3,0.265,-0.634,333.0,
-AR,US,Antero Resources Corporation,Energy,34.83,71.25,10,1.338,11.272,7.449,1.918,,,,5.884,0.672,0.365,0.343,1.606,10792.0,
-BMBL,US,Bumble Inc.,Communication Services,2.72,70.453,12,0.575,,2.712,0.443,2.894,0.886,-85.242,56.879,0.719,0.315,-0.141,1.698,413.0,
-4628.T,JP,"Sk Kaken Co.,Ltd.",Basic Materials,9760.0,83.678,12,0.753,11.521,,1.2,2.292,0.268,77.653,5.187,0.3,0.099,0.081,2.682,131663.0,
-1879.T,JP,Shinnihon Corporation,Industrials,2241.0,81.374,11,0.974,8.606,,0.947,1.688,0.255,73.106,10.749,0.185,0.185,0.066,0.225,131075.0,
-2763.T,JP,"FTGroup Co., Ltd.",Technology,1076.0,79.414,12,0.907,4.951,,1.013,1.764,0.528,47.873,14.714,0.418,0.429,-0.083,0.817,31988.0,
-4516.T,JP,"Nippon Shinyaku Co., Ltd.",Healthcare,3943.0,74.879,13,0.911,8.944,9.603,1.556,4.555,1.124,27.854,9.467,0.664,0.073,0.121,-0.032,265762.0,
-3932.T,JP,Akatsuki Inc.,Communication Services,2914.0,74.062,13,0.927,7.435,14.006,1.356,2.383,0.724,66.511,3.563,0.543,0.468,0.249,2.075,35062.0,
-143240.KQ,KR,"Saramin Co.,Ltd.",Industrials,16800.0,84.658,8,0.6605702926980417,9.813084112149532,,1.452,-0.663,-0.129,108.74,16.578,0.999,0.151,0.009,2.414,176379.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
-226320.KS,KR,"It'S Hanbul Co., Ltd.",Consumer Defensive,9820.0,84.629,8,0.44392755881219326,8.862815884476534,,1.083,-2.574,-0.415,204.04,3.312,0.658,0.16,0.175,3.237,172996.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
-192440.KQ,KR,"Spigen Korea Co.,Ltd",Technology,30700.0,80.007,10,0.3377384199965592,5.293103448275862,,0.382,0.081,0.007,96.775,25.73,0.629,0.099,0.039,0.819,178695.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
-126560.KS,KR,"Hyundai Futurenet Co., Ltd.",Industrials,3040.0,79.819,10,0.4502603187987371,25.76271186440678,,1.22,5.568,0.505,92.085,7.169,0.234,0.061,0.063,3.485,327740.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
-020000.KS,KR,HANDSOME Corporation,Consumer Cyclical,23100.0,77.528,11,0.34522343703318886,9.926944563816072,5.547,0.326,3.427,0.307,3.626,5.867,0.562,0.089,0.079,0.489,496119.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
-0158.HK,HK,Melbourne Enterprises Limited,Real Estate,58.1,75.894,8,0.228,,,8.866,11.507,7.21,18.678,7.115180879645981,0.719,0.596,-0.005,3.096145359657706,1452.0,earningsGrowth<-NI_annual; fcfYield<-FCF_annual
-0071.HK,HK,"Miramar Hotel and Investment Company, Limited",Consumer Cyclical,10.25,75.068,12,0.334,10.459,,2.743,0.508,0.168,96.782,7.776,0.337,0.326,-0.117,-0.049,7082.0,
-0321.HK,HK,Texwinca Holdings Limited,Consumer Cyclical,1.13,74.104,12,0.316,9.417,2.568,0.303,2.561,0.183,39.905,13.686397679054217,0.267,0.016,-0.058,2.329,1561.0,fcfYield<-FCF_annual
-1140.HK,HK,HK.AI Capital Limited,Financial Services,0.116,74.023,10,0.121,11.6,,5.128,-10.075,-8.813,262.107,-0.78,1.0,0.879,-0.091,1.889,1352.0,
-0878.HK,HK,Soundwill Holdings Limited,Real Estate,6.6,71.613,10,0.138,,,5.219,13.623,7.371,-41.074,9.019,0.897,0.559,-0.111,-0.1431987707130161,1870.0,earningsGrowth<-NI_annual
-FGX.AX,AU,Future Generation Australia Limited,Financial Services,1.345,86.849,9,0.963,10.346,,7.852,-1.0671761036014746,-0.802,110.213,12.362,1.0,1.086,0.557,0.601,553.0,evEbitda<-EBITDA_annual
-CUV.AX,AU,Clinuvel Pharmaceuticals Limited,Healthcare,8.96,77.076,13,1.805,14.0,11.708,4.692,4.963,2.251,51.496,7.126,0.896,0.366,0.036,-0.263,452.0,
-ALK.AX,AU,Alkane Resources Ltd,Basic Materials,1.415,75.221,13,1.835,15.722,5.818,2.557,4.398,2.153,15.81,9.307,0.356,0.43,3.341,4.114,1933.0,
-EHL.AX,AU,Emeco Holdings Limited,Industrials,0.98,71.718,13,0.668,6.533,5.383,0.618,2.32,0.788,-28.216,11.193,0.568,0.157,0.089,0.138,508.0,
-CWP.AX,AU,Cedar Woods Properties Limited,Real Estate,7.05,70.967,13,1.132,8.103,8.23,1.101,5.833,1.26,-14.484,26.194,0.272,0.226,0.403,1.631,600.0,
-SEC.TO,CA,Senvest Capital Inc.,Financial Services,390.0,82.458,8,0.459,2.198,,0.702,-2.856,-2.652,480.693,134.991,1.0,1.277,-0.4099355358581789,-0.4216589772493967,944.0,revenueGrowth<-rev_annual; earningsGrowth<-NI_annual
-FVI.TO,CA,Fortuna Mining Corp.,Basic Materials,12.48,74.611,13,1.536,8.265,5.392,3.454,5.005,3.09,12.336,9.768,0.547,0.53,0.756,0.816,3781.0,
-JAG.TO,CA,Jaguar Mining Inc.,Basic Materials,5.65,73.83,11,1.38,51.36363636363637,5.218,3.162,5.143,2.697,14.7,10.927,0.639,0.474,0.634,11.264957264957266,482.0,trailingPE<-EPS_quarterly_LTM; earningsGrowth<-NI_annual
-NPI.TO,CA,Northland Power Inc.,Utilities,22.67,73.81,12,1.487,,15.276,2.321,7.85,4.91,-102.363,18.011,0.702,0.462,0.164,0.319,5928.0,
-PEY.TO,CA,Peyto Exploration & Development Corp.,Energy,25.26,72.965,13,1.734,10.935,11.43,4.382,5.711,5.258,-19.989,4.91,0.778,0.594,0.37,0.439,5175.0,
+VISN,US,"Vistance Networks, Inc.",Technology,12.66,84.199,13,0.621,18.618,9.012,1.417,1.058,0.199,85.583,26.451,0.492,0.071,0.216,7.041,2856.0,
+SLDE,US,"Slide Insurance Holdings, Inc.",Financial Services,16.58,82.931,13,1.75,4.555,4.72,1.503,1.144,0.603,61.907,40.463,0.669,0.479,0.382,0.36,1899.0,
+B,US,,Basic Materials,40.2,80.517,13,2.464,11.105,8.734,3.545,6.338,3.906,3.562,7.809,0.551,0.562,0.667,2.542,67517.0,
+EVER,US,"EverQuote, Inc.",Communication Services,20.16,79.971,13,2.963,6.881,6.326,0.995,7.357,0.765,24.714,8.464,0.975,0.123,0.145,1.429,713.0,
+PRDO,US,Perdoceo Education Corporation,Consumer Defensive,32.03,79.656,13,2.009,12.225,9.59,2.349,5.899,1.702,27.978,9.616,0.799,0.285,0.041,0.308,2008.0,
+7937.T,JP,"Tsutsumi Jewelry Co.,Ltd.",Consumer Cyclical,2695.0,84.927,11,0.601,11.408,,1.196,1.799,0.286,76.519,-1.028,0.434,0.202,0.509,2.441,42114.0,
+4628.T,JP,"Sk Kaken Co.,Ltd.",Basic Materials,9760.0,83.628,12,0.753,11.521,,1.2,2.292,0.268,77.653,5.187,0.3,0.099,0.081,2.682,131663.0,
+9539.T,JP,"Keiyo Gas Co., Ltd.",Utilities,1336.0,80.816,11,0.396,13.373,,0.365,3.709,0.487,-23.262,,0.328,0.097,0.001,0.504,42958.0,
+2763.T,JP,"FTGroup Co., Ltd.",Technology,1076.0,80.42,12,0.907,4.951,,1.013,1.764,0.528,47.873,14.714,0.418,0.429,-0.083,0.817,31988.0,
+5273.T,JP,"Mitani Sekisan Co., Ltd.",Industrials,1408.0,78.823,12,0.974,7.19,,0.991,2.605,0.545,47.6,6.373,0.247,0.172,0.045,0.457,98915.0,
+143240.KQ,KR,"Saramin Co.,Ltd.",Industrials,16800.0,84.853,8,0.6605702926980417,9.813084112149532,,1.452,-0.663,-0.129,108.74,16.578,0.999,0.151,0.009,2.414,176379.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
+226320.KS,KR,"It'S Hanbul Co., Ltd.",Consumer Defensive,9820.0,84.758,8,0.44392755881219326,8.862815884476534,,1.083,-2.574,-0.415,204.04,3.312,0.658,0.16,0.175,3.237,172996.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
+126560.KS,KR,"Hyundai Futurenet Co., Ltd.",Industrials,3040.0,79.641,10,0.4502603187987371,25.76271186440678,,1.22,5.568,0.505,92.085,7.169,0.234,0.061,0.063,3.485,327740.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
+192440.KQ,KR,"Spigen Korea Co.,Ltd",Technology,30700.0,79.523,10,0.3377384199965592,5.293103448275862,,0.382,0.081,0.007,96.775,25.73,0.629,0.099,0.039,0.819,178695.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
+020000.KS,KR,HANDSOME Corporation,Consumer Cyclical,23100.0,78.423,11,0.34522343703318886,9.926944563816072,5.547,0.326,3.427,0.307,3.626,5.867,0.562,0.089,0.079,0.489,496119.0,trailingPE<-EPS_quarterly_LTM; priceToBook<-MC/StockholdersEquity
+2348.HK,HK,Dawnrays Pharmaceutical (Holdings) Limited,Healthcare,1.04,79.423,11,0.399,6.5,2.364,1.27,-0.477,-0.133,110.481,9.112,0.453,0.199,0.244,0.478,1563.0,
+1140.HK,HK,HK.AI Capital Limited,Financial Services,0.116,75.197,10,0.121,11.6,,5.128,-10.075,-8.813,262.107,-0.78,1.0,0.879,-0.091,1.889,1352.0,
+0071.HK,HK,"Miramar Hotel and Investment Company, Limited",Consumer Cyclical,10.25,74.608,12,0.334,10.459,,2.743,0.508,0.168,96.782,7.776,0.337,0.326,-0.117,-0.049,7082.0,
+0158.HK,HK,Melbourne Enterprises Limited,Real Estate,58.1,74.325,8,0.228,,,8.866,11.507,7.21,18.678,7.115180879645981,0.719,0.596,-0.005,3.096145359657706,1452.0,earningsGrowth<-NI_annual; fcfYield<-FCF_annual
+0321.HK,HK,Texwinca Holdings Limited,Consumer Cyclical,1.13,74.215,12,0.316,9.417,2.568,0.303,2.561,0.183,39.905,13.686397679054217,0.267,0.016,-0.058,2.329,1561.0,fcfYield<-FCF_annual
+FGX.AX,AU,Future Generation Australia Limited,Financial Services,1.345,84.02,9,0.963,10.346,,7.852,-1.0671761036014746,-0.802,110.213,12.362,1.0,1.086,0.557,0.601,553.0,evEbitda<-EBITDA_annual
+PIC.AX,AU,Perpetual Equity Investment Company Limited,Financial Services,1.155,82.622,9,0.917,12.833,,8.237,,-1.134,113.479,6.774,1.0,0.879,2.212,2.424,445.0,
+CUV.AX,AU,Clinuvel Pharmaceuticals Limited,Healthcare,8.96,78.514,13,1.805,14.0,11.708,4.692,4.963,2.251,51.496,7.126,0.896,0.366,0.036,-0.263,452.0,
+ALK.AX,AU,Alkane Resources Ltd,Basic Materials,1.415,76.401,13,1.835,15.722,5.818,2.557,4.398,2.153,15.81,9.307,0.356,0.43,3.341,4.114,1933.0,
+RRL.AX,AU,Regis Resources Limited,Basic Materials,7.08,74.554,13,2.822,11.062,5.063,2.738,4.224,2.201,14.152,12.193,0.385,0.414,0.4,2.606,5361.0,
+SEC.TO,CA,Senvest Capital Inc.,Financial Services,390.0,82.535,8,0.459,2.198,,0.702,-2.856,-2.652,480.693,134.991,1.0,1.277,-0.4099355358581789,-0.4216589772493967,944.0,revenueGrowth<-rev_annual; earningsGrowth<-NI_annual
+TXG.TO,CA,Torex Gold Resources Inc.,Basic Materials,60.85,74.515,13,1.725,6.986,5.66,3.391,6.074,3.507,0.509,7.162,0.637,0.556,2.172,3.8,5680.0,
+FVI.TO,CA,Fortuna Mining Corp.,Basic Materials,12.48,74.227,13,1.536,8.265,5.392,3.454,5.005,3.09,12.336,9.768,0.547,0.53,0.756,0.816,3781.0,
+CSW-B.TO,CA,Corby Spirit and Wine Limited,Consumer Defensive,14.1,74.072,12,2.109,12.155,,1.473,8.067,1.864,-26.607,8.248,0.483,0.202,0.213,0.989,401.0,
+JAG.TO,CA,Jaguar Mining Inc.,Basic Materials,5.65,73.597,11,1.38,51.36363636363637,5.218,3.162,5.143,2.697,14.7,10.927,0.639,0.474,0.634,11.264957264957266,482.0,trailingPE<-EPS_quarterly_LTM; earningsGrowth<-NI_annual
 SRB.L,GB,Serabi Gold plc,Basic Materials,329.889,90.509,13,1.69,5.075,2.934,1.408,1.996,1.052,24.518,19.046,0.597,0.535,0.833,1.394,252.0,
 CNE.L,GB,Capricorn Energy PLC,Energy,320.0,73.961,11,0.785,18.824,4.123,1.629,1.756,1.007,39.457,26.851,0.706,0.114,-0.2366498032602585,-2.3095238095238093,220.0,revenueGrowth<-rev_annual; earningsGrowth<-NI_annual
 MNTN.L,GB,The Schiehallion Fund Limited,Financial Services,2.17,70.585,11,1.224,5.047,10.69,4.905,4.982613500453173,4.817,0.584,12.24,1.0,0.973,0.562,0.587,2228.0,evEbitda<-EBITDA_annual

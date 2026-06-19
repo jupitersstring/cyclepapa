@@ -84,7 +84,23 @@ def build_universe(region: str, max_n: int):
     uni = uni[~syms.str.contains(r'\^|=|/')]
     syms = list(uni.index.astype(str))
     if region == 'US':
+        # US: no suffix (i.e. last segment is the whole ticker, no dot)
         syms = [s for s in syms if '.' not in s]
+        # Drop obvious warrant/preferred/SPAC unit ghost symbols:
+        #   -WT / -WS = warrants, -WTA/WTB = lettered warrant series
+        #   -U, -UN = SPAC units; -R = rights; -PA, -PB, -PRA = preferreds
+        #   ending in W (warrants compacted), ending in U (units compacted)
+        import re
+        def _is_junk(s):
+            if '-' in s:
+                tail = s.rsplit('-', 1)[1]
+                if tail in ('WT','WS','WTA','WTB','WTC','U','UN','R','RT','RW') or tail.startswith(('P','W')):
+                    return True
+            # ticker ending in W or .WS is usually a warrant; -compacted forms like CMPOW, CTXRW
+            if len(s) >= 5 and s.endswith(('W','WW','WS','WSA','WTS','PRA','PRB','PRC','RW')):
+                return True
+            return False
+        syms = [s for s in syms if not _is_junk(s)]
     else:
         suffs = tuple(suffixes)
         syms = [s for s in syms if s.endswith(suffs)]
