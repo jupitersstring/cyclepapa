@@ -56,6 +56,7 @@ KEEP = (
     'debtToEquity','currentRatio','quickRatio',
     'returnOnEquity','returnOnAssets','grossMargins','operatingMargins','profitMargins',
     'revenueGrowth','earningsGrowth','earningsQuarterlyGrowth','ebitdaMargins',
+    'dividendYield','payoutRatio','beta','heldPercentInsiders','heldPercentInstitutions',
     'sector','industry','country','longName','shortName','currency',
 )
 

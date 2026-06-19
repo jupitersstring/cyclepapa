@@ -102,7 +102,14 @@ def load_all_info(min_mcap: float):
 
 
 def compute_ratios(df: pd.DataFrame) -> pd.DataFrame:
-    """Add ev_ebitda_g, ev_sales_g, *_ltm and *_bv variants. NaN where invalid."""
+    """Add ev_ebitda_g, ev_sales_g, *_ltm and *_bv variants. NaN where invalid.
+
+    Financials are EXCLUDED from the PEG-style ratios. Banks/insurers/holdcos
+    have economically-meaningless EV/EBITDA (deposits/reserves dwarf market
+    cap), no real "sales" (net interest income, premiums), and reserve-
+    release-driven earnings volatility. PEG breaks down. Use
+    financials_value.py for those.
+    """
     df = df.copy()
     # Numeric coercion
     for c in ('marketCap','enterpriseValue','enterpriseToEbitda','enterpriseToRevenue',
@@ -111,12 +118,13 @@ def compute_ratios(df: pd.DataFrame) -> pd.DataFrame:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors='coerce')
 
+    # Flag financials sector — yfinance uses "Financial Services" consistently.
+    sector = df['sector'].astype(str)
+    df['is_financial'] = sector.str.contains('Financial', case=False, na=False)
+
     # EV/Sales rebuilt from P/S × (EV/MktCap). Currency-neutral.
-    # If enterpriseToRevenue is present it's already this number, but it's been
-    # observed to come back garbled for some non-US filers; rebuild as a check.
     ev_over_mc = df['enterpriseValue'] / df['marketCap']
     ev_sales_rebuilt = df['priceToSalesTrailing12Months'] * ev_over_mc
-    # Where both available, prefer the rebuilt (avoids currency mix in raw EV/Sales)
     df['ev_sales'] = ev_sales_rebuilt.where(ev_sales_rebuilt.notna(),
                                              df['enterpriseToRevenue'])
     df['ev_ebitda'] = df['enterpriseToEbitda']
@@ -138,7 +146,14 @@ def compute_ratios(df: pd.DataFrame) -> pd.DataFrame:
     df['ev_ebitda_g']      = _peg(df['ev_ebitda'], df['earn_g_pct'])
     df['ev_sales_g']       = _peg(df['ev_sales'],  df['rev_g_pct'])
     df['ev_ebitda_g_ltm']  = _peg(df['ev_ebitda'], df['earn_g_q_pct'])
-    df['ev_sales_g_ltm']   = _peg(df['ev_sales'],  df['rev_g_pct'])  # same: no LTM rev g scalar
+    df['ev_sales_g_ltm']   = _peg(df['ev_sales'],  df['rev_g_pct'])
+
+    # Suppress PEG ratios for financials — they're not just unusable, they're
+    # actively misleading (banks frequently rank top because of accounting
+    # quirks around interest income and reserve releases).
+    fin = df['is_financial']
+    for col in ('ev_ebitda_g','ev_sales_g','ev_ebitda_g_ltm','ev_sales_g_ltm'):
+        df.loc[fin, col] = np.nan
 
     # Book-value tilt — diminishing, bounded ±20% — applied per row
     tilt = df['priceToBook'].apply(lambda x: bv_tilt(x))
