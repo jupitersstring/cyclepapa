@@ -23,12 +23,14 @@ symbol,verdict,thesis
 054800.KQ,GREEN,IDIS Holdings - 2025 rev +16%/earn +37%; KRW 300 forward dividend (~2%); holdco discount on growing op business
 0617.HK,RED,"Paliburg = Lo Yuk-sui Century City pyramid (355/617/78/Regal REIT); D/E 154 pct, recurring losses, classic HK cross-holding"
 069410.KQ,YELLOW,nTels - telco OSS/billing niche; sticky but no near-term catalyst
+0698.HK,RED,"Tongda sold core handset-casing business 2024, FY24 loss HK$3.94B (gross loss too); FY25 paper profit is finance-cost cuts not real recovery, no dividend"
 0717.HK,RED,"Emperor Capital part of Albert Yeung Emperor group; Webb-flagged governance, margin-finance book risk, related-party broker flows"
 0725.HK,GREEN,Perennial International - electric cable family business; ~6% TTM dividend yield with intact payouts; P/B 0.46
 0833.HK,YELLOW,Alltronics Holdings - electronics/molding contracting topline; 2024 rev -21%/earn -42%; discount deserved
 088910.KQ,GREEN,Dongwoo Farm To Table - Korea #3 broiler chicken processor CharmFre brand; 52% insider family; Korean Value-up reform tailwind + Graham net-net P/B 0.24 + cash > EV
 090080.KS,YELLOW,"Pyung Hwa KOSPI auto-parts, Hyundai/Kia supplier, family-run; low-PBR Value-Up candidate but earnings -40 pct cyclical"
 0927.HK,YELLOW,"Fujikon headphones decliner; family-controlled, net cash real but earnings eroding; check share pledging by chairman"
+100660.KQ,RED,"Seoam Machinery loss-making EPS TTM -2.34, Q1 2025 EPS -33; P/E 46.9 ROE 1.8 pct; quant score is book-value mirage on unprofitable industrial parts maker"
 1063.HK,RED,"Webb-site Enigma Network pump-and-dump association with 5+ unrelated segments (money lending, brokerage, used PC parts) - classic HK shell"
 1118.HK,GREEN,Golik Holdings - HK steel wire processor; 2024 rev -17% BUT earnings +14% on margin improvement; P/B 0.45
 1195.HK,RED,"Kingwell Group is classic Enigma Network-adjacent shell; serial name changes, placings, BVI control; quant tags are noise"
@@ -37,6 +39,7 @@ symbol,verdict,thesis
 1455.HK,RED,Fourace Industries - personal-care appliances to US/Japan/EU; 2023 rev -27%/earn -40%; trajectory poor
 1526.TW,YELLOW,"Sun Race bicycle components in deep cycle downturn, Q1'26 sales -19.3 pct; legit cyclical bottom not governance"
 1541.TW,YELLOW,"Chang Type hand-tools Taichung, GP -20 pct Q1'25, US tariff exposure; family small-cap, downcycle not dead-option"
+170790.KQ,YELLOW,"Piolink real domestic ADC leader, dual 2025 buyback-and-cancel programs, 6yr div streak, but flat revenue + activism-vulnerable 39 pct insider + AI pivot unproven"
 1714.TW,YELLOW,Ho Tung Chemical - family conglomerate; opaque investment segment; modest 2.6% yield
 1758.T,YELLOW,Taiyo Kisokogyo - cash>EV + 3% yield BUT no announced TSE reform plan; construction cyclicality
 1795.T,GREEN,"Masaru Corporation - building renewal niche (aging Japan stock tailwind), 42% insider, real div, cash>EV"
@@ -56,6 +59,7 @@ symbol,verdict,thesis
 247660.KQ,RED,"NANOCMS display/security micro-cap, no dividend, Strong Sell technicals; classic KOSDAQ dead-option, no Value-Up case"
 264450.KQ,GREEN,Ubiquoss - Strong Buy consensus; KRW 170 div; disclosed buyback; cleanly in Value-Up cohort
 2727.HK,YELLOW,"State-controlled SOE with history of subsidiary fraud (2021 Rmb8.3bn writedown); governance amendments routine, not curative"
+3020.T,GREEN,Applied Co PC retailer FY3/26 H1 sales +5.2 pct/OP +54 pct on Win10 cycle; 5x P/E 0.2x P/S 2.7 pct yield; clean cyclical inflection
 311390.KQ,YELLOW,Functional-food ingredient maker (not heavy-asset cyclical); 9% revenue CAGR decline and 15% share dilution - likely miscategorized by the screen
 3363.TWO,RED,FOCI Fiber Optic - P/B 37 (depleted book); volatile profitability; thematic AI-optical narrative
 3389.HK,RED,"Hengdeli prior LVMH/Swatch partner blew up, delisted/relisted shell-like; watch retail collapsed; multi-tag firing as legacy artifact"
@@ -63,8 +67,12 @@ symbol,verdict,thesis
 3555.TWO,RED,iROC/BaaS Innovation - multi-pivot conglomerate (blockchain+NFT+krill oil+chicken essence); reverse-merger pattern
 3708.TW,YELLOW,Swancor Holding - founder family controlled; conservative balance sheet BUT TTM ROI -3.96% on wind+resin compression
 3900.T,RED,CrowdWorks revenue declining 12 pct into 2026; -37.9 pct stock; AI/gen-AI eating freelance platform thesis; net loss
+3904.T,YELLOW,"KAYAC real earnings inflection (+358 pct NI, +20 pct rev) + buyback + TSE reform but Growth micro-cap hit-driven games not a net-net"
+3933.T,GREEN,CHIeru K-12 EdTech FY3/26 rev +48 pct/OP +58 pct on GIGA Phase 2 refresh; 4.4 pct fwd yield; durable through 2028 cycle
 3954.T,GREEN,Showa Paxxs net cash 8B JPY vs market cap; classic TSE PBR<1 reform candidate; quiet paper packaging cash compounder
+3985.T,RED,"TEMONA loss-making, margins collapsing 7.9->2.9 pct, cyber breach overhang, no capital-return catalyst, EPS negative"
 4301.T,GREEN,"Amuse talent agency, net cash, Southern All Stars IP; conservative balance sheet, no parent overhang, standard JP small-cap"
+4925.T,YELLOW,HABA Laboratories cosmetics PBR 0.72 76 pct equity ratio FY25 rev +10.8 pct; debt-free profitable; no buyback no MBO flat top line value-trap risk
 4946.TWO,RED,"Cayenne/Wasabii online gaming, -52.8 pct 52w, mcap TWD 789M, structurally declining; classic dying-business profile"
 5704.TWO,YELLOW,"Royal group single-asset Taitung hot-spring hotel; niche tourism cyclical, illiquid TPEx micro, family control"
 5951.T,YELLOW,Dainichi - fortress balance sheet BUT management explicitly resists capital return + kerosene heater decline
@@ -72,15 +80,22 @@ symbol,verdict,thesis
 5OC.SI,YELLOW,"Koyo International - Singapore Catalist M&E engineering; FY2025 turnaround rev S$47M->$118.8M, NI S$3.3M vs S$58K; 77% insider; NO FY2025 dividend (cash preserved for project execution)"
 5SO.SI,RED,Duty Free International - Berjaya/Atlan group RPT history; complex segments; perennial governance concerns
 6028.HK,RED,Ghost ticker - no Yahoo/HKEX match; Pak Tak actually trades as 2668.HK; pure data anomaly
+603185.SS,YELLOW,Wuxi Shangji renamed Hongyuan Green Energy; pivoted to integrated solar; -2.7B 2024 loss but Q3-25 swung to +5.3B on anti-involution rally; stock already up 62 pct
 6155.T,GREEN,"Takamatsu Machinery net-cash precision tool maker; cyclical but clean; no dual class, no parent squeeze risk"
 6185.TWO,YELLOW,Plastron Precision - commoditized connector business; PE 300 / negligible ROE; no catalyst
+6193.HK,RED,Tailam Tech PHC piles Jiangsu; borrowings 0 to RMB 64.5M in 2025 while swinging to profit; classic GEM enigma sudden leverage spike on construction-recovery narrative
+6384.T,YELLOW,Showa Shinku - real METI Global Niche Top 100 vacuum equipment maker; AI inflection +54 pct NI; PBR 0.9x clean BS but shallow discount + 77 pct payout limits upside
 6465.TWO,RED,ATrack Technology - tiny ($24M mcap); commoditized GPS/dash cam; intense Chinese competition
 6580.T,YELLOW,"Legitimate Tokyo-based DX/web-marketing SME ~6.9B JPY mcap, 12.76 pct EBITDA margin, profitable - real but cyclical SMB IT spend exposure"
 6907.T,GREEN,"GEOMATEC - CEO Matsuzaki 23% insider, 3.1% yield, vacuum thin-film coatings, market re-rating in progress on TSE reform"
 7021.T,YELLOW,Nitchitsu - deepest discount P/B 0.31 BUT conglomerate complexity needs activist catalyst
 7034.T,RED,Prored Partners - 60% founder lock + no dividend + EPS collapsed -61% = classic value trap
 7351.T,YELLOW,"Goodpatch - first-ever dividend FY25 (¥9), founder-led, P/B near 1.0 thin margin of safety"
+7399.T,YELLOW,Nansin caster/dolly 1932 founded; 0.55x NCAV with securities-sale catalyst; FY25 rev +10 pct NI +37 pct; Standard listing no buyback yet
+7615.T,YELLOW,Kyoto Kimono Yuzen secular-decline kimono retailer; PBR 0.9x debt slashed treasury cancellation done but zero dividend not true net-net
+7673.T,YELLOW,"Daiko Tsusan real telecom-infra distributor; EPS inflecting +16 pct/yr, 3.8 pct yield; PBR > 1, flat decadal revenue, no buyback"
 7851.T,YELLOW,Founder-family aligned printer with stable dividend and FCF but business forms is a structurally declining category; defensive not cyclical
+7997.T,YELLOW,"Kurogane Kosakusho profit only from one-off securities sale, underlying operating loss, Standard listing no buyback catalyst, value-trap risk"
 8021.HK,RED,HK GEM scaffolding co; 2024 rev -43.5 pct to HK$82m + losses post Tai Po blaze scrutiny; added moneylending/securities - classic GEM zombie
 8070.SR,YELLOW,Arabian Shield insurer swung to losses 9M-25 (SAR-32.8M) on poor service results despite revenue growth; sector-typical volatility
 8150.SR,RED,ACIG accumulated losses reached 51.97 pct of capital Mar-26 triggering Article 132 EGM; structural motor/medical underwriting losses
@@ -88,15 +103,18 @@ symbol,verdict,thesis
 8165.T,YELLOW,Belle Maison catalog operator with real logistics assets but negative EPS and structurally declining mail-order category; turnaround uncertain
 8180.SR,YELLOW,Al Sagr forced 65 pct capital cut after losses hit 65 pct of capital; recovered to profit 2023 but cooperative model remains fragile
 8250.SR,GREEN,"Now Gulf Insurance Group (rebranded 2022) post AXA-GIG buyout; well-capitalized Kuwaiti parent, stronger franchise than peer cooperatives"
+8326.HK,RED,"Tonking New Energy JC Group rebrand 2016 to ride solar narrative; -95 pct 10yr, 50 pct dilution + insider selling, H1 rev -63 pct - textbook GEM dilution shell"
 8347.HK,RED,F8 Enterprises - GEM listing (delisting risk); marine diesel commodity work shrinking
 8917.T,YELLOW,First Juken - Graham net-net + 3.5% yield + cash>EV BUT declining Japan housing market
 8938.T,RED,GLOME Holdings - opaque ownership; tiny dual-segment (medical+RE); name-change 2019 signal; no return policy
 9024.T,YELLOW,"Op profit DOWN 5.5B yen YoY despite +7B revenue; growth from RE securitization + inbound tourism rebound, not organic"
+9612.T,YELLOW,"LuckLand food-retail contractor; FY24 loss to FY26 recovery + new mgmt/midterm plan; PBR > 1, no net cash, no TSE reform catalyst"
 9760.T,YELLOW,Shingakukai loss-making tutoring/sports rollup; revenue +32 pct but -562M JPY net loss; turnaround unproven
 ABTC,RED,Sept-2025 SPAC merger via Gryphon Digital; Trump-family branded BTC treasury; '181 pct EBITDA margin' was BTC fair-value gain - actual EBITDA -$157M
 ACG1V.HE,YELLOW,Niche Finnish PCB maker with defense/semi exposure pivoting to profitability in 2025 after EUR 4m loss; small scale vs Asian rivals
 ACSO.L,YELLOW,accesso FY25 OK ($30.5m net cash); two major customers churning/cutting; CEO succession May 2026; execution risk
 ACTG,YELLOW,Internal investigation into former CEO Clifford Press for misuse of corporate funds; Press has filed reinstatement lawsuit - new governance overhang
+ADE.DE,RED,Bitcoin Group SE crypto-treasury vehicle EUR 366M BTC vs EUR 1.8M core EBITDA (-EUR 3M guided 2025); equity +102 pct purely from BTC mark-to-market gains not operations
 ADVN.SW,YELLOW,"Fourth consecutive annual loss, heavy auto exposure and full C-suite turnover; asset-backed net-net but no clear earnings path"
 AEF.MI,RED,"Aeffe negotiated crisis composition; -25 pct rev 9M25, EBITDA negative, net debt EUR194m; Oxy Capital restructuring"
 AFC.BK,YELLOW,"Asia Fiber legacy nylon textile (est 1970); sunset industry, tiny float; real assets but no growth catalyst; family-held"
@@ -147,6 +165,7 @@ C8R.SI,RED,Jiutian Chemical - S-chip governance discount (PRC ops/SG listed); ca
 CAI,RED,CAI International - DELISTED 2021 (Mitsubishi HC Capital $1.1B take-private); screen data error - uninvestable
 CECO2.BA,YELLOW,Central Costanera (ex-Enel Generacion) thermal generator; Enel Argentina parent; tariff normalization helps but legacy regulated-pricing risk
 CEK.DE,GREEN,"Order backlog +30 pct to record EUR78m, intake +66 pct, 71 pct defense exposure with NATO follow-ups; secular tailwind"
+CEMAT.CO,YELLOW,Cemat Polish Warsaw RE/Moje Bielany dev; raised 2025 NI guide DKK 41-43M to 52-54M; legit operating story but ultra-thin float and concentrated PL exposure
 CITY.BK,RED,"City Steel Intermission trading status Jun-25; loss-making EPS -0.09; micro-cap steel fabricator, distressed"
 CLV.AX,GREEN,"Clover Australia DHA/infant nutrition; H1 FY26 rev +17 pct, NPAT +75 pct, debt-free, EBITDA +60 pct, 18yr dividend - durable Alta-Fox"
 COHN,YELLOW,Cohen & Company - SPAC underwriter; cash 32x EV is regulatory broker-dealer capital not free cash; lumpy NI tied to SPAC cycle; $1.70/yr distributions (5% yield) but earnings volatile
@@ -191,6 +210,7 @@ FRACTL.ST,GREEN,Fractal Gaming FY25 rev +15.75 pct to SEK824m on PC upgrade cycl
 FTON.SW,YELLOW,Restructuring complete and EBIT back in black but trades on cyclical auto fineblanking exposure with weak European demand
 G24.DE,GREEN,"Q1-26 rev +14 pct, ARPA $1247 (#2 in EU), ImmoScout dominant in DE; KKR/Aviv competition real but durable network effect"
 GARO.BA,RED,"Garovaglio y Zorraquin micro-cap conglomerate (heaters/RE/agro); FY25 revenue -11 pct, no governance score, very thin liquidity"
+GBFL.BO,RED,"Micro NBFC at Poddar Court Kolkata shell address, 14.9 pct promoter, repeated ASM/GSM, BSE price-query Mar 2026, 3.4x QoQ rev with 6x losses = round-tripping"
 GEA.WA,YELLOW,Credible Famur-to-Grenevia pivot into solar/batteries/storage but conglomerate complexity and execution risk on green pivot remain
 GENCO-R.BK,YELLOW,"NVDR of GENCO; real waste-treatment business; MoI 13 pct stakeholder gives ballast; small-cap, weak margins, opaque"
 GENCO.BK,YELLOW,General Environmental Conservation - industrial waste treatment; gov-private JV; 22%/yr earn decline
@@ -304,6 +324,7 @@ REKA.HE,YELLOW,Operating thesis intact but Reka Pension Fund <150 active members
 RFX.L,YELLOW,"Ramsdens UK pawnbroker; H1 FY26 rev +62 pct, PBT +173 pct but gold-price driven; cautions on gold volatility - cyclical not structural"
 RKN.AX,RED,"Reckon Australian accounting SaaS; structural #3 vs Xero/MYOB, organic only 4 pct, cloud users flat - value trap"
 RVHL.BO,YELLOW,Ravinder Heights - real RERA catalysts + Serum 4.91% anchor BUT promoter 74.74% at SEBI ceiling + multi-sub RPT risk
+RVHL.NS,YELLOW,"Ravinder Heights demerged from Panacea Biotec; Serum 4.9 pct anchors credibility but 100 pct related-party revenue, lumpy P&L, illiquid micro-cap"
 S23.SI,GREEN,Singapura Finance - 1 of 3 SG licensed finance cos; clean MAS-regulated balance sheet; Lee family
 S44.SI,YELLOW,EnGro Corporation - Tan family-controlled cement/concrete + investments; historically distributes specials BUT holdco discount
 S71.SI,GREEN,Sunright - world's largest indep semi burn-in test provider; AI/HPC test intensity tailwind
@@ -342,6 +363,7 @@ SNG.AX,RED,Siren Gold - quarterly burn A$2.6M; 37% YoY share count up; classic A
 SNX.L,GREEN,"Synectics FY25 rev +22 pct to GBP68m, record GBP14m cash, no debt; FY26 -10 pct from contract roll-off but order book intact"
 SPSC,YELLOW,6-7 pct FY26 guide vs 19 pct historical CAGR signals deceleration; Walmart-anchored EDI moat real but growth no longer GARP-multibagger profile
 SRICHA.BK,YELLOW,Sriracha Construction - oil&gas EPC; ~6% yield BUT 55%/yr earnings decline 5yr
+STELLAR.BO,RED,"Penny-NBFC parking-vehicle: 24 pct promoter, -13 pct rev CAGR, ASM history, family MD succession Dec 2025 + auditor rotations - classic shell"
 STNE,YELLOW,Q1 +19 pct organic in Brazilian MSMB payments; sold Linx for R$3B funding buybacks - cheap (EV/EBIT <2) but FX/Brazil macro and Mercado Pago competition
 STR.VI,YELLOW,Record EUR 20bn output and 6.5% EBIT margin but Rasperia/Deripaska 24% stake is sanction-frozen and unresolved overhang
 SUNPHARMA.NS,GREEN,"Specialty +27 pct YoY, ~35 pct of US sales; Ilumya sBLA PDUFA Oct'26 catalyst; Halol dependence reduced; cleanest of India pack"
