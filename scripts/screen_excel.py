@@ -454,7 +454,7 @@ def main():
         ("secular_cyclical", "Classified as secular grower vs cyclical."),
         ("dup_payload", "Yahoo served identical statements under another ticker (quality flag)."),
         ("is_operating", "Passed the operating-company filter (excludes funds/shells/non-operating)."),
-        ("ev_ebitda_g / ev_sales_g", "(EV/EBITDA)/EBITDA-growth% and (EV/Sales)/revenue-growth%, LATEST ANNUAL growth; PEG-style, LOWER=cheaper per unit growth (NaN if growth/multiple<=0)."),
+        ("ev_ebitda_g / ev_sales_g", "(EV/EBITDA)/EBITDA-growth% and (EV/Sales)/revenue-growth%, LATEST ANNUAL growth (growth CAPPED at 50% so trough-rebounds can not drive PEG~0); PEG-style, LOWER=cheaper (NaN if growth/multiple<=0)."),
         ("ev_ebitda_g_ltm / ev_sales_g_ltm", "Same ratios on LTM/near-term (latest-quarter YoY) growth - more current, ~40% coverage."),
         ("ev_ebitda_g_bv / ev_sales_g_bv", "Annual ratios x a gentle book-value tilt 1-0.2*(1-PB)/(1+PB): small, diminishing discount for LOW price-to-book (bounded +/-20%)."),
         ("ev_sales", "EV/Sales, rebuilt from priceToSales x enterpriseValue/marketCap (currency-consistent)."),

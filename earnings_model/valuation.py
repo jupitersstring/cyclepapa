@@ -180,7 +180,8 @@ def add_gap_score(
     return out
 
 
-def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2) -> pd.DataFrame:
+def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
+                              growth_cap: float = 0.50) -> pd.DataFrame:
     """Growth-adjusted (PEG-style) valuation ratios. LOWER = cheaper per unit of
     growth. Inputs are currency-neutral (ratios / % growth) so they compare across
     markets. NaN for non-growers / non-positive multiples (a PEG only means
@@ -205,8 +206,14 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2) -> pd.Da
     num = lambda c: pd.to_numeric(out.get(c), errors="coerce")
     ev_ebitda, psales = num("enterpriseToEbitda"), num("priceToSalesTrailing12Months")
     evv, mc, pb = num("enterpriseValue"), num("marketCap"), num("priceToBook")
-    eb_g, rev_g = num("ebitda_growth") * 100.0, num("revenue_growth") * 100.0       # annual YoY %
-    eb_gq, rev_gq = num("ebitda_q_yoy") * 100.0, num("revenue_q_yoy") * 100.0       # latest-qtr YoY %
+    # Growth (%) used in the denominator is CAPPED at growth_cap so a trough-rebound
+    # (+1000% off a near-zero base) can't drive the PEG to a meaningless ~0; a name
+    # is judged cheap vs a *sustainable* growth rate, not an unsustainable spike.
+    cap = growth_cap * 100.0
+    eb_g = (num("ebitda_growth") * 100.0).clip(upper=cap)       # annual YoY %, capped
+    rev_g = (num("revenue_growth") * 100.0).clip(upper=cap)
+    eb_gq = (num("ebitda_q_yoy") * 100.0).clip(upper=cap)       # latest-qtr YoY %, capped
+    rev_gq = (num("revenue_q_yoy") * 100.0).clip(upper=cap)
 
     ev_sales = (psales * (evv / mc)).where((psales > 0) & (mc > 0) & (evv > 0))
     out["ev_sales"] = ev_sales
