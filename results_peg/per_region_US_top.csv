@@ -1,6 +1,6 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
-VISN,US,"Vistance Networks, Inc.",Technology,12.66,84.199,13,0.621,18.618,9.012,1.417,1.058,0.199,85.583,26.451,0.492,0.071,0.216,7.041,2856.0
-SLDE,US,"Slide Insurance Holdings, Inc.",Financial Services,16.58,82.931,13,1.75,4.555,4.72,1.503,1.144,0.603,61.907,40.463,0.669,0.479,0.382,0.36,1899.0
+VISN,US,"Vistance Networks, Inc.",Technology,12.66,84.153,13,0.621,18.618,9.012,1.417,1.058,0.199,85.583,26.451,0.492,0.071,0.216,7.041,2856.0
+SLDE,US,"Slide Insurance Holdings, Inc.",Financial Services,16.58,82.856,13,1.75,4.555,4.72,1.503,1.144,0.603,61.907,40.463,0.669,0.479,0.382,0.36,1899.0
 B,US,,Basic Materials,40.2,80.517,13,2.464,11.105,8.734,3.545,6.338,3.906,3.562,7.809,0.551,0.562,0.667,2.542,67517.0
 EVER,US,"EverQuote, Inc.",Communication Services,20.16,79.971,13,2.963,6.881,6.326,0.995,7.357,0.765,24.714,8.464,0.975,0.123,0.145,1.429,713.0
-PRDO,US,Perdoceo Education Corporation,Consumer Defensive,32.03,79.656,13,2.009,12.225,9.59,2.349,5.899,1.702,27.978,9.616,0.799,0.285,0.041,0.308,2008.0
+PRDO,US,Perdoceo Education Corporation,Consumer Defensive,32.03,79.743,13,2.009,12.225,9.59,2.349,5.899,1.702,27.978,9.616,0.799,0.285,0.041,0.308,2008.0
