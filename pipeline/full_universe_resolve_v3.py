@@ -24,12 +24,12 @@ NOISE = {"LP","LLC","INC","CORP","LTD","PLC","COMPANY","CO","THE","AND","OF","SA
          "GLOBAL","HOLDINGS","HOLDING","TRUST","SE","AB","BV","NA","NV"}
 
 def distinctive_token(name):
-    """Return the longest non-noise token of >=4 chars from name."""
-    toks = [t for t in re.findall(r"[A-Za-z]{3,}", name) if t.upper() not in NOISE]
-    if not toks: return None
-    # Prefer the longest, but if first token is unique-looking, prefer it
-    toks.sort(key=lambda t: (-len(t), toks.index(t)))
-    return toks[0]
+    """Return the longest non-noise token of >=3 chars from name. Ties → first."""
+    pairs = [(i, t) for i, t in enumerate(re.findall(r"[A-Za-z]{3,}", name))
+             if t.upper() not in NOISE]
+    if not pairs: return None
+    pairs.sort(key=lambda p: (-len(p[1]), p[0]))
+    return pairs[0][1]
 
 def search_for_token(tok):
     """Search 13F-HR with just one token. Return top 5 (cik, display_name, score)."""
