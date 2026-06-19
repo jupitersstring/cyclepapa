@@ -1,0 +1,18 @@
+{
+  "accession": "000053174_19_Jun_2026_1147_EDT_Material_change_report_-_Englishpdf",
+  "cik": "",
+  "fetched_at": "2026-06-19T15:52:30.263902Z",
+  "filed": "2026-06-19",
+  "form": "Material change report - English.pdf",
+  "form_code": "",
+  "isin": null,
+  "issuer_num": "000053174",
+  "jurisdiction": "British Columbia",
+  "name": "H2 Ventures 1 Inc.",
+  "query_label": "tier_s.material_change",
+  "query_note": "Form 51-102F3 material change \u2014 verify whether structural",
+  "source": "SEDAR+",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sedarplus.ca/csa-party/records/issuer.html?issuerNo=000053174"
+}

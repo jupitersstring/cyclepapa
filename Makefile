@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll waterfall validate portfolio audit clean help inbox-promote
+.PHONY: score poll uk-poll ca-poll waterfall validate portfolio audit clean help inbox-promote
 
 help:
 	@echo "Targets:"
@@ -6,6 +6,7 @@ help:
 	@echo "  score      — compile data/candidates/*.yaml → output/screen_generated.md"
 	@echo "  poll       — run EDGAR full-text poller for today; writes data/inbox/"
 	@echo "  uk-poll    — run FCA NSM (RNS) poller for UK special-situation events"
+	@echo "  ca-poll    — run SEDAR+ poller for Canadian special-situation filings (run hourly)"
 	@echo "  waterfall  — Monte Carlo across all candidates"
 	@echo "  portfolio  — factor decomposition + correlation + risk-budgeted weights → output/portfolio.md"
 	@echo "  inbox-promote — promote poller hits from data/inbox/ → universe.md (closes the loop)"
@@ -25,6 +26,11 @@ poll: audit
 
 uk-poll: audit
 	python3 -m src.uk_rns_poll --days-back 1
+
+# SEDAR+ default view = 30 most-recent CSA filings (~last hour). For daily
+# coverage this target should run hourly, not once-a-day.
+ca-poll: audit
+	python3 -m src.sedarplus_poll
 
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
@@ -49,7 +55,7 @@ universe: audit
 inbox-promote: audit
 	python3 -m src.inbox_promote --days-back 7
 
-all: audit poll uk-poll spinoff cluster-buys inbox-promote universe score waterfall portfolio events
+all: audit poll uk-poll ca-poll spinoff cluster-buys inbox-promote universe score waterfall portfolio events
 	@echo "All pipelines run."
 
 validate:

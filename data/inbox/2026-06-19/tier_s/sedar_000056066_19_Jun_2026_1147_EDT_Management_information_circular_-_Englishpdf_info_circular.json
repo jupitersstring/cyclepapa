@@ -1,0 +1,18 @@
+{
+  "accession": "000056066_19_Jun_2026_1147_EDT_Management_information_circular_-_Englishpdf",
+  "cik": "",
+  "fetched_at": "2026-06-19T15:52:30.263902Z",
+  "filed": "2026-06-19",
+  "form": "Management information circular - English.pdf",
+  "form_code": "",
+  "isin": null,
+  "issuer_num": "000056066",
+  "jurisdiction": "British Columbia",
+  "name": "Pulsar Helium Inc.",
+  "query_label": "tier_s.info_circular",
+  "query_note": "info circular \u2014 often contains plan of arrangement details",
+  "source": "SEDAR+",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sedarplus.ca/csa-party/records/issuer.html?issuerNo=000056066"
+}

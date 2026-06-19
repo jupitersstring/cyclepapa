@@ -85,6 +85,10 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "rule_2_7", "recommended_offer", "open_offer", "restructuring",
     "rule_2_4", "administration", "administrators", "cva",
     "suspension", "cancellation", "strategic_review",
+    # ---- SEDAR+ labels (sedarplus_poll.py) ----
+    "takeover_bid", "issuer_bid", "directors_circular",
+    "plan_of_arrangement", "early_warning", "amr", "bar",
+    "material_change", "corp_structure", "info_circular",
 }
 
 
