@@ -1168,3 +1168,16 @@ Run the §1 pipeline against company-action feeds for each.
 - New names enter the universe weekly via the §1.7 regex + §1.5 insider
   feed intersection. The shortlist (`shortlist.md`) is the *output* of
   the pipeline; this universe is the *input*.
+
+### Auto-promoted from pollers (2026-06-19)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| REDCENTRIC PLC | — | ○ | A | Auto-promoted from Tender Offer filing 2026-06-19 (acc cb1611b3-ae0d-4f3b-8068-8818c0ed5641); tender offer; verify primary doc before scoring |
+| PPHE HOTEL GROUP LIMITED | — | ○ | A | Auto-promoted from Offer Update filing 2026-06-19 (acc 778f372e-2a03-40d8-8ea0-e4a00ac705c6); pre-event signal; Klarman entry zone; verify primary doc before scoring |
+| CT HEALTHCARE TRUST PLC | — | ○ | A | Auto-promoted from Tender Offer filing 2026-06-17 (acc 7fd0ea1c-e864-4325-b4e6-39c38624629b); tender offer; verify primary doc before scoring |
+| JUST GROUP PLC | — | ○ | A | Auto-promoted from Result of Tender Offer filing 2026-06-16 (acc d5d06e8c-8670-4a56-863b-1a4c06a3047f); tender offer; verify primary doc before scoring |
+| Van Elle Holdings PLC | — | ○ | A | Auto-promoted from Miscellaneous filing 2026-06-16 (acc eb28dde4-704c-459c-a682-ae4fd33eb51f); delisting / AIM cancellation; verify primary doc before scoring |
+| Zambia (Republic of) (MoF) | — | ○ | A | Auto-promoted from Tender Offer filing 2026-06-12 (acc 7bd01583-39f3-4640-874c-20348e76c3df); tender offer; verify primary doc before scoring |
