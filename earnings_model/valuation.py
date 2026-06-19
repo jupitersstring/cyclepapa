@@ -21,18 +21,30 @@ _NONOP_RE = re.compile(
     r"warrant|preferred|\bpfd\b|depositary|\brights?\b|\bunits?\b|\bbdc\b|%", re.I
 )
 
+# Preferred shares identified by TICKER SUFFIX rather than name: the ``-P<letter>``
+# preferred-series notation (BAC-PL, JPM-PK, WFC-PY, EPR-PG, BMO-PE.TO, ...).
+# yfinance labels these with the *issuer's* name ("Bank of America Corporation")
+# and serves the issuer's statements, so they sail past the name filter and would
+# otherwise get a phantom multiple — the parent company's EV/Sales attached to a
+# preferred line. The pattern is dash-anchored (``-P`` + optional single letter +
+# end-or-dot) so it matches only the preferred-series format, not ordinary tickers.
+_NONOP_SYM_RE = re.compile(r"-P[A-Z]?(?:$|\.)")
+
 
 def is_operating(df: pd.DataFrame, min_periods: int = 2) -> pd.Series:
     """Boolean mask: operating companies with a real income statement.
 
-    Drops non-equity securities by name and anything without >= ``min_periods``
-    of revenue history (closed-end funds, shells, most warrants/preferreds).
+    Drops non-equity securities by name *and* by preferred-series ticker suffix,
+    plus anything without >= ``min_periods`` of revenue history (closed-end funds,
+    shells, most warrants/preferreds).
     """
     name = df["name"].fillna("") if "name" in df.columns else pd.Series("", index=df.index)
+    sym = df["symbol"].fillna("") if "symbol" in df.columns else pd.Series("", index=df.index)
     name_ok = ~name.str.contains(_NONOP_RE)
+    sym_ok = ~sym.str.upper().str.contains(_NONOP_SYM_RE)
     rev = (df["revenue_n_periods"] if "revenue_n_periods" in df.columns
            else pd.Series(0, index=df.index)).fillna(0)
-    return name_ok & (rev >= min_periods)
+    return name_ok & sym_ok & (rev >= min_periods)
 
 # Signals where "higher = more inflecting / accelerating".
 _ACCEL_SIGNALS = [
@@ -202,10 +214,19 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
     driver. Applied to the annual-growth ratios.
 
     ``ev_sales`` is reconstructed from consistent yfinance fields
-    (priceToSales x enterpriseValue/marketCap) to avoid currency mismatches.
+    (priceToSales x enterpriseValue/marketCap) to avoid currency mismatches, then
+    falls back to plain P/S and finally to a *self-computed* EV-or-marketCap /
+    latest-annual-revenue for the residual names yfinance carries no pre-computed
+    multiple for (the binding gap — almost every uncovered name simply lacks
+    ``.info``'s priceToSales / enterpriseToEbitda). The self-computed P/S was
+    validated currency-consistent against yfinance's where both exist (median ratio
+    ~1.0; the residual spread is FY-vs-TTM revenue base, not currency).
     """
     out = df.copy()
-    num = lambda c: pd.to_numeric(out.get(c), errors="coerce")
+    # Always an index-aligned Series (all-NaN when the column is absent) so every
+    # ``.where`` below is well-defined even on a frame missing some valuation fields.
+    num = lambda c: (pd.to_numeric(out[c], errors="coerce") if c in out.columns
+                     else pd.Series(np.nan, index=out.index))
     ev_ebitda, psales = num("enterpriseToEbitda"), num("priceToSalesTrailing12Months")
     evv, mc, pb = num("enterpriseValue"), num("marketCap"), num("priceToBook")
     # Growth (%) in the denominator is FLOORED at growth_floor and CAPPED at
@@ -224,18 +245,49 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
     rev_g = clipg(num("revenue_growth").where(num("revenue_growth").notna(), num("revenue_q_yoy"))).fillna(lo)
     eb_gq, rev_gq = clipg(num("ebitda_q_yoy")), clipg(num("revenue_q_yoy"))
 
-    ev_sales = (psales * (evv / mc)).where((psales > 0) & (mc > 0) & (evv > 0))
-    # Fall back to plain P/S when enterpriseValue is unavailable, so the sales-based
-    # measure covers ~every name with a price-to-sales (the EV bridge only adds net
-    # debt — a close proxy when EV is missing).
+    # Raw-statement fallback for the residual ~5%: rebuild the multiple ourselves
+    # from market cap + the latest annual statement when yfinance carries no
+    # pre-computed ratio. ``ev_or_mc`` uses enterpriseValue when present, else
+    # market cap (the EV bridge only adds net debt — the same approximation the
+    # plain-P/S fallback already makes). revenue_latest / ebitda_latest are the
+    # latest *annual* FY levels, consistent with the annual growth denominators.
+    rev_latest, eb_latest = num("revenue_latest"), num("ebitda_latest")
+    ev_or_mc = evv.where(evv > 0, mc)
+    # Currency guard. The only currency-NEUTRAL inputs are yfinance's dimensionless
+    # ratios (priceToSales, enterpriseToEbitda); any reconstruction mixing
+    # marketCap / EV / statement-revenue breaks when a name TRADES and REPORTS in
+    # different currencies (e.g. Singapore-listed but IDR books) — and those are
+    # disproportionately the names yfinance gives no pre-computed ratio for. We have
+    # no per-field currency tag, so we (a) only trust the EV/mktcap leverage factor
+    # when it is plausible leverage, else use plain P/S, and (b) reject an
+    # implausibly *low* final multiple as a currency artifact (a 100x+ FX error
+    # turns a ~1.0 ratio into ~0.001 — never a real "cheap"). Low, not high: a
+    # broken-low value masquerades as the cheapest name; a broken-high one harmlessly
+    # sorts to "expensive". PS_FLOOR/EV_FLOOR are well below any real operating
+    # valuation (1% of sales / 0.3x EBITDA).
+    PS_FLOOR, EV_FLOOR, LEV_LO, LEV_HI = 0.02, 0.3, 0.1, 10.0
+    lev = (evv / mc).where((evv > 0) & (mc > 0))
+    lev = lev.where((lev >= LEV_LO) & (lev <= LEV_HI))   # trust only plausible leverage
+
+    ev_sales = (psales * lev).where(psales > 0)          # EV/Sales when leverage is sound
+    # Fall back to plain P/S when the leverage factor is missing/implausible, so the
+    # sales-based measure covers ~every name with a price-to-sales (plain P/S is
+    # currency-neutral; the EV bridge only adds net debt — a close proxy anyway).
     ev_sales = ev_sales.where(ev_sales.notna(), psales.where(psales > 0))
+    # Final fallback: self-computed EV-or-mktcap / latest annual revenue, recovering
+    # names yfinance gives no priceToSales for (validated ~1.0x vs yfinance's P/S
+    # where both exist).
+    self_evs = (ev_or_mc / rev_latest).where((rev_latest > 0) & (ev_or_mc > 0))
+    ev_sales = ev_sales.where(ev_sales.notna(), self_evs)
+    ev_sales = ev_sales.where(ev_sales >= PS_FLOOR)      # drop currency artifacts
     out["ev_sales"] = ev_sales
-    # EV/EBITDA: yfinance ratio when positive, else reconstruct EV / latest EBITDA
-    # (recovers names yfinance didn't carry the ratio for; loss-making EBITDA stays
-    # NaN — there is no honest EBITDA multiple for it, ev_sales_g covers those).
-    eb_latest = num("ebitda_latest")
+    # EV/EBITDA: yfinance ratio when positive, else reconstruct EV-or-mktcap / latest
+    # EBITDA (recovers names yfinance didn't carry the ratio for, including those
+    # missing enterpriseValue; loss-making EBITDA stays NaN — there is no honest
+    # EBITDA multiple for it, ev_sales_g covers those).
     eve = ev_ebitda.where(ev_ebitda > 0)
-    eve = eve.where(eve.notna(), (evv / eb_latest).where((eb_latest > 0) & (evv > 0)))
+    eve = eve.where(eve.notna(), (ev_or_mc / eb_latest).where((eb_latest > 0) & (ev_or_mc > 0)))
+    eve = eve.where(eve >= EV_FLOOR)                      # drop currency artifacts
     out["ev_ebitda_g"] = eve / eb_g
     out["ev_ebitda_g_ltm"] = eve / eb_gq
     out["ev_sales_g"] = ev_sales / rev_g
