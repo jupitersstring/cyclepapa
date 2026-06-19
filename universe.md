@@ -1181,3 +1181,13 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | JUST GROUP PLC | — | ○ | A | Auto-promoted from Result of Tender Offer filing 2026-06-16 (acc d5d06e8c-8670-4a56-863b-1a4c06a3047f); tender offer; verify primary doc before scoring |
 | Van Elle Holdings PLC | — | ○ | A | Auto-promoted from Miscellaneous filing 2026-06-16 (acc eb28dde4-704c-459c-a682-ae4fd33eb51f); delisting / AIM cancellation; verify primary doc before scoring |
 | Zambia (Republic of) (MoF) | — | ○ | A | Auto-promoted from Tender Offer filing 2026-06-12 (acc 7bd01583-39f3-4640-874c-20348e76c3df); tender offer; verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-06-19)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| StrategX Elements Corp. | — | ○ | A | Auto-promoted from Material change report - English.pdf filing 2026-06-19 (acc 000051856_19_Jun_2026_1109_EDT_Material_change_report_-_Englishpdf); Form 51-102F3 material change — verify whether structural; verify primary doc before scoring |
+| H2 Ventures 1 Inc. | — | ○ | A | Auto-promoted from Material change report - English.pdf filing 2026-06-19 (acc 000053174_19_Jun_2026_1147_EDT_Material_change_report_-_Englishpdf); Form 51-102F3 material change — verify whether structural; verify primary doc before scoring |
+| Pulsar Helium Inc. | — | ○ | A | Auto-promoted from Management information circular - English.pdf filing 2026-06-19 (acc 000056066_19_Jun_2026_1147_EDT_Management_information_circular_-_Englishpdf); info circular — often contains plan of arrangement details; verify primary doc before scoring |
