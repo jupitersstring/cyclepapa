@@ -181,7 +181,7 @@ def add_gap_score(
 
 
 def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
-                              growth_cap: float = 0.50) -> pd.DataFrame:
+                              growth_cap: float = 0.50, growth_floor: float = 0.02) -> pd.DataFrame:
     """Growth-adjusted (PEG-style) valuation ratios. LOWER = cheaper per unit of
     growth. Inputs are currency-neutral (ratios / % growth) so they compare across
     markets. NaN for non-growers / non-positive multiples (a PEG only means
@@ -206,22 +206,34 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
     num = lambda c: pd.to_numeric(out.get(c), errors="coerce")
     ev_ebitda, psales = num("enterpriseToEbitda"), num("priceToSalesTrailing12Months")
     evv, mc, pb = num("enterpriseValue"), num("marketCap"), num("priceToBook")
-    # Growth (%) used in the denominator is CAPPED at growth_cap so a trough-rebound
-    # (+1000% off a near-zero base) can't drive the PEG to a meaningless ~0; a name
-    # is judged cheap vs a *sustainable* growth rate, not an unsustainable spike.
-    cap = growth_cap * 100.0
-    eb_g = (num("ebitda_growth") * 100.0).clip(upper=cap)       # annual YoY %, capped
-    rev_g = (num("revenue_growth") * 100.0).clip(upper=cap)
-    eb_gq = (num("ebitda_q_yoy") * 100.0).clip(upper=cap)       # latest-qtr YoY %, capped
-    rev_gq = (num("revenue_q_yoy") * 100.0).clip(upper=cap)
+    # Growth (%) in the denominator is FLOORED at growth_floor and CAPPED at
+    # growth_cap. The cap stops a trough-rebound (+1000% off a near-zero base) from
+    # driving the PEG to ~0; the floor means a no-/low-/negative-grower still gets a
+    # (high = expensive) value instead of NaN — so the measure covers the universe,
+    # not just positive growers. Missing annual growth falls back to the LTM (quarter)
+    # rate before giving up.
+    lo, hi = growth_floor * 100.0, growth_cap * 100.0
+    clipg = lambda x: (x * 100.0).clip(lower=lo, upper=hi)
+    eb_g = clipg(num("ebitda_growth").where(num("ebitda_growth").notna(), num("ebitda_q_yoy")))
+    rev_g = clipg(num("revenue_growth").where(num("revenue_growth").notna(), num("revenue_q_yoy")))
+    eb_gq, rev_gq = clipg(num("ebitda_q_yoy")), clipg(num("revenue_q_yoy"))
 
     ev_sales = (psales * (evv / mc)).where((psales > 0) & (mc > 0) & (evv > 0))
+    # Fall back to plain P/S when enterpriseValue is unavailable, so the sales-based
+    # measure covers ~every name with a price-to-sales (the EV bridge only adds net
+    # debt — a close proxy when EV is missing).
+    ev_sales = ev_sales.where(ev_sales.notna(), psales.where(psales > 0))
     out["ev_sales"] = ev_sales
+    # EV/EBITDA: yfinance ratio when positive, else reconstruct EV / latest EBITDA
+    # (recovers names yfinance didn't carry the ratio for; loss-making EBITDA stays
+    # NaN — there is no honest EBITDA multiple for it, ev_sales_g covers those).
+    eb_latest = num("ebitda_latest")
     eve = ev_ebitda.where(ev_ebitda > 0)
-    out["ev_ebitda_g"] = eve / eb_g.where(eb_g > 0)
-    out["ev_ebitda_g_ltm"] = eve / eb_gq.where(eb_gq > 0)
-    out["ev_sales_g"] = ev_sales / rev_g.where(rev_g > 0)
-    out["ev_sales_g_ltm"] = ev_sales / rev_gq.where(rev_gq > 0)
+    eve = eve.where(eve.notna(), (evv / eb_latest).where((eb_latest > 0) & (evv > 0)))
+    out["ev_ebitda_g"] = eve / eb_g
+    out["ev_ebitda_g_ltm"] = eve / eb_gq
+    out["ev_sales_g"] = ev_sales / rev_g
+    out["ev_sales_g_ltm"] = ev_sales / rev_gq
 
     # Gentle, bounded, diminishing reward for LOW price-to-book.
     tilt = (1.0 - bv_weight * (1.0 - pb) / (1.0 + pb)).where(pb > 0)
