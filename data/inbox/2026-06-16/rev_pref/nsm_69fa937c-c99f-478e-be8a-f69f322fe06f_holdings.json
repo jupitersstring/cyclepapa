@@ -1,0 +1,16 @@
+{
+  "accession": "69fa937c-c99f-478e-be8a-f69f322fe06f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "Active Energy Group PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/69fa937c-c99f-478e-be8a-f69f322fe06f.html"
+}

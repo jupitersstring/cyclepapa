@@ -1,0 +1,16 @@
+{
+  "accession": "42096855-1c1d-4ee0-82b3-8c7c6ac2aa23",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Evelyn Partners Group Limited",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/42096855-1c1d-4ee0-82b3-8c7c6ac2aa23.html"
+}

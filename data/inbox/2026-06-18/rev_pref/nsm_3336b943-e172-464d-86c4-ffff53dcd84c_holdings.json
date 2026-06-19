@@ -1,0 +1,16 @@
+{
+  "accession": "3336b943-e172-464d-86c4-ffff53dcd84c",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "Glenveagh Properties Public Limited Company",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/3336b943-e172-464d-86c4-ffff53dcd84c.html"
+}

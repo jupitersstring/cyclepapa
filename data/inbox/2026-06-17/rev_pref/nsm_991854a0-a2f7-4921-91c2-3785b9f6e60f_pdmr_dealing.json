@@ -1,0 +1,16 @@
+{
+  "accession": "991854a0-a2f7-4921-91c2-3785b9f6e60f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "HARWORTH GROUP PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/991854a0-a2f7-4921-91c2-3785b9f6e60f.html"
+}

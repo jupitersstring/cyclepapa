@@ -1,0 +1,16 @@
+{
+  "accession": "3f58c0ab-96d0-46b0-b1d5-cff794f7b7e1",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Artemis Investment Management LLP",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/3f58c0ab-96d0-46b0-b1d5-cff794f7b7e1.html"
+}

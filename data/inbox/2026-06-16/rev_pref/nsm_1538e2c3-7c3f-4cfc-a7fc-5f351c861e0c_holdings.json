@@ -1,0 +1,16 @@
+{
+  "accession": "1538e2c3-7c3f-4cfc-a7fc-5f351c861e0c",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "BYTES TECHNOLOGY GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/1538e2c3-7c3f-4cfc-a7fc-5f351c861e0c.html"
+}

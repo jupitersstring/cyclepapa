@@ -1,0 +1,16 @@
+{
+  "accession": "80f4d848-f6d9-4506-b253-e4fa598775c9",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "BEAZLEY PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/80f4d848-f6d9-4506-b253-e4fa598775c9.html"
+}

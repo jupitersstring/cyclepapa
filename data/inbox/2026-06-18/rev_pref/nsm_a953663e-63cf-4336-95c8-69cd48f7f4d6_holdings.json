@@ -1,0 +1,16 @@
+{
+  "accession": "a953663e-63cf-4336-95c8-69cd48f7f4d6",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "C & C GROUP PUBLIC LIMITED COMPANY",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/a953663e-63cf-4336-95c8-69cd48f7f4d6.html"
+}

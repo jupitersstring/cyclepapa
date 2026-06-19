@@ -1,0 +1,16 @@
+{
+  "accession": "ae8a19d4-f78d-455b-b088-8d8d990fb495",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Lombard Odier Asset Mgt (Eur) Ltd.",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ae8a19d4-f78d-455b-b088-8d8d990fb495.html"
+}

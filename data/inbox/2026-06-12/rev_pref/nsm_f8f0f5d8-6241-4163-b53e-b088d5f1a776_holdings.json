@@ -1,0 +1,16 @@
+{
+  "accession": "f8f0f5d8-6241-4163-b53e-b088d5f1a776",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "QUILTER PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/f8f0f5d8-6241-4163-b53e-b088d5f1a776.html"
+}

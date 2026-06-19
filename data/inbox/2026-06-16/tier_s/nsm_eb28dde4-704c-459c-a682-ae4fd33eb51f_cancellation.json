@@ -1,0 +1,16 @@
+{
+  "accession": "eb28dde4-704c-459c-a682-ae4fd33eb51f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Miscellaneous",
+  "form_code": "MSCL",
+  "isin": null,
+  "name": "Van Elle Holdings PLC",
+  "query_label": "tier_s.cancellation",
+  "query_note": "delisting / AIM cancellation",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/eb28dde4-704c-459c-a682-ae4fd33eb51f.html"
+}

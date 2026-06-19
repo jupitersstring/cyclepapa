@@ -1,0 +1,16 @@
+{
+  "accession": "caf65a36-240a-45a4-b8e7-2d3a39f553bb",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "JPMORGAN EUROPEAN DISCOVERY TRUST PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/caf65a36-240a-45a4-b8e7-2d3a39f553bb.html"
+}

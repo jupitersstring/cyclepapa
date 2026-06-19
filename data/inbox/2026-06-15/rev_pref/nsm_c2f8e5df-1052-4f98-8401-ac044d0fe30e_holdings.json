@@ -1,0 +1,16 @@
+{
+  "accession": "c2f8e5df-1052-4f98-8401-ac044d0fe30e",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-15",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "BALTIC CLASSIFIEDS GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/c2f8e5df-1052-4f98-8401-ac044d0fe30e.html"
+}

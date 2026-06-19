@@ -1,0 +1,16 @@
+{
+  "accession": "238eed92-666a-47bb-9bfb-4c794e8aeaaa",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-15",
+  "form": "Aquis Exchange",
+  "form_code": "NEX",
+  "isin": null,
+  "name": "MARULA MINING PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/238eed92-666a-47bb-9bfb-4c794e8aeaaa.html"
+}

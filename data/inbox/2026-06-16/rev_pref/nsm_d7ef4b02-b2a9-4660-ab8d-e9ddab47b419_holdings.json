@@ -1,0 +1,16 @@
+{
+  "accession": "d7ef4b02-b2a9-4660-ab8d-e9ddab47b419",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "TT ELECTRONICS PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/d7ef4b02-b2a9-4660-ab8d-e9ddab47b419.html"
+}

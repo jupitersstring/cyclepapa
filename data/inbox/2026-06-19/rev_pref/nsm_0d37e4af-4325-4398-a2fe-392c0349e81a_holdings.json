@@ -1,0 +1,16 @@
+{
+  "accession": "0d37e4af-4325-4398-a2fe-392c0349e81a",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "ENERGEAN PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/0d37e4af-4325-4398-a2fe-392c0349e81a.html"
+}

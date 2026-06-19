@@ -1,0 +1,16 @@
+{
+  "accession": "8cff588d-d154-40f3-a790-5e7a53c9c53f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "LGT Gruppe Holding AG",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/8cff588d-d154-40f3-a790-5e7a53c9c53f.html"
+}

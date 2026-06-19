@@ -1,0 +1,16 @@
+{
+  "accession": "cd9377d2-90ef-4c00-8cc1-d415ee3a40ba",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "MITIE GROUP PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/cd9377d2-90ef-4c00-8cc1-d415ee3a40ba.html"
+}

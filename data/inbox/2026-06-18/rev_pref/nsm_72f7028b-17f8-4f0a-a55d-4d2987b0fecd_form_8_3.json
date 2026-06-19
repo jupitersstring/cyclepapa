@@ -1,0 +1,16 @@
+{
+  "accession": "72f7028b-17f8-4f0a-a55d-4d2987b0fecd",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "SCHRODERS PLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/72f7028b-17f8-4f0a-a55d-4d2987b0fecd.html"
+}

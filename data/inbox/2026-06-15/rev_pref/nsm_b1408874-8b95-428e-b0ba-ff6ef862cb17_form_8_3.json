@@ -1,0 +1,16 @@
+{
+  "accession": "b1408874-8b95-428e-b0ba-ff6ef862cb17",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-15",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "BARCLAYS PLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b1408874-8b95-428e-b0ba-ff6ef862cb17.html"
+}

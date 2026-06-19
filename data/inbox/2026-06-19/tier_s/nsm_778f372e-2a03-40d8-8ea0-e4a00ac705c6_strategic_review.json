@@ -1,0 +1,16 @@
+{
+  "accession": "778f372e-2a03-40d8-8ea0-e4a00ac705c6",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Offer Update",
+  "form_code": "OUP",
+  "isin": null,
+  "name": "PPHE HOTEL GROUP LIMITED",
+  "query_label": "tier_s.strategic_review",
+  "query_note": "pre-event signal; Klarman entry zone",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/778f372e-2a03-40d8-8ea0-e4a00ac705c6.html"
+}

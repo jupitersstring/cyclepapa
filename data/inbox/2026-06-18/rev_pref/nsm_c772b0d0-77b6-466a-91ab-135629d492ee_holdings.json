@@ -1,0 +1,16 @@
+{
+  "accession": "c772b0d0-77b6-466a-91ab-135629d492ee",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "Pacsco Ltd",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/c772b0d0-77b6-466a-91ab-135629d492ee.html"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "0a20e6da-1605-422e-bec8-83e064ec9773",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "Greencoat Renewables Public Limited Company",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/0a20e6da-1605-422e-bec8-83e064ec9773.html"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "5fd0a2ed-3690-4759-b601-9395536f0c84",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "GCP ASSET BACKED INCOME FUND LIMITED",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/5fd0a2ed-3690-4759-b601-9395536f0c84.html"
+}

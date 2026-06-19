@@ -1,0 +1,16 @@
+{
+  "accession": "fbfae4df-d9ab-4a94-a19a-2363467f78a1",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-15",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "HERALD INVESTMENT TRUST PLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/fbfae4df-d9ab-4a94-a19a-2363467f78a1.html"
+}

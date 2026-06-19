@@ -1,0 +1,16 @@
+{
+  "accession": "7d99ff5f-fb20-4fab-b58a-1c08867c195e",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "BRITISH AMERICAN TOBACCO P.L.C.",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/7d99ff5f-fb20-4fab-b58a-1c08867c195e.html"
+}

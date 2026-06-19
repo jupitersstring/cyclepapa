@@ -1,0 +1,16 @@
+{
+  "accession": "a59f03c2-ab91-4964-8836-f92b27637829",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "BlackRock Group",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/a59f03c2-ab91-4964-8836-f92b27637829.html"
+}

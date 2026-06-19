@@ -1,0 +1,16 @@
+{
+  "accession": "bd7c0b05-8916-42dd-bdc7-8e54fa0a2db5",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "M.P. EVANS GROUP PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/bd7c0b05-8916-42dd-bdc7-8e54fa0a2db5.html"
+}

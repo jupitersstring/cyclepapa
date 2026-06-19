@@ -1,0 +1,16 @@
+{
+  "accession": "769b257d-af93-41d2-b3d4-dcd7646e9d6e",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-15",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "CHRYSALIS INVESTMENTS LIMITED",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/769b257d-af93-41d2-b3d4-dcd7646e9d6e.html"
+}

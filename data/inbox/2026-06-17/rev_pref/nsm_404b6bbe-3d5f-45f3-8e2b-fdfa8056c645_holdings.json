@@ -1,0 +1,16 @@
+{
+  "accession": "404b6bbe-3d5f-45f3-8e2b-fdfa8056c645",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "INTEGRAFIN HOLDINGS PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/404b6bbe-3d5f-45f3-8e2b-fdfa8056c645.html"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "e7edf6f0-05f1-4f7d-8ca2-f5718f8db4b3",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "INTERNATIONAL CONSOLIDATED AIRLINES GROUP, S.A.",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e7edf6f0-05f1-4f7d-8ca2-f5718f8db4b3.html"
+}

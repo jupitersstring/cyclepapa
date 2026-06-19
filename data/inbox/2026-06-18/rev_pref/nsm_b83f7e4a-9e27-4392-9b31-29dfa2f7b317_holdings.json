@@ -1,0 +1,16 @@
+{
+  "accession": "b83f7e4a-9e27-4392-9b31-29dfa2f7b317",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "TATTON ASSET MANAGEMENT PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b83f7e4a-9e27-4392-9b31-29dfa2f7b317.html"
+}

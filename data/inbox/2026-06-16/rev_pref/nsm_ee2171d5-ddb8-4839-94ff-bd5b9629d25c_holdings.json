@@ -1,0 +1,16 @@
+{
+  "accession": "ee2171d5-ddb8-4839-94ff-bd5b9629d25c",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "GENUS PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ee2171d5-ddb8-4839-94ff-bd5b9629d25c.html"
+}

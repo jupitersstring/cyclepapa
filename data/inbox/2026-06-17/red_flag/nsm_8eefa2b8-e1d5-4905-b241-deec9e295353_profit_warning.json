@@ -1,0 +1,16 @@
+{
+  "accession": "8eefa2b8-e1d5-4905-b241-deec9e295353",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Trading Statement",
+  "form_code": "TST",
+  "isin": null,
+  "name": "PZ CUSSONS PLC",
+  "query_label": "red_flag.profit_warning",
+  "query_note": "UK trading update \u2014 verify whether profit warning",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/8eefa2b8-e1d5-4905-b241-deec9e295353.html"
+}

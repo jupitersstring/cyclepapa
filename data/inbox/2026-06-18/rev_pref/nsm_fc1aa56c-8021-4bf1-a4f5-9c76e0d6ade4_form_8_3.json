@@ -1,0 +1,16 @@
+{
+  "accession": "fc1aa56c-8021-4bf1-a4f5-9c76e0d6ade4",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Janus Henderson Investors",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/fc1aa56c-8021-4bf1-a4f5-9c76e0d6ade4.html"
+}

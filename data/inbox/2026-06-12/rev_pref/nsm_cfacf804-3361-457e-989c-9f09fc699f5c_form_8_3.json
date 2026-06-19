@@ -1,0 +1,16 @@
+{
+  "accession": "cfacf804-3361-457e-989c-9f09fc699f5c",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "GLAZER CAPITAL, LLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/cfacf804-3361-457e-989c-9f09fc699f5c.html"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "ff51df3a-d1f2-4933-b491-e1c4e6421995",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "GRESHAM HOUSE ENERGY STORAGE FUND PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ff51df3a-d1f2-4933-b491-e1c4e6421995.html"
+}

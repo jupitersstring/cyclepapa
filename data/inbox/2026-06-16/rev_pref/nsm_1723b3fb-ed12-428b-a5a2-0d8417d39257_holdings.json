@@ -1,0 +1,16 @@
+{
+  "accession": "1723b3fb-ed12-428b-a5a2-0d8417d39257",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "Plexus Holdings Plc",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/1723b3fb-ed12-428b-a5a2-0d8417d39257.html"
+}

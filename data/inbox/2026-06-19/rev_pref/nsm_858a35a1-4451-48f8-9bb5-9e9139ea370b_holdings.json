@@ -1,0 +1,16 @@
+{
+  "accession": "858a35a1-4451-48f8-9bb5-9e9139ea370b",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "WATCHES OF SWITZERLAND GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/858a35a1-4451-48f8-9bb5-9e9139ea370b.html"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "b5c0c5f6-34d1-4a64-9dfb-6b02aeac8dc1",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "RELX PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b5c0c5f6-34d1-4a64-9dfb-6b02aeac8dc1.html"
+}

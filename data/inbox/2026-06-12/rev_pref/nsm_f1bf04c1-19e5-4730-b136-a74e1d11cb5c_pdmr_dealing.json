@@ -1,0 +1,16 @@
+{
+  "accession": "f1bf04c1-19e5-4730-b136-a74e1d11cb5c",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "SECURE TRUST BANK PUBLIC LIMITED COMPANY",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/f1bf04c1-19e5-4730-b136-a74e1d11cb5c.html"
+}

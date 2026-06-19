@@ -1,0 +1,16 @@
+{
+  "accession": "11f7c157-5caf-4efa-a6be-9f58a859e5f4",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "ANPARIO PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/11f7c157-5caf-4efa-a6be-9f58a859e5f4.html"
+}

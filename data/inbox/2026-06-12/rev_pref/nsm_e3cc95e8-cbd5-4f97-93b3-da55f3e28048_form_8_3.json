@@ -1,0 +1,16 @@
+{
+  "accession": "e3cc95e8-cbd5-4f97-93b3-da55f3e28048",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Wellington Management Group LLP",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e3cc95e8-cbd5-4f97-93b3-da55f3e28048.html"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "63774637-d5a2-4eb4-b95b-34d00522c64a",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "GoldmanSachs International",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/63774637-d5a2-4eb4-b95b-34d00522c64a.html"
+}

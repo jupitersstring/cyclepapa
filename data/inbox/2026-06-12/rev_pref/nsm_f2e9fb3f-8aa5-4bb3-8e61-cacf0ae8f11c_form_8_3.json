@@ -1,0 +1,16 @@
+{
+  "accession": "f2e9fb3f-8aa5-4bb3-8e61-cacf0ae8f11c",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "BlackRock Group",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/f2e9fb3f-8aa5-4bb3-8e61-cacf0ae8f11c.html"
+}

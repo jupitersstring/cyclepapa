@@ -1,0 +1,16 @@
+{
+  "accession": "289b483a-97c6-490d-a3f0-27c2fe7ff0af",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "WARPAINT LONDON PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/289b483a-97c6-490d-a3f0-27c2fe7ff0af.html"
+}

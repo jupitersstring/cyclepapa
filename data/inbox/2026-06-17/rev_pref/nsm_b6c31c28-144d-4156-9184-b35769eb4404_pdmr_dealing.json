@@ -1,0 +1,16 @@
+{
+  "accession": "b6c31c28-144d-4156-9184-b35769eb4404",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Issue of Equity",
+  "form_code": "IOE",
+  "isin": null,
+  "name": "BURFORD CAPITAL LIMITED",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b6c31c28-144d-4156-9184-b35769eb4404.html"
+}

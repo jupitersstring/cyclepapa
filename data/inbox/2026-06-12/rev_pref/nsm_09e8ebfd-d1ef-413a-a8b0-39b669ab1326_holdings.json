@@ -1,0 +1,16 @@
+{
+  "accession": "09e8ebfd-d1ef-413a-a8b0-39b669ab1326",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "PRIMORUS INVESTMENTS PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/09e8ebfd-d1ef-413a-a8b0-39b669ab1326.html"
+}

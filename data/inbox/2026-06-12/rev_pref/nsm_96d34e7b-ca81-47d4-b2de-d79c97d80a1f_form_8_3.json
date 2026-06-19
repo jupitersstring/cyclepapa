@@ -1,0 +1,16 @@
+{
+  "accession": "96d34e7b-ca81-47d4-b2de-d79c97d80a1f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Canadian Imperial Bank of Commerce",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/96d34e7b-ca81-47d4-b2de-d79c97d80a1f.html"
+}

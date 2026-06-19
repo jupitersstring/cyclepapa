@@ -1,0 +1,16 @@
+{
+  "accession": "9da673d2-44bc-49a0-8178-c7374c25ed8f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "L&G \u2013 Asset Management Limited",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/9da673d2-44bc-49a0-8178-c7374c25ed8f.html"
+}

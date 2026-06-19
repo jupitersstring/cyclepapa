@@ -1,0 +1,16 @@
+{
+  "accession": "48c3bb2e-2e0d-4782-b191-0ec2807b4f73",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-19",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "CURRYS PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/48c3bb2e-2e0d-4782-b191-0ec2807b4f73.html"
+}

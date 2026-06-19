@@ -1,0 +1,16 @@
+{
+  "accession": "db0c1983-9ba9-4f5f-b50c-67c9985953e0",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-18",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "CBRE Investment Management Listed Real Assets LLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/db0c1983-9ba9-4f5f-b50c-67c9985953e0.html"
+}

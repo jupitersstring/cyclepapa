@@ -78,13 +78,20 @@ FORM_TO_ARCHETYPE = {
 # special-situation candidate, not just any 8-K filer.
 PROMOTE_TIERS = {"tier_s", "spinoff"}     # always promote
 PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
+    # ---- EDGAR labels (edgar_poll.py) ----
     "rights_offering", "backstop_agreement", "exchange_offer",
     "consent_solicitation", "lien_release", "scheme", "tender",
+    # ---- NSM labels (uk_rns_poll.py) ----
+    "rule_2_7", "recommended_offer", "open_offer", "restructuring",
+    "rule_2_4", "administration", "administrators", "cva",
+    "suspension", "cancellation", "strategic_review",
 }
 
 
 def load_existing_universe_tickers() -> set[str]:
-    """Pull every ticker/name stem currently in universe.md."""
+    """Pull every ticker stem + name stem currently in universe.md.
+    Name stems use the same normalization as inbox records so dedup is
+    consistent across the two sources."""
     out = set()
     if not UNIVERSE_MD.exists():
         return out
@@ -103,30 +110,35 @@ def load_existing_universe_tickers() -> set[str]:
         cells = [c.strip() for c in stripped.strip("|").split("|")]
         if len(cells) < 2:
             continue
-        # Name column
-        name = cells[0]
-        ticker = cells[1] if len(cells) > 1 else ""
-        for raw in (name, ticker):
-            if not raw:
-                continue
-            stem = re.sub(r"[^A-Za-z0-9]", "",
-                         raw.split(":")[-1].split()[0]).upper()
-            if stem:
-                out.add(stem)
+        name_cell = cells[0]
+        ticker_cell = cells[1] if len(cells) > 1 else ""
+        if ticker_cell:
+            t_stem = stem_ticker(ticker_cell.split()[0])
+            if t_stem:
+                out.add(t_stem)
+        if name_cell:
+            n_stem = stem_name(name_cell)
+            if n_stem:
+                out.add(n_stem)
     return out
 
 
 def load_existing_yaml_tickers() -> set[str]:
+    """Ticker stems AND name stems already covered by a YAML."""
     out = set()
     for path in CANDIDATES_DIR.glob("*.yaml"):
         with path.open() as f:
             d = yaml.safe_load(f) or {}
         t = d.get("ticker")
         if t:
-            stem = re.sub(r"[^A-Za-z0-9]", "",
-                         str(t).split(":")[-1]).upper()
+            stem = stem_ticker(str(t))
             if stem:
                 out.add(stem)
+        n = d.get("name")
+        if n:
+            n_stem = stem_name(str(n))
+            if n_stem:
+                out.add(n_stem)
     return out
 
 
@@ -192,10 +204,40 @@ def stem_ticker(t: str | None) -> str:
     return re.sub(r"[^A-Za-z0-9]", "", t.split(":")[-1]).upper()
 
 
+def stem_name(n: str | None) -> str:
+    """Normalize an issuer name to a dedup key. Strips corp suffixes and
+    punctuation so 'Van Elle Holdings PLC' and 'Van Elle Holdings plc' match."""
+    if not n:
+        return ""
+    s = re.sub(r"\b(plc|ltd|limited|inc|corp|corporation|group|holdings|sa|nv|ag|"
+               r"sas|spa|kg|llc|llp|pty|pte|kk|inc\.|co)\b", "", n, flags=re.I)
+    return re.sub(r"[^A-Za-z0-9]", "", s).upper()
+
+
+def dedup_key(rec: dict) -> str:
+    """Best identifier for the issuer behind a hit. UK NSM records often
+    have no ticker, so fall back to ISIN, then name stem, then accession."""
+    return (stem_ticker(rec.get("ticker"))
+            or (rec.get("isin") or "").upper()
+            or stem_name(rec.get("name"))
+            or rec.get("accession") or "")
+
+
+def identifier_for_row(rec: dict) -> str:
+    """Human-readable identifier for the universe.md Ticker column."""
+    if rec.get("ticker"):
+        return str(rec["ticker"])
+    if rec.get("isin"):
+        return f"ISIN:{rec['isin']}"
+    if rec.get("cik"):
+        return f"CIK:{rec['cik']}"
+    return "—"
+
+
 def build_row(rec: dict) -> str:
     """Build a markdown table row for the promoted inbox hit."""
-    name = rec.get("name") or rec.get("ticker") or rec.get("cik", "?")
-    ticker = rec.get("ticker") or f"CIK:{rec.get('cik', '?')}"
+    name = rec.get("name") or rec.get("ticker") or "?"
+    ticker = identifier_for_row(rec)
     form = rec.get("form", "?")
     accession = rec.get("accession", "?")
     filed = rec.get("filed") or rec.get("_day", "?")
@@ -261,8 +303,12 @@ def main() -> int:
         if not should_promote(rec):
             skip_filter += 1
             continue
+        # Dedup against universe.md + YAMLs by ticker OR name stem.
+        # NSM hits often have no ticker, so fall back to name stem to
+        # catch the same issuer already curated under a different identifier.
         ticker = stem_ticker(rec.get("ticker"))
-        if ticker and ticker in existing:
+        name = stem_name(rec.get("name"))
+        if (ticker and ticker in existing) or (name and name in existing):
             skip_dup_ticker += 1
             continue
         promote_now.append(rec)
@@ -273,11 +319,13 @@ def main() -> int:
     print(f"  skip (ticker already in universe/YAMLs): {skip_dup_ticker}")
     print(f"  skip (filter didn't match): {skip_filter}")
 
-    # Dedup within this batch
+    # Dedup within this batch. For NSM rows that have no ticker,
+    # dedup_key falls back to ISIN then name stem so the same issuer
+    # with multiple event-type hits collapses to one row.
     seen_in_batch = set()
     deduped = []
     for rec in promote_now:
-        key = stem_ticker(rec.get("ticker")) or rec.get("accession")
+        key = dedup_key(rec)
         if key in seen_in_batch:
             continue
         seen_in_batch.add(key)

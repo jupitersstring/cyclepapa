@@ -1,0 +1,16 @@
+{
+  "accession": "8c73303f-fdcb-4b53-97bf-1bc7a9f161d4",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-16",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "SEVERN TRENT PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/8c73303f-fdcb-4b53-97bf-1bc7a9f161d4.html"
+}

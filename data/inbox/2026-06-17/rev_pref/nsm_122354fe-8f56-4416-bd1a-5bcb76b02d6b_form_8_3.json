@@ -1,0 +1,16 @@
+{
+  "accession": "122354fe-8f56-4416-bd1a-5bcb76b02d6b",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-17",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "AMERICAN CENTURY INVESTMENT MANAGEMENT, INC.",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/122354fe-8f56-4416-bd1a-5bcb76b02d6b.html"
+}

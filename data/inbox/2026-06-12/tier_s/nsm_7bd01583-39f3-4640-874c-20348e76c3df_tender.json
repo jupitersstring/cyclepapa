@@ -1,0 +1,16 @@
+{
+  "accession": "7bd01583-39f3-4640-874c-20348e76c3df",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Tender Offer",
+  "form_code": "TEN",
+  "isin": null,
+  "name": "Zambia (Republic of) (MoF)",
+  "query_label": "tier_s.tender",
+  "query_note": "tender offer",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/7bd01583-39f3-4640-874c-20348e76c3df.html"
+}

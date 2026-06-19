@@ -1,0 +1,16 @@
+{
+  "accession": "94219e41-ca7d-401a-af4b-56b6bf2eb52f",
+  "cik": "",
+  "fetched_at": "2026-06-19T13:53:17.193211Z",
+  "filed": "2026-06-12",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "CALEDONIA MINING CORPORATION PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/94219e41-ca7d-401a-af4b-56b6bf2eb52f.html"
+}
