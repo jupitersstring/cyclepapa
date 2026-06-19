@@ -41,34 +41,71 @@ WB_PATH = OUT / 'best_of_best.xlsx'
 
 REGIONS = ['US','JP','KR','HK','AU','CA','GB','DE','FR','SE']
 
-# ---------- Styling ----------
-TITLE_FONT = Font(name='Calibri', size=16, bold=True, color='1F2937')
-H1_FONT    = Font(name='Calibri', size=13, bold=True, color='1F2937')
-H2_FONT    = Font(name='Calibri', size=11, bold=True, color='374151')
-BODY_FONT  = Font(name='Calibri', size=10)
-HEAD_FILL  = PatternFill('solid', fgColor='E5E7EB')
-ALT_FILL   = PatternFill('solid', fgColor='F9FAFB')
-EXEC_FILL  = PatternFill('solid', fgColor='DBEAFE')
-WARN_FILL  = PatternFill('solid', fgColor='FEF3C7')
-BORDER     = Border(left=Side(style='thin', color='D1D5DB'),
-                    right=Side(style='thin', color='D1D5DB'),
-                    top=Side(style='thin', color='D1D5DB'),
-                    bottom=Side(style='thin', color='D1D5DB'))
-ALIGN_LEFT  = Alignment(horizontal='left',  vertical='center', wrap_text=False)
-ALIGN_RIGHT = Alignment(horizontal='right', vertical='center')
+# ---------- Harvard Business Review style palette ----------
+# Crimson is the HBS primary; warm off-whites and slate-grey neutrals frame it.
+CRIMSON_DARK = '7A1320'     # HBS crimson (darker, for headers)
+CRIMSON      = 'A51C30'     # HBS crimson
+CRIMSON_PALE = 'F4E3E6'     # pale tint for very-light fills
+SLATE_DARK   = '1C1F26'     # title / strong text
+SLATE        = '2F3640'     # body strong
+SLATE_MUTED  = '5F6B7A'     # caption / footnotes
+RULE         = 'C6CDD6'     # hairline rule grey
+RULE_LIGHT   = 'E5E7EB'     # lighter rule
+WARM_WHITE   = 'FBF9F4'     # case-study warm background
+ROW_ALT      = 'F4F1EA'     # alternating row warm-grey
+CARD_BG      = 'F8F6F0'     # subtle card-fill (for blockquotes)
+HIGHLIGHT    = 'F8E7E2'     # pale crimson highlight for accent rows
+
+# Serif for titles (the HBR convention), Calibri for body
+TITLE_FONT_NAME = 'Cambria'   # widely available serif
+H_FONT_NAME     = 'Cambria'
+BODY_FONT_NAME  = 'Calibri'
+
+TITLE_FONT    = Font(name=TITLE_FONT_NAME, size=22, bold=False, color=SLATE_DARK)
+KICKER_FONT   = Font(name=BODY_FONT_NAME, size=9, bold=True, color=CRIMSON)  # small uppercase label
+DECK_FONT     = Font(name=TITLE_FONT_NAME, size=13, italic=True, color=SLATE_MUTED)
+SECTION_FONT  = Font(name=H_FONT_NAME, size=12, bold=True, color=SLATE_DARK)
+SUBSECT_FONT  = Font(name=BODY_FONT_NAME, size=9, bold=True, color=CRIMSON)
+BODY_FONT     = Font(name=BODY_FONT_NAME, size=10, color=SLATE)
+BODY_BOLD     = Font(name=BODY_FONT_NAME, size=10, bold=True, color=SLATE_DARK)
+CAPTION_FONT  = Font(name=BODY_FONT_NAME, size=9, italic=True, color=SLATE_MUTED)
+TABLE_HEAD_FT = Font(name=BODY_FONT_NAME, size=10, bold=True, color='FFFFFF')
+FOOTNOTE_FONT = Font(name=BODY_FONT_NAME, size=8, italic=True, color=SLATE_MUTED)
+
+WARM_FILL  = PatternFill('solid', fgColor=WARM_WHITE)
+ALT_FILL   = PatternFill('solid', fgColor=ROW_ALT)
+CARD_FILL  = PatternFill('solid', fgColor=CARD_BG)
+HIGHLIGHT_FILL = PatternFill('solid', fgColor=HIGHLIGHT)
+HEAD_FILL  = PatternFill('solid', fgColor=CRIMSON)
+HEAD_DARK_FILL = PatternFill('solid', fgColor=CRIMSON_DARK)
+
+# Hairline borders (lighter, more elegant than standard thin)
+HAIRLINE   = Side(style='thin', color=RULE)
+RULE_THIN  = Side(style='thin', color=RULE_LIGHT)
+BORDER_ALL = Border(left=HAIRLINE, right=HAIRLINE, top=HAIRLINE, bottom=HAIRLINE)
+BORDER_TOP_RULE = Border(top=Side(style='thin', color=CRIMSON))
+BORDER_BOT_RULE = Border(bottom=Side(style='thin', color=CRIMSON))
+
+ALIGN_LEFT  = Alignment(horizontal='left',   vertical='center', indent=1)
+ALIGN_RIGHT = Alignment(horizontal='right',  vertical='center', indent=1)
 ALIGN_CTR   = Alignment(horizontal='center', vertical='center', wrap_text=True)
+ALIGN_WRAP  = Alignment(horizontal='left',   vertical='top',    wrap_text=True, indent=1)
 
 
 def _style_header(ws, row, col_start, col_end):
+    """Crimson banded header with white serif-cap-style text."""
     for c in range(col_start, col_end + 1):
         cell = ws.cell(row=row, column=c)
-        cell.font = Font(name='Calibri', size=10, bold=True, color='FFFFFF')
-        cell.fill = PatternFill('solid', fgColor='374151')
+        cell.font = TABLE_HEAD_FT
+        cell.fill = HEAD_FILL
         cell.alignment = ALIGN_CTR
-        cell.border = BORDER
+        cell.border = Border(left=Side(style='thin', color=CRIMSON_DARK),
+                              right=Side(style='thin', color=CRIMSON_DARK),
+                              top=Side(style='thin', color=CRIMSON_DARK),
+                              bottom=Side(style='thin', color=CRIMSON_DARK))
 
 
-def _autosize(ws, headers, max_w=32):
+def _autosize(ws, headers, max_w=34):
     for i, h in enumerate(headers, 1):
         col_letter = get_column_letter(i)
         max_len = len(str(h))
@@ -76,20 +113,21 @@ def _autosize(ws, headers, max_w=32):
             for v in row:
                 if v is not None:
                     max_len = max(max_len, min(len(str(v)), max_w))
-        ws.column_dimensions[col_letter].width = max(8, min(max_len + 2, max_w))
+        ws.column_dimensions[col_letter].width = max(9, min(max_len + 2, max_w))
 
 
 def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True):
-    """Write a DataFrame as a styled table starting at start_row. Returns row after."""
+    """Write a DataFrame as a styled table. Returns row after."""
     if df.empty:
-        ws.cell(row=start_row, column=1, value='(no rows)').font = BODY_FONT
+        c = ws.cell(row=start_row, column=1, value='— no rows —')
+        c.font = CAPTION_FONT
+        c.alignment = ALIGN_LEFT
         return start_row + 2
-    # Header
     for i, h in enumerate(headers, 1):
         ws.cell(row=start_row, column=i, value=h)
     _style_header(ws, start_row, 1, len(headers))
-    # Body
     for r, (_, row) in enumerate(df.iterrows(), start=start_row + 1):
+        is_alt = (r - start_row) % 2 == 0
         for c, h in enumerate(headers, 1):
             v = row.get(h)
             if pd.isna(v): v = ''
@@ -101,10 +139,78 @@ def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True)
                 cell.alignment = ALIGN_RIGHT
             else:
                 cell.alignment = ALIGN_LEFT
-            if alt_shade and (r - start_row) % 2 == 0:
+            if alt_shade and is_alt:
                 cell.fill = ALT_FILL
-            cell.border = BORDER
+            else:
+                cell.fill = WARM_FILL
+            cell.border = Border(bottom=RULE_THIN)
     return start_row + 1 + len(df) + 1
+
+
+def _set_page_background(ws, last_col_letter='Z', last_row=600):
+    """Tint the whole sheet warm-white (HBS magazine look)."""
+    # Set the default row fill via the sheet-level approach: apply WARM_FILL
+    # to a strip of cells. Cheaper: just rely on explicit row backgrounds.
+    pass
+
+
+def _draw_title_block(ws, kicker: str, title: str, deck: str = None,
+                      start_row: int = 1):
+    """Magazine-style title block: KICKER label, title in serif, deck (italic
+    subtitle), then a crimson hairline rule under it."""
+    # Kicker (small uppercase)
+    if kicker:
+        c = ws.cell(row=start_row, column=1, value=kicker.upper())
+        c.font = KICKER_FONT
+        c.alignment = ALIGN_LEFT
+        ws.row_dimensions[start_row].height = 14
+    # Title
+    title_row = start_row + 1
+    c = ws.cell(row=title_row, column=1, value=title)
+    c.font = TITLE_FONT
+    c.alignment = Alignment(horizontal='left', vertical='center', indent=0)
+    ws.row_dimensions[title_row].height = 30
+    # Deck
+    deck_row = title_row + 1
+    if deck:
+        c = ws.cell(row=deck_row, column=1, value=deck)
+        c.font = DECK_FONT
+        c.alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
+        ws.merge_cells(start_row=deck_row, start_column=1, end_row=deck_row, end_column=10)
+        ws.row_dimensions[deck_row].height = 22
+        last_row = deck_row
+    else:
+        last_row = title_row
+    # Crimson hairline rule below the title block
+    rule_row = last_row + 1
+    for col in range(1, 13):
+        ws.cell(row=rule_row, column=col).border = BORDER_TOP_RULE
+    ws.row_dimensions[rule_row].height = 6
+    return rule_row + 1
+
+
+def _draw_section(ws, label: str, start_row: int) -> int:
+    """Section header: small crimson kicker label + thin underline rule."""
+    c = ws.cell(row=start_row, column=1, value=label)
+    c.font = SECTION_FONT
+    c.alignment = ALIGN_LEFT
+    ws.row_dimensions[start_row].height = 22
+    # Crimson rule under section heading
+    rule_row = start_row + 1
+    for col in range(1, 13):
+        ws.cell(row=rule_row, column=col).border = BORDER_TOP_RULE
+    ws.row_dimensions[rule_row].height = 4
+    return rule_row + 1
+
+
+def _add_footer(ws, last_row: int, source: str = None):
+    """Small italic-grey footnote line."""
+    txt = source or 'Source: yfinance + financedatabase; analysis as of session date. See README for methodology.'
+    c = ws.cell(row=last_row + 1, column=1, value=txt)
+    c.font = FOOTNOTE_FONT
+    c.alignment = ALIGN_LEFT
+    ws.merge_cells(start_row=last_row + 1, start_column=1,
+                   end_row=last_row + 1, end_column=10)
 
 
 # ---------- Data loading ----------
@@ -203,66 +309,109 @@ def best_of_best(gav, fin, comb, top_n=25):
 # ---------- Sheet builders ----------
 def build_readme(wb):
     ws = wb.create_sheet('README', 0)
-    title = 'Best-of-Best Universe Screen — How to Read'
-    ws.cell(row=1, column=1, value=title).font = TITLE_FONT
-    ws.row_dimensions[1].height = 24
-    notes = [
-        ('Purpose', ('A single decision-grade workbook for surfacing the strongest names per region and per measure.'
-                     ' Each measure has known failure modes; this workbook deliberately shows multiple views so the'
-                     ' top-of-list is cross-validated.')),
-        ('Universe', ('7,196 cached tickers from financedatabase across 10 regions (US, JP, KR, HK, AU, CA, GB, DE, FR, SE).'
-                      ' Mcap floor $25M for the broad views, $100M for financials. Junk filtered: warrants, preferreds, SPAC units, defunct symbols.')),
-        ('Measures', ('Three independent scoring frameworks: '
-                      '(1) Sector-percentile COMPOSITE on 13 valuation/quality/growth components within region. '
-                      '(2) GROWTH-ADJUSTED VALUE: (EV/EBITDA)/earn-g and (EV/Sales)/rev-g, with low-P/B tilt (bounded ±20%). '
-                      '(3) FINANCIALS-specific composite: P/B, P/Tangible-Book, P/E, ROE, ROA, div yield, earnings growth — '
-                      'because PEG-style ratios are meaningless for banks/insurers/holdcos.')),
-        ('Durable Growth Cut', ('The growth-adjusted ratios surface low-base merger/rebound spikes if not filtered.'
-                                ' The "durable" cut keeps only names with growth in the 10-100% band so e.g. Castellum (+65,383% earnings growth'
-                                ' from prior loss) and Mirvac (+31,987%) don\'t dominate.')),
-        ('BV Tilt', ('Low-P/B reward applied as: tilt = 1 - 0.2·(1-P/B)/(1+P/B). Saturates at ±20% so it\'s a tilt, not the driver.'
-                     ' P/B=0.5 → 0.933 (cheaper rating); P/B=2.0 → 1.067 (mild penalty).')),
-        ('Financials Carve-Out', ('Banks and insurers and holdcos are EXCLUDED from PEG-style ratios — deposits/reserves dwarf market cap,'
-                                  ' net interest income isn\'t "sales", and earnings move on reserve releases not operations. They have their own tab.')),
-        ('Best of Best', ('The "Best of Best" sheet shows names that screen in the top-25 on ≥ 2 of the four lists.'
-                          ' Three or four flags = cross-validated cheap-and-quality. Use as your starting watchlist.')),
-        ('How to Read Numbers', ('Lower-is-better for all ratio columns (PEG, P/B, P/E, EV/EBITDA).'
-                                  ' Higher-is-better for percentile composites (sector_pct, fin_composite, durable_composite — these are 0-100).'
-                                  ' All currency figures are in millions of local-currency units (so JP names are in million yen, KR in million won, etc).')),
-        ('Caveats', ('Earnings growth >300% is almost always merger/reserve/low-base — flag the row.'
-                     ' Operating margin << 0 for high-revenue-growth names = cash-burning early-stage; don\'t size on net cash alone.'
-                     ' yfinance forwardPE is often empty for non-US — that\'s data unavailability, not a defect.'
-                     ' P/B negative = negative book value (impaired or buyback-driven); the screener excludes these from the percentile but they show in raw data.')),
-        ('Files', ('Cache snapshot lives on origin/cache-snapshot (~18MB tarball, auto-restored on session start).'
-                   ' Results CSVs commit to the analysis branch alongside source.'
-                   ' This workbook regenerates from those CSVs via build_workbook.py.')),
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker='Cyclepapa Research  ·  Universe Survey  ·  Methodology',
+        title='Best of the Best — How to Read This Workbook',
+        deck='A single decision-grade survey of the cross-listed equity universe, '
+             'screened on three independent measures and reconciled into a watchlist '
+             'of cross-validated cheap-and-quality names.',
+    )
+    row += 1
+    sections = [
+        ('I.  Purpose',
+         'This workbook surfaces the strongest names per region and per measure. Each measure '
+         'has documented failure modes — relying on one alone produces false positives. Three '
+         'independent screens are computed and the intersection is reported on the "Best of Best" '
+         'page. Use that as the starting watchlist; use the per-region and per-measure tabs to '
+         'drill down before sizing positions.'),
+        ('II. Universe',
+         '7,196 tickers from financedatabase across 10 regions (US, JP, KR, HK, AU, CA, GB, DE, '
+         'FR, SE). Market-cap floor of US$25M for broad views, US$100M for the financials carve-out. '
+         'Junk filtered out: warrants, preferred series, SPAC units, defunct symbols. '
+         'See per-region tabs for the count of names scored in each market.'),
+        ('III. The Three Measures',
+         '(1) Overall sector-percentile composite — 13 valuation, quality and growth components ranked '
+         'within region and aggregated into a 0–100 score. Higher = better.\n'
+         '(2) Growth-adjusted value — (EV/EBITDA)÷earn-growth and (EV/Sales)÷rev-growth, with a '
+         'gentle low-P/B tilt. Lower = cheaper per unit of growth.\n'
+         '(3) Financials carve-out — PEG-style ratios are meaningless for banks, insurers and holdcos. '
+         'These are scored separately on P/B, P/Tangible-Book, P/E, ROE, ROA, dividend yield and '
+         'earnings growth.'),
+        ('IV. The Durable-Growth Cut',
+         'Raw growth-adjusted ratios are dominated by low-base merger/rebound spikes (Castellum '
+         '+65,383% earnings growth from a prior loss; Mirvac +31,987%). The "durable" filter '
+         'requires growth in the 10–100% band, removing those artifacts while keeping real '
+         'growers like Spigen Korea and Chow Tai Fook in the running.'),
+        ('V.  The Book-Value Tilt',
+         'tilt = 1 − 0.2 × (1 − P/B) ÷ (1 + P/B).  P/B = 0.5 yields 0.933 (mild reward); P/B = 2 '
+         'yields 1.067 (mild penalty). The function saturates at ±20%, so it acts as a '
+         'tilt — not the driver — preventing deep-discount names from getting unbounded credit.'),
+        ('VI. The Financials Carve-Out',
+         'For banks, insurers and holdcos, deposits and reserves dwarf market cap, "sales" is net '
+         'interest income or premiums, and earnings move on reserve releases rather than operations. '
+         'EV/EBITDA-style screens give garbage rankings for these names. They are excluded from PEG '
+         'screens and ranked on capital-appropriate metrics in their own tab.'),
+        ('VII. How to Read Numbers',
+         'Lower-is-better for all ratio columns (P/B, P/E, EV/EBITDA, ev_*_g). Higher-is-better for '
+         'percentile composites (0–100). All market-cap figures are in MILLIONS OF LOCAL CURRENCY '
+         '(JP rows are ¥M, KR rows are ₩M, etc).'),
+        ('VIII. Known Limitations',
+         'Earnings growth above 300% nearly always reflects merger or reserve effects — treat such '
+         'rows as flags. Operating margin sharply negative on a high-revenue-growth name is a '
+         'cash-burning early-stage signal; the screen does not weight cash burn explicitly. '
+         'yfinance forward P/E is often missing on non-US names — this is data unavailability, '
+         'not a screen defect.'),
+        ('IX. Files & Reproducibility',
+         'Cache snapshot lives on origin/cache-snapshot (~18MB tarball, auto-restored on session '
+         'start). Result CSVs are committed to the analysis branch. This workbook regenerates from '
+         'those CSVs via build_workbook.py.'),
     ]
-    row = 3
-    for h, body in notes:
-        if h:
-            ws.cell(row=row, column=1, value=h).font = H1_FONT
-            row += 1
-            cell = ws.cell(row=row, column=1, value=body)
-            cell.font = BODY_FONT
-            cell.alignment = Alignment(wrap_text=True, vertical='top')
-            ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=8)
-            ws.row_dimensions[row].height = 50
+    for label, body in sections:
+        c = ws.cell(row=row, column=1, value=label)
+        c.font = SECTION_FONT
+        c.alignment = ALIGN_LEFT
+        ws.row_dimensions[row].height = 22
+        row += 1
+        # Crimson rule
+        for col in range(1, 11):
+            ws.cell(row=row, column=col).border = BORDER_TOP_RULE
+        ws.row_dimensions[row].height = 4
+        row += 1
+        # Body — merged warm-card with wrap
+        cell = ws.cell(row=row, column=1, value=body)
+        cell.font = BODY_FONT
+        cell.alignment = ALIGN_WRAP
+        cell.fill = CARD_FILL
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=10)
+        # Height proportional to text length
+        lines = max(2, int(len(body) / 110) + body.count('\n') + 2)
+        ws.row_dimensions[row].height = lines * 14
         row += 2
+    _add_footer(ws, row)
     ws.column_dimensions['A'].width = 22
-    for c in 'BCDEFGH':
-        ws.column_dimensions[c].width = 18
+    for c in 'BCDEFGHIJ':
+        ws.column_dimensions[c].width = 14
 
 
 def build_exec_summary(wb, comb, gav, fin):
     ws = wb.create_sheet('Executive Summary')
-    ws.cell(row=1, column=1, value='Best of Each Measure — Per Region').font = TITLE_FONT
-    row = 3
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker='Executive Summary',
+        title='Best of Each Measure, Per Region',
+        deck='Top three names per region across three independent screens — the overall '
+             'sector-percentile composite, durable-growth EV/EBITDA per growth, and the '
+             'financials-specific composite. Use this page to scan; drill into the per-region '
+             'tabs to size.',
+    )
+    row += 1
     gav_dur = prep_growth_adj_view(gav)
     gav_dur = gav_dur[gav_dur['durable']]
     for region in REGIONS:
-        ws.cell(row=row, column=1, value=region).font = H1_FONT
-        row += 1
-        # 3 picks per measure
+        row = _draw_section(ws, f'{region}', row)
         # 1. Overall composite
         sub = comb[comb.region == region].sort_values('composite', ascending=False).head(3)
         sub_disp = sub[['ticker','longName','sector','composite','priceToBook','trailingPE','marketCap_M']].copy()
@@ -287,25 +436,41 @@ def build_exec_summary(wb, comb, gav, fin):
         block = pd.concat([sub_disp, sub2_disp, sub3_disp], ignore_index=True)
         for c in ('longName','sector'):
             if c in block.columns:
-                block[c] = block[c].astype(str).str[:30]
+                block[c] = block[c].astype(str).str[:32]
         headers = ['measure','ticker','longName','sector','composite','priceToBook','trailingPE','marketCap_M']
         row = _write_df(ws, block, headers, start_row=row)
-        row += 1
+        row += 2
     _autosize(ws, ['measure','ticker','longName','sector','composite','priceToBook','trailingPE','marketCap_M'])
+    _add_footer(ws, row)
 
 
 def build_best_of_best(wb, gav, fin, comb, top_n=25):
     ws = wb.create_sheet('Best of Best')
-    title = ('Names That Screen Top-{n} On ≥ 2 Of: Composite, Growth-Adj EBITDA (durable), '
-             'Growth-Adj Sales (durable), Financials').format(n=top_n)
-    ws.cell(row=1, column=1, value=title).font = TITLE_FONT
-    ws.merge_cells('A1:K1')
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker=f'Cross-Validated Watchlist  ·  Top-{top_n} Per Region',
+        title='Best of the Best',
+        deck=f'Names that screen in the top {top_n} on at least two of four independent measures '
+             '(overall composite, durable EV/EBITDA per growth, durable EV/Sales per growth, '
+             'financials composite). Three flags = high conviction; four flags = unanimous. '
+             'Sort by n_screens then by your preferred measure.',
+    )
+    row += 1
     bob = best_of_best(gav, fin, comb, top_n=top_n)
     headers = ['ticker','region','longName','sector','marketCap_M','n_screens','screens_in',
                'composite','ev_ebitda_g_bv','ev_sales_g_bv','fin_composite','priceToBook','trailingPE']
-    row = _write_df(ws, bob, headers, start_row=3)
+    end_row = _write_df(ws, bob, headers, start_row=row)
+    # Highlight rows with 3+ flags
+    for r in range(row + 1, end_row):
+        n_flag_cell = ws.cell(row=r, column=6).value
+        if isinstance(n_flag_cell, (int, float)) and n_flag_cell >= 3:
+            for c in range(1, len(headers) + 1):
+                ws.cell(row=r, column=c).fill = HIGHLIGHT_FILL
+                ws.cell(row=r, column=c).font = BODY_BOLD
     _autosize(ws, headers)
-    ws.freeze_panes = 'D4'
+    ws.freeze_panes = 'D' + str(row + 1)
+    _add_footer(ws, end_row)
 
 
 def _global_top_by(df: pd.DataFrame, sort_col: str, ascending: bool, n: int,
@@ -324,63 +489,97 @@ def _global_top_by(df: pd.DataFrame, sort_col: str, ascending: bool, n: int,
     return out
 
 
+def _build_measure_sheet(wb, name: str, kicker: str, title: str, deck: str,
+                         top_df: pd.DataFrame, headers):
+    ws = wb.create_sheet(name)
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(ws, kicker=kicker, title=title, deck=deck)
+    row += 1
+    end_row = _write_df(ws, top_df, headers, start_row=row)
+    _autosize(ws, headers)
+    ws.freeze_panes = 'D' + str(row + 1)
+    _add_footer(ws, end_row)
+
+
 def build_global_measures(wb, gav, fin, comb):
     gav_dur = prep_growth_adj_view(gav)
     gav_dur = gav_dur[gav_dur['durable']]
 
-    ws = wb.create_sheet('By Measure - Composite')
-    ws.cell(row=1, column=1, value='Top 30 Globally on Overall Composite (sector-percentile, per region)').font = TITLE_FONT
+    # Composite
     top = comb.sort_values('composite', ascending=False).head(30)
+    if 'longName' in top.columns:
+        top['longName'] = top['longName'].astype(str).str[:32]
     headers = [c for c in ['ticker','region','longName','sector','marketCap_M','composite',
                            'priceToBook','trailingPE','forwardPE','enterpriseToEbitda',
                            'net_cash_pct','fcfYield_pct','grossMargins','operatingMargins',
                            'revenueGrowth','earningsGrowth'] if c in top.columns]
+    _build_measure_sheet(wb, 'By Measure · Composite',
+        kicker='Global Top 30  ·  Sector-Percentile Composite',
+        title='Cheapest on Overall Quality-Value Composite',
+        deck='13 valuation, quality and growth components ranked within sector, within region. '
+             'Higher score (0–100) means the name sits in the upper tail of its peer set across '
+             'multiple dimensions simultaneously.',
+        top_df=top, headers=headers)
+
+    # Growth-adj EBITDA
+    top = _global_top_by(gav_dur, 'ev_ebitda_g_bv', True, 30, extra_cols=['_bv_tilt'])
+    _build_measure_sheet(wb, 'By Measure · Growth-Adj',
+        kicker='Global Top 30  ·  Cheapest Per Unit of Earnings Growth',
+        title='EV/EBITDA per Earnings Growth, BV-tilted',
+        deck='(EV / EBITDA) ÷ earnings-growth %, with a low-P/B reward (bounded ±20%). Durable '
+             'cut applied: growth in the 10–100% band. Lower = cheaper per unit of growth.',
+        top_df=top, headers=list(top.columns))
+
+    # Growth-adj Sales
+    top = _global_top_by(gav_dur, 'ev_sales_g_bv', True, 30, extra_cols=['_bv_tilt'])
+    _build_measure_sheet(wb, 'By Measure · Sales-Growth',
+        kicker='Global Top 30  ·  Cheapest Per Unit of Revenue Growth',
+        title='EV/Sales per Revenue Growth, BV-tilted',
+        deck='(EV / Sales) ÷ revenue-growth %, with the same low-P/B reward. EV/Sales is rebuilt '
+             'from P/S × (EV/MktCap) so it is currency-neutral across regions.',
+        top_df=top, headers=list(top.columns))
+
+    # Financials
+    top = fin.sort_values('fin_composite', ascending=False).head(30)
     if 'longName' in top.columns:
         top['longName'] = top['longName'].astype(str).str[:32]
-    _write_df(ws, top, headers, start_row=3)
-    _autosize(ws, headers)
-    ws.freeze_panes = 'D4'
-
-    ws = wb.create_sheet('By Measure - Growth-Adj')
-    ws.cell(row=1, column=1, value='Top 30 Globally on Durable EV/EBITDA/g (BV-tilted)').font = TITLE_FONT
-    top = _global_top_by(gav_dur, 'ev_ebitda_g_bv', True, 30, extra_cols=['_bv_tilt'])
-    headers = list(top.columns)
-    _write_df(ws, top, headers, start_row=3)
-    _autosize(ws, headers)
-    ws.freeze_panes = 'D4'
-
-    ws = wb.create_sheet('By Measure - Sales-Growth')
-    ws.cell(row=1, column=1, value='Top 30 Globally on Durable EV/Sales/g (BV-tilted)').font = TITLE_FONT
-    top = _global_top_by(gav_dur, 'ev_sales_g_bv', True, 30, extra_cols=['_bv_tilt'])
-    headers = list(top.columns)
-    _write_df(ws, top, headers, start_row=3)
-    _autosize(ws, headers)
-    ws.freeze_panes = 'D4'
-
-    ws = wb.create_sheet('By Measure - Financials')
-    ws.cell(row=1, column=1, value='Top 30 Globally on Financials Composite (P/B + P/TBV + P/E + ROE + ROA + Div + Earn-g)').font = TITLE_FONT
-    top = fin.sort_values('fin_composite', ascending=False).head(30)
     headers = [c for c in ['ticker','region','longName','industry','marketCap_M','fin_composite',
                            'priceToBook','priceToTangibleBook','trailingPE','forwardPE',
                            'returnOnEquity','returnOnAssets','dividendYield','earningsGrowth'] if c in top.columns]
-    if 'longName' in top.columns:
-        top['longName'] = top['longName'].astype(str).str[:32]
-    _write_df(ws, top, headers, start_row=3)
-    _autosize(ws, headers)
-    ws.freeze_panes = 'D4'
+    _build_measure_sheet(wb, 'By Measure · Financials',
+        kicker='Global Top 30  ·  Financials Carve-Out',
+        title='Best Banks, Insurers and Holdcos by Capital-Appropriate Metrics',
+        deck='Sector-percentile composite within region across P/B, P/Tangible-Book, P/E (trailing '
+             'and forward), ROE, ROA, dividend yield and earnings growth. PEG-style ratios are '
+             'deliberately not used here.',
+        top_df=top, headers=headers)
 
+
+REGION_FULL_NAME = {
+    'US': 'United States', 'JP': 'Japan', 'KR': 'South Korea', 'HK': 'Hong Kong',
+    'AU': 'Australia', 'CA': 'Canada', 'GB': 'United Kingdom', 'DE': 'Germany',
+    'FR': 'France', 'SE': 'Sweden',
+}
 
 def build_per_region_tabs(wb, gav, fin, comb, per_region):
     gav_dur = prep_growth_adj_view(gav)
     gav_dur = gav_dur[gav_dur['durable']]
     for region in REGIONS:
-        ws = wb.create_sheet(f'Region {region}')
-        ws.cell(row=1, column=1, value=f'{region} — Top picks across all measures').font = TITLE_FONT
-        row = 3
-
-        # Section 1: Overall sector-percentile composite (top 25)
-        ws.cell(row=row, column=1, value='1. Overall sector-percentile composite (top 25 in region)').font = H1_FONT
+        ws = wb.create_sheet(f'Region · {region}')
+        ws.sheet_view.showGridLines = False
+        full = REGION_FULL_NAME.get(region, region)
+        row = _draw_title_block(
+            ws,
+            kicker=f'Region File  ·  {region}',
+            title=f'{full} — Top Picks Across All Measures',
+            deck='Four sections, each ranked to the region\'s own universe: overall composite, '
+                 'durable EV/EBITDA per growth, durable EV/Sales per growth, and the financials '
+                 'carve-out.',
+        )
         row += 1
+
+        # Section I
+        row = _draw_section(ws, 'I.  Overall sector-percentile composite — top 25 in region', row)
         sub = comb[comb.region == region].sort_values('composite', ascending=False).head(25)
         headers = [c for c in ['ticker','longName','sector','marketCap_M','composite',
                                 'priceToBook','trailingPE','forwardPE','enterpriseToEbitda',
@@ -389,11 +588,10 @@ def build_per_region_tabs(wb, gav, fin, comb, per_region):
         if 'longName' in sub.columns:
             sub['longName'] = sub['longName'].astype(str).str[:32]
         row = _write_df(ws, sub, headers, start_row=row)
-        row += 1
+        row += 2
 
-        # Section 2: Growth-adj durable EV/EBITDA/g_bv (top 25)
-        ws.cell(row=row, column=1, value='2. Durable-growth cheapest on EV/EBITDA/g (BV-tilted) — top 25').font = H1_FONT
-        row += 1
+        # Section II
+        row = _draw_section(ws, 'II. Durable-growth cheapest on EV/EBITDA per growth (BV-tilted) — top 25', row)
         sub2 = gav_dur[gav_dur.region == region].dropna(subset=['ev_ebitda_g_bv']).sort_values('ev_ebitda_g_bv').head(25)
         h2 = ['ticker','longName','sector','marketCap_M','ev_ebitda_g_bv','ev_ebitda',
               'priceToBook','rev_g_pct','earn_g_pct','earn_g_q_pct']
@@ -401,11 +599,10 @@ def build_per_region_tabs(wb, gav, fin, comb, per_region):
         if 'longName' in sub2.columns:
             sub2['longName'] = sub2['longName'].astype(str).str[:32]
         row = _write_df(ws, sub2, h2, start_row=row)
-        row += 1
+        row += 2
 
-        # Section 3: Growth-adj durable EV/Sales/g_bv (top 25)
-        ws.cell(row=row, column=1, value='3. Durable-growth cheapest on EV/Sales/g (BV-tilted) — top 25').font = H1_FONT
-        row += 1
+        # Section III
+        row = _draw_section(ws, 'III. Durable-growth cheapest on EV/Sales per growth (BV-tilted) — top 25', row)
         sub3 = gav_dur[gav_dur.region == region].dropna(subset=['ev_sales_g_bv']).sort_values('ev_sales_g_bv').head(25)
         h3 = ['ticker','longName','sector','marketCap_M','ev_sales_g_bv','ev_sales',
               'priceToBook','rev_g_pct','earn_g_pct','earn_g_q_pct']
@@ -413,11 +610,10 @@ def build_per_region_tabs(wb, gav, fin, comb, per_region):
         if 'longName' in sub3.columns:
             sub3['longName'] = sub3['longName'].astype(str).str[:32]
         row = _write_df(ws, sub3, h3, start_row=row)
-        row += 1
+        row += 2
 
-        # Section 4: Financials top 25
-        ws.cell(row=row, column=1, value='4. Financials top 25 (P/B + P/E + ROE + Div composite)').font = H1_FONT
-        row += 1
+        # Section IV
+        row = _draw_section(ws, 'IV. Financials carve-out — top 25 (P/B + P/E + ROE + dividend composite)', row)
         sub4 = fin[fin.region == region].dropna(subset=['fin_composite']).sort_values('fin_composite', ascending=False).head(25)
         h4 = [c for c in ['ticker','longName','industry','marketCap_M','fin_composite',
                           'priceToBook','priceToTangibleBook','trailingPE','forwardPE',
@@ -425,53 +621,71 @@ def build_per_region_tabs(wb, gav, fin, comb, per_region):
         if 'longName' in sub4.columns:
             sub4['longName'] = sub4['longName'].astype(str).str[:32]
         row = _write_df(ws, sub4, h4, start_row=row)
-        ws.freeze_panes = 'A4'
+        _add_footer(ws, row)
 
 
 def build_glossary(wb):
     ws = wb.create_sheet('Glossary')
-    ws.cell(row=1, column=1, value='Column Dictionary').font = TITLE_FONT
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker='Reference',
+        title='Glossary  ·  Column Dictionary',
+        deck='What every column means, in plain English. Use to interpret the screen outputs.',
+    )
+    row += 1
     rows = [
-        ('Column', 'Meaning'),
-        ('ticker', 'Symbol as listed on the primary exchange (with suffix for non-US)'),
-        ('region', 'US, JP, KR, HK, AU, CA, GB, DE, FR, SE'),
-        ('longName', 'Company name'),
-        ('sector', 'GICS-style sector (Technology, Financial Services, Basic Materials, …)'),
-        ('industry', 'Sub-sector (Banks - Regional, Insurance - Life, Asset Management, …)'),
-        ('marketCap_M', 'Market cap in MILLIONS of local currency (JP=¥M, KR=₩M, etc)'),
-        ('composite', 'Overall sector-percentile composite 0-100, higher = better. 13 sub-components, sector-relative within region.'),
-        ('fin_composite', 'Financials-specific composite 0-100, higher = better. 8 sub-components incl. P/B, P/TBV, P/E, ROE, ROA, div yield.'),
-        ('priceToBook', 'P/B ratio (lower = cheaper). Negative = impaired equity.'),
-        ('priceToTangibleBook', 'P/TBV — derived from balance_sheet where cached; falls back to P/B otherwise.'),
-        ('trailingPE', 'Trailing 12-month P/E. NaN for loss-makers.'),
-        ('forwardPE', 'Consensus forward P/E. Often NaN for non-US (yfinance lacks analyst data).'),
+        ('ticker', 'Symbol as listed on the primary exchange (with suffix for non-US listings).'),
+        ('region', 'US, JP, KR, HK, AU, CA, GB, DE, FR, SE.'),
+        ('longName', 'Company name as reported by the data vendor.'),
+        ('sector', 'GICS-style sector — Technology, Financial Services, Basic Materials, etc.'),
+        ('industry', 'Sub-sector — Banks – Regional, Insurance – Life, Asset Management, etc.'),
+        ('marketCap_M', 'Market capitalization in millions of local currency. JP = ¥M, KR = ₩M, etc.'),
+        ('composite', 'Overall sector-percentile composite (0–100, higher is better). Thirteen sub-components, ranked within sector and region.'),
+        ('fin_composite', 'Financials-specific composite (0–100, higher is better). Eight sub-components including P/B, P/TBV, P/E, ROE, ROA and dividend yield.'),
+        ('priceToBook', 'P/B ratio (lower is cheaper). Negative values indicate impaired equity and are excluded from the percentile.'),
+        ('priceToTangibleBook', 'Price to tangible book value, derived from the cached balance sheet where available; falls back to P/B otherwise.'),
+        ('trailingPE', 'Trailing twelve-month price-to-earnings. NaN for loss-makers.'),
+        ('forwardPE', 'Consensus forward P/E. Frequently absent for non-US names — this is a data-coverage gap, not a screen defect.'),
         ('enterpriseToEbitda', 'EV/EBITDA. Suppressed in PEG ratios for financials.'),
-        ('enterpriseToRevenue / ev_sales', 'EV/Sales. Rebuilt from P/S × (EV/MktCap) for currency safety.'),
-        ('ev_ebitda_g', '(EV/EBITDA) / earnings-growth%. NaN for non-growers, negative growth, or financials.'),
-        ('ev_ebitda_g_ltm', 'Same with earningsQuarterlyGrowth — more current; ~35% row coverage.'),
-        ('ev_sales_g', '(EV/Sales) / revenue-growth%. NaN for non-growers/financials.'),
-        ('ev_*_g_bv', '×bv_tilt(P/B). tilt = 1 - 0.2·(1-P/B)/(1+P/B). Saturates ±20%. Rewards low P/B mildly.'),
-        ('durable', '(in the workbook filter) True if growth in 10-100% band — excludes merger/low-base spikes.'),
+        ('enterpriseToRevenue / ev_sales', 'EV/Sales. Rebuilt from P/S × (EV ÷ market cap) so the units are currency-neutral.'),
+        ('ev_ebitda_g', '(EV/EBITDA) ÷ earnings-growth %. NaN for non-growers, negative growth, or financials.'),
+        ('ev_ebitda_g_ltm', 'Same metric using latest-quarter earnings growth — more current; roughly 35% row coverage.'),
+        ('ev_sales_g', '(EV/Sales) ÷ revenue-growth %. NaN for non-growers and financials.'),
+        ('ev_*_g_bv', 'Multiplied by bv_tilt(P/B). tilt = 1 − 0.2 × (1 − P/B) ÷ (1 + P/B). Saturates at ±20%. Rewards low P/B mildly.'),
+        ('durable', 'True if growth sits in the 10–100% band — excludes merger and low-base spikes.'),
         ('rev_g_pct', 'Annual revenue growth %, from yfinance revenueGrowth × 100.'),
-        ('earn_g_pct', 'Annual earnings growth %, from earningsGrowth × 100.'),
-        ('earn_g_q_pct', 'Earnings growth latest-quarter YoY %, from earningsQuarterlyGrowth × 100.'),
-        ('net_cash_pct', '(totalCash - totalDebt) / marketCap × 100. >100 = net-cash > market cap.'),
-        ('fcfYield_pct', 'Free cash flow / marketCap × 100.'),
+        ('earn_g_pct', 'Annual earnings growth %, from yfinance earningsGrowth × 100.'),
+        ('earn_g_q_pct', 'Latest-quarter earnings growth %, from yfinance earningsQuarterlyGrowth × 100.'),
+        ('net_cash_pct', '(Total cash − total debt) ÷ market cap × 100. Values above 100% mean net cash exceeds market cap.'),
+        ('fcfYield_pct', 'Free cash flow ÷ market cap × 100.'),
         ('grossMargins / operatingMargins / profitMargins', 'Decimal margins (0.30 = 30%).'),
         ('returnOnEquity / returnOnAssets', 'Decimal returns. 0.20 = 20%.'),
-        ('dividendYield', 'Decimal forward yield (0.04 = 4%). Often missing on non-US.'),
-        ('n_screens', '(Best of Best) How many top-25 lists this name appears in (max 4).'),
-        ('screens_in', '(Best of Best) Which lists: Composite, Growth-Adj-EBITDA, Growth-Adj-Sales, Financials.'),
+        ('dividendYield', 'Decimal forward yield (0.04 = 4%). Often missing for non-US names.'),
+        ('n_screens', 'Number of top-25 lists in which the name appears (maximum four). Best-of-Best sheet only.'),
+        ('screens_in', 'Which lists the name appears in: Composite, Growth-Adj-EBITDA, Growth-Adj-Sales, Financials.'),
     ]
-    for r, (k, v) in enumerate(rows, 1):
-        c1 = ws.cell(row=r+2, column=1, value=k); c1.font = H2_FONT if r == 1 else BODY_FONT
-        c2 = ws.cell(row=r+2, column=2, value=v); c2.font = H2_FONT if r == 1 else BODY_FONT
-        c2.alignment = Alignment(wrap_text=True, vertical='top')
-        if r == 1:
-            c1.fill = HEAD_FILL; c2.fill = HEAD_FILL
-        ws.row_dimensions[r+2].height = 20 if r != 1 else 18
-    ws.column_dimensions['A'].width = 28
+    # Header
+    for c, h in enumerate(['Column','Meaning'], 1):
+        cell = ws.cell(row=row, column=c, value=h)
+        cell.font = TABLE_HEAD_FT
+        cell.fill = HEAD_FILL
+        cell.alignment = ALIGN_CTR
+    row += 1
+    for i, (k, v) in enumerate(rows):
+        c1 = ws.cell(row=row, column=1, value=k); c1.font = BODY_BOLD
+        c1.alignment = ALIGN_LEFT
+        c2 = ws.cell(row=row, column=2, value=v); c2.font = BODY_FONT
+        c2.alignment = Alignment(wrap_text=True, vertical='top', indent=1)
+        if i % 2 == 0:
+            c1.fill = ALT_FILL; c2.fill = ALT_FILL
+        c1.border = Border(bottom=RULE_THIN)
+        c2.border = Border(bottom=RULE_THIN)
+        ws.row_dimensions[row].height = 24
+        row += 1
+    ws.column_dimensions['A'].width = 30
     ws.column_dimensions['B'].width = 110
+    _add_footer(ws, row)
 
 
 def main():
