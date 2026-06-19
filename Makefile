@@ -1,4 +1,4 @@
-.PHONY: score poll waterfall validate portfolio audit clean help
+.PHONY: score poll waterfall validate portfolio audit clean help inbox-promote
 
 help:
 	@echo "Targets:"
@@ -7,6 +7,9 @@ help:
 	@echo "  poll       — run EDGAR full-text poller for today; writes data/inbox/"
 	@echo "  waterfall  — Monte Carlo across all candidates"
 	@echo "  portfolio  — factor decomposition + correlation + risk-budgeted weights → output/portfolio.md"
+	@echo "  inbox-promote — promote poller hits from data/inbox/ → universe.md (closes the loop)"
+	@echo "  universe   — re-rank universe.md → output/universe_screened.md"
+	@echo "  all        — full chain: poll → spinoff → cluster-buys → inbox-promote → universe → score → waterfall → portfolio → events"
 	@echo "  validate   — schema check only (no output written)"
 	@echo "  clean      — remove generated outputs"
 
@@ -39,7 +42,10 @@ events: audit
 universe: audit
 	python3 src/universe_screen.py
 
-all: audit score waterfall portfolio events universe
+inbox-promote: audit
+	python3 -m src.inbox_promote --days-back 7
+
+all: audit poll spinoff cluster-buys inbox-promote universe score waterfall portfolio events
 	@echo "All pipelines run."
 
 validate:
