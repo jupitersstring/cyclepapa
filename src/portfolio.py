@@ -105,13 +105,18 @@ CLUSTERS = {
 
 
 def load_candidates() -> dict[str, dict]:
+    """Load active candidates. Filter to Tier <=2 by default — skeleton Tier 3
+    YAMLs need primary-doc verification before sizing into the basket."""
     out = {}
     for path in sorted(CANDIDATES.glob("*.yaml")):
         with path.open() as f:
             d = yaml.safe_load(f)
         if d.get("state") == "pass":
             continue
-        out[d["ticker"]] = d
+        tier = d.get("tier")
+        # Tier 1 / 2 only. Tier 3 (skeletons) are tracked but not sized.
+        if tier in (1, 2):
+            out[d["ticker"]] = d
     return out
 
 
@@ -265,6 +270,15 @@ def render() -> str:
             scale = cluster_cap / cluster_post
             for t in members:
                 final_w[t] = haircut_w[t] * scale
+
+    # Global invested cap — prevents 50-name basket from over-allocating.
+    # Default 60% — leaves 40% cash sleeve.
+    GLOBAL_INVESTED_CAP = 0.60
+    pre_cap_total = sum(final_w.values())
+    if pre_cap_total > GLOBAL_INVESTED_CAP and pre_cap_total > 0:
+        scale = GLOBAL_INVESTED_CAP / pre_cap_total
+        for t in final_w:
+            final_w[t] = final_w[t] * scale
 
     total = sum(final_w.values())
     lines.append("| Ticker | Cluster | Raw Kelly | After corr. haircut | After cluster cap | EV×weight | Contribution to portfolio EV× |")

@@ -85,35 +85,35 @@ Renormalize within the cap.
 
 | Ticker | Cluster | Raw Kelly | After corr. haircut | After cluster cap | EV×weight | Contribution to portfolio EV× |
 |---|---|---|---|---|---|---|
-| **241560** | Asian_governance_reform | 10.00% | 5.98% | 5.00% | 5.00% × 1.66 | 8.31 bps |
-| **6305** | Asian_governance_reform | 10.00% | 5.98% | 5.00% | 5.00% × 1.69 | 8.45 bps |
-| **DRX** | UK_sovereign | 10.00% | 10.00% | 5.00% | 5.00% × 2.45 | 12.26 bps |
-| **DSI** | EM_bank | 10.00% | 7.56% | 5.00% | 5.00% × 2.25 | 11.25 bps |
-| **ELUX-B** | Nordic_consumer | 10.00% | 10.00% | 5.00% | 5.00% × 2.32 | 11.60 bps |
-| **ETL** | French_sovereign | 10.00% | 6.74% | 5.00% | 5.00% × 2.35 | 11.75 bps |
-| **FLG** | US_bank_recap | 10.00% | 10.00% | 5.00% | 5.00% × 1.86 | 9.31 bps |
-| **GTCO** | EM_bank | 10.00% | 7.56% | 5.00% | 5.00% × 2.15 | 10.75 bps |
-| **HE** | US_utility | 10.00% | 10.00% | 5.00% | 5.00% × 1.92 | 9.60 bps |
-| **LOCAL** | French_microcap | 10.00% | 10.00% | 5.00% | 5.00% × 4.04 | 20.19 bps |
-| **OHLA** | Spanish_recovery | 10.00% | 6.94% | 5.00% | 5.00% × 2.35 | 11.78 bps |
-| **SAB** | Spanish_recovery | 10.00% | 6.94% | 5.00% | 5.00% × 1.66 | 8.29 bps |
-| **SUNAC** | China_property | 10.00% | 10.00% | 5.00% | 5.00% × 2.10 | 10.50 bps |
-| **SZG** | EU_industrial_policy | 10.00% | 5.22% | 5.00% | 5.00% × 2.51 | 12.56 bps |
-| **TKA** | EU_industrial_policy | 10.00% | 5.22% | 5.00% | 5.00% × 2.34 | 11.69 bps |
-| **WLN** | French_sovereign | 10.00% | 6.74% | 5.00% | 5.00% × 2.62 | 13.10 bps |
-| **YPF** | Argentine_sovereign | 10.00% | 10.00% | 5.00% | 5.00% × 1.92 | 9.60 bps |
-| **TMQ** | US_sovereign_minerals | 10.00% | 4.36% | 4.36% | 4.36% × 2.14 | 9.31 bps |
-| **LAC** | US_sovereign_minerals | 10.00% | 3.96% | 3.96% | 3.96% × 3.10 | 12.28 bps |
-| **MP** | US_sovereign_minerals | 10.00% | 3.42% | 3.42% | 3.42% × 1.90 | 6.49 bps |
-| **UREE** | US_sovereign_minerals | 10.00% | 3.29% | 3.29% | 3.29% × 2.71 | 8.91 bps |
-| **Total** | | | | 100.02% | | **228.0 bps** |
+| **241560** | Asian_governance_reform | 10.00% | 5.98% | 3.00% | 3.00% × 1.66 | 4.99 bps |
+| **6305** | Asian_governance_reform | 10.00% | 5.98% | 3.00% | 3.00% × 1.69 | 5.07 bps |
+| **DRX** | UK_sovereign | 10.00% | 10.00% | 3.00% | 3.00% × 2.45 | 7.36 bps |
+| **DSI** | EM_bank | 10.00% | 7.56% | 3.00% | 3.00% × 2.25 | 6.75 bps |
+| **ELUX-B** | Nordic_consumer | 10.00% | 10.00% | 3.00% | 3.00% × 2.32 | 6.96 bps |
+| **ETL** | French_sovereign | 10.00% | 6.74% | 3.00% | 3.00% × 2.35 | 7.05 bps |
+| **FLG** | US_bank_recap | 10.00% | 10.00% | 3.00% | 3.00% × 1.86 | 5.59 bps |
+| **GTCO** | EM_bank | 10.00% | 7.56% | 3.00% | 3.00% × 2.15 | 6.45 bps |
+| **HE** | US_utility | 10.00% | 10.00% | 3.00% | 3.00% × 1.92 | 5.76 bps |
+| **LOCAL** | French_microcap | 10.00% | 10.00% | 3.00% | 3.00% × 4.04 | 12.11 bps |
+| **OHLA** | Spanish_recovery | 10.00% | 6.94% | 3.00% | 3.00% × 2.35 | 7.06 bps |
+| **SAB** | Spanish_recovery | 10.00% | 6.94% | 3.00% | 3.00% × 1.66 | 4.97 bps |
+| **SUNAC** | China_property | 10.00% | 10.00% | 3.00% | 3.00% × 2.10 | 6.30 bps |
+| **SZG** | EU_industrial_policy | 10.00% | 5.22% | 3.00% | 3.00% × 2.51 | 7.54 bps |
+| **TKA** | EU_industrial_policy | 10.00% | 5.22% | 3.00% | 3.00% × 2.34 | 7.01 bps |
+| **WLN** | French_sovereign | 10.00% | 6.74% | 3.00% | 3.00% × 2.62 | 7.86 bps |
+| **YPF** | Argentine_sovereign | 10.00% | 10.00% | 3.00% | 3.00% × 1.92 | 5.76 bps |
+| **TMQ** | US_sovereign_minerals | 10.00% | 4.36% | 2.62% | 2.62% × 2.14 | 5.58 bps |
+| **LAC** | US_sovereign_minerals | 10.00% | 3.96% | 2.38% | 2.38% × 3.10 | 7.37 bps |
+| **MP** | US_sovereign_minerals | 10.00% | 3.42% | 2.05% | 2.05% × 1.90 | 3.89 bps |
+| **UREE** | US_sovereign_minerals | 10.00% | 3.29% | 1.97% | 1.97% × 2.71 | 5.35 bps |
+| **Total** | | | | 60.00% | | **136.8 bps** |
 
-Cash remainder: **-0.02%**
+Cash remainder: **40.00%**
 
 ## Interpretation
 
-- Total invested: 100.02% of NAV across 21 active names
-- Cash: -0.02% (a feature, not a bug — Kelly haircuts force humility)
+- Total invested: 60.00% of NAV across 21 active names
+- Cash: 40.00% (a feature, not a bug — Kelly haircuts force humility)
 - Expected portfolio multiple on invested capital: 2.28×
 - Dominant factor concentration risk: the US sovereign-minerals cluster
   carries the highest raw-Kelly sum; cluster cap is the binding constraint.
