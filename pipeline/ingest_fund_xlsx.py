@@ -30,6 +30,8 @@ SECTION = {
 }
 
 TICKER_RE = re.compile(r'^([A-Z][A-Z0-9]{0,5}(?:\.[A-Z]{1,3})?)$')
+JP_TICKER_RE = re.compile(r"^(\d{4})(?:\s*(?:JT|JP|TYO|/)?\s+|[\s/]\s*)([A-Z][\w &/.,'-]{1,60})")
+INTL_RE = re.compile(r"^([A-Z][A-Z0-9]{0,5}(?:\.[A-Z]{1,3}|\s+[A-Z]{2})?)(?:\s|$)")
 # Junk tokens that pattern-match like tickers — extend as the data exposes more
 NOT_TICKERS = {"NEW","ADD","CIK","AUM","RAUM","ADV","SEC","FDA","CEO","CFO","COO","CIO","CMO",
                "EU","US","UK","HK","TX","NY","CA","Q1","Q2","Q3","Q4","FY","YTD","TTM",
@@ -119,16 +121,23 @@ def run():
                 section = sec
                 continue
 
-            # Try to extract a ticker from the row
+            # Try to extract a ticker from the row (US, intl, JP)
             tkr = None; company = None
             for cell in cells:
                 if not cell: continue
-                first = cell.split()[0] if cell.split() else ""
-                m = TICKER_RE.match(first)
-                if m and m.group(1) not in NOT_TICKERS and len(m.group(1)) >= 2:
-                    tkr = m.group(1)
-                    if " " in cell: company = " ".join(cell.split()[1:])[:80]
-                    break
+                # Japanese 4-digit first
+                jm = JP_TICKER_RE.match(cell)
+                if jm:
+                    tkr = f"{jm.group(1)}.T"; company = jm.group(2).strip()[:60]; break
+                # US/intl with exchange suffix
+                im = INTL_RE.match(cell)
+                if im and im.group(1) not in NOT_TICKERS and 2 <= len(im.group(1).rstrip('.- ')) <= 8:
+                    cand = im.group(1).strip(".- ").replace(" ", ".")
+                    if cand not in NOT_TICKERS:
+                        tkr = cand
+                        if len(cell) > len(im.group(1)) + 1:
+                            company = cell[len(im.group(1)):].strip(" |/-:()")[:80]
+                        break
             if not tkr:
                 continue
 

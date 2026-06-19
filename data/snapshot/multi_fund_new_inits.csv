@@ -1,0 +1,25 @@
+ticker,n_funds_initiating,sum_dollar_m,funds
+AMZN,3,"D1 Capital Partners LP (Daniel Sundheim), Polar Asset Management Partners (Paul Sabourin, Toronto), Viking Global Investors LP (Andreas Halvorsen)",24
+META,3,"Hound Partners LLC (Jonathan Auerbach), Pershing Square Capital Management, Polen Capital Management LLC",13
+PLTR,3,"Hound Partners LLC (Jonathan Auerbach), Polar Asset Management Partners (Paul Sabourin, Toronto), Scion Asset Management LLC / Michael Burry",6
+NVDA,2,"Scion Asset Management LLC / Michael Burry, Whitebox Advisors",23
+SPOT,2,"D1 Capital Partners LP (Daniel Sundheim), RV Capital / Business Owner Fund (Robert Vinall)",5
+LLYVK,2,"Corvex Management, GAMCO Investors (Mario Gabelli)",2
+REZI,2,"GoldenTree Asset Management, Sachem Head Capital Management",4
+ACN,2,"Glenview Capital Management, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP)",3
+LPX,2,"Scopia Capital Management, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",3
+DASH,2,"Lone Pine Capital LLC (Stephen Mandel), Scopia Capital Management",3
+RAPT,2,"Caligan Partners LP, Polygon Investment Partners",3
+MSFT,2,"Lansdowne Partners, Pzena Investment Management",15
+GOOGL,2,"Egerton Capital Ltd, Viking Global Investors LP (Andreas Halvorsen)",13
+EXAS,2,"Hudson Bay Capital Management LP, Pentwater Capital Management",3
+RNA,2,"Magnetar Capital LLC, Pentwater Capital Management",2
+EQT,2,"Sprott Inc / Sprott Asset Management USA / Sprott US Holdings (Rick Rule, Whitney George), Voss Capital",2
+RHI,2,"Greenhaven Associates Inc / Edgar Wachenheim III, Third Avenue Management",2
+CMA,2,"Magnetar Capital LLC, Whitebox Advisors",2
+COIN,2,"Radcliffe Capital Management (Steve Katznelson, Bala Cynwyd PA), Soros Fund Management LLC",4
+WLTH,2,"Tiger Global Management LLC (Chase Coleman), Whale Rock Capital Management (Alex Sacerdote)",2
+VMC,2,"Egerton Capital Ltd, Lone Pine Capital LLC (Stephen Mandel)",2
+APLS,2,"Glazer Capital LLC (Paul Glazer / Mark Ort), RTW Investments LP",2
+TERN,2,"Avoro Capital Advisors LLC (formerly venBio Select Advisor), Glazer Capital LLC (Paul Glazer / Mark Ort)",2
+MICC,2,"First Eagle Investment Management LLC, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",2

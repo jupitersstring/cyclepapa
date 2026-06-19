@@ -1,0 +1,89 @@
+ticker,n_funds,max_pct,flags,funds,narratives
+AMZN,24,"Baupost Group LLC, Bridgewater Associates LP (Ray Dalio), Citadel Advisors LLC (Ken Griffin), Claar Advisors (Gary Claar, ex-JANA), D1 Capital Partners LP (Daniel Sundheim), Duquesne Family Office, Egerton Capital Ltd, Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Glenview Capital Management, Gotham Asset Management LLC / Joel Greenblatt (+14 more)",92,5,24
+NVDA,23,"AQR Capital Management LLC (Cliff Asness), Brevan Howard Capital Management LP (Alan Howard), Bridgewater Associates LP (Ray Dalio), Caxton Associates LP (Bruce Kovner / Andrew Law), Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Gotham Asset Management LLC / Joel Greenblatt, Hound Partners LLC (Jonathan Auerbach), Iconiq Capital LLC, Light Street Capital Management (Glen Kacher), Marshall Wace LLP (+13 more)",61,2,24
+SPY,17,"Balyasny Asset Management LP (Dmitry Balyasny), Bridgewater Associates LP (Ray Dalio), Brigade Capital Management, Carronade Capital Management LP, Davidson Kempner Capital Management, Edenbrook Capital (Jonathan Brolin), Element Capital Management LP (Jeffrey Talpins), Gotham Asset Management LLC / Joel Greenblatt, JCP Investment Management LLC, Marathon Asset Management (+7 more)",67,5,17
+MSFT,15,"Appaloosa Management LP, Boyar Value Group (Mark & Jonathan Boyar), Caxton Associates LP (Bruce Kovner / Andrew Law), Claar Advisors (Gary Claar, ex-JANA), Egerton Capital Ltd, Hudson Bay Capital Management LP, Lansdowne Partners, Marshall Wace LLP, Owl Creek Asset Management, Pzena Investment Management (+5 more)",81,2,16
+META,13,"Abrams Capital Management LP, Appaloosa Management LP, Balyasny Asset Management LP (Dmitry Balyasny), Citadel Advisors LLC (Ken Griffin), Davis Selected Advisers LP (Chris Davis), Element Capital Management LP (Jeffrey Talpins), Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Hound Partners LLC (Jonathan Auerbach), Numantia Patrimonio Global (Emérito Quintana), Pershing Square Capital Management (+3 more)",62.16,5,9
+GOOGL,13,"Abrams Capital Management LP, Bandera Partners, Berkshire Hathaway, Boyar Value Group (Mark & Jonathan Boyar), Citadel Advisors LLC (Ken Griffin), Davis Selected Advisers LP (Chris Davis), Duquesne Family Office, Egerton Capital Ltd, Gotham Asset Management LLC / Joel Greenblatt, Iconiq Capital LLC (+3 more)",26,3,6
+QQQ,11,"Balyasny Asset Management LP (Dmitry Balyasny), Brevan Howard Capital Management LP (Alan Howard), Corvex Management, Davidson Kempner Capital Management, Edenbrook Capital (Jonathan Brolin), Highbridge Capital, Moore Capital Management LP (Louis Bacon), Owl Creek Asset Management, Polar Asset Management Partners (Paul Sabourin, Toronto), Spruce Point Capital Management LLC (+1 more)",47.41,3,6
+BABA,8,"Brevan Howard Capital Management LP (Alan Howard), Davidson Kempner Capital Management, Highbridge Capital, Hudson Bay Capital Management LP, Saba Capital Management, ShawSpring Partners (Dennis Hong), Third Point LLC, Whitebox Advisors",23.24,0,6
+AAPL,7,"Ancora Advisors / Ancora Holdings, Balyasny Asset Management LP (Dmitry Balyasny), Brevan Howard Capital Management LP (Alan Howard), ExodusPoint Capital Management LP (Michael Gelband), Gotham Asset Management LLC / Joel Greenblatt, Millennium Management LLC (Israel Englander), Saba Capital Management",60,0,9
+IEF,7,"Carronade Capital Management LP, Claar Advisors (Gary Claar, ex-JANA), Davidson Kempner Capital Management, Knighthead Capital Management, Marshall Wace LLP, Moore Capital Management LP (Louis Bacon), Owl Creek Asset Management",54,2,8
+IVV,7,"Balyasny Asset Management LP (Dmitry Balyasny), Bridgewater Associates LP (Ray Dalio), GoldenTree Asset Management, Gotham Asset Management LLC / Joel Greenblatt, Karpus Investment Management (Pittsford NY; City of London subsidiary), Schonfeld Strategic Advisors LLC, Tudor Investment Corp (Paul Tudor Jones II)",38.52,1,5
+TSLA,7,"Capricorn Investment Group LLC (Ion Yadigaroglu / Jeff Skoll FO), Citadel Advisors LLC (Ken Griffin), Hudson Bay Capital Management LP, Numantia Patrimonio Global (Emérito Quintana), Polar Asset Management Partners (Paul Sabourin, Toronto), Renaissance Technologies LLC, Saba Capital Management",7.61,0,6
+COF,7,"Brave Warrior Advisors LLC (Glenn Greenberg), CAS Investment Partners (Cliff Sosin), Davis Selected Advisers LP (Chris Davis), Egerton Capital Ltd, GoldenTree Asset Management, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP), Sessa Capital (John Petry)",7.15,1,4
+IWM,6,"Armistice Capital LLC, Brevan Howard Capital Management LP (Alan Howard), Impactive Capital (Lauren Taylor Wolfe / Christian Asmar), Irenic Capital Management, Millennium Management LLC (Israel Englander), Owl Creek Asset Management",82,0,7
+PLTR,6,"Hound Partners LLC (Jonathan Auerbach), Hudson Bay Capital Management LP, Owl Creek Asset Management, Polar Asset Management Partners (Paul Sabourin, Toronto), Renaissance Technologies LLC, Scion Asset Management LLC / Michael Burry",80.3,5,3
+AVGO,6,"Citadel Advisors LLC (Ken Griffin), ExodusPoint Capital Management LP (Michael Gelband), Light Street Capital Management (Glen Kacher), Lone Pine Capital LLC (Stephen Mandel), Point72 Asset Management LP, Polen Capital Management LLC",80,1,7
+PCG,6,"King Street Capital Management, MILFAM LLC / Neil Subin (Lloyd Miller III estate), Owl Creek Asset Management, Sessa Capital (John Petry), Silver Point Capital, Soros Fund Management LLC (George/Robert/Alex Soros)",60,0,5
+TSM,6,"Appaloosa Management LP, Aubrey Capital Management (Andrew Dalrymple), Lansdowne Partners, Point72 Asset Management LP, Soros Fund Management LLC, Viking Global Investors LP (Andreas Halvorsen)",48.2,0,7
+NFLX,6,"Coatue Management LLC (Philippe Laffont), Element Capital Management LP (Jeffrey Talpins), Light Street Capital Management (Glen Kacher), Renaissance Technologies LLC, Tiger Global Management LLC (Chase Coleman), Voloridge Investment Management LLC",21,2,6
+IBIT,5,"Brevan Howard Capital Management LP (Alan Howard), Edenbrook Capital (Jonathan Brolin), Marathon Asset Management, Schonfeld Strategic Advisors LLC, Weiss Asset Management (Boston)",88,2,4
+CVNA,5,"CAS Investment Partners (Cliff Sosin), RV Capital / Business Owner Fund (Robert Vinall), Renaissance Technologies LLC, Sachem Head Capital Management, Saga Partners (Joe Frankenfield)",81.67,1,3
+SE,5,"Davis Selected Advisers LP (Chris Davis), Duquesne Family Office, Eminence Capital LP, Hound Partners LLC (Jonathan Auerbach), Tiger Global Management LLC (Chase Coleman)",78,0,6
+WBD,5,"Caxton Associates LP (Bruce Kovner / Andrew Law), Magnetar Capital LLC, Pentwater Capital Management, Sachem Head Capital Management, Sessa Capital (John Petry)",70,2,5
+CPNG,5,"Abrams Capital Management LP, Duquesne Family Office, Eminence Capital LP, ShawSpring Partners (Dennis Hong), Tiger Global Management LLC (Chase Coleman)",66,1,4
+CRH,5,"Cevian Capital, Cruiser Capital (Keith Rosenbloom), Findlay Park Partners (Kingsley/Findlay), Lansdowne Partners, Third Point LLC",53.2,0,5
+MU,5,"Appaloosa Management LP, Bridgewater Associates LP (Ray Dalio), Discovery Capital Management LLC / CT (Rob Citrone), Point72 Asset Management LP, Renaissance Technologies LLC",22.9,1,7
+MCO,5,"AKO Capital, Berkshire Hathaway, Egerton Capital Ltd, Pelham Capital Management, The Children's Investment Fund Management (TCI, Chris Hohn)",12.67,2,1
+MSTR,5,"Aristeia Capital, Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Numantia Patrimonio Global (Emérito Quintana), Saba Capital Management, Weiss Asset Management (Boston)",5.7,0,0
+SPOT,5,"Coatue Management LLC (Philippe Laffont), D1 Capital Partners LP (Daniel Sundheim), Numantia Patrimonio Global (Emérito Quintana), RV Capital / Business Owner Fund (Robert Vinall), Third Point LLC",2.5,2,1
+GTLS,4,"Magnetar Capital LLC, Westchester Capital / MERFX (Behren / Shannon), Whitebox Advisors, Yakira Capital",76,1,2
+HYG,4,"Brevan Howard Capital Management LP (Alan Howard), Highbridge Capital, Knighthead Capital Management, Periscope Capital Inc (Jamie Wise / Stephen Church / Robert Visca, Toronto)",68,0,3
+TEVA,4,"Additional manager covered: Cobas Asset Management (Francisco García Paramés), Glenview Capital Management, Mangrove Partners, Nantahala Capital Management",64.6,0,2
+RKT,4,"Omega Family Office (Omega Advisors), Third Point LLC, ValueAct Capital, Westchester Capital / MERFX (Behren / Shannon)",55.07,0,5
+SATS,4,"Hudson Bay Capital Management LP, Icahn Capital / Carl Icahn, Sachem Head Capital Management, Whitebox Advisors",46.4,2,3
+MGNI,4,"Choice Equities Fund (Mitchell Scott), Edenbrook Capital (Jonathan Brolin), Radcliffe Capital Management (Steve Katznelson, Bala Cynwyd PA), Roumell Asset Management",45,0,3
+GOOG,4,"Appaloosa Management LP, Davis Selected Advisers LP (Chris Davis), Polar Asset Management Partners (Paul Sabourin, Toronto), Schonfeld Strategic Advisors LLC",41.49,0,4
+CRM,4,"Eminence Capital LP, First Eagle Investment Management LLC, RV Capital / Business Owner Fund (Robert Vinall), ValueAct Capital",41.27,0,6
+APG,4,"ADW Capital Management (Adam Wyden), Cruiser Capital (Keith Rosenbloom), Pelham Capital Management, Third Point LLC",23.34,0,2
+CROX,4,"Choice Equities Fund (Mitchell Scott), Himalaya Capital Management, Punch Card Capital / Norbert Lou (Punch Card Management L.P.), Voss Capital",16.9,2,0
+REZI,4,"Alta Fox Capital Management, GoldenTree Asset Management, Permian Investment Partners (Duran/Hendrickson/Swain), Sachem Head Capital Management",9.57,2,2
+SHC,4,"Irenic Capital Management, Sculptor Capital Management, Sessa Capital (John Petry), Voss Capital",7,0,3
+ICE,4,"Burgundy Asset Management (Tony Arrell, Toronto), Horizon Kinetics Asset Management LLC / Murray Stahl, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP), Viking Global Investors LP (Andreas Halvorsen)",4.34,1,0
+COIN,4,"Radcliffe Capital Management (Steve Katznelson, Bala Cynwyd PA), Soros Fund Management LLC, Weiss Asset Management (Boston), Whitebox Advisors",,2,1
+VOO,3,"Karpus Investment Management (Pittsford NY; City of London subsidiary), Marshall Wace LLP, Tiger Management LLC",100,1,2
+ACN,3,"Glenview Capital Management, Pzena Investment Management, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP)",83,2,1
+APGE,3,"Avoro Capital Advisors LLC (formerly venBio Select Advisor), Perceptive Advisors LLC, RTW Investments LP",72,1,3
+TLT,3,"Edenbrook Capital (Jonathan Brolin), ExodusPoint Capital Management LP (Michael Gelband), Greenhaven Road Investment Management LP",61.1,1,2
+RAPT,3,"Caligan Partners LP, Polygon Investment Partners, Redmile Group LLC",60,2,2
+JD,3,"Marathon Asset Management, Numantia Patrimonio Global (Emérito Quintana), Soros Fund Management LLC (George/Robert/Alex Soros)",50,0,2
+BN,3,"Lone Pine Capital LLC (Stephen Mandel), Pershing Square Capital Management, Third Point LLC",49.69,0,5
+HHH,3,"JCP Investment Management LLC, Numantia Patrimonio Global (Emérito Quintana), Pershing Square Capital Management",47.74,3,2
+NOW,3,"Iconiq Capital LLC, Praesidium Investment Management, Tiger Global Management LLC (Chase Coleman)",42,1,2
+V,3,"Egerton Capital Ltd, Point72 Asset Management LP, Viking Global Investors LP (Andreas Halvorsen)",38,0,4
+NCLH,3,"Ariel Investments LLC (John Rogers), GoldenTree Asset Management, Hound Partners LLC (Jonathan Auerbach)",38,0,5
+BRK.A,3,"Bulldog Investors LLC (Phillip Goldstein, Andrew Dakos, Steven Samuels, Rajeev Das), Punch Card Capital / Norbert Lou (Punch Card Management L.P.), Semper Augustus (Chris Bloomstran)",36.38,1,1
+HUM,3,"Owl Creek Asset Management, Pzena Investment Management, Sessa Capital (John Petry)",34.35,0,2
+BLDR,3,"Bonhoeffer Fund (Keith Smith, Willow Oak), Brave Warrior Advisors LLC (Glenn Greenberg), Coliseum Capital (Adam Gray, Christopher Shackelton)",31.78,0,2
+MDGL,3,"Armistice Capital LLC, Paulson & Co Inc, RTW Investments LP",30.48,0,4
+KVUE,3,"Magnetar Capital LLC, Pentwater Capital Management, Starboard Value LP",30.47,2,4
+LPX,3,"Eminence Capital LP, Scopia Capital Management, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",29,2,3
+LQDA,3,"Caligan Partners LP, Findell Capital Management (Brian Finn), Rangeley Capital / YAVF (Andrew Walker / Chris DeMuth)",28.3,1,2
+PRAX,3,"Deerfield Management Company, Perceptive Advisors LLC, Polygon Investment Partners",27,1,3
+BRK.B,3,"Fairholme Capital Management LLC / Bruce Berkowitz, Findlay Park Partners (Kingsley/Findlay), Semper Augustus (Chris Bloomstran)",26,0,2
+WTW,3,"Abrams Capital Management LP, Baupost Group LLC, Burgundy Asset Management (Tony Arrell, Toronto)",24.7,0,2
+NKTR,3,"22NW LP / 22NW Fund, BVF Partners L.P., Polygon Investment Partners",22,1,3
+CGON,3,"Decheng Capital Management, EcoR1 Capital LLC, Foresite Capital",16.3,1,2
+ABG,3,"Abrams Capital Management LP, Bonhoeffer Fund (Keith Smith, Willow Oak), Impactive Capital (Lauren Taylor Wolfe / Christian Asmar)",15.2,0,1
+CNX,3,"MFN Partners Management, Shaolin Capital, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",14,0,0
+BILL,3,"Barington Capital Group, Mangrove Partners, Soros Fund Management LLC (George/Robert/Alex Soros)",13.96,1,6
+HRI,3,"Coliseum Capital (Adam Gray, Christopher Shackelton), Engine No. 1 LLC, GAMCO Investors (Mario Gabelli)",13.6,2,1
+KT,3,"Indus Capital Partners (Smith/Gill/Pinkel), Kopernik Global Investors LLC, Pzena Investment Management",13.6,1,2
+ALKT,3,"Irenic Capital Management, JANA Partners, Praesidium Investment Management",13,1,4
+MGM,3,"Davis Selected Advisers LP (Chris Davis), GoldenTree Asset Management, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",13,0,3
+CMCSA,3,"Carronade Capital Management LP, GoldenTree Asset Management, Kopernik Global Investors LLC",12.7,2,2
+SLM,3,"Brave Warrior Advisors LLC (Glenn Greenberg), Impactive Capital (Lauren Taylor Wolfe / Christian Asmar), Scion Asset Management LLC / Michael Burry",12.1,0,2
+EA,3,"Pentwater Capital Management, Soros Fund Management LLC (George/Robert/Alex Soros), Voloridge Investment Management LLC",10.73,0,5
+CVX,3,"Berkshire Hathaway, ExodusPoint Capital Management LP (Michael Gelband), Solus Alternative Asset Management (Chris Pucillo)",8.8,0,3
+UNP,3,"Baupost Group LLC, Eminence Capital LP, Third Point LLC",8.76,1,4
+FISV,3,"Baupost Group LLC, JANA Partners, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",7.84,2,1
+KMB,3,"Pentwater Capital Management, Sessa Capital (John Petry), Taconic Capital Advisors",7.8,3,1
+CYBR,3,"Hudson Bay Capital Management LP, Pentwater Capital Management, Westchester Capital / MERFX (Behren / Shannon)",7.33,0,2
+LITE,3,"Point72 Asset Management LP, Sculptor Capital Management, Whitebox Advisors",7.2,2,1
+CELC,3,"Avoro Capital Advisors LLC (formerly venBio Select Advisor), Deerfield Management Company, Perceptive Advisors LLC",6,1,3
+SEG,3,"Gate City Capital (Michael Melby), Plural Investing (Chris Waller), Rangeley Capital / YAVF (Andrew Walker / Chris DeMuth)",5.8,1,2
+SLB,3,"Gotham Asset Management LLC / Joel Greenblatt, Greenhaven Associates Inc / Edgar Wachenheim III, azValor Asset Management (Guzmán de Lázaro & Bernad)",4.46,1,1
+EXAS,3,"Hudson Bay Capital Management LP, Pentwater Capital Management, Perceptive Advisors LLC",3.9,3,2
+SOLS,3,"AQR Capital Management LLC (Cliff Asness), Gotham Asset Management LLC / Joel Greenblatt, Sessa Capital (John Petry)",3.9,1,0
+DASH,3,"Coatue Management LLC (Philippe Laffont), Lone Pine Capital LLC (Stephen Mandel), Scopia Capital Management",,2,1
