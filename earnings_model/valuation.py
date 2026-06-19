@@ -184,8 +184,10 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
                               growth_cap: float = 0.50, growth_floor: float = 0.02) -> pd.DataFrame:
     """Growth-adjusted (PEG-style) valuation ratios. LOWER = cheaper per unit of
     growth. Inputs are currency-neutral (ratios / % growth) so they compare across
-    markets. NaN for non-growers / non-positive multiples (a PEG only means
-    something when both the multiple and the growth are positive).
+    markets. Defined for ~every name with a valuation multiple: growth is floored
+    (below) so non-/negative-growers read *expensive* rather than NaN. The
+    EBITDA-based ratios are NaN only for loss-makers (no honest EBITDA multiple);
+    the sales-based ones (P/S fallback) then cover those.
 
     Two growth bases for each ratio:
       * ``ev_ebitda_g`` / ``ev_sales_g``         — latest **annual** (FY YoY) growth.
@@ -214,8 +216,12 @@ def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2,
     # rate before giving up.
     lo, hi = growth_floor * 100.0, growth_cap * 100.0
     clipg = lambda x: (x * 100.0).clip(lower=lo, upper=hi)
-    eb_g = clipg(num("ebitda_growth").where(num("ebitda_growth").notna(), num("ebitda_q_yoy")))
-    rev_g = clipg(num("revenue_growth").where(num("revenue_growth").notna(), num("revenue_q_yoy")))
+    # Primary ratios: annual growth, falling back to LTM (quarter), and finally to
+    # the floor when NO growth can be measured at all — so a name with a valuation
+    # multiple always gets a value (a no-growth-history name reads expensive, never
+    # NaN). The _ltm variants stay strictly quarterly (sparser, genuinely near-term).
+    eb_g = clipg(num("ebitda_growth").where(num("ebitda_growth").notna(), num("ebitda_q_yoy"))).fillna(lo)
+    rev_g = clipg(num("revenue_growth").where(num("revenue_growth").notna(), num("revenue_q_yoy"))).fillna(lo)
     eb_gq, rev_gq = clipg(num("ebitda_q_yoy")), clipg(num("revenue_q_yoy"))
 
     ev_sales = (psales * (evv / mc)).where((psales > 0) & (mc > 0) & (evv > 0))
