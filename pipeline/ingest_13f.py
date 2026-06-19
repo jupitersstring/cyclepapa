@@ -178,18 +178,17 @@ def find_infotable(cik, accession):
     acc = accession.replace("-", "")
     data = curl(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/")
     if not data: return None
-    matches = re.findall(r'href="([^"]+\.xml)"', data.decode("utf-8", errors="ignore"))
-    # Drop noisy hrefs that aren't in our filing dir
-    relevant = [m for m in matches if str(int(cik)) in m and acc in m]
+    matches = re.findall(r'href="([^"]+\.xml)"', data.decode("utf-8", errors="ignore"), re.I)
+    # Drop noisy hrefs that aren't in our filing dir, and exclude xslForm paths
+    # (those are the XSL-rendered HTML versions, not raw data)
+    relevant = [m for m in matches if str(int(cik)) in m and acc in m
+                and "xslform" not in m.lower()]
     for m in relevant:
         n = m.split("/")[-1].lower()
         if "infotable" in n or "informationtable" in n: return m
-    # Second pass: any XML that isn't primary_doc / form13fInfoTable cover
     for m in relevant:
         n = m.split("/")[-1].lower()
-        if n in ("primary_doc.xml",): continue
-        # XSL wrappers (xslform13fhrxxx-...xml) — these wrap the data, skip
-        if n.startswith("xslform"): continue
+        if n == "primary_doc.xml": continue
         return m
     return f"/Archives/edgar/data/{int(cik)}/{acc}/infotable.xml"
 
