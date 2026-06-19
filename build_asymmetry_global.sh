@@ -111,6 +111,18 @@ declare -A SRC=(
     # Widen-phase: China + Romania
     [cn_yartseva.csv]=CN
     [ro_yartseva.csv]=RO
+
+    # NEW US+EU gap-fill from --tickers-file scrape (171 net new names)
+    [at_gap_yartseva.csv]=AT
+    [be_gap_yartseva.csv]=BE
+    [ie_gap_yartseva.csv]=IE
+    [nl_gap_yartseva.csv]=NL
+    [ch_gap_yartseva.csv]=CH
+    [it_gap_yartseva.csv]=IT
+    [fr_gap_yartseva.csv]=FR
+    [de_gap_yartseva.csv]=DE
+    [uk_gap_yartseva.csv]=UK
+    [us_gap_yartseva.csv]=US
 )
 
 ARGS=()
