@@ -180,19 +180,23 @@ def add_gap_score(
     return out
 
 
-def add_growth_adjusted_value(df: pd.DataFrame) -> pd.DataFrame:
+def add_growth_adjusted_value(df: pd.DataFrame, bv_weight: float = 0.2) -> pd.DataFrame:
     """Growth-adjusted (PEG-style) valuation ratios. LOWER = cheaper per unit of
-    growth. All inputs are currency-neutral (ratios / % growth), so they compare
-    across markets. Undefined (NaN) for non-growers or non-positive multiples —
-    a PEG only means something when both the multiple and the growth are positive.
+    growth. Inputs are currency-neutral (ratios / % growth) so they compare across
+    markets. NaN for non-growers / non-positive multiples (a PEG only means
+    something when both the multiple and the growth are positive).
 
-    * ``ev_ebitda_g``   = (EV/EBITDA) / EBITDA-growth%  — price of structural,
-      debt-neutral operating cash flow relative to its near-term growth.
-    * ``ev_sales_g``    = (EV/Sales) / revenue-growth%  — price of top-line/market
-      share relative to revenue growth (margin/depreciation-agnostic).
-    * ``*_pb`` variants  = the above x (1/priceToBook) — i.e. divided by P/B, a
-      capital-efficiency tilt (favours asset-light / high-ROE names among the
-      growth-cheap; an asset-heavy low-P/B name scores higher = less preferred).
+    Two growth bases for each ratio:
+      * ``ev_ebitda_g`` / ``ev_sales_g``         — latest **annual** (FY YoY) growth.
+      * ``ev_ebitda_g_ltm`` / ``ev_sales_g_ltm`` — **LTM / near-term** (latest-quarter
+        YoY) growth; sparser (~40% have quarterly data) but more current.
+
+    Book-value tilt (``*_bv``): a gentle, bounded, *diminishing* reward for LOW
+    price-to-book — ``tilt = 1 - w·(1-P/B)/(1+P/B)`` ∈ [1-w, 1+w], neutral at P/B=1.
+    A low-P/B (asset-cheap) name gets a small discount that saturates as P/B→0 (so
+    deep-discount names don't get unbounded credit); a high-P/B name gets a mild
+    uplift. ``w`` (=``bv_weight``, default 0.2) keeps it a *minor* tilt, not the
+    driver. Applied to the annual-growth ratios.
 
     ``ev_sales`` is reconstructed from consistent yfinance fields
     (priceToSales x enterpriseValue/marketCap) to avoid currency mismatches.
@@ -201,17 +205,22 @@ def add_growth_adjusted_value(df: pd.DataFrame) -> pd.DataFrame:
     num = lambda c: pd.to_numeric(out.get(c), errors="coerce")
     ev_ebitda, psales = num("enterpriseToEbitda"), num("priceToSalesTrailing12Months")
     evv, mc, pb = num("enterpriseValue"), num("marketCap"), num("priceToBook")
-    eb_g, rev_g = num("ebitda_growth") * 100.0, num("revenue_growth") * 100.0
+    eb_g, rev_g = num("ebitda_growth") * 100.0, num("revenue_growth") * 100.0       # annual YoY %
+    eb_gq, rev_gq = num("ebitda_q_yoy") * 100.0, num("revenue_q_yoy") * 100.0       # latest-qtr YoY %
 
     ev_sales = (psales * (evv / mc)).where((psales > 0) & (mc > 0) & (evv > 0))
     out["ev_sales"] = ev_sales
-    eeg = ev_ebitda.where(ev_ebitda > 0) / eb_g.where(eb_g > 0)
-    esg = ev_sales / rev_g.where(rev_g > 0)
-    out["ev_ebitda_g"] = eeg
-    out["ev_sales_g"] = esg
-    pbpos = pb.where(pb > 0)
-    out["ev_ebitda_g_pb"] = eeg / pbpos      # x (1/P/B)
-    out["ev_sales_g_pb"] = esg / pbpos
+    eve = ev_ebitda.where(ev_ebitda > 0)
+    out["ev_ebitda_g"] = eve / eb_g.where(eb_g > 0)
+    out["ev_ebitda_g_ltm"] = eve / eb_gq.where(eb_gq > 0)
+    out["ev_sales_g"] = ev_sales / rev_g.where(rev_g > 0)
+    out["ev_sales_g_ltm"] = ev_sales / rev_gq.where(rev_gq > 0)
+
+    # Gentle, bounded, diminishing reward for LOW price-to-book.
+    tilt = (1.0 - bv_weight * (1.0 - pb) / (1.0 + pb)).where(pb > 0)
+    out["bv_tilt"] = tilt
+    out["ev_ebitda_g_bv"] = out["ev_ebitda_g"] * tilt
+    out["ev_sales_g_bv"] = out["ev_sales_g"] * tilt
     return out
 
 

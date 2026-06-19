@@ -155,7 +155,8 @@ def growth_adj_value_sheet(df: pd.DataFrame, top: int = 60):
         return None
     e = e.sort_values("ev_ebitda_g")
     cols = ["symbol", "name", "region", "sector", "industry",
-            "ev_ebitda_g", "ev_sales_g", "ev_ebitda_g_pb", "ev_sales_g_pb",
+            "ev_ebitda_g", "ev_ebitda_g_ltm", "ev_sales_g", "ev_sales_g_ltm",
+            "ev_ebitda_g_bv", "ev_sales_g_bv",
             "enterpriseToEbitda", "ebitda_growth", "revenue_growth", "priceToBook", "marketCap"]
     return e[[c for c in cols if c in e.columns]].head(top).round(3)
 
@@ -453,9 +454,9 @@ def main():
         ("secular_cyclical", "Classified as secular grower vs cyclical."),
         ("dup_payload", "Yahoo served identical statements under another ticker (quality flag)."),
         ("is_operating", "Passed the operating-company filter (excludes funds/shells/non-operating)."),
-        ("ev_ebitda_g", "(EV/EBITDA) / EBITDA-growth% - PEG-style price of debt-neutral operating cash flow per unit growth; LOWER=cheaper (NaN if growth/multiple <=0)."),
-        ("ev_sales_g", "(EV/Sales) / revenue-growth% - price of top-line/market share per unit revenue growth; margin-agnostic; LOWER=cheaper."),
-        ("ev_ebitda_g_pb / ev_sales_g_pb", "The above x (1/priceToBook) - a capital-efficiency tilt favouring asset-light/high-ROE names among the growth-cheap."),
+        ("ev_ebitda_g / ev_sales_g", "(EV/EBITDA)/EBITDA-growth% and (EV/Sales)/revenue-growth%, LATEST ANNUAL growth; PEG-style, LOWER=cheaper per unit growth (NaN if growth/multiple<=0)."),
+        ("ev_ebitda_g_ltm / ev_sales_g_ltm", "Same ratios on LTM/near-term (latest-quarter YoY) growth - more current, ~40% coverage."),
+        ("ev_ebitda_g_bv / ev_sales_g_bv", "Annual ratios x a gentle book-value tilt 1-0.2*(1-PB)/(1+PB): small, diminishing discount for LOW price-to-book (bounded +/-20%)."),
         ("ev_sales", "EV/Sales, rebuilt from priceToSales x enterpriseValue/marketCap (currency-consistent)."),
     ]
     dws = wb.add_worksheet("Measures Dictionary")
