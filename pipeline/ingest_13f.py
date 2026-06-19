@@ -164,16 +164,33 @@ def latest_13f_acc(cik):
     return None, None
 
 def find_infotable(cik, accession):
-    """Find the infotable XML file in the filing directory."""
+    """Find the infotable XML file in the filing directory.
+
+    The XML name is filer-controlled and inconsistent — examples seen:
+      infotable.xml / informationtable.xml (most common)
+      WedgewoodPartners_13f_1Q26.xml (some filers brand the file)
+      13F_2026Q1.xml / xslform13fhrxxx-fix.xml (others)
+
+    Strategy: prefer obvious "infotable" / "informationtable" name; else
+    fall back to ANY .xml in the directory that isn't primary_doc.xml
+    (which is the cover-page form13f wrapper).
+    """
     acc = accession.replace("-", "")
     data = curl(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/")
     if not data: return None
-    # Look for any .xml whose name is not the primary form13f doc
     matches = re.findall(r'href="([^"]+\.xml)"', data.decode("utf-8", errors="ignore"))
-    for m in matches:
+    # Drop noisy hrefs that aren't in our filing dir
+    relevant = [m for m in matches if str(int(cik)) in m and acc in m]
+    for m in relevant:
         n = m.split("/")[-1].lower()
         if "infotable" in n or "informationtable" in n: return m
-    # Fallback: try the standard filename
+    # Second pass: any XML that isn't primary_doc / form13fInfoTable cover
+    for m in relevant:
+        n = m.split("/")[-1].lower()
+        if n in ("primary_doc.xml",): continue
+        # XSL wrappers (xslform13fhrxxx-...xml) — these wrap the data, skip
+        if n.startswith("xslform"): continue
+        return m
     return f"/Archives/edgar/data/{int(cik)}/{acc}/infotable.xml"
 
 def _strip_ns(elem):
