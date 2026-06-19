@@ -87,10 +87,19 @@ def search_efts(name):
     return out
 
 def fund_overlap(q, label):
-    """Jaccard token overlap; strip pure legal-form noise."""
-    LEGAL = {"LP","LLC","INC","CORP","LTD","PLC","COMPANY","CO","THE","AND","OF","SA","NV","AG"}
-    qw = set(re.sub(r"[^A-Za-z ]", "", q).upper().split()) - LEGAL
-    lw = set(re.sub(r"[^A-Za-z ]", "", label).upper().split()) - LEGAL
+    """Jaccard token overlap; strip both legal-form AND generic-industry noise.
+
+    "Capital", "Management", "Partners", "Asset" appear in 90% of fund names so
+    they shouldn't count toward similarity — otherwise "1 Main Capital" hits
+    "SAMLYN CAPITAL" with overlap=0.5 (one shared generic token) and we accept
+    the wrong CIK. We require at least one DISTINCTIVE token to match.
+    """
+    NOISE = {"LP","LLC","INC","CORP","LTD","PLC","COMPANY","CO","THE","AND","OF","SA","NV","AG",
+             "CAPITAL","MANAGEMENT","PARTNERS","ASSOCIATES","ASSET","FUND","FUNDS",
+             "INVESTMENT","INVESTMENTS","GROUP","ADVISORS","ADVISERS","ADVISORY",
+             "GLOBAL","HOLDINGS","HOLDING","TRUST","SE","AB","BV","NA","NV"}
+    qw = set(re.sub(r"[^A-Za-z ]", "", q).upper().split()) - NOISE
+    lw = set(re.sub(r"[^A-Za-z ]", "", label).upper().split()) - NOISE
     if not qw or not lw: return 0.0
     return round(len(qw & lw) / max(len(qw), len(lw)), 2)
 

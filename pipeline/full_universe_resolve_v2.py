@@ -113,8 +113,8 @@ def run():
         # rank by overlap × score
         scored = [(c, l, s, fund_overlap(q, l)) for c,l,s in candidates]
         scored.sort(key=lambda x: (x[3], x[2]), reverse=True)
-        # require at least 1 distinctive word overlap (drop pure-legal-form matches)
-        scored = [s for s in scored if s[3] >= 0.25]
+        # require >=0.5 distinctive-token overlap after generic-industry filter
+        scored = [s for s in scored if s[3] >= 0.5]
         if not scored:
             conn.execute("""INSERT OR REPLACE INTO fund_resolution_state
                 VALUES (?,?,?,?,?,date('now'))""",
