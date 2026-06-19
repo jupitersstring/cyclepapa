@@ -85,8 +85,21 @@ def load_overlays() -> dict:
 # ----------------------------------------------------------------------
 
 def score_psu(p: dict) -> tuple[float, bool, str]:
-    if not p or not p.get("psu_core"):
+    """Governance + PSU scoring.
+
+    Crucially: has_data is True whenever we have a proxy row at all
+    (i.e. we scraped the DEF 14A), NOT only when psu_core > 0. A
+    company can legitimately have zero PSU program but still be
+    governance-scored (clawback, anti-hedge, vesting, CIC). Earlier
+    bug penalised ~1,989 no-PSU companies as "no governance data."
+    """
+    if not p:
         return 0.0, False, ""
+    # Any proxy row at all = we scored the DEF 14A
+    has_data = bool(p.get("accession") or p.get("filing_date")
+                    or p.get("gov_score") is not None
+                    or p.get("psu_core") is not None
+                    or p.get("has_psu_program") is not None)
     s = 0.0
     reasons = []
     core = p.get("psu_core") or 0
@@ -112,7 +125,7 @@ def score_psu(p: dict) -> tuple[float, bool, str]:
     gov = p.get("gov_score") or 0
     s += min(gov * 0.5, 12)
     if gov >= 15: reasons.append(f"gov {gov:.0f}")
-    return round(s, 1), True, "; ".join(reasons)
+    return round(s, 1), has_data, "; ".join(reasons)
 
 
 def score_yf(y: dict) -> tuple[float, bool, str]:
