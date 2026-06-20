@@ -71,8 +71,7 @@ def run():
         GROUP BY ticker"""):
         f4[r["ticker"]] = r["usd_m"] or 0
     er = {r[0]: r[1] for r in conn.execute(
-        "SELECT ticker, est_return_pct FROM expected_return")
-        if conn.execute("SELECT 1 FROM sqlite_master WHERE name='expected_return'").fetchone()}
+        "SELECT ticker, weighted_excess_12m FROM expected_return")}
     tm = {}
     for r in conn.execute("""SELECT ticker, name, exchange, sector, mcap_m, price
         FROM ticker_meta"""):
@@ -114,11 +113,13 @@ def run():
                  activist_pct + insider_cluster + insider_dollars + form4_buying +
                  micro_bonus + er_contribution)
 
-        bucket = ("nano" if 0 < mcap < 50 else
-                  "micro" if mcap < 300 else
-                  "small" if mcap < 2000 else
-                  "mid" if mcap < 10000 else
-                  "large" if mcap > 0 else "unknown")
+        if not mcap or mcap <= 0:
+            bucket = "unknown"
+        elif mcap < 50:    bucket = "nano"
+        elif mcap < 300:   bucket = "micro"
+        elif mcap < 2000:  bucket = "small"
+        elif mcap < 10000: bucket = "mid"
+        else:              bucket = "large"
 
         components = (f"sm={smart_money:.1f} s3*={s3_new_init:.1f} s4*={s4_material_add:.1f} "
                       f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} clust={insider_cluster:.0f} "

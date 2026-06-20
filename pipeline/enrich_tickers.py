@@ -61,11 +61,19 @@ def cik_for_ticker(t):
     return _CIK_BY_TKR.get(t.upper())
 
 def shares_outstanding(cik):
-    """Latest EntityCommonStockSharesOutstanding via the tiny companyconcept
-    endpoint (KB vs MB) — much faster than companyfacts."""
+    """Latest shares outstanding via the small companyconcept endpoint.
+
+    Companies report shares under various XBRL tags — we try each in
+    decreasing preference. Returns the most recent value found.
+    """
     cik10 = str(cik).zfill(10)
-    for tag in ("EntityCommonStockSharesOutstanding",):
-        url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik10}/dei/{tag}.json"
+    for ns, tag in [
+        ("dei", "EntityCommonStockSharesOutstanding"),
+        ("us-gaap", "CommonStockSharesOutstanding"),
+        ("us-gaap", "CommonStockSharesIssued"),
+        ("dei", "EntityCommonStockSharesIssued"),
+    ]:
+        url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik10}/{ns}/{tag}.json"
         out = subprocess.run(["curl","-sk","--compressed","-m","10","-A",UA_SEC, url],
                              capture_output=True).stdout
         try:
@@ -77,7 +85,7 @@ def shares_outstanding(cik):
                     end = e.get("end") or e.get("fp") or ""
                     if best is None or end > best[0]:
                         best = (end, e.get("val"))
-            if best: return best[1]
+            if best and best[1]: return best[1]
         except Exception:
             continue
     return None
