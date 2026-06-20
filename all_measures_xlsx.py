@@ -355,10 +355,13 @@ out_path = "all_measures.xlsx"
 with pd.ExcelWriter(out_path, engine="xlsxwriter") as writer:
     for name, sheet_df in sheets.items():
         safe = name.replace("/","-").replace("\\","-").replace(":","-")[:31]
+        # Always promote the index to a 'Ticker' column so it appears in xlsx
+        sheet_df = sheet_df.copy()
         if sheet_df.index.name is None:
-            sheet_df = sheet_df.copy()
             sheet_df.index.name = "Ticker"
-            sheet_df = sheet_df.reset_index()
+        else:
+            sheet_df.index.name = "Ticker"  # force the name
+        sheet_df = sheet_df.reset_index()
         sheet_df.to_excel(writer, sheet_name=safe, index=False)
         ws = writer.sheets[safe]
         wb = writer.book

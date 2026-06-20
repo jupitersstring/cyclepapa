@@ -27,3 +27,4 @@ data/cache/*.tmp
 data/spy/*.tmp
 per_region_analysis.xlsx
 all_measures.xlsx
+global_best.xlsx
