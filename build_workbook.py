@@ -644,6 +644,112 @@ def build_per_region_tabs(wb, gav, fin, comb, per_region):
         _add_footer(ws, row)
 
 
+CREATIVE_MEASURES = [
+    ('results_multiple_compression/screener.csv', 'Multiple Compression',
+     'Names where price has risen materially but EPS has risen even more — '
+     'P/E compression. Sort by multiple_compression_pct ascending (most compression).',
+     ['ticker','pe_now','pe_y_ago','pe_change_pct','price_change_pct','eps_growth_pct',
+      'pb_now','pct_off_sma_200w','market_cap','priceToSales','evEbitda']),
+    ('results_akre/screener.csv', 'Akre Compounder',
+     'Three-leg framework — ROE × reinvestment × durable moat. Higher akre_score = stronger compounder.',
+     ['ticker','akre_score','roe_pct','op_margin_now_pct','op_margin_chg_pp','rev_growth_yoy_pct',
+      'fcf_ps_growth_pct','perf_1y_pct','market_cap','trailingPE','priceToBook','priceToSales','enterpriseToEbitda','debt_to_equity']),
+    ('results_clean_topline/screener.csv', 'Clean Top-Line',
+     'Names with revenue +15%, gross profit +15%, and gross margin expanding — hardest-to-fake fundamentals.',
+     None),
+    ('results_op_leverage/screener.csv', 'Operating Leverage',
+     'Revenue grows X%, EBITDA grows ≥2X% — margins scaling, true operating leverage.',
+     None),
+    ('results_fcf_yield/screener.csv', 'FCF Yield',
+     'FCF/price ranking with quality screens — durable cash return on equity value.',
+     None),
+    ('results_ev_compression/screener.csv', 'EV Compression',
+     'Multiple compression on enterprise-value basis (cheaper for cap-structure reasons).',
+     None),
+    ('results_ev_fcf_leverage/screener.csv', 'EV/FCF Leverage',
+     'EV/FCF compression + cap structure leverage; cheap on cash flow with debt working for shareholders.',
+     None),
+    ('results_52wh/screener.csv', '52-Week High',
+     'Within X% of 52-week high with fundamentals okay — momentum + quality.',
+     None),
+    ('results_flat_inflection/screener.csv', 'Flat + Inflection',
+     'Flat-trending share price with fundamentals inflecting up — pre-rerate setups.',
+     None),
+    ('results_volasym/screener.csv', 'Vol Asymmetry',
+     'Upside volatility > downside volatility — positive skew names.',
+     None),
+    ('results_segment_inflection/screener.csv', 'Segment Inflection',
+     'A small, fast-growing revenue segment will (if growth persists) come to dominate consolidated results.',
+     None),
+]
+
+
+def build_creative_measures(wb):
+    """One tab per creative measure. Each tab loads its CSV if present."""
+    available = [(p, label, deck, cols) for p, label, deck, cols in CREATIVE_MEASURES
+                 if Path(p).exists() and Path(p).stat().st_size > 50]
+    if not available:
+        return  # No creative measures landed yet
+
+    ws = wb.create_sheet('Creative Measures Index')
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker='Beyond Composites  ·  Eleven Specialised Screens',
+        title='Creative Measures — Index',
+        deck=('Each creative measure isolates a specific market pattern that the broad '
+              'composite cannot capture: pure operating leverage, hidden segment '
+              'inflection, multiple compression, capital-efficient compounders. '
+              'Coverage depends on availability of quarterly income/cashflow/price '
+              'history. Names without deep cached data are skipped.'),
+    )
+    row += 1
+    # Index: list of measures with row counts
+    idx = []
+    for p, label, deck, _cols in CREATIVE_MEASURES:
+        rows = 0
+        if Path(p).exists():
+            try:
+                rows = sum(1 for _ in open(p)) - 1
+            except Exception:
+                rows = 0
+        status = 'covered' if rows > 0 else ('present, 0 rows' if Path(p).exists() else 'pending deep fetch')
+        idx.append({'measure': label, 'rows': rows, 'status': status, 'path': p})
+    _write_df(ws, pd.DataFrame(idx), ['measure','rows','status','path'], start_row=row)
+    _autosize(ws, ['measure','rows','status','path'])
+
+    # One tab per available measure
+    for p, label, deck, cols in available:
+        try:
+            df = pd.read_csv(p)
+        except Exception:
+            continue
+        if df.empty:
+            continue
+        # Name the sheet "CM · <Label>"
+        sheet_name = f'CM · {label}'[:31]  # Excel max 31 chars
+        ws = wb.create_sheet(sheet_name)
+        ws.sheet_view.showGridLines = False
+        r = _draw_title_block(ws,
+                              kicker='Creative Measure',
+                              title=label,
+                              deck=deck)
+        r += 1
+        # If columns specified, use them (where present); else use the dataframe's columns
+        if cols:
+            cols = [c for c in cols if c in df.columns]
+        else:
+            cols = list(df.columns)
+        # Truncate long-name columns
+        for c in ('longName','name'):
+            if c in df.columns:
+                df[c] = df[c].astype(str).str[:32]
+        end_row = _write_df(ws, df.head(50), cols, start_row=r)
+        _autosize(ws, cols)
+        ws.freeze_panes = 'D' + str(r + 1)
+        _add_footer(ws, end_row)
+
+
 def build_glossary(wb):
     ws = wb.create_sheet('Glossary')
     ws.sheet_view.showGridLines = False
@@ -724,6 +830,7 @@ def main():
     build_best_of_best(wb, gav, fin, comb, top_n=25)
     build_global_measures(wb, gav, fin, comb)
     build_per_region_tabs(wb, gav, fin, comb, per_region)
+    build_creative_measures(wb)
     build_glossary(wb)
 
     wb.save(WB_PATH)
