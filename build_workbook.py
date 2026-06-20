@@ -646,10 +646,16 @@ def build_per_region_tabs(wb, gav, fin, comb, per_region):
 
 CREATIVE_MEASURES = [
     ('results_multiple_compression/screener.csv', 'Multiple Compression',
-     'Names where price has risen materially but EPS has risen even more — '
-     'P/E compression. Sort by multiple_compression_pct ascending (most compression).',
-     ['ticker','pe_now','pe_y_ago','pe_change_pct','price_change_pct','eps_growth_pct',
-      'pb_now','pct_off_sma_200w','market_cap','priceToSales','evEbitda']),
+     'Names with P/E and EV/EBITDA compression — both YoY (turns + %) and vs the 5-year peak. '
+     'pe_turns_yoy/ev_turns_yoy = absolute multiple shrinkage in turns; '
+     'pe_pct_off_peak/ev_pct_off_peak = how far below the 5y peak we are now. '
+     'EV/EBITDA history reconstructed from rolling-4Q EBITDA × shares_now + net_debt_now '
+     '(conservative — biased to UNDER-state compression).',
+     ['ticker','pe_now','pe_y_ago','pe_turns_yoy','pe_change_pct',
+      'pe_peak_5y','pe_turns_off_peak','pe_pct_off_peak','pe_peak_date',
+      'ev_ebitda_now','ev_ebitda_y_ago_recon','ev_turns_yoy','ev_yoy_pct',
+      'ev_ebitda_peak_5y','ev_turns_off_peak','ev_pct_off_peak','ev_peak_date',
+      'price_change_pct','eps_growth_pct','pb_now','market_cap','priceToSales']),
     ('results_akre/screener.csv', 'Akre Compounder',
      'Three-leg framework — ROE × reinvestment × durable moat. Higher akre_score = stronger compounder.',
      ['ticker','akre_score','roe_pct','op_margin_now_pct','op_margin_chg_pp','rev_growth_yoy_pct',
