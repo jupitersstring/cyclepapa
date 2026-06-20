@@ -6731,3 +6731,19 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 6730,Massif Capital (Will Thomson),HBM.TO,Hudbay Minerals,5,,,,agent_M_letter,,agent_verified [M] | Massif Capital | HBM.TO | Hudbay Minerals | letter,2026-06-20
 6731,Star Equity Fund LP (Jeffrey Eb,STRR,Star Equity Holdings,5,,,,agent_H_Eberwein self-stake,,agent_verified [H] | Star Equity | STRR | Star Equity Holdings | Eberwein self-stake,2026-06-20
 6732,Star Equity Fund LP (Jeffrey Eb,DC,Dakota Gold,5,,,,agent_H_13D,,agent_verified [H] | Star Equity | DC | Dakota Gold | 13D,2026-06-20
+6733,Asia Frontier Capital (Thomas H,MPC.HM,Minh Phu Seafood,5,9.5,book,,agent_H,,agent_verified [H] | Asia Frontier Capital | MPC.HM | Minh Phu Seafood | AFC Vietnam factsheet,2026-06-20
+6734,Asia Frontier Capital (Thomas H,ABI.HN,Agribank Insurance,5,8.0,book,,agent_H,,agent_verified [H] | Asia Frontier Capital | ABI.HN | Agribank Insurance | AFC Vietnam factsheet,2026-06-20
+6735,Asia Frontier Capital (Thomas H,LBM.HN,Lam Dong Minerals,5,7.7,book,,agent_H,,agent_verified [H] | Asia Frontier Capital | LBM.HN | Lam Dong Minerals | AFC Vietnam factsheet,2026-06-20
+6736,Asia Frontier Capital (Thomas H,PTB.HM,Phu Tai JSC,5,7.0,book,,agent_H,,agent_verified [H] | Asia Frontier Capital | PTB.HM | Phu Tai JSC | AFC Vietnam factsheet,2026-06-20
+6737,Asia Frontier Capital (Thomas H,SHB.HM,Saigon-Hanoi Bank,5,4.4,book,,agent_H,,agent_verified [H] | Asia Frontier Capital | SHB.HM | Saigon-Hanoi Bank | AFC Vietnam factsheet,2026-06-20
+6738,Asia Frontier Capital (Thomas H,LUCK.KA,Lucky Cement,5,,,,agent_H,,agent_verified [H] | Asia Frontier Capital | LUCK.KA | Lucky Cement | AFC Asia Frontier 2025 outlook,2026-06-20
+6739,Asia Frontier Capital (Thomas H,FPT.HM,FPT Corp,5,,,,agent_H,,agent_verified [H] | Asia Frontier Capital | FPT.HM | FPT Corp | AFC outlook Vietnam-top,2026-06-20
+6740,Asia Frontier Capital (Thomas H,KNT.TO,K92 Mining,5,,,,agent_M,,agent_verified [M] | Asia Frontier Capital | KNT.TO | K92 Mining | AFC outlook PNG-top,2026-06-20
+6741,"Pangolin Asia Fund (James Hay, ",MTDL.JK,PT Metrodata Electronics,5,6.24,book,,agent_H,,agent_verified [H] | Pangolin Asia | MTDL.JK | PT Metrodata Electronics | stockbit 6.24pct of co,2026-06-20
+6742,"Pangolin Asia Fund (James Hay, ",DKSH.KL,DKSH Holdings Malaysia,5,2.71,book,,agent_H,,agent_verified [H] | Pangolin Asia | DKSH.KL | DKSH Holdings Malaysia | blocked privatisation,2026-06-20
+6743,African Lions Fund (Tim Staermo,NMB.DAR,NMB Bank Tanzania,5,,,,agent_H,,agent_verified [H] | African Lions Fund | NMB.DAR | NMB Bank Tanzania | globalvaluehunter largest,2026-06-20
+6744,African Lions Fund (Tim Staermo,TBL.DAR,Tanzania Breweries,5,,,,agent_H,,agent_verified [H] | African Lions Fund | TBL.DAR | Tanzania Breweries | 2nd largest,2026-06-20
+6745,African Lions Fund (Tim Staermo,MTNGH.GH,MTN Ghana,5,,,,agent_H,,agent_verified [H] | African Lions Fund | MTNGH.GH | MTN Ghana | top 6,2026-06-20
+6746,African Lions Fund (Tim Staermo,SNTS.BR,Sonatel Senegal BRVM,5,,,,agent_H,,agent_verified [H] | African Lions Fund | SNTS.BR | Sonatel Senegal BRVM | top 6,2026-06-20
+6747,African Lions Fund (Tim Staermo,TPCC.DAR,Twiga Cement Tanzania,5,,,,agent_H,,agent_verified [H] | African Lions Fund | TPCC.DAR | Twiga Cement Tanzania | top 6,2026-06-20
+6748,African Lions Fund (Tim Staermo,BK.RW,BK Group Rwanda,5,,,,agent_M,,agent_verified [M] | African Lions Fund | BK.RW | BK Group Rwanda | position confirmed,2026-06-20
