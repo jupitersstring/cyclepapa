@@ -136,13 +136,17 @@ def psu_universe_rank(proxy: dict, yf: dict) -> list[dict]:
         psu_pts += min(n_per_share * 2, 10)
 
         y = yf.get(tk, {}) or {}
-        mcap = y.get("mcap")
-        px = y.get("price")
-        pb = y.get("p_b")
-        pe_t = y.get("p_e_trailing")
-        pe_f = y.get("p_e_forward")
-        ev_ebitda = y.get("ev_ebitda")
-        ev_rev = y.get("ev_revenue")
+        def _num(v):
+            if v is None: return None
+            try: return float(v)
+            except Exception: return None
+        mcap = _num(y.get("mcap"))
+        px = _num(y.get("price"))
+        pb = _num(y.get("p_b"))
+        pe_t = _num(y.get("p_e_trailing"))
+        pe_f = _num(y.get("p_e_forward"))
+        ev_ebitda = _num(y.get("ev_ebitda"))
+        ev_rev = _num(y.get("ev_revenue"))
         sector = y.get("sector")
 
         # Valuation kicker (lower = cheaper = bigger asymmetry)
