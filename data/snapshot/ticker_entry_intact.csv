@@ -3,27 +3,27 @@ AMZN,243.58,401.0,raw_text,-39.3,BELOW_ENTRY,309.2,61,7,0,37385.8,raw_text=2.0; 
 NVDA,209.72,204.0,raw_text,2.8,NEAR_ENTRY,305.0,57,13,0,32075.0,raw_text=550.0; raw_text=204.0; raw_text=2.0; raw_text=2.0; raw_text=42.0
 MSFT,378.67,493.0,raw_text,-23.2,BELOW_ENTRY,261.6,53,9,0,33147.8,raw_text=8.0; raw_text=493.0; raw_text=1.0; raw_text=1.0; raw_text=845.0
 META,574.68,691.0,raw_text,-16.8,BELOW_ENTRY,189.9,36,6,0,16204.4,raw_text=1.0; raw_text=1.0; raw_text=1.0; raw_text=1.0; raw_text=691.0
-GOOGL,368.2,338.0,raw_text,8.9,NEAR_ENTRY,183.2,45,8,0,23538.6,raw_text=28.0; raw_text=834.0; raw_text=373.0; raw_text=5.0; raw_text=796.0
-TSM,459.85,167.0,raw_text,175.4,WELL_ABOVE,122.9,25,4,0,9792.2,raw_text=1.0; raw_text=1.0; raw_text=167.0; raw_text=43.0; raw_text=21.0
+GOOGL,368.2,338.0,raw_text,8.9,NEAR_ENTRY,187.6,47,8,0,23538.6,raw_text=28.0; raw_text=834.0; raw_text=373.0; raw_text=5.0; raw_text=796.0
+TSM,459.85,167.0,raw_text,175.4,WELL_ABOVE,126.9,26,4,0,9792.2,raw_text=1.0; raw_text=1.0; raw_text=167.0; raw_text=43.0; raw_text=21.0
 CVNA,64.1,118.0,raw_text,-45.7,BELOW_ENTRY,115.7,15,7,0,8866.0,raw_text=1.0; raw_text=118.0; raw_text=1.0; raw_text=1.0; raw_text=118.0
-BABA,106.18,120.0,raw_text,-11.5,NEAR_ENTRY,90.0,16,6,0,3752.9,raw_text=120.0; raw_text=170.0; raw_text=24.0; raw_text=116.0; raw_text=316.0
-CPNG,16.82,17.0,raw_text,-1.1,NEAR_ENTRY,86.8,10,4,0,2551.8,raw_text=298.0; raw_text=17.0; raw_text=298.0; raw_text=17.0; p80_close=20.450000762939453
+BABA,106.18,120.0,raw_text,-11.5,NEAR_ENTRY,99.6,18,6,0,3752.9,raw_text=120.0; raw_text=170.0; raw_text=24.0; raw_text=116.0; raw_text=316.0
+CPNG,16.82,17.0,raw_text,-1.1,NEAR_ENTRY,89.2,10,4,0,2551.8,raw_text=298.0; raw_text=17.0; raw_text=298.0; raw_text=17.0; p80_close=20.450000762939453
+SE,82.94,337.0,raw_text,-75.4,BELOW_ENTRY,82.8,11,3,0,2189.0,raw_text=337.0; raw_text=151.0; raw_text=337.0; raw_text=151.0; p80_close=89.45999908447266
 APG,42.34,60.0,raw_text,-29.4,BELOW_ENTRY,80.8,11,3,0,1063.3,raw_text=114.0; raw_text=60.0; raw_text=9.0; raw_text=60.0; raw_text=114.0
-SE,82.94,337.0,raw_text,-75.4,BELOW_ENTRY,80.4,11,3,0,2189.0,raw_text=337.0; raw_text=151.0; raw_text=337.0; raw_text=151.0; p80_close=89.45999908447266
 PLTR,127.99,96.0,raw_text,33.3,MODERATELY_ABOVE,75.2,14,1,0,7636.8,raw_text=96.0; raw_text=96.0; raw_text=1.0; raw_text=912.0; raw_text=8.0
 GOOG,366.58,769.0,raw_text,-52.3,BELOW_ENTRY,75.2,15,3,0,6602.8,raw_text=341.0; raw_text=769.0; raw_text=2.0; raw_text=341.0; raw_text=769.0
 MCO,450.14,395.0,raw_text,14.0,NEAR_ENTRY,72.5,10,4,0,48576.4,raw_text=6.0; raw_text=376.0; raw_text=395.0; raw_text=6.0; raw_text=574.0
 COF,184.73,501.0,raw_text,-63.1,BELOW_ENTRY,68.3,12,0,0,2131.0,raw_text=501.0; raw_text=105.0; raw_text=501.0; raw_text=105.0; p80_close=193.0
+LQDA,64.01,98.0,raw_text,-34.7,BELOW_ENTRY,66.4,8,4,0,1047.2,raw_text=280.0; raw_text=3.0; raw_text=98.0; raw_text=41.0; raw_text=5.0
 SPGI,408.89,747.0,raw_text,-45.3,BELOW_ENTRY,65.5,7,4,0,19631.8,raw_text=6.0; raw_text=5.0; raw_text=747.0; raw_text=6.0; p80_close=433.19000244140625
-LQDA,64.01,98.0,raw_text,-34.7,BELOW_ENTRY,64.8,7,4,0,1047.2,raw_text=280.0; raw_text=3.0; raw_text=98.0; raw_text=41.0; raw_text=5.0
 HHH,67.68,100.0,candidates,-32.3,BELOW_ENTRY,64.3,6,3,0,5441.8,candidates=100.0; raw_text=1.0; raw_text=14.0; raw_text=14.0; raw_text=1.0
 DRVN,13.43,50.0,raw_text,-73.1,BELOW_ENTRY,62.7,5,3,0,18318.2,raw_text=50.0; raw_text=18.0; raw_text=50.0; raw_text=7.0; raw_text=50.0
 NFLX,77.58,44.0,raw_text,76.3,WELL_ABOVE,60.2,13,2,0,5318.9,raw_text=44.0; raw_text=44.0; p80_close=95.55000305175781
+WBD,26.56,91.0,raw_text,-70.8,BELOW_ENTRY,59.6,7,3,0,6669.0,raw_text=1.0; raw_text=91.0; raw_text=91.0; raw_text=450.0; raw_text=1.0
 MRP,29.3,30.49,p80_close,-3.9,NEAR_ENTRY,58.5,4,4,0,597.0,p80_close=30.489999771118164
 CRM,154.04,276.0,raw_text,-44.2,BELOW_ENTRY,57.2,9,3,0,2922.8,raw_text=793.0; raw_text=276.0; raw_text=2.0; raw_text=793.0; raw_text=276.0
 CODI,10.64,29.0,raw_text,-63.3,BELOW_ENTRY,56.7,4,3,0,190.7,raw_text=29.0; raw_text=29.0; raw_text=8.0; raw_text=29.0; raw_text=13.0
 LFCR,5.64,17.0,raw_text,-66.8,BELOW_ENTRY,56.0,7,3,0,211.5,raw_text=17.0; p80_close=5.349999904632568
-WBD,26.56,91.0,raw_text,-70.8,BELOW_ENTRY,54.0,6,3,0,6669.0,raw_text=1.0; raw_text=91.0; raw_text=91.0; raw_text=450.0; raw_text=1.0
 BILL,32.59,21.0,raw_text,55.2,WELL_ABOVE,52.3,6,3,0,494.1,raw_text=21.0; raw_text=3.0; raw_text=21.0; raw_text=35.0; raw_text=186.0
 SLM,22.38,13.0,raw_text,72.2,WELL_ABOVE,51.7,5,4,0,696.3,raw_text=13.0; p80_close=22.639999389648438
 STGW,6.63,31.0,raw_text,-78.6,BELOW_ENTRY,48.3,3,3,0,195.2,raw_text=31.0; raw_text=31.0; raw_text=31.0; raw_text=6.0; raw_text=37.0
@@ -65,6 +65,7 @@ WLTH,8.31,11.52,p80_close,-27.9,BELOW_ENTRY,33.6,4,2,0,0.0,p80_close=11.52000045
 GRFS,7.39,8.24,p80_close,-10.4,NEAR_ENTRY,33.6,5,2,0,310.0,p80_close=8.239999771118164
 CTRI,29.98,33.74,p80_close,-11.1,NEAR_ENTRY,33.2,3,2,0,740.0,p80_close=33.7400016784668
 ROOT,50.73,17.0,raw_text,198.4,WELL_ABOVE,33.2,3,2,0,52.4,raw_text=16.0; raw_text=5.0; raw_text=17.0; raw_text=7.0; raw_text=16.0
+MA,490.43,743.0,raw_text,-34.0,BELOW_ENTRY,33.1,9,1,0,857.2,raw_text=743.0; p80_close=505.7900085449219
 REGN,598.19,750.57,p80_close,-20.3,BELOW_ENTRY,32.9,3,2,0,378.0,p80_close=750.5700073242188
 BAC,56.28,97.0,raw_text,-42.0,BELOW_ENTRY,32.8,7,3,0,57397.1,raw_text=97.0; raw_text=573.0; raw_text=7.0; raw_text=38.0; raw_text=97.0
 BRN,1.03,1.15,p80_close,-10.4,NEAR_ENTRY,32.8,3,0,0,0.0,p80_close=1.149999976158142
@@ -75,11 +76,11 @@ FUN,22.43,82.0,raw_text,-72.6,BELOW_ENTRY,31.7,4,1,0,163.7,raw_text=4.0; raw_tex
 ACHC,24.6,15.0,raw_text,64.0,WELL_ABOVE,31.5,2,2,0,72.7,raw_text=41.0; raw_text=15.0; raw_text=15.0; p80_close=27.0
 TIC,8.31,7.0,raw_text,18.8,MODERATELY_ABOVE,31.3,3,2,0,389.3,raw_text=7.0; p80_close=8.9399995803833
 ABG,197.05,202.05,p80_close,-2.5,NEAR_ENTRY,31.2,6,2,0,921.0,p80_close=202.0500030517578
+CMCSA,24.5,28.98,p80_close,-15.5,BELOW_ENTRY,31.0,6,1,0,1178.0,p80_close=28.979999542236328
 PAR,14.9,27.0,raw_text,-44.8,BELOW_ENTRY,30.0,6,0,0,542.0,raw_text=157.0; raw_text=27.0; raw_text=7.0; raw_text=8.0; raw_text=157.0
 IEP,7.27,4.0,raw_text,81.7,WELL_ABOVE,29.4,2,2,0,8300.0,raw_text=4.0; raw_text=4.0; p80_close=8.0600004196167
 TIPT,17.59,26.0,raw_text,-32.3,BELOW_ENTRY,29.4,2,2,0,52.0,raw_text=26.0; raw_text=26.0; p80_close=17.559999465942383
 CLYM,11.47,11.34,p80_close,1.1,NEAR_ENTRY,29.2,2,1,0,40.0,p80_close=11.34000015258789
-MA,490.43,743.0,raw_text,-34.0,BELOW_ENTRY,28.6,7,1,0,857.2,raw_text=743.0; p80_close=505.7900085449219
 PCYO,10.93,11.46,p80_close,-4.6,NEAR_ENTRY,28.4,2,1,0,0.0,p80_close=11.460000038146973
 ACN,170.28,217.0,raw_text,-21.5,BELOW_ENTRY,28.3,5,1,0,435.4,raw_text=217.0; raw_text=217.0; p80_close=196.64999389648438
 AN,190.19,202.97,p80_close,-6.3,NEAR_ENTRY,28.3,2,2,0,321.0,p80_close=202.97000122070312
@@ -105,7 +106,6 @@ TEVA,34.63,78.0,raw_text,-55.6,BELOW_ENTRY,25.6,6,1,0,1846.8,raw_text=78.0; raw_
 VOR,14.61,3.0,raw_text,387.0,WELL_ABOVE,25.6,4,0,0,6.0,raw_text=3.0; raw_text=3.0; p80_close=15.899999618530273
 SGOV,100.58,56.0,raw_text,79.6,WELL_ABOVE,25.6,3,2,0,292.2,raw_text=56.0; raw_text=55.0; p80_close=100.62999725341797
 WCC,365.0,347.0,raw_text,5.2,NEAR_ENTRY,25.5,4,2,0,872.2,raw_text=347.0; raw_text=347.0; p80_close=361.1700134277344
-CMCSA,24.5,28.98,p80_close,-15.5,BELOW_ENTRY,25.4,5,1,0,1178.0,p80_close=28.979999542236328
 CELC,92.59,99.74,raw_text,-7.2,NEAR_ENTRY,25.4,5,0,0,2496.0,raw_text=99.74; raw_text=99.74; p80_close=131.05999755859375
 CNC,61.61,59.99,p80_close,2.7,NEAR_ENTRY,25.3,5,1,0,398.0,p80_close=59.9900016784668
 JD,27.5,31.25,p80_close,-12.0,NEAR_ENTRY,25.2,3,3,0,0.0,p80_close=31.25
@@ -205,14 +205,15 @@ NU,12.85,12.0,raw_text,7.1,NEAR_ENTRY,17.6,6,0,0,1569.9,raw_text=12.0; p80_close
 PRAX,282.08,342.57,p80_close,-17.7,BELOW_ENTRY,17.6,3,1,0,1176.0,p80_close=342.57000732421875
 PEPG,1.8,3.2,raw_text,-43.6,BELOW_ENTRY,17.6,1,1,0,66.4,raw_text=3.2; raw_text=3.2; p80_close=1.8049999475479126
 LRMR,3.57,5.0,raw_text,-28.7,BELOW_ENTRY,17.6,1,1,0,10.0,raw_text=5.0; raw_text=5.0; p80_close=4.71999979019165
+MSTR,109.4,54.0,raw_text,102.6,WELL_ABOVE,17.5,8,0,0,109.6,raw_text=54.0; raw_text=54.0; p80_close=172.47000122070312
 CDRE,30.19,48.76,candidates,-38.1,BELOW_ENTRY,17.5,2,1,0,35.3,candidates=25.73; candidates=48.76; raw_text=35.0; p80_close=32.220001220703125
 CVS,98.46,95.93,p80_close,2.6,NEAR_ENTRY,17.4,4,1,0,1884.0,p80_close=95.93000030517578
+CSU.TO,2759.01,2822.83,p80_close,-2.3,NEAR_ENTRY,17.2,7,0,0,0.0,p80_close=2822.830078125
 FLR,52.51,205.0,raw_text,-74.4,BELOW_ENTRY,17.1,3,0,0,851.4,raw_text=205.0; raw_text=205.0; p80_close=50.529998779296875
 UNF,261.68,265.47,p80_close,-1.4,NEAR_ENTRY,17.1,2,1,0,332.0,p80_close=265.4700012207031
 PRKS,47.75,40.22,p80_close,18.7,MODERATELY_ABOVE,16.9,2,1,0,62.0,p80_close=40.220001220703125
 KYMR,89.81,86.0,raw_text,4.4,NEAR_ENTRY,16.9,2,1,0,1663.0,raw_text=86.0; raw_text=86.0; p80_close=86.93000030517578
 AMD,533.09,253.0,raw_text,110.7,WELL_ABOVE,16.8,7,0,0,1466.0,raw_text=253.0; raw_text=253.0; p80_close=495.5400085449219
-MSTR,109.4,54.0,raw_text,102.6,WELL_ABOVE,16.8,7,0,0,109.6,raw_text=54.0; raw_text=54.0; p80_close=172.47000122070312
 JHX,25.25,22.93,p80_close,10.1,NEAR_ENTRY,16.8,3,0,0,536.0,p80_close=22.93000030517578
 CSGP,29.97,13.0,raw_text,130.5,WELL_ABOVE,16.8,3,0,0,130.9,raw_text=13.0; raw_text=103.0; raw_text=13.0; p80_close=39.95000076293945
 ARMK,53.44,53.36,p80_close,0.1,NEAR_ENTRY,16.8,2,2,0,200.0,p80_close=53.36000061035156
@@ -222,15 +223,16 @@ MARA,14.04,13.88,p80_close,1.2,NEAR_ENTRY,16.8,2,2,0,66.0,p80_close=13.880000114
 VLO,236.75,253.77,p80_close,-6.7,NEAR_ENTRY,16.8,2,2,0,62.0,p80_close=253.77000427246094
 KBR,35.32,55.0,candidates,-35.8,BELOW_ENTRY,16.8,1,0,1,14.2,candidates=55.0; raw_text=14.0; form4_p_buy=31.32035; p80_close=37.459999084472656
 AGYS,87.25,46.0,raw_text,89.7,WELL_ABOVE,16.8,1,1,0,46.5,raw_text=46.0; p80_close=87.48999786376953
+RACE,361.12,351.0,raw_text,2.9,NEAR_ENTRY,16.6,3,0,0,1715.8,raw_text=351.0; raw_text=310.0; raw_text=351.0; p80_close=355.1400146484375
 WDC,742.7,529.29,p80_close,40.3,WELL_ABOVE,16.6,3,1,0,2124.0,p80_close=529.2899780273438
 ALGN,179.23,76.0,raw_text,135.8,WELL_ABOVE,16.5,3,0,0,76.3,raw_text=76.0; p80_close=180.27000427246094
 LIN,517.78,510.86,p80_close,1.4,NEAR_ENTRY,16.4,3,1,0,339.0,p80_close=510.8599853515625
 CCEL,3.53,3.62,p80_close,-2.5,NEAR_ENTRY,16.2,2,0,0,0.0,p80_close=3.619999885559082
-CSU.TO,2759.01,2822.83,p80_close,-2.3,NEAR_ENTRY,16.2,6,0,0,0.0,p80_close=2822.830078125
 PGR,203.96,50.0,raw_text,307.9,WELL_ABOVE,16.1,4,0,0,106.0,raw_text=50.0; raw_text=5.0; raw_text=50.0; p80_close=203.5
 MASI,179.95,180.0,raw_text,0.0,NEAR_ENTRY,16.1,1,1,0,1194.0,raw_text=180.0; p80_close=178.77999877929688
 SWX,88.48,90.99,p80_close,-2.8,NEAR_ENTRY,16.1,1,1,0,804.0,p80_close=90.98999786376953
 HCC,90.58,158.0,raw_text,-42.7,BELOW_ENTRY,16.0,3,2,0,420.2,raw_text=51.0; raw_text=158.0; raw_text=51.0; raw_text=158.0; p80_close=95.62000274658203
+VAL,78.56,29.0,raw_text,170.9,WELL_ABOVE,16.0,4,0,0,105.2,raw_text=29.0; raw_text=23.0; raw_text=29.0; raw_text=23.0; p80_close=101.4800033569336
 FLS,81.4,81.91,p80_close,-0.6,NEAR_ENTRY,16.0,3,0,0,432.0,p80_close=81.91000366210938
 XYZ,74.66,144.0,raw_text,-48.2,BELOW_ENTRY,16.0,2,1,0,320.0,raw_text=144.0; p80_close=72.12000274658203
 IRMD,92.87,32.0,raw_text,190.2,WELL_ABOVE,16.0,1,1,0,32.2,raw_text=32.0; p80_close=96.26000213623047
@@ -299,13 +301,13 @@ OSCR,28.12,29.0,raw_text,-3.0,NEAR_ENTRY,13.2,2,1,0,0.0,raw_text=29.0; p80_close
 CLAR,3.18,3.01,p80_close,5.8,NEAR_ENTRY,13.2,2,0,0,0.0,p80_close=3.009999990463257
 RHI,32.15,30.01,p80_close,7.1,NEAR_ENTRY,13.1,3,0,0,0.0,p80_close=30.010000228881836
 CGON,60.89,165.0,raw_text,-63.1,BELOW_ENTRY,13.1,2,1,0,419.4,raw_text=165.0; raw_text=41.0; raw_text=165.0; raw_text=41.0; p80_close=68.87000274658203
+KO,78.9,80.46,p80_close,-1.9,NEAR_ENTRY,13.0,2,1,0,56000.0,p80_close=80.45999908447266
 COGT,34.14,36.52,p80_close,-6.5,NEAR_ENTRY,13.0,3,0,0,1578.0,p80_close=36.52000045776367
 GDOT,12.9,13.0,raw_text,-0.8,NEAR_ENTRY,13.0,2,1,0,13.8,raw_text=3.0; raw_text=13.0; p80_close=12.819999694824219
 XLF,53.57,52.21,p80_close,2.6,NEAR_ENTRY,12.8,3,0,0,1204.0,p80_close=52.209999084472656
 JAZZ,223.48,232.33,p80_close,-3.8,NEAR_ENTRY,12.7,2,1,0,630.0,p80_close=232.3300018310547
 XPEL,46.33,72.0,raw_text,-35.7,BELOW_ENTRY,12.6,1,1,0,144.0,raw_text=72.0; raw_text=72.0; p80_close=46.61000061035156
 AVD,2.57,8.0,raw_text,-67.9,BELOW_ENTRY,12.6,1,1,0,22.2,raw_text=8.0; raw_text=3.0; raw_text=8.0; raw_text=3.0; p80_close=2.9200000762939453
-RACE,361.12,351.0,raw_text,2.9,NEAR_ENTRY,12.6,2,0,0,1715.8,raw_text=351.0; raw_text=310.0; raw_text=351.0; p80_close=355.1400146484375
 DNA,8.88,8.73,p80_close,1.7,NEAR_ENTRY,12.6,1,1,0,30.0,p80_close=8.729999542236328
 LNTH,104.21,100.01,p80_close,4.2,NEAR_ENTRY,12.6,1,1,0,86.0,p80_close=100.01000213623047
 APLE,16.67,50.0,raw_text,-66.7,BELOW_ENTRY,12.6,1,1,0,100.2,raw_text=50.0; raw_text=50.0; p80_close=14.979999542236328
@@ -360,13 +362,11 @@ KGC,26.67,32.12,p80_close,-17.0,BELOW_ENTRY,10.8,3,0,0,1498.0,p80_close=32.11999
 TERN,52.95,121.0,raw_text,-56.2,BELOW_ENTRY,10.8,4,0,0,835.4,raw_text=175.0; raw_text=121.0; raw_text=121.0; raw_text=175.0; raw_text=121.0
 NEM,103.79,116.08,p80_close,-10.6,NEAR_ENTRY,10.6,4,0,0,488.0,p80_close=116.08000183105469
 AXP,339.5,323.82,p80_close,4.8,NEAR_ENTRY,10.5,1,1,0,112000.0,p80_close=323.82000732421875
-KO,78.9,80.46,p80_close,-1.9,NEAR_ENTRY,10.5,1,1,0,56000.0,p80_close=80.45999908447266
 BRZE,20.06,26.0,raw_text,-22.8,BELOW_ENTRY,10.5,5,0,0,52.6,raw_text=26.0; raw_text=26.0; p80_close=23.610000610351562
 FSTA,52.35,53.76,p80_close,-2.6,NEAR_ENTRY,10.5,1,1,0,0.0,p80_close=53.7599983215332
 EXTR,31.75,42.0,raw_text,-24.4,BELOW_ENTRY,10.5,1,1,0,42.9,raw_text=42.0; p80_close=28.1299991607666
 ODD,12.9,23.0,raw_text,-43.9,BELOW_ENTRY,10.5,1,1,0,23.8,raw_text=23.0; p80_close=14.989999771118164
 RNW,6.36,9.0,raw_text,-29.4,BELOW_ENTRY,10.5,1,1,0,9.6,raw_text=9.0; p80_close=6.170000076293945
-VAL,78.56,29.0,raw_text,170.9,WELL_ABOVE,10.4,3,0,0,105.2,raw_text=29.0; raw_text=23.0; raw_text=29.0; raw_text=23.0; p80_close=101.4800033569336
 STOK,30.57,34.18,p80_close,-10.6,NEAR_ENTRY,10.4,3,0,0,400.0,p80_close=34.18000030517578
 BCYC,3.99,4.94,p80_close,-19.1,BELOW_ENTRY,10.4,1,0,0,0.0,p80_close=4.940000057220459
 ADIL,2.6,2.35,p80_close,10.6,NEAR_ENTRY,10.4,1,0,0,0.0,p80_close=2.3499999046325684
