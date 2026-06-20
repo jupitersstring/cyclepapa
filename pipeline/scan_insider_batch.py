@@ -93,28 +93,28 @@ def parse_form4(cik, accession, primary_doc):
 
 def target_tickers(conn, max_n=500):
     """Build the target list — highest-signal small/micro US tickers."""
+    # already-scanned in 180d
     have_4 = {r[0] for r in conn.execute(
         "SELECT DISTINCT ticker FROM form4_transactions WHERE trans_date >= date('now','-180 days')")}
-    # signal score: section 3*3 + section 4*1.5 + 13D + log(1+13F holders)
+    # signal score per ticker
     sig = {}
     for r in conn.execute("""SELECT ticker, COUNT(DISTINCT CASE WHEN section=3 THEN fund END) s3,
-        COUNT(DISTINCT CASE WHEN section=4 THEN fund END) s4 FROM fund_positions
-        WHERE ticker IS NOT NULL AND section IN (3,4) GROUP BY ticker"""):
-        sig[r[0]] = sig.get(r[0], 0) + r[1]*3 + r[2]*1.5
+        COUNT(DISTINCT CASE WHEN section=4 THEN fund END) s4,
+        COUNT(DISTINCT CASE WHEN section=1 THEN fund END) s1
+        FROM fund_positions WHERE ticker IS NOT NULL AND section IN (1,3,4) GROUP BY ticker"""):
+        sig[r[0]] = sig.get(r[0], 0) + r[1]*3 + r[2]*1.5 + r[3]*1
     for r in conn.execute("SELECT subject_ticker FROM holder_13d WHERE subject_ticker IS NOT NULL"):
         sig[r[0]] = sig.get(r[0], 0) + 2
     for r in conn.execute("""SELECT ticker, COUNT(DISTINCT fund) c FROM fund_13f_holdings
         WHERE ticker IS NOT NULL GROUP BY ticker"""):
         if r[1] >= 3:
-            sig[r[0]] = sig.get(r[0], 0) + min(r[1], 10) * 0.5
-
-    # mcap filter — if known, require <$10B; if unknown, include
+            sig[r[0]] = sig.get(r[0], 0) + min(r[1], 30) * 0.3
     keep = {}
     for tkr, s in sig.items():
-        if "." in tkr or tkr in have_4: continue  # foreign or already scanned
+        if "." in tkr or tkr in have_4: continue
         if not re.match(r"^[A-Z][A-Z0-9.\-]{0,5}$", tkr): continue
         mc = conn.execute("SELECT mcap_m FROM ticker_meta WHERE ticker=?", (tkr,)).fetchone()
-        if mc and mc[0] and mc[0] > 10000: continue  # skip large caps
+        if mc and mc[0] and mc[0] > 50000: continue   # only skip mega-cap > $50B
         keep[tkr] = s
     return [t for t, _ in sorted(keep.items(), key=lambda x: -x[1])][:max_n]
 

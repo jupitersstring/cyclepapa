@@ -113,36 +113,33 @@ def universe(conn):
 
     Returned ordered by SIGNAL PRIORITY (so a limited run hits the most
     important names first):
-      1. fund_positions S3/S4 (new major / material adds) — explicit signals
+      1. fund_positions S3/S4 (new major / material adds)
       2. holder_13d subjects (activist filings)
       3. multi-fund 13F holders (≥3 funds = consensus)
       4. single-fund 13F holders (long tail)
+      5. ALL fund_positions tickers
 
-    Foreign tickers (containing ".") are deprioritized — we can't get mcap
-    for them via SEC.
+    Foreign tickers (containing ".") are kept (price still fetchable via
+    Yahoo chart); only mcap will be unavailable for them.
     """
     s34 = {r[0] for r in conn.execute(
         "SELECT DISTINCT ticker FROM fund_positions WHERE ticker IS NOT NULL AND section IN (3,4)")}
     activist = {r[0] for r in conn.execute(
         "SELECT DISTINCT subject_ticker FROM holder_13d WHERE subject_ticker IS NOT NULL")}
-    multi = [(r[0], r[1]) for r in conn.execute(
-        """SELECT ticker, COUNT(DISTINCT fund) c FROM fund_13f_holdings
-           WHERE ticker IS NOT NULL GROUP BY ticker HAVING c >= 3 ORDER BY c DESC""")]
-    single = [r[0] for r in conn.execute(
-        """SELECT ticker, COUNT(DISTINCT fund) c FROM fund_13f_holdings
-           WHERE ticker IS NOT NULL GROUP BY ticker HAVING c < 3""")]
+    multi = [r[0] for r in conn.execute(
+        """SELECT ticker FROM fund_13f_holdings
+           WHERE ticker IS NOT NULL
+           GROUP BY ticker HAVING COUNT(DISTINCT fund) >= 3
+           ORDER BY COUNT(DISTINCT fund) DESC""")]
     fp_all = {r[0] for r in conn.execute(
         "SELECT DISTINCT ticker FROM fund_positions WHERE ticker IS NOT NULL")}
-
-    ordered = []
-    seen = set()
-    for t in list(s34) + list(activist) + [m[0] for m in multi] + list(fp_all) + single:
+    all_13f = [r[0] for r in conn.execute(
+        "SELECT DISTINCT ticker FROM fund_13f_holdings WHERE ticker IS NOT NULL")]
+    ordered, seen = [], set()
+    for t in list(s34) + list(activist) + multi + list(fp_all) + all_13f:
         if t in seen: continue
         seen.add(t); ordered.append(t)
-    # Move US-listed names (no ".") to the front of each cluster, foreign to back
-    us = [t for t in ordered if "." not in t]
-    fx = [t for t in ordered if "." in t]
-    return us + fx
+    return ordered
 
 def is_us_ticker(t):
     if not t or "." in t and not t.endswith((".B", ".A", ".K")):
@@ -180,7 +177,10 @@ def run(only_missing=True, max_tickers=2000):
                     so_m = so / 1e6
                     mcap_m = so_m * meta["price"]
                     n_mcap += 1
-        conn.execute("""INSERT OR REPLACE INTO ticker_meta VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+        conn.execute("""INSERT OR REPLACE INTO ticker_meta
+            (ticker, name, exchange, market, sector, industry, mcap_m, price,
+             price_currency, adv_3m_usd_m, shares_out_m, pe_ttm, fwd_pe, beta, asof)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (t, meta["name"], meta["exchange"], None,
              None, None,
              mcap_m, meta["price"], meta["currency"],
