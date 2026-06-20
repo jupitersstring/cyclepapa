@@ -1547,7 +1547,7 @@ Sprott Inc   Sprott Asset Manag,SII,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_A
 Sprott Inc   Sprott Asset Manag,FUND,HOLDING_PERSIST,1.5,0.7,1.05,Warrant Specialists,4.3,10.0,148.0
 Sprott Inc   Sprott Asset Manag,AEM,MULTI_FUND_PEER,1.0,0.7,0.7,Warrant Specialists,4.0,,139.0
 Sprott Inc   Sprott Asset Manag,IAG,MULTI_FUND_PEER,1.0,0.7,0.7,Warrant Specialists,3.6,,124.0
-Sprott Inc   Sprott Asset Manag,WPM,MULTI_FUND_PEER,1.0,0.7,0.7,Warrant Specialists,3.3,,115.0
+Sprott Inc   Sprott Asset Manag,WPM,"HOLDING_PERSIST,MULTI_FUND_PEER",2.5,0.7,1.75,Warrant Specialists,3.3,,115.0
 Sprott Inc   Sprott Asset Manag,PAAS,"HOLDING_PERSIST,MATERIAL_ADD",3.5,0.7,2.45,Warrant Specialists,2.3,,113.0
 Sprott Inc   Sprott Asset Manag,EQT,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Specialists,,,0.0
 Sprott Inc   Sprott Asset Manag,SBSW,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Specialists,,,0.0
@@ -1664,8 +1664,8 @@ ShawSpring Partners (Dennis Hon,CPNG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Valu
 ShawSpring Partners (Dennis Hon,CSGP,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,5.11,,13.7
 ShawSpring Partners (Dennis Hon,PCOR,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,4.62,,12.4
 ShawSpring Partners (Dennis Hon,GDS,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,3.34,,8.9
-Hayden Capital (Fred Liu),SE,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
-Hayden Capital (Fred Liu),CPNG,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Hayden Capital (Fred Liu),SE,"HOLDING_PERSIST,MULTI_FUND_PEER,PUBLIC_LETTER",5.0,1.6,8.0,Value / Concentrated Quality,,,0.0
+Hayden Capital (Fred Liu),CPNG,"HOLDING_PERSIST,MULTI_FUND_PEER,PUBLIC_LETTER",5.0,1.6,8.0,Value / Concentrated Quality,,,0.0
 Hayden Capital (Fred Liu),APP,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
 Plural Investing (Chris Waller),TVK.TO,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,90.0
 Plural Investing (Chris Waller),SEG,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
@@ -3249,3 +3249,98 @@ Westchester Capital / MERFX (Behren / Shannon),RKT,"MULTI_FUND_PEER,TOP_PICK",4.
 Westchester Capital / MERFX (Behren / Shannon),CYBR,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,5.55,,0.0
 Westchester Capital / MERFX (Behren / Shannon),PANW,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,5.04,,0.0
 Westchester Capital / MERFX (Behren / Shannon),GTLS,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,4.62,,0.0
+Bluebell Capital Partners,GLEN.L,TOP_PICK,3.0,1.2,3.6,Distressed / Event-Driven,5.1,,0.0
+Bluebell Capital Partners,BP.L,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driven,,,0.0
+Bluebell Capital Partners,SOLB.BR,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driven,,,0.0
+PrimeStone Capital,BNR.DE,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,2.0,,0.0
+PrimeStone Capital,JSG.L,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,11.77,,0.0
+PrimeStone Capital,SKG.L,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,0.8,,0.0
+Slater Investments (Mark Slater,JTC.L,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.16,,0.0
+Slater Investments (Mark Slater,FSG.L,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.09,,0.0
+Regal Funds Management (Phil Ki,RED.AX,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,5.4,,0.0
+True Value (Estebaranz),NA9.DE,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.07,,0.0
+True Value (Estebaranz),GOOGL,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,7.29,,0.0
+True Value (Estebaranz),184.HK,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,6.72,,0.0
+Buy & Hold (Julián Pascual),MC.PA,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Buy & Hold (Julián Pascual),ASML.AS,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Buy & Hold (Julián Pascual),NA9.DE,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Buy & Hold (Julián Pascual),NOVO-B.CO,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Active Ownership Capital,GXI.DE,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,15.19,,0.0
+Active Ownership Capital,HFG.DE,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,7.7,,0.0
+Active Ownership Capital,AAD.DE,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,18.0,,0.0
+Active Ownership Capital,SLT.DE,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,11.0,,0.0
+Quarz Capital Management,M1GU.SI,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Foreign / EM Value,14.0,,0.0
+Quarz Capital Management,J91U.SI,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+3D Investment Partners,9684.T,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,16.48,,0.0
+3D Investment Partners,2501.T,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,16.19,,0.0
+3D Investment Partners,9749.T,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,21.0,,0.0
+3D Investment Partners,8129.T,"HYPER_CONVICTION,PUBLIC_LETTER,TOP_PICK",9.5,1.4,13.3,Activists / Special Situations,22.0,,0.0
+3D Investment Partners,9302.T,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,10.14,,0.0
+3D Investment Partners,6502.T,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,,,0.0
+3D Investment Partners,9166.T,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,5.6,,0.0
+Misaki Capital,6036.T,TOP_PICK,3.0,1.2,3.6,Distressed / Event-Driven,5.0,,0.0
+Westbeck Capital (Jean-Louis Le,CVE.TO,PUBLIC_LETTER,2.5,0.6,1.5,CTA / Trend Followers,,,0.0
+Westbeck Capital (Jean-Louis Le,SU.TO,PUBLIC_LETTER,2.5,0.6,1.5,CTA / Trend Followers,,,0.0
+Westbeck Capital (Jean-Louis Le,OIH,PUBLIC_LETTER,2.5,0.6,1.5,CTA / Trend Followers,,,0.0
+Arquitos Capital (Steven Kiel),LQDA,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
+Arquitos Capital (Steven Kiel),FNCH,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,7.0,,0.0
+Driver Management Company LLC,CVLY,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,6.72,,0.0
+Driver Management Company LLC,ASRV,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,8.6,,0.0
+Driver Management Company LLC,ESXB,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Cobia Capital (Jeff Meyers),APPS,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Cobia Capital (Jeff Meyers),AIRG,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Hillspire LLC,GOOGL,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
+Hillspire LLC,SPY,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
+Hillspire LLC,QQQ,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
+Equity Management Associates (L,LGC.V,"PUBLIC_LETTER,TOP_PICK",5.5,0.7,3.85,Warrant Specialists,6.7,,0.0
+Equity Management Associates (L,ASM,PUBLIC_LETTER,2.5,0.7,1.75,Warrant Specialists,,,0.0
+Equity Management Associates (L,MSTR,MULTI_FUND_PEER,1.0,0.7,0.7,Warrant Specialists,,,0.0
+East Capital (Jacob Grapengiess,OTP.BD,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.81,,0.0
+East Capital (Jacob Grapengiess,PEO.WA,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.63,,0.0
+East Capital (Jacob Grapengiess,PKO.WA,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.11,,0.0
+East Capital (Jacob Grapengiess,PZU.WA,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.25,,0.0
+East Capital (Jacob Grapengiess,PRX.AS,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.0,,0.0
+East Capital (Jacob Grapengiess,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,7.8,,0.0
+East Capital (Jacob Grapengiess,BABA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,5.8,,0.0
+Sandon Capital (Gabriel Radzymi,SXL.AX,TOP_PICK,3.0,1.2,3.6,Microcap-Tactical,5.05,,0.0
+Sandon Capital (Gabriel Radzymi,KAR.AX,PUBLIC_LETTER,2.5,1.2,3.0,Microcap-Tactical,,,0.0
+Sandon Capital (Gabriel Radzymi,FWD.AX,PUBLIC_LETTER,2.5,1.2,3.0,Microcap-Tactical,,,0.0
+Holland Advisors (Andrew Hollin,KO,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Holland Advisors (Andrew Hollin,MA,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.0,3.5,Foreign / EM Value,,,0.0
+Holland Advisors (Andrew Hollin,UNH,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Mawer Investment Management (Ca,MA,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
+Mawer Investment Management (Ca,CSU.TO,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
+EdgePoint (Bousada MacDonald Fa,WSH,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+EdgePoint (Bousada MacDonald Fa,VRSN,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+EdgePoint (Bousada MacDonald Fa,BERY,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Asia Frontier Capital (Thomas H,AKBNK.IS,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+Asia Frontier Capital (Thomas H,MCB.KA,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
+"Praetorian Capital (Harris ""Kup",VAL,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+"Praetorian Capital (Harris ""Kup",STNG,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+"Praetorian Capital (Harris ""Kup",INSW,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Maran Capital Management   Mara,CIVI,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,,,0.0
+Maran Capital Management   Mara,AMRK,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,,,0.0
+Hayden Capital (Fred Liu),MELI,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Hayden Capital (Fred Liu),BABA,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Bireme Capital (Evan Tindell & ,PARA,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Bireme Capital (Evan Tindell & ,WBD,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Bireme Capital (Evan Tindell & ,CMCSA,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Cevian Capital,VOD.L,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driven,,,0.0
+Cevian Capital,CON.DE,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driven,,,0.0
+Adrian Day Asset Management (su,AGI,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,,,0.0
+Adrian Day Asset Management (su,AEM,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.4,4.9,Activists / Special Situations,,,0.0
+Saga Partners (Joe Frankenfield,MELI,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Saga Partners (Joe Frankenfield,DKNG,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Right Tail Capital,HEI,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Right Tail Capital,CWAN,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+"Bonhoeffer Fund (Keith Smith, W",ASR,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+"Bonhoeffer Fund (Keith Smith, W",OMAB,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+"Bonhoeffer Fund (Keith Smith, W",GMS,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Caro-Kann Capital (Artem Fokin),RACE,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Long Cast Advisers,BURL,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Plural Investing (Chris Waller),BAH,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Plural Investing (Chris Waller),CACI,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Kinderhook Partners,HMHC,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Kinderhook Partners,PFSI,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Massif Capital (Will Thomson),FCX,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Massif Capital (Will Thomson),HBM.TO,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0

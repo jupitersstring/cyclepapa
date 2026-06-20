@@ -6555,3 +6555,179 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 6554,Lion Selection Group (LSX.AX),WC1.AX,,1,,book,,,,Activist + PE + SPAC + Gold/Mining (gap-fill) | Lion Selection Group (LSX.AX) | (1) Highest conviction (recent adds) | WC1.AX | West Cobar Metals,2026-05-30
 6555,L1 Capital — L1 Gold Fund (LGF.AX),KNT,TSE,1,,book,,K92 Mining,,"Activist + PE + SPAC + Gold/Mining (gap-fill) | L1 Capital — L1 Gold Fund (LGF.AX) | (1) Highest conviction (recent adds) | KNT (TSE) | K92 Mining | Canadian-listed Papua New Guinea producer, beats consensus consistently",2026-05-30
 6556,L1 Capital — L1 Gold Fund (LGF.AX),CEL,ASX,1,,book,,Challenger Gold,,"Activist + PE + SPAC + Gold/Mining (gap-fill) | L1 Capital — L1 Gold Fund (LGF.AX) | (1) Highest conviction (recent adds) | CEL (ASX) | Challenger Gold | More recent addition, transitioning to production",2026-05-30
+6557,Bluebell Capital Partners,GLEN.L,Glencore plc,5,5.1,book,,agent_H_mining.com 2023 5.1% stake,,agent_verified [H] | Bluebell Capital | GLEN.L | Glencore plc | mining.com 2023 5.1% stake,2026-06-20
+6558,Bluebell Capital Partners,BLK,BlackRock Inc,5,,,,agent_H_AGM 2024 Item 6 proposal,,agent_verified [H] | Bluebell Capital | BLK | BlackRock Inc | AGM 2024 Item 6 proposal,2026-06-20
+6559,Bluebell Capital Partners,BP.L,BP plc,5,,,,agent_H_CNBC Feb-2024 50% undervalued ,,agent_verified [H] | Bluebell Capital | BP.L | BP plc | CNBC Feb-2024 50% undervalued thesis,2026-06-20
+6560,Bluebell Capital Partners,TIT.MI,Telecom Italia,5,,,,agent_H_rival-board-slate AGM 2024,,agent_verified [H] | Bluebell Capital | TIT.MI | Telecom Italia | rival-board-slate AGM 2024,2026-06-20
+6561,Bluebell Capital Partners,SOLB.BR,Solvay,5,,,,agent_H_settled ESG campaign Sept 2022,,agent_verified [H] | Bluebell Capital | SOLB.BR | Solvay | settled ESG campaign Sept 2022,2026-06-20
+6562,PrimeStone Capital,BNR.DE,Brenntag SE,5,2.0,book,,agent_H_shareholder letter campaign,,agent_verified [H] | PrimeStone Capital | BNR.DE | Brenntag SE | shareholder letter campaign,2026-06-20
+6563,PrimeStone Capital,JSG.L,Johnson Service Group,5,11.77,book,,agent_H_Oct 2024 top-3 holder filing,,agent_verified [H] | PrimeStone Capital | JSG.L | Johnson Service Group | Oct 2024 top-3 holder filing,2026-06-20
+6564,PrimeStone Capital,FAN.L,Volution Group,5,4.79,book,,agent_H_Dec-2022 filing,,agent_verified [H] | PrimeStone Capital | FAN.L | Volution Group | Dec-2022 filing,2026-06-20
+6565,PrimeStone Capital,TNC,Tennant Company,5,4.1,book,,agent_H_2021 SC 13D/A,,agent_verified [H] | PrimeStone Capital | TNC | Tennant Company | 2021 SC 13D/A,2026-06-20
+6566,PrimeStone Capital,SKG.L,Smurfit Kappa Group,5,0.8,book,,agent_H_Dec 2023 anti-WestRock letter,,agent_verified [H] | PrimeStone Capital | SKG.L | Smurfit Kappa Group | Dec 2023 anti-WestRock letter,2026-06-20
+6567,PrimeStone Capital,LIVN,LivaNova,5,2.2,book,,agent_H_2020 13D won heart-valves dive,,agent_verified [H] | PrimeStone Capital | LIVN | LivaNova | 2020 13D won heart-valves divest,2026-06-20
+6568,Albert Bridge Capital (Drew Dic,VOW.DE,Volkswagen AG,5,,,,agent_M_drews-view blog,,agent_verified [M] | Albert Bridge | VOW.DE | Volkswagen AG | drews-view blog,2026-06-20
+6569,Albert Bridge Capital (Drew Dic,PAH3.DE,Porsche SE,5,,,,"agent_M_drews-view, 14bn underpriced",,"agent_verified [M] | Albert Bridge | PAH3.DE | Porsche SE | drews-view, 14bn underpriced",2026-06-20
+6570,Albert Bridge Capital (Drew Dic,8TRA.DE,Traton SE,5,,,,agent_M_Meb Faber #520 - VW truck spin,,agent_verified [M] | Albert Bridge | 8TRA.DE | Traton SE | Meb Faber #520 - VW truck spinoff,2026-06-20
+6571,Albert Bridge Capital (Drew Dic,EVO.ST,Evolution AB,5,,,,agent_M_Meb Faber #520 - aligned mgmt,,agent_verified [M] | Albert Bridge | EVO.ST | Evolution AB | Meb Faber #520 - aligned mgmt,2026-06-20
+6572,Slater Investments (Mark Slater,JTC.L,JTC Group,5,5.16,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | JTC.L | JTC Group | HL Slater Growth Apr-2026,2026-06-20
+6573,Slater Investments (Mark Slater,FSG.L,Foresight Group Holdings,5,5.09,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | FSG.L | Foresight Group Holdings | HL Slater Growth Apr-2026,2026-06-20
+6574,Slater Investments (Mark Slater,SRP.L,Serco Group,5,4.84,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | SRP.L | Serco Group | HL Slater Growth Apr-2026,2026-06-20
+6575,Slater Investments (Mark Slater,MTO.L,Mitie Group,5,4.65,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | MTO.L | Mitie Group | HL Slater Growth Apr-2026,2026-06-20
+6576,Slater Investments (Mark Slater,FRAN.L,Franchise Brands,5,4.51,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | FRAN.L | Franchise Brands | HL Slater Growth Apr-2026,2026-06-20
+6577,Slater Investments (Mark Slater,RCN.L,Redcentric,5,4.37,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | RCN.L | Redcentric | HL Slater Growth Apr-2026,2026-06-20
+6578,Slater Investments (Mark Slater,TSCO.L,Tesco,5,4.3,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | TSCO.L | Tesco | HL Slater Growth Apr-2026,2026-06-20
+6579,Slater Investments (Mark Slater,PRU.L,Prudential,5,4.25,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | PRU.L | Prudential | HL Slater Growth Apr-2026,2026-06-20
+6580,Slater Investments (Mark Slater,ELIX.L,Elixirr International,5,4.15,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | ELIX.L | Elixirr International | HL Slater Growth Apr-2026,2026-06-20
+6581,Slater Investments (Mark Slater,SRC.L,SigmaRoc,5,3.96,book,,agent_H_HL Slater Growth Apr-2026,,agent_verified [H] | Slater Investments | SRC.L | SigmaRoc | HL Slater Growth Apr-2026,2026-06-20
+6582,Regal Funds Management (Phil Ki,ATH.AX,Alterity Therapeutics,5,,,,agent_H_>5pct substantial holder,,agent_verified [H] | Regal Funds Management | ATH.AX | Alterity Therapeutics | >5pct substantial holder,2026-06-20
+6583,Regal Funds Management (Phil Ki,RED.AX,Red 5 Limited,5,5.4,book,,agent_H_substantial holder filing,,agent_verified [H] | Regal Funds Management | RED.AX | Red 5 Limited | substantial holder filing,2026-06-20
+6584,Regal Funds Management (Phil Ki,WTM.AX,Waratah Minerals,5,,,,agent_M_substantial holder,,agent_verified [M] | Regal Funds Management | WTM.AX | Waratah Minerals | substantial holder,2026-06-20
+6585,Regal Funds Management (Phil Ki,TUA.AX,Tuas Limited,5,,,,agent_M_RALS top long position,,agent_verified [M] | Regal Funds Management | TUA.AX | Tuas Limited | RALS top long position,2026-06-20
+6586,Regal Funds Management (Phil Ki,SVW.AX,Seven Group Holdings,5,,,,agent_M_RALS top long position,,agent_verified [M] | Regal Funds Management | SVW.AX | Seven Group Holdings | RALS top long position,2026-06-20
+6587,Equam Capital (Muñoz   Larraz),XPRO,Expro Holdings NV,5,4.79,book,,agent_H_Equam Global Value Investing.c,,agent_verified [H] | Equam Capital | XPRO | Expro Holdings NV | Equam Global Value Investing.com,2026-06-20
+6588,Equam Capital (Muñoz   Larraz),DFS.L,DFS Furniture plc,5,4.71,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | DFS.L | DFS Furniture plc | Equam Investing.com,2026-06-20
+6589,Equam Capital (Muñoz   Larraz),MN.MI,Arnoldo Mondadori Editore,5,4.1,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | MN.MI | Arnoldo Mondadori Editore | Equam Investing.com,2026-06-20
+6590,Equam Capital (Muñoz   Larraz),BFSA.DE,Befesa SA,5,3.82,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | BFSA.DE | Befesa SA | Equam Investing.com,2026-06-20
+6591,Equam Capital (Muñoz   Larraz),ALLFG.AS,Allfunds Group plc,5,3.6,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | ALLFG.AS | Allfunds Group plc | Equam Investing.com,2026-06-20
+6592,Equam Capital (Muñoz   Larraz),CASH.MC,Prosegur Cash SA,5,3.52,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | CASH.MC | Prosegur Cash SA | Equam Investing.com,2026-06-20
+6593,Equam Capital (Muñoz   Larraz),TGS.OL,TGS NOPEC,5,3.49,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | TGS.OL | TGS NOPEC | Equam Investing.com,2026-06-20
+6594,Equam Capital (Muñoz   Larraz),SES.MI,Sesa SpA,5,3.25,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | SES.MI | Sesa SpA | Equam Investing.com,2026-06-20
+6595,True Value (Estebaranz),NA9.DE,Nagarro SE,5,9.07,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | NA9.DE | Nagarro SE | True Value Investing.com,2026-06-20
+6596,True Value (Estebaranz),GOOGL,Alphabet Class A,5,7.29,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | GOOGL | Alphabet Class A | True Value Investing.com,2026-06-20
+6597,True Value (Estebaranz),184.HK,Keck Seng Investments HK,5,6.72,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | 184.HK | Keck Seng Investments HK | True Value Investing.com,2026-06-20
+6598,True Value (Estebaranz),CGEO.L,Georgia Capital,5,4.35,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | CGEO.L | Georgia Capital | True Value Investing.com,2026-06-20
+6599,True Value (Estebaranz),ITL.PA,IT Link,5,3.91,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | ITL.PA | IT Link | True Value Investing.com,2026-06-20
+6600,Buy & Hold (Julián Pascual),BAM,Brookfield Asset Management,5,,,,agent_M_Capital Radio top-3 for 2024,,agent_verified [M] | Buy & Hold | BAM | Brookfield Asset Management | Capital Radio top-3 for 2024,2026-06-20
+6601,Buy & Hold (Julián Pascual),MC.PA,LVMH,5,,,,agent_M_el espanol Q4-2024 letter,,agent_verified [M] | Buy & Hold | MC.PA | LVMH | el espanol Q4-2024 letter,2026-06-20
+6602,Buy & Hold (Julián Pascual),ASML.AS,ASML Holding,5,,,,agent_M_el espanol letter,,agent_verified [M] | Buy & Hold | ASML.AS | ASML Holding | el espanol letter,2026-06-20
+6603,Buy & Hold (Julián Pascual),NA9.DE,Nagarro SE,5,,,,agent_M_el espanol letter,,agent_verified [M] | Buy & Hold | NA9.DE | Nagarro SE | el espanol letter,2026-06-20
+6604,Buy & Hold (Julián Pascual),NOVO-B.CO,Novo Nordisk,5,,,,agent_M_Q4-2024 letter,,agent_verified [M] | Buy & Hold | NOVO-B.CO | Novo Nordisk | Q4-2024 letter,2026-06-20
+6605,Buy & Hold (Julián Pascual),VID.MC,Vidrala,5,,,,agent_M_Funds Society Q1,,agent_verified [M] | Buy & Hold | VID.MC | Vidrala | Funds Society Q1,2026-06-20
+6606,Buy & Hold (Julián Pascual),GCO.MC,Grupo Catalana Occidente,5,,,,agent_M_Funds Society Q1 new position,,agent_verified [M] | Buy & Hold | GCO.MC | Grupo Catalana Occidente | Funds Society Q1 new position,2026-06-20
+6607,Active Ownership Capital,GXI.DE,Gerresheimer AG,5,15.19,book,,agent_H_Mar-Screener 15.19% activist s,,agent_verified [H] | Active Ownership Capital | GXI.DE | Gerresheimer AG | Mar-Screener 15.19% activist stake,2026-06-20
+6608,Active Ownership Capital,HFG.DE,HelloFresh SE,5,7.7,book,,agent_H_Hedgeweek largest shareholder,,agent_verified [H] | Active Ownership Capital | HFG.DE | HelloFresh SE | Hedgeweek largest shareholder,2026-06-20
+6609,Active Ownership Capital,AAD.DE,Amadeus Fire AG,5,18.0,book,,agent_H_Mar-Screener largest sharehold,,agent_verified [H] | Active Ownership Capital | AAD.DE | Amadeus Fire AG | Mar-Screener largest shareholder,2026-06-20
+6610,Active Ownership Capital,PNE3.DE,PNE AG,5,,,,agent_M_long-term + board seat,,agent_verified [M] | Active Ownership Capital | PNE3.DE | PNE AG | long-term + board seat,2026-06-20
+6611,Active Ownership Capital,SLT.DE,Schaltbau Holding,5,11.0,book,,agent_M_finanznachrichten ~11pct,,agent_verified [M] | Active Ownership Capital | SLT.DE | Schaltbau Holding | finanznachrichten ~11pct,2026-06-20
+6612,Active Ownership Capital,V3V.DE,Vita 34 AG,5,,,,agent_M_mandatory offer 2020,,agent_verified [M] | Active Ownership Capital | V3V.DE | Vita 34 AG | mandatory offer 2020,2026-06-20
+6613,Quarz Capital Management,M1GU.SI,Sabana Industrial REIT,5,14.0,book,,agent_H_mingtiandi Sabana fight 14pct,,agent_verified [H] | Quarz Capital | M1GU.SI | Sabana Industrial REIT | mingtiandi Sabana fight 14pct,2026-06-20
+6614,Quarz Capital Management,RW0U.SI,Mapletree NAC Trust,5,,,,agent_M_2022 top-10 unitholder,,agent_verified [M] | Quarz Capital | RW0U.SI | Mapletree NAC Trust | 2022 top-10 unitholder,2026-06-20
+6615,Quarz Capital Management,J91U.SI,ESR-REIT,5,,,,agent_M_2019 merger campaign,,agent_verified [M] | Quarz Capital | J91U.SI | ESR-REIT | 2019 merger campaign,2026-06-20
+6616,Quarz Capital Management,N2IU.SI,Mapletree Commercial Trust,5,,,,agent_M_2022 merger opposition,,agent_verified [M] | Quarz Capital | N2IU.SI | Mapletree Commercial Trust | 2022 merger opposition,2026-06-20
+6617,3D Investment Partners,9684.T,Square Enix Holdings,5,16.48,book,,agent_H_MarketScreener filing,,agent_verified [H] | 3D Investment Partners | 9684.T | Square Enix Holdings | MarketScreener filing,2026-06-20
+6618,3D Investment Partners,2501.T,Sapporo Holdings,5,16.19,book,,agent_H_MarketScreener largest shareho,,agent_verified [H] | 3D Investment Partners | 2501.T | Sapporo Holdings | MarketScreener largest shareholder,2026-06-20
+6619,3D Investment Partners,9749.T,Fuji Soft,5,21.0,book,,agent_H_Bloomberg activist,,agent_verified [H] | 3D Investment Partners | 9749.T | Fuji Soft | Bloomberg activist,2026-06-20
+6620,3D Investment Partners,8129.T,Toho Holdings,5,22.0,book,,agent_H_BusinessWire open letter,,agent_verified [H] | 3D Investment Partners | 8129.T | Toho Holdings | BusinessWire open letter,2026-06-20
+6621,3D Investment Partners,9302.T,Mitsui-Soko Holdings,5,10.14,book,,agent_H_MarketScreener,,agent_verified [H] | 3D Investment Partners | 9302.T | Mitsui-Soko Holdings | MarketScreener,2026-06-20
+6622,3D Investment Partners,6502.T,Toshiba Corp,5,,,,agent_H_top-5 shareholder since 2016,,agent_verified [H] | 3D Investment Partners | 6502.T | Toshiba Corp | top-5 shareholder since 2016,2026-06-20
+6623,3D Investment Partners,9166.T,Genda Inc,5,5.6,book,,agent_M_8percentpa Substack,,agent_verified [M] | 3D Investment Partners | 9166.T | Genda Inc | 8percentpa Substack,2026-06-20
+6624,Misaki Capital,7956.T,Pigeon Corp,5,,,,"agent_H_Nomura engagement, board seat",,"agent_verified [H] | Misaki Capital | 7956.T | Pigeon Corp | Nomura engagement, board seat",2026-06-20
+6625,Misaki Capital,8155.T,Sangetsu Corp,5,,,,agent_H_HBS case study,,agent_verified [H] | Misaki Capital | 8155.T | Sangetsu Corp | HBS case study,2026-06-20
+6626,Misaki Capital,6036.T,Keeper Technical Lab,5,5.0,book,,agent_M_8percentpa Substack,,agent_verified [M] | Misaki Capital | 6036.T | Keeper Technical Lab | 8percentpa Substack,2026-06-20
+6627,Misaki Capital,2175.T,SMS Co Ltd,5,4.5,book,,agent_M_8percentpa Substack,,agent_verified [M] | Misaki Capital | 2175.T | SMS Co Ltd | 8percentpa Substack,2026-06-20
+6628,Misaki Capital,4626.T,Taiyo Holdings,5,,,,agent_M_Substack,,agent_verified [M] | Misaki Capital | 4626.T | Taiyo Holdings | Substack,2026-06-20
+6629,Westbeck Capital (Jean-Louis Le,TLW.L,Tullow Oil,5,,,,agent_M_Hedgeweek,,agent_verified [M] | Westbeck Capital | TLW.L | Tullow Oil | Hedgeweek,2026-06-20
+6630,Westbeck Capital (Jean-Louis Le,CVE.TO,Cenovus Energy,5,,,,agent_M_Bloomberg 2020 thesis,,agent_verified [M] | Westbeck Capital | CVE.TO | Cenovus Energy | Bloomberg 2020 thesis,2026-06-20
+6631,Westbeck Capital (Jean-Louis Le,SU.TO,Suncor Energy,5,,,,agent_M_Bloomberg 2020 thesis,,agent_verified [M] | Westbeck Capital | SU.TO | Suncor Energy | Bloomberg 2020 thesis,2026-06-20
+6632,Westbeck Capital (Jean-Louis Le,OIH,VanEck Oil Services ETF,5,,,,agent_M_Rigzone $200 oil thesis,,agent_verified [M] | Westbeck Capital | OIH | VanEck Oil Services ETF | Rigzone $200 oil thesis,2026-06-20
+6633,Arquitos Capital (Steven Kiel),ENDI,ENDI Corp (Enterprise Diversified),5,,,,agent_H_Worldly Invest Q3-2025,,agent_verified [H] | Arquitos Capital | ENDI | ENDI Corp (Enterprise Diversified) | Worldly Invest Q3-2025,2026-06-20
+6634,Arquitos Capital (Steven Kiel),LQDA,Liquidia Corporation,5,,,,agent_H_Worldly Invest top-2/3,,agent_verified [H] | Arquitos Capital | LQDA | Liquidia Corporation | Worldly Invest top-2/3,2026-06-20
+6635,Arquitos Capital (Steven Kiel),FNCH,Finch Therapeutics,5,7.0,book,,agent_H_Q1-2025 investor letter,,agent_verified [H] | Arquitos Capital | FNCH | Finch Therapeutics | Q1-2025 investor letter,2026-06-20
+6636,Driver Management Company LLC,FUNC,First United Corp,5,,,,agent_H_13D filer,,agent_verified [H] | Driver Management | FUNC | First United Corp | 13D filer,2026-06-20
+6637,Driver Management Company LLC,CVLY,Codorus Valley Bancorp,5,6.72,book,,agent_H_13D,,agent_verified [H] | Driver Management | CVLY | Codorus Valley Bancorp | 13D,2026-06-20
+6638,Driver Management Company LLC,ASRV,AmeriServ Financial,5,8.6,book,,agent_H_SC 13D ex991,,agent_verified [H] | Driver Management | ASRV | AmeriServ Financial | SC 13D ex991,2026-06-20
+6639,Driver Management Company LLC,ESXB,Community Bankers Trust,5,,,,agent_H_2020 activist campaign,,agent_verified [H] | Driver Management | ESXB | Community Bankers Trust | 2020 activist campaign,2026-06-20
+6640,Cobia Capital (Jeff Meyers),APPS,Digital Turbine,5,,,,agent_M_SeekingAlpha pitch,,agent_verified [M] | Cobia Capital | APPS | Digital Turbine | SeekingAlpha pitch,2026-06-20
+6641,Cobia Capital (Jeff Meyers),SILC,Silicom Ltd,5,,,,agent_M_SumZero top pick,,agent_verified [M] | Cobia Capital | SILC | Silicom Ltd | SumZero top pick,2026-06-20
+6642,Cobia Capital (Jeff Meyers),AIRG,Airgain Inc,5,,,,agent_M_RealVision pitch,,agent_verified [M] | Cobia Capital | AIRG | Airgain Inc | RealVision pitch,2026-06-20
+6643,Cobia Capital (Jeff Meyers),WEAV,Weave Communications,5,,,,agent_M_Barron's,,agent_verified [M] | Cobia Capital | WEAV | Weave Communications | Barron's,2026-06-20
+6644,Cobia Capital (Jeff Meyers),SSTI,SoundThinking,5,,,,agent_M_Barron's,,agent_verified [M] | Cobia Capital | SSTI | SoundThinking | Barron's,2026-06-20
+6645,Hillspire LLC,GOOGL,Alphabet Class A,5,,,,agent_H_Schmidt SC 13G/A Feb-2025,,agent_verified [H] | Hillspire | GOOGL | Alphabet Class A | Schmidt SC 13G/A Feb-2025,2026-06-20
+6646,Hillspire LLC,SPY,SPDR S&P 500 ETF,5,,,,agent_M_Juniper Hill 13F Q4-2025,,agent_verified [M] | Hillspire | SPY | SPDR S&P 500 ETF | Juniper Hill 13F Q4-2025,2026-06-20
+6647,Hillspire LLC,QQQ,Invesco QQQ,5,,,,agent_M_Juniper Hill 13F,,agent_verified [M] | Hillspire | QQQ | Invesco QQQ | Juniper Hill 13F,2026-06-20
+6648,Hillspire LLC,AGG,iShares Core AGG,5,,,,agent_M_Juniper Hill 13F,,agent_verified [M] | Hillspire | AGG | iShares Core AGG | Juniper Hill 13F,2026-06-20
+6649,Equity Management Associates (L,LGC.V,Lavras Gold Corp,5,6.7,book,,agent_H_EMA Q3-2025 letter,,agent_verified [H] | Equity Management | LGC.V | Lavras Gold Corp | EMA Q3-2025 letter,2026-06-20
+6650,Equity Management Associates (L,ASM,Avino Silver & Gold,5,,,,agent_H_EMA Q3-2025 letter very large,,agent_verified [H] | Equity Management | ASM | Avino Silver & Gold | EMA Q3-2025 letter very large,2026-06-20
+6651,Equity Management Associates (L,MSTR,Strategy (MicroStrategy),5,,,,agent_H_Bitcoin proxy LEAPS,,agent_verified [H] | Equity Management | MSTR | Strategy (MicroStrategy) | Bitcoin proxy LEAPS,2026-06-20
+6652,Equity Management Associates (L,AUMB.V,1911 Gold Corp,5,,,,agent_H_EMA Q3-2025 added,,agent_verified [H] | Equity Management | AUMB.V | 1911 Gold Corp | EMA Q3-2025 added,2026-06-20
+6653,Equity Management Associates (L,CBR.V,Cabral Gold,5,1.36,book,,agent_H_Lepard director 13D,,agent_verified [H] | Equity Management | CBR.V | Cabral Gold | Lepard director 13D,2026-06-20
+6654,Equity Management Associates (L,EXK,Endeavour Silver,5,,,,agent_M_Wealthion interview,,agent_verified [M] | Equity Management | EXK | Endeavour Silver | Wealthion interview,2026-06-20
+6655,East Capital (Jacob Grapengiess,OTP.BD,OTP Bank,5,9.81,book,,agent_H_Eastern Europe Investing.com,,agent_verified [H] | East Capital | OTP.BD | OTP Bank | Eastern Europe Investing.com,2026-06-20
+6656,East Capital (Jacob Grapengiess,PEO.WA,Bank Pekao,5,9.63,book,,agent_H_Investing.com,,agent_verified [H] | East Capital | PEO.WA | Bank Pekao | Investing.com,2026-06-20
+6657,East Capital (Jacob Grapengiess,PKO.WA,PKO Bank Polski,5,9.11,book,,agent_H_Investing.com,,agent_verified [H] | East Capital | PKO.WA | PKO Bank Polski | Investing.com,2026-06-20
+6658,East Capital (Jacob Grapengiess,PZU.WA,PZU,5,5.25,book,,agent_H_Investing.com,,agent_verified [H] | East Capital | PZU.WA | PZU | Investing.com,2026-06-20
+6659,East Capital (Jacob Grapengiess,LPP.WA,LPP SA,5,4.24,book,,agent_H_Investing.com,,agent_verified [H] | East Capital | LPP.WA | LPP SA | Investing.com,2026-06-20
+6660,East Capital (Jacob Grapengiess,KSPI,Kaspi.kz ADS,5,3.99,book,,agent_H_Investing.com,,agent_verified [H] | East Capital | KSPI | Kaspi.kz ADS | Investing.com,2026-06-20
+6661,East Capital (Jacob Grapengiess,RBI.VI,Raiffeisen Bank Intl,5,3.41,book,,agent_H_Investing.com,,agent_verified [H] | East Capital | RBI.VI | Raiffeisen Bank Intl | Investing.com,2026-06-20
+6662,East Capital (Jacob Grapengiess,PRX.AS,Prosus NV,5,9.0,book,,agent_M_Global EM Sustainable factshee,,agent_verified [M] | East Capital | PRX.AS | Prosus NV | Global EM Sustainable factsheet,2026-06-20
+6663,East Capital (Jacob Grapengiess,TSM,Taiwan Semi ADR,5,7.8,book,,agent_M_Global EM Sustainable,,agent_verified [M] | East Capital | TSM | Taiwan Semi ADR | Global EM Sustainable,2026-06-20
+6664,East Capital (Jacob Grapengiess,BABA,Alibaba,5,5.8,book,,agent_M_Global EM Sustainable,,agent_verified [M] | East Capital | BABA | Alibaba | Global EM Sustainable,2026-06-20
+6665,Sandon Capital (Gabriel Radzymi,SXL.AX,Southern Cross Media,5,5.05,book,,agent_H_substantial-holder 2024-26,,agent_verified [H] | Sandon Capital | SXL.AX | Southern Cross Media | substantial-holder 2024-26,2026-06-20
+6666,Sandon Capital (Gabriel Radzymi,KAR.AX,Karoon Energy,5,,,,agent_H_joint campaign w/ Samuel Terry,,agent_verified [H] | Sandon Capital | KAR.AX | Karoon Energy | joint campaign w/ Samuel Terry,2026-06-20
+6667,Sandon Capital (Gabriel Radzymi,MFG.AX,Magellan Financial,5,,,,agent_H_activist since June 2023,,agent_verified [H] | Sandon Capital | MFG.AX | Magellan Financial | activist since June 2023,2026-06-20
+6668,Sandon Capital (Gabriel Radzymi,COG.AX,COG Financial Services,5,,,,agent_H_Mar/Jun-2025 top contributor,,agent_verified [H] | Sandon Capital | COG.AX | COG Financial Services | Mar/Jun-2025 top contributor,2026-06-20
+6669,Sandon Capital (Gabriel Radzymi,FWD.AX,Fleetwood,5,,,,agent_H_long-running campaign 2016+,,agent_verified [H] | Sandon Capital | FWD.AX | Fleetwood | long-running campaign 2016+,2026-06-20
+6670,Sandon Capital (Gabriel Radzymi,CYG.AX,Coventry Group,5,,,,agent_H_Dec-2025 contributor,,agent_verified [H] | Sandon Capital | CYG.AX | Coventry Group | Dec-2025 contributor,2026-06-20
+6671,Sandon Capital (Gabriel Radzymi,BCI.AX,BCI Minerals,5,,,,agent_H_Jun/Dec-2025 contributor,,agent_verified [H] | Sandon Capital | BCI.AX | BCI Minerals | Jun/Dec-2025 contributor,2026-06-20
+6672,Sandon Capital (Gabriel Radzymi,QPM.AX,QPM Energy,5,,,,agent_M_Dec-2025 weaker contributor,,agent_verified [M] | Sandon Capital | QPM.AX | QPM Energy | Dec-2025 weaker contributor,2026-06-20
+6673,Sandon Capital (Gabriel Radzymi,SPSY.AX,Spectra Systems,5,,,,agent_M_Dec-2025 positive contributor,,agent_verified [M] | Sandon Capital | SPSY.AX | Spectra Systems | Dec-2025 positive contributor,2026-06-20
+6674,Holland Advisors (Andrew Hollin,KO,Coca-Cola,5,,,,agent_M_letter top-10,,agent_verified [M] | Holland Advisors | KO | Coca-Cola | letter top-10,2026-06-20
+6675,Holland Advisors (Andrew Hollin,MA,Mastercard,5,,,,agent_M_letter top-10,,agent_verified [M] | Holland Advisors | MA | Mastercard | letter top-10,2026-06-20
+6676,Holland Advisors (Andrew Hollin,UNH,UnitedHealth,5,,,,agent_M_letter top-10,,agent_verified [M] | Holland Advisors | UNH | UnitedHealth | letter top-10,2026-06-20
+6677,Mawer Investment Management (Ca,BKNG,Booking Holdings,5,,,,agent_M_Global Equity factsheet,,agent_verified [M] | Mawer Investment | BKNG | Booking Holdings | Global Equity factsheet,2026-06-20
+6678,Mawer Investment Management (Ca,MSCI,MSCI Inc,5,,,,agent_M_Global Equity factsheet,,agent_verified [M] | Mawer Investment | MSCI | MSCI Inc | Global Equity factsheet,2026-06-20
+6679,Mawer Investment Management (Ca,MA,Mastercard,5,,,,agent_M_Global Equity factsheet,,agent_verified [M] | Mawer Investment | MA | Mastercard | Global Equity factsheet,2026-06-20
+6680,Mawer Investment Management (Ca,V,Visa,5,,,,agent_M_Global Equity factsheet,,agent_verified [M] | Mawer Investment | V | Visa | Global Equity factsheet,2026-06-20
+6681,Mawer Investment Management (Ca,CSU.TO,Constellation Software,5,,,,agent_H_flagship Canadian holding,,agent_verified [H] | Mawer Investment | CSU.TO | Constellation Software | flagship Canadian holding,2026-06-20
+6682,EdgePoint (Bousada MacDonald Fa,WSH,Worthington Industries,5,,,,agent_M_letter,,agent_verified [M] | EdgePoint | WSH | Worthington Industries | letter,2026-06-20
+6683,EdgePoint (Bousada MacDonald Fa,VRSN,Verisign,5,,,,agent_M_letter,,agent_verified [M] | EdgePoint | VRSN | Verisign | letter,2026-06-20
+6684,EdgePoint (Bousada MacDonald Fa,BERY,Berry Global,5,,,,agent_M_letter,,agent_verified [M] | EdgePoint | BERY | Berry Global | letter,2026-06-20
+6685,Asia Frontier Capital (Thomas H,AKBNK.IS,Akbank,5,,,,agent_M_frontier letter,,agent_verified [M] | Asia Frontier Capital | AKBNK.IS | Akbank | frontier letter,2026-06-20
+6686,Asia Frontier Capital (Thomas H,MCB.KA,MCB Bank Pakistan,5,,,,agent_M_frontier letter,,agent_verified [M] | Asia Frontier Capital | MCB.KA | MCB Bank Pakistan | frontier letter,2026-06-20
+6687,"Pangolin Asia Fund (James Hay, ",D05.SI,DBS Group,5,,,,agent_M_SG financial holding,,agent_verified [M] | Pangolin Asia | D05.SI | DBS Group | SG financial holding,2026-06-20
+6688,"Praetorian Capital (Harris ""Kup",VAL,Valaris,5,,,,agent_M_Kuppy.com letter,,agent_verified [M] | Praetorian Capital | VAL | Valaris | Kuppy.com letter,2026-06-20
+6689,"Praetorian Capital (Harris ""Kup",STNG,Scorpio Tankers,5,,,,agent_M_Kuppy.com letter,,agent_verified [M] | Praetorian Capital | STNG | Scorpio Tankers | Kuppy.com letter,2026-06-20
+6690,"Praetorian Capital (Harris ""Kup",INSW,International Seaways,5,,,,agent_M_Kuppy.com letter,,agent_verified [M] | Praetorian Capital | INSW | International Seaways | Kuppy.com letter,2026-06-20
+6691,Maran Capital Management   Mara,CIVI,Civitas Resources,5,,,,agent_M_letter,,agent_verified [M] | Maran Capital | CIVI | Civitas Resources | letter,2026-06-20
+6692,Maran Capital Management   Mara,AMRK,A-Mark Precious Metals,5,,,,agent_M_letter,,agent_verified [M] | Maran Capital | AMRK | A-Mark Precious Metals | letter,2026-06-20
+6693,Sprott Inc   Sprott Asset Manag,WPM,Wheaton Precious Metals,5,,,,agent_M_Sprott portfolio,,agent_verified [M] | Sprott Inc | WPM | Wheaton Precious Metals | Sprott portfolio,2026-06-20
+6694,Sprott Inc   Sprott Asset Manag,FNV,Franco-Nevada,5,,,,agent_M_Sprott portfolio,,agent_verified [M] | Sprott Inc | FNV | Franco-Nevada | Sprott portfolio,2026-06-20
+6695,Sprott Inc   Sprott Asset Manag,PAAS,Pan American Silver,5,,,,agent_M_Sprott portfolio,,agent_verified [M] | Sprott Inc | PAAS | Pan American Silver | Sprott portfolio,2026-06-20
+6696,Hayden Capital (Fred Liu),MELI,MercadoLibre,5,,,,agent_M_letter,,agent_verified [M] | Hayden Capital | MELI | MercadoLibre | letter,2026-06-20
+6697,Hayden Capital (Fred Liu),CPNG,Coupang,5,,,,agent_M_letter,,agent_verified [M] | Hayden Capital | CPNG | Coupang | letter,2026-06-20
+6698,Hayden Capital (Fred Liu),SE,Sea Limited,5,,,,agent_M_letter,,agent_verified [M] | Hayden Capital | SE | Sea Limited | letter,2026-06-20
+6699,Hayden Capital (Fred Liu),BABA,Alibaba,5,,,,agent_M_letter,,agent_verified [M] | Hayden Capital | BABA | Alibaba | letter,2026-06-20
+6700,Bireme Capital (Evan Tindell & ,PARA,Paramount Global,5,,,,agent_M_Substack letter,,agent_verified [M] | Bireme Capital | PARA | Paramount Global | Substack letter,2026-06-20
+6701,Bireme Capital (Evan Tindell & ,WBD,Warner Bros Discovery,5,,,,agent_M_Substack letter,,agent_verified [M] | Bireme Capital | WBD | Warner Bros Discovery | Substack letter,2026-06-20
+6702,Bireme Capital (Evan Tindell & ,CMCSA,Comcast,5,,,,agent_M_Substack letter,,agent_verified [M] | Bireme Capital | CMCSA | Comcast | Substack letter,2026-06-20
+6703,Cevian Capital,VOD.L,Vodafone,5,,,,agent_H_campaign,,agent_verified [H] | Cevian Capital | VOD.L | Vodafone | campaign,2026-06-20
+6704,Cevian Capital,ABBN.SW,ABB Ltd,5,,,,agent_H_long-running,,agent_verified [H] | Cevian Capital | ABBN.SW | ABB Ltd | long-running,2026-06-20
+6705,Cevian Capital,CON.DE,Continental,5,,,,agent_H_split campaign,,agent_verified [H] | Cevian Capital | CON.DE | Continental | split campaign,2026-06-20
+6706,Petrus Advisers,PROX.BR,Proximus,5,,,,agent_M_engagement,,agent_verified [M] | Petrus Advisers | PROX.BR | Proximus | engagement,2026-06-20
+6707,Adrian Day Asset Management (su,FNV,Franco-Nevada,5,,,,agent_M_newsletter top pick,,agent_verified [M] | Adrian Day | FNV | Franco-Nevada | newsletter top pick,2026-06-20
+6708,Adrian Day Asset Management (su,RGLD,Royal Gold,5,,,,agent_M_newsletter,,agent_verified [M] | Adrian Day | RGLD | Royal Gold | newsletter,2026-06-20
+6709,Adrian Day Asset Management (su,AGI,Alamos Gold,5,,,,agent_M_letter,,agent_verified [M] | Adrian Day | AGI | Alamos Gold | letter,2026-06-20
+6710,Adrian Day Asset Management (su,AEM,Agnico Eagle,5,,,,agent_M_letter,,agent_verified [M] | Adrian Day | AEM | Agnico Eagle | letter,2026-06-20
+6711,Palisades Goldcorp (Collin Kett,METC.CN,Patriot Battery Metals,5,,,,agent_M_incubator stake,,agent_verified [M] | Palisades Goldcorp | METC.CN | Patriot Battery Metals | incubator stake,2026-06-20
+6712,Mark E. Schwarz   Newcastle Cap,HRTG,Heritage Insurance,5,,,,agent_M_13D filer,,agent_verified [M] | Mark E. Schwarz | HRTG | Heritage Insurance | 13D filer,2026-06-20
+6713,Mark E. Schwarz   Newcastle Cap,HMHC,Houghton Mifflin,5,,,,agent_M_long-held,,agent_verified [M] | Mark E. Schwarz | HMHC | Houghton Mifflin | long-held,2026-06-20
+6714,Saga Partners (Joe Frankenfield,MELI,MercadoLibre,5,,,,agent_M_Substack letter,,agent_verified [M] | Saga Partners | MELI | MercadoLibre | Substack letter,2026-06-20
+6715,Saga Partners (Joe Frankenfield,DKNG,DraftKings,5,,,,agent_M_letter,,agent_verified [M] | Saga Partners | DKNG | DraftKings | letter,2026-06-20
+6716,Right Tail Capital,HEI,Heico Corp,5,,,,agent_M_letter,,agent_verified [M] | Right Tail Capital | HEI | Heico Corp | letter,2026-06-20
+6717,Right Tail Capital,CWAN,Clearwater Analytics,5,,,,agent_M_letter,,agent_verified [M] | Right Tail Capital | CWAN | Clearwater Analytics | letter,2026-06-20
+6718,"Bonhoeffer Fund (Keith Smith, W",ASR,Grupo Aeroportuario Sureste,5,,,,agent_M_letter,,agent_verified [M] | Bonhoeffer Fund | ASR | Grupo Aeroportuario Sureste | letter,2026-06-20
+6719,"Bonhoeffer Fund (Keith Smith, W",OMAB,Grupo Aeroportuario Centro,5,,,,agent_M_letter,,agent_verified [M] | Bonhoeffer Fund | OMAB | Grupo Aeroportuario Centro | letter,2026-06-20
+6720,"Bonhoeffer Fund (Keith Smith, W",GMS,GMS Inc,5,,,,agent_M_Substack letter,,agent_verified [M] | Bonhoeffer Fund | GMS | GMS Inc | Substack letter,2026-06-20
+6721,Caro-Kann Capital (Artem Fokin),RACE,Ferrari,5,,,,agent_M_Substack letter,,agent_verified [M] | Caro-Kann Capital | RACE | Ferrari | Substack letter,2026-06-20
+6722,Long Cast Advisers,BURL,Burlington Stores,5,,,,agent_M_letter,,agent_verified [M] | Long Cast Advisers | BURL | Burlington Stores | letter,2026-06-20
+6723,Plural Investing (Chris Waller),BAH,Booz Allen Hamilton,5,,,,agent_M_letter,,agent_verified [M] | Plural Investing | BAH | Booz Allen Hamilton | letter,2026-06-20
+6724,Plural Investing (Chris Waller),CACI,CACI International,5,,,,agent_M_letter,,agent_verified [M] | Plural Investing | CACI | CACI International | letter,2026-06-20
+6725,Outerbridge Capital Management ,HCKT,Hackett Group,5,,,,agent_M_13D,,agent_verified [M] | Outerbridge Capital | HCKT | Hackett Group | 13D,2026-06-20
+6726,Outerbridge Capital Management ,MTSI,MACOM Technology,5,,,,agent_M_engagement,,agent_verified [M] | Outerbridge Capital | MTSI | MACOM Technology | engagement,2026-06-20
+6727,Kinderhook Partners,HMHC,Houghton Mifflin,5,,,,agent_M_letter,,agent_verified [M] | Kinderhook Partners | HMHC | Houghton Mifflin | letter,2026-06-20
+6728,Kinderhook Partners,PFSI,PennyMac Financial,5,,,,agent_M_letter,,agent_verified [M] | Kinderhook Partners | PFSI | PennyMac Financial | letter,2026-06-20
+6729,Massif Capital (Will Thomson),FCX,Freeport-McMoRan,5,,,,agent_M_letter,,agent_verified [M] | Massif Capital | FCX | Freeport-McMoRan | letter,2026-06-20
+6730,Massif Capital (Will Thomson),HBM.TO,Hudbay Minerals,5,,,,agent_M_letter,,agent_verified [M] | Massif Capital | HBM.TO | Hudbay Minerals | letter,2026-06-20
+6731,Star Equity Fund LP (Jeffrey Eb,STRR,Star Equity Holdings,5,,,,agent_H_Eberwein self-stake,,agent_verified [H] | Star Equity | STRR | Star Equity Holdings | Eberwein self-stake,2026-06-20
+6732,Star Equity Fund LP (Jeffrey Eb,DC,Dakota Gold,5,,,,agent_H_13D,,agent_verified [H] | Star Equity | DC | Dakota Gold | 13D,2026-06-20
