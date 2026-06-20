@@ -39,7 +39,10 @@ from openpyxl.worksheet.table import Table, TableStyleInfo
 OUT = Path('results_peg')
 WB_PATH = OUT / 'best_of_best.xlsx'
 
-REGIONS = ['US','JP','KR','HK','AU','CA','GB','DE','FR','SE']
+REGIONS = ['US','JP','GB','DE','FR','CA','AU',         # Tier 1
+           'CH','IT','NL','ES','SE','NO','DK','BE','FI','IE','AT','PT','GR',   # Tier 2 EU
+           'KR','HK','TW','SG','NZ','IL',              # Tier 3 APAC
+           'CN','IN','BR','MX','ZA','TR','TH','ID']    # Tier 4 EM
 
 # ---------- Harvard Business Review style palette ----------
 # Crimson is the HBS primary; warm off-whites and slate-grey neutrals frame it.
@@ -567,9 +570,15 @@ def build_global_measures(wb, gav, fin, comb):
 
 
 REGION_FULL_NAME = {
-    'US': 'United States', 'JP': 'Japan', 'KR': 'South Korea', 'HK': 'Hong Kong',
-    'AU': 'Australia', 'CA': 'Canada', 'GB': 'United Kingdom', 'DE': 'Germany',
-    'FR': 'France', 'SE': 'Sweden',
+    'US': 'United States', 'JP': 'Japan', 'GB': 'United Kingdom', 'DE': 'Germany',
+    'FR': 'France', 'CA': 'Canada', 'AU': 'Australia',
+    'CH': 'Switzerland', 'IT': 'Italy', 'NL': 'Netherlands', 'ES': 'Spain',
+    'SE': 'Sweden', 'NO': 'Norway', 'DK': 'Denmark', 'BE': 'Belgium',
+    'FI': 'Finland', 'IE': 'Ireland', 'AT': 'Austria', 'PT': 'Portugal', 'GR': 'Greece',
+    'KR': 'South Korea', 'HK': 'Hong Kong', 'TW': 'Taiwan', 'SG': 'Singapore',
+    'NZ': 'New Zealand', 'IL': 'Israel',
+    'CN': 'China', 'IN': 'India', 'BR': 'Brazil', 'MX': 'Mexico',
+    'ZA': 'South Africa', 'TR': 'Turkey', 'TH': 'Thailand', 'ID': 'Indonesia',
 }
 
 def build_per_region_tabs(wb, gav, fin, comb, per_region):

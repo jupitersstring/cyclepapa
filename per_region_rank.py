@@ -35,16 +35,44 @@ OUT.mkdir(exist_ok=True)
 #          filter by SUFFIX (more reliable than country) because
 #          financedatabase country=Japan returns London ADRs etc.
 REGIONS = {
-    'US': ('United States', [None]),       # no suffix
-    'JP': ('Japan',          ['.T']),       # Tokyo only
-    'KR': ('South Korea',    ['.KS', '.KQ']),# KOSPI + KOSDAQ
-    'HK': ('Hong Kong',      ['.HK']),
-    'AU': ('Australia',      ['.AX']),
-    'CA': ('Canada',         ['.TO', '.V']),# TSX + TSX-V
+    # Tier 1 — Anglo / G7 majors
+    'US': ('United States', [None]),
+    'JP': ('Japan',          ['.T']),
     'GB': ('United Kingdom', ['.L']),
-    'DE': ('Germany',        ['.DE', '.F']),# XETRA + Frankfurt
+    'DE': ('Germany',        ['.DE', '.F']),
     'FR': ('France',         ['.PA']),
+    'CA': ('Canada',         ['.TO', '.V']),
+    'AU': ('Australia',      ['.AX']),
+    # Tier 2 — European core
+    'CH': ('Switzerland',    ['.SW']),
+    'IT': ('Italy',          ['.MI']),
+    'NL': ('Netherlands',    ['.AS']),
+    'ES': ('Spain',          ['.MC']),
     'SE': ('Sweden',         ['.ST']),
+    'NO': ('Norway',         ['.OL']),
+    'DK': ('Denmark',        ['.CO']),
+    'BE': ('Belgium',        ['.BR']),
+    'FI': ('Finland',        ['.HE']),
+    'IE': ('Ireland',        ['.IR']),
+    'AT': ('Austria',        ['.VI']),
+    'PT': ('Portugal',       ['.LS']),
+    'GR': ('Greece',         ['.AT']),
+    # Tier 3 — Developed Asia/Pacific
+    'KR': ('South Korea',    ['.KS', '.KQ']),
+    'HK': ('Hong Kong',      ['.HK']),
+    'TW': ('Taiwan',         ['.TW', '.TWO']),
+    'SG': ('Singapore',      ['.SI']),
+    'NZ': ('New Zealand',    ['.NZ']),
+    'IL': ('Israel',         ['.TA']),
+    # Tier 4 — Major EM
+    'CN': ('China',          ['.SS', '.SZ']),
+    'IN': ('India',          ['.NS', '.BO']),
+    'BR': ('Brazil',         ['.SA']),
+    'MX': ('Mexico',         ['.MX']),
+    'ZA': ('South Africa',   ['.JO']),
+    'TR': ('Turkey',         ['.IS']),
+    'TH': ('Thailand',       ['.BK']),
+    'ID': ('Indonesia',      ['.JK']),
 }
 
 # Slim keep list — we only need scoring fields, not the full info dump

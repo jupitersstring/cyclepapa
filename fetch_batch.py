@@ -60,16 +60,10 @@ def priority_universe(region: str):
     so the most meaningful names get fetched first."""
     import financedatabase as fd
     e = fd.Equities()
-    country_map = {
-        'US': 'United States', 'JP': 'Japan', 'KR': 'South Korea',
-        'HK': 'Hong Kong', 'AU': 'Australia', 'CA': 'Canada',
-        'GB': 'United Kingdom', 'DE': 'Germany', 'FR': 'France', 'SE': 'Sweden',
-    }
-    suff_map = {
-        'US': [None], 'JP': ['.T'], 'KR': ['.KS','.KQ'], 'HK': ['.HK'],
-        'AU': ['.AX'], 'CA': ['.TO','.V'], 'GB': ['.L'], 'DE': ['.DE','.F'],
-        'FR': ['.PA'], 'SE': ['.ST'],
-    }
+    # Pull the maps from per_region_rank so they stay in sync as we add regions.
+    from per_region_rank import REGIONS
+    country_map = {code: c for code, (c, _) in REGIONS.items()}
+    suff_map    = {code: s for code, (_, s) in REGIONS.items()}
     country = country_map[region]
     suffs = suff_map[region]
     seen = set()

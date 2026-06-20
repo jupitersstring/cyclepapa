@@ -40,11 +40,18 @@ OUT = Path('results_peg'); OUT.mkdir(exist_ok=True)
 def safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in t)
 
 
-# Region suffix → display label
+# Region suffix → display label. Covers all 33 markets in REGIONS.
 SUFFIX_REGION = {
-    '': 'US', '.T': 'JP', '.KS': 'KR', '.KQ': 'KR', '.HK': 'HK',
-    '.AX': 'AU', '.TO': 'CA', '.V': 'CA', '.L': 'GB', '.DE': 'DE',
-    '.F': 'DE', '.PA': 'FR', '.ST': 'SE',
+    '': 'US',
+    '.T': 'JP', '.L': 'GB', '.DE': 'DE', '.F': 'DE', '.PA': 'FR',
+    '.TO': 'CA', '.V': 'CA', '.AX': 'AU',
+    '.SW': 'CH', '.MI': 'IT', '.AS': 'NL', '.MC': 'ES',
+    '.ST': 'SE', '.OL': 'NO', '.CO': 'DK', '.BR': 'BE', '.HE': 'FI',
+    '.IR': 'IE', '.VI': 'AT', '.LS': 'PT', '.AT': 'GR',
+    '.KS': 'KR', '.KQ': 'KR', '.HK': 'HK', '.TW': 'TW', '.TWO': 'TW',
+    '.SI': 'SG', '.NZ': 'NZ', '.TA': 'IL',
+    '.SS': 'CN', '.SZ': 'CN', '.NS': 'IN', '.BO': 'IN', '.SA': 'BR',
+    '.MX': 'MX', '.JO': 'ZA', '.IS': 'TR', '.BK': 'TH', '.JK': 'ID',
 }
 def _region(tk: str) -> str:
     if '.' in tk:
@@ -82,7 +89,7 @@ def load_all_info(min_mcap: float):
         orig = tk
         if '_' in tk:
             head, _, tail = tk.rpartition('_')
-            if ('.' + tail) in {'.T','.KS','.KQ','.HK','.AX','.TO','.V','.L','.DE','.F','.PA','.ST'}:
+            if ('.' + tail) in {'.T','.L','.DE','.F','.PA','.TO','.V','.AX','.SW','.MI','.AS','.MC','.ST','.OL','.CO','.BR','.HE','.IR','.VI','.LS','.AT','.KS','.KQ','.HK','.TW','.TWO','.SI','.NZ','.TA','.SS','.SZ','.NS','.BO','.SA','.MX','.JO','.IS','.BK','.JK'}:
                 orig = head + '.' + tail
         try:
             d = pd.read_parquet(p)
