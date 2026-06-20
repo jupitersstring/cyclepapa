@@ -167,6 +167,107 @@ def write_footnote(ws, row: int, text: str, n_cols: int):
 # Tab 1: Cover / Executive Summary
 # ----------------------------------------------------------------------
 
+def get_convergent_from_disk() -> list[dict]:
+    """Derive the convergent list from consensus_ranking.csv -- the
+    SINGLE source of truth. No hardcoded ticker references.
+    A name is convergent iff n_screens >= 3 AND n_archetypes >= 1.
+    Returned ordered by (n_screens desc, n_archetypes desc,
+    consensus_score desc).
+    """
+    cr = ROOT / "consensus_ranking.csv"
+    if not cr.exists():
+        return []
+    rows = list(csv.DictReader(cr.open()))
+    convergent = []
+    for r in rows:
+        try:
+            ns = int(r["n_screens"])
+            na = int(r["n_archetypes_won"])
+        except (ValueError, KeyError):
+            continue
+        if ns >= 3 and na >= 1:
+            convergent.append(r)
+    convergent.sort(key=lambda r: (-int(r["n_screens"]),
+                                   -int(r["n_archetypes_won"]),
+                                   -float(r.get("consensus_score") or 0)))
+    return convergent
+
+
+# Per-ticker editorial annotations. If a ticker drops out of the
+# convergent set (re-derived from disk), its annotation is unused;
+# if a new ticker enters, it renders with empty annotation rather
+# than dropping or fabricating data. This is the only acceptable
+# coupling between code and ticker identifiers.
+TICKER_ANNOTATIONS: dict[str, dict] = {
+    "HFFG": {"name": "HF Foods Group",
+             "why": "Triple PSU $ hurdle (rev/EBITDA/FCF) + clawback strengthened + 4-buyer F4 cluster",
+             "floor": "P/B 0.48 + microcap distributor with hard assets"},
+    "CSGP": {"name": "CoStar Group",
+             "why": "EBITDA $ hurdle + 10x CEO ownership + SOP 45% dissent + verified buyback EXECUTING",
+             "floor": "Quasi-monopoly RE data; recurring revenue base"},
+    "RNR":  {"name": "RenaissanceRe",
+             "why": "Deepest per-share metric stack (5+) -- full alignment",
+             "floor": "Insurance NAV + per-share metric discipline"},
+    "LE":   {"name": "Lands' End",
+             "why": "12-tranche price ladder + 86% PSU + ROIC + live take-private 14D-9",
+             "floor": "Active third-party bid sets mechanical floor"},
+    "NUS":  {"name": "Nu Skin",
+             "why": "Named asset-sale trigger + 5-metric clean per-share stack",
+             "floor": "P/B 0.33 + buyback shrinking organically"},
+    "ADT":  {"name": "ADT Inc",
+             "why": "Heaviest PSU%LTI in universe (90%) + verified -7.3% shrinkage",
+             "floor": "Recurring monitoring revenue + verified supply-curve compression"},
+    "KMPR": {"name": "Kemper",
+             "why": "Anti-hedge/pledge + verified buyback EXECUTING (largest verified shrinkage)",
+             "floor": "Insurer at 0.54x book; $ repurchased = 1.85x NAV-accretive"},
+    "MAT":  {"name": "Mattel",
+             "why": "Unique double dollar hurdle: EBITDA $ + FCF $ targets both coded",
+             "floor": "Brand portfolio + 6-metric stack provides discipline"},
+    "LMT":  {"name": "Lockheed Martin",
+             "why": "FCF $ hurdle + backlog $ target + 70% PSU%LTI",
+             "floor": "Defense backlog + sovereign counterparty"},
+    "CDE":  {"name": "Coeur Mining",
+             "why": "CEO 10b5-1 termination score 80 -- #1 in universe + FCF/share PSU stack",
+             "floor": "Precious-metals price floor + CEO walked back scheduled selling"},
+    "GO":   {"name": "Grocery Outlet",
+             "why": "Forward $ targets + Cohen-Malloy 6-buyer cluster",
+             "floor": "Discount-grocery defensive base"},
+    "GPRO": {"name": "GoPro",
+             "why": "PSU vests on spin / separation event -- board paid to execute",
+             "floor": "Brand + cash position"},
+    "EXFY": {"name": "Expensify",
+             "why": "Live issuer self-tender; published bid above market",
+             "floor": "Issuer-paid tender = mechanical floor"},
+}
+
+
+def sizing_for_screens(ns: int, na: int, n_flags: int) -> str:
+    """Sizing derived from data, not memory:
+       Concentrated   if ns >= 4 and n_flags <= 1
+       Material       if ns >= 3 and n_flags <= 2
+       Participation  otherwise
+    """
+    if ns >= 4 and n_flags <= 1:
+        return "Concentrated 5%+"
+    if ns >= 3 and n_flags <= 2:
+        return "Material 2-5%"
+    return "Participation 1-2%"
+
+
+def red_flag_count(tk: str, proxy: dict) -> int:
+    p = proxy.get(tk, {})
+    if not p:
+        return 0
+    flags = set()
+    for s in (p.get("pattern_reasons") or []) + (p.get("gov_reasons") or []):
+        sl = s.lower()
+        for f in ("single-trigger", "repricing", "retirement carveout",
+                  "front-loaded", "discretionary", "aggregate-only"):
+            if f in sl:
+                flags.add(f)
+    return len(flags)
+
+
 def build_cover(wb: Workbook):
     ws = wb.active
     ws.title = "Cover"
@@ -216,32 +317,20 @@ def build_cover(wb: Workbook):
         name="Georgia", size=14, bold=True, color=CRIMSON)
     r += 1
 
-    convergent = [
-        ("HFFG", "HF Foods Group", "Concentrated 5%+",
-         "Triple PSU $ hurdle + clawback strengthened"),
-        ("CSGP", "CoStar Group", "Concentrated 5%+",
-         "10x CEO own + EBITDA $ + buyback EXECUTING -3.6%"),
-        ("RNR", "RenaissanceRe", "Concentrated 5%+",
-         "Deepest per-share metric stack (5+) · clean"),
-        ("LE", "Lands' End", "Material 2-5%",
-         "12-tranche ladder + 86% PSU + live TARGET 14D-9"),
-        ("NUS", "Nu Skin", "Material 2-5%",
-         "Named asset-sale PSU + 5-metric stack + P/B 0.33"),
-        ("ADT", "ADT Inc", "Material 2-5%",
-         "90% PSU%LTI (heaviest) + verified shrink -7.3%"),
-        ("KMPR", "Kemper", "Material 2-5%",
-         "Anti-hedge + verified buyback EXECUTING -8.7%"),
-        ("MAT", "Mattel", "Material 2-5%",
-         "Double dollar hurdle (EBITDA + FCF)"),
-        ("LMT", "Lockheed Martin", "Material 2-5%",
-         "FCF $ hurdle + backlog target"),
-        ("CDE", "Coeur Mining", "Material 2-5%",
-         "CEO 10b5-1 termination score 80 (#1 in universe)"),
-        ("GO", "Grocery Outlet", "Participation 1-2%",
-         "Forward $ targets + Cohen-Malloy cluster"),
-        ("GPRO", "GoPro", "Participation 1-2%",
-         "PSU vests on spin / separation"),
-    ]
+    # Derived from disk -- consensus_ranking.csv. No hardcoded list.
+    proxy = load_proxy()
+    convergent_rows = get_convergent_from_disk()
+    convergent = []
+    for cr in convergent_rows:
+        tk = cr["ticker"]
+        ann = TICKER_ANNOTATIONS.get(tk, {})
+        name = ann.get("name", tk)
+        ns = int(cr["n_screens"])
+        na = int(cr["n_archetypes_won"])
+        nflags = red_flag_count(tk, proxy)
+        sizing = sizing_for_screens(ns, na, nflags)
+        why = ann.get("why", cr["screens"][:60])
+        convergent.append((tk, name, sizing, why))
     write_header_row(ws, r, ["#", "Ticker", "Name", "Sizing", "Why"])
     r += 1
     for i, (tk, name, sz, why) in enumerate(convergent, 1):
@@ -294,20 +383,20 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
                "Floor", "Sizing"]
     write_header_row(ws, 4, headers)
 
-    convergent_data = [
-        ("HFFG", "HF Foods Group", "Triple PSU $ hurdle (rev/EBITDA/FCF) + clawback strengthened + 4-buyer F4 cluster", "P/B 0.48 + microcap distributor with hard assets", "Concentrated 5%+"),
-        ("CSGP", "CoStar Group", "EBITDA $ hurdle + 10x CEO ownership + SOP 45% dissent + verified buyback EXECUTING -3.6%", "Quasi-monopoly RE data; recurring revenue base", "Concentrated 5%+"),
-        ("RNR", "RenaissanceRe", "Deepest per-share metric stack in universe (≥5 per-share metrics) — full alignment", "Insurance NAV + per-share metric discipline", "Concentrated 5%+"),
-        ("LE", "Lands' End", "12-tranche price ladder + 86% PSU%LTI + ROIC + live take-private 14D-9", "Active third-party bid sets mechanical floor", "Material 2-5%"),
-        ("NUS", "Nu Skin", "Named asset-sale trigger + 5-metric clean per-share stack", "P/B 0.33 — deep book discount + buyback shrinking organically", "Material 2-5%"),
-        ("ADT", "ADT Inc", "Heaviest PSU%LTI in universe (90%) + verified -7.3% shrinkage", "Recurring monitoring revenue + verified supply-curve compression", "Material 2-5%"),
-        ("KMPR", "Kemper", "Anti-hedge/pledge + verified buyback EXECUTING -8.7% (largest verified shrinkage)", "Insurer at 0.54x book; $ repurchased = 1.85x NAV-accretive", "Material 2-5%"),
-        ("MAT", "Mattel", "Unique double dollar hurdle: EBITDA $ + FCF $ targets both coded", "Brand portfolio + 6-metric stack provides discipline", "Material 2-5%"),
-        ("LMT", "Lockheed Martin", "FCF $ hurdle + backlog $ target + 70% PSU%LTI", "Defense backlog + sovereign counterparty", "Material 2-5%"),
-        ("CDE", "Coeur Mining", "CEO 10b5-1 termination score 80 — #1 in universe + FCF/share PSU stack", "Precious-metals price floor + CEO walked back scheduled selling", "Material 2-5%"),
-        ("GO", "Grocery Outlet", "Forward $ targets + Cohen-Malloy 6-buyer cluster ($7.9M = 0.97% mcap)", "Discount-grocery defensive base", "Participation 1-2%"),
-        ("GPRO", "GoPro", "PSU vests on spin / separation event — board paid to execute separation", "Brand + cash position", "Participation 1-2%"),
-    ]
+    # Derived from disk -- consensus_ranking.csv. No hardcoded list.
+    convergent_rows = get_convergent_from_disk()
+    convergent_data = []
+    for cr in convergent_rows:
+        tk = cr["ticker"]
+        ann = TICKER_ANNOTATIONS.get(tk, {})
+        name = ann.get("name", tk)
+        why = ann.get("why", cr["screens"][:80])
+        floor = ann.get("floor", "see proxy_scan + buyback_verify")
+        ns = int(cr["n_screens"])
+        na = int(cr["n_archetypes_won"])
+        nflags = red_flag_count(tk, proxy)
+        sizing = sizing_for_screens(ns, na, nflags)
+        convergent_data.append((tk, name, why, floor, sizing))
 
     r = 5
     for i, (tk, name, why, floor, sizing) in enumerate(convergent_data, 1):

@@ -102,6 +102,12 @@ def main() -> int:
                "win at least one PSU/governance archetype.\n")
     out.append("| Rank | Ticker | Screens | Archetypes | Why it converges |")
     out.append("|---:|---|--:|--:|---|")
+    # Editorial annotations -- keyed by ticker but functioning only as
+    # display overlays. If a ticker is in this dict but NOT convergent
+    # (per consensus_ranking.csv), it is not rendered. If a ticker is
+    # convergent but not in this dict, its row falls back to the
+    # screens-list string from the CSV. Membership decision is
+    # data-driven; annotations are editorial.
     convergent_notes = {
         "HFFG": "Triple PSU $ hurdle (rev/EBITDA/FCF) + P/B 0.48 + clawback strengthened",
         "CSGP": "10x CEO ownership + EBITDA $ hurdle + SOP 45% + buyback EXECUTING -3.6%",
@@ -274,27 +280,100 @@ def main() -> int:
 
     # ----------------- 6. USE-CASE ROLLUPS -----------------
     out.append("\n## 6. Use-case deployment sheet\n")
+    # Derived from disk -- each bucket pulled from its source CSV
+    # rather than hardcoded in session memory.
+    def top_n(rows: list[dict], key: str | None, n: int,
+              filter_fn=None) -> list[str]:
+        items = list(rows)
+        if filter_fn:
+            items = [r for r in items if filter_fn(r)]
+        if key:
+            def parse(v):
+                try: return float(v or 0)
+                except: return 0.0
+            items.sort(key=lambda r: -parse(r.get(key)))
+        names = []
+        seen = set()
+        for r in items:
+            tk = r.get("ticker")
+            if tk and tk not in seen:
+                seen.add(tk)
+                names.append(tk)
+            if len(names) >= n:
+                break
+        return names
+
+    convergent_tks = [r["ticker"] for r in consensus
+                      if int(r.get("n_screens") or 0) >= 3
+                      and int(r.get("n_archetypes_won") or 0) >= 1][:3]
+
+    bastian_tks = top_n(bastian, "score", 6)
+    info_tks = top_n(info_buys, "total", 5)
+
+    bb_exec_tks = []
+    for tk, b in bbv.items() if isinstance(bbv, dict) else []:
+        if (isinstance(b, dict) and b.get("status") == "EXECUTING"
+                and tk in proxy):
+            bb_exec_tks.append((tk, abs((b.get("share_change") or {})
+                                        .get("change_pct") or 0)))
+    bb_exec_tks.sort(key=lambda x: -x[1])
+    bb_exec_tks = [t for t, _ in bb_exec_tks[:5]]
+
+    tender_self = [tk for tk, t in (tender.items() if isinstance(tender, dict) else [])
+                   if isinstance(t, dict) and t.get("role") == "SELF_TENDER"][:3]
+    tender_target = [tk for tk, t in (tender.items() if isinstance(tender, dict) else [])
+                     if isinstance(t, dict) and t.get("role") == "TARGET"][:3]
+
+    # Forward-$-hurdle (Mungerian): names with at least 2 of the three
+    # forward dollar hurdles in proxy_scan cond_cats
+    mungerian_tks = []
+    for tk, p in proxy.items():
+        cc = p.get("cond_cats") or []
+        n_hurdles = sum(1 for c in ("revenue_dollar_target",
+                                     "ebitda_dollar_target",
+                                     "fcf_dollar_target") if c in cc)
+        if n_hurdles >= 2:
+            mungerian_tks.append((tk, n_hurdles, p.get("psu_core") or 0))
+    mungerian_tks.sort(key=lambda x: (-x[1], -x[2]))
+    mungerian_tks = [t for t, _, _ in mungerian_tks[:5]]
+
+    special_sits_tks = top_n(
+        spec_sit, "score", 6,
+        filter_fn=lambda r: r.get("kind") in ("RESTRUCT_8K", "FORM_10_SPINOFF"))
+
+    russell = load_rows(ROOT / "russell_boundary.csv")
+    russell_tks = top_n(russell, None, 5)
+
+    nol = load_rows(ROOT / "nol_shells.csv")
+    nol_tks = top_n(nol, "score", 7)
+
+    activist = load_rows(ROOT / "activist_13d.csv")
+    act_tks = top_n(activist, "score", 5,
+                     filter_fn=lambda r: r.get("is_known_activist") == "True")
+
     use_cases = [
-        ("**Highest-conviction concentrated position (1-3 names)**",
-         "HFFG (uniquely 6/8 + 4 archetypes), CSGP (5 archetypes), LE (caution carveout)"),
-        ("**Microcap forcing-function basket (Bastian-style)**",
-         "BEEP, LGL, NUS, DXLG (P/B<0.5 + PSU trigger + tender role)"),
+        ("**Highest-conviction concentrated (top-3 convergent)**",
+         ", ".join(convergent_tks) or "(empty)"),
+        ("**Microcap forcing-function basket (Bastian)**",
+         ", ".join(bastian_tks) or "(empty)"),
         ("**Mungerian forward-dollar PSU concentration**",
-         "HFFG (revenue $), MAT (EBITDA+FCF $), LMT (FCF + backlog $)"),
-        ("**Verified buyback compounders**",
-         "CSGP, KMPR, ADT, PAYC, GRND (EXECUTING status with PSU alignment)"),
-        ("**Live tender / 13E-3 mechanics (event-driven)**",
-         "EXFY, GPUS, GETY (SELF_TENDER), LE/DXLG (TARGET), CWAN (13E-3)"),
-        ("**Special-situations debt-haircut watch**",
-         "WW (post-Ch11), LGL (post-Ch11), QVCGQ (delisting+NOL+restruct), ENHA, FONR"),
-        ("**Insider-cluster Cohen-Malloy stack**",
-         "NSP (54), ODTX (52, $75M=9.57% of mcap), FONR, MOBI, RGR"),
-        ("**Activist 13D + 8-K restructuring stress**",
-         "RPAY (triple), CCO, SATS"),
+         ", ".join(mungerian_tks) or "(empty)"),
+        ("**Verified buyback compounders (EXECUTING)**",
+         ", ".join(bb_exec_tks) or "(empty)"),
+        ("**Live SELF_TENDER**",
+         ", ".join(tender_self) or "(empty)"),
+        ("**Live TARGET (own 14D-9)**",
+         ", ".join(tender_target) or "(empty)"),
+        ("**Special-situations / 8-K restructuring + spinoff**",
+         ", ".join(special_sits_tks) or "(empty)"),
+        ("**Cohen-Malloy informational stack (top by 5-cond score)**",
+         ", ".join(info_tks) or "(empty)"),
+        ("**Known-activist 13D filings (top by signal score)**",
+         ", ".join(act_tks) or "(empty)"),
         ("**Russell-recon forced-flow watch**",
-         "EBS, BYND, CMCO, BLCO, MUR (within +/- 20% of R2000 boundary)"),
-        ("**NOL shell tax-asset (Section 382 rights plan)**",
-         "WOLF, CEG, NOTV, NINE, USGO, CMLSQ, TSEOF"),
+         ", ".join(russell_tks) or "(empty)"),
+        ("**NOL shell / Section 382 rights plan**",
+         ", ".join(nol_tks) or "(empty)"),
     ]
     for label, names in use_cases:
         out.append(f"- {label}: {names}")

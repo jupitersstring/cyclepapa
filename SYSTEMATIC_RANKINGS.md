@@ -380,16 +380,17 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 
 ## 6. Use-case deployment sheet
 
-- **Highest-conviction concentrated position (1-3 names)**: HFFG (uniquely 6/8 + 4 archetypes), CSGP (5 archetypes), LE (caution carveout)
-- **Microcap forcing-function basket (Bastian-style)**: BEEP, LGL, NUS, DXLG (P/B<0.5 + PSU trigger + tender role)
-- **Mungerian forward-dollar PSU concentration**: HFFG (revenue $), MAT (EBITDA+FCF $), LMT (FCF + backlog $)
-- **Verified buyback compounders**: CSGP, KMPR, ADT, PAYC, GRND (EXECUTING status with PSU alignment)
-- **Live tender / 13E-3 mechanics (event-driven)**: EXFY, GPUS, GETY (SELF_TENDER), LE/DXLG (TARGET), CWAN (13E-3)
-- **Special-situations debt-haircut watch**: WW (post-Ch11), LGL (post-Ch11), QVCGQ (delisting+NOL+restruct), ENHA, FONR
-- **Insider-cluster Cohen-Malloy stack**: NSP (54), ODTX (52, $75M=9.57% of mcap), FONR, MOBI, RGR
-- **Activist 13D + 8-K restructuring stress**: RPAY (triple), CCO, SATS
-- **Russell-recon forced-flow watch**: EBS, BYND, CMCO, BLCO, MUR (within +/- 20% of R2000 boundary)
-- **NOL shell tax-asset (Section 382 rights plan)**: WOLF, CEG, NOTV, NINE, USGO, CMLSQ, TSEOF
+- **Highest-conviction concentrated (top-3 convergent)**: HFFG, CSGP, LE
+- **Microcap forcing-function basket (Bastian)**: BEEP, GNPX, LGL, DXLG, WW, OSUR
+- **Mungerian forward-dollar PSU concentration**: THRY, MAT, GOGO, TRU, EHTH
+- **Verified buyback compounders (EXECUTING)**: PAYC, AMH, CRM, MORN, RNR
+- **Live SELF_TENDER**: EXFY, ABX, ABXL
+- **Live TARGET (own 14D-9)**: ASRT, DXLG, FSK
+- **Special-situations / 8-K restructuring + spinoff**: FUBO, WBD, FSK, RPAY, CTEV, EBS
+- **Cohen-Malloy informational stack (top by 5-cond score)**: NSP, ODTX, FONR, MOBI, RGR
+- **Known-activist 13D filings (top by signal score)**: CCO, JBLU, GTX, PAR, BATL
+- **Russell-recon forced-flow watch**: ARTV, ETSY, LNTH, ALIT, VGZ
+- **NOL shell / Section 382 rights plan**: CMLSQ, PRTS, TSEOF, SD, RGS, CIK0001822250, TTI
 
 
 ## 7. Methodology summary
