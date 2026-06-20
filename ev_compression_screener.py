@@ -288,7 +288,9 @@ def main():
         if (i+1) % 500 == 0:
             print(f"  {i+1}/{len(tickers)}  rows={len(rows)}")
     print(f"Computed for {len(rows)} tickers")
-    df = pd.DataFrame(rows).set_index('ticker')
+    if not rows:
+        print("No rows survived filters; nothing to write."); return
+    df = pd.DataFrame(rows).set_index(\'ticker\')
     df.to_csv(OUTDIR / 'all.csv')
 
     # Filter: real cap + sales OR EBITDA growth + compression

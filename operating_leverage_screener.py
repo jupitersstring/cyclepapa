@@ -295,7 +295,9 @@ def main():
         if r is not None: rows.append(r)
         if (i+1) % 500 == 0:
             print(f"  {i+1}/{len(tickers)}  rows={len(rows)}")
-    df = pd.DataFrame(rows).set_index('ticker')
+    if not rows:
+        print("No rows survived filters; nothing to write."); return
+    df = pd.DataFrame(rows).set_index(\'ticker\')
     df.to_csv(OUTDIR / 'all.csv')
     print(f"\nWith data: {len(df)} tickers")
 

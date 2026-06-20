@@ -229,7 +229,9 @@ def main():
             'enterpriseToEbitda': info.get('enterpriseToEbitda'),
         })
 
-    df = pd.DataFrame(rows).set_index('ticker')
+    if not rows:
+        print("No rows survived filters; nothing to write."); return
+    df = pd.DataFrame(rows).set_index(\'ticker\')
     df['gap_score'] = (df['fcf_ps_3y_growth_pct'] - df['price_3y_pct'].abs())
     df = df.sort_values('gap_score', ascending=False)
     df.to_csv(OUTDIR / 'screener.csv')
