@@ -1191,3 +1191,28 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | StrategX Elements Corp. | — | ○ | A | Auto-promoted from Material change report - English.pdf filing 2026-06-19 (acc 000051856_19_Jun_2026_1109_EDT_Material_change_report_-_Englishpdf); Form 51-102F3 material change — verify whether structural; verify primary doc before scoring |
 | H2 Ventures 1 Inc. | — | ○ | A | Auto-promoted from Material change report - English.pdf filing 2026-06-19 (acc 000053174_19_Jun_2026_1147_EDT_Material_change_report_-_Englishpdf); Form 51-102F3 material change — verify whether structural; verify primary doc before scoring |
 | Pulsar Helium Inc. | — | ○ | A | Auto-promoted from Management information circular - English.pdf filing 2026-06-19 (acc 000056066_19_Jun_2026_1147_EDT_Management_information_circular_-_Englishpdf); info circular — often contains plan of arrangement details; verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-06-20)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| サツドラＨＤ | 3544 | ○ | A | Auto-promoted from テラ株式会社によるサツドラホールディングス株式会社（証券コード：3544）の普通株式に対する公開買付けの開始に関するお知らせ filing 2026-06-19 (acc 140120260619574949); tender offer (TOB / 公開買付) — bid in progress; verify primary doc before scoring |
+| ＹＵＡＳＡ | 8074 | ○ | A | Auto-promoted from （取消）「主要株主の異動に関するお知らせ」の取消しに関するお知らせ filing 2026-06-19 (acc 140120260618573954); change in major shareholders; verify primary doc before scoring |
+| ツインバード | 6897 | ○ | A | Auto-promoted from 株式会社ジャパネットホールディングスによる当社株式に対する公開買付けの開始予定に関するお知らせ filing 2026-06-19 (acc 140120260619575084); tender offer (TOB / 公開買付) — bid in progress; verify primary doc before scoring |
+| グロバル社 | 3271 | ○ | A | Auto-promoted from 第三者割当によるＡ種種類株式の発行並びに資本金及び資本準備金の額の減少に関するお知らせ filing 2026-06-19 (acc 140120260618574198); third-party share allocation (private placement); verify primary doc before scoring |
+| ＪＨＤ | 2721 | ○ | A | Auto-promoted from 第三者割当により発行された第10回新株予約権（行使価額修正条項付）の大量行使に関するお知らせ filing 2026-06-19 (acc 140120260619574849); third-party share allocation (private placement); verify primary doc before scoring |
+| ＲｅＹｕｕＪａｐａｎ | 9425 | ○ | A | Auto-promoted from 新株予約権付社債発行プログラム設定契約に基づく第三者割当による第２回無担保転換社債型新株予約権付社債の発行に関するお知らせ filing 2026-06-19 (acc 140120260619574539); third-party share allocation (private placement); verify primary doc before scoring |
+| アイ・ケイ・ケイＨＤ | 2198 | ○ | A | Auto-promoted from 株式の立会外分売終了及び主要株主の異動に関するお知らせ filing 2026-06-19 (acc 140120260618573988); change in major shareholders; verify primary doc before scoring |
+| ファーストブラザーズ | 3454 | ○ | A | Auto-promoted from 主要株主の異動に関するお知らせ filing 2026-06-19 (acc 140120260619574992); change in major shareholders; verify primary doc before scoring |
+| ブイキューブ | 3681 | ○ | A | Auto-promoted from 第三者割当による新株式発行の払込完了に関するお知らせ filing 2026-06-19 (acc 140120260617572725); third-party share allocation (private placement); verify primary doc before scoring |
+| Ｇ－ＮＡＴＴＹＨＤ | 7674 | ○ | A | Auto-promoted from 第三者割当による行使価額修正条項付第３回及び第４回新株予約権 （停止指定条項付）の発行に関するお知らせ filing 2026-06-19 (acc 140120260612569113); third-party share allocation (private placement); verify primary doc before scoring |
+| Ｒ－平和ＲＥ | 8966 | ○ | A | Auto-promoted from 第三者割当による新投資口発行における発行口数の確定に関するお知らせ filing 2026-06-19 (acc 140120260618573888); third-party share allocation (private placement); verify primary doc before scoring |
+| エステー | 4951 | ○ | A | Auto-promoted from 公開買付けへの応募及び特別利益の計上見込に関するお知らせ filing 2026-06-19 (acc 140120260618573922); tender offer (TOB / 公開買付) — bid in progress; verify primary doc before scoring |
+| Ｇ－テラドローン | 278A | ○ | A | Auto-promoted from 第三者割当による第18回新株予約権乃至第22回新株予約権（行使価額修正条項付）及び第23回新株予約権乃至第27回新株予約権の発行条件等の決定に関するお知らせ filing 2026-06-19 (acc 140120260619574473); third-party share allocation (private placement); verify primary doc before scoring |
+| Ｇ－イメージ情 | 3803 | ○ | A | Auto-promoted from 吸収合併の効力発生日変更に関するお知らせ filing 2026-06-19 (acc 140120260619574675); merger by absorption; verify primary doc before scoring |
+| アルプス技 | 4641 | ○ | A | Auto-promoted from （取消）「主要株主の異動に関するお知らせ」の取消しに関するお知らせ filing 2026-06-19 (acc 140120260619574644); change in major shareholders; verify primary doc before scoring |
+| Ｇ－ＫａｉｚｅｎＰＦ | 4170 | ○ | A | Auto-promoted from 主要株主の異動に関するお知らせ filing 2026-06-19 (acc 140120260618574105); change in major shareholders; verify primary doc before scoring |
+| ネクソン | 3659 | ○ | A | Auto-promoted from 主要株主の異動及び当社株式（証券コード 3659）の取得（公開買付けに準ずる行為として政令で定める買集め行為）に関するお知らせ filing 2026-06-19 (acc 140120260618573399); tender offer (TOB / 公開買付) — bid in progress; verify primary doc before scoring |
+| Ｇ－シンカ | 149A | ○ | A | Auto-promoted from 株式会社フィックスターズとの資本提携契約の締結及び株式会社Fixstars Investmentを割当予定先とする第三者割当による新株式の発行に関するお知らせ filing 2026-06-19 (acc 140120260617572433); third-party share allocation (private placement); verify primary doc before scoring |
