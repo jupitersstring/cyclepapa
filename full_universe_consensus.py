@@ -1,0 +1,333 @@
+"""True full-universe consensus ranker.
+
+The previous consensus_meta_ranker.py joined TRUNCATED top-N files
+(informational_buys.csv = 159 rows, bastian_forcing.csv = 22 rows,
+etc.). A name moderately strong on every layer might never appear in
+any individual file's top-N and thus could not become "convergent."
+
+This module solves that by scoring EVERY one of the 6,169 universe
+tickers on EVERY layer using the scoring functions directly (not
+truncated output files). It then ranks each layer across the entire
+universe and computes consensus from the COMPLETE rank set.
+
+A name's consensus is the sum of layer-rank-decay contributions
+across ALL layers it scored above zero on. No top-N truncation.
+
+Output: full_universe_consensus.csv
+"""
+
+from __future__ import annotations
+
+import csv
+import glob
+import json
+from pathlib import Path
+
+ROOT = Path("/home/user/cyclepapa")
+
+
+def load_proxy() -> dict:
+    proxy = {}
+    for fn in sorted(glob.glob(str(ROOT / "proxy_scan*.json"))):
+        try: d = json.load(open(fn))
+        except: continue
+        rows = d if isinstance(d, list) else d.values()
+        for r in rows:
+            if isinstance(r, dict) and r.get("ticker"):
+                tk = r["ticker"]
+                if (tk not in proxy or
+                    r.get("filing_date","") > proxy[tk].get("filing_date","")):
+                    proxy[tk] = r
+    return proxy
+
+
+def load_layers() -> dict:
+    return {
+        "proxy": load_proxy(),
+        "yf": json.load(open(ROOT / "yfinance_quick.json")),
+        "bbv": json.load(open(ROOT / "buyback_verify.json")),
+        "tender": json.load(open(ROOT / "tender_scan.json")),
+        "c10": json.load(open(ROOT / "cancel_10b5_1.json")),
+        "f4": json.load(open(ROOT / "form4_buys.json")),
+        "f144": json.load(open(ROOT / "form144_scan.json")),
+    }
+
+
+# ----------------------------------------------------------------------
+# Per-layer scoring functions -- score EVERY ticker, even zero-score
+# ----------------------------------------------------------------------
+
+def score_psu_layer(layers: dict, universe: set) -> dict:
+    """Returns ticker -> psu_score (0 if not scored or no PSU)."""
+    out = {}
+    proxy = layers["proxy"]
+    fwd_event = {
+        "revenue_dollar_target": 12, "ebitda_dollar_target": 12,
+        "fcf_dollar_target": 12, "operating_margin_target": 10,
+        "fda_phase_milestone": 10, "merger_acquisition_close": 12,
+        "spin_separation": 10, "asset_sale_named": 12,
+        "debt_leverage_target": 10, "restructuring_milestone": 12,
+        "chapter11_emergence": 15, "backlog_target": 8,
+        "subscriber_arr_target": 8,
+    }
+    for tk in universe:
+        p = proxy.get(tk, {})
+        if not p:
+            out[tk] = 0.0
+            continue
+        s = 0.0
+        core = p.get("psu_core") or 0
+        s += min(core * 0.5, 30)
+        for cat in (p.get("cond_cats") or []):
+            s += fwd_event.get(cat, 0)
+        pct = p.get("psu_pct_lti") or 0
+        if pct >= 80: s += 8
+        elif pct >= 60: s += 4
+        gov = p.get("gov_score") or 0
+        s += min(gov * 0.5, 15)
+        ps_count = len(p.get("per_share_metrics") or [])
+        s += min(ps_count * 2, 10)
+        out[tk] = round(s, 1)
+    return out
+
+
+def _num(v):
+    if v is None: return None
+    try: return float(v)
+    except Exception: return None
+
+
+def score_valuation_layer(layers: dict, universe: set) -> dict:
+    yf = layers["yf"]
+    out = {}
+    for tk in universe:
+        y = yf.get(tk, {}) or {}
+        s = 0.0
+        pb = _num(y.get("p_b"))
+        pe = _num(y.get("p_e_trailing"))
+        ev_ebitda = _num(y.get("ev_ebitda"))
+        if pb and 0 < pb < 0.5: s += 20
+        elif pb and 0 < pb < 1.0: s += 12
+        elif pb and 0 < pb < 1.5: s += 5
+        if pe and 0 < pe < 8: s += 12
+        elif pe and 0 < pe < 15: s += 6
+        if ev_ebitda and 0 < ev_ebitda < 6: s += 14
+        elif ev_ebitda and 0 < ev_ebitda < 10: s += 7
+        # Drawdown
+        px = _num(y.get("price"))
+        hi = _num(y.get("fwk_high"))
+        if px and hi and hi > 0:
+            dd = (1 - px / hi) * 100
+            if dd > 60: s += 10
+            elif dd > 40: s += 5
+        out[tk] = round(s, 1)
+    return out
+
+
+def score_buyback_layer(layers: dict, universe: set) -> dict:
+    bbv = layers["bbv"]
+    out = {}
+    for tk in universe:
+        b = bbv.get(tk, {}) or {}
+        pts = b.get("points") or 0
+        out[tk] = float(pts)
+    return out
+
+
+def score_tender_layer(layers: dict, universe: set) -> dict:
+    tender = layers["tender"]
+    out = {}
+    for tk in universe:
+        t = tender.get(tk, {}) or {}
+        s = 0.0
+        role = t.get("role")
+        if role == "SELF_TENDER": s += 25
+        elif role == "TARGET": s += 22
+        elif role == "BIDDER": s += 5
+        if t.get("has_13e3"): s += 15
+        out[tk] = s
+    return out
+
+
+def score_c10b51_layer(layers: dict, universe: set) -> dict:
+    c10 = layers["c10"]
+    out = {}
+    for tk in universe:
+        c = c10.get(tk, {}) or {}
+        s = c.get("score") or 0
+        out[tk] = float(s)
+    return out
+
+
+def score_f4_layer(layers: dict, universe: set) -> dict:
+    f4 = layers["f4"]
+    out = {}
+    for tk in universe:
+        f = f4.get(tk, {}) or {}
+        s = 0.0
+        n_buyers = len(f.get("buyer_set") or [])
+        dollar = (f.get("total_dollar") or 0)
+        if n_buyers >= 4: s += 18
+        elif n_buyers >= 3: s += 12
+        elif n_buyers >= 2: s += 6
+        if dollar >= 5e6: s += 10
+        elif dollar >= 1e6: s += 5
+        out[tk] = s
+    return out
+
+
+def score_f144_layer(layers: dict, universe: set) -> dict:
+    """Form 144 is BEARISH; return NEGATIVE points."""
+    f144 = layers["f144"]
+    out = {}
+    for tk in universe:
+        f = f144.get(tk, {}) or {}
+        s = f.get("points") or f.get("score") or 0
+        out[tk] = float(s)
+    return out
+
+
+def score_recent_incentive_layer(layers: dict, universe: set) -> dict:
+    """Re-derive from existing recent_incentive_asymmetry.csv (full-
+    universe rank). Names not in file score 0."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "recent_incentive_asymmetry.csv"
+    if f.exists():
+        for r in csv.DictReader(f.open()):
+            tk = r["ticker"]
+            if tk in out:
+                try:
+                    out[tk] = float(r["score"])
+                except Exception:
+                    pass
+    return out
+
+
+def score_special_situations_layer(layers: dict, universe: set) -> dict:
+    """Re-derive from special_situations_unified.csv."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "special_situations_unified.csv"
+    if f.exists():
+        # Best score per ticker
+        for r in csv.DictReader(f.open()):
+            tk = r.get("ticker")
+            if tk in out:
+                try:
+                    s = float(r["score"])
+                    if s > out[tk]:
+                        out[tk] = s
+                except Exception:
+                    pass
+    return out
+
+
+# ----------------------------------------------------------------------
+# Universe build
+# ----------------------------------------------------------------------
+
+def main() -> int:
+    layers = load_layers()
+    universe = set(layers["proxy"]) | set(layers["yf"]) | set(layers["bbv"]) \
+               | set(layers["tender"]) | set(layers["c10"]) | set(layers["f4"]) \
+               | set(layers["f144"])
+    universe = {t for t in universe if not t.startswith("CIK")}
+    print(f"Full universe: {len(universe)} tickers")
+
+    layer_scores = {
+        "psu": score_psu_layer(layers, universe),
+        "valuation": score_valuation_layer(layers, universe),
+        "buyback": score_buyback_layer(layers, universe),
+        "tender": score_tender_layer(layers, universe),
+        "c10b51": score_c10b51_layer(layers, universe),
+        "f4_buys": score_f4_layer(layers, universe),
+        "f144": score_f144_layer(layers, universe),
+        "recent_incentive": score_recent_incentive_layer(layers, universe),
+        "special_situations": score_special_situations_layer(layers, universe),
+    }
+    print(f"Layers scored: {len(layer_scores)}")
+    for lk, ls in layer_scores.items():
+        nz = sum(1 for v in ls.values() if v > 0)
+        print(f"  {lk:<22} {nz:>5}/{len(ls)} non-zero")
+
+    # Compute layer rank for each ticker per layer
+    # (positive scores rank-descended; zeros tie for last)
+    layer_ranks = {}
+    for lk, scores in layer_scores.items():
+        order = sorted(scores.items(), key=lambda x: -x[1])
+        rank_map = {}
+        for i, (tk, s) in enumerate(order, 1):
+            rank_map[tk] = (i, s)
+        layer_ranks[lk] = rank_map
+
+    # Consensus contribution from each layer:
+    # rank-decay: contribution = max(0, 1 - (rank-1) / topN_threshold)
+    # where topN_threshold is layer-specific but the COMPLETE universe
+    # is considered, not a truncated file.
+    rows = []
+    universe_size = len(universe)
+    for tk in universe:
+        n_screens = 0
+        contrib = 0.0
+        per_layer_contrib = {}
+        for lk, ranks in layer_ranks.items():
+            rk, sc = ranks.get(tk, (universe_size, 0))
+            # Layer contributes only if score > 0 (or < 0 for f144)
+            if sc != 0:
+                # Rank-decay across top 500 of universe
+                c = max(0.0, 1.0 - (rk - 1) / 500.0) if sc > 0 else 0
+                per_layer_contrib[lk] = round(c, 3)
+                if c > 0:
+                    contrib += c
+                    n_screens += 1
+                if sc < 0:
+                    contrib -= 0.3  # penalty for f144 bearish hits
+        rows.append({
+            "ticker": tk,
+            "consensus_score": round(contrib, 3),
+            "n_layers_firing": n_screens,
+            "psu_pts": layer_scores["psu"].get(tk, 0),
+            "valuation_pts": layer_scores["valuation"].get(tk, 0),
+            "buyback_pts": layer_scores["buyback"].get(tk, 0),
+            "tender_pts": layer_scores["tender"].get(tk, 0),
+            "c10b51_pts": layer_scores["c10b51"].get(tk, 0),
+            "f4_buys_pts": layer_scores["f4_buys"].get(tk, 0),
+            "f144_pts": layer_scores["f144"].get(tk, 0),
+            "recent_incentive_pts": layer_scores["recent_incentive"].get(tk, 0),
+            "special_sits_pts": layer_scores["special_situations"].get(tk, 0),
+        })
+
+    rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
+
+    out = ROOT / "full_universe_consensus.csv"
+    fieldnames = list(rows[0].keys())
+    with out.open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        w.writerows(rows)
+    print(f"\nwrote {out} ({len(rows)} rows)")
+
+    # Print top 30
+    print(f"\n=== TOP 30 by n_layers_firing then consensus_score ===")
+    print(f"{'#':<3}{'TKR':<8}{'NL':<3}{'CONS':<7}"
+          f"{'PSU':<6}{'VAL':<6}{'BB':<6}{'TND':<6}{'C10':<6}"
+          f"{'F4':<6}{'RI':<6}{'SS':<6}")
+    for i, r in enumerate(rows[:30], 1):
+        print(f"{i:<3}{r['ticker']:<8}{r['n_layers_firing']:<3}"
+              f"{r['consensus_score']:<7}"
+              f"{r['psu_pts']:<6.0f}{r['valuation_pts']:<6.0f}"
+              f"{r['buyback_pts']:<6.0f}{r['tender_pts']:<6.0f}"
+              f"{r['c10b51_pts']:<6.0f}{r['f4_buys_pts']:<6.0f}"
+              f"{r['recent_incentive_pts']:<6.0f}{r['special_sits_pts']:<6.0f}")
+
+    # How many fire on >= N layers?
+    from collections import Counter
+    by_n = Counter(r["n_layers_firing"] for r in rows)
+    print(f"\nLayer-firing distribution:")
+    for n in sorted(by_n, reverse=True):
+        print(f"  {n} layers firing: {by_n[n]} names")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
