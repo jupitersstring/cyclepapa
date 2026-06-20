@@ -141,6 +141,7 @@ def default_panel() -> pd.DataFrame:
 
 
 FACTOR_COLUMNS = [
+    "profit_fuel",          # Kalecki-Levy aggregate (joined in composite.score_panel)
     "credit_impulse",
     "institutional",
     "valuation_gap",

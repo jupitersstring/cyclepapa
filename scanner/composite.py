@@ -1,15 +1,22 @@
 """
 The Opportunity score and regime classifier.
 
-Opportunity = +0.25 * CreditImpulse_z      (external + internal fuel)
-            + 0.20 * Institutional          (dated legislative catalyst, IRS/5)
-            + 0.20 * ValuationGap_z         (cheap re-rates; expensive snaps)
-            + 0.15 * CarryCushion_z         (FX-adjusted real-rate buffer)
+Opportunity = +0.25 * ProfitFuel_z          (Kalecki-Levy -- mechanical bridge to EPS)
+            + 0.20 * CreditImpulse_z        (external + internal credit fuel)
+            + 0.15 * Institutional          (dated legislative catalyst, IRS/5)
+            + 0.15 * ValuationGap_z         (cheap re-rates; expensive snaps)
+            + 0.10 * CarryCushion_z         (FX-adjusted real-rate buffer)
             - 0.15 * Crowding_z             (consensus OW has no marginal buyer)
             - 0.05 * SuddenStopRisk_z       (FX-mismatch / rollover fragility)
 
-The two negative terms are what separate a *flow* from an *opportunity*: they
-stop the model buying the top of a consensus trade (the India/Japan trap).
+ProfitFuel is the new dominant term. The Levy Forecasting Center's contemporary
+methodology (David A. Levy et al., *Where Profits Come From*, 2008) treats the
+profit cycle as the load-bearing variable for equity prices. By making it the
+highest-weighted factor we promote the mechanical link from sectoral accounting
+to EPS over softer 'flow' signals.
+
+The two negative terms separate a *flow* from an *opportunity*: they stop the
+model buying the top of a consensus trade (the India / Japan trap).
 
 All factors are z-scored across the cross-section before weighting so the score
 is dimensionless. Institutional enters as a 0-1 catalyst intensity (IRS / 5),
@@ -25,13 +32,15 @@ import numpy as np
 import pandas as pd
 
 from . import transforms as T
+from . import kalecki_levy as KL
 
 
 WEIGHTS = {
-    "credit_impulse": 0.25,
-    "institutional": 0.20,
-    "valuation_gap": 0.20,
-    "carry_cushion": 0.15,
+    "profit_fuel": 0.25,
+    "credit_impulse": 0.20,
+    "institutional": 0.15,
+    "valuation_gap": 0.15,
+    "carry_cushion": 0.10,
     "crowding": -0.15,
     "suddenstop_risk": -0.05,
 }
@@ -40,21 +49,27 @@ WEIGHTS = {
 # things by configuration; these multiply the factor's contribution per
 # primary archetype. 1.0 = neutral. (Kept conservative and legible.)
 ARCHETYPE_TILTS: dict[str, dict[str, float]] = {
-    # Anglo-mimic: rising saving / falling credit is a bigger negative
-    "B": {"credit_impulse": 1.3, "suddenstop_risk": 1.2},
-    # Directed-credit: a credit signal is policy-administered -> discount it
-    "F": {"credit_impulse": 0.7, "institutional": 1.2},
-    # Frontier: sudden-stop risk dominates; carry can be a value-trap lure
-    "I": {"suddenstop_risk": 2.0, "carry_cushion": 0.7},
-    # Entrepot: flow/FDI signal is mostly accounting noise -> heavily discount
-    "D": {"credit_impulse": 0.4, "valuation_gap": 0.6},
-    # EMU trap: only the eurozone-wide cycle matters; mute idiosyncratic credit
-    "E": {"credit_impulse": 0.6},
-    # Commodity rent: market-opening (institutional) is the real lever
-    "G": {"institutional": 1.3},
+    # Anglo-mimic: rising saving / falling credit is a bigger negative; the
+    # household-saving drag on profits matters extra here
+    "B": {"credit_impulse": 1.3, "suddenstop_risk": 1.2, "profit_fuel": 1.2},
+    # Mercantilist saver: profit fuel from fiscal pivot IS the thesis (DE, JP)
+    "C": {"profit_fuel": 1.3, "institutional": 1.1},
+    # Entrepot: flow/FDI signal is MNC noise -> heavily discount; profits MNC-distorted
+    "D": {"credit_impulse": 0.4, "valuation_gap": 0.6, "profit_fuel": 0.5},
+    # EMU trap: only eurozone-wide cycle matters
+    "E": {"credit_impulse": 0.6, "profit_fuel": 0.8},
+    # Directed-credit: credit signal policy-administered -> discount; profit
+    # equation noisy because gov deficit offset by household-saving surge (CN)
+    "F": {"credit_impulse": 0.7, "institutional": 1.2, "profit_fuel": 0.7},
+    # Commodity rent: market-opening (institutional) + fiscal capex are the levers
+    "G": {"institutional": 1.3, "profit_fuel": 1.1},
+    # Frontier: sudden-stop dominates; profit-fuel via fiscal expansion is
+    # often hot-money-financed and fragile -> discount
+    "I": {"suddenstop_risk": 2.0, "carry_cushion": 0.7, "profit_fuel": 0.8},
     # Sanctioned: signal unreliable -> mute everything
     "X": {"credit_impulse": 0.2, "institutional": 0.2, "valuation_gap": 0.2,
-          "carry_cushion": 0.2, "crowding": 0.2, "suddenstop_risk": 0.5},
+          "carry_cushion": 0.2, "crowding": 0.2, "suddenstop_risk": 0.5,
+          "profit_fuel": 0.2},
 }
 
 
@@ -81,8 +96,14 @@ def score_panel(panel: pd.DataFrame, archetype_of: dict[str, str]) -> pd.DataFra
     Returns a DataFrame with z-scored factors, weighted contributions,
     the composite `opportunity` score, percentile rank, and regime label.
     """
-    z_cols = ["credit_impulse", "valuation_gap", "carry_cushion",
-              "crowding", "suddenstop_risk"]
+    # Join the Kalecki-Levy profit-fuel impulse onto the panel (left-join so
+    # any country missing from kalecki_levy._COMPONENTS gets a 0).
+    kl_components = KL.components_df()
+    panel = panel.copy()
+    panel["profit_fuel"] = KL.profit_fuel(kl_components).reindex(panel.index).fillna(0.0)
+
+    z_cols = ["profit_fuel", "credit_impulse", "valuation_gap",
+              "carry_cushion", "crowding", "suddenstop_risk"]
     z = _zscore_cross_section(panel, z_cols)
     # Institutional enters as absolute catalyst intensity (IRS / 5), in [0,1].
     z["institutional"] = (panel["institutional"].astype(float) / 5.0).clip(0, 1)

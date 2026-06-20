@@ -19,6 +19,8 @@ from .composite import (
     WEIGHTS, score_panel, top_opportunities, avoid_list,
 )
 from .data import default_panel, FACTOR_COLUMNS
+from . import kalecki_levy as KL
+from . import seven_processes as SEVEN
 
 
 def build_scored(panel: pd.DataFrame | None = None) -> pd.DataFrame:
@@ -30,6 +32,25 @@ def build_scored(panel: pd.DataFrame | None = None) -> pd.DataFrame:
     scored.insert(1, "archetype", [archetype_of.get(i, "?") for i in scored.index])
     scored.insert(2, "etf", [lookup(i).etf if lookup(i) else None for i in scored.index])
     return scored
+
+
+def build_kalecki_table() -> pd.DataFrame:
+    """Per-country Kalecki-Levy profit-source decomposition."""
+    comp = KL.components_df()
+    comp.insert(0, "country",
+                [lookup(i).name if lookup(i) else i for i in comp.index])
+    comp["profit_fuel"] = KL.profit_fuel(comp)
+    return comp.sort_values("profit_fuel", ascending=False)
+
+
+def build_seven_processes_table() -> pd.DataFrame:
+    """Run Godley's 1999 seven-flag diagnostic over the cross-section."""
+    panel = default_panel()
+    components = KL.components_df()
+    flags = SEVEN.diagnose(panel, components)
+    flags.insert(0, "country",
+                 [lookup(i).name if lookup(i) else i for i in flags.index])
+    return flags.sort_values("flags_lit", ascending=False)
 
 
 def _run_streamlit() -> None:
@@ -71,6 +92,51 @@ def _run_streamlit() -> None:
         use_container_width=True, hide_index=True,
     )
 
+    # --- Kalecki-Levy profit decomposition --------------------------------
+    st.subheader("Kalecki-Levy profit-source decomposition")
+    st.caption(
+        "Profits = Investment + GovtDeficit + NetExports + Dividends - HouseholdSaving  "
+        "(after Levy Forecasting Center, Where Profits Come From, 2008)"
+    )
+    kl = build_kalecki_table()
+    st.dataframe(
+        kl[["country", "investment", "govt_deficit", "net_exports",
+            "dividends", "household_saving", "profit_fuel", "note"]]
+          .style.background_gradient(subset=["profit_fuel"], cmap="RdYlGn"),
+        use_container_width=True, hide_index=True,
+    )
+
+    # --- Policy registry (qualitative leg) --------------------------------
+    st.subheader("Named-policy registry (qualitative leg)")
+    st.caption(
+        "Legislative/fiscal events mapped to the Kalecki-Levy lever they pull. "
+        "weighted_impulse = sign x magnitude(pp GDP) x status_weight"
+    )
+    policies = KL.policies_df()
+    policies = policies.merge(
+        pd.DataFrame({"iso": [c.iso for c in COUNTRIES],
+                      "country": [c.name for c in COUNTRIES]}),
+        on="iso", how="left",
+    )
+    st.dataframe(
+        policies[["country", "name", "lever", "sign", "magnitude_pp",
+                  "status", "weighted_impulse", "source", "note"]]
+          .sort_values("weighted_impulse", ascending=False),
+        use_container_width=True, hide_index=True,
+    )
+
+    # --- Seven Unsustainable Processes diagnostic -------------------------
+    st.subheader("Godley's Seven Unsustainable Processes (1999) -- live diagnostic")
+    labels = SEVEN.label_names()
+    with st.expander("What each flag tests"):
+        for k, v in labels.items():
+            st.write(f"**{k}** -- {v}")
+    sp = build_seven_processes_table()
+    st.dataframe(
+        sp.style.background_gradient(subset=["flags_lit"], cmap="Reds"),
+        use_container_width=True, hide_index=True,
+    )
+
     # --- Archetype grid ---------------------------------------------------
     st.subheader("Archetype grid")
     groups = by_archetype()
@@ -98,13 +164,30 @@ def main_cli() -> None:
     """Print the scorecard to stdout (no Streamlit needed)."""
     scored = build_scored()
     cols = ["country", "archetype", "etf", "opportunity", "regime"]
-    pd.set_option("display.max_rows", None, "display.width", 140)
+    pd.set_option("display.max_rows", None, "display.width", 160)
     print("\n=== TOP OPPORTUNITIES ===")
     print(top_opportunities(scored, 6)[cols + ["note"]].to_string(index=False))
     print("\n=== AVOID / CROWDED ===")
     print(avoid_list(scored, 5)[cols + ["note"]].to_string(index=False))
-    print("\n=== FULL RANKING ===")
-    print(scored[cols].to_string(index=False))
+
+    print("\n=== KALECKI-LEVY PROFIT-SOURCE DECOMPOSITION (top 12) ===")
+    kl = build_kalecki_table().head(12)
+    print(kl[["country", "investment", "govt_deficit", "net_exports",
+              "dividends", "household_saving", "profit_fuel", "note"]]
+          .to_string(index=False))
+
+    print("\n=== KALECKI-LEVY PROFIT-DRAGS (bottom 6) ===")
+    kl_bottom = build_kalecki_table().tail(6).iloc[::-1]
+    print(kl_bottom[["country", "investment", "govt_deficit", "net_exports",
+                     "dividends", "household_saving", "profit_fuel", "note"]]
+          .to_string(index=False))
+
+    print("\n=== GODLEY SEVEN UNSUSTAINABLE PROCESSES (countries with >=3 flags) ===")
+    sp = build_seven_processes_table()
+    print(sp[sp["flags_lit"] >= 3][["country", "P1", "P2", "P3", "P4",
+                                    "P5", "P6", "P7", "flags_lit",
+                                    "godley_warning"]]
+          .to_string(index=False))
 
 
 if __name__ == "__main__":
