@@ -64,12 +64,9 @@ def fetch_all_for(tk: str, sleep_s: float = 0.3) -> dict:
     """Fetch all SLOTS for one ticker. Returns counts per outcome."""
     out = {'ok': 0, 'cached': 0, 'fail': 0}
     for slot in SLOTS:
-        out[fetch_slot(tk, slot)] = out.get(fetch_slot.__name__, 0)  # init only
-    # Re-run to actually fetch (the above pre-init is harmless)
-    for slot in SLOTS:
         r = fetch_slot(tk, slot)
         out[r] = out.get(r, 0) + 1
-        if sleep_s > 0 and r == 'ok':  # only sleep after real fetches
+        if sleep_s > 0 and r == 'ok':
             time.sleep(sleep_s)
     return out
 
