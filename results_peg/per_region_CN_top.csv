@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+601000.SS,CN,"TangShan Port Group Co.,Ltd",Industrials,4.17,83.971,13,1.127,11.914,11.583,4.145,6.103,3.052,33.543,5.969,0.491,0.373,0.225,0.234,24711.0
+002563.SZ,CN,"Zhejiang Semir Garment Co., Ltd.",Consumer Cyclical,5.24,82.447,13,1.206,14.162,11.885,0.913,4.894,0.448,50.885,7.832,0.424,0.144,0.12,0.5,14117.0
+900942.SS,CN,"Huangshan Tourism Development Co.,Ltd.",Consumer Cyclical,0.679,82.18,11,0.698,11.317,8.488,0.233,-0.948,-0.282,261.188,46.549,0.464,0.165,0.035,-0.061,495.0
+000807.SZ,CN,"Yunnan Aluminium Co., Ltd.",Basic Materials,24.17,81.247,13,2.351,9.629,6.996,1.352,5.331,1.227,13.897,7.614,0.223,0.296,0.137,2.694,83821.0
+000612.SZ,CN,"JiaoZuo WanFang Aluminum Manufacturing Co., Ltd",Basic Materials,11.03,80.577,12,1.706,9.269,,1.943,6.094,1.689,13.081,4.05,0.284,0.33,0.185,2.17,13150.0
