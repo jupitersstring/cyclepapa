@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+SIP.BR,BE,Sipef NV,Consumer Defensive,92.5,81.859,13,1.11,8.818,9.531,1.695,3.735,1.608,9.141,11.094,0.44,0.343,0.344,0.658,967.0
+WEHB.BR,BE,Wereldhave Belgium,Real Estate,52.2,75.129,13,0.715,11.945,9.812,7.522,15.436,12.19,-62.06,7.312,0.946,0.8,0.186,0.683,597.0
+PROX.BR,BE,Proximus PLC,Communication Services,6.165,69.231,13,0.51,5.181,6.477,0.325,4.895,1.072,-222.02,22.926,0.398,0.126,-0.071,-0.112,1992.0
+DECB.BR,BE,Deceuninck NV,Industrials,2.29,67.906,13,0.937,13.471,7.712,0.413,4.308,0.56,-30.8,8.347,0.337,0.081,-0.04,3.167,319.0
+BAR.BR,BE,Barco NV,Technology,8.62,65.385,13,0.991,10.141,9.035,0.728,5.054,0.542,26.542,5.571,0.401,0.091,-0.005,-0.037,702.0

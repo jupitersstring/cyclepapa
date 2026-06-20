@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+2451.TW,TW,"Transcend Information, Inc.",Technology,311.5,79.637,13,5.121,24.091,4.604,4.838,7.68,4.406,8.781,3.419,0.633,0.718,3.569,20.609,134364.0
+2108.TW,TW,"NANTEX Industry Co., Ltd.",Basic Materials,28.7,78.857,13,0.988,34.578,8.516,1.432,4.606,0.54,77.57,7.519,0.233,0.124,0.143,0.108,14132.0
+1726.TW,TW,"Yung Chi Paint & Varnish Mfg.Co.,Ltd",Basic Materials,78.4,78.344,12,1.167,14.281,,1.284,6.709,0.917,28.59,8.98,0.274,0.141,0.042,0.263,12701.0
+2605.TW,TW,Sincere Navigation Corporation,Industrials,31.0,77.815,13,1.03,21.379,12.109,3.758,4.685,2.716,28.007,30.537,0.352,0.353,0.444,31.964,18146.0
+4162.TWO,TW,"PharmaEngine, Inc.",Healthcare,57.3,74.689,13,1.671,21.301,20.761,8.542,7.041,3.421,59.947,0.678,0.943,0.542,0.28,0.338,8233.0

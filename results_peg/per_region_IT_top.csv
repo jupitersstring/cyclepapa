@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+DIB.MI,IT,Digital Bros S.p.A.,Communication Services,10.86,79.437,11,1.34,,6.83,1.295,2.862,1.29,0.931,23.395,0.727,0.07,0.093,,155.0
+RN.MI,IT,Risanamento SpA,Real Estate,0.016,78.571,7,,,,0.827,-0.276,0.208,74.83,21.158,-0.183,-0.336,369.333,,29.0
+BZU.MI,IT,Buzzi S.p.A.,Basic Materials,46.84,75.641,13,1.196,9.202,9.164,1.833,6.278,1.649,11.578,3.194,0.432,0.228,0.029,0.032,8300.0
+ANIM.MI,IT,Anima Holding SpA,Financial Services,7.21,69.54,11,1.25,9.127,8.949,1.662,4.429,1.304,22.317,,0.413,0.647,-0.578,-0.147,2345.0
+DGV.MI,IT,Digital Value S.p.A.,Technology,28.98,68.994,11,1.284,21.153,9.692,0.463,3.742,0.261,42.606,40.289,0.099,0.041,,,297.0

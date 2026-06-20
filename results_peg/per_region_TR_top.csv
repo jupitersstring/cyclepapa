@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+BERA.IS,TR,Bera Holding A.S.,Industrials,17.28,74.446,10,0.395,,,0.611,5.974,0.764,12.11,-5.779,0.239,0.094,0.283,,11806.0
+BRYAT.IS,TR,Borusan Yatirim ve Pazarlama A.S.,Basic Materials,1978.0,73.0,10,1.558,11.99,,292.194,,275.879,7.718,2.188,1.0,0.672,1.079,-0.543,54468.0
+ISDMR.IS,TR,Iskenderun Demir ve Çelik A.S.,Basic Materials,62.15,71.806,12,1.221,27.379,,1.434,12.716,1.321,7.857,17.291,0.092,0.048,0.177,0.463,180235.0
+SOKM.IS,TR,Sok Marketler Ticaret A.S.,Consumer Cyclical,48.2,71.154,10,0.75,,3.816,0.101,-20.035,0.113,-12.17,22.27,0.204,-0.037,0.075,,28597.0
+SRVGY.IS,TR,Servet Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,2.99,68.182,11,0.349,3.987,,2.353,8.315,5.018,-7.501,-2.816,0.676,0.409,0.225,,9717.0

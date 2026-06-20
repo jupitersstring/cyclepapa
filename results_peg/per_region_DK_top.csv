@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+ZEAL.CO,DK,Zealand Pharma A/S,Healthcare,280.6,75.926,12,1.37,3.14,30.241,2.116,0.849,0.625,71.859,21.599,1.0,-15.853,3.25,,19558.0
+STG.CO,DK,Scandinavian Tobacco Group A/S,Consumer Defensive,66.1,66.667,13,0.597,7.964,6.673,0.583,6.51,1.163,-99.34,13.947,0.444,0.087,-0.058,-0.286,5205.0
+HUSCO.CO,DK,HusCompagniet A/S,Consumer Cyclical,32.6,64.394,11,0.334,,13.902,0.236,31.58,0.303,-28.266,12.902,0.165,-0.002,0.281,,699.0
+PAAL-B.CO,DK,Per Aarsleff Holding A/S,Industrials,711.0,63.728,13,2.553,14.794,11.765,0.556,7.981,0.624,-4.404,5.305,0.12,0.041,0.154,0.156,13396.0
+FLUG-B.CO,DK,Flügger group A/S,Basic Materials,375.0,62.821,13,1.242,19.42,11.402,0.488,9.87,0.71,-41.819,17.246,0.545,0.112,0.017,-0.012,1119.0

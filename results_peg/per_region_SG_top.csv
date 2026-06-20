@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+Q01.SI,SG,QAF Limited,Consumer Defensive,0.98,72.563,12,1.105,14.0,,0.89,6.56,0.592,33.862,5.711,0.418,0.067,0.002,0.616,564.0
+U13.SI,SG,United Overseas Insurance Limited,Financial Services,8.32,69.583,12,0.973,15.698,,3.565,9.501,2.775,22.162,2.661,0.302,0.297,0.014,0.515,509.0
+8AZ.SI,SG,Aztech Global Ltd.,Technology,0.885,68.182,11,2.341,17.7,13.732,1.501,8.81,0.936,37.615,,0.228,0.073,0.54,1.624,683.0
+B61.SI,SG,Bukit Sembawang Estates Limited,Real Estate,4.76,67.04,13,0.738,0.096,12.761,3.567,6.541,2.965,16.867,-29.834,0.476,0.446,-0.047,0.586,1232.0
+S85.SI,SG,Straco Corporation Limited,Consumer Cyclical,0.355,66.288,13,1.113,17.75,5.071,4.083,5.079,2.26,48.588,6.084,0.878,0.4,-0.085,-0.246,304.0

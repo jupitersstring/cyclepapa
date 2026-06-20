@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+ASCN.SW,CH,Ascom Holding AG,Healthcare,6.22,76.38,12,2.659,14.81,13.68,0.727,7.951,0.626,13.931,8.542,0.482,0.101,0.052,17.206,212.0
+HBMN.SW,CH,HBM Healthcare Investments AG,Financial Services,231.0,75.707,10,0.828,5.669,14.465,5.539,,5.882,-6.175,11.115,1.0,1.049,,,1528.0
+VBSN.SW,CH,IVF Hartmann Holding AG,Healthcare,125.0,74.933,12,1.915,16.383,,1.839,7.497,1.153,37.292,4.089,0.555,0.136,0.026,-0.067,298.0
+ZEHN.SW,CH,Zehnder Group AG,Industrials,63.3,72.691,12,2.944,16.571,12.469,0.922,7.884,0.89,4.66,7.637,0.653,0.078,0.047,,704.0
+UHRN.SW,CH,The Swatch Group AG,Consumer Cyclical,41.95,71.925,12,0.189,4195.0,2.104,1.737,2.103,0.172,10.92,2.282,0.822,0.021,-0.021,,10906.0
