@@ -2,33 +2,58 @@
 
 Source: https://www.altafoxcapital.com/s/Makings-of-a-MultiBagger.pdf
 (Alta Fox 2020 Summer Intern Class Project, n=104 stocks with 350%+ TSR
-over 5 years, ex Energy/Materials/Financials, NA + Western Europe + AU).
+over 5 years).
 
-Their five high-level takeaways:
-  1. Look for businesses with advantageous positioning (80% had moderate-
-     to-high barriers to entry, 91% had moderate-to-high competitive advantages)
-  2. Spend time on financially healthy companies (88% started healthy, not
-     turnarounds - turnaround thesis is RISKIER, not the multibagger pattern)
-  3. Acquisitions can create value (56% used acquisitions as growth driver,
-     19% had at least one transformative acquisition)
-  4. Don't rely on multiples - many top performers started at healthy
-     multiples that expanded further
-  5. Be open to international companies - US was UNDER-represented vs investable
-     universe; UK/Sweden/Germany/Norway/Australia were OVER-represented
+Initial universe screen (per the PDF, not "<$2B"): market cap **$150M-$10B**,
+positive TTM EBITDA, positive YoY revenue growth, avg daily volume above
+$200k, domiciled in North America / Western Europe / Australia, all
+sectors except Energy / Materials / Financials. 130 names returned; the
+study focused on the 104 smallest. 84% of the sample *ended* below $2B
+(post-hoc; not the entry filter).
+
+TSR decomposition - what actually drove the 5-year returns:
+  * average TSR = 59.8% EBITDA growth + 44.8% multiple expansion + 1.6% dividends
+  * median TSR = 33.65% / 65.71% / 0%  (multiple expansion was MORE than half)
+This contradicts a naive reading of "don't rely on multiples." The
+correct reading: don't DEMAND a cheap starting multiple. Multiple
+expansion *did* drive most of the TSR; the names just didn't all start
+cheap. Our weighting therefore treats cheap multiples as a *not-extreme*
+filter, not a positive cheapness signal.
+
+Five high-level takeaways from the PDF:
+  1. Advantageous positioning - **91% had moats** (any), 80% had
+     moderate-to-high barriers to entry (42% high + 38% medium). We cannot
+     assess moats qualitatively for a 15k-name universe, but we add
+     quantitative proxies (gross margin level, ROCE level).
+  2. Financial health - 88% started healthy, NOT turnarounds.
+  3. Acquisitions create value - 56% used acquisitions as a growth
+     driver, 19% had at least one transformative acquisition. Again not
+     assessable qualitatively at this scale; we add a quantitative hint
+     via revenue-growth-above-organic-norm.
+  4. Don't rely on multiples (see TSR decomposition above).
+  5. International - US under-represented vs investable universe;
+     UK / Sweden / Germany / Norway / Australia over-represented.
 
 Their specific final screening criteria:
   - Country: UK, Sweden, Germany, Norway, Australia (over-represented)
   - Industry: Technology or Healthcare
-  - Market cap below $2B
-  - Trading below 3x NTM Sales, 20x NTM EBITDA, 30x NTM PE
+  - Trading below 3x NTM Sales, 20x NTM EBITDA, 30x NTM P/E
     (82% of set traded below these or had no forward multiples)
 
-Their financial-metrics distribution at the START (FY15):
+Financial-metric distribution at the START (FY15):
   - Median EBITDA margin: 10.22% (room to expand)
   - Median gross margin: 46.40%
   - Revenue 3y CAGR median: 20.88%
   - EBITDA 3y CAGR median: 28.19%
   - Median P/S: 1.68x  EV/EBITDA: 10.26x  P/E: 17.57x
+
+Per the user's audit: we DO NOT score size (the >$10B universe was
+excluded by Alta Fox's own filter, not a discriminator within the set),
+and we do not pretend to qualitatively assess moats or M&A across the
+universe. Instead we add lightweight quantitative proxies that don't
+demand we trust them too far:
+  - moat proxies: ROCE level, gross margin level, insider ownership
+  - M&A hint: revenue 3y CAGR above plausible organic norm
 
 This module emits an `alta_fox_score` per ticker [0..1] plus boolean
 checklist columns (one per criterion).
@@ -144,11 +169,13 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
                     else 0.3))
     )
 
-    # AF3: Size - <$2B is the multibagger sweet spot (84% of Alta Fox set).
-    # CRITICAL: use FX-converted mcap_usd when available. Without USD
-    # conversion the size gate silently misclassifies non-USD names
-    # (e.g. Dongwoo 088910.KQ reports 57.87B KRW = ~$42M USD, but the
-    # raw number > $2B in unit-naive comparison).
+    # AF3: Size - the <$2B finding was post-hoc (84% of Alta Fox set ended
+    # below $2B), not a discriminator within their universe (which itself
+    # was already filtered to $150M-$10B at entry). Per user audit: size
+    # is NOT scored as a positive signal in this composite. We retain the
+    # boolean flags for downstream filters but do not weight them.
+    # USD-converted mcap when available, so non-USD names aren't
+    # mis-bucketed (e.g. Dongwoo 088910.KQ at 57.87B KRW = ~$42M USD).
     if 'market_cap_usd' in df.columns:
         mcap = df['market_cap_usd'].fillna(0)
     else:
@@ -156,11 +183,7 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
     df['af_size_lt_300m'] = (mcap < 300e6).astype(int)
     df['af_size_lt_2b'] = (mcap < 2e9).astype(int)
     df['af_size_lt_10b'] = (mcap < 10e9).astype(int)
-    size_score = pd.cut(
-        mcap,
-        bins=[0, 50e6, 300e6, 2e9, 10e9, 1e15],
-        labels=[1.0, 0.95, 0.85, 0.5, 0.15],
-    ).astype(float).fillna(0.5)
+    # No size_score - size is informational only.
 
     # AF4: Valuation - below 3x P/S, 20x EV/EBITDA, 30x P/E (or no forward multiple)
     p_s = df['p_s'].fillna(-1)
@@ -193,16 +216,17 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
         + df['af_growth_38pct'] * 0.3
     ).clip(0, 1)
 
-    # AF6: Margin - starting EBITDA margin in 5-25% range (room to expand)
-    # Alta Fox median start was 10.22%, expanded to 17.75% over 5 years
+    # AF6: Margin - starting EBITDA margin in 5-25% range gets full credit
+    # (Alta Fox median start was 10.22%, expanded to 17.75% over 5 years).
+    # We do NOT penalise margins above 25% - high margins indicate the
+    # moat 91% of Alta Fox names had. Above-band margins still score 1.0.
     ebm = df['ebitda_margin'].fillna(-99)
     df['af_margin_5_25'] = ((ebm >= 0.05) & (ebm <= 0.25)).astype(int)
     df['af_margin_positive'] = (ebm > 0).astype(int)
     margin_score = pd.Series(0.0, index=df.index)
-    margin_score = margin_score.where(~((ebm >= 0.05) & (ebm <= 0.25)), 1.0)
-    margin_score = margin_score.where(~((ebm > 0.25) & (ebm <= 0.40)), 0.6)
-    margin_score = margin_score.where(~((ebm > 0.0) & (ebm < 0.05)), 0.5)
-    margin_score = margin_score.where(ebm > 0, 0.0)
+    margin_score = margin_score.where(~(ebm >= 0.05), 1.0)            # >=5% margin = 1.0
+    margin_score = margin_score.where(~((ebm > 0.0) & (ebm < 0.05)), 0.5)  # 0-5% = 0.5
+    margin_score = margin_score.where(ebm > 0, 0.0)                    # <=0 = 0
 
     # AF7: Financial health (Alta Fox: 88% started healthy, not turnarounds)
     nde = df['net_debt_ebitda'].fillna(99)
@@ -213,15 +237,59 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
     )
     df['af_financially_healthy'] = ((ebm_pos) & (nde <= 2.5)).astype(int)
 
-    # COMPOSITE
+    # AF8 (quantitative moat proxy 1): ROCE level. High ROCE is the
+    # quantitative tell for the moat that 91% of Alta Fox names had.
+    # >=20% scores 1.0 (Mayer/Greenblatt/Huber threshold); 10-20% scores 0.5.
+    roce = df['roce'].fillna(-99) if 'roce' in df.columns else pd.Series(-99, index=df.index)
+    df['af_roce_ge_20'] = (roce >= 0.20).astype(int)
+    df['af_roce_ge_10'] = (roce >= 0.10).astype(int)
+    roce_score = pd.Series(0.0, index=df.index)
+    roce_score = roce_score.where(~(roce >= 0.20), 1.0)
+    roce_score = roce_score.where(~((roce >= 0.10) & (roce < 0.20)), 0.5)
+    roce_score = roce_score.where(~((roce > 0.0) & (roce < 0.10)), 0.2)
+
+    # AF9 (quantitative moat proxy 2): Gross margin level. High gross
+    # margin signals pricing power - Alta Fox median start was 46.4%.
+    # >=40% scores 1.0; 25-40% scores 0.5; <25% scores 0.
+    gm = df['gross_margin'].fillna(-99) if 'gross_margin' in df.columns else pd.Series(-99, index=df.index)
+    df['af_gross_margin_ge_40'] = (gm >= 0.40).astype(int)
+    gm_score = pd.Series(0.0, index=df.index)
+    gm_score = gm_score.where(~(gm >= 0.40), 1.0)
+    gm_score = gm_score.where(~((gm >= 0.25) & (gm < 0.40)), 0.5)
+
+    # AF10 (insider ownership / owner-operator proxy). Mayer 100 Baggers
+    # and Russo "capacity to suffer" both emphasise owner-operators.
+    # >=10% scores 1.0; 5-10% scores 0.6.
+    ins = df['insider_ownership_pct'].fillna(-1) if 'insider_ownership_pct' in df.columns else pd.Series(-1, index=df.index)
+    df['af_insider_ge_10'] = (ins >= 0.10).astype(int)
+    insider_score = pd.Series(0.0, index=df.index)
+    insider_score = insider_score.where(~(ins >= 0.10), 1.0)
+    insider_score = insider_score.where(~((ins >= 0.05) & (ins < 0.10)), 0.6)
+
+    # AF11 (M&A hint - quantitative only; do not over-weight). Alta Fox
+    # found 56% used acquisitions as growth driver. We can't verify M&A
+    # qualitatively at scale; we use revenue 3y CAGR above plausible
+    # organic norm (>30%) as a weak indicator a name MIGHT be acquisitive.
+    # Could equally be hyper-organic growth, hence small weight.
+    rev_3y = df['rev_3y_cagr'].fillna(-99) if 'rev_3y_cagr' in df.columns else pd.Series(-99, index=df.index)
+    df['af_rev_3y_ge_30'] = (rev_3y >= 0.30).astype(int)
+    ma_hint_score = (rev_3y >= 0.30).astype(float) * 0.7 + (rev_3y >= 0.50).astype(float) * 0.3
+
+    # COMPOSITE - no size weight; cheapness downweighted (it's a
+    # not-extreme filter, not a positive signal, per the TSR
+    # decomposition); moat proxies (ROCE + gross margin + insider) added
+    # with moderate weights; M&A hint added with light weight.
     df['alta_fox_score'] = (
-        geo_score.astype(float) * 0.20
-        + sector_score.astype(float) * 0.15
-        + size_score.astype(float) * 0.15
-        + val_score.astype(float) * 0.20
-        + growth_score.astype(float) * 0.15
-        + margin_score.astype(float) * 0.10
-        + health_score.clip(0, 1) * 0.05
+        geo_score.astype(float)         * 0.15
+        + sector_score.astype(float)    * 0.15
+        + val_score.astype(float)       * 0.10  # was 0.20; not-extreme filter only
+        + growth_score.astype(float)    * 0.15
+        + margin_score.astype(float)    * 0.10
+        + health_score.clip(0, 1)       * 0.10  # was 0.05; raised toward 88% prevalence
+        + roce_score.astype(float)      * 0.10  # NEW - moat proxy 1
+        + gm_score.astype(float)        * 0.05  # NEW - moat proxy 2
+        + insider_score.astype(float)   * 0.05  # NEW - owner-operator proxy
+        + ma_hint_score.astype(float)   * 0.05  # NEW - light M&A hint
     ).round(3)
 
     # Also surface a 'strict Alta Fox checklist' boolean
@@ -243,7 +311,11 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
                 'af_cheap_p_e_lt_30', 'af_cheap_count',
                 'af_growth_14pct', 'af_growth_21pct', 'af_growth_38pct',
                 'af_margin_5_25', 'af_margin_positive',
-                'af_financially_healthy']
+                'af_financially_healthy',
+                'af_roce_ge_20', 'af_roce_ge_10',
+                'af_gross_margin_ge_40',
+                'af_insider_ge_10',
+                'af_rev_3y_ge_30']
     out_cols = [c for c in out_cols if c in df.columns]
     out = df[out_cols].copy()
     # Dedupe by symbol: keep the highest-scoring row when the same symbol

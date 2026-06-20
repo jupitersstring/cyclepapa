@@ -198,6 +198,12 @@ class TickerRow:
     cfo_first_positive: int
     fcf_first_positive: int
     net_income_first_positive: int
+    # Aggregate inflection flag: fires when ANY of the YoY-growth sign-flip,
+    # first-positive-print or ROCE inflection signals is on. Surfaced as a
+    # standalone column for downstream filters (deliberately NOT in the
+    # Yartseva composite, per her finding that growth rates are
+    # non-predictive — but still a useful "something changed" flag).
+    inflection_flag: int
     # ROCE inflection
     roce_prev: float
     roce_delta_yoy: float
@@ -444,6 +450,15 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     fcf_first_positive = first_pos(fcf_ttm, fcf_ttm_prev)
     net_income_first_positive = first_pos(ni_ttm, ni_ttm_prev)
 
+    # Aggregate inflection flag - fires when any of the per-metric inflection
+    # or first-positive signals is on. ROCE-related flags are folded in
+    # downstream after roce_inflection / roce_first_positive are computed.
+    inflection_flag_pre = int(
+        rev_inflection or ebitda_inflection or cfo_inflection or fcf_inflection
+        or ebitda_first_positive or cfo_first_positive or fcf_first_positive
+        or net_income_first_positive
+    )
+
     # ROCE inflection — needs prior-period ROCE = EBIT_prev / IC_prev.
     # Use prior-year balance sheet column where available; if ROCE was already
     # computed below, we recompute it here in a self-contained block since
@@ -516,6 +531,9 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     roce_inflection = int(pd.notna(roce_delta_yoy) and pd.notna(roce_prev) and roce_delta_yoy > 0 and roce_prev <= 0.0)
     # Level first-positive: ROCE itself crossed zero from below
     roce_first_positive = first_pos(roce, roce_prev) if (pd.notna(roce) and pd.notna(roce_prev)) else 0
+
+    # Fold ROCE flags into the aggregate inflection flag.
+    inflection_flag = int(inflection_flag_pre or roce_inflection or roce_first_positive)
 
     # Forward-projected break-even: linear extrapolation of the latest improvement
     # in FCF (and EBITDA, CFO). If current is negative and improving, periods-to-zero
@@ -829,64 +847,110 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     not_priced_in_score = float(np.mean(components_npi)) if components_npi else np.nan
 
     # ----- Yartseva composite -----
-    # Soft logistic-style scoring. Each sub-score in [0,1].
+    # Aligned to Anna Yartseva, "The Alchemy of Multibagger Stocks," CAFE WP
+    # 33 (Birmingham City University, 2025). Her 7 statistically significant
+    # predictors of 1,000%+ 5-year returns in a 464-stock sample:
+    #   1. small size (EV < $250M, median $348M)
+    #   2. high book-to-market (B/M > 0.40; avoid negative equity)
+    #   3. FCF yield  *strongest single predictor, coeffs 46-82*
+    #   4. positive operating profitability (level, not growth)
+    #   5. asset growth <= EBITDA growth (her only 100%-hit-rate signal)
+    #   6. near 52-week low / negative 3-6m momentum (contra-entry)
+    #   7. stable/declining interest rates (macro; not per-stock)
+    # She explicitly finds revenue/EBITDA/EPS/FCF growth rates, dividends,
+    # debt levels, buybacks and analyst coverage NON-predictive. The
+    # first-positive / inflection / acceleration columns are still emitted
+    # for the downstream cluster_n signal but are NOT in this composite.
     def clip01(x):
         if pd.isna(x):
             return np.nan
         return float(max(0.0, min(1.0, x)))
 
-    growth_score = clip01((rev_yoy + 0.05) / 0.40) if pd.notna(rev_yoy) else np.nan  # 0% -> 0.125, 35%+ -> 1
-    accel_score = clip01((rev_accel + 0.05) / 0.30) if pd.notna(rev_accel) else np.nan
-    margin_score = clip01((ebitda_margin_delta_yoy + 0.01) / 0.05) if pd.notna(ebitda_margin_delta_yoy) else np.nan
-    cash_quality = clip01((cash_conversion - 0.5) / 0.7) if pd.notna(cash_conversion) else np.nan
-    roce_score = clip01((roce - 0.05) / 0.20) if pd.notna(roce) else np.nan
-    leverage_score = (
-        clip01((3.0 - net_debt_ebitda) / 4.0) if pd.notna(net_debt_ebitda) else 0.5
-    )
-    # Valuation vs growth: lower EV/Sales relative to growth = higher score.
-    if pd.notna(ev_sales) and ev_sales > 0 and pd.notna(rev_yoy):
-        peg_like = ev_sales / max(rev_yoy + 0.05, 0.05)  # lower is better
-        valuation_score = clip01((6.0 - peg_like) / 6.0)
-    else:
-        valuation_score = np.nan
-    fcf_yield_score = clip01((fcf_yield - 0.0) / 0.12) if pd.notna(fcf_yield) else np.nan
+    # 1. FCF yield - her #1 factor. Score 0 at 0%, 1.0 at 12%.
+    fcf_yield_score = clip01(fcf_yield / 0.12) if pd.notna(fcf_yield) else np.nan
 
-    # First-positive level crossings get a meaningful nudge in the composite:
-    # FCF crossing zero from below is a textbook Yartseva entry signal.
-    first_pos_score = 0.20 * (
-        fcf_first_positive + ebitda_first_positive + cfo_first_positive
-        + net_income_first_positive + roce_first_positive
-    )
-    # Forward-projected FCF break-even within the lookahead horizon.
-    fwd_eta_score = 1.0 if fcf_projected_positive_in_n else 0.0
-    # ROCE inflection bonus
-    roce_inf_score = 1.0 if roce_inflection else 0.0
+    # 2. Book-to-market. B/M = 1/PB. Score 0 below 0.20, 1.0 above 1.0.
+    # Hard NaN for negative equity (PB<=0): she finds neg-equity firms
+    # consistently underperform (-7% to -18% annually).
+    if pd.notna(pb) and pb > 0:
+        b_to_m = 1.0 / pb
+        book_to_market_score = clip01((b_to_m - 0.20) / 0.80)
+    else:
+        book_to_market_score = np.nan
+
+    # 3. Small size. EV under $250M scores 1.0; degrades to 0 by $5B.
+    # Mcap floor of $10M (below = likely shell) caps score at 1.0 not above.
+    if pd.notna(enterprise_value) and enterprise_value > 0:
+        ev_m = enterprise_value / 1e6
+        if ev_m < 250:
+            size_score = 1.0
+        elif ev_m < 5000:
+            size_score = max(0.0, (5000 - ev_m) / (5000 - 250))
+        else:
+            size_score = 0.0
+    elif pd.notna(market_cap) and market_cap > 0:
+        mc_m = market_cap / 1e6
+        if mc_m < 250:
+            size_score = 1.0
+        elif mc_m < 5000:
+            size_score = max(0.0, (5000 - mc_m) / (5000 - 250))
+        else:
+            size_score = 0.0
+    else:
+        size_score = np.nan
+
+    # 4. Positive profitability LEVEL (EBITDA margin + ROCE level). She
+    # finds "modest positive margins" sufficient - the level matters, not
+    # expansion or growth.
+    if pd.notna(ebitda_margin):
+        # 0 at -5%, 0.5 at 5%, 1.0 at 15%+
+        em_score = clip01((ebitda_margin + 0.05) / 0.20)
+    else:
+        em_score = np.nan
+    if pd.notna(roce):
+        # ROCE: 0 at <=0%, 0.5 at 7.5%, 1.0 at 15%+ (close cousin of her ROA)
+        roce_lvl_score = clip01(roce / 0.15)
+    else:
+        roce_lvl_score = np.nan
+    profit_parts = [s for s in (em_score, roce_lvl_score) if pd.notna(s)]
+    profit_level_score = float(np.mean(profit_parts)) if profit_parts else np.nan
+
+    # 5. "Asset growth <= EBITDA growth" gate. We don't currently extract
+    # asset_growth_yoy; proxy with sales_yoy <= ebitda_yoy (same spirit:
+    # earnings keep up with or outpace the topline expansion). Hard 0 if
+    # EBITDA growth lags sales growth materially; 1.0 if EBITDA growth
+    # matches or exceeds sales growth.
+    if pd.notna(rev_yoy) and pd.notna(ebitda_yoy):
+        # spread = ebitda_yoy - sales_yoy; >0 = healthy; <-10pp = penalty
+        spread = ebitda_yoy - rev_yoy
+        asset_growth_gate_score = clip01((spread + 0.10) / 0.20)
+    else:
+        asset_growth_gate_score = np.nan
+
+    # 6. Contra-momentum entry. She finds price near 52w low / negative 3-6m
+    # momentum predictive (coeff -0.67 to -0.92 on "% of 52w high"). We
+    # use negative momentum_12m as a proxy: 1.0 at -30% momentum, 0.5 at
+    # 0%, 0 at +30%+.
+    if pd.notna(momentum_12m):
+        contra_momentum_score = clip01((0.30 - momentum_12m) / 0.60)
+    else:
+        contra_momentum_score = np.nan
 
     weights = {
-        "growth": 0.16,
-        "accel": 0.12,
-        "margin": 0.12,
-        "cash_quality": 0.08,
-        "roce": 0.12,
-        "leverage": 0.04,
-        "valuation": 0.08,
-        "fcf_yield": 0.08,
-        "first_positive": 0.10,
-        "fwd_eta": 0.06,
-        "roce_inflect": 0.04,
+        "fcf_yield":            0.30,
+        "book_to_market":       0.15,
+        "size":                 0.10,
+        "profit_level":         0.15,
+        "asset_growth_gate":    0.15,
+        "contra_momentum":      0.15,
     }
     parts = {
-        "growth": growth_score,
-        "accel": accel_score,
-        "margin": margin_score,
-        "cash_quality": cash_quality,
-        "roce": roce_score,
-        "leverage": leverage_score,
-        "valuation": valuation_score,
-        "fcf_yield": fcf_yield_score,
-        "first_positive": first_pos_score,
-        "fwd_eta": fwd_eta_score,
-        "roce_inflect": roce_inf_score,
+        "fcf_yield":            fcf_yield_score,
+        "book_to_market":       book_to_market_score,
+        "size":                 size_score,
+        "profit_level":         profit_level_score,
+        "asset_growth_gate":    asset_growth_gate_score,
+        "contra_momentum":      contra_momentum_score,
     }
     total_w = 0.0
     total_v = 0.0
@@ -1010,6 +1074,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         cfo_first_positive=cfo_first_positive,
         fcf_first_positive=fcf_first_positive,
         net_income_first_positive=net_income_first_positive,
+        inflection_flag=inflection_flag,
         roce_prev=roce_prev,
         roce_delta_yoy=roce_delta_yoy,
         roce_inflection=roce_inflection,

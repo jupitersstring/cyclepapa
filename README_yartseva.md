@@ -54,18 +54,35 @@ with inflection / acceleration / "not priced in" signals.
    * **`cheapness_blend_vs_growth`** = `((P/B + EV/EBIT)/2)
      / ((sales_yoy + ebitda_yoy)/2)`. Lower = cheaper relative to
      blended top-line + EBITDA growth.
-6. **Yartseva composite** – weighted blend (0–1):
+6. **Yartseva composite** – weighted blend (0–1), aligned to Anna
+   Yartseva, *"The Alchemy of Multibagger Stocks,"* CAFE WP 33
+   (Birmingham City University, 2025). Her 7 statistically significant
+   predictors of 1,000%+ 5-year returns, applied with our own thresholds:
 
    | weight | factor                                           |
    |-------:|--------------------------------------------------|
-   | 0.20   | revenue growth (TTM YoY)                         |
-   | 0.15   | revenue acceleration                             |
-   | 0.15   | EBITDA-margin expansion (YoY pp)                 |
-   | 0.15   | ROCE                                             |
-   | 0.10   | cash conversion (CFO / EBITDA)                   |
-   | 0.10   | EV/Sales relative to growth (PEG-style)          |
-   | 0.10   | FCF yield                                        |
-   | 0.05   | leverage (net debt / EBITDA, lower is better)    |
+   | 0.30   | FCF yield (her #1 factor, coeffs 46–82)          |
+   | 0.15   | book-to-market = 1/PB (hard NaN if negative equity) |
+   | 0.10   | size (EV < $250M scores 1.0; ramps to 0 by $5B)   |
+   | 0.15   | profitability LEVEL — mean of EBITDA margin and ROCE |
+   | 0.15   | asset-growth ≤ EBITDA-growth gate (proxied by sales_yoy ≤ ebitda_yoy) |
+   | 0.15   | contra-momentum entry (1.0 at −30% 12m momentum)  |
+
+   Factors Yartseva explicitly finds **non-predictive** and which we
+   therefore DO NOT include in this composite: revenue / EBITDA / EPS /
+   FCF growth rates, sales growth as a positive signal, dividends, debt
+   levels, buybacks, R&D, analyst coverage, Altman Z.
+
+   The first-positive / inflection / acceleration / forward-ETA columns
+   are still emitted per row and consumed downstream by `cluster_n` and
+   the new aggregate `inflection_flag` column (= 1 when ANY of
+   rev/EBITDA/CFO/FCF YoY-growth sign-flip, level first-positive print,
+   or ROCE inflection fires). They are deliberately NOT credited in the
+   Yartseva composite — but they remain visible as standalone flags for
+   downstream filters and tag-driven sorts.
+
+   Her #7 factor (stable / declining interest rates) is macro and not
+   scored per-stock.
 
 ## Usage
 
