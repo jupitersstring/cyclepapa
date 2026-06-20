@@ -1,0 +1,17 @@
+{
+  "accession": "140120260618573888",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "第三者割当による新投資口発行における発行口数の確定に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｒ－平和ＲＥ",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "8966",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260618573888.pdf"
+}

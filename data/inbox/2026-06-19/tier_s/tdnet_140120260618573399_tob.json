@@ -1,0 +1,17 @@
+{
+  "accession": "140120260618573399",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "主要株主の異動及び当社株式（証券コード 3659）の取得（公開買付けに準ずる行為として政令で定める買集め行為）に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ネクソン",
+  "query_label": "tier_s.tob",
+  "query_note": "tender offer (TOB / 公開買付) — bid in progress",
+  "source": "TDnet",
+  "ticker": "3659",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260618573399.pdf"
+}

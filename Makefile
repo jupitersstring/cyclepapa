@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll waterfall validate portfolio audit clean help inbox-promote
+.PHONY: score poll uk-poll ca-poll jp-poll waterfall validate portfolio audit clean help inbox-promote
 
 help:
 	@echo "Targets:"
@@ -7,6 +7,7 @@ help:
 	@echo "  poll       — run EDGAR full-text poller for today; writes data/inbox/"
 	@echo "  uk-poll    — run FCA NSM (RNS) poller for UK special-situation events"
 	@echo "  ca-poll    — run SEDAR+ poller for Canadian special-situation filings (run hourly)"
+	@echo "  jp-poll    — run TDnet poller for Japanese TSE special-situation events"
 	@echo "  waterfall  — Monte Carlo across all candidates"
 	@echo "  portfolio  — factor decomposition + correlation + risk-budgeted weights → output/portfolio.md"
 	@echo "  inbox-promote — promote poller hits from data/inbox/ → universe.md (closes the loop)"
@@ -32,6 +33,9 @@ uk-poll: audit
 ca-poll: audit
 	python3 -m src.sedarplus_poll
 
+jp-poll: audit
+	python3 -m src.jpx_tdnet_poll
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -55,7 +59,7 @@ universe: audit
 inbox-promote: audit
 	python3 -m src.inbox_promote --days-back 7
 
-all: audit poll uk-poll ca-poll spinoff cluster-buys inbox-promote universe score waterfall portfolio events
+all: audit poll uk-poll ca-poll jp-poll spinoff cluster-buys inbox-promote universe score waterfall portfolio events
 	@echo "All pipelines run."
 
 validate:

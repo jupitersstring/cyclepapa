@@ -1,0 +1,17 @@
+{
+  "accession": "140120260619575084",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "株式会社ジャパネットホールディングスによる当社株式に対する公開買付けの開始予定に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ツインバード",
+  "query_label": "tier_s.tob",
+  "query_note": "tender offer (TOB / 公開買付) — bid in progress",
+  "source": "TDnet",
+  "ticker": "6897",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260619575084.pdf"
+}

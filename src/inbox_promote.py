@@ -89,6 +89,11 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "takeover_bid", "issuer_bid", "directors_circular",
     "plan_of_arrangement", "early_warning", "amr", "bar",
     "material_change", "corp_structure", "info_circular",
+    # ---- TDnet labels (jpx_tdnet_poll.py) ----
+    "tob", "mbo", "share_exchange", "share_transfer", "demerger",
+    "merger_absorption", "civil_rehabilitation", "corporate_reorganization",
+    "special_liquidation", "delisting", "major_shareholder_change",
+    "controlling_shareholder", "third_party_allotment", "public_offering",
 }
 
 

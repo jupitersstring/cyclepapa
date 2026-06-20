@@ -1,0 +1,17 @@
+{
+  "accession": "140120260619574332",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "自己株式立会外買付取引（ＴｏＳＴＮｅＴ－３）による自己株式の取得結果に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "椿本チエイン",
+  "query_label": "rev_pref.buyback",
+  "query_note": "share buyback (自己株式取得) — Lakonishok-Lee analogue at the corp level",
+  "source": "TDnet",
+  "ticker": "6371",
+  "tier": "rev_pref",
+  "url": "https://www.release.tdnet.info/inbs/140120260619574332.pdf"
+}

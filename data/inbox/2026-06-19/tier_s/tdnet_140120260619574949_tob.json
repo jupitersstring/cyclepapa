@@ -1,0 +1,17 @@
+{
+  "accession": "140120260619574949",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "テラ株式会社によるサツドラホールディングス株式会社（証券コード：3544）の普通株式に対する公開買付けの開始に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "サツドラＨＤ",
+  "query_label": "tier_s.tob",
+  "query_note": "tender offer (TOB / 公開買付) — bid in progress",
+  "source": "TDnet",
+  "ticker": "3544",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260619574949.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "140120260617572725",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "第三者割当による新株式発行の払込完了に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ブイキューブ",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "3681",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260617572725.pdf"
+}

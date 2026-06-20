@@ -1,0 +1,17 @@
+{
+  "accession": "140120260619574306",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "自己株式の取得状況および取得終了に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "セラク",
+  "query_label": "rev_pref.buyback",
+  "query_note": "share buyback (自己株式取得) — Lakonishok-Lee analogue at the corp level",
+  "source": "TDnet",
+  "ticker": "6199",
+  "tier": "rev_pref",
+  "url": "https://www.release.tdnet.info/inbs/140120260619574306.pdf"
+}

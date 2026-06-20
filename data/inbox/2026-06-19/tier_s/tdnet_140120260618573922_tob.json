@@ -1,0 +1,17 @@
+{
+  "accession": "140120260618573922",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "公開買付けへの応募及び特別利益の計上見込に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "エステー",
+  "query_label": "tier_s.tob",
+  "query_note": "tender offer (TOB / 公開買付) — bid in progress",
+  "source": "TDnet",
+  "ticker": "4951",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260618573922.pdf"
+}

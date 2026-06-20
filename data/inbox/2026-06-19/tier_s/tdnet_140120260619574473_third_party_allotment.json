@@ -1,0 +1,17 @@
+{
+  "accession": "140120260619574473",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "第三者割当による第18回新株予約権乃至第22回新株予約権（行使価額修正条項付）及び第23回新株予約権乃至第27回新株予約権の発行条件等の決定に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－テラドローン",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "278A",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260619574473.pdf"
+}

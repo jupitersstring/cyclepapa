@@ -1,0 +1,17 @@
+{
+  "accession": "140120260617572433",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "株式会社フィックスターズとの資本提携契約の締結及び株式会社Fixstars Investmentを割当予定先とする第三者割当による新株式の発行に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－シンカ",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "149A",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260617572433.pdf"
+}

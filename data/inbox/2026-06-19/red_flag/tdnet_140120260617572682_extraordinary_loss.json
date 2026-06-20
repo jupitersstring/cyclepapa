@@ -1,0 +1,17 @@
+{
+  "accession": "140120260617572682",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "特別損失の計上に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "コーセル",
+  "query_label": "red_flag.extraordinary_loss",
+  "query_note": "extraordinary loss",
+  "source": "TDnet",
+  "ticker": "6905",
+  "tier": "red_flag",
+  "url": "https://www.release.tdnet.info/inbs/140120260617572682.pdf"
+}

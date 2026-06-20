@@ -1,0 +1,17 @@
+{
+  "accession": "140120260619574675",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "吸収合併の効力発生日変更に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－イメージ情",
+  "query_label": "tier_s.merger_absorption",
+  "query_note": "merger by absorption",
+  "source": "TDnet",
+  "ticker": "3803",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260619574675.pdf"
+}

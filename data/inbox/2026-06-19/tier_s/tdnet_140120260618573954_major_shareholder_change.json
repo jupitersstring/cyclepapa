@@ -1,0 +1,17 @@
+{
+  "accession": "140120260618573954",
+  "cik": "",
+  "fetched_at": "2026-06-20T01:17:58.192251Z",
+  "filed": "2026-06-19",
+  "form": "（取消）「主要株主の異動に関するお知らせ」の取消しに関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ＹＵＡＳＡ",
+  "query_label": "tier_s.major_shareholder_change",
+  "query_note": "change in major shareholders",
+  "source": "TDnet",
+  "ticker": "8074",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260618573954.pdf"
+}
