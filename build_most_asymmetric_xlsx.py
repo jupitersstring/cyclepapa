@@ -168,29 +168,38 @@ def write_footnote(ws, row: int, text: str, n_cols: int):
 # ----------------------------------------------------------------------
 
 def get_convergent_from_disk() -> list[dict]:
-    """Derive the convergent list from consensus_ranking.csv -- the
-    SINGLE source of truth. No hardcoded ticker references.
-    A name is convergent iff n_screens >= 3 AND n_archetypes >= 1.
-    Returned ordered by (n_screens desc, n_archetypes desc,
-    consensus_score desc).
+    """Derive the convergent list from full_universe_consensus.csv --
+    the SINGLE source of truth that scores EVERY one of 6,169 tickers
+    on EVERY layer (no source-file truncation bias).
+
+    A name is convergent iff n_layers_firing >= 3. Sort by layers
+    firing then consensus_score. Normalized to the consensus_ranking
+    schema downstream (adds n_screens/n_archetypes_won synonyms).
     """
-    cr = ROOT / "consensus_ranking.csv"
+    cr = ROOT / "full_universe_consensus.csv"
     if not cr.exists():
-        return []
+        # Fall back to old file only if the new one is missing
+        cr = ROOT / "consensus_ranking.csv"
+        if not cr.exists():
+            return []
     rows = list(csv.DictReader(cr.open()))
     convergent = []
     for r in rows:
         try:
-            ns = int(r["n_screens"])
-            na = int(r["n_archetypes_won"])
+            n_layers = int(r.get("n_layers_firing")
+                           or r.get("n_screens") or 0)
         except (ValueError, KeyError):
             continue
-        if ns >= 3 and na >= 1:
+        if n_layers >= 3:
+            # Normalise field names for downstream use
+            r["n_screens"] = n_layers
+            r["n_archetypes_won"] = r.get("n_archetypes_won", n_layers)
             convergent.append(r)
-    convergent.sort(key=lambda r: (-int(r["n_screens"]),
-                                   -int(r["n_archetypes_won"]),
-                                   -float(r.get("consensus_score") or 0)))
-    return convergent
+    convergent.sort(key=lambda r: (
+        -int(r.get("n_screens") or 0),
+        -float(r.get("consensus_score") or 0)))
+    # Cap at top 20 for the xlsx
+    return convergent[:20]
 
 
 # Per-ticker editorial annotations. If a ticker drops out of the
@@ -238,6 +247,72 @@ TICKER_ANNOTATIONS: dict[str, dict] = {
     "EXFY": {"name": "Expensify",
              "why": "Live issuer self-tender; published bid above market",
              "floor": "Issuer-paid tender = mechanical floor"},
+    "AUPH": {"name": "Aurinia Pharmaceuticals",
+             "why": "PSU + valuation + 10b5-1 + recent-incentive + special-sits firing",
+             "floor": "Lupus nephritis franchise + cash position"},
+    "GETY": {"name": "Getty Images",
+             "why": "10b5-1 termination score 74 + recent-incentive event + valuation floor",
+             "floor": "P/B 0.55 + IP library"},
+    "HDSN": {"name": "Hudson Technologies",
+             "why": "Recent F4 cluster + buyback + special-sits + recent-incentive",
+             "floor": "Refrigerant reclaim regulatory moat"},
+    "TONX": {"name": "Tonix Pharmaceuticals",
+             "why": "Fresh F4 cluster + recent-incentive 87% drawdown",
+             "floor": "P/B 0.52 microcap"},
+    "DXC":  {"name": "DXC Technology",
+             "why": "PSU core 40 + buyback + recent-incentive 57% drawdown",
+             "floor": "IT services franchise; transformation signal in PSU"},
+    "OLED": {"name": "Universal Display",
+             "why": "PSU + F4 cluster + recent-incentive 60% drawdown",
+             "floor": "OLED IP moat"},
+    "IQV":  {"name": "IQVIA",
+             "why": "10b5-1 termination 43 + recent-incentive + special-sits",
+             "floor": "Healthcare data services franchise"},
+    "CRM":  {"name": "Salesforce",
+             "why": "PSU + buyback + recent 10b5-1 termination + F4 cluster",
+             "floor": "Mega-cap recurring revenue base"},
+    "MA":   {"name": "Mastercard",
+             "why": "10b5-1 termination score 78 (highest) + PSU + buyback",
+             "floor": "Payments duopoly"},
+    "BCO":  {"name": "Brink's Company",
+             "why": "10b5-1 termination + special-sits + PSU",
+             "floor": "Cash-handling services franchise"},
+    "FIS":  {"name": "Fidelity National Information Svcs",
+             "why": "PSU 42 + valuation + 10b5-1 + recent-incentive",
+             "floor": "Payments processing franchise"},
+    "FISV": {"name": "Fiserv",
+             "why": "PSU + valuation + 10b5-1 + recent-incentive",
+             "floor": "FCF/share PSU metric anchor"},
+    "ZTS":  {"name": "Zoetis",
+             "why": "F4 cluster + valuation + recent-incentive 60% drawdown",
+             "floor": "Animal health franchise"},
+    "FLGT": {"name": "Fulgent Genetics",
+             "why": "PSU + valuation P/B 0.51 + special-sits + recent-incentive",
+             "floor": "Half book + cash position"},
+    "GTM":  {"name": "GTM (placeholder)",
+             "why": "PSU + valuation + recent activist 13D 4d ago + special-sits",
+             "floor": "P/B 0.54 + 78% drawdown"},
+    "OI":   {"name": "O-I Glass",
+             "why": "PSU + valuation + F4 cluster + recent-incentive",
+             "floor": "Glass packaging recurring base"},
+    "GRNT": {"name": "Granite Ridge Resources",
+             "why": "PSU + valuation + F4 cluster + recent-incentive",
+             "floor": "Oil & gas asset base"},
+    "BDC":  {"name": "Belden Inc",
+             "why": "PSU + buyback + 10b5-1 + recent-incentive",
+             "floor": "Industrial connectivity franchise"},
+    "ECPG": {"name": "Encore Capital",
+             "why": "PSU 43 + buyback + recent-incentive",
+             "floor": "Debt-collection franchise"},
+    "THRY": {"name": "Thryv Holdings",
+             "why": "Triple-$ PSU hurdle + valuation + 10b5-1 + recent-incentive",
+             "floor": "P/B 0.74 SMB services"},
+    "GPUS": {"name": "Hyperscale Data",
+             "why": "Valuation + live tender + 10b5-1 + recent-incentive",
+             "floor": "P/B 0.50 + live self-tender"},
+    "AUPH_NOTE": {"name": "",
+             "why": "",
+             "floor": ""},  # placeholder for slot expansion
 }
 
 
@@ -329,7 +404,8 @@ def build_cover(wb: Workbook):
         na = int(cr["n_archetypes_won"])
         nflags = red_flag_count(tk, proxy)
         sizing = sizing_for_screens(ns, na, nflags)
-        why = ann.get("why", cr["screens"][:60])
+        why = ann.get("why",
+                       f"{ns} layers firing | cons {cr.get('consensus_score', '?')}")
         convergent.append((tk, name, sizing, why))
     write_header_row(ws, r, ["#", "Ticker", "Name", "Sizing", "Why"])
     r += 1
@@ -383,18 +459,19 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
                "Floor", "Sizing"]
     write_header_row(ws, 4, headers)
 
-    # Derived from disk -- consensus_ranking.csv. No hardcoded list.
+    # Derived from disk -- full_universe_consensus.csv. No hardcoded list.
     convergent_rows = get_convergent_from_disk()
     convergent_data = []
     for cr in convergent_rows:
         tk = cr["ticker"]
         ann = TICKER_ANNOTATIONS.get(tk, {})
         name = ann.get("name", tk)
-        why = ann.get("why", cr["screens"][:80])
-        floor = ann.get("floor", "see proxy_scan + buyback_verify")
         ns = int(cr["n_screens"])
-        na = int(cr["n_archetypes_won"])
+        na = int(cr.get("n_archetypes_won") or ns)
         nflags = red_flag_count(tk, proxy)
+        why = ann.get("why",
+                       f"{ns} layers firing | cons {cr.get('consensus_score', '?')}")
+        floor = ann.get("floor", "see proxy_scan + buyback_verify")
         sizing = sizing_for_screens(ns, na, nflags)
         convergent_data.append((tk, name, why, floor, sizing))
 
