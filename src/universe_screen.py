@@ -344,6 +344,44 @@ def infer_region(section: str, top_section: str = "") -> str:
     return "Unspecified"
 
 
+# Region detection from row content — runs as a per-row override when the
+# section header gave "Unspecified" (e.g. the auto-promoted-from-pollers
+# section, which mixes hits across jurisdictions).
+_RX_JAPANESE = re.compile(r"[぀-ヿ一-鿿]")
+_RX_TICKER_JP = re.compile(r"^[0-9]{4}[A-Z0-9]?$")  # TSE 4-digit + check
+_RX_TICKER_LSE_PLC = re.compile(r"\b(PLC|LIMITED|HOLDINGS PLC)\b", re.I)
+_RX_TICKER_CN_HK = re.compile(r"^\d{3,4}$|^HK[\s:]")
+_RX_SEDAR_ID = re.compile(r"\b[0-9]{9}\b")  # SEDAR+ issuer number
+_RX_TICKER_TSE = re.compile(r"^TSE[: ]|^[0-9]{4}\.T$")
+_RX_TICKER_KRX = re.compile(r"^KRX[: ]|^[0-9]{6}\.KS$|^A?[0-9]{6}$")
+
+
+def infer_region_from_row(name: str, ticker: str, notes: str) -> str:
+    """Per-row region inference for auto-promoted rows where the section
+    header gave no signal. Falls back to Unspecified."""
+    combined = f"{name} {ticker} {notes}"
+    # Japanese characters anywhere → Japan
+    if _RX_JAPANESE.search(combined):
+        return "Japan"
+    # 4-digit TSE code in ticker column
+    if _RX_TICKER_JP.match(ticker.strip()):
+        return "Japan"
+    # PLC / LIMITED suffix in name → UK
+    if _RX_TICKER_LSE_PLC.search(name):
+        return "United Kingdom"
+    # SEDAR+ accession URL fragment in notes → Canada
+    if "sedarplus.ca" in notes.lower() or _RX_SEDAR_ID.search(notes):
+        return "United States/Canada"
+    # EDGAR accession (XXXXXXXXXX-XX-XXXXXX) in notes → US/CA
+    if re.search(r"\b\d{10}-\d{2}-\d{6}\b", notes):
+        return "United States/Canada"
+    # NSM disclosure id (UUID) in notes → UK (NSM only)
+    if re.search(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b",
+                 notes, re.I):
+        return "United Kingdom"
+    return "Unspecified"
+
+
 def classify_archetypes(notes: str, section: str = "") -> tuple[str, list[str]]:
     """Return (primary, [secondary]) archetype codes."""
     text = (notes + " " + section).lower()
@@ -557,8 +595,11 @@ def parse() -> list[Candidate]:
         if not name or name.startswith("---"):
             continue
 
+        row_region = region
+        if row_region == "Unspecified":
+            row_region = infer_region_from_row(name, ticker, notes)
         c = Candidate(name=name, ticker=ticker, conf=conf, bucket=bucket,
-                      notes=notes, section=section, region=region)
+                      notes=notes, section=section, region=row_region)
         c.archetype, c.secondary_archetypes = classify_archetypes(notes, section)
         c.status = classify_status(notes, bucket)
         c.vintage_year = detect_vintage(notes, section)

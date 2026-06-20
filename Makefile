@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll waterfall validate portfolio audit clean help inbox-promote
+.PHONY: score poll uk-poll ca-poll jp-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -8,6 +8,9 @@ help:
 	@echo "  uk-poll    — run FCA NSM (RNS) poller for UK special-situation events"
 	@echo "  ca-poll    — run SEDAR+ poller for Canadian special-situation filings (run hourly)"
 	@echo "  jp-poll    — run TDnet poller for Japanese TSE special-situation events"
+	@echo "  universe-rr  — rank reward/risk across the full universe (REAL where YAML, PROXY otherwise)"
+	@echo "  workbook     — rebuild the Excel workbook from latest inputs"
+	@echo "  refresh      — full chain: pollers → promote → screen → rank → workbook"
 	@echo "  waterfall  — Monte Carlo across all candidates"
 	@echo "  portfolio  — factor decomposition + correlation + risk-budgeted weights → output/portfolio.md"
 	@echo "  inbox-promote — promote poller hits from data/inbox/ → universe.md (closes the loop)"
@@ -55,6 +58,24 @@ events: audit
 
 universe: audit
 	python3 src/universe_screen.py
+
+# Apply quantitative reward/risk ranking across every universe row.
+# Depends on `universe` so the screener output is fresh.
+universe-rr: universe
+	python3 -m src.universe_risk_reward
+
+# Rebuild the Excel workbook from the latest universe-wide ranking,
+# YAMLs, and portfolio output.
+workbook: universe-rr portfolio
+	python3 -m src.build_workbook
+
+# Full screener/scraper → workbook refresh chain. Runs the four
+# pollers, promotes their hits into universe.md, re-screens, re-ranks
+# reward/risk, regenerates the portfolio file, and rebuilds the
+# workbook. Run hourly during business hours for ca-poll to be useful;
+# the others tolerate a daily cadence.
+refresh: audit poll uk-poll ca-poll jp-poll spinoff cluster-buys inbox-promote workbook
+	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit
 	python3 -m src.inbox_promote --days-back 7
