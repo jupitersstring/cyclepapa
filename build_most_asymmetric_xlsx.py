@@ -343,6 +343,82 @@ def red_flag_count(tk: str, proxy: dict) -> int:
     return len(flags)
 
 
+def build_noval_view(wb: Workbook, yf: dict):
+    """Parallel ranking that EXCLUDES the valuation leg. Surfaces
+    structurally strong names that may be missing yfinance overlay
+    or whose multiples don't sit in our discount zones."""
+    ws = wb.create_sheet("Without Valuation")
+    set_col_widths(ws, [9, 13, 32, 14, 14, 14, 14, 50])
+    write_title_band(
+        ws,
+        "Top of Universe -- Without Valuation Leg",
+        "Parallel ranking that excludes valuation entirely so "
+        "names missing yfinance overlay are not penalised. "
+        "Compared against the valuation-included ranking to "
+        "identify structurally-strong-but-valuation-hidden names.",
+        n_cols=8,
+    )
+
+    headers = ["#", "Ticker", "Name", "Layers", "Consensus",
+               "Lift vs val", "Sector", "Detail"]
+    write_header_row(ws, 4, headers)
+
+    # Load both rankings
+    noval = list(csv.DictReader(open(ROOT / "full_universe_consensus_noval.csv")))
+    val = list(csv.DictReader(open(ROOT / "full_universe_consensus.csv")))
+    val_rank = {r["ticker"]: i+1 for i, r in enumerate(val)}
+
+    r = 5
+    for i, row in enumerate(noval[:30], 1):
+        tk = row["ticker"]
+        y = yf.get(tk, {}) or {}
+        name = y.get("name", tk)[:32]
+        sector = y.get("sector", "")
+        n_layers = row["n_layers_firing"]
+        cons = row["consensus_score"]
+        vr = val_rank.get(tk, "")
+        lift = (int(vr) - i) if vr else ""
+        detail_parts = []
+        for fld, label in [("psu_pts","PSU"), ("buyback_pts","BB"),
+                            ("tender_pts","TND"), ("c10b51_pts","C10"),
+                            ("f4_buys_pts","F4"),
+                            ("recent_incentive_pts","RI"),
+                            ("special_sits_pts","SS")]:
+            try:
+                v = float(row.get(fld) or 0)
+                if v != 0:
+                    detail_parts.append(f"{label}:{v:.0f}")
+            except Exception:
+                pass
+        detail = " ".join(detail_parts)
+        band = (i % 2 == 0)
+        write_body_row(ws, r,
+                       [i, tk, name, n_layers, cons,
+                        f"+{lift}" if lift and lift > 0 else (lift or ""),
+                        sector or "—", detail],
+                       band=band, align_first_left=False)
+        ws.cell(row=r, column=2).font = Font(
+            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        if lift and lift > 50:
+            ws.cell(row=r, column=6).fill = CLEAN_TAG_FILL
+            ws.cell(row=r, column=6).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        ws.row_dimensions[r].height = 22
+        r += 1
+
+    r += 1
+    write_footnote(ws, r,
+        "'Lift vs val' shows how many positions a name climbs when "
+        "valuation is excluded. A large positive lift means the name "
+        "is structurally strong but is being penalised by the "
+        "valuation layer -- likely either missing yfinance overlay or "
+        "trading at multiples outside our discount zones (P/B>1.5, "
+        "P/E>15, EV/EBITDA>10). The 26 emergent names "
+        "(consensus_emergent_noval.csv) are gap-fill priorities.", 8)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_cover(wb: Workbook):
     ws = wb.active
     ws.title = "Cover"
@@ -1004,6 +1080,7 @@ def main() -> int:
     build_by_archetype(wb, {}, {}, yf)
     build_reserve_baskets(wb, yf)
     build_caution_list(wb, proxy, consensus)
+    build_noval_view(wb, yf)
     build_coverage(wb)
     build_methodology(wb)
 
