@@ -343,6 +343,218 @@ def red_flag_count(tk: str, proxy: dict) -> int:
     return len(flags)
 
 
+def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
+                           bbv: dict, tender: dict, c10: dict,
+                           f4: dict):
+    """Per-layer extreme tail. Surfaces names that lead a SINGLE
+    measure even if they don't fire multiple layers (the ODTX
+    archetype: $75M insider trifecta but no PSU plan, so consensus
+    misses them)."""
+    ws = wb.create_sheet("Single-Measure Best")
+    set_col_widths(ws, [9, 32, 13, 30, 16, 50])
+    write_title_band(
+        ws,
+        "Best in Class -- Single-Measure Exceptional",
+        "Names ranking top in ONE individual signal even if the "
+        "consensus misses them. The "
+        "'single-leg high-intensity' tail.",
+        n_cols=6,
+    )
+
+    sections = []
+
+    # 1. PSU forensic core
+    psu_ranked = []
+    for tk, p in proxy.items():
+        core = p.get("psu_core") or 0
+        if core > 0:
+            psu_ranked.append((tk, float(core),
+                               f"core {core:.0f} | "
+                               f"cond_cats: {','.join(p.get('cond_cats') or [])}"))
+    psu_ranked.sort(key=lambda x: -x[1])
+    sections.append(("Highest PSU forensic core",
+                      "What it measures: depth + rigor of the PSU plan",
+                      psu_ranked[:8]))
+
+    # 2. Highest governance score
+    gov_ranked = []
+    for tk, p in proxy.items():
+        g = p.get("gov_score") or 0
+        if g >= 15:
+            gov_ranked.append((tk, float(g),
+                               f"gov {g:.0f} | reasons: "
+                               + "; ".join((p.get('gov_reasons') or [])[:3])))
+    gov_ranked.sort(key=lambda x: -x[1])
+    sections.append(("Highest governance score",
+                      "What it measures: clawback + anti-hedge + vesting + "
+                      "ownership multiple",
+                      gov_ranked[:8]))
+
+    # 3. Deepest P/B floor
+    pb_ranked = []
+    for tk, y in yf.items():
+        pb_v = y.get("p_b")
+        try: pb_v = float(pb_v) if pb_v is not None else None
+        except Exception: pb_v = None
+        if pb_v is not None and 0 < pb_v < 0.5:
+            pb_ranked.append((tk, pb_v,
+                              f"P/B {pb_v:.2f} | mcap ${(y.get('mcap') or 0)/1e6:,.0f}M"))
+    pb_ranked.sort(key=lambda x: x[1])  # ascending = deepest discount first
+    sections.append(("Deepest P/B floor (<0.5x book)",
+                      "What it measures: hard balance-sheet value floor",
+                      pb_ranked[:8]))
+
+    # 4. Cheapest EV/EBITDA
+    evb_ranked = []
+    for tk, y in yf.items():
+        v = y.get("ev_ebitda")
+        try: v = float(v) if v is not None else None
+        except Exception: v = None
+        # exclude near-zero (often biotech with denominator issues)
+        if v is not None and 0.5 < v < 6:
+            evb_ranked.append((tk, v,
+                                f"EV/EBITDA {v:.1f} | "
+                                f"mcap ${(y.get('mcap') or 0)/1e6:,.0f}M | "
+                                f"{y.get('sector') or ''}"))
+    evb_ranked.sort(key=lambda x: x[1])
+    sections.append(("Cheapest EV/EBITDA (<6x)",
+                      "What it measures: enterprise-value to earnings power",
+                      evb_ranked[:8]))
+
+    # 5. Lowest trailing P/E (excluding negatives)
+    pe_ranked = []
+    for tk, y in yf.items():
+        v = y.get("p_e_trailing")
+        try: v = float(v) if v is not None else None
+        except Exception: v = None
+        if v is not None and 0.5 < v < 8:
+            pe_ranked.append((tk, v,
+                               f"P/E {v:.1f} | "
+                               f"mcap ${(y.get('mcap') or 0)/1e6:,.0f}M | "
+                               f"{y.get('sector') or ''}"))
+    pe_ranked.sort(key=lambda x: x[1])
+    sections.append(("Lowest trailing P/E (<8x, positive)",
+                      "What it measures: earnings yield",
+                      pe_ranked[:8]))
+
+    # 6. Largest verified buyback shrinkage
+    bb_ranked = []
+    for tk, b in bbv.items():
+        if not isinstance(b, dict): continue
+        if b.get("status") not in ("EXECUTING", "SHRINKING_NO_AUTH"): continue
+        chg = (b.get("share_change") or {}).get("change_pct")
+        if chg is None: continue
+        bb_ranked.append((tk, abs(chg),
+                          f"shares {chg:+.1f}% over "
+                          f"{(b.get('share_change') or {}).get('span_days','?')}d | "
+                          f"status {b.get('status')}"))
+    bb_ranked.sort(key=lambda x: -x[1])
+    sections.append(("Largest verified buyback shrinkage",
+                      "What it measures: actual supply curve compression",
+                      bb_ranked[:8]))
+
+    # 7. 10b5-1 termination signed score
+    c10_ranked = []
+    for tk, c in c10.items():
+        if not isinstance(c, dict): continue
+        s = c.get("score")
+        if s is None or float(s) < 25: continue
+        c10_ranked.append((tk, float(s),
+                            f"signed score {float(s):.0f} | "
+                            f"{c.get('reasons', '')[:50]}"))
+    c10_ranked.sort(key=lambda x: -x[1])
+    sections.append(("Highest 10b5-1 termination signed score",
+                      "What it measures: insider walked back scheduled selling",
+                      c10_ranked[:8]))
+
+    # 8. Largest Form 4 P-buy dollar cluster
+    f4_ranked = []
+    for tk, f in f4.items():
+        if not isinstance(f, dict): continue
+        dollar = f.get("total_dollar") or 0
+        n_buyers = len(f.get("buyer_set") or [])
+        if dollar < 1e6: continue
+        y = yf.get(tk, {}) or {}
+        mcap = y.get("mcap")
+        try: mcap = float(mcap) if mcap else None
+        except Exception: mcap = None
+        # Only report pct_mcap when mcap is real and dollar < mcap
+        if mcap and mcap > dollar:
+            pct_mcap_str = f" ({dollar/mcap*100:.2f}% of mcap)"
+        else:
+            pct_mcap_str = ""
+        f4_ranked.append((tk, dollar,
+                           f"${dollar/1e6:.1f}M cluster, "
+                           f"{n_buyers} buyers{pct_mcap_str}"))
+    f4_ranked.sort(key=lambda x: -x[1])
+    sections.append(("Largest insider Form 4 dollar cluster",
+                      "What it measures: insider conviction in dollars",
+                      f4_ranked[:8]))
+
+    # 9. Live tender / 13E-3 events
+    tender_ranked = []
+    for tk, t in tender.items():
+        if not isinstance(t, dict): continue
+        role = t.get("role")
+        if not role and not t.get("has_13e3"): continue
+        label = role or ""
+        if t.get("has_13e3"):
+            label += " +13E-3"
+        tender_ranked.append((tk, 1.0, f"{label} | live event"))
+    sections.append(("Live tender / 13E-3 events",
+                      "What it measures: mechanical bid as floor",
+                      tender_ranked[:10]))
+
+    # Render each section
+    r = 4
+    for sec_label, sec_subtitle, items in sections:
+        ws.cell(row=r, column=1, value=sec_label).font = Font(
+            name="Georgia", size=13, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=1).alignment = Alignment(
+            indent=1, vertical="center")
+        ws.merge_cells(start_row=r, start_column=1,
+                       end_row=r, end_column=6)
+        ws.row_dimensions[r].height = 22
+        r += 1
+        ws.cell(row=r, column=1, value=sec_subtitle).font = SUBTITLE_FONT
+        ws.cell(row=r, column=1).alignment = Alignment(
+            indent=1, vertical="center")
+        ws.merge_cells(start_row=r, start_column=1,
+                       end_row=r, end_column=6)
+        r += 1
+        write_header_row(ws, r, ["#", "Detail", "Ticker", "Name",
+                                  "Score", "Sector"])
+        r += 1
+        for i, (tk, score, detail) in enumerate(items, 1):
+            y = yf.get(tk, {}) or {}
+            name = (y.get("name") or "")[:32]
+            sector = y.get("sector") or ""
+            band = (i % 2 == 0)
+            write_body_row(ws, r,
+                           [i, detail, tk, name,
+                            f"{score:.1f}" if isinstance(score, (int, float)) else score,
+                            sector],
+                           band=band, align_first_left=False)
+            ws.cell(row=r, column=3).font = Font(
+                name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+            ws.cell(row=r, column=2).alignment = Alignment(
+                vertical="center", wrap_text=True, indent=1, horizontal="left")
+            r += 1
+        r += 1   # gap between sections
+
+    r += 1
+    write_footnote(ws, r,
+        "Each section ranks names by a SINGLE measure regardless of "
+        "whether other layers fire. These are 'exceptional by one '"
+        "criterion' -- examples: ODTX archetype (insider cluster only), "
+        "GETY (live self-tender only), CDE (CEO 10b5-1 termination "
+        "only). Such names rarely appear in the consensus convergent "
+        "list because they don't fire multiple layers, but they can "
+        "be the right pick for a single-mandate position.", 6)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A4"
+
+
 def build_noval_view(wb: Workbook, yf: dict):
     """Parallel ranking that EXCLUDES the valuation leg. Surfaces
     structurally strong names that may be missing yfinance overlay
@@ -1081,6 +1293,7 @@ def main() -> int:
     build_reserve_baskets(wb, yf)
     build_caution_list(wb, proxy, consensus)
     build_noval_view(wb, yf)
+    build_single_measure(wb, yf, proxy, bbv, tender, c10, f4)
     build_coverage(wb)
     build_methodology(wb)
 
