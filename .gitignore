@@ -2,6 +2,9 @@
 # rebuild it with: python3 pipeline/snapshot.py restore  (no network needed)
 data/cyclepapa.db
 data/cyclepapa.db.bak
+data/cyclepapa.db-journal
+data/cyclepapa.db-wal
+data/cyclepapa.db-shm
 
 # expensive sandbox-only scratch
 /tmp/
