@@ -150,6 +150,77 @@ def compute_inflection_flag(row: pd.Series) -> int:
     return 0
 
 
+def compute_inflection_score(row: pd.Series) -> float:
+    """Inflection composite — the dropped Yartseva factors plus a
+    near-52w-high positive momentum signal. Parallel to yartseva_score
+    for the inflection / breakout / momentum side of the trade."""
+
+    rev_yoy = row.get('rev_yoy')
+    inf_rev_growth = clip01((rev_yoy + 0.05) / 0.40) if pd.notna(rev_yoy) else np.nan
+
+    rev_accel = row.get('rev_accel')
+    inf_rev_accel = clip01((rev_accel + 0.05) / 0.30) if pd.notna(rev_accel) else np.nan
+
+    em_delta = row.get('ebitda_margin_delta_yoy')
+    inf_margin_exp = clip01((em_delta + 0.01) / 0.05) if pd.notna(em_delta) else np.nan
+
+    ev_sales = row.get('ev_sales')
+    if pd.notna(ev_sales) and ev_sales > 0 and pd.notna(rev_yoy):
+        peg = ev_sales / max(rev_yoy + 0.05, 0.05)
+        inf_peg = clip01((6.0 - peg) / 6.0)
+    else:
+        inf_peg = np.nan
+
+    nde = row.get('net_debt_ebitda')
+    inf_leverage = clip01((3.0 - nde) / 4.0) if pd.notna(nde) else np.nan
+
+    # First-positive cluster across 5 metrics (FCF / EBITDA / CFO / NI / ROCE)
+    fp_fields = ['fcf_first_positive', 'ebitda_first_positive', 'cfo_first_positive',
+                 'net_income_first_positive', 'roce_first_positive']
+    fp_count = sum(int(row.get(f) or 0) for f in fp_fields)
+    inf_first_pos = fp_count / 5.0
+
+    roce_inf = int(row.get('roce_inflection') or 0)
+    roce_fp = int(row.get('roce_first_positive') or 0)
+    inf_roce_inflect = 1.0 if (roce_inf or roce_fp) else 0.0
+
+    inf_fwd_eta = 1.0 if int(row.get('fcf_projected_positive_in_n') or 0) else 0.0
+
+    # POSITIVE momentum / near-52w-high signal. 0 at -10% 12m mom, 1.0 at +50%+.
+    mm = row.get('momentum_12m')
+    inf_near_high = clip01((mm + 0.10) / 0.60) if pd.notna(mm) else np.nan
+
+    weights = {
+        'rev_growth':   0.15,
+        'rev_accel':    0.10,
+        'margin_exp':   0.10,
+        'cheap_peg':    0.10,
+        'low_leverage': 0.10,
+        'first_pos':    0.15,
+        'roce_inflect': 0.10,
+        'fwd_eta':      0.05,
+        'near_52w_hi':  0.15,
+    }
+    parts = {
+        'rev_growth':   inf_rev_growth,
+        'rev_accel':    inf_rev_accel,
+        'margin_exp':   inf_margin_exp,
+        'cheap_peg':    inf_peg,
+        'low_leverage': inf_leverage,
+        'first_pos':    inf_first_pos,
+        'roce_inflect': inf_roce_inflect,
+        'fwd_eta':      inf_fwd_eta,
+        'near_52w_hi':  inf_near_high,
+    }
+    total_w = 0.0
+    total_v = 0.0
+    for k, v in parts.items():
+        if pd.notna(v):
+            total_w += weights[k]
+            total_v += weights[k] * v
+    return (total_v / total_w) if total_w > 0 else np.nan
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--glob', default='*_yartseva.csv',
@@ -180,6 +251,7 @@ def main():
 
         # Recompute scores
         df['yartseva_score'] = df.apply(compute_yartseva_score, axis=1).round(6)
+        df['inflection_score'] = df.apply(compute_inflection_score, axis=1).round(6)
 
         # Add inflection_flag if not already present, or refresh from row signals
         df['inflection_flag'] = df.apply(compute_inflection_flag, axis=1).astype(int)
@@ -188,16 +260,19 @@ def main():
         n = len(df)
         n_changed = int((old_score.fillna(-999) != df['yartseva_score'].fillna(-999)).sum())
         n_inflect = int(df['inflection_flag'].sum())
+        mean_inf_score = df['inflection_score'].mean()
         total_rows += n
         changed += n_changed
 
         if args.dry_run:
             print(f'{p:50s}  {n:6d} rows  {n_changed:6d} would change  '
-                  f'{n_inflect:5d} inflection_flag=1', file=sys.stderr)
+                  f'{n_inflect:5d} flag=1  inf_score={mean_inf_score:.3f}',
+                  file=sys.stderr)
         else:
             df.to_csv(p, index=False)
             print(f'{p:50s}  {n:6d} rows  {n_changed:6d} rescored      '
-                  f'{n_inflect:5d} inflection_flag=1', file=sys.stderr)
+                  f'{n_inflect:5d} flag=1  inf_score={mean_inf_score:.3f}',
+                  file=sys.stderr)
 
     print(f'\ndone: {total_rows:,} total rows, {changed:,} rescored '
           f'across {len(paths)} files', file=sys.stderr)

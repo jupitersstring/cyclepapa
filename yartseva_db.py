@@ -224,8 +224,17 @@ class TickerRow:
     price_minus_fcf_yoy: float
     ev_sales_change_yoy: float
     not_priced_in_score: float
-    # Yartseva composite
+    # Yartseva composite (paper-aligned: FCF yield, B/M, size, profit level,
+    # asset-growth gate, contra-momentum)
     yartseva_score: float
+    # Inflection composite (the OPPOSITE side of the trade) — bundles
+    # the growth / acceleration / margin-expansion / first-positive /
+    # ROCE-inflection / fwd-ETA / cheap-PEG / low-leverage signals that
+    # Yartseva finds non-predictive, plus POSITIVE momentum (near 52-week
+    # high) which is the inverse of her contra-momentum entry. Useful as
+    # a parallel ranking for the inflection / breakout / momentum
+    # multibagger style (Jegadeesh-Titman + CANSLIM cousin).
+    inflection_score: float
     notes: str
 
 
@@ -960,6 +969,63 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
             total_v += weights[k] * v
     yartseva_score = (total_v / total_w) if total_w > 0 else np.nan
 
+    # ----- Inflection composite (the dropped factors, repackaged) -----
+    # Everything Yartseva finds non-predictive but that the inflection /
+    # breakout / momentum multibagger style still cares about. The 52-week
+    # high signal (positive 12m momentum) is the INVERSE of Yartseva's
+    # contra-momentum entry - so this composite is essentially the
+    # opposite side of the value/contra trade.
+    inf_rev_growth = clip01((rev_yoy + 0.05) / 0.40) if pd.notna(rev_yoy) else np.nan
+    inf_rev_accel = clip01((rev_accel + 0.05) / 0.30) if pd.notna(rev_accel) else np.nan
+    inf_margin_exp = clip01((ebitda_margin_delta_yoy + 0.01) / 0.05) if pd.notna(ebitda_margin_delta_yoy) else np.nan
+    if pd.notna(ev_sales) and ev_sales > 0 and pd.notna(rev_yoy):
+        peg_like = ev_sales / max(rev_yoy + 0.05, 0.05)
+        inf_peg = clip01((6.0 - peg_like) / 6.0)
+    else:
+        inf_peg = np.nan
+    inf_leverage = clip01((3.0 - net_debt_ebitda) / 4.0) if pd.notna(net_debt_ebitda) else np.nan
+    # First-positive cluster: count of metrics that just crossed zero
+    # divided by 5. Each individual signal is 0/1.
+    inf_first_pos = (
+        fcf_first_positive + ebitda_first_positive + cfo_first_positive
+        + net_income_first_positive + roce_first_positive
+    ) / 5.0
+    inf_roce_inflect = 1.0 if (roce_inflection or roce_first_positive) else 0.0
+    inf_fwd_eta = 1.0 if fcf_projected_positive_in_n else 0.0
+    # POSITIVE momentum / near 52-week high — opposite sign to Yartseva's
+    # contra-momentum entry. Score 0 at -10% 12m momentum, 1.0 at +50%+.
+    inf_near_high = clip01((momentum_12m + 0.10) / 0.60) if pd.notna(momentum_12m) else np.nan
+
+    inf_weights = {
+        'rev_growth':   0.15,
+        'rev_accel':    0.10,
+        'margin_exp':   0.10,
+        'cheap_peg':    0.10,
+        'low_leverage': 0.10,
+        'first_pos':    0.15,
+        'roce_inflect': 0.10,
+        'fwd_eta':      0.05,
+        'near_52w_hi':  0.15,
+    }
+    inf_parts = {
+        'rev_growth':   inf_rev_growth,
+        'rev_accel':    inf_rev_accel,
+        'margin_exp':   inf_margin_exp,
+        'cheap_peg':    inf_peg,
+        'low_leverage': inf_leverage,
+        'first_pos':    inf_first_pos,
+        'roce_inflect': inf_roce_inflect,
+        'fwd_eta':      inf_fwd_eta,
+        'near_52w_hi':  inf_near_high,
+    }
+    inf_w = 0.0
+    inf_v = 0.0
+    for k, v in inf_parts.items():
+        if pd.notna(v):
+            inf_w += inf_weights[k]
+            inf_v += inf_weights[k] * v
+    inflection_score = (inf_v / inf_w) if inf_w > 0 else np.nan
+
     notes_parts = []
     if rev_inflection or ebitda_inflection or fcf_inflection:
         notes_parts.append("growth-flip")
@@ -1093,6 +1159,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         ev_sales_change_yoy=ev_sales_change_yoy,
         not_priced_in_score=not_priced_in_score,
         yartseva_score=yartseva_score,
+        inflection_score=inflection_score,
         notes=notes,
     )
 

@@ -100,7 +100,7 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
         "berezin_score", "berezin_classic_flag",
         "net_cash_pct_mcap", "cash_pct_ev", "insider_ownership_pct",
         "pb", "p_s", "debt_to_equity", "gross_profit_to_mcap", "momentum_12m",
-        "yartseva_score", "rev_accel",
+        "yartseva_score", "inflection_score", "inflection_flag", "rev_accel",
         "fcf_first_positive", "ebitda_first_positive", "cfo_first_positive",
         "net_income_first_positive", "roce_inflection", "roce_first_positive",
         "fcf_projected_positive_in_n",
@@ -196,6 +196,20 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     df["asymmetry_score"] = np.sqrt(
         df["upside_score"].clip(0, 1) * df["downside_floor_score"].clip(0, 1)
     )
+
+    # Parallel inflection_asymmetry_score: same downside floor, but the
+    # upside leg is the inflection_score composite (the dropped Yartseva
+    # factors plus near-52w-high positive momentum). Lets the same
+    # downside-protected framework rank inflection / breakout / momentum
+    # names alongside the value-and-contra Yartseva names.
+    if "inflection_score" in df.columns:
+        df["inflection_asymmetry_score"] = np.sqrt(
+            df["inflection_score"].fillna(0).clip(0, 1)
+            * df["downside_floor_score"].clip(0, 1)
+        )
+    else:
+        df["inflection_asymmetry_score"] = np.nan
+
     return df
 
 
@@ -357,8 +371,10 @@ def main():
     out_cols = [
         "symbol", "name", "src", "sector", "industry", "market_cap_bucket",
         "market_cap", "revenue_ttm", "balance_sheet_date",
-        "asymmetry_score", "upside_score", "downside_floor_score",
-        "cluster_n", "yartseva_score", "berezin_score",
+        "asymmetry_score", "inflection_asymmetry_score",
+        "upside_score", "downside_floor_score",
+        "cluster_n", "yartseva_score", "inflection_score", "inflection_flag",
+        "berezin_score",
         "cash_gt_ev_flag", "graham_net_net_flag", "pew_negative_ev_flag",
         "pb", "ebitda_margin", "ebitda_positive_proxy", "net_debt_ebitda",
         "insider_ownership_pct", "pew_forgotten_score", "pew_has_platform_hint",
