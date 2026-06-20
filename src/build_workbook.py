@@ -42,6 +42,7 @@ except ImportError:
 REPO = Path(__file__).resolve().parent.parent
 CANDIDATES = REPO / "data" / "candidates"
 PORTFOLIO_MD = REPO / "output" / "portfolio.md"
+UNIVERSE_RR_CSV = REPO / "output" / "universe_risk_reward.csv"
 OUT_DIR = REPO / "output"
 OUT_PATH = OUT_DIR / "cyclepapa_risk_reward_workbook.xlsx"
 
@@ -205,20 +206,23 @@ def build_cover(wb: Workbook, candidates: list[dict],
     ws["A8"].border = Border(bottom=MED_NAVY)
     n_active = len(candidates)
     invested = sum(w["weight"] for w in weights.values())
-    port_ev = sum(w["weight"] * w["ev_mult"] for w in weights.values()) / max(invested, 0.01)
-    top5 = candidates[:5]
-    top5_str = ", ".join(f"{c.get('ticker','?')} ({c['_rr_ratio']}×)" for c in top5)
+    port_ev = sum(w["weight"] * w["ev_mult"]
+                  for w in weights.values()) / max(invested, 0.01)
 
     bullets = [
-        f"Active basket: {n_active} names across Tier 1 + 2 YAMLs.",
-        f"Risk-budgeted invested weight: {invested*100:.1f}% of NAV "
-        f"({(1-invested)*100:.1f}% cash sleeve — Kelly haircut binding).",
-        f"Expected multiple on invested capital: {port_ev:.2f}×.",
-        f"Top 5 by reward-to-downside ratio: {top5_str}",
-        ("The basket is constructed to harvest the gap between "
-         "framework-priced restructurings (bottom-up YAML scorecards) "
-         "and consensus mid-cycle expectations, with cluster caps "
-         "preventing factor-level concentration."),
+        ("Universe coverage: 697 named candidates screened quantitatively; "
+         "Executive Summary ranks the investable subset by reward/risk."),
+        (f"Hand-built YAMLs with bottom-up waterfalls: {n_active} names "
+         "(Tier 1 + 2). Remaining ranking uses a transparent "
+         "score+archetype proxy; coverage gap sheet lists the highest-RR "
+         "names that still need hand-deepening."),
+        (f"Risk-budgeted invested weight on the built basket: "
+         f"{invested*100:.1f}% of NAV "
+         f"({(1-invested)*100:.1f}% cash sleeve — Kelly haircut binding). "
+         f"Expected multiple on invested capital: {port_ev:.2f}×."),
+        ("Reading order: Cover → Executive Summary (universe-wide ranking) "
+         "→ Coverage gap (what to build next) → per-pick detail sheets → "
+         "Methodology."),
     ]
     for i, t in enumerate(bullets):
         ws.cell(row=10 + i, column=1, value=("•  " + t)).font = FONT_BODY
@@ -245,55 +249,79 @@ def build_cover(wb: Workbook, candidates: list[dict],
     ws.row_dimensions[2].height = 32
 
 
+def load_universe_rr() -> list[dict]:
+    """Load the universe-wide reward/risk ranking from CSV (produced by
+    src/universe_risk_reward.py)."""
+    if not UNIVERSE_RR_CSV.exists():
+        return []
+    import csv
+    out = []
+    with UNIVERSE_RR_CSV.open() as f:
+        for r in csv.DictReader(f):
+            out.append(r)
+    return out
+
+
 def build_executive_summary(wb: Workbook, candidates: list[dict],
-                            weights: dict[str, dict]) -> None:
+                            weights: dict[str, dict],
+                            universe_rr: list[dict]) -> None:
+    """Executive summary ranks the FULL universe by quantitative
+    reward/risk — REAL waterfalls (hand-built YAMLs) where they exist,
+    PROXY (universe-screener score × archetype tilt) where they don't."""
     ws = wb.create_sheet("Executive Summary")
     ws.sheet_view.showGridLines = False
-    ws["A1"] = "Top picks ranked by reward-to-downside ratio"
+    ws["A1"] = "Universe-wide top picks · ranked by quantitative reward/risk"
     ws["A1"].font = FONT_SUBHEAD
+    ws["A2"] = (f"Universe coverage: {len(universe_rr)} investable names "
+                f"({sum(1 for r in universe_rr if r['source']=='REAL')} "
+                "REAL waterfalls · "
+                f"{sum(1 for r in universe_rr if r['source']=='PROXY')} "
+                "PROXY).  REAL uses the hand-built YAML's bottom-up "
+                "bear/base/bull. PROXY uses a transparent formula on the "
+                "universe-screener score + archetype tilt.")
+    ws["A2"].font = FONT_FOOTNOTE
+    ws["A2"].alignment = ALIGN_WRAP
+    ws.merge_cells("A2:M2")
+    ws.row_dimensions[2].height = 38
 
-    headers = ["Rank", "Ticker", "Name", "Region", "Bucket", "Archetype",
-               "EV×", "Skew", "Bear loss", "Reward/Risk", "Weight",
-               "Dominant factor", "Catalyst window"]
-    for j, h in enumerate(headers, start=1):
-        ws.cell(row=3, column=j, value=h)
-    style_header_row(ws, 3, len(headers))
+    headers = ["Rank", "Src", "Ticker", "Name", "Region", "Score",
+               "Bucket", "Archetype", "Bear loss", "Base", "Bull",
+               "EV×", "Reward/Risk"]
+    for j, h in enumerate(headers, 1):
+        ws.cell(row=4, column=j, value=h)
+    style_header_row(ws, 4, len(headers))
 
-    top = candidates[:15]
-    for i, c in enumerate(top):
-        row = 4 + i
-        ticker = c.get("ticker", "?")
-        wt = weights.get(str(ticker), {})
-        catalysts = c.get("catalysts") or []
-        first_window = ""
-        if catalysts:
-            w0 = (catalysts[0].get("window") or [])
-            if len(w0) >= 2:
-                first_window = f"{w0[0]} → {w0[1]}"
+    top = universe_rr[:25]
+    for i, r in enumerate(top):
+        row = 5 + i
         cells = [
             i + 1,
-            ticker,
-            (c.get("name") or "")[:60],
-            c.get("jurisdiction") or "",
-            c.get("bucket") or "",
-            ", ".join(c.get("archetype") or []) if isinstance(c.get("archetype"), list)
-            else str(c.get("archetype") or ""),
-            f"{c['_ev']:.2f}×",
-            f"{c['_skew']:.1f}",
-            f"{c['_downside']*100:.0f}%",
-            f"{c['_rr_ratio']:.1f}×",
-            f"{wt.get('weight', 0):.2f}%" if wt else "—",
-            (c.get("factors") or {}).get("primary", "") or "",
-            str(first_window)[:50],
+            r["source"],
+            r["ticker"],
+            r["name"][:50],
+            r["region"][:22],
+            f"{float(r['score']):.2f}",
+            r["bucket"],
+            r["archetype"][:10],
+            f"{float(r['bear_loss'])*100:.0f}%",
+            f"{float(r['base_r']):.2f}×",
+            f"{float(r['bull_r']):.2f}×",
+            f"{float(r['ev']):.2f}×",
+            f"{float(r['rr']):.1f}×",
         ]
-        for j, v in enumerate(cells, start=1):
+        for j, v in enumerate(cells, 1):
             ws.cell(row=row, column=j, value=v)
         style_body_band(ws, row, len(headers), banded=(i % 2 == 1))
+        # Bold the rank cell to make Src visible at a glance
+        if r["source"] == "REAL":
+            ws.cell(row=row, column=2).font = FONT_BODY_B
+        else:
+            ws.cell(row=row, column=2).font = Font(name="Calibri", size=10,
+                                                    color=NAVY_LIGHT, italic=True)
 
-    # Heat-map on reward/risk column
-    last_row = 3 + len(top)
+    last_row = 4 + len(top)
     ws.conditional_formatting.add(
-        f"J4:J{last_row}",
+        f"M5:M{last_row}",
         ColorScaleRule(start_type="min", start_color="F2F4F6",
                        mid_type="percentile", mid_value=50,
                        mid_color="C7E8C0",
@@ -301,19 +329,113 @@ def build_executive_summary(wb: Workbook, candidates: list[dict],
     )
 
     # Footnote
-    ws.cell(row=last_row + 2, column=1,
-            value=("Reward/Risk = (EV× − 1) ÷ Bear-loss. "
-                   "EV× and bear loss are from each YAML's waterfall block. "
-                   "Weight is the post-correlation, post-cluster-cap "
-                   "portfolio weight (cash sleeve = 100% − Σ weights).")
-            ).font = FONT_FOOTNOTE
+    ws.cell(row=last_row + 2, column=1, value=(
+        "Reward/Risk = (EV× − 1) ÷ Bear loss.  "
+        "Universe-screener output ranks 697 named candidates on archetype, "
+        "vintage, status, size, region. Investable filter drops "
+        "PASS_FALSE_FRIEND / ACQUIRED / ARC_DONE / REPEAT_RX and "
+        "non-equity placeholder tickers ((state), (private), (delisted)). "
+        "PROXY waterfall: bear_loss = max(0.10, 0.65 − 0.30·score), "
+        "tilted ×0.75 for A1/A2 (sovereign-anchored floor). "
+        "bull = 1.50 + 1.50·score, tilted ×1.10 for H, ×1.15 for F. "
+        "Hand-built YAMLs override the proxy with bottom-up numbers."
+    )).font = FONT_FOOTNOTE
     ws.cell(row=last_row + 2, column=1).alignment = ALIGN_WRAP
     ws.merge_cells(start_row=last_row + 2, start_column=1,
                    end_row=last_row + 2, end_column=len(headers))
+    ws.row_dimensions[last_row + 2].height = 60
 
     autosize_cols(ws)
     ws.row_dimensions[1].height = 22
-    ws.row_dimensions[3].height = 32
+    ws.row_dimensions[4].height = 32
+
+
+def build_coverage_gap(wb: Workbook, universe_rr: list[dict]) -> None:
+    """Show the highest-RR names by PROXY that still need a YAML.
+    Anti-selection-bias check: which universe names would enter the
+    basket if hand-deepened?"""
+    ws = wb.create_sheet("Coverage gap (need YAML)")
+    ws.sheet_view.showGridLines = False
+    ws["A1"] = ("Coverage gap — highest-RR universe names with no "
+                "hand-built YAML")
+    ws["A1"].font = FONT_SUBHEAD
+    ws["A2"] = ("Building YAMLs for these names extends the framework's "
+                "comprehensive coverage. Their RR is currently from the "
+                "proxy formula; real bottom-up numbers may rank them "
+                "higher or lower.")
+    ws["A2"].font = FONT_FOOTNOTE
+    ws["A2"].alignment = ALIGN_WRAP
+    ws.merge_cells("A2:H2")
+    ws.row_dimensions[2].height = 28
+
+    headers = ["Universe rank", "Ticker", "Name", "Region", "Score",
+               "Archetype", "Proxy RR", "Suggested priority"]
+    for j, h in enumerate(headers, 1):
+        ws.cell(row=4, column=j, value=h)
+    style_header_row(ws, 4, len(headers))
+
+    proxy_only = [(i, r) for i, r in enumerate(universe_rr)
+                  if r["source"] == "PROXY"][:20]
+    for idx, (uni_rank, r) in enumerate(proxy_only):
+        row = 5 + idx
+        score = float(r["score"])
+        priority = ("Tier 1 — hand-deepen ASAP"
+                    if score >= 0.80 else
+                    "Tier 2 — verify primary docs first"
+                    if score >= 0.55 else
+                    "Tier 3 — skeleton acceptable")
+        cells = [
+            uni_rank + 1, r["ticker"], r["name"][:50], r["region"][:22],
+            f"{score:.2f}", r["archetype"][:10], f"{float(r['rr']):.1f}×",
+            priority,
+        ]
+        for j, v in enumerate(cells, 1):
+            ws.cell(row=row, column=j, value=v)
+        style_body_band(ws, row, len(headers), banded=(idx % 2 == 1))
+
+    autosize_cols(ws)
+    ws.row_dimensions[4].height = 32
+
+
+def build_old_yaml_only(wb: Workbook, candidates: list[dict],
+                       weights: dict[str, dict]) -> None:
+    """Original 21-YAML view, retained for reference."""
+    ws = wb.create_sheet("YAML-only (hand-built)")
+    ws.sheet_view.showGridLines = False
+    ws["A1"] = "Hand-built Tier 1+2 YAMLs only (legacy view)"
+    ws["A1"].font = FONT_SUBHEAD
+    ws["A2"] = ("This is the 21 hand-built names ranked by their bottom-up "
+                "waterfall numbers. Compare against Executive Summary to "
+                "see selection bias.")
+    ws["A2"].font = FONT_FOOTNOTE
+
+    headers = ["Rank", "Ticker", "Name", "Region", "Bucket", "Archetype",
+               "EV×", "Skew", "Bear loss", "Reward/Risk", "Weight",
+               "Dominant factor"]
+    for j, h in enumerate(headers, start=1):
+        ws.cell(row=4, column=j, value=h)
+    style_header_row(ws, 4, len(headers))
+
+    for i, c in enumerate(candidates[:15]):
+        row = 5 + i
+        ticker = c.get("ticker", "?")
+        wt = weights.get(str(ticker), {})
+        cells = [
+            i + 1, ticker, (c.get("name") or "")[:50],
+            c.get("jurisdiction") or "",
+            c.get("bucket") or "",
+            ", ".join(c.get("archetype") or [])
+            if isinstance(c.get("archetype"), list) else str(c.get("archetype") or ""),
+            f"{c['_ev']:.2f}×", f"{c['_skew']:.1f}",
+            f"{c['_downside']*100:.0f}%", f"{c['_rr_ratio']:.1f}×",
+            f"{wt.get('weight', 0):.2f}%" if wt else "—",
+            (c.get("factors") or {}).get("primary", "") or "",
+        ]
+        for j, v in enumerate(cells, 1):
+            ws.cell(row=row, column=j, value=v)
+        style_body_band(ws, row, len(headers), banded=(i % 2 == 1))
+    autosize_cols(ws)
+    ws.row_dimensions[4].height = 32
 
 
 def build_universe(wb: Workbook, candidates: list[dict],
@@ -715,29 +837,48 @@ def main() -> int:
         print("No candidates loaded — check data/candidates/", file=sys.stderr)
         return 1
     weights = load_portfolio_weights()
-    print(f"Loaded {len(candidates)} Tier 1+2 candidates, "
-          f"{len(weights)} portfolio rows.")
+    universe_rr = load_universe_rr()
+    print(f"Loaded {len(candidates)} hand-built Tier 1+2 YAMLs, "
+          f"{len(weights)} portfolio rows, "
+          f"{len(universe_rr)} universe-wide rows.")
+    if not universe_rr:
+        print("  ! universe_risk_reward.csv missing — run "
+              "`python3 -m src.universe_risk_reward` first.",
+              file=sys.stderr)
+        return 1
 
     wb = Workbook()
-    # Remove default sheet
     wb.remove(wb.active)
 
     build_cover(wb, candidates, weights)
-    build_executive_summary(wb, candidates, weights)
+    build_executive_summary(wb, candidates, weights, universe_rr)
+    build_coverage_gap(wb, universe_rr)
+    build_old_yaml_only(wb, candidates, weights)
     build_universe(wb, candidates, weights)
     build_waterfall_matrix(wb, candidates)
     build_catalyst_timeline(wb, candidates)
     build_portfolio_sizing(wb, weights)
 
-    # One detail sheet per top-10 pick (only Tier-1 since deep-dive needed)
-    top_for_detail = [c for c in candidates if c.get("tier") == 1][:10]
-    if len(top_for_detail) < 10:
-        # Pad with high-ratio Tier-2 if Tier-1 is thin
-        extras = [c for c in candidates if c.get("tier") == 2
-                  and c not in top_for_detail][: 10 - len(top_for_detail)]
-        top_for_detail += extras
-    for c in top_for_detail:
+    # Detail sheets: top 10 by *universe-wide* ranking that have YAMLs
+    yaml_by_ticker = {}
+    for c in candidates:
+        t = str(c.get("ticker", ""))
+        yaml_by_ticker[t.upper()] = c
+        stem = re.sub(r"[^A-Za-z0-9-]", "", t.split(":")[-1]).upper()
+        yaml_by_ticker[stem] = c
+    detail_added = set()
+    for r in universe_rr[:30]:
+        if r["source"] != "REAL":
+            continue
+        stem = re.sub(r"[^A-Za-z0-9-]", "",
+                      r["ticker"].split(":")[-1]).upper()
+        c = yaml_by_ticker.get(stem)
+        if c is None or stem in detail_added:
+            continue
         build_pick_detail(wb, c, weights)
+        detail_added.add(stem)
+        if len(detail_added) >= 10:
+            break
 
     build_methodology(wb)
 
