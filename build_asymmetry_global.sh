@@ -123,6 +123,8 @@ declare -A SRC=(
     [de_gap_yartseva.csv]=DE
     [uk_gap_yartseva.csv]=UK
     [us_gap_yartseva.csv]=US
+    [uk_gap2_yartseva.csv]=UK
+    [us_gap2_yartseva.csv]=US
 )
 
 ARGS=()
