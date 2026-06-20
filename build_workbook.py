@@ -56,53 +56,52 @@ ROW_ALT      = 'F4F1EA'     # alternating row warm-grey
 CARD_BG      = 'F8F6F0'     # subtle card-fill (for blockquotes)
 HIGHLIGHT    = 'F8E7E2'     # pale crimson highlight for accent rows
 
-# Serif for titles (the HBR convention), Calibri for body
-TITLE_FONT_NAME = 'Cambria'   # widely available serif
-H_FONT_NAME     = 'Cambria'
-BODY_FONT_NAME  = 'Calibri'
+# Serif throughout (Harvard style) — Times New Roman everywhere, including body
+TITLE_FONT_NAME = 'Times New Roman'
+H_FONT_NAME     = 'Times New Roman'
+BODY_FONT_NAME  = 'Times New Roman'
 
-TITLE_FONT    = Font(name=TITLE_FONT_NAME, size=22, bold=False, color=SLATE_DARK)
-KICKER_FONT   = Font(name=BODY_FONT_NAME, size=9, bold=True, color=CRIMSON)  # small uppercase label
+TITLE_FONT    = Font(name=TITLE_FONT_NAME, size=24, bold=False, color=SLATE_DARK)
+KICKER_FONT   = Font(name=BODY_FONT_NAME, size=9, bold=True, color=CRIMSON)
 DECK_FONT     = Font(name=TITLE_FONT_NAME, size=13, italic=True, color=SLATE_MUTED)
-SECTION_FONT  = Font(name=H_FONT_NAME, size=12, bold=True, color=SLATE_DARK)
-SUBSECT_FONT  = Font(name=BODY_FONT_NAME, size=9, bold=True, color=CRIMSON)
-BODY_FONT     = Font(name=BODY_FONT_NAME, size=10, color=SLATE)
-BODY_BOLD     = Font(name=BODY_FONT_NAME, size=10, bold=True, color=SLATE_DARK)
-CAPTION_FONT  = Font(name=BODY_FONT_NAME, size=9, italic=True, color=SLATE_MUTED)
-TABLE_HEAD_FT = Font(name=BODY_FONT_NAME, size=10, bold=True, color='FFFFFF')
-FOOTNOTE_FONT = Font(name=BODY_FONT_NAME, size=8, italic=True, color=SLATE_MUTED)
+SECTION_FONT  = Font(name=H_FONT_NAME, size=13, bold=True, color=SLATE_DARK)
+SUBSECT_FONT  = Font(name=BODY_FONT_NAME, size=10, bold=True, color=CRIMSON)
+BODY_FONT     = Font(name=BODY_FONT_NAME, size=11, color=SLATE)
+BODY_BOLD     = Font(name=BODY_FONT_NAME, size=11, bold=True, color=SLATE_DARK)
+CAPTION_FONT  = Font(name=BODY_FONT_NAME, size=10, italic=True, color=SLATE_MUTED)
+TABLE_HEAD_FT = Font(name=BODY_FONT_NAME, size=11, bold=True, color=SLATE_DARK)
+FOOTNOTE_FONT = Font(name=BODY_FONT_NAME, size=9, italic=True, color=SLATE_MUTED)
 
 WARM_FILL  = PatternFill('solid', fgColor=WARM_WHITE)
-ALT_FILL   = PatternFill('solid', fgColor=ROW_ALT)
+ALT_FILL   = PatternFill('solid', fgColor=WARM_WHITE)  # no row stripes — Harvard tables don't stripe
 CARD_FILL  = PatternFill('solid', fgColor=CARD_BG)
 HIGHLIGHT_FILL = PatternFill('solid', fgColor=HIGHLIGHT)
-HEAD_FILL  = PatternFill('solid', fgColor=CRIMSON)
+HEAD_FILL  = PatternFill('solid', fgColor=WARM_WHITE)  # no header fill — Harvard tables use underline
 HEAD_DARK_FILL = PatternFill('solid', fgColor=CRIMSON_DARK)
 
-# Hairline borders (lighter, more elegant than standard thin)
-HAIRLINE   = Side(style='thin', color=RULE)
-RULE_THIN  = Side(style='thin', color=RULE_LIGHT)
-BORDER_ALL = Border(left=HAIRLINE, right=HAIRLINE, top=HAIRLINE, bottom=HAIRLINE)
-BORDER_TOP_RULE = Border(top=Side(style='thin', color=CRIMSON))
-BORDER_BOT_RULE = Border(bottom=Side(style='thin', color=CRIMSON))
+# Harvard "booktabs"-style rules. Tables have a heavy top rule, a hairline
+# under the header row, and a hairline at the bottom. No vertical lines.
+RULE_HEAVY   = Side(style='medium', color=SLATE_DARK)  # 1.5pt top-of-table rule
+RULE_HEAD    = Side(style='thin', color=SLATE_DARK)    # 0.5pt under header
+RULE_BOTTOM  = Side(style='thin', color=SLATE_DARK)    # 0.5pt at end of table
+RULE_CRIMSON = Side(style='medium', color=CRIMSON)     # crimson section/title rule
+NO_BORDER    = Border()  # explicit empty border for body cells
 
-ALIGN_LEFT  = Alignment(horizontal='left',   vertical='center', indent=1)
-ALIGN_RIGHT = Alignment(horizontal='right',  vertical='center', indent=1)
+ALIGN_LEFT  = Alignment(horizontal='left',   vertical='center', indent=0)
+ALIGN_RIGHT = Alignment(horizontal='right',  vertical='center', indent=0)
 ALIGN_CTR   = Alignment(horizontal='center', vertical='center', wrap_text=True)
-ALIGN_WRAP  = Alignment(horizontal='left',   vertical='top',    wrap_text=True, indent=1)
+ALIGN_WRAP  = Alignment(horizontal='left',   vertical='top',    wrap_text=True, indent=0)
 
 
 def _style_header(ws, row, col_start, col_end):
-    """Crimson banded header with white serif-cap-style text."""
+    """Booktabs-style header — bold black text on warm white, heavy top rule,
+    thin bottom rule. No vertical or fill colours."""
     for c in range(col_start, col_end + 1):
         cell = ws.cell(row=row, column=c)
         cell.font = TABLE_HEAD_FT
-        cell.fill = HEAD_FILL
+        cell.fill = WARM_FILL
         cell.alignment = ALIGN_CTR
-        cell.border = Border(left=Side(style='thin', color=CRIMSON_DARK),
-                              right=Side(style='thin', color=CRIMSON_DARK),
-                              top=Side(style='thin', color=CRIMSON_DARK),
-                              bottom=Side(style='thin', color=CRIMSON_DARK))
+        cell.border = Border(top=RULE_HEAVY, bottom=RULE_HEAD)
 
 
 def _autosize(ws, headers, max_w=34):
@@ -117,7 +116,9 @@ def _autosize(ws, headers, max_w=34):
 
 
 def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True):
-    """Write a DataFrame as a styled table. Returns row after."""
+    """Write a DataFrame as a Harvard-style booktabs table:
+       heavy top rule, thin rule under header, thin rule at bottom.
+       No vertical lines, no row striping, no cell borders."""
     if df.empty:
         c = ws.cell(row=start_row, column=1, value='— no rows —')
         c.font = CAPTION_FONT
@@ -126,8 +127,9 @@ def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True)
     for i, h in enumerate(headers, 1):
         ws.cell(row=start_row, column=i, value=h)
     _style_header(ws, start_row, 1, len(headers))
+    last_data_row = start_row + len(df)
     for r, (_, row) in enumerate(df.iterrows(), start=start_row + 1):
-        is_alt = (r - start_row) % 2 == 0
+        is_last = (r == last_data_row)
         for c, h in enumerate(headers, 1):
             v = row.get(h)
             if pd.isna(v): v = ''
@@ -139,12 +141,13 @@ def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True)
                 cell.alignment = ALIGN_RIGHT
             else:
                 cell.alignment = ALIGN_LEFT
-            if alt_shade and is_alt:
-                cell.fill = ALT_FILL
+            cell.fill = WARM_FILL
+            # Only the last row of the table gets a bottom rule
+            if is_last:
+                cell.border = Border(bottom=RULE_BOTTOM)
             else:
-                cell.fill = WARM_FILL
-            cell.border = Border(bottom=RULE_THIN)
-    return start_row + 1 + len(df) + 1
+                cell.border = NO_BORDER
+    return last_data_row + 2  # one blank row after the table
 
 
 def _set_page_background(ws, last_col_letter='Z', last_row=600):
@@ -156,20 +159,27 @@ def _set_page_background(ws, last_col_letter='Z', last_row=600):
 
 def _draw_title_block(ws, kicker: str, title: str, deck: str = None,
                       start_row: int = 1):
-    """Magazine-style title block: KICKER label, title in serif, deck (italic
-    subtitle), then a crimson hairline rule under it."""
-    # Kicker (small uppercase)
+    """Harvard-style title block — kicker label, serif title, italic deck,
+    bracketed top and bottom by crimson rules (the only horizontal lines
+    on the page above the data tables)."""
+    # Top crimson rule above kicker
+    top_rule_row = start_row
+    for col in range(1, 13):
+        ws.cell(row=top_rule_row, column=col).border = Border(top=RULE_CRIMSON)
+    ws.row_dimensions[top_rule_row].height = 5
+    # Kicker (small uppercase) directly below the rule
+    kicker_row = top_rule_row + 1
     if kicker:
-        c = ws.cell(row=start_row, column=1, value=kicker.upper())
+        c = ws.cell(row=kicker_row, column=1, value=kicker.upper())
         c.font = KICKER_FONT
         c.alignment = ALIGN_LEFT
-        ws.row_dimensions[start_row].height = 14
+        ws.row_dimensions[kicker_row].height = 16
     # Title
-    title_row = start_row + 1
+    title_row = kicker_row + 1
     c = ws.cell(row=title_row, column=1, value=title)
     c.font = TITLE_FONT
     c.alignment = Alignment(horizontal='left', vertical='center', indent=0)
-    ws.row_dimensions[title_row].height = 30
+    ws.row_dimensions[title_row].height = 34
     # Deck
     deck_row = title_row + 1
     if deck:
@@ -177,29 +187,29 @@ def _draw_title_block(ws, kicker: str, title: str, deck: str = None,
         c.font = DECK_FONT
         c.alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
         ws.merge_cells(start_row=deck_row, start_column=1, end_row=deck_row, end_column=10)
-        ws.row_dimensions[deck_row].height = 22
+        ws.row_dimensions[deck_row].height = 26
         last_row = deck_row
     else:
         last_row = title_row
-    # Crimson hairline rule below the title block
+    # Bottom crimson rule under the title block
     rule_row = last_row + 1
     for col in range(1, 13):
-        ws.cell(row=rule_row, column=col).border = BORDER_TOP_RULE
-    ws.row_dimensions[rule_row].height = 6
+        ws.cell(row=rule_row, column=col).border = Border(top=RULE_CRIMSON)
+    ws.row_dimensions[rule_row].height = 5
     return rule_row + 1
 
 
 def _draw_section(ws, label: str, start_row: int) -> int:
-    """Section header: small crimson kicker label + thin underline rule."""
+    """Section header: serif italicized-style label with a crimson underline rule."""
     c = ws.cell(row=start_row, column=1, value=label)
     c.font = SECTION_FONT
     c.alignment = ALIGN_LEFT
-    ws.row_dimensions[start_row].height = 22
-    # Crimson rule under section heading
+    ws.row_dimensions[start_row].height = 24
+    # Single underline beneath label (cells under text only)
     rule_row = start_row + 1
     for col in range(1, 13):
-        ws.cell(row=rule_row, column=col).border = BORDER_TOP_RULE
-    ws.row_dimensions[rule_row].height = 4
+        ws.cell(row=rule_row, column=col).border = Border(top=Side(style='thin', color=CRIMSON))
+    ws.row_dimensions[rule_row].height = 3
     return rule_row + 1
 
 
@@ -372,22 +382,21 @@ def build_readme(wb):
         c = ws.cell(row=row, column=1, value=label)
         c.font = SECTION_FONT
         c.alignment = ALIGN_LEFT
-        ws.row_dimensions[row].height = 22
+        ws.row_dimensions[row].height = 24
         row += 1
-        # Crimson rule
+        # Crimson hairline under section heading
         for col in range(1, 11):
-            ws.cell(row=row, column=col).border = BORDER_TOP_RULE
-        ws.row_dimensions[row].height = 4
+            ws.cell(row=row, column=col).border = Border(top=Side(style='thin', color=CRIMSON))
+        ws.row_dimensions[row].height = 3
         row += 1
-        # Body — merged warm-card with wrap
+        # Body — wrapped with no card-fill (Harvard journal pages are uncoloured)
         cell = ws.cell(row=row, column=1, value=body)
         cell.font = BODY_FONT
         cell.alignment = ALIGN_WRAP
-        cell.fill = CARD_FILL
+        cell.fill = WARM_FILL
         ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=10)
-        # Height proportional to text length
         lines = max(2, int(len(body) / 110) + body.count('\n') + 2)
-        ws.row_dimensions[row].height = lines * 14
+        ws.row_dimensions[row].height = lines * 16
         row += 2
     _add_footer(ws, row)
     ws.column_dimensions['A'].width = 22
@@ -461,13 +470,15 @@ def build_best_of_best(wb, gav, fin, comb, top_n=25):
     headers = ['ticker','region','longName','sector','marketCap_M','n_screens','screens_in',
                'composite','ev_ebitda_g_bv','ev_sales_g_bv','fin_composite','priceToBook','trailingPE']
     end_row = _write_df(ws, bob, headers, start_row=row)
-    # Highlight rows with 3+ flags
+    # Subtle highlight on rows that screen in 3+ lists. Preserve existing
+    # borders (the booktabs rule on the last row) and keep alignment.
     for r in range(row + 1, end_row):
         n_flag_cell = ws.cell(row=r, column=6).value
         if isinstance(n_flag_cell, (int, float)) and n_flag_cell >= 3:
             for c in range(1, len(headers) + 1):
-                ws.cell(row=r, column=c).fill = HIGHLIGHT_FILL
-                ws.cell(row=r, column=c).font = BODY_BOLD
+                cell = ws.cell(row=r, column=c)
+                cell.fill = HIGHLIGHT_FILL
+                cell.font = Font(name=BODY_FONT_NAME, size=11, bold=True, color=SLATE_DARK)
     _autosize(ws, headers)
     ws.freeze_panes = 'D' + str(row + 1)
     _add_footer(ws, end_row)
@@ -665,23 +676,25 @@ def build_glossary(wb):
         ('n_screens', 'Number of top-25 lists in which the name appears (maximum four). Best-of-Best sheet only.'),
         ('screens_in', 'Which lists the name appears in: Composite, Growth-Adj-EBITDA, Growth-Adj-Sales, Financials.'),
     ]
-    # Header
+    # Header row with booktabs heavy-top + thin-bottom rule
     for c, h in enumerate(['Column','Meaning'], 1):
         cell = ws.cell(row=row, column=c, value=h)
         cell.font = TABLE_HEAD_FT
-        cell.fill = HEAD_FILL
+        cell.fill = WARM_FILL
         cell.alignment = ALIGN_CTR
+        cell.border = Border(top=RULE_HEAVY, bottom=RULE_HEAD)
     row += 1
     for i, (k, v) in enumerate(rows):
+        is_last = (i == len(rows) - 1)
         c1 = ws.cell(row=row, column=1, value=k); c1.font = BODY_BOLD
-        c1.alignment = ALIGN_LEFT
+        c1.alignment = Alignment(horizontal='left', vertical='top', indent=0)
         c2 = ws.cell(row=row, column=2, value=v); c2.font = BODY_FONT
-        c2.alignment = Alignment(wrap_text=True, vertical='top', indent=1)
-        if i % 2 == 0:
-            c1.fill = ALT_FILL; c2.fill = ALT_FILL
-        c1.border = Border(bottom=RULE_THIN)
-        c2.border = Border(bottom=RULE_THIN)
-        ws.row_dimensions[row].height = 24
+        c2.alignment = Alignment(wrap_text=True, vertical='top', indent=0)
+        c1.fill = WARM_FILL; c2.fill = WARM_FILL
+        if is_last:
+            c1.border = Border(bottom=RULE_BOTTOM)
+            c2.border = Border(bottom=RULE_BOTTOM)
+        ws.row_dimensions[row].height = 26
         row += 1
     ws.column_dimensions['A'].width = 30
     ws.column_dimensions['B'].width = 110
