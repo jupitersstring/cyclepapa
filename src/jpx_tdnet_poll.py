@@ -85,8 +85,8 @@ HEADLINE_PATTERNS: list[tuple[str, str, str, str]] = [
      "delisting"),
     (r"主要株主の?異動",      "tier_s", "major_shareholder_change",
      "change in major shareholders"),
-    (r"支配株主",            "tier_s", "controlling_shareholder",
-     "controlling shareholder transition"),
+    (r"支配株主(?:等)?の?異動",  "tier_s", "controlling_shareholder",
+     "controlling-shareholder TRANSITION (excludes the periodic 支配株主等に関する事項 disclosure)"),
     (r"第三者割当",          "tier_s", "third_party_allotment",
      "third-party share allocation (private placement)"),
     (r"募集株式の発行",       "tier_s", "public_offering",
@@ -112,7 +112,9 @@ HEADLINE_PATTERNS_COMPILED = [(re.compile(p), tier, sub, note)
 
 def fetch_page(day: date, page: int, retries: int = 3) -> str | None:
     """Fetch one TDnet index page. Returns HTML on success, None if no
-    such page exists (404 = past the last page)."""
+    such page exists (404 = past the last page). TDnet pages omit the
+    charset header so requests defaults to Latin-1 and mangles the
+    Japanese — decode UTF-8 explicitly."""
     url = (f"{TDNET_BASE}/I_list_{page:03d}_"
            f"{day.strftime('%Y%m%d')}.html")
     delay = 1.0
@@ -125,7 +127,7 @@ def fetch_page(day: date, page: int, retries: int = 3) -> str | None:
                 time.sleep(delay); delay *= 2
                 continue
             r.raise_for_status()
-            return r.text
+            return r.content.decode("utf-8", errors="replace")
         except requests.RequestException as exc:
             if attempt == retries - 1:
                 print(f"  ! TDnet failed after {retries} attempts: {exc}",
