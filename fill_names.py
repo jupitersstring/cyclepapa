@@ -53,8 +53,8 @@ def main():
             }
         except Exception:
             cache[t] = {'name': '', 'sector': '', 'mcap_M': 0}
-        # Checkpoint every 250 to keep the cache fresh on disk
-        if (i + 1) % 250 == 0:
+        # Checkpoint every 1500 to keep cache durable without git churn
+        if (i + 1) % 1500 == 0:
             with open(CACHE, "w") as f:
                 json.dump(cache, f)
             saved = i + 1
