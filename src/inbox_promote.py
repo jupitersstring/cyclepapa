@@ -94,6 +94,8 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "merger_absorption", "civil_rehabilitation", "corporate_reorganization",
     "special_liquidation", "delisting", "major_shareholder_change",
     "controlling_shareholder", "third_party_allotment", "public_offering",
+    # ---- PACER / CourtListener labels (pacer_poll.py) ----
+    "bankruptcy_11", "bankruptcy_15",
 }
 
 

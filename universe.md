@@ -1216,3 +1216,27 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | Ｇ－ＫａｉｚｅｎＰＦ | 4170 | ○ | A | Auto-promoted from 主要株主の異動に関するお知らせ filing 2026-06-19 (acc 140120260618574105); change in major shareholders; verify primary doc before scoring |
 | ネクソン | 3659 | ○ | A | Auto-promoted from 主要株主の異動及び当社株式（証券コード 3659）の取得（公開買付けに準ずる行為として政令で定める買集め行為）に関するお知らせ filing 2026-06-19 (acc 140120260618573399); tender offer (TOB / 公開買付) — bid in progress; verify primary doc before scoring |
 | Ｇ－シンカ | 149A | ○ | A | Auto-promoted from 株式会社フィックスターズとの資本提携契約の締結及び株式会社Fixstars Investmentを割当予定先とする第三者割当による新株式の発行に関するお知らせ filing 2026-06-19 (acc 140120260617572433); third-party share allocation (private placement); verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-06-21)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| John Whitfield Mecom, III | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-20 (acc docket-73510798); New Chapter 11 filing in SD Texas; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| Berkshire Land & Realty, LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-19 (acc docket-73508744); New Chapter 11 filing in SDNY; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| Urban Medspa & Weight Loss Center Charlotte, P.C. | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493294); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| GVO Partners LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493098); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| GVO Holdings Group LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493152); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| GVO Topco LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493180); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| GVO Still Waters, LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493293); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| GVO Urban, LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493295); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+| GVO Sweetgrass, LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-16 (acc docket-73493178); New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-06-21)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| 15 Codman Park LLC | — | ○ | A | Auto-promoted from Chapter 11 filing filing 2026-06-19 (acc docket-73510948); New Chapter 11 filing in Massachusetts; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; joint filing of 23 affiliated debtors: 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC...; verify primary doc before scoring |

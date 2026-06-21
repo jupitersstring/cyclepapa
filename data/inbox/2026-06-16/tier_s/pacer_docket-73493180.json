@@ -1,0 +1,23 @@
+{
+  "accession": "docket-73493180",
+  "assigned_to": "Karen Owens",
+  "cik": "",
+  "court_id": "deb",
+  "debtor_firm": [
+    "Raines Feldman Littrell LLP"
+  ],
+  "docket_no": "26-10978",
+  "fetched_at": "2026-06-21T21:16:39.336484Z",
+  "filed": "2026-06-16",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GVO Topco LLC",
+  "query_label": "tier_s.bankruptcy_11",
+  "query_note": "New Chapter 11 filing in Delaware; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; joint filing of 50 affiliated debtors: GVO Topco LLC, GVO Topco LLC, GVO Topco LLC, GVO Topco LLC, GVO Topco LLC...",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/73493180/gvo-topco-llc/"
+}

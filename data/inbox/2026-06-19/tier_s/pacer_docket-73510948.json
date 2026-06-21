@@ -1,0 +1,21 @@
+{
+  "accession": "docket-73510948",
+  "assigned_to": "Janet Bostwick",
+  "cik": "",
+  "court_id": "mab",
+  "debtor_firm": "",
+  "docket_no": "26-11458",
+  "fetched_at": "2026-06-21T21:16:39.336484Z",
+  "filed": "2026-06-19",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "15 Codman Park LLC",
+  "query_label": "tier_s.bankruptcy_11",
+  "query_note": "New Chapter 11 filing in Massachusetts; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; joint filing of 23 affiliated debtors: 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC...",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/73510948/15-codman-park-llc/"
+}
