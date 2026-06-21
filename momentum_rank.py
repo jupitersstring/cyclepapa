@@ -1471,6 +1471,12 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         sma200 is not None
         and last >= ema10 >= sma20 >= sma50 >= sma100 >= sma200
     )
+    # Bearish mirror: Price <= EMA10 <= SMA20 <= SMA50 <= SMA100 <= SMA200
+    # (death-cross arrangement; Stage-4 mark-down condition)
+    stacked_ma_down = bool(
+        sma200 is not None
+        and last <= ema10 <= sma20 <= sma50 <= sma100 <= sma200
+    )
 
     # Position in 20-day range
     high_20d = float(high.tail(20).max())
@@ -1488,6 +1494,89 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     tr_vals = true_range(high.values[1:], low.values[1:], close.values[:-1])
     atr14 = float(np.mean(tr_vals[-14:])) if len(tr_vals) >= 14 else None
     atr14_pct = (atr14 / last * 100) if atr14 else None
+
+    # ---- Qullamaggie canonical ADR% (20-day Average Daily Range as %) -----
+    # ADR% = mean((H_i / L_i) - 1) * 100 over last 20 bars. Per Qullamaggie
+    # forum + secondary sources, a "Momentum Leading Stock" needs ADR% >= 5-6.
+    if len(close) >= 20:
+        h20 = high.tail(20).values
+        l20 = low.tail(20).values
+        mask20 = l20 > 0
+        adr_pct_20d = float(np.nanmean(h20[mask20] / l20[mask20] - 1) * 100) if mask20.sum() else None
+    else:
+        adr_pct_20d = None
+
+    # ---- Prior-move check (Qullamaggie breakout setup pre-requisite) ------
+    # Best % return over any 1-month / 3-month window in the last 6 months.
+    # Qullamaggie's breakout setup requires a 30-100%+ "prior move" before
+    # the consolidation. We measure the strongest rolling-window return.
+    prior_move_1m_pct = prior_move_3m_pct = None
+    if len(close) >= 126:
+        prior_returns_1m = (close / close.shift(21) - 1) * 100
+        prior_returns_3m = (close / close.shift(63) - 1) * 100
+        # Best window in last 126 bars (6 months)
+        prior_move_1m_pct = float(prior_returns_1m.tail(126).max())
+        prior_move_3m_pct = float(prior_returns_3m.tail(126).max())
+    elif len(close) >= 63:
+        prior_returns_1m = (close / close.shift(21) - 1) * 100
+        prior_returns_3m = (close / close.shift(63) - 1) * 100
+        prior_move_1m_pct = float(prior_returns_1m.dropna().max()) if len(prior_returns_1m.dropna()) else None
+        prior_move_3m_pct = float(prior_returns_3m.dropna().max()) if len(prior_returns_3m.dropna()) else None
+
+    # ---- Consolidation tightness (last 4-8 weeks) ----
+    # Qullamaggie's "tightening range" / "higher lows" / "surfing 10/20 MA"
+    # We compute: 4-week range %, 4-week pullback %, and proximity to 10/20DMA.
+    if len(close) >= 20:
+        close_20 = close.tail(20)
+        high_20 = high.tail(20)
+        low_20 = low.tail(20)
+        range_4w_pct = float((float(high_20.max()) - float(low_20.min())) / float(close_20.mean()) * 100)
+        # Higher lows: last 4-week low > 8-week-old low (if we have data)
+        higher_lows_4w = None
+        if len(close) >= 40:
+            low_recent4 = float(low.tail(20).min())
+            low_prior4 = float(low.iloc[-40:-20].min())
+            higher_lows_4w = bool(low_recent4 > low_prior4)
+    else:
+        range_4w_pct = None
+        higher_lows_4w = None
+
+    # Surfing 10/20-day MA: close within atr14 of either MA AND above it
+    sma10 = float(close.tail(min(10, len(close))).mean())
+    sma20_d = float(close.tail(min(20, len(close))).mean())
+    surfing_10dma = bool(
+        atr14 is not None and last >= sma10 and (last - sma10) <= atr14 * 1.5
+    )
+    surfing_20dma = bool(
+        atr14 is not None and last >= sma20_d and (last - sma20_d) <= atr14 * 1.5
+    )
+
+    # ---- BEARISH MIRROR: prior-decline + lower-highs + surfing-MA-below ----
+    # Mirror of the Qullamaggie bullish leg, applied to topping/mark-down setups.
+    # A canonical bearish setup requires a meaningful PRIOR DECLINE (the
+    # mark-down phase has begun) before the present consolidation / bear flag.
+    prior_decline_1m_pct = prior_decline_3m_pct = None
+    if len(close) >= 126:
+        prior_decline_1m_pct = float(prior_returns_1m.tail(126).min())
+        prior_decline_3m_pct = float(prior_returns_3m.tail(126).min())
+    elif len(close) >= 63:
+        prior_decline_1m_pct = float(prior_returns_1m.dropna().min()) if len(prior_returns_1m.dropna()) else None
+        prior_decline_3m_pct = float(prior_returns_3m.dropna().min()) if len(prior_returns_3m.dropna()) else None
+
+    # Lower highs: most recent 4w high < prior 4w high
+    lower_highs_4w = None
+    if len(close) >= 40:
+        high_recent4 = float(high.tail(20).max())
+        high_prior4 = float(high.iloc[-40:-20].max())
+        lower_highs_4w = bool(high_recent4 < high_prior4)
+
+    # Surfing 10/20 DMA BELOW: price below MA, within 1.5*ATR (bear-flag below MA)
+    surfing_10dma_below = bool(
+        atr14 is not None and last <= sma10 and (sma10 - last) <= atr14 * 1.5
+    )
+    surfing_20dma_below = bool(
+        atr14 is not None and last <= sma20_d and (sma20_d - last) <= atr14 * 1.5
+    )
 
     # --- ADV (Average Daily $-Volume) liquidity leg --------------------------
     # Per "the biggest winners trade at much higher dollar-volume than the
@@ -1572,6 +1661,8 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     wema10 = float(wclose.ewm(span=10, adjust=False).mean().iloc[-1])
     wsma20 = float(wclose.tail(20).mean())
     weekly_stacked_ma = bool(last >= wema10 >= wsma20 >= wma30)
+    # Bearish weekly mirror (mark-down trend on weekly)
+    weekly_stacked_ma_down = bool(last <= wema10 <= wsma20 <= wma30)
 
     # Weekly position in last-20-week range
     if len(whigh) >= 20:
@@ -1828,10 +1919,25 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "ema10": ema10, "sma20": sma20, "sma50": sma50,
         "sma100": sma100, "sma200": sma200,
         "stacked_ma": stacked_ma,
+        "stacked_ma_down": stacked_ma_down,
         # 20-day range position
         "range_20d_pos_pct": float(range_20d_pos_pct),
         # ATR
         "atr14_pct": atr14_pct,
+        # Qullamaggie canonical signals (forum-precise)
+        "adr_pct_20d": adr_pct_20d,
+        "prior_move_1m_pct": prior_move_1m_pct,
+        "prior_move_3m_pct": prior_move_3m_pct,
+        "range_4w_pct": range_4w_pct,
+        "higher_lows_4w": higher_lows_4w,
+        "surfing_10dma": surfing_10dma,
+        "surfing_20dma": surfing_20dma,
+        # Bearish mirror signals
+        "prior_decline_1m_pct": prior_decline_1m_pct,
+        "prior_decline_3m_pct": prior_decline_3m_pct,
+        "lower_highs_4w": lower_highs_4w,
+        "surfing_10dma_below": surfing_10dma_below,
+        "surfing_20dma_below": surfing_20dma_below,
         # Volatility asymmetry
         "asym_now": asym.get("asym_now"),
         "asym_ma": asym.get("asym_ma"),
@@ -1841,6 +1947,7 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "asym_upper_signal": asym.get("asym_upper_signal", False),
         # weekly variants
         "weekly_stacked_ma": weekly_stacked_ma,
+        "weekly_stacked_ma_down": weekly_stacked_ma_down,
         "weekly_range_pos_pct": weekly_range_pos_pct,
         "asym_w_now": weekly_asym_dict.get("asym_now"),
         "asym_w_rising": weekly_asym_dict.get("asym_rising", False),
@@ -2268,6 +2375,146 @@ def main():
         & df["weekly_stacked_ma"].fillna(False)
         & df["atr_rs_above_50"]
         & df["weekly_range_top_half"]
+    )
+
+    # ---- CANONICAL QULLAMAGGIE (per qullamaggie.com/my-3-timeless-setups) ----
+    # Strict version with the explicit forum thresholds:
+    #   1. RS rank max >= 90 (top 10% momentum)
+    #   2. ADR% >= 5 (20-day average daily range)
+    #   3. Stacked MAs (price above stack on daily OR weekly)
+    #   4. Prior move >= 30% in some 1-3 month window in the last 6 months
+    #      (the "30-100%+ advance over 1-3 months" pre-consolidation rally)
+    #   5. Currently "surfing" the 10-day OR 20-day MA (within 1.5*ATR above)
+    df["rs_canonical"] = df["rs_rank_max"].fillna(0) >= 90
+    df["adr_qualifies"] = df["adr_pct_20d"].fillna(0) >= 5.0
+    df["prior_move_30pct"] = (
+        (df["prior_move_1m_pct"].fillna(0) >= 30)
+        | (df["prior_move_3m_pct"].fillna(0) >= 30)
+    )
+    df["surfing_10_or_20"] = (
+        df["surfing_10dma"].fillna(False) | df["surfing_20dma"].fillna(False)
+    )
+    df["q_method_canonical"] = (
+        df["rs_canonical"]
+        & df["adr_qualifies"]
+        & df["stacked_ma_any"]
+        & df["prior_move_30pct"]
+        & df["surfing_10_or_20"]
+    )
+
+    # Q METHOD CONSOLIDATION: prior move + tight current range + higher lows
+    # This isolates the BREAKOUT-CANDIDATE phase (consolidating after the rally)
+    df["q_method_consolidating"] = (
+        df["prior_move_30pct"]
+        & (df["range_4w_pct"].fillna(99) <= 15)  # tight 4-week range
+        & df["higher_lows_4w"].fillna(False)
+        & df["adr_qualifies"]
+        & df["stacked_ma_any"]
+    )
+
+    # ========================================================================
+    # ===== BEARISH SETUP PATTERN (mark-down / Stage-4 breakdown family) ====
+    # Mirror of the Minervini Stage-2 / Qullamaggie bullish methodology. We
+    # define three increasingly strict bearish setup flags + a composite.
+    #
+    # Theory: high-quality SHORT setups come from names that have rolled
+    # over from a multi-month uptrend (or topping range) and are now
+    # consolidating beneath their declining MAs. The mirror of "RS leader
+    # consolidating after a 30%+ run-up" is "RS laggard bear-flagging
+    # after a 30%+ decline." Volatility (ADR%) must be elevated for the
+    # subsequent mark-down leg to be tradeable.
+    # ========================================================================
+    def _bser(c, d=False):
+        return df[c].fillna(d) if c in df.columns else pd.Series(d, index=df.index)
+    def _nser(c, d=np.nan):
+        return df[c].fillna(d) if c in df.columns else pd.Series(d, index=df.index)
+
+    df["stacked_ma_down_any"] = _bser("stacked_ma_down") | _bser("weekly_stacked_ma_down")
+    df["rs_laggard"] = _nser("rs_rank_max", 100) <= 30  # bottom 30% RS
+    df["rs_laggard_strict"] = _nser("rs_rank_max", 100) <= 10  # bottom 10%
+    df["prior_decline_30pct"] = (
+        (_nser("prior_decline_1m_pct", 0) <= -30)
+        | (_nser("prior_decline_3m_pct", 0) <= -30)
+    )
+    df["surfing_below_10_or_20"] = (
+        _bser("surfing_10dma_below") | _bser("surfing_20dma_below")
+    )
+
+    # --- CANONICAL BEARISH SETUP (mirror of q_method_canonical) ---
+    # 1. RS rank max <= 10 (bottom 10% — relative laggard)
+    # 2. ADR% >= 5 (enough volatility for the mark-down to be tradeable)
+    # 3. Stacked MAs DOWN (death-cross arrangement on daily OR weekly)
+    # 4. Prior decline >= 30% in some 1-3m window in last 6 months
+    # 5. Currently "surfing" the 10-day OR 20-day MA from BELOW (bear flag)
+    df["bearish_setup_canonical"] = (
+        df["rs_laggard_strict"]
+        & df["adr_qualifies"]
+        & df["stacked_ma_down_any"]
+        & df["prior_decline_30pct"]
+        & df["surfing_below_10_or_20"]
+    )
+
+    # --- BEAR-FLAG CONSOLIDATING (mirror of q_method_consolidating) ---
+    # Post-decline tight consolidation prior to the next mark-down leg.
+    # Lower highs + tight current range + 30%+ prior decline + below stack.
+    df["bearish_setup_consolidating"] = (
+        df["prior_decline_30pct"]
+        & (_nser("range_4w_pct", 99) <= 15)  # tight 4-week range
+        & _bser("lower_highs_4w")
+        & df["adr_qualifies"]
+        & df["stacked_ma_down_any"]
+    )
+
+    # --- STAGE-4 BREAKDOWN (Minervini-mirror: full trend-template fail) ---
+    # The cleanest "trend is broken" flag — uses pre-existing mv_stage4_pass
+    # but also requires the relative-to-SPY trend to be down (avoids names
+    # that are weak in absolute terms but still beating the index).
+    df["bearish_stage4_full"] = (
+        _bser("mv_stage4_pass")
+        & (
+            (_bser("rel_trend_up", True) == False)
+            | (_nser("rel_return_6m_pct", 0) < 0)
+        )
+    )
+
+    # --- CLIMAX-TOP TURNING (mirror of bullish bow-tie / fresh Stage 2) ---
+    # Late-stage uptrend exhausting — RS still elevated, parabolic top
+    # warning, AND TD MTF turning bearish. These are the BEST sell-strength
+    # short candidates (well-loved names just rolling).
+    df["bearish_climax_turning"] = (
+        _bser("mv_climax_top_warning")
+        & (_nser("rs_rank_max", 0) >= 90)
+        & (_nser("td_mtf_composite", 0) <= -0.3)
+    )
+
+    # --- BEARISH COMPOSITE SCORE (mirror of pre_run_score for short side) ---
+    # Sums independent bear-side measure families. Higher = stronger short
+    # setup. Used by the workbook composite sheet.
+    def _safe_bear(c, d=0): return df[c].fillna(d) if c in df.columns else d
+    def _bcol_bear(c): return df[c].fillna(False) if c in df.columns else pd.Series(False, index=df.index)
+
+    df["bearish_setup_score"] = (
+        _bcol_bear("mv_stage4_pass").astype(int) * 4
+        + _bcol_bear("bearish_setup_canonical").astype(int) * 4
+        + _bcol_bear("bearish_setup_consolidating").astype(int) * 3
+        + _bcol_bear("bearish_climax_turning").astype(int) * 3
+        + _bcol_bear("mv_climax_top_warning").astype(int) * 2
+        + _bcol_bear("td_bearish_exhaustion_strong").astype(int) * 3
+        + _bcol_bear("td_bearish_exhaustion").astype(int) * 1
+        + (_safe_bear("td_m_sell_cd") >= 13).astype(int) * 4
+        + (_safe_bear("td_w_sell_cd") >= 13).astype(int) * 2
+        + (_safe_bear("td_m_sell_setup") >= 9).astype(int) * 2
+        + (_safe_bear("td_w_sell_setup") >= 9).astype(int) * 1
+        + (_safe_bear("td_mtf_composite") <= -0.5).astype(int) * 3
+        + (_safe_bear("td_mtf_composite") <= -0.3).astype(int) * 1
+        + _bcol_bear("harmonic_bearish_consonance").astype(int) * 3
+        + _bcol_bear("stacked_ma_down").astype(int) * 2
+        + _bcol_bear("weekly_stacked_ma_down").astype(int) * 2
+        + _bcol_bear("rs_laggard_strict").astype(int) * 2
+        + _bcol_bear("rs_laggard").astype(int) * 1
+        + _bcol_bear("prior_decline_30pct").astype(int) * 2
+        + _bcol_bear("lower_highs_4w").astype(int) * 1
+        + _bcol_bear("surfing_below_10_or_20").astype(int) * 1
     )
 
     # ===== Harmonic patterns =====

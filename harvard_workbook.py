@@ -36,7 +36,17 @@ bools = ['mv_setup_premium','mv_setup_clean','mv_power_trend','mv_3w_tight',
          'base_on_base','near_box_top','box_breakout','consolidating','vol_drying',
          'uptrend_w','tight_base_w','td_bullish_exhaustion','td_bullish_exhaustion_strong',
          'td_bearish_exhaustion','td_bearish_exhaustion_strong','breakout_squeeze',
-         'breakout_squeeze_strict','rel_trend_up','rel_macd_above_signal']
+         'breakout_squeeze_strict','rel_trend_up','rel_macd_above_signal',
+         # Q-method canonical (bullish)
+         'q_method_canonical','q_method_consolidating','stacked_ma_any','stacked_ma',
+         'weekly_stacked_ma','surfing_10dma','surfing_20dma','surfing_10_or_20',
+         'rs_canonical','adr_qualifies','prior_move_30pct','higher_lows_4w',
+         # Bearish setup pattern family
+         'bearish_setup_canonical','bearish_setup_consolidating','bearish_stage4_full',
+         'bearish_climax_turning','stacked_ma_down','weekly_stacked_ma_down',
+         'stacked_ma_down_any','rs_laggard','rs_laggard_strict','prior_decline_30pct',
+         'surfing_10dma_below','surfing_20dma_below','surfing_below_10_or_20',
+         'lower_highs_4w','harmonic_bearish_consonance']
 for c in bools:
     if c in df.columns:
         df[c] = df[c].astype(str).str.lower().isin(["true","1","yes"])
@@ -117,10 +127,20 @@ LEGS = [
      ["roque_abs_leader","roque_rel_leader","roque_vol_drying","mv_power_trend"],
      "Roque score 0-12: weekly/monthly trend + MACD + 200dma slope + base + leader + vol drying"),
 
-    ("06. Q-Method (Qullamaggie)", "rs_rank_max", False,
+    ("06. Q-Method (lighter)", "rs_rank_max", False,
      lambda d: bcol("q_method_pass"),
-     ["atr_rs","q_method_pass_monthly_strong","q_method_pass_weekly","stacked_ma_any"],
-     "Qullamaggie: RS high + stacked MAs + ATR_RS≥50 + range-position ≥50% on top quartile"),
+     ["atr_rs","adr_pct_20d","q_method_pass_monthly_strong","q_method_pass_weekly","stacked_ma_any"],
+     "Q-method lighter: RS≥70 + stacked MAs + ATR_RS≥50 + range-position top half"),
+
+    ("06b. Q-Method CANONICAL", "rs_rank_max", False,
+     lambda d: bcol("q_method_canonical"),
+     ["adr_pct_20d","prior_move_3m_pct","surfing_10dma","surfing_20dma","stacked_ma_any","atr_rs"],
+     "Canonical Qullamaggie: RS≥90 + ADR%≥5 + Stacked MAs + 30%+ prior 1-3m move + surfing 10/20DMA"),
+
+    ("06c. Q Consolidating", "prior_move_3m_pct", False,
+     lambda d: bcol("q_method_consolidating"),
+     ["adr_pct_20d","range_4w_pct","higher_lows_4w","prior_move_1m_pct","surfing_10_or_20"],
+     "Q breakout candidate: 30%+ prior 1-3m move + tight 4w range (≤15%) + higher lows + ADR≥5 + stacked"),
 
     ("07. MA-Respect 50d (Strategy IR)", "ma_d50_strategy_ir", False,
      lambda d: d["ma_d50_strategy_ir"].notna(),
@@ -146,6 +166,12 @@ LEGS = [
      lambda d: bcol("darvas_tight") & (d["box_length_weeks"].fillna(0) >= 12),
      ["box_length_weeks","pos_in_box_pct","near_box_top","box_breakout"],
      "Tightest Darvas bases — lowest box height with ≥12-week duration"),
+
+    ("11b. Darvas – Breakout from Longest Box", "box_length_weeks", False,
+     lambda d: bcol("box_breakout") & (d["box_length_weeks"].fillna(0) >= 8),
+     ["box_height_pct","pos_in_box_pct","darvas_tight","near_box_top",
+      "mv_composite_score","aqr_trend_score"],
+     "Fresh Darvas breakouts ranked by base length — longest consolidation + just broke out"),
 
     ("12. Harmonic – Weekly Quality", "h_w_quality", False,
      lambda d: d["h_w_quality"].notna(),
@@ -246,6 +272,56 @@ LEGS = [
      lambda d: bcol("mv_high_tight_flag"),
      ["mv_dist_from_ath_pct","aqr_trend_score","mom_6m"],
      "100%+ pre-rally then 10-25% pullback then recovery — rare and powerful"),
+
+    # ====================================================================
+    # BEARISH SETUP PATTERN FAMILY — Stage 4 mark-down / topping / short
+    # candidates. Mirror of the bullish Stage 2 / Q-method family above.
+    # ====================================================================
+    ("32. Bearish – Stage 4 Pass", "mv_stage4_count", False,
+     lambda d: bcol("mv_stage4_pass"),
+     ["mv_stage4_count","aqr_trend_score","rel_return_6m_pct","rs_rank_max",
+      "td_mtf_composite"],
+     "Minervini Stage 4 trend-template (mirror of Stage 2): price below MAs, MAs in death-cross, 200dma falling"),
+
+    ("33. Bearish – Stage 4 + Rel Weak", "mv_stage4_count", False,
+     lambda d: bcol("bearish_stage4_full"),
+     ["rel_return_6m_pct","rel_trend_up","rel_macd_above_signal",
+      "td_mtf_composite","mv_stage4_count"],
+     "Stage 4 PLUS relative underperformance vs SPY — clean mark-down with no index-driven rescue"),
+
+    ("34. Bearish – Canonical Setup", "rs_rank_max", True,
+     lambda d: bcol("bearish_setup_canonical"),
+     ["adr_pct_20d","prior_decline_3m_pct","surfing_10dma_below","surfing_20dma_below",
+      "stacked_ma_down_any","atr_rs"],
+     "Canonical short setup (mirror of Q-canonical): RS≤10 + ADR≥5 + stacked DOWN + 30%+ prior decline + surfing 10/20 from below"),
+
+    ("35. Bearish – Bear-Flag Consolidating", "prior_decline_3m_pct", True,
+     lambda d: bcol("bearish_setup_consolidating"),
+     ["adr_pct_20d","range_4w_pct","lower_highs_4w","prior_decline_1m_pct",
+      "surfing_below_10_or_20","stacked_ma_down_any"],
+     "Bear-flag candidate: 30%+ prior decline + tight 4w range + lower highs + ADR≥5 + stacked DOWN"),
+
+    ("36. Bearish – Climax Turning", "td_mtf_composite", True,
+     lambda d: bcol("bearish_climax_turning"),
+     ["mv_climax_top_warning","rs_rank_max","mv_dist_from_ath_pct","extended_w",
+      "td_bearish_exhaustion_strong","harmonic_bearish_consonance"],
+     "Sell-strength: parabolic climax-top + RS≥90 + TD MTF turning bearish — well-loved names just rolling"),
+
+    ("37. Bearish – TD13 Monthly Sell CD", "td_m_sell_cd", False,
+     lambda d: d["td_m_sell_cd"].fillna(0) >= 13,
+     ["td_m_sell_setup","td_w_sell_cd","td_mtf_composite",
+      "td_bearish_exhaustion_strong","mv_stage4_pass"],
+     "Monthly TD13 sell countdown complete — Demark's strongest topping signal"),
+
+    ("38. Bearish – Harmonic Consonance", "harmonic_consonance", True,
+     lambda d: bcol("harmonic_bearish_consonance"),
+     ["h_w_pattern","h_m_pattern","harmonic_score","h_w_direction","h_m_direction"],
+     "Bearish harmonic patterns confirmed on multiple timeframes — multi-TF turning point"),
+
+    ("39. Bearish – ATH-Climax Extended", "mv_dist_from_ath_pct", True,
+     lambda d: bcol("mv_at_ath") & bcol("extended_w") & bcol("mv_climax_top_warning"),
+     ["rs_rank_max","mom_6m","aqr_trend_score","td_mtf_composite","extended_w"],
+     "At ATH + weekly extended + climax-top warning — extreme late-stage exhaustion"),
 ]
 
 
@@ -346,6 +422,11 @@ DISPLAY_COL_ORDER = [
 
 for leg_idx, (lname, sortc, asc, mask_fn, extras, desc) in enumerate(LEGS):
     sheet_name = lname[:31]
+    # If sort column doesn't exist in the consolidated CSV yet (e.g., new
+    # signal pending a momentum_rank re-run), skip the leg gracefully.
+    if sortc not in df.columns:
+        print(f"  SKIP {lname}: sort column '{sortc}' missing from CSV")
+        continue
     ws = wb.add_worksheet(sheet_name)
     writer.sheets[sheet_name] = ws
 
@@ -371,7 +452,11 @@ for leg_idx, (lname, sortc, asc, mask_fn, extras, desc) in enumerate(LEGS):
     # Build the data: top N per region
     base = df.copy()
     if mask_fn is not None:
-        base = base[mask_fn(base)]
+        try:
+            base = base[mask_fn(base)]
+        except KeyError as e:
+            print(f"  SKIP {lname}: filter references missing column {e}")
+            continue
 
     rows_out = []
     for r in REGION_ORDER:
@@ -448,8 +533,8 @@ df["pre_run_score"] = (
     + safe("td_mtf_composite").apply(lambda x: 2 if x>=0.3 else 1 if x>=0 else 0)
 )
 
-ws = wb.add_worksheet("32. Composite – Pre-Run")
-writer.sheets["32. Composite – Pre-Run"] = ws
+ws = wb.add_worksheet("40. Composite – Pre-Run")
+writer.sheets["40. Composite – Pre-Run"] = ws
 ws.set_row(0, 28)
 ws.write(0, 0, "Pre-Run Probability Composite", wb.add_format({
     "bold": True, "font_name": "Cambria", "font_size": 14,
@@ -499,9 +584,92 @@ for region_name in REGION_ORDER:
 ws.freeze_panes(header_row+1, 1)
 
 
+# ============================================================
+# 7. Bearish composite sheet — top short candidates per region
+# ============================================================
+# The bearish_setup_score is computed inside momentum_rank's main(); if the
+# consolidated CSV pre-dates that change, fall back to a Harvard-side build.
+if "bearish_setup_score" not in df.columns:
+    df["bearish_setup_score"] = (
+        b("mv_stage4_pass").astype(int) * 4
+        + b("bearish_setup_canonical").astype(int) * 4
+        + b("bearish_setup_consolidating").astype(int) * 3
+        + b("bearish_climax_turning").astype(int) * 3
+        + b("mv_climax_top_warning").astype(int) * 2
+        + b("td_bearish_exhaustion_strong").astype(int) * 3
+        + b("td_bearish_exhaustion").astype(int) * 1
+        + (safe("td_m_sell_cd") >= 13).astype(int) * 4
+        + (safe("td_w_sell_cd") >= 13).astype(int) * 2
+        + (safe("td_m_sell_setup") >= 9).astype(int) * 2
+        + (safe("td_w_sell_setup") >= 9).astype(int) * 1
+        + (safe("td_mtf_composite") <= -0.5).astype(int) * 3
+        + (safe("td_mtf_composite") <= -0.3).astype(int) * 1
+        + b("harmonic_bearish_consonance").astype(int) * 3
+        + b("stacked_ma_down").astype(int) * 2
+        + b("weekly_stacked_ma_down").astype(int) * 2
+        + b("rs_laggard_strict").astype(int) * 2
+        + b("rs_laggard").astype(int) * 1
+        + b("prior_decline_30pct").astype(int) * 2
+        + b("lower_highs_4w").astype(int) * 1
+        + b("surfing_below_10_or_20").astype(int) * 1
+    )
+
+ws = wb.add_worksheet("41. Composite – Bearish Setup")
+writer.sheets["41. Composite – Bearish Setup"] = ws
+ws.set_row(0, 28)
+ws.write(0, 0, "Bearish Setup Composite (Mark-Down / Short Candidates)",
+         wb.add_format({"bold": True, "font_name": "Cambria", "font_size": 14,
+                        "font_color": "white", "bg_color": HARVARD_CRIMSON,
+                        "align": "left", "valign": "vcenter", "indent": 1}))
+ws.set_row(1, 24)
+ws.write(1, 0,
+         "Mirror of Pre-Run: Stage 4 + bear-flag + climax-turning + TD bearish + harmonic bearish + RS laggard. Top N per region.",
+         fmt_caption)
+
+cols_bear = ["Ticker","region","name","sector","_universe","last_close","rs_rank_max",
+             "mom_6m","aqr_trend_score","td_mtf_composite","mv_stage4_count",
+             "rel_return_6m_pct","adv","adv_slope_pct_wk","bearish_setup_score"]
+cols_bear = [c for c in cols_bear if c in df.columns or c == "Ticker"]
+header_row = 3
+for ci, c in enumerate(cols_bear):
+    ws.write(header_row, ci, c, fmt_header_top)
+ws.set_row(header_row, 22)
+ws.set_column(0, 0, 14); ws.set_column(1, 1, 8); ws.set_column(2, 2, 36)
+ws.set_column(3, 3, 22); ws.set_column(4, 4, 12)
+for ci in range(5, len(cols_bear)):
+    ws.set_column(ci, ci, 13)
+
+rr = header_row + 1
+for region_name in REGION_ORDER:
+    regsub = df[df["region"] == region_name]
+    if not len(regsub): continue
+    rsorted = regsub.sort_values("bearish_setup_score", ascending=False).head(15).reset_index()
+    rsorted = rsorted.rename(columns={"index":"Ticker"})
+    ws.merge_range(rr, 0, rr, len(cols_bear)-1,
+                    f"  {region_name}  (Top {len(rsorted)} by bearish_setup_score)",
+                    fmt_region_band)
+    ws.set_row(rr, 20)
+    rr += 1
+    for i, row in rsorted.iterrows():
+        even = i % 2 == 0
+        for ci, c in enumerate(cols_bear):
+            v = row.get(c)
+            if c in ("Ticker","region","name","sector","_universe","_ccy"):
+                f = fmt_body_text if even else fmt_body_text_alt
+            else:
+                f = fmt_body_num if even else fmt_body_num_alt
+            if pd.isna(v):
+                ws.write(rr, ci, "", f)
+            else:
+                ws.write(rr, ci, v, f)
+        rr += 1
+    rr += 1
+ws.freeze_panes(header_row+1, 1)
+
+
 writer.close()
 print(f"\nWrote harvard_workbook.xlsx")
 print(f"  Overview sheet")
 print(f"  + {len(LEGS)} measure-leg sheets")
-print(f"  + 1 composite sheet (Pre-Run)")
-print(f"  Total: {len(LEGS)+2} sheets, ~{TOP_N_PER_REGION*8} rows per leg")
+print(f"  + 2 composite sheets (Pre-Run + Bearish Setup)")
+print(f"  Total: {len(LEGS)+3} sheets, ~{TOP_N_PER_REGION*8} rows per leg")
