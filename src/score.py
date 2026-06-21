@@ -43,10 +43,44 @@ SCORE_RULES: dict[str, Any] = {
     "d11_consensus_ebitda_cagr":    lambda v: 2 if v is not None and v >= 30 else (1 if v is not None and v >= 10 else 0),
     "d13_altman_z":                 lambda v: 2 if v is not None and v > 2.9 else (1 if v is not None and v >= 1.8 else 0),
     "d14_liquidity_quarters":       lambda v: 2 if v is not None and v > 6 else (1 if v is not None and v >= 2 else 0),
+    # ---- Klarman additions (process_improvements.md §A) ----
+    # Lower sell-side coverage = more contrarian, better margin of safety.
+    "d20_crowd_check_analysts":     lambda v: 2 if v is not None and v <= 3 else (1 if v is not None and v <= 8 else 0),
+    # Boolean: True if lead underwriter on a recent capital raise is
+    # also covering the stock with a Buy rating. Structural conflict
+    # contaminates consensus inputs.
+    "d21_sellside_conflict":        lambda v: 0 if v is True else (2 if v is False else 1),
+    # ---- Walker addition (process_improvements.md §E) ----
+    # Days since deal.date — 30-180 day window catches the maximum
+    # info-asymmetry zone (index/screen rebalance lag).
+    "d22_days_since_recap":         lambda v: 2 if v is not None and 30 <= v <= 180 else (1 if v is not None and v < 365 else 0),
 }
+
+# Red-flag checklist. Existing 11 + 3 new from Moyer (Distressed Debt
+# Analysis). See process_improvements.md §C.
+EXPECTED_RED_FLAGS = [
+    "parallel_pipe_below_rights", "asymmetric_voting",
+    "backstop_warrants_below_terp", "dip_to_exit_control_transfer",
+    "springing_maturity_inside_24m", "stub_under_10pct_no_warrants",
+    "insider_indemnity_survives", "insider_net_seller",
+    "state_backstop_conditional", "refiled_within_12m",
+    "new_money_irr_above_50pct",
+    # ---- Moyer additions ----
+    "mfn_below_us",                  # MFN clause leaves us above the anchor
+    "fiduciary_out_overly_tight",    # Target board can't accept a topping bid
+    "springing_covenant",            # Beyond springing maturity — covenants flip
+]
 
 REQUIRED_TOP_LEVEL = ["ticker", "name", "bucket", "archetype", "state", "tier"]
 TIER1_REQUIREMENTS = ["catalysts", "waterfall", "pre_mortem", "kill_criteria", "anchor"]
+
+# Tier-1 diligence-depth additions (process_improvements.md §B, §D, §G).
+# Surfaced as WARNINGS not errors so they don't block existing YAMLs.
+TIER1_DILIGENCE_DEPTH = [
+    "consensus_pricing",     # Marks "what does the market need to believe"
+    "catalyst_independence", # Voss multi-catalyst independence score
+    "expert_calls",          # Expert-network channel-check log
+]
 
 
 # -- loading and validation ---------------------------------------------------
@@ -101,6 +135,24 @@ def validate(d: dict, path: Path) -> tuple[list[str], list[str]]:
             warnings.append(
                 f"Tier 1 has {len(unverified)} unverified deal fields; sizing blocked at full conviction"
             )
+
+        # Diligence-depth fields (process_improvements.md). Warnings, not
+        # errors — additive over time as we back-fill the older YAMLs.
+        for f in TIER1_DILIGENCE_DEPTH:
+            if not d.get(f):
+                warnings.append(
+                    f"Tier 1 missing diligence-depth block: {f}"
+                )
+
+        # Expert-call freshness: Tier 1 + core should have >= 3 calls
+        # within the last 90 days.
+        if d.get("state") == "core":
+            calls = d.get("expert_calls") or []
+            if len(calls) < 3:
+                warnings.append(
+                    f"core Tier 1 has only {len(calls)} expert calls "
+                    "logged (target: >= 3 per process_improvements.md §G)"
+                )
 
     # State ↔ tier coherence
     state = d.get("state")

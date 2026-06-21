@@ -67,8 +67,17 @@ scorecard:
   d9_alignment_gap: null
   d9b_anchor_premium_to_recap: null
   d11_consensus_ebitda_cagr: 30
+  d11_consensus_ebitda_cagr_lo: 15
+  d11_consensus_ebitda_cagr_hi: 45
   d13_altman_z: null
   d14_liquidity_quarters: 6
+  # ---- Klarman additions ----
+  d20_crowd_check_analysts: 2     # Microcap; ~2 sell-side analysts cover
+  d21_sellside_conflict: false    # No recent capital raise, no underwriter conflict
+  # ---- Walker addition ----
+  d22_days_since_recap: 660       # 2024-07-31 → 2026-06-21; well past the
+                                  # 30-180d zone — premium has eroded but the
+                                  # cash-floor thesis is structural, not arb
 
 catalysts:
   - event: "FY2026 revenue trajectory tracking toward €500m FY2027"
@@ -143,7 +152,46 @@ red_flags:
   state_backstop_conditional: false
   refiled_within_12m: false
   new_money_irr_above_50pct: false
+  # ---- Moyer additions (process_improvements.md §C) ----
+  mfn_below_us: false             # No MFN clause; safeguard cap stack is clean
+  fiduciary_out_overly_tight: false  # N/A — no public bid currently
+  springing_covenant: false       # No covenant overhang post-recap
   _watch: "Microcap illiquidity is the practical constraint, not a structural red flag"
+
+# ---- Marks consensus-pricing block (process_improvements.md §B) ----
+# What does the market need to believe at current price?
+consensus_pricing:
+  current_cap_eur_m: 25
+  implied_normalised_ev_ebitda: 0.4     # ~€10m EV vs €60m EBITDA = 0.16x
+                                         # but after netting €52m cash, the
+                                         # listed entity trades for <0.5x EBITDA
+  implied_ebitda_market_expects_eur_m: 30  # i.e. half of reported, implying
+                                            # FY26 revenue stagnation
+  gap_to_our_base_pct: 50               # Base case assumes €450m FY27 rev /
+                                         # 23% EBITDA = ~€100m EBITDA — 3x what
+                                         # current price implies
+  source: "Bloomberg consensus + management plan + author calc"
+
+# ---- Voss multi-catalyst independence (process_improvements.md §D) ----
+# Tier 1 promotion requires independence >= 2 — i.e. at least two
+# catalysts that fire on independent triggers.
+catalyst_independence:
+  independent_pairs: 4              # (revenue trajectory) vs (margin expansion)
+                                    # vs (Niel/Lévy strategic action) vs (special
+                                    # dividend) — all four resolve on
+                                    # independent triggers
+  shared_dependencies: 1            # (revenue & margin) both depend on
+                                    # underlying digital-ad demand; counted as
+                                    # one shared dependency
+  net_independence: 3               # 4 pairs - 1 shared = 3
+  notes: "All four catalysts can fire independently. The trajectory and margin
+    catalysts share the digital-ad cycle dependency but their proximate triggers
+    (revenue print vs cost structure) are distinct."
+
+# ---- Expert-call channel-check log (process_improvements.md §G) ----
+# Tier 1 + core requires >= 3 calls; the audit logs missing.
+expert_calls: []                    # TBD; not yet sized at full conviction;
+                                    # build expert-call cadence pre-promotion
 
 kill_criteria:
   - "FY2026 revenue down >5% (suggests trajectory off target by ~€100m to plan)"

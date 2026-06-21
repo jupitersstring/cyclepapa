@@ -1,10 +1,10 @@
-# Generated screen (2026-06-19)
+# Generated screen (2026-06-21)
 
 Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit.
 
 | Tier | Ticker | Name | Bucket·Arch | Quant | Triang | EV× | EV/DD | ¼-Kelly | Active red flags |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | **LOCAL** | Solocal Group | A·E+A1 | 5/8 | 3+0p / 3 | 4.04 | 26.92 | 10.0% | — |
+| 1 | **LOCAL** | Solocal Group | A·E+A1 | 9/14 | 3+0p / 3 | 4.04 | 26.92 | 10.0% | — |
 | 1 | **LAC** | Lithium Americas | A·A2 | 5/6 | 3+0p / 3 | 3.10 | 5.17 | 10.0% | — |
 | 1 | **UREE** | USA Rare Earth | A·A2 | 5/6 | 3+0p / 3 | 2.71 | 4.17 | 10.0% | — |
 | 1 | **WLN** | Worldline | A·A1 | 5/10 | 2+1p / 3 | 2.62 | 4.37 | 10.0% | — |
@@ -60,10 +60,76 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 
 ## Diagnostics
 
+### 241560.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+
+### ELUX-B.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+
+### ETL.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+
+### FLG.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+
+### GTCO.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+
+### HE.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+
 ### LAC.yaml
 - ⚠️  warning: Tier 1 has 11 unverified deal fields; sizing blocked at full conviction
-- ⚠️  warning: stale: last history entry 124 days ago
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+- ⚠️  warning: stale: last history entry 126 days ago
+
+### LOCAL.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+
+### MP.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+
+### SAB.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+
+### TKA.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+
+### UREE.yaml
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
 
 ### WLN.yaml
 - ⚠️  warning: Tier 1 has 1 unverified deal fields; sizing blocked at full conviction
+- ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
+- ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
+- ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
+- ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
 
