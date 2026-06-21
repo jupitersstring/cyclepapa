@@ -1,0 +1,19 @@
+{
+  "accession": "027731IPE150620260132498384-18",
+  "cik": "",
+  "cnpj": "07.682.638/0001-07",
+  "cvm_code": "27731",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · Celebração de aditivo ao Contrato de Concessão",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "CONCESSIONÁRIA DA LINHA 4 DO METRÔ DE SÃO PAULO S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534794&numSequencia=1059500&numVersao=1"
+}

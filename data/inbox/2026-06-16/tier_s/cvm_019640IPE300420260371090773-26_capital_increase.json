@@ -1,0 +1,19 @@
+{
+  "accession": "019640IPE300420260371090773-26",
+  "cik": "",
+  "cnpj": "47.509.120/0001-82",
+  "cvm_code": "19640",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Assembleia · AGO/E · Aumento do Capital Social (inciso I, art. 166 da Lei 6404)||Destinação dos Resultados||Eleição dos membros do Conselho de Administração||Re",
+  "form_code": "AGO/E",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL",
+  "query_label": "tier_s.capital_increase",
+  "query_note": "Aumento do Capital Social — capital increase / rights issue",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534896&numSequencia=1059602&numVersao=3"
+}

@@ -1,0 +1,19 @@
+{
+  "accession": "001210IPE180620260180420208-75",
+  "cik": "",
+  "cnpj": "92.702.067/0001-96",
+  "cvm_code": "1210",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Fato Relevante · Renegociação do Contrato FOPAG Estado RS 2026",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "BANCO DO ESTADO DO RIO GRANDE DO SUL SA",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536202&numSequencia=1060908&numVersao=1"
+}

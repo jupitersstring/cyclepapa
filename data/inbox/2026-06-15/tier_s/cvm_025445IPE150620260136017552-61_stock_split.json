@@ -1,0 +1,19 @@
+{
+  "accession": "025445IPE150620260136017552-61",
+  "cik": "",
+  "cnpj": "26.659.061/0001-59",
+  "cvm_code": "25445",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Aviso aos Acionistas · Outros avisos · Aviso aos Acionistas - Grupamento de Ações",
+  "form_code": "Outros avisos",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "MPM CORPÓREOS S.A.",
+  "query_label": "tier_s.stock_split",
+  "query_note": "Grupamento / Desdobramento — reverse split / split",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534418&numSequencia=1059124&numVersao=1"
+}

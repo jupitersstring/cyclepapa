@@ -1,0 +1,19 @@
+{
+  "accession": "014443IPE150620260154560108-93",
+  "cik": "",
+  "cnpj": "43.776.517/0001-80",
+  "cvm_code": "14443",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · Mudança de Diretoria",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "CIA SANEAMENTO BÁSICO ESTADO SÃO PAULO",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534737&numSequencia=1059443&numVersao=1"
+}

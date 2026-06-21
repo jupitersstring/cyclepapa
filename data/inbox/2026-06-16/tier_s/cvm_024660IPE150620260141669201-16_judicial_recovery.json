@@ -1,0 +1,19 @@
+{
+  "accession": "024660IPE150620260141669201-16",
+  "cik": "",
+  "cnpj": "01.107.327/0001-20",
+  "cvm_code": "24660",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Informações de Companhias em Recuperação Judicial ou Extrajudicial · Sentenças · Acordão Homologação do Plano de RE",
+  "form_code": "Sentenças",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "BBM LOGÍSTICA S.A.",
+  "query_label": "tier_s.judicial_recovery",
+  "query_note": "Recuperação Judicial — Brazil's Chapter 11 equivalent",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535343&numSequencia=1060049&numVersao=1"
+}

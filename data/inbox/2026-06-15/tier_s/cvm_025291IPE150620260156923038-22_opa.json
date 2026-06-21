@@ -1,0 +1,19 @@
+{
+  "accession": "025291IPE150620260156923038-22",
+  "cik": "",
+  "cnpj": "12.091.809/0001-55",
+  "cvm_code": "25291",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · Suspensão Temporária da OPA e Apresentação de Recurso ao Colegiado da CVM pela Ofertante",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "BRAVA ENERGIA S.A.",
+  "query_label": "tier_s.opa",
+  "query_note": "OPA — Oferta Pública de Aquisição (tender offer)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534873&numSequencia=1059579&numVersao=1"
+}

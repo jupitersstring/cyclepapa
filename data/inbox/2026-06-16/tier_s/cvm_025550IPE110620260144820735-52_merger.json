@@ -1,0 +1,19 @@
+{
+  "accession": "025550IPE110620260144820735-52",
+  "cik": "",
+  "cnpj": "11.421.994/0001-36",
+  "cvm_code": "25550",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Reunião da Administração · Conselho de Administração · Incorporação da Vital Holding",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "ORIZON VALORIZAÇÃO DE RESÍDUOS S.A.",
+  "query_label": "tier_s.merger",
+  "query_note": "Incorporação — merger by absorption",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535363&numSequencia=1060069&numVersao=1"
+}

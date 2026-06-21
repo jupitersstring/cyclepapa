@@ -1,0 +1,19 @@
+{
+  "accession": "021067IPE160620260185087626-96",
+  "cik": "",
+  "cnpj": "12.049.631/0001-84",
+  "cvm_code": "21067",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Fato Relevante · Programa de Recompra - Buyback Program",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "MOURA DUBEUX ENGENHARIA S/A",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535342&numSequencia=1060048&numVersao=1"
+}

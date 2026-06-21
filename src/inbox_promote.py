@@ -96,6 +96,10 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "controlling_shareholder", "third_party_allotment", "public_offering",
     # ---- PACER / CourtListener labels (pacer_poll.py) ----
     "bankruptcy_11", "bankruptcy_15",
+    # ---- Brazilian CVM labels (cvm_poll.py) ----
+    "judicial_recovery", "extrajudicial_recovery", "bankruptcy_br",
+    "opa", "merger", "capital_increase", "corp_reorg",
+    "material_fact", "stock_split",
 }
 
 

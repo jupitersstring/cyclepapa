@@ -1,0 +1,19 @@
+{
+  "accession": "021008IPE180620260133996289-14",
+  "cik": "",
+  "cnpj": "08.764.621/0001-53",
+  "cvm_code": "21008",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-19",
+  "form": "Fato Relevante · Liquidação da oferta de permuta e prorrogação de prazo",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "GENERAL SHOPPING E OUTLETS DO BRASIL BRASIL S.A.",
+  "query_label": "tier_s.liquidation",
+  "query_note": "Liquidação — formal liquidation",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536355&numSequencia=1061061&numVersao=1"
+}

@@ -1,0 +1,19 @@
+{
+  "accession": "009539IPE180620260154087381-26",
+  "cik": "",
+  "cnpj": "88.613.658/0001-10",
+  "cvm_code": "9539",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Assembleia · AGE · Resgate das ações remanescentes em circulação após a conclusão da OPA",
+  "form_code": "AGE",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "PETTENATI S.A. INDUSTRIA TEXTIL",
+  "query_label": "tier_s.opa",
+  "query_note": "OPA — Oferta Pública de Aquisição (tender offer)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536296&numSequencia=1061002&numVersao=1"
+}

@@ -1,0 +1,19 @@
+{
+  "accession": "027626IPE170620260139668909-15",
+  "cik": "",
+  "cnpj": "52.017.473/0001-03",
+  "cvm_code": "27626",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Fato Relevante · Aprovação da Incorporação da Andorinha Energia Ltda.||Grupamento das Ações",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "AZEVEDO & TRAVASSOS ENERGIA S.A.",
+  "query_label": "tier_s.merger",
+  "query_note": "Incorporação — merger by absorption",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535847&numSequencia=1060553&numVersao=1"
+}

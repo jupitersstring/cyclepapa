@@ -1,0 +1,19 @@
+{
+  "accession": "020931IPE160620260199461173-24",
+  "cik": "",
+  "cnpj": "67.620.377/0001-14",
+  "cvm_code": "20931",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Reunião da Administração · Conselho de Administração · (i) a homologação da quantidade de bônus de subscrição exercida pelos seus titulares entre os dias 15 de ",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "MINERVA S/A",
+  "query_label": "tier_s.capital_increase",
+  "query_note": "Aumento do Capital Social — capital increase / rights issue",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535177&numSequencia=1059883&numVersao=1"
+}

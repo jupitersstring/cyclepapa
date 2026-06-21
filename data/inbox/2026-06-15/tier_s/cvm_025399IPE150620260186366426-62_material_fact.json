@@ -1,0 +1,19 @@
+{
+  "accession": "025399IPE150620260186366426-62",
+  "cik": "",
+  "cnpj": "10.139.870/0001-08",
+  "cvm_code": "25399",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · Aquisição de Participação Relevante",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "NEOGRID PARTICIPACÕES S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534377&numSequencia=1059083&numVersao=1"
+}

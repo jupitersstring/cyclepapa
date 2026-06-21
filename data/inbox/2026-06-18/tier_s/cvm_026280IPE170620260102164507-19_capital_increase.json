@@ -1,0 +1,19 @@
+{
+  "accession": "026280IPE170620260102164507-19",
+  "cik": "",
+  "cnpj": "25.369.840/0001-57",
+  "cvm_code": "26280",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Assembleia · AGE · Aumento do Capital Social (inciso I, art. 166 da Lei 6404)",
+  "form_code": "AGE",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "COMERC ENERGIA S.A.",
+  "query_label": "tier_s.capital_increase",
+  "query_note": "Aumento do Capital Social — capital increase / rights issue",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535910&numSequencia=1060616&numVersao=1"
+}

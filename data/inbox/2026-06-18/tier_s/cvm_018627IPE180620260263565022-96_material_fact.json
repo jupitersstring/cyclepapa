@@ -1,0 +1,19 @@
+{
+  "accession": "018627IPE180620260263565022-96",
+  "cik": "",
+  "cnpj": "76.484.013/0001-45",
+  "cvm_code": "18627",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Fato Relevante · Eleição e Recondução da Diretoria Executiva",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "CIA. DE SANEAMENTO DO PARANÁ - SANEPAR",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536287&numSequencia=1060993&numVersao=2"
+}

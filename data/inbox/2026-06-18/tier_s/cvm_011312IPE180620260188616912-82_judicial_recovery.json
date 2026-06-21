@@ -1,0 +1,19 @@
+{
+  "accession": "011312IPE180620260188616912-82",
+  "cik": "",
+  "cnpj": "76.535.764/0001-43",
+  "cvm_code": "11312",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Informações de Companhias em Recuperação Judicial ou Extrajudicial · Outros documentos · Ata da Audiência para alienação da UPI Oi Soluções",
+  "form_code": "Outros documentos",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "OI S.A. - EM RECUPERAÇÃO JUDICIAL",
+  "query_label": "tier_s.judicial_recovery",
+  "query_note": "Recuperação Judicial — Brazil's Chapter 11 equivalent",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536286&numSequencia=1060992&numVersao=1"
+}

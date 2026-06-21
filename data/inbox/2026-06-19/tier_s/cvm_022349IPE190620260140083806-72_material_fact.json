@@ -1,0 +1,19 @@
+{
+  "accession": "022349IPE190620260140083806-72",
+  "cik": "",
+  "cnpj": "16.590.234/0001-76",
+  "cvm_code": "22349",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-19",
+  "form": "Fato Relevante · Esclarecimento sobre notícia divulgada na mídia",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "AZZAS 2154 S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536487&numSequencia=1061193&numVersao=1"
+}

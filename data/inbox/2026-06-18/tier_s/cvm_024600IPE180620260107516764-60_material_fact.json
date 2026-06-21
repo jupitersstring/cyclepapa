@@ -1,0 +1,19 @@
+{
+  "accession": "024600IPE180620260107516764-60",
+  "cik": "",
+  "cnpj": "61.186.680/0001-74",
+  "cvm_code": "24600",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Fato Relevante · Rerratificação FIDC INSS",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "BANCO BMG S/A",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536198&numSequencia=1060904&numVersao=1"
+}

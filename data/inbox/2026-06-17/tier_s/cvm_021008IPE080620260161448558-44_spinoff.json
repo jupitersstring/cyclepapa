@@ -1,0 +1,19 @@
+{
+  "accession": "021008IPE080620260161448558-44",
+  "cik": "",
+  "cnpj": "08.764.621/0001-53",
+  "cvm_code": "21008",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Reunião da Administração · Conselho de Administração · Ratificação de cisão parcial e incorporação de acervo cindido de subsidiárias||Ratificação de incorporaçã",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "GENERAL SHOPPING E OUTLETS DO BRASIL BRASIL S.A.",
+  "query_label": "tier_s.spinoff",
+  "query_note": "Cisão — demerger / spinoff",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535883&numSequencia=1060589&numVersao=1"
+}

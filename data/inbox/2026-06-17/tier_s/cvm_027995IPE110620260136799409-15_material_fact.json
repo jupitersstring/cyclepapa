@@ -1,0 +1,19 @@
+{
+  "accession": "027995IPE110620260136799409-15",
+  "cik": "",
+  "cnpj": "49.703.913/0001-63",
+  "cvm_code": "27995",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Fato Relevante · Acordo ou Contrato de Transferência do Controle Acionário",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "PLATÃO CAPITAL S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535693&numSequencia=1060399&numVersao=1"
+}

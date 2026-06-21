@@ -1,0 +1,19 @@
+{
+  "accession": "002437IPE140620260138674380-95",
+  "cik": "",
+  "cnpj": "00.001.180/0001-26",
+  "cvm_code": "2437",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-14",
+  "form": "Fato Relevante · Resgate das ações PNCs",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "AXIA ENERGIA S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534348&numSequencia=1059054&numVersao=1"
+}

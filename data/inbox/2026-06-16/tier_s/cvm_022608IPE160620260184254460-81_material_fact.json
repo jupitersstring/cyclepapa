@@ -1,0 +1,19 @@
+{
+  "accession": "022608IPE160620260184254460-81",
+  "cik": "",
+  "cnpj": "06.626.253/0001-51",
+  "cvm_code": "22608",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Fato Relevante · Aquisição de Ações de Emissão da Própria Companhia",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "EMPREENDIMENTOS PAGUE MENOS SA",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535180&numSequencia=1059886&numVersao=1"
+}

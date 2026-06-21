@@ -1,0 +1,19 @@
+{
+  "accession": "025496IPE160620260192950891-89",
+  "cik": "",
+  "cnpj": "02.635.522/0001-95",
+  "cvm_code": "25496",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Fato Relevante · Projeções Safra 2026/27",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "JALLES MACHADO S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535346&numSequencia=1060052&numVersao=1"
+}

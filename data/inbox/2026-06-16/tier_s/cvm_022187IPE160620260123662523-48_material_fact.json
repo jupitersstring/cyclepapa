@@ -1,0 +1,19 @@
+{
+  "accession": "022187IPE160620260123662523-48",
+  "cik": "",
+  "cnpj": "10.629.105/0001-68",
+  "cvm_code": "22187",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Fato Relevante · Produção do Quarto Poço de Wahoo",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "PRIO S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535182&numSequencia=1059888&numVersao=1"
+}

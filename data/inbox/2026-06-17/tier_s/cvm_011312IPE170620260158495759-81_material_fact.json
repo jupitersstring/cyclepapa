@@ -1,0 +1,19 @@
+{
+  "accession": "011312IPE170620260158495759-81",
+  "cik": "",
+  "cnpj": "76.535.764/0001-43",
+  "cvm_code": "11312",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Fato Relevante · Audiência para alienação da UPI Oi Soluções",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "OI S.A. - EM RECUPERAÇÃO JUDICIAL",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535829&numSequencia=1060535&numVersao=1"
+}

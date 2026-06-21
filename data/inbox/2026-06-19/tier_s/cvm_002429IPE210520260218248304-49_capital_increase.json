@@ -1,0 +1,19 @@
+{
+  "accession": "002429IPE210520260218248304-49",
+  "cik": "",
+  "cnpj": "92.791.243/0001-03",
+  "cvm_code": "2429",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-19",
+  "form": "Assembleia · AGE · Alterar Estatuto Social da Companhia, para refletir o número de ações em que se divide o capital social da Companhia, em razão do cancelament",
+  "form_code": "AGE",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "IRANI PAPEL E EMBALAGEM S.A.",
+  "query_label": "tier_s.capital_increase",
+  "query_note": "Aumento do Capital Social — capital increase / rights issue",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536385&numSequencia=1061091&numVersao=2"
+}

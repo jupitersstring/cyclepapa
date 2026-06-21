@@ -1,0 +1,19 @@
+{
+  "accession": "025461IPE150620260153868946-26",
+  "cik": "",
+  "cnpj": "31.553.627/0001-01",
+  "cvm_code": "25461",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · Deferimento de Recuperação Judicial",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "GRUPO TOKY S.A.",
+  "query_label": "tier_s.judicial_recovery",
+  "query_note": "Recuperação Judicial — Brazil's Chapter 11 equivalent",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534394&numSequencia=1059100&numVersao=1"
+}

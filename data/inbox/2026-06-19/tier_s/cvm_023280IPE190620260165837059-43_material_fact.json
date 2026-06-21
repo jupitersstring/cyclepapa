@@ -1,0 +1,19 @@
+{
+  "accession": "023280IPE190620260165837059-43",
+  "cik": "",
+  "cnpj": "75.609.123/0001-23",
+  "cvm_code": "23280",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-19",
+  "form": "Fato Relevante · 23ª Emissão de Debêntures da Unidas Locações e Serviços S.A.",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "UNIDAS LOCAÇÕES E SERVIÇOS S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536622&numSequencia=1061328&numVersao=1"
+}

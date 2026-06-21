@@ -1,0 +1,19 @@
+{
+  "accession": "007617IPE150620260136546785-15",
+  "cik": "",
+  "cnpj": "61.532.644/0001-15",
+  "cvm_code": "7617",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · Declaração de juros sobre capital próprio",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "ITAUSA S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534704&numSequencia=1059410&numVersao=1"
+}

@@ -1,0 +1,19 @@
+{
+  "accession": "025798IPE190620260132344524-39",
+  "cik": "",
+  "cnpj": "09.146.451/0001-06",
+  "cvm_code": "25798",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-19",
+  "form": "Fato Relevante · Emissão de Títulos e Valores Mobiliários",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "KALLAS INCORPORAÇÕES E CONSTRUÇÕES S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536637&numSequencia=1061343&numVersao=1"
+}

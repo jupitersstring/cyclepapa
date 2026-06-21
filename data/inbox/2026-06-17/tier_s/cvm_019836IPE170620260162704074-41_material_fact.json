@@ -1,0 +1,19 @@
+{
+  "accession": "019836IPE170620260162704074-41",
+  "cik": "",
+  "cnpj": "50.746.577/0001-15",
+  "cvm_code": "19836",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Fato Relevante · Alienação de propriedades do portfólio da Radar",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "COSAN S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535405&numSequencia=1060111&numVersao=1"
+}

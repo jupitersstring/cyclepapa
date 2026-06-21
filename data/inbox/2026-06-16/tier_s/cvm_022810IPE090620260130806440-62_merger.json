@@ -1,0 +1,19 @@
+{
+  "accession": "022810IPE090620260130806440-62",
+  "cik": "",
+  "cnpj": "07.401.436/0001-31",
+  "cvm_code": "22810",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Reunião da Administração · Conselho de Administração · Aprovação Incorporação Eldorado",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "ELDORADO BRASIL CELULOSE S.A.",
+  "query_label": "tier_s.merger",
+  "query_note": "Incorporação — merger by absorption",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535289&numSequencia=1059995&numVersao=1"
+}

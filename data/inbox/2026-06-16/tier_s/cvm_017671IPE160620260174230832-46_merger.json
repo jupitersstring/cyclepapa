@@ -1,0 +1,19 @@
+{
+  "accession": "017671IPE160620260174230832-46",
+  "cik": "",
+  "cnpj": "02.558.157/0001-62",
+  "cvm_code": "17671",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Reunião da Administração · Conselho de Administração · Incorporação Fibrasil",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "TELEFÔNICA BRASIL S.A.",
+  "query_label": "tier_s.merger",
+  "query_note": "Incorporação — merger by absorption",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535337&numSequencia=1060043&numVersao=1"
+}

@@ -1,0 +1,19 @@
+{
+  "accession": "020028IPE170620260129110004-57",
+  "cik": "",
+  "cnpj": "33.113.309/0001-47",
+  "cvm_code": "20028",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Reunião da Administração · Conselho de Administração · (i) o cancelamento de 2.000.000 de ações ordinárias nominativas e sem valor nominal em tesouraria||(ii) a",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "VALID SOLUÇÕES S.A.",
+  "query_label": "rev_pref.buyback",
+  "query_note": "Share buyback programme",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535703&numSequencia=1060409&numVersao=1"
+}

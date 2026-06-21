@@ -1,0 +1,19 @@
+{
+  "accession": "024880IPE160620260193766619-62",
+  "cik": "",
+  "cnpj": "00.389.481/0001-79",
+  "cvm_code": "24880",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Fato Relevante · Reorganização Societária - Venda de participação",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "LM TRANSPORTES INTERESTADUAIS SERVIÇOS E COMÉRCIO S.A.",
+  "query_label": "tier_s.corp_reorg",
+  "query_note": "Reorganização Societária — corporate reorganization",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535362&numSequencia=1060068&numVersao=1"
+}

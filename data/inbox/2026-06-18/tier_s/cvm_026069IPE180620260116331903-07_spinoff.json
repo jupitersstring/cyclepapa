@@ -1,0 +1,19 @@
+{
+  "accession": "026069IPE180620260116331903-07",
+  "cik": "",
+  "cnpj": "00.242.184/0001-04",
+  "cvm_code": "26069",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Fato Relevante · Celebração, Alteração ou Rescisão de Acordo de Acionistas",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "ARMAC LOCAÇÃO, LOGÍSTICA E SERVIÇOS S.A.",
+  "query_label": "tier_s.spinoff",
+  "query_note": "Cisão — demerger / spinoff",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536337&numSequencia=1061043&numVersao=1"
+}

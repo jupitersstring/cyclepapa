@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -9,6 +9,7 @@ help:
 	@echo "  ca-poll    — run SEDAR+ poller for Canadian special-situation filings (run hourly)"
 	@echo "  jp-poll    — run TDnet poller for Japanese TSE special-situation events"
 	@echo "  us-bankr-poll — CourtListener RECAP poller for US Chapter 11/15 filings"
+	@echo "  br-poll    — CVM IPE poller for Brazilian material-fact disclosures"
 	@echo "  universe-rr  — rank reward/risk across the full universe (REAL where YAML, PROXY otherwise)"
 	@echo "  workbook     — rebuild the Excel workbook from latest inputs"
 	@echo "  refresh      — full chain: pollers → promote → screen → rank → workbook"
@@ -46,6 +47,12 @@ jp-poll: audit
 us-bankr-poll: audit
 	python3 -m src.pacer_poll --days-back 1
 
+# Brazilian CVM IPE (material-fact) disclosure poller via dados.cvm.gov.br.
+# Free, weekly-refreshed ZIP archive. Closes the Brazil leg of the LatAm
+# gap (Argentina via universe; Brazil otherwise absent).
+br-poll: audit
+	python3 -m src.cvm_poll --days-back 1
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -81,7 +88,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll spinoff cluster-buys inbox-promote workbook
+refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll spinoff cluster-buys inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

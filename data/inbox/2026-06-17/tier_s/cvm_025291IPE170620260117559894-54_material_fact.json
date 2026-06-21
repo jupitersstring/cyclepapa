@@ -1,0 +1,19 @@
+{
+  "accession": "025291IPE170620260117559894-54",
+  "cik": "",
+  "cnpj": "12.091.809/0001-55",
+  "cvm_code": "25291",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Fato Relevante · Aprovação pelo CADE da Aquisição do Controle da Brava pela Ecopetrol",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "BRAVA ENERGIA S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535890&numSequencia=1060596&numVersao=1"
+}

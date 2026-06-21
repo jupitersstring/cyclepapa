@@ -1,0 +1,19 @@
+{
+  "accession": "018821IPE150620260157132614-22",
+  "cik": "",
+  "cnpj": "02.846.056/0001-97",
+  "cvm_code": "18821",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-15",
+  "form": "Fato Relevante · 11º Termo Aditivo - ViaQuatro",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "MOTIVA INFRAESTRUTURA DE MOBILIDADE S.A.",
+  "query_label": "tier_s.material_fact",
+  "query_note": "Fato Relevante — material-fact disclosure (8-K analogue)",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1534788&numSequencia=1059494&numVersao=1"
+}

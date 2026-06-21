@@ -1,0 +1,19 @@
+{
+  "accession": "011592IPE170620260107958223-84",
+  "cik": "",
+  "cnpj": "33.958.695/0001-78",
+  "cvm_code": "11592",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Reunião da Administração · Conselho de Administração · 6º Programa de Recompra de Ações",
+  "form_code": "Conselho de Administração",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "UNIPAR CARBOCLORO S.A.",
+  "query_label": "rev_pref.buyback",
+  "query_note": "Share buyback programme",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535704&numSequencia=1060410&numVersao=1"
+}

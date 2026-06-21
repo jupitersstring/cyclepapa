@@ -1,0 +1,19 @@
+{
+  "accession": "009067IPE190620260185763368-98",
+  "cik": "",
+  "cnpj": "60.651.809/0001-05",
+  "cvm_code": "9067",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-19",
+  "form": "Fato Relevante · Conversão e Grupamento das Ações da Companhia.",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "SUZANO HOLDING S.A.",
+  "query_label": "tier_s.stock_split",
+  "query_note": "Grupamento / Desdobramento — reverse split / split",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536371&numSequencia=1061077&numVersao=1"
+}

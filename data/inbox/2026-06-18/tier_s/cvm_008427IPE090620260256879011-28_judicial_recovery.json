@@ -1,0 +1,19 @@
+{
+  "accession": "008427IPE090620260256879011-28",
+  "cik": "",
+  "cnpj": "61.082.004/0001-50",
+  "cvm_code": "8427",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-18",
+  "form": "Assembleia · AGO/E · Constituição do Conselho Fiscal será feita após homologação da RJ||Demonstrações Financeiras será aprovada em nova AGO||Ratificação do Pedi",
+  "form_code": "AGO/E",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "MANUFATURA DE  BRINQUEDOS ESTRELA SA",
+  "query_label": "tier_s.judicial_recovery",
+  "query_note": "Recuperação Judicial — Brazil's Chapter 11 equivalent",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1536173&numSequencia=1060879&numVersao=2"
+}

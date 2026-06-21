@@ -1,0 +1,19 @@
+{
+  "accession": "016241IPE300420260213808015-09",
+  "cik": "",
+  "cnpj": "46.119.855/0001-37",
+  "cvm_code": "16241",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-17",
+  "form": "Assembleia · AGO/E · ago - a. Deliberação sobre as demons. financeiras relativas ao exer. social findo em 31/12/2025, acompanhadas do relatório da adm., do rela",
+  "form_code": "AGO/E",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "SOCIEDADE ABASTECIMENTO DE AGUA E SANEAMENTO SA",
+  "query_label": "tier_s.capital_increase",
+  "query_note": "Aumento do Capital Social — capital increase / rights issue",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535404&numSequencia=1060110&numVersao=2"
+}

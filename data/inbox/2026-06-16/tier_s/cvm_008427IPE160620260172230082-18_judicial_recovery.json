@@ -1,0 +1,19 @@
+{
+  "accession": "008427IPE160620260172230082-18",
+  "cik": "",
+  "cnpj": "61.082.004/0001-50",
+  "cvm_code": "8427",
+  "fetched_at": "2026-06-21T21:24:09.363831Z",
+  "filed": "2026-06-16",
+  "form": "Fato Relevante · deferiu o processamento da Recuperação Judicial da Companhia e das demais sociedades integrantes do Grupo Estrela,",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "BR",
+  "name": "MANUFATURA DE  BRINQUEDOS ESTRELA SA",
+  "query_label": "tier_s.judicial_recovery",
+  "query_note": "Recuperação Judicial — Brazil's Chapter 11 equivalent",
+  "source": "CVM-IPE",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1535170&numSequencia=1059876&numVersao=1"
+}
