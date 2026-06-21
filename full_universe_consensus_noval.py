@@ -31,6 +31,7 @@ from full_universe_consensus import (
     score_f144_layer,
     score_recent_incentive_layer,
     score_special_situations_layer,
+    score_turnaround_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -54,6 +55,7 @@ def main() -> int:
         "f144": score_f144_layer(layers, universe),
         "recent_incentive": score_recent_incentive_layer(layers, universe),
         "special_situations": score_special_situations_layer(layers, universe),
+        "turnaround": score_turnaround_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -93,6 +95,7 @@ def main() -> int:
             "f144_pts": layer_scores["f144"].get(tk, 0),
             "recent_incentive_pts": layer_scores["recent_incentive"].get(tk, 0),
             "special_sits_pts": layer_scores["special_situations"].get(tk, 0),
+            "turnaround_pts": layer_scores["turnaround"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 

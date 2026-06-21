@@ -221,6 +221,26 @@ def score_special_situations_layer(layers: dict, universe: set) -> dict:
     return out
 
 
+def score_turnaround_layer(layers: dict, universe: set) -> dict:
+    """Bollenbach-style turnaround-executive signal:
+       senior turnaround talent voluntarily into a struggling company
+       with an equity-heavy compensation package. Sourced from
+       turnaround_signal.csv (built by turnaround_executive_leg.py)."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "turnaround_signal.csv"
+    if f.exists():
+        for r in csv.DictReader(f.open()):
+            tk = r.get("ticker")
+            if tk in out:
+                try:
+                    s = float(r["score"])
+                    if s > out[tk]:
+                        out[tk] = s
+                except Exception:
+                    pass
+    return out
+
+
 # ----------------------------------------------------------------------
 # Universe build
 # ----------------------------------------------------------------------
@@ -243,6 +263,7 @@ def main() -> int:
         "f144": score_f144_layer(layers, universe),
         "recent_incentive": score_recent_incentive_layer(layers, universe),
         "special_situations": score_special_situations_layer(layers, universe),
+        "turnaround": score_turnaround_layer(layers, universe),
     }
     print(f"Layers scored: {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -294,6 +315,7 @@ def main() -> int:
             "f144_pts": layer_scores["f144"].get(tk, 0),
             "recent_incentive_pts": layer_scores["recent_incentive"].get(tk, 0),
             "special_sits_pts": layer_scores["special_situations"].get(tk, 0),
+            "turnaround_pts": layer_scores["turnaround"].get(tk, 0),
         })
 
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
