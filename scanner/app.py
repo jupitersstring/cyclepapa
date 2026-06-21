@@ -189,6 +189,11 @@ def main_cli() -> None:
                                     "godley_warning"]]
           .to_string(index=False))
 
+    print("\n=== REGIME OVERLAY (Keen / Dalio / Marathon / Napier / NBFI) ===")
+    cols = ["country", "dalio_stage", "keen_accel", "marathon_squeeze",
+            "napier_repression", "nbfi_flag", "opportunity", "regime"]
+    print(scored[cols].head(15).to_string(index=False))
+
 
 if __name__ == "__main__":
     try:

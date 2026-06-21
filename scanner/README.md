@@ -66,6 +66,7 @@ savers; `*= 0.5` for MNC-distorted entrepôts) live in `composite.ARCHETYPE_TILT
 | `kalecki_levy.py` | Profit-equation components + named-policy registry (the new leg) |
 | `composite.py` | Opportunity score, archetype tilts, regime classifier |
 | `seven_processes.py` | Godley's 1999 diagnostic as a live country-level flag count |
+| `regime.py` | Practitioner overlay: Keen accelerator + Dalio debt-cycle stage + Marathon capex-squeeze + Napier financial-repression + NBFI sub-sector flag |
 | `app.py` | Streamlit dashboard + CLI fallback |
 
 ## Run
@@ -133,3 +134,29 @@ F.133 RoW); identity `NAFA - NIL ≈ S - I` holds up to statistical discrepancy.
   Levy WP 1105, Jan 2026. https://www.levyinstitute.org/wp-content/uploads/2026/01/wp_1105.pdf
 - Levy Forecasting Center, *How High Tariffs, Trade War, and Uncertainty Will
   Impact Profits*, June 2025 (current bearish profit-cycle call).
+
+### Practitioner overlay sources (regime.py)
+
+- Steve Keen, *How He Saw It Coming, and Others Did Not* (INET, 2025);
+  "Gaslighting us on private debt" (Substack, Nov 2025) — credit accelerator
+  is the load-bearing 2nd-derivative variable, not the impulse.
+- Ray Dalio, *Principles for Navigating Big Debt Crises* (2018) — six-stage
+  long-term debt cycle, 48 historical case studies; stage determines the
+  meaning of the same Opportunity score.
+- Edward Chancellor (ed.), *Capital Returns: Investing Through the Capital
+  Cycle* (Marathon Asset Management, 2002–15) — multi-year capex
+  contraction is the contrarian bull signal for incumbents (oil 2014→2020,
+  mining 2010→2020, semis equipment 2018→2022 case studies).
+- Russell Napier, *We Are Headed Towards a System of National Capitalism*
+  (themarket.ch interview); Hidden Forces podcast 2024–2025 — 15–20 year
+  leitmotif of governments directing captive savings to defense / energy /
+  reshoring; real-deposit-rate compression is the actionable proxy.
+- Lyn Alden, June 2026 newsletter *The Wild West*; March 2026 *A Flywheel
+  of Chaos* — fiscal-dominance lens, three-pillar portfolio mapping to
+  inflation regime quadrants.
+- Brad Setser, *Follow the Money* (CFR), Feb 2026 China backdoor
+  intervention $100bn; *China's Data Still Doesn't Add Up* — F-archetype
+  BoP data needs a credibility haircut (~$500bn hidden surplus).
+- Bank of England staff WP, *An Anatomy of the 2022 Gilt Market Crisis*
+  (2023) — LDI/pension sub-sector concentration was the under-tracked
+  variable; motivates the NBFI flag.

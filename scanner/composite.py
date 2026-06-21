@@ -33,6 +33,7 @@ import pandas as pd
 
 from . import transforms as T
 from . import kalecki_levy as KL
+from . import regime as R
 
 
 WEIGHTS = {
@@ -119,20 +120,29 @@ def score_panel(panel: pd.DataFrame, archetype_of: dict[str, str]) -> pd.DataFra
 
     out = z.copy()
     out["opportunity"] = contrib.sum(axis=1)
+
+    # --- Regime overlay (Keen / Dalio / Marathon / Napier / NBFI) ---------
+    overlay = R.overlay(panel)
+    out = out.join(overlay, how="left")
+
+    # Marathon capex-squeeze enters as an explicit additive overlay (small
+    # weight: it's a contrarian *micro* signal not a macro signal).
+    out["opportunity_raw"] = out["opportunity"]
+    out["opportunity"] = out["opportunity"] + 0.10 * out["marathon_squeeze"].fillna(0.0)
+    # Napier repression amplifies bull setups in C-archetype countries where
+    # captive savings are being deployed (joins the institutional leg morally).
+    out["opportunity"] = out["opportunity"] + 0.05 * (
+        out["napier_repression"].fillna(0.0) - 1.0  # de-mean
+    )
+
     out["percentile"] = T.cross_sectional_percentile(out["opportunity"])
-    out["regime"] = out["opportunity"].apply(_regime)
+    out["regime"] = out.apply(
+        lambda r: R.stage_adjusted_regime(r["opportunity"], r["dalio_stage"]),
+        axis=1,
+    )
     out["note"] = panel["note"]
     out["estimated"] = panel.get("estimated", False)
     return out.sort_values("opportunity", ascending=False)
-
-
-def _regime(score: float, bull: float = 0.15, bear: float = -0.15) -> str:
-    """Label a regime. In a live time series, require >=2 consecutive periods."""
-    if score >= bull:
-        return "bull"
-    if score <= bear:
-        return "bear"
-    return "neutral"
 
 
 def top_opportunities(scored: pd.DataFrame, n: int = 5) -> pd.DataFrame:
