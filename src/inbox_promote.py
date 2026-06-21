@@ -254,16 +254,21 @@ def identifier_for_row(rec: dict) -> str:
 
 
 def build_row(rec: dict) -> str:
-    """Build a markdown table row for the promoted inbox hit."""
+    """Build a markdown table row for the promoted inbox hit. Includes
+    the poller source (ASX / CVM-IPE / SEDAR+ / TDnet / NSM / EDGAR /
+    CourtListener-RECAP) in the notes so the universe_screen.py
+    per-row region detector can route the row correctly."""
     name = rec.get("name") or rec.get("ticker") or "?"
     ticker = identifier_for_row(rec)
     form = rec.get("form", "?")
     accession = rec.get("accession", "?")
     filed = rec.get("filed") or rec.get("_day", "?")
     query_note = rec.get("query_note") or rec.get("query_label", "")
+    src = rec.get("source", "")
+    src_prefix = f"[{src}] " if src else ""
     notes = (
-        f"Auto-promoted from {form} filing {filed} (acc {accession}); "
-        f"{query_note}; verify primary doc before scoring"
+        f"{src_prefix}Auto-promoted from {form} filing {filed} "
+        f"(acc {accession}); {query_note}; verify primary doc before scoring"
     )
     return f"| {name} | {ticker} | ○ | A | {notes} |"
 

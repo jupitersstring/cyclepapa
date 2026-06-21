@@ -349,35 +349,79 @@ def infer_region(section: str, top_section: str = "") -> str:
 # section, which mixes hits across jurisdictions).
 _RX_JAPANESE = re.compile(r"[぀-ヿ一-鿿]")
 _RX_TICKER_JP = re.compile(r"^[0-9]{4}[A-Z0-9]?$")  # TSE 4-digit + check
-_RX_TICKER_LSE_PLC = re.compile(r"\b(PLC|LIMITED|HOLDINGS PLC)\b", re.I)
+_RX_PLC = re.compile(r"\bPLC\b", re.I)  # UK only (AU/NZ/IN use LIMITED)
+_RX_NSM_UUID = re.compile(
+    r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b",
+    re.I,
+)
 _RX_TICKER_CN_HK = re.compile(r"^\d{3,4}$|^HK[\s:]")
-_RX_SEDAR_ID = re.compile(r"\b[0-9]{9}\b")  # SEDAR+ issuer number
-_RX_TICKER_TSE = re.compile(r"^TSE[: ]|^[0-9]{4}\.T$")
-_RX_TICKER_KRX = re.compile(r"^KRX[: ]|^[0-9]{6}\.KS$|^A?[0-9]{6}$")
+_RX_SEDAR_ID = re.compile(r"\b[0-9]{9}\b")
+_RX_EDGAR_ACC = re.compile(r"\b\d{10}-\d{2}-\d{6}\b")
+_RX_ASX_HINT = re.compile(r"\b(ASX|Australian|Australia|NZ\s|"
+                          r"Appendix\s+3[XYZ]|substantial\s+holder|"
+                          r"scheme\s+(?:booklet|implementation))\b", re.I)
+_RX_CVM_HINT = re.compile(r"\b(CVM|IPE|Recupera|Fato\s+Relevante|"
+                          r"Cisão|OPA|Cisao)\b", re.I)
+
+
+# Accession-format fingerprints for each poller (handle existing rows
+# whose notes don't carry an explicit [source] tag).
+_RX_ACC_ASX = re.compile(r"\b\d{4}-\d{8}-\d?[A-Z]?\d{6,}\b")
+_RX_ACC_TDNET = re.compile(r"\b1401\d{14,16}\b")            # 14-18 digit
+_RX_ACC_CVM = re.compile(r"\b\d{6}IPE\d{6,}-\d{1,3}\b")
+_RX_ACC_PACER = re.compile(r"\bdocket-\d{7,}\b")
+_RX_ACC_SEDAR = re.compile(r"\b\d{6}_\d{1,2}_[A-Za-z]{3}_\d{4}_\d{4}_EDT\b|"
+                           r"\b00005\d{4}\b")               # SEDAR issuer #
 
 
 def infer_region_from_row(name: str, ticker: str, notes: str) -> str:
     """Per-row region inference for auto-promoted rows where the section
-    header gave no signal. Falls back to Unspecified."""
+    header gave no signal. Explicit [source] tag wins; then accession-
+    format fingerprints; then content keywords; finally PLC name suffix.
+    Falls back to Unspecified."""
     combined = f"{name} {ticker} {notes}"
     # Japanese characters anywhere → Japan
     if _RX_JAPANESE.search(combined):
         return "Japan"
-    # 4-digit TSE code in ticker column
     if _RX_TICKER_JP.match(ticker.strip()):
         return "Japan"
-    # PLC / LIMITED suffix in name → UK
-    if _RX_TICKER_LSE_PLC.search(name):
+    # Explicit [source] tag wins
+    if "[ASX]" in notes:
+        return "SE Asia / Pacific"
+    if "[CVM-IPE]" in notes:
+        return "Latin America"
+    if "[SEDAR+]" in notes:
+        return "United States/Canada"
+    if "[CourtListener-RECAP]" in notes:
+        return "United States/Canada"
+    if "[NSM]" in notes:
         return "United Kingdom"
-    # SEDAR+ accession URL fragment in notes → Canada
-    if "sedarplus.ca" in notes.lower() or _RX_SEDAR_ID.search(notes):
+    if "[TDnet]" in notes:
+        return "Japan"
+    # Accession-format fingerprints (for legacy rows lacking the tag)
+    if _RX_ACC_ASX.search(notes):
+        return "SE Asia / Pacific"
+    if _RX_ACC_TDNET.search(notes):
+        return "Japan"
+    if _RX_ACC_CVM.search(notes):
+        return "Latin America"
+    if _RX_ACC_PACER.search(notes):
         return "United States/Canada"
-    # EDGAR accession (XXXXXXXXXX-XX-XXXXXX) in notes → US/CA
-    if re.search(r"\b\d{10}-\d{2}-\d{6}\b", notes):
+    if _RX_ACC_SEDAR.search(notes):
         return "United States/Canada"
-    # NSM disclosure id (UUID) in notes → UK (NSM only)
-    if re.search(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b",
-                 notes, re.I):
+    # Content-keyword hints
+    if _RX_ASX_HINT.search(notes):
+        return "SE Asia / Pacific"
+    if _RX_CVM_HINT.search(notes):
+        return "Latin America"
+    if "sedarplus.ca" in notes.lower():
+        return "United States/Canada"
+    if _RX_EDGAR_ACC.search(notes):
+        return "United States/Canada"
+    if _RX_NSM_UUID.search(notes):
+        return "United Kingdom"
+    # PLC suffix → UK (strict: just PLC, not LIMITED).
+    if _RX_PLC.search(name):
         return "United Kingdom"
     return "Unspecified"
 
