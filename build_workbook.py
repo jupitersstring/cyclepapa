@@ -63,11 +63,23 @@ df = df.rename(columns={
     'fcf_yield': 'FCF Yield', 'op_margin_ex': 'Op Margin', 'roe_ex': 'ROE',
     'sec_rel_ev': 'Sector-Rel EV', 'asym_v2_score': 'v2 Score',
     'fip_d': 'FIP D (252d)', 'fip_w': 'FIP W (52w)', 'fip_m': 'FIP M (24m)',
-    'pret_d': '12m Return',
+    'pret_d': '12m Return', 'pret_m': '24m Return',
     'upside': 'Upside Score', 'floor': 'Floor Score',
     'quality': 'Quality Score', 'stealth': 'Stealth Score',
     'sector_used': 'Sector', 'market_cap_bucket': 'Cap',
     'roic_proxy': 'ROIC Proxy', 'debt_to_equity': 'Debt/Equity',
+    'eps_q_growth': 'EPS Q Growth',
+    'rs_fip_d': 'RS-FIP D', 'rs_fip_w': 'RS-FIP W',
+    'rs_fip_w_inflection': 'RS-FIP W Inflect', 'rs_pret_d': 'RS 12m Return',
+    'fip_w_minus_d': 'FIP W − D Gap',
+    'asym_d_last': 'Volasym D', 'asym_w_last': 'Volasym W',
+    'asym_m_last': 'Volasym M', 'asym_w_ma_last': 'Volasym W MA',
+    'asym_m_ma_last': 'Volasym M MA', 'asym_w_above_ma': 'Volasym W > MA',
+    'asym_m_above_ma': 'Volasym M > MA',
+    'asym_w_roc5': 'Volasym W RoC5', 'asym_m_roc3': 'Volasym M RoC3',
+    'asym_m_dist50': 'Volasym M Dist-50',
+    'nonzero_pct': 'Nonzero %', 'realized_vol_60d': '60d Vol',
+    'last_price': 'Last Price',
 })
 
 # --- Styling helpers ---
@@ -89,11 +101,20 @@ body_alt_fill = PatternFill("solid", fgColor=CREAM)
 body_white = PatternFill("solid", fgColor="FFFFFF")
 
 NUM_FMT = {
-    '12m Return': '0.0%', 'Rev Growth': '0.0%', 'Rev Inflection': '+0.0%;-0.0%',
+    '12m Return': '0.0%', '24m Return': '0.0%', 'RS 12m Return': '0.0%',
+    'Rev Growth': '0.0%', 'Rev Inflection': '+0.0%;-0.0%',
     'Op Margin': '0.0%', 'ROE': '0.0%', 'FCF Yield': '+0.00%;-0.00%',
+    'EPS Q Growth': '+0.0%;-0.0%',
     'FIP D (252d)': '0.000', 'FIP W (52w)': '0.000', 'FIP M (24m)': '0.000',
+    'RS-FIP D': '0.000', 'RS-FIP W': '0.000', 'RS-FIP W Inflect': '+0.000;-0.000',
+    'FIP W − D Gap': '+0.000;-0.000',
+    'Volasym D': '0.0', 'Volasym W': '0.0', 'Volasym M': '0.0',
+    'Volasym W MA': '0.0', 'Volasym M MA': '0.0',
+    'Volasym W RoC5': '+0.00;-0.00', 'Volasym M RoC3': '+0.00;-0.00',
+    'Volasym M Dist-50': '+0.0;-0.0',
     'P/B': '0.00', 'EV/EBITDA': '0.00', 'EV/Sales': '0.00', 'ROIC Proxy': '0.000',
     'Sector-Rel EV': '0.00', 'Debt/Equity': '0.0',
+    'Nonzero %': '0.0%', '60d Vol': '0.000', 'Last Price': '0.00',
     'v2 Score': '0.000', 'Upside Score': '0.00', 'Floor Score': '0.00',
     'Quality Score': '0.00', 'Stealth Score': '0.00',
 }
@@ -277,9 +298,9 @@ def leg_tab(title, score_col, cols_extra):
         if sub.empty: continue
         cur = render_table(ws, sub, cur, f"{region}  —  top {len(sub)} by {score_col}", cols)
 
-leg_tab("Upside Leaders",  'Upside Score',  ['Rev Growth','Rev Inflection','Op Margin'])
+leg_tab("Upside Leaders",  'Upside Score',  ['Rev Growth','Rev Inflection','Op Margin','EPS Q Growth'])
 leg_tab("Floor Leaders",   'Floor Score',   ['P/B','EV/EBITDA','EV/Sales','FCF Yield','Sector-Rel EV'])
-leg_tab("Quality Leaders", 'Quality Score', ['ROIC Proxy','Op Margin','ROE'])
+leg_tab("Quality Leaders", 'Quality Score', ['ROIC Proxy','Op Margin','ROE','Debt/Equity'])
 leg_tab("Stealth Leaders", 'Stealth Score', ['FIP D (252d)','FIP W (52w)','FIP M (24m)'])
 
 # 8. Cheap multiples tab — per region, top by each cheap metric
@@ -320,7 +341,42 @@ multi_metric_tab(
 multi_metric_tab(
     "Growth & Margin",
     [('Rev Growth', False), ('Rev Inflection', False),
-     ('Op Margin', False), ('ROE', False)],
+     ('Op Margin', False), ('ROE', False), ('EPS Q Growth', False)],
+)
+# FIP smoothness by timeframe (most-negative wins => ascending sort)
+multi_metric_tab(
+    "FIP by Timeframe",
+    [('FIP D (252d)', True), ('FIP W (52w)', True), ('FIP M (24m)', True),
+     ('FIP W − D Gap', True)],
+)
+# RS-FIP — same FIP measure computed on stock-vs-SPX excess returns
+multi_metric_tab(
+    "RS-FIP Leaders",
+    [('RS-FIP D', True), ('RS-FIP W', True), ('RS-FIP W Inflect', True),
+     ('RS 12m Return', False)],
+)
+# Volatility asymmetry (malikmck Pine, Qullamaggie filters)
+multi_metric_tab(
+    "Volatility Asymmetry",
+    [('Volasym D', False), ('Volasym W', False), ('Volasym M', False),
+     ('Volasym W RoC5', False), ('Volasym M RoC3', False),
+     ('Volasym M Dist-50', False)],
+)
+# Survival + balance-sheet quality
+multi_metric_tab(
+    "Survival & Catalyst",
+    [('Debt/Equity', True), ('EPS Q Growth', False),
+     ('Rev Inflection', False), ('FCF Yield', False)],
+)
+# Trend / period returns
+multi_metric_tab(
+    "Period Returns",
+    [('12m Return', False), ('24m Return', False), ('RS 12m Return', False)],
+)
+# Liquidity quality
+multi_metric_tab(
+    "Liquidity Quality",
+    [('Nonzero %', False), ('60d Vol', False), ('Last Price', False)],
 )
 
 # 9. Drift audit
@@ -376,16 +432,20 @@ set_widths(ws, range(8), [32]+[14]*7)
 # 10. Full universe — every v2 survivor
 ws = wb.create_sheet("All Survivors"); ws.sheet_view.showGridLines = False
 ws.sheet_properties.tabColor = CRIMSON
-ws.merge_cells('A1:T1')
+ws.merge_cells('A1:AE1')
 ws['A1'] = f"All {len(df)} v2 asymmetric survivors, ranked by composite score"
 ws['A1'].font = title_font; ws['A1'].fill = header_fill
 ws['A1'].alignment = Alignment(horizontal="center", vertical="center")
 ws.row_dimensions[1].height = 32
 cols_all = ['symbol','name','region','country','Cap','Sector',
             '12m Return','FIP D (252d)','FIP W (52w)','FIP M (24m)',
-            'Rev Growth','Rev Inflection','Op Margin','ROIC Proxy',
-            'P/B','EV/EBITDA','EV/Sales','FCF Yield','Sector-Rel EV','v2 Score']
-widths_all = [10,30,16,16,10,18,11,11,11,11,11,11,10,11,9,11,10,11,12,10]
+            'RS-FIP D','RS-FIP W','Volasym W','Volasym M',
+            'Rev Growth','Rev Inflection','EPS Q Growth','Op Margin','ROE',
+            'ROIC Proxy','Debt/Equity',
+            'P/B','EV/EBITDA','EV/Sales','FCF Yield','Sector-Rel EV',
+            'Upside Score','Floor Score','Quality Score','Stealth Score','v2 Score']
+widths_all = [10,28,15,15,10,17, 11,11,11,11, 10,10,11,11,
+              11,11,12,10,9, 11,11, 9,11,10,11,12, 12,11,12,12,10]
 set_widths(ws, range(len(cols_all)), widths_all)
 render_table(ws, df.sort_values('v2 Score', ascending=False), 3,
              "Full ranking (sorted by composite v2 score)", cols_all)
