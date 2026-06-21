@@ -52,6 +52,7 @@ def _load_yartseva_union() -> pd.DataFrame:
     keep = [
         'symbol','sector','industry','market_cap','currency',
         'ebitda_margin','fcf_yield','pb','insider_ownership_pct','gross_margin',
+        'ev_ebitda','ev_ebit','ev_sales','roce',
         'rev_yoy','ebitda_yoy','fcf_yoy','rev_accel','ebitda_accel',
         'rev_inflection','ebitda_inflection','cfo_inflection','fcf_inflection',
         'ebitda_first_positive','cfo_first_positive','fcf_first_positive',
@@ -222,6 +223,39 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((~adv_has) | (adv < 5e5))
     ).astype(int)
 
+    # ---------- Cluster H: Microcap Inflection + Activist Capital Allocation ----------
+    # Pattern (user write-up):
+    #   - microcap (<$250M mcap USD)
+    #   - short-term profit inflection (margin expansion or first-positive
+    #     print or accelerating sales)
+    #   - cheap (~5x EV/EBITDA target, we use <8x as the gate)
+    #   - clean debt-free or net-cash balance sheet
+    #   - strong backlog AND a recently appointed board member with a track
+    #     record of capital-allocation re-rating (CANNOT be assessed from
+    #     fundamentals — both require an EDGAR / SEDAR filing scrape; see
+    #     sedar_backlog_scraper.py)
+    # We tag every name matching the QUANT half of the pattern; the
+    # backlog / board-change confirmation is left to the scraper layer.
+    ev_ebitda_col = s('ev_ebitda', 99.0)
+    nde_col = s('net_debt_ebitda', 99.0)
+    profitable = ebitda_margin >= 0.05
+    inflection_now = (
+        (ebitda_first_pos > 0) | (cfo_first_pos > 0) | (fcf_first_pos > 0) |
+        (ni_first_pos > 0) | (roce_first_pos > 0) |
+        (ebitda_margin_delta >= 0.02) | (rev_accel >= 0.05)
+    )
+    clean_balance_sheet = (
+        (cash_gt_ev > 0) | (net_cash_pct > 0.05) | (nde_col <= 0.0)
+    )
+    cheap_on_ebitda = (ev_ebitda_col > 0) & (ev_ebitda_col <= 8.0)
+    df['arch_micro_activist_inflect'] = (
+        (mcap > 0) & (mcap < 250e6) &
+        profitable &
+        inflection_now &
+        clean_balance_sheet &
+        cheap_on_ebitda
+    ).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -231,6 +265,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_dead_option',
         'arch_kpi_threshold',
         'arch_blindspot',
+        'arch_micro_activist_inflect',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -241,6 +276,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_dead_option': 'DeadOption',
         'arch_kpi_threshold': 'KPIThreshold',
         'arch_blindspot': 'BlindSpot',
+        'arch_micro_activist_inflect': 'MicroActivistInflect',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
