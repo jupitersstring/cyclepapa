@@ -23,12 +23,12 @@ AERI.L,GB00BK6RLF66,Aquila European Renewables,managed_wind_down,WIND_DOWN_COMMI
 AEWU.L,GB00BWD24154,AEW UK REIT,reit_workout,STRUCTURAL_DISCOUNT,PROPERTY_DCF,0.1,PUC,168.2,,,
 AFI.AX,,,australian_lics,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.05,,,,,
 AFL.L,GB00B1FL3C76,Artemis UK Future Leaders,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,USC,99.9,,,
-AGT.L,GB00BLH3CY60,AVI Global Trust,uk_smallcap_specialsits,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.08,GG,1017.26,,,
+AGT.L,GB00BLH3CY60,AVI Global Trust,uk_smallcap_specialsits,DCM_ACTIVE,LISTED_CLEAN,0.08,GG,1017.26,,,AVI Global — annual DCM tender
 AGVI.L,GB00BPJMQ253,Aberforth Geared Value & Income Trust,uk_extras,,LISTED_CLEAN,,USC,95.52,,,
 AIE.L,GB00BF50VS41,Ashoka India Equity,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,IND,401.28,,,
 AIQ.AX,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
 AIRE.L,GB00BDVK7088,Alternative Income REIT,aic_sweep,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,PUC,54.74,,,
-AJOT.L,GB00BD6H5D36,AVI Japan Opportunity Trust,uk_smallcap_specialsits,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.07,JSC,360.29,,,
+AJOT.L,GB00BD6H5D36,AVI Japan Opportunity Trust,uk_smallcap_specialsits,DCM_ACTIVE,LISTED_CLEAN,0.07,JSC,360.29,,,AVI Japan Opp — annual DCM
 AKER.OL,,,european_holding_co,,,0.3,,,,,
 ALW.L,GB00B11V7W98,Alliance Witan,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,GG,4864.39,,,
 ANII.L,GB0006048770,Aberdeen New India Investment Trust,uk_extras,,LISTED_CLEAN,,IND,291.73,,,
@@ -55,7 +55,7 @@ BASC.L,GB0003463402,Brown Advisory US Smaller Companies,aic_sweep,STRUCTURAL_DIS
 BATRA,,,us_conglomerate_discount,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.15,,,,,
 BBDC,,,us_bdc_discount,,,0.1,,,,,
 BBH.L,,,healthcare_cefs,,LISTED_CLEAN,0.08,,,,,
-BBOX.L,GB00BG49KP99,Tritax Big Box REIT,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,PUL,4080.2,,,
+BBOX.L,GB00BG49KP99,Tritax Big Box REIT,aic_sweep,DCM_ACTIVE,LISTED_CLEAN,,PUL,4080.2,,,Tritax Big Box — DCM
 BEL.AX,,,fdb_scanner_v2,STRUCTURAL_DISCOUNT,,,,,,,
 BEMO.L,GB0032273343,Barings Emerging EMEA Opportunities,fdb_scanner_v2,STRUCTURAL_DISCOUNT,,,GEM,93.93,,,
 BERI.L,GB00B0N8MF98,BlackRock Energy and Resources Income,uk_extras,,LISTED_CLEAN,,CNR,188.45,,,
@@ -106,7 +106,7 @@ CET,,,us_cef_discount,,,0.15,,,,,
 CGBD,,,us_bdc_discount,,,0.05,,,,,
 CGI.L,,Canadian General Investments,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,NA,1063.92,,,
 CGL.L,GG00BMWWJM28,Castelnau Group,uk_smallcap_specialsits,,,,FLX,298.49,,,
-CGT.L,GB0001738615,Capital Gearing Trust,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,FLX,804.22,,,
+CGT.L,GB0001738615,Capital Gearing Trust,aic_sweep,DCM_ACTIVE,LISTED_CLEAN,,FLX,804.22,,,Capital Gearing Trust — zero-discount DCM
 CHI,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
 CHI.L,GB00B1N4G299,CT UK High Income Trust,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,UGI,102,,,
 CHRY.L,GG00BGJYPP46,Chrysalis Investments,strategic_review_or_activist,RETURN_OF_CAPITAL_LIVE,PRIVATE_EQUITY,0.35,GCP,378.05,2024-04-20,https://www.chrysalisinvestments.co.uk/return-of-capital,Chrysalis ROC programme + going self-managed (May 2026)
@@ -124,7 +124,7 @@ CTF-UN.TO,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
 CTHT.L,GB00BZCNLL95,CT Healthcare Trust,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,BIO,72.1,,,
 CTPE.L,GB0030738271,CT Private Equity Trust,listed_private_equity,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,0.3,PE,349.65,,,
 CTUK.L,GB0003463287,CT UK Capital and Income,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,UGI,322.38,,,
-CTY.L,GB0001990497,City of London Investment Trust,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,UGI,2870.59,,,
+CTY.L,GB0001990497,City of London Investment Trust,fdb_scanner_finds,DCM_ACTIVE,LISTED_CLEAN,,UGI,2870.59,,,City of London — DCM via buybacks/issuance
 CVC.AS,,,listed_pe_gp_discount,STRUCTURAL_DISCOUNT,,0.1,,,,,
 CVCE.L,JE00B9G79F59,CVC Income & Growth,aic_sweep,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,DLB,91.26,,,
 CVCG.L,JE00B9MRHZ51,CVC Income & Growth,aic_sweep,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,DLB,224.22,,,
@@ -135,7 +135,7 @@ DGI9.L,JE00BMDKH437,Digital 9 Infrastructure,managed_wind_down,WIND_DOWN_COMMITT
 DGS-PA.TO,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,,,,,
 DGS.TO,,,canadian_special_sits,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,0.05,,,,,
 DIG.L,GB0003406096,Dunedin Income Growth,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,UGI,351.32,,,
-DIVI.L,GB00B65TLW28,Diverse Income Trust,uk_smallcap_specialsits,ACTIVIST_TARGET,LISTED_CLEAN,0.13,UGI,278.94,,,
+DIVI.L,GB00B65TLW28,Diverse Income Trust,uk_smallcap_specialsits,OPEN_END_CONVERSION_PROPOSED,LISTED_CLEAN,0.13,UGI,278.94,2026-02-01,https://quoteddata.com/2026/02/diverse-income-considers-switching-to-open-ended-fund-to-remove-discount-risk/,Board considering open-ended conversion Feb 2026
 DNA2.L,,,leasing_realisation,,REAL_ASSET_OBSERVABLE,,,,,,
 DNA3.L,,,leasing_realisation,,REAL_ASSET_OBSERVABLE,,,,,,
 DPA.L,GG00BBP6HP33,DP Aircraft I,leasing_realisation,,REAL_ASSET_OBSERVABLE,,LEA,38.4,,,
@@ -328,7 +328,7 @@ PCT.L,GB00BR3YV268,Polar Capital Technology,aic_sweep,STRUCTURAL_DISCOUNT,LISTED
 PCTN.L,,,reit_workout,STRUCTURAL_DISCOUNT,PROPERTY_DCF,0.3,,,,,
 PE1.AX,,,australian_lics,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,0.2,,,,,
 PEO,,,us_cef_discount,,,0.15,,,,,
-PEY.L,GG00B28C2R28,Partners Group Private Equity,fdb_scanner_finds,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,PE,567.91,,,
+PEY.L,GG00B28C2R28,Partners Group Private Equity,fdb_scanner_finds,OPEN_END_CONVERSION_PROPOSED,PRIVATE_EQUITY,,PE,567.91,2026-06-01,https://quoteddata.com/2026/06/partners-group-private-equity-offers-to-put-30-of-assets-in-a-realisation-share-class-after-holding-a-strategic-review/,30% realisation share class proposed June 2026
 PEYS.L,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,,,,,
 PFLT,,,us_bdc_discount,,,0.05,,,,,
 PGF.AX,,,fdb_scanner_v2,STRUCTURAL_DISCOUNT,,,,,,,
@@ -337,9 +337,9 @@ PHI.L,GB0006667470,Pacific Horizon Investment Trust,em_country_funds,,LISTED_CLE
 PIA.AX,,,australian_lics,STRATEGIC_REVIEW,LISTED_CLEAN,0.2,,,,,
 PIC.AX,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
 PIN.L,GB00BP37WF17,Pantheon International,listed_private_equity,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,0.25,PE,1587.74,,,
-PINT.L,GB00BLNNFL88,Pantheon Infrastructure,renewables_infra_discount,STRUCTURAL_DISCOUNT,INFRA_DCF,0.13,INF,537.98,,,
+PINT.L,GB00BLNNFL88,Pantheon Infrastructure,renewables_infra_discount,DCM_ACTIVE,INFRA_DCF,0.13,INF,537.98,,,Pantheon Infrastructure — performance-conditional tender
 PL8.AX,,,australian_lics,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.05,,,,,
-PNL.L,GB00BM8B5H06,Personal Assets Trust,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,FLX,1654.7,,,
+PNL.L,GB00BM8B5H06,Personal Assets Trust,aic_sweep,DCM_ACTIVE,LISTED_CLEAN,,FLX,1654.7,,https://quoteddata.com/glossary/dcm-or-discount-control-mechanism/,Personal Assets Trust — zero-discount DCM
 PNNT,,,us_bdc_discount,,,0.2,,,,,
 POW.TO,,,canadian_special_sits,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,0.25,,,,,
 PPET.L,GB0030474687,Patria Private Equity,aic_sweep,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,PE,895.08,,,
@@ -360,7 +360,7 @@ RESI.L,GB00BYSX1508,Residential Secure Income REIT,managed_wind_down,WIND_DOWN_C
 RF.PA,,,european_holding_co,,,0.4,,,,,
 RGL.L,GG00BSY2LD72,Regional REIT,reit_workout,STRUCTURAL_DISCOUNT,PROPERTY_DCF,0.5,PUC,147.99,,,
 RGT,,,us_cef_discount,,,0.13,,,,,
-RICA.L,GB00B018CS46,Ruffer Investment Company,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,FLX,889.34,,,
+RICA.L,GB00B018CS46,Ruffer Investment Company,fdb_scanner_finds,DCM_ACTIVE,LISTED_CLEAN,,FLX,889.34,,,Ruffer Investment Co — DCM via buybacks
 RIII.L,GB0007392078,Rights & Issues Investment Trust,uk_smallcap_specialsits,,LISTED_CLEAN,,USC,103.01,,,
 RKW.L,GB00BRRD5L66,Rockwood Strategic,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,USC,176.6,,,
 RMII.L,GB00BYMTBG55,RM Infrastructure Income,managed_wind_down,WIND_DOWN_COMMITTED,DEBT_AMORTISING,0.2,DDL,30.74,2024-02-28,https://www.rmifund.com/wind-down,RM Infrastructure Income wind-down
@@ -416,7 +416,7 @@ TORO.L,GG00BWBSDM98,Chenavari Toro Income Fund,fdb_scanner_finds,STRUCTURAL_DISC
 TPOU.L,,,global_multi_asset_discount,STRUCTURAL_DISCOUNT,LISTED_CLEAN,0.2,,,,,
 TRG.L,,,fdb_scanner_finds,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
 TRIG.L,GG00BBHX2H91,Renewables Infrastructure Group,renewables_infra_discount,STRUCTURAL_DISCOUNT,RENEWABLES_DCF,0.22,REI,1701.72,,,
-TRY.L,GB0009064097,TR Property Investment Trust,fdb_scanner_finds,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,PPS,977.44,,,
+TRY.L,GB0009064097,TR Property Investment Trust,fdb_scanner_finds,DCM_ACTIVE,PROPERTY_DCF,,PPS,977.44,,,TR Property — DCM
 TY,,,us_cef_discount,,,0.13,,,,,
 UEM.L,GB00BD45S967,Utilico Emerging Markets Trust,aic_sweep,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,GEM,483.46,,,
 UKW.L,GB00B8SC6K54,Greencoat UK Wind,renewables_infra_discount,STRUCTURAL_DISCOUNT,RENEWABLES_DCF,0.18,REI,2207.25,,,
@@ -497,3 +497,6 @@ THQ,,abrdn Healthcare Opportunities,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEA
 NML,,Neuberger Berman Energy Infra,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
 KYN,,Kayne Anderson Energy Infra,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
 SRV,,NXG Cushing Midstream Energy,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,fdb widening batch 2026-06
+JARA.L,GB00BJL5FH87,JPMorgan Global Core Real Assets,uk_extras_3,WIND_DOWN_COMMITTED,INFRA_DCF,,INF,,2025-09-30,https://www.investmentweek.co.uk/news/4376448/jpmorgan-global-core-real-assets-seeks-managed-wind-failed-continuation-vote,Failed continuation vote Sept 2025; wind-down due
+UTG.L,GB00B1DDCK16,Unite Group REIT,uk_extras_3,ACTIVIST_TARGET,PROPERTY_DCF,,,,,,Top-8 holding in Saba UKIT ETF; activist target
+IPO.L,GB00B128J450,IP Group PLC,uk_extras_3,ACTIVIST_TARGET,PRIVATE_EQUITY,,,,,,Top-3 non-cash holding in Saba UKIT ETF

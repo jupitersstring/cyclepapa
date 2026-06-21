@@ -173,10 +173,17 @@ class ScreenResult:
     discount_52w_high: float | None = None
     discount_52w_low: float | None = None
 
-    # NAV trajectory (informational + recovery-rate penalty)
+    # NAV trajectory (informational + recovery-rate factor — two-sided)
     nav_tr_1y: float | None = None
     nav_tr_3y: float | None = None
-    nav_penalty_applied: float | None = None   # multiplier (1.00 = none)
+    nav_penalty_applied: float | None = None   # multiplier (1.00 = none, >1.0 = growth bonus)
+
+    # Peer-relative discount — sourced from AIC's sector aggregates
+    discount_vs_sector_pp: float | None = None  # current - sector median, in pp
+    aic_sector_code: str | None = None
+
+    # Activist intelligence
+    saba_ukit_member: bool = False    # in Saba's UK Investment Trusts ETF holdings
 
     # Time-since-announcement (committed wind-downs only)
     catalyst_age_months: float | None = None

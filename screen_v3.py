@@ -24,6 +24,7 @@ import pandas as pd
 import metadata
 import params
 import price_store
+import saba_ukit
 import screen_core as core
 from aic_scraper import fetch_aic_raw, fetch_aic_summary
 from yahoo_nav_scraper import fetch_yahoo_discounts
@@ -163,10 +164,17 @@ def screen_one(
         r.error = "no_discount"
         return r
 
-    # NAV trajectory from AIC (informational + recovery penalty)
+    # NAV trajectory from AIC (informational + recovery factor)
     if aic_summary is not None:
         r.nav_tr_1y = aic_summary.get("nav_tr_1y")
         r.nav_tr_3y = aic_summary.get("nav_tr_3y")
+        r.aic_sector_code = aic_summary.get("sector")
+
+    # Saba UKIT membership — strong activist-engagement flag
+    try:
+        r.saba_ukit_member = ticker in saba_ukit.saba_ukit_all()
+    except Exception:
+        r.saba_ukit_member = False
 
     # Recovery + total return, with NAV-trajectory penalty applied
     recovery, etr, nav_pen = core.compute_recovery_upside(
@@ -263,13 +271,23 @@ def screen_one(
             "BASE_ABSORBING", "BASE_BREAKOUT", "CAPITULATION",
             "BASE_QUIET"):
         r.in_setup_sleeve = True
-    # Fundamentals sleeve: committed event catalyst + investable + IRR.
-    # This is the leg that would have caught USF.L pre-rerating.
+    # Fundamentals sleeve: event catalyst + investable + positive IRR.
+    # Now includes OPEN_END_CONVERSION_PROPOSED and DCM_ACTIVE — both
+    # have meaningful catalyst probability without needing chart
+    # confirmation. Open-end conversion is the Saba-preferred exit and
+    # the highest-P event catalyst we score.
     if r.investable and r.catalyst in (
+            "OPEN_END_CONVERSION_PROPOSED",
             "WIND_DOWN_COMMITTED", "WIND_DOWN_LIKELY",
-            "RETURN_OF_CAPITAL_LIVE", "STRATEGIC_REVIEW"):
+            "RETURN_OF_CAPITAL_LIVE", "STRATEGIC_REVIEW",
+            "DCM_ACTIVE"):
         if (r.expected_irr or 0) > 0:
             r.in_fundamentals_sleeve = True
+    # Saba UKIT bonus: also qualifies for the fundamentals sleeve
+    # because activist engagement IS an event catalyst even if the
+    # static tag doesn't reflect it yet.
+    if r.investable and r.saba_ukit_member and (r.expected_irr or 0) > 0:
+        r.in_fundamentals_sleeve = True
     # MICRO sleeve — gate-failed but catalyst alive. AEET/RMII/SBO
     # class: real committed wind-downs that have dried up below the
     # standard daily-value floor. Don't silently drop them.
@@ -354,6 +372,20 @@ def main() -> int:
     aic_by_ticker = {f"{epic}.L": rec for epic, rec in aic_raw.items()}
     print(f"[v3] AIC records: {len(aic_summ)}", file=sys.stderr)
 
+    # Sector median discount — for peer-relative scoring. Computed
+    # once across all AIC names per sector code.
+    sector_discounts: dict[str, list[float]] = {}
+    for sym, rec in aic_summ.items():
+        sec = rec.get("sector")
+        d = rec.get("discount")
+        if sec and d is not None:
+            sector_discounts.setdefault(sec, []).append(d)
+    import statistics
+    sector_median = {sec: statistics.median(vals) for sec, vals in sector_discounts.items()
+                     if len(vals) >= 3}
+    print(f"[v3] sector medians computed for {len(sector_median)} AIC sectors",
+          file=sys.stderr)
+
     print("[v3] loading Yahoo bookValue discounts (non-UK)...", file=sys.stderr)
     non_uk = [t for t in symbols if not t.endswith(".L")]
     yh_discounts = fetch_yahoo_discounts(non_uk) if non_uk else {}
@@ -416,6 +448,12 @@ def main() -> int:
                 ohlcv=price_store.get(sym, ttl_hours=args.price_ttl_h),
                 daily_ohlcv=daily,
             )
+            # Peer-relative discount — current vs sector median.
+            # Positive = wider than peers (potentially more setup).
+            if r.aic_sector_code and r.nav_discount_est is not None:
+                med = sector_median.get(r.aic_sector_code)
+                if med is not None:
+                    r.discount_vs_sector_pp = (r.nav_discount_est - med) * 100
         except Exception as exc:
             r = core.ScreenResult(ticker=sym, error=f"screen_one: {exc}")
         results.append(r)

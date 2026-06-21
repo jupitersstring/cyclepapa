@@ -41,16 +41,49 @@ def test_compute_recovery_upside_default_class():
     assert recovery == params.DEFAULT_RECOVERY
 
 
-def test_nav_trajectory_penalty_stable_nav_no_change():
-    """Stable NAV (NAVTR1Y ~ 0) leaves recovery unchanged."""
+def test_nav_trajectory_factor_zero_nav_neutral():
+    """At exactly NAVTR1Y = 0 the factor is 1.0 (neither credit nor
+    penalty). The two-sided table extends both ways from that pivot."""
     assert core.nav_trajectory_penalty(0.0) == pytest.approx(1.0)
-    assert core.nav_trajectory_penalty(5.0) == pytest.approx(1.0)
 
 
 def test_nav_trajectory_penalty_declining_nav_cuts_recovery():
     """20% NAV decline -> 0.70 multiplier on recovery."""
     p = core.nav_trajectory_penalty(-20.0)
     assert 0.65 <= p <= 0.75
+
+
+def test_nav_trajectory_factor_rewards_growth():
+    """AVI's 75/25 attribution: positive NAV growth should credit
+    the recovery, not just stable-or-decline penalising. +10% NAV1Y
+    should give factor > 1."""
+    p_grow = core.nav_trajectory_penalty(10.0)   # +10% NAV1Y
+    p_stable = core.nav_trajectory_penalty(0.0)
+    assert p_grow > p_stable
+    assert 1.05 <= p_grow <= 1.15
+
+
+def test_nav_trajectory_factor_caps_growth():
+    """Cap the growth credit at +15% so a +50% NAV move doesn't
+    double-count growth that should appear in price too."""
+    p = core.nav_trajectory_penalty(50.0)
+    assert p <= 1.16
+
+
+def test_open_end_conversion_catalyst_in_params():
+    """The new OPEN_END_CONVERSION_PROPOSED tier must be in
+    CATALYST_PROB_BASE and CATALYST_DURATION_MONTHS."""
+    assert "OPEN_END_CONVERSION_PROPOSED" in params.CATALYST_PROB_BASE
+    assert params.CATALYST_PROB_BASE["OPEN_END_CONVERSION_PROPOSED"] >= 0.80
+    assert "OPEN_END_CONVERSION_PROPOSED" in params.CATALYST_DURATION_MONTHS
+    assert params.CATALYST_DURATION_MONTHS["OPEN_END_CONVERSION_PROPOSED"] <= 18
+
+
+def test_dcm_active_catalyst_in_params():
+    """DCM_ACTIVE tier exists, mid-range probability."""
+    assert "DCM_ACTIVE" in params.CATALYST_PROB_BASE
+    p = params.CATALYST_PROB_BASE["DCM_ACTIVE"]
+    assert 0.25 <= p <= 0.45
 
 
 def test_nav_trajectory_penalty_large_decline():

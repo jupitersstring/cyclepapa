@@ -33,13 +33,15 @@ DEFAULT_RECOVERY = 0.85
 # takes to crystallise from where we are now.
 
 CATALYST_DURATION_MONTHS: dict[str, int] = {
-    "WIND_DOWN_COMMITTED":    30,
-    "WIND_DOWN_LIKELY":       36,
-    "RETURN_OF_CAPITAL_LIVE": 18,
-    "STRATEGIC_REVIEW":       15,
-    "ACTIVIST_TARGET":         9,
-    "STRUCTURAL_DISCOUNT":    36,
-    "DISTRESSED":             24,
+    "OPEN_END_CONVERSION_PROPOSED": 12,  # Saba-style quick exit at NAV
+    "WIND_DOWN_COMMITTED":          30,
+    "WIND_DOWN_LIKELY":             36,
+    "RETURN_OF_CAPITAL_LIVE":       18,
+    "STRATEGIC_REVIEW":             15,
+    "ACTIVIST_TARGET":               9,
+    "DCM_ACTIVE":                   24,  # discount-control mechanism live
+    "STRUCTURAL_DISCOUNT":          36,
+    "DISTRESSED":                   24,
 }
 DEFAULT_DURATION_MONTHS = 30
 
@@ -50,13 +52,21 @@ DEFAULT_DURATION_MONTHS = 30
 # qualitative_signals.py) at run time.
 
 CATALYST_PROB_BASE: dict[str, float] = {
-    "WIND_DOWN_COMMITTED":    0.80,
-    "WIND_DOWN_LIKELY":       0.60,
-    "RETURN_OF_CAPITAL_LIVE": 0.70,
-    "STRATEGIC_REVIEW":       0.50,
-    "ACTIVIST_TARGET":        0.45,
-    "STRUCTURAL_DISCOUNT":    0.20,
-    "DISTRESSED":             0.20,
+    # New: open-end conversion (Saba's preferred exit) — formal proposal
+    # to convert to OEIC/UT removes the discount instantly. Very high P.
+    "OPEN_END_CONVERSION_PROPOSED": 0.85,
+    "WIND_DOWN_COMMITTED":          0.80,
+    "WIND_DOWN_LIKELY":             0.60,
+    "RETURN_OF_CAPITAL_LIVE":       0.70,
+    "STRATEGIC_REVIEW":             0.50,
+    "ACTIVIST_TARGET":              0.45,
+    # New: DCM_ACTIVE = formal discount control mechanism (zero-discount
+    # policy, conditional annual tender, performance-conditional tender).
+    # Structurally caps discount widening; mid-tier probability of
+    # meaningful narrowing.
+    "DCM_ACTIVE":                   0.35,
+    "STRUCTURAL_DISCOUNT":          0.20,
+    "DISTRESSED":                   0.20,
 }
 DEFAULT_PROB_BASE = 0.25
 
@@ -137,18 +147,25 @@ MICRO_GATES = {
 
 
 # ----------------------------------------------------------------------
-# NAV trajectory penalty. When NAV is in decline (asset sales below
-# book, ongoing write-downs) the discount can look wide but real
-# closure return is suppressed. Multiplier applied to recovery_rate
-# when NAVTR1Y is negative.
+# NAV trajectory factor. Two-sided multiplier on recovery_rate:
+# negative NAVTR1Y penalises (asset sales below book), positive
+# NAVTR1Y CREDITS (compounding NAV growth is itself part of return —
+# AVI's published estimate is ~75% of holding-co returns come from
+# NAV growth, not discount narrowing).
 
 NAV_DECLINE_PENALTY = {
-    # NAVTR1Y bucket -> multiplier on recovery
-    -1.00: 0.50,    # NAV down >20% in 1y
+    # NAVTR1Y bucket -> multiplier on recovery (or upper-bound on
+    # closure prize when NAV is growing — pinned at 1.15 so we don't
+    # double-count NAV growth that should appear in price too)
+    -1.00: 0.50,
     -0.20: 0.70,
     -0.10: 0.85,
     -0.05: 0.95,
-     0.00: 1.00,    # stable or positive NAVTR
+     0.00: 1.00,
+     0.05: 1.05,
+     0.10: 1.10,
+     0.20: 1.15,
+    +1.00: 1.15,    # cap at +15% bonus regardless of NAV growth magnitude
 }
 
 
