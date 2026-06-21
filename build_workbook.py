@@ -73,10 +73,9 @@ def load_data():
     print("Loading master_full_universe.csv...")
     df = pd.read_csv('/tmp/master_full_universe.csv')
 
-    # Liquid filter for top-N selection (so we surface tradeable names)
+    # No ADV floor — surface every ranked name; user can filter in Excel
     df['adv_usd_M'] = (df.adv_usd / 1e6).round(2)
-    df = df[df.adv_usd >= 1e6].copy()
-    print(f"  Liquid pool: {len(df)} tickers across {df.region.nunique()} regions")
+    print(f"  Full pool (no ADV filter): {len(df)} tickers across {df.region.nunique()} regions")
 
     # Asymmetry score
     df['asymmetry'] = (
@@ -224,6 +223,86 @@ def write_cover(wb):
     ws.column_dimensions['B'].width = 24
     for c in range(3, 9):
         ws.column_dimensions[get_column_letter(c)].width = 18
+
+
+def write_full_universe(wb, df, info):
+    """Single sheet containing EVERY ranked ticker (12,761+) sortable by any
+    leg. Names looked up where cached, ticker-only for the long tail."""
+    ws = wb.create_sheet(title="Full_Universe")
+    ws.sheet_view.showGridLines = False
+    ws.row_dimensions[1].height = 8
+    ws.row_dimensions[2].height = 28
+    ws.row_dimensions[3].height = 18
+
+    ws.merge_cells("B2:O2")
+    ws["B2"] = "Full Universe"
+    ws["B2"].font = TITLE_FONT
+    ws["B2"].alignment = LEFT
+    ws.merge_cells("B3:O3")
+    ws["B3"] = f"All {len(df):,} ranked tickers — sort/filter in Excel by any column"
+    ws["B3"].font = SUB_FONT
+    ws["B3"].alignment = LEFT
+    for col in range(2, 16):
+        ws.cell(row=4, column=col).border = THICK_BORDER
+
+    headers = ["Ticker", "Name", "Sector", "Region", "Mcap $M", "ADV $M",
+               "Master", "M", "E", "DSR", "ADV-pn",
+               "PSAR-Asset", "PSAR-Rel", "PSAR-Comb", "BestRank"]
+    r = 6
+    for i, h in enumerate(headers, start=2):
+        c = ws.cell(row=r, column=i, value=h)
+        c.font = HEADER_FONT
+        c.fill = HEADER_FILL
+        c.alignment = CENTER
+        c.border = Border(bottom=Side(style="thin", color=CRIMSON))
+    ws.row_dimensions[r].height = 22
+
+    # Sort by master descending; full pool
+    sub = df.sort_values("master", ascending=False)
+    r = 7
+    for _, row in sub.iterrows():
+        t = row['ticker']
+        inf = info.get(t, {})
+        vals = [
+            t,
+            inf.get('name', ''),
+            inf.get('sector', ''),
+            row['region'],
+            inf.get('mcap_M', 0) or 0,
+            row.get('adv_usd_M', 0),
+            row.get('master', np.nan),
+            row.get('M', np.nan),
+            row.get('E', np.nan),
+            row.get('DSR', np.nan),
+            row.get('ADV_play_now', np.nan),
+            row.get('asset_score', np.nan),
+            row.get('rel_score', np.nan),
+            row.get('combined_score', np.nan),
+            row.get('best_rank', np.nan),
+        ]
+        for i, v in enumerate(vals, start=2):
+            cell = ws.cell(row=r, column=i, value=v)
+            cell.font = BODY_FONT
+            if i in (2, 3, 4, 5):
+                cell.alignment = LEFT
+            else:
+                cell.alignment = RIGHT
+                if isinstance(v, (int, float)) and not pd.isna(v):
+                    if i == 6:
+                        cell.number_format = '#,##0'
+                    elif i == 7:
+                        cell.number_format = '#,##0.0'
+                    else:
+                        cell.number_format = '0.0'
+        r += 1
+
+    # Enable Excel filtering on the header row
+    ws.auto_filter.ref = f"B6:P{r-1}"
+    ws.freeze_panes = "C7"
+
+    widths = [2, 12, 30, 16, 16, 11, 10, 11, 9, 9, 9, 9, 11, 11, 11, 10]
+    for i, w in enumerate(widths, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
 
 
 def write_leg_sheet(wb, leg_key, title, subtitle, df, sort_col, info, top_n_per_region=20):
@@ -421,7 +500,7 @@ def main():
                               "R_W"),
     }
 
-    TOP_N = 20
+    TOP_N = 50
     # Collect unique tickers we'll surface (top N per region × 18 regions × N legs, with overlap)
     needed = set()
     for leg_key, (_t, _s, sort_col) in LEGS.items():
@@ -441,6 +520,7 @@ def main():
     wb = Workbook()
     write_cover(wb)
     write_summary(wb, df, info, LEGS)
+    write_full_universe(wb, df, info)
     for leg_key, (title, subtitle, sort_col) in LEGS.items():
         if sort_col not in df.columns:
             print(f"  skip {leg_key} (column missing)")
