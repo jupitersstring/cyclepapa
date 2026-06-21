@@ -87,14 +87,32 @@ def load_data():
     return df
 
 
-def name_lookup(tickers):
-    import yfinance as yf
+def name_lookup(tickers, cache_path="/home/user/cyclepapa/data/ticker_info_cache.json"):
+    """Look up name/sector/mcap with disk cache so reruns are cheap."""
+    import json, os, yfinance as yf
     FX = {'JPY':0.0065,'INR':0.0117,'KRW':0.00073,'TWD':0.031,'HKD':0.128,
           'CNY':0.139,'GBp':0.0127,'GBP':1.27,'EUR':1.08,'CHF':1.12,
           'SEK':0.095,'NOK':0.092,'DKK':0.145,'AUD':0.65,'NZD':0.60,
           'USD':1.0,'MXN':0.055}
+    cache = {}
+    if os.path.exists(cache_path):
+        try:
+            with open(cache_path) as f:
+                cache = json.load(f)
+            print(f"  loaded {len(cache)} cached lookups from {cache_path}")
+        except Exception:
+            cache = {}
+
     out = {}
-    for i, t in enumerate(tickers):
+    todo = []
+    for t in tickers:
+        if t in cache:
+            out[t] = cache[t]
+        else:
+            todo.append(t)
+    print(f"  {len(out)} from cache, {len(todo)} to fetch")
+
+    for i, t in enumerate(todo):
         try:
             info = yf.Ticker(t).info or {}
             cur = info.get('currency') or 'USD'
@@ -105,8 +123,15 @@ def name_lookup(tickers):
             }
         except Exception:
             out[t] = {'name': '', 'sector': '', 'mcap_M': 0}
-        if (i+1) % 50 == 0:
-            print(f"  ...looked up {i+1}/{len(tickers)}")
+        cache[t] = out[t]
+        if (i+1) % 100 == 0:
+            print(f"  ...looked up {i+1}/{len(todo)}")
+            # checkpoint
+            with open(cache_path, "w") as f:
+                json.dump(cache, f)
+    with open(cache_path, "w") as f:
+        json.dump(cache, f)
+    print(f"  cache saved: {len(cache)} entries")
     return out
 
 
@@ -201,7 +226,7 @@ def write_cover(wb):
         ws.column_dimensions[get_column_letter(c)].width = 18
 
 
-def write_leg_sheet(wb, leg_key, title, subtitle, df, sort_col, info, top_n_per_region=5):
+def write_leg_sheet(wb, leg_key, title, subtitle, df, sort_col, info, top_n_per_region=20):
     ws = wb.create_sheet(title=leg_key)
     ws.sheet_view.showGridLines = False
     ws.row_dimensions[1].height = 8
@@ -396,7 +421,8 @@ def main():
                               "R_W"),
     }
 
-    # Collect unique tickers we'll surface (top 5 per region × 18 regions × 15 legs, with overlap)
+    TOP_N = 20
+    # Collect unique tickers we'll surface (top N per region × 18 regions × N legs, with overlap)
     needed = set()
     for leg_key, (_t, _s, sort_col) in LEGS.items():
         if sort_col not in df.columns:
@@ -405,10 +431,10 @@ def main():
             sub = (df[df.region == region]
                    .dropna(subset=[sort_col])
                    .sort_values(sort_col, ascending=False)
-                   .head(5))
+                   .head(TOP_N))
             needed.update(sub.ticker.tolist())
     needed = sorted(needed)
-    print(f"\nUnique tickers across all leg×region top-5s: {len(needed)}")
+    print(f"\nUnique tickers across all leg×region top-{TOP_N}s: {len(needed)}")
     info = name_lookup(needed)
 
     print(f"\nBuilding workbook...")
@@ -419,7 +445,7 @@ def main():
         if sort_col not in df.columns:
             print(f"  skip {leg_key} (column missing)")
             continue
-        write_leg_sheet(wb, leg_key, title, subtitle, df, sort_col, info, top_n_per_region=5)
+        write_leg_sheet(wb, leg_key, title, subtitle, df, sort_col, info, top_n_per_region=TOP_N)
         print(f"  wrote {leg_key}")
 
     out = "/home/user/cyclepapa/data/stars_aligned_workbook.xlsx"
