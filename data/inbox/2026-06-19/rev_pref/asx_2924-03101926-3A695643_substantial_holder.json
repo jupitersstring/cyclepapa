@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101926-3A695643",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Transportation Infrastructure",
+  "isin": "AU000000SRH4",
+  "jurisdiction": "AU",
+  "name": "SAFEROADS HOLDINGS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "SRH",
+  "tier": "rev_pref",
+  "url": ""
+}

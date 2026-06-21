@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101681-6A1330061",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "IT Services",
+  "isin": "AU0000301400",
+  "jurisdiction": "AU",
+  "name": "ADISYN LTD",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "AI1",
+  "tier": "rev_pref",
+  "url": ""
+}

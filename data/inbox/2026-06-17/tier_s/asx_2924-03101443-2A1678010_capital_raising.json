@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101443-2A1678010",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "STRATEGIC $1.7M SECURED FROM RESOURCES INVESTMENT FUND",
+  "form_code": "Placement|Issued Capital - Other",
+  "industry": "Metals & Mining",
+  "isin": "AU000000PNN7",
+  "jurisdiction": "AU",
+  "name": "POWER MINERALS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "PNN",
+  "tier": "tier_s",
+  "url": ""
+}

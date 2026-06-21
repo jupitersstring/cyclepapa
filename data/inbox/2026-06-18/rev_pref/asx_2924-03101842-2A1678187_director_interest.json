@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101842-2A1678187",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Change of Director's Interest Notice - S Beeton",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Capital Markets",
+  "isin": "AU000000ARC3",
+  "jurisdiction": "AU",
+  "name": "ARC FUNDS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "ARC",
+  "tier": "rev_pref",
+  "url": ""
+}

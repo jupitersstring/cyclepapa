@@ -1292,3 +1292,33 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | TRISUL S/A | — | ○ | A | Auto-promoted from Fato Relevante · Alteração na Estrutura de Liderança da Companhia filing 2026-06-15 (acc 021130IPE150620260176834241-35); Fato Relevante — material-fact disclosure (8-K analogue); verify primary doc before scoring |
 | CONCESSIONÁRIA DA LINHA 4 DO METRÔ DE SÃO PAULO S.A. | — | ○ | A | Auto-promoted from Fato Relevante · Celebração de aditivo ao Contrato de Concessão filing 2026-06-15 (acc 027731IPE150620260132498384-18); Fato Relevante — material-fact disclosure (8-K analogue); verify primary doc before scoring |
 | AXIA ENERGIA S.A. | — | ○ | A | Auto-promoted from Fato Relevante · Resgate das ações PNCs filing 2026-06-14 (acc 002437IPE140620260138674380-95); Fato Relevante — material-fact disclosure (8-K analogue); verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-06-21)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| BURU ENERGY LIMITED | BRU | ○ | A | Auto-promoted from Options Prospectus filing 2026-06-19 (acc 2924-03102159-6A1330268); Capital raising / rights / placement; verify primary doc before scoring |
+| DOTZ NANO LIMITED | DTZ | ○ | A | Auto-promoted from Successful Completion of $3.3m Private Placement filing 2026-06-19 (acc 2924-03101914-3A695638); Capital raising / rights / placement; verify primary doc before scoring |
+| EMMERSON RESOURCES LIMITED | ERM | ○ | A | Auto-promoted from Court Approves Scheme filing 2026-06-19 (acc 2924-03101948-6A1330165); Australian scheme of arrangement; verify primary doc before scoring |
+| INTERNATIONAL GRAPHITE LIMITED | IG6 | ○ | A | Auto-promoted from Successful Placement Accelerates Operations filing 2026-06-19 (acc 2924-03101888-6A1330102); Capital raising / rights / placement; verify primary doc before scoring |
+| BALLYMORE RESOURCES LIMITED | BMR | ○ | A | Auto-promoted from Oversubscribed Capital Raise Delivers $5.2m for Accelerated filing 2026-06-19 (acc 2924-03101955-2A1678247); Capital raising / rights / placement; verify primary doc before scoring |
+| PEEL MINING LIMITED | PEX | ○ | A | Auto-promoted from Court approves Scheme of Arrangement filing 2026-06-19 (acc 2924-03101891-6A1330141); Australian scheme of arrangement; verify primary doc before scoring |
+| CONNEQT HEALTH LIMITED | CQT | ○ | A | Auto-promoted from CONNEQT Completes $5.5m Placement filing 2026-06-19 (acc 2924-03101900-2A1678171); Capital raising / rights / placement; verify primary doc before scoring |
+| AERIS RESOURCES LIMITED | AIS | ○ | A | Auto-promoted from Peel Mining Scheme of Arrangement Approved by Court filing 2026-06-19 (acc 2924-03101915-6A1330146); Australian scheme of arrangement; verify primary doc before scoring |
+| INFINITY METALS LIMITED | INF | ○ | A | Auto-promoted from Option to Acquire Historic Copper Mine and Placement filing 2026-06-18 (acc 2924-03101506-6A1329994); Capital raising / rights / placement; verify primary doc before scoring |
+| JINDALEE LITHIUM LIMITED | JLL | ○ | A | Auto-promoted from Entitlement Offer Raises A$2.4 Million filing 2026-06-18 (acc 2924-03101861-6A1330130); Capital raising / rights / placement; verify primary doc before scoring |
+| ACROW LIMITED | ACF | ○ | A | Auto-promoted from Completion of fully underwritten $70m two-tranche placement filing 2026-06-18 (acc 2924-03101855-6A1330120); Capital raising / rights / placement; verify primary doc before scoring |
+| FINDER ENERGY HOLDINGS LIMITED | FDR | ○ | A | Auto-promoted from Placement Update - Closing of Tranche 2 filing 2026-06-18 (acc 2924-03101519-6A1329996); Capital raising / rights / placement; verify primary doc before scoring |
+| AUSTRALIAN STRATEGIC MATERIALS LIMITED | ASM | ○ | A | Auto-promoted from Postponement of Scheme Meetings filing 2026-06-18 (acc 2924-03101810-6A1330090); Australian scheme of arrangement; verify primary doc before scoring |
+| MT MALCOLM MINES NL | M2M | ○ | A | Auto-promoted from Placement of Entitlement Offer Shortfall filing 2026-06-18 (acc 2924-03101808-6A1330107); Capital raising / rights / placement; verify primary doc before scoring |
+| QUBE HOLDINGS LIMITED | QUB | ○ | A | Auto-promoted from Regulatory Update on Scheme filing 2026-06-17 (acc 2924-03101362-2A1677938); Australian scheme of arrangement; verify primary doc before scoring |
+| KINGSTON RESOURCES LIMITED | KSN | ○ | A | Auto-promoted from $12.9M Capital Raising to Unlock Mineral Hill Potential filing 2026-06-17 (acc 2924-03101479-6A1329959); Capital raising / rights / placement; verify primary doc before scoring |
+| NOVA MINERALS CORP | NVA | ○ | A | Auto-promoted from Scheme Booklet filing 2026-06-17 (acc 2924-03101216-3A695492); Australian scheme of arrangement; verify primary doc before scoring |
+| MEMPHASYS LIMITED. | MEM | ○ | A | Auto-promoted from Successful $1.2M Placement and Convertible Note Extended filing 2026-06-17 (acc 2924-03101482-3A695544); Capital raising / rights / placement; verify primary doc before scoring |
+| TECHGEN METALS LTD | TG1 | ○ | A | Auto-promoted from TechGen Secures Copper-Gold Exploration Funding filing 2026-06-17 (acc 2924-03101438-6A1329957); Capital raising / rights / placement; verify primary doc before scoring |
+| INVERT GRAPHITE LIMITED | IVG | ○ | A | Auto-promoted from InVert to Acquire RapidPulse Graphite Processing Technology filing 2026-06-17 (acc 2924-03101454-2A1677984); Capital raising / rights / placement; verify primary doc before scoring |
+| STRATEGIC ELEMENTS LIMITED | SOR | ○ | A | Auto-promoted from Demand for SOR Capital Raising Exceeds Maximum Amount filing 2026-06-17 (acc 2924-03101459-6A1329974); Capital raising / rights / placement; verify primary doc before scoring |
+| ATLAS ARTERIA | ALX | ○ | A | Auto-promoted from Release of Fourth Supplementary Target's Statement filing 2026-06-17 (acc 2924-03101434-2A1678008); Target's response to a takeover; verify primary doc before scoring |
+| POWER MINERALS LIMITED | PNN | ○ | A | Auto-promoted from STRATEGIC $1.7M SECURED FROM RESOURCES INVESTMENT FUND filing 2026-06-17 (acc 2924-03101443-2A1678010); Capital raising / rights / placement; verify primary doc before scoring |

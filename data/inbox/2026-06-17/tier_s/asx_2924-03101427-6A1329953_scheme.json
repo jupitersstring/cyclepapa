@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101427-6A1329953",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Update on proposed combination with Critical Metals Corp",
+  "form_code": "Scheme of Arrangement|Notice of Meeting - Other",
+  "industry": "Metals & Mining",
+  "isin": "AU000000EUR7",
+  "jurisdiction": "AU",
+  "name": "EUROPEAN LITHIUM LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "EUR",
+  "tier": "tier_s",
+  "url": ""
+}

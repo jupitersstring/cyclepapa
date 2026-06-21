@@ -100,6 +100,10 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "judicial_recovery", "extrajudicial_recovery", "bankruptcy_br",
     "opa", "merger", "capital_increase", "corp_reorg",
     "material_fact", "stock_split",
+    # ---- ASX labels (asx_poll.py) ----
+    "takeover_bid", "target_statement", "off_market_offer",
+    "compulsory_acquisition", "capital_raising",
+    "voluntary_administration", "receivership",
 }
 
 

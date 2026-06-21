@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101607-3A695571",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Appendix 3Y (K. Youngblood)",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Hotels, Restaurants & Leisure",
+  "isin": "AU0000278103",
+  "jurisdiction": "AU",
+  "name": "LIGHT & WONDER INC.",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Consumer Discretionary",
+  "source": "ASX",
+  "ticker": "LNW",
+  "tier": "rev_pref",
+  "url": ""
+}

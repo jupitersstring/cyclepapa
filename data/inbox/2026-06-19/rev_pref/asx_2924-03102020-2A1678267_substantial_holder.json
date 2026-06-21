@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03102020-2A1678267",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Ceasing to be a substantial holder",
+  "form_code": "Ceasing to be a substantial holder",
+  "industry": "Consumer Finance",
+  "isin": "AU000000CCP3",
+  "jurisdiction": "AU",
+  "name": "CREDIT CORP GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "CCP",
+  "tier": "rev_pref",
+  "url": ""
+}

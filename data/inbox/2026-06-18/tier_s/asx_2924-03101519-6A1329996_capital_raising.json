@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101519-6A1329996",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Placement Update - Closing of Tranche 2",
+  "form_code": "Security holder details - Other|Placement",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "isin": "AU0000212078",
+  "jurisdiction": "AU",
+  "name": "FINDER ENERGY HOLDINGS LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Energy",
+  "source": "ASX",
+  "ticker": "FDR",
+  "tier": "tier_s",
+  "url": ""
+}

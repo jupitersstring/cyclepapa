@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101900-2A1678171",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "CONNEQT Completes $5.5m Placement",
+  "form_code": "Placement|Trading Halt Lifted|Security Purchase Plan",
+  "industry": "Health Care Equipment & Supplies",
+  "isin": "AU0000420739",
+  "jurisdiction": "AU",
+  "name": "CONNEQT HEALTH LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Health Care",
+  "source": "ASX",
+  "ticker": "CQT",
+  "tier": "tier_s",
+  "url": ""
+}

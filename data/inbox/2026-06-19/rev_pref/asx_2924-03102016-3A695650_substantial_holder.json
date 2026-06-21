@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03102016-3A695650",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Becoming a substantial holder",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Food Products",
+  "isin": "AU000000BGA8",
+  "jurisdiction": "AU",
+  "name": "BEGA CHEESE LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Consumer Staples",
+  "source": "ASX",
+  "ticker": "BGA",
+  "tier": "rev_pref",
+  "url": ""
+}

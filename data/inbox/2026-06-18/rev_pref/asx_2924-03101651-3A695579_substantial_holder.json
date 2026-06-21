@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101651-3A695579",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Specialty Retail",
+  "isin": "AU0000109506",
+  "jurisdiction": "AU",
+  "name": "ADORE BEAUTY GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Consumer Discretionary",
+  "source": "ASX",
+  "ticker": "ABY",
+  "tier": "rev_pref",
+  "url": ""
+}

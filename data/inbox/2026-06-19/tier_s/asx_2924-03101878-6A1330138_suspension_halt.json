@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101878-6A1330138",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "PEP11 Update",
+  "form_code": "Trading Halt Lifted|Progress Report|Legal Proceedings",
+  "industry": "Capital Markets",
+  "isin": "AU000000BPH4",
+  "jurisdiction": "AU",
+  "name": "BPH ENERGY LTD",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "BPH",
+  "tier": "tier_s",
+  "url": ""
+}

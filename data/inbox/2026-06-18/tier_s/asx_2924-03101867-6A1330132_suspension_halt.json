@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101867-6A1330132",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "PEP11 Update - Federal Court Judgement",
+  "form_code": "Trading Halt Lifted|Progress Report|Legal Proceedings",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "isin": "AU000000MMR7",
+  "jurisdiction": "AU",
+  "name": "MEC RESOURCES LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Energy",
+  "source": "ASX",
+  "ticker": "MMR",
+  "tier": "tier_s",
+  "url": ""
+}

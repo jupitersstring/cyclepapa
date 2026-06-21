@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101216-3A695492",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Scheme Booklet",
+  "form_code": "Admission to Official List|Company Administration - Other|Ov",
+  "industry": null,
+  "isin": "AU000000NVA2",
+  "jurisdiction": "AU",
+  "name": "NOVA MINERALS CORP",
+  "price_sensitive": false,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": null,
+  "source": "ASX",
+  "ticker": "NVA",
+  "tier": "tier_s",
+  "url": ""
+}

@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03102080-2A1678309",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Health Care Providers & Services",
+  "isin": "AU0000209868",
+  "jurisdiction": "AU",
+  "name": "MICROBA LIFE SCIENCES LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Health Care",
+  "source": "ASX",
+  "ticker": "MAP",
+  "tier": "rev_pref",
+  "url": ""
+}

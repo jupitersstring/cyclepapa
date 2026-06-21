@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101212-6A1329851",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Becoming a substantial holder",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Metals & Mining",
+  "isin": "AU0000181109",
+  "jurisdiction": "AU",
+  "name": "PARABELLUM RESOURCES LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "PBL",
+  "tier": "rev_pref",
+  "url": ""
+}

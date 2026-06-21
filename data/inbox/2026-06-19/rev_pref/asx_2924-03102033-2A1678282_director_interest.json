@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03102033-2A1678282",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Appendix 3Z - Final Director's Interest Notice",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Capital Markets",
+  "isin": "AU0000004517",
+  "jurisdiction": "AU",
+  "name": "MICROEQUITIES ASSET MANAGEMENT GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "MAM",
+  "tier": "rev_pref",
+  "url": ""
+}

@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101533-2A1678043",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Software",
+  "isin": "AU0000038531",
+  "jurisdiction": "AU",
+  "name": "XREF LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "XF1",
+  "tier": "rev_pref",
+  "url": ""
+}

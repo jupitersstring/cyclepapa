@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101888-6A1330102",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Successful Placement Accelerates Operations",
+  "form_code": "Placement|Trading Halt Lifted",
+  "industry": "Electrical Equipment",
+  "isin": "AU0000210957",
+  "jurisdiction": "AU",
+  "name": "INTERNATIONAL GRAPHITE LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "IG6",
+  "tier": "tier_s",
+  "url": ""
+}

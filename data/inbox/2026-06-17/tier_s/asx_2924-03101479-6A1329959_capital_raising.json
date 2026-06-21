@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101479-6A1329959",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "$12.9M Capital Raising to Unlock Mineral Hill Potential",
+  "form_code": "Placement|Non-Renounceable Issue",
+  "industry": "Metals & Mining",
+  "isin": "AU000000KSN7",
+  "jurisdiction": "AU",
+  "name": "KINGSTON RESOURCES LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "KSN",
+  "tier": "tier_s",
+  "url": ""
+}

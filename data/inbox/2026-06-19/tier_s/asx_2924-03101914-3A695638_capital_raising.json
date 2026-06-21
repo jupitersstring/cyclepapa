@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101914-3A695638",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Successful Completion of $3.3m Private Placement",
+  "form_code": "Placement|Issued Capital - Other",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "isin": "AU000000DTZ4",
+  "jurisdiction": "AU",
+  "name": "DOTZ NANO LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "DTZ",
+  "tier": "tier_s",
+  "url": ""
+}

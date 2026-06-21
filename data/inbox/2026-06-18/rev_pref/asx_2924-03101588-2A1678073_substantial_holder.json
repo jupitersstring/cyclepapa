@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101588-2A1678073",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Change in substantial holding from NWL",
+  "form_code": "Change in substantial holding",
+  "industry": "Capital Markets",
+  "isin": "AU000000ARC3",
+  "jurisdiction": "AU",
+  "name": "ARC FUNDS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "ARC",
+  "tier": "rev_pref",
+  "url": ""
+}

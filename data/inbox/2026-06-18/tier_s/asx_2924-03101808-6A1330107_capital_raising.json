@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101808-6A1330107",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Placement of Entitlement Offer Shortfall",
+  "form_code": "Non-Renounceable Issue",
+  "industry": "Metals & Mining",
+  "isin": "AU0000169914",
+  "jurisdiction": "AU",
+  "name": "MT MALCOLM MINES NL",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "M2M",
+  "tier": "tier_s",
+  "url": ""
+}

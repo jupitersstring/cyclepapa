@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101280-6A1329885",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU0000190829",
+  "jurisdiction": "AU",
+  "name": "VIRIDIS MINING AND MINERALS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "VMM",
+  "tier": "rev_pref",
+  "url": ""
+}

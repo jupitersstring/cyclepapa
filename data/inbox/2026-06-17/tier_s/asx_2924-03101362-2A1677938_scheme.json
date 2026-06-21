@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101362-2A1677938",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Regulatory Update on Scheme",
+  "form_code": "Scheme of Arrangement",
+  "industry": "Transportation Infrastructure",
+  "isin": "AU000000QUB5",
+  "jurisdiction": "AU",
+  "name": "QUBE HOLDINGS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "QUB",
+  "tier": "tier_s",
+  "url": ""
+}

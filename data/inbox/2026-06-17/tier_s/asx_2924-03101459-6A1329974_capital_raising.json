@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101459-6A1329974",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Demand for SOR Capital Raising Exceeds Maximum Amount",
+  "form_code": "Security Purchase Plan",
+  "industry": "Capital Markets",
+  "isin": "AU000000SOR0",
+  "jurisdiction": "AU",
+  "name": "STRATEGIC ELEMENTS LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "SOR",
+  "tier": "tier_s",
+  "url": ""
+}

@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101482-3A695544",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Successful $1.2M Placement and Convertible Note Extended",
+  "form_code": "Security holder details - Other|Placement|Trading Halt Lifte",
+  "industry": "Life Sciences Tools & Services",
+  "isin": "AU000000MEM5",
+  "jurisdiction": "AU",
+  "name": "MEMPHASYS LIMITED.",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Health Care",
+  "source": "ASX",
+  "ticker": "MEM",
+  "tier": "tier_s",
+  "url": ""
+}

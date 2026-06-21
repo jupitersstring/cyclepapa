@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101810-6A1330090",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Postponement of Scheme Meetings",
+  "form_code": "Scheme of Arrangement|Trading Halt Lifted",
+  "industry": "Metals & Mining",
+  "isin": "AU0000094153",
+  "jurisdiction": "AU",
+  "name": "AUSTRALIAN STRATEGIC MATERIALS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "ASM",
+  "tier": "tier_s",
+  "url": ""
+}

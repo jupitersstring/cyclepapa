@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101809-6A1330108",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Trading Halt",
+  "form_code": "Trading Halt",
+  "industry": "Metals & Mining",
+  "isin": "AU000000TAR7",
+  "jurisdiction": "AU",
+  "name": "TARUGA MINERALS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "TAR",
+  "tier": "tier_s",
+  "url": ""
+}

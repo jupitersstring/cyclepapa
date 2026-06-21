@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101434-2A1678008",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Release of Fourth Supplementary Target's Statement",
+  "form_code": "Supplementary Target's Statement",
+  "industry": "Transportation Infrastructure",
+  "isin": "AU0000013559",
+  "jurisdiction": "AU",
+  "name": "ATLAS ARTERIA",
+  "price_sensitive": true,
+  "query_label": "tier_s.target_statement",
+  "query_note": "Target's response to a takeover",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "ALX",
+  "tier": "tier_s",
+  "url": ""
+}

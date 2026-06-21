@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101498-6A1329987",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-18",
+  "form": "Launch of Underwritten Capital Raise to Fund Acquisitions",
+  "form_code": "Profit Guidance|Web Cast|Periodic Reports - Other|Placement|",
+  "industry": "Trading Companies & Distributors",
+  "isin": "AU0000006124",
+  "jurisdiction": "AU",
+  "name": "ACROW LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "ACF",
+  "tier": "tier_s",
+  "url": ""
+}

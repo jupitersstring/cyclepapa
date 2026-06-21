@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101955-2A1678247",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Oversubscribed Capital Raise Delivers $5.2m for Accelerated",
+  "form_code": "Placement",
+  "industry": "Metals & Mining",
+  "isin": "AU0000156796",
+  "jurisdiction": "AU",
+  "name": "BALLYMORE RESOURCES LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "BMR",
+  "tier": "tier_s",
+  "url": ""
+}

@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03102083-2A1678312",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-19",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": null,
+  "isin": "AU0000149429",
+  "jurisdiction": "AU",
+  "name": "SALTER BROTHERS EMERGING COMPANIES LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": null,
+  "source": "ASX",
+  "ticker": "SB2",
+  "tier": "rev_pref",
+  "url": ""
+}

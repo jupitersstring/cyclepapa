@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03101265-6A1329876",
+  "cik": "",
+  "fetched_at": "2026-06-21T21:57:06.019475Z",
+  "filed": "2026-06-17",
+  "form": "Change of Director's Interest Notice - Naomi Scott",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU0000317471",
+  "jurisdiction": "AU",
+  "name": "WARATAH MINERALS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "WTM",
+  "tier": "rev_pref",
+  "url": ""
+}
