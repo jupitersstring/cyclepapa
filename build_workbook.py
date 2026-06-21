@@ -125,7 +125,8 @@ def name_lookup(tickers, cache_path="/home/user/cyclepapa/data/ticker_info_cache
         cache[t] = out[t]
         if (i+1) % 100 == 0:
             print(f"  ...looked up {i+1}/{len(todo)}")
-            # checkpoint
+        if (i+1) % 500 == 0:
+            # checkpoint less frequently to reduce noisy git churn
             with open(cache_path, "w") as f:
                 json.dump(cache, f)
     with open(cache_path, "w") as f:
