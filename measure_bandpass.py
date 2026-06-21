@@ -127,10 +127,14 @@ def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
             rec["down"] += 1; rec["score"] -= inten
 
     rows = []
+    n_scanned = n_skip_short = n_skip_stale = 0
     for sym, df in frames.items():
         d = drop_incomplete_last(df, label, asof=asof)   # drop in-progress bar
-        if len(d) < 80 or last_dates.get(sym) < (asof - tol):
-            continue
+        if len(d) < 80:
+            n_skip_short += 1; continue
+        if last_dates.get(sym) < (asof - tol):
+            n_skip_stale += 1; continue
+        n_scanned += 1
         series = measure_series(d["Close"].astype(float), d["Volume"].astype(float), w)
         rec = {"symbol": sym, "sector": sectors.get(sym, "?"),
                "cap": caps.get(sym, "?"), "tf": label,
@@ -148,6 +152,10 @@ def scan(frames: dict, label: str, recent: int, w: int, sectors: dict,
         if rec["up"] or rec["down"]:
             rows.append(rec)
 
+    # provenance/coverage line: proves the FULL universe∩cache is ranked, not a subset
+    print(f"[coverage:{label}] universe={len(frames)} scanned={n_scanned} "
+          f"(skipped short-hist={n_skip_short}, stale/delisted={n_skip_stale}) "
+          f"surfaced={len(rows)}")
     out = pd.DataFrame(rows)
     if out.empty:
         print(f"\n[{label}] no fresh measure inflections.")
