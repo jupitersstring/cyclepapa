@@ -1,6 +1,5 @@
 ticker,filing_date,company,accession,role,score,distress_pts,grant_pts,talent_pts,talent_hits,grant_value_usd,base_salary_usd,stock_hurdles,reasons
 JTAI,2026-05-21,Jet.AI Inc. ,0001493152-26-024854,,43.0,43.0,0.0,0.0,,,,,DD 99%; P/B 0.13
-CP,2026-03-25,CANADIAN PACIFIC KANSAS CITY LTD/CN ,0001193125-26-124134,Chief Operating Officer,40.0,10.0,18.0,12.0,field: PG&E restructure,1397800.0,,"77.12,1.37,73.63,104.08",in special_situations (RESTRUCT_8K); 4 stock-price tranches; hurdles up to $104.08; PG&E restructure
 BYND,2026-04-02,"BEYOND MEAT, INC. ",0001655210-26-000018,,35.0,35.0,0.0,0.0,,,,,DD 91%; in special_situations (RESTRUCT_8K)
 CMTL,2026-06-15,COMTECH TELECOMMUNICATIONS CORP /DE/ ,0001104659-26-073803,,35.0,35.0,0.0,0.0,,,,,DD 61%; P/B 0.68; in special_situations (ACTIVIST_13D)
 FISV,2026-06-15,FISERV INC ,0001193125-26-270336,,35.0,35.0,0.0,0.0,,,,,DD 73%; P/B 0.97
@@ -9,6 +8,7 @@ HRTX,2026-04-06,"HERON THERAPEUTICS, INC. /DE/ ",0001193125-26-142947,,35.0,35.0
 WW,2025-12-23,"WW INTERNATIONAL, INC. ",0001193125-25-330852,,33.0,33.0,0.0,0.0,,,,,DD 59%; P/B 0.60; PSU.chapter11_emergence
 BGS,2026-05-05,"B&G Foods, Inc. ",0001104659-26-055718,,28.0,28.0,0.0,0.0,,,,,P/B 0.78; in special_situations (RESTRUCT_8K)
 VSNT,2026-01-05,"Versant Media Group, Inc. ",0000950103-26-000080,,28.0,28.0,0.0,0.0,,,,,P/B 0.54; in special_situations (RUSSELL_BOUNDARY)
+CP,2026-03-25,CANADIAN PACIFIC KANSAS CITY LTD/CN ,0001193125-26-124134,Chief Operating Officer,28.0,10.0,18.0,0.0,,1397800.0,,"77.12,1.37,73.63,104.08",in special_situations (RESTRUCT_8K); 4 stock-price tranches; hurdles up to $104.08
 KSS,2026-06-15,KOHLS Corp ,0001193125-26-271291,,26.0,26.0,0.0,0.0,,,,,P/B 0.48
 UEIC,2025-12-30,UNIVERSAL ELECTRONICS INC ,0000101984-25-000249,,26.0,26.0,0.0,0.0,,,,,P/B 0.36
 ARQ,2026-05-27,"Arq, Inc. ",0001515156-26-000069,,25.0,25.0,0.0,0.0,,,,,DD 64%; P/B 0.73
