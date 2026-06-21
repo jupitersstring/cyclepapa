@@ -79,15 +79,19 @@ def write_header(ws, cols, row=1):
         c.border = BOTTOM_THICK
 
 def autosize(ws):
-    for col in ws.columns:
-        try:
-            letter = get_column_letter(col[0].column)
-        except Exception:
-            continue
+    # iterate columns by index — safer than ws.columns when sheet has merged cells
+    max_col = ws.max_column or 1
+    max_row = ws.max_row or 1
+    for col_idx in range(1, max_col + 1):
+        letter = get_column_letter(col_idx)
         max_len = 0
-        for c in col:
-            if c.value is not None:
-                max_len = max(max_len, min(len(str(c.value)), 50))
+        for row_idx in range(1, max_row + 1):
+            try:
+                v = ws.cell(row=row_idx, column=col_idx).value
+            except Exception:
+                continue
+            if v is not None:
+                max_len = max(max_len, min(len(str(v)), 50))
         ws.column_dimensions[letter].width = max(10, min(max_len + 3, 44))
 
 def write_rows(ws, rows, start_row=2, alt_shading=True):
@@ -452,6 +456,122 @@ def sheet_all_funds(wb, conn):
     ws.freeze_panes = ws.cell(row=4, column=2)
     autosize(ws)
 
+def sheet_bill_miller(wb, conn):
+    """Dedicated spotlight on both Bill Miller funds:
+       - Bill Miller IV  (Miller Value Partners LLC, CIK 1135778)
+       - Bill Miller III (Patient Capital Management, CIK 1854794)
+    Side-by-side top holdings plus shared overlap.
+    """
+    ws = wb.create_sheet("Bill Miller Spotlight")
+    title_bar(ws, "Bill Miller — Both Funds",
+              "Bill IV: Miller Value Partners LLC (Sarasota, FL — 55 holdings). "
+              "Bill III: Patient Capital Management LLC (40 holdings). Top positions + shared overlap.",
+              10)
+
+    funds = [
+        ("Bill IV — Miller Value Partners",   "Miller Value Partners%"),
+        ("Bill III — Patient Capital",        "Patient Capital%"),
+    ]
+
+    # Section 1: per-fund top 20 holdings
+    row = 4
+    ws.row_dimensions[row].height = 26
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=10)
+    c = ws.cell(row=row, column=1, value="TOP 20 HOLDINGS BY FUND")
+    c.font = SECTION_FONT
+    c.alignment = Alignment(horizontal="left", vertical="center")
+    row += 1
+    hdr = ["Ticker","Issuer","Value $M","Shares","%Book","Mcap $M","Bucket","13F #","Activist %","Cluster?"]
+    write_header(ws, hdr, row=row)
+    row += 1
+
+    for label, like in funds:
+        ws.row_dimensions[row].height = BODY_HEIGHT
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=10)
+        c = ws.cell(row=row, column=1, value=label)
+        c.font = Font(name=TNR, bold=True, size=11, color=CRIMSON_DARK)
+        c.fill = PatternFill("solid", fgColor=CRIMSON_PALE)
+        c.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+        row += 1
+        rows = list(conn.execute("""
+            SELECT h.ticker, h.issuer, h.value_k, h.shares, h.pct_book,
+                   tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
+                   us.insider_cluster_dollars_m
+            FROM fund_13f_holdings h
+            LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
+            LEFT JOIN unified_signal us ON us.ticker = h.ticker
+            WHERE h.fund LIKE ?
+            ORDER BY h.value_k DESC LIMIT 20""", (like,)))
+        out = []
+        for r in rows:
+            cluster_mark = "YES" if (r[9] and r[9] > 0) else ""
+            out.append([r[0] or "-", (r[1] or "")[:28],
+                        round((r[2] or 0)/1000, 1) if r[2] else "",
+                        f"{r[3]:,}" if r[3] else "",
+                        round(r[4] or 0, 2),
+                        r[5] or "",
+                        r[6] or "",
+                        r[7] or 0,
+                        round(r[8] or 0, 1),
+                        cluster_mark])
+        write_rows(ws, out, start_row=row)
+        style_ticker_col(ws, row, len(out))
+        for ridx in range(row, row+len(out)):
+            ws.cell(row=ridx, column=3).number_format = NUMFMT_NUM
+            ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
+            ws.cell(row=ridx, column=6).number_format = NUMFMT_USD
+            ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+        row += len(out) + 1
+
+    # Section 2: shared overlap — positions held by BOTH funds
+    row += 1
+    ws.row_dimensions[row].height = 26
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=10)
+    c = ws.cell(row=row, column=1, value="SHARED OVERLAP — POSITIONS HELD BY BOTH FUNDS")
+    c.font = SECTION_FONT
+    c.alignment = Alignment(horizontal="left", vertical="center")
+    row += 1
+    hdr_overlap = ["Ticker","Issuer","Bill IV %","Bill III %","Combined %","Mcap $M","Bucket","13F Universe","Activist %","Name"]
+    write_header(ws, hdr_overlap, row=row)
+    row += 1
+    overlap = list(conn.execute("""
+        SELECT h4.ticker,
+               h4.issuer,
+               h4.pct_book AS pct4,
+               h3.pct_book AS pct3,
+               h4.pct_book + h3.pct_book AS combined,
+               tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct, tm.name
+        FROM fund_13f_holdings h4
+        JOIN fund_13f_holdings h3 ON h3.ticker = h4.ticker
+        LEFT JOIN ticker_meta tm ON tm.ticker = h4.ticker
+        LEFT JOIN unified_signal us ON us.ticker = h4.ticker
+        WHERE h4.fund LIKE 'Miller Value%'
+          AND h3.fund LIKE 'Patient Capital%'
+          AND h4.ticker IS NOT NULL
+        ORDER BY combined DESC"""))
+    out = []
+    for r in overlap:
+        out.append([r[0], (r[1] or "")[:28],
+                    round(r[2] or 0, 2),
+                    round(r[3] or 0, 2),
+                    round(r[4] or 0, 2),
+                    r[5] or "",
+                    r[6] or "",
+                    r[7] or 0,
+                    round(r[8] or 0, 1),
+                    (r[9] or "")[:30]])
+    write_rows(ws, out, start_row=row)
+    style_ticker_col(ws, row, len(out))
+    for ridx in range(row, row+len(out)):
+        ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+
+    ws.freeze_panes = "B6"
+    autosize(ws)
+
 def main():
     conn = sqlite3.connect(DB)
     wb = openpyxl.Workbook()
@@ -520,6 +640,7 @@ def main():
     ws.freeze_panes = ws.cell(row=4, column=2)
     autosize(ws)
 
+    sheet_bill_miller(wb, conn)
     sheet_unknown_bucket(wb, conn)
     sheet_fund_coverage(wb, conn)
     sheet_all_funds(wb, conn)
