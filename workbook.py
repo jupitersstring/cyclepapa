@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 
 from midcap_weekly_anomalies import get_universe, REGIONS
-from signals import drop_incomplete_last, smoothed_inflection
+from signals import drop_incomplete_last, smoothed_inflection, regime_strength
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(ROOT, ".cache")
@@ -49,11 +49,13 @@ LEGS = [
     ("Sharpe action 21d (move/ATR)", "atr_21d", False),
     ("Early inflection (curvature)", "early_curv", False),
     ("Breadth net (wk+dy)", "breadth", False),
+    ("All-weather RS (up&down mkt)", "all_weather", False),
+    ("Quiet resilience (down=low vol)", "quiet_resil", False),
     ("Nearest 200-week low", "pct_above_low", True),
 ]
-SHOW = ["name", "sector", "industry", "ret_5d", "ret_10d", "ret_21d",
-        "atr_5d", "atr_21d", "blend", "accel", "early_curv", "breadth",
-        "pct_above_low", "composite"]
+SHOW = ["name", "sector", "industry", "ret_5d", "ret_21d", "blend", "accel",
+        "early_curv", "breadth", "up_perf", "dn_perf", "down_vol_z",
+        "all_weather", "quiet_resil", "pct_above_low", "composite"]
 
 
 def _rz(s):                       # robust cross-sectional z (median / MAD)
@@ -74,6 +76,24 @@ def build_features(topn_date=None):
     cache = pd.read_pickle(os.path.join(CACHE, "ohlcvdict_1d_20y.pkl"))
     last = {s: d.dropna().index[-1] for s, d in cache.items() if len(d.dropna())}
     asof = max(last.values()); tol = pd.Timedelta(days=8)
+    LB = 126                                          # regime lookback (~6 months)
+
+    # per-region MARKET proxy: median daily return across that region's names
+    region_mkt = {}
+    for rc in REGIONS:
+        cols = {}
+        for s, m_ in meta.items():
+            if m_[0] != rc:
+                continue
+            d = cache.get(s)
+            if d is None:
+                continue
+            c = d["Close"].dropna()
+            if len(c) >= LB + 5 and last.get(s, asof) >= asof - tol:
+                cols[s] = c.iloc[-(LB + 5):]
+        if cols:
+            R = pd.DataFrame(cols).pct_change()
+            region_mkt[rc] = R.median(axis=1)         # robust equal-weight market
 
     rows = []
     for sym, df in cache.items():
@@ -88,9 +108,10 @@ def build_features(topn_date=None):
             continue
         win200 = c.iloc[-200:]
         rc, sec, cap, nm = meta[sym]
+        v = d["Volume"].astype(float)
         rec = {"symbol": sym, "region": rc, "sector": sec, "cap": cap, "name": nm[:34],
                "industry": (ind.get(sym) or {}).get("industry") or sec,
-               "dvol": float((c * d["Volume"].astype(float)).iloc[-21:].median()),
+               "dvol": float((c * v).iloc[-21:].median()),
                "pct_above_low": float(c.iloc[-1] / win200.min() - 1) if win200.min() > 0 else np.nan,
                "pct_off_high": float(c.iloc[-1] / c.iloc[-252:].max() - 1) if len(c) >= 60 else np.nan}
         for k in (5, 10, 21):
@@ -98,6 +119,17 @@ def build_features(topn_date=None):
             rec[f"atr_{k}d"] = float((c.iloc[-1] - c.iloc[-1 - k]) / atr)
         ei = smoothed_inflection(np.log(c.clip(lower=1e-9).to_numpy()), 21, 5)
         rec["early_curv"] = ei["curv_z"] if ei else np.nan
+        # regime-conditional strength vs the region market, aligned on common dates
+        rec["up_perf"] = rec["dn_perf"] = rec["down_vol_z"] = rec["dn_cap"] = np.nan
+        mkt = region_mkt.get(rc)
+        if mkt is not None:
+            sr = c.pct_change()
+            vz = (v - v.rolling(63).mean()) / v.rolling(63).std()
+            j = pd.concat([sr.rename("r"), vz.rename("vz"), mkt.rename("m")],
+                          axis=1, join="inner").dropna(subset=["r", "m"]).iloc[-LB:]
+            rs = regime_strength(j["r"].values, j["vz"].values, j["m"].values)
+            if rs:
+                rec.update({k: rs[k] for k in ("up_perf", "dn_perf", "down_vol_z", "dn_cap")})
         rows.append(rec)
     feat = pd.DataFrame(rows).set_index("symbol")
 
@@ -106,6 +138,15 @@ def build_features(topn_date=None):
         feat[f"z_atr_{k}d"] = _rz(feat[f"atr_{k}d"])
     feat["blend"] = 0.5 * feat["z_atr_5d"] + 0.3 * feat["z_atr_10d"] + 0.2 * feat["z_atr_21d"]
     feat["accel"] = feat["z_atr_5d"] - feat["z_atr_21d"]
+
+    # regime-conditional measures (z-scored WITHIN region so the market proxy is
+    # the right benchmark for each)
+    feat["all_weather"] = np.nan; feat["quiet_resil"] = np.nan
+    for rc, g in feat.groupby("region"):
+        zu, zd = _rz(g["up_perf"]), _rz(g["dn_perf"])
+        zv = _rz(g["down_vol_z"])
+        feat.loc[g.index, "all_weather"] = zu + zd                  # strong up AND down
+        feat.loc[g.index, "quiet_resil"] = zd - zv + 0.5 * zu       # down strong on LOW vol + up strong
 
     # breadth net (weekly + daily) from the latest committed CSVs
     date = topn_date or sorted(g.split("_daily_")[-1][:-4]
@@ -119,9 +160,10 @@ def build_features(topn_date=None):
             dl[r["symbol"]] = r["net"]
     feat["breadth"] = feat.index.map(lambda s: (wk.get(s, 0) + dl.get(s, 0)))
 
-    feat["composite"] = (0.30 * feat["blend"] + 0.20 * _rz(feat["accel"])
+    feat["composite"] = (0.25 * feat["blend"] + 0.15 * _rz(feat["accel"])
                          + 0.20 * _rz(feat["breadth"]) + 0.15 * _rz(feat["early_curv"].fillna(0))
-                         + 0.15 * _rz(feat["ret_21d"]))
+                         + 0.10 * _rz(feat["ret_21d"])
+                         + 0.15 * _rz(feat["all_weather"].fillna(0)))   # regime quality
     return feat, asof, date
 
 
@@ -183,7 +225,8 @@ def write_xlsx(feat, asof, date, topn, path):
     fmts = {"ret_5d": "+0.0%;-0.0%", "ret_10d": "+0.0%;-0.0%", "ret_21d": "+0.0%;-0.0%",
             "atr_5d": "+0.00", "atr_21d": "+0.00", "blend": "+0.00", "accel": "+0.00",
             "early_curv": "+0.00", "breadth": "+0;-0", "pct_above_low": "+0%;-0%",
-            "composite": "+0.00"}
+            "up_perf": "+0.00%;-0.00%", "dn_perf": "+0.00%;-0.00%", "down_vol_z": "+0.00",
+            "all_weather": "+0.00", "quiet_resil": "+0.00", "composite": "+0.00"}
     show_cols = ["symbol"] + SHOW
 
     # ---- cover sheet ----

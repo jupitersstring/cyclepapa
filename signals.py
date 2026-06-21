@@ -158,3 +158,43 @@ def smoothed_inflection(values: np.ndarray, length: int, recent: int) -> dict | 
         "curv_z": float(acc[-1] / sd),      # current curvature (how sharp the turn)
         "fresh": bars_ago <= recent,
     }
+
+
+def regime_strength(stock_ret, vol_z, mkt_ret) -> dict | None:
+    """Conditional relative-strength stats vs a market return series.
+
+    Splits the lookback into market-UP and market-DOWN days and measures how the
+    stock performs in each regime (plus its volume behaviour on down days):
+
+      up_perf / dn_perf : mean stock return on up / down market days
+      up_cap  / dn_cap  : capture ratios (stock/market mean per regime);
+                          dn_cap < 0 => stock RISES when the market falls
+      down_vol_z        : mean volume z-score on down days (low = quiet, not
+                          being distributed -> accumulation-friendly)
+
+    The workbook z-scores these cross-sectionally into:
+      all_weather    = z(up_perf) + z(dn_perf)            (strong in BOTH regimes)
+      quiet_resil    = z(dn_perf) - z(down_vol_z) + 0.5 z(up_perf)
+    """
+    r = np.asarray(stock_ret, float); m = np.asarray(mkt_ret, float)
+    vz = np.asarray(vol_z, float) if vol_z is not None else None
+    ok = np.isfinite(r) & np.isfinite(m)
+    r, m = r[ok], m[ok]
+    vz = vz[ok] if vz is not None else None
+    up, dn = m > 0, m < 0
+    if up.sum() < 5 or dn.sum() < 5:
+        return None
+
+    def _tmean(x, p=0.10):           # 10% trimmed mean: robust to single-day spikes
+        x = np.sort(x); k = int(len(x) * p)
+        return float(x[k:len(x) - k].mean()) if len(x) - 2 * k > 0 else float(x.mean())
+
+    up_perf, dn_perf = _tmean(r[up]), _tmean(r[dn])
+    mu, md = _tmean(m[up]), _tmean(m[dn])
+    return {
+        "up_perf": up_perf, "dn_perf": dn_perf,
+        "up_cap": up_perf / mu if mu else np.nan,
+        "dn_cap": dn_perf / md if md else np.nan,
+        "down_vol_z": float(np.nanmean(vz[dn])) if vz is not None and dn.any() else np.nan,
+        "n_up": int(up.sum()), "n_dn": int(dn.sum()),
+    }

@@ -73,3 +73,24 @@ def test_smoothed_inflection_finds_trough_early():
     x = np.concatenate([np.linspace(10, 0, 200), np.linspace(0, 8, 200)])
     r = smoothed_inflection(x, length=21, recent=40)
     assert r is not None and r["dir"] == "UP"
+
+
+def test_regime_strength_flags_all_weather_and_quiet():
+    from signals import regime_strength
+    rng = np.random.default_rng(5); n = 240
+    m = rng.normal(0, 0.01, n)
+    # all-weather defensive winner: up on up days AND up on down days, quiet on down
+    r = 0.4 * m + np.where(m < 0, 0.003, 0.003) + rng.normal(0, 0.001, n)
+    vz = np.where(m < 0, -0.7, 0.2)
+    res = regime_strength(r, vz, m)
+    assert res is not None
+    assert res["dn_perf"] > 0          # strong when market down
+    assert res["up_perf"] > 0          # strong when market up
+    assert res["down_vol_z"] < 0       # low volume on down days
+    assert res["dn_cap"] < 0           # rises while market falls
+
+
+def test_regime_strength_needs_both_regimes():
+    from signals import regime_strength
+    m = np.r_[np.full(200, 0.01)]      # no down days
+    assert regime_strength(m, None, m) is None
