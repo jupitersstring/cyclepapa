@@ -51,65 +51,50 @@ OUT = ROOT / "turnaround_signal.csv"
 
 # ----------------------------------------------------------------------
 # Curated turnaround-talent annotations -- editorial overlay, not
-# membership decision. Match against 8-K text on lowercase substring.
+# membership decision. Match against 8-K text with word-boundary regex
+# AND role-proximity (see parse_8k_text). Keep entries UNAMBIGUOUS:
+# unique surnames + multi-word PE/activist firm names. Common-word
+# surnames removed to avoid false positives from boilerplate director
+# bios mentioning past affiliations.
 # ----------------------------------------------------------------------
 TALENT_HINTS: dict[str, str] = {
-    # Classic operators
-    "bollenbach":         "Architect of Hilton / Marriott / Host turnaround",
-    "iacocca":             "Chrysler reset",
-    "gerstner":            "IBM turnaround",
-    "jobs":                "Apple revival",
-    "schultz":             "Starbucks revival (twice)",
-    "mulally":             "Boeing then Ford turnaround",
-    "mulcahy":             "Xerox turnaround",
-    "ghosn":               "Renault / Nissan reset",
-    "marchionne":          "Fiat / Chrysler reset",
-    "hurd":                "HP / Oracle operator",
-    "ellison":             "Operator at scale",
-    "iger":                "Disney returning operator",
-    "khosrowshahi":        "Expedia / Uber operator",
-    "musk":                "Tesla / SpaceX",
-    "winchester":          "Multi-distressed restructuring",
-    "shapiro":             "PE-installed operator",
+    # Unambiguous classic-operator surnames
+    "bollenbach":     "Architect of Hilton / Marriott / Host turnaround",
+    "iacocca":        "Chrysler reset",
+    "gerstner":       "IBM turnaround",
+    "mulally":        "Boeing then Ford turnaround",
+    "mulcahy":        "Xerox turnaround",
+    "marchionne":     "Fiat / Chrysler reset",
+    "khosrowshahi":   "Expedia / Uber operator",
+    "rosenfeld":      "Mondelez / Kraft operator",
+    "smisek":         "Continental / United operator",
+    "gennette":       "Macy's restructure",
+    "calhoun":        "Boeing restructure",
+    "ghosn":          "Renault / Nissan reset",
+    "schultz":        "Starbucks revival (twice)",
 
-    # Distressed-debt / restructuring CEOs commonly installed by PE
-    "feldman":             "Distressed CEO archetype",
-    "cohen":               "PE-installed turnaround CEO",
-    "rosen":               "PE-installed turnaround CEO",
-    "rosenfeld":           "Mondelez / Kraft operator",
-    "richardson":          "Distressed CEO archetype",
-    "anderson":            "Delta turnaround",
-    "smisek":              "Continental / United operator",
-
-    # Contemporary activist / restructuring talent
-    "bastian":             "Delta operator",
-    "tarrant":              "PE turnaround operator",
-    "barra":               "GM restructure",
-    "field":               "PG&E restructure",
-    "krueger":             "Macy's restructure",
-    "gennette":            "Macy's restructure",
-    "olcay":               "Macy's restructure",
-    "calhoun":             "Boeing restructure",
-
-    # PE / activist sponsorship phrases (firm names)
-    "apollo":              "Apollo PE-installed operator",
-    "cerberus":            "Cerberus PE-installed operator",
-    "kkr":                 "KKR PE-installed operator",
-    "blackstone":          "Blackstone PE-installed operator",
-    "bain capital":        "Bain PE-installed operator",
-    "tpg":                 "TPG PE-installed operator",
-    "carlyle":             "Carlyle PE-installed operator",
-    "elliott":             "Elliott-installed operator",
-    "starboard":           "Starboard-installed operator",
-    "mantle ridge":        "Mantle Ridge-installed operator",
-    "engaged capital":     "Engaged Capital-installed operator",
-    "valueact":            "ValueAct-installed operator",
-    "trian":               "Trian-installed operator",
-    "jana":                "JANA-installed operator",
-    "ancora":              "Ancora-installed operator",
-    "third point":         "Third Point-installed operator",
-    "pershing square":     "Pershing Square-installed operator",
-    "ackman":              "Ackman-affiliated operator",
+    # PE / activist firm phrases (multi-word, unambiguous)
+    "apollo global":      "Apollo PE-installed operator",
+    "cerberus capital":   "Cerberus PE-installed operator",
+    "kkr & co":           "KKR PE-installed operator",
+    "blackstone":         "Blackstone PE-installed operator",
+    "bain capital":       "Bain PE-installed operator",
+    "carlyle group":      "Carlyle PE-installed operator",
+    "tpg capital":        "TPG PE-installed operator",
+    "elliott management": "Elliott-installed operator",
+    "elliott investment": "Elliott-installed operator",
+    "starboard value":    "Starboard-installed operator",
+    "mantle ridge":       "Mantle Ridge-installed operator",
+    "engaged capital":    "Engaged Capital-installed operator",
+    "valueact capital":   "ValueAct-installed operator",
+    "trian fund":         "Trian-installed operator",
+    "trian partners":     "Trian-installed operator",
+    "jana partners":      "JANA-installed operator",
+    "ancora advisors":    "Ancora-installed operator",
+    "third point":        "Third Point-installed operator",
+    "pershing square":    "Pershing Square-installed operator",
+    "icahn enterprises":  "Icahn-installed operator",
+    "carl icahn":         "Icahn-installed operator",
 }
 
 

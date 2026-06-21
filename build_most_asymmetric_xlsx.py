@@ -343,6 +343,88 @@ def red_flag_count(tk: str, proxy: dict) -> int:
     return len(flags)
 
 
+def build_turnaround_signal(wb: Workbook, yf: dict):
+    """Live-rendered Bollenbach-signal tab: recent 8-K Item 5.02
+    executive appointments scored on distress + grant + curated
+    turnaround-talent overlap."""
+    ws = wb.create_sheet("Turnaround Signal")
+    set_col_widths(ws, [9, 13, 32, 10, 14, 8, 8, 8, 16, 50])
+    write_title_band(
+        ws,
+        "Bollenbach Signal -- Turnaround Talent Into Distress",
+        "Senior executives voluntarily joining struggling companies "
+        "with equity-heavy compensation. The grant tells you they "
+        "see a re-rate path the market hasn't yet priced.",
+        n_cols=10,
+    )
+
+    path = ROOT / "turnaround_signal.csv"
+    if not path.exists():
+        ws.cell(row=4, column=1,
+                value="(no file -- run `python3 turnaround_executive_leg.py`)").font = SUBTITLE_FONT
+        return
+
+    headers = ["#", "Ticker", "Company", "Score",
+                "Appt. date", "Distress", "Grant", "Talent",
+                "Role", "Talent hits / reasons"]
+    write_header_row(ws, 4, headers)
+
+    rows = list(csv.DictReader(path.open()))
+    r = 5
+    for i, row in enumerate(rows[:40], 1):
+        tk = row["ticker"]
+        company = (row.get("company") or "")[:32]
+        try:
+            score = float(row["score"])
+        except Exception:
+            score = 0.0
+        try:
+            dp = float(row["distress_pts"]); gp = float(row["grant_pts"])
+            tp = float(row["talent_pts"])
+        except Exception:
+            dp = gp = tp = 0.0
+        role = (row.get("role") or "")[:16]
+        reasons = (row.get("talent_hits") or row.get("reasons") or "")[:80]
+        band = (i % 2 == 0)
+        write_body_row(ws, r,
+                       [i, tk, company,
+                        f"{score:.0f}",
+                        row.get("filing_date") or "",
+                        f"{dp:.0f}", f"{gp:.0f}", f"{tp:.0f}",
+                        role, reasons],
+                       band=band, align_first_left=False)
+        ws.cell(row=r, column=2).font = Font(
+            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        if tp >= 20:
+            ws.cell(row=r, column=8).fill = CLEAN_TAG_FILL
+            ws.cell(row=r, column=8).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        if score >= 50:
+            ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
+            ws.cell(row=r, column=4).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        elif score >= 30:
+            ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
+            ws.cell(row=r, column=4).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        ws.row_dimensions[r].height = 22
+        r += 1
+
+    r += 1
+    write_footnote(ws, r,
+        "Greenblatt's Bollenbach test: 'It didn't make sense that the "
+        "man responsible for successfully saving a sinking ship -- by "
+        "figuring out a way to throw all that troubled real estate "
+        "and burdensome debt overboard -- should voluntarily jump the "
+        "now secured ship into a sinking lifeboat.' Distress + heavy "
+        "equity grant + known turnaround talent (curated dictionary "
+        "match with role-proximity) = strong asymmetric signal. "
+        "Source: turnaround_signal.csv (built from 8-K Item 5.02 "
+        "appointments).", 10)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_recent_30d(wb: Workbook, yf: dict):
     """Live-rendered Recent-30d tab: only names with a material
     incentive event in the last 30 days. The tightest stale-pricing
@@ -1369,6 +1451,7 @@ def main() -> int:
     build_caution_list(wb, proxy, consensus)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
+    build_turnaround_signal(wb, yf)
     build_single_measure(wb, yf, proxy, bbv, tender, c10, f4)
     build_coverage(wb)
     build_methodology(wb)
