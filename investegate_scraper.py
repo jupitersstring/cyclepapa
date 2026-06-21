@@ -44,6 +44,7 @@ from pathlib import Path
 
 BASE = "https://www.investegate.co.uk"
 CACHE_DIR = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "investegate"
+PDMR_DETAIL_DIR = CACHE_DIR / "pdmr"
 CACHE_TTL_SECONDS = 24 * 3600
 
 USER_AGENT = ("Mozilla/5.0 (compatible; CyclepapaRns/1.0; "
@@ -272,6 +273,457 @@ def signal_score_from_rns(
     composite = sum(WEIGHTS[c] * _sat(decayed[c]) for c in WEIGHTS)
     return min(1.0, composite), decayed, raw
 
+
+# ---------------------------------------------------------------------------
+# PDMR detail fetch — RNS titles never carry direction ("Director/PDMR
+# Shareholding" is the only title format), so to distinguish buys from
+# sells we have to fetch the announcement body. The body has a
+# standardised "Nature of the transaction" line we can parse, plus
+# Price(s) × Volume(s) for £-magnitude. Announcements are immutable so
+# we cache per-URL forever.
+
+_NATURE_RE = re.compile(
+    r"Nature of the transaction[^A-Za-z]{0,8}([A-Za-z][A-Za-z /\-]{2,60})",
+    re.IGNORECASE,
+)
+# Match either "£1.23 4,567" pairs OR plain "Price 1.23  Volume 4,567"
+_PRICE_VOL_RE = re.compile(
+    r"(?:£|GBP|GBp|p)?\s?([\d,]+\.\d{1,4})\s+([\d,]+)",
+    re.IGNORECASE,
+)
+_BUY_WORDS = re.compile(
+    r"\b(?:purchas\w*|acqui\w*|buy|bought|subscri\w*|allotment|scrip)\b",
+    re.IGNORECASE,
+)
+_SELL_WORDS = re.compile(
+    r"\b(?:sale|sell|sold|dispos\w*|transfer out|gift)\b",
+    re.IGNORECASE,
+)
+
+
+def _pdmr_cache_path(url: str) -> Path:
+    PDMR_DETAIL_DIR.mkdir(parents=True, exist_ok=True)
+    rns_id = re.sub(r"[^A-Za-z0-9]+", "_", url.rstrip("/").split("/")[-1])
+    return PDMR_DETAIL_DIR / f"{rns_id}.json"
+
+
+def fetch_pdmr_detail(url: str, *, use_cache: bool = True) -> dict:
+    """Fetch one PDMR announcement body and parse direction + £.
+
+    Returns dict with keys: {direction: 'buy'|'sell'|'unknown',
+    gbp_amount: float, raw_nature: str}. Cached per-URL forever — RNS
+    announcements don't change."""
+    cp = _pdmr_cache_path(url)
+    if use_cache and cp.exists():
+        try:
+            with open(cp) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            html = resp.read().decode("utf-8", errors="replace")
+    except Exception:
+        return {"direction": "unknown", "gbp_amount": 0.0, "raw_nature": ""}
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = re.sub(r"&#160;|&nbsp;", " ", text)
+    text = re.sub(r"\s+", " ", text)
+    nature_m = _NATURE_RE.search(text)
+    raw_nature = nature_m.group(1).strip() if nature_m else ""
+    direction = _classify_pdmr_direction(raw_nature)
+    gbp = _extract_pdmr_gbp(text, raw_nature)
+    rec = {"direction": direction, "gbp_amount": round(gbp, 2),
+           "raw_nature": raw_nature[:80]}
+    if use_cache:
+        try:
+            with open(cp, "w") as f:
+                json.dump(rec, f)
+        except Exception:
+            pass
+    return rec
+
+
+def _classify_pdmr_direction(nature: str) -> str:
+    if not nature:
+        return "unknown"
+    if _BUY_WORDS.search(nature):
+        return "buy"
+    if _SELL_WORDS.search(nature):
+        return "sell"
+    return "unknown"
+
+
+_DECIMAL_RE = re.compile(r"(?<![\d.,])([\d,]*\d\.\d{1,4})(?![\d.,])")
+_INTEGER_RE = re.compile(r"(?<![\d.,])([\d,]+)(?![\d.,])")
+
+
+def _extract_pdmr_gbp(text: str, nature: str) -> float:
+    """Find the first plausible price × volume pair after the Nature
+    line. Returns £ amount, or 0.0 if not parseable. Detects pence
+    quotation by the presence of GBp / "pence" near the price."""
+    i = text.find("Price(s)")
+    chunk = text[i:i+400] if i >= 0 else text[:1500]
+    price_m = _DECIMAL_RE.search(chunk)
+    if not price_m:
+        return 0.0
+    try:
+        price = float(price_m.group(1).replace(",", ""))
+    except ValueError:
+        return 0.0
+    # Look for the volume *after* the price; nature lines can sit before
+    after = chunk[price_m.end():]
+    vol_m = _INTEGER_RE.search(after)
+    if not vol_m:
+        return 0.0
+    try:
+        volume = float(vol_m.group(1).replace(",", ""))
+    except ValueError:
+        return 0.0
+    if volume < 1:
+        return 0.0
+    gbp = price * volume
+    # Heuristic: if GBp / pence marker is in the vicinity, the price
+    # is in pence — divide by 100.
+    nearby = chunk[max(0, price_m.start()-40):price_m.end()+40]
+    if re.search(r"GBp|pence", nearby, re.IGNORECASE):
+        gbp = gbp / 100.0
+    return gbp
+
+
+def enrich_pdmr_directions(
+    items: list[Announcement],
+    *,
+    lookback_days: int = 120,
+    max_fetches: int = 25,
+) -> dict[str, int | float]:
+    """For each PDMR within the lookback window, fetch the body and
+    classify direction. Returns aggregate counts and £-totals.
+
+    max_fetches caps the per-ticker HTTP cost — older PDMRs already
+    matter less and the cache will fill in over multiple runs."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
+    out = {"pdmr_buys": 0, "pdmr_sells": 0, "pdmr_unknown": 0,
+           "pdmr_buy_gbp": 0.0, "pdmr_sell_gbp": 0.0}
+    fetched = 0
+    for a in items:
+        if a.category != "pdmr" or not a.date:
+            continue
+        try:
+            dt = datetime.fromisoformat(a.date).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if dt < cutoff:
+            continue
+        if fetched >= max_fetches:
+            break
+        # Use cache freely; only counts as an HTTP fetch on a miss
+        cp = _pdmr_cache_path(a.url)
+        had_cache = cp.exists()
+        det = fetch_pdmr_detail(a.url)
+        if not had_cache:
+            fetched += 1
+        d = det.get("direction", "unknown")
+        gbp = float(det.get("gbp_amount", 0.0))
+        if d == "buy":
+            out["pdmr_buys"] += 1
+            out["pdmr_buy_gbp"] += gbp
+        elif d == "sell":
+            out["pdmr_sells"] += 1
+            out["pdmr_sell_gbp"] += gbp
+        else:
+            out["pdmr_unknown"] += 1
+    return out
+
+
+# ---------------------------------------------------------------------------
+# TR-1 detail fetch — like PDMRs, TR-1 announcement titles are
+# uniformly "Holding(s) in Company" so direction (buy/sell) and
+# materiality (1% step vs 10% accumulator) live only in the body. The
+# body has a structured table:
+#
+#   Position of notification:           Above the notification threshold
+#   Resulting situation: % of voting rights:  6.12%
+#   Previous notification: % of voting rights: 4.95%
+#   Name of the holder:                       <institution>
+#
+# We parse holder + new% + prev%, derive direction (new > prev = buy),
+# magnitude (new - prev = pp delta), and flag known activists.
+
+# Known activist holders — buying signal carries extra weight when the
+# new-stake is from one of these names. List is curated from the
+# UK-CEF activism literature (Saba's UKIT, AVI Global, Boaz Weinstein,
+# City of London Investment Group, Lazard, Wells Capital, etc.).
+ACTIVIST_HOLDERS = [
+    "saba capital", "boaz weinstein",
+    "asset value investors", "avi global", "avi ",
+    "city of london investment", "colim",
+    "wells capital", "wells fargo",
+    "lazard asset",
+    "elliott management", "elliott investment",
+    "1607 capital",
+    "metage capital",
+    "almitas capital",
+    "tellworth", "premier miton",
+    "polar capital",
+    "janus henderson",
+    "rights and issues",
+]
+
+TR1_DETAIL_DIR = CACHE_DIR / "tr1"
+
+# Two TR-1 body formats:
+#   (a) DTR-5 long-form with explicit "%" labels — synthetic / older
+#       wires. Pattern: "Resulting situation: % of voting rights: 6.12%"
+#   (b) Modern Investegate template — bare decimals in column layout.
+#       Pattern: "Resulting situation on the date on which threshold
+#       was crossed or reached 1.337000 0.000000 1.337000 538371
+#       Position of previous notification (if applicable) 14.488423 ..."
+#
+# We try (a) first; if no %-suffixed match, fall back to (b) parsing
+# the first plausible decimal (< 100) after each marker.
+_TR1_NEW_RE = re.compile(
+    r"resulting\s+situation.{0,160}?(?<![\d.])(\d{1,3}(?:\.\d{1,6})?)\s*%(?!\s*of\s+voting)",
+    re.IGNORECASE | re.DOTALL,
+)
+_TR1_PREV_RE = re.compile(
+    r"previous\s+notification.{0,160}?(?<![\d.])(\d{1,3}(?:\.\d{1,6})?)\s*%(?!\s*of\s+voting)",
+    re.IGNORECASE | re.DOTALL,
+)
+_TR1_NEW_BARE_RE = re.compile(
+    r"resulting\s+situation\s+on\s+the\s+date.{0,180}?"
+    r"(\d{1,3}(?:\.\d{1,6})?)\b",
+    re.IGNORECASE | re.DOTALL,
+)
+_TR1_PREV_BARE_RE = re.compile(
+    r"position\s+of\s+previous\s+notification.{0,180}?"
+    r"(\d{1,3}(?:\.\d{1,6})?)\b",
+    re.IGNORECASE | re.DOTALL,
+)
+# Holder lives under "person subject to the notification obligation Name X City of"
+# OR the synthetic format "Name of the shareholder: X"
+_TR1_HOLDER_RE = re.compile(
+    r"person\s+subject\s+to\s+the\s+notification\s+obligation\s+Name\s+"
+    r"([A-Z0-9][A-Za-z0-9 ,.&/\-']{3,100}?)\s+City\s+of\s+registered",
+    re.IGNORECASE | re.DOTALL,
+)
+_TR1_HOLDER_FALLBACK_RE = re.compile(
+    r"name\s+of\s+(?:the\s+)?(?:shareholder|holder)[^:]{0,40}?:?\s*"
+    r"([A-Z0-9][A-Za-z0-9 ,.&/\-']{4,80})",
+    re.IGNORECASE,
+)
+
+
+def _parse_tr1_pct(text: str, primary_re: re.Pattern,
+                   fallback_re: re.Pattern) -> float | None:
+    m = primary_re.search(text)
+    if m:
+        try:
+            return float(m.group(1))
+        except ValueError:
+            pass
+    m = fallback_re.search(text)
+    if m:
+        try:
+            v = float(m.group(1))
+            # Sanity: voting-rights % should be 0-100
+            if 0 <= v <= 100:
+                return v
+        except ValueError:
+            pass
+    return None
+
+
+def _tr1_cache_path(url: str) -> Path:
+    TR1_DETAIL_DIR.mkdir(parents=True, exist_ok=True)
+    rns_id = re.sub(r"[^A-Za-z0-9]+", "_", url.rstrip("/").split("/")[-1])
+    return TR1_DETAIL_DIR / f"{rns_id}.json"
+
+
+def fetch_tr1_detail(url: str, *, use_cache: bool = True) -> dict:
+    """Fetch one TR-1 body and parse holder + position. Returns dict
+    {holder, new_pct, prev_pct, delta_pp, direction, is_activist}.
+    Cached per-URL forever."""
+    cp = _tr1_cache_path(url)
+    if use_cache and cp.exists():
+        try:
+            with open(cp) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            html = resp.read().decode("utf-8", errors="replace")
+    except Exception:
+        return {"holder": "", "new_pct": None, "prev_pct": None,
+                "delta_pp": 0.0, "direction": "unknown", "is_activist": False}
+    import html as _html
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = _html.unescape(text)
+    text = re.sub(r"&#160;|&nbsp;", " ", text)
+    text = re.sub(r"\s+", " ", text)
+    new_pct = _parse_tr1_pct(text, _TR1_NEW_RE, _TR1_NEW_BARE_RE)
+    prev_pct = _parse_tr1_pct(text, _TR1_PREV_RE, _TR1_PREV_BARE_RE)
+    holder_m = _TR1_HOLDER_RE.search(text) or _TR1_HOLDER_FALLBACK_RE.search(text)
+    holder = (holder_m.group(1).strip() if holder_m else "")[:80]
+    if new_pct is not None and prev_pct is not None:
+        delta = new_pct - prev_pct
+        direction = "buy" if delta > 0 else ("sell" if delta < 0 else "flat")
+    elif new_pct is not None and prev_pct is None:
+        # First notification crossing threshold — treat as buy
+        delta = new_pct
+        direction = "buy"
+    else:
+        delta = 0.0
+        direction = "unknown"
+    holder_lc = holder.lower()
+    is_activist = any(a in holder_lc for a in ACTIVIST_HOLDERS)
+    rec = {"holder": holder, "new_pct": new_pct, "prev_pct": prev_pct,
+           "delta_pp": round(delta, 4), "direction": direction,
+           "is_activist": is_activist}
+    if use_cache:
+        try:
+            with open(cp, "w") as f:
+                json.dump(rec, f)
+        except Exception:
+            pass
+    return rec
+
+
+def enrich_tr1_directions(
+    items: list[Announcement],
+    *,
+    lookback_days: int = 120,
+    max_fetches: int = 25,
+    material_pp: float = 1.0,
+) -> dict:
+    """For each in-window TR-1, fetch body and classify. Returns
+    {tr1_buys, tr1_sells, tr1_material_adds, tr1_activist_buys,
+    tr1_buy_total_pp, activist_holders}."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
+    out = {"tr1_buys": 0, "tr1_sells": 0, "tr1_unknown": 0,
+           "tr1_material_adds": 0, "tr1_activist_buys": 0,
+           "tr1_buy_total_pp": 0.0,
+           "activist_holders": []}
+    fetched = 0
+    for a in items:
+        if a.category != "tr1" or not a.date:
+            continue
+        try:
+            dt = datetime.fromisoformat(a.date).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if dt < cutoff:
+            continue
+        if fetched >= max_fetches:
+            break
+        cp = _tr1_cache_path(a.url)
+        had_cache = cp.exists()
+        det = fetch_tr1_detail(a.url)
+        if not had_cache:
+            fetched += 1
+        d = det.get("direction", "unknown")
+        delta = float(det.get("delta_pp", 0.0))
+        if d == "buy":
+            out["tr1_buys"] += 1
+            out["tr1_buy_total_pp"] += delta
+            if abs(delta) >= material_pp:
+                out["tr1_material_adds"] += 1
+            if det.get("is_activist"):
+                out["tr1_activist_buys"] += 1
+                holder = det.get("holder", "")
+                if holder and holder not in out["activist_holders"]:
+                    out["activist_holders"].append(holder)
+        elif d == "sell":
+            out["tr1_sells"] += 1
+        else:
+            out["tr1_unknown"] += 1
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Resolution score — composite "is a corporate-action resolution
+# imminent" indicator. Uses a *short* (15-day) half-life because the
+# resolution signal is fresh-only: an advisor appointment from 6 months
+# ago is just background, but one from 3 weeks ago next to a strategic
+# review and accelerating PDMR buys is the real tell.
+
+RESOLUTION_HALF_LIFE_DAYS = 15
+RESOLUTION_LOOKBACK_DAYS = 90
+
+RESOLUTION_WEIGHTS = {
+    "advisor":         0.25,   # broker / financial adviser appointment
+    "review":          0.20,   # strategic review formally opened
+    "agm":             0.15,   # continuation vote / AGM result imminent
+    "capdistribution": 0.20,   # return of capital live
+    "tender":          0.20,   # tender announced
+    "winddown":        0.25,   # formal wind-down announcement
+    "buyback":         0.15,   # sustained buyback = DCM intensifying
+    # TR-1 raw count is no longer weighted — the direction-enriched
+    # buckets below carry the load.
+    "pdmr_buys":       0.20,   # insider conviction (direction-resolved)
+    "tr1_buys":        0.15,   # net-positive TR-1s (NEW institutional buys)
+    "tr1_material_adds": 0.15, # ≥1pp stake adds (real conviction, not 1%-tick)
+    "tr1_activist_buys": 0.20, # Saba / AVI / etc. fingerprint
+}
+
+
+def resolution_score_from_rns(
+    items: list[Announcement],
+    *,
+    lookback_days: int = RESOLUTION_LOOKBACK_DAYS,
+    half_life_days: int = RESOLUTION_HALF_LIFE_DAYS,
+    pdmr_buys_count: int = 0,
+    tr1_buys: int = 0,
+    tr1_material_adds: int = 0,
+    tr1_activist_buys: int = 0,
+) -> tuple[float, dict[str, float]]:
+    """Composite 0..1 score for "resolution imminent". Returns (score,
+    per-category decayed weights).
+
+    pdmr_buys_count / tr1_* are passed in from the body-enriched steps
+    (direction + materiality can't be inferred from slug + title).
+    """
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=lookback_days)
+    decayed: dict[str, float] = {c: 0.0 for c in RESOLUTION_WEIGHTS}
+    # Date-anchored categories come from the announcement list with
+    # a 15d half-life. Direction-enriched categories are fed as
+    # already-windowed counts.
+    date_anchored = {"advisor", "review", "agm", "capdistribution",
+                     "tender", "winddown", "buyback"}
+    for a in items:
+        cat = a.category
+        if cat not in date_anchored:
+            continue
+        if not a.date:
+            continue
+        try:
+            dt = datetime.fromisoformat(a.date).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if dt < cutoff:
+            continue
+        age_days = (now - dt).total_seconds() / 86400.0
+        w = 0.5 ** (age_days / max(1, half_life_days))
+        decayed[cat] += w
+    # Body-enriched counts (already filtered to lookback window upstream)
+    decayed["pdmr_buys"] = float(pdmr_buys_count)
+    decayed["tr1_buys"] = float(tr1_buys)
+    decayed["tr1_material_adds"] = float(tr1_material_adds)
+    decayed["tr1_activist_buys"] = float(tr1_activist_buys)
+
+    def _sat(x: float) -> float:
+        # Tighter saturation than the strength score — 1.5 hits = strong
+        return 1.0 - 1.0 / (1.0 + x / 1.5)
+
+    composite = sum(RESOLUTION_WEIGHTS[c] * _sat(decayed[c])
+                    for c in RESOLUTION_WEIGHTS)
+    return min(1.0, composite), decayed
+
+
+# ---------------------------------------------------------------------------
 
 def epic_from_ticker(ticker: str) -> str | None:
     """Investegate uses LSE EPIC codes (no suffix). Only .L tickers

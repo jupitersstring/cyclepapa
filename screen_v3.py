@@ -222,12 +222,30 @@ def screen_one(
         r.rns_winddown = signal.rns_counts.get("winddown") if signal.rns_counts else None
         r.rns_tender = signal.rns_counts.get("tender") if signal.rns_counts else None
         r.rns_buyback = signal.rns_counts.get("buyback") if signal.rns_counts else None
+        r.rns_pdmr_buys = getattr(signal, "pdmr_buys", 0) or None
+        r.rns_pdmr_sells = getattr(signal, "pdmr_sells", 0) or None
+        r.pdmr_buy_gbp = getattr(signal, "pdmr_buy_gbp", 0.0) or None
+        r.rns_tr1_buys = getattr(signal, "tr1_buys", 0) or None
+        r.rns_tr1_sells = getattr(signal, "tr1_sells", 0) or None
+        r.rns_tr1_material_adds = getattr(signal, "tr1_material_adds", 0) or None
+        r.rns_tr1_activist_buys = getattr(signal, "tr1_activist_buys", 0) or None
+        r.tr1_buy_total_pp = getattr(signal, "tr1_buy_total_pp", 0.0) or None
+        holders = getattr(signal, "activist_holders", []) or []
+        r.activist_holders = "|".join(holders[:5]) if holders else None
+        r.resolution_score = getattr(signal, "resolution_score", 0.0)
     # Apply the multiplier only if at least one source provided usable
     # coverage — else keep the base prob to avoid silent no-news penalty
     # from a failed scrape.
     if signal is not None and (signal.coverage_ok or signal.rns_available):
         mult = 0.70 + 1.30 * signal.signal_score
-        r.catalyst_prob_signal_adj = min(0.95, base_prob * mult)
+        # Resolution score is a separate fresh-only multiplier on top.
+        # Caps the probability lift at +40% so a maxed resolution score
+        # can't overwhelm the base prior, but a strong reading (advisor
+        # appointment + strategic review + insider buys + buyback all
+        # in the last 30 days) materially shortens the runway.
+        res = getattr(signal, "resolution_score", 0.0) or 0.0
+        res_mult = 1.0 + 0.40 * res
+        r.catalyst_prob_signal_adj = min(0.95, base_prob * mult * res_mult)
     else:
         r.catalyst_prob_signal_adj = base_prob
 
@@ -287,6 +305,14 @@ def screen_one(
     # because activist engagement IS an event catalyst even if the
     # static tag doesn't reflect it yet.
     if r.investable and r.saba_ukit_member and (r.expected_irr or 0) > 0:
+        r.in_fundamentals_sleeve = True
+    # Resolution-score promotion. >=0.5 means multiple fresh
+    # corporate-action precursors are stacked: advisor appointment +
+    # strategic review + buybacks + insider buys, all in the last 30
+    # days. Promote even when the static catalyst tag is generic.
+    if (r.investable
+        and (r.resolution_score or 0.0) >= 0.50
+        and (r.expected_irr or 0) > 0):
         r.in_fundamentals_sleeve = True
     # MICRO sleeve — gate-failed but catalyst alive. AEET/RMII/SBO
     # class: real committed wind-downs that have dried up below the
@@ -485,7 +511,10 @@ def main() -> int:
                 "expected_total_return", "expected_duration_months",
                 "catalyst_age_months",
                 "catalyst_prob_base", "catalyst_prob_signal_adj",
-                "signal_score", "has_daily_spike",
+                "signal_score", "resolution_score",
+                "rns_pdmr_buys", "rns_pdmr_sells",
+                "rns_tr1_material_adds", "rns_tr1_activist_buys",
+                "has_daily_spike",
                 "expected_upside", "expected_irr",
                 "setup_score", "composite_score"]
     cols_top = [c for c in cols_top if c in keep.columns]
@@ -518,6 +547,28 @@ def main() -> int:
     show("FUNDAMENTALS SLEEVE — top by IRR alone "
          "(committed event catalysts, ignores setup score)",
          fund.sort_values("expected_irr", ascending=False), args.top)
+
+    # ACTIVIST WATCH — names where institutional/insider conviction is
+    # building right now. Sorted by resolution_score (fresh-only signal:
+    # advisor appointment + strategic review + buybacks + PDMR buys +
+    # institutional material adds, 15d half-life). This is the
+    # "corporate action coming" tell — irrespective of phase or IRR.
+    if "resolution_score" in df.columns:
+        watch = df[(df["error"].isna()) & (df["resolution_score"] > 0.20)]
+        if not watch.empty:
+            cols_watch = ["ticker", "name", "phase", "catalyst",
+                          "resolution_score", "rns_pdmr_buys",
+                          "rns_tr1_material_adds", "rns_tr1_activist_buys",
+                          "activist_holders", "expected_irr",
+                          "composite_score"]
+            cols_watch = [c for c in cols_watch if c in watch.columns]
+            print("\n=== ACTIVIST WATCH — resolution signal > 0.20 "
+                  f"({len(watch)}) ===")
+            with pd.option_context("display.width", 240,
+                                   "display.max_colwidth", 36):
+                print(watch.sort_values(
+                    "resolution_score", ascending=False)[cols_watch]
+                    .head(20).to_string(index=False))
 
     # MICRO sleeve — gate-failed wind-downs with non-trivial IRR.
     # Position size ≤ 1% per name; assemble over multiple sessions.

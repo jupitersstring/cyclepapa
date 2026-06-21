@@ -147,6 +147,20 @@ class ScreenResult:
     rns_winddown: int | None = None
     rns_tender: int | None = None
     rns_buyback: int | None = None
+    # PDMR direction enrichment (body-fetched)
+    rns_pdmr_buys: int | None = None
+    rns_pdmr_sells: int | None = None
+    pdmr_buy_gbp: float | None = None
+    # TR-1 direction enrichment — material institutional adds + activist
+    # holder identification (Saba / AVI / Boaz / etc.)
+    rns_tr1_buys: int | None = None
+    rns_tr1_sells: int | None = None
+    rns_tr1_material_adds: int | None = None
+    rns_tr1_activist_buys: int | None = None
+    tr1_buy_total_pp: float | None = None
+    activist_holders: str | None = None    # pipe-separated for CSV
+    # Resolution composite — fresh-only "corporate-action imminent"
+    resolution_score: float | None = None
 
     # Upside / IRR
     expected_duration_months: float | None = None

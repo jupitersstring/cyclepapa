@@ -69,8 +69,8 @@ except Exception:
 CACHE_PATH = "/tmp/signals_v2_cache.pkl"
 # Cache version stamp. Bump whenever scraper / scoring logic changes
 # in a way that would invalidate previously-cached TickerSignals.
-# v2 = post fallback-page-detection fix in investegate_scraper.
-CACHE_SCHEMA_VERSION = "2026-06-15-v2-fallback-fix"
+# v3 = PDMR direction enrichment + resolution_score.
+CACHE_SCHEMA_VERSION = "2026-06-21-v4-pdmr-tr1-direction-resolution"
 HISTORY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             "signals_history.csv")
 CACHE_TTL_SECONDS = 24 * 3600
@@ -184,6 +184,21 @@ class TickerSignals:
     rns_decayed: dict[str, float] = field(default_factory=dict)
     rns_total_items: int = 0
     rns_available: bool = False
+    # PDMR direction enrichment (body-parsed buys vs sells)
+    pdmr_buys: int = 0
+    pdmr_sells: int = 0
+    pdmr_buy_gbp: float = 0.0
+    pdmr_sell_gbp: float = 0.0
+    # TR-1 direction enrichment (body-parsed; institutional stake moves)
+    tr1_buys: int = 0
+    tr1_sells: int = 0
+    tr1_material_adds: int = 0          # ≥1pp single-filing adds
+    tr1_activist_buys: int = 0           # Saba / AVI / Boaz / etc.
+    tr1_buy_total_pp: float = 0.0
+    activist_holders: list = field(default_factory=list)
+    # Resolution composite — fresh-only "corporate-action imminent"
+    resolution_score: float = 0.0
+    resolution_decayed: dict[str, float] = field(default_factory=dict)
     # Combined
     signal_score: float = 0.0
 
@@ -389,6 +404,39 @@ def fetch_signals_for(
                 sig.rns_score = rns_comp
                 sig.rns_counts = raw
                 sig.rns_decayed = dec
+                # PDMR direction enrichment — fetch announcement bodies
+                # for in-window PDMRs to distinguish buys from sells.
+                # Skipped silently if RNS scraper is missing the helper
+                # (older cached envelopes).
+                if hasattr(inv_mod, "enrich_pdmr_directions") and raw.get("pdmr", 0):
+                    pdmr_enr = inv_mod.enrich_pdmr_directions(
+                        items, lookback_days=lookback_days)
+                    sig.pdmr_buys = pdmr_enr.get("pdmr_buys", 0)
+                    sig.pdmr_sells = pdmr_enr.get("pdmr_sells", 0)
+                    sig.pdmr_buy_gbp = pdmr_enr.get("pdmr_buy_gbp", 0.0)
+                    sig.pdmr_sell_gbp = pdmr_enr.get("pdmr_sell_gbp", 0.0)
+                # TR-1 enrichment — fetch bodies for in-window TR-1s
+                # to get holder, new%/prev%, materiality, activist flag.
+                if hasattr(inv_mod, "enrich_tr1_directions") and raw.get("tr1", 0):
+                    tr1_enr = inv_mod.enrich_tr1_directions(
+                        items, lookback_days=lookback_days)
+                    sig.tr1_buys = tr1_enr.get("tr1_buys", 0)
+                    sig.tr1_sells = tr1_enr.get("tr1_sells", 0)
+                    sig.tr1_material_adds = tr1_enr.get("tr1_material_adds", 0)
+                    sig.tr1_activist_buys = tr1_enr.get("tr1_activist_buys", 0)
+                    sig.tr1_buy_total_pp = tr1_enr.get("tr1_buy_total_pp", 0.0)
+                    sig.activist_holders = tr1_enr.get("activist_holders", [])
+                # Resolution composite — short half-life, fresh-only.
+                if hasattr(inv_mod, "resolution_score_from_rns"):
+                    res, res_dec = inv_mod.resolution_score_from_rns(
+                        items,
+                        pdmr_buys_count=sig.pdmr_buys,
+                        tr1_buys=sig.tr1_buys,
+                        tr1_material_adds=sig.tr1_material_adds,
+                        tr1_activist_buys=sig.tr1_activist_buys,
+                    )
+                    sig.resolution_score = res
+                    sig.resolution_decayed = res_dec
         except Exception:
             sig.rns_available = False
 
@@ -454,7 +502,11 @@ def _append_history(rows: list[TickerSignals]) -> None:
                         "rns_tr1", "rns_pdmr", "rns_winddown",
                         "rns_tender", "rns_review", "rns_buyback",
                         "queries_run", "queries_failed",
-                        "rns_total_items", "rns_available"])
+                        "rns_total_items", "rns_available",
+                        "pdmr_buys", "pdmr_sells", "pdmr_buy_gbp",
+                        "tr1_buys", "tr1_sells", "tr1_material_adds",
+                        "tr1_activist_buys", "tr1_buy_total_pp",
+                        "activist_holders", "resolution_score"])
         for s in rows:
             w.writerow([
                 today, s.ticker, s.name,
@@ -475,6 +527,11 @@ def _append_history(rows: list[TickerSignals]) -> None:
                 s.rns_counts.get("buyback", 0),
                 s.queries_run, s.queries_failed,
                 s.rns_total_items, s.rns_available,
+                s.pdmr_buys, s.pdmr_sells, round(s.pdmr_buy_gbp, 0),
+                s.tr1_buys, s.tr1_sells, s.tr1_material_adds,
+                s.tr1_activist_buys, round(s.tr1_buy_total_pp, 3),
+                "|".join(s.activist_holders[:5]),
+                round(s.resolution_score, 4),
             ])
 
 
