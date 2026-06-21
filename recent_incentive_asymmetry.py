@@ -7,25 +7,22 @@ cleanest mis-priced asymmetry. The market hasn't yet incorporated
 the new information.
 
 Per ticker, find the most recent material incentive event in the
-trailing 120 days and check whether the equity has priced it. Scores
+trailing N days and check whether the equity has priced it. Scores
 highest where:
   * Event is recent (within 30-60 days)
   * Price has NOT moved up since the event date (or has moved down)
   * Drawdown from 52w high is still material (> 30%)
 
-Event sources (joined per ticker):
-  * proxy_scan filing_date     -- latest DEF 14A
-  * tender_scan dates          -- live SC TO / 14D-9 / 13E-3
-  * cancel_10b5_1 events       -- termination signed_score
-  * form4_buys filings         -- latest insider P-buy
-  * special_situations         -- 8-K restructuring / Form 10
-  * activist_13d.csv           -- recent 13D filings
+CLI:
+  python3 recent_incentive_asymmetry.py                    # 120-day window
+  python3 recent_incentive_asymmetry.py --window-days 30   # 30-day window
 
-Output: recent_incentive_asymmetry.csv
+Output: recent_incentive_asymmetry.csv (window-tagged)
 """
 
 from __future__ import annotations
 
+import argparse
 import csv
 import glob
 import json
@@ -33,7 +30,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path("/home/user/cyclepapa")
-OUT = ROOT / "recent_incentive_asymmetry.csv"
 
 
 def parse_date(s: str | None) -> datetime | None:
@@ -61,6 +57,16 @@ def load_proxy() -> dict:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--window-days", type=int, default=120,
+                    help="lookback window for material events (default 120)")
+    ap.add_argument("--output", default=None,
+                    help="output CSV path; default derived from window")
+    args = ap.parse_args()
+    window_days = args.window_days
+    OUT = (Path(args.output) if args.output
+            else ROOT / f"recent_incentive_asymmetry_{window_days}d.csv")
+
     today = datetime.now(timezone.utc).replace(tzinfo=None)
     proxy = load_proxy()
     yf = json.load(open(ROOT / "yfinance_quick.json"))
@@ -166,9 +172,15 @@ def main() -> int:
         latest_date, latest_kind, latest_detail = latest
         days_since = (today - latest_date).days
 
-        # Count events in last 60 / 120 days
-        n_60 = sum(1 for e in events if (today - e[0]).days <= 60)
-        n_120 = sum(1 for e in events if (today - e[0]).days <= 120)
+        # Drop names whose latest event falls outside the window
+        if days_since > window_days:
+            continue
+
+        # Count events in last min(60, window) and full window
+        n_inner = sum(1 for e in events
+                      if (today - e[0]).days <= min(60, window_days))
+        n_window = sum(1 for e in events
+                       if (today - e[0]).days <= window_days)
 
         # Get valuation overlay
         y = yf.get(tk, {}) or {}
@@ -184,16 +196,16 @@ def main() -> int:
         # Score: recent event + price stagnation
         score = 0.0
         reasons = []
-        if days_since <= 30:
+        # Recency tiering scales with window
+        if days_since <= max(7, window_days // 4):
             score += 25; reasons.append(f"event {days_since}d ago")
-        elif days_since <= 60:
+        elif days_since <= max(14, window_days // 2):
             score += 18; reasons.append(f"event {days_since}d ago")
-        elif days_since <= 90:
+        elif days_since <= max(21, (3 * window_days) // 4):
             score += 12; reasons.append(f"event {days_since}d ago")
-        elif days_since <= 120:
-            score += 6
         else:
-            continue  # event too old to be "recent"
+            score += 6
+            reasons.append(f"event {days_since}d ago")
 
         # Boost for event quality
         if latest_kind == "DEF14A_PSU":
@@ -210,10 +222,11 @@ def main() -> int:
             score += 15; reasons.append(f"{latest_kind}")
 
         # Boost for multi-event clustering
-        if n_60 >= 3:
-            score += 12; reasons.append(f"{n_60} events in 60d")
-        elif n_60 >= 2:
-            score += 6; reasons.append(f"{n_60} events in 60d")
+        inner_label = f"{min(60, window_days)}d"
+        if n_inner >= 3:
+            score += 12; reasons.append(f"{n_inner} events in {inner_label}")
+        elif n_inner >= 2:
+            score += 6; reasons.append(f"{n_inner} events in {inner_label}")
 
         # Price-stagnation kicker (KEY: market hasn't reacted)
         if dd_high is not None and dd_high > 60:
@@ -238,11 +251,12 @@ def main() -> int:
             "days_since": days_since,
             "latest_event_kind": latest_kind,
             "latest_event_detail": latest_detail,
-            "n_events_60d": n_60,
-            "n_events_120d": n_120,
+            "n_events_inner": n_inner,
+            "n_events_window": n_window,
+            "window_days": window_days,
             "all_event_kinds": ",".join(
                 sorted({e[1] for e in events
-                         if (today - e[0]).days <= 120})),
+                         if (today - e[0]).days <= window_days})),
             "mcap_M": round((mcap or 0) / 1e6, 0),
             "price": px,
             "p_b": pb,
@@ -254,11 +268,24 @@ def main() -> int:
 
     rows.sort(key=lambda r: -r["score"])
     fieldnames = list(rows[0].keys())
+
+    # Always write to the windowed filename
     with OUT.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader()
         w.writerows(rows)
     print(f"wrote {OUT} ({len(rows)} rows)")
+
+    # When default 120-day run, ALSO write the canonical unwindowed
+    # filename so existing consumers (full_universe_consensus.py)
+    # keep working without churn.
+    if window_days == 120 and not args.output:
+        canon = ROOT / "recent_incentive_asymmetry.csv"
+        with canon.open("w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames)
+            w.writeheader()
+            w.writerows(rows)
+        print(f"  + canonical: {canon} ({len(rows)} rows)")
 
     print(f"\n=== TOP 30 by recent-incentive-change asymmetry ===")
     print(f"{'#':<3}{'TKR':<8}{'SCR':<5}{'AGE':<5}{'KIND':<22}"

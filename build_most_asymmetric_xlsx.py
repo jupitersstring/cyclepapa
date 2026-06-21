@@ -343,6 +343,81 @@ def red_flag_count(tk: str, proxy: dict) -> int:
     return len(flags)
 
 
+def build_recent_30d(wb: Workbook, yf: dict):
+    """Live-rendered Recent-30d tab: only names with a material
+    incentive event in the last 30 days. The tightest stale-pricing
+    asymmetry window -- where the market has had least chance to
+    incorporate the new disclosure."""
+    ws = wb.create_sheet("Recent 30d")
+    set_col_widths(ws, [9, 13, 32, 12, 8, 22, 8, 6, 12, 50])
+    write_title_band(
+        ws,
+        "Stale-Pricing Asymmetry -- Last 30 days",
+        "Names where a material incentive event was disclosed in "
+        "the last 30 days AND the price has not yet reflected it. "
+        "Tightest possible information-lag window.",
+        n_cols=10,
+    )
+
+    path = ROOT / "recent_incentive_asymmetry_30d.csv"
+    if not path.exists():
+        ws.cell(row=4, column=1,
+                value="(no file -- run "
+                       "`python3 recent_incentive_asymmetry.py "
+                       "--window-days 30`)").font = SUBTITLE_FONT
+        return
+
+    headers = ["#", "Ticker", "Name", "Score", "Days", "Event kind",
+                "Inner", "DD%", "P/B", "Reasons"]
+    write_header_row(ws, 4, headers)
+
+    r = 5
+    rows = list(csv.DictReader(path.open()))
+    for i, row in enumerate(rows[:40], 1):
+        tk = row["ticker"]
+        y = yf.get(tk, {}) or {}
+        name = (y.get("name") or tk)[:32]
+        band = (i % 2 == 0)
+        try:
+            score = float(row["score"])
+        except Exception:
+            score = 0.0
+        write_body_row(ws, r,
+                       [i, tk, name,
+                        f"{score:.0f}",
+                        row.get("days_since", ""),
+                        row.get("latest_event_kind", ""),
+                        row.get("n_events_inner", ""),
+                        row.get("drawdown_pct") or "",
+                        row.get("p_b") or "",
+                        (row.get("reasons") or "")[:90]],
+                       band=band, align_first_left=False)
+        ws.cell(row=r, column=2).font = Font(
+            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        if score >= 55:
+            ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
+            ws.cell(row=r, column=4).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        elif score >= 40:
+            ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
+            ws.cell(row=r, column=4).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        ws.row_dimensions[r].height = 22
+        r += 1
+
+    r += 1
+    write_footnote(ws, r,
+        "30-day window of `recent_incentive_asymmetry.py`. Event types: "
+        "DEF14A_PSU (latest proxy), 10b5-1_TERM (insider walked back "
+        "scheduled selling), F4_PBUY (insider open-market purchase), "
+        "ACTIVIST_13D, RESTRUCT_8K (8-K restructuring keyword), "
+        "FORM_10_SPINOFF, NOL_SHELL. Score boosts: drawdown >60% "
+        "unpriced (+15), multi-event cluster (+12), event in last "
+        "7 days (+25). Source: recent_incentive_asymmetry_30d.csv.", 10)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
                            bbv: dict, tender: dict, c10: dict,
                            f4: dict):
@@ -1293,6 +1368,7 @@ def main() -> int:
     build_reserve_baskets(wb, yf)
     build_caution_list(wb, proxy, consensus)
     build_noval_view(wb, yf)
+    build_recent_30d(wb, yf)
     build_single_measure(wb, yf, proxy, bbv, tender, c10, f4)
     build_coverage(wb)
     build_methodology(wb)

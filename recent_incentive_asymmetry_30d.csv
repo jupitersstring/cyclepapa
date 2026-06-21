@@ -1,0 +1,366 @@
+ticker,score,latest_event_date,days_since,latest_event_kind,latest_event_detail,n_events_inner,n_events_window,window_days,all_event_kinds,mcap_M,price,p_b,drawdown_pct,above_52w_low_pct,sector,reasons
+RPAY,68.0,2026-06-15,6,RESTRUCT_8K,score 39.0,2,2,30,"13D_FILER,RESTRUCT_8K",299.0,3.39,0.49123317,44.0,47.0,Technology,event 6d ago; RESTRUCT_8K; 2 events in 30d; DD 44%; P/B 0.49
+GOSS,61.0,2026-06-17,4,RESTRUCT_8K,score 28.0,2,2,30,"DEF14A_PSU,RESTRUCT_8K",82.0,0.168,-0.24418603,96.0,20.0,Healthcare,event 4d ago; RESTRUCT_8K; 2 events in 30d; DD 96% (unpriced)
+GTM,60.0,2026-06-16,5,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",828.0,2.81,0.56459713,78.0,8.0,Technology,event 5d ago; 2 events in 30d; DD 78% (unpriced); only 8% above 52w low
+GSHD,53.0,2026-06-01,20,F4_PBUY,Langston Patrick R $100k,2,2,30,F4_PBUY,1224.0,34.37,-6.708959,70.0,2.0,Financial Services,event 20d ago; insider P-buy; 2 events in 30d; DD 70% (unpriced); only 2% above 52w low
+GWRE,53.0,2026-06-05,16,10b5-1_TERM,Chief Financial Officer TERMINATE,1,1,30,10b5-1_TERM,8980.0,107.86,6.817952,60.0,1.0,Technology,event 16d ago; 10b5-1 termination; DD 60% (unpriced); only 1% above 52w low
+CMTL,52.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",72.0,2.4,0.67586595,61.0,33.0,Technology,event 4d ago; 2 events in 30d; DD 61% (unpriced)
+PHGE,52.0,2026-06-16,5,ACTIVIST_13D,score 10.0,3,3,30,"13D_FILER,ACTIVIST_13D,DEF14A_PSU",6.0,0.5199,-0.041595332,96.0,44.0,Industrials,event 5d ago; 3 events in 30d; DD 96% (unpriced)
+CHPT,52.0,2026-06-08,13,10b5-1_TERM,Director TERMINATE,2,2,30,"10b5-1_TERM,DEF14A_PSU",215.0,8.31,-23.675215,49.0,87.0,Consumer Cyclical,event 13d ago; 10b5-1 termination; 2 events in 30d; DD 49%
+DXC,52.0,2026-06-04,17,DEF14A_PSU,PSU core 43.0 gov 12.0,1,1,30,DEF14A_PSU,1394.0,8.6,0.4839073,48.0,9.0,Technology,event 17d ago; PSU/gov in latest proxy; DD 48%; only 9% above 52w low; P/B 0.48
+PCSA,51.0,2026-06-01,20,F4_PBUY,Young David $5k,5,5,30,F4_PBUY,8.0,2.8,2.950474,86.0,59.0,Healthcare,event 20d ago; insider P-buy; 5 events in 30d; DD 86% (unpriced)
+BTU,51.0,2026-06-15,6,RESTRUCT_8K,score 23.0,1,1,30,RESTRUCT_8K,3198.0,26.245,0.91458744,36.0,109.0,Energy,event 6d ago; RESTRUCT_8K
+RC,49.0,2026-06-01,20,DEF14A_PSU,PSU core 25.0 gov 4.0,1,1,30,DEF14A_PSU,290.0,1.75,0.23546824,63.0,17.0,Real Estate,event 20d ago; PSU/gov in latest proxy; DD 63% (unpriced); P/B 0.24
+KWY,49.0,2026-06-01,20,F4_PBUY,Horowitz Joshua $45k,3,3,30,F4_PBUY,294.0,10.28,22.396515,39.0,5.0,Financial Services,event 20d ago; insider P-buy; 3 events in 30d; only 5% above 52w low
+HRTX,48.0,2026-06-16,5,NOL_SHELL,score 30.0,1,1,30,NOL_SHELL,79.0,0.4175,9.709302,82.0,10.0,Healthcare,event 5d ago; DD 82% (unpriced); only 10% above 52w low
+LAB,48.0,2026-06-09,12,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",325.0,0.8297,0.5769819,52.0,5.0,Healthcare,event 12d ago; 2 events in 30d; DD 52%; only 5% above 52w low
+NSPR,47.0,2026-05-29,23,F4_PBUY,Stuka Paul $18k,1,1,30,F4_PBUY,33.0,0.71,0.7626208,76.0,3.0,Healthcare,event 23d ago; insider P-buy; DD 76% (unpriced); only 3% above 52w low
+RNTX,46.0,2026-06-08,13,DEF14A_PSU,PSU core 21.0 gov 3.0,1,1,30,DEF14A_PSU,78.0,0.9157,-0.7682047,58.0,6.0,Healthcare,event 13d ago; PSU/gov in latest proxy; DD 58%; only 6% above 52w low
+BAH,46.0,2026-06-11,10,DEF14A_PSU,PSU core 12.0 gov 2.0,1,1,30,DEF14A_PSU,7959.0,66.36,7.2271833,45.0,0.0,Industrials,event 10d ago; PSU/gov in latest proxy; DD 45%; only 0% above 52w low
+VNRX,45.0,2026-06-02,19,DEF14A_PSU,PSU core 48.0 gov 0.0,1,1,30,DEF14A_PSU,17.0,1.43,-0.26262623,92.0,10.0,Healthcare,event 19d ago; PSU/gov in latest proxy; DD 92% (unpriced); only 10% above 52w low
+SWZ,44.0,2026-06-01,20,F4_PBUY,SELL MORITZ A $6k,2,2,30,F4_PBUY,77.0,5.91,0.8557581,8.0,1.0,,event 20d ago; insider P-buy; 2 events in 30d; only 1% above 52w low
+FOX,44.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",19714.0,46.95,1.8010588,31.0,2.0,Communication Services,event 5d ago; 2 events in 30d; only 2% above 52w low
+OTLK,44.0,2026-06-01,20,DEF14A_PSU,PSU core 6.0 gov 0.0,4,4,30,"13D_FILER,ACTIVIST_13D,DEF14A_PSU,F4_PBUY",235.0,1.58,-5.703971,53.0,881.0,Healthcare,event 20d ago; PSU/gov in latest proxy; 4 events in 30d; DD 53%
+MYSZ,43.0,2026-06-02,19,DEF14A_PSU,PSU core 16.0 gov 0.0,1,1,30,DEF14A_PSU,2.0,0.46,0.5609756,72.0,20.0,Technology,event 19d ago; PSU/gov in latest proxy; DD 72% (unpriced)
+PRPL,43.0,2026-06-08,13,DEF14A_PSU,PSU core 6.0 gov 0.0,1,1,30,DEF14A_PSU,47.0,0.4277,-0.7734178,66.0,17.0,Consumer Cyclical,event 13d ago; PSU/gov in latest proxy; DD 66% (unpriced)
+COSM,43.0,2026-06-02,19,DEF14A_PSU,PSU core 4.0 gov 0.0,1,1,30,DEF14A_PSU,13.0,0.2129,0.5349246,84.0,16.0,Healthcare,event 19d ago; PSU/gov in latest proxy; DD 84% (unpriced)
+PSIX,43.0,2026-06-09,12,DEF14A_PSU,PSU core 6.0 gov 4.0,1,1,30,DEF14A_PSU,929.0,40.31,5.0018616,67.0,13.0,Industrials,event 12d ago; PSU/gov in latest proxy; DD 67% (unpriced)
+NXGL,43.0,2026-06-09,12,DEF14A_PSU,PSU core 15.0 gov 0.0,1,1,30,DEF14A_PSU,5.0,0.566,1.2016985,80.0,18.0,Healthcare,event 12d ago; PSU/gov in latest proxy; DD 80% (unpriced)
+CRM,42.0,2026-05-28,24,10b5-1_TERM,Chair and Chief Executive Officer TERMINATE,1,1,30,10b5-1_TERM,124308.0,151.78,3.6310136,45.0,1.0,Technology,event 24d ago; 10b5-1 termination; DD 45%; only 1% above 52w low
+VTS,42.0,2026-06-01,20,F4_PBUY,STEINBERG JOSEPH S $1005k,1,1,30,F4_PBUY,668.0,16.01,1.1419401,41.0,1.0,Energy,event 20d ago; insider P-buy; DD 41%; only 1% above 52w low
+DNUT,42.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",626.0,3.63,0.98991,37.0,45.0,Consumer Defensive,event 5d ago; 2 events in 30d
+NRDY,41.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",163.0,0.8556,5.5558443,51.0,14.0,Technology,event 4d ago; 2 events in 30d; DD 51%
+ARTV,41.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",361.0,7.42,2.0877886,49.0,405.0,Healthcare,event 6d ago; 2 events in 30d; DD 49%
+STE,41.0,2026-06-11,10,DEF14A_PSU,PSU core 41.0 gov 12.0,1,1,30,DEF14A_PSU,19746.0,202.61,2.7584,25.0,4.0,Healthcare,event 10d ago; PSU/gov in latest proxy; only 4% above 52w low
+RBRK,41.0,2026-06-05,16,10b5-1_TERM,Chief Financial Officer TERMINATE,2,2,30,"10b5-1_ADOPT,10b5-1_TERM",14453.0,70.22,-30.021378,30.0,66.0,Technology,event 16d ago; 10b5-1 termination; 2 events in 30d
+MDLN,40.0,2026-06-02,19,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,64037.0,35.94,2.697388,29.0,10.0,Healthcare,event 19d ago; RESTRUCT_8K; only 10% above 52w low
+TORO,40.0,2026-06-09,12,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",175.0,5.07,0.6729493,40.0,160.0,Energy,event 12d ago; 2 events in 30d; DD 40%
+CURI,40.0,2026-06-01,20,F4_PBUY,Stinchcomb Clinton $71k,2,2,30,F4_PBUY,150.0,2.53,4.113821,57.0,10.0,Communication Services,event 20d ago; insider P-buy; 2 events in 30d; DD 57%
+HCAT,40.0,2026-06-08,13,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",137.0,1.85,0.98772025,55.0,94.0,Healthcare,event 13d ago; 2 events in 30d; DD 55%
+DOMO,39.0,2026-06-03,18,ACTIVIST_13D,score 20.0,3,3,30,"13D_FILER,ACTIVIST_13D,DEF14A_PSU",109.0,2.42,-0.55213326,87.0,32.0,Technology,event 18d ago; 3 events in 30d; DD 87% (unpriced)
+BLND,39.0,2026-06-12,9,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",399.0,1.65,-7.300885,63.0,40.0,Technology,event 9d ago; 2 events in 30d; DD 63% (unpriced)
+HCWC,39.0,2026-06-09,12,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",7.0,0.266,1.4224598,73.0,20.0,Consumer Defensive,event 12d ago; 2 events in 30d; DD 73% (unpriced)
+FIG,39.0,2026-06-11,10,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",10826.0,20.49,7.399783,86.0,23.0,Technology,event 10d ago; 2 events in 30d; DD 86% (unpriced)
+MMS,39.0,2026-05-28,24,RESTRUCT_8K,score 26.0,1,1,30,RESTRUCT_8K,2929.0,55.74,1.7444918,44.0,1.0,Industrials,event 24d ago; RESTRUCT_8K; DD 44%; only 1% above 52w low
+IQV,38.0,2026-06-11,10,RESTRUCT_8K,score 21.0,1,1,30,RESTRUCT_8K,31085.0,186.25,4.996781,25.0,22.0,Healthcare,event 10d ago; RESTRUCT_8K
+HNI,38.0,2026-06-10,11,RESTRUCT_8K,score 20.0,1,1,30,RESTRUCT_8K,2383.0,33.1,1.3435622,38.0,14.0,Consumer Cyclical,event 11d ago; RESTRUCT_8K
+BTBT,38.0,2026-06-08,13,DEF14A_PSU,PSU core 4.0 gov 0.0,1,1,30,DEF14A_PSU,758.0,2.17,1.5634006,52.0,74.0,Financial Services,event 13d ago; PSU/gov in latest proxy; DD 52%
+HHH,37.0,2026-06-08,13,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",3987.0,66.86,1.0451285,27.0,10.0,Real Estate,event 13d ago; 2 events in 30d; only 10% above 52w low
+ZSQR,37.0,2026-06-01,20,RESTRUCT_8K,score 20.0,1,1,30,RESTRUCT_8K,531.0,10.33,,52.0,52.0,Technology,event 20d ago; RESTRUCT_8K; DD 52%
+ADT,37.0,2026-06-10,11,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",5004.0,6.58,1.3803229,26.0,5.0,Industrials,event 11d ago; 2 events in 30d; only 5% above 52w low
+LCUT,37.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",193.0,8.44,0.97673875,14.0,191.0,Consumer Cyclical,event 4d ago; 2 events in 30d
+GF,37.0,2026-06-16,5,ACTIVIST_13D,score 25.0,3,3,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D,F4_PBUY",0.0,,,,,,event 5d ago; 3 events in 30d
+MXF,37.0,2026-06-16,5,ACTIVIST_13D,score 25.0,3,3,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D,F4_PBUY",0.0,,,,,,event 5d ago; 3 events in 30d
+FABC,37.0,2026-06-01,20,DEF14A_PSU,PSU core 25.0 gov 0.0,1,1,30,DEF14A_PSU,18.0,3.7,4.5622687,65.0,126.0,Consumer Cyclical,event 20d ago; PSU/gov in latest proxy; DD 65% (unpriced)
+FONR,37.0,2026-06-15,6,GOING_DARK,score 0.0,3,3,30,"13D_FILER,F4_PBUY,GOING_DARK",0.0,,,,,,event 6d ago; 3 events in 30d
+SIG,36.0,2026-06-02,19,10b5-1_TERM,director TERMINATE,2,2,30,"10b5-1_ADOPT,10b5-1_TERM",3428.0,88.23,1.8462795,20.0,23.0,Consumer Cyclical,event 19d ago; 10b5-1 termination; 2 events in 30d
+SD,36.0,2026-06-16,5,NOL_SHELL,score 30.0,1,1,30,NOL_SHELL,518.0,14.02,0.9811057,24.0,42.0,Energy,event 5d ago
+SATS,36.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",31639.0,109.17,5.60824,26.0,352.0,Communication Services,event 4d ago; 2 events in 30d
+TDC,36.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2906.0,30.88,12.42156,26.0,56.0,Technology,event 4d ago; 2 events in 30d
+ACH,36.0,2026-05-22,30,RESTRUCT_8K,score 21.0,1,1,30,RESTRUCT_8K,247.0,3.23,-0.5322129,66.0,76.0,Healthcare,event 30d ago; RESTRUCT_8K; DD 66% (unpriced)
+QTTB,36.0,2026-06-01,20,F4_PBUY,Xu Diyong $15000k,4,4,30,"13D_FILER,ACTIVIST_13D,F4_PBUY",202.0,11.89,3.7555277,20.0,784.0,Healthcare,event 20d ago; insider P-buy; 4 events in 30d
+ELMT,36.0,2026-05-29,23,10b5-1_TERM,director TERMINATE,1,1,30,10b5-1_TERM,557.0,18.58,0.25550404,17.0,39.0,Industrials,event 23d ago; 10b5-1 termination; P/B 0.26
+DDS,35.0,2026-06-05,16,10b5-1_TERM,director TERMINATE,1,1,30,10b5-1_TERM,9098.0,582.55,4.492177,21.0,48.0,Consumer Cyclical,event 16d ago; 10b5-1 termination
+BRCB,35.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",135.0,6.26,2.3856707,79.0,2.0,Consumer Cyclical,event 30d ago; 2 events in 30d; DD 79% (unpriced); only 2% above 52w low
+RLI,35.0,2026-06-01,20,F4_PBUY,KELLOGG CLARK C $153k,2,2,30,F4_PBUY,4881.0,53.09,2.7431023,28.0,12.0,Financial Services,event 20d ago; insider P-buy; 2 events in 30d
+TPL,35.0,2026-06-01,20,F4_PBUY,HORIZON KINETICS A $0k,2,2,30,F4_PBUY,24494.0,355.11,15.742086,35.0,32.0,Energy,event 20d ago; insider P-buy; 2 events in 30d
+RENT,35.0,2026-06-03,18,10b5-1_ADOPT,Executive Chairman ADOPT,1,1,30,10b5-1_ADOPT,117.0,3.47,-3.209991,66.0,5.0,Consumer Cyclical,event 18d ago; DD 66% (unpriced); only 5% above 52w low
+JBLU,35.0,2026-06-09,12,ACTIVIST_13D,score 35.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",1715.0,4.61,0.94758487,29.0,20.0,Industrials,event 12d ago; 2 events in 30d
+RMCF,34.0,2026-06-10,11,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",14.0,1.51,2.7012522,49.0,15.0,Consumer Defensive,event 11d ago; 2 events in 30d; DD 49%
+HOOD,34.0,2026-06-01,20,F4_PBUY,Malka Meyer $20018k,1,1,30,F4_PBUY,77768.0,86.36,8.352031,44.0,36.0,Financial Services,event 20d ago; insider P-buy; DD 44%
+PRIM,34.0,2026-06-01,20,F4_PBUY,Vadlamudi Koti $1000k,1,1,30,F4_PBUY,5496.0,101.3,3.26248,51.0,37.0,Industrials,event 20d ago; insider P-buy; DD 51%
+FLGT,34.0,2026-05-27,25,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",511.0,18.0,0.49468216,42.0,34.0,Healthcare,event 25d ago; 2 events in 30d; DD 42%; P/B 0.49
+HFFG,34.0,2026-05-26,26,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",101.0,1.89,0.49360147,51.0,37.0,Consumer Defensive,event 26d ago; 2 events in 30d; DD 51%; P/B 0.49
+CHWY,34.0,2026-05-22,30,DEF14A_PSU,PSU core 11.0 gov -3.0,1,1,30,DEF14A_PSU,7456.0,18.21,17.594202,58.0,3.0,Consumer Cyclical,event 30d ago; PSU/gov in latest proxy; DD 58%; only 3% above 52w low
+MYO,34.0,2026-06-01,20,F4_PBUY,KIRK THOMAS F $25k,1,1,30,F4_PBUY,51.0,1.31,5.6223173,56.0,117.0,Healthcare,event 20d ago; insider P-buy; DD 56%
+PL,34.0,2026-06-05,16,10b5-1_ADOPT,Director ADOPT,4,4,30,"10b5-1_ADOPT,DEF14A_PSU",10061.0,28.23,22.674698,45.0,476.0,Industrials,event 16d ago; 4 events in 30d; DD 45%
+USAR,34.0,2026-06-09,12,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",4974.0,20.33,6.1106105,54.0,118.0,Basic Materials,event 12d ago; 2 events in 30d; DD 54%
+TMCI,34.0,2026-06-01,20,F4_PBUY,Treace John T. $178k,1,1,30,F4_PBUY,272.0,4.19,3.518052,46.0,258.0,Healthcare,event 20d ago; insider P-buy; DD 46%
+ACHV,33.0,2026-06-08,13,DEF14A_PSU,PSU core 15.0 gov 0.0,1,1,30,DEF14A_PSU,498.0,4.85,24.129353,21.0,142.0,Healthcare,event 13d ago; PSU/gov in latest proxy
+MCK,33.0,2026-06-12,9,DEF14A_PSU,PSU core 35.0 gov 12.0,1,1,30,DEF14A_PSU,87882.0,750.63,-41.47127,25.0,18.0,Healthcare,event 9d ago; PSU/gov in latest proxy
+SNBR,33.0,2026-06-01,20,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",5.0,0.2072,-0.007625216,99.0,38.0,Consumer Cyclical,event 20d ago; 2 events in 30d; DD 99% (unpriced)
+TPTA,33.0,2026-06-11,10,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,0.0,,,,,,event 10d ago; RESTRUCT_8K
+DVA,33.0,2026-06-08,13,RESTRUCT_8K,score 31.0,1,1,30,RESTRUCT_8K,13345.0,207.91,-18.213755,3.0,106.0,Healthcare,event 13d ago; RESTRUCT_8K
+ADTX,33.0,2026-06-09,12,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,0.0,,,,,,event 12d ago; RESTRUCT_8K
+ULBI,33.0,2026-06-02,19,DEF14A_PSU,PSU core 0.0 gov 3.0,1,1,30,DEF14A_PSU,108.0,6.46,0.8301208,32.0,32.0,Industrials,event 19d ago; PSU/gov in latest proxy
+ARAY,33.0,2026-05-22,30,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",38.0,0.32,0.9116809,85.0,28.0,Healthcare,event 30d ago; 2 events in 30d; DD 85% (unpriced)
+STZ,33.0,2026-06-08,13,DEF14A_PSU,PSU core 43.0 gov 2.0,1,1,30,DEF14A_PSU,24215.0,141.18,3.017892,21.0,12.0,Consumer Defensive,event 13d ago; PSU/gov in latest proxy
+CXH,32.0,2026-06-08,13,DELISTING,score 0.0,1,1,30,DELISTING,31.0,7.63,0.88515085,10.0,4.0,,event 13d ago; only 4% above 52w low
+CMU,32.0,2026-06-08,13,DELISTING,score 0.0,1,1,30,DELISTING,86.0,3.36,0.8865435,10.0,5.0,,event 13d ago; only 5% above 52w low
+WVVI,32.0,2026-05-28,24,DEF14A_PSU,PSU core 18.0 gov 0.0,1,1,30,DEF14A_PSU,14.0,2.79,0.60850596,54.0,12.0,Consumer Defensive,event 24d ago; PSU/gov in latest proxy; DD 54%
+CMPR,32.0,2026-06-04,17,RESTRUCT_8K,score 21.0,1,1,30,RESTRUCT_8K,2056.0,84.85,-3.9218857,20.0,102.0,Industrials,event 17d ago; RESTRUCT_8K
+BNBX,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 4d ago; 2 events in 30d
+VERI,31.0,2026-05-26,26,DEF14A_PSU,PSU core 18.0 gov 4.0,1,1,30,DEF14A_PSU,133.0,1.43,2.7134724,85.0,17.0,Technology,event 26d ago; PSU/gov in latest proxy; DD 85% (unpriced)
+HOWL,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+Z,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+CLRB,31.0,2026-05-28,24,DEF14A_PSU,PSU core 17.0 gov 8.0,1,1,30,DEF14A_PSU,22.0,2.79,4.2018075,73.0,27.0,Healthcare,event 24d ago; PSU/gov in latest proxy; DD 73% (unpriced)
+CVEO,31.0,2026-06-15,6,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",368.0,33.59,2.286745,8.0,70.0,Consumer Cyclical,event 6d ago; 2 events in 30d
+KNOP,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+BTDR,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+ANTA,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+NPK,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+EDSA,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+STTK,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+SDEV,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 4d ago; 2 events in 30d
+LINC,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1536.0,48.43,7.7203894,9.0,180.0,Consumer Defensive,event 6d ago; 2 events in 30d
+ELVN,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 4d ago; 2 events in 30d
+AFYA,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+KW,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1521.0,10.92,2.0203514,1.0,65.0,Real Estate,event 5d ago; 2 events in 30d
+LSAK,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",388.0,4.525,1.9554884,18.0,25.0,Technology,event 4d ago; 2 events in 30d
+SAH,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2551.0,80.73,2.605202,10.0,49.0,Consumer Cyclical,event 4d ago; 2 events in 30d
+YYGH,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+LLYVK,31.0,2026-06-15,6,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",9157.0,99.53,-28.82421,3.0,36.0,Communication Services,event 6d ago; 2 events in 30d
+NEGG,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+BEIGF,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",29600.0,21.946,6.6591506,13.0,38.0,Healthcare,event 6d ago; 2 events in 30d
+ENHA,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+MTA,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+MEGL,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+CRVO,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+JACK,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+RPRX,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 5d ago; 2 events in 30d
+LPRO,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",368.0,3.11,4.8822603,1.0,165.0,Financial Services,event 4d ago; 2 events in 30d
+ATNI,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+MGF,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+VISM,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+CPAC,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 4d ago; 2 events in 30d
+NNDM,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 4d ago; 2 events in 30d
+BGDE,31.0,2026-06-15,6,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 6d ago; 2 events in 30d
+TRAW,31.0,2026-05-29,23,DEF14A_PSU,PSU core 27.0 gov 8.0,1,1,30,DEF14A_PSU,13.0,0.8503,-12.323189,74.0,33.0,Healthcare,event 23d ago; PSU/gov in latest proxy; DD 74% (unpriced)
+CTNT,31.0,2026-06-17,4,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 4d ago; 2 events in 30d
+PAYO,31.0,2026-06-16,5,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2374.0,7.02,3.5981548,8.0,72.0,Technology,event 5d ago; 2 events in 30d
+ASND,30.0,2026-06-01,20,F4_PBUY,BIENAIME JEAN JACQ $112k,2,2,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy; 2 events in 30d
+DDT,30.0,2026-06-05,16,10b5-1_TERM,director TERMINATE,1,1,30,10b5-1_TERM,0.0,,,,,,event 16d ago; 10b5-1 termination
+BOC,30.0,2026-06-01,20,F4_PBUY,Kenan Frank H. II $671k,1,1,30,F4_PBUY,400.0,13.14,0.79132795,9.0,25.0,Industrials,event 20d ago; insider P-buy
+SND,30.0,2026-06-01,20,F4_PBUY,WHELAN RONALD P $20k,1,1,30,F4_PBUY,206.0,4.79,0.80558354,19.0,172.0,Energy,event 20d ago; insider P-buy
+GCO,30.0,2026-06-10,11,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",396.0,35.67,0.718024,18.0,82.0,Consumer Cyclical,event 11d ago; 2 events in 30d
+AWHL,30.0,2026-06-11,10,ACTIVIST_13D,score 10.0,4,4,30,"13D_FILER,ACTIVIST_13D,F4_PBUY",0.0,,,,,,event 10d ago; 4 events in 30d
+FRST,30.0,2026-06-01,20,F4_PBUY,GARRETT F L III $20k,1,1,30,F4_PBUY,383.0,15.45,0.8959118,3.0,62.0,Financial Services,event 20d ago; insider P-buy
+HLNE,30.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",4566.0,82.22,3.9255192,49.0,8.0,Financial Services,event 23d ago; 2 events in 30d; DD 49%; only 8% above 52w low
+SIRI,30.0,2026-06-10,11,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",9435.0,28.03,0.8028298,7.0,42.0,Communication Services,event 11d ago; 2 events in 30d
+STRR,30.0,2026-06-01,20,F4_PBUY,Eberwein Jeffrey E $196k,1,1,30,F4_PBUY,42.0,11.41,0.6934062,5.0,38.0,Industrials,event 20d ago; insider P-buy
+AIMD,30.0,2026-06-01,20,F4_PBUY,chiang yao-chung $1k,2,2,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy; 2 events in 30d
+SHEN,30.0,2026-06-10,11,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",784.0,14.18,0.9045098,18.0,47.0,Communication Services,event 11d ago; 2 events in 30d
+RCG,30.0,2026-06-01,20,F4_PBUY,HORIZON KINETICS A $2k,2,2,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy; 2 events in 30d
+CWBC,30.0,2026-06-01,20,F4_PBUY,CAGLE DAWN M $3k,2,2,30,F4_PBUY,684.0,25.19,1.1528604,3.0,39.0,Financial Services,event 20d ago; insider P-buy; 2 events in 30d
+AVBC,30.0,2026-06-01,20,F4_PBUY,Cozzone Robert D $40k,1,1,30,F4_PBUY,349.0,18.78,0.9095312,12.0,34.0,Financial Services,event 20d ago; insider P-buy
+GAP,29.0,2026-06-05,16,ACTIVIST_13D,score 10.0,3,3,30,"10b5-1_ADOPT,13D_FILER,ACTIVIST_13D",7596.0,21.1,2.0839508,28.0,13.0,Consumer Cyclical,event 16d ago; 3 events in 30d
+DLPN,29.0,2026-06-01,20,F4_PBUY,O'Dowd William IV $5k,1,1,30,F4_PBUY,15.0,1.14,1.4375788,39.0,15.0,Communication Services,event 20d ago; insider P-buy
+GME,29.0,2026-05-22,30,DEF14A_PSU,PSU core 26.0 gov 3.0,1,1,30,DEF14A_PSU,9656.0,21.52,1.6528418,23.0,8.0,Consumer Cyclical,event 30d ago; PSU/gov in latest proxy; only 8% above 52w low
+IPWR,29.0,2026-06-01,20,F4_PBUY,TURMELLE MICHAEL C $40k,1,1,30,F4_PBUY,97.0,6.04,3.7844613,35.0,131.0,Technology,event 20d ago; insider P-buy
+JBIO,29.0,2026-06-09,12,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1024.0,16.82,2.7996006,40.0,152.0,Healthcare,event 12d ago; 2 events in 30d
+ZS,29.0,2026-05-26,26,10b5-1_ADOPT,chief product officer ADOPT,1,1,30,10b5-1_ADOPT,20189.0,124.85,8.530919,63.0,9.0,Technology,event 26d ago; DD 63% (unpriced); only 9% above 52w low
+KSS,29.0,2026-06-04,17,10b5-1_ADOPT,Executive Vice President ADOPT,1,1,30,10b5-1_ADOPT,1956.0,17.25,0.4844009,32.0,118.0,Consumer Cyclical,event 17d ago; P/B 0.48
+MTDR,29.0,2026-06-01,20,F4_PBUY,Stetson Glenn W $27k,1,1,30,F4_PBUY,6154.0,49.56,1.1021906,26.0,33.0,Energy,event 20d ago; insider P-buy
+EDUC,28.0,2026-05-28,24,DEF14A_PSU,PSU core 24.0 gov 4.0,1,1,30,DEF14A_PSU,13.0,1.49,0.29639944,19.0,49.0,Communication Services,event 24d ago; PSU/gov in latest proxy; P/B 0.30
+TWFG,28.0,2026-05-29,23,F4_PBUY,DOAK MICHAEL $421k,1,1,30,F4_PBUY,282.0,21.67,4.4405737,41.0,31.0,Financial Services,event 23d ago; insider P-buy; DD 41%
+ACOG,28.0,2026-05-29,23,F4_PBUY,Opaleye Management $435k,1,1,30,F4_PBUY,150.0,6.91,2.618416,40.0,54.0,Healthcare,event 23d ago; insider P-buy; DD 40%
+PATH,28.0,2026-06-04,17,10b5-1_ADOPT,Chief Accounting Officer ADOPT,2,2,30,10b5-1_ADOPT,5321.0,10.27,2.809081,48.0,12.0,Technology,event 17d ago; 2 events in 30d; DD 48%
+HAE,28.0,2026-06-09,12,DEF14A_PSU,PSU core 22.0 gov 12.0,1,1,30,DEF14A_PSU,3371.0,74.17,4.214923,15.0,57.0,Healthcare,event 12d ago; PSU/gov in latest proxy
+GAME,27.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",40.0,0.4253,2.9534724,85.0,81.0,Communication Services,event 25d ago; 2 events in 30d; DD 85% (unpriced)
+USFD,27.0,2026-06-02,19,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,20241.0,91.91,4.7053704,10.0,32.0,Consumer Defensive,event 19d ago; RESTRUCT_8K
+KLXE,27.0,2026-06-02,19,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,0.0,,,,,,event 19d ago; RESTRUCT_8K
+BATL,27.0,2026-05-22,30,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",26.0,1.2,-0.3847387,96.0,20.0,Energy,event 30d ago; 2 events in 30d; DD 96% (unpriced)
+XPO,27.0,2026-06-01,20,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,23423.0,199.5,12.537707,14.0,71.0,Industrials,event 20d ago; RESTRUCT_8K
+STIM,27.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",86.0,1.23,6.4397907,75.0,54.0,Healthcare,event 25d ago; 2 events in 30d; DD 75% (unpriced)
+NVRI,27.0,2026-06-01,20,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,0.0,,,,,,event 20d ago; RESTRUCT_8K
+MRVI,27.0,2026-06-03,18,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,1918.0,5.2,3.6262202,2.0,161.0,Healthcare,event 18d ago; RESTRUCT_8K
+MAIR,27.0,2026-06-05,16,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,0.0,,,,,,event 16d ago; RESTRUCT_8K
+TTMI,27.0,2026-06-03,18,RESTRUCT_8K,score 20.0,1,1,30,RESTRUCT_8K,22477.0,216.44,12.230321,1.0,509.0,Technology,event 18d ago; RESTRUCT_8K
+TCPC,27.0,2026-06-01,20,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,0.0,,,,,,event 20d ago; RESTRUCT_8K
+KLRS,27.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",99.0,4.16,1.3950368,65.0,94.0,Healthcare,event 30d ago; 2 events in 30d; DD 65% (unpriced)
+UVV,26.0,2026-06-01,20,10b5-1_ADOPT,None ADOPT,1,1,30,10b5-1_ADOPT,1300.0,52.16,0.87663865,13.0,6.0,Consumer Defensive,event 20d ago; only 6% above 52w low
+TIPT,26.0,2026-05-29,23,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,657.0,17.49,1.3029873,36.0,13.0,Financial Services,event 23d ago; RESTRUCT_8K
+THR,25.0,2026-06-17,4,GOING_DARK,score 0.0,1,1,30,GOING_DARK,2014.0,61.14,3.7278216,15.0,156.0,Industrials,event 4d ago
+V,25.0,2026-06-15,6,DELISTING,score 0.0,1,1,30,DELISTING,622327.0,327.24,17.55391,9.0,11.0,Financial Services,event 6d ago
+RZC,25.0,2026-06-15,6,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 6d ago
+HEPS,24.0,2026-06-10,11,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 11d ago; 2 events in 30d
+N/A,24.0,2026-06-01,20,F4_PBUY,MILLER DAVID N $46k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+BFS,24.0,2026-06-01,20,F4_PBUY,Pearson David Todd $90k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+SBMT,24.0,2026-06-01,20,F4_PBUY,Black Wade Newton $24k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+LSF,24.0,2026-06-01,20,F4_PBUY,LaMontagne Grant J $101k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+HWH,24.0,2026-06-09,12,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 12d ago; 2 events in 30d
+HFRO,24.0,2026-06-01,20,F4_PBUY,Saba Capital Manag $274k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+CCO,24.0,2026-06-11,10,ACTIVIST_13D,score 35.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",1227.0,2.41,-0.34816527,1.0,141.0,Communication Services,event 10d ago; 2 events in 30d
+MG,24.0,2026-06-12,9,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",587.0,18.46,2.5184174,6.0,147.0,Industrials,event 9d ago; 2 events in 30d
+NIU,24.0,2026-06-12,9,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 9d ago; 2 events in 30d
+ADAG,24.0,2026-06-08,13,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 13d ago; 2 events in 30d
+PSNL,24.0,2026-06-10,11,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1104.0,10.54,4.3321,16.0,174.0,Healthcare,event 11d ago; 2 events in 30d
+NRC,24.0,2026-06-12,9,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 9d ago; 2 events in 30d
+TRS,24.0,2026-06-08,13,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1568.0,43.77,2.3342755,1.0,63.0,Consumer Cyclical,event 13d ago; 2 events in 30d
+KINS,24.0,2026-06-01,20,F4_PBUY,Newgarden Thomas $213k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+NONE,24.0,2026-06-01,20,F4_PBUY,de Silva Harin Ana $250k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+CSWC,24.0,2026-06-01,20,F4_PBUY,Rogers-Windsor Ram $5k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+COE,24.0,2026-06-01,20,F4_PBUY,Huang Jack Jiajia $4848k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+FRAF,24.0,2026-06-01,20,F4_PBUY,Duffey Gregory A $1k,1,1,30,F4_PBUY,276.0,61.45,1.5446296,2.0,81.0,Financial Services,event 20d ago; insider P-buy
+UTI,24.0,2026-06-10,11,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",2222.0,40.35,6.53653,12.0,90.0,Consumer Defensive,event 11d ago; 2 events in 30d
+NCNO,24.0,2026-05-27,25,10b5-1_ADOPT,Director ADOPT,1,1,30,10b5-1_ADOPT,1621.0,14.8,1.6593789,56.0,7.0,Technology,event 25d ago; DD 56%; only 7% above 52w low
+STI,24.0,2026-06-11,10,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 10d ago; 2 events in 30d
+WMT,24.0,2026-05-29,23,10b5-1_TERM,Executive Vice President TERMINATE,1,1,30,10b5-1_TERM,932528.0,117.18,9.37365,13.0,24.0,Consumer Defensive,event 23d ago; 10b5-1 termination
+PAX,24.0,2026-06-01,20,F4_PBUY,Neto Olimpio Matar $344k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+LIQT,24.0,2026-06-09,12,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 12d ago; 2 events in 30d
+TFSL,24.0,2026-06-01,20,F4_PBUY,Weir Daniel F $111k,1,1,30,F4_PBUY,4605.0,16.42,2.3817813,3.0,31.0,Financial Services,event 20d ago; insider P-buy
+NYXH,24.0,2026-06-11,10,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 10d ago; 2 events in 30d
+MASI,24.0,2026-06-11,10,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",9424.0,179.95,11.944905,0.0,43.0,Healthcare,event 10d ago; 2 events in 30d
+LEE,24.0,2026-06-01,20,F4_PBUY,Hoffmann David Hen $507k,1,1,30,F4_PBUY,216.0,9.71,-39.471542,18.0,191.0,Communication Services,event 20d ago; insider P-buy
+AUNA,24.0,2026-06-01,20,F4_PBUY,Zamora Leon Jesus $222k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+LCNB,24.0,2026-05-29,23,F4_PBUY,Meilstrup Eric J $7k,1,1,30,F4_PBUY,243.0,17.07,0.88166934,5.0,24.0,Financial Services,event 23d ago; insider P-buy
+SMSI,24.0,2026-06-08,13,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 13d ago; 2 events in 30d
+HUBC,24.0,2026-06-01,20,F4_PBUY,HRT FINANCIAL LP $72k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+MOD,24.0,2026-05-27,25,10b5-1_TERM,director TERMINATE,1,1,30,10b5-1_TERM,15706.0,297.37,13.145168,8.0,244.0,Consumer Cyclical,event 25d ago; 10b5-1 termination
+L,24.0,2026-06-01,20,F4_PBUY,Robusto Dino $524k,1,1,30,F4_PBUY,22075.0,107.28,1.180224,7.0,21.0,Financial Services,event 20d ago; insider P-buy
+MDWD,24.0,2026-06-01,20,F4_PBUY,Rubinstein Samuel $2k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+GOOD,24.0,2026-06-01,20,F4_PBUY,Carter Ryan Stuart $1k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+USAS,24.0,2026-06-12,9,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 9d ago; 2 events in 30d
+WOK,24.0,2026-06-01,20,F4_PBUY,HRT FINANCIAL LP $138k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+JCTC,24.0,2026-06-12,9,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 9d ago; 2 events in 30d
+RMBI,24.0,2026-06-01,20,F4_PBUY,Blum E. Michael $22k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+QMCO,24.0,2026-06-08,13,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",228.0,15.6,-1.1968697,16.0,272.0,Technology,event 13d ago; 2 events in 30d
+FFIC,24.0,2026-06-11,10,GOING_DARK,score 0.0,1,1,30,GOING_DARK,524.0,15.47,0.7516276,13.0,39.0,Financial Services,event 10d ago
+HGV,24.0,2026-06-08,13,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",4140.0,52.73,3.5529952,2.0,43.0,Consumer Cyclical,event 13d ago; 2 events in 30d
+GLOO,24.0,2026-06-11,10,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 10d ago; 2 events in 30d
+WIA,24.0,2026-06-11,10,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 10d ago; 2 events in 30d
+YRD,24.0,2026-06-08,13,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 13d ago; 2 events in 30d
+CJMB,24.0,2026-06-01,20,F4_PBUY,Dial Gerald $8k,1,1,30,F4_PBUY,0.0,,,,,,event 20d ago; insider P-buy
+ENS,24.0,2026-06-01,20,F4_PBUY,Funk Andrea J. $25k,1,1,30,F4_PBUY,8324.0,227.95,4.362345,7.0,182.0,Industrials,event 20d ago; insider P-buy
+VSCO,23.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",4313.0,54.3,5.074766,33.0,210.0,Consumer Cyclical,event 17d ago; 2 events in 30d
+ZUMZ,23.0,2026-06-04,17,10b5-1_ADOPT,Chief Commercial Officer ADOPT,1,1,30,10b5-1_ADOPT,322.0,19.1,0.89954317,40.0,64.0,Consumer Cyclical,event 17d ago
+VSAT,23.0,2026-05-29,23,10b5-1_ADOPT,Chief Financial Officer ADOPT,3,3,30,10b5-1_ADOPT,8758.0,64.13,1.9060215,29.0,417.0,Technology,event 23d ago; 3 events in 30d
+ESAB,23.0,2026-06-02,19,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",6466.0,106.2,2.9513116,23.0,29.0,Industrials,event 19d ago; 2 events in 30d
+AVO,23.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1015.0,11.49,1.3868437,26.0,14.0,Consumer Defensive,event 20d ago; 2 events in 30d
+IOT,23.0,2026-06-09,12,10b5-1_ADOPT,Executive Vice President ADOPT,1,1,30,10b5-1_ADOPT,19020.0,32.64,13.344234,31.0,40.0,Technology,event 12d ago
+LPTH,23.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",951.0,15.15,10.40522,20.0,451.0,Technology,event 17d ago; 2 events in 30d
+JILL,23.0,2026-06-10,11,10b5-1_ADOPT,Executive Vice President ADOPT,1,1,30,10b5-1_ADOPT,222.0,14.82,1.7827499,21.0,42.0,Consumer Cyclical,event 11d ago
+CDW,23.0,2026-05-29,23,F4_PBUY,NELMS DAVID W $2006k,1,1,30,F4_PBUY,16400.0,128.37,6.4300737,30.0,32.0,Technology,event 23d ago; insider P-buy
+GRNT,23.0,2026-05-29,23,F4_PBUY,Kettler Ronald Kyl $30k,1,1,30,F4_PBUY,619.0,4.69,1.1282175,30.0,12.0,Energy,event 23d ago; insider P-buy
+RCD,22.0,2026-06-01,20,DEF14A_PSU,PSU core 25.0 gov 4.0,1,1,30,DEF14A_PSU,0.0,,,,,,event 20d ago; PSU/gov in latest proxy
+QUBT,22.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2427.0,10.76,1.5191303,58.0,74.0,Technology,event 24d ago; 2 events in 30d; DD 58%
+TYGO,22.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",217.0,2.855,7.2831635,46.0,150.0,Technology,event 24d ago; 2 events in 30d; DD 46%
+PAHC,22.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1292.0,31.85,3.570628,47.0,35.0,Healthcare,event 30d ago; 2 events in 30d; DD 47%
+WMS,22.0,2026-06-03,18,DEF14A_PSU,PSU core 46.0 gov 12.0,1,1,30,DEF14A_PSU,11269.0,147.12,5.750694,18.0,34.0,Industrials,event 18d ago; PSU/gov in latest proxy
+ALXO,22.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",206.0,1.53,1.36,42.0,279.0,Healthcare,event 25d ago; 2 events in 30d; DD 42%
+SYM,22.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",25159.0,41.68,7.715661,53.0,30.0,Industrials,event 23d ago; 2 events in 30d; DD 53%
+LULU,22.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",13781.0,121.36,2.8493614,54.0,11.0,Consumer Cyclical,event 24d ago; 2 events in 30d; DD 54%
+TFX,21.0,2026-05-27,25,RESTRUCT_8K,score 15.0,1,1,30,RESTRUCT_8K,5622.0,127.0,1.8225392,9.0,27.0,Healthcare,event 25d ago; RESTRUCT_8K
+ECPG,21.0,2026-05-26,26,RESTRUCT_8K,score 21.0,1,1,30,RESTRUCT_8K,1781.0,83.05,1.7254275,10.0,133.0,Financial Services,event 26d ago; RESTRUCT_8K
+DVN,21.0,2026-05-28,24,DEF14A_PSU,PSU core 14.0 gov -2.0,1,1,30,DEF14A_PSU,48581.0,42.12,1.6953791,20.0,34.0,Energy,event 24d ago; PSU/gov in latest proxy
+WBD,21.0,2026-05-27,25,RESTRUCT_8K,score 46.0,1,1,30,RESTRUCT_8K,65687.0,26.2,2.0161602,13.0,155.0,Communication Services,event 25d ago; RESTRUCT_8K
+PTN,21.0,2026-05-28,24,DELISTING,score 0.0,1,1,30,DELISTING,21.0,11.72,1.9654537,62.0,134.0,Healthcare,event 24d ago; DD 62% (unpriced)
+TSEOF,21.0,2026-05-26,26,NOL_SHELL,score 55.0,1,1,30,NOL_SHELL,0.0,0.013,,100.0,319.0,Basic Materials,event 26d ago; DD 100% (unpriced)
+AMT,19.0,2026-05-22,30,DELISTING,score 0.0,1,1,30,DELISTING,82020.0,176.05,23.290117,25.0,7.0,Real Estate,event 30d ago; only 7% above 52w low
+CLMT,18.0,2026-06-05,16,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",2844.0,32.64,-2.7234042,16.0,152.0,Basic Materials,event 16d ago; 2 events in 30d
+ALRS,18.0,2026-05-29,23,F4_PBUY,Bolton Jeffrey $29k,1,1,30,F4_PBUY,746.0,29.68,1.3022113,3.0,46.0,Financial Services,event 23d ago; insider P-buy
+FTAIN,18.0,2026-06-12,9,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 9d ago
+CXE,18.0,2026-06-08,13,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 13d ago
+KALV,18.0,2026-06-11,10,DELISTING,score 0.0,1,1,30,DELISTING,1438.0,27.0,-70.3125,0.0,175.0,Healthcare,event 10d ago
+GRPFF,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 16d ago; 2 events in 30d
+DELL,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",264595.0,409.5,-189.32037,13.0,272.0,Technology,event 16d ago; 2 events in 30d
+SNNUF,18.0,2026-06-03,18,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+GRNQ,18.0,2026-06-02,19,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 19d ago; 2 events in 30d
+VTSI,18.0,2026-05-29,23,F4_PBUY,BARBER GRANT $8k,1,1,30,F4_PBUY,0.0,,,,,,event 23d ago; insider P-buy
+FANG,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",51621.0,183.5,1.4153162,14.0,37.0,Energy,event 16d ago; 2 events in 30d
+BDCO,18.0,2026-05-29,23,F4_PBUY,LAZARUS ENERGY HOL $79k,1,1,30,F4_PBUY,0.0,,,,,,event 23d ago; insider P-buy
+QRVO,18.0,2026-06-02,19,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",8662.0,98.42,2.5821176,10.0,31.0,Technology,event 19d ago; 2 events in 30d
+PFBX,18.0,2026-05-29,23,F4_PBUY,Sliman George J II $42k,1,1,30,F4_PBUY,0.0,,,,,,event 23d ago; insider P-buy
+MGM,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",11984.0,46.84,4.924824,9.0,60.0,Consumer Cyclical,event 20d ago; 2 events in 30d
+PRQR,18.0,2026-06-03,18,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+GLQ,18.0,2026-06-04,17,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",0.0,,,,,,event 17d ago; 2 events in 30d
+EBAY,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",48059.0,108.24,10.942175,9.0,49.0,Consumer Cyclical,event 16d ago; 2 events in 30d
+NIPG,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 16d ago; 2 events in 30d
+SATA,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 20d ago; 2 events in 30d
+CACC,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",5955.0,569.32,3.919209,2.0,42.0,Financial Services,event 16d ago; 2 events in 30d
+JOB,18.0,2026-06-03,18,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+GLRE,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 20d ago; 2 events in 30d
+NAUT,18.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 17d ago; 2 events in 30d
+CIFR,18.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",11936.0,29.18,16.560726,3.0,787.0,Technology,event 17d ago; 2 events in 30d
+ELAB,18.0,2026-06-03,18,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+OVLY,18.0,2026-05-29,23,F4_PBUY,LAFFERTY ALLISON $3k,1,1,30,F4_PBUY,293.0,34.78,1.3795564,3.0,38.0,Financial Services,event 23d ago; insider P-buy
+NNI,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 16d ago; 2 events in 30d
+TXO,18.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",747.0,13.52,1.0707215,17.0,34.0,Energy,event 17d ago; 2 events in 30d
+BJDX,18.0,2026-06-02,19,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 19d ago; 2 events in 30d
+ACCS,18.0,2026-05-29,23,F4_PBUY,BALBIRNIE BRIAN R $65k,1,1,30,F4_PBUY,0.0,,,,,,event 23d ago; insider P-buy
+BTSGU,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 16d ago; 2 events in 30d
+ATLO,18.0,2026-05-29,23,F4_PBUY,Cassabaum Michelle $5k,1,1,30,F4_PBUY,0.0,,,,,,event 23d ago; insider P-buy
+FITBP,18.0,2026-06-11,10,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 10d ago
+BIOX,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 20d ago; 2 events in 30d
+OPLN,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",4033.0,38.07,3.2178175,3.0,72.0,Consumer Cyclical,event 20d ago; 2 events in 30d
+AMBR,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 20d ago; 2 events in 30d
+BOF,18.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 17d ago; 2 events in 30d
+ZENA,18.0,2026-06-02,19,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 19d ago; 2 events in 30d
+ASYS,18.0,2026-06-02,19,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 19d ago; 2 events in 30d
+MHD,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 16d ago; 2 events in 30d
+APURU,18.0,2026-06-09,12,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 12d ago
+DTSS,18.0,2026-06-03,18,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+CTOR,18.0,2026-06-04,17,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 17d ago; 2 events in 30d
+VRSN,18.0,2026-05-29,23,F4_PBUY,Armstrong Courtney $5k,1,1,30,F4_PBUY,24082.0,264.64,-10.892329,15.0,27.0,Technology,event 23d ago; insider P-buy
+TH,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2008.0,20.16,5.3574276,1.0,238.0,Industrials,event 20d ago; 2 events in 30d
+AUPH,18.0,2026-06-04,17,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",2117.0,16.46,3.7917528,2.0,126.0,Healthcare,event 17d ago; 2 events in 30d
+RDVT,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",777.0,55.1,7.438909,14.0,65.0,Technology,event 20d ago; 2 events in 30d
+CITR,18.0,2026-06-03,18,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+ECAT,18.0,2026-06-03,18,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",0.0,,,,,,event 18d ago; 2 events in 30d
+BBY,18.0,2026-06-02,19,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",15751.0,74.73,5.1072993,12.0,36.0,Consumer Cyclical,event 19d ago; 2 events in 30d
+PNBK,18.0,2026-05-29,23,F4_PBUY,De Tomasi Mario $82k,1,1,30,F4_PBUY,0.0,,,,,,event 23d ago; insider P-buy
+STRRP,18.0,2026-06-01,20,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 20d ago; 2 events in 30d
+REED,18.0,2026-06-05,16,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 16d ago; 2 events in 30d
+EL,17.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",30684.0,84.81,7.684153,30.0,28.0,Consumer Defensive,event 24d ago; 2 events in 30d
+REPX,17.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",712.0,32.82,1.1238956,21.0,36.0,Energy,event 24d ago; 2 events in 30d
+BDX,17.0,2026-06-04,17,DELISTING,score 0.0,1,1,30,DELISTING,39672.0,143.98,1.6439075,23.0,13.0,Healthcare,event 17d ago
+NVTS,17.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",5850.0,24.02,13.263391,30.0,342.0,Technology,event 23d ago; 2 events in 30d
+ASMB,17.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",484.0,24.44,1.9556694,38.0,45.0,Healthcare,event 25d ago; 2 events in 30d
+PRCH,17.0,2026-05-27,25,ACTIVIST_13D,score 20.0,2,2,30,"13D_FILER,ACTIVIST_13D",1354.0,12.38,-51.583336,36.0,95.0,Financial Services,event 25d ago; 2 events in 30d
+WVVIP,16.0,2026-05-28,24,DEF14A_PSU,PSU core 18.0 gov 0.0,1,1,30,DEF14A_PSU,0.0,,,,,,event 24d ago; PSU/gov in latest proxy
+USGO,16.0,2026-05-22,30,DELISTING,score 0.0,1,1,30,DELISTING,113.0,8.45,14.772726,53.0,14.0,Basic Materials,event 30d ago; DD 53%
+IMUX,16.0,2026-05-29,23,DEF14A_PSU,PSU core 6.0 gov 0.0,1,1,30,DEF14A_PSU,193.0,14.2,1.2789336,10.0,181.0,Healthcare,event 23d ago; PSU/gov in latest proxy
+AZZ,16.0,2026-05-26,26,DEF14A_PSU,PSU core 27.0 gov 12.0,1,1,30,DEF14A_PSU,4718.0,157.18,3.5126374,0.0,81.0,Industrials,event 26d ago; PSU/gov in latest proxy
+CRVL,16.0,2026-05-22,30,10b5-1_ADOPT,Chairman of the Board ADOPT,1,1,30,10b5-1_ADOPT,3100.0,61.15,7.896436,44.0,36.0,Financial Services,event 30d ago; DD 44%
+OLPX,16.0,2026-05-29,23,DEF14A_PSU,PSU core 2.0 gov 0.0,1,1,30,DEF14A_PSU,1378.0,2.05,1.5684774,0.0,107.0,Consumer Cyclical,event 23d ago; PSU/gov in latest proxy
+BRZE,16.0,2026-05-28,24,10b5-1_ADOPT,Chief Revenue Officer ADOPT,1,1,30,10b5-1_ADOPT,2440.0,21.66,4.162183,42.0,42.0,Technology,event 24d ago; DD 42%
+DAIO,16.0,2026-05-29,23,DEF14A_PSU,PSU core 0.0 gov 7.0,1,1,30,DEF14A_PSU,35.0,3.71,3.3303413,17.0,72.0,Technology,event 23d ago; PSU/gov in latest proxy
+GRBK,16.0,2026-05-22,30,DEF14A_PSU,PSU core 8.0 gov 12.0,1,1,30,DEF14A_PSU,3219.0,74.61,1.7226173,8.0,24.0,Consumer Cyclical,event 30d ago; PSU/gov in latest proxy
+OFIX,12.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 25d ago; 2 events in 30d
+INAB,12.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 23d ago; 2 events in 30d
+OOMA,12.0,2026-06-05,16,10b5-1_ADOPT,Senior Vice President ADOPT,1,1,30,10b5-1_ADOPT,0.0,,,,,,event 16d ago
+NMG,12.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 23d ago; 2 events in 30d
+GRTX,12.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 23d ago; 2 events in 30d
+GEL,12.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 30d ago; 2 events in 30d
+KWR,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2608.0,150.18,1.8957572,18.0,35.0,Basic Materials,event 24d ago; 2 events in 30d
+SAFX,12.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 30d ago; 2 events in 30d
+CSTM,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",4847.0,35.6,4.331427,4.0,181.0,Basic Materials,event 24d ago; 2 events in 30d
+SLMT,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+FBK,12.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",2769.0,53.75,1.4001406,14.0,25.0,Financial Services,event 30d ago; 2 events in 30d
+ASA,12.0,2026-05-28,24,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+DE,12.0,2026-05-28,24,10b5-1_ADOPT,President ADOPT,2,2,30,10b5-1_ADOPT,159058.0,589.24,5.8037763,13.0,36.0,Industrials,event 24d ago; 2 events in 30d
+KNSA,12.0,2026-05-26,26,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",3992.0,51.89,6.3134203,13.0,98.0,Healthcare,event 26d ago; 2 events in 30d
+ZVIA,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+NTAP,12.0,2026-06-05,16,10b5-1_ADOPT,President ADOPT,1,1,30,10b5-1_ADOPT,31290.0,159.71,23.169884,17.0,70.0,Technology,event 16d ago
+NNBR,12.0,2026-05-29,23,ACTIVIST_13D,score 25.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",0.0,,,,,,event 23d ago; 2 events in 30d
+OKTA,12.0,2026-05-29,23,10b5-1_ADOPT,Chairperson and Chief Executive Officer ADOPT,2,2,30,10b5-1_ADOPT,20212.0,116.29,2.9556487,18.0,86.0,Technology,event 23d ago; 2 events in 30d
+ROLR,12.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 23d ago; 2 events in 30d
+TACT,12.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 25d ago; 2 events in 30d
+AIRI,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+HSDT,12.0,2026-05-26,26,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 26d ago; 2 events in 30d
+GTX,12.0,2026-05-22,30,ACTIVIST_13D,score 35.0,2,2,30,"13D_KNOWN_ACTIVIST,ACTIVIST_13D",6405.0,34.215,-8.22476,1.0,258.0,Consumer Cyclical,event 30d ago; 2 events in 30d
+NOTV,12.0,2026-06-03,18,NOL_SHELL,score 30.0,1,1,30,NOL_SHELL,0.0,,,,,,event 18d ago
+CWBHF,12.0,2026-05-29,23,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 23d ago; 2 events in 30d
+MIMI,12.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 25d ago; 2 events in 30d
+AAT,12.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1866.0,24.05,1.299017,3.0,36.0,Real Estate,event 25d ago; 2 events in 30d
+FIEE,12.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 30d ago; 2 events in 30d
+LLY,12.0,2026-06-02,19,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 19d ago
+SA,12.0,2026-06-05,16,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 16d ago
+BLFS,12.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1272.0,26.04,3.41553,12.0,46.0,Healthcare,event 30d ago; 2 events in 30d
+CALY,12.0,2026-05-26,26,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",3033.0,16.87,1.4439785,6.0,118.0,Consumer Cyclical,event 26d ago; 2 events in 30d
+CPSH,12.0,2026-05-27,25,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 25d ago; 2 events in 30d
+LTH,12.0,2026-05-26,26,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",7261.0,32.62,2.2540076,8.0,35.0,Consumer Cyclical,event 26d ago; 2 events in 30d
+RANI,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+INTJ,12.0,2026-05-22,30,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 30d ago; 2 events in 30d
+WILC,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+AEFC,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+CBL,12.0,2026-05-26,26,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",1467.0,47.4,3.6855612,7.0,89.0,Real Estate,event 26d ago; 2 events in 30d
+TK,12.0,2026-05-28,24,ACTIVIST_13D,score 10.0,2,2,30,"13D_FILER,ACTIVIST_13D",0.0,,,,,,event 24d ago; 2 events in 30d
+TTI,6.0,2026-05-26,26,NOL_SHELL,score 30.0,1,1,30,NOL_SHELL,1514.0,10.24,4.8301888,18.0,223.0,Industrials,event 26d ago
+TRVG,6.0,2026-05-29,23,10b5-1_ADOPT,None ADOPT,1,1,30,10b5-1_ADOPT,0.0,,,,,,event 23d ago
+MCS,6.0,2026-05-26,26,GOING_DARK,score 0.0,1,1,30,GOING_DARK,733.0,23.85,1.660401,2.0,86.0,Communication Services,event 26d ago
+CCAP,6.0,2026-05-26,26,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 26d ago
+GECCI,6.0,2026-05-27,25,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 25d ago
+OXLCL,6.0,2026-05-29,23,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 23d ago
+NRXP,6.0,2026-05-22,30,DELISTING,score 0.0,1,1,30,DELISTING,0.0,,,,,,event 30d ago
+FDX,6.0,2026-05-28,24,DELISTING,score 0.0,1,1,30,DELISTING,77834.0,326.2,2.6158152,6.0,87.0,Industrials,event 24d ago
