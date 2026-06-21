@@ -1,0 +1,41 @@
+ticker,name,sector,industry,market_cap
+ALTR.LS,"Altri, SGPS, S.A.",Materials,Paper & Forest Products,Small Cap
+BCP.LS,"Banco Comercial Portugues, S.A.",Financials,Banks,Mid Cap
+BTRVB.LS,"GamaLife - Companhia de Seguros de Vida, S.A.",Financials,,Mid Cap
+CDU.LS,"Conduril - Engenharia, S.A.",Industrials,Construction & Engineering,Micro Cap
+CFN.LS,"Cofina, SGPS, S.A.",Communication Services,Diversified Telecommunication Services,Nano Cap
+COR.LS,"Corticeira Amorim, S.G.P.S., S.A.",Materials,Paper & Forest Products,Small Cap
+CPA.LS,"COPAM - Companhia Portuguesa de Amidos, S.A.",Consumer Staples,Household Products,Nano Cap
+CTT.LS,CTT - Correios de Portugal SA,Industrials,Air Freight & Logistics,Small Cap
+EGL.LS,Mota-Engil SGPS SA,Industrials,Construction & Engineering,Small Cap
+ESON.LS,"Estoril Sol, SGPS, S.A.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+FCP.LS,"Futebol Clube do Porto - Futebol, S.A.D.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+FLEXD.LS,Flexdeal Simfe S.A.,Financials,Capital Markets,Nano Cap
+GLINT.LS,"Glintt - Global Intelligent Technologies, S.A.",Information Technology,IT Services,Nano Cap
+GPA.LS,"Imobiliaria Construtora Grao Para, S.A.",Industrials,Construction & Engineering,Nano Cap
+IBS.LS,"Ibersol, S.G.P.S., S.A.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+INA.LS,"Inapa - Investimentos, Participacoes e Gestao, S.A.",Materials,Paper & Forest Products,Nano Cap
+IPR.LS,"Impresa - Sociedade Gestora de Participacoes Sociais, S.A.",Communication Services,Media,Nano Cap
+LIG.LS,"Lisgrafica - Impressao e Artes Graficas, S.A.",Industrials,Professional Services,Nano Cap
+LIT.LS,"Litho Formas, S.A.",Industrials,Professional Services,Nano Cap
+MAR.LS,"Martifer SGPS, S.A.",Industrials,Construction & Engineering,Micro Cap
+MCP.LS,"Grupo Media Capital, SGPS, S.A.",Communication Services,Entertainment,Micro Cap
+MLFMV.LS,"Farminveste, S.G.P.S., S.A.",Industrials,Industrial Conglomerates,Micro Cap
+MLRZE.LS,"Raize - Instituicao de Pagamentos, S.A.",Financials,Consumer Finance,Nano Cap
+NBA.LS,"Novabase S.G.P.S., S.A.",Information Technology,IT Services,Micro Cap
+NOS.LS,"NOS, S.G.P.S., S.A.",Communication Services,Diversified Telecommunication Services,Small Cap
+NVG.LS,Navigator Company SA,Materials,Paper & Forest Products,Mid Cap
+PHR.LS,"Pharol, SGPS S.A.",Communication Services,Diversified Telecommunication Services,Micro Cap
+RAM.LS,"Ramada Investimentos e Industria, S.A.",Materials,Metals & Mining,Micro Cap
+RED.LS,"Reditus, Sociedade Gestora de Participacoes Sociais, S.A.",Information Technology,IT Services,Nano Cap
+RENE.LS,Redes Energeticas Nacionais SA,Utilities,Multi-Utilities,Small Cap
+SCB.LS,"Sporting Clube de Braga - Futebol, SAD",Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+SCP.LS,"Sporting Clube de Portugal - Futebol, SAD",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SCT.LS,"Toyota Caetano Portugal, S.A.",Consumer Discretionary,Automobiles,Micro Cap
+SEM.LS,"Semapa - Sociedade de Investimento e Gestao, SGPS, S.A.",Materials,Paper & Forest Products,Small Cap
+SLBEN.LS,"Sport Lisboa e Benfica - Futebol, SAD",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SNG.LS,"Sonagi, S.G.P.S., S.A.",Real Estate,Real Estate Management & Development,Nano Cap
+SON.LS,Sonae SGPS SA,Consumer Discretionary,Household Durables,Small Cap
+SONI.LS,"Sonae Industria, S.G.P.S., S.A.",Materials,Paper & Forest Products,Micro Cap
+TDSA.LS,"Teixeira Duarte, S.A.",Industrials,Construction & Engineering,Nano Cap
+VAF.LS,"Vista Alegre Atlantis, SGPS, S.A.",Consumer Discretionary,Household Durables,Micro Cap

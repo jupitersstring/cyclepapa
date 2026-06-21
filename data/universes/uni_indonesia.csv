@@ -1,0 +1,567 @@
+ticker,name,sector,industry,market_cap
+AALI.JK,PT Astra Agro Lestari Tbk,Consumer Staples,Household Products,Small Cap
+ABBA.JK,PT Mahaka Media Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+ABDA.JK,PT Asuransi Bina Dana Arta Tbk,Financials,Insurance,Small Cap
+ABMM.JK,PT ABM Investama Tbk,Materials,Metals & Mining,Micro Cap
+ACST.JK,PT Acset Indonusa Tbk,Industrials,Construction & Engineering,Micro Cap
+ADES.JK,PT Akasha Wira International Tbk,Consumer Staples,Beverages,Micro Cap
+ADHI.JK,PT Adhi Karya (Persero) Tbk,Industrials,Construction & Engineering,Micro Cap
+ADMF.JK,PT Adira Dinamika Multi Finance Tbk,Financials,Consumer Finance,Small Cap
+ADRO.JK,PT Adaro Energy Tbk,Materials,Metals & Mining,Mid Cap
+AGAR.JK,PT Asia Sejahtera Mina Tbk,Consumer Staples,Household Products,Nano Cap
+AGII.JK,PT Aneka Gas Industri Tbk,Materials,Chemicals,Micro Cap
+AHAP.JK,PT Asuransi Harta Aman Pratama Tbk,Financials,Insurance,Nano Cap
+AIMS.JK,PT Akbar Indo Makmur Stimec Tbk,Materials,Metals & Mining,Nano Cap
+AISA.JK,PT FKS Food Sejahtera Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+AKKU.JK,PT Anugerah Kagum Karya Utama Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+AKPI.JK,PT Argha Karya Prima Industry Tbk,Consumer Discretionary,Distributors,Nano Cap
+AKRA.JK,PT AKR Corporindo Tbk,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+AKSI.JK,PT Maming Enam Sembilan Mineral Tbk,Financials,Capital Markets,Nano Cap
+ALDO.JK,PT Alkindo Naratama Tbk,Materials,Paper & Forest Products,Micro Cap
+ALKA.JK,PT Alakasa Industrindo Tbk,Materials,Metals & Mining,Nano Cap
+ALMI.JK,PT Alumindo Light Metal Industry Tbk,Materials,Metals & Mining,Nano Cap
+ALTO.JK,PT Tri Banyan Tirta Tbk,Consumer Staples,Beverages,Micro Cap
+AMAG.JK,P.T. Asuransi Multi Artha Guna Tbk,Financials,Insurance,Micro Cap
+AMAN.JK,PT Makmur Berkah Amanda Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+AMFG.JK,PT Asahimas Flat Glass Tbk,Industrials,Building Products,Micro Cap
+AMRT.JK,PT Sumber Alfaria Trijaya Tbk,Consumer Staples,Food & Staples Retailing,Mid Cap
+ANDI.JK,"PT. Andira Agro, Tbk",Consumer Staples,Household Products,Nano Cap
+ANJT.JK,PT Austindo Nusantara Jaya Tbk,Consumer Staples,Household Products,Micro Cap
+ANTM.JK,PT Aneka Tambang Tbk,Materials,Metals & Mining,Mid Cap
+APEX.JK,PT Apexindo Pratama Duta Tbk,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+APIC.JK,PT Pacific Strategic Financial Tbk,Financials,Capital Markets,Small Cap
+APLI.JK,PT Asiaplast Industries Tbk.,Consumer Discretionary,Distributors,Nano Cap
+APLN.JK,PT Agung Podomoro Land Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+ARGO.JK,PT Argo Pantes Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ARII.JK,PT Atlas Resources Tbk,Materials,Metals & Mining,Micro Cap
+ARKA.JK,PT Arkha Jayanti Persada Tbk,Industrials,Professional Services,Nano Cap
+ARNA.JK,PT Arwana Citramulia Tbk,Industrials,Building Products,Small Cap
+ARTA.JK,PT Arthavest Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ARTI.JK,PT. Ratu Prabu Energi Tbk,Energy,Energy Equipment & Services,Nano Cap
+ASBI.JK,PT Asuransi Bintang Tbk,Financials,Insurance,Nano Cap
+ASDM.JK,PT Asuransi Dayin Mitra Tbk,Financials,Insurance,Nano Cap
+ASGR.JK,PT Astra Graphia Tbk,Industrials,Professional Services,Micro Cap
+ASJT.JK,PT Asuransi Jasa Tania Tbk,Financials,Insurance,Nano Cap
+ASMI.JK,PT Asuransi Kresna Mitra Tbk,Financials,Insurance,Small Cap
+ASPI.JK,"PT Andalan Sakti Primaindo, Tbk",Industrials,Construction & Engineering,Nano Cap
+ASRI.JK,PT Alam Sutera Realty Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+ASRM.JK,PT Asuransi Ramayana Tbk,Financials,Insurance,Nano Cap
+ASSA.JK,PT Adi Sarana Armada Tbk,Industrials,Commercial Services & Supplies,Small Cap
+ATAP.JK,PT Trimitra Prawara Goldland Tbk,Industrials,Construction & Engineering,Nano Cap
+ATIC.JK,PT Anabatic Technologies Tbk,Information Technology,IT Services,Micro Cap
+AUTO.JK,PT Astra Otoparts Tbk,Consumer Discretionary,Auto Components,Small Cap
+AYLS.JK,PT Agro Yasa Lestari Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+BABP.JK,PT Bank MNC Internasional Tbk,Financials,Banks,Small Cap
+BAJA.JK,PT Saranacentral Bajatama Tbk,Materials,Metals & Mining,Micro Cap
+BALI.JK,PT Bali Towerindo Sentra Tbk,Communication Services,Diversified Telecommunication Services,Micro Cap
+BAPA.JK,PT Bekasi Asri Pemula Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+BAPI.JK,PT Bhakti Agung Propertindo Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+BATA.JK,PT Sepatu Bata Tbk.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+BAYU.JK,PT Bayu Buana Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+BBHI.JK,PT Bank Harda Internasional Tbk,Financials,Banks,Small Cap
+BBKP.JK,PT Bank KB Bukopin Tbk,Financials,Banks,Small Cap
+BBLD.JK,PT Buana Finance Tbk,Financials,Consumer Finance,Micro Cap
+BBMD.JK,PT Bank Mestika Dharma Tbk,Financials,Banks,Small Cap
+BBRM.JK,PT Pelayaran Nasional Bina Buana Raya Tbk,Industrials,Marine,Nano Cap
+BBSI.JK,PT Bank Bisnis Internasional Tbk,Financials,Banks,Small Cap
+BBSS.JK,PT Bumi Benowo Sukses Sejahtera Tbk,Industrials,Construction & Engineering,Nano Cap
+BBTN.JK,PT Bank Tabungan Negara (Persero) Tbk,Financials,Banks,Small Cap
+BBYB.JK,PT Bank Neo Commerce Tbk,Financials,Banks,Micro Cap
+BCIP.JK,PT Bumi Citra Permai Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+BEBS.JK,PT Berkah Beton Sadaya Tbk,Materials,Construction Materials,Small Cap
+BEEF.JK,PT Estika Tata Tiara Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+BEKS.JK,"PT. Bank Pembangunan Daerah Banten, Tbk",Financials,Banks,Nano Cap
+BELL.JK,PT Trisula Textile Industries Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+BESS.JK,PT Batulicin Nusantara Maritim Tbk,Industrials,Marine,Micro Cap
+BEST.JK,PT Bekasi Fajar Industrial Estate Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+BGTG.JK,PT Bank Ganesha Tbk,Financials,Banks,Micro Cap
+BHAT.JK,PT Bhakti Multi Artha Tbk,Industrials,Professional Services,Micro Cap
+BHIT.JK,PT MNC Investama Tbk,Communication Services,Entertainment,Small Cap
+BIKA.JK,PT Binakarya Jaya Abadi Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+BIMA.JK,PT Primarindo Asia Infrastructure Tbk.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+BINA.JK,PT Bank Ina Perdana Tbk,Financials,Banks,Small Cap
+BIPI.JK,PT Astrindo Nusantara Infrastruktur Tbk,Industrials,Transportation Infrastructure,Micro Cap
+BIPP.JK,PT Bhuwanatala Indah Permai Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+BIRD.JK,PT Blue Bird Tbk,Industrials,Road & Rail,Micro Cap
+BISI.JK,PT BISI International Tbk,Materials,Construction Materials,Micro Cap
+BJBR.JK,PT Bank Pembangunan Daerah Jawa Barat dan Banten Tbk,Financials,Banks,Small Cap
+BJTM.JK,PT Bank Pembangunan Daerah Jawa Timur Tbk,Financials,Banks,Small Cap
+BKDP.JK,PT Bukit Darmo Property Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+BKSL.JK,PT Sentul City Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+BLTA.JK,PT Berlian Laju Tanker Tbk,Industrials,Marine,Micro Cap
+BLTZ.JK,PT Graha Layar Prima Tbk,Communication Services,Entertainment,Micro Cap
+BLUE.JK,PT Berkah Prima Perkasa Tbk,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+BMSR.JK,PT Bintang Mitra Semestaraya Tbk,Industrials,Industrial Conglomerates,Nano Cap
+BMTR.JK,PT. Global Mediacom Tbk,Communication Services,Entertainment,Small Cap
+BNBA.JK,P.T. Bank Bumi Arta Tbk,Financials,Banks,Micro Cap
+BNBR.JK,PT Bakrie & Brothers Tbk,Industrials,Industrial Conglomerates,Micro Cap
+BNGA.JK,PT Bank CIMB Niaga Tbk Class A,Financials,Banks,Small Cap
+BNLI.JK,PT Bank Permata Tbk,Financials,Banks,Mid Cap
+BOGA.JK,PT Bintang Oto Global Tbk,Consumer Discretionary,Automobiles,Small Cap
+BOLA.JK,PT Bali Bintang Sejahtera Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+BOLT.JK,PT Garuda Metalindo Tbk,Industrials,Building Products,Micro Cap
+BOSS.JK,PT. Borneo Olah Sarana Sukses Tbk,Materials,Metals & Mining,Nano Cap
+BPFI.JK,PT Batavia Prosperindo Finance Tbk,Financials,Consumer Finance,Micro Cap
+BPII.JK,PT Batavia Prosperindo Internasional Tbk,Financials,Capital Markets,Micro Cap
+BPTR.JK,PT Batavia Prosperindo Trans Tbk,Industrials,Commercial Services & Supplies,Nano Cap
+BRAM.JK,PT Indo Kordsa Tbk,Consumer Discretionary,Auto Components,Micro Cap
+BRMS.JK,PT Bumi Resources Minerals Tbk Class A,Materials,Metals & Mining,Small Cap
+BRNA.JK,PT Berlina Tbk,Consumer Discretionary,Distributors,Micro Cap
+BRPT.JK,PT Barito Pacific Tbk,Materials,Chemicals,Mid Cap
+BSDE.JK,PT Bumi Serpong Damai Tbk,Real Estate,Real Estate Management & Development,Small Cap
+BSIM.JK,PT Bank Sinarmas Tbk,Financials,Banks,Small Cap
+BSSR.JK,PT Baramulti Suksessarana Tbk,Materials,Metals & Mining,Small Cap
+BTEK.JK,PT Bumi Teknokultura Unggul Tbk,Consumer Staples,Household Products,Micro Cap
+BTON.JK,PT Betonjaya Manunggal Tbk,Materials,Metals & Mining,Nano Cap
+BTPN.JK,PT Bank BTPN Tbk,Financials,Banks,Small Cap
+BTPS.JK,PT Bank BTPN Syariah Tbk,Financials,Banks,Small Cap
+BUDI.JK,PT Budi Starch & Sweetener Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+BUKK.JK,PT Bukaka Teknik Utama Tbk,Industrials,Construction & Engineering,Micro Cap
+BULL.JK,PT Buana Lintas Lautan Tbk,Industrials,Marine,Micro Cap
+BUMI.JK,PT Bumi Resources Tbk,Materials,Metals & Mining,Micro Cap
+BUVA.JK,PT Bukit Uluwatu Villa Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+BVIC.JK,PT Bank Victoria International Tbk,Financials,Banks,Micro Cap
+BWPT.JK,PT Eagle High Plantations Tbk,Consumer Staples,Household Products,Micro Cap
+BYAN.JK,PT Bayan Resources Tbk,Materials,Metals & Mining,Mid Cap
+CAKK.JK,PT Cahayaputra Asa Keramik Tbk,Industrials,Building Products,Nano Cap
+CAMP.JK,"PT Campina Ice Cream Industry, Tbk.",Consumer Staples,Food & Staples Retailing,Micro Cap
+CARS.JK,PT Industri dan Perdagangan Bintraco Dharma Tbk,Consumer Discretionary,Automobiles,Micro Cap
+CASS.JK,PT Cardig Aero Services Tbk,Industrials,Air Freight & Logistics,Micro Cap
+CBMF.JK,PT Cahaya Bintang Medan Tbk,Consumer Discretionary,Household Durables,Nano Cap
+CINT.JK,PT Chitose Internasional Tbk,Consumer Discretionary,Household Durables,Nano Cap
+CITA.JK,PT Cita Mineral Investindo Tbk,Materials,Metals & Mining,Small Cap
+CITY.JK,PT Natura City Developments Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+CLAY.JK,PT Citra Putra Realty Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+CLEO.JK,PT Sariguna Primatirta Tbk,Consumer Staples,Beverages,Small Cap
+CMNP.JK,PT Citra Marga Nusaphala Persada Tbk,Industrials,Transportation Infrastructure,Small Cap
+CNTX.JK,PT Century Textile Industry Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+COCO.JK,PT Wahana Interfood Nusantara Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+CPRI.JK,PT Capri Nusa Satu Properti Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+CPRO.JK,PT Central Proteina Prima Tbk,Consumer Staples,Household Products,Micro Cap
+CSAP.JK,PT Catur Sentosa Adiprana Tbk,Industrials,Building Products,Micro Cap
+CSIS.JK,PT Cahayasakti Investindo Sukses Tbk,Consumer Discretionary,Household Durables,Nano Cap
+CSMI.JK,PT Cipta Selera Murni Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+CSRA.JK,PT Cisadane Sawit Raya Tbk,Consumer Staples,Household Products,Nano Cap
+CTBN.JK,PT Citra Tubindo Tbk,Energy,Energy Equipment & Services,Micro Cap
+CTRA.JK,PT Ciputra Development Tbk,Real Estate,Real Estate Management & Development,Small Cap
+CTTH.JK,PT Citatah Tbk,Materials,Construction Materials,Nano Cap
+DADA.JK,PT Diamond Citra Propertindo Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+DART.JK,PT Duta Anggada Realty Tbk.,Real Estate,Real Estate Management & Development,Nano Cap
+DAYA.JK,PT Duta Intidaya Tbk,Consumer Discretionary,Specialty Retail,Nano Cap
+DEAL.JK,PT Dewata Freightinternational Tbk,Industrials,Air Freight & Logistics,Nano Cap
+DEFI.JK,PT Danasupra Erapacific Tbk,Financials,Consumer Finance,Micro Cap
+DEWA.JK,PT Darma Henwa Tbk,Materials,Metals & Mining,Micro Cap
+DGIK.JK,PT Nusa Konstruksi Enjiniring Tbk,Industrials,Construction & Engineering,Nano Cap
+DGNS.JK,PT Diagnos Laboratorium Utama Tbk,Health Care,Biotechnology,Micro Cap
+DIGI.JK,PT Arkadia Digital Media Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+DILD.JK,PT Intiland Development Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+DIVA.JK,PT Distribusi Voucher Nusantara Tbk,Information Technology,Software,Micro Cap
+DKFT.JK,PT Central Omega Resources Tbk,Materials,Metals & Mining,Micro Cap
+DLTA.JK,PT Delta Djakarta Tbk,Consumer Staples,Beverages,Micro Cap
+DMAS.JK,PT Puradelta Lestari Tbk,Real Estate,Real Estate Management & Development,Small Cap
+DMMX.JK,PT Digital Mediatama Maxima Tbk,Communication Services,Diversified Telecommunication Services,Small Cap
+DNET.JK,PT Indoritel Makmur Internasional Tbk.,Communication Services,Diversified Telecommunication Services,Mid Cap
+DOID.JK,PT Delta Dunia Makmur Tbk,Materials,Metals & Mining,Micro Cap
+DPNS.JK,PT Duta Pertiwi Nusantara Tbk,Materials,Chemicals,Nano Cap
+DPUM.JK,PT Dua Putra Utama Makmur Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+DSFI.JK,PT Dharma Samudera Fishing Industries Tbk,Consumer Staples,Household Products,Nano Cap
+DSNG.JK,PT Dharma Satya Nusantara Tbk,Consumer Staples,Household Products,Small Cap
+DSSA.JK,PT Dian Swastatika Sentosa Tbk,Materials,Metals & Mining,Small Cap
+DUCK.JK,PT Jaya Bersama Indo Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+DUTI.JK,PT Duta Pertiwi Tbk,Real Estate,Real Estate Management & Development,Small Cap
+DVLA.JK,PT Darya-Varia Laboratoria Tbk,Health Care,Pharmaceuticals,Micro Cap
+DWGL.JK,PT Dwi Guna Laksana Tbk,Materials,Metals & Mining,Micro Cap
+DYAN.JK,PT Dyandra Media International Tbk,Communication Services,Entertainment,Nano Cap
+EAST.JK,PT Eastparc Hotel Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+EDGE.JK,PT Indointernet Tbk.,Information Technology,IT Services,Small Cap
+EKAD.JK,PT Ekadharma International Tbk,Materials,Chemicals,Micro Cap
+ELSA.JK,PT Elnusa Tbk,Energy,Energy Equipment & Services,Micro Cap
+ELTY.JK,PT Bakrieland Development Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+EMDE.JK,PT Megapolitan Developments Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+EMTK.JK,PT Elang Mahkota Teknologi Tbk,Communication Services,Media,Mid Cap
+ENRG.JK,PT Energi Mega Persada Tbk,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+ENZO.JK,PT Morenzo Abadi Perkasa Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+EPAC.JK,PT Megalestari Epack Sentosaraya Tbk,Consumer Discretionary,Distributors,Nano Cap
+EPMT.JK,PT Enseval Putera Megatrading Tbk,Health Care,Health Care Providers & Services,Small Cap
+ERAA.JK,PT Erajaya Swasembada Tbk,Consumer Discretionary,Specialty Retail,Small Cap
+ERTX.JK,PT Eratex Djaja Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ESIP.JK,PT Sinergi Inti Plastindo Tbk,Consumer Discretionary,Distributors,Nano Cap
+ESSA.JK,PT Surya Esa Perkasa Tbk,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+ESTA.JK,PT Esta Multi Usaha Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ESTI.JK,PT Ever Shine Tex Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+EXCL.JK,PT XL Axiata Tbk,Communication Services,Diversified Telecommunication Services,Small Cap
+FAPA.JK,PT FAP Agri Tbk,Consumer Staples,Household Products,Small Cap
+FILM.JK,PT MD Pictures Tbk,Communication Services,Entertainment,Micro Cap
+FIRE.JK,PT Alfa Energi Investama Tbk,Materials,Metals & Mining,Micro Cap
+FISH.JK,PT FKS Multi Agro Tbk,Consumer Staples,Household Products,Micro Cap
+FITT.JK,PT Hotel Fitra International Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+FPNI.JK,PT Lotte Chemical Titan Tbk,Materials,Chemicals,Micro Cap
+FREN.JK,PT Smartfren Telecom Tbk,Communication Services,Diversified Telecommunication Services,Small Cap
+GAMA.JK,PT Aksara Global Development Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+GDST.JK,PT Gunawan Dianjaya Steel Tbk,Materials,Metals & Mining,Micro Cap
+GEMA.JK,PT Gema Grahasarana Tbk,Consumer Discretionary,Household Durables,Nano Cap
+GGRM.JK,PT Gudang Garam Tbk,Consumer Staples,Tobacco,Mid Cap
+GGRP.JK,PT Gunung Raja Paksi Tbk,Materials,Metals & Mining,Small Cap
+GJTL.JK,PT Gajah Tunggal Tbk,Consumer Discretionary,Auto Components,Micro Cap
+GLOB.JK,PT Global Teleshop Tbk,Consumer Discretionary,Specialty Retail,Nano Cap
+GLVA.JK,PT Galva Technologies Tbk,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+GMFI.JK,PT Garuda Maintenance Facility Aero Asia Tbk,Industrials,Aerospace & Defense,Micro Cap
+GMTD.JK,PT Gowa Makassar Tourism Development Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+GOLD.JK,PT Visi Telekomunikasi Infrastruktur Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+GOOD.JK,PT Garudafood Putra Putri Jaya Tbk,Consumer Staples,Food & Staples Retailing,Small Cap
+GPRA.JK,PT Perdana Gapuraprima Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+GSMF.JK,PT Equity Development Investment Tbk,Financials,Insurance,Micro Cap
+GWSA.JK,PT Greenwood Sejahtera Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+GZCO.JK,PT Gozco Plantations Tbk,Consumer Staples,Household Products,Nano Cap
+HADE.JK,PT Himalaya Energi Perkasa Tbk,Consumer Discretionary,Specialty Retail,Nano Cap
+HDFA.JK,PT Radana Bhaskara Finance Tbk,Financials,Consumer Finance,Micro Cap
+HEAL.JK,PT Medikaloka Hermina Tbk,Health Care,Health Care Equipment & Supplies,Small Cap
+HELI.JK,PT Jaya Trishindo Tbk,Industrials,Air Freight & Logistics,Nano Cap
+HERO.JK,PT Hero Supermarket Tbk,Consumer Discretionary,Household Durables,Micro Cap
+HEXA.JK,PT Hexindo Adiperkasa Tbk,Industrials,Trading Companies & Distributors,Micro Cap
+HITS.JK,PT Humpuss Intermoda Transportasi Tbk.,Industrials,Marine,Micro Cap
+HKMU.JK,PT HK Metals Utama Tbk,Materials,Construction Materials,Nano Cap
+HMSP.JK,PT Hanjaya Mandala Sampoerna Tbk,Consumer Staples,Tobacco,Mid Cap
+HOKI.JK,PT Buyung Poetra Sembada Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+HOMI.JK,PT Grand House Mulia Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+HOTL.JK,PT. Saraswati Griya Lestari Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+HRME.JK,PT Menteng Heritage Realty Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+HRTA.JK,PT Hartadinata Abadi Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+HRUM.JK,PT Harum Energy Tbk,Materials,Metals & Mining,Small Cap
+IBFN.JK,PT Intan Baruprana Finance Tbk,Financials,Consumer Finance,Nano Cap
+IBST.JK,PT Inti Bangun Sejahtera Tbk,Communication Services,Diversified Telecommunication Services,Small Cap
+ICBP.JK,PT Indofood CBP Sukses Makmur Tbk,Consumer Staples,Food & Staples Retailing,Mid Cap
+IFSH.JK,PT Ifishdeco Tbk,Materials,Metals & Mining,Micro Cap
+IKAI.JK,PT Intikeramik Alamasri Industri Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+IKAN.JK,PT Era Mandiri Cemerlang Tbk,Consumer Staples,Household Products,Nano Cap
+IKBI.JK,PT Sumi Indo Kabel Tbk,Industrials,Electrical Equipment,Nano Cap
+IMAS.JK,PT Indomobil Sukses Internasional Tbk,Consumer Discretionary,Automobiles,Micro Cap
+IMJS.JK,PT Indomobil Multi Jasa Tbk,Industrials,Industrial Conglomerates,Micro Cap
+IMPC.JK,PT Impack Pratama Industri Tbk,Materials,Construction Materials,Small Cap
+INAF.JK,PT Indofarma (Persero) Tbk,Health Care,Pharmaceuticals,Small Cap
+INAI.JK,PT Indal Aluminium Industry Tbk,Materials,Metals & Mining,Nano Cap
+INCF.JK,PT Indo Komoditi Korpora Tbk,Materials,Chemicals,Nano Cap
+INCI.JK,PT Intanwijaya Internasional Tbk,Materials,Chemicals,Nano Cap
+INDF.JK,PT Indofood Sukses Makmur Tbk,Consumer Staples,Food & Staples Retailing,Mid Cap
+INDO.JK,PT Royalindo Investa Wijaya Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+INDR.JK,PT. Indo-Rama Synthetics Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+INDS.JK,PT Indospring Tbk,Consumer Discretionary,Auto Components,Micro Cap
+INDX.JK,PT Tanah Laut Tbk,Industrials,Marine,Nano Cap
+INDY.JK,PT Indika Energy Tbk,Materials,Metals & Mining,Small Cap
+INKP.JK,PT Indah Kiat Pulp & Paper Tbk,Materials,Paper & Forest Products,Mid Cap
+INOV.JK,PT Inocycle Technology Group Tbk,Industrials,Transportation Infrastructure,Nano Cap
+INPC.JK,PT Bank Artha Graha Internasional Tbk,Financials,Banks,Micro Cap
+INPS.JK,PT. Indah Prakasa Sentosa Tbk,Industrials,Transportation Infrastructure,Micro Cap
+INRU.JK,PT Toba Pulp Lestari Tbk,Materials,Paper & Forest Products,Micro Cap
+INTA.JK,PT Intraco Penta Tbk,Industrials,Trading Companies & Distributors,Nano Cap
+INTD.JK,PT Inter Delta Tbk,Materials,Paper & Forest Products,Nano Cap
+INTP.JK,PT Indocement Tunggal Prakarsa Tbk,Materials,Construction Materials,Mid Cap
+IPOL.JK,PT Indopoly Swakarsa Industry Tbk,Consumer Discretionary,Distributors,Micro Cap
+IPTV.JK,PT MNC Vision Networks Tbk,Financials,Diversified Financial Services,Micro Cap
+IRRA.JK,PT Itama Ranoraya Tbk,Health Care,Health Care Providers & Services,Micro Cap
+ISAT.JK,PT Indosat Tbk,Communication Services,Diversified Telecommunication Services,Mid Cap
+ITMA.JK,PT Sumber Energi Andalan Tbk,Industrials,Professional Services,Nano Cap
+ITMG.JK,PT Indo Tambangraya Megah Tbk,Materials,Metals & Mining,Small Cap
+JAST.JK,PT. Jasnita Telekomindo Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+JAWA.JK,PT Jaya Agra Wattie Tbk,Consumer Staples,Household Products,Nano Cap
+JAYA.JK,PT Armada Berjaya Trans Tbk,Industrials,Transportation Infrastructure,Nano Cap
+JECC.JK,PT Jembo Cable Company Tbk,Industrials,Electrical Equipment,Micro Cap
+JIHD.JK,PT Jakarta International Hotels & Development Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+JKON.JK,PT Jaya Konstruksi Manggala Pratama Tbk,Industrials,Industrial Conglomerates,Micro Cap
+JMAS.JK,PT Asuransi Jiwa Syariah Jasa Mitra Abadi Tbk,Financials,Insurance,Nano Cap
+JRPT.JK,"PT Jaya Real Property, Tbk.",Real Estate,Real Estate Management & Development,Small Cap
+JSMR.JK,PT Jasa Marga (Persero) Tbk Class B,Industrials,Construction & Engineering,Small Cap
+JSPT.JK,PT Jakarta Setiabudi Internasional Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+JTPE.JK,PT Jasuindo Tiga Perkasa Tbk,Industrials,Professional Services,Micro Cap
+KAEF.JK,PT Kimia Farma (Persero) Tbk,Health Care,Pharmaceuticals,Small Cap
+KARW.JK,PT ICTSI Jasa Prima Tbk,Industrials,Marine,Nano Cap
+KAYU.JK,PT Darmi Bersaudara Tbk,Materials,Paper & Forest Products,Nano Cap
+KBAG.JK,PT Karya Bersama Anugerah Tbk,Industrials,Construction & Engineering,Nano Cap
+KBLI.JK,PT KMI Wire and Cable Tbk,Industrials,Electrical Equipment,Micro Cap
+KBLM.JK,PT Kabelindo Murni Tbk,Information Technology,Communications Equipment,Nano Cap
+KBLV.JK,PT First Media Tbk,Communication Services,Entertainment,Micro Cap
+KDSI.JK,PT Kedawung Setia Industrial Tbk,Consumer Discretionary,Distributors,Nano Cap
+KEEN.JK,PT Kencana Energi Lestari Tbk,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+KEJU.JK,PT Mulia Boga Raya Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+KICI.JK,PT Kedaung Indah Can Tbk,Consumer Discretionary,Household Durables,Nano Cap
+KIJA.JK,PT Kawasan Industri Jababeka Tbk,Industrials,Industrial Conglomerates,Micro Cap
+KJEN.JK,PT Krida Jaringan Nusantara Tbk,Industrials,Air Freight & Logistics,Nano Cap
+KLBF.JK,PT Kalbe Farma Tbk.,Health Care,Pharmaceuticals,Mid Cap
+KMDS.JK,"PT Kurniamitra Duta Sentosa, Tbk",Consumer Staples,Food & Staples Retailing,Nano Cap
+KMTR.JK,PT Kirana Megatara Tbk,Consumer Discretionary,Auto Components,Micro Cap
+KOBX.JK,PT Kobexindo Tractors Tbk,Industrials,Machinery,Nano Cap
+KOIN.JK,PT Kokoh Inti Arebama Tbk,Industrials,Building Products,Nano Cap
+KONI.JK,PT Perdana Bangun Pusaka Tbk,Consumer Discretionary,Specialty Retail,Nano Cap
+KOPI.JK,PT Mitra Energi Persada Tbk,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+KOTA.JK,PT DMS Propertindo Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+KPAL.JK,PT Steadfast Marine Tbk,Industrials,Aerospace & Defense,Nano Cap
+KPAS.JK,PT Cottonindo Ariesta Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+KPIG.JK,PT MNC Land Tbk,Real Estate,Real Estate Management & Development,Small Cap
+KRAS.JK,PT Krakatau Steel (Persero) Tbk Class B,Materials,Metals & Mining,Small Cap
+KREN.JK,PT Kresna Graha Investama Tbk,Financials,Capital Markets,Micro Cap
+LAND.JK,PT Trimitra Propertindo Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+LCKM.JK,PT LCK Global Kedaton Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+LEAD.JK,PT Logindo Samudramakmur Tbk.,Industrials,Marine,Nano Cap
+LIFE.JK,PT Asuransi Jiwa Sinarmas MSIG Tbk,Financials,Insurance,Small Cap
+LINK.JK,PT Link Net Tbk,Communication Services,Diversified Telecommunication Services,Small Cap
+LION.JK,PT Lion Metal Works Tbk,Industrials,Commercial Services & Supplies,Nano Cap
+LMPI.JK,PT Langgeng Makmur Industri Tbk,Consumer Discretionary,Household Durables,Nano Cap
+LMSH.JK,PT Lionmesh Prima Tbk,Industrials,Building Products,Nano Cap
+LPCK.JK,PT Lippo Cikarang Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+LPGI.JK,PT Lippo General Insurance Tbk,Financials,Insurance,Nano Cap
+LPIN.JK,PT Multi Prima Sejahtera Tbk,Consumer Discretionary,Auto Components,Nano Cap
+LPKR.JK,PT Lippo Karawaci Tbk,Real Estate,Real Estate Management & Development,Small Cap
+LPLI.JK,PT Star Pacific Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+LPPF.JK,PT Matahari Department Store Tbk,Consumer Discretionary,Household Durables,Small Cap
+LPPS.JK,PT Lenox Pasifik Investama Tbk,Financials,Capital Markets,Nano Cap
+LRNA.JK,PT Eka Sari Lorena Transport Tbk,Industrials,Road & Rail,Nano Cap
+LTLS.JK,PT Lautan Luas Tbk,Materials,Chemicals,Micro Cap
+LUCK.JK,PT Sentral Mitra Informatika Tbk,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+MAGP.JK,PT Multi Agro Gemilang Plantation Tbk,Consumer Staples,Household Products,Nano Cap
+MAIN.JK,PT Malindo Feedmill Tbk,Consumer Staples,Household Products,Micro Cap
+MAPA.JK,PT Map Aktif Adiperkasa Tbk,Consumer Discretionary,Specialty Retail,Small Cap
+MAPB.JK,PT. Map Boga Adiperkasa Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+MAPI.JK,PT. Mitra Adiperkasa Tbk,Consumer Discretionary,Household Durables,Small Cap
+MARI.JK,PT Mahaka Radio Integra Tbk,Communication Services,Media,Micro Cap
+MAYA.JK,PT Bank Mayapada Internasional Tbk,Financials,Banks,Small Cap
+MBAP.JK,PT Mitrabara Adiperdana Tbk,Materials,Metals & Mining,Micro Cap
+MBSS.JK,PT Mitrabahtera Segara Sejati Tbk,Industrials,Marine,Micro Cap
+MBTO.JK,PT Martina Berto Tbk,Consumer Staples,Household Products,Nano Cap
+MCAS.JK,PT M Cash Integrasi Tbk,Industrials,Commercial Services & Supplies,Small Cap
+MDIA.JK,PT Intermedia Capital Tbk,Communication Services,Media,Micro Cap
+MDKA.JK,PT Merdeka Copper Gold Tbk,Materials,Metals & Mining,Mid Cap
+MDKI.JK,PT Emdeki Utama Tbk,Materials,Chemicals,Nano Cap
+MDRN.JK,PT Modern Internasional Tbk,Industrials,Commercial Services & Supplies,Nano Cap
+MEDC.JK,PT Medco Energi Internasional Tbk,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+MEGA.JK,PT Bank Mega Tbk,Financials,Banks,Mid Cap
+MERK.JK,PT Merck Tbk,Health Care,Pharmaceuticals,Micro Cap
+META.JK,PT Nusantara Infrastructure Tbk,Industrials,Transportation Infrastructure,Micro Cap
+MFIN.JK,Pt Mandala Multifinance Tbk,Financials,Consumer Finance,Micro Cap
+MGRO.JK,PT Mahkota Group Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+MICE.JK,PT Multi Indocitra Tbk,Consumer Staples,Household Products,Nano Cap
+MIKA.JK,PT Mitra Keluarga Karyasehat Tbk,Health Care,Health Care Equipment & Supplies,Mid Cap
+MIRA.JK,PT Mitra International Resources Tbk,Energy,Energy Equipment & Services,Nano Cap
+MKNT.JK,PT Mitra Komunikasi Nusantara Tbk,Information Technology,Communications Equipment,Nano Cap
+MKPI.JK,PT Metropolitan Kentjana Tbk,Real Estate,Real Estate Management & Development,Small Cap
+MLIA.JK,PT Mulia Industrindo Tbk,Industrials,Building Products,Micro Cap
+MLPL.JK,PT Multipolar Tbk Class A,Consumer Discretionary,Household Durables,Small Cap
+MLPT.JK,PT Multipolar Technology Tbk,Information Technology,IT Services,Small Cap
+MMLP.JK,PT Mega Manunggal Property Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+MNCN.JK,PT. Media Nusantara Citra Tbk,Communication Services,Entertainment,Small Cap
+MOLI.JK,PT Madusari Murni Indah Tbk,Materials,Chemicals,Micro Cap
+MPMX.JK,PT Mitra Pinasthika Mustika Tbk,Consumer Discretionary,Automobiles,Micro Cap
+MPOW.JK,PT Megapower Makmur Tbk,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+MPPA.JK,PT Matahari Putra Prima Tbk,Consumer Discretionary,Household Durables,Small Cap
+MRAT.JK,PT Mustika Ratu Tbk,Consumer Staples,Household Products,Nano Cap
+MSIN.JK,PT. MNC Studios International Tbk.,Communication Services,Entertainment,Micro Cap
+MSKY.JK,PT MNC Sky Vision Tbk,Communication Services,Entertainment,Small Cap
+MTDL.JK,PT Metrodata Electronics Tbk,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+MTFN.JK,PT Capitalinc Investment Tbk,Financials,Capital Markets,Micro Cap
+MTLA.JK,PT Metropolitan Land Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+MTPS.JK,PT Meta Epsi Tbk.,Industrials,Construction & Engineering,Nano Cap
+MTSM.JK,PT Metro Realty Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+MTWI.JK,PT Malacca Trust Wuwungan Insurance Tbk,Financials,Insurance,Nano Cap
+MYOH.JK,PT Samindo Resources Tbk,Materials,Metals & Mining,Micro Cap
+MYOR.JK,PT Mayora Indah Tbk,Consumer Staples,Food & Staples Retailing,Mid Cap
+MYTX.JK,PT Asia Pacific Investama Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+NATO.JK,PT Surya Permata Andalan Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+NELY.JK,PT Pelayaran Nelly Dwi Putri Tbk,Industrials,Marine,Nano Cap
+NICK.JK,PT Charnic Capital Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+NIKL.JK,PT Pelat Timah Nusantara Tbk,Industrials,Building Products,Micro Cap
+NIRO.JK,PT City Retail Developments Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+NISP.JK,PT Bank OCBC NISP Tbk,Financials,Banks,Small Cap
+NOBU.JK,PT Bank Nationalnobu Tbk,Financials,Banks,Small Cap
+NPGF.JK,PT Nusa Palapa Gemilang Tbk,Materials,Construction Materials,Mid Cap
+NRCA.JK,PT Nusa Raya Cipta Tbk,Industrials,Construction & Engineering,Micro Cap
+NZIA.JK,"PT Nusantara Almazia, Tbk.",Real Estate,Real Estate Management & Development,Nano Cap
+OASA.JK,PT Protech Mitra Perkasa Tbk,Industrials,Construction & Engineering,Nano Cap
+OPMS.JK,PT Optima Prima Metal Sinergi Tbk,Industrials,Transportation Infrastructure,Micro Cap
+PADI.JK,PT Minna Padi Investama Sekuritas Tbk,Financials,Capital Markets,Micro Cap
+PALM.JK,PT Provident Agro Tbk,Consumer Staples,Household Products,Micro Cap
+PAMG.JK,PT Bima Sakti Pertiwi Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+PANI.JK,PT Pratama Abadi Nusa Industri Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+PANR.JK,PT Panorama Sentrawisata Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+PANS.JK,PT  Panin Sekuritas Tbk,Financials,Capital Markets,Micro Cap
+PBID.JK,PT Panca Budi Idaman Tbk,Consumer Discretionary,Distributors,Micro Cap
+PBRX.JK,PT Pan Brothers Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+PBSA.JK,PT Paramita Bangun Sarana Tbk,Industrials,Construction & Engineering,Micro Cap
+PCAR.JK,PT Prima Cakrawala Abadi Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+PDES.JK,PT Destinasi Tirta Nusantara Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+PEGE.JK,PT Panca Global Kapital Tbk,Financials,Capital Markets,Nano Cap
+PEHA.JK,"PT Phapros, Tbk",Health Care,Pharmaceuticals,Micro Cap
+PGAS.JK,PT Perusahaan Gas Negara Tbk,Utilities,Gas Utilities,Small Cap
+PGLI.JK,PT Pembangunan Graha Lestari Indah Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+PGUN.JK,PT Pradiksi Gunatama Tbk,Consumer Staples,Household Products,Micro Cap
+PICO.JK,PT Pelangi Indah Canindo Tbk,Consumer Discretionary,Distributors,Nano Cap
+PJAA.JK,PT Pembangunan Jaya Ancol Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+PKPK.JK,PT Perdana Karya Perkasa Tbk,Industrials,Construction & Engineering,Nano Cap
+PLAN.JK,PT Planet Properindo Jaya Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+PMJS.JK,PT Putra Mandiri Jembar Tbk,Consumer Discretionary,Automobiles,Micro Cap
+PMMP.JK,Pt Panca Mitra Multiperdana Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+PNBS.JK,PT Bank Panin Dubai Syariah Tbk,Financials,Banks,Small Cap
+PNGO.JK,PT PINAGO UTAMA Tbk,Consumer Staples,Household Products,Micro Cap
+PNIN.JK,PT Paninvest Tbk,Financials,Insurance,Micro Cap
+PNLF.JK,PT Panin Financial Tbk,Financials,Insurance,Small Cap
+PNSE.JK,PT Pudjiadi and Sons Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+POLA.JK,PT Pool Advista Finance Tbk,Financials,Consumer Finance,Nano Cap
+POLI.JK,"PT Pollux Investasi Internasional, Tbk",Real Estate,Real Estate Management & Development,Micro Cap
+POLU.JK,"PT Golden Flower, Tbk",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+POLY.JK,PT Asia Pacific Fibers Tbk,Materials,Chemicals,Nano Cap
+PORT.JK,PT Nusantara Pelabuhan Handal Tbk,Industrials,Marine,Micro Cap
+POWR.JK,PT Cikarang Listrindo Tbk,Utilities,Electric Utilities,Small Cap
+PPGL.JK,PT Prima Globalindo Logistik Tbk,Industrials,Air Freight & Logistics,Nano Cap
+PPRE.JK,PT PP Presisi Tbk,Industrials,Construction & Engineering,Micro Cap
+PPRO.JK,PT Pembangunan Perumahan Properti Tbk,Real Estate,Real Estate Management & Development,Small Cap
+PRAS.JK,PT. Prima Alloy Steel Universal Tbk.,Consumer Discretionary,Auto Components,Nano Cap
+PRDA.JK,PT Prodia Widyahusada Tbk,Health Care,Biotechnology,Micro Cap
+PRIM.JK,PT Royal Prima Tbk,Health Care,Health Care Equipment & Supplies,Micro Cap
+PSAB.JK,PT J Resources Asia Pasifik Tbk,Materials,Metals & Mining,Small Cap
+PSDN.JK,PT Prasidha Aneka Niaga Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+PSGO.JK,PT Palma Serasih Tbk,Consumer Staples,Household Products,Small Cap
+PSSI.JK,PT Pelita Samudera Shipping Tbk,Industrials,Marine,Micro Cap
+PTBA.JK,PT Bukit Asam Tbk,Materials,Metals & Mining,Small Cap
+PTDU.JK,PT Djasa Ubersakti Tbk,Industrials,Construction & Engineering,Small Cap
+PTIS.JK,PT Indo Straits Tbk,Industrials,Marine,Nano Cap
+PTPP.JK,PT PP (Persero) Tbk,Industrials,Construction & Engineering,Small Cap
+PTPW.JK,PT Pratama Widya Tbk,Industrials,Construction & Engineering,Micro Cap
+PTRO.JK,PT Petrosea Tbk,Materials,Metals & Mining,Micro Cap
+PTSN.JK,PT Sat Nusapersada Tbk,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+PUDP.JK,PT Pudjiadi Prestige Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+PURA.JK,PT Putra Rajawali Kencana Tbk,Industrials,Transportation Infrastructure,Nano Cap
+PURE.JK,PT Trinitan Metals and Minerals Tbk,Industrials,Machinery,Nano Cap
+PURI.JK,PT Puri Global Sukses Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+PWON.JK,PT Pakuwon Jati Tbk,Real Estate,Real Estate Management & Development,Small Cap
+PYFA.JK,PT Pyridam Farma Tbk,Health Care,Pharmaceuticals,Nano Cap
+PZZA.JK,PT Sarimelati Kencana Tbk.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+RAJA.JK,PT Rukun Raharja Tbk,Utilities,Gas Utilities,Micro Cap
+RALS.JK,PT Ramayana Lestari Sentosa Tbk,Consumer Discretionary,Household Durables,Small Cap
+RANC.JK,PT Supra Boga Lestari Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+RBMS.JK,PT Ristia Bintang Mahkotasejati Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+RDTX.JK,PT Roda Vivatex Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+RICY.JK,PT Ricky Putra Globalindo Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+RISE.JK,PT Jaya Sukses Makmur Sentosa Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+RMBA.JK,PT Bentoel Internasional Investama Tbk,Consumer Staples,Tobacco,Small Cap
+RODA.JK,PT Pikko Land Development Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+RONY.JK,PT Aesler Grup Internasional Tbk,Industrials,Construction & Engineering,Nano Cap
+ROTI.JK,PT Nippon Indosari Corpindo Tbk,Consumer Staples,Food & Staples Retailing,Small Cap
+RUIS.JK,PT Radiant Utama Interinsco Tbk,Energy,Energy Equipment & Services,Nano Cap
+SAFE.JK,PT Steady Safe Tbk,Industrials,Road & Rail,Nano Cap
+SAME.JK,PT Sarana Meditama Metropolitan Tbk,Health Care,Health Care Equipment & Supplies,Micro Cap
+SAMF.JK,"PT Saraswanti Anugerah Makmur, Tbk",Materials,Construction Materials,Small Cap
+SAPX.JK,PT Satria Antaran Prima Tbk,Industrials,Air Freight & Logistics,Micro Cap
+SATU.JK,PT Kota Satu Properti Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+SBAT.JK,PT Sejahtera Bintang Abadi Textile Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+SCCO.JK,PT Supreme Cable Manufacturing & Commerce Tbk,Industrials,Electrical Equipment,Micro Cap
+SCMA.JK,PT Surya Citra Media Tbk,Communication Services,Media,Small Cap
+SCNP.JK,PT Selaras Citra Nusantara Perkasa Tbk,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+SDMU.JK,PT Sidomulyo Selaras Tbk,Industrials,Transportation Infrastructure,Nano Cap
+SDPC.JK,PT Millennium Pharmacon International Tbk,Health Care,Health Care Providers & Services,Nano Cap
+SFAN.JK,PT Surya Fajar Capital Tbk,Financials,Capital Markets,Micro Cap
+SGER.JK,PT Sumber Global Energy Tbk,Materials,Metals & Mining,Nano Cap
+SGRO.JK,PT Sampoerna Agro Tbk,Consumer Staples,Household Products,Micro Cap
+SHID.JK,PT Hotel Sahid Jaya International Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SHIP.JK,PT Sillo Maritime Perdana Tbk,Energy,Energy Equipment & Services,Micro Cap
+SIDO.JK,PT Industri Jamu dan Farmasi Sido Muncul Tbk,Health Care,Pharmaceuticals,Small Cap
+SILO.JK,PT Siloam International Hospitals Tbk,Health Care,Health Care Equipment & Supplies,Small Cap
+SIMP.JK,PT Salim Ivomas Pratama Tbk,Consumer Staples,Household Products,Small Cap
+SINI.JK,PT Singaraja Putra Tbk,Materials,Paper & Forest Products,Nano Cap
+SKBM.JK,PT Sekar Bumi Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+SKLT.JK,PT Sekar Laut Tbk,Consumer Staples,Food & Staples Retailing,Micro Cap
+SKRN.JK,PT Superkrane Mitra Utama Tbk,Industrials,Commercial Services & Supplies,Micro Cap
+SLIS.JK,PT Gaya Abadi Sempurna Tbk,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+SMAR.JK,PT Sinar Mas Agro Resources and Technology Tbk,Consumer Staples,Household Products,Small Cap
+SMBR.JK,PT Semen Baturaja (Persero) Tbk,Materials,Construction Materials,Small Cap
+SMDM.JK,PT Suryamas Dutamakmur Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+SMKL.JK,PT Satyamitra Kemas Lestari Tbk,Consumer Discretionary,Distributors,Nano Cap
+SMMA.JK,PT Sinar Mas Multiartha Tbk,Financials,Capital Markets,Mid Cap
+SMMT.JK,PT Golden Eagle Energy Tbk,Materials,Metals & Mining,Nano Cap
+SMRA.JK,PT Summarecon Agung Tbk,Real Estate,Real Estate Management & Development,Small Cap
+SMSM.JK,PT Selamat Sempurna Tbk,Consumer Discretionary,Auto Components,Small Cap
+SNLK.JK,PT Sunter Lakeside Hotel Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+SOCI.JK,PT Soechi Lines Tbk,Industrials,Marine,Micro Cap
+SOFA.JK,PT Boston Furniture Industries Tbk,Consumer Discretionary,Household Durables,Nano Cap
+SOHO.JK,PT Soho Global Health Tbk,Health Care,Biotechnology,Small Cap
+SONA.JK,PT Sona Topas Tourism Industry Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SOSS.JK,PT Shield on Service Tbk,Industrials,Professional Services,Nano Cap
+SOTS.JK,PT Satria Mega Kencana Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+SPMA.JK,PT Suparma Tbk,Materials,Paper & Forest Products,Micro Cap
+SPTO.JK,PT Surya Pertiwi Tbk,Consumer Discretionary,Household Durables,Micro Cap
+SRAJ.JK,PT Sejahteraraya Anugrahjaya Tbk,Health Care,Health Care Equipment & Supplies,Micro Cap
+SRIL.JK,PT Sri Rejeki Isman Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+SRSN.JK,PT Indo Acidatama Tbk,Materials,Chemicals,Nano Cap
+SRTG.JK,PT Saratoga Investama Sedaya Tbk,Financials,Capital Markets,Small Cap
+SSIA.JK,PT Surya Semesta Internusa Tbk,Industrials,Construction & Engineering,Micro Cap
+SSMS.JK,PT Sawit Sumbermas Sarana Tbk.,Consumer Staples,Household Products,Small Cap
+SSTM.JK,PT Sunson Textile Manufacturer Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+STAR.JK,PT Buana Artha Anugerah Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+STTP.JK,PT Siantar Top Tbk,Consumer Staples,Food & Staples Retailing,Small Cap
+SULI.JK,PT SLJ Global Tbk,Materials,Paper & Forest Products,Nano Cap
+SUPR.JK,PT Solusi Tunas Pratama Tbk,Information Technology,Communications Equipment,Small Cap
+SURE.JK,PT Super Energy Tbk,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+SWAT.JK,PT Sriwahana Adityakarta Tbk,Consumer Discretionary,Distributors,Nano Cap
+TALF.JK,PT Tunas Alfin Tbk,Consumer Discretionary,Distributors,Nano Cap
+TAMA.JK,PT Lancartama Sejati Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+TAMU.JK,PT Pelayaran Tamarin Samudra Tbk,Industrials,Marine,Micro Cap
+TAPG.JK,PT Triputra Agro Persada Tbk,Consumer Staples,Household Products,Small Cap
+TARA.JK,PT Sitara Propertindo Tbk,Real Estate,Real Estate Management & Development,Nano Cap
+TAXI.JK,PT Express Transindo Utama Tbk,Industrials,Road & Rail,Nano Cap
+TBIG.JK,PT Tower Bersama Infrastructure Tbk,Communication Services,Diversified Telecommunication Services,Mid Cap
+TBLA.JK,PT Tunas Baru Lampung Tbk,Consumer Staples,Household Products,Small Cap
+TBMS.JK,PT Tembaga Mulia Semanan Tbk,Industrials,Building Products,Nano Cap
+TCPI.JK,PT Transcoal Pacific Tbk,Industrials,Marine,Mid Cap
+TDPM.JK,PT Tridomain Performance Materials Tbk,Materials,Chemicals,Micro Cap
+TEBE.JK,PT Dana Brata Luhur,Industrials,Transportation Infrastructure,Nano Cap
+TGKA.JK,PT Tigaraksa Satria Tbk,Consumer Staples,Food & Staples Retailing,Small Cap
+TGRA.JK,PT. Terregra Asia Energy Tbk,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+TIFA.JK,PT KDB Tifa Finance Tbk,Financials,Consumer Finance,Micro Cap
+TINS.JK,PT TIMAH Tbk,Materials,Metals & Mining,Small Cap
+TIRA.JK,PT Tira Austenite Tbk,Industrials,Trading Companies & Distributors,Nano Cap
+TIRT.JK,PT Tirta Mahakam Resources Tbk,Materials,Paper & Forest Products,Nano Cap
+TKIM.JK,PT Pabrik Kertas Tjiwi Kimia Tbk,Materials,Paper & Forest Products,Mid Cap
+TMAS.JK,PT Temas Tbk.,Industrials,Marine,Micro Cap
+TMPO.JK,PT Tempo Inti Media Tbk,Communication Services,Diversified Telecommunication Services,Nano Cap
+TNCA.JK,PT Trimuda Nuansa Citra Tbk,Industrials,Air Freight & Logistics,Nano Cap
+TOBA.JK,PT TBS Energi Utama Tbk,Materials,Metals & Mining,Micro Cap
+TOPS.JK,PT Totalindo Eka Persada Tbk,Industrials,Construction & Engineering,Micro Cap
+TOTL.JK,PT Total Bangun Persada Tbk,Industrials,Construction & Engineering,Micro Cap
+TOWR.JK,PT Sarana Menara Nusantara Tbk.,Communication Services,Diversified Telecommunication Services,Mid Cap
+TOYS.JK,PT Sunindo Adipersada Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+TPMA.JK,PT Trans Power Marine Tbk,Industrials,Marine,Micro Cap
+TRIN.JK,PT Perintis Triniti Properti Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+TRIS.JK,PT Trisula International Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+TRJA.JK,PT Transkon Jaya Tbk,Industrials,Commercial Services & Supplies,Nano Cap
+TRST.JK,PT Trias Sentosa Tbk,Consumer Discretionary,Distributors,Micro Cap
+TRUK.JK,PT Guna Timur Raya Tbk,Industrials,Transportation Infrastructure,Nano Cap
+TSPC.JK,PT Tempo Scan Pacific Tbk,Health Care,Pharmaceuticals,Small Cap
+TURI.JK,PT Tunas Ridean Tbk,Consumer Discretionary,Automobiles,Small Cap
+UANG.JK,"PT Pakuan, Tbk",Real Estate,Real Estate Management & Development,Nano Cap
+ULTJ.JK,PT Ultrajaya Milk Industry & Trading Company Tbk,Consumer Staples,Food & Staples Retailing,Small Cap
+UNIC.JK,PT Unggul Indah Cahaya Tbk,Materials,Chemicals,Micro Cap
+UNIQ.JK,PT Ulima Nitra Tbk,Materials,Metals & Mining,Nano Cap
+UNSP.JK,PT Bakrie Sumatera Plantations Tbk,Consumer Staples,Household Products,Nano Cap
+UNTR.JK,PT United Tractors Tbk,Industrials,Machinery,Mid Cap
+URBN.JK,PT Urban Jakarta Propertindo Tbk,Real Estate,Real Estate Management & Development,Micro Cap
+VICO.JK,PT Victoria Investama Tbk,Financials,Capital Markets,Micro Cap
+VINS.JK,PT Victoria Insurance Tbk,Financials,Insurance,Nano Cap
+VIVA.JK,PT Visi Media Asia Tbk,Communication Services,Media,Micro Cap
+VOKS.JK,PT Voksel Electric Tbk,Industrials,Electrical Equipment,Micro Cap
+VRNA.JK,PT. Verena Multi Finance Tbk,Financials,Consumer Finance,Micro Cap
+WAPO.JK,PT Wahana Pronatural Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+WEGE.JK,PT Wijaya Karya Bangunan Gedung Tbk.,Industrials,Construction & Engineering,Micro Cap
+WICO.JK,Pt Wicaksana Overseas International Tbk,Consumer Staples,Food & Staples Retailing,Nano Cap
+WIFI.JK,PT Solusi Sinergi Digital Tbk,Information Technology,IT Services,Micro Cap
+WIIM.JK,PT Wismilak Inti Makmur Tbk,Consumer Staples,Tobacco,Micro Cap
+WIKA.JK,PT Wijaya Karya (Persero) Tbk.,Industrials,Construction & Engineering,Small Cap
+WINS.JK,PT Wintermar Offshore Marine Tbk,Industrials,Marine,Nano Cap
+WMUU.JK,PT Widodo Makmur Unggas Tbk,Consumer Staples,Household Products,Micro Cap
+WOMF.JK,PT Wahana Ottomitra Multiartha Tbk,Financials,Consumer Finance,Micro Cap
+WOOD.JK,PT Integra Indocabinet Tbk,Consumer Discretionary,Household Durables,Small Cap
+WOWS.JK,PT Ginting Jaya Energi Tbk,Energy,Energy Equipment & Services,Nano Cap
+WSBP.JK,PT Waskita Beton Precast Tbk,Materials,Construction Materials,Small Cap
+WSKT.JK,PT Waskita Karya (Persero) Tbk,Industrials,Construction & Engineering,Small Cap
+WTON.JK,PT Wijaya Karya Beton Tbk,Materials,Construction Materials,Micro Cap
+YELO.JK,PT Yelooo Integra Datanet Tbk,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+YPAS.JK,PT Yanaprima Hastapersada Tbk,Consumer Discretionary,Distributors,Nano Cap
+ZBRA.JK,PT Zebra Nusantara Tbk,Consumer Discretionary,Specialty Retail,Nano Cap
+ZINC.JK,PT Kapuas Prima Coal Tbk,Materials,Metals & Mining,Micro Cap
+ZONE.JK,PT Mega Perintis Tbk,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap

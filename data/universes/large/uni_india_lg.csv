@@ -1,0 +1,126 @@
+ticker,name,sector,industry,market_cap
+ADANIENT.BO,Adani Enterprises Limited,Industrials,,Large Cap
+ADANIENT.NS,Adani Enterprises Limited,Materials,Metals & Mining,Large Cap
+ADANIGREEN.NS,Adani Green Energy Limited,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ADANITRANS.BO,Adani Transmission Limited,Utilities,,Large Cap
+ADANITRANS.NS,Adani Transmission Limited,Utilities,Electric Utilities,Large Cap
+ASIANPAINT.BO,Asian Paints Limited,Materials,,Large Cap
+ASIANPAINT.NS,Asian Paints Limited,Materials,Chemicals,Large Cap
+ATGL.NS,Adani Total Gas Limited,Utilities,Gas Utilities,Large Cap
+AXISBANK.BO,Axis Bank Limited,Financials,,Large Cap
+AXISBANK.NS,Axis Bank Limited,Financials,Banks,Large Cap
+BAJAJ-AUTO.BO,Bajaj Auto Limited,Consumer Discretionary,,Large Cap
+BAJAJ-AUTO.NS,Bajaj Auto Limited,Consumer Discretionary,Automobiles,Large Cap
+BAJAJFINSV.BO,Bajaj Finserv Limited,Financials,,Large Cap
+BAJAJFINSV.NS,Bajaj Finserv Ltd.,Financials,Insurance,Large Cap
+BAJFINANCE.BO,Bajaj Finance Limited,Financials,,Large Cap
+BAJFINANCE.NS,Bajaj Finance Limited,Financials,Consumer Finance,Large Cap
+BERGEPAINT.BO,Berger Paints India Limited,Materials,,Large Cap
+BHARTIARTL.BO,Bharti Airtel Limited,Communication Services,,Large Cap
+BHARTIARTL.NS,Bharti Airtel Limited,Communication Services,Diversified Telecommunication Services,Large Cap
+BPCL.BO,Bharat Petroleum Corporation Limited,Energy,,Large Cap
+BPCL.NS,Bharat Petroleum Corporation Limited,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BRITANNIA.BO,Britannia Industries Limited,Consumer Staples,,Large Cap
+BRITANNIA.NS,Britannia Industries Limited,Consumer Staples,Food & Staples Retailing,Large Cap
+CIPLA.BO,Cipla Limited,Health Care,,Large Cap
+CIPLA.NS,Cipla Limited,Health Care,Pharmaceuticals,Large Cap
+COALINDIA.BO,Coal India Limited,Energy,,Large Cap
+COALINDIA.NS,Coal India Limited,Materials,Metals & Mining,Large Cap
+DABUR.BO,Dabur India Limited,Consumer Staples,,Large Cap
+DABUR.NS,Dabur India Limited,Consumer Staples,Household Products,Large Cap
+DIVISLAB.BO,Divi's Laboratories Limited,Health Care,,Large Cap
+DIVISLAB.NS,Divi's Laboratories Limited,Health Care,Pharmaceuticals,Large Cap
+DLF.BO,DLF Limited,Real Estate,,Large Cap
+DLF.NS,DLF Limited,Real Estate,Real Estate Management & Development,Large Cap
+DMART.BO,Avenue Supermarts Limited,Consumer Staples,,Large Cap
+DMART.NS,Avenue Supermarts Limited,Consumer Staples,Household Products,Large Cap
+DRREDDY.BO,Dr. Reddy's Laboratories Ltd,Health Care,Pharmaceuticals,Large Cap
+DRREDDY.NS,Dr. Reddy's Laboratories Ltd,Health Care,Pharmaceuticals,Large Cap
+EICHERMOT.NS,Eicher Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+GODREJCP.BO,Godrej Consumer Products Limited,Consumer Staples,,Large Cap
+GODREJCP.NS,Godrej Consumer Products Limited,Consumer Staples,Household Products,Large Cap
+GRASIM.BO,Grasim Industries Limited,Materials,,Large Cap
+GRASIM.NS,Grasim Industries Limited,Materials,Construction Materials,Large Cap
+HCLTECH.BO,HCL Technologies Limited,Information Technology,,Large Cap
+HCLTECH.NS,HCL Technologies Limited,Information Technology,IT Services,Large Cap
+HDFC.BO,Housing Development Finance Corporation Limited,Financials,,Large Cap
+HDFC.NS,Housing Development Finance Corporation Limited,Financials,Thrifts & Mortgage Finance,Large Cap
+HDFCBANK.BO,HDFC Bank Limited,Financials,Banks,Large Cap
+HDFCBANK.NS,HDFC Bank Limited,Financials,Banks,Large Cap
+HDFCLIFE.BO,HDFC Life Insurance Company Limited,Financials,,Large Cap
+HDFCLIFE.NS,HDFC Life Insurance Company Limited,Financials,Insurance,Large Cap
+HINDALCO.BO,Hindalco Industries Limited,Materials,,Large Cap
+HINDALCO.NS,Hindalco Industries Limited,Materials,Metals & Mining,Large Cap
+HINDUNILVR.BO,Hindustan Unilever Limited,Consumer Staples,,Large Cap
+HINDUNILVR.NS,Hindustan Unilever Limited,Consumer Staples,Household Products,Large Cap
+HINDZINC.BO,Hindustan Zinc Limited,Materials,,Large Cap
+HINDZINC.NS,Hindustan Zinc Limited,Materials,Metals & Mining,Large Cap
+ICICIBANK.BO,ICICI Bank Limited,Financials,Banks,Large Cap
+ICICIBANK.NS,ICICI Bank Limited,Financials,Banks,Large Cap
+ICICIPRULI.BO,ICICI Prudential Life Insurance Company Limited,Financials,,Large Cap
+ICICIPRULI.NS,ICICI Prudential Life Insurance Company Limited,Financials,Insurance,Large Cap
+INDUSINDBK.NS,IndusInd Bank Limited,Financials,Banks,Large Cap
+INFY.BO,Infosys Limited Sponsored ADR,Information Technology,IT Services,Large Cap
+INFY.NS,Infosys Limited Sponsored ADR,Information Technology,IT Services,Large Cap
+IOC.BO,Indian Oil Corporation Limited,Energy,,Large Cap
+IOC.NS,Indian Oil Corporation Limited,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ITC.BO,ITC Limited,Consumer Staples,,Large Cap
+ITC.NS,ITC Limited,Consumer Staples,Tobacco,Large Cap
+JSWSTEEL.BO,JSW Steel Limited,Materials,,Large Cap
+JSWSTEEL.NS,JSW Steel Limited,Materials,Metals & Mining,Large Cap
+KOTAKBANK.BO,Kotak Mahindra Bank Limited,Financials,,Large Cap
+KOTAKBANK.NS,Kotak Mahindra Bank Limited,Financials,Banks,Large Cap
+LT.BO,Larsen & Toubro Limited,Industrials,Construction & Engineering,Large Cap
+LT.NS,Larsen & Toubro Limited,Industrials,Construction & Engineering,Large Cap
+M&M.NS,Mahindra & Mahindra Ltd. Sponsored GDR RegS,Consumer Discretionary,Automobiles,Large Cap
+MARUTI.BO,Maruti Suzuki India Limited,Consumer Discretionary,,Large Cap
+MARUTI.NS,Maruti Suzuki India Limited,Consumer Discretionary,Automobiles,Large Cap
+MOTHERSUMI.BO,Motherson Sumi Systems Limited,Industrials,,Large Cap
+MOTHERSUMI.NS,Motherson Sumi Systems Limited,Consumer Discretionary,Auto Components,Large Cap
+NESTLEIND.BO,Nestle India Limited,Consumer Staples,,Large Cap
+NESTLEIND.NS,Nestle India Limited,Consumer Staples,Food & Staples Retailing,Large Cap
+NTPC.BO,NTPC Limited,Utilities,,Large Cap
+NTPC.NS,NTPC Limited,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+ONGC.BO,Oil and Natural Gas Corporation Limited,Energy,,Large Cap
+ONGC.NS,Oil and Natural Gas Corporation Limited,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+PIDILITIND.BO,Pidilite Industries Limited,Materials,,Large Cap
+PIDILITIND.NS,Pidilite Industries Limited,Materials,Chemicals,Large Cap
+POWERGRID.BO,Power Grid Corporation of India Limited,Utilities,,Large Cap
+POWERGRID.NS,Power Grid Corporation of India Limited,Utilities,Electric Utilities,Large Cap
+RELIANCE.BO,Reliance Industries Limited,Energy,,Large Cap
+RELIANCE.NS,Reliance Industries Limited,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SANOFI.BO,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SANOFI.NS,Sanofi,Health Care,Pharmaceuticals,Large Cap
+SANTETX.BO,RH,Consumer Discretionary,Specialty Retail,Large Cap
+SBICARD.NS,SBI Cards and Payment Services Limited,Financials,Consumer Finance,Large Cap
+SBILIFE.BO,SBI Life Insurance Company Limited,Financials,,Large Cap
+SBILIFE.NS,SBI Life Insurance Company Limited,Financials,Insurance,Large Cap
+SBIN.BO,State Bank of India,Financials,Banks,Large Cap
+SBIN.NS,State Bank of India,Financials,Banks,Large Cap
+SEZAL.BO,Sejal Glass Limited,Industrials,,Mega Cap
+SHREECEM.BO,Shree Cement Limited,Materials,,Large Cap
+SHREECEM.NS,Shree Cement Limited,Materials,Construction Materials,Large Cap
+SOUTHERNIN.BO,Southern Infosys Ltd,Information Technology,IT Services,Large Cap
+SUNPHARMA.BO,Sun Pharmaceutical Industries Limited,Health Care,,Large Cap
+SUNPHARMA.NS,Sun Pharmaceutical Industries Limited,Health Care,Pharmaceuticals,Large Cap
+SUPERHOUSE.BO,Superhouse Group,Consumer Discretionary,Specialty Retail,Large Cap
+SUPERHOUSE.NS,RH,Consumer Discretionary,Specialty Retail,Large Cap
+TATAMOTORS.BO,Tata Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+TATAMOTORS.NS,Tata Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+TATAMTRDVR.BO,Tata Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+TATAMTRDVR.NS,Tata Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+TATASTEEL.BO,Tata Steel Limited,Materials,,Large Cap
+TATASTEEL.NS,Tata Steel Limited,Materials,Metals & Mining,Large Cap
+TCS.BO,Tata Consultancy Services Limited,Information Technology,,Large Cap
+TCS.NS,Tata Consultancy Services Limited,Information Technology,IT Services,Large Cap
+TECHM.BO,Tech Mahindra Limited,Information Technology,,Large Cap
+TECHM.NS,Tech Mahindra Limited,Information Technology,IT Services,Large Cap
+TITAN.BO,Titan Company Limited,Consumer Discretionary,,Large Cap
+TITAN.NS,Titan Company Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+ULTRACEMCO.BO,UltraTech Cement Limited,Materials,,Large Cap
+ULTRACEMCO.NS,UltraTech Cement Limited,Materials,Construction Materials,Large Cap
+VEDL.BO,Vedanta Limited,Materials,Metals & Mining,Large Cap
+VEDL.NS,Vedanta Limited,Materials,Metals & Mining,Large Cap
+VEERHEALTH.BO,Veer Health Care,Consumer Discretionary,Specialty Retail,Large Cap
+WIPRO.BO,Wipro Limited,Information Technology,IT Services,Large Cap
+WIPRO.NS,Wipro Limited,Information Technology,IT Services,Large Cap

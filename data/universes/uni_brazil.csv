@@ -1,0 +1,518 @@
+ticker,name,sector,industry,market_cap
+AALR3.SA,Centro de Imagem Diagnosticos S.A.,Health Care,Biotechnology,Micro Cap
+ABCB4.SA,Banco ABC Brasil S.A.,Financials,Banks,Small Cap
+ABCP11.SA,FII ABC Plaza Shopping Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+AERI3.SA,Aeris Industria e Comercio de Equipamentos para Geracao de Energia S.A.,Industrials,Machinery,Small Cap
+AFLT3.SA,Afluente Transmissao de Energia Eletrica S.A.,Utilities,Electric Utilities,Micro Cap
+AGRO3.SA,BrasilAgro - Companhia Brasileira de Propriedades Agricolas,Consumer Staples,Household Products,Small Cap
+AHEB3.SA,Sao Paulo Turismo S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ALPA3.SA,Alpargatas S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+ALPA4.SA,Alpargatas S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+ALPK3.SA,"Allpark Empreendimentos, Participacoes e Servicos S.A.",Industrials,Transportation Infrastructure,Small Cap
+ALSO3.SA,Aliansce Sonae Shopping Centers SA,Real Estate,Real Estate Management & Development,Small Cap
+ALUP11.SA,Alupar Investimento S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+ALUP3.SA,Alupar Investimento S.A.,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+ALUP4.SA,Alupar Investimento S.A.,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+AMAR3.SA,Marisa Lojas S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+AMBP3.SA,Ambipar Participacoes e Empreendimentos S.A.,Industrials,Transportation Infrastructure,Small Cap
+ANIM3.SA,Anima Holding S.A.,Consumer Staples,Household Products,Small Cap
+APER3.SA,Alper Consultoria e Corretora de Seguros S.A.,Financials,Insurance,Micro Cap
+AQLL11.SA,Aquilla Fundo Invest Imobiliario - Cotas Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+ARZZ3.SA,Arezzo Industria e Comercio S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+ATMP3.SA,ATMA Participacoes S.A.,Industrials,Professional Services,Nano Cap
+ATOM3.SA,Atom Empreendimentos e Participacoes S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+AVLL3.SA,Alphaville S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+AZEV3.SA,Azevedo & Travassos S.A.,Industrials,Construction & Engineering,Nano Cap
+AZEV4.SA,Azevedo & Travassos S.A.,Industrials,Construction & Engineering,Nano Cap
+AZUL4.SA,Azul S.A.,Industrials,Airlines,Mid Cap
+BAAX39.SA,ISHARES,Financials,,Mid Cap
+BACW39.SA,ISHARES,Financials,,Mid Cap
+BAER39.SA,ISHARES,Financials,,Mid Cap
+BAHI3.SA,Bahema Educacao S.A.,Consumer Staples,Household Products,Nano Cap
+BALM3.SA,Baumer S.A.,Health Care,Health Care Equipment & Supplies,Nano Cap
+BALM4.SA,Baumer S.A.,Health Care,Health Care Equipment & Supplies,Nano Cap
+BAUH4.SA,Excelsior Alimentos S.A.,Consumer Staples,Food & Staples Retailing,Micro Cap
+BAZA3.SA,Banco da Amazonia S.A.,Financials,Banks,Micro Cap
+BBFI11B.SA,BB Fundo De Investimento Imobiliario Progressivo,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+BBPO11.SA,BB Progressivo II Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+BBRC11.SA,BB Renda Corporativa Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+BBRK3.SA,Brasil Brokers Participacoes S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+BBSE3.SA,BB Seguridade Participacoes S.A.,Financials,Insurance,Mid Cap
+BCFF11.SA,Fundo De Investimento Imobiliario - FII BTG Pactual Fundo De Fundos,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+BCHI39.SA,ISHARES,Financials,,Mid Cap
+BCIA11.SA,Bradesco Carteira Imobiliaria Ativa Fundos de Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+BCRI11.SA,Banestes Recebiveis Imobiliarios Fundo Investimento Imobiliario FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+BDLL3.SA,Bardella S.A. Industrias Mecanicas,Industrials,Machinery,Nano Cap
+BDLL4.SA,Bardella S.A. Industrias Mecanicas,Industrials,Machinery,Nano Cap
+BDVY39.SA,ISHARES,Financials,,Mid Cap
+BEEF3.SA,Minerva S.A.,Consumer Staples,Household Products,Small Cap
+BEEM39.SA,ISHARES,Financials,,Mid Cap
+BEES3.SA,Banestes S.A - Banco do Estado do Espirito Santo,Financials,Banks,Small Cap
+BEES4.SA,Banestes S.A - Banco do Estado do Espirito Santo,Financials,Banks,Small Cap
+BEFA39.SA,ISHARES,Financials,,Mid Cap
+BEGD39.SA,ISHARES,Financials,,Mid Cap
+BEGE39.SA,ISHARES,Financials,,Mid Cap
+BEGU39.SA,ISHARES,Financials,,Mid Cap
+BEWG39.SA,ISHARES,Financials,,Mid Cap
+BEWH39.SA,ISHARES,Financials,,Mid Cap
+BEWJ39.SA,ISHARES,Financials,,Mid Cap
+BEWT39.SA,ISHARES,Financials,,Mid Cap
+BEWU39.SA,ISHARES,Financials,,Mid Cap
+BEWW39.SA,ISHARES,Financials,,Mid Cap
+BEWY39.SA,ISHARES,Financials,,Mid Cap
+BEWZ39.SA,ISHARES,Financials,,Mid Cap
+BGIP3.SA,Banco do Estado de Sergipe S.A.,Financials,Banks,Micro Cap
+BGIP4.SA,Banco do Estado de Sergipe S.A.,Financials,Banks,Micro Cap
+BIAU39.SA,ISHARES,Financials,,Mid Cap
+BIBB39.SA,ISHARES,Financials,,Mid Cap
+BIDI3.SA,Banco Inter S.A.,Financials,Banks,Mid Cap
+BIDI4.SA,Banco Inter S.A.,Financials,Banks,Mid Cap
+BIEF39.SA,ISHARES,Financials,,Mid Cap
+BIEM39.SA,ISHARES,Financials,,Mid Cap
+BIEU39.SA,ISHARES,Financials,,Mid Cap
+BIGF39.SA,ISHARES,Financials,,Mid Cap
+BIJH39.SA,ISHARES,Financials,,Mid Cap
+BIJR39.SA,ISHARES,Financials,,Mid Cap
+BILF39.SA,ISHARES,Financials,,Mid Cap
+BIOM3.SA,Biomm S.A.,Health Care,Biotechnology,Micro Cap
+BITO39.SA,ISHARES,Financials,,Mid Cap
+BIVB39.SA,ISHARES,Financials,,Mid Cap
+BIWM39.SA,ISHARES,Financials,,Mid Cap
+BIXJ39.SA,ISHARES,Financials,,Mid Cap
+BIXN39.SA,ISHARES,Financials,,Mid Cap
+BIYF39.SA,ISHARES,Financials,,Mid Cap
+BIYW39.SA,ISHARES,Financials,,Mid Cap
+BKBR3.SA,BK Brasil Operacao e Assessoria a Restaurantes S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+BMEB3.SA,Banco Mercantil do Brasil S.A.,Financials,Banks,Micro Cap
+BMEB4.SA,Banco Mercantil do Brasil S.A.,Financials,Banks,Micro Cap
+BMGB4.SA,Banco BMG S.A.,Financials,Banks,Small Cap
+BMIN3.SA,Banco Mercantil de Investimentos S.A.,Financials,Banks,Nano Cap
+BMIN4.SA,Banco Mercantil de Investimentos S.A.,Financials,Banks,Nano Cap
+BMKS3.SA,Bicicletas Monark S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+BNBR3.SA,Banco do Nordeste do Brasil S.A.,Financials,Banks,Small Cap
+BNDA39.SA,ISHARES,Financials,,Mid Cap
+BNFS11.SA,Banrisul N Front Fund Investment IMO FII Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+BOAS3.SA,Boa Vista Servicos S.A.,Financials,Consumer Finance,Small Cap
+BOBR4.SA,Bombril S.A.,Consumer Staples,Household Products,Micro Cap
+BOVA11.SA,ISHARES,Financials,,Mid Cap
+BPAC11.SA,Banco BTG Pactual S.A.,Financials,Capital Markets,Mid Cap
+BPAN4.SA,Banco Pan S.A.,Financials,Banks,Mid Cap
+BPFF11.SA,Fundo de Investimento Imobiliario - FII Brasil Plural Absoluto Fundo de Fundos,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+BRAP3.SA,Bradespar S.A.,Financials,Capital Markets,Mid Cap
+BRAP4.SA,Bradespar S.A.,Financials,Capital Markets,Mid Cap
+BRAX11.SA,ISHARES,Financials,,Mid Cap
+BRCR11.SA,Fundo de Investimento Imobiliario - FII BTG Pactual Corporate Office Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+BRDT3.SA,Petrobras Distribuidora S.A.,Consumer Discretionary,Specialty Retail,Mid Cap
+BRFS3.SA,BRF S.A.,Consumer Staples,Food & Staples Retailing,Mid Cap
+BRGE11.SA,Consorcio Alfa de Administracao S.A.,Financials,Capital Markets,Micro Cap
+BRGE12.SA,Consorcio Alfa de Administracao S.A.,Financials,Capital Markets,Micro Cap
+BRGE3.SA,Consorcio Alfa de Administracao S.A.,Financials,Capital Markets,Micro Cap
+BRGE5.SA,Consorcio Alfa de Administracao S.A.,Financials,Capital Markets,Micro Cap
+BRGE8.SA,Consorcio Alfa de Administracao S.A.,Financials,Capital Markets,Micro Cap
+BRIV3.SA,Banco Alfa de Investimento S.A.,Financials,Banks,Micro Cap
+BRIV4.SA,Banco Alfa de Investimento S.A.,Financials,Banks,Micro Cap
+BRKM3.SA,"Bankinter, S.A.",Materials,Chemicals,Mid Cap
+BRKM5.SA,"Bankinter, S.A.",Materials,Chemicals,Mid Cap
+BRKM6.SA,"Bankinter, S.A.",Materials,Chemicals,Mid Cap
+BRML3.SA,BR Malls Participacoes S.A.,Real Estate,Real Estate Management & Development,Small Cap
+BRPR3.SA,BR Properties S.A.,Real Estate,Real Estate Management & Development,Small Cap
+BRSR3.SA,Banco do Estado do Rio Grande do Sul S.A.,Financials,Banks,Small Cap
+BRSR5.SA,Banco do Estado do Rio Grande do Sul S.A.,Financials,Banks,Small Cap
+BRSR6.SA,Banco do Estado do Rio Grande do Sul S.A.,Financials,Banks,Small Cap
+BSEV3.SA,Biosev S.A.,Consumer Staples,Food & Staples Retailing,Small Cap
+BSLI3.SA,BRB - Banco de Brasilia S.A.,Financials,Banks,Mid Cap
+BSLI4.SA,BRB - Banco de Brasilia S.A.,Financials,Banks,Mid Cap
+BSLV39.SA,ISHARES,Financials,,Mid Cap
+BTLG11.SA,BTG Pactual Logistica Fundo de Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+BTOW3.SA,B2W - Companhia Digital,Consumer Discretionary,Internet & Direct Marketing Retail,Mid Cap
+BTTL3.SA,Embpar Participacoes S.A.,Materials,Paper & Forest Products,Micro Cap
+BUSM39.SA,ISHARES,Financials,,Mid Cap
+CAMB3.SA,Cambuci S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+CAML3.SA,Camil Alimentos S.A.,Consumer Staples,Food & Staples Retailing,Small Cap
+CARD3.SA,CSU Cardsystem S.A.,Financials,Consumer Finance,Micro Cap
+CARE11.SA,Maxima Renda Corporativa Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+CASH3.SA,Meliuz S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+CBEE3.SA,Ampla Energia e Servicos S.A.,Utilities,Electric Utilities,Small Cap
+CCPR3.SA,Cyrela Commercial Properties S.A.,Real Estate,Real Estate Management & Development,Small Cap
+CCRO3.SA,CCR S.A.,Industrials,Transportation Infrastructure,Mid Cap
+CEAB3.SA,C&A Modas S.A.,Consumer Discretionary,Specialty Retail,Small Cap
+CEBR3.SA,Companhia Energetica de Brasilia - CEB,Utilities,Electric Utilities,Small Cap
+CEBR5.SA,Companhia Energetica de Brasilia - CEB,Utilities,Electric Utilities,Small Cap
+CEBR6.SA,Companhia Energetica de Brasilia - CEB,Utilities,Electric Utilities,Small Cap
+CEDO3.SA,Companhia de Fiacao e Tecidos Cedro e Cachoeira S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+CEDO4.SA,Companhia de Fiacao e Tecidos Cedro e Cachoeira S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+CEEB3.SA,Companhiade Eletricidade do Estado da Bahia - COELBA,Utilities,Electric Utilities,Small Cap
+CEEB5.SA,Companhiade Eletricidade do Estado da Bahia - COELBA,Utilities,Electric Utilities,Small Cap
+CEED3.SA,Companhia Estadual de Distribuicao de Energia Eletrica,Utilities,Electric Utilities,Micro Cap
+CEED4.SA,Companhia Estadual de Distribuicao de Energia Eletrica,Utilities,Electric Utilities,Micro Cap
+CEGR3.SA,Companhia Distribuidora de Gas do Rio de Janeiro - CEG,Utilities,Gas Utilities,Mid Cap
+CEPE5.SA,Companhia Energetica de Pernambuco - CELPE,Utilities,Electric Utilities,Small Cap
+CEPE6.SA,Companhia Energetica de Pernambuco - CELPE,Utilities,Electric Utilities,Small Cap
+CESP3.SA,CESP - Companhia Energetica de Sao Paulo,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+CESP5.SA,CESP - Companhia Energetica de Sao Paulo,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+CESP6.SA,CESP - Companhia Energetica de Sao Paulo,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+CGAS3.SA,Companhia de Gas de Sao Paulo - COMGAS,Utilities,Gas Utilities,Mid Cap
+CGAS5.SA,Companhia de Gas de Sao Paulo - COMGAS,Utilities,Gas Utilities,Mid Cap
+CGRA3.SA,Grazziotin S.A.,Consumer Discretionary,Household Durables,Micro Cap
+CGRA4.SA,Grazziotin S.A.,Consumer Discretionary,Household Durables,Micro Cap
+CIEL3.SA,Cielo S.A.,Information Technology,IT Services,Small Cap
+CLSC3.SA,Centrais Eletricas de Santa Catarina S.A.,Utilities,Electric Utilities,Small Cap
+CLSC4.SA,Centrais Eletricas de Santa Catarina S.A.,Utilities,Electric Utilities,Small Cap
+CMIG3.SA,Companhia Energetica de Minas Gerais,Utilities,Multi-Utilities,Mid Cap
+CMIG4.SA,Companhia Energetica de Minas Gerais,Utilities,Multi-Utilities,Mid Cap
+CMIN3.SA,CSN Mineracao S.A.,Materials,Metals & Mining,Small Cap
+COCE3.SA,Companhia Energetica do Ceara - Coelce,Utilities,Electric Utilities,Small Cap
+COCE5.SA,Companhia Energetica do Ceara - Coelce,Utilities,Electric Utilities,Small Cap
+COGN3.SA,Cogna Educacao S.A.,Consumer Staples,Household Products,Small Cap
+CPFE3.SA,CPFL Energia S.A.,Utilities,Electric Utilities,Mid Cap
+CPLE11.SA,Companhia Paranaense de Energia - COPEL,Utilities,Multi-Utilities,Mid Cap
+CPLE3.SA,Companhia Paranaense de Energia - COPEL,Utilities,Multi-Utilities,Mid Cap
+CPLE6.SA,Companhia Paranaense de Energia - COPEL,Utilities,Multi-Utilities,Mid Cap
+CRDE3.SA,CR2 Empreendimentos Imobiliarios S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+CRFB3.SA,Atacadao S.A.,Consumer Staples,Food & Staples Retailing,Mid Cap
+CRIV3.SA,"Financeira Alfa S.A. - Credito, Financiamento e Investimentos",Financials,Capital Markets,Micro Cap
+CRIV4.SA,"Financeira Alfa S.A. - Credito, Financiamento e Investimentos",Financials,Capital Markets,Micro Cap
+CRPG3.SA,Tronox Pigmentos do Brasil S.A.,Materials,Chemicals,Small Cap
+CRPG5.SA,Tronox Pigmentos do Brasil S.A.,Materials,Chemicals,Small Cap
+CRPG6.SA,Tronox Pigmentos do Brasil S.A.,Materials,Chemicals,Small Cap
+CSAB3.SA,Companhia de Seguros Alianca da Bahia,Financials,Insurance,Micro Cap
+CSAB4.SA,Companhia de Seguros Alianca da Bahia,Financials,Insurance,Micro Cap
+CSAN3.SA,Cosan S.A.,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+CSMG3.SA,Companhia de Saneamento de Minas Gerais,Utilities,Water Utilities,Small Cap
+CSRN3.SA,Companhia Energetica do Rio Grande do Norte - COSERN,Utilities,Electric Utilities,Small Cap
+CSRN5.SA,Companhia Energetica do Rio Grande do Norte - COSERN,Utilities,Electric Utilities,Small Cap
+CSRN6.SA,Companhia Energetica do Rio Grande do Norte - COSERN,Utilities,Electric Utilities,Small Cap
+CTKA3.SA,Karsten S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+CTKA4.SA,Karsten S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+CTNM3.SA,Companhia de Tecidos Norte de Minas,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+CTNM4.SA,Companhia de Tecidos Norte de Minas,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+CTSA3.SA,Companhia Tecidos Santanense Ltda.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+CTSA4.SA,Companhia Tecidos Santanense Ltda.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+CTXT11.SA,Fundo Invest Imobiliario Centro Textil Internacional - Cotas Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+CURY3.SA,Cury Construtora e Incorporadora S.A.,Real Estate,Real Estate Management & Development,Small Cap
+CVCB3.SA,CVC Brasil Operadora e Agencia de Viagens S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+CXTL11.SA,Fundo De Investimento Imobiliario Caixa Trx Logistica Renda,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+CYRE3.SA,Cyrela Brazil Realty S.A. Empreendimentos e Participacoes,Industrials,Construction & Engineering,Small Cap
+DASA3.SA,Diagnosticos da America S.A.,Health Care,Biotechnology,Mid Cap
+DIRR3.SA,Direcional Engenharia S.A.,Real Estate,Real Estate Management & Development,Small Cap
+DMMO3.SA,Dommo Energia S.A.,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+DMVF3.SA,d1000 Varejo Farma Participacoes S.A.,Health Care,Pharmaceuticals,Micro Cap
+DOHL3.SA,Dohler S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+DOHL4.SA,Dohler S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+DRIT11B.SA,Multigestao Renda Comercial Fundo De Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+DTCY3.SA,DTCOM - Direct to Company S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+DTEX3.SA,Duratex S.A.,Materials,Paper & Forest Products,Mid Cap
+DXCO3.SA,DEXCO,Materials,Construction Materials,Mid Cap
+EALT3.SA,Electro Aco Altona S.A.,Industrials,Building Products,Nano Cap
+EALT4.SA,Electro Aco Altona S.A.,Industrials,Building Products,Micro Cap
+ECOO11.SA,ISHARES,Financials,,Mid Cap
+ECOR3.SA,EcoRodovias Infraestrutura e Logistica S.A.,Industrials,Transportation Infrastructure,Small Cap
+EDFO11B.SA,Fundo de Investimento Imobiliario Edificio Ourinvest - Cotas Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+EDGA11.SA,Fundo de Investimento Imobiliario - FII Edificio Galeria,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+EEEL3.SA,Companhia Estadual de Geracao e Transmissao de Energia Eletrica - CEEE-GT,Utilities,Electric Utilities,Small Cap
+EGIE3.SA,Engie Brasil Energia S.A.,Utilities,Electric Utilities,Mid Cap
+EKTR3.SA,Elektro Redes S.A.,Utilities,Electric Utilities,Small Cap
+EKTR4.SA,Elektro Redes S.A.,Utilities,Electric Utilities,Small Cap
+ELMD3.SA,Eletromidia S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+EMAE4.SA,Empresa Metropolitana de Aguas e Energia S.A.,Utilities,Multi-Utilities,Small Cap
+EMBR3.SA,Embraer S.A.,Industrials,Aerospace & Defense,Mid Cap
+ENAT3.SA,Enauta Participacoes S.A.,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+ENBR3.SA,EDP - Energias do Brasil S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+ENEV3.SA,Eneva S.A.,Utilities,Multi-Utilities,Mid Cap
+ENGI11.SA,Energisa S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+ENGI3.SA,Energisa S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+ENGI4.SA,Energisa S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+ENJU3.SA,Enjoei.com.br Atividades de Internet S.A.,Consumer Discretionary,Internet & Direct Marketing Retail,Small Cap
+ENMT3.SA,Energisa Mato Grosso - Distribuidora de Energia S/A,Utilities,Electric Utilities,Mid Cap
+ENMT4.SA,Energisa Mato Grosso - Distribuidora de Energia S/A,Utilities,Electric Utilities,Mid Cap
+EQMA3B.SA,Equatorial Maranhao Distribuidora de Energia S.A.,Utilities,Electric Utilities,Small Cap
+EQPA3.SA,Equatorial Para Distribuidora de Energia S.A.,Utilities,Electric Utilities,Mid Cap
+EQPA5.SA,Equatorial Para Distribuidora de Energia S.A.,Utilities,Electric Utilities,Mid Cap
+EQPA7.SA,Equatorial Para Distribuidora de Energia S.A.,Utilities,Electric Utilities,Mid Cap
+EQTL3.SA,Equatorial Energia S.A.,Utilities,Electric Utilities,Mid Cap
+ESPA3.SA,MPM Corporeos S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ESTR4.SA,Manufatura de Brinquedos Estrela S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ETER3.SA,Eternit S.A.,Industrials,Building Products,Small Cap
+EUCA3.SA,Eucatex S.A. Industria e Comercio,Industrials,Building Products,Micro Cap
+EUCA4.SA,Eucatex S.A. Industria e Comercio,Industrials,Building Products,Micro Cap
+EVEN3.SA,Even Construtora e Incorporadora S.A.,Real Estate,Real Estate Management & Development,Small Cap
+EZTC3.SA,EZTEC Empreendimentos e Participacoes S.A.,Real Estate,Real Estate Management & Development,Small Cap
+FCFL11.SA,Fundo De Investimento Imobiliario Campus Faria Lima - Inicio De Negociacao,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FESA3.SA,Cia de Ferro Ligas da Bahia - FERBASA,Materials,Metals & Mining,Small Cap
+FESA4.SA,Cia de Ferro Ligas da Bahia - FERBASA,Materials,Metals & Mining,Small Cap
+FHER3.SA,Fertilizantes Heringer S.A.,Materials,Construction Materials,Small Cap
+FIGS11.SA,Fundo de Investimento Imobiliario General Shopping Ativo e Renda - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FIIB11.SA,Real Estate Investment Fund Industry in Brazil,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+FIVN11.SA,Vida Nova Fundo Investimento Immobiliere,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FLRY3.SA,Fleury S.A.,Health Care,Health Care Equipment & Supplies,Small Cap
+FMOF11.SA,Fundos de Investimento Imobiliario Memorial Office Of Cotas,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FPAB11.SA,Fundo de Investimento Imobiliario Projeto Agua Branca,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FRAS3.SA,Fras-le S.A.,Consumer Discretionary,Auto Components,Small Cap
+FRIO3.SA,Metalfrio Solutions S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+FRTA3.SA,Pomifrutas S/A,Consumer Staples,Household Products,Nano Cap
+GEPA3.SA,Rio Paranapanema Energia S.A.,Utilities,Electric Utilities,Small Cap
+GEPA4.SA,Rio Paranapanema Energia S.A.,Utilities,Electric Utilities,Small Cap
+GFSA3.SA,Gafisa S.A.,Industrials,Construction & Engineering,Micro Cap
+GMAT3.SA,Grupo Mateus S.A.,Consumer Discretionary,Household Durables,Mid Cap
+GNDI3.SA,Notre Dame Intermedica Participacoes S.A.,Health Care,Health Care Providers & Services,Mid Cap
+GOLL4.SA,Gol Linhas Aereas Inteligentes S.A.,Industrials,Airlines,Small Cap
+GPAR3.SA,Companhia CELG de Participacoes S/A,Utilities,Electric Utilities,Small Cap
+GPCP3.SA,GPC Participacoes S.A.,Materials,Chemicals,Micro Cap
+GPIV33.SA,"GP Investments, Ltd.",Financials,Capital Markets,Micro Cap
+GRND3.SA,Grendene S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+GSHP3.SA,General Shopping e Outlets do Brasil S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+GUAR3.SA,Guararapes Confeccoes S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+HABT11.SA,Habitat Ii - Fundo De Investimento Imobiliario,Financials,Capital Markets,Micro Cap
+HAGA3.SA,HAGA S/A Industria e Comercio,Industrials,Building Products,Nano Cap
+HAGA4.SA,HAGA S/A Industria e Comercio,Industrials,Building Products,Nano Cap
+HBOR3.SA,Helbor Empreendimentos S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+HBRE3.SA,HBR Realty Empreendimentos Imobiliarios S.A.,Real Estate,Real Estate Management & Development,Small Cap
+HBSA3.SA,Hidrovias do Brasil S.A.,Industrials,Air Freight & Logistics,Small Cap
+HBTS5.SA,Companhia Habitasul de Participacoes,Real Estate,Real Estate Management & Development,Micro Cap
+HETA4.SA,Hercules S.A - Fabrica de Talheres,Consumer Staples,Household Products,Nano Cap
+HFOF11.SA,Hedge Top Fofii 3 Fundo Investimento Imobilirio,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+HGBS11.SA,HEDGE Brasil Shopping Fundo de Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+HGCR11.SA,CSHG Recebiveis Imobiliarios BC Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+HGLG11.SA,Cshg Logistica - Fundo De Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+HGRE11.SA,CSHG Real Estate - Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+HGTX3.SA,Cia. Hering,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+HOOT4.SA,Hoteis Othon S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+HSML11.SA,Hsi Malls Fundo De Investimento Imobiliario,Financials,Capital Markets,Micro Cap
+HYPE3.SA,Hypera S.A.,Health Care,Pharmaceuticals,Mid Cap
+IGBR3.SA,IGB Eletronica S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+IGTA3.SA,Iguatemi Empresa de Shopping Centers S.A.,Real Estate,Real Estate Management & Development,Small Cap
+IGTI11.SA,IGUATEMI S.A,Real Estate,Real Estate Management & Development,Small Cap
+INEP3.SA,Inepar S.A. Industria e Construcoes,Industrials,Machinery,Micro Cap
+INEP4.SA,Inepar S.A. Industria e Construcoes,Industrials,Machinery,Micro Cap
+INTB3.SA,Intelbras S.A. - Industria de Telecomunicacao Eletronica Brasileira,Information Technology,Communications Equipment,Small Cap
+IRBR3.SA,IRB-Brasil Resseguros S.A.,Financials,Insurance,Small Cap
+IVVB11.SA,ISHARES,Financials,,Mid Cap
+JALL3.SA,Jalles Machado S/A,Consumer Staples,Food & Staples Retailing,Small Cap
+JBDU3.SA,Industrias J.B. Duarte S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+JBDU4.SA,Industrias J.B. Duarte S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+JFEN3.SA,Joao Fortes Engenharia S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+JHSF3.SA,JHSF Participacoes S.A.,Real Estate,Real Estate Management & Development,Small Cap
+JOPA3.SA,JOSAPAR Joaquim Oliveira S.A. Participacoes,Consumer Staples,Food & Staples Retailing,Micro Cap
+JOPA4.SA,JOSAPAR Joaquim Oliveira S.A. Participacoes,Consumer Staples,Food & Staples Retailing,Micro Cap
+JPSA3.SA,Jereissati Participacoes S.A.,Industrials,Industrial Conglomerates,Small Cap
+JRDM11.SA,Fundo de Investimento Imobiliario - FII Shopping Jardim Sul,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+JSLG3.SA,JSL S.A.,Industrials,Air Freight & Logistics,Small Cap
+JSRE11.SA,JS Real Estate multigestao - FII fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+KEPL3.SA,Kepler Weber S.A.,Industrials,Machinery,Micro Cap
+KLBN11.SA,Klabin S.A.,Materials,Paper & Forest Products,Mid Cap
+KLBN3.SA,Klabin S.A.,Materials,Paper & Forest Products,Mid Cap
+KLBN4.SA,Klabin S.A.,Materials,Paper & Forest Products,Mid Cap
+KNCR11.SA,Kinea Rendimentos Imobiliarios Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+KNRI11.SA,Kinea Renda Imobiliaria Fundo de Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+LAME3.SA,Lojas Americanas S.A.,Consumer Discretionary,Household Durables,Mid Cap
+LAME4.SA,Lojas Americanas S.A.,Consumer Discretionary,Household Durables,Mid Cap
+LATR11B.SA,Lateres Fundo de Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+LAVV3.SA,Lavvi Empreendimentos Imobiliarios S.A.,Real Estate,Real Estate Management & Development,Small Cap
+LCAM3.SA,Companhia de Locacao das Americas,Industrials,Commercial Services & Supplies,Mid Cap
+LEVE3.SA,MAHLE Metal Leve S.A.,Consumer Discretionary,Auto Components,Small Cap
+LIGT3.SA,Light S.A.,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+LINX3.SA,Linx S.A.,Information Technology,Software,Small Cap
+LIPR3.SA,Eletrobras Participacoes S.A. - Eletropar,Utilities,Electric Utilities,Micro Cap
+LJQQ3.SA,Lojas Quero-Quero S.A.,Consumer Discretionary,Specialty Retail,Small Cap
+LLIS3.SA,Restoque Comercio e Confeccoes de Roupas S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+LOGG3.SA,LOG Commercial Properties e Participacoes S.A.,Real Estate,Real Estate Management & Development,Small Cap
+LOGN3.SA,Log-In Logistica Intermodal S.A.,Industrials,Marine,Small Cap
+LPSB3.SA,LPS Brasil - Consultoria de Imoveis S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+LREN3.SA,Lojas Renner S.A.,Consumer Discretionary,Household Durables,Mid Cap
+LUPA3.SA,Lupatech S.A.,Energy,Energy Equipment & Services,Nano Cap
+LUXM4.SA,Trevisa Investimentos S.A.,Industrials,Marine,Micro Cap
+LWSA3.SA,Locaweb Servicos de Internet S.A.,Information Technology,Software,Mid Cap
+MALL11.SA,Malls Brasil Fundo Investimento Imobiliario,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+MAPT4.SA,Cemepe Investimentos S.A.,Financials,Capital Markets,Nano Cap
+MBLY3.SA,Mobly S.A.,Consumer Discretionary,Specialty Retail,Small Cap
+MBRF11.SA,Fundo De Investimento Imobiliario Mercantil Do Brasil-fii -Inicio,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+MDIA3.SA,M. Dias Branco S.A. Industria e Comercio de Alimentos,Consumer Staples,Food & Staples Retailing,Small Cap
+MDNE3.SA,Moura Dubeux Engenharia S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+MEAL3.SA,International Meal Company Alimentacao S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+MELK3.SA,Melnick Even Desenvolvimento Imobiliario S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+MERC3.SA,Mercantil do Brasil Financeira S.A.,Financials,Banks,Micro Cap
+MERC4.SA,Mercantil do Brasil Financeira S.A.,Financials,Banks,Micro Cap
+MGEL4.SA,Mangels Industrial S.A.,Materials,Metals & Mining,Nano Cap
+MILS3.SA,Mills Estruturas e Servicos de Engenharia S.A.,Industrials,Construction & Engineering,Small Cap
+MMXM11.SA,MMX Mineracao e Metalicos S.A.,Materials,Metals & Mining,Nano Cap
+MMXM3.SA,MMX Mineracao e Metalicos S.A.,Materials,Metals & Mining,Nano Cap
+MNDL3.SA,Mundial S.A. - Produtos de Consumo,Consumer Staples,Household Products,Nano Cap
+MNPR3.SA,Minupar Participacoes S.A.,Consumer Staples,Household Products,Nano Cap
+MOAR3.SA,Monteiro Aranha S.A.,Industrials,Industrial Conglomerates,Small Cap
+MOSI3.SA,Mosaico Tecnologia ao Consumidor S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+MOVI3.SA,Movida Participacoes S.A.,Industrials,Commercial Services & Supplies,Small Cap
+MRFG3.SA,Marfrig Global Foods S.A.,Consumer Staples,Food & Staples Retailing,Mid Cap
+MRVE3.SA,MRV Engenharia e Participacoes S.A.,Industrials,Construction & Engineering,Small Cap
+MSPA3.SA,Companhia Melhoramentos de Sao Paulo,Materials,Paper & Forest Products,Micro Cap
+MTIG4.SA,Metalgrafica Iguacu S.A.,Consumer Discretionary,Distributors,Nano Cap
+MTRE3.SA,Mitre Realty Empreendimentos e Participacoes S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+MTSA4.SA,METISA Metalurgica Timboense S.A.,Industrials,Machinery,Micro Cap
+MULT3.SA,Multiplan Empreendimentos Imobiliarios S.A.,Real Estate,Real Estate Management & Development,Mid Cap
+MWET3.SA,Wetzel S.A.,Consumer Discretionary,Auto Components,Nano Cap
+MWET4.SA,Wetzel S.A.,Consumer Discretionary,Auto Components,Nano Cap
+MXRF11.SA,Maxi Renda Fundo De Investimento Imobiliaro - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+MYPK3.SA,Iochpe-Maxion S.A.,Consumer Discretionary,Auto Components,Small Cap
+NEOE3.SA,Neoenergia S.A.,Utilities,Electric Utilities,Mid Cap
+NGRD3.SA,Neogrid Participacoes S.A.,Information Technology,Software,Micro Cap
+NORD3.SA,Nordon Industrias Metalurgicas S/A,Financials,Diversified Financial Services,Nano Cap
+NPAR11.SA,Fii Fundo Investimento Imobiliario Nestpar,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+NUTR3.SA,Nutriplant Industria e Comercio S/A,Materials,Construction Materials,Nano Cap
+NVHO11.SA,Fundo Invest,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+ODPV3.SA,Odontoprev S.A.,Health Care,Health Care Providers & Services,Small Cap
+OFSA3.SA,Ouro Fino Saude Animal Participacoes S.A.,Health Care,Pharmaceuticals,Small Cap
+OIBR3.SA,Oi S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+OIBR4.SA,Oi S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+OMGE3.SA,Omega Geracao S.A.,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+OPCT3.SA,OceanPact Servicos Maritimos S.A.,Industrials,Professional Services,Small Cap
+ORVR3.SA,Orizon Valorizacao De Residuos S.A.,Industrials,Transportation Infrastructure,Small Cap
+OSXB3.SA,OSX Brasil S.A.,Energy,Energy Equipment & Services,Nano Cap
+PABY11.SA,Fundo de Investimento Imobiliario Panamby,Real Estate,Real Estate Management & Development,Nano Cap
+PARD3.SA,Instituto Hermes Pardini S.A.,Health Care,Biotechnology,Small Cap
+PATI3.SA,Panatlantica S.A.,Materials,Metals & Mining,Small Cap
+PATI4.SA,Panatlantica S.A.,Materials,Metals & Mining,Small Cap
+PCAR3.SA,Companhia Brasileira de Distribuicao,Consumer Discretionary,Household Durables,Small Cap
+PDGR3.SA,PDG Realty S.A. Empreendimentos e Participacoes,Real Estate,Real Estate Management & Development,Nano Cap
+PEAB3.SA,Companhia de Participacoes Alianca da Bahia,Financials,Capital Markets,Micro Cap
+PEAB4.SA,Companhia de Participacoes Alianca da Bahia,Financials,Capital Markets,Micro Cap
+PETZ3.SA,Pet Center Comercio e Participacoes S.A.,Consumer Discretionary,Specialty Retail,Small Cap
+PFRM3.SA,Profarma Distribuidora de Produtos Farmaceuticos S.A.,Health Care,Health Care Providers & Services,Micro Cap
+PGMN3.SA,Empreendimentos Pague Menos S.A.,Health Care,Pharmaceuticals,Small Cap
+PINE4.SA,Banco Pine S.A.,Financials,Banks,Micro Cap
+PLAS3.SA,Plascar Participacoes Industriais S.A.,Consumer Discretionary,Auto Components,Nano Cap
+PLCR11.SA,Plural Recebiveis Imobiliarios Fundo De Investimento Imobiliario,,,Nano Cap
+PLPL3.SA,Plano & Plano Desenvolvimento Imobiliario S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+PLRI11.SA,Polo Fundo de Investimento Imobiliario ‚Äì FII Recebiveis Imobiliarios IMO - Cotas Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+PMAM3.SA,Paranapanema S.A.,Materials,Metals & Mining,Micro Cap
+PNVL3.SA,Dimed S.A. Distribuidora de Medicamentos,Health Care,Pharmaceuticals,Small Cap
+PNVL4.SA,Dimed S.A. Distribuidora de Medicamentos,Health Care,Pharmaceuticals,Small Cap
+POMO3.SA,Marcopolo S.A.,Consumer Discretionary,Automobiles,Small Cap
+POMO4.SA,Marcopolo S.A.,Consumer Discretionary,Automobiles,Small Cap
+PORD11.SA,Polo Fundo de Investimento Imobiliario - Recebiveis Imobiliarios II - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+POSI3.SA,Positivo Tecnologia S.A.,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+POWE3.SA,Focus Energia Holding Participacoes S.A.,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+PPLA11.SA,PPLA Participations Ltd.,Financials,Capital Markets,Micro Cap
+PQDP11.SA,Parque Dom Pedro Shopping Center Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+PRIO3.SA,Petro Rio S.A.,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+PRNR3.SA,Priner Servicos Industriais S.A.,Industrials,Construction & Engineering,Micro Cap
+PRSV11.SA,Fundo de Investimento Imobiliario Presidente Vargas,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+PSSA3.SA,Porto Seguro S.A.,Financials,Insurance,Mid Cap
+PTBL3.SA,PBG S.A.,Industrials,Building Products,Small Cap
+PTNT3.SA,Pettenati S.A. Industria Textil,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+PTNT4.SA,Pettenati S.A. Industria Textil,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+QAGR11.SA,Quasar Agro - Fundo De Investimento Imobiliario,Real Estate,,Micro Cap
+QUAL3.SA,Qualicorp Consultoria e Corretora de Seguros S.A.,Health Care,Health Care Providers & Services,Small Cap
+RADL3.SA,Raia Drogasil S.A.,Health Care,Pharmaceuticals,Mid Cap
+RAIL3.SA,Rumo S.A.,Industrials,Road & Rail,Mid Cap
+RANI3.SA,Irani Papel e Embalagem S.A.,Consumer Discretionary,Distributors,Small Cap
+RAPT3.SA,Randon S.A. Implementos e Participacoes,Industrials,Machinery,Small Cap
+RAPT4.SA,Randon S.A. Implementos e Participacoes,Industrials,Machinery,Small Cap
+RBBV11.SA,JHSF Rio Bravo Fazenda Boa Vista Capital Protegido Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+RBDS11.SA,RB Capital Development Residential Real Estate Investment Fund II,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+RBED11.SA,Aesapar Fundo de Investimento Imobiliario - FII,Financials,Capital Markets,Nano Cap
+RBRD11.SA,RB Capital Renda II Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+RBRF11.SA,Fundo Investimento Imobiliario Rbr Alpha Fundos De Fundos,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+RBVA11.SA,Fundo Invest Imobiliario Agencias Caixa - FII Fund,Financials,Capital Markets,Micro Cap
+RBVO11.SA,Rio Bravo Credito - Imobiliario II Fundo Invest Imobiliario FII Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+RCSL3.SA,Recrusul S/A,Industrials,Machinery,Micro Cap
+RCSL4.SA,Recrusul S/A,Industrials,Machinery,Micro Cap
+RDNI3.SA,RNI Negocios Imobiliarios S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+REDE3.SA,Rede Energia Participacoes S.A.,Utilities,Electric Utilities,Mid Cap
+RENT3.SA,Localiza Rent a Car S.A.,Industrials,Commercial Services & Supplies,Mid Cap
+RNEW11.SA,Renova Energia S.A.,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+RNEW3.SA,Renova Energia S.A.,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+RNEW4.SA,Renova Energia S.A.,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+RNGO11.SA,Fundo de Investimento Imobiliario Rio Negro,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+ROMI3.SA,Industrias Romi S.A.,Industrials,Trading Companies & Distributors,Small Cap
+RPAD3.SA,Alfa Holdings S.A.,Industrials,Industrial Conglomerates,Micro Cap
+RPAD5.SA,Alfa Holdings S.A.,Industrials,Industrial Conglomerates,Micro Cap
+RPAD6.SA,Alfa Holdings S.A.,Industrials,Industrial Conglomerates,Micro Cap
+RPMG3.SA,Refinaria de Petroleos de Manguinhos S.A.,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+RRRP3.SA,3R Petroleum √ìleo e Gas S.A.,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+RSID3.SA,Rossi Residencial S.A.,Industrials,Construction & Engineering,Nano Cap
+RSUL4.SA,Metalurgica Riosulense S.A.,Consumer Discretionary,Auto Components,Nano Cap
+SAPR11.SA,Companhia de Saneamento do Parana - SANEPAR,Utilities,Water Utilities,Small Cap
+SAPR3.SA,Companhia de Saneamento do Parana - SANEPAR,Utilities,Water Utilities,Small Cap
+SAPR4.SA,Companhia de Saneamento do Parana - SANEPAR,Utilities,Water Utilities,Small Cap
+SBFG3.SA,Grupo SBF S.A.,Consumer Discretionary,Specialty Retail,Small Cap
+SBSP3.SA,Companhia de Saneamento Basico do Estado de Sao Paulo - SABESP,Utilities,Water Utilities,Mid Cap
+SCAR3.SA,Sao Carlos Empreendimentos e Participacoes S.A.,Real Estate,Real Estate Management & Development,Small Cap
+SCPF11.SA,Scp Fundo De Investimento NPV,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+SDIL11.SA,SDI Logistica Rio - Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+SEER3.SA,Ser Educacional S.A.,Consumer Staples,Household Products,Small Cap
+SEQL3.SA,Sequoia Logistica e Transportes S.A.,Industrials,Air Freight & Logistics,Small Cap
+SGPS3.SA,Springs Global Participacoes S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+SHOW3.SA,T4F Entretenimento S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SHPH11.SA,FDO INV Imob Shopping Patio Higienopolis,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+SHUL4.SA,Schulz S.A.,Consumer Discretionary,Auto Components,Small Cap
+SIMH3.SA,SIMPAR S.A.,Industrials,Industrial Conglomerates,Mid Cap
+SLCE3.SA,SLC Agricola S.A.,Consumer Staples,Household Products,Small Cap
+SLED3.SA,Saraiva Livreiros S.A. - em Recuperacao Judicial,Consumer Discretionary,Specialty Retail,Nano Cap
+SLED4.SA,Saraiva Livreiros S.A. - em Recuperacao Judicial,Consumer Discretionary,Specialty Retail,Nano Cap
+SMAL11.SA,ISHARES,Financials,,Mid Cap
+SMLS3.SA,Smiles Fidelidade S.A.,Industrials,Professional Services,Small Cap
+SMTO3.SA,Sao Martinho S.A.,Consumer Staples,Food & Staples Retailing,Mid Cap
+SNSY5.SA,Sansuy S.A.,Consumer Discretionary,Auto Components,Nano Cap
+SOMA3.SA,Grupo de Moda SOMA S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+SOND5.SA,Sondotecnica Engenharia de Solos S.A.,Industrials,Construction & Engineering,Nano Cap
+SOND6.SA,Sondotecnica Engenharia de Solos S.A.,Industrials,Construction & Engineering,Nano Cap
+SPTW11.SA,Sp Downtown Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+SQIA3.SA,Sinqia S.A.,Information Technology,Software,Micro Cap
+STBP3.SA,Santos Brasil Participacoes S.A.,Industrials,Marine,Small Cap
+SULA11.SA,Sul America S.A.,Financials,Insurance,Mid Cap
+SULA3.SA,Sul America S.A.,Financials,Insurance,Small Cap
+SULA4.SA,Sul America S.A.,Financials,Insurance,Small Cap
+TAEE11.SA,Transmissora Alianca de Energia Eletrica S.A.,Utilities,Electric Utilities,Small Cap
+TAEE3.SA,Transmissora Alianca de Energia Eletrica S.A.,Utilities,Electric Utilities,Mid Cap
+TAEE4.SA,Transmissora Alianca de Energia Eletrica S.A.,Utilities,Electric Utilities,Mid Cap
+TASA3.SA,Taurus Armas S.A.,Industrials,Aerospace & Defense,Small Cap
+TASA4.SA,Taurus Armas S.A.,Industrials,Aerospace & Defense,Small Cap
+TCNO3.SA,Tecnosolo Engenharia S.A.,Industrials,Construction & Engineering,Nano Cap
+TCNO4.SA,Tecnosolo Engenharia S.A.,Industrials,Construction & Engineering,Nano Cap
+TCSA3.SA,Tecnisa S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+TECN3.SA,Technos S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+TEKA3.SA,Teka Tecelagem Kuehnrich S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+TEKA4.SA,Teka Tecelagem Kuehnrich S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+TELB3.SA,Telecomunicacoes Brasileiras S.A. - TELEBRAS,Communication Services,Diversified Telecommunication Services,Small Cap
+TELB4.SA,Telecomunicacoes Brasileiras S.A. - TELEBRAS,Communication Services,Diversified Telecommunication Services,Small Cap
+TEND3.SA,Construtora Tenda S.A.,Real Estate,Real Estate Management & Development,Small Cap
+TESA3.SA,Terra Santa Agro S.A.,Consumer Staples,Household Products,Micro Cap
+TFCO4.SA,Track & Field Co S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+TGMA3.SA,Tegma Gestao Logistica S.A.,Industrials,Transportation Infrastructure,Small Cap
+TIMS3.SA,TIM S.A.,Communication Services,Diversified Telecommunication Services,Mid Cap
+TKNO4.SA,Tekno S.A. Industria e Comercio,Materials,Metals & Mining,Nano Cap
+TOTS3.SA,TOTVS S.A.,Information Technology,Software,Mid Cap
+TPIS3.SA,Triunfo Participacoes e Investimentos S.A.,Industrials,Transportation Infrastructure,Micro Cap
+TRIS3.SA,Trisul S.A.,Real Estate,Real Estate Management & Development,Small Cap
+TRPL3.SA,CTEEP - Companhia de Transmissao de Energia Eletrica Paulista S.A.,Utilities,Electric Utilities,Mid Cap
+TRPL4.SA,CTEEP - Companhia de Transmissao de Energia Eletrica Paulista S.A.,Utilities,Electric Utilities,Mid Cap
+TUPY3.SA,Tupy S.A.,Consumer Discretionary,Auto Components,Small Cap
+TXRX3.SA,Textil Renauxview S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+TXRX4.SA,Textil Renauxview S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+UCAS3.SA,Unicasa Industria de Moveis S.A.,Consumer Discretionary,Household Durables,Micro Cap
+UGPA3.SA,Ultrapar Participacoes S.A. (New),Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+UNIP3.SA,Unipar Carbocloro S.A.,Materials,Chemicals,Small Cap
+UNIP5.SA,Unipar Carbocloro S.A.,Materials,Chemicals,Small Cap
+UNIP6.SA,Unipar Carbocloro S.A.,Materials,Chemicals,Small Cap
+USIM3.SA,Usinas Siderurgicas de Minas Gerais S.A.,Materials,Metals & Mining,Mid Cap
+USIM5.SA,Usinas Siderurgicas de Minas Gerais S.A.,Materials,Metals & Mining,Mid Cap
+USIM6.SA,Usinas Siderurgicas de Minas Gerais S.A.,Materials,Metals & Mining,Mid Cap
+VAMO3.SA,"Vamos Locacao de Caminhoes, Maquinas e Equipamentos S.A.",Industrials,Commercial Services & Supplies,Mid Cap
+VGIR11.SA,Valora Re III Fundo De Investimento Imobiliario,Real Estate,,Micro Cap
+VIIA3.SA,VIA,Consumer Discretionary,Household Durables,Small Cap
+VISC11.SA,Vinci Shopping Centers Fundo Investimento Imobiliario - Fii,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+VIVA3.SA,Vivara Participacoes S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+VIVR3.SA,Viver Incorporadora e Construtora S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+VLID3.SA,Valid Solucoes S.A.,Industrials,Professional Services,Micro Cap
+VLOL11.SA,Fundo de Investimento Imobiliario - FII Vila Olimpia Corporate,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+VRTA11.SA,Fator Verita Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+VULC3.SA,Vulcabras Azaleia S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+VVAR3.SA,Via Varejo S.A.,Consumer Discretionary,Specialty Retail,Mid Cap
+WEST3.SA,Westwing Comercio Varejista S.A.,Consumer Discretionary,Specialty Retail,Micro Cap
+WHRL3.SA,Whirlpool S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+WHRL4.SA,Whirlpool S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+WIZS3.SA,Wiz Solucoes e Corretagem de Seguros S.A.,Financials,Insurance,Small Cap
+WLMM3.SA,WLM Participacoes e Comercio de Maquinas e Veiculos S.A.,Consumer Discretionary,Automobiles,Micro Cap
+WLMM4.SA,WLM Participacoes e Comercio de Maquinas e Veiculos S.A.,Consumer Discretionary,Automobiles,Micro Cap
+XPCM11.SA,XP Corporate Macae Fundo de Investimento Imobiliario - FII,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+XTED11.SA,XTED - TRX Edificios Corporativos Fundo Invest Imobiliario FII Fund,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+YDUQ3.SA,Yduqs Participacoes S.A.,Consumer Staples,Household Products,Small Cap

@@ -1,0 +1,71 @@
+ticker,name,sector,industry,market_cap
+AGRO.BA,Agrometal S.A.I.,Industrials,Machinery,Nano Cap
+ALUA.BA,Aluar Aluminio Argentino S.A.I.C.,Materials,Metals & Mining,Small Cap
+AUSO.BA,Autopistas Del Sol SA,Industrials,Transportation Infrastructure,Micro Cap
+BBAR.BA,Banco BBVA Argentina S.A.,Financials,Banks,Small Cap
+BHIP.BA,Banco Hipotecario S.A.,Financials,Banks,Micro Cap
+BIOX.BA,Bioceres Crop Solutions Corp.,Materials,Construction Materials,Small Cap
+BMA.BA,Banco Macro S.A.,Financials,Banks,Small Cap
+BOLT.BA,Boldt S.A.,Information Technology,IT Services,Micro Cap
+BPAT.BA,Banco Patagonia S.A.,Financials,Banks,Small Cap
+BRIO.BA,Banco Santander Rio S.A.,Financials,Banks,Small Cap
+BRIO6.BA,Banco Santander Rio S.A.,Financials,Banks,Small Cap
+BYMA.BA,Bolsas y Mercados Argentinos S.A.,Financials,Capital Markets,Small Cap
+CADO.BA,Carlos Casado S.A.,Industrials,Industrial Conglomerates,Nano Cap
+CAPX.BA,Capex S.A.,Utilities,Electric Utilities,Micro Cap
+CARC.BA,Carboclor S.A.,Materials,,Nano Cap
+CECO2.BA,Enel Generacion Costanera S.A.,Utilities,Electric Utilities,Micro Cap
+CELU.BA,Celulosa Argentina S.A.,Materials,Paper & Forest Products,Mid Cap
+CEPU.BA,Central Puerto S.A.,Utilities,Electric Utilities,Small Cap
+CGPA2.BA,Camuzzi Gas Pampeana S.A.,Utilities,Gas Utilities,Micro Cap
+COME.BA,Sociedad Comercial del Plata S.A.,Industrials,Industrial Conglomerates,Nano Cap
+CRES.BA,"Cresud Sociedad Anonima Comercial, Inmobiliaria, Financiera y Agropecuaria",Industrials,Industrial Conglomerates,Small Cap
+CTIO.BA,Consultatio S.A.,Real Estate,Real Estate Management & Development,Small Cap
+CVH.BA,Cablevision Holding S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+DESP.BA,"Despegar.com, Corp.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+DGCU2.BA,Distribuidora de Gas Cuyana S.A.,Utilities,Gas Utilities,Micro Cap
+DOME.BA,DOMEC Compania de Artefactos Domesticos S.A.I.C.y F.,Consumer Discretionary,Household Durables,Nano Cap
+DYCA.BA,DYCASA Sociedad Anonima,Industrials,Construction & Engineering,Nano Cap
+EDN.BA,Empresa Distribuidora y Comercializadora Norte Sociedad Anonima,Utilities,Electric Utilities,Micro Cap
+EMDE.BA,Empresa Distribuidora Electrica Regional S.A.,Utilities,Electric Utilities,Nano Cap
+FERR.BA,Ferrum Sociedad Anonima de Ceramica y Metalurgia,Industrials,Building Products,Small Cap
+FIPL.BA,Fiplasto S.A.,Consumer Discretionary,Household Durables,Nano Cap
+GAMI.BA,B-Gaming S.A.,Information Technology,IT Services,Nano Cap
+GARO.BA,Garovaglio y Zorraquin S.A.,Industrials,Industrial Conglomerates,Nano Cap
+GBAN.BA,"Naturgy BAN, S.A.",Utilities,Gas Utilities,Micro Cap
+GCLA.BA,Grupo Clarin S.A.,Communication Services,Entertainment,Micro Cap
+GGAL.BA,Grupo Financiero Galicia S.A.,Financials,Banks,Small Cap
+GRIM.BA,Grimoldi S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+HARG.BA,Holcim (Argentina) S.A.,Materials,Construction Materials,Small Cap
+HAVA.BA,Havanna Holding S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+INAG.BA,Insumos Agroquimicos S.A.,Materials,Construction Materials,Micro Cap
+INTR.BA,Compania Introductora de Buenos Aires S.A.,Consumer Staples,Food & Staples Retailing,Nano Cap
+INVJ.BA,Inversora Juramento S.A.,Consumer Staples,Household Products,Micro Cap
+IRCP.BA,IRSA Propiedades Comerciales S.A.,Real Estate,Real Estate Management & Development,Small Cap
+LEDE.BA,Ledesma Sociedad Anonima Agricola Industrial,Consumer Staples,Household Products,Micro Cap
+LOMA.BA,Loma Negra Compania Industrial Argentina Sociedad Anonima,Materials,Construction Materials,Small Cap
+LONG.BA,Longvie S.A.,Consumer Discretionary,Household Durables,Nano Cap
+METR.BA,MetroGAS S.A.,Utilities,Gas Utilities,Micro Cap
+MIRG.BA,"Mirgor Sociedad Anonima, Comercial, Industrial, Financiera, Inmobiliaria y Agropecuaria",Consumer Discretionary,Auto Components,Micro Cap
+MOLA.BA,Molinos Agro S.A.,Consumer Staples,Household Products,Small Cap
+MOLI.BA,Molinos Rio de la Plata S.A.,Consumer Staples,Food & Staples Retailing,Micro Cap
+MORI.BA,Morixe Hermanos S.A.C.I.,Consumer Staples,Household Products,Nano Cap
+MTR.BA,Matba Rofex S.A.,Financials,Capital Markets,Micro Cap
+OEST.BA,Grupo Concesionario del Oeste S.A.,Industrials,Transportation Infrastructure,Micro Cap
+PAMP.BA,Pampa Energia SA Sponsored ADR,Utilities,Electric Utilities,Small Cap
+PATA.BA,Sociedad Anonima Importadora y Exportadora de la Patagonia,Consumer Discretionary,Household Durables,Micro Cap
+POLL.BA,"Polledo Sociedad Anonima, Industrial, Constructora y Financiera",Industrials,Construction & Engineering,Nano Cap
+RICH.BA,Laboratorios Richmond S.A.C.I.F.,Health Care,Pharmaceuticals,Micro Cap
+RIGO.BA,Rigolleau S.A.,Consumer Staples,Household Products,Micro Cap
+ROSE.BA,Instituto Rosenbusch S.A.,Health Care,Pharmaceuticals,Nano Cap
+SAMI.BA,S.A. San Miguel A.G.I.C.I. y F.,Consumer Staples,Household Products,Small Cap
+SEMI.BA,Molinos Juan Semino S.A.,Consumer Staples,Household Products,Nano Cap
+SUPV.BA,Grupo Supervielle S.A.,Financials,Banks,Micro Cap
+TECO2.BA,Telecom Argentina S.A.,Communication Services,Diversified Telecommunication Services,Mid Cap
+TGLT.BA,TGLT S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+TGNO4.BA,Transportadora de Gas del Norte S.A.,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+TGSU2.BA,Transportadora de Gas del Sur S.A.,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+TRAN.BA,Compania de Transporte de Energia Electrica en Alta Tension Transener S.A.,Utilities,Electric Utilities,Micro Cap
+TXAR.BA,Ternium Argentina S.A.,Materials,Metals & Mining,Mid Cap
+VALO.BA,Grupo Financiero Valores S.A.,Financials,Capital Markets,Micro Cap
+YPFD.BA,YPF Sociedad Anonima,Energy,"Oil, Gas & Consumable Fuels",Small Cap
