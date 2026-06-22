@@ -97,7 +97,10 @@ __all__ = [
     "SqueezeClass",
     "Confidence",
     "SqueezeAssessment",
+    "SqueezeConfig",
+    "DEFAULT_CONFIG",
     "assess",
+    "rank_candidates",
     "from_yfinance",
     "utilization_from_loan",
     "parse_ibkr_shortable_text",
@@ -158,6 +161,11 @@ class SqueezeMetrics:
     # > 0  => the average short is under water (squeezable).
     # < 0  => shorts are still in profit (cannot be forced out -> not a squeeze).
     price_vs_short_cost_basis_pct: Optional[float] = None
+
+    # --- price momentum / ignition (the catalyst proxy) ---
+    # Percent the price sits above a reference (e.g. 50-day MA), or a trailing
+    # return. Positive => upward pressure that can ignite covering.
+    momentum_pct: Optional[float] = None
 
     as_of: Optional[str] = None
     source: str = "manual"
@@ -431,20 +439,34 @@ class Confidence(str, Enum):
 @dataclass
 class SqueezeAssessment:
     ticker: str
-    composite_score: Optional[float]            # 0-100, weighted over AVAILABLE rules
+    squeeze_score: Optional[float]               # 0-100 FINAL score (struct+dynamics+ignition)*amp
+    composite_score: Optional[float]             # 0-100 structural (lending) score, interaction-aware
     classification: SqueezeClass
     confidence: Confidence                       # HIGH/MEDIUM/LOW by data availability
     rule_scores: Dict[str, Optional[float]]
-    coverage: float                              # 0-1: weight of rules we could score
+    coverage: float                              # 0-1: weight of structural rules we could score
     bearish_convergence: DetectorResult
     squeeze_fuel: DetectorResult
+    dynamics_score: Optional[float] = None       # 0-100 acceleration (rising util/fee/SI)
+    ignition_score: Optional[float] = None       # 0-100 spark (momentum + shorts under water)
+    amplifier: float = 1.0                       # 1.0-1.3 (low float, high days-to-cover)
     notes: List[str] = field(default_factory=list)
 
     def summary(self) -> str:
-        cs = "n/a" if self.composite_score is None else f"{self.composite_score:5.1f}"
+        sq = "n/a" if self.squeeze_score is None else f"{self.squeeze_score:5.1f}"
+        st = "n/a" if self.composite_score is None else f"{self.composite_score:.0f}"
+        extra = []
+        if self.dynamics_score is not None:
+            extra.append(f"dyn={self.dynamics_score:.0f}")
+        if self.ignition_score is not None:
+            extra.append(f"ign={self.ignition_score:.0f}")
+        if abs(self.amplifier - 1.0) > 1e-9:
+            extra.append(f"amp={self.amplifier:.2f}")
+        extra_s = ("  " + " ".join(extra)) if extra else ""
         lines = [
             f"{self.ticker or '(unknown)':<8} {self.classification.value:<18} "
-            f"score={cs}  conf={self.confidence.value:<6} coverage={self.coverage:.0%}",
+            f"score={sq}  conf={self.confidence.value:<6} struct={st}{extra_s} "
+            f"coverage={self.coverage:.0%}",
         ]
         for rid, rule in SCORE_RULES.items():
             sc = self.rule_scores.get(rid)
@@ -459,43 +481,160 @@ class SqueezeAssessment:
         return "\n".join(lines)
 
 
-# Below this coverage we still produce a call, but flag it (advisory only).
-LOW_COVERAGE_ADVISORY = 0.60
-ELEVATED_SCORE = 70.0
-WATCH_SCORE = 40.0
+# ---------------------------------------------------------------------------
+# Tunable configuration (re-fit these on your own lending history if you can).
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class SqueezeConfig:
+    # Interaction gate: short interest only counts as squeeze fuel when the
+    # lending market is tight (Schultz's fee x utilization double-sort). The SI
+    # sub-score is scaled to effective_si = si * (floor + (1-floor)*tightness),
+    # tightness in [0,1] from the utilization/fee sub-scores. Applied only when
+    # at least one lending signal (util or fee) is present.
+    apply_interaction_gate: bool = True
+    interaction_floor: float = 0.25
+    # Final blend over the available layers (renormalised over those present).
+    w_structural: float = 0.60
+    w_dynamics: float = 0.20
+    w_ignition: float = 0.20
+    # Amplifier (multiplicative on the final score): low float + high days-to-cover.
+    max_amplifier: float = 1.30
+    dtc_amp_med: float = 5.0        # days-to-cover above this -> +0.05
+    dtc_amp_high: float = 10.0      #                         -> +0.10
+    float_amp_low: float = 50e6     # float below this -> +0.05
+    float_amp_small: float = 20e6   #                  -> +0.10
+    float_amp_micro: float = 10e6   #                  -> +0.15
+    # Classification cutoffs (on the final squeeze score).
+    elevated_score: float = 70.0
+    watch_score: float = 40.0
+    low_coverage_advisory: float = 0.60
 
 
-def assess(m: SqueezeMetrics) -> SqueezeAssessment:
-    """Run the three rules + both detectors and produce a classified assessment.
+DEFAULT_CONFIG = SqueezeConfig()
 
-    The composite score is a weight-renormalised average over the rules we can
-    actually evaluate, so a missing input lowers coverage rather than silently
-    counting as zero. Classification order of precedence:
+# Back-compat module aliases (older callers import these directly).
+LOW_COVERAGE_ADVISORY = DEFAULT_CONFIG.low_coverage_advisory
+ELEVATED_SCORE = DEFAULT_CONFIG.elevated_score
+WATCH_SCORE = DEFAULT_CONFIG.watch_score
 
-        1. bearish convergence triggered            -> GENUINELY_SHORT
-        2. squeeze-fuel triggered & score elevated  -> SQUEEZE_FUEL
-        3. score >= ELEVATED                         -> ELEVATED
-        4. score >= WATCH                            -> WATCH
-        5. something scorable                        -> LOW
-        6. nothing scorable at all                   -> INSUFFICIENT_DATA
 
-    `confidence` (HIGH/MEDIUM/LOW) reflects which inputs were available:
-    utilization present -> HIGH; only borrow fee -> MEDIUM; neither -> LOW. A
-    missing input never silently counts as zero; it lowers coverage instead.
+def _structural_score(
+    rule_scores: Dict[str, Optional[float]], cfg: SqueezeConfig
+) -> Tuple[Optional[float], float]:
+    """Interaction-aware lending score + coverage (summed weight of rules scored).
+
+    Discounts the short-interest sub-score when borrow is loose/cheap, so a
+    crowded-but-comfortable short (high SI, low util/fee) scores LOW instead of
+    riding its headline short interest. The discount needs *evidence* of comfort
+    (a lending signal); with neither util nor fee we don't discount (the LOW-
+    confidence WATCH cap handles the blind case instead).
     """
+    util = rule_scores.get("d34_utilization_pct")
+    fee = rule_scores.get("d35_borrow_rate_pct")
+    si = rule_scores.get("d33_short_interest_pct")
+
+    eff_si = si
+    if si is not None and cfg.apply_interaction_gate and (util is not None or fee is not None):
+        norms = [v / 100.0 for v in (util, fee) if v is not None]
+        tightness = max(norms) if norms else 0.0
+        eff_si = si * (cfg.interaction_floor + (1.0 - cfg.interaction_floor) * tightness)
+
+    num = den = 0.0
+    for rid, val in (("d34_utilization_pct", util),
+                     ("d35_borrow_rate_pct", fee),
+                     ("d33_short_interest_pct", eff_si)):
+        if val is not None:
+            w = SCORE_RULES[rid].weight
+            num += w * val
+            den += w
+    return ((num / den) if den > 0 else None), den
+
+
+def _dynamics_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
+    """Acceleration: rising utilization / fee / short interest = supply tightening
+    and shorts crowding in (Ortex & S3 stress rate-of-change; Cohen-Diether-Malloy:
+    rising shorting demand predicts lower returns). None if no trend inputs."""
+    subs = []
+    if m.borrow_fee_trend_pct_pts is not None:
+        subs.append(_band_score(m.borrow_fee_trend_pct_pts, [(0.0, 0.0), (2.0, 40.0), (5.0, 70.0), (math.inf, 100.0)]))
+    if m.utilization_trend_pct_pts is not None:
+        subs.append(_band_score(m.utilization_trend_pct_pts, [(0.0, 0.0), (5.0, 40.0), (10.0, 70.0), (math.inf, 100.0)]))
+    if m.short_interest_trend_pct_pts is not None:
+        subs.append(_band_score(m.short_interest_trend_pct_pts, [(0.0, 0.0), (10.0, 30.0), (25.0, 60.0), (math.inf, 100.0)]))
+    subs = [s for s in subs if s is not None]
+    return (sum(subs) / len(subs)) if subs else None
+
+
+def _ignition_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
+    """The spark: upward price momentum and shorts under water (S3: a profitable
+    short cannot be squeezed). None if neither price input is provided."""
+    subs = []
+    if m.momentum_pct is not None:
+        subs.append(_band_score(m.momentum_pct, [(0.0, 0.0), (5.0, 30.0), (15.0, 60.0), (math.inf, 100.0)]))
+    if m.price_vs_short_cost_basis_pct is not None:
+        subs.append(_band_score(m.price_vs_short_cost_basis_pct, [(0.0, 0.0), (10.0, 40.0), (30.0, 70.0), (math.inf, 100.0)]))
+    subs = [s for s in subs if s is not None]
+    return (sum(subs) / len(subs)) if subs else None
+
+
+def _amplifier(m: SqueezeMetrics, cfg: SqueezeConfig) -> float:
+    """Low float and a high days-to-cover make every other signal more explosive
+    (VW, KOSS). Multiplicative, capped at cfg.max_amplifier."""
+    amp = 1.0
+    if m.days_to_cover is not None:
+        if m.days_to_cover > cfg.dtc_amp_high:
+            amp += 0.10
+        elif m.days_to_cover > cfg.dtc_amp_med:
+            amp += 0.05
+    if m.float_shares is not None and m.float_shares > 0:
+        if m.float_shares < cfg.float_amp_micro:
+            amp += 0.15
+        elif m.float_shares < cfg.float_amp_small:
+            amp += 0.10
+        elif m.float_shares < cfg.float_amp_low:
+            amp += 0.05
+    return min(amp, cfg.max_amplifier)
+
+
+def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> SqueezeAssessment:
+    """Score a name with the layered model and classify it.
+
+    Layers (each 0-100, blended over those available, then x amplifier):
+        structural - interaction-aware lending fragility (d33/d34/d35)
+        dynamics   - acceleration (rising utilization / fee / short interest)
+        ignition   - the spark (price momentum + shorts under water)
+        amplifier  - low float + high days-to-cover (1.0-1.3x)
+
+    Classification (detectors are authoritative; otherwise on the final score):
+        bearish convergence  -> GENUINELY_SHORT  (overrides everything)
+        squeeze-fuel fires   -> SQUEEZE_FUEL
+        score >= elevated    -> ELEVATED
+        score >= watch       -> WATCH
+        scorable             -> LOW
+        nothing scorable     -> INSUFFICIENT_DATA
+    A LOW-confidence call (no util, no fee) is capped at WATCH. `confidence` is
+    HIGH with utilization, MEDIUM with only fee, LOW with neither. A missing
+    input lowers coverage; it never silently counts as zero.
+    """
+    cfg = config
     notes: List[str] = []
 
-    rule_scores: Dict[str, Optional[float]] = {}
-    num = 0.0
-    den = 0.0
-    for rid, rule in SCORE_RULES.items():
-        sc = rule.score(m)
-        rule_scores[rid] = sc
-        if sc is not None:
-            num += rule.weight * sc
-            den += rule.weight
-    coverage = den  # weights sum to 1.0, so accumulated weight == coverage
-    composite = (num / den) if den > 0 else None
+    rule_scores: Dict[str, Optional[float]] = {rid: rule.score(m) for rid, rule in SCORE_RULES.items()}
+    structural, coverage = _structural_score(rule_scores, cfg)
+    dynamics = _dynamics_score(m, cfg)
+    ignition = _ignition_score(m, cfg)
+    amplifier = _amplifier(m, cfg)
+
+    if structural is None:
+        squeeze: Optional[float] = None
+    else:
+        parts = [(cfg.w_structural, structural)]
+        if dynamics is not None:
+            parts.append((cfg.w_dynamics, dynamics))
+        if ignition is not None:
+            parts.append((cfg.w_ignition, ignition))
+        base = sum(w * v for w, v in parts) / sum(w for w, _ in parts)
+        squeeze = max(0.0, min(100.0, base * amplifier))
 
     bearish = detect_bearish_convergence(m)
     fuel = detect_squeeze_fuel(m)
@@ -521,8 +660,13 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
             "Headline-only regime (SI%/days-to-cover): best used to AVOID crowded "
             "shorts, not to confirm a squeeze. Treat any squeeze call as a hypothesis."
         )
-    if 0.0 < coverage < LOW_COVERAGE_ADVISORY:
+    if 0.0 < coverage < cfg.low_coverage_advisory:
         notes.append(f"Low coverage ({coverage:.0%}) — score rests on few inputs.")
+    if dynamics is None and ignition is None:
+        notes.append(
+            "No dynamics/ignition inputs (trends, momentum) — scoring the structural "
+            "setup only. A coiled setup still needs acceleration + a catalyst to fire."
+        )
     if m.source == "yfinance":
         notes.append(
             "yfinance supplies SI% and days-to-cover only; FINRA SI is stale "
@@ -535,16 +679,16 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
             "(a real-time tightness signal; utilization likely high)."
         )
 
-    # --- classify (best-effort; INSUFFICIENT_DATA only when nothing is scorable) ---
+    # --- classify on the final squeeze score (detectors are authoritative) ---
     if bearish.triggered:
         cls = SqueezeClass.GENUINELY_SHORT
-    elif composite is None:
+    elif squeeze is None:
         cls = SqueezeClass.INSUFFICIENT_DATA
-    elif fuel.triggered and composite >= ELEVATED_SCORE:
+    elif fuel.triggered:
         cls = SqueezeClass.SQUEEZE_FUEL
-    elif composite >= ELEVATED_SCORE:
+    elif squeeze >= cfg.elevated_score:
         cls = SqueezeClass.ELEVATED
-    elif composite >= WATCH_SCORE:
+    elif squeeze >= cfg.watch_score:
         cls = SqueezeClass.WATCH
     else:
         cls = SqueezeClass.LOW
@@ -560,15 +704,33 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
 
     return SqueezeAssessment(
         ticker=m.ticker,
-        composite_score=composite,
+        squeeze_score=squeeze,
+        composite_score=structural,
         classification=cls,
         confidence=confidence,
         rule_scores=rule_scores,
         coverage=coverage,
         bearish_convergence=bearish,
         squeeze_fuel=fuel,
+        dynamics_score=dynamics,
+        ignition_score=ignition,
+        amplifier=amplifier,
         notes=notes,
     )
+
+
+def rank_candidates(
+    metrics: List[SqueezeMetrics], config: SqueezeConfig = DEFAULT_CONFIG
+) -> List[SqueezeAssessment]:
+    """Assess and rank a batch: squeeze fuel first, then by final score; bearish
+    (genuinely-short) names sink toward the bottom — they are not candidates."""
+    order = {
+        SqueezeClass.SQUEEZE_FUEL: 0, SqueezeClass.ELEVATED: 1, SqueezeClass.WATCH: 2,
+        SqueezeClass.GENUINELY_SHORT: 3, SqueezeClass.LOW: 4, SqueezeClass.INSUFFICIENT_DATA: 5,
+    }
+    out = [assess(m, config) for m in metrics]
+    out.sort(key=lambda a: (order[a.classification], -(a.squeeze_score or 0.0)))
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -915,6 +1077,20 @@ def _demo() -> None:
     # GME fee from the file + short interest injected from elsewhere -> MEDIUM conf.
     print(assess(from_ibkr_file("GME", text=sample,
                                 short_interest_pct_float=24.0, days_to_cover=4.0)).summary())
+
+    # --- rank_candidates(): a mini leaderboard (the layered v2 model) ---
+    universe = [
+        SqueezeMetrics("HOT", short_interest_pct_float=30, utilization_pct=93, borrow_fee_pct=22,
+                       borrow_fee_trend_pct_pts=8, utilization_trend_pct_pts=12, momentum_pct=18,
+                       price_vs_short_cost_basis_pct=25, days_to_cover=11, float_shares=8e6),
+        SqueezeMetrics("LCID", short_interest_pct_float=33.6, borrow_fee_pct=26.1, days_to_cover=4.3),
+        SqueezeMetrics("IBRX", short_interest_pct_float=33.5, borrow_fee_pct=3.5, days_to_cover=7.6),
+        SqueezeMetrics("GRPN", short_interest_pct_float=64.6, borrow_fee_pct=1.5, days_to_cover=6.3),
+    ]
+    print("\nrank_candidates() leaderboard (layered model):")
+    for a in rank_candidates(universe):
+        print(f"  {a.ticker:<6}{a.classification.value:<17} score={a.squeeze_score:5.1f} "
+              f"struct={a.composite_score:5.1f} conf={a.confidence.value}")
 
 
 if __name__ == "__main__":

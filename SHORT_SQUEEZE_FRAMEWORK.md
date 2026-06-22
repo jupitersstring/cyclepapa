@@ -268,25 +268,53 @@ SqueezeMetrics ──► 3 SCORE_RULES ──► weighted composite (0–100)
    confidence     ∈ {HIGH (have utilization), MEDIUM (fee only), LOW (SI% only)}
 ```
 
+The diagram above is the **structural** layer. v2 wraps it in a layered model so
+that a *coiled*, an *accelerating*, and an *igniting* setup score differently:
+
+    squeeze_score = (0.6·structural + 0.2·dynamics + 0.2·ignition) × amplifier   (0–100)
+
+- **structural** — the interaction-aware lending score (the diagram).
+- **dynamics** — acceleration: rising utilization / fee / short interest (Ortex &
+  S3 stress rate-of-change; Cohen-Diether-Malloy: rising shorting demand predicts
+  lower returns).
+- **ignition** — the spark: upward price momentum + shorts under water (S3: a
+  profitable short cannot be squeezed).
+- **amplifier** — low float + high days-to-cover, ≤1.3× (the VW/KOSS float maths).
+
+Dynamics/ignition score only when their inputs are supplied; otherwise the score
+is structural-only (with a note that a setup still needs acceleration + a catalyst).
+
+**The interaction gate (the key idea).** Schultz's result is a *double sort* —
+fee × utilization — so short interest is **not** scored on its own. Its sub-score
+is discounted when borrow is loose/cheap:
+`effective_si = si × (floor + (1−floor)·tightness)`, with `tightness` ∈ [0,1] from
+the utilization/fee sub-scores (`floor 0.25`), applied only when a lending signal
+is present. On real June-2026 numbers this is the whole game:
+
+| Name | SI% | Fee | old flat | v2 structural | verdict |
+|---|---|---|---|---|---|
+| GRPN | 64.6% | 1.5% | 55 | **33** | GENUINELY_SHORT — cheap borrow ⇒ comfortable short |
+| LCID | 33.6% | 26.1% | — | **92** | SQUEEZE_FUEL — shorts are paying up |
+
+The naive short-interest leader is now scored *low*, not merely reclassified.
+
 Design decisions, each tracing to the research:
 
-- **Utilization carries the most weight (0.50 > 0.30 fee > 0.20 SI)** — Schultz's
-  ranking, encoded directly.
-- **Bands are anchored to real distributions** — the fee bands sit on the
-  0.375%/2.673%/11.0% percentiles; the utilization bands on Schultz's
-  25%/90% frequency cliffs.
-- **Graceful degradation with confidence tiers** — the composite is
-  *weight-renormalised over available rules* (a missing input lowers *coverage*,
-  it never silently counts as zero). Confidence is **HIGH** with utilization,
-  **MEDIUM** with borrow fee but no utilization (detectors switch to a fee proxy:
-  cheap fee ⇒ ample supply), **LOW** with neither. At LOW confidence the call is
-  **capped at WATCH** — high SI% alone is bearish-leaning, not squeeze fuel, so it
-  is never promoted to ELEVATED/SQUEEZE_FUEL. `INSUFFICIENT_DATA` is reserved for
-  when nothing is scorable at all. Wire a lending feed later and it auto-upgrades
-  to strict detectors + HIGH confidence (see Appendix A).
-- **Bearish convergence overrides the score** — a cheap, low-utilization short is
-  disqualified as a squeeze regardless of how high SI% is.
-- **Squeeze fuel requires pain** — the S3 gate: a still-profitable short is vetoed.
+- **Utilization carries the most structural weight (.50 > .30 fee > .20 SI)** —
+  Schultz's ranking; SI is then gated by tightness (above).
+- **Bands anchored to real distributions** — fee bands on the 0.375/2.673/11.0%
+  percentiles; utilization bands on Schultz's 25%/90% frequency cliffs.
+- **Graceful degradation + confidence tiers** — a missing input lowers *coverage*,
+  never counts as zero. **HIGH** (utilization) / **MEDIUM** (fee only) / **LOW**
+  (neither); LOW is capped at WATCH (high SI alone is bearish-leaning);
+  `INSUFFICIENT_DATA` only when nothing is scorable. Wire a lending feed and it
+  auto-upgrades to strict detectors + HIGH confidence (Appendix A).
+- **Detectors are authoritative** — `bearish_convergence` → GENUINELY_SHORT
+  (overrides everything), `squeeze_fuel` → SQUEEZE_FUEL (the S3 gate vetoes a
+  still-profitable short). The linear score only sets ELEVATED/WATCH/LOW among the rest.
+- **Everything is tunable** — `SqueezeConfig` exposes the gate floor, layer weights,
+  amplifier knobs and cutoffs for re-fitting; `rank_candidates([...])` scores and
+  ranks a whole watchlist (fuel first, bearish names sink).
 
 ### Plugging into an existing `SCORE_RULES` system
 `SCORE_RULES` is a dict keyed by the `dNN` id, so it merges into a larger rule

@@ -17,6 +17,7 @@ from short_squeeze import (
     Confidence,
     IbkrShortRow,
     SqueezeClass,
+    SqueezeConfig,
     SqueezeMetrics,
     _band_score,
     assess,
@@ -24,6 +25,7 @@ from short_squeeze import (
     detect_squeeze_fuel,
     from_ibkr_file,
     parse_ibkr_shortable_text,
+    rank_candidates,
     utilization_from_loan,
 )
 
@@ -344,6 +346,86 @@ class TestIbkrParser(unittest.TestCase):
     def test_missing_ticker_raises_keyerror(self):
         with self.assertRaises(KeyError):
             from_ibkr_file("NOPE", text=IBKR_SAMPLE)
+
+
+class TestInteractionGate(unittest.TestCase):
+    def test_cheap_borrow_discounts_high_short_interest(self):
+        # GRPN-like: 64.6% SI but only 1.5% fee -> structural must sink well below
+        # the raw SI band (the whole point of interaction-awareness).
+        a = assess(SqueezeMetrics("GRPN", short_interest_pct_float=64.6, borrow_fee_pct=1.5))
+        self.assertLess(a.composite_score, 45)
+        self.assertEqual(a.classification, SqueezeClass.GENUINELY_SHORT)
+
+    def test_expensive_borrow_keeps_high_short_interest(self):
+        # LCID-like: 33.6% SI with a 26.1% fee -> structural stays high.
+        a = assess(SqueezeMetrics("LCID", short_interest_pct_float=33.6, borrow_fee_pct=26.1))
+        self.assertGreaterEqual(a.composite_score, 85)
+        self.assertEqual(a.classification, SqueezeClass.SQUEEZE_FUEL)
+
+    def test_gate_can_be_disabled_via_config(self):
+        m = SqueezeMetrics("GRPN", short_interest_pct_float=64.6, borrow_fee_pct=1.5)
+        gated = assess(m).composite_score
+        ungated = assess(m, SqueezeConfig(apply_interaction_gate=False)).composite_score
+        self.assertGreater(ungated, gated)
+
+
+class TestLayers(unittest.TestCase):
+    def test_dynamics_from_rising_signals(self):
+        m = SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                            borrow_fee_trend_pct_pts=6, utilization_trend_pct_pts=12)
+        self.assertGreaterEqual(assess(m).dynamics_score, 70)
+
+    def test_dynamics_none_without_trends(self):
+        self.assertIsNone(assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12)).dynamics_score)
+
+    def test_ignition_from_momentum_and_pain(self):
+        m = SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                            momentum_pct=20, price_vs_short_cost_basis_pct=40)
+        self.assertGreaterEqual(assess(m).ignition_score, 80)
+
+    def test_profitable_shorts_block_fuel(self):
+        m = SqueezeMetrics("X", short_interest_pct_float=20, utilization_pct=95, borrow_fee_pct=20,
+                           price_vs_short_cost_basis_pct=-25)
+        self.assertFalse(assess(m).squeeze_fuel.triggered)
+
+    def test_amplifier_low_float_and_high_dtc(self):
+        base = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12)).amplifier
+        amped = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                                      days_to_cover=12, float_shares=8e6)).amplifier
+        self.assertEqual(base, 1.0)
+        self.assertAlmostEqual(amped, 1.25)  # +0.10 (DTC>10) + 0.15 (float<10M)
+
+    def test_amplifier_is_capped(self):
+        amp = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                                    days_to_cover=99, float_shares=1e6),
+                     SqueezeConfig(max_amplifier=1.2)).amplifier
+        self.assertLessEqual(amp, 1.2)
+
+    def test_full_stack_scores_above_structural_only(self):
+        struct_only = assess(SqueezeMetrics("X", short_interest_pct_float=30, utilization_pct=92, borrow_fee_pct=15))
+        self.assertEqual(struct_only.squeeze_score, struct_only.composite_score)
+        full = assess(SqueezeMetrics("X", short_interest_pct_float=30, utilization_pct=92, borrow_fee_pct=15,
+                                     borrow_fee_trend_pct_pts=8, momentum_pct=20,
+                                     price_vs_short_cost_basis_pct=40, days_to_cover=12, float_shares=8e6))
+        self.assertGreater(full.squeeze_score, full.composite_score)
+
+
+class TestRankAndConfig(unittest.TestCase):
+    def test_fuel_ranks_above_bearish(self):
+        lcid = SqueezeMetrics("LCID", short_interest_pct_float=33.6, borrow_fee_pct=26.1)
+        grpn = SqueezeMetrics("GRPN", short_interest_pct_float=64.6, borrow_fee_pct=1.5)
+        ranked = rank_candidates([grpn, lcid])
+        self.assertEqual(ranked[0].ticker, "LCID")
+        self.assertEqual(ranked[0].classification, SqueezeClass.SQUEEZE_FUEL)
+        self.assertEqual(ranked[-1].classification, SqueezeClass.GENUINELY_SHORT)
+
+    def test_custom_cutoffs_change_classification(self):
+        m = SqueezeMetrics("X", short_interest_pct_float=30, utilization_pct=80, borrow_fee_pct=5)
+        order = {SqueezeClass.SQUEEZE_FUEL: 0, SqueezeClass.ELEVATED: 1, SqueezeClass.WATCH: 2,
+                 SqueezeClass.GENUINELY_SHORT: 3, SqueezeClass.LOW: 4, SqueezeClass.INSUFFICIENT_DATA: 5}
+        strict = assess(m, SqueezeConfig(elevated_score=99, watch_score=95))
+        loose = assess(m, SqueezeConfig(elevated_score=10, watch_score=5))
+        self.assertLessEqual(order[loose.classification], order[strict.classification])
 
 
 if __name__ == "__main__":
