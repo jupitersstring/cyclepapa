@@ -467,6 +467,11 @@ def infer_region_from_row(name: str, ticker: str, notes: str) -> str:
         return "United Kingdom"
     if "[TDnet]" in notes:
         return "Japan"
+    # Any [EDGAR-*] tagged source is US (EDGAR is SEC-only)
+    if "[EDGAR-" in notes or "[OFAC]" in notes or "[LDA-Senate]" in notes:
+        return "United States/Canada"
+    if "[FRED-" in notes:
+        return "United States/Canada"
     # Accession-format fingerprints (for legacy rows lacking the tag)
     if _RX_ACC_ASX.search(notes):
         return "SE Asia / Pacific"

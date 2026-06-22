@@ -73,8 +73,8 @@ size-class proxy from currency-amount detection.
 | **MEA / Frontier** | 110 | 10 | 0.22 | 0.79 | GTCO (Guaranty Trust) (NGX:GTCO) |
 | **SE Asia / Pacific** | 78 | 24 | 0.36 | 0.96 | ACROW LIMITED (ACF) |
 | **United Kingdom** | 36 | 11 | 0.34 | 0.87 | REDCENTRIC PLC (—) |
-| **United States/Canada** | 188 | 14 | 0.20 | 0.91 | NYCB / Flagstar Financial (NYSE:FLG) |
-| **Unspecified** | 16 | 9 | 0.54 | 0.96 | KalVista Pharmaceuticals, Inc. (CIK:0001348911) |
+| **United States/Canada** | 194 | 20 | 0.22 | 0.96 | KalVista Pharmaceuticals, Inc. (CIK:0001348911) |
+| **Unspecified** | 10 | 3 | 0.33 | 0.79 | StrategX Elements Corp. (—) |
 
 ## Continental Europe — top 15 by triage score
 
@@ -240,7 +240,12 @@ size-class proxy from currency-amount detection.
 
 | Score | Name | Ticker | Conf | Bucket | Archetype | Status | Vintage | Size |
 |---|---|---|---|---|---|---|---|---|
+| 0.96 | KalVista Pharmaceuticals, Inc. | CIK:0001348911 | ○ | A | A2+K3 | OK | 2026 | mid |
+| 0.96 | KHEOBA CORP. | CIK:0001909770 | ○ | A | A2+K3 | OK | 2026 | mid |
+| 0.96 | Thermon Group Holdings, Inc. | CIK:0001489096 | ○ | A | A2+K3 | OK | 2026 | mid |
 | 0.91 | NYCB / Flagstar Financial | NYSE:FLG | ★ | A | A1 | OK | 2024 | small |
+| 0.87 | Teamshares Inc. | CIK:0001783876 | ○ | A | A2+K3 | OK | 2026 | small |
+| 0.87 | J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11 | CIK:0001574219 | ○ | A | A2+K3 | OK | 2026 | small |
 | 0.79 | John Whitfield Mecom, III | — | ○ | A | A2 | OK | 2026 | small |
 | 0.79 | Berkshire Land & Realty, LLC | — | ○ | A | A2 | OK | 2026 | small |
 | 0.79 | Urban Medspa & Weight Loss Center Charlotte, P.C. | — | ○ | A | A2 | OK | 2026 | small |
@@ -250,31 +255,21 @@ size-class proxy from currency-amount detection.
 | 0.79 | GVO Still Waters, LLC | — | ○ | A | A2 | OK | 2026 | small |
 | 0.79 | GVO Urban, LLC | — | ○ | A | A2 | OK | 2026 | small |
 | 0.79 | GVO Sweetgrass, LLC | — | ○ | A | A2 | OK | 2026 | small |
-| 0.79 | 15 Codman Park LLC | — | ○ | A | A2 | OK | 2026 | small |
-| 0.73 | Calfrac Well Services | TSX:CFW | ★ | A | A1 | OK | ? | small |
-| 0.67 | First Foundation | NYSE:FFWM | ★ | A | A1 | OK | 2024 | small |
-| 0.58 | Coinbase | NASDAQ:COIN | ★ | A | B | OK | ? | small |
-| 0.53 | Eneti | (merged Cadeler) | ★ | A | B | OK | ? | small |
 
-## Unspecified — top 15 by triage score
+## Unspecified — top 10 by triage score
 
 | Score | Name | Ticker | Conf | Bucket | Archetype | Status | Vintage | Size |
 |---|---|---|---|---|---|---|---|---|
-| 0.96 | KalVista Pharmaceuticals, Inc. | CIK:0001348911 | ○ | A | A2+K3 | OK | 2026 | mid |
-| 0.96 | KHEOBA CORP. | CIK:0001909770 | ○ | A | A2+K3 | OK | 2026 | mid |
-| 0.96 | Thermon Group Holdings, Inc. | CIK:0001489096 | ○ | A | A2+K3 | OK | 2026 | mid |
-| 0.87 | Teamshares Inc. | CIK:0001783876 | ○ | A | A2+K3 | OK | 2026 | small |
-| 0.87 | J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11 | CIK:0001574219 | ○ | A | A2+K3 | OK | 2026 | small |
 | 0.79 | StrategX Elements Corp. | — | ○ | A | A2 | OK | 2026 | small |
 | 0.79 | H2 Ventures 1 Inc. | — | ○ | A | A2 | OK | 2026 | small |
 | 0.79 | Pulsar Helium Inc. | — | ○ | A | A2 | OK | 2026 | small |
-| 0.79 | GENCO SHIPPING & TRADING LTD | CIK:0001326200 | ○ | A | A2 | OK | 2026 | small |
 | 0.35 | MANUFATURA DE  BRINQUEDOS ESTRELA SA | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.34 | BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.05 | Calfrac Well Services | TSX:CFW | A | 3/3 | Unknown | OK | ? | small |
 | 0.05 | Worldline | EPA:WLN | A | 2/3 | Unknown | OK | ? | small |
 | 0.05 | Ørsted | CSE:ORSTED | A | 2/3 | Unknown | OK | ? | small |
 | 0.05 | Petra Diamonds | LSE:PDL | A | 2/3 | Unknown | OK | ? | small |
+| 0.05 | McDermott International | OTC:MCDIF | C → B | n/a | Unknown | OK | ? | small |
 
 ## Global top 75 (triage-score ranked)
 
@@ -288,9 +283,9 @@ size-class proxy from currency-amount detection.
 | 6 | 0.96 | **Mediobanca** | BIT:MB | A | A1 | OK | Continental Europe | ? |
 | 7 | 0.96 | **ACROW LIMITED** | ACF | A | A2+A1 | OK | SE Asia / Pacific | 2026 |
 | 8 | 0.96 | **MEMPHASYS LIMITED.** | MEM | A | A2+B | OK | SE Asia / Pacific | 2026 |
-| 9 | 0.96 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | A | A2+K3 | OK | Unspecified | 2026 |
-| 10 | 0.96 | **KHEOBA CORP.** | CIK:0001909770 | A | A2+K3 | OK | Unspecified | 2026 |
-| 11 | 0.96 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | A | A2+K3 | OK | Unspecified | 2026 |
+| 9 | 0.96 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | A | A2+K3 | OK | United States/Canada | 2026 |
+| 10 | 0.96 | **KHEOBA CORP.** | CIK:0001909770 | A | A2+K3 | OK | United States/Canada | 2026 |
+| 11 | 0.96 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | A | A2+K3 | OK | United States/Canada | 2026 |
 | 12 | 0.95 | **Thyssenkrupp Steel** | XETR:TKA | A | H | OK | Continental Europe | 2024 |
 | 13 | 0.95 | **Banco Galicia** | NYSE:GGAL | A | A1 | OK | Latin America | 2024 |
 | 14 | 0.91 | **NYCB / Flagstar Financial** | NYSE:FLG | A | A1 | OK | United States/Canada | 2024 |
@@ -321,8 +316,8 @@ size-class proxy from currency-amount detection.
 | 39 | 0.87 | **AUSTRALIAN STRATEGIC MATERIALS LIMITED** | ASM | A | A2+E | OK | SE Asia / Pacific | 2026 |
 | 40 | 0.87 | **QUBE HOLDINGS LIMITED** | QUB | A | A2+E | OK | SE Asia / Pacific | 2026 |
 | 41 | 0.87 | **NOVA MINERALS CORP** | NVA | A | A2+E | OK | SE Asia / Pacific | 2026 |
-| 42 | 0.87 | **Teamshares Inc.** | CIK:0001783876 | A | A2+K3 | OK | Unspecified | 2026 |
-| 43 | 0.87 | **J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11** | CIK:0001574219 | A | A2+K3 | OK | Unspecified | 2026 |
+| 42 | 0.87 | **Teamshares Inc.** | CIK:0001783876 | A | A2+K3 | OK | United States/Canada | 2026 |
+| 43 | 0.87 | **J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11** | CIK:0001574219 | A | A2+K3 | OK | United States/Canada | 2026 |
 | 44 | 0.86 | **Hitachi Construction Machinery** | TSE:6305 | A | H | OK | Japan | 2026 |
 | 45 | 0.86 | **Doosan Bobcat → Doosan Robotics merger** | KRX:241560 | A | H | OK | Korea | 2026 |
 | 46 | 0.82 | **Samsung C&T** | KRX:028260 | A | H | OK | Korea | 2026 |
@@ -366,9 +361,9 @@ primary filings and promote.
 |---|---|---|---|---|---|---|---|
 | 0.96 | **ACROW LIMITED** | ACF | SE Asia / Pacific | A | A2+A1 | 2026 | mid |
 | 0.96 | **MEMPHASYS LIMITED.** | MEM | SE Asia / Pacific | A | A2+B | 2026 | mid |
-| 0.96 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | Unspecified | A | A2+K3 | 2026 | mid |
-| 0.96 | **KHEOBA CORP.** | CIK:0001909770 | Unspecified | A | A2+K3 | 2026 | mid |
-| 0.96 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | Unspecified | A | A2+K3 | 2026 | mid |
+| 0.96 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | United States/Canada | A | A2+K3 | 2026 | mid |
+| 0.96 | **KHEOBA CORP.** | CIK:0001909770 | United States/Canada | A | A2+K3 | 2026 | mid |
+| 0.96 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.95 | **Banco Galicia** | NYSE:GGAL | Latin America | A | A1 | 2024 | mid |
 | 0.88 | **DOTZ NANO LIMITED** | DTZ | SE Asia / Pacific | A | A2 | 2026 | mid |
 | 0.88 | **BALLYMORE RESOURCES LIMITED** | BMR | SE Asia / Pacific | A | A2 | 2026 | mid |
@@ -396,8 +391,8 @@ primary filings and promote.
 | 0.87 | **AUSTRALIAN STRATEGIC MATERIALS LIMITED** | ASM | SE Asia / Pacific | A | A2+E | 2026 | small |
 | 0.87 | **QUBE HOLDINGS LIMITED** | QUB | SE Asia / Pacific | A | A2+E | 2026 | small |
 | 0.87 | **NOVA MINERALS CORP** | NVA | SE Asia / Pacific | A | A2+E | 2026 | small |
-| 0.87 | **Teamshares Inc.** | CIK:0001783876 | Unspecified | A | A2+K3 | 2026 | small |
-| 0.87 | **J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11** | CIK:0001574219 | Unspecified | A | A2+K3 | 2026 | small |
+| 0.87 | **Teamshares Inc.** | CIK:0001783876 | United States/Canada | A | A2+K3 | 2026 | small |
+| 0.87 | **J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11** | CIK:0001574219 | United States/Canada | A | A2+K3 | 2026 | small |
 | 0.79 | **PPHE HOTEL GROUP LIMITED** | — | United Kingdom | A | A2 | 2026 | small |
 | 0.79 | **Van Elle Holdings PLC** | — | United Kingdom | A | A2 | 2026 | small |
 | 0.79 | **StrategX Elements Corp.** | — | Unspecified | A | A2 | 2026 | small |
