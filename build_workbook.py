@@ -108,22 +108,182 @@ def _style_header(ws, row, col_start, col_end):
 
 
 def _autosize(ws, headers, max_w=34):
+    """Set column widths from the wider of the humanised header label vs the
+    longest cell value (capped). Adds ~2 chars padding."""
     for i, h in enumerate(headers, 1):
         col_letter = get_column_letter(i)
-        max_len = len(str(h))
+        # Header width uses the humanised label (what's actually rendered)
+        header_label = _humanize(h)
+        max_len = len(str(header_label))
         for row in ws.iter_rows(min_col=i, max_col=i, values_only=True):
             for v in row:
-                if v is not None:
+                if v is None:
+                    continue
+                # For numbers, account for comma separators and "%" suffix
+                if isinstance(v, (int, float)) and not isinstance(v, bool):
+                    if abs(v) >= 1000:
+                        digits = len(f'{v:,.0f}')
+                    else:
+                        digits = len(f'{v:.2f}')
+                    max_len = max(max_len, digits + 2)  # +2 for () negative
+                else:
                     max_len = max(max_len, min(len(str(v)), max_w))
-        ws.column_dimensions[col_letter].width = max(9, min(max_len + 2, max_w))
+        ws.column_dimensions[col_letter].width = max(10, min(max_len + 2, max_w))
 
 
 _TEXT_COLS = {
     'ticker','company','sector','industry','country','region','name','longname',
     'shortname','category','growing_revenue_type','status','path','measure',
     'symbol','holder','firm','position','action','grade','transaction','insider',
-    'ownership','text','url','tab','periodtype','period',
+    'ownership','text','url','tab','periodtype','period','pe_peak_date',
 }
+
+# Human-readable column titles. snake_case → Title-Case-with-Units. Anything
+# not in the map is title-cased automatically (rev_yoy_pct → "Rev Yoy Pct").
+# Tune this dictionary when a column reads awkwardly in the published sheets.
+COLUMN_LABELS: dict[str, str] = {
+    'ticker': 'Ticker',
+    'company': 'Company',
+    'sector': 'Sector',
+    'industry': 'Industry',
+    'country': 'Country',
+    'region': 'Region',
+    'longName': 'Company',
+    'shortName': 'Company',
+    'category': 'Category',
+    'growing_revenue_type': 'Growing Revenue Type',
+    'status': 'Status',
+    'path': 'Path',
+    'measure': 'Measure',
+    'rows': 'Rows',
+    # Valuation
+    'market_cap': 'Market Cap',
+    'marketCap': 'Market Cap',
+    'marketCap_M': 'Market Cap ($M)',
+    'enterpriseValue': 'Enterprise Value',
+    'ev_now': 'Enterprise Value',
+    'priceToBook': 'P/B',
+    'priceToTangibleBook': 'P/TBV',
+    'priceToSales': 'P/S',
+    'trailingPE': 'P/E (TTM)',
+    'forwardPE': 'P/E (Fwd)',
+    'enterpriseToEbitda': 'EV/EBITDA',
+    'enterpriseToRevenue': 'EV/Sales',
+    'evEbitda': 'EV/EBITDA',
+    'ev_ebitda_now': 'EV/EBITDA',
+    'ev_sales_now': 'EV/Sales',
+    'ev_fcf_now': 'EV/FCF',
+    'ev_fcf_per_growth': 'EV/FCF per pp Growth',
+    'pe_now': 'P/E Now',
+    'pe_y_ago': 'P/E 1Y Ago',
+    'pe_turns_yoy': 'P/E Δ (turns)',
+    'pe_change_pct': 'P/E Change',
+    'pe_peak_5y': 'P/E Peak (5Y)',
+    'pe_turns_off_peak': 'Turns Off Peak',
+    'pe_pct_off_peak': 'Off Peak',
+    'pe_peak_date': 'Peak Date',
+    'ps_now': 'P/S',
+    'pb_now': 'P/B',
+    'multiple_compression_pct': 'Multiple Compression',
+    # Performance
+    'perf_1y_pct': '1Y Performance',
+    'price_now': 'Price Now',
+    'price_y_ago': 'Price 1Y Ago',
+    'price_change_pct': 'Price Change',
+    'price_3y_pct': '3Y Price Change',
+    # Top line / margins
+    'rev_ltm_now_M': 'Revenue LTM ($M)',
+    'rev_ltm_yoy_pct': 'Revenue YoY',
+    'rev_now_M': 'Revenue LTM ($M)',
+    'rev_y_ago_M': 'Revenue 1Y Ago ($M)',
+    'rev_yoy_pct': 'Revenue YoY',
+    'rev_growth_yoy_pct': 'Revenue YoY',
+    'sales_growth_pct': 'Sales Growth',
+    'gross_ltm_now_M': 'Gross Profit LTM ($M)',
+    'gross_ltm_yoy_pct': 'Gross Profit YoY',
+    'gross_margin_now_pct': 'Gross Margin',
+    'gross_margin_chg_pp': 'Gross Margin Δ (pp)',
+    'op_margin_now_pct': 'Op Margin',
+    'op_margin_chg_pp': 'Op Margin Δ (pp)',
+    'margin_expansion_pp': 'Margin Δ (pp)',
+    'ebitda_now_M': 'EBITDA LTM ($M)',
+    'ebitda_margin_now_pct': 'EBITDA Margin',
+    'ebitda_margin_y_ago_pct': 'EBITDA Margin 1Y Ago',
+    'ebitda_yoy_pct': 'EBITDA YoY',
+    'ebitda_growth_pct': 'EBITDA Growth',
+    # Cash flow / yield
+    'fcf_now_M': 'FCF LTM ($M)',
+    'fcf_y_ago_M': 'FCF 1Y Ago ($M)',
+    'fcf_yoy_pct': 'FCF YoY',
+    'fcf_growth_pct': 'FCF Growth',
+    'fcf_margin_now_pct': 'FCF Margin',
+    'fcf_margin_y_ago_pct': 'FCF Margin 1Y Ago',
+    'fcf_yield_now_pct': 'FCF Yield Now',
+    'fcf_yield_y_ago_pct': 'FCF Yield 1Y Ago',
+    'fcf_yield_2y_ago_pct': 'FCF Yield 2Y Ago',
+    'fcf_yield_3y_ago_pct': 'FCF Yield 3Y Ago',
+    'yield_trend_pp_1y': 'Yield Trend 1Y (pp)',
+    'yield_trend_pp_2y': 'Yield Trend 2Y (pp)',
+    'yield_yoy_growth_pct': 'Yield YoY Growth',
+    'fcf_ps_growth_pct': 'FCF/sh Growth',
+    'fcf_ps_3y_growth_pct': 'FCF/sh 3Y Growth',
+    'ltm_fcf_ps_now': 'FCF/sh LTM',
+    # Earnings
+    'eps_now_ltm': 'EPS LTM',
+    'eps_y_ago_ltm': 'EPS 1Y Ago',
+    'eps_growth_pct': 'EPS Growth',
+    'roe_pct': 'ROE',
+    # Balance sheet
+    'debt_to_equity': 'D/E',
+    'shares_1y_chg': 'Shares Δ (1Y)',
+    # Segment
+    'share_now': 'Segment Share',
+    'seg_growth': 'Segment Growth',
+    'total_growth': 'Total Growth',
+    'excess_growth': 'Excess Growth',
+    'years_to_50pct': 'Years to 50%',
+    'seg_ltm': 'Segment LTM',
+    'total_ltm': 'Total LTM',
+    'n_quarters': 'Quarters',
+    'cheap_pct': 'Cheap Pct',
+    'avg_inflection_z': 'Inflection Z',
+    # Scores
+    'akre_score': 'Akre Score',
+    'seg_score': 'Segment Score',
+    'pre_rerate_score': 'Pre-Rerate Score',
+    'leverage_score': 'Leverage Score',
+    'quality_score': 'Quality Score',
+    'composite': 'Composite',
+    'fin_composite': 'Fin Composite',
+    'is_inflection': 'Inflection?',
+    'is_acceleration': 'Acceleration?',
+}
+
+def _humanize(col: str) -> str:
+    """Friendly column header. Use COLUMN_LABELS when mapped, else title-case
+    the snake_case identifier."""
+    if col in COLUMN_LABELS:
+        return COLUMN_LABELS[col]
+    # Auto title-case fallback
+    parts = str(col).replace('_', ' ').split()
+    pretty = []
+    for p in parts:
+        up = p.upper()
+        if up in ('LTM','TTM','YOY','M','B','P','PE','PB','PS','EV','FCF','EBITDA','EPS','ROE','ROA','PP','USD','API'):
+            pretty.append(up)
+        else:
+            pretty.append(p.title())
+    return ' '.join(pretty)
+
+
+def _truncate_with_ellipsis(s: str, max_len: int) -> str:
+    """Trim long strings to max_len chars, ending with a real ellipsis
+    (U+2026) when truncated. Preserves whole words when possible."""
+    s = str(s)
+    if len(s) <= max_len:
+        return s
+    cut = s[: max_len - 1].rstrip(' ,.;:-')
+    return cut + '…'
 
 def _excel_number_format(col_name: str, sample: float | None = None) -> str | None:
     """Pick an Excel number format string based on column-name heuristics.
@@ -133,19 +293,24 @@ def _excel_number_format(col_name: str, sample: float | None = None) -> str | No
     name = (col_name or '').lower()
     if name in _TEXT_COLS:
         return None
-    # Percent-like columns (data is already in pct points, e.g. 23.4 not 0.234)
+    # Z-scores and other dimensionless metrics (don't carry %)
+    if name in ('avg_inflection_z',):
+        return '#,##0.00;(#,##0.00);"–"'
+    # Fractional columns — stored as decimals (0.105 means 10.5%, 37.8 means
+    # 3780%). Use Excel's auto-percentage format which multiplies by 100.
+    if name in ('share_now','shares_1y_chg','seg_growth','total_growth',
+                'excess_growth'):
+        return r'0.0%;(0.0%);"–"'
+    # Percent-like columns — data is already in pct points (e.g. 23.4 means
+    # 23.4%). Render with a literal % suffix (Excel: escape with backslash).
     if (name.endswith('_pct') or name.endswith('_pct_change') or '_pp' in name
             or 'percent' in name or name in ('perf_1y','perf_1y_pct',
-            'cheap_pct','avg_inflection_z','rev_growth','sales_growth_pct',
+            'cheap_pct','rev_growth','sales_growth_pct',
             'fcf_growth_pct','ebitda_growth_pct','margin_expansion_pp',
             'price_change_pct','price_3y_pct','rev_yoy_pct','fcf_yoy_pct',
             'ebitda_yoy_pct','fcf_ps_3y_growth_pct','yield_yoy_growth_pct',
-            'yield_trend_pp_1y','yield_trend_pp_2y','seg_growth','total_growth',
-            'excess_growth','share_now')):
-        return '#,##0.0;(#,##0.0);"–"'
-    # Fractional ratios that mean a percent but are stored as 0..1
-    if name in ('share_now','shares_1y_chg') and sample is not None and -2 < sample < 2:
-        return '0.0%;(0.0%);"–"'
+            'yield_trend_pp_1y','yield_trend_pp_2y')):
+        return r'#,##0.0\%;(#,##0.0\%);"–"'
     # Money fields in millions (suffixed _M) — show with comma, no decimals
     if name.endswith('_m') or name.endswith('_ltm_m') or name == 'rev_now_m' or name == 'fcf_now_m':
         return '#,##0;(#,##0);"–"'
@@ -185,43 +350,70 @@ def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True)
         c.font = CAPTION_FONT
         c.alignment = ALIGN_LEFT
         return start_row + 2
-    for i, h in enumerate(headers, 1):
-        ws.cell(row=start_row, column=i, value=h)
-    _style_header(ws, start_row, 1, len(headers))
-    # Decide a number format per column from the first non-null sample
+    # Decide a number format per column from the first non-null sample,
+    # plus determine whether each column is numeric (for alignment).
     col_fmt: dict[str, str | None] = {}
+    col_is_numeric: dict[str, bool] = {}
     for h in headers:
         sample = None
+        numeric = False
         if h in df.columns:
             s = df[h].dropna()
             if not s.empty:
                 v = s.iloc[0]
                 if isinstance(v, (int, float, np.integer, np.floating)) and not isinstance(v, bool):
                     sample = float(v)
+                    numeric = True
         col_fmt[h] = _excel_number_format(h, sample)
+        col_is_numeric[h] = numeric and (h.lower() not in _TEXT_COLS)
+
+    # Header row: humanised labels, right-align numeric column headers so
+    # they sit over their digits; left-align text headers.
+    for i, h in enumerate(headers, 1):
+        cell = ws.cell(row=start_row, column=i, value=_humanize(h))
+    _style_header(ws, start_row, 1, len(headers))
+    # Re-apply alignment per column (overrides the centred default from _style_header)
+    for i, h in enumerate(headers, 1):
+        cell = ws.cell(row=start_row, column=i)
+        cell.alignment = ALIGN_RIGHT if col_is_numeric.get(h) else ALIGN_LEFT
+
     last_data_row = start_row + len(df)
+    # Column width guards for truncating very long strings (company names etc.)
+    max_text_width = {'company': 38, 'industry': 32, 'sector': 24, 'country': 22,
+                      'longName': 38, 'shortName': 38, 'name': 32}
     for r, (_, row) in enumerate(df.iterrows(), start=start_row + 1):
         is_last = (r == last_data_row)
         for c, h in enumerate(headers, 1):
             v = row.get(h)
-            if pd.isna(v):
+            if pd.isna(v) or v == '' or v is None:
                 cell = ws.cell(row=r, column=c, value=None)
+                # Show em-dash for blank numeric cells; blank for blank text
+                if col_is_numeric.get(h):
+                    cell.value = None  # number_format "–" placeholder handles it
+                cell.font = BODY_FONT
+                cell.alignment = ALIGN_RIGHT if col_is_numeric.get(h) else ALIGN_LEFT
+                cell.fill = WARM_FILL
+                cell.border = Border(bottom=RULE_BOTTOM) if is_last else NO_BORDER
+                continue
+            # Preserve native numeric types — formatting is via number_format
+            if isinstance(v, (np.integer,)):
+                v = int(v)
+            elif isinstance(v, (np.floating, float)):
+                v = float(v)
+            elif isinstance(v, str):
+                # Truncate long text cleanly with an ellipsis (not hard-cut)
+                if h in max_text_width:
+                    v = _truncate_with_ellipsis(v, max_text_width[h])
+            cell = ws.cell(row=r, column=c, value=v)
+            if isinstance(v, bool):
+                cell.alignment = ALIGN_LEFT
+            elif isinstance(v, (int, float)):
+                cell.alignment = ALIGN_RIGHT
+                fmt = col_fmt.get(h)
+                if fmt:
+                    cell.number_format = fmt
             else:
-                # Preserve native numeric types — formatting is via number_format
-                if isinstance(v, (np.integer,)):
-                    v = int(v)
-                elif isinstance(v, (np.floating, float)):
-                    v = float(v)
-                cell = ws.cell(row=r, column=c, value=v)
-                if isinstance(v, bool):
-                    cell.alignment = ALIGN_LEFT  # booleans render as text-like
-                elif isinstance(v, (int, float)):
-                    cell.alignment = ALIGN_RIGHT
-                    fmt = col_fmt.get(h)
-                    if fmt:
-                        cell.number_format = fmt
-                else:
-                    cell.alignment = ALIGN_LEFT
+                cell.alignment = ALIGN_LEFT
             cell.font = BODY_FONT
             cell.fill = WARM_FILL
             if is_last:
@@ -863,15 +1055,27 @@ def build_creative_measures(wb):
         else:
             rest_cols = [c for c in df.columns if c not in front]
         cols = front + rest_cols
-        # Truncate any other long-name columns
-        for c in ('longName','name'):
-            if c in df.columns:
-                df[c] = df[c].astype(str).str[:32]
-        end_row = _write_df(ws, df.head(50), cols, start_row=r)
+        # Caption above the table: N rows, top-N selector
+        n_total = len(df)
+        top_n = min(50, n_total)
+        if n_total > top_n:
+            caption = f'Top {top_n} of {n_total:,} candidates, ranked by the screen-specific score.'
+        else:
+            caption = f'All {n_total:,} surviving candidates.'
+        c = ws.cell(row=r, column=1, value=caption)
+        c.font = CAPTION_FONT
+        c.alignment = ALIGN_LEFT
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=min(len(cols), 10))
+        r += 2
+        # Truncation of longName/name happens inside _write_df via ellipsis
+        end_row = _write_df(ws, df.head(top_n), cols, start_row=r)
         _autosize(ws, cols)
-        # Freeze after the front columns so ticker+name stay visible
+        # Freeze after the front columns so ticker+company stay visible while scrolling
         ws.freeze_panes = chr(ord('A') + len(front)) + str(r + 1)
-        _add_footer(ws, end_row)
+        _add_footer(
+            ws, end_row,
+            source=('Source: Yahoo Finance via yfinance · SEC EDGAR XBRL companyfacts · '
+                    'computed locally. See README for methodology.'))
 
 
 def build_glossary(wb):
