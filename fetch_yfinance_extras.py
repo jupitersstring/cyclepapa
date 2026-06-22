@@ -49,11 +49,12 @@ def _deadpath(t: str, slot: str) -> Path:
     return CACHE / f'{_safe(t)}__{slot}.dead'
 
 
-def _missing(ticker: str) -> list[str]:
-    """Return slots that have neither a parquet nor a .dead sentinel."""
+def _missing(cache_key: str) -> list[str]:
+    """Return slots that have neither a parquet nor a .dead sentinel.
+    Operates on the cache_key (on-disk name), not the live ticker symbol."""
     out = []
     for s in SLOTS:
-        if _outpath(ticker, s).exists() or _deadpath(ticker, s).exists():
+        if _outpath(cache_key, s).exists() or _deadpath(cache_key, s).exists():
             continue
         out.append(s)
     return out
@@ -84,15 +85,19 @@ def _to_df(obj) -> pd.DataFrame | None:
     return None
 
 
-def fetch_one(ticker: str) -> dict[str, str]:
-    """Fetch every missing slot for one ticker. Returns a per-slot status:
-    'ok', 'empty', 'fetch_error'."""
-    todo = _missing(ticker)
+def fetch_one(cache_key: str, ticker_symbol: str | None = None) -> dict[str, str]:
+    """Fetch every missing slot for one ticker. `cache_key` is the on-disk
+    name (used to choose the output filename); `ticker_symbol` is the real
+    symbol passed to yfinance (defaults to cache_key for plain US tickers).
+    Returns a per-slot status: 'ok' | 'empty' | 'fetch_error'."""
+    if ticker_symbol is None:
+        ticker_symbol = _cache_key_to_ticker(cache_key)
+    todo = _missing(cache_key)
     if not todo:
         return {s: 'cached' for s in SLOTS}
     results: dict[str, str] = {}
     try:
-        t = yf.Ticker(ticker)
+        t = yf.Ticker(ticker_symbol)
     except Exception:
         for s in todo:
             results[s] = 'fetch_error'
@@ -106,29 +111,51 @@ def fetch_one(ticker: str) -> dict[str, str]:
             continue
         df = _to_df(obj)
         if df is None:
-            _deadpath(ticker, slot).touch()
+            _deadpath(cache_key, slot).touch()
             results[slot] = 'empty'
             continue
         try:
-            df.to_parquet(_outpath(ticker, slot), compression='snappy')
+            df.to_parquet(_outpath(cache_key, slot), compression='snappy')
             results[slot] = 'ok'
         except Exception:
-            # Schema-mismatch / unhashable columns -> stringify and retry
             try:
                 df2 = df.astype(str)
-                df2.to_parquet(_outpath(ticker, slot), compression='snappy')
+                df2.to_parquet(_outpath(cache_key, slot), compression='snappy')
                 results[slot] = 'ok'
             except Exception:
-                _deadpath(ticker, slot).touch()
+                _deadpath(cache_key, slot).touch()
                 results[slot] = 'fetch_error'
     return results
 
 
-def universe_tickers() -> list[str]:
-    """Same definition as fetch_all_deep.py: every ticker that has an
-    info_metrics parquet (i.e. lives in our screened universe)."""
-    return sorted({p.name.split('__')[0]
+# Region-suffix mapping — recovers the original ticker (e.g. 000955.SZ) from
+# the on-disk cache key (000955_SZ), which encodes "." as "_". Keep in sync
+# with the same map in growth_adj_value.py.
+_KNOWN_SUFFIXES = {
+    'T','L','DE','F','PA','TO','V','AX','SW','MI','AS','MC','ST','OL','CO','BR',
+    'HE','IR','VI','LS','AT','KS','KQ','HK','TW','TWO','SI','NZ','TA','SS','SZ',
+    'NS','BO','SA','MX','JO','IS','BK','JK',
+}
+
+def _cache_key_to_ticker(key: str) -> str:
+    """Reverse the cache-name → symbol mapping. The on-disk name encodes
+    everything that isn't [A-Za-z0-9_-] (mainly '.') as '_'. We can recover
+    `<head>.<suffix>` when `<suffix>` is a known regional exchange suffix.
+    Tickers without a regional suffix are returned unchanged."""
+    if '_' in key:
+        head, _, tail = key.rpartition('_')
+        if tail in _KNOWN_SUFFIXES:
+            return f'{head}.{tail}'
+    return key
+
+
+def universe_tickers() -> list[tuple[str, str]]:
+    """Return (cache_key, ticker_symbol) pairs for every ticker that has an
+    info_metrics parquet. The cache_key is what we use for output filenames
+    (stable across runs); the ticker_symbol is what we pass to yf.Ticker."""
+    keys = sorted({p.name.split('__')[0]
                    for p in CACHE.glob('*__info_metrics.parquet')})
+    return [(k, _cache_key_to_ticker(k)) for k in keys]
 
 
 def main():
@@ -141,7 +168,7 @@ def main():
     args = ap.parse_args()
 
     universe = universe_tickers()
-    todo = [t for t in universe if _missing(t)]
+    todo = [(k, s) for k, s in universe if _missing(k)]
     print(f'Universe size: {len(universe):,} tickers')
     print(f'Tickers with missing extras slots: {len(todo):,}')
     if not todo:
@@ -151,8 +178,8 @@ def main():
     target = todo[: args.max_tickers]
     t0 = time.time()
     n_ok = n_empty = n_err = 0
-    for i, tk in enumerate(target, 1):
-        r = fetch_one(tk)
+    for i, (key, sym) in enumerate(target, 1):
+        r = fetch_one(key, sym)
         for slot, status in r.items():
             if status == 'ok':
                 n_ok += 1
