@@ -32,6 +32,10 @@ from full_universe_consensus import (
     score_recent_incentive_layer,
     score_special_situations_layer,
     score_turnaround_layer,
+    score_opportunistic_insiders_layer,
+    score_buyback_insider_overlay_layer,
+    score_odd_lot_tender_layer,
+    score_tender_mechanism_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -56,6 +60,10 @@ def main() -> int:
         "recent_incentive": score_recent_incentive_layer(layers, universe),
         "special_situations": score_special_situations_layer(layers, universe),
         "turnaround": score_turnaround_layer(layers, universe),
+        "opportunistic_insiders": score_opportunistic_insiders_layer(layers, universe),
+        "buyback_insider_overlay": score_buyback_insider_overlay_layer(layers, universe),
+        "odd_lot_tender": score_odd_lot_tender_layer(layers, universe),
+        "tender_mechanism": score_tender_mechanism_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -96,6 +104,10 @@ def main() -> int:
             "recent_incentive_pts": layer_scores["recent_incentive"].get(tk, 0),
             "special_sits_pts": layer_scores["special_situations"].get(tk, 0),
             "turnaround_pts": layer_scores["turnaround"].get(tk, 0),
+            "opportunistic_pts": layer_scores["opportunistic_insiders"].get(tk, 0),
+            "bb_insider_overlay_pts": layer_scores["buyback_insider_overlay"].get(tk, 0),
+            "odd_lot_pts": layer_scores["odd_lot_tender"].get(tk, 0),
+            "tender_mech_pts": layer_scores["tender_mechanism"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 

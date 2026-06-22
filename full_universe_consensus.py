@@ -242,6 +242,106 @@ def score_turnaround_layer(layers: dict, universe: set) -> dict:
 
 
 # ----------------------------------------------------------------------
+# Tier-1 additive enhancement layers
+# (Cohen-Malloy, Bonaime-Ryngaert, Tauraitis odd-lot, Comment-Jarrell)
+# ----------------------------------------------------------------------
+
+def score_opportunistic_insiders_layer(layers: dict, universe: set) -> dict:
+    """Cohen-Malloy-Pomorski opportunistic-vs-routine classifier.
+    Additive on top of existing f4 layer -- this layer ONLY captures
+    the *opportunistic* portion, weighted per Cohen-Malloy.
+
+    Source: opportunistic_insiders.json (built by
+    opportunistic_insiders.py). Names without F4 data score 0."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "opportunistic_insiders.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
+def score_buyback_insider_overlay_layer(layers: dict, universe: set) -> dict:
+    """Bonaime-Ryngaert insider-direction overlay on buyback.
+    Returns a score DELTA (positive or negative) that ADDS to the
+    existing buyback layer score. Names with no overlay row score 0
+    (no change to existing buyback contribution).
+
+    Source: buyback_insider_overlay.json (built by
+    buyback_insider_overlay.py)."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "buyback_insider_overlay.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score_delta") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
+def score_odd_lot_tender_layer(layers: dict, universe: set) -> dict:
+    """Tauraitis/Walker odd-lot tender priority bonus.
+    Additive on top of existing tender layer. Names with full odd-lot
+    + not-prorated edge score +25; partial language only scores +10.
+
+    Source: tender_odd_lot.json (built by
+    tender_odd_lot_and_mechanism.py)."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "tender_odd_lot.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
+def score_tender_mechanism_layer(layers: dict, universe: set) -> dict:
+    """Comment-Jarrell tender-mechanism multiplier delta.
+    Returns score DELTA per Comment-Jarrell (JF 1991): fixed-price =
+    base, Dutch = -27%, exchange-offer = -15%, open-market = -82%.
+    UNKNOWN returns 0 (neutral -- we don't penalize what we can't
+    classify).
+
+    Source: tender_mechanism.json (built by
+    tender_odd_lot_and_mechanism.py)."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "tender_mechanism.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score_delta") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
+# ----------------------------------------------------------------------
 # Universe build
 # ----------------------------------------------------------------------
 
@@ -264,6 +364,13 @@ def main() -> int:
         "recent_incentive": score_recent_incentive_layer(layers, universe),
         "special_situations": score_special_situations_layer(layers, universe),
         "turnaround": score_turnaround_layer(layers, universe),
+        # Tier-1 additive enhancement layers (Cohen-Malloy, Bonaime-
+        # Ryngaert, Tauraitis odd-lot, Comment-Jarrell) -- each ADDS to
+        # (does not replace) the corresponding base layer.
+        "opportunistic_insiders": score_opportunistic_insiders_layer(layers, universe),
+        "buyback_insider_overlay": score_buyback_insider_overlay_layer(layers, universe),
+        "odd_lot_tender": score_odd_lot_tender_layer(layers, universe),
+        "tender_mechanism": score_tender_mechanism_layer(layers, universe),
     }
     print(f"Layers scored: {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -316,6 +423,10 @@ def main() -> int:
             "recent_incentive_pts": layer_scores["recent_incentive"].get(tk, 0),
             "special_sits_pts": layer_scores["special_situations"].get(tk, 0),
             "turnaround_pts": layer_scores["turnaround"].get(tk, 0),
+            "opportunistic_pts": layer_scores["opportunistic_insiders"].get(tk, 0),
+            "bb_insider_overlay_pts": layer_scores["buyback_insider_overlay"].get(tk, 0),
+            "odd_lot_pts": layer_scores["odd_lot_tender"].get(tk, 0),
+            "tender_mech_pts": layer_scores["tender_mechanism"].get(tk, 0),
         })
 
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
