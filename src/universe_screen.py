@@ -213,6 +213,23 @@ ARCHETYPE_PATTERNS: list[tuple[str, list[str]]] = [
         r"\bsecondary supply (?:exhaust|depleted)",
         r"\bbreak[ -]?even.*?(?:>|above) \$",
     ]),
+    # ---- F-archetype subcodes (process_improvements v3 §6, v4 §7) ----
+    ("F2", [   # equity carve-out — parent IPOs subsidiary, retains control
+        r"\bequity carve[ -]?out\b", r"\bipo of subsidiary\b",
+        r"\bmajority[ -]retained spin", r"\bcarve[ -]?out.*?ipo\b",
+    ]),
+    ("F3", [   # butterfly / split-up (Section 355(e))
+        r"\bbutterfly transaction\b", r"\bsplit[ -]?up\b",
+        r"\bsection 355\(e\)\b", r"\breciprocal exchange\b",
+        r"\bdivisive reorganization\b",
+    ]),
+    # ---- K9 SCDI / VRI / sovereign warrants (process_improvements v3 §17) ----
+    ("K9", [
+        r"\b(?:scdi|state[ -]contingent debt instrument)\b",
+        r"\b(?:vri|value recovery instrument)\b",
+        r"\bgdp warrant\b", r"\bcommodity[ -]linked sovereign\b",
+        r"\bsovereign warrant\b",
+    ]),
 ]
 
 # Status patterns — extended with completed-arc + false-friend detectors
@@ -295,6 +312,7 @@ ARCH_WEIGHT = {
     # restructuring archetypes but typically shorter-duration trades.
     "K1": 0.80, "K2": 0.70, "K3": 0.85, "K4": 0.75,
     "K5": 0.65, "K6": 0.95, "K7": 0.75, "K8": 1.00,
+    "F2": 0.75, "F3": 0.80, "K9": 0.85,
     "Unknown": 0.50,
 }
 

@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -16,6 +16,7 @@ help:
 	@echo "  cluster-sells — Form 4 S-code cluster-sell detector (Wirecard/SVB red flag)"
 	@echo "  ofac-poll  — OFAC recent-actions (sanctions GL + designations)"
 	@echo "  lobbying-poll — Senate LDA lobbying-disclosure filings"
+	@echo "  credit-spread-poll — FRED ICE BofA HY/IG/CCC OAS market-level monitor"
 	@echo "  universe-rr  — rank reward/risk across the full universe (REAL where YAML, PROXY otherwise)"
 	@echo "  workbook     — rebuild the Excel workbook from latest inputs"
 	@echo "  refresh      — full chain: pollers → promote → screen → rank → workbook"
@@ -92,6 +93,11 @@ ofac-poll: audit
 lobbying-poll: audit
 	python3 -m src.lobbying_poll --days-back 7
 
+# FRED ICE BofA OAS monitor — bond spreads as equity-event leading
+# indicator. HY/IG/CCC bands; flags 30-day moves >= per-band threshold.
+credit-spread-poll: audit
+	python3 -m src.credit_spread_poll
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -127,7 +133,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll spinoff cluster-buys inbox-promote workbook
+refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll spinoff cluster-buys inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

@@ -1,0 +1,21 @@
+{
+  "accession": "docket-73510948",
+  "assigned_to": "Janet Bostwick",
+  "cik": "",
+  "court_id": "mab",
+  "debtor_firm": "",
+  "docket_no": "26-11458",
+  "fetched_at": "2026-06-22T15:07:12.990253Z",
+  "filed": "2026-06-19",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "15 Codman Park LLC",
+  "query_label": "red_flag.prepack",
+  "query_note": "PRE-PACK SIGNATURE: joint filing of 13 affiliated debtors same-day in mab suggests pre-negotiated plan + RSA + DIP. Equity typically wiped per plan-support agreement. Affiliates: 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC, 15 Codman Park LLC...",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.courtlistener.com/docket/73510948/15-codman-park-llc/"
+}

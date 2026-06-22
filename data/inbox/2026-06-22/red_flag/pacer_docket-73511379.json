@@ -1,0 +1,21 @@
+{
+  "accession": "docket-73511379",
+  "assigned_to": "",
+  "cik": "",
+  "court_id": "ilnb",
+  "debtor_firm": "",
+  "docket_no": "26-10378",
+  "fetched_at": "2026-06-22T15:07:12.990253Z",
+  "filed": "2026-06-22",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Chicago Heights Ayers LLC",
+  "query_label": "red_flag.prepack",
+  "query_note": "PRE-PACK SIGNATURE: joint filing of 50 affiliated debtors same-day in ilnb suggests pre-negotiated plan + RSA + DIP. Equity typically wiped per plan-support agreement. Affiliates: Chicago Heights Ayers LLC, Chicago Heights Ayers LLC, Chicago Heights Ayers LLC, Chicago Heights Ayers LLC, Chicago Heights Ayers LLC...",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.courtlistener.com/docket/73511379/chicago-heights-ayers-llc/"
+}

@@ -1,0 +1,21 @@
+{
+  "accession": "docket-73511275",
+  "assigned_to": "",
+  "cik": "",
+  "court_id": "nysb",
+  "debtor_firm": "",
+  "docket_no": "26-11457",
+  "fetched_at": "2026-06-22T15:07:12.990253Z",
+  "filed": "2026-06-21",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Universal Agami Transit Inc.",
+  "query_label": "tier_s.bankruptcy_11",
+  "query_note": "New Chapter 11 filing in SDNY; verify whether DIP / plan / 363 trajectory makes equity worth analyzing; joint filing of 2 affiliated debtors: Universal Agami Transit Inc., Universal Agami Transit Inc.",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/73511275/universal-agami-transit-inc/"
+}
