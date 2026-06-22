@@ -14,12 +14,14 @@ from short_squeeze import (
     BORROW_FEE_MEDIAN_PCT,
     BORROW_FEE_P95_PCT,
     SCORE_RULES,
+    Confidence,
     SqueezeClass,
     SqueezeMetrics,
     _band_score,
     assess,
     detect_bearish_convergence,
     detect_squeeze_fuel,
+    utilization_from_loan,
 )
 
 
@@ -120,11 +122,23 @@ class TestBearishConvergence(unittest.TestCase):
         m = SqueezeMetrics(short_interest_pct_float=10.0, utilization_pct=50.0, borrow_fee_pct=3.0)
         self.assertFalse(detect_bearish_convergence(m).triggered)
 
-    def test_reports_missing_inputs(self):
+    def test_unavailable_when_no_util_and_no_fee(self):
+        # SI present but neither utilization nor fee -> detector cannot run at all.
         r = detect_bearish_convergence(SqueezeMetrics(short_interest_pct_float=22.0))
         self.assertFalse(r.triggered)
-        self.assertIn("utilization_pct", r.missing)
-        self.assertIn("borrow_fee_pct", r.missing)
+        self.assertEqual(r.mode, "unavailable")
+
+    def test_strict_mode_uses_utilization(self):
+        r = detect_bearish_convergence(
+            SqueezeMetrics(short_interest_pct_float=22.0, utilization_pct=38.0, borrow_fee_pct=0.9)
+        )
+        self.assertEqual(r.mode, "strict")
+
+    def test_proxy_mode_without_utilization(self):
+        # Cheap fee, no utilization -> proxy still fires (cheap borrow => ample supply).
+        r = detect_bearish_convergence(SqueezeMetrics(short_interest_pct_float=20.0, borrow_fee_pct=0.8))
+        self.assertTrue(r.triggered)
+        self.assertEqual(r.mode, "proxy")
 
 
 class TestSqueezeFuel(unittest.TestCase):
@@ -180,14 +194,23 @@ class TestAssess(unittest.TestCase):
         self.assertEqual(a.classification, SqueezeClass.LOW)
         self.assertEqual(a.composite_score, 0.0)
 
-    def test_missing_utilization_is_insufficient_even_with_high_si(self):
+    def test_headline_only_is_capped_to_watch_at_low_confidence(self):
+        # SI% only (no fee, no util): high SI alone must NOT be promoted to a
+        # squeeze call. Capped at WATCH, LOW confidence.
         m = SqueezeMetrics(
             ticker="BLIND", short_interest_pct_float=31.0, days_to_cover=7.0, source="yfinance",
         )
         a = assess(m)
-        self.assertEqual(a.classification, SqueezeClass.INSUFFICIENT_DATA)
+        self.assertEqual(a.confidence, Confidence.LOW)
+        self.assertEqual(a.classification, SqueezeClass.WATCH)
         self.assertLess(a.coverage, 0.6)
-        self.assertTrue(any("Utilization missing" in n for n in a.notes))
+        self.assertTrue(any("No utilization" in n for n in a.notes))
+        self.assertTrue(any("Capped at WATCH" in n for n in a.notes))
+
+    def test_insufficient_data_only_when_nothing_scorable(self):
+        a = assess(SqueezeMetrics(ticker="EMPTY"))
+        self.assertEqual(a.classification, SqueezeClass.INSUFFICIENT_DATA)
+        self.assertIsNone(a.composite_score)
 
     def test_composite_is_weight_renormalised_over_available_rules(self):
         # Only utilization present: composite should equal the utilization sub-score,
@@ -202,6 +225,54 @@ class TestAssess(unittest.TestCase):
                                   utilization_pct=88.0, borrow_fee_pct=9.0))
         self.assertIsInstance(a.summary(), str)
         self.assertIn("X", a.summary())
+
+
+class TestDegradedMode(unittest.TestCase):
+    """Behaviour when utilization (and maybe fee) are unavailable — the
+    'build without IBKR' regime."""
+
+    def test_confidence_high_when_utilization_present(self):
+        a = assess(SqueezeMetrics(short_interest_pct_float=12.0, utilization_pct=88.0, borrow_fee_pct=9.0))
+        self.assertEqual(a.confidence, Confidence.HIGH)
+
+    def test_confidence_medium_when_only_fee(self):
+        a = assess(SqueezeMetrics(short_interest_pct_float=12.0, borrow_fee_pct=9.0))
+        self.assertEqual(a.confidence, Confidence.MEDIUM)
+
+    def test_confidence_low_when_only_si(self):
+        a = assess(SqueezeMetrics(short_interest_pct_float=12.0))
+        self.assertEqual(a.confidence, Confidence.LOW)
+
+    def test_squeeze_fuel_proxy_reaches_call_at_medium(self):
+        # Hot, rising fee, elevated SI, but no utilization -> proxy fuel, MEDIUM.
+        m = SqueezeMetrics(short_interest_pct_float=26.0, borrow_fee_pct=28.0, borrow_fee_trend_pct_pts=9.0)
+        r = detect_squeeze_fuel(m)
+        self.assertTrue(r.triggered)
+        self.assertEqual(r.mode, "proxy")
+        a = assess(m)
+        self.assertEqual(a.classification, SqueezeClass.SQUEEZE_FUEL)
+        self.assertEqual(a.confidence, Confidence.MEDIUM)
+
+    def test_bearish_proxy_overrides_at_medium(self):
+        m = SqueezeMetrics(short_interest_pct_float=20.0, borrow_fee_pct=0.8)
+        a = assess(m)
+        self.assertEqual(a.classification, SqueezeClass.GENUINELY_SHORT)
+        self.assertEqual(a.confidence, Confidence.MEDIUM)
+
+    def test_squeeze_fuel_unavailable_without_si(self):
+        r = detect_squeeze_fuel(SqueezeMetrics(utilization_pct=95.0, borrow_fee_pct=30.0))
+        self.assertEqual(r.mode, "unavailable")
+        self.assertFalse(r.triggered)
+
+
+class TestUtilizationFromLoan(unittest.TestCase):
+    def test_basic_ratio(self):
+        self.assertAlmostEqual(utilization_from_loan(90.0, 100.0), 90.0)
+        self.assertAlmostEqual(utilization_from_loan(1_000_000, 4_000_000), 25.0)
+
+    def test_zero_or_negative_denominator_returns_none(self):
+        self.assertIsNone(utilization_from_loan(10.0, 0.0))
+        self.assertIsNone(utilization_from_loan(10.0, -5.0))
 
 
 if __name__ == "__main__":

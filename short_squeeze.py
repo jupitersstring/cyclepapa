@@ -56,14 +56,19 @@ THE TWO DETECTORS
 DATA REALITY (read this before you trust a score)
 -------------------------------------------------
 The two most predictive inputs — UTILIZATION and BORROW FEE — are securities-
-lending data. They are NOT available from free retail feeds. yfinance gives you
-short_interest % of float, shares short, and days-to-cover (short ratio) only.
-Utilization and borrow fee require a stock-loan data vendor (Ortex, S3 Partners,
-FIS Astec, S&P/IHS Markit, or your prime broker / IBKR). `from_yfinance()`
-therefore populates SI% and days-to-cover and leaves utilization/fee as None,
-and the engine will loudly flag that it is "flying blind on the dominant
-predictor." Also note FINRA short interest is reported twice a month and
-published on the 7th business day after the settlement date — it is stale by
+lending data, not on no-account free feeds. yfinance gives you short_interest %
+of float, shares short, and days-to-cover only. Realistic ways to get the rest:
+  * IBKR's Securities Lending Dashboard — real-time utilization, shares-on-loan
+    and borrow fee, FREE with an Interactive Brokers account (the best back-door);
+  * Ortex — limited FREE tier exposes CTB + utilization (paid ~$39-50/mo for full);
+  * Nasdaq Data Link / S&P (IHS) Markit / FIS Astec — paid.
+If you have none of these, run DEGRADED: the engine still scores and classifies,
+but reports `confidence = MEDIUM` (borrow fee but no utilization) or `LOW`
+(neither — SI%/days-to-cover only), and the detectors switch to a borrow-fee
+proxy (cheap fee strongly implies ample supply). It returns INSUFFICIENT_DATA
+only when there is nothing scorable at all. Wire a lending feed and it
+auto-upgrades to strict detectors and HIGH confidence. Note FINRA short interest
+is bi-monthly, published 7 business days after settlement — stale by
 construction; utilization and fee are daily.
 
 This module has NO third-party dependencies in its core (so the scoring engine
@@ -89,9 +94,11 @@ __all__ = [
     "detect_bearish_convergence",
     "detect_squeeze_fuel",
     "SqueezeClass",
+    "Confidence",
     "SqueezeAssessment",
     "assess",
     "from_yfinance",
+    "utilization_from_loan",
     "BORROW_FEE_MEAN_PCT",
     "BORROW_FEE_MEDIAN_PCT",
     "BORROW_FEE_P95_PCT",
@@ -266,6 +273,7 @@ class DetectorResult:
     name: str
     triggered: bool
     reason: str
+    mode: str = "strict"          # "strict" (utilization-based), "proxy" (fee-based), "unavailable"
     missing: List[str] = field(default_factory=list)  # required inputs that were None
 
     def __bool__(self) -> bool:  # so `if result:` works
@@ -285,102 +293,109 @@ FUEL_FEE_MIN = 10.0            # fee in the "special" tail (Schultz ~p95 region)
 def detect_bearish_convergence(m: SqueezeMetrics) -> DetectorResult:
     """Genuinely-short / squeeze-DISqualifier detector.
 
-        SI% > 10  AND  utilization < 50%  AND  borrow_fee < 3%
+        strict (utilization available):  SI% > 10  AND  util < 50%  AND  fee < 3%
+        proxy  (no utilization):         SI% > 10  AND  fee < 3%   (cheap borrow
+                                         strongly implies ample supply / low util)
+        proxy  (no fee):                 SI% > 10  AND  util < 50%
 
     High short interest with ample (low-utilization) and cheap (low-fee) borrow
-    means the short side is comfortable and uncrowded: sophisticated capital
-    that is genuinely short on fundamentals and not at risk of being forced out.
-    Treat as a bearish tell and explicitly NOT a squeeze candidate.
+    means the short side is comfortable and uncrowded: sophisticated capital that
+    is genuinely short on fundamentals and not at risk of being forced out. Treat
+    as a bearish tell and explicitly NOT a squeeze candidate. The proxy modes
+    keep the detector working when a securities-lending feed is unavailable
+    (see module docstring) — at lower confidence.
     """
-    missing = [
-        name
-        for name, v in (
-            ("short_interest_pct_float", m.short_interest_pct_float),
-            ("utilization_pct", m.utilization_pct),
-            ("borrow_fee_pct", m.borrow_fee_pct),
-        )
-        if v is None
-    ]
-    if missing:
+    si, util, fee = m.short_interest_pct_float, m.utilization_pct, m.borrow_fee_pct
+    if si is None or (util is None and fee is None):
         return DetectorResult(
             "bearish_convergence", False,
-            "Cannot evaluate: missing " + ", ".join(missing), missing,
+            "Cannot evaluate: need SI% and at least one of utilization / borrow fee.",
+            mode="unavailable",
+            missing=["short_interest_pct_float | utilization_pct | borrow_fee_pct"],
         )
 
-    si, util, fee = m.short_interest_pct_float, m.utilization_pct, m.borrow_fee_pct
-    triggered = (si > BEARISH_SI_MIN) and (util < BEARISH_UTIL_MAX) and (fee < BEARISH_FEE_MAX)
+    si_ok = si > BEARISH_SI_MIN
+    if util is not None and fee is not None:
+        mode = "strict"
+        triggered = si_ok and (util < BEARISH_UTIL_MAX) and (fee < BEARISH_FEE_MAX)
+        cond = f"util {util:.1f}%<{BEARISH_UTIL_MAX:g} & fee {fee:.2f}%<{BEARISH_FEE_MAX:g}"
+    elif fee is not None:  # no utilization: cheap fee => ample supply
+        mode = "proxy"
+        triggered = si_ok and (fee < BEARISH_FEE_MAX)
+        cond = f"fee {fee:.2f}%<{BEARISH_FEE_MAX:g} (util unknown; cheap borrow implies ample supply)"
+    else:  # have utilization, no fee
+        mode = "proxy"
+        triggered = si_ok and (util < BEARISH_UTIL_MAX)
+        cond = f"util {util:.1f}%<{BEARISH_UTIL_MAX:g} (fee unknown)"
+
+    tag = "" if mode == "strict" else " [proxy]"
     if triggered:
         reason = (
-            f"SI {si:.1f}% > {BEARISH_SI_MIN:g}% but utilization {util:.1f}% < "
-            f"{BEARISH_UTIL_MAX:g}% and borrow {fee:.2f}% < {BEARISH_FEE_MAX:g}%: "
-            "borrow is ample and cheap -> comfortable, uncrowded short -> "
-            "genuinely short (bearish), NOT a squeeze setup."
+            f"SI {si:.1f}%>{BEARISH_SI_MIN:g} and {cond}: borrow ample & cheap -> "
+            f"comfortable, uncrowded short -> genuinely short (bearish), NOT a "
+            f"squeeze setup.{tag}"
         )
     else:
-        reason = (
-            f"Not genuinely-short: need SI>{BEARISH_SI_MIN:g} & util<"
-            f"{BEARISH_UTIL_MAX:g} & fee<{BEARISH_FEE_MAX:g}; got "
-            f"SI={si:.1f}, util={util:.1f}, fee={fee:.2f}."
-        )
-    return DetectorResult("bearish_convergence", triggered, reason)
+        reason = f"Not genuinely-short ({mode}): SI {si:.1f}%, {cond}."
+    return DetectorResult("bearish_convergence", triggered, reason, mode=mode)
 
 
 def detect_squeeze_fuel(m: SqueezeMetrics) -> DetectorResult:
     """Fragile-short / squeeze-fuel detector.
 
-        utilization >= 85%  AND  short_interest% >= 10%
-        AND ( borrow_fee >= 10%  OR  borrow_fee rising )
-        AND  shorts are NOT clearly in profit (S3: a profitable short can't be
-             squeezed; you need mark-to-market losses to force covering).
+        strict (utilization available):
+            util >= 85%  AND  SI% >= 10%  AND  (fee >= 10%  OR fee rising)
+            AND shorts NOT clearly in profit.
+        proxy  (no utilization):
+            (fee >= 10%  OR fee rising)  AND  SI% >= 10%  AND not in profit.
+        proxy  (no fee):
+            util >= 85%  AND  SI% >= 10%  AND not in profit.
 
-    The borrow-fee condition is satisfied by a high LEVEL or a positive TREND,
-    because an accelerating fee is often the earliest tell that supply is about
-    to run out.
+    The borrow-fee condition is met by a high LEVEL or a positive TREND, because
+    an accelerating fee is often the earliest tell that supply is running out.
+    S3 gate: a still-profitable short cannot be squeezed (it needs MTM losses).
     """
-    missing = [
-        name
-        for name, v in (
-            ("short_interest_pct_float", m.short_interest_pct_float),
-            ("utilization_pct", m.utilization_pct),
-            ("borrow_fee_pct", m.borrow_fee_pct),
-        )
-        if v is None
-    ]
-    if missing:
+    si, util, fee = m.short_interest_pct_float, m.utilization_pct, m.borrow_fee_pct
+    if si is None or (util is None and fee is None):
         return DetectorResult(
             "squeeze_fuel", False,
-            "Cannot evaluate: missing " + ", ".join(missing), missing,
+            "Cannot evaluate: need SI% and at least one of utilization / borrow fee.",
+            mode="unavailable",
+            missing=["short_interest_pct_float | utilization_pct | borrow_fee_pct"],
         )
 
-    si, util, fee = m.short_interest_pct_float, m.utilization_pct, m.borrow_fee_pct
     fee_rising = (m.borrow_fee_trend_pct_pts or 0.0) > 0.0
-    fee_hot = (fee >= FUEL_FEE_MIN) or fee_rising
-    # Shorts profitable => not squeezable. Only veto when we actually have the
-    # P&L proxy and it says shorts are comfortably in the money.
+    fee_hot = (fee is not None and fee >= FUEL_FEE_MIN) or fee_rising
     shorts_in_profit = (
         m.price_vs_short_cost_basis_pct is not None
         and m.price_vs_short_cost_basis_pct < 0.0
     )
+    si_ok = si >= FUEL_SI_MIN
+    util_tight = util is not None and util >= FUEL_UTIL_MIN
 
-    triggered = (
-        util >= FUEL_UTIL_MIN
-        and si >= FUEL_SI_MIN
-        and fee_hot
-        and not shorts_in_profit
-    )
+    if util is not None and fee is not None:
+        mode = "strict"
+        triggered = util_tight and si_ok and fee_hot and not shorts_in_profit
+    elif util is not None:  # no fee
+        mode = "proxy"
+        triggered = util_tight and si_ok and not shorts_in_profit
+    else:  # no utilization, have fee
+        mode = "proxy"
+        triggered = fee_hot and si_ok and not shorts_in_profit
 
     bits = [
-        f"util {util:.1f}% {'>=' if util >= FUEL_UTIL_MIN else '<'} {FUEL_UTIL_MIN:g}%",
-        f"SI {si:.1f}% {'>=' if si >= FUEL_SI_MIN else '<'} {FUEL_SI_MIN:g}%",
-        f"fee {fee:.2f}% {'hot' if fee_hot else 'cool'}"
+        f"util {('%.1f%%' % util) if util is not None else 'n/a'}" + (" tight" if util_tight else ""),
+        f"SI {si:.1f}% {'>=' if si_ok else '<'} {FUEL_SI_MIN:g}%",
+        f"fee {('%.2f%%' % fee) if fee is not None else 'n/a'} {'hot' if fee_hot else 'cool'}"
         + (" (rising)" if fee_rising else ""),
     ]
     if shorts_in_profit:
         bits.append(
-            f"shorts still in profit ({m.price_vs_short_cost_basis_pct:.1f}% below entry) -> can't be forced"
+            f"shorts in profit ({m.price_vs_short_cost_basis_pct:.1f}% below entry) -> can't be forced"
         )
-    reason = ("SQUEEZE FUEL: " if triggered else "Not (yet) squeeze fuel: ") + "; ".join(bits)
-    return DetectorResult("squeeze_fuel", triggered, reason)
+    tag = "" if mode == "strict" else " [proxy]"
+    reason = ("SQUEEZE FUEL: " if triggered else "Not (yet) squeeze fuel: ") + "; ".join(bits) + tag
+    return DetectorResult("squeeze_fuel", triggered, reason, mode=mode)
 
 
 # ---------------------------------------------------------------------------
@@ -392,7 +407,19 @@ class SqueezeClass(str, Enum):
     ELEVATED = "ELEVATED"                    # high score, watch
     WATCH = "WATCH"                          # middling
     LOW = "LOW"                              # nothing here
-    INSUFFICIENT_DATA = "INSUFFICIENT_DATA"  # missing the dominant predictor
+    INSUFFICIENT_DATA = "INSUFFICIENT_DATA"  # nothing scorable at all (no SI%, no fee, no util)
+
+
+class Confidence(str, Enum):
+    """How much to trust the call, driven by which inputs were available.
+
+    HIGH   = utilization present (the dominant predictor; strict detectors).
+    MEDIUM = no utilization but borrow fee present (fee-proxy detectors).
+    LOW    = neither utilization nor fee — SI%/days-to-cover only (headline regime).
+    """
+    HIGH = "HIGH"
+    MEDIUM = "MEDIUM"
+    LOW = "LOW"
 
 
 @dataclass
@@ -400,6 +427,7 @@ class SqueezeAssessment:
     ticker: str
     composite_score: Optional[float]            # 0-100, weighted over AVAILABLE rules
     classification: SqueezeClass
+    confidence: Confidence                       # HIGH/MEDIUM/LOW by data availability
     rule_scores: Dict[str, Optional[float]]
     coverage: float                              # 0-1: weight of rules we could score
     bearish_convergence: DetectorResult
@@ -410,7 +438,7 @@ class SqueezeAssessment:
         cs = "n/a" if self.composite_score is None else f"{self.composite_score:5.1f}"
         lines = [
             f"{self.ticker or '(unknown)':<8} {self.classification.value:<18} "
-            f"score={cs}  coverage={self.coverage:.0%}",
+            f"score={cs}  conf={self.confidence.value:<6} coverage={self.coverage:.0%}",
         ]
         for rid, rule in SCORE_RULES.items():
             sc = self.rule_scores.get(rid)
@@ -425,9 +453,8 @@ class SqueezeAssessment:
         return "\n".join(lines)
 
 
-# Coverage below this (i.e. we are missing too much weight, in practice the
-# utilization rule) means we cannot responsibly call something a squeeze.
-MIN_COVERAGE_FOR_CALL = 0.60
+# Below this coverage we still produce a call, but flag it (advisory only).
+LOW_COVERAGE_ADVISORY = 0.60
 ELEVATED_SCORE = 70.0
 WATCH_SCORE = 40.0
 
@@ -440,11 +467,15 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
     counting as zero. Classification order of precedence:
 
         1. bearish convergence triggered            -> GENUINELY_SHORT
-        2. missing the dominant predictor (util)    -> INSUFFICIENT_DATA
-        3. squeeze-fuel triggered & score elevated  -> SQUEEZE_FUEL
-        4. score >= ELEVATED                         -> ELEVATED
-        5. score >= WATCH                            -> WATCH
-        6. otherwise                                 -> LOW
+        2. squeeze-fuel triggered & score elevated  -> SQUEEZE_FUEL
+        3. score >= ELEVATED                         -> ELEVATED
+        4. score >= WATCH                            -> WATCH
+        5. something scorable                        -> LOW
+        6. nothing scorable at all                   -> INSUFFICIENT_DATA
+
+    `confidence` (HIGH/MEDIUM/LOW) reflects which inputs were available:
+    utilization present -> HIGH; only borrow fee -> MEDIUM; neither -> LOW. A
+    missing input never silently counts as zero; it lowers coverage instead.
     """
     notes: List[str] = []
 
@@ -463,25 +494,39 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
     bearish = detect_bearish_convergence(m)
     fuel = detect_squeeze_fuel(m)
 
-    util_missing = m.utilization_pct is None
-    if util_missing:
+    # confidence is governed by the BEST predictor we actually have
+    if m.utilization_pct is not None:
+        confidence = Confidence.HIGH
+    elif m.borrow_fee_pct is not None:
+        confidence = Confidence.MEDIUM
+    else:
+        confidence = Confidence.LOW
+
+    if m.utilization_pct is None:
         notes.append(
-            "Utilization missing — the single best predictor (Schultz 2024). "
-            "Score is unreliable without a securities-lending feed (Ortex/S3/IBKR)."
+            "No utilization — the single best predictor (Schultz 2024). Running in "
+            "degraded mode; detectors fall back to a borrow-fee proxy. Wire IBKR "
+            "(free with an account) or Ortex (free tier) to upgrade to HIGH confidence."
         )
     if m.borrow_fee_pct is None:
-        notes.append("Borrow fee missing — cannot judge how 'special' the name is.")
+        notes.append("No borrow fee — cannot judge how 'special' the name is.")
+    if m.utilization_pct is None and m.borrow_fee_pct is None:
+        notes.append(
+            "Headline-only regime (SI%/days-to-cover): best used to AVOID crowded "
+            "shorts, not to confirm a squeeze. Treat any squeeze call as a hypothesis."
+        )
+    if 0.0 < coverage < LOW_COVERAGE_ADVISORY:
+        notes.append(f"Low coverage ({coverage:.0%}) — score rests on few inputs.")
     if m.source == "yfinance":
         notes.append(
-            "yfinance supplies SI% and days-to-cover only; utilization & borrow "
-            "fee must come from a stock-loan vendor. FINRA SI is also stale "
+            "yfinance supplies SI% and days-to-cover only; FINRA SI is stale "
             "(bi-monthly, published 7 business days after settlement)."
         )
 
-    # --- classify ---
+    # --- classify (best-effort; INSUFFICIENT_DATA only when nothing is scorable) ---
     if bearish.triggered:
         cls = SqueezeClass.GENUINELY_SHORT
-    elif composite is None or coverage < MIN_COVERAGE_FOR_CALL or util_missing:
+    elif composite is None:
         cls = SqueezeClass.INSUFFICIENT_DATA
     elif fuel.triggered and composite >= ELEVATED_SCORE:
         cls = SqueezeClass.SQUEEZE_FUEL
@@ -492,10 +537,20 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
     else:
         cls = SqueezeClass.LOW
 
+    # Headline-only (LOW confidence) cannot justify a squeeze call: high SI alone
+    # is a bearish-leaning signal, not squeeze fuel. Cap the optimism at WATCH.
+    if confidence == Confidence.LOW and cls in (SqueezeClass.ELEVATED, SqueezeClass.SQUEEZE_FUEL):
+        cls = SqueezeClass.WATCH
+        notes.append(
+            "Capped at WATCH: no lending-market signal (fee/util); high SI alone "
+            "is bearish-leaning, not a squeeze."
+        )
+
     return SqueezeAssessment(
         ticker=m.ticker,
         composite_score=composite,
         classification=cls,
+        confidence=confidence,
         rule_scores=rule_scores,
         coverage=coverage,
         bearish_convergence=bearish,
@@ -544,6 +599,18 @@ def from_yfinance(
         avg_daily_volume=info.get("averageVolume"),
         source="yfinance",
     )
+
+
+def utilization_from_loan(shares_on_loan: float, shares_available_to_lend: float) -> Optional[float]:
+    """Utilization % = shares on loan / shares available to lend, in percent.
+
+    Handy if a data source gives you the two raw quantities rather than the ratio
+    (e.g. you read 'Shares on Loan' and the lendable inventory off a dashboard).
+    Returns None if the denominator is non-positive.
+    """
+    if not shares_available_to_lend or shares_available_to_lend <= 0:
+        return None
+    return 100.0 * float(shares_on_loan) / float(shares_available_to_lend)
 
 
 def render_streamlit_panel() -> None:  # pragma: no cover - UI glue
@@ -635,6 +702,7 @@ CITATIONS: Dict[str, str] = {
 def _demo() -> None:
     """Illustrate the framework on four archetypes — runs with no dependencies."""
     examples = [
+        # --- HIGH confidence (utilization available) ---
         # 1. Crowded, expensive, supply gone, shorts under water -> SQUEEZE FUEL.
         SqueezeMetrics(
             ticker="FUEL", short_interest_pct_float=28.0, utilization_pct=98.0,
@@ -651,7 +719,18 @@ def _demo() -> None:
             ticker="MEH", short_interest_pct_float=3.0, utilization_pct=12.0,
             borrow_fee_pct=0.35, days_to_cover=1.2,
         ),
-        # 4. yfinance-only: high SI%, but no lending data -> INSUFFICIENT_DATA.
+        # --- DEGRADED: no utilization (the "build without IBKR" regime) ---
+        # 4. Hot, rising fee but no utilization -> SQUEEZE FUEL [proxy], MEDIUM conf.
+        SqueezeMetrics(
+            ticker="FEEPRX", short_interest_pct_float=26.0, borrow_fee_pct=28.0,
+            borrow_fee_trend_pct_pts=9.0, days_to_cover=5.0,
+        ),
+        # 5. Cheap fee, no utilization -> GENUINELY SHORT [proxy], MEDIUM conf.
+        SqueezeMetrics(
+            ticker="BEARPX", short_interest_pct_float=20.0, borrow_fee_pct=0.8,
+            days_to_cover=2.5,
+        ),
+        # 6. yfinance-only headline regime: high SI%, no lending data -> LOW conf best-effort.
         SqueezeMetrics(
             ticker="BLIND", short_interest_pct_float=31.0, days_to_cover=7.0,
             source="yfinance",

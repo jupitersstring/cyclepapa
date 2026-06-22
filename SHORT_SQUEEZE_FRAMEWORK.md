@@ -265,6 +265,7 @@ SqueezeMetrics ──► 3 SCORE_RULES ──► weighted composite (0–100)
                                             ▼
    classification ∈ {GENUINELY_SHORT, SQUEEZE_FUEL, ELEVATED, WATCH,
                      LOW, INSUFFICIENT_DATA}
+   confidence     ∈ {HIGH (have utilization), MEDIUM (fee only), LOW (SI% only)}
 ```
 
 Design decisions, each tracing to the research:
@@ -274,10 +275,15 @@ Design decisions, each tracing to the research:
 - **Bands are anchored to real distributions** — the fee bands sit on the
   0.375%/2.673%/11.0% percentiles; the utilization bands on Schultz's
   25%/90% frequency cliffs.
-- **Missing utilization ⇒ `INSUFFICIENT_DATA`, never a confident call** — because
-  the dominant predictor is exactly the field free feeds don't carry. The
-  composite is *weight-renormalised over available rules* (a missing input lowers
-  *coverage*, it does not silently count as zero).
+- **Graceful degradation with confidence tiers** — the composite is
+  *weight-renormalised over available rules* (a missing input lowers *coverage*,
+  it never silently counts as zero). Confidence is **HIGH** with utilization,
+  **MEDIUM** with borrow fee but no utilization (detectors switch to a fee proxy:
+  cheap fee ⇒ ample supply), **LOW** with neither. At LOW confidence the call is
+  **capped at WATCH** — high SI% alone is bearish-leaning, not squeeze fuel, so it
+  is never promoted to ELEVATED/SQUEEZE_FUEL. `INSUFFICIENT_DATA` is reserved for
+  when nothing is scorable at all. Wire a lending feed later and it auto-upgrades
+  to strict detectors + HIGH confidence (see Appendix A).
 - **Bearish convergence overrides the score** — a cheap, low-utilization short is
   disqualified as a squeeze regardless of how high SI% is.
 - **Squeeze fuel requires pain** — the S3 gate: a still-profitable short is vetoed.
@@ -292,18 +298,20 @@ composite alongside `d1…d32`.
 
 ## 10. Data-sourcing reality (the binding constraint)
 
-| Field | Free (yfinance) | Needs a lending vendor |
+| Field | Free (yfinance) | Better source |
 |---|---|---|
-| Short interest, % of float, days-to-cover | ✅ (stale, bi-monthly) | — |
-| **Utilization** | ❌ | ✅ Ortex / S3 / IBKR / Markit |
-| **Borrow fee / DCBS** | ❌ | ✅ Ortex / S3 / IBKR / Markit |
+| Short interest, % of float, days-to-cover | ✅ (stale: bi-monthly + 7-business-day lag) | — |
+| **Borrow fee / cost-to-borrow** | ❌ | IBKR public file (free), Ortex free tier, Markit/Fintel (paid) |
+| **Utilization** | ❌ | IBKR *Orbisa* dashboard (GUI only — no API), Ortex free tier, Markit/Nasdaq (paid) |
 
-The two most predictive inputs are precisely the two you cannot get free. The
-framework is built around this: `from_yfinance()` fills SI%/days-to-cover and
-leaves utilization/fee `None` (injectable from your vendor), and the engine
-refuses to call a squeeze while blind on utilization. **If you only have
-yfinance, you can reliably run the *bearish-convergence screen's converse* — i.e.
-flag and *avoid* — far better than you can confirm a squeeze.**
+The two most predictive inputs are the two you can't get from a no-account free
+feed. **Current build (IBKR parked):** the engine runs *degraded* — it scores and
+classifies on whatever subset of {SI%, days-to-cover, borrow fee} you have, tags
+the result `confidence = MEDIUM/LOW`, and uses borrow-fee **proxy** detectors when
+utilization is absent. With **only** yfinance (SI%/days-to-cover) it is best used
+to **AVOID** crowded shorts, not to confirm squeezes — and squeeze calls are
+**capped at WATCH**. Appendix A documents the (parked) IBKR wiring that upgrades
+this to HIGH confidence for free.
 
 ---
 
@@ -357,3 +365,37 @@ flag and *avoid* — far better than you can confirm a squeeze.**
 *Secondary verification of Schultz's summary statistics:* The Evidence-Based
 Investor, *The Consequences of Short Squeezes.*
 https://www.evidenceinvestor.com/post/the-consequences-of-short-squeezes
+
+---
+
+## Appendix A — Wiring data sources (IBKR plan, **parked**)
+
+We are **building without IBKR for now**; this records the plan so it can be
+picked up later. The framework is already shaped for it: `SqueezeMetrics` accepts
+`utilization_pct` / `borrow_fee_pct`, and `assess()` auto-upgrades to strict
+detectors + HIGH confidence the moment utilization appears.
+
+What IBKR actually exposes (researched, and it's nuanced):
+
+| What | How | Account? | Gives |
+|---|---|---|---|
+| **Borrow fee + shortable availability** | Public file `ftp://shortstock@ftp3.interactivebrokers.com/usa.txt` — pipe-delimited, skip lines starting with `#`; columns ≈ `SYM\|CUR\|NAME\|CON\|ISIN\|REBATERATE\|FEERATE\|AVAILABLE`; refreshed several times/day | **No** | `borrow_fee_pct` (→ MEDIUM confidence) + a tightness proxy from `AVAILABLE` |
+| **Live shortable-share quantity** | TWS API (`ib_insync`) `reqMktData(contract, genericTickList="236")` → `ticker.shortableShares` | Yes + TWS/Gateway running | real-time shortable qty |
+| **Utilization + shares-on-loan** | **Orbisa** Securities Lending Dashboard in TWS / Client Portal / Mobile | Yes | **utilization (→ HIGH confidence)** — but **GUI only, no API** |
+
+Key catch: **true utilization has no IBKR API** — it lives only in the Orbisa
+dashboard GUI. So the realistic IBKR build is:
+
+1. **Automate the fee** by parsing `usa.txt` (no account needed) → populate
+   `borrow_fee_pct`. This alone moves you to MEDIUM confidence + fee-proxy
+   detectors.
+2. **Hand-enter utilization** (or read `Shares on Loan` and inventory off the
+   Orbisa dashboard and call `utilization_from_loan(on_loan, inventory)`) when you
+   want a HIGH-confidence read on a specific name.
+
+Alternative to IBKR: **Ortex** free tier surfaces real-time CTB + utilization for
+a limited set; paid ≈ $39–50/mo for full coverage — a true API path to
+utilization if hand-entry is too manual.
+
+Status: **parked.** No FTP/API code is shipped yet by design; `from_yfinance()`
++ manual injection covers the current "build without IBKR" scope.
