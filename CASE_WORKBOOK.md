@@ -1037,6 +1037,342 @@ Verified buyback  Share count actually fell over trailing window
 
 ---
 
+# Historical Case Library
+
+Single-paragraph teaching notes from verified historical event-driven
+trades. Each maps to the Cyclepapa scoring leg that would have
+surfaced the setup *ex ante*. Outcome claims carry URLs; where the
+number could not be independently verified, the note says so.
+
+## H1. MAR / HMT — Marriott / Host Marriott (1993) — Spinoff "orphan equity"
+
+Stephen Bollenbach engineered the Marriott Corp. split in October 1993,
+loading the parent's hotel debt onto Host Marriott (HMT) while keeping
+the cash-flow-rich management contracts in Marriott International (MAR).
+**Detectable signal:** Form 10 disclosed an extreme post-spin debt/EBITDA
+on the SpinCo, generating the textbook "orphan equity" — index funds and
+investment-grade-only mandates were forced sellers; the parent's
+management explicitly took the cheap side. **Cyclepapa leg that would
+fire:** the spinoff scanner (Form 10 + insider Form 4 cluster on RemainCo
+*and* SpinCo) plus the "forced-seller" overlay (debt/EBITDA above
+high-yield index thresholds). **Outcome:** Greenblatt documented an
+HMT triple over ~24 months — see *You Can Be a Stock Market Genius*
+(Joel Greenblatt, 1997), the canonical write-up. **Teaching:** SpinCo
+ugliness *is* the signal — board chose ugliness on purpose.
+
+## H2. FACT — Facet Biotech (2009-2010) — 13D + post-spin distressed
+
+Facet Biotech was spun out of PDL BioPharma in December 2008 with cash
+on the balance sheet exceeding the post-spin market cap on day one — a
+classic neglected-spin floor. Baupost (Klarman) filed 13D on April 8,
+2009, amended to **17.8% ownership** April 27, 2009. **Detectable signal:**
+13D + cash-above-market-cap on a forced-seller spin. **Cyclepapa leg:**
+13D sweep (`recent_13d_sweep.py`) cross-referenced with the spinoff
+scanner — exactly our "convergent on two independent rankers" pattern.
+**Outcome:** Abbott tender at $27/share announced March 9, 2010;
+Baupost exited Q2 2010 at roughly **+209% from 13D filing**.
+([SEC 13D/A](https://www.sec.gov/Archives/edgar/data/0001441848/000106176809000115/fact13damend1.txt),
+[Market Folly](https://www.marketfolly.com/2009/04/seth-klarmans-baupost-group-starts.html))
+**Teaching:** cash-above-market-cap is a *hard floor* — the leg of
+the asymmetric recipe Cyclepapa codes as the P/B overlay equivalent.
+
+## H3. GGP — General Growth Properties (2008-2010) — Ackman Ch 11 equity preserved
+
+Pershing Square filed 13D on November 24, 2008 disclosing ~25M shares plus
+total-return swaps with reference prices $0.49–$1.58, total economic
+exposure ~19.9%. GGP filed Ch 11 April 2009, *emerged with equity intact*
+November 2010, with shareholders also receiving the Howard Hughes
+spinoff. **Detectable signal:** 13D + creditor analysis showing real
+estate values > debt at any defensible cap rate (the bankruptcy was
+liquidity-driven, not solvency-driven). **Cyclepapa leg:** 13D sweep
++ Bastian forcing-function archetype (capital-structure stress where
+the *asset* exceeds the *claim*). **Outcome:** Ackman publicly stated
+~$60M turned into ~$1.6B.
+([SEC 13D](https://www.sec.gov/Archives/edgar/data/0000895648/000095012308016206/y00645sc13d.htm),
+[CRE Analyst](https://www.creanalyst.com/insights/bill-ackmans-1.6-billion-ggp-win-a-masterclass-in-bankruptcy-investing))
+**Teaching:** the BBGI archetype generalized — when the covenant fires
+but the assets exceed the claims, equity survives.
+
+## H4. PYPL — PayPal spin from eBay (July 2015) — Icahn-prompted separation
+
+Carl Icahn filed 13D on eBay in January 2014 advocating separation. eBay
+agreed in September 2014; PayPal spun July 17, 2015 at ~$38 per share.
+**Detectable signal:** 13D advocating separation + Form 10 registration
+of the higher-growth payments unit. **Cyclepapa leg:** the spinoff
+scanner with the "SpinCo is the cleaner business" overlay (PSU plan
+of the SpinCo was payments-growth indexed; RemainCo was retail-margin
+indexed). **Outcome:** PYPL roughly doubled from spin to mid-2018,
+while EBAY underperformed SPY over the same window — the spin worked,
+the RemainCo did not. **Outcome verified at high level**; precise
+trade-window IRRs depend on entry timing. **Teaching:** when an activist
+demands separation and management *agrees*, the SpinCo is usually the
+gem and the parent's compensation plan has already been reindexed to
+it — the PSU forensic leg can confirm before the spin closes.
+
+## H5. MTCH — Match Group from IAC (June-July 2020)
+
+IAC completed full separation of Match Group on June 30, 2020, the
+latest in Barry Diller's serial-spinoff machine (Expedia 2005, HSN/QVC
+2008, Vimeo 2021, etc.). **Detectable signal:** Form 10 + IAC's
+documented track record of spinoff-as-value-recognition. **Cyclepapa leg:**
+spinoff scanner + the "Liberty/IAC archetype" — any time the parent is
+a known serial spinner, the SpinCo deserves an automatic look. **Outcome:**
+MTCH rallied to an all-time closing high of $169.43 on Oct 21, 2021, then
+collapsed; calendar-year total returns were **–12.5% (2021) and –68.6%
+(2022)** vs SPY +28.7% / –18.1%
+([Match 8-K June 2020](https://www.sec.gov/Archives/edgar/data/0001575189/000157518920000086/mtch8-k20200625ex991.htm)).
+The IAC-spin investor who exited within 18 months captured material alpha;
+the indefinite holder did not. **Teaching:** the spinoff edge is *temporal*
+— harvest the re-rate window, then re-evaluate.
+
+## H6. WBD — Warner Bros Discovery (April 2022) — the spin that didn't work
+
+AT&T spun WarnerMedia and merged with Discovery in a Reverse Morris
+Trust transaction April 8, 2022. **Detectable signal:** the structure
+itself (Reverse Morris Trust + Malone involvement) was a textbook
+Greenblatt-style setup. **Cyclepapa leg:** spinoff scanner + the
+"forced seller" overlay (AT&T income holders dumped WBD on receipt).
+**Outcome:** WBD opened ~$24, fell to $18.15 by April 29, 2022 (–27.8%
+in three weeks), and finished 2022 **~–60% vs SPY –18.1%**
+([Motley Fool](https://www.fool.com/investing/2022/11/18/warner-bros-discovery-is-down-nearly-60-this-year/)).
+The thesis failed because
+the underlying media business was structurally declining; the spin
+mechanics did not rescue a bad business. **Teaching (counter-case):**
+the spin scanner surfaces both winners and losers. Spin + forced-seller
+flow is necessary but not sufficient — the SpinCo's PSU plan must code
+a credible *operating* hurdle, not just a TSR percentile.
+
+## H7. GEHC / GEV / GE — General Electric three-way split (2023-2024)
+
+GE separated GE HealthCare (Jan 4, 2023), then split the remaining
+parent into GE Vernova (energy) and GE Aerospace on April 2, 2024.
+**Detectable signal:** Larry Culp's multi-year deleveraging + the
+explicit announcement of separation timeline gave a ~24-month window
+to position. **Cyclepapa leg:** the spinoff scanner + the "remaining
+parent" PSU re-indexing (Aerospace's PSU plan was re-coded to backlog
+and FCF — Cyclepapa's `revenue_dollar_target` plus `fcf_dollar` cond_cats).
+**Outcome:** all three sub-spins outperformed — a rare 3-for-3. GEHC
+debuted ~$53.94 (Jan 4, 2023) and reached ~$93.56 by Sept 30, 2024.
+GEV opened ~$142.85 on April 2, 2024 and rallied **roughly 5x** through
+2025 on the AI/data-center power thesis. GE Aerospace climbed from ~$136
+to ~$200 April 2024–April 2025 (**+~50% vs SPY ~+25%**)
+([GE press release](https://www.ge.com/news/press-releases/ge-completes-separation-of-ge-healthcare),
+[GEV completion](https://www.gevernova.com/news/press-releases/ge-vernova-completes-spin-off-begins-trading-new-york-stock-exchange)). **Teaching:** when one parent spawns three
+SpinCos, the PSU plan of each post-spin entity tells you which one the
+management team picked — that is the one to overweight.
+
+## H8. NLOP — Net Lease Office Properties (November 2023) — liquidation spin
+
+W.P. Carey spun NLOP November 1, 2023 at 1 share per 15 WPC shares,
+explicitly to liquidate the office portfolio. **Detectable signal:**
+Form 10 *stated* the liquidation intent. The income-mandated REIT
+holders of WPC were forced sellers of a sub-1% allocation. **Cyclepapa leg:**
+spinoff scanner with the "stated liquidation" flag — equivalent to a
+tender's mechanical bid. **Outcome:** by March 2026 NLOP had sold 41
+of 59 properties for ~$813M gross and paid ~**$22.69/share** in cumulative
+special distributions against a ~$27 reference, with stock still trading
+~$20.
+([Seeking Alpha](https://seekingalpha.com/article/4862361-net-lease-office-properties-the-endgame-approaches),
+[StockTitan](https://www.stocktitan.net/sec-filings/NLOP/8-k-net-lease-office-properties-reports-material-event-de599a474442.html))
+**Teaching:** a stated-liquidation spin is the cleanest version of the
+"PSU forward dollar hurdle" — the board has told you the entire equity
+will be returned, you just compute the timing.
+
+## H9. CURB — Curbline Properties (October 2024) — fortress-balance-sheet spin
+
+SITE Centers spun Curbline on October 1, 2024 at 2 CURB per 1 SITC,
+capitalized with ~$800M cash, $400M undrawn revolver, $100M delayed-draw
+term loan, and **zero debt**. **Detectable signal:** Form 10 disclosed
+the fortress balance sheet — a unique configuration that retail-REIT
+income holders would dump. **Cyclepapa leg:** spinoff scanner + the
+"net cash / no debt" overlay (analog of P/B < 1). **Outcome:** opened
+$22.60; ~$30.90 mid-June 2026, ~**+22% price return** in ~20 months,
+ahead of REIT index.
+([Curbline IR](https://ir.curbline.com/news/news-details/2024/Curbline-Properties-Announces-Completion-of-Spin-Off-from-SITE-Centers/default.aspx),
+[WallStreetZen](https://www.wallstreetzen.com/stocks/us/nyse/curb))
+**Teaching:** net cash at spin is the asymmetric floor; the convenience-
+retail strategy was upside optionality on top.
+
+## H10. RGS — Regis Corporation (2024) — debt-haircut equity stub
+
+Regis completed a 20:1 reverse split (Nov 2023), then on June 25, 2024
+announced a TCW/MidCap $105M term loan that cut ~$80M of debt and
+~$7M annual interest in exchange for 15% dilutive warrants struck at $7.
+**Detectable signal:** the 8-K disclosed the structure on the day. **Cyclepapa
+leg:** Bastian forcing-function archetype (exchange offer / restructured
+debt where the haircut is large vs the equity stub) + EDGAR keyword
+scanner. **Outcome:** stock soared **~120% intraday** on the announcement
+and traded $27.42 by mid-June 2026 vs sub-$5 pre-refi — a multi-bagger.
+([SahmCapital](https://www.sahmcapital.com/news/content/us-market-preview-nvidia-turns-up-23-pre-market-ffie-plunges-27-plans-reverse-stock-split-regis-soars-120-after-debt-refinancing-2024-06-25),
+[StockTitan](https://www.stocktitan.net/news/RGS/regis-corporation-announces-new-credit-facility-to-refinance-e9h3dkolkul3.html))
+**Teaching:** this is the exact archetype Cyclepapa codes in
+`bastian_forcing.csv` — the BBGI gap closed. Parse the cover-page numbers
+of the 8-K to compute (debt reduced)/(pre-event mcap); when the ratio
+exceeds ~5x, the equity has torque.
+
+## H11. BBGI — Beasley Broadcast Group (2025-2026) — exchange-offer covenant
+
+BBGI exchanged ~$184M of 9.20% second-lien notes for $98.5M of 2027 PIK
+notes with **springing maturity** as early as Sept 30, 2027 and a holder
+option from Dec 31, 2027 to convert into up to **95% of fully diluted
+equity**. **Detectable signal:** the 8-K cover-page numbers (debt reduced,
+equity conversion %, springing date). **Cyclepapa leg:** the explicit
+BBGI archetype documented in Case E above — *currently a gap*; the
+8-K full-text scanner catches the keywords but does not parse covenant
+numerics. **Outcome (interim):** post-settlement BBGI traded $19.73-$22.20
+in April 2026, well above pre-deal — equity preserved so far, but the
+catalyst is future-dated.
+([StockTitan 8-K](https://www.stocktitan.net/sec-filings/BBGI/8-k-beasley-broadcast-group-inc-reports-material-event-2098335345ab.html))
+**Teaching:** the asymmetry is binary — refinance/sell assets, or
+existing equity is mostly wiped. Size accordingly; track the asset-sale
+calendar.
+
+## H12. CMG — Ackman + Chipotle (2016-2025) — clean activist win
+
+Pershing Square took a ~$1.2B / **9.9% stake** via 13D in September 2016,
+the trade following the e-coli food-safety crisis. **Detectable signal:**
+13D filing on a brand with operational damage but intact franchise economics.
+**Cyclepapa leg:** 13D sweep + a "post-stress operational reset" overlay
+(PSU plan re-coded post-crisis to specifically targeted operating metrics).
+**Outcome:** stock more than quadrupled from purchase through 2025;
+Pershing fully exited Q4 2025 at reported **~16% IRR vs ~15% S&P** — a win
+in absolute, only marginally above benchmark in relative.
+([Fool](https://www.fool.com/investing/2026/03/11/billionaire-bill-ackman-dump-fund-stake-chipotle/))
+**Teaching:** the 13D-on-damaged-brand setup works when the franchise
+economics are intact. Cyclepapa's red-flag taxonomy (Module III) is
+the filter — if the damage is to the business model, not just the
+quarter, the activist won't rescue it.
+
+## H13. DRI — Starboard + Darden (2014) — full board sweep
+
+Starboard filed 13D October 2013, opposed the Red Lobster sale, then
+nominated a full 12-person slate. At the October 10, 2014 annual meeting
+**all 12 Starboard nominees** were elected — first full S&P 500 board
+replacement in modern proxy history. **Detectable signal:** DFAN14A
+solicitation with a full-slate nomination is unmistakably a forcing
+vote. **Cyclepapa leg:** 13D sweep + a proxy-contest overlay (DFAN14A
+keyword in EDGAR feed). **Outcome:** DRI total return materially
+outperformed casual-dining peers and SPY over the subsequent 3 years.
+([Bloomberg](https://www.bloomberg.com/news/articles/2014-10-10/starboard-wins-all-12-seats-on-darden-s-board-after-proxy-fight),
+[Olshan](https://www.olshanlaw.com/capabilities/matters/Starboard-Victory-Board-Directors-Darden))
+**Teaching:** a full-slate nomination is a Tier-1 forcing function —
+higher hardness than a single-seat ask. The proxy advisor calendar
+becomes the catalyst date.
+
+## H14. TWTR — Twitter / Musk merger arb (2022) — closed-deal payoff
+
+Musk filed 13G April 4, 2022 (9.2%, later refiled 13D); merger agreement
+signed April 25, 2022 at $54.20 cash; Musk attempted termination July 8;
+Delaware trial set October 17; Musk capitulated October 4; deal closed
+October 27, 2022 at $54.20. **Detectable signal:** signed merger agreement
++ deteriorating spread = Cyclepapa's mechanical "tender / 13E-3" leg.
+**Outcome:** merger-arb spread reached ~30-40% in July (TWTR ~$32-34),
+making the closed payoff one of the highest-return liquid merger-arb
+trades of the cycle for holders through the specific-performance window.
+([SEC 13D/A](https://www.sec.gov/Archives/edgar/data/1418091/000110465922113051/tm2229215d1_sc13da.htm))
+**Teaching:** when the spread blows out, the binary becomes pricing
+the specific-performance probability. Delaware Chancery's track record
+on this clause is the discount rate — read it directly.
+
+## H15. TGNA — Tegna / Standard General (2023) — regulatory break
+
+Deal announced February 22, 2022 at $24/share cash (~$8.6B EV). FCC Media
+Bureau issued a Hearing Designation Order **February 24, 2023** — historically
+deal-killing. Merger terminated May 22, 2023; break fee $136M paid.
+**Detectable signal:** the FCC HDO itself is the kill signal — once an
+ALJ referral happens, historical close rate collapses below 20%.
+**Cyclepapa leg:** tender_scan + a "regulatory hardness" overlay that
+discounts merger spreads when the FCC, DOJ Antitrust, or CFIUS shows
+adverse posture. **Outcome:** TGNA fell sharply on the HDO and again on
+termination — short-the-spread trade payoff.
+([CNBC](https://www.cnbc.com/2023/05/22/tegna-scraps-8point6-billion-standard-general-deal-after-regulatory-pushback.html))
+**Teaching:** Cyclepapa's tender leg cannot just count whether a deal
+exists; it must score regulatory hardness. The FCC/DOJ overlay is the
+missing module — this is the documented gap for merger-arb coverage,
+analogous to BBGI's covenant-numerics gap for forcing-function coverage.
+
+## H16. PSTH — Pershing Square Tontine Holdings (2020-2022) — SPAC liquidation floor
+
+PSTH IPO'd July 2020 at $20/share, raised $4B (largest SPAC ever);
+announced a $4B UMG transaction June 2021; SEC pushback forced
+withdrawal July 19, 2021; wind-down announced July 11, 2022; redeemed
+common at **~$20.05/share** July 25, 2022. Warrants expired worthless.
+**Detectable signal:** the SPAC trust value itself — every dollar in
+trust at NAV is a hard floor for the common until business-combination
+vote. **Cyclepapa leg:** SPAC trust-arb scanner (`spac_trust_arb.csv`)
++ the timing of the deadline. **Outcome:** common holders who bought at
+or below trust value collected ~+0.25% with a free option on a successful
+deal — exactly the "asymmetric structural recipe" the workbook describes
+(hard floor + outsized but uncertain catalyst).
+([SEC](https://www.sec.gov/Archives/edgar/data/0001811882/000119312522191391/d305715dex992.htm))
+**Teaching:** the SPAC trust floor is the rare *guaranteed* floor in
+public equities — better than P/B because it is cash and Treasuries.
+The Cyclepapa SPAC leg ranks by (trust NAV - market price) and time
+to deadline.
+
+## H17. KLG / K — WK Kellogg / Kellanova split (October 2023) — the parent was the trade
+
+Kellogg split October 2, 2023; shareholders received 1 KLG per 4 K shares.
+Classic setup: June 2021 announcement, WK Kellogg Form 10, retention
+PSU grants. **Detectable signal:** Form 10 + the "neglected stub" pattern
+(KLG, the cereal RemainCo, was the small-cap forced-sale piece). **Cyclepapa
+leg:** spinoff scanner. **Outcome (the inversion):** the small-cap "stub"
+KLG underperformed for ~21 months, but was then acquired by **Ferrero on
+July 10, 2025 at $23.00/share** (~+69% from $13.58 debut). Meanwhile the
+parent-side Kellanova was acquired by **Mars on Aug 14, 2024 at $83.50
+cash** (~44% premium to 30-day VWAP, $35.9B EV) — the parent paid sooner
+and bigger.
+([Kellanova-Mars](https://investor.kellanova.com/news-events/news-details/2024/Mars-to-Acquire-Kellanova-de7e19f9d/default.aspx),
+[KLG-Ferrero](https://newsroom.wkkellogg.com/2025-07-10-FERRERO-TO-ACQUIRE-WK-KELLOGG-CO))
+**Teaching:** the small-cap-stub heuristic doesn't always win. When the
+parent's brands are the strategic asset, the parent is the trade — the
+Cyclepapa scanner must rank *both* halves and look at acquirer landscape
+on each.
+
+## H18. VLTO — Veralto from Danaher (September 2023) — pedigree didn't pay
+
+Danaher completed Veralto separation September 30, 2023; DHR holders
+received 1 VLTO per 3 DHR. Textbook Danaher: Sept 2022 announcement,
+Form 10-12B, the Fortive (2016) / Envista (2019) pedigree priming
+institutional bid, standalone PSUs for VLTO management. **Detectable
+signal:** spinoff scanner + the "serial-spinner pedigree" overlay.
+**Outcome (the counter-case):** VLTO opened ~$71.50 on Oct 2, 2023 and
+reached ~$84 by mid-2026 — roughly **+18% price-only over ~32 months,
+materially lagging SPY (~+50%)**.
+([Danaher release](https://investors.danaher.com/2023-09-30-Danaher-Corporation-Completes-Separation-of-Veralto-Corporation))
+**Teaching:** "Danaher pedigree always wins" is a heuristic, not a
+structural signal. Cyclepapa must score the SpinCo's *own* PSU plan
+and end-market exposure, not its parent's brand. Spinoffs from
+high-quality parents are *not automatically* asymmetric.
+
+## Library reading list
+
+The single best companion text remains Greenblatt's *You Can Be a Stock
+Market Genius* (1997) for the spinoff, restructuring, and rights-offering
+archetypes. For activist case mechanics, Lazard's annual *Review of
+Shareholder Activism* and the Harvard CGI corpgov blog are the data-quality
+sources. For SPAC mechanics, the SPAC Research database is authoritative.
+For distressed/Ch 11 equity preservation, Moyer's *Distressed Debt
+Analysis* remains the structural reference.
+
+## Cross-walks to existing cases
+
+| Historical case | Maps to existing case | Shared leg |
+|---|---|---|
+| H1 MAR/HMT | (new archetype: spinoff) | Form 10 + insider cluster |
+| H2 FACT | Case D ODTX | 13D as single high-intensity leg |
+| H3 GGP | Case E BBGI | covenant fires, assets > claims |
+| H4 PYPL | Case C LE | activist-driven separation |
+| H8 NLOP | Case A HFFG | forward dollar hurdle = liquidation NAV |
+| H10 RGS | Case E BBGI | exchange offer / equity stub |
+| H11 BBGI | Case E BBGI | (the gap, still open) |
+| H14 TWTR | Case E EXFY | mechanical bid as floor |
+| H16 PSTH | (new archetype: SPAC trust) | NAV floor |
+| H17 KLG/K | Case A HFFG | both halves of a split need ranking |
+| H18 VLTO | Case D ODTX (no PSU/no convergence) | pedigree ≠ asymmetry |
+
+---
+
 ## End of Workbook
 
 *Companion artifacts: `BEST_OF_UNIVERSE.md`, `SYSTEMATIC_RANKINGS.md`,
