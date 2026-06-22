@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260611-Cuba_Designation_Russia-relate",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-06-11",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Cuba Designation; Russia-related Designations Removals and Designation Update; Issuance of Amended Russia-related General Licenses and Frequently Asked Questions",
+  "query_label": "tier_s.ofac_license_issuance",
+  "query_note": "OFAC General License issued \u2014 dated transaction window",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260611"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260507-Counter_Terrorism_and_Iran-rel",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-05-07",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Counter Terrorism and Iran-related Designations; Cuba Designation and Designations Updates; Issuance of Cuba-related General License and Frequently Asked Questions",
+  "query_label": "tier_s.ofac_license_issuance",
+  "query_note": "OFAC General License issued \u2014 dated transaction window",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260507"
+}

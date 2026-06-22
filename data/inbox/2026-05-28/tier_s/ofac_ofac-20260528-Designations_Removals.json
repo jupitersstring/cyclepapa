@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260528-Designations_Removals",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-05-28",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Designations Removals",
+  "query_label": "tier_s.ofac_designation_removal",
+  "query_note": "OFAC SDN removal \u2014 previously-frozen exposure may now trade",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260528"
+}

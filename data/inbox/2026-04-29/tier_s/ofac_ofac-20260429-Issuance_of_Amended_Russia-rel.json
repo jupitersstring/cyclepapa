@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260429-Issuance_of_Amended_Russia-rel",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-04-29",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Issuance of Amended Russia-related General License and Frequently Asked Questions",
+  "query_label": "tier_s.ofac_license_issuance",
+  "query_note": "OFAC General License issued \u2014 dated transaction window",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260429"
+}

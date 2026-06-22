@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260605-Iran-related_Designations_Coun",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-06-05",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Iran-related Designations; Counter Terrorism Designations Updates",
+  "query_label": "red_flag.ofac_designation_ct",
+  "query_note": "OFAC counter-terrorism designation \u2014 new SDN entries",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260605"
+}

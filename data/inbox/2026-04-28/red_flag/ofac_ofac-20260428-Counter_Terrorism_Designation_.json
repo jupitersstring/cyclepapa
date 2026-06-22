@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260428-Counter_Terrorism_Designation_",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-04-28",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Counter Terrorism Designation; Iran-related Designations; Issuance of Frequently Asked Question; Publication of Iran-related OFAC Alert",
+  "query_label": "red_flag.ofac_designation_ct",
+  "query_note": "OFAC counter-terrorism designation \u2014 new SDN entries",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260428"
+}

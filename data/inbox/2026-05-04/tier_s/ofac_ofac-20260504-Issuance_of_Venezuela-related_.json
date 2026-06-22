@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260504-Issuance_of_Venezuela-related_",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-05-04",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Issuance of Venezuela-related General License and Amended Frequently Asked Question",
+  "query_label": "tier_s.ofac_license_issuance",
+  "query_note": "OFAC General License issued \u2014 dated transaction window",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260504"
+}

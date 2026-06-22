@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -11,6 +11,10 @@ help:
 	@echo "  us-bankr-poll — CourtListener RECAP poller for US Chapter 11/15 filings"
 	@echo "  br-poll    — CVM IPE poller for Brazilian material-fact disclosures"
 	@echo "  au-poll    — ASX announcements poller for Australian/NZ special-situation events"
+	@echo "  sc13d-poll — SC 13D / 13D-A activist 5pct beneficial-owner filings"
+	@echo "  form15-poll — Form 15 going-dark / Section 12 deregistration"
+	@echo "  cluster-sells — Form 4 S-code cluster-sell detector (Wirecard/SVB red flag)"
+	@echo "  ofac-poll  — OFAC recent-actions (sanctions GL + designations)"
 	@echo "  universe-rr  — rank reward/risk across the full universe (REAL where YAML, PROXY otherwise)"
 	@echo "  workbook     — rebuild the Excel workbook from latest inputs"
 	@echo "  refresh      — full chain: pollers → promote → screen → rank → workbook"
@@ -59,6 +63,26 @@ br-poll: audit
 au-poll: audit
 	python3 -m src.asx_poll --days-back 1
 
+# SC 13D / SC 13D-A activist 5pct beneficial-owner filings via EDGAR
+# Atom feed (browse-edgar getcurrent). 5-business-day window post-Feb 2024.
+sc13d-poll: audit
+	python3 -m src.sc13d_poll
+
+# Form 15 (15-12B, 15-12G, 15-15D) Section 12 going-dark deregistration
+# filings via EDGAR Atom feed.
+form15-poll: audit
+	python3 -m src.form15_poll
+
+# Form 4 cluster SELLS detector — Wirecard / SVB red-flag pattern.
+# Sibling to cluster_buys.py; same EDGAR Form 4 mechanic, S-code filtered.
+cluster-sells: audit
+	python3 -m src.cluster_sells --days-back 60
+
+# OFAC Recent Actions poller — sanctions-restructuring calendar via the
+# public ofac.treasury.gov/recent-actions feed.
+ofac-poll: audit
+	python3 -m src.ofac_poll --pages 4
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -94,7 +118,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll spinoff cluster-buys inbox-promote workbook
+refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll spinoff cluster-buys inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

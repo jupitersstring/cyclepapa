@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260602-Counter_Terrorism_and_Iran-rel",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-06-02",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Counter Terrorism and Iran-related Designations; Democratic Republic of the Congo-related Designations; Issuance of Iran-related Frequently Asked Question",
+  "query_label": "red_flag.ofac_designation_iran",
+  "query_note": "OFAC Iran-related designation",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260602"
+}

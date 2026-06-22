@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260430-Democratic_Republic_of_the_Con",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-04-30",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Democratic Republic of the Congo-related Designation",
+  "query_label": "red_flag.ofac_designation_other",
+  "query_note": "OFAC designation / sanctions update",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260430"
+}

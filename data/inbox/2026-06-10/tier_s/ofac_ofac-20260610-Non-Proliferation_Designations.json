@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260610-Non-Proliferation_Designations",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-06-10",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Non-Proliferation Designations; Iran-related Designations; Issuance of Venezuela-related Amended General Licenses and Frequently Asked Questions",
+  "query_label": "tier_s.ofac_license_issuance",
+  "query_note": "OFAC General License issued \u2014 dated transaction window",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260610"
+}

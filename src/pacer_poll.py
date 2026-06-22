@@ -109,9 +109,15 @@ def collapse_joint_filings(records: list[dict]) -> list[dict]:
     them to the parent's filing by grouping on (court_id, filed_date,
     root_name) where root_name strips trailing corporate-form tokens.
     Keeps the longest-name member as the representative so e.g.
-    'GVO Holdings Group LLC' wins over 'GVO Topco LLC'."""
+    'GVO Holdings Group LLC' wins over 'GVO Topco LLC'.
+
+    Pre-pack detection: joint filings with >=4 affiliated debtors filed
+    same-day in the same court are strongly indicative of a pre-packaged
+    bankruptcy (RSA + DIP + disclosure statement all pre-negotiated). In
+    pre-packs equity is typically wiped per the plan-support agreement;
+    these records are demoted from tier_s.bankruptcy_11 to
+    red_flag.prepack so they don't auto-promote into universe.md."""
     def root(name: str) -> str:
-        # Take first 1-3 distinctive words; strip the corporate-form tail
         n = re.sub(r"\s+(LLC|L\.L\.C\.?|Inc\.?|Corp\.?|Holdings?|Group|"
                    r"Ltd|Limited|Co\.?|P\.?C\.?|LP|L\.P\.?)\b.*$",
                    "", name, flags=re.I).strip()
@@ -125,14 +131,27 @@ def collapse_joint_filings(records: list[dict]) -> list[dict]:
         groups.setdefault(key, []).append(r)
     out: list[dict] = []
     for key, members in groups.items():
-        # Pick the longest-name member (usually the parent)
         rep = max(members, key=lambda x: len(x.get("name", "")))
-        if len(members) > 1:
+        n = len(members)
+        if n >= 4:
+            # Pre-pack signature: demote to red_flag so it doesn't
+            # auto-promote to universe.md as a Tier-S name.
+            rep["tier"] = "red_flag"
+            rep["query_label"] = "red_flag.prepack"
+            rep["query_note"] = (
+                f"PRE-PACK SIGNATURE: joint filing of {n} affiliated "
+                f"debtors same-day in {rep.get('court_id','?')} suggests "
+                f"pre-negotiated plan + RSA + DIP. Equity typically "
+                f"wiped per plan-support agreement. Affiliates: " +
+                ", ".join(m["name"][:50] for m in members[:5]) +
+                ("..." if n > 5 else "")
+            )
+        elif n > 1:
             rep["query_note"] = (
                 f"{rep['query_note']}; joint filing of "
-                f"{len(members)} affiliated debtors: " +
+                f"{n} affiliated debtors: " +
                 ", ".join(m["name"][:50] for m in members[:5]) +
-                ("..." if len(members) > 5 else "")
+                ("..." if n > 5 else "")
             )
         out.append(rep)
     return out

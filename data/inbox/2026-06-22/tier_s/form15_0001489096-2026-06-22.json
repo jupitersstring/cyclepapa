@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001489096",
+  "fetched_at": "2026-06-22T15:04:23.351023Z",
+  "filed": "2026-06-22",
+  "form": "15-12G",
+  "form_code": "15-12G",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Thermon Group Holdings, Inc.",
+  "query_label": "tier_s.going_dark_12g",
+  "query_note": "Form 15-12G: termination of Section 12(g) registration \u2014 held by < 300 record-holders (or < 500 with assets < $10m); reporting suspends. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.",
+  "source": "EDGAR-Form15",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1489096/000110465926074894/0001104659-26-074894-index.htm"
+}

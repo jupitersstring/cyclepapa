@@ -104,6 +104,12 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "takeover_bid", "target_statement", "off_market_offer",
     "compulsory_acquisition", "capital_raising",
     "voluntary_administration", "receivership",
+    # ---- SC 13D labels (sc13d_poll.py) ----
+    "sc_13d", "sc_13d_a",
+    # ---- Form 15 going-dark labels (form15_poll.py) ----
+    "going_dark_12b", "going_dark_12g", "going_dark_15d",
+    # ---- OFAC labels (ofac_poll.py) ----
+    "ofac_license_issuance", "ofac_designation_removal", "ofac_venezuela",
 }
 
 

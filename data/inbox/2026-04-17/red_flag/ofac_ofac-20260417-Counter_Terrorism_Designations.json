@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260417-Counter_Terrorism_Designations",
+  "cik": "",
+  "fetched_at": "2026-06-22T15:11:54.174046Z",
+  "filed": "2026-04-17",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Counter Terrorism Designations; Sudan Designations",
+  "query_label": "red_flag.ofac_designation_ct",
+  "query_note": "OFAC counter-terrorism designation \u2014 new SDN entries",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260417"
+}

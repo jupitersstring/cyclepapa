@@ -1322,3 +1322,16 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | STRATEGIC ELEMENTS LIMITED | SOR | ○ | A | Auto-promoted from Demand for SOR Capital Raising Exceeds Maximum Amount filing 2026-06-17 (acc 2924-03101459-6A1329974); Capital raising / rights / placement; verify primary doc before scoring |
 | ATLAS ARTERIA | ALX | ○ | A | Auto-promoted from Release of Fourth Supplementary Target's Statement filing 2026-06-17 (acc 2924-03101434-2A1678008); Target's response to a takeover; verify primary doc before scoring |
 | POWER MINERALS LIMITED | PNN | ○ | A | Auto-promoted from STRATEGIC $1.7M SECURED FROM RESOURCES INVESTMENT FUND filing 2026-06-17 (acc 2924-03101443-2A1678010); Capital raising / rights / placement; verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-06-22)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| Teamshares Inc. | CIK:0001783876 | ○ | A | [EDGAR-Form15] Auto-promoted from 15-15D filing 2026-06-22 (acc ); Form 15-15D: termination of Section 15(d) registration — reporting-only deregistration. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.; verify primary doc before scoring |
+| J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11 | CIK:0001574219 | ○ | A | [EDGAR-Form15] Auto-promoted from 15-15D filing 2026-06-22 (acc ); Form 15-15D: termination of Section 15(d) registration — reporting-only deregistration. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.; verify primary doc before scoring |
+| KalVista Pharmaceuticals, Inc. | CIK:0001348911 | ○ | A | [EDGAR-Form15] Auto-promoted from 15-12G filing 2026-06-22 (acc ); Form 15-12G: termination of Section 12(g) registration — held by < 300 record-holders (or < 500 with assets < $10m); reporting suspends. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.; verify primary doc before scoring |
+| KHEOBA CORP. | CIK:0001909770 | ○ | A | [EDGAR-Form15] Auto-promoted from 15-12G filing 2026-06-22 (acc ); Form 15-12G: termination of Section 12(g) registration — held by < 300 record-holders (or < 500 with assets < $10m); reporting suspends. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.; verify primary doc before scoring |
+| Thermon Group Holdings, Inc. | CIK:0001489096 | ○ | A | [EDGAR-Form15] Auto-promoted from 15-12G filing 2026-06-22 (acc ); Form 15-12G: termination of Section 12(g) registration — held by < 300 record-holders (or < 500 with assets < $10m); reporting suspends. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.; verify primary doc before scoring |
+| GENCO SHIPPING & TRADING LTD | CIK:0001326200 | ○ | A | [EDGAR-SC13D] Auto-promoted from SC 13D/A filing 2026-06-22 (acc ); 13D amendment — material change to 5pct stake (filed within 2 business days post-Feb 2024); verify primary doc before scoring |
