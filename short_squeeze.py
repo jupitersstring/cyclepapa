@@ -752,6 +752,17 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
             "is bearish-leaning, not a squeeze."
         )
 
+    # A squeeze needs a CROWDED SHORT. With neither short interest nor utilization,
+    # a high borrow fee alone cannot confirm one (it is often just an illiquid
+    # microcap with no lendable supply) — cap the optimism at WATCH.
+    if (m.short_interest_pct_float is None and m.utilization_pct is None
+            and cls in (SqueezeClass.ELEVATED, SqueezeClass.SQUEEZE_FUEL)):
+        cls = SqueezeClass.WATCH
+        notes.append(
+            "High borrow fee but short interest AND utilization both unknown — "
+            "cannot confirm a crowded short (often an illiquid microcap); capped at WATCH."
+        )
+
     return SqueezeAssessment(
         ticker=m.ticker,
         squeeze_score=squeeze,

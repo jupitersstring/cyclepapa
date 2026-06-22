@@ -506,6 +506,18 @@ class TestLiteratureFeatures(unittest.TestCase):
                                     volume_vs_avg=6)).ignition_score
         self.assertGreaterEqual(att, 80)
 
+    def test_fee_only_without_crowded_short_is_capped(self):
+        # Extreme fee, but no SI and no utilization -> can't confirm a crowded short
+        # (likely an illiquid microcap) -> capped at WATCH, not ELEVATED.
+        a = assess(SqueezeMetrics("MICRO", borrow_fee_pct=700.0))
+        self.assertEqual(a.classification, SqueezeClass.WATCH)
+        self.assertTrue(any("crowded short" in n for n in a.notes))
+
+    def test_utilization_alone_confirms_crowded_short(self):
+        # High utilization IS evidence of a crowded short -> NOT capped.
+        a = assess(SqueezeMetrics("X", utilization_pct=96.0, borrow_fee_pct=40.0))
+        self.assertIn(a.classification, (SqueezeClass.ELEVATED, SqueezeClass.SQUEEZE_FUEL))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
