@@ -65,6 +65,7 @@ df['all_legs_score'] = (
 )
 
 # Quality flag (does the name pass the asymmetric quality filter?)
+# STRICT — original tight filter
 df['quality_pass'] = (
     (df['absW_macro'].fillna(0) >= 25)
   & (df['absW_asymm'].fillna(0) >= 1.5)
@@ -74,10 +75,21 @@ df['quality_pass'] = (
   & (df['n_bull_tf'].fillna(0) >= 1)
 )
 
+# LOOSE — broader net for borderline asymmetric setups
+df['quality_pass_loose'] = (
+    (df['absW_macro'].fillna(0) >= 18)
+  & (df['absW_asymm'].fillna(0) >= 1.15)
+  & (df['absW_pos_in_bracket'].fillna(50).between(15, 90))
+  & (~df.get('monthly_conflict', False).fillna(False))
+  & (df.get('valid_risk', True).fillna(True))
+  & (df['n_bull_tf'].fillna(0) >= 1)
+)
+
 df = df.sort_values('all_legs_score', ascending=False).reset_index(drop=True)
 df.to_csv('data/synthesis/v2_universe_ranked_full.csv', index=False)
 
 print(f"Universe ranked: {len(df)} names", file=sys.stderr)
-print(f"  Quality-passing: {df['quality_pass'].sum()} ({df['quality_pass'].mean()*100:.0f}%)", file=sys.stderr)
+print(f"  Quality-pass STRICT: {df['quality_pass'].sum()} ({df['quality_pass'].mean()*100:.0f}%)", file=sys.stderr)
+print(f"  Quality-pass LOOSE:  {df['quality_pass_loose'].sum()} ({df['quality_pass_loose'].mean()*100:.0f}%)", file=sys.stderr)
 print(f"  Region distribution:", file=sys.stderr)
 print(df['region'].value_counts().to_string(), file=sys.stderr)

@@ -51,45 +51,47 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         ws.set_default_row(16)
         ws.freeze_panes(4, 0)
         ws.set_row(0, 30)
-        ws.merge_range(0, 0, 0, 13, label, title_fmt)
+        ws.merge_range(0, 0, 0, 14, label, title_fmt)
         ws.set_row(1, 14)
         n_q = region_df['quality_pass'].sum() if 'quality_pass' in region_df else 0
-        ws.merge_range(1, 0, 1, 13,
-            f"{len(region_df)} tickers ranked · {n_q} quality-pass · {datetime.date.today().isoformat()}",
+        n_ql = region_df['quality_pass_loose'].sum() if 'quality_pass_loose' in region_df else 0
+        ws.merge_range(1, 0, 1, 14,
+            f"{len(region_df)} tickers ranked · {n_q} strict · {n_ql} loose · {datetime.date.today().isoformat()}",
             subtitle_fmt)
-        widths = [9, 24, 11, 4, 5, 5, 5, 5, 7, 7, 7, 7, 5, 7]
+        widths = [9, 24, 11, 4, 4, 5, 5, 5, 5, 5, 7, 7, 7, 5, 7]
         for c, w in enumerate(widths): ws.set_column(c, c, w)
-        headers = ['Ticker','Name','Cap','Q','Macro','D %','TD %','F %','Lens','EV/EBITDA','FCF Y','Rev G','Macro','Score']
+        headers = ['Ticker','Name','Cap','Q','QL','Macro','D %','TD %','F %','Lens','EV/EBITDA','FCF Y','Rev G','Macro','Score']
         for c, h in enumerate(headers): ws.write(3, c, h, header_fmt)
         ws.set_row(3, 22)
-        # Add autofilter
         last_row = min(len(region_df), max_rows) + 3
-        ws.autofilter(3, 0, last_row, 13)
+        ws.autofilter(3, 0, last_row, 14)
         for i, (_, r) in enumerate(region_df.head(max_rows).iterrows()):
             row = 4 + i
             qpass = bool(r.get('quality_pass', False))
+            qloose = bool(r.get('quality_pass_loose', False))
             fmt = quality_cell if qpass else cell_fmt
             ws.write(row, 0, str(r.get('ticker','')), fmt)
             ws.write(row, 1, str(r.get('name',''))[:32] if pd.notna(r.get('name')) else '', fmt)
             ws.write(row, 2, str(r.get('cap_tier',''))[:9], fmt)
             ws.write(row, 3, 'Y' if qpass else '', fmt)
-            ws.write(row, 4, int(r.get('absW_macro',0)) if pd.notna(r.get('absW_macro')) else '', cell_int_fmt)
-            for c_idx, leg in enumerate(['leg_dalton','leg_td','leg_fund'], start=5):
+            ws.write(row, 4, 'Y' if qloose else '', fmt)
+            ws.write(row, 5, int(r.get('absW_macro',0)) if pd.notna(r.get('absW_macro')) else '', cell_int_fmt)
+            for c_idx, leg in enumerate(['leg_dalton','leg_td','leg_fund'], start=6):
                 v = r.get(leg, np.nan)
                 ws.write(row, c_idx, v if pd.notna(v) else '', cell_num_fmt)
             tags = ''
             if r.get('absorp_pass'): tags += 'A'
             if r.get('prebo_pass'): tags += 'P'
             if r.get('compress_pass'): tags += 'C'
-            ws.write(row, 8, tags, cell_fmt)
+            ws.write(row, 9, tags, cell_fmt)
             evb = r.get('ev_valuation')
-            ws.write(row, 9, float(evb) if pd.notna(evb) and abs(evb)<1e4 else '', cell_num_fmt)
+            ws.write(row, 10, float(evb) if pd.notna(evb) and abs(evb)<1e4 else '', cell_num_fmt)
             fy = r.get('fcf_yield_clean')
-            ws.write(row, 10, float(fy) if pd.notna(fy) else '', cell_pct_fmt)
+            ws.write(row, 11, float(fy) if pd.notna(fy) else '', cell_pct_fmt)
             rg = r.get('rev_g_clean')
-            ws.write(row, 11, float(rg) if pd.notna(rg) else '', cell_pct_fmt)
-            ws.write(row, 12, int(r.get('absW_macro',0)) if pd.notna(r.get('absW_macro')) else '', cell_int_fmt)
-            ws.write(row, 13, float(r.get('all_legs_score',0)), cell_num_fmt)
+            ws.write(row, 12, float(rg) if pd.notna(rg) else '', cell_pct_fmt)
+            ws.write(row, 13, int(r.get('absW_macro',0)) if pd.notna(r.get('absW_macro')) else '', cell_int_fmt)
+            ws.write(row, 14, float(r.get('all_legs_score',0)), cell_num_fmt)
 
     # Summary
     ws_sum = wb.add_worksheet('Summary')
