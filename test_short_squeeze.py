@@ -27,7 +27,9 @@ from short_squeeze import (
     parse_finra_short_interest,
     parse_ibkr_shortable_text,
     rank_candidates,
+    report,
     screen_universe,
+    to_csv,
     utilization_from_loan,
 )
 
@@ -517,6 +519,56 @@ class TestLiteratureFeatures(unittest.TestCase):
         # High utilization IS evidence of a crowded short -> NOT capped.
         a = assess(SqueezeMetrics("X", utilization_pct=96.0, borrow_fee_pct=40.0))
         self.assertIn(a.classification, (SqueezeClass.ELEVATED, SqueezeClass.SQUEEZE_FUEL))
+
+
+class TestOverextensionAndLiquidity(unittest.TestCase):
+    def test_extreme_momentum_penalises_and_downgrades(self):
+        a = assess(SqueezeMetrics("SDOT", short_interest_pct_float=30, borrow_fee_pct=800,
+                                  momentum_pct=5699, price=9))
+        self.assertEqual(a.overextension_factor, 0.40)
+        self.assertEqual(a.classification, SqueezeClass.WATCH)  # downgraded off SQUEEZE_FUEL
+        self.assertTrue(any("xtended" in n or "played out" in n for n in a.notes))
+
+    def test_moderate_momentum_not_penalised(self):
+        a = assess(SqueezeMetrics("X", short_interest_pct_float=30, utilization_pct=92,
+                                  borrow_fee_pct=20, momentum_pct=40))
+        self.assertEqual(a.overextension_factor, 1.0)
+        self.assertEqual(a.classification, SqueezeClass.SQUEEZE_FUEL)
+
+    def test_penny_stock_liquidity_penalty(self):
+        a = assess(SqueezeMetrics("CCTG", short_interest_pct_float=25, borrow_fee_pct=800, price=0.80))
+        self.assertEqual(a.liquidity_factor, 0.70)
+        self.assertTrue(any("Penny" in n for n in a.notes))
+
+    def test_illiquid_dollar_volume_penalty(self):
+        a = assess(SqueezeMetrics("THIN", short_interest_pct_float=25, utilization_pct=92,
+                                  borrow_fee_pct=20, price=2.0, avg_daily_volume=200_000))  # $0.4M/day
+        self.assertEqual(a.liquidity_factor, 0.60)
+
+    def test_liquid_name_not_penalised(self):
+        a = assess(SqueezeMetrics("BIG", short_interest_pct_float=25, utilization_pct=92,
+                                  borrow_fee_pct=20, price=20, avg_daily_volume=10_000_000))  # $200M/day
+        self.assertEqual(a.liquidity_factor, 1.0)
+        self.assertEqual(a.overextension_factor, 1.0)
+
+    def test_dollar_volume_property(self):
+        self.assertEqual(SqueezeMetrics(price=10, avg_daily_volume=1_000_000).dollar_volume, 1e7)
+        self.assertIsNone(SqueezeMetrics(price=10).dollar_volume)
+
+
+class TestReport(unittest.TestCase):
+    def test_report_and_csv(self):
+        ranked = rank_candidates([
+            SqueezeMetrics("A", short_interest_pct_float=30, utilization_pct=92, borrow_fee_pct=20,
+                           price=15, avg_daily_volume=5e6),
+            SqueezeMetrics("B", short_interest_pct_float=60, borrow_fee_pct=1.0),
+        ])
+        r = report(ranked, top=5)
+        self.assertIn("Short-squeeze screen", r)
+        self.assertIn("A", r)
+        csv = to_csv(ranked)
+        self.assertIn("ticker,classification", csv)
+        self.assertIn("A,", csv)
 
 
 if __name__ == "__main__":

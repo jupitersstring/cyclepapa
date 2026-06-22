@@ -271,7 +271,8 @@ SqueezeMetrics ──► 3 SCORE_RULES ──► weighted composite (0–100)
 The diagram above is the **structural** layer. v2 wraps it in a layered model so
 that a *coiled*, an *accelerating*, and an *igniting* setup score differently:
 
-    squeeze_score = (0.55·structural + 0.15·dynamics + 0.15·ignition + 0.15·constraint) × amplifier   (0–100)
+    squeeze_score = (0.55·structural + 0.15·dynamics + 0.15·ignition + 0.15·constraint)
+                    × amplifier × overextension × liquidity   (0–100)
 
 - **structural** — the interaction-aware lending score (the diagram).
 - **dynamics** — acceleration: rising utilization / fee / short interest (Ortex &
@@ -285,6 +286,12 @@ that a *coiled*, an *accelerating*, and an *igniting* setup score differently:
   (Asquith; the 2026 rare-events study finds institutional ownership *reduces*
   squeeze odds — so high ownership scores zero here).
 - **amplifier** — low float + high days-to-cover, ≤1.3× (the VW/KOSS float maths).
+- **overextension** — already-squeezed guard: extreme recent momentum (>100/300/1000%)
+  scales ×0.8/0.6/0.4 and downgrades the call off the squeeze tiers (squeezes
+  round-trip — a name up +5,699% has already squeezed; you're late).
+- **liquidity** — tradability guard: thin dollar volume (<$1M / <$5M a day) or a
+  sub-$1 penny stock scales ×0.6/0.85/0.7. A squeeze you cannot trade isn't
+  actionable, and the high-fee tail is full of manipulation-prone microcaps.
 
 Dynamics/ignition score only when their inputs are supplied; otherwise the score
 is structural-only (with a note that a setup still needs acceleration + a catalyst).
@@ -318,8 +325,15 @@ Design decisions, each tracing to the research:
   (overrides everything), `squeeze_fuel` → SQUEEZE_FUEL (the S3 gate vetoes a
   still-profitable short). The linear score only sets ELEVATED/WATCH/LOW among the rest.
 - **Everything is tunable** — `SqueezeConfig` exposes the gate floor, layer weights,
-  amplifier knobs and cutoffs for re-fitting; `rank_candidates([...])` scores and
-  ranks a whole watchlist (fuel first, bearish names sink).
+  amplifier/overextension/liquidity knobs and cutoffs for re-fitting;
+  `rank_candidates([...])` scores and ranks a watchlist (fuel first, bearish names sink).
+- **Run the whole universe** — `screen_universe(...)` or the CLI
+  `python short_squeeze.py screen --ibkr usa.txt --finra si.csv --floats f.csv
+  --prices p.csv --momentum m.csv --reg-sho rs.txt --top 50 --csv out.csv` ranks the
+  entire market (~6,000 names in ~100 ms) and writes a CSV; `report()` formats it.
+  Two safety caps make the wide run honest: a high fee with **no SI/utilization**
+  can't confirm a crowded short (→ WATCH), and an already-extended name is
+  downgraded off the squeeze tiers.
 
 ### Plugging into an existing `SCORE_RULES` system
 `SCORE_RULES` is a dict keyed by the `dNN` id, so it merges into a larger rule

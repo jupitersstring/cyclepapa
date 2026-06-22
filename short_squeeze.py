@@ -111,6 +111,9 @@ __all__ = [
     "parse_finra_short_interest",
     "FinraShortRow",
     "screen_universe",
+    "screen_yfinance",
+    "report",
+    "to_csv",
     "BORROW_FEE_MEAN_PCT",
     "BORROW_FEE_MEDIAN_PCT",
     "BORROW_FEE_P95_PCT",
@@ -177,6 +180,7 @@ class SqueezeMetrics:
     failures_to_deliver: Optional[float] = None          # FTD shares (SEC, context)
     options_volume_vs_adv: Optional[float] = None        # options vol / avg daily share vol (>=5 => MM hedging)
     volume_vs_avg: Optional[float] = None                # today's share volume / ADV (investor-attention proxy)
+    price: Optional[float] = None                        # last price (penny-stock / liquidity guard)
 
     as_of: Optional[str] = None
     source: str = "manual"
@@ -188,6 +192,13 @@ class SqueezeMetrics:
         if self.shares_short is None or not self.shares_short_prior:
             return None
         return 100.0 * (self.shares_short - self.shares_short_prior) / self.shares_short_prior
+
+    @property
+    def dollar_volume(self) -> Optional[float]:
+        """Average daily traded value (price x average volume) — a liquidity gauge."""
+        if self.price is None or self.avg_daily_volume is None:
+            return None
+        return float(self.price) * float(self.avg_daily_volume)
 
 
 # ---------------------------------------------------------------------------
@@ -462,6 +473,8 @@ class SqueezeAssessment:
     ignition_score: Optional[float] = None       # 0-100 spark (momentum + gamma + shorts under water)
     constraint_score: Optional[float] = None     # 0-100 short-sale constraint (Reg SHO / low inst own)
     amplifier: float = 1.0                       # 1.0-1.3 (low float, high days-to-cover)
+    overextension_factor: float = 1.0            # <=1.0 penalty for already-squeezed names
+    liquidity_factor: float = 1.0                # <=1.0 penalty for untradeable microcaps
     notes: List[str] = field(default_factory=list)
 
     def summary(self) -> str:
@@ -476,6 +489,10 @@ class SqueezeAssessment:
             extra.append(f"con={self.constraint_score:.0f}")
         if abs(self.amplifier - 1.0) > 1e-9:
             extra.append(f"amp={self.amplifier:.2f}")
+        if self.overextension_factor < 1.0:
+            extra.append(f"ox={self.overextension_factor:.2f}")
+        if self.liquidity_factor < 1.0:
+            extra.append(f"liq={self.liquidity_factor:.2f}")
         extra_s = ("  " + " ".join(extra)) if extra else ""
         lines = [
             f"{self.ticker or '(unknown)':<8} {self.classification.value:<18} "
@@ -528,6 +545,16 @@ class SqueezeConfig:
     elevated_score: float = 70.0
     watch_score: float = 40.0
     low_coverage_advisory: float = 0.60
+    # Overextension penalty (already-squeezed / mean-reversion): extreme recent
+    # momentum means you are late; the move has largely happened. x final score.
+    overext_mild_pct: float = 100.0      # > +100% in the window -> x0.80
+    overext_strong_pct: float = 300.0    # > +300% -> x0.60
+    overext_extreme_pct: float = 1000.0  # > +1000% -> x0.40
+    # Liquidity / tradability guard: a squeeze you cannot trade is not actionable
+    # (manipulation risk). x final score.
+    illiquid_dollar_vol: float = 1e6     # < $1M/day traded value -> x0.60
+    thin_dollar_vol: float = 5e6         # < $5M/day -> x0.85
+    penny_price: float = 1.0             # price < $1 (and no dollar-volume) -> x0.70
 
 
 DEFAULT_CONFIG = SqueezeConfig()
@@ -638,14 +665,44 @@ def _amplifier(m: SqueezeMetrics, cfg: SqueezeConfig) -> float:
     return min(amp, cfg.max_amplifier)
 
 
+def _overextension_factor(m: SqueezeMetrics, cfg: SqueezeConfig) -> float:
+    """Penalise already-squeezed names: extreme recent momentum means the move has
+    largely happened and mean-reversion risk dominates (squeezes round-trip)."""
+    mom = m.momentum_pct
+    if mom is None or mom <= cfg.overext_mild_pct:
+        return 1.0
+    if mom <= cfg.overext_strong_pct:
+        return 0.80
+    if mom <= cfg.overext_extreme_pct:
+        return 0.60
+    return 0.40
+
+
+def _liquidity_factor(m: SqueezeMetrics, cfg: SqueezeConfig) -> Tuple[float, Optional[str]]:
+    """Penalise untradeable names. A squeeze you cannot trade (thin dollar volume,
+    or a sub-$1 penny stock) is not actionable and is manipulation-prone."""
+    dv = m.dollar_volume
+    if dv is not None:
+        if dv < cfg.illiquid_dollar_vol:
+            return 0.60, f"Illiquid: ~${dv / 1e6:.1f}M/day traded value — untradeable / manipulation risk."
+        if dv < cfg.thin_dollar_vol:
+            return 0.85, f"Thin liquidity: ~${dv / 1e6:.1f}M/day traded value."
+        return 1.0, None
+    if m.price is not None and m.price < cfg.penny_price:
+        return 0.70, f"Penny stock (${m.price:.2f}) — manipulation-prone; confirm tradable size."
+    return 1.0, None
+
+
 def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> SqueezeAssessment:
     """Score a name with the layered model and classify it.
 
-    Layers (each 0-100, blended over those available, then x amplifier):
+    Layers (each 0-100, blended over those available) x context factors:
         structural - interaction-aware lending fragility (d33/d34/d35)
         dynamics   - acceleration (rising utilization / fee / short interest)
-        ignition   - the spark (price momentum + shorts under water)
-        amplifier  - low float + high days-to-cover (1.0-1.3x)
+        ignition   - the spark (momentum + gamma + attention + shorts under water)
+        constraint - Reg SHO / fails-to-deliver + low institutional ownership
+      x amplifier (low float, high DTC) x overextension (already-squeezed) x
+        liquidity (untradeable microcap)
 
     Classification (detectors are authoritative; otherwise on the final score):
         bearish convergence  -> GENUINELY_SHORT  (overrides everything)
@@ -667,6 +724,8 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
     ignition = _ignition_score(m, cfg)
     constraint = _constraint_score(m, cfg)
     amplifier = _amplifier(m, cfg)
+    overext = _overextension_factor(m, cfg)
+    liq_factor, liq_note = _liquidity_factor(m, cfg)
 
     if structural is None:
         squeeze: Optional[float] = None
@@ -679,7 +738,7 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
         if constraint is not None:
             parts.append((cfg.w_constraint, constraint))
         base = sum(w * v for w, v in parts) / sum(w for w, _ in parts)
-        squeeze = max(0.0, min(100.0, base * amplifier))
+        squeeze = max(0.0, min(100.0, base * amplifier * overext * liq_factor))
 
     bearish = detect_bearish_convergence(m)
     fuel = detect_squeeze_fuel(m)
@@ -728,6 +787,13 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
             "IBKR reports 0 shortable shares — borrow effectively unavailable now "
             "(a real-time tightness signal; utilization likely high)."
         )
+    if overext < 1.0:
+        notes.append(
+            f"Overextended: up {m.momentum_pct:+.0f}% recently — much of the move may be "
+            f"done (squeezes round-trip); score x{overext:.2f}."
+        )
+    if liq_note:
+        notes.append(liq_note)
 
     # --- classify on the final squeeze score (detectors are authoritative) ---
     if bearish.triggered:
@@ -763,6 +829,14 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
             "cannot confirm a crowded short (often an illiquid microcap); capped at WATCH."
         )
 
+    # Already-squeezed: a huge recent move means the event has largely happened,
+    # so the setup is no longer "fuel" — downgrade off the squeeze tiers.
+    if overext <= 0.6 and cls in (SqueezeClass.SQUEEZE_FUEL, SqueezeClass.ELEVATED):
+        cls = SqueezeClass.WATCH
+        notes.append(
+            "Downgraded to WATCH: already extended — the squeeze (if any) has largely played out."
+        )
+
     return SqueezeAssessment(
         ticker=m.ticker,
         squeeze_score=squeeze,
@@ -777,6 +851,8 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
         ignition_score=ignition,
         constraint_score=constraint,
         amplifier=amplifier,
+        overextension_factor=overext,
+        liquidity_factor=liq_factor,
         notes=notes,
     )
 
@@ -843,6 +919,7 @@ def from_yfinance(
         avg_daily_volume=avg_vol,
         institutional_ownership_pct=pct(info.get("heldPercentInstitutions")),
         volume_vs_avg=vol_vs_avg,
+        price=info.get("currentPrice") or info.get("regularMarketPrice"),
         on_reg_sho_threshold=on_reg_sho_threshold,
         options_volume_vs_adv=options_volume_vs_adv,
         source="yfinance",
@@ -1120,6 +1197,8 @@ def screen_universe(
     float_by_symbol: Optional[Dict[str, float]] = None,
     reg_sho_symbols: Optional[Iterable[str]] = None,
     institutional_ownership_by_symbol: Optional[Dict[str, float]] = None,
+    price_by_symbol: Optional[Dict[str, float]] = None,
+    momentum_by_symbol: Optional[Dict[str, float]] = None,
     config: SqueezeConfig = DEFAULT_CONFIG,
     top: Optional[int] = None,
 ) -> List[SqueezeAssessment]:
@@ -1136,6 +1215,8 @@ def screen_universe(
     finra = parse_finra_short_interest(finra_text) if finra_text else {}
     floats = {k.upper(): v for k, v in (float_by_symbol or {}).items()}
     inst = {k.upper(): v for k, v in (institutional_ownership_by_symbol or {}).items()}
+    prices = {k.upper(): v for k, v in (price_by_symbol or {}).items()}
+    moms = {k.upper(): v for k, v in (momentum_by_symbol or {}).items()}
     reg = {s.strip().upper() for s in (reg_sho_symbols or [])}
     have_reg = reg_sho_symbols is not None
 
@@ -1157,6 +1238,8 @@ def screen_universe(
             float_shares=flo,
             shortable_shares_available=(ib.available if ib else None),
             institutional_ownership_pct=inst.get(sym),
+            price=prices.get(sym),
+            momentum_pct=moms.get(sym),
             on_reg_sho_threshold=((sym in reg) if have_reg else None),
             as_of=(ib.as_of if ib else (fi.settlement_date if fi else None)),
             source="universe",
@@ -1263,6 +1346,55 @@ CITATIONS: Dict[str, str] = {
 # ---------------------------------------------------------------------------
 # Zero-dependency demo
 # ---------------------------------------------------------------------------
+def _r(x: Optional[float]) -> str:
+    return "" if x is None else f"{x:.1f}"
+
+
+def report(assessments: List["SqueezeAssessment"], *, top: int = 25) -> str:
+    """Human-readable ranked report: bucket counts, the top-N candidates, and the
+    bearish (genuinely-short) list. Pass an already-ranked list (rank_candidates /
+    screen_universe / screen_yfinance)."""
+    from collections import Counter
+    counts = Counter(a.classification.value for a in assessments)
+    lines = [
+        f"Short-squeeze screen — {len(assessments)} names  |  "
+        + "  ".join(f"{k}={v}" for k, v in counts.most_common()),
+        "-" * 78,
+        f"{'#':>3}  {'TKR':<7}{'CLASS':<16}{'score':>5} {'conf':<7}{'struct':>6}  flags",
+    ]
+    for i, a in enumerate(assessments[:top], 1):
+        flag = ""
+        if a.overextension_factor < 1.0:
+            flag += " [overextended]"
+        if a.liquidity_factor < 1.0:
+            flag += " [illiquid]"
+        lines.append(f"{i:>3}  {a.ticker:<7}{a.classification.value:<16}{_r(a.squeeze_score):>5} "
+                     f"{a.confidence.value:<7}{_r(a.composite_score):>6}{flag}")
+    bearish = [a.ticker for a in assessments if a.classification == SqueezeClass.GENUINELY_SHORT]
+    if bearish:
+        lines += ["", f"GENUINELY_SHORT (cheap borrow -> bearish/avoid, {len(bearish)}): "
+                  + ", ".join(bearish[:40]) + (" ..." if len(bearish) > 40 else "")]
+    return "\n".join(lines)
+
+
+def to_csv(assessments: List["SqueezeAssessment"]) -> str:
+    """All assessments as CSV text (for a spreadsheet / further analysis)."""
+    import csv as _csv
+    import io as _io
+    buf = _io.StringIO()
+    w = _csv.writer(buf)
+    w.writerow(["ticker", "classification", "confidence", "squeeze_score", "structural",
+                "dynamics", "ignition", "constraint", "amplifier", "overext", "liquidity",
+                "coverage", "bearish_convergence", "squeeze_fuel"])
+    for a in assessments:
+        w.writerow([a.ticker, a.classification.value, a.confidence.value,
+                    _r(a.squeeze_score), _r(a.composite_score), _r(a.dynamics_score),
+                    _r(a.ignition_score), _r(a.constraint_score), round(a.amplifier, 3),
+                    round(a.overextension_factor, 3), round(a.liquidity_factor, 3),
+                    round(a.coverage, 3), a.bearish_convergence.triggered, a.squeeze_fuel.triggered])
+    return buf.getvalue()
+
+
 def _demo() -> None:
     """Illustrate the framework on four archetypes — runs with no dependencies."""
     examples = [
@@ -1351,5 +1483,56 @@ def _demo() -> None:
               f"conf={a.confidence.value} con={a.constraint_score}")
 
 
+def _read(path: Optional[str]) -> Optional[str]:  # pragma: no cover - CLI glue
+    return open(path, encoding="utf-8", errors="replace").read() if path else None
+
+
+def _load_map(path: Optional[str]) -> Optional[Dict[str, float]]:  # pragma: no cover - CLI glue
+    """Load a 'SYMBOL,VALUE' file (floats or prices) into a dict."""
+    if not path:
+        return None
+    out: Dict[str, float] = {}
+    for line in open(path, encoding="utf-8", errors="replace"):
+        parts = line.replace(",", " ").split()
+        if len(parts) >= 2:
+            try:
+                out[parts[0].strip().upper()] = float(parts[1])
+            except ValueError:
+                continue
+    return out
+
+
+def _main(argv: Optional[List[str]] = None) -> None:  # pragma: no cover - CLI glue
+    import argparse
+    p = argparse.ArgumentParser(description="Short-squeeze candidate screener.")
+    sub = p.add_subparsers(dest="cmd")
+    sc = sub.add_parser("screen", help="rank the universe from free bulk files")
+    sc.add_argument("--ibkr", help="IBKR usa.txt (borrow fee + availability)")
+    sc.add_argument("--finra", help="FINRA short-interest export (CSV or pipe)")
+    sc.add_argument("--floats", help="'SYMBOL,FLOAT_SHARES' file")
+    sc.add_argument("--prices", help="'SYMBOL,PRICE' file")
+    sc.add_argument("--momentum", help="'SYMBOL,PCT_1M_CHANGE' file (overextension penalty)")
+    sc.add_argument("--reg-sho", dest="reg_sho", help="Reg SHO threshold symbols, one per line")
+    sc.add_argument("--top", type=int, default=25)
+    sc.add_argument("--csv", help="write all assessments to this CSV path")
+    sub.add_parser("demo", help="run the offline demo")
+    args = p.parse_args(argv)
+
+    if args.cmd == "screen":
+        reg = None
+        if args.reg_sho:
+            reg = [s.strip() for s in open(args.reg_sho, encoding="utf-8", errors="replace") if s.strip()]
+        ranked = screen_universe(
+            ibkr_text=_read(args.ibkr), finra_text=_read(args.finra),
+            float_by_symbol=_load_map(args.floats), price_by_symbol=_load_map(args.prices),
+            momentum_by_symbol=_load_map(args.momentum), reg_sho_symbols=reg)
+        print(report(ranked, top=args.top))
+        if args.csv:
+            open(args.csv, "w", encoding="utf-8").write(to_csv(ranked))
+            print(f"\nWrote {len(ranked)} rows to {args.csv}")
+    else:
+        _demo()
+
+
 if __name__ == "__main__":
-    _demo()
+    _main()
