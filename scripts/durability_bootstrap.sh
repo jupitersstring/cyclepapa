@@ -64,10 +64,30 @@ else:
 " 2>/dev/null)
     [ "$td_need" -gt 10 ] 2>/dev/null && need_chain=1
 fi
-if [ "$need_chain" -eq 1 ] && ! pgrep -f widen_chain.sh >/dev/null 2>&1; then
-    nohup bash scripts/widen_chain.sh > /tmp/log_chain.txt 2>&1 &
+if [ "$need_chain" -eq 1 ] && ! pgrep -f "widen_chain.sh\|run_expansion\|master_expand" >/dev/null 2>&1; then
+    nohup bash scripts/master_expand_chain.sh > /tmp/log_master_expand.txt 2>&1 &
     disown
-    echo "[bootstrap] resumed widen_chain.sh"
+    echo "[bootstrap] resumed master_expand_chain.sh"
+fi
+
+# ─── 3c. Resume expansion pipeline if not yet complete ────
+expansion_incomplete=0
+for m in us uk germany france italy spain netherlands belgium switzerland sweden norway finland denmark austria ireland portugal greece; do
+    uni="data/universes/expanded/uni_${m}_x.csv"
+    out="data/dalton/dalton_${m}_x.csv"
+    if [ -f "$uni" ] && { [ ! -f "$out" ] || [ "$(stat -c%s "$out" 2>/dev/null)" -lt 5000 ]; }; then
+        expansion_incomplete=1; break
+    fi
+done
+if [ "$expansion_incomplete" -eq 1 ] && ! pgrep -f "run_expansion\|master_expand" >/dev/null 2>&1; then
+    # If widen_chain still running, master_expand will pick up expansion after; otherwise launch expansion directly
+    if pgrep -f widen_chain.sh >/dev/null 2>&1; then
+        echo "[bootstrap] widen_chain active; expansion will follow"
+    else
+        nohup bash scripts/master_expand_chain.sh > /tmp/log_master_expand.txt 2>&1 &
+        disown
+        echo "[bootstrap] launched master_expand_chain.sh for expansion"
+    fi
 fi
 
 # ─── 4. Audit: any untracked files in data/? ───
