@@ -156,12 +156,14 @@ def ttm_yoy_growth(series_q):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--price-flat-lo', type=float, default=-20.0)
-    ap.add_argument('--price-flat-hi', type=float, default=25.0)
-    ap.add_argument('--min-fcf-ps-3y-growth', type=float, default=30.0)
-    ap.add_argument('--min-rev-yoy', type=float, default=10.0)
-    ap.add_argument('--min-ebitda-yoy', type=float, default=15.0)
-    ap.add_argument('--min-fcf-yoy', type=float, default=20.0)
+    # RELAXED for global coverage. The original thresholds catch only the
+    # cleanest US setups; loosening surfaces moderate-growth flat-priced names.
+    ap.add_argument('--price-flat-lo', type=float, default=-30.0)      # RELAXED -20 -> -30
+    ap.add_argument('--price-flat-hi', type=float, default=30.0)       # RELAXED 25 -> 30
+    ap.add_argument('--min-fcf-ps-3y-growth', type=float, default=15.0)# RELAXED 30 -> 15
+    ap.add_argument('--min-rev-yoy', type=float, default=5.0)          # RELAXED 10 -> 5
+    ap.add_argument('--min-ebitda-yoy', type=float, default=8.0)       # RELAXED 15 -> 8
+    ap.add_argument('--min-fcf-yoy', type=float, default=10.0)         # RELAXED 20 -> 10
     ap.add_argument('--min-mcap', type=float, default=200e6)
     args = ap.parse_args()
 
@@ -231,7 +233,7 @@ def main():
 
     if not rows:
         print("No rows survived filters; nothing to write."); return
-    df = pd.DataFrame(rows).set_index(\'ticker\')
+    df = pd.DataFrame(rows).set_index('ticker')
     df['gap_score'] = (df['fcf_ps_3y_growth_pct'] - df['price_3y_pct'].abs())
     df = df.sort_values('gap_score', ascending=False)
     df.to_csv(OUTDIR / 'screener.csv')

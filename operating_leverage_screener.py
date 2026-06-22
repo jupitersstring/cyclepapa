@@ -279,11 +279,15 @@ def analyze(ticker: str) -> Optional[dict]:
 
 def main():
     ap = argparse.ArgumentParser()
+    # RELAXED for global coverage (was calibrated for US small/mid-cap).
     ap.add_argument('--min-mcap', type=float, default=200e6)
-    ap.add_argument('--min-sales-growth', type=float, default=15.0)
-    ap.add_argument('--margin-floor', type=float, default=-5.0, help='min EBITDA margin (pct)')
-    ap.add_argument('--margin-ceiling', type=float, default=15.0, help='max EBITDA margin (pct)')
-    ap.add_argument('--max-psg', type=float, default=0.5, help='max P/S / sales-growth ratio')
+    ap.add_argument('--min-sales-growth', type=float, default=8.0)    # RELAXED 15 -> 8
+    ap.add_argument('--margin-floor', type=float, default=-15.0,      # RELAXED -5 -> -15
+                    help='min EBITDA margin (pct) — relaxed to include early-stage scaling')
+    ap.add_argument('--margin-ceiling', type=float, default=25.0,     # RELAXED 15 -> 25
+                    help='max EBITDA margin (pct) — relaxed to include mature operators')
+    ap.add_argument('--max-psg', type=float, default=1.5,             # RELAXED 0.5 -> 1.5
+                    help='max P/S / sales-growth ratio — relaxed to include moderately-priced')
     args = ap.parse_args()
 
     tickers = sorted({f.name.split('__')[0] for f in CACHE.glob('*__price.parquet')})
@@ -297,7 +301,7 @@ def main():
             print(f"  {i+1}/{len(tickers)}  rows={len(rows)}")
     if not rows:
         print("No rows survived filters; nothing to write."); return
-    df = pd.DataFrame(rows).set_index(\'ticker\')
+    df = pd.DataFrame(rows).set_index('ticker')
     df.to_csv(OUTDIR / 'all.csv')
     print(f"\nWith data: {len(df)} tickers")
 

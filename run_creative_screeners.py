@@ -25,7 +25,7 @@ SCREENERS = [
     ('flat_with_inflection_screener.py',  'results_flat_inflection/screener.csv',    'Flat + Inflection'),
     ('akre_compounder_screener.py',       'results_akre/screener.csv',                'Akre Compounder'),
     ('volatility_asymmetry_screener.py',  'results_volasym/screener.csv',             'Vol Asymmetry'),
-    ('segment_inflection_screener.py',    'results_segment_inflection/screener.csv', 'Segment Inflection'),
+    ('segment_inflection_screener.py',    'pre_rerate_setups.csv', 'Segment Inflection'),
 ]
 
 

@@ -270,10 +270,14 @@ def analyze(ticker: str) -> Optional[dict]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--min-mcap', type=float, default=500e6)
-    ap.add_argument('--min-sales-growth', type=float, default=5.0, help='min sales LTM YoY (pct)')
-    ap.add_argument('--min-ebitda-growth', type=float, default=5.0)
-    ap.add_argument('--min-compression', type=float, default=10.0,
+    # RELAXED for global coverage. Lowered mcap floor, lowered growth bars,
+    # lowered compression bar so more EM/Asia names with modest growth + real
+    # compression surface.
+    ap.add_argument('--min-mcap', type=float, default=200e6)            # RELAXED 500 -> 200
+    ap.add_argument('--min-sales-growth', type=float, default=3.0,      # RELAXED 5 -> 3
+                    help='min sales LTM YoY (pct)')
+    ap.add_argument('--min-ebitda-growth', type=float, default=3.0)     # RELAXED 5 -> 3
+    ap.add_argument('--min-compression', type=float, default=5.0,       # RELAXED 10 -> 5
                     help='min absolute compression in pp (price lagged by this much)')
     args = ap.parse_args()
 
@@ -290,7 +294,7 @@ def main():
     print(f"Computed for {len(rows)} tickers")
     if not rows:
         print("No rows survived filters; nothing to write."); return
-    df = pd.DataFrame(rows).set_index(\'ticker\')
+    df = pd.DataFrame(rows).set_index('ticker')
     df.to_csv(OUTDIR / 'all.csv')
 
     # Filter: real cap + sales OR EBITDA growth + compression

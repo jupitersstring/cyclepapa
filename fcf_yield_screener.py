@@ -197,7 +197,7 @@ def main():
             print(f"  {i+1}/{len(tickers)}  rows={len(rows)}")
     if not rows:
         print("No rows survived filters; nothing to write."); return
-    df = pd.DataFrame(rows).set_index(\'ticker\')
+    df = pd.DataFrame(rows).set_index('ticker')
     df.to_csv(OUTDIR / 'all.csv')
     print(f"\nWith data: {len(df)} tickers")
 

@@ -732,8 +732,9 @@ def build_creative_measures(wb):
             continue
         if df.empty:
             continue
-        # Name the sheet "CM · <Label>"
-        sheet_name = f'CM · {label}'[:31]  # Excel max 31 chars
+        # Name the sheet "CM · <Label>" — Excel forbids /,\\,?,*,[,] in titles
+        clean = label.replace('/', '-').replace('\\', '-').replace('?', '').replace('*', '').replace('[','(').replace(']',')')
+        sheet_name = f'CM · {clean}'[:31]
         ws = wb.create_sheet(sheet_name)
         ws.sheet_view.showGridLines = False
         r = _draw_title_block(ws,

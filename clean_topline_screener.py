@@ -110,7 +110,12 @@ def edgar_quarterly(tk):
 
 
 def get_rev_gross_series(tk):
-    """Return (rev_qtr, gross_qtr) — prefers EDGAR depth, falls back to yfinance."""
+    """Return (rev_qtr, gross_qtr) — prefers EDGAR depth, falls back to yfinance.
+
+    RELAXED: when 'Gross Profit' line is missing (common for non-US names in
+    yfinance), derive it as Revenue − Cost of Revenue. Where COGS is also
+    missing the screener correctly drops the ticker.
+    """
     e = edgar_quarterly(tk)
     rev_e = e.get('revenue') if e else None
     gross_e = e.get('gross') if e else None
@@ -120,6 +125,15 @@ def get_rev_gross_series(tk):
     inc = load_table(tk, 'income')
     rev = _col(inc, ['Total Revenue','Revenue','Operating Revenue'])
     gross = _col(inc, ['Gross Profit'])
+    if gross is None and rev is not None:
+        # RELAXED FALLBACK: derive Gross Profit = Revenue − Cost of Revenue
+        # for tickers without an explicit gross-profit line (mostly non-US).
+        cogs = _col(inc, ['Cost Of Revenue','Cost of Revenue','Reconciled Cost Of Revenue',
+                          'Cost of Goods Sold','Total Cost of Revenue'])
+        if cogs is not None:
+            common = rev.index.intersection(cogs.index)
+            if len(common) >= 4:
+                gross = (rev.reindex(common) - cogs.reindex(common).abs()).dropna()
     return rev, gross
 
 
@@ -178,18 +192,23 @@ def analyze(tk):
 
 def main():
     ap = argparse.ArgumentParser()
+    # RELAXED DEFAULTS (was: min_rev 15%, min_gross 15%, min_margin_chg 0.5pp).
+    # The original filters were calibrated for US fiscal-year data; non-US
+    # quarterly reporting frequencies inflate per-quarter growth noise, so we
+    # halve the growth thresholds and let margin_chg ≥ 0 (any expansion).
+    # Mcap floor + max-perf gates still exclude rerated names.
     ap.add_argument('--min-mcap', type=float, default=200e6)
-    ap.add_argument('--min-rev-growth', type=float, default=15.0)
-    ap.add_argument('--min-gross-growth', type=float, default=15.0)
-    ap.add_argument('--max-gross-growth', type=float, default=200.0,
+    ap.add_argument('--min-rev-growth', type=float, default=8.0)      # RELAXED 15 -> 8
+    ap.add_argument('--min-gross-growth', type=float, default=8.0)    # RELAXED 15 -> 8
+    ap.add_argument('--max-gross-growth', type=float, default=300.0,  # RELAXED 200 -> 300
                     help='cap to filter out tiny-base distortions')
-    ap.add_argument('--min-gross-margin-chg-pp', type=float, default=0.5)
-    ap.add_argument('--max-gross-margin-chg-pp', type=float, default=20.0,
+    ap.add_argument('--min-gross-margin-chg-pp', type=float, default=0.0)  # RELAXED 0.5 -> 0.0
+    ap.add_argument('--max-gross-margin-chg-pp', type=float, default=30.0, # RELAXED 20 -> 30
                     help='cap to filter out accounting-change distortions')
-    ap.add_argument('--min-gross-ltm-M', type=float, default=25.0,
+    ap.add_argument('--min-gross-ltm-M', type=float, default=15.0,    # RELAXED 25 -> 15
                     help='min LTM gross profit in millions (excludes nano-base)')
-    ap.add_argument('--max-perf-1y', type=float, default=20.0)
-    ap.add_argument('--min-perf-1y', type=float, default=-50.0)
+    ap.add_argument('--max-perf-1y', type=float, default=30.0)        # RELAXED 20 -> 30
+    ap.add_argument('--min-perf-1y', type=float, default=-60.0)       # RELAXED -50 -> -60
     args = ap.parse_args()
 
     tickers = sorted({p.name.split('__')[0] for p in CACHE.glob('*__income.parquet')})

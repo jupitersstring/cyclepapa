@@ -217,12 +217,13 @@ def analyze(ticker: str) -> Optional[dict]:
 
 def main():
     ap = argparse.ArgumentParser()
+    # RELAXED for global coverage.
     ap.add_argument('--min-mcap', type=float, default=200e6)
-    ap.add_argument('--min-sales-growth', type=float, default=15.0)
-    ap.add_argument('--margin-floor', type=float, default=-5.0)
-    ap.add_argument('--margin-ceiling', type=float, default=10.0)
-    ap.add_argument('--max-ev-fcf', type=float, default=40.0)
-    ap.add_argument('--require-fcf-growth', action='store_true', default=True)
+    ap.add_argument('--min-sales-growth', type=float, default=8.0)     # RELAXED 15 -> 8
+    ap.add_argument('--margin-floor', type=float, default=-15.0)       # RELAXED -5 -> -15
+    ap.add_argument('--margin-ceiling', type=float, default=25.0)      # RELAXED 10 -> 25
+    ap.add_argument('--max-ev-fcf', type=float, default=80.0)          # RELAXED 40 -> 80
+    ap.add_argument('--require-fcf-growth', action='store_true', default=False)  # RELAXED — was required
     args = ap.parse_args()
 
     tickers = sorted({f.name.split('__')[0] for f in CACHE.glob('*__price.parquet')})
@@ -236,7 +237,7 @@ def main():
             print(f"  {i+1}/{len(tickers)}  rows={len(rows)}")
     if not rows:
         print("No rows survived filters; nothing to write."); return
-    df = pd.DataFrame(rows).set_index(\'ticker\')
+    df = pd.DataFrame(rows).set_index('ticker')
     df.to_csv(OUTDIR / 'all.csv')
     print(f"\nWith data: {len(df)}")
 
