@@ -49,9 +49,13 @@ PY
     sleep 20
 done
 
-echo "[master] === phase 4: rebuild full rankings + workbook ==="
+echo "[master] === phase 4: Qullamaggie + Episodic Pivot screens ==="
+bash scripts/run_q_screens.sh
+
+echo "[master] === phase 5: integrate Q/EP into ranking, rebuild workbook ==="
 python3 scripts/master_synthesis_v2.py 2>&1 | tail -5
 python3 scripts/full_universe_rank_all.py 2>&1 | tail -5
+python3 scripts/integrate_q_into_ranking.py 2>&1 | tail -5
 python3 scripts/build_workbook_full.py 2>&1 | tail -3
 
 echo "[master] DONE"
