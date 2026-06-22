@@ -108,8 +108,89 @@ def load_all_info(min_mcap: float):
     return df
 
 
+def _ebitda_series_from(parquet_path: Path) -> pd.Series:
+    """Pull an EBITDA time series out of one income parquet (annual OR
+    quarterly). Returns empty Series if missing/empty/no EBITDA row."""
+    if not parquet_path.exists():
+        return pd.Series(dtype=float)
+    try:
+        inc = pd.read_parquet(parquet_path)
+    except Exception:
+        return pd.Series(dtype=float)
+    if inc.empty:
+        return pd.Series(dtype=float)
+    for tag in ('EBITDA', 'Normalized EBITDA'):
+        if tag in inc.index:
+            s = pd.to_numeric(inc.loc[tag], errors='coerce').dropna()
+            if s.empty: continue
+            s.index = pd.to_datetime(s.index, errors='coerce')
+            s = s[~s.index.isna()].sort_index()
+            if not s.empty:
+                return s
+    return pd.Series(dtype=float)
+
+
+def _load_ebitda_growth(cache_key: str) -> tuple[float | None, float | None]:
+    """Return (ltm_ebitda_growth_pct, annual_ebitda_growth_pct) for one
+    ticker, preferring LTM where computable.
+
+    Resolution order:
+      LTM growth — needs ≥8 quarters in `<key>__income.parquet`. Sum-of-4Q
+        now vs sum-of-4Q one year earlier.
+      Quarterly-YoY growth — falls back to Q-now vs same-Q one year ago,
+        requires ≥5 quarters. Reported as "LTM" since it's a quarterly
+        annualised number.
+      Annual growth — most recent annual EBITDA vs prior. Uses
+        `<key>__income_annual.parquet` if present, else last two columns of
+        the quarterly file as a rough proxy.
+    """
+    qpath = CACHE / f'{cache_key}__income.parquet'
+    apath = CACHE / f'{cache_key}__income_annual.parquet'
+
+    q_series = _ebitda_series_from(qpath)
+    a_series = _ebitda_series_from(apath)
+
+    ltm_g = None
+    # Full LTM-vs-LTM if we have ≥8 quarters
+    if len(q_series) >= 8:
+        rolled = q_series.rolling(4).sum().dropna()
+        if len(rolled) >= 5:
+            now = float(rolled.iloc[-1]); prv = float(rolled.iloc[-5])
+            if abs(prv) > 0:
+                ltm_g = (now - prv) / abs(prv) * 100
+    # Fallback: Q vs same-Q-1Y-ago (the yfinance hard cap is ~5-7 quarters)
+    if ltm_g is None and len(q_series) >= 5:
+        now = float(q_series.iloc[-1]); prv = float(q_series.iloc[-5])
+        if abs(prv) > 0:
+            ltm_g = (now - prv) / abs(prv) * 100
+
+    yr_g = None
+    if len(a_series) >= 2:
+        now = float(a_series.iloc[-1]); prv = float(a_series.iloc[-2])
+        if abs(prv) > 0:
+            yr_g = (now - prv) / abs(prv) * 100
+    elif len(q_series) >= 2:
+        now = float(q_series.iloc[-1]); prv = float(q_series.iloc[-2])
+        if abs(prv) > 0:
+            yr_g = (now - prv) / abs(prv) * 100
+
+    return ltm_g, yr_g
+
+
 def compute_ratios(df: pd.DataFrame) -> pd.DataFrame:
     """Add ev_ebitda_g, ev_sales_g, *_ltm and *_bv variants. NaN where invalid.
+
+    Bug fix: `ev_ebitda_g` previously used yfinance's `earningsGrowth` field
+    as the divisor, which is NET-EARNINGS growth (after-tax, after-interest,
+    after non-recurring). PEG-style EV/EBITDA should divide by EBITDA growth.
+    Now computes EBITDA growth from the cached quarterly income statement.
+
+    Two new columns appear alongside the original:
+      ev_ebitda_over_ebg_ltm = EV/EBITDA ÷ EBITDA-growth-LTM
+      ev_ebitda_over_ebg_yr  = EV/EBITDA ÷ EBITDA-growth-annual
+    The legacy `ev_ebitda_g` column is retained for back-compat but now also
+    uses EBITDA growth (not earnings growth). Earnings-growth-divided version
+    is preserved as `ev_ebitda_over_earng` for comparison.
 
     Financials are EXCLUDED from the PEG-style ratios. Banks/insurers/holdcos
     have economically-meaningless EV/EBITDA (deposits/reserves dwarf market
@@ -141,25 +222,55 @@ def compute_ratios(df: pd.DataFrame) -> pd.DataFrame:
     df['earn_g_pct'] = df['earningsGrowth'] * 100
     df['earn_g_q_pct'] = df['earningsQuarterlyGrowth'] * 100
 
-    def _peg(mult, growth):
+    # Compute real EBITDA growth (LTM + annual) from cached quarterly income.
+    # Per-ticker loop — keyed off cache_key (the on-disk filename stem).
+    if 'cache_key' in df.columns:
+        eb_g_ltm, eb_g_yr = [], []
+        for k in df['cache_key'].tolist():
+            ltm, yr = _load_ebitda_growth(k)
+            eb_g_ltm.append(ltm)
+            eb_g_yr.append(yr)
+        df['ebitda_g_ltm_pct'] = pd.to_numeric(pd.Series(eb_g_ltm, index=df.index), errors='coerce')
+        df['ebitda_g_yr_pct']  = pd.to_numeric(pd.Series(eb_g_yr,  index=df.index), errors='coerce')
+    else:
+        df['ebitda_g_ltm_pct'] = np.nan
+        df['ebitda_g_yr_pct']  = np.nan
+
+    def _peg(mult, growth, max_g: float = 150.0):
+        """PEG ratio with sensible bounds. Growth above max_g is treated as
+        base-effect noise (e.g. EBITDA going from tiny-positive to small-
+        positive yields huge percent growth that doesn't sustain). Default
+        cap = 150% — beyond that the ratio is meaningless for ranking."""
         m = pd.to_numeric(mult, errors='coerce')
         g = pd.to_numeric(growth, errors='coerce')
         m_valid = (m > 0) & np.isfinite(m)
-        g_valid = (g > 0) & np.isfinite(g)
+        # Growth must be positive AND below the noise cap
+        g_valid = (g > 0) & (g < max_g) & np.isfinite(g)
         out = m / g
         out = out.where(m_valid & g_valid)
         return out
 
-    df['ev_ebitda_g']      = _peg(df['ev_ebitda'], df['earn_g_pct'])
+    # PEG-style ratios — divide by the RIGHT growth rate
+    # CORRECT: EV/EBITDA divided by EBITDA growth (LTM preferred, annual fallback)
+    df['ev_ebitda_over_ebg_ltm'] = _peg(df['ev_ebitda'], df['ebitda_g_ltm_pct'])
+    df['ev_ebitda_over_ebg_yr']  = _peg(df['ev_ebitda'], df['ebitda_g_yr_pct'])
+    # Backward-compatible alias — was earnings-growth-divided, now EBITDA-growth-divided
+    df['ev_ebitda_g'] = df['ev_ebitda_over_ebg_ltm'].where(
+        df['ev_ebitda_over_ebg_ltm'].notna(), df['ev_ebitda_over_ebg_yr'])
+    # Legacy comparison column — kept for those who want the old behaviour
+    df['ev_ebitda_over_earng'] = _peg(df['ev_ebitda'], df['earn_g_pct'])
+
+    # Sales-growth-divided (these were already correct)
     df['ev_sales_g']       = _peg(df['ev_sales'],  df['rev_g_pct'])
-    df['ev_ebitda_g_ltm']  = _peg(df['ev_ebitda'], df['earn_g_q_pct'])
+    df['ev_ebitda_g_ltm']  = df['ev_ebitda_over_ebg_ltm']  # rename-alias for old code
     df['ev_sales_g_ltm']   = _peg(df['ev_sales'],  df['rev_g_pct'])
 
     # Suppress PEG ratios for financials — they're not just unusable, they're
     # actively misleading (banks frequently rank top because of accounting
     # quirks around interest income and reserve releases).
     fin = df['is_financial']
-    for col in ('ev_ebitda_g','ev_sales_g','ev_ebitda_g_ltm','ev_sales_g_ltm'):
+    for col in ('ev_ebitda_g','ev_sales_g','ev_ebitda_g_ltm','ev_sales_g_ltm',
+                'ev_ebitda_over_ebg_ltm','ev_ebitda_over_ebg_yr','ev_ebitda_over_earng'):
         df.loc[fin, col] = np.nan
 
     # Book-value tilt — diminishing, bounded ±20% — applied per row
