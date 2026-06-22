@@ -102,6 +102,7 @@ __all__ = [
     "assess",
     "rank_candidates",
     "from_yfinance",
+    "screen_yfinance",
     "utilization_from_loan",
     "parse_ibkr_shortable_text",
     "fetch_ibkr_shortable_text",
@@ -175,6 +176,7 @@ class SqueezeMetrics:
     on_reg_sho_threshold: Optional[bool] = None          # persistent fails-to-deliver (Reg SHO list)
     failures_to_deliver: Optional[float] = None          # FTD shares (SEC, context)
     options_volume_vs_adv: Optional[float] = None        # options vol / avg daily share vol (>=5 => MM hedging)
+    volume_vs_avg: Optional[float] = None                # today's share volume / ADV (investor-attention proxy)
 
     as_of: Optional[str] = None
     source: str = "manual"
@@ -585,8 +587,9 @@ def _dynamics_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
 
 def _ignition_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
     """The spark: upward price momentum, shorts under water (S3: a profitable short
-    cannot be squeezed), and gamma — heavy call buying (options volume >> ADV)
-    forces dealer delta-hedging (GME/AMC). None if no ignition input is provided."""
+    cannot be squeezed), gamma — heavy call buying (options volume >> ADV) forces
+    dealer delta-hedging (GME/AMC) — and investor attention (abnormal share volume,
+    the 2026 rare-events study). None if no ignition input is provided."""
     subs = []
     if m.momentum_pct is not None:
         subs.append(_band_score(m.momentum_pct, [(0.0, 0.0), (5.0, 30.0), (15.0, 60.0), (math.inf, 100.0)]))
@@ -595,6 +598,8 @@ def _ignition_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
     if m.options_volume_vs_adv is not None:
         subs.append(_band_score(m.options_volume_vs_adv,
                                 [(1.0, 0.0), (cfg.gamma_oi_hot * 0.6, 40.0), (cfg.gamma_oi_hot, 80.0), (math.inf, 100.0)]))
+    if m.volume_vs_avg is not None:
+        subs.append(_band_score(m.volume_vs_avg, [(1.5, 0.0), (3.0, 30.0), (5.0, 60.0), (math.inf, 100.0)]))
     subs = [s for s in subs if s is not None]
     return (sum(subs) / len(subs)) if subs else None
 
@@ -789,13 +794,17 @@ def from_yfinance(
     borrow_fee_pct: Optional[float] = None,
     borrow_fee_trend_pct_pts: Optional[float] = None,
     utilization_trend_pct_pts: Optional[float] = None,
+    on_reg_sho_threshold: Optional[bool] = None,
+    options_volume_vs_adv: Optional[float] = None,
 ) -> SqueezeMetrics:
-    """Build SqueezeMetrics from yfinance, injecting lending data you supply.
+    """Build SqueezeMetrics from yfinance, injecting the lending data you supply.
 
-    yfinance exposes short interest, % of float, and days-to-cover, but NOT
-    utilization or borrow fee. Pass those in from your stock-loan vendor /
-    prime broker if you have them; otherwise they stay None and the engine will
-    flag the gap. Requires `pip install yfinance`.
+    Auto-populates short interest (% of float and % of shares out), days-to-cover,
+    float, shares short (+ prior, for the SI-trend), average volume, INSTITUTIONAL
+    OWNERSHIP (heldPercentInstitutions) and an INVESTOR-ATTENTION proxy (today's
+    volume / average volume). yfinance does NOT carry utilization or borrow fee —
+    pass those from your stock-loan vendor; Reg SHO membership and options/gamma
+    are passed in too. Requires `pip install yfinance`.
     """
     import yfinance as yf  # lazy
 
@@ -803,6 +812,10 @@ def from_yfinance(
 
     def pct(x: Optional[float]) -> Optional[float]:
         return None if x is None else float(x) * 100.0
+
+    avg_vol = info.get("averageVolume") or info.get("averageDailyVolume10Day")
+    cur_vol = info.get("regularMarketVolume") or info.get("volume")
+    vol_vs_avg = (float(cur_vol) / float(avg_vol)) if (cur_vol and avg_vol) else None
 
     return SqueezeMetrics(
         ticker=ticker.upper(),
@@ -816,9 +829,45 @@ def from_yfinance(
         float_shares=info.get("floatShares"),
         shares_short=info.get("sharesShort"),
         shares_short_prior=info.get("sharesShortPriorMonth"),
-        avg_daily_volume=info.get("averageVolume"),
+        avg_daily_volume=avg_vol,
+        institutional_ownership_pct=pct(info.get("heldPercentInstitutions")),
+        volume_vs_avg=vol_vs_avg,
+        on_reg_sho_threshold=on_reg_sho_threshold,
+        options_volume_vs_adv=options_volume_vs_adv,
         source="yfinance",
     )
+
+
+_YF_LENDING_KEYS = frozenset({
+    "utilization_pct", "borrow_fee_pct", "borrow_fee_trend_pct_pts",
+    "utilization_trend_pct_pts", "options_volume_vs_adv",
+})
+
+
+def screen_yfinance(
+    tickers: Iterable[str],
+    *,
+    lending_by_symbol: Optional[Dict[str, Dict[str, float]]] = None,
+    reg_sho_symbols: Optional[Iterable[str]] = None,
+    config: SqueezeConfig = DEFAULT_CONFIG,
+    top: Optional[int] = None,
+) -> List[SqueezeAssessment]:
+    """Pull each ticker from yfinance, inject any lending data you have, and rank.
+
+    `lending_by_symbol` maps SYMBOL -> {utilization_pct:, borrow_fee_pct:, ...} for
+    the paywalled fields. One yfinance call per ticker (slow) — best for a curated
+    watchlist; use screen_universe() for the whole market. Requires yfinance.
+    """
+    lending = {k.upper(): v for k, v in (lending_by_symbol or {}).items()}
+    reg = {s.strip().upper() for s in (reg_sho_symbols or [])}
+    have_reg = reg_sho_symbols is not None
+    metrics: List[SqueezeMetrics] = []
+    for t in tickers:
+        ld = {k: v for k, v in lending.get(t.upper(), {}).items() if k in _YF_LENDING_KEYS}
+        metrics.append(from_yfinance(
+            t, on_reg_sho_threshold=((t.upper() in reg) if have_reg else None), **ld))
+    ranked = rank_candidates(metrics, config)
+    return ranked[:top] if top else ranked
 
 
 # ---------------------------------------------------------------------------

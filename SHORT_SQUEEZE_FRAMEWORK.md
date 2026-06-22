@@ -277,8 +277,9 @@ that a *coiled*, an *accelerating*, and an *igniting* setup score differently:
 - **dynamics** — acceleration: rising utilization / fee / short interest (Ortex &
   S3 stress rate-of-change; Cohen-Diether-Malloy: rising shorting demand predicts
   lower returns).
-- **ignition** — the spark: upward price momentum, shorts under water (S3), and
-  **gamma** — options volume ≫ ADV (≥5×) forces dealer delta-hedging (GME/AMC).
+- **ignition** — the spark: upward price momentum, shorts under water (S3),
+  **gamma** (options volume ≫ ADV, ≥5×, forces dealer delta-hedging — GME/AMC),
+  and **investor attention** (abnormal share volume — the 2026 rare-events study).
 - **constraint** — short-sale constraint / thin supply: Reg SHO threshold
   membership (persistent fails-to-deliver) and low institutional ownership
   (Asquith; the 2026 rare-events study finds institutional ownership *reduces*

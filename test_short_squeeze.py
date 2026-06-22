@@ -501,6 +501,11 @@ class TestLiteratureFeatures(unittest.TestCase):
         self.assertIsNone(base)
         self.assertGreaterEqual(gamma, 80)
 
+    def test_volume_attention_feeds_ignition(self):
+        att = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                                    volume_vs_avg=6)).ignition_score
+        self.assertGreaterEqual(att, 80)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
