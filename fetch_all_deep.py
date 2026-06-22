@@ -28,6 +28,22 @@ CACHE = Path('.cache/yf')
 REPO = Path(__file__).resolve().parent
 
 SLOTS = ('income','cashflow','income_annual','cashflow_annual','price')
+DEAD_LIST = CACHE / '_dead_tickers.txt'  # Sentinels for tickers where every slot failed
+
+
+def load_dead_set() -> set:
+    if not DEAD_LIST.exists(): return set()
+    try:
+        return {ln.strip() for ln in DEAD_LIST.read_text().splitlines() if ln.strip()}
+    except Exception: return set()
+
+
+def mark_dead(tk: str):
+    """Append ticker to dead-list (idempotent — caller can call repeatedly)."""
+    try:
+        with open(DEAD_LIST, 'a') as f:
+            f.write(tk + '\n')
+    except Exception: pass
 
 
 def safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in t)
@@ -54,10 +70,15 @@ def safe_to_ticker(safe_name: str) -> str:
 
 
 def fetch_slot(tk: str, slot: str) -> str:
-    """Return 'ok', 'cached', or 'fail'. Idempotent: skips if cached."""
+    """Return 'ok', 'cached', or 'fail'. Idempotent: skips if cached.
+    Writes a sentinel `__<slot>.dead` file on a failed fetch so future runs
+    don't re-attempt yfinance for slots that have no data."""
     p = CACHE / f'{safe(tk)}__{slot}.parquet'
     if p.exists():
         return 'cached'
+    dead = CACHE / f'{safe(tk)}__{slot}.dead'
+    if dead.exists():
+        return 'cached'  # treat known-dead as 'cached' so it's not re-attempted
     try:
         t = yf.Ticker(tk)
         if slot == 'income':
@@ -73,21 +94,27 @@ def fetch_slot(tk: str, slot: str) -> str:
         else:
             return 'fail'
         if d is None or (hasattr(d, 'empty') and d.empty):
+            dead.touch()
             return 'fail'
         d.to_parquet(p)
         return 'ok'
     except Exception:
+        dead.touch()
         return 'fail'
 
 
 def fetch_all_for(tk: str, sleep_s: float = 0.3) -> dict:
-    """Fetch all SLOTS for one ticker. Returns counts per outcome."""
+    """Fetch all SLOTS for one ticker. Returns counts per outcome.
+    If every slot fails AND nothing was already cached, mark the ticker dead
+    so next run skips it."""
     out = {'ok': 0, 'cached': 0, 'fail': 0}
     for slot in SLOTS:
         r = fetch_slot(tk, slot)
         out[r] = out.get(r, 0) + 1
         if sleep_s > 0 and r == 'ok':
             time.sleep(sleep_s)
+    if out['ok'] == 0 and out['cached'] == 0 and out['fail'] == len(SLOTS):
+        mark_dead(tk)
     return out
 
 
@@ -128,11 +155,19 @@ def main():
     universe = [safe_to_ticker(f.name.split('__')[0]) for f in info_files]
     print(f'Universe size: {len(universe):,} tickers')
 
-    # Filter to those that still need at least one deep slot
+    # Skip tickers we've already proven have no deep data anywhere on yfinance
+    dead = load_dead_set()
+    print(f'Dead-list (proven no data): {len(dead):,} tickers — skipping these')
+
+    # Filter to those that still need at least one deep slot AND aren't dead.
+    # A ticker is "needed" if at least one slot has neither a .parquet (real data)
+    # nor a .dead sentinel (proven empty).
     todo = []
     for tk in universe:
+        if tk in dead: continue
+        s = safe(tk)
         for slot in SLOTS:
-            if not (CACHE / f'{safe(tk)}__{slot}.parquet').exists():
+            if not (CACHE / f'{s}__{slot}.parquet').exists() and not (CACHE / f'{s}__{slot}.dead').exists():
                 todo.append(tk)
                 break
     print(f'Tickers with missing deep slots: {len(todo):,}')
