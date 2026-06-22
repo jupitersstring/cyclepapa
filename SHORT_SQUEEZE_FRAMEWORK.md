@@ -368,18 +368,20 @@ https://www.evidenceinvestor.com/post/the-consequences-of-short-squeezes
 
 ---
 
-## Appendix A — Wiring data sources (IBKR plan, **parked**)
+## Appendix A — Wiring IBKR data (fee parser **shipped**; utilization manual)
 
-We are **building without IBKR for now**; this records the plan so it can be
-picked up later. The framework is already shaped for it: `SqueezeMetrics` accepts
-`utilization_pct` / `borrow_fee_pct`, and `assess()` auto-upgrades to strict
-detectors + HIGH confidence the moment utilization appears.
+The IBKR public-file **fee/availability parser is implemented** —
+`parse_ibkr_shortable_text()`, `fetch_ibkr_shortable_text()`, and
+`from_ibkr_file(ticker, short_interest_pct_float=...)`. It needs **no account**
+and gets you to MEDIUM confidence. True **utilization stays manual** (Orbisa is
+GUI-only) — pass `utilization_pct=...` to reach HIGH confidence, at which point
+`assess()` auto-switches to the strict detectors.
 
 What IBKR actually exposes (researched, and it's nuanced):
 
 | What | How | Account? | Gives |
 |---|---|---|---|
-| **Borrow fee + shortable availability** | Public file `ftp://shortstock@ftp3.interactivebrokers.com/usa.txt` — pipe-delimited, skip lines starting with `#`; columns ≈ `SYM\|CUR\|NAME\|CON\|ISIN\|REBATERATE\|FEERATE\|AVAILABLE`; refreshed several times/day | **No** | `borrow_fee_pct` (→ MEDIUM confidence) + a tightness proxy from `AVAILABLE` |
+| **Borrow fee + shortable availability** ✅ *shipped* | `from_ibkr_file()` parses the public file `ftp://shortstock@ftp3.interactivebrokers.com/usa.txt` (pipe-delimited, trailing pipe; columns `SYM\|CUR\|NAME\|CON\|ISIN\|REBATERATE\|FEERATE\|AVAILABLE`; refreshed several times/day) | **No** | `borrow_fee_pct` (→ MEDIUM) + `shortable_shares_available` (0 ⇒ tightness note) |
 | **Live shortable-share quantity** | TWS API (`ib_insync`) `reqMktData(contract, genericTickList="236")` → `ticker.shortableShares` | Yes + TWS/Gateway running | real-time shortable qty |
 | **Utilization + shares-on-loan** | **Orbisa** Securities Lending Dashboard in TWS / Client Portal / Mobile | Yes | **utilization (→ HIGH confidence)** — but **GUI only, no API** |
 
@@ -397,5 +399,7 @@ Alternative to IBKR: **Ortex** free tier surfaces real-time CTB + utilization fo
 a limited set; paid ≈ $39–50/mo for full coverage — a true API path to
 utilization if hand-entry is too manual.
 
-Status: **parked.** No FTP/API code is shipped yet by design; `from_yfinance()`
-+ manual injection covers the current "build without IBKR" scope.
+Status: **fee parser shipped** (`from_ibkr_file`, no account). Still parked: the
+TWS-API `shortableShares` tick (row 2) and any auto-pull of utilization (there is
+no API for it). Current path to HIGH confidence = parse the fee, hand-enter
+utilization from the Orbisa dashboard.

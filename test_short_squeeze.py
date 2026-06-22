@@ -15,14 +15,29 @@ from short_squeeze import (
     BORROW_FEE_P95_PCT,
     SCORE_RULES,
     Confidence,
+    IbkrShortRow,
     SqueezeClass,
     SqueezeMetrics,
     _band_score,
     assess,
     detect_bearish_convergence,
     detect_squeeze_fuel,
+    from_ibkr_file,
+    parse_ibkr_shortable_text,
     utilization_from_loan,
 )
+
+
+IBKR_SAMPLE = """#BOF|usa|2024.05.01|22:15:38
+SYM|CUR|NAME|CON|ISIN|REBATERATE|FEERATE|AVAILABLE|
+AAPL|USD|APPLE INC|265598|XXXXXXX1005|4.5000|0.2500|>10000000|
+GME|USD|GAMESTOP CORP-CLASS A|321524569|XXXXXXX1099|-12.5000|18.0000|350000|
+TINY|USD|TINY HARD TO BORROW CORP|999999|XXXXXXX9999|-30.0000|33.0000|0|
+WEIRD|USD|MISSING FEE CORP|111|XXXXXXX1111|||500|
+
+GARBAGE_NO_PIPES_HERE
+#EOF|5
+"""
 
 
 class TestReferenceConstants(unittest.TestCase):
@@ -273,6 +288,62 @@ class TestUtilizationFromLoan(unittest.TestCase):
     def test_zero_or_negative_denominator_returns_none(self):
         self.assertIsNone(utilization_from_loan(10.0, 0.0))
         self.assertIsNone(utilization_from_loan(10.0, -5.0))
+
+
+class TestIbkrParser(unittest.TestCase):
+    def setUp(self):
+        self.rows = parse_ibkr_shortable_text(IBKR_SAMPLE)
+
+    def test_skips_comments_header_and_garbage(self):
+        self.assertEqual(set(self.rows), {"AAPL", "GME", "TINY", "WEIRD"})
+
+    def test_returns_ibkr_short_row(self):
+        self.assertIsInstance(self.rows["GME"], IbkrShortRow)
+
+    def test_fee_and_rebate_parsed(self):
+        self.assertAlmostEqual(self.rows["GME"].fee_rate_pct, 18.0)
+        self.assertAlmostEqual(self.rows["GME"].rebate_rate_pct, -12.5)
+        self.assertAlmostEqual(self.rows["AAPL"].fee_rate_pct, 0.25)
+
+    def test_trailing_pipe_does_not_eat_available(self):
+        # With the trailing '|', a naive split would put '' last; AVAILABLE must survive.
+        self.assertAlmostEqual(self.rows["GME"].available, 350000.0)
+
+    def test_greater_than_availability(self):
+        self.assertAlmostEqual(self.rows["AAPL"].available, 10000000.0)
+        self.assertEqual(self.rows["AAPL"].available_raw, ">10000000")
+
+    def test_zero_availability(self):
+        self.assertEqual(self.rows["TINY"].available, 0.0)
+
+    def test_missing_fee_is_none_not_crash(self):
+        self.assertIsNone(self.rows["WEIRD"].fee_rate_pct)
+        self.assertAlmostEqual(self.rows["WEIRD"].available, 500.0)
+
+    def test_bof_timestamp_captured(self):
+        self.assertEqual(self.rows["GME"].as_of, "2024.05.01 22:15:38")
+
+    def test_from_ibkr_file_builds_metrics(self):
+        m = from_ibkr_file("gme", text=IBKR_SAMPLE, short_interest_pct_float=24.0, days_to_cover=4.0)
+        self.assertEqual(m.ticker, "GME")
+        self.assertAlmostEqual(m.borrow_fee_pct, 18.0)
+        self.assertAlmostEqual(m.shortable_shares_available, 350000.0)
+        self.assertEqual(m.source, "ibkr_file")
+        self.assertIsNone(m.utilization_pct)  # not in the file
+
+    def test_from_ibkr_file_then_assess_is_medium_squeeze_fuel(self):
+        m = from_ibkr_file("GME", text=IBKR_SAMPLE, short_interest_pct_float=24.0)
+        a = assess(m)
+        self.assertEqual(a.confidence, Confidence.MEDIUM)
+        self.assertEqual(a.classification, SqueezeClass.SQUEEZE_FUEL)
+
+    def test_zero_shortable_adds_tightness_note(self):
+        a = assess(from_ibkr_file("TINY", text=IBKR_SAMPLE))
+        self.assertTrue(any("0 shortable shares" in n for n in a.notes))
+
+    def test_missing_ticker_raises_keyerror(self):
+        with self.assertRaises(KeyError):
+            from_ibkr_file("NOPE", text=IBKR_SAMPLE)
 
 
 if __name__ == "__main__":

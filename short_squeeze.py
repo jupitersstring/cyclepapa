@@ -55,13 +55,14 @@ THE TWO DETECTORS
 
 DATA REALITY (read this before you trust a score)
 -------------------------------------------------
-The two most predictive inputs — UTILIZATION and BORROW FEE — are securities-
-lending data, not on no-account free feeds. yfinance gives you short_interest %
-of float, shares short, and days-to-cover only. Realistic ways to get the rest:
-  * IBKR's Securities Lending Dashboard — real-time utilization, shares-on-loan
-    and borrow fee, FREE with an Interactive Brokers account (the best back-door);
-  * Ortex — limited FREE tier exposes CTB + utilization (paid ~$39-50/mo for full);
-  * Nasdaq Data Link / S&P (IHS) Markit / FIS Astec — paid.
+The two most predictive inputs are UTILIZATION and BORROW FEE. yfinance gives you
+short_interest % of float, shares short, and days-to-cover only. The rest:
+  * BORROW FEE + shortable availability — FREE, NO ACCOUNT: `from_ibkr_file()`
+    parses IBKR's public ftp://shortstock@ftp3.interactivebrokers.com/<cc>.txt
+    (-> MEDIUM confidence on its own);
+  * UTILIZATION — IBKR's Orbisa dashboard (real-time, FREE with an account, but
+    GUI-only -> pass it via utilization_pct=... for HIGH confidence); or Ortex
+    (limited free tier; paid ~$39-50/mo); Nasdaq / S&P (IHS) Markit / FIS Astec paid.
 If you have none of these, run DEGRADED: the engine still scores and classifies,
 but reports `confidence = MEDIUM` (borrow fee but no utilization) or `LOW`
 (neither — SI%/days-to-cover only), and the detectors switch to a borrow-fee
@@ -99,6 +100,10 @@ __all__ = [
     "assess",
     "from_yfinance",
     "utilization_from_loan",
+    "parse_ibkr_shortable_text",
+    "fetch_ibkr_shortable_text",
+    "from_ibkr_file",
+    "IbkrShortRow",
     "BORROW_FEE_MEAN_PCT",
     "BORROW_FEE_MEDIAN_PCT",
     "BORROW_FEE_P95_PCT",
@@ -142,6 +147,7 @@ class SqueezeMetrics:
     shares_short: Optional[float] = None
     shares_short_prior: Optional[float] = None         # for SI trend
     avg_daily_volume: Optional[float] = None
+    shortable_shares_available: Optional[float] = None  # IBKR shortable qty (0 => tight)
 
     # --- rate-of-change context (squeeze setups are about *acceleration*) ---
     utilization_trend_pct_pts: Optional[float] = None  # change in utilization (pct points)
@@ -523,6 +529,12 @@ def assess(m: SqueezeMetrics) -> SqueezeAssessment:
             "(bi-monthly, published 7 business days after settlement)."
         )
 
+    if m.shortable_shares_available is not None and m.shortable_shares_available <= 0:
+        notes.append(
+            "IBKR reports 0 shortable shares — borrow effectively unavailable now "
+            "(a real-time tightness signal; utilization likely high)."
+        )
+
     # --- classify (best-effort; INSUFFICIENT_DATA only when nothing is scorable) ---
     if bearish.triggered:
         cls = SqueezeClass.GENUINELY_SHORT
@@ -598,6 +610,151 @@ def from_yfinance(
         shares_short_prior=info.get("sharesShortPriorMonth"),
         avg_daily_volume=info.get("averageVolume"),
         source="yfinance",
+    )
+
+
+# ---------------------------------------------------------------------------
+# IBKR public shortable-stock file ("usa.txt") parser — free, no account.
+# Format (pipe-delimited, one stock per line, usually a TRAILING pipe):
+#   #BOF|usa|YYYY.MM.DD|HH:MM:SS                      <- metadata (timestamp kept)
+#   SYM|CUR|NAME|CON|ISIN|REBATERATE|FEERATE|AVAILABLE|
+#   GME|USD|GAMESTOP CORP|321524569|XXXXXXX1099|-12.5|18.0|350000|
+#   #EOF|<count>
+# FEERATE is the annualized borrow fee in %. AVAILABLE is shortable-share
+# quantity (">10000000" = abundant general collateral; 0 = none/tight).
+# ---------------------------------------------------------------------------
+IBKR_FTP_HOST = "ftp3.interactivebrokers.com"
+IBKR_FTP_USER = "shortstock"  # public; no password required
+
+
+@dataclass
+class IbkrShortRow:
+    symbol: str
+    fee_rate_pct: Optional[float]       # FEERATE — annualized borrow fee, %
+    rebate_rate_pct: Optional[float]    # REBATERATE
+    available: Optional[float]          # shortable shares available (None if unparseable)
+    available_raw: str = ""             # original token, e.g. ">10000000"
+    as_of: Optional[str] = None
+
+
+def _parse_float(token: str) -> Optional[float]:
+    try:
+        return float(token.strip())
+    except (ValueError, AttributeError):
+        return None
+
+
+def _parse_available(token: str) -> Tuple[Optional[float], str]:
+    raw = (token or "").strip()
+    if not raw or raw.upper() in {"NA", "N/A", "NONE", "-"}:
+        return None, raw
+    cleaned = raw.lstrip(">").replace(",", "").strip()  # ">10000000" -> "10000000"
+    try:
+        return float(cleaned), raw
+    except ValueError:
+        return None, raw
+
+
+def parse_ibkr_shortable_text(text: str) -> Dict[str, IbkrShortRow]:
+    """Parse the IBKR shortable file text into {SYMBOL: IbkrShortRow}.
+
+    Pure function (no I/O) so it is fully testable offline. Robust to the
+    trailing pipe, to a 'SYM|...' column-name header row, and to '#'-comment
+    lines; columns are read positionally from the end (AVAILABLE, FEERATE,
+    REBATERATE) so extra leading columns don't break it.
+    """
+    as_of: Optional[str] = None
+    out: Dict[str, IbkrShortRow] = {}
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("#"):
+            if line.upper().startswith("#BOF"):
+                parts = line.split("|")
+                if len(parts) >= 4:
+                    as_of = f"{parts[2]} {parts[3]}".strip()
+                elif len(parts) >= 3:
+                    as_of = parts[2].strip()
+            continue
+        parts = line.split("|")
+        if parts and parts[-1] == "":   # drop the single trailing-pipe empty field
+            parts = parts[:-1]
+        if len(parts) < 4:
+            continue
+        sym = parts[0].strip().upper()
+        if not sym or sym == "SYM":      # skip a column-name header row if present
+            continue
+        available, available_raw = _parse_available(parts[-1])
+        out[sym] = IbkrShortRow(
+            symbol=sym,
+            fee_rate_pct=_parse_float(parts[-2]),
+            rebate_rate_pct=_parse_float(parts[-3]),
+            available=available,
+            available_raw=available_raw,
+            as_of=as_of,
+        )
+    return out
+
+
+def fetch_ibkr_shortable_text(country: str = "usa", *, timeout: float = 30.0) -> str:  # pragma: no cover - network
+    """Download the IBKR public shortable file over anonymous FTP (no account).
+
+    Equivalent to ftp://shortstock@ftp3.interactivebrokers.com/<country>.txt .
+    Stdlib only (ftplib); the file is refreshed several times per business day.
+    """
+    from ftplib import FTP  # lazy, stdlib
+
+    lines: List[str] = []
+    ftp = FTP(IBKR_FTP_HOST, timeout=timeout)
+    try:
+        ftp.login(user=IBKR_FTP_USER)  # no password
+        ftp.retrlines(f"RETR {country}.txt", lines.append)
+    finally:
+        try:
+            ftp.quit()
+        except Exception:
+            ftp.close()
+    return "\n".join(lines)
+
+
+def from_ibkr_file(
+    ticker: str,
+    *,
+    text: Optional[str] = None,
+    country: str = "usa",
+    short_interest_pct_float: Optional[float] = None,
+    days_to_cover: Optional[float] = None,
+    utilization_pct: Optional[float] = None,
+) -> SqueezeMetrics:
+    """Build SqueezeMetrics for `ticker` from the IBKR shortable file.
+
+    Populates borrow_fee_pct and shortable availability -> MEDIUM confidence with
+    NO account needed. Pass `text` to parse an already-downloaded file (offline /
+    testable); otherwise it is fetched over FTP. Short interest and days-to-cover
+    are not in this file — inject them (e.g. from yfinance) if you have them.
+    Utilization is GUI-only at IBKR (Orbisa) — pass it manually for HIGH confidence.
+
+    Raises KeyError if the ticker is not present in the file.
+    """
+    if text is None:
+        text = fetch_ibkr_shortable_text(country)
+    rows = parse_ibkr_shortable_text(text)
+    row = rows.get(ticker.strip().upper())
+    if row is None:
+        raise KeyError(
+            f"{ticker!r} not in IBKR {country}.txt shortable file "
+            f"({len(rows)} symbols parsed) — IBKR lists only currently-shortable names."
+        )
+    return SqueezeMetrics(
+        ticker=row.symbol,
+        short_interest_pct_float=short_interest_pct_float,
+        utilization_pct=utilization_pct,
+        borrow_fee_pct=row.fee_rate_pct,
+        days_to_cover=days_to_cover,
+        shortable_shares_available=row.available,
+        as_of=row.as_of,
+        source="ibkr_file",
     )
 
 
@@ -741,6 +898,23 @@ def _demo() -> None:
     for m in examples:
         print(assess(m).summary())
         print()
+
+    # --- IBKR public-file parser (offline sample; the real file needs no account) ---
+    sample = (
+        "#BOF|usa|2024.05.01|22:15:38\n"
+        "SYM|CUR|NAME|CON|ISIN|REBATERATE|FEERATE|AVAILABLE|\n"
+        "GME|USD|GAMESTOP CORP|321524569|XXXXXXX1099|-12.5|18.0|350000|\n"
+        "AAPL|USD|APPLE INC|265598|XXXXXXX1005|4.5|0.25|>10000000|\n"
+    )
+    rows = parse_ibkr_shortable_text(sample)
+    print("IBKR usa.txt parser (offline sample):")
+    for sym, r in rows.items():
+        fee = "n/a" if r.fee_rate_pct is None else f"{r.fee_rate_pct:6.2f}%"
+        print(f"  {sym:<6} fee={fee}  available={r.available_raw}  as_of={r.as_of}")
+    print()
+    # GME fee from the file + short interest injected from elsewhere -> MEDIUM conf.
+    print(assess(from_ibkr_file("GME", text=sample,
+                                short_interest_pct_float=24.0, days_to_cover=4.0)).summary())
 
 
 if __name__ == "__main__":
