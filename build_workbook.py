@@ -118,10 +118,68 @@ def _autosize(ws, headers, max_w=34):
         ws.column_dimensions[col_letter].width = max(9, min(max_len + 2, max_w))
 
 
+_TEXT_COLS = {
+    'ticker','company','sector','industry','country','region','name','longname',
+    'shortname','category','growing_revenue_type','status','path','measure',
+    'symbol','holder','firm','position','action','grade','transaction','insider',
+    'ownership','text','url','tab','periodtype','period',
+}
+
+def _excel_number_format(col_name: str, sample: float | None = None) -> str | None:
+    """Pick an Excel number format string based on column-name heuristics.
+    Returns None for text/id columns. All numeric formats use comma
+    thousands separators and parentheses for negatives (Harvard-magazine
+    convention for financial tables)."""
+    name = (col_name or '').lower()
+    if name in _TEXT_COLS:
+        return None
+    # Percent-like columns (data is already in pct points, e.g. 23.4 not 0.234)
+    if (name.endswith('_pct') or name.endswith('_pct_change') or '_pp' in name
+            or 'percent' in name or name in ('perf_1y','perf_1y_pct',
+            'cheap_pct','avg_inflection_z','rev_growth','sales_growth_pct',
+            'fcf_growth_pct','ebitda_growth_pct','margin_expansion_pp',
+            'price_change_pct','price_3y_pct','rev_yoy_pct','fcf_yoy_pct',
+            'ebitda_yoy_pct','fcf_ps_3y_growth_pct','yield_yoy_growth_pct',
+            'yield_trend_pp_1y','yield_trend_pp_2y','seg_growth','total_growth',
+            'excess_growth','share_now')):
+        return '#,##0.0;(#,##0.0);"–"'
+    # Fractional ratios that mean a percent but are stored as 0..1
+    if name in ('share_now','shares_1y_chg') and sample is not None and -2 < sample < 2:
+        return '0.0%;(0.0%);"–"'
+    # Money fields in millions (suffixed _M) — show with comma, no decimals
+    if name.endswith('_m') or name.endswith('_ltm_m') or name == 'rev_now_m' or name == 'fcf_now_m':
+        return '#,##0;(#,##0);"–"'
+    # Money fields in billions
+    if name.endswith('_b') or name.endswith('_ltm_b'):
+        return '#,##0.00;(#,##0.00);"–"'
+    # Raw market cap / enterprise value — big numbers, no decimals
+    if name in ('market_cap','marketcap','enterprisevalue','ev_now','ev','total_ltm','seg_ltm'):
+        return '#,##0;(#,##0);"–"'
+    # Days / counts / years
+    if name in ('years_to_50pct','n_quarters'):
+        return '#,##0.0;(#,##0.0);"–"'
+    # Valuation ratios / scores — 2dp
+    if name in ('pricetobook','pricetosales','trailingpe','forwardpe',
+                'enterprisetoebitda','enterprisetorevenue','evebitda','ev_ebitda',
+                'psg','pe_now','pe_y_ago','ps_now','pb_now','priceToBook'.lower(),
+                'priceToSales'.lower(),'priceToTangibleBook'.lower(),
+                'pretty_pe','peg','akre_score','seg_score','quality_score',
+                'pre_rerate_score','leverage_score','composite','fin_composite',
+                'multiple_compression_pct','debt_to_equity'):
+        return '#,##0.00;(#,##0.00);"–"'
+    # Prices — 2dp
+    if name in ('price_now','price_y_ago','price','open','close','high','low',
+                'eps_now_ltm','eps_y_ago_ltm','eps','ltm_fcf_ps_now'):
+        return '#,##0.00;(#,##0.00);"–"'
+    # Default for any other numeric column: 2dp + brackets for negatives
+    return '#,##0.00;(#,##0.00);"–"'
+
+
 def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True):
     """Write a DataFrame as a Harvard-style booktabs table:
        heavy top rule, thin rule under header, thin rule at bottom.
-       No vertical lines, no row striping, no cell borders."""
+       No vertical lines, no row striping, no cell borders.
+       Numeric columns get comma separators + parens for negatives."""
     if df.empty:
         c = ws.cell(row=start_row, column=1, value='— no rows —')
         c.font = CAPTION_FONT
@@ -130,22 +188,42 @@ def _write_df(ws, df: pd.DataFrame, headers, start_row: int = 1, alt_shade=True)
     for i, h in enumerate(headers, 1):
         ws.cell(row=start_row, column=i, value=h)
     _style_header(ws, start_row, 1, len(headers))
+    # Decide a number format per column from the first non-null sample
+    col_fmt: dict[str, str | None] = {}
+    for h in headers:
+        sample = None
+        if h in df.columns:
+            s = df[h].dropna()
+            if not s.empty:
+                v = s.iloc[0]
+                if isinstance(v, (int, float, np.integer, np.floating)) and not isinstance(v, bool):
+                    sample = float(v)
+        col_fmt[h] = _excel_number_format(h, sample)
     last_data_row = start_row + len(df)
     for r, (_, row) in enumerate(df.iterrows(), start=start_row + 1):
         is_last = (r == last_data_row)
         for c, h in enumerate(headers, 1):
             v = row.get(h)
-            if pd.isna(v): v = ''
-            elif isinstance(v, (np.floating, float)):
-                v = round(float(v), 3)
-            cell = ws.cell(row=r, column=c, value=v)
-            cell.font = BODY_FONT
-            if isinstance(v, (int, float)) and not isinstance(v, bool):
-                cell.alignment = ALIGN_RIGHT
+            if pd.isna(v):
+                cell = ws.cell(row=r, column=c, value=None)
             else:
-                cell.alignment = ALIGN_LEFT
+                # Preserve native numeric types — formatting is via number_format
+                if isinstance(v, (np.integer,)):
+                    v = int(v)
+                elif isinstance(v, (np.floating, float)):
+                    v = float(v)
+                cell = ws.cell(row=r, column=c, value=v)
+                if isinstance(v, bool):
+                    cell.alignment = ALIGN_LEFT  # booleans render as text-like
+                elif isinstance(v, (int, float)):
+                    cell.alignment = ALIGN_RIGHT
+                    fmt = col_fmt.get(h)
+                    if fmt:
+                        cell.number_format = fmt
+                else:
+                    cell.alignment = ALIGN_LEFT
+            cell.font = BODY_FONT
             cell.fill = WARM_FILL
-            # Only the last row of the table gets a bottom rule
             if is_last:
                 cell.border = Border(bottom=RULE_BOTTOM)
             else:
