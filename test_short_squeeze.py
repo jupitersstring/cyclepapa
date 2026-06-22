@@ -24,9 +24,23 @@ from short_squeeze import (
     detect_bearish_convergence,
     detect_squeeze_fuel,
     from_ibkr_file,
+    parse_finra_short_interest,
     parse_ibkr_shortable_text,
     rank_candidates,
+    screen_universe,
     utilization_from_loan,
+)
+
+
+FINRA_CSV = (
+    "issueSymbolIdentifier,settlementDate,issueName,currentShortShareNumber,"
+    "previousShortShareNumber,averageDailyVolumeQuantity,daysToCoverQuantity\n"
+    "GME,20260615,GAMESTOP CORP,45000000,40000000,7000000,6.43\n"
+    "ZZZ,20260615,ZERO VOL CO,1000,1000,N/A,N/A\n"
+)
+FINRA_PIPE = (
+    "issueSymbolIdentifier|currentShortShareNumber|previousShortShareNumber|daysToCoverQuantity\n"
+    "AAA|2,500,000|2,000,000|3.50\n"
 )
 
 
@@ -426,6 +440,66 @@ class TestRankAndConfig(unittest.TestCase):
         strict = assess(m, SqueezeConfig(elevated_score=99, watch_score=95))
         loose = assess(m, SqueezeConfig(elevated_score=10, watch_score=5))
         self.assertLessEqual(order[loose.classification], order[strict.classification])
+
+
+class TestFinraParser(unittest.TestCase):
+    def test_csv_header_driven(self):
+        rows = parse_finra_short_interest(FINRA_CSV)
+        self.assertEqual(set(rows), {"GME", "ZZZ"})
+        self.assertEqual(rows["GME"].shares_short, 45000000)
+        self.assertEqual(rows["GME"].shares_short_prior, 40000000)
+        self.assertAlmostEqual(rows["GME"].days_to_cover, 6.43)
+        self.assertEqual(rows["GME"].avg_daily_volume, 7000000)
+
+    def test_na_becomes_none(self):
+        rows = parse_finra_short_interest(FINRA_CSV)
+        self.assertIsNone(rows["ZZZ"].days_to_cover)
+        self.assertIsNone(rows["ZZZ"].avg_daily_volume)
+
+    def test_pipe_delimiter_and_commas_in_numbers(self):
+        rows = parse_finra_short_interest(FINRA_PIPE)
+        self.assertEqual(rows["AAA"].shares_short, 2500000)  # thousands separators stripped
+        self.assertAlmostEqual(rows["AAA"].days_to_cover, 3.5)
+
+
+class TestScreenUniverse(unittest.TestCase):
+    def test_merges_sources_and_computes_si_pct(self):
+        ibkr = "#BOF|usa|2026.06.19|14:00:00\nGME|USD|GAMESTOP|1|X|-5|18.0|350000|\n"
+        finra = ("issueSymbolIdentifier,currentShortShareNumber,previousShortShareNumber,daysToCoverQuantity\n"
+                 "GME,45000000,40000000,6.43\n")
+        ranked = screen_universe(ibkr_text=ibkr, finra_text=finra,
+                                 float_by_symbol={"GME": 300e6}, reg_sho_symbols=["GME"])
+        a = ranked[0]
+        self.assertEqual(a.ticker, "GME")
+        self.assertAlmostEqual(a.rule_scores["d33_short_interest_pct"], 40.0)  # 15% of float -> band 10-20
+        self.assertEqual(a.constraint_score, 100.0)                            # on Reg SHO list
+        self.assertEqual(a.classification, SqueezeClass.SQUEEZE_FUEL)
+
+    def test_full_universe_is_the_union_of_sources(self):
+        ibkr = "#BOF|usa|2026.06.19|14:00:00\nONLYIB|USD|X|1|X|-1|9.0|1000|\n"
+        finra = "issueSymbolIdentifier,currentShortShareNumber,previousShortShareNumber\nONLYFINRA,5,4\n"
+        ranked = screen_universe(ibkr_text=ibkr, finra_text=finra, float_by_symbol={"ONLYFLOAT": 1e6})
+        self.assertEqual({a.ticker for a in ranked}, {"ONLYIB", "ONLYFINRA", "ONLYFLOAT"})
+
+
+class TestLiteratureFeatures(unittest.TestCase):
+    def test_reg_sho_and_low_inst_drive_constraint(self):
+        a = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                                  on_reg_sho_threshold=True, institutional_ownership_pct=10))
+        self.assertEqual(a.constraint_score, 90.0)  # (100 reg-sho + 80 thin-inst) / 2
+        self.assertTrue(any("Reg SHO" in n for n in a.notes))
+
+    def test_high_institutional_ownership_zero_constraint(self):
+        a = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                                  institutional_ownership_pct=75))
+        self.assertEqual(a.constraint_score, 0.0)
+
+    def test_gamma_feeds_ignition(self):
+        base = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12)).ignition_score
+        gamma = assess(SqueezeMetrics("X", short_interest_pct_float=20, borrow_fee_pct=12,
+                                      options_volume_vs_adv=7)).ignition_score
+        self.assertIsNone(base)
+        self.assertGreaterEqual(gamma, 80)
 
 
 if __name__ == "__main__":

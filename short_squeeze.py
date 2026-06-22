@@ -85,7 +85,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional, Tuple
 
 __all__ = [
     "SqueezeMetrics",
@@ -107,6 +107,9 @@ __all__ = [
     "fetch_ibkr_shortable_text",
     "from_ibkr_file",
     "IbkrShortRow",
+    "parse_finra_short_interest",
+    "FinraShortRow",
+    "screen_universe",
     "BORROW_FEE_MEAN_PCT",
     "BORROW_FEE_MEDIAN_PCT",
     "BORROW_FEE_P95_PCT",
@@ -166,6 +169,12 @@ class SqueezeMetrics:
     # Percent the price sits above a reference (e.g. 50-day MA), or a trailing
     # return. Positive => upward pressure that can ignite covering.
     momentum_pct: Optional[float] = None
+
+    # --- short-sale-constraint & gamma signals (literature-grounded, obtainable) ---
+    institutional_ownership_pct: Optional[float] = None  # low => thin lendable supply (Asquith)
+    on_reg_sho_threshold: Optional[bool] = None          # persistent fails-to-deliver (Reg SHO list)
+    failures_to_deliver: Optional[float] = None          # FTD shares (SEC, context)
+    options_volume_vs_adv: Optional[float] = None        # options vol / avg daily share vol (>=5 => MM hedging)
 
     as_of: Optional[str] = None
     source: str = "manual"
@@ -448,7 +457,8 @@ class SqueezeAssessment:
     bearish_convergence: DetectorResult
     squeeze_fuel: DetectorResult
     dynamics_score: Optional[float] = None       # 0-100 acceleration (rising util/fee/SI)
-    ignition_score: Optional[float] = None       # 0-100 spark (momentum + shorts under water)
+    ignition_score: Optional[float] = None       # 0-100 spark (momentum + gamma + shorts under water)
+    constraint_score: Optional[float] = None     # 0-100 short-sale constraint (Reg SHO / low inst own)
     amplifier: float = 1.0                       # 1.0-1.3 (low float, high days-to-cover)
     notes: List[str] = field(default_factory=list)
 
@@ -460,6 +470,8 @@ class SqueezeAssessment:
             extra.append(f"dyn={self.dynamics_score:.0f}")
         if self.ignition_score is not None:
             extra.append(f"ign={self.ignition_score:.0f}")
+        if self.constraint_score is not None:
+            extra.append(f"con={self.constraint_score:.0f}")
         if abs(self.amplifier - 1.0) > 1e-9:
             extra.append(f"amp={self.amplifier:.2f}")
         extra_s = ("  " + " ".join(extra)) if extra else ""
@@ -494,9 +506,15 @@ class SqueezeConfig:
     apply_interaction_gate: bool = True
     interaction_floor: float = 0.25
     # Final blend over the available layers (renormalised over those present).
-    w_structural: float = 0.60
-    w_dynamics: float = 0.20
-    w_ignition: float = 0.20
+    w_structural: float = 0.55
+    w_dynamics: float = 0.15
+    w_ignition: float = 0.15
+    w_constraint: float = 0.15   # short-sale constraint: Reg SHO / low institutional ownership
+    # Constraint layer thresholds (institutional ownership, %).
+    inst_own_thin_pct: float = 20.0
+    inst_own_low_pct: float = 40.0
+    # Gamma/options (feeds ignition): options volume / ADV at or above -> MM hedging.
+    gamma_oi_hot: float = 5.0
     # Amplifier (multiplicative on the final score): low float + high days-to-cover.
     max_amplifier: float = 1.30
     dtc_amp_med: float = 5.0        # days-to-cover above this -> +0.05
@@ -566,14 +584,33 @@ def _dynamics_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
 
 
 def _ignition_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
-    """The spark: upward price momentum and shorts under water (S3: a profitable
-    short cannot be squeezed). None if neither price input is provided."""
+    """The spark: upward price momentum, shorts under water (S3: a profitable short
+    cannot be squeezed), and gamma — heavy call buying (options volume >> ADV)
+    forces dealer delta-hedging (GME/AMC). None if no ignition input is provided."""
     subs = []
     if m.momentum_pct is not None:
         subs.append(_band_score(m.momentum_pct, [(0.0, 0.0), (5.0, 30.0), (15.0, 60.0), (math.inf, 100.0)]))
     if m.price_vs_short_cost_basis_pct is not None:
         subs.append(_band_score(m.price_vs_short_cost_basis_pct, [(0.0, 0.0), (10.0, 40.0), (30.0, 70.0), (math.inf, 100.0)]))
+    if m.options_volume_vs_adv is not None:
+        subs.append(_band_score(m.options_volume_vs_adv,
+                                [(1.0, 0.0), (cfg.gamma_oi_hot * 0.6, 40.0), (cfg.gamma_oi_hot, 80.0), (math.inf, 100.0)]))
     subs = [s for s in subs if s is not None]
+    return (sum(subs) / len(subs)) if subs else None
+
+
+def _constraint_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
+    """Short-sale constraint / thin lendable supply. Reg SHO threshold membership
+    (persistent fails-to-deliver) and low institutional ownership (Asquith-Pathak-
+    Ritter: high SI + low institutional ownership underperforms; thin float is
+    easier to squeeze). The 2026 rare-events study finds institutional ownership
+    *reduces* squeeze odds — so high ownership scores 0 here. None if no input."""
+    subs = []
+    if m.on_reg_sho_threshold is not None:
+        subs.append(100.0 if m.on_reg_sho_threshold else 0.0)
+    if m.institutional_ownership_pct is not None:
+        io = m.institutional_ownership_pct
+        subs.append(80.0 if io < cfg.inst_own_thin_pct else (40.0 if io < cfg.inst_own_low_pct else 0.0))
     return (sum(subs) / len(subs)) if subs else None
 
 
@@ -623,6 +660,7 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
     structural, coverage = _structural_score(rule_scores, cfg)
     dynamics = _dynamics_score(m, cfg)
     ignition = _ignition_score(m, cfg)
+    constraint = _constraint_score(m, cfg)
     amplifier = _amplifier(m, cfg)
 
     if structural is None:
@@ -633,6 +671,8 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
             parts.append((cfg.w_dynamics, dynamics))
         if ignition is not None:
             parts.append((cfg.w_ignition, ignition))
+        if constraint is not None:
+            parts.append((cfg.w_constraint, constraint))
         base = sum(w * v for w, v in parts) / sum(w for w, _ in parts)
         squeeze = max(0.0, min(100.0, base * amplifier))
 
@@ -662,10 +702,15 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
         )
     if 0.0 < coverage < cfg.low_coverage_advisory:
         notes.append(f"Low coverage ({coverage:.0%}) — score rests on few inputs.")
-    if dynamics is None and ignition is None:
+    if dynamics is None and ignition is None and constraint is None:
         notes.append(
-            "No dynamics/ignition inputs (trends, momentum) — scoring the structural "
-            "setup only. A coiled setup still needs acceleration + a catalyst to fire."
+            "No dynamics/ignition/constraint inputs (trends, momentum, FTDs) — scoring "
+            "the structural setup only. A coiled setup still needs acceleration + a catalyst."
+        )
+    if m.on_reg_sho_threshold:
+        notes.append(
+            "On the Reg SHO threshold list — persistent fails-to-deliver (a short-sale-"
+            "constraint / squeeze-relevant flag)."
         )
     if m.source == "yfinance":
         notes.append(
@@ -714,6 +759,7 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
         squeeze_fuel=fuel,
         dynamics_score=dynamics,
         ignition_score=ignition,
+        constraint_score=constraint,
         amplifier=amplifier,
         notes=notes,
     )
@@ -920,6 +966,145 @@ def from_ibkr_file(
     )
 
 
+# ---------------------------------------------------------------------------
+# FINRA bulk short-interest parser + full-universe screen.
+# FINRA publishes consolidated equity short interest (free, bi-monthly): per
+# security currentShortShareNumber, previousShortShareNumber, daysToCover and
+# average daily volume. Combine with the IBKR file (fee) + a float map to score
+# the WHOLE shortable universe, not a hand-picked watchlist.
+# ---------------------------------------------------------------------------
+@dataclass
+class FinraShortRow:
+    symbol: str
+    shares_short: Optional[float]
+    shares_short_prior: Optional[float]
+    days_to_cover: Optional[float]
+    avg_daily_volume: Optional[float]
+    settlement_date: Optional[str] = None
+
+
+def _num(token: Optional[str]) -> Optional[float]:
+    if token is None:
+        return None
+    t = token.strip().replace(",", "")
+    if not t or t.upper() in {"N/A", "NA", "NULL", "-"}:
+        return None
+    try:
+        return float(t)
+    except ValueError:
+        return None
+
+
+def _at(parts: List[str], idx: Optional[int]) -> Optional[str]:
+    return parts[idx] if (idx is not None and 0 <= idx < len(parts)) else None
+
+
+def parse_finra_short_interest(text: str) -> Dict[str, FinraShortRow]:
+    """Parse a FINRA consolidated equity short-interest export (CSV or pipe).
+
+    Header-driven: columns are matched by name substring, so column order and
+    extra columns don't matter. Recognises issueSymbolIdentifier / symbol,
+    currentShortShareNumber, previousShortShareNumber, daysToCoverQuantity,
+    averageDailyVolumeQuantity and settlementDate. Pure function — testable offline.
+    """
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    if not lines:
+        return {}
+    header = lines[0]
+    delim = "|" if ("|" in header and header.count("|") >= header.count(",")) else ","
+    cols = [c.strip().lower() for c in header.split(delim)]
+
+    def find(*needles: str) -> Optional[int]:
+        for i, c in enumerate(cols):
+            if all(n in c for n in needles):
+                return i
+        return None
+
+    i_sym = find("symbol")
+    i_cur = find("currentshort")
+    if i_cur is None:
+        i_cur = find("short", "share")
+    i_prev = find("previousshort")
+    if i_prev is None:
+        i_prev = find("previous", "short")
+    i_dtc = find("daystocover")
+    i_adv = find("averagedaily")
+    if i_adv is None:
+        i_adv = find("avgdaily")
+    i_date = find("settlement")
+    if i_sym is None or i_cur is None:
+        return {}
+
+    out: Dict[str, FinraShortRow] = {}
+    for line in lines[1:]:
+        parts = line.split(delim)
+        sym = (_at(parts, i_sym) or "").strip().upper()
+        if not sym or sym == cols[i_sym].strip().upper():
+            continue
+        date = _at(parts, i_date)
+        out[sym] = FinraShortRow(
+            symbol=sym,
+            shares_short=_num(_at(parts, i_cur)),
+            shares_short_prior=_num(_at(parts, i_prev)),
+            days_to_cover=_num(_at(parts, i_dtc)),
+            avg_daily_volume=_num(_at(parts, i_adv)),
+            settlement_date=(date.strip() if date else None),
+        )
+    return out
+
+
+def screen_universe(
+    *,
+    ibkr_text: Optional[str] = None,
+    finra_text: Optional[str] = None,
+    float_by_symbol: Optional[Dict[str, float]] = None,
+    reg_sho_symbols: Optional[Iterable[str]] = None,
+    institutional_ownership_by_symbol: Optional[Dict[str, float]] = None,
+    config: SqueezeConfig = DEFAULT_CONFIG,
+    top: Optional[int] = None,
+) -> List[SqueezeAssessment]:
+    """Score and rank the FULL shortable universe from free bulk files.
+
+    Merge the IBKR shortable file (borrow fee + availability, full universe), the
+    FINRA consolidated short-interest file (shares short + prior + days-to-cover,
+    full universe), an optional float map (turns shares short into SI% of float,
+    enabling the d33 rule and the detectors), the Reg SHO threshold list, and an
+    optional institutional-ownership map. Returns rank_candidates() over every
+    symbol seen. All offline/testable — you supply the downloaded text.
+    """
+    ibkr = parse_ibkr_shortable_text(ibkr_text) if ibkr_text else {}
+    finra = parse_finra_short_interest(finra_text) if finra_text else {}
+    floats = {k.upper(): v for k, v in (float_by_symbol or {}).items()}
+    inst = {k.upper(): v for k, v in (institutional_ownership_by_symbol or {}).items()}
+    reg = {s.strip().upper() for s in (reg_sho_symbols or [])}
+    have_reg = reg_sho_symbols is not None
+
+    metrics: List[SqueezeMetrics] = []
+    for sym in sorted(set(ibkr) | set(finra) | set(floats)):
+        ib = ibkr.get(sym)
+        fi = finra.get(sym)
+        flo = floats.get(sym)
+        ss = fi.shares_short if fi else None
+        si_pct = (100.0 * ss / flo) if (ss and flo) else None
+        metrics.append(SqueezeMetrics(
+            ticker=sym,
+            short_interest_pct_float=si_pct,
+            borrow_fee_pct=(ib.fee_rate_pct if ib else None),
+            days_to_cover=(fi.days_to_cover if fi else None),
+            shares_short=ss,
+            shares_short_prior=(fi.shares_short_prior if fi else None),
+            avg_daily_volume=(fi.avg_daily_volume if fi else None),
+            float_shares=flo,
+            shortable_shares_available=(ib.available if ib else None),
+            institutional_ownership_pct=inst.get(sym),
+            on_reg_sho_threshold=((sym in reg) if have_reg else None),
+            as_of=(ib.as_of if ib else (fi.settlement_date if fi else None)),
+            source="universe",
+        ))
+    ranked = rank_candidates(metrics, config)
+    return ranked[:top] if top else ranked
+
+
 def utilization_from_loan(shares_on_loan: float, shares_available_to_lend: float) -> Optional[float]:
     """Utilization % = shares on loan / shares available to lend, in percent.
 
@@ -1091,6 +1276,19 @@ def _demo() -> None:
     for a in rank_candidates(universe):
         print(f"  {a.ticker:<6}{a.classification.value:<17} score={a.squeeze_score:5.1f} "
               f"struct={a.composite_score:5.1f} conf={a.confidence.value}")
+
+    # --- screen_universe(): rank the whole shortable universe from bulk files ---
+    ibkr_bulk = ("#BOF|usa|2026.06.19|14:00:00\n"
+                 "GME|USD|GAMESTOP|1|X|-5|18.0|350000|\n"
+                 "LCID|USD|LUCID|2|X|-20|26.1|0|\n")
+    finra_bulk = ("issueSymbolIdentifier,currentShortShareNumber,previousShortShareNumber,daysToCoverQuantity\n"
+                  "GME,45000000,40000000,6.43\nLCID,300000000,280000000,4.30\n")
+    print("\nscreen_universe() (bulk IBKR + FINRA + float + Reg SHO):")
+    for a in screen_universe(ibkr_text=ibkr_bulk, finra_text=finra_bulk,
+                             float_by_symbol={"GME": 300e6, "LCID": 2e9},
+                             reg_sho_symbols=["GME"], top=5):
+        print(f"  {a.ticker:<6}{a.classification.value:<17} score={a.squeeze_score:5.1f} "
+              f"conf={a.confidence.value} con={a.constraint_score}")
 
 
 if __name__ == "__main__":

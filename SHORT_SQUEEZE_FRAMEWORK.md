@@ -271,14 +271,18 @@ SqueezeMetrics ──► 3 SCORE_RULES ──► weighted composite (0–100)
 The diagram above is the **structural** layer. v2 wraps it in a layered model so
 that a *coiled*, an *accelerating*, and an *igniting* setup score differently:
 
-    squeeze_score = (0.6·structural + 0.2·dynamics + 0.2·ignition) × amplifier   (0–100)
+    squeeze_score = (0.55·structural + 0.15·dynamics + 0.15·ignition + 0.15·constraint) × amplifier   (0–100)
 
 - **structural** — the interaction-aware lending score (the diagram).
 - **dynamics** — acceleration: rising utilization / fee / short interest (Ortex &
   S3 stress rate-of-change; Cohen-Diether-Malloy: rising shorting demand predicts
   lower returns).
-- **ignition** — the spark: upward price momentum + shorts under water (S3: a
-  profitable short cannot be squeezed).
+- **ignition** — the spark: upward price momentum, shorts under water (S3), and
+  **gamma** — options volume ≫ ADV (≥5×) forces dealer delta-hedging (GME/AMC).
+- **constraint** — short-sale constraint / thin supply: Reg SHO threshold
+  membership (persistent fails-to-deliver) and low institutional ownership
+  (Asquith; the 2026 rare-events study finds institutional ownership *reduces*
+  squeeze odds — so high ownership scores zero here).
 - **amplifier** — low float + high days-to-cover, ≤1.3× (the VW/KOSS float maths).
 
 Dynamics/ignition score only when their inputs are supplied; otherwise the score
@@ -333,13 +337,30 @@ composite alongside `d1…d32`.
 | **Utilization** | ❌ | IBKR *Orbisa* dashboard (GUI only — no API), Ortex free tier, Markit/Nasdaq (paid) |
 
 The two most predictive inputs are the two you can't get from a no-account free
-feed. **Current build (IBKR parked):** the engine runs *degraded* — it scores and
-classifies on whatever subset of {SI%, days-to-cover, borrow fee} you have, tags
-the result `confidence = MEDIUM/LOW`, and uses borrow-fee **proxy** detectors when
-utilization is absent. With **only** yfinance (SI%/days-to-cover) it is best used
-to **AVOID** crowded shorts, not to confirm squeezes — and squeeze calls are
-**capped at WATCH**. Appendix A documents the (parked) IBKR wiring that upgrades
-this to HIGH confidence for free.
+feed. **Degraded mode:** the engine scores and classifies on whatever subset of
+{SI%, days-to-cover, borrow fee} you have, tags the result `confidence = MEDIUM/
+LOW`, and uses borrow-fee **proxy** detectors when utilization is absent. With
+**only** yfinance (SI%/days-to-cover) it is best used to **AVOID** crowded shorts,
+not to confirm squeezes — and squeeze calls are **capped at WATCH**. Appendix A
+documents the IBKR fee parser (shipped) and utilization wiring.
+
+### Full-universe screening (not a hand-picked watchlist)
+`screen_universe(ibkr_text=…, finra_text=…, float_by_symbol=…, reg_sho_symbols=…,
+institutional_ownership_by_symbol=…)` scores and ranks the **entire** shortable
+universe from free bulk files, merged over the union of symbols:
+
+- **FINRA consolidated short interest** (bi-monthly, free) — every name's shares
+  short, *prior* shares short (→ the SI-trend dynamics layer) and days-to-cover.
+  `parse_finra_short_interest()` is header-driven (CSV or pipe).
+- **IBKR `usa.txt`** (intraday, free, no account) — every name's borrow fee +
+  shortable availability.
+- a **float map** turns shares short into SI% of float (enables d33 + the
+  detectors); a small static file or a yfinance pull.
+- the **Reg SHO threshold list** (daily, free — Nasdaq/NYSE/CBOE) flags persistent
+  fails-to-deliver → the constraint layer.
+
+All inputs are plain text you download, so the merge + score is offline and
+reproducible; pair each parser with its fetcher on your machine.
 
 ---
 
@@ -379,12 +400,16 @@ this to HIGH confidence for free.
 - Beneish, Lee & Nichols (2015), *In Short Supply.* https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2362971
 - Lamont & Thaler (2003), *Can the Market Add and Subtract?* https://papers.ssrn.com/sol3/papers.cfm?abstract_id=384240
 - Pedersen (2022), *Game On: Social Networks and Markets.* https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3794616
+- "Systematic signals of short squeezes: insights from rare events," *NA J. Econ. & Finance* (2026): Firth penalized logistic regression — short interest and investor attention raise squeeze odds; institutional ownership lowers them; low float, fails-to-deliver and options (gamma ≥5× ADV) amplify. https://www.sciencedirect.com/science/article/pii/S1062940826000598
 
 **Practitioner / vendor**
 - Ortex short-interest & squeeze docs. https://public.ortex.com/understanding-the-mechanics-and-metrics-of-short-selling/
 - S3 Partners, *Most "Squeezable" U.S. Stocks.* https://www.s3partners.com/articles/most-squeezable-stocks
 - Fintel short-squeeze screener. https://fintel.io/shortSqueeze
 - FINRA short-interest reporting (bi-monthly; 7-business-day publication). https://www.finra.org/finra-data/browse-catalog/equity-short-interest
+- FINRA Equity Short Interest bulk files (free, full universe). https://www.finra.org/finra-data/browse-catalog/equity-short-interest/files
+- Reg SHO Threshold Securities List — persistent fails-to-deliver (Nasdaq). https://www.nasdaqtrader.com/trader.aspx?id=regshothreshold
+- SEC Fails-to-Deliver data (free, bi-monthly). https://www.sec.gov/data/foiadocsfailsdatahtm
 
 **Cases**
 - GameStop short squeeze. https://en.wikipedia.org/wiki/GameStop_short_squeeze
