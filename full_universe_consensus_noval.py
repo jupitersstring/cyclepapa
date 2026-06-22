@@ -41,6 +41,10 @@ from full_universe_consensus import (
     score_internalization_layer,
     score_bumpitrage_layer,
     score_spinoff_volume_layer,
+    score_arquitos_layer,
+    score_coval_stafford_layer,
+    score_backstopped_rights_layer,
+    score_fdic_call_report_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -74,6 +78,10 @@ def main() -> int:
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
+        "arquitos": score_arquitos_layer(layers, universe),
+        "coval_stafford": score_coval_stafford_layer(layers, universe),
+        "backstopped_rights": score_backstopped_rights_layer(layers, universe),
+        "fdic_call_report": score_fdic_call_report_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -123,6 +131,10 @@ def main() -> int:
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),
+            "arquitos_pts": layer_scores["arquitos"].get(tk, 0),
+            "coval_stafford_pts": layer_scores["coval_stafford"].get(tk, 0),
+            "backstopped_rights_pts": layer_scores["backstopped_rights"].get(tk, 0),
+            "fdic_call_report_pts": layer_scores["fdic_call_report"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 

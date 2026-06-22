@@ -390,6 +390,30 @@ def score_spinoff_volume_layer(layers: dict, universe: set) -> dict:
 
 
 # ----------------------------------------------------------------------
+# Tier-3 additive layers
+# ----------------------------------------------------------------------
+
+def score_arquitos_layer(layers: dict, universe: set) -> dict:
+    """Arquitos subsidiary-stake anchor."""
+    return _load_jscore(ROOT / "arquitos_subsidiary_anchor.json", universe)
+
+
+def score_coval_stafford_layer(layers: dict, universe: set) -> dict:
+    """Coval-Stafford fire-sale proxy (yfinance approximation)."""
+    return _load_jscore(ROOT / "coval_stafford_proxy.json", universe)
+
+
+def score_backstopped_rights_layer(layers: dict, universe: set) -> dict:
+    """Clark Street Value backstopped rights offering."""
+    return _load_jscore(ROOT / "backstopped_rights.json", universe)
+
+
+def score_fdic_call_report_layer(layers: dict, universe: set) -> dict:
+    """FDIC Call Report mining for Form 15 dark community banks."""
+    return _load_jscore(ROOT / "fdic_call_report_overlay.json", universe)
+
+
+# ----------------------------------------------------------------------
 # Universe build
 # ----------------------------------------------------------------------
 
@@ -425,6 +449,11 @@ def main() -> int:
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
+        # Tier-3
+        "arquitos": score_arquitos_layer(layers, universe),
+        "coval_stafford": score_coval_stafford_layer(layers, universe),
+        "backstopped_rights": score_backstopped_rights_layer(layers, universe),
+        "fdic_call_report": score_fdic_call_report_layer(layers, universe),
     }
     print(f"Layers scored: {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -486,6 +515,10 @@ def main() -> int:
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),
+            "arquitos_pts": layer_scores["arquitos"].get(tk, 0),
+            "coval_stafford_pts": layer_scores["coval_stafford"].get(tk, 0),
+            "backstopped_rights_pts": layer_scores["backstopped_rights"].get(tk, 0),
+            "fdic_call_report_pts": layer_scores["fdic_call_report"].get(tk, 0),
         })
 
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
