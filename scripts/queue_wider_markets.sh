@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 
 # (key, yfinance benchmark)
 declare -a NEW_MARKETS=(
-    "india        ^NSEI"
+    # REMOVED india
     "china        000001.SS"
     "thailand     ^SET.BK"
     "brazil       ^BVSP"
