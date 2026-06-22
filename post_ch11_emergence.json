@@ -1,0 +1,234 @@
+{
+  "WW": {
+    "emergence_filing_date": "2025-06-18",
+    "days_since_emergence": 369,
+    "accession": "0001193125-25-142383",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 16.0,
+    "reasons": "P/B 0.60"
+  },
+  "OPITQ": {
+    "emergence_filing_date": "2026-04-28",
+    "days_since_emergence": 55,
+    "accession": "0001104659-26-050398",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 25.0,
+    "reasons": "55d ago (very recent)"
+  },
+  "WOLF": {
+    "emergence_filing_date": "2025-09-10",
+    "days_since_emergence": 285,
+    "accession": "0001193125-25-199310",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 12.0,
+    "reasons": "285d ago"
+  },
+  "CMLSQ": {
+    "emergence_filing_date": "2026-04-17",
+    "days_since_emergence": 66,
+    "accession": "0001104659-26-044909",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "66d ago (in 200d alpha window)"
+  },
+  "NINE": {
+    "emergence_filing_date": "2026-03-10",
+    "days_since_emergence": 104,
+    "accession": "0001213900-26-025721",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "104d ago (in 200d alpha window)"
+  },
+  "VRMWW": {
+    "emergence_filing_date": "2025-03-26",
+    "days_since_emergence": 453,
+    "accession": "0000950170-25-045264",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "BICX": {
+    "emergence_filing_date": "2026-04-02",
+    "days_since_emergence": 81,
+    "accession": "0001477932-26-001957",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "81d ago (in 200d alpha window)"
+  },
+  "GPUS-PD": {
+    "emergence_filing_date": "2025-06-09",
+    "days_since_emergence": 378,
+    "accession": "0001214659-25-009010",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "TSEOF": {
+    "emergence_filing_date": "2026-05-26",
+    "days_since_emergence": 27,
+    "accession": "0001104659-26-066376",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 25.0,
+    "reasons": "27d ago (very recent)"
+  },
+  "SXC": {
+    "emergence_filing_date": "2025-10-16",
+    "days_since_emergence": 249,
+    "accession": "0001514705-25-000027",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 12.0,
+    "reasons": "249d ago"
+  },
+  "ACNB": {
+    "emergence_filing_date": "2025-02-03",
+    "days_since_emergence": 504,
+    "accession": "0001104659-25-008408",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "C-PR": {
+    "emergence_filing_date": "2025-06-03",
+    "days_since_emergence": 384,
+    "accession": "0001193125-25-134112",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "QVCGQ": {
+    "emergence_filing_date": "2026-04-17",
+    "days_since_emergence": 66,
+    "accession": "0001104659-26-044521",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "66d ago (in 200d alpha window)"
+  },
+  "CBIO": {
+    "emergence_filing_date": "2025-06-18",
+    "days_since_emergence": 369,
+    "accession": "0001104659-25-060714",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "RNGE": {
+    "emergence_filing_date": "2026-06-03",
+    "days_since_emergence": 19,
+    "accession": "0001493152-26-027049",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 25.0,
+    "reasons": "19d ago (very recent)"
+  },
+  "RHLD": {
+    "emergence_filing_date": "2026-03-02",
+    "days_since_emergence": 112,
+    "accession": "0001104659-26-022325",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "112d ago (in 200d alpha window)"
+  },
+  "IOT": {
+    "emergence_filing_date": "2026-06-01",
+    "days_since_emergence": 21,
+    "accession": "0001628280-26-039465",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 25.0,
+    "reasons": "21d ago (very recent)"
+  },
+  "GPGI": {
+    "emergence_filing_date": "2026-06-05",
+    "days_since_emergence": 17,
+    "accession": "0001104659-26-071041",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 25.0,
+    "reasons": "17d ago (very recent)"
+  },
+  "NOTV": {
+    "emergence_filing_date": "2026-06-03",
+    "days_since_emergence": 19,
+    "accession": "0001104659-26-069950",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 25.0,
+    "reasons": "19d ago (very recent)"
+  },
+  "AFRM": {
+    "emergence_filing_date": "2025-06-26",
+    "days_since_emergence": 361,
+    "accession": "0001820953-25-000064",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 12.0,
+    "reasons": "361d ago"
+  },
+  "RBLX": {
+    "emergence_filing_date": "2025-06-02",
+    "days_since_emergence": 385,
+    "accession": "0001315098-25-000178",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "XBPEW": {
+    "emergence_filing_date": "2025-08-04",
+    "days_since_emergence": 322,
+    "accession": "0001104659-25-073718",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 12.0,
+    "reasons": "322d ago"
+  },
+  "TBH": {
+    "emergence_filing_date": "2025-12-10",
+    "days_since_emergence": 194,
+    "accession": "0001213900-25-120192",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "194d ago (in 200d alpha window)"
+  },
+  "BRLT": {
+    "emergence_filing_date": "2025-12-22",
+    "days_since_emergence": 182,
+    "accession": "0001140361-25-046408",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 20.0,
+    "reasons": "182d ago (in 200d alpha window)"
+  },
+  "FLYYQ": {
+    "emergence_filing_date": "2025-02-21",
+    "days_since_emergence": 486,
+    "accession": "0000950103-25-002262",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "ULCC": {
+    "emergence_filing_date": "2025-01-29",
+    "days_since_emergence": 509,
+    "accession": "0001193125-25-014898",
+    "query_match": "\"plan of reorganization\" \"effective date\"",
+    "score": 6.0,
+    "reasons": ""
+  },
+  "TPICQ": {
+    "emergence_filing_date": "2025-08-15",
+    "days_since_emergence": 311,
+    "accession": "0001171843-25-005450",
+    "query_match": "\"plan of reorganization confirmed\"",
+    "score": 12.0,
+    "reasons": "311d ago"
+  },
+  "SNBR": {
+    "emergence_filing_date": "2026-06-16",
+    "days_since_emergence": 6,
+    "accession": "0000950103-26-009081",
+    "query_match": "\"plan of reorganization confirmed\"",
+    "score": 25.0,
+    "reasons": "6d ago (very recent)"
+  },
+  "ADV": {
+    "emergence_filing_date": "2026-03-11",
+    "days_since_emergence": 103,
+    "accession": "0001193125-26-102465",
+    "query_match": "\"plan of reorganization confirmed\"",
+    "score": 25.0,
+    "reasons": "103d ago (in 200d alpha window)"
+  }
+}

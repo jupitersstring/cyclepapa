@@ -36,6 +36,11 @@ from full_universe_consensus import (
     score_buyback_insider_overlay_layer,
     score_odd_lot_tender_layer,
     score_tender_mechanism_layer,
+    score_voss_cic_layer,
+    score_post_ch11_layer,
+    score_internalization_layer,
+    score_bumpitrage_layer,
+    score_spinoff_volume_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -64,6 +69,11 @@ def main() -> int:
         "buyback_insider_overlay": score_buyback_insider_overlay_layer(layers, universe),
         "odd_lot_tender": score_odd_lot_tender_layer(layers, universe),
         "tender_mechanism": score_tender_mechanism_layer(layers, universe),
+        "voss_cic": score_voss_cic_layer(layers, universe),
+        "post_ch11": score_post_ch11_layer(layers, universe),
+        "internalization": score_internalization_layer(layers, universe),
+        "bumpitrage": score_bumpitrage_layer(layers, universe),
+        "spinoff_volume": score_spinoff_volume_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -108,6 +118,11 @@ def main() -> int:
             "bb_insider_overlay_pts": layer_scores["buyback_insider_overlay"].get(tk, 0),
             "odd_lot_pts": layer_scores["odd_lot_tender"].get(tk, 0),
             "tender_mech_pts": layer_scores["tender_mechanism"].get(tk, 0),
+            "voss_cic_pts": layer_scores["voss_cic"].get(tk, 0),
+            "post_ch11_pts": layer_scores["post_ch11"].get(tk, 0),
+            "internalization_pts": layer_scores["internalization"].get(tk, 0),
+            "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
+            "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 

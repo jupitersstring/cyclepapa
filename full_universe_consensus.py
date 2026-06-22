@@ -342,6 +342,54 @@ def score_tender_mechanism_layer(layers: dict, universe: set) -> dict:
 
 
 # ----------------------------------------------------------------------
+# Tier-2 additive layers (Voss CIC triangulation, post-Ch11 emergence,
+# external-manager internalization, bumpitrage decline, spinoff volume
+# timer)
+# ----------------------------------------------------------------------
+
+def _load_jscore(path: Path, universe: set, field: str = "score") -> dict:
+    out = {tk: 0.0 for tk in universe}
+    if not path.exists():
+        return out
+    try:
+        data = json.loads(path.read_text())
+    except Exception:
+        return out
+    for tk, v in data.items():
+        if tk in out and isinstance(v, dict):
+            try:
+                out[tk] = float(v.get(field) or 0)
+            except Exception:
+                pass
+    return out
+
+
+def score_voss_cic_layer(layers: dict, universe: set) -> dict:
+    """Voss CIC-amendment triangulation."""
+    return _load_jscore(ROOT / "voss_cic_triangulation.json", universe)
+
+
+def score_post_ch11_layer(layers: dict, universe: set) -> dict:
+    """Eberhart-Altman post-Ch11 emergence equity."""
+    return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
+
+
+def score_internalization_layer(layers: dict, universe: set) -> dict:
+    """External-manager internalization (Braemar/Ashford)."""
+    return _load_jscore(ROOT / "external_manager_internalization.json", universe)
+
+
+def score_bumpitrage_layer(layers: dict, universe: set) -> dict:
+    """Walker bumpitrage tender-decline signal."""
+    return _load_jscore(ROOT / "bumpitrage_tender_decline.json", universe)
+
+
+def score_spinoff_volume_layer(layers: dict, universe: set) -> dict:
+    """Rich Howe 40% volume rule entry timer."""
+    return _load_jscore(ROOT / "spinoff_volume_timer.json", universe)
+
+
+# ----------------------------------------------------------------------
 # Universe build
 # ----------------------------------------------------------------------
 
@@ -371,6 +419,12 @@ def main() -> int:
         "buyback_insider_overlay": score_buyback_insider_overlay_layer(layers, universe),
         "odd_lot_tender": score_odd_lot_tender_layer(layers, universe),
         "tender_mechanism": score_tender_mechanism_layer(layers, universe),
+        # Tier-2 additive layers
+        "voss_cic": score_voss_cic_layer(layers, universe),
+        "post_ch11": score_post_ch11_layer(layers, universe),
+        "internalization": score_internalization_layer(layers, universe),
+        "bumpitrage": score_bumpitrage_layer(layers, universe),
+        "spinoff_volume": score_spinoff_volume_layer(layers, universe),
     }
     print(f"Layers scored: {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -427,6 +481,11 @@ def main() -> int:
             "bb_insider_overlay_pts": layer_scores["buyback_insider_overlay"].get(tk, 0),
             "odd_lot_pts": layer_scores["odd_lot_tender"].get(tk, 0),
             "tender_mech_pts": layer_scores["tender_mechanism"].get(tk, 0),
+            "voss_cic_pts": layer_scores["voss_cic"].get(tk, 0),
+            "post_ch11_pts": layer_scores["post_ch11"].get(tk, 0),
+            "internalization_pts": layer_scores["internalization"].get(tk, 0),
+            "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
+            "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),
         })
 
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
