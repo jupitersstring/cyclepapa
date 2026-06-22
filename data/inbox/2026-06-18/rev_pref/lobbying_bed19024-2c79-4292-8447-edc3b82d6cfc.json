@@ -1,0 +1,22 @@
+{
+  "accession": "bed19024-2c79-4292-8447-edc3b82d6cfc",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-18",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation \u00b7 Urban Development/Municipalities",
+  "jurisdiction": "US",
+  "name": "TOWN OF WINDSOR, CO",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 TOWN OF WINDSOR, CO engaged VAN SCOYOC ASSOCIATES for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "VAN SCOYOC ASSOCIATES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bed19024-2c79-4292-8447-edc3b82d6cfc/print/"
+}

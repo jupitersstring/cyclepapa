@@ -1,0 +1,22 @@
+{
+  "accession": "fc095df2-0ed7-45e2-97c7-0ec8e3f1b27d",
+  "cik": "",
+  "expenses": "10000.00",
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": null,
+  "isin": null,
+  "issues": "Waste (hazardous/solid/interstate/nuclear) \u00b7 Defense \u00b7 Energy/Nuclear \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "CURIO",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 CURIO engaged CURIO for Defense (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "CURIO",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/fc095df2-0ed7-45e2-97c7-0ec8e3f1b27d/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "b8e112ff-41a5-437a-8a01-8b13e04440d5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Foreign Relations \u00b7 Budget/Appropriations \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "BROADBAND CONNECT",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 BROADBAND CONNECT engaged B ARCHETYPE for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "B ARCHETYPE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/b8e112ff-41a5-437a-8a01-8b13e04440d5/print/"
+}

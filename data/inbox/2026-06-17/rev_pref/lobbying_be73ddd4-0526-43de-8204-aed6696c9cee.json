@@ -1,0 +1,22 @@
+{
+  "accession": "be73ddd4-0526-43de-8204-aed6696c9cee",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Accounting \u00b7 Fuel/Gas/Oil \u00b7 Manufacturing \u00b7 Science/Technology \u00b7 Small Business \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "FIELD TECH INTERNATIONAL CORP",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 FIELD TECH INTERNATIONAL CORP engaged CORCORAN & ASSOCIATES, INC. DBA CORCORAN for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CORCORAN & ASSOCIATES, INC. DBA CORCORAN PARTNERS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/be73ddd4-0526-43de-8204-aed6696c9cee/print/"
+}

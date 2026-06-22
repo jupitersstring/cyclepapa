@@ -1,0 +1,22 @@
+{
+  "accession": "5b50d8a5-6cad-452e-ab54-e73263d31a0e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL MINERALS CARLSBAD, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTERNATIONAL MINERALS CARLSBAD, LLC engaged VALIANT STRATEGIES LLC on Natural Resources (universe-name match: INTERNATIONAL)",
+  "registrant": "VALIANT STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/5b50d8a5-6cad-452e-ab54-e73263d31a0e/print/"
+}

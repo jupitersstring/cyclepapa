@@ -1,0 +1,22 @@
+{
+  "accession": "02ff7d22-a454-49f0-8365-f9c0b8a7e5fa",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": null,
+  "isin": null,
+  "issues": "Transportation \u00b7 Aviation/Airlines/Airports",
+  "jurisdiction": "US",
+  "name": "NATIONAL FLIGHT TRAINING ALLIANCE",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 NATIONAL FLIGHT TRAINING ALLIANCE engaged NATIONAL FLIGHT TRAINING ALLIANCE for Transportation (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "NATIONAL FLIGHT TRAINING ALLIANCE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/02ff7d22-a454-49f0-8365-f9c0b8a7e5fa/print/"
+}

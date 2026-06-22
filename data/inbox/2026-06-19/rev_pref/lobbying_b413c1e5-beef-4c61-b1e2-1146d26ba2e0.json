@@ -1,0 +1,22 @@
+{
+  "accession": "b413c1e5-beef-4c61-b1e2-1146d26ba2e0",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-19",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "JOHN BIRCH SOCIETY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JOHN BIRCH SOCIETY engaged JOHN BIRCH SOCIETY on  (universe-name match: JOHN)",
+  "registrant": "JOHN BIRCH SOCIETY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JOHN",
+  "url": "https://lda.senate.gov/filings/public/filing/b413c1e5-beef-4c61-b1e2-1146d26ba2e0/print/"
+}

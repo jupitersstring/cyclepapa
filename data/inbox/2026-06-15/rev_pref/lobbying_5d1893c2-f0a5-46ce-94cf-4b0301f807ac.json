@@ -1,0 +1,22 @@
+{
+  "accession": "5d1893c2-f0a5-46ce-94cf-4b0301f807ac",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Aerospace \u00b7 Computer Industry \u00b7 Defense \u00b7 Homeland Security \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "IONQ, INC.",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 IONQ, INC. engaged IONQ, INC. for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "IONQ, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/5d1893c2-f0a5-46ce-94cf-4b0301f807ac/print/"
+}

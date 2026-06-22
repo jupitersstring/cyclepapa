@@ -1,0 +1,22 @@
+{
+  "accession": "382f535e-44af-4b4f-8855-eebf416f6d2c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense \u00b7 Aerospace",
+  "jurisdiction": "US",
+  "name": "ATTALON, INC.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 ATTALON, INC. engaged ARNOLD & PORTER KAYE SCHOLER LLP for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ARNOLD & PORTER KAYE SCHOLER LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/382f535e-44af-4b4f-8855-eebf416f6d2c/print/"
+}

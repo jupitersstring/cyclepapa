@@ -1,0 +1,22 @@
+{
+  "accession": "5b4bbae0-66be-411e-80e0-f68d75a5a5a2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Education \u00b7 Indian/Native American Affairs \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "CAPITOL COUNSEL, LLC ON BEHALF OF JUST RIGHT READER",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CAPITOL COUNSEL, LLC ON BEHALF OF JUST RIGHT READER engaged MICHAEL R. PAWLOWSKI on Education \u00b7 Indian/Native American Affairs \u00b7 Budget/Appropriations (universe-name match: JUST)",
+  "registrant": "MICHAEL R. PAWLOWSKI",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JUST",
+  "url": "https://lda.senate.gov/filings/public/filing/5b4bbae0-66be-411e-80e0-f68d75a5a5a2/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "895512de-baf0-4412-829c-1fdbba583fbe",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Civil Rights/Civil Liberties \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "COUNCIL ON AMERICAN-ISLAMIC RELATIONS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 COUNCIL ON AMERICAN-ISLAMIC RELATIONS engaged THE RABEN GROUP on Civil Rights/Civil Liberties \u00b7 Taxation/Internal Revenue Code (universe-name match: AMERICAN)",
+  "registrant": "THE RABEN GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/895512de-baf0-4412-829c-1fdbba583fbe/print/"
+}

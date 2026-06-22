@@ -1,0 +1,22 @@
+{
+  "accession": "2056ea00-b8cb-42db-9dc0-e0ec1462be89",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Foreign Relations",
+  "jurisdiction": "US",
+  "name": "COMMITTEE TO PROMOTE A DEMOCRATIC TRANSITION (CPDT)",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 COMMITTEE TO PROMOTE A DEMOCRATIC TRANSITION (CPDT) engaged COVENANT GOVERNMENT AFFAIRS, LLC for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "COVENANT GOVERNMENT AFFAIRS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2056ea00-b8cb-42db-9dc0-e0ec1462be89/print/"
+}

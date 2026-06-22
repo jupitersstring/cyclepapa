@@ -52,6 +52,11 @@ QUERIES: dict[str, str] = {
     "red_flag.going_concern":      '"substantial doubt" AND "going concern"',
     "red_flag.advisor":            '"strategic alternatives" OR "financial advisor"',
     "rev_pref.insider_buy":        '"director purchase" OR "section 16 acquisition"',
+    # ---- FCPA / corruption-investigation disclosure (issuer-side) ----
+    # DOJ press feeds are network-blocked; issuers themselves disclose
+    # FCPA investigations + settlements via 8-K Item 8.01 / 10-Q risk
+    # factor amendments. Captures the same signal one layer down.
+    "red_flag.fcpa":               '"Foreign Corrupt Practices Act" OR FCPA OR "corruption investigation"',
 }
 
 FORMS = "8-K,6-K,S-1,S-3,424B5,T-3,SC 13D,SC 13G,DEF 14A,4"

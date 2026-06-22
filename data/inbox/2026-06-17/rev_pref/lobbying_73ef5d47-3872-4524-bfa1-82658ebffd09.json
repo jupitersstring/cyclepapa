@@ -1,0 +1,22 @@
+{
+  "accession": "73ef5d47-3872-4524-bfa1-82658ebffd09",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "FOREST RIVER BUS, LLC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 FOREST RIVER BUS, LLC engaged CFM STRATEGIC COMMUNICATIONS (CONKLING F for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CFM STRATEGIC COMMUNICATIONS (CONKLING FISKUM & MCCORMICK)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/73ef5d47-3872-4524-bfa1-82658ebffd09/print/"
+}

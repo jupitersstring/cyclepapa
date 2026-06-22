@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -15,6 +15,7 @@ help:
 	@echo "  form15-poll — Form 15 going-dark / Section 12 deregistration"
 	@echo "  cluster-sells — Form 4 S-code cluster-sell detector (Wirecard/SVB red flag)"
 	@echo "  ofac-poll  — OFAC recent-actions (sanctions GL + designations)"
+	@echo "  lobbying-poll — Senate LDA lobbying-disclosure filings"
 	@echo "  universe-rr  — rank reward/risk across the full universe (REAL where YAML, PROXY otherwise)"
 	@echo "  workbook     — rebuild the Excel workbook from latest inputs"
 	@echo "  refresh      — full chain: pollers → promote → screen → rank → workbook"
@@ -83,6 +84,14 @@ cluster-sells: audit
 ofac-poll: audit
 	python3 -m src.ofac_poll --pages 4
 
+# US Senate LDA lobbying-disclosure poller via lda.senate.gov/api/v1.
+# Cross-references client names against universe.md + filters by
+# special-situation-relevant general-issue codes (Energy/Nuclear,
+# Banking, Bankruptcy, Foreign Relations, Defense, Pharmaceuticals,
+# Telecom, Transportation, Mining, etc.).
+lobbying-poll: audit
+	python3 -m src.lobbying_poll --days-back 7
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -118,7 +127,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll spinoff cluster-buys inbox-promote workbook
+refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll spinoff cluster-buys inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

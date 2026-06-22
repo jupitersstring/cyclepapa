@@ -1,0 +1,22 @@
+{
+  "accession": "90f55fb6-c3b5-4da5-ac34-882be9994768",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Firearms/Guns/Ammunition \u00b7 Law Enforcement/Crime/Criminal Justice \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "BEYOND IMPACT (ON BEHALF COMMUNITY JUSTICE ACTION FUND)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 BEYOND IMPACT (ON BEHALF COMMUNITY JUSTICE ACTION FUND) engaged HANBURY STRATEGY on Firearms/Guns/Ammunition \u00b7 Law Enforcement/Crime/Criminal Justice \u00b7 Budget/Appro (universe-name match: BEYOND)",
+  "registrant": "HANBURY STRATEGY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "BEYOND",
+  "url": "https://lda.senate.gov/filings/public/filing/90f55fb6-c3b5-4da5-ac34-882be9994768/print/"
+}

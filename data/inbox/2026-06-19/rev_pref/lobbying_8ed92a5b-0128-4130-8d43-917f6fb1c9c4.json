@@ -1,0 +1,22 @@
+{
+  "accession": "8ed92a5b-0128-4130-8d43-917f6fb1c9c4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-19",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "PUZZLE BOX GOVERNMENT RELATIONS OBO ZOO",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 PUZZLE BOX GOVERNMENT RELATIONS OBO ZOO engaged MISSION STRATEGIES LLC (ENERGY) for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MISSION STRATEGIES LLC (ENERGY)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8ed92a5b-0128-4130-8d43-917f6fb1c9c4/print/"
+}

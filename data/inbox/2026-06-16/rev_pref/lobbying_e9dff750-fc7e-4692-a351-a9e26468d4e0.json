@@ -1,0 +1,22 @@
+{
+  "accession": "e9dff750-fc7e-4692-a351-a9e26468d4e0",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Agriculture \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "TUSK/MONTGOMERY PHILANTHROPIES, INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 TUSK/MONTGOMERY PHILANTHROPIES, INC. engaged DAKOTA STRATEGIES, LLC (F/N/A ODNEY, INC on Agriculture \u00b7 Budget/Appropriations (universe-name match: TUSK)",
+  "registrant": "DAKOTA STRATEGIES, LLC (F/N/A ODNEY, INC.)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "TUSK",
+  "url": "https://lda.senate.gov/filings/public/filing/e9dff750-fc7e-4692-a351-a9e26468d4e0/print/"
+}

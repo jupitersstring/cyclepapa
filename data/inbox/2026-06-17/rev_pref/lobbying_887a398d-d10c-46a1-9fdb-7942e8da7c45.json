@@ -1,0 +1,22 @@
+{
+  "accession": "887a398d-d10c-46a1-9fdb-7942e8da7c45",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Financial Institutions/Investments/Securities \u00b7 Banking",
+  "jurisdiction": "US",
+  "name": "GOLD PR LTD. (ON BEHALF OF OJSC \"BAKAI BANK\")",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 GOLD PR LTD. (ON BEHALF OF OJSC \"BAKAI BANK\") engaged PSS, LLC for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PSS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/887a398d-d10c-46a1-9fdb-7942e8da7c45/print/"
+}

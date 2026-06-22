@@ -1,0 +1,22 @@
+{
+  "accession": "0a23fa0c-1a95-4224-9ecf-352303f7fe01",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-18",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Urban Development/Municipalities \u00b7 Aerospace \u00b7 Defense \u00b7 Manufacturing \u00b7 Science/Technology \u00b7 Real Estate/Land Use/Conservation",
+  "jurisdiction": "US",
+  "name": "EARTHSHIP CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 EARTHSHIP CORPORATION engaged RED DOOR CONSULTING, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "RED DOOR CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/0a23fa0c-1a95-4224-9ecf-352303f7fe01/print/"
+}

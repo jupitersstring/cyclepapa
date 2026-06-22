@@ -1,0 +1,22 @@
+{
+  "accession": "9ea559f6-b145-472d-830e-5111fa2e5669",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "ALBERS AEROSPACE",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 ALBERS AEROSPACE engaged BGR GOVERNMENT AFFAIRS for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BGR GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/9ea559f6-b145-472d-830e-5111fa2e5669/print/"
+}

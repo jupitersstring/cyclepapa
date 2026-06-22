@@ -1,0 +1,22 @@
+{
+  "accession": "46ff1afd-0409-4300-956a-4d31c315df33",
+  "cik": "",
+  "expenses": "70000.00",
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-18",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense \u00b7 Aviation/Airlines/Airports",
+  "jurisdiction": "US",
+  "name": "SKYRYSE, INC.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 SKYRYSE, INC. engaged SKYRYSE, INC. for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SKYRYSE, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/46ff1afd-0409-4300-956a-4d31c315df33/print/"
+}

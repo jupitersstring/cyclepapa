@@ -1,0 +1,22 @@
+{
+  "accession": "6dd3e64b-74e0-4f48-8a35-523ef6653059",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "CITY OF PHILADELPHIA",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 CITY OF PHILADELPHIA engaged BGR GOVERNMENT AFFAIRS for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BGR GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/6dd3e64b-74e0-4f48-8a35-523ef6653059/print/"
+}

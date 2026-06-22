@@ -1,0 +1,22 @@
+{
+  "accession": "ef7cb5f0-77f5-4958-8ca8-b66148733026",
+  "cik": "",
+  "expenses": "120000.00",
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": null,
+  "isin": null,
+  "issues": "Consumer Issues/Safety/Products \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Science/Technology \u00b7 Small Business \u00b7 Education \u00b7 Trade (domestic/foreign) \u00b7 Computer Industry \u00b7 Telecommunications \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "CEDIA",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 CEDIA engaged CEDIA for Telecommunications (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "CEDIA",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ef7cb5f0-77f5-4958-8ca8-b66148733026/print/"
+}

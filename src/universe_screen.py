@@ -167,6 +167,52 @@ ARCHETYPE_PATTERNS: list[tuple[str, list[str]]] = [
         r"\bactivist (board|investor)\b",
         r"\bspaldy\b", r"\bgilinski\b", r"\bkretinsky\b", r"\bniel\b",
     ]),
+    # ---- KEDM event-driven archetypes (Kupperman / Praetorian Capital
+    #      Event-Driven Monitor — extends the framework's restructuring-
+    #      only taxonomy to non-distress event-driven setups that share
+    #      the structural-asymmetry property.) ----
+    ("K1", [   # de-SPAC redemption arb
+        r"\bde[ -]?spac\b", r"\bbusiness combination agreement\b",
+        r"\bredemption right\b", r"\btrust value\b",
+        r"\bpre[ -]?merger arb\b",
+    ]),
+    ("K2", [   # post-IPO lockup expiry
+        r"\block[ -]?up expir", r"\block[ -]?up release\b",
+        r"\b180[ -]?day lock\b", r"\bunlock event\b",
+        r"\bpost[ -]?ipo lock",
+    ]),
+    ("K3", [   # going-dark / Section 12 deregistration
+        r"\bgoing dark\b", r"\bform 15\b", r"\b15-12[BGD]\b",
+        r"\bsection 12 deregist", r"\bvoluntary delist",
+        r"\bdark pink",
+    ]),
+    ("K4", [   # SPAC trust value-at-redemption arb
+        r"\bspac trust\b", r"\btrust account redemption\b",
+        r"\bredemption price\b.*?\bspac\b",
+        r"\bsponsor warrant\b",
+    ]),
+    ("K5", [   # reverse-merger shell-company filings
+        r"\breverse merger\b", r"\bshell company\b",
+        r"\bbackdoor (?:listing|ipo)\b", r"\breverse[ -]?takeover\b",
+    ]),
+    ("K6", [   # NOL preserved tax-asset cases
+        r"\bnol carryforward\b", r"\bnet operating loss\b.*?\bpreserv",
+        r"\bnol shell\b", r"\bnol(s)? of \$",
+        r"\bsection 382\b", r"\btax asset preservation\b",
+    ]),
+    ("K7", [   # litigation-settlement event arb
+        r"\bsettlement agreement\b.*?\b(class|securities)\b",
+        r"\bjudgment day\b", r"\bappeal pending\b",
+        r"\binjunction (?:lifted|vacated)\b",
+        r"\bfinal approval\b.*?\bsettlement\b",
+        r"\b(?:multidistrict|mdl-\d+)\b",
+    ]),
+    ("K8", [   # commodity-cycle inflection with named supply-side deficit
+        r"\bsupply deficit\b", r"\bproduction deficit\b",
+        r"\babove[ -]?ground stockpile\b",
+        r"\bsecondary supply (?:exhaust|depleted)",
+        r"\bbreak[ -]?even.*?(?:>|above) \$",
+    ]),
 ]
 
 # Status patterns — extended with completed-arc + false-friend detectors
@@ -244,7 +290,12 @@ BUCKET_WEIGHT = {
 # Archetype weights — bumped Unknown slightly since we can't always parse
 ARCH_WEIGHT = {
     "A1": 1.0, "A2": 1.05, "B": 0.85, "C": 0.75, "D": 0.90,
-    "E": 0.75, "F": 0.70, "G": 0.90, "H": 0.80, "Unknown": 0.50,
+    "E": 0.75, "F": 0.70, "G": 0.90, "H": 0.80,
+    # KEDM event-driven archetypes — same asymmetry property as
+    # restructuring archetypes but typically shorter-duration trades.
+    "K1": 0.80, "K2": 0.70, "K3": 0.85, "K4": 0.75,
+    "K5": 0.65, "K6": 0.95, "K7": 0.75, "K8": 1.00,
+    "Unknown": 0.50,
 }
 
 # Status multipliers

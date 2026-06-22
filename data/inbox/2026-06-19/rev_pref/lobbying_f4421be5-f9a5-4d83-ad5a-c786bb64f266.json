@@ -1,0 +1,22 @@
+{
+  "accession": "f4421be5-f9a5-4d83-ad5a-c786bb64f266",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-19",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "THE FERGUSON GROUP, LLC ON BEHALF OF WEST COUNTY WASTEWATER DISTRICT, CA",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 THE FERGUSON GROUP, LLC ON BEHALF OF WEST COUNTY WASTEWATER  engaged EARL STOCKDALE on  (universe-name match: WEST)",
+  "registrant": "EARL STOCKDALE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "WEST",
+  "url": "https://lda.senate.gov/filings/public/filing/f4421be5-f9a5-4d83-ad5a-c786bb64f266/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "51b46064-3225-44f1-8705-1bac1881fa81",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Banking",
+  "jurisdiction": "US",
+  "name": "STELLAR DEVELOPMENT FOUNDATION",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 STELLAR DEVELOPMENT FOUNDATION engaged STELLAR DEVELOPMENT FOUNDATION for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "STELLAR DEVELOPMENT FOUNDATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/51b46064-3225-44f1-8705-1bac1881fa81/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "75148434-9ecc-4a59-b501-aeca8dfcfff6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Financial Institutions/Investments/Securities \u00b7 Taxation/Internal Revenue Code \u00b7 Banking \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "HYPERLIQUID POLICY CENTER",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 HYPERLIQUID POLICY CENTER engaged HYPERLIQUID POLICY CENTER for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HYPERLIQUID POLICY CENTER",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/75148434-9ecc-4a59-b501-aeca8dfcfff6/print/"
+}

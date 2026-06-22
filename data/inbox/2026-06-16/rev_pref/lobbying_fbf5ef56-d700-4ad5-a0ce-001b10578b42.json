@@ -1,0 +1,22 @@
+{
+  "accession": "fbf5ef56-d700-4ad5-a0ce-001b10578b42",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "18750.00",
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "DELFIN LNG",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 DELFIN LNG engaged MR. ETHAN DURSTELER for Energy/Nuclear (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "MR. ETHAN DURSTELER",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/fbf5ef56-d700-4ad5-a0ce-001b10578b42/print/"
+}

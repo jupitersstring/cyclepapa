@@ -1,0 +1,22 @@
+{
+  "accession": "d9409f2b-a573-4aeb-baf4-c39bf90f95b6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Agriculture \u00b7 Foreign Relations",
+  "jurisdiction": "US",
+  "name": "PUBLIC PRIVATE STRATEGIES",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 PUBLIC PRIVATE STRATEGIES engaged VALENTINE STRATEGIES for Foreign Relations (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "VALENTINE STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d9409f2b-a573-4aeb-baf4-c39bf90f95b6/print/"
+}

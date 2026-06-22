@@ -1,0 +1,22 @@
+{
+  "accession": "f067138e-4a72-4827-b3b8-58bc2a328dcd",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues \u00b7 Medical/Disease Research/Clinical Labs \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "NEW MOUNTAIN CAPITAL, L.L.C.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NEW MOUNTAIN CAPITAL, L.L.C. engaged MILLER STRATEGIES, LLC on Health Issues \u00b7 Medical/Disease Research/Clinical Labs \u00b7 Budget/Appropriations (universe-name match: CAPITAL)",
+  "registrant": "MILLER STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CAPITAL",
+  "url": "https://lda.senate.gov/filings/public/filing/f067138e-4a72-4827-b3b8-58bc2a328dcd/print/"
+}

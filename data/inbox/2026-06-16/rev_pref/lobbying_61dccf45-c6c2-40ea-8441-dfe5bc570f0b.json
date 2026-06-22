@@ -1,0 +1,22 @@
+{
+  "accession": "61dccf45-c6c2-40ea-8441-dfe5bc570f0b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "HELIX DEFENSE",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 HELIX DEFENSE engaged CROSS POTOMAC CONSULTING LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CROSS POTOMAC CONSULTING LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "HELIX",
+  "url": "https://lda.senate.gov/filings/public/filing/61dccf45-c6c2-40ea-8441-dfe5bc570f0b/print/"
+}

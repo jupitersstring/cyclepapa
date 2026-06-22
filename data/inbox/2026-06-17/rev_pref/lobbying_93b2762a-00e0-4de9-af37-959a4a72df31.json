@@ -1,0 +1,22 @@
+{
+  "accession": "93b2762a-00e0-4de9-af37-959a4a72df31",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Health Issues",
+  "jurisdiction": "US",
+  "name": "THE AMERICAN PODIATRIC MEDICAL ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 THE AMERICAN PODIATRIC MEDICAL ASSOCIATION engaged POWERS PYLES SUTTER & VERVILLE, P.C. on Health Issues (universe-name match: AMERICAN)",
+  "registrant": "POWERS PYLES SUTTER & VERVILLE, P.C.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/93b2762a-00e0-4de9-af37-959a4a72df31/print/"
+}

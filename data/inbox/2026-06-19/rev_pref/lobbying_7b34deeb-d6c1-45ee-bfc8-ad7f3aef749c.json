@@ -1,0 +1,22 @@
+{
+  "accession": "7b34deeb-d6c1-45ee-bfc8-ad7f3aef749c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-19",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Marine/Maritime/Boating/Fisheries",
+  "jurisdiction": "US",
+  "name": "AMERICAN BUREAU OF SHIPPING",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 AMERICAN BUREAU OF SHIPPING engaged MISSION STRATEGIES LLC (ENERGY) for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MISSION STRATEGIES LLC (ENERGY)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/7b34deeb-d6c1-45ee-bfc8-ad7f3aef749c/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "ccb3f4bc-9ce1-4206-850b-5a5c4d61b0f8",
+  "cik": "",
+  "expenses": "1100000.00",
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-18",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": null,
+  "isin": null,
+  "issues": "Copyright/Patent/Trademark \u00b7 Taxation/Internal Revenue Code \u00b7 Trade (domestic/foreign) \u00b7 Medicare/Medicaid \u00b7 Health Issues \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "FRESENIUS KABI USA LLC",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 FRESENIUS KABI USA LLC engaged FRESENIUS KABI USA LLC for Manufacturing (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "FRESENIUS KABI USA LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ccb3f4bc-9ce1-4206-850b-5a5c4d61b0f8/print/"
+}

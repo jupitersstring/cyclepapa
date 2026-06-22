@@ -1,0 +1,22 @@
+{
+  "accession": "0a10f643-ccde-434c-a8b2-7e3d6a21a439",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Indian/Native American Affairs \u00b7 Budget/Appropriations \u00b7 Education",
+  "jurisdiction": "US",
+  "name": "JUST RIGHT READER",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JUST RIGHT READER engaged CAPITOL COUNSEL LLC on Indian/Native American Affairs \u00b7 Budget/Appropriations \u00b7 Education (universe-name match: JUST)",
+  "registrant": "CAPITOL COUNSEL LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JUST",
+  "url": "https://lda.senate.gov/filings/public/filing/0a10f643-ccde-434c-a8b2-7e3d6a21a439/print/"
+}

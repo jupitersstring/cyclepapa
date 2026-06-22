@@ -1,0 +1,22 @@
+{
+  "accession": "fa93b1ea-2cfb-4c7f-8dcf-8dd64c405539",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-18",
+  "form": "2nd Quarter - Termination (No Activity)",
+  "form_code": "2TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "CORE POWER (US) INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CORE POWER (US) INC. engaged INVARIANT LLC on  (universe-name match: CORE)",
+  "registrant": "INVARIANT LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CORE",
+  "url": "https://lda.senate.gov/filings/public/filing/fa93b1ea-2cfb-4c7f-8dcf-8dd64c405539/print/"
+}

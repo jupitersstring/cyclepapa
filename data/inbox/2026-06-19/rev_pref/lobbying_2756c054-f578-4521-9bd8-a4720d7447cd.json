@@ -1,0 +1,22 @@
+{
+  "accession": "2756c054-f578-4521-9bd8-a4720d7447cd",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-19",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues",
+  "jurisdiction": "US",
+  "name": "AIR PROTEIN INC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AIR PROTEIN INC engaged CONVERGE PUBLIC STRATEGIES on Health Issues (universe-name match: AIR)",
+  "registrant": "CONVERGE PUBLIC STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AIR",
+  "url": "https://lda.senate.gov/filings/public/filing/2756c054-f578-4521-9bd8-a4720d7447cd/print/"
+}

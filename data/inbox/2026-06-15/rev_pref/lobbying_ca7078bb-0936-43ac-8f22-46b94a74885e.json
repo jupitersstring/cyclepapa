@@ -1,0 +1,22 @@
+{
+  "accession": "ca7078bb-0936-43ac-8f22-46b94a74885e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-15",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "HERTHA METALS",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 HERTHA METALS engaged FRONTERA GROUP for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FRONTERA GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ca7078bb-0936-43ac-8f22-46b94a74885e/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "5b13cc75-0b3e-499a-a17a-8d4a69f4ea93",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Indian/Native American Affairs",
+  "jurisdiction": "US",
+  "name": "TUNICA BILOXI ECONOMIC DEVELOPMENT AUTHORITY",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 TUNICA BILOXI ECONOMIC DEVELOPMENT AUTHORITY engaged CONNECTOR INC. for Energy/Nuclear (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "CONNECTOR INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/5b13cc75-0b3e-499a-a17a-8d4a69f4ea93/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "acbc8483-3edf-4b27-acb0-2e980aba6a68",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-16",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources",
+  "jurisdiction": "US",
+  "name": "DIAMOND ROCK HOSPITALITY CO",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 DIAMOND ROCK HOSPITALITY CO engaged THE BERNHARDT GROUP LLC on Natural Resources (universe-name match: DIAMOND)",
+  "registrant": "THE BERNHARDT GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "DIAMOND",
+  "url": "https://lda.senate.gov/filings/public/filing/acbc8483-3edf-4b27-acb0-2e980aba6a68/print/"
+}

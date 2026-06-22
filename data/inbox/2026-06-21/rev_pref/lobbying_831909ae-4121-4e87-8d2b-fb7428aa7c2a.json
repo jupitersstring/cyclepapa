@@ -1,0 +1,22 @@
+{
+  "accession": "831909ae-4121-4e87-8d2b-fb7428aa7c2a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-21",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Manufacturing",
+  "jurisdiction": "US",
+  "name": "NATIONAL ASSOCIATION OF BLIND MERCHANTS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 NATIONAL ASSOCIATION OF BLIND MERCHANTS engaged RAGNAR GROUP LLC for Manufacturing (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "RAGNAR GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/831909ae-4121-4e87-8d2b-fb7428aa7c2a/print/"
+}

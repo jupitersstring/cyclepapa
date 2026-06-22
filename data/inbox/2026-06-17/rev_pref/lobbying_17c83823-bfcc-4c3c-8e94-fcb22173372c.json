@@ -1,0 +1,22 @@
+{
+  "accession": "17c83823-bfcc-4c3c-8e94-fcb22173372c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-17",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Civil Rights/Civil Liberties \u00b7 Foreign Relations \u00b7 Financial Institutions/Investments/Securities \u00b7 Insurance",
+  "jurisdiction": "US",
+  "name": "ECONOINVEST HOLDING LLC",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 ECONOINVEST HOLDING LLC engaged CORCORAN & ASSOCIATES, INC. DBA CORCORAN for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CORCORAN & ASSOCIATES, INC. DBA CORCORAN PARTNERS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/17c83823-bfcc-4c3c-8e94-fcb22173372c/print/"
+}

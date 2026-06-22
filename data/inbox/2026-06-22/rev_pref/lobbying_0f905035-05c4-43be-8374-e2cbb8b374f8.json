@@ -1,0 +1,22 @@
+{
+  "accession": "0f905035-05c4-43be-8374-e2cbb8b374f8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-06-22T15:15:33.491909Z",
+  "filed": "2026-06-22",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Trade (domestic/foreign) \u00b7 Telecommunications",
+  "jurisdiction": "US",
+  "name": "ALIBABA GROUP HOLDING LIMITED",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 ALIBABA GROUP HOLDING LIMITED engaged GREENBERG TRAURIG, LLP for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "GREENBERG TRAURIG, LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/0f905035-05c4-43be-8374-e2cbb8b374f8/print/"
+}
