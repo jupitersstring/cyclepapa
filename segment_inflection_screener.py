@@ -146,7 +146,7 @@ def triangulate(seg_df: pd.DataFrame, yf_cache: Path, edgar_cache: Path,
     seg['seg_score'] = (seg['excess_growth'] / (seg['years_to_50pct']+1)) * (1-seg['share_now'])
     best = seg.sort_values('seg_score',ascending=False).groupby('ticker').head(1).set_index('ticker')
 
-    # Valuation from yfinance info cache
+    # Valuation + company-id columns from yfinance info cache
     vals = []
     for tkr in best.index:
         safe = ''.join(c if c.isalnum() or c in '-_' else '_' for c in tkr)
@@ -157,6 +157,10 @@ def triangulate(seg_df: pd.DataFrame, yf_cache: Path, edgar_cache: Path,
             if d.empty: continue
             d = d.iloc[0]
             vals.append({'ticker':tkr,
+                         'company':d.get('longName') or d.get('shortName'),
+                         'sector':d.get('sector'),
+                         'industry':d.get('industry'),
+                         'country':d.get('country'),
                          'market_cap':d.get('marketCap'),
                          'priceToBook':d.get('priceToBook'),
                          'priceToSales':d.get('priceToSalesTrailing12Months'),
@@ -225,6 +229,20 @@ def triangulate(seg_df: pd.DataFrame, yf_cache: Path, edgar_cache: Path,
         + np.where(combo.get('shares_1y_chg', 0).fillna(0) < -0.01, 5, 0)
         - np.where(combo.get('shares_1y_chg', 0).fillna(0) > 0.05, 3, 0)
     )
+
+    # Rename `category` -> `growing_revenue_type` for self-documentation.
+    # Values: product | services | licenses | subscription (the XBRL revenue
+    # bucket that's growing fastest relative to total).
+    if 'category' in combo.columns:
+        combo = combo.rename(columns={'category': 'growing_revenue_type'})
+
+    # Reorder so human-readable columns come first.
+    front = [c for c in ['company','sector','industry','country','growing_revenue_type',
+                          'pre_rerate_score','share_now','seg_growth','total_growth',
+                          'excess_growth','years_to_50pct','market_cap']
+             if c in combo.columns]
+    rest = [c for c in combo.columns if c not in front]
+    combo = combo[front + rest]
     return combo.sort_values('pre_rerate_score', ascending=False)
 
 

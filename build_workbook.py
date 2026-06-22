@@ -684,7 +684,7 @@ CREATIVE_MEASURES = [
     ('results_volasym/screener.csv', 'Vol Asymmetry',
      'Upside volatility > downside volatility — positive skew names.',
      None),
-    ('results_segment_inflection/screener.csv', 'Segment Inflection',
+    ('pre_rerate_setups.csv', 'Segment Inflection',
      'A small, fast-growing revenue segment will (if growth persists) come to dominate consolidated results.',
      None),
 ]
@@ -724,6 +724,39 @@ def build_creative_measures(wb):
     _write_df(ws, pd.DataFrame(idx), ['measure','rows','status','path'], start_row=row)
     _autosize(ws, ['measure','rows','status','path'])
 
+    # Pre-load yfinance info cache once, then look up by ticker
+    yf_cache = Path('.cache/yf')
+    def _enrich_with_company_info(df: pd.DataFrame) -> pd.DataFrame:
+        """Prepend company / sector / industry / country columns by joining
+        on the per-ticker info_metrics parquet. Tickers without a parquet get
+        blanks. Idempotent — if columns already exist, they're refreshed."""
+        if df.empty or 'ticker' not in df.columns:
+            return df
+        rows = []
+        for tkr in df['ticker'].astype(str).tolist():
+            safe = ''.join(c if c.isalnum() or c in '-_' else '_' for c in tkr)
+            p = yf_cache / f'{safe}__info_metrics.parquet'
+            entry = {'ticker': tkr, 'company': '', 'sector': '', 'industry': '', 'country': ''}
+            if p.exists():
+                try:
+                    d = pd.read_parquet(p)
+                    if not d.empty:
+                        row = d.iloc[0]
+                        name = row.get('longName') or row.get('shortName') or ''
+                        entry['company'] = str(name)[:42]
+                        entry['sector'] = str(row.get('sector') or '')
+                        entry['industry'] = str(row.get('industry') or '')
+                        entry['country'] = str(row.get('country') or '')
+                except Exception:
+                    pass
+            rows.append(entry)
+        info_df = pd.DataFrame(rows)
+        # Drop any pre-existing copies so the join overrides
+        for c in ('company','sector','industry','country'):
+            if c in df.columns:
+                df = df.drop(columns=[c])
+        return info_df.merge(df, on='ticker', how='left')
+
     # One tab per available measure
     for p, label, deck, cols in available:
         try:
@@ -732,6 +765,7 @@ def build_creative_measures(wb):
             continue
         if df.empty:
             continue
+        df = _enrich_with_company_info(df)
         # Name the sheet "CM · <Label>" — Excel forbids /,\\,?,*,[,] in titles
         clean = label.replace('/', '-').replace('\\', '-').replace('?', '').replace('*', '').replace('[','(').replace(']',')')
         sheet_name = f'CM · {clean}'[:31]
@@ -742,18 +776,23 @@ def build_creative_measures(wb):
                               title=label,
                               deck=deck)
         r += 1
-        # If columns specified, use them (where present); else use the dataframe's columns
+        # If columns specified, use them (where present); else use the dataframe's columns.
+        # Always prepend the human-readable id columns when present.
+        front = [c for c in ('ticker','company','sector','industry','country') if c in df.columns]
         if cols:
             cols = [c for c in cols if c in df.columns]
+            rest_cols = [c for c in cols if c not in front]
         else:
-            cols = list(df.columns)
-        # Truncate long-name columns
+            rest_cols = [c for c in df.columns if c not in front]
+        cols = front + rest_cols
+        # Truncate any other long-name columns
         for c in ('longName','name'):
             if c in df.columns:
                 df[c] = df[c].astype(str).str[:32]
         end_row = _write_df(ws, df.head(50), cols, start_row=r)
         _autosize(ws, cols)
-        ws.freeze_panes = 'D' + str(r + 1)
+        # Freeze after the front columns so ticker+name stay visible
+        ws.freeze_panes = chr(ord('A') + len(front)) + str(r + 1)
         _add_footer(ws, end_row)
 
 
