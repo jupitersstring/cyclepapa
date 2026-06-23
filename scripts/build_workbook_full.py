@@ -241,17 +241,22 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     else:
         base_row3 = base_row2
 
-    # Enduring compounder cohort (high ROIIC + structurally enduring ROIC + cheap)
+    # Enduring compounder cohort — Lindy multi-method ROIC + ROIIC inflection
     if 'compounder_score' in df.columns and df['compounder_score'].notna().any():
         comp_top = df[df['has_history'].fillna(False)].sort_values('compounder_score', ascending=False).head(30) \
                     if 'has_history' in df.columns else df.sort_values('compounder_score', ascending=False).head(30)
-        n_endur = int(df['enduring_compounder'].fillna(False).sum()) if 'enduring_compounder' in df.columns else 0
-        ws_sum.write(base_row3-1, 0, f'Enduring Compounders Cohort ({n_endur} enduring · top 30 by composite)', section_fmt)
-        ch = ['Ticker','Company','Sector','Cap','Market Cap (M$)','ROIC Mean 4y','ROIC Min 4y','ROIIC 3y','EV/EBIT','EV/EBITDA','FCF Y','Rev G','Enduring','Score']
+        n_strict = int(df.get('enduring_strict', pd.Series(dtype=bool)).fillna(False).sum())
+        n_inflect = int(df.get('roiic_inflection', pd.Series(dtype=bool)).fillna(False).sum())
+        ws_sum.write(base_row3-1, 0,
+            f'Enduring Compounders Cohort — Lindy multi-method ROIC ({n_strict} strict · {n_inflect} ROIIC-inflecting · top 30 by composite)',
+            section_fmt)
+        ch = ['Ticker','Company','Sector','Cap','Mkt Cap (M$)','ROIC Mean','ROIC Min','Method Agree',
+              'ROIIC 1y','ROIIC 3y','Inflect','EV/EBIT','FCF Y','Rev G','Strict','Score']
         for c, h in enumerate(ch): ws_sum.write(base_row3, c, h, header_fmt)
         for i, (_, r) in enumerate(comp_top.iterrows()):
             row = base_row3 + 1 + i
-            endur = bool(r.get('enduring_compounder', False))
+            endur = bool(r.get('enduring_strict', False))
+            inflect = bool(r.get('roiic_inflection', False))
             tfmt = text_left_q if endur else text_left
             mfmt = money_fmt_q if endur else money_fmt
             pfmt = pct_fmt_q if endur else pct_fmt
@@ -261,23 +266,30 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             write_text(ws_sum, row, 2, str(r.get('sector',''))[:16], tfmt, text_left_em)
             write_text(ws_sum, row, 3, str(r.get('cap_tier',''))[:9], tfmt, text_left_em)
             write_num(ws_sum, row, 4, r.get('mktCap_M'), mfmt, text_left_em)
-            # ROIC values are fractions — convert to %
-            for c_idx, src_col in [(5,'roic_mean_4y'),(6,'roic_min_4y'),(7,'roiic_3y')]:
+            for c_idx, src_col in [(5,'roic_mean'),(6,'roic_min')]:
                 v = r.get(src_col)
                 if pd.notna(v) and abs(float(v)) < 50: v = float(v) * 100
                 else: v = None
                 write_num(ws_sum, row, c_idx, v, pfmt, text_left_em)
+            ag = r.get('roic_method_agreement')
+            if pd.notna(ag): ag = float(ag) * 100
+            write_num(ws_sum, row, 7, ag, pfmt, text_left_em)
+            for c_idx, src_col in [(8,'roiic_1y'),(9,'roiic_3y')]:
+                v = r.get(src_col)
+                if pd.notna(v) and abs(float(v)) < 50: v = float(v) * 100
+                else: v = None
+                write_num(ws_sum, row, c_idx, v, pfmt, text_left_em)
+            ws_sum.write_string(row,10, 'Y' if inflect else EM_DASH, tfmt if inflect else text_left_em)
             evb_e = r.get('ev_ebit') if 'ev_ebit' in r.index else None
-            write_num(ws_sum, row, 8, evb_e, rfmt, text_left_em)
-            write_num(ws_sum, row, 9, r.get('ev_ebitda') if 'ev_ebitda' in r.index else r.get('ev_valuation'), rfmt, text_left_em)
+            write_num(ws_sum, row,11, evb_e, rfmt, text_left_em)
             fy = r.get('fcf_yield')
             if pd.notna(fy): fy = float(fy) * 100
-            write_num(ws_sum, row,10, fy, pfmt, text_left_em)
+            write_num(ws_sum, row,12, fy, pfmt, text_left_em)
             rg = r.get('rev_g')
             if pd.notna(rg): rg = float(rg) * 100
-            write_num(ws_sum, row,11, rg, pfmt, text_left_em)
-            ws_sum.write_string(row, 12, 'Y' if endur else EM_DASH, tfmt if endur else text_left_em)
-            write_num(ws_sum, row,13, r.get('compounder_score'), rfmt, text_left_em)
+            write_num(ws_sum, row,13, rg, pfmt, text_left_em)
+            ws_sum.write_string(row,14, 'Y' if endur else EM_DASH, tfmt if endur else text_left_em)
+            write_num(ws_sum, row,15, r.get('compounder_score'), rfmt, text_left_em)
 
     region_order = df['region'].value_counts().index.tolist()
     for region in region_order:

@@ -13,20 +13,22 @@ if not os.path.exists('data/synthesis/compounders_ranked.csv'):
     sys.exit(0)
 
 comp = pd.read_csv('data/synthesis/compounders_ranked.csv')
-cols = ['ticker','roic_latest','roic_mean_4y','roic_min_4y','roic_std_4y',
-        'roiic_3y','reinvest_rate','structural_quality','enduring_compounder',
-        'quality_compounder','compounder_score','compounder_rank',
-        'years_history','ev_ebit','ev_ebitda','ev_fcf']
+cols = ['ticker','roic_mean','roic_min','roic_std','roic_method_agreement','roic_years',
+        'roiic_1y','roiic_2y','roiic_3y','roiic_acceleration','roiic_inflection',
+        'enduring_strict','enduring_loose','quality_compounder',
+        'compounder_score','compounder_rank',
+        'roic_mauboussin','roic_damodaran','roic_greenblatt','roic_croic','roic_dupont']
 keep = [c for c in cols if c in comp.columns]
 merged = df.merge(comp[keep], on='ticker', how='left', suffixes=('','_research'))
 
-# Fill missing structural flags as False (not just NaN)
-for c in ['structural_quality','enduring_compounder','quality_compounder']:
+# Fill missing structural flags as False
+for c in ['enduring_strict','enduring_loose','quality_compounder','roiic_inflection']:
     if c in merged.columns:
         merged[c] = merged[c].fillna(False).astype(bool)
 
 merged.to_csv('data/synthesis/v2_universe_ranked_full_q.csv', index=False)
 print(f"[integrate] merged {len(comp)} compounder rows into ranking", file=sys.stderr)
-n_end = int(merged['enduring_compounder'].sum()) if 'enduring_compounder' in merged else 0
-n_q   = int(merged['quality_compounder'].sum())  if 'quality_compounder'  in merged else 0
-print(f"  enduring: {n_end}  quality: {n_q}", file=sys.stderr)
+n_es = int(merged.get('enduring_strict', pd.Series(dtype=bool)).fillna(False).sum())
+n_el = int(merged.get('enduring_loose',  pd.Series(dtype=bool)).fillna(False).sum())
+n_ri = int(merged.get('roiic_inflection', pd.Series(dtype=bool)).fillna(False).sum())
+print(f"  enduring strict: {n_es}  loose: {n_el}  ROIIC inflecting: {n_ri}", file=sys.stderr)
