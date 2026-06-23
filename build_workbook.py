@@ -79,8 +79,18 @@ df = df.rename(columns={
     'asym_w_roc5': 'Volasym W RoC5', 'asym_m_roc3': 'Volasym M RoC3',
     'asym_m_dist50': 'Volasym M Dist-50',
     'nonzero_pct': 'Nonzero %', 'realized_vol_60d': '60d Vol',
-    'last_price': 'Last Price',
+    'last_price': 'Last Price', 'market_cap': 'Market Cap',
 })
+
+# Express percent-style columns as percentage points (21.5 not 0.215) so the
+# Harvard format `#,##0.0;(#,##0.0);"–"` renders without a trailing % sign.
+PCT_COLS = ['12m Return', '24m Return', 'RS 12m Return',
+            'Rev Growth', 'Rev Inflection', 'Op Margin', 'ROE',
+            'FCF Yield', 'EPS Q Growth', 'Nonzero %', '60d Vol',
+            'Volasym M Dist-50']
+for c in PCT_COLS:
+    if c in df.columns:
+        df[c] = pd.to_numeric(df[c], errors='coerce') * 100
 
 # --- Styling helpers ---
 thin = Side(border_style="thin", color="D6D3D1")
@@ -100,23 +110,31 @@ body_font   = Font(name=SERIF, size=10, color=CHARCOAL)
 body_alt_fill = PatternFill("solid", fgColor=CREAM)
 body_white = PatternFill("solid", fgColor="FFFFFF")
 
+# Harvard financial-statement convention: parens for negatives, en-dash for
+# zero/empty, accounting separators, right-aligned numbers, no % sign.
+EN_DASH = "–"
+FMT_RAW   = '#,##0;(#,##0);"–"'         # raw $ (market cap, EV)
+FMT_PP    = '#,##0.0;(#,##0.0);"–"'     # percentage points, 1dp
+FMT_RATIO = '#,##0.00;(#,##0.00);"–"'   # P/B, EV/EBITDA, scores, FIP, prices
+
 NUM_FMT = {
-    '12m Return': '0.0%', '24m Return': '0.0%', 'RS 12m Return': '0.0%',
-    'Rev Growth': '0.0%', 'Rev Inflection': '+0.0%;-0.0%',
-    'Op Margin': '0.0%', 'ROE': '0.0%', 'FCF Yield': '+0.00%;-0.00%',
-    'EPS Q Growth': '+0.0%;-0.0%',
-    'FIP D (252d)': '0.000', 'FIP W (52w)': '0.000', 'FIP M (24m)': '0.000',
-    'RS-FIP D': '0.000', 'RS-FIP W': '0.000', 'RS-FIP W Inflect': '+0.000;-0.000',
-    'FIP W − D Gap': '+0.000;-0.000',
-    'Volasym D': '0.0', 'Volasym W': '0.0', 'Volasym M': '0.0',
-    'Volasym W MA': '0.0', 'Volasym M MA': '0.0',
-    'Volasym W RoC5': '+0.00;-0.00', 'Volasym M RoC3': '+0.00;-0.00',
-    'Volasym M Dist-50': '+0.0;-0.0',
-    'P/B': '0.00', 'EV/EBITDA': '0.00', 'EV/Sales': '0.00', 'ROIC Proxy': '0.000',
-    'Sector-Rel EV': '0.00', 'Debt/Equity': '0.0',
-    'Nonzero %': '0.0%', '60d Vol': '0.000', 'Last Price': '0.00',
-    'v2 Score': '0.000', 'Upside Score': '0.00', 'Floor Score': '0.00',
-    'Quality Score': '0.00', 'Stealth Score': '0.00',
+    'Market Cap': FMT_RAW,
+    '12m Return': FMT_PP, '24m Return': FMT_PP, 'RS 12m Return': FMT_PP,
+    'Rev Growth': FMT_PP, 'Rev Inflection': FMT_PP,
+    'Op Margin': FMT_PP, 'ROE': FMT_PP, 'FCF Yield': FMT_PP,
+    'EPS Q Growth': FMT_PP, 'Nonzero %': FMT_PP, '60d Vol': FMT_PP,
+    'Volasym D': FMT_PP, 'Volasym W': FMT_PP, 'Volasym M': FMT_PP,
+    'Volasym W MA': FMT_PP, 'Volasym M MA': FMT_PP,
+    'Volasym M Dist-50': FMT_PP,
+    'FIP D (252d)': FMT_RATIO, 'FIP W (52w)': FMT_RATIO, 'FIP M (24m)': FMT_RATIO,
+    'RS-FIP D': FMT_RATIO, 'RS-FIP W': FMT_RATIO, 'RS-FIP W Inflect': FMT_RATIO,
+    'FIP W − D Gap': FMT_RATIO,
+    'Volasym W RoC5': FMT_RATIO, 'Volasym M RoC3': FMT_RATIO,
+    'P/B': FMT_RATIO, 'EV/EBITDA': FMT_RATIO, 'EV/Sales': FMT_RATIO,
+    'ROIC Proxy': FMT_RATIO, 'Sector-Rel EV': FMT_RATIO,
+    'Debt/Equity': FMT_RATIO, 'Last Price': FMT_RATIO,
+    'v2 Score': FMT_RATIO, 'Upside Score': FMT_RATIO, 'Floor Score': FMT_RATIO,
+    'Quality Score': FMT_RATIO, 'Stealth Score': FMT_RATIO,
 }
 
 def render_table(ws, df_sub, start_row, title, cols):
@@ -143,11 +161,21 @@ def render_table(ws, df_sub, start_row, title, cols):
         fill = body_alt_fill if i % 2 else body_white
         for j, c in enumerate(cols, start=1):
             v = row[c]
-            cell = ws.cell(row=r, column=j, value=(v if pd.notna(v) else None))
-            cell.font = body_font; cell.alignment = (right if c in NUM_FMT or
-                                                     isinstance(v,(int,float)) else left)
-            cell.fill = fill; cell.border = border
-            if c in NUM_FMT: cell.number_format = NUM_FMT[c]
+            is_num = c in NUM_FMT
+            if is_num:
+                if pd.isna(v):
+                    cell = ws.cell(row=r, column=j, value=EN_DASH)
+                else:
+                    cell = ws.cell(row=r, column=j, value=float(v))
+                    cell.number_format = NUM_FMT[c]
+                cell.alignment = right
+            else:
+                cell = ws.cell(row=r, column=j,
+                               value=(v if pd.notna(v) else EN_DASH))
+                cell.alignment = left
+            cell.font = body_font
+            cell.fill = fill
+            cell.border = border
     end_row = hr + len(df_sub)
     return end_row + 2  # leave a gap before next section
 
