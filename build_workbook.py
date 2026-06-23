@@ -36,8 +36,36 @@ from openpyxl.formatting.rule import ColorScaleRule, CellIsRule
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
+import datetime as _dt
+
 OUT = Path('results_peg')
 WB_PATH = OUT / 'best_of_best.xlsx'
+
+# Workbook versioning — CalVer with daily build counter. Reads/writes
+# .workbook_version to persist the counter across builds. Surfaced in the
+# title block of README + Executive Summary, in the footer of every sheet,
+# and in the on-disk filename. Bump the major when shipping a breaking
+# format change; minor auto-increments per build per day.
+_VERSION_FILE = OUT / '.workbook_version'
+
+def _next_version() -> str:
+    today = _dt.date.today().strftime('%Y.%m.%d')
+    last = ''
+    if _VERSION_FILE.exists():
+        try: last = _VERSION_FILE.read_text().strip()
+        except Exception: last = ''
+    # last looks like "2026.06.23-3"
+    n = 1
+    if last.startswith(today + '-'):
+        try: n = int(last.split('-', 1)[1]) + 1
+        except Exception: n = 1
+    v = f'{today}-{n}'
+    try: _VERSION_FILE.write_text(v + '\n')
+    except Exception: pass
+    return v
+
+WORKBOOK_VERSION = _next_version()
+WB_PATH_VERSIONED = OUT / f'best_of_best_{WORKBOOK_VERSION}.xlsx'
 
 REGIONS = ['US','JP','GB','DE','FR','CA','AU',         # Tier 1
            'CH','IT','NL','ES','SE','NO','DK','BE','FI','IE','AT','PT','GR',   # Tier 2 EU
@@ -502,7 +530,8 @@ def _draw_section(ws, label: str, start_row: int) -> int:
 
 def _add_footer(ws, last_row: int, source: str = None):
     """Small italic-grey footnote line."""
-    txt = source or 'Source: yfinance + financedatabase; analysis as of session date. See README for methodology.'
+    base = source or 'Source: yfinance + financedatabase; analysis as of session date. See README for methodology.'
+    txt = f'{base}   ·   Workbook {WORKBOOK_VERSION}'
     c = ws.cell(row=last_row + 1, column=1, value=txt)
     c.font = FOOTNOTE_FONT
     c.alignment = ALIGN_LEFT
@@ -609,7 +638,7 @@ def build_readme(wb):
     ws.sheet_view.showGridLines = False
     row = _draw_title_block(
         ws,
-        kicker='Cyclepapa Research  ·  Universe Survey  ·  Methodology',
+        kicker=f'Cyclepapa Research  ·  Universe Survey  ·  Workbook {WORKBOOK_VERSION}',
         title='Best of the Best — How to Read This Workbook',
         deck='A single decision-grade survey of the cross-listed equity universe, '
              'screened on three independent measures and reconciled into a watchlist '
@@ -696,7 +725,7 @@ def build_exec_summary(wb, comb, gav, fin):
     ws.sheet_view.showGridLines = False
     row = _draw_title_block(
         ws,
-        kicker='Executive Summary',
+        kicker=f'Executive Summary  ·  Workbook {WORKBOOK_VERSION}',
         title='Best of Each Measure, Per Region',
         deck='Top three names per region across three independent screens — the overall '
              'sector-percentile composite, durable-growth EV/EBITDA per growth, and the '
@@ -1192,7 +1221,13 @@ def main():
     build_glossary(wb)
 
     wb.save(WB_PATH)
-    print(f'Wrote {WB_PATH} with {len(wb.sheetnames)} sheets:')
+    # Also write a versioned copy so each ship is permanently referenceable
+    try:
+        import shutil
+        shutil.copyfile(WB_PATH, WB_PATH_VERSIONED)
+    except Exception:
+        pass
+    print(f'Wrote {WB_PATH} and {WB_PATH_VERSIONED.name} ({len(wb.sheetnames)} sheets):')
     for s in wb.sheetnames:
         print(f'  - {s}')
 
