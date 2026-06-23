@@ -971,7 +971,23 @@ CREATIVE_MEASURES = [
     ('pre_rerate_setups.csv', 'Segment Inflection',
      'A small, fast-growing revenue segment will (if growth persists) come to dominate consolidated results.',
      None),
+    ('results_extras/screener.csv', 'Analyst & Insider Extras',
+     'Composite of four forward-looking signals from yfinance analyst & insider feeds: '
+     'upside-to-mean-target, % net insider buying (last 6m), broker-rating buy share, '
+     'and average forward-quarter+forward-year consensus growth. Each signal is z-scored '
+     'across the universe; missing signals contribute z=0 (median) rather than penalise.',
+     None),
 ]
+
+EXTRA_COLUMN_LABELS = {
+    'upside_to_mean_target_pct': 'Upside to Target',
+    'insider_net_pct_6m': 'Net Insider Buying (6m)',
+    'consensus_buy_share_pct': 'Buy/Strong-Buy Share',
+    'fwd_growth_avg_pct': 'Fwd Growth (Avg)',
+    'extras_composite': 'Extras Composite',
+    'n_signals': 'Signals',
+}
+COLUMN_LABELS.update(EXTRA_COLUMN_LABELS)
 
 
 def build_creative_measures(wb):

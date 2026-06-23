@@ -151,11 +151,23 @@ def _cache_key_to_ticker(key: str) -> str:
 
 def universe_tickers() -> list[tuple[str, str]]:
     """Return (cache_key, ticker_symbol) pairs for every ticker that has an
-    info_metrics parquet. The cache_key is what we use for output filenames
-    (stable across runs); the ticker_symbol is what we pass to yf.Ticker."""
+    info_metrics parquet. The cache_key is the stable on-disk filename;
+    the ticker_symbol is what we pass to yf.Ticker.
+
+    Ordering: US tickers first (highest analyst-coverage payoff), then
+    other markets sorted alphabetically by region suffix. Non-US analyst
+    endpoints mostly return empty, so doing US first means we get all the
+    actionable data within the first ~2500 fetches."""
     keys = sorted({p.name.split('__')[0]
                    for p in CACHE.glob('*__info_metrics.parquet')})
-    return [(k, _cache_key_to_ticker(k)) for k in keys]
+    us, other = [], []
+    for k in keys:
+        sym = _cache_key_to_ticker(k)
+        if '.' in sym:
+            other.append((k, sym))
+        else:
+            us.append((k, sym))
+    return us + other
 
 
 def main():
