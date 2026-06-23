@@ -87,9 +87,10 @@ if [ -f data/universes/us_nms.csv ] && \
 fi
 
 # ─── 3d. Compounder research explicit watchdog ────
-research_running=$(pgrep -fc 'pull_compounder_research' 2>/dev/null || echo 0)
+research_running=$(pgrep -f 'python3 scripts/pull_compounder_research_v2'  2>/dev/null | head -1)
+research_running=${research_running:-0}
 research_size=$(stat -c%s data/research/roic_us_nms.csv 2>/dev/null || echo 0)
-if [ "$research_running" -eq 0 ] && [ "$research_size" -lt 2000000 ] && [ -f data/universes/us_nms.csv ]; then
+if [ "$research_running" = "0" ] && [ "$research_size" -lt 2000000 ] && [ -f data/universes/us_nms.csv ]; then
     nohup python3 scripts/pull_compounder_research_v2.py \
         --universe data/universes/us_nms.csv \
         --out data/research/roic_us_nms.csv \
