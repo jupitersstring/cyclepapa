@@ -82,8 +82,21 @@ done
 
 # Also check compounder research incompleteness
 if [ -f data/universes/us_nms.csv ] && \
-   { [ ! -f data/research/roic_us_nms.csv ] || [ "$(stat -c%s data/research/roic_us_nms.csv 2>/dev/null)" -lt 100000 ]; }; then
+   { [ ! -f data/research/roic_us_nms.csv ] || [ "$(stat -c%s data/research/roic_us_nms.csv 2>/dev/null)" -lt 1000000 ]; }; then
     expansion_incomplete=1
+fi
+
+# ─── 3d. Compounder research explicit watchdog ────
+research_running=$(pgrep -fc 'pull_compounder_research' 2>/dev/null || echo 0)
+research_size=$(stat -c%s data/research/roic_us_nms.csv 2>/dev/null || echo 0)
+if [ "$research_running" -eq 0 ] && [ "$research_size" -lt 2000000 ] && [ -f data/universes/us_nms.csv ]; then
+    nohup python3 scripts/pull_compounder_research_v2.py \
+        --universe data/universes/us_nms.csv \
+        --out data/research/roic_us_nms.csv \
+        --workers 4 --rate 0.4 --checkpoint 50 --resume \
+        > /tmp/log_research_v2.txt 2>&1 &
+    disown
+    echo "[bootstrap] restarted compounder research v2"
 fi
 if [ "$expansion_incomplete" -eq 1 ] && ! pgrep -f "run_expansion\|master_expand" >/dev/null 2>&1; then
     # If widen_chain still running, master_expand will pick up expansion after; otherwise launch expansion directly
