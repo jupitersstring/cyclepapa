@@ -497,6 +497,23 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     # Margins
     ebitda_margin = safe_div(ebitda_ttm, rev_ttm)
+    if pd.isna(ebitda_margin):
+        # yfinance-info fallback: ebitdaMargins first, then operatingMargins.
+        v = info.get("ebitdaMargins")
+        try:
+            v = float(v) if v is not None else None
+        except (TypeError, ValueError):
+            v = None
+        if v is not None and -1 < v < 1 and np.isfinite(v):
+            ebitda_margin = v
+        else:
+            om = info.get("operatingMargins")
+            try:
+                om = float(om) if om is not None else None
+            except (TypeError, ValueError):
+                om = None
+            if om is not None and -1 < om < 1 and np.isfinite(om):
+                ebitda_margin = om
     fcf_margin = safe_div(fcf_ttm, rev_ttm)
     cash_conversion = safe_div(cfo_ttm, ebitda_ttm)
     ebitda_margin_prev = safe_div(ebitda_ttm_prev, rev_ttm_prev)
@@ -533,6 +550,31 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     invested_capital = (eq_v + debt_v - cash_v) if (pd.notna(eq_v) and pd.notna(debt_v) and pd.notna(cash_v)) else np.nan
     roce = safe_div(ebit_ttm, invested_capital) if pd.notna(invested_capital) else np.nan
     net_debt_ebitda = safe_div(nd_v, ebitda_ttm) if pd.notna(nd_v) else np.nan
+
+    # yfinance-info fallbacks. (Define _info_float here too since this is
+    # earlier in the function than the valuation block where the other
+    # fallbacks live; it just shadows the later definition.)
+    def __info_float(key):
+        v = info.get(key)
+        try:
+            f = float(v) if v is not None else None
+            return f if (f is not None and np.isfinite(f)) else None
+        except (TypeError, ValueError):
+            return None
+
+    if pd.isna(roce):
+        # ROE is the closest yfinance-info proxy when invested_capital is
+        # unknown (typically caused by missing equity or debt rows).
+        roe = __info_float("returnOnEquity")
+        if roe is not None and -1 < roe < 5:
+            roce = roe
+    if pd.isna(net_debt_ebitda):
+        td = __info_float("totalDebt")
+        tc = __info_float("totalCash")
+        if td is not None and tc is not None and ebitda_ttm and ebitda_ttm > 0:
+            v = (td - tc) / ebitda_ttm
+            if -100 < v < 100:
+                net_debt_ebitda = v
 
     # ROCE inflection signals
     roce_delta_yoy = (roce - roce_prev) if (pd.notna(roce) and pd.notna(roce_prev)) else np.nan
@@ -627,6 +669,42 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     pb = safe_div(market_cap, eq_v) if (market_cap and pd.notna(eq_v) and eq_v > 0) else np.nan
     fcf_yield = safe_div(fcf_ttm, market_cap) if market_cap else np.nan
 
+    # ----- yfinance-info fallbacks for derived ratios -----
+    # When our statement-derived value is NaN, fall back to provider-computed
+    # ratios in `info`. Same logic as fill_fundamentals_gaps.py - primary
+    # numbers are never overwritten, only NaN gaps are filled.
+    def _info_float(key):
+        v = info.get(key)
+        try:
+            f = float(v) if v is not None else None
+            return f if (f is not None and np.isfinite(f)) else None
+        except (TypeError, ValueError):
+            return None
+
+    if pd.isna(pb):
+        v = _info_float("priceToBook")
+        if v is not None and 0 < v < 100:
+            pb = v
+    if pd.isna(ev_ebitda):
+        v = _info_float("enterpriseToEbitda")
+        if v is not None and v != 0 and abs(v) < 500:
+            ev_ebitda = v
+    if pd.isna(ev_ebit):
+        # EV/EBIT proxy from operatingMargins * totalRevenue
+        op_m = _info_float("operatingMargins")
+        tr = _info_float("totalRevenue")
+        if op_m is not None and tr is not None and op_m > 0 and tr > 0 and enterprise_value:
+            ebit_proxy = op_m * tr
+            v = enterprise_value / ebit_proxy if ebit_proxy > 0 else None
+            if v is not None and 0 < v < 200:
+                ev_ebit = v
+    if pd.isna(fcf_yield) and market_cap:
+        fcf_info = _info_float("freeCashflow")
+        if fcf_info is not None:
+            v = fcf_info / market_cap
+            if -2 < v < 2:
+                fcf_yield = v
+
     # NCAV (Graham): current assets - total liabilities. Use balance sheet rows
     # with annual fallback. NCAV % of market cap is a "cigar butt" cheapness gauge.
     cur_assets = first_row_with_fallback(qbs, abs_, ["Current Assets", "Total Current Assets"])
@@ -697,12 +775,22 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     gross_profit_a = first_row(ais, ["Gross Profit"])
     gross_profit_ttm = ttm_or_annual(gross_profit_q, gross_profit_a)
     gross_margin = safe_div(gross_profit_ttm, rev_ttm) if (gross_profit_ttm and rev_ttm) else np.nan
+    if pd.isna(gross_margin):
+        v = _info_float("grossMargins")
+        if v is not None and -1 < v < 1:
+            gross_margin = v
     gross_profit_to_mcap = safe_div(gross_profit_ttm, market_cap) if (gross_profit_ttm and market_cap) else np.nan
 
     # Standard multiples on market cap (not EV) per Berezin's convention
     p_s = safe_div(market_cap, rev_ttm) if (market_cap and rev_ttm) else np.nan
     p_e_yf = info.get("trailingPE")
     p_e = float(p_e_yf) if (p_e_yf is not None and pd.notna(p_e_yf) and p_e_yf > 0) else np.nan
+    if pd.isna(p_e):
+        # Fall back to forwardPE when trailing is missing (typically because
+        # trailing earnings are negative).
+        v = _info_float("forwardPE")
+        if v is not None and 0 < v < 2000:
+            p_e = v
     p_ocf = safe_div(market_cap, cfo_ttm) if (market_cap and cfo_ttm and cfo_ttm > 0) else np.nan
 
     debt_to_equity = safe_div(debt_v, eq_v) if (pd.notna(debt_v) and pd.notna(eq_v) and eq_v > 0) else np.nan
