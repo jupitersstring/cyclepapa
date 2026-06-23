@@ -94,7 +94,7 @@ if [ "$research_running" = "0" ] && [ "$research_size" -lt 2000000 ] && [ -f dat
     nohup python3 scripts/pull_compounder_research_v2.py \
         --universe data/universes/us_nms.csv \
         --out data/research/roic_us_nms.csv \
-        --workers 4 --rate 0.4 --checkpoint 50 --resume \
+        --workers 10 --rate 1.4 --checkpoint 100 --resume \
         > /tmp/log_research_v2.txt 2>&1 &
     disown
     echo "[bootstrap] restarted compounder research v2"
