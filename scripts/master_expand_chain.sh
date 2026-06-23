@@ -69,7 +69,7 @@ for path in data/universes/us_nms.csv data/universes/uni_uk.csv \
         if [ "$rows" -gt $((n * 70 / 100)) ]; then echo "[research] $name done, skipping"; continue; fi
     fi
     echo "[research] $name ($n tickers)"
-    python3 scripts/pull_compounder_research.py --universe "$path" --out "$out" \
+    python3 scripts/pull_compounder_research_v2.py --universe "$path" --out "$out" \
         --workers 10 --rate 1.4 --checkpoint 100 --resume \
         > "/tmp/log_research_${name}.txt" 2>&1 || true
 done
