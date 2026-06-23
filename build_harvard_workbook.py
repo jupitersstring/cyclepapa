@@ -169,37 +169,75 @@ def compute_scores(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
 
 
 # --- Helpers for sheet rendering ---------------------------------------------
-def _fmt_money(x):
-    if pd.isna(x):
-        return "—"
-    x = float(x)
-    if abs(x) >= 1e12:
-        return f"${x/1e12:.2f}T"
-    if abs(x) >= 1e9:
-        return f"${x/1e9:.2f}B"
-    if abs(x) >= 1e6:
-        return f"${x/1e6:.0f}M"
-    if abs(x) >= 1e3:
-        return f"${x/1e3:.0f}K"
-    return f"${x:.0f}"
+# Number formats per the project's Harvard-style spec:
+#   - Raw $ and millions integer: `#,##0;(#,##0);"–"`
+#   - Percentages / pp / growth / margins: `#,##0.0;(#,##0.0);"–"` on a pre-
+#     scaled (×100) value so 0.215 is entered as 21.5
+#   - Ratios / scores / prices: `#,##0.00;(#,##0.00);"–"`
+# All numbers right-aligned; em-dash for empty cells. Negatives in
+# parentheses (financial-statement convention).
+EM_DASH = "–"
+FMT_INT_RAW = '#,##0;(#,##0);"–"'           # raw dollars + millions integer
+FMT_ONE = '#,##0.0;(#,##0.0);"–"'           # percentages / pp / one-decimal numbers
+FMT_TWO = '#,##0.00;(#,##0.00);"–"'         # ratios / scores / prices
+
+_NUM_ALIGN_RIGHT = Alignment(horizontal="right", vertical="center")
+_NUM_ALIGN_CENTER = Alignment(horizontal="center", vertical="center")
+_TXT_ALIGN_LEFT = Alignment(horizontal="left", vertical="center")
 
 
-def _fmt_pct(x, digits=1):
-    if pd.isna(x):
-        return "—"
-    return f"{float(x) * 100:.{digits}f}%"
+def _write_num(ws, row, col, value, fmt, scale=1.0, align=_NUM_ALIGN_RIGHT, font=None):
+    """Write a numeric cell with the right format + alignment.
+
+    `value` may be None / NaN — we then write an em-dash string and keep
+    right-alignment, since Excel's number-format text-section
+    (positive;negative;zero;text) doesn't fire on blank cells.
+    `scale=100.0` for percentages stored as decimals (0.215 -> 21.5).
+    """
+    cell = ws.cell(row=row, column=col)
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        cell.value = EM_DASH
+        cell.alignment = align
+    else:
+        try:
+            cell.value = float(value) * scale
+            cell.number_format = fmt
+        except (TypeError, ValueError):
+            cell.value = EM_DASH
+        cell.alignment = align
+    if font is not None:
+        cell.font = font
+    return cell
 
 
-def _fmt_x(x, digits=2):
-    if pd.isna(x):
-        return "—"
-    return f"{float(x):.{digits}f}x"
+def _write_money(ws, row, col, value, font=None):
+    """Raw USD value: $25,093,996,544 / (123) / – (em-dash on missing)."""
+    return _write_num(ws, row, col, value, FMT_INT_RAW, font=font)
 
 
-def _fmt_score(x):
-    if pd.isna(x):
-        return "—"
-    return f"{float(x):.3f}"
+def _write_money_m(ws, row, col, value, font=None):
+    """Millions: same format, but the caller has already divided by 1e6."""
+    return _write_num(ws, row, col, value, FMT_INT_RAW, font=font)
+
+
+def _write_pct(ws, row, col, value, font=None):
+    """Percentage stored as a decimal (0.215 -> 21.5). One decimal place."""
+    return _write_num(ws, row, col, value, FMT_ONE, scale=100.0, font=font)
+
+
+def _write_ratio(ws, row, col, value, font=None):
+    """Two-decimal ratio / multiple (12.54x). The 'x' suffix is conveyed by
+    the column header — the cell shows just the number for clean sorting."""
+    return _write_num(ws, row, col, value, FMT_TWO, font=font)
+
+
+def _write_score(ws, row, col, value, font=None):
+    """Two-decimal composite score (asymmetry, yartseva, inflection, etc.)."""
+    return _write_num(ws, row, col, value, FMT_TWO, font=font)
+
+
+def _write_int(ws, row, col, value, font=None):
+    return _write_num(ws, row, col, value, FMT_INT_RAW, font=font)
 
 
 def _set_col_widths(ws: Worksheet, widths: dict):
@@ -426,9 +464,8 @@ def build_index(ws: Worksheet, top_df: pd.DataFrame):
 
         _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
 
-        ws.cell(row=row, column=8, value=_fmt_score(r.get('entry_today_asymmetry'))).font = _font(
-            size=10, name=MONO)
-        ws.cell(row=row, column=8).alignment = _align(h="right")
+        _write_score(ws, row, 8, r.get('entry_today_asymmetry'),
+                     font=_font(size=10, name=MONO))
 
         # Row rule (very light)
         for c in range(2, 9):
@@ -459,27 +496,40 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
     ws.cell(row=3, column=2, value="VERDICT").font = _font(size=9, bold=True, color=MUTED, name=SANS)
     _verdict_badge(ws, 3, 3, r.get('verdict', 'UNRESEARCHED'))
     ws.cell(row=3, column=4, value="ENTRY-TODAY SCORE").font = _font(size=9, bold=True, color=MUTED, name=SANS)
-    sc = ws.cell(row=3, column=5, value=_fmt_score(r.get('entry_today_asymmetry')))
-    sc.font = _font(size=14, bold=True, color=CRIMSON, name=SERIF)
-    sc.alignment = _align(h="center")
+    sc = _write_score(ws, 3, 5, r.get('entry_today_asymmetry'),
+                      font=_font(size=14, bold=True, color=CRIMSON, name=SERIF))
+    sc.alignment = _NUM_ALIGN_CENTER
     sc.border = _border(color=RULE, top="thin", bottom="thin", left="thin", right="thin")
 
     # ── Snapshot section
+    # Text values use _kv_row (label/text pairs). Numeric values
+    # (market cap, revenue) go via _write_money so they appear as
+    # right-aligned numbers with comma grouping and parens-on-negatives.
     row = 5
     _section_rule(ws, row, "Snapshot", span_cols=5); row += 1
-    snap = [
-        ("Country",     str(r.get('src', '') or '—')),
-        ("Sector",      str(r.get('sector', '') or '—')),
-        ("Industry",    str(r.get('industry', '') or '—')),
-        ("Bucket",      str(r.get('market_cap_bucket', '') or '—')),
-        ("Market cap",  _fmt_money(r.get('market_cap_usd') or r.get('market_cap'))),
-        ("Revenue TTM", _fmt_money(r.get('revenue_ttm_usd') or r.get('revenue_ttm'))),
-        ("As-of",       str(r.get('balance_sheet_date', '') or '—')),
-    ]
-    for k, v in snap:
-        _kv_row(ws, row, k, v, value_col_span=4)
-        ws.row_dimensions[row].height = 16
-        row += 1
+
+    def _text_kv(row, label, value):
+        ws.cell(row=row, column=1, value=label).font = _font(size=10, bold=True, color=MUTED, name=SANS)
+        vcell = ws.cell(row=row, column=2, value=value or EM_DASH)
+        vcell.font = _font(size=10, name=SERIF)
+        vcell.alignment = _TXT_ALIGN_LEFT
+        ws.merge_cells(start_row=row, start_column=2, end_row=row, end_column=5)
+
+    def _money_kv(row, label, value):
+        # Label in col 1; numeric value in col 2 (no merge — keeps the
+        # number right-aligned without dragging it across the row).
+        ws.cell(row=row, column=1, value=label).font = _font(size=10, bold=True, color=MUTED, name=SANS)
+        _write_money(ws, row, 2, value, font=_font(size=10, name=MONO))
+
+    _text_kv(row, "Country", r.get('src') or '');                                row += 1
+    _text_kv(row, "Sector", r.get('sector') or '');                              row += 1
+    _text_kv(row, "Industry", r.get('industry') or '');                          row += 1
+    _text_kv(row, "Bucket", r.get('market_cap_bucket') or '');                   row += 1
+    _money_kv(row, "Market cap (USD)", r.get('market_cap_usd') or r.get('market_cap'));  row += 1
+    _money_kv(row, "Revenue TTM (USD)", r.get('revenue_ttm_usd') or r.get('revenue_ttm')); row += 1
+    _text_kv(row, "As-of", str(r.get('balance_sheet_date') or ''));              row += 1
+    for r2 in range(5, row):
+        ws.row_dimensions[r2].height = 16
 
     # ── Investment thesis
     row += 1
@@ -494,29 +544,40 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
     row += 5
 
     # ── Score decomposition
+    # Each leg = (label, value, kind). kind is one of:
+    #   "score"  - two-decimal composite [0..1]
+    #   "ratio"  - two-decimal multiplier
+    #   "int"    - integer (e.g. cluster count out of 7)
     _section_rule(ws, row, "Score decomposition", span_cols=5); row += 1
-    # 2-col layout: leg | value
     legs = [
-        ("Asymmetry (raw)",      _fmt_score(r.get('asymmetry_score'))),
-        ("Upside leg",           _fmt_score(r.get('upside_score'))),
-        ("Downside floor",       _fmt_score(r.get('downside_floor_score'))),
-        ("Yartseva inflection",  _fmt_score(r.get('yartseva_score'))),
-        ("Berezin growth",       _fmt_score(r.get('berezin_score'))),
-        ("Intrinsic discount",   _fmt_score(r.get('intrinsic_discount'))),
-        ("Qual multiplier",      f"{float(r.get('qual_mult') or 1.0):.2f}x  ({r.get('verdict','UNRESEARCHED')})"),
-        ("Post-rally factor",    f"{float(r.get('post_rally_factor') or 1.0):.2f}x"),
-        ("Cluster signals",      f"{int(r.get('cluster_n') or 0)} of 7 firing"),
+        ("Asymmetry (raw)",      r.get('asymmetry_score'),       "score"),
+        ("Upside leg",           r.get('upside_score'),           "score"),
+        ("Downside floor",       r.get('downside_floor_score'),   "score"),
+        ("Yartseva composite",   r.get('yartseva_score'),         "score"),
+        ("Berezin growth",       r.get('berezin_score'),          "score"),
+        ("Intrinsic discount",   r.get('intrinsic_discount'),     "score"),
+        ("Qual multiplier (x)",  r.get('qual_mult') or 1.0,       "ratio"),
+        ("Post-rally factor (x)", r.get('post_rally_factor') or 1.0, "ratio"),
+        ("Cluster signals (of 7)", int(r.get('cluster_n') or 0), "int"),
     ]
-    # Two-column table: left labels in cols 2-3, right labels in cols 4-5
+    label_font = _font(size=9, bold=True, color=MUTED, name=SANS)
+    num_font = _font(size=10, name=MONO)
     half = (len(legs) + 1) // 2
     for i in range(half):
         left = legs[i]
         right = legs[i + half] if i + half < len(legs) else None
-        ws.cell(row=row, column=2, value=left[0]).font = _font(size=9, bold=True, color=MUTED, name=SANS)
-        ws.cell(row=row, column=3, value=left[1]).font = _font(size=10, name=MONO)
+        # Left column: label (text) | value (numeric)
+        c2 = ws.cell(row=row, column=2, value=left[0])
+        c2.font = label_font
+        c2.alignment = _TXT_ALIGN_LEFT
+        _write_left = {"score": _write_score, "ratio": _write_ratio, "int": _write_int}[left[2]]
+        _write_left(ws, row, 3, left[1], font=num_font)
         if right:
-            ws.cell(row=row, column=4, value=right[0]).font = _font(size=9, bold=True, color=MUTED, name=SANS)
-            ws.cell(row=row, column=5, value=right[1]).font = _font(size=10, name=MONO)
+            c4 = ws.cell(row=row, column=4, value=right[0])
+            c4.font = label_font
+            c4.alignment = _TXT_ALIGN_LEFT
+            _write_right = {"score": _write_score, "ratio": _write_ratio, "int": _write_int}[right[2]]
+            _write_right(ws, row, 5, right[1], font=num_font)
         for c in (2, 3, 4, 5):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 16
@@ -524,34 +585,41 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
     row += 1
 
     # ── Valuation & balance sheet
+    # kind: "pct" (decimal -> *100, one decimal place) or "ratio" (two decimals)
     _section_rule(ws, row, "Valuation & balance sheet", span_cols=5); row += 1
+    sales_yoy_val = r.get('sales_yoy') if pd.notna(r.get('sales_yoy')) else r.get('rev_yoy')
     vals = [
-        ("P/B",                  _fmt_x(r.get('pb'))),
-        ("EV / EBITDA",          _fmt_x(r.get('ev_ebitda'))),
-        ("EV / EBIT",            _fmt_x(r.get('ev_ebit'))),
-        ("P/E",                  _fmt_x(r.get('p_e'))),
-        ("P/S",                  _fmt_x(r.get('p_s'))),
-        ("FCF yield",            _fmt_pct(r.get('fcf_yield'))),
-        ("Net cash / mcap",      _fmt_pct(r.get('net_cash_pct_mcap'))),
-        ("Cash / EV",            _fmt_x(r.get('cash_pct_ev'))),
-        ("NCAV / mcap",          _fmt_pct(r.get('ncav_pct_mcap'))),
-        ("Net debt / EBITDA",    _fmt_x(r.get('net_debt_ebitda'))),
-        ("ROCE",                 _fmt_pct(r.get('roce'))),
-        ("EBITDA margin",        _fmt_pct(r.get('ebitda_margin'))),
-        ("Insider ownership",    _fmt_pct(r.get('insider_ownership_pct'))),
-        ("Rev 3y CAGR",          _fmt_pct(r.get('rev_3y_cagr'))),
-        ("Rev YoY (TTM)",        _fmt_pct(r.get('sales_yoy') if pd.notna(r.get('sales_yoy')) else r.get('rev_yoy'))),
-        ("12m price momentum",   _fmt_pct(r.get('momentum_12m'))),
+        ("P/B",                       r.get('pb'),                       "ratio"),
+        ("EV / EBITDA",               r.get('ev_ebitda'),                "ratio"),
+        ("EV / EBIT",                 r.get('ev_ebit'),                  "ratio"),
+        ("P/E",                       r.get('p_e'),                      "ratio"),
+        ("P/S",                       r.get('p_s'),                      "ratio"),
+        ("FCF yield (%)",             r.get('fcf_yield'),                "pct"),
+        ("Net cash / mcap (%)",       r.get('net_cash_pct_mcap'),        "pct"),
+        ("Cash / EV (x)",             r.get('cash_pct_ev'),              "ratio"),
+        ("NCAV / mcap (%)",           r.get('ncav_pct_mcap'),            "pct"),
+        ("Net debt / EBITDA (x)",     r.get('net_debt_ebitda'),          "ratio"),
+        ("ROCE (%)",                  r.get('roce'),                     "pct"),
+        ("EBITDA margin (%)",         r.get('ebitda_margin'),            "pct"),
+        ("Insider ownership (%)",     r.get('insider_ownership_pct'),    "pct"),
+        ("Rev 3y CAGR (%)",           r.get('rev_3y_cagr'),              "pct"),
+        ("Rev YoY (TTM, %)",          sales_yoy_val,                     "pct"),
+        ("12m price momentum (%)",    r.get('momentum_12m'),             "pct"),
     ]
+    writers = {"pct": _write_pct, "ratio": _write_ratio}
     half = (len(vals) + 1) // 2
     for i in range(half):
         left = vals[i]
         right = vals[i + half] if i + half < len(vals) else None
-        ws.cell(row=row, column=2, value=left[0]).font = _font(size=9, bold=True, color=MUTED, name=SANS)
-        ws.cell(row=row, column=3, value=left[1]).font = _font(size=10, name=MONO)
+        c2 = ws.cell(row=row, column=2, value=left[0])
+        c2.font = label_font
+        c2.alignment = _TXT_ALIGN_LEFT
+        writers[left[2]](ws, row, 3, left[1], font=num_font)
         if right:
-            ws.cell(row=row, column=4, value=right[0]).font = _font(size=9, bold=True, color=MUTED, name=SANS)
-            ws.cell(row=row, column=5, value=right[1]).font = _font(size=10, name=MONO)
+            c4 = ws.cell(row=row, column=4, value=right[0])
+            c4.font = label_font
+            c4.alignment = _TXT_ALIGN_LEFT
+            writers[right[2]](ws, row, 5, right[1], font=num_font)
         for c in (2, 3, 4, 5):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 16
@@ -611,8 +679,8 @@ def get_top_n():
 
 # --- Coverage sheet -----------------------------------------------------------
 def build_coverage(ws: Worksheet, full_df: pd.DataFrame, top_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 22, 3: 14, 4: 14, 5: 14, 6: 14, 7: 14, 8: 4})
-    _crimson_banner(ws, 1, "  Coverage audit", span_cols=8)
+    _set_col_widths(ws, {1: 4, 2: 22, 3: 12, 4: 10, 5: 10, 6: 10, 7: 14, 8: 12, 9: 4})
+    _crimson_banner(ws, 1, "  Coverage audit", span_cols=9)
 
     REGIONS = {
         'NorthAmerica':   {'US', 'CA'},
@@ -627,7 +695,7 @@ def build_coverage(ws: Worksheet, full_df: pd.DataFrame, top_df: pd.DataFrame):
     }
 
     # Block 1: universe-level verdict mix
-    _section_rule(ws, 3, "Universe-level verdict mix", span_cols=7)
+    _section_rule(ws, 3, "Universe-level verdict mix", span_cols=8)
     hdrs = ["", "Universe", "GREEN", "YELLOW", "RED", "UNRESEARCHED", "% covered"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=4, column=i, value=h)
@@ -635,39 +703,52 @@ def build_coverage(ws: Worksheet, full_df: pd.DataFrame, top_df: pd.DataFrame):
         c.alignment = _align(h="center")
         c.border = _border(color=CRIMSON_DARK, bottom="thin")
 
+    # Universe row: text label in col 2, integer counts in cols 3-6, pct in col 7
     total = len(full_df)
-    g = (full_df['verdict'] == 'GREEN').sum()
-    y = (full_df['verdict'] == 'YELLOW').sum()
-    rd = (full_df['verdict'] == 'RED').sum()
-    u = (full_df['verdict'] == 'UNRESEARCHED').sum()
-    pct = (total - u) / total * 100 if total else 0
+    g = int((full_df['verdict'] == 'GREEN').sum())
+    y = int((full_df['verdict'] == 'YELLOW').sum())
+    rd = int((full_df['verdict'] == 'RED').sum())
+    u = int((full_df['verdict'] == 'UNRESEARCHED').sum())
+    pct = (total - u) / total if total else 0.0
 
-    row_data = ["All", total, g, y, rd, u, f"{pct:.2f}%"]
-    for i, v in enumerate(row_data, start=2):
-        c = ws.cell(row=5, column=i, value=v)
-        c.font = _font(size=10, name=MONO if i > 2 else SANS, bold=(i == 2))
-        c.alignment = _align(h="center")
+    mono_b = _font(size=10, name=MONO, bold=True)
+    mono = _font(size=10, name=MONO)
+    label_b = _font(size=10, name=SANS, bold=True)
+
+    lbl = ws.cell(row=5, column=2, value="All")
+    lbl.font = label_b
+    lbl.alignment = _TXT_ALIGN_LEFT
+    _write_int(ws, 5, 3, total, font=mono_b)
+    _write_int(ws, 5, 4, g, font=mono)
+    _write_int(ws, 5, 5, y, font=mono)
+    _write_int(ws, 5, 6, rd, font=mono)
+    _write_int(ws, 5, 7, u, font=mono)
+    _write_pct(ws, 5, 8, pct, font=mono)  # uses ×100; one decimal place
 
     # Block 2: top-50 verdict mix
-    _section_rule(ws, 7, "Top-50 verdict mix", span_cols=7)
+    _section_rule(ws, 7, "Top-50 verdict mix", span_cols=8)
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=8, column=i, value=h)
         c.font = _font(size=9, bold=True, color=CRIMSON_DARK, name=SANS)
         c.alignment = _align(h="center")
         c.border = _border(color=CRIMSON_DARK, bottom="thin")
-    tg = (top_df['verdict'] == 'GREEN').sum()
-    ty = (top_df['verdict'] == 'YELLOW').sum()
-    tr = (top_df['verdict'] == 'RED').sum()
-    tu = (top_df['verdict'] == 'UNRESEARCHED').sum()
-    tpct = (len(top_df) - tu) / len(top_df) * 100 if len(top_df) else 0
-    row_data = ["Top-50", len(top_df), tg, ty, tr, tu, f"{tpct:.2f}%"]
-    for i, v in enumerate(row_data, start=2):
-        c = ws.cell(row=9, column=i, value=v)
-        c.font = _font(size=10, name=MONO if i > 2 else SANS, bold=(i == 2))
-        c.alignment = _align(h="center")
+    tg = int((top_df['verdict'] == 'GREEN').sum())
+    ty = int((top_df['verdict'] == 'YELLOW').sum())
+    tr = int((top_df['verdict'] == 'RED').sum())
+    tu = int((top_df['verdict'] == 'UNRESEARCHED').sum())
+    tpct = (len(top_df) - tu) / len(top_df) if len(top_df) else 0.0
+    lbl = ws.cell(row=9, column=2, value="Top-50")
+    lbl.font = label_b
+    lbl.alignment = _TXT_ALIGN_LEFT
+    _write_int(ws, 9, 3, len(top_df), font=mono_b)
+    _write_int(ws, 9, 4, tg, font=mono)
+    _write_int(ws, 9, 5, ty, font=mono)
+    _write_int(ws, 9, 6, tr, font=mono)
+    _write_int(ws, 9, 7, tu, font=mono)
+    _write_pct(ws, 9, 8, tpct, font=mono)
 
     # Block 3: per-region top-10 verdict mix (qualitative coverage in regional top-10s)
-    _section_rule(ws, 11, "Per-region top-10 verdict mix (qualitative coverage)", span_cols=7)
+    _section_rule(ws, 11, "Per-region top-10 verdict mix (qualitative coverage)", span_cols=8)
     rhdrs = ["Region", "Names", "GREEN", "YELLOW", "RED", "UNRESEARCHED", "% covered"]
     for i, h in enumerate(rhdrs, start=2):
         c = ws.cell(row=12, column=i, value=h)
@@ -681,16 +762,21 @@ def build_coverage(ws: Worksheet, full_df: pd.DataFrame, top_df: pd.DataFrame):
             .sort_values('entry_today_asymmetry', ascending=False).head(10)
         if sub.empty:
             continue
-        gg = (sub['verdict'] == 'GREEN').sum()
-        yy = (sub['verdict'] == 'YELLOW').sum()
-        uu = (sub['verdict'] == 'UNRESEARCHED').sum()
-        pp = (len(sub) - uu) / len(sub) * 100
-        vals = [region, len(sub), gg, yy, 0, uu, f"{pp:.1f}%"]
-        for i, v in enumerate(vals, start=2):
-            c = ws.cell(row=row, column=i, value=v)
-            c.font = _font(size=10, name=MONO if i > 2 else SANS, bold=(i == 2))
-            c.alignment = _align(h="center")
-            c.border = _border(color=RULE, bottom="thin")
+        gg = int((sub['verdict'] == 'GREEN').sum())
+        yy = int((sub['verdict'] == 'YELLOW').sum())
+        uu = int((sub['verdict'] == 'UNRESEARCHED').sum())
+        pp = (len(sub) - uu) / len(sub) if len(sub) else 0.0
+        lbl = ws.cell(row=row, column=2, value=region)
+        lbl.font = label_b
+        lbl.alignment = _TXT_ALIGN_LEFT
+        _write_int(ws, row, 3, len(sub), font=mono_b)
+        _write_int(ws, row, 4, gg, font=mono)
+        _write_int(ws, row, 5, yy, font=mono)
+        _write_int(ws, row, 6, 0, font=mono)
+        _write_int(ws, row, 7, uu, font=mono)
+        _write_pct(ws, row, 8, pp, font=mono)
+        for c in range(2, 9):
+            ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         row += 1
 
     # Notes

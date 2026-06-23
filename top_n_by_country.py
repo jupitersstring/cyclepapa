@@ -187,6 +187,9 @@ def main():
 
 
 def _write_xlsx(out: pd.DataFrame, path: str, n: int):
+    """Harvard-style table: numbers as real numbers with cell number_format,
+    text left-aligned, numbers right-aligned, negatives in parens, em-dash
+    for empty cells. Mirrors the spec used in build_harvard_workbook.py."""
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
@@ -197,81 +200,123 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
     RULE = 'C0BFB8'
     GREEN_BG, YELLOW_BG, GRAY_BG = 'DCEAD2', 'F8EAB4', 'ECECEC'
 
+    EM_DASH = '–'
+    FMT_INT_RAW = '#,##0;(#,##0);"–"'
+    FMT_ONE = '#,##0.0;(#,##0.0);"–"'
+    FMT_TWO = '#,##0.00;(#,##0.00);"–"'
+
+    A_LEFT = Alignment(horizontal='left', vertical='center')
+    A_RIGHT = Alignment(horizontal='right', vertical='center')
+    A_CENTER = Alignment(horizontal='center', vertical='center')
+
     wb = Workbook()
     ws = wb.active
     ws.title = f'Top_{n}_by_Country'
 
-    widths = {1: 18, 2: 5, 3: 5, 4: 12, 5: 38, 6: 18, 7: 14, 8: 12, 9: 9, 10: 10, 11: 11, 12: 11, 13: 9}
+    def _put_num(row, col, value, fmt, scale=1.0, font=None, align=A_RIGHT):
+        cell = ws.cell(row=row, column=col)
+        if value is None or (isinstance(value, float) and pd.isna(value)):
+            cell.value = EM_DASH
+            cell.alignment = align
+        else:
+            try:
+                cell.value = float(value) * scale
+                cell.number_format = fmt
+            except (TypeError, ValueError):
+                cell.value = EM_DASH
+            cell.alignment = align
+        if font is not None:
+            cell.font = font
+
+    def _put_int(row, col, value, font=None):
+        _put_num(row, col, value, FMT_INT_RAW, font=font)
+
+    def _put_money(row, col, value, font=None):
+        _put_num(row, col, value, FMT_INT_RAW, font=font)
+
+    def _put_score(row, col, value, font=None):
+        _put_num(row, col, value, FMT_TWO, font=font)
+
+    def _put_text(row, col, value, font=None, align=A_LEFT):
+        cell = ws.cell(row=row, column=col,
+                       value=value if value not in (None, '') else EM_DASH)
+        cell.alignment = align
+        if font is not None:
+            cell.font = font
+
+    # Country | ISO | # | Ticker | Name | Sector | Bucket |
+    # Mcap (USD) | Verdict | ETA | Asym | Yartseva | Cluster
+    widths = {1: 18, 2: 6, 3: 5, 4: 12, 5: 38, 6: 18, 7: 14,
+              8: 18, 9: 10, 10: 10, 11: 10, 12: 10, 13: 8}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
 
     # Banner
-    cell = ws.cell(row=1, column=1, value=f'  Top {n} by Country  ·  Entry-today asymmetry')
+    cell = ws.cell(row=1, column=1,
+                   value=f'  Top {n} by Country  ·  Entry-today asymmetry')
     cell.font = Font(name='Cambria', size=14, bold=True, color='FFFFFF')
     cell.fill = PatternFill('solid', fgColor=CRIMSON)
-    cell.alignment = Alignment(horizontal='left', vertical='center')
+    cell.alignment = A_LEFT
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=13)
     ws.row_dimensions[1].height = 28
 
     headers = ['Country', 'ISO', '#', 'Ticker', 'Name', 'Sector', 'Bucket',
-               'Mcap', 'Verdict', 'ETA', 'Asym', 'Yartseva', 'Cluster']
+               'Mcap (USD)', 'Verdict', 'ETA', 'Asym', 'Yartseva', 'Cluster']
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=3, column=i, value=h)
         c.font = Font(name='Calibri', size=10, bold=True, color=CRIMSON_DARK)
-        c.alignment = Alignment(horizontal='left' if i in (1, 4, 5, 6) else 'center')
+        if i in (1, 4, 5, 6, 7):
+            c.alignment = A_LEFT
+        elif i in (2, 3, 9):
+            c.alignment = A_CENTER
+        else:
+            c.alignment = A_RIGHT
         c.border = Border(bottom=Side(style='medium', color=CRIMSON_DARK))
     ws.row_dimensions[3].height = 22
 
+    f_text = Font(name='Cambria', size=10)
+    f_text_muted = Font(name='Calibri', size=9, color=MUTED)
+    f_ticker = Font(name='Calibri', size=10, bold=True)
+    f_mono = Font(name='Consolas', size=9)
+    f_int = Font(name='Calibri', size=10)
+    f_country_header = Font(name='Cambria', size=10, bold=True, color=CRIMSON_DARK)
+    f_country_repeat = Font(name='Cambria', size=10, color=MUTED, italic=True)
+
     prev_country = None
     for r_idx, (_, r) in enumerate(out.iterrows(), start=4):
-        # Country banner row when country changes
-        if r['country_name'] != prev_country:
-            ws.row_dimensions[r_idx].height = 18
-            prev_country = r['country_name']
-            country_cell_font = Font(name='Cambria', size=10, bold=True, color=CRIMSON_DARK)
-        else:
-            country_cell_font = Font(name='Cambria', size=10, color=MUTED, italic=True)
+        country_font = (f_country_header if r['country_name'] != prev_country
+                        else f_country_repeat)
+        prev_country = r['country_name']
 
-        ws.cell(row=r_idx, column=1, value=r['country_name']).font = country_cell_font
-        ws.cell(row=r_idx, column=2, value=r['src']).font = Font(name='Calibri', size=9, color=MUTED)
-        ws.cell(row=r_idx, column=3, value=int(r['country_rank'])).font = Font(name='Calibri', size=10)
-        ws.cell(row=r_idx, column=4, value=r['symbol']).font = Font(name='Calibri', size=10, bold=True)
+        _put_text(r_idx, 1, r['country_name'], font=country_font)
+        _put_text(r_idx, 2, r['src'], font=f_text_muted, align=A_CENTER)
+        _put_int(r_idx, 3, int(r['country_rank']), font=f_int)
+        _put_text(r_idx, 4, r['symbol'], font=f_ticker)
+        _put_text(r_idx, 5, str(r.get('name') or '')[:60], font=f_text)
+        _put_text(r_idx, 6, str(r.get('sector') or ''), font=f_text_muted)
+        _put_text(r_idx, 7, str(r.get('market_cap_bucket') or ''), font=f_text_muted)
 
-        name = str(r.get('name') or '')[:60]
-        ws.cell(row=r_idx, column=5, value=name).font = Font(name='Cambria', size=10)
-        ws.cell(row=r_idx, column=6, value=str(r.get('sector') or '')).font = Font(name='Calibri', size=9, color=MUTED)
-        ws.cell(row=r_idx, column=7, value=str(r.get('market_cap_bucket') or '')).font = Font(name='Calibri', size=9, color=MUTED)
+        # Mcap: raw USD, comma-grouped, parens-on-negative, em-dash if missing.
+        _put_money(r_idx, 8, r.get('market_cap'), font=f_mono)
 
-        mc = r.get('market_cap')
-        mc_str = '—' if pd.isna(mc) else (
-            f'${mc/1e9:.1f}B' if abs(mc) >= 1e9 else
-            f'${mc/1e6:.0f}M' if abs(mc) >= 1e6 else
-            f'${mc/1e3:.0f}K'
-        )
-        ws.cell(row=r_idx, column=8, value=mc_str).font = Font(name='Consolas', size=9)
-        ws.cell(row=r_idx, column=8).alignment = Alignment(horizontal='right')
-
+        # Verdict badge (colored fill, centered)
         v = r['verdict']
         bg = {'GREEN': GREEN_BG, 'YELLOW': YELLOW_BG}.get(v, GRAY_BG)
         vc = ws.cell(row=r_idx, column=9, value=v)
         vc.font = Font(name='Calibri', size=9, bold=True)
         vc.fill = PatternFill('solid', fgColor=bg)
-        vc.alignment = Alignment(horizontal='center')
+        vc.alignment = A_CENTER
 
-        for ci, (val, fmt) in enumerate([
-            (r.get('entry_today_asymmetry'), '.3f'),
-            (r.get('asymmetry_score'), '.3f'),
-            (r.get('yartseva_score'), '.3f'),
-            (int(r.get('cluster_n') or 0), 'd'),
-        ], start=10):
-            v = '—' if pd.isna(val) else format(val, fmt)
-            c = ws.cell(row=r_idx, column=ci, value=v)
-            c.font = Font(name='Consolas', size=9)
-            c.alignment = Alignment(horizontal='right')
+        # Scores: 2-decimal ratios, right-aligned, em-dash on missing
+        _put_score(r_idx, 10, r.get('entry_today_asymmetry'), font=f_mono)
+        _put_score(r_idx, 11, r.get('asymmetry_score'), font=f_mono)
+        _put_score(r_idx, 12, r.get('yartseva_score'), font=f_mono)
+        _put_int(r_idx, 13, int(r.get('cluster_n') or 0), font=f_mono)
 
         # Bottom hairline
-        for c in range(1, 14):
-            ws.cell(row=r_idx, column=c).border = Border(bottom=Side(style='thin', color=RULE))
+        for cidx in range(1, 14):
+            ws.cell(row=r_idx, column=cidx).border = Border(
+                bottom=Side(style='thin', color=RULE))
 
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = 'A4'
