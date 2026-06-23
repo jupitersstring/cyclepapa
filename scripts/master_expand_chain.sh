@@ -52,10 +52,34 @@ done
 echo "[master] === phase 4: Qullamaggie + Episodic Pivot screens ==="
 bash scripts/run_q_screens.sh
 
-echo "[master] === phase 5: integrate Q/EP into ranking, rebuild workbook ==="
+echo "[master] === phase 5: enduring compounder research (US + UK + EU small caps) ==="
+for path in data/universes/us_nms.csv data/universes/uni_uk.csv \
+            data/universes/uni_germany.csv data/universes/uni_france.csv \
+            data/universes/uni_italy.csv data/universes/uni_spain.csv \
+            data/universes/uni_japan.csv data/universes/uni_canada.csv \
+            data/universes/uni_australia.csv; do
+    [ -f "$path" ] || continue
+    name=$(basename "$path" .csv | sed 's/uni_//; s/us_nms/us_nms/')
+    out="data/research/roic_${name}.csv"
+    n=$(($(wc -l < "$path") - 1))
+    [ "$n" -lt 50 ] && continue
+    # Skip if already done (file > 1MB or rows >= 80% of universe)
+    if [ -f "$out" ] && [ "$(stat -c%s "$out" 2>/dev/null)" -gt 500000 ]; then
+        rows=$(($(wc -l < "$out") - 1))
+        if [ "$rows" -gt $((n * 70 / 100)) ]; then echo "[research] $name done, skipping"; continue; fi
+    fi
+    echo "[research] $name ($n tickers)"
+    python3 scripts/pull_compounder_research.py --universe "$path" --out "$out" \
+        --workers 4 --rate 0.4 --checkpoint 50 --resume \
+        > "/tmp/log_research_${name}.txt" 2>&1 || true
+done
+
+echo "[master] === phase 6: rebuild rankings + workbook ==="
 python3 scripts/master_synthesis_v2.py 2>&1 | tail -5
 python3 scripts/full_universe_rank_all.py 2>&1 | tail -5
 python3 scripts/integrate_q_into_ranking.py 2>&1 | tail -5
+python3 scripts/rank_compounders.py 2>&1 | tail -10
+python3 scripts/integrate_compounders.py 2>&1 | tail -5
 python3 scripts/build_workbook_full.py 2>&1 | tail -3
 
 echo "[master] DONE"

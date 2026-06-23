@@ -79,6 +79,12 @@ for m in us uk germany france italy spain netherlands belgium switzerland sweden
         expansion_incomplete=1; break
     fi
 done
+
+# Also check compounder research incompleteness
+if [ -f data/universes/us_nms.csv ] && \
+   { [ ! -f data/research/roic_us_nms.csv ] || [ "$(stat -c%s data/research/roic_us_nms.csv 2>/dev/null)" -lt 100000 ]; }; then
+    expansion_incomplete=1
+fi
 if [ "$expansion_incomplete" -eq 1 ] && ! pgrep -f "run_expansion\|master_expand" >/dev/null 2>&1; then
     # If widen_chain still running, master_expand will pick up expansion after; otherwise launch expansion directly
     if pgrep -f widen_chain.sh >/dev/null 2>&1; then
