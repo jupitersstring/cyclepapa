@@ -70,7 +70,7 @@ for path in data/universes/us_nms.csv data/universes/uni_uk.csv \
     fi
     echo "[research] $name ($n tickers)"
     python3 scripts/pull_compounder_research.py --universe "$path" --out "$out" \
-        --workers 4 --rate 0.4 --checkpoint 50 --resume \
+        --workers 10 --rate 1.4 --checkpoint 100 --resume \
         > "/tmp/log_research_${name}.txt" 2>&1 || true
 done
 
