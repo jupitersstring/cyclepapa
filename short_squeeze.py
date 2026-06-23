@@ -337,6 +337,9 @@ COILED_SI_MIN = 15.0           # a meaningfully crowded short, OR
 COILED_UTIL_MIN = 80.0         # high utilization
 COILED_PCTILE = 80.0           # fee/util at its own historical highs (breakout)
 COILED_MOM_MAX = 30.0          # price has NOT yet run (the asymmetric R/R edge)
+COILED_MOM_MIN = -20.0         # ...but not CRASHING (a falling knife is not a coil)
+COILED_MIN_PRICE = 1.0         # must be tradeable (a penny stock is a falling knife, not a coil)
+COILED_FEE_MIN = 5.0           # borrow already meaningfully special (a cheap GC fee "rising" is noise)
 
 
 def detect_bearish_convergence(m: SqueezeMetrics) -> DetectorResult:
@@ -464,6 +467,8 @@ def detect_coiled_spring(m: SqueezeMetrics) -> DetectorResult:
         return DetectorResult("coiled_spring", False,
                               "No lending signal — cannot assess the footprint.", mode="unavailable")
     crowded = (si is not None and si >= COILED_SI_MIN) or (util is not None and util >= COILED_UTIL_MIN)
+    fee = m.borrow_fee_pct
+    under_pressure = (fee is not None and fee >= COILED_FEE_MIN) or (util is not None and util >= COILED_UTIL_MIN)
     tightening_bits: List[str] = []
     if (m.borrow_fee_trend_pct_pts or 0.0) > 0.0:
         tightening_bits.append("fee rising")
@@ -476,18 +481,26 @@ def detect_coiled_spring(m: SqueezeMetrics) -> DetectorResult:
     if (m.utilization_percentile or 0.0) >= COILED_PCTILE:
         tightening_bits.append(f"util at {m.utilization_percentile:.0f}th pctile")
     tightening = bool(tightening_bits)
-    not_ignited = (m.momentum_pct is None) or (m.momentum_pct < COILED_MOM_MAX)
-    triggered = crowded and tightening and not_ignited
+    mom = m.momentum_pct
+    not_ignited = (mom is None) or (COILED_MOM_MIN <= mom < COILED_MOM_MAX)
+    tradeable = (m.price is None) or (m.price >= COILED_MIN_PRICE)
+    triggered = crowded and under_pressure and tightening and not_ignited and tradeable
 
     if not tightening:
         reason = "Not coiling — no tightening in the dynamics (need a time series)."
     elif not crowded:
         reason = "Tightening but not crowded enough (low SI / utilization)."
-    elif not not_ignited:
-        reason = f"Already moving (+{m.momentum_pct:.0f}%) — past the asymmetric entry (poor R/R)."
+    elif not under_pressure:
+        reason = "Borrow still cheap (general collateral) — rising, but not under real pressure yet."
+    elif not tradeable:
+        reason = f"Tightening but untradeable (${m.price:.2f} penny) — a falling knife, not a coil."
+    elif mom is not None and mom < COILED_MOM_MIN:
+        reason = f"Tightening but price crashing ({mom:+.0f}%) — falling knife / winning short, not a coil."
+    elif mom is not None and mom >= COILED_MOM_MAX:
+        reason = f"Already moving (+{mom:.0f}%) — past the asymmetric entry (poor R/R)."
     else:
         reason = ("COILED SPRING (good R/R): crowded + tightening (" + ", ".join(tightening_bits)
-                  + ") + price not yet ignited — the pre-ignition entry.")
+                  + ") + tradeable + price not yet ignited — the pre-ignition entry.")
     return DetectorResult("coiled_spring", triggered, reason)
 
 

@@ -629,6 +629,12 @@ class TestCoiledSpring(unittest.TestCase):
         r = detect_coiled_spring(SqueezeMetrics("X", short_interest_pct_float=30))
         self.assertEqual(r.mode, "unavailable")
 
+    def test_not_coiled_when_penny_falling_knife(self):
+        # tightening fee + crowded, but a sub-$1 penny -> falling knife, not a coil
+        series = [Snapshot("w1", borrow_fee_pct=20, short_interest_pct_float=28, price=0.80),
+                  Snapshot("w2", borrow_fee_pct=39, short_interest_pct_float=28, price=0.69)]
+        self.assertFalse(assess(metrics_from_timeseries("BYND", series)).coiled_spring.triggered)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
