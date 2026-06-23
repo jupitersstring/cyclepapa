@@ -83,7 +83,7 @@ in SHORT_SQUEEZE_FRAMEWORK.md.
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -94,6 +94,7 @@ __all__ = [
     "DetectorResult",
     "detect_bearish_convergence",
     "detect_squeeze_fuel",
+    "detect_coiled_spring",
     "SqueezeClass",
     "Confidence",
     "SqueezeAssessment",
@@ -112,6 +113,9 @@ __all__ = [
     "FinraShortRow",
     "screen_universe",
     "screen_yfinance",
+    "Snapshot",
+    "metrics_from_timeseries",
+    "screen_panel",
     "report",
     "to_csv",
     "BORROW_FEE_MEAN_PCT",
@@ -162,6 +166,8 @@ class SqueezeMetrics:
     # --- rate-of-change context (squeeze setups are about *acceleration*) ---
     utilization_trend_pct_pts: Optional[float] = None  # change in utilization (pct points)
     borrow_fee_trend_pct_pts: Optional[float] = None   # change in fee (pct points)
+    fee_percentile: Optional[float] = None             # borrow fee vs its OWN history, 0-100 (regime/breakout)
+    utilization_percentile: Optional[float] = None     # utilization vs its OWN history, 0-100
 
     # --- short-side P&L proxy (S3 insight) ---
     # Percent the current price sits ABOVE the estimated average short entry.
@@ -325,6 +331,13 @@ FUEL_UTIL_MIN = 85.0           # utilization at/above this = supply nearly gone
 FUEL_SI_MIN = 10.0             # elevated short interest
 FUEL_FEE_MIN = 10.0            # fee in the "special" tail (Schultz ~p95 region)
 
+# Coiled-spring (good risk/reward) detector — needs DYNAMIC (time-series) data:
+# crowded short + borrow tightening in real time + price not yet ignited.
+COILED_SI_MIN = 15.0           # a meaningfully crowded short, OR
+COILED_UTIL_MIN = 80.0         # high utilization
+COILED_PCTILE = 80.0           # fee/util at its own historical highs (breakout)
+COILED_MOM_MAX = 30.0          # price has NOT yet run (the asymmetric R/R edge)
+
 
 def detect_bearish_convergence(m: SqueezeMetrics) -> DetectorResult:
     """Genuinely-short / squeeze-DISqualifier detector.
@@ -434,6 +447,50 @@ def detect_squeeze_fuel(m: SqueezeMetrics) -> DetectorResult:
     return DetectorResult("squeeze_fuel", triggered, reason, mode=mode)
 
 
+def detect_coiled_spring(m: SqueezeMetrics) -> DetectorResult:
+    """Good RISK/REWARD footprint (needs DYNAMIC / time-series data): a crowded
+    short whose borrow is TIGHTENING in real time (rising — or at its own historical
+    high — fee / utilization / short interest) but whose price has NOT yet ignited.
+
+    'Short squeezes reward early conviction and punish late speculation' — the
+    asymmetric pre-ignition entry. Grounded in Cohen-Diether-Malloy (the *change*
+    in shorting demand, not the level, predicts), D'Avolio (a spiking fee precedes
+    forced covering), and the GME footprint (borrow maxed + gamma ramp building
+    *before* the parabolic move). Once price has run it is no longer coiled — that
+    is the overextension penalty's job. Requires a lending signal + a dynamic input.
+    """
+    si, util = m.short_interest_pct_float, m.utilization_pct
+    if util is None and m.borrow_fee_pct is None:
+        return DetectorResult("coiled_spring", False,
+                              "No lending signal — cannot assess the footprint.", mode="unavailable")
+    crowded = (si is not None and si >= COILED_SI_MIN) or (util is not None and util >= COILED_UTIL_MIN)
+    tightening_bits: List[str] = []
+    if (m.borrow_fee_trend_pct_pts or 0.0) > 0.0:
+        tightening_bits.append("fee rising")
+    if (m.utilization_trend_pct_pts or 0.0) > 0.0:
+        tightening_bits.append("util rising")
+    if (m.short_interest_trend_pct_pts or 0.0) > 0.0:
+        tightening_bits.append("SI rising")
+    if (m.fee_percentile or 0.0) >= COILED_PCTILE:
+        tightening_bits.append(f"fee at {m.fee_percentile:.0f}th pctile")
+    if (m.utilization_percentile or 0.0) >= COILED_PCTILE:
+        tightening_bits.append(f"util at {m.utilization_percentile:.0f}th pctile")
+    tightening = bool(tightening_bits)
+    not_ignited = (m.momentum_pct is None) or (m.momentum_pct < COILED_MOM_MAX)
+    triggered = crowded and tightening and not_ignited
+
+    if not tightening:
+        reason = "Not coiling — no tightening in the dynamics (need a time series)."
+    elif not crowded:
+        reason = "Tightening but not crowded enough (low SI / utilization)."
+    elif not not_ignited:
+        reason = f"Already moving (+{m.momentum_pct:.0f}%) — past the asymmetric entry (poor R/R)."
+    else:
+        reason = ("COILED SPRING (good R/R): crowded + tightening (" + ", ".join(tightening_bits)
+                  + ") + price not yet ignited — the pre-ignition entry.")
+    return DetectorResult("coiled_spring", triggered, reason)
+
+
 # ---------------------------------------------------------------------------
 # Scoring engine
 # ---------------------------------------------------------------------------
@@ -475,6 +532,7 @@ class SqueezeAssessment:
     amplifier: float = 1.0                       # 1.0-1.3 (low float, high days-to-cover)
     overextension_factor: float = 1.0            # <=1.0 penalty for already-squeezed names
     liquidity_factor: float = 1.0                # <=1.0 penalty for untradeable microcaps
+    coiled_spring: Optional[DetectorResult] = None  # good R/R footprint (tightening + pre-ignition)
     notes: List[str] = field(default_factory=list)
 
     def summary(self) -> str:
@@ -507,6 +565,8 @@ class SqueezeAssessment:
             lines.append(f"    [bearish-convergence] {self.bearish_convergence.reason}")
         if self.squeeze_fuel.triggered:
             lines.append(f"    [squeeze-fuel] {self.squeeze_fuel.reason}")
+        if self.coiled_spring is not None and self.coiled_spring.triggered:
+            lines.append(f"    [coiled-spring | good R/R] {self.coiled_spring.reason}")
         for n in self.notes:
             lines.append(f"    note: {n}")
         return "\n".join(lines)
@@ -598,9 +658,10 @@ def _structural_score(
 
 
 def _dynamics_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
-    """Acceleration: rising utilization / fee / short interest = supply tightening
-    and shorts crowding in (Ortex & S3 stress rate-of-change; Cohen-Diether-Malloy:
-    rising shorting demand predicts lower returns). None if no trend inputs."""
+    """Acceleration + regime: rising utilization / fee / short interest, and values
+    breaking out to their OWN historical highs (percentile-vs-history, the signal a
+    time series unlocks — Ortex/S3 stress rate-of-change; Cohen-Diether-Malloy:
+    rising shorting demand predicts lower returns). None if no dynamic inputs."""
     subs = []
     if m.borrow_fee_trend_pct_pts is not None:
         subs.append(_band_score(m.borrow_fee_trend_pct_pts, [(0.0, 0.0), (2.0, 40.0), (5.0, 70.0), (math.inf, 100.0)]))
@@ -608,6 +669,11 @@ def _dynamics_score(m: SqueezeMetrics, cfg: SqueezeConfig) -> Optional[float]:
         subs.append(_band_score(m.utilization_trend_pct_pts, [(0.0, 0.0), (5.0, 40.0), (10.0, 70.0), (math.inf, 100.0)]))
     if m.short_interest_trend_pct_pts is not None:
         subs.append(_band_score(m.short_interest_trend_pct_pts, [(0.0, 0.0), (10.0, 30.0), (25.0, 60.0), (math.inf, 100.0)]))
+    # regime / breakout vs own history (a fee at its own 95th pctile is a tell)
+    if m.fee_percentile is not None:
+        subs.append(_band_score(m.fee_percentile, [(50.0, 0.0), (80.0, 40.0), (95.0, 70.0), (math.inf, 100.0)]))
+    if m.utilization_percentile is not None:
+        subs.append(_band_score(m.utilization_percentile, [(50.0, 0.0), (80.0, 40.0), (95.0, 70.0), (math.inf, 100.0)]))
     subs = [s for s in subs if s is not None]
     return (sum(subs) / len(subs)) if subs else None
 
@@ -742,6 +808,7 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
 
     bearish = detect_bearish_convergence(m)
     fuel = detect_squeeze_fuel(m)
+    coiled = detect_coiled_spring(m)
 
     # confidence is governed by the BEST predictor we actually have
     if m.utilization_pct is not None:
@@ -794,6 +861,8 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
         )
     if liq_note:
         notes.append(liq_note)
+    if coiled.triggered:
+        notes.append(coiled.reason)
 
     # --- classify on the final squeeze score (detectors are authoritative) ---
     if bearish.triggered:
@@ -853,6 +922,7 @@ def assess(m: SqueezeMetrics, config: SqueezeConfig = DEFAULT_CONFIG) -> Squeeze
         amplifier=amplifier,
         overextension_factor=overext,
         liquidity_factor=liq_factor,
+        coiled_spring=coiled,
         notes=notes,
     )
 
@@ -1248,6 +1318,94 @@ def screen_universe(
     return ranked[:top] if top else ranked
 
 
+# ---------------------------------------------------------------------------
+# Time-series / dynamic context: collapse a history of snapshots into one
+# assess-ready metric carrying trends + regime (percentile-vs-own-history) +
+# momentum + volume surge. This is what makes the dynamics layer fire on real
+# data — a fee at its own 95th percentile and rising is far more squeeze-prone
+# than the same level sitting flat. Free history: FINRA (SI, bi-monthly), an
+# archived IBKR usa.txt (fee + availability, daily), SEC FTDs, yfinance
+# (price/volume). Paid daily & exportable: Ortex / Fintel utilization + CTB.
+# ---------------------------------------------------------------------------
+@dataclass
+class Snapshot:
+    """One dated observation in a metric time series (any subset of fields)."""
+    date: str = ""
+    short_interest_pct_float: Optional[float] = None
+    utilization_pct: Optional[float] = None
+    borrow_fee_pct: Optional[float] = None
+    price: Optional[float] = None
+    volume: Optional[float] = None
+
+
+def _pct_rank(series: List[float], value: float) -> float:
+    """Percentile (0-100) of `value` within `series`."""
+    return (100.0 * sum(1 for x in series if x <= value) / len(series)) if series else 0.0
+
+
+def metrics_from_timeseries(
+    ticker: str, snapshots: List[Snapshot], *, base: Optional[SqueezeMetrics] = None
+) -> SqueezeMetrics:
+    """Collapse a time-ASCENDING list of Snapshots into one assess-ready metric:
+    the latest levels (the SNAPSHOT) plus the DYNAMIC context computed from the
+    history — fee/utilization trend (level change) and percentile-vs-own-history,
+    short-interest % change, price momentum, and a volume surge (attention). `base`
+    supplies static extras (float, institutional ownership, Reg SHO) to keep.
+    """
+    snaps = list(snapshots)
+    if not snaps:
+        raise ValueError("metrics_from_timeseries: empty series")
+    last = snaps[-1]
+
+    def col(attr: str) -> List[float]:
+        return [getattr(s, attr) for s in snaps if getattr(s, attr) is not None]
+
+    kw: Dict[str, object] = {"ticker": ticker, "source": "timeseries", "as_of": last.date or None}
+    for attr in ("short_interest_pct_float", "utilization_pct", "borrow_fee_pct", "price"):
+        v = getattr(last, attr)
+        if v is not None:
+            kw[attr] = v
+
+    fees = col("borrow_fee_pct")
+    if len(fees) >= 2:
+        kw["borrow_fee_trend_pct_pts"] = fees[-1] - fees[0]
+        kw["fee_percentile"] = _pct_rank(fees, fees[-1])
+    utils = col("utilization_pct")
+    if len(utils) >= 2:
+        kw["utilization_trend_pct_pts"] = utils[-1] - utils[0]
+        kw["utilization_percentile"] = _pct_rank(utils, utils[-1])
+    sis = col("short_interest_pct_float")
+    if len(sis) >= 2 and sis[0] > 0:
+        # carry the SI % change through the shares_short trend property
+        kw["shares_short"], kw["shares_short_prior"] = sis[-1], sis[0]
+    prices = col("price")
+    if len(prices) >= 2 and prices[0] > 0:
+        kw["momentum_pct"] = 100.0 * (prices[-1] - prices[0]) / prices[0]
+    vols = col("volume")
+    if len(vols) >= 4:
+        trailing = sum(vols[:-1]) / len(vols[:-1])
+        if trailing > 0:
+            kw["volume_vs_avg"] = vols[-1] / trailing
+            kw.setdefault("avg_daily_volume", trailing)
+
+    return replace(base, **kw) if base is not None else SqueezeMetrics(**kw)
+
+
+def screen_panel(
+    histories: Dict[str, List[Snapshot]], *,
+    base_by_symbol: Optional[Dict[str, SqueezeMetrics]] = None,
+    config: SqueezeConfig = DEFAULT_CONFIG, top: Optional[int] = None,
+) -> List[SqueezeAssessment]:
+    """Rank a PANEL of time series (snapshot + dynamic context per name).
+    `histories` maps SYMBOL -> time-ascending list[Snapshot]; `base_by_symbol`
+    maps SYMBOL -> a SqueezeMetrics with static extras (float, Reg SHO, etc.)."""
+    base = {k.upper(): v for k, v in (base_by_symbol or {}).items()}
+    metrics = [metrics_from_timeseries(sym, snaps, base=base.get(sym.upper()))
+               for sym, snaps in histories.items()]
+    ranked = rank_candidates(metrics, config)
+    return ranked[:top] if top else ranked
+
+
 def utilization_from_loan(shares_on_loan: float, shares_available_to_lend: float) -> Optional[float]:
     """Utilization % = shares on loan / shares available to lend, in percent.
 
@@ -1364,6 +1522,8 @@ def report(assessments: List["SqueezeAssessment"], *, top: int = 25) -> str:
     ]
     for i, a in enumerate(assessments[:top], 1):
         flag = ""
+        if a.coiled_spring is not None and a.coiled_spring.triggered:
+            flag += " |COILED good-R/R|"
         if a.overextension_factor < 1.0:
             flag += " [overextended]"
         if a.liquidity_factor < 1.0:

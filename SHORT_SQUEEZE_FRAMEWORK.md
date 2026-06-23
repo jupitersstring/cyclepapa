@@ -341,6 +341,38 @@ table with `your_rules.update(short_squeeze.SCORE_RULES)`. Detectors are plain
 functions returning a `DetectorResult` (truthy/falsey), easy to fold into a
 composite alongside `d1…d32`.
 
+### The dynamic footprint & risk/reward (what the time series adds)
+
+The snapshot tells you the *state*; the time series tells you which way it is
+*breaking* — and that is where the risk/reward lives. The literature is blunt:
+**changes beat levels.** Cohen-Diether-Malloy show the *change in shorting demand*
+(and the lending fee), not the static short-interest level, predicts returns — the
+level is a supply×demand mix and is noisy. D'Avolio: a borrow fee spiking past
+~30% coincided with ~3× higher forced-covering odds over the next month.
+
+The squeeze *sequence* (microstructure): short interest builds → days-to-cover
+rises → lendable supply thins → **utilization climbs toward ~100%** → **borrow fee
+spikes (10–30%+)** → a catalyst lands → (often) a call-buying / gamma ramp → forced
+covering. In GameStop the gamma ramp built **Jan 13–20, *before*** the parabolic
+move; the asymmetric entry was before the run, and $300+ was the trap.
+
+So the **good risk/reward footprint is "coiled," not "ignited"**:
+
+| | Footprint | R/R | In the engine |
+|---|---|---|---|
+| ✅ **Coiled spring** | crowded **+ borrow tightening now** (fee/util/SI rising or at own highs) **+ price not yet run** | **best** — *reward early conviction* | `detect_coiled_spring` fires |
+| ⚠️ Igniting / extended | same tight state, but price already up a lot | poor — *punish late speculation* | overextension ×0.8/0.6/0.4, downgraded |
+| 🔵 Stale / flat | high level but **not changing** | weak — the level alone is noise (CDM) | low `dynamics` score |
+| 🔴 Comfortable | high SI, cheap ample borrow (even if rising) | bearish | `bearish_convergence` |
+
+The engine encodes this with the **dynamics** layer (rate-of-change **+ percentile-
+vs-own-history** — a fee at its own 95th percentile *and* rising is a regime break,
+not background noise), the **overextension** penalty (already-moved = late), and
+the **`coiled_spring`** detector (the pre-ignition asymmetric setup). Feed it a
+history of snapshots with `metrics_from_timeseries()` / `screen_panel()`: the same
+final snapshot scores ~30 points higher when it *spiked* there than when it sat
+flat, and a coiled spring is flagged distinctly from an already-ignited chase.
+
 ---
 
 ## 10. Data-sourcing reality (the binding constraint)
@@ -416,6 +448,7 @@ reproducible; pair each parser with its fetcher on your machine.
 - Lamont & Thaler (2003), *Can the Market Add and Subtract?* https://papers.ssrn.com/sol3/papers.cfm?abstract_id=384240
 - Pedersen (2022), *Game On: Social Networks and Markets.* https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3794616
 - "Systematic signals of short squeezes: insights from rare events," *NA J. Econ. & Finance* (2026): Firth penalized logistic regression — short interest and investor attention raise squeeze odds; institutional ownership lowers them; low float, fails-to-deliver and options (gamma ≥5× ADV) amplify. https://www.sciencedirect.com/science/article/pii/S1062940826000598
+- Hong, Li, Ni, Scheinkman & Yan, "Days to Cover and Stock Returns," NBER WP 21166 — days-to-cover (short interest scaled by volume) predicts returns; the dynamic/illiquidity dimension of the short side. https://www.nber.org/papers/w21166
 
 **Practitioner / vendor**
 - Ortex short-interest & squeeze docs. https://public.ortex.com/understanding-the-mechanics-and-metrics-of-short-selling/

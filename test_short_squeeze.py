@@ -19,15 +19,19 @@ from short_squeeze import (
     SqueezeClass,
     SqueezeConfig,
     SqueezeMetrics,
+    Snapshot,
     _band_score,
     assess,
     detect_bearish_convergence,
+    detect_coiled_spring,
     detect_squeeze_fuel,
     from_ibkr_file,
+    metrics_from_timeseries,
     parse_finra_short_interest,
     parse_ibkr_shortable_text,
     rank_candidates,
     report,
+    screen_panel,
     screen_universe,
     to_csv,
     utilization_from_loan,
@@ -569,6 +573,61 @@ class TestReport(unittest.TestCase):
         csv = to_csv(ranked)
         self.assertIn("ticker,classification", csv)
         self.assertIn("A,", csv)
+
+
+def _spiking_series():
+    return [Snapshot("w1", borrow_fee_pct=2, utilization_pct=55, short_interest_pct_float=18, price=10, volume=1e6),
+            Snapshot("w2", borrow_fee_pct=5, utilization_pct=75, short_interest_pct_float=22, price=11, volume=2e6),
+            Snapshot("w3", borrow_fee_pct=12, utilization_pct=92, short_interest_pct_float=27, price=12, volume=4e6)]
+
+
+class TestTimeSeriesDynamics(unittest.TestCase):
+    def test_collapses_to_latest_levels_plus_dynamics(self):
+        m = metrics_from_timeseries("X", _spiking_series())
+        self.assertEqual(m.borrow_fee_pct, 12)              # latest snapshot level
+        self.assertEqual(m.utilization_pct, 92)
+        self.assertAlmostEqual(m.borrow_fee_trend_pct_pts, 10)    # 12 - 2
+        self.assertAlmostEqual(m.utilization_trend_pct_pts, 37)   # 92 - 55
+        self.assertEqual(m.fee_percentile, 100.0)          # latest == its own max
+        self.assertAlmostEqual(m.momentum_pct, 20.0)       # 10 -> 12
+
+    def test_spiking_outscores_flat_same_snapshot(self):
+        last = Snapshot("w", borrow_fee_pct=12, utilization_pct=92, short_interest_pct_float=27, price=12)
+        flat = assess(metrics_from_timeseries("F", [last, last, last]))
+        spik = assess(metrics_from_timeseries("S", _spiking_series()))
+        self.assertGreater(spik.squeeze_score, flat.squeeze_score)
+
+    def test_empty_series_raises(self):
+        with self.assertRaises(ValueError):
+            metrics_from_timeseries("X", [])
+
+    def test_screen_panel_ranks_spiking_first(self):
+        ranked = screen_panel({"S": _spiking_series(),
+                               "GC": [Snapshot("w1", borrow_fee_pct=0.3, short_interest_pct_float=3, price=20)]})
+        self.assertEqual(ranked[0].ticker, "S")
+
+
+class TestCoiledSpring(unittest.TestCase):
+    def _coiling(self):
+        return [Snapshot("w1", borrow_fee_pct=2, utilization_pct=60, short_interest_pct_float=20, price=10),
+                Snapshot("w2", borrow_fee_pct=8, utilization_pct=82, short_interest_pct_float=24, price=11)]
+
+    def test_coiled_when_tightening_and_not_ignited(self):
+        self.assertTrue(assess(metrics_from_timeseries("X", self._coiling())).coiled_spring.triggered)
+
+    def test_not_coiled_when_already_ignited(self):
+        ignited = list(self._coiling())
+        ignited[-1] = Snapshot("w2", borrow_fee_pct=8, utilization_pct=82, short_interest_pct_float=24, price=30)
+        self.assertFalse(assess(metrics_from_timeseries("X", ignited)).coiled_spring.triggered)
+
+    def test_not_coiled_when_flat_snapshot(self):
+        # crowded + expensive but NO tightening (single snapshot, no dynamics)
+        a = assess(SqueezeMetrics("X", short_interest_pct_float=30, utilization_pct=92, borrow_fee_pct=20))
+        self.assertFalse(a.coiled_spring.triggered)
+
+    def test_coiled_unavailable_without_lending_signal(self):
+        r = detect_coiled_spring(SqueezeMetrics("X", short_interest_pct_float=30))
+        self.assertEqual(r.mode, "unavailable")
 
 
 if __name__ == "__main__":
