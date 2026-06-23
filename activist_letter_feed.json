@@ -1,0 +1,227 @@
+{
+  "JHG": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-18",
+    "accession": "0000930413-26-001914",
+    "activist_match": "TRIAN FUND MANAGEMENT, L.P.",
+    "days_since": 5,
+    "score": 40.0,
+    "reasons": "SC 13D filed by TRIAN FUND MANAGEMENT, L.P.; 5d ago (fresh); tier-1 activist"
+  },
+  "GF": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-16",
+    "accession": "0001062993-26-003222",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 7,
+    "score": 25.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P.; 7d ago (fresh)"
+  },
+  "MXF": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-16",
+    "accession": "0001062993-26-003221",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 7,
+    "score": 25.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P.; 7d ago (fresh)"
+  },
+  "GDV-PK": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-15",
+    "accession": "0001062993-26-003215",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 8,
+    "score": 25.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P.; 8d ago (fresh)"
+  },
+  "CVEO": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-15",
+    "accession": "0000921895-26-001613",
+    "activist_match": "ENGINE CAPITAL, L.P.",
+    "days_since": 8,
+    "score": 25.0,
+    "reasons": "SC 13D filed by ENGINE CAPITAL, L.P.; 8d ago (fresh)"
+  },
+  "MASI": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-11",
+    "accession": "0000902664-26-002759",
+    "activist_match": "Politan Capital Management LP",
+    "days_since": 12,
+    "score": 25.0,
+    "reasons": "SC 13D filed by Politan Capital Management LP; 12d ago (fresh)"
+  },
+  "HHH": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-08",
+    "accession": "0001140361-26-024479",
+    "activist_match": "Pershing Square Capital Management, L.P.",
+    "days_since": 15,
+    "score": 33.0,
+    "reasons": "SC 13D filed by Pershing Square Capital Management, L.P.; tier-1 activist"
+  },
+  "HFRO-PB": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-04",
+    "accession": "0001062993-26-003063",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 19,
+    "score": 18.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "GLQ": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-04",
+    "accession": "0001062993-26-003057",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 19,
+    "score": 18.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "ECAT": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-03",
+    "accession": "0001062993-26-003035",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 20,
+    "score": 18.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "QRVO": {
+    "source": "SC 13D",
+    "filing_date": "2026-06-02",
+    "accession": "0001193805-26-000738",
+    "activist_match": "Starboard Value LP",
+    "days_since": 21,
+    "score": 33.0,
+    "reasons": "SC 13D filed by Starboard Value LP; tier-1 activist"
+  },
+  "ASA": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-28",
+    "accession": "0001062993-26-002913",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 26,
+    "score": 18.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "PAR": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-18",
+    "accession": "0002060757-26-000032",
+    "activist_match": "Voss Capital, LP",
+    "days_since": 36,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Voss Capital, LP"
+  },
+  "GEMI": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-18",
+    "accession": "0001193125-26-229103",
+    "activist_match": "Winklevoss Capital Fund, LLC",
+    "days_since": 36,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Winklevoss Capital Fund, LLC"
+  },
+  "XPOF": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-13",
+    "accession": "0002060757-26-000029",
+    "activist_match": "Voss Capital, LP",
+    "days_since": 41,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Voss Capital, LP"
+  },
+  "ALKT": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-12",
+    "accession": "0000902664-26-002393",
+    "activist_match": "JANA Partners Management, LP",
+    "days_since": 42,
+    "score": 12.0,
+    "reasons": "SC 13D filed by JANA Partners Management, LP"
+  },
+  "GLO": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-11",
+    "accession": "0001062993-26-002475",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 43,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "QSR": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-08",
+    "accession": "0001140361-26-020328",
+    "activist_match": "Pershing Square Capital Management, L.P.",
+    "days_since": 46,
+    "score": 27.0,
+    "reasons": "SC 13D filed by Pershing Square Capital Management, L.P.; tier-1 activist"
+  },
+  "IHD": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-08",
+    "accession": "0001062993-26-002439",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 46,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "IAE": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-08",
+    "accession": "0001062993-26-002436",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 46,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "BLMN": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-08",
+    "accession": "0000921895-26-001206",
+    "activist_match": "Starboard Value LP",
+    "days_since": 46,
+    "score": 27.0,
+    "reasons": "SC 13D filed by Starboard Value LP; tier-1 activist"
+  },
+  "PSUS": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-07",
+    "accession": "0001140361-26-019621",
+    "activist_match": "PERSHING SQUARE INC.",
+    "days_since": 47,
+    "score": 27.0,
+    "reasons": "SC 13D filed by PERSHING SQUARE INC.; tier-1 activist"
+  },
+  "MEGI": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-07",
+    "accession": "0001062993-26-002414",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 47,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  },
+  "MTCH": {
+    "source": "SC 13D",
+    "filing_date": "2026-05-06",
+    "accession": "0000902664-26-002298",
+    "activist_match": "Starboard Value LP",
+    "days_since": 48,
+    "score": 27.0,
+    "reasons": "SC 13D filed by Starboard Value LP; tier-1 activist"
+  },
+  "JOF": {
+    "source": "SC 13D",
+    "filing_date": "2026-04-30",
+    "accession": "0001062993-26-002233",
+    "activist_match": "Saba Capital Management, L.P.",
+    "days_since": 54,
+    "score": 12.0,
+    "reasons": "SC 13D filed by Saba Capital Management, L.P."
+  }
+}

@@ -103,6 +103,85 @@ def load_archetype_md(path: Path) -> dict:
 
 
 # ----------------------------------------------------------------------
+# Harvard-aesthetic number-format spec (per user requirement)
+# Negatives in parentheses, em-dash for empty cells, numbers right-
+# aligned. Format selected by field-name heuristic.
+# ----------------------------------------------------------------------
+
+NUMFMT_RAW_DOLLAR = '#,##0;(#,##0);"–"'          # mcap, EV (raw $)
+NUMFMT_MILLIONS  = '#,##0;(#,##0);"–"'           # _M (millions, no decimal)
+NUMFMT_PCT       = '#,##0.0;(#,##0.0);"–"'       # pct / pp / growth / margin
+NUMFMT_RATIO     = '#,##0.00;(#,##0.00);"–"'     # ratios + scores
+NUMFMT_PRICE     = '#,##0.00;(#,##0.00);"–"'     # prices / eps
+NUMFMT_INT       = '#,##0;(#,##0);"–"'           # bare integers / layers
+
+EM_DASH = "–"
+
+
+def _num_or_none(v):
+    if v is None or v == "" or v == "?" or v == EM_DASH:
+        return None
+    if isinstance(v, (int, float)):
+        return float(v)
+    s = str(v).strip()
+    if not s:
+        return None
+    # Strip dollar sign + commas + percent + parentheses
+    neg = s.startswith("(") and s.endswith(")")
+    s = s.replace("$", "").replace(",", "").replace("%", "")
+    s = s.lstrip("(").rstrip(")")
+    try:
+        v = float(s)
+        return -v if neg else v
+    except Exception:
+        return None
+
+
+def number_format_for(field_name: str) -> str | None:
+    """Return the openpyxl number_format for a field, or None for text.
+
+    Detects from BOTH internal field names (e.g. 'mcap_M', 'p_b') AND
+    rendered headers (e.g. 'mcap ($M)', 'P/B', 'Spot ($)')."""
+    if not field_name:
+        return None
+    f = field_name.lower().strip()
+    # Text-only fields
+    if f in ("ticker", "company", "name", "sector", "industry", "kind",
+              "screens", "archetypes", "reasons", "detail", "role",
+              "event_kind", "talent_hits", "notes", "why", "floor",
+              "red flags", "action", "use", "source", "holdings",
+              "step", "weight"):
+        return None
+    # PERCENTAGES (look for 'pct', '%', 'pp', 'growth', 'margin')
+    if (f.endswith("%") or "pct" in f or "(%)" in f or "_pp" in f
+            or any(s in f for s in ("growth", "margin", "yield", "return"))):
+        return NUMFMT_PCT
+    # _M (millions) -- match 'mcap_M', '$M', '(M)', 'mcap ($m)', '_m_'
+    if any(s in f for s in ("_m", "$m", "(m)", "($m)", "mcap (", "mcap_m",
+                              "musd")):
+        return NUMFMT_MILLIONS
+    # Raw dollar enterprise/market values
+    if f in ("mcap", "ev", "enterprise_value", "market_cap", "raw_mcap"):
+        return NUMFMT_RAW_DOLLAR
+    # Prices, EPS
+    if any(s in f for s in ("price", "spot", "spot ($)", "eps", "($)")):
+        return NUMFMT_PRICE
+    # Layer / count / day fields -> integer (no decimals)
+    if (f in ("#", "rank", "no", "n", "inner")
+            or any(s in f for s in (
+                "layers", "n_screens", "n_archetypes", "n_arch", "day",
+                "count", "n_", "lift", "psu core", "gov", "buyers",
+                "amend", "valuation", "buyback", "tender", "10b5", "f4"))):
+        return NUMFMT_INT
+    # Scores / ratios / multiples
+    if any(s in f for s in ("score", "p/b", "p/e", "ev/ebitda", "ratio",
+                              "cons", "pts", "dd")):
+        return NUMFMT_RATIO
+    # Default for any unrecognized numeric: ratio (2 decimals)
+    return NUMFMT_RATIO
+
+
+# ----------------------------------------------------------------------
 # Sheet helpers
 # ----------------------------------------------------------------------
 
@@ -126,6 +205,11 @@ def write_title_band(ws, title: str, subtitle: str, n_cols: int):
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
 
 
+# Sheet-level header registry so write_body_row can auto-pick formats
+# from whatever the current tab's headers actually are.
+_SHEET_HEADERS: dict = {}
+
+
 def write_header_row(ws, row: int, headers: list[str]):
     ws.row_dimensions[row].height = 22
     for c, h in enumerate(headers, 1):
@@ -133,25 +217,74 @@ def write_header_row(ws, row: int, headers: list[str]):
         cell.font = HEADER_FONT
         cell.fill = HEADER_FILL
         cell.alignment = Alignment(vertical="center", horizontal="center")
+    # remember the headers so write_body_row can pick formats by column
+    _SHEET_HEADERS[ws.title] = list(headers)
+
+
+def _classify_value(v):
+    """Return (display_value, is_number) -- coerces strings like
+    '$98', '12.5%', '0.48' into numerics so number_format can format
+    them properly. Returns (em_dash, False) for empty/None."""
+    if v is None or v == "":
+        return EM_DASH, False
+    if isinstance(v, (int, float)):
+        return v, True
+    s = str(v).strip()
+    if not s or s in ("?", "—", EM_DASH, "-"):
+        return EM_DASH, False
+    num = _num_or_none(s)
+    if num is not None:
+        return num, True
+    return s, False
 
 
 def write_body_row(ws, row: int, values: list, band: bool = False,
                    align_first_left: bool = True,
-                   bold_first: bool = False):
+                   bold_first: bool = False,
+                   field_names: list | None = None):
+    """Write a body row applying Harvard-aesthetic number formats.
+    `field_names` (optional) -- column field names matching values
+    list, used to pick number format (e.g. 'mcap_M', 'price', 'p_b').
+    """
     ws.row_dimensions[row].height = 18
     fill = BAND_FILL if band else None
     for c, v in enumerate(values, 1):
-        cell = ws.cell(row=row, column=c, value=v)
+        disp_val, is_num = _classify_value(v)
+        cell = ws.cell(row=row, column=c, value=disp_val)
         cell.font = BODY_BOLD if (bold_first and c == 1) else BODY_FONT
         if fill:
             cell.fill = fill
         cell.border = BOTTOM_BORDER
-        cell.alignment = Alignment(
-            vertical="center",
-            horizontal=("left" if (align_first_left and c == 1) else "center"),
-            wrap_text=True,
-            indent=(1 if (align_first_left and c == 1) else 0),
-        )
+
+        # Decide format + alignment
+        if is_num:
+            fmt = None
+            # Prefer explicit field_names; else look up by current
+            # sheet's recorded headers.
+            header_for_col = None
+            if field_names and c - 1 < len(field_names):
+                header_for_col = field_names[c - 1]
+            elif ws.title in _SHEET_HEADERS:
+                cur = _SHEET_HEADERS[ws.title]
+                if c - 1 < len(cur):
+                    header_for_col = cur[c - 1]
+            if header_for_col:
+                fmt = number_format_for(header_for_col)
+            if fmt is None:
+                fmt = NUMFMT_RATIO
+            cell.number_format = fmt
+            cell.alignment = Alignment(
+                vertical="center", horizontal="right",
+                wrap_text=False, indent=0,
+            )
+        else:
+            # Text is always LEFT-aligned per Harvard spec.
+            cell.alignment = Alignment(
+                vertical="center",
+                horizontal="left",
+                wrap_text=True,
+                indent=1,
+            )
 
 
 def write_footnote(ws, row: int, text: str, n_cols: int):

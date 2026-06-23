@@ -45,6 +45,8 @@ from full_universe_consensus import (
     score_coval_stafford_layer,
     score_backstopped_rights_layer,
     score_fdic_call_report_layer,
+    score_net_net_ncav_layer,
+    score_activist_letter_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -82,6 +84,8 @@ def main() -> int:
         "coval_stafford": score_coval_stafford_layer(layers, universe),
         "backstopped_rights": score_backstopped_rights_layer(layers, universe),
         "fdic_call_report": score_fdic_call_report_layer(layers, universe),
+        "net_net_ncav": score_net_net_ncav_layer(layers, universe),
+        "activist_letter": score_activist_letter_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -135,6 +139,8 @@ def main() -> int:
             "coval_stafford_pts": layer_scores["coval_stafford"].get(tk, 0),
             "backstopped_rights_pts": layer_scores["backstopped_rights"].get(tk, 0),
             "fdic_call_report_pts": layer_scores["fdic_call_report"].get(tk, 0),
+            "net_net_ncav_pts": layer_scores["net_net_ncav"].get(tk, 0),
+            "activist_letter_pts": layer_scores["activist_letter"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 
