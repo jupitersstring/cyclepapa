@@ -60,11 +60,23 @@ r['quality_compounder'] = (
     & (r.get('roic_years', r.get('years_history', 0)).fillna(0) >= 3)
 )
 
-# ROIIC inflection
+# ROIIC inflection (accrual)
 if 'roiic_inflection' not in r.columns: r['roiic_inflection'] = False
 r['roiic_inflection'] = r['roiic_inflection'].fillna(False).astype(bool)
 if 'roiic_1y' not in r.columns: r['roiic_1y'] = np.nan
 if 'roiic_3y' not in r.columns: r['roiic_3y'] = r.get('roiic_3y', np.nan)
+
+# Cash-on-cash ROIIC inflection
+if 'cc_roiic_inflection' not in r.columns: r['cc_roiic_inflection'] = False
+r['cc_roiic_inflection'] = r['cc_roiic_inflection'].fillna(False).astype(bool)
+
+# Cash-quality compounder (real cash returns, not just accruals)
+r['cash_compounder'] = (
+    has_hist
+    & (r.get('cc_roic_fcf_min_4y', pd.Series(-1, index=r.index)).fillna(-1) >= 0.08)
+    & (r.get('cc_roic_fcf_mean_4y', pd.Series(-1, index=r.index)).fillna(-1) >= 0.12)
+    & (r.get('cash_conversion_mean_4y', pd.Series(-1, index=r.index)).fillna(-1) >= 0.6)
+)
 
 def comp_rank(row):
     if not bool(row.get('has_history', False)): return 0
@@ -77,6 +89,17 @@ def comp_rank(row):
     if pd.notna(r1) and r1 > 0: s += min(float(r1) * 60, 25)
     elif pd.notna(r3) and r3 > 0: s += min(float(r3) * 40, 20)
     if row.get('roiic_inflection'): s += 20
+
+    # Cash-on-cash add-ons
+    cc_mean = row.get('cc_roic_fcf_mean_4y')
+    if pd.notna(cc_mean) and cc_mean > 0: s += min(float(cc_mean) * 100, 20)
+    cc1 = row.get('cc_roiic_1y')
+    if pd.notna(cc1) and cc1 > 0: s += min(float(cc1) * 40, 15)
+    if row.get('cc_roiic_inflection'): s += 15
+    cash_conv = row.get('cash_conversion_mean_4y')
+    if pd.notna(cash_conv) and cash_conv >= 0.8: s += 5
+    if row.get('cash_compounder'): s += 10
+
     if pd.notna(eb) and eb > 0 and eb < 50: s += max(0, (15 - float(eb)))
     if pd.notna(fy): s += min(max(float(fy), -0.05) * 100, 10)
     if pd.notna(rg): s += min(max(float(rg), -0.10) * 30, 8)

@@ -241,55 +241,53 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     else:
         base_row3 = base_row2
 
-    # Enduring compounder cohort — Lindy multi-method ROIC + ROIIC inflection
+    # Enduring compounder cohort — Lindy multi-method ROIC + ROIIC inflection + cash-on-cash
     if 'compounder_score' in df.columns and df['compounder_score'].notna().any():
         comp_top = df[df['has_history'].fillna(False)].sort_values('compounder_score', ascending=False).head(30) \
                     if 'has_history' in df.columns else df.sort_values('compounder_score', ascending=False).head(30)
         n_strict = int(df.get('enduring_strict', pd.Series(dtype=bool)).fillna(False).sum())
         n_inflect = int(df.get('roiic_inflection', pd.Series(dtype=bool)).fillna(False).sum())
+        n_cc_inflect = int(df.get('cc_roiic_inflection', pd.Series(dtype=bool)).fillna(False).sum())
+        n_cash = int(df.get('cash_compounder', pd.Series(dtype=bool)).fillna(False).sum())
         ws_sum.write(base_row3-1, 0,
-            f'Enduring Compounders Cohort — Lindy multi-method ROIC ({n_strict} strict · {n_inflect} ROIIC-inflecting · top 30 by composite)',
+            f'Enduring Compounders — Lindy ROIC + cash-on-cash ({n_strict} strict · {n_inflect} ROIIC-inflect · {n_cc_inflect} CC-inflect · {n_cash} cash-comp · top 30)',
             section_fmt)
-        ch = ['Ticker','Company','Sector','Cap','Mkt Cap (M$)','ROIC Mean','ROIC Min','Method Agree',
-              'ROIIC 1y','ROIIC 3y','Inflect','EV/EBIT','FCF Y','Rev G','Strict','Score']
+        ch = ['Ticker','Company','Sector','Cap','Mkt Cap (M$)','ROIC Mean','ROIC Min','Method Agr',
+              'ROIIC 1y','ROIIC 3y','Infl','CC-ROIC 4y','CC-ROIIC 1y','CC-ROIIC 3y','CC-Infl','Cash Conv','FCF Mgn','EV/EBIT','FCF Y','Strict','Score']
         for c, h in enumerate(ch): ws_sum.write(base_row3, c, h, header_fmt)
         for i, (_, r) in enumerate(comp_top.iterrows()):
             row = base_row3 + 1 + i
             endur = bool(r.get('enduring_strict', False))
             inflect = bool(r.get('roiic_inflection', False))
+            cc_inflect = bool(r.get('cc_roiic_inflection', False))
             tfmt = text_left_q if endur else text_left
             mfmt = money_fmt_q if endur else money_fmt
             pfmt = pct_fmt_q if endur else pct_fmt
             rfmt = ratio_fmt_q if endur else ratio_fmt
             write_text(ws_sum, row, 0, r.get('ticker'), tfmt, text_left_em)
             write_text(ws_sum, row, 1, str(r.get('name'))[:30] if pd.notna(r.get('name')) else None, tfmt, text_left_em)
-            write_text(ws_sum, row, 2, str(r.get('sector',''))[:16], tfmt, text_left_em)
+            write_text(ws_sum, row, 2, str(r.get('sector',''))[:14], tfmt, text_left_em)
             write_text(ws_sum, row, 3, str(r.get('cap_tier',''))[:9], tfmt, text_left_em)
             write_num(ws_sum, row, 4, r.get('mktCap_M'), mfmt, text_left_em)
-            for c_idx, src_col in [(5,'roic_mean'),(6,'roic_min')]:
-                v = r.get(src_col)
-                if pd.notna(v) and abs(float(v)) < 50: v = float(v) * 100
-                else: v = None
-                write_num(ws_sum, row, c_idx, v, pfmt, text_left_em)
-            ag = r.get('roic_method_agreement')
-            if pd.notna(ag): ag = float(ag) * 100
-            write_num(ws_sum, row, 7, ag, pfmt, text_left_em)
-            for c_idx, src_col in [(8,'roiic_1y'),(9,'roiic_3y')]:
-                v = r.get(src_col)
-                if pd.notna(v) and abs(float(v)) < 50: v = float(v) * 100
-                else: v = None
-                write_num(ws_sum, row, c_idx, v, pfmt, text_left_em)
+            def topct(v):
+                if pd.notna(v) and abs(float(v)) < 50: return float(v) * 100
+                return None
+            write_num(ws_sum, row, 5, topct(r.get('roic_mean')), pfmt, text_left_em)
+            write_num(ws_sum, row, 6, topct(r.get('roic_min')), pfmt, text_left_em)
+            write_num(ws_sum, row, 7, topct(r.get('roic_method_agreement')), pfmt, text_left_em)
+            write_num(ws_sum, row, 8, topct(r.get('roiic_1y')), pfmt, text_left_em)
+            write_num(ws_sum, row, 9, topct(r.get('roiic_3y')), pfmt, text_left_em)
             ws_sum.write_string(row,10, 'Y' if inflect else EM_DASH, tfmt if inflect else text_left_em)
-            evb_e = r.get('ev_ebit') if 'ev_ebit' in r.index else None
-            write_num(ws_sum, row,11, evb_e, rfmt, text_left_em)
-            fy = r.get('fcf_yield')
-            if pd.notna(fy): fy = float(fy) * 100
-            write_num(ws_sum, row,12, fy, pfmt, text_left_em)
-            rg = r.get('rev_g')
-            if pd.notna(rg): rg = float(rg) * 100
-            write_num(ws_sum, row,13, rg, pfmt, text_left_em)
-            ws_sum.write_string(row,14, 'Y' if endur else EM_DASH, tfmt if endur else text_left_em)
-            write_num(ws_sum, row,15, r.get('compounder_score'), rfmt, text_left_em)
+            write_num(ws_sum, row,11, topct(r.get('cc_roic_fcf_mean_4y')), pfmt, text_left_em)
+            write_num(ws_sum, row,12, topct(r.get('cc_roiic_1y')), pfmt, text_left_em)
+            write_num(ws_sum, row,13, topct(r.get('cc_roiic_3y')), pfmt, text_left_em)
+            ws_sum.write_string(row,14, 'Y' if cc_inflect else EM_DASH, tfmt if cc_inflect else text_left_em)
+            write_num(ws_sum, row,15, topct(r.get('cash_conversion_mean_4y')), pfmt, text_left_em)
+            write_num(ws_sum, row,16, topct(r.get('fcf_margin_mean_4y')), pfmt, text_left_em)
+            write_num(ws_sum, row,17, r.get('ev_ebit'), rfmt, text_left_em)
+            write_num(ws_sum, row,18, topct(r.get('fcf_yield')), pfmt, text_left_em)
+            ws_sum.write_string(row,19, 'Y' if endur else EM_DASH, tfmt if endur else text_left_em)
+            write_num(ws_sum, row,20, r.get('compounder_score'), rfmt, text_left_em)
 
     region_order = df['region'].value_counts().index.tolist()
     for region in region_order:

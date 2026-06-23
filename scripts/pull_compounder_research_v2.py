@@ -157,7 +157,7 @@ def compute_per_year_metrics(fin, bs, cf):
 
 
 def compute_roiic_with_inflection(yearly_df):
-    """Compute 1y, 2y, 3y ROIIC + inflection flag.
+    """Compute 1y, 2y, 3y ROIIC + inflection flag (accrual NOPAT-based).
 
     ROIIC over N years = (NOPAT_now − NOPAT_N-ago) / (IC_now − IC_N-ago)
     """
@@ -170,12 +170,10 @@ def compute_roiic_with_inflection(yearly_df):
         if len(n) > window and pd.notna(n[0]) and pd.notna(n[window]) and pd.notna(ic[0]) and pd.notna(ic[window]):
             d_n = n[0] - n[window]; d_ic = ic[0] - ic[window]
             if d_ic > 0: result[label] = d_n / d_ic
-            elif d_ic <= 0 and d_n > 0: result[label] = 2.0  # earning more on less capital (cap at 200%)
+            elif d_ic <= 0 and d_n > 0: result[label] = 2.0
             else: result[label] = np.nan
         else:
             result[label] = np.nan
-
-    # Inflection: 1y ROIIC strongly better than 3y
     r1 = result.get('roiic_1y'); r3 = result.get('roiic_3y')
     if pd.notna(r1) and pd.notna(r3):
         result['roiic_acceleration'] = r1 - r3
@@ -184,6 +182,80 @@ def compute_roiic_with_inflection(yearly_df):
         result['roiic_acceleration'] = np.nan
         result['roiic_inflection'] = False
     return result
+
+
+def compute_cash_metrics(yearly_df):
+    """Cash-on-cash ROIC + ROIIC variants (FCF-based, OCF-based).
+
+    These bypass accrual accounting and measure pure cash returns:
+      • cc_roic_fcf_latest   = FCF / IC_op    (most recent year)
+      • cc_roic_ocf_latest   = OperatingCashFlow / IC_op
+      • cc_roic_mean_4y      = mean of FCF/IC over 4 years
+      • cc_roic_min_4y       = min of FCF/IC (consistency floor)
+      • cc_roiic_1y/2y/3y    = ΔFCF / ΔIC over window
+      • cc_roiic_inflection  = cc_roiic_1y > cc_roiic_3y by ≥5pp AND > 8%
+      • fcf_margin_latest    = FCF / Rev
+      • cash_conversion_4y   = mean(FCF / NOPAT) — earnings→cash conversion ratio
+    """
+    if yearly_df is None or len(yearly_df) < 2: return {}
+    fcf = yearly_df['fcf'].values
+    ocf = yearly_df['op_cf'].values
+    ic  = yearly_df['ic_op'].values
+    nopat = yearly_df['nopat'].values
+    rev = yearly_df['rev'].values
+
+    out = {}
+    # Per-year cash-on-cash ROIC arrays
+    cc_fcf_per_yr, cc_ocf_per_yr = [], []
+    for i in range(len(yearly_df)):
+        if pd.notna(fcf[i]) and pd.notna(ic[i]) and ic[i] > 0:
+            cc_fcf_per_yr.append(fcf[i] / ic[i])
+        if pd.notna(ocf[i]) and pd.notna(ic[i]) and ic[i] > 0:
+            cc_ocf_per_yr.append(ocf[i] / ic[i])
+
+    if cc_fcf_per_yr:
+        out['cc_roic_fcf_latest'] = cc_fcf_per_yr[0]
+        out['cc_roic_fcf_mean_4y'] = float(np.mean(cc_fcf_per_yr))
+        out['cc_roic_fcf_min_4y']  = float(np.min(cc_fcf_per_yr))
+        out['cc_roic_fcf_std_4y']  = float(np.std(cc_fcf_per_yr)) if len(cc_fcf_per_yr) >= 2 else np.nan
+    if cc_ocf_per_yr:
+        out['cc_roic_ocf_latest']  = cc_ocf_per_yr[0]
+        out['cc_roic_ocf_mean_4y'] = float(np.mean(cc_ocf_per_yr))
+
+    # Cash-on-cash ROIIC windows
+    for window, label in [(1, 'cc_roiic_1y'), (2, 'cc_roiic_2y'), (3, 'cc_roiic_3y')]:
+        if len(fcf) > window and pd.notna(fcf[0]) and pd.notna(fcf[window]) and pd.notna(ic[0]) and pd.notna(ic[window]):
+            d_fcf = fcf[0] - fcf[window]; d_ic = ic[0] - ic[window]
+            if d_ic > 0: out[label] = d_fcf / d_ic
+            elif d_ic <= 0 and d_fcf > 0: out[label] = 2.0
+            else: out[label] = np.nan
+        else:
+            out[label] = np.nan
+
+    r1 = out.get('cc_roiic_1y'); r3 = out.get('cc_roiic_3y')
+    if pd.notna(r1) and pd.notna(r3):
+        out['cc_roiic_acceleration'] = r1 - r3
+        out['cc_roiic_inflection'] = bool((r1 - r3) >= 0.05 and r1 > 0.08)
+    else:
+        out['cc_roiic_acceleration'] = np.nan
+        out['cc_roiic_inflection'] = False
+
+    # FCF margin (cash conversion quality)
+    if pd.notna(fcf[0]) and pd.notna(rev[0]) and rev[0] > 0:
+        out['fcf_margin_latest'] = fcf[0] / rev[0]
+    margins = [fcf[i]/rev[i] for i in range(len(yearly_df))
+               if pd.notna(fcf[i]) and pd.notna(rev[i]) and rev[i] > 0]
+    if margins:
+        out['fcf_margin_mean_4y'] = float(np.mean(margins))
+
+    # Cash conversion ratio (FCF / NOPAT): how much of accounting income becomes cash
+    conv = [fcf[i]/nopat[i] for i in range(len(yearly_df))
+            if pd.notna(fcf[i]) and pd.notna(nopat[i]) and nopat[i] > 0]
+    if conv:
+        out['cash_conversion_mean_4y'] = float(np.mean(conv))
+        out['cash_conversion_min_4y']  = float(np.min(conv))
+
+    return out
 
 
 def fetch_one(t, limiter, max_retries=3):
@@ -212,6 +284,7 @@ def fetch_one(t, limiter, max_retries=3):
             agreement_mean = float(agreements.mean()) if len(agreements) else np.nan
 
             roiic_block = compute_roiic_with_inflection(yearly)
+            cash_block = compute_cash_metrics(yearly)
 
             # Per-method latest values
             latest = yearly.iloc[0] if len(yearly) else {}
@@ -247,6 +320,14 @@ def fetch_one(t, limiter, max_retries=3):
             if pd.notna(r1) and r1 > 0: cs += min(r1 * 60, 25)
             if pd.notna(r3) and r3 > 0: cs += min(r3 * 30, 15)
             if roiic_block.get('roiic_inflection'): cs += 20
+            # Cash-on-cash component (rewards real cash returns)
+            cc_mean = cash_block.get('cc_roic_fcf_mean_4y')
+            if pd.notna(cc_mean) and cc_mean > 0: cs += min(cc_mean * 100, 20)
+            cc_r1 = cash_block.get('cc_roiic_1y')
+            if pd.notna(cc_r1) and cc_r1 > 0: cs += min(cc_r1 * 40, 15)
+            if cash_block.get('cc_roiic_inflection'): cs += 15
+            cash_conv = cash_block.get('cash_conversion_mean_4y')
+            if pd.notna(cash_conv) and cash_conv >= 0.8: cs += 5  # high earnings→cash conversion
             if pd.notna(ev_ebit) and ev_ebit > 0: cs += max(0, (15 - ev_ebit))
             if pd.notna(fcf_yield) and fcf_yield > -0.1: cs += min(fcf_yield * 100, 10)
             if enduring_strict: cs += 25
@@ -277,6 +358,23 @@ def fetch_one(t, limiter, max_retries=3):
                 'roiic_3y': roiic_block.get('roiic_3y'),
                 'roiic_acceleration': roiic_block.get('roiic_acceleration'),
                 'roiic_inflection': roiic_block.get('roiic_inflection', False),
+
+                # Cash-on-cash returns
+                'cc_roic_fcf_latest':   cash_block.get('cc_roic_fcf_latest'),
+                'cc_roic_fcf_mean_4y':  cash_block.get('cc_roic_fcf_mean_4y'),
+                'cc_roic_fcf_min_4y':   cash_block.get('cc_roic_fcf_min_4y'),
+                'cc_roic_fcf_std_4y':   cash_block.get('cc_roic_fcf_std_4y'),
+                'cc_roic_ocf_latest':   cash_block.get('cc_roic_ocf_latest'),
+                'cc_roic_ocf_mean_4y':  cash_block.get('cc_roic_ocf_mean_4y'),
+                'cc_roiic_1y':          cash_block.get('cc_roiic_1y'),
+                'cc_roiic_2y':          cash_block.get('cc_roiic_2y'),
+                'cc_roiic_3y':          cash_block.get('cc_roiic_3y'),
+                'cc_roiic_acceleration':cash_block.get('cc_roiic_acceleration'),
+                'cc_roiic_inflection':  cash_block.get('cc_roiic_inflection', False),
+                'fcf_margin_latest':    cash_block.get('fcf_margin_latest'),
+                'fcf_margin_mean_4y':   cash_block.get('fcf_margin_mean_4y'),
+                'cash_conversion_mean_4y': cash_block.get('cash_conversion_mean_4y'),
+                'cash_conversion_min_4y':  cash_block.get('cash_conversion_min_4y'),
 
                 'enduring_strict': enduring_strict,
                 'enduring_loose': enduring_loose,
