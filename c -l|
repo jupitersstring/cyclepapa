@@ -1,1 +1,0 @@
-research_running=$(pgrep -f 'python3 scripts/pull_compounder_research_v2'  2>/dev/null | head -1)
