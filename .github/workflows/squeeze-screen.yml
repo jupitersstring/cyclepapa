@@ -1,0 +1,40 @@
+name: squeeze-screen
+
+# Runs the WHOLE-universe short-squeeze screen where it has network access
+# (GitHub-hosted runners have full egress, so the IBKR FTP file + yfinance work).
+# No CLI needed: trigger from the Actions tab (Run workflow) and read the
+# committed screen_output/report.txt + screen_output/candidates.csv.
+
+on:
+  workflow_dispatch:
+    inputs:
+      top_enrich:
+        description: "How many highest-fee names to enrich with yfinance"
+        default: "150"
+        required: false
+  # Uncomment to run automatically every weekday at 11:30 UTC (after IBKR updates):
+  # schedule:
+  #   - cron: "30 11 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install --quiet yfinance
+      - name: Run whole-universe screen
+        run: python run_screen.py --top-enrich "${{ github.event.inputs.top_enrich || '150' }}"
+      - name: Commit results
+        run: |
+          git config user.name "squeeze-screen-bot"
+          git config user.email "actions@github.com"
+          git add screen_output/
+          git commit -m "Whole-universe squeeze screen $(date -u +%Y-%m-%dT%H:%MZ)" || echo "no changes"
+          git push
