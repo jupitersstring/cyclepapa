@@ -47,6 +47,11 @@ def load_quant() -> pd.DataFrame:
     extra_cols = [
         'symbol', 'net_cash_pct_mcap', 'ncav_pct_mcap', 'cash_pct_ev',
         'not_priced_in_score', 'inflection_flag', 'inflection_score',
+        # Headline valuation columns surfaced into the per-country tables
+        'ev_ebitda', 'ev_ebit', 'p_e', 'p_s', 'pb', 'p_tb',
+        'fcf_yield', 'roce', 'net_debt_ebitda',
+        'ebitda_margin', 'gross_margin', 'insider_ownership_pct',
+        'tangible_equity_pct',
     ]
     frames = []
     for f in sorted(set(glob.glob('*_yartseva.csv'))):
@@ -177,7 +182,11 @@ def main():
         'yartseva_score', 'inflection_score', 'inflection_flag',
         'berezin_score',
         'intrinsic_discount', 'cluster_n',
-        'momentum_12m', 'pb', 'fcf_yield',
+        # Headline valuation set
+        'ev_ebitda', 'ev_ebit', 'p_e', 'p_s', 'pb', 'p_tb',
+        'fcf_yield', 'roce', 'net_debt_ebitda',
+        'ebitda_margin', 'gross_margin', 'insider_ownership_pct',
+        'momentum_12m',
         'thesis',
     ]
     out_cols = [c for c in out_cols if c in top.columns]
@@ -310,41 +319,69 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
         ws.row_dimensions[row].height = 16
 
-    def _write_table_row(ws, row, r, cols):
-        """Write one country-rank row with the shared column layout."""
+    # Table column layout (post-headline-valuation addition):
+    #   1 #             2 Ticker        3 Name          4 Sector
+    #   5 Bucket        6 Mcap (USD)    7 Verdict       8 ETA
+    #   9 Asym         10 EV/EBITDA    11 P/E         12 P/B
+    #  13 FCF yld %    14 ROIC %       15 ND/EBITDA   16 EBITDA margin %
+    #  17 Mom 12m %    18 Yartseva     19 Cluster
+    N_COLS = 19
+
+    def _write_table_row(ws, row, r, cols=N_COLS):
+        """Write one country-rank row with valuation headline columns."""
         _put_int(ws, row, 1, int(r['country_rank']), font=f_text_muted)
         _put_text(ws, row, 2, r['symbol'], font=f_bold)
-        _put_text(ws, row, 3, str(r.get('name') or '')[:60], font=f_text)
+        _put_text(ws, row, 3, str(r.get('name') or '')[:50], font=f_text)
         _put_text(ws, row, 4, str(r.get('sector') or ''), font=f_text_muted)
         _put_text(ws, row, 5, str(r.get('market_cap_bucket') or ''), font=f_text_muted,
                   align=A_CENTER)
         _put_money(ws, row, 6, r.get('market_cap'), font=f_text)
         _verdict_marker(ws, row, 7, r['verdict'])
-        _put_score(ws, row, 8, r.get('entry_today_asymmetry'), font=f_text)
+        _put_score(ws, row, 8, r.get('entry_today_asymmetry'), font=f_bold)
         _put_score(ws, row, 9, r.get('asymmetry_score'), font=f_text)
-        _put_score(ws, row, 10, r.get('yartseva_score'), font=f_text)
-        _put_int(ws, row, 11, int(r.get('cluster_n') or 0), font=f_text_muted)
+
+        # Headline valuation block (cols 10-17)
+        _put_score(ws, row, 10, r.get('ev_ebitda'), font=f_text)
+        _put_score(ws, row, 11, r.get('p_e'), font=f_text)
+        _put_score(ws, row, 12, r.get('pb'), font=f_text)
+        _put_pct(ws, row, 13, r.get('fcf_yield'), font=f_text)
+        _put_pct(ws, row, 14, r.get('roce'), font=f_text)
+        _put_score(ws, row, 15, r.get('net_debt_ebitda'), font=f_text)
+        _put_pct(ws, row, 16, r.get('ebitda_margin'), font=f_text)
+        _put_pct(ws, row, 17, r.get('momentum_12m'), font=f_text)
+
+        _put_score(ws, row, 18, r.get('yartseva_score'), font=f_text_muted)
+        _put_int(ws, row, 19, int(r.get('cluster_n') or 0), font=f_text_muted)
+
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
-            existing = ws.cell(row=row, column=cidx).border
             ws.cell(row=row, column=cidx).border = Border(
                 bottom=Side(style='thin', color=RULE))
 
     def _write_table_header(ws, row):
         headers = ['#', 'Ticker', 'Name', 'Sector', 'Bucket',
-                   'Mcap (USD)', 'Verdict', 'ETA', 'Asym', 'Yartseva', 'Cluster']
+                   'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
+                   'EV/EBITDA', 'P/E', 'P/B',
+                   'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
+                   'Mom 12m %', 'Yartseva', 'Cluster']
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
-            c.alignment = A_LEFT if i in (2, 3, 4) else (A_CENTER if i in (5, 7) else A_RIGHT)
-        # Thin black rule under header
+            c.alignment = (A_LEFT if i in (2, 3, 4) else
+                           A_CENTER if i in (5, 7) else
+                           A_RIGHT)
+        # Thin black rule between header and first data row
         for i in range(1, len(headers) + 1):
             ws.cell(row=row + 1, column=i).border = Border(
                 top=Side(style='thin', color=INK))
 
     def _common_col_widths(ws):
-        widths = {1: 5, 2: 12, 3: 38, 4: 18, 5: 14, 6: 18,
-                  7: 12, 8: 9, 9: 9, 10: 10, 11: 8}
+        widths = {
+            1: 4, 2: 11, 3: 32, 4: 16, 5: 11, 6: 17,
+            7: 12, 8: 8, 9: 8,
+            10: 10, 11: 8, 12: 8, 13: 10, 14: 9, 15: 10, 16: 10, 17: 11,
+            18: 9, 19: 8,
+        }
         for col, w in widths.items():
             ws.column_dimensions[get_column_letter(col)].width = w
 
@@ -485,15 +522,15 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                        value=f"{country_name}  ({src_code})")
         t.font = f_bold
         t.alignment = A_LEFT
-        sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=11)
+        sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=19)
         sheet.row_dimensions[2].height = 22
 
-        for c in range(1, 12):
+        for c in range(1, 20):
             sheet.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
         sheet.row_dimensions[3].height = 4
 
         # Headline figures (country-specific)
-        _section_label(sheet, 5, "Headline figures", span_cols=11)
+        _section_label(sheet, 5, "Headline figures", span_cols=19)
 
         n_country_total = len(sub_full)
         n_country_nms = int(sub_full['market_cap_bucket'].isin(nms_buckets).sum())
@@ -543,12 +580,12 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         sheet.row_dimensions[11].height = 22
 
         # Thin rule under headlines
-        for c in range(1, 12):
+        for c in range(1, 20):
             sheet.cell(row=13, column=c).border = Border(top=Side(style='thin', color=INK))
         sheet.row_dimensions[13].height = 4
 
         # Top-N table for this country
-        _section_label(sheet, 15, f"Top {len(sub_top)}  —  ranked by {sort_label}", span_cols=11)
+        _section_label(sheet, 15, f"Top {len(sub_top)}  —  ranked by {sort_label}", span_cols=19)
         _write_table_header(sheet, 16)
         sheet.row_dimensions[16].height = 18
         # Re-rank within the local frame (in case some rows were dropped)
