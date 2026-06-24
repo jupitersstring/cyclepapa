@@ -426,8 +426,28 @@ def main():
         "pew_avg_dollar_volume", "rev_3y_cagr", "momentum_12m", "notes",
     ]
     out_cols = [c for c in out_cols if c in keep.columns]
-    keep[out_cols].to_csv(args.out, index=False)
-    print(f"wrote {len(keep)} rows -> {args.out}", file=sys.stderr)
+
+    # Deterministic dedup: when the same symbol appears in multiple input
+    # files (e.g. us_largecap + us_edgar), keep the row with the richest
+    # data. Priority:
+    #   1. non-null sector (so industry/sector tags survive)
+    #   2. non-null market_cap
+    #   3. highest asymmetry_score (richer scoring inputs)
+    # Then drop duplicates by symbol keep='first'.
+    before = len(keep)
+    out_df = keep[out_cols].copy()
+    out_df["_has_sector"] = out_df["sector"].notna().astype(int) if "sector" in out_df.columns else 0
+    out_df["_has_mcap"] = out_df["market_cap"].notna().astype(int) if "market_cap" in out_df.columns else 0
+    out_df = (out_df
+              .sort_values(["symbol", "_has_sector", "_has_mcap", "asymmetry_score"],
+                           ascending=[True, False, False, False])
+              .drop_duplicates("symbol", keep="first")
+              .drop(columns=["_has_sector", "_has_mcap"]))
+    # Restore the user-facing sort order (asymmetry desc) for the output
+    out_df = out_df.sort_values("asymmetry_score", ascending=False)
+    out_df.to_csv(args.out, index=False)
+    print(f"wrote {len(out_df):,} unique rows -> {args.out} "
+          f"({before - len(out_df):,} duplicates collapsed)", file=sys.stderr)
 
     pd.set_option("display.width", 280)
     pd.set_option("display.max_columns", 20)
