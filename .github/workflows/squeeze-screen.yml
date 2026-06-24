@@ -12,6 +12,12 @@ on:
         description: "How many highest-fee names to enrich with yfinance"
         default: "150"
         required: false
+  push:
+    branches: ["claude/stoic-curie-pb7mib"]
+    paths:
+      - run_screen.py
+      - short_squeeze.py
+      - .github/workflows/squeeze-screen.yml
   # Uncomment to run automatically every weekday at 11:30 UTC (after IBKR updates):
   # schedule:
   #   - cron: "30 11 * * 1-5"
