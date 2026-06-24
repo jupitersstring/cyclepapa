@@ -180,7 +180,15 @@ if os.path.exists(backlog_path):
         print(f"  backlog merge err: {e}", file=sys.stderr)
 
 if 'backlog_inflection_flag' in df.columns:
-    df['arch_backlog'] = df['backlog_inflection_flag'].fillna(False).astype(bool)
+    # AUDIT FIX: backlog is a leading indicator — stale filings are useless.
+    # Require the latest backlog observation within ~15 months.
+    backlog_fresh = pd.Series(True, index=df.index)
+    if 'backlog_latest_date' in df.columns:
+        bdate = pd.to_datetime(df['backlog_latest_date'], errors='coerce')
+        cutoff = pd.Timestamp(datetime.date.today()) - pd.Timedelta(days=460)
+        backlog_fresh = (bdate >= cutoff).fillna(False)
+        df['backlog_stale'] = (bdate < cutoff).fillna(False)
+    df['arch_backlog'] = df['backlog_inflection_flag'].fillna(False).astype(bool) & backlog_fresh
 else:
     df['arch_backlog'] = False
 

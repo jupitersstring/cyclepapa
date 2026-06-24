@@ -49,19 +49,30 @@ df['leg_absorp']   = np.where(df['absorp_pass'].fillna(False), 100, 0)
 df['leg_prebo']    = np.where(df['prebo_pass'].fillna(False), 100, 0)
 df['leg_compress'] = np.where(df['compress_pass'].fillna(False), 100, 0)
 
-core = df[['leg_dalton','leg_td','leg_fund']]
+# AUDIT FIX — TD selection bias: TD Sequential was only run on a pre-selected
+# top set, so leg_td has a median of ~96 and artificially inflates the composite
+# for the 7% of names that have it. Exclude leg_td from the core average to avoid
+# rewarding mere data-availability; keep it as a separate informational column and
+# a small bonus only when it independently confirms (oversold/overbought).
+core = df[['leg_dalton','leg_fund']]
 df['n_core_legs'] = core.notna().sum(axis=1)
 df['core_avg']    = core.mean(axis=1, skipna=True)
 df['min_core']    = core.min(axis=1, skipna=True)
 df['lens_bonus']  = (df['absorp_pass'].fillna(False).astype(int)
                    + df['prebo_pass'].fillna(False).astype(int)
                    + df['compress_pass'].fillna(False).astype(int)) * 8
+# TD confirmation bonus: only added when TD genuinely signals (not just present)
+df['td_bonus'] = 0.0
+if 'net_setup' in df.columns:
+    td_oversold = (pd.to_numeric(df['net_setup'], errors='coerce') >= 25)
+    df.loc[td_oversold.fillna(False), 'td_bonus'] = 6.0
 
 df['all_legs_score'] = (
-    df['core_avg'].fillna(0) * 0.55
+    df['core_avg'].fillna(0) * 0.60
   + df['min_core'].fillna(0) * 0.30
   + df['lens_bonus']
-  + df['n_core_legs'] * 3
+  + df['td_bonus']
+  + df['n_core_legs'] * 2
 )
 
 # Quality flag (does the name pass the asymmetric quality filter?)
