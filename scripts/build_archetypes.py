@@ -40,8 +40,12 @@ if os.path.exists('data/research/roic_edgar_combined.csv'):
     # Drop existing columns to overwrite
     for c in [x for x in e.columns if x != 'ticker' and x in df.columns]:
         df = df.drop(columns=[c])
-    df = df.merge(e, on='ticker', how='left')
-    print(f"  merged EDGAR data: {len(e)} rows", file=sys.stderr)
+    # OUTER merge — preserve EDGAR-only tickers (compounders not in Dalton)
+    df = df.merge(e, on='ticker', how='outer')
+    # Tag rows from EDGAR-only as US (default region) so they show up in US sheet
+    df.loc[df['region'].isna(), 'region'] = 'us'
+    df.loc[df['cap_tier'].isna(), 'cap_tier'] = 'unknown'
+    print(f"  merged EDGAR data (outer): {len(e)} rows → universe now {len(df)}", file=sys.stderr)
 
 for col in ['enduring_strict','enduring_loose','roiic_inflection','cc_roiic_inflection','has_history']:
     if col in df.columns:
