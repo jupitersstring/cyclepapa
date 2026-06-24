@@ -48,6 +48,7 @@ df['leg_fund'] = np.where(df['fund_score'] > 0, df['fund_score'].rank(pct=True) 
 df['leg_absorp']   = np.where(df['absorp_pass'].fillna(False), 100, 0)
 df['leg_prebo']    = np.where(df['prebo_pass'].fillna(False), 100, 0)
 df['leg_compress'] = np.where(df['compress_pass'].fillna(False), 100, 0)
+if 'compress_m_pass' not in df.columns: df['compress_m_pass'] = False
 
 # AUDIT FIX — TD selection bias: TD Sequential was only run on a pre-selected
 # top set, so leg_td has a median of ~96 and artificially inflates the composite
@@ -60,7 +61,8 @@ df['core_avg']    = core.mean(axis=1, skipna=True)
 df['min_core']    = core.min(axis=1, skipna=True)
 df['lens_bonus']  = (df['absorp_pass'].fillna(False).astype(int)
                    + df['prebo_pass'].fillna(False).astype(int)
-                   + df['compress_pass'].fillna(False).astype(int)) * 8
+                   + df['compress_pass'].fillna(False).astype(int)
+                   + df['compress_m_pass'].fillna(False).astype(int)) * 8
 # TD confirmation bonus: only added when TD genuinely signals (not just present)
 df['td_bonus'] = 0.0
 if 'net_setup' in df.columns:

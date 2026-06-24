@@ -172,9 +172,11 @@ merged['fund_pass']  = merged['fund_pass'].fillna(False).astype(bool)
 merged['fund_score'] = merged['fund_score'].fillna(0)
 
 # ─── Auxiliary screens ────────────────────────────────────────────────────
-def load_screen(pattern):
+def load_screen(pattern, exclude=None):
     frames = []
     for p in sorted(glob.glob(pattern)):
+        if exclude and exclude in os.path.basename(p):
+            continue
         try:
             df = pd.read_csv(p)
             if len(df): frames.append(df)
@@ -184,7 +186,10 @@ def load_screen(pattern):
 
 absorp = load_screen('data/absorption/absorp_*.csv')
 prebo  = load_screen('data/prebreakout/prebo_*.csv')
-compress = load_screen('data/compression/compress_*.csv')
+# Weekly compression = compress_<mkt>.csv  (exclude the monthly-prefixed files)
+compress = load_screen('data/compression/compress_*.csv', exclude='compress_monthly')
+# Monthly compression = compress_monthly_<mkt>.csv (separate, slower-TF lens)
+compress_m = load_screen('data/compression/compress_monthly_*.csv')
 
 if len(absorp):
     absorp['absorp_pass'] = (
@@ -208,15 +213,27 @@ if len(prebo):
     merged = merged.merge(prebo[['ticker','prebo_pass']], on='ticker', how='left')
 merged['prebo_pass'] = merged.get('prebo_pass', False).fillna(False).astype(bool)
 
-if len(compress):
-    compress['compress_pass'] = (
-        (compress.get('mfi_higher_low', False).fillna(False).astype(bool)) &
-        (compress.get('atr_compression', False).fillna(False).astype(bool)) &
-        (compress.get('mfi_inflect_amt', 0).fillna(0) >= 1) &
-        (compress.get('pct_below_5y_high', 99).fillna(99) <= 25)  # relax from 15 to 25
+def compress_filter(c):
+    return (
+        (c.get('mfi_higher_low', False).fillna(False).astype(bool)) &
+        (c.get('atr_compression', False).fillna(False).astype(bool)) &
+        (c.get('mfi_inflect_amt', 0).fillna(0) >= 1) &
+        (c.get('pct_below_5y_high', 99).fillna(99) <= 25)
     )
+
+if len(compress):
+    compress['compress_pass'] = compress_filter(compress)
     merged = merged.merge(compress[['ticker','compress_pass']], on='ticker', how='left')
 merged['compress_pass'] = merged.get('compress_pass', False).fillna(False).astype(bool)
+
+# Monthly compression — separate lens (slower TF, higher conviction base)
+if 'compress_m_pass' not in merged.columns:
+    merged['compress_m_pass'] = False
+if len(compress_m):
+    compress_m['compress_m_pass'] = compress_filter(compress_m)
+    merged = merged.drop(columns=['compress_m_pass']).merge(
+        compress_m[['ticker','compress_m_pass']], on='ticker', how='left')
+merged['compress_m_pass'] = merged['compress_m_pass'].fillna(False).astype(bool)
 
 # ─── Composite ────────────────────────────────────────────────────────────
 merged['n_lens'] = (
@@ -224,6 +241,7 @@ merged['n_lens'] = (
   + merged['absorp_pass'].astype(int)
   + merged['prebo_pass'].astype(int)
   + merged['compress_pass'].astype(int)
+  + merged['compress_m_pass'].astype(int)
 )
 merged['mega_score'] = (
     merged['asym_score'].fillna(0)

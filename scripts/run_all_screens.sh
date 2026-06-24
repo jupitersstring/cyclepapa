@@ -34,6 +34,11 @@ cp "$uni" /tmp/screen_universe.csv
 python3 screeners/compression_weekly.py 2>&1 | tail -5
 cp /tmp/tech_compression_weekly.csv "data/compression/compress_${mkt}.csv" 2>/dev/null || true
 
+echo "[$mkt] === Compression monthly ==="
+cp "$uni" /tmp/screen_universe.csv
+python3 screeners/compression_monthly.py 2>&1 | tail -5
+cp /tmp/tech_compression.csv "data/compression/compress_monthly_${mkt}.csv" 2>/dev/null || true
+
 echo "[$mkt] === Fundamentals ==="
 python3 scripts/pull_fundamentals.py --universe "$uni" --out "data/fundamentals/fund_${mkt}.csv" 2>&1 | tail -5
 

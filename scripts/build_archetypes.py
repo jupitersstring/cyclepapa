@@ -122,6 +122,10 @@ df['arch_td_mr'] = (
 df['arch_absorp'] = df.get('absorp_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
 # Archetype 10: Compression (MFI higher-low + ATR squeeze pre-trigger)
 df['arch_compress'] = df.get('compress_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+# Monthly compression — slower-TF base squeeze (higher conviction than weekly)
+df['arch_compress_m'] = df.get('compress_m_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+# Dual-TF compression: both weekly AND monthly firing = strongest squeeze signal
+df['arch_compress_dual'] = df['arch_compress'] & df['arch_compress_m']
 # Archetype 11: Pre-breakout Weinstein/O'Neil hybrid
 df['arch_prebo'] = df.get('prebo_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
 # Archetype 12: Mirage Buy (Dalton hidden bull — selling structure + higher value)
@@ -250,7 +254,7 @@ df['arch_failed_up'] = _str('absW_dp_signal').str.upper().eq('FAILED_UP')
 df['arch_pform'] = _bool('absW_p_form')
 # Triple-Lens Conviction — passes 3+ archetypes (excluding the broad Dalton asym which fires too often)
 all_arch_cols = ['arch_enduring','arch_turning','arch_cash','arch_dv_quality',
-                 'arch_q','arch_ep','arch_td_mr','arch_absorp','arch_compress',
+                 'arch_q','arch_ep','arch_td_mr','arch_absorp','arch_compress','arch_compress_m',
                  'arch_prebo','arch_mirage','arch_bform','arch_fbdr',
                  'arch_hidden_fcf','arch_reinvest','arch_insider','arch_backlog',
                  'arch_var','arch_accepted_out','arch_bull_highvol','arch_confirmed_up',
@@ -365,7 +369,9 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     write_archetype('7. Episodic Pivot — earnings/news gap ≥ 10% on ≥ 2× ADV after 3-6mo sideways', df[df['arch_ep']], 'score_proxy')
     write_archetype('8. TD Mean Reversion — oversold across multiple TFs (1h/4h/1d/1w/1M)', df[df['arch_td_mr']], 'score_proxy')
     write_archetype('9. Wyckoff Absorption — money out, price holding (stealth accumulation)', df[df['arch_absorp']], 'score_proxy')
-    write_archetype('10. Compression — MFI higher-low + ATR squeeze (pre-trigger phase)', df[df['arch_compress']], 'score_proxy')
+    write_archetype('10. Compression (weekly) — MFI higher-low + ATR squeeze (pre-trigger phase)', df[df['arch_compress']], 'score_proxy')
+    write_archetype('10b. Compression (monthly) — slower-TF base squeeze + MFI higher-low', df[df['arch_compress_m']], 'score_proxy')
+    write_archetype('10c. Compression DUAL (weekly + monthly both firing) — strongest squeeze', df[df['arch_compress_dual']], 'score_proxy')
     write_archetype('11. Pre-breakout (Weinstein/O\'Neil) — late Stage-1 with handle/flag', df[df['arch_prebo']], 'score_proxy')
     write_archetype('12. Mirage Buy — Dalton hidden bull (selling structure + higher value placement)', df[df['arch_mirage']], 'score_proxy')
     write_archetype('13. B-Formation — Dalton long-liquidation completing (bottom turning)', df[df['arch_bform']], 'score_proxy')

@@ -96,6 +96,10 @@ for path in data/universes/uni_uk.csv data/universes/uni_germany.csv \
 done
 
 # ─── 3. Resume widen_chain for missing markets (Greece, Portugal, Argentina, Austria, Israel Dalton) ───
+# Backfill monthly compression for all existing markets (weekly already done)
+nohup bash scripts/backfill_compress_monthly.sh > /tmp/log_compm_backfill.txt 2>&1 &
+disown
+
 nohup bash scripts/master_expand_chain.sh > /tmp/log_master_expand.txt 2>&1 &
 disown
 
