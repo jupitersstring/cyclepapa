@@ -112,12 +112,17 @@ def main():
         growth_frames[label] = df
 
     if not growth_frames:
-        print("No growth_windows files found.")
-        return
-
-    gw = pd.concat(growth_frames.values(), ignore_index=True)
-    # Per (ticker, metric) keep the row with most history
-    gw = gw.sort_values('n_history', ascending=False).drop_duplicates(['ticker','metric'])
+        # Fall back to a cache-only run — every ticker's growth is computed
+        # on-the-fly from the cached income parquet (the same code path
+        # used below for tickers missing from growth_windows). This means
+        # the screen still works on the current pipeline where the old
+        # multi_variant growth_windows files no longer exist.
+        print("No growth_windows files found — using cache-only growth.")
+        gw = pd.DataFrame(columns=['ticker','metric','ltm','yoy','n_history','_source'])
+    else:
+        gw = pd.concat(growth_frames.values(), ignore_index=True)
+        # Per (ticker, metric) keep the row with most history
+        gw = gw.sort_values('n_history', ascending=False).drop_duplicates(['ticker','metric'])
 
     # UK growth file has different schema (uk_scanner output)
     uk_path = Path('results_uk/growth_uk.csv')

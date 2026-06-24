@@ -994,12 +994,19 @@ CREATIVE_MEASURES = [
     ('results_flat_inflection/screener.csv', 'Flat + Inflection',
      'Flat-trending share price with fundamentals inflecting up — pre-rerate setups.',
      None),
-    ('results_volasym/screener.csv', 'Vol Asymmetry',
+    ('results_volasym/volatility_asymmetry.csv', 'Vol Asymmetry',
      'Upside volatility > downside volatility — positive skew names.',
      None),
     ('pre_rerate_setups.csv', 'Segment Inflection',
      'A small, fast-growing revenue segment will (if growth persists) come to dominate consolidated results.',
      None),
+    ('results_revenue_decomp/all.csv', 'Revenue Disaggregation',
+     'Every revenue-flavored XBRL tag we extracted from SEC companyfacts, per ticker. '
+     'Use this to spot business-mix shifts: a Services-line growing faster than Product, '
+     'subscription overtaking license, etc. Includes industry-specific tags '
+     '(InterestAndDividendIncomeOperating for banks, PremiumsEarnedNet for insurers, '
+     'RealEstateRevenueNet for REITs) so financial-sector revenue mix is visible too.',
+     ['ticker','tag','ltm_M','yoy_pct','share_of_total_pct']),
     ('results_extras/screener.csv', 'Analyst & Insider Extras',
      'Composite of four forward-looking signals from yfinance analyst & insider feeds: '
      'upside-to-mean-target, % net insider buying (last 6m), broker-rating buy share, '

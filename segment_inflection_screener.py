@@ -35,12 +35,22 @@ sys.path.insert(0, str(Path(__file__).parent))
 from edgar_fetcher import _quarterly_records, _series_from_records, _derive_q4
 
 
+# Tag pools that classify revenue STREAMS within a multi-stream business.
+# Restricted to sub-stream tags that are genuinely smaller-than-total (e.g.
+# Apple's services line vs total revenue, not banks' interest-income which
+# IS the total). Industry totals like InterestAndDividendIncomeOperating
+# belong in revenue_disaggregation_extract.py instead — they're the wrong
+# inputs for an "inflection" screen but valid for a full revenue map.
 REVENUE_CATEGORIES = {
-    'product':       ['SalesRevenueGoodsNet','SalesRevenueProductLine','ProductRevenue','ProductSales'],
-    'services':      ['SalesRevenueServicesNet','ServiceRevenue','ServiceSales','RevenueFromServices'],
-    'licenses':      ['LicensesRevenue','LicenseAndServicesRevenue','RoyaltyRevenue','LicenseRevenue'],
-    'subscription':  ['SubscriptionRevenue','RevenueFromSubscriptionServices','RecurringRevenue',
-                      'ContractWithCustomerLiabilityRevenueRecognized'],
+    'product':       ['SalesRevenueGoodsNet','SalesRevenueProductLine','ProductRevenue',
+                      'ProductSales','ProductsRevenue'],
+    'services':      ['SalesRevenueServicesNet','ServiceRevenue','ServiceSales',
+                      'RevenueFromServices','ServicesRevenue','HostingServicesRevenue'],
+    'licenses':      ['LicensesRevenue','LicenseAndServicesRevenue','RoyaltyRevenue',
+                      'LicenseRevenue','LicensesAndServicesRevenue'],
+    'subscription':  ['SubscriptionRevenue','RevenueFromSubscriptionServices',
+                      'RecurringRevenue','SubscriptionAndCirculationRevenue'],
+    'advertising':   ['AdvertisingRevenue','AdvertisingAndOtherRevenue'],
 }
 TOTAL_TAGS = ['Revenues','RevenueFromContractWithCustomerExcludingAssessedTax','SalesRevenueNet']
 
