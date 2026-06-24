@@ -125,3 +125,10 @@ if [ -n "$untracked" ]; then
 fi
 
 echo "[bootstrap] DONE — durability OK"
+
+# ─── 5. Yahoo watcher: auto-launch yfinance work when block lifts ───
+if [ -f "$COOLDOWN_LOCK" ] && ! pgrep -f yahoo_watcher.sh >/dev/null 2>&1; then
+    nohup bash scripts/yahoo_watcher.sh > /tmp/log_yahoo_watcher.txt 2>&1 &
+    disown
+    echo "[bootstrap] launched yahoo_watcher.sh"
+fi
