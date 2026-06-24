@@ -164,11 +164,16 @@ def screen_one(
         r.error = "no_discount"
         return r
 
-    # NAV trajectory from AIC (informational + recovery factor)
+    # NAV trajectory + historical discount context from AIC
+    # (informational + needed early for discount-stretch promotion)
     if aic_summary is not None:
         r.nav_tr_1y = aic_summary.get("nav_tr_1y")
         r.nav_tr_3y = aic_summary.get("nav_tr_3y")
         r.aic_sector_code = aic_summary.get("sector")
+        r.discount_3y_avg = aic_summary.get("discount_3y_avg")
+        r.discount_52w_high = aic_summary.get("discount_52w_high")
+        r.discount_52w_low = aic_summary.get("discount_52w_low")
+        r.dividend_yield_pct = aic_summary.get("dividend_yield_pct")
 
     # Saba UKIT membership — strong activist-engagement flag
     try:
@@ -183,20 +188,27 @@ def screen_one(
     r.expected_total_return = etr
     r.nav_penalty_applied = nav_pen
 
+    # Path-risk haircut: PE/property books can mark down before we see
+    # crystallisation. Listed-clean has zero haircut; PE 15%.
+    pr = core.path_risk_haircut(r.nav_quality)
+    r.path_risk_haircut = pr
+    if r.expected_total_return is not None:
+        r.expected_total_return = r.expected_total_return * (1.0 - pr)
+
     # POST_RERATING taper — adjust the remaining-return potential
     if r.phase == "POST_RERATING" and r.chg_13w_pct and r.expected_total_return:
         remaining = core._post_rerating_taper(r.chg_13w_pct, r.expected_total_return)
-        r.expected_total_return = etr * remaining
+        r.expected_total_return = r.expected_total_return * remaining
 
-    # Catalyst probability — base × signal multiplier
-    # Auto-promote catalyst tag based on RNS signal density. Static
-    # tags get stale (the SEIT/NESF bug class we already fixed by
-    # hand) — but the RNS feed is live. If a name shows multiple
-    # wind-down RNS or substantial TR-1 + PDMR activity, we promote
-    # the catalyst classification accordingly. The static tag in
-    # universe.csv is preserved in `catalyst`; the promoted tag is
-    # what feeds the prob / duration / sleeve assignment.
+    # Catalyst auto-promotion. Static tags in universe.csv get stale;
+    # two live signals can override:
+    #   (a) RNS density — multiple winddown/tender filings or active
+    #       TR-1 + PDMR cluster → promote to LIKELY/REVIEW
+    #   (b) Discount stretch — discount > 1.4× 3y-avg OR > 52w-high +
+    #       4pp → promote to DCM_ACTIVE (the SERE pattern)
+    r.catalyst_static = r.catalyst
     promoted = r.catalyst
+    promoted_by = "none"
     if signal is not None and signal.rns_available:
         rns = signal.rns_counts or {}
         wd = rns.get("winddown", 0)
@@ -206,11 +218,21 @@ def screen_one(
         review = rns.get("review", 0)
         if wd >= 3 or tender >= 2:
             promoted = "WIND_DOWN_LIKELY"
+            promoted_by = "rns"
         elif review >= 3 or (tr1 >= 5 and pdmr >= 2):
-            promoted = "STRATEGIC_REVIEW" if r.catalyst in (
-                "", "STRUCTURAL_DISCOUNT", None) else r.catalyst
+            if r.catalyst in ("", "STRUCTURAL_DISCOUNT", None):
+                promoted = "STRATEGIC_REVIEW"
+                promoted_by = "rns"
+    # Discount stretch — only when RNS didn't already promote and the
+    # current tag is the generic structural / empty bucket.
+    if promoted_by == "none" and r.catalyst in ("", "STRUCTURAL_DISCOUNT", None):
+        if core.is_discount_stretched(r.nav_discount_est, r.discount_3y_avg,
+                                       r.discount_52w_high):
+            promoted = params.DISCOUNT_STRETCH_TARGET
+            promoted_by = "discount_stretch"
     if promoted != r.catalyst and promoted:
-        r.catalyst = promoted  # promotion applied
+        r.catalyst = promoted
+    r.catalyst_promoted_by = promoted_by
     base_prob = params.CATALYST_PROB_BASE.get(r.catalyst, params.DEFAULT_PROB_BASE)
     r.catalyst_prob_base = base_prob
     if signal is not None:
@@ -271,7 +293,16 @@ def screen_one(
             pass
     r.expected_duration_months = months
     r.expected_upside = (r.expected_total_return or 0.0) * (r.catalyst_prob_signal_adj or 0.0)
-    r.expected_irr = core.annualise(r.expected_upside, months)
+    # IRR has two components:
+    #   (a) annualised event return (existing math)
+    #   (b) dividend carry — what we earn waiting for the event to fire
+    irr_event = core.annualise(r.expected_upside, months)
+    irr_carry = core.dividend_carry_irr(
+        r.dividend_yield_pct, months,
+        r.catalyst_prob_signal_adj or 0.0)
+    r.irr_from_event = irr_event
+    r.irr_from_carry = irr_carry
+    r.expected_irr = irr_event + irr_carry
 
     # Setup score — pure technicals
     r.phase_score = params.PHASE_WEIGHT.get(r.phase, 0.10)
@@ -323,12 +354,8 @@ def screen_one(
         r.in_micro_sleeve = True
         r.micro_position_size_pct = 1.0
 
-    # Historical context (informational)
-    if aic_summary is not None:
-        s = aic_summary
-        r.discount_3y_avg = s.get("discount_3y_avg")
-        r.discount_52w_high = s.get("discount_52w_high")
-        r.discount_52w_low = s.get("discount_52w_low")
+    # (Historical discount context populated earlier — used for the
+    # discount-stretch promotion test.)
 
     return r
 

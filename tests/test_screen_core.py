@@ -424,3 +424,61 @@ def test_post_rerating_taper_partial():
 def test_post_rerating_taper_overshoot():
     # Already exceeded target -> 0% left
     assert core._post_rerating_taper(1.0, 0.5) == 0.0
+
+
+# ----- Path-risk haircut -------------------------------------------
+
+def test_path_risk_haircut_listed_clean_zero():
+    assert core.path_risk_haircut("LISTED_CLEAN") == 0.0
+
+
+def test_path_risk_haircut_private_equity_15():
+    assert core.path_risk_haircut("PRIVATE_EQUITY") == 0.15
+
+
+def test_path_risk_haircut_default():
+    assert core.path_risk_haircut(None) == params.DEFAULT_PATH_RISK
+    assert core.path_risk_haircut("UNKNOWN_TYPE") == params.DEFAULT_PATH_RISK
+
+
+# ----- Dividend carry IRR -------------------------------------------
+
+def test_dividend_carry_zero_yield():
+    assert core.dividend_carry_irr(0.0, 12, 0.5) == 0.0
+    assert core.dividend_carry_irr(None, 12, 0.5) == 0.0
+
+
+def test_dividend_carry_basic():
+    # 6% yield, any duration, any prob -> credits 70% of carry = 4.2%
+    irr = core.dividend_carry_irr(6.0, 24, 0.5)
+    assert 0.04 < irr < 0.05
+
+
+def test_dividend_carry_zero_duration_safe():
+    assert core.dividend_carry_irr(5.0, 0, 0.5) == 0.0
+
+
+# ----- Discount-stretch promotion ----------------------------------
+
+def test_discount_stretch_ratio_triggers():
+    # current 30%, 3y avg 18% -> ratio 1.67 > 1.4 -> stretched
+    assert core.is_discount_stretched(0.30, 0.18, 0.32) is True
+
+
+def test_discount_stretch_52w_high_triggers():
+    # current 35%, 3y 36%, 52w high 30% -> wider than 52w high + 4pp
+    assert core.is_discount_stretched(0.35, 0.36, 0.30) is True
+
+
+def test_discount_stretch_in_range_no_trigger():
+    # current 39%, 3y 36%, 52w high 43% -> not stretched (SERE case)
+    assert core.is_discount_stretched(0.394, 0.36, 0.43) is False
+
+
+def test_discount_stretch_premium_no_trigger():
+    assert core.is_discount_stretched(-0.05, 0.10, 0.10) is False
+
+
+def test_discount_stretch_null_safe():
+    assert core.is_discount_stretched(None, None, None) is False
+    assert core.is_discount_stretched(0.3, None, None) is False

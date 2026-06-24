@@ -82,10 +82,14 @@ PHASE_WEIGHT: dict[str, float] = {
     "CAPITULATION":        0.80,  # selloff + vol spike + washed MFI + insider buy
     "BASE_QUIET":          0.55,
     "BASE_DECLINING":      0.30,
-    "RECENT_SELLOFF":      0.30,  # was DISTRIBUTION_DRIVEN — no longer hard-excluded
+    "RECENT_SELLOFF":      0.30,
     "DOWNTREND":           0.10,
     "NO_BASE":             0.10,
-    "POST_RERATING":       0.05,  # tapered, not hard zero
+    # POST_RERATING tightened: the move has already happened, residual
+    # carry is small. Was 0.05 — too generous, kept names like USA/BNKR
+    # ahead of fresher setups. The taper already adjusts return; phase
+    # weight should be near-zero.
+    "POST_RERATING":       0.02,
 }
 
 
@@ -186,6 +190,39 @@ WIND_DOWN_AGE_CURVE = {
     24:  (1.10, 0.30),
     36:  (0.95, 0.20),   # if it hasn't fired by 36m, slippage risk rises
 }
+
+
+# ----------------------------------------------------------------------
+# Path-risk haircut. NAV may mark down before the catalyst crystallises
+# (PE write-downs, property reval, distressed credit losses). We
+# discount the expected_total_return by an asset-class-specific factor
+# so the screener doesn't overstate the IRR on volatile-NAV books.
+
+PATH_RISK_HAIRCUT = {
+    "LISTED_CLEAN":          0.00,   # NAV moves with price, no path risk
+    "DEBT_AMORTISING":       0.02,   # CLO/loan books — modest mark risk
+    "REAL_ASSET_OBSERVABLE": 0.05,   # gold, commodities — observable
+    "INFRA_DCF":             0.07,   # infra DCF — discount-rate sensitivity
+    "RENEWABLES_DCF":        0.10,   # power-price + discount-rate sensitivity
+    "PROPERTY_DCF":          0.10,   # property values reval annually
+    "PRIVATE_EQUITY":        0.15,   # PE/VC books mark to model
+    "DISTRESSED":            0.25,   # workout assets — wide range
+}
+DEFAULT_PATH_RISK = 0.05
+
+
+# ----------------------------------------------------------------------
+# Discount-stretch auto-promotion. Names tagged STRUCTURAL_DISCOUNT (or
+# untagged) that are trading at a discount materially wider than their
+# historical norm get promoted into a higher-probability tier — the
+# market is telling us something even before an RNS event fires.
+#
+# Thresholds: discount > 1.4× the 3y-avg OR > 52w-high + 4pp. Either
+# triggers promotion to DCM_ACTIVE (mid probability, 24m duration).
+
+DISCOUNT_STRETCH_RATIO = 1.40
+DISCOUNT_STRETCH_PP_OVER_52WH = 0.04
+DISCOUNT_STRETCH_TARGET = "DCM_ACTIVE"
 
 
 # ----------------------------------------------------------------------

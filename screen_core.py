@@ -142,6 +142,16 @@ class ScreenResult:
     signal_score: float | None = None
     news_score: float | None = None
     rns_score: float | None = None
+
+    # Path risk & carry — separate components of IRR so we can debug
+    path_risk_haircut: float | None = None
+    dividend_yield_pct: float | None = None
+    irr_from_event: float | None = None
+    irr_from_carry: float | None = None
+
+    # Auto-promotion provenance
+    catalyst_static: str | None = None        # tag as written in universe.csv
+    catalyst_promoted_by: str | None = None   # "rns" / "discount_stretch" / "none"
     rns_tr1: int | None = None
     rns_pdmr: int | None = None
     rns_winddown: int | None = None
@@ -569,6 +579,60 @@ def annualise(total_return: float, months: float) -> float:
     if 1.0 + total_return <= 0:
         return -1.0
     return (1.0 + total_return) ** (12.0 / months) - 1.0
+
+
+def path_risk_haircut(nav_quality: str | None) -> float:
+    """Fraction of expected_total_return to deduct as path risk (NAV
+    write-down between now and crystallisation). Higher for opaque
+    DCF books, zero for listed clean."""
+    if nav_quality is None:
+        return params.DEFAULT_PATH_RISK
+    return params.PATH_RISK_HAIRCUT.get(nav_quality, params.DEFAULT_PATH_RISK)
+
+
+def dividend_carry_irr(
+    yield_pct: float | None,
+    months: float,
+    prob_event: float,
+) -> float:
+    """Annualised contribution from dividend carry while waiting for
+    the catalyst. The carry is what we EARN while holding regardless
+    of whether the event fires — so it should be applied with weight
+    (1 - prob_event * fraction_paid_post_event). For simplicity we
+    credit ~70% of the yield (some carry survives the event itself —
+    interim distributions, accumulated income paid at wind-down)."""
+    if yield_pct is None or yield_pct <= 0:
+        return 0.0
+    if months <= 0:
+        return 0.0
+    # yield_pct is e.g. 5.5 (in pct). Convert to fraction.
+    y = yield_pct / 100.0
+    # Credit 70% of carry — empirically the share that survives.
+    return 0.70 * y
+
+
+def is_discount_stretched(
+    current: float | None,
+    three_yr_avg: float | None,
+    fifty_two_wh: float | None,
+) -> bool:
+    """Auto-promotion test: discount is materially wider than the
+    historical norm. Returns True if either:
+      (a) current / 3y_avg >= DISCOUNT_STRETCH_RATIO
+      (b) current >= 52w_high + DISCOUNT_STRETCH_PP_OVER_52WH
+
+    Discount values are stored as positive fractions (0.30 = 30%
+    discount; -0.05 = 5% premium). Treat negative or null as not-
+    stretched."""
+    if current is None or current <= 0:
+        return False
+    if three_yr_avg is not None and three_yr_avg > 0:
+        if current / three_yr_avg >= params.DISCOUNT_STRETCH_RATIO:
+            return True
+    if fifty_two_wh is not None and fifty_two_wh > 0:
+        if current >= fifty_two_wh + params.DISCOUNT_STRETCH_PP_OVER_52WH:
+            return True
+    return False
 
 
 # ---------------------------------------------------------------------------

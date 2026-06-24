@@ -157,6 +157,8 @@ def fetch_aic_summary(use_cache: bool = True) -> dict[str, dict[str, float | str
             "nav_tr_5y": _num("NAVTR5Y"),
             "share_tr_1y": _num("SPTR1Y"),
             "share_tr_3y": _num("SPTR3Y"),
+            # Dividend yield (net, percent) — feeds the IRR-carry term
+            "dividend_yield_pct": _num("NetDivYld"),
         }
     return out
 
