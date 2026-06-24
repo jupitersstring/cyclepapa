@@ -206,6 +206,8 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["sbc_ttm"] = edgar_row.get("sbc_ttm")
     r["sbc_pct_revenue"] = edgar_row.get("sbc_pct_revenue")
     r["effective_tax_rate"] = edgar_row.get("effective_tax_rate")
+    r["pretax_income_ttm"] = edgar_row.get("pretax_income_ttm")
+    r["tax_expense_ttm"] = edgar_row.get("tax_expense_ttm")
     r["roic_after_sbc"] = edgar_row.get("roic_after_sbc")
     r["interest_coverage"] = edgar_row.get("interest_coverage")
     r["retained_earnings"] = edgar_row.get("retained_earnings")

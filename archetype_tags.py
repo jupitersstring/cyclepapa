@@ -99,9 +99,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     edgar_yart = None
     if os.path.exists('us_edgar_yartseva.csv'):
         edgar_yart = pd.read_csv('us_edgar_yartseva.csv',
-                                 usecols=lambda c: c in {'symbol', 'p_tb',
-                                                           'tangible_equity_pct',
-                                                           'pct_off_52w_high'})
+                                 usecols=lambda c: c in {
+                                     'symbol', 'p_tb', 'tangible_equity_pct',
+                                     'pct_off_52w_high',
+                                     # NEW (audit June 2026): capital-allocation
+                                     # + quality + SBC + real tax rate
+                                     'capital_return_yield', 'dividend_yield',
+                                     'buyback_yield', 'sbc_pct_revenue',
+                                     'effective_tax_rate', 'roic_after_sbc',
+                                     'interest_coverage', 'retained_earnings',
+                                     'pretax_income_ttm',
+                                 })
 
     # Merge.  Asym is the primary - everything else is enrichment.
     df = asym.merge(yart, on='symbol', how='left', suffixes=('','_y'))
