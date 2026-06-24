@@ -375,6 +375,99 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (years_of_history >= 5)
     ).fillna(False).astype(int)
 
+    # ---------- R-Y: Creative multi-year archetypes (EDGAR-required) ----------
+    # Each leverages the multi-year XBRL coverage to surface patterns that
+    # couldn't be detected with single-period yfinance data. All additive;
+    # non-EDGAR names simply don't match these and keep their other tags.
+    cash_roic_lindy = s('cash_roic_lindy', np.nan)
+    roic_latest = s('roic_latest', np.nan)
+    roic_acceleration_v = s('roic_acceleration', np.nan)
+    roiic_acceleration_v = s('roiic_acceleration', np.nan)
+    cash_roic_inflect_v = s('cash_roic_inflection_flag', 0)
+    roic_inflect_v = s('roic_inflection_flag', 0)
+    shares_growth_5y = s('shares_growth_5y', np.nan)
+    asset_3y_cagr_v = s('asset_3y_cagr', np.nan)
+    revenue_3y_cagr_v = s('revenue_3y_cagr', np.nan)
+
+    # R — Quiet Compounder: proven ROIC, not noticed yet. The "boring,
+    # predictable compounder before it gets discovered" pattern that
+    # appears in Mayer's 100-bagger sample.
+    df['arch_quiet_compounder'] = (
+        (roic_lindy >= 0.15) &
+        (n_yrs_roic_pos >= 4) &
+        (mom12.between(-0.10, 0.30)) &
+        (insider >= 0.10) &
+        (shares_growth_3y <= 0.03) &
+        (years_of_history >= 5)
+    ).fillna(False).astype(int)
+
+    # S — Buyback Compounder: shrinking share count + durable ROIC + clean
+    # balance sheet. Greenblatt / capital-allocation classic.
+    df['arch_buyback_compounder'] = (
+        (shares_growth_5y <= -0.05) &
+        (roic_lindy >= 0.08) &
+        (n_yrs_roic_pos >= 4) &
+        (nde <= 1.5)
+    ).fillna(False).astype(int)
+
+    # T — Owner-Operator: management with skin in the game AND multi-year
+    # discipline. Russo's "capacity to suffer" / Mayer's owner-operator
+    # 100-bagger archetype.
+    df['arch_owner_operator'] = (
+        (insider >= 0.20) &
+        (n_yrs_roic_pos >= 4) &
+        (n_yrs_fcf_pos >= 4) &
+        (shares_growth_3y <= 0.02) &
+        (years_of_history >= 5)
+    ).fillna(False).astype(int)
+
+    # U — Quality at a Reasonable Price (QARP): high lindy ROIIC AND not
+    # already discounted as a compounder. Russo-via-Buffett pattern of
+    # paying fair for great vs cheap for mediocre.
+    df['arch_qarp'] = (
+        (roiic_lindy >= 0.15) &
+        (s('ev_ebitda', 999) > 0) & (s('ev_ebitda', 999) <= 12) &
+        (n_yrs_roic_pos >= 4) &
+        (shares_growth_3y <= 0.02)
+    ).fillna(False).astype(int)
+
+    # V — Reinvestment Inflection: ROIIC accelerating from a positive
+    # base AND assets actually growing (not financial-engineering). The
+    # signature of a compounder finding more runway.
+    df['arch_reinvest_inflect'] = (
+        (roiic_lindy >= 0.05) &
+        (roiic_acceleration_v >= 0.05) &
+        (asset_3y_cagr_v >= 0.05)
+    ).fillna(False).astype(int)
+
+    # W — Double Inflection: BOTH NOPAT-ROIC AND cash-ROIC crossed zero
+    # from below in the latest year. Confirms the inflection is real
+    # cash, not accounting-driven (D&A timing, accruals).
+    df['arch_double_inflect'] = (
+        (roic_inflect_v == 1) &
+        (cash_roic_inflect_v == 1)
+    ).astype(int)
+
+    # X — Cash Quality: cash-ROIC running materially ahead of NOPAT-ROIC
+    # over the lindy window. "Earnings hide the cash" — quality-of-
+    # earnings tell that Mauboussin emphasises.
+    df['arch_cash_quality'] = (
+        (cash_roic_lindy > 0.08) &
+        (roic_lindy > 0) &
+        ((cash_roic_lindy - roic_lindy) >= 0.05) &
+        (n_yrs_fcf_pos >= 4)
+    ).fillna(False).astype(int)
+
+    # Y — Capital-Light Pivot: revenue growing AND assets growing slower
+    # AND ROIC turning up. The asset-light transition (franchise / IP /
+    # platform mode).
+    df['arch_capital_light_pivot'] = (
+        (revenue_3y_cagr_v >= 0.08) &
+        (asset_3y_cagr_v < revenue_3y_cagr_v) &
+        (n_yrs_roic_pos >= 3) &
+        ((roic_acceleration_v > 0) | (roic_lindy > 0.10))
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -394,6 +487,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_lindy_fcf',
         'arch_no_dilution',
         'arch_lindy_growth',
+        'arch_quiet_compounder',
+        'arch_buyback_compounder',
+        'arch_owner_operator',
+        'arch_qarp',
+        'arch_reinvest_inflect',
+        'arch_double_inflect',
+        'arch_cash_quality',
+        'arch_capital_light_pivot',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -414,6 +515,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_lindy_fcf': 'LindyFCF',
         'arch_no_dilution': 'NoDilution',
         'arch_lindy_growth': 'LindyGrowth',
+        'arch_quiet_compounder': 'QuietCompounder',
+        'arch_buyback_compounder': 'BuybackCompounder',
+        'arch_owner_operator': 'OwnerOperator',
+        'arch_qarp': 'QARP',
+        'arch_reinvest_inflect': 'ReinvestInflect',
+        'arch_double_inflect': 'DoubleInflect',
+        'arch_cash_quality': 'CashQuality',
+        'arch_capital_light_pivot': 'CapitalLightPivot',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
