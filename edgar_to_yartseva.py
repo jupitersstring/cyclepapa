@@ -32,20 +32,67 @@ CACHE_DIR = Path("edgar_cache")
 
 
 # --- Per-ticker price + momentum (bulk yfinance) -------------------------
+def fetch_prices_cached() -> pd.DataFrame:
+    """Pull prices + market caps + momentum from already-cached
+    *_yartseva.csv files. Avoids re-hitting yfinance (which is often
+    rate-limited). Returns a DataFrame keyed by symbol with the same
+    columns the bulk-yf version produced — anything not derivable from
+    cache is left NaN.
+    """
+    import glob
+    keep = ['symbol', 'price', 'market_cap', 'momentum_12m', 'enterprise_value']
+    frames = []
+    for f in sorted(glob.glob('*_yartseva.csv')):
+        # Skip our own output so we don't pick up empty-price rows from a
+        # prior failed run — that would shadow the populated cached prices.
+        if f == 'us_edgar_yartseva.csv':
+            continue
+        try:
+            d = pd.read_csv(f, usecols=lambda c: c in keep)
+        except Exception:
+            continue
+        if 'symbol' in d.columns:
+            frames.append(d)
+    if not frames:
+        return pd.DataFrame(columns=keep)
+    # Sort rows so non-NaN market_cap wins the dedup. We rank "has data"
+    # rows first, then keep='first'.
+    df = pd.concat(frames, ignore_index=True)
+    df['_has_mcap'] = df['market_cap'].notna().astype(int)
+    df = (df.sort_values(['symbol', '_has_mcap'], ascending=[True, False])
+            .drop_duplicates('symbol', keep='first')
+            .drop(columns=['_has_mcap']))
+    # Approximate 52w high from price + momentum: not directly available,
+    # so leave pct_off_52w_high NaN here. (When yfinance is back, a
+    # follow-up pass can fill this.)
+    df['pct_off_52w_high'] = np.nan
+    return df
+
+
 def fetch_prices_bulk(symbols: list[str]) -> pd.DataFrame:
-    """yfinance.download in batches, returns DataFrame indexed by symbol
-    with price_now, price_1y, momentum_12m, price_52w_high, pct_off_52w_high."""
-    import yfinance as yf
+    """yfinance.download in batches. Falls back to fetch_prices_cached
+    when yfinance is unreachable (rate-limited or network-blocked).
+    """
+    try:
+        import yfinance as yf
+    except ImportError:
+        return fetch_prices_cached()
+
     out_rows = []
     BATCH = 100
+    failed = 0
     for i in range(0, len(symbols), BATCH):
         batch = symbols[i:i + BATCH]
         try:
             data = yf.download(batch, period="1y", interval="1d",
                                group_by="ticker", auto_adjust=True,
-                               progress=False, threads=True, timeout=30)
-        except Exception as e:
-            print(f"  batch fetch fail at {i}: {e}", file=sys.stderr)
+                               progress=False, threads=True, timeout=20)
+        except Exception:
+            failed += 1
+            if failed >= 3:
+                print(f"  yfinance unreachable after {failed} batches — "
+                      f"falling back to cached prices", file=sys.stderr)
+                return fetch_prices_cached()
             continue
         for sym in batch:
             try:
@@ -68,6 +115,8 @@ def fetch_prices_bulk(symbols: list[str]) -> pd.DataFrame:
             except (KeyError, IndexError, AttributeError, TypeError):
                 continue
         time.sleep(0.5)
+    if not out_rows:
+        return fetch_prices_cached()
     return pd.DataFrame(out_rows)
 
 
@@ -84,11 +133,21 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["industry"] = ""
     r["currency"] = "USD"
 
-    # Price + shares -> market cap
-    price = price_row["price"] if (price_row is not None
-                                   and pd.notna(price_row.get("price"))) else None
+    # Price + shares -> market cap. Prefer the cached price+mcap rows
+    # over re-deriving from EDGAR shares × price (which is brittle for
+    # restated share counts and post-split data).
+    price = None
+    market_cap = None
+    if price_row is not None:
+        if pd.notna(price_row.get("price")):
+            price = float(price_row["price"])
+        if pd.notna(price_row.get("market_cap")):
+            market_cap = float(price_row["market_cap"])
     shares = edgar_row.get("shares_outstanding")
-    market_cap = (price * shares) if (price and shares and pd.notna(shares)) else None
+    # Fallback: derive mcap from EDGAR shares × yfinance price if cache
+    # had a price but no mcap.
+    if market_cap is None and price is not None and shares and pd.notna(shares):
+        market_cap = price * shares
     if market_cap is not None and market_cap > 0:
         r["market_cap"] = market_cap
         r["enterprise_value"] = market_cap + (edgar_row.get("total_debt") or 0) - (edgar_row.get("cash") or 0)
@@ -201,6 +260,9 @@ def main():
     ap.add_argument("--out", default="us_edgar_yartseva.csv")
     ap.add_argument("--skip-prices", action="store_true",
                     help="don't fetch yfinance prices (no mcap / momentum cols)")
+    ap.add_argument("--refresh-prices", action="store_true",
+                    help="hit yfinance.download for fresh prices "
+                         "(slow / often rate-limited; use only when needed)")
     args = ap.parse_args()
 
     print("loading EDGAR facts...", file=sys.stderr)
@@ -210,12 +272,17 @@ def main():
     edgar = edgar[edgar["concept_count"].fillna(0) > 0]
     print(f"  {len(edgar):,} rows with non-empty XBRL", file=sys.stderr)
 
-    # Prices in bulk via yfinance
+    # Prices: prefer cache (always reachable). yfinance.download is
+    # available with --refresh-prices but rate-limits make it brittle.
     prices = pd.DataFrame()
     if not args.skip_prices:
-        symbols = edgar["symbol"].dropna().unique().tolist()
-        print(f"fetching prices for {len(symbols):,} symbols...", file=sys.stderr)
-        prices = fetch_prices_bulk(symbols)
+        if args.refresh_prices:
+            symbols = edgar["symbol"].dropna().unique().tolist()
+            print(f"fetching prices for {len(symbols):,} symbols via yfinance...", file=sys.stderr)
+            prices = fetch_prices_bulk(symbols)
+        else:
+            print("loading cached prices from existing *_yartseva.csv...", file=sys.stderr)
+            prices = fetch_prices_cached()
         print(f"  got {len(prices):,} price rows", file=sys.stderr)
 
     # Merge

@@ -11,6 +11,7 @@ declare -A SRC=(
     [us_nano_micro_small_yartseva.csv]=US
     [us_largecap_yartseva.csv]=US
     [us_unc_yartseva.csv]=US
+    [us_edgar_yartseva.csv]=US
     [ca_yartseva.csv]=CA
     # UK
     [uk_yartseva.csv]=UK
