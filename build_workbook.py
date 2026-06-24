@@ -976,7 +976,7 @@ CREATIVE_MEASURES = [
     ('results_clean_topline/screener.csv', 'Clean Top-Line',
      'Names with revenue +15%, gross profit +15%, and gross margin expanding — hardest-to-fake fundamentals.',
      None),
-    ('results_op_leverage/screener.csv', 'Operating Leverage',
+    ('results_operating_leverage/screener.csv', 'Operating Leverage',
      'Revenue grows X%, EBITDA grows ≥2X% — margins scaling, true operating leverage.',
      None),
     ('results_fcf_yield/screener.csv', 'FCF Yield',
