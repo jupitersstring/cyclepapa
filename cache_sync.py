@@ -140,16 +140,46 @@ def push():
         f'Reassemble via `python cache_sync.py pull` on the analysis branch.\n\n'
         f'See `cache_chunks/MANIFEST` for snapshot metadata.\n'
     )
-    # Stage + commit + force-push
-    w(['git', 'add', '-A'])
-    msg = f'Cache snapshot {time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())} ({n_chunks} chunks, {total/1e6:.1f} MB)'
+    # Incremental commit+push: one chunk per commit, push after each.
+    # The proxy rejects pushes >~100MB, so single-commit-all-chunks fails on
+    # large caches. Each iteration commits one more chunk and pushes the
+    # accumulated branch state, so each push body is bounded by the chunk
+    # size (~90 MB). First push uses --force to overwrite the prior snapshot;
+    # subsequent pushes are fast-forwards onto our just-pushed HEAD.
+    chunk_files = sorted((target).glob('part_*'))
+    # Always stage the MANIFEST + README first so the early-commit branch
+    # is at least minimally valid if we crash mid-way.
+    w(['git', 'add', 'README.md', f'cache_chunks/MANIFEST'])
+    msg0 = f'Cache snapshot start {time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())} '\
+           f'({n_chunks} chunks, {total/1e6:.1f} MB)'
     r = w(['git', '-c', 'user.email=cache-sync@cyclepapa', '-c', 'user.name=cache-sync',
-           'commit', '-m', msg])
+           'commit', '-m', msg0])
     if r.returncode != 0:
         print(f'commit failed: {r.stderr}'); return 3
+    # Force-push the empty branch first (removes any prior cache-snapshot)
     r = w(['git', 'push', '--force', 'origin', f'HEAD:{SNAPSHOT_BRANCH}'])
     if r.returncode != 0:
-        print(f'push failed: {r.stderr}\n{r.stdout}'); return 4
+        print(f'initial force-push failed: {r.stderr}\n{r.stdout}'); return 4
+    print(f'  -- pushed snapshot scaffold')
+
+    for i, ch in enumerate(chunk_files, 1):
+        w(['git', 'add', f'cache_chunks/{ch.name}'])
+        cmsg = f'Cache snapshot chunk {i}/{n_chunks}: {ch.name} ({ch.stat().st_size/1e6:.1f} MB)'
+        r = w(['git', '-c', 'user.email=cache-sync@cyclepapa', '-c', 'user.name=cache-sync',
+               'commit', '-m', cmsg])
+        if r.returncode != 0:
+            print(f'commit {i} failed: {r.stderr}'); return 3
+        # Push (fast-forward) — proxy can handle a single ~90MB chunk
+        r = w(['git', 'push', 'origin', f'HEAD:{SNAPSHOT_BRANCH}'])
+        if r.returncode != 0:
+            print(f'  push of chunk {i} failed: {r.stderr}\n{r.stdout}')
+            # Retry with explicit large postBuffer + verbose for diagnostics
+            w(['git', 'config', 'http.postBuffer', '209715200'])  # 200MB
+            r = w(['git', 'push', 'origin', f'HEAD:{SNAPSHOT_BRANCH}'])
+            if r.returncode != 0:
+                print(f'  retry failed: {r.stderr}\n{r.stdout}'); return 4
+        print(f'  pushed chunk {i}/{n_chunks}: {ch.name}')
+    msg = f'Cache snapshot {time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())} ({n_chunks} chunks, {total/1e6:.1f} MB)'
     print(f'Pushed to origin/{SNAPSHOT_BRANCH}: {msg}')
     # Cleanup worktree
     _run(['git', 'worktree', 'remove', '--force', str(wt)])
