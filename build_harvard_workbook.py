@@ -315,7 +315,7 @@ def build_cover(ws: Worksheet, n_total: int, n_green: int, n_yellow: int, n_unre
 
     # Edition / authorship line (Harvard cover style)
     d = ws.cell(row=7, column=2,
-                value="Compiled from the Yartseva–Pew–Berezin asymmetry framework  ·  As of 20 June 2026")
+                value="Compiled from the asymmetry framework (Yartseva-aligned upside, Graham downside floor)  ·  As of 20 June 2026")
     d.font = _font(size=10, color=MUTED, name=SANS, italic=True)
     ws.merge_cells(start_row=7, start_column=2, end_row=7, end_column=5)
 
@@ -323,12 +323,16 @@ def build_cover(ws: Worksheet, n_total: int, n_green: int, n_yellow: int, n_unre
     _section_rule(ws, 11, "Abstract", span_cols=5)
     abstract = (
         "This workbook documents the top-50 names from a global cross-listing universe of "
-        f"{n_total:,} equities ranked by an entry-today asymmetry score that blends "
-        "Yartseva inflection signals, Pew sub-book / net-cash floors, Berezin growth quality, "
-        "and an intrinsic-discount overlay. Each candidate has been "
-        "qualitatively reviewed and assigned a verdict of Green (high-conviction), Yellow "
-        "(risk-flagged), Red (avoid) or — where due diligence remains incomplete — Unresearched. "
-        "Sheets are sequenced as Cover · Methodology · Index · per-name pages · Coverage · References."
+        f"{n_total:,} equities ranked by an entry-today asymmetry score. The upside leg "
+        "weights factors Anna Yartseva (CAFE WP 33, 2025) finds predictive of 10-bagger "
+        "outcomes — FCF yield, book-to-market, small size, profitability level, asset-"
+        "growth gate, contra-momentum — plus an internal microcap deep-value composite "
+        "(P/S, P/B, gross-profit / mcap, insider, leverage, momentum). The downside floor "
+        "leg combines Graham net-net, cash > EV, sub-book and Pew-style negative-EV "
+        "signals. Each candidate has been qualitatively reviewed and assigned a verdict "
+        "of Green (high-conviction), Yellow (risk-flagged), Red (avoid) or — where due "
+        "diligence remains incomplete — Unresearched. Sheets are sequenced as Cover · "
+        "Methodology · Index · per-name pages · Coverage · References."
     )
     a = ws.cell(row=12, column=2, value=abstract)
     a.font = _font(size=11, name=SERIF)
@@ -869,14 +873,46 @@ def main():
     build_coverage(cov, df, top)
 
     refs = [
-        ("Alta Fox Capital (2020)", "Makings of a Multibagger. Internal research note. altafoxcapital.com."),
-        ("Berezin, M. (2023)", "Growth-quality screens for emerging-market smid-caps. Working paper."),
+        ("Yartseva, A. (2025)",
+         "The Alchemy of Multibagger Stocks: An empirical investigation of factors that "
+         "drive outperformance in the stock market. CAFE Working Paper 33, "
+         "Birmingham City University. https://www.open-access.bcu.ac.uk/16180/"),
+        ("Alta Fox Capital (2020)",
+         "Makings of a Multibagger. Summer Intern Class Project. "
+         "https://www.altafoxcapital.com/s/Makings-of-a-MultiBagger.pdf"),
+        ("Mayer, C. (2015)",
+         "100 Baggers: Stocks That Return 100-to-1 and How to Find Them. "
+         "Laissez Faire Books."),
+        ("Phelps, T. W. (1972)",
+         "100 to 1 in the Stock Market. McGraw-Hill, New York."),
         ("Graham, B. (1934)", "Security Analysis. McGraw-Hill, New York."),
-        ("Pew, A. (2022)", "Cash-as-floor screening: negative-EV and Graham net-net heuristics. Pew Capital."),
-        ("Yartseva, K. (2024)", "Inflection-driven small-cap selection: the first-positive print as entry signal. Yartseva Capital."),
-        ("Yellowbrick (2023)", "Multibagger archetype taxonomy: clusters A through G. Yellowbrick Road Capital."),
-        ("yfinance (2026)", "Yahoo! Finance python wrapper. github.com/ranaroussi/yfinance, accessed 20 June 2026."),
-        ("financedatabase (2026)", "Open securities database. github.com/JerBouma/FinanceDatabase, accessed 20 June 2026."),
+        ("Greenblatt, J. (2006)",
+         "The Little Book That Beats the Market. Wiley."),
+        ("Mauboussin, M. J. (2017)",
+         "The Base Rate Book: Integrating the Past to Better Anticipate the Future. "
+         "Credit Suisse."),
+        ("Russo, T. (2014)",
+         "Global Value: How to Spot Bubbles, Avoid Market Crashes, and Earn Big Returns "
+         "in the Stock Market. Graham & Doddsville interview series."),
+        ("Cassel, I. (MicroCapClub)",
+         "Top 10 Things in Micro Cap Investing. https://microcapclub.com/"),
+        ("SEC EDGAR (2026)",
+         "XBRL company-facts API. https://data.sec.gov/api/xbrl/companyfacts/, "
+         "accessed 24 June 2026."),
+        ("yfinance (2026)",
+         "Yahoo! Finance Python wrapper. https://github.com/ranaroussi/yfinance, "
+         "accessed 20 June 2026."),
+        ("financedatabase (2026)",
+         "Open securities database. https://github.com/JerBouma/FinanceDatabase, "
+         "accessed 20 June 2026."),
+        ("Internal house frameworks",
+         "The Pew negative-EV screen (pew_archetype.py) and Berezin / Stockcoach "
+         "microcap deep-value composite (yartseva_db.py) are internal naming "
+         "conventions for hand-rolled archetypes adapted from public deep-value / "
+         "MicroCapClub heritage — not citations to published frameworks. The "
+         "'archetype taxonomy' is internal; the joinyellowbrick.com platform's "
+         "Multibagger Monitor inspired the cluster-A through G naming but is not "
+         "the source of the specific tag definitions."),
     ]
     refs_sheet = wb.create_sheet("References")
     build_references(refs_sheet, refs)

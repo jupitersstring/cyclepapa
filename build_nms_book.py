@@ -78,8 +78,9 @@ def build_nms_cover(ws, n_universe: int, n_nms: int, top_n: int, n_regions: int,
     ws.row_dimensions[5].height = 6
 
     d = ws.cell(row=7, column=2,
-                value=("Compiled from the Yartseva–Pew–Berezin asymmetry framework  ·  "
-                       "Filtered to Nano / Micro / Small-Cap buckets  ·  As of 20 June 2026"))
+                value=("Compiled from the asymmetry framework (Yartseva-aligned upside, "
+                       "Graham downside floor)  ·  Nano / Micro / Small-Cap buckets  ·  "
+                       "As of 24 June 2026"))
     d.font = _font(size=10, color=MUTED, name=SANS, italic=True)
     ws.merge_cells(start_row=7, start_column=2, end_row=7, end_column=5)
 
