@@ -1,0 +1,56 @@
+# source: yfinance most-shorted universe (borrow fee ABSENT — crowded-short/liquidity half only)
+# universe size: 70
+
+Short-squeeze screen — 70 names  |  WATCH=40  LOW=29  INSUFFICIENT_DATA=1
+------------------------------------------------------------------------------
+  #  TKR    CLASS           score conf   struct  flags
+  1  RH     WATCH            68.4 LOW     100.0
+  2  GRPN   WATCH            63.3 LOW     100.0
+  3  IBRX   WATCH            58.8 LOW      80.0
+  4  BEAM   WATCH            58.3 LOW      80.0
+  5  NTLA   WATCH            55.7 LOW      80.0
+  6  EVGO   WATCH            53.4 LOW      80.0
+  7  XRX    WATCH            53.0 LOW      80.0
+  8  OCGN   WATCH            52.8 LOW      60.0
+  9  AI     WATCH            50.9 LOW      80.0
+ 10  UPST   WATCH            50.9 LOW      80.0
+ 11  TRIP   WATCH            50.9 LOW      80.0
+ 12  RUN    WATCH            50.9 LOW      80.0
+ 13  TWST   WATCH            50.9 LOW      80.0
+ 14  HTZ    WATCH            50.9 LOW      80.0
+ 15  SATS   WATCH            50.9 LOW      80.0
+ 16  SPRY   WATCH            50.6 LOW      80.0
+ 17  ELF    WATCH            50.4 LOW      60.0
+ 18  LCID   WATCH            48.5 LOW      80.0
+ 19  ASAN   WATCH            48.5 LOW      80.0
+ 20  PATH   WATCH            48.5 LOW      80.0
+ 21  EOSE   WATCH            48.5 LOW      80.0
+ 22  PLAY   WATCH            48.4 LOW      80.0
+ 23  BYND   WATCH            48.0 LOW      60.0
+ 24  RUM    WATCH            47.2 LOW      60.0
+ 25  BTDR   WATCH            46.2 LOW      80.0
+ 26  RXRX   WATCH            46.2 LOW      80.0
+ 27  PCT    WATCH            46.2 LOW      80.0
+ 28  TMDX   WATCH            46.2 LOW      80.0
+ 29  CRML   WATCH            45.0 LOW      60.0
+ 30  KRUS   WATCH            45.0 LOW      60.0
+ 31  FLWS   WATCH            44.9 LOW      80.0 [illiquid]
+ 32  CLSK   WATCH            44.0 LOW      80.0
+ 33  SOUN   WATCH            44.0 LOW      80.0
+ 34  FLNC   WATCH            44.0 LOW      80.0
+ 35  HIMS   WATCH            44.0 LOW      80.0
+ 36  KOD    WATCH            43.1 LOW      60.0
+ 37  RCKT   WATCH            41.2 LOW      60.0
+ 38  PRME   WATCH            41.2 LOW      60.0
+ 39  INDI   WATCH            41.2 LOW      60.0
+ 40  WGS    WATCH            41.2 LOW      60.0
+ 41  SRPT   LOW              39.4 LOW      60.0
+ 42  LYFT   LOW              39.4 LOW      60.0
+ 43  ARRY   LOW              39.4 LOW      60.0
+ 44  PCRX   LOW              38.0 LOW      60.0
+ 45  CORZ   LOW              37.5 LOW      60.0
+ 46  WULF   LOW              37.5 LOW      60.0
+ 47  CHWY   LOW              37.0 LOW      40.0
+ 48  ARCT   LOW              36.7 LOW      60.0 [illiquid]
+ 49  MPT    LOW              36.3 LOW      60.0
+ 50  CSIQ   LOW              34.6 LOW      60.0
