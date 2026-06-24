@@ -38,12 +38,49 @@ import pandas as pd
 
 
 def is_pharma_bio(row) -> bool:
-    s = str(row.get("sector", "")); ind = str(row.get("industry", "")); nm = str(row.get("name", ""))
-    if "health" in s.lower():
+    """Drop ONLY pre-revenue / negative-EBIT pharma & biotech cash burners.
+
+    The earlier 'drop all Health Care' approach is wrong - it removes
+    Agilent (mis-tagged 'Biotechnology' in financedatabase but actually
+    Life Sciences Tools), McKesson, Veeva, Vertex, Regeneron, Gilead -
+    all profitable operating businesses with normal fundamentals. The
+    correct rule is to drop only biotech/pharma names where the
+    fundamentals are the noisy ones the asymmetry framework can't
+    score: negative EBITDA margin AND tiny revenue.
+    """
+    ind = str(row.get("industry", "")).lower()
+    nm = str(row.get("name", "")).lower()
+
+    biotech_terms = ("biotechnology", "pharmaceuticals")
+    name_signals = ("therapeut", "biosci", "biopharm", "biotech ", " biotech")
+    is_biotech_industry = (
+        any(k in ind for k in biotech_terms)
+        or any(k in nm for k in name_signals)
+    )
+    if not is_biotech_industry:
+        return False
+
+    # Industry/name suggests biotech. Only drop if also LOSS-MAKING or
+    # essentially pre-revenue.
+    em = row.get("ebitda_margin")
+    rev = row.get("revenue_ttm")
+    try:
+        em_v = float(em) if em is not None else None
+    except (TypeError, ValueError):
+        em_v = None
+    try:
+        rev_v = float(rev) if rev is not None else None
+    except (TypeError, ValueError):
+        rev_v = None
+    # Drop if EBITDA margin is meaningfully negative
+    if em_v is not None and em_v < -0.05:
         return True
-    for k in ["biotech", "pharma", "drug", "biolog", "medic", "therapeut", "diagnos"]:
-        if k in ind.lower() or k in nm.lower():
-            return True
+    # Drop if essentially pre-revenue
+    if rev_v is not None and rev_v < 10_000_000:
+        return True
+    # Drop if we have no fundamentals at all (likely a true shell biotech)
+    if em_v is None and rev_v is None:
+        return True
     return False
 
 
@@ -278,11 +315,19 @@ def main():
     print(f"loaded: {len(df)}", file=sys.stderr)
 
     df["name_str"] = df["name"].astype(str).str.lower().str.strip()
+    # mcap floor — keep names with EDGAR-sourced fundamentals even when
+    # we don't have a cached price (mcap NaN). For those, we substitute
+    # book equity as a scale proxy: a company filing audited XBRL with
+    # >$10M equity is a real listed company, not a shell.
+    mcap_for_filter = df["market_cap"].copy()
+    if "equity" in df.columns:
+        # Equity column flows in from us_edgar_yartseva.csv via load_concat
+        mcap_for_filter = mcap_for_filter.fillna(df["equity"])
     df = df[
         (df["name_str"] != "nan")
         & (~df["name_str"].isin(["one", "two", "three", "nan", ""]))
         & (df["name_str"].str.len() > 3)
-        & (df["market_cap"].fillna(0) >= args.min_mcap)
+        & (mcap_for_filter.fillna(0) >= args.min_mcap)
     ]
     df = df[~df.apply(is_pharma_bio, axis=1)].copy()
 

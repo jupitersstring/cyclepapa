@@ -174,6 +174,16 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["cfo_ttm"] = edgar_row.get("cfo_ttm")
     r["fcf_ttm"] = edgar_row.get("fcf_ttm")
     r["balance_sheet_date"] = edgar_row.get("assets_end") or edgar_row.get("equity_end")
+    # Surface raw balance-sheet levels so downstream gates can use them
+    # as scale proxies when market_cap is missing.
+    r["equity"] = edgar_row.get("equity")
+    r["assets"] = edgar_row.get("assets")
+    r["cash"] = edgar_row.get("cash")
+    r["total_debt"] = edgar_row.get("total_debt")
+    r["tangible_equity"] = edgar_row.get("tangible_equity")
+    r["goodwill"] = edgar_row.get("goodwill")
+    r["intangibles"] = edgar_row.get("intangibles")
+    r["shares_outstanding"] = edgar_row.get("shares_outstanding")
 
     # Margins
     r["ebitda_margin"] = edgar_row.get("ebitda_margin")

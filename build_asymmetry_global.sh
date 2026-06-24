@@ -136,11 +136,17 @@ for f in "${!SRC[@]}"; do
 done
 
 echo "merging ${#ARGS[@]} CSVs"
+# Coverage philosophy: surface the full universe in asymmetry_global so
+# every EDGAR-with-XBRL name (and every yfinance-covered name with even
+# minimal scoreable data) lands. Downstream pipelines (top-50 workbook,
+# NMS book, candidates tiers) apply their own quality floors. The
+# 5M USD mcap-or-equity floor is still applied to exclude untradeable
+# shells.
 "$VENV" asymmetry_rank.py \
     --csvs "${ARGS[@]}" \
     --pew pew_global.csv \
     --out asymmetry_global.csv \
     --top 30000 \
-    --min-upside 0.15 \
+    --min-upside 0.00 \
     --min-downside-floor 0.00 \
     --min-mcap 5000000
