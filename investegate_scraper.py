@@ -208,9 +208,17 @@ def _parse_page(html: str, epic: str | None = None,
 # ---------------------------------------------------------------------------
 
 def fetch_company(epic: str, *, use_cache: bool = True,
-                  ttl_hours: float = 24.0) -> list[Announcement]:
-    """Fetch RNS announcements for EPIC. Returns chronological list
-    (most recent first), already in cache for next call."""
+                  ttl_hours: float = 24.0,
+                  max_pages: int = 3) -> list[Announcement]:
+    """Fetch RNS announcements for EPIC across multiple pages.
+
+    Investegate paginates at 50 items / page with ?page=N query param.
+    Default max_pages=3 covers ~150 items (~12 months of filings on a
+    typical active trust). For wind-downs / activist-targeted names
+    this materially extends the window — Saba's stake-build TR-1s
+    often sit at items 60-90 by the time later filings push them off
+    page 1. Returns chronological list (most recent first), deduped
+    by URL, cached as union of all pages."""
     _ensure_cache_dir()
     epic = (epic or "").strip().upper().replace(".L", "")
     if not epic:
@@ -223,21 +231,38 @@ def fetch_company(epic: str, *, use_cache: bool = True,
             return [Announcement(**a) for a in data]
         except Exception:
             pass
-    url = f"{BASE}/company/{epic}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            html = resp.read().decode("utf-8", errors="replace")
-    except Exception:
-        return []
-    items = _parse_page(html, epic=epic)
-    if use_cache:
+    all_items: list[Announcement] = []
+    seen_urls: set[str] = set()
+    for page in range(1, max_pages + 1):
+        url = (f"{BASE}/company/{epic}"
+               if page == 1
+               else f"{BASE}/company/{epic}?page={page}")
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                html = resp.read().decode("utf-8", errors="replace")
+        except Exception:
+            break
+        page_items = _parse_page(html, epic=epic)
+        if not page_items:
+            break   # fallback page or no more content
+        added = 0
+        for it in page_items:
+            if it.url and it.url not in seen_urls:
+                seen_urls.add(it.url)
+                all_items.append(it)
+                added += 1
+        # If nothing new appeared this page, stop (pagination
+        # exhausted or server returned page 1 again).
+        if added == 0:
+            break
+    if use_cache and all_items:
         try:
             with open(cp, "w") as f:
-                json.dump([asdict(a) for a in items], f)
+                json.dump([asdict(a) for a in all_items], f)
         except Exception:
             pass
-    return items
+    return all_items
 
 
 def signal_score_from_rns(

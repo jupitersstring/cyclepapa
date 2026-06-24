@@ -152,6 +152,9 @@ class ScreenResult:
     # Auto-promotion provenance
     catalyst_static: str | None = None        # tag as written in universe.csv
     catalyst_promoted_by: str | None = None   # "rns" / "discount_stretch" / "none"
+
+    # Per-name explainer: top 3 drivers of the current ranking
+    top_drivers: str | None = None
     rns_tr1: int | None = None
     rns_pdmr: int | None = None
     rns_winddown: int | None = None
@@ -609,6 +612,48 @@ def dividend_carry_irr(
     y = yield_pct / 100.0
     # Credit 70% of carry — empirically the share that survives.
     return 0.70 * y
+
+
+def explain_drivers(r) -> str:
+    """Return a short comma-separated string of the top drivers of this
+    name's ranking. Helps a human read the CSV at a glance without
+    having to cross-reference 70 columns."""
+    drivers = []
+    # Discount + recovery
+    if r.nav_discount_est and r.nav_discount_est > 0.25:
+        d = f"disc {r.nav_discount_est*100:.0f}%"
+        if r.discount_vs_sector_pp and r.discount_vs_sector_pp > 5:
+            d += f" (+{r.discount_vs_sector_pp:.0f}pp vs peers)"
+        drivers.append(d)
+    # Catalyst
+    if r.catalyst and r.catalyst not in ("STRUCTURAL_DISCOUNT", ""):
+        cat = r.catalyst.replace("_", " ").lower()
+        if r.catalyst_promoted_by and r.catalyst_promoted_by != "none":
+            cat += f" (auto-promoted by {r.catalyst_promoted_by})"
+        drivers.append(cat)
+    # Activist / resolution
+    if r.resolution_score and r.resolution_score >= 0.30:
+        drivers.append(f"resolution {r.resolution_score:.2f}")
+    if r.rns_tr1_activist_buys:
+        drivers.append(f"activist ×{int(r.rns_tr1_activist_buys)}")
+    if r.rns_pdmr_buys and r.rns_pdmr_buys >= 2:
+        amt = f" (£{r.pdmr_buy_gbp/1000:.0f}k)" if r.pdmr_buy_gbp else ""
+        drivers.append(f"insider buys ×{int(r.rns_pdmr_buys)}{amt}")
+    if r.rns_tr1_material_adds:
+        drivers.append(f"material adds ×{int(r.rns_tr1_material_adds)}")
+    # Saba flag
+    if r.saba_ukit_member:
+        drivers.append("Saba UKIT")
+    # Chart
+    if r.phase in ("BASE_ABSORBING", "BASE_BREAKOUT", "CAPITULATION"):
+        drivers.append(r.phase.lower().replace("_", " "))
+    # Dividend yield
+    if r.dividend_yield_pct and r.dividend_yield_pct >= 5.0:
+        drivers.append(f"yield {r.dividend_yield_pct:.1f}%")
+    # Catalyst age (wind-down progress)
+    if r.catalyst_age_months and r.catalyst_age_months >= 12:
+        drivers.append(f"{r.catalyst_age_months:.0f}m into workout")
+    return "; ".join(drivers[:5]) if drivers else ""
 
 
 def is_discount_stretched(

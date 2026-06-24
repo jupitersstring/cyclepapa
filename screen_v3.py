@@ -357,6 +357,9 @@ def screen_one(
     # (Historical discount context populated earlier — used for the
     # discount-stretch promotion test.)
 
+    # Per-name "why this rank" explainer
+    r.top_drivers = core.explain_drivers(r)
+
     return r
 
 
