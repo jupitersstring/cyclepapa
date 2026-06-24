@@ -35,6 +35,18 @@ try:
 except Exception:
     _HAS_CAMPAIGNS = False
 
+try:
+    import board_sentiment as _sentiment
+    _HAS_SENTIMENT = True
+except Exception:
+    _HAS_SENTIMENT = False
+
+try:
+    import tender_outcomes as _tenders
+    _HAS_TENDERS = True
+except Exception:
+    _HAS_TENDERS = False
+
 
 # ---------------------------------------------------------------------------
 
@@ -48,6 +60,10 @@ def screen_one(
     ohlcv: pd.DataFrame | None,
     daily_ohlcv: pd.DataFrame | None = None,
     active_campaigns: dict[str, list[str]] | None = None,
+    board_sentiment: dict | None = None,
+    tender_history: dict | None = None,
+    fof_holdings: list[tuple[str, float]] | None = None,
+    discount_lookup: dict[str, float] | None = None,
 ) -> core.ScreenResult:
 
     row = metadata.load_universe().get(ticker.upper())
@@ -164,6 +180,34 @@ def screen_one(
 
     # Discount
     _populate_discount(r, aic_summary, yahoo_discount, row)
+    # Fund-of-fund look-through. For CEF-of-CEFs (MIGO, OIT, MGCI etc.)
+    # the effective discount = own + weighted-average of holdings'
+    # discounts. Computed BEFORE the early-return so even no-discount
+    # parents are surfaced (they sometimes are the cheapest exposure
+    # to the underlying basket).
+    if fof_holdings and discount_lookup:
+        components = []
+        total_w = 0.0
+        weighted_sum = 0.0
+        for h_ticker, w_pct in fof_holdings:
+            h_disc = discount_lookup.get(h_ticker)
+            if h_disc is None:
+                continue
+            total_w += w_pct
+            weighted_sum += w_pct * h_disc
+            components.append(f"{h_ticker}@{h_disc*100:.0f}%")
+        if total_w > 0:
+            holdings_avg_disc = weighted_sum / total_w
+            own_disc = r.nav_discount_est or 0.0
+            # Effective discount blends: 60% own (you buy at this price)
+            # + 40% underlying (you indirectly get this extra cushion)
+            r.look_through_discount = round(
+                own_disc * 0.6 + holdings_avg_disc * 0.4 + own_disc * 0.4, 4)
+            # Simpler / cleaner: own + (holdings_avg × 0.4) — gives the
+            # marginal benefit of the underlying-discount basket. Use that.
+            r.look_through_discount = round(own_disc + holdings_avg_disc * 0.4, 4)
+            r.look_through_holdings = ", ".join(components[:5])
+
     # If we still have nothing, mark explicitly — the previous
     # behaviour silently scored these at zero IRR which made them
     # invisible to the diagnostics. We want to see them.
@@ -181,6 +225,13 @@ def screen_one(
         r.discount_52w_high = aic_summary.get("discount_52w_high")
         r.discount_52w_low = aic_summary.get("discount_52w_low")
         r.dividend_yield_pct = aic_summary.get("dividend_yield_pct")
+        # Bid-ask spread (transaction cost) — destroys IRR on illiquid
+        # stub names if wide.
+        bid = aic_summary.get("bid")
+        ask = aic_summary.get("ask")
+        if bid and ask and bid > 0 and ask > 0:
+            mid = (bid + ask) / 2.0
+            r.bid_ask_spread_pct = (ask - bid) / mid if mid > 0 else None
 
     # Saba UKIT membership — strong activist-engagement flag
     try:
@@ -274,14 +325,38 @@ def screen_one(
         # +5% per distinct activist group, capped at +20%
         campaign_mult = 1.0 + min(0.20, 0.05 * len(groups))
 
+    # Board sentiment — small additional bump for constructive boards,
+    # small haircut for defensive ones. Capped ±15% on top of other lifts.
+    sent_mult = 1.0
+    if board_sentiment is not None:
+        s = float(board_sentiment.get("score") or 0.0)
+        r.board_sentiment = round(s, 3)
+        r.board_sentiment_date = board_sentiment.get("date")
+        # Map score in [-1, +1] to multiplier in [0.85, 1.15]
+        sent_mult = 1.0 + 0.15 * max(-1.0, min(1.0, s))
+
+    # Tender history — chronic oversubscription = pressure for larger
+    # return. Two or more oversubscribed tenders in 24m bump prob +10%.
+    tender_mult = 1.0
+    if tender_history is not None:
+        r.n_tenders_24m = int(tender_history.get("n_tenders", 0))
+        r.n_oversubscribed_tenders_24m = int(
+            tender_history.get("n_oversubscribed", 0))
+        if r.n_oversubscribed_tenders_24m >= 2:
+            tender_mult = 1.10
+        elif r.n_oversubscribed_tenders_24m == 1:
+            tender_mult = 1.05
+
     if signal is not None and (signal.coverage_ok or signal.rns_available):
         mult = 0.70 + 1.30 * signal.signal_score
         res = getattr(signal, "resolution_score", 0.0) or 0.0
         res_mult = 1.0 + 0.40 * res
         r.catalyst_prob_signal_adj = min(
-            0.95, base_prob * mult * res_mult * campaign_mult)
+            0.95, base_prob * mult * res_mult * campaign_mult
+            * sent_mult * tender_mult)
     else:
-        r.catalyst_prob_signal_adj = min(0.95, base_prob * campaign_mult)
+        r.catalyst_prob_signal_adj = min(
+            0.95, base_prob * campaign_mult * sent_mult * tender_mult)
 
     # Catalyst-age adjustment for wind-downs / RoC. If the universe
     # row has a catalyst_date, compute months elapsed and apply both
@@ -314,6 +389,18 @@ def screen_one(
         except ValueError:
             pass
     r.expected_duration_months = months
+
+    # Exit-liquidity sanity check. Sensible position = 1% of a £10m
+    # book = £100k. To exit cleanly over `months` we want cumulative
+    # daily-value over that period >= 2× position size, i.e. £200k.
+    if aic_record is not None:
+        dv = core._as_float(aic_record.get("AvgValTrd1M"))
+        if dv:
+            # AvgValTrd1M is in £m daily. Trading days in `months` ≈ 21*months.
+            cumvol_m = dv * 21.0 * months
+            r.cumulative_volume_to_exit = round(cumvol_m, 3)
+            sensible_pos_m = 0.10   # £100k position floor
+            r.exit_liquidity_ok = cumvol_m >= 2 * sensible_pos_m
     r.expected_upside = (r.expected_total_return or 0.0) * (r.catalyst_prob_signal_adj or 0.0)
     # IRR has two components:
     #   (a) annualised event return (existing math)
@@ -523,6 +610,76 @@ def main() -> int:
         except Exception as exc:
             print(f"[v3] campaign detector failed: {exc}", file=sys.stderr)
 
+    # 4e) Fund-of-fund holdings seed
+    fof_holdings: dict[str, list[tuple[str, float]]] = {}
+    fof_csv = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "fof_holdings.csv"
+    if fof_csv.exists():
+        try:
+            import csv as _csv
+            with open(fof_csv) as f:
+                for row in _csv.DictReader(f):
+                    p = row["parent_ticker"]
+                    h = row["holding_ticker"]
+                    w = float(row.get("weight_pct") or 0)
+                    fof_holdings.setdefault(p, []).append((h, w))
+            print(f"[v3] FoF holdings loaded for {len(fof_holdings)} parent(s)",
+                  file=sys.stderr)
+        except Exception as exc:
+            print(f"[v3] fof load failed: {exc}", file=sys.stderr)
+
+    # 4d) Tender outcomes — chronic oversubscription rollup
+    tender_rollup: dict[str, dict] = {}
+    tenders_csv = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "tender_outcomes.csv"
+    if tenders_csv.exists() and _HAS_TENDERS:
+        try:
+            import csv as _csv
+            rows = []
+            with open(tenders_csv) as f:
+                for row in _csv.DictReader(f):
+                    rows.append({
+                        "ticker": row["ticker"],
+                        "date": row["date"],
+                        "oversubscribed": row["oversubscribed"].lower() == "true",
+                        "pct_isc": float(row["pct_isc"]) if row.get("pct_isc") else 0.0,
+                    })
+            tender_rollup = _tenders.rollup(rows)
+            chronic = sum(1 for v in tender_rollup.values() if v["n_oversubscribed"] >= 2)
+            print(f"[v3] tender history loaded: {len(tender_rollup)} ticker(s), "
+                  f"{chronic} chronically oversubscribed", file=sys.stderr)
+        except Exception as exc:
+            print(f"[v3] tender load failed: {exc}", file=sys.stderr)
+
+    # 4c) Board-commentary sentiment from cached results filings
+    sentiment_by_ticker: dict[str, dict] = {}
+    sent_csv = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "board_sentiment.csv"
+    if sent_csv.exists():
+        try:
+            import csv as _csv
+            with open(sent_csv) as f:
+                for row in _csv.DictReader(f):
+                    t = row["ticker"]
+                    cur = sentiment_by_ticker.get(t)
+                    if cur is None or row["date"] > cur["date"]:
+                        sentiment_by_ticker[t] = {
+                            "score": float(row["score"]),
+                            "date": row["date"],
+                        }
+            print(f"[v3] board sentiment loaded: "
+                  f"{len(sentiment_by_ticker)} ticker(s)", file=sys.stderr)
+        except Exception as exc:
+            print(f"[v3] sentiment load failed: {exc}", file=sys.stderr)
+
+    # 4f) Pre-build a ticker -> discount lookup for look-through math
+    discount_by_ticker: dict[str, float] = {}
+    for sym, rec in aic_summ.items():
+        d = rec.get("discount") if rec else None
+        if d is not None:
+            discount_by_ticker[sym] = d
+    # Non-UK from Yahoo
+    for sym, d in yh_discounts.items():
+        if sym not in discount_by_ticker and d is not None:
+            discount_by_ticker[sym] = d
+
     # 5) Score (with optional daily-bar pull for spike detection)
     fetch_daily = bool(args.daily_spike)
     results: list[core.ScreenResult] = []
@@ -539,6 +696,10 @@ def main() -> int:
                 ohlcv=price_store.get(sym, ttl_hours=args.price_ttl_h),
                 daily_ohlcv=daily,
                 active_campaigns=active_campaigns,
+                board_sentiment=sentiment_by_ticker.get(sym),
+                tender_history=tender_rollup.get(sym),
+                fof_holdings=fof_holdings.get(sym),
+                discount_lookup=discount_by_ticker,
             )
             # Peer-relative discount — current vs sector median.
             # Positive = wider than peers (potentially more setup).

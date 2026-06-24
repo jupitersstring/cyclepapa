@@ -166,6 +166,27 @@ class ScreenResult:
     # Active cross-name campaign membership (pipe-separated activist
     # groups whose recent buying campaign includes this ticker).
     active_campaign_groups: str | None = None
+
+    # Board-commentary sentiment from latest results filing
+    # (-1 defensive → +1 constructive). Defensive boards justify the
+    # status quo; constructive boards talk about reviews / advisors /
+    # capital return.
+    board_sentiment: float | None = None
+    board_sentiment_date: str | None = None
+
+    # Tender history — chronically oversubscribed tenders signal
+    # pressure for a larger return of capital
+    n_tenders_24m: int | None = None
+    n_oversubscribed_tenders_24m: int | None = None
+
+    # Liquidity / spread — informational gates that surface in top_drivers
+    bid_ask_spread_pct: float | None = None
+    cumulative_volume_to_exit: float | None = None    # in £m over expected duration
+    exit_liquidity_ok: bool | None = None             # cumvol >= 2× sensible pos
+
+    # Fund-of-fund look-through (CEF-of-CEFs)
+    look_through_discount: float | None = None         # own + weighted underlying
+    look_through_holdings: str | None = None           # short summary
     rns_tr1: int | None = None
     rns_pdmr: int | None = None
     rns_winddown: int | None = None
