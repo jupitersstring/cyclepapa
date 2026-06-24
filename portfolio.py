@@ -133,9 +133,12 @@ def render_markdown(portfolio: pd.DataFrame) -> str:
         lines.append("\n| Ticker | Name | Wt | IRR | Resolution | Disc | Catalyst |")
         lines.append("|---|---|---|---|---|---|---|")
         for _, r in group.iterrows():
-            saba = " 🪐" if r["saba_ukit_member"] else ""
+            saba = " *" if r["saba_ukit_member"] else ""
+            name = r.get("name", "")
+            if not isinstance(name, str):
+                name = ""
             lines.append(
-                f"| {r['ticker']}{saba} | {r['name'][:40]} | "
+                f"| {r['ticker']}{saba} | {name[:40]} | "
                 f"{r['weight_capped']*100:.1f}% | "
                 f"{r['expected_irr']*100:.1f}% | {r['resolution_score']:.2f} | "
                 f"{r['discount']*100:.0f}% | {r['catalyst']} |"
