@@ -186,14 +186,26 @@ def main():
     print(f'  wrote {args.out_csv}: {len(out):,} rows across '
           f'{out["src"].nunique()} countries', file=sys.stderr)
 
-    # XLSX with light Harvard-style formatting
-    _write_xlsx(out, args.out_xlsx, args.n)
+    # XLSX with per-country tabs + cover + index. `df` is the FULL universe
+    # post-filter (for headline figures); `out` is the top-N table.
+    _write_xlsx(out, args.out_xlsx, args.n, full_df=df, sort_col=sort_col)
 
 
-def _write_xlsx(out: pd.DataFrame, path: str, n: int):
-    """Harvard-style table: numbers as real numbers with cell number_format,
-    text left-aligned, numbers right-aligned, negatives in parens, em-dash
-    for empty cells. Mirrors the spec used in build_harvard_workbook.py."""
+def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='entry_today_asymmetry'):
+    """Harvard-style workbook with PER-COUNTRY TABS.
+
+    Layout:
+      Cover    headline figures for the whole universe + ranking method
+      Index    one row per country with summary stats + hyperlinks
+      <CC>     one tab per country with country-specific headline figures
+               then the top-N table for that country
+
+    `out`     is the cross-country top-N concatenation (one row per
+              top-N name per country).
+    `full_df` (optional) is the pre-top-N universe used for
+              country-level headlines (universe size, GREEN counts, etc.).
+              Falls back to `out` if not provided.
+    """
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
@@ -224,118 +236,339 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
     A_CENTER = Alignment(horizontal='center', vertical='center')
 
     wb = Workbook()
-    ws = wb.active
-    ws.title = f'Top_{n}_by_Country'
+    if full_df is None:
+        full_df = out
 
-    def _put_num(row, col, value, fmt, scale=1.0, font=None, align=A_RIGHT):
+    # Shared font registry (Cambria 10pt, single size)
+    f_text = Font(name=FONT_NAME, size=FONT_SIZE)
+    f_text_muted = Font(name=FONT_NAME, size=FONT_SIZE, color=MUTED)
+    f_text_italic = Font(name=FONT_NAME, size=FONT_SIZE, italic=True)
+    f_text_italic_muted = Font(name=FONT_NAME, size=FONT_SIZE, italic=True, color=MUTED)
+    f_bold = Font(name=FONT_NAME, size=FONT_SIZE, bold=True)
+    f_bold_muted = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color=MUTED)
+    f_red_verdict = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, italic=True)
+
+    def _cell_borders(ws, row, col, **sides):
+        b_args = {}
+        for side, style in sides.items():
+            if style:
+                b_args[side] = Side(style=style[0], color=style[1])
+        ws.cell(row=row, column=col).border = Border(**b_args)
+
+    def _put_num(ws, row, col, value, fmt, scale=1.0, font=None, align=A_RIGHT):
         cell = ws.cell(row=row, column=col)
         if value is None or (isinstance(value, float) and pd.isna(value)):
             cell.value = EM_DASH
-            cell.alignment = align
         else:
             try:
                 cell.value = float(value) * scale
                 cell.number_format = fmt
             except (TypeError, ValueError):
                 cell.value = EM_DASH
-            cell.alignment = align
+        cell.alignment = align
         if font is not None:
             cell.font = font
 
-    def _put_int(row, col, value, font=None):
-        _put_num(row, col, value, FMT_INT_RAW, font=font)
+    def _put_int(ws, row, col, value, font=None):
+        _put_num(ws, row, col, value, FMT_INT_RAW, font=font)
 
-    def _put_money(row, col, value, font=None):
-        _put_num(row, col, value, FMT_INT_RAW, font=font)
+    def _put_money(ws, row, col, value, font=None):
+        _put_num(ws, row, col, value, FMT_INT_RAW, font=font)
 
-    def _put_score(row, col, value, font=None):
-        _put_num(row, col, value, FMT_TWO, font=font)
+    def _put_score(ws, row, col, value, font=None):
+        _put_num(ws, row, col, value, FMT_TWO, font=font)
 
-    def _put_text(row, col, value, font=None, align=A_LEFT):
+    def _put_pct(ws, row, col, value, font=None):
+        # value stored as fraction (e.g. 0.25) — display 25.0
+        _put_num(ws, row, col, value, FMT_ONE, scale=100.0, font=font)
+
+    def _put_text(ws, row, col, value, font=None, align=A_LEFT):
         cell = ws.cell(row=row, column=col,
                        value=value if value not in (None, '') else EM_DASH)
         cell.alignment = align
         if font is not None:
             cell.font = font
 
-    # Country | ISO | # | Ticker | Name | Sector | Bucket |
-    # Mcap (USD) | Verdict | ETA | Asym | Yartseva | Cluster
-    widths = {1: 18, 2: 6, 3: 5, 4: 12, 5: 38, 6: 18, 7: 14,
-              8: 18, 9: 10, 10: 10, 11: 10, 12: 10, 13: 8}
-    for col, w in widths.items():
-        ws.column_dimensions[get_column_letter(col)].width = w
-
-    # Banner
-    cell = ws.cell(row=1, column=1,
-                   value=f'  Top {n} by Country  ·  Entry-today asymmetry')
-    cell.font = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color='FFFFFF')
-    cell.fill = PatternFill('solid', fgColor=LIGHT_GREY)
-    cell.alignment = A_LEFT
-    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=13)
-    ws.row_dimensions[1].height = 28
-
-    headers = ['Country', 'ISO', '#', 'Ticker', 'Name', 'Sector', 'Bucket',
-               'Mcap (USD)', 'Verdict', 'ETA', 'Asym', 'Yartseva', 'Cluster']
-    for i, h in enumerate(headers, start=1):
-        c = ws.cell(row=3, column=i, value=h)
-        c.font = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color=CRIMSON_DARK)
-        if i in (1, 4, 5, 6, 7):
-            c.alignment = A_LEFT
-        elif i in (2, 3, 9):
-            c.alignment = A_CENTER
+    def _verdict_marker(ws, row, col, verdict):
+        """Text-only verdict marker — no fills, no borders. Matches the
+        Harvard workbook spec."""
+        cell = ws.cell(row=row, column=col, value=verdict)
+        if verdict == 'GREEN':
+            cell.font = f_bold
+        elif verdict == 'RED':
+            cell.font = f_red_verdict
+        elif verdict == 'UNRESEARCHED':
+            cell.font = f_text_italic_muted
         else:
-            c.alignment = A_RIGHT
-        c.border = Border(bottom=Side(style='medium', color=CRIMSON_DARK))
-    ws.row_dimensions[3].height = 22
+            cell.font = f_text
+        cell.alignment = A_CENTER
 
-    f_text = Font(name=FONT_NAME, size=FONT_SIZE,)
-    f_text_muted = Font(name=FONT_NAME, size=FONT_SIZE, color=MUTED)
-    f_ticker = Font(name=FONT_NAME, size=FONT_SIZE, bold=True)
-    f_mono = Font(name=FONT_NAME, size=FONT_SIZE,)
-    f_int = Font(name=FONT_NAME, size=FONT_SIZE,)
-    f_country_header = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color=CRIMSON_DARK)
-    f_country_repeat = Font(name=FONT_NAME, size=FONT_SIZE, color=MUTED, italic=True)
+    def _section_label(ws, row, text, span_cols):
+        cell = ws.cell(row=row, column=1, value=text.upper())
+        cell.font = f_bold
+        cell.alignment = A_LEFT
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
+        ws.row_dimensions[row].height = 16
 
-    prev_country = None
-    for r_idx, (_, r) in enumerate(out.iterrows(), start=4):
-        country_font = (f_country_header if r['country_name'] != prev_country
-                        else f_country_repeat)
-        prev_country = r['country_name']
-
-        _put_text(r_idx, 1, r['country_name'], font=country_font)
-        _put_text(r_idx, 2, r['src'], font=f_text_muted, align=A_CENTER)
-        _put_int(r_idx, 3, int(r['country_rank']), font=f_int)
-        _put_text(r_idx, 4, r['symbol'], font=f_ticker)
-        _put_text(r_idx, 5, str(r.get('name') or '')[:60], font=f_text)
-        _put_text(r_idx, 6, str(r.get('sector') or ''), font=f_text_muted)
-        _put_text(r_idx, 7, str(r.get('market_cap_bucket') or ''), font=f_text_muted)
-
-        # Mcap: raw USD, comma-grouped, parens-on-negative, em-dash if missing.
-        _put_money(r_idx, 8, r.get('market_cap'), font=f_mono)
-
-        # Verdict badge (colored fill, centered)
-        v = r['verdict']
-        bg = {'GREEN': GREEN_BG, 'YELLOW': YELLOW_BG}.get(v, GRAY_BG)
-        vc = ws.cell(row=r_idx, column=9, value=v)
-        vc.font = Font(name=FONT_NAME, size=FONT_SIZE, bold=True)
-        vc.fill = PatternFill('solid', fgColor=bg)
-        vc.alignment = A_CENTER
-
-        # Scores: 2-decimal ratios, right-aligned, em-dash on missing
-        _put_score(r_idx, 10, r.get('entry_today_asymmetry'), font=f_mono)
-        _put_score(r_idx, 11, r.get('asymmetry_score'), font=f_mono)
-        _put_score(r_idx, 12, r.get('yartseva_score'), font=f_mono)
-        _put_int(r_idx, 13, int(r.get('cluster_n') or 0), font=f_mono)
-
-        # Bottom hairline
-        for cidx in range(1, 14):
-            ws.cell(row=r_idx, column=cidx).border = Border(
+    def _write_table_row(ws, row, r, cols):
+        """Write one country-rank row with the shared column layout."""
+        _put_int(ws, row, 1, int(r['country_rank']), font=f_text_muted)
+        _put_text(ws, row, 2, r['symbol'], font=f_bold)
+        _put_text(ws, row, 3, str(r.get('name') or '')[:60], font=f_text)
+        _put_text(ws, row, 4, str(r.get('sector') or ''), font=f_text_muted)
+        _put_text(ws, row, 5, str(r.get('market_cap_bucket') or ''), font=f_text_muted,
+                  align=A_CENTER)
+        _put_money(ws, row, 6, r.get('market_cap'), font=f_text)
+        _verdict_marker(ws, row, 7, r['verdict'])
+        _put_score(ws, row, 8, r.get('entry_today_asymmetry'), font=f_text)
+        _put_score(ws, row, 9, r.get('asymmetry_score'), font=f_text)
+        _put_score(ws, row, 10, r.get('yartseva_score'), font=f_text)
+        _put_int(ws, row, 11, int(r.get('cluster_n') or 0), font=f_text_muted)
+        # Faint hairline under each row
+        for cidx in range(1, cols + 1):
+            existing = ws.cell(row=row, column=cidx).border
+            ws.cell(row=row, column=cidx).border = Border(
                 bottom=Side(style='thin', color=RULE))
 
+    def _write_table_header(ws, row):
+        headers = ['#', 'Ticker', 'Name', 'Sector', 'Bucket',
+                   'Mcap (USD)', 'Verdict', 'ETA', 'Asym', 'Yartseva', 'Cluster']
+        for i, h in enumerate(headers, start=1):
+            c = ws.cell(row=row, column=i, value=h)
+            c.font = f_bold_muted
+            c.alignment = A_LEFT if i in (2, 3, 4) else (A_CENTER if i in (5, 7) else A_RIGHT)
+        # Thin black rule under header
+        for i in range(1, len(headers) + 1):
+            ws.cell(row=row + 1, column=i).border = Border(
+                top=Side(style='thin', color=INK))
+
+    def _common_col_widths(ws):
+        widths = {1: 5, 2: 12, 3: 38, 4: 18, 5: 14, 6: 18,
+                  7: 12, 8: 9, 9: 9, 10: 10, 11: 8}
+        for col, w in widths.items():
+            ws.column_dimensions[get_column_letter(col)].width = w
+
+    # ===== COVER SHEET =====
+    ws = wb.active
+    ws.title = 'Cover'
+    ws.column_dimensions['A'].width = 6
+    for col_letter, w in [('B', 24), ('C', 24), ('D', 24), ('E', 24), ('F', 24), ('G', 24)]:
+        ws.column_dimensions[col_letter].width = w
+    ws.column_dimensions['H'].width = 6
+
+    sort_label = 'Entry-today asymmetry (value + contra)' if sort_col == 'entry_today_asymmetry' \
+        else 'Entry-today inflection (breakout + 52w-high)'
+
+    # Masthead
+    title = ws.cell(row=3, column=2,
+                    value=f"Top {n} per Country  —  {sort_label}")
+    title.font = f_bold
+    title.alignment = A_LEFT
+    ws.merge_cells(start_row=3, start_column=2, end_row=3, end_column=7)
+    ws.row_dimensions[3].height = 22
+    # Rule under masthead
+    for c in range(2, 8):
+        ws.cell(row=4, column=c).border = Border(bottom=Side(style='thin', color=INK))
+    ws.row_dimensions[4].height = 4
+
+    sub = ws.cell(row=5, column=2,
+                  value="One tab per country, each with country-specific headline figures + a ranked top-N table")
+    sub.font = f_text_italic
+    sub.alignment = A_LEFT
+    ws.merge_cells(start_row=5, start_column=2, end_row=5, end_column=7)
+
+    note = ws.cell(row=7, column=2,
+                   value="Yartseva-aligned upside  ·  Graham downside floor  ·  EDGAR XBRL ground truth  ·  As of 24 June 2026")
+    note.font = f_text_italic_muted
+    note.alignment = A_LEFT
+    ws.merge_cells(start_row=7, start_column=2, end_row=7, end_column=7)
+
+    # Headline figures — universe-wide
+    _section_label(ws, 9, "Headline figures", span_cols=7)
+
+    n_universe = len(full_df)
+    n_countries = full_df['src'].nunique()
+    g_total = int((full_df['verdict'] == 'GREEN').sum())
+    y_total = int((full_df['verdict'] == 'YELLOW').sum())
+    u_total = int((full_df['verdict'] == 'UNRESEARCHED').sum())
+
+    tiles = [
+        ("UNIVERSE", f"{n_universe:,}", "names ranked"),
+        ("COUNTRIES", f"{n_countries}", "with at least one name"),
+        ("TOP-N", f"{n}", "per country"),
+        ("GREEN", f"{g_total}", "high conviction"),
+        ("YELLOW", f"{y_total}", "risk-flagged"),
+        ("UNRESEARCHED", f"{u_total:,}", "no thesis yet"),
+    ]
+    for i, (lbl, val, sub_lbl) in enumerate(tiles):
+        col = 2 + i
+        ws.cell(row=10, column=col, value=lbl).font = f_text_italic_muted
+        ws.cell(row=10, column=col).alignment = A_LEFT
+        ws.cell(row=11, column=col, value=val).font = f_bold
+        ws.cell(row=11, column=col).alignment = A_LEFT
+        ws.cell(row=12, column=col, value=sub_lbl).font = f_text_italic_muted
+        ws.cell(row=12, column=col).alignment = A_LEFT
+    ws.row_dimensions[11].height = 24
+    for c in range(2, 8):
+        ws.cell(row=13, column=c).border = Border(top=Side(style='thin', color=INK))
+    ws.row_dimensions[13].height = 4
+
+    # Index of countries below headline figures (rows 15+)
+    _section_label(ws, 15, "Index by country", span_cols=7)
+
+    # Index columns: Country | ISO | n (universe) | n (NMS) | GREEN | top scorer | top ETA
+    idx_headers = ['Country', 'ISO', 'Total', 'NMS', 'GREEN', 'Top scorer', 'Top ETA']
+    for i, h in enumerate(idx_headers, start=2):
+        c = ws.cell(row=16, column=i, value=h)
+        c.font = f_bold_muted
+        c.alignment = A_LEFT if i in (2, 7) else A_RIGHT
+    for c in range(2, 9):
+        ws.cell(row=17, column=c).border = Border(top=Side(style='thin', color=INK))
+
+    # Build per-country index rows
+    nms_buckets = {'Nano Cap', 'Micro Cap', 'Small Cap'}
+    country_rows = []
+    for src_code in sorted(full_df['src'].dropna().unique()):
+        sub = full_df[full_df['src'] == src_code]
+        if sub.empty:
+            continue
+        cname = (out[out.src == src_code]['country_name'].iloc[0]
+                 if not out[out.src == src_code].empty
+                 else src_code)
+        country_rows.append({
+            'src': src_code,
+            'country_name': cname,
+            'total': len(sub),
+            'nms': int(sub['market_cap_bucket'].isin(nms_buckets).sum()),
+            'green': int((sub['verdict'] == 'GREEN').sum()),
+            'top_sym': sub.sort_values(sort_col, ascending=False).iloc[0]['symbol']
+            if sub.sort_values(sort_col, ascending=False)[sort_col].notna().any() else '',
+            'top_eta': sub[sort_col].max() if sub[sort_col].notna().any() else None,
+        })
+    country_rows.sort(key=lambda r: -(r['top_eta'] or 0))
+
+    row_i = 18
+    for cr in country_rows:
+        sheet_name = _country_sheet_name(cr['src'])
+        # Country name + hyperlink
+        c_name_cell = ws.cell(row=row_i, column=2, value=cr['country_name'])
+        c_name_cell.font = f_text
+        c_name_cell.alignment = A_LEFT
+        c_name_cell.hyperlink = f"#'{sheet_name}'!A1"
+        _put_text(ws, row_i, 3, cr['src'], font=f_text_muted, align=A_CENTER)
+        _put_int(ws, row_i, 4, cr['total'], font=f_text)
+        _put_int(ws, row_i, 5, cr['nms'], font=f_text)
+        _put_int(ws, row_i, 6, cr['green'], font=f_text)
+        _put_text(ws, row_i, 7, cr['top_sym'], font=f_bold, align=A_LEFT)
+        _put_score(ws, row_i, 8, cr['top_eta'], font=f_text)
+        # Faint hairline
+        for c in range(2, 9):
+            ws.cell(row=row_i, column=c).border = Border(
+                bottom=Side(style='thin', color=RULE))
+        row_i += 1
+
     ws.sheet_view.showGridLines = False
-    ws.freeze_panes = 'A4'
+
+    # ===== PER-COUNTRY TABS =====
+    for cr in country_rows:
+        src_code = cr['src']
+        country_name = cr['country_name']
+        sub_full = full_df[full_df['src'] == src_code]
+        sub_top = out[out['src'] == src_code]
+
+        sheet_name = _country_sheet_name(src_code)
+        sheet = wb.create_sheet(sheet_name)
+        _common_col_widths(sheet)
+
+        # Masthead
+        t = sheet.cell(row=2, column=1,
+                       value=f"{country_name}  ({src_code})")
+        t.font = f_bold
+        t.alignment = A_LEFT
+        sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=11)
+        sheet.row_dimensions[2].height = 22
+
+        for c in range(1, 12):
+            sheet.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
+        sheet.row_dimensions[3].height = 4
+
+        # Headline figures (country-specific)
+        _section_label(sheet, 5, "Headline figures", span_cols=11)
+
+        n_country_total = len(sub_full)
+        n_country_nms = int(sub_full['market_cap_bucket'].isin(nms_buckets).sum())
+        n_country_green = int((sub_full['verdict'] == 'GREEN').sum())
+        n_country_yellow = int((sub_full['verdict'] == 'YELLOW').sum())
+        n_country_unr = int((sub_full['verdict'] == 'UNRESEARCHED').sum())
+        mean_asym = sub_full['asymmetry_score'].mean() if 'asymmetry_score' in sub_full.columns else None
+        mean_eta = sub_full[sort_col].mean() if sort_col in sub_full.columns else None
+        top_eta = cr['top_eta']
+        top_sym = cr['top_sym']
+
+        country_tiles = [
+            ("UNIVERSE",     f"{n_country_total:,}", "names ranked"),
+            ("NMS",          f"{n_country_nms:,}",   "sub-$2B bucket"),
+            ("GREEN",        f"{n_country_green}",   "high conviction"),
+            ("YELLOW",       f"{n_country_yellow}",  "risk-flagged"),
+            ("UNRESEARCHED", f"{n_country_unr}",     "no thesis"),
+            ("TOP SCORER",   top_sym,                "by ETA"),
+        ]
+        for i, (lbl, val, sub_lbl) in enumerate(country_tiles):
+            col = 1 + i * 2  # tiles span 2 cols each
+            cl = sheet.cell(row=6, column=col, value=lbl)
+            cl.font = f_text_italic_muted
+            cl.alignment = A_LEFT
+            cv = sheet.cell(row=7, column=col, value=val)
+            cv.font = f_bold
+            cv.alignment = A_LEFT
+            cs = sheet.cell(row=8, column=col, value=sub_lbl)
+            cs.font = f_text_italic_muted
+            cs.alignment = A_LEFT
+        sheet.row_dimensions[7].height = 22
+
+        # Second row of tiles (right side: scores)
+        score_tiles = [
+            ("MEAN ASYMMETRY", mean_asym, "across universe"),
+            ("MEAN ETA", mean_eta, "verdict-weighted"),
+            ("TOP ETA", top_eta, f"({top_sym})"),
+        ]
+        for i, (lbl, val, sub_lbl) in enumerate(score_tiles):
+            col = 1 + i * 2
+            sheet.cell(row=10, column=col, value=lbl).font = f_text_italic_muted
+            sheet.cell(row=10, column=col).alignment = A_LEFT
+            _put_score(sheet, 11, col, val, font=f_bold)
+            sheet.cell(row=11, column=col).alignment = A_LEFT
+            sheet.cell(row=12, column=col, value=sub_lbl).font = f_text_italic_muted
+            sheet.cell(row=12, column=col).alignment = A_LEFT
+        sheet.row_dimensions[11].height = 22
+
+        # Thin rule under headlines
+        for c in range(1, 12):
+            sheet.cell(row=13, column=c).border = Border(top=Side(style='thin', color=INK))
+        sheet.row_dimensions[13].height = 4
+
+        # Top-N table for this country
+        _section_label(sheet, 15, f"Top {len(sub_top)}  —  ranked by {sort_label}", span_cols=11)
+        _write_table_header(sheet, 16)
+        sheet.row_dimensions[16].height = 18
+        # Re-rank within the local frame (in case some rows were dropped)
+        sub_top = sub_top.sort_values('country_rank')
+        for r_idx, (_, r) in enumerate(sub_top.iterrows(), start=18):
+            _write_table_row(sheet, r_idx, r, 11)
+            sheet.row_dimensions[r_idx].height = 16
+
+        sheet.sheet_view.showGridLines = False
+        sheet.freeze_panes = 'A18'
+
     wb.save(path)
-    print(f'  wrote {path}', file=sys.stderr)
+    print(f'  wrote {path}  ({len(wb.worksheets)} sheets: Cover + {len(country_rows)} countries)',
+          file=sys.stderr)
+
+
+def _country_sheet_name(src_code: str) -> str:
+    """Safe Excel sheet name (max 31 chars, no slashes etc.)."""
+    s = ''.join(ch if ch.isalnum() else '_' for ch in str(src_code))
+    return s[:31]
 
 
 if __name__ == '__main__':
