@@ -1,0 +1,15 @@
+ticker,kind,from,to,summary
+AERI.L,SLEEVE_EXITED_FUND,yes,no,in_fundamentals_sleeve exited
+AERI.L,IRR_JUMP,35.7,56.1,IRR 35.7% → 56.1% ▲
+AERI.L,AVWAP_BREAKDOWN,0.0,-0.424,price vs avwap +0.0% → -42.4%
+ANII.L,RESOLUTION_CROSS_40,0.327,0.587,resolution 0.33 → 0.59
+ANII.L,NEW_ACTIVIST_TR1,1,4,activist TR-1 +3; City of London Investment Management Company Limited|Lazard 
+BGUK.L,RESOLUTION_CROSS_40,0.267,0.48,resolution 0.27 → 0.48
+BGUK.L,NEW_ACTIVIST_TR1,1,5,activist TR-1 +4; City of London Investment Management Company Limited|Allspri
+BGUK.L,SLEEVE_ENTERED_FUND,no,yes,in_fundamentals_sleeve entered
+CHRY.L,AVWAP_BREAKDOWN,0.0,-0.183,price vs avwap +0.0% → -18.3%
+SEIT.L,AVWAP_BREAKDOWN,0.0,-0.173,price vs avwap +0.0% → -17.3%
+SST.L,RESOLUTION_CROSS_40,0.383,0.56,resolution 0.38 → 0.56
+SST.L,NEW_ACTIVIST_TR1,2,3,activist TR-1 +1; City of London Investment Management Company Limited|Lazard 
+SST.L,SLEEVE_ENTERED_FUND,no,yes,in_fundamentals_sleeve entered
+USF.L,AVWAP_BREAKDOWN,0.0,-0.097,price vs avwap +0.0% → -9.7%

@@ -76,6 +76,50 @@ def _load_prices(ticker: str) -> pd.DataFrame | None:
     return df.sort_index()
 
 
+def _load_capital_returns(epic: str) -> list[tuple[pd.Timestamp, float]]:
+    """Parse capdistribution / wind-down RNS titles for cash return
+    amounts. The titles often include the per-share return (e.g.
+    "Capital return of 23.5p per share"). Returns list of (date,
+    per_share_amount). Heuristic — many filings don't carry the
+    amount in the title; those are skipped."""
+    import json as _json
+    import re as _re
+    fp = HERE / "data" / "investegate" / f"{epic}.json"
+    if not fp.exists():
+        return []
+    try:
+        items = _json.loads(fp.read_text())
+    except Exception:
+        return []
+    pat = _re.compile(
+        r"(\d+\.?\d*)\s*(?:p|pence|pps|p\s*per\s*share|p\s*/\s*share)",
+        _re.IGNORECASE)
+    out = []
+    for a in items:
+        if a.get("category") not in ("capdistribution", "winddown"):
+            continue
+        title = a.get("title") or ""
+        m = pat.search(title)
+        if not m:
+            continue
+        try:
+            amount = float(m.group(1))
+        except ValueError:
+            continue
+        d = a.get("date") or ""
+        try:
+            dt = pd.Timestamp(d)
+        except Exception:
+            continue
+        # Some titles include "30 June 2026" style — magnitude > 200p
+        # on a CEF stub is implausible (price levels are 10-500p);
+        # filter implausibles.
+        if amount > 500 or amount < 0.1:
+            continue
+        out.append((dt, amount))
+    return out
+
+
 def _return_from(df: pd.DataFrame, anchor: pd.Timestamp,
                  months: int) -> float | None:
     """Return between the anchor date and `months` after."""
@@ -137,6 +181,29 @@ def collect_events(min_year: int = 2022) -> list[dict]:
     return deduped
 
 
+def _total_return_from(df: pd.DataFrame, anchor: pd.Timestamp,
+                       months: int, cap_returns: list) -> float | None:
+    """Total return = price change + accumulated per-share capital
+    returns paid in the window. Uses anchor price as the denominator
+    (this is the IRR an investor would have realised entering on
+    anchor and exiting at anchor+months)."""
+    pr = _return_from(df, anchor, months)
+    if pr is None:
+        return None
+    target = anchor + pd.DateOffset(months=months)
+    p_start_rows = df.loc[df.index <= anchor]
+    if p_start_rows.empty:
+        return None
+    p_start = float(p_start_rows["Close"].iloc[-1])
+    if p_start <= 0:
+        return None
+    distributed = sum(
+        amount for dt, amount in cap_returns
+        if anchor <= dt <= target
+    )
+    return pr + (distributed / p_start)
+
+
 def score_events(events: list[dict]) -> list[dict]:
     out = []
     for e in events:
@@ -146,10 +213,15 @@ def score_events(events: list[dict]) -> list[dict]:
         anchor = pd.Timestamp(e["date"])
         if anchor > df.index.max():
             continue
+        cap_returns = _load_capital_returns(e["epic"])
         row = dict(e)
         row["realised_6m"] = _return_from(df, anchor, 6)
         row["realised_12m"] = _return_from(df, anchor, 12)
         row["realised_24m"] = _return_from(df, anchor, 24)
+        # Total return adds parsed cash distributions in the window
+        row["total_return_12m"] = _total_return_from(df, anchor, 12, cap_returns)
+        row["total_return_24m"] = _total_return_from(df, anchor, 24, cap_returns)
+        row["n_capital_returns"] = len(cap_returns)
         # "to today" — useful cross-check for ongoing wind-downs
         today = df.index.max()
         days_held = (today - anchor).days

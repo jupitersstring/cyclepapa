@@ -27,6 +27,8 @@ import price_store
 import saba_ukit
 import screen_core as core
 from aic_scraper import fetch_aic_raw, fetch_aic_summary
+from pathlib import Path
+
 from yahoo_nav_scraper import fetch_yahoo_discounts
 
 try:
@@ -46,6 +48,12 @@ try:
     _HAS_TENDERS = True
 except Exception:
     _HAS_TENDERS = False
+
+try:
+    import research_notes as _notes
+    _HAS_NOTES = True
+except Exception:
+    _HAS_NOTES = False
 
 
 # ---------------------------------------------------------------------------
@@ -465,6 +473,30 @@ def screen_one(
 
     # (Historical discount context populated earlier — used for the
     # discount-stretch promotion test.)
+
+    # Per-name research note (notes/EPIC.md)
+    if _HAS_NOTES:
+        note = _notes.load(ticker)
+        if note["thesis"]:
+            r.notes_thesis = note["thesis"][:300]
+        if note["position"]:
+            r.notes_position = note["position"][:200]
+        if note["exit"]:
+            r.notes_exit = note["exit"][:200]
+
+    # Watchlist membership
+    watchlist_path = Path(os.path.dirname(os.path.abspath(__file__))) / "watchlist.csv"
+    if watchlist_path.exists():
+        try:
+            import csv as _csv
+            with open(watchlist_path) as f:
+                for row in _csv.DictReader(f):
+                    if row.get("ticker") == ticker:
+                        r.on_watchlist = True
+                        r.watchlist_tag = row.get("tag", "")
+                        break
+        except Exception:
+            pass
 
     # Per-name "why this rank" explainer
     r.top_drivers = core.explain_drivers(r)

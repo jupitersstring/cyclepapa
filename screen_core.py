@@ -187,6 +187,15 @@ class ScreenResult:
     # Fund-of-fund look-through (CEF-of-CEFs)
     look_through_discount: float | None = None         # own + weighted underlying
     look_through_holdings: str | None = None           # short summary
+
+    # Per-name research note (notes/EPIC.md present on disk)
+    notes_thesis: str | None = None
+    notes_position: str | None = None
+    notes_exit: str | None = None
+
+    # Watchlist membership + alert state
+    on_watchlist: bool = False
+    watchlist_tag: str | None = None
     rns_tr1: int | None = None
     rns_pdmr: int | None = None
     rns_winddown: int | None = None
