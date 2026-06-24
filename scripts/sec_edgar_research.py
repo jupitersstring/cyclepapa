@@ -79,26 +79,32 @@ def extract_annual_series(facts, tags, unit='USD'):
     if not facts: return {}
     us_gaap = facts.get('facts', {}).get('us-gaap', {})
     ifrs    = facts.get('facts', {}).get('ifrs-full', {})
+    # Annual forms incl. amendments (10-K/A etc.) — financials & restaters use these
+    ANNUAL_FORMS = ('10-K', '10-K/A', '20-F', '20-F/A', '40-F', '40-F/A')
     for src in [us_gaap, ifrs]:
         for tag in tags:
             entry = src.get(tag)
             if not entry: continue
             units_dict = entry.get('units', {})
             data = units_dict.get(unit) or next(iter(units_dict.values()), [])
-            # Keep only annual (form 10-K) values, last 6 years
             annual = {}
             for d in data:
                 form = d.get('form', '')
                 fp = d.get('fp', '')
-                fy = d.get('fy')
                 end = d.get('end', '')
                 val = d.get('val')
-                # Annual full-year values from 10-K
-                if form in ('10-K', '20-F', '40-F') and fp == 'FY' and val is not None:
-                    annual[end] = float(val)
+                if val is None: continue
+                # Accept FY annual values; also accept frames that look annual
+                # (some filers tag full-year as fp='FY', some leave fp blank on 10-K)
+                is_annual = (form in ANNUAL_FORMS) and (fp == 'FY' or fp == '' or fp is None)
+                if is_annual:
+                    # Prefer later-filed value for the same period end (restatements)
+                    filed = d.get('filed', '')
+                    if end not in annual or filed >= annual[end][1]:
+                        annual[end] = (float(val), filed)
             if annual:
-                # Return sorted by date desc
-                return dict(sorted(annual.items(), key=lambda x: x[0], reverse=True))
+                return dict(sorted(((e, v[0]) for e, v in annual.items()),
+                                   key=lambda x: x[0], reverse=True))
     return {}
 
 
@@ -107,10 +113,12 @@ def compute_metrics_for_ticker(ticker, cik, session, limiter):
     if facts is None: return None
 
     # Pull each line item (try multiple tag variants for resilience)
-    rev_s     = extract_annual_series(facts, ['Revenues','RevenueFromContractWithCustomerExcludingAssessedTax','SalesRevenueNet','RevenueFromContractWithCustomerIncludingAssessedTax'])
+    rev_s     = extract_annual_series(facts, ['Revenues','RevenueFromContractWithCustomerExcludingAssessedTax','SalesRevenueNet','RevenueFromContractWithCustomerIncludingAssessedTax','InterestAndDividendIncomeOperating','InterestIncomeExpenseNet','RegulatedAndUnregulatedOperatingRevenue'])
     opinc_s   = extract_annual_series(facts, ['OperatingIncomeLoss'])
-    pretax_s  = extract_annual_series(facts, ['IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest','IncomeLossBeforeIncomeTaxes'])
+    netinc_s  = extract_annual_series(facts, ['NetIncomeLoss','ProfitLoss','NetIncomeLossAvailableToCommonStockholdersBasic'])
+    pretax_s  = extract_annual_series(facts, ['IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest','IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments','IncomeLossBeforeIncomeTaxes'])
     tax_s     = extract_annual_series(facts, ['IncomeTaxExpenseBenefit','TaxesIncome'])
+    intexp_s  = extract_annual_series(facts, ['InterestExpense','InterestAndDebtExpense'])
     equity_s  = extract_annual_series(facts, ['StockholdersEquity','StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest'])
     ltd_s     = extract_annual_series(facts, ['LongTermDebt','LongTermDebtNoncurrent'])
     std_s     = extract_annual_series(facts, ['ShortTermBorrowings','LongTermDebtCurrent','DebtCurrent'])
@@ -123,11 +131,46 @@ def compute_metrics_for_ticker(ticker, cik, session, limiter):
     ocf_s     = extract_annual_series(facts, ['NetCashProvidedByUsedInOperatingActivities'])
     da_s      = extract_annual_series(facts, ['DepreciationDepletionAndAmortization','DepreciationAndAmortization','Depreciation'])
 
-    if not opinc_s or not equity_s:
+    # Build a synthetic "operating income" for financials that lack OperatingIncomeLoss:
+    #   use pretax income (a bank's pretax income IS its core operating result), and
+    #   if even that is missing, reconstruct from NetIncome + tax.
+    is_financial = bool(not opinc_s) and bool(equity_s)
+    if not opinc_s:
+        if pretax_s:
+            opinc_s = dict(pretax_s)            # financial proxy: pretax income
+        elif netinc_s and tax_s:
+            opinc_s = {d: netinc_s[d] + tax_s.get(d, 0) for d in netinc_s}  # NI + tax = pretax
+
+    # Must have at least equity and SOME earnings concept
+    if not equity_s or (not opinc_s and not netinc_s):
         return {'ticker': ticker, 'cik': cik, 'has_history': False, 'name': facts.get('entityName')}
 
-    # Common dates (intersection of must-haves)
-    common = sorted(set(opinc_s) & set(equity_s), reverse=True)[:5]
+    # Date alignment: prefer exact-end intersection; if thin, align on fiscal YEAR
+    # (income items are duration-dated, balance items instant-dated — ends usually match
+    #  but occasionally differ by a day; matching on year recovers those.)
+    earnings_keys = set(opinc_s) if opinc_s else set(netinc_s)
+    common = sorted(earnings_keys & set(equity_s), reverse=True)[:5]
+    if len(common) < 2:
+        # Fall back to year-level matching
+        def by_year(series):
+            out = {}
+            for k, v in series.items():
+                yr = str(k)[:4]
+                if yr not in out: out[yr] = (k, v)
+            return out
+        e_by_yr = by_year(opinc_s if opinc_s else netinc_s)
+        q_by_yr = by_year(equity_s)
+        yrs = sorted(set(e_by_yr) & set(q_by_yr), reverse=True)[:5]
+        if len(yrs) >= 2:
+            # remap series to the earnings end-date for those years
+            common = [e_by_yr[y][0] for y in yrs]
+            # ensure equity is reachable at those end-dates by aliasing
+            for y in yrs:
+                ek = e_by_yr[y][0]
+                if ek not in equity_s:
+                    equity_s[ek] = q_by_yr[y][1]
+                    if assets_s and q_by_yr[y][0] in assets_s and ek not in assets_s:
+                        pass
     if len(common) < 2:
         return {'ticker': ticker, 'cik': cik, 'has_history': False, 'name': facts.get('entityName')}
 
@@ -257,9 +300,30 @@ def compute_metrics_for_ticker(ticker, cik, session, limiter):
     enduring_loose  = (len(roic_meds) >= 3 and roic_min is not None and roic_min >= 0.10
                        and roic_std is not None and roic_std <= 0.12)
 
+    # ─── UNIVERSAL return metrics (work for ALL companies incl. financials) ───
+    # ROE = NetIncome / Equity, ROA = NetIncome / Assets — computed per common year.
+    roe_list, roa_list = [], []
+    for d in common:
+        ni = netinc_s.get(d)
+        eq = equity_s.get(d)
+        ta = assets_s.get(d) if assets_s else None
+        if ni is not None and eq and eq > 0 and -2 < ni/eq < 5:
+            roe_list.append(ni / eq)
+        if ni is not None and ta and ta > 0:
+            roa_list.append(ni / ta)
+    roe_mean = float(np.mean(roe_list)) if roe_list else None
+    roe_min  = float(np.min(roe_list)) if roe_list else None
+    roe_std  = float(np.std(roe_list)) if len(roe_list) >= 2 else None
+    roa_mean = float(np.mean(roa_list)) if roa_list else None
+
+    # Enduring ROE (for financials where ROIC is ill-defined): min ROE >= 12%, stable
+    enduring_roe = (len(roe_list) >= 3 and roe_min is not None and roe_min >= 0.12
+                    and roe_std is not None and roe_std <= 0.08)
+
     out = {
         'ticker': ticker, 'cik': cik,
         'name': facts.get('entityName'),
+        'is_financial': is_financial,
         'roic_latest_med': roic_meds.iloc[0] if len(roic_meds) else None,
         'roic_mean_4y_med': roic_mean,
         'roic_min_4y_med': roic_min,
@@ -267,6 +331,11 @@ def compute_metrics_for_ticker(ticker, cik, session, limiter):
         'roic_std_4y_med': roic_std,
         'roic_method_agreement': agree_mean,
         'roic_years': len(roic_meds),
+        'roe_mean_4y': roe_mean,
+        'roe_min_4y': roe_min,
+        'roe_std_4y': roe_std,
+        'roa_mean_4y': roa_mean,
+        'enduring_roe': enduring_roe,
         'has_history': True,
         'enduring_strict': enduring_strict,
         'enduring_loose': enduring_loose,
