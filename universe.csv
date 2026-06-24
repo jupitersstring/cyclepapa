@@ -500,3 +500,155 @@ SRV,,NXG Cushing Midstream Energy,us_cef_other,STRUCTURAL_DISCOUNT,LISTED_CLEAN,
 JARA.L,GB00BJL5FH87,JPMorgan Global Core Real Assets,uk_extras_3,WIND_DOWN_COMMITTED,INFRA_DCF,,INF,,2025-09-30,https://www.investmentweek.co.uk/news/4376448/jpmorgan-global-core-real-assets-seeks-managed-wind-failed-continuation-vote,Failed continuation vote Sept 2025; wind-down due
 UTG.L,GB00B1DDCK16,Unite Group REIT,uk_extras_3,ACTIVIST_TARGET,PROPERTY_DCF,,,,,,Top-8 holding in Saba UKIT ETF; activist target
 IPO.L,GB00B128J450,IP Group PLC,uk_extras_3,ACTIVIST_TARGET,PRIVATE_EQUITY,,,,,,Top-3 non-cash holding in Saba UKIT ETF
+ZTR,,Virtus Total Return,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+BTT,,BlackRock Municipal 2030 Target,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,target-term wind-down
+NHF,,NexPoint Strategic Opportunities,us_distressed,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,activist watch
+PCF,,High Income Securities,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+PHK,,PIMCO High Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NRO,,Neuberger Real Estate,us_reit,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,
+NHS,,Neuberger High Yield Strategies,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+ECF,,Ellsworth Growth & Income,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+EXD,,Eaton Vance TaxAdv Bond,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EFL,,Eaton Vance Floating Rate,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EVF,,Eaton Vance Senior Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NMZ,,Nuveen Municipal High Income,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NID,,Nuveen Intermediate Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NXP,,Nuveen Select Tax-Free,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NXC,,Nuveen California Select Tax-Free,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NUV,,Nuveen Municipal Value,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NUW,,Nuveen AMT-Free Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NXJ,,Nuveen New Jersey Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NRK,,Nuveen New York Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NXR,,Nuveen Select Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NMI,,Nuveen Muni Income,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NXN,,Nuveen Insured NY Select Tax-Free,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NIM,,Nuveen Select Maturities Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EOT,,Eaton Vance Natl Muni Opps,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EIM,,Eaton Vance Muni Bond,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EMI,,Eaton Vance Muni Income,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EVN,,Eaton Vance Munis Bond,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EVM,,Eaton Vance Calif Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EVO,,Eaton Vance Ohio Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EVP,,Eaton Vance PA Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+ETB,,Eaton Vance Tax-Mgd Buy-Write,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+JCE,,Nuveen Core Equity Alpha,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+JRO,,Nuveen Floating Rate Income Opps,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+JHY,,Nuveen Variable Rate Term,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+JHB,,Nuveen New York Quality Muni,us_muni,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+JFM,,Nuveen Multi-Asset Income,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+BCV,,Bancroft Fund,us_credit,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,convertible
+BCX,,BlackRock Resources & Commodities Strategy,us_resources,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+CGO,,Calamos Global Total Return,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+CSQ,,Calamos Strategic Total Return,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+DSL,,DoubleLine Income Solutions,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+DLY,,DoubleLine Yield Opportunities,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NRGX,,Neuberger Energy,us_energy,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+TPZ,,Tortoise Power & Energy,us_energy,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+NTG,,Tortoise Midstream Energy,us_energy,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+TYG,,Tortoise Energy Infrastructure,us_infra,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+NDP,,Tortoise Energy Independence,us_energy,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+CEN,,Center Coast Brookfield MLP,us_infra,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+TTP,,Tortoise Pipeline & Energy,us_infra,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+INF,,Brookfield Real Estate Opportunities,us_reit,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,
+IGR,,CBRE Global Real Estate Income,us_reit,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,
+JRS,,Nuveen Real Estate Income,us_reit,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,
+RLJ-PA,,RLJ Lodging Trust Preferred A,us_reit_pref,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,,,,,
+EFR,,Eaton Vance Sr Floating Rate,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+EFT,,Eaton Vance Floating Rate Income Plus,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+BGH,,Babson Global Short Duration High Yield,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+PAI,,Western Asset Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+PCM,,PIMCO Commercial Mortgage,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+TSI,,TCW Strategic Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+TLI,,Western Asset Total Return Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+WIA,,Western Asset Inflation-Linked Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+WIW,,Western Asset Inflation-Linked Opportunities & Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+DMO,,Western Asset Mortgage Defined Opportunity,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+DSU,,BlackRock Debt Strategies,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+DSL2,,BlackRock Defined Opp Credit,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+BHK,,BlackRock Core Bond,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+BTZ-A,,BlackRock Credit Allocation Income,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+BCAT,,BlackRock Capital Allocation,us_equity,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+TPVG,,TriplePoint Venture Growth,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+TSLX,,Sixth Street Specialty Lending,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+SLRC,,Solar Capital,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+SUNS,,Solar Senior Capital,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+TCPC,,BlackRock TCP Capital,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+NMFC,,New Mountain Finance,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+ARDC,,Ares Dynamic Credit Allocation,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+ACP,,abrdn Income Credit Strategies,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+FSCO,,FS Credit Opportunities,us_credit,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+FSCR,,FS KKR Capital,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+HRZN,,Horizon Technology Finance,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+WHF,,WhiteHorse Finance,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+FSK,,FS KKR Capital II,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+CCAP,,Crescent Capital BDC,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+HTGC,,Hercules Capital,us_bdc,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,,,,,
+RCM,,Reaves Utility Income,us_utility,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+UTG,,Reaves Utility Income,us_utility,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+DPG,,Duff & Phelps Utility,us_utility,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+DUC,,Duff & Phelps Utility Income,us_utility,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,,,,,
+ASA-G,,ASA Gold and Precious Metals,us_resources,STRUCTURAL_DISCOUNT,REAL_ASSET_OBSERVABLE,,,,,,
+GGN,,GAMCO Global Gold & Natural Resources,us_resources,STRUCTURAL_DISCOUNT,REAL_ASSET_OBSERVABLE,,,,,,
+GNT,,GAMCO Natural Resources Gold & Income,us_resources,STRUCTURAL_DISCOUNT,REAL_ASSET_OBSERVABLE,,,,,,
+AIC.L,,Achilles Investment Company,aic_reconcile,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,FLX,52.5,,,added via reconcile_aic
+CRWN.L,,Albion Crown VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,133.5,,,added via reconcile_aic
+CRWC.L,,Albion Crown VCT C shares,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,48.2,,,added via reconcile_aic
+AAEV.L,,Albion Enterprise VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,280.0,,,added via reconcile_aic
+BMD.L,,Baronsmead Second Venture Trust,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,200.6,,,added via reconcile_aic
+BVT.L,,Baronsmead Venture Trust,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,203.6,,,added via reconcile_aic
+BFSP.L,,Blackfinch Spring VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,74.5,,,added via reconcile_aic
+BSV.L,,British Smaller Companies VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,297.4,,,added via reconcile_aic
+BSC.L,,British Smaller Companies VCT 2,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,187.3,,,added via reconcile_aic
+CLC.L,,Calculus VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,51.9,,,added via reconcile_aic
+CBA.L,,Ceiba Investments,aic_reconcile,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,PRW,47.9,,,added via reconcile_aic
+CRS.L,,Crystal Amber Fund,aic_reconcile,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,FLX,60.1,,,added via reconcile_aic
+CHIB.L,,CT UK High Income Trust (B share),aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,UGI,32.3,,,added via reconcile_aic
+DVNO.L,,Develop North,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,PRD,19.6,,,added via reconcile_aic
+RNEW.L,,Ecofin US Renewables Infrastructure,aic_reconcile,STRUCTURAL_DISCOUNT,RENEWABLES_DCF,,REI,21.3,,,added via reconcile_aic
+EJFI.L,,EJF Investments,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,DSF,72.6,,,added via reconcile_aic
+FTF.L,,Foresight Enterprise VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,180.3,,,added via reconcile_aic
+FWT.L,,Foresight Technology VCT FWT shares,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,44.4,,,added via reconcile_aic
+FTV.L,,Foresight VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,213.7,,,added via reconcile_aic
+FVEN.L,,Foresight Ventures VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,91.4,,,added via reconcile_aic
+FVV.L,,Fuel Ventures VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,12.5,,,added via reconcile_aic
+GMP.L,,Gabelli Merchant Partners,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,HDG,59.6,,,added via reconcile_aic
+GHV2.L,,Gresham House Income & Growth 2 VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,169.9,,,added via reconcile_aic
+GHV1.L,,Gresham House Income & Growth VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,211.3,,,added via reconcile_aic
+GV1O.L,,Gresham House Renewable Energy VCT 1,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,8.4,,,added via reconcile_aic
+GV2O.L,,Gresham House Renewable Energy VCT 2,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,9.2,,,added via reconcile_aic
+GVCT.L,,Guinness VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,15.8,,,added via reconcile_aic
+HHV.L,,Hargreave Hale AIM VCT,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,VCA,118.0,,,added via reconcile_aic
+LBOW.L,,ICG-Longbow Senior Secured UK Property Debt Invest,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,PRD,15.1,,,added via reconcile_aic
+JEMA.L,,"JPMorgan Emerging Europe, Middle East & Africa",aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,GEM,109.2,,,added via reconcile_aic
+JZCP.L,,JZ Capital Partners,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,PE,105.0,,,added via reconcile_aic
+LIVE.L,,Living REIT,aic_reconcile,STRUCTURAL_DISCOUNT,PROPERTY_DCF,,PUR,292.4,,,added via reconcile_aic
+LMS.L,,LMS Capital,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,PE,12.9,,,added via reconcile_aic
+MIG1.L,,Maven Income and Growth VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,70.0,,,added via reconcile_aic
+MIG3.L,,Maven Income and Growth VCT 3,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,68.4,,,added via reconcile_aic
+MAV4.L,,Maven Income and Growth VCT 4,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,83.7,,,added via reconcile_aic
+MIG5.L,,Maven Income and Growth VCT 5,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,76.3,,,added via reconcile_aic
+MVCT.L,,Molten Ventures VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,119.6,,,added via reconcile_aic
+NTV.L,,Northern 2 VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,140.1,,,added via reconcile_aic
+NTN.L,,Northern 3 VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,144.0,,,added via reconcile_aic
+NVT.L,,Northern Venture Trust,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,144.0,,,added via reconcile_aic
+OOA.L,,Octopus AIM VCT,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,VCA,99.1,,,added via reconcile_aic
+OSEC.L,,Octopus AIM VCT 2,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,VCA,66.2,,,added via reconcile_aic
+OAP3.L,,Octopus Apollo VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,542.2,,,added via reconcile_aic
+OFG.L,,Octopus Future Generations VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,48.7,,,added via reconcile_aic
+OTV2.L,,Octopus Titan VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,321.4,,,added via reconcile_aic
+PEMB.L,,Pembroke VCT B shares,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,269.2,,,added via reconcile_aic
+PGV.L,,Praetura Growth VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,10.8,,,added via reconcile_aic
+PGOO.L,,ProVen Growth and Income VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,149.0,,,added via reconcile_aic
+PVN.L,,ProVen VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,171.3,,,added via reconcile_aic
+PAIM.L,,Puma AIM VCT,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,VCA,9.5,,,added via reconcile_aic
+PUAL.L,,Puma Alpha VCT,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,32.7,,,added via reconcile_aic
+PU13.L,,Puma VCT 13,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,243.7,,,added via reconcile_aic
+MNTN.L,,Schiehallion Fund,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,GCP,2063.8,,,added via reconcile_aic
+SBSI.L,,Schroder BSC Social Impact,aic_reconcile,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,FLX,55.5,,,added via reconcile_aic
+SVCT.L,,Seneca Growth Capital VCT B shares,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,11.0,,,added via reconcile_aic
+SIHL.L,,Symphony International Holdings,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,PE,202.3,,,added via reconcile_aic
+INV.L,,The Investment Company,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,USC,6.4,,,added via reconcile_aic
+TPV.L,,Triple Point Venture VCT Venture shares,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,VCG,114.7,,,added via reconcile_aic
+UTL.L,,UIL,aic_reconcile,STRUCTURAL_DISCOUNT,DEBT_AMORTISING,,FLX,183.6,,,added via reconcile_aic
+UAV.L,,Unicorn AIM VCT,aic_reconcile,STRUCTURAL_DISCOUNT,LISTED_CLEAN,,VCA,175.1,,,added via reconcile_aic
+WINV.L,,Worsley Investors,aic_reconcile,STRUCTURAL_DISCOUNT,PRIVATE_EQUITY,,USC,9.2,,,added via reconcile_aic

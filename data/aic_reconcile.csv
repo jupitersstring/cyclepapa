@@ -1,0 +1,99 @@
+catalyst,discount,discount_3y_avg,dividend_yield_pct,kind,market_cap_gbp_m,name,notes,sector,ticker
+,10.6,0,0,missing_in_universe,52.5,Achilles Investment Company,,FLX,AIC.L
+,5.56,5.08,5.37,missing_in_universe,133.5,Albion Crown VCT,,VCG,CRWN.L
+,4.81,0,0,missing_in_universe,48.2,Albion Crown VCT C shares,,VCG,CRWC.L
+,6.65,5.39,5.33,missing_in_universe,280.0,Albion Enterprise VCT,,VCG,AAEV.L
+,6.71,5.55,8.58,missing_in_universe,200.6,Baronsmead Second Venture Trust,,VCG,BMD.L
+,7.11,5.44,8.33,missing_in_universe,203.6,Baronsmead Venture Trust,,VCG,BVT.L
+,4.24,5.48,5.53,missing_in_universe,74.5,Blackfinch Spring VCT,,VCG,BFSP.L
+,4.9,5.88,5.59,missing_in_universe,297.4,British Smaller Companies VCT,,VCG,BSV.L
+,4.87,5.54,8.13,missing_in_universe,187.3,British Smaller Companies VCT 2,,VCG,BSC.L
+,5.93,4.24,5.54,missing_in_universe,51.9,Calculus VCT,,VCG,CLC.L
+,53.9,64.38,0,missing_in_universe,47.9,Ceiba Investments,,PRW,CBA.L
+,42.79,32.27,7.43,missing_in_universe,60.1,Crystal Amber Fund,,FLX,CRS.L
+,7.31,6.41,5.68,missing_in_universe,32.3,CT UK High Income Trust (B share),,UGI,CHIB.L
+,3.04,1.48,5.3,missing_in_universe,19.6,Develop North,,PRD,DVNO.L
+,49.27,37.86,0,missing_in_universe,21.3,Ecofin US Renewables Infrastructure,,REI,RNEW.L
+,26.36,29.47,8.71,missing_in_universe,72.6,EJF Investments,,DSF,EJFI.L
+,4.15,6.35,6.06,missing_in_universe,180.3,Foresight Enterprise VCT,,VCG,FTF.L
+,5.27,0,0,missing_in_universe,44.4,Foresight Technology VCT FWT shares,,VCG,FWT.L
+,7.15,8.46,5.9,missing_in_universe,213.7,Foresight VCT,,VCG,FTV.L
+,3.85,2.62,4.47,missing_in_universe,91.4,Foresight Ventures VCT,,VCG,FVEN.L
+,4.45,0,0,missing_in_universe,12.5,Fuel Ventures VCT,,VCG,FVV.L
+,17.86,13.72,1.74,missing_in_universe,59.6,Gabelli Merchant Partners,,HDG,GMP.L
+,4.83,5.45,8.71,missing_in_universe,169.9,Gresham House Income & Growth 2 VCT,,VCG,GHV2.L
+,4.46,6.67,8.55,missing_in_universe,211.3,Gresham House Income & Growth VCT,,VCG,GHV1.L
+,9.34,2.9,6.06,missing_in_universe,8.4,Gresham House Renewable Energy VCT 1,,VCG,GV1O.L
+,22.33,4.92,21.43,missing_in_universe,9.2,Gresham House Renewable Energy VCT 2,,VCG,GV2O.L
+,7.72,0,6.74,missing_in_universe,15.8,Guinness VCT,,VCG,GVCT.L
+,5.58,5.28,5.56,missing_in_universe,118.0,Hargreave Hale AIM VCT,,VCA,HHV.L
+,27.41,27.68,0,missing_in_universe,15.1,ICG-Longbow Senior Secured UK Property Debt Invest,,PRD,LBOW.L
+,-291.42,-224.07,0.22,missing_in_universe,109.2,"JPMorgan Emerging Europe, Middle East & Africa",,GEM,JEMA.L
+,43.15,39.32,0,missing_in_universe,105.0,JZ Capital Partners,,PE,JZCP.L
+,31.11,45.49,0,missing_in_universe,292.4,Living REIT,,PUR,LIVE.L
+,52.95,57.02,5.62,missing_in_universe,12.9,LMS Capital,,PE,LMS.L
+,7.07,5.56,7.4,missing_in_universe,70.0,Maven Income and Growth VCT,,VCG,MIG1.L
+,5.5,5.69,8.22,missing_in_universe,68.4,Maven Income and Growth VCT 3,,VCG,MIG3.L
+,5.16,5.55,8.7,missing_in_universe,83.7,Maven Income and Growth VCT 4,,VCG,MAV4.L
+,4.51,5.05,7.12,missing_in_universe,76.3,Maven Income and Growth VCT 5,,VCG,MIG5.L
+,9.52,7.88,5.56,missing_in_universe,119.6,Molten Ventures VCT,,VCG,MVCT.L
+,4.76,5.72,5.77,missing_in_universe,140.1,Northern 2 VCT,,VCG,NTV.L
+,4.82,5.5,5.56,missing_in_universe,144.0,Northern 3 VCT,,VCG,NTN.L
+,4.84,5.9,5.64,missing_in_universe,144.0,Northern Venture Trust,,VCG,NVT.L
+,5.46,4.62,12.56,missing_in_universe,99.1,Octopus AIM VCT,,VCA,OOA.L
+,5.66,4.77,12.0,missing_in_universe,66.2,Octopus AIM VCT 2,,VCA,OSEC.L
+,6.41,7.08,5.69,missing_in_universe,542.2,Octopus Apollo VCT,,VCG,OAP3.L
+,4.94,0,0,missing_in_universe,48.7,Octopus Future Generations VCT,,VCG,OFG.L
+,56.97,21.16,8.72,missing_in_universe,321.4,Octopus Titan VCT,,VCG,OTV2.L
+,10.54,6.2,5.98,missing_in_universe,269.2,Pembroke VCT B shares,,VCG,PEMB.L
+,-1.27,0,0,missing_in_universe,10.8,Praetura Growth VCT,,VCG,PGV.L
+,4.63,5.46,5.63,missing_in_universe,149.0,ProVen Growth and Income VCT,,VCG,PGOO.L
+,4.96,5.7,5.39,missing_in_universe,171.3,ProVen VCT,,VCG,PVN.L
+,3.49,0,0,missing_in_universe,9.5,Puma AIM VCT,,VCA,PAIM.L
+,-2.55,-0.82,3.31,missing_in_universe,32.7,Puma Alpha VCT,,VCG,PUAL.L
+,4.01,3.47,2.55,missing_in_universe,243.7,Puma VCT 13,,VCG,PU13.L
+,10.37,24.04,0,missing_in_universe,2063.8,Schiehallion Fund,,GCP,MNTN.L
+,30.98,23.59,5.3,missing_in_universe,55.5,Schroder BSC Social Impact,,FLX,SBSI.L
+,-3.68,3.5,6.82,missing_in_universe,11.0,Seneca Growth Capital VCT B shares,,VCG,SVCT.L
+,50.71,51.95,6.25,missing_in_universe,202.3,Symphony International Holdings,,PE,SIHL.L
+,9.97,11.23,0,missing_in_universe,6.4,The Investment Company,,USC,INV.L
+,5.15,5.42,4.65,missing_in_universe,114.7,Triple Point Venture VCT Venture shares,,VCG,TPV.L
+,25.02,33.52,3.94,missing_in_universe,183.6,UIL,,FLX,UTL.L
+,14.75,11.39,9.56,missing_in_universe,175.1,Unicorn AIM VCT,,VCA,UAV.L
+,41.95,39.94,0,missing_in_universe,9.2,Worsley Investors,,USC,WINV.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,abrdn Diversified wind-down,,ADIG.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,APAX.L
+,,,,delisted_or_unmatched,,,,,ASCI.L
+STRATEGIC_REVIEW,,,,delisted_or_unmatched,,,,,AUGM.L
+,,,,delisted_or_unmatched,,,,,BBH.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,BPT.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,CIC.L
+,,,,delisted_or_unmatched,,,,,DNA2.L
+,,,,delisted_or_unmatched,,,,,DNA3.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,ESO.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,ESP.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,VH Global Sustainable Energy wind-down,,GSEO.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,Harmony Energy wind-down,,HEIT.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,HydrogenOne wind-down,,HGEN.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,HLCL.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,Henderson Opportunities wind-down,,HOT.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,JETG.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,JLEN.L
+,,,,delisted_or_unmatched,,,,,JMG.L
+,,,,delisted_or_unmatched,,,,,KKVL.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,Keystone Positive Change wind-down (Saba-driven),,KPC.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,Marble Point wind-down,,MPLS.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,PCTN.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,PEYS.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,SLPE.L
+STRATEGIC_REVIEW,,,,delisted_or_unmatched,,Social Housing REIT,Social Housing REIT strategic review,,SOHO.L
+,,,,delisted_or_unmatched,,,,,SSON.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,ex-Woodford Patient Capital realisation (ongoing),,SUPP.L
+WIND_DOWN_COMMITTED,,,,delisted_or_unmatched,,,Triple Point Energy Transition wind-down,,TENT.L
+,,,,delisted_or_unmatched,,,,,THRG.L
+WIND_DOWN_LIKELY,,,,delisted_or_unmatched,,,,,TMI.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,TPOU.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,TRG.L
+STRUCTURAL_DISCOUNT,,,,delisted_or_unmatched,,,,,WHR.L
+ACTIVIST_TARGET,,,,delisted_or_unmatched,,Unite Group REIT,Top-8 holding in Saba UKIT ETF; activist target,,UTG.L
+ACTIVIST_TARGET,,,,delisted_or_unmatched,,IP Group PLC,Top-3 non-cash holding in Saba UKIT ETF,,IPO.L
