@@ -14,6 +14,7 @@ Usage:
 import argparse, sys, time, threading, warnings, os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
+import sys as _sys, os as _os; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); import yf_patch  # noqa
 import yfinance as yf
 
 warnings.filterwarnings('ignore')
