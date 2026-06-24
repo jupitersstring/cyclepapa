@@ -292,11 +292,20 @@ _PRICE_VOL_RE = re.compile(
     re.IGNORECASE,
 )
 _BUY_WORDS = re.compile(
-    r"\b(?:purchas\w*|acqui\w*|buy|bought|subscri\w*|allotment|scrip)\b",
+    r"\b(?:purchas\w*|acqui\w*|buy|bought|subscri\w*|allotment)\b",
     re.IGNORECASE,
 )
 _SELL_WORDS = re.compile(
     r"\b(?:sale|sell|sold|dispos\w*|transfer out|gift)\b",
+    re.IGNORECASE,
+)
+# Scrip / DRIP / vesting / award — NOT a conviction buy. Detected
+# separately so they neither inflate the buy count nor get classified
+# as sells.
+_NON_CONVICTION_WORDS = re.compile(
+    r"\b(?:scrip|dividend\s+(?:re)?investment|drip|in\s+lieu|"
+    r"vesting|vested|award|grant|option\s+exercise|exercis\w*\s+of\s+options?|"
+    r"rsu|psp|deferred\s+bonus|ltip)\b",
     re.IGNORECASE,
 )
 
@@ -345,8 +354,17 @@ def fetch_pdmr_detail(url: str, *, use_cache: bool = True) -> dict:
 
 
 def _classify_pdmr_direction(nature: str) -> str:
+    """Returns 'buy' / 'sell' / 'scrip' / 'unknown'.
+
+    'scrip' covers dividend reinvestments, LTIP vesting, RSU/option
+    exercise — these inflate director holdings without conviction
+    behind the move, so they should not count toward the insider-buy
+    signal. We keep them as a separate class rather than 'unknown' so
+    we can audit the rejection rate."""
     if not nature:
         return "unknown"
+    if _NON_CONVICTION_WORDS.search(nature):
+        return "scrip"
     if _BUY_WORDS.search(nature):
         return "buy"
     if _SELL_WORDS.search(nature):
@@ -400,10 +418,13 @@ def enrich_pdmr_directions(
     """For each PDMR within the lookback window, fetch the body and
     classify direction. Returns aggregate counts and £-totals.
 
+    Scrip / vesting / DRIP / LTIP nature lines are bucketed separately
+    in pdmr_scrip so they don't inflate the conviction-buy signal.
     max_fetches caps the per-ticker HTTP cost — older PDMRs already
     matter less and the cache will fill in over multiple runs."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
-    out = {"pdmr_buys": 0, "pdmr_sells": 0, "pdmr_unknown": 0,
+    out = {"pdmr_buys": 0, "pdmr_sells": 0, "pdmr_scrip": 0,
+           "pdmr_unknown": 0,
            "pdmr_buy_gbp": 0.0, "pdmr_sell_gbp": 0.0}
     fetched = 0
     for a in items:
@@ -417,7 +438,6 @@ def enrich_pdmr_directions(
             continue
         if fetched >= max_fetches:
             break
-        # Use cache freely; only counts as an HTTP fetch on a miss
         cp = _pdmr_cache_path(a.url)
         had_cache = cp.exists()
         det = fetch_pdmr_detail(a.url)
@@ -431,6 +451,8 @@ def enrich_pdmr_directions(
         elif d == "sell":
             out["pdmr_sells"] += 1
             out["pdmr_sell_gbp"] += gbp
+        elif d == "scrip":
+            out["pdmr_scrip"] += 1
         else:
             out["pdmr_unknown"] += 1
     return out
@@ -450,25 +472,40 @@ def enrich_pdmr_directions(
 # We parse holder + new% + prev%, derive direction (new > prev = buy),
 # magnitude (new - prev = pp delta), and flag known activists.
 
-# Known activist holders — buying signal carries extra weight when the
-# new-stake is from one of these names. List is curated from the
-# UK-CEF activism literature (Saba's UKIT, AVI Global, Boaz Weinstein,
-# City of London Investment Group, Lazard, Wells Capital, etc.).
-ACTIVIST_HOLDERS = [
-    "saba capital", "boaz weinstein",
-    "asset value investors", "avi global", "avi ",
-    "city of london investment", "colim",
-    "wells capital", "wells fargo",
-    "lazard asset",
-    "elliott management", "elliott investment",
-    "1607 capital",
-    "metage capital",
-    "almitas capital",
-    "tellworth", "premier miton",
-    "polar capital",
-    "janus henderson",
-    "rights and issues",
+# Known activist holders — loaded lazily from data/activist_holders.csv
+# so new activists can be added without editing code. Falls back to a
+# tiny built-in seed if the CSV is unreadable. Each entry is matched
+# as a substring against the holder string (case-insensitive).
+_ACTIVIST_SEED = [
+    "saba capital", "boaz weinstein", "asset value investors",
+    "city of london investment", "colim", "elliott",
+    "metage capital", "almitas capital", "1607 capital",
 ]
+_ACTIVIST_CACHE: list[str] | None = None
+
+
+def _activist_holders() -> list[str]:
+    global _ACTIVIST_CACHE
+    if _ACTIVIST_CACHE is not None:
+        return _ACTIVIST_CACHE
+    path = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "activist_holders.csv"
+    out: list[str] = []
+    try:
+        with open(path) as f:
+            import csv as _csv
+            for row in _csv.DictReader(f):
+                v = (row.get("name_substring") or "").strip().lower()
+                if v:
+                    out.append(v)
+    except (OSError, IOError):
+        pass
+    _ACTIVIST_CACHE = out or list(_ACTIVIST_SEED)
+    return _ACTIVIST_CACHE
+
+
+# Backwards compat — direct attribute access still works but is now
+# computed on first use.
+ACTIVIST_HOLDERS: list[str] = _activist_holders()
 
 TR1_DETAIL_DIR = CACHE_DIR / "tr1"
 
@@ -578,7 +615,7 @@ def fetch_tr1_detail(url: str, *, use_cache: bool = True) -> dict:
         delta = 0.0
         direction = "unknown"
     holder_lc = holder.lower()
-    is_activist = any(a in holder_lc for a in ACTIVIST_HOLDERS)
+    is_activist = any(a in holder_lc for a in _activist_holders())
     rec = {"holder": holder, "new_pct": new_pct, "prev_pct": prev_pct,
            "delta_pp": round(delta, 4), "direction": direction,
            "is_activist": is_activist}

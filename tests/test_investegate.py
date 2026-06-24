@@ -163,7 +163,49 @@ def test_pdmr_classify_direction_sell():
 
 def test_pdmr_classify_direction_unknown():
     assert inv._classify_pdmr_direction("") == "unknown"
-    assert inv._classify_pdmr_direction("Vesting of options") == "unknown"
+
+
+def test_pdmr_classify_direction_scrip_is_separate():
+    """Scrip / vesting / DRIP must NOT count as conviction buys."""
+    assert inv._classify_pdmr_direction("Scrip dividend") == "scrip"
+    assert inv._classify_pdmr_direction("Dividend Reinvestment") == "scrip"
+    assert inv._classify_pdmr_direction("Vesting of LTIP awards") == "scrip"
+    assert inv._classify_pdmr_direction("Award of RSUs") == "scrip"
+    assert inv._classify_pdmr_direction("Option Exercise") == "scrip"
+
+
+def test_pdmr_enrich_separates_scrip(monkeypatch, tmp_path):
+    """3 mixed natures across 3 PDMRs in window → 1 buy, 1 sell, 1 scrip."""
+    from datetime import datetime, timezone, timedelta
+    monkeypatch.setattr(inv, "PDMR_DETAIL_DIR", tmp_path)
+    # Pre-populate per-URL cache to dodge HTTP
+    import json as _json
+    for url, nat in [("a", "SHARE PURCHASE"), ("b", "Disposal of shares"),
+                      ("c", "Scrip dividend")]:
+        cp = inv._pdmr_cache_path(url)
+        with open(cp, "w") as f:
+            _json.dump({"direction": inv._classify_pdmr_direction(nat),
+                        "gbp_amount": 0.0, "raw_nature": nat}, f)
+    now = datetime.now(timezone.utc)
+    items = [inv.Announcement(
+        date=(now - timedelta(days=i*5)).strftime("%Y-%m-%d"),
+        title="Director/PDMR Shareholding", category="pdmr",
+        raw_slug="director-pdmr-shareholding", url=u)
+        for i, u in enumerate(["a", "b", "c"])]
+    out = inv.enrich_pdmr_directions(items)
+    assert out["pdmr_buys"] == 1
+    assert out["pdmr_sells"] == 1
+    assert out["pdmr_scrip"] == 1
+
+
+def test_activist_holders_loaded_from_csv():
+    """CSV-driven activist list must include the canonical entries."""
+    hl = inv._activist_holders()
+    # Reset cache for test
+    inv._ACTIVIST_CACHE = None
+    hl = inv._activist_holders()
+    assert any("saba capital" in h for h in hl)
+    assert any("city of london investment" in h for h in hl)
 
 
 def test_pdmr_extract_gbp_basic():

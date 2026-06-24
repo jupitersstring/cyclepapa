@@ -588,14 +588,10 @@ def check_micro_investability(
     ):
         return False
     g = params.MICRO_GATES
-    mc = aic_record.get("MarketCap") or 0
-    dv = aic_record.get("AvgValTrd1M") or 0
-    ng = aic_record.get("NetGearCum") or 0
-    oc = aic_record.get("OngoingCharge")
-    try:
-        oc = float(oc) if oc not in (None, "") else None
-    except (TypeError, ValueError):
-        oc = None
+    mc = _as_float(aic_record.get("MarketCap")) or 0.0
+    dv = _as_float(aic_record.get("AvgValTrd1M")) or 0.0
+    ng = _as_float(aic_record.get("NetGearCum")) or 0.0
+    oc = _as_float(aic_record.get("OngoingCharge"))
     if mc < g["min_market_cap_gbp_m"]:
         return False
     if dv < g["min_daily_value_gbp_m"]:
@@ -605,6 +601,23 @@ def check_micro_investability(
     if oc is not None and oc > g["max_ongoing_charge"]:
         return False
     return True
+
+
+def _as_float(v) -> float | None:
+    """Coerce AIC field to float; return None on garbage. AIC's JSON
+    occasionally returns strings ('—', 'n/a') for missing values; the
+    naive `or 0` fallback then leaves the string in place and the
+    downstream `<` comparison throws TypeError (the HOME.L bug)."""
+    if v is None or v == "":
+        return None
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    import math
+    if math.isnan(f):
+        return None
+    return f
 
 
 def check_investability(
@@ -623,20 +636,16 @@ def check_investability(
     gates = dict(params.INVESTABILITY_GATES)
     if catalyst and catalyst in params.INVESTABILITY_GATES_BY_CATALYST:
         gates.update(params.INVESTABILITY_GATES_BY_CATALYST[catalyst])
-    mc = aic_record.get("MarketCap") or 0
+    mc = _as_float(aic_record.get("MarketCap")) or 0.0
     if mc < gates["min_market_cap_gbp_m"]:
         reasons.append(f"market cap £{mc:.0f}m < £{gates['min_market_cap_gbp_m']:.0f}m")
-    dv = aic_record.get("AvgValTrd1M") or 0
+    dv = _as_float(aic_record.get("AvgValTrd1M")) or 0.0
     if dv < gates["min_daily_value_gbp_m"]:
         reasons.append(f"daily value £{dv:.2f}m < £{gates['min_daily_value_gbp_m']:.2f}m")
-    ng = aic_record.get("NetGearCum")
+    ng = _as_float(aic_record.get("NetGearCum"))
     if ng is not None and ng > gates["max_net_gearing_pct"]:
         reasons.append(f"net gearing {ng:.0f}% > {gates['max_net_gearing_pct']:.0f}%")
-    oc = aic_record.get("OngoingCharge")
-    try:
-        oc = float(oc) if oc not in (None, "") else None
-    except (TypeError, ValueError):
-        oc = None
+    oc = _as_float(aic_record.get("OngoingCharge"))
     if oc is not None and oc > gates["max_ongoing_charge"]:
         reasons.append(f"ongoing charge {oc:.2f}% > {gates['max_ongoing_charge']:.2f}%")
     return (len(reasons) == 0), reasons
