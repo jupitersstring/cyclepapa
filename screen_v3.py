@@ -29,6 +29,12 @@ import screen_core as core
 from aic_scraper import fetch_aic_raw, fetch_aic_summary
 from yahoo_nav_scraper import fetch_yahoo_discounts
 
+try:
+    import activist_campaigns as _campaigns
+    _HAS_CAMPAIGNS = True
+except Exception:
+    _HAS_CAMPAIGNS = False
+
 
 # ---------------------------------------------------------------------------
 
@@ -41,6 +47,7 @@ def screen_one(
     signal,           # signals.TickerSignals or None
     ohlcv: pd.DataFrame | None,
     daily_ohlcv: pd.DataFrame | None = None,
+    active_campaigns: dict[str, list[str]] | None = None,
 ) -> core.ScreenResult:
 
     row = metadata.load_universe().get(ticker.upper())
@@ -258,18 +265,23 @@ def screen_one(
     # Apply the multiplier only if at least one source provided usable
     # coverage — else keep the base prob to avoid silent no-news penalty
     # from a failed scrape.
+    # Active cross-name campaign membership — additional probability
+    # uplift when this ticker is part of a current activist sweep.
+    campaign_mult = 1.0
+    if active_campaigns is not None and ticker in active_campaigns:
+        groups = active_campaigns[ticker]
+        r.active_campaign_groups = "|".join(groups)
+        # +5% per distinct activist group, capped at +20%
+        campaign_mult = 1.0 + min(0.20, 0.05 * len(groups))
+
     if signal is not None and (signal.coverage_ok or signal.rns_available):
         mult = 0.70 + 1.30 * signal.signal_score
-        # Resolution score is a separate fresh-only multiplier on top.
-        # Caps the probability lift at +40% so a maxed resolution score
-        # can't overwhelm the base prior, but a strong reading (advisor
-        # appointment + strategic review + insider buys + buyback all
-        # in the last 30 days) materially shortens the runway.
         res = getattr(signal, "resolution_score", 0.0) or 0.0
         res_mult = 1.0 + 0.40 * res
-        r.catalyst_prob_signal_adj = min(0.95, base_prob * mult * res_mult)
+        r.catalyst_prob_signal_adj = min(
+            0.95, base_prob * mult * res_mult * campaign_mult)
     else:
-        r.catalyst_prob_signal_adj = base_prob
+        r.catalyst_prob_signal_adj = min(0.95, base_prob * campaign_mult)
 
     # Catalyst-age adjustment for wind-downs / RoC. If the universe
     # row has a catalyst_date, compute months elapsed and apply both
@@ -289,6 +301,16 @@ def screen_one(
                 r.catalyst_prob_signal_adj = min(
                     0.95, r.catalyst_prob_signal_adj * prob_mult)
             months = months * dur_mult
+            # Anchored VWAP from catalyst date — surfaces names trading
+            # below the post-announcement market consensus (workout
+            # being doubted = entry opportunity).
+            if data is not None and r.catalyst in (
+                    "WIND_DOWN_COMMITTED", "WIND_DOWN_LIKELY",
+                    "RETURN_OF_CAPITAL_LIVE", "STRATEGIC_REVIEW"):
+                avwap = core.anchored_vwap(data, d0)
+                if avwap and avwap > 0 and r.last_close:
+                    r.anchored_vwap_since_catalyst = avwap
+                    r.price_vs_avwap_pct = (r.last_close / avwap) - 1.0
         except ValueError:
             pass
     r.expected_duration_months = months
@@ -488,6 +510,19 @@ def main() -> int:
         except Exception as exc:
             print(f"[v3] signals disabled: {exc}", file=sys.stderr)
 
+    # 4b) Cross-name activist campaigns — load active targets so each
+    # screened name knows whether it's part of a current sweep.
+    active_campaigns: dict[str, list[str]] = {}
+    if _HAS_CAMPAIGNS:
+        try:
+            filings = _campaigns.collect_filings()
+            camps = _campaigns.detect_campaigns(filings)
+            active_campaigns = _campaigns.active_targets(camps)
+            print(f"[v3] active activist campaigns: "
+                  f"{len(active_campaigns)} target(s)", file=sys.stderr)
+        except Exception as exc:
+            print(f"[v3] campaign detector failed: {exc}", file=sys.stderr)
+
     # 5) Score (with optional daily-bar pull for spike detection)
     fetch_daily = bool(args.daily_spike)
     results: list[core.ScreenResult] = []
@@ -503,6 +538,7 @@ def main() -> int:
                 signal=sig_map.get(sym),
                 ohlcv=price_store.get(sym, ttl_hours=args.price_ttl_h),
                 daily_ohlcv=daily,
+                active_campaigns=active_campaigns,
             )
             # Peer-relative discount — current vs sector median.
             # Positive = wider than peers (potentially more setup).

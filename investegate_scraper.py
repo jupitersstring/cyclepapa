@@ -72,6 +72,19 @@ CATEGORY_RULES = [
     (re.compile(r"capital-distribution|return-of-capital|cash-distribution"
                 r"|capital-reduction"), "capdistribution"),
     (re.compile(r"appointment.*adviser|appointment.*broker|broker-change"), "advisor"),
+    # Board / manager change — a fresh chair + new CIO + advisor in a
+    # 60-day cluster is the textbook "something is up" pattern. Worth
+    # tracking as its own category so the resolution score can weight it.
+    (re.compile(r"appointment-of-(non-executive-)?director(?!-of-disposals)"
+                r"|appointment-of-chair(?:man|person|)"
+                r"|departure-of-(non-executive-)?director"
+                r"|resignation-of-(non-executive-)?director"
+                r"|change-of-(investment-manager|portfolio-manager)"
+                r"|change-of-(chair|cio|portfolio-manager)"
+                r"|board-changes|board-appointment"
+                r"|investment-management-agreement"
+                r"|new-investment-manager|new-portfolio-manager"
+                r"|change\s*of\s*manager"), "board_change"),
 ]
 
 # Weights into the composite signal score — RNS is high-grade so we
@@ -84,6 +97,7 @@ WEIGHTS = {
     "tender":          0.15,
     "review":          0.15,
     "advisor":         0.15,
+    "board_change":    0.12,
     "agm":             0.10,
     "buyback":         0.10,
     "capdistribution": 0.10,
@@ -722,6 +736,7 @@ RESOLUTION_WEIGHTS = {
     "tender":          0.20,   # tender announced
     "winddown":        0.25,   # formal wind-down announcement
     "buyback":         0.15,   # sustained buyback = DCM intensifying
+    "board_change":    0.15,   # new chair / new CIO / director departures
     # TR-1 raw count is no longer weighted — the direction-enriched
     # buckets below carry the load.
     "pdmr_buys":       0.20,   # insider conviction (direction-resolved)
@@ -729,6 +744,13 @@ RESOLUTION_WEIGHTS = {
     "tr1_material_adds": 0.15, # ≥1pp stake adds (real conviction, not 1%-tick)
     "tr1_activist_buys": 0.20, # Saba / AVI / etc. fingerprint
 }
+
+# Cluster bonus: if board_change + advisor + (review OR agm) all fire in
+# the same 60-day window we add a +0.10 lift to the resolution score
+# (capped 1.0). This is the textbook "new chair, new broker, strategic
+# review opened" pattern that precedes corporate-action announcements.
+CLUSTER_WINDOW_DAYS = 60
+CLUSTER_BONUS = 0.10
 
 
 def resolution_score_from_rns(
@@ -754,7 +776,9 @@ def resolution_score_from_rns(
     # a 15d half-life. Direction-enriched categories are fed as
     # already-windowed counts.
     date_anchored = {"advisor", "review", "agm", "capdistribution",
-                     "tender", "winddown", "buyback"}
+                     "tender", "winddown", "buyback", "board_change"}
+    # Track cluster eligibility — first dates per category
+    first_dates: dict[str, datetime] = {}
     for a in items:
         cat = a.category
         if cat not in date_anchored:
@@ -770,6 +794,8 @@ def resolution_score_from_rns(
         age_days = (now - dt).total_seconds() / 86400.0
         w = 0.5 ** (age_days / max(1, half_life_days))
         decayed[cat] += w
+        if cat not in first_dates or dt > first_dates[cat]:
+            first_dates[cat] = dt
     # Body-enriched counts (already filtered to lookback window upstream)
     decayed["pdmr_buys"] = float(pdmr_buys_count)
     decayed["tr1_buys"] = float(tr1_buys)
@@ -782,6 +808,20 @@ def resolution_score_from_rns(
 
     composite = sum(RESOLUTION_WEIGHTS[c] * _sat(decayed[c])
                     for c in RESOLUTION_WEIGHTS)
+
+    # Cluster bonus — board_change + advisor + (review OR agm) all
+    # firing within CLUSTER_WINDOW_DAYS adds CLUSTER_BONUS to composite.
+    if ("board_change" in first_dates and "advisor" in first_dates
+            and ("review" in first_dates or "agm" in first_dates)):
+        dates = [first_dates["board_change"], first_dates["advisor"]]
+        if "review" in first_dates:
+            dates.append(first_dates["review"])
+        if "agm" in first_dates:
+            dates.append(first_dates["agm"])
+        span_days = (max(dates) - min(dates)).days
+        if span_days <= CLUSTER_WINDOW_DAYS:
+            composite += CLUSTER_BONUS
+
     return min(1.0, composite), decayed
 
 

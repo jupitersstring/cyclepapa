@@ -37,7 +37,9 @@ def test_categorise_review():
 
 def test_categorise_unknown():
     assert inv._categorise("interim-results-6-months-ended-30-september-2025") is None
-    assert inv._categorise("appointment-of-non-executive-director") is None
+    # 'appointment-of-non-executive-director' now categorises as
+    # board_change — see test_categorise_board_change below.
+    assert inv._categorise("annual-financial-report") is None
 
 
 def test_parse_date():
@@ -383,6 +385,64 @@ def test_categorise_advisor():
 def test_categorise_capdistribution():
     assert inv._categorise("return-of-capital") == "capdistribution"
     assert inv._categorise("capital-distribution-update") == "capdistribution"
+
+
+def test_categorise_board_change():
+    assert inv._categorise("appointment-of-director") == "board_change"
+    assert inv._categorise("appointment-of-non-executive-director") == "board_change"
+    assert inv._categorise("appointment-of-chairman") == "board_change"
+    assert inv._categorise("resignation-of-director") == "board_change"
+    assert inv._categorise("change-of-investment-manager") == "board_change"
+    assert inv._categorise("board-changes") == "board_change"
+    assert inv._categorise("investment-management-agreement") == "board_change"
+
+
+def test_resolution_cluster_bonus_fires():
+    """board_change + advisor + review/agm within 60d triggers cluster bonus."""
+    from datetime import datetime, timezone, timedelta
+    now = datetime.now(timezone.utc)
+    base = inv.resolution_score_from_rns([
+        inv.Announcement(date=(now-timedelta(days=5)).strftime("%Y-%m-%d"),
+                          title="bc", category="board_change",
+                          raw_slug="appointment-of-chair", url=""),
+        inv.Announcement(date=(now-timedelta(days=20)).strftime("%Y-%m-%d"),
+                          title="ad", category="advisor",
+                          raw_slug="appointment-of-broker", url=""),
+        inv.Announcement(date=(now-timedelta(days=30)).strftime("%Y-%m-%d"),
+                          title="rv", category="review",
+                          raw_slug="strategic-review", url=""),
+    ])[0]
+    no_cluster = inv.resolution_score_from_rns([
+        inv.Announcement(date=(now-timedelta(days=5)).strftime("%Y-%m-%d"),
+                          title="bc", category="board_change",
+                          raw_slug="appointment-of-chair", url=""),
+        inv.Announcement(date=(now-timedelta(days=20)).strftime("%Y-%m-%d"),
+                          title="ad", category="advisor",
+                          raw_slug="appointment-of-broker", url=""),
+    ])[0]
+    # With cluster (board+advisor+review) > without (board+advisor only) by the bonus
+    assert base - no_cluster >= inv.CLUSTER_BONUS - 0.01
+
+
+def test_resolution_cluster_bonus_skips_when_span_too_wide():
+    """If the three signals span more than 60 days, no bonus."""
+    from datetime import datetime, timezone, timedelta
+    now = datetime.now(timezone.utc)
+    score = inv.resolution_score_from_rns([
+        inv.Announcement(date=(now-timedelta(days=5)).strftime("%Y-%m-%d"),
+                          title="bc", category="board_change",
+                          raw_slug="appointment-of-chair", url=""),
+        inv.Announcement(date=(now-timedelta(days=20)).strftime("%Y-%m-%d"),
+                          title="ad", category="advisor",
+                          raw_slug="appointment-of-broker", url=""),
+        # Review way outside the cluster window
+        inv.Announcement(date=(now-timedelta(days=85)).strftime("%Y-%m-%d"),
+                          title="rv", category="review",
+                          raw_slug="strategic-review", url=""),
+    ])[0]
+    # Should not include the CLUSTER_BONUS lift (review is too old)
+    # The score should equal the non-cluster baseline + some review decay
+    assert score < 0.40  # 0.25 advisor + 0.15 board_change + tiny review decay
 
 
 def test_fetch_company_uses_cache(tmp_path, monkeypatch):

@@ -155,6 +155,17 @@ class ScreenResult:
 
     # Per-name explainer: top 3 drivers of the current ranking
     top_drivers: str | None = None
+
+    # Anchored VWAP from catalyst_date (wind-downs / RoC only). If the
+    # current price is materially BELOW the cumulative VWAP since the
+    # announcement, the market is doubting the workout — the kind of
+    # entry we want.
+    anchored_vwap_since_catalyst: float | None = None
+    price_vs_avwap_pct: float | None = None    # +0.05 = 5% above avwap
+
+    # Active cross-name campaign membership (pipe-separated activist
+    # groups whose recent buying campaign includes this ticker).
+    active_campaign_groups: str | None = None
     rns_tr1: int | None = None
     rns_pdmr: int | None = None
     rns_winddown: int | None = None
@@ -654,6 +665,42 @@ def explain_drivers(r) -> str:
     if r.catalyst_age_months and r.catalyst_age_months >= 12:
         drivers.append(f"{r.catalyst_age_months:.0f}m into workout")
     return "; ".join(drivers[:5]) if drivers else ""
+
+
+def anchored_vwap(df: pd.DataFrame, anchor_date) -> float | None:
+    """Cumulative volume-weighted average price from `anchor_date` to
+    the most recent bar. Returns None if the anchor is after the last
+    bar or volume data is missing.
+
+    Used to test whether the post-announcement market has priced in
+    the catalyst. For a wind-down stub, price BELOW the anchored VWAP
+    means the workout is being doubted by net sellers."""
+    if df is None or df.empty:
+        return None
+    try:
+        anchor = pd.Timestamp(anchor_date)
+    except Exception:
+        return None
+    if anchor.tz is not None:
+        anchor = anchor.tz_convert(None) if hasattr(anchor, "tz_convert") else anchor.replace(tzinfo=None)
+    idx = df.index
+    if isinstance(idx, pd.DatetimeIndex) and idx.tz is not None:
+        # Strip tz for comparison
+        idx = idx.tz_convert(None) if hasattr(idx, "tz_convert") else idx.tz_localize(None)
+        post = df.loc[idx >= anchor]
+    else:
+        post = df.loc[df.index >= anchor]
+    if post.empty or "Close" not in post.columns or "Volume" not in post.columns:
+        return None
+    typical = (post["High"] + post["Low"] + post["Close"]) / 3.0
+    vol = post["Volume"].astype(float)
+    tot_vol = vol.sum()
+    if tot_vol <= 0:
+        return None
+    try:
+        return float((typical.astype(float) * vol).sum() / tot_vol)
+    except Exception:
+        return None
 
 
 def is_discount_stretched(
