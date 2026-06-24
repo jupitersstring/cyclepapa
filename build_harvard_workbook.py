@@ -278,30 +278,29 @@ def _set_col_widths(ws: Worksheet, widths: dict):
         ws.column_dimensions[get_column_letter(col_idx)].width = width
 
 
-def _crimson_banner(ws: Worksheet, row: int, text: str, height: int = 30, span_cols: int = 6):
-    """Monochrome banner: bold black text on light grey strip, thick rule
-    underneath. Name preserved for back-compat with non-Harvard
-    workbooks that call this helper."""
+def _crimson_banner(ws: Worksheet, row: int, text: str, height: int = 24, span_cols: int = 6):
+    """Title banner: bold serif text, no fill, generous breathing room.
+    Thin rule sits BELOW the title text, not around it — gives an annual-
+    report feel. Helper name preserved for back-compat."""
     cell = ws.cell(row=row, column=1, value=text)
     cell.font = _font(bold=True, color=INK)
-    cell.fill = _fill(LIGHT_GREY)
     cell.alignment = _align(h="left", v="center")
+    # Thin black rule under the banner; no fill, no top rule
     for c in range(1, span_cols + 1):
-        ws.cell(row=row, column=c).fill = _fill(LIGHT_GREY)
-        ws.cell(row=row, column=c).border = _border(color=INK, bottom="medium")
+        ws.cell(row=row, column=c).border = _border(color=INK, bottom="thin")
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
     ws.row_dimensions[row].height = height
 
 
 def _section_rule(ws: Worksheet, row: int, text: str, span_cols: int = 6):
-    """Bold uppercase label with a thin black underline. No fill."""
+    """Section label: bold small-caps text, NO underline rule, NO fill.
+    Whitespace above (managed by caller) is the only separator. The
+    quiet uppercase label is enough to mark the start of a section."""
     cell = ws.cell(row=row, column=1, value=text.upper())
     cell.font = _font(bold=True, color=INK)
     cell.alignment = _align()
-    for c in range(1, span_cols + 1):
-        ws.cell(row=row, column=c).border = _border(color=INK, bottom="thin")
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
-    ws.row_dimensions[row].height = 18
+    ws.row_dimensions[row].height = 16
 
 
 def _kv_row(ws: Worksheet, row: int, key: str, value, value_col_span: int = 5):
@@ -315,21 +314,24 @@ def _kv_row(ws: Worksheet, row: int, key: str, value, value_col_span: int = 5):
 
 
 def _verdict_badge(ws: Worksheet, row: int, col: int, verdict: str):
-    """Monochrome verdict badge: full word for clarity, fill density
-    encodes conviction. GREEN = medium grey fill, YELLOW = pale grey,
-    RED = bold-italic on white (drawn-through), UNRESEARCHED = plain."""
-    fill_map = {
-        'GREEN':        LIGHT_GREY,
-        'YELLOW':       PALE_GREY,
-        'RED':          WHITE,
-        'UNRESEARCHED': WHITE,
-    }
-    bg = fill_map.get(verdict, WHITE)
+    """Verdict marker: text-only, no fills, no borders. Hierarchy comes
+    from typeface weight + italic.
+
+      GREEN        bold
+      YELLOW       regular
+      RED          bold italic
+      UNRESEARCHED muted italic
+    """
     cell = ws.cell(row=row, column=col, value=verdict)
-    cell.font = _font(bold=True, italic=(verdict == 'RED'), color=INK)
-    cell.fill = _fill(bg)
+    if verdict == 'GREEN':
+        cell.font = _font(bold=True, color=INK)
+    elif verdict == 'RED':
+        cell.font = _font(bold=True, italic=True, color=INK)
+    elif verdict == 'UNRESEARCHED':
+        cell.font = _font(italic=True, color=MUTED)
+    else:  # YELLOW
+        cell.font = _font(color=INK)
     cell.alignment = _align(h="center")
-    cell.border = _border(color=RULE, top="thin", bottom="thin", left="thin", right="thin")
 
 
 # --- Cover sheet --------------------------------------------------------------
@@ -343,99 +345,110 @@ def build_cover(ws: Worksheet, n_total: int, n_green: int, n_yellow: int,
     extra_headlines: optional list of (label, value, sub) tiles for the
     builder to inject above the standard four.
     """
-    _set_col_widths(ws, {1: 4, 2: 22, 3: 22, 4: 22, 5: 22, 6: 22, 7: 22, 8: 4})
+    # Gutter columns (1 + 8) give the page generous margins; six content cols.
+    _set_col_widths(ws, {1: 6, 2: 24, 3: 24, 4: 24, 5: 24, 6: 24, 7: 24, 8: 6})
 
-    # Title strip — bold caps on light grey, thin black rule under.
-    title = ws.cell(row=2, column=2, value="ASYMMETRY")
-    title.font = _font(bold=True, color=INK)
-    title.alignment = _align(h="left", v="center")
-    for c in range(2, 8):
-        ws.cell(row=2, column=c).fill = _fill(LIGHT_GREY)
-    for c in range(2, 8):
-        ws.cell(row=2, column=c).border = _border(color=INK, bottom="thin")
-    ws.merge_cells(start_row=2, start_column=2, end_row=2, end_column=7)
-    ws.row_dimensions[2].height = 22
-
-    # Subtitle (italic, plain background)
-    s = ws.cell(row=3, column=2,
-                value=f"Top {top_n} multibagger candidates  ·  quantitative + qualitative workbook")
-    s.font = _font(italic=True, color=INK)
-    s.alignment = _align(h="left", v="center")
+    # --- Masthead ---------------------------------------------------------
+    # Row 3: workbook title (bold, no fill). Row 4: thin black rule
+    # underneath — masthead-style separator. Row 5: italic subtitle.
+    # Row 7: italic muted edition / framework note.
+    t = ws.cell(row=3, column=2, value="The Asymmetry Workbook")
+    t.font = _font(bold=True, color=INK)
+    t.alignment = _align(h="left", v="bottom")
     ws.merge_cells(start_row=3, start_column=2, end_row=3, end_column=7)
-    ws.row_dimensions[3].height = 18
+    ws.row_dimensions[3].height = 22
 
-    # Edition / framework note
-    d = ws.cell(row=5, column=2,
-                value="Asymmetry framework  ·  Yartseva-aligned upside  ·  Graham downside floor  ·  As of 24 June 2026")
-    d.font = _font(italic=True, color=MUTED)
-    d.alignment = _align(h="left", v="center")
+    # Thin black rule under the masthead title
+    for c in range(2, 8):
+        ws.cell(row=4, column=c).border = _border(color=INK, bottom="thin")
+    ws.row_dimensions[4].height = 4
+
+    sub = ws.cell(row=5, column=2,
+                  value=f"Top {top_n} multibagger candidates — a quantitative + qualitative review")
+    sub.font = _font(italic=True, color=INK)
+    sub.alignment = _align(h="left", v="center")
     ws.merge_cells(start_row=5, start_column=2, end_row=5, end_column=7)
+    ws.row_dimensions[5].height = 16
 
-    # --- HEADLINE FIGURES strip --- (rows 7-9)
+    note = ws.cell(row=7, column=2,
+                   value="Yartseva-aligned upside  ·  Graham downside floor  ·  EDGAR XBRL ground truth  ·  As of 24 June 2026")
+    note.font = _font(italic=True, color=MUTED)
+    note.alignment = _align(h="left", v="center")
+    ws.merge_cells(start_row=7, start_column=2, end_row=7, end_column=7)
+
+    # --- HEADLINE FIGURES (rows 10-12) -----------------------------------
+    # No fills, no surrounding borders. A thin rule below the section,
+    # values stand on their own.
+    _section_rule(ws, 9, "Headline figures", span_cols=7)
+
     reviewed = n_green + n_yellow + (n_total - n_unresearched - n_green - n_yellow)
     pct_reviewed = (reviewed / n_total * 100) if n_total else 0
     standard = [
-        ("UNIVERSE",      f"{n_total:,}",       "names ranked"),
-        ("TOP-N",         f"{top_n}",           "highest-conviction"),
-        ("VERDICTS",      f"{reviewed:,}",      f"({pct_reviewed:.1f}% reviewed)"),
-        ("GREEN",         f"{n_green}",         "high-conviction"),
-        ("YELLOW",        f"{n_yellow}",        "risk-flagged"),
-        ("UNRESEARCHED",  f"{n_unresearched:,}", "no thesis yet"),
+        ("UNIVERSE",     f"{n_total:,}",        "names ranked"),
+        ("TOP-N",        f"{top_n}",            "highest conviction"),
+        ("REVIEWED",     f"{reviewed:,}",       f"{pct_reviewed:.1f}% of universe"),
+        ("GREEN",        f"{n_green}",          "high conviction"),
+        ("YELLOW",       f"{n_yellow}",         "risk-flagged"),
+        ("UNRESEARCHED", f"{n_unresearched:,}", "no thesis yet"),
     ]
     tiles = (extra_headlines or []) + standard
-    tiles = tiles[:6]  # cap at 6 (we have 6 inner cols)
+    tiles = tiles[:6]
 
-    # Header row of tiles (labels)
+    # Label row (small caps, muted)
     for i, (lbl, _, _) in enumerate(tiles):
-        col = 2 + i
-        c = ws.cell(row=7, column=col, value=lbl)
-        c.font = _font(bold=True, color=MUTED)
-        c.alignment = _align(h="center")
-        c.border = _border(color=INK, top="thin", left="thin", right="thin")
-        c.fill = _fill(PALE_GREY)
-    # Value row — emphasis via bold + tall row + thicker borders
-    for i, (_, val, _) in enumerate(tiles):
-        col = 2 + i
-        c = ws.cell(row=8, column=col, value=val)
-        c.font = _font(bold=True, color=INK)
-        c.alignment = _align(h="center")
-        c.border = _border(color=INK, left="thin", right="thin")
-    ws.row_dimensions[8].height = 28
-    # Sub row
-    for i, (_, _, sub) in enumerate(tiles):
-        col = 2 + i
-        c = ws.cell(row=9, column=col, value=sub)
+        c = ws.cell(row=10, column=2 + i, value=lbl)
         c.font = _font(italic=True, color=MUTED)
-        c.alignment = _align(h="center")
-        c.border = _border(color=INK, bottom="thin", left="thin", right="thin")
+        c.alignment = _align(h="left")
+    ws.row_dimensions[10].height = 16
+    # Value row (bold, tall, no border around — emphasis via row height
+    # and column whitespace)
+    for i, (_, val, _) in enumerate(tiles):
+        c = ws.cell(row=11, column=2 + i, value=val)
+        c.font = _font(bold=True, color=INK)
+        c.alignment = _align(h="left")
+    ws.row_dimensions[11].height = 24
+    # Sub row (italic muted)
+    for i, (_, _, sub_lbl) in enumerate(tiles):
+        c = ws.cell(row=12, column=2 + i, value=sub_lbl)
+        c.font = _font(italic=True, color=MUTED)
+        c.alignment = _align(h="left")
+    ws.row_dimensions[12].height = 16
+    # Thin rule under the headline strip
+    for c in range(2, 8):
+        ws.cell(row=13, column=c).border = _border(color=INK, top="thin")
+    ws.row_dimensions[13].height = 4
 
-    # --- Abstract block ---
-    _section_rule(ws, 12, "Abstract", span_cols=7)
+    # --- Abstract --------------------------------------------------------
+    _section_rule(ws, 15, "Abstract", span_cols=7)
     abstract = (
-        f"This workbook documents the top-{top_n} names from a global universe of "
+        f"This workbook documents the top {top_n} names from a global universe of "
         f"{n_total:,} equities ranked by an entry-today asymmetry score. The upside leg "
         "weights factors Anna Yartseva (CAFE WP 33, 2025) finds predictive of 10-bagger "
         "outcomes — FCF yield, book-to-market, small size, profitability level, asset-"
         "growth gate, contra-momentum. The downside floor leg combines Graham net-net, "
-        "cash > EV, sub-book and negative-EV signals. Each candidate has been qualitatively "
-        "reviewed and assigned a verdict of GREEN (high-conviction), YELLOW (risk-flagged), "
-        "RED (avoid) or UNRESEARCHED. Sheets: Cover, Methodology, Index, per-name pages, "
-        "Coverage, References."
+        "cash > EV, sub-book and negative-EV signals. Each candidate has been "
+        "qualitatively reviewed and assigned a verdict of GREEN (high-conviction), "
+        "YELLOW (risk-flagged), RED (avoid) or UNRESEARCHED. Sheets sequence as Cover, "
+        "Methodology, Index, per-name pages, Coverage, References."
     )
-    a = ws.cell(row=13, column=2, value=abstract)
+    a = ws.cell(row=16, column=2, value=abstract)
     a.font = _font(color=INK)
     a.alignment = _align(wrap=True, v="top")
-    ws.merge_cells(start_row=13, start_column=2, end_row=17, end_column=7)
-    for r in range(13, 18):
+    ws.merge_cells(start_row=16, start_column=2, end_row=20, end_column=7)
+    for r in range(16, 21):
         ws.row_dimensions[r].height = 18
 
-    # Footer note
-    f = ws.cell(row=20, column=2,
-                value="Prepared for internal allocation use. Not investment advice.")
-    f.font = _font(italic=True, color=MUTED)
-    ws.merge_cells(start_row=20, start_column=2, end_row=20, end_column=7)
+    # --- Footer (single line, italic muted, faint rule above) -----------
     for c in range(2, 8):
-        ws.cell(row=20, column=c).border = _border(color=INK, top="thin")
+        ws.cell(row=22, column=c).border = _border(color=RULE, top="thin")
+    ws.row_dimensions[22].height = 4
+
+    f_cell = ws.cell(row=23, column=2,
+                     value="Prepared for internal allocation use.  Not investment advice.")
+    f_cell.font = _font(italic=True, color=MUTED)
+    f_cell.alignment = _align(h="left", v="center")
+    ws.merge_cells(start_row=23, start_column=2, end_row=23, end_column=7)
+    ws.row_dimensions[23].height = 14
 
 
 # --- Methodology sheet --------------------------------------------------------
@@ -544,28 +557,27 @@ def _sheet_name_for(symbol: str, rank: int) -> str:
 def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
     _set_col_widths(ws, {1: 4, 2: 22, 3: 26, 4: 22, 5: 26, 6: 4})
 
-    # ── Header strip: bold black-on-grey, thin black underline
+    # ── Title row: bold name, no fill. Thin rule underneath.
     sym = str(r.get('symbol', ''))
     name = str(r.get('name', '') or '')
-    cell = ws.cell(row=1, column=1, value=f"  #{rank:02d}  ·  {sym}  ·  {name}")
+    cell = ws.cell(row=1, column=1, value=f"#{rank:02d}    {sym}    {name}")
     cell.font = _font(bold=True, color=INK)
-    cell.fill = _fill(LIGHT_GREY)
     cell.alignment = _align(h="left", v="center")
-    for c in range(1, 7):
-        ws.cell(row=1, column=c).fill = _fill(LIGHT_GREY)
-        ws.cell(row=1, column=c).border = _border(color=INK, bottom="thin")
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=6)
-    ws.row_dimensions[1].height = 22
+    ws.row_dimensions[1].height = 20
 
-    # ── HEADLINE FIGURES row — single-font, bold values, light grey fill
-    ws.cell(row=3, column=2, value="VERDICT").font = _font(bold=True, color=MUTED)
+    for c in range(1, 7):
+        ws.cell(row=2, column=c).border = _border(color=INK, bottom="thin")
+    ws.row_dimensions[2].height = 4
+
+    # ── Verdict + score row — italic labels, plain values, no fills.
+    ws.cell(row=3, column=2, value="Verdict").font = _font(italic=True, color=MUTED)
     _verdict_badge(ws, 3, 3, r.get('verdict', 'UNRESEARCHED'))
-    ws.cell(row=3, column=4, value="ENTRY-TODAY SCORE").font = _font(bold=True, color=MUTED)
+    ws.cell(row=3, column=4, value="Entry-today score").font = _font(italic=True, color=MUTED)
     sc = _write_score(ws, 3, 5, r.get('entry_today_asymmetry'),
                       font=_font(bold=True, color=INK))
-    sc.alignment = _NUM_ALIGN_CENTER
-    sc.fill = _fill(PALE_GREY)
-    sc.border = _border(color=INK, top="thin", bottom="thin", left="thin", right="thin")
+    sc.alignment = _NUM_ALIGN_RIGHT
+    ws.row_dimensions[3].height = 18
 
     # ── Snapshot section
     # Text values use _kv_row (label/text pairs). Numeric values
