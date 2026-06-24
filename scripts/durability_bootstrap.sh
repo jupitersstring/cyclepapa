@@ -8,6 +8,12 @@ cd "$(dirname "$0")/.."
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
+# Cooldown lock: when present, skip restarting yfinance-using pipelines
+COOLDOWN_LOCK=/tmp/yfinance_cooldown.lock
+if [ -f "$COOLDOWN_LOCK" ]; then
+    echo "[bootstrap] cooldown lock present — auto_commit only, no yfinance jobs"
+fi
+
 # ─── 1. Commit any orphan data ───
 if [ -n "$(git status --porcelain data/)" ]; then
     ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -64,7 +70,7 @@ else:
 " 2>/dev/null)
     [ "$td_need" -gt 10 ] 2>/dev/null && need_chain=1
 fi
-if [ "$need_chain" -eq 1 ] && ! pgrep -f "widen_chain.sh\|run_expansion\|master_expand" >/dev/null 2>&1; then
+if [ ! -f "$COOLDOWN_LOCK" ] && [ "$need_chain" -eq 1 ] && ! pgrep -f "widen_chain.sh\|run_expansion\|master_expand" >/dev/null 2>&1; then
     nohup bash scripts/master_expand_chain.sh > /tmp/log_master_expand.txt 2>&1 &
     disown
     echo "[bootstrap] resumed master_expand_chain.sh"
@@ -90,7 +96,7 @@ fi
 research_running=$(pgrep -f 'python3 scripts/pull_compounder_research_v2'  2>/dev/null | head -1)
 research_running=${research_running:-0}
 research_size=$(stat -c%s data/research/roic_us_nms.csv 2>/dev/null || echo 0)
-if [ "$research_running" = "0" ] && [ "$research_size" -lt 2000000 ] && [ -f data/universes/us_nms.csv ]; then
+if [ ! -f "$COOLDOWN_LOCK" ] && [ "$research_running" = "0" ] && [ "$research_size" -lt 2000000 ] && [ -f data/universes/us_nms.csv ]; then
     nohup python3 scripts/pull_compounder_research_v2.py \
         --universe data/universes/us_nms.csv \
         --out data/research/roic_us_nms.csv \
@@ -99,7 +105,7 @@ if [ "$research_running" = "0" ] && [ "$research_size" -lt 2000000 ] && [ -f dat
     disown
     echo "[bootstrap] restarted compounder research v2"
 fi
-if [ "$expansion_incomplete" -eq 1 ] && ! pgrep -f "run_expansion\|master_expand" >/dev/null 2>&1; then
+if [ ! -f "$COOLDOWN_LOCK" ] && [ "$expansion_incomplete" -eq 1 ] && ! pgrep -f "run_expansion\|master_expand" >/dev/null 2>&1; then
     # If widen_chain still running, master_expand will pick up expansion after; otherwise launch expansion directly
     if pgrep -f widen_chain.sh >/dev/null 2>&1; then
         echo "[bootstrap] widen_chain active; expansion will follow"
