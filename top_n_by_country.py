@@ -211,7 +211,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
     GREEN_BG = LIGHT_GREY
     YELLOW_BG = PALE_GREY
     GRAY_BG = WHITE
-    FONT_NAME = 'Calibri'
+    FONT_NAME = 'Cambria'   # Harvard-style serif default
     FONT_SIZE = 10
 
     EM_DASH = '–'

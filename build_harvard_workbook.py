@@ -62,8 +62,10 @@ CRIMSON = INK
 CRIMSON_DARK = DARK_GREY
 
 # Single font face + single size — bold/italic + border weight are the
-# only typographic dimensions.
-FONT_NAME = "Calibri"
+# only typographic dimensions. Cambria is the closest widely-available
+# Harvard-style serif (Microsoft's bundled approximation of Adobe Garamond /
+# Sabon), renders cleanly in Excel on Windows / Mac / LibreOffice.
+FONT_NAME = "Cambria"
 FONT_SIZE = 10
 SERIF = FONT_NAME
 SANS = FONT_NAME
