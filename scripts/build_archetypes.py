@@ -79,15 +79,64 @@ df['arch_dv_quality'] = (
 df['arch_asym'] = df['quality_pass'].fillna(False).astype(bool) if 'quality_pass' in df.columns else False
 # Archetype 6: Qullamaggie
 df['arch_q'] = df.get('qmaggie_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
-# Archetype 7: Triple-Lens Conviction — passes 3+ archetypes
-df['arch_n'] = (
-    df['arch_enduring'].astype(int)
-    + df['arch_turning'].astype(int)
-    + df['arch_cash'].astype(int)
-    + df['arch_dv_quality'].astype(int)
-    + df['arch_asym'].astype(int)
-    + df['arch_q'].astype(int)
+# Archetype 7: Episodic Pivot
+df['arch_ep'] = df.get('ep_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+# Archetype 8: TD Mean Reversion (oversold across multiple timeframes)
+df['arch_td_mr'] = (
+    (df.get('net_setup', pd.Series(0, index=df.index)).fillna(0) <= -25)
+    | (df.get('net_perfect', pd.Series(0, index=df.index)).fillna(0) <= -40)
+    | (df.get('cd_buy_sum', pd.Series(0, index=df.index)).fillna(0) >= 13)
 )
+# Archetype 9: Wyckoff Absorption (money out, price holding)
+df['arch_absorp'] = df.get('absorp_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+# Archetype 10: Compression (MFI higher-low + ATR squeeze pre-trigger)
+df['arch_compress'] = df.get('compress_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+# Archetype 11: Pre-breakout Weinstein/O'Neil hybrid
+df['arch_prebo'] = df.get('prebo_pass', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+# Archetype 12: Mirage Buy (Dalton hidden bull — selling structure + higher value)
+df['arch_mirage'] = df.get('absW_dp_signal', pd.Series('', index=df.index)).fillna('').astype(str).str.upper().str.contains('MIRAGE', na=False)
+# Archetype 13: B-Formation (Dalton long-liquidation completing — bottom)
+if 'absW_b_form' in df.columns:
+    df['arch_bform'] = df['absW_b_form'].fillna(False).astype(bool)
+else:
+    df['arch_bform'] = False
+# Archetype 14: Failed Breakdown Reclaim (Dalton bracket reversal)
+if 'absW_failed_bd_reclaim' in df.columns:
+    df['arch_fbdr'] = df['absW_failed_bd_reclaim'].fillna(False).astype(bool)
+else:
+    df['arch_fbdr'] = False
+# Archetype 15: Hidden FCF Generators (cheap on FCF + high FCF margin)
+df['arch_hidden_fcf'] = (
+    df['has_history']
+    & (df.get('fcf_margin_mean_4y', pd.Series(-1, index=df.index)).fillna(-1) >= 0.10)
+    & (df.get('ev_valuation', pd.Series(99, index=df.index)).fillna(99) > 0)
+    & (df.get('ev_valuation', pd.Series(99, index=df.index)).fillna(99) <= 12)
+)
+# Archetype 16: Reinvestment Heroes (high ROIIC + meaningful capital growth — compounding machine)
+if 'reinvest_rate' in df.columns:
+    df['arch_reinvest'] = (
+        df['has_history']
+        & (df.get('roiic_1y', pd.Series(-99, index=df.index)).fillna(-99) >= 0.20)
+        & (df.get('reinvest_rate', pd.Series(0, index=df.index)).fillna(0) >= 0.20)
+    )
+else:
+    df['arch_reinvest'] = (
+        df['has_history']
+        & (df.get('roiic_1y', pd.Series(-99, index=df.index)).fillna(-99) >= 0.30)
+        & (df.get('roiic_3y', pd.Series(-99, index=df.index)).fillna(-99) >= 0.15)
+    )
+# Archetype 17: Insider-heavy quality (insider ownership + decent ROIC)
+df['arch_insider'] = (
+    df.get('insiders', pd.Series(0, index=df.index)).fillna(0) >= 0.20
+    & df['has_history']
+    & (df.get('roic_mean_4y_med', pd.Series(-1, index=df.index)).fillna(-1) >= 0.08)
+)
+# Triple-Lens Conviction — passes 3+ archetypes (excluding the broad Dalton asym which fires too often)
+all_arch_cols = ['arch_enduring','arch_turning','arch_cash','arch_dv_quality',
+                 'arch_q','arch_ep','arch_td_mr','arch_absorp','arch_compress',
+                 'arch_prebo','arch_mirage','arch_bform','arch_fbdr',
+                 'arch_hidden_fcf','arch_reinvest','arch_insider']
+df['arch_n'] = sum(df[c].astype(int) for c in all_arch_cols if c in df.columns)
 df['arch_conviction'] = df['arch_n'] >= 3
 
 REGION_FULLNAME = {
@@ -188,14 +237,24 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         row[0] += 2
 
     df['score_proxy'] = df.get('all_legs_score', 0).fillna(0)
-    # Sort key for each archetype = use composite where available, else ROIC mean
     write_archetype('1. Enduring Compounders — strict ROIC stability, never below 15%', df[df['arch_enduring']], 'roic_mean_4y_med')
-    write_archetype('2. Compounders Turning — ROIIC or CC-ROIIC inflecting + at least loose quality', df[df['arch_turning']], 'roiic_1y')
-    write_archetype('3. Cash Machines — high cash-on-cash ROIC + ≥70% cash conversion', df[df['arch_cash']], 'cc_roic_fcf_mean_4y')
-    write_archetype('4. Deep Value Quality — EV/EBIT ≤ 8 with ROIC mean ≥ 10%', df[df['arch_dv_quality']], 'roic_mean_4y_med')
+    write_archetype('2. Compounders Turning — ROIIC or CC-ROIIC inflecting + ≥ loose quality', df[df['arch_turning']], 'roiic_1y')
+    write_archetype('3. Cash Machines — CC-ROIC ≥ 10% + cash conversion ≥ 70%', df[df['arch_cash']], 'cc_roic_fcf_mean_4y')
+    write_archetype('4. Deep Value Quality — EV/EBIT ≤ 8 with ROIC ≥ 10%', df[df['arch_dv_quality']], 'roic_mean_4y_med')
     write_archetype('5. Asymmetric Inflection — Dalton quality (strict pass)', df[df['arch_asym']], 'score_proxy')
-    write_archetype('6. Qullamaggie Continuation — proper Q breakout setup', df[df['arch_q']], 'score_proxy')
-    write_archetype('7. Triple-Lens Conviction — passes 3+ archetypes', df[df['arch_conviction']], 'arch_n')
+    write_archetype('6. Qullamaggie Continuation — proper Q breakout setup (10/20-SMA surf, ADR ≤ 6%)', df[df['arch_q']], 'score_proxy')
+    write_archetype('7. Episodic Pivot — earnings/news gap ≥ 10% on ≥ 2× ADV after 3-6mo sideways', df[df['arch_ep']], 'score_proxy')
+    write_archetype('8. TD Mean Reversion — oversold across multiple TFs (1h/4h/1d/1w/1M)', df[df['arch_td_mr']], 'score_proxy')
+    write_archetype('9. Wyckoff Absorption — money out, price holding (stealth accumulation)', df[df['arch_absorp']], 'score_proxy')
+    write_archetype('10. Compression — MFI higher-low + ATR squeeze (pre-trigger phase)', df[df['arch_compress']], 'score_proxy')
+    write_archetype('11. Pre-breakout (Weinstein/O\'Neil) — late Stage-1 with handle/flag', df[df['arch_prebo']], 'score_proxy')
+    write_archetype('12. Mirage Buy — Dalton hidden bull (selling structure + higher value placement)', df[df['arch_mirage']], 'score_proxy')
+    write_archetype('13. B-Formation — Dalton long-liquidation completing (bottom turning)', df[df['arch_bform']], 'score_proxy')
+    write_archetype('14. Failed Breakdown Reclaim — Dalton bracket reversal (false-break recapture)', df[df['arch_fbdr']], 'score_proxy')
+    write_archetype('15. Hidden FCF Generators — FCF margin ≥ 10% + EV/EBITDA ≤ 12', df[df['arch_hidden_fcf']], 'fcf_margin_mean_4y')
+    write_archetype('16. Reinvestment Heroes — high ROIIC + significant capital deployment', df[df['arch_reinvest']], 'roiic_1y')
+    write_archetype('17. Insider-Heavy Quality — insider ownership ≥ 20% + ROIC ≥ 8%', df[df['arch_insider']], 'roic_mean_4y_med')
+    write_archetype('18. Triple-Lens Conviction — passes 3+ archetypes', df[df['arch_conviction']], 'arch_n')
 
 print(f"Wrote {xlsx_path}", file=sys.stderr)
 print(f"Sizes: enduring={int(df['arch_enduring'].sum())} turning={int(df['arch_turning'].sum())} "
