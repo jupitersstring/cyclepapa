@@ -127,7 +127,7 @@ else:
     )
 # Archetype 17: Insider-heavy quality (insider ownership + decent ROIC)
 df['arch_insider'] = (
-    df.get('insiders', pd.Series(0, index=df.index)).fillna(0) >= 0.20
+    (df.get('insiders', pd.Series(0, index=df.index)).fillna(0) >= 0.20)
     & df['has_history']
     & (df.get('roic_mean_4y_med', pd.Series(-1, index=df.index)).fillna(-1) >= 0.08)
 )
