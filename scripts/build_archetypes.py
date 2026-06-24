@@ -56,15 +56,53 @@ if 'mktCap_M' not in df.columns and 'mktCap' in df.columns:
 if 'fcf_yield_pct' not in df.columns and 'fcf_yield' in df.columns:
     df['fcf_yield_pct'] = pd.to_numeric(df['fcf_yield'], errors='coerce') * 100
 
+# ─── Data hygiene fixes (audit findings) ───
+# FCF yield artifacts — cap at ±50% (anything bigger = currency/ADR mismatch)
+if 'fcf_yield' in df.columns:
+    fy = pd.to_numeric(df['fcf_yield'], errors='coerce')
+    df['fcf_yield'] = fy.where(fy.abs() <= 0.5, np.nan)
+    df['fcf_yield_pct'] = df['fcf_yield'] * 100
+# Rev growth — cap at ±100% YoY
+if 'rev_g' in df.columns:
+    rg = pd.to_numeric(df['rev_g'], errors='coerce')
+    df['rev_g'] = rg.where(rg.abs() <= 1.0, np.nan)
+    df['rev_g_pct'] = df['rev_g'] * 100
+
+# ROIIC inflection — exclude rows where the inflection signal is driven by the 2.0 cap artifact
+# (capped 200% values mean d_IC<=0 which is a meaningful signal but flooding everywhere)
+if 'roiic_1y' in df.columns:
+    r1 = pd.to_numeric(df['roiic_1y'], errors='coerce')
+    r3 = pd.to_numeric(df['roiic_3y'], errors='coerce')
+    # Original inflection flag with extra constraint: require r1 < 2.0 OR (r3 < 1.5)
+    if 'roiic_inflection' in df.columns:
+        clean_infl = (r1 < 2.0) & (r3 < 1.5) & ((r1 - r3) >= 0.10)  # tighter threshold
+        cap_drives_only = (r1 >= 2.0) & ((r1 - r3) >= 0.05)  # cap-driven; allow but tag
+        df['roiic_inflection_clean'] = clean_infl.fillna(False).astype(bool)
+        df['roiic_inflection_capdriven'] = cap_drives_only.fillna(False).astype(bool)
+if 'cc_roiic_1y' in df.columns:
+    cr1 = pd.to_numeric(df['cc_roiic_1y'], errors='coerce')
+    cr3 = pd.to_numeric(df['cc_roiic_3y'], errors='coerce')
+    if 'cc_roiic_inflection' in df.columns:
+        cc_clean = (cr1 < 2.0) & (cr3 < 1.5) & ((cr1 - cr3) >= 0.10)
+        df['cc_roiic_inflection_clean'] = cc_clean.fillna(False).astype(bool)
+
+# Method agreement — drop / penalize EDGAR rows where methods strongly disagree
+if 'roic_method_agreement' in df.columns:
+    ma = pd.to_numeric(df['roic_method_agreement'], errors='coerce')
+    df['roic_method_disagree'] = (ma < 0).fillna(False)  # methods are inconsistent
+
 # ─── Define archetypes ───
 df['has_history'] = df.get('has_history', False).fillna(False).astype(bool)
 
-# Archetype 1: Enduring Compounders (strict)
-df['arch_enduring'] = df['enduring_strict']
-# Archetype 2: Compounders Turning (ROIIC inflecting OR CC-ROIIC inflecting + at least loose quality)
+# Archetype 1: Enduring Compounders (strict) — exclude method-disagreement rows
+df['arch_enduring'] = df['enduring_strict'] & ~df.get('roic_method_disagree', False)
+# Archetype 2: Compounders Turning — use CLEAN inflection (no cap-driven false-positives)
+clean_infl = df.get('roiic_inflection_clean', df.get('roiic_inflection', False))
+cc_clean = df.get('cc_roiic_inflection_clean', df.get('cc_roiic_inflection', False))
 df['arch_turning'] = (
     (df['enduring_loose'] | df['enduring_strict'])
-    & (df['roiic_inflection'] | df['cc_roiic_inflection'])
+    & (clean_infl | cc_clean)
+    & ~df.get('roic_method_disagree', False)
 )
 # Archetype 3: Cash Machines (high CC-ROIC + high conversion)
 df['arch_cash'] = (
