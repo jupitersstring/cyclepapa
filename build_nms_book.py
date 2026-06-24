@@ -306,6 +306,8 @@ def main():
     ap.add_argument('--top-n', type=int, default=100, help='global top-N')
     ap.add_argument('--per-region-n', type=int, default=25, help='top-N per region')
     ap.add_argument('--out', default='asymmetry_nms_book.xlsx')
+    ap.add_argument('--no-bucket-filter', action='store_true',
+                    help='surface the entire universe (no NMS bucket filter)')
     ap.add_argument('--min-mcap', type=float, default=10_000_000)
     args = ap.parse_args()
 
@@ -318,12 +320,21 @@ def main():
 
     n_universe = len(df)
 
-    # NMS filter: bucket + mcap floor + exclude RED
-    nms = df[df['market_cap_bucket'].isin(NMS_BUCKETS)
-             & (df['market_cap'].fillna(0) >= args.min_mcap)
-             & (df['verdict'] != 'RED')].copy()
+    # Universe gate: mcap floor + exclude RED. NMS bucket filter is the
+    # default ("NMS book") but can be turned off via --no-bucket-filter
+    # to surface the entire universe.
+    if getattr(args, 'no_bucket_filter', False):
+        nms = df[(df['market_cap'].fillna(0) >= args.min_mcap)
+                 & (df['verdict'] != 'RED')].copy()
+        print(f'  universe: {n_universe:,}  (no bucket filter)  '
+              f'eligible: {len(nms):,}', file=sys.stderr)
+    else:
+        nms = df[df['market_cap_bucket'].isin(NMS_BUCKETS)
+                 & (df['market_cap'].fillna(0) >= args.min_mcap)
+                 & (df['verdict'] != 'RED')].copy()
+        print(f'  universe: {n_universe:,}, NMS sub-universe: {len(nms):,}',
+              file=sys.stderr)
     n_nms = len(nms)
-    print(f'  universe: {n_universe:,}, NMS sub-universe: {n_nms:,}', file=sys.stderr)
 
     # Global Top N
     top = nms.sort_values('entry_today_asymmetry', ascending=False).head(args.top_n).copy().reset_index(drop=True)
