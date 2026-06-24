@@ -152,11 +152,70 @@ if 'backlog_inflection_flag' in df.columns:
     df['arch_backlog'] = df['backlog_inflection_flag'].fillna(False).astype(bool)
 else:
     df['arch_backlog'] = False
+
+# ─── Additional Dalton-derived archetypes we discussed but hadn't surfaced ───
+# Helper
+def _bool(col, fill=False):
+    if col in df.columns:
+        return df[col].fillna(fill).astype(bool)
+    return pd.Series(False, index=df.index)
+def _num(col, fill=0):
+    if col in df.columns:
+        return pd.to_numeric(df[col], errors='coerce').fillna(fill)
+    return pd.Series(fill, index=df.index)
+def _str(col, fill=''):
+    if col in df.columns:
+        return df[col].fillna(fill).astype(str)
+    return pd.Series(fill, index=df.index)
+
+# Archetype 19: Value Area Rule trigger (Dalton bracket-rule continuation: open outside, accept inside)
+df['arch_var'] = _bool('absW_var_trigger')
+
+# Archetype 20: Accepted Outside (value area rule SUCCEEDED — full migration)
+df['arch_accepted_out'] = _bool('absW_accepted_outside')
+
+# Archetype 21: Bullish High Volume (dp_signal — institutional sponsorship up)
+df['arch_bull_highvol'] = _str('absW_dp_signal').str.upper().eq('BULLISH_HIGH_VOL')
+
+# Archetype 22: Confirmed Up (dp_signal — directional performance matrix confirms bull)
+df['arch_confirmed_up'] = _str('absW_dp_signal').str.upper().eq('CONFIRMED_UP')
+
+# Archetype 23: Sponsorship Leaders (C-pillar — RS at 13w/26w highs, institutional)
+df['arch_sponsor'] = _num('absW_C_sponsor') >= 15
+
+# Archetype 24: Readiness High (D-pillar — pre-trigger setup quality)
+df['arch_ready'] = _num('absW_D_ready') >= 15
+
+# Archetype 25: No-Tail Streak (close-on-extreme persistence — strong continuation)
+df['arch_notail'] = _num('absW_no_tail_streak') >= 3
+
+# Archetype 26: Long-Term Excess Buy + Bull (Dalton structural buyers + bull weekly state)
+df['arch_excess_bull'] = (
+    _bool('absW_excess_buy')
+    & _str('absW_state').isin(['INFLECTION_UP','ACCELERATION_UP','TRENDING_UP'])
+)
+
+# Archetype 27: Sub Book Value (Ben Graham deep value — original semis prompt)
+if 'pb' in df.columns:
+    df['arch_sub_book'] = (
+        (pd.to_numeric(df['pb'], errors='coerce') > 0)
+        & (pd.to_numeric(df['pb'], errors='coerce') < 1.0)
+    )
+else:
+    df['arch_sub_book'] = False
+
+# Archetype 28: Failed Up (short candidate — failed buying attempt)
+df['arch_failed_up'] = _str('absW_dp_signal').str.upper().eq('FAILED_UP')
+
+# Archetype 29: P-Formation (short cover fade — bearish reversal candidate)
+df['arch_pform'] = _bool('absW_p_form')
 # Triple-Lens Conviction — passes 3+ archetypes (excluding the broad Dalton asym which fires too often)
 all_arch_cols = ['arch_enduring','arch_turning','arch_cash','arch_dv_quality',
                  'arch_q','arch_ep','arch_td_mr','arch_absorp','arch_compress',
                  'arch_prebo','arch_mirage','arch_bform','arch_fbdr',
-                 'arch_hidden_fcf','arch_reinvest','arch_insider','arch_backlog']
+                 'arch_hidden_fcf','arch_reinvest','arch_insider','arch_backlog',
+                 'arch_var','arch_accepted_out','arch_bull_highvol','arch_confirmed_up',
+                 'arch_sponsor','arch_ready','arch_notail','arch_excess_bull','arch_sub_book']
 df['arch_n'] = sum(df[c].astype(int) for c in all_arch_cols if c in df.columns)
 df['arch_conviction'] = df['arch_n'] >= 3
 
@@ -276,7 +335,18 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     write_archetype('16. Reinvestment Heroes — high ROIIC + significant capital deployment', df[df['arch_reinvest']], 'roiic_1y')
     write_archetype('17. Insider-Heavy Quality — insider ownership ≥ 20% + ROIC ≥ 8%', df[df['arch_insider']], 'roic_mean_4y_med')
     write_archetype('18. Backlog Inflection — RPO / deferred-rev growth accelerating (leading-indicator)', df[df['arch_backlog']], 'backlog_inflection_pp')
-    write_archetype('19. Triple-Lens Conviction — passes 3+ archetypes', df[df['arch_conviction']], 'arch_n')
+    write_archetype('19. Value Area Rule Trigger — Dalton bracket-rule continuation (open outside, accept inside)', df[df['arch_var']], 'score_proxy')
+    write_archetype('20. Accepted Outside — VAR succeeded (full value-area migration)', df[df['arch_accepted_out']], 'score_proxy')
+    write_archetype('21. Bullish High Volume — Dalton DP signal: institutional sponsorship up', df[df['arch_bull_highvol']], 'score_proxy')
+    write_archetype('22. Confirmed Up — Dalton DP signal: directional performance matrix confirms', df[df['arch_confirmed_up']], 'score_proxy')
+    write_archetype('23. Sponsorship Leaders — Dalton C-pillar ≥ 15 (RS at 13w/26w highs)', df[df['arch_sponsor']], 'score_proxy')
+    write_archetype('24. Readiness High — Dalton D-pillar ≥ 15 (pre-trigger setup quality)', df[df['arch_ready']], 'score_proxy')
+    write_archetype('25. No-Tail Streak — close-on-extreme persistence (continuation momentum)', df[df['arch_notail']], 'score_proxy')
+    write_archetype('26. Long-Term Excess Buy + Bull — Dalton structural buyers + bull weekly state', df[df['arch_excess_bull']], 'score_proxy')
+    write_archetype('27. Sub Book Value (Graham deep value) — P/B < 1', df[df['arch_sub_book']], 'score_proxy')
+    write_archetype('28. Failed Up — Dalton DP signal: failed buying attempt (short candidate)', df[df['arch_failed_up']], 'score_proxy')
+    write_archetype('29. P-Formation — short-cover fade (bearish reversal candidate)', df[df['arch_pform']], 'score_proxy')
+    write_archetype('30. Triple-Lens Conviction — passes 3+ BUY-side archetypes', df[df['arch_conviction']], 'arch_n')
 
 print(f"Wrote {xlsx_path}", file=sys.stderr)
 print(f"Sizes: enduring={int(df['arch_enduring'].sum())} turning={int(df['arch_turning'].sum())} "
