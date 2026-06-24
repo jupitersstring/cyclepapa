@@ -97,6 +97,38 @@ DA_ALIASES = [
     "DepreciationAndAmortization",
     "Depreciation",
 ]
+# Capital-allocation concepts (audit June 2026 — direct cash spent on
+# dividends + buybacks, instead of inferring from share-count deltas).
+DIVIDEND_ALIASES = [
+    "PaymentsOfDividendsCommonStock",
+    "PaymentsOfDividends",
+    "PaymentsOfDividendsMinorityInterest",
+]
+BUYBACK_ALIASES = [
+    "PaymentsForRepurchaseOfCommonStock",
+    "PaymentsForRepurchaseOfEquity",
+    "TreasuryStockValueAcquiredCostMethod",
+]
+SBC_ALIASES = [
+    "ShareBasedCompensation",
+    "AllocatedShareBasedCompensationExpense",
+]
+TAX_EXPENSE_ALIASES = ["IncomeTaxExpenseBenefit"]
+PRETAX_INCOME_ALIASES = [
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+]
+RETAINED_EARNINGS_ALIASES = ["RetainedEarningsAccumulatedDeficit"]
+EPS_BASIC_ALIASES = ["EarningsPerShareBasic"]
+EPS_DILUTED_ALIASES = ["EarningsPerShareDiluted"]
+PPE_NET_ALIASES = [
+    "PropertyPlantAndEquipmentNet",
+    "PropertyPlantAndEquipmentNetOfDepreciation",
+]
+INTEREST_PAID_ALIASES = ["InterestPaidNet", "InterestPaid"]
+FIN_CF_ALIASES = ["NetCashProvidedByUsedInFinancingActivities"]
+INV_CF_ALIASES = ["NetCashProvidedByUsedInInvestingActivities"]
 
 
 def _safe_get(d, *path, default=None):
@@ -278,6 +310,9 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(LT_DEBT_ALIASES, "lt_debt")
     pt(ST_DEBT_ALIASES, "st_debt")
     pt(SHARES_ALIASES, "shares_outstanding", units="shares")
+    # Capital-allocation balance-sheet point-in-time
+    pt(RETAINED_EARNINGS_ALIASES, "retained_earnings")
+    pt(PPE_NET_ALIASES, "ppe_net")
 
     # Flow items: TTM + annual
     def fl(aliases, field):
@@ -297,6 +332,27 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     fl(CFO_ALIASES, "cfo")
     fl(CAPEX_ALIASES, "capex")
     fl(DA_ALIASES, "da")
+    # NEW (audit June 2026): capital-allocation cash flows + tax + SBC
+    fl(DIVIDEND_ALIASES, "dividends")
+    fl(BUYBACK_ALIASES, "buybacks")
+    fl(SBC_ALIASES, "sbc")
+    fl(TAX_EXPENSE_ALIASES, "tax_expense")
+    fl(PRETAX_INCOME_ALIASES, "pretax_income")
+    fl(INTEREST_PAID_ALIASES, "interest_paid")
+    fl(FIN_CF_ALIASES, "financing_cf")
+    fl(INV_CF_ALIASES, "investing_cf")
+
+    # EPS uses a different unit (USD/shares)
+    def fl_units(aliases, field, units):
+        ttm = ttm_value(facts, aliases, unit=units)
+        if ttm:
+            row[field + "_ttm"] = ttm["val"]
+        ann = latest_annual_value(facts, aliases, unit=units)
+        if ann:
+            row[field + "_fy"] = ann["val"]
+
+    fl_units(EPS_BASIC_ALIASES, "eps_basic", "USD/shares")
+    fl_units(EPS_DILUTED_ALIASES, "eps_diluted", "USD/shares")
 
     # Derived
     equity = row.get("equity") or 0
@@ -337,8 +393,40 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     invested = equity + row.get("total_debt", 0) - (row.get("cash") or 0)
     if invested and invested > 0 and opi is not None:
         row["roce"] = opi / invested
-    # ROIIC ingredient: assets growth (Yartseva's gate uses asset_growth vs EBITDA_growth)
-    # Computed downstream from a multi-period extractor; left blank here.
+
+    # ----- Capital-allocation derived (audit June 2026) -----
+    div = row.get("dividends_ttm") or 0
+    bb = row.get("buybacks_ttm") or 0
+    # Total capital returned to shareholders. Dividends + buybacks are
+    # already-paid cash; treat both as positive returns (XBRL reports
+    # them as positive outflows in financing activities).
+    row["capital_return_ttm"] = div + bb
+
+    # Real effective tax rate (clipped to sensible range).
+    tax = row.get("tax_expense_ttm")
+    pretax = row.get("pretax_income_ttm")
+    if tax is not None and pretax and pretax > 0:
+        rate = tax / pretax
+        if -0.10 < rate < 0.60:
+            row["effective_tax_rate"] = rate
+
+    # SBC as % of revenue — quality of earnings flag
+    sbc = row.get("sbc_ttm")
+    if sbc is not None and rev and rev > 0:
+        row["sbc_pct_revenue"] = sbc / rev
+
+    # SBC-adjusted operating income & ROIC
+    if sbc is not None and opi is not None:
+        row["cash_ebit_ttm"] = opi - sbc
+        if invested and invested > 0:
+            # Use real tax rate when available, fall back to 0.25
+            t = row.get("effective_tax_rate", 0.25)
+            row["roic_after_sbc"] = (row["cash_ebit_ttm"] * (1 - t)) / invested
+
+    # Interest coverage
+    ip = row.get("interest_paid_ttm")
+    if ip and ip > 0 and opi is not None:
+        row["interest_coverage"] = opi / ip
 
     return row
 

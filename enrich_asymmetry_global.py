@@ -38,14 +38,17 @@ import pandas as pd
 
 
 EDGAR_REQUIRED_ARCHETYPES = {
-    # The 17 archetypes that can only fire when EDGAR multi-year data is
-    # present. Non-EDGAR rows can't structurally match these.
+    # The 21 archetypes that can only fire when EDGAR multi-year + cap-
+    # allocation data is present. Non-EDGAR rows can't structurally
+    # match these.
     "arch_durable_reinvestment", "arch_cash_reinvest", "arch_roic_inflect",
     "arch_cheap_per_roiic", "arch_tangible_value",
     "arch_lindy_margin", "arch_lindy_fcf", "arch_no_dilution", "arch_lindy_growth",
     "arch_quiet_compounder", "arch_buyback_compounder", "arch_owner_operator",
     "arch_qarp", "arch_reinvest_inflect", "arch_double_inflect",
     "arch_cash_quality", "arch_capital_light_pivot",
+    "arch_capital_returner", "arch_low_sbc_quality",
+    "arch_tax_efficient", "arch_strong_coverage",
 }
 
 
@@ -95,7 +98,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--asym', default='asymmetry_global.csv')
     ap.add_argument('--arch', default='archetype_tags.csv')
-    ap.add_argument('--total-archetypes', type=int, default=26)
+    ap.add_argument('--total-archetypes', type=int, default=30)
     args = ap.parse_args()
 
     print('loading asymmetry_global, archetype_tags, verdicts...', file=sys.stderr)

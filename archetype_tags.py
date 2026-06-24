@@ -365,6 +365,49 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (n_yrs_roic_pos >= 4)
     ).fillna(False).astype(int)
 
+    # ---------- Z-AC: Capital-allocation archetypes (audit June 2026) ---------
+    # Directly extracted from EDGAR XBRL: payments of dividends + buybacks +
+    # SBC + real effective tax rate. Distinct from the prior shares-growth
+    # proxies in NoDilution / BuybackCompounder — these use the actual cash
+    # spent rather than inferring from share count.
+    capital_return_yield = s('capital_return_yield', np.nan)
+    dividend_yield = s('dividend_yield', np.nan)
+    buyback_yield = s('buyback_yield', np.nan)
+    sbc_pct_revenue = s('sbc_pct_revenue', np.nan)
+    effective_tax_rate = s('effective_tax_rate', np.nan)
+    roic_after_sbc = s('roic_after_sbc', np.nan)
+    interest_coverage = s('interest_coverage', np.nan)
+
+    # Z — Capital Returner: paying back >= 5% of market cap per year via
+    # dividends + buybacks combined. Greenblatt-style direct evidence.
+    df['arch_capital_returner'] = (
+        (capital_return_yield >= 0.05)
+    ).fillna(False).astype(int)
+
+    # AA — Low-SBC Quality: clean accounting (SBC < 2% of revenue) AND
+    # genuinely profitable (operating margin > 5%). Filters out SaaS /
+    # crypto / hyper-growth names whose GAAP earnings are SBC-inflated.
+    df['arch_low_sbc_quality'] = (
+        (sbc_pct_revenue >= 0.0) & (sbc_pct_revenue < 0.02) &
+        (ebitda_margin > 0.05)
+    ).fillna(False).astype(int)
+
+    # AB — Tax-Efficient (real not loss-driven): effective tax rate < 15%
+    # AND positive pre-tax income. Distinguishes legitimate tax structure
+    # from "no tax because no profit."
+    pretax_pos = s('pretax_income_ttm', np.nan)
+    df['arch_tax_efficient'] = (
+        (effective_tax_rate > 0) & (effective_tax_rate < 0.15) &
+        (pretax_pos > 0)
+    ).fillna(False).astype(int)
+
+    # AC — Strong Interest Coverage: opinc / interest paid >= 8x.
+    # Conservative leverage indicator more robust than net_debt/EBITDA
+    # for asset-heavy industries.
+    df['arch_strong_coverage'] = (
+        (interest_coverage >= 8.0)
+    ).fillna(False).astype(int)
+
     # Q — Durable Growth: revenue 5y CAGR >= 8% AND topline accelerating
     # (3y CAGR > 5y CAGR) AND asset base growing. Multi-cycle expansion
     # without the single-year base-effect noise.
@@ -495,6 +538,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_double_inflect',
         'arch_cash_quality',
         'arch_capital_light_pivot',
+        'arch_capital_returner',
+        'arch_low_sbc_quality',
+        'arch_tax_efficient',
+        'arch_strong_coverage',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -523,6 +570,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_double_inflect': 'DoubleInflect',
         'arch_cash_quality': 'CashQuality',
         'arch_capital_light_pivot': 'CapitalLightPivot',
+        'arch_capital_returner': 'CapitalReturner',
+        'arch_low_sbc_quality': 'LowSBCQuality',
+        'arch_tax_efficient': 'TaxEfficient',
+        'arch_strong_coverage': 'StrongCoverage',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

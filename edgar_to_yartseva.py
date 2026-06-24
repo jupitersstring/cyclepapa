@@ -199,6 +199,19 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["goodwill"] = edgar_row.get("goodwill")
     r["intangibles"] = edgar_row.get("intangibles")
     r["shares_outstanding"] = edgar_row.get("shares_outstanding")
+    # NEW (audit June 2026): capital-allocation + quality fields
+    r["dividends_ttm"] = edgar_row.get("dividends_ttm")
+    r["buybacks_ttm"] = edgar_row.get("buybacks_ttm")
+    r["capital_return_ttm"] = edgar_row.get("capital_return_ttm")
+    r["sbc_ttm"] = edgar_row.get("sbc_ttm")
+    r["sbc_pct_revenue"] = edgar_row.get("sbc_pct_revenue")
+    r["effective_tax_rate"] = edgar_row.get("effective_tax_rate")
+    r["roic_after_sbc"] = edgar_row.get("roic_after_sbc")
+    r["interest_coverage"] = edgar_row.get("interest_coverage")
+    r["retained_earnings"] = edgar_row.get("retained_earnings")
+    r["ppe_net"] = edgar_row.get("ppe_net")
+    r["eps_basic_ttm"] = edgar_row.get("eps_basic_ttm")
+    r["eps_diluted_ttm"] = edgar_row.get("eps_diluted_ttm")
 
     # Margins
     r["ebitda_margin"] = edgar_row.get("ebitda_margin")
@@ -238,6 +251,18 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
         r["p_e"] = market_cap / netinc
     if market_cap and r.get("fcf_ttm"):
         r["fcf_yield"] = r["fcf_ttm"] / market_cap
+
+    # Capital-return yield = (dividends + buybacks paid TTM) / market_cap
+    cr = edgar_row.get("capital_return_ttm")
+    if cr is not None and market_cap and market_cap > 0:
+        r["capital_return_yield"] = cr / market_cap
+        # Dividend + buyback yield separately
+        div = edgar_row.get("dividends_ttm")
+        bb = edgar_row.get("buybacks_ttm")
+        if div is not None:
+            r["dividend_yield"] = div / market_cap
+        if bb is not None:
+            r["buyback_yield"] = bb / market_cap
 
     # Tangible book per share
     if edgar_row.get("tangible_book_per_share"):
