@@ -23,7 +23,8 @@ import pandas as pd
 import build_harvard_workbook as bhw
 from build_harvard_workbook import (
     Workbook, Color,
-    CRIMSON, CRIMSON_DARK, MUTED, RULE, SERIF, SANS, MONO,
+    INK, DARK_GREY, MUTED, RULE, LIGHT_GREY, PALE_GREY, WHITE,
+    CRIMSON, CRIMSON_DARK, SERIF, SANS, MONO,
     EM_DASH, FMT_INT_RAW, FMT_ONE, FMT_TWO,
     _font, _fill, _border, _align,
     _set_col_widths, _crimson_banner, _section_rule, _verdict_badge,
@@ -56,7 +57,7 @@ def build_nms_cover(ws, n_universe: int, n_nms: int, top_n: int, n_regions: int,
 
     # Heavy crimson top stripe
     for c in range(1, 7):
-        ws.cell(row=1, column=c).fill = _fill(CRIMSON)
+        ws.cell(row=1, column=c).fill = _fill(LIGHT_GREY)
     ws.row_dimensions[1].height = 8
 
     t = ws.cell(row=3, column=2, value="NANO · MICRO · SMALL")
@@ -137,7 +138,7 @@ def build_nms_cover(ws, n_universe: int, n_nms: int, top_n: int, n_regions: int,
     ws.merge_cells(start_row=30, start_column=2, end_row=30, end_column=5)
 
     for c in range(1, 7):
-        ws.cell(row=33, column=c).fill = _fill(CRIMSON)
+        ws.cell(row=33, column=c).fill = _fill(LIGHT_GREY)
     ws.row_dimensions[33].height = 6
 
 
@@ -399,10 +400,10 @@ def main():
     for ws in wb.worksheets:
         ws.sheet_view.showGridLines = False
         if ws.title.startswith("R_"):
-            ws.sheet_properties.tabColor = Color(rgb=CRIMSON_DARK)
+            ws.sheet_properties.tabColor = Color(rgb=MUTED)
         elif ws.title in ("Cover", "Methodology", "Global_Top_100",
                           "Coverage", "References"):
-            ws.sheet_properties.tabColor = Color(rgb=CRIMSON)
+            ws.sheet_properties.tabColor = Color(rgb=DARK_GREY)
 
     wb.save(args.out)
     print(f'wrote {args.out}: {len(wb.worksheets)} sheets', file=sys.stderr)

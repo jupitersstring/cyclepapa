@@ -18,7 +18,8 @@ import pandas as pd
 import build_harvard_workbook as bhw
 from build_harvard_workbook import (
     Workbook, Color,
-    CRIMSON, CRIMSON_DARK, MUTED, RULE, SERIF, SANS, MONO,
+    INK, DARK_GREY, MUTED, RULE, LIGHT_GREY, PALE_GREY, WHITE,
+    CRIMSON, CRIMSON_DARK, SERIF, SANS, MONO,
     _font, _fill, _border, _align,
     _set_col_widths, _crimson_banner, _section_rule, _verdict_badge,
     _write_money, _write_pct, _write_ratio, _write_score, _write_int,
@@ -34,7 +35,7 @@ def build_cover(ws, df: pd.DataFrame):
     _set_col_widths(ws, {1: 4, 2: 28, 3: 28, 4: 28, 5: 28, 6: 4})
 
     for c in range(1, 7):
-        ws.cell(row=1, column=c).fill = _fill(CRIMSON)
+        ws.cell(row=1, column=c).fill = _fill(LIGHT_GREY)
     ws.row_dimensions[1].height = 8
 
     t = ws.cell(row=3, column=2, value="MULTIBAGGER CANDIDATES")
@@ -102,7 +103,7 @@ def build_cover(ws, df: pd.DataFrame):
     ws.row_dimensions[20].height = 30
 
     for c in range(1, 7):
-        ws.cell(row=27, column=c).fill = _fill(CRIMSON)
+        ws.cell(row=27, column=c).fill = _fill(LIGHT_GREY)
     ws.row_dimensions[27].height = 6
 
 

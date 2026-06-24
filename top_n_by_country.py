@@ -64,6 +64,10 @@ def load_quant() -> pd.DataFrame:
 
 
 def compute_eta(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
+    # asymmetry_global may carry a verdict/thesis column from the
+    # enrich_asymmetry_global post-pass. Drop those before merging the
+    # fresh verdicts file (which is the most up-to-date source).
+    df = df.drop(columns=[c for c in ('verdict', 'thesis') if c in df.columns])
     df = df.merge(verdicts, on='symbol', how='left')
     df['verdict'] = df['verdict'].fillna('UNRESEARCHED')
     df['thesis'] = df['thesis'].fillna('')
@@ -194,11 +198,21 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
 
-    CRIMSON = 'A51C30'
-    CRIMSON_DARK = '8B1B2F'
-    MUTED = '6B6B6B'
-    RULE = 'C0BFB8'
-    GREEN_BG, YELLOW_BG, GRAY_BG = 'DCEAD2', 'F8EAB4', 'ECECEC'
+    # Monochrome palette — single font + grey-only highlights
+    INK = '000000'
+    DARK_GREY = '404040'
+    MUTED = '707070'
+    RULE = 'B0B0B0'
+    LIGHT_GREY = 'E8E8E8'
+    PALE_GREY = 'F2F2F2'
+    WHITE = 'FFFFFF'
+    CRIMSON = INK
+    CRIMSON_DARK = DARK_GREY
+    GREEN_BG = LIGHT_GREY
+    YELLOW_BG = PALE_GREY
+    GRAY_BG = WHITE
+    FONT_NAME = 'Calibri'
+    FONT_SIZE = 10
 
     EM_DASH = '–'
     FMT_INT_RAW = '#,##0;(#,##0);"–"'
@@ -254,8 +268,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
     # Banner
     cell = ws.cell(row=1, column=1,
                    value=f'  Top {n} by Country  ·  Entry-today asymmetry')
-    cell.font = Font(name='Cambria', size=14, bold=True, color='FFFFFF')
-    cell.fill = PatternFill('solid', fgColor=CRIMSON)
+    cell.font = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color='FFFFFF')
+    cell.fill = PatternFill('solid', fgColor=LIGHT_GREY)
     cell.alignment = A_LEFT
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=13)
     ws.row_dimensions[1].height = 28
@@ -264,7 +278,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
                'Mcap (USD)', 'Verdict', 'ETA', 'Asym', 'Yartseva', 'Cluster']
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=3, column=i, value=h)
-        c.font = Font(name='Calibri', size=10, bold=True, color=CRIMSON_DARK)
+        c.font = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color=CRIMSON_DARK)
         if i in (1, 4, 5, 6, 7):
             c.alignment = A_LEFT
         elif i in (2, 3, 9):
@@ -274,13 +288,13 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
         c.border = Border(bottom=Side(style='medium', color=CRIMSON_DARK))
     ws.row_dimensions[3].height = 22
 
-    f_text = Font(name='Cambria', size=10)
-    f_text_muted = Font(name='Calibri', size=9, color=MUTED)
-    f_ticker = Font(name='Calibri', size=10, bold=True)
-    f_mono = Font(name='Consolas', size=9)
-    f_int = Font(name='Calibri', size=10)
-    f_country_header = Font(name='Cambria', size=10, bold=True, color=CRIMSON_DARK)
-    f_country_repeat = Font(name='Cambria', size=10, color=MUTED, italic=True)
+    f_text = Font(name=FONT_NAME, size=FONT_SIZE,)
+    f_text_muted = Font(name=FONT_NAME, size=FONT_SIZE, color=MUTED)
+    f_ticker = Font(name=FONT_NAME, size=FONT_SIZE, bold=True)
+    f_mono = Font(name=FONT_NAME, size=FONT_SIZE,)
+    f_int = Font(name=FONT_NAME, size=FONT_SIZE,)
+    f_country_header = Font(name=FONT_NAME, size=FONT_SIZE, bold=True, color=CRIMSON_DARK)
+    f_country_repeat = Font(name=FONT_NAME, size=FONT_SIZE, color=MUTED, italic=True)
 
     prev_country = None
     for r_idx, (_, r) in enumerate(out.iterrows(), start=4):
@@ -303,7 +317,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int):
         v = r['verdict']
         bg = {'GREEN': GREEN_BG, 'YELLOW': YELLOW_BG}.get(v, GRAY_BG)
         vc = ws.cell(row=r_idx, column=9, value=v)
-        vc.font = Font(name='Calibri', size=9, bold=True)
+        vc.font = Font(name=FONT_NAME, size=FONT_SIZE, bold=True)
         vc.fill = PatternFill('solid', fgColor=bg)
         vc.alignment = A_CENTER
 
