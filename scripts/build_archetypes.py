@@ -131,11 +131,32 @@ df['arch_insider'] = (
     & df['has_history']
     & (df.get('roic_mean_4y_med', pd.Series(-1, index=df.index)).fillna(-1) >= 0.08)
 )
+# Archetype 18: Backlog Inflection — RPO / deferred revenue growth accelerating
+backlog_path = 'data/research/backlog_us.csv'
+if os.path.exists(backlog_path):
+    try:
+        b = pd.read_csv(backlog_path)
+        bc = ['ticker','backlog_concept_used','backlog_latest','backlog_qoq_pct',
+              'backlog_yoy_pct','backlog_growth_4q_mean','backlog_growth_8q_mean',
+              'backlog_inflection_pp','backlog_inflection_flag','backlog_to_rev_ratio',
+              'backlog_quarters_history']
+        b = b[[c for c in bc if c in b.columns]]
+        for c in [x for x in b.columns if x != 'ticker' and x in df.columns]:
+            df = df.drop(columns=[c])
+        df = df.merge(b, on='ticker', how='left')
+        print(f"  merged backlog: {len(b)} rows", file=sys.stderr)
+    except Exception as e:
+        print(f"  backlog merge err: {e}", file=sys.stderr)
+
+if 'backlog_inflection_flag' in df.columns:
+    df['arch_backlog'] = df['backlog_inflection_flag'].fillna(False).astype(bool)
+else:
+    df['arch_backlog'] = False
 # Triple-Lens Conviction — passes 3+ archetypes (excluding the broad Dalton asym which fires too often)
 all_arch_cols = ['arch_enduring','arch_turning','arch_cash','arch_dv_quality',
                  'arch_q','arch_ep','arch_td_mr','arch_absorp','arch_compress',
                  'arch_prebo','arch_mirage','arch_bform','arch_fbdr',
-                 'arch_hidden_fcf','arch_reinvest','arch_insider']
+                 'arch_hidden_fcf','arch_reinvest','arch_insider','arch_backlog']
 df['arch_n'] = sum(df[c].astype(int) for c in all_arch_cols if c in df.columns)
 df['arch_conviction'] = df['arch_n'] >= 3
 
@@ -254,7 +275,8 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     write_archetype('15. Hidden FCF Generators — FCF margin ≥ 10% + EV/EBITDA ≤ 12', df[df['arch_hidden_fcf']], 'fcf_margin_mean_4y')
     write_archetype('16. Reinvestment Heroes — high ROIIC + significant capital deployment', df[df['arch_reinvest']], 'roiic_1y')
     write_archetype('17. Insider-Heavy Quality — insider ownership ≥ 20% + ROIC ≥ 8%', df[df['arch_insider']], 'roic_mean_4y_med')
-    write_archetype('18. Triple-Lens Conviction — passes 3+ archetypes', df[df['arch_conviction']], 'arch_n')
+    write_archetype('18. Backlog Inflection — RPO / deferred-rev growth accelerating (leading-indicator)', df[df['arch_backlog']], 'backlog_inflection_pp')
+    write_archetype('19. Triple-Lens Conviction — passes 3+ archetypes', df[df['arch_conviction']], 'arch_n')
 
 print(f"Wrote {xlsx_path}", file=sys.stderr)
 print(f"Sizes: enduring={int(df['arch_enduring'].sum())} turning={int(df['arch_turning'].sum())} "
