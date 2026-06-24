@@ -90,8 +90,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     yart = _load_yartseva_union()
     pew = pd.read_csv(PEW_PATH, usecols=['symbol','avg_dollar_volume','n_analysts','country'])
 
+    # EDGAR enrichment: ROIC / ROIIC / Lindy multi-year metrics + tangible
+    # book signals. Optional — names without EDGAR coverage simply miss
+    # those archetype legs.
+    edgar_roiic = None
+    if os.path.exists('edgar_roic_roiic.csv'):
+        edgar_roiic = pd.read_csv('edgar_roic_roiic.csv')
+    edgar_yart = None
+    if os.path.exists('us_edgar_yartseva.csv'):
+        edgar_yart = pd.read_csv('us_edgar_yartseva.csv',
+                                 usecols=lambda c: c in {'symbol', 'p_tb',
+                                                           'tangible_equity_pct',
+                                                           'pct_off_52w_high'})
+
     # Merge.  Asym is the primary - everything else is enrichment.
     df = asym.merge(yart, on='symbol', how='left', suffixes=('','_y'))
+    if edgar_roiic is not None:
+        df = df.merge(edgar_roiic, on='symbol', how='left', suffixes=('','_er'))
+    if edgar_yart is not None:
+        df = df.merge(edgar_yart, on='symbol', how='left', suffixes=('','_ey'))
     df = df.merge(pew, on='symbol', how='left')
 
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
@@ -256,6 +273,55 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         cheap_on_ebitda
     ).astype(int)
 
+    # ---------- Cluster I-L: EDGAR XBRL-derived archetypes (US filers only) ----
+    # These rely on multi-year ROIC/ROIIC fields from edgar_roic_roiic.py.
+    # Names without EDGAR coverage get 0 (no signal, not negative).
+    roic_lindy = s('roic_lindy', np.nan)
+    cash_roic_lindy = s('cash_roic_lindy', np.nan)
+    roiic_lindy = s('roiic_lindy', np.nan)
+    cash_roiic_lindy = s('cash_roiic_lindy', np.nan)
+    roic_inflect = s('roic_inflection_flag', 0)
+    cash_roic_inflect = s('cash_roic_inflection_flag', 0)
+    roiic_1y_pos = s('roiic_1y_positive_flag', 0)
+    cash_roiic_1y_pos = s('cash_roiic_1y_positive_flag', 0)
+    roiic_accel = s('roiic_acceleration', np.nan)
+    cheap_per_roiic = s('cheap_per_roiic_lindy', np.nan)
+    asset_3y_cagr = s('asset_3y_cagr', np.nan)
+    p_tb = s('p_tb', np.nan)
+    tangible_equity_pct = s('tangible_equity_pct', np.nan)
+
+    # I — Durable reinvestment: lindy ROIIC > 15% over a multi-cycle history.
+    # The Mauboussin / Mayer compounder signature.
+    df['arch_durable_reinvestment'] = (
+        (roiic_lindy > 0.15) & (asset_3y_cagr > 0.05)
+    ).fillna(False).astype(int)
+
+    # J — Cash-confirmed reinvestment: cash ROIIC lindy > 12% (lower bar than
+    # NOPAT because FCF includes capex outflows).
+    df['arch_cash_reinvest'] = (
+        (cash_roiic_lindy > 0.12) & (asset_3y_cagr > 0.05)
+    ).fillna(False).astype(int)
+
+    # K — ROIC inflection: latest ROIC crossed zero from below AND cash ROIC
+    # also positive (confirms the inflection is real, not accounting).
+    df['arch_roic_inflect'] = (
+        ((roic_inflect == 1) | (cash_roic_inflect == 1))
+        & (cash_roic_lindy.fillna(-1) > 0)
+    ).astype(int)
+
+    # L — Cheap per reinvestment yield (PEG analogue on ROIIC). Lower
+    # cheap_per_roiic = more reinvestment yield per multiple paid. Threshold
+    # 1.5 means "you're paying < 1.5x EV/EBITDA per percent of lindy ROIIC".
+    df['arch_cheap_per_roiic'] = (
+        (cheap_per_roiic > 0) & (cheap_per_roiic <= 1.5) & (roiic_lindy > 0.10)
+    ).fillna(False).astype(int)
+
+    # M — Tangible-value floor: P/TB < 0.7 with tangible equity > 50% of book
+    # equity (real assets, not goodwill).
+    df['arch_tangible_value'] = (
+        (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50)
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -266,6 +332,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_kpi_threshold',
         'arch_blindspot',
         'arch_micro_activist_inflect',
+        'arch_durable_reinvestment',
+        'arch_cash_reinvest',
+        'arch_roic_inflect',
+        'arch_cheap_per_roiic',
+        'arch_tangible_value',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -277,6 +348,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_kpi_threshold': 'KPIThreshold',
         'arch_blindspot': 'BlindSpot',
         'arch_micro_activist_inflect': 'MicroActivistInflect',
+        'arch_durable_reinvestment': 'DurableReinvest',
+        'arch_cash_reinvest': 'CashReinvest',
+        'arch_roic_inflect': 'ROICInflect',
+        'arch_cheap_per_roiic': 'CheapPerROIIC',
+        'arch_tangible_value': 'TangibleValue',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

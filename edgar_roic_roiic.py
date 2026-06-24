@@ -190,9 +190,18 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
             return np.nan
         d_num = df[num_col].iloc[-1] - df[num_col].iloc[-(years + 1)]
         d_den = df[denom_col].iloc[-1] - df[denom_col].iloc[-(years + 1)]
-        if d_den is None or pd.isna(d_den) or abs(d_den) < 1e6:
-            return np.nan  # ΔIC too small — denominator unstable
-        return d_num / d_den
+        ic_latest = df[denom_col].iloc[-1]
+        # Guard: denominator must be (a) absolutely meaningful AND (b) at
+        # least 5% of latest IC. ΔIC < 5% of IC is structural noise — the
+        # business hasn't reinvested enough to compute a clean ROIIC.
+        if (d_den is None or pd.isna(d_den) or abs(d_den) < 1e6
+                or (ic_latest and ic_latest > 0 and abs(d_den) / ic_latest < 0.05)):
+            return np.nan
+        v = d_num / d_den
+        # Clip to [-2, 2] — values outside that band are denominator artifacts
+        if not -2.0 <= v <= 2.0:
+            return np.nan
+        return v
 
     out["roiic_1y"] = roiic_window(1, "nopat", "ic")
     out["roiic_3y"] = roiic_window(3, "nopat", "ic")
@@ -295,14 +304,16 @@ def composite_engine_score(row: dict) -> float:
     """
     parts = []
 
-    # Lindy ROIIC: 0% -> 0.0, 30% -> 1.0
+    # Lindy ROIIC: 0% -> 0.0, 50% -> 1.0. Saturates higher than the prior
+    # 0.30 cap to differentiate genuinely durable compounders from one-cycle
+    # anomalies.
     rl = row.get("roiic_lindy")
     if pd.notna(rl):
-        parts.append(max(0.0, min(1.0, rl / 0.30)))
-    # Cash Lindy: 0% -> 0.0, 25% -> 1.0  (cash is lower bar than NOPAT)
+        parts.append(max(0.0, min(1.0, rl / 0.50)))
+    # Cash Lindy: 0% -> 0.0, 40% -> 1.0  (cash is harder than NOPAT after capex)
     cl = row.get("cash_roiic_lindy")
     if pd.notna(cl):
-        parts.append(max(0.0, min(1.0, cl / 0.25)))
+        parts.append(max(0.0, min(1.0, cl / 0.40)))
     # ROIIC acceleration: -10pp -> 0.0, +20pp -> 1.0
     ra = row.get("roiic_acceleration")
     if pd.notna(ra):
@@ -311,6 +322,11 @@ def composite_engine_score(row: dict) -> float:
     cpr = row.get("cheap_per_roiic_lindy")
     if pd.notna(cpr) and cpr > 0:
         parts.append(max(0.0, min(1.0, (5.0 - cpr) / 4.5)))
+    # Penalty: deeply-negative latest ROIC says the engine isn't actually
+    # turning, regardless of historical Lindy. Cap the score if ROIC < -0.10.
+    rlatest = row.get("roic_latest")
+    if pd.notna(rlatest) and rlatest < -0.10 and parts:
+        return float(max(0.0, np.mean(parts) - 0.30))
 
     if not parts:
         return float("nan")
