@@ -86,6 +86,15 @@ if 'roic_method_agreement' in df.columns:
 # ─── Define archetypes ───
 df['has_history'] = df.get('has_history', False).fillna(False).astype(bool)
 
+# Archetype 0: Enduring ROE Financials — banks/REITs/BDCs/insurers (ROIC ill-defined,
+# so use ROE: min ≥ 12%, stable). Recovered by the EDGAR financial-sector fix.
+if 'enduring_roe' in df.columns:
+    df['arch_enduring_roe'] = (
+        df['enduring_roe'].fillna(False).astype(bool)
+        & df.get('is_financial', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+    )
+else:
+    df['arch_enduring_roe'] = False
 # Archetype 1: Enduring Compounders (strict) — keep all, dubious ones are flagged in columns
 df['arch_enduring'] = df['enduring_strict']
 # Archetype 2: Compounders Turning — real inflection (accrual or cash)
@@ -360,6 +369,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         row[0] += 2
 
     df['score_proxy'] = df.get('all_legs_score', 0).fillna(0)
+    write_archetype('0. Enduring ROE Financials — banks/REITs/BDCs: min ROE ≥ 12%, stable (ROIC ill-defined)', df[df['arch_enduring_roe']], 'roe_mean_4y')
     write_archetype('1. Enduring Compounders — strict ROIC stability, never below 15%', df[df['arch_enduring']], 'roic_mean_4y_med')
     write_archetype('2. Compounders Turning — ROIIC or CC-ROIIC inflecting + ≥ loose quality', df[df['arch_turning']], 'roiic_1y')
     write_archetype('3. Cash Machines — CC-ROIC ≥ 10% + cash conversion ≥ 70%', df[df['arch_cash']], 'cc_roic_fcf_mean_4y')

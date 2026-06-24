@@ -13,7 +13,12 @@ import pandas as pd
 import numpy as np
 
 frames = []
-for p in sorted(glob.glob('data/research/roic_*.csv')):
+_research_files = sorted(glob.glob('data/research/roic_*.csv'))
+# Prefer the fixed v2 EDGAR extract (captures financials via ROE) over old-schema files
+if os.path.exists('data/research/edgar_all_v2.csv'):
+    _research_files = ['data/research/edgar_all_v2.csv'] + [
+        p for p in _research_files if 'oldschema' not in p and 'edgar' not in p]
+for p in _research_files:
     if 'v1_partial' in p: continue
     try:
         df = pd.read_csv(p)

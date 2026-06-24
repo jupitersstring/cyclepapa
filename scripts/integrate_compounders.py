@@ -13,7 +13,8 @@ if not os.path.exists('data/synthesis/compounders_ranked.csv'):
     sys.exit(0)
 
 comp = pd.read_csv('data/synthesis/compounders_ranked.csv')
-cols = ['ticker','roic_mean','roic_min','roic_std','roic_method_agreement','roic_years',
+cols = ['ticker','is_financial','roe_mean_4y','roe_min_4y','roe_std_4y','roa_mean_4y','enduring_roe',
+        'roic_mean','roic_min','roic_std','roic_method_agreement','roic_years',
         'roiic_1y','roiic_2y','roiic_3y','roiic_acceleration','roiic_inflection',
         'cc_roic_fcf_latest','cc_roic_fcf_mean_4y','cc_roic_fcf_min_4y',
         'cc_roic_ocf_mean_4y','cc_roiic_1y','cc_roiic_3y','cc_roiic_acceleration',
@@ -25,7 +26,7 @@ keep = [c for c in cols if c in comp.columns]
 merged = df.merge(comp[keep], on='ticker', how='left', suffixes=('','_research'))
 
 for c in ['enduring_strict','enduring_loose','quality_compounder','roiic_inflection',
-          'cc_roiic_inflection','cash_compounder']:
+          'cc_roiic_inflection','cash_compounder','enduring_roe','is_financial']:
     if c in merged.columns:
         merged[c] = merged[c].fillna(False).astype(bool)
 
