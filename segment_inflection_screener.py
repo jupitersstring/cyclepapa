@@ -36,22 +36,42 @@ from edgar_fetcher import _quarterly_records, _series_from_records, _derive_q4
 
 
 # Tag pools that classify revenue STREAMS within a multi-stream business.
-# Restricted to sub-stream tags that are genuinely smaller-than-total (e.g.
-# Apple's services line vs total revenue, not banks' interest-income which
-# IS the total). Industry totals like InterestAndDividendIncomeOperating
-# belong in revenue_disaggregation_extract.py instead — they're the wrong
-# inputs for an "inflection" screen but valid for a full revenue map.
+# Broad — includes industry-specific tags. The "share < 70% of total" gate
+# at line 133 protects against false positives where the "segment" tag
+# really represents the company's primary line (e.g. a pure-play bank's
+# interest income would show share ≈ 100% and be excluded automatically).
+# For diversified financials/REITs/energy/lodging, these tags ARE genuinely
+# segment-level.
 REVENUE_CATEGORIES = {
     'product':       ['SalesRevenueGoodsNet','SalesRevenueProductLine','ProductRevenue',
-                      'ProductSales','ProductsRevenue'],
+                      'ProductSales','ProductsRevenue','EquipmentRevenue'],
     'services':      ['SalesRevenueServicesNet','ServiceRevenue','ServiceSales',
-                      'RevenueFromServices','ServicesRevenue','HostingServicesRevenue'],
+                      'RevenueFromServices','ServicesRevenue','HostingServicesRevenue',
+                      'TechnologyServicesRevenue','MaintenanceRevenue'],
     'licenses':      ['LicensesRevenue','LicenseAndServicesRevenue','RoyaltyRevenue',
                       'LicenseRevenue','LicensesAndServicesRevenue'],
     'subscription':  ['SubscriptionRevenue','RevenueFromSubscriptionServices',
                       'RecurringRevenue','SubscriptionAndCirculationRevenue',
                       'ContractWithCustomerLiabilityRevenueRecognized'],
     'advertising':   ['AdvertisingRevenue','AdvertisingAndOtherRevenue'],
+    # Banking / financial services — only counts when share < 70%
+    'interest_income': ['InterestAndDividendIncomeOperating','InterestIncomeOperating',
+                        'InterestAndFeeIncomeLoansAndLeases','InterestIncomeOnDepositsWithBanks'],
+    'noninterest':   ['NoninterestIncome','FeesAndCommissionsDepositorAccounts',
+                      'FeesAndCommissionsCreditAndDebitCards'],
+    # Insurance — only counts when share < 70% (pure-play insurers excluded)
+    'premiums':      ['PremiumsEarnedNet','PremiumsWrittenNet','InsurancePremiumsAndContractsRevenue'],
+    # Real estate / lodging
+    'rental':        ['OperatingLeasesIncomeStatementLeaseRevenue','LeaseAndRentalRevenue',
+                      'RealEstateRevenueNet','OccupancyRevenue','RentalIncomeNonoperating'],
+    'gaming_hotel':  ['CasinoRevenue','GamingRevenue','HotelRevenue'],
+    # Energy
+    'energy':        ['OilAndGasRevenue','OilAndGasSalesRevenue'],
+    # Brokerage
+    'commissions':   ['BrokerageCommissionsRevenue','CommissionsRevenue',
+                      'InvestmentBankingRevenue','PrincipalTransactionsRevenue'],
+    # Other
+    'franchise':     ['FranchiseRevenue'],
 }
 TOTAL_TAGS = ['Revenues','RevenueFromContractWithCustomerExcludingAssessedTax','SalesRevenueNet']
 
@@ -87,10 +107,27 @@ def years_to_dominate(s_now: float, t_now: float, s_g: float, t_g: float,
 
 
 def yoy_growth(ttm: pd.Series) -> float:
-    if ttm is None or len(ttm) < 5: return float('nan')
-    a, b = float(ttm.iloc[-1]), float(ttm.iloc[-5])
+    """YoY growth from a series. Prefers LTM-vs-LTM (needs >=5 LTM values =
+    >=8 quarterly). Falls back to single-Q vs same-Q-1Y-ago when shorter."""
+    if ttm is None or len(ttm) < 2: return float('nan')
+    if len(ttm) >= 5:
+        a, b = float(ttm.iloc[-1]), float(ttm.iloc[-5])
+    else:
+        # Fallback for very short series — most recent vs first available
+        a, b = float(ttm.iloc[-1]), float(ttm.iloc[0])
     if b == 0: return float('nan')
     if b < 0:  # symmetric handling
+        return 2*(a-b)/(abs(a)+abs(b))
+    return (a-b)/b
+
+
+def yoy_growth_quarterly(q: pd.Series) -> float:
+    """Single-quarter YoY (now vs same-Q 1 year ago). Use when LTM isn't
+    available (filer reports <8 quarters in companyfacts)."""
+    if q is None or len(q) < 5: return float('nan')
+    a, b = float(q.iloc[-1]), float(q.iloc[-5])
+    if b == 0: return float('nan')
+    if b < 0:
         return 2*(a-b)/(abs(a)+abs(b))
     return (a-b)/b
 
@@ -115,23 +152,28 @@ def scan_segment_inflections(edgar_cache: Path) -> pd.DataFrame:
             continue
 
         total_q = get_quarterly(facts, TOTAL_TAGS)
-        if total_q.empty or len(total_q) < 8:
+        if total_q.empty or len(total_q) < 5:
             continue
 
         for cat, cands in REVENUE_CATEGORIES.items():
             sub_q = get_quarterly(facts, cands)
-            if sub_q.empty or len(sub_q) < 8: continue
+            if sub_q.empty or len(sub_q) < 5: continue
             idx = total_q.index.intersection(sub_q.index)
-            if len(idx) < 8: continue
+            if len(idx) < 5: continue
             t = total_q.reindex(idx); s = sub_q.reindex(idx)
             t_ltm = t.rolling(4).sum().dropna()
             s_ltm = s.rolling(4).sum().dropna()
-            if t_ltm.empty or s_ltm.empty: continue
-            t_now, s_now = float(t_ltm.iloc[-1]), float(s_ltm.iloc[-1])
+            # If we have full LTM history (>=4Q rolled), use LTM for everything.
+            # Otherwise fall back to single-Q values + Q-vs-Q-1Y-ago growth.
+            if not t_ltm.empty and not s_ltm.empty:
+                t_now, s_now = float(t_ltm.iloc[-1]), float(s_ltm.iloc[-1])
+                s_g, t_g = yoy_growth(s_ltm), yoy_growth(t_ltm)
+            else:
+                t_now, s_now = float(t.iloc[-1]), float(s.iloc[-1])
+                s_g, t_g = yoy_growth_quarterly(s), yoy_growth_quarterly(t)
             if t_now <= 0 or s_now <= 0: continue
             share = s_now / t_now
             if share > 0.7 or share < 0.005: continue
-            s_g, t_g = yoy_growth(s_ltm), yoy_growth(t_ltm)
             if not (pd.notna(s_g) and pd.notna(t_g) and s_g > 0): continue
             years = years_to_dominate(s_now, t_now, s_g, t_g)
             rows.append({'ticker':tkr,'category':cat,
