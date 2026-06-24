@@ -432,7 +432,6 @@ ENJU3.SA,YELLOW,"Net-cash micro-cap with first-ever profit in Q4'25, but GMV shr
 MTSA4.SA,YELLOW,"Net-cash 84yr family metallurgical at 0.81x BV, 9.7x P/E, 9.4% DY with 30-yr payout streak and active buyback; boring quality compounder but ag/construction cycle and family control cap multibagger upside"
 SANB3.SA,YELLOW,"Blue-chip Brazilian bank (ON voting share, $99B mcap), Spain Santander subsidiary; Q1'26 ROE slipped to 15.6%, NPLs rising; size caps 3-5x upside and liquidity sits in SANB11 unit"
 SANB4.SA,YELLOW,"Blue-chip Brazilian bank (PN preferred, $106B mcap), Spain Santander subsidiary; steady JCP payer but size caps multibagger upside; volume concentrates in SANB11 unit"
-symbol,verdict,thesis
 0882.HK,GREEN,"Operating Tianjin SOE utility/pharma/hotel/port conglomerate under Tsinlien; FY24 H1 utility profit rose 61M to 82M HKD, P/E ~5.6, 6-7% yield, payout ~27% — deep SOE discount with real cash flows."
 0212.HK,GREEN,"1947-founded Hong Kong property/financial investment holding; ~HK$5.1B equity vs HK$975M mcap, HK$174M net cash, returned to profit H1 FY25 (HK$27.5M net) — classic asset-rich HK sub-book discount."
 900920.SS,YELLOW,Renamed Shanghai New Power Automotive (SAIC-owned) post-2021 diesel-to-hybrid restructuring; 2024 revenue fell to CNY 5.58B from 6.47B with TTM EPS -1.16; transition risk but SAIC parent backstop and CNY 500M Hongyan funding deal.
@@ -440,3 +439,11 @@ TPP.BK,GREEN,"1983 Samut Prakan corrugated/offset box maker for autos/FMCG/food;
 GBX.BK,YELLOW,"Bangkok securities/advisory holding (Globlex Securities, Capital One Partners, Asia Equity Venture); FY25 swung to THB 28.6M profit on +25% revenue and 3Q25 net up 321% YoY — recovery real but tiny broker, cyclical SET-flow dependent."
 IRC.BK,GREEN,"INOAC-affiliated Thai motorcycle tire and industrial elastomer maker (Rangsit/Wang Noi); 2024 revenue -15% to THB 4.61B but earnings +95% to 311M on cost discipline; ~7.7% dividend yield, $132M 2025 revenue base."
 RAJESHEXPO.NS,RED,SEBI 3-Jun-2026 interim order bans promoter Rajesh Mehta over alleged Rs 15.15 lakh-crore revenue misrepresentation FY21-25 and Rs 926cr undisclosed fund diversion; ED raids 9 sites flagging forex breaches; stock -66% from Dec-25 high.
+symbol,verdict,thesis
+003650.KS,GREEN,"Profitable Busan lubricants/white-oils maker (FY23 net income 47.6B KRW +104% YoY); 2.5% yield with only 6.6% payout signals net-cash hoard, classic Korean sub-book niche-leader setup"
+4629.T,GREEN,"73-yr family-controlled organic solvents/thinners maker (Tsuboi family ~25%); per public deep-dive trades 0.64x NCAV with 15.6% FCF yield, ~230M USD revenue, 2.5% yield, profitable"
+094840.KQ,YELLOW,"Korea's #1 biometric access-control maker (BioStar/AI Platform) is real and growing, but Jan-2026 treasury stock 'donation' to CEO's wife's newly-formed foundation drew regulator pressure and was reversed"
+2193.T,YELLOW,"Recipe-platform business shrinking: 1Q rev -11%, net income -72%, 5-yr earnings -27%/yr, one-off items 148% of TTM PBT; 24% buyback through Mar-2026 supports floor but secular decline is real"
+024950.KQ,RED,Parent GL&Co (32% holder via 72.6% Kim Seok-hwan stake) carries 23.8B KRW short-term debt vs 76M KRW cash; qualified audit opinion and 2.75B KRW uncollected related-party receivables flag governance risk
+036190.KQ,GREEN,"Korean power-plant maintenance/EPC with nuclear exposure into a confirmed SMR upcycle (Feb-2026 SMR Special Act); 3Q25 revenue +43% YoY to 93.8B KRW, 4.5% dividend yield, EPS guidance to KRW5,119"
+000700.KS,YELLOW,"Former Hanjin Shipping Holdings (separated 2015, Choi Eun-young chair) operating 3PL via subsidiaries incl. CyberLogitec; 5-yr earnings -47%/yr, net margin collapsed to 1.1% from 3.9%, unstable dividend"
