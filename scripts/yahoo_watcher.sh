@@ -13,13 +13,14 @@ cd "$(dirname "$0")/.."
 POLL_MIN=${POLL_MIN:-15}
 COOLDOWN_LOCK=/tmp/yfinance_cooldown.lock
 
-# Don't double-launch
-if pgrep -f yahoo_watcher.sh | grep -qv "^$$$"; then
-    other=$(pgrep -f yahoo_watcher.sh | grep -v "^$$$" | head -1)
-    if [ -n "$other" ] && [ "$other" != "$$" ]; then
-        echo "[watcher] another instance running (PID $other) — exiting"; exit 0
-    fi
+# Don't double-launch — match only direct invocations (not shell snapshots)
+my_pid=$$
+others=$(pgrep -a -f 'yahoo_watcher.sh$\|yahoo_watcher.sh ' 2>/dev/null | awk -v me=$my_pid '$1!=me {print $1}')
+if [ -n "$others" ]; then
+    echo "[watcher] another instance running (PID $others) — exiting"
+    exit 0
 fi
+echo "[watcher pid=$my_pid] started"
 
 check_yahoo() {
     PYTHONPATH=/home/user/cyclepapa/scripts timeout 15 python3 -c "
