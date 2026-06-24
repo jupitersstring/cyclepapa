@@ -1068,8 +1068,14 @@ def build_creative_measures(wb):
         blanks. Idempotent — if columns already exist, they're refreshed."""
         if df.empty or 'ticker' not in df.columns:
             return df
+        # De-dup tickers before lookup — otherwise multi-row-per-ticker inputs
+        # (like Revenue Disaggregation: 1 ticker × many tag rows) blow up
+        # under the subsequent merge.
         rows = []
+        seen = set()
         for tkr in df['ticker'].astype(str).tolist():
+            if tkr in seen: continue
+            seen.add(tkr)
             safe = ''.join(c if c.isalnum() or c in '-_' else '_' for c in tkr)
             p = yf_cache / f'{safe}__info_metrics.parquet'
             entry = {'ticker': tkr, 'company': '', 'sector': '', 'industry': '', 'country': ''}
@@ -1091,7 +1097,8 @@ def build_creative_measures(wb):
         for c in ('company','sector','industry','country'):
             if c in df.columns:
                 df = df.drop(columns=[c])
-        return info_df.merge(df, on='ticker', how='left')
+        # Left-merge ON df so we preserve every input row (no multiplication)
+        return df.merge(info_df, on='ticker', how='left')
 
     # One tab per available measure
     for p, label, deck, cols in available:

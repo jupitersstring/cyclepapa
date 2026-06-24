@@ -49,7 +49,8 @@ REVENUE_CATEGORIES = {
     'licenses':      ['LicensesRevenue','LicenseAndServicesRevenue','RoyaltyRevenue',
                       'LicenseRevenue','LicensesAndServicesRevenue'],
     'subscription':  ['SubscriptionRevenue','RevenueFromSubscriptionServices',
-                      'RecurringRevenue','SubscriptionAndCirculationRevenue'],
+                      'RecurringRevenue','SubscriptionAndCirculationRevenue',
+                      'ContractWithCustomerLiabilityRevenueRecognized'],
     'advertising':   ['AdvertisingRevenue','AdvertisingAndOtherRevenue'],
 }
 TOTAL_TAGS = ['Revenues','RevenueFromContractWithCustomerExcludingAssessedTax','SalesRevenueNet']
