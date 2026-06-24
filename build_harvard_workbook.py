@@ -128,6 +128,9 @@ def load_quant() -> pd.DataFrame:
 
 
 def compute_scores(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
+    # asymmetry_global may already carry a verdict column (post-enrichment).
+    # Drop it before merging so the fresh verdicts file always wins.
+    df = df.drop(columns=[c for c in ('verdict', 'thesis') if c in df.columns])
     df = df.merge(verdicts, on='symbol', how='left')
     df['verdict'] = df['verdict'].fillna('UNRESEARCHED')
     df['thesis'] = df['thesis'].fillna('')

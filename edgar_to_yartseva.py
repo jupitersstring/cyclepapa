@@ -33,14 +33,16 @@ CACHE_DIR = Path("edgar_cache")
 
 # --- Per-ticker price + momentum (bulk yfinance) -------------------------
 def fetch_prices_cached() -> pd.DataFrame:
-    """Pull prices + market caps + momentum from already-cached
+    """Pull prices + market caps + momentum + sector from already-cached
     *_yartseva.csv files. Avoids re-hitting yfinance (which is often
     rate-limited). Returns a DataFrame keyed by symbol with the same
     columns the bulk-yf version produced — anything not derivable from
-    cache is left NaN.
+    cache is left NaN. Also surfaces sector/industry so EDGAR-only rows
+    can be hydrated with financedatabase tags (audit #3 §6 fix).
     """
     import glob
-    keep = ['symbol', 'price', 'market_cap', 'momentum_12m', 'enterprise_value']
+    keep = ['symbol', 'price', 'market_cap', 'momentum_12m',
+            'enterprise_value', 'sector', 'industry']
     frames = []
     for f in sorted(glob.glob('*_yartseva.csv')):
         # Skip our own output so we don't pick up empty-price rows from a
@@ -55,13 +57,18 @@ def fetch_prices_cached() -> pd.DataFrame:
             frames.append(d)
     if not frames:
         return pd.DataFrame(columns=keep)
-    # Sort rows so non-NaN market_cap wins the dedup. We rank "has data"
-    # rows first, then keep='first'.
+    # Sort rows so non-NaN market_cap + sector wins the dedup. We rank
+    # "has data" rows first, then keep='first'. Prefer sector-populated
+    # rows over sector-NaN rows so EDGAR rows get the financedatabase
+    # sector tag when it's available in the cache.
     df = pd.concat(frames, ignore_index=True)
     df['_has_mcap'] = df['market_cap'].notna().astype(int)
-    df = (df.sort_values(['symbol', '_has_mcap'], ascending=[True, False])
+    df['_has_sector'] = df.get('sector', pd.Series(dtype=object)).notna().astype(int) \
+        if 'sector' in df.columns else 0
+    df = (df.sort_values(['symbol', '_has_mcap', '_has_sector'],
+                         ascending=[True, False, False])
             .drop_duplicates('symbol', keep='first')
-            .drop(columns=['_has_mcap']))
+            .drop(columns=[c for c in ('_has_mcap', '_has_sector') if c in df.columns]))
     # Approximate 52w high from price + momentum: not directly available,
     # so leave pct_off_52w_high NaN here. (When yfinance is back, a
     # follow-up pass can fill this.)
@@ -129,9 +136,17 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["symbol"] = sym
     r["name"] = str(name).title() if isinstance(name, str) else name
     r["src"] = "US"
-    r["sector"] = ""        # populated later from financedatabase merge
-    r["industry"] = ""
     r["currency"] = "USD"
+    # Hydrate sector/industry from the cached *_yartseva.csv data when
+    # available (financedatabase tags). Blank if no source has them.
+    if price_row is not None:
+        sec = price_row.get("sector")
+        ind = price_row.get("industry")
+        r["sector"] = str(sec) if (sec is not None and not pd.isna(sec)) else ""
+        r["industry"] = str(ind) if (ind is not None and not pd.isna(ind)) else ""
+    else:
+        r["sector"] = ""
+        r["industry"] = ""
 
     # Price + shares -> market cap. Prefer the cached price+mcap rows
     # over re-deriving from EDGAR shares × price (which is brittle for

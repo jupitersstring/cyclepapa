@@ -150,3 +150,12 @@ echo "merging ${#ARGS[@]} CSVs"
     --min-upside 0.00 \
     --min-downside-floor 0.00 \
     --min-mcap 5000000
+
+# Post-pass enrichment: adds entry_today_asymmetry, archetype_count_pct,
+# archetype_asymmetry_score, mcap_proxy to asymmetry_global. Requires
+# archetype_tags.csv to be current; we re-run that just before.
+echo "re-tagging archetypes against fresh asymmetry_global..."
+"$VENV" archetype_tags.py 2>&1 | grep -v PerformanceWarning | tail -5
+
+echo "enriching asymmetry_global with verdict/archetype-aware columns..."
+"$VENV" enrich_asymmetry_global.py
