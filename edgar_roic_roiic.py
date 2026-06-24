@@ -79,6 +79,11 @@ DA_ALIASES = [
     "DepreciationDepletionAndAmortization",
     "DepreciationAndAmortization", "Depreciation",
 ]
+SHARES_ALIASES = [
+    "CommonStockSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+]
 
 
 def _fy_series(facts: dict, aliases: list[str], unit: str = "USD") -> pd.Series:
@@ -140,6 +145,7 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
     rev = _fy_series(facts, REVENUE_ALIASES)
     da = _fy_series(facts, DA_ALIASES)
     assets = _point_in_time_fy(facts, ASSETS_ALIASES)
+    shares = _point_in_time_fy(facts, SHARES_ALIASES, unit="shares")
 
     # Common index = union of all years available
     years = sorted(set(opinc.index) | set(eq.index))
@@ -157,6 +163,7 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
     df["revenue"] = rev.reindex(years)
     df["da"] = da.reindex(years)
     df["assets"] = assets.reindex(years)
+    df["shares"] = shares.reindex(years)
 
     # Derived
     df["total_debt"] = df[["lt_debt", "st_debt"]].fillna(0).sum(axis=1)
@@ -276,6 +283,73 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
         r0 = float(df["revenue"].iloc[-1])
         if r4 > 0 and r0 > 0:
             out["revenue_3y_cagr"] = (r0 / r4) ** (1 / 3) - 1
+
+    # ----- Lindy durability fields -----
+    # These let the archetype layer score multi-cycle resilience without
+    # losing names that simply lack the full history (years_of_history
+    # surfaces data depth so downstream weighting can degrade gracefully).
+    out["years_of_history"] = len(df)
+
+    # Count of positive prints across the available history. The window is
+    # capped at the latest 5 years so a 10-year survivor isn't credited
+    # the same as a 5-year recent compounder.
+    last_n = df.tail(5)
+    out["n_yrs_positive_fcf"] = int((last_n["fcf"] > 0).sum())
+    out["n_yrs_positive_opinc"] = int((last_n["opinc"] > 0).sum())
+    out["n_yrs_positive_netinc_proxy"] = int((last_n["nopat"] > 0).sum())  # NOPAT proxy
+    out["n_yrs_positive_roic"] = int((last_n["roic"] > 0).sum())
+
+    # Median margins across history — Lindy versions of point-in-time margin
+    # gates. Robust to one-off write-downs or restructuring charges.
+    if pd.notna(df["opinc"]).any() and pd.notna(df["revenue"]).any():
+        margins = df["opinc"] / df["revenue"].replace({0: np.nan})
+        margins = margins[margins.between(-1, 1)]  # sanity clip
+        if not margins.empty:
+            out["op_margin_lindy"] = float(margins.median())
+    if pd.notna(df["ebitda"]).any() and pd.notna(df["revenue"]).any():
+        em = df["ebitda"] / df["revenue"].replace({0: np.nan})
+        em = em[em.between(-1, 1)]
+        if not em.empty:
+            out["ebitda_margin_lindy"] = float(em.median())
+    if pd.notna(df["fcf"]).any() and pd.notna(df["revenue"]).any():
+        fm = df["fcf"] / df["revenue"].replace({0: np.nan})
+        fm = fm[fm.between(-1, 1)]
+        if not fm.empty:
+            out["fcf_margin_lindy"] = float(fm.median())
+
+    # Multi-period revenue growth — 5y CAGR if available
+    if len(df) >= 6 and pd.notna(df["revenue"].iloc[-6]) and pd.notna(df["revenue"].iloc[-1]):
+        r5 = float(df["revenue"].iloc[-6])
+        r0 = float(df["revenue"].iloc[-1])
+        if r5 > 0 and r0 > 0:
+            out["revenue_5y_cagr"] = (r0 / r5) ** (1 / 5) - 1
+            # Accelerating topline: 3y CAGR > 5y CAGR (more recent growth faster)
+            if pd.notna(out.get("revenue_3y_cagr")):
+                out["revenue_acceleration_lindy"] = (
+                    out["revenue_3y_cagr"] - out["revenue_5y_cagr"]
+                )
+
+    # Assets 5y CAGR for the reinvestment runway test
+    if len(df) >= 6 and pd.notna(df["assets"].iloc[-6]) and pd.notna(df["assets"].iloc[-1]):
+        a5 = float(df["assets"].iloc[-6])
+        a0 = float(df["assets"].iloc[-1])
+        if a5 > 0 and a0 > 0:
+            out["asset_5y_cagr"] = (a0 / a5) ** (1 / 5) - 1
+
+    # Dilution check: shares outstanding growth over the last 3 years.
+    # Lindy compounder pattern is shares flat or declining (buybacks)
+    # while equity per share grows. Stock-based comp drift is normal +1-2%/y;
+    # >5% over 3y is a red flag.
+    if "shares" in df.columns and len(df) >= 4:
+        s_then = df["shares"].iloc[-4]
+        s_now = df["shares"].iloc[-1]
+        if pd.notna(s_then) and pd.notna(s_now) and s_then > 0:
+            out["shares_growth_3y"] = (s_now - s_then) / s_then
+    if "shares" in df.columns and len(df) >= 6:
+        s_then = df["shares"].iloc[-6]
+        s_now = df["shares"].iloc[-1]
+        if pd.notna(s_then) and pd.notna(s_now) and s_then > 0:
+            out["shares_growth_5y"] = (s_now - s_then) / s_then
 
     return out
 

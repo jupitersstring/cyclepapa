@@ -322,6 +322,59 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50)
     ).fillna(False).astype(int)
 
+    # ---------- N-Q: Lindy durability archetypes (EDGAR multi-year) ----------
+    # All four are ADDITIVE — they fire on top of the existing point-in-time
+    # archetypes, never replace them. Names without EDGAR coverage (non-US
+    # filers) score 0 here but keep all their existing archetype matches.
+    op_margin_lindy = s('op_margin_lindy', np.nan)
+    ebitda_margin_lindy = s('ebitda_margin_lindy', np.nan)
+    fcf_margin_lindy = s('fcf_margin_lindy', np.nan)
+    n_yrs_fcf_pos = s('n_yrs_positive_fcf', 0)
+    n_yrs_opinc_pos = s('n_yrs_positive_opinc', 0)
+    n_yrs_roic_pos = s('n_yrs_positive_roic', 0)
+    years_of_history = s('years_of_history', 0)
+    revenue_5y_cagr = s('revenue_5y_cagr', np.nan)
+    revenue_accel_lindy = s('revenue_acceleration_lindy', np.nan)
+    asset_5y_cagr = s('asset_5y_cagr', np.nan)
+    shares_growth_3y = s('shares_growth_3y', np.nan)
+
+    # N — Durable Margin: high op margin AND high EBITDA margin held over
+    # 5+ years (compounder signature). Distinct from the point-in-time
+    # CapitalDiscipline tag, which can fire on a single good year.
+    df['arch_lindy_margin'] = (
+        (op_margin_lindy >= 0.10) &
+        (ebitda_margin_lindy >= 0.12) &
+        (years_of_history >= 5)
+    ).fillna(False).astype(int)
+
+    # O — Consistent FCF: positive FCF in 4 of last 5 years AND positive
+    # operating income in 4 of last 5. Cash-generation durability test
+    # that strips out the accounting noise.
+    df['arch_lindy_fcf'] = (
+        (n_yrs_fcf_pos >= 4) &
+        (n_yrs_opinc_pos >= 4)
+    ).astype(int)
+
+    # P — No Dilution (Clean Compounder): shares roughly flat over 3y AND
+    # FCF positive 4 of 5 AND ROIC positive 4 of 5. The Mayer / Mauboussin
+    # owner-operator pattern - reinvesting at high returns without
+    # constantly tapping equity holders.
+    df['arch_no_dilution'] = (
+        (shares_growth_3y <= 0.02) &
+        (n_yrs_fcf_pos >= 4) &
+        (n_yrs_roic_pos >= 4)
+    ).fillna(False).astype(int)
+
+    # Q — Durable Growth: revenue 5y CAGR >= 8% AND topline accelerating
+    # (3y CAGR > 5y CAGR) AND asset base growing. Multi-cycle expansion
+    # without the single-year base-effect noise.
+    df['arch_lindy_growth'] = (
+        (revenue_5y_cagr >= 0.08) &
+        (revenue_accel_lindy > 0) &
+        (asset_5y_cagr > 0.03) &
+        (years_of_history >= 5)
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -337,6 +390,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_roic_inflect',
         'arch_cheap_per_roiic',
         'arch_tangible_value',
+        'arch_lindy_margin',
+        'arch_lindy_fcf',
+        'arch_no_dilution',
+        'arch_lindy_growth',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -353,6 +410,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_roic_inflect': 'ROICInflect',
         'arch_cheap_per_roiic': 'CheapPerROIIC',
         'arch_tangible_value': 'TangibleValue',
+        'arch_lindy_margin': 'LindyMargin',
+        'arch_lindy_fcf': 'LindyFCF',
+        'arch_no_dilution': 'NoDilution',
+        'arch_lindy_growth': 'LindyGrowth',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
