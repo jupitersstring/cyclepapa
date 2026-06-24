@@ -27,15 +27,20 @@ df = pd.read_csv(base)
 print(f"Base ranking: {len(df)} rows", file=sys.stderr)
 
 # Re-integrate EDGAR compounders (in case rank_compounders hasn't been re-run)
-if os.path.exists('data/research/roic_edgar_combined.csv'):
-    e = pd.read_csv('data/research/roic_edgar_combined.csv')
+# Prefer the fixed v2 EDGAR extract (financials via ROE, date-alignment fix)
+_edgar_src = ('data/research/edgar_all_v2.csv'
+              if os.path.exists('data/research/edgar_all_v2.csv')
+              else 'data/research/roic_edgar_combined.csv')
+if os.path.exists(_edgar_src):
+    e = pd.read_csv(_edgar_src)
     keep = ['ticker','roic_mean_4y_med','roic_min_4y_med','roic_std_4y_med',
             'roic_method_agreement','roic_years','roiic_1y','roiic_2y','roiic_3y',
             'roiic_acceleration','roiic_inflection',
             'cc_roic_fcf_latest','cc_roic_fcf_mean_4y','cc_roic_fcf_min_4y',
             'cc_roic_ocf_mean_4y','cc_roiic_1y','cc_roiic_3y','cc_roiic_acceleration',
             'cc_roiic_inflection','fcf_margin_mean_4y','cash_conversion_mean_4y',
-            'enduring_strict','enduring_loose','has_history']
+            'enduring_strict','enduring_loose','has_history',
+            'is_financial','roe_mean_4y','roe_min_4y','roe_std_4y','roa_mean_4y','enduring_roe']
     e = e[[c for c in keep if c in e.columns]]
     # Drop existing columns to overwrite
     for c in [x for x in e.columns if x != 'ticker' and x in df.columns]:
@@ -192,6 +197,26 @@ if os.path.exists(backlog_path):
     except Exception as e:
         print(f"  backlog merge err: {e}", file=sys.stderr)
 
+# ─── Segment-level archetypes (edgartools dimensional XBRL) ───
+seg_path = 'data/research/segments_us.csv'
+if os.path.exists(seg_path):
+    try:
+        sg = pd.read_csv(seg_path)
+        segcols = ['ticker','n_segments','largest_segment','largest_segment_pct',
+                   'seg_rev_growth_fastest','seg_fastest_name','seg_rev_growth_slowest',
+                   'seg_slowest_name','seg_growth_dispersion','seg_mix_shift_pp',
+                   'seg_mix_gainer','seg_inflection_flag','seg_margin_best',
+                   'seg_margin_best_name','seg_high_margin_growing']
+        sg = sg[[c for c in segcols if c in sg.columns]]
+        for c in [x for x in sg.columns if x != 'ticker' and x in df.columns]:
+            df = df.drop(columns=[c])
+        df = df.merge(sg, on='ticker', how='left')
+        print(f"  merged segments: {len(sg)} rows", file=sys.stderr)
+    except Exception as e:
+        print(f"  segment merge err: {e}", file=sys.stderr)
+df['arch_seg_inflection'] = df.get('seg_inflection_flag', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+df['arch_seg_highmargin'] = df.get('seg_high_margin_growing', pd.Series(False, index=df.index)).fillna(False).astype(bool)
+
 if 'backlog_inflection_flag' in df.columns:
     # AUDIT FIX: backlog is a leading indicator — stale filings are useless.
     # Require the latest backlog observation within ~15 months.
@@ -345,7 +370,10 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
                    'Infl', 'CC-Infl', 'Score']
         for c, h in enumerate(headers): ws.write(row[0], c, h, header_fmt)
         ws.set_row(row[0], 22); row[0] += 1
-        for _, r in df_sub.sort_values(sort_col, ascending=False).head(25).iterrows():
+        _sub = df_sub
+        if sort_col in _sub.columns and len(_sub):
+            _sub = _sub.sort_values(sort_col, ascending=False)
+        for _, r in _sub.head(25).iterrows():
             wt(ws, row[0], 0, r.get('ticker'))
             wt(ws, row[0], 1, str(r.get('name',''))[:30] if pd.notna(r.get('name')) else None)
             wt(ws, row[0], 2, REGION_FULLNAME.get(r.get('region',''), r.get('region','')))
@@ -390,6 +418,8 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     write_archetype('16. Reinvestment Heroes — high ROIIC + significant capital deployment', df[df['arch_reinvest']], 'roiic_1y')
     write_archetype('17. Insider-Heavy Quality — insider ownership ≥ 20% + ROIC ≥ 8%', df[df['arch_insider']], 'roic_mean_4y_med')
     write_archetype('18. Backlog Inflection — RPO / deferred-rev growth accelerating (leading-indicator)', df[df['arch_backlog']], 'backlog_inflection_pp')
+    write_archetype('18b. Segment Inflection — fast segment gaining mix share while legacy shrinks', df[df['arch_seg_inflection']], 'seg_mix_shift_pp')
+    write_archetype('18c. Segment Margin Mix-Up — highest-margin segment is also growing', df[df['arch_seg_highmargin']], 'seg_margin_best')
     write_archetype('19. Value Area Rule Trigger — Dalton bracket-rule continuation (open outside, accept inside)', df[df['arch_var']], 'score_proxy')
     write_archetype('20. Accepted Outside — VAR succeeded (full value-area migration)', df[df['arch_accepted_out']], 'score_proxy')
     write_archetype('21. Bullish High Volume — Dalton DP signal: institutional sponsorship up', df[df['arch_bull_highvol']], 'score_proxy')
