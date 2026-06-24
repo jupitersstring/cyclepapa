@@ -132,3 +132,26 @@ if [ -f "$COOLDOWN_LOCK" ] && ! pgrep -f yahoo_watcher.sh >/dev/null 2>&1; then
     disown
     echo "[bootstrap] launched yahoo_watcher.sh"
 fi
+
+# ─── 6. Harvest finalizer: resume SEC segment + backlog harvests, rebuild workbook ───
+# SEC EDGAR is independent of the Yahoo block, so this runs regardless of cooldown.
+SEG_OUT=data/research/segments_us.csv
+SEG_UNI=data/universes/seg_priority.csv
+BL_OUT=data/research/backlog_us.csv
+BL_UNI=data/universes/sec_all.csv
+need_finalizer=0
+if [ -f "$SEG_UNI" ]; then
+    sr=0; [ -f "$SEG_OUT" ] && sr=$(($(wc -l < "$SEG_OUT") - 1))
+    su=$(($(wc -l < "$SEG_UNI") - 1))
+    [ "$sr" -lt $((su * 95 / 100)) ] && need_finalizer=1
+fi
+if [ "$need_finalizer" -eq 0 ] && [ -f "$BL_UNI" ]; then
+    br=0; [ -f "$BL_OUT" ] && br=$(($(wc -l < "$BL_OUT") - 1))
+    bu=$(($(wc -l < "$BL_UNI") - 1))
+    [ "$br" -lt $((bu * 95 / 100)) ] && need_finalizer=1
+fi
+if [ "$need_finalizer" -eq 1 ] && ! pgrep -f harvest_finalizer.sh >/dev/null 2>&1; then
+    nohup bash scripts/harvest_finalizer.sh > /tmp/log_finalizer.txt 2>&1 &
+    disown
+    echo "[bootstrap] launched harvest_finalizer.sh (resumes segment+backlog, rebuilds workbook)"
+fi
