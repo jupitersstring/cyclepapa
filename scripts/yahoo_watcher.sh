@@ -10,7 +10,7 @@
 set -e
 cd "$(dirname "$0")/.."
 
-POLL_MIN=${POLL_MIN:-15}
+POLL_MIN=${POLL_MIN:-180}  # Each probe counts against Yahoo's rate-limit window — back WAY off (was 15)
 COOLDOWN_LOCK=/tmp/yfinance_cooldown.lock
 
 # Don't double-launch — match only direct invocations (not shell snapshots)
