@@ -1,6 +1,7 @@
 import sys, time, os, warnings
 import pandas as pd, re
 import yfinance as yf
+from yfsession import SESSION
 import financedatabase as fd
 warnings.filterwarnings("ignore")
 
@@ -47,7 +48,7 @@ print(f"[{interval}/{caps_arg}] universe={len(syms)} cached={len([s for s in sym
 ok=fail=0; new_dead=set()
 for i,t in enumerate(todo):
     try:
-        h=yf.Ticker(t).history(period=period, interval=interval, auto_adjust=True)
+        h=yf.Ticker(t, session=SESSION).history(period=period, interval=interval, auto_adjust=True)
         if h is not None and "Volume" in h and len(h.dropna())>minrows:
             sub=h[["Close","Volume"]].dropna()
             sub.index=sub.index.tz_localize(None)

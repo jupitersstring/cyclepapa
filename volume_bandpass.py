@@ -55,6 +55,7 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
                    seed: dict[str, pd.DataFrame] | None = None,
                    cached_only: bool = False) -> dict[str, pd.DataFrame]:
     import yfinance as yf
+    from yfsession import SESSION
 
     os.makedirs(CACHE_DIR, exist_ok=True)
     # cache is a per-symbol dict pickle so repeated runs ACCUMULATE coverage
@@ -90,7 +91,7 @@ def download_ohlcv(symbols: list[str], period: str, interval: str,
         try:
             data = yf.download(chunk, period=period, interval=interval,
                                auto_adjust=True, progress=False, threads=True,
-                               group_by="ticker")
+                               group_by="ticker", session=SESSION)
         except Exception as e:
             print(f"   batch failed: {e!r}")
             data = None

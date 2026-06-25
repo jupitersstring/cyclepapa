@@ -27,6 +27,7 @@ CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache")
 def refresh(interval="1d", window="3mo", period_key="20y", batch=40,
             stale_days=4) -> None:
     import yfinance as yf
+    from yfsession import SESSION
     path = os.path.join(CACHE_DIR, f"ohlcvdict_{interval}_{period_key}.pkl")
     have: dict = pd.read_pickle(path)
     asof = max(d.index[-1] for d in have.values() if len(d))
@@ -44,7 +45,7 @@ def refresh(interval="1d", window="3mo", period_key="20y", batch=40,
         try:
             data = yf.download(chunk, period=window, interval=interval,
                                auto_adjust=True, progress=False, threads=True,
-                               group_by="ticker")
+                               group_by="ticker", session=SESSION)
         except Exception as e:
             print(f"  batch failed: {e!r}", flush=True)
             data = None
