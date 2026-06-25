@@ -27,7 +27,6 @@ def run():
     steps = [
         (["python3", "pipeline/scan_insider_batch.py"], "Form 4 batch scan (expanded)"),
         (["python3", "pipeline/ingest_8k.py", "600"], "8-K ingest"),
-        (["python3", "pipeline/enrich_fundamentals.py", "1500"], "Fundamentals (P/E, FCF, debt)"),
         (["python3", "pipeline/unified_score.py"], "Re-run unified_score"),
         (["python3", "pipeline/render_universe_sheet.py"], "Render universe workbook"),
         (["python3", "pipeline/render_style_workbook.py"], "Render style workbook"),
