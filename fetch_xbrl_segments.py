@@ -15,7 +15,8 @@ Rate-limited at ~1 req/s to stay well below SEC's 10/s cap (each filing
 involves multiple SEC HTTP calls: header + XBRL instance + linkbase).
 """
 from __future__ import annotations
-import argparse, os, time, json
+import argparse, os, time, json, threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 os.environ.setdefault('EDGAR_IDENTITY', 'cyclepapa screener research@example.com')
@@ -123,9 +124,12 @@ def universe_us_tickers() -> list[str]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--max-tickers', type=int, default=2000)
-    ap.add_argument('--sleep', type=float, default=0.5,
-                    help='Sleep between filings (each filing is multiple HTTP calls)')
+    ap.add_argument('--max-tickers', type=int, default=4000)
+    ap.add_argument('--sleep', type=float, default=0.05,
+                    help='Per-worker sleep — tiny since we now have N parallel workers')
+    ap.add_argument('--workers', type=int, default=8,
+                    help='Concurrent edgartools sessions. SEC allows 10 req/s; we '
+                         'use 8 workers each with a 0.05s delay = ~70-80 effective rps headroom.')
     ap.add_argument('--progress-every', type=int, default=50)
     args = ap.parse_args()
 
@@ -140,18 +144,30 @@ def main():
     target = todo[:args.max_tickers]
     t0 = time.time()
     n_ok = n_empty = n_err = total_rows = 0
-    for i, tk in enumerate(target, 1):
+    counter_lock = threading.Lock()
+    progress_counter = [0]
+
+    def worker(tk):
+        nonlocal n_ok, n_empty, n_err, total_rows
         status, n = extract_one(tk)
-        if status == 'ok': n_ok += 1; total_rows += n
-        elif status == 'empty': n_empty += 1
-        elif status == 'error': n_err += 1
-        if i % args.progress_every == 0:
-            el = time.time() - t0
-            rate = i / el if el > 0 else 0
-            eta = (len(target) - i) / rate / 60 if rate > 0 else float('inf')
-            print(f'  {i:>5,}/{len(target):,}  ok={n_ok:,} empty={n_empty:,} '
-                  f'err={n_err:,} rows={total_rows:,} rate={rate:.2f}/s eta={eta:.0f}min')
+        with counter_lock:
+            progress_counter[0] += 1
+            i = progress_counter[0]
+            if status == 'ok': n_ok += 1; total_rows += n
+            elif status == 'empty': n_empty += 1
+            elif status == 'error': n_err += 1
+            if i % args.progress_every == 0:
+                el = time.time() - t0
+                rate = i / el if el > 0 else 0
+                eta = (len(target) - i) / rate / 60 if rate > 0 else float('inf')
+                print(f'  {i:>5,}/{len(target):,}  ok={n_ok:,} empty={n_empty:,} '
+                      f'err={n_err:,} rows={total_rows:,} rate={rate:.2f}/s eta={eta:.0f}min',
+                      flush=True)
         time.sleep(args.sleep)
+
+    with ThreadPoolExecutor(max_workers=args.workers) as ex:
+        list(ex.map(worker, target))
+
     print(f'\nFinal: ok={n_ok:,} empty={n_empty:,} err={n_err:,} '
           f'rows={total_rows:,} across {len(target):,} tickers')
 

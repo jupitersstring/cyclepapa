@@ -19,7 +19,9 @@ chunk targets ~9 min of inline runtime, with snapshot pushes between chunks.
 from __future__ import annotations
 
 import argparse
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import pandas as pd
@@ -172,16 +174,27 @@ def universe_tickers() -> list[tuple[str, str]]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--max-tickers', type=int, default=2000,
-                    help='Cap per chunk so we fit in the inline timeout.')
-    ap.add_argument('--sleep', type=float, default=0.4,
-                    help='Sleep between tickers (rate-limit friendly).')
-    ap.add_argument('--progress-every', type=int, default=100)
+    ap.add_argument('--max-tickers', type=int, default=12000,
+                    help='Cap per chunk.')
+    ap.add_argument('--sleep', type=float, default=0.05,
+                    help='Per-worker sleep — small since N workers in parallel.')
+    ap.add_argument('--workers', type=int, default=8,
+                    help='Concurrent yfinance sessions.')
+    ap.add_argument('--us-only', action='store_true', default=True,
+                    help='Skip non-US tickers (yfinance has no analyst data for them).')
+    ap.add_argument('--include-non-us', dest='us_only', action='store_false')
+    ap.add_argument('--progress-every', type=int, default=200)
     args = ap.parse_args()
 
     universe = universe_tickers()
+    # SKIP non-US tickers — yfinance has zero analyst/insider coverage for them
+    # (verified empirically: ~50% of fetch time was wasted on Chinese/Korean
+    # tickers that always return empty + slow timeouts). The earlier full-
+    # universe pass already wrote dead sentinels for the few that had data.
+    if args.us_only:
+        universe = [(k, s) for k, s in universe if '.' not in s]
     todo = [(k, s) for k, s in universe if _missing(k)]
-    print(f'Universe size: {len(universe):,} tickers')
+    print(f'Universe size: {len(universe):,} tickers ({"US-only" if args.us_only else "all"})')
     print(f'Tickers with missing extras slots: {len(todo):,}')
     if not todo:
         print('All caught up.')
@@ -190,22 +203,31 @@ def main():
     target = todo[: args.max_tickers]
     t0 = time.time()
     n_ok = n_empty = n_err = 0
-    for i, (key, sym) in enumerate(target, 1):
+    counter_lock = threading.Lock()
+    progress_counter = [0]
+
+    def worker(item):
+        nonlocal n_ok, n_empty, n_err
+        key, sym = item
         r = fetch_one(key, sym)
-        for slot, status in r.items():
-            if status == 'ok':
-                n_ok += 1
-            elif status == 'empty':
-                n_empty += 1
-            elif status == 'fetch_error':
-                n_err += 1
-        if i % args.progress_every == 0:
-            elapsed = time.time() - t0
-            rate = i / elapsed if elapsed > 0 else 0
-            eta_min = (len(target) - i) / rate / 60 if rate > 0 else float('inf')
-            print(f'  {i:>5,}/{len(target):,}  ok={n_ok:,}  empty={n_empty:,}  '
-                  f'err={n_err:,}  rate={rate:.1f}/s  eta={eta_min:.0f}min')
+        with counter_lock:
+            progress_counter[0] += 1
+            i = progress_counter[0]
+            for slot, status in r.items():
+                if status == 'ok': n_ok += 1
+                elif status == 'empty': n_empty += 1
+                elif status == 'fetch_error': n_err += 1
+            if i % args.progress_every == 0:
+                elapsed = time.time() - t0
+                rate = i / elapsed if elapsed > 0 else 0
+                eta_min = (len(target) - i) / rate / 60 if rate > 0 else float('inf')
+                print(f'  {i:>5,}/{len(target):,}  ok={n_ok:,} empty={n_empty:,} '
+                      f'err={n_err:,} rate={rate:.1f}/s eta={eta_min:.0f}min',
+                      flush=True)
         time.sleep(args.sleep)
+
+    with ThreadPoolExecutor(max_workers=args.workers) as ex:
+        list(ex.map(worker, target))
 
     print(f'\nFinal: ok={n_ok:,} empty={n_empty:,} err={n_err:,} '
           f'across {len(target):,} tickers')

@@ -37,8 +37,8 @@ restart_if_dead() {
 }
 
 restart_if_dead edgar fill_edgar_gaps.py --sleep 0.3
-restart_if_dead extras fetch_yfinance_extras.py --max-tickers 12000 --sleep 0.15 --progress-every 200
-restart_if_dead xbrl fetch_xbrl_segments.py --max-tickers 4000 --sleep 0.3 --progress-every 50
+restart_if_dead extras fetch_yfinance_extras.py --workers 8 --sleep 0.05
+restart_if_dead xbrl fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100
 
 # --- Snapshot push (durability) ---
 log "Snapshot push starting..."
