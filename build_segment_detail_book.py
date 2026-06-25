@@ -39,17 +39,34 @@ from openpyxl.utils import get_column_letter
 
 
 def load_data():
-    """Merge asymmetry_global + segment_signals (+ basic name lookup)."""
+    """Merge asymmetry_global + segment_signals + valuation columns."""
+    import glob
     df = pd.read_csv('asymmetry_global.csv').drop_duplicates('symbol')
     sig = pd.read_csv('edgar_segment_signals.csv')
     df = df[df['symbol'].isin(sig['symbol'])].copy()
-    # Strip any stale suffixed cols from prior merges
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
     df = df.merge(sig, on='symbol', how='left')
+
+    # Pull valuation ratios from per-country yartseva CSVs (master is sparse)
+    val_cols = ['symbol', 'ev_ebitda', 'p_e', 'pb', 'fcf_yield', 'roce',
+                'net_debt_ebitda', 'ebitda_margin', 'momentum_12m']
+    val_frames = []
+    for f in sorted(glob.glob('*_yartseva.csv')):
+        try:
+            d = pd.read_csv(f, usecols=lambda c: c in val_cols)
+        except Exception:
+            continue
+        if 'symbol' in d.columns:
+            val_frames.append(d)
+    if val_frames:
+        val = pd.concat(val_frames, ignore_index=True).drop_duplicates('symbol', keep='first')
+        # Only merge columns we don't already have
+        merge_cols = ['symbol'] + [c for c in val.columns if c != 'symbol' and c not in df.columns]
+        df = df.merge(val[merge_cols], on='symbol', how='left')
+
     if 'entry_today_asymmetry' not in df.columns:
         df['entry_today_asymmetry'] = df.get('asymmetry_score', 0)
     df['entry_today_asymmetry'] = df['entry_today_asymmetry'].fillna(0)
-    # Apply min mcap + exclude RED (consistent with the other books)
     if 'market_cap' in df.columns:
         df = df[df['market_cap'].fillna(0) >= 10_000_000]
     if 'verdict' in df.columns:
@@ -69,13 +86,14 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_today_as
     f_text_muted = _font(color=MUTED)
     f_italic_muted = _font(italic=True, color=MUTED)
 
+    NCOLS = 21
     # Title
     t = ws.cell(row=2, column=1, value=label)
     t.font = f_bold
     t.alignment = _TXT_ALIGN_LEFT
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=14)
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=NCOLS)
     ws.row_dimensions[2].height = 22
-    for c in range(1, 15):
+    for c in range(1, NCOLS + 1):
         ws.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
     ws.row_dimensions[3].height = 4
 
@@ -98,7 +116,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_today_as
         ("FASTEST", fastest_label[:24], "yoy among matches"),
     ]
     for i, (lbl, val, sub) in enumerate(headline):
-        col = 1 + i * 3
+        col = 1 + i * 4
         ws.cell(row=5, column=col, value=lbl).font = f_italic_muted
         ws.cell(row=5, column=col).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=6, column=col, value=val).font = f_bold
@@ -106,69 +124,82 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_today_as
         ws.cell(row=7, column=col, value=sub).font = f_italic_muted
         ws.cell(row=7, column=col).alignment = _TXT_ALIGN_LEFT
     ws.row_dimensions[6].height = 22
-    for c in range(1, 15):
+    for c in range(1, NCOLS + 1):
         ws.cell(row=8, column=c).border = Border(top=Side(style='thin', color=INK))
     ws.row_dimensions[8].height = 4
 
-    _section_rule(ws, 10, f"Segment detail — top by ETA", span_cols=14)
+    _section_rule(ws, 10, "Headline valuation + segment detail — top by ETA", span_cols=NCOLS)
 
     headers = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Mcap (USD)',
-               'Verdict', 'Segs', 'HHI', 'Largest segment (share)',
+               'Verdict',
+               'EV/EBITDA', 'P/E', 'FCF yld %', 'ROIC %', 'EBITDA m %',
+               'ND/EBITDA', 'Mom 12m %',
+               'Segs', 'HHI', 'Largest segment (share)',
                'Top 3 segments', 'Regs', 'Top regions', 'Fastest segment YoY']
+    text_cols = {2, 3, 4, 5, 17, 18, 20, 21}  # ticker/name/country/sector/segment text
+    center_cols = {7, 15}  # verdict + segs count
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
         c.font = f_bold_muted
-        c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 10, 11, 13, 14) else
-                       _NUM_ALIGN_CENTER if i in (7, 8) else
+        c.alignment = (_TXT_ALIGN_LEFT if i in text_cols else
+                       _NUM_ALIGN_CENTER if i in center_cols else
                        _NUM_ALIGN_RIGHT)
-    for c in range(1, 15):
+    for c in range(1, NCOLS + 1):
         ws.cell(row=12, column=c).border = Border(top=Side(style='thin', color=INK))
 
     for r_idx, (_, r) in enumerate(df_subset.iterrows(), start=13):
         _write_int(ws, r_idx, 1, r_idx - 12, font=f_text_muted)
         ws.cell(row=r_idx, column=2, value=r['symbol']).font = f_bold
         ws.cell(row=r_idx, column=2).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=r_idx, column=3, value=str(r.get('name') or '')[:36]).font = f_text
+        ws.cell(row=r_idx, column=3, value=str(r.get('name') or '')[:30]).font = f_text
         ws.cell(row=r_idx, column=3).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=r_idx, column=4, value=str(r.get('src') or '')).font = f_text_muted
         ws.cell(row=r_idx, column=4).alignment = _NUM_ALIGN_CENTER
-        ws.cell(row=r_idx, column=5, value=str(r.get('sector') or '')[:18]).font = f_text_muted
+        ws.cell(row=r_idx, column=5, value=str(r.get('sector') or '')[:14]).font = f_text_muted
         ws.cell(row=r_idx, column=5).alignment = _TXT_ALIGN_LEFT
         _write_money(ws, r_idx, 6, r.get('market_cap'), font=f_text)
         _verdict_badge(ws, r_idx, 7, r.get('verdict') or 'UNRESEARCHED')
-        _write_int(ws, r_idx, 8, int(r.get('segment_count') or 0), font=f_text)
-        _write_ratio(ws, r_idx, 9, r.get('segment_revenue_hhi'), font=f_text)
-        # Largest segment with its share
-        ls_name = str(r.get('largest_segment_name') or '')[:24]
+        # Valuation columns
+        _write_score(ws, r_idx, 8, r.get('ev_ebitda'), font=f_text)
+        _write_score(ws, r_idx, 9, r.get('p_e'), font=f_text)
+        _write_pct(ws, r_idx, 10, r.get('fcf_yield'), font=f_text)
+        _write_pct(ws, r_idx, 11, r.get('roce'), font=f_text)
+        _write_pct(ws, r_idx, 12, r.get('ebitda_margin'), font=f_text)
+        _write_score(ws, r_idx, 13, r.get('net_debt_ebitda'), font=f_text)
+        _write_pct(ws, r_idx, 14, r.get('momentum_12m'), font=f_text)
+        # Segment columns
+        _write_int(ws, r_idx, 15, int(r.get('segment_count') or 0), font=f_text)
+        _write_ratio(ws, r_idx, 16, r.get('segment_revenue_hhi'), font=f_text)
+        ls_name = str(r.get('largest_segment_name') or '')[:22]
         ls_share = r.get('largest_segment_share')
         if pd.notna(ls_share) and ls_share is not None:
             largest_str = f"{ls_name} ({ls_share*100:.0f}%)"
         else:
             largest_str = ls_name
-        ws.cell(row=r_idx, column=10, value=largest_str).font = f_text
-        ws.cell(row=r_idx, column=10).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=r_idx, column=11, value=str(r.get('top_segments') or '')[:80]).font = f_text_muted
-        ws.cell(row=r_idx, column=11).alignment = _TXT_ALIGN_LEFT
-        _write_int(ws, r_idx, 12, int(r.get('geographic_region_count') or 0), font=f_text)
-        ws.cell(row=r_idx, column=13, value=str(r.get('top_regions') or '')[:60]).font = f_text_muted
-        ws.cell(row=r_idx, column=13).alignment = _TXT_ALIGN_LEFT
-        # Fastest segment name + growth
-        fs_name = str(r.get('fastest_segment_name') or '')[:22]
+        ws.cell(row=r_idx, column=17, value=largest_str).font = f_text
+        ws.cell(row=r_idx, column=17).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=r_idx, column=18, value=str(r.get('top_segments') or '')[:80]).font = f_text_muted
+        ws.cell(row=r_idx, column=18).alignment = _TXT_ALIGN_LEFT
+        _write_int(ws, r_idx, 19, int(r.get('geographic_region_count') or 0), font=f_text)
+        ws.cell(row=r_idx, column=20, value=str(r.get('top_regions') or '')[:60]).font = f_text_muted
+        ws.cell(row=r_idx, column=20).alignment = _TXT_ALIGN_LEFT
+        fs_name = str(r.get('fastest_segment_name') or '')[:20]
         fs_yoy = r.get('fastest_segment_yoy')
         if pd.notna(fs_yoy):
             fast_str = f"{fs_name} {fs_yoy*100:+.0f}%"
         else:
             fast_str = fs_name
-        ws.cell(row=r_idx, column=14, value=fast_str).font = f_text
-        ws.cell(row=r_idx, column=14).alignment = _TXT_ALIGN_LEFT
-        for c in range(1, 15):
+        ws.cell(row=r_idx, column=21, value=fast_str).font = f_text
+        ws.cell(row=r_idx, column=21).alignment = _TXT_ALIGN_LEFT
+        for c in range(1, NCOLS + 1):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
         ws.row_dimensions[r_idx].height = 16
 
-    # Column widths tuned for the data
-    widths = {1: 4, 2: 10, 3: 26, 4: 6, 5: 16, 6: 16, 7: 12, 8: 6,
-              9: 7, 10: 32, 11: 56, 12: 6, 13: 38, 14: 22}
+    # Column widths tuned for the new wider layout
+    widths = {1: 4, 2: 10, 3: 22, 4: 6, 5: 14, 6: 14, 7: 12,
+              8: 9, 9: 8, 10: 9, 11: 8, 12: 10, 13: 9, 14: 10,
+              15: 5, 16: 7, 17: 28, 18: 52, 19: 5, 20: 32, 21: 22}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
 
