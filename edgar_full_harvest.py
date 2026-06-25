@@ -144,9 +144,13 @@ def load_universe() -> pd.DataFrame:
 
 
 # ---------- stage: XBRL dimensional facts ---------------------------------
-def harvest_xbrl_dimensional(cik: int, symbol: str, max_filings: int = 4) -> dict | None:
-    """Pull the latest 10-K + N most recent 10-Q filings and emit
-    every fact (including dimensional / segment / geographic axes).
+def harvest_xbrl_dimensional(cik: int, symbol: str, max_filings: int = 1) -> dict | None:
+    """Pull the latest 10-K (annual filing) and emit every dimensional fact.
+
+    Segment / geographic / product-line disclosures are an ANNUAL
+    requirement — 10-Qs carry only a tiny subset and they get superseded
+    by the next 10-K anyway. Pulling just the latest 10-K cuts work per
+    CIK by 4x while losing essentially no signal.
 
     Returns a dict with:
       {
@@ -168,14 +172,12 @@ def harvest_xbrl_dimensional(cik: int, symbol: str, max_filings: int = 4) -> dic
     except Exception as e:
         return {"cik": cik, "symbol": symbol, "error": f"company_lookup: {e}"[:120]}
 
-    # Pull latest 10-K + 3 latest 10-Q (covers ~12 months)
+    # Latest 10-K only — segment disclosure is annual
     try:
-        ten_ks = list(c.get_filings(form="10-K"))[:1]
-        ten_qs = list(c.get_filings(form="10-Q"))[:max_filings - 1]
+        filings = list(c.get_filings(form="10-K"))[:max_filings]
     except Exception as e:
         return {"cik": cik, "symbol": symbol, "error": f"filings_list: {e}"[:120]}
 
-    filings = ten_ks + ten_qs
     if not filings:
         return {"cik": cik, "symbol": symbol, "filings_processed": []}
 
@@ -249,9 +251,6 @@ def harvest_xbrl_dimensional(cik: int, symbol: str, max_filings: int = 4) -> dic
         except Exception as e:
             processed.append({"accession": accession, "form": f.form,
                               "error": str(e)[:120]})
-        # SEC rate-limit honour
-        time.sleep(0.15)
-
     return {
         "cik": cik,
         "symbol": symbol,
