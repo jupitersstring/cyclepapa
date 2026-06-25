@@ -372,6 +372,9 @@ the **`coiled_spring`** detector (the pre-ignition asymmetric setup). Feed it a
 history of snapshots with `metrics_from_timeseries()` / `screen_panel()`: the same
 final snapshot scores ~30 points higher when it *spiked* there than when it sat
 flat, and a coiled spring is flagged distinctly from an already-ignited chase.
+Operationally, `run_screen.py` writes a dated snapshot (`to_snapshot_csv`) every
+run; once a few have accumulated, `run_screen.py --panel` (or `load_panel` →
+`screen_panel`) turns the history into live coiling reads with no manual work.
 
 ---
 

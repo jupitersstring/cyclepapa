@@ -16,6 +16,8 @@ ownership) — fees absent, so it's the crowded-short / liquidity half of the mo
 from __future__ import annotations
 
 import argparse
+import datetime
+import glob
 import os
 import sys
 import time
@@ -25,10 +27,13 @@ from short_squeeze import (
     SqueezeMetrics,
     fetch_ibkr_shortable_text,
     from_yfinance,
+    load_panel,
     parse_ibkr_shortable_text,
     rank_candidates,
     report,
+    screen_panel,
     to_csv,
+    to_snapshot_csv,
 )
 
 # Built-in most-shorted / high-fee universe (gathered from current screens) used
@@ -79,6 +84,28 @@ def _try_yf(ticker: str, borrow_fee_pct=None):
         return None
 
 
+def _run_panel(histdir: str, out: str) -> int:
+    """Build the time-series panel from accumulated daily snapshots and rank it,
+    so the coiling-vs-ignited (good R/R) reads come from real history."""
+    paths = sorted(glob.glob(os.path.join(histdir, "*.csv")))
+    if not paths:
+        print(f"[panel] no snapshots in {histdir} — run the daily screen a few times first.", flush=True)
+        return 1
+    texts = [open(p, encoding="utf-8").read() for p in paths]
+    panel = load_panel(texts)
+    ranked = screen_panel(panel)
+    rep = report(ranked, top=50)
+    os.makedirs(out, exist_ok=True)
+    with open(os.path.join(out, "panel_report.txt"), "w", encoding="utf-8") as f:
+        f.write(f"# panel from {len(paths)} daily snapshots ({paths[0]} .. {paths[-1]})\n\n" + rep + "\n")
+    coiled = [a.ticker for a in ranked if a.coiled_spring is not None and a.coiled_spring.triggered]
+    print(rep, flush=True)
+    print(f"\n[panel] {len(paths)} daily snapshots -> {len(panel)} names; "
+          f"COILED (good R/R): {coiled[:25]}", flush=True)
+    print(f"[panel] wrote {out}/panel_report.txt", flush=True)
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Whole-universe short-squeeze screen.")
     ap.add_argument("--top-enrich", type=int, default=1000,
@@ -87,7 +114,15 @@ def main() -> int:
                     help="enrich names whose borrow fee >= this %% (the 'special' set)")
     ap.add_argument("--country", default="usa")
     ap.add_argument("--out", default="screen_output")
+    ap.add_argument("--date", default=None, help="snapshot date (default: today)")
+    ap.add_argument("--panel", action="store_true",
+                    help="build the time-series panel from <out>/history/*.csv (coiling reads)")
     args = ap.parse_args()
+
+    date = args.date or datetime.date.today().isoformat()
+    histdir = os.path.join(args.out, "history")
+    if args.panel:
+        return _run_panel(histdir, args.out)
 
     source = ""
     try:
@@ -110,12 +145,17 @@ def main() -> int:
         f.write(header + rep + "\n")
     with open(os.path.join(args.out, "candidates.csv"), "w", encoding="utf-8") as f:
         f.write(to_csv(ranked))
+    os.makedirs(histdir, exist_ok=True)
+    with open(os.path.join(histdir, f"{date}.csv"), "w", encoding="utf-8") as f:
+        f.write(to_snapshot_csv(metrics, date))
 
     print("\n" + header + rep, flush=True)
     fuel = [a.ticker for a in ranked if a.classification == SqueezeClass.SQUEEZE_FUEL]
     coiled = [a.ticker for a in ranked if a.coiled_spring is not None and a.coiled_spring.triggered]
     print(f"\n[screen] universe={len(ranked)}  SQUEEZE_FUEL={len(fuel)}: {fuel[:25]}", flush=True)
     print(f"[screen] COILED (good R/R)={len(coiled)}: {coiled[:25]}", flush=True)
+    print(f"[screen] snapshot saved -> {histdir}/{date}.csv ; re-run daily, then "
+          f"`python3 run_screen.py --panel` for the coiling reads.", flush=True)
     if not ranked:
         print("[screen] WARNING: no names scored (all data sources failed from this runner).", flush=True)
     return 0

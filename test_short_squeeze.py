@@ -26,6 +26,7 @@ from short_squeeze import (
     detect_coiled_spring,
     detect_squeeze_fuel,
     from_ibkr_file,
+    load_panel,
     metrics_from_timeseries,
     parse_finra_short_interest,
     parse_ibkr_shortable_text,
@@ -34,6 +35,7 @@ from short_squeeze import (
     screen_panel,
     screen_universe,
     to_csv,
+    to_snapshot_csv,
     utilization_from_loan,
 )
 
@@ -634,6 +636,27 @@ class TestCoiledSpring(unittest.TestCase):
         series = [Snapshot("w1", borrow_fee_pct=20, short_interest_pct_float=28, price=0.80),
                   Snapshot("w2", borrow_fee_pct=39, short_interest_pct_float=28, price=0.69)]
         self.assertFalse(assess(metrics_from_timeseries("BYND", series)).coiled_spring.triggered)
+
+
+class TestSnapshotPanel(unittest.TestCase):
+    def test_snapshot_csv_roundtrip_and_panel_coiling(self):
+        # Two days: a tightening name (fee 8->20, crowded, tradeable) and a GC name.
+        day1 = to_snapshot_csv(
+            [SqueezeMetrics("ACME", short_interest_pct_float=25, borrow_fee_pct=8, price=6),
+             SqueezeMetrics("GC", short_interest_pct_float=30, borrow_fee_pct=0.4, price=12)], "2026-06-20")
+        day2 = to_snapshot_csv(
+            [SqueezeMetrics("ACME", short_interest_pct_float=27, borrow_fee_pct=20, price=6.5),
+             SqueezeMetrics("GC", short_interest_pct_float=31, borrow_fee_pct=0.4, price=11)], "2026-06-23")
+        panel = load_panel([day2, day1])  # out of order -> build_panel sorts by date
+        self.assertEqual(set(panel), {"ACME", "GC"})
+        self.assertEqual(len(panel["ACME"]), 2)
+        self.assertEqual(panel["ACME"][0].borrow_fee_pct, 8)  # earliest first
+
+        ranked = screen_panel(panel)
+        acme = next(a for a in ranked if a.ticker == "ACME")
+        self.assertTrue(acme.coiled_spring.triggered)  # fee 8->20, crowded, tradeable, not ignited
+        gc = next(a for a in ranked if a.ticker == "GC")
+        self.assertEqual(gc.classification, SqueezeClass.GENUINELY_SHORT)  # cheap borrow
 
 
 if __name__ == "__main__":

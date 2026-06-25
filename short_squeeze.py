@@ -116,6 +116,10 @@ __all__ = [
     "Snapshot",
     "metrics_from_timeseries",
     "screen_panel",
+    "to_snapshot_csv",
+    "parse_snapshot_csv",
+    "build_panel",
+    "load_panel",
     "report",
     "to_csv",
     "BORROW_FEE_MEAN_PCT",
@@ -1417,6 +1421,68 @@ def screen_panel(
                for sym, snaps in histories.items()]
     ranked = rank_candidates(metrics, config)
     return ranked[:top] if top else ranked
+
+
+# --- daily snapshot CSVs: accumulate one per day, then load_panel() them ---
+SNAPSHOT_HEADER = "date,ticker,short_interest_pct_float,utilization_pct,borrow_fee_pct,price"
+
+
+def _csv_num(x: Optional[float]) -> str:
+    return "" if x is None else f"{x:g}"
+
+
+def to_snapshot_csv(metrics: List[SqueezeMetrics], date: str) -> str:
+    """One day's screen -> a compact snapshot CSV (date, ticker, SI%, util, fee,
+    price). Write one file per day; load_panel() turns a stack of them into the
+    time-series panel that powers the coiling/dynamics reads."""
+    lines = [SNAPSHOT_HEADER]
+    for m in metrics:
+        lines.append(",".join([date, m.ticker, _csv_num(m.short_interest_pct_float),
+                               _csv_num(m.utilization_pct), _csv_num(m.borrow_fee_pct),
+                               _csv_num(m.price)]))
+    return "\n".join(lines) + "\n"
+
+
+def parse_snapshot_csv(text: str) -> List[Tuple[str, str, Snapshot]]:
+    """Parse a snapshot CSV into (date, ticker, Snapshot) rows. Pure / testable."""
+    out: List[Tuple[str, str, Snapshot]] = []
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    for line in lines[1:]:  # skip header
+        p = line.split(",")
+        if len(p) < 2 or not p[1].strip():
+            continue
+
+        def g(i: int) -> Optional[float]:
+            try:
+                return float(p[i]) if (i < len(p) and p[i].strip()) else None
+            except ValueError:
+                return None
+
+        date, tkr = p[0].strip(), p[1].strip().upper()
+        out.append((date, tkr, Snapshot(date=date, short_interest_pct_float=g(2),
+                                        utilization_pct=g(3), borrow_fee_pct=g(4), price=g(5))))
+    return out
+
+
+def build_panel(rows: List[Tuple[str, str, Snapshot]]) -> Dict[str, List[Snapshot]]:
+    """Group (date, ticker, Snapshot) rows into {ticker: [Snapshot...]} ordered by
+    date (ISO date strings sort chronologically)."""
+    by: Dict[str, List[Tuple[str, Snapshot]]] = {}
+    for date, tkr, snap in rows:
+        by.setdefault(tkr, []).append((date, snap))
+    panel: Dict[str, List[Snapshot]] = {}
+    for tkr, items in by.items():
+        items.sort(key=lambda x: x[0])
+        panel[tkr] = [s for _, s in items]
+    return panel
+
+
+def load_panel(snapshot_csv_texts: Iterable[str]) -> Dict[str, List[Snapshot]]:
+    """Combine many daily snapshot CSVs into a panel for screen_panel()."""
+    rows: List[Tuple[str, str, Snapshot]] = []
+    for text in snapshot_csv_texts:
+        rows.extend(parse_snapshot_csv(text))
+    return build_panel(rows)
 
 
 def utilization_from_loan(shares_on_loan: float, shares_available_to_lend: float) -> Optional[float]:
