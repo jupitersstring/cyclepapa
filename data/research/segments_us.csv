@@ -649,3 +649,28 @@ AOS,SMITH A O CORP,True,9.0,2025.0,North America,34.02155325766357,38.2506527415
 CELH,"Celsius Holdings, Inc.",True,5.0,2025.0,North America,67.26767703273485,129.25061859314243,Asia-Pacific,-1.5984827959902415,Other,47.64277382663746,6.203809715810515,North America,False,,,,
 NCLH,Norwegian Cruise Line Holdings Ltd.,True,7.0,2025.0,Single reportable segment,33.33333333333333,27.872797902201963,Asia Pacific,-18.251585593134635,Other Country,12.755982328219176,0.639878104877151,Asia Pacific,False,17.772125664150483,Single reportable segment,17.772125664150483,False
 MOS,MOSAIC CO,False,,,,,,,,,,,,,,,,
+BEPC,Brookfield Renewable Corp,False,,,,,,,,,,,,,,,,
+SLAB,SILICON LABORATORIES INC.,True,8.0,2026.0,Distributors,23.80057359070158,68.60002582978173,Taiwan,17.35586023698219,Direct customers,15.020454034590019,1.3754413436365687,Distributors,False,,,,
+IBRX,"ImmunityBio, Inc.",True,5.0,2025.0,Segment Reporting,33.33333333333333,698.4593639575972,"Product revenue, net",-48.57142857142858,Other revenues,360.4160581734047,1.2550527162373926,"Product revenue, net",False,-225.9965751006285,Segment Reporting,-225.9965751006285,False
+RHP,"Ryman Hospitality Properties, Inc.",True,21.0,2025.0,Hospitality,22.719366130738717,32.503526482107524,Entertainment Admissions And Ticketing,-9.132600616747055,AC Hotel,10.714331513537878,0.6690123923711905,Entertainment Segment,False,21.565956755818476,Hospitality,15.793306066017628,False
+GKOS,GLAUKOS Corp,True,5.0,2025.0,Development and Commercialization of Ophthalmic Therapies,33.33333333333333,38.85610194969158,United States,7.6890468175300875,Corneal Health,12.543290252906344,1.2979760324437872,Glaucoma,False,,,,
+JBTM,JBT MAREL Corp,True,10.0,2025.0,Non-US,20.06139246964389,917.3088322465915,Protein Solutions,20.036630036630033,North America,262.02857164847336,12.008234262353389,Protein Solutions,False,,,,
+PPC,PILGRIMS PRIDE CORP,True,17.0,2025.0,Fresh,22.40214968429224,81.36180034622042,JBS Chile Ltd.,-69.29343568854772,Other related parties,32.57095178120772,0.6964207810599227,Retail,False,,,,
+FSS,FEDERAL SIGNAL CORP /DE/,True,13.0,2025.0,Environmental Solutions,27.357998957790514,33.18112633181127,Exports From U.S. To Other Regions,1.2968299711815456,Industrial signaling equipment,7.677325018758461,0.3066731355531198,Exports From U.S. To Other Regions,False,23.760932944606413,Safety And Security Systems,17.66530612244898,False
+PCVX,"Vaxcyte, Inc.",False,,,,,,,,,,,,,,,,
+VNO,VORNADO REALTY TRUST,True,11.0,2025.0,Vornado Realty L.P.,35.84933980423727,51.493333333333325,Other income,-22.28047182175622,Management and leasing fees,18.034612488409827,0.3367871524713864,Other,False,,,,
+MSA,MSA Safety Inc,True,7.0,2025.0,Americas,28.924052417353774,21.14163730070895,Detection,-1.8136484732563685,Firefighter Safety,7.417392045936576,0.9294170691672515,Other,False,,,,
+NPO,Enpro Inc.,True,14.0,2025.0,Sealing Technologies,19.785474981087216,29.38718662952646,Aerospace,-3.390804597701147,Commercial vehicle,8.5833784560538,0.6446035378435757,Customer One,False,,,,
+SWX,"Southwest Gas Holdings, Inc.",True,6.0,2025.0,Southwest Gas Corporation,50.0,0.6883626124958964,Transportation,-35.00942972608891,Large commercial,11.728613552782917,0.7870647637687658,Transportation,False,17.375426524914694,Southwest Gas Corporation,17.375426524914694,False
+RGEN,REPLIGEN CORP,True,7.0,2025.0,Filtration Products,54.55993584881125,36.990944503465364,Process Analytics Products,-29.044667664030776,Other products,21.675132621298847,1.656908605045758,Process Analytics Products,False,,,,
+HR,Healthcare Realty Trust Inc,True,2.0,2025.0,Management fee income,69.50558213716108,99.54212454212454,Management fee income,-7.771465323185767,Parking income,53.65679493265516,18.203186146139526,Management fee income,True,,,,
+PTGX,"Protagonist Therapeutics, Inc",True,2.0,2025.0,Operating segment,100.0,-89.40780281424293,Operating segment,-89.40780281424293,Operating segment,0.0,27.52601208141694,Operating segment,False,,,,
+PAYC,"Paycom Software, Inc.",True,4.0,2025.0,Recurring and Other,48.58410184442663,10.31201338024108,Recurring,-9.527622097678146,Interest on Funds Held for Clients,8.184182631551478,0.317544270191894,Recurring,False,,,,
+PAGP,PLAINS GP HOLDINGS LP,True,5.0,2025.0,Sales,47.89492663796795,6.521739130434789,Affiliated Entity,-15.932013447889426,Canada,7.68745147069467,0.531452183558967,United States,False,55.81516095534788,"Equity Method Investment, Nonconsolidated Investee",55.81516095534788,False
+PACS,"PACS Group, Inc.",True,5.0,2025.0,Revenue Benchmark,50.0,56.36448430792036,Private and other,21.527771804906216,Managed care,11.975413178445448,0.6124424768071419,Private and other,False,,,,
+MSM,MSC INDUSTRIAL DIRECT CO INC,False,,,,,,,,,,,,,,,,
+LEGN,Legend Biotech Corp,False,,,,,,,,,,,,,,,,
+OUT,OUTFRONT Media Inc.,True,2.0,2025.0,United States,100.0,1.9877505567928777,United States,-100.0,Canada,50.99387527839644,1.9061663662679584,United States,False,,,,
+KMX,CARMAX INC,True,8.0,2026.0,Used vehicle sales,77.95928511715131,50.0,"Third-party finance fees, net",-37.91469194312796,Other,23.206093846750253,0.9657508326671893,Used vehicle sales,False,,,,
+OZK,Bank OZK,False,,,,,,,,,,,,,,,,
+PATH,"UiPath, Inc.",True,6.0,2026.0,Subscription services,29.631460127209465,22.564418690666987,Professional services and other,2.6528666560734937,Asia-Pacific,7.508000938475662,1.5847652394596123,Subscription services,False,,,,
