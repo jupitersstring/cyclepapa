@@ -44,26 +44,57 @@ EXCLUDE_MEMBERS = {
 def _safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in t)
 
 
+_SEC_TICKER_TO_NAME = None
+def _sec_name(ticker: str) -> str:
+    """Fallback company name from the SEC ticker map (universal US coverage).
+    company_tickers.json is structured as {"0": {"cik_str": N, "ticker": "X",
+    "title": "Y"}, ...} — index by ticker, return title."""
+    global _SEC_TICKER_TO_NAME
+    if _SEC_TICKER_TO_NAME is None:
+        import json as _json
+        try:
+            with open('.cache/edgar/company_tickers.json') as f:
+                raw = _json.load(f)
+            _SEC_TICKER_TO_NAME = {
+                r['ticker'].upper(): r.get('title','')
+                for r in raw.values() if isinstance(r, dict) and 'ticker' in r
+            }
+        except Exception as e:
+            print(f'SEC ticker map load failed: {e}')
+            _SEC_TICKER_TO_NAME = {}
+    return _SEC_TICKER_TO_NAME.get(ticker.upper(), '')
+
+
 def _company_info(ticker: str) -> dict:
+    """Get company info — prefer yfinance info_metrics (rich), fall back to
+    SEC ticker map (universal US coverage) for at least the company name.
+    Many XBRL-segment tickers are smaller/recently-listed and won't have
+    yfinance info, but they ALL have a SEC name."""
+    # Default: SEC-name-only entry
+    entry = {
+        'company': _sec_name(ticker)[:42],
+        'sector': '', 'industry': '', 'country': 'United States',
+        'market_cap': None, 'priceToBook': None, 'trailingPE': None,
+        'enterpriseToEbitda': None,
+    }
     p = YF_CACHE / f'{_safe(ticker)}__info_metrics.parquet'
     if not p.exists():
-        return {}
+        return entry
     try:
         d = pd.read_parquet(p)
-        if d.empty: return {}
+        if d.empty: return entry
         r = d.iloc[0]
-        return {
-            'company': (r.get('longName') or r.get('shortName') or '')[:42],
-            'sector': r.get('sector') or '',
-            'industry': r.get('industry') or '',
-            'country': r.get('country') or '',
-            'market_cap': r.get('marketCap'),
-            'priceToBook': r.get('priceToBook'),
-            'trailingPE': r.get('trailingPE'),
-            'enterpriseToEbitda': r.get('enterpriseToEbitda'),
-        }
+        entry['company'] = (r.get('longName') or r.get('shortName') or entry['company'])[:42]
+        entry['sector'] = r.get('sector') or entry['sector']
+        entry['industry'] = r.get('industry') or entry['industry']
+        entry['country'] = r.get('country') or entry['country']
+        entry['market_cap'] = r.get('marketCap')
+        entry['priceToBook'] = r.get('priceToBook')
+        entry['trailingPE'] = r.get('trailingPE')
+        entry['enterpriseToEbitda'] = r.get('enterpriseToEbitda')
+        return entry
     except Exception:
-        return {}
+        return entry
 
 
 def years_to_dominate(s_now: float, t_now: float, s_g: float, t_g: float,

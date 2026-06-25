@@ -74,15 +74,25 @@ REGIONS = ['US','JP','GB','DE','FR','CA','AU',         # Tier 1
 
 # ---------- Harvard Business Review style palette ----------
 # Crimson is the HBS primary; warm off-whites and slate-grey neutrals frame it.
-CRIMSON_DARK = '7A1320'     # HBS crimson (darker, for headers)
-CRIMSON      = 'A51C30'     # HBS crimson
-CRIMSON_PALE = 'F4E3E6'     # pale tint for very-light fills
-SLATE_DARK   = '1C1F26'     # title / strong text
-SLATE        = '2F3640'     # body strong
-SLATE_MUTED  = '5F6B7A'     # caption / footnotes
+# Harvard-magazine aesthetic — grayscale only. Times New Roman throughout
+# at a single body size (10pt). Bold + italic used sparingly for hierarchy,
+# never color. Inspired by HBR + Cabinet + Granta — text feels printed, not
+# screen. Rules separate sections, never lines or fills.
+INK_BLACK    = '000000'  # title / strong text — pure black
+INK_DARK     = '1A1A1A'  # body — near-black for warmth
+INK_MUTED    = '595959'  # caption / footnotes — mid-gray
+INK_PALE     = '999999'  # tertiary — light gray for hairlines
+# Legacy aliases (kept so old code paths still compile; all resolve to the
+# same monochrome palette).
+CRIMSON_DARK = INK_BLACK
+CRIMSON      = INK_DARK
+CRIMSON_PALE = 'EFEFEF'  # very light gray fill (rarely used)
+SLATE_DARK   = INK_BLACK
+SLATE        = INK_DARK
+SLATE_MUTED  = INK_MUTED
 RULE         = 'C6CDD6'     # hairline rule grey
 RULE_LIGHT   = 'E5E7EB'     # lighter rule
-WARM_WHITE   = 'FBF9F4'     # case-study warm background
+WARM_WHITE   = 'FFFFFF'     # pure white — Harvard B&W aesthetic, no warmth
 ROW_ALT      = 'F4F1EA'     # alternating row warm-grey
 CARD_BG      = 'F8F6F0'     # subtle card-fill (for blockquotes)
 HIGHLIGHT    = 'F8E7E2'     # pale crimson highlight for accent rows
@@ -92,16 +102,20 @@ TITLE_FONT_NAME = 'Times New Roman'
 H_FONT_NAME     = 'Times New Roman'
 BODY_FONT_NAME  = 'Times New Roman'
 
-TITLE_FONT    = Font(name=TITLE_FONT_NAME, size=24, bold=False, color=SLATE_DARK)
-KICKER_FONT   = Font(name=BODY_FONT_NAME, size=9, bold=True, color=CRIMSON)
-DECK_FONT     = Font(name=TITLE_FONT_NAME, size=13, italic=True, color=SLATE_MUTED)
-SECTION_FONT  = Font(name=H_FONT_NAME, size=13, bold=True, color=SLATE_DARK)
-SUBSECT_FONT  = Font(name=BODY_FONT_NAME, size=10, bold=True, color=CRIMSON)
-BODY_FONT     = Font(name=BODY_FONT_NAME, size=11, color=SLATE)
-BODY_BOLD     = Font(name=BODY_FONT_NAME, size=11, bold=True, color=SLATE_DARK)
-CAPTION_FONT  = Font(name=BODY_FONT_NAME, size=10, italic=True, color=SLATE_MUTED)
-TABLE_HEAD_FT = Font(name=BODY_FONT_NAME, size=11, bold=True, color=SLATE_DARK)
-FOOTNOTE_FONT = Font(name=BODY_FONT_NAME, size=9, italic=True, color=SLATE_MUTED)
+# Harvard-magazine aesthetic — ONE font size (10pt) used throughout.
+# Hierarchy comes from weight (regular / bold) and italic, never from size
+# or color. Greyscale only.
+_BODY_SIZE = 10
+TITLE_FONT    = Font(name=TITLE_FONT_NAME, size=_BODY_SIZE, bold=True, color=INK_BLACK)
+KICKER_FONT   = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, bold=True, color=INK_BLACK)
+DECK_FONT     = Font(name=TITLE_FONT_NAME, size=_BODY_SIZE, italic=True, color=INK_MUTED)
+SECTION_FONT  = Font(name=H_FONT_NAME,     size=_BODY_SIZE, bold=True, color=INK_BLACK)
+SUBSECT_FONT  = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, bold=True, color=INK_DARK)
+BODY_FONT     = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, color=INK_DARK)
+BODY_BOLD     = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, bold=True, color=INK_BLACK)
+CAPTION_FONT  = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, italic=True, color=INK_MUTED)
+TABLE_HEAD_FT = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, bold=True, color=INK_BLACK)
+FOOTNOTE_FONT = Font(name=BODY_FONT_NAME,  size=_BODY_SIZE, italic=True, color=INK_MUTED)
 
 WARM_FILL  = PatternFill('solid', fgColor=WARM_WHITE)
 ALT_FILL   = PatternFill('solid', fgColor=WARM_WHITE)  # no row stripes — Harvard tables don't stripe
@@ -1085,6 +1099,21 @@ def build_creative_measures(wb):
 
     # Pre-load yfinance info cache once, then look up by ticker
     yf_cache = Path('.cache/yf')
+    # Also pre-load the SEC ticker map for company-name fallback when a
+    # screener surfaces a ticker that's not in our yfinance cache (common
+    # for the XBRL-segment screener — small US filers, recent IPOs).
+    import json as _json
+    _sec_name_map = {}
+    try:
+        with open('.cache/edgar/company_tickers.json') as _f:
+            _sec_raw = _json.load(_f)
+        _sec_name_map = {
+            r['ticker'].upper(): r.get('title','')
+            for r in _sec_raw.values() if isinstance(r, dict) and 'ticker' in r
+        }
+    except Exception:
+        pass
+
     def _enrich_with_company_info(df: pd.DataFrame) -> pd.DataFrame:
         """Prepend company / sector / industry / country columns by joining
         on the per-ticker info_metrics parquet. Tickers without a parquet get
@@ -1101,17 +1130,29 @@ def build_creative_measures(wb):
             seen.add(tkr)
             safe = ''.join(c if c.isalnum() or c in '-_' else '_' for c in tkr)
             p = yf_cache / f'{safe}__info_metrics.parquet'
-            entry = {'ticker': tkr, 'company': '', 'sector': '', 'industry': '', 'country': ''}
+            # Start with SEC-name fallback for US filers (works whether or not
+            # yfinance has the ticker)
+            sec_name = _sec_name_map.get(tkr.upper(), '')
+            entry = {
+                'ticker': tkr,
+                'company': sec_name[:42],
+                'sector': '',
+                'industry': '',
+                'country': 'United States' if sec_name else '',
+            }
             if p.exists():
                 try:
                     d = pd.read_parquet(p)
                     if not d.empty:
                         row = d.iloc[0]
-                        name = row.get('longName') or row.get('shortName') or ''
-                        entry['company'] = str(name)[:42]
-                        entry['sector'] = str(row.get('sector') or '')
-                        entry['industry'] = str(row.get('industry') or '')
-                        entry['country'] = str(row.get('country') or '')
+                        name = row.get('longName') or row.get('shortName') or sec_name
+                        entry['company'] = str(name)[:42] if name else entry['company']
+                        sec = row.get('sector')
+                        if sec: entry['sector'] = str(sec)
+                        ind = row.get('industry')
+                        if ind: entry['industry'] = str(ind)
+                        co = row.get('country')
+                        if co: entry['country'] = str(co)
                 except Exception:
                     pass
             rows.append(entry)
