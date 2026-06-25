@@ -227,6 +227,20 @@ def main():
     # Enrich with company info
     info = pd.DataFrame([{'ticker': t, **_company_info(t)} for t in best['ticker'].tolist()])
     out = info.merge(best, on='ticker', how='inner')
+
+    # Dedup at the COMPANY level — same issuer often has preferred-series
+    # tickers (FTAIM, FTAIN for FTAI Aviation; BRKB vs BRKA) whose EV/EBITDA
+    # and market cap are warped/null. Keep the row with the LARGEST market
+    # cap per company name, which is the common-stock ticker by definition.
+    if 'company' in out.columns:
+        # Push market_cap NaNs to the bottom of the per-company sort
+        out['_mc_for_sort'] = pd.to_numeric(out['market_cap'], errors='coerce').fillna(-1)
+        out = (out.sort_values(['company','_mc_for_sort','seg_score'],
+                               ascending=[True, False, False])
+                  .groupby(out['company'].replace('', None).fillna(out['ticker']))
+                  .head(1)
+                  .drop(columns=['_mc_for_sort'])
+                  .reset_index(drop=True))
     # Front-load human-readable columns
     front = ['ticker','company','sector','industry','country','axis','segment',
              'share_now','seg_growth','total_growth','excess_growth',
