@@ -188,6 +188,32 @@ if fund_frames:
     df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
     print(f"  pulled {len(fall):,} fundamentals rows; added/filled {len(new_cols)+len(fill_cols)} cols", file=sys.stderr)
 
+# ─── 8b. SEC-direct derived PB/PE/EV/EBITDA (Yahoo-block bypass) ───
+deriv = 'data/research/derived_us_pb_pe.csv'
+if os.path.exists(deriv):
+    d = pd.read_csv(deriv)
+    d['ticker'] = d['ticker'].astype(str).str.upper().str.strip()
+    d = d.drop_duplicates('ticker', keep='first').set_index('ticker')
+    fills = 0
+    pairs = [('pb','derived_pb'), ('pe','derived_pe'), ('mktCap','derived_mktCap'),
+             ('ev_ebitda','derived_ev_ebitda'), ('ps','derived_ps')]
+    for target, src_col in pairs:
+        if src_col not in d.columns: continue
+        m = d[src_col].dropna().to_dict()
+        if target in df.columns:
+            before = df[target].notna().sum()
+            df[target] = df[target].where(df[target].notna(), df['ticker'].map(m))
+            fills += df[target].notna().sum() - before
+        else:
+            df[target] = df['ticker'].map(m)
+            fills += df[target].notna().sum()
+    # Also derive ev_valuation fallback from ev_ebitda
+    if 'ev_valuation' in df.columns and 'ev_ebitda' in df.columns:
+        df['ev_valuation'] = df['ev_valuation'].where(df['ev_valuation'].notna(),
+                                                      df['ev_ebitda'])
+    df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+    print(f"  merged SEC-derived: {len(d):,} rows · added {fills:,} cell fills", file=sys.stderr)
+
 # ─── 9. Sanity flags on extreme values (flag, don't cap) ───
 def flag_extreme(s, lo, hi):
     v = pd.to_numeric(s, errors='coerce')
