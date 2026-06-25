@@ -73,13 +73,14 @@ def harvest_one(ticker):
         filings = c.get_filings(form="10-K")
         if filings is None or len(filings) == 0:
             return {'ticker': ticker, 'has_segments': False, 'name': getattr(c, 'name', None)}
-        # Use up to the 4 most recent 10-Ks to build multi-year segment series
-        recent = filings.latest(4)
+        # Latest 10-K already carries 2-3 fiscal years of segment data internally.
+        # 4 filings = 4× XBRL parse cost for marginal extra history; latest(1) is enough.
+        recent = filings.latest(1)
         if not isinstance(recent, list):
             try:
-                recent = list(recent)          # EntityFilings collection → list of filings
+                recent = list(recent)
             except TypeError:
-                recent = [recent]              # single Filing
+                recent = [recent]
 
         seg_rev = {}    # {segment: {fy: value}}
         seg_oi  = {}    # {segment: {fy: value}}

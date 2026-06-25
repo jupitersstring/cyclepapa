@@ -26,7 +26,7 @@ ensure_segment() {
         [ "$rows" -ge $((uni * 95 / 100)) ] && return
     fi
     nohup python3 scripts/segment_harvest.py --universe "$SEG_UNI" --out "$SEG_OUT" \
-        --workers 4 --checkpoint 25 --resume > /tmp/log_segments.txt 2>&1 &
+        --workers 8 --checkpoint 25 --resume > /tmp/log_segments.txt 2>&1 &
     disown
     echo "[finalizer] (re)started segment harvest"
 }
