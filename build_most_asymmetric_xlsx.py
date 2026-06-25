@@ -35,31 +35,66 @@ from openpyxl.utils import get_column_letter
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "MOST_ASYMMETRIC.xlsx"
 
-# Harvard-aesthetic palette
-CRIMSON = "A41E22"          # HBR accent
-CRIMSON_LIGHT = "F5E0E1"    # title-band fill
-WARM_WHITE = "FAFAF7"
-CHARCOAL = "333333"
-GOLD = "C9A656"             # secondary accent for archetype tags
-SAGE = "8FA681"             # tertiary accent for "clean" / convergent
-GREY_BAND = "EFECE5"
-GREY_LINE = "D9D5C9"
+# Harvard-aesthetic palette (strict grayscale / black-and-white)
+# Hierarchy via type weight + italic + horizontal rules, never color.
+BLACK         = "000000"
+CHARCOAL      = "2A2A2A"
+MID_GRAY      = "707070"
+RULE_GRAY     = "A0A0A0"
+LINE_GRAY     = "BDBDBD"
+BAND_GRAY     = "F5F2EC"   # very faint cream row banding
+WARM_WHITE    = "FFFFFF"
 
-TITLE_FONT = Font(name="Georgia", size=22, bold=True, color=CRIMSON)
-SUBTITLE_FONT = Font(name="Georgia", size=12, italic=True, color=CHARCOAL)
-HEADER_FONT = Font(name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
-BODY_FONT = Font(name="Helvetica Neue", size=10, color=CHARCOAL)
-SMALL_FONT = Font(name="Helvetica Neue", size=8, color=CHARCOAL)
-BODY_BOLD = Font(name="Helvetica Neue", size=10, bold=True, color=CHARCOAL)
-FOOTNOTE = Font(name="Georgia", size=8, italic=True, color=CHARCOAL)
+# All preserved names retained as aliases so legacy references compile
+CRIMSON       = BLACK
+CRIMSON_LIGHT = BAND_GRAY
+GOLD          = MID_GRAY
+SAGE          = CHARCOAL
+GREY_BAND     = BAND_GRAY
+GREY_LINE     = LINE_GRAY
 
-THIN = Side(border_style="thin", color=GREY_LINE)
-BOTTOM_BORDER = Border(bottom=THIN)
-HEADER_FILL = PatternFill("solid", fgColor=CRIMSON)
-BAND_FILL = PatternFill("solid", fgColor=GREY_BAND)
-TITLE_BAND_FILL = PatternFill("solid", fgColor=CRIMSON_LIGHT)
-CLEAN_TAG_FILL = PatternFill("solid", fgColor=SAGE)
-FLAG_TAG_FILL = PatternFill("solid", fgColor=GOLD)
+# SINGLE font: Times New Roman at 10pt everywhere with condense=True
+# to render a slightly tighter glyph spacing (the "tall condensed"
+# academic look). Hierarchy by weight + italic only.
+SERIF         = "Times New Roman"
+TYPESIZE      = 10
+
+TITLE_FONT    = Font(name=SERIF, size=TYPESIZE, bold=True,
+                      color=BLACK, condense=True)
+SUBTITLE_FONT = Font(name=SERIF, size=TYPESIZE, italic=True,
+                      color=CHARCOAL, condense=True)
+HEADER_FONT   = Font(name=SERIF, size=TYPESIZE, bold=True,
+                      color=BLACK, condense=True)
+BODY_FONT     = Font(name=SERIF, size=TYPESIZE,
+                      color=BLACK, condense=True)
+SMALL_FONT    = Font(name=SERIF, size=TYPESIZE,
+                      color=CHARCOAL, condense=True)
+BODY_BOLD     = Font(name=SERIF, size=TYPESIZE, bold=True,
+                      color=BLACK, condense=True)
+BODY_ITALIC   = Font(name=SERIF, size=TYPESIZE, italic=True,
+                      color=BLACK, condense=True)
+FOOTNOTE      = Font(name=SERIF, size=TYPESIZE, italic=True,
+                      color=CHARCOAL, condense=True)
+
+# Borders: narrow hairlines only. No vertical borders -- clean
+# columns. Top/bottom rules on header and section breaks.
+HAIRLINE      = Side(border_style="hair", color=LINE_GRAY)
+THIN          = Side(border_style="thin", color=BLACK)
+THIN_GRAY     = Side(border_style="thin", color=RULE_GRAY)
+BOTTOM_BORDER = Border(bottom=HAIRLINE)
+HEADER_RULE   = Border(top=THIN, bottom=THIN_GRAY)
+SECTION_RULE  = Border(bottom=THIN)
+
+# Fills: only subtle band on alternating rows. No solid fills on
+# title/header. Background is white.
+HEADER_FILL    = PatternFill(fill_type=None)   # NO fill on header
+BAND_FILL      = PatternFill("solid", fgColor=BAND_GRAY)
+TITLE_BAND_FILL = PatternFill(fill_type=None)  # NO fill on title
+
+# Tag fills: in grayscale framework we don't shade tag cells -- use
+# bold (Concentrated) / italic (Participation) on the cell font.
+CLEAN_TAG_FILL = PatternFill(fill_type=None)
+FLAG_TAG_FILL  = PatternFill(fill_type=None)
 
 
 # ----------------------------------------------------------------------
@@ -191,18 +226,26 @@ def set_col_widths(ws, widths: list[int]):
 
 
 def write_title_band(ws, title: str, subtitle: str, n_cols: int):
-    ws.row_dimensions[1].height = 38
+    """Academic-paper title block: bold title, italic subtitle,
+    a thin black rule below. No background fill. The leading row
+    gets extra height for whitespace breathing room."""
+    ws.row_dimensions[1].height = 26
     ws.cell(row=1, column=1, value=title).font = TITLE_FONT
-    ws.cell(row=1, column=1).fill = TITLE_BAND_FILL
-    ws.cell(row=1, column=1).alignment = Alignment(vertical="center", indent=1)
+    ws.cell(row=1, column=1).alignment = Alignment(
+        vertical="center", horizontal="left", indent=0)
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=n_cols)
-    for c in range(1, n_cols + 1):
-        ws.cell(row=1, column=c).fill = TITLE_BAND_FILL
 
-    ws.row_dimensions[2].height = 22
+    ws.row_dimensions[2].height = 18
     ws.cell(row=2, column=1, value=subtitle).font = SUBTITLE_FONT
-    ws.cell(row=2, column=1).alignment = Alignment(vertical="center", indent=1)
+    ws.cell(row=2, column=1).alignment = Alignment(
+        vertical="center", horizontal="left", indent=0)
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
+    # Thin black rule under the subtitle to delimit the title block
+    for c in range(1, n_cols + 1):
+        ws.cell(row=2, column=c).border = SECTION_RULE
+
+    # A blank row of whitespace before the table
+    ws.row_dimensions[3].height = 8
 
 
 # Sheet-level header registry so write_body_row can auto-pick formats
@@ -211,13 +254,24 @@ _SHEET_HEADERS: dict = {}
 
 
 def write_header_row(ws, row: int, headers: list[str]):
-    ws.row_dimensions[row].height = 22
+    """Academic table header: bold serif text on white, horizontal
+    rules above and below (the classic three-line table aesthetic).
+    Text columns left-aligned headers; numeric columns get right-
+    aligned headers later in body where format implies it."""
+    ws.row_dimensions[row].height = 18
     for c, h in enumerate(headers, 1):
         cell = ws.cell(row=row, column=c, value=h)
         cell.font = HEADER_FONT
-        cell.fill = HEADER_FILL
-        cell.alignment = Alignment(vertical="center", horizontal="center")
-    # remember the headers so write_body_row can pick formats by column
+        # Header alignment matches the body it heads: numeric headers
+        # right-align, text headers left-align.
+        fmt = number_format_for(h or "")
+        if fmt is not None:
+            cell.alignment = Alignment(
+                vertical="center", horizontal="right", indent=0)
+        else:
+            cell.alignment = Alignment(
+                vertical="center", horizontal="left", indent=0)
+        cell.border = HEADER_RULE
     _SHEET_HEADERS[ws.title] = list(headers)
 
 
@@ -242,11 +296,14 @@ def write_body_row(ws, row: int, values: list, band: bool = False,
                    align_first_left: bool = True,
                    bold_first: bool = False,
                    field_names: list | None = None):
-    """Write a body row applying Harvard-aesthetic number formats.
-    `field_names` (optional) -- column field names matching values
-    list, used to pick number format (e.g. 'mcap_M', 'price', 'p_b').
+    """Body row in academic-paper grayscale style.
+
+    `band` -- enable subtle alternating row banding (very light cream).
+    `bold_first` -- bold the first column (typically ticker).
+    `field_names` -- optional list of headers/field names per column;
+        used to pick the right number format.
     """
-    ws.row_dimensions[row].height = 18
+    ws.row_dimensions[row].height = 16
     fill = BAND_FILL if band else None
     for c, v in enumerate(values, 1):
         disp_val, is_num = _classify_value(v)
@@ -254,7 +311,7 @@ def write_body_row(ws, row: int, values: list, band: bool = False,
         cell.font = BODY_BOLD if (bold_first and c == 1) else BODY_FONT
         if fill:
             cell.fill = fill
-        cell.border = BOTTOM_BORDER
+        # No per-cell border in body -- rows separated by banding alone.
 
         # Decide format + alignment
         if is_num:
@@ -526,20 +583,16 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
                         f"{dp:.0f}", f"{gp:.0f}", f"{tp:.0f}",
                         role, reasons],
                        band=band, align_first_left=False)
-        ws.cell(row=r, column=2).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=2).font = BODY_BOLD
         if tp >= 20:
             ws.cell(row=r, column=8).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=8).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=8).font = BODY_BOLD
         if score >= 50:
             ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         elif score >= 30:
             ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         ws.row_dimensions[r].height = 22
         r += 1
 
@@ -600,22 +653,18 @@ def build_foreign_markets(wb: Workbook):
                         roe_pct,
                         (v.get("reasons") or "")[:80]],
                        band=band)
-        ws.cell(row=r, column=1).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=1).font = BODY_BOLD
         # Color-code by jurisdiction
         jur = v.get("jurisdiction")
         if jur == "JP":
             ws.cell(row=r, column=2).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=2).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=2).font = BODY_BOLD
         elif jur == "KR":
             ws.cell(row=r, column=2).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=2).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=2).font = BODY_BOLD
         elif jur == "UK":
             ws.cell(row=r, column=2).fill = TITLE_BAND_FILL
-            ws.cell(row=r, column=2).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color=CRIMSON)
+            ws.cell(row=r, column=2).font = BODY_BOLD
         r += 1
 
     r += 1
@@ -681,16 +730,13 @@ def build_recent_30d(wb: Workbook, yf: dict):
                         row.get("p_b") or "",
                         (row.get("reasons") or "")[:90]],
                        band=band, align_first_left=False)
-        ws.cell(row=r, column=2).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=2).font = BODY_BOLD
         if score >= 55:
             ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         elif score >= 40:
             ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         ws.row_dimensions[r].height = 22
         r += 1
 
@@ -872,8 +918,7 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
     # Render each section
     r = 4
     for sec_label, sec_subtitle, items in sections:
-        ws.cell(row=r, column=1, value=sec_label).font = Font(
-            name="Georgia", size=13, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=1, value=sec_label).font = BODY_BOLD
         ws.cell(row=r, column=1).alignment = Alignment(
             indent=1, vertical="center")
         ws.merge_cells(start_row=r, start_column=1,
@@ -899,8 +944,7 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
                             f"{score:.1f}" if isinstance(score, (int, float)) else score,
                             sector],
                            band=band, align_first_left=False)
-            ws.cell(row=r, column=3).font = Font(
-                name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+            ws.cell(row=r, column=3).font = BODY_BOLD
             ws.cell(row=r, column=2).alignment = Alignment(
                 vertical="center", wrap_text=True, indent=1, horizontal="left")
             r += 1
@@ -973,12 +1017,10 @@ def build_noval_view(wb: Workbook, yf: dict):
                         f"+{lift}" if lift and lift > 0 else (lift or ""),
                         sector or "—", detail],
                        band=band, align_first_left=False)
-        ws.cell(row=r, column=2).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=2).font = BODY_BOLD
         if lift and lift > 50:
             ws.cell(row=r, column=6).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=6).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=6).font = BODY_BOLD
         ws.row_dimensions[r].height = 22
         r += 1
 
@@ -1005,8 +1047,7 @@ def build_cover(wb: Workbook):
                      "8 independent rankers + 57 archetypes",
                      n_cols=6)
     ws.row_dimensions[3].height = 18
-    ws.cell(row=4, column=2, value="Executive summary").font = Font(
-        name="Georgia", size=14, bold=True, color=CRIMSON)
+    ws.cell(row=4, column=2, value="Executive summary").font = BODY_BOLD
 
     summary_lines = [
         ("Universe scope",
@@ -1040,8 +1081,7 @@ def build_cover(wb: Workbook):
         r += 1
 
     r += 1
-    ws.cell(row=r, column=2, value="The convergent twelve").font = Font(
-        name="Georgia", size=14, bold=True, color=CRIMSON)
+    ws.cell(row=r, column=2, value="The convergent twelve").font = BODY_BOLD
     r += 1
 
     # Derived from disk -- consensus_ranking.csv. No hardcoded list.
@@ -1069,12 +1109,10 @@ def build_cover(wb: Workbook):
         # Color-code the sizing column
         if "Concentrated" in sz:
             ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         elif "Participation" in sz:
             ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         ws.merge_cells(start_row=r, start_column=5,
                        end_row=r, end_column=6)
         r += 1
@@ -1147,20 +1185,17 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
                         cc or "—",
                         why, floor, sizing],
                        band=band, align_first_left=False)
-        ws.cell(row=r, column=1).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=1).font = BODY_BOLD
         ws.cell(row=r, column=8).alignment = Alignment(
             vertical="center", wrap_text=True, indent=1, horizontal="left")
         ws.cell(row=r, column=9).alignment = Alignment(
             vertical="center", wrap_text=True, indent=1, horizontal="left")
         if "Concentrated" in sizing:
             ws.cell(row=r, column=10).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=10).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=10).font = BODY_BOLD
         elif "Participation" in sizing:
             ws.cell(row=r, column=10).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=10).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=10).font = BODY_BOLD
         ws.row_dimensions[r].height = 56
         r += 1
 
@@ -1227,8 +1262,7 @@ def build_by_archetype(wb: Workbook, arch_psu: dict, arch_asym: dict,
                         src.replace("_", " ").title()],
                        band=band, align_first_left=False)
         ws.cell(row=r, column=2).font = BODY_BOLD
-        ws.cell(row=r, column=4).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=4).font = BODY_BOLD
         ws.cell(row=r, column=3).alignment = Alignment(
             vertical="center", wrap_text=True, indent=1, horizontal="left")
         r += 1
@@ -1317,8 +1351,7 @@ def build_reserve_baskets(wb: Workbook, yf: dict):
         r += 1
 
     r += 2
-    ws.cell(row=r, column=1, value="Portfolio math").font = Font(
-        name="Georgia", size=14, bold=True, color=CRIMSON)
+    ws.cell(row=r, column=1, value="Portfolio math").font = BODY_BOLD
     r += 1
     portfolio = [
         ("Concentrated convergent (5%+ each)", "HFFG, CSGP, RNR", "15.0%"),
@@ -1419,16 +1452,13 @@ def build_caution_list(wb: Workbook, proxy: dict, consensus: list):
         band = (i % 2 == 0)
         write_body_row(ws, r, [i, tk, ns, ", ".join(flags), action],
                        band=band, align_first_left=False)
-        ws.cell(row=r, column=2).font = Font(
-            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        ws.cell(row=r, column=2).font = BODY_BOLD
         if nflags >= 3:
             ws.cell(row=r, column=5).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=5).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=5).font = BODY_BOLD
         elif nflags <= 1:
             ws.cell(row=r, column=5).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=5).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=5).font = BODY_BOLD
         ws.row_dimensions[r].height = 30
         r += 1
         i += 1
@@ -1492,21 +1522,17 @@ def build_coverage(wb: Workbook):
         cov_pct = n / 6164
         if cov_pct >= 0.5:
             ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         elif cov_pct >= 0.1:
             ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         else:
             ws.cell(row=r, column=4).fill = HEADER_FILL
-            ws.cell(row=r, column=4).font = Font(
-                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+            ws.cell(row=r, column=4).font = BODY_BOLD
         r += 1
 
     r += 2
-    ws.cell(row=r, column=1, value="Tier distribution").font = Font(
-        name="Georgia", size=14, bold=True, color=CRIMSON)
+    ws.cell(row=r, column=1, value="Tier distribution").font = BODY_BOLD
     r += 1
     tier_data = [
         ("Tier A (6+ of 7 layers)", 0,
