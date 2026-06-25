@@ -460,7 +460,21 @@ def main():
                     help="continue from existing state (default behaviour)")
     ap.add_argument("--reset", action="store_true",
                     help="delete state file and restart from scratch")
+    ap.add_argument("--shard", type=int, default=0,
+                    help="shard ID (0..num-shards-1) for parallel runs")
+    ap.add_argument("--num-shards", type=int, default=1,
+                    help="how many parallel shards we're dividing the universe into")
     args = ap.parse_args()
+
+    # Per-shard state file when sharding. Shards write disjoint sets of CIKs
+    # so they don't race on the same JSON. The cache directory is shared
+    # (per-CIK files) and is the source of truth — state files are
+    # advisory.
+    global STATE_PATH
+    if args.num_shards > 1:
+        STATE_PATH = Path(f"edgar_full_state.shard{args.shard}of{args.num_shards}.json")
+        print(f"shard {args.shard}/{args.num_shards} — state file {STATE_PATH}",
+              file=sys.stderr)
 
     if args.reset and STATE_PATH.exists():
         STATE_PATH.unlink()
@@ -472,6 +486,11 @@ def main():
     print("loading universe...", file=sys.stderr)
     universe = load_universe().sort_values("symbol").reset_index(drop=True)
     print(f"  {len(universe):,} CIKs", file=sys.stderr)
+
+    # Apply shard filter — deterministic disjoint split by CIK modulo
+    if args.num_shards > 1:
+        universe = universe[universe["cik"].astype(int) % args.num_shards == args.shard].reset_index(drop=True)
+        print(f"  shard {args.shard}: {len(universe):,} CIKs", file=sys.stderr)
 
     print(f"existing state: {sum(1 for v in state.values() if v.get('status') == 'complete')} "
           f"complete, {len(state)} known", file=sys.stderr)

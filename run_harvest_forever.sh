@@ -1,52 +1,67 @@
 #!/usr/bin/env bash
-# Resilient wrapper for edgar_full_harvest.py.
+# Resilient 4-shard wrapper for edgar_full_harvest.py.
 #
-# Why this exists: in our container environment the python harvest gets
-# killed mid-run by external signals (container reaping, OOM, idle
-# timeout — we can't always tell which). The per-CIK cache means
-# restarting picks up where it left off, so the right answer is just to
-# keep restarting until every stage completes.
+# Splits the 10,433-CIK universe into 4 disjoint shards by `cik % 4`.
+# Each shard runs as its own python process with its own restart loop
+# inside this single bash script. The shared cache directory is
+# per-CIK so the shards never collide, and they each have their own
+# state file (edgar_full_state.shard{N}of4.json).
+#
+# Wall-clock target: per-CIK fetch costs ~80-200ms, so 4 shards in
+# parallel push effective throughput from ~5/s to ~15-25/s.
 #
 # Usage:
 #   setsid nohup ./run_harvest_forever.sh > harvest_watchdog.log 2>&1 &
-#
-# The watchdog itself is fully detached, so it survives session resets.
-# Each python restart writes its own log lines to the same file with a
-# clear === restart === banner so progress is easy to follow.
 
-set -u
+set -uo pipefail
 cd "$(dirname "$0")"
 
-LOG=edgar_harvest.log
+NUM_SHARDS=4
 WATCHDOG_LOG=harvest_watchdog.log
-DEATHS=0
-MAX_DEATHS=200   # safety bound — at 50 deaths per session this lasts days
 PYTHON=python3
+MAX_DEATHS_PER_SHARD=200
 
-# When the python script exits 0 it means every stage finished. We exit
-# the loop and the watchdog terminates cleanly. Any non-zero exit is
-# treated as a death — sleep 10s and try again.
-while true; do
-    DEATHS=$((DEATHS + 1))
-    if [ $DEATHS -gt $MAX_DEATHS ]; then
-        echo "$(date '+%Y-%m-%d %H:%M:%S') watchdog: hit MAX_DEATHS=$MAX_DEATHS, giving up" >> "$WATCHDOG_LOG"
-        exit 1
-    fi
-    echo "$(date '+%Y-%m-%d %H:%M:%S') watchdog: restart attempt #$DEATHS" >> "$WATCHDOG_LOG"
-    echo "" >> "$LOG"
-    echo "=== $(date '+%Y-%m-%d %H:%M:%S')  watchdog restart #$DEATHS ===" >> "$LOG"
+ts() { date '+%Y-%m-%d %H:%M:%S'; }
 
-    "$PYTHON" edgar_full_harvest.py --resume --workers 6 >> "$LOG" 2>&1
-    RC=$?
+# One restart-loop per shard, all running concurrently inside this script.
+run_shard() {
+    local SHARD=$1
+    local LOG="edgar_harvest.shard${SHARD}.log"
+    local DEATHS=0
+    while true; do
+        DEATHS=$((DEATHS + 1))
+        if [ $DEATHS -gt $MAX_DEATHS_PER_SHARD ]; then
+            echo "$(ts) shard $SHARD: MAX_DEATHS reached, exiting" >> "$WATCHDOG_LOG"
+            return 1
+        fi
+        echo "$(ts) shard $SHARD: restart #$DEATHS" >> "$WATCHDOG_LOG"
+        echo "" >> "$LOG"
+        echo "=== $(ts)  shard $SHARD restart #$DEATHS ===" >> "$LOG"
 
-    echo "$(date '+%Y-%m-%d %H:%M:%S') watchdog: python exited rc=$RC" >> "$WATCHDOG_LOG"
+        "$PYTHON" edgar_full_harvest.py --resume --workers 3 \
+            --shard "$SHARD" --num-shards "$NUM_SHARDS" >> "$LOG" 2>&1
+        local RC=$?
+        echo "$(ts) shard $SHARD: python exited rc=$RC" >> "$WATCHDOG_LOG"
 
-    if [ $RC -eq 0 ]; then
-        # All stages reported done cleanly
-        echo "$(date '+%Y-%m-%d %H:%M:%S') watchdog: harvest finished successfully" >> "$WATCHDOG_LOG"
-        break
-    fi
+        if [ $RC -eq 0 ]; then
+            echo "$(ts) shard $SHARD: done cleanly" >> "$WATCHDOG_LOG"
+            return 0
+        fi
+        sleep 5
+    done
+}
 
-    # Give SEC a beat — also gives us a stable point to send TERM if we want
-    sleep 10
+# Spawn all shards in the background
+PIDS=()
+for SHARD in $(seq 0 $((NUM_SHARDS - 1))); do
+    run_shard "$SHARD" &
+    PIDS+=("$!")
+    echo "$(ts) watchdog: spawned shard $SHARD as PID $!" >> "$WATCHDOG_LOG"
 done
+
+# Wait for all shards to finish (or until SIGTERM kills us)
+for pid in "${PIDS[@]}"; do
+    wait "$pid"
+done
+
+echo "$(ts) watchdog: all shards finished" >> "$WATCHDOG_LOG"
