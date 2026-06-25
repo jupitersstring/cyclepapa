@@ -152,12 +152,15 @@ if os.path.exists(bl_path):
     n_bl = int(df.get('backlog_latest', pd.Series(np.nan, index=df.index)).notna().sum())
     print(f"  merged backlog: {len(b)} rows  ({n_bl} with backlog data)", file=sys.stderr)
 
-# ─── 8. Pull extra fundamentals cols dropped by master_synthesis (pb, pe, roe, etc.) ───
+# ─── 8. Pull ALL useful fundamentals cols (master_synthesis only kept 8) ───
+# data/fundamentals/fund_*.csv has 28 cols — we were only using 8 of them.
 fund_frames = []
 for fp in sorted(glob.glob('data/fundamentals/fund_*.csv')):
     try:
         fd = pd.read_csv(fp, low_memory=False)
-        keep = ['ticker','pb','pe','roe','roa','gm','earn_g','ebitda','ev','rev','price']
+        keep = ['ticker','pb','pe','fpe','ps','roe','roa','gm','opm','earn_g','ebitda','ev',
+                'ev_ebitda','ev_ebit','fcf','fcf_yield','rev','rev_g','net_debt','nd_ebitda',
+                'div_yield','insiders','beta','mktCap','price','currency']
         fd = fd[[c for c in keep if c in fd.columns]]
         if 'ticker' in fd.columns:
             fd['ticker'] = fd['ticker'].astype(str).str.upper().str.strip()
@@ -167,10 +170,23 @@ if fund_frames:
     fall = (pd.concat(fund_frames, ignore_index=True)
               .drop_duplicates('ticker', keep='first')
               .set_index('ticker'))
-    for col in ['pb','pe','roe','roa','gm','earn_g','ebitda']:
+    # Add all columns that don't exist; for columns that DO exist, fill only nulls
+    new_cols = ['fpe','ps','opm','ev_ebitda','net_debt','nd_ebitda','div_yield','insiders',
+                'beta','currency','fcf']
+    fill_cols = ['pb','pe','roe','roa','gm','earn_g','ebitda','ev','rev','fcf_yield','rev_g','mktCap','price']
+    for col in new_cols:
         if col in fall.columns and col not in df.columns:
             df[col] = df['ticker'].map(fall[col].dropna().to_dict())
-    print(f"  pulled {len(fall):,} fundamentals rows; added pb/pe/roe/roa/gm/earn_g/ebitda", file=sys.stderr)
+    for col in fill_cols:
+        if col not in fall.columns: continue
+        m = fall[col].dropna().to_dict()
+        if col in df.columns:
+            df[col] = df[col].where(df[col].notna(), df['ticker'].map(m))
+        else:
+            df[col] = df['ticker'].map(m)
+    # Re-derive mktCap_M after mktCap fill
+    df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+    print(f"  pulled {len(fall):,} fundamentals rows; added/filled {len(new_cols)+len(fill_cols)} cols", file=sys.stderr)
 
 # ─── 9. Sanity flags on extreme values (flag, don't cap) ───
 def flag_extreme(s, lo, hi):
