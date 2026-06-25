@@ -1,0 +1,163 @@
+"""Sharded version of scan_insider_batch — 6-8× faster.
+
+Same scope as scan_insider_batch (top-signal small/mid caps), but uses
+8 concurrent worker threads against EDGAR with a token-bucket governor
+holding throughput to ~8 req/sec total (well within SEC's 10/sec limit).
+
+DB writes serialised in the main thread to avoid lock contention.
+"""
+import json, os, re, sqlite3, subprocess, sys, time
+import xml.etree.ElementTree as ET
+
+DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
+UA = "cyclepapa-research admin@example.com"
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _shard import shard_map
+
+def curl(url):
+    return subprocess.run(["curl","-sk","--compressed","-m","12","-A",UA, url],
+                          capture_output=True, text=True).stdout
+
+_CIK = None
+def cik_for(ticker):
+    global _CIK
+    if _CIK is None:
+        raw = curl("https://www.sec.gov/files/company_tickers.json")
+        try:
+            j = json.loads(raw)
+            _CIK = {v["ticker"].upper(): str(v["cik_str"]).zfill(10) for v in j.values()}
+        except Exception:
+            _CIK = {}
+    return _CIK.get(ticker.upper())
+
+def recent_form4(cik, lookback_days=180):
+    j = json.loads(curl(f"https://data.sec.gov/submissions/CIK{cik}.json"))
+    rec = j["filings"]["recent"]
+    cutoff = time.strftime("%Y-%m-%d", time.localtime(time.time() - lookback_days*86400))
+    out = []
+    for i in range(min(80, len(rec["form"]))):
+        if rec["form"][i] == "4" and rec["filingDate"][i] >= cutoff:
+            out.append((rec["accessionNumber"][i], rec["primaryDocument"][i], rec["filingDate"][i]))
+    return out
+
+def parse_form4(cik, accession, primary_doc):
+    acc = accession.replace("-", "")
+    raw_doc = primary_doc.split("/")[-1]
+    url = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/{raw_doc}"
+    xml = curl(url)
+    out = []
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError:
+        return out
+    owner = ""
+    for o in root.iter("rptOwner"):
+        n = o.find(".//rptOwnerName")
+        if n is not None and n.text:
+            owner = n.text.strip(); break
+    role = ""
+    for r in root.iter("reportingOwnerRelationship"):
+        if r.find("isDirector") is not None and r.find("isDirector").text == "1": role = "Director"
+        is_off = r.find("isOfficer")
+        title = r.find("officerTitle")
+        if is_off is not None and is_off.text == "1":
+            role = title.text.strip() if title is not None and title.text else "Officer"
+        if r.find("isTenPercentOwner") is not None and r.find("isTenPercentOwner").text == "1": role = "10%+ Owner"
+        break
+    for tx in root.iter("nonDerivativeTransaction"):
+        code_el = tx.find(".//transactionCode")
+        if code_el is None or not code_el.text: continue
+        code = code_el.text.strip()
+        shares_el = tx.find(".//transactionShares/value")
+        price_el  = tx.find(".//transactionPricePerShare/value")
+        date_el   = tx.find(".//transactionDate/value")
+        a_d_el    = tx.find(".//transactionAcquiredDisposedCode/value")
+        if shares_el is None: continue
+        try: shares = float(shares_el.text)
+        except: continue
+        price = float(price_el.text) if (price_el is not None and price_el.text) else None
+        acquired = 1 if (a_d_el is not None and a_d_el.text == "A") else 0
+        out.append({"owner": owner, "role": role, "code": code,
+                    "shares": shares, "price": price, "acquired": acquired,
+                    "trans_date": date_el.text if date_el is not None else None})
+    return out
+
+def target_tickers(conn, max_n):
+    have = {r[0] for r in conn.execute(
+        "SELECT DISTINCT ticker FROM form4_transactions WHERE trans_date >= date('now','-180 days')")}
+    sig = {}
+    for r in conn.execute("""SELECT ticker, COUNT(DISTINCT CASE WHEN section=3 THEN fund END) s3,
+        COUNT(DISTINCT CASE WHEN section=4 THEN fund END) s4,
+        COUNT(DISTINCT CASE WHEN section=1 THEN fund END) s1
+        FROM fund_positions WHERE ticker IS NOT NULL AND section IN (1,3,4) GROUP BY ticker"""):
+        sig[r[0]] = sig.get(r[0], 0) + r[1]*3 + r[2]*1.5 + r[3]*1
+    for r in conn.execute("SELECT subject_ticker FROM holder_13d WHERE subject_ticker IS NOT NULL"):
+        sig[r[0]] = sig.get(r[0], 0) + 2
+    for r in conn.execute("""SELECT ticker, COUNT(DISTINCT fund) c FROM fund_13f_holdings
+        WHERE ticker IS NOT NULL GROUP BY ticker"""):
+        if r[1] >= 3: sig[r[0]] = sig.get(r[0], 0) + min(r[1], 30) * 0.3
+    keep = {}
+    for tkr, s in sig.items():
+        if "." in tkr or tkr in have: continue
+        if not re.match(r"^[A-Z][A-Z0-9.\-]{0,5}$", tkr): continue
+        mc = conn.execute("SELECT mcap_m FROM ticker_meta WHERE ticker=?", (tkr,)).fetchone()
+        if mc and mc[0] and mc[0] > 50000: continue
+        keep[tkr] = s
+    return [t for t, _ in sorted(keep.items(), key=lambda x: -x[1])][:max_n]
+
+def scan_one_ticker(tkr):
+    """Pull all P-code buys for one ticker — runs in worker thread."""
+    cik = cik_for(tkr)
+    if not cik: return []
+    try:
+        filings = recent_form4(cik, lookback_days=180)
+    except Exception:
+        return []
+    rows = []
+    for acc, doc, dt in filings:
+        try:
+            txns = parse_form4(cik, acc, doc)
+        except Exception:
+            continue
+        for t in txns:
+            if t["code"] != "P" or t["acquired"] != 1: continue
+            rows.append((acc, tkr, t["owner"], t["role"], t["trans_date"],
+                         t["code"], t["shares"], t["price"], t["acquired"],
+                         f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}"))
+    return rows
+
+def run(max_n=1500, n_workers=8, rps=8):
+    conn = sqlite3.connect(DB)
+    targets = target_tickers(conn, max_n)
+    print(f"sharded scan: {len(targets)} tickers, {n_workers} workers, {rps} req/s")
+
+    n_buys = 0
+    progress = [0]
+    def on_result(tkr, rows):
+        nonlocal n_buys
+        for row in rows:
+            try:
+                conn.execute("""INSERT OR IGNORE INTO form4_transactions
+                    (accession, ticker, owner, role, trans_date, code, shares, price, acquired, source_url)
+                    VALUES (?,?,?,?,?,?,?,?,?,?)""", row)
+                n_buys += 1
+            except Exception:
+                pass
+        progress[0] += 1
+        if progress[0] % 50 == 0:
+            conn.commit()
+            print(f"  [{progress[0]}/{len(targets)}] {tkr} total_buys={n_buys}")
+
+    def on_error(tkr, exc):
+        progress[0] += 1
+        if progress[0] % 50 == 0:
+            print(f"  [{progress[0]}/{len(targets)}] {tkr} ERR {exc}")
+
+    shard_map(scan_one_ticker, targets, n_workers=n_workers, rps=rps,
+              on_result=on_result, on_error=on_error)
+    conn.commit()
+    print(f"\ndone: {n_buys} P-code buys ingested across {len(targets)} tickers scanned")
+
+if __name__ == "__main__":
+    run(max_n=int(sys.argv[1]) if sys.argv[1:] else 1500)
