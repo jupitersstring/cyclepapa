@@ -215,14 +215,30 @@ def run():
         form4_recent_sell_penalty = -math.log1p(f4sell_30) * 1.5 if f4sell_30 > 0 else 0
         micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
         er_contribution   = er_pct * 0.5
-        # in-the-money / entry-intact bonus
+        # in-the-money / entry-intact — REVISED per adversarial review.
+        # Reviewers found pattern: drawdowns >50% almost always signal
+        # (a) stale anchor from pre-event cohort, (b) busted thesis with
+        # stuck holders, or (c) parse errors. Sweet spot is -30 to -5%.
         entry_bonus       = 0
         if entry_bucket == "BELOW_ENTRY" and vs_entry_pct:
-            entry_bonus = min(abs(vs_entry_pct) / 10.0, 5.0)
+            x = abs(vs_entry_pct)
+            if 5 <= x <= 30:
+                entry_bonus = x / 6.0      # peaks at +5 around -30%
+            elif 30 < x <= 50:
+                entry_bonus = 5.0 - (x - 30) * 0.25  # tapers from +5 → 0
+            else:  # x > 50  — busted thesis territory
+                entry_bonus = -3.0
         elif entry_bucket == "NEAR_ENTRY":
             entry_bonus = 1.5
         elif entry_bucket == "WELL_ABOVE":
             entry_bonus = -3.0
+
+        # NEW: sponsor-stake / sole-concentrator detection.
+        # If single fund concentration is >50% AND no cluster of other funds
+        # >=5%, treat as a legacy / sponsor stake not a smart-money conviction
+        # cluster. Cap the pct_book contribution.
+        if max_pb > 50 and n5_pb < 3:
+            max_pb_term = 0.3 * min(max_pb, 25)   # halve the bonus
 
         # NEW: 8-K catalyst bonuses/penalties
         #   M&A entry (1.01) or completion (2.01)  = +5  (takeover catalyst)
