@@ -128,12 +128,24 @@ def main():
     ap.add_argument('--sleep', type=float, default=0.05,
                     help='Per-worker sleep — tiny since we now have N parallel workers')
     ap.add_argument('--workers', type=int, default=8,
-                    help='Concurrent edgartools sessions. SEC allows 10 req/s; we '
-                         'use 8 workers each with a 0.05s delay = ~70-80 effective rps headroom.')
+                    help='Concurrent edgartools sessions per process. SEC allows 10 req/s; '
+                         'we use 8 workers each with a 0.05s delay = ~70-80 effective rps per process.')
+    ap.add_argument('--shard-id', type=int, default=0,
+                    help='Which shard of the universe to process (0..shard-count-1). '
+                         'Use multiple shards across separate processes for multi-process '
+                         'concurrency (escapes GIL, ~Nx speedup).')
+    ap.add_argument('--shard-count', type=int, default=1,
+                    help='Total shards. Universe is split round-robin: ticker[i] -> shard i % count.')
     ap.add_argument('--progress-every', type=int, default=50)
     args = ap.parse_args()
 
     universe = universe_us_tickers()
+    # Apply shard split BEFORE the cache-filter so shards don't race for the
+    # same not-yet-decided tickers
+    if args.shard_count > 1:
+        universe = [t for i, t in enumerate(universe) if i % args.shard_count == args.shard_id]
+        print(f'Shard {args.shard_id}/{args.shard_count}: {len(universe):,} tickers assigned')
+
     todo = [t for t in universe
             if not _outpath(t).exists() and not _deadpath(t).exists()]
     print(f'Universe: {len(universe):,} US tickers')
@@ -160,7 +172,7 @@ def main():
                 el = time.time() - t0
                 rate = i / el if el > 0 else 0
                 eta = (len(target) - i) / rate / 60 if rate > 0 else float('inf')
-                print(f'  {i:>5,}/{len(target):,}  ok={n_ok:,} empty={n_empty:,} '
+                print(f'  [s{args.shard_id}] {i:>5,}/{len(target):,}  ok={n_ok:,} empty={n_empty:,} '
                       f'err={n_err:,} rows={total_rows:,} rate={rate:.2f}/s eta={eta:.0f}min',
                       flush=True)
         time.sleep(args.sleep)
@@ -168,7 +180,7 @@ def main():
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         list(ex.map(worker, target))
 
-    print(f'\nFinal: ok={n_ok:,} empty={n_empty:,} err={n_err:,} '
+    print(f'\n[shard {args.shard_id}] Final: ok={n_ok:,} empty={n_empty:,} err={n_err:,} '
           f'rows={total_rows:,} across {len(target):,} tickers')
 
 

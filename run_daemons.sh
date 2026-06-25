@@ -46,7 +46,16 @@ restart_if_dead() {
 
 restart_if_dead edgar fill_edgar_gaps.py --sleep 0.3
 restart_if_dead extras fetch_yfinance_extras.py --workers 8 --sleep 0.05
-restart_if_dead xbrl fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100
+
+# XBRL segment fetch — 4 parallel shards. Each shard is its own Python process
+# with 8 threads, so 4×8 = 32 effective HTTP concurrency. SEC's 10 req/s limit
+# is per-IP — we stay under by virtue of edgartools' per-process throttle +
+# per-thread 50ms delay. Multi-process escapes the GIL bottleneck that single-
+# process N-thread had (XBRL parsing is CPU-heavy).
+restart_if_dead xbrl0 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100 --shard-id 0 --shard-count 4
+restart_if_dead xbrl1 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100 --shard-id 1 --shard-count 4
+restart_if_dead xbrl2 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100 --shard-id 2 --shard-count 4
+restart_if_dead xbrl3 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100 --shard-id 3 --shard-count 4
 
 # --- Snapshot push (durability) ---
 log "Snapshot push starting..."
