@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
     write_title, write_section_heading, write_table_header, write_table_rows,
     autosize, NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
+    NUMFMT_MCAP, NUMFMT_M_TO_B,
     TNR, SIZE_BODY, BODY_FONT, BODY_ITALIC, SECTION_FONT, TICKER_FONT, MONO_FONT,
     BLACK, ROW_BORDER,
 )
@@ -87,16 +88,16 @@ def signal_row_to_cells(r):
 
 def format_signal_row(ws, ridx):
     """Apply number formats to a signal row."""
-    ws.cell(row=ridx, column=3).number_format = NUMFMT_USD     # mcap
+    ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP    # mcap → smart scale (M/B/T)
     ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT     # act
     ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT    # pB max
-    ws.cell(row=ridx, column=13).number_format = NUMFMT_NUM    # Clu
-    ws.cell(row=ridx, column=14).number_format = NUMFMT_NUM    # F4 buy 180d
-    ws.cell(row=ridx, column=15).number_format = NUMFMT_NUM    # F4 buy 30d
-    ws.cell(row=ridx, column=16).number_format = NUMFMT_NUM    # F4 sell 180d
-    ws.cell(row=ridx, column=17).number_format = NUMFMT_NUM    # F4 sell 30d
+    ws.cell(row=ridx, column=13).number_format = NUMFMT_M_TO_B # Clu $M
+    ws.cell(row=ridx, column=14).number_format = NUMFMT_M_TO_B # F4 buy 180d
+    ws.cell(row=ridx, column=15).number_format = NUMFMT_M_TO_B # F4 buy 30d
+    ws.cell(row=ridx, column=16).number_format = NUMFMT_M_TO_B # F4 sell 180d
+    ws.cell(row=ridx, column=17).number_format = NUMFMT_M_TO_B # F4 sell 30d
     ws.cell(row=ridx, column=19).number_format = NUMFMT_PCT    # vs entry
-    ws.cell(row=ridx, column=20).number_format = NUMFMT_USD2   # anchor
+    ws.cell(row=ridx, column=20).number_format = NUMFMT_USD2   # anchor px
     ws.cell(row=ridx, column=21).number_format = NUMFMT_PCT    # ER
     ws.cell(row=ridx, column=24).number_format = NUMFMT_USD2   # px
 
@@ -201,7 +202,7 @@ def sheet_activist(wb, conn):
                     (r[7] or "")[:38], (r[8] or "")[:32]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=2).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=2).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
@@ -246,9 +247,9 @@ def sheet_insider_f4(wb, conn):
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         for col in (2, 3, 4, 5):
-            ws.cell(row=ridx, column=col).number_format = NUMFMT_NUM
+            ws.cell(row=ridx, column=col).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=7).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -284,9 +285,9 @@ def sheet_insider_recent(wb, conn):
                     round(r[10] or 0, 1), (r[11] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=2).number_format = NUMFMT_NUM
+        ws.cell(row=ridx, column=2).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=5).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=6).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
     autosize(ws)
@@ -311,9 +312,9 @@ def sheet_clusters(wb, conn):
             r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown"] for r in rows]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_NUM
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=6).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -444,10 +445,10 @@ def sheet_all_holdings_consolidated(wb, conn):
                     r[7] or "", r[8] or ""])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=4).number_format = NUMFMT_NUM
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
     ws.freeze_panes = "A5"
     autosize(ws)
 
@@ -474,7 +475,7 @@ def sheet_all_funds(wb, conn):
                     r[3], round(r[4] or 0), r[5], r[6]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B   # 13F total $M
     ws.freeze_panes = "B5"
     autosize(ws)
 
@@ -520,7 +521,7 @@ def sheet_global_picks(wb, conn):
                     (r[12] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=4).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
@@ -559,7 +560,7 @@ def sheet_in_the_money(wb, conn):
                     (r[13] or "")[:18], (r[14] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=3).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=5).number_format = NUMFMT_USD2
         ws.cell(row=ridx, column=6).number_format = NUMFMT_USD2
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
@@ -611,7 +612,7 @@ def sheet_bill_miller(wb, conn):
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_NUM
             ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=5).number_format = NUMFMT_USD
+            ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
             ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
         row += len(out) + 1
 
@@ -646,7 +647,7 @@ def sheet_bill_miller(wb, conn):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=6).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP    # mcap
         ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
     ws.freeze_panes = "B6"
     autosize(ws)

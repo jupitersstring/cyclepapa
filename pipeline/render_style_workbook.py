@@ -14,6 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
     write_title, write_section_heading, write_table_header, write_table_rows,
     autosize, NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
+    NUMFMT_MCAP, NUMFMT_M_TO_B,
     BODY_FONT, BODY_ITALIC, SECTION_FONT, MONO_FONT, TICKER_FONT,
     TNR, SIZE_BODY,
 )
@@ -138,10 +139,10 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=11).number_format = NUMFMT_NUM
-        ws.cell(row=ridx, column=12).number_format = NUMFMT_NUM
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_M_TO_B
     row += len(out) + 2
 
     # New initiations
@@ -165,7 +166,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
     row += len(out) + 2
 
@@ -189,7 +190,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
     row += len(out) + 2
 
@@ -212,7 +213,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
     row += len(out) + 2
 
     # Size cross-cut
@@ -247,7 +248,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_rows(ws, out, row, ticker_col=2)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
     autosize(ws)
@@ -297,11 +298,11 @@ def sheet_overview(wb, conn):
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=7).number_format = NUMFMT_USD
+            ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
             ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=10).number_format = NUMFMT_NUM
-            ws.cell(row=ridx, column=11).number_format = NUMFMT_NUM
-            ws.cell(row=ridx, column=12).number_format = NUMFMT_NUM
+            ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=11).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=12).number_format = NUMFMT_M_TO_B
         row += len(out) + 2
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -366,10 +367,10 @@ def sheet_subgroup_focus(wb, conn):
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=4).number_format = NUMFMT_USD
+            ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
             ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=9).number_format = NUMFMT_NUM
-            ws.cell(row=ridx, column=10).number_format = NUMFMT_NUM
+            ws.cell(row=ridx, column=9).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
         row += len(out) + 2
     autosize(ws)
     ws.column_dimensions["A"].width = 10

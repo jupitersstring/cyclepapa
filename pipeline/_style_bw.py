@@ -57,6 +57,14 @@ NUMFMT_NUM  = '#,##0.0'
 NUMFMT_INT  = '#,##0'
 NUMFMT_USD2 = '"$"#,##0.00'
 
+# Smart scale-aware money format — input is in millions.
+#   < 1,000          → "$NNN M"     (i.e. < $1B)
+#   1,000 – 999,999  → "$N.NN B"   (i.e. $1B to $1T)
+#   >= 1,000,000     → "$N.N T"    (>= $1T)
+NUMFMT_MCAP = '[>=1000000]"$"#,##0.0,,"T";[>=1000]"$"#,##0.0,"B";"$"#,##0" M"'
+# Same idea for dollar quantities in $M (Form 4 $M, cluster $M, position $M):
+NUMFMT_M_TO_B = '[>=1000]"$"#,##0.0,"B";"$"#,##0.0" M"'
+
 HDR_HEIGHT = 22
 BODY_HEIGHT = 18
 TITLE_HEIGHT = 30
