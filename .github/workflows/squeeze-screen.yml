@@ -12,12 +12,10 @@ on:
         description: "How many highest-fee names to enrich with yfinance"
         default: "150"
         required: false
-  push:
-    branches: ["claude/stoic-curie-pb7mib"]
-    paths:
-      - run_screen.py
-      - short_squeeze.py
-      - .github/workflows/squeeze-screen.yml
+  # Note: GitHub-hosted runners can't reach IBKR's FTP (cloud egress blocked), so
+  # in CI this falls back to a yfinance screen (no borrow fee -> all WATCH/LOW).
+  # For the real run WITH fees, use a residential connection (e.g. a Mac):
+  #   python3 run_screen.py
   # Uncomment to run automatically every weekday at 11:30 UTC (after IBKR updates):
   # schedule:
   #   - cron: "30 11 * * 1-5"
