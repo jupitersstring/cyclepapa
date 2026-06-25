@@ -421,9 +421,9 @@ def run_stage(stage: str, universe: pd.DataFrame, state: dict,
         futures = {ex.submit(stage_fn, r, state): r for r in rows}
         for fut in as_completed(futures):
             try:
-                outcome, cik, err = fut.result()
+                outcome, cik, err = fut.result(timeout=120)
             except Exception as e:
-                outcome, cik, err = ("error", -1, str(e))
+                outcome, cik, err = ("error", -1, str(e)[:120])
             if outcome == "done":
                 completed += 1
             elif outcome == "cached":
@@ -434,12 +434,16 @@ def run_stage(stage: str, universe: pd.DataFrame, state: dict,
                 errored += 1
             total = completed + cached + skipped + errored
             if total % CHECKPOINT_EVERY == 0:
-                save_state(state)
+                try:
+                    save_state(state)
+                except Exception as e:
+                    print(f"  warn: save_state failed: {e}", file=sys.stderr)
                 rate = total / max(1.0, time.time() - start)
                 eta = (n - total) / rate if rate > 0 else 0
                 print(f"  {total:,}/{n:,}  done={completed} cached={cached} "
                       f"skip={skipped} err={errored}  ({rate:.1f}/s, ETA {eta/60:.1f}m)",
                       file=sys.stderr)
+                sys.stderr.flush()
     save_state(state)
     print(f"  FINAL: done={completed} cached={cached} skip={skipped} err={errored} "
           f"in {(time.time()-start)/60:.1f}m", file=sys.stderr)
@@ -476,8 +480,21 @@ def main():
     max_rows = args.max if args.max > 0 else None
 
     for stage in stages_to_run:
-        run_stage(stage, universe, state, workers=args.workers, max_rows=max_rows)
-        save_state(state)
+        try:
+            run_stage(stage, universe, state, workers=args.workers, max_rows=max_rows)
+        except Exception as e:
+            print(f"  STAGE CRASH in {stage}: {e}", file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
+            # Save what we have and keep going — next stage may still succeed
+            try:
+                save_state(state)
+            except Exception:
+                pass
+            continue
+        try:
+            save_state(state)
+        except Exception:
+            pass
 
     # Mark CIKs with all stages done as 'complete'
     for cik, st in state.items():
