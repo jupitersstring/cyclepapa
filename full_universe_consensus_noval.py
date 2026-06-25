@@ -47,6 +47,10 @@ from full_universe_consensus import (
     score_fdic_call_report_layer,
     score_net_net_ncav_layer,
     score_activist_letter_layer,
+    score_form_13f_delta_layer,
+    score_biotech_pdufa_layer,
+    score_financial_primary_layer,
+    score_quarterly_10q_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -86,6 +90,10 @@ def main() -> int:
         "fdic_call_report": score_fdic_call_report_layer(layers, universe),
         "net_net_ncav": score_net_net_ncav_layer(layers, universe),
         "activist_letter": score_activist_letter_layer(layers, universe),
+        "form_13f_delta": score_form_13f_delta_layer(layers, universe),
+        "biotech_pdufa": score_biotech_pdufa_layer(layers, universe),
+        "financial_primary": score_financial_primary_layer(layers, universe),
+        "quarterly_10q": score_quarterly_10q_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -141,6 +149,10 @@ def main() -> int:
             "fdic_call_report_pts": layer_scores["fdic_call_report"].get(tk, 0),
             "net_net_ncav_pts": layer_scores["net_net_ncav"].get(tk, 0),
             "activist_letter_pts": layer_scores["activist_letter"].get(tk, 0),
+            "form_13f_delta_pts": layer_scores["form_13f_delta"].get(tk, 0),
+            "biotech_pdufa_pts": layer_scores["biotech_pdufa"].get(tk, 0),
+            "financial_primary_pts": layer_scores["financial_primary"].get(tk, 0),
+            "quarterly_10q_pts": layer_scores["quarterly_10q"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 

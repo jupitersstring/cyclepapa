@@ -423,6 +423,52 @@ def score_activist_letter_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "activist_letter_feed.json", universe)
 
 
+# Audit-driven additive layers (S1.3 + S2 fills)
+
+def score_form_13f_delta_layer(layers: dict, universe: set) -> dict:
+    """13F-delta smart-money / activist accumulation signal."""
+    return _load_jscore(ROOT / "form_13f_delta.json", universe)
+
+
+def score_biotech_pdufa_layer(layers: dict, universe: set) -> dict:
+    """Biotech PDUFA calendar primary screen (S1.3 non-PSU complement)."""
+    return _load_jscore(ROOT / "biotech_pdufa_calendar.json", universe)
+
+
+def score_financial_primary_layer(layers: dict, universe: set) -> dict:
+    """Financial-sector P/TBV + ROE + buyback primary screen
+    (S1.3 non-PSU complement)."""
+    return _load_jscore(ROOT / "financial_primary.json", universe)
+
+
+def score_quarterly_10q_layer(layers: dict, universe: set) -> dict:
+    """Quarterly 10-Q NCAV / current-ratio overlay (S2.4 fresher data)."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "quarterly_10q_data.json"
+    if not f.exists():
+        return out
+    try:
+        data = json.loads(f.read_text())
+    except Exception:
+        return out
+    for tk, v in data.items():
+        if tk not in out or not isinstance(v, dict):
+            continue
+        s = 0.0
+        # Reward names with strong balance sheet from FRESH quarterly data
+        ncav = v.get("ncav") or 0
+        cr = v.get("current_ratio") or 0
+        net_cash = v.get("net_cash") or 0
+        if ncav > 0 and cr > 1.5:
+            s += 8
+        if cr > 2.0:
+            s += 6
+        if net_cash > 0:
+            s += 6
+        out[tk] = s
+    return out
+
+
 # ----------------------------------------------------------------------
 # Universe build
 # ----------------------------------------------------------------------
@@ -467,6 +513,11 @@ def main() -> int:
         # NCAV + activist feed
         "net_net_ncav": score_net_net_ncav_layer(layers, universe),
         "activist_letter": score_activist_letter_layer(layers, universe),
+        # Audit-driven additive (S1.3 + S2)
+        "form_13f_delta": score_form_13f_delta_layer(layers, universe),
+        "biotech_pdufa": score_biotech_pdufa_layer(layers, universe),
+        "financial_primary": score_financial_primary_layer(layers, universe),
+        "quarterly_10q": score_quarterly_10q_layer(layers, universe),
     }
     print(f"Layers scored: {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -534,6 +585,10 @@ def main() -> int:
             "fdic_call_report_pts": layer_scores["fdic_call_report"].get(tk, 0),
             "net_net_ncav_pts": layer_scores["net_net_ncav"].get(tk, 0),
             "activist_letter_pts": layer_scores["activist_letter"].get(tk, 0),
+            "form_13f_delta_pts": layer_scores["form_13f_delta"].get(tk, 0),
+            "biotech_pdufa_pts": layer_scores["biotech_pdufa"].get(tk, 0),
+            "financial_primary_pts": layer_scores["financial_primary"].get(tk, 0),
+            "quarterly_10q_pts": layer_scores["quarterly_10q"].get(tk, 0),
         })
 
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
