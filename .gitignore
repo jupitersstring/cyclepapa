@@ -20,4 +20,5 @@ edgar_proxy_cache/
 edgar_full_state.json
 edgar_harvest.log
 nohup.out
+harvest_watchdog.log
 *.log
