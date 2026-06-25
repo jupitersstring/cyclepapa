@@ -441,6 +441,28 @@ def score_financial_primary_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "financial_primary.json", universe)
 
 
+def score_nport_forced_selling_layer(layers: dict, universe: set) -> dict:
+    """Real Coval-Stafford via N-PORT mutual-fund holdings deltas."""
+    return _load_jscore(ROOT / "nport_forced_selling.json", universe)
+
+
+def score_foreign_markets_layer(layers: dict, universe: set) -> dict:
+    """Foreign markets (JP TSE PBR<1, KR Value-Up, UK schemes).
+    Foreign tickers keep their yfinance suffix (.T, .KS, .L) so they
+    are NEVER confused with US tickers. The consensus universe only
+    contains US tickers, so this layer's contribution to most rows
+    is zero -- but the foreign_markets.json itself is the deliverable.
+    A separate convergence is computed in the xlsx tab."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "foreign_markets.json"
+    if not f.exists():
+        return out
+    # Foreign tickers are not in our US universe; we keep them in
+    # the separate json. This layer contributes 0 to US tickers,
+    # ensuring it doesn't pollute existing scoring.
+    return out
+
+
 def score_quarterly_10q_layer(layers: dict, universe: set) -> dict:
     """Quarterly 10-Q NCAV / current-ratio overlay (S2.4 fresher data)."""
     out = {tk: 0.0 for tk in universe}
@@ -518,6 +540,9 @@ def main() -> int:
         "biotech_pdufa": score_biotech_pdufa_layer(layers, universe),
         "financial_primary": score_financial_primary_layer(layers, universe),
         "quarterly_10q": score_quarterly_10q_layer(layers, universe),
+        "nport_forced_selling": score_nport_forced_selling_layer(layers, universe),
+        # foreign_markets layer intentionally NOT in US consensus -- it
+        # lives in its own JSON + xlsx tab to keep universes clean
     }
     print(f"Layers scored: {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -589,6 +614,7 @@ def main() -> int:
             "biotech_pdufa_pts": layer_scores["biotech_pdufa"].get(tk, 0),
             "financial_primary_pts": layer_scores["financial_primary"].get(tk, 0),
             "quarterly_10q_pts": layer_scores["quarterly_10q"].get(tk, 0),
+            "nport_forced_selling_pts": layer_scores["nport_forced_selling"].get(tk, 0),
         })
 
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))

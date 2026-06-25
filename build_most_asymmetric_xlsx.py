@@ -558,6 +558,80 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_foreign_markets(wb: Workbook):
+    """Foreign-markets tab: Japan TSE PBR<1, Korea Value-Up, UK
+    schemes. Lives in its own tab because foreign tickers retain
+    their yfinance suffix (.T/.KS/.L) and don't belong in the US
+    universe consensus."""
+    ws = wb.create_sheet("Foreign Markets")
+    set_col_widths(ws, [10, 6, 30, 10, 10, 10, 10, 50])
+    write_title_band(
+        ws,
+        "Foreign Markets — JP / KR / UK",
+        "Japan TSE PBR<1 reform targets, Korea Value-Up chaebol, "
+        "UK FTSE 100 scheme/take-private candidates. Foreign tickers "
+        "kept separate from US universe consensus.",
+        n_cols=8,
+    )
+
+    path = ROOT / "foreign_markets.json"
+    if not path.exists():
+        ws.cell(row=4, column=1,
+                value="(no file -- run `python3 foreign_markets.py`)"
+                ).font = SUBTITLE_FONT
+        return
+
+    headers = ["Ticker", "Mkt", "Name", "Score", "P/B", "P/E",
+                "ROE %", "Reasons"]
+    write_header_row(ws, 4, headers)
+
+    rows = list(json.loads(path.read_text()).items())
+    rows.sort(key=lambda x: -float(x[1].get("score", 0)))
+    r = 5
+    for i, (tk, v) in enumerate(rows[:60], 1):
+        roe_pct = (v.get("roe") or 0) * 100
+        band = (i % 2 == 0)
+        write_body_row(ws, r,
+                       [tk, v.get("jurisdiction", ""),
+                        (v.get("name") or "")[:32],
+                        v.get("score"),
+                        v.get("p_b"),
+                        v.get("p_e_trailing"),
+                        roe_pct,
+                        (v.get("reasons") or "")[:80]],
+                       band=band)
+        ws.cell(row=r, column=1).font = Font(
+            name="Helvetica Neue", size=11, bold=True, color=CRIMSON)
+        # Color-code by jurisdiction
+        jur = v.get("jurisdiction")
+        if jur == "JP":
+            ws.cell(row=r, column=2).fill = CLEAN_TAG_FILL
+            ws.cell(row=r, column=2).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        elif jur == "KR":
+            ws.cell(row=r, column=2).fill = FLAG_TAG_FILL
+            ws.cell(row=r, column=2).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color="FFFFFF")
+        elif jur == "UK":
+            ws.cell(row=r, column=2).fill = TITLE_BAND_FILL
+            ws.cell(row=r, column=2).font = Font(
+                name="Helvetica Neue", size=10, bold=True, color=CRIMSON)
+        r += 1
+
+    r += 1
+    write_footnote(ws, r,
+        "Japan signal: TSE explicit policy targets PBR<1 companies for "
+        "capital return reform; scored highest at PBR<0.7. Korea: "
+        "Value-Up / treasury cancellation program (chaebol families "
+        "named candidates: Samsung, Hyundai, LG, SK, POSCO). UK: "
+        "scheme of arrangement is the dominant take-private mechanism "
+        "in London; deep-discount FTSE names are the target pool. "
+        "Source: foreign_markets.json (yfinance with .T/.KS/.L "
+        "suffixes; seed list ~130 tickers, expandable).", 8)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_recent_30d(wb: Workbook, yf: dict):
     """Live-rendered Recent-30d tab: only names with a material
     incentive event in the last 30 days. The tightest stale-pricing
@@ -1584,6 +1658,7 @@ def main() -> int:
     build_caution_list(wb, proxy, consensus)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
+    build_foreign_markets(wb)
     build_turnaround_signal(wb, yf)
     build_single_measure(wb, yf, proxy, bbv, tender, c10, f4)
     build_coverage(wb)

@@ -51,6 +51,7 @@ from full_universe_consensus import (
     score_biotech_pdufa_layer,
     score_financial_primary_layer,
     score_quarterly_10q_layer,
+    score_nport_forced_selling_layer,
 )
 
 ROOT = Path("/home/user/cyclepapa")
@@ -94,6 +95,7 @@ def main() -> int:
         "biotech_pdufa": score_biotech_pdufa_layer(layers, universe),
         "financial_primary": score_financial_primary_layer(layers, universe),
         "quarterly_10q": score_quarterly_10q_layer(layers, universe),
+        "nport_forced_selling": score_nport_forced_selling_layer(layers, universe),
     }
     print(f"Layers scored (excluding valuation): {len(layer_scores)}")
     for lk, ls in layer_scores.items():
@@ -153,6 +155,7 @@ def main() -> int:
             "biotech_pdufa_pts": layer_scores["biotech_pdufa"].get(tk, 0),
             "financial_primary_pts": layer_scores["financial_primary"].get(tk, 0),
             "quarterly_10q_pts": layer_scores["quarterly_10q"].get(tk, 0),
+            "nport_forced_selling_pts": layer_scores["nport_forced_selling"].get(tk, 0),
         })
     rows.sort(key=lambda r: (-r["n_layers_firing"], -r["consensus_score"]))
 
