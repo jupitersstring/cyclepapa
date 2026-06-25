@@ -19,6 +19,7 @@ edgar_insider_cache/
 edgar_proxy_cache/
 edgar_full_state.json
 edgar_full_state.shard*.json
+edgar_segments.csv
 edgar_harvest.log
 edgar_harvest.shard*.log
 yahoo_chart_fill.log

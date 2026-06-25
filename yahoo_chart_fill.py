@@ -46,8 +46,13 @@ USER_AGENTS = [
 ]
 
 
-def fetch_chart(symbol: str, timeout: int = 12) -> dict | None:
-    """Pull 1y daily close from v8/chart. Returns dict or None on failure."""
+def fetch_chart(symbol: str, timeout: int = 4) -> dict | None:
+    """Pull 1y daily close from v8/chart. Returns dict or None on failure.
+
+    No retries: Yahoo's failures are mostly server-side flakiness (random
+    25% empty-response rate observed). Retrying just blocks workers on a
+    slow path. Better to skip + cover on the next run.
+    """
     url = CHART_URL.format(symbol=urllib.parse.quote(symbol))
     req = urllib.request.Request(url, headers={
         "User-Agent": random.choice(USER_AGENTS),
@@ -56,7 +61,7 @@ def fetch_chart(symbol: str, timeout: int = 12) -> dict | None:
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             data = json.loads(r.read())
-    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError, TimeoutError):
+    except Exception:
         return None
     res = (data.get("chart") or {}).get("result")
     if not res:
@@ -120,7 +125,8 @@ def main():
     existing = {}
     if not args.refresh and os.path.exists(args.out):
         ex = pd.read_csv(args.out)
-        existing = {r["symbol"]: r for _, r in ex.iterrows()}
+        # Convert each row to a plain dict so it concats cleanly with new fetches
+        existing = {r["symbol"]: r.to_dict() for _, r in ex.iterrows()}
         print(f"  {len(existing):,} symbols already fetched (resuming)", file=sys.stderr)
 
     todo = [s for s in symbols if s not in existing]
@@ -144,25 +150,30 @@ def main():
         out.to_csv(tmp, index=False)
         os.replace(tmp, args.out)
 
-    with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        futs = {ex.submit(fetch_chart, s): s for s in todo}
-        for i, fut in enumerate(as_completed(futs), start=1):
-            sym = futs[fut]
-            try:
-                r = fut.result(timeout=20)
-            except Exception:
-                r = None
-            if r is not None:
-                results.append(r)
-            else:
-                failed += 1
-            if i % 200 == 0:
-                rate = i / max(1.0, time.time() - start)
-                eta = (len(todo) - i) / rate if rate else 0
-                print(f"  {i:,}/{len(todo):,}  ok={i - failed} fail={failed}  "
-                      f"({rate:.1f}/s, ETA {eta/60:.1f}m)", file=sys.stderr)
-                sys.stderr.flush()
-                write_partial()
+    # Process in batches so a single bad symbol can't stall the pipeline
+    BATCH = 500
+    for batch_start in range(0, len(todo), BATCH):
+        batch = todo[batch_start:batch_start + BATCH]
+        with ThreadPoolExecutor(max_workers=args.workers) as ex:
+            futs = {ex.submit(fetch_chart, s): s for s in batch}
+            for fut in as_completed(futs, timeout=120):
+                sym = futs[fut]
+                try:
+                    r = fut.result(timeout=30)
+                except Exception:
+                    r = None
+                if r is not None:
+                    results.append(r)
+                else:
+                    failed += 1
+        # Per-batch progress + checkpoint
+        done_so_far = batch_start + len(batch)
+        rate = done_so_far / max(1.0, time.time() - start)
+        eta = (len(todo) - done_so_far) / rate if rate else 0
+        print(f"  {done_so_far:,}/{len(todo):,}  ok={done_so_far - failed} fail={failed}  "
+              f"({rate:.1f}/s, ETA {eta/60:.1f}m)", file=sys.stderr)
+        sys.stderr.flush()
+        write_partial()
 
     write_partial()
     elapsed = time.time() - start
