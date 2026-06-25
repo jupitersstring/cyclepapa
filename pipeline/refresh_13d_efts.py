@@ -27,14 +27,19 @@ def curl(url, timeout=20):
 
 def efts_sc13_search(cik, start="2025-01-01", end="2026-12-31"):
     """Hit efts.sec.gov for all SC 13D/G filings by this CIK in the date range.
+
+    NOTE: efts uses 'SCHEDULE 13D/A' form names whereas the submissions API
+    uses 'SC 13D/A'. The forms= query parameter on efts won't match either
+    exactly. Instead we fetch all filings for the CIK in the date range
+    and filter for SC 13 form patterns in Python.
+
     Returns list of (accession, form, file_date, primary_doc)."""
     cik_padded = str(cik).zfill(10)
     out = []
     page_from = 0
     while True:
         url = (f"https://efts.sec.gov/LATEST/search-index?"
-               f"q=&forms=SC+13D,SC+13D/A,SC+13G,SC+13G/A"
-               f"&dateRange=custom&startdt={start}&enddt={end}"
+               f"q=&dateRange=custom&startdt={start}&enddt={end}"
                f"&ciks={cik_padded}&hits=100&from={page_from}")
         body = curl(url)
         if not body: break
@@ -46,11 +51,16 @@ def efts_sc13_search(cik, start="2025-01-01", end="2026-12-31"):
         if not hits: break
         for h in hits:
             s = h.get("_source", {})
-            adsh = s.get("adsh", "")
             form = s.get("form", "")
+            # Match SCHEDULE 13D / 13G + amendments (efts format)
+            if not (form.startswith("SCHEDULE 13") or form.startswith("SC 13")):
+                continue
+            adsh = s.get("adsh", "")
             dt = s.get("file_date", "")
-            # primary_doc — use the _id which is e.g. "0001517137-26-000123:primary_doc.xml"
             doc = h.get("_id", ":").split(":")[1] if ":" in h.get("_id","") else ""
+            # Normalize form name to submissions-API style for storage consistency
+            if form.startswith("SCHEDULE "):
+                form = form.replace("SCHEDULE ", "SC ")
             out.append((adsh, form, dt, doc))
         if len(hits) < 100: break
         page_from += 100
