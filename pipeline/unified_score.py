@@ -44,6 +44,8 @@ def run():
       max_pct_book REAL, n_funds_5pct_book INTEGER,
       global_score REAL,        -- score using only signals that work cross-listing
       is_us INTEGER,            -- 1 if US-registered (no dot suffix), 0 otherwise
+      cat8k_ma INTEGER, cat8k_dir INTEGER, cat8k_ctrl INTEGER,
+      cat8k_pipe INTEGER, cat8k_bnk INTEGER, cat8k_n INTEGER,
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
       score REAL,
@@ -120,6 +122,26 @@ def run():
     for r in conn.execute("""SELECT ticker, bucket, vs_entry_pct, anchor_px, anchor_source
         FROM ticker_entry_intact"""):
         entry[r["ticker"]] = (r["bucket"], r["vs_entry_pct"], r["anchor_px"], r["anchor_source"])
+
+    # 8-K catalysts — count of each material item type in the last 180d
+    cat8k = {}     # ticker -> dict of has_ma/has_director/has_control/has_pipe/has_bankruptcy
+    for r in conn.execute("""SELECT ticker,
+            MAX(has_ma) AS ma, MAX(has_director) AS dir, MAX(has_control) AS ctrl,
+            MAX(has_pipe) AS pipe, MAX(has_bankruptcy) AS bnk,
+            SUM(has_ma + has_director + has_control + has_pipe + has_bankruptcy) AS event_count,
+            MAX(filed) AS latest
+        FROM catalysts_8k
+        WHERE filed >= date('now','-180 days')
+        GROUP BY ticker"""):
+        cat8k[r["ticker"]] = {
+            "ma":   r["ma"] or 0,
+            "dir":  r["dir"] or 0,
+            "ctrl": r["ctrl"] or 0,
+            "pipe": r["pipe"] or 0,
+            "bnk":  r["bnk"] or 0,
+            "n":    r["event_count"] or 0,
+            "latest": r["latest"],
+        }
     # pct_book — highest %-of-fund-book any single fund has assigned to this ticker
     pct_book_max = {}
     pct_book_n5 = {}
@@ -166,6 +188,12 @@ def run():
         mcap = meta.get("mcap_m") or 0
         e = entry.get(tkr, (None, None, None, None))
         entry_bucket, vs_entry_pct, anchor_px, anchor_src = e
+        c8 = cat8k.get(tkr, {})
+        c8_ma   = c8.get("ma",   0)
+        c8_dir  = c8.get("dir",  0)
+        c8_ctrl = c8.get("ctrl", 0)
+        c8_pipe = c8.get("pipe", 0)
+        c8_bnk  = c8.get("bnk",  0)
 
         # scoring
         smart_money       = math.log1p(n13f) * 2
@@ -187,24 +215,31 @@ def run():
         form4_recent_sell_penalty = -math.log1p(f4sell_30) * 1.5 if f4sell_30 > 0 else 0
         micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
         er_contribution   = er_pct * 0.5
-        # NEW: in-the-money / entry-intact bonus
-        # below smart-money entry = asymmetric setup. Cap at -50% (further
-        # below than that is more likely a busted thesis than discount).
+        # in-the-money / entry-intact bonus
         entry_bonus       = 0
         if entry_bucket == "BELOW_ENTRY" and vs_entry_pct:
-            # -10% → 1pt, -25% → 2.5pt, -50%+ → 5pt (caps)
             entry_bonus = min(abs(vs_entry_pct) / 10.0, 5.0)
         elif entry_bucket == "NEAR_ENTRY":
-            entry_bonus = 1.5    # still in money / near entry → modest bonus
+            entry_bonus = 1.5
         elif entry_bucket == "WELL_ABOVE":
-            entry_bonus = -3.0   # smart money already paid up — less attractive
+            entry_bonus = -3.0
+
+        # NEW: 8-K catalyst bonuses/penalties
+        #   M&A entry (1.01) or completion (2.01)  = +5  (takeover catalyst)
+        #   Control change (5.01)                  = +4  (often pre-takeover)
+        #   Director change (5.02)                 = +1  (could be activist)
+        #   PIPE / dilution (3.02)                 = -3  (counter-signal)
+        #   Bankruptcy (1.03)                      = -10 (counter-signal)
+        catalyst_8k = (5 * c8_ma + 4 * c8_ctrl + 1 * c8_dir
+                       - 3 * c8_pipe - 10 * c8_bnk)
 
         score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
                  activist_pct + max_pb_term + cluster_pct_book +
                  insider_cluster + insider_dollars +
                  form4_buying + form4_recent_bonus +
                  form4_selling + form4_recent_sell_penalty +
-                 micro_bonus + er_contribution + entry_bonus)
+                 micro_bonus + er_contribution + entry_bonus +
+                 catalyst_8k)
 
         # GLOBAL-FAIR score: drops the US-only terms (Form 4, insider clusters)
         # so foreign-exchange tickers (.L .T .TO .HK .AX etc.) — which can never
@@ -228,10 +263,10 @@ def run():
                       f"pb_n5={cluster_pct_book:.1f} clust={insider_cluster:.0f} "
                       f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4rec+={form4_recent_bonus:.1f} "
                       f"f4sell={form4_selling:.1f} f4recsell={form4_recent_sell_penalty:.1f} "
-                      f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f}")
+                      f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
@@ -240,6 +275,7 @@ def run():
              f4m_30, f4sell_30,
              max_pb, n5_pb,
              global_score, is_us,
+             c8_ma, c8_dir, c8_ctrl, c8_pipe, c8_bnk, c8.get("n", 0),
              er_pct,
              entry_bucket, vs_entry_pct, anchor_px, anchor_src,
              score, components))

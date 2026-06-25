@@ -479,6 +479,39 @@ def sheet_all_funds(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
 
+def sheet_catalysts(wb, conn):
+    """8-K material-event tickers: M&A, control change, director shuffle, PIPE, bankruptcy."""
+    ws = wb.create_sheet("Catalysts 8-K")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "8-K Material-Event Catalysts (≤180d)",
+                "M&A (1.01 / 2.01), Control change (5.01), Director change (5.02), PIPE/dilution (3.02), Bankruptcy (1.03). Cross-referenced with smart money.", 13)
+    hdr = ["Ticker","Score","Mcap","M&A","Ctrl","Director","PIPE","Bnk","Total Events","13F","Activist %","Name","Sector"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.score, us.mcap_m,
+               us.cat8k_ma, us.cat8k_ctrl, us.cat8k_dir, us.cat8k_pipe, us.cat8k_bnk, us.cat8k_n,
+               us.smart_money_n, us.activist_max_pct, tm.name, tm.sic_description
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.cat8k_n > 0
+        ORDER BY (us.cat8k_ma*5 + us.cat8k_ctrl*4 + us.cat8k_dir + us.smart_money_n*0.1) DESC LIMIT 200"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs or r[0] in MEGA: continue
+        out.append([r[0], round(r[1] or 0, 1), r[2] or "",
+                    "✓" if r[3] else "", "✓" if r[4] else "",
+                    "✓" if r[5] else "", "✓" if r[6] else "",
+                    "✓" if r[7] else "", r[8] or 0,
+                    r[9] or 0, round(r[10] or 0, 1),
+                    (r[11] or "")[:38], (r[12] or "")[:32]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
 def sheet_global_picks(wb, conn):
     """Foreign-exchange tickers — scored on a GLOBAL-FAIR formula.
 
@@ -682,6 +715,7 @@ def main():
         where_extra="AND us.mcap_bucket != 'unknown'", limit=400,
         subtitle="Top 100 ex-biotech, ex-ETF, ex-mega.")
     sheet_in_the_money(wb, conn)
+    sheet_catalysts(wb, conn)
     sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)

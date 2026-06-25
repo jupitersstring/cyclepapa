@@ -69,19 +69,57 @@ def recent_8k(cik, lookback_days=180):
             out.append((rec["accessionNumber"][i], rec["primaryDocument"][i], rec["filingDate"][i]))
     return out
 
+# SEC header uses descriptive item names — map them to standard codes.
+ITEM_DESC_TO_CODE = {
+    "entry into a material definitive agreement": "1.01",
+    "termination of a material definitive agreement": "1.02",
+    "bankruptcy or receivership": "1.03",
+    "mine safety": "1.04",
+    "completion of acquisition or disposition of assets": "2.01",
+    "results of operations and financial condition": "2.02",
+    "creation of a direct financial obligation": "2.03",
+    "costs associated with exit or disposal activities": "2.05",
+    "material impairments": "2.06",
+    "notice of delisting": "3.01",
+    "unregistered sales of equity securities": "3.02",
+    "material modification to rights of security holders": "3.03",
+    "changes in registrant's certifying accountant": "4.01",
+    "non-reliance on previously issued financial statements": "4.02",
+    "changes in control of registrant": "5.01",
+    "departure of directors or certain officers": "5.02",
+    "election of directors": "5.02",
+    "appointment of certain officers": "5.02",
+    "compensatory arrangements of certain officers": "5.02",
+    "amendments to articles of incorporation": "5.03",
+    "amendments to the registrant's code of ethics": "5.05",
+    "submission of matters to a vote of security holders": "5.07",
+    "shareholder director nominations": "5.08",
+    "regulation fd disclosure": "7.01",
+    "other events": "8.01",
+    "financial statements and exhibits": "9.01",
+}
+
 def parse_8k_items(cik, accession):
-    """Pull the 8-K txt header to extract the ITEM INFORMATION line(s)."""
+    """Parse 8-K item codes — two-pass:
+       1. Body text for explicit 'Item X.XX' references (cleanest signal)
+       2. SEC header 'ITEM INFORMATION:' descriptions mapped via lookup
+    """
     acc = accession.replace("-", "")
     body = curl(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/{accession}.txt")
     if not body: return []
     text = body.decode("utf-8", errors="replace")
     items = set()
-    # Standard EDGAR header format
-    for m in re.finditer(r"ITEM\s+INFORMATION:\s+Item\s+([0-9]+\.[0-9]+)", text, re.I):
+    # Pass 1: explicit Item X.XX in body
+    for m in re.finditer(r"\bItem\s+([0-9]+\.[0-9]+)\b", text):
         items.add(m.group(1))
-    # Alt format inside the primary doc
-    for m in re.finditer(r"Item\s+([0-9]+\.[0-9]+)\b", text[:3000]):
-        items.add(m.group(1))
+    # Pass 2: header descriptions
+    for m in re.finditer(r"ITEM\s+INFORMATION:\s*([^\n]+?)(?=\n|$)", text, re.I):
+        desc = m.group(1).strip().lower()
+        # Match longest description that's a prefix of `desc`
+        for k, code in sorted(ITEM_DESC_TO_CODE.items(), key=lambda x: -len(x[0])):
+            if k in desc:
+                items.add(code)
+                break
     return sorted(items)
 
 def init_schema(conn):
