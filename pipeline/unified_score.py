@@ -42,6 +42,8 @@ def run():
       form4_buy_usd_m REAL, form4_sell_usd_m REAL,
       form4_buy_30d_m REAL, form4_sell_30d_m REAL,
       max_pct_book REAL, n_funds_5pct_book INTEGER,
+      global_score REAL,        -- score using only signals that work cross-listing
+      is_us INTEGER,            -- 1 if US-registered (no dot suffix), 0 otherwise
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
       score REAL,
@@ -204,6 +206,15 @@ def run():
                  form4_selling + form4_recent_sell_penalty +
                  micro_bonus + er_contribution + entry_bonus)
 
+        # GLOBAL-FAIR score: drops the US-only terms (Form 4, insider clusters)
+        # so foreign-exchange tickers (.L .T .TO .HK .AX etc.) — which can never
+        # have those signals because SEC doesn't cover them — rank fairly.
+        # Used for the Global Picks sheet.
+        global_score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
+                        activist_pct + max_pb_term + cluster_pct_book +
+                        micro_bonus + er_contribution + entry_bonus)
+        is_us = 0 if "." in tkr else 1
+
         if not mcap or mcap <= 0:
             bucket = "unknown"
         elif mcap < 50:    bucket = "nano"
@@ -220,14 +231,15 @@ def run():
                       f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
              n13d, pct, ins_m, ins_n,
-             f4m_raw, f4sell_raw,                # show raw 180d sums in table
-             f4m_30, f4sell_30,                  # show ≤30d sums separately
+             f4m_raw, f4sell_raw,
+             f4m_30, f4sell_30,
              max_pb, n5_pb,
+             global_score, is_us,
              er_pct,
              entry_bucket, vs_entry_pct, anchor_px, anchor_src,
              score, components))

@@ -413,6 +413,56 @@ def sheet_all_funds(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
 
+def sheet_global_picks(wb, conn):
+    """Foreign-exchange tickers — scored on a GLOBAL-FAIR formula.
+
+    The standard unified_score includes US-only signals (Form 4 buys,
+    insider clusters) which SEC doesn't provide for foreign listings.
+    This sheet uses global_score (smart_money + sections + activist +
+    pct_book + micro_bonus + entry_bonus only) so foreign tickers rank
+    on the same footing as US tickers stripped of the same signals.
+    """
+    ws = wb.create_sheet("Global Picks")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Global Picks — non-US listings, fair-score",
+                "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 11)
+    hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","Name"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.global_score, tm.exchange, us.mcap_m,
+               us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
+               us.max_pct_book, us.activist_max_pct,
+               us.entry_bucket, us.vs_entry_pct, tm.name
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.is_us = 0
+          AND (us.s1_top + us.s3_new + us.s4_add + us.smart_money_n) >= 1
+        ORDER BY us.global_score DESC LIMIT 150"""))
+    out = []
+    for r in rows:
+        eb = r[10] or ""
+        eb_label = ("below" if eb == "BELOW_ENTRY" else
+                    "near"  if eb == "NEAR_ENTRY" else
+                    "above" if "ABOVE" in eb else "")
+        out.append([r[0], round(r[1] or 0, 1),
+                    (r[2] or "")[:14],
+                    r[3] or "", r[4] or 0,
+                    r[5] or 0, r[6] or 0, r[7] or 0,
+                    round(r[8] or 0, 1),
+                    round(r[9] or 0, 1),
+                    eb_label,
+                    round(r[11] or 0, 1) if r[11] else "",
+                    (r[12] or "")[:38]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 10
+
 def sheet_in_the_money(wb, conn):
     """Below-entry / in-the-money picks — buy below where smart money entered."""
     ws = wb.create_sheet("In The Money")
@@ -566,6 +616,7 @@ def main():
         where_extra="AND us.mcap_bucket != 'unknown'", limit=400,
         subtitle="Top 100 ex-biotech, ex-ETF, ex-mega.")
     sheet_in_the_money(wb, conn)
+    sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)
     sheet_fund_coverage(wb, conn)
