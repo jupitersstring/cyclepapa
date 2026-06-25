@@ -39,13 +39,15 @@ def run():
       s1_top INTEGER, s2_thresh INTEGER, s3_new INTEGER, s4_add INTEGER,
       activist_filings INTEGER, activist_max_pct REAL,
       insider_cluster_dollars_m REAL, insider_n INTEGER,
-      form4_buy_usd_m REAL,
+      form4_buy_usd_m REAL, form4_sell_usd_m REAL,
+      max_pct_book REAL, n_funds_5pct_book INTEGER,
       expected_return_pct REAL,
       score REAL,
       components TEXT
     );
     CREATE INDEX idx_us_score ON unified_signal(score DESC);
     CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
+    CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
     """)
 
     # Per-ticker signals
@@ -70,6 +72,24 @@ def run():
           AND trans_date >= date('now','-180 days')
         GROUP BY ticker"""):
         f4[r["ticker"]] = r["usd_m"] or 0
+    f4_sell = {}
+    for r in conn.execute("""SELECT ticker, SUM(shares*price)/1e6 usd_m
+        FROM form4_transactions
+        WHERE code='S'
+          AND trans_date >= date('now','-180 days')
+        GROUP BY ticker"""):
+        f4_sell[r["ticker"]] = r["usd_m"] or 0
+    # pct_book — highest %-of-fund-book any single fund has assigned to this ticker
+    pct_book_max = {}
+    pct_book_n5 = {}
+    for r in conn.execute("""SELECT ticker, MAX(pct_book) AS m,
+        SUM(CASE WHEN pct_book >= 5 THEN 1 ELSE 0 END) AS n5
+        FROM fund_13f_holdings
+        WHERE ticker IS NOT NULL AND pct_book IS NOT NULL
+          AND pct_book <= 100
+        GROUP BY ticker"""):
+        pct_book_max[r["ticker"]] = r["m"] or 0
+        pct_book_n5[r["ticker"]] = r["n5"] or 0
     er = {r[0]: r[1] for r in conn.execute(
         "SELECT ticker, weighted_excess_12m FROM expected_return")}
     tm = {}
@@ -82,7 +102,7 @@ def run():
             tm[r["ticker"]] = {"ticker": r["ticker"], "name": r["name"], "exchange": None,
                                "sector": r["sector"], "mcap_m": r["mcap_m"], "price": r["price"]}
 
-    universe = set(sm) | set(s_by) | set(act) | set(cl)
+    universe = set(sm) | set(s_by) | set(act) | set(cl) | set(pct_book_max)
     print(f"scoring {len(universe)} tickers")
     n = 0
     for tkr in universe:
@@ -93,6 +113,9 @@ def run():
         n13d, pct = act.get(tkr, (0, 0))
         ins_n, ins_m = cl.get(tkr, (0, 0))
         f4m = f4.get(tkr, 0)
+        f4sell_m = f4_sell.get(tkr, 0)
+        max_pb = pct_book_max.get(tkr, 0)
+        n5_pb = pct_book_n5.get(tkr, 0)
         er_pct = er.get(tkr, 0) or 0
         meta = tm.get(tkr, {})
         mcap = meta.get("mcap_m") or 0
@@ -103,14 +126,22 @@ def run():
         s4_material_add   = 1.5 * s4
         s1_top_pick       = 2.0 * s1
         activist_pct      = 0.5 * min(pct, 30)
+        # NEW: conviction concentration via % of fund book
+        # max_pct_book of 10%+ = HIGH conviction; 20%+ = HYPER
+        max_pb_term       = 0.6 * min(max_pb, 25)   # caps at 15 points
+        cluster_pct_book  = 1.5 * n5_pb              # bonus per fund holding >=5%
         insider_cluster   = (5 if ins_n >= 1 else 0) + (5 if ins_n >= 3 else 0) + (5 if ins_n >= 5 else 0)
         insider_dollars   = math.log1p(ins_m) * 3 if ins_m > 0 else 0
         form4_buying      = math.log1p(f4m) * 2 if f4m > 0 else 0
+        # NEW: insider sells as counter-signal
+        form4_selling     = -math.log1p(f4sell_m) * 1.5 if f4sell_m > 0 else 0
         micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
         er_contribution   = er_pct * 0.5
 
         score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
-                 activist_pct + insider_cluster + insider_dollars + form4_buying +
+                 activist_pct + max_pb_term + cluster_pct_book +
+                 insider_cluster + insider_dollars +
+                 form4_buying + form4_selling +
                  micro_bonus + er_contribution)
 
         if not mcap or mcap <= 0:
@@ -122,14 +153,17 @@ def run():
         else:              bucket = "large"
 
         components = (f"sm={smart_money:.1f} s3*={s3_new_init:.1f} s4*={s4_material_add:.1f} "
-                      f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} clust={insider_cluster:.0f} "
-                      f"clust$={insider_dollars:.1f} f4={form4_buying:.1f} mic={micro_bonus:.0f} er={er_contribution:.1f}")
+                      f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} pb_max={max_pb_term:.1f} "
+                      f"pb_n5={cluster_pct_book:.1f} clust={insider_cluster:.0f} "
+                      f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4sell={form4_selling:.1f} "
+                      f"mic={micro_bonus:.0f} er={er_contribution:.1f}")
 
-        conn.execute("""INSERT INTO unified_signal VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+        conn.execute("""INSERT INTO unified_signal VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
-             n13d, pct, ins_m, ins_n, f4m,
+             n13d, pct, ins_m, ins_n, f4m, f4sell_m,
+             max_pb, n5_pb,
              er_pct, score, components))
         n += 1
     conn.commit()
