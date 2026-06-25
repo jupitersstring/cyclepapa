@@ -386,6 +386,71 @@ def sheet_fund_coverage(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 40
 
+def sheet_all_holdings_consolidated(wb, conn):
+    """Union view across 13F, fund_positions, and holder_13d — every disclosed
+    position across the 445-fund universe. Source column indicates origin.
+    Shows top 30 positions per fund to keep workbook navigable.
+    """
+    ws = wb.create_sheet("All Positions")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "All Fund Positions — consolidated view",
+                "Union of 13F-HR holdings + fund_positions (XLSX-classified) + 13D/G subjects across all 445 funds. Top 30 per fund.", 9)
+    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        WITH ranked AS (
+          SELECT h.fund, h.ticker, '13F-HR' AS source,
+                 h.value_k/1000.0 AS value_m,
+                 h.pct_book, NULL AS section,
+                 NULL AS act_pct,
+                 us.mcap_m, us.mcap_bucket,
+                 ROW_NUMBER() OVER (PARTITION BY h.fund ORDER BY h.value_k DESC) AS rn
+          FROM fund_13f_holdings h
+          LEFT JOIN unified_signal us ON us.ticker = h.ticker
+          WHERE h.ticker IS NOT NULL
+        )
+        SELECT fund, ticker, source, value_m, pct_book, section, act_pct, mcap_m, mcap_bucket
+        FROM ranked WHERE rn <= 30
+        UNION ALL
+        SELECT fp.fund, fp.ticker, 'XLSX' AS source,
+               fp.dollar_m AS value_m,
+               fp.pct_value AS pct_book,
+               fp.section,
+               us.activist_max_pct,
+               us.mcap_m, us.mcap_bucket
+        FROM fund_positions fp
+        LEFT JOIN unified_signal us ON us.ticker = fp.ticker
+        WHERE fp.ticker IS NOT NULL
+          AND fp.section IN (1,3,4)
+        UNION ALL
+        SELECT h.holder AS fund, h.subject_ticker AS ticker, 'SC 13D/G' AS source,
+               NULL AS value_m,
+               h.pct_class AS pct_book,
+               NULL AS section,
+               us.activist_max_pct,
+               us.mcap_m, us.mcap_bucket
+        FROM holder_13d h
+        LEFT JOIN unified_signal us ON us.ticker = h.subject_ticker
+        WHERE h.subject_ticker IS NOT NULL AND h.pct_class >= 5
+        ORDER BY fund, value_m DESC
+    """))
+    out = []
+    for r in rows[:6000]:  # cap for Excel sanity
+        out.append([(r[0] or "")[:45], r[1] or "", r[2],
+                    round(r[3] or 0, 1) if r[3] else "",
+                    round(r[4] or 0, 2),
+                    r[5] or "",
+                    round(r[6] or 0, 1) if r[6] else "",
+                    r[7] or "", r[8] or ""])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_NUM
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD
+    ws.freeze_panes = "A5"
+    autosize(ws)
+
 def sheet_all_funds(wb, conn):
     ws = wb.create_sheet("All Funds")
     ws.sheet_view.showGridLines = False
@@ -619,6 +684,7 @@ def main():
     sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)
+    sheet_all_holdings_consolidated(wb, conn)
     sheet_fund_coverage(wb, conn)
     sheet_all_funds(wb, conn)
 
