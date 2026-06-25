@@ -40,6 +40,7 @@ def run():
       activist_filings INTEGER, activist_max_pct REAL,
       insider_cluster_dollars_m REAL, insider_n INTEGER,
       form4_buy_usd_m REAL, form4_sell_usd_m REAL,
+      form4_buy_30d_m REAL, form4_sell_30d_m REAL,
       max_pct_book REAL, n_funds_5pct_book INTEGER,
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
@@ -67,20 +68,51 @@ def run():
     for r in conn.execute("""SELECT ticker, n_insiders, total_usd_m FROM insider_clusters
         WHERE DATE(window_end) >= DATE('now', '-180 days')"""):
         cl[r["ticker"]] = (r["n_insiders"], r["total_usd_m"] or 0)
-    f4 = {}
-    for r in conn.execute("""SELECT ticker, SUM(shares*price)/1e6 usd_m
+    # Form 4 buys (P-code, acquired) — time-decayed weighting:
+    #   ≤30 days   : weight 1.0
+    #   31–60 days : weight 0.6
+    #   61–120 days: weight 0.3
+    #   121–180    : weight 0.1
+    # Recent buying is much more informative than 6-month-old buying.
+    f4 = {}                   # weighted dollar exposure
+    f4_raw = {}               # unweighted 180d sum (for display)
+    f4_30 = {}                # ≤30d dollar exposure (very-recent signal)
+    for r in conn.execute("""
+        SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
+               julianday('now') - julianday(trans_date) AS days_old
         FROM form4_transactions
-        WHERE code='P' AND acquired=1
+        WHERE code='P' AND acquired=1 AND price IS NOT NULL
           AND trans_date >= date('now','-180 days')
-        GROUP BY ticker"""):
-        f4[r["ticker"]] = r["usd_m"] or 0
-    f4_sell = {}
-    for r in conn.execute("""SELECT ticker, SUM(shares*price)/1e6 usd_m
+        GROUP BY ticker, days_old"""):
+        tk = r["ticker"]; d = r["days_old"] or 0; u = r["usd_m"] or 0
+        if   d <= 30:  w = 1.0
+        elif d <= 60:  w = 0.6
+        elif d <= 120: w = 0.3
+        else:          w = 0.1
+        f4[tk] = f4.get(tk, 0) + u * w
+        f4_raw[tk] = f4_raw.get(tk, 0) + u
+        if d <= 30:
+            f4_30[tk] = f4_30.get(tk, 0) + u
+
+    f4_sell = {}              # weighted dollar exposure
+    f4_sell_raw = {}
+    f4_sell_30 = {}
+    for r in conn.execute("""
+        SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
+               julianday('now') - julianday(trans_date) AS days_old
         FROM form4_transactions
-        WHERE code='S'
+        WHERE code='S' AND price IS NOT NULL
           AND trans_date >= date('now','-180 days')
-        GROUP BY ticker"""):
-        f4_sell[r["ticker"]] = r["usd_m"] or 0
+        GROUP BY ticker, days_old"""):
+        tk = r["ticker"]; d = r["days_old"] or 0; u = r["usd_m"] or 0
+        if   d <= 30:  w = 1.0
+        elif d <= 60:  w = 0.6
+        elif d <= 120: w = 0.3
+        else:          w = 0.1
+        f4_sell[tk] = f4_sell.get(tk, 0) + u * w
+        f4_sell_raw[tk] = f4_sell_raw.get(tk, 0) + u
+        if d <= 30:
+            f4_sell_30[tk] = f4_sell_30.get(tk, 0) + u
     # entry-intact / in-the-money — current price vs smart-money entry anchor
     entry = {}
     for r in conn.execute("""SELECT ticker, bucket, vs_entry_pct, anchor_px, anchor_source
@@ -119,8 +151,12 @@ def run():
         s3 = sec_counts.get(3, 0); s4 = sec_counts.get(4, 0)
         n13d, pct = act.get(tkr, (0, 0))
         ins_n, ins_m = cl.get(tkr, (0, 0))
-        f4m = f4.get(tkr, 0)
-        f4sell_m = f4_sell.get(tkr, 0)
+        f4m = f4.get(tkr, 0)               # time-decayed (recent buys weighted more)
+        f4m_raw = f4_raw.get(tkr, 0)       # raw 180d sum for display
+        f4m_30 = f4_30.get(tkr, 0)         # ≤30d buys
+        f4sell_m = f4_sell.get(tkr, 0)     # time-decayed sells
+        f4sell_raw = f4_sell_raw.get(tkr, 0)
+        f4sell_30 = f4_sell_30.get(tkr, 0)
         max_pb = pct_book_max.get(tkr, 0)
         n5_pb = pct_book_n5.get(tkr, 0)
         er_pct = er.get(tkr, 0) or 0
@@ -140,8 +176,13 @@ def run():
         cluster_pct_book  = 1.5 * n5_pb
         insider_cluster   = (5 if ins_n >= 1 else 0) + (5 if ins_n >= 3 else 0) + (5 if ins_n >= 5 else 0)
         insider_dollars   = math.log1p(ins_m) * 3 if ins_m > 0 else 0
+        # form4_buying uses time-decayed sum: recent buys weight more
         form4_buying      = math.log1p(f4m) * 2 if f4m > 0 else 0
+        # extra kicker for very-recent (≤30d) buying — heaviest signal
+        form4_recent_bonus = math.log1p(f4m_30) * 2 if f4m_30 > 0 else 0
         form4_selling     = -math.log1p(f4sell_m) * 1.5 if f4sell_m > 0 else 0
+        # very-recent sells hit harder
+        form4_recent_sell_penalty = -math.log1p(f4sell_30) * 1.5 if f4sell_30 > 0 else 0
         micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
         er_contribution   = er_pct * 0.5
         # NEW: in-the-money / entry-intact bonus
@@ -159,7 +200,8 @@ def run():
         score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
                  activist_pct + max_pb_term + cluster_pct_book +
                  insider_cluster + insider_dollars +
-                 form4_buying + form4_selling +
+                 form4_buying + form4_recent_bonus +
+                 form4_selling + form4_recent_sell_penalty +
                  micro_bonus + er_contribution + entry_bonus)
 
         if not mcap or mcap <= 0:
@@ -173,15 +215,18 @@ def run():
         components = (f"sm={smart_money:.1f} s3*={s3_new_init:.1f} s4*={s4_material_add:.1f} "
                       f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} pb_max={max_pb_term:.1f} "
                       f"pb_n5={cluster_pct_book:.1f} clust={insider_cluster:.0f} "
-                      f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4sell={form4_selling:.1f} "
+                      f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4rec+={form4_recent_bonus:.1f} "
+                      f"f4sell={form4_selling:.1f} f4recsell={form4_recent_sell_penalty:.1f} "
                       f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
-             n13d, pct, ins_m, ins_n, f4m, f4sell_m,
+             n13d, pct, ins_m, ins_n,
+             f4m_raw, f4sell_raw,                # show raw 180d sums in table
+             f4m_30, f4sell_30,                  # show ≤30d sums separately
              max_pb, n5_pb,
              er_pct,
              entry_bucket, vs_entry_pct, anchor_px, anchor_src,
