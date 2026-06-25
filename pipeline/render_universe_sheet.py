@@ -35,14 +35,16 @@ def is_biotech(desc):
     return any(p in d for p in BIOTECH_PATTERNS)
 
 SIG_HDR = ["Ticker","Score","Mcap","Bucket","13F","S1","S3","S4","Act %",
-           "pB Max","pB ≥5%","13D","Clu $M","F4 Buy","F4 Sell","ER %",
-           "Name","Sector","Px"]
+           "pB Max","pB ≥5%","13D","Clu $M","F4 Buy","F4 Sell",
+           "Entry","vs Entry %","Anchor $",
+           "ER %","Name","Sector","Px"]
 
 def get_signal_rows(conn, where_extra="", limit=None, params=()):
     sql = """SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.smart_money_n,
         us.s1_top, us.s3_new, us.s4_add, us.activist_max_pct, us.max_pct_book,
         us.n_funds_5pct_book, us.activist_filings,
         us.insider_cluster_dollars_m, us.form4_buy_usd_m, us.form4_sell_usd_m,
+        us.entry_bucket, us.vs_entry_pct, us.anchor_px,
         us.expected_return_pct, tm.name, tm.sic_description, tm.price
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
@@ -52,6 +54,13 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
 
 def signal_row_to_cells(r):
     """Map a raw signal row to display values."""
+    # Friendly entry bucket label
+    eb = r[15] or ""
+    if eb == "BELOW_ENTRY":     eb_label = "below"
+    elif eb == "NEAR_ENTRY":    eb_label = "near"
+    elif eb == "MODERATELY_ABOVE": eb_label = "mod above"
+    elif eb == "WELL_ABOVE":    eb_label = "well above"
+    else:                       eb_label = ""
     return [
         r[0], round(r[1] or 0, 1),
         r[2] or "", r[3] or "",
@@ -63,22 +72,27 @@ def signal_row_to_cells(r):
         round(r[12] or 0, 1) if r[12] else "",
         round(r[13] or 0, 1) if r[13] else "",
         round(r[14] or 0, 1) if r[14] else "",
-        round(r[15] or 0, 1) if r[15] else "",
-        (r[16] or "")[:38],
-        (r[17] or "")[:32],
-        round(r[18] or 0, 2) if r[18] else "",
+        eb_label,
+        round(r[16] or 0, 1) if r[16] else "",
+        round(r[17] or 0, 2) if r[17] else "",
+        round(r[18] or 0, 1) if r[18] else "",
+        (r[19] or "")[:38],
+        (r[20] or "")[:32],
+        round(r[21] or 0, 2) if r[21] else "",
     ]
 
 def format_signal_row(ws, ridx):
     """Apply number formats to a signal row."""
-    ws.cell(row=ridx, column=3).number_format = NUMFMT_USD
-    ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
-    ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
-    ws.cell(row=ridx, column=13).number_format = NUMFMT_NUM
-    ws.cell(row=ridx, column=14).number_format = NUMFMT_NUM
-    ws.cell(row=ridx, column=15).number_format = NUMFMT_NUM
-    ws.cell(row=ridx, column=16).number_format = NUMFMT_PCT
-    ws.cell(row=ridx, column=19).number_format = NUMFMT_USD2
+    ws.cell(row=ridx, column=3).number_format = NUMFMT_USD     # mcap
+    ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT     # act
+    ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT    # pB max
+    ws.cell(row=ridx, column=13).number_format = NUMFMT_NUM    # Clu
+    ws.cell(row=ridx, column=14).number_format = NUMFMT_NUM    # F4 buy
+    ws.cell(row=ridx, column=15).number_format = NUMFMT_NUM    # F4 sell
+    ws.cell(row=ridx, column=17).number_format = NUMFMT_PCT    # vs entry
+    ws.cell(row=ridx, column=18).number_format = NUMFMT_USD2   # anchor
+    ws.cell(row=ridx, column=19).number_format = NUMFMT_PCT    # ER
+    ws.cell(row=ridx, column=22).number_format = NUMFMT_USD2   # px
 
 # ---- sheets -----------------------------------------------------------------
 def sheet_readme(wb, conn):
@@ -345,6 +359,47 @@ def sheet_all_funds(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
 
+def sheet_in_the_money(wb, conn):
+    """Below-entry / in-the-money picks — buy below where smart money entered."""
+    ws = wb.create_sheet("In The Money")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "In The Money — buy below smart-money entry",
+                "Current price below the smart-money cost anchor (cost_basis / raw_text / Form-4 P-buy avg / 80th-pctl). Asymmetric setup.", 14)
+    hdr = ["Ticker","Score","Mcap","Bucket","Now $","Anchor $","vs Entry %",
+           "13F","S1","S3","S4","Act %","pB Max","Anchor Src","Name"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.price,
+               us.anchor_px, us.vs_entry_pct,
+               us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
+               us.activist_max_pct, us.max_pct_book,
+               us.anchor_source, tm.name
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.entry_bucket = 'BELOW_ENTRY'
+        ORDER BY us.score DESC LIMIT 100"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs: continue
+        out.append([r[0], round(r[1] or 0, 1), r[2] or "", r[3] or "",
+                    round(r[4] or 0, 2) if r[4] else "",
+                    round(r[5] or 0, 2) if r[5] else "",
+                    round(r[6] or 0, 1) if r[6] else "",
+                    r[7] or 0, r[8] or 0, r[9] or 0, r[10] or 0,
+                    round(r[11] or 0, 1), round(r[12] or 0, 1),
+                    (r[13] or "")[:18], (r[14] or "")[:38]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=3).number_format = NUMFMT_USD
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD2
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_USD2
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
 def sheet_bill_miller(wb, conn):
     ws = wb.create_sheet("Bill Miller")
     ws.sheet_view.showGridLines = False
@@ -455,8 +510,7 @@ def main():
     write_signal_sheet(wb, conn, "Non-Biotech Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=400,
         subtitle="Top 100 ex-biotech, ex-ETF, ex-mega.")
-    # filter biotech in post-processing for the non-biotech sheet
-    # (signal sheet writes all; we need to overwrite)
+    sheet_in_the_money(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)
     sheet_fund_coverage(wb, conn)

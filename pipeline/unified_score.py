@@ -42,12 +42,14 @@ def run():
       form4_buy_usd_m REAL, form4_sell_usd_m REAL,
       max_pct_book REAL, n_funds_5pct_book INTEGER,
       expected_return_pct REAL,
+      entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
       score REAL,
       components TEXT
     );
     CREATE INDEX idx_us_score ON unified_signal(score DESC);
     CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
     CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
+    CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
     """)
 
     # Per-ticker signals
@@ -79,6 +81,11 @@ def run():
           AND trans_date >= date('now','-180 days')
         GROUP BY ticker"""):
         f4_sell[r["ticker"]] = r["usd_m"] or 0
+    # entry-intact / in-the-money — current price vs smart-money entry anchor
+    entry = {}
+    for r in conn.execute("""SELECT ticker, bucket, vs_entry_pct, anchor_px, anchor_source
+        FROM ticker_entry_intact"""):
+        entry[r["ticker"]] = (r["bucket"], r["vs_entry_pct"], r["anchor_px"], r["anchor_source"])
     # pct_book — highest %-of-fund-book any single fund has assigned to this ticker
     pct_book_max = {}
     pct_book_n5 = {}
@@ -119,6 +126,8 @@ def run():
         er_pct = er.get(tkr, 0) or 0
         meta = tm.get(tkr, {})
         mcap = meta.get("mcap_m") or 0
+        e = entry.get(tkr, (None, None, None, None))
+        entry_bucket, vs_entry_pct, anchor_px, anchor_src = e
 
         # scoring
         smart_money       = math.log1p(n13f) * 2
@@ -126,23 +135,32 @@ def run():
         s4_material_add   = 1.5 * s4
         s1_top_pick       = 2.0 * s1
         activist_pct      = 0.5 * min(pct, 30)
-        # NEW: conviction concentration via % of fund book
         # max_pct_book of 10%+ = HIGH conviction; 20%+ = HYPER
-        max_pb_term       = 0.6 * min(max_pb, 25)   # caps at 15 points
-        cluster_pct_book  = 1.5 * n5_pb              # bonus per fund holding >=5%
+        max_pb_term       = 0.6 * min(max_pb, 25)
+        cluster_pct_book  = 1.5 * n5_pb
         insider_cluster   = (5 if ins_n >= 1 else 0) + (5 if ins_n >= 3 else 0) + (5 if ins_n >= 5 else 0)
         insider_dollars   = math.log1p(ins_m) * 3 if ins_m > 0 else 0
         form4_buying      = math.log1p(f4m) * 2 if f4m > 0 else 0
-        # NEW: insider sells as counter-signal
         form4_selling     = -math.log1p(f4sell_m) * 1.5 if f4sell_m > 0 else 0
         micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
         er_contribution   = er_pct * 0.5
+        # NEW: in-the-money / entry-intact bonus
+        # below smart-money entry = asymmetric setup. Cap at -50% (further
+        # below than that is more likely a busted thesis than discount).
+        entry_bonus       = 0
+        if entry_bucket == "BELOW_ENTRY" and vs_entry_pct:
+            # -10% → 1pt, -25% → 2.5pt, -50%+ → 5pt (caps)
+            entry_bonus = min(abs(vs_entry_pct) / 10.0, 5.0)
+        elif entry_bucket == "NEAR_ENTRY":
+            entry_bonus = 1.5    # still in money / near entry → modest bonus
+        elif entry_bucket == "WELL_ABOVE":
+            entry_bonus = -3.0   # smart money already paid up — less attractive
 
         score = (smart_money + s3_new_init + s4_material_add + s1_top_pick +
                  activist_pct + max_pb_term + cluster_pct_book +
                  insider_cluster + insider_dollars +
                  form4_buying + form4_selling +
-                 micro_bonus + er_contribution)
+                 micro_bonus + er_contribution + entry_bonus)
 
         if not mcap or mcap <= 0:
             bucket = "unknown"
@@ -156,15 +174,18 @@ def run():
                       f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} pb_max={max_pb_term:.1f} "
                       f"pb_n5={cluster_pct_book:.1f} clust={insider_cluster:.0f} "
                       f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4sell={form4_selling:.1f} "
-                      f"mic={micro_bonus:.0f} er={er_contribution:.1f}")
+                      f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f}")
 
-        conn.execute("""INSERT INTO unified_signal VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+        conn.execute("""INSERT INTO unified_signal VALUES
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
              n13d, pct, ins_m, ins_n, f4m, f4sell_m,
              max_pb, n5_pb,
-             er_pct, score, components))
+             er_pct,
+             entry_bucket, vs_entry_pct, anchor_px, anchor_src,
+             score, components))
         n += 1
     conn.commit()
     print(f"wrote {n} unified_signal rows")
