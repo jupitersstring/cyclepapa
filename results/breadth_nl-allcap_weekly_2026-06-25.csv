@@ -1,6 +1,6 @@
 symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
 ABN.AS,Financials,Large Cap,weekly,2,0,2,0.974536948087538,,,▲,▲,,
-AD.AS,Consumer Staples,Large Cap,weekly,0,1,-1,-0.22430142654084073,,▼,,,,
+AD.AS,Consumer Staples,Large Cap,weekly,0,1,-1,-0.22430142624121518,,▼,,,,
 ADYEN.AS,Information Technology,Large Cap,weekly,1,1,0,0.07085980013777271,▲,▼,,,,
 AKZA.AS,Materials,Large Cap,weekly,1,1,0,0.12637519659653018,▼,,▲,±,,
 AMG.AS,Materials,Small Cap,weekly,0,1,-1,-0.19767337641617738,▼,,,,,
@@ -26,7 +26,7 @@ HOLCO.AS,Materials,Micro Cap,weekly,1,1,0,0.5530972646679402,▲,,▼,,,▼
 HYDRA.AS,Industrials,Micro Cap,weekly,1,1,0,-0.16747519939294453,▼,,,▲,,
 INGA.AS,Financials,Large Cap,weekly,2,0,2,0.9194002126164611,,,▲,▲,,
 KENDR.AS,Consumer Discretionary,Small Cap,weekly,0,1,-1,-0.5049791035374811,▼,,,,▼,
-KPN.AS,Communication Services,Large Cap,weekly,1,1,0,0.16325474210117,,▲,▼,,,
+KPN.AS,Communication Services,Large Cap,weekly,1,1,0,0.16325472294427448,,▲,▼,,,
 LIGHT.AS,Industrials,Mid Cap,weekly,1,0,1,0.47570628630836775,,,,▲,,▲
 NN.AS,Financials,Large Cap,weekly,2,1,1,0.2236676990410806,▲,,▼,▲,,
 NSI.AS,Real Estate,Small Cap,weekly,0,1,-1,-0.2523405977391504,,▼,,,,
