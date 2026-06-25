@@ -1000,6 +1000,13 @@ CREATIVE_MEASURES = [
     ('pre_rerate_setups.csv', 'Segment Inflection',
      'A small, fast-growing revenue segment will (if growth persists) come to dominate consolidated results.',
      None),
+    ('results_xbrl_segments/screener.csv', 'True Segment Inflection (XBRL)',
+     'TRUE axis-level segment revenue inflection from raw 10-K XBRL filings via edgartools. '
+     'Captures the EVC/Smadex archetype at the FULL granularity of company segment reporting: '
+     'Apple iPhone vs Mac vs Services, NBIX''s CRENESSITY drug launch, GH''s Screening segment, '
+     'geographic shifts (MRVL Taiwan, FTAI Africa). Growth capped at 5x for ranking sanity; '
+     'raw seg_growth shown unchanged.',
+     None),
     ('results_revenue_decomp/all.csv', 'Revenue Disaggregation',
      'Every revenue-flavored XBRL tag we extracted from SEC companyfacts, per ticker. '
      'Use this to spot business-mix shifts: a Services-line growing faster than Product, '
@@ -1022,6 +1029,22 @@ EXTRA_COLUMN_LABELS = {
     'fwd_growth_avg_pct': 'Fwd Growth (Avg)',
     'extras_composite': 'Extras Composite',
     'n_signals': 'Signals',
+    # XBRL segment screener
+    'axis': 'Segment Axis',
+    'segment': 'Segment',
+    'seg_growth': 'Segment YoY',
+    'seg_growth_capped': 'Segment YoY (capped)',
+    'excess_growth': 'Excess YoY (vs Total)',
+    'years_to_dominate': 'Years to Dominate',
+    'seg_revenue_now_M': 'Segment Revenue ($M)',
+    'total_revenue_now_M': 'Total Revenue ($M)',
+    'seg_score': 'Segment Score',
+    'fiscal_year': 'FY',
+    # Revenue disaggregation table
+    'tag': 'XBRL Tag',
+    'ltm_M': 'LTM Value ($M)',
+    'yoy_pct': 'YoY',
+    'share_of_total_pct': 'Share of Total',
 }
 COLUMN_LABELS.update(EXTRA_COLUMN_LABELS)
 
