@@ -132,8 +132,8 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     ws.hide_gridlines(2)
     ws.set_default_row(15)
 
-    # Column widths sized for the wide row (segment name takes space)
-    widths = [8, 28, 11, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+    # Column widths sized for wide rows — segment names take 28 chars, backlog concepts 28
+    widths = [8, 28, 11, 8, 9, 9, 9, 9, 9, 9, 9, 9, 28, 9, 28, 9, 9, 28, 9, 7, 8, 8]
     for c, w in enumerate(widths): ws.set_column(c, c, w)
 
     ws.set_row(0, 28)
@@ -201,23 +201,26 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         ws.set_row(row[0], 22)
         for c, h in enumerate(headers): ws.write(row[0], c, h, S['header'])
         row[0] += 1
-        if 'seg_mix_shift_pp' in dfsub.columns:
-            dfsub = dfsub.sort_values('seg_mix_shift_pp', ascending=False)
-        for _, r in dfsub.head(40).iterrows():
+        # Sort by FASTEST-segment growth (the actual "new segment compounding" signal)
+        # so cases like EVC (Smadex inside Digital Advertising) surface even with small mix-shift.
+        if 'seg_rev_growth_fastest' in dfsub.columns:
+            dfsub = dfsub.sort_values('seg_rev_growth_fastest', ascending=False)
+        # Show ALL — was capped at 40 which hid most names
+        for _, r in dfsub.iterrows():
             wt(ws, row[0], 0, r.get('ticker'), S['text_l_b'], S['em'])
             wt(ws, row[0], 1, str(r.get('name',''))[:24] if pd.notna(r.get('name')) else None, S['text_l'], S['em'])
             wt(ws, row[0], 2, REGION_FULLNAME.get(r.get('region',''), r.get('region','')), S['text_l'], S['em'])
             wt(ws, row[0], 3, r.get('cap_tier'), S['text_l'], S['em'])
             wn(ws, row[0], 4, r.get('mktCap_M'), S['money'], S['em'])
-            wt(ws, row[0], 5, str(r.get('largest_segment',''))[:22] if pd.notna(r.get('largest_segment')) else None, S['text_l'], S['em'])
+            wt(ws, row[0], 5, str(r.get('largest_segment',''))[:28] if pd.notna(r.get('largest_segment')) else None, S['text_l'], S['em'])
             wn(ws, row[0], 6, r.get('largest_segment_pct'), S['pct'], S['em'])
-            wt(ws, row[0], 7, str(r.get('seg_fastest_name',''))[:22] if pd.notna(r.get('seg_fastest_name')) else None, S['text_l'], S['em'])
+            wt(ws, row[0], 7, str(r.get('seg_fastest_name',''))[:28] if pd.notna(r.get('seg_fastest_name')) else None, S['text_l'], S['em'])
             wn(ws, row[0], 8, r.get('seg_rev_growth_fastest'), S['pct'], S['em'])
-            wt(ws, row[0], 9, str(r.get('seg_slowest_name',''))[:22] if pd.notna(r.get('seg_slowest_name')) else None, S['text_l'], S['em'])
+            wt(ws, row[0], 9, str(r.get('seg_slowest_name',''))[:28] if pd.notna(r.get('seg_slowest_name')) else None, S['text_l'], S['em'])
             wn(ws, row[0],10, r.get('seg_rev_growth_slowest'), S['pct'], S['em'])
-            wt(ws, row[0],11, str(r.get('seg_mix_gainer',''))[:22] if pd.notna(r.get('seg_mix_gainer')) else None, S['text_l'], S['em'])
+            wt(ws, row[0],11, str(r.get('seg_mix_gainer',''))[:28] if pd.notna(r.get('seg_mix_gainer')) else None, S['text_l'], S['em'])
             wn(ws, row[0],12, r.get('seg_mix_shift_pp'), S['pct'], S['em'])
-            wt(ws, row[0],13, str(r.get('seg_margin_best_name',''))[:22] if pd.notna(r.get('seg_margin_best_name')) else None, S['text_l'], S['em'])
+            wt(ws, row[0],13, str(r.get('seg_margin_best_name',''))[:28] if pd.notna(r.get('seg_margin_best_name')) else None, S['text_l'], S['em'])
             wn(ws, row[0],14, r.get('seg_margin_best'), S['pct'], S['em'])
             wn(ws, row[0],15, r.get('seg_margin_worst'), S['pct'], S['em'])
             wn(ws, row[0],16, r.get('seg_growth_dispersion'), S['pct'], S['em'])
@@ -225,7 +228,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             v = bool(r.get('seg_high_margin_growing', False))
             ws.write_string(row[0],18, '•' if v else EM_DASH, S['text_c_b'] if v else S['em'])
             wn(ws, row[0],19, r.get('latest_fy'), S['money'], S['em'])
-            wn(ws, row[0],20, r.get('ev_ebit'), S['ratio'], S['em'])
+            wn(ws, row[0],20, r.get('ev_valuation') if pd.notna(r.get('ev_valuation', np.nan)) else r.get('ev_ebit'), S['ratio'], S['em'])
             wn(ws, row[0],21, r.get('all_legs_score'), S['ratio'], S['em'])
             row[0] += 1
         row[0] += 1

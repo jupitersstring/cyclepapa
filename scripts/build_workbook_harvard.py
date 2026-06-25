@@ -142,11 +142,11 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             f"·  {n_ep} Episodic Pivot  ·  {n_seg} segment inflection  ·  {datetime.date.today().isoformat()}",
             S['subtitle'])
 
-        widths = [9, 32, 11, 4, 4, 4, 4, 4, 7, 7, 7, 5, 9, 7, 7, 13, 7, 22, 7]
+        widths = [9, 32, 11, 4, 4, 4, 4, 4, 7, 7, 7, 5, 9, 7, 7, 7, 7, 13, 7, 22, 7]
         for c, w in enumerate(widths): ws.set_column(c, c, w)
 
         headers = ['Ticker','Company','Cap','Q','QL','Qm','EP','Seg','Macro','Dalton %','TD %','Lens',
-                   'EV/EBITDA','FCF Yld %','Rev G %','Market Cap (M)','Score','Largest Segment','Seg %']
+                   'EV/EBITDA','P/B','P/E','FCF Yld %','Rev G %','Market Cap (M)','Score','Largest Segment','Seg %']
         ws.set_row(3, 22)
         for c, h in enumerate(headers):
             ws.write(3, c, h, S['header'])
@@ -178,13 +178,15 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             if r.get('compress_pass'): tags += 'C'
             write_text(ws, row,11, tags, cfmt, S['em'])
             write_num(ws, row,12, r.get('ev_valuation'), rfmt, S['em'])
-            write_num(ws, row,13, r.get('fcf_yield_pct'), pfmt, S['em'])
-            write_num(ws, row,14, r.get('rev_g_pct'), pfmt, S['em'])
-            write_num(ws, row,15, r.get('mktCap_M'), mfmt, S['em'])
-            write_num(ws, row,16, r.get('all_legs_score'), rfmt, S['em'])
+            write_num(ws, row,13, r.get('pb'), rfmt, S['em'])
+            write_num(ws, row,14, r.get('pe'), rfmt, S['em'])
+            write_num(ws, row,15, r.get('fcf_yield_pct'), pfmt, S['em'])
+            write_num(ws, row,16, r.get('rev_g_pct'), pfmt, S['em'])
+            write_num(ws, row,17, r.get('mktCap_M'), mfmt, S['em'])
+            write_num(ws, row,18, r.get('all_legs_score'), rfmt, S['em'])
             seg_name = str(r.get('largest_segment',''))[:28] if pd.notna(r.get('largest_segment')) else None
-            write_text(ws, row,17, seg_name, tfmt, S['em'])
-            write_num(ws, row,18, r.get('largest_segment_pct'), pfmt, S['em'])
+            write_text(ws, row,19, seg_name, tfmt, S['em'])
+            write_num(ws, row,20, r.get('largest_segment_pct'), pfmt, S['em'])
 
     # ─── Summary cover sheet ───
     ws = wb.add_worksheet('Summary')
@@ -222,7 +224,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     for r in range(3, 10): ws.set_row(r, 18)
 
     sum_headers = ['Ticker','Company','Region','Cap','Q','Qm','Dalton %','TD %','Fund %','Lens',
-                   'EV/EBITDA','FCF Y %','Rev G %','Market Cap (M)','Score']
+                   'EV/EBITDA','P/B','P/E','FCF Y %','Market Cap (M)','Score']
 
     def write_summary_row(row, r):
         qpass = bool(r.get('quality_pass', False))
@@ -247,10 +249,11 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         if r.get('compress_pass'): tags += 'C'
         write_text(ws, row, 9, tags, cfmt, S['em'])
         write_num(ws, row,10, r.get('ev_valuation'), rfmt, S['em'])
-        write_num(ws, row,11, r.get('fcf_yield_pct'), pfmt, S['em'])
-        write_num(ws, row,12, r.get('rev_g_pct'), pfmt, S['em'])
-        write_num(ws, row,13, r.get('mktCap_M'), mfmt, S['em'])
-        write_num(ws, row,14, r.get('all_legs_score'), rfmt, S['em'])
+        write_num(ws, row,11, r.get('pb'), rfmt, S['em'])
+        write_num(ws, row,12, r.get('pe'), rfmt, S['em'])
+        write_num(ws, row,13, r.get('fcf_yield_pct'), pfmt, S['em'])
+        write_num(ws, row,14, r.get('mktCap_M'), mfmt, S['em'])
+        write_num(ws, row,15, r.get('all_legs_score'), rfmt, S['em'])
 
     row = 11
     ws.set_row(row, 20)
@@ -271,21 +274,24 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         write_summary_row(row, r); row += 1
     row += 1
 
-    # Segment Inflection — surface specifics
+    # Segment Inflection — surface specifics. Sort by FASTEST segment growth (the actual
+    # "new segment compounding" signal), not just mix-shift, so names like EVC (Smadex
+    # rolled into "Digital Advertising") surface even when mix-shift is small.
     if 'seg_inflection_flag' in df.columns:
         seg = df[df['seg_inflection_flag']].copy()
-        if 'seg_mix_shift_pp' in seg.columns:
-            seg = seg.sort_values('seg_mix_shift_pp', ascending=False)
+        if 'seg_rev_growth_fastest' in seg.columns:
+            seg = seg.sort_values('seg_rev_growth_fastest', ascending=False)
         ws.set_row(row, 20)
         ws.merge_range(row, 0, row, 14,
-            f'SEGMENT INFLECTION — {len(seg)} NAMES (largest mix-shift first)', S['section']); row += 1
+            f'SEGMENT INFLECTION — {len(seg)} NAMES (fastest-growing segment first)', S['section']); row += 1
         seg_hdr = ['Ticker','Company','Cap','Largest Segment','Largest %','Fastest Segment',
                    'Fastest %','Slowest Segment','Slowest %','Mix Gainer','Mix Δ pp',
                    'Best Margin Segment','Best Margin %','Hi-Mgn ↑','Score']
         ws.set_row(row, 22)
         for c, h in enumerate(seg_hdr): ws.write(row, c, h, S['header'])
         row += 1
-        for _, r in seg.head(40).iterrows():
+        # Show ALL segment inflections, not just top 40 (was hiding EVC at rank 133)
+        for _, r in seg.iterrows():
             write_text(ws, row, 0, r.get('ticker'), S['text_l_b'], S['em'])
             write_text(ws, row, 1, str(r.get('name',''))[:26] if pd.notna(r.get('name')) else None, S['text_l'], S['em'])
             write_text(ws, row, 2, r.get('cap_tier'), S['text_l'], S['em'])
