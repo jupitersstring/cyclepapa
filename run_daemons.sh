@@ -22,18 +22,26 @@ mkdir -p "$LOG_DIR"
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*"; }
 
-# --- Self-heal: relaunch any fetcher that died ---
+# --- Self-heal: relaunch any FOREVER wrapper that died ---
+# The forever wrapper itself loops on the fetcher — so this check is just
+# the outer "wrapper alive?" gate. If the wrapper died (rare — only on
+# SIGKILL or the container restarting), we re-launch the wrapper which
+# in turn loops on the fetcher.
 restart_if_dead() {
-    local marker="$1"; shift
-    local script="$1"; shift
-    local logfile="$LOG_DIR/$(basename "$script" .py).log"
-    if pgrep -f "python3 $script" > /dev/null; then
-        log "ALIVE  $script"
-    else
-        log "DEAD   $script — relaunching: $*"
-        nohup python3 "$script" "$@" >> "$logfile" 2>&1 &
-        sleep 1
+    local tag="$1"; shift
+    local cmd="$1"; shift
+    local logfile="$LOG_DIR/$(basename "$cmd" .py).log"
+    if pgrep -f "forever.sh $tag " > /dev/null; then
+        log "ALIVE  forever($tag)"
+        return
     fi
+    if pgrep -f "python3 $cmd" > /dev/null; then
+        log "ALIVE  $cmd (forever wrapper missing — wrapping)"
+    else
+        log "DEAD   $tag — launching forever wrapper: $cmd $*"
+    fi
+    nohup bash "$(dirname "$0")/forever.sh" "$tag" python3 "$cmd" "$@" >> "$logfile" 2>&1 &
+    sleep 1
 }
 
 restart_if_dead edgar fill_edgar_gaps.py --sleep 0.3
