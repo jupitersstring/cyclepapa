@@ -33,6 +33,7 @@ INTERESTING_AXES = {
     "us-gaap:StatementBusinessSegmentsAxis",
     "us-gaap:SegmentAxis",
     "us-gaap:StatementGeographicalAxis",
+    "srt:StatementGeographicalAxis",
     "us-gaap:ProductOrServiceAxis",
     "srt:ProductOrServiceAxis",
     "srt:GeographicalAxis",

@@ -61,6 +61,10 @@ ARCHETYPE_LABELS = {
     'arch_low_sbc_quality': 'Low-SBC Quality',
     'arch_tax_efficient': 'Tax Efficient',
     'arch_strong_coverage': 'Strong Coverage',
+    'arch_diversified_segments': 'Diversified Segments',
+    'arch_concentrated_segments': 'Concentrated Segments',
+    'arch_geographic_global': 'Global Geographic Footprint',
+    'arch_fastest_segment': 'Fastest Segment Inflection',
 }
 
 
@@ -73,9 +77,13 @@ def _sheet_safe(s: str) -> str:
 def load_data():
     """Merge asymmetry_global + archetype_tags + verdicts + valuation."""
     df = pd.read_csv('asymmetry_global.csv').drop_duplicates('symbol')
+    # Strip any stale suffixed columns that prior merges left behind
+    df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
     arch = pd.read_csv('archetype_tags.csv')
     arch_cols = [c for c in arch.columns if c.startswith('arch_')]
-    df = df.merge(arch, on='symbol', how='left', suffixes=('', '_arch'))
+    # Drop overlapping columns from arch before merge to avoid suffix collision
+    overlap = [c for c in arch.columns if c != 'symbol' and c in df.columns]
+    df = df.merge(arch.drop(columns=overlap), on='symbol', how='left')
 
     # Verdicts
     frames = []

@@ -321,6 +321,8 @@ def main():
     verdicts = load_verdicts()
     print(f'loaded verdicts: {len(verdicts)} names', file=sys.stderr)
 
+    # Drop any pre-existing verdict/thesis so the merge wins
+    df = df.drop(columns=[c for c in ('verdict','thesis') if c in df.columns])
     df = df.merge(verdicts, on='symbol', how='left')
     df['verdict'] = df['verdict'].fillna('UNRESEARCHED')
     df['thesis']  = df['thesis'].fillna('')
@@ -328,6 +330,9 @@ def main():
     # Archetype tags - Yellowbrick taxonomy clusters C5/E/F/G + Narrative Lag (A)
     if os.path.exists('archetype_tags.csv'):
         tags = pd.read_csv('archetype_tags.csv')
+        # Drop any pre-existing archetype cols from asymmetry_global
+        overlap = [c for c in tags.columns if c != 'symbol' and c in df.columns]
+        df = df.drop(columns=overlap)
         df = df.merge(tags, on='symbol', how='left')
         for c in tags.columns:
             if c == 'symbol':

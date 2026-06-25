@@ -111,12 +111,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                      'pretax_income_ttm',
                                  })
 
+    # Segment signals from the edgartools dimensional harvest. Coverage
+    # is sparse (only US filers with multi-segment 10-K disclosures) but
+    # the signal is high-quality where it fires.
+    segment_signals = None
+    if os.path.exists('edgar_segment_signals.csv'):
+        segment_signals = pd.read_csv('edgar_segment_signals.csv')
+
     # Merge.  Asym is the primary - everything else is enrichment.
     df = asym.merge(yart, on='symbol', how='left', suffixes=('','_y'))
     if edgar_roiic is not None:
         df = df.merge(edgar_roiic, on='symbol', how='left', suffixes=('','_er'))
     if edgar_yart is not None:
         df = df.merge(edgar_yart, on='symbol', how='left', suffixes=('','_ey'))
+    if segment_signals is not None:
+        df = df.merge(segment_signals, on='symbol', how='left', suffixes=('','_seg'))
     df = df.merge(pew, on='symbol', how='left')
 
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
@@ -416,6 +425,46 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (interest_coverage >= 8.0)
     ).fillna(False).astype(int)
 
+    # ---------- AD-AG: Segment-level archetypes (edgartools dimensional) ----
+    # These fire only on names with multi-segment 10-K disclosure that the
+    # edgartools harvest has parsed. Coverage is narrower than the EDGAR
+    # multi-year fields (~10% of US filers) but the signal is unique —
+    # nothing else in the framework looks at segment / geographic mix.
+    segment_count = s('segment_count', 0)
+    segment_hhi = s('segment_revenue_hhi', np.nan)
+    largest_segment_share = s('largest_segment_share', np.nan)
+    geographic_region_count = s('geographic_region_count', 0)
+    fastest_segment_yoy = s('fastest_segment_yoy', np.nan)
+    customer_concentration_flag = s('customer_concentration_flag', 0)
+
+    # AD — Diversified Segments: 4+ segments AND HHI <= 0.40. Real
+    # diversification of revenue streams, lowers single-segment risk.
+    df['arch_diversified_segments'] = (
+        (segment_count >= 4) & (segment_hhi <= 0.40)
+    ).fillna(False).astype(int)
+
+    # AE — Concentrated Segment Risk: HHI >= 0.70 OR largest segment >= 70%.
+    # One bad year in the dominant segment sinks the whole business.
+    # FIRES as a NEGATIVE signal — kept for transparency, downstream
+    # consumers can flip the sign.
+    df['arch_concentrated_segments'] = (
+        ((segment_hhi >= 0.70) | (largest_segment_share >= 0.70))
+        & (segment_count >= 2)
+    ).fillna(False).astype(int)
+
+    # AF — Global Geographic Footprint: 4+ geographies reporting. Currency
+    # diversification + market diversification.
+    df['arch_geographic_global'] = (
+        (geographic_region_count >= 4)
+    ).astype(int)
+
+    # AG — Fastest Segment Inflection: a single segment growing > 25% YoY
+    # WITHIN a multi-segment business (i.e., a "hidden growth engine"
+    # the consolidated number masks).
+    df['arch_fastest_segment'] = (
+        (fastest_segment_yoy >= 0.25) & (segment_count >= 2)
+    ).fillna(False).astype(int)
+
     # Q — Durable Growth: revenue 5y CAGR >= 8% AND topline accelerating
     # (3y CAGR > 5y CAGR) AND asset base growing. Multi-cycle expansion
     # without the single-year base-effect noise.
@@ -550,6 +599,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_low_sbc_quality',
         'arch_tax_efficient',
         'arch_strong_coverage',
+        'arch_diversified_segments',
+        'arch_concentrated_segments',
+        'arch_geographic_global',
+        'arch_fastest_segment',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -582,6 +635,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_low_sbc_quality': 'LowSBCQuality',
         'arch_tax_efficient': 'TaxEfficient',
         'arch_strong_coverage': 'StrongCoverage',
+        'arch_diversified_segments': 'DiversifiedSegments',
+        'arch_concentrated_segments': 'ConcentratedSegments',
+        'arch_geographic_global': 'GeographicGlobal',
+        'arch_fastest_segment': 'FastestSegment',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

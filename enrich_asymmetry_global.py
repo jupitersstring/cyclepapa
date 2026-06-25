@@ -38,9 +38,9 @@ import pandas as pd
 
 
 EDGAR_REQUIRED_ARCHETYPES = {
-    # The 21 archetypes that can only fire when EDGAR multi-year + cap-
-    # allocation data is present. Non-EDGAR rows can't structurally
-    # match these.
+    # The 25 archetypes that can only fire when EDGAR multi-year + cap-
+    # allocation + segment data is present. Non-EDGAR rows can't
+    # structurally match these.
     "arch_durable_reinvestment", "arch_cash_reinvest", "arch_roic_inflect",
     "arch_cheap_per_roiic", "arch_tangible_value",
     "arch_lindy_margin", "arch_lindy_fcf", "arch_no_dilution", "arch_lindy_growth",
@@ -49,6 +49,9 @@ EDGAR_REQUIRED_ARCHETYPES = {
     "arch_cash_quality", "arch_capital_light_pivot",
     "arch_capital_returner", "arch_low_sbc_quality",
     "arch_tax_efficient", "arch_strong_coverage",
+    # NEW: segment-level archetypes (edgartools dimensional XBRL harvest)
+    "arch_diversified_segments", "arch_concentrated_segments",
+    "arch_geographic_global", "arch_fastest_segment",
 }
 
 
@@ -98,11 +101,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--asym', default='asymmetry_global.csv')
     ap.add_argument('--arch', default='archetype_tags.csv')
-    ap.add_argument('--total-archetypes', type=int, default=30)
+    ap.add_argument('--total-archetypes', type=int, default=34)
     args = ap.parse_args()
 
     print('loading asymmetry_global, archetype_tags, verdicts...', file=sys.stderr)
     df = pd.read_csv(args.asym)
+    # Drop stale suffixed columns from prior enrich runs
+    df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
     arch_df = pd.read_csv(args.arch)
     verdicts = load_verdicts()
     intrinsic_in = load_intrinsic_inputs()
@@ -115,6 +120,9 @@ def main():
 
     df = df.merge(arch_df[['symbol'] + arch_cols + ['archetype_count']],
                   on='symbol', how='left', suffixes=('', '_arch'))
+    # Drop any pre-existing verdict so the fresh merge wins
+    if 'verdict' in df.columns:
+        df = df.drop(columns=['verdict'])
     df = df.merge(verdicts, on='symbol', how='left')
     df['verdict'] = df['verdict'].fillna('UNRESEARCHED')
     mc = ['symbol'] + [c for c in intrinsic_in.columns
