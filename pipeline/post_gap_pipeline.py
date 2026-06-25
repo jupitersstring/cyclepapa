@@ -25,8 +25,8 @@ def run_step(cmd, label):
 
 def run():
     steps = [
-        (["python3", "pipeline/scan_insider_batch.py"], "Form 4 batch scan (expanded)"),
-        (["python3", "pipeline/ingest_8k.py", "600"], "8-K ingest"),
+        (["python3", "pipeline/scan_insider_sharded.py", "1500"], "Form 4 sharded scan (8 workers)"),
+        (["python3", "pipeline/ingest_8k_sharded.py", "1200"], "8-K sharded ingest (8 workers)"),
         (["python3", "pipeline/unified_score.py"], "Re-run unified_score"),
         (["python3", "pipeline/render_universe_sheet.py"], "Render universe workbook"),
         (["python3", "pipeline/render_style_workbook.py"], "Render style workbook"),
