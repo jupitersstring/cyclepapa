@@ -65,36 +65,67 @@ def _sec_name(ticker: str) -> str:
     return _SEC_TICKER_TO_NAME.get(ticker.upper(), '')
 
 
+_EDGAR_VAL_MAP = None
+def _edgar_val(ticker: str) -> dict:
+    """Lookup EDGAR-computed valuation (P/E, P/B, EV/EBITDA, market cap)
+    for US tickers. Built by edgar_valuation_fill.py. Used as a Yahoo-
+    independent fallback when yfinance info_metrics is empty."""
+    global _EDGAR_VAL_MAP
+    if _EDGAR_VAL_MAP is None:
+        try:
+            df = pd.read_csv('results_peg/edgar_valuation.csv')
+            _EDGAR_VAL_MAP = df.set_index(df['ticker'].str.upper()).to_dict('index')
+        except Exception:
+            _EDGAR_VAL_MAP = {}
+    return _EDGAR_VAL_MAP.get(ticker.upper(), {})
+
+
 def _company_info(ticker: str) -> dict:
-    """Get company info — prefer yfinance info_metrics (rich), fall back to
-    SEC ticker map (universal US coverage) for at least the company name.
-    Many XBRL-segment tickers are smaller/recently-listed and won't have
-    yfinance info, but they ALL have a SEC name."""
-    # Default: SEC-name-only entry
+    """Get company info — prefer yfinance info_metrics, fall back through:
+      1. EDGAR-computed valuation (US tickers — independent of Yahoo)
+      2. SEC ticker map (company name only)
+    """
+    sec_name = _sec_name(ticker)
     entry = {
-        'company': _sec_name(ticker)[:42],
-        'sector': '', 'industry': '', 'country': 'United States',
+        'company': sec_name[:42],
+        'sector': '', 'industry': '', 'country': 'United States' if sec_name else '',
         'market_cap': None, 'priceToBook': None, 'trailingPE': None,
         'enterpriseToEbitda': None,
     }
+    # First try yfinance
     p = YF_CACHE / f'{_safe(ticker)}__info_metrics.parquet'
-    if not p.exists():
-        return entry
-    try:
-        d = pd.read_parquet(p)
-        if d.empty: return entry
-        r = d.iloc[0]
-        entry['company'] = (r.get('longName') or r.get('shortName') or entry['company'])[:42]
-        entry['sector'] = r.get('sector') or entry['sector']
-        entry['industry'] = r.get('industry') or entry['industry']
-        entry['country'] = r.get('country') or entry['country']
-        entry['market_cap'] = r.get('marketCap')
-        entry['priceToBook'] = r.get('priceToBook')
-        entry['trailingPE'] = r.get('trailingPE')
-        entry['enterpriseToEbitda'] = r.get('enterpriseToEbitda')
-        return entry
-    except Exception:
-        return entry
+    if p.exists():
+        try:
+            d = pd.read_parquet(p)
+            if not d.empty:
+                r = d.iloc[0]
+                name = r.get('longName') or r.get('shortName') or sec_name
+                entry['company'] = (str(name)[:42]) if name else entry['company']
+                if r.get('sector'):   entry['sector'] = str(r.get('sector'))
+                if r.get('industry'): entry['industry'] = str(r.get('industry'))
+                if r.get('country'):  entry['country'] = str(r.get('country'))
+                if pd.notna(r.get('marketCap')):           entry['market_cap'] = r.get('marketCap')
+                if pd.notna(r.get('priceToBook')):         entry['priceToBook'] = r.get('priceToBook')
+                if pd.notna(r.get('trailingPE')):          entry['trailingPE'] = r.get('trailingPE')
+                if pd.notna(r.get('enterpriseToEbitda')):  entry['enterpriseToEbitda'] = r.get('enterpriseToEbitda')
+        except Exception:
+            pass
+    # Fall back to EDGAR for any field still empty
+    ed = _edgar_val(ticker)
+    if ed:
+        if entry['market_cap'] is None:
+            v = ed.get('marketCap_edgar')
+            if v is not None and pd.notna(v): entry['market_cap'] = v
+        if entry['priceToBook'] is None:
+            v = ed.get('priceToBook_edgar')
+            if v is not None and pd.notna(v): entry['priceToBook'] = v
+        if entry['trailingPE'] is None:
+            v = ed.get('trailingPE_edgar')
+            if v is not None and pd.notna(v): entry['trailingPE'] = v
+        if entry['enterpriseToEbitda'] is None:
+            v = ed.get('enterpriseToEbitda_edgar')
+            if v is not None and pd.notna(v): entry['enterpriseToEbitda'] = v
+    return entry
 
 
 def years_to_dominate(s_now: float, t_now: float, s_g: float, t_g: float,

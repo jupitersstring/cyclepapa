@@ -1113,6 +1113,15 @@ def build_creative_measures(wb):
         }
     except Exception:
         pass
+    # Pre-load EDGAR-derived valuations for Yahoo-independent fallback.
+    # Built by edgar_valuation_fill.py — has marketCap / EV / P/E / P/B /
+    # EV/EBITDA computed from XBRL companyfacts + cached prices.
+    _edgar_val_map = {}
+    try:
+        _edgar_df = pd.read_csv('results_peg/edgar_valuation.csv')
+        _edgar_val_map = _edgar_df.set_index(_edgar_df['ticker'].str.upper()).to_dict('index')
+    except Exception:
+        pass
 
     def _enrich_with_company_info(df: pd.DataFrame) -> pd.DataFrame:
         """Prepend company / sector / industry / country columns by joining
