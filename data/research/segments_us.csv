@@ -674,3 +674,53 @@ OUT,OUTFRONT Media Inc.,True,2.0,2025.0,United States,100.0,1.9877505567928777,U
 KMX,CARMAX INC,True,8.0,2026.0,Used vehicle sales,77.95928511715131,50.0,"Third-party finance fees, net",-37.91469194312796,Other,23.206093846750253,0.9657508326671893,Used vehicle sales,False,,,,
 OZK,Bank OZK,False,,,,,,,,,,,,,,,,
 PATH,"UiPath, Inc.",True,6.0,2026.0,Subscription services,29.631460127209465,22.564418690666987,Professional services and other,2.6528666560734937,Asia-Pacific,7.508000938475662,1.5847652394596123,Subscription services,False,,,,
+LOAR,Loar Holdings Inc.,True,7.0,2025.0,United States,26.50502859072456,37.877186670863885,Defense,-8.853085565549733,Other,13.916562578847664,1.0363638056336943,United States,False,,,,
+GVA,GRANITE CONSTRUCTION INC,True,11.0,2025.0,Construction,36.482849952141514,489.9686520376176,Other,-100.0,Line Item Joint Venture,145.60235135545025,1.3357367201379269,Materials,False,,,,
+MGY,Magnolia Oil & Gas Corp,True,3.0,2025.0,Oil revenues,69.97983755702846,110.74249255070505,Natural gas revenues,-12.291112331908183,Oil revenues,52.93673945413913,7.642079268006284,Natural gas revenues,True,,,,
+LYFT,"Lyft, Inc.",True,2.0,2025.0,United States,95.94632014098214,82.76371579082615,International,7.3380043153270735,United States,37.71285573774954,1.6324283450227364,International,False,,,,
+SIGI,SELECTIVE INSURANCE GROUP INC,True,1.0,2025.0,Parent Company,100.0,-69.28932846202058,Parent Company,-69.28932846202058,Parent Company,0.0,0.0,Parent Company,False,,,,
+USAR,"USA Rare Earth, Inc.",False,,,,,,,,,,,,,,,,
+GNTX,GENTEX CORP,True,13.0,2025.0,Automotive Products,44.50799954850096,3884.7077467713793,Biometrics,-8.344741639851927,Fire Protection Products,1279.0865206670962,2.9850602696387436,Premium Audio Products,False,,,,
+UWMC,UWM Holdings Corp,False,,,,,,,,,,,,,,,,
+GBTG,"Global Business Travel Group, Inc.",True,7.0,2025.0,Travel revenue,38.177951081176886,25.469728601252605,United States,1.0309278350515427,Commercial and Operating Agreements with Expedia,7.589890623807219,1.1652238407456619,United States,False,,,,
+NAVN,"Navan, Inc.",True,5.0,2026.0,Usage-based revenue,45.59503890981325,38.00454074798849,United States,12.768522239050473,United Kingdom,8.60387031086413,1.6164898978508313,United States,False,,,,
+XXI,"Twenty One Capital, Inc.",False,,,,,,,,,,,,,,,,
+UNF,UNIFIRST CORP,True,6.0,2025.0,United States,46.06936220981879,12.071838353159547,First Aid & Safety Solutions,-6.25,Served as an Senior Officer,6.243499070401484,0.1086637916360711,Uniforms & Facility Service Solutions,False,16.867085349531553,Other,16.867085349531553,False
+LGND,LIGAND PHARMACEUTICALS INC,True,19.0,2025.0,Development and Licensing of Biopharmaceutical Assets,29.757356450699845,1506.8690095846644,Capvaxive,-73.31688403242862,Contract revenue,400.2237695835818,5.890932501581734,Income from Pelthos Transaction,False,46.422616538660954,Development and Licensing of Biopharmaceutical Assets,46.422616538660954,True
+MRP,"Millrose Properties, Inc.",False,,,,,,,,,,,,,,,,
+PI,IMPINJ INC,True,7.0,2025.0,Endpoint ICs,31.345705473365047,13.425627524851347,Americas,-43.518558434280294,"Europe, Middle East and Africa",16.591307777171124,1.7974112207018735,Americas,False,,,,
+IBOC,INTERNATIONAL BANCSHARES CORP,True,3.0,2025.0,Service charges on deposit accounts,51.69413123169705,1.0239567233384816,"Other service charges, commissions and fees, Non-banking",0.5197505197505281,"Other service charges, commissions and fees, Banking",0.2069226449810706,0.05487884287198597,Service charges on deposit accounts,False,,,,
+GTLB,Gitlab Inc.,True,10.0,2026.0,Subscription—self-managed and SaaS,30.076577178220028,37.86296484971983,Professional services and other,0.7372085539595785,License—self-managed,10.999237281138557,0.8396247217657291,SaaS,False,-68.61610968294774,"Variable Interest Entity, Primary Beneficiary",-68.61610968294774,False
+MAT,MATTEL INC /DE/,True,9.0,2025.0,North American Region,23.49325702103995,10.769124760552895,Asia Pacific,-7.692307692307687,Wal Mart,6.6490932835983605,1.320141218339463,International,False,,,,
+REZI,"RESIDEO TECHNOLOGIES, INC.",True,11.0,2025.0,ADI Global Distribution,28.706870687068708,15.789473684210531,U.S.,-1.9813519813519864,Air,5.639581530467317,0.9268865726922204,ADI Global Distribution,False,,,,
+LION,Lionsgate Studios Corp.,True,6.0,2026.0,United States,54.72104383596863,11.269841269841274,Canada,-7.499999999999996,Equity Method Investee,7.700802876521562,15.300809872734284,One Customer,False,,,,
+KBR,"KBR, INC.",True,22.0,2026.0,Equity Method Investment,17.287722661554437,47.40337136046313,Equity Method Investment,-10.059171597633132,Asia,11.744333606093022,3.7710368157546665,Equity Method Investment,True,18.793503480278424,STS,7.470747074707471,True
+TVTX,"Travere Therapeutics, Inc.",True,6.0,2025.0,Net product sales,41.82017508110135,1141.0018552875697,License and collaboration revenue,-6.381965391331956,Tiopronin products,480.0774118963733,6.815598308065852,License and collaboration revenue,True,,,,
+SLM,SLM Corp,False,,,,,,,,,,,,,,,,
+VVV,VALVOLINE INC,True,6.0,2025.0,United States,32.8594090818957,17.955112219451365,Franchise fees and other,4.9297551947505625,Oil changes and related fees,5.021053729442947,0.19839420722427176,Franchise fees and other,False,,,,
+UTG,REAVES UTILITY INCOME FUND,False,,,,,,,,,,,,,,,,
+FULT,FULTON FINANCIAL CORP,True,5.0,2025.0,Commercial banking,33.78892841540286,8.302934739121227,Commercial banking,-0.9803921568627416,Mortgage banking,3.435453345137633,0.49855528838297913,Commercial banking,False,,,,
+PVH,PVH CORP. /DE/,True,15.0,2026.0,Tommy Hilfiger,11.262542359988123,-1.476561502107554,Calvin Klein,-56.85332218972001,Heritage Brands,13.23413886051246,0.4318020701777364,Calvin Klein,False,82.39420154313771,Licensing Segment,12.388833036888098,False
+TREX,TREX CO INC,True,1.0,2024.0,As Previously Reported,100.0,-84.68931904931966,As Previously Reported,-84.68931904931966,As Previously Reported,0.0,0.0,As Previously Reported,False,9.21987507979025,As Previously Reported,9.21987507979025,False
+THO,THOR INDUSTRIES INC,True,6.0,2025.0,United States,58.63168842445119,9.934686997635334,Other,-19.697963238946848,Other foreign,10.100836738704404,1.4454951103412772,United States,False,,,,
+KRC,KILROY REALTY CORP,True,2.0,2025.0,Kilroy Realty L.P.,50.0,-2.0219631587428677,Kilroy Realty L.P.,-2.0219631587428677,Kilroy Realty L.P.,0.0,0.0,Kilroy Realty L.P.,False,,,,
+MWA,"Mueller Water Products, Inc.",True,9.0,2025.0,Water Flow Solutions,31.98526560682435,32.178217821782184,Other international locations,0.9009009009008917,Canada,9.466752336452343,0.46990214288167786,West,False,,,,
+FRMI,Fermi Inc.,False,,,,,,,,,,,,,,,,
+SEZL,Sezzle Inc.,False,,,,,,,,,,,,,,,,
+RNG,"RingCentral, Inc.",False,,,,,,,,,,,,,,,,
+TPC,TUTOR PERINI CORP,True,25.0,2025.0,United States,20.944842426234935,21750.0,Detention facilities,-57.11044960327061,Education facilities,4258.168009631079,1.5151535402815164,State and local agencies,False,,,,
+NMRK,"NEWMARK GROUP, INC.",False,,,,,,,,,,,,,,,,
+SMR,NUSCALE POWER Corp,True,4.0,2025.0,Power Plant and NPM related services,54.29061371841155,466.1775147928994,Related Party,-67.39659367396594,Other,209.02305576650906,32.94123973585939,Related Party,True,,,,
+WOLF,"WOLFSPEED, INC.",True,10.0,2025.0,Power Products,25.743310208126857,84.25655976676384,Japan,-43.333333333333336,Other,40.53341448735473,1.6537255668005748,Japan,False,,,,
+NATL,NCR Atleos Corp,True,7.0,2025.0,Recurring revenue,35.15089163237312,8.298052497883157,All other products and services,-71.83098591549295,Other,26.00711065769536,1.1264261812990006,All other products and services,False,,,,
+SHOO,"STEVEN MADDEN, LTD.",True,7.0,2025.0,Domestic,31.263961492271363,101.79867138768795,International,-9.855726503966089,Domestic (Non-US Title),38.980620491242114,7.287555269953614,International,True,84.3062504963863,Licensing,-4.067326816970293,True
+GEO,GEO GROUP INC,True,12.0,2025.0,U.S. operations,24.543803678606473,14.928819126822578,Owned and Leased: Secure Services,-7.25198038476047,Australia,7.509648737897202,0.7587885003165873,U.S. Secure Services,False,,,,
+SFNC,SIMMONS FIRST NATIONAL CORP,True,6.0,2025.0,Parent Company,36.8002814867619,8.40373132274841,Wealth management fees,-69.78520644568256,Parent Company,27.2916191991735,10.782225288153052,Service charges on deposit accounts,False,,,,
+PLMR,"Palomar Holdings, Inc.",True,1.0,2025.0,Parent Company,100.0,150.51020408163268,Parent Company,150.51020408163268,Parent Company,0.0,0.0,Parent Company,False,,,,
+KBH,KB HOME,True,4.0,2025.0,Housing,97.268413591855,6.334072207208585,Homebuilding,-62.34602463605823,Land,25.382188514744108,0.16891853922874206,Homebuilding,False,723.9826951083697,Homebuilding,17.654424040066775,True
+TXG,"10x Genomics, Inc.",True,13.0,2025.0,Products and services revenue,21.02570282652865,14272.27414330218,License and royalty revenue,-38.75963975624225,Instruments,3802.446971763838,1.614011544281917,License and royalty revenue,False,,,,
+PATK,PATRICK INDUSTRIES INC,True,8.0,2025.0,Manufacturing,37.036649212023946,9.283533030480351,Recreational Vehicle,-85.12005410889415,Acquired Entities,30.13224449739962,1.560907190407973,Manufacturing,False,2.9545454545454546,Acquired Entities,2.9545454545454546,False
+NN,NEXTNAV INC.,True,3.0,2025.0,Commercial,,-18.2648401826484,Commercial,-23.782771535580526,Government contracts,,,Commercial,False,,,,
+PPTA,PERPETUA RESOURCES CORP.,False,,,,,,,,,,,,,,,,
+NAD,Nuveen Quality Municipal Income Fund,False,,,,,,,,,,,,,,,,
+NSIT,INSIGHT ENTERPRISES INC,True,12.0,2025.0,Gross revenue recognition (Principal),22.052648351371243,7.912582660289091,Commercial,-22.11825102223096,Software,7.557442566745919,0.8687917704437331,Hardware,False,,,,
