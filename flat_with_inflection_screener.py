@@ -147,11 +147,23 @@ def edgar_ltm_fcf_ps(tk):
 
 
 def ttm_yoy_growth(series_q):
-    """Given quarterly series, compute (sum last 4Q) / (sum prior 4Q) - 1, in %."""
+    """Given a quarterly series, compute YoY growth %.
+
+    Prefers LTM-vs-LTM (sum-of-4 last vs sum-of-4 prior, needs >=8 quarters).
+    Falls back to single-quarter YoY (Q-now vs same-Q-1Y-ago, needs >=5)
+    when shorter. yfinance hard-caps quarterly history at 5-7 so the
+    fallback is required for the majority of tickers.
+    """
     s = series_q.dropna().sort_index()
-    if len(s) < 8: return None
-    cur = s.iloc[-4:].sum(); prv = s.iloc[-8:-4].sum()
-    return float((cur/prv - 1) * 100) if prv > 0 else None
+    if len(s) >= 8:
+        cur = s.iloc[-4:].sum(); prv = s.iloc[-8:-4].sum()
+        if prv > 0:
+            return float((cur/prv - 1) * 100)
+    if len(s) >= 5:
+        cur, prv = float(s.iloc[-1]), float(s.iloc[-5])
+        if prv != 0:
+            return float((cur/abs(prv) - 1) * 100 if prv > 0 else 2*(cur-prv)/(abs(cur)+abs(prv)) * 100)
+    return None
 
 
 def main():

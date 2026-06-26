@@ -145,36 +145,47 @@ def _historical_multiples(price: pd.Series, eps_q: pd.Series,
     out = {'pe_peak': None, 'pe_peak_date': None,
            'ev_peak': None, 'ev_peak_date': None,
            'pe_y_ago_recon': None, 'ev_y_ago_recon': None}
-    if price is None or eps_q is None or len(eps_q) < 4:
+    # Need price for ANY reconstruction; EPS and EBITDA are independent
+    # (each computes its own series). Previously this function early-returned
+    # when eps_q was None, killing the EV/EBITDA history for thousands of
+    # tickers that have ebitda + shares but no eps cache (almost all of them
+    # — eps_history is only 239 cached files vs 12,033 price files).
+    if price is None or len(price) < 30:
         return out
-    eps_q = eps_q.sort_index()
-    # De-duplicate index (some EPS series have duplicated quarter-end dates)
-    if eps_q.index.has_duplicates:
-        eps_q = eps_q[~eps_q.index.duplicated(keep='last')]
-    eps_ltm = eps_q.rolling(4).sum().dropna()
-    if eps_ltm.empty: return out
-    if eps_ltm.index.has_duplicates:
-        eps_ltm = eps_ltm[~eps_ltm.index.duplicated(keep='last')]
     price = price.sort_index()
     if price.index.has_duplicates:
         price = price[~price.index.duplicated(keep='last')]
-    eps_daily = eps_ltm.reindex(price.index, method='ffill').dropna()
-    if eps_daily.empty: return out
     cutoff = price.index[-1] - pd.Timedelta(days=365 * lookback_years)
     p_window = price[price.index >= cutoff].copy()
-    eps_window = eps_daily.reindex(p_window.index, method='ffill').dropna()
-    if eps_window.empty: return out
-    common = p_window.index.intersection(eps_window.index)
-    if len(common) < 30: return out
-    pe_series = (p_window.loc[common] / eps_window.loc[common]).where(eps_window.loc[common] > 0).dropna()
-    if not pe_series.empty:
-        out['pe_peak'] = float(pe_series.max())
-        out['pe_peak_date'] = pe_series.idxmax()
-        # PE at ~1y ago
-        target = price.index[-1] - pd.Timedelta(days=365)
-        prior = pe_series[pe_series.index <= target]
-        if not prior.empty:
-            out['pe_y_ago_recon'] = float(prior.iloc[-1])
+    if p_window.empty:
+        return out
+
+    # --- P/E history (requires eps_q) ---
+    if eps_q is not None and len(eps_q) >= 4:
+        eps_q = eps_q.sort_index()
+        if eps_q.index.has_duplicates:
+            eps_q = eps_q[~eps_q.index.duplicated(keep='last')]
+        eps_ltm = eps_q.rolling(4).sum().dropna()
+        if not eps_ltm.empty:
+            if eps_ltm.index.has_duplicates:
+                eps_ltm = eps_ltm[~eps_ltm.index.duplicated(keep='last')]
+            try:
+                eps_daily = eps_ltm.reindex(price.index, method='ffill').dropna()
+                eps_window = eps_daily.reindex(p_window.index, method='ffill').dropna()
+                common = p_window.index.intersection(eps_window.index)
+                if len(common) >= 30:
+                    pe_series = (p_window.loc[common] / eps_window.loc[common]).where(eps_window.loc[common] > 0).dropna()
+                    if not pe_series.empty:
+                        out['pe_peak'] = float(pe_series.max())
+                        out['pe_peak_date'] = pe_series.idxmax()
+                        target = price.index[-1] - pd.Timedelta(days=365)
+                        prior = pe_series[pe_series.index <= target]
+                        if not prior.empty:
+                            out['pe_y_ago_recon'] = float(prior.iloc[-1])
+            except Exception:
+                pass
+
+    # --- EV/EBITDA history (requires ebitda_q + shares_out, independent of EPS) ---
     if ebitda_q is not None and shares_out and shares_out > 0:
         ebitda_ltm = ebitda_q.sort_index().rolling(4).sum().dropna()
         if not ebitda_ltm.empty:
