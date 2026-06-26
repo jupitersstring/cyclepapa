@@ -46,6 +46,8 @@ def run():
       is_us INTEGER,            -- 1 if US-registered (no dot suffix), 0 otherwise
       cat8k_ma INTEGER, cat8k_dir INTEGER, cat8k_ctrl INTEGER,
       cat8k_pipe INTEGER, cat8k_bnk INTEGER, cat8k_n INTEGER,
+      ev_ebitda REAL, pb_ratio REAL,
+      revealed_pref REAL,       -- active accumulation: 2*s3 + s4 + 0.5*s1
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
       score REAL,
@@ -123,6 +125,14 @@ def run():
         FROM ticker_entry_intact"""):
         entry[r["ticker"]] = (r["bucket"], r["vs_entry_pct"], r["anchor_px"], r["anchor_source"])
 
+    # Valuation ratios — EV/EBITDA and P/B (from enrich_valuation.py)
+    valn = {}
+    try:
+        for r in conn.execute("SELECT ticker, ev_ebitda, pb_ratio FROM ticker_valuation"):
+            valn[r["ticker"]] = (r["ev_ebitda"], r["pb_ratio"])
+    except Exception:
+        pass  # table may not exist yet on first run
+
     # 8-K catalysts — count of each material item type in the last 180d
     cat8k = {}     # ticker -> dict of has_ma/has_director/has_control/has_pipe/has_bankruptcy
     for r in conn.execute("""SELECT ticker,
@@ -194,6 +204,10 @@ def run():
         c8_ctrl = c8.get("ctrl", 0)
         c8_pipe = c8.get("pipe", 0)
         c8_bnk  = c8.get("bnk",  0)
+        ev_ebitda, pb_ratio = valn.get(tkr, (None, None))
+        # Revealed preference — what funds are ACTIVELY doing (not just holding):
+        # new major positions weigh 2×, material adds 1×, top-conviction holds 0.5×
+        revealed_pref = 2.0 * s3 + 1.0 * s4 + 0.5 * s1
 
         # scoring
         smart_money       = math.log1p(n13f) * 2
@@ -282,7 +296,7 @@ def run():
                       f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
@@ -292,6 +306,7 @@ def run():
              max_pb, n5_pb,
              global_score, is_us,
              c8_ma, c8_dir, c8_ctrl, c8_pipe, c8_bnk, c8.get("n", 0),
+             ev_ebitda, pb_ratio, revealed_pref,
              er_pct,
              entry_bucket, vs_entry_pct, anchor_px, anchor_src,
              score, components))

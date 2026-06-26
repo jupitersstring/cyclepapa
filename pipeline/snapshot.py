@@ -22,7 +22,8 @@ SNAP = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 # We always dump these. Other (derived) tables are dumped too for completeness
 # but are also rebuildable from these + the CSV inputs + source code.
 EXPENSIVE_TABLES = {"edgar_filings", "form4_transactions", "prices", "discovery",
-                    "discovery_13d", "discovery_13d_subjects", "insider_clusters"}
+                    "discovery_13d", "discovery_13d_subjects", "insider_clusters",
+                    "ticker_meta", "ticker_valuation", "catalysts_8k", "holder_13d"}
 ALWAYS_SKIP = set()  # views handled separately
 
 def list_tables(conn):

@@ -38,6 +38,7 @@ def is_biotech(desc):
 SIG_HDR = ["Ticker","Score","Mcap","Bucket","13F","S1","S3","S4","Act %",
            "pB Max","pB ≥5%","13D","Clu $M",
            "F4 Buy 180d","F4 Buy ≤30d","F4 Sell 180d","F4 Sell ≤30d",
+           "EV/EBITDA","P/B",
            "Entry","vs Entry %","Anchor $",
            "ER %","Name","Sector","Px"]
 
@@ -47,6 +48,7 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
         us.n_funds_5pct_book, us.activist_filings,
         us.insider_cluster_dollars_m,
         us.form4_buy_usd_m, us.form4_buy_30d_m, us.form4_sell_usd_m, us.form4_sell_30d_m,
+        us.ev_ebitda, us.pb_ratio,
         us.entry_bucket, us.vs_entry_pct, us.anchor_px,
         us.expected_return_pct, tm.name, tm.sic_description, tm.price
         FROM unified_signal us
@@ -56,9 +58,12 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
     return list(conn.execute(sql, params))
 
 def signal_row_to_cells(r):
-    """Map a raw signal row to display values."""
-    # Friendly entry bucket label
-    eb = r[17] or ""
+    """Map a raw signal row to display values.
+    Row order: ticker,score,mcap,bucket,13F,s1,s3,s4,act,pbmax,pb5,13d,clu,
+               f4_180,f4_30,f4sell_180,f4sell_30,ev_ebitda,pb,entry,vsentry,anchor,
+               er,name,sector,price
+    """
+    eb = r[19] or ""
     if eb == "BELOW_ENTRY":         eb_label = "below"
     elif eb == "NEAR_ENTRY":        eb_label = "near"
     elif eb == "MODERATELY_ABOVE":  eb_label = "mod above"
@@ -77,18 +82,20 @@ def signal_row_to_cells(r):
         round(r[14] or 0, 1) if r[14] else "",   # F4 buy ≤30d
         round(r[15] or 0, 1) if r[15] else "",   # F4 sell 180d
         round(r[16] or 0, 1) if r[16] else "",   # F4 sell ≤30d
+        round(r[17], 1) if r[17] is not None else "",   # EV/EBITDA
+        round(r[18], 2) if r[18] is not None else "",   # P/B
         eb_label,
-        round(r[18] or 0, 1) if r[18] else "",   # vs entry
-        round(r[19] or 0, 2) if r[19] else "",   # anchor px
-        round(r[20] or 0, 1) if r[20] else "",   # ER
-        (r[21] or "")[:38],
-        (r[22] or "")[:32],
-        round(r[23] or 0, 2) if r[23] else "",
+        round(r[20] or 0, 1) if r[20] else "",   # vs entry
+        round(r[21] or 0, 2) if r[21] else "",   # anchor px
+        round(r[22] or 0, 1) if r[22] else "",   # ER
+        (r[23] or "")[:38],
+        (r[24] or "")[:32],
+        round(r[25] or 0, 2) if r[25] else "",
     ]
 
 def format_signal_row(ws, ridx):
     """Apply number formats to a signal row."""
-    ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP    # mcap → smart scale (M/B/T)
+    ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP    # mcap
     ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT     # act
     ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT    # pB max
     ws.cell(row=ridx, column=13).number_format = NUMFMT_M_TO_B # Clu $M
@@ -96,10 +103,12 @@ def format_signal_row(ws, ridx):
     ws.cell(row=ridx, column=15).number_format = NUMFMT_M_TO_B # F4 buy 30d
     ws.cell(row=ridx, column=16).number_format = NUMFMT_M_TO_B # F4 sell 180d
     ws.cell(row=ridx, column=17).number_format = NUMFMT_M_TO_B # F4 sell 30d
-    ws.cell(row=ridx, column=19).number_format = NUMFMT_PCT    # vs entry
-    ws.cell(row=ridx, column=20).number_format = NUMFMT_USD2   # anchor px
-    ws.cell(row=ridx, column=21).number_format = NUMFMT_PCT    # ER
-    ws.cell(row=ridx, column=24).number_format = NUMFMT_USD2   # px
+    ws.cell(row=ridx, column=18).number_format = '0.0"x"'      # EV/EBITDA
+    ws.cell(row=ridx, column=19).number_format = '0.00"x"'     # P/B
+    ws.cell(row=ridx, column=21).number_format = NUMFMT_PCT    # vs entry
+    ws.cell(row=ridx, column=22).number_format = NUMFMT_USD2   # anchor px
+    ws.cell(row=ridx, column=23).number_format = NUMFMT_PCT    # ER
+    ws.cell(row=ridx, column=26).number_format = NUMFMT_USD2   # px
 
 # ---- sheets -----------------------------------------------------------------
 def sheet_readme(wb, conn):
@@ -479,6 +488,84 @@ def sheet_all_funds(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
 
+def sheet_revealed_pref(wb, conn):
+    """Revealed preference — what smart money is ACTIVELY buying (new + adds),
+    not just holding. Ranked by revealed_pref = 2*S3 + S4 + 0.5*S1.
+    Cross-cut by size bucket so micro/small revealed conviction is visible."""
+    ws = wb.create_sheet("Revealed Preference")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Revealed Preference — what they're actively buying",
+                "Ranked by revealed_pref = 2×(new major positions) + 1×(material adds) + 0.5×(top-conviction holds). Reveals active accumulation, not static holdings.", 13)
+    hdr = ["Ticker","Rev Pref","S3 New","S4 Add","S1 Top","13F","Mcap","Bucket","EV/EBITDA","P/B","Act %","Entry","Name"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.revealed_pref, us.s3_new, us.s4_add, us.s1_top,
+               us.smart_money_n, us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio, us.activist_max_pct, us.entry_bucket, tm.name
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.revealed_pref > 0
+        ORDER BY us.revealed_pref DESC, us.smart_money_n DESC LIMIT 120"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs or r[0] in MEGA: continue
+        eb = r[11] or ""
+        eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
+                    else "above" if "ABOVE" in eb else "")
+        out.append([r[0], round(r[1] or 0, 1), r[2] or 0, r[3] or 0, r[4] or 0,
+                    r[5] or 0, r[6] or "", r[7] or "",
+                    round(r[8], 1) if r[8] is not None else "",
+                    round(r[9], 2) if r[9] is not None else "",
+                    round(r[10] or 0, 1), eb_label, (r[12] or "")[:38]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=9).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=10).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
+def sheet_valuation(wb, conn):
+    """Cheapest names by valuation among smart-money holdings."""
+    ws = wb.create_sheet("Valuation")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Valuation — EV/EBITDA & P/B among smart-money names",
+                "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 12)
+    hdr = ["Ticker","EV/EBITDA","P/B","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.score, us.mcap_m, us.mcap_bucket,
+               us.smart_money_n, us.activist_max_pct, us.entry_bucket, us.vs_entry_pct,
+               tm.name, tm.sic_description
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda > 0 AND us.ev_ebitda < 40
+          AND us.smart_money_n >= 3
+        ORDER BY us.ev_ebitda ASC LIMIT 120"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs or r[0] in MEGA: continue
+        eb = r[8] or ""
+        eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
+                    else "above" if "ABOVE" in eb else "")
+        out.append([r[0], round(r[1], 1), round(r[2], 2) if r[2] is not None else "",
+                    round(r[3] or 0, 1), r[4] or "", r[5] or "", r[6] or 0,
+                    round(r[7] or 0, 1), eb_label,
+                    round(r[9] or 0, 1) if r[9] else "",
+                    (r[10] or "")[:38], (r[11] or "")[:30]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=2).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=3).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
 def sheet_catalysts(wb, conn):
     """8-K material-event tickers: M&A, control change, director shuffle, PIPE, bankruptcy."""
     ws = wb.create_sheet("Catalysts 8-K")
@@ -701,6 +788,7 @@ TAB_COLORS = {
     "Mid ($2B–$10B)":          "595959",
     # Signal sheets — mid
     "Material + New":          "808080",
+    "Revealed Preference":     "808080",
     "Activist 10+":            "808080",
     "Insider Buys ≤30d":       "808080",
     "Insider F4 Buys":         "808080",
@@ -708,6 +796,7 @@ TAB_COLORS = {
     "Catalysts 8-K":           "808080",
     # Setup sheets — mid-light
     "In The Money":            "A6A6A6",
+    "Valuation":               "A6A6A6",
     "Global Picks":            "A6A6A6",
     "Bill Miller":             "A6A6A6",
     # Reference / support — lighter
@@ -744,6 +833,8 @@ def main():
         where_extra="AND us.mcap_bucket != 'unknown'", limit=400,
         subtitle="Top 100 ex-biotech, ex-ETF, ex-mega.")
     sheet_in_the_money(wb, conn)
+    sheet_revealed_pref(wb, conn)
+    sheet_valuation(wb, conn)
     sheet_catalysts(wb, conn)
     sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)

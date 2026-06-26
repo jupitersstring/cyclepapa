@@ -95,7 +95,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     row = 4
     write_section_heading(ws, row, "Top picks — most held within this style", 13)
     row += 1
-    hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","S1","Mcap","Bucket","Act %","Clu $M","F4 Buy","Name"]
+    hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","S1","Mcap","Bucket","EV/EBITDA","P/B","Act %","Clu $M","F4 Buy","Name"]
     write_table_header(ws, row, hdr)
     row += 1
     ph = ",".join("?" * len(style_funds))
@@ -114,6 +114,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                  WHERE fp.ticker = h.ticker AND fp.section = 1
                    AND fp.fund IN ({ph})) AS s1_st,
                us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio,
                us.activist_max_pct, us.insider_cluster_dollars_m, us.form4_buy_usd_m,
                tm.name
         FROM fund_13f_holdings h
@@ -131,18 +132,22 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         out.append([r[0], r[1], round(r[2] or 0, 1), r[3] or 0,
                     r[4] or 0, r[5] or 0, r[6] or 0,
                     r[7] or "", r[8] or "",
-                    round(r[9] or 0, 1),
-                    round(r[10] or 0, 1) if r[10] else "",
-                    round(r[11] or 0, 1) if r[11] else "",
-                    (r[12] or "")[:38]])
+                    round(r[9], 1) if r[9] is not None else "",
+                    round(r[10], 2) if r[10] is not None else "",
+                    round(r[11] or 0, 1),
+                    round(r[12] or 0, 1) if r[12] else "",
+                    round(r[13] or 0, 1) if r[13] else "",
+                    (r[14] or "")[:38]])
         if len(out) >= 30: break
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=11).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=12).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=10).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=11).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=13).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=14).number_format = NUMFMT_M_TO_B
     row += len(out) + 2
 
     # New initiations
