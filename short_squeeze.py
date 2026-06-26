@@ -970,6 +970,7 @@ def from_yfinance(
     utilization_trend_pct_pts: Optional[float] = None,
     on_reg_sho_threshold: Optional[bool] = None,
     options_volume_vs_adv: Optional[float] = None,
+    session=None,
 ) -> SqueezeMetrics:
     """Build SqueezeMetrics from yfinance, injecting the lending data you supply.
 
@@ -978,11 +979,12 @@ def from_yfinance(
     OWNERSHIP (heldPercentInstitutions) and an INVESTOR-ATTENTION proxy (today's
     volume / average volume). yfinance does NOT carry utilization or borrow fee —
     pass those from your stock-loan vendor; Reg SHO membership and options/gamma
-    are passed in too. Requires `pip install yfinance`.
+    are passed in too. Requires `pip install yfinance`. Pass `session=` a
+    requests.Session (e.g. behind a TLS-terminating proxy where curl_cffi fails).
     """
     import yfinance as yf  # lazy
 
-    info = yf.Ticker(ticker).get_info()
+    info = yf.Ticker(ticker, session=session).get_info()
 
     def pct(x: Optional[float]) -> Optional[float]:
         return None if x is None else float(x) * 100.0
