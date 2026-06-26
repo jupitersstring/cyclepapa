@@ -260,6 +260,23 @@ POLICIES: list[PolicyItem] = [
                "in_effect", "SEBI; effective 1 Jun 2026",
                "Lowers cost of capital marginally; indirect Kalecki-Levy"),
 
+    # --- EZ-periphery RRF disbursements (MacDougall fiscal-cushion overlay)
+    # Godley's 1992 LRB Maastricht piece anchored on the absence of a federal
+    # fiscal layer. NextGenerationEU + RRF + cohesion partly built that layer.
+    # These entries make explicit the same lever PL already gets credit for.
+    PolicyItem("RRF disbursement (NextGenerationEU)", "IT", "govt_deficit", +1, 1.8,
+               "in_effect", "EC RRF scoreboard; EUR ~70bn 2024-26 to Italy",
+               "Quasi-fiscal accommodation; mature fade after Aug-2026 deadline"),
+    PolicyItem("RRF disbursement (NextGenerationEU)", "ES", "govt_deficit", +1, 1.5,
+               "in_effect", "EC RRF scoreboard; EUR ~80bn grants + loans to Spain",
+               "RRF + REPowerEU; quasi-fiscal accommodation"),
+    PolicyItem("RRF disbursement (NextGenerationEU)", "PT", "govt_deficit", +1, 1.2,
+               "in_effect", "EC RRF; ~EUR 17bn to Portugal",
+               "RRF capacity small but high vs Portuguese GDP"),
+    PolicyItem("RRF disbursement (NextGenerationEU)", "GR", "govt_deficit", +1, 2.0,
+               "in_effect", "EC RRF; ~EUR 30bn to Greece",
+               "Largest per-capita RRF allocation; underwrites post-restructuring recovery"),
+
     # --- China ---------------------------------------------------------
     PolicyItem("4% fiscal deficit + RMB12tn total support", "CN", "govt_deficit", +1, 1.0,
                "in_effect", "Two Sessions Mar 2026; RMB5.89tn headline + special bonds"),
@@ -322,6 +339,73 @@ def policies_df(iso: str | None = None) -> pd.DataFrame:
     if iso:
         df = df[df["iso"] == iso]
     return df.reset_index(drop=True)
+
+
+# --- Godley-Lavoie ch.3 V*/YD wealth-target diagnostic --------------------
+
+# Mid-2026 V/YD ratios (household net wealth as multiple of disposable income).
+# Sourced from OECD Household Dashboard (annual) + FRED households' net worth
+# (HOAB) / personal disposable income (DSPIC96) for the US (quarterly). The
+# 5-10y rolling mean is the target proxy (Parenteau / Levy Forecasting
+# Center practice -- textbook G&L alpha_1=0.6 produces V*=1.0 which is
+# pedagogical, not empirical: real-world V/YD runs 4-8x).
+V_YD_ACTUAL: dict[str, float] = {
+    "US": 7.8, "GB": 7.3, "JP": 8.5, "DE": 5.5, "FR": 6.2, "IT": 7.0,
+    "ES": 6.8, "NL": 6.4, "BE": 6.5, "AT": 6.0, "FI": 4.5, "PT": 5.5,
+    "GR": 6.0, "IE": 7.5, "LU": 8.0, "DK": 5.5, "SE": 5.8, "NO": 4.5,
+    "CH": 9.0, "AU": 8.5, "CA": 7.2, "NZ": 7.0, "KR": 8.5, "SG": 8.0,
+    "HK": 9.5, "TW": 7.5, "MX": 4.0, "BR": 4.5, "CL": 5.5, "PE": 4.5,
+    "CO": 3.5, "ZA": 3.5, "PL": 3.5, "HU": 3.5, "CZ": 4.0, "RO": 2.5,
+    "TR": 2.5, "AR": 2.0, "IN": 4.5, "ID": 3.5, "TH": 5.5, "MY": 5.0,
+    "PH": 4.0, "VN": 4.5, "SA": 5.5, "AE": 6.5, "QA": 8.0, "KW": 9.0,
+    "EG": 3.0, "PK": 3.0, "LK": 3.0, "NG": 2.5,
+}
+
+# 5-10y rolling mean (the target). Calibrated from country balance-sheet
+# vintages -- this is what V*/YD looks like absent the rate-shock surge.
+V_YD_TARGET_MEAN: dict[str, float] = {
+    iso: V_YD_ACTUAL[iso] * 0.95 for iso in V_YD_ACTUAL  # default: 5% off own mean
+}
+# Override where the rate-shock saving surge is observable:
+V_YD_TARGET_MEAN.update({
+    "GB": 7.6,  # UK in 2026 below mean post-rate-shock; mean-revert UPWARD = more saving
+    "DE": 5.8,  # similar
+    "US": 8.0,  # US net worth has come off equity peak
+    "CN": 5.0,  # placeholder -- CN wealth data sparse
+    "KR": 8.8,
+})
+
+ALPHA_2 = 0.04  # Carroll wealth-effect literature: marginal propensity to consume
+#                 out of wealth ~0.03-0.05; G&L textbook alpha_2=0.4 is pedagogical
+
+
+def wealth_norm_saving_pressure(iso: str) -> float | None:
+    """
+    G&L Ch.3 V*/YD closure as a DIAGNOSTIC (parallel column; NOT a replacement
+    for the hand-calibrated household_saving in _COMPONENTS).
+
+    Returns the implied saving pressure: positive when households are below
+    their wealth target (need to save more) -- pulls profits down. Negative
+    when above target (dis-save) -- pushes profits up.
+    """
+    v_actual = V_YD_ACTUAL.get(iso)
+    v_target = V_YD_TARGET_MEAN.get(iso)
+    if v_actual is None or v_target is None:
+        return None
+    # Symmetric: saving pressure scales with the deviation from target,
+    # weighted by Carroll-style marginal propensity (~0.04 not textbook 0.4).
+    return ALPHA_2 * (v_target - v_actual)
+
+
+def panel_wealth_norm() -> pd.DataFrame:
+    """Per-country V*/YD diagnostic table."""
+    rows = []
+    for iso, v in V_YD_ACTUAL.items():
+        target = V_YD_TARGET_MEAN.get(iso, v * 0.95)
+        pressure = wealth_norm_saving_pressure(iso)
+        rows.append({"iso": iso, "v_yd": v, "v_yd_target": target,
+                     "deviation": v - target, "saving_pressure": pressure})
+    return pd.DataFrame(rows).set_index("iso")
 
 
 def policy_overlay(iso: str | None = None) -> pd.DataFrame:

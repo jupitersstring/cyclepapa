@@ -66,7 +66,11 @@ savers; `*= 0.5` for MNC-distorted entrepôts) live in `composite.ARCHETYPE_TILT
 | `kalecki_levy.py` | Profit-equation components + named-policy registry (the new leg) |
 | `composite.py` | Opportunity score, archetype tilts, regime classifier |
 | `seven_processes.py` | Godley's 1999 diagnostic as a live country-level flag count |
-| `regime.py` | Practitioner overlay: Keen accelerator + Dalio debt-cycle stage + Marathon capex-squeeze + Napier financial-repression + NBFI sub-sector flag |
+| `regime.py` | Practitioner overlay: Keen accelerator + Dalio debt-cycle stage + Marathon capex-squeeze + Napier financial-repression + NBFI continuous-leverage score |
+| `godley_projection.py` | Godley 1999 Appendix 2 stock-projection method, automated — endogenous NII feedback, 5y NIIP trajectory, one-sided unsustainability score |
+| `tobin_q.py` | Endogenous Tobin's q per Godley-Lavoie ch.11; closes the equity-prices-validate-investment loop |
+| `sfc_integrity.py` | Quadruple-bookkeeping consistency check + per-country tolerance band + data-confidence label |
+| `sources/` | Stub data adapters documenting the live-wiring path for BIS / FRED-Z.1 / Eurostat / IMF — calibrated fallback values today |
 | `app.py` | Streamlit dashboard + CLI fallback |
 
 ## Run
@@ -134,6 +138,29 @@ F.133 RoW); identity `NAFA - NIL ≈ S - I` holds up to statistical discrepancy.
   Levy WP 1105, Jan 2026. https://www.levyinstitute.org/wp-content/uploads/2026/01/wp_1105.pdf
 - Levy Forecasting Center, *How High Tariffs, Trade War, and Uncertainty Will
   Impact Profits*, June 2025 (current bearish profit-cycle call).
+
+### Godley corpus references (added in the deep-dive pass)
+
+- Wynne Godley, *Seven Unsustainable Processes: Medium-Term Prospects and
+  Policies for the United States and the World*, Levy Strategic Analysis,
+  January 1999 (updated October 1999), incl. Appendix 2 "Note on the Models
+  Employed" — the forward-projection methodology that `godley_projection.py`
+  automates. https://www.levyinstitute.org/pubs/sr/sevenproc.pdf
+- Wynne Godley, *Maastricht and All That*, London Review of Books, 8 October
+  1992 — the load-bearing critique of monetary-union-without-fiscal-union,
+  which motivates the EZ MacDougall/RRF policy entries in
+  `kalecki_levy.POLICIES`. https://www.lrb.co.uk/the-paper/v14/n19/wynne-godley/maastricht-and-all-that
+- Wynne Godley & Marc Lavoie, *Monetary Economics: An Integrated Approach to
+  Credit, Money, Income, Production and Wealth* (Palgrave Macmillan, 2007) —
+  chapters 3 (V*/YD wealth-target consumption), 5 (Brainard-Tobin portfolio
+  choice), 11 (Tobin's q investment closure). Drives `tobin_q.py` and the
+  V*/YD diagnostic in `kalecki_levy.wealth_norm_saving_pressure`.
+- Marc Lavoie & Wynne Godley, *Kaleckian Models of Growth in a Coherent
+  Stock-Flow Monetary Framework*, JPKE 24(2), 2001–02.
+  https://www.levyinstitute.org/pubs/Lavoie%20Godley_2001-02.pdf
+- Levy Institute Strategic Analysis series 1996–2010 (Godley, Papadimitriou,
+  Zezza, Hannsgen, Nikiforos, Yajima) — the multi-country SFC tradition the
+  scanner inherits.
 
 ### Practitioner overlay sources (regime.py)
 

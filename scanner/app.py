@@ -21,6 +21,8 @@ from .composite import (
 from .data import default_panel, FACTOR_COLUMNS
 from . import kalecki_levy as KL
 from . import seven_processes as SEVEN
+from . import godley_projection as GP
+from . import tobin_q as TQ
 
 
 def build_scored(panel: pd.DataFrame | None = None) -> pd.DataFrame:
@@ -191,8 +193,19 @@ def main_cli() -> None:
 
     print("\n=== REGIME OVERLAY (Keen / Dalio / Marathon / Napier / NBFI) ===")
     cols = ["country", "dalio_stage", "keen_accel", "marathon_squeeze",
-            "napier_repression", "nbfi_flag", "opportunity", "regime"]
+            "napier_repression", "nbfi_leverage", "tobin_q", "q_investment_adj",
+            "data_confidence", "opportunity", "regime"]
     print(scored[cols].head(15).to_string(index=False))
+
+    print("\n=== GODLEY 5-YR NIIP PROJECTION (most explosive trajectories) ===")
+    gp = GP.panel_scores().head(10)
+    print(gp[["niip_start", "niip_terminal", "deterioration_pp",
+              "unsustainability", "godley_explosive"]].to_string())
+
+    print("\n=== TOBIN'S Q (cross-section) ===")
+    qp = TQ.panel_q().head(15)
+    print(qp[["market_cap_pct_gdp", "nfc_debt_pct_gdp",
+              "replacement_k_pct_gdp", "q_enterprise"]].to_string())
 
 
 if __name__ == "__main__":

@@ -34,6 +34,21 @@ import pandas as pd
 from . import transforms as T
 from . import kalecki_levy as KL
 from . import regime as R
+from . import tobin_q as TQ
+from . import sfc_integrity as SI
+
+
+# Setser China hidden-surplus haircut. CFR "Follow the Money" Feb 2026 +
+# May 2026 Foreign Affairs piece quantify ~$500bn gap between reported and
+# implied CN current account; we discount all CN factor contributions by
+# this multiplier so the model doesn't act on a known-biased input for the
+# F-archetype's largest weight. Applied AFTER archetype tilts.
+DATA_CONFIDENCE_HAIRCUT: dict[str, float] = {
+    "CN": 0.6,           # Setser hidden-FX + state-bank backdoor intervention
+    "RU": 0.4,           # sanctions data refusal
+    "IR": 0.3,
+    "VE": 0.2,
+}
 
 
 WEIGHTS = {
@@ -57,8 +72,10 @@ ARCHETYPE_TILTS: dict[str, dict[str, float]] = {
     "C": {"profit_fuel": 1.3, "institutional": 1.1},
     # Entrepot: flow/FDI signal is MNC noise -> heavily discount; profits MNC-distorted
     "D": {"credit_impulse": 0.4, "valuation_gap": 0.6, "profit_fuel": 0.5},
-    # EMU trap: only eurozone-wide cycle matters
-    "E": {"credit_impulse": 0.6, "profit_fuel": 0.8},
+    # EMU trap: only eurozone-wide cycle matters. RRF disbursements partially
+    # offset the profit_fuel discount for IT/ES/PT/GR (handled via new POLICIES
+    # entries). TARGET2 stress channelled through suddenstop_risk amplifier.
+    "E": {"credit_impulse": 0.6, "profit_fuel": 0.9, "suddenstop_risk": 1.5},
     # Directed-credit: credit signal policy-administered -> discount; profit
     # equation noisy because gov deficit offset by household-saving surge (CN)
     "F": {"credit_impulse": 0.7, "institutional": 1.2, "profit_fuel": 0.7},
@@ -134,6 +151,27 @@ def score_panel(panel: pd.DataFrame, archetype_of: dict[str, str]) -> pd.DataFra
     out["opportunity"] = out["opportunity"] + 0.05 * (
         out["napier_repression"].fillna(0.0) - 1.0  # de-mean
     )
+    # NBFI continuous-leverage penalty (replaces 0/1 flag). Penalises
+    # bull-regime confidence where aggregate balances hide sub-sector
+    # fragility (UK-2022-LDI lesson).
+    out["opportunity"] = out["opportunity"] - 0.06 * out["nbfi_leverage"].fillna(0.5).clip(0, 3)
+    # Tobin-q endogeneity: penalise the investment leg when q is above its
+    # stage-conditioned target (capex deferral / buyback substitution); lift
+    # it when q is below target (portfolio rebalancing pushes equity issuance).
+    out["tobin_q"] = out.index.map(TQ.lookup_q)
+    out["q_investment_adj"] = out.apply(
+        lambda row: TQ.investment_penalty(row.name, row.get("dalio_stage", "expansion")),
+        axis=1,
+    )
+    out["opportunity"] = out["opportunity"] + 0.08 * out["q_investment_adj"].fillna(0.0)
+    # SFC integrity check -- data confidence per country
+    integrity = SI.panel_report()
+    out["data_confidence"] = integrity["data_confidence"].reindex(out.index).fillna("medium")
+    # Setser-style haircut on known-biased data systems (CN, sanctioned).
+    # Multiply the *positive* component contributions by the haircut so a
+    # bull score on a discounted-data country needs more to clear neutral.
+    haircut = pd.Series(DATA_CONFIDENCE_HAIRCUT).reindex(out.index).fillna(1.0)
+    out["opportunity"] = out["opportunity"] * haircut
 
     out["percentile"] = T.cross_sectional_percentile(out["opportunity"])
     out["regime"] = out.apply(

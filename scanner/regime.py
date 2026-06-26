@@ -196,10 +196,47 @@ NAPIER_REPRESSION: dict[str, float] = {
 }
 
 
-# --- 5. NBFI sub-sector concentration flags -------------------------------
+# --- 5. NBFI sub-sector concentration -- continuous score ----------------
 
-# Where aggregate sectoral balances mask sub-sector leverage concentration.
-# These countries get a 'fragility under fiscal/monetary shock' flag.
+# Continuous NBFI leverage / sub-sector concentration, 0-3. Sourced from
+# FSB Global Monitoring Report on Non-Bank Financial Intermediation (annual),
+# ESRB EU Shadow Banking Monitor (quarterly, EU only), IMF GFSR NBFI tables.
+# Acknowledged staleness: FSB lags ~9 months, IMF GFSR semi-annual; treat
+# as a structural fragility score not a real-time fragility gauge.
+# Score interpretation:
+#   3.0  systemic concentration (UK LDI-style: aggregate balance hides binding sub-sector)
+#   2.0  notable concentration (Netherlands pension swap book; Korea PF-RE trust)
+#   1.0  modest concentration (typical OECD: large but well-collateralised)
+#   0.0  minimal concentration
+NBFI_LEVERAGE_SCORE: dict[str, float] = {
+    "GB": 3.0,   # LDI / pension repo -- canonical 2022 case
+    "NL": 2.5,   # pension-fund swap concentration; relative-to-GDP large
+    "IE": 2.5,   # UCITS / MMF plumbing; assets > 1500% modified GNI
+    "LU": 2.5,   # fund-domicile distortion
+    "JP": 2.0,   # life-insurer + GPIF FX-hedged duration
+    "KR": 2.0,   # real-estate-PF + securities-finance trust funds
+    "CH": 2.0,   # private-bank levered loans + commodities trade finance
+    "HK": 2.0,   # USD-pegged property finance leverage
+    "SG": 1.5,   # entrepot finance, more conservative regulation
+    "AU": 1.5,   # super-fund swap-book size
+    "CA": 1.5,
+    "US": 1.5,   # OFI tail-risk but onshore SEC supervision
+    "DE": 1.0,
+    "FR": 1.2,
+    "IT": 1.0, "ES": 1.0, "BE": 1.0,
+    "DK": 1.0, "SE": 1.0, "FI": 1.0, "NO": 1.0, "AT": 1.0,
+    "TW": 1.0, "MY": 1.0, "TH": 1.0, "ID": 0.7, "PH": 0.7, "VN": 0.7,
+    "BR": 0.7, "MX": 0.7, "ZA": 0.7, "CL": 0.5, "PE": 0.5, "CO": 0.5,
+    "PL": 0.7, "HU": 0.7, "CZ": 0.7, "RO": 0.5,
+    "IN": 0.5, "CN": 1.0,  # CN OFI big but mostly bank-equivalent
+    "TR": 0.8, "EG": 0.4, "AR": 0.3, "PK": 0.3, "LK": 0.3, "NG": 0.3,
+    "SA": 0.5, "AE": 0.7, "QA": 0.5, "KW": 0.3,
+    "NZ": 1.0, "GR": 0.5, "PT": 0.5,
+    "KZ": 0.3, "RU": 0.5, "IR": 0.3, "VE": 0.3,
+}
+
+# Backwards-compat alias for the text-string version. Used by the dashboard
+# tooltip; the continuous score above is the one entering composite.
 NBFI_FRAGILE: dict[str, str] = {
     "GB": "LDI / pension repo (2022 gilt crisis case study)",
     "NL": "pension fund swap concentration",
@@ -236,9 +273,11 @@ def overlay(panel: pd.DataFrame, components: pd.DataFrame | None = None
     # 4. Napier repression
     out["napier_repression"] = pd.Series(NAPIER_REPRESSION).reindex(out.index).fillna(0.5)
 
-    # 5. NBFI flag
+    # 5. NBFI flag -- continuous leverage/concentration score
     out["nbfi_fragile"] = out.index.map(lambda i: NBFI_FRAGILE.get(i, ""))
-    out["nbfi_flag"] = out["nbfi_fragile"].apply(lambda s: 1 if s else 0)
+    out["nbfi_leverage"] = pd.Series(NBFI_LEVERAGE_SCORE).reindex(out.index).fillna(0.5)
+    # Boolean kept for backwards compatibility with the dashboard
+    out["nbfi_flag"] = (out["nbfi_leverage"] >= 2.0).astype(int)
 
     return out
 
