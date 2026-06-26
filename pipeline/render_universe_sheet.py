@@ -535,14 +535,20 @@ def sheet_valuation(wb, conn):
                 "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 12)
     hdr = ["Ticker","EV/EBITDA","P/B","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector"]
     write_table_header(ws, 4, hdr)
+    # Floor at 2x — below that is almost always a data artifact (warrant,
+    # near-zero EBITDA, ADR currency mismatch). Exclude warrant/preferred tickers.
     rows = list(conn.execute("""
         SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.score, us.mcap_m, us.mcap_bucket,
                us.smart_money_n, us.activist_max_pct, us.entry_bucket, us.vs_entry_pct,
                tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda > 0 AND us.ev_ebitda < 40
+        WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda >= 2 AND us.ev_ebitda < 40
           AND us.smart_money_n >= 3
+          AND us.ticker NOT LIKE '%-P%'   -- preferreds
+          AND us.ticker NOT LIKE '%-W%'   -- warrants/when-issued
+          AND us.ticker NOT LIKE '%W'     -- warrant suffix
+          AND us.ticker NOT LIKE '%.W%'
         ORDER BY us.ev_ebitda ASC LIMIT 120"""))
     out = []
     for r in rows:

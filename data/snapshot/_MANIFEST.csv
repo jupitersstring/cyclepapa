@@ -8,7 +8,7 @@ backtest_results,19,
 base_rates,9,
 candidates,43,
 catalysts,32,
-catalysts_8k,6464,
+catalysts_8k,6464,EXPENSIVE
 consensus_buys,88,
 conviction_adds,180,
 discovery,16,EXPENSIVE
@@ -26,7 +26,7 @@ fund_positions,6748,
 fund_resolution_state,430,
 fund_style,445,
 highest_conviction,369,
-holder_13d,3075,
+holder_13d,3075,EXPENSIVE
 insider_clusters,6,EXPENSIVE
 liquidity,815,
 microcap_conviction_adds,180,
@@ -37,6 +37,7 @@ style_consensus,184,
 style_summary,15,
 ticker_conviction,1445,
 ticker_entry_intact,494,
-ticker_meta,5590,
+ticker_meta,5590,EXPENSIVE
 ticker_style_conviction,2596,
+ticker_valuation,3000,EXPENSIVE
 unified_signal,6093,
