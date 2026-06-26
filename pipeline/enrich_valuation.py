@@ -94,16 +94,33 @@ def compute_one(tkr):
     # Book value (total stockholders equity)
     book = (concept_latest(cik, "us-gaap", "StockholdersEquity")
             or concept_latest(cik, "us-gaap", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"))
-    # Net debt
+    # Net debt — prefer a single combined-debt concept; else sum LT + current.
     cash = (concept_latest(cik, "us-gaap", "CashAndCashEquivalentsAtCarryingValue")
+            or concept_latest(cik, "us-gaap", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents")
             or concept_latest(cik, "us-gaap", "Cash"))
-    debt_lt = (concept_latest(cik, "us-gaap", "LongTermDebtNoncurrent")
+    # Combined-debt tags (catch-all for cruise lines, REITs, etc.)
+    debt_total = (concept_latest(cik, "us-gaap", "DebtLongtermAndShorttermCombinedAmount")
+                  or concept_latest(cik, "us-gaap", "DebtInstrumentCarryingAmount"))
+    # LT debt — include capital/finance-lease-inclusive tags (cruise lines, airlines, REITs)
+    debt_lt = (concept_latest(cik, "us-gaap", "LongTermDebtAndCapitalLeaseObligations")
+               or concept_latest(cik, "us-gaap", "LongTermDebtNoncurrent")
                or concept_latest(cik, "us-gaap", "LongTermDebt"))
-    debt_cur = (concept_latest(cik, "us-gaap", "LongTermDebtCurrent")
+    debt_cur = (concept_latest(cik, "us-gaap", "LongTermDebtAndCapitalLeaseObligationsCurrent")
+                or concept_latest(cik, "us-gaap", "LongTermDebtCurrent")
+                or concept_latest(cik, "us-gaap", "DebtCurrent")
                 or concept_latest(cik, "us-gaap", "ShortTermBorrowings"))
+    # Choose the larger of (combined) vs (LT + current) — combined often more complete
+    summed = ((debt_lt or 0) + (debt_cur or 0)) if (debt_lt is not None or debt_cur is not None) else None
+    total_debt = None
+    if debt_total is not None and summed is not None:
+        total_debt = max(debt_total, summed)
+    elif debt_total is not None:
+        total_debt = debt_total
+    elif summed is not None:
+        total_debt = summed
     net_debt = None
-    if debt_lt is not None or debt_cur is not None or cash is not None:
-        net_debt = (debt_lt or 0) + (debt_cur or 0) - (cash or 0)
+    if total_debt is not None or cash is not None:
+        net_debt = (total_debt or 0) - (cash or 0)
     return {"cik": cik, "ebitda": ebitda, "book": book, "net_debt": net_debt,
             "op_inc": op_inc, "dda": dda, "cash": cash}
 
