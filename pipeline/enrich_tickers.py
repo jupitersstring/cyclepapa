@@ -60,35 +60,70 @@ def cik_for_ticker(t):
             _CIK_BY_TKR = {}
     return _CIK_BY_TKR.get(t.upper())
 
-def shares_outstanding(cik):
-    """Latest shares outstanding via the small companyconcept endpoint.
+def _latest_concept(cik10, ns, tag):
+    """Return (end_date, value) of the most recent entry for a concept, or None."""
+    url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik10}/{ns}/{tag}.json"
+    out = subprocess.run(["curl","-sk","--compressed","-m","10","-A",UA_SEC, url],
+                         capture_output=True).stdout
+    try:
+        j = json.loads(out)
+    except Exception:
+        return None
+    best = None
+    for _, entries in j.get("units", {}).items():
+        for e in entries:
+            end = e.get("end") or ""
+            if e.get("val") and (best is None or end > best[0]):
+                best = (end, e.get("val"))
+    return best
 
-    Companies report shares under various XBRL tags — we try each in
-    decreasing preference. Returns the most recent value found.
+def shares_outstanding(cik):
+    """Current total shares outstanding — DATE-AWARE and DUAL-CLASS-AWARE.
+
+    The plain dei:EntityCommonStockSharesOutstanding concept goes STALE for
+    dual-class companies (e.g. LEVI froze at 37.6M Class-A in 2019; MA, GOOGL,
+    etc. similar) because post-IPO they report shares dimensioned per class,
+    which the non-dimensioned concept stops capturing.
+
+    Fix: gather candidates from several concepts WITH their as-of dates, and
+    prefer the value whose date is most recent. Weighted-average diluted/basic
+    shares are reported every quarter and reflect ALL share classes' economic
+    total, so they win when the balance-sheet cover count is stale.
     """
     cik10 = str(cik).zfill(10)
+    candidates = []
     for ns, tag in [
         ("dei", "EntityCommonStockSharesOutstanding"),
         ("us-gaap", "CommonStockSharesOutstanding"),
-        ("us-gaap", "CommonStockSharesIssued"),
-        ("dei", "EntityCommonStockSharesIssued"),
+        ("us-gaap", "WeightedAverageNumberOfSharesOutstandingBasic"),
+        ("us-gaap", "WeightedAverageNumberOfDilutedSharesOutstanding"),
     ]:
-        url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik10}/{ns}/{tag}.json"
-        out = subprocess.run(["curl","-sk","--compressed","-m","10","-A",UA_SEC, url],
-                             capture_output=True).stdout
-        try:
-            j = json.loads(out)
-            units = j.get("units", {})
-            best = None
-            for _, entries in units.items():
-                for e in entries:
-                    end = e.get("end") or e.get("fp") or ""
-                    if best is None or end > best[0]:
-                        best = (end, e.get("val"))
-            if best and best[1]: return best[1]
-        except Exception:
-            continue
-    return None
+        c = _latest_concept(cik10, ns, tag)
+        if c:
+            candidates.append((c[0], c[1], tag))   # (date, value, tag)
+    if not candidates:
+        return None
+    # Most recent date wins. If the point-in-time cover count (dei/CommonStock)
+    # is within ~100 days of the freshest weighted-avg, prefer it (exact count);
+    # otherwise the weighted-avg is fresher and dual-class-complete.
+    candidates.sort(key=lambda x: x[0])  # ascending by date
+    freshest_date = candidates[-1][0]
+    point_in_time = [c for c in candidates
+                     if c[2] in ("EntityCommonStockSharesOutstanding", "CommonStockSharesOutstanding")]
+    if point_in_time:
+        pit = point_in_time[-1]  # most recent cover count
+        # within 100 days of freshest? use it.
+        if _days_between(pit[0], freshest_date) <= 100:
+            return pit[1]
+    return candidates[-1][1]
+
+def _days_between(d1, d2):
+    from datetime import date
+    try:
+        y1,m1,dd1 = map(int, d1.split("-")); y2,m2,dd2 = map(int, d2.split("-"))
+        return abs((date(y2,m2,dd2) - date(y1,m1,dd1)).days)
+    except Exception:
+        return 9999
 
 def init_schema(conn):
     conn.executescript("""
