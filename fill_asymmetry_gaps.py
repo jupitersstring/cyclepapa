@@ -28,29 +28,58 @@ import pandas as pd
 FILL_COLUMNS = [
     # Valuation
     'price', 'ev_ebitda', 'ev_ebit', 'ev_sales', 'p_e', 'pb', 'p_tb',
+    'p_s', 'p_ocf',
     'fcf_yield', 'roce', 'roic_after_sbc',
     'capital_return_yield', 'dividend_yield', 'buyback_yield',
+    'market_cap', 'enterprise_value',
     # Margins / quality
     'ebitda_margin', 'op_margin', 'net_margin', 'fcf_margin', 'gross_margin',
     'net_debt_ebitda', 'cash_conversion', 'interest_coverage',
     'debt_to_equity',
     # Levels (TTM and balance sheet)
     'revenue_ttm', 'ebitda_ttm', 'cfo_ttm', 'fcf_ttm',
+    'gross_profit_ttm', 'gross_profit_to_mcap',
     'equity', 'assets', 'cash', 'total_debt', 'tangible_equity',
     'goodwill', 'intangibles', 'shares_outstanding',
+    # Ownership / sell-side
+    'insider_ownership_pct',
+    'analyst_target_mean', 'analyst_target_upside_pct',
     # Momentum / 52w
     'momentum_12m', 'pct_off_52w_high', 'price_52w_high',
     # Cap allocation
     'sbc_pct_revenue', 'effective_tax_rate',
     # Inflections / multi-year growth
-    'rev_yoy', 'ebitda_yoy', 'fcf_yoy', 'rev_accel', 'ebitda_accel',
+    'rev_yoy', 'ebitda_yoy', 'fcf_yoy', 'cfo_yoy',
+    'rev_accel', 'ebitda_accel', 'cfo_accel', 'fcf_accel',
+    'rev_qoq_ttm', 'ebitda_qoq_ttm', 'cfo_qoq_ttm', 'fcf_qoq_ttm',
+    'rev_seq', 'ebitda_seq', 'cfo_seq', 'fcf_seq',
+    'ebitda_margin_delta_yoy', 'fcf_margin_delta_yoy',
     'rev_inflection', 'ebitda_inflection', 'cfo_inflection',
     'fcf_inflection', 'roce_inflection',
+    'ebitda_first_positive', 'cfo_first_positive',
+    'fcf_first_positive', 'net_income_first_positive',
+    'roce_first_positive',
+    'roce_prev', 'roce_delta_yoy',
+    # ETA-to-positive (quarters/years until inflection)
+    'fcf_run_rate_delta',
+    'fcf_eta_quarters', 'fcf_eta_years',
+    'ebitda_eta_years', 'cfo_eta_years', 'ni_eta_years',
+    'fcf_projected_positive_in_n',
+    # Price-vs-fundamentals divergence
+    'price_yoy', 'price_minus_rev_yoy', 'price_minus_ebitda_yoy',
+    'price_minus_fcf_yoy', 'ev_sales_change_yoy',
     # Cash-vs-EV signals
+    'net_cash', 'cash_pct_mcap',
+    'ncav', 'mcap_to_ncav',
     'net_cash_pct_mcap', 'cash_pct_ev', 'ncav_pct_mcap',
     'cash_gt_ev_flag', 'graham_net_net_flag',
-    # Quality scores
+    # Composite quality / cheapness / inflection scores
     'not_priced_in_score',
+    'berezin_classic_flag', 'berezin_score',
+    'cheapness_growth_blend', 'cheapness_ev_ebit_vs_growth',
+    'cheapness_under_7x_flag', 'cheapness_blend_vs_growth',
+    'yartseva_score',
+    'inflection_flag', 'inflection_score',
 ]
 
 
