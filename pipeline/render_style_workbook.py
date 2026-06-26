@@ -308,27 +308,44 @@ def sheet_overview(wb, conn):
     ws.column_dimensions["A"].width = 8
 
 def sheet_subgroup_focus(wb, conn):
-    """Each high-value sub_group's top picks."""
-    subgroups = list(conn.execute("""SELECT macro_style, sub_group, COUNT(*) c
+    """Sub_group tier picks. Multi-fund sub_groups shown explicitly;
+    single-fund specialists consolidated into a 'Specialist Funds' bucket
+    per macro_style so every fund is visible without 90 separate sections."""
+    multi = list(conn.execute("""SELECT macro_style, sub_group, COUNT(*) c
         FROM fund_style WHERE sub_group IS NOT NULL AND macro_style IS NOT NULL
         GROUP BY macro_style, sub_group
-        HAVING c >= 5 ORDER BY macro_style, c DESC"""))
+        HAVING c >= 2
+        ORDER BY macro_style, c DESC, sub_group"""))
+    # All singletons grouped per macro_style
+    singletons = {}
+    for r in conn.execute("""SELECT macro_style, sub_group, fund FROM fund_style
+        WHERE sub_group IS NOT NULL AND macro_style IS NOT NULL
+        AND sub_group IN (SELECT sub_group FROM fund_style GROUP BY sub_group HAVING COUNT(*) = 1)
+        ORDER BY macro_style, sub_group"""):
+        singletons.setdefault(r[0], []).append((r[1], r[2]))
 
     ws = wb.create_sheet("Sub-Group Tiers")
     write_title(ws, "Sub-Group Tier Picks",
-                "Within each macro style, top picks by sub_group (Tier-1/2/specialist). Sub-groups with ≥5 funds only.", 11)
+                "Multi-fund tiers shown explicitly. Single-fund specialists consolidated per macro_style — every fund is visible.", 11)
+    # Group multi-fund subgroups by macro_style so we can render the
+    # singletons-roll-up right after each macro's multi-fund tiers.
+    multi_by_macro = {}
+    for ms, sg, n in multi:
+        multi_by_macro.setdefault(ms, []).append((sg, n))
+    all_macros = sorted(set(list(multi_by_macro) + list(singletons)))
+
     row = 4
-    last_macro = None
-    for ms, sg, n in subgroups:
-        if ms != last_macro:
-            ws.row_dimensions[row].height = 22
-            ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=11)
-            c = ws.cell(row=row, column=1, value=ms.upper())
-            c.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color="000000")
-            c.alignment = Alignment(horizontal="left", vertical="bottom")
-            row += 1
-            last_macro = ms
-        write_section_heading(ws, row, f"  {sg}  ({n} funds)", 11)
+    for ms in all_macros:
+        ws.row_dimensions[row].height = 22
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=11)
+        c = ws.cell(row=row, column=1, value=ms.upper())
+        c.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color="000000")
+        c.alignment = Alignment(horizontal="left", vertical="bottom")
+        row += 1
+        # Multi-fund sub_groups for this macro_style
+        for sg, n in multi_by_macro.get(ms, []):
+            label = f"  {sg}  ({n} funds)"
+            write_section_heading(ws, row, label, 11)
         row += 1
         hdr = ["Ticker","Sub Holders","pB Max","Mcap","Bucket","S3","S4","Act %","Clu $M","F4 $M","Name"]
         write_table_header(ws, row, hdr)
@@ -372,8 +389,67 @@ def sheet_subgroup_focus(wb, conn):
             ws.cell(row=ridx, column=9).number_format = NUMFMT_M_TO_B
             ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
         row += len(out) + 2
+        # ── end inner sub_group loop ──
+
+        # SPECIALIST FUNDS — consolidate all singletons in this macro_style
+        macro_singletons = singletons.get(ms, [])
+        if macro_singletons:
+            write_section_heading(ws, row,
+                f"  Specialist Funds — {len(macro_singletons)} single-fund sub_groups consolidated",
+                11)
+            row += 1
+            spec_hdr = ["Fund","Sub-Group","Top Holding","%Book","13F #","Mcap","Bucket"]
+            write_table_header(ws, row, spec_hdr)
+            row += 1
+            spec_out = []
+            for sg, fund in macro_singletons:
+                # Top 1 holding for this fund (by value)
+                top = conn.execute("""SELECT h.ticker, h.pct_book,
+                       us.smart_money_n, us.mcap_m, us.mcap_bucket
+                    FROM fund_13f_holdings h
+                    LEFT JOIN unified_signal us ON us.ticker = h.ticker
+                    WHERE h.fund = ? AND h.ticker IS NOT NULL
+                    ORDER BY h.value_k DESC LIMIT 1""", (fund,)).fetchone()
+                if top:
+                    spec_out.append([fund[:45], sg[:38], top[0],
+                                     round(top[1] or 0, 2),
+                                     top[2] or 0,
+                                     top[3] or "",
+                                     top[4] or ""])
+                else:
+                    spec_out.append([fund[:45], sg[:38], "—", 0, 0, "", ""])
+            write_table_rows(ws, spec_out, row)
+            for ridx in range(row, row + len(spec_out)):
+                ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
+                ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
+            row += len(spec_out) + 2
     autosize(ws)
-    ws.column_dimensions["A"].width = 10
+    ws.column_dimensions["A"].width = 30
+
+# Grayscale tab palette — content stays B&W; tab tint just aids navigation.
+# 15 macro_styles mapped to 8 distinct greyscale tones, grouped by character.
+TAB_COLORS = {
+    # Activists / Special Sits / Distressed — darkest (high-action)
+    "Activists / Special Situations":      "262626",
+    "Distressed / Event-Driven":           "404040",
+    # Value / Quality — mid-dark
+    "Value / Concentrated Quality":        "595959",
+    "Foreign / EM Value":                  "595959",
+    "Small-cap / Multibagger Specialists": "595959",
+    "Microcap-Tactical":                   "595959",
+    # Tiger Cubs / Family Offices — mid
+    "Tiger Cubs / L/S Legends":            "808080",
+    "Family Offices / Individual Filers":  "808080",
+    # Mega multi-strat / Macro — mid-light
+    "Mega Multi-Strats / Quants":          "A6A6A6",
+    "Macro / Trend":                       "A6A6A6",
+    "CTA / Trend Followers":               "A6A6A6",
+    # Specialist — light
+    "Biotech Specialists":                 "BFBFBF",
+    "Warrant Specialists":                 "BFBFBF",
+    "PE / SPAC / Gold / Mining":           "BFBFBF",
+    "Other / Unclassified":                "D9D9D9",
+}
 
 def main():
     conn = sqlite3.connect(DB)
@@ -387,6 +463,15 @@ def main():
     for ms, _ in style_macro_list(conn):
         sn = safe_sheet_name(ms)
         write_style_sheet(wb, conn, ms, sn)
+        ws = wb[sn]
+        # Tab color — grayscale per macro_style
+        if ms in TAB_COLORS:
+            ws.sheet_properties.tabColor = TAB_COLORS[ms]
+
+    # README + meta tabs in lightest grey for distinction
+    for nav in ("README", "Overview", "Sub-Group Tiers"):
+        if nav in wb.sheetnames:
+            wb[nav].sheet_properties.tabColor = "F2F2F2"
 
     wb.save(OUT)
     print(f"wrote {OUT}")

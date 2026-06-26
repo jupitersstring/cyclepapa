@@ -686,6 +686,35 @@ def sheet_bill_miller(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
+TAB_COLORS = {
+    # Navigation / meta — lightest
+    "README":          "F2F2F2",
+    "Fund Coverage":   "F2F2F2",
+    "All Funds":       "F2F2F2",
+    # Universe ranking — darkest
+    "Top 100":         "262626",
+    "Non-Biotech Top 100": "262626",
+    # Size buckets — mid-dark gradient
+    "Nano (<$50M)":            "404040",
+    "Micro ($50M–$300M)":      "595959",
+    "Small ($300M–$2B)":       "595959",
+    "Mid ($2B–$10B)":          "595959",
+    # Signal sheets — mid
+    "Material + New":          "808080",
+    "Activist 10+":            "808080",
+    "Insider Buys ≤30d":       "808080",
+    "Insider F4 Buys":         "808080",
+    "Insider Clusters":        "808080",
+    "Catalysts 8-K":           "808080",
+    # Setup sheets — mid-light
+    "In The Money":            "A6A6A6",
+    "Global Picks":            "A6A6A6",
+    "Bill Miller":             "A6A6A6",
+    # Reference / support — lighter
+    "Unknown Mcap":            "BFBFBF",
+    "All Positions":           "BFBFBF",
+}
+
 def main():
     conn = sqlite3.connect(DB)
     wb = openpyxl.Workbook()
@@ -722,6 +751,11 @@ def main():
     sheet_all_holdings_consolidated(wb, conn)
     sheet_fund_coverage(wb, conn)
     sheet_all_funds(wb, conn)
+
+    # Tab colour-coding — grayscale tones by theme
+    for sname, color in TAB_COLORS.items():
+        if sname in wb.sheetnames:
+            wb[sname].sheet_properties.tabColor = color
 
     wb.save(OUT)
     print(f"wrote {OUT}")
