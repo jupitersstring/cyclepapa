@@ -25,13 +25,15 @@ CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache")
 
 
 def refresh(interval="1d", window="3mo", period_key="20y", batch=40,
-            stale_days=4) -> None:
+            stale_days=0) -> None:
     import yfinance as yf
     from yfsession import SESSION
     path = os.path.join(CACHE_DIR, f"ohlcvdict_{interval}_{period_key}.pkl")
     have: dict = pd.read_pickle(path)
     asof = max(d.index[-1] for d in have.values() if len(d))
     now = pd.Timestamp.utcnow().tz_localize(None)
+    # stale_days=0 => refresh any name whose last bar is a PRIOR calendar day, so
+    # the newest session is always pulled (stale_days>0 silently misses recent bars)
     todo = [s for s, d in have.items()
             if len(d) and (now - d.index[-1]).days > stale_days]
     print(f"[refresh:{interval}] cache asof {asof.date()} | {len(todo)}/{len(have)} "
