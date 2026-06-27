@@ -42,14 +42,18 @@ setsid nohup "$PROJECT_DIR/run_harvest_forever.sh" \
 disown $!
 echo "session-start-hook: launched harvest watchdog (PID $!) in background" >&2
 
-# Also resume the Yahoo fundamentals enricher (cookie/crumb quoteSummary)
-# and the chart price-fill — both resumable, both fill valuation gaps.
-if [ -f "$PROJECT_DIR/ticker_yf.py" ] \
-   && ! pgrep -f "ticker_yf.py" > /dev/null 2>&1; then
-    setsid nohup python3 "$PROJECT_DIR/ticker_yf.py" --rate 3 \
-        > "$PROJECT_DIR/ticker_yf.log" 2>&1 < /dev/null &
+# Also resume the Yahoo fundamentals enrichment driver — runs the
+# cookie/crumb quoteSummary enricher to completion, then auto-applies
+# the authoritative valuations + rebuilds workbooks (once; guarded by
+# the .ticker_yf_rendered sentinel inside the driver).
+if [ -f "$PROJECT_DIR/run_ticker_yf_forever.sh" ] \
+   && ! pgrep -f "ticker_yf.py" > /dev/null 2>&1 \
+   && ! pgrep -f "run_ticker_yf_forever.sh" > /dev/null 2>&1; then
+    chmod +x "$PROJECT_DIR/run_ticker_yf_forever.sh" 2>/dev/null || true
+    setsid nohup bash "$PROJECT_DIR/run_ticker_yf_forever.sh" \
+        > "$PROJECT_DIR/ticker_yf_driver.log" 2>&1 < /dev/null &
     disown $!
-    echo "session-start-hook: resumed ticker_yf enricher (PID $!)" >&2
+    echo "session-start-hook: launched ticker_yf driver (PID $!)" >&2
 fi
 
 if [ -f "$PROJECT_DIR/yahoo_chart_fill.py" ] \

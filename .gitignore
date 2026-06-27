@@ -27,3 +27,6 @@ nohup.out
 harvest_watchdog.log
 *.log
 ticker_yf.log
+ticker_yf.csv
+ticker_yf_driver.log
+.ticker_yf_rendered
