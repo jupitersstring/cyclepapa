@@ -95,9 +95,52 @@ def main():
     common = m.index.intersection(y.index)
     print(f"  {len(common):,} symbols overlap", file=sys.stderr)
 
-    # Recompute derived EV/EBITDA-type ratios sanity: Yahoo's ev_ebitda is
-    # a ratio already. Use directly.
+    # Plausibility bands per master column. Yahoo's quoteSummary sometimes
+    # returns garbage ratios (negative EV/EBITDA from negative EBITDA,
+    # absurd >100 multiples, near-zero from data errors). For OVERWRITE
+    # columns we only clobber the master with an in-band Yahoo value;
+    # out-of-band values fall through (the existing master value, often a
+    # clean EDGAR-derived figure, is kept). FILL columns still only touch
+    # nulls, but the band keeps us from filling a gap with garbage too.
+    #   (lo, hi) inclusive bounds; None = unbounded on that side.
+    BANDS = {
+        "ev_ebitda": (0, 150),
+        "p_e": (0, 500),
+        "pb": (0, 100),
+        "ev_sales": (0, 100),
+        "p_s": (0, 100),
+        "market_cap": (0, None),
+        "enterprise_value": (None, None),  # EV can be negative (net cash)
+        "price": (0, None),
+        "ebitda_margin": (-5, 5),
+        "gross_margin": (-1, 1),
+        "op_margin": (-5, 5),
+        "net_margin": (-5, 5),
+        "roe": (-10, 10),
+        "roa": (-5, 5),
+        "dividend_yield": (0, 0.5),
+        "revenue_ttm": (0, None),
+        "ebitda_ttm": (None, None),
+        "fcf_ttm": (None, None),
+        "cfo_ttm": (None, None),
+        "cash": (0, None),
+        "total_debt": (0, None),
+        "shares_outstanding": (0, None),
+        "insider_ownership_pct": (0, 1),
+        "price_52w_high": (0, None),
+    }
+
+    def in_band(series, col):
+        lo, hi = BANDS.get(col, (None, None))
+        ok = series.notna()
+        if lo is not None:
+            ok &= series >= lo
+        if hi is not None:
+            ok &= series <= hi
+        return ok
+
     changes = {}
+    rejected = {}
     for yf_col, master_col, mode in MERGE_SPEC:
         if yf_col not in y.columns:
             continue
@@ -106,13 +149,17 @@ def main():
         if master_col not in m.columns:
             m[master_col] = np.nan
         before = m[master_col].notna().sum()
+        band_ok = in_band(src, master_col)
+        n_rej = int((src.notna() & ~band_ok).sum())
         if mode == "overwrite":
-            mask = src.notna()
+            mask = band_ok
         else:  # fill
-            mask = src.notna() & m[master_col].isna()
+            mask = band_ok & m[master_col].isna()
         m.loc[mask, master_col] = src[mask]
         after = m[master_col].notna().sum()
         changes[master_col] = (before, after, int(mask.sum()), mode)
+        if n_rej:
+            rejected[master_col] = rejected.get(master_col, 0) + n_rej
 
     # Keep Yahoo-native extras
     for yf_col in YF_NATIVE_KEEP:
@@ -134,8 +181,14 @@ def main():
     n = len(out)
     print("\nMerge results (col: before -> after, applied, mode):", file=sys.stderr)
     for col, (b, a, applied, mode) in sorted(changes.items(), key=lambda kv: -kv[1][2]):
+        rej = rejected.get(col, 0)
+        rej_s = f"  (rejected {rej} out-of-band)" if rej else ""
         print(f"  {col:24s} {b:6,} -> {a:6,}  applied={applied:6,}  [{mode}]  "
-              f"{100*a/n:.1f}%", file=sys.stderr)
+              f"{100*a/n:.1f}%{rej_s}", file=sys.stderr)
+    total_rej = sum(rejected.values())
+    if total_rej:
+        print(f"\nTotal out-of-band Yahoo values rejected (kept master): {total_rej:,}",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":
