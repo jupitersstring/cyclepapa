@@ -70,7 +70,10 @@ savers; `*= 0.5` for MNC-distorted entrepôts) live in `composite.ARCHETYPE_TILT
 | `godley_projection.py` | Godley 1999 Appendix 2 stock-projection method, automated — endogenous NII feedback, 5y NIIP trajectory, one-sided unsustainability score |
 | `tobin_q.py` | Endogenous Tobin's q per Godley-Lavoie ch.11; closes the equity-prices-validate-investment loop |
 | `sfc_integrity.py` | Quadruple-bookkeeping consistency check + per-country tolerance band + data-confidence label |
-| `sources/` | Stub data adapters documenting the live-wiring path for BIS / FRED-Z.1 / Eurostat / IMF — calibrated fallback values today |
+| `minsky_fragility.py` | Minsky/Tymoigne (Levy WP 654) hedge/speculative/Ponzi fragility index — 0/0.5/1.0 weighting; flagged US housing Ponzi-dominance 2004-07 |
+| `anomalies.py` | Four-class anomaly detector: calibration-vs-live, cross-sectional outliers, SFC-inconsistency, Minsky regime shifts |
+| `sources/live.py` | **Genuinely live** loader — World Bank (market cap, credit/GDP, savings, investment) + IMF datamapper (CA, fiscal, debt, growth), no API key, cached to `_cache/` |
+| `sources/{bis,fred,eurostat,imf}.py` | Adapters documenting the live-wiring path for the higher-frequency sources — calibrated fallback today |
 | `app.py` | Streamlit dashboard + CLI fallback |
 
 ## Run
@@ -161,6 +164,49 @@ F.133 RoW); identity `NAFA - NIL ≈ S - I` holds up to statistical discrepancy.
 - Levy Institute Strategic Analysis series 1996–2010 (Godley, Papadimitriou,
   Zezza, Hannsgen, Nikiforos, Yajima) — the multi-country SFC tradition the
   scanner inherits.
+
+### Levy Institute (Bard) corpus — broad sweep
+
+The framework draws on the full Levy Economics Institute body of work:
+
+- **Minsky strand** — Hyman Minsky, *The Financial Instability Hypothesis*
+  (Levy WP 74, 1992); Éric Tymoigne, *Measuring Macroprudential Risk:
+  Financial Fragility Indexes* (Levy WP 654, 2011) — the hedge/speculative/
+  Ponzi 0/0.5/1.0 weighting implemented in `minsky_fragility.py`; L. Randall
+  Wray, *Minsky Crisis* (WP 659). Minsky was a Levy Distinguished Scholar
+  1990–96; archive at digitalcommons.bard.edu/hm_archive.
+- **Distribution-and-demand strand** — Michalis Nikiforos, *Distribution-led
+  Growth in the Long Run* (WP 814), *Estimating a Time-Varying Distribution-Led
+  Regime* (WP 1001), *Markups, Profit Shares, and Cost-Push-Profit-Led
+  Inflation* (WP 1037, 2024) — markup-driven profit-share rises are
+  contractionary because MPC(wages) > MPC(profits); a profit-quality lens for
+  the Kalecki-Levy Investment vs markup distinction.
+- **Money / MMT strand** — L. Randall Wray, *Modern Money* (WP 252); Stephanie
+  Bell/Kelton, *Can Taxes and Bonds Finance Government Spending?* (WP 244) —
+  the fiscal-dominance basis for treating the government-deficit leg of the
+  profit equation differently for monetary sovereigns vs the eurozone/frontier.
+- **Open-economy strand** — Godley, *Open Economy Macroeconomics Using Models
+  of Closed Systems* (WP 281, 1999); Godley & Lavoie, *A simple model of three
+  economies with two currencies* (CJE 31(1), 2007) — the eurozone design-flaw
+  model; Dos Santos & Macedo e Silva, *Revisiting 'New Cambridge'* (WP 594).
+- **Strategic Analysis series** — Godley's *Seven Unsustainable Processes*
+  (1999), *Strategic Prospects* (2002), *The United States and Her Creditors*
+  (2005), *Prospects for the US and the World: A Crisis That Conventional
+  Remedies Cannot Resolve* (2008); continued by the Papadimitriou-Zezza-
+  Nikiforos-Yajima team to *The US Economy amid Rising Global Uncertainty*
+  (Oct 2025).
+
+**Lessons from Godley's actual record** (Taylor, *A foxy hedgehog*, CJE 2008;
+Cripps & Lavoie 2017) — baked into how the scanner frames its output:
+1. Godley's hits (US private-deficit 1999/2007, the 1992 euro critique) came
+   from spotting *internal inconsistency* in a growth path → the scanner's
+   anomaly detector and Seven-Processes diagnostic.
+2. His misses were *timing* and *directed-credit* economies (China/Bretton-
+   Woods-II financing persisted far longer than the arithmetic implied) → the
+   scanner is explicitly cross-sectional-not-timed, and applies a data-
+   confidence haircut to the directed-credit (F) archetype.
+3. The identity reveals *that* a path is unsustainable, never *when* it breaks
+   → outputs are flags to investigate, not dated calls.
 
 ### Practitioner overlay sources (regime.py)
 

@@ -207,6 +207,29 @@ def main_cli() -> None:
     print(qp[["market_cap_pct_gdp", "nfc_debt_pct_gdp",
               "replacement_k_pct_gdp", "q_enterprise"]].to_string())
 
+    print("\n=== MINSKY FINANCIAL FRAGILITY (Tymoigne WP 654) -- most fragile ===")
+    from . import minsky_fragility as MF
+    print(MF.panel().head(10)[["hedge", "speculative", "ponzi",
+                               "fragility", "minsky_regime", "note"]].to_string())
+
+    print("\n=== ANOMALIES ===")
+    from . import anomalies as AN
+    breadth = AN.private_surplus_breadth()
+    print(f"  Paradox-of-thrift breadth: {breadth['of_which_private_surplus']}/"
+          f"{breadth['deficit_archetype_countries']} deficit-archetype economies "
+          f"({int(breadth['share']*100)}%) now run PRIVATE SURPLUSES "
+          f"-- Godley's synchronised-net-saving recession setup.")
+    shifts = AN.minsky_regime_shifts()
+    if len(shifts):
+        print("  Minsky regime shifts (bull composite but Ponzi/speculative financing):")
+        print(shifts[["country", "minsky_regime", "fragility", "anomaly"]].to_string(index=False))
+    sfc = AN.sfc_inconsistency()
+    contrarian = sfc[sfc["severity"] == "CONTRARIAN"] if len(sfc) else sfc
+    if len(contrarian):
+        print("  Contrarian SFC posture (against the global surplus tilt):")
+        print(contrarian[["country", "archetype", "implied_private_balance",
+                          "anomaly"]].to_string(index=False))
+
 
 if __name__ == "__main__":
     try:

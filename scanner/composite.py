@@ -36,6 +36,7 @@ from . import kalecki_levy as KL
 from . import regime as R
 from . import tobin_q as TQ
 from . import sfc_integrity as SI
+from . import minsky_fragility as MF
 
 
 # Setser China hidden-surplus haircut. CFR "Follow the Money" Feb 2026 +
@@ -155,6 +156,15 @@ def score_panel(panel: pd.DataFrame, archetype_of: dict[str, str]) -> pd.DataFra
     # bull-regime confidence where aggregate balances hide sub-sector
     # fragility (UK-2022-LDI lesson).
     out["opportunity"] = out["opportunity"] - 0.06 * out["nbfi_leverage"].fillna(0.5).clip(0, 3)
+    # Minsky financial-fragility penalty (Tymoigne WP 654). A profit boom in a
+    # Ponzi-financed configuration ends like US housing 2007 -- penalise the
+    # opportunity score by the 0-1 fragility index. De-meaned at 0.3 so the
+    # robust-hedge majority is broadly neutral and only the Ponzi tail is hit.
+    out["minsky_fragility"] = out.index.map(MF.fragility_index)
+    out["minsky_regime"] = out.index.map(MF.regime_label)
+    out["opportunity"] = out["opportunity"] - 0.20 * (
+        out["minsky_fragility"].fillna(0.3) - 0.3
+    ).clip(lower=0)
     # Tobin-q endogeneity: penalise the investment leg when q is above its
     # stage-conditioned target (capex deferral / buyback substitution); lift
     # it when q is below target (portfolio rebalancing pushes equity issuance).
