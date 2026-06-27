@@ -135,18 +135,18 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         n_seg = int(region_df.get('seg_inflection_flag', pd.Series(False, index=region_df.index)).sum())
 
         ws.set_row(0, 26)
-        ws.merge_range(0, 0, 0, 18, label.upper(), S['title'])
+        ws.merge_range(0, 0, 0, 22, label.upper(), S['title'])
         ws.set_row(1, 16)
-        ws.merge_range(1, 0, 1, 18,
+        ws.merge_range(1, 0, 1, 22,
             f"{len(region_df):,} ranked  ·  {n_q} Q-strict  ·  {n_ql} Q-loose  ·  {n_qm} Qullamaggie  "
             f"·  {n_ep} Episodic Pivot  ·  {n_seg} segment inflection  ·  {datetime.date.today().isoformat()}",
             S['subtitle'])
 
-        widths = [9, 32, 11, 4, 4, 4, 4, 4, 7, 7, 7, 5, 9, 7, 7, 7, 7, 13, 7, 22, 7]
+        widths = [9, 32, 11, 4, 4, 4, 4, 4, 7, 7, 7, 5, 9, 7, 7, 8, 8, 7, 7, 13, 7, 22, 7]
         for c, w in enumerate(widths): ws.set_column(c, c, w)
 
         headers = ['Ticker','Company','Cap','Q','QL','Qm','EP','Seg','Macro','Dalton %','TD %','Lens',
-                   'EV/EBITDA','P/B','P/E','FCF Yld %','Rev G %','Market Cap (M)','Score','Largest Segment','Seg %']
+                   'EV/EBITDA','P/B','P/E','PEG fwd','PEG ttm','FCF Yld %','Rev G %','Market Cap (M)','Score','Largest Segment','Seg %']
         ws.set_row(3, 22)
         for c, h in enumerate(headers):
             ws.write(3, c, h, S['header'])
@@ -180,13 +180,15 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             write_num(ws, row,12, r.get('ev_valuation'), rfmt, S['em'])
             write_num(ws, row,13, r.get('pb'), rfmt, S['em'])
             write_num(ws, row,14, r.get('pe'), rfmt, S['em'])
-            write_num(ws, row,15, r.get('fcf_yield_pct'), pfmt, S['em'])
-            write_num(ws, row,16, r.get('rev_g_pct'), pfmt, S['em'])
-            write_num(ws, row,17, r.get('mktCap_M'), mfmt, S['em'])
-            write_num(ws, row,18, r.get('all_legs_score'), rfmt, S['em'])
+            write_num(ws, row,15, r.get('peg_forward'), rfmt, S['em'])
+            write_num(ws, row,16, r.get('peg_trailing'), rfmt, S['em'])
+            write_num(ws, row,17, r.get('fcf_yield_pct'), pfmt, S['em'])
+            write_num(ws, row,18, r.get('rev_g_pct'), pfmt, S['em'])
+            write_num(ws, row,19, r.get('mktCap_M'), mfmt, S['em'])
+            write_num(ws, row,20, r.get('all_legs_score'), rfmt, S['em'])
             seg_name = str(r.get('largest_segment',''))[:28] if pd.notna(r.get('largest_segment')) else None
-            write_text(ws, row,19, seg_name, tfmt, S['em'])
-            write_num(ws, row,20, r.get('largest_segment_pct'), pfmt, S['em'])
+            write_text(ws, row,21, seg_name, tfmt, S['em'])
+            write_num(ws, row,22, r.get('largest_segment_pct'), pfmt, S['em'])
 
     # ─── Summary cover sheet ───
     ws = wb.add_worksheet('Summary')
@@ -224,7 +226,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     for r in range(3, 10): ws.set_row(r, 18)
 
     sum_headers = ['Ticker','Company','Region','Cap','Q','Qm','Dalton %','TD %','Fund %','Lens',
-                   'EV/EBITDA','P/B','P/E','FCF Y %','Market Cap (M)','Score']
+                   'EV/EBITDA','P/B','P/E','PEG fwd','PEG ttm','FCF Y %','Market Cap (M)','Score']
 
     def write_summary_row(row, r):
         qpass = bool(r.get('quality_pass', False))
@@ -251,13 +253,15 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         write_num(ws, row,10, r.get('ev_valuation'), rfmt, S['em'])
         write_num(ws, row,11, r.get('pb'), rfmt, S['em'])
         write_num(ws, row,12, r.get('pe'), rfmt, S['em'])
-        write_num(ws, row,13, r.get('fcf_yield_pct'), pfmt, S['em'])
-        write_num(ws, row,14, r.get('mktCap_M'), mfmt, S['em'])
-        write_num(ws, row,15, r.get('all_legs_score'), rfmt, S['em'])
+        write_num(ws, row,13, r.get('peg_forward'), rfmt, S['em'])
+        write_num(ws, row,14, r.get('peg_trailing'), rfmt, S['em'])
+        write_num(ws, row,15, r.get('fcf_yield_pct'), pfmt, S['em'])
+        write_num(ws, row,16, r.get('mktCap_M'), mfmt, S['em'])
+        write_num(ws, row,17, r.get('all_legs_score'), rfmt, S['em'])
 
     row = 11
     ws.set_row(row, 20)
-    ws.merge_range(row, 0, row, 14, 'TOP 30 — OVERALL COMPOSITE', S['section']); row += 1
+    ws.merge_range(row, 0, row, 17, 'TOP 30 — OVERALL COMPOSITE', S['section']); row += 1
     ws.set_row(row, 20)
     for c, h in enumerate(sum_headers): ws.write(row, c, h, S['header'])
     row += 1
@@ -266,7 +270,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     row += 1
 
     ws.set_row(row, 20)
-    ws.merge_range(row, 0, row, 14, 'TOP 30 — QUALITY-STRICT ONLY', S['section']); row += 1
+    ws.merge_range(row, 0, row, 17, 'TOP 30 — QUALITY-STRICT ONLY', S['section']); row += 1
     ws.set_row(row, 20)
     for c, h in enumerate(sum_headers): ws.write(row, c, h, S['header'])
     row += 1

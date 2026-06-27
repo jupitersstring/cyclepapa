@@ -117,6 +117,12 @@ def extract(ticker, j):
         'yf_debt_equity':  raw(fd, 'debtToEquity'),
         'yf_div_yield':    raw(sd, 'dividendYield'),
         'yf_beta':         raw(ks, 'beta') or raw(sd, 'beta'),
+        # Growth + PEG (authoritative — feeds forward PEG)
+        'yf_earnings_growth':   raw(fd, 'earningsGrowth'),
+        'yf_revenue_growth':    raw(fd, 'revenueGrowth'),
+        'yf_earnings_q_growth': raw(ks, 'earningsQuarterlyGrowth'),
+        'yf_peg':               raw(ks, 'pegRatio'),
+        'yf_trailing_peg':      raw(ks, 'trailingPegRatio'),
     }
 
 

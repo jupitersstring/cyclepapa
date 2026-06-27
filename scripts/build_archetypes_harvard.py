@@ -64,11 +64,15 @@ df['arch_pform']        = df['absW_p_form']
 df['arch_sub_book']     = (pd.to_numeric(df.get('pb', np.nan), errors='coerce') > 0) & (pd.to_numeric(df.get('pb', np.nan), errors='coerce') < 1.0)
 df['arch_hidden_fcf']   = df['has_history'] & (df.get('fcf_margin_mean_4y', pd.Series(-1, index=df.index)).fillna(-1) >= 0.10) & (df.get('ev_valuation', pd.Series(99, index=df.index)).fillna(99).between(0.01, 12))
 df['arch_reinvest']     = df['has_history'] & (df.get('roiic_1y', pd.Series(-99, index=df.index)).fillna(-99) >= 0.30) & (df.get('roiic_3y', pd.Series(-99, index=df.index)).fillna(-99) >= 0.15)
+# GARP — Growth At Reasonable Price: forward PEG < 1 with real positive growth + earnings
+_pegf = pd.to_numeric(df.get('peg_forward', pd.Series(np.nan, index=df.index)), errors='coerce')
+_egf  = pd.to_numeric(df.get('eps_growth_fwd', pd.Series(np.nan, index=df.index)), errors='coerce')
+df['arch_garp'] = (_pegf > 0) & (_pegf < 1.0) & (_egf >= 0.10)
 
 ALL_ARCH = ['arch_enduring','arch_turning','arch_cash','arch_dv_quality','arch_q','arch_ep','arch_td_mr',
             'arch_absorp','arch_compress_w','arch_compress_m','arch_prebo','arch_bform','arch_fbdr',
             'arch_hidden_fcf','arch_reinvest','arch_backlog','arch_seg_inflect','arch_var',
-            'arch_accepted_out','arch_excess_bull','arch_sub_book']
+            'arch_accepted_out','arch_excess_bull','arch_sub_book','arch_garp']
 df['arch_n'] = sum(df[c].astype(int) for c in ALL_ARCH if c in df.columns)
 df['arch_conviction'] = df['arch_n'] >= 3
 
@@ -133,13 +137,13 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     ws.set_default_row(15)
 
     # Column widths sized for wide rows — segment names take 28 chars, backlog concepts 28
-    widths = [8, 28, 11, 8, 9, 9, 9, 9, 9, 9, 9, 9, 28, 9, 28, 9, 9, 28, 9, 7, 8, 8]
+    widths = [8, 28, 11, 8, 9, 9, 9, 9, 9, 9, 8, 8, 9, 9, 28, 9, 28, 9, 9, 28, 9, 7, 8, 8]
     for c, w in enumerate(widths): ws.set_column(c, c, w)
 
     ws.set_row(0, 28)
-    ws.merge_range(0, 0, 0, 21, 'INVESTMENT ARCHETYPES  ·  CROSS-COHORT SUMMARY', S['title'])
+    ws.merge_range(0, 0, 0, 23, 'INVESTMENT ARCHETYPES  ·  CROSS-COHORT SUMMARY', S['title'])
     ws.set_row(1, 16)
-    ws.merge_range(1, 0, 1, 21,
+    ws.merge_range(1, 0, 1, 23,
         f"{datetime.date.today().isoformat()}  ·  {len(df):,} ranked  ·  "
         f"{int(df['arch_enduring'].sum())} enduring  ·  {int(df['arch_turning'].sum())} turning  ·  "
         f"{int(df['arch_cash'].sum())} cash  ·  {int(df['arch_seg_inflect'].sum())} segment-inflect  ·  "
@@ -157,7 +161,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
     def write_block(title, dfsub, sort_col=None, ascending=False, n=25):
         section(f"{title}  ·  {len(dfsub)} names")
         headers = ['Ticker','Company','Region','Cap','Mkt Cap (M)','ROIC Mn %','ROIC Min %',
-                   'ROIIC 1y %','CC-ROIC %','EV/EBIT','FCF Y %','Rev G %','Largest Seg','Largest %',
+                   'ROIIC 1y %','CC-ROIC %','EV/EBIT','PEG fwd','PEG ttm','FCF Y %','Rev G %','Largest Seg','Largest %',
                    'Fastest Seg','Fastest %','Mix Δ pp','Backlog Concept','Backlog Δ pp','Inflect','CC Inflect','Score']
         ws.set_row(row[0], 22)
         for c, h in enumerate(headers): ws.write(row[0], c, h, S['header'])
@@ -175,20 +179,22 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             wn(ws, row[0], 7, topct(r.get('roiic_1y')), S['pct'], S['em'])
             wn(ws, row[0], 8, topct(r.get('cc_roic_fcf_mean_4y')), S['pct'], S['em'])
             wn(ws, row[0], 9, r.get('ev_valuation') if pd.notna(r.get('ev_valuation', np.nan)) else r.get('ev_ebit'), S['ratio'], S['em'])
-            wn(ws, row[0],10, r.get('fcf_yield_pct'), S['pct'], S['em'])
-            wn(ws, row[0],11, r.get('rev_g_pct'), S['pct'], S['em'])
-            wt(ws, row[0],12, str(r.get('largest_segment',''))[:18] if pd.notna(r.get('largest_segment')) else None, S['text_l'], S['em'])
-            wn(ws, row[0],13, r.get('largest_segment_pct'), S['pct'], S['em'])
-            wt(ws, row[0],14, str(r.get('seg_fastest_name',''))[:18] if pd.notna(r.get('seg_fastest_name')) else None, S['text_l'], S['em'])
-            wn(ws, row[0],15, r.get('seg_rev_growth_fastest'), S['pct'], S['em'])
-            wn(ws, row[0],16, r.get('seg_mix_shift_pp'), S['pct'], S['em'])
-            wt(ws, row[0],17, str(r.get('backlog_concept_used',''))[:16] if pd.notna(r.get('backlog_concept_used')) else None, S['text_l'], S['em'])
-            wn(ws, row[0],18, r.get('backlog_inflection_pp'), S['pct'], S['em'])
+            wn(ws, row[0],10, r.get('peg_forward'), S['ratio'], S['em'])
+            wn(ws, row[0],11, r.get('peg_trailing'), S['ratio'], S['em'])
+            wn(ws, row[0],12, r.get('fcf_yield_pct'), S['pct'], S['em'])
+            wn(ws, row[0],13, r.get('rev_g_pct'), S['pct'], S['em'])
+            wt(ws, row[0],14, str(r.get('largest_segment',''))[:18] if pd.notna(r.get('largest_segment')) else None, S['text_l'], S['em'])
+            wn(ws, row[0],15, r.get('largest_segment_pct'), S['pct'], S['em'])
+            wt(ws, row[0],16, str(r.get('seg_fastest_name',''))[:18] if pd.notna(r.get('seg_fastest_name')) else None, S['text_l'], S['em'])
+            wn(ws, row[0],17, r.get('seg_rev_growth_fastest'), S['pct'], S['em'])
+            wn(ws, row[0],18, r.get('seg_mix_shift_pp'), S['pct'], S['em'])
+            wt(ws, row[0],19, str(r.get('backlog_concept_used',''))[:16] if pd.notna(r.get('backlog_concept_used')) else None, S['text_l'], S['em'])
+            wn(ws, row[0],20, r.get('backlog_inflection_pp'), S['pct'], S['em'])
             v1 = bool(r.get('roiic_inflection', False))
-            ws.write_string(row[0],19, '•' if v1 else EM_DASH, S['text_c_b'] if v1 else S['em'])
+            ws.write_string(row[0],21, '•' if v1 else EM_DASH, S['text_c_b'] if v1 else S['em'])
             v2 = bool(r.get('cc_roiic_inflection', False))
-            ws.write_string(row[0],20, '•' if v2 else EM_DASH, S['text_c_b'] if v2 else S['em'])
-            wn(ws, row[0],21, r.get('all_legs_score'), S['ratio'], S['em'])
+            ws.write_string(row[0],22, '•' if v2 else EM_DASH, S['text_c_b'] if v2 else S['em'])
+            wn(ws, row[0],23, r.get('all_legs_score'), S['ratio'], S['em'])
             row[0] += 1
         row[0] += 1
 
@@ -340,7 +346,9 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
                 df[df['arch_sub_book']], 'all_legs_score')
     write_block('25. P-Formation — short-cover fade (bearish reversal candidate)',
                 df[df['arch_pform']], 'all_legs_score')
-    write_block('26. Triple-Lens Conviction — passes ≥ 3 buy-side archetypes',
+    write_block('26. GARP — Growth At Reasonable Price: forward PEG < 1 with ≥ 10 % forward EPS growth',
+                df[df['arch_garp']], 'peg_forward', ascending=True)
+    write_block('27. Triple-Lens Conviction — passes ≥ 3 buy-side archetypes',
                 df[df['arch_conviction']], 'arch_n')
 
 print(f"Wrote {xlsx_path}", file=sys.stderr)

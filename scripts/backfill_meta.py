@@ -17,7 +17,38 @@ src = 'data/synthesis/v2_universe_ranked_full_q.csv'
 if not os.path.exists(src):
     src = 'data/synthesis/v2_universe_ranked_full.csv'
 df = pd.read_csv(src)
+df['ticker'] = df['ticker'].astype(str).str.strip().str.upper()
 print(f"Loaded {len(df)} rows from {src}", file=sys.stderr)
+
+# ─── 0. Ingest EDGAR-only backlog & segment names not in the ranked universe ───
+# The SEC universe carries thousands of filers financedatabase never indexed.
+# Any of them with real backlog or segment data should appear in those cohorts.
+_existing = set(df['ticker'])
+_add = set()
+def _is_common(t):
+    t = str(t).upper()
+    if any(x in t for x in ['-P','-WT','-WS','-UN','-RT','.WS','.U ','.RT','-W','-U','$']): return False
+    if '-' in t and t.rsplit('-', 1)[-1][:1] == 'P': return False
+    return True
+for _src, _flagcol in [('data/research/backlog_us.csv', 'backlog_latest'),
+                       ('data/research/segments_us.csv', 'has_segments')]:
+    if os.path.exists(_src):
+        _b = pd.read_csv(_src, low_memory=False)
+        _b['ticker'] = _b['ticker'].astype(str).str.upper().str.strip()
+        if _flagcol == 'has_segments':
+            _hit = _b[_b.get('has_segments', pd.Series(False)).fillna(False).astype(bool)]
+        else:
+            _hit = _b[_b[_flagcol].notna()]
+        for t in _hit['ticker']:
+            if t not in _existing and _is_common(t):
+                _add.add(t)
+if _add:
+    new = pd.DataFrame({'ticker': sorted(_add)})
+    new['region'] = 'us'
+    new['cap_tier'] = 'unknown'
+    new['edgar_only'] = True
+    df = pd.concat([df, new], ignore_index=True, sort=False)
+    print(f"  ingested {len(_add):,} EDGAR-only backlog/segment names (now {len(df):,} rows)", file=sys.stderr)
 print(f"  gaps before: name {df['name'].isna().sum()}  sector {df.get('sector', pd.Series(dtype=str)).isna().sum()}  mktCap {df.get('mktCap', pd.Series(dtype=float)).isna().sum()}", file=sys.stderr)
 
 # ─── 1. Build master metadata dict from all universe files ───
@@ -254,7 +285,7 @@ if os.path.exists(yf_path) and os.path.getsize(yf_path) > 50:
     y['ticker'] = y['ticker'].astype(str).str.upper().str.strip()
     y = y.drop_duplicates('ticker', keep='last').set_index('ticker')
     # Map authoritative Yahoo → our canonical columns (overwrite where Yahoo has a value)
-    auth = [('mktCap','yf_mktCap'), ('pb','yf_pb'), ('pe','yf_pe'), ('fpe','yf_fpe'),
+    auth = [('price','yf_price'), ('mktCap','yf_mktCap'), ('pb','yf_pb'), ('pe','yf_pe'), ('fpe','yf_fpe'),
             ('ps','yf_ps'), ('ev_ebitda','yf_ev_ebitda'), ('ev_total','yf_ev'),
             ('fcf','yf_fcf'), ('roe','yf_roe'), ('beta','yf_beta'), ('div_yield','yf_div_yield')]
     over = 0
@@ -271,6 +302,10 @@ if os.path.exists(yf_path) and os.path.getsize(yf_path) > 50:
         m = y['yf_ev_ebitda'].dropna().to_dict()
         mapped = df['ticker'].map(m)
         df['ev_valuation'] = mapped.where(mapped.notna(), df['ev_valuation'])
+    # Carry authoritative growth + PEG straight through for the PEG step (8d)
+    for raw_col in ['yf_earnings_growth','yf_revenue_growth','yf_peg','yf_trailing_peg']:
+        if raw_col in y.columns:
+            df[raw_col] = df['ticker'].map(y[raw_col].dropna().to_dict())
     df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
     # Recompute backlog_to_ev with authoritative EV
     if 'backlog_latest' in df.columns and 'ev_total' in df.columns:
@@ -278,6 +313,40 @@ if os.path.exists(yf_path) and os.path.getsize(yf_path) > 50:
         ev = pd.to_numeric(df['ev_total'], errors='coerce')
         df['backlog_to_ev_ratio'] = (bl / ev).where(ev > 0)
     print(f"  merged authoritative Yahoo: {len(y):,} rows · {over:,} cell overwrites", file=sys.stderr)
+
+# ─── 8d. PEG ratios (trailing + forward) ───
+# Forward EPS growth derived cleanly from the trailing-vs-forward P/E spread:
+#   fpe = price / fwd_eps, pe = price / ttm_eps  →  pe/fpe = fwd_eps/ttm_eps = 1 + g
+# So implied forward EPS growth = pe/fpe - 1. Authoritative Yahoo earningsGrowth wins
+# where present (merged below). earn_g is the trailing fallback.
+pe_v  = pd.to_numeric(df.get('pe',  pd.Series(np.nan, index=df.index)), errors='coerce')
+fpe_v = pd.to_numeric(df.get('fpe', pd.Series(np.nan, index=df.index)), errors='coerce')
+eg_v  = pd.to_numeric(df.get('earn_g', pd.Series(np.nan, index=df.index)), errors='coerce')
+
+# Implied forward EPS growth from PE spread (only when both PEs are positive)
+implied_fwd_g = (pe_v / fpe_v - 1.0).where((pe_v > 0) & (fpe_v > 0))
+# Authoritative Yahoo earnings growth, if the enricher captured it
+if 'yf_earnings_growth' in df.columns:
+    yf_eg = pd.to_numeric(df['yf_earnings_growth'], errors='coerce')
+    fwd_growth = yf_eg.where(yf_eg.notna(), implied_fwd_g)
+else:
+    fwd_growth = implied_fwd_g
+# Forward growth fallback to trailing earnings growth
+fwd_growth = fwd_growth.where(fwd_growth.notna(), eg_v)
+df['eps_growth_fwd'] = fwd_growth          # as a fraction (0.15 = 15%)
+
+# Trailing PEG = P/E ÷ (earnings growth in %).  Only meaningful when growth > 0.
+df['peg_trailing'] = (pe_v / (eg_v * 100)).where(eg_v > 0)
+# Forward PEG = forward P/E ÷ (forward EPS growth in %).
+df['peg_forward'] = (fpe_v / (fwd_growth * 100)).where((fwd_growth > 0) & (fpe_v > 0))
+# Use trailing P/E with forward growth as a secondary view (GARP screens often want this)
+df['peg_fwd_growth_ttm_pe'] = (pe_v / (fwd_growth * 100)).where((fwd_growth > 0) & (pe_v > 0))
+# Authoritative Yahoo PEG overrides trailing where present
+if 'yf_peg' in df.columns:
+    yfpeg = pd.to_numeric(df['yf_peg'], errors='coerce')
+    df['peg_trailing'] = yfpeg.where(yfpeg.notna(), df['peg_trailing'])
+n_pt = int(df['peg_trailing'].notna().sum()); n_pf = int(df['peg_forward'].notna().sum())
+print(f"  computed PEG: trailing {n_pt:,} · forward {n_pf:,}", file=sys.stderr)
 
 # ─── 9. Sanity flags on extreme values (flag, don't cap) ───
 def flag_extreme(s, lo, hi):
