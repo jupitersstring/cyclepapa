@@ -36,8 +36,11 @@ def recent_form4(cik, lookback_days=180):
     rec = j["filings"]["recent"]
     cutoff = time.strftime("%Y-%m-%d", time.localtime(time.time() - lookback_days*86400))
     out = []
-    for i in range(min(80, len(rec["form"]))):
-        if rec["form"][i] == "4" and rec["filingDate"][i] >= cutoff:
+    # Walk the ENTIRE recent block (≤1000 entries), not just the first 80 — a
+    # fixed cap silently drops in-window Form 4s for high-volume filers.
+    forms = rec["form"]
+    for i in range(len(forms)):
+        if forms[i] == "4" and rec["filingDate"][i] >= cutoff:
             out.append((rec["accessionNumber"][i], rec["primaryDocument"][i], rec["filingDate"][i]))
     return out
 

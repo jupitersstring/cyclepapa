@@ -64,8 +64,11 @@ def recent_8k(cik, lookback_days=180):
         return []
     cutoff = time.strftime("%Y-%m-%d", time.localtime(time.time() - lookback_days*86400))
     out = []
-    for i in range(min(80, len(rec["form"]))):
-        if rec["form"][i] == "8-K" and rec["filingDate"][i] >= cutoff:
+    # Walk the ENTIRE recent block (≤1000), not just the first 80 — companies file
+    # many forms, so an 80-cap drops in-window 8-Ks for any active filer.
+    forms = rec["form"]
+    for i in range(len(forms)):
+        if forms[i] == "8-K" and rec["filingDate"][i] >= cutoff:
             out.append((rec["accessionNumber"][i], rec["primaryDocument"][i], rec["filingDate"][i]))
     return out
 
@@ -136,8 +139,20 @@ def init_schema(conn):
     CREATE INDEX IF NOT EXISTS idx_8k_filed ON catalysts_8k(filed);
     """)
 
-def target_tickers(conn, max_n):
-    """Top signal tickers — small/mid cap with smart-money activity."""
+def target_tickers(conn, max_n, all_us=False):
+    """Top signal tickers — small/mid cap with smart-money activity.
+
+    all_us=True returns the COMPLETE US-held universe (every name held by >=1
+    fund or carrying any disclosed signal) with no smart_money>=3 floor, no mcap
+    cap, no top-N truncation and no already-scanned skip — the (cik, accession)
+    primary key makes re-inserts idempotent."""
+    if all_us:
+        return [r[0] for r in conn.execute("""
+            SELECT us.ticker FROM unified_signal us
+            WHERE us.is_us = 1 AND us.ticker NOT LIKE '%.%'
+              AND (us.smart_money_n >= 1 OR us.s1_top > 0 OR us.s3_new >= 1
+                   OR us.s4_add >= 1 OR us.activist_filings >= 1)
+            ORDER BY us.score DESC""")]
     have = {r[0] for r in conn.execute(
         "SELECT DISTINCT ticker FROM catalysts_8k WHERE filed >= date('now','-180 days')")}
     targets = [r[0] for r in conn.execute("""
@@ -184,5 +199,68 @@ def run(max_n=600):
     conn.commit()
     print(f"\ndone: {n_filings} 8-K filings ingested across {len(targets)} tickers")
 
+def _row_for(tkr, cik, acc, dt, items):
+    labels = ", ".join(f"{x}: {ITEM_LABELS.get(x, x)}" for x in items)
+    return (tkr, cik, acc, dt, ",".join(items), labels,
+            1 if any(x in items for x in ("1.01", "2.01")) else 0,
+            1 if "5.02" in items else 0,
+            1 if "2.02" in items else 0,
+            1 if "1.03" in items else 0,
+            1 if "3.02" in items else 0,
+            1 if "5.01" in items else 0,
+            f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/")
+
+def scan_8k_one(tkr):
+    """Worker: all 8-Ks (≤180d) for one ticker, parsed to item codes."""
+    cik = cik_for(tkr)
+    if not cik:
+        return []
+    try:
+        filings = recent_8k(cik, lookback_days=180)
+    except Exception:
+        return []
+    rows = []
+    for acc, doc, dt in filings:
+        try:
+            items = parse_8k_items(cik, acc)
+        except Exception:
+            items = []
+        rows.append(_row_for(tkr, cik, acc, dt, items))
+    return rows
+
+def run_sharded(all_us=True, n_workers=8, rps=8):
+    """Complete, fast 8-K ingest across the full US-held universe."""
+    conn = sqlite3.connect(DB)
+    init_schema(conn)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from _shard import shard_map
+    targets = target_tickers(conn, 0, all_us=all_us)
+    print(f"sharded 8-K scan: {len(targets)} tickers, {n_workers} workers, {rps} req/s [FULL US-held]")
+    n_filings = [0]; prog = [0]
+    def on_result(tkr, rows):
+        for row in rows:
+            try:
+                conn.execute("""INSERT OR IGNORE INTO catalysts_8k
+                    (ticker, cik, accession, filed, items, item_labels,
+                     has_ma, has_director, has_earnings, has_bankruptcy, has_pipe, has_control, source_url)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""", row)
+                n_filings[0] += 1
+            except Exception:
+                pass
+        prog[0] += 1
+        if prog[0] % 100 == 0:
+            conn.commit()
+            print(f"  [{prog[0]}/{len(targets)}] {tkr} 8K_total={n_filings[0]}")
+    def on_error(tkr, exc):
+        prog[0] += 1
+    shard_map(scan_8k_one, targets, n_workers=n_workers, rps=rps,
+              on_result=on_result, on_error=on_error)
+    conn.commit()
+    print(f"\ndone: {n_filings[0]} 8-K filings across {len(targets)} tickers scanned")
+
 if __name__ == "__main__":
-    run(max_n=int(sys.argv[1]) if sys.argv[1:] else 600)
+    args = sys.argv[1:]
+    if args and args[0] == "all":
+        run_sharded(all_us=True)
+    else:
+        run(max_n=int(args[0]) if args else 600)
