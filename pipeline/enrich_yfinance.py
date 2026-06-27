@@ -1,0 +1,145 @@
+"""Authoritative valuation + mcap from the yfinance package (Yahoo Finance).
+
+Yahoo pre-computes marketCap, enterpriseValue, EV/EBITDA, P/B, P/E etc.
+handling dual-class shares, ADRs, and currency correctly — which the raw
+SEC-XBRL path struggles with. Crucially Yahoo also covers FOREIGN listings
+(.L London, .T Tokyo, .HK, .AX, .TO), so this fills the non-US gap too.
+
+Proxy notes (this environment):
+  - yfinance's default curl_cffi backend fails TLS through the agent proxy.
+  - Fix: pass a requests.Session pointed at the CA bundle + HTTPS_PROXY,
+    and warm up cookies by hitting finance.yahoo.com first. Then .info
+    (Yahoo quoteSummary) returns full fundamentals.
+
+Writes to ticker_yf (separate table — additive, authoritative). The
+unified_score join prefers ticker_yf values when present, else falls back
+to the SEC-derived ticker_valuation / ticker_meta.
+"""
+import os, sqlite3, sys, time, threading
+
+DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
+CA = "/root/.ccr/ca-bundle.crt"
+
+os.environ.setdefault("REQUESTS_CA_BUNDLE", CA)
+os.environ.setdefault("SSL_CERT_FILE", CA)
+
+import requests
+import yfinance as yf
+
+def make_session():
+    s = requests.Session()
+    s.verify = CA
+    proxy = os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY")
+    if proxy:
+        s.proxies = {"https": proxy, "http": proxy}
+    s.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"})
+    # cookie warmup — required or Yahoo rate-limits immediately
+    try:
+        s.get("https://finance.yahoo.com", timeout=12)
+    except Exception:
+        pass
+    return s
+
+def init_schema(conn):
+    conn.executescript("""
+    CREATE TABLE IF NOT EXISTS ticker_yf (
+      ticker TEXT PRIMARY KEY,
+      mcap_m REAL, enterprise_value_m REAL,
+      ev_ebitda REAL, pb_ratio REAL, pe_ttm REAL, fwd_pe REAL,
+      ev_revenue REAL, peg REAL,
+      price REAL, currency TEXT,
+      shares_out_m REAL, ebitda_m REAL, total_debt_m REAL, total_cash_m REAL,
+      profit_margin REAL, rev_growth REAL,
+      sector TEXT, industry TEXT,
+      asof TEXT);
+    CREATE INDEX IF NOT EXISTS idx_yf_evebitda ON ticker_yf(ev_ebitda);
+    CREATE INDEX IF NOT EXISTS idx_yf_pb ON ticker_yf(pb_ratio);
+    """)
+
+def fetch_one(tkr, session):
+    """Return dict of yahoo fundamentals for one ticker, or None."""
+    try:
+        t = yf.Ticker(tkr, session=session)
+        info = t.info
+    except Exception:
+        return None
+    if not info or (info.get("marketCap") is None and info.get("enterpriseValue") is None
+                    and info.get("trailingPE") is None):
+        return None
+    def m(x):
+        return (x / 1e6) if isinstance(x, (int, float)) else None
+    return {
+        "mcap_m":   m(info.get("marketCap")),
+        "ev_m":     m(info.get("enterpriseValue")),
+        "ev_ebitda": info.get("enterpriseToEbitda"),
+        "pb":       info.get("priceToBook"),
+        "pe":       info.get("trailingPE"),
+        "fwd_pe":   info.get("forwardPE"),
+        "ev_rev":   info.get("enterpriseToRevenue"),
+        "peg":      info.get("trailingPegRatio") or info.get("pegRatio"),
+        "price":    info.get("currentPrice") or info.get("regularMarketPrice"),
+        "currency": info.get("currency"),
+        "shares_m": m(info.get("sharesOutstanding")),
+        "ebitda_m": m(info.get("ebitda")),
+        "debt_m":   m(info.get("totalDebt")),
+        "cash_m":   m(info.get("totalCash")),
+        "margin":   info.get("profitMargins"),
+        "rev_g":    info.get("revenueGrowth"),
+        "sector":   info.get("sector"),
+        "industry": info.get("industry"),
+    }
+
+def run(max_n=4000, rps=3.0):
+    conn = sqlite3.connect(DB)
+    init_schema(conn)
+    have = {r[0] for r in conn.execute("SELECT ticker FROM ticker_yf WHERE mcap_m IS NOT NULL OR ev_ebitda IS NOT NULL")}
+    # Universe: everything in unified_signal with a signal, by score priority.
+    # Include FOREIGN tickers (Yahoo covers them) — fills the non-US gap.
+    targets = [r[0] for r in conn.execute("""
+        SELECT ticker FROM unified_signal ORDER BY score DESC""")]
+    todo = [t for t in targets if t not in have][:max_n]
+    print(f"yfinance enrich: {len(todo)} tickers (skip {len(have)} done), ~{rps} req/s")
+
+    session = make_session()
+    asof = time.strftime("%Y-%m-%d")
+    interval = 1.0 / rps
+    n_ok = n_ev = n_fail = 0
+    last = [time.time() - interval]
+    lock = threading.Lock()
+
+    # Single-threaded with steady pacing — Yahoo .info rate-limits hard under
+    # concurrency. One warmed session, ~3 req/s is the sweet spot.
+    for i, tkr in enumerate(todo):
+        wait = max(0, last[0] + interval - time.time())
+        if wait > 0: time.sleep(wait)
+        last[0] = time.time()
+        res = fetch_one(tkr, session)
+        if not res:
+            n_fail += 1
+            # periodic session refresh on repeated failures
+            if n_fail % 25 == 0:
+                session = make_session()
+            continue
+        conn.execute("""INSERT OR REPLACE INTO ticker_yf VALUES
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (tkr, res["mcap_m"], res["ev_m"], res["ev_ebitda"], res["pb"],
+             res["pe"], res["fwd_pe"], res["ev_rev"], res["peg"],
+             res["price"], res["currency"], res["shares_m"], res["ebitda_m"],
+             res["debt_m"], res["cash_m"], res["margin"], res["rev_g"],
+             res["sector"], res["industry"], asof))
+        n_ok += 1
+        if res["ev_ebitda"] is not None: n_ev += 1
+        if i % 50 == 0 and i > 0:
+            conn.commit()
+            print(f"  [{i}/{len(todo)}] {tkr} ok={n_ok} ev={n_ev} fail={n_fail}")
+    conn.commit()
+    print(f"\ndone: {n_ok} enriched ({n_ev} with EV/EBITDA), {n_fail} failed")
+
+    print("\n--- spot check ---")
+    for t in ("LEVI","MA","NCLH","HHH","KSS","GT","NRP"):
+        r = conn.execute("SELECT mcap_m, ev_ebitda, pb_ratio, pe_ttm FROM ticker_yf WHERE ticker=?", (t,)).fetchone()
+        if r:
+            print(f"  {t:<6} mcap=${r[0] or 0:,.0f}M  EV/EBITDA={r[1]}  P/B={r[2]}  P/E={r[3]}")
+
+if __name__ == "__main__":
+    run(max_n=int(sys.argv[1]) if sys.argv[1:] else 4000)
