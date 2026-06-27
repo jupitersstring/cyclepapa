@@ -42,6 +42,26 @@ _HEADERS = {
 }
 
 
+def warm_session() -> requests.Session:
+    """Create a session with warmed Yahoo cookies. The first hit to
+    finance.yahoo.com sets the A1/A3/A1S consent cookies that subsequent
+    quote-page fetches need — without them Yahoo is more likely to 429 or
+    serve a consent wall. Returns a ready-to-use session.
+
+    Note: we do NOT use the query{1,2}.finance.yahoo.com API crumb flow —
+    those subdomains are IP-rate-limited on our shared egress. The HTML
+    frontend (finance.yahoo.com) serves the same embedded quoteSummary
+    JSON and is NOT throttled the same way.
+    """
+    s = requests.Session()
+    s.headers.update(_HEADERS)
+    try:
+        s.get('https://finance.yahoo.com/', timeout=15)
+    except Exception:
+        pass
+    return s
+
+
 # Yahoo embeds the field as `"fieldName\":{\"raw\":VALUE,\"fmt\":...}`. We
 # extract every numeric `raw` value for the field names we care about.
 # Keys map yfinance.Ticker.info name → regex.
@@ -164,71 +184,75 @@ def empty_or_stale_info_metrics(any_missing: bool = True) -> list[tuple[str, str
     return todo
 
 
-def refetch_gap_tickers(workers: int = 4, sleep: float = 0.3, max_tickers: int = 5000):
-    """Re-fetch info_metrics via HTML for tickers that are missing all
-    three of EV/EBITDA, P/E, P/B."""
+def refetch_gap_tickers(target_rate: float = 3.0, max_tickers: int = 20000,
+                        refresh_every: int = 25):
+    """Re-fetch info_metrics via HTML for tickers missing valuation metrics.
+
+    Single-threaded with a warmed cookie session, paced at `target_rate`
+    requests/sec (default 3 — conservative for our shared-IP egress). The
+    session is re-warmed every `refresh_every` consecutive failures, which
+    clears any transient 429 (Yahoo's throttle is a sliding ~1-min window
+    that resets continuously, not a hard quota).
+
+    RESUMABLE: skips tickers already filled (the `empty_or_stale` scan only
+    returns tickers still missing a metric), so a re-run continues where a
+    tripped run stopped. No data loss.
+    """
     todo = empty_or_stale_info_metrics()
-    print(f'Tickers missing all valuation metrics: {len(todo):,}')
+    print(f'Tickers missing >=1 valuation metric: {len(todo):,}', flush=True)
     if not todo:
+        print('All caught up.')
         return
     target = todo[:max_tickers]
-    sess = requests.Session()
+    sess = warm_session()
     n_ok = n_fail = n_partial = 0
+    consecutive_fails = 0
+    sleep = 1.0 / target_rate if target_rate > 0 else 0
     t0 = time.time()
 
-    def worker(item):
-        nonlocal n_ok, n_fail, n_partial
-        key, sym = item
+    for i, (key, sym) in enumerate(target, 1):
         info = fetch_quote_html(sym, sess)
-        if info.get('_error'):
-            return ('fail', key, info.get('_error'))
-        # Merge into existing (preserve existing data)
-        p = YF_CACHE / f'{_safe(key)}__info_metrics.parquet'
-        if p.exists():
-            try:
-                existing = pd.read_parquet(p).iloc[0].to_dict()
-                # Only fill missing fields — don't overwrite Yahoo data we
-                # already have
-                for k, v in info.items():
-                    if k not in existing or pd.isna(existing.get(k)) or existing.get(k) is None:
-                        existing[k] = v
-                info = existing
-            except Exception:
-                pass
-        # Check we got at least one valuation metric
-        got_one = any(info.get(k) is not None and not pd.isna(info.get(k)) for k in
-                     ('enterpriseToEbitda','trailingPE','priceToBook','marketCap'))
-        if got_one:
-            pd.DataFrame([info]).to_parquet(p, compression='snappy')
-            return ('ok', key, None)
-        return ('partial', key, 'no_valuation_fields')
-
-    from concurrent.futures import ThreadPoolExecutor
-    import threading
-    lock = threading.Lock()
-    i_counter = [0]
-
-    def report(result):
-        nonlocal n_ok, n_fail, n_partial
-        status, key, msg = result
-        with lock:
-            i_counter[0] += 1
-            i = i_counter[0]
-            if status == 'ok': n_ok += 1
-            elif status == 'partial': n_partial += 1
-            elif status == 'fail': n_fail += 1
-            if i % 50 == 0:
-                el = time.time() - t0
-                rate = i / el if el > 0 else 0
-                eta = (len(target) - i) / rate / 60 if rate > 0 else 0
-                print(f'  {i:>5,}/{len(target):,}  ok={n_ok} partial={n_partial} fail={n_fail}  rate={rate:.2f}/s eta={eta:.0f}min', flush=True)
+        err = info.get('_error')
+        if err:
+            n_fail += 1
+            consecutive_fails += 1
+            # Re-warm the session after a run of failures (likely a 429 wall)
+            if consecutive_fails >= refresh_every:
+                sess = warm_session()
+                consecutive_fails = 0
+                time.sleep(2)  # let the throttle window slide
+        else:
+            consecutive_fails = 0
+            p = YF_CACHE / f'{_safe(key)}__info_metrics.parquet'
+            # Merge: only fill missing fields, preserve existing values
+            if p.exists():
+                try:
+                    existing = pd.read_parquet(p).iloc[0].to_dict()
+                    for k, v in info.items():
+                        if k not in existing or pd.isna(existing.get(k)) or existing.get(k) is None:
+                            existing[k] = v
+                    info = existing
+                except Exception:
+                    pass
+            got_one = any(info.get(k) is not None and not (isinstance(info.get(k), float) and pd.isna(info.get(k)))
+                          for k in ('enterpriseToEbitda','trailingPE','priceToBook','marketCap'))
+            if got_one:
+                try:
+                    pd.DataFrame([info]).to_parquet(p, compression='snappy')
+                    n_ok += 1
+                except Exception:
+                    n_partial += 1
+            else:
+                n_partial += 1
+        if i % 50 == 0:
+            el = time.time() - t0
+            rate = i / el if el > 0 else 0
+            eta = (len(target) - i) / rate / 60 if rate > 0 else 0
+            print(f'  {i:>5,}/{len(target):,}  ok={n_ok} partial={n_partial} fail={n_fail}  '
+                  f'rate={rate:.2f}/s eta={eta:.0f}min', flush=True)
         time.sleep(sleep)
 
-    with ThreadPoolExecutor(max_workers=workers) as ex:
-        for result in ex.map(worker, target):
-            report(result)
-
-    print(f'\nFinal: ok={n_ok:,} partial={n_partial:,} fail={n_fail:,}')
+    print(f'\nFinal: ok={n_ok:,} partial={n_partial:,} fail={n_fail:,}', flush=True)
 
 
 if __name__ == '__main__':
@@ -243,4 +267,8 @@ if __name__ == '__main__':
                   f'mcap={info.get("marketCap")!r}  sector={info.get("sector")!r}')
             time.sleep(2)
     else:
-        refetch_gap_tickers(workers=4, sleep=0.3)
+        rate = 3.0
+        for a in sys.argv:
+            if a.startswith('--rate='):
+                rate = float(a.split('=', 1)[1])
+        refetch_gap_tickers(target_rate=rate)
