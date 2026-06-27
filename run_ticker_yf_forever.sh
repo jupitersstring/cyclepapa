@@ -23,7 +23,16 @@ cd "$(dirname "$0")"
 DRIVER_LOG=ticker_yf_driver.log
 SENTINEL=.ticker_yf_rendered
 PYTHON=python3
+# Stragglers that keep 429-ing are not worth blocking the render on.
+# Once <= this many remain (≈99.6% coverage) we proceed to render.
+EXHAUST_THRESHOLD=150
 ts() { date '+%Y-%m-%d %H:%M:%S'; }
+
+# Already rendered? Don't re-loop on a restart — the render is done.
+if [ -f "$SENTINEL" ]; then
+    echo "$(ts) driver: sentinel present, already rendered — exiting" >> "$DRIVER_LOG"
+    exit 0
+fi
 
 # ---- Phase 1: enrich until the list is exhausted ----
 ATTEMPT=0
@@ -46,8 +55,8 @@ print(len([s for s in uni if s not in done]))
 PYEOF
 )
     echo "$(ts) driver: rc=$RC remaining=$REMAINING" >> "$DRIVER_LOG"
-    if [ "${REMAINING:-1}" -le 50 ]; then
-        echo "$(ts) driver: enrichment exhausted (<=50 remaining)" >> "$DRIVER_LOG"
+    if [ "${REMAINING:-1}" -le "$EXHAUST_THRESHOLD" ]; then
+        echo "$(ts) driver: enrichment exhausted (<=$EXHAUST_THRESHOLD remaining)" >> "$DRIVER_LOG"
         break
     fi
     # Crashed/throttled with work left — back off and resume

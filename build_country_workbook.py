@@ -640,6 +640,16 @@ def main():
             sheet = f'{name}_{ctry}'[:31]
             sub[per_country_cols].to_excel(xl, sheet_name=sheet, index=False)
 
+    # Harvard house aesthetic: single Cambria 10pt, B&W, no fills,
+    # bold header + thin rule, gridlines off, header frozen. Applied as
+    # a post-pass so the pandas data logic above stays simple.
+    try:
+        from harvard_style import apply_harvard_style
+        apply_harvard_style(args.out, zebra_rule=True)
+        print(f'  applied Harvard style to {args.out}', file=sys.stderr)
+    except Exception as e:
+        print(f'  warn: harvard_style pass failed: {e}', file=sys.stderr)
+
     print(f'wrote {args.out}', file=sys.stderr)
 
 
