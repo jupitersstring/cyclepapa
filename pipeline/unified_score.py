@@ -125,13 +125,30 @@ def run():
         FROM ticker_entry_intact"""):
         entry[r["ticker"]] = (r["bucket"], r["vs_entry_pct"], r["anchor_px"], r["anchor_source"])
 
-    # Valuation ratios — EV/EBITDA and P/B (from enrich_valuation.py)
+    # Valuation ratios — EV/EBITDA and P/B.
+    # PREFER yfinance (ticker_yf) — Yahoo's authoritative pre-computed values
+    # handle dual-class, ADRs, currency correctly. Fall back to SEC-derived
+    # ticker_valuation only where yfinance has no value.
     valn = {}
     try:
         for r in conn.execute("SELECT ticker, ev_ebitda, pb_ratio FROM ticker_valuation"):
             valn[r["ticker"]] = (r["ev_ebitda"], r["pb_ratio"])
     except Exception:
-        pass  # table may not exist yet on first run
+        pass
+    yf_pe = {}; yf_mcap = {}
+    try:
+        for r in conn.execute("""SELECT ticker, ev_ebitda, pb_ratio, pe_ttm, mcap_m
+            FROM ticker_yf"""):
+            ev, pb = r["ev_ebitda"], r["pb_ratio"]
+            prev = valn.get(r["ticker"], (None, None))
+            # yfinance wins when present; keep SEC value only for the missing leg
+            valn[r["ticker"]] = (ev if ev is not None else prev[0],
+                                 pb if pb is not None else prev[1])
+            yf_pe[r["ticker"]] = r["pe_ttm"]
+            if r["mcap_m"]:
+                yf_mcap[r["ticker"]] = r["mcap_m"]
+    except Exception:
+        pass  # ticker_yf may not exist yet
 
     # 8-K catalysts — count of each material item type in the last 180d
     cat8k = {}     # ticker -> dict of has_ma/has_director/has_control/has_pipe/has_bankruptcy
@@ -195,7 +212,9 @@ def run():
         n5_pb = pct_book_n5.get(tkr, 0)
         er_pct = er.get(tkr, 0) or 0
         meta = tm.get(tkr, {})
-        mcap = meta.get("mcap_m") or 0
+        # Prefer yfinance mcap (authoritative — handles dual-class/ADR) over
+        # the SEC-derived ticker_meta mcap.
+        mcap = yf_mcap.get(tkr) or meta.get("mcap_m") or 0
         e = entry.get(tkr, (None, None, None, None))
         entry_bucket, vs_entry_pct, anchor_px, anchor_src = e
         c8 = cat8k.get(tkr, {})
