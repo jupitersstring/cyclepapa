@@ -223,7 +223,11 @@ def rank() -> tuple[list[dict], list[dict]]:
     # also any from proxy/yf/f4 (in case of disjoint tickers)
     for k in ("proxy", "yf", "bb", "f4", "f144"):
         universe.update(ov[k].keys())
-    universe = {tk for tk in universe if tk and not tk.startswith("CIK")}
+    try:
+        from full_universe_consensus import is_valid_ticker
+        universe = {tk for tk in universe if is_valid_ticker(tk)}
+    except Exception:
+        universe = {tk for tk in universe if tk and not tk.startswith("CIK")}
     print(f"universe size: {len(universe)}")
 
     rows = []

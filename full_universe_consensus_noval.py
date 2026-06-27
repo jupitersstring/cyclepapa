@@ -62,7 +62,8 @@ def main() -> int:
     universe = set(layers["proxy"]) | set(layers["yf"]) | set(layers["bbv"]) \
                | set(layers["tender"]) | set(layers["c10"]) | set(layers["f4"]) \
                | set(layers["f144"])
-    universe = {t for t in universe if not t.startswith("CIK")}
+    from full_universe_consensus import is_valid_ticker
+    universe = {t for t in universe if is_valid_ticker(t)}
     print(f"Full universe: {len(universe)} tickers")
 
     # Score every layer EXCEPT valuation

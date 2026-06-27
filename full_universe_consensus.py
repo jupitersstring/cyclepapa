@@ -495,12 +495,36 @@ def score_quarterly_10q_layer(layers: dict, universe: set) -> dict:
 # Universe build
 # ----------------------------------------------------------------------
 
+import re as _re_validate
+_TICKER_RX = _re_validate.compile(r"^[A-Z][A-Z0-9.\-]{0,8}$")
+_TICKER_BLOCKLIST = {"NONE", "N/A", "NA", "NULL", "NAN", "TBD", "UNKNOWN", ""}
+
+
+def is_valid_ticker(tk) -> bool:
+    """Centralized ticker-validity gate. Rejects parse-artifact junk
+    (NONE, N/A, NAN), CIK-style placeholders, and anything that does
+    not look like a US exchange symbol. Applied at universe build so
+    no single source can leak garbage into the consensus."""
+    if not tk or not isinstance(tk, str):
+        return False
+    t = tk.strip().upper()
+    if t in _TICKER_BLOCKLIST:
+        return False
+    if t.startswith("CIK"):
+        return False
+    return bool(_TICKER_RX.match(t))
+
+
 def main() -> int:
     layers = load_layers()
     universe = set(layers["proxy"]) | set(layers["yf"]) | set(layers["bbv"]) \
                | set(layers["tender"]) | set(layers["c10"]) | set(layers["f4"]) \
                | set(layers["f144"])
-    universe = {t for t in universe if not t.startswith("CIK")}
+    raw_n = len(universe)
+    universe = {t for t in universe if is_valid_ticker(t)}
+    dropped = raw_n - len(universe)
+    if dropped:
+        print(f"  dropped {dropped} invalid ticker(s) at universe gate")
     print(f"Full universe: {len(universe)} tickers")
 
     layer_scores = {

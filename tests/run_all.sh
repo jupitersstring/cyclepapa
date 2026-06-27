@@ -11,4 +11,7 @@ echo
 echo "=== new_legs (form144, buyback, state) ==="
 python3 test_new_legs.py
 echo
+echo "=== ticker validity gate ==="
+python3 test_ticker_gate.py
+echo
 echo "All test suites passed."
