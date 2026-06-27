@@ -97,6 +97,15 @@ _FIELD_PATTERNS = {
     'trailingEps':                      re.compile(r'trailingEps\\":\{\\"raw\\":([-\d.eE]+)'),
     'forwardEps':                       re.compile(r'forwardEps\\":\{\\"raw\\":([-\d.eE]+)'),
     'currentPrice':                     re.compile(r'currentPrice\\":\{\\"raw\\":([-\d.eE]+)'),
+    # Price-summary fields — these let us compute a 1-year performance signal
+    # WITHOUT the IP-blocked history/chart API. Critical for SEC-only tickers
+    # (no cached price series) like EVC.
+    'regularMarketPrice':               re.compile(r'regularMarketPrice\\":\{\\"raw\\":([-\d.eE]+)'),
+    'fiftyTwoWeekChange':               re.compile(r'(?:52WeekChange|fiftyTwoWeekChangePercent)\\":\{\\"raw\\":([-\d.eE]+)'),
+    'fiftyTwoWeekHigh':                 re.compile(r'fiftyTwoWeekHigh\\":\{\\"raw\\":([-\d.eE]+)'),
+    'fiftyTwoWeekLow':                  re.compile(r'fiftyTwoWeekLow\\":\{\\"raw\\":([-\d.eE]+)'),
+    'twoHundredDayAverage':             re.compile(r'twoHundredDayAverage\\":\{\\"raw\\":([-\d.eE]+)'),
+    'fiftyDayAverage':                  re.compile(r'fiftyDayAverage\\":\{\\"raw\\":([-\d.eE]+)'),
 }
 
 # Categorical fields parsed differently (string values)

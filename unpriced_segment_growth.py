@@ -41,38 +41,63 @@ def _safe(t): return ''.join(c if c.isalnum() or c in '-_' else '_' for c in str
 
 
 def _price_perf(ticker: str) -> dict:
-    """Return price performance + distance-from-high signals from the cached
-    daily price series. All measure whether the market has 'noticed' yet."""
+    """Return price performance + distance-from-high signals.
+
+    Primary source: the cached daily price series (most precise). Fallback:
+    the price-summary fields in the cached info_metrics (regularMarketPrice,
+    fiftyTwoWeekChange, twoHundredDayAverage, fiftyTwoWeekHigh) which the
+    Yahoo-HTML fetcher populates — this lets SEC-only tickers WITHOUT a price
+    series (like EVC) still get a 1-year-performance read, since the Yahoo
+    history/chart API is IP-blocked on our egress."""
     p = YF_CACHE / f'{_safe(ticker)}__price.parquet'
-    if not p.exists():
-        return {}
-    try:
-        d = pd.read_parquet(p)
-        if d.empty or 'Close' not in d.columns:
-            return {}
-        s = pd.to_numeric(d['Close'], errors='coerce').dropna()
-        if len(s) < 30:
-            return {}
-        last = float(s.iloc[-1])
-        out = {'price_now': last}
-        # 1-year and 2-year total return
-        if len(s) >= 252:
-            out['perf_1y_pct'] = (last / float(s.iloc[-252]) - 1) * 100
-        if len(s) >= 504:
-            out['perf_2y_pct'] = (last / float(s.iloc[-504]) - 1) * 100
-        # Distance below the trailing-2y high (0% = at high, -40% = 40% below)
-        win = s.iloc[-504:] if len(s) >= 504 else s
-        hi = float(win.max())
-        if hi > 0:
-            out['pct_below_2y_high'] = (last / hi - 1) * 100
-        # 200-day moving average position (below = no uptrend)
-        if len(s) >= 200:
-            ma200 = float(s.iloc[-200:].mean())
-            if ma200 > 0:
-                out['pct_vs_200dma'] = (last / ma200 - 1) * 100
-        return out
-    except Exception:
-        return {}
+    if p.exists():
+        try:
+            d = pd.read_parquet(p)
+            if not d.empty and 'Close' in d.columns:
+                s = pd.to_numeric(d['Close'], errors='coerce').dropna()
+                if len(s) >= 30:
+                    last = float(s.iloc[-1])
+                    out = {'price_now': last, '_src': 'series'}
+                    if len(s) >= 252:
+                        out['perf_1y_pct'] = (last / float(s.iloc[-252]) - 1) * 100
+                    if len(s) >= 504:
+                        out['perf_2y_pct'] = (last / float(s.iloc[-504]) - 1) * 100
+                    win = s.iloc[-504:] if len(s) >= 504 else s
+                    hi = float(win.max())
+                    if hi > 0:
+                        out['pct_below_2y_high'] = (last / hi - 1) * 100
+                    if len(s) >= 200:
+                        ma200 = float(s.iloc[-200:].mean())
+                        if ma200 > 0:
+                            out['pct_vs_200dma'] = (last / ma200 - 1) * 100
+                    return out
+        except Exception:
+            pass
+    # Fallback: info_metrics price-summary fields (HTML-derived)
+    ip = YF_CACHE / f'{_safe(ticker)}__info_metrics.parquet'
+    if ip.exists():
+        try:
+            d = pd.read_parquet(ip)
+            if not d.empty:
+                r0 = d.iloc[0]
+                price = r0.get('regularMarketPrice') or r0.get('currentPrice')
+                chg = r0.get('fiftyTwoWeekChange')   # decimal (4.18 = +418%)
+                hi = r0.get('fiftyTwoWeekHigh')
+                ma200 = r0.get('twoHundredDayAverage')
+                out = {'_src': 'summary'}
+                if price is not None and pd.notna(price):
+                    out['price_now'] = float(price)
+                if chg is not None and pd.notna(chg):
+                    out['perf_1y_pct'] = float(chg) * 100
+                if price and hi and pd.notna(price) and pd.notna(hi) and float(hi) > 0:
+                    out['pct_below_2y_high'] = (float(price) / float(hi) - 1) * 100
+                if price and ma200 and pd.notna(price) and pd.notna(ma200) and float(ma200) > 0:
+                    out['pct_vs_200dma'] = (float(price) / float(ma200) - 1) * 100
+                if 'perf_1y_pct' in out:
+                    return out
+        except Exception:
+            pass
+    return {}
 
 
 def main():
