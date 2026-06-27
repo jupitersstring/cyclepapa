@@ -191,13 +191,13 @@ def sheet_activist(wb, conn):
     ws = wb.create_sheet("Activist 10+")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Activist Concentration",
-                "SC 13D/G filings disclosing ≥10% stake. Sourced from holder_13d. Ex-biotech, ex-ETF.", 9)
-    hdr = ["Ticker","Mcap","Bucket","Act %","13D #","13F #","pB Max","Name","Sector"]
+                "SC 13D/G filings disclosing ≥10% stake. Sourced from holder_13d. Ex-biotech, ex-ETF.", 11)
+    hdr = ["Ticker","Mcap","Bucket","Act %","13D #","13F #","pB Max","EV/EBITDA","P/B","Name","Sector"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.mcap_m, us.mcap_bucket,
                us.activist_max_pct, us.activist_filings, us.smart_money_n,
-               us.max_pct_book, tm.name, tm.sic_description
+               us.max_pct_book, us.ev_ebitda, us.pb_ratio, tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.activist_max_pct >= 10
@@ -205,15 +205,19 @@ def sheet_activist(wb, conn):
     out = []
     for r in rows:
         if r[0] in ETFs or r[0] in MEGA: continue
-        if is_biotech(r[8]): continue
+        if is_biotech(r[10]): continue
         out.append([r[0], r[1] or "", r[2] or "", round(r[3] or 0, 1),
                     r[4] or 0, r[5] or 0, round(r[6] or 0, 1),
-                    (r[7] or "")[:38], (r[8] or "")[:32]])
+                    round(r[7], 1) if r[7] is not None else "",
+                    round(r[8], 2) if r[8] is not None else "",
+                    (r[9] or "")[:38], (r[10] or "")[:32]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=8).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=9).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -224,7 +228,7 @@ def sheet_insider_f4(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "Form 4 Insider Buying — recency weighted",
                 "Open-market P-code buys. ≤30d weight 1.0; 31–60 d 0.6; 61–120 d 0.3; 121–180 d 0.1. Sorted by recency-weighted dollars.", 13)
-    hdr = ["Ticker","Weighted $M","≤30d $M","31-60 $M","61-180 $M","# Buyers","Avg Px","Mcap","Bucket","13F","Name"]
+    hdr = ["Ticker","Weighted $M","≤30d $M","31-60 $M","61-180 $M","# Buyers","Avg Px","Mcap","Bucket","13F","EV/EBITDA","P/B","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT f.ticker,
@@ -233,6 +237,7 @@ def sheet_insider_f4(wb, conn):
             SUM(CASE WHEN julianday('now')-julianday(f.trans_date) > 60   THEN f.shares*f.price ELSE 0 END)/1e6 AS d_180,
             COUNT(DISTINCT f.owner), AVG(f.price),
             tm.mcap_m, us.mcap_bucket, us.smart_money_n,
+            us.ev_ebitda, us.pb_ratio,
             tm.name
         FROM form4_transactions f
         LEFT JOIN ticker_meta tm ON tm.ticker = f.ticker
@@ -252,13 +257,18 @@ def sheet_insider_f4(wb, conn):
                     round(d180, 1) if d180 else "",
                     r[4], round(r[5] or 0, 2),
                     r[6] or "", r[7] or "unknown",
-                    r[8] or 0, (r[9] or "")[:38]])
+                    r[8] or 0,
+                    round(r[9], 1) if r[9] is not None else "",
+                    round(r[10], 2) if r[10] is not None else "",
+                    (r[11] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         for col in (2, 3, 4, 5):
             ws.cell(row=ridx, column=col).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=7).number_format = NUMFMT_USD2
         ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=11).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=12).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -268,8 +278,8 @@ def sheet_insider_recent(wb, conn):
     ws = wb.create_sheet("Insider Buys ≤30d")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Recent Insider Buying — last 30 days only",
-                "Buys reported in the last 30 days. Most signal-rich window.", 12)
-    hdr = ["Ticker","≤30d $M","# Buyers","Latest","Avg Px","Mcap","Bucket","13F","S3","S4","Act %","Name"]
+                "Buys reported in the last 30 days. Most signal-rich window.", 14)
+    hdr = ["Ticker","≤30d $M","# Buyers","Latest","Avg Px","Mcap","Bucket","13F","S3","S4","Act %","EV/EBITDA","P/B","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT f.ticker, SUM(f.shares*f.price)/1e6 AS dollars_m,
@@ -277,6 +287,7 @@ def sheet_insider_recent(wb, conn):
                AVG(f.price),
                tm.mcap_m, us.mcap_bucket,
                us.smart_money_n, us.s3_new, us.s4_add, us.activist_max_pct,
+               us.ev_ebitda, us.pb_ratio,
                tm.name
         FROM form4_transactions f
         LEFT JOIN ticker_meta tm ON tm.ticker = f.ticker
@@ -291,13 +302,18 @@ def sheet_insider_recent(wb, conn):
         out.append([r[0], round(r[1], 2), r[2], r[3], round(r[4] or 0, 2),
                     r[5] or "", r[6] or "unknown",
                     r[7] or 0, r[8] or 0, r[9] or 0,
-                    round(r[10] or 0, 1), (r[11] or "")[:38]])
+                    round(r[10] or 0, 1),
+                    round(r[11], 1) if r[11] is not None else "",
+                    round(r[12], 2) if r[12] is not None else "",
+                    (r[13] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=5).number_format = NUMFMT_USD2
         ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=12).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=13).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -306,24 +322,29 @@ def sheet_clusters(wb, conn):
     ws = wb.create_sheet("Insider Clusters")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Live Insider Clusters",
-                "Insider buy clusters (≤180-day window) — multiple insiders, same ticker.", 9)
-    hdr = ["Ticker","Trigger","Window End","# Insiders","Cluster $M","Avg Px","Top Buyer","Mcap","Bucket"]
+                "Insider buy clusters (≤180-day window) — multiple insiders, same ticker.", 11)
+    hdr = ["Ticker","Trigger","Window End","# Insiders","Cluster $M","Avg Px","Top Buyer","Mcap","Bucket","EV/EBITDA","P/B"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT ic.ticker, ic.trigger, ic.window_end, ic.n_insiders, ic.total_usd_m,
-               ic.avg_price, ic.top_buyer, tm.mcap_m, us.mcap_bucket
+               ic.avg_price, ic.top_buyer, tm.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio
         FROM insider_clusters ic
         LEFT JOIN ticker_meta tm ON tm.ticker = ic.ticker
         LEFT JOIN unified_signal us ON us.ticker = ic.ticker
         WHERE DATE(ic.window_end) >= DATE('now', '-180 days')
         ORDER BY ic.total_usd_m DESC"""))
     out = [[r[0], r[1], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
-            r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown"] for r in rows]
+            r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown",
+            round(r[9], 1) if r[9] is not None else "",
+            round(r[10], 2) if r[10] is not None else ""] for r in rows]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=6).number_format = NUMFMT_USD2
         ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=10).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=11).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -404,8 +425,8 @@ def sheet_all_holdings_consolidated(wb, conn):
     ws = wb.create_sheet("All Positions")
     ws.sheet_view.showGridLines = False
     write_title(ws, "All Fund Positions — consolidated view",
-                "Union of 13F-HR holdings + fund_positions (XLSX-classified) + 13D/G subjects across all 445 funds. Top 30 per fund.", 9)
-    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket"]
+                "Union of 13F-HR holdings + fund_positions (XLSX-classified) + 13D/G subjects across all 445 funds. Top 30 per fund.", 11)
+    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket","EV/EBITDA","P/B"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         WITH ranked AS (
@@ -413,13 +434,13 @@ def sheet_all_holdings_consolidated(wb, conn):
                  h.value_k/1000.0 AS value_m,
                  h.pct_book, NULL AS section,
                  NULL AS act_pct,
-                 us.mcap_m, us.mcap_bucket,
+                 us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio,
                  ROW_NUMBER() OVER (PARTITION BY h.fund ORDER BY h.value_k DESC) AS rn
           FROM fund_13f_holdings h
           LEFT JOIN unified_signal us ON us.ticker = h.ticker
           WHERE h.ticker IS NOT NULL
         )
-        SELECT fund, ticker, source, value_m, pct_book, section, act_pct, mcap_m, mcap_bucket
+        SELECT fund, ticker, source, value_m, pct_book, section, act_pct, mcap_m, mcap_bucket, ev_ebitda, pb_ratio
         FROM ranked WHERE rn <= 30
         UNION ALL
         SELECT fp.fund, fp.ticker, 'XLSX' AS source,
@@ -427,7 +448,7 @@ def sheet_all_holdings_consolidated(wb, conn):
                fp.pct_value AS pct_book,
                fp.section,
                us.activist_max_pct,
-               us.mcap_m, us.mcap_bucket
+               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio
         FROM fund_positions fp
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
         WHERE fp.ticker IS NOT NULL
@@ -438,7 +459,7 @@ def sheet_all_holdings_consolidated(wb, conn):
                h.pct_class AS pct_book,
                NULL AS section,
                us.activist_max_pct,
-               us.mcap_m, us.mcap_bucket
+               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio
         FROM holder_13d h
         LEFT JOIN unified_signal us ON us.ticker = h.subject_ticker
         WHERE h.subject_ticker IS NOT NULL AND h.pct_class >= 5
@@ -451,13 +472,17 @@ def sheet_all_holdings_consolidated(wb, conn):
                     round(r[4] or 0, 2),
                     r[5] or "",
                     round(r[6] or 0, 1) if r[6] else "",
-                    r[7] or "", r[8] or ""])
+                    r[7] or "", r[8] or "",
+                    round(r[9], 1) if r[9] is not None else "",
+                    round(r[10], 2) if r[10] is not None else ""])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=10).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=11).number_format = '0.00"x"'
     ws.freeze_panes = "A5"
     autosize(ws)
 
@@ -487,6 +512,56 @@ def sheet_all_funds(wb, conn):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B   # 13F total $M
     ws.freeze_panes = "B5"
     autosize(ws)
+
+def sheet_asymmetry(wb, conn):
+    """MOST ASYMMETRIC setups: cheap valuation + smart money in below entry +
+    catalyst + room to multiply. Downside protection × upside potential."""
+    ws = wb.create_sheet("Asymmetry")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Asymmetry — best risk/reward setups",
+                "asymmetry = margin-of-safety (cheap EV/EBITDA + low P/B + below smart-money entry) × upside (conviction + activist/insider catalyst + small-cap room). Ranked desc.", 14)
+    hdr = ["Ticker","Asym","Score","Mcap","Bucket","EV/EBITDA","P/B","P/E","pB Max","Act %","Entry","vs Entry %","Catalyst","Name"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.asymmetry_score, us.score, us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio, us.pe_ttm, us.max_pct_book, us.activist_max_pct,
+               us.entry_bucket, us.vs_entry_pct, us.cat8k_ma, us.cat8k_ctrl,
+               us.insider_cluster_dollars_m, tm.name
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.asymmetry_score IS NOT NULL
+        ORDER BY us.asymmetry_score DESC LIMIT 150"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs or r[0] in MEGA: continue
+        eb = r[10] or ""
+        eb_label = ("below" if eb=="BELOW_ENTRY" else "near" if eb=="NEAR_ENTRY"
+                    else "above" if "ABOVE" in eb else "")
+        cat = []
+        if r[12]: cat.append("M&A")
+        if r[13]: cat.append("CTRL")
+        if r[14] and r[14] > 0: cat.append("clstr")
+        out.append([r[0], round(r[1] or 0, 1), round(r[2] or 0, 1),
+                    r[3] or "", r[4] or "",
+                    round(r[5], 1) if r[5] is not None else "",
+                    round(r[6], 2) if r[6] is not None else "",
+                    round(r[7], 1) if r[7] is not None else "",
+                    round(r[8] or 0, 1), round(r[9] or 0, 1),
+                    eb_label, round(r[11] or 0, 1) if r[11] else "",
+                    " ".join(cat), (r[15] or "")[:34]])
+        if len(out) >= 100: break
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5+len(out)):
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=6).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=7).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=8).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
 
 def sheet_revealed_pref(wb, conn):
     """Revealed preference — what smart money is ACTIVELY buying (new + adds),
@@ -579,13 +654,13 @@ def sheet_catalysts(wb, conn):
     ws = wb.create_sheet("Catalysts 8-K")
     ws.sheet_view.showGridLines = False
     write_title(ws, "8-K Material-Event Catalysts (≤180d)",
-                "M&A (1.01 / 2.01), Control change (5.01), Director change (5.02), PIPE/dilution (3.02), Bankruptcy (1.03). Cross-referenced with smart money.", 13)
-    hdr = ["Ticker","Score","Mcap","M&A","Ctrl","Director","PIPE","Bnk","Total Events","13F","Activist %","Name","Sector"]
+                "M&A (1.01 / 2.01), Control change (5.01), Director change (5.02), PIPE/dilution (3.02), Bankruptcy (1.03). Cross-referenced with smart money.", 15)
+    hdr = ["Ticker","Score","Mcap","M&A","Ctrl","Director","PIPE","Bnk","Total Events","13F","Activist %","EV/EBITDA","P/B","Name","Sector"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.score, us.mcap_m,
                us.cat8k_ma, us.cat8k_ctrl, us.cat8k_dir, us.cat8k_pipe, us.cat8k_bnk, us.cat8k_n,
-               us.smart_money_n, us.activist_max_pct, tm.name, tm.sic_description
+               us.smart_money_n, us.activist_max_pct, us.ev_ebitda, us.pb_ratio, tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.cat8k_n > 0
@@ -598,11 +673,15 @@ def sheet_catalysts(wb, conn):
                     "✓" if r[5] else "", "✓" if r[6] else "",
                     "✓" if r[7] else "", r[8] or 0,
                     r[9] or 0, round(r[10] or 0, 1),
-                    (r[11] or "")[:38], (r[12] or "")[:32]])
+                    round(r[11], 1) if r[11] is not None else "",
+                    round(r[12], 2) if r[12] is not None else "",
+                    (r[13] or "")[:38], (r[14] or "")[:32]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=12).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=13).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -620,13 +699,13 @@ def sheet_global_picks(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "Global Picks — non-US listings, fair-score",
                 "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 11)
-    hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","Name"]
+    hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.global_score, tm.exchange, us.mcap_m,
                us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
                us.max_pct_book, us.activist_max_pct,
-               us.entry_bucket, us.vs_entry_pct, tm.name
+               us.entry_bucket, us.vs_entry_pct, us.ev_ebitda, us.pb_ratio, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.is_us = 0
@@ -646,13 +725,17 @@ def sheet_global_picks(wb, conn):
                     round(r[9] or 0, 1),
                     eb_label,
                     round(r[11] or 0, 1) if r[11] else "",
-                    (r[12] or "")[:38]])
+                    round(r[12], 1) if r[12] is not None else "",
+                    round(r[13], 2) if r[13] is not None else "",
+                    (r[14] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=13).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=14).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 10
@@ -662,16 +745,16 @@ def sheet_in_the_money(wb, conn):
     ws = wb.create_sheet("In The Money")
     ws.sheet_view.showGridLines = False
     write_title(ws, "In The Money — buy below smart-money entry",
-                "Current price below the smart-money cost anchor (cost_basis / raw_text / Form-4 P-buy avg / 80th-pctl). Asymmetric setup.", 14)
+                "Current price below the smart-money cost anchor (cost_basis / raw_text / Form-4 P-buy avg / 80th-pctl). Asymmetric setup.", 17)
     hdr = ["Ticker","Score","Mcap","Bucket","Now $","Anchor $","vs Entry %",
-           "13F","S1","S3","S4","Act %","pB Max","Anchor Src","Name"]
+           "13F","S1","S3","S4","Act %","pB Max","Anchor Src","EV/EBITDA","P/B","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.price,
                us.anchor_px, us.vs_entry_pct,
                us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
                us.activist_max_pct, us.max_pct_book,
-               us.anchor_source, tm.name
+               us.anchor_source, us.ev_ebitda, us.pb_ratio, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.entry_bucket = 'BELOW_ENTRY'
@@ -685,7 +768,10 @@ def sheet_in_the_money(wb, conn):
                     round(r[6] or 0, 1) if r[6] else "",
                     r[7] or 0, r[8] or 0, r[9] or 0, r[10] or 0,
                     round(r[11] or 0, 1), round(r[12] or 0, 1),
-                    (r[13] or "")[:18], (r[14] or "")[:38]])
+                    (r[13] or "")[:18],
+                    round(r[14], 1) if r[14] is not None else "",
+                    round(r[15], 2) if r[15] is not None else "",
+                    (r[16] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
@@ -694,6 +780,8 @@ def sheet_in_the_money(wb, conn):
         ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=15).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=16).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -707,12 +795,12 @@ def sheet_bill_miller(wb, conn):
         ("Bill IV — Miller Value Partners", "Miller Value Partners%"),
         ("Bill III — Patient Capital",       "Patient Capital%"),
     ]
-    write_section_heading(ws, 4, "Top 20 holdings — per fund", 10)
-    hdr = ["Ticker","Issuer","Value $M","%Book","Mcap","Bucket","13F","Act %","Cluster?","Name"]
+    write_section_heading(ws, 4, "Top 20 holdings — per fund", 12)
+    hdr = ["Ticker","Issuer","Value $M","%Book","Mcap","Bucket","13F","Act %","Cluster?","EV/EBITDA","P/B","Name"]
     write_table_header(ws, 5, hdr)
     row = 6
     for label, like in funds:
-        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=10)
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=12)
         c = ws.cell(row=row, column=1, value=label)
         c.font = BODY_ITALIC
         c.alignment = Alignment(horizontal="left", vertical="center")
@@ -721,7 +809,7 @@ def sheet_bill_miller(wb, conn):
         rows = list(conn.execute("""
             SELECT h.ticker, h.issuer, h.value_k, h.pct_book,
                    tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
-                   us.insider_cluster_dollars_m, tm.name
+                   us.insider_cluster_dollars_m, us.ev_ebitda, us.pb_ratio, tm.name
             FROM fund_13f_holdings h
             LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
             LEFT JOIN unified_signal us ON us.ticker = h.ticker
@@ -735,25 +823,31 @@ def sheet_bill_miller(wb, conn):
                         round(r[3] or 0, 2),
                         r[4] or "", r[5] or "",
                         r[6] or 0, round(r[7] or 0, 1),
-                        cluster_mark, (r[9] or "")[:30]])
+                        cluster_mark,
+                        round(r[9], 1) if r[9] is not None else "",
+                        round(r[10], 2) if r[10] is not None else "",
+                        (r[11] or "")[:30]])
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_NUM
             ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
             ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
             ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
+            ws.cell(row=ridx, column=10).number_format = '0.0"x"'
+            ws.cell(row=ridx, column=11).number_format = '0.00"x"'
         row += len(out) + 1
 
     row += 1
-    write_section_heading(ws, row, "Shared overlap — held by both funds", 10)
+    write_section_heading(ws, row, "Shared overlap — held by both funds", 12)
     row += 1
-    hdr2 = ["Ticker","Issuer","Bill IV %","Bill III %","Combined %","Mcap","Bucket","13F","Act %","Name"]
+    hdr2 = ["Ticker","Issuer","Bill IV %","Bill III %","Combined %","Mcap","Bucket","13F","Act %","EV/EBITDA","P/B","Name"]
     write_table_header(ws, row, hdr2)
     row += 1
     overlap = list(conn.execute("""
         SELECT h4.ticker, h4.issuer, h4.pct_book pct4, h3.pct_book pct3,
                (h4.pct_book + h3.pct_book) AS combined,
-               tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct, tm.name
+               tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
+               us.ev_ebitda, us.pb_ratio, tm.name
         FROM fund_13f_holdings h4
         JOIN fund_13f_holdings h3 ON h3.ticker = h4.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker = h4.ticker
@@ -769,7 +863,9 @@ def sheet_bill_miller(wb, conn):
                     round(r[4] or 0, 2),
                     r[5] or "", r[6] or "",
                     r[7] or 0, round(r[8] or 0, 1),
-                    (r[9] or "")[:30]])
+                    round(r[9], 1) if r[9] is not None else "",
+                    round(r[10], 2) if r[10] is not None else "",
+                    (r[11] or "")[:30]])
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
@@ -777,6 +873,8 @@ def sheet_bill_miller(wb, conn):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP    # mcap
         ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=10).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=11).number_format = '0.00"x"'
     ws.freeze_panes = "B6"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -789,6 +887,7 @@ TAB_COLORS = {
     # Universe ranking — darkest
     "Top 100":         "262626",
     "Non-Biotech Top 100": "262626",
+    "Asymmetry":       "262626",
     # Size buckets — mid-dark gradient
     "Nano (<$50M)":            "404040",
     "Micro ($50M–$300M)":      "595959",
@@ -841,6 +940,7 @@ def main():
         where_extra="AND us.mcap_bucket != 'unknown'", limit=400,
         subtitle="Top 100 ex-biotech, ex-ETF, ex-mega.")
     sheet_in_the_money(wb, conn)
+    sheet_asymmetry(wb, conn)
     sheet_revealed_pref(wb, conn)
     sheet_valuation(wb, conn)
     sheet_catalysts(wb, conn)

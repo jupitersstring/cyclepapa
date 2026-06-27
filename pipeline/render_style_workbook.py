@@ -153,12 +153,13 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     # New initiations
     write_section_heading(ws, row, "New major positions — section 3", 13)
     row += 1
-    hdr2 = ["Ticker","St S3 #","Uni 13F","pB Max","Mcap","Bucket","Act %","Name"]
+    hdr2 = ["Ticker","St S3 #","Uni 13F","pB Max","Mcap","Bucket","EV/EBITDA","P/B","Act %","Name"]
     write_table_header(ws, row, hdr2)
     row += 1
     rows = list(conn.execute(f"""
         SELECT fp.ticker, COUNT(DISTINCT fp.fund) AS n,
                us.smart_money_n, us.max_pct_book, us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio,
                us.activist_max_pct, tm.name
         FROM fund_positions fp
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
@@ -166,13 +167,18 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         WHERE fp.fund IN ({ph}) AND fp.section = 3 AND fp.ticker IS NOT NULL
         GROUP BY fp.ticker ORDER BY n DESC LIMIT 20""", style_funds))
     out = [[r[0], r[1], r[2] or 0, round(r[3] or 0, 1),
-            r[4] or "", r[5] or "", round(r[6] or 0, 1),
-            (r[7] or "")[:38]] for r in rows if r[0] not in ETFs]
+            r[4] or "", r[5] or "",
+            round(r[6], 1) if r[6] is not None else "",
+            round(r[7], 2) if r[7] is not None else "",
+            round(r[8] or 0, 1),
+            (r[9] or "")[:38]] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=7).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=8).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
     row += len(out) + 2
 
     # Material adds
@@ -183,6 +189,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     rows = list(conn.execute(f"""
         SELECT fp.ticker, COUNT(DISTINCT fp.fund) AS n,
                us.smart_money_n, us.max_pct_book, us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio,
                us.activist_max_pct, tm.name
         FROM fund_positions fp
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
@@ -190,41 +197,52 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         WHERE fp.fund IN ({ph}) AND fp.section = 4 AND fp.ticker IS NOT NULL
         GROUP BY fp.ticker ORDER BY n DESC LIMIT 20""", style_funds))
     out = [[r[0], r[1], r[2] or 0, round(r[3] or 0, 1),
-            r[4] or "", r[5] or "", round(r[6] or 0, 1),
-            (r[7] or "")[:38]] for r in rows if r[0] not in ETFs]
+            r[4] or "", r[5] or "",
+            round(r[6], 1) if r[6] is not None else "",
+            round(r[7], 2) if r[7] is not None else "",
+            round(r[8] or 0, 1),
+            (r[9] or "")[:38]] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=7).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=8).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
     row += len(out) + 2
 
     # Concentration leaders
     write_section_heading(ws, row, "Concentration leaders — single-fund pct_book ≥5%", 13)
     row += 1
-    hdr3 = ["Ticker","Fund","%Book","Uni 13F","Mcap","Bucket","Name"]
+    hdr3 = ["Ticker","Fund","%Book","Uni 13F","Mcap","Bucket","EV/EBITDA","P/B","Name"]
     write_table_header(ws, row, hdr3)
     row += 1
     rows = list(conn.execute(f"""
-        SELECT h.ticker, h.fund, h.pct_book, us.smart_money_n, us.mcap_m, us.mcap_bucket, tm.name
+        SELECT h.ticker, h.fund, h.pct_book, us.smart_money_n, us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio, tm.name
         FROM fund_13f_holdings h
         LEFT JOIN unified_signal us ON us.ticker = h.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
         WHERE h.fund IN ({ph}) AND h.pct_book >= 5 AND h.pct_book <= 100
         ORDER BY h.pct_book DESC LIMIT 20""", style_funds))
     out = [[r[0], r[1][:35], round(r[2] or 0, 1), r[3] or 0,
-            r[4] or "", r[5] or "", (r[6] or "")[:32]]
+            r[4] or "", r[5] or "",
+            round(r[6], 1) if r[6] is not None else "",
+            round(r[7], 2) if r[7] is not None else "",
+            (r[8] or "")[:32]]
            for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=7).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=8).number_format = '0.00"x"'
     row += len(out) + 2
 
     # Size cross-cut
     write_section_heading(ws, row, "By size bucket — top within style by mcap class", 13)
     row += 1
-    hdr4 = ["Bucket","Ticker","Holders","pB Max","Mcap","S3","S4","Act %","Name"]
+    hdr4 = ["Bucket","Ticker","Holders","pB Max","Mcap","S3","S4","Act %","EV/EBITDA","P/B","Name"]
     write_table_header(ws, row, hdr4)
     row += 1
     out = []
@@ -237,7 +255,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                     WHERE fp.ticker=h.ticker AND fp.section=3 AND fp.fund IN ({ph})),
                    (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
                     WHERE fp.ticker=h.ticker AND fp.section=4 AND fp.fund IN ({ph})),
-                   us.activist_max_pct, tm.name
+                   us.activist_max_pct, us.ev_ebitda, us.pb_ratio, tm.name
             FROM fund_13f_holdings h
             JOIN unified_signal us ON us.ticker = h.ticker
             LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
@@ -249,12 +267,17 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         for r in rows:
             out.append([bucket, r[0], r[1], round(r[2] or 0, 1),
                         r[3] or "", r[4] or 0, r[5] or 0,
-                        round(r[6] or 0, 1), (r[7] or "")[:32]])
+                        round(r[6] or 0, 1),
+                        round(r[7], 1) if r[7] is not None else "",
+                        round(r[8], 2) if r[8] is not None else "",
+                        (r[9] or "")[:32]])
     write_table_rows(ws, out, row, ticker_col=2)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=9).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=10).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 10
@@ -262,12 +285,12 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
 def sheet_overview(wb, conn):
     ws = wb.create_sheet("Overview")
     write_title(ws, "Universe Overview by Style",
-                "For each macro_style, the top 10 most-held names within that style.", 13)
+                "For each macro_style, the top 10 most-held names within that style.", 15)
     row = 4
     for ms, count in style_macro_list(conn):
-        write_section_heading(ws, row, f"{ms} — {count} funds", 13)
+        write_section_heading(ws, row, f"{ms} — {count} funds", 15)
         row += 1
-        hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","Mcap","Bucket","Act %","Clu $M","F4 Buy","Sell","Name"]
+        hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","Mcap","Bucket","EV/EBITDA","P/B","Act %","Clu $M","F4 Buy","Sell","Name"]
         write_table_header(ws, row, hdr)
         row += 1
         style_funds = [r[0] for r in conn.execute(
@@ -281,7 +304,8 @@ def sheet_overview(wb, conn):
                     WHERE fp.ticker = h.ticker AND fp.section = 3 AND fp.fund IN ({ph})),
                    (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
                     WHERE fp.ticker = h.ticker AND fp.section = 4 AND fp.fund IN ({ph})),
-                   us.mcap_m, us.mcap_bucket, us.activist_max_pct,
+                   us.mcap_m, us.mcap_bucket,
+                   us.ev_ebitda, us.pb_ratio, us.activist_max_pct,
                    us.insider_cluster_dollars_m, us.form4_buy_usd_m, us.form4_sell_usd_m,
                    tm.name
             FROM fund_13f_holdings h
@@ -294,20 +318,25 @@ def sheet_overview(wb, conn):
         for r in rows:
             if r[0] in ETFs: continue
             out.append([r[0], r[1], round(r[2] or 0, 1), r[3] or 0, r[4] or 0, r[5] or 0,
-                        r[6] or "", r[7] or "", round(r[8] or 0, 1),
-                        round(r[9] or 0, 1) if r[9] else "",
-                        round(r[10] or 0, 1) if r[10] else "",
+                        r[6] or "", r[7] or "",
+                        round(r[8], 1) if r[8] is not None else "",
+                        round(r[9], 2) if r[9] is not None else "",
+                        round(r[10] or 0, 1),
                         round(r[11] or 0, 1) if r[11] else "",
-                        (r[12] or "")[:30]])
+                        round(r[12] or 0, 1) if r[12] else "",
+                        round(r[13] or 0, 1) if r[13] else "",
+                        (r[14] or "")[:30]])
             if len(out) >= 10: break
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
             ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
-            ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
-            ws.cell(row=ridx, column=11).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=9).number_format = '0.0"x"'
+            ws.cell(row=ridx, column=10).number_format = '0.00"x"'
+            ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
             ws.cell(row=ridx, column=12).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=13).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=14).number_format = NUMFMT_M_TO_B
         row += len(out) + 2
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -331,7 +360,7 @@ def sheet_subgroup_focus(wb, conn):
 
     ws = wb.create_sheet("Sub-Group Tiers")
     write_title(ws, "Sub-Group Tier Picks",
-                "Multi-fund tiers shown explicitly. Single-fund specialists consolidated per macro_style — every fund is visible.", 11)
+                "Multi-fund tiers shown explicitly. Single-fund specialists consolidated per macro_style — every fund is visible.", 13)
     # Group multi-fund subgroups by macro_style so we can render the
     # singletons-roll-up right after each macro's multi-fund tiers.
     multi_by_macro = {}
@@ -342,7 +371,7 @@ def sheet_subgroup_focus(wb, conn):
     row = 4
     for ms in all_macros:
         ws.row_dimensions[row].height = 22
-        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=11)
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=13)
         c = ws.cell(row=row, column=1, value=ms.upper())
         c.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color="000000")
         c.alignment = Alignment(horizontal="left", vertical="bottom")
@@ -352,7 +381,7 @@ def sheet_subgroup_focus(wb, conn):
             label = f"  {sg}  ({n} funds)"
             write_section_heading(ws, row, label, 11)
         row += 1
-        hdr = ["Ticker","Sub Holders","pB Max","Mcap","Bucket","S3","S4","Act %","Clu $M","F4 $M","Name"]
+        hdr = ["Ticker","Sub Holders","pB Max","Mcap","Bucket","S3","S4","Act %","Clu $M","F4 $M","EV/EBITDA","P/B","Name"]
         write_table_header(ws, row, hdr)
         row += 1
         sg_funds = [r[0] for r in conn.execute(
@@ -368,6 +397,7 @@ def sheet_subgroup_focus(wb, conn):
                    (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
                     WHERE fp.ticker=h.ticker AND fp.section=4 AND fp.fund IN ({ph})),
                    us.activist_max_pct, us.insider_cluster_dollars_m, us.form4_buy_usd_m,
+                   us.ev_ebitda, us.pb_ratio,
                    tm.name
             FROM fund_13f_holdings h
             LEFT JOIN unified_signal us ON us.ticker = h.ticker
@@ -384,7 +414,9 @@ def sheet_subgroup_focus(wb, conn):
                         round(r[7] or 0, 1),
                         round(r[8] or 0, 1) if r[8] else "",
                         round(r[9] or 0, 1) if r[9] else "",
-                        (r[10] or "")[:32]])
+                        round(r[10], 1) if r[10] is not None else "",
+                        round(r[11], 2) if r[11] is not None else "",
+                        (r[12] or "")[:32]])
             if len(out) >= 8: break
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
@@ -393,6 +425,8 @@ def sheet_subgroup_focus(wb, conn):
             ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
             ws.cell(row=ridx, column=9).number_format = NUMFMT_M_TO_B
             ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=11).number_format = '0.0"x"'
+            ws.cell(row=ridx, column=12).number_format = '0.00"x"'
         row += len(out) + 2
         # ── end inner sub_group loop ──
 
@@ -456,6 +490,56 @@ TAB_COLORS = {
     "Other / Unclassified":                "D9D9D9",
 }
 
+def sheet_fund_roster(wb, conn):
+    """Definitive roster — EVERY fund with its macro_style + sub_group + data
+    counts, grouped by style then sub-group. Guarantees no fund is missed."""
+    ws = wb.create_sheet("Fund Roster")
+    write_title(ws, "Fund Roster — all funds by style & sub-group",
+                "Every fund in the universe with its macro_style, sub_group, and data coverage. Grouped style → sub-group.", 8)
+    row = 4
+    macros = [r[0] for r in conn.execute(
+        "SELECT DISTINCT macro_style FROM fund_style WHERE macro_style IS NOT NULL ORDER BY macro_style")]
+    total_funds = 0
+    for ms in macros:
+        n_in_macro = conn.execute("SELECT COUNT(*) FROM fund_style WHERE macro_style=?", (ms,)).fetchone()[0]
+        ws.row_dimensions[row].height = 22
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=8)
+        c = ws.cell(row=row, column=1, value=f"{ms.upper()}  ({n_in_macro} funds)")
+        c.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color="000000")
+        c.alignment = Alignment(horizontal="left", vertical="bottom")
+        row += 1
+        hdr = ["Fund","Sub-Group","13F #","13F $M","13D #","Foreign Pos","Total Pos","Status"]
+        write_table_header(ws, row, hdr)
+        row += 1
+        # all funds in this macro_style, ordered by sub_group then fund
+        funds = list(conn.execute("""
+            SELECT fm.fund, fs.sub_group,
+                   COALESCE(st.n_holdings,0),
+                   COALESCE(st.total_value_k,0)/1e3,
+                   (SELECT COUNT(*) FROM holder_13d h WHERE h.holder=fm.fund),
+                   (SELECT COUNT(*) FROM fund_positions fp WHERE fp.fund=fm.fund AND fp.ticker LIKE '%.%'),
+                   (SELECT COUNT(*) FROM fund_positions fp WHERE fp.fund=fm.fund),
+                   fr.status
+            FROM fund_meta fm
+            JOIN fund_style fs ON fs.fund=fm.fund
+            LEFT JOIN fund_13f_state st ON st.fund=fm.fund
+            LEFT JOIN fund_resolution_state fr ON fr.fund=fm.fund
+            WHERE fs.macro_style=?
+            ORDER BY fs.sub_group, fm.fund""", (ms,)))
+        out = []
+        for f in funds:
+            out.append([f[0][:46], (f[1] or "")[:40], f[2], round(f[3] or 0),
+                        f[4], f[5], f[6], (f[7] or "")[:22]])
+        write_table_rows(ws, out, row)
+        for ridx in range(row, row+len(out)):
+            ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
+        total_funds += len(out)
+        row += len(out) + 2
+    # footer tally
+    ws.cell(row=row, column=1, value=f"TOTAL: {total_funds} funds across {len(macros)} macro-styles").font = SECTION_FONT
+    ws.freeze_panes = "A4"
+    autosize(ws)
+
 def main():
     conn = sqlite3.connect(DB)
     wb = openpyxl.Workbook()
@@ -463,6 +547,7 @@ def main():
         wb.remove(wb["Sheet"])
 
     sheet_readme(wb, conn)
+    sheet_fund_roster(wb, conn)
     sheet_overview(wb, conn)
     sheet_subgroup_focus(wb, conn)
     for ms, _ in style_macro_list(conn):
@@ -474,7 +559,7 @@ def main():
             ws.sheet_properties.tabColor = TAB_COLORS[ms]
 
     # README + meta tabs in lightest grey for distinction
-    for nav in ("README", "Overview", "Sub-Group Tiers"):
+    for nav in ("README", "Fund Roster", "Overview", "Sub-Group Tiers"):
         if nav in wb.sheetnames:
             wb[nav].sheet_properties.tabColor = "F2F2F2"
 

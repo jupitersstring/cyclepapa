@@ -48,6 +48,7 @@ def run():
       cat8k_pipe INTEGER, cat8k_bnk INTEGER, cat8k_n INTEGER,
       ev_ebitda REAL, pb_ratio REAL, pe_ttm REAL,
       revealed_pref REAL,       -- active accumulation: 2*s3 + s4 + 0.5*s1
+      asymmetry_score REAL,     -- downside protection × upside potential
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
       score REAL,
@@ -291,6 +292,29 @@ def run():
                  micro_bonus + er_contribution + entry_bonus +
                  catalyst_8k)
 
+        # ASYMMETRY — margin-of-safety (downside protection) × upside potential.
+        # The multibagger setup: cheap valuation + smart money already in below
+        # current price + catalyst + small enough to multiply, bounded downside.
+        ms_cheap = 0.0
+        if ev_ebitda is not None and 0 < ev_ebitda <= 15:
+            ms_cheap += (15 - ev_ebitda) * 0.45          # 0–6.75 pts, cheaper = more
+        if pb_ratio is not None and 0 < pb_ratio <= 2.0:
+            ms_cheap += (2.0 - pb_ratio) * 2.5           # 0–5 pts, low P/B = asset floor
+        ms_entry = 0.0
+        if entry_bucket == "BELOW_ENTRY" and vs_entry_pct:
+            x = abs(vs_entry_pct)
+            ms_entry = (x/8.0) if x <= 40 else max(0, 5 - (x-40)*0.3)  # sweet spot, decay >40%
+        up_conviction = 0.5 * min(max_pb, 20) + math.log1p(n13f) * 1.2 + 2.0*s3 + 1.0*s4
+        up_catalyst   = 0.4 * min(pct, 30) + insider_cluster + (5 if c8_ma else 0) + (math.log1p(f4m_30)*2 if f4m_30 else 0)
+        up_size       = 6 if (0 < mcap < 300) else 4 if (mcap < 2000) else 2 if (mcap < 10000) else 0
+        pen = 0.0
+        if ev_ebitda is not None and ev_ebitda > 30: pen += 5
+        if c8_pipe: pen += 3
+        if c8_bnk:  pen += 8
+        if f4sell_30 and f4sell_30 > 1: pen += math.log1p(f4sell_30)
+        if entry_bucket == "WELL_ABOVE": pen += 3
+        asymmetry_score = round(ms_cheap + ms_entry + up_conviction + up_catalyst + up_size - pen, 2)
+
         # GLOBAL-FAIR score: drops the US-only terms (Form 4, insider clusters)
         # so foreign-exchange tickers (.L .T .TO .HK .AX etc.) — which can never
         # have those signals because SEC doesn't cover them — rank fairly.
@@ -316,7 +340,7 @@ def run():
                       f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
@@ -326,7 +350,7 @@ def run():
              max_pb, n5_pb,
              global_score, is_us,
              c8_ma, c8_dir, c8_ctrl, c8_pipe, c8_bnk, c8.get("n", 0),
-             ev_ebitda, pb_ratio, pe_ttm, revealed_pref,
+             ev_ebitda, pb_ratio, pe_ttm, revealed_pref, asymmetry_score,
              er_pct,
              entry_bucket, vs_entry_pct, anchor_px, anchor_src,
              score, components))
