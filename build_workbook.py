@@ -1038,6 +1038,19 @@ CREATIVE_MEASURES = [
      'geographic shifts (MRVL Taiwan, FTAI Africa). Growth capped at 5x for ranking sanity; '
      'raw seg_growth shown unchanged.',
      None),
+    ('results_unpriced_segment/screener.csv', 'Unpriced Segment Growth',
+     'The EVC/Smadex archetype at its EARLIEST stage — a revenue segment is '
+     'inflecting (growing materially faster than the consolidated total, on '
+     'its way to dominating the mix) but the SHARE PRICE has not responded: '
+     '1-year return flat-to-negative, valuation still the legacy multiple, '
+     'trading below recent highs. The market is still pricing the old mix. '
+     'unpriced_score = inflection strength × price dormancy × cheapness — the '
+     'higher the score, the less the segment growth is in the tape. Catch it '
+     'BEFORE the re-rate. (Needs cached price history, so SEC-only tickers '
+     'without a price series — like EVC itself — are absent.)',
+     ['ticker','company','sector','country','segment','share_now','seg_growth',
+      'total_growth','excess_growth','perf_1y_pct','perf_2y_pct','pct_below_2y_high',
+      'enterpriseToRevenue','enterpriseToEbitda','trailingPE','market_cap','unpriced_score']),
     ('results_revenue_decomp/all.csv', 'Revenue Disaggregation',
      'Every revenue-flavored XBRL tag we extracted from SEC companyfacts, per ticker. '
      'Use this to spot business-mix shifts: a Services-line growing faster than Product, '
@@ -1076,6 +1089,15 @@ EXTRA_COLUMN_LABELS = {
     'ltm_M': 'LTM Value ($M)',
     'yoy_pct': 'YoY',
     'share_of_total_pct': 'Share of Total',
+    # Unpriced segment growth
+    'perf_1y_pct': '1Y Price Return',
+    'perf_2y_pct': '2Y Price Return',
+    'pct_below_2y_high': 'Below 2Y High',
+    'pct_vs_200dma': 'vs 200-DMA',
+    'unpriced_score': 'Unpriced Score',
+    'inflection_strength': 'Inflection Strength',
+    'price_dormancy': 'Price Dormancy',
+    'cheapness': 'Cheapness',
 }
 COLUMN_LABELS.update(EXTRA_COLUMN_LABELS)
 
@@ -1391,6 +1413,7 @@ def build_contents(wb):
         'CM · Vol Asymmetry': 'Upside volatility > downside (positive skew).',
         'CM · Segment Inflection': 'Small fast-growing revenue stream (companyfacts proxy).',
         'CM · True Segment Inflection (X': 'TRUE axis-level segment inflection (10-K XBRL).',
+        'CM · Unpriced Segment Growth': 'Segment ramping, price asleep — the pre-rerate setup.',
         'CM · Revenue Disaggregation': 'Every revenue-tag we extracted, per ticker.',
         'CM · Analyst & Insider Extras': 'Upside-to-target, insider buying, broker ratings.',
     }
@@ -1554,6 +1577,11 @@ def build_glossary(wb):
         ('Buy/Strong-Buy Share', '(Strong-buy + buy) ÷ total broker ratings, most recent month, in %.'),
         ('Fwd Growth (Avg)', 'Average of +1-quarter and +1-year consensus growth, in %.'),
         ('Extras Composite', 'Z-scored average of the four extras signals across the universe (higher = better). Missing signals contribute z=0 (median).'),
+        # Unpriced Segment Growth
+        ('Unpriced Score', 'EVC/Smadex pre-rerate score = inflection strength × price dormancy × cheapness. Higher = the segment is ramping but the share price has not yet responded. Catch it before the re-rate.'),
+        ('1Y / 2Y Price Return', 'Trailing total return. The unpriced setup wants these flat-to-NEGATIVE — the growth is not being priced in.'),
+        ('Below 2Y High', 'How far the price trades below its trailing-2-year high (−40% = 40% below). Further below = less noticed by the market.'),
+        ('Inflection Strength / Price Dormancy / Cheapness', 'The three components of the unpriced score: segment excess-growth in the 30%-share sweet spot; how dormant/down the price is; and how cheap on EV/Sales relative to the candidate set.'),
         # EDGAR valuation fallback
         ('*_edgar', 'Valuation metric computed from SEC-EDGAR XBRL companyfacts (Yahoo-independent). EV/EBITDA, P/E, P/B, P/S derived from OperatingIncome + D&A, NetIncome, shares, debt, cash + cached price. Used to fill US-ticker gaps where Yahoo returns empty.'),
     ]
