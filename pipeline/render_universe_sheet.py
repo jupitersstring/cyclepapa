@@ -533,12 +533,12 @@ def sheet_valuation(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "Valuation — EV/EBITDA & P/B among smart-money names",
                 "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 12)
-    hdr = ["Ticker","EV/EBITDA","P/B","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector"]
+    hdr = ["Ticker","EV/EBITDA","P/B","P/E","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector"]
     write_table_header(ws, 4, hdr)
     # Floor at 2x — below that is almost always a data artifact (warrant,
     # near-zero EBITDA, ADR currency mismatch). Exclude warrant/preferred tickers.
     rows = list(conn.execute("""
-        SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.score, us.mcap_m, us.mcap_bucket,
+        SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.pe_ttm, us.score, us.mcap_m, us.mcap_bucket,
                us.smart_money_n, us.activist_max_pct, us.entry_bucket, us.vs_entry_pct,
                tm.name, tm.sic_description
         FROM unified_signal us
@@ -553,21 +553,23 @@ def sheet_valuation(wb, conn):
     out = []
     for r in rows:
         if r[0] in ETFs or r[0] in MEGA: continue
-        eb = r[8] or ""
+        eb = r[9] or ""
         eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
                     else "above" if "ABOVE" in eb else "")
         out.append([r[0], round(r[1], 1), round(r[2], 2) if r[2] is not None else "",
-                    round(r[3] or 0, 1), r[4] or "", r[5] or "", r[6] or 0,
-                    round(r[7] or 0, 1), eb_label,
-                    round(r[9] or 0, 1) if r[9] else "",
-                    (r[10] or "")[:38], (r[11] or "")[:30]])
+                    round(r[3], 1) if r[3] is not None else "",
+                    round(r[4] or 0, 1), r[5] or "", r[6] or "", r[7] or 0,
+                    round(r[8] or 0, 1), eb_label,
+                    round(r[10] or 0, 1) if r[10] else "",
+                    (r[11] or "")[:38], (r[12] or "")[:30]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = '0.0"x"'
         ws.cell(row=ridx, column=3).number_format = '0.00"x"'
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=4).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
