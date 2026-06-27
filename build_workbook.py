@@ -37,9 +37,17 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
 import datetime as _dt
+import os as _os
 
 OUT = Path('results_peg')
 WB_PATH = OUT / 'best_of_best.xlsx'
+
+# How many rows each creative-measures tab displays. Default 50; override via
+# CREATIVE_TOP_N env var to produce a deeper book (e.g. top-100). The output
+# filename gets a suffix when this isn't the default so the two books don't
+# clash.
+CREATIVE_TOP_N = int(_os.environ.get('CREATIVE_TOP_N', '50'))
+_WB_SUFFIX = '' if CREATIVE_TOP_N == 50 else f'_top{CREATIVE_TOP_N}'
 
 # Workbook versioning — CalVer with daily build counter. Reads/writes
 # .workbook_version to persist the counter across builds. Surfaced in the
@@ -54,6 +62,11 @@ def _next_version() -> str:
     if _VERSION_FILE.exists():
         try: last = _VERSION_FILE.read_text().strip()
         except Exception: last = ''
+    # A suffixed (top-N) build reuses the current version rather than
+    # incrementing — it's the same data, a different view, so it shares the
+    # base book's version stamp.
+    if _WB_SUFFIX:
+        return last or today + '-1'
     # last looks like "2026.06.23-3"
     n = 1
     if last.startswith(today + '-'):
@@ -65,7 +78,9 @@ def _next_version() -> str:
     return v
 
 WORKBOOK_VERSION = _next_version()
-WB_PATH_VERSIONED = OUT / f'best_of_best_{WORKBOOK_VERSION}.xlsx'
+# Canonical + versioned filenames carry the top-N suffix when not the default.
+WB_PATH = OUT / f'best_of_best{_WB_SUFFIX}.xlsx'
+WB_PATH_VERSIONED = OUT / f'best_of_best{_WB_SUFFIX}_{WORKBOOK_VERSION}.xlsx'
 
 REGIONS = ['US','JP','GB','DE','FR','CA','AU',         # Tier 1
            'CH','IT','NL','ES','SE','NO','DK','BE','FI','IE','AT','PT','GR',   # Tier 2 EU
@@ -1252,7 +1267,7 @@ def build_creative_measures(wb):
         cols = front + rest_cols
         # Caption above the table: N rows, top-N selector
         n_total = len(df)
-        top_n = min(50, n_total)
+        top_n = min(CREATIVE_TOP_N, n_total)
         # QoL: hide columns that are 100% empty across the DISPLAYED rows.
         # An always-blank column reads as a data error and wastes width; the
         # source CSV keeps every column (no feature removed) — this only
