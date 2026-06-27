@@ -110,12 +110,19 @@ _STRING_PATTERNS = {
 }
 
 
-def fetch_quote_html(symbol: str, session: requests.Session, timeout: int = 15) -> dict:
+def fetch_quote_html(symbol: str, session: requests.Session, timeout: int = 6) -> dict:
     """Hit finance.yahoo.com/quote/{symbol}/ and parse the embedded
-    quoteSummary JSON into a dict matching yfinance.Ticker.info structure."""
+    quoteSummary JSON into a dict matching yfinance.Ticker.info structure.
+
+    Short default timeout (8s): when Yahoo throttles, requests hang rather
+    than 429 immediately, so a tight timeout lets us detect the throttle
+    and back off fast instead of blocking the whole run.
+    """
     url = f'https://finance.yahoo.com/quote/{symbol}/'
     try:
         r = session.get(url, timeout=timeout, headers=_HEADERS)
+    except requests.Timeout:
+        return {'_error': 'timeout'}
     except Exception as e:
         return {'_error': f'fetch_failed: {e}'}
     if r.status_code != 200:
@@ -161,16 +168,28 @@ def _cache_key_to_symbol(k):
 
 def empty_or_stale_info_metrics(any_missing: bool = True) -> list[tuple[str, str]]:
     """Return (cache_key, symbol) pairs whose info_metrics is missing one or
-    more of the key valuation fields. With any_missing=True (default), we
-    refetch if ANY of EV/EBITDA / trailingPE / priceToBook is empty —
-    casting a wide net so we catch tickers with partial coverage."""
-    todo = []
+    more key valuation fields AND that we haven't already attempted via the
+    HTML scraper.
+
+    The `__yahoo_html_done` sentinel makes this truly resumable AND stops
+    the re-fetch loop on tickers that legitimately have no EV/EBITDA (banks,
+    insurers — Yahoo serves them 200 with P/E + mcap but no EV/EBITDA, so
+    without the sentinel they'd be re-flagged on every run forever).
+
+    Proven-alive tickers (those with an existing marketCap/price) are
+    returned FIRST so the run spends its time on fillable names before the
+    likely-404 tail of obscure non-US symbols.
+    """
+    alive, dead = [], []
     for p in YF_CACHE.glob('*__info_metrics.parquet'):
         key = p.name.split('__')[0]
+        # Skip tickers we've already attempted via HTML
+        if (YF_CACHE / f'{key}__yahoo_html_done').exists():
+            continue
         try:
             d = pd.read_parquet(p)
             if d.empty:
-                todo.append((key, _cache_key_to_symbol(key)))
+                dead.append((key, _cache_key_to_symbol(key)))
                 continue
             r = d.iloc[0]
             ev = r.get('enterpriseToEbitda')
@@ -178,10 +197,12 @@ def empty_or_stale_info_metrics(any_missing: bool = True) -> list[tuple[str, str
             pb = r.get('priceToBook')
             empties = sum(1 for v in (ev, pe, pb) if pd.isna(v) or v is None)
             if (any_missing and empties >= 1) or (not any_missing and empties == 3):
-                todo.append((key, _cache_key_to_symbol(key)))
+                mc = r.get('marketCap'); cp = r.get('currentPrice')
+                is_alive = (mc is not None and pd.notna(mc)) or (cp is not None and pd.notna(cp))
+                (alive if is_alive else dead).append((key, _cache_key_to_symbol(key)))
         except Exception:
-            todo.append((key, _cache_key_to_symbol(key)))
-    return todo
+            dead.append((key, _cache_key_to_symbol(key)))
+    return alive + dead
 
 
 def refetch_gap_tickers(target_rate: float = 3.0, max_tickers: int = 20000,
@@ -210,19 +231,41 @@ def refetch_gap_tickers(target_rate: float = 3.0, max_tickers: int = 20000,
     sleep = 1.0 / target_rate if target_rate > 0 else 0
     t0 = time.time()
 
+    throttle_signals = 0  # timeouts + 429s in a row → back off harder
     for i, (key, sym) in enumerate(target, 1):
         info = fetch_quote_html(sym, sess)
         err = info.get('_error')
         if err:
             n_fail += 1
             consecutive_fails += 1
-            # Re-warm the session after a run of failures (likely a 429 wall)
-            if consecutive_fails >= refresh_every:
+            # Distinguish throttle (timeout / 429) from dead ticker (404).
+            # Only throttle signals warrant a back-off; 404s are permanent.
+            if err in ('timeout',) or 'http_429' in err:
+                throttle_signals += 1
+            else:
+                throttle_signals = 0
+            # A 404 is permanent (dead / wrong-format symbol) — mark done so
+            # we never retry it. Timeouts/429s are transient — leave unmarked
+            # so a future run retries.
+            if 'http_404' in err:
+                try:
+                    (YF_CACHE / f'{_safe(key)}__yahoo_html_done').touch()
+                except Exception:
+                    pass
+            # Back off when we see a run of throttle signals — Yahoo's window
+            # is sliding ~1 min, so a 30s pause clears it.
+            if throttle_signals >= 5:
+                time.sleep(30)
+                sess = warm_session()
+                throttle_signals = 0
+                consecutive_fails = 0
+            elif consecutive_fails >= refresh_every:
                 sess = warm_session()
                 consecutive_fails = 0
-                time.sleep(2)  # let the throttle window slide
+                time.sleep(2)
         else:
             consecutive_fails = 0
+            throttle_signals = 0
             p = YF_CACHE / f'{_safe(key)}__info_metrics.parquet'
             # Merge: only fill missing fields, preserve existing values
             if p.exists():
@@ -244,6 +287,12 @@ def refetch_gap_tickers(target_rate: float = 3.0, max_tickers: int = 20000,
                     n_partial += 1
             else:
                 n_partial += 1
+            # Mark as attempted (200 response) so we don't re-fetch banks /
+            # legitimately-no-EV/EBITDA tickers on every future run.
+            try:
+                (YF_CACHE / f'{_safe(key)}__yahoo_html_done').touch()
+            except Exception:
+                pass
         if i % 50 == 0:
             el = time.time() - t0
             rate = i / el if el > 0 else 0

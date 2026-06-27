@@ -57,6 +57,12 @@ restart_if_dead xbrl1 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress
 restart_if_dead xbrl2 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100 --shard-id 2 --shard-count 4
 restart_if_dead xbrl3 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress-every 100 --shard-id 3 --shard-count 4
 
+# Yahoo HTML valuation gap-fill — runs at 1 req/s (sustainable for our
+# shared-IP egress; higher trips Yahoo's per-IP throttle). Resumable via
+# __yahoo_html_done sentinels so it grinds through the gap list across
+# sessions without re-work. Fills US + non-US EV/EBITDA / P/E / P/B.
+restart_if_dead yahoohtml yahoo_html_fetcher.py --rate=1
+
 # --- Snapshot push (durability) ---
 log "Snapshot push starting..."
 if python3 cache_sync.py push >> "$LOG_DIR/snapshot_push.log" 2>&1; then
