@@ -48,7 +48,7 @@ def ingest_csv(text):
         parts = line.split("|")
         if len(parts) < 4: continue
         fund_in = parts[0].strip()
-        ticker  = parts[1].strip()
+        ticker  = parts[1].strip().upper()   # normalize exchange suffix case (.l → .L)
         company = parts[2].strip() if len(parts) > 2 else ""
         rank    = parts[3].strip() if len(parts) > 3 else ""
         src     = parts[4].strip() if len(parts) > 4 else ""
@@ -57,7 +57,8 @@ def ingest_csv(text):
         # skip NO_DATA / low-confidence / no ticker
         if ticker in ("NO_DATA", "", "0", "?", "-"): n_skipped += 1; continue
         if conf == "L": n_skipped += 1; continue
-        if not re.match(r'^[A-Z0-9.\-]{1,12}$', ticker): n_skipped += 1; continue
+        # allow foreign formats: 7203.T, GLEN.L, NOVO-B.CO, 0700.HK (up to 14 chars)
+        if not re.match(r'^[A-Z0-9][A-Z0-9.\-]{0,13}$', ticker): n_skipped += 1; continue
 
         fund = match_fund(conn, fund_in)
         if not fund:
