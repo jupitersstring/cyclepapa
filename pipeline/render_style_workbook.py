@@ -92,11 +92,11 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         "SELECT fund FROM fund_style WHERE macro_style = ?", (macro_style,))]
     write_title(ws, macro_style,
                 f"Top picks held by funds in this style ({len(style_funds)} funds).",
-                15)
+                17)
     row = 4
-    write_section_heading(ws, row, "Top picks — most held within this style", 15)
+    write_section_heading(ws, row, "Top picks — most held within this style", 17)
     row += 1
-    hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","S1","Mcap","Bucket","EV/EBITDA","P/B","Act %","Clu $M","F4 Buy","Name"]
+    hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","S1","Mcap","Bucket","EV/EBITDA","P/B","Act %","Clu $M","F4 Buy","Name","Industry","Business"]
     write_table_header(ws, row, hdr)
     row += 1
     ph = ",".join("?" * len(style_funds))
@@ -138,7 +138,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                     round(r[11] or 0, 1),
                     round(r[12] or 0, 1) if r[12] else "",
                     round(r[13] or 0, 1) if r[13] else "",
-                    (r[14] or "")[:38]])
+                    (r[14] or "")[:38], *desc_for(conn, r[0])])
         if len(out) >= 30: break
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
@@ -282,6 +282,8 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 10
+    ws.column_dimensions[get_column_letter(16)].width = 24   # Industry (Top picks)
+    ws.column_dimensions[get_column_letter(17)].width = 80   # Business (Top picks)
 
 def sheet_overview(wb, conn):
     ws = wb.create_sheet("Overview")
@@ -556,6 +558,22 @@ def _one_liner(s, limit=200):
     if 0 < dot <= limit:
         return s[:dot + 1]
     return s if len(s) <= limit else s[:limit].rstrip() + "…"
+
+_DESC_CACHE = None
+def desc_for(conn, ticker):
+    """(industry, one-line business summary) for a ticker — memoized."""
+    global _DESC_CACHE
+    if _DESC_CACHE is None:
+        _DESC_CACHE = {}
+        for r in conn.execute("""
+            SELECT us.ticker,
+                   COALESCE(yf.industry, tm.industry, tm.sic_description),
+                   yf.business_summary
+            FROM unified_signal us
+            LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+            LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker"""):
+            _DESC_CACHE[r[0]] = ((r[1] or "")[:26], _one_liner(r[2], 90))
+    return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
     """Glossary: every ticker with name, sector, industry, and a short business

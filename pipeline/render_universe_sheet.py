@@ -41,7 +41,7 @@ SIG_HDR = ["Ticker","Score","Mcap","Bucket","13F","S1","S3","S4","Act %",
            "F4 Buy 180d","F4 Buy ≤30d","F4 Sell 180d","F4 Sell ≤30d",
            "EV/EBITDA","P/B",
            "Entry","vs Entry %","Anchor $",
-           "ER %","Name","Sector","Px"]
+           "ER %","Name","Sector","Px","Industry","Business"]
 
 def get_signal_rows(conn, where_extra="", limit=None, params=()):
     sql = """SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.smart_money_n,
@@ -51,9 +51,11 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
         us.form4_buy_usd_m, us.form4_buy_30d_m, us.form4_sell_usd_m, us.form4_sell_30d_m,
         us.ev_ebitda, us.pb_ratio,
         us.entry_bucket, us.vs_entry_pct, us.anchor_px,
-        us.expected_return_pct, tm.name, tm.sic_description, tm.price
+        us.expected_return_pct, tm.name, tm.sic_description, tm.price,
+        COALESCE(yf.industry, tm.industry, tm.sic_description), yf.business_summary
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker
         WHERE 1=1 """ + where_extra + " ORDER BY us.score DESC"
     if limit: sql += f" LIMIT {limit}"
     return list(conn.execute(sql, params))
@@ -92,6 +94,8 @@ def signal_row_to_cells(r):
         (r[23] or "")[:38],
         (r[24] or "")[:32],
         round(r[25] or 0, 2) if r[25] else "",
+        (r[26] or "")[:26],            # Industry
+        _one_liner(r[27], 90),         # Business (one-line summary)
     ]
 
 def format_signal_row(ws, ridx):
@@ -185,8 +189,10 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle=""):
         format_signal_row(ws, ridx)
     ws.freeze_panes = "B5"
     autosize(ws)
-    # ticker col narrower
+    # ticker col narrower; Business (last col) wide for the one-line summary
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
+    ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24  # Industry
 
 def sheet_activist(wb, conn):
     ws = wb.create_sheet("Activist 10+")
@@ -520,8 +526,8 @@ def sheet_asymmetry(wb, conn):
     ws = wb.create_sheet("Asymmetry")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Asymmetry — best risk/reward setups",
-                "asymmetry = margin-of-safety (cheap EV/EBITDA + low P/B + below smart-money entry) × upside (conviction + activist/insider catalyst + small-cap room). Ranked desc.", 14)
-    hdr = ["Ticker","Asym","Score","Mcap","Bucket","EV/EBITDA","P/B","P/E","pB Max","Act %","Entry","vs Entry %","Catalyst","Name"]
+                "asymmetry = margin-of-safety (cheap EV/EBITDA + low P/B + below smart-money entry) × upside (conviction + activist/insider catalyst + small-cap room). Ranked desc.", 16)
+    hdr = ["Ticker","Asym","Score","Mcap","Bucket","EV/EBITDA","P/B","P/E","pB Max","Act %","Entry","vs Entry %","Catalyst","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.asymmetry_score, us.score, us.mcap_m, us.mcap_bucket,
@@ -542,6 +548,7 @@ def sheet_asymmetry(wb, conn):
         if r[12]: cat.append("M&A")
         if r[13]: cat.append("CTRL")
         if r[14] and r[14] > 0: cat.append("clstr")
+        d = desc_for(conn, r[0])
         out.append([r[0], round(r[1] or 0, 1), round(r[2] or 0, 1),
                     r[3] or "", r[4] or "",
                     round(r[5], 1) if r[5] is not None else "",
@@ -549,7 +556,7 @@ def sheet_asymmetry(wb, conn):
                     round(r[7], 1) if r[7] is not None else "",
                     round(r[8] or 0, 1), round(r[9] or 0, 1),
                     eb_label, round(r[11] or 0, 1) if r[11] else "",
-                    " ".join(cat), (r[15] or "")[:34]])
+                    " ".join(cat), (r[15] or "")[:34], d[0], d[1]])
         if len(out) >= 100: break
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5+len(out)):
@@ -563,6 +570,8 @@ def sheet_asymmetry(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions[get_column_letter(15)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(16)].width = 80   # Business
 
 def sheet_revealed_pref(wb, conn):
     """Revealed preference — what smart money is ACTIVELY buying (new + adds),
@@ -571,8 +580,8 @@ def sheet_revealed_pref(wb, conn):
     ws = wb.create_sheet("Revealed Preference")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Revealed Preference — what they're actively buying",
-                "Ranked by revealed_pref = 2×(new major positions) + 1×(material adds) + 0.5×(top-conviction holds). Reveals active accumulation, not static holdings.", 13)
-    hdr = ["Ticker","Rev Pref","S3 New","S4 Add","S1 Top","13F","Mcap","Bucket","EV/EBITDA","P/B","Act %","Entry","Name"]
+                "Ranked by revealed_pref = 2×(new major positions) + 1×(material adds) + 0.5×(top-conviction holds). Reveals active accumulation, not static holdings.", 15)
+    hdr = ["Ticker","Rev Pref","S3 New","S4 Add","S1 Top","13F","Mcap","Bucket","EV/EBITDA","P/B","Act %","Entry","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.revealed_pref, us.s3_new, us.s4_add, us.s1_top,
@@ -588,17 +597,20 @@ def sheet_revealed_pref(wb, conn):
         eb = r[11] or ""
         eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
                     else "above" if "ABOVE" in eb else "")
+        d = desc_for(conn, r[0])
         out.append([r[0], round(r[1] or 0, 1), r[2] or 0, r[3] or 0, r[4] or 0,
                     r[5] or 0, r[6] or "", r[7] or "",
                     round(r[8], 1) if r[8] is not None else "",
                     round(r[9], 2) if r[9] is not None else "",
-                    round(r[10] or 0, 1), eb_label, (r[12] or "")[:38]])
+                    round(r[10] or 0, 1), eb_label, (r[12] or "")[:38], d[0], d[1]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=9).number_format = '0.0"x"'
         ws.cell(row=ridx, column=10).number_format = '0.00"x"'
         ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+    ws.column_dimensions[get_column_letter(14)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(15)].width = 80   # Business
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -608,8 +620,8 @@ def sheet_valuation(wb, conn):
     ws = wb.create_sheet("Valuation")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Valuation — EV/EBITDA & P/B among smart-money names",
-                "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 13)
-    hdr = ["Ticker","EV/EBITDA","P/B","P/E","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector"]
+                "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 15)
+    hdr = ["Ticker","EV/EBITDA","P/B","P/E","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector","Industry","Business"]
     write_table_header(ws, 4, hdr)
     # Floor at 2x — below that is almost always a data artifact (warrant,
     # near-zero EBITDA, ADR currency mismatch). Exclude warrant/preferred tickers.
@@ -632,12 +644,13 @@ def sheet_valuation(wb, conn):
         eb = r[9] or ""
         eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
                     else "above" if "ABOVE" in eb else "")
+        d = desc_for(conn, r[0])
         out.append([r[0], round(r[1], 1), round(r[2], 2) if r[2] is not None else "",
                     round(r[3], 1) if r[3] is not None else "",
                     round(r[4] or 0, 1), r[5] or "", r[6] or "", r[7] or 0,
                     round(r[8] or 0, 1), eb_label,
                     round(r[10] or 0, 1) if r[10] else "",
-                    (r[11] or "")[:38], (r[12] or "")[:30]])
+                    (r[11] or "")[:38], (r[12] or "")[:30], d[0], d[1]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = '0.0"x"'
@@ -649,6 +662,8 @@ def sheet_valuation(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions[get_column_letter(14)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(15)].width = 80   # Business
 
 def sheet_catalysts(wb, conn):
     """8-K material-event tickers: M&A, control change, director shuffle, PIPE, bankruptcy."""
@@ -699,8 +714,8 @@ def sheet_global_picks(wb, conn):
     ws = wb.create_sheet("Global Picks")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Global Picks — non-US listings, fair-score",
-                "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 15)
-    hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name"]
+                "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 17)
+    hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.global_score, tm.exchange, us.mcap_m,
@@ -728,7 +743,7 @@ def sheet_global_picks(wb, conn):
                     round(r[11] or 0, 1) if r[11] else "",
                     round(r[12], 1) if r[12] is not None else "",
                     round(r[13], 2) if r[13] is not None else "",
-                    (r[14] or "")[:38]])
+                    (r[14] or "")[:38], *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
@@ -740,15 +755,17 @@ def sheet_global_picks(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 10
+    ws.column_dimensions[get_column_letter(16)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(17)].width = 80   # Business
 
 def sheet_in_the_money(wb, conn):
     """Below-entry / in-the-money picks — buy below where smart money entered."""
     ws = wb.create_sheet("In The Money")
     ws.sheet_view.showGridLines = False
     write_title(ws, "In The Money — buy below smart-money entry",
-                "Current price below the smart-money cost anchor (cost_basis / raw_text / Form-4 P-buy avg / 80th-pctl). Asymmetric setup.", 17)
+                "Current price below the smart-money cost anchor (cost_basis / raw_text / Form-4 P-buy avg / 80th-pctl). Asymmetric setup.", 19)
     hdr = ["Ticker","Score","Mcap","Bucket","Now $","Anchor $","vs Entry %",
-           "13F","S1","S3","S4","Act %","pB Max","Anchor Src","EV/EBITDA","P/B","Name"]
+           "13F","S1","S3","S4","Act %","pB Max","Anchor Src","EV/EBITDA","P/B","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.price,
@@ -772,7 +789,7 @@ def sheet_in_the_money(wb, conn):
                     (r[13] or "")[:18],
                     round(r[14], 1) if r[14] is not None else "",
                     round(r[15], 2) if r[15] is not None else "",
-                    (r[16] or "")[:38]])
+                    (r[16] or "")[:38], *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
@@ -786,6 +803,8 @@ def sheet_in_the_money(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions[get_column_letter(18)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(19)].width = 80   # Business
 
 def sheet_bill_miller(wb, conn):
     ws = wb.create_sheet("Bill Miller")
@@ -888,10 +907,10 @@ def sheet_best_ideas(wb, conn):
     ws = wb.create_sheet("Best Ideas")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Best Ideas — multi-signal shortlist",
-                "Names firing on several independent signals at once (cheap + below entry + insider buying + activist/concentration + catalyst). Ranked by a blended idea score; rationale in the final column. Ex-biotech, ex-mega, < $10B.", 16)
+                "Names firing on several independent signals at once (cheap + below entry + insider buying + activist/concentration + catalyst). Ranked by a blended idea score; rationale in the Why column. Ex-biotech, ex-mega, < $10B.", 18)
     hdr = ["Ticker", "Idea", "Flags", "Score", "Asym", "Mcap", "Bucket",
            "EV/EBITDA", "P/B", "Entry", "vs Entry %", "F4 ≤30d $M", "Act %",
-           "Catalyst", "Name", "Why"]
+           "Catalyst", "Name", "Why", "Industry", "Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.score, us.asymmetry_score, us.mcap_m, us.mcap_bucket,
@@ -943,7 +962,8 @@ def sheet_best_ideas(wb, conn):
                        round(vse, 1) if vse else "",
                        round(f4_30, 2) if (f4_30 or 0) > 0 else "",
                        round(actpct or 0, 1),
-                       " ".join(cat), (name or "")[:34], " · ".join(why)])
+                       " ".join(cat), (name or "")[:34], " · ".join(why),
+                       *desc_for(conn, tk)])
     scored.sort(key=lambda x: -x[1])
     out = scored[:90]
     write_table_rows(ws, out, 5)
@@ -957,7 +977,9 @@ def sheet_best_ideas(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
-    ws.column_dimensions["P"].width = 76
+    ws.column_dimensions["P"].width = 76                     # Why
+    ws.column_dimensions[get_column_letter(17)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(18)].width = 80   # Business
 
 def _one_liner(s, limit=200):
     """Condense a stored business summary to a short one-liner for display."""
@@ -968,6 +990,23 @@ def _one_liner(s, limit=200):
     if 0 < dot <= limit:
         return s[:dot + 1]
     return s if len(s) <= limit else s[:limit].rstrip() + "…"
+
+_DESC_CACHE = None
+def desc_for(conn, ticker):
+    """(industry, one-line business summary) for a ticker — memoized so every
+    sheet can append a self-explanatory description per row."""
+    global _DESC_CACHE
+    if _DESC_CACHE is None:
+        _DESC_CACHE = {}
+        for r in conn.execute("""
+            SELECT us.ticker,
+                   COALESCE(yf.industry, tm.industry, tm.sic_description),
+                   yf.business_summary
+            FROM unified_signal us
+            LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+            LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker"""):
+            _DESC_CACHE[r[0]] = ((r[1] or "")[:26], _one_liner(r[2], 90))
+    return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
     """Glossary: every ticker with name, sector, industry, and a short business
