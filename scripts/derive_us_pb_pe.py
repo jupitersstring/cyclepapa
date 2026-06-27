@@ -90,6 +90,10 @@ def derive_one(ticker, cik, price):
            'cash': cash, 'rev': rev,
            'shares_date': sh_date, 'equity_date': eq_date, 'ni_date': ni_date}
 
+    # Net debt is independent of price — compute whenever we have debt/cash from EDGAR.
+    if (debt_lt is not None) or (debt_st is not None) or (cash is not None):
+        out['derived_net_debt'] = (debt_lt or 0) + (debt_st or 0) - (cash or 0)
+
     if shares and price is not None and pd.notna(price) and price > 0:
         mkt = shares * float(price)
         out['derived_mktCap'] = mkt
@@ -99,14 +103,19 @@ def derive_one(ticker, cik, price):
             eps = ni / shares
             out['derived_eps'] = eps
             out['derived_pe'] = float(price) / eps
-        ebitda = (op_inc + da) if (op_inc and da) else None
+        if rev and rev > 0:
+            out['derived_ps'] = mkt / rev
+        # EV = market cap + net debt — does NOT require EBITDA.
+        # Compute whenever we have mktCap; net debt defaults to 0 only if no debt/cash facts.
+        net_debt = out.get('derived_net_debt', 0.0)
+        ev = mkt + (net_debt or 0.0)
+        out['derived_ev'] = ev
+        out['derived_ev_has_debt'] = ('derived_net_debt' in out)  # flag: True if real net-debt facts found
+        # EV/EBITDA only when EBITDA is derivable
+        ebitda = (op_inc + da) if (op_inc is not None and da is not None) else None
         if ebitda and ebitda > 0:
-            net_debt = (debt_lt or 0) + (debt_st or 0) - (cash or 0)
-            ev = mkt + net_debt
-            out['derived_ev'] = ev
+            out['derived_ebitda'] = ebitda
             out['derived_ev_ebitda'] = ev / ebitda
-            if rev and rev > 0:
-                out['derived_ps'] = mkt / rev
     return out
 
 
@@ -125,17 +134,25 @@ with open(sec_path) as f:
     sec = json.load(f)
 tk_cik = {v['ticker'].upper(): v['cik_str'] for v in sec.values()}
 
-# Load synthesis to get the price and identify rows missing PB or PE
+# Load synthesis to get the price and identify rows to derive
 df = pd.read_csv('data/synthesis/v2_universe_ranked_full_q.csv', low_memory=False)
 df['ticker'] = df['ticker'].astype(str).str.upper().str.strip()
-# Target: US-region tickers with missing PB or PE that have a CIK and a price
-us = df[(df['region'].isin(['us','us_x','us_nms']))
-        & ((df['pb'].isna()) | (df['pe'].isna()) | (df['mktCap'].isna()))
-        & (df['ticker'].isin(tk_cik.keys()))
-        & (pd.to_numeric(df['price'], errors='coerce') > 0)]
-print(f"US tickers needing PB/PE derivation: {len(us):,}", file=sys.stderr)
+has_price = pd.to_numeric(df['price'], errors='coerce') > 0
+has_cik = df['ticker'].isin(tk_cik.keys())
 
-todo = us[['ticker','price']].drop_duplicates('ticker')
+# Target 1: US-region rows missing PB/PE/mktCap
+missing_val = (df['pb'].isna()) | (df['pe'].isna()) | (df['mktCap'].isna())
+us = df[df['region'].isin(['us','us_x','us_nms']) & missing_val & has_cik & has_price]
+
+# Target 2: ALL backlog names (any region) — backlog EV must come from EDGAR.
+# Pull SEC shares/debt/cash for every backlog ticker so EV is fully populated.
+bl_mask = df.get('backlog_latest', pd.Series(index=df.index, dtype=float)).notna()
+backlog = df[bl_mask & has_cik & has_price]
+
+target = pd.concat([us, backlog]).drop_duplicates('ticker')
+print(f"US missing-val: {len(us):,}  ·  backlog names: {len(backlog):,}  ·  union: {len(target):,}", file=sys.stderr)
+
+todo = target[['ticker','price']].drop_duplicates('ticker')
 if args.limit: todo = todo.head(args.limit)
 
 # Resume

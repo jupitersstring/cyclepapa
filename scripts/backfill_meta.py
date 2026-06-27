@@ -212,7 +212,8 @@ if os.path.exists(deriv):
     d = d.drop_duplicates('ticker', keep='first').set_index('ticker')
     fills = 0
     pairs = [('pb','derived_pb'), ('pe','derived_pe'), ('mktCap','derived_mktCap'),
-             ('ev_ebitda','derived_ev_ebitda'), ('ps','derived_ps')]
+             ('ev_ebitda','derived_ev_ebitda'), ('ps','derived_ps'),
+             ('net_debt','derived_net_debt'), ('ebitda','derived_ebitda')]
     for target, src_col in pairs:
         if src_col not in d.columns: continue
         m = d[src_col].dropna().to_dict()
@@ -223,12 +224,28 @@ if os.path.exists(deriv):
         else:
             df[target] = df['ticker'].map(m)
             fills += df[target].notna().sum()
+    # SEC-derived EV (mktCap + net debt from EDGAR) — used directly in ev_total below
+    if 'derived_ev' in d.columns:
+        df['sec_ev'] = df['ticker'].map(d['derived_ev'].dropna().to_dict())
     # Also derive ev_valuation fallback from ev_ebitda
     if 'ev_valuation' in df.columns and 'ev_ebitda' in df.columns:
         df['ev_valuation'] = df['ev_valuation'].where(df['ev_valuation'].notna(),
                                                       df['ev_ebitda'])
     df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
-    print(f"  merged SEC-derived: {len(d):,} rows · added {fills:,} cell fills", file=sys.stderr)
+    # ─── Recompute ev_total with full priority: explicit EV > SEC-derived EV > mktCap + net_debt ───
+    ev_explicit = pd.to_numeric(df.get('ev', pd.Series(np.nan, index=df.index)), errors='coerce')
+    ev_sec      = pd.to_numeric(df.get('sec_ev', pd.Series(np.nan, index=df.index)), errors='coerce')
+    nd2 = pd.to_numeric(df.get('net_debt', pd.Series(np.nan, index=df.index)), errors='coerce')
+    mc2 = pd.to_numeric(df.get('mktCap', pd.Series(np.nan, index=df.index)), errors='coerce')
+    ev_fallback = mc2 + nd2.fillna(0)
+    df['ev_total'] = ev_explicit.where(ev_explicit.notna(),
+                       ev_sec.where(ev_sec.notna(), ev_fallback))
+    # Recompute backlog/EV with the now-complete EV
+    if 'backlog_latest' in df.columns:
+        bl2 = pd.to_numeric(df['backlog_latest'], errors='coerce')
+        df['backlog_to_ev_ratio'] = (bl2 / df['ev_total']).where(df['ev_total'] > 0)
+    n_ev = int(df['ev_total'].notna().sum())
+    print(f"  merged SEC-derived: {len(d):,} rows · {fills:,} cell fills · ev_total now {n_ev:,}", file=sys.stderr)
 
 # ─── 8c. Authoritative Yahoo values (ticker_yf.csv) — HIGHEST priority, overwrites ───
 yf_path = 'data/research/ticker_yf.csv'
