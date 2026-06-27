@@ -64,11 +64,17 @@ restart_if_dead xbrl3 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress
 restart_if_dead yahoohtml yahoo_html_fetcher.py --rate=1
 
 # --- Snapshot push (durability) ---
-log "Snapshot push starting..."
-if python3 cache_sync.py push >> "$LOG_DIR/snapshot_push.log" 2>&1; then
-    log "Snapshot push OK"
+# Run in the BACKGROUND so the supervisor returns immediately. The push
+# takes several minutes (1.3 GB across 14 chunks); running it synchronously
+# was blocking the cron-driven supervisor, leaving a window where dead
+# daemons weren't restarted. A lock file prevents overlapping pushes.
+PUSH_LOCK="$LOG_DIR/snapshot_push.lock"
+if [ ! -f "$PUSH_LOCK" ] || [ "$(find "$PUSH_LOCK" -mmin +30 2>/dev/null)" ]; then
+    touch "$PUSH_LOCK"
+    ( python3 cache_sync.py push >> "$LOG_DIR/snapshot_push.log" 2>&1; rm -f "$PUSH_LOCK" ) &
+    log "Snapshot push started in background"
 else
-    log "Snapshot push FAILED — see $LOG_DIR/snapshot_push.log"
+    log "Snapshot push already running (lock held) — skipping"
 fi
 
 # --- Progress report ---
