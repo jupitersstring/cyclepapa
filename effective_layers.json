@@ -1,6 +1,6 @@
 {
-  "n_raw_layers": 25,
-  "n_effective_layers_at_06": 21,
+  "n_raw_layers": 30,
+  "n_effective_layers_at_06": 25,
   "clusters": [
     [
       "psu_pts",
@@ -64,10 +64,23 @@
       "fdic_call_report_pts"
     ],
     [
-      "net_net_ncav_pts"
+      "net_net_ncav_pts",
+      "quarterly_10q_pts"
     ],
     [
       "activist_letter_pts"
+    ],
+    [
+      "form_13f_delta_pts"
+    ],
+    [
+      "biotech_pdufa_pts"
+    ],
+    [
+      "financial_primary_pts"
+    ],
+    [
+      "nport_forced_selling_pts"
     ]
   ]
 }

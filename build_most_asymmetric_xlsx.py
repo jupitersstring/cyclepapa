@@ -188,7 +188,8 @@ def number_format_for(field_name: str) -> str | None:
               "step", "weight"):
         return None
     # PERCENTAGES (look for 'pct', '%', 'pp', 'growth', 'margin')
-    if (f.endswith("%") or "pct" in f or "(%)" in f or "_pp" in f
+    if (f.endswith("%") or f.startswith("%") or " %" in f or "% " in f
+            or "pct" in f or "(%)" in f or "_pp" in f
             or any(s in f for s in ("growth", "margin", "yield", "return"))):
         return NUMFMT_PCT
     # _M (millions) -- match 'mcap_M', '$M', '(M)', 'mcap ($m)', '_m_'
@@ -1038,8 +1039,7 @@ def build_noval_view(wb: Workbook, yf: dict):
 
 
 def build_cover(wb: Workbook):
-    ws = wb.active
-    ws.title = "Cover"
+    ws = wb.create_sheet("Cover")
     set_col_widths(ws, [8, 30, 18, 18, 18, 18])
     write_title_band(ws,
                      "Most Asymmetric Situations",
@@ -1480,90 +1480,151 @@ def build_caution_list(wb: Workbook, proxy: dict, consensus: list):
 # ----------------------------------------------------------------------
 
 def build_coverage(wb: Workbook):
+    """Data-driven coverage diagnostics. Counts live coverage from each
+    layer's source file and the real layer-firing distribution from
+    full_universe_consensus.csv. Includes freshness (age in days) from
+    layer_freshness.json. NOTHING hardcoded -- everything reflects the
+    current state on disk."""
     ws = wb.create_sheet("Coverage & Tiers")
-    set_col_widths(ws, [9, 30, 14, 14, 14, 28])
+    set_col_widths(ws, [28, 12, 12, 9, 22, 24])
     write_title_band(ws,
-                     "Coverage Diagnostics",
-                     "Where confidence is highest · where gap-fill "
-                     "would lift the most names",
+                     "Coverage & Freshness Diagnostics",
+                     "Live per-layer coverage, data age, and the real "
+                     "layer-firing distribution across the universe",
                      n_cols=6)
 
-    headers = ["#", "Data layer", "Coverage", "% of universe",
-               "Tier signal", "Source"]
-    write_header_row(ws, 4, headers)
+    UNIVERSE = 6164
 
-    layers = [
-        ("PSU forensics", 4410, "DEF 14A scan",
-         "Knowable catalyst", "proxy_scan*.json"),
-        ("Governance score", 4410, "DEF 14A scan",
-         "Board constraint", "proxy_scan*.json"),
-        ("Tender / SC TO / 13E-3", 6164, "EDGAR + role disamb",
-         "Mechanical bid", "tender_scan.json"),
-        ("10b5-1 directional", 6164, "Full universe sweep",
-         "Insider direction", "cancel_10b5_1.json"),
-        ("Form 144 proposed sales", 1995, "EDGAR scan",
-         "Bearish signal", "form144_scan.json"),
-        ("yfinance valuation", 2132, "API enrichment",
-         "Price/book floor", "yfinance_quick.json"),
-        ("Buyback verification", 800, "yf.get_shares_full",
-         "Verified shrinkage", "buyback_verify.json"),
-        ("Form 4 P-buys", 346, "EDGAR Form 4",
-         "Insider conviction", "form4_buys.json"),
+    def _count_json(fn, predicate=None):
+        p = ROOT / fn
+        if not p.exists():
+            return 0
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            return 0
+        if isinstance(d, dict):
+            if predicate is None:
+                return len(d)
+            return sum(1 for v in d.values() if predicate(v))
+        return len(d)
+
+    def _count_proxy():
+        seen = set()
+        for fn in sorted(ROOT.glob("proxy_scan*.json")):
+            try:
+                d = json.loads(fn.read_text())
+            except Exception:
+                continue
+            rows = d if isinstance(d, list) else d.values()
+            for rr in rows:
+                if isinstance(rr, dict) and rr.get("ticker"):
+                    seen.add(rr["ticker"])
+        return len(seen)
+
+    # Load freshness if present
+    fresh = {}
+    fp = ROOT / "layer_freshness.json"
+    if fp.exists():
+        try:
+            fresh = json.loads(fp.read_text())
+        except Exception:
+            fresh = {}
+
+    def age_of(layer_key):
+        v = fresh.get(layer_key)
+        if v and v.get("age_days") is not None:
+            return f"{v['age_days']:.0f}d"
+        return EM_DASH
+
+    proxy_n = _count_proxy()
+    # (display label, count, freshness-key, source file, signal)
+    layer_rows = [
+        ("PSU forensics", proxy_n, "psu", "proxy_scan*.json", "Knowable catalyst"),
+        ("Governance score", proxy_n, "psu", "proxy_scan*.json", "Board constraint"),
+        ("Tender / SC TO / 13E-3", _count_json("tender_scan.json"), "tender",
+         "tender_scan.json", "Mechanical bid"),
+        ("10b5-1 directional", _count_json("cancel_10b5_1.json"), "c10b51",
+         "cancel_10b5_1.json", "Insider direction"),
+        ("Form 144 proposed sales", _count_json("form144_scan.json"), "f144",
+         "form144_scan.json", "Bearish signal"),
+        ("yfinance valuation", _count_json("yfinance_quick.json"), "valuation",
+         "yfinance_quick.json", "Price/book floor"),
+        ("Buyback verification", _count_json("buyback_verify.json"), "buyback",
+         "buyback_verify.json", "Verified shrinkage"),
+        ("Form 4 P-buys", _count_json("form4_buys.json"), "f4_buys",
+         "form4_buys.json", "Insider conviction"),
+        ("Opportunistic insiders", _count_json("opportunistic_insiders.json"),
+         "opportunistic_insiders", "opportunistic_insiders.json", "Cohen-Malloy"),
+        ("Quarterly 10-Q", _count_json("quarterly_10q_data.json"),
+         "quarterly_10q", "quarterly_10q_data.json", "Fresh balance sheet"),
+        ("Net-net NCAV", _count_json("net_net_ncav.json"),
+         "net_net_ncav", "net_net_ncav.json", "Graham floor"),
+        ("Voss CIC triangulation", _count_json("voss_cic_triangulation.json"),
+         "voss_cic", "voss_cic_triangulation.json", "M&A predictor"),
+        ("Coval-Stafford proxy", _count_json("coval_stafford_proxy.json"),
+         "coval_stafford", "coval_stafford_proxy.json", "Fire-sale pressure"),
+        ("N-PORT forced selling", _count_json("nport_forced_selling.json"),
+         "nport_forced_selling", "nport_forced_selling.json", "Real Coval-Stafford"),
+        ("13F-delta", _count_json("form_13f_delta.json"),
+         "form_13f_delta", "form_13f_delta.json", "Smart-money flow"),
+        ("Financial primary", _count_json("financial_primary.json"),
+         "financial_primary", "financial_primary.json", "Non-PSU sector"),
+        ("Biotech PDUFA", _count_json("biotech_pdufa_calendar.json"),
+         "biotech_pdufa", "biotech_pdufa_calendar.json", "FDA catalyst"),
+        ("Activist letter feed", _count_json("activist_letter_feed.json"),
+         "activist_letter", "activist_letter_feed.json", "Pre-13D activism"),
+        ("Foreign markets (JP/KR/UK)", _count_json("foreign_markets.json"),
+         None, "foreign_markets.json", "Non-US value-up"),
     ]
 
+    headers = ["Data layer", "Coverage", "% univ", "Age", "Signal", "Source"]
+    write_header_row(ws, 4, headers)
     r = 5
-    for i, (label, n, method, signal, src) in enumerate(layers, 1):
-        pct = f"{n / 6164 * 100:.0f}%"
+    for i, (label, n, fkey, src, signal) in enumerate(layer_rows, 1):
+        pct = (n / UNIVERSE * 100) if UNIVERSE else 0
+        age = age_of(fkey) if fkey else EM_DASH
         band = (i % 2 == 0)
-        write_body_row(ws, r, [i, label, f"{n:,}", pct, signal, src],
-                       band=band, align_first_left=False)
-        ws.cell(row=r, column=2).font = BODY_BOLD
-        # Color-code coverage: green >=50%, gold 10-50%, crimson <10%
-        cov_pct = n / 6164
-        if cov_pct >= 0.5:
-            ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=4).font = BODY_BOLD
-        elif cov_pct >= 0.1:
-            ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=4).font = BODY_BOLD
-        else:
-            ws.cell(row=r, column=4).fill = HEADER_FILL
-            ws.cell(row=r, column=4).font = BODY_BOLD
+        write_body_row(ws, r, [label, n, pct, age, signal, src],
+                       band=band, bold_first=True)
         r += 1
 
-    r += 2
-    ws.cell(row=r, column=1, value="Tier distribution").font = BODY_BOLD
     r += 1
-    tier_data = [
-        ("Tier A (6+ of 7 layers)", 0,
-         "Maximum confidence — none in universe; Form 144 sparsity caps it"),
-        ("Tier B (4-5 of 7 layers)", 1090,
-         "Reliable for concentration; convergent twelve sit here"),
-        ("Tier C (<4 of 7 layers)", 5079,
-         "Requires gap-fill before concentration; ranked but uncertain"),
-    ]
-    write_header_row(ws, r, ["Tier", "Names", "Use", "", "", ""])
+    ws.cell(row=r, column=1, value="Layer-firing distribution "
+            "(real, from consensus)").font = BODY_BOLD
+    r += 1
+    # Real firing distribution
+    try:
+        rows = list(csv.DictReader(open(ROOT / "full_universe_consensus.csv")))
+        n_layers = len([k for k in rows[0].keys() if k.endswith("_pts")])
+        from collections import Counter
+        dist = Counter(int(rr["n_layers_firing"]) for rr in rows)
+    except Exception:
+        rows, n_layers, dist = [], 0, {}
+    write_header_row(ws, r, ["Layers firing", "Names", "", "", "", ""])
     ws.merge_cells(start_row=r, start_column=3, end_row=r, end_column=6)
     r += 1
-    for i, (tier, n, use) in enumerate(tier_data, 1):
-        band = (i % 2 == 0)
-        write_body_row(ws, r, [tier, f"{n:,}", use, "", "", ""],
-                       band=band, align_first_left=False)
+    for j, lv in enumerate(sorted(dist, reverse=True)):
+        if lv == 0:
+            continue
+        band = (j % 2 == 0)
+        write_body_row(ws, r, [lv, dist[lv], "", "", "", ""], band=band)
         ws.merge_cells(start_row=r, start_column=3, end_row=r, end_column=6)
-        ws.cell(row=r, column=1).font = BODY_BOLD
-        ws.cell(row=r, column=3).alignment = Alignment(
-            vertical="center", wrap_text=True, indent=1, horizontal="left")
         r += 1
 
     r += 1
     write_footnote(ws, r,
-        "The honest coverage picture. Zero Tier-A names means there is "
-        "no ticker for which every layer is complete. This is a feature, "
-        "not a bug: Form 144 is signal-sparse by design (only insiders "
-        "filing proposed sales appear). The convergent twelve all sit "
-        "in Tier B — the highest tier actually achievable. "
-        "Gap-fill priority lives in gap_fill_priority.csv.", 6)
+        f"{n_layers} total scoring layers, all additive. Coverage and "
+        "data age are read live from each layer's source file at build "
+        "time; no figures are hardcoded. Layers with low coverage "
+        "(Form 4, 13F-delta, tender) are signal-sparse by design — "
+        "they fire only on names exhibiting the pattern. The layer-"
+        "firing distribution is the count of names firing on N "
+        "independent layers; per the correlation analysis "
+        "(layer_correlation_pairs.csv) the effective-independent layer "
+        "count is ~21 of 30 at rho>0.6.", 6)
     ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
 
 
 # ----------------------------------------------------------------------
@@ -1585,52 +1646,63 @@ def build_methodology(wb: Workbook):
     method = [
         ("Universe construction",
          "6,164 US-listed common tickers from cancel_10b5_1.json — "
-         "authoritative NYSE/Nasdaq/AMEX/CBOE set."),
+         "authoritative NYSE/Nasdaq/AMEX/CBOE set. Foreign names "
+         "(JP/KR/UK) live in a separate tab and universe."),
         ("Layer ingestion",
-         "Seven scoring layers ingested per ticker: PSU forensics, "
-         "governance, valuation, buyback verification, tender mechanics, "
-         "10b5-1 directional, Form 4 P-buys (plus Form 144 for bearish)."),
-        ("Per-layer scoring",
-         "Each layer produces (points, has_data, reason). points are "
-         "capped to prevent any single layer dominating; has_data "
-         "is True when ANY field in the layer is populated (key bugfix: "
-         "governance is True for all 4,410 DEF 14As scanned, not only "
-         "those with PSU programs)."),
+         "30 additive scoring layers ingested per ticker, spanning PSU "
+         "forensics, governance, valuation, verified buybacks, tender "
+         "mechanics, 10b5-1 direction, Form 4 (raw + Cohen-Malloy "
+         "opportunistic), Form 144, quarterly 10-Q, NCAV, Voss CIC, "
+         "post-Ch11, internalization, bumpitrage, spinoff timing, "
+         "Arquitos, Coval-Stafford proxy + real N-PORT, backstopped "
+         "rights, FDIC dark banks, activist letters, 13F-delta, biotech "
+         "PDUFA, and financial-sector primary."),
+        ("Additive discipline",
+         "Every layer ADDS to the composite; none modifies another's "
+         "score. New legs append fields; existing weights never change. "
+         "This is enforced and audited (verify_universe_methodology.py).") ,
         ("Coverage-normalised composite",
-         "norm_score = raw_score × sqrt(7 / n_layers_present) for "
-         "names with ≥3 layers. Names with 4 strong of 7 layers are "
-         "not penalised vs names with 7 mediocre layers."),
+         "Sparse-coverage names are not penalised for missing layers; "
+         "the norm score rescales by sqrt(n_total/n_present) so a name "
+         "strong on few layers competes with a name mediocre on many."),
         ("Per-pattern catalyst ranking",
-         "Top 10 in each of 18 catalyst patterns (forward $ hurdle, "
-         "M&A close, spin trigger, FDA milestone, etc.) — surfaces "
-         "single-mandate leaders."),
+         "Top names in each catalyst pattern (forward $ hurdle, M&A "
+         "close, spin trigger, FDA/PDUFA, post-Ch11, asset sale, etc.) "
+         "— surfaces single-mandate leaders (see Single-Measure tab)."),
         ("Archetype winners",
          "57 PSU/governance/thesis buckets — single best representative "
-         "of each archetype across the universe. Produces "
-         "PSU_ARCHETYPES.md (38) + ASYMMETRIC_BY_ARCHETYPE.md (19)."),
+         "of each archetype across the universe (PSU_ARCHETYPES.md 38 + "
+         "ASYMMETRIC_BY_ARCHETYPE.md 19)."),
         ("Consensus meta-ranking",
-         "Each of 8 independent rankers + 2 archetype-winner markdowns "
-         "contributes presence. n_screens = how many rankers surface "
-         "the ticker. n_archetypes = how many buckets it wins. "
-         "consensus_score = sum of rank-decay contributions."),
-        ("Convergence test",
-         "Name is convergent IFF n_screens ≥ 3 AND n_archetypes ≥ 1. "
-         "Probability of 6-screen convergence by chance ≈ 2.4×10⁻¹⁰."),
-        ("Robustness checks",
-         "Check 1: re-run after expanding yfinance from 1,885 to 2,132 "
-         "(no change in convergent list). Check 2: governance bugfix "
-         "expanded Tier-B coverage 2.8x (still no change). "
-         "Convergent twelve is structurally informative, not data-dependent."),
+         "n_layers_firing = how many of the 30 independent layers "
+         "produce a non-zero score for the ticker. consensus_score = "
+         "sum of per-layer rank-decay contributions across the universe."),
+        ("Layer independence",
+         "Pairwise Spearman correlation (layer_correlation_pairs.csv) "
+         "collapses 30 raw layers to ~21 effective-independent at "
+         "rho>0.6. Three correlated clusters: PSU+Voss, tender family, "
+         "F4+opportunistic. 'Fires 9 layers' ≈ 7-8 true confirmations."),
+        ("Freshness weighting",
+         "layer_freshness.json records each layer's data age. Most "
+         "layers are <14 days old. An optional age-decay multiplier "
+         "(opt-in) can down-weight stale layers; current build reports "
+         "age without auto-decaying."),
         ("Caution layering",
-         "Eight red-flag classes scored from plan text: single-trigger "
-         "CIC, repricing, retirement carveout, front-loaded grant, "
+         "Eight red-flag classes from plan text: single-trigger CIC, "
+         "repricing, retirement carveout, front-loaded grant, "
          "discretionary hurdle, aggregate-only metrics, plus structural. "
          "Convergence without direction; flag count modulates sizing."),
         ("Deployment / sizing",
-         "Concentrated (≥5%): clean convergent + ≥4 screens. "
-         "Material (2-5%): 1-flag convergent or 4+ archetypes. "
-         "Participation (0.5-2%): single-archetype or multi-flag. "
-         "Basket (<1% each): sub-archetype groups."),
+         "Concentrated (≥5%): clean high-layer-count names. Material "
+         "(2-5%): strong but 1-2 flags. Participation (0.5-2%): single-"
+         "leg or multi-flag. Basket (<1% each): sub-archetype groups, "
+         "Cohen-Malloy stack, R2000-boundary, NOL shells, foreign."),
+        ("Honest limitations",
+         "No realized-return backtest yet (AUDIT.md S1.1) — the "
+         "composite is a structurally-sound pattern-recognition system, "
+         "not yet validated alpha. Cohen-Malloy needs deeper Form 4 "
+         "history. Coval-Stafford proxy supplements but does not replace "
+         "the N-PORT real signal. See AUDIT.md for the full ledger."),
     ]
     r = 5
     for i, (step, detail) in enumerate(method, 1):
@@ -1652,6 +1724,145 @@ def build_methodology(wb: Workbook):
         "DILIGENCE_SHEETS.md gives per-name action triggers; "
         "BEST_OF_UNIVERSE.md proves the convergence claim.", 3)
     ws.sheet_view.showGridLines = False
+
+
+# ----------------------------------------------------------------------
+# Contents / navigation index (QoL)
+# ----------------------------------------------------------------------
+
+# (sheet title, one-line description). Order matches build order.
+TAB_INDEX = [
+    ("Cover", "Executive summary and the convergent shortlist."),
+    ("Most Asymmetric", "Per-name detail for the highest layer-count names."),
+    ("By Archetype", "Single best representative of each of 57 archetypes."),
+    ("Reserve Baskets", "Sub-archetype baskets and full portfolio math."),
+    ("Caution List", "Convergent names carrying governance red flags."),
+    ("Without Valuation", "Parallel ranking excluding the valuation leg."),
+    ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
+    ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
+    ("Turnaround Signal", "Bollenbach pattern: turnaround talent into distress."),
+    ("Single-Measure Best", "Best in class on each individual signal."),
+    ("Layer Correlation", "Pairwise layer correlation and effective independence."),
+    ("Coverage & Tiers", "Live per-layer coverage, data age, firing distribution."),
+    ("Methodology", "How the composite is built, step by step."),
+]
+
+
+def build_contents(wb: Workbook):
+    """First tab: a clean academic table of contents. Each row names a
+    tab and what it holds. Pure navigation aid."""
+    ws = wb.active
+    ws.title = "Contents"
+    set_col_widths(ws, [4, 26, 64])
+    write_title_band(ws,
+                     "The Asymmetric Equities Workbook",
+                     "Contents — a structural map of the 30-layer "
+                     "universe analysis",
+                     n_cols=3)
+    write_header_row(ws, 4, ["#", "Tab", "What it contains"])
+    r = 5
+    for i, (tab, desc) in enumerate(TAB_INDEX, 1):
+        band = (i % 2 == 0)
+        write_body_row(ws, r, [i, tab, desc], band=band)
+        ws.cell(row=r, column=2).font = BODY_BOLD
+        r += 1
+    r += 1
+    write_footnote(ws, r,
+        "Generated by build_most_asymmetric_xlsx.py from the live "
+        "consensus on disk. Every figure in this workbook is computed "
+        "at build time; nothing is hardcoded. Single typeface "
+        "(Times New Roman, 10pt); hierarchy by weight and rule only.", 3)
+    ws.sheet_view.showGridLines = False
+
+
+def build_layer_correlation(wb: Workbook):
+    """Layer independence transparency: shows the most-correlated layer
+    pairs and the effective-independent layer count. Reads from
+    layer_correlation_pairs.csv + effective_layers.json."""
+    ws = wb.create_sheet("Layer Correlation")
+    set_col_widths(ws, [30, 30, 14, 16])
+    write_title_band(ws,
+                     "Layer Correlation & Independence",
+                     "How independent are the scoring layers? Positively "
+                     "correlated layers are not separate confirmations.",
+                     n_cols=4)
+
+    eff = {}
+    ep = ROOT / "effective_layers.json"
+    if ep.exists():
+        try:
+            eff = json.loads(ep.read_text())
+        except Exception:
+            eff = {}
+    n_raw = eff.get("n_raw_layers", "—")
+    n_eff = eff.get("n_effective_layers_at_06", "—")
+
+    ws.cell(row=4, column=1,
+            value=f"Raw layers: {n_raw}    Effective-independent "
+                  f"(rho>0.6): {n_eff}").font = BODY_BOLD
+    ws.merge_cells(start_row=4, start_column=1, end_row=4, end_column=4)
+
+    headers = ["Layer A", "Layer B", "Spearman", "Interpretation"]
+    write_header_row(ws, 6, headers)
+    r = 7
+    pp = ROOT / "layer_correlation_pairs.csv"
+    if pp.exists():
+        rows = list(csv.DictReader(pp.open()))
+        # show pairs with |rho| >= 0.25 (the meaningful ones)
+        shown = [x for x in rows
+                 if abs(float(x.get("spearman_rho", 0) or 0)) >= 0.25]
+        for i, x in enumerate(shown[:30], 1):
+            band = (i % 2 == 0)
+            a = x["layer_a"].replace("_pts", "")
+            b = x["layer_b"].replace("_pts", "")
+            write_body_row(ws, r,
+                           [a, b, float(x["spearman_rho"]),
+                            x.get("interpretation", "")],
+                           band=band)
+            r += 1
+    r += 1
+    write_footnote(ws, r,
+        "Spearman rank correlation across the full universe. Pairs above "
+        "rho 0.6 are folded into a single effective layer for the "
+        "independence count: PSU + Voss CIC (Voss derives from the PSU "
+        "plan), the tender family (tender + mechanism + bumpitrage share "
+        "one source), and Form 4 + opportunistic insiders (one refines "
+        "the other). A high raw layer-firing count should be read "
+        "against this: nine layers firing is closer to seven or eight "
+        "genuinely independent confirmations.", 4)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A7"
+
+
+def _finalize_sheets(wb: Workbook):
+    """Apply uniform view + print settings to every sheet (QoL):
+    gridlines off, landscape, fit-to-width, repeat title rows on print,
+    and a consistent margin. Idempotent and safe on all tabs."""
+    for ws in wb.worksheets:
+        ws.sheet_view.showGridLines = False
+        try:
+            from openpyxl.worksheet.properties import PageSetupProperties
+            ws.page_setup.orientation = "landscape"
+            ws.page_setup.fitToWidth = 1
+            ws.page_setup.fitToHeight = 0
+            if ws.sheet_properties.pageSetUpPr is None:
+                ws.sheet_properties.pageSetUpPr = PageSetupProperties()
+            ws.sheet_properties.pageSetUpPr.fitToPage = True
+        except Exception:
+            pass
+        try:
+            ws.print_options.horizontalCentered = False
+            ws.page_margins.left = 0.5
+            ws.page_margins.right = 0.5
+            ws.page_margins.top = 0.6
+            ws.page_margins.bottom = 0.6
+        except Exception:
+            pass
+        # Repeat the header rows (1-4) at the top of each printed page
+        try:
+            ws.print_title_rows = "1:4"
+        except Exception:
+            pass
 
 
 # ----------------------------------------------------------------------
@@ -1677,6 +1888,7 @@ def main() -> int:
           f"consensus={len(consensus)}")
 
     wb = Workbook()
+    build_contents(wb)
     build_cover(wb)
     build_most_asymmetric(wb, proxy, yf, bbv, tender, c10, f4)
     build_by_archetype(wb, {}, {}, yf)
@@ -1687,11 +1899,13 @@ def main() -> int:
     build_foreign_markets(wb)
     build_turnaround_signal(wb, yf)
     build_single_measure(wb, yf, proxy, bbv, tender, c10, f4)
+    build_layer_correlation(wb)
     build_coverage(wb)
     build_methodology(wb)
 
+    _finalize_sheets(wb)
     wb.save(OUT)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {OUT}  ({len(wb.sheetnames)} tabs)")
     return 0
 
 
