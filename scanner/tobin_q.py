@@ -172,9 +172,35 @@ Q_TARGET_BY_STAGE: dict[str, float] = {
 }
 
 
-def q_enterprise(inp: TobinInputs) -> float:
-    """Compute Hayashi-style enterprise q for one country."""
-    return (inp.market_cap_pct_gdp + inp.nfc_debt_pct_gdp) / inp.replacement_cost_k_pct_gdp
+def _live_market_cap(iso: str) -> float | None:
+    """Live World Bank market-cap %GDP if cached, else None."""
+    try:
+        from .sources import live
+        df = live.load_cached()
+        if df is not None and iso in df.index:
+            v = df.loc[iso, "market_cap"]
+            if v is not None and v == v:  # not NaN
+                return float(v)
+    except Exception:
+        pass
+    return None
+
+
+def q_enterprise(inp: TobinInputs, use_live: bool = True) -> float:
+    """
+    Compute Hayashi-style enterprise q for one country.
+
+    When use_live=True and a live World Bank market-cap print is cached, it
+    replaces the hand-calibrated numerator (median calibration error ~10pp,
+    up to 90pp for Saudi/Aramco). The replacement-cost and NFC-debt legs stay
+    calibrated until BIS/PWT are wired.
+    """
+    mc = inp.market_cap_pct_gdp
+    if use_live:
+        live_mc = _live_market_cap(inp.iso)
+        if live_mc is not None:
+            mc = live_mc
+    return (mc + inp.nfc_debt_pct_gdp) / inp.replacement_cost_k_pct_gdp
 
 
 def panel_q() -> pd.DataFrame:

@@ -35,7 +35,7 @@ maps cleanly to a public-data series.
 
 | Layer | What it does |
 |------|--------------|
-| **Archetypes** | 9 Godley sectoral configurations (+ sanctioned residual) covering 56 countries — the *same indicator means opposite things* in different sectoral configurations, so factor weights tilt by archetype |
+| **Archetypes** | 9 Godley sectoral configurations (+ sanctioned residual) covering 57 countries — the *same indicator means opposite things* in different sectoral configurations, so factor weights tilt by archetype |
 | **Kalecki-Levy profit leg** | Per-country trajectory of the 5 profit sources + a named-policy registry mapping each fiscal/legislative event to the lever it pulls (the **qualitative+quantitative leg**) |
 | **Opportunity composite** | 7-factor cross-sectional score; profit-fuel is now the highest-weighted term (the mechanical bridge to EPS) |
 | **Seven Unsustainable Processes** | Godley's actual 1999 screen as a live diagnostic — flags lit per country, with `godley_warning = flags_lit >= 4` |
@@ -60,7 +60,7 @@ savers; `*= 0.5` for MNC-distorted entrepôts) live in `composite.ARCHETYPE_TILT
 
 | File | Role |
 |------|------|
-| `archetypes.py` | The 9 Godley archetypes + 56-country mapping + ETF tickers for backtesting |
+| `archetypes.py` | The 9 Godley archetypes + 57-country mapping + ETF tickers for backtesting |
 | `transforms.py` | Unit-bias removal pipeline (%GDP → annualised Δ → z-score → percentile → diffusion) |
 | `data.py` | June 2026 factor panel (BIS LBS / IMF FM / ECB / ONS / PBoC / IIF prints + calibrated estimates flagged `estimated=True`) |
 | `kalecki_levy.py` | Profit-equation components + named-policy registry (the new leg) |
