@@ -124,10 +124,10 @@ def target_tickers(conn, max_n, all_us=False):
     return [t for t, _ in sorted(keep.items(), key=lambda x: -x[1])][:max_n]
 
 def scan_one_ticker(tkr):
-    """Pull ALL non-derivative transactions for one ticker — buys (P), sells (S),
-    grants (A), option exercises (M), gifts (G), etc. The scorer filters to
-    code='P'/'S'; capturing every code makes the data complete and lets the
-    sell counter-signal be comprehensive. Runs in a worker thread."""
+    """Pull open-market insider BUYS (code P) and SELLS (code S) for one ticker.
+    These are the two market-signal codes the scorer uses — P drives the buy
+    signal, S the sell counter-signal. Compensation/admin codes (A grants,
+    F tax, M exercises, …) carry no market signal and are skipped. Worker thread."""
     cik = cik_for(tkr)
     if not cik: return []
     try:
@@ -141,7 +141,7 @@ def scan_one_ticker(tkr):
         except Exception:
             continue
         for t in txns:
-            if not t["code"]: continue
+            if t["code"] not in ("P", "S"): continue
             rows.append((acc, tkr, t["owner"], t["role"], t["trans_date"],
                          t["code"], t["shares"], t["price"], t["acquired"],
                          f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}"))
