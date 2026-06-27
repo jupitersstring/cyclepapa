@@ -26,3 +26,4 @@ yahoo_chart_fill.log
 nohup.out
 harvest_watchdog.log
 *.log
+ticker_yf.log
