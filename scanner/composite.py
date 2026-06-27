@@ -174,6 +174,19 @@ def score_panel(panel: pd.DataFrame, archetype_of: dict[str, str]) -> pd.DataFra
         axis=1,
     )
     out["opportunity"] = out["opportunity"] + 0.08 * out["q_investment_adj"].fillna(0.0)
+    # Strategic-Analysis required-private-balance test (Levy SA signature).
+    # credit-fuelled-deficit is the crash-risk direction (penalise lightly);
+    # demand-draining-surplus is a growth-ceiling, not a crash -- surfaced
+    # informationally, no penalty.
+    from . import strategic_analysis as SA
+    sa_dir = {}
+    for iso in out.index:
+        r = SA.evaluate(iso)
+        sa_dir[iso] = r.direction if r else "n/a"
+    out["sa_direction"] = pd.Series(sa_dir).reindex(out.index).fillna("n/a")
+    out["opportunity"] = out["opportunity"] - 0.10 * (
+        out["sa_direction"] == "credit-fuelled-deficit").astype(float)
+
     # SFC integrity check -- data confidence per country
     integrity = SI.panel_report()
     out["data_confidence"] = integrity["data_confidence"].reindex(out.index).fillna("medium")

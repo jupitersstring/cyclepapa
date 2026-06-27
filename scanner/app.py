@@ -212,6 +212,18 @@ def main_cli() -> None:
     print(MF.panel().head(10)[["hedge", "speculative", "ponzi",
                                "fragility", "minsky_regime", "note"]].to_string())
 
+    print("\n=== STRATEGIC ANALYSIS: required-private-balance test (Levy SA method) ===")
+    from . import strategic_analysis as SA
+    sap = SA.panel()
+    imp = sap[sap["implausible"]]
+    print(f"  {len(imp)} of {len(sap)} countries: trend+1pp growth requires an IMPLAUSIBLE private balance.")
+    if len(imp):
+        print(imp[["country", "archetype", "fiscal_balance",
+                   "priv_balance_now", "priv_balance_required",
+                   "direction"]].to_string())
+    print("\n  Germany scenario grid (the Maastricht surplus-trap):")
+    print("  " + SA.scenarios("DE").to_string(index=False).replace("\n", "\n  "))
+
     print("\n=== ANOMALIES ===")
     from . import anomalies as AN
     breadth = AN.private_surplus_breadth()

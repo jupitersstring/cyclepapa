@@ -72,6 +72,7 @@ savers; `*= 0.5` for MNC-distorted entrepôts) live in `composite.ARCHETYPE_TILT
 | `sfc_integrity.py` | Quadruple-bookkeeping consistency check + per-country tolerance band + data-confidence label |
 | `minsky_fragility.py` | Minsky/Tymoigne (Levy WP 654) hedge/speculative/Ponzi fragility index — 0/0.5/1.0 weighting; flagged US housing Ponzi-dominance 2004-07 |
 | `anomalies.py` | Four-class anomaly detector: calibration-vs-live, cross-sectional outliers, SFC-inconsistency, Minsky regime shifts |
+| `strategic_analysis.py` | The Levy SA signature method — inverts the three-balance identity to test whether a country's growth target requires an *implausible* private balance (Godley's 1999/2007 diagnostic); plus the SA scenario grid (consolidation / baseline / expansion) |
 | `sources/live.py` | **Genuinely live** loader — World Bank (market cap, credit/GDP, savings, investment) + IMF datamapper (CA, fiscal, debt, growth), no API key, cached to `_cache/` |
 | `sources/{bis,fred,eurostat,imf}.py` | Adapters documenting the live-wiring path for the higher-frequency sources — calibrated fallback today |
 | `app.py` | Streamlit dashboard + CLI fallback |
