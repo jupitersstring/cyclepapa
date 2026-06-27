@@ -321,7 +321,8 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             ws.merge_range(row, 0, row, 14,
                 f'BACKLOG INFLECTION — {len(bl)} NAMES (largest accel first)', S['section']); row += 1
             bl_hdr = ['Ticker','Company','Cap','Concept','Latest Backlog (M)','QoQ %','YoY %',
-                      '4Q Avg %','8Q Avg %','Δ pp','Backlog/Rev','Latest Date','EV/EBITDA','FCF Y %','Score']
+                      '4Q Avg %','8Q Avg %','Δ pp','Backlog/Rev','EV (M)','Backlog/EV','Latest Date',
+                      'EV/EBITDA','FCF Y %','Score']
             ws.set_row(row, 22)
             for c, h in enumerate(bl_hdr): ws.write(row, c, h, S['header'])
             row += 1
@@ -338,10 +339,13 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
                 write_num(ws, row, 8, r.get('backlog_growth_8q_mean'), S['pct'], S['em'])
                 write_num(ws, row, 9, r.get('backlog_inflection_pp'), S['pct'], S['em'])
                 write_num(ws, row,10, r.get('backlog_to_rev_ratio'), S['ratio'], S['em'])
-                write_text(ws, row,11, str(r.get('backlog_latest_date',''))[:10] if pd.notna(r.get('backlog_latest_date')) else None, S['text_l'], S['em'])
-                write_num(ws, row,12, r.get('ev_valuation'), S['ratio'], S['em'])
-                write_num(ws, row,13, r.get('fcf_yield_pct'), S['pct'], S['em'])
-                write_num(ws, row,14, r.get('all_legs_score'), S['ratio'], S['em'])
+                ev_t = r.get('ev_total')
+                write_num(ws, row,11, (float(ev_t)/1e6) if pd.notna(ev_t) else None, S['money'], S['em'])
+                write_num(ws, row,12, r.get('backlog_to_ev_ratio'), S['ratio'], S['em'])
+                write_text(ws, row,13, str(r.get('backlog_latest_date',''))[:10] if pd.notna(r.get('backlog_latest_date')) else None, S['text_l'], S['em'])
+                write_num(ws, row,14, r.get('ev_valuation'), S['ratio'], S['em'])
+                write_num(ws, row,15, r.get('fcf_yield_pct'), S['pct'], S['em'])
+                write_num(ws, row,16, r.get('all_legs_score'), S['ratio'], S['em'])
                 row += 1
             row += 1
 

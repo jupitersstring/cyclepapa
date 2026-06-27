@@ -188,6 +188,22 @@ if fund_frames:
     df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
     print(f"  pulled {len(fall):,} fundamentals rows; added/filled {len(new_cols)+len(fill_cols)} cols", file=sys.stderr)
 
+# ─── 7b. EV column + backlog-to-EV ratio (committed revenue per $ of EV) ───
+# Prefer an explicit EV, else derive from mktCap + net debt, else fall back to mktCap.
+ev_series = pd.Series(np.nan, index=df.index)
+if 'ev' in df.columns:
+    ev_series = pd.to_numeric(df['ev'], errors='coerce')
+nd = pd.to_numeric(df.get('net_debt', pd.Series(np.nan, index=df.index)), errors='coerce')
+mc = pd.to_numeric(df.get('mktCap', pd.Series(np.nan, index=df.index)), errors='coerce')
+ev_derived = mc + nd.fillna(0)
+df['ev_total'] = ev_series.where(ev_series.notna(), ev_derived)
+# backlog / EV — how much committed future revenue per $ of enterprise value
+if 'backlog_latest' in df.columns:
+    bl = pd.to_numeric(df['backlog_latest'], errors='coerce')
+    df['backlog_to_ev_ratio'] = (bl / df['ev_total']).where(df['ev_total'] > 0)
+    n_be = int(df['backlog_to_ev_ratio'].notna().sum())
+    print(f"  computed backlog_to_ev_ratio: {n_be:,} names", file=sys.stderr)
+
 # ─── 8b. SEC-direct derived PB/PE/EV/EBITDA (Yahoo-block bypass) ───
 deriv = 'data/research/derived_us_pb_pe.csv'
 if os.path.exists(deriv):
@@ -213,6 +229,38 @@ if os.path.exists(deriv):
                                                       df['ev_ebitda'])
     df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
     print(f"  merged SEC-derived: {len(d):,} rows · added {fills:,} cell fills", file=sys.stderr)
+
+# ─── 8c. Authoritative Yahoo values (ticker_yf.csv) — HIGHEST priority, overwrites ───
+yf_path = 'data/research/ticker_yf.csv'
+if os.path.exists(yf_path) and os.path.getsize(yf_path) > 50:
+    y = pd.read_csv(yf_path)
+    y['ticker'] = y['ticker'].astype(str).str.upper().str.strip()
+    y = y.drop_duplicates('ticker', keep='last').set_index('ticker')
+    # Map authoritative Yahoo → our canonical columns (overwrite where Yahoo has a value)
+    auth = [('mktCap','yf_mktCap'), ('pb','yf_pb'), ('pe','yf_pe'), ('fpe','yf_fpe'),
+            ('ps','yf_ps'), ('ev_ebitda','yf_ev_ebitda'), ('ev_total','yf_ev'),
+            ('fcf','yf_fcf'), ('roe','yf_roe'), ('beta','yf_beta'), ('div_yield','yf_div_yield')]
+    over = 0
+    for target, src_col in auth:
+        if src_col not in y.columns: continue
+        m = y[src_col].dropna().to_dict()
+        if target not in df.columns: df[target] = np.nan
+        mapped = df['ticker'].map(m)
+        # Overwrite only where Yahoo actually has a value (authoritative wins)
+        df[target] = mapped.where(mapped.notna(), df[target])
+        over += mapped.notna().sum()
+    # ev_valuation: prefer Yahoo ev_ebitda as the authoritative multiple
+    if 'yf_ev_ebitda' in y.columns:
+        m = y['yf_ev_ebitda'].dropna().to_dict()
+        mapped = df['ticker'].map(m)
+        df['ev_valuation'] = mapped.where(mapped.notna(), df['ev_valuation'])
+    df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+    # Recompute backlog_to_ev with authoritative EV
+    if 'backlog_latest' in df.columns and 'ev_total' in df.columns:
+        bl = pd.to_numeric(df['backlog_latest'], errors='coerce')
+        ev = pd.to_numeric(df['ev_total'], errors='coerce')
+        df['backlog_to_ev_ratio'] = (bl / ev).where(ev > 0)
+    print(f"  merged authoritative Yahoo: {len(y):,} rows · {over:,} cell overwrites", file=sys.stderr)
 
 # ─── 9. Sanity flags on extreme values (flag, don't cap) ───
 def flag_extreme(s, lo, hi):

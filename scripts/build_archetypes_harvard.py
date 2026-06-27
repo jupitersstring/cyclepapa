@@ -238,7 +238,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         section(f"{title}  ·  {len(dfsub)} names")
         headers = ['Ticker','Company','Region','Cap','Mkt Cap (M)','Backlog Concept','Latest Backlog (M)',
                    'Latest Date','QoQ %','YoY %','4Q Avg %','8Q Avg %','Accel Δ pp','Backlog / Rev',
-                   '# Quarters Hist','ROIC Mn %','ROIIC 1y %','EV/EBIT','FCF Y %','Rev G %','Score','—']
+                   'EV (M)','Backlog / EV','ROIC Mn %','ROIIC 1y %','EV/EBITDA','FCF Y %','Rev G %','Score']
         ws.set_row(row[0], 22)
         for c, h in enumerate(headers): ws.write(row[0], c, h, S['header'])
         row[0] += 1
@@ -260,14 +260,15 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             wn(ws, row[0],11, r.get('backlog_growth_8q_mean'), S['pct'], S['em'])
             wn(ws, row[0],12, r.get('backlog_inflection_pp'), S['pct'], S['em'])
             wn(ws, row[0],13, r.get('backlog_to_rev_ratio'), S['ratio'], S['em'])
-            wn(ws, row[0],14, r.get('backlog_quarters_history'), S['money'], S['em'])
-            wn(ws, row[0],15, topct(r.get('roic_mean')), S['pct'], S['em'])
-            wn(ws, row[0],16, topct(r.get('roiic_1y')), S['pct'], S['em'])
-            wn(ws, row[0],17, r.get('ev_valuation') if pd.notna(r.get('ev_valuation', np.nan)) else r.get('ev_ebit'), S['ratio'], S['em'])
-            wn(ws, row[0],18, r.get('fcf_yield_pct'), S['pct'], S['em'])
-            wn(ws, row[0],19, r.get('rev_g_pct'), S['pct'], S['em'])
-            wn(ws, row[0],20, r.get('all_legs_score'), S['ratio'], S['em'])
-            ws.write_string(row[0],21, EM_DASH, S['em'])
+            ev_t = r.get('ev_total')
+            wn(ws, row[0],14, (float(ev_t)/1e6) if pd.notna(ev_t) else None, S['money'], S['em'])
+            wn(ws, row[0],15, r.get('backlog_to_ev_ratio'), S['ratio'], S['em'])
+            wn(ws, row[0],16, topct(r.get('roic_mean')), S['pct'], S['em'])
+            wn(ws, row[0],17, topct(r.get('roiic_1y')), S['pct'], S['em'])
+            wn(ws, row[0],18, r.get('ev_valuation') if pd.notna(r.get('ev_valuation', np.nan)) else r.get('ev_ebit'), S['ratio'], S['em'])
+            wn(ws, row[0],19, r.get('fcf_yield_pct'), S['pct'], S['em'])
+            wn(ws, row[0],20, r.get('rev_g_pct'), S['pct'], S['em'])
+            wn(ws, row[0],21, r.get('all_legs_score'), S['ratio'], S['em'])
             row[0] += 1
         row[0] += 1
 
