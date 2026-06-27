@@ -602,6 +602,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
             sheet.auto_filter.ref = f"A17:{_gcl(sheet.max_column)}{sheet.max_row}"
 
     wb.save(path)
+    from harvard_style import sanitize_nan_text
+    sanitize_nan_text(path)
     print(f'  wrote {path}  ({len(wb.worksheets)} sheets: Cover + {len(country_rows)} countries)',
           file=sys.stderr)
 

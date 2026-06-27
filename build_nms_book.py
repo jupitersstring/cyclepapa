@@ -423,6 +423,8 @@ def main():
             ws.sheet_properties.tabColor = Color(rgb=DARK_GREY)
 
     wb.save(args.out)
+    from harvard_style import sanitize_nan_text
+    sanitize_nan_text(args.out)
     print(f'wrote {args.out}: {len(wb.worksheets)} sheets', file=sys.stderr)
 
 

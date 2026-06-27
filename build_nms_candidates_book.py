@@ -262,6 +262,8 @@ def main():
 
     out = 'nms_multibagger_candidates.xlsx'
     wb.save(out)
+    from harvard_style import sanitize_nan_text
+    sanitize_nan_text(out)
     print(f'wrote {out}: {len(wb.worksheets)} sheets', file=sys.stderr)
     print(f'  STRICT: {len(strict):,}', file=sys.stderr)
     print(f'  STRONG: {len(strong):,}', file=sys.stderr)

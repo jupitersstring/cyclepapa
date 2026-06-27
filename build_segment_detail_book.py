@@ -337,6 +337,8 @@ def main():
         _write_segment_table(ws, sub_df, f"{label} — {desc}", n_total, sort_col)
 
     wb.save(args.out)
+    from harvard_style import sanitize_nan_text
+    sanitize_nan_text(args.out)
     print(f'wrote {args.out}: {len(wb.worksheets)} sheets', file=sys.stderr)
 
 

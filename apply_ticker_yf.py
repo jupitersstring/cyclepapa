@@ -174,6 +174,9 @@ def main():
     m.loc[has_yf_val.fillna(False), "valuation_source"] = "yahoo"
 
     out = m.reset_index()
+    # Sanitize any inf that slipped through (e.g. Yahoo forward PE / zero
+    # denominators in native passthrough cols) so it never reaches a book.
+    out = out.replace([np.inf, -np.inf], np.nan)
     out.to_csv(out_path, index=False)
     print(f"\nwrote {out_path}: {len(out):,} rows, {len(out.columns)} cols",
           file=sys.stderr)

@@ -63,6 +63,35 @@ _INT_HINTS = ("count", "_flag", "region_count", "segment_count",
               "_match", "_overrep", "_lt_2b", "_healthy", "af_")
 
 
+# Literal junk strings that leak in when a NaN/None float is stringified
+# (the `str(x or '')` gotcha: `NaN or ''` is NaN, so `str(NaN)` == "nan").
+_BAD_TEXT = {"nan", "none", "inf", "-inf", "nat", "<na>",
+             "#ref!", "#value!", "#div/0!", "#n/a", "nan%"}
+
+
+def sanitize_nan_text(path: str) -> int:
+    """Replace cells whose value is exactly a junk literal ('nan', 'None',
+    'inf', error codes…) with an empty cell. Also nulls float inf/NaN.
+    Surgical: only touches bad cells, never real data. Returns count fixed.
+    """
+    import math
+    wb = load_workbook(path)
+    fixed = 0
+    for ws in wb.worksheets:
+        for row in ws.iter_rows():
+            for cell in row:
+                v = cell.value
+                if isinstance(v, str) and v.strip().lower() in _BAD_TEXT:
+                    cell.value = None
+                    fixed += 1
+                elif isinstance(v, float) and (math.isinf(v) or math.isnan(v)):
+                    cell.value = None
+                    fixed += 1
+    if fixed:
+        wb.save(path)
+    return fixed
+
+
 def _fmt_for_header(name) -> str | None:
     if not isinstance(name, str):
         return None
@@ -159,6 +188,8 @@ def apply_harvard_style(path: str,
                 f"{get_column_letter(max_col)}{max_row}")
 
     wb.save(path)
+    # Clean any 'nan'/'inf'/error literals that leaked in upstream
+    sanitize_nan_text(path)
 
 
 def main():

@@ -389,6 +389,8 @@ def main():
         _write_archetype_table(ws, sub_df, s['label'], n_total, sort_col)
 
     wb.save(args.out)
+    from harvard_style import sanitize_nan_text
+    sanitize_nan_text(args.out)
     print(f'wrote {args.out}: {len(wb.worksheets)} sheets (Cover + Density + '
           f'{len(arch_summary)} archetypes)', file=sys.stderr)
 
