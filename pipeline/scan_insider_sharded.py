@@ -83,7 +83,21 @@ def parse_form4(cik, accession, primary_doc):
                     "trans_date": date_el.text if date_el is not None else None})
     return out
 
-def target_tickers(conn, max_n):
+def target_tickers(conn, max_n, all_us=False):
+    if all_us:
+        # COMPLETE coverage: every US-listed name held by >=1 fund or with any
+        # disclosed signal. No 'have' skip (re-scan refreshes buys AND sells),
+        # no mcap cap, no top-N truncation. Foreign (.SUFFIX) excluded — SEC
+        # Form 4 is US-only.
+        out = []
+        for r in conn.execute("""SELECT ticker FROM unified_signal
+                WHERE is_us = 1 AND (smart_money_n >= 1 OR s1_top > 0 OR s3_new > 0
+                                     OR s4_add > 0 OR activist_filings > 0)"""):
+            t = r[0]
+            if "." in t: continue
+            if not re.match(r"^[A-Z][A-Z0-9\-]{0,5}$", t): continue
+            out.append(t)
+        return out[:max_n] if max_n else out
     have = {r[0] for r in conn.execute(
         "SELECT DISTINCT ticker FROM form4_transactions WHERE trans_date >= date('now','-180 days')")}
     sig = {}
@@ -107,7 +121,10 @@ def target_tickers(conn, max_n):
     return [t for t, _ in sorted(keep.items(), key=lambda x: -x[1])][:max_n]
 
 def scan_one_ticker(tkr):
-    """Pull all P-code buys for one ticker — runs in worker thread."""
+    """Pull ALL non-derivative transactions for one ticker — buys (P), sells (S),
+    grants (A), option exercises (M), gifts (G), etc. The scorer filters to
+    code='P'/'S'; capturing every code makes the data complete and lets the
+    sell counter-signal be comprehensive. Runs in a worker thread."""
     cik = cik_for(tkr)
     if not cik: return []
     try:
@@ -121,16 +138,28 @@ def scan_one_ticker(tkr):
         except Exception:
             continue
         for t in txns:
-            if t["code"] != "P" or t["acquired"] != 1: continue
+            if not t["code"]: continue
             rows.append((acc, tkr, t["owner"], t["role"], t["trans_date"],
                          t["code"], t["shares"], t["price"], t["acquired"],
                          f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}"))
     return rows
 
-def run(max_n=1500, n_workers=8, rps=8):
+def ensure_dedup_index(conn):
+    """Remove any duplicate transactions, then enforce uniqueness so re-scans
+    are idempotent (INSERT OR IGNORE)."""
+    conn.execute("""DELETE FROM form4_transactions WHERE id NOT IN (
+        SELECT MIN(id) FROM form4_transactions
+        GROUP BY accession, owner, code, trans_date, shares, COALESCE(price,-1))""")
+    conn.execute("""CREATE UNIQUE INDEX IF NOT EXISTS ux_form4_txn
+        ON form4_transactions(accession, owner, code, trans_date, shares, COALESCE(price,-1))""")
+    conn.commit()
+
+def run(max_n=1500, n_workers=8, rps=8, all_us=False):
     conn = sqlite3.connect(DB)
-    targets = target_tickers(conn, max_n)
-    print(f"sharded scan: {len(targets)} tickers, {n_workers} workers, {rps} req/s")
+    ensure_dedup_index(conn)
+    targets = target_tickers(conn, max_n if not all_us else 0, all_us=all_us)
+    print(f"sharded scan: {len(targets)} tickers, {n_workers} workers, {rps} req/s"
+          f"{' [FULL US-held universe, all codes]' if all_us else ''}")
 
     n_buys = 0
     progress = [0]
@@ -145,9 +174,9 @@ def run(max_n=1500, n_workers=8, rps=8):
             except Exception:
                 pass
         progress[0] += 1
-        if progress[0] % 50 == 0:
+        if progress[0] % 100 == 0:
             conn.commit()
-            print(f"  [{progress[0]}/{len(targets)}] {tkr} total_buys={n_buys}")
+            print(f"  [{progress[0]}/{len(targets)}] {tkr} txns_seen={n_buys}")
 
     def on_error(tkr, exc):
         progress[0] += 1
@@ -160,4 +189,8 @@ def run(max_n=1500, n_workers=8, rps=8):
     print(f"\ndone: {n_buys} P-code buys ingested across {len(targets)} tickers scanned")
 
 if __name__ == "__main__":
-    run(max_n=int(sys.argv[1]) if sys.argv[1:] else 1500)
+    args = sys.argv[1:]
+    if args and args[0] == "all":
+        run(all_us=True)
+    else:
+        run(max_n=int(args[0]) if args else 1500)

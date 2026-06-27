@@ -880,6 +880,85 @@ def sheet_bill_miller(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
+def sheet_best_ideas(wb, conn):
+    """Composite shortlist — names that fire on MULTIPLE independent signals at
+    once: cheap valuation, below smart-money entry, recent insider buying,
+    activist / concentration, and a live catalyst. Each row carries a plain-text
+    rationale. Ex-biotech, ex-mega; small enough to multiply (< $10B)."""
+    ws = wb.create_sheet("Best Ideas")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Best Ideas — multi-signal shortlist",
+                "Names firing on several independent signals at once (cheap + below entry + insider buying + activist/concentration + catalyst). Ranked by a blended idea score; rationale in the final column. Ex-biotech, ex-mega, < $10B.", 16)
+    hdr = ["Ticker", "Idea", "Flags", "Score", "Asym", "Mcap", "Bucket",
+           "EV/EBITDA", "P/B", "Entry", "vs Entry %", "F4 ≤30d $M", "Act %",
+           "Catalyst", "Name", "Why"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker, us.score, us.asymmetry_score, us.mcap_m, us.mcap_bucket,
+               us.ev_ebitda, us.pb_ratio, us.entry_bucket, us.vs_entry_pct,
+               us.form4_buy_30d_m, us.insider_cluster_dollars_m,
+               us.activist_max_pct, us.max_pct_book, us.n_funds_5pct_book,
+               us.smart_money_n, us.s3_new, us.s4_add, us.activist_filings,
+               us.cat8k_ma, us.cat8k_ctrl, tm.name, tm.sic_description
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        WHERE us.mcap_bucket IN ('nano','micro','small','mid')"""))
+    scored = []
+    for r in rows:
+        (tk, score, asym, mcap, bucket, ev, pb, eb, vse, f4_30, clu,
+         actpct, maxpb, n5, smn, s3, s4, actf, c_ma, c_ctrl, name, sic) = r
+        if tk in ETFs or tk in MEGA or is_biotech(sic): continue
+        cheap   = (ev is not None and 0 < ev <= 12) or (pb is not None and 0 < pb < 2)
+        below   = eb == "BELOW_ENTRY"
+        insider = (f4_30 or 0) > 0 or (clu or 0) > 0
+        activ   = (actpct or 0) >= 5 or (maxpb or 0) >= 5 or (n5 or 0) >= 1
+        catal   = bool(c_ma) or bool(c_ctrl)
+        backing = (smn or 0) >= 2 or (actf or 0) > 0 or ((s3 or 0) + (s4 or 0)) >= 1
+        n_flags = sum([cheap, below, insider, activ, catal])
+        if n_flags < 2 or not backing: continue
+        idea = round((asym or 0) + 0.4 * (score or 0) + 4 * n_flags, 1)
+        # plain-text rationale
+        why = []
+        if smn: why.append(f"{smn}×13F")
+        if s3:  why.append(f"{s3} new")
+        if s4:  why.append(f"{s4} add")
+        if ev is not None and 0 < ev <= 12: why.append(f"{ev:.1f}x EV/EBITDA")
+        if pb is not None and 0 < pb < 2:   why.append(f"{pb:.1f} P/B")
+        if below and vse: why.append(f"{vse:.0f}% vs entry")
+        if (f4_30 or 0) > 0: why.append(f"insider ${f4_30:.1f}M ≤30d")
+        if (clu or 0) > 0:   why.append(f"cluster ${clu:.1f}M")
+        if (actpct or 0) >= 5: why.append(f"activist {actpct:.0f}%")
+        if c_ma:   why.append("M&A")
+        if c_ctrl: why.append("control")
+        cat = []
+        if c_ma: cat.append("M&A")
+        if c_ctrl: cat.append("CTRL")
+        if (clu or 0) > 0: cat.append("clstr")
+        scored.append([tk, idea, n_flags, round(score or 0, 1), round(asym or 0, 1),
+                       mcap or "", bucket or "",
+                       round(ev, 1) if ev is not None else "",
+                       round(pb, 2) if pb is not None else "",
+                       ("below" if below else "near" if eb == "NEAR_ENTRY"
+                        else "above" if eb and "ABOVE" in eb else ""),
+                       round(vse, 1) if vse else "",
+                       round(f4_30, 2) if (f4_30 or 0) > 0 else "",
+                       round(actpct or 0, 1),
+                       " ".join(cat), (name or "")[:34], " · ".join(why)])
+    scored.sort(key=lambda x: -x[1])
+    out = scored[:90]
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=8).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=9).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+    ws.column_dimensions["P"].width = 76
+
 def _one_liner(s, limit=200):
     """Condense a stored business summary to a short one-liner for display."""
     if not s:
@@ -936,6 +1015,7 @@ TAB_COLORS = {
     "Fund Coverage":   "F2F2F2",
     "All Funds":       "F2F2F2",
     # Universe ranking — darkest
+    "Best Ideas":      "262626",
     "Top 100":         "262626",
     "Non-Biotech Top 100": "262626",
     "Asymmetry":       "262626",
@@ -971,6 +1051,7 @@ def main():
 
     sheet_readme(wb, conn)
     write_legend_sheet(wb, 1)
+    sheet_best_ideas(wb, conn)
     write_signal_sheet(wb, conn, "Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
         subtitle="Top 100 by unified_score across the full 5,862-ticker universe (ex-ETF, ex-mega-cap, mcap known).")
@@ -1008,6 +1089,7 @@ def main():
     # AutoFilter on single-table sheets (header at row 4) — lets the reader
     # sort / filter by any column in Excel. Multi-table sheets are excluded.
     AF_SHEETS = {
+        "Best Ideas",
         "Top 100", "Nano (<$50M)", "Micro ($50M–$300M)", "Small ($300M–$2B)",
         "Mid ($2B–$10B)", "Material + New", "Activist 10+", "Insider Buys ≤30d",
         "Insider F4 Buys", "Insider Clusters", "Non-Biotech Top 100", "In The Money",
