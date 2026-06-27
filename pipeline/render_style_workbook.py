@@ -376,58 +376,65 @@ def sheet_subgroup_focus(wb, conn):
         c.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color="000000")
         c.alignment = Alignment(horizontal="left", vertical="bottom")
         row += 1
-        # Multi-fund sub_groups for this macro_style
-        for sg, n in multi_by_macro.get(ms, []):
-            label = f"  {sg}  ({n} funds)"
-            write_section_heading(ws, row, label, 11)
-        row += 1
+        # Multi-fund sub_groups for this macro_style — EACH gets its own
+        # heading + tier table (previously only the last one rendered).
         hdr = ["Ticker","Sub Holders","pB Max","Mcap","Bucket","S3","S4","Act %","Clu $M","F4 $M","EV/EBITDA","P/B","Name"]
-        write_table_header(ws, row, hdr)
-        row += 1
-        sg_funds = [r[0] for r in conn.execute(
-            "SELECT fund FROM fund_style WHERE sub_group = ?", (sg,))]
-        if not sg_funds:
-            row += 1; continue
-        ph = ",".join("?" * len(sg_funds))
-        rows = list(conn.execute(f"""
-            SELECT h.ticker, COUNT(DISTINCT h.fund) holders, MAX(h.pct_book) max_pb,
-                   us.mcap_m, us.mcap_bucket,
-                   (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
-                    WHERE fp.ticker=h.ticker AND fp.section=3 AND fp.fund IN ({ph})),
-                   (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
-                    WHERE fp.ticker=h.ticker AND fp.section=4 AND fp.fund IN ({ph})),
-                   us.activist_max_pct, us.insider_cluster_dollars_m, us.form4_buy_usd_m,
-                   us.ev_ebitda, us.pb_ratio,
-                   tm.name
-            FROM fund_13f_holdings h
-            LEFT JOIN unified_signal us ON us.ticker = h.ticker
-            LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
-            WHERE h.fund IN ({ph}) AND h.ticker IS NOT NULL
-            GROUP BY h.ticker
-            ORDER BY (holders * 2 + (COALESCE(max_pb,0)) * 0.5) DESC LIMIT 10
-        """, sg_funds * 3))
-        out = []
-        for r in rows:
-            if r[0] in ETFs: continue
-            out.append([r[0], r[1], round(r[2] or 0, 1),
-                        r[3] or "", r[4] or "", r[5] or 0, r[6] or 0,
-                        round(r[7] or 0, 1),
-                        round(r[8] or 0, 1) if r[8] else "",
-                        round(r[9] or 0, 1) if r[9] else "",
-                        round(r[10], 1) if r[10] is not None else "",
-                        round(r[11], 2) if r[11] is not None else "",
-                        (r[12] or "")[:32]])
-            if len(out) >= 8: break
-        write_table_rows(ws, out, row)
-        for ridx in range(row, row + len(out)):
-            ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
-            ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
-            ws.cell(row=ridx, column=9).number_format = NUMFMT_M_TO_B
-            ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
-            ws.cell(row=ridx, column=11).number_format = '0.0"x"'
-            ws.cell(row=ridx, column=12).number_format = '0.00"x"'
-        row += len(out) + 2
+        for sg, n in multi_by_macro.get(ms, []):
+            write_section_heading(ws, row, f"  {sg}  ({n} funds)", 13)
+            row += 1
+            sg_funds = [r[0] for r in conn.execute(
+                "SELECT fund FROM fund_style WHERE sub_group = ? ORDER BY fund", (sg,))]
+            # name every member fund so the tier is self-documenting
+            ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=13)
+            fc = ws.cell(row=row, column=1, value="     " + "  ·  ".join(sg_funds))
+            fc.font = BODY_ITALIC
+            fc.alignment = Alignment(horizontal="left", vertical="center")
+            row += 1
+            write_table_header(ws, row, hdr)
+            row += 1
+            if not sg_funds:
+                row += 1
+                continue
+            ph = ",".join("?" * len(sg_funds))
+            rows = list(conn.execute(f"""
+                SELECT h.ticker, COUNT(DISTINCT h.fund) holders, MAX(h.pct_book) max_pb,
+                       us.mcap_m, us.mcap_bucket,
+                       (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+                        WHERE fp.ticker=h.ticker AND fp.section=3 AND fp.fund IN ({ph})),
+                       (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+                        WHERE fp.ticker=h.ticker AND fp.section=4 AND fp.fund IN ({ph})),
+                       us.activist_max_pct, us.insider_cluster_dollars_m, us.form4_buy_usd_m,
+                       us.ev_ebitda, us.pb_ratio,
+                       tm.name
+                FROM fund_13f_holdings h
+                LEFT JOIN unified_signal us ON us.ticker = h.ticker
+                LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
+                WHERE h.fund IN ({ph}) AND h.ticker IS NOT NULL
+                GROUP BY h.ticker
+                ORDER BY (holders * 2 + (COALESCE(max_pb,0)) * 0.5) DESC LIMIT 10
+            """, sg_funds * 3))
+            out = []
+            for r in rows:
+                if r[0] in ETFs: continue
+                out.append([r[0], r[1], round(r[2] or 0, 1),
+                            r[3] or "", r[4] or "", r[5] or 0, r[6] or 0,
+                            round(r[7] or 0, 1),
+                            round(r[8] or 0, 1) if r[8] else "",
+                            round(r[9] or 0, 1) if r[9] else "",
+                            round(r[10], 1) if r[10] is not None else "",
+                            round(r[11], 2) if r[11] is not None else "",
+                            (r[12] or "")[:32]])
+                if len(out) >= 8: break
+            write_table_rows(ws, out, row)
+            for ridx in range(row, row + len(out)):
+                ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
+                ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
+                ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
+                ws.cell(row=ridx, column=9).number_format = NUMFMT_M_TO_B
+                ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
+                ws.cell(row=ridx, column=11).number_format = '0.0"x"'
+                ws.cell(row=ridx, column=12).number_format = '0.00"x"'
+            row += len(out) + 2
         # ── end inner sub_group loop ──
 
         # SPECIALIST FUNDS — consolidate all singletons in this macro_style
@@ -540,6 +547,49 @@ def sheet_fund_roster(wb, conn):
     ws.freeze_panes = "A4"
     autosize(ws)
 
+def _one_liner(s, limit=200):
+    if not s:
+        return ""
+    s = str(s).strip().replace("\n", " ")
+    dot = s.find(". ")
+    if 0 < dot <= limit:
+        return s[:dot + 1]
+    return s if len(s) <= limit else s[:limit].rstrip() + "…"
+
+def sheet_ticker_reference(wb, conn):
+    """Glossary: every ticker with name, sector, industry, and a short business
+    summary — so any symbol in the style book can be looked up. Sorted A–Z."""
+    ws = wb.create_sheet("Ticker Reference")
+    write_title(ws, "Ticker Reference — name, industry, business",
+                "Every symbol in the universe with its company name, sector, industry, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 5)
+    hdr = ["Ticker", "Name", "Sector", "Industry", "Business Summary"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker,
+               COALESCE(tm.name, yf.long_name)                       AS name,
+               COALESCE(yf.sector, tm.sector)                        AS sector,
+               COALESCE(yf.industry, tm.industry, tm.sic_description) AS industry,
+               yf.business_summary
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker
+        WHERE COALESCE(tm.name, yf.long_name, yf.business_summary, yf.sector,
+                       tm.sic_description) IS NOT NULL
+        ORDER BY us.ticker"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs: continue
+        out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
+                    (r[3] or "")[:30], _one_liner(r[4])])
+    write_table_rows(ws, out, 5)
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 9
+    ws.column_dimensions["B"].width = 34
+    ws.column_dimensions["C"].width = 20
+    ws.column_dimensions["D"].width = 28
+    ws.column_dimensions["E"].width = 100
+
 def main():
     conn = sqlite3.connect(DB)
     wb = openpyxl.Workbook()
@@ -558,8 +608,10 @@ def main():
         if ms in TAB_COLORS:
             ws.sheet_properties.tabColor = TAB_COLORS[ms]
 
+    sheet_ticker_reference(wb, conn)
+
     # README + meta tabs in lightest grey for distinction
-    for nav in ("README", "Fund Roster", "Overview", "Sub-Group Tiers"):
+    for nav in ("README", "Fund Roster", "Overview", "Sub-Group Tiers", "Ticker Reference"):
         if nav in wb.sheetnames:
             wb[nav].sheet_properties.tabColor = "F2F2F2"
 

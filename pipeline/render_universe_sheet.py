@@ -879,6 +879,51 @@ def sheet_bill_miller(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
+def _one_liner(s, limit=200):
+    """Condense a stored business summary to a short one-liner for display."""
+    if not s:
+        return ""
+    s = str(s).strip().replace("\n", " ")
+    dot = s.find(". ")
+    if 0 < dot <= limit:
+        return s[:dot + 1]
+    return s if len(s) <= limit else s[:limit].rstrip() + "…"
+
+def sheet_ticker_reference(wb, conn):
+    """Glossary: every ticker with name, sector, industry, and a short business
+    summary — so any symbol in the workbook can be looked up. Sorted A–Z."""
+    ws = wb.create_sheet("Ticker Reference")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Ticker Reference — name, industry, business",
+                "Every symbol in the universe with its company name, sector, industry, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 5)
+    hdr = ["Ticker", "Name", "Sector", "Industry", "Business Summary"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""
+        SELECT us.ticker,
+               COALESCE(tm.name, yf.long_name)                       AS name,
+               COALESCE(yf.sector, tm.sector)                        AS sector,
+               COALESCE(yf.industry, tm.industry, tm.sic_description) AS industry,
+               yf.business_summary
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker
+        WHERE COALESCE(tm.name, yf.long_name, yf.business_summary, yf.sector,
+                       tm.sic_description) IS NOT NULL
+        ORDER BY us.ticker"""))
+    out = []
+    for r in rows:
+        if r[0] in ETFs: continue
+        out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
+                    (r[3] or "")[:30], _one_liner(r[4])])
+    write_table_rows(ws, out, 5)
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 9
+    ws.column_dimensions["B"].width = 34
+    ws.column_dimensions["C"].width = 20
+    ws.column_dimensions["D"].width = 28
+    ws.column_dimensions["E"].width = 100
+
 TAB_COLORS = {
     # Navigation / meta — lightest
     "README":          "F2F2F2",
@@ -909,6 +954,7 @@ TAB_COLORS = {
     # Reference / support — lighter
     "Unknown Mcap":            "BFBFBF",
     "All Positions":           "BFBFBF",
+    "Ticker Reference":        "BFBFBF",
 }
 
 def main():
@@ -950,6 +996,7 @@ def main():
     sheet_all_holdings_consolidated(wb, conn)
     sheet_fund_coverage(wb, conn)
     sheet_all_funds(wb, conn)
+    sheet_ticker_reference(wb, conn)
 
     # Tab colour-coding — grayscale tones by theme
     for sname, color in TAB_COLORS.items():

@@ -104,20 +104,29 @@ def write_table_header(ws, row, cols):
                                  vertical="bottom", wrap_text=False)
         c.border = HDR_BORDER
 
-def write_table_rows(ws, rows, start_row, ticker_col=1, hairline=True):
-    """Write rows. First column treated as ticker (bold, left). Rest right-aligned if numeric."""
+def write_table_rows(ws, rows, start_row, ticker_col=1, hairline=True, blank="—"):
+    """Write rows. First column treated as ticker (bold, left). Rest right-aligned if numeric.
+
+    Empty cells (None or "") are rendered as a placeholder em-dash so every cell
+    reads as intentional — "—" is the standard "not applicable / not available"
+    mark. Genuine zeros are preserved as 0 (callers pass `x or 0` for counts).
+    """
     for i, row in enumerate(rows):
         ws.row_dimensions[start_row + i].height = BODY_HEIGHT
         for j, v in enumerate(row, 1):
-            c = ws.cell(row=start_row + i, column=j, value=v)
+            is_blank = v is None or (isinstance(v, str) and v.strip() == "")
+            display = blank if is_blank else v
+            c = ws.cell(row=start_row + i, column=j, value=display)
             is_num = isinstance(v, (int, float))
-            if j == ticker_col and isinstance(v, str):
+            if j == ticker_col and isinstance(v, str) and not is_blank:
                 c.font = TICKER_FONT
                 c.alignment = Alignment(horizontal="left", vertical="center")
             else:
                 c.font = BODY_FONT
+                # numbers and placeholders right-align (placeholder usually
+                # stands in for a numeric column); real text left-aligns.
                 c.alignment = Alignment(
-                    horizontal="right" if is_num else "left",
+                    horizontal="right" if (is_num or is_blank) else "left",
                     vertical="center")
             if hairline:
                 c.border = ROW_BORDER
