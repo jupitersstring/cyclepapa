@@ -249,11 +249,25 @@ def main():
     if not all_rows:
         print('No archetype candidates found.')
         return
-    # Dedup: keep the FASTEST-dominating segment per ticker
+    # Dedup: keep the FASTEST-dominating segment per ticker.
     df = pd.DataFrame(all_rows)
     df['seg_score'] = (df['excess_growth'] / (df['years_to_dominate'] + 1)) * (1 - df['share_now'])
-    df = df.sort_values('seg_score', ascending=False)
-    best = df.groupby('ticker').head(1)
+    # Axis preference: a PRODUCT or BUSINESS segment overtaking the rest is
+    # the true pre-rerate archetype (Entravision's Digital Advertising/Smadex
+    # overtaking Broadcast; a SaaS line overtaking licenses). A GEOGRAPHIC
+    # segment dominating ("Rest of the World" growing) is a weaker signal —
+    # it's the same business in a new place, not a business-mix re-rate. So
+    # geographic segments get a 0.5x rank weight: still listed, but a
+    # product/business story for the same ticker outranks them. This is why
+    # EVC now surfaces Digital Advertising instead of Rest-of-the-World.
+    _AXIS_WEIGHT = {
+        'srt:ProductOrServiceAxis': 1.0,
+        'us-gaap:StatementBusinessSegmentsAxis': 1.0,
+        'srt:StatementGeographicalAxis': 0.5,
+    }
+    df['_rank_score'] = df['seg_score'] * df['axis'].map(_AXIS_WEIGHT).fillna(0.8)
+    df = df.sort_values('_rank_score', ascending=False)
+    best = df.groupby('ticker').head(1).drop(columns=['_rank_score'])
 
     # Enrich with company info
     info = pd.DataFrame([{'ticker': t, **_company_info(t)} for t in best['ticker'].tolist()])

@@ -95,7 +95,7 @@ RULE_LIGHT   = 'E5E7EB'     # lighter rule
 WARM_WHITE   = 'FFFFFF'     # pure white — Harvard B&W aesthetic, no warmth
 ROW_ALT      = 'F4F1EA'     # alternating row warm-grey
 CARD_BG      = 'F8F6F0'     # subtle card-fill (for blockquotes)
-HIGHLIGHT    = 'F8E7E2'     # pale crimson highlight for accent rows
+HIGHLIGHT    = 'EFEFEF'     # light-gray band for accent rows (Harvard B&W)
 
 # Serif throughout (Harvard style) — Times New Roman everywhere, including body
 TITLE_FONT_NAME = 'Times New Roman'
@@ -807,8 +807,10 @@ def build_best_of_best(wb, gav, fin, comb, top_n=25):
         if isinstance(n_flag_cell, (int, float)) and n_flag_cell >= 3:
             for c in range(1, len(headers) + 1):
                 cell = ws.cell(row=r, column=c)
+                # Harvard B&W: emphasis via bold + a light-gray band, NOT a
+                # larger size or color. Keeps the single-10pt rule intact.
                 cell.fill = HIGHLIGHT_FILL
-                cell.font = Font(name=BODY_FONT_NAME, size=11, bold=True, color=SLATE_DARK)
+                cell.font = Font(name=BODY_FONT_NAME, size=_BODY_SIZE, bold=True, color=INK_BLACK)
     _autosize(ws, headers)
     ws.freeze_panes = 'D' + str(row + 1)
     _add_footer(ws, end_row)
@@ -1148,6 +1150,12 @@ def build_creative_measures(wb):
                 'sector': '',
                 'industry': '',
                 'country': 'United States' if sec_name else '',
+                # Valuation fields — filled from the LIVE info_metrics cache
+                # (fresher than the screener-run snapshot), then the EDGAR
+                # fallback. This closes gaps across every tab at render time.
+                '_v_marketCap': None, '_v_priceToBook': None,
+                '_v_trailingPE': None, '_v_enterpriseToEbitda': None,
+                '_v_priceToSales': None, '_v_enterpriseToRevenue': None,
             }
             if p.exists():
                 try:
@@ -1162,8 +1170,30 @@ def build_creative_measures(wb):
                         if ind: entry['industry'] = str(ind)
                         co = row.get('country')
                         if co: entry['country'] = str(co)
+                        for vk, ik in (('_v_marketCap','marketCap'),
+                                       ('_v_priceToBook','priceToBook'),
+                                       ('_v_trailingPE','trailingPE'),
+                                       ('_v_enterpriseToEbitda','enterpriseToEbitda'),
+                                       ('_v_priceToSales','priceToSalesTrailing12Months'),
+                                       ('_v_enterpriseToRevenue','enterpriseToRevenue')):
+                            v = row.get(ik)
+                            if v is not None and pd.notna(v):
+                                entry[vk] = v
                 except Exception:
                     pass
+            # EDGAR valuation fallback for any still-empty field (US filers)
+            ed = _edgar_val_map.get(tkr.upper(), {})
+            if ed:
+                for vk, ek in (('_v_marketCap','marketCap_edgar'),
+                               ('_v_priceToBook','priceToBook_edgar'),
+                               ('_v_trailingPE','trailingPE_edgar'),
+                               ('_v_enterpriseToEbitda','enterpriseToEbitda_edgar'),
+                               ('_v_priceToSales','priceToSalesTrailing12Months_edgar'),
+                               ('_v_enterpriseToRevenue','enterpriseToRevenue_edgar')):
+                    if entry[vk] is None:
+                        v = ed.get(ek)
+                        if v is not None and pd.notna(v):
+                            entry[vk] = v
             rows.append(entry)
         info_df = pd.DataFrame(rows)
         # Drop any pre-existing copies so the join overrides
@@ -1171,7 +1201,26 @@ def build_creative_measures(wb):
             if c in df.columns:
                 df = df.drop(columns=[c])
         # Left-merge ON df so we preserve every input row (no multiplication)
-        return df.merge(info_df, on='ticker', how='left')
+        merged = df.merge(info_df, on='ticker', how='left')
+        # Backfill the screener's valuation columns from the live/EDGAR values
+        # where the screener left them empty. Maps each tab's column name to
+        # the unified _v_ field. Only fills NaN — never overwrites a value the
+        # screener already computed.
+        valmap = {
+            'market_cap': '_v_marketCap', 'marketCap': '_v_marketCap',
+            'priceToBook': '_v_priceToBook', 'pb_now': '_v_priceToBook',
+            'trailingPE': '_v_trailingPE', 'pe_now': '_v_trailingPE',
+            'enterpriseToEbitda': '_v_enterpriseToEbitda',
+            'ev_ebitda_now': '_v_enterpriseToEbitda', 'evEbitda': '_v_enterpriseToEbitda',
+            'priceToSales': '_v_priceToSales', 'ps_now': '_v_priceToSales',
+            'enterpriseToRevenue': '_v_enterpriseToRevenue',
+        }
+        for col, vk in valmap.items():
+            if col in merged.columns and vk in merged.columns:
+                merged[col] = merged[col].where(merged[col].notna(), merged[vk])
+        # Drop the helper _v_ columns from the displayed frame
+        merged = merged.drop(columns=[c for c in merged.columns if c.startswith('_v_')])
+        return merged
 
     # One tab per available measure
     for p, label, deck, cols in available:
@@ -1204,6 +1253,23 @@ def build_creative_measures(wb):
         # Caption above the table: N rows, top-N selector
         n_total = len(df)
         top_n = min(50, n_total)
+        # QoL: hide columns that are 100% empty across the DISPLAYED rows.
+        # An always-blank column reads as a data error and wastes width; the
+        # source CSV keeps every column (no feature removed) — this only
+        # affects what the workbook renders. Id columns are never dropped.
+        shown = df.head(top_n)
+        dropped_empty = []
+        kept = []
+        for c in cols:
+            if c in front:
+                kept.append(c); continue
+            col = shown[c] if c in shown.columns else None
+            non_empty = 0 if col is None else col.notna().sum() - (col.astype(str).str.strip().eq('').sum() if col.dtype == object else 0)
+            if non_empty > 0:
+                kept.append(c)
+            else:
+                dropped_empty.append(c)
+        cols = kept
         if n_total > top_n:
             caption = f'Top {top_n} of {n_total:,} candidates, ranked by the screen-specific score.'
         else:
@@ -1218,10 +1284,204 @@ def build_creative_measures(wb):
         _autosize(ws, cols)
         # Freeze after the front columns so ticker+company stay visible while scrolling
         ws.freeze_panes = chr(ord('A') + len(front)) + str(r + 1)
+        # Note any auto-hidden empty columns just under the table (transparency)
+        if dropped_empty:
+            pretty = ', '.join(_humanize(c) for c in dropped_empty)
+            note = ws.cell(row=end_row, column=1,
+                           value=f'Columns hidden (no data for these rows): {pretty}. '
+                                 f'Present in the source CSV.')
+            note.font = FOOTNOTE_FONT
+            note.alignment = ALIGN_LEFT
+            ws.merge_cells(start_row=end_row, start_column=1, end_row=end_row, end_column=min(len(cols), 10))
+            end_row += 1
         _add_footer(
             ws, end_row,
             source=('Source: Yahoo Finance via yfinance · SEC EDGAR XBRL companyfacts · '
                     'computed locally. See README for methodology.'))
+
+
+def _apply_print_setup(wb):
+    """Harvard-document print discipline applied to every sheet:
+      * landscape orientation (wide financial tables)
+      * fit-to-1-page-wide (rows flow to multiple pages, columns don't)
+      * the first data row of each table repeats at the top of each
+        printed page (set as print_title_rows)
+      * narrow margins so the page is mostly content
+    Non-destructive — only touches print settings, never cell content.
+    """
+    from openpyxl.worksheet.properties import PageSetupProperties
+    for ws in wb.worksheets:
+        ws.page_setup.orientation = 'landscape'
+        ws.page_setup.fitToWidth = 1
+        ws.page_setup.fitToHeight = 0
+        ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
+        ws.page_margins.left = ws.page_margins.right = 0.4
+        ws.page_margins.top = ws.page_margins.bottom = 0.5
+        ws.page_margins.header = ws.page_margins.footer = 0.2
+        # Repeat the header row on each printed page where we can detect it
+        # (the row just above the frozen pane, if frozen).
+        try:
+            if ws.freeze_panes:
+                frozen_row = int(''.join(ch for ch in ws.freeze_panes if ch.isdigit()))
+                if frozen_row > 1:
+                    ws.print_title_rows = f'{frozen_row-1}:{frozen_row-1}'
+        except Exception:
+            pass
+
+
+def build_contents(wb):
+    """Clickable table of contents — every sheet listed with an internal
+    hyperlink + a one-line description. Inserted as the FIRST sheet so the
+    workbook opens to a navigable index. Pure navigation aid; adds no data
+    dependencies."""
+    ws = wb.create_sheet('Contents', 0)
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker=f'Cyclepapa Research  ·  Navigator  ·  Workbook {WORKBOOK_VERSION}',
+        title='Contents',
+        deck='Click any row to jump to that sheet. Sheets are grouped: front '
+             'matter, the cross-validated watchlist, per-measure and per-region '
+             'detail, the eleven creative screens, and reference.',
+    )
+    row += 1
+    # Group sheets logically by name prefix
+    def _group(name):
+        if name in ('Contents','README','Executive Summary','Data Coverage'): return '1 · Front Matter'
+        if name == 'Best of Best': return '2 · Watchlist'
+        if name.startswith('By Measure'): return '3 · By Measure'
+        if name.startswith('Region'): return '4 · By Region'
+        if name.startswith('CM ') or name == 'Creative Measures Index': return '5 · Creative Screens'
+        if name == 'Glossary': return '6 · Reference'
+        return '7 · Other'
+
+    # One-line descriptions keyed by sheet name (prefix-matched for regions/CM)
+    descriptions = {
+        'README': 'Methodology, universe definition, how to read the workbook.',
+        'Executive Summary': 'Top three names per region across each major measure.',
+        'Data Coverage': 'Field-by-field fill rates across the 12,435-ticker universe.',
+        'Best of Best': 'Names that survive ≥2 independent screens — the watchlist.',
+        'Creative Measures Index': 'Index of the eleven specialised screens with row counts.',
+        'Glossary': 'Plain-English definition of every column.',
+    }
+    cm_desc = {
+        'CM · Multiple Compression': 'P/E + EV/EBITDA compression vs 1y-ago and 5y peak.',
+        'CM · Akre Compounder': 'High ROE, expanding margins, reinvestment runway.',
+        'CM · Clean Top-Line': 'Gross-profit growth + margin expansion, un-rerated.',
+        'CM · Operating Leverage': 'Sales growing into a near-breakeven margin window.',
+        'CM · FCF Yield': 'FCF-yield inflection / acceleration.',
+        'CM · EV Compression': 'Enterprise-multiple compression with growing base.',
+        'CM · EV-FCF Leverage': 'Cheap on cash flow with debt working for holders.',
+        'CM · Flat + Inflection': 'Flat price, fundamentals inflecting up.',
+        'CM · Vol Asymmetry': 'Upside volatility > downside (positive skew).',
+        'CM · Segment Inflection': 'Small fast-growing revenue stream (companyfacts proxy).',
+        'CM · True Segment Inflection (X': 'TRUE axis-level segment inflection (10-K XBRL).',
+        'CM · Revenue Disaggregation': 'Every revenue-tag we extracted, per ticker.',
+        'CM · Analyst & Insider Extras': 'Upside-to-target, insider buying, broker ratings.',
+    }
+    descriptions.update(cm_desc)
+
+    # Order sheets by group then existing workbook order
+    ordered = sorted(
+        [s for s in wb.sheetnames if s != 'Contents'],
+        key=lambda s: (_group(s), wb.sheetnames.index(s))
+    )
+    headers = ['Sheet', 'Description']
+    for i, h in enumerate(headers, 1):
+        ws.cell(row=row, column=i, value=h)
+    _style_header(ws, row, 1, len(headers))
+    ws.cell(row=row, column=1).alignment = ALIGN_LEFT
+    ws.cell(row=row, column=2).alignment = ALIGN_LEFT
+    r = row + 1
+    last_group = None
+    for sn in ordered:
+        grp = _group(sn)
+        if grp != last_group:
+            # Group sub-heading
+            gc = ws.cell(row=r, column=1, value=grp)
+            gc.font = SUBSECT_FONT
+            gc.alignment = ALIGN_LEFT
+            r += 1
+            last_group = grp
+        # Hyperlink cell — Excel internal link syntax: #'Sheet Name'!A1
+        link_cell = ws.cell(row=r, column=1, value=sn)
+        # Quote-escape single quotes in sheet name for the formula
+        safe_sn = sn.replace("'", "''")
+        link_cell.hyperlink = f"#'{safe_sn}'!A1"
+        link_cell.font = Font(name=BODY_FONT_NAME, size=_BODY_SIZE, underline='single', color=INK_BLACK)
+        link_cell.alignment = ALIGN_LEFT
+        desc_cell = ws.cell(row=r, column=2, value=descriptions.get(sn, ''))
+        desc_cell.font = BODY_FONT
+        desc_cell.alignment = ALIGN_LEFT
+        r += 1
+    ws.column_dimensions['A'].width = 34
+    ws.column_dimensions['B'].width = 64
+    _add_footer(ws, r)
+
+
+def build_data_coverage(wb):
+    """Transparency tab — field-by-field fill rates across the universe so a
+    reader knows the data quality behind any column. Counts non-null values
+    in the cached info_metrics + the EDGAR valuation fallback. Read-only
+    scan; doesn't alter any data."""
+    import glob
+    ws = wb.create_sheet('Data Coverage')
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker='Reference  ·  Data Quality',
+        title='Data Coverage',
+        deck='How complete is each field across the universe? Yahoo (primary) '
+             'plus the SEC-EDGAR valuation fallback for US filers. A low fill '
+             'rate is a vendor-coverage gap, not a screen defect — read the '
+             'screens accordingly.',
+    )
+    row += 1
+    files = glob.glob('.cache/yf/*__info_metrics.parquet')
+    total = len(files)
+    fields = ['currentPrice','marketCap','enterpriseValue','enterpriseToEbitda',
+              'enterpriseToRevenue','trailingPE','forwardPE','priceToBook',
+              'priceToSalesTrailing12Months','returnOnEquity','grossMargins',
+              'operatingMargins','revenueGrowth','earningsGrowth','dividendYield',
+              'debtToEquity']
+    counts = {f: 0 for f in fields}
+    for p in files:
+        try:
+            d = pd.read_parquet(p)
+            if d.empty: continue
+            r0 = d.iloc[0]
+            for f in fields:
+                v = r0.get(f)
+                if v is not None and pd.notna(v) and v != '':
+                    counts[f] += 1
+        except Exception:
+            pass
+    label_map = {
+        'currentPrice':'Current Price','marketCap':'Market Cap',
+        'enterpriseValue':'Enterprise Value','enterpriseToEbitda':'EV/EBITDA',
+        'enterpriseToRevenue':'EV/Sales','trailingPE':'P/E (TTM)',
+        'forwardPE':'P/E (Fwd)','priceToBook':'P/B',
+        'priceToSalesTrailing12Months':'P/S','returnOnEquity':'ROE',
+        'grossMargins':'Gross Margin','operatingMargins':'Op Margin',
+        'revenueGrowth':'Revenue Growth','earningsGrowth':'Earnings Growth',
+        'dividendYield':'Dividend Yield','debtToEquity':'D/E',
+    }
+    df = pd.DataFrame([
+        {'Field': label_map.get(f, f), 'Populated': counts[f],
+         'Universe': total, 'Coverage': counts[f] / total if total else 0}
+        for f in fields
+    ]).sort_values('Coverage', ascending=False)
+    end = _write_df(ws, df, ['Field','Populated','Universe','Coverage'], start_row=row)
+    # Coverage column → percentage format
+    cov_col = 4
+    for rr in range(row + 1, end):
+        c = ws.cell(row=rr, column=cov_col)
+        if isinstance(c.value, (int, float)):
+            c.number_format = '0.0%'
+    _autosize(ws, ['Field','Populated','Universe','Coverage'])
+    _add_footer(ws, end,
+                source=('Source: cached Yahoo info_metrics + SEC-EDGAR valuation fallback. '
+                        'Counts non-null values across the cached universe.'))
 
 
 def build_glossary(wb):
@@ -1264,6 +1524,23 @@ def build_glossary(wb):
         ('dividendYield', 'Decimal forward yield (0.04 = 4%). Often missing for non-US names.'),
         ('n_screens', 'Number of top-25 lists in which the name appears (maximum four). Best-of-Best sheet only.'),
         ('screens_in', 'Which lists the name appears in: Composite, Growth-Adj-EBITDA, Growth-Adj-Sales, Financials.'),
+        # EV/EBITDA-over-EBITDA-growth (the corrected PEG-style ratio)
+        ('ev_ebitda_over_ebg_ltm', 'EV/EBITDA ÷ EBITDA-growth (LTM-preferred). The corrected PEG-style ratio — divides by EBITDA growth, not earnings growth. Growth capped at 150% to filter base-effect noise.'),
+        ('ev_ebitda_over_earng', 'Legacy comparison column: EV/EBITDA ÷ net-earnings growth. Kept for reference; ev_ebitda_over_ebg_* is the corrected version.'),
+        # Segment screens
+        ('Segment Axis', 'XBRL dimension the segment is reported along: srt:ProductOrServiceAxis (e.g. Apple iPhone), us-gaap:StatementBusinessSegmentsAxis (operating segments), srt:StatementGeographicalAxis (geography).'),
+        ('Segment / growing_revenue_type', 'The specific revenue line growing faster than the consolidated total. Companyfacts proxy uses product/services/licenses/subscription tags; the XBRL screen uses the true axis-member name.'),
+        ('Segment Share', 'Segment revenue ÷ total revenue. The archetype targets <40% share (still a minority line) with >10pp excess growth.'),
+        ('Years to Dominate', 'Years until the segment crosses 50% of total revenue if current growth rates persist.'),
+        ('Excess YoY (vs Total)', 'Segment YoY growth minus total-revenue YoY growth, in percentage points. >10pp is the inflection threshold.'),
+        # Analyst & insider extras
+        ('Upside to Target', 'Analyst mean price target ÷ current price − 1, in %. US-coverage-dependent.'),
+        ('Net Insider Buying (6m)', 'Net shares insiders bought over the last 6 months as % of insider-held shares. Positive = net buying.'),
+        ('Buy/Strong-Buy Share', '(Strong-buy + buy) ÷ total broker ratings, most recent month, in %.'),
+        ('Fwd Growth (Avg)', 'Average of +1-quarter and +1-year consensus growth, in %.'),
+        ('Extras Composite', 'Z-scored average of the four extras signals across the universe (higher = better). Missing signals contribute z=0 (median).'),
+        # EDGAR valuation fallback
+        ('*_edgar', 'Valuation metric computed from SEC-EDGAR XBRL companyfacts (Yahoo-independent). EV/EBITDA, P/E, P/B, P/S derived from OperatingIncome + D&A, NetIncome, shares, debt, cash + cached price. Used to fill US-ticker gaps where Yahoo returns empty.'),
     ]
     # Header row with booktabs heavy-top + thin-bottom rule
     for c, h in enumerate(['Column','Meaning'], 1):
@@ -1301,11 +1578,18 @@ def main():
 
     build_readme(wb)
     build_exec_summary(wb, comb, gav, fin)
+    build_data_coverage(wb)
     build_best_of_best(wb, gav, fin, comb, top_n=25)
     build_global_measures(wb, gav, fin, comb)
     build_per_region_tabs(wb, gav, fin, comb, per_region)
     build_creative_measures(wb)
     build_glossary(wb)
+    # Navigation index — built LAST so it can enumerate every sheet, but
+    # inserted at position 0 so the workbook opens to it.
+    build_contents(wb)
+    # Harvard print discipline on every sheet (landscape, fit-width, repeat
+    # header rows). Applied last so it covers all sheets.
+    _apply_print_setup(wb)
 
     wb.save(WB_PATH)
     # Also write a versioned copy so each ship is permanently referenceable
