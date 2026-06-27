@@ -3646,11 +3646,16 @@ VUZI,1,1.0,1.0,Single Reportable,Single Reportable 100%,24164306.0,10,0.57591901
 VVOS,0,,,,,,0,,,,10,0,,,
 VVV,1,1.0,1.0,Reportable,Reportable 100%,4772800000.0,2,0.9714632919879316,US,US 97%; International 3%,3,0,,0.05639283508338481,Reportable
 VVX,0,,,,,,4,0.5706012517196006,US,US 57%; Middle East 31%; Asia 7%,0,0,,,
+VYCO,2,0.9217086068611466,0.9591887448866461,Vycor Medical Inc,Vycor Medical Inc 96%; Nova Vision Inc 4%,3452724.0,2,0.997513267785088,US,US 100%; Europe 0%,0,0,0.19083708948849887,0.18494283995186522,Vycor Medical Inc
 VYGR,1,1.0,1.0,Single Reportable,Single Reportable 100%,370383000.0,0,,,,0,0,,-0.49533130835864553,Single Reportable
+VYNE,1,1.0,1.0,Reportable,Reportable 100%,1071000.0,0,,,,1,0,,0.1377245508982036,Reportable
 VYST,0,,,,,,0,,,,3,0,,,
+VZ,2,0.6094579503438637,0.7339422475140647,Verizon Consumer Group,Verizon Consumer Group 73%; Verizon Business Group 27%,1172798000000.0,0,,,,9,0,0.030670033580408238,0.03247303840844271,Verizon Consumer Group
 W,2,0.7835629205962695,0.8765387898983779,US,US 88%; International 12%,36311000000.0,0,,,,0,0,0.03803027857327255,0.05784247565795816,US
+WAB,2,0.5945465182739924,0.717424145708328,Freight,Freight 72%; Transit 28%,93996000000.0,17,0.3224303385537045,North America,North America 32%; US 27%; Europe 10%,7,0,0.0035365336024502916,0.07589524318546231,Freight
 WABC,0,,,,,,0,,,,0,0,,,
 WAL-PA,0,,,,,,0,,,,0,0,,,
+WASH,0,,,,,,0,,,,13,0,,,
 WAST,0,,,,,,0,,,,3,0,,,
 WAT,0,,,,,,7,0.21867717805373355,Americas,Americas 22%; Asia Pacific 19%; US 18%,8,0,,,
 WATT,0,,,,,,0,,,,0,0,,,
@@ -3660,82 +3665,125 @@ WBHC,0,,,,,,0,,,,0,0,,,
 WBI,0,,,,,,0,,,,5,0,,,
 WBQNL,0,,,,,,0,,,,0,0,,,
 WBTN,1,1.0,1.0,Reportable,Reportable 100%,4013931000.0,3,0.47021660312546476,JP,JP 47%; KR 40%; Rest Of The World 13%,3,0,,0.025381949130797832,Reportable
+WCC,3,0.34105578458466235,0.3809648984196979,EES,EES 38%; CSS 36%; UBS 26%,67714900000.0,3,0.7411928541576521,US,US 74%; CA 13%; Other International 12%,0,0,0.11604479803938979,0.18316194537252506,CSS
+WCN,6,0.172899750399019,0.2013512943978514,Western,Western 20%; Southern 20%; Eastern 18%,52816914000.0,0,,,,6,0,0.023264298016741642,0.08824640665485667,Eastern
 WD,3,0.4857624775869576,0.5033432361871557,Servicing And Asset Management,Servicing And Asset Management 50%; Capital Markets 48%; Corporate 1%,6842472000.0,0,,,,11,0,0.1812083897834781,0.2995,Corporate
 WDAY,0,,,,,,2,0.7508809438967415,US,US 75%; Non Us 25%,2,0,,,
+WDC,1,1.0,1.0,HDD,HDD 100%,22092000000.0,6,0.4371718269056672,US,US 44%; EMEA 17%; HK 16%,3,0,,0.5070444831407314,HDD
+WDFC,3,0.38997456269249225,0.47539142925859784,Americas,Americas 48%; Europe India Middle East And Africa 38%; Asia Pacific 15%,5317883000.0,2,0.6425145483142493,Non Us,Non Us 64%; US 36%,8,0,0.02114311745052136,0.07348932017979849,Europe India Middle East And Africa
+WDLF,0,,,,,,0,,,,1,0,,,
 WEAV,1,1.0,1.0,Reportable,Reportable 100%,613806000.0,0,,,,4,0,,0.1698855682919428,Reportable
 WEC,7,0.37336578774071194,0.49977356640399123,Wisconsin,Wisconsin 50%; Public Utility 33%; Illinois 12%,320623800000.0,0,,,,4,0,0.040060626148475116,0.20704303752966338,Other States
+WELL,3,0.7912052245759388,0.8857837357203706,Senior Housing Operating,Senior Housing Operating 89%; Triple Net 6%; Outpatient Medical 5%,45592920000.0,3,0.7727040294493003,US,US 77%; GB 15%; CA 8%,0,0,0.2861427093776486,0.517603968705746,Triple Net
 WELPP,1,1.0,1.0,Utility,Utility 100%,61590600000.0,0,,,,2,0,,0.128064032016008,Utility
 WEN,3,0.6994869892303748,0.8267594615623014,Wendys U.S.,Wendys U.S. 83%; Global Real Estate Development 11%; Wendys International 6%,13209922000.0,2,0.914751502696231,US,US 91%; Non Us 9%,6,0,0.05026768727667703,0.05716359112585528,Wendys International
 WENNU,0,,,,,,0,,,,0,0,,,
 WERN,4,0.39024597119325094,0.5319996972416529,Truckload Transportation Services,Truckload Transportation Services 53%; Transportation Services 25%; Werner Logistics 21%,36504361000.0,4,0.8968684622629872,US,US 90%; Total Foreign Countries 5%; MX 4%,0,0,0.029467799553562997,0.03070475631422636,Werner Logistics
 WES,0,,,,,,0,,,,4,0,,,
 WEST,2,0.6704403084712327,0.7919249119818593,Beverage Solutions Segments,Beverage Solutions Segments 79%; Sustainable Sourcing And Traceability Segments 21%,5898784000.0,2,0.8143332580450573,US,US 81%; Non Us 19%,4,0,0.06239768022934106,0.46596948934635707,Sustainable Sourcing And Traceability Segments
+WETH,0,,,,,,3,0.5645646138214381,CN,CN 56%; KR 43%; Others 1%,0,0,,,
+WEX,3,0.3669994222044875,0.4766566344579967,Mobility,Mobility 48%; Benefits 30%; Corporate Payments 22%,18939000000.0,2,0.8701144585231405,US,US 87%; Non Us 13%,4,0,0.05015578842870018,0.060573913965947065,Benefits
+WEYS,4,0.46395419457350406,0.5892509108355471,Reportable Segment Aggregation Before Other Operating,Reportable Segment Aggregation Before Other Operating 59%; Wholesale 34%; Retail 6%,2642903000.0,0,,,,2,0,0.03333231700812045,0.0021142543025075055,All Other Segments
 WFC-PC,4,0.3489864260631292,0.4922467972817683,Wealth And Investment Management,Wealth And Investment Management 49%; Consumer Banking And Lending 27%; Corporate And Investment Banking 17%,70487000000.0,0,,,,6,0,0.03134441886263504,0.08821635544108178,Commercial Banking
 WFRD,0,,,,,,0,,,,0,0,,,
 WGO,3,0.4388481952813191,0.46858963844693863,Motorhome RV,Motorhome RV 47%; Towable RV 46%; Marine 7%,17070800000.0,2,0.943740283295906,US,US 94%; Non Us 6%,6,0,0.12406902586072054,0.12995391705069123,Marine
 WGSWW,2,0.9683925036572103,0.9839382727462307,Gene Dx,Gene Dx 98%; All Other Segments 2%,3721144000.0,0,,,,5,0,0.18278913107930433,0.3972421776977624,Gene Dx
+WH,1,1.0,1.0,Hotel Franchising,Hotel Franchising 100%,4234000000.0,2,0.8032593292394898,US,US 80%; Non Us 20%,13,0,,0.014914772727272728,Hotel Franchising
+WHD,2,0.5528518195524825,0.6625604803642056,Pressure Control,Pressure Control 66%; Spoolable Technologies 34%,6611650000.0,0,,,,3,0,0.055680734878217474,-0.016561147575459064,Pressure Control
 WHEN,2,0.6431263929273985,0.7675129837292,Cybersecurity Technology,Cybersecurity Technology 77%; Global Telecom 23%,373737.0,0,,,,0,0,,-0.5752771486470378,Cybersecurity Technology
 WHG,4,0.4011266346171813,0.5133720341557259,Advisory,Advisory 51%; Total Reporting 34%; Trust 15%,888870000.0,2,0.9896798741603605,US,US 99%; CA 1%,7,0,0.16414041910335567,0.3580146460537022,Other Reporting
 WHLRD,1,1.0,1.0,Reportable,Reportable 100%,204019000.0,0,,,,4,0,,-0.049046608143515594,Reportable
+WHR-PA,4,0.4338401169470933,0.5939497631044597,Major Domestic Appliances North America,Major Domestic Appliances North America 59%; Major Domestic Appliances Latin America 27%; Major Domestic Appliances Europe 8%,53188000000.0,2,0.8078947368421052,US,US 81%; BR 19%,7,0,0.5092671114220441,0.08089668615984405,Small Domestic Appliances Global
 WHWK,1,1.0,1.0,Reportable,Reportable 100%,33128000.0,0,,,,1,0,,-0.7250125081784243,Reportable
 WINA,1,1.0,1.0,Franchising,Franchising 100%,263278500.0,1,1.0,CA,CA 100%,6,0,,0.0512415113168997,Franchising
 WING,1,1.0,1.0,Restaurants,Restaurants 100%,3565430000.0,0,,,,6,0,,0.11352701391962698,Restaurants
 WINT,0,,,,,,0,,,,0,0,,,
 WK,0,,,,,,2,0.7604273223961262,US,US 76%; Non Us 24%,4,0,,,
+WKC,3,0.37698953530529233,0.4940281857029408,Aviation,Aviation 49%; Land 30%; Marine 20%,253859200000.0,8,0.3326082191392515,North America,North America 33%; EMEA 20%; US 16%,0,0,0.0659207300711531,-0.07232307827668123,Aviation
 WKSP,3,0.7404814167213007,0.846757420051324,Hard Tonneau Covers,Hard Tonneau Covers 85%; Soft Tonneau Covers 15%,73758351.0,2,0.9927412693919906,US,US 99%; Non Us 1%,0,0,2.0426062827530975,2.025849507686899,Hard Tonneau Covers
 WLDN,2,0.7312636149008305,0.8400467724452259,Energy,Energy 84%; Engineering Consulting Services 16%,7029780000.0,1,1.0,US,US 100%,0,0,0.054012154965316535,0.21707172270123745,Energy
+WLFC,2,0.8555308176015533,0.9216223532982765,Leasing And Related Operations,Leasing And Related Operations 92%; Spare Parts Sales 8%,1340867000.0,9,0.27620849827313415,US,US 28%; Europe 24%; IN 18%,0,0,0.03313161088029457,0.27540600257779413,Leasing And Related Operations
 WLK,2,0.5466776817280634,0.6527705497274645,Performance And Essential Materials,Performance And Essential Materials 65%; Housing And Infrastructure Products 35%,73018000000.0,9,0.7155605131065254,US,US 72%; Other Foreign Countries 10%; CA 7%,4,0,0.046123370472269574,-0.039147556173268476,Housing And Infrastructure Products
 WLKP,0,,,,,,0,,,,0,0,,,
 WLTH,0,,,,,,0,,,,3,0,,,
+WLYB,3,0.5297639885054162,0.6469512590230112,Research,Research 65%; Learning 33%; Held For Sale Or Sold 2%,13534423000.0,4,0.5148613271848917,US,US 51%; GB 29%; DE 10%,4,0,1.1521097879553404,1.1013278981346568,Research
+WM,8,0.3086380251134825,0.46797077630261164,Collection And Disposal,Collection And Disposal 47%; East Tier Region Areas 21%; West Tier Region Areas 20%,311528000000.0,3,0.95450046533615,US,US 95%; CA 4%; Western Europe And Other Countries 1%,12,0,0.17172300182746703,0.4984423676012461,Renewable Energy
 WMB,6,0.2250020620307942,0.3207322733238459,Reportable Segment Aggregation Before Other Operating,Reportable Segment Aggregation Before Other Operating 32%; Transmission Power Gulf 26%; Gas NGL Marketing Services 16%,325343000000.0,0,,,,12,0,0.13296588487649671,0.3998855835240275,All Other Segments
 WMG,2,0.7374450798614789,0.8445613732424739,Recorded Music,Recorded Music 84%; Music Publishing 16%,69558000000.0,5,0.443614248479583,US,US 44%; Non Us 37%; All Other Countries 12%,9,0,0.033208958657412295,0.07933884297520662,Music Publishing
 WMK,1,1.0,1.0,Retail,Retail 100%,28928024000.0,0,,,,6,0,,0.0346386378197436,Retail
+WMS,2,0.7442248514839542,0.8494458838532472,Stormwater,Stormwater 85%; Wastewater 15%,25386194000.0,3,0.932584022777422,US,US 93%; CA 4%; Other Countries 3%,3,0,0.07349560670658331,0.1343629049413722,Wastewater
 WMT,3,0.518769587578227,0.683654229780754,Walmart US,Walmart US 68%; Walmart International 18%; Sams Club US 13%,8484305000000.0,6,0.6935321859089781,US,US 69%; Non Us 15%; Mexicoand Central America 6%,5,0,0.020362309400301058,0.07818243532529247,Walmart International
 WNC,2,0.8067744017868843,0.8916467807775804,Transportation Solutions,Transportation Solutions 89%; Parts Service 11%,18153157000.0,0,,,,4,0,0.29643579247108504,0.17321130786945127,Parts Service
 WOLF,0,,,,,,8,0.30921534024878405,Europe,Europe 31%; US 17%; HK 16%,2,0,,,
 WOOF,0,,,,,,0,,,,4,0,,,
+WOR,2,0.5077223578946041,0.5621383854577994,Building Products,Building Products 56%; Consumer Products 44%,3540372000.0,2,0.748228439211401,US,US 75%; International 25%,0,0,0.033937337536203184,0.05681023243340178,Building Products
 WPC,1,1.0,1.0,Owned Real Estate,Owned Real Estate 100%,11117722000.0,2,0.6468521944961386,US,US 65%; Non Us 35%,8,0,,0.05508251499727634,Owned Real Estate
+WRAP,0,,,,,,0,,,,0,0,,,
+WRB-PE,2,0.7449677705366264,0.8499769781975856,Insurance Domestic,Insurance Domestic 85%; Reinsuranceand Monoline Excess 15%,43712911000.0,1,1.0,Non Us,Non Us 100%,0,0,0.010018839971838034,0.06726733315413293,Insurance Domestic
+WRBY,0,,,,,,0,,,,4,0,,,
 WS,1,1.0,1.0,Steel Processing,Steel Processing 100%,10131600000.0,4,0.7975541869003908,US,US 80%; CA 11%; MX 6%,2,0,,-0.09832099341223109,Steel Processing
 WSBF,0,,,,,,0,,,,0,0,,,
+WSC,2,0.9975368766361612,0.9987669178264338,Reportable,Reportable 100%; United Kingdom Storage Solutions 0%,7050625000.0,3,0.9379876059563775,US,US 94%; CA 5%; MX 1%,10,0,,-0.04769843529163282,Reportable
+WSFS,3,0.5461404223281471,0.7011331142734326,Wsfs Bank,Wsfs Bank 70%; Wealth Management 22%; Cash Connect 8%,6471898000.0,0,,,,0,0,0.154594155942368,0.15301493670012764,Wealth Management
 WSM,6,0.316581459010211,0.5,Reportable,Reportable 50%; Pottery Barn 20%; West Elm 12%,46538018000.0,1,1.0,Non Us,Non Us 100%,0,0,0.02726110440858957,0.06288140342212366,All Other Segments
+WSO-B,0,,,,,,3,0.9013991182299708,US,US 90%; Latin America And Caribbean 5%; CA 5%,0,0,,,
 WST,2,0.6923459002149714,0.8101176391427707,Proprietary Products,Proprietary Products 81%; Contract Manufactured Products 19%,17834200000.0,6,0.42602415583541736,US,US 43%; Other Europe Countries 14%; DE 13%,0,0,0.018246994419300524,0.06750910259156136,Proprietary Products
 WT,0,,,,,,3,0.6362385627988429,US,US 64%; JE 31%; IE 6%,4,0,,,
+WTBA,0,,,,,,0,,,,0,0,,,
+WTFCN,0,,,,,,0,,,,9,0,,,
 WTI,0,,,,,,0,,,,4,0,,,
 WTM,5,0.6977044153245431,0.8288622376518857,Ark Insurance Holdings Limited WM Outrigger Re,Ark Insurance Holdings Limited WM Outrigger Re 83%; Kudu Investment Management LLC 8%; Bamboo Insurance Services LLC 7%,6337000000.0,0,,,,0,0,0.21820875778859314,0.5437710437710438,Kudu Investment Management LLC
+WTRG,4,0.3723109118371656,0.49664549561714466,Reportable Segment Aggregation Before Other Operating,Reportable Segment Aggregation Before Other Operating 50%; Water 28%; Natural Gas 21%,26245904000.0,0,,,,4,0,0.1474177367358842,0.417521890594106,Other And Eliminations
 WTS,4,0.3799218486854,0.4533832393544624,Reportable Segments Aggregation,Reportable Segments Aggregation 45%; Americas 40%; Europe 11%,24686400000.0,3,0.7487794998614279,Americas,Americas 75%; Europe 19%; Asia Pacific Middle East And Africa 6%,4,0,0.24399335899790306,0.10961619316475464,Americas
+WTTR,3,0.44991979584950365,0.6120525222628738,Water Services,Water Services 61%; Chemicaltechnologies 20%; Water Infrastructure 19%,4481452000.0,8,0.4878869768173888,Permian Basin,Permian Basin 49%; Rockies 14%; Marcellus Utica 10%,14,0,0.1580232378545933,0.1862636098757859,Chemicaltechnologies
+WTW,3,0.5123026948555711,0.5823108384458078,Health Wealth And Career,Health Wealth And Career 58%; Risk And Broking 42%; Corporate 0%,199512000000.0,8,0.2625561596419768,North America,North America 26%; Foreign Countries 25%; Europe 17%,5,0,0.14401167588769725,0.07538778609393644,Risk And Broking
 WU,3,0.8138097747601145,0.8964128901358441,Consumer Money Transfer,Consumer Money Transfer 90%; Consumer Services 10%; Business Solutions 0%,12617400000.0,8,0.25368739590930367,North America,North America 25%; Non Us 22%; US 12%,3,0,0.28013038200452367,0.3196502307505465,Consumer Services
 WULF,0,,,,,,0,,,,0,0,,,
 WVVIP,3,0.5030503367023327,0.5390534038358544,Direct Sales,Direct Sales 54%; Distributor Sales 46%,76979564.0,0,,,,0,0,0.026253141919459176,-0.04769538397423016,Direct Sales
 WW,0,,,,,,4,0.6889028586276408,US,US 69%; Other Countries 17%; DE 11%,6,0,,,
+WWD,2,0.542621932469813,0.6459827600605857,Aerospace,Aerospace 65%; Industrial 35%,52578027000.0,6,0.5252575521276573,US,US 53%; Europe Excluding Germany 15%; CN 9%,7,0,0.12859252747787905,0.15161643659233778,Aerospace
 WWR,0,,,,,,0,,,,0,0,,,
 WWW,4,0.5444582918387972,0.6970130445148326,Active Group,Active Group 70%; Work Group 23%; All Other Segments 7%,11744400000.0,6,0.344229646671016,US,US 34%; Non Us 33%; EMEA 19%,0,0,0.15444963246001914,0.12976486638311532,Active Group
 WY,3,0.5057756242614236,0.6349917125594824,Wood Products,Wood Products 63%; Timberlands 32%; REENR 5%,74812000000.0,9,0.6872455902306649,US,US 69%; West 14%; South 6%,13,0,0.11193809639642124,0.16112531969309463,REENR
 WYFI,0,,,,,,3,0.9097361350995634,IS,IS 91%; CA 8%; Other Countries 1%,3,0,,,
 WYGC,0,,,,,,0,,,,1,0,,,
 WYNN,0,,,,,,0,,,,0,0,,,
+WYY,2,0.5239902909850975,0.6095223515660104,Carrier Services,Carrier Services 61%; Managed Services 39%,293117113.0,2,0.9715938420831812,United States Usa,United States Usa 97%; Europe 3%,0,0,0.004578400331803543,0.05846016891911821,Carrier Services
 XAGEW,0,,,,,,0,,,,0,0,,,
 XAIR,1,1.0,1.0,, 100%,9728000.0,0,,,,0,0,,2.19672131147541,
 XBPEW,2,0.8619716480830484,0.9254242870846987,Applied Workflow Automation,Applied Workflow Automation 93%; Technology 7%,3327464000.0,3,0.9376059365330474,US,US 94%; EMEA 4%; Other Countries 3%,0,0,0.32177906814411994,0.25591991485965143,Technology
 XCUR,1,1.0,1.0,Biotechnology,Biotechnology 100%,500000.0,0,,,,0,0,,-1.0,Biotechnology
+XELB,0,,,,,,0,,,,0,0,,,
 XELLL,3,0.7010009354056124,0.8184625334466186,Regulated Electric,Regulated Electric 82%; Regulated Natural Gas 18%; All Other Segments 1%,157714000000.0,0,,,,5,0,0.1321058166725197,0.10029708853238264,Regulated Natural Gas
+XERS,0,,,,,,0,,,,6,0,,,
 XFOR,1,1.0,1.0,Reportable,Reportable 100%,37670000.0,1,,,,2,0,,,
 XGN,1,1.0,1.0,Reportable,Reportable 100%,122216000.0,0,,,,0,0,,0.1965097679768516,Reportable
 XHLD,0,,,,,,0,,,,2,0,,,
+XHR,0,,,,,,11,0.26122513911911904,Other Geographic Areas,Other Geographic Areas 26%; Orlando Florida 13%; Houston Texas 10%,3,0,,,
 XIFR,0,,,,,,0,,,,0,0,,,
 XMAX,0,,,,,,3,0.68737085700174,North America,North America 69%; HK 30%; Other Countries 1%,0,0,,,
 XMTR,0,,,,,,3,0.7502467209400407,US,US 75%; Non Us 14%; DE 11%,2,0,,,
+XNCR,1,1.0,1.0,Reportable,Reportable 100%,821368000.0,0,,,,4,0,,0.1365063850198655,Reportable
+XOM,4,0.5983912876102507,0.7594509587475314,Energy Products,Energy Products 76%; Upstream 12%; Chemical Products 7%,2043708000000.0,3,0.5831180499159115,Non Us,Non Us 58%; US 39%; CA 3%,4,0,0.028802512804828623,0.009953954496208017,Upstream
+XOMAP,1,1.0,1.0,Single Reportable,Single Reportable 100%,80636000.0,5,0.48064140086313806,CH,CH 48%; US 44%; Asia Pacific 6%,0,0,,0.8306244953838593,Single Reportable
 XOSWW,1,1.0,1.0,Reportable,Reportable 100%,101953000.0,0,,,,7,0,,-0.17814192026589948,Reportable
 XPEL,1,1.0,1.0,Reportable,Reportable 100%,1292893000.0,9,0.376998608335789,North America,North America 38%; US 31%; EUUK And Africa 7%,9,0,,0.13273073263558516,Reportable
 XPER,0,,,,,,6,0.32477112581936146,US And Canada,US And Canada 32%; US 30%; Asia Pacific 18%,4,0,,,
 XPL,0,,,,,,0,,,,0,0,,,
 XPO,2,0.5203149294066282,0.6007842482896713,North American LTL,North American LTL 60%; European Transportation 40%,47944000000.0,5,0.5877690639078925,US,US 59%; FR 16%; GB 13%,0,0,0.0433211040770296,0.047589032461393004,European Transportation
+XPOF,0,,,,,,0,,,,5,0,,,
+XPRO,4,0.2781086612044729,0.3385052251751157,NLA,NLA 34%; ESSA 33%; MENA 19%,4832661000.0,0,,,,2,0,0.13314519966989075,0.09451682038192019,MENA
 XRAY,4,0.30975786436715536,0.3719262295081967,Connected Technology Solutions,Connected Technology Solutions 37%; Orthodontic And Implant Solutions 33%; Essential Dental Solutions 25%,17568000000.0,5,0.3283092707176477,Other Foreign,Other Foreign 33%; Europe 25%; US 21%,4,0,0.08201611072033985,0.06907894736842106,Wellspect Healthcare
 XRPNU,0,,,,,,0,,,,0,0,,,
 XRX,2,0.8636658969980815,0.9264187478278139,Print And Other,Print And Other 93%; IT Solutions 7%,40282000000.0,7,0.5413678586898975,US,US 54%; Europe 28%; CA 7%,9,0,0.7467904930560906,1.1256983240223464,IT Solutions
 XTIA,3,1.0,1.0,UAS,UAS 100%,22490000.0,0,,,,3,0,,,
 XTNT,0,,,,,,2,0.9075336194335852,US,US 91%; Non Us 9%,6,0,,,
 XXII,0,,,,,,0,,,,0,0,,,
+XYL,4,0.25389666451034953,0.2967028564560715,Water Infrastructure,Water Infrastructure 30%; Water Solutions Services 26%; Measurementand Control Solutions 22%,24961000000.0,4,0.5619566523777092,US,US 56%; Europe 21%; Asia Pacific 15%,2,0,0.039521470520505586,0.11491181186531267,Measurementand Control Solutions
 XZO,0,,,,,,0,,,,3,0,,,
+YCY-UN,0,,,,,,0,,,,0,0,,,
+YELP,1,1.0,1.0,Reportable,Reportable 100%,4214081000.0,2,0.9928736538286758,US,US 99%; Non Us 1%,4,0,,0.03745651755161239,Reportable
+YETI,1,1.0,1.0,Reportable,Reportable 100%,5357080000.0,2,0.814535903887939,US,US 81%; Non Us 19%,3,0,,0.02110583630667265,Reportable
 YEXT,1,1.0,1.0,Reportable,Reportable 100%,1271858000.0,2,0.7991591828647537,North America,North America 80%; Non Us 20%,0,0,,0.06086607420710429,Reportable
 YHC,0,,,,,,0,,,,0,0,,,
 YHGJ,0,,,,,,0,,,,0,0,,,
@@ -3743,21 +3791,36 @@ YORW,0,,,,,,0,,,,5,0,,,
 YSGL,0,,,,,,0,,,,0,0,,,
 YUM,10,0.2511389531122717,0.37515280296007025,Total Division,Total Division 38%; KFC Global Division 23%; Taco Bell Global Division 21%,121889000000.0,4,0.6374110859802669,US,US 64%; Other Outsidethe U.S.and China 29%; GB 4%,5,0,0.26240955407475697,0.1430569000752931,KFC Global Division
 YUMC,4,0.5476808113418569,0.7113505108840515,KFC,KFC 71%; Pizza Hut 19%; All Other Segments 7%,108048000000.0,0,,,,4,0,0.08594781088048876,0.18413597733711048,Corporate And Unallocated
+YYAI,0,,,,,,3,0.4789402233875514,HK,HK 48%; GB 30%; US 22%,0,0,,,
+Z,1,1.0,1.0,Reportable Segments,Reportable Segments 100%,6764000000.0,0,,,,5,0,,0.15518783542039355,Reportable Segments
 ZARE,0,,,,,,0,,,,0,0,,,
 ZBH,0,,,,,,5,0.31246312383739516,Americas,Americas 31%; US 29%; Non Us 21%,4,0,,,
 ZBIO,1,1.0,1.0,Single Reportable,Single Reportable 100%,15000000.0,0,,,,0,0,,1.0,Single Reportable
+ZBRA,2,0.5020033125718696,0.5316489539469287,Connected Frontline,Connected Frontline 53%; Asset Visibility And Automation 47%,44883000000.0,7,0.2519885034422833,North America,North America 25%; US 25%; Other 18%,2,0,0.01137965293033121,0.09064112011790715,Connected Frontline
 ZCARW,0,,,,,,0,,,,2,0,,,
+ZD,5,0.21430315654036794,0.2671776795928085,Health And Wellness,Health And Wellness 27%; Technology And Shopping 25%; Cybersecurity And Martech 20%,8433968000.0,2,0.8353479643271116,US,US 84%; Non Us 16%,3,0,0.05784759200083636,0.11022107679742169,Health And Wellness
 ZDGE,2,0.8278173444638102,0.9048563599993276,Zedge Marketplace,Zedge Marketplace 90%; Guru Shots 10%,59489000.0,0,,,,5,0,0.2783548038847079,0.022430117222723173,Zedge Marketplace
+ZDPY,0,,,,,,0,,,,0,0,,,
 ZEO,2,1.0,1.0,Sunergy,Sunergy 100%,142594021.0,0,,,,3,0,,-0.05316668378522808,Sunergy
 ZETA,0,,,,,,2,0.9612927320019282,US,US 96%; Non Us 4%,0,0,,,
+ZHJD,3,0.7086233229600677,0.8334639441470277,Online Retailing Business,Online Retailing Business 83%; Beauty And Other Products Trading Business 9%; BCBF Trading Business 8%,756701.0,2,1.0,CN,CN 100%,1,0,0.370229563830157,-0.35859658437306435,Online Retailing Business
+ZIONP,7,0.2248130542438032,0.3189027003857694,Zions Bank,Zions Bank 32%; Amegy Corporation 28%; California Bank And Trust 17%,4666000000.0,0,,,,6,0,0.03149681983064556,0.07662835249042145,California Bank And Trust
 ZIP,0,,,,,,0,,,,2,0,,,
 ZIVO,0,,,,,,0,,,,0,0,,,
+ZLAB,0,,,,,,0,,,,8,0,,,
 ZM,1,1.0,1.0,Reportable,Reportable 100%,14061426000.0,3,0.71744842948361,Americas,Americas 72%; EMEA 16%; Asia Pacific 12%,0,0,,0.04358352161524986,Reportable
+ZNOGW,0,,,,,,0,,,,1,0,,,
+ZNTL,1,1.0,1.0,Reportable,Reportable 100%,67425000.0,0,,,,0,0,,-1.0,Reportable
+ZOMDF,3,0.7511045949020573,0.8606423333052348,Therapeutics,Therapeutics 86%; Diagnostics 9%; Development Services 5%,118630000.0,2,0.8263845570260474,US,US 83%; Non Us 17%,4,0,0.06868354698504094,0.15125359638306618,Diagnostics
 ZONE,0,,,,,,0,,,,0,0,,,
 ZS,1,1.0,1.0,Reportable,Reportable 100%,6457838000.0,4,0.5048370677616875,US,US 50%; EMEA 31%; Asia Pacific 15%,0,0,,0.23311687443000206,Reportable
 ZSPC,1,1.0,1.0,Single Reportable,Single Reportable 100%,131912000.0,2,0.8662896476438838,US,US 87%; Non Us 13%,3,0,,-0.2687805134127776,Single Reportable
 ZSQR,2,1.0,1.0,Technology,Technology 100%,1363045.0,0,,,,3,0,,,
 ZSTK,0,,,,,,0,,,,0,0,,,
+ZTS,2,0.500703769148237,0.518758586677,United States,United States 52%; International 48%,56774000000.0,16,0.5,Total Geographical Area,Total Geographical Area 50%; US 27%; Other Emerging Markets 5%,20,0,0.025029510274052647,0.03992998577836123,International
+ZUMZ,0,,,,,,5,0.607499150373582,US,US 61%; Non Us 20%; Europe 13%,0,0,,,
+ZURA,0,,,,,,0,,,,0,0,,,
 ZVIA,0,,,,,,2,0.9000056906559429,US,US 90%; CA 10%,0,0,,,
 ZVRA,0,,,,,,0,,,,0,0,,,
+ZWS,1,1.0,1.0,Reportable,Reportable 100%,4792900000.0,3,0.9049009993949384,US,US 90%; CA 7%; Other Geographical Areas 2%,0,0,,0.08260453239706352,Reportable
 ZYME,1,1.0,1.0,Reportable,Reportable 100%,258281000.0,0,,,,26,0,,0.3887214300691969,Reportable
