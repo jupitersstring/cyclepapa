@@ -14,7 +14,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
     write_title, write_section_heading, write_table_header, write_table_rows,
-    autosize, NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
+    autosize, write_legend_sheet,
+    NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     TNR, SIZE_BODY, BODY_FONT, BODY_ITALIC, SECTION_FONT, TICKER_FONT, MONO_FONT,
     BLACK, ROW_BORDER,
@@ -927,6 +928,7 @@ def sheet_ticker_reference(wb, conn):
 TAB_COLORS = {
     # Navigation / meta — lightest
     "README":          "F2F2F2",
+    "Legend":          "F2F2F2",
     "Fund Coverage":   "F2F2F2",
     "All Funds":       "F2F2F2",
     # Universe ranking — darkest
@@ -964,6 +966,7 @@ def main():
         wb.remove(wb["Sheet"])
 
     sheet_readme(wb, conn)
+    write_legend_sheet(wb, 1)
     write_signal_sheet(wb, conn, "Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
         subtitle="Top 100 by unified_score across the full 5,862-ticker universe (ex-ETF, ex-mega-cap, mcap known).")

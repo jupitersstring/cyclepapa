@@ -13,7 +13,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
     write_title, write_section_heading, write_table_header, write_table_rows,
-    autosize, NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
+    autosize, write_legend_sheet,
+    NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     BODY_FONT, BODY_ITALIC, SECTION_FONT, MONO_FONT, TICKER_FONT,
     TNR, SIZE_BODY,
@@ -597,6 +598,7 @@ def main():
         wb.remove(wb["Sheet"])
 
     sheet_readme(wb, conn)
+    write_legend_sheet(wb, 1)
     sheet_fund_roster(wb, conn)
     sheet_overview(wb, conn)
     sheet_subgroup_focus(wb, conn)
@@ -611,7 +613,7 @@ def main():
     sheet_ticker_reference(wb, conn)
 
     # README + meta tabs in lightest grey for distinction
-    for nav in ("README", "Fund Roster", "Overview", "Sub-Group Tiers", "Ticker Reference"):
+    for nav in ("README", "Legend", "Fund Roster", "Overview", "Sub-Group Tiers", "Ticker Reference"):
         if nav in wb.sheetnames:
             wb[nav].sheet_properties.tabColor = "F2F2F2"
 

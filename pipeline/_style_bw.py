@@ -151,3 +151,102 @@ def set_default_font(wb):
     """Apply Times New Roman as the workbook default styles where possible."""
     for ws in wb.worksheets:
         ws.sheet_properties.tabColor = None
+
+# ---------- legend / glossary (shared across both workbooks) ----------
+LEGEND = [
+    ("Position classification", [
+        ("Section 1 / S1", "Top-conviction holding — the manager's highest-conviction, largest-weight positions."),
+        ("Section 3 / S3", "New major position — a newly initiated significant holding this period (an initiation)."),
+        ("Section 4 / S4", "Material add — a meaningful increase to an existing position."),
+        ("Section 5", "Researcher-flagged position (letters, interviews, primary research) without a 13F section."),
+        ("ST  (prefix)", "Within-style: counted only across funds in THIS macro-style. e.g. ST S3 = funds in this style initiating a new major position; ST Holders = holders within the style."),
+        ("Sub (prefix)", "Within sub-group: counted only across funds in this sub-group tier (e.g. Sub Holders)."),
+        ("Uni (prefix)", "Universe-wide: counted across all 445 funds (e.g. Uni 13F)."),
+    ]),
+    ("Smart money & conviction", [
+        ("13F", "Number of distinct 13F filers (funds) holding the name."),
+        ("Holders", "Count of funds holding the name (overall, or within style / sub-group when prefixed)."),
+        ("pB Max", "Largest single-fund position weight — the maximum % of any one fund's book in the name."),
+        ("pB ≥5%", "Number of funds with at least 5% of their book in the name (a concentration cluster)."),
+        ("%Book", "A position's weight as a percent of the fund's reported equity book."),
+        ("Score", "Unified score: log(13F)×2 + section weights + concentration + activist + insider + catalyst − sells (full formula on README)."),
+        ("Global Score", "Score excluding US-only signals (Form 4, clusters) so foreign listings rank on equal footing."),
+        ("Rev Pref", "Revealed preference = 2×S3 + 1×S4 + 0.5×S1 — measures active accumulation, not static holding."),
+        ("Asym", "Asymmetry score — margin-of-safety (cheap valuation + below smart-money entry) × upside (conviction + catalyst + small-cap room)."),
+    ]),
+    ("Activist & insider (SEC)", [
+        ("13D", "Number of SC 13D / 13G beneficial-ownership filings (a ≥5% stake)."),
+        ("Act %", "Largest activist stake disclosed via 13D/G (max percent of share class)."),
+        ("Clu $M", "Insider cluster size — total dollars of a live (≤180-day) multi-insider open-market buy cluster."),
+        ("F4 Buy / F4 $M", "Form 4 open-market insider purchases (transaction code P), in millions of dollars."),
+        ("F4 Buy ≤30d / 180d", "Insider open-market buys reported within the last 30 / 180 days."),
+        ("F4 Sell", "Form 4 open-market insider sales (code S) — a counter-signal."),
+        ("Weighted $M", "Recency-weighted insider buys: ≤30d ×1.0, 31–60d ×0.6, 61–120d ×0.3, 121–180d ×0.1."),
+        ("# Insiders / # Buyers", "Distinct insiders buying in the window."),
+        ("Cluster? / clstr", "A live insider buy cluster is present for the name."),
+    ]),
+    ("Valuation", [
+        ("Mcap", "Market capitalization in USD ($M, auto-scaled to $B / $T). Foreign caps are FX-converted to USD."),
+        ("EV/EBITDA", "Enterprise value ÷ trailing EBITDA (shown ×). A negative figure means negative EBITDA."),
+        ("P/B", "Price ÷ book value per share (shown ×). A negative figure means negative book equity."),
+        ("P/E", "Price ÷ trailing-twelve-month earnings per share (shown ×)."),
+    ]),
+    ("Entry / setup", [
+        ("Entry / Bucket", "Where the current price sits versus the smart-money cost anchor: below / near / above."),
+        ("Anchor $", "Estimated smart-money cost basis (cost_basis / filing text / Form-4 buy average / 80th-percentile)."),
+        ("vs Entry %", "Current price relative to the anchor (negative = trading below where smart money bought)."),
+        ("Now $", "Current share price (USD)."),
+        ("ER %", "Expected return — base-rate-weighted historical 12-month excess for the name's factor tags."),
+    ]),
+    ("Catalysts (8-K, ≤180 days)", [
+        ("M&A", "Item 1.01 / 2.01 — merger, acquisition, or material definitive agreement."),
+        ("Ctrl / CTRL", "Item 5.01 — change of control of the registrant."),
+        ("Director", "Item 5.02 — departure / appointment of directors or officers."),
+        ("PIPE", "Item 3.02 — unregistered sale of equity (potential dilution)."),
+        ("Bnk", "Item 1.03 — bankruptcy or receivership."),
+        ("Total Events", "Count of distinct 8-K material events in the window."),
+    ]),
+    ("Size buckets", [
+        ("nano", "Under $50M market cap."),
+        ("micro", "$50M – $300M."),
+        ("small", "$300M – $2B."),
+        ("mid", "$2B – $10B."),
+        ("large", "Over $10B."),
+        ("unknown", "Market cap unresolved (foreign / SPAC / warrant / defunct)."),
+    ]),
+    ("Sources & symbols", [
+        ("13F-HR", "SEC quarterly institutional holdings filing (the standard smart-money source)."),
+        ("XLSX", "Research-team position classification (sections 1 / 3 / 4 / 5)."),
+        ("SC 13D/G", "SEC beneficial-ownership filing (a ≥5% stake)."),
+        ("Value $M", "Position market value in $M (13F holdings); blank for 13D/G rows."),
+        ("—", "An em-dash means not applicable / not available for that cell."),
+    ]),
+]
+
+def write_legend_sheet(wb, index=1):
+    """Insert a 'Legend' sheet defining every column header / abbreviation used
+    across the workbook. Shared so both books document the same vocabulary."""
+    ws = wb.create_sheet("Legend", index)
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Legend — column definitions & abbreviations",
+                "What every column header and code means. Prefixes: ST = within macro-style · Sub = within sub-group · Uni = universe-wide.", 2)
+    ws.column_dimensions["A"].width = 24
+    ws.column_dimensions["B"].width = 116
+    row = 4
+    for group, items in LEGEND:
+        write_section_heading(ws, row, group, 2)
+        row += 1
+        for term, definition in items:
+            a = ws.cell(row=row, column=1, value=term)
+            a.font = TICKER_FONT
+            a.alignment = Alignment(horizontal="left", vertical="top")
+            b = ws.cell(row=row, column=2, value=definition)
+            b.font = BODY_FONT
+            b.alignment = Alignment(horizontal="left", vertical="top", wrap_text=True)
+            ws.row_dimensions[row].height = 30 if len(definition) <= 110 else 44
+            a.border = ROW_BORDER
+            b.border = ROW_BORDER
+            row += 1
+        row += 1  # gap between groups
+    ws.freeze_panes = "A4"
+    return ws
