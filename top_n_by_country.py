@@ -596,6 +596,10 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
 
         sheet.sheet_view.showGridLines = False
         sheet.freeze_panes = 'A18'
+        # QoL: sortable/filterable table (header row 17 → last data row)
+        from openpyxl.utils import get_column_letter as _gcl
+        if sheet.max_row >= 18:
+            sheet.auto_filter.ref = f"A17:{_gcl(sheet.max_column)}{sheet.max_row}"
 
     wb.save(path)
     print(f'  wrote {path}  ({len(wb.worksheets)} sheets: Cover + {len(country_rows)} countries)',

@@ -299,6 +299,12 @@ def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 
+    # QoL: freeze the header + sortable/filterable table (header row 3)
+    ws.freeze_panes = 'A4'
+    if ws.max_row >= 4:
+        from openpyxl.utils import get_column_letter as _gcl
+        ws.auto_filter.ref = f"B3:{_gcl(ws.max_column)}{ws.max_row}"
+
 
 # --- Main ------------------------------------------------------------------
 def main():

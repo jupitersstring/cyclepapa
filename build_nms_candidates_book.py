@@ -223,6 +223,10 @@ def build_tier_sheet(ws, tier_name: str, df: pd.DataFrame):
 
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = 'A4'
+    # QoL: sortable/filterable table (header row 3 → last data row)
+    from openpyxl.utils import get_column_letter as _gcl
+    if ws.max_row >= 4:
+        ws.auto_filter.ref = f"B3:{_gcl(ws.max_column)}{ws.max_row}"
 
 
 def main():

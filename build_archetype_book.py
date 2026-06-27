@@ -235,6 +235,9 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
 
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = 'A13'
+    # QoL: sortable/filterable table (header row 11 → last data row)
+    if ws.max_row >= 13:
+        ws.auto_filter.ref = f"A11:{get_column_letter(ws.max_column)}{ws.max_row}"
 
 
 def main():
