@@ -116,26 +116,40 @@ def refresh_panel(isos: list[str] | None = None, year: str = "2026",
     indexed by ISO2 with one column per indicator.
     """
     isos = isos or list(ISO2_TO_ISO3.keys())
-    rows = {}
+    _CACHE_DIR.mkdir(exist_ok=True)
+    # Start from existing cache so a partial run never loses prior fields, and
+    # a timeout (the IMF endpoint is ~3.5s/call) keeps everything fetched so far.
+    rows: dict = {}
+    if _CACHE_FILE.exists():
+        try:
+            rows = json.loads(_CACHE_FILE.read_text()).get("data", {})
+        except Exception:
+            rows = {}
+
+    def _flush():
+        payload = {"asof": year, "fetched": int(time.time()), "data": rows}
+        _CACHE_FILE.write_text(json.dumps(payload, indent=2))
+
     for iso2 in isos:
         iso3 = ISO2_TO_ISO3.get(iso2)
         if not iso3:
             continue
-        rec = {}
+        rec = rows.get(iso2, {})
         for field, ind in IMF_INDICATORS.items():
-            rec[field] = _imf_series(ind, iso3, year)
+            v = _imf_series(ind, iso3, year)
+            if v is not None:
+                rec[field] = v
             time.sleep(polite_delay)
         for field, ind in WB_INDICATORS.items():
-            rec[field] = _wb_series(ind, iso2)
+            v = _wb_series(ind, iso2)
+            if v is not None:
+                rec[field] = v
             time.sleep(polite_delay)
         rows[iso2] = rec
+        _flush()  # incremental: survive a timeout mid-run
+
     df = pd.DataFrame.from_dict(rows, orient="index")
     df.index.name = "iso"
-
-    _CACHE_DIR.mkdir(exist_ok=True)
-    payload = {"asof": year, "fetched": int(time.time()),
-               "data": df.to_dict(orient="index")}
-    _CACHE_FILE.write_text(json.dumps(payload, indent=2))
     return df
 
 

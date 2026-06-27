@@ -1,12 +1,12 @@
 {
   "asof": "2026",
-  "fetched": 1782559622,
+  "fetched": 1782560394,
   "data": {
     "US": {
-      "ca_balance": null,
-      "fiscal_balance": null,
-      "govt_debt": null,
-      "real_growth": null,
+      "ca_balance": -3.7,
+      "fiscal_balance": -7.5,
+      "govt_debt": 125.8,
+      "real_growth": 2.3,
       "primary_balance": null,
       "domestic_credit_priv": 201.218305876064,
       "market_cap": 216.290842771421,
@@ -25,14 +25,14 @@
       "investment": 19.1197244388535
     },
     "DE": {
-      "ca_balance": null,
-      "fiscal_balance": null,
-      "govt_debt": null,
-      "real_growth": null,
+      "ca_balance": 3.9,
+      "fiscal_balance": -3.8,
+      "govt_debt": 64.6,
+      "real_growth": 0.8,
       "primary_balance": null,
-      "domestic_credit_priv": NaN,
+      "domestic_credit_priv": 77.253484574492,
       "market_cap": 43.6283922696023,
-      "gross_savings": NaN,
+      "gross_savings": 27.1419009835217,
       "investment": 21.4994328905028
     },
     "JP": {
@@ -69,14 +69,14 @@
       "investment": 40.6111616668625
     },
     "BR": {
-      "ca_balance": null,
-      "fiscal_balance": null,
-      "govt_debt": null,
-      "real_growth": null,
+      "ca_balance": -2.7,
+      "fiscal_balance": -7.7,
+      "govt_debt": 96.5,
+      "real_growth": 1.9,
       "primary_balance": null,
       "domestic_credit_priv": 75.6308730939542,
-      "market_cap": NaN,
-      "gross_savings": NaN,
+      "market_cap": 30.1448139796022,
+      "gross_savings": 14.1411508180947,
       "investment": 16.9814356039822
     },
     "MX": {
