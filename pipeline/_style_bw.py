@@ -14,6 +14,7 @@ Design grammar:
 """
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.properties import PageSetupProperties
 
 TNR = "Times New Roman"
 
@@ -250,3 +251,35 @@ def write_legend_sheet(wb, index=1):
         row += 1  # gap between groups
     ws.freeze_panes = "A4"
     return ws
+
+def add_contents_index(ws, sheetnames, exclude=("README",)):
+    """Append a clickable 'Contents' index to the README sheet — one internal
+    hyperlink per sheet so the reader can jump straight to any tab. Monochrome:
+    black text, underlined to signal it is clickable."""
+    row = (ws.max_row or 1) + 2
+    write_section_heading(ws, row, "Contents — click to open a sheet", 2)
+    row += 1
+    link_font = Font(name=TNR, size=SIZE_BODY, color=BLACK, underline="single")
+    for name in sheetnames:
+        if name in exclude:
+            continue
+        c = ws.cell(row=row, column=1, value=name)
+        c.hyperlink = f"#'{name}'!A1"
+        c.font = link_font
+        c.alignment = Alignment(horizontal="left", vertical="center")
+        ws.row_dimensions[row].height = 16
+        row += 1
+
+def set_print_layout(wb, header_rows=4):
+    """Sensible print defaults on every sheet: landscape, fit-to-width, and the
+    title/header rows repeated at the top of each printed page."""
+    for ws in wb.worksheets:
+        ws.page_setup.orientation = "landscape"
+        ws.page_setup.fitToWidth = 1
+        ws.page_setup.fitToHeight = 0
+        ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
+        ws.print_options.horizontalCentered = False
+        try:
+            ws.print_title_rows = f"1:{header_rows}"
+        except Exception:
+            pass

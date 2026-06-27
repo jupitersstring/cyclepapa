@@ -13,7 +13,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
     write_title, write_section_heading, write_table_header, write_table_rows,
-    autosize, write_legend_sheet,
+    autosize, write_legend_sheet, add_contents_index, set_print_layout,
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     BODY_FONT, BODY_ITALIC, SECTION_FONT, MONO_FONT, TICKER_FONT,
@@ -92,9 +92,9 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         "SELECT fund FROM fund_style WHERE macro_style = ?", (macro_style,))]
     write_title(ws, macro_style,
                 f"Top picks held by funds in this style ({len(style_funds)} funds).",
-                13)
+                15)
     row = 4
-    write_section_heading(ws, row, "Top picks — most held within this style", 13)
+    write_section_heading(ws, row, "Top picks — most held within this style", 15)
     row += 1
     hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","S1","Mcap","Bucket","EV/EBITDA","P/B","Act %","Clu $M","F4 Buy","Name"]
     write_table_header(ws, row, hdr)
@@ -562,14 +562,15 @@ def sheet_ticker_reference(wb, conn):
     summary — so any symbol in the style book can be looked up. Sorted A–Z."""
     ws = wb.create_sheet("Ticker Reference")
     write_title(ws, "Ticker Reference — name, industry, business",
-                "Every symbol in the universe with its company name, sector, industry, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 5)
-    hdr = ["Ticker", "Name", "Sector", "Industry", "Business Summary"]
+                "Every symbol in the universe with its company name, sector, industry, market cap, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 6)
+    hdr = ["Ticker", "Name", "Sector", "Industry", "Mcap", "Business Summary"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker,
                COALESCE(tm.name, yf.long_name)                       AS name,
                COALESCE(yf.sector, tm.sector)                        AS sector,
                COALESCE(yf.industry, tm.industry, tm.sic_description) AS industry,
+               us.mcap_m,
                yf.business_summary
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
@@ -581,15 +582,18 @@ def sheet_ticker_reference(wb, conn):
     for r in rows:
         if r[0] in ETFs: continue
         out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
-                    (r[3] or "")[:30], _one_liner(r[4])])
+                    (r[3] or "")[:30], r[4] or "", _one_liner(r[5])])
     write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 9
     ws.column_dimensions["B"].width = 34
     ws.column_dimensions["C"].width = 20
     ws.column_dimensions["D"].width = 28
-    ws.column_dimensions["E"].width = 100
+    ws.column_dimensions["E"].width = 12
+    ws.column_dimensions["F"].width = 100
 
 def main():
     conn = sqlite3.connect(DB)
@@ -612,10 +616,19 @@ def main():
 
     sheet_ticker_reference(wb, conn)
 
+    # AutoFilter on the single-table Ticker Reference (header at row 4)
+    if "Ticker Reference" in wb.sheetnames:
+        ws = wb["Ticker Reference"]
+        if ws.max_row > 4:
+            ws.auto_filter.ref = f"A4:{get_column_letter(ws.max_column)}{ws.max_row}"
+
     # README + meta tabs in lightest grey for distinction
     for nav in ("README", "Legend", "Fund Roster", "Overview", "Sub-Group Tiers", "Ticker Reference"):
         if nav in wb.sheetnames:
             wb[nav].sheet_properties.tabColor = "F2F2F2"
+
+    add_contents_index(wb["README"], wb.sheetnames)
+    set_print_layout(wb)
 
     wb.save(OUT)
     print(f"wrote {OUT}")

@@ -14,7 +14,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
     write_title, write_section_heading, write_table_header, write_table_rows,
-    autosize, write_legend_sheet,
+    autosize, write_legend_sheet, add_contents_index, set_print_layout,
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     TNR, SIZE_BODY, BODY_FONT, BODY_ITALIC, SECTION_FONT, TICKER_FONT, MONO_FONT,
@@ -608,7 +608,7 @@ def sheet_valuation(wb, conn):
     ws = wb.create_sheet("Valuation")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Valuation — EV/EBITDA & P/B among smart-money names",
-                "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 12)
+                "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 13)
     hdr = ["Ticker","EV/EBITDA","P/B","P/E","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector"]
     write_table_header(ws, 4, hdr)
     # Floor at 2x — below that is almost always a data artifact (warrant,
@@ -699,7 +699,7 @@ def sheet_global_picks(wb, conn):
     ws = wb.create_sheet("Global Picks")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Global Picks — non-US listings, fair-score",
-                "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 11)
+                "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 15)
     hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
@@ -791,7 +791,7 @@ def sheet_bill_miller(wb, conn):
     ws = wb.create_sheet("Bill Miller")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Bill Miller — both Funds",
-                "Miller Value Partners (Bill IV, Sarasota) + Patient Capital Management (Bill III). Side-by-side with overlap.", 10)
+                "Miller Value Partners (Bill IV, Sarasota) + Patient Capital Management (Bill III). Side-by-side with overlap.", 12)
     funds = [
         ("Bill IV — Miller Value Partners", "Miller Value Partners%"),
         ("Bill III — Patient Capital",       "Patient Capital%"),
@@ -896,14 +896,15 @@ def sheet_ticker_reference(wb, conn):
     ws = wb.create_sheet("Ticker Reference")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Ticker Reference — name, industry, business",
-                "Every symbol in the universe with its company name, sector, industry, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 5)
-    hdr = ["Ticker", "Name", "Sector", "Industry", "Business Summary"]
+                "Every symbol in the universe with its company name, sector, industry, market cap, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 6)
+    hdr = ["Ticker", "Name", "Sector", "Industry", "Mcap", "Business Summary"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker,
                COALESCE(tm.name, yf.long_name)                       AS name,
                COALESCE(yf.sector, tm.sector)                        AS sector,
                COALESCE(yf.industry, tm.industry, tm.sic_description) AS industry,
+               us.mcap_m,
                yf.business_summary
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
@@ -915,15 +916,18 @@ def sheet_ticker_reference(wb, conn):
     for r in rows:
         if r[0] in ETFs: continue
         out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
-                    (r[3] or "")[:30], _one_liner(r[4])])
+                    (r[3] or "")[:30], r[4] or "", _one_liner(r[5])])
     write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 9
     ws.column_dimensions["B"].width = 34
     ws.column_dimensions["C"].width = 20
     ws.column_dimensions["D"].width = 28
-    ws.column_dimensions["E"].width = 100
+    ws.column_dimensions["E"].width = 12
+    ws.column_dimensions["F"].width = 100
 
 TAB_COLORS = {
     # Navigation / meta — lightest
@@ -1001,10 +1005,29 @@ def main():
     sheet_all_funds(wb, conn)
     sheet_ticker_reference(wb, conn)
 
+    # AutoFilter on single-table sheets (header at row 4) — lets the reader
+    # sort / filter by any column in Excel. Multi-table sheets are excluded.
+    AF_SHEETS = {
+        "Top 100", "Nano (<$50M)", "Micro ($50M–$300M)", "Small ($300M–$2B)",
+        "Mid ($2B–$10B)", "Material + New", "Activist 10+", "Insider Buys ≤30d",
+        "Insider F4 Buys", "Insider Clusters", "Non-Biotech Top 100", "In The Money",
+        "Asymmetry", "Revealed Preference", "Valuation", "Catalysts 8-K",
+        "Global Picks", "Unknown Mcap", "All Positions", "All Funds",
+        "Fund Coverage", "Ticker Reference",
+    }
+    for sn in AF_SHEETS:
+        if sn in wb.sheetnames:
+            ws = wb[sn]
+            if ws.max_row > 4:
+                ws.auto_filter.ref = f"A4:{get_column_letter(ws.max_column)}{ws.max_row}"
+
     # Tab colour-coding — grayscale tones by theme
     for sname, color in TAB_COLORS.items():
         if sname in wb.sheetnames:
             wb[sname].sheet_properties.tabColor = color
+
+    add_contents_index(wb["README"], wb.sheetnames)
+    set_print_layout(wb)
 
     wb.save(OUT)
     print(f"wrote {OUT}")
