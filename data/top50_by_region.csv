@@ -1,10 +1,10 @@
 region,rank,symbol,name,industry,mcap_m,score,revenue_growth,ebitda_growth,earnings_growth,enterpriseToEbitda,forwardPE,priceToBook,ret_12m,ret_24m
 US,1,TASK,TaskUs Inc. Class A Common Stock,Software,579.7,0.802,0.19,0.325,1.23,4.458,4.163,0.955,-0.415,-0.321
 US,2,OPRX,OptimizeRx Corporation,Health Care Providers & Services,97.4,0.802,0.188,,,5.353,4.912,0.759,-0.572,-0.57
-US,3,EQT,EQT Corporation,"Oil, Gas & Consumable Fuels",34357.5,0.799,0.639,1.054,7.844,5.7,11.809,1.368,0.008,0.373
+US,3,EQT,EQT Corporation,"Oil, Gas & Consumable Fuels",34357.5,0.8,0.639,1.054,7.844,5.7,11.809,1.368,0.008,0.373
 US,4,EXE,Expand Energy Corporation Common Stock,"Oil, Gas & Consumable Fuels",22243.5,0.774,1.863,4.887,,3.379,9.643,1.142,-0.174,0.082
 US,5,AII,American Integrity Insurance Group Inc. Common Stock,Insurance,320.5,0.77,0.353,,1.507,1.765,5.432,0.955,0.042,
-US,6,TWFG,TWFG Inc. Class A Common Stock,Insurance,244.0,0.768,0.22,0.385,13.997,5.696,17.067,3.846,-0.464,
+US,6,TWFG,TWFG Inc. Class A Common Stock,Insurance,244.0,0.769,0.22,0.385,13.997,5.696,17.067,3.846,-0.464,
 US,7,JCAP,Jefferson Capital Inc. Common Stock,Capital Markets,860.1,0.768,0.415,0.444,0.458,6.006,5.338,1.94,-0.065,
 US,8,MEG,"Montrose Environmental Group, Inc.",Transportation Infrastructure,800.8,0.767,0.193,4.711,,17.054,13.564,1.763,-0.18,-0.659
 US,9,BTMD,Biote Corp. Class A Common Stock,Health Care Providers & Services,71.1,0.763,-0.025,0.115,7.567,5.232,3.509,-1.069,-0.422,-0.7
@@ -14,7 +14,7 @@ US,12,GTM,ZoomInfo Technologies Inc Common Stock,Software,981.4,0.753,0.029,0.71
 US,13,CNX,CNX Resources Corporation,"Oil, Gas & Consumable Fuels",4766.4,0.751,0.768,,,3.344,7.956,1.034,0.044,0.281
 US,14,BKV,BKV Corporation Common Stock,"Oil, Gas & Consumable Fuels",2903.1,0.749,0.478,4.969,,6.642,12.078,1.31,0.234,
 US,15,ACIC,Atlas Crest Investment Corp.,Diversified Financial Services,479.3,0.748,0.131,0.379,0.411,3.176,8.242,1.423,-0.003,0.092
-US,16,PD,"PagerDuty, Inc.",Software,767.4,0.746,0.054,,,18.986,7.118,3.32,-0.302,-0.475
+US,16,PD,"PagerDuty, Inc.",Software,767.4,0.747,0.054,,,18.986,7.118,3.32,-0.302,-0.475
 US,17,ENR,"Energizer Holdings, Inc.",Electrical Equipment,1247.6,0.74,0.023,,5.273,7.188,4.991,7.204,-0.17,-0.297
 US,18,CRGY,Crescent Energy Company Class A Common Stock,"Oil, Gas & Consumable Fuels",3817.7,0.738,0.221,0.195,,6.077,4.739,0.815,0.442,0.003
 US,19,CBZ,"CBIZ, Inc.",Professional Services,1781.1,0.729,0.521,1.729,1.813,8.711,7.388,0.925,-0.54,-0.562
@@ -23,30 +23,30 @@ US,21,CRMD,CorMedix Inc.,Biotechnology,645.7,0.722,6.17,,,2.688,23.514,1.476,-0.
 US,22,BCRX,"BioCryst Pharmaceuticals, Inc.",Biotechnology,2096.8,0.72,0.941,,,8.321,12.132,-3.784,-0.069,0.35
 US,23,FRSH,Freshworks Inc. Class A Common Stock,Software,2684.2,0.718,0.164,,,56.108,12.094,2.657,-0.364,-0.246
 US,24,PATH,"UiPath, Inc. Class A",Software,6099.6,0.716,0.127,,,39.645,12.976,3.022,-0.119,-0.044
-US,25,VEL,"Velocity Financial, Inc.",Thrifts & Mortgage Finance,687.0,0.715,0.471,,0.535,,5.124,1.014,0.045,-0.054
+US,25,VEL,"Velocity Financial, Inc.",Thrifts & Mortgage Finance,687.0,0.716,0.471,,0.535,,5.124,1.014,0.045,-0.054
 US,26,IIIN,"Insteel Industries, Inc.",Building Products,548.8,0.715,0.224,,1.125,7.306,12.225,1.504,-0.217,-0.023
 US,27,CALX,"Calix, Inc.",Software,2535.3,0.715,0.203,,,40.047,15.879,3.469,-0.14,0.113
 US,28,GPOR,Gulfport Energy Corporation Common Shares,"Oil, Gas & Consumable Fuels",3029.5,0.714,0.485,9.168,,3.4,5.494,1.685,-0.12,0.042
 US,29,NUS,"Nu Skin Enterprises, Inc. Class A",Household Products,281.1,0.713,-0.143,,,2.91,4.386,0.354,-0.31,-0.541
 US,30,ONT,Onterris Inc. Common Stock,Professional Services,578.6,0.709,0.193,2.905,,14.213,9.179,1.315,-0.18,-0.659
 US,31,CELH,"Celsius Holdings, Inc.",Beverages,8505.2,0.708,0.855,0.046,-0.256,15.298,16.388,6.825,-0.122,-0.584
-US,32,CF,"IES Holdings, Inc.",Construction & Engineering,17260.2,0.706,0.193,0.197,0.217,6.329,10.121,3.231,0.265,0.474
-US,33,BOBS,Bob's Discount Furniture Inc. Common Stock,Automobiles,1776.5,0.706,0.168,0.276,0.384,12.071,12.846,3.758,,
+US,32,BOBS,Bob's Discount Furniture Inc. Common Stock,Automobiles,1776.5,0.706,0.168,0.276,0.384,12.071,12.846,3.758,,
+US,33,CF,"IES Holdings, Inc.",Construction & Engineering,17260.2,0.706,0.193,0.197,0.217,6.329,10.121,3.231,0.265,0.474
 US,34,SKWD,Skyward Specialty Insurance Group Inc. Common Stock,Insurance,1788.8,0.706,0.16,,0.431,6.115,8.004,1.604,-0.304,0.182
-US,35,OPFI,OppFi Inc. Class A Common Stock,Software,1222.8,0.704,0.135,0.256,2.628,,3.967,2.966,-0.33,1.712
+US,35,OPFI,OppFi Inc. Class A Common Stock,Software,1222.8,0.705,0.135,0.256,2.628,,3.967,2.966,-0.33,1.712
 US,36,PRGS,Progress Software Corporation,Software,1381.4,0.704,0.298,0.223,0.069,7.998,5.417,2.769,-0.467,-0.348
 US,37,VRRM,Verra Mobility Corporation,Professional Services,685.1,0.702,0.114,0.441,3.35,4.836,4.127,2.364,-0.809,-0.831
-US,38,SPSC,"SPS Commerce, Inc.",Software,2083.4,0.7,0.178,0.295,0.211,10.951,10.862,2.179,-0.597,-0.698
+US,38,SPSC,"SPS Commerce, Inc.",Software,2083.4,0.701,0.178,0.295,0.211,10.951,10.862,2.179,-0.597,-0.698
 US,39,ECPG,"Encore Capital Group, Inc.",Thrifts & Mortgage Finance,1713.7,0.699,0.043,2.454,,7.79,5.985,1.661,1.109,0.807
 US,40,CLX,The Clorox Company,Household Products,10885.3,0.696,0.002,,1.893,11.255,14.3,-162.491,-0.287,-0.261
-US,41,PYPL,"PayPal Holdings, Inc.",Consumer Finance,39474.2,0.696,0.043,0.106,0.262,6.361,7.747,1.993,-0.36,-0.286
+US,41,PYPL,"PayPal Holdings, Inc.",Consumer Finance,39474.2,0.695,0.043,0.106,0.262,6.361,7.747,1.993,-0.36,-0.286
 US,42,RRC,Range Resources Corporation,"Oil, Gas & Consumable Fuels",9177.5,0.695,0.273,,1.471,6.02,8.36,1.994,0.034,0.076
-US,43,CENT,Central Garden & Pet Company,Food & Staples Retailing,2407.7,0.694,-0.022,0.213,0.508,8.78,12.431,1.456,0.067,-0.114
-US,44,MDXG,"MiMedx Group, Inc.",Health Care Technology,548.1,0.694,0.2,0.214,0.145,7.676,30.041,2.125,-0.428,-0.485
+US,43,MDXG,"MiMedx Group, Inc.",Health Care Technology,548.1,0.694,0.2,0.214,0.145,7.676,30.041,2.125,-0.428,-0.485
+US,44,CENT,Central Garden & Pet Company,Food & Staples Retailing,2407.7,0.694,-0.022,0.213,0.508,8.78,12.431,1.456,0.067,-0.114
 US,45,HUM,Humana Inc.,Health Care Providers & Services,36669.2,0.693,0.316,0.0,-0.016,8.668,19.609,1.974,0.331,-0.123
 US,46,CALM,"Cal-Maine Foods, Inc.",Household Products,3540.0,0.693,0.832,3.152,3.39,2.467,20.727,1.311,-0.18,0.37
 US,47,DH,Definitive Healthcare Corp. Class A Common Stock,Software,98.2,0.692,-0.042,,,3.618,4.986,0.67,-0.719,-0.825
-US,48,FAF,First American Financial Corporation,Insurance,6748.8,0.69,0.216,,3.743,5.563,9.114,1.232,0.229,0.277
+US,48,FAF,First American Financial Corporation,Insurance,6748.8,0.691,0.216,,3.743,5.563,9.114,1.232,0.229,0.277
 US,49,EIX,Edison International,Electric Utilities,26912.5,0.688,0.098,0.782,2.473,8.292,10.738,1.561,0.331,0.009
 US,50,KSS,Kohl's Corporation,Household Durables,1612.0,0.686,-0.043,0.126,1.495,6.454,9.642,0.4,0.831,-0.268
 EU,1,ZEAL.CO,Zealand Pharma A/S,Biotechnology,22181.5,0.831,145.989,,,1.31,34.445,1.503,-0.11,-0.646
@@ -59,26 +59,26 @@ EU,7,INDB.MI,Indel B S.p.A.,"Electronic Equipment, Instruments & Components",104
 EU,8,UBS.VI,UBM Development AG,Real Estate Management & Development,130.8,0.703,0.245,-0.471,,9.937,7.491,0.572,-0.167,-0.178
 EU,9,HUSQ-A.ST,Husqvarna AB Class B,Building Products,24729.0,0.703,-0.036,0.03,0.334,7.968,,0.983,-0.113,-0.455
 EU,10,ZZ-B.ST,Zinzino Holding AB,Household Products,5871.8,0.703,0.515,0.798,0.917,10.739,25.421,7.765,-0.396,1.301
-EU,11,XANO-B.ST,XANO Industri AB (publ),Machinery,2932.9,0.7,0.026,0.558,0.78,9.83,,1.564,-0.204,-0.421
-EU,12,YEIS.MC,"Elaia Investment Spain Socimi, S.A.",Equity Real Estate Investment Trusts (REITs),10.1,0.7,0.001,0.638,1.941,,,0.19,-0.195,-0.522
+EU,11,YEIS.MC,"Elaia Investment Spain Socimi, S.A.",Equity Real Estate Investment Trusts (REITs),10.1,0.7,0.001,0.638,1.941,,,0.19,-0.195,-0.522
+EU,12,XANO-B.ST,XANO Industri AB (publ),Machinery,2932.9,0.7,0.026,0.558,0.78,9.83,,1.564,-0.204,-0.421
 EU,13,FHW.F,Fernheizwerk Neukolln Aktiengesellschaft,Water Utilities,44.8,0.697,0.077,-0.035,-0.098,4.967,,0.726,-0.174,-0.262
 EU,14,AF.PA,AIR FRANCE - KLM,Airlines,3059.4,0.696,0.049,0.4,4.025,3.916,2.426,-12.11,0.265,0.423
-EU,15,EXS.ST,Exsitec Holding AB,IT Services,1416.8,0.691,0.103,0.339,0.453,10.912,15.538,2.566,-0.184,-0.376
+EU,15,EXS.ST,Exsitec Holding AB,IT Services,1416.8,0.69,0.103,0.339,0.453,10.912,15.538,2.566,-0.184,-0.376
 EU,16,INTRUM.ST,Intrum AB (publ),Consumer Finance,2659.0,0.69,-0.062,1.024,,7.433,3.05,0.245,-0.672,-0.344
 EU,17,ALWEC.PA,We.Connect SA,"Electronic Equipment, Instruments & Components",77.3,0.689,0.512,2.953,3.862,1.187,,0.791,0.396,0.383
-EU,18,ALBLD.PA,Bilendi SA,Diversified Telecommunication Services,67.8,0.688,0.422,0.501,-0.33,5.459,10.097,1.569,-0.335,-0.151
+EU,18,ALBLD.PA,Bilendi SA,Diversified Telecommunication Services,67.8,0.687,0.422,0.501,-0.33,5.459,10.097,1.569,-0.335,-0.151
 EU,19,HBH.F,HORNBACH Holding AG & Co. KGaA,Household Durables,1283.1,0.686,0.038,,-0.016,7.702,8.072,0.621,-0.225,0.076
 EU,20,AB9.DE,ABO Wind AG,Construction & Engineering,55.5,0.686,0.489,-0.003,-0.061,5.034,-1.696,0.244,-0.844,-0.887
 EU,21,GSF.OL,Grieg Seafood ASA,Food & Staples Retailing,3528.9,0.685,0.114,-0.245,,2.489,8.492,0.784,-0.173,-0.002
 EU,22,ADEN.SW,Adecco Group AG,Professional Services,2963.8,0.679,-0.002,-0.058,-0.03,7.847,6.827,0.897,-0.237,-0.368
 EU,23,VASTB.BR,Vastned Retail Belgium SA,Equity Real Estate Investment Trusts (REITs),478.1,0.679,2.508,4.362,3.612,17.422,12.489,0.841,-0.018,0.271
 EU,24,FMEA.F,Fresenius Medical Care AG & Co. KGaA,Health Care Equipment & Supplies,10098.0,0.675,0.015,0.06,0.819,6.05,6.288,0.767,-0.179,0.143
-EU,25,JMT.LS,"Jeronimo Martins, SGPS, S.A.",Food & Staples Retailing,11393.5,0.674,0.076,0.106,0.078,7.867,12.726,3.347,-0.126,0.056
+EU,25,JMT.LS,"Jeronimo Martins, SGPS, S.A.",Food & Staples Retailing,11393.5,0.673,0.076,0.106,0.078,7.867,12.726,3.347,-0.126,0.056
 EU,26,HYQ.DE,Hypoport SE,Consumer Finance,573.0,0.671,0.075,0.243,1.086,16.226,13.966,1.506,-0.574,-0.712
 EU,27,SUR.DE,SURTECO GROUP SE,Paper & Forest Products,152.7,0.669,0.026,0.461,,7.204,7.758,0.411,-0.379,-0.377
 EU,28,ALMRB.PA,Mr. Bricolage SA,Household Durables,42.8,0.669,0.026,-0.248,-0.395,3.009,2.985,0.297,-0.509,-0.51
-EU,29,BOREO.HE,Boreo Oyj,Electrical Equipment,52.4,0.669,0.144,0.265,2.545,10.088,9.089,2.521,0.284,-0.023
-EU,30,CTY1S.HE,Citycon Oyj,Real Estate Management & Development,510.3,0.668,-0.055,5.498,,14.898,6.269,0.454,0.003,0.007
+EU,29,CTY1S.HE,Citycon Oyj,Real Estate Management & Development,510.3,0.668,-0.055,5.498,,14.898,6.269,0.454,0.003,0.007
+EU,30,BOREO.HE,Boreo Oyj,Electrical Equipment,52.4,0.668,0.144,0.265,2.545,10.088,9.089,2.521,0.284,-0.023
 EU,31,MIKO.BR,Miko NV,Food & Staples Retailing,77.0,0.668,0.128,0.102,,5.129,7.939,0.596,0.271,0.085
 EU,32,PROF-B.ST,ProfilGruppen AB (publ),Building Products,705.8,0.668,0.026,-0.032,-0.215,4.029,,0.977,-0.449,-0.206
 EU,33,IF.MI,Banca IFIS S.p.A.,Banks,1219.8,0.667,0.181,,1.03,,6.057,0.575,-0.033,0.242
@@ -87,25 +87,25 @@ EU,35,ASC.MI,Ascopiave S.p.A.,Gas Utilities,701.3,0.664,0.192,0.561,1.424,8.05,1
 EU,36,TMV.DE,TeamViewer AG,Software,994.4,0.663,0.112,0.105,-0.039,6.503,5.658,6.278,-0.337,-0.395
 EU,37,IDIP.PA,IDI,Capital Markets,510.8,0.663,0.964,,2.013,7.338,5.826,0.69,-0.044,0.196
 EU,38,CAMB.BR,Campine NV,Transportation Infrastructure,385.5,0.662,1.098,1.12,1.543,5.042,,2.828,-0.034,2.523
-EU,39,ALSN.SW,ALSO Holding AG,IT Services,2414.0,0.661,0.42,0.182,-0.05,8.482,15.201,2.093,-0.268,-0.277
+EU,39,ALSN.SW,ALSO Holding AG,IT Services,2414.0,0.66,0.42,0.182,-0.05,8.482,15.201,2.093,-0.268,-0.277
 EU,40,GRVO.PA,Graines Voltz S.A.,Construction Materials,28.0,0.659,0.026,6.736,,9.471,4.834,0.408,-0.055,-0.196
 EU,41,TLT1V.HE,Teleste Corporation,Communications Equipment,65.6,0.658,0.046,0.463,,12.054,8.732,1.131,0.239,0.36
-EU,42,ACE.MI,Acea S.p.A.,Multi-Utilities,4803.6,0.658,0.003,0.08,0.449,,14.276,1.77,0.1,0.565
+EU,42,ACE.MI,Acea S.p.A.,Multi-Utilities,4803.6,0.657,0.003,0.08,0.449,,14.276,1.77,0.1,0.565
 EU,43,VERK.HE,Verkkokauppa.com Oyj,Internet & Direct Marketing Retail,131.8,0.657,0.125,2.158,,7.738,11.838,3.341,0.157,0.347
 EU,44,NWL.MI,Newlat Food S.p.A.,Food & Staples Retailing,637.3,0.656,0.804,1.202,1.335,5.102,-42.17,0.823,-0.108,0.252
 EU,45,KTA.DE,Knaus Tabbert AG,Automobiles,132.2,0.655,-0.074,,,25.326,8.135,1.717,-0.049,-0.674
 EU,46,GYLD-B.CO,Gyldendal A/S,Diversified Telecommunication Services,1839.0,0.653,0.105,0.227,0.788,5.055,,1.003,0.302,0.292
-EU,47,CYR.DE,cyan AG,Software,46.4,0.652,0.504,,,74.309,42.8,2.131,-0.213,-0.13
-EU,48,QAIR.ST,QleanAir Holding AB (publ),Construction & Engineering,319.5,0.652,0.01,0.583,,8.309,5.614,1.488,0.147,-0.368
-EU,49,SAP.F,SAP SE,Software,195270.1,0.651,0.077,0.832,1.292,15.492,19.525,4.365,-0.343,-0.094
-EU,50,FTON.SW,Feintool International Holding AG,Machinery,153.1,0.651,-0.081,1.413,,4.65,14.648,0.358,-0.126,-0.435
+EU,47,CYR.DE,cyan AG,Software,46.4,0.651,0.504,,,74.309,42.8,2.131,-0.213,-0.13
+EU,48,QAIR.ST,QleanAir Holding AB (publ),Construction & Engineering,319.5,0.651,0.01,0.583,,8.309,5.614,1.488,0.147,-0.368
+EU,49,FTON.SW,Feintool International Holding AG,Machinery,153.1,0.651,-0.081,1.413,,4.65,14.648,0.358,-0.126,-0.435
+EU,50,SAP.F,SAP SE,Software,195270.1,0.651,0.077,0.832,1.292,15.492,19.525,4.365,-0.343,-0.094
 UK,1,VTY.L,Vistry Group PLC,Construction & Engineering,827.3,0.736,-0.044,0.315,0.852,3.73,4.635,0.251,-0.592,-0.78
 UK,2,FLO.L,Flowtech Fluidpower plc,Trading Companies & Distributors,40.8,0.713,0.09,,,12.69,9.788,0.807,-0.229,-0.557
 UK,3,GEN.L,Genuit Group plc,Building Products,637.0,0.702,0.073,0.132,0.349,7.413,9.051,0.956,-0.357,-0.414
 UK,4,SPR.L,Springfield Properties Plc,Construction & Engineering,111.0,0.693,0.053,0.364,0.868,6.235,11.592,0.645,-0.113,-0.009
-UK,5,DFS.L,DFS Furniture plc,Household Durables,282.3,0.69,0.044,0.179,,7.183,7.471,1.012,-0.272,0.109
+UK,5,DFS.L,DFS Furniture plc,Household Durables,282.3,0.691,0.044,0.179,,7.183,7.471,1.012,-0.272,0.109
 UK,6,CRST.L,Crest Nicholson Holdings plc,Construction & Engineering,177.7,0.68,-0.012,,,6.79,19.021,0.247,-0.629,-0.712
-UK,7,VP.L,Vp plc,Commercial Services & Supplies,184.5,0.673,0.031,0.311,,5.338,7.808,1.244,-0.222,-0.31
+UK,7,VP.L,Vp plc,Commercial Services & Supplies,184.5,0.674,0.031,0.311,,5.338,7.808,1.244,-0.222,-0.31
 UK,8,ACSO.L,accesso Technology Group plc,Software,85.5,0.669,0.018,0.1,0.408,3.494,8.057,0.669,-0.495,-0.637
 UK,9,MAB1.L,Mortgage Advice Bureau (Holdings) plc,Thrifts & Mortgage Finance,296.9,0.665,0.113,0.228,0.18,,8.196,4.038,-0.413,-0.369
 UK,10,HFG.L,Hilton Food Group plc,Food & Staples Retailing,454.7,0.663,0.103,-0.038,1.008,7.219,9.57,1.242,-0.416,-0.437
@@ -113,7 +113,7 @@ UK,11,BRCK.L,Brickability Group Plc,Trading Companies & Distributors,159.5,0.659
 UK,12,RE.L,R.E.A. Holdings plc,Household Products,49.5,0.654,0.063,4.252,,6.29,4.372,0.621,0.329,0.232
 UK,13,MOTR.L,Motorpoint Group plc,Automobiles,103.5,0.65,0.08,1.598,,7.663,15.437,4.13,-0.272,-0.107
 UK,14,HMSO.L,Hammerson plc,Equity Real Estate Investment Trusts (REITs),1799.4,0.646,0.785,9.77,,22.478,14.122,0.858,0.136,0.227
-UK,15,FGP.L,FirstGroup plc,Road & Rail,934.8,0.644,0.093,0.297,,6.345,8.26,1.503,-0.253,0.088
+UK,15,FGP.L,FirstGroup plc,Road & Rail,934.8,0.645,0.093,0.297,,6.345,8.26,1.503,-0.253,0.088
 UK,16,JD.L,JD Sports Fashion plc,Specialty Retail,4003.7,0.643,0.105,0.082,-0.11,5.555,6.636,1.383,-0.057,-0.3
 UK,17,RKT.L,Reckitt Benckiser Group plc,Household Products,28727.3,0.637,0.003,0.609,1.231,9.426,12.541,3.76,-0.135,0.001
 UK,18,BPM.L,B.P. Marsh & Partners PLC,Capital Markets,246.6,0.635,1.3,,1.34,4.126,3.002,0.773,-0.007,0.353
@@ -130,18 +130,18 @@ UK,28,TIME.L,Time Finance plc,Consumer Finance,40.6,0.617,0.117,0.34,0.319,,5.75
 UK,29,SAVE.L,Savannah Energy PLC,"Oil, Gas & Consumable Fuels",137.4,0.616,0.055,0.056,,6.295,-17.736,0.305,-0.086,
 UK,30,AV.L,Aviva plc,Insurance,18156.9,0.616,0.439,,0.512,3.931,8.969,1.728,-0.021,0.273
 UK,31,NWF.L,NWF Group plc,"Oil, Gas & Consumable Fuels",66.5,0.612,-0.05,0.016,-0.319,8.814,6.851,0.748,-0.215,-0.239
-UK,32,PETS.L,Pets At Home Group Plc,Specialty Retail,838.6,0.611,0.001,0.037,0.114,8.534,10.599,0.862,-0.276,-0.358
+UK,32,PETS.L,Pets At Home Group Plc,Specialty Retail,838.6,0.612,0.001,0.037,0.114,8.534,10.599,0.862,-0.276,-0.358
 UK,33,TRCS.L,Tracsis plc,Software,104.3,0.609,0.011,0.123,0.066,12.377,11.341,1.602,-0.222,-0.517
 UK,34,MRO.L,Melrose Industries PLC,Machinery,5565.3,0.606,0.035,1.51,,8.115,9.546,1.987,-0.159,-0.193
-UK,35,TPT.L,Topps Tiles Plc,Household Durables,71.9,0.605,0.175,1.72,,9.104,8.176,9.415,0.05,-0.104
+UK,35,TPT.L,Topps Tiles Plc,Household Durables,71.9,0.606,0.175,1.72,,9.104,8.176,9.415,0.05,-0.104
 UK,36,TAM.L,Tatton Asset Management plc,Capital Markets,357.5,0.602,0.231,0.253,0.243,13.926,15.664,6.353,-0.137,-0.137
 UK,37,PHP.L,Primary Health Properties PLC,Equity Real Estate Investment Trusts (REITs),2372.0,0.601,1.409,,1.902,25.131,11.987,0.805,-0.075,-0.002
 UK,38,BKG.L,The Berkeley Group Holdings plc,Construction & Engineering,3152.0,0.596,0.009,-0.05,-0.039,5.936,11.31,0.904,-0.118,-0.284
-UK,39,LIO.L,Liontrust Asset Management PLC,Capital Markets,184.4,0.595,-0.142,1.477,,5.863,8.811,1.729,-0.253,-0.548
+UK,39,LIO.L,Liontrust Asset Management PLC,Capital Markets,184.4,0.596,-0.142,1.477,,5.863,8.811,1.729,-0.253,-0.548
 UK,40,NWG.L,NatWest Group plc,Banks,47556.2,0.595,0.133,,0.214,,7.153,1.218,0.168,0.916
 UK,41,VCT.L,Victrex plc,Chemicals,555.0,0.594,0.001,0.265,0.616,9.135,12.905,1.534,-0.178,-0.443
 UK,42,HWDN.L,Howden Joinery Group Plc,Household Durables,4195.9,0.593,0.041,0.072,0.074,10.888,14.078,3.517,-0.092,-0.115
-UK,43,PZC.L,PZ Cussons Plc,Household Products,359.0,0.591,-0.027,,,6.779,10.96,1.533,0.155,-0.135
+UK,43,PZC.L,PZ Cussons Plc,Household Products,359.0,0.592,-0.027,,,6.779,10.96,1.533,0.155,-0.135
 UK,44,MACF.L,Macfarlane Group PLC,Distributors,98.4,0.591,0.112,-0.211,-0.593,8.505,7.505,0.827,-0.464,-0.469
 UK,45,SFOR.L,S4 Capital plc,Diversified Telecommunication Services,293.6,0.589,-0.11,,,4.975,6.767,0.575,0.736,0.045
 UK,46,GRI.L,Grainger plc,Real Estate Management & Development,1130.3,0.586,-0.09,0.81,5.494,22.09,13.514,0.579,-0.305,-0.372
@@ -470,14 +470,14 @@ ANZ,18,MMI.AX,Metro Mining Limited,Metals & Mining,469.1,0.672,0.231,,,7.328,3.4
 ANZ,19,COF.AX,Centuria Office REIT,Equity Real Estate Investment Trusts (REITs),528.6,0.669,-0.045,,,,7.848,0.515,-0.156,-0.064
 ANZ,20,HDN.AX,HomeCo Daily Needs REIT,Equity Real Estate Investment Trusts (REITs),2528.1,0.669,0.026,1.175,2.052,,13.335,0.783,0.013,0.174
 ANZ,21,EQT.AX,EQT Holdings Limited,Capital Markets,411.8,0.669,0.048,0.407,0.604,4.779,8.988,1.003,-0.526,-0.479
-ANZ,22,AX1.AX,Accent Group Limited,"Textiles, Apparel & Luxury Goods",339.7,0.669,0.015,0.054,-0.031,5.892,7.02,0.685,-0.578,-0.681
+ANZ,22,AX1.AX,Accent Group Limited,"Textiles, Apparel & Luxury Goods",339.7,0.668,0.015,0.054,-0.031,5.892,7.02,0.685,-0.578,-0.681
 ANZ,23,ATM.NZ,The a2 Milk Company Limited,Household Products,4642.7,0.663,0.135,0.164,0.211,13.738,18.621,3.351,-0.242,-0.071
 ANZ,24,MAM.AX,Microequities Asset Management Group Limited,Capital Markets,53.6,0.657,0.16,0.334,0.193,3.879,,1.981,-0.089,-0.118
 ANZ,25,RRL.AX,REGIS RESOURCES LTD.,Metals & Mining,4657.1,0.656,0.305,6.383,,3.942,4.434,2.451,0.441,2.604
 ANZ,26,LSX.AX,Lion Selection Group Limited,Metals & Mining,126.1,0.651,10.516,0.314,34.387,1.441,,0.801,-0.021,1.024
 ANZ,27,EGG.AX,Enero Group Limited,Diversified Telecommunication Services,28.6,0.65,-0.767,,,1.207,4.632,0.207,-0.523,-0.726
-ANZ,28,WAF.AX,West African Resources Ltd,Metals & Mining,3531.9,0.65,1.117,1.238,1.117,3.855,3.424,2.052,0.361,0.919
-ANZ,29,AFG.AX,Australian Finance Group Limited,Thrifts & Mortgage Finance,438.9,0.649,0.164,-0.021,0.208,,7.682,1.891,-0.262,0.286
+ANZ,28,WAF.AX,West African Resources Ltd,Metals & Mining,3531.9,0.649,1.117,1.238,1.117,3.855,3.424,2.052,0.361,0.919
+ANZ,29,AFG.AX,Australian Finance Group Limited,Thrifts & Mortgage Finance,438.9,0.648,0.164,-0.021,0.208,,7.682,1.891,-0.262,0.286
 ANZ,30,GTK.NZ,Gentrack Group Limited,Software,461.1,0.647,0.079,0.252,1.186,24.809,31.157,1.876,-0.668,-0.6
 ANZ,31,SGP.AX,Stockland,Equity Real Estate Investment Trusts (REITs),9215.9,0.646,0.048,1.151,1.708,16.279,10.436,0.882,-0.282,-0.032
 ANZ,32,PGW.NZ,PGG Wrightson Limited,Professional Services,156.3,0.644,0.042,0.265,2.48,11.717,20.7,0.832,0.036,0.254
@@ -499,56 +499,56 @@ ANZ,47,CQE.AX,Charter Hall Social Infrastructure REIT,Equity Real Estate Investm
 ANZ,48,GPT.AX,GPT Group,Equity Real Estate Investment Trusts (REITs),8964.9,0.622,0.044,41.821,,22.065,12.825,0.844,-0.012,0.258
 ANZ,49,FLN.AX,Freelancer Limited,Professional Services,63.1,0.622,0.043,0.737,,60.241,50.0,2.745,-0.349,-0.222
 ANZ,50,SUN.AX,Suncorp Group Limited,Insurance,18822.0,0.621,0.157,,0.523,12.884,14.652,1.856,-0.168,-0.069
-CA,1,ARX.TO,ARC Resources Ltd.,"Oil, Gas & Consumable Fuels",18095.9,0.753,0.176,0.13,0.134,6.129,13.223,2.102,0.14,0.38
+CA,1,ARX.TO,ARC Resources Ltd.,"Oil, Gas & Consumable Fuels",18095.9,0.754,0.176,0.13,0.134,6.129,13.223,2.102,0.14,0.38
 CA,2,BCE.TO,BCE Inc.,Diversified Telecommunication Services,31771.2,0.749,0.002,0.91,17.779,8.882,12.597,1.58,0.173,-0.123
-CA,3,CAS.TO,Cascades Inc.,Paper & Forest Products,1104.3,0.735,0.016,0.362,,5.695,8.25,0.628,0.278,0.324
-CA,4,LAS-A.TO,Lassonde Industries Inc.,Beverages,1507.6,0.735,0.128,0.332,0.312,6.108,8.784,1.276,0.076,0.486
-CA,5,GFL.TO,GFL Environmental Inc.,Transportation Infrastructure,16903.1,0.716,0.078,0.984,,15.311,37.876,2.302,-0.319,-0.121
-CA,6,DOO.TO,BRP Inc.,Automobiles,6214.6,0.689,0.068,0.304,,7.583,16.834,8.922,0.291,-0.014
+CA,3,LAS-A.TO,Lassonde Industries Inc.,Beverages,1507.6,0.736,0.128,0.332,0.312,6.108,8.784,1.276,0.076,0.486
+CA,4,CAS.TO,Cascades Inc.,Paper & Forest Products,1104.3,0.736,0.016,0.362,,5.695,8.25,0.628,0.278,0.324
+CA,5,GFL.TO,GFL Environmental Inc.,Transportation Infrastructure,16903.1,0.717,0.078,0.984,,15.311,37.876,2.302,-0.319,-0.121
+CA,6,DOO.TO,BRP Inc.,Automobiles,6214.6,0.69,0.068,0.304,,7.583,16.834,8.922,0.291,-0.014
 CA,7,OGI.TO,OrganiGram Holdings Inc.,Pharmaceuticals,215.4,0.679,0.622,,,67.092,51.0,0.541,-0.168,-0.275
-CA,8,DNG.TO,Dynacor Gold Mines Inc.,Metals & Mining,282.7,0.677,0.398,0.115,0.261,6.402,5.281,1.523,0.536,0.358
+CA,8,DNG.TO,Dynacor Gold Mines Inc.,Metals & Mining,282.7,0.678,0.398,0.115,0.261,6.402,5.281,1.523,0.536,0.358
 CA,9,TVA-B.TO,TVA Group Inc.,Media,69.1,0.677,0.016,7.648,,0.745,8.889,0.196,1.133,0.368
-CA,10,AQN.TO,ALGONQUIN POWER & UTILITIES COR,Independent Power and Renewable Electricity Producers,6303.6,0.676,0.049,-0.111,,14.604,14.725,1.021,0.087,0.108
-CA,11,MTY.TO,MTY Food Group Inc.,"Hotels, Restaurants & Leisure",886.2,0.675,0.026,0.669,3.923,7.86,8.571,1.038,-0.053,-0.08
-CA,12,AC.TO,Air Canada,Airlines,6255.3,0.672,0.005,0.119,-0.626,4.858,9.504,2.355,0.034,0.217
+CA,10,AQN.TO,ALGONQUIN POWER & UTILITIES COR,Independent Power and Renewable Electricity Producers,6303.6,0.677,0.049,-0.111,,14.604,14.725,1.021,0.087,0.108
+CA,11,MTY.TO,MTY Food Group Inc.,"Hotels, Restaurants & Leisure",886.2,0.676,0.026,0.669,3.923,7.86,8.571,1.038,-0.053,-0.08
+CA,12,AC.TO,Air Canada,Airlines,6255.3,0.673,0.005,0.119,-0.626,4.858,9.504,2.355,0.034,0.217
 CA,13,ABX.TO,Barrick Gold Corporation,Metals & Mining,100061.4,0.666,0.312,0.594,1.329,9.125,9.199,2.644,1.155,1.735
-CA,14,K.TO,Kinross Gold Corporation,Metals & Mining,47895.7,0.663,0.369,0.635,1.519,9.393,8.101,3.815,0.895,2.58
-CA,15,BHC.TO,Bausch Health Companies Inc.,Pharmaceuticals,2603.1,0.66,0.067,0.127,,6.385,1.227,-0.916,-0.232,-0.269
-CA,16,CG.TO,Centerra Gold Inc.,Metals & Mining,4782.2,0.66,0.14,1.773,6.264,5.423,8.237,1.655,1.496,1.747
+CA,14,K.TO,Kinross Gold Corporation,Metals & Mining,47895.7,0.664,0.369,0.635,1.519,9.393,8.101,3.815,0.895,2.58
+CA,15,CG.TO,Centerra Gold Inc.,Metals & Mining,4782.2,0.661,0.14,1.773,6.264,5.423,8.237,1.655,1.496,1.747
+CA,16,BHC.TO,Bausch Health Companies Inc.,Pharmaceuticals,2603.1,0.66,0.067,0.127,,6.385,1.227,-0.916,-0.232,-0.269
 CA,17,WSP.TO,WSP Global Inc.,Construction & Engineering,25303.7,0.656,0.131,0.232,0.415,14.865,14.178,2.571,-0.321,-0.11
 CA,18,MRD.TO,Melcor Developments Ltd.,Real Estate Management & Development,532.6,0.653,0.175,0.578,0.73,6.21,8.91,0.421,0.337,0.654
 CA,19,KBL.TO,K-Bro Linen Inc.,Professional Services,537.3,0.653,0.356,0.32,-0.038,7.774,17.0,1.98,0.23,0.375
 CA,20,SPB.TO,Superior Plus Corp.,Gas Utilities,1866.7,0.653,0.033,0.221,,9.226,15.919,1.47,0.111,0.044
-CA,21,ERO.TO,Ero Copper Corp.,Metals & Mining,4646.6,0.649,0.671,32.522,,11.563,7.072,3.057,0.937,0.524
-CA,22,BPF-UN.TO,Boston Pizza Royalties Income Fund,"Hotels, Restaurants & Leisure",502.2,0.649,0.048,0.253,0.323,,11.98,1.731,0.274,0.707
-CA,23,KXS.TO,Kinaxis Inc.,Software,4648.0,0.645,0.134,1.637,1261.482,39.975,23.744,8.765,-0.16,0.078
-CA,24,AEM.TO,Agnico Eagle Mines Limited,Metals & Mining,123884.0,0.645,0.437,0.896,1.354,12.688,12.098,3.415,0.538,1.836
+CA,21,ERO.TO,Ero Copper Corp.,Metals & Mining,4646.6,0.65,0.671,32.522,,11.563,7.072,3.057,0.937,0.524
+CA,22,BPF-UN.TO,Boston Pizza Royalties Income Fund,"Hotels, Restaurants & Leisure",502.2,0.65,0.048,0.253,0.323,,11.98,1.731,0.274,0.707
+CA,23,AEM.TO,Agnico Eagle Mines Limited,Metals & Mining,123884.0,0.646,0.437,0.896,1.354,12.688,12.098,3.415,0.538,1.836
+CA,24,KXS.TO,Kinaxis Inc.,Software,4648.0,0.646,0.134,1.637,1261.482,39.975,23.744,8.765,-0.16,0.078
 CA,25,DR.TO,Medical Facilities Corporation,Health Care Equipment & Supplies,307.0,0.644,0.033,-0.124,-0.711,5.47,11.465,2.298,0.126,0.441
-CA,26,CNQ.TO,Canadian Natural Resources Limited,"Oil, Gas & Consumable Fuels",136405.4,0.642,0.064,0.42,0.772,10.494,12.847,3.056,0.583,0.463
-CA,27,EMA.TO,Emera Incorporated,Electric Utilities,21706.7,0.632,0.219,0.365,0.921,13.103,19.523,1.699,0.188,0.735
+CA,26,CNQ.TO,Canadian Natural Resources Limited,"Oil, Gas & Consumable Fuels",136405.4,0.643,0.064,0.42,0.772,10.494,12.847,3.056,0.583,0.463
+CA,27,EMA.TO,Emera Incorporated,Electric Utilities,21706.7,0.633,0.219,0.365,0.921,13.103,19.523,1.699,0.188,0.735
 CA,28,DCBO.TO,Docebo Inc.,Software,663.8,0.629,0.119,0.018,0.403,23.217,9.382,-792.488,-0.337,-0.505
-CA,29,STN.TO,Stantec Inc.,Construction & Engineering,11800.2,0.624,0.086,0.216,0.326,14.321,15.059,3.496,-0.298,-0.085
-CA,30,MEQ.TO,Mainstreet Equity Corp.,Real Estate Management & Development,1515.7,0.624,0.106,0.379,0.436,18.664,16.219,0.843,-0.123,-0.013
-CA,31,CFW.TO,Calfrac Well Services Ltd.,Energy Equipment & Services,697.9,0.621,-0.115,0.259,1.915,4.531,7.165,0.992,1.026,0.635
-CA,32,WJX.TO,Wajax Corporation,Trading Companies & Distributors,641.2,0.62,0.023,0.087,0.343,7.838,8.717,1.194,0.341,0.275
-CA,33,PEY.TO,Peyto Exploration & Development Corp.,"Oil, Gas & Consumable Fuels",5242.3,0.62,0.215,0.188,0.492,5.773,11.579,1.756,0.389,1.008
-CA,34,TCW.TO,Trican Well Service Ltd.,Energy Equipment & Services,1604.3,0.619,0.118,0.065,0.025,6.749,10.791,2.281,0.74,0.696
-CA,35,AGI.TO,Alamos Gold Inc.,Metals & Mining,22980.5,0.617,0.343,0.782,2.116,16.62,11.836,3.614,0.514,1.567
-CA,36,FSZ.TO,Fiera Capital Corporation,Capital Markets,573.6,0.617,-0.015,0.119,0.563,8.096,5.173,2.196,-0.099,-0.184
-CA,37,PLZ-UN.TO,Plaza Retail REIT,Equity Real Estate Investment Trusts (REITs),497.8,0.617,0.042,0.521,1.207,,11.436,0.871,0.212,0.495
-CA,38,LNF.TO,Leon's Furniture Limited,Specialty Retail,1710.8,0.616,0.03,0.025,0.022,7.319,10.519,1.395,-0.074,0.169
-CA,39,AAV.TO,Advantage Energy Ltd.,"Oil, Gas & Consumable Fuels",1676.0,0.616,0.283,0.279,1.443,5.819,7.714,0.971,-0.156,-0.038
-CA,40,ADN.TO,Acadian Timber Corp.,Paper & Forest Products,320.0,0.616,-0.252,1.121,1.253,28.221,21.675,0.885,0.031,0.139
-CA,41,PZA.TO,Pizza Pizza Royalty Corp.,"Hotels, Restaurants & Leisure",430.3,0.615,0.025,0.017,0.012,,13.4,1.403,-0.104,0.101
-CA,42,MRU.TO,Metro Inc.,Food & Staples Retailing,18494.6,0.615,0.037,0.046,0.095,14.297,15.745,3.719,-0.167,0.194
-CA,43,MRE.TO,Martinrea International Inc.,Auto Components,820.9,0.614,-0.038,0.051,,3.789,4.847,0.531,0.386,0.046
-CA,44,LNR.TO,Linamar Corporation,Auto Components,6205.6,0.613,-0.033,0.254,1.263,,7.897,1.026,0.64,0.627
+CA,29,MEQ.TO,Mainstreet Equity Corp.,Real Estate Management & Development,1515.7,0.625,0.106,0.379,0.436,18.664,16.219,0.843,-0.123,-0.013
+CA,30,STN.TO,Stantec Inc.,Construction & Engineering,11800.2,0.624,0.086,0.216,0.326,14.321,15.059,3.496,-0.298,-0.085
+CA,31,CFW.TO,Calfrac Well Services Ltd.,Energy Equipment & Services,697.9,0.622,-0.115,0.259,1.915,4.531,7.165,0.992,1.026,0.635
+CA,32,WJX.TO,Wajax Corporation,Trading Companies & Distributors,641.2,0.621,0.023,0.087,0.343,7.838,8.717,1.194,0.341,0.275
+CA,33,PEY.TO,Peyto Exploration & Development Corp.,"Oil, Gas & Consumable Fuels",5242.3,0.621,0.215,0.188,0.492,5.773,11.579,1.756,0.389,1.008
+CA,34,TCW.TO,Trican Well Service Ltd.,Energy Equipment & Services,1604.3,0.62,0.118,0.065,0.025,6.749,10.791,2.281,0.74,0.696
+CA,35,PLZ-UN.TO,Plaza Retail REIT,Equity Real Estate Investment Trusts (REITs),497.8,0.618,0.042,0.521,1.207,,11.436,0.871,0.212,0.495
+CA,36,AGI.TO,Alamos Gold Inc.,Metals & Mining,22980.5,0.618,0.343,0.782,2.116,16.62,11.836,3.614,0.514,1.567
+CA,37,FSZ.TO,Fiera Capital Corporation,Capital Markets,573.6,0.617,-0.015,0.119,0.563,8.096,5.173,2.196,-0.099,-0.184
+CA,38,LNF.TO,Leon's Furniture Limited,Specialty Retail,1710.8,0.617,0.03,0.025,0.022,7.319,10.519,1.395,-0.074,0.169
+CA,39,AAV.TO,Advantage Energy Ltd.,"Oil, Gas & Consumable Fuels",1676.0,0.617,0.283,0.279,1.443,5.819,7.714,0.971,-0.156,-0.038
+CA,40,ADN.TO,Acadian Timber Corp.,Paper & Forest Products,320.0,0.617,-0.252,1.121,1.253,28.221,21.675,0.885,0.031,0.139
+CA,41,PZA.TO,Pizza Pizza Royalty Corp.,"Hotels, Restaurants & Leisure",430.3,0.616,0.025,0.017,0.012,,13.4,1.403,-0.104,0.101
+CA,42,MRU.TO,Metro Inc.,Food & Staples Retailing,18494.6,0.616,0.037,0.046,0.095,14.297,15.745,3.719,-0.167,0.194
+CA,43,MRE.TO,Martinrea International Inc.,Auto Components,820.9,0.615,-0.038,0.051,,3.789,4.847,0.531,0.386,0.046
+CA,44,LNR.TO,Linamar Corporation,Auto Components,6205.6,0.614,-0.033,0.254,1.263,,7.897,1.026,0.64,0.627
 CA,45,BYL.TO,Baylin Technologies Inc.,Communications Equipment,42.0,0.612,-0.087,,,19569.68,3.929,-3.618,0.037,0.077
 CA,46,TSU.TO,Trisura Group Ltd.,Insurance,1918.8,0.612,0.114,,0.196,7.282,11.057,2.024,-0.083,-0.018
-CA,47,AFN.TO,Ag Growth International Inc.,Machinery,413.4,0.609,0.011,0.042,,9.756,7.61,1.922,-0.468,-0.572
+CA,47,AFN.TO,Ag Growth International Inc.,Machinery,413.4,0.61,0.011,0.042,,9.756,7.61,1.922,-0.468,-0.572
 CA,48,PSD.TO,Pulse Seismic Inc.,Energy Equipment & Services,173.4,0.607,1.185,1.59,5.818,8.331,68.4,17.36,0.215,0.718
-CA,49,ALC.TO,Algoma Central Corporation,Marine,898.6,0.606,0.082,0.108,0.561,8.452,11.359,0.891,0.43,0.711
-CA,50,CHE-UN.TO,Chemtrade Logistics Income Fund,Chemicals,1843.6,0.604,0.118,0.073,0.098,7.072,10.278,2.447,0.558,0.997
+CA,49,ALC.TO,Algoma Central Corporation,Marine,898.6,0.607,0.082,0.108,0.561,8.452,11.359,0.891,0.43,0.711
+CA,50,CHE-UN.TO,Chemtrade Logistics Income Fund,Chemicals,1843.6,0.605,0.118,0.073,0.098,7.072,10.278,2.447,0.558,0.997
 LATAM,1,CUERVO.MX,"Becle, S.A.B. de C.V.",Beverages,51677.0,0.721,-0.02,0.861,1.189,6.377,9.906,0.735,-0.342,-0.533
 LATAM,2,BEEF3.SA,Minerva S.A.,Household Products,3535.0,0.715,0.609,1.208,,3.637,3.645,2.806,-0.243,-0.445
 LATAM,3,VULC3.SA,Vulcabras Azaleia S.A.,"Textiles, Apparel & Luxury Goods",4526.4,0.709,0.168,0.422,1.045,5.918,6.249,1.856,-0.145,0.323
@@ -562,7 +562,7 @@ LATAM,10,GMAT3.SA,Grupo Mateus S.A.,Household Durables,9660.2,0.684,0.198,0.102,
 LATAM,11,EVEN3.SA,Even Construtora e Incorporadora S.A.,Real Estate Management & Development,1051.8,0.679,-0.11,0.932,4.645,7.457,3.493,0.546,-0.192,-0.025
 LATAM,12,JHSF3.SA,JHSF Participacoes S.A.,Real Estate Management & Development,7307.2,0.675,1.164,0.901,1.217,5.094,10.055,1.06,1.211,2.257
 LATAM,13,PCAR3.SA,Companhia Brasileira de Distribuicao,Household Durables,757.6,0.67,0.017,0.546,,15.478,-3.234,0.359,-0.5,-0.43
-LATAM,14,DGCU2.BA,Distribuidora de Gas Cuyana S.A.,Gas Utilities,317691.5,0.664,0.078,0.394,1.26,2.995,,1.326,0.235,0.559
+LATAM,14,DGCU2.BA,Distribuidora de Gas Cuyana S.A.,Gas Utilities,317691.5,0.665,0.078,0.394,1.26,2.995,,1.326,0.235,0.559
 LATAM,15,MELK3.SA,Melnick Even Desenvolvimento Imobiliario S.A.,Real Estate Management & Development,646.2,0.663,0.086,0.131,0.57,9.636,4.216,0.599,0.058,0.495
 LATAM,16,VINTE.MX,"Vinte Viviendas Integrales, S.A.B. de C.V.",Real Estate Management & Development,9605.6,0.663,1.973,2.03,2.569,8.128,4.854,1.249,0.167,0.135
 LATAM,17,SMTO3.SA,Sao Martinho S.A.,Food & Staples Retailing,5584.0,0.653,0.038,-0.014,0.502,4.061,6.93,0.771,0.01,-0.44
@@ -577,7 +577,7 @@ LATAM,25,ARA.MX,"Consorcio ARA, S. A. B. de C. V.",Construction & Engineering,56
 LATAM,26,HYPE3.SA,Hypera S.A.,Pharmaceuticals,15002.1,0.629,0.034,0.014,-0.109,7.497,6.616,1.077,-0.187,-0.189
 LATAM,27,SUZB3.SA,Suzano S.A.,Paper & Forest Products,50949.8,0.626,0.057,36.192,,6.094,5.395,1.163,-0.178,-0.237
 LATAM,28,WHRL4.SA,Whirlpool S.A.,"Electronic Equipment, Instruments & Components",5921.0,0.621,0.126,0.587,2.607,4.612,,3.237,-0.137,0.12
-LATAM,29,MALLPLAZA.SN,Plaza S.A.,Real Estate Management & Development,8286960.6,0.62,0.322,2.681,3.26,17.447,69.457,1.826,0.861,1.89
+LATAM,29,MALLPLAZA.SN,Plaza S.A.,Real Estate Management & Development,8286960.6,0.621,0.322,2.681,3.26,17.447,69.457,1.826,0.861,1.89
 LATAM,30,ENELDXCH.SN,Enel Distribucion Chile S.A.,Electric Utilities,558109.9,0.62,0.023,3.304,,9.78,,0.801,-0.061,-0.061
 LATAM,31,ECOR3.SA,EcoRodovias Infraestrutura e Logistica S.A.,Transportation Infrastructure,4938.9,0.616,0.167,0.223,-0.02,5.279,8.554,1.207,0.03,0.168
 LATAM,32,HBSA3.SA,Hidrovias do Brasil S.A.,Air Freight & Logistics,4258.0,0.614,0.565,8.777,,8.686,10.433,2.123,-0.131,-0.156
@@ -594,13 +594,13 @@ LATAM,42,LEVE3.SA,MAHLE Metal Leve S.A.,Auto Components,4380.6,0.601,0.186,0.186
 LATAM,43,JALL3.SA,Jalles Machado S/A,Food & Staples Retailing,768.9,0.599,0.224,-0.019,-1.657,4.035,12.221,0.373,-0.338,-0.621
 LATAM,44,CVH.BA,Cablevision Holding S.A.,Diversified Telecommunication Services,1643847.5,0.597,0.53,-0.395,-1.159,4.719,-733.871,0.519,0.424,0.869
 LATAM,45,SMU.SN,SMU S.A.,Household Durables,788107.9,0.594,-0.024,0.161,0.295,15.11,8.354,0.958,-0.137,-0.103
-LATAM,46,FRIO3.SA,Metalfrio Solutions S.A.,"Electronic Equipment, Instruments & Components",1308.4,0.593,0.098,0.258,,8.011,,3.347,-0.068,-0.414
-LATAM,47,EUCA3.SA,Eucatex S.A. Industria e Comercio,Building Products,2414.9,0.592,0.086,0.604,0.611,4.315,,0.82,0.324,0.869
+LATAM,46,EUCA3.SA,Eucatex S.A. Industria e Comercio,Building Products,2414.9,0.593,0.086,0.604,0.611,4.315,,0.82,0.324,0.869
+LATAM,47,FRIO3.SA,Metalfrio Solutions S.A.,"Electronic Equipment, Instruments & Components",1308.4,0.592,0.098,0.258,,8.011,,3.347,-0.068,-0.414
 LATAM,48,GICSAB.MX,"Grupo Gicsa, S.A. de C.V.",Real Estate Management & Development,5400.4,0.592,0.087,0.168,0.83,8.028,5.714,0.178,0.358,0.674
-LATAM,49,OPCT3.SA,OceanPact Servicos Maritimos S.A.,Professional Services,2017.4,0.592,0.24,0.591,,5.379,23.0,1.989,0.502,0.581
+LATAM,49,OPCT3.SA,OceanPact Servicos Maritimos S.A.,Professional Services,2017.4,0.591,0.24,0.591,,5.379,23.0,1.989,0.502,0.581
 LATAM,50,CEGR3.SA,Companhia Distribuidora de Gas do Rio de Janeiro - CEG,Gas Utilities,9649.8,0.59,-0.069,0.134,0.168,8.182,,4.643,-0.592,-0.415
 MEA,1,KIO.JO,Kumba Iron Ore Limited,Metals & Mining,95041.0,0.749,0.023,0.013,-0.006,3.215,10.045,1.73,0.075,-0.302
-MEA,2,ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,Banks,20050.0,0.731,0.465,,1.911,,4.312,0.681,0.026,0.563
+MEA,2,ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,Banks,20050.0,0.73,0.465,,1.911,,4.312,0.681,0.026,0.563
 MEA,3,BLDN.QA,Baladna Q.P.S.C.,Food & Staples Retailing,2782.9,0.713,0.107,1.027,1.917,16.16,11.8,0.93,0.102,0.123
 MEA,4,QNNS.QA,Qatar Navigation Q.P.S.C.,Marine,11566.2,0.702,0.171,0.179,0.133,9.606,8.144,0.644,-0.053,-0.045
 MEA,5,1302.SR,Bawan Company,Building Products,2614.8,0.678,0.347,1.517,1.059,8.055,18.158,2.326,-0.175,0.006
@@ -612,13 +612,13 @@ MEA,10,TBS.JO,Tiger Brands Limited,Food & Staples Retailing,42240.1,0.652,0.027,
 MEA,11,AKBNK.IS,Akbank T.A.S.,Banks,349180.0,0.652,0.436,,0.351,,3.842,1.154,0.012,0.102
 MEA,12,TSKB.IS,Turkiye Sinai Kalkinma Bankasi A.S.,Banks,32256.0,0.651,0.297,,0.108,,3.449,0.918,-0.01,0.054
 MEA,13,SRVGY.IS,Servet Gayrimenkul Yatirim Ortakligi A.S.,Equity Real Estate Investment Trusts (REITs),9815.0,0.649,1.413,-0.139,0.284,8.354,,0.352,0.129,-0.36
-MEA,14,BRYAT.IS,Borusan Yatirim ve Pazarlama A.S.,Metals & Mining,54716.2,0.648,0.129,1.648,1.282,,,1.566,0.212,-0.018
+MEA,14,BRYAT.IS,Borusan Yatirim ve Pazarlama A.S.,Metals & Mining,54716.2,0.647,0.129,1.648,1.282,,,1.566,0.212,-0.018
 MEA,15,CLEBI.IS,Celebi Hava Servisi A.S.,Air Freight & Logistics,39341.7,0.644,0.435,0.23,0.02,9.595,174.461,4.819,0.017,-0.323
 MEA,16,MRP.JO,Mr Price Group Limited,"Textiles, Apparel & Luxury Goods",42221.5,0.644,0.091,0.097,0.112,7.898,10.45,3.172,-0.234,-0.176
 MEA,17,NPN.JO,Naspers Limited,Diversified Telecommunication Services,669045.7,0.643,0.117,0.714,0.836,1909.94,8.966,1.794,-0.199,0.239
 MEA,18,AEGN.AT,Aegean Airlines SA,Airlines,1081.3,0.642,0.044,0.15,0.138,7.305,7.503,1.695,0.051,0.17
-MEA,19,MIG.AT,Marfin Investment Group Holdings S.A.,Food & Staples Retailing,99.5,0.638,0.105,5.239,,32.721,,0.75,-0.041,-0.123
-MEA,20,YKBNK.IS,Yapi ve Kredi Bankasi A.S.,Banks,300208.2,0.638,0.591,,0.623,,3.745,1.107,0.102,0.034
+MEA,19,YKBNK.IS,Yapi ve Kredi Bankasi A.S.,Banks,300208.2,0.638,0.591,,0.623,,3.745,1.107,0.102,0.034
+MEA,20,MIG.AT,Marfin Investment Group Holdings S.A.,Food & Staples Retailing,99.5,0.638,0.105,5.239,,32.721,,0.75,-0.041,-0.123
 MEA,21,4002.SR,Mouwasat Medical Services Company,Health Care Equipment & Supplies,13040.0,0.638,0.119,0.177,0.273,12.371,14.852,3.277,-0.109,-0.431
 MEA,22,4012.SR,Thob Al Aseel Co.,"Textiles, Apparel & Luxury Goods",1468.0,0.631,0.011,0.149,0.193,9.535,,2.297,-0.055,-0.126
 MEA,23,NLCS.QA,Alijarah Holding (Q.P.S.C.),Real Estate Management & Development,330.5,0.628,0.118,0.243,0.256,4.546,,0.535,-0.028,0.051
@@ -630,8 +630,8 @@ MEA,28,SHP.JO,Shoprite Holdings Limited,Household Durables,154514.0,0.608,0.089,
 MEA,29,OTKAR.IS,Otokar Otomotiv ve Savunma Sanayi A.S.,Automobiles,43350.0,0.607,0.178,0.086,,302.389,15.949,5.54,-0.103,-0.442
 MEA,30,PLAT.AT,Thrace Plastics Holding and Commercial S.A.,Distributors,195.9,0.606,0.052,0.183,0.812,5.623,11.425,0.72,0.192,0.258
 MEA,31,1202.SR,Middle East Company for Manufacturing and Producing Paper,Paper & Forest Products,1589.5,0.605,0.229,0.749,,15.661,70.538,1.124,-0.367,-0.547
-MEA,32,PGSUS.IS,Pegasus Hava Tasimaciligi Anonim Sirketi,Airlines,84450.0,0.605,0.378,0.343,0.035,13.17,4.659,0.73,-0.339,-0.254
-MEA,33,MOH.AT,Motor Oil (Hellas) Corinth Refineries S.A.,"Oil, Gas & Consumable Fuels",4287.9,0.605,-0.058,0.194,1.285,4.963,8.584,1.173,0.701,0.825
+MEA,32,MOH.AT,Motor Oil (Hellas) Corinth Refineries S.A.,"Oil, Gas & Consumable Fuels",4287.9,0.605,-0.058,0.194,1.285,4.963,8.584,1.173,0.701,0.825
+MEA,33,PGSUS.IS,Pegasus Hava Tasimaciligi Anonim Sirketi,Airlines,84450.0,0.605,0.378,0.343,0.035,13.17,4.659,0.73,-0.339,-0.254
 MEA,34,4161.SR,Bin Dawood Holding Company,Food & Staples Retailing,5566.4,0.604,0.118,0.08,-0.008,14.206,16.233,3.481,-0.188,-0.31
 MEA,35,HTO.AT,Hellenic Telecommunications Organization S.A.,Diversified Telecommunication Services,7397.5,0.604,0.039,0.026,0.047,6.363,10.676,3.241,0.181,0.497
 MEA,36,4300.SR,Dar Al Arkan Real Estate Development Company,Real Estate Management & Development,19170.0,0.602,0.037,0.626,0.405,15.515,18.299,0.853,-0.076,0.504
@@ -642,7 +642,7 @@ MEA,40,JSE.JO,JSE Limited,Capital Markets,12281.0,0.599,0.145,0.004,0.167,8.477,
 MEA,41,4150.SR,Arriyadh Development Co.,Real Estate Management & Development,4280.9,0.596,0.195,-0.019,-0.0,13.164,12.282,1.025,-0.47,-0.109
 MEA,42,TATGD.IS,Tat Gida Sanayi A.S.,Food & Staples Retailing,4680.6,0.593,-0.012,0.162,,7.812,,1.09,0.749,-0.238
 MEA,43,VOD.JO,Vodacom Group Limited,Diversified Telecommunication Services,287263.0,0.593,0.101,0.187,0.244,5.464,10.829,3.186,0.099,0.542
-MEA,44,4004.SR,Dallah Healthcare Company,Health Care Equipment & Supplies,10737.0,0.593,0.269,0.228,0.142,18.717,20.723,2.612,-0.174,-0.31
+MEA,44,4004.SR,Dallah Healthcare Company,Health Care Equipment & Supplies,10737.0,0.592,0.269,0.228,0.142,18.717,20.723,2.612,-0.174,-0.31
 MEA,45,1020.SR,Bank AlJazira,Banks,14977.0,0.592,0.181,,0.223,,9.545,1.013,-0.048,-0.074
 MEA,46,4331.SR,Aljazira Mawten REIT Fund,Capital Markets,128.4,0.59,0.092,0.114,1.435,22.589,,1.449,-0.202,-0.281
 MEA,47,GUBRF.IS,Gubre Fabrikalari Turk Anonim Sirketi,Construction Materials,160069.5,0.588,0.312,2.355,,13.993,1369.286,5.372,1.192,2.57
