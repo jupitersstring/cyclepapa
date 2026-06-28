@@ -67,13 +67,21 @@ def pct_growth(curr, prev) -> float:
 
 
 def cagr(values: Sequence[float]) -> float:
-    """Compound annual growth across an all-positive series; else NaN."""
+    """Compound annual growth from the first to the last PRESENT positive value,
+    annualized over the CALENDAR span (position distance) between them — not the
+    count of present points. Interior gaps (common in EDGAR's reconstructed EBITDA,
+    where a missing-D&A year leaves a hole) would otherwise shrink the exponent's
+    denominator and overstate per-year growth. Present values in the window must be
+    positive (CAGR is undefined through a non-positive)."""
     vals = [_f(v) for v in values]
-    vals = [v for v in vals if not _isnan(v)]
-    if len(vals) < 2 or any(v <= 0 for v in vals):
+    present = [i for i, v in enumerate(vals) if not _isnan(v)]
+    if len(present) < 2:
         return NaN
-    n = len(vals) - 1
-    return (vals[-1] / vals[0]) ** (1.0 / n) - 1.0
+    i0, i1 = present[0], present[-1]
+    if any(vals[i] <= 0 for i in present):
+        return NaN
+    n = i1 - i0
+    return (vals[i1] / vals[i0]) ** (1.0 / n) - 1.0 if n > 0 else NaN
 
 
 def metric_block(values: Sequence[float], prefix: str) -> dict:

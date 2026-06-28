@@ -113,6 +113,44 @@ def test_revenue_junk_negative_tag_does_not_override_real_tag():
     assert all((v is None) or (isinstance(v, float) and v != v) or v >= 0 for v in a["revenue"])
 
 
+def test_axis_includes_all_line_items_not_just_revenue_earnings():
+    """A gross/EBITDA/EPS value at a period-end that revenue & earnings don't anchor
+    must survive (axis = union of ALL items), not be silently dropped."""
+    usd = lambda arr: {"units": {"USD": arr}}
+    facts = {"facts": {"us-gaap": {
+        "Revenues": usd([_fact("2022-01-01", "2022-12-31", 100, "2023-02-01")]),
+        "NetIncomeLoss": usd([_fact("2022-01-01", "2022-12-31", 12, "2023-02-01")]),
+        "GrossProfit": usd([_fact("2021-01-01", "2021-12-31", 40, "2022-02-01"),
+                            _fact("2022-01-01", "2022-12-31", 45, "2023-02-01")]),
+    }}}
+    a = edgar.build_statements(facts)["annual"]
+    assert "2021-12-31" in a["dates"]            # the revenue-less year is kept
+    assert dict(zip(a["dates"], a["gross"]))["2021-12-31"] == 40
+
+
+def test_despike_strips_spike_and_dip_keeps_ramp_and_onset():
+    from earnings_model.edgar import _despike
+    s = _despike([100.0, 5000.0, 110.0])          # spike-and-revert -> NaN the spike
+    assert math.isnan(s[1]) and s[0] == 100.0 and s[2] == 110.0
+    d = _despike([800.0, 10.0, 880.0])            # dip-and-revert -> NaN the dip
+    assert math.isnan(d[1])
+    assert _despike([100.0, 200.0, 300.0]) == [100.0, 200.0, 300.0]   # ramp survives
+    assert _despike([0.0, 174.0, 11.0]) == [0.0, 174.0, 11.0]         # onset survives
+
+
+def test_quarterly_combined_da_not_discarded_when_annual_combined_absent():
+    usd = lambda arr: {"units": {"USD": arr}}
+    q = lambda v: _fact("2022-01-01", "2022-03-31", v, "2022-05-01", form="10-Q", fp="Q1")
+    facts = {"facts": {"us-gaap": {
+        "Revenues": {"units": {"USD": [q(100)]}},
+        "NetIncomeLoss": {"units": {"USD": [q(12)]}},
+        "OperatingIncomeLoss": {"units": {"USD": [q(15)]}},
+        "DepreciationDepletionAndAmortization": {"units": {"USD": [q(5)]}},  # quarterly only
+    }}}
+    qb = edgar.build_statements(facts)["quarterly"]
+    assert dict(zip(qb["dates"], qb["ebitda"]))["2022-03-31"] == 15 + 5
+
+
 def test_ebitda_from_depreciation_plus_amortization():
     usd = lambda arr: {"units": {"USD": arr}}
     facts = {"facts": {"us-gaap": {

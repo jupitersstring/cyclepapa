@@ -226,9 +226,7 @@ def _merge_concept(gaap: dict, candidates: list[str], nonneg: bool = False) -> t
 def _dep_amort(gaap: dict) -> tuple[dict, dict]:
     """D&A end->val dicts: a single combined tag if present, else the sum of the
     discrete Depreciation + intangible-Amortization components per period-end."""
-    ann, qtr = _merge_concept(gaap, _DA_COMBINED)
-    if ann:
-        return ann, qtr
+    ca, cq = _merge_concept(gaap, _DA_COMBINED)
     dep_a, dep_q = _merge_concept(gaap, _DA_DEP)
     am_a, am_q = _merge_concept(gaap, _DA_AMORT)
 
@@ -242,7 +240,10 @@ def _dep_amort(gaap: dict) -> tuple[dict, dict]:
     def _combine(dep: dict, am: dict) -> dict:
         return {end: v + am.get(end, 0.0) for end, v in dep.items()}
 
-    return _combine(dep_a, am_a), _combine(dep_q, am_q)
+    # Decide each periodicity INDEPENDENTLY: a combined D&A tag can exist for only
+    # one of them (e.g. quarterly cash-flow D&A while the 10-K reports components),
+    # so an empty annual combined dict must not discard a good quarterly one.
+    return (ca or _combine(dep_a, am_a)), (cq or _combine(dep_q, am_q))
 
 
 def _aligned(series_by_item: dict[str, dict], dates: list[str]) -> dict:
@@ -251,6 +252,23 @@ def _aligned(series_by_item: dict[str, dict], dates: list[str]) -> dict:
     out = {"dates": list(dates)}
     for item, d in series_by_item.items():
         out[item] = [d.get(dt, NaN) for dt in dates]
+    return out
+
+
+def _despike(vals: list) -> list:
+    """NaN an interior point that is >10x the larger neighbour or <0.1x the smaller,
+    measured against two PRESENT, POSITIVE neighbours. An order-of-magnitude
+    spike/dip-and-revert is a tag/units artifact (e.g. a stray series reporting $42B
+    for a $2B company) or a non-durable one-off — never a real revenue trajectory
+    point. A 0/NaN neighbour (a genuine revenue onset) disables the test, so real
+    ramps and first-revenue years survive untouched."""
+    out = list(vals)
+    for i in range(1, len(out) - 1):
+        c, p, n = out[i], out[i - 1], out[i + 1]
+        if any((x is None) or (x != x) or (x <= 0) for x in (c, p, n)):
+            continue
+        if c > 10.0 * max(p, n) or c < 0.1 * min(p, n):
+            out[i] = NaN
     return out
 
 
@@ -282,9 +300,14 @@ def build_statements(facts: dict) -> dict:
             "earnings": items["earnings"][which],
             "eps": items["eps"][which],
         }
-        # Date axis = union of revenue & earnings period-ends (the reliable anchors).
-        axis = sorted(set(by_item["revenue"]) | set(by_item["earnings"]))
-        blocks[name] = _aligned(by_item, axis)
+        # Date axis = union of ALL line items' period-ends, so a gross/EBITDA/EPS
+        # value at a date that revenue & earnings happen not to anchor (a tag-switch
+        # gap year, or a revenue year removed by the nonneg filter) is not silently
+        # dropped — it carries NaN for the missing series and sorts to the front.
+        axis = sorted(set().union(*(set(d) for d in by_item.values())))
+        block = _aligned(by_item, axis)
+        block["revenue"] = _despike(block["revenue"])   # strip tag/units spikes
+        blocks[name] = block
     return blocks
 
 

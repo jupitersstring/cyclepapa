@@ -172,7 +172,10 @@ FX_TO_USD = {"GBP": 1.27, "GBp": 0.0127, "USD": 1.0, "EUR": 1.08, "PENNY": 0.012
              "QAR": 0.274, "AED": 0.272, "KWD": 3.26, "BHD": 2.65, "OMR": 2.60,
              "JOD": 1.41, "CZK": 0.043, "HUF": 0.0028, "PLN": 0.25, "RON": 0.22,
              "ISK": 0.0072, "COP": 0.00024, "PEN": 0.27, "NGN": 0.00065,
-             "KES": 0.0078, "MAD": 0.10, "VES": 0.027, "BDT": 0.0091, "LKR": 0.0033}
+             "KES": 0.0078, "MAD": 0.10, "VES": 0.027, "BDT": 0.0091, "LKR": 0.0033,
+             # Sub-unit quote currencies (1/100 of the major): Israeli agorot,
+             # South African cents — some TASE/JSE lines quote in these.
+             "ILA": 0.0027, "ZAC": 0.00055}
 
 # --------------------------------------------------------------------------- #
 # yfinance income-statement line-item resolution (names vary by ticker)
