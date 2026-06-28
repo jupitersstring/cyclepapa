@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 import math
-import random
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,14 +24,105 @@ NaN = float("nan")
 # --------------------------------------------------------------------------- #
 # Session
 # --------------------------------------------------------------------------- #
-def make_session():
-    """Return a curl_cffi browser-impersonating session, or None on failure."""
+def make_session(warm: bool = True):
+    """Return a curl_cffi browser-impersonating session, cookie/crumb-warmed.
+
+    A *cold* session is the real cause of the immediate "Too Many Requests" on
+    ``.info`` — Yahoo's quoteSummary rejects a request that carries no consent
+    cookie + crumb. Hitting ``fc.yahoo.com`` (sets the A1/A3 cookies) then the
+    ``getcrumb`` endpoint primes the session so the first real call succeeds.
+    curl_cffi's chrome impersonation already carries us most of the way; this
+    warmup hardens cold starts and shared-IP runs. Best-effort: warmup failures
+    are swallowed (the session still works, just less primed). ``warm=False`` for
+    the rare caller that wants a bare session.
+    """
     try:
         from curl_cffi import requests as cffi_requests
 
-        return cffi_requests.Session(impersonate="chrome")
+        session = cffi_requests.Session(impersonate="chrome")
     except Exception:
         return None
+    if warm:
+        for url in ("https://fc.yahoo.com",
+                    "https://query1.finance.yahoo.com/v1/test/getcrumb"):
+            try:
+                session.get(url, timeout=10)
+            except Exception:
+                pass
+    return session
+
+
+class RateLimiter:
+    """Adaptive inter-request pacer for a shared-IP bulk run.
+
+    Holds a target gap between requests, GROWS it multiplicatively on a 429
+    (``penalize``) up to a ceiling, and DECAYS it back toward target on each
+    success (``recover``). This self-tunes to Yahoo's rolling per-IP window
+    without a fixed sleep that is either too slow (wastes time) or too fast
+    (trips the throttle)."""
+
+    def __init__(self, min_interval: float = config.RATE_MIN_INTERVAL,
+                 max_interval: float = config.RATE_MAX_INTERVAL,
+                 penalty: float = config.RATE_PENALTY,
+                 recover: float = config.RATE_RECOVER):
+        self.min_interval = min_interval
+        self.max_interval = max_interval
+        self.penalty = penalty
+        self.recover_factor = recover
+        self.interval = min_interval
+        self._last = 0.0
+
+    def wait(self) -> None:
+        gap = self._last + self.interval - time.monotonic()
+        if gap > 0:
+            time.sleep(gap)
+        self._last = time.monotonic()
+
+    def penalize(self) -> None:
+        self.interval = min(self.max_interval, self.interval * self.penalty)
+
+    def recover(self) -> None:
+        self.interval = max(self.min_interval, self.interval * self.recover_factor)
+
+
+class SessionManager:
+    """Owns a warmed session + adaptive limiter for a bulk fetch loop and
+    re-warms the session after a run of consecutive failures (a sign the
+    cookie/crumb went stale or the IP got throttled). Drop-in replacement for
+    the manual ``make_session() + fetch_raw() + sleep`` pattern: call
+    ``mgr.fetch(symbol)`` per ticker and it paces, adapts, and self-heals."""
+
+    def __init__(self, rps: float | None = None,
+                 refresh_after: int = config.SESSION_REFRESH_AFTER_FAILS):
+        min_interval = (1.0 / rps) if rps else config.RATE_MIN_INTERVAL
+        self.limiter = RateLimiter(min_interval=min_interval)
+        self.refresh_after = refresh_after
+        self._session = make_session(warm=True)
+        self._consec_fails = 0
+        self.refreshes = 0
+
+    @property
+    def session(self):
+        return self._session
+
+    def refresh(self) -> None:
+        self._session = make_session(warm=True)
+        self._consec_fails = 0
+        self.refreshes += 1
+
+    def fetch(self, symbol: str, **kw) -> dict:
+        self.limiter.wait()
+        raw = fetch_raw(symbol, session=self._session, **kw)
+        if raw.get("fetch_ok"):
+            self._consec_fails = 0
+            self.limiter.recover()
+        else:
+            self._consec_fails += 1
+            if raw.get("rate_limited"):
+                self.limiter.penalize()
+            if self._consec_fails >= self.refresh_after:
+                self.refresh()
+        return raw
 
 
 def _ticker(symbol: str, session):
@@ -286,8 +376,13 @@ def _earnings_surprises(tk) -> list:
 # --------------------------------------------------------------------------- #
 def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES,
               with_surprises: bool = False) -> dict:
-    """Fetch one ticker's raw fundamentals with retry/backoff."""
+    """Fetch one ticker's raw fundamentals with retry/backoff.
+
+    Sets ``rate_limited=True`` on the returned dict when a 429/throttle was seen,
+    so a :class:`SessionManager` can back its pacing off and re-warm the session.
+    """
     last_err = None
+    rate_limited = False
     for attempt in range(max_retries):
         try:
             tk = _ticker(symbol, session)
@@ -321,8 +416,14 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES,
             }
         except Exception as err:  # noqa: BLE001 — broad on purpose, then back off
             last_err = err
+            msg = str(err).lower()
+            hit = ("429" in msg or "too many request" in msg or "rate limit" in msg
+                   or "rate-limit" in msg)
+            rate_limited = rate_limited or hit
             if attempt < max_retries - 1:
-                time.sleep(config.BACKOFF_BASE * (2**attempt))
+                # Back off 3x harder on an explicit rate-limit signal than on a
+                # generic transient error, so we yield the shared IP's window.
+                time.sleep(config.BACKOFF_BASE * (2**attempt) * (3.0 if hit else 1.0))
     return {
         "symbol": symbol,
         "asof": datetime.now(timezone.utc).isoformat(),
@@ -331,6 +432,7 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES,
         "valuation": {},
         "prices": {},
         "fetch_ok": False,
+        "rate_limited": rate_limited,
         "error": str(last_err) if last_err else "unknown",
     }
 
@@ -380,21 +482,23 @@ def build_fundamentals(
     sym_region = (dict(zip(universe["symbol"], universe["region"]))
                   if surprise_regions and "region" in universe.columns else {})
 
-    session = make_session()
+    mgr = SessionManager()
     rows = []
     n = len(syms)
     for i, sym in enumerate(syms, 1):
         cached = None if refresh else load_raw(sym, fail_ttl_days=fail_ttl_days)
         if cached is not None and (not surprise_regions or "surprises" in cached):
-            raw, from_cache = cached, True
+            raw = cached
         else:
             ws = bool(surprise_regions) and sym_region.get(sym) in surprise_regions
-            raw = fetch_raw(sym, session=session, with_surprises=ws)
+            # mgr.fetch paces adaptively, flags 429s, and re-warms the session
+            # after a run of failures. Only live calls go through it (cache hits
+            # above skip the limiter entirely).
+            raw = mgr.fetch(sym, with_surprises=ws)
             # Cache successes long, and failures briefly: a short-lived negative
             # cache stops a re-run hammering genuinely-dead tickers, while still
             # auto-retrying transient 429/timeout casualties once it expires.
             save_raw(sym, raw)
-            from_cache = False
         row = metrics.compute_metrics(raw)
         # Rename yfinance info fields that collide with fd grouping columns.
         for src, dst in _RENAME.items():
@@ -404,9 +508,8 @@ def build_fundamentals(
         rows.append(row)
         if verbose and (i % 25 == 0 or i == n):
             ok = sum(1 for r in rows if r.get("fetch_ok"))
-            print(f"  [{i}/{n}] processed, {ok} with data", flush=True)
-        if not from_cache:  # only pause between live network calls
-            time.sleep(random.uniform(*config.REQUEST_JITTER))
+            extra = f", {mgr.refreshes} session refresh(es)" if mgr.refreshes else ""
+            print(f"  [{i}/{n}] processed, {ok} with data{extra}", flush=True)
 
     metrics_df = pd.DataFrame(rows)
     id_cols = [c for c in _ID_COLS if c in universe.columns]

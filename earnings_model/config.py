@@ -220,6 +220,19 @@ SURPRISE_REGIONS = ("US", "UK", "EU", "CA", "ANZ")
 MAX_RETRIES = 4
 BACKOFF_BASE = 2.0           # seconds -> 2, 4, 8, 16
 REQUEST_JITTER = (0.4, 1.2)  # random pause between tickers to ease rate limits
+
+# Adaptive pacing for bulk fetches. Yahoo's throttle is a rolling ~1-minute
+# per-source-IP window (no fixed reset); a transient 429 clears in seconds once
+# you pace down. The agent egress proxy SHARES a source IP, so we stay
+# conservative and ADAPT: hold a target inter-request gap, grow it multiplicatively
+# on each 429 (penalize) and decay it back toward target on success (recover).
+TARGET_RPS = 2.5                  # steady-state request rate when the path is clear
+RATE_MIN_INTERVAL = 1.0 / TARGET_RPS
+RATE_MAX_INTERVAL = 30.0          # ceiling the 429 backoff can grow the gap to
+RATE_PENALTY = 2.0                # multiply the inter-request gap on each 429
+RATE_RECOVER = 0.85               # decay the gap toward target on each success
+SESSION_REFRESH_AFTER_FAILS = 25  # re-warm the cookie/crumb session after N straight fails
+
 CACHE_TTL_DAYS = 30          # reuse cached fundamentals younger than this (a multi-day
                              # world fetch + quarterly data; 5d was far too aggressive)
 FAIL_CACHE_TTL_DAYS = 1.0    # negative cache: failed fetches expire fast & auto-retry

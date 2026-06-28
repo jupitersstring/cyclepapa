@@ -14,7 +14,6 @@ from __future__ import annotations
 import argparse
 import glob
 import json
-import random
 import subprocess
 import sys
 import tarfile
@@ -76,20 +75,23 @@ def main() -> None:
     print(f"fetch_new: {len(todo)} uncached names to fetch "
           f"({len(have)} already cached)", flush=True)
 
-    session = F.make_session()
+    # Adaptive, self-warming, self-healing session: paces internally and re-warms
+    # the cookie/crumb after a run of failures. --min-sleep/--max-sleep retained
+    # for back-compat but the adaptive limiter now governs pacing.
+    mgr = F.SessionManager()
     ok = since = 0
     for i, sym in enumerate(todo, 1):
-        raw = F.fetch_raw(sym, session=session)
+        raw = mgr.fetch(sym)
         F.save_raw(sym, raw)             # cache failures too (short negative TTL)
         if raw.get("fetch_ok"):
             ok += 1
         since += 1
         if i % 25 == 0 or i == len(todo):
-            print(f"  [{i}/{len(todo)}] fetched, {ok} with data", flush=True)
+            extra = f", {mgr.refreshes} refresh(es)" if mgr.refreshes else ""
+            print(f"  [{i}/{len(todo)}] fetched, {ok} with data{extra}", flush=True)
         if not args.no_git and since >= args.commit_every:
             _archive_and_push(f"fetch_new milestone: +{i} fetched ({ok} with data)")
             since = 0
-        time.sleep(random.uniform(args.min_sleep, args.max_sleep))
     if not args.no_git:
         _archive_and_push(f"fetch_new complete: {len(todo)} attempted, {ok} with data")
     print(f"FINISHED: {ok}/{len(todo)} new names have data", flush=True)
