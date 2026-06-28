@@ -123,21 +123,31 @@ def main():
         cik = int(m.group(1))
         tkr = cik_to_t.get(cik)
         if not tkr: continue
+        # Skip preferred/warrant/unit tickers (SEC map sometimes returns the
+        # non-common ticker for a CIK; its valuation/share is garbage)
+        if re.search(r'-P[A-Z]?$|\.PR|-WT$|-WS$|-UN?$|-RT?$', str(tkr)):
+            continue
         try:
             with gzip.open(f, 'rt') as fp:
                 facts = json.load(fp)['facts'].get('us-gaap', {})
         except Exception:
             continue
 
-        # Compute revenue total first (prefer the most common tags)
+        # Compute revenue total. Take the MAX across candidate total-tags, not
+        # the first-found: many filers report a small 'Revenues' line AND a
+        # larger 'RevenueFromContractWithCustomerExcludingAssessedTax' as the
+        # real consolidated figure. First-found picked the small one, making
+        # the real revenue tag show share >100% (SDCH hit 2,181%). The largest
+        # candidate IS the consolidated total.
         total_ltm = None
         for tag in ('Revenues', 'SalesRevenueNet',
-                    'RevenueFromContractWithCustomerExcludingAssessedTax'):
+                    'RevenueFromContractWithCustomerExcludingAssessedTax',
+                    'RevenueFromContractWithCustomerIncludingAssessedTax',
+                    'RevenuesNetOfInterestExpense'):   # banks
             s = _get_quarterly_series(facts, tag)
             ltm, _ = _ltm_yoy(s)
             if ltm and ltm > 0:
-                total_ltm = ltm
-                break
+                total_ltm = ltm if total_ltm is None else max(total_ltm, ltm)
 
         wide_entry = {'ticker': tkr, 'total_ltm_M': total_ltm / 1e6 if total_ltm else None}
         any_subtag = False
@@ -146,7 +156,14 @@ def main():
             ltm, g = _ltm_yoy(s)
             if ltm is None:
                 continue
+            # A revenue line can't truly exceed the consolidated total. When
+            # the arithmetic says otherwise it's a one-time item (large
+            # licensing/royalty payment) or an incomplete total tag — cap the
+            # DISPLAYED share at 100% so the column stays honest. The raw ltm_M
+            # value is unchanged for anyone who wants it.
             share = (ltm / total_ltm * 100) if total_ltm and total_ltm > 0 else None
+            if share is not None and share > 100:
+                share = 100.0
             rows.append({
                 'ticker': tkr, 'tag': tag,
                 'ltm_M': ltm / 1e6,
