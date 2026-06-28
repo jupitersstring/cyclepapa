@@ -981,6 +981,69 @@ def sheet_best_ideas(wb, conn):
     ws.column_dimensions[get_column_letter(17)].width = 24   # Industry
     ws.column_dimensions[get_column_letter(18)].width = 80   # Business
 
+def sheet_adversarial_review(wb, conn):
+    """Surface the 52-agent adversarial review of the top picks — a red-team that
+    stress-tested each headline name across data-quality, thesis-soundness and
+    recency lenses, separating confirmed setups from data-inflated artifacts."""
+    import json
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "data", "adversarial_review.json")
+    if not os.path.exists(path):
+        return
+    data = json.load(open(path))
+    ws = wb.create_sheet("Adversarial Review")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Adversarial Review — red-team of the top picks",
+                f"A {data.get('agent_count','multi')}-agent stress test of the highest-ranked names across three lenses (data quality · thesis soundness · recency/news), separating confirmed setups from data-inflated artifacts. Scores as of {data.get('asof')}.", 4)
+    row = 4
+    write_section_heading(ws, row, "Synthesis — confirmed vs data-inflated", 4)
+    row += 1
+    for raw in data.get("synthesis", "").split("\n"):
+        line = raw.strip()
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=4)
+        if not line:
+            ws.row_dimensions[row].height = 6
+            row += 1
+            continue
+        is_head = line.startswith("#")
+        clean = (line.replace("**", "").replace("### ", "").replace("## ", "")
+                     .replace("# ", "").lstrip("- ").strip())
+        if line.startswith("- "):
+            clean = "•  " + clean
+        c = ws.cell(row=row, column=1, value=clean)
+        c.font = SECTION_FONT if is_head else BODY_FONT
+        c.alignment = Alignment(horizontal="left", vertical="top", wrap_text=True)
+        ws.row_dimensions[row].height = max(16, 15 * (1 + len(clean) // 105))
+        row += 1
+    row += 1
+    write_section_heading(ws, row, "Per-ticker lens detail", 4)
+    row += 1
+    LENS = {"data-quality": "Data Quality", "thesis-soundness": "Thesis",
+            "recency-and-news": "Recency/News"}
+    write_table_header(ws, row, ["Ticker", "Score*", "Lens", "Assessment"])
+    row += 1
+    for rev in data.get("reviews", []):
+        first = True
+        for L in rev.get("lenses", []):
+            txt = L.get("text", "").strip()
+            ws.cell(row=row, column=1, value=rev["ticker"] if first else "").font = TICKER_FONT
+            sc = ws.cell(row=row, column=2, value=rev.get("score_asof") if first else "")
+            sc.font = BODY_FONT; sc.alignment = Alignment(horizontal="right", vertical="top")
+            lc = ws.cell(row=row, column=3, value=LENS.get(L.get("lens"), L.get("lens")))
+            lc.font = BODY_FONT; lc.alignment = Alignment(horizontal="left", vertical="top")
+            ac = ws.cell(row=row, column=4, value=txt)
+            ac.font = BODY_FONT
+            ac.alignment = Alignment(horizontal="left", vertical="top", wrap_text=True)
+            ws.cell(row=row, column=1).alignment = Alignment(horizontal="left", vertical="top")
+            ws.row_dimensions[row].height = max(28, 14 * (1 + len(txt) // 95))
+            first = False
+            row += 1
+    ws.column_dimensions["A"].width = 9
+    ws.column_dimensions["B"].width = 8
+    ws.column_dimensions["C"].width = 14
+    ws.column_dimensions["D"].width = 120
+    ws.freeze_panes = "A4"
+
 def _one_liner(s, limit=200):
     """Condense a stored business summary to a short one-liner for display."""
     if not s:
@@ -1055,6 +1118,7 @@ TAB_COLORS = {
     "All Funds":       "F2F2F2",
     # Universe ranking — darkest
     "Best Ideas":      "262626",
+    "Adversarial Review": "262626",
     "Top 100":         "262626",
     "Non-Biotech Top 100": "262626",
     "Asymmetry":       "262626",
@@ -1091,6 +1155,7 @@ def main():
     sheet_readme(wb, conn)
     write_legend_sheet(wb, 1)
     sheet_best_ideas(wb, conn)
+    sheet_adversarial_review(wb, conn)
     write_signal_sheet(wb, conn, "Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
         subtitle="Top 100 by unified_score across the full 5,862-ticker universe (ex-ETF, ex-mega-cap, mcap known).")
