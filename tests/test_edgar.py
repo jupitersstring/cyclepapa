@@ -91,6 +91,28 @@ def test_ebitda_never_reconstructed_from_amortization_alone():
     assert math.isnan(eb["2019-12-31"])         # not 20+3=23
 
 
+def test_revenue_junk_negative_tag_does_not_override_real_tag():
+    """A stray NEGATIVE Revenues series (contra/adjustment) ranked above the real
+    SalesRevenueNet must NOT win the gap-fill (the PLXS -$229M-for-4-years bug)."""
+    usd = lambda arr: {"units": {"USD": arr}}
+    facts = {"facts": {"us-gaap": {
+        "Revenues": usd([
+            _fact("2012-01-01", "2012-12-31", -150_000_000, "2013-02-01"),
+            _fact("2013-01-01", "2013-12-31", -100_000_000, "2014-02-01"),
+        ]),
+        "SalesRevenueNet": usd([
+            _fact("2012-01-01", "2012-12-31", 2_300_000_000, "2013-02-01"),
+            _fact("2013-01-01", "2013-12-31", 2_228_000_000, "2014-02-01"),
+        ]),
+        "NetIncomeLoss": usd([_fact("2012-01-01", "2012-12-31", 50_000_000, "2013-02-01")]),
+    }}}
+    a = edgar.build_statements(facts)["annual"]
+    by = dict(zip(a["dates"], a["revenue"]))
+    assert by["2012-12-31"] == 2_300_000_000     # real positive, not -150M
+    assert by["2013-12-31"] == 2_228_000_000
+    assert all((v is None) or (isinstance(v, float) and v != v) or v >= 0 for v in a["revenue"])
+
+
 def test_ebitda_from_depreciation_plus_amortization():
     usd = lambda arr: {"units": {"USD": arr}}
     facts = {"facts": {"us-gaap": {

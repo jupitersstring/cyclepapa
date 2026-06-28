@@ -187,13 +187,18 @@ def _split_periods(unit_arr: list) -> tuple[dict, dict]:
             {k: v[1] for k, v in quarterly.items()})
 
 
-def _merge_concept(gaap: dict, candidates: list[str]) -> tuple[dict, dict]:
+def _merge_concept(gaap: dict, candidates: list[str], nonneg: bool = False) -> tuple[dict, dict]:
     """Union periods across candidate tags into (annual, quarterly) end->val dicts.
 
     Earlier candidate wins on a shared period-end (``setdefault``), so the modern
     tag takes precedence and older/deprecated tags only FILL the historical gap —
     giving one continuous series across a tag switch (the AAPL/KO ``Revenues`` ->
     ``RevenueFromContractWithCustomer`` transition that otherwise drops recent years).
+
+    ``nonneg=True`` skips negative values, so a junk tag carrying contra/adjustment
+    negatives (e.g. a stray ``Revenues`` of -$200M for years where the real
+    ``SalesRevenueNet`` is +$2B) cannot win the gap-fill and corrupt the series.
+    Used for revenue, which is never negative; earnings/EBITDA/gross legitimately can be.
     """
     ann: dict[str, float] = {}
     qtr: dict[str, float] = {}
@@ -208,8 +213,12 @@ def _merge_concept(gaap: dict, candidates: list[str]) -> tuple[dict, dict]:
             continue
         a, q = _split_periods(units[unit_key])
         for end, v in a.items():
+            if nonneg and v < 0:
+                continue
             ann.setdefault(end, v)
         for end, v in q.items():
+            if nonneg and v < 0:
+                continue
             qtr.setdefault(end, v)
     return ann, qtr
 
@@ -250,7 +259,9 @@ def build_statements(facts: dict) -> dict:
     from a companyfacts payload, in the metrics-ready shape. EBITDA is rebuilt as
     operating income + D&A (per period-end) since SEC has no EBITDA concept."""
     gaap = (facts.get("facts", {}) or {}).get("us-gaap", {}) or {}
-    items = {k: _merge_concept(gaap, c) for k, c in _CONCEPTS.items()}
+    # Revenue is non-negative — skip negative tag values so a junk Revenues series
+    # can't override the real one (the PLXS -$229M-for-4-years corruption).
+    items = {k: _merge_concept(gaap, c, nonneg=(k == "revenue")) for k, c in _CONCEPTS.items()}
     items["dep_amort"] = _dep_amort(gaap)
 
     def reconstruct_ebitda(which: int) -> dict:
