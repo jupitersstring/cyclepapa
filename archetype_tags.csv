@@ -6959,7 +6959,7 @@ DCM.TO,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,"Na
 603025.SS,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 187420.KQ,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,"NarrativeLag, CapitalDiscipline, KPIThreshold"
 SLIGR.AS,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,"NarrativeLag, CapitalDiscipline"
-TRAK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,8,"LindyMargin, LindyFCF, NoDilution, QuietCompounder, OwnerOperator, CashQuality, LowSBCQuality, StrongCoverage"
+TRAK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,7,"LindyMargin, LindyFCF, NoDilution, OwnerOperator, CashQuality, LowSBCQuality, StrongCoverage"
 002721.SZ,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,"NarrativeLag, KPIThreshold"
 3587.TWO,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,KPIThreshold
 3540.TWO,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,"NarrativeLag, KPIThreshold"
@@ -23389,7 +23389,7 @@ BB,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,3,"TaxEff
 LHSW,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,StrongCoverage
 GS-PA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 GS-PC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-ROL,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,11,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, LindyGrowth, QuietCompounder, OwnerOperator, CashQuality, LowSBCQuality, StrongCoverage"
+ROL,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,0,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,10,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, LindyGrowth, OwnerOperator, CashQuality, LowSBCQuality, StrongCoverage"
 ROLR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,GeographicGlobal
 ROP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,4,"LindyMargin, LindyGrowth, CapitalLightPivot, GeographicGlobal"
 ROST,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,4,"CashReinvest, CashQuality, LowSBCQuality, StrongCoverage"
@@ -23794,7 +23794,7 @@ IOR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 IOSP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,4,"LindyFCF, NoDilution, QARP, LowSBCQuality"
 IOT,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,"DurableReinvest, CashReinvest"
 IP,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,CashReinvest
-IPAR,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,6,"CashReinvest, LindyMargin, QuietCompounder, BuybackCompounder, LowSBCQuality, StrongCoverage"
+IPAR,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,5,"CashReinvest, LindyMargin, BuybackCompounder, LowSBCQuality, StrongCoverage"
 IPF.L,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 WTTR,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,4,"DurableReinvest, CashReinvest, LowSBCQuality, GeographicGlobal"
 AMP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -24018,10 +24018,10 @@ QSR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,6,"Lindy
 XRXDW,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,LowSBCQuality
 XTGRF,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,TaxEfficient
 XXC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,TaxEfficient
-XYF,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,11,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, LindyGrowth, QuietCompounder, BuybackCompounder, CapitalLightPivot, LowSBCQuality, StrongCoverage"
+XYF,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,10,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, LindyGrowth, BuybackCompounder, CapitalLightPivot, LowSBCQuality, StrongCoverage"
 XZO,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,LowSBCQuality
 YALA,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,7,"CashReinvest, LindyMargin, LindyFCF, NoDilution, OwnerOperator, CashQuality, TaxEfficient"
-ITRN,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,6,"LindyMargin, LindyFCF, NoDilution, QuietCompounder, BuybackCompounder, CashQuality"
+ITRN,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,5,"LindyMargin, LindyFCF, NoDilution, BuybackCompounder, CashQuality"
 IRT,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,LowSBCQuality
 IRTC,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,"NarrativeLag, FixedCost+DemandShock, KPIThreshold"
 XRPZ,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -24172,7 +24172,7 @@ HONIV,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,Dive
 HOUR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,StrongCoverage
 VSTS,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,2,"LowSBCQuality, ConcentratedSegments"
 VSVS.L,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-VSXY,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,6,"LindyFCF, NoDilution, QuietCompounder, CashQuality, LowSBCQuality, TaxEfficient"
+VSXY,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,5,"LindyFCF, NoDilution, CashQuality, LowSBCQuality, TaxEfficient"
 VTEX,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,TaxEfficient
 VTGDF,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 HPE-PC,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,1,8,"DurableReinvest, LindyFCF, NoDilution, LowSBCQuality, TaxEfficient, DiversifiedSegments, GeographicGlobal, FastestSegment"
@@ -24317,7 +24317,7 @@ IAUX-WT,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Fa
 IBATF,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 IBCP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 IBKR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,"LindyGrowth, TaxEfficient"
-IBP,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,10,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, QuietCompounder, BuybackCompounder, LowSBCQuality, ConcentratedSegments, FastestSegment"
+IBP,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,9,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, BuybackCompounder, LowSBCQuality, ConcentratedSegments, FastestSegment"
 HUHU,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 WB,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,"LindyFCF, CashQuality"
 WBC.AX,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -24690,7 +24690,7 @@ CULP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,Geogr
 D05.SI,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 DAC,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,6,"DurableReinvest, LindyMargin, BuybackCompounder, QARP, LowSBCQuality, StrongCoverage"
 4978.T,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,NarrativeLag
-STMEF,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,3,"LindyMargin, QuietCompounder, LowSBCQuality"
+STMEF,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,"LindyMargin, LowSBCQuality"
 DCBG,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 DAR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,5,"LindyMargin, LindyFCF, NoDilution, LowSBCQuality, GeographicGlobal"
 DAVEW,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,CashReinvest
@@ -24736,7 +24736,7 @@ ZTO,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,5,"Lindy
 CTRM,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,"LindyMargin, TaxEfficient"
 ZTS,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,2,"LowSBCQuality, GeographicGlobal"
 ZURA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-JFIN,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,1,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,10,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, QuietCompounder, OwnerOperator, QARP, ReinvestInflect, StrongCoverage"
+JFIN,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,9,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, NoDilution, OwnerOperator, QARP, ReinvestInflect, StrongCoverage"
 ZLAB,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 JHX,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,4,"LindyMargin, LindyFCF, LowSBCQuality, GeographicGlobal"
 JD,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,5,"LindyFCF, NoDilution, QARP, CashQuality, TaxEfficient"
@@ -25285,7 +25285,7 @@ ENR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,"LowSB
 ENRAD.ST,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,NarrativeLag
 SILC,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 CHOW,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-CHR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,6,"LindyMargin, QuietCompounder, BuybackCompounder, LowSBCQuality, TaxEfficient, StrongCoverage"
+CHR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,5,"LindyMargin, BuybackCompounder, LowSBCQuality, TaxEfficient, StrongCoverage"
 CHRW,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,6,"LindyFCF, NoDilution, BuybackCompounder, LowSBCQuality, StrongCoverage, ConcentratedSegments"
 CHCT,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,TaxEfficient
 MOVAA,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,7,"ROICInflect, LindyFCF, NoDilution, CashQuality, LowSBCQuality, StrongCoverage, ConcentratedSegments"
@@ -25384,7 +25384,7 @@ CGABL,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,4,"Cas
 ENS.TO,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 TFIN-P,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,DiscountedVehicle
 TGF.AX,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,KPIThreshold
-TGLS,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,10,"DurableReinvest, LindyMargin, LindyFCF, NoDilution, QuietCompounder, OwnerOperator, QARP, LowSBCQuality, StrongCoverage, GeographicGlobal"
+TGLS,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,1,0,1,0,0,1,0,9,"DurableReinvest, LindyMargin, LindyFCF, NoDilution, OwnerOperator, QARP, LowSBCQuality, StrongCoverage, GeographicGlobal"
 6217.TWO,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 SILA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,LindyMargin
 EMP.AX,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -25500,7 +25500,7 @@ ESEA,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,5,"Dura
 ESGH,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,DiversifiedSegments
 TIGR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,LindyGrowth
 MITT-PB,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,TaxEfficient
-MNDO,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,7,"LindyMargin, LindyFCF, NoDilution, QuietCompounder, OwnerOperator, LowSBCQuality, TaxEfficient"
+MNDO,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,6,"LindyMargin, LindyFCF, NoDilution, OwnerOperator, LowSBCQuality, TaxEfficient"
 MNDR,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 MNDY,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,CashReinvest
 MNESP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,6,"LindyMargin, LindyFCF, NoDilution, QARP, LowSBCQuality, StrongCoverage"
@@ -25528,7 +25528,7 @@ SGP,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 ESP,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,6,"DurableReinvest, CashReinvest, LindyMargin, LindyFCF, CashQuality, LowSBCQuality"
 ESRT,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,5,"LindyMargin, LindyFCF, NoDilution, TaxEfficient, ConcentratedSegments"
 EU,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-TK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,6,"LindyMargin, LindyFCF, NoDilution, QuietCompounder, OwnerOperator, StrongCoverage"
+TK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,5,"LindyMargin, LindyFCF, NoDilution, OwnerOperator, StrongCoverage"
 EXOD,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,2,"StrongCoverage, GeographicGlobal"
 EXP,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,5,"DurableReinvest, LindyMargin, LowSBCQuality, StrongCoverage, DiversifiedSegments"
 EVER,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,2,"TaxEfficient, StrongCoverage"
