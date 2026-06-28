@@ -196,13 +196,45 @@ def main():
     evs = pd.to_numeric(df['enterpriseToRevenue'], errors='coerce')
     cheap = (1 - evs.rank(pct=True)).fillna(0.5)               # cheap → near 1
 
+    # 4) Viability — separate genuine unpriced-growth from value traps. A
+    #    name where the WHOLE business is growing and it's profitable (or
+    #    near it) is a real setup (GOGO: total +113%, EV/EBITDA 7, cheap,
+    #    beaten down). A cash-burner with a flat total is a trap (OPTT:
+    #    total +6%, negative EBITDA). We reward positive total growth and
+    #    positive/near-breakeven EV/EBITDA.
+    total_g = pd.to_numeric(df['total_growth'], errors='coerce').fillna(0)
+    ev_ebd = pd.to_numeric(df['enterpriseToEbitda'], errors='coerce')
+    # total-growth contribution: positive total growth is good, capped
+    total_g_signal = total_g.clip(lower=-0.2, upper=0.5)
+    # profitability: positive & reasonable EV/EBITDA (0..25) scores; negative
+    # (loss-making) or absurd (>50) scores 0
+    profit_signal = ((ev_ebd > 0) & (ev_ebd <= 25)).astype(float)
+    viability = total_g_signal + profit_signal * 0.5
+
+    # Viability tier label for quick triage
+    def _tier(row):
+        eb = row.get('enterpriseToEbitda')
+        tg = row.get('total_growth')
+        eb = float(eb) if pd.notna(eb) else None
+        tg = float(tg) if pd.notna(tg) else 0
+        if eb is not None and 0 < eb <= 25 and tg > 0.05:
+            return 'profitable + growing'
+        if eb is not None and 0 < eb <= 25:
+            return 'profitable'
+        if tg > 0.10:
+            return 'pre-profit, growing'
+        return 'cash-burn / flat'
+    df['viability_tier'] = df.apply(_tier, axis=1)
+
     df['inflection_strength'] = inflection
     df['price_dormancy'] = dormancy + below_high
     df['cheapness'] = cheap
+    df['viability'] = viability
     df['unpriced_score'] = (
         inflection * 4.0
         + (dormancy + below_high) * 2.0
         + cheap * 1.5
+        + viability * 2.0          # viability now a first-class factor
     )
     df = df.sort_values('unpriced_score', ascending=False)
     df.to_csv(OUT / 'screener.csv', index=False)

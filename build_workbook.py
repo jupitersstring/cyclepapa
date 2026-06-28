@@ -193,6 +193,7 @@ _TEXT_COLS = {
     'shortname','category','growing_revenue_type','status','path','measure',
     'symbol','holder','firm','position','action','grade','transaction','insider',
     'ownership','text','url','tab','periodtype','period','pe_peak_date',
+    'axis','segment','viability_tier',
 }
 
 # Human-readable column titles. snake_case → Title-Case-with-Units. Anything
@@ -1048,9 +1049,10 @@ CREATIVE_MEASURES = [
      'higher the score, the less the segment growth is in the tape. Catch it '
      'BEFORE the re-rate. (Needs cached price history, so SEC-only tickers '
      'without a price series — like EVC itself — are absent.)',
-     ['ticker','company','sector','country','segment','share_now','seg_growth',
-      'total_growth','excess_growth','perf_1y_pct','perf_2y_pct','pct_below_2y_high',
-      'enterpriseToRevenue','enterpriseToEbitda','trailingPE','market_cap','unpriced_score']),
+     ['ticker','company','sector','country','segment','viability_tier','share_now',
+      'seg_growth','total_growth','excess_growth','perf_1y_pct','perf_2y_pct',
+      'pct_below_2y_high','enterpriseToRevenue','enterpriseToEbitda','trailingPE',
+      'market_cap','unpriced_score']),
     ('results_revenue_decomp/all.csv', 'Revenue Disaggregation',
      'Every revenue-flavored XBRL tag we extracted from SEC companyfacts, per ticker. '
      'Use this to spot business-mix shifts: a Services-line growing faster than Product, '
@@ -1098,6 +1100,8 @@ EXTRA_COLUMN_LABELS = {
     'inflection_strength': 'Inflection Strength',
     'price_dormancy': 'Price Dormancy',
     'cheapness': 'Cheapness',
+    'viability_tier': 'Viability Tier',
+    'viability': 'Viability',
 }
 COLUMN_LABELS.update(EXTRA_COLUMN_LABELS)
 
@@ -1581,7 +1585,8 @@ def build_glossary(wb):
         ('Unpriced Score', 'EVC/Smadex pre-rerate score = inflection strength × price dormancy × cheapness. Higher = the segment is ramping but the share price has not yet responded. Catch it before the re-rate.'),
         ('1Y / 2Y Price Return', 'Trailing total return. The unpriced setup wants these flat-to-NEGATIVE — the growth is not being priced in.'),
         ('Below 2Y High', 'How far the price trades below its trailing-2-year high (−40% = 40% below). Further below = less noticed by the market.'),
-        ('Inflection Strength / Price Dormancy / Cheapness', 'The three components of the unpriced score: segment excess-growth in the 30%-share sweet spot; how dormant/down the price is; and how cheap on EV/Sales relative to the candidate set.'),
+        ('Inflection Strength / Price Dormancy / Cheapness / Viability', 'The four components of the unpriced score: segment excess-growth in the 30%-share sweet spot; how dormant/down the price is; how cheap on EV/Sales; and viability (total-business growth + profitability).'),
+        ('Viability Tier', 'Triage label separating real unpriced-growth from value traps: "profitable + growing" (highest conviction — whole company growing AND profitable, like GOGO), "profitable", "pre-profit, growing", or "cash-burn / flat" (value-trap risk).'),
         # EDGAR valuation fallback
         ('*_edgar', 'Valuation metric computed from SEC-EDGAR XBRL companyfacts (Yahoo-independent). EV/EBITDA, P/E, P/B, P/S derived from OperatingIncome + D&A, NetIncome, shares, debt, cash + cached price. Used to fill US-ticker gaps where Yahoo returns empty.'),
     ]
