@@ -245,14 +245,30 @@ def cusip_ticker_map(conn):
         if len(row) >= 3:
             cik, name, tkr, exch = row[0], row[1].upper(), row[2], row[3] if len(row)>3 else ""
             by_name[name] = tkr
-            # First-word and acronym fallbacks
+            nn = _norm_name(name)          # normalized key for fuzzy match
+            if nn and nn not in by_name:
+                by_name[nn] = tkr
     return by_name
+
+def _norm_name(s):
+    """Normalise an issuer name for matching: drop punctuation and corporate
+    suffixes so 'MOODYS CORP DEL' and 'Moody's Corporation' collide."""
+    s = (s or "").upper()
+    s = re.sub(r"[.,'/&()\-]", " ", s)
+    s = re.sub(r"\b(THE|INC|CORP|CORPORATION|CO|COMPANY|COS|HOLDING|HOLDINGS|HLDGS?|"
+               r"GROUP|GRP|LTD|LIMITED|PLC|LP|LLC|NV|SA|AG|ADR|ADS|SP|SPONSORED|"
+               r"CLASS|CL|COM|COMMON|ORD|ORDINARY|NEW|DEL|TR|TRUST|REIT|PARTNERS)\b", " ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
 
 def name_to_ticker(name, name_map):
     if not name: return None
     n = name.upper().strip()
     if n in name_map: return name_map[n]
-    # try without common suffixes
+    # normalised exact match (handles punctuation + corporate suffixes)
+    nn = _norm_name(name)
+    if nn and nn in name_map: return name_map[nn]
+    # legacy suffix-strip
     cleaned = re.sub(r"\b(INC|CORP|CORPORATION|HOLDINGS?|GROUP|LTD|PLC|LP|LLC|CLASS\s+[A-Z]|COM|COMMON)\b", "", n).strip()
     if cleaned in name_map: return name_map[cleaned]
     # token match: ticker exists in name

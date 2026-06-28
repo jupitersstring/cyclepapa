@@ -70,10 +70,16 @@ def ingest_csv(text):
         try:
             rank_int = int(re.search(r'\d+', rank).group()) if re.search(r'\d+', rank) else None
         except: rank_int = None
-        # parse % if rank contains %
+        # parse % WEIGHT if present — skip "+N%" (that's a position CHANGE, not a
+        # weight) and skip impossible >100 values.
         pct = None
-        m = re.search(r'(\d+(?:\.\d+)?)\s*%', rank)
-        if m: pct = float(m.group(1))
+        for mm in re.finditer(r'(\+?)\s*(\d+(?:\.\d+)?)\s*%', rank):
+            if mm.group(1) == "+":
+                continue
+            v = float(mm.group(2))
+            if 0 < v <= 100:
+                pct = v
+                break
 
         raw_text = f"[{conf}] {fund_in} | {ticker} | {company} | rank={rank} | {src}"
         conn.execute("""INSERT INTO fund_positions
