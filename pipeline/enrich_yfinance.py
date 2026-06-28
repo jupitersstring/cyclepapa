@@ -15,7 +15,7 @@ Writes to ticker_yf (separate table — additive, authoritative). The
 unified_score join prefers ticker_yf values when present, else falls back
 to the SEC-derived ticker_valuation / ticker_meta.
 """
-import os, sqlite3, sys, time, threading
+import math, os, sqlite3, sys, time, threading
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 CA = "/root/.ccr/ca-bundle.crt"
@@ -66,31 +66,35 @@ def fetch_one(tkr, session):
     if not info or (info.get("marketCap") is None and info.get("enterpriseValue") is None
                     and info.get("trailingPE") is None):
         return None
+    def fin(x):
+        # reject inf / nan / non-numeric — Yahoo returns inf P/E for ~zero-EPS
+        # names, which SQLite stores as the text "Infinity" and breaks round().
+        return x if isinstance(x, (int, float)) and math.isfinite(x) else None
     def m(x):
-        return (x / 1e6) if isinstance(x, (int, float)) else None
+        x = fin(x)
+        return (x / 1e6) if x is not None else None
     # EV/EBITDA is only meaningful with positive EV AND positive EBITDA; a
     # negative on either side (or neg/neg, which fakes a cheap positive) is junk.
-    _ev, _ebitda = info.get("enterpriseValue"), info.get("ebitda")
-    _ev_ebitda = info.get("enterpriseToEbitda") if (
-        isinstance(_ev, (int, float)) and _ev > 0
-        and isinstance(_ebitda, (int, float)) and _ebitda > 0) else None
+    _ev, _ebitda = fin(info.get("enterpriseValue")), fin(info.get("ebitda"))
+    _ev_ebitda = fin(info.get("enterpriseToEbitda")) if (
+        _ev and _ev > 0 and _ebitda and _ebitda > 0) else None
     return {
         "mcap_m":   m(info.get("marketCap")),
         "ev_m":     m(info.get("enterpriseValue")),
         "ev_ebitda": _ev_ebitda,
-        "pb":       info.get("priceToBook"),
-        "pe":       info.get("trailingPE"),
-        "fwd_pe":   info.get("forwardPE"),
-        "ev_rev":   info.get("enterpriseToRevenue"),
-        "peg":      info.get("trailingPegRatio") or info.get("pegRatio"),
-        "price":    info.get("currentPrice") or info.get("regularMarketPrice"),
+        "pb":       fin(info.get("priceToBook")),
+        "pe":       fin(info.get("trailingPE")),
+        "fwd_pe":   fin(info.get("forwardPE")),
+        "ev_rev":   fin(info.get("enterpriseToRevenue")),
+        "peg":      fin(info.get("trailingPegRatio") or info.get("pegRatio")),
+        "price":    fin(info.get("currentPrice") or info.get("regularMarketPrice")),
         "currency": info.get("currency"),
         "shares_m": m(info.get("sharesOutstanding")),
         "ebitda_m": m(info.get("ebitda")),
         "debt_m":   m(info.get("totalDebt")),
         "cash_m":   m(info.get("totalCash")),
-        "margin":   info.get("profitMargins"),
-        "rev_g":    info.get("revenueGrowth"),
+        "margin":   fin(info.get("profitMargins")),
+        "rev_g":    fin(info.get("revenueGrowth")),
         "sector":   info.get("sector"),
         "industry": info.get("industry"),
     }
