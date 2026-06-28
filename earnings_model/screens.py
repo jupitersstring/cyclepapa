@@ -63,7 +63,10 @@ def eligible(df: pd.DataFrame, min_periods: int = 3, allow_nano: bool = False,
     # inflected (kills lottery-ticket / mark-to-market distortions).
     rev_g = out.get("revenue_growth", pd.Series(np.nan, index=out.index))
     eb_infl = out.get("ebitda_inflecting", pd.Series(False, index=out.index)).fillna(False)
-    out = out[(rev_g.between(-0.6, 3.0)) | eb_infl]
+    # Drop only true ratio blow-ups (rev_g outside [-60%, +300%]); RETAIN NaN-growth
+    # names (no positive prior-year base to form a ratio) so they're judged on their
+    # other signals, mirroring the ev.isna() handling just below.
+    out = out[rev_g.isna() | rev_g.between(-0.6, 3.0) | eb_infl]
     # Drop negative-EV/EBITDA (loss-making at the operating line — "cheap" is a
     # sign artifact, not value): if EV/EBITDA present it must be positive.
     if "enterpriseToEbitda" in out.columns:
@@ -243,7 +246,12 @@ def divergence(df: pd.DataFrame, top: int | None = 40, min_periods: int = 4, **e
     one-off licensing/M&A lump isn't mistaken for a trajectory change.
     """
     e = eligible(df, min_periods=min_periods, **elig)
-    e = e[e.get("revenue_growth", pd.Series(np.nan, index=e.index)).abs() < 2.0]
+    # Cap revenue-ratio blow-ups (>=200%) but KEEP NaN-growth rows: this screen
+    # scores on EBITDA/earnings behaviour, and eligible() only admits a NaN-growth
+    # name when it is genuinely EBITDA-inflecting — dropping it here discarded the
+    # very loss-maker turnarounds the divergence thesis is about.
+    g = e.get("revenue_growth", pd.Series(np.nan, index=e.index))
+    e = e[g.isna() | (g.abs() < 2.0)]
 
     swing = (e.get("revenue_growth", 0) - e.get("revenue_prev_growth", 0)).clip(-1, 1)
     beh = pd.concat(

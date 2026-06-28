@@ -127,7 +127,9 @@ def backfill_size_buckets(universe: pd.DataFrame, fundamentals: pd.DataFrame) ->
             continue
         mc = caps.at[sym, "marketCap"] if "marketCap" in caps.columns else None
         cur = caps.at[sym, "currency"] if "currency" in caps.columns else out.at[idx, "currency"]
-        rate = config.FX_TO_USD.get(cur, 1.0)
+        rate = config.FX_TO_USD.get(cur)
+        if rate is None:
+            continue  # unknown currency: leave Unclassified, never assume USD 1:1
         try:
             mc_usd = float(mc) * rate
         except (TypeError, ValueError):

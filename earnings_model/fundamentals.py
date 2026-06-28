@@ -180,16 +180,26 @@ def _series(stmt: pd.DataFrame, keys: list[str]) -> list[float]:
 def _ebitda_series(stmt: pd.DataFrame) -> list[float]:
     """EBITDA line, or operating income + D&A reconstruction as a fallback."""
     direct = _series(stmt, config.EBITDA_KEYS)
-    if any(not math.isnan(x) for x in direct):
-        return direct
     opinc = _series(stmt, config.OPERATING_INCOME_KEYS)
     da = _series(stmt, config.DA_KEYS)
-    if opinc and da and len(opinc) == len(da):
-        return [
-            (o + d) if not (math.isnan(o) or math.isnan(d)) else NaN
-            for o, d in zip(opinc, da)
-        ]
-    return direct
+    recon_ok = bool(opinc) and bool(da) and len(opinc) == len(da)
+    if not recon_ok:
+        return direct
+    # Splice rather than all-or-nothing: keep as-reported EBITDA where present and
+    # backfill ONLY the NaN positions with operating income + D&A, so a partly-
+    # reported EBITDA line still yields the full multi-year path (earlier years
+    # were previously lost whenever any single recent year reported EBITDA).
+    n = len(opinc)
+    direct = (direct + [NaN] * n)[:n] if direct else [NaN] * n
+    out = []
+    for i in range(n):
+        if not math.isnan(direct[i]):
+            out.append(direct[i])
+        elif not (math.isnan(opinc[i]) or math.isnan(da[i])):
+            out.append(opinc[i] + da[i])
+        else:
+            out.append(NaN)
+    return out
 
 
 def _dates(stmt: pd.DataFrame) -> list[str]:
@@ -352,7 +362,16 @@ def _earnings_surprises(tk) -> list:
     except Exception:
         try:
             eh = tk.earnings_history  # fallback: ~4 quarters
-            ed = eh.rename(columns={"surprisePercent": "Surprise(%)"}) if eh is not None else None
+            if eh is not None:
+                ed = eh.rename(columns={"surprisePercent": "Surprise(%)"})
+                # quoteSummary earningsHistory delivers surprisePercent as a DECIMAL
+                # FRACTION (0.0257 for a 2.57% beat), unlike get_earnings_dates which
+                # yields percent (2.57). Rescale so both paths feed surprise_block on
+                # the SAME percent scale (else fallback names read ~100x too small).
+                if "Surprise(%)" in ed.columns:
+                    ed["Surprise(%)"] = pd.to_numeric(ed["Surprise(%)"], errors="coerce") * 100.0
+            else:
+                ed = None
         except Exception:
             return []
     if ed is None or getattr(ed, "empty", True) or "Surprise(%)" not in ed.columns:
@@ -397,7 +416,15 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES,
             except Exception:
                 hist = None
             feats, monthly = _price_features(hist)
-            surprises = _earnings_surprises(tk) if with_surprises else []
+            # The surprise leg parses a separate (often malformed) DataFrame; isolate
+            # it so a parse error there can never discard the good statement / price /
+            # valuation data for the whole ticker.
+            surprises = []
+            if with_surprises:
+                try:
+                    surprises = _earnings_surprises(tk)
+                except Exception:
+                    surprises = []
 
             valuation = {f: info.get(f) for f in config.VALUATION_FIELDS}
             has_data = any(

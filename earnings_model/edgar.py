@@ -223,14 +223,17 @@ def _dep_amort(gaap: dict) -> tuple[dict, dict]:
     dep_a, dep_q = _merge_concept(gaap, _DA_DEP)
     am_a, am_q = _merge_concept(gaap, _DA_AMORT)
 
-    def _add(d1: dict, d2: dict) -> dict:
-        out = {}
-        for end in set(d1) | set(d2):
-            if end in d1 or end in d2:
-                out[end] = d1.get(end, 0.0) + d2.get(end, 0.0)
-        return out
+    # Anchor on Depreciation (the dominant add-back) and ADD intangible amortization
+    # only where the SAME period reports it. Reconstructing from amortization ALONE
+    # (depreciation buried in cost of sales) is definitionally not EBITDA's D&A and
+    # would massively understate it; and pairing a present component with an absent
+    # one as 0 would fabricate a step exactly where component coverage changes. So a
+    # period with no depreciation yields NO D&A -> EBITDA stays NaN there (which the
+    # metric/forensic blocks already skip) rather than a wrong-but-present value.
+    def _combine(dep: dict, am: dict) -> dict:
+        return {end: v + am.get(end, 0.0) for end, v in dep.items()}
 
-    return _add(dep_a, am_a), _add(dep_q, am_q)
+    return _combine(dep_a, am_a), _combine(dep_q, am_q)
 
 
 def _aligned(series_by_item: dict[str, dict], dates: list[str]) -> dict:

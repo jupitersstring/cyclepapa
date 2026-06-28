@@ -73,3 +73,33 @@ def test_no_filer_returns_none():
     # an empty facts payload yields no usable revenue -> build returns empty axis
     blocks = edgar.build_statements({"facts": {"us-gaap": {}}})
     assert blocks["annual"]["dates"] == []
+
+
+def test_ebitda_never_reconstructed_from_amortization_alone():
+    """Depreciation buried in COGS (amortization-only) must NOT yield a tiny
+    amortization-only 'EBITDA' — it should be NaN (no honest D&A add-back)."""
+    usd = lambda arr: {"units": {"USD": arr}}
+    facts = {"facts": {"us-gaap": {
+        "Revenues": usd([_fact("2019-01-01", "2019-12-31", 100, "2020-02-01")]),
+        "NetIncomeLoss": usd([_fact("2019-01-01", "2019-12-31", 12, "2020-02-01")]),
+        "OperatingIncomeLoss": usd([_fact("2019-01-01", "2019-12-31", 20, "2020-02-01")]),
+        "AmortizationOfIntangibleAssets": usd([_fact("2019-01-01", "2019-12-31", 3, "2020-02-01")]),
+        # NO Depreciation tag and NO combined D&A tag
+    }}}
+    a = edgar.build_statements(facts)["annual"]
+    eb = dict(zip(a["dates"], a["ebitda"]))
+    assert math.isnan(eb["2019-12-31"])         # not 20+3=23
+
+
+def test_ebitda_from_depreciation_plus_amortization():
+    usd = lambda arr: {"units": {"USD": arr}}
+    facts = {"facts": {"us-gaap": {
+        "Revenues": usd([_fact("2019-01-01", "2019-12-31", 100, "2020-02-01")]),
+        "NetIncomeLoss": usd([_fact("2019-01-01", "2019-12-31", 12, "2020-02-01")]),
+        "OperatingIncomeLoss": usd([_fact("2019-01-01", "2019-12-31", 20, "2020-02-01")]),
+        "Depreciation": usd([_fact("2019-01-01", "2019-12-31", 5, "2020-02-01")]),
+        "AmortizationOfIntangibleAssets": usd([_fact("2019-01-01", "2019-12-31", 3, "2020-02-01")]),
+    }}}
+    a = edgar.build_statements(facts)["annual"]
+    eb = dict(zip(a["dates"], a["ebitda"]))
+    assert eb["2019-12-31"] == 20 + 5 + 3

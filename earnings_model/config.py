@@ -164,7 +164,15 @@ FX_TO_USD = {"GBP": 1.27, "GBp": 0.0127, "USD": 1.0, "EUR": 1.08, "PENNY": 0.012
              "JPY": 0.0064, "CAD": 0.73, "AUD": 0.65, "NZD": 0.60, "HKD": 0.128,
              "CNY": 0.139, "TWD": 0.031, "KRW": 0.00072, "SGD": 0.74, "THB": 0.029,
              "IDR": 0.000062, "BRL": 0.175, "MXN": 0.054, "CLP": 0.0011,
-             "ARS": 0.001, "SAR": 0.267, "ILS": 0.27, "TRY": 0.029, "ZAR": 0.055}
+             "ARS": 0.001, "SAR": 0.267, "ILS": 0.27, "TRY": 0.029, "ZAR": 0.055,
+             # Frontier / smaller markets present in the widened universe — without
+             # these, backfill_size_buckets used to silently treat the cap as USD 1:1
+             # and wildly over-size the name. (Unknown currencies now SKIP instead.)
+             "MYR": 0.21, "PHP": 0.017, "VND": 0.000039, "PKR": 0.0036, "EGP": 0.020,
+             "QAR": 0.274, "AED": 0.272, "KWD": 3.26, "BHD": 2.65, "OMR": 2.60,
+             "JOD": 1.41, "CZK": 0.043, "HUF": 0.0028, "PLN": 0.25, "RON": 0.22,
+             "ISK": 0.0072, "COP": 0.00024, "PEN": 0.27, "NGN": 0.00065,
+             "KES": 0.0078, "MAD": 0.10, "VES": 0.027, "BDT": 0.0091, "LKR": 0.0033}
 
 # --------------------------------------------------------------------------- #
 # yfinance income-statement line-item resolution (names vary by ticker)
