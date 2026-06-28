@@ -99,6 +99,11 @@ def main() -> None:
                     upgraded += 1
                 else:
                     no_edgar += 1          # EDGAR had no more history than yf
+                # The merged raw carries the data + a resume flag, so the bulky
+                # companyfacts intermediate (~3MB) is no longer needed; drop it to
+                # keep the ephemeral cache flat (it is cheaply re-fetchable).
+                facts_path = config.CACHE_DIR / "edgar" / f"CIK{cik:010d}.json"
+                facts_path.unlink(missing_ok=True)
         since += 1
         if i % 50 == 0 or i == len(todo):
             print(f"  [{i}/{len(todo)}] {upgraded} upgraded, {no_edgar} no-gain, "
