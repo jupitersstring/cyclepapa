@@ -167,11 +167,11 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         LEFT JOIN ticker_meta tm ON tm.ticker = fp.ticker
         WHERE fp.fund IN ({ph}) AND fp.section = 3 AND fp.ticker IS NOT NULL
         GROUP BY fp.ticker ORDER BY n DESC LIMIT 20""", style_funds))
-    out = [[r[0], r[1], r[2] or 0, round(r[3] or 0, 1),
+    out = [[r[0], r[1], r[2] or 0, round(r[3], 1) if r[3] else "",
             r[4] or "", r[5] or "",
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
-            round(r[8] or 0, 1),
+            round(r[8], 1) if r[8] else "",
             (r[9] or "")[:38]] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
@@ -197,11 +197,11 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         LEFT JOIN ticker_meta tm ON tm.ticker = fp.ticker
         WHERE fp.fund IN ({ph}) AND fp.section = 4 AND fp.ticker IS NOT NULL
         GROUP BY fp.ticker ORDER BY n DESC LIMIT 20""", style_funds))
-    out = [[r[0], r[1], r[2] or 0, round(r[3] or 0, 1),
+    out = [[r[0], r[1], r[2] or 0, round(r[3], 1) if r[3] else "",
             r[4] or "", r[5] or "",
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
-            round(r[8] or 0, 1),
+            round(r[8], 1) if r[8] else "",
             (r[9] or "")[:38]] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):

@@ -189,6 +189,16 @@ def run():
         GROUP BY ticker"""):
         pct_book_max[r["ticker"]] = r["m"] or 0
         pct_book_n5[r["ticker"]] = r["n5"] or 0
+    # Augment max with researcher-disclosed book weights (fund_positions, kind
+    # 'book', sane 0–100) so foreign / non-13F positions (e.g. material adds in
+    # funds that don't file 13F) carry a real concentration figure instead of 0.
+    for r in conn.execute("""SELECT ticker, MAX(pct_value) AS m
+        FROM fund_positions
+        WHERE ticker IS NOT NULL AND pct_kind = 'book'
+          AND pct_value IS NOT NULL AND pct_value > 0 AND pct_value <= 100
+        GROUP BY ticker"""):
+        if (r["m"] or 0) > pct_book_max.get(r["ticker"], 0):
+            pct_book_max[r["ticker"]] = r["m"]
     er = {r[0]: r[1] for r in conn.execute(
         "SELECT ticker, weighted_excess_12m FROM expected_return")}
     tm = {}
