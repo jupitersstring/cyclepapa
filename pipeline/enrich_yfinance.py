@@ -68,10 +68,16 @@ def fetch_one(tkr, session):
         return None
     def m(x):
         return (x / 1e6) if isinstance(x, (int, float)) else None
+    # EV/EBITDA is only meaningful with positive EV AND positive EBITDA; a
+    # negative on either side (or neg/neg, which fakes a cheap positive) is junk.
+    _ev, _ebitda = info.get("enterpriseValue"), info.get("ebitda")
+    _ev_ebitda = info.get("enterpriseToEbitda") if (
+        isinstance(_ev, (int, float)) and _ev > 0
+        and isinstance(_ebitda, (int, float)) and _ebitda > 0) else None
     return {
         "mcap_m":   m(info.get("marketCap")),
         "ev_m":     m(info.get("enterpriseValue")),
-        "ev_ebitda": info.get("enterpriseToEbitda"),
+        "ev_ebitda": _ev_ebitda,
         "pb":       info.get("priceToBook"),
         "pe":       info.get("trailingPE"),
         "fwd_pe":   info.get("forwardPE"),

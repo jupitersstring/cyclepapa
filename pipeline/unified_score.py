@@ -130,15 +130,23 @@ def run():
     # PREFER yfinance (ticker_yf) — Yahoo's authoritative pre-computed values
     # handle dual-class, ADRs, currency correctly. Fall back to SEC-derived
     # ticker_valuation only where yfinance has no value.
+    # EV/EBITDA is only meaningful when BOTH EV>0 and EBITDA>0. A negative EV
+    # (net cash > market cap) or negative EBITDA (unprofitable) makes the ratio
+    # meaningless — and neg/neg yields a deceptively cheap positive (e.g. LAB
+    # showed 2.0x from -137M EV / -68M EBITDA). Guard at the source.
     valn = {}
     try:
-        for r in conn.execute("SELECT ticker, ev_ebitda, pb_ratio FROM ticker_valuation"):
+        for r in conn.execute("""SELECT ticker,
+                CASE WHEN ev_m > 0 AND ebitda_ttm > 0 THEN ev_ebitda END AS ev_ebitda,
+                pb_ratio FROM ticker_valuation"""):
             valn[r["ticker"]] = (r["ev_ebitda"], r["pb_ratio"])
     except Exception:
         pass
     yf_pe = {}; yf_mcap = {}
     try:
-        for r in conn.execute("""SELECT ticker, ev_ebitda, pb_ratio, pe_ttm, mcap_m
+        for r in conn.execute("""SELECT ticker,
+            CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END AS ev_ebitda,
+            pb_ratio, pe_ttm, mcap_m
             FROM ticker_yf"""):
             ev, pb = r["ev_ebitda"], r["pb_ratio"]
             prev = valn.get(r["ticker"], (None, None))
