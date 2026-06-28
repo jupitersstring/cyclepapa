@@ -111,10 +111,15 @@ def main():
         ev = pd.read_csv(EDGAR_VAL)
         edgar = ev.set_index(ev['ticker'].str.upper()).to_dict('index')
 
+    import re as _re
+    MIN_MCAP = 50e6   # drop micro-cap penny-stock noise (ONCO @ $3.7M, etc.)
     print(f'Scanning {len(seg)} segment-inflection candidates for unpriced growth...')
     rows = []
     for _, r in seg.iterrows():
         tk = str(r['ticker'])
+        # Skip non-common share classes (preferred/warrant/unit/right)
+        if _re.search(r'-P[A-Z]?$|\.PR|-WT$|-WS$|-UN?$|-RT?$', tk):
+            continue
         # Segment inflection gates (slightly looser than the strict screen so
         # we catch steady mix-shifts like EVC, not only explosive launches)
         share = r.get('share_now')
@@ -126,11 +131,19 @@ def main():
             continue
         if excess < 0.10:          # growing >10pp faster than total
             continue
+        # Micro-cap floor — a "segment growing" while the stock is down 99.9%
+        # at a $3M market cap is a dying penny stock, not an unpriced gem.
+        mc = r.get('market_cap')
+        if pd.notna(mc) and float(mc) < MIN_MCAP:
+            continue
 
         perf = _price_perf(tk)
         if not perf or 'perf_1y_pct' not in perf:
             continue
         perf_1y = perf['perf_1y_pct']
+        # Sanity: a near-total wipeout (-95%+) is a dead company, not unpriced
+        if perf_1y <= -95:
+            continue
         # "Not priced in" gate: 1-year return is flat-to-down. We allow a
         # little upside (≤25%) since some leakage is normal, but the cleanest
         # setups are genuinely dormant.

@@ -140,10 +140,18 @@ def years_to_dominate(s_now: float, t_now: float, s_g: float, t_g: float,
         return float('inf')
 
 
-def analyze_ticker(df: pd.DataFrame) -> list[dict]:
+def analyze_ticker(df: pd.DataFrame, consolidated_total: dict | None = None) -> list[dict]:
     """For each axis × member, compute segment vs total YoY and share.
     Returns one row per (axis, member) pair that qualifies as an archetype
-    candidate (share < 40%, excess growth > 10pp, dominates within 0.5-12y)."""
+    candidate (share < 40%, excess growth > 10pp, dominates within 0.5-12y).
+
+    `consolidated_total` maps fiscal_year -> total revenue (from companyfacts,
+    the non-dimensioned consolidated figure). Using it as the denominator
+    avoids the leaf-vs-subtotal DOUBLE-COUNTING that plagued the old
+    "sum all leaf members" approach (which gave AAPL a $724B total vs the
+    real $416B because it added the "Products" subtotal AND its iPhone/Mac/
+    iPad leaves). When the consolidated total isn't available for a year we
+    fall back to the segment-sum, but that path is now the exception."""
     rows = []
     ticker = df['ticker'].iloc[0]
     # Pick the most recent fiscal year as 'now'
@@ -158,20 +166,24 @@ def analyze_ticker(df: pd.DataFrame) -> list[dict]:
     # (axis, member, fiscal_year) to deduplicate
     agg = (df.groupby(['axis', 'member', 'member_label', 'fiscal_year'])['value']
               .max().reset_index())
+    consolidated_total = consolidated_total or {}
 
-    # For each axis, compute the total = sum of all NON-aggregation members
     for axis in agg['axis'].unique():
         ax = agg[agg['axis'] == axis]
-        # Try to identify the total: either an explicit "all" member or sum-of-leaves
-        # In practice each (concept × axis) reports leaves AND totals — we sum the
-        # leaves where the leaf member is not in EXCLUDE_MEMBERS.
         ax_leaves = ax[~ax['member'].isin(EXCLUDE_MEMBERS)]
-        totals_by_fy = ax_leaves.groupby('fiscal_year')['value'].sum()
-        if fy_max not in totals_by_fy.index or fy_prev not in totals_by_fy.index:
-            continue
-        t_now, t_prv = float(totals_by_fy.loc[fy_max]), float(totals_by_fy.loc[fy_prev])
-        if t_now <= 0 or t_prv <= 0:
-            continue
+        # TOTAL: prefer the consolidated revenue from companyfacts (correct,
+        # no double-counting). Fall back to leaf-sum only if unavailable.
+        ct_now = consolidated_total.get(fy_max)
+        ct_prv = consolidated_total.get(fy_prev)
+        if ct_now and ct_prv and ct_now > 0 and ct_prv > 0:
+            t_now, t_prv = float(ct_now), float(ct_prv)
+        else:
+            totals_by_fy = ax_leaves.groupby('fiscal_year')['value'].sum()
+            if fy_max not in totals_by_fy.index or fy_prev not in totals_by_fy.index:
+                continue
+            t_now, t_prv = float(totals_by_fy.loc[fy_max]), float(totals_by_fy.loc[fy_prev])
+            if t_now <= 0 or t_prv <= 0:
+                continue
         t_g = (t_now / t_prv - 1)
 
         # Each leaf member is a candidate segment
@@ -217,9 +229,109 @@ def analyze_ticker(df: pd.DataFrame) -> list[dict]:
     return rows
 
 
+_EDGAR_CACHE = Path('.cache/edgar')
+
+_CONSOL_CACHE = Path('.cache/edgar/consolidated_revenue.parquet')
+
+def _load_consolidated_revenue(only_ciks: set | None = None) -> dict:
+    """Build {ticker_upper: {fiscal_year: total_revenue}} from companyfacts.
+    The non-dimensioned annual revenue is the correct segment denominator —
+    summing dimensional leaf members double-counts subtotals.
+
+    Loads from the .cache parquet if present (fast). Pass `only_ciks` to
+    restrict the (slow) companyfacts scan to a subset — used to compute just
+    the segment-bearing tickers rather than all 6,959 filers."""
+    # Fast path: load the pre-built cache
+    if _CONSOL_CACHE.exists():
+        try:
+            df = pd.read_parquet(_CONSOL_CACHE)
+            out = {}
+            for tkr, grp in df.groupby('ticker'):
+                out[tkr] = dict(zip(grp['fiscal_year'].astype(int), grp['total_revenue']))
+            return out
+        except Exception:
+            pass
+    import json, gzip, re
+    out = {}
+    tk_file = _EDGAR_CACHE / 'company_tickers.json'
+    if not tk_file.exists():
+        return out
+    try:
+        with open(tk_file) as f:
+            raw = json.load(f)
+        cik_to_ticker = {int(r['cik_str']): r['ticker'].upper()
+                         for r in raw.values() if isinstance(r, dict) and 'ticker' in r}
+    except Exception:
+        return out
+    REV_TAGS = ['RevenueFromContractWithCustomerExcludingAssessedTax',
+                'Revenues', 'SalesRevenueNet',
+                'RevenueFromContractWithCustomerIncludingAssessedTax']
+    for f in _EDGAR_CACHE.glob('CF_*.json.gz'):
+        m = re.search(r'CF_(\d+)\.json\.gz$', f.name)
+        if not m: continue
+        cik = int(m.group(1)); tkr = cik_to_ticker.get(cik)
+        if not tkr: continue
+        if only_ciks is not None and cik not in only_ciks:
+            continue
+        try:
+            with gzip.open(f, 'rt') as fp:
+                facts = json.load(fp)['facts'].get('us-gaap', {})
+        except Exception:
+            continue
+        by_fy = {}
+        for tag in REV_TAGS:
+            node = facts.get(tag)
+            if not node: continue
+            for r in node.get('units', {}).get('USD', []):
+                # Consolidated annual = 10-K, full fiscal period, ~365-day span
+                if r.get('form') != '10-K' or r.get('fp') != 'FY':
+                    continue
+                if 'start' not in r or 'end' not in r:
+                    continue
+                try:
+                    s = pd.Timestamp(r['start']); e = pd.Timestamp(r['end'])
+                except Exception:
+                    continue
+                if not (350 <= (e - s).days <= 380):
+                    continue
+                fy = r.get('fy')
+                if fy is None: continue
+                # Keep the latest-filed value per fiscal year
+                prior = by_fy.get(int(fy))
+                if prior is None or str(r.get('filed','')) > prior[1]:
+                    by_fy[int(fy)] = (float(r['val']), str(r.get('filed','')))
+            if by_fy:
+                break  # first tag with data wins
+        if by_fy:
+            out[tkr] = {fy: v for fy, (v, _) in by_fy.items()}
+    return out
+
+
 def main():
     files = list(CACHE.glob('*__segments.parquet'))
     print(f'Scanning {len(files):,} XBRL-segment files...')
+
+    # Load consolidated total revenue per ticker from companyfacts (the
+    # correct denominator). Keyed CIK → {fiscal_year: total_revenue}.
+    consolidated = _load_consolidated_revenue()
+
+    import re as _re
+    # Non-common share classes that the SEC CIK→ticker map sometimes returns
+    # instead of the primary common stock (e.g. EP-PC = a legacy El Paso
+    # preferred now under Kinder Morgan's CIK). These carry the issuer's
+    # segment data but the WRONG ticker + no/garbage valuation. Drop them —
+    # the common-stock ticker for the same CIK carries the real story.
+    _NON_COMMON = _re.compile(r'-P[A-Z]?$|\.PR|-WT$|-WS$|-U$|-UN$|-RT$|-R$|W$', _re.I)
+
+    def _is_non_common(tkr: str) -> bool:
+        t = str(tkr)
+        # Preferred / warrant / unit / right suffixes
+        if _re.search(r'-P[A-Z]?$|\.PR|-WT$|-WS$|-UN?$|-RT?$', t):
+            return True
+        # Bare trailing 'W' on a 5-char US warrant (CELUW, GEGGL handled elsewhere)
+        if len(t) == 5 and t.isalpha() and t.endswith('W'):
+            return True
+        return False
 
     all_rows = []
     every_seg = []  # all (ticker, axis, member) we saw, even if not qualifying
@@ -228,7 +340,16 @@ def main():
             df = pd.read_parquet(p)
         except Exception:
             continue
-        rows = analyze_ticker(df)
+        # Skip preferred/warrant/unit tickers — the common stock for the same
+        # issuer is the right representation
+        if not df.empty and _is_non_common(df['ticker'].iloc[0]):
+            continue
+        tkr = str(df['ticker'].iloc[0]).upper() if not df.empty else ''
+        # NOTE: companyfacts fiscal_year (fy) may differ from the segment
+        # parquet's fiscal_year. The consolidated dict is keyed by the SEC
+        # fy; the segment fiscal_year comes from edgartools. They align for
+        # the vast majority of US filers (calendar-ish fiscal years).
+        rows = analyze_ticker(df, consolidated_total=consolidated.get(tkr))
         all_rows.extend(rows)
         # Also dump every segment, for the "all" CSV
         df2 = df.dropna(subset=['value','fiscal_year']).copy()
