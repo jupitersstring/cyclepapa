@@ -193,7 +193,7 @@ _TEXT_COLS = {
     'shortname','category','growing_revenue_type','status','path','measure',
     'symbol','holder','firm','position','action','grade','transaction','insider',
     'ownership','text','url','tab','periodtype','period','pe_peak_date',
-    'axis','segment','viability_tier',
+    'axis','segment','viability_tier','screens_in',
 }
 
 # Human-readable column titles. snake_case → Title-Case-with-Units. Anything
@@ -799,6 +799,61 @@ def build_exec_summary(wb, comb, gav, fin):
     _add_footer(ws, row)
 
 
+def build_top_100(wb):
+    """Consolidated Top-100 master watchlist — the highest-conviction names
+    aggregated across every screen. Built by build_top100.py (regenerated
+    here so it always reflects the current screen outputs). Breadth (number
+    of independent screens flagging a name) dominates the rank; within-screen
+    standing breaks ties."""
+    try:
+        import build_top100
+        df = build_top100.build()
+        df = build_top100.enrich(df).head(100)
+    except Exception as e:
+        print(f'  (Top 100 skipped: {e})')
+        return
+    if df.empty:
+        return
+    ws = wb.create_sheet('Top 100')
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker=f'Master Watchlist  ·  Cross-Validated  ·  Workbook {WORKBOOK_VERSION}',
+        title='Top 100',
+        deck='The hundred highest-conviction names, ranked by how many '
+             'independent screens flag each one. A name surfacing across the '
+             'value, quality, segment-inflection, and insider lenses at once '
+             'is a stronger idea than one that tops a single list. '
+             '"Screens In" lists every lens that flagged it; the master score '
+             'rewards breadth first, within-screen standing second.',
+    )
+    row += 1
+    caption = ws.cell(row=row, column=1,
+                      value='Ranked by master score (breadth of screen coverage + average standing). '
+                            'See the per-screen tabs for the detail behind each flag.')
+    caption.font = CAPTION_FONT
+    caption.alignment = ALIGN_LEFT
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=8)
+    row += 2
+
+    # Add a 1-based rank column
+    df = df.reset_index(drop=True)
+    df.insert(0, 'rank', range(1, len(df) + 1))
+    cols = ['rank','ticker','company','sector','country','n_screens','screens_in',
+            'market_cap','trailingPE','priceToBook','enterpriseToEbitda','master_score']
+    cols = [c for c in cols if c in df.columns]
+    end_row = _write_df(ws, df, cols, start_row=row)
+    _autosize(ws, cols)
+    # Keep screens_in readable but bounded
+    from openpyxl.utils import get_column_letter as _gcl
+    if 'screens_in' in cols:
+        ws.column_dimensions[_gcl(cols.index('screens_in') + 1)].width = 56
+    ws.freeze_panes = 'C' + str(row + 1)  # freeze rank + ticker
+    _add_footer(ws, end_row,
+                source=('Aggregated across all workbook screens. Breadth = distinct screens '
+                        'flagging the name; broad universe ranks count only at top-quartile standing.'))
+
+
 def build_best_of_best(wb, gav, fin, comb, top_n=25):
     ws = wb.create_sheet('Best of Best')
     ws.sheet_view.showGridLines = False
@@ -1102,6 +1157,11 @@ EXTRA_COLUMN_LABELS = {
     'cheapness': 'Cheapness',
     'viability_tier': 'Viability Tier',
     'viability': 'Viability',
+    'rank': 'Rank',
+    'n_screens': 'Screens',
+    'screens_in': 'Screens In',
+    'master_score': 'Master Score',
+    'avg_standing': 'Avg Standing',
 }
 COLUMN_LABELS.update(EXTRA_COLUMN_LABELS)
 
@@ -1389,7 +1449,7 @@ def build_contents(wb):
     # Group sheets logically by name prefix
     def _group(name):
         if name in ('Contents','README','Executive Summary','Data Coverage'): return '1 · Front Matter'
-        if name == 'Best of Best': return '2 · Watchlist'
+        if name in ('Top 100','Best of Best'): return '2 · Watchlist'
         if name.startswith('By Measure'): return '3 · By Measure'
         if name.startswith('Region'): return '4 · By Region'
         if name.startswith('CM ') or name == 'Creative Measures Index': return '5 · Creative Screens'
@@ -1401,6 +1461,7 @@ def build_contents(wb):
         'README': 'Methodology, universe definition, how to read the workbook.',
         'Executive Summary': 'Top three names per region across each major measure.',
         'Data Coverage': 'Field-by-field fill rates across the 12,435-ticker universe.',
+        'Top 100': 'The 100 highest-conviction names, ranked by cross-screen breadth.',
         'Best of Best': 'Names that survive ≥2 independent screens — the watchlist.',
         'Creative Measures Index': 'Index of the eleven specialised screens with row counts.',
         'Glossary': 'Plain-English definition of every column.',
@@ -1627,6 +1688,7 @@ def main():
     build_readme(wb)
     build_exec_summary(wb, comb, gav, fin)
     build_data_coverage(wb)
+    build_top_100(wb)
     build_best_of_best(wb, gav, fin, comb, top_n=25)
     build_global_measures(wb, gav, fin, comb)
     build_per_region_tabs(wb, gav, fin, comb, per_region)
