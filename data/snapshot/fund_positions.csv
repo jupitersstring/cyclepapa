@@ -5013,11 +5013,6 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 6592,Equam Capital (Muñoz   Larraz),CASH.MC,Prosegur Cash SA,5,3.52,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | CASH.MC | Prosegur Cash SA | Equam Investing.com,2026-06-20
 6593,Equam Capital (Muñoz   Larraz),TGS.OL,TGS NOPEC,5,3.49,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | TGS.OL | TGS NOPEC | Equam Investing.com,2026-06-20
 6594,Equam Capital (Muñoz   Larraz),SES.MI,Sesa SpA,5,3.25,book,,agent_H_Equam Investing.com,,agent_verified [H] | Equam Capital | SES.MI | Sesa SpA | Equam Investing.com,2026-06-20
-6595,True Value (Estebaranz),NA9.DE,Nagarro SE,5,9.07,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | NA9.DE | Nagarro SE | True Value Investing.com,2026-06-20
-6596,True Value (Estebaranz),GOOGL,Alphabet Class A,5,7.29,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | GOOGL | Alphabet Class A | True Value Investing.com,2026-06-20
-6597,True Value (Estebaranz),0184.HK,Keck Seng Investments HK,5,6.72,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | 184.HK | Keck Seng Investments HK | True Value Investing.com,2026-06-20
-6598,True Value (Estebaranz),CGEO.L,Georgia Capital,5,4.35,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | CGEO.L | Georgia Capital | True Value Investing.com,2026-06-20
-6599,True Value (Estebaranz),ITL.PA,IT Link,5,3.91,book,,agent_H_True Value Investing.com,,agent_verified [H] | True Value | ITL.PA | IT Link | True Value Investing.com,2026-06-20
 6600,Buy & Hold (Julián Pascual),BAM,Brookfield Asset Management,5,,,,agent_M_Capital Radio top-3 for 2024,,agent_verified [M] | Buy & Hold | BAM | Brookfield Asset Management | Capital Radio top-3 for 2024,2026-06-20
 6601,Buy & Hold (Julián Pascual),MC.PA,LVMH,5,,,,agent_M_el espanol Q4-2024 letter,,agent_verified [M] | Buy & Hold | MC.PA | LVMH | el espanol Q4-2024 letter,2026-06-20
 6602,Buy & Hold (Julián Pascual),ASML.AS,ASML Holding,5,,,,agent_M_el espanol letter,,agent_verified [M] | Buy & Hold | ASML.AS | ASML Holding | el espanol letter,2026-06-20
@@ -5559,3 +5554,13 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 7163,Cobas Asset Management (Francis,MAIRE.MI,Maire Tecnimont,5,,,,researcher_seed_H,,[H] Cobas Asset Management | MAIRE.MI | Maire Tecnimont | rank=5.4 | cobas1t25,2026-06-20
 7164,Cobas Asset Management (Francis,CIR.MI,CIR SpA,5,,,,researcher_seed_H,,[H] Cobas Asset Management | CIR.MI | CIR SpA | rank=4.5 | cobas1t25,2026-06-20
 7165,Cobas Asset Management (Francis,BAB.L,Babcock International,5,,,,researcher_seed_H,,[H] Cobas Asset Management | BAB.L | Babcock International | rank=4.2 | cobas1t25,2026-06-20
+7166,True Value (Estebaranz),NA9.DE,Nagarro SE,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | NA9.DE | Nagarro SE | rank=9.07 | CNMV/Investing 2026Q2,2026-06-20
+7167,True Value (Estebaranz),GOOGL,Alphabet Inc,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | GOOGL | Alphabet Inc | rank=7.29 | CNMV/Investing 2026Q2,2026-06-20
+7168,True Value (Estebaranz),0184.HK,Keck Seng Investments,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | 0184.HK | Keck Seng Investments | rank=6.72 | CNMV/Investing 2026Q2,2026-06-20
+7169,True Value (Estebaranz),CGEO.L,Georgia Capital plc,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | CGEO.L | Georgia Capital plc | rank=4.35 | CNMV/Investing 2026Q2,2026-06-20
+7170,True Value (Estebaranz),ALITL.PA,IT Link SA,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | ALITL.PA | IT Link SA | rank=3.91 | CNMV/Investing 2026Q2,2026-06-20
+7171,True Value (Estebaranz),NWL.MI,NewPrinces SpA,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | NWL.MI | NewPrinces SpA | rank=3.19 | CNMV/Investing 2026Q2,2026-06-20
+7172,True Value (Estebaranz),TEP.PA,Teleperformance SE,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | TEP.PA | Teleperformance SE | rank=3.13 | CNMV/Investing 2026Q2,2026-06-20
+7173,True Value (Estebaranz),TTAM,Titan America SA,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | TTAM | Titan America SA | rank=2.91 | CNMV/Investing 2026Q2,2026-06-20
+7174,True Value (Estebaranz),GFF,Griffon Corp,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | GFF | Griffon Corp | rank=2.86 | CNMV/Investing 2026Q2,2026-06-20
+7175,True Value (Estebaranz),CI,Cigna Group,5,,,,researcher_seed_MED,,[MED] True Value (Estebaranz) | CI | Cigna Group | rank=2.81 | CNMV/Investing 2026Q2,2026-06-20
