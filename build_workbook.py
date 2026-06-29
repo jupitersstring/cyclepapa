@@ -918,9 +918,14 @@ def _build_measure_sheet(wb, name: str, kicker: str, title: str, deck: str,
 def build_global_measures(wb, gav, fin, comb):
     gav_dur = prep_growth_adj_view(gav)
     gav_dur = gav_dur[gav_dur['durable']]
+    # Each By-Measure tab shows CREATIVE_TOP_N names (30 historically; 50 in
+    # the standard book, 100 in the top-100 book) so "top N per measure" is
+    # consistent across the global measures and the creative screens.
+    N = CREATIVE_TOP_N
+    _kick = f'Global Top {N}'
 
     # Composite
-    top = comb.sort_values('composite', ascending=False).head(30)
+    top = comb.sort_values('composite', ascending=False).head(N)
     if 'longName' in top.columns:
         top['longName'] = top['longName'].astype(str).str[:32]
     headers = [c for c in ['ticker','region','longName','sector','marketCap_M','composite',
@@ -928,7 +933,7 @@ def build_global_measures(wb, gav, fin, comb):
                            'net_cash_pct','fcfYield_pct','grossMargins','operatingMargins',
                            'revenueGrowth','earningsGrowth'] if c in top.columns]
     _build_measure_sheet(wb, 'By Measure · Composite',
-        kicker='Global Top 30  ·  Sector-Percentile Composite',
+        kicker=f'{_kick}  ·  Sector-Percentile Composite',
         title='Cheapest on Overall Quality-Value Composite',
         deck='13 valuation, quality and growth components ranked within sector, within region. '
              'Higher score (0–100) means the name sits in the upper tail of its peer set across '
@@ -936,32 +941,32 @@ def build_global_measures(wb, gav, fin, comb):
         top_df=top, headers=headers)
 
     # Growth-adj EBITDA
-    top = _global_top_by(gav_dur, 'ev_ebitda_g_bv', True, 30, extra_cols=['_bv_tilt'])
+    top = _global_top_by(gav_dur, 'ev_ebitda_g_bv', True, N, extra_cols=['_bv_tilt'])
     _build_measure_sheet(wb, 'By Measure · Growth-Adj',
-        kicker='Global Top 30  ·  Cheapest Per Unit of Earnings Growth',
+        kicker=f'{_kick}  ·  Cheapest Per Unit of Earnings Growth',
         title='EV/EBITDA per Earnings Growth, BV-tilted',
         deck='(EV / EBITDA) ÷ earnings-growth %, with a low-P/B reward (bounded ±20%). Durable '
              'cut applied: growth in the 10–100% band. Lower = cheaper per unit of growth.',
         top_df=top, headers=list(top.columns))
 
     # Growth-adj Sales
-    top = _global_top_by(gav_dur, 'ev_sales_g_bv', True, 30, extra_cols=['_bv_tilt'])
+    top = _global_top_by(gav_dur, 'ev_sales_g_bv', True, N, extra_cols=['_bv_tilt'])
     _build_measure_sheet(wb, 'By Measure · Sales-Growth',
-        kicker='Global Top 30  ·  Cheapest Per Unit of Revenue Growth',
+        kicker=f'{_kick}  ·  Cheapest Per Unit of Revenue Growth',
         title='EV/Sales per Revenue Growth, BV-tilted',
         deck='(EV / Sales) ÷ revenue-growth %, with the same low-P/B reward. EV/Sales is rebuilt '
              'from P/S × (EV/MktCap) so it is currency-neutral across regions.',
         top_df=top, headers=list(top.columns))
 
     # Financials
-    top = fin.sort_values('fin_composite', ascending=False).head(30)
+    top = fin.sort_values('fin_composite', ascending=False).head(N)
     if 'longName' in top.columns:
         top['longName'] = top['longName'].astype(str).str[:32]
     headers = [c for c in ['ticker','region','longName','industry','marketCap_M','fin_composite',
                            'priceToBook','priceToTangibleBook','trailingPE','forwardPE',
                            'returnOnEquity','returnOnAssets','dividendYield','earningsGrowth'] if c in top.columns]
     _build_measure_sheet(wb, 'By Measure · Financials',
-        kicker='Global Top 30  ·  Financials Carve-Out',
+        kicker=f'{_kick}  ·  Financials Carve-Out',
         title='Best Banks, Insurers and Holdcos by Capital-Appropriate Metrics',
         deck='Sector-percentile composite within region across P/B, P/Tangible-Book, P/E (trailing '
              'and forward), ROE, ROA, dividend yield and earnings growth. PEG-style ratios are '
