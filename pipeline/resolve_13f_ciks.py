@@ -79,18 +79,25 @@ def edgar_company_search(term, form="13F-HR"):
     return out
 
 def submissions_info(cik):
-    """Authoritative (name, n_13f_hr_in_recent) from the submissions API."""
+    """Authoritative (name, n_13f_hr, latest_13f_date) from the submissions API.
+    latest_13f_date is the most recent 13F-HR filing date (or '') — the key
+    signal for picking the ACTIVE filer entity when a manager has migrated CIKs
+    (e.g. Greenlight Capital -> DME Capital, Appaloosa Mgmt -> Appaloosa LP)."""
     body = curl(f"https://data.sec.gov/submissions/CIK{cik}.json")
     try:
         j = json.loads(body)
-        forms = j["filings"]["recent"]["form"]
+        rec = j["filings"]["recent"]
+        forms, dates = rec["form"], rec["filingDate"]
     except Exception:
-        return None, 0
-    return j.get("name", ""), sum(1 for f in forms if f == "13F-HR")
+        return None, 0, ""
+    n13f = sum(1 for f in forms if f == "13F-HR")
+    last = next((d for f, d in zip(forms, dates) if f == "13F-HR"), "")
+    return j.get("name", ""), n13f, last
 
 def resolve(name):
     """Resolve the best 13F-HR filer for a manager name.
-    Returns (cik, authoritative_name, files13f)."""
+    Returns (cik, authoritative_name, files13f). Prefers the most RECENTLY active
+    filer so CIK migrations don't leave us on a dormant entity."""
     want = set(_norm_name(name).split())
     if not want:
         return None, None, False
@@ -100,7 +107,7 @@ def resolve(name):
         return None, None, False
     scored = []
     for cik, last_date in cands[:10]:
-        ent, n13f = submissions_info(cik)
+        ent, n13f, last13f = submissions_info(cik)
         time.sleep(0.12)
         if n13f <= 0:
             continue
@@ -115,12 +122,13 @@ def resolve(name):
                 continue
         elif overlap < 0.85:
             continue
-        scored.append((overlap, n13f, last_date, cik, ent))
+        # RECENCY FIRST: the active entity wins over a dormant one with more
+        # history; then name overlap; then filing count.
+        scored.append((last13f, round(overlap, 3), n13f, cik, ent))
     if not scored:
         return None, None, False
-    # best name overlap, then most 13F history, then most recent filing
     scored.sort(reverse=True)
-    overlap, n13f, last_date, cik, ent = scored[0]
+    last13f, overlap, n13f, cik, ent = scored[0]
     return cik, ent, True
 
 def run(limit=None, test_only=False):

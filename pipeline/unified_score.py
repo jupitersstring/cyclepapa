@@ -26,6 +26,14 @@ import math, os, sqlite3, sys
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 
+# A fund that hasn't filed a 13F since this date is dormant/closed — its last
+# (stale) holdings must NOT count as CURRENT smart money. Genuinely-active funds
+# (incl. those that migrated CIKs) file quarterly, so anything filed in the last
+# ~18 months is current. Holdings stay in the DB; they're just gated from the score.
+STALE_FUND_CUTOFF = "2025-01-01"
+_FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
+          f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
+
 def run():
     conn = sqlite3.connect(DB)
     conn.row_factory = sqlite3.Row
@@ -62,7 +70,8 @@ def run():
 
     # Per-ticker signals
     sm = {r[0]: r[1] for r in conn.execute(
-        "SELECT ticker, COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL GROUP BY ticker")}
+        "SELECT ticker, COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL "
+        + _FRESH + " GROUP BY ticker")}
     s_by = {}
     for r in conn.execute("""SELECT ticker, section, COUNT(DISTINCT fund) c
         FROM fund_positions WHERE ticker IS NOT NULL GROUP BY ticker, section"""):
@@ -190,6 +199,7 @@ def run():
         FROM fund_13f_holdings
         WHERE ticker IS NOT NULL AND pct_book IS NOT NULL
           AND pct_book <= 100
+        """ + _FRESH + """
         GROUP BY ticker"""):
         pct_book_max[r["ticker"]] = r["m"] or 0
         pct_book_n5[r["ticker"]] = r["n5"] or 0

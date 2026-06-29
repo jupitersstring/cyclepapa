@@ -17,7 +17,7 @@ discovery_13d_subjects,24,EXPENSIVE
 edgar_filings,768,EXPENSIVE
 expected_return,14,
 form4_transactions,54522,EXPENSIVE
-fund_13f_holdings,69686,
+fund_13f_holdings,70231,
 fund_13f_state,325,
 fund_cik_map,706,
 fund_conviction,3420,
@@ -40,5 +40,5 @@ ticker_entry_intact,599,
 ticker_meta,8607,EXPENSIVE
 ticker_style_conviction,2637,
 ticker_valuation,3000,EXPENSIVE
-ticker_yf,8591,
-unified_signal,8877,
+ticker_yf,8592,
+unified_signal,8784,
