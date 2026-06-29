@@ -43,7 +43,7 @@ def run():
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
       mcap_bucket TEXT,
-      smart_money_n INTEGER,
+      smart_money_n REAL,
       s1_top INTEGER, s2_thresh INTEGER, s3_new INTEGER, s4_add INTEGER,
       activist_filings INTEGER, activist_max_pct REAL,
       insider_cluster_dollars_m REAL, insider_n INTEGER,
@@ -68,10 +68,24 @@ def run():
     CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
     """)
 
-    # Per-ticker signals
-    sm = {r[0]: r[1] for r in conn.execute(
-        "SELECT ticker, COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL "
-        + _FRESH + " GROUP BY ticker")}
+    # Per-ticker signals.
+    # smart_money_n is CONVICTION-WEIGHTED, not a raw holder count. A fund's vote
+    # diffuses as it holds more names: pod-shops / quants (Citadel 6687 names,
+    # Millennium 4030, AQR 3739) run statistical-arb books where holding a stock
+    # conveys ~no conviction, so each fund's vote is weighted min(1, CAP/n_names).
+    # A focused book (<=CAP names) counts fully; a 600-name diversified book ~0.1;
+    # a 6000-name quant ~0.01 — heavily downweighted, as intended.
+    SM_CAP = 75.0
+    fund_hn = {r[0]: r[1] for r in conn.execute(
+        "SELECT fund, COUNT(DISTINCT cusip) FROM fund_13f_holdings "
+        "WHERE sh_type IN ('SH','') AND ticker IS NOT NULL GROUP BY fund")}
+    fund_w = {f: min(1.0, SM_CAP / hn) for f, hn in fund_hn.items() if hn > 0}
+    sm = {}
+    for tk, fund in conn.execute(
+            "SELECT DISTINCT ticker, fund FROM fund_13f_holdings "
+            "WHERE ticker IS NOT NULL AND sh_type IN ('SH','') " + _FRESH):
+        sm[tk] = sm.get(tk, 0.0) + fund_w.get(fund, 1.0)
+    sm = {tk: round(v, 1) for tk, v in sm.items()}
     s_by = {}
     for r in conn.execute("""SELECT ticker, section, COUNT(DISTINCT fund) c
         FROM fund_positions WHERE ticker IS NOT NULL GROUP BY ticker, section"""):
