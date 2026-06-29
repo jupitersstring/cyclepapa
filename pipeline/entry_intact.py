@@ -19,17 +19,23 @@ The bucket users will care about: NEAR_OR_BELOW_ENTRY with high conviction.
 import os, re, sqlite3
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 
-# $X.YZ price tokens — restricted to plausible single-stock prices
-PRICE_RE = re.compile(r"(?<![\d.])\$\s?([\d]{1,4}(?:\.\d{1,2})?)\b")
+# $ amount token. Group 2 captures a magnitude suffix (M/B/K/million…) — when
+# present the figure is a POSITION VALUE ("$6.30M", "$50.1M"), NOT a per-share
+# price, and must be rejected (this was the cause of absurd "+387% vs entry":
+# Cipher's $6.30M stake parsed as a $6 entry vs $29 price).
+MONEY_RE = re.compile(r"(?<![\d.])\$\s?(\d{1,4}(?:\.\d{1,2})?)\s*([MBK]|mm|bn|mn|million|billion|thousand)?\b", re.I)
 # context words near an entry anchor (filters out target prices / sums)
 ENTRY_CTX = re.compile(r"\b(at|cost|basis|anchored|PIPE|follow[\s-]?on|offering|financing|@|bought|purchas|priced)\b", re.I)
 TARGET_CTX = re.compile(r"\b(PT|target|upside|to\s+\$|reaches|valued|peak)\b", re.I)
 
 def extract_anchors(text):
-    """Return list of plausible entry prices from raw_text."""
+    """Return list of plausible per-share entry prices from raw_text.
+    Rejects magnitude-suffixed dollar amounts (position values) and percentages."""
     out = []
     if not text: return out
-    for m in PRICE_RE.finditer(text):
+    for m in MONEY_RE.finditer(text):
+        if m.group(2):                      # $NM / $N billion = position size, skip
+            continue
         ctx = text[max(0, m.start()-40):m.end()+20]
         if TARGET_CTX.search(ctx) and not ENTRY_CTX.search(ctx):
             continue
@@ -99,17 +105,17 @@ def run():
         if not cur: continue
         anchors = anchors_by_ticker.get(tkr, [])
         if not anchors: continue
-        # priority: candidates cost_basis > raw_text > form4 > p80
-        priority = {"candidates": 0, "raw_text": 1, "form4_p_buy": 2, "p80_close": 3}
-        anchors.sort(key=lambda a: priority[a[0]])
-        # use top-priority bucket; if multiple raw_text, take median (robust)
-        top_src = anchors[0][0]
-        candidates = [px for src, px in anchors if src == top_src]
-        # plausible filter: anchor within 5x of current (filters $PT mentions)
-        candidates = [px for px in candidates if 0.20 <= (px / cur) <= 5.0]
-        if not candidates: continue
-        candidates.sort()
-        anchor = candidates[len(candidates)//2]
+        # priority: candidates cost_basis > raw_text > form4 > p80. Use the first
+        # source with a PLAUSIBLE anchor; a parsed price implying >+150%/<-60% vs
+        # today is almost always a mis-parse (or an ancient entry), so fall to the
+        # next source — p80_close (a real price-derived proxy) is the safety net.
+        anchor = top_src = None
+        for src in ("candidates", "raw_text", "form4_p_buy", "p80_close"):
+            pxs = sorted(px for s, px in anchors if s == src and 0.40 <= (px / cur) <= 2.5)
+            if pxs:
+                anchor = pxs[len(pxs) // 2]; top_src = src; break
+        if anchor is None:
+            continue
         vs = (cur / anchor - 1) * 100
 
         if vs <= -15:    bucket = "BELOW_ENTRY"
