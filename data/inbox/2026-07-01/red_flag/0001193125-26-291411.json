@@ -1,0 +1,15 @@
+{
+  "accession": "0001193125-26-291411",
+  "cik": "0002027317",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "424B5",
+  "name": [
+    "Curbline Properties Corp.  (CURB)  (CIK 0002027317)"
+  ],
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/2027317/000119312526291411"
+}

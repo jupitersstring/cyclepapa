@@ -1,0 +1,15 @@
+{
+  "accession": "0002141084-26-000001",
+  "cik": "0002141084",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "S-1",
+  "name": [
+    "Asia AI Group Inc  (CIK 0002141084)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/2141084/000214108426000001"
+}

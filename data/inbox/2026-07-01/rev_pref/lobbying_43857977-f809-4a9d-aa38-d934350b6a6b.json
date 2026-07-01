@@ -1,0 +1,22 @@
+{
+  "accession": "43857977-f809-4a9d-aa38-d934350b6a6b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Environment/Superfund",
+  "jurisdiction": "US",
+  "name": "MONROE ENERGY, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 MONROE ENERGY, LLC engaged OSCAR POLICY GROUP, LLC on Environment/Superfund (universe-name match: ENERGY)",
+  "registrant": "OSCAR POLICY GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/43857977-f809-4a9d-aa38-d934350b6a6b/print/"
+}

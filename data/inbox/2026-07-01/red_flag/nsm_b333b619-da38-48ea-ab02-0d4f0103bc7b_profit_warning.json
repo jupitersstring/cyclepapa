@@ -1,0 +1,16 @@
+{
+  "accession": "b333b619-da38-48ea-ab02-0d4f0103bc7b",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Trading Statement",
+  "form_code": "TST",
+  "isin": null,
+  "name": "ASSOCIATED BRITISH FOODS PLC",
+  "query_label": "red_flag.profit_warning",
+  "query_note": "UK trading update \u2014 verify whether profit warning",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b333b619-da38-48ea-ab02-0d4f0103bc7b.html"
+}

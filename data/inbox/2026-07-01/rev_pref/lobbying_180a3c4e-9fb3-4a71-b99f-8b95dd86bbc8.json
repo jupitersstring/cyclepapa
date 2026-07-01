@@ -1,0 +1,22 @@
+{
+  "accession": "180a3c4e-9fb3-4a71-b99f-8b95dd86bbc8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Gaming/Gambling/Casino",
+  "jurisdiction": "US",
+  "name": "ARTICHOKE JOE'S CASINO",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 ARTICHOKE JOE'S CASINO engaged GALLANT GOVERNMENT & LAW GROUP, LLC on Gaming/Gambling/Casino (universe-name match: CASINO)",
+  "registrant": "GALLANT GOVERNMENT & LAW GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CASINO",
+  "url": "https://lda.senate.gov/filings/public/filing/180a3c4e-9fb3-4a71-b99f-8b95dd86bbc8/print/"
+}

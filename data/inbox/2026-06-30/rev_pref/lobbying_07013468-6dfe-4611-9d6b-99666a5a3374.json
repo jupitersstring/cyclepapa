@@ -1,0 +1,22 @@
+{
+  "accession": "07013468-6dfe-4611-9d6b-99666a5a3374",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Environment/Superfund \u00b7 Energy/Nuclear \u00b7 Clean Air and Water (quality) \u00b7 Natural Resources \u00b7 Transportation \u00b7 Homeland Security \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "PEMBINA PIPELINE CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 PEMBINA PIPELINE CORPORATION engaged PEMBINA PIPELINE CORPORATION for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PEMBINA PIPELINE CORPORATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/07013468-6dfe-4611-9d6b-99666a5a3374/print/"
+}

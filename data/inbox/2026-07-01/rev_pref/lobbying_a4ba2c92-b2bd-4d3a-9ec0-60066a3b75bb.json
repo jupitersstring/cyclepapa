@@ -1,0 +1,22 @@
+{
+  "accession": "a4ba2c92-b2bd-4d3a-9ec0-60066a3b75bb",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Government Issues \u00b7 Economics/Economic Development \u00b7 Foreign Relations",
+  "jurisdiction": "US",
+  "name": "INTER GLOBAL LEGAL",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 INTER GLOBAL LEGAL engaged LATAM DEVELOPMENT GROUP LLC for Foreign Relations (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "LATAM DEVELOPMENT GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTER",
+  "url": "https://lda.senate.gov/filings/public/filing/a4ba2c92-b2bd-4d3a-9ec0-60066a3b75bb/print/"
+}

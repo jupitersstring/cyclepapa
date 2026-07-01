@@ -1,0 +1,16 @@
+{
+  "accession": "e7d42f58-f9c2-4d01-94d8-3c243e35bacc",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "LONDON STOCK EXCHANGE GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e7d42f58-f9c2-4d01-94d8-3c243e35bacc.html"
+}

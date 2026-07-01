@@ -1,0 +1,16 @@
+{
+  "accession": "b02be206-0640-44d8-9fd6-1408c824db28",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "LEGAL & GENERAL GROUP PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b02be206-0640-44d8-9fd6-1408c824db28.html"
+}

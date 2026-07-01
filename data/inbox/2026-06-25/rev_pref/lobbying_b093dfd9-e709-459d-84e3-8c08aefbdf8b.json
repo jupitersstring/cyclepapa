@@ -1,0 +1,22 @@
+{
+  "accession": "b093dfd9-e709-459d-84e3-8c08aefbdf8b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Aerospace \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "VENETZ AEROSPACE US INC.",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 VENETZ AEROSPACE US INC. engaged THE ARTEMIS GROUP, LLC (OKLAHOMA) for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE ARTEMIS GROUP, LLC (OKLAHOMA)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/b093dfd9-e709-459d-84e3-8c08aefbdf8b/print/"
+}

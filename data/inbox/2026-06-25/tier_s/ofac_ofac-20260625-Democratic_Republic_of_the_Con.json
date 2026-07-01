@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260625-Democratic_Republic_of_the_Con",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:35:46.905054Z",
+  "filed": "2026-06-25",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Democratic Republic of the Congo-related Designations; Issuance of Amended Russia-related General License and Frequently Asked Questions",
+  "query_label": "tier_s.ofac_license_issuance",
+  "query_note": "OFAC General License issued \u2014 dated transaction window",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260625"
+}

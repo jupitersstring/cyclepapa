@@ -231,9 +231,15 @@ def stem_ticker(t: str | None) -> str:
 
 def stem_name(n: str | None) -> str:
     """Normalize an issuer name to a dedup key. Strips corp suffixes and
-    punctuation so 'Van Elle Holdings PLC' and 'Van Elle Holdings plc' match."""
+    punctuation so 'Van Elle Holdings PLC' and 'Van Elle Holdings plc' match.
+    Coerces non-string inputs (some sources populate `name` as a list,
+    e.g. EDGAR display_names) to a string first."""
     if not n:
         return ""
+    if isinstance(n, (list, tuple)):
+        n = " ".join(str(x) for x in n)
+    elif not isinstance(n, str):
+        n = str(n)
     s = re.sub(r"\b(plc|ltd|limited|inc|corp|corporation|group|holdings|sa|nv|ag|"
                r"sas|spa|kg|llc|llp|pty|pte|kk|inc\.|co)\b", "", n, flags=re.I)
     return re.sub(r"[^A-Za-z0-9]", "", s).upper()

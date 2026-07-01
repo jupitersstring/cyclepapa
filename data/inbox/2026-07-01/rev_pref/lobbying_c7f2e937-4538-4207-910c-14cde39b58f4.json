@@ -1,0 +1,22 @@
+{
+  "accession": "c7f2e937-4538-4207-910c-14cde39b58f4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Termination Amendment",
+  "form_code": "2@",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "MISSY EDWARDS STRATEGIES ON BEHALF OF TRUCKLOAD CARRIERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 MISSY EDWARDS STRATEGIES ON BEHALF OF TRUCKLOAD CARRIERS ASS engaged STATE FEDERAL STRATEGIES for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "STATE FEDERAL STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/c7f2e937-4538-4207-910c-14cde39b58f4/print/"
+}

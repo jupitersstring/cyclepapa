@@ -1,0 +1,22 @@
+{
+  "accession": "a4652c53-15dc-4a2c-a13c-3d4a608e3036",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "PLUG POWER",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 PLUG POWER engaged RIDGE PATH STRATEGIES on Trade (domestic/foreign) (universe-name match: PLUG)",
+  "registrant": "RIDGE PATH STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PLUG",
+  "url": "https://lda.senate.gov/filings/public/filing/a4652c53-15dc-4a2c-a13c-3d4a608e3036/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "58a2fcf1-b817-446e-9840-d9937bdd2d4b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "SEADAR TECHNOLOGIES",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 SEADAR TECHNOLOGIES engaged LATAM DEVELOPMENT GROUP LLC for Defense (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "LATAM DEVELOPMENT GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/58a2fcf1-b817-446e-9840-d9937bdd2d4b/print/"
+}

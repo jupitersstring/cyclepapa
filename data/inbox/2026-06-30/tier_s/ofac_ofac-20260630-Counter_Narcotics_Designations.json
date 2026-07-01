@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260630-Counter_Narcotics_Designations",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:35:46.905054Z",
+  "filed": "2026-06-30",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Counter Narcotics Designations; Russia-related Designations Removals; Publication of Report for Licensing Activities Undertaken Pursuant to the Trade Sanctions Reform and Export Enhancement Act (TSRA)",
+  "query_label": "tier_s.ofac_designation_removal",
+  "query_note": "OFAC SDN removal \u2014 previously-frozen exposure may now trade",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://ofac.treasury.gov/recent-actions/20260630"
+}

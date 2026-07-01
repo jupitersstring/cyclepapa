@@ -1,0 +1,22 @@
+{
+  "accession": "72084b3e-a4d0-42c9-8864-f32298634d5e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "NATIONAL READY MIXED CONCRETE ASSOCIATION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 NATIONAL READY MIXED CONCRETE ASSOCIATION engaged REPUBLIC CONSULTING, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "REPUBLIC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/72084b3e-a4d0-42c9-8864-f32298634d5e/print/"
+}

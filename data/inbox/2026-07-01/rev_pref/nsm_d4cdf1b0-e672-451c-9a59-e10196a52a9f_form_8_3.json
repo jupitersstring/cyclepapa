@@ -1,0 +1,16 @@
+{
+  "accession": "d4cdf1b0-e672-451c-9a59-e10196a52a9f",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "TrinityBridge Limited",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/d4cdf1b0-e672-451c-9a59-e10196a52a9f.html"
+}

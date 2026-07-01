@@ -1,0 +1,22 @@
+{
+  "accession": "ace0f4ae-cf1f-452b-a933-719cc15d6501",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "EAST TEXAS COMMUNITIES FOUNDATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 EAST TEXAS COMMUNITIES FOUNDATION engaged VAN SCOYOC ASSOCIATES on Taxation/Internal Revenue Code (universe-name match: EAST)",
+  "registrant": "VAN SCOYOC ASSOCIATES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "EAST",
+  "url": "https://lda.senate.gov/filings/public/filing/ace0f4ae-cf1f-452b-a933-719cc15d6501/print/"
+}

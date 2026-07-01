@@ -1,0 +1,17 @@
+{
+  "accession": "140120260701586306",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "第三者割当による自己株式の処分および資本業務提携契約の締結に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "船井総研ＨＤ",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "9757",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260701586306.pdf"
+}

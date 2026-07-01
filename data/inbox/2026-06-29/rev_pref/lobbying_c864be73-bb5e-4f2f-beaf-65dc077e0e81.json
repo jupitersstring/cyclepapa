@@ -1,0 +1,22 @@
+{
+  "accession": "c864be73-bb5e-4f2f-beaf-65dc077e0e81",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "530000.00",
+  "isin": null,
+  "issues": "Government Issues \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "TENCENT AMERICA LLC",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 TENCENT AMERICA LLC engaged MO STRATEGIES, INC. for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MO STRATEGIES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/c864be73-bb5e-4f2f-beaf-65dc077e0e81/print/"
+}

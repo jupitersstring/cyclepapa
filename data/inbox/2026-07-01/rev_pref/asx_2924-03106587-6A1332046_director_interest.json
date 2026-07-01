@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106587-6A1332046",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Change of Director's Interest Notice - T.Cornish",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Diversified Telecommunication Services",
+  "isin": "AU0000129496",
+  "jurisdiction": "AU",
+  "name": "PENTANET LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Communication Services",
+  "source": "ASX",
+  "ticker": "5GG",
+  "tier": "rev_pref",
+  "url": ""
+}

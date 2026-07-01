@@ -1,0 +1,22 @@
+{
+  "accession": "a561dd69-54f9-46e3-9560-20d89a8a50ad",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "VIVIFY TECHNOLOGY CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 VIVIFY TECHNOLOGY CORPORATION engaged DRAKE VENTURES, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "DRAKE VENTURES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a561dd69-54f9-46e3-9560-20d89a8a50ad/print/"
+}

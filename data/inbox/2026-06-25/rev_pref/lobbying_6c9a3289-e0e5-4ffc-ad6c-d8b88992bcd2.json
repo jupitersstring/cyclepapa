@@ -1,0 +1,22 @@
+{
+  "accession": "6c9a3289-e0e5-4ffc-ad6c-d8b88992bcd2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Consumer Issues/Safety/Products \u00b7 Copyright/Patent/Trademark \u00b7 Education \u00b7 Health Issues \u00b7 Manufacturing \u00b7 Real Estate/Land Use/Conservation \u00b7 Sports/Athletics \u00b7 Tariff (miscellaneous tariff bills) \u00b7 ",
+  "jurisdiction": "US",
+  "name": "SPORTS & FITNESS INDUSTRY ASSOCIATION",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 SPORTS & FITNESS INDUSTRY ASSOCIATION engaged SPORTS & FITNESS INDUSTRY ASSOCIATION for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SPORTS & FITNESS INDUSTRY ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/6c9a3289-e0e5-4ffc-ad6c-d8b88992bcd2/print/"
+}

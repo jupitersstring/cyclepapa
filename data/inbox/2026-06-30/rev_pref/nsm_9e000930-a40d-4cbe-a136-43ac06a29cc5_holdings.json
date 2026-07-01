@@ -1,0 +1,16 @@
+{
+  "accession": "9e000930-a40d-4cbe-a136-43ac06a29cc5",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "ROSEBANK INDUSTRIES PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/9e000930-a40d-4cbe-a136-43ac06a29cc5.html"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "3ef965b5-220a-4f76-8d8e-7ba775b3aab3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Foreign Relations \u00b7 Financial Institutions/Investments/Securities \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "INTEGRA CAPITAL USA, LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 INTEGRA CAPITAL USA, LLC engaged CONTINENTAL STRATEGY, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CONTINENTAL STRATEGY, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CAPITAL",
+  "url": "https://lda.senate.gov/filings/public/filing/3ef965b5-220a-4f76-8d8e-7ba775b3aab3/print/"
+}

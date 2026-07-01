@@ -1,0 +1,22 @@
+{
+  "accession": "a07c4697-dc65-443d-9aa8-8848f0840213",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Manufacturing",
+  "jurisdiction": "US",
+  "name": "JTEKT NORTH AMERICA",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 JTEKT NORTH AMERICA engaged TAFT STETTINIUS & HOLLISTER LLP DBA TAFT for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "TAFT STETTINIUS & HOLLISTER LLP DBA TAFT ADVISORS LLC FKA (TAFT, STETTINIUS & HOLLISTER,LLP)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a07c4697-dc65-443d-9aa8-8848f0840213/print/"
+}

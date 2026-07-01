@@ -1,0 +1,16 @@
+{
+  "accession": "05971aa4-373f-4d13-8c03-555cbefc13fb",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "AllianzGI-Global Equity Business",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/05971aa4-373f-4d13-8c03-555cbefc13fb.html"
+}

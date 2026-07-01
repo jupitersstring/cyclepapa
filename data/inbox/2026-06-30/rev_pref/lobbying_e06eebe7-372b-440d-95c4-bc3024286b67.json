@@ -1,0 +1,22 @@
+{
+  "accession": "e06eebe7-372b-440d-95c4-bc3024286b67",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "MEYER CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 MEYER CORPORATION engaged SORINI STRATEGIC ADVISORS F/K/A SORINI,  on Trade (domestic/foreign) (universe-name match: MEYER)",
+  "registrant": "SORINI STRATEGIC ADVISORS F/K/A SORINI, SAMET, & ASSOCIATES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "MEYER",
+  "url": "https://lda.senate.gov/filings/public/filing/e06eebe7-372b-440d-95c4-bc3024286b67/print/"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "b8c799cb-66ca-4964-ba7c-865339182dd7",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "FUSION ANTIBODIES PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b8c799cb-66ca-4964-ba7c-865339182dd7.html"
+}

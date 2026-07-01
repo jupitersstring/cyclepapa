@@ -1,0 +1,22 @@
+{
+  "accession": "4f0f9ea7-54b7-4bf5-98f5-937eec3c4029",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Labor Issues/Antitrust/Workplace \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "NATIONAL ELECTRICAL CONTRACTORS ASSOCIATION - PENN-DEL-JERSEY CHAPTER",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 NATIONAL ELECTRICAL CONTRACTORS ASSOCIATION - PENN-DEL-JERSE engaged OSCAR POLICY GROUP, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "OSCAR POLICY GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4f0f9ea7-54b7-4bf5-98f5-937eec3c4029/print/"
+}

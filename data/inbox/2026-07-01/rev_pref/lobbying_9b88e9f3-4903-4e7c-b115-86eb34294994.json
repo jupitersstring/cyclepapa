@@ -1,0 +1,22 @@
+{
+  "accession": "9b88e9f3-4903-4e7c-b115-86eb34294994",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "12000.00",
+  "isin": null,
+  "issues": "Labor Issues/Antitrust/Workplace \u00b7 Environment/Superfund",
+  "jurisdiction": "US",
+  "name": "STEAMFITTERS LOCAL 420",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 STEAMFITTERS LOCAL 420 engaged OSCAR POLICY GROUP, LLC on Labor Issues/Antitrust/Workplace \u00b7 Environment/Superfund (universe-name match: LOCAL)",
+  "registrant": "OSCAR POLICY GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "LOCAL",
+  "url": "https://lda.senate.gov/filings/public/filing/9b88e9f3-4903-4e7c-b115-86eb34294994/print/"
+}

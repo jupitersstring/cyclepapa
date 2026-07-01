@@ -1,0 +1,22 @@
+{
+  "accession": "7adcb9b9-f185-45b6-88c7-423d405f7e44",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Education",
+  "jurisdiction": "US",
+  "name": "NATIONAL COUNCIL FOR LANGUAGES AND INTERNATIONAL STUDIES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL COUNCIL FOR LANGUAGES AND INTERNATIONAL STUDIES engaged BERNSTEIN STRATEGY GROUP on Budget/Appropriations \u00b7 Education (universe-name match: INTERNATIONAL)",
+  "registrant": "BERNSTEIN STRATEGY GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/7adcb9b9-f185-45b6-88c7-423d405f7e44/print/"
+}

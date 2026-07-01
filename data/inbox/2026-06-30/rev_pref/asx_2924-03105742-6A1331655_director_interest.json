@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03105742-6A1331655",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Final Director's Interest Notice - M Hackett",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "isin": "AU000000STX7",
+  "jurisdiction": "AU",
+  "name": "STRIKE ENERGY LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Energy",
+  "source": "ASX",
+  "ticker": "STX",
+  "tier": "rev_pref",
+  "url": ""
+}

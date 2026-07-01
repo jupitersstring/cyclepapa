@@ -1,0 +1,16 @@
+{
+  "accession": "0001193125-26-292577",
+  "cik": "0001297996",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "DIGITAL REALTY TRUST, INC.  (DLR, DLR-PJ, DLR-PK, DLR-PL)  (CIK 0001297996)",
+    "DIGITAL REALTY TRUST, L.P.  (CIK 0001494877)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1297996/000119312526292577"
+}

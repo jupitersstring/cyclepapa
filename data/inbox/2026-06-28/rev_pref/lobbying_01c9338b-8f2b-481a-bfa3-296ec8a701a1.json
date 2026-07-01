@@ -1,0 +1,22 @@
+{
+  "accession": "01c9338b-8f2b-481a-bfa3-296ec8a701a1",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Immigration",
+  "jurisdiction": "US",
+  "name": "O'GRADY PEYTON INTERNATIONAL (USA)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 O'GRADY PEYTON INTERNATIONAL (USA) engaged MORRISON PUBLIC AFFAIRS GROUP on Immigration (universe-name match: INTERNATIONAL)",
+  "registrant": "MORRISON PUBLIC AFFAIRS GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/01c9338b-8f2b-481a-bfa3-296ec8a701a1/print/"
+}

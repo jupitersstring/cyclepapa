@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106319-2A1681185",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Placement cleansing notice",
+  "form_code": "Cleansing Notice",
+  "industry": "Health Care Equipment & Supplies",
+  "isin": "AU0000114183",
+  "jurisdiction": "AU",
+  "name": "CONTROL BIONICS LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Health Care",
+  "source": "ASX",
+  "ticker": "CBL",
+  "tier": "tier_s",
+  "url": ""
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "7901a8fe-beb2-440d-a143-e12794f76b85",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources",
+  "jurisdiction": "US",
+  "name": "AQUATECH INTERNATIONAL, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AQUATECH INTERNATIONAL, LLC engaged AQUATECH INTERNATIONAL, LLC on Natural Resources (universe-name match: INTERNATIONAL)",
+  "registrant": "AQUATECH INTERNATIONAL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/7901a8fe-beb2-440d-a143-e12794f76b85/print/"
+}

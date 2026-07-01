@@ -1,0 +1,16 @@
+{
+  "accession": "ca583f78-3f60-4162-ac55-b08fa2e52aab",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Trading Statement",
+  "form_code": "TST",
+  "isin": null,
+  "name": "SAGA PLC",
+  "query_label": "red_flag.profit_warning",
+  "query_note": "UK trading update \u2014 verify whether profit warning",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ca583f78-3f60-4162-ac55-b08fa2e52aab.html"
+}

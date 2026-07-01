@@ -1,0 +1,15 @@
+{
+  "accession": "0001062993-26-003439",
+  "cik": "0001720424",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)"
+  ],
+  "query": "\"scheme of arrangement\" OR \"restructuring plan\"",
+  "query_label": "tier_s.scheme",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1720424/000106299326003439"
+}

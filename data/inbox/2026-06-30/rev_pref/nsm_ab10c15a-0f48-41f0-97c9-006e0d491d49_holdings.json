@@ -1,0 +1,16 @@
+{
+  "accession": "ab10c15a-0f48-41f0-97c9-006e0d491d49",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "THE GYM GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ab10c15a-0f48-41f0-97c9-006e0d491d49.html"
+}

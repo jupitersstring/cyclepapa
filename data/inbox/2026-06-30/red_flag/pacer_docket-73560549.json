@@ -1,0 +1,23 @@
+{
+  "accession": "docket-73560549",
+  "assigned_to": "",
+  "cik": "",
+  "court_id": "nysb",
+  "debtor_firm": [
+    "Law Office of Leonard X. Gillespie, Attorney at Law"
+  ],
+  "docket_no": "26-11558",
+  "fetched_at": "2026-07-01T22:26:18.781203Z",
+  "filed": "2026-06-30",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Dune Union Inc.",
+  "query_label": "red_flag.prepack",
+  "query_note": "PRE-PACK SIGNATURE: joint filing of 50 affiliated debtors same-day in nysb suggests pre-negotiated plan + RSA + DIP. Equity typically wiped per plan-support agreement. Affiliates: Dune Union Inc., Dune Union Inc., Dune Union Inc., Dune Union Inc., Dune Union Inc....",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.courtlistener.com/docket/73560549/dune-union-inc/"
+}

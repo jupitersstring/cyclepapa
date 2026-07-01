@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106088-2A1681038",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Appointment of Financial Adviser for Strategic Review",
+  "form_code": "Progress Report",
+  "industry": "Biotechnology",
+  "isin": "AU0000121576",
+  "jurisdiction": "AU",
+  "name": "CHIMERIC THERAPEUTICS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.strategic_review",
+  "query_note": "Strategic review — pre-event signal",
+  "sector": "Health Care",
+  "source": "ASX",
+  "ticker": "CHM",
+  "tier": "tier_s",
+  "url": ""
+}

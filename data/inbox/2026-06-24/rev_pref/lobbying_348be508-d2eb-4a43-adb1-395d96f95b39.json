@@ -1,0 +1,22 @@
+{
+  "accession": "348be508-d2eb-4a43-adb1-395d96f95b39",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "1st Quarter - Termination Amendment (No Activity)",
+  "form_code": "1@Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "JOHN BRIAN LEDBETTER MISSIONS CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JOHN BRIAN LEDBETTER MISSIONS CORPORATION engaged JOHN BRIAN LEDBETTER MISSIONS CORPORATIO on  (universe-name match: JOHN)",
+  "registrant": "JOHN BRIAN LEDBETTER MISSIONS CORPORATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JOHN",
+  "url": "https://lda.senate.gov/filings/public/filing/348be508-d2eb-4a43-adb1-395d96f95b39/print/"
+}

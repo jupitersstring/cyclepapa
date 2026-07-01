@@ -1,0 +1,22 @@
+{
+  "accession": "1d2e9aff-1306-4e9c-b732-62efaaf0c6fd",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Environment/Superfund \u00b7 Agriculture \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN COUNCIL OF INDEPENDENT LABORATORIES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN COUNCIL OF INDEPENDENT LABORATORIES engaged OSCAR POLICY GROUP, LLC on Environment/Superfund \u00b7 Agriculture \u00b7 Health Issues (universe-name match: AMERICAN)",
+  "registrant": "OSCAR POLICY GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/1d2e9aff-1306-4e9c-b732-62efaaf0c6fd/print/"
+}

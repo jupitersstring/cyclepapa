@@ -1,0 +1,22 @@
+{
+  "accession": "8924af1c-f092-47f7-86bf-e8a5813306ac",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "52500.00",
+  "isin": null,
+  "issues": "Small Business \u00b7 Banking",
+  "jurisdiction": "US",
+  "name": "ZIONS BANCORP",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 ZIONS BANCORP engaged MARSHALL BRACHMAN for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MARSHALL BRACHMAN",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ZIONS",
+  "url": "https://lda.senate.gov/filings/public/filing/8924af1c-f092-47f7-86bf-e8a5813306ac/print/"
+}

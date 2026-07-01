@@ -1,0 +1,22 @@
+{
+  "accession": "28d19f49-0e92-4c78-82d7-62af09d92a0b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "15000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Real Estate/Land Use/Conservation \u00b7 Small Business \u00b7 Indian/Native American Affairs \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "AMERICAN CULTURAL RESOURCES ASSN",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 AMERICAN CULTURAL RESOURCES ASSN engaged AGORA CONSULTING, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "AGORA CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/28d19f49-0e92-4c78-82d7-62af09d92a0b/print/"
+}

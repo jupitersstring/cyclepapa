@@ -1,0 +1,22 @@
+{
+  "accession": "161dd931-f599-41fc-b8dd-9a343194b662",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Small Business",
+  "jurisdiction": "US",
+  "name": "NOBLE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NOBLE engaged BGR GOVERNMENT AFFAIRS on Small Business (universe-name match: NOBLE)",
+  "registrant": "BGR GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NOBLE",
+  "url": "https://lda.senate.gov/filings/public/filing/161dd931-f599-41fc-b8dd-9a343194b662/print/"
+}

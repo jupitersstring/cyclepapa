@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106165-2A1681077",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Initial Director's Interest Notice - A Ashwood",
+  "form_code": "Initial Director's Interest Notice",
+  "industry": "Capital Markets",
+  "isin": "AU000000CVC1",
+  "jurisdiction": "AU",
+  "name": "CVC LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "CVC",
+  "tier": "rev_pref",
+  "url": ""
+}

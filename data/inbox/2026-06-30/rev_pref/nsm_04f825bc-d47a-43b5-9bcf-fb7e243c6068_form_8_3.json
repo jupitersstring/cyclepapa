@@ -1,0 +1,16 @@
+{
+  "accession": "04f825bc-d47a-43b5-9bcf-fb7e243c6068",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "Citadel Group",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/04f825bc-d47a-43b5-9bcf-fb7e243c6068.html"
+}

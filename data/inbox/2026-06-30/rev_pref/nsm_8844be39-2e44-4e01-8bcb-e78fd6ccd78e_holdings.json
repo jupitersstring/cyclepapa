@@ -1,0 +1,16 @@
+{
+  "accession": "8844be39-2e44-4e01-8bcb-e78fd6ccd78e",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "Man Group PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/8844be39-2e44-4e01-8bcb-e78fd6ccd78e.html"
+}

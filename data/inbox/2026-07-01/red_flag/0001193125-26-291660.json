@@ -1,0 +1,15 @@
+{
+  "accession": "0001193125-26-291660",
+  "cik": "0001936224",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1936224/000119312526291660"
+}

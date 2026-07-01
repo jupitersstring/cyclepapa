@@ -1,0 +1,22 @@
+{
+  "accession": "a47d1d69-b71a-4fac-a613-a7a9ee425ac5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Aerospace \u00b7 Agriculture \u00b7 Automotive Industry \u00b7 Aviation/Airlines/Airports \u00b7 Budget/Appropriations \u00b7 Environment/Superfund \u00b7 Fuel/Gas/Oil \u00b7 Taxation/Internal Revenue Code \u00b7 Trade (domestic/foreign) \u00b7 ",
+  "jurisdiction": "US",
+  "name": "MARQUIS MANAGEMENT LLC",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 MARQUIS MANAGEMENT LLC engaged MARQUIS MANAGEMENT LLC for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MARQUIS MANAGEMENT LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a47d1d69-b71a-4fac-a613-a7a9ee425ac5/print/"
+}

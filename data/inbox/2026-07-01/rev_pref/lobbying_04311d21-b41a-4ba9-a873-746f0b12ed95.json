@@ -1,0 +1,22 @@
+{
+  "accession": "04311d21-b41a-4ba9-a873-746f0b12ed95",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Education \u00b7 Telecommunications \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "ENCOURA (FORMERLY NAT'L RESEARCH CTR FOR COLLEGE AND UNIVERSITY ADMISSIONS)",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 ENCOURA (FORMERLY NAT'L RESEARCH CTR FOR COLLEGE AND UNIVERS engaged MARSHALL BRACHMAN for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MARSHALL BRACHMAN",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/04311d21-b41a-4ba9-a873-746f0b12ed95/print/"
+}

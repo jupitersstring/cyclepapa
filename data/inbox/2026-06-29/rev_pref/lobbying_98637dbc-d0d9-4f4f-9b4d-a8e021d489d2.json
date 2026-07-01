@@ -1,0 +1,22 @@
+{
+  "accession": "98637dbc-d0d9-4f4f-9b4d-a8e021d489d2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "45000.00",
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "WERNER ENTERPRISES",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 WERNER ENTERPRISES engaged BC CONSULTING, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/98637dbc-d0d9-4f4f-9b4d-a8e021d489d2/print/"
+}

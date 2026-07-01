@@ -1,0 +1,22 @@
+{
+  "accession": "7df25647-6bf3-42d5-82b4-02ab771fc1ce",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "5250.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Education \u00b7 Health Issues \u00b7 Government Issues \u00b7 Medicare/Medicaid \u00b7 Trade (domestic/foreign) \u00b7 Small Business \u00b7 Taxation/Internal Revenue Code \u00b7 Housing \u00b7 Labor Issues/Antitrus",
+  "jurisdiction": "US",
+  "name": "JOB CREATORS NETWORK",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JOB CREATORS NETWORK engaged HARNED STRATEGIES LLC on Budget/Appropriations \u00b7 Education \u00b7 Health Issues \u00b7 Government Issues \u00b7 Medicare (universe-name match: NETWORK)",
+  "registrant": "HARNED STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NETWORK",
+  "url": "https://lda.senate.gov/filings/public/filing/7df25647-6bf3-42d5-82b4-02ab771fc1ce/print/"
+}

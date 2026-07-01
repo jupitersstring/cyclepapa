@@ -1,0 +1,16 @@
+{
+  "accession": "5ae2e77f-f42e-4a7f-9104-89676b45c7bf",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "CONVATEC GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/5ae2e77f-f42e-4a7f-9104-89676b45c7bf.html"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "0001193125-26-292565",
+  "cik": "0001711269",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "Evergy, Inc.  (EVRG)  (CIK 0001711269)",
+    "EVERGY METRO, INC.  (CIK 0000054476)",
+    "EVERGY KANSAS CENTRAL, INC.  (CIK 0000054507)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1711269/000119312526292565"
+}

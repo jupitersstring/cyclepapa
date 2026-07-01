@@ -1,0 +1,22 @@
+{
+  "accession": "217e25b5-fb9d-4f14-ac86-9ddda863630c",
+  "cik": "",
+  "expenses": "70000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Energy/Nuclear \u00b7 Health Issues \u00b7 Medical/Disease Research/Clinical Labs \u00b7 Accounting \u00b7 Medicare/Medicaid \u00b7 Tariff (miscellaneous tariff bills) \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "ELEKTA, INC.",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 ELEKTA, INC. engaged ELEKTA, INC. for Energy/Nuclear (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "ELEKTA, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/217e25b5-fb9d-4f14-ac86-9ddda863630c/print/"
+}

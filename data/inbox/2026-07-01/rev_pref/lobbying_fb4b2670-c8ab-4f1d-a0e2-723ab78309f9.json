@@ -1,0 +1,22 @@
+{
+  "accession": "fb4b2670-c8ab-4f1d-a0e2-723ab78309f9",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "5000.00",
+  "isin": null,
+  "issues": "Education \u00b7 Budget/Appropriations \u00b7 Foreign Relations",
+  "jurisdiction": "US",
+  "name": "ACADEMIC PROGRAMS INTERNATIONAL, LLC",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 ACADEMIC PROGRAMS INTERNATIONAL, LLC engaged MARSHALL BRACHMAN for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MARSHALL BRACHMAN",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/fb4b2670-c8ab-4f1d-a0e2-723ab78309f9/print/"
+}

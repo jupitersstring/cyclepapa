@@ -1,0 +1,22 @@
+{
+  "accession": "2e65c53c-42a4-496a-8ef1-a3459e93ad55",
+  "cik": "",
+  "expenses": "10000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Foreign Relations \u00b7 Education \u00b7 Banking \u00b7 Government Issues \u00b7 Immigration \u00b7 Financial Institutions/Investments/Securities",
+  "jurisdiction": "US",
+  "name": "ACT FOR AMERICA",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 ACT FOR AMERICA engaged ACT FOR AMERICA for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ACT FOR AMERICA",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2e65c53c-42a4-496a-8ef1-a3459e93ad55/print/"
+}

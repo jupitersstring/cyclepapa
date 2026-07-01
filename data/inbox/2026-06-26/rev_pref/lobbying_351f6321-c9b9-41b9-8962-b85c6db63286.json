@@ -1,0 +1,22 @@
+{
+  "accession": "351f6321-c9b9-41b9-8962-b85c6db63286",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Telecommunications \u00b7 Homeland Security",
+  "jurisdiction": "US",
+  "name": "XTAR LLC",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 XTAR LLC engaged THE MADISON GROUP for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE MADISON GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/351f6321-c9b9-41b9-8962-b85c6db63286/print/"
+}

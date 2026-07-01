@@ -1,0 +1,15 @@
+{
+  "accession": "0001606757-26-000028",
+  "cik": "0001606757",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "Kimball Electronics, Inc.  (KE)  (CIK 0001606757)"
+  ],
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1606757/000160675726000028"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "8b983791-26ba-4cf2-aa00-9cd401af68fb",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "LOHUM CLEANTECH PVT LTD",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 LOHUM CLEANTECH PVT LTD engaged MERCURY PUBLIC AFFAIRS, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MERCURY PUBLIC AFFAIRS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8b983791-26ba-4cf2-aa00-9cd401af68fb/print/"
+}

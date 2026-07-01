@@ -1,0 +1,22 @@
+{
+  "accession": "acca3ff0-19fb-432a-b16f-779bffb3aeae",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues \u00b7 Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "CROSS COUNTRY HEALTHCARE, INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CROSS COUNTRY HEALTHCARE, INC. engaged MILLER STRATEGIES, LLC on Health Issues \u00b7 Labor Issues/Antitrust/Workplace (universe-name match: COUNTRY)",
+  "registrant": "MILLER STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "COUNTRY",
+  "url": "https://lda.senate.gov/filings/public/filing/acca3ff0-19fb-432a-b16f-779bffb3aeae/print/"
+}

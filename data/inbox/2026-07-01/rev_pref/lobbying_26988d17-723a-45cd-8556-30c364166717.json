@@ -1,0 +1,22 @@
+{
+  "accession": "26988d17-723a-45cd-8556-30c364166717",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "8X8, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 8X8, INC. engaged GALLANT GOVERNMENT & LAW GROUP, LLC for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "GALLANT GOVERNMENT & LAW GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/26988d17-723a-45cd-8556-30c364166717/print/"
+}

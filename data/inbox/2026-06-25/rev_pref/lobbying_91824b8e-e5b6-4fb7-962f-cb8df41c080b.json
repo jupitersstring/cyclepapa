@@ -1,0 +1,22 @@
+{
+  "accession": "91824b8e-e5b6-4fb7-962f-cb8df41c080b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "1st Quarter - Report (No Activity)",
+  "form_code": "Q1Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "AMERICAN BANKERS ASSOCIATION INSURANCE ADVOCACY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN BANKERS ASSOCIATION INSURANCE ADVOCACY engaged MR. DAN PERRIN on  (universe-name match: AMERICAN)",
+  "registrant": "MR. DAN PERRIN",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/91824b8e-e5b6-4fb7-962f-cb8df41c080b/print/"
+}

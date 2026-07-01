@@ -1,0 +1,22 @@
+{
+  "accession": "b4ac7560-be62-48a3-ab0f-134cc84f4e5a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Government Issues \u00b7 Health Issues \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "AXADVOCACY OBO NET LEASE CAPITAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AXADVOCACY OBO NET LEASE CAPITAL engaged B2G ADVISORY on Government Issues \u00b7 Health Issues \u00b7 Budget/Appropriations (universe-name match: CAPITAL)",
+  "registrant": "B2G ADVISORY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CAPITAL",
+  "url": "https://lda.senate.gov/filings/public/filing/b4ac7560-be62-48a3-ab0f-134cc84f4e5a/print/"
+}

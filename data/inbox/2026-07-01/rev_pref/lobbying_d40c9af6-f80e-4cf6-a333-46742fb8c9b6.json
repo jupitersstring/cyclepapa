@@ -1,0 +1,22 @@
+{
+  "accession": "d40c9af6-f80e-4cf6-a333-46742fb8c9b6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Environment/Superfund \u00b7 Trade (domestic/foreign) \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "HNI CORPORATION",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 HNI CORPORATION engaged HNI CORPORATION for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HNI CORPORATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d40c9af6-f80e-4cf6-a333-46742fb8c9b6/print/"
+}

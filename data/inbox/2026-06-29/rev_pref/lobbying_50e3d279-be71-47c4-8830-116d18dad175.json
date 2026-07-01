@@ -1,0 +1,22 @@
+{
+  "accession": "50e3d279-be71-47c4-8830-116d18dad175",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Health Issues \u00b7 Medicare/Medicaid",
+  "jurisdiction": "US",
+  "name": "AMERICAN GERIATRICS SOCIETY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN GERIATRICS SOCIETY engaged KRISTINE BLACKWOOD LLC on Budget/Appropriations \u00b7 Health Issues \u00b7 Medicare/Medicaid (universe-name match: AMERICAN)",
+  "registrant": "KRISTINE BLACKWOOD LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/50e3d279-be71-47c4-8830-116d18dad175/print/"
+}

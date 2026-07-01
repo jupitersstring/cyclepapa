@@ -1,0 +1,15 @@
+{
+  "accession": "0001062993-26-003441",
+  "cik": "0001400438",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "6-K",
+  "name": [
+    "Largo Inc.  (LGO)  (CIK 0001400438)"
+  ],
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1400438/000106299326003441"
+}

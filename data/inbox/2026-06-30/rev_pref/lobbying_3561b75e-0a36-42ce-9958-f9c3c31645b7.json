@@ -1,0 +1,22 @@
+{
+  "accession": "3561b75e-0a36-42ce-9958-f9c3c31645b7",
+  "cik": "",
+  "expenses": "15000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Advertising \u00b7 Taxation/Internal Revenue Code \u00b7 Computer Industry \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN ADVERTISING FEDERATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN ADVERTISING FEDERATION engaged AMERICAN ADVERTISING FEDERATION on Advertising \u00b7 Taxation/Internal Revenue Code \u00b7 Computer Industry \u00b7 Health Issues (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN ADVERTISING FEDERATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/3561b75e-0a36-42ce-9958-f9c3c31645b7/print/"
+}

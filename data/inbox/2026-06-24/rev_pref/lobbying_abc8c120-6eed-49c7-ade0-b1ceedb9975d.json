@@ -1,0 +1,22 @@
+{
+  "accession": "abc8c120-6eed-49c7-ade0-b1ceedb9975d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "15000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "SKYFRONT",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 SKYFRONT engaged THE JACKSON GROUP, LLC for Defense (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "THE JACKSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/abc8c120-6eed-49c7-ade0-b1ceedb9975d/print/"
+}

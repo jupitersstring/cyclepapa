@@ -1,0 +1,22 @@
+{
+  "accession": "1a380cf9-ec0f-413c-97d0-49c82ccff119",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Environment/Superfund \u00b7 Marine/Maritime/Boating/Fisheries \u00b7 Roads/Highway \u00b7 Transportation \u00b7 Urban Development/Municipalities",
+  "jurisdiction": "US",
+  "name": "CITY OF ANACORTES",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 CITY OF ANACORTES engaged GORDON THOMAS HONEYWELL GOVERNMENTAL AFF for Transportation (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "GORDON THOMAS HONEYWELL GOVERNMENTAL AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/1a380cf9-ec0f-413c-97d0-49c82ccff119/print/"
+}

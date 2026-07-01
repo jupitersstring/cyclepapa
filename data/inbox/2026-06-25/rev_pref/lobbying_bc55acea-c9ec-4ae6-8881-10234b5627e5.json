@@ -1,0 +1,22 @@
+{
+  "accession": "bc55acea-c9ec-4ae6-8881-10234b5627e5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "SOUTHERN MILLS, INC. D/B/A TENCATE PROTECTIVE FABRICS (FKA TENCATE)",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 SOUTHERN MILLS, INC. D/B/A TENCATE PROTECTIVE FABRICS (FKA T engaged SOUTHERN MILLS, INC. D/B/A TENCATE PROTE for Defense (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "SOUTHERN MILLS, INC. D/B/A TENCATE PROTECTIVE FABRICS (FKA TENCATE)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bc55acea-c9ec-4ae6-8881-10234b5627e5/print/"
+}

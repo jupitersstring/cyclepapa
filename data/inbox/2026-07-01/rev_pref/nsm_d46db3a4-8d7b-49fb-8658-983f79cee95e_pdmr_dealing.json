@@ -1,0 +1,16 @@
+{
+  "accession": "d46db3a4-8d7b-49fb-8658-983f79cee95e",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "SDCL EFFICIENCY INCOME TRUST PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/d46db3a4-8d7b-49fb-8658-983f79cee95e.html"
+}

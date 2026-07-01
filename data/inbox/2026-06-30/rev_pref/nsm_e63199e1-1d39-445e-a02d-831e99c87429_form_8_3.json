@@ -1,0 +1,16 @@
+{
+  "accession": "e63199e1-1d39-445e-a02d-831e99c87429",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "M&G PLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e63199e1-1d39-445e-a02d-831e99c87429.html"
+}

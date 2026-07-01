@@ -1,0 +1,15 @@
+{
+  "accession": "0000913142-26-000029",
+  "cik": "0000913142",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "BELDEN INC.  (BDC)  (CIK 0000913142)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/913142/000091314226000029"
+}

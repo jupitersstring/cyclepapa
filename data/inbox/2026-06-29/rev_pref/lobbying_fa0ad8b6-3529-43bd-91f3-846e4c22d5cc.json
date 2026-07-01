@@ -1,0 +1,22 @@
+{
+  "accession": "fa0ad8b6-3529-43bd-91f3-846e4c22d5cc",
+  "cik": "",
+  "expenses": "30000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources \u00b7 Transportation \u00b7 Automotive Industry",
+  "jurisdiction": "US",
+  "name": "AMERICAN MOTORCYCLIST ASSOCIATION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 AMERICAN MOTORCYCLIST ASSOCIATION engaged AMERICAN MOTORCYCLIST ASSOCIATION for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "AMERICAN MOTORCYCLIST ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/fa0ad8b6-3529-43bd-91f3-846e4c22d5cc/print/"
+}

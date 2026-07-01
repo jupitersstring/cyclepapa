@@ -1,0 +1,22 @@
+{
+  "accession": "28d46872-e2fe-466e-84fd-0995ebaf32ae",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "DIGITAL GLOBAL SYSTEMS",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 DIGITAL GLOBAL SYSTEMS engaged BGR GOVERNMENT AFFAIRS for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BGR GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/28d46872-e2fe-466e-84fd-0995ebaf32ae/print/"
+}

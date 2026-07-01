@@ -1,0 +1,17 @@
+{
+  "accession": "140120260630585162",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "SRIロジスティクス株式会社の吸収合併(簡易合併)に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "住友ゴム",
+  "query_label": "tier_s.merger_absorption",
+  "query_note": "merger by absorption",
+  "source": "TDnet",
+  "ticker": "5110",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260630585162.pdf"
+}

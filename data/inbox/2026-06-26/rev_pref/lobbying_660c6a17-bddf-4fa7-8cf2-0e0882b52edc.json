@@ -1,0 +1,22 @@
+{
+  "accession": "660c6a17-bddf-4fa7-8cf2-0e0882b52edc",
+  "cik": "",
+  "expenses": "10000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "NORTH AMERICAN RESCUE, LLC",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 NORTH AMERICAN RESCUE, LLC engaged NORTH AMERICAN RESCUE, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "NORTH AMERICAN RESCUE, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/660c6a17-bddf-4fa7-8cf2-0e0882b52edc/print/"
+}

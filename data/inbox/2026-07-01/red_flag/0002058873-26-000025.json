@@ -1,0 +1,15 @@
+{
+  "accession": "0002058873-26-000025",
+  "cik": "0002058873",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "Qnity Electronics, Inc.  (Q)  (CIK 0002058873)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/2058873/000205887326000025"
+}

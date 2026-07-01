@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03105979-6A1331804",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "New Board Appointment & Increased Placement",
+  "form_code": "Placement|Director Appointment/Resignation",
+  "industry": "Electrical Equipment",
+  "isin": "AU0000210957",
+  "jurisdiction": "AU",
+  "name": "INTERNATIONAL GRAPHITE LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "IG6",
+  "tier": "tier_s",
+  "url": ""
+}

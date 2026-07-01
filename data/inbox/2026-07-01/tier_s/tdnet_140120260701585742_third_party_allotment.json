@@ -1,0 +1,17 @@
+{
+  "accession": "140120260701585742",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "第三者割当により発行された第11回新株予約権（行使価額修正条項付）の月間行使状況に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "オルトプラス",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "3672",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260701585742.pdf"
+}

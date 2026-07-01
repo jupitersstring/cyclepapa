@@ -1,0 +1,22 @@
+{
+  "accession": "2b95ca5c-e198-4733-b7e1-9022aec9493d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Natural Resources \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "VOLCAN COMPANIA MINERA S.A.A.",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 VOLCAN COMPANIA MINERA S.A.A. engaged CONTINENTAL STRATEGY, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CONTINENTAL STRATEGY, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2b95ca5c-e198-4733-b7e1-9022aec9493d/print/"
+}

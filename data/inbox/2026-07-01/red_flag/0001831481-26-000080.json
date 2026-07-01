@@ -1,0 +1,15 @@
+{
+  "accession": "0001831481-26-000080",
+  "cik": "0001831481",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "424B5",
+  "name": [
+    "Sable Offshore Corp.  (SOC)  (CIK 0001831481)"
+  ],
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1831481/000183148126000080"
+}

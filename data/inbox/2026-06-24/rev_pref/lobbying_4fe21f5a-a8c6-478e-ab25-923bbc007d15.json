@@ -1,0 +1,22 @@
+{
+  "accession": "4fe21f5a-a8c6-478e-ab25-923bbc007d15",
+  "cik": "",
+  "expenses": "60000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "INVIVYD, INC.",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 INVIVYD, INC. engaged INVIVYD, INC. for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "INVIVYD, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4fe21f5a-a8c6-478e-ab25-923bbc007d15/print/"
+}

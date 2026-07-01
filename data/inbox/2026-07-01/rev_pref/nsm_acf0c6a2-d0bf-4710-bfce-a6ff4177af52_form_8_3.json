@@ -1,0 +1,16 @@
+{
+  "accession": "acf0c6a2-d0bf-4710-bfce-a6ff4177af52",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "PHAROS ENERGY PLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/acf0c6a2-d0bf-4710-bfce-a6ff4177af52.html"
+}

@@ -1,0 +1,15 @@
+{
+  "accession": "0001104659-26-079855",
+  "cik": "0001130598",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "S-3",
+  "name": [
+    "Traws Pharma, Inc.  (TRAW)  (CIK 0001130598)"
+  ],
+  "query": "\"substantial doubt\" AND \"going concern\"",
+  "query_label": "red_flag.going_concern",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1130598/000110465926079855"
+}

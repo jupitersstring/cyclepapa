@@ -1,0 +1,15 @@
+{
+  "accession": "0001193125-26-291648",
+  "cik": "0001997464",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "6-K",
+  "name": [
+    "Marex Group plc  (MRX)  (CIK 0001997464)"
+  ],
+  "query": "\"scheme of arrangement\" OR \"restructuring plan\"",
+  "query_label": "tier_s.scheme",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1997464/000119312526291648"
+}

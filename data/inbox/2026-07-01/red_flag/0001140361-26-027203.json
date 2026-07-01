@@ -1,0 +1,15 @@
+{
+  "accession": "0001140361-26-027203",
+  "cik": "0001567925",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "Sila Realty Trust, Inc.  (SILA)  (CIK 0001567925)"
+  ],
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1567925/000114036126027203"
+}

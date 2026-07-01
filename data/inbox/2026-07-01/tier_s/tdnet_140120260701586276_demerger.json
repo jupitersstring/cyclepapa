@@ -1,0 +1,17 @@
+{
+  "accession": "140120260701586276",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "(開示事項の経過)マクセル株式会社分割子会社の株式取得（子会社化）完了及び当該子会社の商号変更に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ソノコム",
+  "query_label": "tier_s.demerger",
+  "query_note": "company split / demerger",
+  "source": "TDnet",
+  "ticker": "7902",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260701586276.pdf"
+}

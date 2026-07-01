@@ -1,0 +1,22 @@
+{
+  "accession": "8312737d-b764-40bb-815b-1bb6347717f8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Utilities",
+  "jurisdiction": "US",
+  "name": "MODESTO IRRIGATION DISTRICT",
+  "query_label": "rev_pref.lobbying_utilities",
+  "query_note": "LDA filing \u2014 MODESTO IRRIGATION DISTRICT engaged DENTONS US LLP for Utilities (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "DENTONS US LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8312737d-b764-40bb-815b-1bb6347717f8/print/"
+}

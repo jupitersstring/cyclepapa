@@ -1,0 +1,22 @@
+{
+  "accession": "7f8b7229-74c6-4287-ab10-5701eecee0c2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "UNIPER GLOBAL COMMODITIES NORTH AMERICA LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 UNIPER GLOBAL COMMODITIES NORTH AMERICA LLC engaged FTI GOVERNMENT AFFAIRS for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FTI GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/7f8b7229-74c6-4287-ab10-5701eecee0c2/print/"
+}

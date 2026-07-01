@@ -1,0 +1,15 @@
+{
+  "accession": "0001213900-26-074019",
+  "cik": "0001905660",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "6-K",
+  "name": [
+    "Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)"
+  ],
+  "query": "\"scheme of arrangement\" OR \"restructuring plan\"",
+  "query_label": "tier_s.scheme",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1905660/000121390026074019"
+}

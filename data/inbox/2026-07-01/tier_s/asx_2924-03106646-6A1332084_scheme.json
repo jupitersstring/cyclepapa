@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106646-6A1332084",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Merger Update - Exchange Ratio determined",
+  "form_code": "Scheme of Arrangement",
+  "industry": "Software",
+  "isin": "AU0000278491",
+  "jurisdiction": "AU",
+  "name": "QORIA LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "QOR",
+  "tier": "tier_s",
+  "url": ""
+}

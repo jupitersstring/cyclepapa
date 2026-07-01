@@ -1,0 +1,22 @@
+{
+  "accession": "d6bb7ba4-da28-4e46-9df9-7ba3a5a9d721",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Transportation \u00b7 Roads/Highway",
+  "jurisdiction": "US",
+  "name": "ACCIONA INFRASTRUCTURE USA CORP",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 ACCIONA INFRASTRUCTURE USA CORP engaged MILLER STRATEGIES, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MILLER STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ACCIONA",
+  "url": "https://lda.senate.gov/filings/public/filing/d6bb7ba4-da28-4e46-9df9-7ba3a5a9d721/print/"
+}

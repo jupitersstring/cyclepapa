@@ -1,0 +1,22 @@
+{
+  "accession": "3fb07339-a928-4c6e-b1b4-518788ede56d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Agriculture \u00b7 Clean Air and Water (quality) \u00b7 Consumer Issues/Safety/Products \u00b7 Commodities (big ticket) \u00b7 Economics/Economic Development \u00b7 Energy/Nuclear \u00b7 Food Industry (safety, labeling, etc.) \u00b7 He",
+  "jurisdiction": "US",
+  "name": "INDEPENDENT BAKERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 INDEPENDENT BAKERS ASSOCIATION engaged ROBERT N. PYLE & ASSOCIATES, INC. for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ROBERT N. PYLE & ASSOCIATES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/3fb07339-a928-4c6e-b1b4-518788ede56d/print/"
+}

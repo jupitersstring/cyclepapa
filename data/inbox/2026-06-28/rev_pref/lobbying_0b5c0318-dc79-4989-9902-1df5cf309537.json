@@ -1,0 +1,22 @@
+{
+  "accession": "0b5c0318-dc79-4989-9902-1df5cf309537",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "AEVEX AEROSPACE",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 AEVEX AEROSPACE engaged REPUBLIC CONSULTING, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "REPUBLIC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/0b5c0318-dc79-4989-9902-1df5cf309537/print/"
+}

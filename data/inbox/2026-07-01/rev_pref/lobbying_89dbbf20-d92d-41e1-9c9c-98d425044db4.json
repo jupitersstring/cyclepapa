@@ -1,0 +1,22 @@
+{
+  "accession": "89dbbf20-d92d-41e1-9c9c-98d425044db4",
+  "cik": "",
+  "expenses": "46749.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Agriculture \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "AMERICAN PEANUT SHELLERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN PEANUT SHELLERS ASSOCIATION engaged AMERICAN PEANUT SHELLERS ASSOCIATION on Agriculture \u00b7 Trade (domestic/foreign) (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN PEANUT SHELLERS ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/89dbbf20-d92d-41e1-9c9c-98d425044db4/print/"
+}

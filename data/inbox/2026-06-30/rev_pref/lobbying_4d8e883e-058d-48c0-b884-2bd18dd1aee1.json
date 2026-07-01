@@ -1,0 +1,22 @@
+{
+  "accession": "4d8e883e-058d-48c0-b884-2bd18dd1aee1",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Medical/Disease Research/Clinical Labs",
+  "jurisdiction": "US",
+  "name": "AMERICAN PROFICIENCY INSTITUTE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN PROFICIENCY INSTITUTE engaged AUBURN HEALTH STRATEGIES, LLC on Medical/Disease Research/Clinical Labs (universe-name match: AMERICAN)",
+  "registrant": "AUBURN HEALTH STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/4d8e883e-058d-48c0-b884-2bd18dd1aee1/print/"
+}

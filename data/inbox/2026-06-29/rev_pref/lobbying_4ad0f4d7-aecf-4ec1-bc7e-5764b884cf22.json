@@ -1,0 +1,22 @@
+{
+  "accession": "4ad0f4d7-aecf-4ec1-bc7e-5764b884cf22",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "1st Quarter - Termination (No Activity)",
+  "form_code": "1TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "SISTERS NETWORK, INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 SISTERS NETWORK, INC. engaged MS. PAT YOUNGER on  (universe-name match: NETWORK)",
+  "registrant": "MS. PAT YOUNGER",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NETWORK",
+  "url": "https://lda.senate.gov/filings/public/filing/4ad0f4d7-aecf-4ec1-bc7e-5764b884cf22/print/"
+}

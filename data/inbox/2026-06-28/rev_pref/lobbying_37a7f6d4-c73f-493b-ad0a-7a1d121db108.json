@@ -1,0 +1,22 @@
+{
+  "accession": "37a7f6d4-c73f-493b-ad0a-7a1d121db108",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Health Issues \u00b7 Medicare/Medicaid",
+  "jurisdiction": "US",
+  "name": "WW INTERNATIONAL (FORMERLY KNOWN AS WEIGHT WATCHERS)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 WW INTERNATIONAL (FORMERLY KNOWN AS WEIGHT WATCHERS) engaged REPUBLIC CONSULTING, LLC on Health Issues \u00b7 Medicare/Medicaid (universe-name match: WW)",
+  "registrant": "REPUBLIC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "WW",
+  "url": "https://lda.senate.gov/filings/public/filing/37a7f6d4-c73f-493b-ad0a-7a1d121db108/print/"
+}

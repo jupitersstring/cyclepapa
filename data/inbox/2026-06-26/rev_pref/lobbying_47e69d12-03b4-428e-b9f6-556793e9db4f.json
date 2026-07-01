@@ -1,0 +1,22 @@
+{
+  "accession": "47e69d12-03b4-428e-b9f6-556793e9db4f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Agriculture \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "ASSOCIATION OF EQUIPMENT MANUFACTURERS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 ASSOCIATION OF EQUIPMENT MANUFACTURERS engaged CAPITOL RESOURCES, LLC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CAPITOL RESOURCES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/47e69d12-03b4-428e-b9f6-556793e9db4f/print/"
+}

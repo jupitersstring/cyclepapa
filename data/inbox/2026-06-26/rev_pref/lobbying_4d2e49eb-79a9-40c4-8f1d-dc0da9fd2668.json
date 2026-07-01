@@ -1,0 +1,22 @@
+{
+  "accession": "4d2e49eb-79a9-40c4-8f1d-dc0da9fd2668",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "ENERGY DOME",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 ENERGY DOME engaged GREENBERG TRAURIG, LLP for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "GREENBERG TRAURIG, LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/4d2e49eb-79a9-40c4-8f1d-dc0da9fd2668/print/"
+}

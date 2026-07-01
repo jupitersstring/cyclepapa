@@ -1,0 +1,16 @@
+{
+  "accession": "37db88aa-7255-41ca-84f1-a298f480dde1",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "L&G \u2013 Asset Management Limited",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/37db88aa-7255-41ca-84f1-a298f480dde1.html"
+}

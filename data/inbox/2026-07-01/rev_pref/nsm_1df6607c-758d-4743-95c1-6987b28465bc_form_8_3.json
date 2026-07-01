@@ -1,0 +1,16 @@
+{
+  "accession": "1df6607c-758d-4743-95c1-6987b28465bc",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Royal London Asset Management Ltd",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/174062bf-2b56-4eb4-99c7-52a4dea6e4a7.html"
+}

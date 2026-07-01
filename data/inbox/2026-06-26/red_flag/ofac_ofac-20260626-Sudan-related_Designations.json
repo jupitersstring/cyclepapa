@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260626-Sudan-related_Designations",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:35:46.905054Z",
+  "filed": "2026-06-26",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Sudan-related Designations",
+  "query_label": "red_flag.ofac_designation_other",
+  "query_note": "OFAC designation / sanctions update",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260626"
+}

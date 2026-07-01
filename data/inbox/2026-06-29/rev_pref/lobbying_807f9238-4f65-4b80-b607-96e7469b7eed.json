@@ -1,0 +1,22 @@
+{
+  "accession": "807f9238-4f65-4b80-b607-96e7469b7eed",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Termination (No Activity)",
+  "form_code": "2TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "MERIDIAN STRATEGIC RESOURCES, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 MERIDIAN STRATEGIC RESOURCES, LLC engaged MERIDIAN STRATEGIC RESOURCES, LLC on  (universe-name match: STRATEGIC)",
+  "registrant": "MERIDIAN STRATEGIC RESOURCES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "STRATEGIC",
+  "url": "https://lda.senate.gov/filings/public/filing/807f9238-4f65-4b80-b607-96e7469b7eed/print/"
+}

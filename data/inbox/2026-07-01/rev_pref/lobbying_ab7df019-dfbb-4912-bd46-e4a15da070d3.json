@@ -1,0 +1,22 @@
+{
+  "accession": "ab7df019-dfbb-4912-bd46-e4a15da070d3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Agriculture \u00b7 Food Industry (safety, labeling, etc.) \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "PRO FOOD SOLUTIONS",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 PRO FOOD SOLUTIONS engaged FGS GLOBAL (US) LLC (FKA FGH HOLDINGS LL for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FGS GLOBAL (US) LLC (FKA FGH HOLDINGS LLC)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ab7df019-dfbb-4912-bd46-e4a15da070d3/print/"
+}

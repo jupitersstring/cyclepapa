@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03105973-3A696311",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Commercial Services & Supplies",
+  "isin": "AU000000AMA8",
+  "jurisdiction": "AU",
+  "name": "AMA GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "AMA",
+  "tier": "rev_pref",
+  "url": ""
+}

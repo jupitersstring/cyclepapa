@@ -1,0 +1,22 @@
+{
+  "accession": "3c1e585b-8232-45e5-bb6b-762b76f39c2f",
+  "cik": "",
+  "expenses": "210000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Transportation \u00b7 Defense \u00b7 Budget/Appropriations \u00b7 Homeland Security",
+  "jurisdiction": "US",
+  "name": "ROBOTIC RESEARCH OPCO, LLC (DBA FORTERRA)",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 ROBOTIC RESEARCH OPCO, LLC (DBA FORTERRA) engaged ROBOTIC RESEARCH OPCO, LLC (DBA FORTERRA for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ROBOTIC RESEARCH OPCO, LLC (DBA FORTERRA)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/3c1e585b-8232-45e5-bb6b-762b76f39c2f/print/"
+}

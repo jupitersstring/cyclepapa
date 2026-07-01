@@ -1,0 +1,22 @@
+{
+  "accession": "6051cbd8-1251-4799-91f1-a978b180b570",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "CORE NATURAL RESOURCES, INC. FKA CONSOL ENERGY INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CORE NATURAL RESOURCES, INC. FKA CONSOL ENERGY INC. engaged SUNDAY CREEK HORIZONS, LLC on  (universe-name match: CORE)",
+  "registrant": "SUNDAY CREEK HORIZONS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CORE",
+  "url": "https://lda.senate.gov/filings/public/filing/6051cbd8-1251-4799-91f1-a978b180b570/print/"
+}

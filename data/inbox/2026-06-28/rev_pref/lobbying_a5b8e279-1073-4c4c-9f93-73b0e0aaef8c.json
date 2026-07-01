@@ -1,0 +1,22 @@
+{
+  "accession": "a5b8e279-1073-4c4c-9f93-73b0e0aaef8c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Immigration",
+  "jurisdiction": "US",
+  "name": "AMERICAN IMMIGRANT INVESTOR ALLIANCE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN IMMIGRANT INVESTOR ALLIANCE engaged MORRISON PUBLIC AFFAIRS GROUP on Immigration (universe-name match: AMERICAN)",
+  "registrant": "MORRISON PUBLIC AFFAIRS GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/a5b8e279-1073-4c4c-9f93-73b0e0aaef8c/print/"
+}

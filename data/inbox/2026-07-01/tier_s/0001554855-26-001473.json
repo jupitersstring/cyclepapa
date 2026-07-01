@@ -1,0 +1,15 @@
+{
+  "accession": "0001554855-26-001473",
+  "cik": "0001094324",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "6-K",
+  "name": [
+    "SIFY TECHNOLOGIES LTD  (SIFY)  (CIK 0001094324)"
+  ],
+  "query": "\"rights offering\" OR \"rights issue\"",
+  "query_label": "tier_s.rights_offering",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1094324/000155485526001473"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "eb83e5ef-acd1-42a3-88f2-8b641846e206",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "VERITION FUND MANAGEMENT LLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/eb83e5ef-acd1-42a3-88f2-8b641846e206.html"
+}

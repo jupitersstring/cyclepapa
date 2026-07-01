@@ -1,0 +1,16 @@
+{
+  "accession": "7fd9c2d0-d944-49de-8b9b-4ad4cc94b442",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "Societe Generale SA",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/7fd9c2d0-d944-49de-8b9b-4ad4cc94b442.html"
+}

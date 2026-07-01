@@ -1,0 +1,22 @@
+{
+  "accession": "e12d9779-a2e6-49b9-98a1-7aebe460cf69",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "200000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "TENCENT AMERICA, LLC",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 TENCENT AMERICA, LLC engaged BROWNSTEIN HYATT FARBER SCHRECK, LLP for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BROWNSTEIN HYATT FARBER SCHRECK, LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/e12d9779-a2e6-49b9-98a1-7aebe460cf69/print/"
+}

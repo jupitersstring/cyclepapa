@@ -1,0 +1,17 @@
+{
+  "accession": "140120260701586032",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "当社連結子会社における会社分割（吸収分割）を通じた事業承継完了のお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "グリーンクロスＨＤ",
+  "query_label": "tier_s.demerger",
+  "query_note": "company split / demerger",
+  "source": "TDnet",
+  "ticker": "272A",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260701586032.pdf"
+}

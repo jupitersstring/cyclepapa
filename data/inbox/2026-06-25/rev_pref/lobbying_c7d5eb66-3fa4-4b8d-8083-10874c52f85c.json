@@ -1,0 +1,22 @@
+{
+  "accession": "c7d5eb66-3fa4-4b8d-8083-10874c52f85c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Aerospace \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "EARTH RESOURCES TECHNOLOGY, LLC D/B/A ENTARIAN",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 EARTH RESOURCES TECHNOLOGY, LLC D/B/A ENTARIAN engaged THE ARTEMIS GROUP, LLC (OKLAHOMA) for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE ARTEMIS GROUP, LLC (OKLAHOMA)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/c7d5eb66-3fa4-4b8d-8083-10874c52f85c/print/"
+}

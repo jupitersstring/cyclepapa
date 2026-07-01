@@ -1,0 +1,22 @@
+{
+  "accession": "9f4907f4-d129-444a-892d-d0483a1c2416",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "T-MOBILE USA, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 T-MOBILE USA, INC. engaged ALPINE ADVISORS for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ALPINE ADVISORS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/9f4907f4-d129-444a-892d-d0483a1c2416/print/"
+}

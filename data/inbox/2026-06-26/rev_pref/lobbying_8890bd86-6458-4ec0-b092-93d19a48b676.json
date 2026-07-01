@@ -1,0 +1,22 @@
+{
+  "accession": "8890bd86-6458-4ec0-b092-93d19a48b676",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "CTIA-THE WIRELESS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 CTIA-THE WIRELESS ASSOCIATION engaged MINTZ LEVIN COHN FERRIS GLOVSKY AND POPE for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MINTZ LEVIN COHN FERRIS GLOVSKY AND POPEO, P.C.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8890bd86-6458-4ec0-b092-93d19a48b676/print/"
+}

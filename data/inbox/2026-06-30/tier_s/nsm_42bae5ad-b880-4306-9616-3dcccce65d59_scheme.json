@@ -1,0 +1,16 @@
+{
+  "accession": "42bae5ad-b880-4306-9616-3dcccce65d59",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Scheme of Arrangement",
+  "form_code": "SOA",
+  "isin": null,
+  "name": "Treatt PLC",
+  "query_label": "tier_s.scheme",
+  "query_note": "Companies Act Part 26 scheme",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/42bae5ad-b880-4306-9616-3dcccce65d59.html"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "6e888c1d-fd57-4ad8-9ea1-a0f532d340c8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "NCTA - THE INTERNET AND TELEVISION ASSOCIATION",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 NCTA - THE INTERNET AND TELEVISION ASSOCIATION engaged RIVENDELL GROUP LLP for Telecommunications (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "RIVENDELL GROUP LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/6e888c1d-fd57-4ad8-9ea1-a0f532d340c8/print/"
+}

@@ -1,0 +1,15 @@
+{
+  "accession": "0001178913-26-003389",
+  "cik": "0001792030",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "6-K",
+  "name": [
+    "IM Cannabis Corp.  (IMCC)  (CIK 0001792030)"
+  ],
+  "query": "\"scheme of arrangement\" OR \"restructuring plan\"",
+  "query_label": "tier_s.scheme",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1792030/000117891326003389"
+}

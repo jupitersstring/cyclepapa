@@ -1,0 +1,15 @@
+{
+  "accession": "0001104659-26-079876",
+  "cik": "0001633931",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "QXO Insulation, LLC  (BLD)  (CIK 0001633931)"
+  ],
+  "query": "\"consent solicitation\"",
+  "query_label": "tier_s.consent_solicitation",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1633931/000110465926079876"
+}

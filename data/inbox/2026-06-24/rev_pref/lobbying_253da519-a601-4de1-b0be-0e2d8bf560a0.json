@@ -1,0 +1,22 @@
+{
+  "accession": "253da519-a601-4de1-b0be-0e2d8bf560a0",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "LOUISIANA ENERGY SERVICES, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 LOUISIANA ENERGY SERVICES, LLC engaged STEPHEN WARD CONSULTING, LLC on  (universe-name match: ENERGY)",
+  "registrant": "STEPHEN WARD CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/253da519-a601-4de1-b0be-0e2d8bf560a0/print/"
+}

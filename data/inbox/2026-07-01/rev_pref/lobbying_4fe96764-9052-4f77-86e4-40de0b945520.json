@@ -1,0 +1,22 @@
+{
+  "accession": "4fe96764-9052-4f77-86e4-40de0b945520",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "15000.00",
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code \u00b7 Housing \u00b7 Law Enforcement/Crime/Criminal Justice \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL DOWNTOWN ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTERNATIONAL DOWNTOWN ASSOCIATION engaged AGORA CONSULTING, LLC on Taxation/Internal Revenue Code \u00b7 Housing \u00b7 Law Enforcement/Crime/Criminal Justic (universe-name match: INTERNATIONAL)",
+  "registrant": "AGORA CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/4fe96764-9052-4f77-86e4-40de0b945520/print/"
+}

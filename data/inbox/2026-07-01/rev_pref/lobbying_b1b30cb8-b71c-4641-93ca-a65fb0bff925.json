@@ -1,0 +1,22 @@
+{
+  "accession": "b1b30cb8-b71c-4641-93ca-a65fb0bff925",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Environment/Superfund \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "INT'L ASSNHEAT&FROST INSULATORS ALLIED WORKERSLABOR MANAGEMENT COOPERATIVE TRUST",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 INT'L ASSNHEAT&FROST INSULATORS ALLIED WORKERSLABOR MANAGEME engaged STATE FEDERAL STRATEGIES for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "STATE FEDERAL STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/b1b30cb8-b71c-4641-93ca-a65fb0bff925/print/"
+}

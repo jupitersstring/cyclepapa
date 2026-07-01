@@ -1,0 +1,15 @@
+{
+  "accession": "0001628280-26-046350",
+  "cik": "0001809104",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "Alight, Inc. / Delaware  (ALIT)  (CIK 0001809104)"
+  ],
+  "query": "\"consent solicitation\"",
+  "query_label": "tier_s.consent_solicitation",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1809104/000162828026046350"
+}

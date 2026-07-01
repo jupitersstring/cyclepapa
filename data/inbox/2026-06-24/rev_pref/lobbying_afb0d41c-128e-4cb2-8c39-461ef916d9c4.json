@@ -1,0 +1,22 @@
+{
+  "accession": "afb0d41c-128e-4cb2-8c39-461ef916d9c4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "SUBLIME NUCLEAR",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 SUBLIME NUCLEAR engaged TENLEY STRATEGIES (FKA MR. CHRISTOPHER W for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "TENLEY STRATEGIES (FKA MR. CHRISTOPHER WORRELL)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/afb0d41c-128e-4cb2-8c39-461ef916d9c4/print/"
+}

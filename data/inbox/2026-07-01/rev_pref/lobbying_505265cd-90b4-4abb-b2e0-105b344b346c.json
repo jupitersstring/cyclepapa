@@ -1,0 +1,22 @@
+{
+  "accession": "505265cd-90b4-4abb-b2e0-105b344b346c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "DEFIANT SPACE CORPORATION",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 DEFIANT SPACE CORPORATION engaged THE PICARD GROUP, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE PICARD GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/505265cd-90b4-4abb-b2e0-105b344b346c/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "ca964d3f-d3ea-44a1-978c-d2b1ca3eaaf4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Foreign Relations",
+  "jurisdiction": "US",
+  "name": "JSI RESEARCH AND TRAINING INSTITUTE, INC.",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 JSI RESEARCH AND TRAINING INSTITUTE, INC. engaged BALLARD PARTNERS for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BALLARD PARTNERS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ca964d3f-d3ea-44a1-978c-d2b1ca3eaaf4/print/"
+}

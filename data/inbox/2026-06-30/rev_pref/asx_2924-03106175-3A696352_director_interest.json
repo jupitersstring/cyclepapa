@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106175-3A696352",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Capital Markets",
+  "isin": "AU0000195265",
+  "jurisdiction": "AU",
+  "name": "QUALITAS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "QAL",
+  "tier": "rev_pref",
+  "url": ""
+}

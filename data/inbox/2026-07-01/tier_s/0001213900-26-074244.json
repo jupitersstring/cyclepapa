@@ -1,0 +1,15 @@
+{
+  "accession": "0001213900-26-074244",
+  "cik": "0001740332",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)"
+  ],
+  "query": "\"consent solicitation\"",
+  "query_label": "tier_s.consent_solicitation",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1740332/000121390026074244"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "1513c61a-54ae-46af-8755-31082027d34f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "MISSION INNOVATION CONSULTING",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 MISSION INNOVATION CONSULTING engaged MICHAEL BEST STRATEGIES LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MICHAEL BEST STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/1513c61a-54ae-46af-8755-31082027d34f/print/"
+}

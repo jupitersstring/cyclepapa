@@ -1,0 +1,22 @@
+{
+  "accession": "90880307-7495-4e98-acbf-980a974a9b34",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Immigration",
+  "jurisdiction": "US",
+  "name": "TWG CADILLAC FORMULA 1 TEAM HOLDINGS, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 TWG CADILLAC FORMULA 1 TEAM HOLDINGS, LLC engaged MILLER STRATEGIES, LLC on Immigration (universe-name match: TEAM)",
+  "registrant": "MILLER STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "TEAM",
+  "url": "https://lda.senate.gov/filings/public/filing/90880307-7495-4e98-acbf-980a974a9b34/print/"
+}

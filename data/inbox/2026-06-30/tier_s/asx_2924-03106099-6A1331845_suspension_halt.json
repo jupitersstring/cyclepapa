@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106099-6A1331845",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Trading Halt",
+  "form_code": "Trading Halt",
+  "industry": "Commercial Services & Supplies",
+  "isin": "AU0000199713",
+  "jurisdiction": "AU",
+  "name": "INTELLIGENT MONITORING GROUP LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "IMB",
+  "tier": "tier_s",
+  "url": ""
+}

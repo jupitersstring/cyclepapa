@@ -1,0 +1,22 @@
+{
+  "accession": "ea009896-d8fa-4555-88b4-c1f008ba6aff",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Environment/Superfund",
+  "jurisdiction": "US",
+  "name": "CANVASBACK CONSERVATION LLC F.K.A. WILDLANDSCAPES INTERNATIONAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CANVASBACK CONSERVATION LLC F.K.A. WILDLANDSCAPES INTERNATIO engaged BALLARD PARTNERS on Environment/Superfund (universe-name match: INTERNATIONAL)",
+  "registrant": "BALLARD PARTNERS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/ea009896-d8fa-4555-88b4-c1f008ba6aff/print/"
+}

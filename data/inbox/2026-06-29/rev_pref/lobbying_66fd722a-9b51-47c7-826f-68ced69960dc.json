@@ -1,0 +1,22 @@
+{
+  "accession": "66fd722a-9b51-47c7-826f-68ced69960dc",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Foreign Relations \u00b7 Civil Rights/Civil Liberties",
+  "jurisdiction": "US",
+  "name": "NEW JEWISH NARRATIVE (FKA AMERICANS FOR PEACE NOW)",
+  "query_label": "rev_pref.lobbying_sanctions",
+  "query_note": "LDA filing \u2014 NEW JEWISH NARRATIVE (FKA AMERICANS FOR PEACE NOW) engaged NEW JEWISH NARRATIVE (FKA AMERICANS FOR  for Foreign Relations (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "NEW JEWISH NARRATIVE (FKA AMERICANS FOR PEACE NOW)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/66fd722a-9b51-47c7-826f-68ced69960dc/print/"
+}

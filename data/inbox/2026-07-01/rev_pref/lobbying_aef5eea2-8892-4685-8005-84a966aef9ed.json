@@ -1,0 +1,22 @@
+{
+  "accession": "aef5eea2-8892-4685-8005-84a966aef9ed",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Veterans",
+  "jurisdiction": "US",
+  "name": "BROWNSTEIN HYATT FARBER SCHRECK, LLP OBO INVACARE AMERICA",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 BROWNSTEIN HYATT FARBER SCHRECK, LLP OBO INVACARE AMERICA engaged NET CENTRIC ALLIANCE LLC on Veterans (universe-name match: INVACARE)",
+  "registrant": "NET CENTRIC ALLIANCE LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INVACARE",
+  "url": "https://lda.senate.gov/filings/public/filing/aef5eea2-8892-4685-8005-84a966aef9ed/print/"
+}

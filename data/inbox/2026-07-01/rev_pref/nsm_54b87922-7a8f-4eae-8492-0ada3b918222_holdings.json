@@ -1,0 +1,16 @@
+{
+  "accession": "54b87922-7a8f-4eae-8492-0ada3b918222",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "BROWN ADVISORY US SMALLER COMPANIES PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/54b87922-7a8f-4eae-8492-0ada3b918222.html"
+}

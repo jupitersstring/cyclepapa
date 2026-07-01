@@ -1,0 +1,22 @@
+{
+  "accession": "727594d0-3aec-467d-b319-ba5b0f89c2b8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "1st Quarter - Termination (No Activity)",
+  "form_code": "1TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "DIGITAL ENERGY COUNCIL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 DIGITAL ENERGY COUNCIL engaged DIGITAL ENERGY COUNCIL on  (universe-name match: ENERGY)",
+  "registrant": "DIGITAL ENERGY COUNCIL",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/727594d0-3aec-467d-b319-ba5b0f89c2b8/print/"
+}

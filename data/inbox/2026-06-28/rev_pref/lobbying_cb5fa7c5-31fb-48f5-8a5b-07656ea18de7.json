@@ -1,0 +1,22 @@
+{
+  "accession": "cb5fa7c5-31fb-48f5-8a5b-07656ea18de7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "ALARE TECHNOLOGIES",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 ALARE TECHNOLOGIES engaged REPUBLIC CONSULTING, LLC for Defense (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "REPUBLIC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/cb5fa7c5-31fb-48f5-8a5b-07656ea18de7/print/"
+}

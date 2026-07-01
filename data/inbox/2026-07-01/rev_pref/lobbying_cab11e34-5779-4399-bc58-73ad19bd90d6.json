@@ -1,0 +1,22 @@
+{
+  "accession": "cab11e34-5779-4399-bc58-73ad19bd90d6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Animals",
+  "jurisdiction": "US",
+  "name": "NORTH AMERICAN RENDERERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NORTH AMERICAN RENDERERS ASSOCIATION engaged THE RUSSELL GROUP, INC. on Animals (universe-name match: AMERICAN)",
+  "registrant": "THE RUSSELL GROUP, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/cab11e34-5779-4399-bc58-73ad19bd90d6/print/"
+}

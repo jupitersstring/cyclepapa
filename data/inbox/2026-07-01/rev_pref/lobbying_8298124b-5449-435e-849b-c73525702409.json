@@ -1,0 +1,22 @@
+{
+  "accession": "8298124b-5449-435e-849b-c73525702409",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "MUSKET CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 MUSKET CORPORATION engaged THE RUSSELL GROUP, INC. for Energy/Nuclear (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "THE RUSSELL GROUP, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8298124b-5449-435e-849b-c73525702409/print/"
+}

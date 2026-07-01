@@ -1,0 +1,22 @@
+{
+  "accession": "1b588fe9-0251-4abe-a366-b61324e1f159",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "TIRYAKI ENERGY LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 TIRYAKI ENERGY LLC engaged BGR GOVERNMENT AFFAIRS for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BGR GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/1b588fe9-0251-4abe-a366-b61324e1f159/print/"
+}

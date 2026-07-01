@@ -1,0 +1,17 @@
+{
+  "accession": "140120260629583742",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "ヤマタケ総業株式会社による当社株式に係る株式売渡請求を行うことの決定、 当該株式売渡請求に係る承認及び当社株式の上場廃止に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ＳＨＩＮＰＯ",
+  "query_label": "tier_s.delisting",
+  "query_note": "delisting",
+  "source": "TDnet",
+  "ticker": "5903",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260629583742.pdf"
+}

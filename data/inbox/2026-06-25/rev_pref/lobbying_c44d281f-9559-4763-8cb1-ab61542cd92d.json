@@ -1,0 +1,22 @@
+{
+  "accession": "c44d281f-9559-4763-8cb1-ab61542cd92d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "VERTIV GROUP CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 VERTIV GROUP CORPORATION engaged AKIN GUMP STRAUSS HAUER & FELD on Trade (domestic/foreign) (universe-name match: VERTIV)",
+  "registrant": "AKIN GUMP STRAUSS HAUER & FELD",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "VERTIV",
+  "url": "https://lda.senate.gov/filings/public/filing/c44d281f-9559-4763-8cb1-ab61542cd92d/print/"
+}

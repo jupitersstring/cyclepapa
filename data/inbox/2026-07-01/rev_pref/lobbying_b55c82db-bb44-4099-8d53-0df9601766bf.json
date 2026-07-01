@@ -1,0 +1,22 @@
+{
+  "accession": "b55c82db-bb44-4099-8d53-0df9601766bf",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "80000.00",
+  "isin": null,
+  "issues": "Agriculture",
+  "jurisdiction": "US",
+  "name": "CALIFORNIA RICE COMMISSION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CALIFORNIA RICE COMMISSION engaged THE RUSSELL GROUP, INC. on Agriculture (universe-name match: CALIFORNIA)",
+  "registrant": "THE RUSSELL GROUP, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/b55c82db-bb44-4099-8d53-0df9601766bf/print/"
+}

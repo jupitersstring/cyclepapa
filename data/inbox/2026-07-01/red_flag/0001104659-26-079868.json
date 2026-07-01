@@ -1,0 +1,15 @@
+{
+  "accession": "0001104659-26-079868",
+  "cik": "0000918541",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "NN INC  (NNBR)  (CIK 0000918541)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/918541/000110465926079868"
+}

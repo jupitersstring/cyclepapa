@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106542-2A1681345",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Initial Director's Interest Notice - L Goddard",
+  "form_code": "Initial Director's Interest Notice",
+  "industry": "Aerospace & Defense",
+  "isin": "AU000000DRO2",
+  "jurisdiction": "AU",
+  "name": "DRONESHIELD LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "DRO",
+  "tier": "rev_pref",
+  "url": ""
+}

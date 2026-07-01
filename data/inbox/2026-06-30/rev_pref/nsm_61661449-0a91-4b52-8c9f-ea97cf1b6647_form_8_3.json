@@ -1,0 +1,16 @@
+{
+  "accession": "61661449-0a91-4b52-8c9f-ea97cf1b6647",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Amundi SA",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/61661449-0a91-4b52-8c9f-ea97cf1b6647.html"
+}

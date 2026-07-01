@@ -1,0 +1,17 @@
+{
+  "accession": "140120260701585793",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "当社主要株主による当社株式売却及び大量保有報告書の変更報告書の受領に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｌｉｎｋ－Ｕグループ",
+  "query_label": "rev_pref.large_holding",
+  "query_note": "5pct large-holding report (EDINET-side; cross-reference)",
+  "source": "TDnet",
+  "ticker": "4446",
+  "tier": "rev_pref",
+  "url": "https://www.release.tdnet.info/inbs/140120260701585793.pdf"
+}

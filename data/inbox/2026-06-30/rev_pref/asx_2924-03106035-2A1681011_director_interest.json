@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106035-2A1681011",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Final Director's Interest - G Chipman",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU000000IRD4",
+  "jurisdiction": "AU",
+  "name": "IRON ROAD LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "IRD",
+  "tier": "rev_pref",
+  "url": ""
+}

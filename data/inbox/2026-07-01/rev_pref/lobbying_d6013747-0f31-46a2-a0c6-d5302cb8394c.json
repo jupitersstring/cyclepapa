@@ -1,0 +1,22 @@
+{
+  "accession": "d6013747-0f31-46a2-a0c6-d5302cb8394c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Financial Institutions/Investments/Securities",
+  "jurisdiction": "US",
+  "name": "FINANCIAL SERVICES FORUM",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 FINANCIAL SERVICES FORUM engaged THE WALTER GROUP on Financial Institutions/Investments/Securities (universe-name match: FORUM)",
+  "registrant": "THE WALTER GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "FORUM",
+  "url": "https://lda.senate.gov/filings/public/filing/d6013747-0f31-46a2-a0c6-d5302cb8394c/print/"
+}

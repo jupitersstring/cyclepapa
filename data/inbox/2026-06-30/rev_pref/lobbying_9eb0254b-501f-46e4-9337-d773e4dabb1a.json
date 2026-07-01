@@ -1,0 +1,22 @@
+{
+  "accession": "9eb0254b-501f-46e4-9337-d773e4dabb1a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "CALIFORNIA ASSOCIATION OF WINEGRAPE GROWERS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CALIFORNIA ASSOCIATION OF WINEGRAPE GROWERS engaged TORREY ADVISORY GROUP (FORMERLY MICHAEL  on Budget/Appropriations (universe-name match: CALIFORNIA)",
+  "registrant": "TORREY ADVISORY GROUP (FORMERLY MICHAEL TORREY ASSOCIATES, LLC)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/9eb0254b-501f-46e4-9337-d773e4dabb1a/print/"
+}

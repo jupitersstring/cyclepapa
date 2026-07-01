@@ -1,0 +1,22 @@
+{
+  "accession": "79e617b6-8d8e-4b42-bcfc-65361c8157e7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "VIASAT, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 VIASAT, INC. engaged GORMAN STRATEGY GROUP, TOO for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "GORMAN STRATEGY GROUP, TOO",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/79e617b6-8d8e-4b42-bcfc-65361c8157e7/print/"
+}

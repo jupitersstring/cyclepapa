@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106252-2A1681162",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Notice of initial substantial holder for MFG",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Capital Markets",
+  "isin": "AU000000MFG4",
+  "jurisdiction": "AU",
+  "name": "MAGELLAN FINANCIAL GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "MFG",
+  "tier": "rev_pref",
+  "url": ""
+}

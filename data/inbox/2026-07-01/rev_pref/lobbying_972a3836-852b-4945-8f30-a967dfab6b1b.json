@@ -1,0 +1,22 @@
+{
+  "accession": "972a3836-852b-4945-8f30-a967dfab6b1b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "CHENIERE ENERGY, INC.",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 CHENIERE ENERGY, INC. engaged THE PICARD GROUP, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE PICARD GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/972a3836-852b-4945-8f30-a967dfab6b1b/print/"
+}

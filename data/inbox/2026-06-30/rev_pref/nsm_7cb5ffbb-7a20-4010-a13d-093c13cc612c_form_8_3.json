@@ -1,0 +1,16 @@
+{
+  "accession": "7cb5ffbb-7a20-4010-a13d-093c13cc612c",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Northern Trust Corporation",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/7cb5ffbb-7a20-4010-a13d-093c13cc612c.html"
+}

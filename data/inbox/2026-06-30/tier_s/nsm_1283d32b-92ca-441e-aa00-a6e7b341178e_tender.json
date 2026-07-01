@@ -1,0 +1,16 @@
+{
+  "accession": "1283d32b-92ca-441e-aa00-a6e7b341178e",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Tender Offer",
+  "form_code": "TEN",
+  "isin": null,
+  "name": "LEGAL & GENERAL GROUP PLC",
+  "query_label": "tier_s.tender",
+  "query_note": "tender offer",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/1283d32b-92ca-441e-aa00-a6e7b341178e.html"
+}

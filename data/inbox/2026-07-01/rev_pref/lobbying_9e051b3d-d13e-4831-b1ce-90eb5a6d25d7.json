@@ -1,0 +1,22 @@
+{
+  "accession": "9e051b3d-d13e-4831-b1ce-90eb5a6d25d7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "3rd Quarter - Report",
+  "form_code": "Q3",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Automotive Industry",
+  "jurisdiction": "US",
+  "name": "THE DAWN PROJECT",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 THE DAWN PROJECT engaged DEFAZIO AND ASSOCIATES CONSULTING LLC for Transportation (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "DEFAZIO AND ASSOCIATES CONSULTING LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/9e051b3d-d13e-4831-b1ce-90eb5a6d25d7/print/"
+}

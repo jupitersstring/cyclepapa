@@ -1,0 +1,22 @@
+{
+  "accession": "f1d65151-70d0-4ce6-aa1c-3b32c5023921",
+  "cik": "",
+  "expenses": "220000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Automotive Industry \u00b7 Manufacturing \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "RIVIAN AUTOMOTIVE, LLC",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 RIVIAN AUTOMOTIVE, LLC engaged RIVIAN AUTOMOTIVE, LLC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "RIVIAN AUTOMOTIVE, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "RIVIAN",
+  "url": "https://lda.senate.gov/filings/public/filing/f1d65151-70d0-4ce6-aa1c-3b32c5023921/print/"
+}

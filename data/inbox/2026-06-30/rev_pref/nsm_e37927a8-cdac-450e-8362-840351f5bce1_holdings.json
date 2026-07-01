@@ -1,0 +1,16 @@
+{
+  "accession": "e37927a8-cdac-450e-8362-840351f5bce1",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "TORTILLA MEXICAN GRILL PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e37927a8-cdac-450e-8362-840351f5bce1.html"
+}

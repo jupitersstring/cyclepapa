@@ -1,0 +1,16 @@
+{
+  "accession": "e0f655eb-4763-4f8c-8151-e9667b728320",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "GRAVIS ADVISORY LTD",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e0f655eb-4763-4f8c-8151-e9667b728320.html"
+}

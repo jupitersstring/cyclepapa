@@ -1,0 +1,16 @@
+{
+  "accession": "ed5276b3-5c88-46ea-8941-cb2f0bee9773",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "HGCAPITAL TRUST PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ed5276b3-5c88-46ea-8941-cb2f0bee9773.html"
+}

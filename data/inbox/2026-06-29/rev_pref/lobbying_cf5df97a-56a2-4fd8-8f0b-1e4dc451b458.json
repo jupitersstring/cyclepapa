@@ -1,0 +1,22 @@
+{
+  "accession": "cf5df97a-56a2-4fd8-8f0b-1e4dc451b458",
+  "cik": "",
+  "expenses": "30000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues",
+  "jurisdiction": "US",
+  "name": "THE AMERICAN COLLEGE OF MEDICAL GENETICS AND GENOMICS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 THE AMERICAN COLLEGE OF MEDICAL GENETICS AND GENOMICS engaged THE AMERICAN COLLEGE OF MEDICAL GENETICS on Health Issues (universe-name match: AMERICAN)",
+  "registrant": "THE AMERICAN COLLEGE OF MEDICAL GENETICS AND GENOMICS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/cf5df97a-56a2-4fd8-8f0b-1e4dc451b458/print/"
+}

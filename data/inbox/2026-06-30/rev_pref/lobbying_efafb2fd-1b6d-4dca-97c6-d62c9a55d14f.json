@@ -1,0 +1,22 @@
+{
+  "accession": "efafb2fd-1b6d-4dca-97c6-d62c9a55d14f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "1st Quarter - Amendment",
+  "form_code": "1A",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Telecommunications \u00b7 Consumer Issues/Safety/Products",
+  "jurisdiction": "US",
+  "name": "T-MOBILE USA, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 T-MOBILE USA, INC. engaged RIVENDELL GROUP LLP for Telecommunications (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "RIVENDELL GROUP LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/efafb2fd-1b6d-4dca-97c6-d62c9a55d14f/print/"
+}

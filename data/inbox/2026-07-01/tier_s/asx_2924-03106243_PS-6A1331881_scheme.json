@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106243_PS-6A1331881",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Implementation of Scheme",
+  "form_code": "Scheme of Arrangement",
+  "industry": "Metals & Mining",
+  "isin": "AU000000PEX5",
+  "jurisdiction": "AU",
+  "name": "PEEL MINING LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "PEX",
+  "tier": "tier_s",
+  "url": ""
+}

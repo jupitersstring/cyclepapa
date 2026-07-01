@@ -1,0 +1,22 @@
+{
+  "accession": "589b3752-ebb7-45d3-90f3-bb56add4f979",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources \u00b7 Economics/Economic Development \u00b7 Energy/Nuclear \u00b7 Housing \u00b7 Environment/Superfund \u00b7 Real Estate/Land Use/Conservation \u00b7 Utilities \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "CONSERVATION VOTERS FOR IDAHO",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 CONSERVATION VOTERS FOR IDAHO engaged STRYKE STRATEGIES for Energy/Nuclear (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "STRYKE STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/589b3752-ebb7-45d3-90f3-bb56add4f979/print/"
+}

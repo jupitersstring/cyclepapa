@@ -1,0 +1,22 @@
+{
+  "accession": "562acfd2-04ef-418a-83dd-e1b2d15d3fa2",
+  "cik": "",
+  "expenses": "60000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Chemicals/Chemical Industry \u00b7 Education \u00b7 Energy/Nuclear \u00b7 Fuel/Gas/Oil \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Utilities \u00b7 Clean Air and Water (quality) \u00b7 Urban Development/Munic",
+  "jurisdiction": "US",
+  "name": "PLUMBING-HEATING-COOLING CONTRACTORS--NATIONAL ASSOCIATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 PLUMBING-HEATING-COOLING CONTRACTORS--NATIONAL ASSOCIATION engaged PLUMBING-HEATING-COOLING CONTRACTORS--NA for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PLUMBING-HEATING-COOLING CONTRACTORS--NATIONAL ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/562acfd2-04ef-418a-83dd-e1b2d15d3fa2/print/"
+}

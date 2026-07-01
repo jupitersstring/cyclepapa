@@ -1,0 +1,22 @@
+{
+  "accession": "a360b5a9-9306-4db4-87f1-bca8ab97fbe3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "AMERICAN TERAWATT, INC.",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 AMERICAN TERAWATT, INC. engaged HOLLAND & KNIGHT LLP for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HOLLAND & KNIGHT LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/a360b5a9-9306-4db4-87f1-bca8ab97fbe3/print/"
+}

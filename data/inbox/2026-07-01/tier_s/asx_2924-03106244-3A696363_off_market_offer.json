@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106244-3A696363",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "KIT Buy Back Outcome and FY27 Distribution Guidance",
+  "form_code": "Off-Market Buy-Back|Dividend - Other",
+  "industry": null,
+  "isin": "AU0000457392",
+  "jurisdiction": "AU",
+  "name": "KAPSTREAM INVESTMENT TRUST",
+  "price_sensitive": false,
+  "query_label": "tier_s.off_market_offer",
+  "query_note": "Off-market takeover or buy-back",
+  "sector": null,
+  "source": "ASX",
+  "ticker": "KIT",
+  "tier": "tier_s",
+  "url": ""
+}

@@ -1,0 +1,15 @@
+{
+  "accession": "0001193125-26-292513",
+  "cik": "0002113060",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "6-K",
+  "name": [
+    "IQM Quantum Computers Oyj  (IQMX)  (CIK 0002113060)"
+  ],
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/2113060/000119312526292513"
+}

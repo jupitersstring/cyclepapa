@@ -1,0 +1,22 @@
+{
+  "accession": "c3192945-d7ce-4b58-9f31-0b021f1e07af",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Insurance",
+  "jurisdiction": "US",
+  "name": "FIDELITY AND GUARANTY LIFE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 FIDELITY AND GUARANTY LIFE engaged TAFT STETTINIUS & HOLLISTER LLP DBA TAFT on Insurance (universe-name match: FIDELITY)",
+  "registrant": "TAFT STETTINIUS & HOLLISTER LLP DBA TAFT ADVISORS LLC FKA (TAFT, STETTINIUS & HOLLISTER,LLP)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "FIDELITY",
+  "url": "https://lda.senate.gov/filings/public/filing/c3192945-d7ce-4b58-9f31-0b021f1e07af/print/"
+}

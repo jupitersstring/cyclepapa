@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106142-3A696345",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Final Director's Interest Notice",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Banks",
+  "isin": "AU000000MYS0",
+  "jurisdiction": "AU",
+  "name": "MYSTATE LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "MYS",
+  "tier": "rev_pref",
+  "url": ""
+}

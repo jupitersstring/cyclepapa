@@ -1,0 +1,17 @@
+{
+  "accession": "140120260630585017",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "完全子会社（ＮＥＣソリューションイノベータ株式会社）の吸収合併に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ＮＥＣ",
+  "query_label": "tier_s.merger_absorption",
+  "query_note": "merger by absorption",
+  "source": "TDnet",
+  "ticker": "6701",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260630585017.pdf"
+}

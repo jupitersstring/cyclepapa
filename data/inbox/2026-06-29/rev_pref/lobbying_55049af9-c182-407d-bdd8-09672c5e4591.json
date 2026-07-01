@@ -1,0 +1,22 @@
+{
+  "accession": "55049af9-c182-407d-bdd8-09672c5e4591",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Trade (domestic/foreign) \u00b7 Transportation \u00b7 Agriculture",
+  "jurisdiction": "US",
+  "name": "NATIONAL MILK PRODUCERS FEDERATION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 NATIONAL MILK PRODUCERS FEDERATION engaged HB STRATEGIES for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HB STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/55049af9-c182-407d-bdd8-09672c5e4591/print/"
+}

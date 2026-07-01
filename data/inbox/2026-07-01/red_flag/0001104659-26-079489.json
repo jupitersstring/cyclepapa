@@ -1,0 +1,15 @@
+{
+  "accession": "0001104659-26-079489",
+  "cik": "0001838003",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "S-1/A",
+  "name": [
+    "Encore Medical, Inc.  (EMI)  (CIK 0001838003)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1838003/000110465926079489"
+}

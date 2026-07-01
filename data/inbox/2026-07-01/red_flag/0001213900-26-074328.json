@@ -1,0 +1,15 @@
+{
+  "accession": "0001213900-26-074328",
+  "cik": "0001972234",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "S-1/A",
+  "name": [
+    "VenHub Global, Inc.  (VHUB)  (CIK 0001972234)"
+  ],
+  "query": "\"substantial doubt\" AND \"going concern\"",
+  "query_label": "red_flag.going_concern",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1972234/000121390026074328"
+}

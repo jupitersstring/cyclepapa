@@ -1,0 +1,22 @@
+{
+  "accession": "3789639a-45ce-4eee-8c28-ed4d6b935d67",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-24",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "GPA MIDSTREAM ASSOCIATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 GPA MIDSTREAM ASSOCIATION engaged SHUMAKER ADVISORS, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SHUMAKER ADVISORS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/3789639a-45ce-4eee-8c28-ed4d6b935d67/print/"
+}

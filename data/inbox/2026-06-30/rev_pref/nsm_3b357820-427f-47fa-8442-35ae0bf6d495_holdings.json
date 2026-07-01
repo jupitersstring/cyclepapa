@@ -1,0 +1,16 @@
+{
+  "accession": "3b357820-427f-47fa-8442-35ae0bf6d495",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "SEGRO PUBLIC LIMITED COMPANY",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/3b357820-427f-47fa-8442-35ae0bf6d495.html"
+}

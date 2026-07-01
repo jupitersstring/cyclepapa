@@ -1,0 +1,15 @@
+{
+  "accession": "0001683168-26-005219",
+  "cik": "0000882291",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "S-1/A",
+  "name": [
+    "AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)"
+  ],
+  "query": "\"substantial doubt\" AND \"going concern\"",
+  "query_label": "red_flag.going_concern",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/882291/000168316826005219"
+}

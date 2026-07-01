@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106409-3A696392",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Change of Director's Interest Notice - G Johnson",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Diversified Consumer Services",
+  "isin": "AU000000MFD1",
+  "jurisdiction": "AU",
+  "name": "MAYFIELD CHILDCARE LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Consumer Discretionary",
+  "source": "ASX",
+  "ticker": "MFD",
+  "tier": "rev_pref",
+  "url": ""
+}

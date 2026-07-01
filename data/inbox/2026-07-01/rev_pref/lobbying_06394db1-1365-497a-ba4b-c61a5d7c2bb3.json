@@ -1,0 +1,22 @@
+{
+  "accession": "06394db1-1365-497a-ba4b-c61a5d7c2bb3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Law Enforcement/Crime/Criminal Justice",
+  "jurisdiction": "US",
+  "name": "UNITED STATES PARK POLICE FRATERNAL ORDER OF POLICE LABOR COMMITTEE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNITED STATES PARK POLICE FRATERNAL ORDER OF POLICE LABOR CO engaged GALLANT GOVERNMENT & LAW GROUP, LLC on Law Enforcement/Crime/Criminal Justice (universe-name match: UNITED)",
+  "registrant": "GALLANT GOVERNMENT & LAW GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/06394db1-1365-497a-ba4b-c61a5d7c2bb3/print/"
+}

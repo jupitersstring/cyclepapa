@@ -1,0 +1,17 @@
+{
+  "accession": "140120260701586130",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:10.916380Z",
+  "filed": "2026-07-01",
+  "form": "業績予想修正並びに営業外収益および繰延税金資産計上に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－ＱＰＳＨＤ",
+  "query_label": "red_flag.earnings_revision",
+  "query_note": "earnings forecast revision — verify whether downward",
+  "source": "TDnet",
+  "ticker": "464A",
+  "tier": "red_flag",
+  "url": "https://www.release.tdnet.info/inbs/140120260701586130.pdf"
+}

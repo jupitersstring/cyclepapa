@@ -1,0 +1,15 @@
+{
+  "accession": "0001104659-26-079612",
+  "cik": "0001282648",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "8-K",
+  "name": [
+    "BATTALION OIL CORP  (BATL)  (CIK 0001282648)"
+  ],
+  "query": "\"exchange offer\"",
+  "query_label": "tier_s.exchange_offer",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1282648/000110465926079612"
+}

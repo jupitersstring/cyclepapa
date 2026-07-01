@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106538-6A1332009",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Final Director's Interest Notice",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU000000VRX5",
+  "jurisdiction": "AU",
+  "name": "VRX SILICA LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "VRX",
+  "tier": "rev_pref",
+  "url": ""
+}

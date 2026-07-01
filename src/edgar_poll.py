@@ -104,7 +104,8 @@ def normalize_hit(label: str, hit: dict, query: str, fetched_at: str) -> dict:
         "query": query,
         "cik": cik,
         "ticker": (src.get("tickers") or [None])[0],
-        "name": src.get("display_names") or src.get("name") or "",
+        "name": (src.get("display_names") or [src.get("name", "")])[0]
+                 if src.get("display_names") else (src.get("name") or ""),
         "form": src.get("form"),
         "accession": accession,
         "filed": src.get("file_date"),

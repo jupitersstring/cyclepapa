@@ -1,0 +1,22 @@
+{
+  "accession": "1ac8f302-e755-4467-9ad0-fd29ceaf564d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "3rd Quarter - Report",
+  "form_code": "Q3",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Aerospace",
+  "jurisdiction": "US",
+  "name": "ASSOCIATION OF FLIGHT ATTTENDANTS CWA",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 ASSOCIATION OF FLIGHT ATTTENDANTS CWA engaged DEFAZIO AND ASSOCIATES CONSULTING LLC for Aerospace (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "DEFAZIO AND ASSOCIATES CONSULTING LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/1ac8f302-e755-4467-9ad0-fd29ceaf564d/print/"
+}

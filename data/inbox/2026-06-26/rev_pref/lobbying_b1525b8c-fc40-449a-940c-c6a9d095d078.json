@@ -1,0 +1,22 @@
+{
+  "accession": "b1525b8c-fc40-449a-940c-c6a9d095d078",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Education \u00b7 Government Issues \u00b7 Medicare/Medicaid \u00b7 Pharmacy \u00b7 Insurance \u00b7 Urban Development/Municipalities \u00b7 Automotive Industry \u00b7 Aviation/Airlines/Airports \u00b7 Agriculture \u00b7 Environment/Superfund \u00b7 C",
+  "jurisdiction": "US",
+  "name": "ALLERGY & ASTHMA NETWORK",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 ALLERGY & ASTHMA NETWORK engaged ALLERGY & ASTHMA NETWORK on Education \u00b7 Government Issues \u00b7 Medicare/Medicaid \u00b7 Pharmacy \u00b7 Insurance \u00b7 Urban (universe-name match: NETWORK)",
+  "registrant": "ALLERGY & ASTHMA NETWORK",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NETWORK",
+  "url": "https://lda.senate.gov/filings/public/filing/b1525b8c-fc40-449a-940c-c6a9d095d078/print/"
+}

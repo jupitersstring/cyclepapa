@@ -1,0 +1,22 @@
+{
+  "accession": "d85aa536-0a93-4538-a06d-1f8b4e879cc2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "7500.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "STRAUNS CUSTOMHOUSE BROKERS, LLC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 STRAUNS CUSTOMHOUSE BROKERS, LLC engaged BC CONSULTING, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d85aa536-0a93-4538-a06d-1f8b4e879cc2/print/"
+}

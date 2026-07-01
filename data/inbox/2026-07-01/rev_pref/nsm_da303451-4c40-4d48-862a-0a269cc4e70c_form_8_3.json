@@ -1,0 +1,16 @@
+{
+  "accession": "da303451-4c40-4d48-862a-0a269cc4e70c",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "Societe Generale SA",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/da303451-4c40-4d48-862a-0a269cc4e70c.html"
+}

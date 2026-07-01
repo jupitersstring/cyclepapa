@@ -1,0 +1,22 @@
+{
+  "accession": "2398d0cb-146a-473f-bda5-1e0c77c15d09",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Torts \u00b7 Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL SURFACE FABRICATORS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTERNATIONAL SURFACE FABRICATORS ASSOCIATION engaged STINSON LLP on Torts \u00b7 Labor Issues/Antitrust/Workplace (universe-name match: INTERNATIONAL)",
+  "registrant": "STINSON LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/2398d0cb-146a-473f-bda5-1e0c77c15d09/print/"
+}

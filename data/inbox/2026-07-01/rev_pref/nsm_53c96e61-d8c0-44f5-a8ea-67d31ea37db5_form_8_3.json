@@ -1,0 +1,16 @@
+{
+  "accession": "53c96e61-d8c0-44f5-a8ea-67d31ea37db5",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "T.Rowe Price Associates, Inc",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/53c96e61-d8c0-44f5-a8ea-67d31ea37db5.html"
+}

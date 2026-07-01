@@ -1,0 +1,22 @@
+{
+  "accession": "1f341e6e-4da9-4269-9ec5-12be85da6a9d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources",
+  "jurisdiction": "US",
+  "name": "JINDAL INTERNATIONAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JINDAL INTERNATIONAL engaged GRV STRATEGIES LLC on Natural Resources (universe-name match: INTERNATIONAL)",
+  "registrant": "GRV STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/1f341e6e-4da9-4269-9ec5-12be85da6a9d/print/"
+}

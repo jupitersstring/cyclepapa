@@ -1,0 +1,22 @@
+{
+  "accession": "bdfd6776-0143-4e83-bca6-e003fce98471",
+  "cik": "",
+  "expenses": "220000.00",
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-07-01",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Banking \u00b7 Clean Air and Water (quality) \u00b7 Energy/Nuclear \u00b7 Housing \u00b7 Immigration \u00b7 Budget/Appropriations \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "LEADING BUILDERS OF AMERICA",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 LEADING BUILDERS OF AMERICA engaged LEADING BUILDERS OF AMERICA for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "LEADING BUILDERS OF AMERICA",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bdfd6776-0143-4e83-bca6-e003fce98471/print/"
+}

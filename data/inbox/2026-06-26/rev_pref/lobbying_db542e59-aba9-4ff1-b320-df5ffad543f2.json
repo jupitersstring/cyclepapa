@@ -1,0 +1,22 @@
+{
+  "accession": "db542e59-aba9-4ff1-b320-df5ffad543f2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Marine/Maritime/Boating/Fisheries \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "GLOBAL TRADING SHIPPING AND LOGISTICS CORPORATION LLC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 GLOBAL TRADING SHIPPING AND LOGISTICS CORPORATION LLC engaged TSG ADVOCATES DC, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "TSG ADVOCATES DC, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/db542e59-aba9-4ff1-b320-df5ffad543f2/print/"
+}

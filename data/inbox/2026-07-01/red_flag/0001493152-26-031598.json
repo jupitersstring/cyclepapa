@@ -1,0 +1,15 @@
+{
+  "accession": "0001493152-26-031598",
+  "cik": "0001849380",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "S-1",
+  "name": [
+    "OneMedNet Corp  (ONMD, ONMDW)  (CIK 0001849380)"
+  ],
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1849380/000149315226031598"
+}

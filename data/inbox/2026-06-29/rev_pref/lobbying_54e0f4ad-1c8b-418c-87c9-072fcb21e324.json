@@ -1,0 +1,22 @@
+{
+  "accession": "54e0f4ad-1c8b-418c-87c9-072fcb21e324",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-29",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Homeland Security \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "PRYSMIAN",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 PRYSMIAN engaged INTERSECTION for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "INTERSECTION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/54e0f4ad-1c8b-418c-87c9-072fcb21e324/print/"
+}

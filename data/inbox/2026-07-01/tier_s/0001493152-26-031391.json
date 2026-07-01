@@ -1,0 +1,15 @@
+{
+  "accession": "0001493152-26-031391",
+  "cik": "0001853070",
+  "fetched_at": "2026-07-01T22:25:01.025051Z",
+  "filed": "2026-07-01",
+  "form": "424B5",
+  "name": [
+    "Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)"
+  ],
+  "query": "\"exchange offer\"",
+  "query_label": "tier_s.exchange_offer",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1853070/000149315226031391"
+}

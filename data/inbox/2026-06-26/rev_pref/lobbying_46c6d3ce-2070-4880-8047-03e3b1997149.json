@@ -1,0 +1,22 @@
+{
+  "accession": "46c6d3ce-2070-4880-8047-03e3b1997149",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "SULLIVAN STRATEGIES OBO ODOT",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 SULLIVAN STRATEGIES OBO ODOT engaged COLUMBIA STRATEGIC COUNSEL for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "COLUMBIA STRATEGIC COUNSEL",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/46c6d3ce-2070-4880-8047-03e3b1997149/print/"
+}

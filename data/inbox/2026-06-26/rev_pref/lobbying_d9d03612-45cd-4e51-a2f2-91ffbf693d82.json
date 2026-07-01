@@ -1,0 +1,22 @@
+{
+  "accession": "d9d03612-45cd-4e51-a2f2-91ffbf693d82",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense \u00b7 Medical/Disease Research/Clinical Labs",
+  "jurisdiction": "US",
+  "name": "LAW OFFICE OF MICHAEL R. DAVIS, LLC D/B/A/ MRDLAW (OBO DEEP MILE NETWORKS, LLC)",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 LAW OFFICE OF MICHAEL R. DAVIS, LLC D/B/A/ MRDLAW (OBO DEEP  engaged MJL VENTURES, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MJL VENTURES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "OFFICE",
+  "url": "https://lda.senate.gov/filings/public/filing/d9d03612-45cd-4e51-a2f2-91ffbf693d82/print/"
+}

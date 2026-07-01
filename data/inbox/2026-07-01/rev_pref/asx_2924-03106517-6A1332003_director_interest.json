@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03106517-6A1332003",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-07-01",
+  "form": "Appendix 3X - Matthew Daley",
+  "form_code": "Initial Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU000000S320",
+  "jurisdiction": "AU",
+  "name": "SOUTH32 LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "S32",
+  "tier": "rev_pref",
+  "url": ""
+}

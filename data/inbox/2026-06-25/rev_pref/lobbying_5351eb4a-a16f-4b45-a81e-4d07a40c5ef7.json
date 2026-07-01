@@ -1,0 +1,22 @@
+{
+  "accession": "5351eb4a-a16f-4b45-a81e-4d07a40c5ef7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-25",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Aerospace",
+  "jurisdiction": "US",
+  "name": "NEBULA TECHNOLOGIES",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 NEBULA TECHNOLOGIES engaged THE ARTEMIS GROUP, LLC (OKLAHOMA) for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE ARTEMIS GROUP, LLC (OKLAHOMA)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/5351eb4a-a16f-4b45-a81e-4d07a40c5ef7/print/"
+}

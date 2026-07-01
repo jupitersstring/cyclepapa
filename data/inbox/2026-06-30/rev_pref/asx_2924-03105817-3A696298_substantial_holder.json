@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03105817-3A696298",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:33:56.831970Z",
+  "filed": "2026-06-30",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Metals & Mining",
+  "isin": "AU000000RIO1",
+  "jurisdiction": "AU",
+  "name": "RIO TINTO LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "RIO",
+  "tier": "rev_pref",
+  "url": ""
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "0bcacc80-d147-4aa6-99b3-18bec022a0eb",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Housing",
+  "jurisdiction": "US",
+  "name": "NATIONAL WOMEN'S SHELTER NETWORK",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL WOMEN'S SHELTER NETWORK engaged CORCORAN STRATEGIES GROUP on Housing (universe-name match: NETWORK)",
+  "registrant": "CORCORAN STRATEGIES GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NETWORK",
+  "url": "https://lda.senate.gov/filings/public/filing/0bcacc80-d147-4aa6-99b3-18bec022a0eb/print/"
+}

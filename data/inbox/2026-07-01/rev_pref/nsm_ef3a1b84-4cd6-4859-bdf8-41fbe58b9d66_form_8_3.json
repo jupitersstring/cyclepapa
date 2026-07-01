@@ -1,0 +1,16 @@
+{
+  "accession": "ef3a1b84-4cd6-4859-bdf8-41fbe58b9d66",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-07-01",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "UBS Asset Management (Europe) S.A.",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/ef3a1b84-4cd6-4859-bdf8-41fbe58b9d66.html"
+}

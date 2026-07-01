@@ -1,0 +1,16 @@
+{
+  "accession": "fa2ca576-5aa8-49bd-8126-840cb02c5b62",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:25:38.571318Z",
+  "filed": "2026-06-30",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "Coca-Cola HBC AG",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/fa2ca576-5aa8-49bd-8126-840cb02c5b62.html"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "14947735-fd91-4643-95a2-233c07e29053",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "CITY OF SOUTH EL MONTE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CITY OF SOUTH EL MONTE engaged TOWNSEND PUBLIC AFFAIRS on Budget/Appropriations (universe-name match: MONTE)",
+  "registrant": "TOWNSEND PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "MONTE",
+  "url": "https://lda.senate.gov/filings/public/filing/14947735-fd91-4643-95a2-233c07e29053/print/"
+}

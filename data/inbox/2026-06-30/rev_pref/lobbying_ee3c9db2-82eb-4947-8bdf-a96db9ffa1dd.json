@@ -1,0 +1,22 @@
+{
+  "accession": "ee3c9db2-82eb-4947-8bdf-a96db9ffa1dd",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-30",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "70000.00",
+  "isin": null,
+  "issues": "Defense \u00b7 Homeland Security",
+  "jurisdiction": "US",
+  "name": "SB TECHNOLOGY, INC. D/B/A SANDBOXAQ",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 SB TECHNOLOGY, INC. D/B/A SANDBOXAQ engaged MICHAEL BEST STRATEGIES LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MICHAEL BEST STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ee3c9db2-82eb-4947-8bdf-a96db9ffa1dd/print/"
+}

@@ -1,0 +1,18 @@
+{
+  "accession": "000055147_01_Jul_2026_1404_EDT_Management_information_circular_-_Englishpdf",
+  "cik": "",
+  "fetched_at": "2026-07-01T22:26:05.944107Z",
+  "filed": "2026-07-01",
+  "form": "Management information circular - English.pdf",
+  "form_code": "",
+  "isin": null,
+  "issuer_num": "000055147",
+  "jurisdiction": "British Columbia",
+  "name": "Caplink Ventures Inc.",
+  "query_label": "tier_s.info_circular",
+  "query_note": "info circular \u2014 often contains plan of arrangement details",
+  "source": "SEDAR+",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sedarplus.ca/csa-party/records/issuer.html?issuerNo=000055147"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "4e977a87-e4d5-4274-b048-1250729dabf4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Banking \u00b7 Financial Institutions/Investments/Securities \u00b7 Accounting \u00b7 Advertising",
+  "jurisdiction": "US",
+  "name": "GIFDA",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 GIFDA engaged RULON & WHITE GOVERNANCE STRATEGIES for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "RULON & WHITE GOVERNANCE STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4e977a87-e4d5-4274-b048-1250729dabf4/print/"
+}

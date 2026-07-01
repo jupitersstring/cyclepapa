@@ -1,0 +1,22 @@
+{
+  "accession": "fec48f46-bc30-475f-9dc1-4fb7999f7ac5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-28",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Energy/Nuclear \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "ALTERNATIVE FUELS & CHEMICALS COALITION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 ALTERNATIVE FUELS & CHEMICALS COALITION engaged ALTERNATIVE FUELS & CHEMICALS COALITION for Energy/Nuclear (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "ALTERNATIVE FUELS & CHEMICALS COALITION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/fec48f46-bc30-475f-9dc1-4fb7999f7ac5/print/"
+}

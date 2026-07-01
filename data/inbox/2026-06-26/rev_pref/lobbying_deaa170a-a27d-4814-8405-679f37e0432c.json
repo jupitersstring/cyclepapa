@@ -1,0 +1,22 @@
+{
+  "accession": "deaa170a-a27d-4814-8405-679f37e0432c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-01T22:35:51.535015Z",
+  "filed": "2026-06-26",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "ARDMORE CONSULTING GROUP, INC",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 ARDMORE CONSULTING GROUP, INC engaged BRADLEY ARANT BOULT CUMMINGS LLP for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BRADLEY ARANT BOULT CUMMINGS LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/deaa170a-a27d-4814-8405-679f37e0432c/print/"
+}
