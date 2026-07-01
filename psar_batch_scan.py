@@ -54,7 +54,25 @@ def main():
         return
 
     intervals = list({iv for _, iv, _, _ in TF_CONFIG})
-    bench = fetch_benchmark_bulk(intervals)
+    # Benchmark fetch with rate-limit retry: an empty benchmark dict makes
+    # every composite skip (rel trend needs it), so never proceed without it.
+    import time
+    bench = {}
+    for round_no in range(8):
+        if round_no > 0:
+            print(f"benchmark retry round {round_no+1}; cooling 300s...",
+                  file=sys.stderr)
+            time.sleep(300)
+        bench = fetch_benchmark_bulk(intervals)
+        if all(iv in bench and bench[iv] is not None and len(bench[iv]) > 0
+               for iv in intervals):
+            break
+    missing = [iv for iv in intervals if iv not in bench or bench[iv] is None
+               or len(bench[iv]) == 0]
+    if missing:
+        print(f"ABORT: benchmark intervals still empty after retries: {missing}",
+              file=sys.stderr)
+        sys.exit(2)
 
     n_batches = (len(todo) + BATCH - 1) // BATCH
     for b in range(n_batches):

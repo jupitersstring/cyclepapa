@@ -38,22 +38,38 @@ DSR_COLS = ["DSR", "downside_capture", "market_corr",
             "mkt_ret_drawdown_pct"]
 
 
-def fetch_benchmarks():
+def fetch_benchmarks(max_rounds=8, cooldown=300):
+    """Fetch all benchmark ETFs, retrying rate-limited symbols with a
+    cooldown between rounds. Yahoo rate limits typically clear in minutes."""
     out = {}
-    for sym in sorted(unique_benchmarks()):
-        try:
-            raw = yf.download(sym, period="18mo", interval="1d",
-                              auto_adjust=True, progress=False, threads=False)
-            if raw.empty:
-                continue
-            close = raw["Close"]
-            if isinstance(close, pd.DataFrame):
-                close = close.iloc[:, 0]
-            out[sym] = close
-            print(f"  bench {sym}: {len(close)} bars", file=sys.stderr)
-        except Exception as e:
-            print(f"  bench {sym}: {e}", file=sys.stderr)
-        time.sleep(0.3)
+    remaining = sorted(unique_benchmarks())
+    for round_no in range(max_rounds):
+        if not remaining:
+            break
+        if round_no > 0:
+            print(f"  benchmark retry round {round_no+1}: {len(remaining)} left; "
+                  f"cooling down {cooldown}s...", file=sys.stderr)
+            time.sleep(cooldown)
+        still = []
+        for sym in remaining:
+            try:
+                raw = yf.download(sym, period="18mo", interval="1d",
+                                  auto_adjust=True, progress=False, threads=False)
+                if raw.empty:
+                    still.append(sym)
+                    continue
+                close = raw["Close"]
+                if isinstance(close, pd.DataFrame):
+                    close = close.iloc[:, 0]
+                out[sym] = close
+                print(f"  bench {sym}: {len(close)} bars", file=sys.stderr)
+            except Exception as e:
+                print(f"  bench {sym}: {e}", file=sys.stderr)
+                still.append(sym)
+            time.sleep(1.0)
+        remaining = still
+    if remaining:
+        print(f"  benchmarks still missing after retries: {remaining}", file=sys.stderr)
     return out
 
 

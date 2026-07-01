@@ -18,6 +18,18 @@ cd /home/user/cyclepapa
 
 echo "=== UPDATE ALL: started $(date -u) ==="
 
+# Initial cooldown if Yahoo recently rate-limited us (cheap probe)
+for i in 1 2 3 4 5 6; do
+  if python - <<'PY' 2>/dev/null
+import yfinance as yf, sys
+d = yf.download("SPY", period="5d", interval="1d", progress=False)
+sys.exit(0 if len(d) > 0 else 1)
+PY
+  then echo "yahoo probe OK"; break
+  else echo "yahoo rate-limited; cooling 300s (attempt $i)"; sleep 300
+  fi
+done
+
 echo "=== STAGE 1: refresh legs (E/ADV/DSR) ==="
 python refresh_legs.py || echo "WARN: refresh_legs exited nonzero"
 
