@@ -1,0 +1,47 @@
+#!/bin/bash
+# Full pipeline update: refresh every data leg with current prices, then
+# rebuild master, baskets, and the workbook, persisting at each stage.
+#
+#   Stage 1  refresh_legs.py        E + ADV + DSR (regional benchmarks), all 20K rows
+#   Stage 2  psar_batch_scan.py     fresh MTF PSAR scan, full native universe
+#   Stage 3  post-process:
+#              is_clean filter -> /tmp/mtf_psar_rank_full_clean.csv
+#              master_full_universe.py
+#              build_baskets.py
+#              build_workbook.py
+#   Stage 4  persist_results.py     final commit + push
+#
+# Run: nohup bash update_all.sh > /tmp/update_all.log 2>&1 &
+
+set -uo pipefail
+cd /home/user/cyclepapa
+
+echo "=== UPDATE ALL: started $(date -u) ==="
+
+echo "=== STAGE 1: refresh legs (E/ADV/DSR) ==="
+python refresh_legs.py || echo "WARN: refresh_legs exited nonzero"
+
+echo "=== STAGE 2: PSAR full rescan ==="
+python psar_batch_scan.py --fresh || echo "WARN: psar_batch_scan exited nonzero"
+
+echo "=== STAGE 3: rebuild master + baskets + workbook ==="
+python - <<'PY'
+import pandas as pd
+df = pd.read_csv('/tmp/mtf_psar_rank_full.csv').drop_duplicates('ticker')
+def keep(t):
+    t = str(t)
+    if '.' not in t:
+        return not (len(t) == 5 and t[-1] in ('F', 'Y'))
+    return True
+df = df[df.ticker.map(keep)]
+df.to_csv('/tmp/mtf_psar_rank_full_clean.csv', index=False)
+print(f"cleaned PSAR: {len(df)} rows")
+PY
+python master_full_universe.py || echo "WARN: master exited nonzero"
+python build_baskets.py || echo "WARN: baskets exited nonzero"
+python build_workbook.py || echo "WARN: workbook exited nonzero"
+
+echo "=== STAGE 4: persist ==="
+python persist_results.py || echo "WARN: persist exited nonzero"
+
+echo "=== UPDATE ALL: finished $(date -u) ==="
