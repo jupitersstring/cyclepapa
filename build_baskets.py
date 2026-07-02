@@ -36,6 +36,36 @@ OUT = REPO / "data" / "baskets"
 
 
 def name_lookup(tickers, fx=None):
+    """Name + sector per ticker: durable cache first, yfinance fallback.
+
+    The cache (data/ticker_info_cache.json) covers the full universe, so
+    live lookups only happen for genuinely new tickers — this keeps basket
+    construction immune to Yahoo rate limiting."""
+    import json, os
+    cache_path = "/home/user/cyclepapa/data/ticker_info_cache.json"
+    cache = {}
+    if os.path.exists(cache_path):
+        try:
+            with open(cache_path) as f:
+                cache = json.load(f)
+        except Exception:
+            cache = {}
+    cached = {t: {'name': cache[t].get('name', ''),
+                  'sector': cache[t].get('sector', ''),
+                  'industry': cache[t].get('industry', ''),
+                  'mcap_usd_M': cache[t].get('mcap_M', 0)}
+              for t in tickers if t in cache and cache[t].get('name')}
+    missing = [t for t in tickers if t not in cached]
+    live = _name_lookup_live(missing) if missing else {}
+    cached.update(live)
+    # Anything still absent gets empty fields
+    for t in tickers:
+        cached.setdefault(t, {'name': '', 'sector': '', 'industry': '',
+                              'mcap_usd_M': 0})
+    return cached
+
+
+def _name_lookup_live(tickers, fx=None):
     """Pull name + sector for each ticker via yfinance."""
     FX = {'JPY': 0.0065, 'INR': 0.0117, 'KRW': 0.00073, 'TWD': 0.031, 'HKD': 0.128,
           'CNY': 0.139, 'GBp': 0.0127, 'GBP': 1.27, 'EUR': 1.08, 'CHF': 1.12,
