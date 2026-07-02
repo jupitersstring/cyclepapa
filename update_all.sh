@@ -31,7 +31,15 @@ PY
 done
 
 echo "=== STAGE 1: refresh legs (E/ADV/DSR) ==="
-python refresh_legs.py || echo "WARN: refresh_legs exited nonzero"
+# Process-level retry: each attempt gets a fresh yfinance session, which is
+# what actually clears Yahoo rate limits (they key on session cookies).
+# Region done-file makes every attempt resume where the last stopped.
+for i in 1 2 3 4 5 6 7 8; do
+  python refresh_legs.py && break
+  rc=$?
+  echo "refresh_legs attempt $i exited rc=$rc; cooling 240s then fresh process"
+  sleep 240
+done
 
 echo "=== STAGE 2: PSAR full rescan ==="
 python psar_batch_scan.py --fresh || echo "WARN: psar_batch_scan exited nonzero"

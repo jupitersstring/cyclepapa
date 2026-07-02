@@ -38,7 +38,7 @@ DSR_COLS = ["DSR", "downside_capture", "market_corr",
             "mkt_ret_drawdown_pct"]
 
 
-def fetch_benchmarks(max_rounds=8, cooldown=300):
+def fetch_benchmarks(max_rounds=2, cooldown=120):
     """Fetch all benchmark ETFs, retrying rate-limited symbols with a
     cooldown between rounds. Yahoo rate limits typically clear in minutes."""
     out = {}
@@ -171,8 +171,11 @@ def main():
     print("Fetching regional benchmark ETFs...", file=sys.stderr)
     benchmarks = fetch_benchmarks()
     if "SPY" not in benchmarks:
-        print("SPY missing — abort.", file=sys.stderr)
-        return
+        # Exit nonzero so the shell orchestrator restarts us with a FRESH
+        # process (fresh yfinance session/cookies — Yahoo rate-limits key
+        # on the session, so in-process retries never recover).
+        print("SPY missing — exit 3 for process-level retry.", file=sys.stderr)
+        sys.exit(3)
 
     csvs = sorted(glob.glob("/tmp/stars_aligned_*.csv"))
     print(f"Refreshing legs across {len(csvs)} regions", file=sys.stderr)
