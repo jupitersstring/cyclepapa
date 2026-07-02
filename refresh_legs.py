@@ -73,9 +73,28 @@ def fetch_benchmarks(max_rounds=8, cooldown=300):
     return out
 
 
+DONE_FILE = "/tmp/refresh_legs_done.txt"
+
+
+def _done_regions():
+    try:
+        with open(DONE_FILE) as f:
+            return set(l.strip() for l in f if l.strip())
+    except FileNotFoundError:
+        return set()
+
+
+def _mark_done(region):
+    with open(DONE_FILE, "a") as f:
+        f.write(region + "\n")
+
+
 def refresh_region(csv_path: str, benchmarks: dict):
     df = pd.read_csv(csv_path, low_memory=False)
     region = csv_path.split("stars_aligned_")[-1].replace(".csv", "")
+    if region in _done_regions():
+        print(f"  {region}: already refreshed this run, skip", file=sys.stderr)
+        return False
 
     for col in E_COLS + ADV_COLS + DSR_COLS:
         if col not in df.columns:
@@ -138,6 +157,7 @@ def refresh_region(csv_path: str, benchmarks: dict):
         df[c] = new_vals[c]
     df.to_csv(csv_path, index=False)
     print(f"  {region}: wrote {len(df)} rows", file=sys.stderr)
+    _mark_done(region)
 
     try:
         subprocess.run(["python", "/home/user/cyclepapa/persist_results.py",
