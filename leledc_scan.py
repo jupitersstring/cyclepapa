@@ -52,6 +52,15 @@ def main():
         print("Nothing to scan.")
         return
 
+    # Fast-fail probe: one small chunk. If rate-limited, exit immediately so
+    # the shell's cooldown actually lets the limit decay instead of the full
+    # batch fetch hammering through 30 chunks of retries.
+    probe = fetch_interval_bulk(todo[:40], "1wk")
+    if len(probe) < 8:
+        print(f"ABORT: probe got {len(probe)}/40 — rate limited; exit 2",
+              file=sys.stderr)
+        sys.exit(2)
+
     n_batches = (len(todo) + BATCH - 1) // BATCH
     for b in range(n_batches):
         batch = todo[b * BATCH:(b + 1) * BATCH]
