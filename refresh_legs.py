@@ -38,38 +38,38 @@ DSR_COLS = ["DSR", "downside_capture", "market_corr",
             "mkt_ret_drawdown_pct"]
 
 
-def fetch_benchmarks(max_rounds=2, cooldown=120):
-    """Fetch all benchmark ETFs, retrying rate-limited symbols with a
-    cooldown between rounds. Yahoo rate limits typically clear in minutes."""
+def fetch_benchmarks(max_rounds=3, cooldown=120):
+    """Fetch ALL benchmark ETFs in a single bulk yf.download call — one
+    request instead of 26, which avoids tripping Yahoo's burst limiter."""
+    syms = sorted(unique_benchmarks())
     out = {}
-    remaining = sorted(unique_benchmarks())
     for round_no in range(max_rounds):
-        if not remaining:
-            break
         if round_no > 0:
-            print(f"  benchmark retry round {round_no+1}: {len(remaining)} left; "
-                  f"cooling down {cooldown}s...", file=sys.stderr)
+            print(f"  benchmark bulk retry {round_no+1}; cooling {cooldown}s...",
+                  file=sys.stderr)
             time.sleep(cooldown)
-        still = []
-        for sym in remaining:
-            try:
-                raw = yf.download(sym, period="18mo", interval="1d",
-                                  auto_adjust=True, progress=False, threads=False)
-                if raw.empty:
-                    still.append(sym)
-                    continue
-                close = raw["Close"]
-                if isinstance(close, pd.DataFrame):
-                    close = close.iloc[:, 0]
-                out[sym] = close
-                print(f"  bench {sym}: {len(close)} bars", file=sys.stderr)
-            except Exception as e:
-                print(f"  bench {sym}: {e}", file=sys.stderr)
-                still.append(sym)
-            time.sleep(1.0)
-        remaining = still
-    if remaining:
-        print(f"  benchmarks still missing after retries: {remaining}", file=sys.stderr)
+        try:
+            raw = yf.download(syms, period="18mo", interval="1d",
+                              auto_adjust=True, progress=False,
+                              threads=False, group_by="column")
+            if raw is None or raw.empty:
+                continue
+            closes = raw["Close"] if "Close" in raw.columns.get_level_values(0) else None
+            if closes is None:
+                continue
+            for sym in syms:
+                if sym in closes.columns:
+                    s = closes[sym].dropna()
+                    if len(s) > 100:
+                        out[sym] = s
+            print(f"  bench bulk: got {len(out)}/{len(syms)}", file=sys.stderr)
+            if "SPY" in out and len(out) >= len(syms) * 0.8:
+                break
+        except Exception as e:
+            print(f"  bench bulk error: {e}", file=sys.stderr)
+    missing = [s for s in syms if s not in out]
+    if missing:
+        print(f"  benchmarks missing: {missing}", file=sys.stderr)
     return out
 
 
