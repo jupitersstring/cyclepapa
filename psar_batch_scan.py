@@ -58,11 +58,13 @@ def main():
     # every composite skip (rel trend needs it), so never proceed without it.
     import time
     bench = {}
-    for round_no in range(8):
+    # Only 2 quick in-process rounds: session-keyed rate limits never clear
+    # in-process; the shell orchestrator rotates to a fresh process instead.
+    for round_no in range(2):
         if round_no > 0:
-            print(f"benchmark retry round {round_no+1}; cooling 300s...",
+            print(f"benchmark retry round {round_no+1}; cooling 120s...",
                   file=sys.stderr)
-            time.sleep(300)
+            time.sleep(120)
         bench = fetch_benchmark_bulk(intervals)
         if all(iv in bench and bench[iv] is not None and len(bench[iv]) > 0
                for iv in intervals):
