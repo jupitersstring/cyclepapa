@@ -859,7 +859,10 @@ def main() -> int:
     build_catalyst_timeline(wb, candidates)
     build_portfolio_sizing(wb, weights)
 
-    # Detail sheets: top 10 by *universe-wide* ranking that have YAMLs
+    # Detail sheets: the top-10 hand-built YAMLs by their own bottom-up
+    # reward/risk ratio. Anchoring on the candidates list (not the
+    # universe rank) keeps detail sheets stable as new PROXY candidates
+    # flood the universe-wide ranking and push REAL names below rank 30.
     yaml_by_ticker = {}
     for c in candidates:
         t = str(c.get("ticker", ""))
@@ -867,13 +870,12 @@ def main() -> int:
         stem = re.sub(r"[^A-Za-z0-9-]", "", t.split(":")[-1]).upper()
         yaml_by_ticker[stem] = c
     detail_added = set()
-    for r in universe_rr[:30]:
-        if r["source"] != "REAL":
-            continue
+    # candidates is already sorted by _rr_ratio descending in
+    # load_candidates(); take the top 10 distinct.
+    for c in candidates:
         stem = re.sub(r"[^A-Za-z0-9-]", "",
-                      r["ticker"].split(":")[-1]).upper()
-        c = yaml_by_ticker.get(stem)
-        if c is None or stem in detail_added:
+                      str(c.get("ticker", "")).split(":")[-1]).upper()
+        if not stem or stem in detail_added:
             continue
         build_pick_detail(wb, c, weights)
         detail_added.add(stem)
