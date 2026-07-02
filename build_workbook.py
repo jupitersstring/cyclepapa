@@ -420,6 +420,8 @@ def write_summary(wb, df, info, legs):
 
     r = 7; band = False
     for leg_key, (title, _subtitle, sort_col) in legs.items():
+        if sort_col not in df.columns:
+            continue
         sub = df.dropna(subset=[sort_col]).sort_values(sort_col, ascending=False).head(1)
         if sub.empty:
             continue
