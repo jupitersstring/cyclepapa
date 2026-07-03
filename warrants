@@ -760,15 +760,35 @@ def _batch_load_via_chart_api(tickers: list[str], period: str,
             "volume": pd.DataFrame(volumes).sort_index()}
 
 
+_YF_HEALTH = {"ok": None}
+
+
+def _yfinance_healthy() -> bool:
+    """1-ticker canary with the chart API as referee. yfinance's retry
+    backoff on a large batch can burn 30+ minutes when its session is
+    rate-limited; probe once per process and skip it entirely if dead.
+    """
+    if _YF_HEALTH["ok"] is not None:
+        return _YF_HEALTH["ok"]
+    try:
+        df = yf.download("AAPL", period="5d", progress=False, threads=False)
+        _YF_HEALTH["ok"] = df is not None and len(df) > 0
+    except Exception:
+        _YF_HEALTH["ok"] = False
+    return _YF_HEALTH["ok"]
+
+
 def batch_load_pairs(tickers: list[str], period: str = "5y") -> dict:
     """Batch history for many tickers; returns {'close': df, 'volume': df}.
 
-    Tries yfinance's multi-ticker download first; when that returns
-    empty or near-empty (rate-limited session), falls back to the plain
-    v8 chart API per ticker, which is throttled independently.
+    Tries yfinance's multi-ticker download first (behind a health
+    canary); when its session is rate-limited, goes straight to the
+    plain v8 chart API per ticker, which is throttled independently.
     """
     tickers = sorted(set(tickers))
     close = volume = pd.DataFrame()
+    if not _yfinance_healthy():
+        return _batch_load_via_chart_api(tickers, period)
     try:
         data = yf.download(tickers, period=period, auto_adjust=True,
                            progress=False, group_by="column", threads=True)
