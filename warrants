@@ -38,8 +38,27 @@ logging.getLogger("yfinance").setLevel(logging.CRITICAL)
 
 
 def _cache(*_a, **_kw):
-    """No-op decorator (drop-in replacement for @st.cache_data)."""
-    def deco(fn): return fn
+    """In-memory memoizer (drop-in replacement for @st.cache_data).
+
+    Keyed on positional/keyword args when they're hashable; falls through
+    to a live call otherwise. Process-lifetime only — no TTL eviction —
+    which is fine for a CLI run and avoids re-fetching EDGAR filing text
+    for the same issuer (strike + expiry resolution share one fetch).
+    """
+    def deco(fn):
+        store = {}
+        def wrapper(*args, **kwargs):
+            try:
+                key = (args, tuple(sorted(kwargs.items())))
+                hash(key)
+            except TypeError:
+                return fn(*args, **kwargs)
+            if key not in store:
+                store[key] = fn(*args, **kwargs)
+            return store[key]
+        wrapper.__name__ = getattr(fn, "__name__", "cached")
+        wrapper.clear = store.clear
+        return wrapper
     return deco
 
 
@@ -935,6 +954,64 @@ def edgar_resolve_strike(common_ticker: str) -> float | None:
     return Counter(matches).most_common(1)[0][0]
 
 
+_EDGAR_EXPIRY_PATTERNS = [
+    # explicit dates near 'expire'
+    re.compile(r"expir\w*[^.]{0,80}?(January|February|March|April|May|June|July|"
+               r"August|September|October|November|December)\s+(\d{1,2}),?\s+(20\d{2})", re.I),
+    re.compile(r"expir\w*[^.]{0,60}?(20\d{2})-(\d{2})-(\d{2})", re.I),
+]
+_EDGAR_TENOR_PATTERN = re.compile(
+    r"expire\s+(?:on\s+the\s+date\s+that\s+is\s+)?(\w+)\s*(?:\(\d+\)\s*)?years?\s+"
+    r"(?:after|from|following)", re.I)
+_WORD_TO_NUM = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+                "seven": 7, "ten": 10, "5": 5, "3": 3, "7": 7, "10": 10}
+
+
+@_cache(ttl=7 * 24 * 3600, show_spinner=False)
+def edgar_resolve_expiry_years(common_ticker: str) -> float | None:
+    """Best-effort remaining warrant life in years, parsed from filings.
+
+    Two strategies, in order:
+      1. Explicit expiry date near 'expire' ('...will expire on June 15,
+         2029...') -> years from today, floored at 0.05.
+      2. Tenor language ('expire five years after the completion of...')
+         -> can't anchor the start date reliably, so return None and let
+         the caller keep its default.
+    """
+    text = fetch_recent_filing_text(common_ticker)
+    if not text or len(text) < 1000:
+        return None
+    months = {m: i + 1 for i, m in enumerate(
+        ["january", "february", "march", "april", "may", "june", "july",
+         "august", "september", "october", "november", "december"])}
+    dates = []
+    m = _EDGAR_EXPIRY_PATTERNS[0]
+    for hit in m.finditer(text):
+        try:
+            month = months[hit.group(1).lower()]
+            day = int(hit.group(2)); year = int(hit.group(3))
+            dates.append(pd.Timestamp(year=year, month=month, day=day))
+        except Exception:
+            continue
+    m = _EDGAR_EXPIRY_PATTERNS[1]
+    for hit in m.finditer(text):
+        try:
+            dates.append(pd.Timestamp(int(hit.group(1)), int(hit.group(2)),
+                                      int(hit.group(3))))
+        except Exception:
+            continue
+    now = pd.Timestamp.now()
+    future = [d for d in dates if now < d < now + pd.Timedelta(days=12 * 365)]
+    if not future:
+        return None
+    # Mode of the years-remaining values (rounded to quarters) — a filing
+    # mentions the warrant expiry repeatedly; unrelated dates are noise.
+    from collections import Counter
+    yrs = [round((d - now).days / 365.25 * 4) / 4 for d in future]
+    best = Counter(yrs).most_common(1)[0][0]
+    return max(0.05, float(best))
+
+
 # ---------- option vs. warrant parity (the GME case) ----------
 
 def _fetch_last_close(ticker: str, sentinel_ticker: str | None = None) -> float | None:
@@ -1127,6 +1204,45 @@ def bs_call(S: float, K: float, T: float, r: float, sigma: float) -> float:
     return float(S * _norm.cdf(d1) - K * np.exp(-r * T) * _norm.cdf(d2))
 
 
+_SHELL_NAME_RE = re.compile(
+    r"\bACQUISITION\b|\bSPAC\b|\bBLANK\s+CHECK\b", re.I)
+
+
+def is_spac_shell(common_px: float, sigma_raw: float,
+                  security_name: str = "", issuer_key: str = "") -> bool:
+    """Heuristic: is the common a pre-deal SPAC shell?
+
+    Shells trade pinned to ~$10 trust value with near-zero realized vol.
+    Applying a sigma floor to them manufactures Black-Scholes lottery
+    value that does not exist until a deal is announced — a shell's
+    warrant is worth P(deal) x E[post-deal value], not BS(σ=30%).
+    """
+    name_hit = bool(_SHELL_NAME_RE.search(f"{security_name} {issuer_key}"))
+    pinned = 8.5 <= common_px <= 12.5 and sigma_raw < 0.15
+    return pinned or (name_hit and common_px >= 8.5 and sigma_raw < 0.25)
+
+
+def shell_warrant_value(warrant_px: float,
+                        p_deal: float = 0.70,
+                        post_deal_value: float = 0.65,
+                        p_liquidation: float | None = None) -> dict:
+    """Deal-probability valuation for a pre-deal SPAC warrant.
+
+    E[W] = P(deal) x E[warrant px after deal announcement] + P(liq) x 0
+
+    Base rates (2019-2024 SPAC cohorts): ~65-75% of SPACs that IPO'd
+    completed some deal; announced-deal warrants historically traded
+    $0.40-$1.00 depending on target quality. Defaults are deliberately
+    conservative midpoints — this is a coarse expected value, not a
+    price target.
+    """
+    ev = p_deal * post_deal_value
+    return {
+        "shell_ev": round(ev, 4),
+        "shell_ev_asymmetry": round(ev / warrant_px, 2) if warrant_px > 0 else None,
+    }
+
+
 def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
                     strike: float = 11.50, T_years: float = 3.0,
                     r: float = 0.045, dilution: float = 0.90,
@@ -1225,10 +1341,35 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
                                                              strike_used)
             if split_f != 1.0:
                 strike_source = f"{strike_source}+split_adj"
-        bs = bs_call(cpx, strike_used, T_years, r, sigma) * ratio_used
+        # Per-name expiry from EDGAR when available (same opt-in flag as
+        # strike resolution). Falls back to the T_years default.
+        T_used = T_years
+        T_source = "default"
+        if resolve_edgar:
+            try:
+                t_edgar = edgar_resolve_expiry_years(r_["common"])
+                if t_edgar is not None:
+                    T_used = t_edgar
+                    T_source = "edgar"
+            except Exception:
+                pass
+        # Shell detection: a pre-deal SPAC common pinned at trust value
+        # has near-zero true vol. BS with a floored sigma manufactures
+        # option value that only exists conditional on a deal. Value
+        # shells on deal probability instead and mark the row.
+        shell = is_spac_shell(cpx, s1, r_.get("security_name", ""),
+                              r_.get("issuer_key", ""))
+        if shell:
+            sv = shell_warrant_value(wpx)
+            theoretical = sv["shell_ev"]
+            bs = theoretical / dilution if dilution else theoretical
+            valuation_model = "shell_deal_prob"
+        else:
+            bs = bs_call(cpx, strike_used, T_used, r, sigma) * ratio_used
+            theoretical = dilution * bs
+            valuation_model = "black_scholes"
         if bs < min_warrant_px:
             continue
-        theoretical = dilution * bs
         gap_pct = (wpx - theoretical) / theoretical
         asymmetry = (theoretical / wpx) if wpx > 0 else float("nan")
         moneyness = cpx / strike_used
@@ -1247,6 +1388,9 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
             "split_factor": split_f,
             "strike_used": strike_used, "ratio_used": ratio_used,
             "strike_source": strike_source,
+            "T_used": T_used, "T_source": T_source,
+            "is_shell": shell,
+            "valuation_model": valuation_model,
             "moneyness": moneyness,
             "sigma_1y": s1, "sigma_3m": s3 if np.isfinite(s3) else None,
             "sigma_used": sigma,
