@@ -1989,6 +1989,83 @@ def _cmd_coil(args):
         print(f"\nWrote {args.out}")
 
 
+def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
+                    resolve_edgar: bool = False) -> pd.DataFrame:
+    """Cross-merge the three screens into one confirmed rank.
+
+    Runs fair_value_scan (valuation), unusual_volume_scan (flow), and
+    coiled_spring_scan (pre-breakout) over the same universe, then
+    scores each warrant by how many screens fire and how strongly:
+
+      conviction = z(asymmetry_capped) + z(w2c_surge) + z(coil_score)
+                   + 1.0 per screen fired (breadth bonus)
+
+    Shells are kept but marked; their asymmetry uses the deal-prob EV.
+    The point: a warrant that is cheap on the model AND seeing
+    warrant-specific flow AND coiling is a different class of signal
+    than any single screen alone.
+    """
+    fair = fair_value_scan(pairs_df, period=period,
+                           resolve_edgar=resolve_edgar)
+    flow = unusual_volume_scan(pairs_df, period="3mo", min_dollar_vol_5d=0)
+    coil = coiled_spring_scan(pairs_df, period="3mo", min_dollar_vol_5d=0,
+                              max_range_pct=10.0, min_vol_accel=0.0)
+    if fair.empty:
+        return pd.DataFrame()
+    out = fair[["common", "warrant", "warrant_px", "common_px",
+                "strike_used", "strike_source", "moneyness", "is_shell",
+                "asymmetry", "gap_pct", "warrant_5d_avg_dvol"]].copy()
+    if not flow.empty:
+        out = out.merge(flow[["warrant", "surge_5d", "vol_z_1d", "w2c_surge",
+                              "px_5d_chg"]], on="warrant", how="left")
+    if not coil.empty:
+        out = out.merge(coil[["warrant", "vol_accel", "range_pct_10d",
+                              "persistence", "coil_score"]],
+                        on="warrant", how="left")
+
+    def z(s):
+        s = pd.to_numeric(s, errors="coerce")
+        sd = s.std()
+        return (s - s.mean()) / sd if sd and sd > 0 else s * 0
+
+    asym_capped = pd.to_numeric(out["asymmetry"], errors="coerce").clip(upper=40)
+    out["z_asym"] = z(asym_capped)
+    out["z_flow"] = z(out.get("w2c_surge", pd.Series(dtype=float)).clip(upper=20)) \
+        if "w2c_surge" in out.columns else 0.0
+    out["z_coil"] = z(out.get("coil_score", pd.Series(dtype=float)).clip(upper=200)) \
+        if "coil_score" in out.columns else 0.0
+    fired = (
+        (asym_capped >= 5).astype(int)
+        + (pd.to_numeric(out.get("w2c_surge"), errors="coerce") >= 2).fillna(False).astype(int)
+        + (pd.to_numeric(out.get("coil_score"), errors="coerce") >= 20).fillna(False).astype(int)
+    )
+    out["screens_fired"] = fired
+    out["conviction"] = (out["z_asym"].fillna(0) + out["z_flow"].fillna(0)
+                         + out["z_coil"].fillna(0) + fired)
+    return out.sort_values("conviction", ascending=False).reset_index(drop=True)
+
+
+def _cmd_conviction(args):
+    pairs = pd.read_csv(args.pairs)
+    print(f"Conviction scan (fair value + flow + coil) on {len(pairs)} pairs...")
+    df = conviction_scan(pairs, period=args.period,
+                         resolve_edgar=args.resolve_edgar)
+    if df.empty:
+        print("(no results)")
+        return
+    if args.no_shells:
+        df = df[~df["is_shell"]]
+    cols = ["common", "warrant", "warrant_px", "moneyness", "is_shell",
+            "asymmetry", "w2c_surge", "coil_score", "screens_fired",
+            "conviction", "warrant_5d_avg_dvol"]
+    cols = [c for c in cols if c in df.columns]
+    print(f"\n== Top {min(args.top, len(df))} by conviction ==")
+    _print_df(df, cols=cols, max_rows=args.top)
+    if args.out:
+        df.to_csv(args.out, index=False)
+        print(f"\nWrote {args.out}")
+
+
 def _cmd_edgar(args):
     cik = ticker_to_cik(args.ticker)
     if not cik:
@@ -2123,6 +2200,18 @@ def cli():
     s.add_argument("--top", type=int, default=25)
     s.add_argument("--out", default=None)
     s.set_defaults(fn=_cmd_coil)
+
+    # conviction — cross-screen merge
+    s = sub.add_parser("conviction",
+        help="Cross-merge fair value + flow + coil into one confirmed rank.")
+    s.add_argument("--pairs", default="warrants_universe.csv")
+    s.add_argument("--period", default="1y")
+    s.add_argument("--resolve-edgar", action="store_true")
+    s.add_argument("--no-shells", action="store_true",
+                  help="Drop pre-deal SPAC shells from output.")
+    s.add_argument("--top", type=int, default=20)
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_conviction)
 
     # edgar
     s = sub.add_parser("edgar", help="Recent EDGAR filings for a ticker.")
