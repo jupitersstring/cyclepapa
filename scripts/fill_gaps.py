@@ -52,6 +52,10 @@ def main() -> None:
     ap.add_argument("--max-sleep", type=float, default=1.2)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-git", action="store_true")
+    ap.add_argument("--max-retries", type=int, default=config.MAX_RETRIES,
+                    help="fetch attempts per name; use 1 to skip retry-backoff on "
+                         "the (mostly delisted) gap tail so the run isn't dominated "
+                         "by futile 2/4/8s backoffs")
     args = ap.parse_args()
 
     uni = pd.read_parquet(config.UNIVERSE_PATH)
@@ -67,7 +71,7 @@ def main() -> None:
     mgr = F.SessionManager()
     recovered = since = 0
     for i, sym in enumerate(todo, 1):
-        raw = mgr.fetch(sym)
+        raw = mgr.fetch(sym, max_retries=args.max_retries)
         F.save_raw(sym, raw)
         if raw.get("fetch_ok"):
             recovered += 1
