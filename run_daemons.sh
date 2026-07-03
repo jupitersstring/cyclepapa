@@ -61,7 +61,7 @@ restart_if_dead xbrl3 fetch_xbrl_segments.py --workers 8 --sleep 0.05 --progress
 # shared-IP egress; higher trips Yahoo's per-IP throttle). Resumable via
 # __yahoo_html_done sentinels so it grinds through the gap list across
 # sessions without re-work. Fills US + non-US EV/EBITDA / P/E / P/B.
-restart_if_dead dmexp dm_expansion_fetch.py --rate=1.5
+restart_if_dead yahoohtml yahoo_html_fetcher.py --rate=1
 
 # --- Snapshot push (durability) ---
 # Run in the BACKGROUND so the supervisor returns immediately. The push
