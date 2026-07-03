@@ -907,10 +907,23 @@ def fetch_recent_filing_text(common_ticker: str,
         url = (f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/"
                f"{accession}/{primary}")
         try:
-            r = requests.get(url, headers=EDGAR_HEADERS, timeout=30)
-            if not r.ok:
-                continue
-            txt = re.sub(r"<[^>]+>", " ", r.text)
+            # Stream and stop at ~2x char_limit of raw HTML — some S-1s
+            # are 5-10MB and downloading them fully dominates scan time.
+            with requests.get(url, headers=EDGAR_HEADERS, timeout=30,
+                              stream=True) as r:
+                if not r.ok:
+                    continue
+                chunks, size = [], 0
+                for chunk in r.iter_content(chunk_size=65536,
+                                            decode_unicode=True):
+                    if not chunk:
+                        continue
+                    chunks.append(chunk)
+                    size += len(chunk)
+                    if size >= char_limit * 2:
+                        break
+                raw = "".join(chunks)
+            txt = re.sub(r"<[^>]+>", " ", raw)
             txt = re.sub(r"\s+", " ", txt)
             parts.append(txt[:char_limit])
             pulled += 1
