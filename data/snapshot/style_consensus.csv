@@ -39,7 +39,6 @@ Activists / Special Situations,ESTA,2,87.7,1,0,0,MODERATELY_ABOVE
 Activists / Special Situations,GTLB,2,86.0,1,0,0,MODERATELY_ABOVE
 Activists / Special Situations,NATL,2,77.0,"1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,FTAI,2,59.0,1,0,0,NEAR_ENTRY
-Biotech Specialists,PRLD,4,0.0,"2,3",1,1,NEAR_ENTRY
 Biotech Specialists,MDGL,3,2504.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,CELC,3,1390.0,"1,2,4",0,0,NEAR_ENTRY
 Biotech Specialists,PRAX,3,854.0,"2,1,4",0,0,BELOW_ENTRY
@@ -47,15 +46,14 @@ Biotech Specialists,COGT,3,789.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,ZYME,3,709.0,"1,2,4",0,0,BELOW_ENTRY
 Biotech Specialists,STOK,3,200.0,"1,4,2",0,0,NEAR_ENTRY
 Biotech Specialists,XNCR,3,109.0,"1,4,2",0,0,NEAR_ENTRY
+Biotech Specialists,PRLD,3,0.0,"2,3",1,1,NEAR_ENTRY
 Biotech Specialists,INSM,2,2359.0,"1,4",0,0,BELOW_ENTRY
-Biotech Specialists,ASND,2,2350.0,1,0,0,NEAR_ENTRY
 Biotech Specialists,NUVL,2,1960.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,KYMR,2,1235.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,RVMD,2,1196.0,1,0,0,NEAR_ENTRY
 Biotech Specialists,PTCT,2,789.0,1,0,0,
 Biotech Specialists,EWTX,2,714.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,SION,2,583.0,"1,2,3",0,0,NEAR_ENTRY
-Biotech Specialists,RYTM,2,580.0,1,0,0,
 Biotech Specialists,PTGX,2,560.0,1,0,0,
 Biotech Specialists,APGE,2,381.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,APLS,2,335.0,"3,1",0,0,
@@ -66,17 +64,11 @@ Biotech Specialists,XBI,2,185.1,"3,1",0,0,NEAR_ENTRY
 Biotech Specialists,NRIX,2,154.0,"2,1,4",0,0,NEAR_ENTRY
 Biotech Specialists,IMVT,2,107.0,"1,3",0,0,
 Biotech Specialists,RAPT,2,30.0,"2,1,4",0,0,
-Biotech Specialists,CLYM,2,20.0,"2,3",0,0,NEAR_ENTRY
-Biotech Specialists,ACRV,2,1.8,"2,3,4",0,0,NEAR_ENTRY
 Biotech Specialists,ACET,2,0.0,2,0,1,NEAR_ENTRY
-Biotech Specialists,ALT,2,0.0,2,0,0,
-Biotech Specialists,COAG,2,0.0,"2,3",0,1,MODERATELY_ABOVE
 Biotech Specialists,NKTR,2,0.0,"4,1",0,0,BELOW_ENTRY
-Biotech Specialists,RA,2,0.0,0,0,0,
 Biotech Specialists,SANA,2,0.0,"1,2,3",0,0,
 Biotech Specialists,SLDB,2,0.0,2,0,0,
 Biotech Specialists,STRO,2,0.0,2,0,0,
-Biotech Specialists,VOR,2,0.0,"2,3,4",0,0,NEAR_ENTRY
 Biotech Specialists,VYGR,2,0.0,2,0,0,
 Distressed / Event-Driven,LITE,2,10220.0,"1,3",0,0,NEAR_ENTRY
 Distressed / Event-Driven,AERO,2,994.9,"1,2,3",0,0,NEAR_ENTRY
@@ -173,11 +165,10 @@ Value / Concentrated Quality,MELI,6,1253.0,"1,4,5",0,0,NEAR_ENTRY
 Value / Concentrated Quality,CPNG,5,850.1,"1,4,5",0,1,NEAR_ENTRY
 Value / Concentrated Quality,COF,5,455.0,"1,4",0,0,NEAR_ENTRY
 Value / Concentrated Quality,BRK-B,5,145.0,1,0,0,
-Value / Concentrated Quality,APG,4,719.2,"1,4",0,0,NEAR_ENTRY
 Value / Concentrated Quality,NRP,4,225.0,"3,1",1,0,NEAR_ENTRY
 Value / Concentrated Quality,CSU.TO,4,0.0,1,0,0,NEAR_ENTRY
-Value / Concentrated Quality,DRVN,3,18209.5,"1,3,2",0,0,BELOW_ENTRY
 Value / Concentrated Quality,MA,3,743.2,1,0,0,NEAR_ENTRY
+Value / Concentrated Quality,APG,3,719.2,"1,4",0,0,NEAR_ENTRY
 Value / Concentrated Quality,SE,3,431.5,"1,4,5",0,0,NEAR_ENTRY
 Value / Concentrated Quality,ICE,3,428.7,1,0,0,BELOW_ENTRY
 Value / Concentrated Quality,CRWV,3,356.9,"1,4,3",0,0,NEAR_ENTRY
@@ -188,6 +179,7 @@ Value / Concentrated Quality,SEG,3,18.1,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,OXY,3,2.8,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,CMCSA,3,0.0,"5,1",0,0,BELOW_ENTRY
 Value / Concentrated Quality,KKR,3,0.0,1,0,1,NEAR_ENTRY
+Value / Concentrated Quality,DRVN,2,18209.5,"1,3,2",0,0,BELOW_ENTRY
 Value / Concentrated Quality,ENDI,2,4200.0,"5,1",0,0,
 Value / Concentrated Quality,PLTR,2,1832.8,"1,3",0,0,BELOW_ENTRY
 Value / Concentrated Quality,LEN,2,1286.0,"1,4",0,0,NEAR_ENTRY

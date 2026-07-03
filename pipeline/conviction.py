@@ -94,6 +94,15 @@ def run():
 
     cobuy = {r[0] for r in conn.execute("SELECT ticker FROM insider_clusters")}
     from _canon import canon as _cn
+    # Persist the fund -> canonical-manager mapping so SQL consumers (renderers)
+    # can COUNT(DISTINCT canon) instead of multi-counting name variants.
+    conn.execute("CREATE TABLE IF NOT EXISTS fund_canon (fund TEXT PRIMARY KEY, canon TEXT)")
+    conn.execute("DELETE FROM fund_canon")
+    _all_funds = {r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_positions")}
+    _all_funds |= {r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_13f_holdings")}
+    _all_funds |= {r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_meta")}
+    conn.executemany("INSERT OR REPLACE INTO fund_canon VALUES (?,?)",
+                     [(f, _cn(f)) for f in _all_funds if f])
     _peer_mgrs = {}
     for tk, f in conn.execute("SELECT DISTINCT ticker, fund FROM fund_positions WHERE section=1"):
         _peer_mgrs.setdefault(tk, set()).add(_cn(f))

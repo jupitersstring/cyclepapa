@@ -259,6 +259,10 @@ def sheet_insider_f4(wb, conn):
         LEFT JOIN unified_signal us ON us.ticker = f.ticker
         WHERE f.code='P' AND f.acquired=1 AND f.price IS NOT NULL
           AND f.trans_date >= date('now','-180 days')
+                  AND COALESCE(us.sec_type,'common')='common'
+          AND NOT EXISTS (SELECT 1 FROM ticker_yf y WHERE y.ticker = f.ticker
+              AND ((y.mcap_m > 0 AND f.shares*f.price/1e6 > y.mcap_m)
+                OR (y.price > 0 AND (f.price > y.price*5 OR f.price < y.price*0.10))))
         GROUP BY f.ticker
         HAVING (d_30*1.0 + d_60*0.6 + d_180*0.3) >= 0.1
         ORDER BY (d_30*1.0 + d_60*0.6 + d_180*0.3) DESC"""))
@@ -309,6 +313,10 @@ def sheet_insider_recent(wb, conn):
         LEFT JOIN unified_signal us ON us.ticker = f.ticker
         WHERE f.code='P' AND f.acquired=1 AND f.price IS NOT NULL
           AND f.trans_date >= date('now','-30 days')
+                  AND COALESCE(us.sec_type,'common')='common'
+          AND NOT EXISTS (SELECT 1 FROM ticker_yf y WHERE y.ticker = f.ticker
+              AND ((y.mcap_m > 0 AND f.shares*f.price/1e6 > y.mcap_m)
+                OR (y.price > 0 AND (f.price > y.price*5 OR f.price < y.price*0.10))))
         GROUP BY f.ticker
         HAVING dollars_m >= 0.05
         ORDER BY dollars_m DESC"""))
@@ -348,6 +356,7 @@ def sheet_clusters(wb, conn):
         LEFT JOIN ticker_meta tm ON tm.ticker = ic.ticker
         LEFT JOIN unified_signal us ON us.ticker = ic.ticker
         WHERE DATE(ic.window_end) >= DATE('now', '-180 days')
+          AND COALESCE(us.sec_type,'common')='common'
         ORDER BY ic.total_usd_m DESC"""))
     out = [[r[0], r[1], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
             r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown",

@@ -162,13 +162,25 @@ def run():
     f4 = {}                   # weighted dollar exposure
     f4_raw = {}               # unweighted 180d sum (for display)
     f4_30 = {}                # ≤30d dollar exposure (very-recent signal)
-    # Sanity guard: a single trade worth more than the company's market cap is a
-    # parse artifact (ADS-ratio mismatch — e.g. SVRE reported ordinary shares at
-    # the per-ADS price, 43,200x inflation — or a corrupted price field), never a
-    # real open-market trade. Exclude such rows from both buy and sell signals.
+    # Sanity guards — exclude parse artifacts from both buy and sell signals:
+    #  (a) a single trade worth more than the company's market cap (ADS-ratio
+    #      mismatch — SVRE reported ordinary shares at the per-ADS price,
+    #      43,200x inflation — or a corrupted price field);
+    #  (b) a transaction price wildly off the known market price (>5x or <0.10x).
+    #      Catches local-currency filings (INFY sells at Rs.1,178 vs $10.78) and
+    #      corrupted fields (SBLK "px=$227,538"). The band is ASYMMETRIC on
+    #      purpose: buys far below today's price are often REAL pre-runup entries
+    #      (MANE insiders bought at $17 before a run to $127 = 0.13x; CIFR $6 vs
+    #      $29 = 0.21x) — only <0.10x is treated as data corruption.
+    # NB: outer columns MUST be table-qualified inside the correlated subquery —
+    # a bare `price` here resolves to ticker_yf.price (inner scope), turning the
+    # band check into y.price > y.price*5 (never true) and silently disabling it.
     _F4_SANE = """AND NOT EXISTS (SELECT 1 FROM ticker_yf y
               WHERE y.ticker = form4_transactions.ticker
-                AND y.mcap_m > 0 AND shares*price/1e6 > y.mcap_m)"""
+                AND ((y.mcap_m > 0
+                      AND form4_transactions.shares*form4_transactions.price/1e6 > y.mcap_m)
+                  OR (y.price > 0 AND (form4_transactions.price > y.price*5
+                                    OR form4_transactions.price < y.price*0.10))))"""
     for r in conn.execute("""
         SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
                julianday('now') - julianday(trans_date) AS days_old

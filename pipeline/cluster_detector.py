@@ -28,9 +28,20 @@ def run():
     )""")
     conn.execute("DELETE FROM insider_clusters")
 
+    # Same sanity guard as unified_score: a trade worth more than the company's
+    # market cap, or priced wildly off market (>5x / <0.10x), is a parse artifact
+    # (ADS-ratio mismatch, local-currency price, corrupted field) — never a real
+    # open-market buy. SVRE's "$22.4B cluster" on a $2.7M nano came from this.
     rows = list(conn.execute("""SELECT ticker, owner, role, trans_date, shares, price
                                 FROM form4_transactions
                                 WHERE code='P' AND acquired=1 AND shares > 0 AND price > 0
+                                  AND NOT EXISTS (SELECT 1 FROM ticker_yf y
+                                      WHERE y.ticker = form4_transactions.ticker
+                                        AND ((y.mcap_m > 0 AND form4_transactions.shares
+                                              * form4_transactions.price/1e6 > y.mcap_m)
+                                          OR (y.price > 0
+                                              AND (form4_transactions.price > y.price*5
+                                                OR form4_transactions.price < y.price*0.10))))
                                 ORDER BY ticker, trans_date"""))
     # group by ticker
     by_t = {}

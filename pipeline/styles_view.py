@@ -85,7 +85,8 @@ def run():
             "SELECT fund FROM fund_style WHERE macro_style=?", (style,))]
         if not member_funds: continue
         ph = ",".join("?"*len(member_funds))
-        agg = conn.execute(f"""SELECT COUNT(DISTINCT fund) n, COUNT(*) total,
+        agg = conn.execute(f"""SELECT COUNT(DISTINCT COALESCE(
+                (SELECT canon FROM fund_canon fc WHERE fc.fund=fund_positions.fund), fund)) n, COUNT(*) total,
             SUM(CASE WHEN section=1 THEN 1 ELSE 0 END) c1,
             SUM(CASE WHEN section=2 THEN 1 ELSE 0 END) c2,
             SUM(CASE WHEN section=3 THEN 1 ELSE 0 END) c3,
@@ -95,10 +96,11 @@ def run():
             f"SELECT fund FROM fund_style WHERE macro_style=? ORDER BY total_rows DESC LIMIT 6", (style,))]
         # consensus tickers within this style — appearing in >=2 funds
         consensus = list(conn.execute(f"""
-            SELECT ticker, COUNT(DISTINCT fund) AS nf, SUM(dollar_m) AS dm,
+            SELECT ticker, COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) AS nf, SUM(dollar_m) AS dm,
                    GROUP_CONCAT(DISTINCT section) AS secs
-            FROM fund_positions
-            WHERE fund IN ({ph}) AND ticker IS NOT NULL AND ticker NOT IN
+            FROM fund_positions fp
+            LEFT JOIN fund_canon fc ON fc.fund = fp.fund
+            WHERE fp.fund IN ({ph}) AND fp.ticker IS NOT NULL AND fp.ticker NOT IN
               ('AMZN','MSFT','GOOGL','GOOG','NVDA','META','AAPL','TSLA','SPY','QQQ','IWM','IVV','IEF','BABA','TSM','BAC','BRK.B','BRK.A','NFLX','JPM','CRM','JNJ','WMT','H2','SEC','GOOG')
             GROUP BY ticker HAVING nf >= 2
             ORDER BY nf DESC, dm DESC LIMIT 40""", member_funds))

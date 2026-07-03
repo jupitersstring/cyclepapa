@@ -105,13 +105,16 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                COUNT(DISTINCT h.fund) AS holders,
                MAX(h.pct_book) AS max_pb,
                SUM(CASE WHEN h.pct_book >= 5 THEN 1 ELSE 0 END) AS n5,
-               (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+               (SELECT COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) FROM fund_positions fp
+                 LEFT JOIN fund_canon fc ON fc.fund = fp.fund
                  WHERE fp.ticker = h.ticker AND fp.section = 3
                    AND fp.fund IN ({ph})) AS s3_st,
-               (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+               (SELECT COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) FROM fund_positions fp
+                 LEFT JOIN fund_canon fc ON fc.fund = fp.fund
                  WHERE fp.ticker = h.ticker AND fp.section = 4
                    AND fp.fund IN ({ph})) AS s4_st,
-               (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+               (SELECT COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) FROM fund_positions fp
+                 LEFT JOIN fund_canon fc ON fc.fund = fp.fund
                  WHERE fp.ticker = h.ticker AND fp.section = 1
                    AND fp.fund IN ({ph})) AS s1_st,
                us.mcap_m, us.mcap_bucket,
@@ -122,6 +125,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         LEFT JOIN unified_signal us ON us.ticker = h.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
         WHERE h.fund IN ({ph}) AND h.ticker IS NOT NULL
+          AND COALESCE(us.sec_type,'common')='common'
         GROUP BY h.ticker
         ORDER BY holders DESC, max_pb DESC
         LIMIT 60
@@ -158,14 +162,16 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_header(ws, row, hdr2)
     row += 1
     rows = list(conn.execute(f"""
-        SELECT fp.ticker, COUNT(DISTINCT fp.fund) AS n,
+        SELECT fp.ticker, COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) AS n,
                us.smart_money_n, us.max_pct_book, us.mcap_m, us.mcap_bucket,
                us.ev_ebitda, us.pb_ratio,
                us.activist_max_pct, tm.name
         FROM fund_positions fp
+        LEFT JOIN fund_canon fc ON fc.fund = fp.fund
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker = fp.ticker
         WHERE fp.fund IN ({ph}) AND fp.section = 3 AND fp.ticker IS NOT NULL
+          AND COALESCE(us.sec_type,'common')='common'
         GROUP BY fp.ticker ORDER BY n DESC LIMIT 20""", style_funds))
     out = [[r[0], r[1], r[2] or 0, round(r[3], 1) if r[3] else "",
             r[4] or "", r[5] or "",
@@ -188,14 +194,16 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_header(ws, row, hdr2)
     row += 1
     rows = list(conn.execute(f"""
-        SELECT fp.ticker, COUNT(DISTINCT fp.fund) AS n,
+        SELECT fp.ticker, COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) AS n,
                us.smart_money_n, us.max_pct_book, us.mcap_m, us.mcap_bucket,
                us.ev_ebitda, us.pb_ratio,
                us.activist_max_pct, tm.name
         FROM fund_positions fp
+        LEFT JOIN fund_canon fc ON fc.fund = fp.fund
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker = fp.ticker
         WHERE fp.fund IN ({ph}) AND fp.section = 4 AND fp.ticker IS NOT NULL
+          AND COALESCE(us.sec_type,'common')='common'
         GROUP BY fp.ticker ORDER BY n DESC LIMIT 20""", style_funds))
     out = [[r[0], r[1], r[2] or 0, round(r[3], 1) if r[3] else "",
             r[4] or "", r[5] or "",
@@ -225,6 +233,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         LEFT JOIN unified_signal us ON us.ticker = h.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
         WHERE h.fund IN ({ph}) AND h.pct_book >= 5 AND h.pct_book <= 100
+          AND COALESCE(us.sec_type,'common')='common'
         ORDER BY h.pct_book DESC LIMIT 20""", style_funds))
     out = [[r[0], r[1][:35], round(r[2] or 0, 1), r[3] or 0,
             r[4] or "", r[5] or "",
@@ -252,9 +261,11 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             SELECT h.ticker, COUNT(DISTINCT h.fund) AS holders,
                    MAX(h.pct_book) AS max_pb,
                    us.mcap_m,
-                   (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+                   (SELECT COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) FROM fund_positions fp
+                    LEFT JOIN fund_canon fc ON fc.fund = fp.fund
                     WHERE fp.ticker=h.ticker AND fp.section=3 AND fp.fund IN ({ph})),
-                   (SELECT COUNT(DISTINCT fp.fund) FROM fund_positions fp
+                   (SELECT COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) FROM fund_positions fp
+                    LEFT JOIN fund_canon fc ON fc.fund = fp.fund
                     WHERE fp.ticker=h.ticker AND fp.section=4 AND fp.fund IN ({ph})),
                    us.activist_max_pct, us.ev_ebitda, us.pb_ratio, tm.name
             FROM fund_13f_holdings h
