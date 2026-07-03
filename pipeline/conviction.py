@@ -93,16 +93,29 @@ def run():
     """)
 
     cobuy = {r[0] for r in conn.execute("SELECT ticker FROM insider_clusters")}
-    peer = {r[0]: r[1] for r in conn.execute(
-        "SELECT ticker, COUNT(DISTINCT fund) FROM fund_positions WHERE section=1 GROUP BY ticker")}
+    from _canon import canon as _cn
+    _peer_mgrs = {}
+    for tk, f in conn.execute("SELECT DISTINCT ticker, fund FROM fund_positions WHERE section=1"):
+        _peer_mgrs.setdefault(tk, set()).add(_cn(f))
+    peer = {tk: len(m) for tk, m in _peer_mgrs.items()}
     fund_style = {r[0]: r[1] for r in conn.execute("SELECT fund, macro_style FROM fund_style")}
 
+    # Group by CANONICAL manager, not raw fund string — the same manager appears
+    # under several name variants ("CAS Investment Partners", "... (Cliff",
+    # "... Sosin"), and counting each variant as its own fund inflated n_funds /
+    # signal counts. A representative raw name is kept for display + style lookup.
+    from _canon import canon
     grouped = {}
     for r in conn.execute("""SELECT fund, ticker, section, pct_value, pct_kind, dollar_m, raw_text
                              FROM fund_positions WHERE ticker IS NOT NULL"""):
-        grouped.setdefault((r["fund"], r["ticker"]), []).append(dict(r))
+        grouped.setdefault((canon(r["fund"]), r["ticker"]), []).append(dict(r))
 
-    for (fund, tkr), rows in grouped.items():
+    for (_ck, tkr), rows in grouped.items():
+        # representative variant: prefer one that has a style classification
+        fund = rows[0]["fund"]
+        for rr in rows:
+            if rr["fund"] in fund_style:
+                fund = rr["fund"]; break
         signals = set()
         max_book = max((r["pct_value"] for r in rows if r["pct_kind"]=="book" and r["pct_value"]), default=None)
         max_co   = max((r["pct_value"] for r in rows if r["pct_kind"]=="company" and r["pct_value"]), default=None)

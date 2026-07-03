@@ -56,7 +56,7 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker
-        WHERE 1=1 """ + where_extra + " ORDER BY us.score DESC"
+        WHERE us.sec_type='common' """ + where_extra + " ORDER BY us.score DESC"
     if limit: sql += f" LIMIT {limit}"
     return list(conn.execute(sql, params))
 
@@ -119,17 +119,21 @@ def format_signal_row(ws, ridx):
 def sheet_readme(wb, conn):
     ws = wb.create_sheet("README", 0)
     ws.sheet_view.showGridLines = False
+    n_tk = conn.execute("SELECT COUNT(*) FROM unified_signal").fetchone()[0]
+    n_fd = conn.execute("SELECT COUNT(DISTINCT fund) FROM fund_meta").fetchone()[0]
+    n_hold = conn.execute("SELECT COUNT(*) FROM fund_13f_holdings").fetchone()[0]
+    n_13f_funds = conn.execute("SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings").fetchone()[0]
     write_title(ws,
         "Cyclepapa — Universe Analysis",
-        "A data-driven ranking of the smart-money universe (5,862 tickers, 445 funds, primary EDGAR sources).",
+        f"A data-driven ranking of the smart-money universe ({n_tk:,} tickers, {n_fd} funds, primary EDGAR sources).",
         1)
     ws.column_dimensions["A"].width = 92
 
     rows = [
         ("",),
         ("Universe",),
-        (f"5,862 tickers — the union of fund_13f_holdings, fund_positions, and holder_13d.subject_ticker.",),
-        (f"445 funds in fund_meta; 424 (95.3%) have data; 21 documented categorical gaps.",),
+        (f"{n_tk:,} tickers — the union of fund_13f_holdings, fund_positions, and holder_13d.subject_ticker.",),
+        (f"{n_fd} funds in fund_meta; ETFs/preferreds/warrants are classified (sec_type) and excluded from pick tables.",),
         ("",),
         ("Score formula",),
         ("score = log(smart_money) × 2          smart_money = CONVICTION-WEIGHTED 13F holders",),
@@ -150,7 +154,7 @@ def sheet_readme(wb, conn):
         ("      + 0.5 × expected_return_pct     base-rate weighted excess",),
         ("",),
         ("Data sources",),
-        ("fund_13f_holdings     71,706 rows from SEC 13F-HR XML across 306 funds",),
+        (f"fund_13f_holdings     {n_hold:,} rows from SEC 13F-HR XML across {n_13f_funds} funds",),
         ("fund_positions        6,748 rows from XLSX research-team classifications",),
         ("holder_13d            current SC 13D/G filings via efts.sec.gov full-text search",),
         ("form4_transactions    P-code open-market buys + S-code sells, ≤180d",),
@@ -211,7 +215,7 @@ def sheet_activist(wb, conn):
                us.max_pct_book, us.ev_ebitda, us.pb_ratio, tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.activist_max_pct >= 10
+        WHERE us.activist_max_pct >= 10 AND us.sec_type='common'
         ORDER BY us.activist_max_pct DESC"""))
     out = []
     for r in rows:
@@ -373,7 +377,7 @@ def sheet_unknown(wb, conn):
                us.form4_buy_usd_m, tm.name, tm.sic_description, tm.exchange
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.mcap_bucket = 'unknown'
+        WHERE us.mcap_bucket = 'unknown' AND us.sec_type='common'
         ORDER BY us.score DESC LIMIT 200"""))
     out = []
     for r in rows:
@@ -540,7 +544,7 @@ def sheet_asymmetry(wb, conn):
                us.insider_cluster_dollars_m, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.asymmetry_score IS NOT NULL
+        WHERE us.asymmetry_score IS NOT NULL AND us.sec_type='common'
         ORDER BY us.asymmetry_score DESC LIMIT 150"""))
     out = []
     for r in rows:
@@ -593,7 +597,7 @@ def sheet_revealed_pref(wb, conn):
                us.ev_ebitda, us.pb_ratio, us.activist_max_pct, us.entry_bucket, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.revealed_pref > 0
+        WHERE us.revealed_pref > 0 AND us.sec_type='common'
         ORDER BY us.revealed_pref DESC, us.smart_money_n DESC LIMIT 120"""))
     out = []
     for r in rows:
@@ -635,7 +639,7 @@ def sheet_valuation(wb, conn):
                tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda >= 2 AND us.ev_ebitda < 40
+        WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda >= 2 AND us.ev_ebitda < 40 AND us.sec_type='common'
           AND us.smart_money_n >= 3
           AND us.ticker NOT LIKE '%-P%'   -- preferreds
           AND us.ticker NOT LIKE '%-W%'   -- warrants/when-issued
@@ -683,7 +687,7 @@ def sheet_catalysts(wb, conn):
                us.smart_money_n, us.activist_max_pct, us.ev_ebitda, us.pb_ratio, tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.cat8k_n > 0
+        WHERE us.cat8k_n > 0 AND us.sec_type='common'
         ORDER BY (us.cat8k_ma*5 + us.cat8k_ctrl*4 + us.cat8k_dir + us.smart_money_n*0.1) DESC LIMIT 200"""))
     out = []
     for r in rows:
@@ -728,7 +732,7 @@ def sheet_global_picks(wb, conn):
                us.entry_bucket, us.vs_entry_pct, us.ev_ebitda, us.pb_ratio, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.is_us = 0
+        WHERE us.is_us = 0 AND us.sec_type='common'
           AND (us.s1_top + us.s3_new + us.s4_add + us.smart_money_n) >= 1
         ORDER BY us.global_score DESC LIMIT 150"""))
     out = []
@@ -779,7 +783,7 @@ def sheet_in_the_money(wb, conn):
                us.anchor_source, us.ev_ebitda, us.pb_ratio, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.entry_bucket = 'BELOW_ENTRY'
+        WHERE us.entry_bucket = 'BELOW_ENTRY' AND us.sec_type='common'
         ORDER BY us.score DESC LIMIT 100"""))
     out = []
     for r in rows:
@@ -925,7 +929,7 @@ def sheet_best_ideas(wb, conn):
                us.cat8k_ma, us.cat8k_ctrl, tm.name, tm.sic_description
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.mcap_bucket IN ('nano','micro','small','mid')"""))
+        WHERE us.mcap_bucket IN ('nano','micro','small','mid') AND us.sec_type='common'"""))
     scored = []
     for r in rows:
         (tk, score, asym, mcap, bucket, ev, pb, eb, vse, f4_30, clu,

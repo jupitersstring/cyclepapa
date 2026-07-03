@@ -22,9 +22,55 @@ Score formula:
   micro_bonus       =  +5 if mcap <$300M, +3 if <$2B
   expected_return   =  ER% * 0.5
 """
-import math, os, sqlite3, sys
+import math, os, re, sqlite3, sys
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
+
+# --- security-type classification -------------------------------------------
+# 13F filings include ETFs, preferreds, warrants, units and CVRs. Those are
+# hedges/arb legs, not stock picks — an index fund held by 50 quants must not
+# rank as a "consensus idea". Classified here once; pick sheets filter to
+# sec_type='common' while reference sheets keep everything.
+_ETF_TICKERS = frozenset("""SPY QQQ QQQM IWM IWN IWO IWF IWD IVV VOO DIA MDY RSP
+ GLD SLV TLT IEF SHY HYG LQD JNK EEM EFA VWO FXI EWJ EWZ EZU ASHR GDX GDXJ GDXD
+ USO UNG SMH SOXX XBI IBB KRE KBE VNQ ARKK GSG TIP ITA ITB IYE IYW IYM IYT IEO
+ IEZ IXC SCJ LEMB XLE XLF XLK XLU XLV XLI XLY XLP XLB XLRE XLC BOXX MAGS TQQQ
+ SQQQ""".split())
+_ETF_NAME_RE = re.compile(
+    r"\b(ETF|ETN)\b|iShares|SPDR|ProShares|Direxion|VanEck|WisdomTree|Global X|"
+    r"YieldMax|GraniteShares|Xtrackers|Roundhill|Defiance|Pacer |Amplify |"
+    r"First Trust|Invesco (QQQ|S&P|Exchange)|Vanguard .*(ETF|Index)|"
+    r"Strategy Shares|Tidal Trust|Index Fund", re.I)
+_PREF_RE = re.compile(r"-P[A-Z]{0,2}$")
+
+def classify_sec_type(tkr, name, names):
+    """names: {ticker: company name} for the whole universe — lets the suffix
+    heuristic verify that RVMDW's base ticker RVMD is the SAME issuer (warrant
+    quotes carry the issuer's name), so ARW/SNOW-style tickers never match."""
+    nm = name or ""
+    if _PREF_RE.search(tkr):
+        return "preferred"
+    if tkr.endswith("-RI") or re.search(r"\bCVR\b|contingent value", nm, re.I):
+        return "right"
+    if tkr.endswith(("-WT", "+")) or re.search(r"\bwarrant", nm, re.I):
+        return "warrant"
+    if tkr in _ETF_TICKERS or _ETF_NAME_RE.search(nm):
+        return "etf"
+    if re.search(r"\bunits?\b", nm, re.I) and re.search(r"acquisition|SPAC", nm, re.I):
+        return "unit"
+    # suffix heuristic: 5+ letter ticker ending W/U whose BASE ticker trades too,
+    # and either we have no name, or the name matches the base issuer's name.
+    if len(tkr) >= 5 and "-" not in tkr and tkr[:-1] in names:
+        base_nm = names.get(tkr[:-1]) or ""
+        same_issuer = (not nm) or (base_nm and nm[:12].upper() == base_nm[:12].upper())
+        if same_issuer:
+            if tkr.endswith("W"):
+                return "warrant"
+            if tkr.endswith("U"):
+                return "unit"
+    if re.search(r"\bnotes? due\b|% notes\b", nm, re.I):
+        return "note"
+    return "common"
 
 # A fund that hasn't filed a 13F since this date is dormant/closed — its last
 # (stale) holdings must NOT count as CURRENT smart money. Genuinely-active funds
@@ -59,6 +105,7 @@ def run():
       asymmetry_score REAL,     -- downside protection × upside potential
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
+      sec_type TEXT,            -- 'common' | 'etf' | 'preferred' | 'warrant' | 'unit' | 'right'
       score REAL,
       components TEXT
     );
@@ -86,10 +133,18 @@ def run():
             "WHERE ticker IS NOT NULL AND sh_type IN ('SH','') " + _FRESH):
         sm[tk] = sm.get(tk, 0.0) + fund_w.get(fund, 1.0)
     sm = {tk: round(v, 1) for tk, v in sm.items()}
+    # Section counts dedupe by CANONICAL manager, not raw fund string — the same
+    # manager appears under several name variants ("CAS Investment Partners",
+    # "... (Cliff", "... Sosin"), which inflated counts (NVDA S1 was 52 strings
+    # but only 37 real managers). 552 strings -> 445 canonical managers.
+    from _canon import canon
+    _sec_mgrs = {}
+    for r in conn.execute("""SELECT DISTINCT ticker, section, fund
+        FROM fund_positions WHERE ticker IS NOT NULL"""):
+        _sec_mgrs.setdefault((r["ticker"], r["section"]), set()).add(canon(r["fund"]))
     s_by = {}
-    for r in conn.execute("""SELECT ticker, section, COUNT(DISTINCT fund) c
-        FROM fund_positions WHERE ticker IS NOT NULL GROUP BY ticker, section"""):
-        s_by.setdefault(r["ticker"], {})[r["section"]] = r["c"]
+    for (tk, sec), mgrs in _sec_mgrs.items():
+        s_by.setdefault(tk, {})[sec] = len(mgrs)
     act = {}
     for r in conn.execute("""SELECT subject_ticker, COUNT(*) n, MAX(pct_class) m
         FROM holder_13d WHERE subject_ticker IS NOT NULL GROUP BY subject_ticker"""):
@@ -107,12 +162,20 @@ def run():
     f4 = {}                   # weighted dollar exposure
     f4_raw = {}               # unweighted 180d sum (for display)
     f4_30 = {}                # ≤30d dollar exposure (very-recent signal)
+    # Sanity guard: a single trade worth more than the company's market cap is a
+    # parse artifact (ADS-ratio mismatch — e.g. SVRE reported ordinary shares at
+    # the per-ADS price, 43,200x inflation — or a corrupted price field), never a
+    # real open-market trade. Exclude such rows from both buy and sell signals.
+    _F4_SANE = """AND NOT EXISTS (SELECT 1 FROM ticker_yf y
+              WHERE y.ticker = form4_transactions.ticker
+                AND y.mcap_m > 0 AND shares*price/1e6 > y.mcap_m)"""
     for r in conn.execute("""
         SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
                julianday('now') - julianday(trans_date) AS days_old
         FROM form4_transactions
         WHERE code='P' AND acquired=1 AND price IS NOT NULL
           AND trans_date >= date('now','-180 days')
+          """ + _F4_SANE + """
         GROUP BY ticker, days_old"""):
         tk = r["ticker"]; d = r["days_old"] or 0; u = r["usd_m"] or 0
         if   d <= 30:  w = 1.0
@@ -133,6 +196,7 @@ def run():
         FROM form4_transactions
         WHERE code='S' AND price IS NOT NULL
           AND trans_date >= date('now','-180 days')
+          """ + _F4_SANE + """
         GROUP BY ticker, days_old"""):
         tk = r["ticker"]; d = r["days_old"] or 0; u = r["usd_m"] or 0
         if   d <= 30:  w = 1.0
@@ -166,14 +230,14 @@ def run():
             valn[r["ticker"]] = (r["ev_ebitda"], r["pb_ratio"])
     except Exception:
         pass
-    yf_pe = {}; yf_mcap = {}
+    yf_pe = {}; yf_mcap = {}; yf_name = {}
     try:
         # P/B only meaningful with positive book; >100 is a near-zero-book artifact
         # (SPAC units, royalty trusts) — guard like EV/EBITDA.
         for r in conn.execute("""SELECT ticker,
             CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END AS ev_ebitda,
             CASE WHEN pb_ratio > 0 AND pb_ratio <= 100 THEN pb_ratio END AS pb_ratio,
-            pe_ttm, mcap_m
+            pe_ttm, mcap_m, long_name
             FROM ticker_yf"""):
             ev, pb = r["ev_ebitda"], r["pb_ratio"]
             prev = valn.get(r["ticker"], (None, None))
@@ -183,6 +247,8 @@ def run():
             yf_pe[r["ticker"]] = r["pe_ttm"]
             if r["mcap_m"]:
                 yf_mcap[r["ticker"]] = r["mcap_m"]
+            if r["long_name"]:
+                yf_name[r["ticker"]] = r["long_name"]
     except Exception:
         pass  # ticker_yf may not exist yet
 
@@ -240,6 +306,8 @@ def run():
                                "sector": r["sector"], "mcap_m": r["mcap_m"], "price": r["price"]}
 
     universe = set(sm) | set(s_by) | set(act) | set(cl) | set(pct_book_max)
+    # ticker -> name map for sec_type's same-issuer suffix check
+    _names = {t: (tm.get(t, {}).get("name") or yf_name.get(t)) for t in universe}
     print(f"scoring {len(universe)} tickers")
     n = 0
     for tkr in universe:
@@ -272,6 +340,7 @@ def run():
         c8_bnk  = c8.get("bnk",  0)
         ev_ebitda, pb_ratio = valn.get(tkr, (None, None))
         pe_ttm = yf_pe.get(tkr)
+        sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
         # Revealed preference — what funds are ACTIVELY doing (not just holding):
         # new major positions weigh 2×, material adds 1×, top-conviction holds 0.5×
         revealed_pref = 2.0 * s3 + 1.0 * s4 + 0.5 * s1
@@ -386,8 +455,8 @@ def run():
                       f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-            (tkr, meta.get("name"), meta.get("exchange"), meta.get("sector"),
+            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (tkr, meta.get("name") or yf_name.get(tkr), meta.get("exchange"), meta.get("sector"),
              mcap, meta.get("price"), bucket,
              n13f, s1, s2, s3, s4,
              n13d, pct, ins_m, ins_n,
@@ -399,7 +468,7 @@ def run():
              ev_ebitda, pb_ratio, pe_ttm, revealed_pref, asymmetry_score,
              er_pct,
              entry_bucket, vs_entry_pct, anchor_px, anchor_src,
-             score, components))
+             sec_type, score, components))
         n += 1
     conn.commit()
     print(f"wrote {n} unified_signal rows")

@@ -261,10 +261,10 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             JOIN unified_signal us ON us.ticker = h.ticker
             LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
             WHERE h.fund IN ({ph}) AND us.mcap_bucket = ?
-              AND h.ticker NOT IN ({','.join('?'*len(ETFs))})
+              AND us.sec_type = 'common'
             GROUP BY h.ticker
             ORDER BY (holders * 2 + COALESCE(max_pb,0) * 0.5) DESC LIMIT 5""",
-            style_funds + style_funds + style_funds + [bucket] + list(ETFs)))
+            style_funds + style_funds + style_funds + [bucket]))
         for r in rows:
             out.append([bucket, r[0], r[1], round(r[2] or 0, 1),
                         r[3] or "", r[4] or 0, r[5] or 0,

@@ -1865,7 +1865,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 2136,0001140361-26-013644,MKZR,,,2026-04-06,P,10000.0,3.4972,1,https://www.sec.gov/Archives/edgar/data/1550913/000114036126013644/xslF345X06/form4.xml
 2137,0001582328-26-000005,MKZR,,CEO/President,2026-02-24,P,5000.0,3.64,1,https://www.sec.gov/Archives/edgar/data/1550913/000158232826000005/xslF345X05/primary_doc.xml
 2138,0001289315-26-000007,ASPSW,,,2026-05-22,P,3511.0,6.02,1,https://www.sec.gov/Archives/edgar/data/1462418/000128931526000007/xslF345X06/f4_a1eus000008svzbmaq-live.xml
-2139,0002105585-26-000003,QUCY,,10%+ Owner,2025-10-17,P,643850.0,402000.0,1,https://www.sec.gov/Archives/edgar/data/1874252/000210558526000003/xslF345X05/primary_doc.xml
 2140,0001193125-26-124608,SRZNW,,,2026-03-23,P,7612.0,24.8999,1,https://www.sec.gov/Archives/edgar/data/1824893/000119312526124608/xslF345X06/ownership.xml
 2141,0001193125-26-124608,SRZNW,,,2026-03-23,P,7611.0,24.8999,1,https://www.sec.gov/Archives/edgar/data/1824893/000119312526124608/xslF345X06/ownership.xml
 2142,0001193125-26-124608,SRZNW,,,2026-03-24,P,53329.0,24.6931,1,https://www.sec.gov/Archives/edgar/data/1824893/000119312526124608/xslF345X06/ownership.xml
@@ -3954,23 +3953,23 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 8411,0001437749-26-005322,ADUS,,"EVP, Chief Legal Officer",2026-02-23,S,737.0,114.91,0,https://www.sec.gov/Archives/edgar/data/1468328/000143774926005322/xslF345X05/rdgdoc.xml
 8413,0001437749-26-005321,ADUS,,"EVP, Chief Financial Officer",2026-02-23,S,1858.0,114.91,0,https://www.sec.gov/Archives/edgar/data/1468328/000143774926005321/xslF345X05/rdgdoc.xml
 8416,0001437749-26-005315,ADUS,,Chairman and CEO,2026-02-23,S,4535.0,114.91,0,https://www.sec.gov/Archives/edgar/data/1468328/000143774926005315/xslF345X05/rdgdoc.xml
-8417,0001731122-26-000823,SVRE,,Director,2026-05-21,P,216000000.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
-8418,0001731122-26-000823,SVRE,,Director,2026-05-28,P,896832000.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
-8419,0001731122-26-000823,SVRE,,Director,2026-06-03,P,5529600.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
-8420,0001731122-26-000823,SVRE,,Director,2026-06-04,P,76910400.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
-8421,0001731122-26-000823,SVRE,,Director,2026-06-05,P,515030400.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
-8422,0001731122-26-000677,SVRE,,Director,2026-04-28,P,1080000000.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000677/xslF345X06/ownership.xml
-8423,0001731122-26-000677,SVRE,,Director,2026-04-29,P,458697600.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000677/xslF345X06/ownership.xml
-8424,0001731122-26-000579,SVRE,,Director,2026-03-30,P,49420800.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
-8425,0001731122-26-000579,SVRE,,Director,2026-04-02,P,288014400.0,2.93,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
-8426,0001731122-26-000579,SVRE,,Director,2026-04-02,P,706579200.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
-8427,0001731122-26-000579,SVRE,,Director,2026-04-09,P,2501582400.0,3.45,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
-8428,0001731122-26-000525,SVRE,,Director,2026-03-23,P,221961600.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
-8429,0001731122-26-000525,SVRE,,Director,2026-03-25,P,31838400.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
-8430,0001731122-26-000525,SVRE,,Director,2026-03-27,P,81734400.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
-8431,0001731122-26-000525,SVRE,,Director,2026-03-30,P,26265600.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
-8432,0001731122-26-000397,SVRE,,Director,2026-03-11,P,260884800.0,2.64,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000397/xslF345X05/ownership.xml
-8433,0001731122-26-000397,SVRE,,Director,2026-03-12,P,86875200.0,2.65,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000397/xslF345X05/ownership.xml
+8417,0001731122-26-000823,SVRE,,Director,2026-05-21,P,5000.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
+8418,0001731122-26-000823,SVRE,,Director,2026-05-28,P,20760.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
+8419,0001731122-26-000823,SVRE,,Director,2026-06-03,P,128.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
+8420,0001731122-26-000823,SVRE,,Director,2026-06-04,P,1780.3333333333333,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
+8421,0001731122-26-000823,SVRE,,Director,2026-06-05,P,11922.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000823/xslF345X06/ownership.xml
+8422,0001731122-26-000677,SVRE,,Director,2026-04-28,P,25000.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000677/xslF345X06/ownership.xml
+8423,0001731122-26-000677,SVRE,,Director,2026-04-29,P,10618.0,4.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000677/xslF345X06/ownership.xml
+8424,0001731122-26-000579,SVRE,,Director,2026-03-30,P,1144.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
+8425,0001731122-26-000579,SVRE,,Director,2026-04-02,P,6667.0,2.93,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
+8426,0001731122-26-000579,SVRE,,Director,2026-04-02,P,16356.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
+8427,0001731122-26-000579,SVRE,,Director,2026-04-09,P,57907.0,3.45,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000579/xslF345X06/ownership.xml
+8428,0001731122-26-000525,SVRE,,Director,2026-03-23,P,5138.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
+8429,0001731122-26-000525,SVRE,,Director,2026-03-25,P,737.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
+8430,0001731122-26-000525,SVRE,,Director,2026-03-27,P,1892.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
+8431,0001731122-26-000525,SVRE,,Director,2026-03-30,P,608.0,3.0,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000525/xslF345X06/ownership.xml
+8432,0001731122-26-000397,SVRE,,Director,2026-03-11,P,6039.0,2.64,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000397/xslF345X05/ownership.xml
+8433,0001731122-26-000397,SVRE,,Director,2026-03-12,P,2011.0,2.65,1,https://www.sec.gov/Archives/edgar/data/1894693/000173112226000397/xslF345X05/ownership.xml
 8434,0001970635-26-000004,MGRC,,"SVP, Chief Legal Officer",2026-06-15,S,1407.0,114.04,0,https://www.sec.gov/Archives/edgar/data/752714/000197063526000004/xslF345X06/primary_doc.xml
 8435,0001357113-26-000006,MGRC,,"SVP, Chief Accounting Officer",2026-06-10,S,3783.0,113.6514,0,https://www.sec.gov/Archives/edgar/data/752714/000135711326000006/xslF345X06/primary_doc.xml
 8436,0001465948-26-000006,MGRC,,Chief Strategy Officer,2026-06-10,S,3783.0,113.6514,0,https://www.sec.gov/Archives/edgar/data/752714/000146594826000006/xslF345X06/primary_doc.xml
@@ -20377,7 +20376,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 56905,0001781905-26-000011,VMD,,President,2026-03-18,S,31570.0,9.42,0,https://www.sec.gov/Archives/edgar/data/1729149/000178190526000011/xslF345X06/wk-form4_1774040799.xml
 56906,0001781905-26-000011,VMD,,President,2026-03-19,S,40232.0,9.21,0,https://www.sec.gov/Archives/edgar/data/1729149/000178190526000011/xslF345X06/wk-form4_1774040799.xml
 56907,0001781905-26-000011,VMD,,President,2026-03-20,S,65000.0,8.77,0,https://www.sec.gov/Archives/edgar/data/1729149/000178190526000011/xslF345X06/wk-form4_1774040799.xml
-56988,0001969452-26-000010,STNG,,Director,2026-06-22,S,15000.0,1230435.0,0,https://www.sec.gov/Archives/edgar/data/1483934/000196945226000010/xslF345X06/primary_doc.xml
 56994,0000950142-26-001463,CARR,,Director,2026-05-20,S,12094823.0,62.01,0,https://www.sec.gov/Archives/edgar/data/1783180/000095014226001463/xslF345X06/es260782624_4-viessmann.xml
 57073,0001193125-26-057335,FUSB,,,2026-02-18,S,1500.0,8.3,0,https://www.sec.gov/Archives/edgar/data/717806/000119312526057335/xslF345X05/ownership.xml
 57074,0001193125-26-057335,FUSB,,,2026-02-18,P,1500.0,8.3,1,https://www.sec.gov/Archives/edgar/data/717806/000119312526057335/xslF345X05/ownership.xml
@@ -48323,7 +48321,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 139012,0001193125-26-046772,PFGC,,,2026-02-10,S,1843.0,92.025,0,https://www.sec.gov/Archives/edgar/data/1618673/000119312526046772/xslF345X05/ownership.xml
 139018,0001225208-26-005947,DBI,,EVP;Pres DesignerBrands Canada,2026-06-10,S,34708.0,6.9966,0,https://www.sec.gov/Archives/edgar/data/1319947/000122520826005947/xslF345X06/doc4.xml
 139045,0001225208-25-010202,DBI,,Director,2025-12-26,S,13105.0,8.0,0,https://www.sec.gov/Archives/edgar/data/1319947/000122520825010202/xslF345X05/doc4.xml
-139049,0001493152-26-008430,IHT,,10%+ Owner,2026-02-25,S,8822.0,9407.32,0,https://www.sec.gov/Archives/edgar/data/82473/000149315226008430/xslF345X05/ownership.xml
 139050,0000947871-26-000653,ELVN,,10%+ Owner,2026-06-22,S,24846.0,45.38,0,https://www.sec.gov/Archives/edgar/data/1672619/000094787126000653/xslF345X06/ownership.xml
 139051,0000947871-26-000653,ELVN,,10%+ Owner,2026-06-22,S,1477.0,45.0,0,https://www.sec.gov/Archives/edgar/data/1672619/000094787126000653/xslF345X06/ownership.xml
 139052,0000947871-26-000653,ELVN,,10%+ Owner,2026-06-22,S,787024.0,45.38,0,https://www.sec.gov/Archives/edgar/data/1672619/000094787126000653/xslF345X06/ownership.xml
