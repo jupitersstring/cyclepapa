@@ -1285,11 +1285,33 @@ def common_split_factor(ticker: str) -> float:
     apply this, the BS screen falsely flags post-RS warrants as deep
     discounts when they're actually deeply OTM and near-worthless.
     """
-    try:
-        sp = yf.Ticker(ticker).splits
-    except Exception:
-        return 1.0
-    if sp is None or sp.empty:
+    sp = None
+    if _yfinance_healthy():
+        try:
+            sp = yf.Ticker(ticker).splits
+        except Exception:
+            sp = None
+    if sp is None or (hasattr(sp, "empty") and sp.empty):
+        # Chart-API fallback: v8 endpoint returns split events too. This
+        # matters — when yfinance's session is throttled, .splits comes
+        # back empty and the strike silently goes un-adjusted.
+        try:
+            url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
+                   f"{requests.utils.quote(ticker)}?range=10y&interval=1d"
+                   f"&events=splits")
+            r = requests.get(url, headers=_CHART_HEADERS, timeout=20)
+            ev = (r.json().get("chart", {}).get("result") or [{}])[0] \
+                .get("events", {}).get("splits", {})
+            if ev:
+                f = 1.0
+                for s in ev.values():
+                    num = float(s.get("numerator", 1))
+                    den = float(s.get("denominator", 1))
+                    if den > 0 and num > 0:
+                        f *= num / den
+                return f if f > 0 else 1.0
+        except Exception:
+            pass
         return 1.0
     f = float(sp.prod())
     return f if f > 0 else 1.0
@@ -1438,10 +1460,19 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
             except Exception:
                 edgar_strike = None
         strike_raw = strike_used
-        if edgar_strike is not None:
+        # Precedence: a listing-parsed strike is PER-SERIES (Opendoor's
+        # OPENL/W/Z are $13/$9/$17); the EDGAR scrape is per-issuer and
+        # would clobber all series with one number. Only let EDGAR
+        # override the $11.50 default, never a listing-parsed strike.
+        if edgar_strike is not None and strike_source != "listing":
             strike_used = edgar_strike
             split_f = 1.0
             strike_source = "edgar"
+        elif strike_source == "listing":
+            strike_used, split_f = adjust_strike_for_splits(r_["common"],
+                                                             strike_used)
+            if split_f != 1.0:
+                strike_source = "listing+split_adj"
         else:
             strike_used, split_f = adjust_strike_for_splits(r_["common"],
                                                              strike_used)
