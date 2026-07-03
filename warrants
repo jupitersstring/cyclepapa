@@ -701,24 +701,97 @@ def discover_warrants_for(commons: list[str], limit: int | None = None,
 
 # ---------- batch scan ----------
 
-def batch_load_pairs(tickers: list[str], period: str = "5y") -> dict:
-    """One yfinance call for many tickers; returns {'close': df, 'volume': df}."""
-    tickers = sorted(set(tickers))
-    data = yf.download(tickers, period=period, auto_adjust=True,
-                       progress=False, group_by="column", threads=True)
-    if data is None or data.empty:
+_CHART_HEADERS = {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X "
+                                  "10_15_7) AppleWebKit/537.36")}
+_PERIOD_TO_RANGE = {"5d": "5d", "10d": "1mo", "1mo": "1mo", "3mo": "3mo",
+                    "6mo": "6mo", "1y": "1y", "2y": "2y", "5y": "5y",
+                    "10y": "10y", "max": "max"}
+
+
+def _chart_api_history(ticker: str, period: str = "1y") -> pd.DataFrame | None:
+    """Single-ticker history via Yahoo's public v8 chart endpoint.
+
+    Fallback for when yfinance's session fingerprint is rate-limited —
+    the plain chart API with a browser User-Agent is throttled
+    independently and usually keeps working. Returns a DataFrame with
+    Close and Volume columns, or None.
+    """
+    rng = _PERIOD_TO_RANGE.get(period, "1y")
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
+           f"{requests.utils.quote(ticker)}?range={rng}&interval=1d")
+    try:
+        r = requests.get(url, headers=_CHART_HEADERS, timeout=20)
+        if not r.ok:
+            return None
+        res = r.json().get("chart", {}).get("result")
+        if not res:
+            return None
+        res = res[0]
+        ts = res.get("timestamp")
+        quote = res.get("indicators", {}).get("quote", [{}])[0]
+        closes = quote.get("close")
+        vols = quote.get("volume")
+        if not ts or not closes:
+            return None
+        idx = pd.to_datetime(ts, unit="s").normalize()
+        df = pd.DataFrame({"Close": closes, "Volume": vols}, index=idx)
+        return df.dropna(subset=["Close"])
+    except Exception:
+        return None
+
+
+def _batch_load_via_chart_api(tickers: list[str], period: str,
+                              max_workers: int = 8) -> dict:
+    """Per-ticker chart-API fan-out; assembles the same {'close','volume'}
+    shape as batch_load_pairs."""
+    from concurrent.futures import ThreadPoolExecutor
+    closes, volumes = {}, {}
+    def work(t):
+        df = _chart_api_history(t, period)
+        return t, df
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        for t, df in ex.map(work, tickers):
+            if df is not None and not df.empty:
+                closes[t] = df["Close"]
+                volumes[t] = df["Volume"]
+    if not closes:
         return {"close": pd.DataFrame(), "volume": pd.DataFrame()}
-    if isinstance(data.columns, pd.MultiIndex):
-        levels = data.columns.get_level_values(0)
-        close = data["Close"] if "Close" in levels else pd.DataFrame()
-        volume = data["Volume"] if "Volume" in levels else pd.DataFrame()
-    else:
-        close = data[["Close"]].copy() if "Close" in data.columns else pd.DataFrame()
-        if not close.empty:
-            close.columns = tickers
-        volume = data[["Volume"]].copy() if "Volume" in data.columns else pd.DataFrame()
-        if not volume.empty:
-            volume.columns = tickers
+    return {"close": pd.DataFrame(closes).sort_index(),
+            "volume": pd.DataFrame(volumes).sort_index()}
+
+
+def batch_load_pairs(tickers: list[str], period: str = "5y") -> dict:
+    """Batch history for many tickers; returns {'close': df, 'volume': df}.
+
+    Tries yfinance's multi-ticker download first; when that returns
+    empty or near-empty (rate-limited session), falls back to the plain
+    v8 chart API per ticker, which is throttled independently.
+    """
+    tickers = sorted(set(tickers))
+    close = volume = pd.DataFrame()
+    try:
+        data = yf.download(tickers, period=period, auto_adjust=True,
+                           progress=False, group_by="column", threads=True)
+    except Exception:
+        data = None
+    if data is not None and not data.empty:
+        if isinstance(data.columns, pd.MultiIndex):
+            levels = data.columns.get_level_values(0)
+            close = data["Close"] if "Close" in levels else pd.DataFrame()
+            volume = data["Volume"] if "Volume" in levels else pd.DataFrame()
+        else:
+            close = data[["Close"]].copy() if "Close" in data.columns else pd.DataFrame()
+            if not close.empty:
+                close.columns = tickers
+            volume = data[["Volume"]].copy() if "Volume" in data.columns else pd.DataFrame()
+            if not volume.empty:
+                volume.columns = tickers
+    # Fallback when yfinance came back (near-)empty for a real request.
+    got = 0 if close.empty else close.notna().any().sum()
+    if got < max(1, len(tickers) // 10):
+        fb = _batch_load_via_chart_api(tickers, period)
+        if not fb["close"].empty:
+            return fb
     return {"close": close, "volume": volume}
 
 
