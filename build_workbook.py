@@ -675,6 +675,16 @@ def build_readme(wb):
              'of cross-validated cheap-and-quality names.',
     )
     row += 1
+    # Universe size + market count — computed so the README never drifts from
+    # the actual cache (EM expansion widened it from ~7k/10 markets to 22k+/30+).
+    import glob as _glob
+    _uni_n = len(_glob.glob('.cache/yf/*__info_metrics.parquet'))
+    try:
+        _gav = pd.read_csv(OUT / 'growth_adj_value.csv', usecols=['region'],
+                           low_memory=False)
+        _n_markets = int(_gav['region'].nunique())
+    except Exception:
+        _n_markets = 34
     sections = [
         ('I.  Purpose',
          'This workbook surfaces the strongest names per region and per measure. Each measure '
@@ -683,10 +693,11 @@ def build_readme(wb):
          'page. Use that as the starting watchlist; use the per-region and per-measure tabs to '
          'drill down before sizing positions.'),
         ('II. Universe',
-         '7,196 tickers from financedatabase across 10 regions (US, JP, KR, HK, AU, CA, GB, DE, '
-         'FR, SE). Market-cap floor of US$25M for broad views, US$100M for the financials carve-out. '
-         'Junk filtered out: warrants, preferred series, SPAC units, defunct symbols. '
-         'See per-region tabs for the count of names scored in each market.'),
+         f'{_uni_n:,} tickers from financedatabase spanning {_n_markets} developed and emerging '
+         'markets (US, Japan, Korea, Greater China, India, SE Asia, Latin America, the Gulf, '
+         'South Africa and Europe). Market-cap floor of US$25M for broad views, US$100M for the '
+         'financials carve-out. Junk filtered out: warrants, preferred series, SPAC units, defunct '
+         'symbols. See per-region tabs for the count of names scored in each market.'),
         ('III. The Three Measures',
          '(1) Overall sector-percentile composite — 13 valuation, quality and growth components ranked '
          'within region and aggregated into a 0–100 score. Higher = better.\n'
@@ -1247,7 +1258,7 @@ def build_creative_measures(wb):
     ws.sheet_view.showGridLines = False
     row = _draw_title_block(
         ws,
-        kicker='Beyond Composites  ·  Eleven Specialised Screens',
+        kicker='Beyond Composites  ·  Specialised Creative Screens',
         title='Creative Measures — Index',
         deck=('Each creative measure isolates a specific market pattern that the broad '
               'composite cannot capture: pure operating leverage, hidden segment '
@@ -1513,7 +1524,7 @@ def build_contents(wb):
         title='Contents',
         deck='Click any row to jump to that sheet. Sheets are grouped: front '
              'matter, the cross-validated watchlist, per-measure and per-region '
-             'detail, the eleven creative screens, and reference.',
+             'detail, the creative screens, and reference.',
     )
     row += 1
     # Group sheets logically by name prefix
@@ -1526,15 +1537,19 @@ def build_contents(wb):
         if name == 'Glossary': return '6 · Reference'
         return '7 · Other'
 
+    # Universe size — computed, not hardcoded, so it tracks the cache as the
+    # universe widens (EM expansion took it from ~13k to 22k+).
+    import glob as _glob
+    _uni_n = len(_glob.glob('.cache/yf/*__info_metrics.parquet'))
     # One-line descriptions keyed by sheet name (prefix-matched for regions/CM)
     descriptions = {
         'README': 'Methodology, universe definition, how to read the workbook.',
         'Executive Summary': 'Top three names per region across each major measure.',
-        'Data Coverage': 'Field-by-field fill rates across the 12,435-ticker universe.',
+        'Data Coverage': f'Field-by-field fill rates across the {_uni_n:,}-ticker universe.',
         'Top 100': 'The 100 highest-conviction names, ranked by cross-screen breadth.',
         'Asymmetry': 'One-foot hurdles — names flagged by 2+ independent asymmetry scans.',
         'Best of Best': 'Names that survive ≥2 independent screens — the watchlist.',
-        'Creative Measures Index': 'Index of the eleven specialised screens with row counts.',
+        'Creative Measures Index': 'Index of the specialised creative screens with row counts.',
         'Glossary': 'Plain-English definition of every column.',
     }
     cm_desc = {
