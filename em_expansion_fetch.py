@@ -127,7 +127,10 @@ def _process(row, sess) -> str:
     single-thread rate into the ~15/s the API actually sustains."""
     sym = row['symbol']; safe = _safe(sym)
     try:
-        info = fetch_info(sym, sess)
+        # Tight timeout: a real quote returns in <1s; the frontier tail is full
+        # of symbols whose endpoint just hangs, and we don't want a worker
+        # blocked 15s on each. quote_summary gives one retry then gives up.
+        info = fetch_info(sym, sess, timeout=7)
     except Exception:
         info = {'_error': 'exception'}
     got_real = ('_error' not in info) and any(
@@ -166,9 +169,10 @@ def main():
     ap.add_argument('--rate', type=float, default=8.0,
                     help='(legacy) accepted for supervisor compatibility; '
                          'the threaded API path self-paces')
-    ap.add_argument('--workers', type=int, default=6,
+    ap.add_argument('--workers', type=int, default=8,
                     help='concurrent API fetchers sharing one warmed session '
-                         '(API sustains ~18/s; 6 is a polite share of egress)')
+                         '(API handles 20+ concurrent cleanly; 8 keeps the '
+                         'pool busy through the slow frontier tail)')
     ap.add_argument('--max', type=int, default=40000)
     args = ap.parse_args()
 

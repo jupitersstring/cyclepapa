@@ -46,7 +46,7 @@ restart_if_dead() {
 
 restart_if_dead edgar fill_edgar_gaps.py --sleep 0.3
 restart_if_dead extras fetch_yfinance_extras.py --workers 8 --sleep 0.05
-restart_if_dead emexp em_expansion_fetch.py --workers 6
+restart_if_dead emexp em_expansion_fetch.py --workers 8
 
 # XBRL segment fetch — 4 parallel shards. Each shard is its own Python process
 # with 8 threads, so 4×8 = 32 effective HTTP concurrency. SEC's 10 req/s limit

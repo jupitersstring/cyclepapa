@@ -75,19 +75,28 @@ def _rewarm():
 
 def quote_summary(symbol: str, modules: list[str],
                   session: requests.Session | None = None,
-                  retries: int = 2) -> dict:
+                  retries: int = 2, timeout: int = 12) -> dict:
     """Fetch quoteSummary modules for a symbol. Returns the merged module
-    dict ({} on genuine no-data / 404). Auto-re-warms on 401/429."""
+    dict ({} on genuine no-data / 404 / dead endpoint). Auto-re-warms on
+    401/429 (real throttling), but fails FAST on connection timeouts: a
+    repeat socket timeout means that symbol's endpoint is unresponsive
+    (common in the frontier-market tail), not that we're being throttled —
+    spinning the full timeout 3x per dead symbol collapses backfill
+    throughput, so we give it one retry and move on."""
     s = session or get_session()
     mod = ','.join(modules)
+    exc_tries = 0
     for attempt in range(retries + 1):
         crumb = get_crumb()
         url = (f'https://query1.finance.yahoo.com/v10/finance/quoteSummary/'
                f'{symbol}?modules={mod}&crumb={crumb}')
         try:
-            r = s.get(url, timeout=15)
+            r = s.get(url, timeout=timeout)
         except Exception:
-            time.sleep(0.5)
+            exc_tries += 1
+            if exc_tries > 1:      # second timeout => treat as dead, give up
+                return {}
+            time.sleep(0.3)
             continue
         if r.status_code == 200:
             try:
@@ -106,9 +115,8 @@ def quote_summary(symbol: str, modules: list[str],
             s = get_session()
             time.sleep(0.3)
             continue
-        if r.status_code == 404:
-            return {}
-        time.sleep(0.3)
+        # 404 / 400 / 5xx on a specific symbol: don't spin — move on.
+        return {}
     return {}
 
 
@@ -142,13 +150,16 @@ def _raw(node, key):
     return v
 
 
-def fetch_info(symbol: str, session: requests.Session | None = None) -> dict:
+def fetch_info(symbol: str, session: requests.Session | None = None,
+               timeout: int = 12) -> dict:
     """Fetch a rich info_metrics-shaped record via the API. Far more complete
     than the old HTML scrape — pulls the full financialData +
-    defaultKeyStatistics + summaryDetail + price + assetProfile modules."""
+    defaultKeyStatistics + summaryDetail + price + assetProfile modules.
+    `timeout` is per-request; the backfill passes a tight value so dead
+    frontier symbols don't stall the worker pool."""
     mods = ['price', 'summaryDetail', 'defaultKeyStatistics', 'financialData',
             'assetProfile']
-    d = quote_summary(symbol, mods, session)
+    d = quote_summary(symbol, mods, session, timeout=timeout)
     if not d:
         return {'_error': 'no_data'}
     out = {'_ticker': symbol, '_source': 'yahoo_api', '_fetched_at': None}
