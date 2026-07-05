@@ -27,8 +27,18 @@ from pathlib import Path
 import pandas as pd
 import yfinance as yf
 
+import sys
+sys.path.insert(0, str(Path(__file__).parent))
+from yahoo_session import get_session  # warmed cookie+crumb session — see below
+
 CACHE = Path('.cache/yf')
 CACHE.mkdir(parents=True, exist_ok=True)
+
+# yfinance's default transport is curl_cffi, whose TLS handshake fails in this
+# container ("curl: (35)"). Passing a plain warmed requests.Session sidesteps
+# that AND carries the Yahoo cookie+crumb the API needs — without it every
+# .growth_estimates / .analyst_price_targets call SSLErrors. get_session()
+# returns one shared, thread-safe session (re-warms itself as needed).
 
 SLOTS = (
     'growth_estimates',
@@ -99,7 +109,7 @@ def fetch_one(cache_key: str, ticker_symbol: str | None = None) -> dict[str, str
         return {s: 'cached' for s in SLOTS}
     results: dict[str, str] = {}
     try:
-        t = yf.Ticker(ticker_symbol)
+        t = yf.Ticker(ticker_symbol, session=get_session())
     except Exception:
         for s in todo:
             results[s] = 'fetch_error'
