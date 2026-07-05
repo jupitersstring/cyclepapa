@@ -26,7 +26,8 @@ safe across container reboots. A single-instance flock guard prevents parallel
 copies from stepping on each other.
 """
 from __future__ import annotations
-import argparse, time
+import argparse, threading, time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import pandas as pd
@@ -119,68 +120,89 @@ def _acquire_single_instance_lock():
         sys.exit(0)
 
 
+def _process(row, sess) -> str:
+    """Fetch + write one target. Returns 'real' | 'meta'. The warmed session
+    is thread-safe (yahoo_session serialises re-warms; GETs share the urllib3
+    pool), so many workers can share it — that's what turns the ~2.5/s
+    single-thread rate into the ~15/s the API actually sustains."""
+    sym = row['symbol']; safe = _safe(sym)
+    try:
+        info = fetch_info(sym, sess)
+    except Exception:
+        info = {'_error': 'exception'}
+    got_real = ('_error' not in info) and any(
+        info.get(k) is not None for k in _REAL_KEYS)
+    if got_real:
+        # Merge financedatabase metadata as a floor (sector/industry Yahoo
+        # sometimes lacks for EM names), then write.
+        meta = _metadata_record(row)
+        for k, v in meta.items():
+            if k not in info or info.get(k) in (None, ''):
+                info[k] = v
+        try:
+            pd.DataFrame([info]).to_parquet(
+                YF_CACHE / f'{safe}__info_metrics.parquet', compression='snappy')
+        except Exception:
+            pass
+        result = 'real'
+    else:
+        # Metadata-only fallback so the name still counts for breadth. Only
+        # write when we don't already have a meta row, to avoid churn.
+        p = YF_CACHE / f'{safe}__info_metrics.parquet'
+        if not p.exists():
+            try:
+                pd.DataFrame([_metadata_record(row)]).to_parquet(
+                    p, compression='snappy')
+            except Exception:
+                pass
+        result = 'meta'
+    try: _api_tried(safe).touch()   # mark tried regardless, so re-runs skip it
+    except Exception: pass
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--rate', type=float, default=8.0,
-                    help='requests/sec ceiling (API sustains ~18; 8 is a '
-                         'polite share of the common egress)')
+                    help='(legacy) accepted for supervisor compatibility; '
+                         'the threaded API path self-paces')
+    ap.add_argument('--workers', type=int, default=6,
+                    help='concurrent API fetchers sharing one warmed session '
+                         '(API sustains ~18/s; 6 is a polite share of egress)')
     ap.add_argument('--max', type=int, default=40000)
     args = ap.parse_args()
 
     _lock = _acquire_single_instance_lock()   # held for process lifetime
     todo = pending()
-    print(f'EM expansion (API): {len(todo):,} pending targets', flush=True)
+    print(f'EM expansion (API): {len(todo):,} pending targets, '
+          f'{args.workers} workers', flush=True)
     if todo.empty:
         return
     todo = todo.head(args.max)
     sess = get_session()
-    sleep = 1.0 / args.rate if args.rate > 0 else 0
-    n_real = n_meta = 0
+    rows = [r for _, r in todo.iterrows()]
+    n_real = n_meta = done = 0
+    lock = threading.Lock()
     t0 = time.time()
-    for i, (_, row) in enumerate(todo.iterrows(), 1):
-        sym = row['symbol']; safe = _safe(sym)
-        try:
-            info = fetch_info(sym, sess)
-        except Exception:
-            info = {'_error': 'exception'}
-        got_real = ('_error' not in info) and any(
-            info.get(k) is not None for k in _REAL_KEYS)
-        if got_real:
-            # Merge financedatabase metadata as a floor (sector/industry that
-            # Yahoo sometimes lacks for EM names), then write.
-            meta = _metadata_record(row)
-            for k, v in meta.items():
-                if k not in info or info.get(k) in (None, ''):
-                    info[k] = v
+    with ThreadPoolExecutor(max_workers=args.workers) as ex:
+        futs = [ex.submit(_process, row, sess) for row in rows]
+        for fut in as_completed(futs):
             try:
-                pd.DataFrame([info]).to_parquet(
-                    YF_CACHE / f'{safe}__info_metrics.parquet', compression='snappy')
-                n_real += 1
+                res = fut.result()
             except Exception:
-                pass
-        else:
-            # Metadata-only fallback so the name still counts for breadth. Only
-            # (over)write when we don't already have a meta row, to avoid churn.
-            p = YF_CACHE / f'{safe}__info_metrics.parquet'
-            if not p.exists():
-                try:
-                    pd.DataFrame([_metadata_record(row)]).to_parquet(
-                        p, compression='snappy')
-                except Exception:
-                    pass
-            n_meta += 1
-        # Mark API-tried regardless, so a re-run skips it.
-        try: _api_tried(safe).touch()
-        except Exception: pass
-        if i % 200 == 0:
-            el = time.time() - t0
-            rate = i / el if el > 0 else 0
-            eta = (len(todo) - i) / rate / 60 if rate > 0 else 0
-            print(f'  {i:>6,}/{len(todo):,}  real={n_real:,} meta={n_meta:,} '
-                  f'rate={rate:.2f}/s eta={eta:.0f}min', flush=True)
-        if sleep:
-            time.sleep(sleep)
-    print(f'\nFinal: real={n_real:,} meta-only={n_meta:,} of {len(todo):,}', flush=True)
+                res = 'meta'
+            with lock:
+                done += 1
+                if res == 'real': n_real += 1
+                else: n_meta += 1
+                if done % 200 == 0:
+                    el = time.time() - t0
+                    rate = done / el if el > 0 else 0
+                    eta = (len(rows) - done) / rate / 60 if rate > 0 else 0
+                    print(f'  {done:>6,}/{len(rows):,}  real={n_real:,} '
+                          f'meta={n_meta:,} rate={rate:.2f}/s eta={eta:.0f}min',
+                          flush=True)
+    print(f'\nFinal: real={n_real:,} meta-only={n_meta:,} of {len(rows):,}', flush=True)
 
 
 if __name__ == '__main__':
