@@ -130,6 +130,47 @@ def quote_summary(symbol: str, modules: list[str],
     return {}
 
 
+def quote_summary_modules(symbol: str, modules: list[str],
+                          session: requests.Session | None = None,
+                          retries: int = 2, timeout: int = 12) -> dict:
+    """Like quote_summary but returns the module-keyed dict
+    ({'financialData': {...}, 'earningsTrend': {...}, ...}) instead of
+    flattening every module into one namespace. Needed when two modules
+    share a field name — e.g. earningsTrend and recommendationTrend BOTH
+    expose 'trend', so the flattened form silently drops one. Returns {} on
+    genuine no-data. Auto-re-warms on 401/429; fails fast on dead endpoints."""
+    s = session or get_session()
+    mod = ','.join(modules)
+    exc_tries = 0
+    for attempt in range(retries + 1):
+        crumb = get_crumb()
+        url = (f'https://query1.finance.yahoo.com/v10/finance/quoteSummary/'
+               f'{symbol}?modules={mod}&crumb={crumb}')
+        try:
+            r = s.get(url, timeout=timeout)
+        except Exception:
+            exc_tries += 1
+            if exc_tries > 1:
+                return {}
+            time.sleep(0.3)
+            continue
+        if r.status_code == 200:
+            try:
+                res = r.json()['quoteSummary']['result']
+                if not res:
+                    return {}
+                return {k: v for k, v in res[0].items() if isinstance(v, dict)}
+            except Exception:
+                return {}
+        if r.status_code in (401, 429) and attempt < retries:
+            _rewarm()
+            s = get_session()
+            time.sleep(0.3)
+            continue
+        return {}
+    return {}
+
+
 def chart(symbol: str, rng: str = '2y', interval: str = '1d',
           session: requests.Session | None = None) -> dict:
     """Price history via the v8 chart endpoint. Returns

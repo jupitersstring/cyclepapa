@@ -25,20 +25,32 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import pandas as pd
-import yfinance as yf
 
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from yahoo_session import get_session  # warmed cookie+crumb session — see below
+from yahoo_session import get_session, quote_summary_modules
 
 CACHE = Path('.cache/yf')
 CACHE.mkdir(parents=True, exist_ok=True)
 
-# yfinance's default transport is curl_cffi, whose TLS handshake fails in this
-# container ("curl: (35)"). Passing a plain warmed requests.Session sidesteps
-# that AND carries the Yahoo cookie+crumb the API needs — without it every
-# .growth_estimates / .analyst_price_targets call SSLErrors. get_session()
-# returns one shared, thread-safe session (re-warms itself as needed).
+# We fetch these five slots straight from Yahoo's quoteSummary modules via our
+# own warmed cookie+crumb client (yahoo_session) instead of yfinance's lazy
+# Ticker properties. yfinance's default curl_cffi transport fails the TLS
+# handshake here ("curl: (35)"), and even with a plain session passed in, its
+# INTERNAL crumb management (a 'basic'/'csrf' fallback dance, separate from the
+# session's crumb) intermittently 429s under our shared IP + concurrency and
+# raises YFRateLimitError. Our client is the proven path (69/s concurrent), so
+# we read the raw modules and reshape them into the exact frames the downstream
+# screener expects — no yfinance dependency, no fragile double crumb.
+#
+# Slot -> source module:
+#   growth_estimates        <- earningsTrend            (per-period `growth`)
+#   earnings_estimate       <- earningsTrend            (per-period earningsEstimate)
+#   analyst_price_targets   <- financialData            (current + target prices)
+#   insider_purchases       <- netSharePurchaseActivity (6m buy/sell/net)
+#   recommendations_summary <- recommendationTrend      (rating buckets)
+_EXTRAS_MODULES = ['earningsTrend', 'financialData',
+                   'netSharePurchaseActivity', 'recommendationTrend']
 
 SLOTS = (
     'growth_estimates',
@@ -72,57 +84,151 @@ def _missing(cache_key: str) -> list[str]:
     return out
 
 
-def _to_df(obj) -> pd.DataFrame | None:
-    """Normalise the various return shapes yfinance produces (DataFrame,
-    Series, dict) to a single-row DataFrame writable as parquet."""
-    if obj is None:
+def _raw(v):
+    """Unwrap Yahoo's {raw, fmt} number wrapper to the raw value."""
+    return v.get('raw') if isinstance(v, dict) else v
+
+
+# --- Builders: reshape a raw quoteSummary module into the exact DataFrame the
+# downstream screener (analyst_extras_screener.py) reads. Each returns None
+# when the module carries no usable data (→ a .dead sentinel is written).
+
+def _build_growth_estimates(et: dict) -> pd.DataFrame | None:
+    """index=period (0q/+1q/0y/+1y/LTG), col stockTrend = per-period earnings
+    growth. indexTrend isn't in this module (yfinance sources it separately)
+    and the screener doesn't read it, so it's left NaN. Matches yfinance's
+    Ticker.growth_estimates shape (period index, stockTrend column)."""
+    trend = et.get('trend') or []
+    idx, stock = [], []
+    for t in trend:
+        p = t.get('period')
+        if not p:
+            continue
+        idx.append('LTG' if p == '+5y' else p)
+        stock.append(_raw(t.get('growth')))
+    if not idx:
         return None
-    if isinstance(obj, pd.DataFrame):
-        if obj.empty:
-            return None
-        d = obj.copy()
-        d.index = d.index.astype(str)
-        d.columns = [str(c) for c in d.columns]
-        return d
-    if isinstance(obj, pd.Series):
-        if obj.empty:
-            return None
-        d = obj.to_frame().T
-        d.columns = [str(c) for c in d.columns]
-        return d
-    if isinstance(obj, dict):
-        if not obj:
-            return None
-        return pd.DataFrame([{str(k): v for k, v in obj.items()}])
-    return None
+    df = pd.DataFrame({'stockTrend': stock, 'indexTrend': [float('nan')] * len(idx)},
+                      index=idx)
+    df.index.name = 'period'
+    return df
+
+
+def _build_earnings_estimate(et: dict) -> pd.DataFrame | None:
+    """index=period, cols avg/low/high/numberOfAnalysts/yearAgoEps/growth/
+    currency — from each earningsTrend period's earningsEstimate block."""
+    trend = et.get('trend') or []
+    rows = {}
+    for t in trend:
+        p = t.get('period')
+        ee = t.get('earningsEstimate') or {}
+        if not p or not ee:
+            continue
+        rows[p] = {
+            'avg': _raw(ee.get('avg')), 'low': _raw(ee.get('low')),
+            'high': _raw(ee.get('high')),
+            'numberOfAnalysts': _raw(ee.get('numberOfAnalysts')),
+            'yearAgoEps': _raw(ee.get('yearAgoEps')),
+            'growth': _raw(ee.get('growth')),
+            'currency': ee.get('earningsCurrency'),
+        }
+    if not rows:
+        return None
+    df = pd.DataFrame.from_dict(rows, orient='index')
+    df.index.name = 'period'
+    return df
+
+
+def _build_analyst_price_targets(fd: dict) -> pd.DataFrame | None:
+    """Single-row current/high/low/mean/median from financialData."""
+    cur = _raw(fd.get('currentPrice'))
+    mean = _raw(fd.get('targetMeanPrice'))
+    if cur is None and mean is None:
+        return None
+    return pd.DataFrame([{
+        'current': cur, 'high': _raw(fd.get('targetHighPrice')),
+        'low': _raw(fd.get('targetLowPrice')), 'mean': mean,
+        'median': _raw(fd.get('targetMedianPrice')),
+    }])
+
+
+def _build_insider_purchases(a: dict) -> pd.DataFrame | None:
+    """Reconstruct yfinance's insider_purchases table. The screener matches the
+    row whose label starts '% Net Shares Purchased' and reads its 'Shares'
+    cell, so that row must be present and carry netPercentInsiderShares."""
+    net_pct = _raw(a.get('netPercentInsiderShares'))
+    buy_shares = _raw(a.get('buyInfoShares'))
+    if net_pct is None and buy_shares is None:
+        return None
+    rows = [
+        {'Insider Purchases Last 6m': 'Purchases',
+         'Shares': buy_shares, 'Trans': _raw(a.get('buyInfoCount'))},
+        {'Insider Purchases Last 6m': 'Sales',
+         'Shares': _raw(a.get('sellInfoShares')), 'Trans': _raw(a.get('sellInfoCount'))},
+        {'Insider Purchases Last 6m': 'Net Shares Purchased (Sold)',
+         'Shares': _raw(a.get('netInfoShares')), 'Trans': _raw(a.get('netInfoCount'))},
+        {'Insider Purchases Last 6m': 'Total Insider Shares Held',
+         'Shares': _raw(a.get('totalInsiderShares')), 'Trans': None},
+        {'Insider Purchases Last 6m': '% Net Shares Purchased (Sold)',
+         'Shares': net_pct, 'Trans': None},
+        {'Insider Purchases Last 6m': '% Buy Shares',
+         'Shares': _raw(a.get('buyPercentInsiderShares')), 'Trans': None},
+    ]
+    return pd.DataFrame(rows)
+
+
+def _build_recommendations_summary(rt: dict) -> pd.DataFrame | None:
+    """period + strongBuy/buy/hold/sell/strongSell from recommendationTrend."""
+    trend = rt.get('trend') or []
+    rows = []
+    for t in trend:
+        rows.append({
+            'period': t.get('period'),
+            'strongBuy': _raw(t.get('strongBuy')), 'buy': _raw(t.get('buy')),
+            'hold': _raw(t.get('hold')), 'sell': _raw(t.get('sell')),
+            'strongSell': _raw(t.get('strongSell')),
+        })
+    if not rows:
+        return None
+    return pd.DataFrame(rows)
 
 
 def fetch_one(cache_key: str, ticker_symbol: str | None = None) -> dict[str, str]:
-    """Fetch every missing slot for one ticker. `cache_key` is the on-disk
-    name (used to choose the output filename); `ticker_symbol` is the real
-    symbol passed to yfinance (defaults to cache_key for plain US tickers).
-    Returns a per-slot status: 'ok' | 'empty' | 'fetch_error'."""
+    """Fetch every missing slot for one ticker via our quoteSummary client and
+    reshape into the per-slot parquets. `cache_key` is the on-disk name;
+    `ticker_symbol` is the real symbol (defaults to cache_key for plain US
+    tickers). Returns a per-slot status: 'ok' | 'empty' | 'fetch_error'."""
     if ticker_symbol is None:
         ticker_symbol = _cache_key_to_ticker(cache_key)
     todo = _missing(cache_key)
     if not todo:
         return {s: 'cached' for s in SLOTS}
-    results: dict[str, str] = {}
-    try:
-        t = yf.Ticker(ticker_symbol, session=get_session())
-    except Exception:
+    mods = quote_summary_modules(ticker_symbol, _EXTRAS_MODULES, get_session(),
+                                 timeout=8)
+    if not mods:
+        # No data at all (dead symbol / no coverage): mark todo slots empty so
+        # we don't re-fetch. A transient network miss returns {} too, but the
+        # .dead sentinel only blocks THIS slot and a genuine name reappears via
+        # its info_metrics — acceptable for these secondary analytics.
         for s in todo:
-            results[s] = 'fetch_error'
-        return results
+            _deadpath(cache_key, s).touch()
+        return {s: 'empty' for s in todo}
 
+    builders = {
+        'growth_estimates': lambda: _build_growth_estimates(mods.get('earningsTrend', {})),
+        'earnings_estimate': lambda: _build_earnings_estimate(mods.get('earningsTrend', {})),
+        'analyst_price_targets': lambda: _build_analyst_price_targets(mods.get('financialData', {})),
+        'insider_purchases': lambda: _build_insider_purchases(mods.get('netSharePurchaseActivity', {})),
+        'recommendations_summary': lambda: _build_recommendations_summary(mods.get('recommendationTrend', {})),
+    }
+    results: dict[str, str] = {}
     for slot in todo:
         try:
-            obj = getattr(t, slot)
+            df = builders[slot]()
         except Exception:
             results[slot] = 'fetch_error'
             continue
-        df = _to_df(obj)
-        if df is None:
+        if df is None or df.empty:
             _deadpath(cache_key, slot).touch()
             results[slot] = 'empty'
             continue
@@ -131,11 +237,10 @@ def fetch_one(cache_key: str, ticker_symbol: str | None = None) -> dict[str, str
             results[slot] = 'ok'
         except Exception:
             try:
-                df2 = df.astype(str)
-                df2.to_parquet(_outpath(cache_key, slot), compression='snappy')
+                df.astype(str).to_parquet(_outpath(cache_key, slot),
+                                          compression='snappy')
                 results[slot] = 'ok'
             except Exception:
-                _deadpath(cache_key, slot).touch()
                 results[slot] = 'fetch_error'
     return results
 
