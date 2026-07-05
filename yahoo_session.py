@@ -43,6 +43,16 @@ def _warm() -> tuple[requests.Session, str]:
     """Create a fresh session, set the A1/A3/A1S cookies, fetch a crumb."""
     s = requests.Session()
     s.headers.update(_HEADERS)
+    # Size the connection pool well above our worker count. urllib3 defaults
+    # to pool_maxsize=10; with 8+ concurrent fetchers sharing one session that
+    # starves — workers block waiting for a free connection and throughput
+    # collapses even though individual fetches are fast. 32 gives comfortable
+    # headroom; pool_block=True makes contention wait for a pooled connection
+    # rather than spawning throwaway ones that churn.
+    adapter = requests.adapters.HTTPAdapter(
+        pool_connections=8, pool_maxsize=32, pool_block=True, max_retries=0)
+    s.mount('https://', adapter)
+    s.mount('http://', adapter)
     s.get('https://finance.yahoo.com/', timeout=15)
     crumb = s.get('https://query1.finance.yahoo.com/v1/test/getcrumb',
                   timeout=15).text.strip()
