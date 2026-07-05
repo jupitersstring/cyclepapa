@@ -1,6 +1,6 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
-DETEC.HE,FI,Detection Technology Oyj,Technology,8.72,75.325,11,1.655,16.769,11.237,1.228,10.013,1.008,18.111,,0.449,0.082,0.136,1.818,128.0
 TAALA.HE,FI,Taaleri Oyj,Financial Services,7.33,66.921,12,0.967,12.424,11.951,3.397,7.012,3.278,8.077,5.329,0.594,0.161,0.211,1.0,206.0
-REMEDY.HE,FI,Remedy Entertainment Oyj,Communication Services,14.56,66.667,11,3.497,,25.322,3.325,63.305,3.138,5.624,0.476,0.794,0.918,0.463,,198.0
-ADMCM.HE,FI,Admicom Oyj,Technology,25.85,64.945,13,3.989,23.288,11.79,3.32,7.261,3.168,5.56,7.719,0.495,0.144,0.038,0.357,126.0
-MEKKO.HE,FI,Marimekko Oyj,Consumer Cyclical,10.42,64.398,13,5.45,16.806,14.274,2.204,12.174,2.194,0.427,7.014,0.608,0.123,0.045,0.245,422.0
+MEKKO.HE,FI,Marimekko Oyj,Consumer Cyclical,10.42,64.965,13,5.45,16.806,14.274,2.204,12.174,2.194,0.427,7.014,0.608,0.123,0.045,0.245,422.0
+ATRAV.HE,FI,Atria Oyj,Consumer Defensive,15.0,63.48,13,0.952,9.934,8.264,0.23,5.717,0.387,-62.714,4.92,0.108,0.031,0.071,0.25,424.0
+OMASP.HE,FI,Oma Säästöpankki Oyj,Financial Services,11.54,63.426,9,0.609,8.014,8.612,2.185,,12.608,-477.132,,0.0,0.338,0.145,3.714,383.0
+OUT1V.HE,FI,Outokumpu Oyj,Basic Materials,5.705,60.606,11,0.792,,11.114,0.498,57.455,0.543,-8.962,7.363,0.037,0.001,-0.048,,2689.0

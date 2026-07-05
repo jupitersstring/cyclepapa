@@ -1,6 +1,6 @@
 ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
-7937.T,JP,"Tsutsumi Jewelry Co.,Ltd.",Consumer Cyclical,2695.0,84.927,11,0.601,11.408,,1.196,1.799,0.286,76.519,-1.028,0.434,0.202,0.509,2.441,42114.0
-4628.T,JP,"Sk Kaken Co.,Ltd.",Basic Materials,9760.0,83.628,12,0.753,11.521,,1.2,2.292,0.268,77.653,5.187,0.3,0.099,0.081,2.682,131663.0
-9539.T,JP,"Keiyo Gas Co., Ltd.",Utilities,1336.0,80.816,11,0.396,13.373,,0.365,3.709,0.487,-23.262,,0.328,0.097,0.001,0.504,42958.0
-2763.T,JP,"FTGroup Co., Ltd.",Technology,1076.0,80.42,12,0.907,4.951,,1.013,1.764,0.528,47.873,14.714,0.418,0.429,-0.083,0.817,31988.0
-5273.T,JP,"Mitani Sekisan Co., Ltd.",Industrials,1408.0,78.823,12,0.974,7.19,,0.991,2.605,0.545,47.6,6.373,0.247,0.172,0.045,0.457,98915.0
+4628.T,JP,"Sk Kaken Co.,Ltd.",Basic Materials,9760.0,83.839,12,0.753,11.521,,1.2,2.292,0.268,77.653,5.187,0.3,0.099,0.081,2.682,131663.0
+2763.T,JP,"FTGroup Co., Ltd.",Technology,1076.0,80.407,12,0.907,4.951,,1.013,1.764,0.528,47.873,14.714,0.418,0.429,-0.083,0.817,31988.0
+1879.T,JP,Shinnihon Corporation,Industrials,2241.0,78.676,11,0.974,8.606,,0.947,1.688,0.255,73.106,10.749,0.185,0.185,0.066,0.225,131075.0
+5273.T,JP,"Mitani Sekisan Co., Ltd.",Industrials,1408.0,78.633,12,0.974,7.19,,0.991,2.605,0.545,47.6,6.373,0.247,0.172,0.045,0.457,98915.0
+6191.T,JP,AirTrip Corp.,Consumer Cyclical,780.0,77.231,13,1.034,6.412,8.739,0.531,2.531,0.422,40.799,14.349,0.545,0.132,0.443,0.448,17390.0
