@@ -193,7 +193,7 @@ _TEXT_COLS = {
     'shortname','category','growing_revenue_type','status','path','measure',
     'symbol','holder','firm','position','action','grade','transaction','insider',
     'ownership','text','url','tab','periodtype','period','pe_peak_date',
-    'axis','segment','viability_tier','screens_in',
+    'axis','segment','viability_tier','screens_in','scans',
 }
 
 # Human-readable column titles. snake_case → Title-Case-with-Units. Anything
@@ -371,7 +371,7 @@ def _excel_number_format(col_name: str, sample: float | None = None) -> str | No
     # Fractional columns — stored as decimals (0.105 means 10.5%, 37.8 means
     # 3780%). Use Excel's auto-percentage format which multiplies by 100.
     if name in ('share_now','shares_1y_chg','seg_growth','total_growth',
-                'excess_growth'):
+                'excess_growth','fcf_yield','chg52w','rev_g','avg_strength'):
         return r'0.0%;(0.0%);"–"'
     # Percent-like columns — data is already in pct points (e.g. 23.4 means
     # 23.4%). Render with a literal % suffix (Excel: escape with backslash).
@@ -390,7 +390,7 @@ def _excel_number_format(col_name: str, sample: float | None = None) -> str | No
     if name.endswith('_b') or name.endswith('_ltm_b'):
         return '#,##0.00;(#,##0.00);"–"'
     # Raw market cap / enterprise value — big numbers, no decimals
-    if name in ('market_cap','marketcap','enterprisevalue','ev_now','ev','total_ltm','seg_ltm'):
+    if name in ('market_cap','marketcap','enterprisevalue','ev_now','ev','total_ltm','seg_ltm','mcap','net_cash'):
         return '#,##0;(#,##0);"–"'
     # Days / counts / years
     if name in ('years_to_50pct','n_quarters'):
@@ -854,6 +854,60 @@ def build_top_100(wb):
                         'flagging the name; broad universe ranks count only at top-quartile standing.'))
 
 
+def build_asymmetry(wb):
+    """Asymmetry tab — '1-foot hurdle' setups flagged by multiple independent
+    scan angles (negative-EV, FCF machine, crashed quality, Graham, insider
+    cluster, analyst gap, unpriced segment, ...). Regenerated each build via
+    build_asymmetry.py so it tracks the live cache."""
+    try:
+        import build_asymmetry as basym
+        uni = basym.load_universe()
+        scans = basym.run_scans(uni)
+        df = scans.merge(
+            uni[['key','company','sector','country','mcap','pe','pb','ev_ebitda',
+                 'fcf_yield','net_cash','rev_g','chg52w']],
+            on='key', how='left').rename(columns={'key':'ticker'})
+        df = df[df.n_scans >= 2].head(150)
+        df.to_csv(OUT / 'asymmetry.csv', index=False)
+    except Exception as e:
+        print(f'  (Asymmetry skipped: {e})')
+        return
+    if df.empty:
+        return
+    ws = wb.create_sheet('Asymmetry')
+    ws.sheet_view.showGridLines = False
+    row = _draw_title_block(
+        ws,
+        kicker=f'One-Foot Hurdles  ·  Multi-Angle  ·  Workbook {WORKBOOK_VERSION}',
+        title='Asymmetry',
+        deck='Setups flagged by two or more independent asymmetry scans: '
+             'negative enterprise value, extreme free-cash-flow yield, deep '
+             'value with growth, crashed quality, single-digit Graham P/E, '
+             'below book while profitable, insider cluster buying, analyst '
+             'price gap, multi-screen validation, unpriced segment growth, '
+             'net-cash growth, and EV/FCF under five. More angles agreeing '
+             'means the cheapness is less likely to be one artifact. '
+             'Caveats travel with the names: one-time payments (licensing '
+             'upfronts) and post-restructuring items can fake several scans '
+             'at once — verify trailing numbers are run-rate before acting.',
+    )
+    row += 1
+    df = df.reset_index(drop=True)
+    df.insert(0, 'rank', range(1, len(df) + 1))
+    cols = ['rank','ticker','company','sector','country','n_scans','scans',
+            'ev_ebitda','pe','pb','fcf_yield','rev_g','chg52w','mcap','asym_score']
+    cols = [c for c in cols if c in df.columns]
+    end_row = _write_df(ws, df, cols, start_row=row)
+    _autosize(ws, cols)
+    from openpyxl.utils import get_column_letter as _gcl
+    if 'scans' in cols:
+        ws.column_dimensions[_gcl(cols.index('scans') + 1)].width = 52
+    ws.freeze_panes = 'C' + str(row + 1)
+    _add_footer(ws, end_row,
+                source=('Scans across the full primary-exchange universe with currency-sanity '
+                        'filters. Secondary listings, preferreds and warrants excluded.'))
+
+
 def build_best_of_best(wb, gav, fin, comb, top_n=25):
     ws = wb.create_sheet('Best of Best')
     ws.sheet_view.showGridLines = False
@@ -1167,6 +1221,17 @@ EXTRA_COLUMN_LABELS = {
     'screens_in': 'Screens In',
     'master_score': 'Master Score',
     'avg_standing': 'Avg Standing',
+    'n_scans': 'Scans',
+    'scans': 'Scan Angles',
+    'asym_score': 'Asymmetry Score',
+    'fcf_yield': 'FCF Yield',
+    'net_cash': 'Net Cash',
+    'chg52w': '52W Change',
+    'mcap': 'Market Cap',
+    'ev_ebitda': 'EV/EBITDA',
+    'pe': 'P/E (TTM)',
+    'pb': 'P/B',
+    'rev_g': 'Revenue Growth',
 }
 COLUMN_LABELS.update(EXTRA_COLUMN_LABELS)
 
@@ -1454,7 +1519,7 @@ def build_contents(wb):
     # Group sheets logically by name prefix
     def _group(name):
         if name in ('Contents','README','Executive Summary','Data Coverage'): return '1 · Front Matter'
-        if name in ('Top 100','Best of Best'): return '2 · Watchlist'
+        if name in ('Top 100','Asymmetry','Best of Best'): return '2 · Watchlist'
         if name.startswith('By Measure'): return '3 · By Measure'
         if name.startswith('Region'): return '4 · By Region'
         if name.startswith('CM ') or name == 'Creative Measures Index': return '5 · Creative Screens'
@@ -1467,6 +1532,7 @@ def build_contents(wb):
         'Executive Summary': 'Top three names per region across each major measure.',
         'Data Coverage': 'Field-by-field fill rates across the 12,435-ticker universe.',
         'Top 100': 'The 100 highest-conviction names, ranked by cross-screen breadth.',
+        'Asymmetry': 'One-foot hurdles — names flagged by 2+ independent asymmetry scans.',
         'Best of Best': 'Names that survive ≥2 independent screens — the watchlist.',
         'Creative Measures Index': 'Index of the eleven specialised screens with row counts.',
         'Glossary': 'Plain-English definition of every column.',
@@ -1694,6 +1760,7 @@ def main():
     build_exec_summary(wb, comb, gav, fin)
     build_data_coverage(wb)
     build_top_100(wb)
+    build_asymmetry(wb)
     build_best_of_best(wb, gav, fin, comb, top_n=25)
     build_global_measures(wb, gav, fin, comb)
     build_per_region_tabs(wb, gav, fin, comb, per_region)
