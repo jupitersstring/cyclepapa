@@ -489,6 +489,7 @@ def build_fundamentals(
     limit: int | None = None,
     symbols: list[str] | None = None,
     refresh: bool = False,
+    ttl_days: float = config.CACHE_TTL_DAYS,
     fail_ttl_days: float = config.FAIL_CACHE_TTL_DAYS,
     surprise_regions: tuple[str, ...] | None = None,
     verbose: bool = True,
@@ -497,7 +498,10 @@ def build_fundamentals(
 
     ``surprise_regions`` enables the (extra, US-centric) EPS-surprise pull only
     for symbols in those regions, to avoid wasting calls on markets Yahoo has no
-    surprise coverage for.
+    surprise coverage for. Pass ``ttl_days=float('inf')`` for a PURE-CACHE rebuild
+    that must never re-fetch (e.g. when the cache is older than CACHE_TTL_DAYS but
+    the transport is unavailable) — otherwise stale-but-good cached raws expire and
+    a failed re-fetch would overwrite them.
     """
     if symbols is not None:
         syms = list(symbols)
@@ -513,7 +517,7 @@ def build_fundamentals(
     rows = []
     n = len(syms)
     for i, sym in enumerate(syms, 1):
-        cached = None if refresh else load_raw(sym, fail_ttl_days=fail_ttl_days)
+        cached = None if refresh else load_raw(sym, ttl_days=ttl_days, fail_ttl_days=fail_ttl_days)
         if cached is not None and (not surprise_regions or "surprises" in cached):
             raw = cached
         else:
