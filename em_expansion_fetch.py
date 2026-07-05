@@ -2,21 +2,28 @@
 
 Widens the universe into emerging + frontier markets (China A-shares, India,
 Brazil, Thailand, Indonesia, Turkey, Mexico, ...) using financedatabase for
-the target list + static metadata, and the Yahoo HTML frontend for live
-valuation/price where Yahoo serves the ticker.
+the target list + static metadata, and Yahoo's quoteSummary API for live
+valuation/price.
 
 Two-tier fill so EVERY name adds breadth:
-  1. Try finance.yahoo.com HTML  -> full valuation (EV/EBITDA, P/E, P/B) +
-     price-summary (52-week change) when served.
-  2. On 404 / no-data, write a METADATA-ONLY info_metrics from the
+  1. Try Yahoo's quoteSummary API (via yahoo_session, the warmed cookie+crumb
+     client) -> full valuation (EV/EBITDA, P/E, P/B, FCF, margins, growth,
+     52-week change) whenever Yahoo serves the ticker.
+  2. On genuine no-data / 404, write a METADATA-ONLY info_metrics from the
      financedatabase row (company, sector, industry, country, market-cap
      tier, currency). The name then counts for sector/country/breadth views
      even though Yahoo has no quote for it.
 
-Yahoo is the only live-fundamentals path that works from this IP-throttled
-shared egress (Stooq is bot-gated; the query1/2 API is 429-blocked), so we
-pace at a sustainable rate. Resumable via __em_tried sentinels — a re-run
-continues where it stopped, safe across container reboots.
+THE FIX: the old path scraped finance.yahoo.com HTML at ~1/s because we
+believed query1/query2 were IP-rate-limited. They are not — they require a
+warmed A1/A3/A1S cookie session + a crumb token (see yahoo_session.py). With
+those, the same shared IP sustains ~18 req/s with zero failures. This fetcher
+now uses that API path directly, so the 9k metadata-only rows backfill with
+real valuations in minutes instead of hours.
+
+Resumable via __em_api_tried sentinels — a re-run continues where it stopped,
+safe across container reboots. A single-instance flock guard prevents parallel
+copies from stepping on each other.
 """
 from __future__ import annotations
 import argparse, time
@@ -26,7 +33,8 @@ import pandas as pd
 
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from yahoo_html_fetcher import fetch_quote_html, warm_session, _safe, YF_CACHE
+from yahoo_html_fetcher import _safe, YF_CACHE
+from yahoo_session import fetch_info, get_session
 
 TARGETS = Path('.cache/expansion/em_targets.csv')
 
@@ -38,9 +46,14 @@ _TIER_MCAP = {
     'Micro Cap': 150e6, 'Nano Cap': 30e6,
 }
 
+# Fields whose presence means "Yahoo actually served a real quote".
+_REAL_KEYS = ('marketCap', 'trailingPE', 'priceToBook', 'enterpriseToEbitda',
+              'enterpriseToRevenue', 'regularMarketPrice', 'currentPrice',
+              'totalRevenue', 'freeCashflow')
 
-def _tried(safe: str) -> Path:
-    return YF_CACHE / f'{safe}__em_tried'
+
+def _api_tried(safe: str) -> Path:
+    return YF_CACHE / f'{safe}__em_api_tried'
 
 
 def _load_targets() -> pd.DataFrame:
@@ -72,16 +85,18 @@ def pending() -> pd.DataFrame:
     keep = []
     for _, row in df.iterrows():
         safe = _safe(row['symbol'])
-        # Skip if we already have REAL (non-meta) info, or already tried
+        # Skip if we already have REAL (non-meta) info from any source.
         p = YF_CACHE / f'{safe}__info_metrics.parquet'
         if p.exists():
             try:
-                src = pd.read_parquet(p).iloc[0].get('_source')
+                src = pd.read_parquet(p, columns=['_source']).iloc[0].get('_source')
                 if src != 'financedatabase_meta':
-                    continue   # already have real data
+                    continue   # already have real data (core / html / api)
             except Exception:
+                # No _source column == original native fetch == real data.
                 continue
-        if _tried(safe).exists():
+        # Skip if we already gave this one an API attempt.
+        if _api_tried(safe).exists():
             continue
         keep.append(row)
     return pd.DataFrame(keep)
@@ -89,10 +104,9 @@ def pending() -> pd.DataFrame:
 
 def _acquire_single_instance_lock():
     """Ensure only ONE em_expansion process fetches at a time, no matter how
-    many the supervisor/cron/forever layers launch. Concurrent Yahoo fetchers
-    saturate the shared-IP throttle (yield collapses ~2%), so this lock is the
-    difference between working and not. Returns the lock handle (kept open for
-    the process lifetime) or exits quietly if another instance holds it."""
+    many the supervisor/cron/forever layers launch. Returns the lock handle
+    (kept open for the process lifetime) or exits quietly if another instance
+    holds it."""
     import fcntl, os, sys
     lock_path = YF_CACHE.parent / 'em_expansion.lock'
     fh = open(lock_path, 'w')
@@ -107,30 +121,30 @@ def _acquire_single_instance_lock():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--rate', type=float, default=1.2)
+    ap.add_argument('--rate', type=float, default=8.0,
+                    help='requests/sec ceiling (API sustains ~18; 8 is a '
+                         'polite share of the common egress)')
     ap.add_argument('--max', type=int, default=40000)
-    ap.add_argument('--refresh-every', type=int, default=25)
     args = ap.parse_args()
 
     _lock = _acquire_single_instance_lock()   # held for process lifetime
     todo = pending()
-    print(f'EM expansion: {len(todo):,} pending targets', flush=True)
+    print(f'EM expansion (API): {len(todo):,} pending targets', flush=True)
     if todo.empty:
         return
     todo = todo.head(args.max)
-    sess = warm_session()
+    sess = get_session()
     sleep = 1.0 / args.rate if args.rate > 0 else 0
     n_real = n_meta = 0
-    consec = throttle = 0
     t0 = time.time()
     for i, (_, row) in enumerate(todo.iterrows(), 1):
         sym = row['symbol']; safe = _safe(sym)
-        info = fetch_quote_html(sym, sess)
-        err = info.get('_error')
-        got_real = (not err) and any(
-            info.get(k) is not None for k in
-            ('marketCap', 'trailingPE', 'priceToBook', 'enterpriseToEbitda',
-             'regularMarketPrice'))
+        try:
+            info = fetch_info(sym, sess)
+        except Exception:
+            info = {'_error': 'exception'}
+        got_real = ('_error' not in info) and any(
+            info.get(k) is not None for k in _REAL_KEYS)
         if got_real:
             # Merge financedatabase metadata as a floor (sector/industry that
             # Yahoo sometimes lacks for EM names), then write.
@@ -144,33 +158,28 @@ def main():
                 n_real += 1
             except Exception:
                 pass
-            consec = throttle = 0
         else:
-            # Metadata-only fallback so the name still counts for breadth
-            try:
-                pd.DataFrame([_metadata_record(row)]).to_parquet(
-                    YF_CACHE / f'{safe}__info_metrics.parquet', compression='snappy')
-                n_meta += 1
-            except Exception:
-                pass
-            if err in ('timeout',) or (err and 'http_429' in err):
-                throttle += 1; consec += 1
-            else:
-                throttle = 0; consec += 1
-            if throttle >= 5:
-                time.sleep(30); sess = warm_session(); throttle = consec = 0
-            elif consec >= args.refresh_every:
-                sess = warm_session(); consec = 0; time.sleep(2)
-        # Mark tried regardless
-        try: _tried(safe).touch()
+            # Metadata-only fallback so the name still counts for breadth. Only
+            # (over)write when we don't already have a meta row, to avoid churn.
+            p = YF_CACHE / f'{safe}__info_metrics.parquet'
+            if not p.exists():
+                try:
+                    pd.DataFrame([_metadata_record(row)]).to_parquet(
+                        p, compression='snappy')
+                except Exception:
+                    pass
+            n_meta += 1
+        # Mark API-tried regardless, so a re-run skips it.
+        try: _api_tried(safe).touch()
         except Exception: pass
-        if i % 100 == 0:
+        if i % 200 == 0:
             el = time.time() - t0
             rate = i / el if el > 0 else 0
             eta = (len(todo) - i) / rate / 60 if rate > 0 else 0
             print(f'  {i:>6,}/{len(todo):,}  real={n_real:,} meta={n_meta:,} '
                   f'rate={rate:.2f}/s eta={eta:.0f}min', flush=True)
-        time.sleep(sleep)
+        if sleep:
+            time.sleep(sleep)
     print(f'\nFinal: real={n_real:,} meta-only={n_meta:,} of {len(todo):,}', flush=True)
 
 
