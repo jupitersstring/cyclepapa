@@ -1,0 +1,61 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+ABI.BR,Consumer Staples,Large Cap,daily,1,0,1,0.16118873235205716,▲,,,,,
+ACCB.BR,Financials,Micro Cap,daily,0,2,-2,-0.8641799585902741,,▼,,▼,,
+ACKB.BR,Industrials,Mid Cap,daily,0,1,-1,-0.4793425585357912,▼,,,,▲,
+AED.BR,Real Estate,Mid Cap,daily,0,1,-1,-0.10316640374123287,▼,,,,,
+ATEB.BR,Real Estate,Small Cap,daily,1,2,-1,0.06630402587818879,▼,▲,,▼,±,▼
+BAR.BR,Information Technology,Mid Cap,daily,0,1,-1,-0.5721910384773378,▼,,,,,
+BEKB.BR,Industrials,Mid Cap,daily,1,1,0,0.5094321292154971,▲,▼,,,,
+BPOST.BR,Industrials,Mid Cap,daily,1,1,0,0.4505889418936362,▲,▼,,,,
+CAMB.BR,Industrials,Micro Cap,daily,0,2,-2,-0.22544323111897752,▼,▼,,,,▼
+CENER.BR,Industrials,Small Cap,daily,1,0,1,0.024138887998612375,▲,±,,,,
+CFEB.BR,Industrials,Mid Cap,daily,0,1,-1,-0.2111099125415154,▼,,,,,
+COMB.BR,Financials,Small Cap,daily,0,2,-2,-0.2505245196977681,,,▼,▼,▼,
+CYAD.BR,Health Care,Micro Cap,daily,0,1,-1,-0.12038221384387149,▼,,,,▼,▲
+DECB.BR,Industrials,Small Cap,daily,0,2,-2,-0.25855544636389916,▼,,▼,±,,
+EKOP.BR,Utilities,Micro Cap,daily,1,1,0,0.17980567180834728,▲,▼,,,▲,
+ELI.BR,Utilities,Mid Cap,daily,1,0,1,0.671652967215379,▲,,,,▲,▲
+EVS.BR,Information Technology,Micro Cap,daily,1,1,0,0.17754007101759867,▲,,,▼,▼,
+EXM.BR,Energy,Micro Cap,daily,1,1,0,-0.002599762477441231,▼,▲,,,,
+FAGR.BR,Health Care,Small Cap,daily,2,0,2,0.2223167438582568,▲,▲,,,,
+FLOB.BR,Industrials,Small Cap,daily,1,0,1,1.0452168219488063,▲,±,,,,
+FLUX.BR,Energy,Mid Cap,daily,1,1,0,-0.13354707021133028,▼,▲,,,▼,
+GIMB.BR,Financials,Small Cap,daily,3,0,3,0.21800664467625624,,▲,▲,▲,±,
+HOMI.BR,Real Estate,Small Cap,daily,1,1,0,0.00552949798540775,,,▲,▼,,▲
+HYL.BR,Health Care,Small Cap,daily,1,2,-1,-0.26763938553710137,▼,,▲,▼,▼,
+IEP.BR,Real Estate,Micro Cap,daily,3,0,3,0.5502058267557811,,▲,▲,▲,▼,
+IMMO.BR,Real Estate,Small Cap,daily,0,2,-2,-0.8414564061486987,▼,▼,,,,
+INCLU.BR,Real Estate,Micro Cap,daily,1,0,1,0.00813415707063297,▲,,,,±,
+KBC.BR,Financials,Large Cap,daily,1,0,1,0.28921788386681024,▲,,,,±,
+KBCA.BR,Financials,Mid Cap,daily,0,1,-1,-0.16495644603393336,▼,,,,±,
+KIN.BR,Communication Services,Small Cap,daily,0,1,-1,-0.22847338121477512,▼,,,,,
+LOTB.BR,Consumer Staples,Mid Cap,daily,1,1,0,-0.09468470146328051,▲,▼,,,,▲
+MELE.BR,Information Technology,Mid Cap,daily,1,0,1,0.28983989897156376,,▲,,,,
+MIKO.BR,Consumer Staples,Micro Cap,daily,2,2,0,-0.18164283141271154,▼,▼,▲,▲,▼,
+MONT.BR,Real Estate,Small Cap,daily,1,1,0,0.40691365362772924,▲,,,▼,,▼
+MOUR.BR,Industrials,Micro Cap,daily,2,0,2,0.5421311264732528,▲,,,▲,,
+NYXH.BR,Health Care,Small Cap,daily,1,0,1,0.21104895058887282,,,▲,±,,▼
+ONTEX.BR,Consumer Staples,Small Cap,daily,1,1,0,0.31145616134725124,▲,▼,,,,
+OXUR.BR,Health Care,Micro Cap,daily,2,0,2,0.423337994543098,▲,,,▲,±,
+PROX.BR,Communication Services,Mid Cap,daily,1,0,1,0.03910659787142883,,▲,,,,
+QFG.BR,Financials,Micro Cap,daily,1,1,0,0.31617864154093944,▲,,▼,,,
+ROU.BR,Communication Services,Micro Cap,daily,1,0,1,0.026806396080027342,,,▲,±,,
+SIP.BR,Consumer Staples,Small Cap,daily,1,2,-1,-0.19264020320181025,▼,,▼,▲,,
+SOF.BR,Financials,Large Cap,daily,1,0,1,0.026197504200940348,▲,,,,▲,
+SOLB.BR,Materials,Large Cap,daily,0,2,-2,-0.6014990010844565,,,▼,▼,±,
+SOLV.BR,Materials,Mid Cap,daily,1,2,-1,-0.25607557378699625,▲,▼,,▼,▼,
+SPA.BR,Consumer Staples,Small Cap,daily,1,0,1,0.5062511667311754,,,▲,,,
+TESB.BR,Materials,Small Cap,daily,2,0,2,0.6149732132087572,▲,▲,,,▲,▼
+TEXF.BR,Industrials,Micro Cap,daily,1,0,1,0.37630497319446987,▲,,,,,▼
+TITC.BR,Materials,Small Cap,daily,1,0,1,0.08927455190785626,,,,▲,▲,
+TUB.BR,Health Care,Mid Cap,daily,0,1,-1,-0.5298465343502019,▼,,,,▼,
+UCB.BR,Health Care,Large Cap,daily,1,2,-1,-0.3299179312807587,▼,▲,,▼,,
+UMI.BR,Industrials,Large Cap,daily,1,0,1,0.797980061983157,▲,,,,±,
+VAN.BR,Consumer Discretionary,Small Cap,daily,0,1,-1,-0.08599793295347864,,▼,,,,
+VASTB.BR,Real Estate,Micro Cap,daily,0,1,-1,-0.16421934547254868,,▼,,,,
+VGP.BR,Real Estate,Mid Cap,daily,0,1,-1,-0.008161938507216825,,▼,,,,
+VIO.BR,Materials,Small Cap,daily,0,2,-2,-0.4761619097048134,,▼,,▼,▲,▲
+WDP.BR,Real Estate,Small Cap,daily,1,0,1,0.3454643025930438,▲,,,,▼,
+WEB.BR,Real Estate,Micro Cap,daily,2,2,0,0.3008998286101161,▼,▼,▲,▲,▼,
+WEHB.BR,Real Estate,Small Cap,daily,0,1,-1,-0.157918709837271,,▼,,,,
+XIOR.BR,Real Estate,Small Cap,daily,2,1,1,0.43408951266247814,,▼,▲,▲,,
