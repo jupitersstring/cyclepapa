@@ -28,13 +28,18 @@ while true; do
   echo "$(ts) deep run #$ATT" >> "$LOG"
   "$PY" ticker_yf_deep.py --rate 2.5 >> deep_enrich.log 2>&1
   REMAIN=$("$PY" - <<'PYEOF'
-import pandas as pd, os
+import pandas as pd, os, json
 u = pd.read_csv("fdb_expansion_universe.csv")["symbol"].dropna().drop_duplicates()
 done = set()
 if os.path.exists("fdb_expansion_yartseva.csv"):
     try: done = set(pd.read_csv("fdb_expansion_yartseva.csv", usecols=["symbol"])["symbol"].dropna())
     except Exception: pass
-print(len([s for s in u if s not in done]))
+att = {}
+if os.path.exists("fdb_deep_attempts.json"):
+    try: att = json.load(open("fdb_deep_attempts.json"))
+    except Exception: att = {}
+# "remaining" = names neither enriched nor retired (attempts < 3)
+print(len([s for s in u if s not in done and att.get(s, 0) < 3]))
 PYEOF
 )
   echo "$(ts) remaining=$REMAIN" >> "$LOG"

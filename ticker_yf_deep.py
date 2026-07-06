@@ -203,6 +203,8 @@ def main():
     ap.add_argument("--out", default="fdb_expansion_yartseva.csv")
     ap.add_argument("--rate", type=float, default=2.5)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--attempts", default="fdb_deep_attempts.json")
+    ap.add_argument("--max-attempts", type=int, default=3)
     args = ap.parse_args()
 
     src = pd.read_csv(args.symbols_from)
@@ -215,10 +217,36 @@ def main():
             done = set(pd.read_csv(args.out, usecols=["symbol"])["symbol"].dropna())
         except Exception:
             pass
-    todo = [s for s in symbols if s not in done]
+
+    # Attempt tracking: many nano-cap FDB lines have no Yahoo fundamentals
+    # and will never succeed. Without a cap on retries the driver loops
+    # forever. We retry each name up to MAX_ATTEMPTS (transient throttle
+    # gets more chances via the Throttled path, which does NOT count as an
+    # attempt); after that the name retires so the run can finish.
+    MAX_ATTEMPTS = args.max_attempts
+    attempts = {}
+    if os.path.exists(args.attempts):
+        try:
+            attempts = json.load(open(args.attempts))
+        except Exception:
+            attempts = {}
+
+    def save_attempts():
+        try:
+            tmp = args.attempts + ".tmp"
+            json.dump(attempts, open(tmp, "w"))
+            os.replace(tmp, args.attempts)
+        except Exception:
+            pass
+
+    todo = [s for s in symbols
+            if s not in done and attempts.get(s, 0) < MAX_ATTEMPTS]
+    retired = sum(1 for s in symbols
+                  if s not in done and attempts.get(s, 0) >= MAX_ATTEMPTS)
     if args.limit:
         todo = todo[:args.limit]
-    print(f"{len(todo):,} to deep-enrich ({len(done):,} done)", file=sys.stderr)
+    print(f"{len(todo):,} to deep-enrich ({len(done):,} done, "
+          f"{retired:,} retired after {MAX_ATTEMPTS} attempts)", file=sys.stderr)
     if not todo:
         return
 
@@ -253,6 +281,8 @@ def main():
         try:
             row = enrich_one(sess, sym, meta)
         except (Throttled, StaleCrumb):
+            # Transient — does NOT count as an attempt; the name stays in
+            # todo and gets retried once the throttle window clears.
             consec += 1
             back = min(90, 10 * (1 + consec // 5))
             time.sleep(back)
@@ -270,13 +300,18 @@ def main():
             ok += 1
             consec = 0
         else:
+            # Genuine no-data fail (fetch returned 200 but empty / insufficient
+            # to compute a row). Count an attempt so dead names retire.
             fail += 1
             consec += 1
+            attempts[sym] = attempts.get(sym, 0) + 1
         if i % 50 == 0:
+            save_attempts()
             rate = i / max(1.0, time.time() - start)
             print(f"  {i:,}/{len(todo):,} ok={ok} fail={fail} "
                   f"({rate:.2f}/s, ETA {(len(todo)-i)/rate/60:.0f}m)", file=sys.stderr)
             sys.stderr.flush()
+    save_attempts()
     fout.close()
     print(f"DONE ok={ok} fail={fail}", file=sys.stderr)
 
