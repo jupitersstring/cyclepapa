@@ -186,8 +186,13 @@ def chart(symbol: str, rng: str = '2y', interval: str = '1d',
         if r.status_code != 200:
             return {}
         res = r.json()['chart']['result'][0]
+        q = (res.get('indicators', {}).get('quote') or [{}])[0]
+        adj = (res.get('indicators', {}).get('adjclose') or [{}])[0]
         return {'timestamp': res.get('timestamp', []),
-                'close': res['indicators']['quote'][0].get('close', []),
+                'open': q.get('open', []), 'high': q.get('high', []),
+                'low': q.get('low', []), 'close': q.get('close', []),
+                'volume': q.get('volume', []),
+                'adjclose': adj.get('adjclose', []),
                 'meta': res.get('meta', {})}
     except Exception:
         return {}
