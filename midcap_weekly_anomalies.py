@@ -67,6 +67,18 @@ REGIONS = {
     "fr": ("France", {"PAR"}, "EUR", "PA"),
     "nl": ("Netherlands", {"AMS"}, "EUR", "AS"),
     "au": ("Australia", {"ASX"}, "AUD", "AX"),
+    "jp": ("Japan", {"JPX"}, "JPY", "T"),
+    "ch": ("Switzerland", {"EBS"}, "CHF", "SW"),
+    "it": ("Italy", {"MIL"}, "EUR", "MI"),
+    "es": ("Spain", {"MCE"}, "EUR", "MC"),
+    "se": ("Sweden", {"STO"}, "SEK", "ST"),
+    "hk": ("Hong Kong", {"HKG"}, "HKD", "HK"),
+    "in": ("India", {"NSE"}, "INR", "NS"),
+    "no": ("Norway", {"OSL"}, "NOK", "OL"),
+    "dk": ("Denmark", {"CPH"}, "DKK", "CO"),
+    "fi": ("Finland", {"HEL"}, "EUR", "HE"),
+    "be": ("Belgium", {"BRU"}, "EUR", "BR"),
+    "sg": ("Singapore", {"SES"}, "SGD", "SI"),
 }
 _TICKER_RE = _re.compile(r"^[A-Z]{1,5}(-[A-Z])?$")            # US common stock
 

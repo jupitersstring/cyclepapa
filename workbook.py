@@ -35,7 +35,10 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(ROOT, ".cache")
 RESULTS = os.path.join(ROOT, "results")
 REGION_NAME = {"us": "United States", "uk": "United Kingdom", "ca": "Canada",
-               "de": "Germany", "fr": "France", "nl": "Netherlands", "au": "Australia"}
+               "de": "Germany", "fr": "France", "nl": "Netherlands", "au": "Australia",
+               "jp": "Japan", "ch": "Switzerland", "it": "Italy", "es": "Spain",
+               "se": "Sweden", "hk": "Hong Kong", "in": "India", "no": "Norway",
+               "dk": "Denmark", "fi": "Finland", "be": "Belgium", "sg": "Singapore"}
 CRIMSON = "A51C30"; CRIMSON_D = "7A0019"; PAPER = "FBF7F2"; INK = "1A1A1A"; RULE = "C9B8A8"
 
 # leg -> (column, ascending?) for the per-leg Top-N sheets
