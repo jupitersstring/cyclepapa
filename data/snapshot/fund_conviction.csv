@@ -373,7 +373,7 @@ Cove Street Capital,SRG,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Speci
 Cove Street Capital,GEG,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,4.1
 Cove Street Capital,SJT,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
 Cove Street Capital,UFI,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
-Cove Street Capital,CLVT,"HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",9.0,1.2,10.8,Small-cap / Multibagger Specialists,75.0,,0.0
+Cove Street Capital,CLVT,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
 Cove Street Capital,AVNS,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
 Roumell Asset Management,OLO,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,11.1,,5.9
 Roumell Asset Management,OPRA,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,10.7,,5.7
@@ -2279,7 +2279,7 @@ Marlowe Partners LP,VLTO,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,6.8,,1.8
 Marlowe Partners LP,POOL,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,TOP_PICK",10.0,1.0,10.0,Other / Unclassified,6.7,,1.7
 Marlowe Partners LP,PLYA,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,5.3,,1.4
 Marlowe Partners LP,SOLV,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.0,3.5,Other / Unclassified,4.2,,1.1
-Horton Capital Management,KRMD,"HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,72.0,,32.0
+Horton Capital Management,KRMD,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,72.0,,32.0
 Horton Capital Management,URGN,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,15.0,,6.7
 Horton Capital Management,MYO,"ACTIVIST_13D,HOLDING_PERSIST,NEW_INIT_LARGE",6.5,1.4,9.1,Activists / Special Situations,,6.0,3.6
 Horton Capital Management,OSS,ACTIVIST_13D,3.0,1.4,4.2,Activists / Special Situations,,4.3,0.0

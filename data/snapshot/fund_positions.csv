@@ -542,7 +542,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 557,Cove Street Capital,SJT,San Juan Basin Royalty Trust,3,,book,,,,SJT (San Juan Basin Royalty Trust) | New | Q3 2025 | https://stockzoa.com/fund/cove-street-capital/,2026-05-30
 558,Cove Street Capital,UFI,Unifi,3,,book,,,,UFI (Unifi) | New | Q3 2025 | https://stockzoa.com/fund/cove-street-capital/,2026-05-30
 559,Cove Street Capital,FUN,,4,6.1,book,,6.1%,,"FUN | small | 6.1% | Q3 2025 (+1,711%) | https://stockzoa.com/fund/cove-street-capital/",2026-05-30
-560,Cove Street Capital,CLVT,Clarivate,4,75.0,book,,"Q3 2025 (+4,075%)",,"CLVT (Clarivate) | small | n/a | Q3 2025 (+4,075%) | https://stockzoa.com/fund/cove-street-capital/",2026-05-30
+560,Cove Street Capital,CLVT,Clarivate,4,,book,,"Q3 2025 (+4,075%)",,"CLVT (Clarivate) | small | n/a | Q3 2025 (+4,075%) | https://stockzoa.com/fund/cove-street-capital/",2026-05-30
 561,Cove Street Capital,AVNS,Avanos,4,,,,Q3 2025 (+430%),,AVNS (Avanos) | small | n/a | Q3 2025 (+430%) | https://stockzoa.com/fund/cove-street-capital/,2026-05-30
 562,Cove Street Capital,AVD,,4,10.5,book,3.1,10.5%,,AVD | n/a | 10.5% | Q3 2025 (+$3.1M) | https://stockzoa.com/fund/cove-street-capital/,2026-05-30
 563,Roumell Asset Management,OLO,Olo Inc,1,11.1,book,5.9,11.1% portfolio,,OLO (Olo Inc) | 11.1% portfolio | ~$5.9M | +44% (added) | https://stockzoa.com/fund/roumell-asset-management-llc/,2026-05-30
