@@ -266,9 +266,9 @@ def current_and_slope(series: pd.Series):
 # ─────────────────────────────────────────────────────────────────
 
 def fetch_interval_bulk(tickers, interval, chunk=50,
-                         retries=3, pause=1.0):
+                         retries=3, pause=1.0, include_volume=False):
     """Bulk fetch tickers at a given yfinance interval. Returns dict
-    {ticker: DataFrame[Open,High,Low,Close]}. Missing tickers are absent."""
+    {ticker: DataFrame[Open,High,Low,Close(,Volume)]}. Missing tickers absent."""
     period = PERIOD_BY_INTERVAL[interval]
     print(f"Fetching {len(tickers)} tickers @ {interval} (period={period})...", file=sys.stderr)
     out = {}
@@ -287,14 +287,18 @@ def fetch_interval_bulk(tickers, interval, chunk=50,
                     time.sleep(pause * (attempt + 1))
                     continue
                 if isinstance(df.columns, pd.MultiIndex):
+                    has_vol = "Volume" in df.columns.get_level_values(0)
                     for t in batch:
                         try:
-                            sub = pd.DataFrame({
+                            cols = {
                                 "Open":  df["Open"][t],
                                 "High":  df["High"][t],
                                 "Low":   df["Low"][t],
                                 "Close": df["Close"][t],
-                            }).dropna(subset=["Close"])
+                            }
+                            if include_volume and has_vol:
+                                cols["Volume"] = df["Volume"][t]
+                            sub = pd.DataFrame(cols).dropna(subset=["Close"])
                             if not sub.empty:
                                 if sub.index.tz is not None:
                                     sub.index = sub.index.tz_localize(None)

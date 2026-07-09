@@ -52,6 +52,7 @@ PATTERNS = [
     ("/tmp/minervini_metric_eval.csv",           DATA / "picks"),
     ("/tmp/cross_region_top_uncorrelated.csv",   DATA / "picks"),
     ("/tmp/leledc_rank.csv",                     DATA / "leledc"),
+    ("/tmp/volume_rank.csv",                     DATA / "volume"),
     ("/tmp/stars_aligned_top_picks.xlsx",        DATA),
     ("/tmp/EWUS*.csv",                           DATA / "universe"),
     ("/tmp/IEUS*.csv",                           DATA / "universe"),
