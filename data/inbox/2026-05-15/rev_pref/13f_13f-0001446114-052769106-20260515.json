@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-052769106-20260515",
+  "cik": "",
+  "cusip": "052769106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "AUTODESK INC COM",
+  "position_shares": 465.0,
+  "position_value": 111321.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to AUTODESK INC COM (+330.6% shares to 465); $111,321 (or $111,321,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

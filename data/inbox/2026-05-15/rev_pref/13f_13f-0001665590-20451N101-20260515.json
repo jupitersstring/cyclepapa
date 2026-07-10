@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001665590-20451N101-20260515",
+  "cik": "",
+  "cusip": "20451N101",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Engine Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001665590",
+  "fund_name": "Engine Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "COMPASS MINERALS INTL INC",
+  "position_shares": 1439065.0,
+  "position_value": 33602168.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Engine Capital ADDED to COMPASS MINERALS INTL INC (+275.4% shares to 1,439,065); $33,602,168 (or $33,602,168,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001665590&type=13F-HR"
+}

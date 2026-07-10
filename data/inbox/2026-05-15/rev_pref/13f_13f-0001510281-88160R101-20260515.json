@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-88160R101-20260515",
+  "cik": "",
+  "cusip": "88160R101",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "TESLA INC",
+  "position_shares": 323969.0,
+  "position_value": 120435476.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Saba Capital ADDED to TESLA INC (+146.8% shares to 323,969); $120,435,476 (or $120,435,476,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

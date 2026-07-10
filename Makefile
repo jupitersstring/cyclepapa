@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -98,6 +98,21 @@ lobbying-poll: audit
 credit-spread-poll: audit
 	python3 -m src.credit_spread_poll
 
+# 13F institutional-holdings mirror — diffs known special-sits funds'
+# quarterly filings for NEW positions + material adds (smart-money signal).
+thirteenf-poll: audit
+	python3 -m src.thirteenf_poll --min-value-usd 10000000
+
+# Post-reorganization / fresh-start equity poller — catches companies
+# EMERGING from Chapter 11 (the payoff end PACER's entry-signal misses).
+postreorg-poll: audit
+	python3 -m src.postreorg_poll --days-back 90
+
+# Cross-source corroboration — fuses all pollers; surfaces entities
+# independently flagged by >= 2 distinct sources.
+corroborate: audit
+	python3 -m src.corroborate --days-back 14
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -133,7 +148,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll spinoff cluster-buys inbox-promote workbook
+refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll spinoff cluster-buys corroborate inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

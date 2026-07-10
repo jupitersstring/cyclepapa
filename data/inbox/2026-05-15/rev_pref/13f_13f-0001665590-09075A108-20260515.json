@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001665590-09075A108-20260515",
+  "cik": "",
+  "cusip": "09075A108",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Engine Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001665590",
+  "fund_name": "Engine Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BIOVENTUS INC",
+  "position_shares": 315018.0,
+  "position_value": 2876114.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Engine Capital opened a NEW position in BIOVENTUS INC (COM CL A); $2,876,114 (or $2,876,114,000 if filed in $000s); 315,018 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001665590&type=13F-HR"
+}

@@ -1,0 +1,26 @@
+{
+  "accession": "13f-0001510281-G0233J118-20260515",
+  "cik": "",
+  "cross_fund_consensus": [
+    "Saba Capital",
+    "Sculptor Capital"
+  ],
+  "cusip": "G0233J118",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ALUSSA ENERGY ACQUISIT CORP",
+  "position_shares": 49095.0,
+  "position_value": 17679.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "[CROSS-FUND CONSENSUS: 2 distinct funds: Saba Capital, Sculptor Capital] Saba Capital opened a NEW position in ALUSSA ENERGY ACQUISIT CORP (*W EXP 04/10/202); $17,679 (or $17,679,000 if filed in $000s); 49,095 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

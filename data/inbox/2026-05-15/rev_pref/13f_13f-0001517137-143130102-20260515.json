@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001517137-143130102-20260515",
+  "cik": "",
+  "cusip": "143130102",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Starboard Value)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001517137",
+  "fund_name": "Starboard Value",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "CARMAX INC",
+  "position_shares": 6201362.0,
+  "position_value": 257852632.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Starboard Value opened a NEW position in CARMAX INC (COM); $257,852,632 (or $257,852,632,000 if filed in $000s); 6,201,362 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001517137&type=13F-HR"
+}

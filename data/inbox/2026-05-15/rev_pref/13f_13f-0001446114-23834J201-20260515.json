@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-23834J201-20260515",
+  "cik": "",
+  "cusip": "23834J201",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "DAVE INC",
+  "position_shares": 7540.0,
+  "position_value": 1312639.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in DAVE INC (COM); $1,312,639 (or $1,312,639,000 if filed in $000s); 7,540 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

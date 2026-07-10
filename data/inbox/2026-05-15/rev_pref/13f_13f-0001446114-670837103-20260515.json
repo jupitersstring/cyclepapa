@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-670837103-20260515",
+  "cik": "",
+  "cusip": "670837103",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "OGE ENERGY CORP",
+  "position_shares": 1750.0,
+  "position_value": 83930.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to OGE ENERGY CORP (+27.6% shares to 1,750); $83,930 (or $83,930,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-925283103-20260515",
+  "cik": "",
+  "cusip": "925283103",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "VERSANT MEDIA GROUP INC COM CL",
+  "position_shares": 262175.0,
+  "position_value": 9705718.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in VERSANT MEDIA GROUP INC COM CL (COM); $9,705,718 (or $9,705,718,000 if filed in $000s); 262,175 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

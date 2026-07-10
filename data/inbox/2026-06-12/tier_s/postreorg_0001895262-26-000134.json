@@ -1,0 +1,17 @@
+{
+  "accession": "0001895262-26-000134",
+  "cik": "0001895262",
+  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "filed": "2026-06-12",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Noble Corp plc  (NE, NE-WT, NE-WTA)  (CIK 0001895262)",
+  "query_label": "tier_s.post_reorg_freshstart",
+  "query_note": "Fresh-start accounting \u2014 a post-emergence entity by definition. Uncovered equity, forced-seller creditors, clean cap stack. Classic distressed-to-equity setup.",
+  "source": "EDGAR-postreorg",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1895262/000189526226000134"
+}

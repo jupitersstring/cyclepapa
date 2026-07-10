@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001791786-40415F101-20260515",
+  "cik": "",
+  "cusip": "40415F101",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Elliott Investment Management)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001791786",
+  "fund_name": "Elliott Investment Management",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "HDFC BANK LTD",
+  "position_shares": 797085.0,
+  "position_value": 19831475.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Elliott Investment Management ADDED to HDFC BANK LTD (+267.7% shares to 797,085); $19,831,475 (or $19,831,475,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001791786&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-G5414D103-20260515",
+  "cik": "",
+  "cusip": "G5414D103",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "LEAPFROG ACQUISITION CORP",
+  "position_shares": 132543.0,
+  "position_value": 1315489.0,
+  "query_label": "rev_pref.thirteenf_spac_arb",
+  "query_note": "Saba Capital opened a NEW position in LEAPFROG ACQUISITION CORP (CL A ORD SHS); $1,315,489 (or $1,315,489,000 if filed in $000s); 132,543 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

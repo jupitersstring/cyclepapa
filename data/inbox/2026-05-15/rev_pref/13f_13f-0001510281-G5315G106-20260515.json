@@ -1,0 +1,26 @@
+{
+  "accession": "13f-0001510281-G5315G106-20260515",
+  "cik": "",
+  "cross_fund_consensus": [
+    "Saba Capital",
+    "Sculptor Capital"
+  ],
+  "cusip": "G5315G106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "KRAKACQUISITION CORPORATION",
+  "position_shares": 383786.0,
+  "position_value": 3784130.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "[CROSS-FUND CONSENSUS: 2 distinct funds: Saba Capital, Sculptor Capital] Saba Capital opened a NEW position in KRAKACQUISITION CORPORATION (CL A ORD SHS); $3,784,130 (or $3,784,130,000 if filed in $000s); 383,786 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

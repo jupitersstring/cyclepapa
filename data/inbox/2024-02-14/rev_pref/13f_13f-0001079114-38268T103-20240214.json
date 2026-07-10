@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-38268T103-20240214",
+  "cik": "",
+  "cusip": "38268T103",
+  "fetched_at": "2026-07-10T14:33:06.690585Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GOPRO INC",
+  "position_shares": 1429720.0,
+  "position_value": 4961128.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Greenlight Capital ADDED to GOPRO INC (+292.6% shares to 1,429,720); $4,961,128 (or $4,961,128,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-878742204-20240214",
+  "cik": "",
+  "cusip": "878742204",
+  "fetched_at": "2026-07-10T14:33:06.690585Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "TECK RESOURCES LTD",
+  "position_shares": 773535.0,
+  "position_value": 32697324.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Greenlight Capital ADDED to TECK RESOURCES LTD (+182.6% shares to 773,535); $32,697,324 (or $32,697,324,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

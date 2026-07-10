@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-112463104-20260515",
+  "cik": "",
+  "cusip": "112463104",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BROOKDALE SR LIVING INC",
+  "position_shares": 1780000.0,
+  "position_value": 24350400.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to BROOKDALE SR LIVING INC (+48.3% shares to 1,780,000); $24,350,400 (or $24,350,400,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

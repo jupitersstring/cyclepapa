@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-85205TAQ3-20260515",
+  "cik": "",
+  "cusip": "85205TAQ3",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SPIRIT AEROSYSTEMS INC",
+  "position_shares": 27500000.0,
+  "position_value": 40453875.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Sculptor Capital opened a NEW position in SPIRIT AEROSYSTEMS INC (NOTE 3.250%11/0); $40,453,875 (or $40,453,875,000 if filed in $000s); 27,500,000 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

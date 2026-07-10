@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-19260QAB3-20260515",
+  "cik": "",
+  "cusip": "19260QAB3",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "COINBASE GLOBAL INC",
+  "position_shares": 50000000.0,
+  "position_value": 49617750.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to COINBASE GLOBAL INC (+42.9% shares to 50,000,000); $49,617,750 (or $49,617,750,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

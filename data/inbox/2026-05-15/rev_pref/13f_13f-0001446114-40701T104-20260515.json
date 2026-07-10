@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-40701T104-20260515",
+  "cik": "",
+  "cusip": "40701T104",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "HAMILTON BEACH BRANDS HOLDING",
+  "position_shares": 18203.0,
+  "position_value": 344947.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to HAMILTON BEACH BRANDS HOLDING (+844.1% shares to 18,203); $344,947 (or $344,947,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

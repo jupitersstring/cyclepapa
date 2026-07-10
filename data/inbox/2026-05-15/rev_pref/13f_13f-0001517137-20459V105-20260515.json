@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001517137-20459V105-20260515",
+  "cik": "",
+  "cusip": "20459V105",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Starboard Value)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001517137",
+  "fund_name": "Starboard Value",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GPGI INC",
+  "position_shares": 5027028.0,
+  "position_value": 85962179.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Starboard Value opened a NEW position in GPGI INC (COM CL A); $85,962,179 (or $85,962,179,000 if filed in $000s); 5,027,028 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001517137&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-874039100-20260515",
+  "cik": "",
+  "cusip": "874039100",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+  "position_shares": 323000.0,
+  "position_value": 109157850.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to TAIWAN SEMICONDUCTOR MANUFAC (+38.6% shares to 323,000); $109,157,850 (or $109,157,850,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

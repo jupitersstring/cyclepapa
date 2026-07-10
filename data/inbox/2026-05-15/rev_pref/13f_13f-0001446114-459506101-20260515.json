@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-459506101-20260515",
+  "cik": "",
+  "cusip": "459506101",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL FLAV&amp;FRA COM",
+  "position_shares": 51141.0,
+  "position_value": 3710280.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to INTERNATIONAL FLAV&amp;FRA COM (+1292.0% shares to 51,141); $3,710,280 (or $3,710,280,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

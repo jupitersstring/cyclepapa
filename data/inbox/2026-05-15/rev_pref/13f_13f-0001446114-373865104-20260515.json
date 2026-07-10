@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-373865104-20260515",
+  "cik": "",
+  "cusip": "373865104",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GERMAN AMERN BANCORP INC COM",
+  "position_shares": 4960.0,
+  "position_value": 207278.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in GERMAN AMERN BANCORP INC COM (COM); $207,278 (or $207,278,000 if filed in $000s); 4,960 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

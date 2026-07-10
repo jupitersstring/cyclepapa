@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-60365F109-20260515",
+  "cik": "",
+  "cusip": "60365F109",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "MINIMED GROUP INC",
+  "position_shares": 306005.0,
+  "position_value": 4565595.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Sculptor Capital opened a NEW position in MINIMED GROUP INC (COM); $4,565,595 (or $4,565,595,000 if filed in $000s); 306,005 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

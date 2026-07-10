@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001665590-05352A100-20260515",
+  "cik": "",
+  "cusip": "05352A100",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Engine Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001665590",
+  "fund_name": "Engine Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "AVANTOR INC",
+  "position_shares": 19780830.0,
+  "position_value": 155081707.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Engine Capital ADDED to AVANTOR INC (+65.8% shares to 19,780,830); $155,081,707 (or $155,081,707,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001665590&type=13F-HR"
+}

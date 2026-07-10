@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-25434V203-20260515",
+  "cik": "",
+  "cusip": "25434V203",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "DFA DIMENSIONAL INTL CORE EQ M",
+  "position_shares": 282423.0,
+  "position_value": 11003212.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to DFA DIMENSIONAL INTL CORE EQ M (+68.2% shares to 282,423); $11,003,212 (or $11,003,212,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-01609W102-20260515",
+  "cik": "",
+  "cusip": "01609W102",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ALIBABA GROUP HLDG LTD",
+  "position_shares": 293343.0,
+  "position_value": 36802813.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Saba Capital ADDED to ALIBABA GROUP HLDG LTD (+34.1% shares to 293,343); $36,802,813 (or $36,802,813,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

@@ -1,0 +1,388 @@
+{
+  "ACTELISNETWORKSASNSCIK0001141284": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "AETHLONMEDICALAEMDCIK0000882291": {
+    "n_records": 4,
+    "n_sources": 3,
+    "name": "AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "BATTALIONOILBATLCIK0001282648": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "BATTALION OIL CORP  (BATL)  (CIK 0001282648)",
+    "sources": [
+      "EDGAR-postreorg",
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "BEDBATHBEYONDBBBYBBBYWTCIK0001130713": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "BHP": {
+    "n_records": 4,
+    "n_sources": 2,
+    "name": "BHP GROUP LIMITED",
+    "sources": [
+      "ASX",
+      "NSM"
+    ],
+    "tiers": [
+      "rev_pref"
+    ]
+  },
+  "CADRENALTHERAPEUTICSCVKDCIK0001937993": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "COLLPLANTBIOTECHNOLOGIESCLGNCIK0001631487": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "CRESCENTBIOPHARMACBIOCIK0001253689": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "CURBLINEPROPERTIESCURBCIK0002027317": {
+    "n_records": 3,
+    "n_sources": 2,
+    "name": "Curbline Properties Corp.  (CURB)  (CIK 0002027317)",
+    "sources": [
+      "red_flag",
+      "spinoff"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff"
+    ]
+  },
+  "ENCOREMEDICALEMICIK0001838003": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Encore Medical, Inc.  (EMI)  (CIK 0001838003)",
+    "sources": [
+      "red_flag",
+      "spinoff"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff"
+    ]
+  },
+  "ESHALLGOEHGOCIK0001879754": {
+    "n_records": 3,
+    "n_sources": 2,
+    "name": "EShallGo Inc.  (EHGO)  (CIK 0001879754)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "FMCFMCCIK0000037785": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "FMC CORP  (FMC)  (CIK 0000037785)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "FREEDOMMETALSACQUISITIONFDMMCIK0002129659": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "GATXGATXCIK0000040211": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "GATX CORP  (GATX)  (CIK 0000040211)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "HIVEDIGITALTECHNOLOGIESHIVECIK0001720424": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "HUBCYBERSECURITYHUBCHUBCWHUBCZCIK0001905660": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "IMCANNABISIMCCCIK0001792030": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "IM Cannabis Corp.  (IMCC)  (CIK 0001792030)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "INUVOINUVCIK0000829323": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "Inuvo, Inc.  (INUV)  (CIK 0000829323)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "QNITYELECTRONICSQCIK0002058873": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "Qnity Electronics, Inc.  (Q)  (CIK 0002058873)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "QXOQXOQXOPBCIK0001236275": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "RANGEIMPACTRNGECIK0001438943": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "REDWIRERDWCIK0001819810": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Redwire Corp  (RDW)  (CIK 0001819810)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "RESIDEOTECHNOLOGIESREZICIK0001740332": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "SABLEOFFSHORESOCCIK0001831481": {
+    "n_records": 3,
+    "n_sources": 2,
+    "name": "Sable Offshore Corp.  (SOC)  (CIK 0001831481)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "STEWARDSSWRDCIK0001795851": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Stewards, Inc.  (SWRD)  (CIK 0001795851)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "SURFAIRMOBILITYSRFMCIK0001936224": {
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "THREELIONSACQUISITIONCIK0002128462": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Three Lions Acquisition Corp.  (CIK 0002128462)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "VOLATOSOARSOARWCIK0001853070": {
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  }
+}

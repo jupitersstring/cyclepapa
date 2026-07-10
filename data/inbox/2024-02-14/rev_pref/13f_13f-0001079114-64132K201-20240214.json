@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-64132K201-20240214",
+  "cik": "",
+  "cusip": "64132K201",
+  "fetched_at": "2026-07-10T14:33:06.690585Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "NEUBASE THERAPEUTICS INC",
+  "position_shares": 54731.0,
+  "position_value": 40506.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Greenlight Capital ADDED to NEUBASE THERAPEUTICS INC (+203.4% shares to 54,731); $40,506 (or $40,506,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

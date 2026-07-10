@@ -1,0 +1,26 @@
+{
+  "accession": "13f-0001054587-N72482156-20260515",
+  "cik": "",
+  "cross_fund_consensus": [
+    "Ancora Advisors",
+    "Sculptor Capital"
+  ],
+  "cusip": "N72482156",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "QIAGEN NV",
+  "position_shares": 124116.0,
+  "position_value": 4969605.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "[CROSS-FUND CONSENSUS: 2 distinct funds: Ancora Advisors, Sculptor Capital] Sculptor Capital opened a NEW position in QIAGEN NV (ORD SHARES); $4,969,605 (or $4,969,605,000 if filed in $000s); 124,116 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

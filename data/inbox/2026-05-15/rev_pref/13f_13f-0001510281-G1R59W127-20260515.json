@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-G1R59W127-20260515",
+  "cik": "",
+  "cusip": "G1R59W127",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BHAV ACQUISITION CORP",
+  "position_shares": 198628.0,
+  "position_value": 1982307.0,
+  "query_label": "rev_pref.thirteenf_spac_arb",
+  "query_note": "Saba Capital opened a NEW position in BHAV ACQUISITION CORP (UNIT 03/18/2031); $1,982,307 (or $1,982,307,000 if filed in $000s); 198,628 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

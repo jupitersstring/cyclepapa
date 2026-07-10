@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-86562M209-20260515",
+  "cik": "",
+  "cusip": "86562M209",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SUMITOMO MITSUI FINL GROUP INC",
+  "position_shares": 1185.0,
+  "position_value": 23404.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to SUMITOMO MITSUI FINL GROUP INC (+265.7% shares to 1,185); $23,404 (or $23,404,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

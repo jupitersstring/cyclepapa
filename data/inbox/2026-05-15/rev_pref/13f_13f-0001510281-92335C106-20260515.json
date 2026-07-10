@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-92335C106-20260515",
+  "cik": "",
+  "cusip": "92335C106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "VERA BRADLEY INC",
+  "position_shares": 290000.0,
+  "position_value": 916400.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Saba Capital opened a NEW position in VERA BRADLEY INC (COM); $916,400 (or $916,400,000 if filed in $000s); 290,000 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-68401U204-20260515",
+  "cik": "",
+  "cusip": "68401U204",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "OPTIMIZERX CORPORATION",
+  "position_shares": 55637.0,
+  "position_value": 349400.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in OPTIMIZERX CORPORATION (COM); $349,400 (or $349,400,000 if filed in $000s); 55,637 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

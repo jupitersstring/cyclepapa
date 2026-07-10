@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-09631P102-20260515",
+  "cik": "",
+  "cusip": "09631P102",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BLUEROCK PVT REAL ESTATE FD",
+  "position_shares": 4766113.0,
+  "position_value": 79165137.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Saba Capital ADDED to BLUEROCK PVT REAL ESTATE FD (+55.0% shares to 4,766,113); $79,165,137 (or $79,165,137,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

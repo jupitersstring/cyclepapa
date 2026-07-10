@@ -1,0 +1,34 @@
+{
+  "accession": "corrob-AETHLONMEDICALAEMDCIK0000882291",
+  "cik": "",
+  "fetched_at": "2026-07-10T14:42:03.027301Z",
+  "filed": "2026-07-10",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "form_s1_spin",
+    "red_flag.fcpa",
+    "red_flag.going_concern",
+    "tier_s.scheme"
+  ],
+  "n_sources": 3,
+  "name": "AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 3 independent sources (red_flag, spinoff, tier_s); 4 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "url": ""
+}

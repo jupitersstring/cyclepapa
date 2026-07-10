@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-69331C306-20260515",
+  "cik": "",
+  "cusip": "69331C306",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "PG&amp;E CORP",
+  "position_shares": 753894.0,
+  "position_value": 32669243.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to PG&amp;E CORP (+909.6% shares to 753,894); $32,669,243 (or $32,669,243,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

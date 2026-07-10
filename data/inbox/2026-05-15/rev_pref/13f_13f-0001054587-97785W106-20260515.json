@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-97785W106-20260515",
+  "cik": "",
+  "cusip": "97785W106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "WOLFSPEED INC",
+  "position_shares": 237552.0,
+  "position_value": 3876849.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to WOLFSPEED INC (+539.6% shares to 237,552); $3,876,849 (or $3,876,849,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-33738D879-20260515",
+  "cik": "",
+  "cusip": "33738D879",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "FIRST TR  DIV ACHIEVERS TARGET",
+  "position_shares": 2072.0,
+  "position_value": 52940.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in FIRST TR  DIV ACHIEVERS TARGET (INDX FD); $52,940 (or $52,940,000 if filed in $000s); 2,072 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

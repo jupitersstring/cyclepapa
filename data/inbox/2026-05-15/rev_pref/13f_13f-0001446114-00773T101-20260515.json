@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-00773T101-20260515",
+  "cik": "",
+  "cusip": "00773T101",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ADVANSIX INC COM",
+  "position_shares": 25248.0,
+  "position_value": 616051.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in ADVANSIX INC COM (COM); $616,051 (or $616,051,000 if filed in $000s); 25,248 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

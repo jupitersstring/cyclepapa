@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-131193AE4-20260515",
+  "cik": "",
+  "cusip": "131193AE4",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "CALLAWAY GOLF CO",
+  "position_shares": 33500000.0,
+  "position_value": 33427138.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Sculptor Capital opened a NEW position in CALLAWAY GOLF CO (NOTE 2.750% 5/0); $33,427,138 (or $33,427,138,000 if filed in $000s); 33,500,000 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

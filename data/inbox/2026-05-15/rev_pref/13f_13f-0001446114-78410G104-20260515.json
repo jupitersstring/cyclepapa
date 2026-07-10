@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-78410G104-20260515",
+  "cik": "",
+  "cusip": "78410G104",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SBA COMMUNICATIONS CORPORATION",
+  "position_shares": 101.0,
+  "position_value": 17383.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to SBA COMMUNICATIONS CORPORATION (+71.2% shares to 101); $17,383 (or $17,383,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

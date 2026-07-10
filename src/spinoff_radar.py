@@ -136,6 +136,7 @@ def normalize_hit(label: str, hit: dict, query_def: dict,
         "accession": accession,
         "filed": src.get("file_date"),
         "url": url,
+        "source": "EDGAR-spinoff-radar",
         "fetched_at": fetched_at,
     }
 

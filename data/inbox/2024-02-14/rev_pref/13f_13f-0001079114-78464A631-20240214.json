@@ -1,0 +1,27 @@
+{
+  "accession": "13f-0001079114-78464A631-20240214",
+  "cik": "",
+  "cross_fund_consensus": [
+    "Greenlight Capital",
+    "Greenlight Capital",
+    "Greenlight Capital"
+  ],
+  "cusip": "78464A631",
+  "fetched_at": "2026-07-10T14:33:06.690585Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SPDR SER TR",
+  "position_shares": 42030.0,
+  "position_value": 5691703.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "[CROSS-FUND CONSENSUS: 3 funds] Greenlight Capital opened a NEW position in SPDR SER TR (AEROSPACE DEF); $5,691,703 (or $5,691,703,000 if filed in $000s); 42,030 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

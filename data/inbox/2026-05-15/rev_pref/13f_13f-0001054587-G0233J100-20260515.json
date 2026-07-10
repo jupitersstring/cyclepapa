@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-G0233J100-20260515",
+  "cik": "",
+  "cusip": "G0233J100",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ALUSSA ENERGY ACQUISIT CORP",
+  "position_shares": 749900.0,
+  "position_value": 7484002.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Sculptor Capital opened a NEW position in ALUSSA ENERGY ACQUISIT CORP (ORD SHS CL A); $7,484,002 (or $7,484,002,000 if filed in $000s); 749,900 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

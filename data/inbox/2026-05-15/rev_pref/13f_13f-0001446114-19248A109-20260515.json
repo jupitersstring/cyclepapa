@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-19248A109-20260515",
+  "cik": "",
+  "cusip": "19248A109",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "COHEN &amp; STEERS INFRASTRUCTURE",
+  "position_shares": 950.0,
+  "position_value": 24586.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to COHEN &amp; STEERS INFRASTRUCTURE (+35.7% shares to 950); $24,586 (or $24,586,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

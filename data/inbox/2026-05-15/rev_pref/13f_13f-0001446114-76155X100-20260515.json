@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-76155X100-20260515",
+  "cik": "",
+  "cusip": "76155X100",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "REVOLUTION MEDICINES INC",
+  "position_shares": 268.0,
+  "position_value": 26063.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in REVOLUTION MEDICINES INC (COM); $26,063 (or $26,063,000 if filed in $000s); 268 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

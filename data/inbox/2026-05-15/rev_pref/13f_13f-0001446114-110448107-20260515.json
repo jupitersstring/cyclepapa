@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-110448107-20260515",
+  "cik": "",
+  "cusip": "110448107",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BRITISH AMERN TOB PLC SPONSORE",
+  "position_shares": 726.0,
+  "position_value": 42449.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to BRITISH AMERN TOB PLC SPONSORE (+43.2% shares to 726); $42,449 (or $42,449,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

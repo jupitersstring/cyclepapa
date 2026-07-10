@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-500634209-20260515",
+  "cik": "",
+  "cusip": "500634209",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "KOREA FD INC",
+  "position_shares": 218139.0,
+  "position_value": 9794441.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Saba Capital ADDED to KOREA FD INC (+213.3% shares to 218,139); $9,794,441 (or $9,794,441,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

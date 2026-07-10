@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001425851-69349H107-20260515",
+  "cik": "",
+  "cusip": "69349H107",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Pentwater Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001425851",
+  "fund_name": "Pentwater Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "TXNM ENERGY INC",
+  "position_shares": 2800000.0,
+  "position_value": 163688000.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Pentwater Capital ADDED to TXNM ENERGY INC (+69.6% shares to 2,800,000); $163,688,000 (or $163,688,000,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001425851&type=13F-HR"
+}

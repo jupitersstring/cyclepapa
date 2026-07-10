@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-G42386105-20260515",
+  "cik": "",
+  "cusip": "G42386105",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "HALL CHADWICK ACQUISITION CO",
+  "position_shares": 370315.0,
+  "position_value": 3677228.0,
+  "query_label": "rev_pref.thirteenf_spac_arb",
+  "query_note": "Saba Capital opened a NEW position in HALL CHADWICK ACQUISITION CO (ORD SHS CL A); $3,677,228 (or $3,677,228,000 if filed in $000s); 370,315 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

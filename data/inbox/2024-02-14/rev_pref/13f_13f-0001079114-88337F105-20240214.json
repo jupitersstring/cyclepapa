@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-88337F105-20240214",
+  "cik": "",
+  "cusip": "88337F105",
+  "fetched_at": "2026-07-10T14:33:06.690585Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "THE ODP CORP",
+  "position_shares": 880483.0,
+  "position_value": 49571193.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Greenlight Capital ADDED to THE ODP CORP (+50.8% shares to 880,483); $49,571,193 (or $49,571,193,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

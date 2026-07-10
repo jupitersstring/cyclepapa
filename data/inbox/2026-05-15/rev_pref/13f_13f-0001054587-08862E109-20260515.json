@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-08862E109-20260515",
+  "cik": "",
+  "cusip": "08862E109",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BEYOND MEAT INC",
+  "position_shares": 517400.0,
+  "position_value": 363008.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to BEYOND MEAT INC (+100.0% shares to 517,400); $363,008 (or $363,008,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

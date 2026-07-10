@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-594972AU5-20260515",
+  "cik": "",
+  "cusip": "594972AU5",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "STRATEGY INC",
+  "position_shares": 45000000.0,
+  "position_value": 39059325.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Sculptor Capital opened a NEW position in STRATEGY INC (NOTE 3/0); $39,059,325 (or $39,059,325,000 if filed in $000s); 45,000,000 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

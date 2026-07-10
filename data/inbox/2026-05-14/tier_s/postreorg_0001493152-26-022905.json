@@ -1,0 +1,17 @@
+{
+  "accession": "0001493152-26-022905",
+  "cik": "0001599117",
+  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "filed": "2026-05-14",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Mentor Capital, Inc.  (MNTR)  (CIK 0001599117)",
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emerged from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1599117/000149315226022905"
+}

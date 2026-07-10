@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-649445103-20240214",
+  "cik": "",
+  "cusip": "649445103",
+  "fetched_at": "2026-07-10T14:33:06.690585Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "NEW YORK CMNTY BANCORP INC",
+  "position_shares": 618530.0,
+  "position_value": 6327562.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Greenlight Capital ADDED to NEW YORK CMNTY BANCORP INC (+76.2% shares to 618,530); $6,327,562 (or $6,327,562,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

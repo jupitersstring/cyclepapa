@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-G21810109-20260515",
+  "cik": "",
+  "cusip": "G21810109",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "CLARIVATE PLC",
+  "position_shares": 89030.0,
+  "position_value": 225246.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in CLARIVATE PLC (COM); $225,246 (or $225,246,000 if filed in $000s); 89,030 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

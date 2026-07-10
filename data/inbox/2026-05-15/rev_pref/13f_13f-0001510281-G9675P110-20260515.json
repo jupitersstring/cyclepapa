@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-G9675P110-20260515",
+  "cik": "",
+  "cusip": "G9675P110",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "WILLOW LANE ACQUISITION CORP",
+  "position_shares": 28595.0,
+  "position_value": 87644.0,
+  "query_label": "rev_pref.thirteenf_spac_arb",
+  "query_note": "Saba Capital opened a NEW position in WILLOW LANE ACQUISITION CORP (*W EXP 10/31/203); $87,644 (or $87,644,000 if filed in $000s); 28,595 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-277276101-20260515",
+  "cik": "",
+  "cusip": "277276101",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "EASTGROUP PPTYS INC COM",
+  "position_shares": 319.0,
+  "position_value": 59044.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to EASTGROUP PPTYS INC COM (+33.5% shares to 319); $59,044 (or $59,044,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

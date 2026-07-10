@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-09260D107-20260515",
+  "cik": "",
+  "cusip": "09260D107",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BLACKSTONE INC",
+  "position_shares": 211134.0,
+  "position_value": 24278299.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Saba Capital opened a NEW position in BLACKSTONE INC (COM); $24,278,299 (or $24,278,299,000 if filed in $000s); 211,134 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

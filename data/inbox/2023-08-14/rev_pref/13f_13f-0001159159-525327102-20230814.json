@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001159159-525327102-20230814",
+  "cik": "",
+  "cusip": "525327102",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2023-08-14",
+  "form": "13F-HR (JANA Partners)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001159159",
+  "fund_name": "JANA Partners",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "LEIDOS HOLDINGS INC",
+  "position_shares": 324930.0,
+  "position_value": 28749806.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "JANA Partners opened a NEW position in LEIDOS HOLDINGS INC (COM); $28,749,806 (or $28,749,806,000 if filed in $000s); 324,930 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001159159&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001425851-64110L106-20260515",
+  "cik": "",
+  "cusip": "64110L106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Pentwater Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001425851",
+  "fund_name": "Pentwater Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "NETFLIX INC.",
+  "position_shares": 7728000.0,
+  "position_value": 743047200.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Pentwater Capital ADDED to NETFLIX INC. (+860.0% shares to 7,728,000); $743,047,200 (or $743,047,200,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001425851&type=13F-HR"
+}

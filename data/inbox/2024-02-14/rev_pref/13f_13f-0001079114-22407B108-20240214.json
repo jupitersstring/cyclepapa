@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-22407B108-20240214",
+  "cik": "",
+  "cusip": "22407B108",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "COYA THERAPEUTICS INC",
+  "position_shares": 1274026.0,
+  "position_value": 9440533.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Greenlight Capital ADDED to COYA THERAPEUTICS INC (+172.2% shares to 1,274,026); $9,440,533 (or $9,440,533,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

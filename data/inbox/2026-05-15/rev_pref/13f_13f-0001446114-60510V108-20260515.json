@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-60510V108-20260515",
+  "cik": "",
+  "cusip": "60510V108",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "MISSION PRODUCE INC",
+  "position_shares": 115770.0,
+  "position_value": 1592995.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in MISSION PRODUCE INC (COM); $1,592,995 (or $1,592,995,000 if filed in $000s); 115,770 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

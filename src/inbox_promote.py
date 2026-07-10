@@ -110,6 +110,10 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "going_dark_12b", "going_dark_12g", "going_dark_15d",
     # ---- OFAC labels (ofac_poll.py) ----
     "ofac_license_issuance", "ofac_designation_removal", "ofac_venezuela",
+    # ---- Post-reorg labels (postreorg_poll.py) ----
+    "post_reorg_freshstart", "post_reorg_emerged", "post_reorg_plan_effective",
+    # ---- Cross-source corroboration (corroborate.py) ----
+    "corroborated_multi",
 }
 
 

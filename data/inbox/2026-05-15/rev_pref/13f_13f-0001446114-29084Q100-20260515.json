@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-29084Q100-20260515",
+  "cik": "",
+  "cusip": "29084Q100",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "EMCOR GROUP INC COM",
+  "position_shares": 78.0,
+  "position_value": 57588.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to EMCOR GROUP INC COM (+457.1% shares to 78); $57,588 (or $57,588,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

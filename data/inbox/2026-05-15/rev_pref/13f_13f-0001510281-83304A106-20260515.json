@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-83304A106-20260515",
+  "cik": "",
+  "cusip": "83304A106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SNAP INC",
+  "position_shares": 4727808.0,
+  "position_value": 21747917.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Saba Capital ADDED to SNAP INC (+232.5% shares to 4,727,808); $21,747,917 (or $21,747,917,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

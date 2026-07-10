@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001535472-22160N109-20260515",
+  "cik": "",
+  "cusip": "22160N109",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Corvex Management)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001535472",
+  "fund_name": "Corvex Management",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "COSTAR GROUP INC",
+  "position_shares": 851734.0,
+  "position_value": 34358950.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Corvex Management opened a NEW position in COSTAR GROUP INC (COM); $34,358,950 (or $34,358,950,000 if filed in $000s); 851,734 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001535472&type=13F-HR"
+}

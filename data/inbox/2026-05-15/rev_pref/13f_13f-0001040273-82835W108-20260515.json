@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001040273-82835W108-20260515",
+  "cik": "",
+  "cusip": "82835W108",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Third Point)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001040273",
+  "fund_name": "Third Point",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ARS PHARMACEUTICALS INC",
+  "position_shares": 1000000.0,
+  "position_value": 8030000.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Third Point ADDED to ARS PHARMACEUTICALS INC (+79.8% shares to 1,000,000); $8,030,000 (or $8,030,000,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001040273&type=13F-HR"
+}

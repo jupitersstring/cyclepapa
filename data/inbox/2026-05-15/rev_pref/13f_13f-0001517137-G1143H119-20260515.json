@@ -1,0 +1,26 @@
+{
+  "accession": "13f-0001517137-G1143H119-20260515",
+  "cik": "",
+  "cross_fund_consensus": [
+    "Saba Capital",
+    "Starboard Value"
+  ],
+  "cusip": "G1143H119",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Starboard Value)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001517137",
+  "fund_name": "Starboard Value",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BITCOIN INFRASTRUCTURE ACQUI",
+  "position_shares": 149999.0,
+  "position_value": 44550.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "[CROSS-FUND CONSENSUS: 2 distinct funds: Saba Capital, Starboard Value] Starboard Value opened a NEW position in BITCOIN INFRASTRUCTURE ACQUI (*W EXP 11/06/203); $44,550 (or $44,550,000 if filed in $000s); 149,999 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001517137&type=13F-HR"
+}

@@ -1,0 +1,26 @@
+{
+  "accession": "13f-0001054587-N07059210-20260515",
+  "cik": "",
+  "cross_fund_consensus": [
+    "Sculptor Capital",
+    "Third Point"
+  ],
+  "cusip": "N07059210",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ASML HLDG NV",
+  "position_shares": 30200.0,
+  "position_value": 39889066.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "[CROSS-FUND CONSENSUS: 2 distinct funds: Sculptor Capital, Third Point] Sculptor Capital opened a NEW position in ASML HLDG NV (N Y REGISTRY SHS); $39,889,066 (or $39,889,066,000 if filed in $000s); 30,200 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

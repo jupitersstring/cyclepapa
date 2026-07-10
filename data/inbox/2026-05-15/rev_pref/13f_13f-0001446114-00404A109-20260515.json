@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-00404A109-20260515",
+  "cik": "",
+  "cusip": "00404A109",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ACADIA HEALTHCARE COMPANY INC",
+  "position_shares": 8000.0,
+  "position_value": 187120.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Ancora Advisors opened a NEW position in ACADIA HEALTHCARE COMPANY INC (COM); $187,120 (or $187,120,000 if filed in $000s); 8,000 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-G73944111-20260515",
+  "cik": "",
+  "cusip": "G73944111",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "REAL ASSET ACQUISITION CORP",
+  "position_shares": 30153.0,
+  "position_value": 39953.0,
+  "query_label": "rev_pref.thirteenf_spac_arb",
+  "query_note": "Sculptor Capital opened a NEW position in REAL ASSET ACQUISITION CORP (*W EXP 04/24/203); $39,953 (or $39,953,000 if filed in $000s); 30,153 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

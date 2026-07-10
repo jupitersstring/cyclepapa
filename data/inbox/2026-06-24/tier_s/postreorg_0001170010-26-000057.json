@@ -1,0 +1,17 @@
+{
+  "accession": "0001170010-26-000057",
+  "cik": "0001170010",
+  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "filed": "2026-06-24",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "CARMAX INC  (KMX)  (CIK 0001170010)",
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1170010/000117001026000057"
+}

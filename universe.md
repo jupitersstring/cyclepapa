@@ -1460,3 +1460,12 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | Treatt PLC | — | ○ | A | [NSM] Auto-promoted from Scheme of Arrangement filing 2026-06-30 (acc 42bae5ad-b880-4306-9616-3dcccce65d59); Companies Act Part 26 scheme; verify primary doc before scoring |
 | Russia-related Designations Removals | — | ○ | A | [OFAC] Auto-promoted from OFAC Recent Action filing 2026-06-29 (acc ofac-20260629-Russia-related_Designations_Re); OFAC SDN removal — previously-frozen exposure may now trade; verify primary doc before scoring |
 | Democratic Republic of the Congo-related Designations; Issuance of Amended Russia-related General License and Frequently Asked Questions | — | ○ | A | [OFAC] Auto-promoted from OFAC Recent Action filing 2026-06-25 (acc ofac-20260625-Democratic_Republic_of_the_Con); OFAC General License issued — dated transaction window; verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-07-10)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| BHP GROUP LIMITED | — | ○ | A | [corroboration] Auto-promoted from Cross-source corroboration filing 2026-07-10 (acc corrob-BHP); CORROBORATED across 3 independent sources (ASX, NSM, corroboration); 5 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.; verify primary doc before scoring |
+| Copper Property CTL Pass Through Trust  (CPPTL)  (CIK 0001837671) | CIK:0001837671 | ○ | A | [EDGAR-postreorg] Auto-promoted from 8-K filing 2026-07-07 (acc 0001837671-26-000052); Fresh-start accounting — a post-emergence entity by definition. Uncovered equity, forced-seller creditors, clean cap stack. Classic distressed-to-equity setup.; verify primary doc before scoring |

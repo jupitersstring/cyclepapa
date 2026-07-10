@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-83175M205-20260515",
+  "cik": "",
+  "cusip": "83175M205",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SMITH &amp; NEPHEW PLC SPDN ADR NE",
+  "position_shares": 599.0,
+  "position_value": 19036.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to SMITH &amp; NEPHEW PLC SPDN ADR NE (+95.1% shares to 599); $19,036 (or $19,036,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

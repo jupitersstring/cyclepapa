@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001665590-48242W106-20260515",
+  "cik": "",
+  "cusip": "48242W106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Engine Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001665590",
+  "fund_name": "Engine Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "KBR INC",
+  "position_shares": 1531313.0,
+  "position_value": 56444197.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Engine Capital ADDED to KBR INC (+1129.3% shares to 1,531,313); $56,444,197 (or $56,444,197,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001665590&type=13F-HR"
+}

@@ -1,0 +1,29 @@
+{
+  "accession": "corrob-BHP",
+  "cik": "",
+  "fetched_at": "2026-07-10T14:42:03.027301Z",
+  "filed": "2026-07-10",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "rev_pref.director_interest",
+    "rev_pref.pdmr_dealing"
+  ],
+  "n_sources": 2,
+  "name": "BHP GROUP LIMITED",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (ASX, NSM); 4 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "ASX",
+    "NSM"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "rev_pref"
+  ],
+  "url": ""
+}

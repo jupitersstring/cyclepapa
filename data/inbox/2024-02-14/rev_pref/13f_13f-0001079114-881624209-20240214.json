@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001079114-881624209-20240214",
+  "cik": "",
+  "cusip": "881624209",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2024-02-14",
+  "form": "13F-HR (Greenlight Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001079114",
+  "fund_name": "Greenlight Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "TEVA PHARMACEUTICAL INDS LTD",
+  "position_shares": 268470.0,
+  "position_value": 2802826.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Greenlight Capital opened a NEW position in TEVA PHARMACEUTICAL INDS LTD (SPONSORED ADS); $2,802,826 (or $2,802,826,000 if filed in $000s); 268,470 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001079114&type=13F-HR"
+}

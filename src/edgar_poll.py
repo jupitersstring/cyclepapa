@@ -110,6 +110,7 @@ def normalize_hit(label: str, hit: dict, query: str, fetched_at: str) -> dict:
         "accession": accession,
         "filed": src.get("file_date"),
         "url": url,
+        "source": "EDGAR-FTS",
         "fetched_at": fetched_at,
     }
 

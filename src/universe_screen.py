@@ -23,6 +23,7 @@ v2 improvements (June 2026):
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from collections import Counter, defaultdict
@@ -652,6 +653,50 @@ def size_multiplier(size: str) -> float:
     return {"large": 1.10, "mid": 1.0, "small": 0.90, "?": 0.95}[size]
 
 
+# Cross-source corroboration map (data/corroboration.json), loaded once.
+# entity_stem -> n_distinct_sources. Multi-source names get a triage boost.
+_CORROBORATION: dict[str, int] | None = None
+
+
+def _load_corroboration() -> dict[str, int]:
+    global _CORROBORATION
+    if _CORROBORATION is None:
+        _CORROBORATION = {}
+        path = REPO / "data" / "corroboration.json"
+        if path.exists():
+            try:
+                data = json.loads(path.read_text())
+                for stem, e in data.items():
+                    _CORROBORATION[stem] = int(e.get("n_sources", 0))
+            except (json.JSONDecodeError, OSError, ValueError):
+                _CORROBORATION = {}
+    return _CORROBORATION
+
+
+def corroboration_boost(c: Candidate) -> float:
+    """Multiplier for names independently flagged by multiple pollers.
+    2 sources → x1.15, 3 → x1.30, 4+ → x1.50. Cross-source corroboration
+    is the framework's highest-conviction sourced signal."""
+    corrob = _load_corroboration()
+    # Match by ticker stem or name stem
+    keys = set()
+    if c.ticker:
+        keys.add(re.sub(r"[^A-Za-z0-9]", "", c.ticker.split(":")[-1]).upper())
+    if c.name:
+        keys.add(re.sub(r"[^A-Za-z0-9]", "",
+                        re.sub(r"\b(plc|ltd|limited|inc|corp|corporation|"
+                               r"group|holdings?|sa|nv|ag|co|se)\b", "",
+                               c.name, flags=re.I)).upper())
+    n = max((corrob.get(k, 0) for k in keys if k), default=0)
+    if n >= 4:
+        return 1.50
+    if n == 3:
+        return 1.30
+    if n == 2:
+        return 1.15
+    return 1.0
+
+
 def triage_score(c: Candidate) -> float:
     bucket_clean = c.bucket.strip()
     bw = BUCKET_WEIGHT.get(bucket_clean, 0.5)
@@ -665,7 +710,8 @@ def triage_score(c: Candidate) -> float:
     note_w = min(1.25, 0.60 + len(c.notes) / 180.0)
     vintage_w = vintage_decay(c.vintage_year, is_still_active(c.notes))
     size_w = size_multiplier(c.size_class)
-    return bw * aw * sp * conf_w * note_w * vintage_w * size_w
+    corrob_w = corroboration_boost(c)
+    return bw * aw * sp * conf_w * note_w * vintage_w * size_w * corrob_w
 
 
 def parse() -> list[Candidate]:

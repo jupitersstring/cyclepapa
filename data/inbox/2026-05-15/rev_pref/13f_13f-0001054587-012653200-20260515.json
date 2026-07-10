@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-012653200-20260515",
+  "cik": "",
+  "cusip": "012653200",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "ALBEMARLE CORP",
+  "position_shares": 1394545.0,
+  "position_value": 100390505.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to ALBEMARLE CORP (+139.2% shares to 1,394,545); $100,390,505 (or $100,390,505,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

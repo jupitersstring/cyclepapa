@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-05353F108-20260515",
+  "cik": "",
+  "cusip": "05353F108",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "AVAX ONE TECHNOLOGY LTD",
+  "position_shares": 2317675.0,
+  "position_value": 1386201.0,
+  "query_label": "rev_pref.thirteenf_new_position",
+  "query_note": "Saba Capital opened a NEW position in AVAX ONE TECHNOLOGY LTD (COM SHS); $1,386,201 (or $1,386,201,000 if filed in $000s); 2,317,675 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

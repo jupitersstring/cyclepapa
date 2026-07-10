@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001510281-651229106-20260515",
+  "cik": "",
+  "cusip": "651229106",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Saba Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001510281",
+  "fund_name": "Saba Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "NEWELL BRANDS INC",
+  "position_shares": 1795447.0,
+  "position_value": 6158383.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Saba Capital ADDED to NEWELL BRANDS INC (+183.9% shares to 1,795,447); $6,158,383 (or $6,158,383,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510281&type=13F-HR"
+}

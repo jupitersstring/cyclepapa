@@ -1,0 +1,17 @@
+{
+  "accession": "0002078008-26-000008",
+  "cik": "0002078008",
+  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "filed": "2026-05-05",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Versigent PLC  (VGNT)  (CIK 0002078008)",
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2078008/000207800826000008"
+}

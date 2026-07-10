@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-G63113123-20260515",
+  "cik": "",
+  "cusip": "G63113123",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "MOZAYYX ACQUISITION CORP",
+  "position_shares": 500000.0,
+  "position_value": 4975150.0,
+  "query_label": "rev_pref.thirteenf_spac_arb",
+  "query_note": "Sculptor Capital opened a NEW position in MOZAYYX ACQUISITION CORP (UNIT 99/99/9999); $4,975,150 (or $4,975,150,000 if filed in $000s); 500,000 shares. Institutional revealed preference from a named special-sits fund.",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

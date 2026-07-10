@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-44332NAB2-20260515",
+  "cik": "",
+  "cusip": "44332NAB2",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "H WORLD GROUP LTD",
+  "position_shares": 40000000.0,
+  "position_value": 53997400.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to H WORLD GROUP LTD (+44.1% shares to 40,000,000); $53,997,400 (or $53,997,400,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

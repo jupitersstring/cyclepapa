@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001446114-59833H200-20260515",
+  "cik": "",
+  "cusip": "59833H200",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Ancora Advisors)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001446114",
+  "fund_name": "Ancora Advisors",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BIRCHTECH",
+  "position_shares": 428686.0,
+  "position_value": 814503.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Ancora Advisors ADDED to BIRCHTECH (+710.6% shares to 428,686); $814,503 (or $814,503,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001446114&type=13F-HR"
+}

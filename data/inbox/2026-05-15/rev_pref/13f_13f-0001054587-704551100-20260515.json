@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001054587-704551100-20260515",
+  "cik": "",
+  "cusip": "704551100",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Sculptor Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001054587",
+  "fund_name": "Sculptor Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "PEABODY ENGR CORP",
+  "position_shares": 137200.0,
+  "position_value": 4520740.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Sculptor Capital ADDED to PEABODY ENGR CORP (+56.4% shares to 137,200); $4,520,740 (or $4,520,740,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001054587&type=13F-HR"
+}

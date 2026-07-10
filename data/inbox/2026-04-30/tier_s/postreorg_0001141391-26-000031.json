@@ -1,0 +1,17 @@
+{
+  "accession": "0001141391-26-000031",
+  "cik": "0001141391",
+  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "filed": "2026-04-30",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Mastercard Inc  (MA)  (CIK 0001141391)",
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1141391/000114139126000031"
+}

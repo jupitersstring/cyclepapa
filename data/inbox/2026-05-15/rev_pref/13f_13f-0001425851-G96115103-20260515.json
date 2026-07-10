@@ -1,0 +1,22 @@
+{
+  "accession": "13f-0001425851-G96115103-20260515",
+  "cik": "",
+  "cusip": "G96115103",
+  "fetched_at": "2026-07-10T14:36:35.740362Z",
+  "filed": "2026-05-15",
+  "form": "13F-HR (Pentwater Capital)",
+  "form_code": "13F-HR",
+  "fund_cik": "0001425851",
+  "fund_name": "Pentwater Capital",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "WHITEFIBER INC",
+  "position_shares": 45000.0,
+  "position_value": 535950.0,
+  "query_label": "rev_pref.thirteenf_add",
+  "query_note": "Pentwater Capital ADDED to WHITEFIBER INC (+125.0% shares to 45,000); $535,950 (or $535,950,000 if filed in $000s).",
+  "source": "EDGAR-13F",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001425851&type=13F-HR"
+}
