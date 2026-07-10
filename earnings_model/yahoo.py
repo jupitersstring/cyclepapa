@@ -205,10 +205,23 @@ def fetch_raw(symbol: str, client: YahooClient, with_surprises: bool = False) ->
                 "fetch_ok": False, "rate_limited": False, "error": str(err)}
 
     ann, qtr = _timeseries_blocks(client, symbol)
+    valuation = _valuation_from(res)
+    feats, monthly = _price_block(client, symbol)
+    surprises = _surprises_from(res) if with_surprises else []
 
+    has_data = any(any(not math.isnan(x) for x in ann.get(k, []))
+                   for k in ("revenue", "ebitda", "earnings"))
+    return {"symbol": symbol, "asof": datetime.now(timezone.utc).isoformat(),
+            "annual": ann, "quarterly": qtr, "valuation": valuation,
+            "prices": {**feats, "monthly": monthly}, "surprises": surprises,
+            "statement_source": "yahoo-urllib",
+            "fetch_ok": bool(has_data or valuation.get("marketCap"))}
+
+
+def _valuation_from(res: dict) -> dict:
     sd, ks = res.get("summaryDetail", {}), res.get("defaultKeyStatistics", {})
     fd_, pr, ap = res.get("financialData", {}), res.get("price", {}), res.get("assetProfile", {})
-    valuation = {
+    return {
         "trailingPE": _raw(sd, "trailingPE"), "forwardPE": _raw(sd, "forwardPE"),
         "enterpriseToEbitda": _raw(ks, "enterpriseToEbitda"),
         "priceToSalesTrailing12Months": _raw(sd, "priceToSalesTrailing12Months"),
@@ -219,22 +232,42 @@ def fetch_raw(symbol: str, client: YahooClient, with_surprises: bool = False) ->
         "trailingEps": _raw(ks, "trailingEps"), "forwardEps": _raw(ks, "forwardEps"),
         "numberOfAnalystOpinions": _raw(fd_, "numberOfAnalystOpinions"),
     }
-    feats, monthly = _price_block(client, symbol)
-    surprises = []
-    if with_surprises:
-        for h in res.get("earningsHistory", {}).get("history", []) or []:
-            sp = _raw(h, "surprisePercent")   # DECIMAL FRACTION -> percent
-            dt = _raw(h, "quarter")
-            if sp is not None:
-                surprises.append({"date": datetime.fromtimestamp(dt, timezone.utc).date().isoformat()
-                                  if dt else None,
-                                  "surprise_pct": max(-200.0, min(200.0, float(sp) * 100.0))})
-        surprises = surprises[-12:]
 
-    has_data = any(any(not math.isnan(x) for x in ann.get(k, []))
+
+def _surprises_from(res: dict) -> list:
+    out = []
+    for h in res.get("earningsHistory", {}).get("history", []) or []:
+        sp = _raw(h, "surprisePercent")     # DECIMAL FRACTION -> percent
+        dt = _raw(h, "quarter")
+        if sp is not None:
+            out.append({"date": datetime.fromtimestamp(dt, timezone.utc).date().isoformat() if dt else None,
+                        "surprise_pct": max(-200.0, min(200.0, float(sp) * 100.0))})
+    return out[-12:]
+
+
+def refresh_market(symbol: str, client: YahooClient, base_raw: dict,
+                   with_surprises: bool = False) -> dict:
+    """Refresh ONLY the market-derived blocks (valuation + prices [+ surprises]) on
+    an existing raw, KEEPING its statement blocks — so a stale-price update never
+    clobbers the EDGAR deep-history overlay (or any cached statements). Two urllib
+    calls (quoteSummary valuation + chart) vs three for a full fetch."""
+    try:
+        j = client.get_json(f"/v10/finance/quoteSummary/{urllib.parse.quote(symbol)}",
+                            {"modules": _QS_MODULES})
+        res = ((j.get("quoteSummary") or {}).get("result") or [None])[0]
+        if res is None:
+            raise ValueError("no quoteSummary result")
+    except Exception:
+        return base_raw                          # leave the raw untouched on failure
+    out = dict(base_raw)
+    out["valuation"] = _valuation_from(res)
+    feats, monthly = _price_block(client, symbol)
+    out["prices"] = {**feats, "monthly": monthly}
+    if with_surprises:
+        out["surprises"] = _surprises_from(res)
+    out["asof"] = datetime.now(timezone.utc).isoformat()
+    out["market_refreshed"] = out["asof"]
+    has_stmt = any(any(not math.isnan(x) for x in (out.get("annual", {}) or {}).get(k, []))
                    for k in ("revenue", "ebitda", "earnings"))
-    return {"symbol": symbol, "asof": datetime.now(timezone.utc).isoformat(),
-            "annual": ann, "quarterly": qtr, "valuation": valuation,
-            "prices": {**feats, "monthly": monthly}, "surprises": surprises,
-            "statement_source": "yahoo-urllib",
-            "fetch_ok": bool(has_data or valuation.get("marketCap"))}
+    out["fetch_ok"] = bool(has_stmt or out["valuation"].get("marketCap"))
+    return out
