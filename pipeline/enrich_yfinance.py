@@ -24,21 +24,86 @@ os.environ.setdefault("REQUESTS_CA_BUNDLE", CA)
 os.environ.setdefault("SSL_CERT_FILE", CA)
 
 import requests
-import yfinance as yf
+
+_CRUMB = [None]
 
 def make_session():
+    """Session with Yahoo's cookie+crumb handshake.
+
+    RCA (2026-07): Yahoo REQUIRES a crumb tied to an A3 cookie on quoteSummary —
+    without it every call is 401 "Invalid Crumb", which masqueraded as
+    throttling. finance.yahoo.com sets NO cookies here; the working handshake is
+    fc.yahoo.com (404 but sets A3) -> /v1/test/getcrumb -> pass crumb= on every
+    call. Symbols that still 404 afterwards are genuinely delisted (the 2025-26
+    M&A wave: COOP/PBPB/HOLX/CYBR/AL/SEE/ASGN/EXAS...), not fetch failures.
+    """
     s = requests.Session()
     s.verify = CA
     proxy = os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY")
     if proxy:
         s.proxies = {"https": proxy, "http": proxy}
     s.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"})
-    # cookie warmup — required or Yahoo rate-limits immediately
     try:
-        s.get("https://finance.yahoo.com", timeout=12)
+        s.get("https://fc.yahoo.com", timeout=10)      # sets the A3 cookie
+    except Exception:
+        pass
+    try:
+        c = s.get("https://query1.finance.yahoo.com/v1/test/getcrumb", timeout=15)
+        if c.ok and c.text and "<" not in c.text:
+            _CRUMB[0] = c.text.strip()
     except Exception:
         pass
     return s
+
+def _raw(node, mod, key):
+    v = (node.get(mod) or {}).get(key)
+    return v.get("raw") if isinstance(v, dict) else v
+
+def quote_summary_info(tkr, session):
+    """Flat info dict via a DIRECT crumb-authenticated quoteSummary v10 call —
+    replaces yfinance .info, whose internal auth cannot see our crumb."""
+    try:
+        r = session.get(
+            f"https://query1.finance.yahoo.com/v10/finance/quoteSummary/{tkr}",
+            params={"modules": "price,summaryDetail,defaultKeyStatistics,"
+                               "financialData,assetProfile",
+                    "crumb": _CRUMB[0] or ""},
+            timeout=15)
+        if not r.ok:
+            return None
+        res = r.json().get("quoteSummary", {}).get("result")
+        if not res:
+            return None
+        d = res[0]
+    except Exception:
+        return None
+    prof = d.get("assetProfile") or {}
+    px = d.get("price") or {}
+    return {
+        "marketCap":            _raw(d, "price", "marketCap"),
+        "enterpriseValue":      _raw(d, "defaultKeyStatistics", "enterpriseValue"),
+        "enterpriseToEbitda":   _raw(d, "defaultKeyStatistics", "enterpriseToEbitda"),
+        "priceToBook":          _raw(d, "defaultKeyStatistics", "priceToBook"),
+        "trailingPE":           _raw(d, "summaryDetail", "trailingPE"),
+        "forwardPE":            _raw(d, "summaryDetail", "forwardPE")
+                                or _raw(d, "defaultKeyStatistics", "forwardPE"),
+        "enterpriseToRevenue":  _raw(d, "defaultKeyStatistics", "enterpriseToRevenue"),
+        "pegRatio":             _raw(d, "defaultKeyStatistics", "pegRatio"),
+        "currentPrice":         _raw(d, "financialData", "currentPrice"),
+        "regularMarketPrice":   _raw(d, "price", "regularMarketPrice"),
+        "currency":             px.get("currency"),
+        "sharesOutstanding":    _raw(d, "defaultKeyStatistics", "sharesOutstanding"),
+        "ebitda":               _raw(d, "financialData", "ebitda"),
+        "totalDebt":            _raw(d, "financialData", "totalDebt"),
+        "totalCash":            _raw(d, "financialData", "totalCash"),
+        "profitMargins":        _raw(d, "financialData", "profitMargins")
+                                or _raw(d, "defaultKeyStatistics", "profitMargins"),
+        "revenueGrowth":        _raw(d, "financialData", "revenueGrowth"),
+        "sector":               prof.get("sector"),
+        "industry":             prof.get("industry"),
+        "longName":             px.get("longName"),
+        "longBusinessSummary":  prof.get("longBusinessSummary"),
+    }
 
 def init_schema(conn):
     conn.executescript("""
@@ -58,11 +123,7 @@ def init_schema(conn):
 
 def fetch_one(tkr, session):
     """Return dict of yahoo fundamentals for one ticker, or None."""
-    try:
-        t = yf.Ticker(tkr, session=session)
-        info = t.info
-    except Exception:
-        return None
+    info = quote_summary_info(tkr, session)
     if not info or (info.get("marketCap") is None and info.get("enterpriseValue") is None
                     and info.get("trailingPE") is None):
         return None

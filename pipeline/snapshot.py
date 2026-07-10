@@ -13,7 +13,8 @@ Run order:
   make refresh   ends with `python3 pipeline/snapshot.py dump`
   fresh sandbox  `python3 pipeline/snapshot.py restore` rebuilds everything
 """
-import csv, os, sqlite3, sys
+import csv
+import re, os, sqlite3, sys
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 SNAP = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "snapshot")
@@ -31,9 +32,42 @@ def list_tables(conn):
         "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
         if r[0] not in ALWAYS_SKIP and not r[0].startswith("sqlite_")]
 
+
+def _schema_ddl():
+    path = os.path.join(SNAP, "_SCHEMA.sql")
+    if not os.path.exists(path):
+        return []
+    with open(path) as f:
+        return [x.strip() for x in f.read().split(";\n") if x.strip()]
+
+def _infer_types(rows, ncols, sample=200):
+    types = []
+    for i in range(ncols):
+        vals = [r[i] for r in rows[:sample] if r[i] is not None]
+        ty = "TEXT"
+        if vals:
+            try:
+                if all(float(v) == int(float(v)) for v in vals):
+                    ty = "INTEGER"
+                else:
+                    ty = "REAL"
+            except (TypeError, ValueError):
+                ty = "TEXT"
+        types.append(ty)
+    return types
+
 def dump():
     os.makedirs(SNAP, exist_ok=True)
     conn = sqlite3.connect(DB)
+    # Persist full DDL so restore() can recreate ANY table without depending on
+    # which pipeline module happens to define it. Before this, restore silently
+    # skipped 17 tables ("table not in schema") including fund_13f_holdings,
+    # holder_13d, ticker_meta and ticker_yf — the core of the dataset.
+    ddl = [r[0] for r in conn.execute(
+        "SELECT sql FROM sqlite_master WHERE sql IS NOT NULL "
+        "AND name NOT LIKE 'sqlite_%' AND type IN ('table','index')")]
+    with open(os.path.join(SNAP, "_SCHEMA.sql"), "w") as f:
+        f.write(";\n".join(ddl) + ";\n")
     conn.row_factory = sqlite3.Row
     summary = []
     for t in list_tables(conn):
@@ -185,11 +219,25 @@ def restore():
                 ])
             if not rows:
                 continue
-            # check table exists
+            # check table exists — if not, create it from stored DDL
+            # (or, for snapshots that predate _SCHEMA.sql, infer column types
+            # from the CSV so numeric affinity survives the round-trip)
             tinfo = conn.execute(f"PRAGMA table_info('{t}')").fetchall()
             if not tinfo:
-                print(f"  skip {t}: table not in schema")
-                continue
+                made = False
+                for stmt in _schema_ddl():
+                    m = re.match(r'CREATE TABLE\s+["\']?(\w+)', stmt, re.I)
+                    if m and m.group(1) == t:
+                        try:
+                            conn.execute(stmt); made = True
+                        except sqlite3.Error:
+                            pass
+                        break
+                if not made:
+                    types = _infer_types(rows, len(cols))
+                    coldefs = ", ".join(f'"{c}" {ty}' for c, ty in zip(cols, types))
+                    conn.execute(f'CREATE TABLE "{t}" ({coldefs})')
+                print(f"  created missing table {t}")
             try:
                 conn.execute(f"DELETE FROM '{t}'")
                 ph = ",".join("?" * len(cols))

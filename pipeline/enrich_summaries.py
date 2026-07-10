@@ -19,7 +19,6 @@ os.environ.setdefault("REQUESTS_CA_BUNDLE", CA)
 os.environ.setdefault("SSL_CERT_FILE", CA)
 
 import requests
-import yfinance as yf
 
 def make_session():
     s = requests.Session()
@@ -57,10 +56,10 @@ def short(summary, limit=500):
     return cut.rstrip() + "…"
 
 def fetch_profile(tkr, session):
-    try:
-        info = yf.Ticker(tkr, session=session).info
-    except Exception:
-        return None
+    # crumb-authenticated direct quoteSummary (see enrich_yfinance RCA note) —
+    # yfinance .info 401s ("Invalid Crumb") through this proxy.
+    from enrich_yfinance import quote_summary_info
+    info = quote_summary_info(tkr, session)
     if not info:
         return None
     summ = info.get("longBusinessSummary")
