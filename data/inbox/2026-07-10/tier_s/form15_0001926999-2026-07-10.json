@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001926999",
+  "fetched_at": "2026-07-10T15:41:20.318970Z",
+  "filed": "2026-07-10",
+  "form": "15-15D",
+  "form_code": "15-15D",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "World Omni Auto Receivables Trust 2022-B",
+  "query_label": "tier_s.going_dark_15d",
+  "query_note": "Form 15-15D: termination of Section 15(d) registration \u2014 reporting-only deregistration. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.",
+  "source": "EDGAR-Form15",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1926999/000110465926081497/0001104659-26-081497-index.htm"
+}

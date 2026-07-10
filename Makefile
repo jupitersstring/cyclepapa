@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -114,6 +114,17 @@ postreorg-poll: audit
 eightk-items-poll: audit
 	python3 -m src.eightk_items_poll --days-back 1
 
+# Multi-form EDGAR poller — proxy contests (DFAN14A/DEFC14A), merger votes
+# (DEFM14A/PREM14A), self-tenders (SC TO-I), delistings (25-NSE), and SEC
+# comment letters (UPLOAD/CORRESP).
+edgar-forms-poll: audit
+	python3 -m src.edgar_forms_poll --count 100
+
+# Fault-isolated orchestrator: runs every poller in its own subprocess so
+# one failure can't abort the refresh chain. Report: output/poller_run.md.
+poll-all: audit
+	python3 -m src.run_pollers --timeout 600
+
 # Cross-source corroboration — fuses all pollers; surfaces entities
 # independently flagged by >= 2 distinct sources.
 corroborate: audit
@@ -154,7 +165,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll spinoff cluster-buys corroborate inbox-promote workbook
+refresh: audit poll-all corroborate inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

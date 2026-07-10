@@ -115,6 +115,8 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     # ---- 8-K item-code labels (eightk_items_poll.py) ----
     "item_bankruptcy", "item_default_acceleration",
     "item_delisting_deficiency",
+    # ---- Multi-form labels (edgar_forms_poll.py) ----
+    "proxy_contest", "merger_vote", "self_tender", "delisting_form25",
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }
@@ -272,18 +274,33 @@ def identifier_for_row(rec: dict) -> str:
     return "—"
 
 
+def _s(v, default: str = "") -> str:
+    """Coerce any inbox-record field to a clean single-line string.
+    Defensive against list-typed fields (EDGAR display_names), None,
+    and embedded pipes/newlines that would corrupt a markdown row."""
+    if v is None:
+        return default
+    if isinstance(v, (list, tuple)):
+        v = " ".join(str(x) for x in v if x)
+    v = str(v)
+    return v.replace("|", "/").replace("\n", " ").replace("\r", " ").strip() \
+        or default
+
+
 def build_row(rec: dict) -> str:
     """Build a markdown table row for the promoted inbox hit. Includes
     the poller source (ASX / CVM-IPE / SEDAR+ / TDnet / NSM / EDGAR /
     CourtListener-RECAP) in the notes so the universe_screen.py
-    per-row region detector can route the row correctly."""
-    name = rec.get("name") or rec.get("ticker") or "?"
-    ticker = identifier_for_row(rec)
-    form = rec.get("form", "?")
-    accession = rec.get("accession", "?")
-    filed = rec.get("filed") or rec.get("_day", "?")
-    query_note = rec.get("query_note") or rec.get("query_label", "")
-    src = rec.get("source", "")
+    per-row region detector can route the row correctly. All fields are
+    coerced to safe strings so a malformed record can't crash the run
+    or corrupt the markdown table."""
+    name = _s(rec.get("name")) or _s(rec.get("ticker")) or "?"
+    ticker = _s(identifier_for_row(rec), "—")
+    form = _s(rec.get("form"), "?")
+    accession = _s(rec.get("accession"), "?")
+    filed = _s(rec.get("filed")) or _s(rec.get("_day"), "?")
+    query_note = _s(rec.get("query_note")) or _s(rec.get("query_label"))
+    src = _s(rec.get("source"))
     src_prefix = f"[{src}] " if src else ""
     notes = (
         f"{src_prefix}Auto-promoted from {form} filing {filed} "
@@ -338,29 +355,38 @@ def main() -> int:
     skip_dup_ticker = 0
     skip_dup_accession = 0
     skip_filter = 0
+    skip_malformed = 0
     for rec in records:
-        accession = rec.get("accession", "")
-        if accession and accession in promoted_set:
-            skip_dup_accession += 1
-            continue
-        if not should_promote(rec):
-            skip_filter += 1
-            continue
-        # Dedup against universe.md + YAMLs by ticker OR name stem.
-        # NSM hits often have no ticker, so fall back to name stem to
-        # catch the same issuer already curated under a different identifier.
-        ticker = stem_ticker(rec.get("ticker"))
-        name = stem_name(rec.get("name"))
-        if (ticker and ticker in existing) or (name and name in existing):
-            skip_dup_ticker += 1
-            continue
-        promote_now.append(rec)
+        # Defensive: a single malformed record must never abort the run.
+        try:
+            accession = rec.get("accession", "")
+            if accession and accession in promoted_set:
+                skip_dup_accession += 1
+                continue
+            if not should_promote(rec):
+                skip_filter += 1
+                continue
+            # Dedup against universe.md + YAMLs by ticker OR name stem.
+            # NSM hits often have no ticker, so fall back to name stem to
+            # catch the same issuer under a different identifier.
+            ticker = stem_ticker(rec.get("ticker"))
+            name = stem_name(rec.get("name"))
+            if (ticker and ticker in existing) or (name and name in existing):
+                skip_dup_ticker += 1
+                continue
+            promote_now.append(rec)
+        except Exception as exc:  # noqa: BLE001 — robustness over purity
+            skip_malformed += 1
+            print(f"  ! skipped malformed record "
+                  f"({rec.get('accession', '?')}): {exc}", file=sys.stderr)
 
     print(f"\nClassification:")
     print(f"  promote: {len(promote_now)}")
     print(f"  skip (already promoted): {skip_dup_accession}")
     print(f"  skip (ticker already in universe/YAMLs): {skip_dup_ticker}")
     print(f"  skip (filter didn't match): {skip_filter}")
+    if skip_malformed:
+        print(f"  skip (malformed record): {skip_malformed}")
 
     # Dedup within this batch. For NSM rows that have no ticker,
     # dedup_key falls back to ISIN then name stem so the same issuer

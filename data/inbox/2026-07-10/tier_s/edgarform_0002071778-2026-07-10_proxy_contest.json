@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0002071778",
+  "fetched_at": "2026-07-10T15:40:45.332392Z",
+  "filed": "2026-07-10",
+  "form": "DFAN14A",
+  "form_code": "DFAN14A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Fermi Inc.",
+  "query_label": "tier_s.proxy_contest",
+  "query_note": "DFAN14A \u2014 non-management soliciting material (activist proxy campaign in flight)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2071778/000121390026076168/0001213900-26-076168-index.htm"
+}
