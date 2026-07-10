@@ -1,0 +1,2 @@
+symbol,price,low200w,pct_above_low,pct_off_high,fcf5_avg,fcf_yield,buyback_yield,nd_ebitda,mktcap,ev,sector,quoteType,fcf_na,computed_cap,fin_ccy,quote_ccy,name,cap,pass_fcf,pass_bb,pass_solv,artifact,pass_all
+ABT,88.66999816894531,84.31999969482422,0.051589166151148724,-0.34134853897717576,6873000000.0,0.03795685358051267,0.005781935140537433,2.28550753133515,154446561280,181074018304,Healthcare,EQUITY,False,Large,USD,USD,Abbott Laboratories,Mega Cap,False,False,True,False,False

@@ -1,0 +1,7 @@
+.cache/
+__pycache__/
+*.pyc
+charts/
+
+# durable snapshot (committed); .cache stays ephemeral
+!data/

@@ -1,0 +1,108 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+ABG.OL,Financials,Small Cap,daily,2,1,1,-0.15324303405955408,▼,,▲,▲,▼,
+AFG.OL,Industrials,Mid Cap,daily,1,1,0,-0.14053679793922402,▲,▼,,,,
+AFK.OL,Utilities,Small Cap,daily,0,1,-1,-0.6275768877737825,▼,,,,,
+AKAST.OL,Energy,Micro Cap,daily,2,0,2,0.2819998675091364,,,▲,▲,▼,
+AKER.OL,Energy,Mid Cap,daily,1,1,0,0.06294117330283318,▼,,▲,±,▼,
+AKRBP.OL,Energy,Large Cap,daily,1,1,0,0.23935158866842482,▲,▼,,,,
+AKSO.OL,Energy,Small Cap,daily,0,1,-1,-0.20790246025093387,▼,,,,,▲
+ANDF.OL,Consumer Staples,Micro Cap,daily,1,1,0,-0.31946546637120476,▼,▲,,,,
+ARR.OL,Information Technology,Micro Cap,daily,1,0,1,0.19469476906061234,,,▲,±,,
+ATEA.OL,Information Technology,Mid Cap,daily,1,2,-1,-0.31182075269924725,▼,▼,▲,,,
+AURG.OL,Financials,Micro Cap,daily,1,0,1,1.4082083563891614,▲,,,,,
+AUSS.OL,Consumer Staples,Mid Cap,daily,2,0,2,0.3808881944810428,▲,,,▲,▼,▲
+AZT.OL,Health Care,Small Cap,daily,0,1,-1,-0.16783768155872922,,,,▼,▲,
+BCS.OL,Materials,Micro Cap,daily,0,2,-2,-1.7914675039476176,▼,▼,,,,
+BEWI.OL,Consumer Discretionary,Small Cap,daily,1,1,0,-0.9150051226905143,▼,▲,,,,
+BONHR.OL,Industrials,Small Cap,daily,0,2,-2,-1.2126286185372082,▼,▼,,,,▲
+BOUV.OL,Information Technology,Micro Cap,daily,1,1,0,0.03784985244153208,,▼,▲,,,
+BRG.OL,Materials,Mid Cap,daily,1,0,1,0.32504868641935125,▲,,,,,
+BWE.OL,Energy,Small Cap,daily,1,0,1,0.86864577760223,▲,,,,,
+CLOUD.OL,Utilities,Micro Cap,daily,0,2,-2,-0.488725066603989,▼,▼,,,▼,
+DNB.OL,Financials,Large Cap,daily,0,1,-1,-0.05742101061250523,▼,,,,,▲
+DNO.OL,Energy,Small Cap,daily,1,1,0,0.2540459228376619,▲,▼,,,,
+DSRT.OL,Materials,Micro Cap,daily,0,1,-1,-0.42468450556628634,▼,,,,▼,▲
+ELIMP.OL,Information Technology,Micro Cap,daily,2,1,1,2.276332278216657,▲,▲,,▼,▲,
+ENDUR.OL,Industrials,Micro Cap,daily,2,0,2,0.38116240721705297,,,▲,▲,,
+EPR.OL,Consumer Staples,Small Cap,daily,1,1,0,0.9904875813459935,▼,▲,,,▲,
+EQNR.OL,Energy,Large Cap,daily,1,0,1,0.33954968307026595,,,▲,±,,
+EXTX.OL,Health Care,Micro Cap,daily,1,0,1,0.037992205526712786,▲,,,,,▲
+GENT.OL,Health Care,Micro Cap,daily,1,0,1,0.5838449966001336,▲,,,,,▲
+GJF.OL,Financials,Large Cap,daily,0,1,-1,-0.7124440847179874,▼,,,,,
+GSF.OL,Consumer Staples,Small Cap,daily,2,1,1,0.7333486941568155,▲,▲,,▼,,▲
+HBC.OL,Health Care,Small Cap,daily,2,0,2,1.6962279419476909,▲,▲,,,,▲
+HDLY.OL,Information Technology,Micro Cap,daily,2,1,1,0.7764958957926659,▲,▼,,▲,,
+HELG.OL,Financials,Micro Cap,daily,1,0,1,0.4007758433898447,▲,,,,,
+HEX.OL,Energy,Small Cap,daily,0,1,-1,-0.08843343900559318,▼,,,,▲,▲
+HPUR.OL,Industrials,Small Cap,daily,1,0,1,0.4551714579445985,▲,,,,▼,
+HUDL.OL,Information Technology,Micro Cap,daily,1,0,1,0.5146773736340408,▲,,,,,
+HUNT.OL,Energy,Micro Cap,daily,0,1,-1,-0.6104275218096664,▼,,,,▲,
+HYPRO.OL,Industrials,Micro Cap,daily,1,1,0,0.3259816843481729,▲,▼,,,▲,
+IDEX.OL,Information Technology,Micro Cap,daily,0,1,-1,-0.016832875513065983,▼,,,,,
+INSTA.OL,Financials,Micro Cap,daily,2,0,2,0.27363580004406807,▲,▲,,,▲,
+ITERA.OL,Information Technology,Micro Cap,daily,2,1,1,0.7122383292449437,,▼,▲,▲,,
+IWS.OL,Utilities,Micro Cap,daily,1,0,1,0.06908979789828278,,,,▲,,
+JAREN.OL,Financials,Micro Cap,daily,2,0,2,0.13922062320428097,▲,,▲,,▼,
+KCC.OL,Industrials,Micro Cap,daily,1,2,-1,0.8333127014326941,▲,,▼,▼,,▼
+KID.OL,Consumer Discretionary,Small Cap,daily,2,0,2,0.5112378534738631,±,,▲,▲,,
+KIT.OL,Industrials,Small Cap,daily,0,2,-2,-1.4434867076306301,▼,▼,,,,▼
+KOA.OL,Consumer Discretionary,Small Cap,daily,0,1,-1,-0.1459386126303649,▼,,,,,
+KOG.OL,Industrials,Mid Cap,daily,2,1,1,-0.1596996319749612,▼,▲,▲,,▲,
+KRAB.OL,Financials,Micro Cap,daily,1,1,0,0.04517201637577785,▲,,,▼,,
+LINK.OL,Communication Services,Small Cap,daily,2,0,2,0.1814914671985688,▲,▲,,,,
+LSG.OL,Consumer Staples,Mid Cap,daily,2,1,1,-0.038251521322566456,▲,▼,,▲,▲,
+MEDI.OL,Health Care,Small Cap,daily,0,2,-2,-0.2534054139289639,▼,,▼,,,
+MGN.OL,Energy,Micro Cap,daily,2,0,2,0.14610501662588865,,,▲,▲,,
+MING.OL,Financials,Small Cap,daily,2,0,2,0.41126618171863394,▲,▲,,,▼,
+MORG.OL,Financials,Small Cap,daily,3,1,2,-0.08495331628681346,▲,▼,▲,▲,,▼
+MOWI.OL,Consumer Staples,Large Cap,daily,0,1,-1,-0.03663525898325733,▼,,,,▼,
+MULTI.OL,Industrials,Small Cap,daily,3,0,3,0.8524135662590768,▲,,▲,▲,,
+NAS.OL,Industrials,Small Cap,daily,0,1,-1,-0.11086135782043377,,▼,,,,
+NCOD.OL,Consumer Staples,Micro Cap,daily,0,1,-1,-0.0036032968216425324,▼,,,,±,▲
+NEL.OL,Industrials,Mid Cap,daily,0,1,-1,-0.1318608393931251,▼,,,,,
+NHY.OL,Materials,Large Cap,daily,0,1,-1,-0.07245397109978012,,▼,,,▼,
+NKR.OL,Industrials,Micro Cap,daily,2,1,1,-0.2179071007339432,▼,,▲,▲,,
+NOD.OL,Information Technology,Mid Cap,daily,1,1,0,0.48548420673005277,▲,▼,,,,
+NOHAL.OL,Consumer Staples,Micro Cap,daily,3,1,2,0.9541620460240615,▲,▲,▲,▼,±,
+NOM.OL,Materials,Micro Cap,daily,0,3,-3,-0.3868293443965371,▼,▼,,▼,,
+NONG.OL,Financials,Small Cap,daily,1,1,0,0.07554657617888326,▲,▼,,,,
+NORBT.OL,Information Technology,Micro Cap,daily,1,0,1,0.11725789677152026,,▲,,,,
+NORSE.OL,Industrials,Micro Cap,daily,2,0,2,0.5551797341848657,▲,,▲,,,
+NRC.OL,Industrials,Micro Cap,daily,1,0,1,0.11976501724895366,▲,,,,,
+ODF.OL,Industrials,Small Cap,daily,1,1,0,0.23473945668897167,▲,▼,,,,▼
+ODFB.OL,Industrials,Micro Cap,daily,1,0,1,0.586054005307455,▲,,,,±,
+OKEA.OL,Energy,Micro Cap,daily,0,1,-1,-0.7102610909110266,▼,,,,,
+ORK.OL,Consumer Staples,Large Cap,daily,0,2,-2,-0.3939859412404415,▼,▼,,,▼,
+OTEC.OL,Communication Services,Small Cap,daily,0,2,-2,-0.13360880434543837,▼,▼,,,,
+OTOVO.OL,Utilities,Micro Cap,daily,0,3,-3,-0.8640489361229484,▼,▼,,▼,,
+PEN.OL,Energy,Small Cap,daily,1,0,1,0.21704049091703487,▲,,,,,
+PEXIP.OL,Information Technology,Small Cap,daily,0,1,-1,-0.07759680629292949,,▼,,,,
+PHO.OL,Health Care,Small Cap,daily,2,0,2,0.543825753051296,▲,,,▲,,
+PLT.OL,Information Technology,Micro Cap,daily,1,2,-1,-0.049471097112330276,▼,,▲,▼,,
+POL.OL,Communication Services,Small Cap,daily,0,1,-1,-0.7076559094980437,▼,,,,,
+REACH.OL,Energy,Micro Cap,daily,1,1,0,0.08068537937010456,▼,,▲,,,
+SAGA.OL,Materials,Micro Cap,daily,0,1,-1,-0.2172505364956999,▼,,,,▼,
+SALM.OL,Consumer Staples,Mid Cap,daily,1,0,1,0.051328659917976666,,,,▲,▲,
+SALME.OL,Consumer Staples,Micro Cap,daily,1,0,1,0.20583745055012195,▲,,,,,
+SBO.OL,Real Estate,Small Cap,daily,1,0,1,0.09211668292742871,,,▲,±,,
+SCATC.OL,Utilities,Mid Cap,daily,1,0,1,0.008223951009416227,,,▲,,,
+SNOR.OL,Financials,Micro Cap,daily,2,0,2,1.0172380076149945,▲,▲,,,,
+SOAG.OL,Financials,Small Cap,daily,0,2,-2,-0.1781726972270113,▼,,▼,,▲,▼
+SOFF.OL,Energy,Micro Cap,daily,3,1,2,0.9344092636444865,▼,▲,▲,▲,▲,▼
+SPOL.OL,Financials,Small Cap,daily,1,0,1,0.18047548255609056,▲,,,,▼,
+STB.OL,Financials,Mid Cap,daily,0,1,-1,-0.017532044980192563,,▼,,,,
+STRO.OL,Industrials,Micro Cap,daily,2,0,2,0.16103694498005547,▲,▲,,,,
+TEKNA.OL,Materials,Small Cap,daily,2,1,1,0.06784910051775778,▼,,▲,▲,,
+TEL.OL,Communication Services,Large Cap,daily,1,1,0,0.09569711426132266,▲,▼,,,▼,
+TGS.OL,Energy,Small Cap,daily,1,0,1,0.39342447950985276,▲,,,,±,
+TOM.OL,Industrials,Mid Cap,daily,0,2,-2,-0.42023557394207833,▼,,,▼,,
+VEI.OL,Industrials,Small Cap,daily,0,2,-2,-1.4473456013908108,▼,▼,,,±,
+VISTN.OL,Health Care,Micro Cap,daily,1,1,0,0.16856495043980513,▼,,,▲,▲,
+VOW.OL,Industrials,Small Cap,daily,0,1,-1,-0.17555407710758072,,▼,,,,
+WAWI.OL,Industrials,Small Cap,daily,0,2,-2,-0.9702649615772051,▼,▼,,,,▼
+WSTEP.OL,Information Technology,Micro Cap,daily,0,1,-1,-0.27802393294482314,,,▼,±,▼,▲
+WWI.OL,Industrials,Small Cap,daily,0,2,-2,-0.046136920612009705,±,,▼,▼,,
+WWIB.OL,Industrials,Small Cap,daily,1,1,0,0.01912266702868691,±,,▲,▼,,
+XPLRA.OL,Consumer Discretionary,Micro Cap,daily,1,1,0,0.010632270027484264,,,▲,▼,,
+YAR.OL,Materials,Large Cap,daily,3,0,3,1.4490718586331544,▲,,▲,▲,,
+ZAP.OL,Consumer Discretionary,Small Cap,daily,1,1,0,-0.09448773263596319,▼,▲,,,,

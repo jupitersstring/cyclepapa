@@ -1,0 +1,53 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+AALB.AS,Industrials,Mid Cap,daily,0,1,-1,-0.43478339815118916,▼,,,,,
+ABN.AS,Financials,Large Cap,daily,2,2,0,-0.9381877804589738,▼,▲,▲,▼,±,
+ACOMO.AS,Consumer Staples,Small Cap,daily,2,0,2,0.8932101952382507,,,▲,▲,▲,▼
+AD.AS,Consumer Staples,Large Cap,daily,1,1,0,0.4864439523069376,▲,▼,,,±,
+ADYEN.AS,Information Technology,Large Cap,daily,1,2,-1,-0.3873180566841118,▼,▲,▼,,▼,
+AGN.AS,Financials,Mid Cap,daily,1,1,0,-0.41963445790877774,▼,,▲,±,,
+AJAX.AS,Consumer Discretionary,Small Cap,daily,1,2,-1,0.35577738591139396,▲,,▼,▼,±,
+AKZA.AS,Materials,Large Cap,daily,2,1,1,-0.2190504528762321,▼,,▲,▲,▲,▲
+ALFEN.AS,Industrials,Small Cap,daily,0,1,-1,-0.3781320561602497,▼,,,,,
+AMG.AS,Materials,Small Cap,daily,1,1,0,0.4984822646433127,▲,▼,,,▲,
+ARCAD.AS,Industrials,Mid Cap,daily,0,1,-1,-0.10321401576379094,▼,,,,▼,
+ASM.AS,Information Technology,Large Cap,daily,1,1,0,-0.26528396962847056,▼,▲,,,,▼
+ASML.AS,Information Technology,Mega Cap,daily,0,2,-2,-0.2622312423347036,▼,,,▼,,
+ASRNL.AS,Financials,Mid Cap,daily,2,2,0,-0.5372139238058269,▼,▼,▲,▲,,
+AVTX.AS,Materials,Micro Cap,daily,0,1,-1,-0.11449547679770337,▼,,,,,
+BAMNB.AS,Industrials,Small Cap,daily,0,1,-1,-0.0927273239097249,▼,,,,,▲
+BESI.AS,Information Technology,Mid Cap,daily,0,2,-2,-0.4274595845869996,▼,▼,,,,
+BEVER.AS,Real Estate,Micro Cap,daily,1,0,1,0.07328876785764112,,,,▲,,
+BFIT.AS,Consumer Discretionary,Mid Cap,daily,0,2,-2,-0.6392328729986176,▼,▼,,,,
+BRNL.AS,Industrials,Small Cap,daily,1,0,1,0.1222445751839828,▲,,,,,▲
+CRBN.AS,Materials,Mid Cap,daily,1,1,0,-0.1799804172865534,▲,,,▼,▼,
+CTAC.AS,Information Technology,Micro Cap,daily,0,1,-1,-0.4307069005614121,▼,,,,±,
+CTPNV.AS,Real Estate,Mid Cap,daily,1,1,0,0.7358500271391585,▼,▲,,,,
+ECMPA.AS,Real Estate,Micro Cap,daily,0,1,-1,-0.12483635593503191,,▼,,,±,
+ENVI.AS,Industrials,Micro Cap,daily,0,2,-2,-0.6573592432868917,▼,▼,,,,
+FAST.AS,Consumer Discretionary,Small Cap,daily,1,0,1,0.09472625106512875,▲,,,,▲,
+FFARM.AS,Consumer Staples,Small Cap,daily,0,1,-1,-0.15738337387621318,▼,,,,,
+FLOW.AS,Financials,Small Cap,daily,2,0,2,0.25707072690630656,,,▲,▲,,▼
+FUR.AS,Energy,Small Cap,daily,1,0,1,0.20611619925143826,,,,▲,±,▼
+HEIA.AS,Consumer Staples,Large Cap,daily,2,0,2,1.0293294882598194,▲,,,▲,▲,▼
+HEIJM.AS,Industrials,Small Cap,daily,1,0,1,0.004996683454188609,▲,,,,,▼
+HEIO.AS,Consumer Staples,Large Cap,daily,1,0,1,0.9033881988774906,▲,,,,▼,▼
+HOLCO.AS,Materials,Micro Cap,daily,0,2,-2,-0.17168627200365577,▼,,,▼,,
+INGA.AS,Financials,Large Cap,daily,2,1,1,0.047485090467185284,,▲,▲,▼,,
+KENDR.AS,Consumer Discretionary,Small Cap,daily,1,0,1,0.22541368688152413,,▲,,,,
+KPN.AS,Communication Services,Large Cap,daily,2,1,1,-0.0011645447650809881,▼,,▲,▲,▲,
+LIGHT.AS,Industrials,Mid Cap,daily,0,2,-2,-1.9289448433359195,▼,▼,,,▲,▲
+NN.AS,Financials,Large Cap,daily,2,0,2,0.3313325473269076,,▲,▲,±,▼,
+OCI.AS,Materials,Mid Cap,daily,2,0,2,0.9896672760460508,▲,▲,,,,
+PHARM.AS,Health Care,Small Cap,daily,1,1,0,0.03186325118370107,,,▲,▼,,
+PHIA.AS,Health Care,Large Cap,daily,1,0,1,0.026766961579475487,,,▲,±,,
+PNL.AS,Industrials,Mid Cap,daily,0,1,-1,-0.1371124915361986,,▼,,,▲,
+PRX.AS,Communication Services,Large Cap,daily,1,1,0,1.204023665208143,▲,,▼,±,,▼
+SBMO.AS,Energy,Mid Cap,daily,1,1,0,-0.4023165341112347,▼,▲,,,,▼
+SLIGR.AS,Consumer Staples,Small Cap,daily,0,2,-2,-0.35241279225164474,,±,▼,▼,±,
+TOM2.AS,Information Technology,Small Cap,daily,0,1,-1,-0.09395666407767454,▼,,,,▼,
+TWEKA.AS,Information Technology,Mid Cap,daily,1,0,1,0.0022456019763288622,▲,,,,,
+VALUE.AS,Financials,Micro Cap,daily,1,0,1,0.08913228914113347,,,▲,,,
+VLK.AS,Financials,Small Cap,daily,1,1,0,0.7937280661052182,▲,▼,,,▼,
+VPK.AS,Energy,Mid Cap,daily,1,1,0,-0.38312732785288983,▼,,,▲,▼,
+WHA.AS,Real Estate,Small Cap,daily,1,1,0,0.08853994414736978,,▲,,▼,▼,
+WKL.AS,Communication Services,Large Cap,daily,1,2,-1,-0.14089052272781333,,▲,▼,▼,▲,▲

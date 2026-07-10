@@ -1,0 +1,22 @@
+sym,name,ovRisk,board,shRights,insid,inst,short,cashM,debtM,mktcapM,profitable,shrChg
+RCAT,"Red Cat Holdings, ",10.0,10.0,6.0,9.1,45.6,21.0,132.0,14.0,2207.0,False,102.3
+ASAN,"Asana, Inc.",9.0,7.0,10.0,45.6,65.5,33.2,425.0,248.0,1775.0,False,1.1
+BHVN,Biohaven Ltd.,6.0,8.0,4.0,11.1,97.6,20.5,348.0,286.0,1658.0,False,70.5
+APPS,"Digital Turbine, I",5.0,3.0,3.0,5.2,66.5,10.6,38.0,369.0,1059.0,False,17.7
+HYLN,Hyliion Holdings C,7.0,6.0,8.0,29.5,25.2,9.3,72.0,4.0,1247.0,False,-1.0
+ASPI,ASP Isotopes Inc.,10.0,10.0,8.0,13.0,56.6,20.4,291.0,262.0,980.0,False,143.2
+UMAC,"Unusual Machines, ",,,,6.9,52.6,14.1,284.0,3.0,1519.0,False,412.1
+QSI,Quantum-Si Incorpo,10.0,6.0,10.0,10.5,29.9,13.1,127.0,4.0,259.0,False,53.6
+NRXP,NRX Pharmaceutical,,,,7.6,17.5,13.6,7.0,1.0,160.0,False,238.6
+AMPG,"Amplitech Group, I",,,,12.7,24.5,7.9,18.0,4.0,112.0,False,160.8
+ARAY,Accuray Incorporat,6.0,2.0,6.0,4.1,69.1,6.4,38.0,182.0,45.0,False,19.9
+EDIT,"Editas Medicine, I",9.0,5.0,8.0,0.2,32.0,9.8,124.0,17.0,531.0,False,86.6
+CMTL,Comtech Telecommun,7.0,6.0,6.0,9.8,54.9,1.0,33.0,253.0,167.0,False,3.6
+NNBR,"NN, Inc.",,,,18.4,57.5,5.9,8.0,219.0,157.0,False,5.5
+AMN,AMN Healthcare Ser,1.0,1.0,1.0,1.0,115.5,7.9,561.0,777.0,1124.0,False,2.1
+BMBL,Bumble Inc.,10.0,6.0,10.0,2.6,88.9,13.4,246.0,597.0,481.0,False,-25.2
+AVD,American Vanguard ,4.0,5.0,1.0,6.2,67.8,3.1,71.0,283.0,74.0,False,1.5
+CCRN,Cross Country Heal,2.0,4.0,1.0,7.7,95.1,2.8,106.0,2.0,406.0,False,-10.8
+SPOK,"Spok Holdings, Inc",1.0,2.0,2.0,2.3,56.3,2.9,17.0,6.0,221.0,True,3.2
+DDD,3D Systems Corpora,3.0,1.0,1.0,3.1,65.2,31.1,89.0,155.0,525.0,True,10.0
+AEVA,"Aeva Technologies,",10.0,10.0,8.0,19.5,70.4,19.0,100.0,102.0,1776.0,False,19.3

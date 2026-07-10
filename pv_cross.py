@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""
+Price x Volume bandpass-inflection CROSS scanner.
+
+For each name, timeframe and cap bucket, runs the Ehlers 4-band bandpass on
+BOTH price (Close) and volume (log volume), finds the most recent zero-line
+inflection of each, and CROSSES them: names where price *and* volume both
+inflect (freshly) are classified into quadrants —
+
+    Price UP   + Volume UP   -> ACCUMULATION   (confirmed strength; bullish)
+    Price DOWN + Volume UP   -> CAPITULATION   (heavy selling / distribution)
+    Price UP   + Volume DOWN -> WEAK RALLY      (unconfirmed; low conviction)
+    Price DOWN + Volume DOWN -> QUIET DECLINE   (selling drying up)
+
+Usage:
+    python3 pv_cross.py --universe us-midcap                 # daily + weekly
+    python3 pv_cross.py --universe us-smallcap --weekly-only
+    python3 pv_cross.py --universe us-microcap --band B1 --top 25
+"""
+from __future__ import annotations
+
+import argparse
+
+import numpy as np
+import pandas as pd
+
+from volume_bandpass import download_ohlcv
+from signals import ehlers_bandpass, BANDS, latest_crossing, drop_incomplete_last  # noqa: F401
+from midcap_weekly_anomalies import get_universe, CAP_SOURCES  # noqa: F401
+
+QUAD = {
+    ("UP", "UP"): "ACCUMULATION",
+    ("DOWN", "UP"): "CAPITULATION",
+    ("UP", "DOWN"): "WEAK RALLY",
+    ("DOWN", "DOWN"): "QUIET DECLINE",
+}
+
+
+# --------------------------------------------------------------------------- #
+# Generic per-series band crossing analysis
+# --------------------------------------------------------------------------- #
+def band_crossings(values: np.ndarray) -> dict[str, dict]:
+    """Most-recent decisive zero-line crossing per band (shared detector).
+    recent is set large here; callers apply their own freshness window."""
+    return latest_crossing(values, recent=10 ** 9)
+
+
+# --------------------------------------------------------------------------- #
+# Cross price vs volume for one timeframe
+# --------------------------------------------------------------------------- #
+def cross_timeframe(frames: dict, label: str, recent: int, sectors: dict,
+                    caps: dict, top: int, band_filter: str | None) -> pd.DataFrame:
+    # determine as-of date for staleness guard
+    last_dates = {s: df.dropna().index[-1] for s, df in frames.items() if len(df.dropna())}
+    if not last_dates:
+        print(f"\n[{label}] no data.")
+        return pd.DataFrame()
+    asof = max(last_dates.values())
+    tol = {"daily": pd.Timedelta(days=8),
+           "weekly": pd.Timedelta(days=12),
+           "90m": pd.Timedelta(days=3)}.get(label, pd.Timedelta(days=8))
+
+    rows = []
+    for sym, df in frames.items():
+        d = drop_incomplete_last(df, label, asof=asof)  # drop in-progress bar (all TFs)
+        if len(d) < 60 or last_dates.get(sym) < (asof - tol):
+            continue  # stale / delisted
+        close = np.log(d["Close"].astype(float).clip(lower=1e-9).to_numpy())  # log price
+        logv = np.log1p(d["Volume"].astype(float).to_numpy())
+        pc = band_crossings(close)
+        vc = band_crossings(logv)
+        for band in pc.keys() & vc.keys():
+            p, v = pc[band], vc[band]
+            if p["bars_ago"] > recent or v["bars_ago"] > recent:
+                continue
+            rows.append({
+                "symbol": sym, "sector": sectors.get(sym, "?"),
+                "cap": caps.get(sym, "?"), "tf": label, "band": band,
+                "price_dir": p["dir"], "vol_dir": v["dir"],
+                "quadrant": QUAD[(p["dir"], v["dir"])],
+                "price_slope_z": p["slope_z"], "vol_slope_z": v["slope_z"],
+                "price_pb_z": p["pb_z"], "vol_pb_z": v["pb_z"],
+                "price_bars": p["bars_ago"], "vol_bars": v["bars_ago"],
+                "settled": p["settled"] and v["settled"],
+                "mag": abs(p["slope_z"]) + abs(v["slope_z"]),
+            })
+    out = pd.DataFrame(rows)
+    if out.empty:
+        print(f"\n[{label}] no fresh price+volume crosses.")
+        return out
+    if band_filter:
+        out = out[out["band"] == band_filter]
+    _report(out, label, recent, top)
+    return out
+
+
+def _report(df: pd.DataFrame, label: str, recent: int, top: int) -> None:
+    print(f"\n{'#'*104}\n#  {label.upper()} — PRICE x VOLUME bandpass CROSS "
+          f"(both inflected within {recent} bars; as-of staleness-filtered)\n{'#'*104}")
+    for band, _, _ in BANDS:
+        sub = df[df["band"] == band]
+        if sub.empty:
+            continue
+        print(f"\n=== Band {band} === ({len(sub)} crosses)")
+        for quad in ["ACCUMULATION", "CAPITULATION", "WEAK RALLY", "QUIET DECLINE"]:
+            q = sub[sub["quadrant"] == quad].sort_values("mag", ascending=False).head(top)
+            if q.empty:
+                continue
+            print(f"  {quad}  (price {q.iloc[0]['price_dir']} + volume {q.iloc[0]['vol_dir']}):")
+            print(f"    {'Sym':<7}{'Sector':<22}{'Cap':<10}{'Pslope':>8}{'Vslope':>8}"
+                  f"{'Pbars':>6}{'Vbars':>6}{'conf':>6}")
+            for _, r in q.iterrows():
+                print(f"    {r['symbol']:<7}{str(r['sector'])[:21]:<22}"
+                      f"{str(r['cap'])[:9]:<10}{r['price_slope_z']:>8.2f}"
+                      f"{r['vol_slope_z']:>8.2f}{r['price_bars']:>6}{r['vol_bars']:>6}"
+                      f"{('ok' if r['settled'] else 'low'):>6}")
+
+
+# --------------------------------------------------------------------------- #
+def run(args):
+    if args.m90_only:
+        args.m90 = True
+    uni = get_universe(limit=args.limit, source=args.universe)
+    symbols = uni["symbol"].tolist()
+    sectors = dict(zip(uni["symbol"], uni["sector"]))
+    caps = dict(zip(uni["symbol"], uni.get("market_cap", pd.Series(index=uni.index, dtype=str))))
+
+    results = []
+    if args.m90:
+        # 90-minute intraday: Yahoo caps history at ~60 days (~260 bars), so only
+        # Band B1 (40/60) is feasible; longer bands lack the bars to settle.
+        h = download_ohlcv(symbols, period=args.m90_period, interval="90m",
+                           refresh=args.refresh, cached_only=args.cached_only)
+        r = cross_timeframe(h, "90m", args.recent_m90, sectors, caps, args.top, args.band)
+        if not r.empty:
+            results.append(r)
+    if not args.weekly_only and not args.m90_only:
+        d = download_ohlcv(symbols, period=args.daily_period, interval="1d",
+                           refresh=args.refresh, cached_only=args.cached_only)
+        r = cross_timeframe(d, "daily", args.recent_daily, sectors, caps, args.top, args.band)
+        if not r.empty:
+            results.append(r)
+    if not args.daily_only and not args.m90_only:
+        w = download_ohlcv(symbols, period=args.weekly_period, interval="1wk",
+                           refresh=args.refresh, cached_only=args.cached_only)
+        r = cross_timeframe(w, "weekly", args.recent_weekly, sectors, caps, args.top, args.band)
+        if not r.empty:
+            results.append(r)
+
+    if results and args.csv:
+        pd.concat(results, ignore_index=True).sort_values(
+            ["tf", "band", "quadrant", "mag"], ascending=[True, True, True, False]
+        ).to_csv(args.csv, index=False)
+        print(f"\n[out] full cross table -> {args.csv}")
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description="Price x Volume bandpass cross scanner")
+    p.add_argument("--universe", choices=["sp400", *CAP_SOURCES.keys()], default="us-midcap")
+    p.add_argument("--limit", type=int, default=None)
+    p.add_argument("--daily-period", default="20y")
+    p.add_argument("--weekly-period", default="20y")
+    p.add_argument("--recent-daily", type=int, default=5)
+    p.add_argument("--recent-weekly", type=int, default=2)
+    p.add_argument("--recent-m90", type=int, default=6, help="fresh window in 90m bars (~1.5 days)")
+    p.add_argument("--m90", action="store_true", help="include the 90-minute intraday timeframe")
+    p.add_argument("--m90-only", action="store_true", help="only the 90m timeframe")
+    p.add_argument("--m90-period", default="60d", help="history for 90m (Yahoo max ~60d)")
+    p.add_argument("--band", default=None, help="restrict to a single band e.g. B1")
+    p.add_argument("--top", type=int, default=20)
+    p.add_argument("--daily-only", action="store_true")
+    p.add_argument("--weekly-only", action="store_true")
+    p.add_argument("--csv", default=None)
+    p.add_argument("--refresh", action="store_true")
+    p.add_argument("--cached-only", action="store_true",
+                   help="use only already-cached data; do not download missing names")
+    return p.parse_args()
+
+
+if __name__ == "__main__":
+    run(parse_args())

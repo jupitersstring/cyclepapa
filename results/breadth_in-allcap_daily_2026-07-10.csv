@@ -1,0 +1,197 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+AAVAS.NS,Financials,Mid Cap,daily,0,2,-2,-0.3561905870251366,▼,,,▼,,▲
+ABFRL.NS,Consumer Discretionary,Mid Cap,daily,1,1,0,-0.3686475935466474,▼,,,▲,▲,
+ACC.NS,Materials,Mid Cap,daily,0,1,-1,-0.6342837639901501,▼,,,,▼,
+ACE.NS,Industrials,Micro Cap,daily,0,1,-1,-0.48969217513996893,▼,,,,▲,
+AFFLE.NS,Communication Services,Small Cap,daily,1,0,1,0.2824638076243002,▲,,,,,
+AMBER.NS,Information Technology,Small Cap,daily,1,1,0,-0.4766515191729058,▼,,,▲,,
+ANUP.NS,Industrials,Micro Cap,daily,0,1,-1,-0.9420995365173346,▼,,,,▼,
+APCL.NS,Materials,Micro Cap,daily,0,1,-1,-0.3355888540080738,▼,,,,▲,▼
+APEX.NS,Consumer Staples,Micro Cap,daily,3,0,3,0.7084400025828135,▲,,▲,▲,,
+ATUL.NS,Materials,Mid Cap,daily,0,1,-1,-0.4326463471922774,▼,,,,±,
+AWHCL.NS,Industrials,Micro Cap,daily,0,1,-1,-0.44881304967604235,▼,,,,▼,
+BASF.NS,Materials,Small Cap,daily,1,1,0,0.4528667426698892,▲,▼,,,▼,
+BBL.NS,Industrials,Micro Cap,daily,0,1,-1,-0.11427112172894169,±,▼,,,▲,
+BBTC.NS,Industrials,Small Cap,daily,1,0,1,0.008010176110315181,,▲,,,,
+BDL.NS,Industrials,Small Cap,daily,1,0,1,0.904447135066334,▲,,,,▲,▲
+BEL.NS,Industrials,Mid Cap,daily,0,2,-2,-0.8494549667985771,▼,▼,,,▲,
+BEML.NS,Industrials,Small Cap,daily,1,1,0,-0.3346186689041788,▼,,,▲,▲,
+BEPL.NS,Materials,Small Cap,daily,1,2,-1,-0.42228356706777603,▼,,▼,▲,▼,
+BHEL.NS,Industrials,Mid Cap,daily,0,4,-4,-1.0745191246330303,▼,▼,▼,▼,▲,
+BLS.NS,Industrials,Micro Cap,daily,0,2,-2,-0.395982063336591,,±,▼,▼,,
+BPCL.NS,Energy,Large Cap,daily,2,1,1,-0.8202383540382376,▼,,▲,▲,▲,▼
+CAMS.NS,Financials,Small Cap,daily,0,2,-2,-1.0721693335009337,,,▼,▼,▲,▼
+CCL.NS,Consumer Staples,Small Cap,daily,1,0,1,0.2744038168969293,▲,,,,▼,
+CDSL.NS,Financials,Small Cap,daily,0,2,-2,-1.361051789364248,▼,▼,,,▲,
+CESC.NS,Utilities,Small Cap,daily,0,3,-3,-0.4439963306086774,▼,,▼,▼,,
+CGCL.NS,Financials,Small Cap,daily,0,1,-1,-0.08616258653347435,,▼,,,▼,
+CIPLA.NS,Health Care,Large Cap,daily,1,1,0,-0.47936857073000816,▼,▲,,,▲,
+DABUR.NS,Consumer Staples,Large Cap,daily,1,1,0,-0.5544899060082024,▼,▲,,,▲,
+DCAL.NS,Health Care,Small Cap,daily,4,0,4,0.4518790368583883,▲,▲,▲,▲,±,
+DCW.NS,Materials,Micro Cap,daily,3,1,2,-0.1800414365300367,▼,▲,▲,▲,▲,
+DIXON.NS,Information Technology,Mid Cap,daily,2,0,2,1.3274936796306696,▲,▲,,,▼,
+DLF.NS,Real Estate,Large Cap,daily,0,2,-2,-0.6942961804720484,▼,▼,,,▲,
+DMART.NS,Consumer Staples,Large Cap,daily,1,1,0,-0.38423995983466896,▲,▼,,,▲,
+DVL.NS,Financials,Micro Cap,daily,1,2,-1,-0.08008795245211453,▼,▲,,▼,▲,
+EKC.NS,Industrials,Micro Cap,daily,1,0,1,0.008689225201590715,,▲,,,▼,
+EPL.NS,Consumer Discretionary,Small Cap,daily,0,1,-1,-1.261552294830029,▼,,,,▲,
+ESTER.NS,Materials,Micro Cap,daily,1,1,0,-0.5867074463949452,▼,▲,,,▲,
+FACT.NS,Materials,Small Cap,daily,0,1,-1,-0.016534534755640203,,,,▼,,
+FCL.NS,Materials,Micro Cap,daily,1,0,1,0.24711808243800845,,▲,,,,
+FDC.NS,Health Care,Small Cap,daily,0,1,-1,-0.2529273783653202,▼,,,,▼,
+FEL.NS,Consumer Discretionary,Micro Cap,daily,1,0,1,0.014197658796472827,,,,▲,▲,
+FLFL.NS,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.21788202826054495,▼,,,,,
+FSL.NS,Information Technology,Small Cap,daily,2,1,1,-0.31210948761341073,▼,▲,,▲,,
+GAEL.NS,Consumer Staples,Small Cap,daily,0,1,-1,-0.21093027585599977,▼,,,,▲,
+GAIL.NS,Utilities,Mid Cap,daily,2,1,1,0.14361830111155402,,▲,▲,▼,▲,
+GHCL.NS,Materials,Small Cap,daily,2,1,1,0.2098831571103052,▼,,▲,▲,,
+GICRE.NS,Financials,Mid Cap,daily,2,1,1,0.04810543309066889,▼,,▲,▲,▲,▼
+GIPCL.NS,Utilities,Micro Cap,daily,1,1,0,0.08595354791603355,▼,▲,,,±,
+GLAND.NS,Health Care,Mid Cap,daily,1,1,0,0.03696637290468913,,±,▲,▼,▲,
+GNA.NS,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.7415561910030158,▼,,,,▲,
+GNFC.NS,Materials,Small Cap,daily,1,2,-1,-0.7888676474665545,,▲,▼,▼,±,▲
+GOKEX.NS,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.7020014545239889,▼,,,,▼,
+GPPL.NS,Industrials,Small Cap,daily,1,0,1,0.7110245682364222,▲,,,,▼,
+GRSE.NS,Industrials,Small Cap,daily,2,1,1,0.19460924207142316,▼,,▲,▲,,
+GSFC.NS,Materials,Small Cap,daily,3,0,3,0.36034019719016286,▲,,▲,▲,,
+GTPL.NS,Communication Services,Micro Cap,daily,1,1,0,0.04620701213608591,▲,▼,,,,
+HAL.NS,Industrials,Mid Cap,daily,0,1,-1,-0.18881329022758114,▼,,,,,▼
+HCC.NS,Industrials,Micro Cap,daily,1,1,0,0.20123792969648824,,▼,▲,±,,▲
+HCG.NS,Health Care,Small Cap,daily,0,4,-4,-1.6907807345480967,▼,▼,▼,▼,▼,▲
+HEG.NS,Industrials,Small Cap,daily,1,0,1,0.15766866171336635,,▲,,,▲,
+HFCL.NS,Information Technology,Small Cap,daily,1,0,1,0.9845102400790052,▲,,,,▲,
+HGS.NS,Industrials,Small Cap,daily,1,0,1,0.23032018429836776,,,,▲,,▲
+HIKAL.NS,Health Care,Small Cap,daily,2,0,2,3.088355257954495,▲,▲,,,±,
+HMT.NS,Industrials,Micro Cap,daily,1,1,0,0.33596526126794557,▲,▼,,,±,
+HMVL.NS,Communication Services,Micro Cap,daily,1,1,0,-0.28063988854048477,,▲,,▼,±,
+HPL.NS,Industrials,Micro Cap,daily,3,0,3,0.5666818030551822,▲,▲,▲,±,,
+HUDCO.NS,Financials,Small Cap,daily,0,1,-1,-0.7282523037386285,▼,,,,▲,
+ICIL.NS,Consumer Discretionary,Small Cap,daily,3,0,3,0.795055792135834,▲,▲,▲,,▲,
+ICRA.NS,Financials,Small Cap,daily,1,0,1,0.41428869424975806,▲,,,,▲,
+IDBI.NS,Financials,Mid Cap,daily,0,2,-2,-0.36015539822955506,,,▼,▼,▼,
+IEX.NS,Financials,Small Cap,daily,0,2,-2,-1.9483770052554035,▼,▼,,,▲,
+IGL.NS,Utilities,Mid Cap,daily,0,3,-3,-0.6984563659393148,▼,,▼,▼,▲,
+IGPL.NS,Materials,Micro Cap,daily,0,3,-3,-0.6656761614164158,▼,,▼,▼,,
+IIFL.NS,Financials,Small Cap,daily,1,0,1,0.26247967907684583,▲,,,,,
+IMFA.NS,Materials,Micro Cap,daily,1,0,1,0.22599737647562937,▲,,,,,
+IMPAL.NS,Consumer Discretionary,Micro Cap,daily,2,1,1,-1.8361011524491166,▼,▲,,▲,±,▼
+INFY.NS,Information Technology,Large Cap,daily,2,0,2,0.367730665585173,▲,▲,,,▲,
+IOB.NS,Financials,Mid Cap,daily,0,2,-2,-0.6513409914929447,,,▼,▼,,▲
+IOC.NS,Energy,Large Cap,daily,3,0,3,1.6526682768247378,,▲,▲,▲,▲,
+IOLCP.NS,Health Care,Small Cap,daily,1,1,0,0.2366754412323705,▲,,▼,±,▲,
+IRB.NS,Industrials,Small Cap,daily,1,1,0,-0.01912772266901247,,,▼,▲,▲,
+IRCON.NS,Industrials,Small Cap,daily,3,1,2,-0.21407033755254148,▼,▲,▲,▲,,
+IRCTC.NS,Industrials,Mid Cap,daily,0,1,-1,-0.017619064218085397,▼,,,,▼,
+IRFC.NS,Financials,Mid Cap,daily,1,2,-1,-0.11349800439999613,,▼,▼,▲,▲,
+ITC.NS,Consumer Staples,Large Cap,daily,0,1,-1,-1.0434889274353492,▼,,,±,▲,
+ITDC.NS,Consumer Discretionary,Small Cap,daily,2,1,1,-0.22981047573247682,▲,±,▲,▼,▲,
+ITI.NS,Information Technology,Small Cap,daily,2,0,2,1.190473165179064,,,▲,▲,,
+JASH.NS,Industrials,Micro Cap,daily,1,1,0,0.019701291993668324,,,▲,▼,±,
+JBMA.NS,Consumer Discretionary,Micro Cap,daily,2,0,2,0.8502124061749927,,,▲,▲,,
+JKIL.NS,Industrials,Micro Cap,daily,0,2,-2,-1.7532330560220792,▼,▼,,,▲,▼
+JSL.NS,Materials,Small Cap,daily,1,0,1,0.005979802005482839,▲,,,,±,▲
+JSWHL.NS,Industrials,Small Cap,daily,1,1,0,-0.13047162632568948,▼,,,▲,▲,
+KAYA.NS,Consumer Staples,Micro Cap,daily,1,0,1,0.07760704852535731,,,,▲,,▼
+KCP.NS,Materials,Micro Cap,daily,1,0,1,0.1504992928446717,,▲,,,,▲
+KDDL.NS,Consumer Discretionary,Micro Cap,daily,2,0,2,0.5632091946465423,▲,▲,,,,
+KEC.NS,Industrials,Small Cap,daily,2,2,0,-0.8862933596503271,▲,▲,▼,▼,▲,
+KEI.NS,Industrials,Small Cap,daily,1,1,0,-0.10258537237353485,,▼,,▲,±,
+KICL.NS,Financials,Micro Cap,daily,1,0,1,0.2675270904073261,▲,,,,±,
+KITEX.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,-0.28676977954586913,▼,▲,,,,
+KKCL.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,-0.09250181807691218,▼,▲,,,▲,▼
+KRBL.NS,Consumer Staples,Small Cap,daily,1,2,-1,-0.4150414954710595,,▼,▼,▲,,
+KSB.NS,Industrials,Small Cap,daily,0,2,-2,-0.12007139155535024,▼,▼,,,▲,
+KSCL.NS,Consumer Staples,Small Cap,daily,2,0,2,1.109332133282412,▲,▲,,,,
+LODHA.NS,Real Estate,Mid Cap,daily,2,0,2,0.33332411101277704,,▲,,▲,▲,
+LTTS.NS,Information Technology,Mid Cap,daily,0,1,-1,-0.7009053697812268,▼,,,,▲,
+MCX.NS,Financials,Small Cap,daily,0,1,-1,-1.0804890785578294,▼,,,,▲,▼
+MEP.NS,Industrials,Micro Cap,daily,0,2,-2,-0.07607603179500333,,▼,▼,,▲,
+MFSL.NS,Financials,Micro Cap,daily,1,0,1,0.25638303375814636,,,▲,±,±,
+MGL.NS,Utilities,Small Cap,daily,2,0,2,0.5127745277334474,,▲,▲,±,,
+MMFL.NS,Industrials,Micro Cap,daily,2,0,2,0.11810183283641304,▲,±,,▲,±,
+MMTC.NS,Industrials,Small Cap,daily,3,0,3,0.5567663919718786,▲,▲,,▲,,▲
+MOIL.NS,Materials,Small Cap,daily,0,1,-1,-0.5533355236443132,▼,,,,,
+MSPL.NS,Materials,Micro Cap,daily,1,0,1,0.11341358975823498,,▲,,,,
+NBCC.NS,Industrials,Small Cap,daily,1,1,0,-0.05720094884456975,▲,▼,,,▲,▼
+NCC.NS,Industrials,Small Cap,daily,0,2,-2,-0.5712973953579892,,,▼,▼,,
+NELCO.NS,Information Technology,Micro Cap,daily,0,1,-1,-0.5333226748670465,▼,,,,▲,
+NESCO.NS,Industrials,Small Cap,daily,0,1,-1,-1.2065475007401678,▼,,,,▲,
+NFL.NS,Materials,Small Cap,daily,0,2,-2,-0.6417907691055571,,,▼,▼,,
+NH.NS,Health Care,Small Cap,daily,2,1,1,-0.5039827397783897,▼,,▲,▲,±,
+NHPC.NS,Utilities,Mid Cap,daily,1,1,0,0.20503092296046624,▼,▲,,,,
+NIACL.NS,Financials,Mid Cap,daily,0,1,-1,-0.006621419831466815,,▼,,,▲,
+NOCIL.NS,Materials,Small Cap,daily,0,2,-2,-0.3428823091744656,▼,▼,,,▲,
+NRAIL.NS,Materials,Micro Cap,daily,2,0,2,0.4928707893981428,,,▲,▲,▲,
+NSIL.NS,Financials,Micro Cap,daily,1,1,0,0.08300062855140394,,▼,,▲,▲,
+NTPC.NS,Utilities,Large Cap,daily,0,1,-1,-0.4818122348214301,▼,,,,▲,
+OAL.NS,Materials,Small Cap,daily,1,0,1,0.9509490011977603,±,▲,,,±,
+OFSS.NS,Information Technology,Mid Cap,daily,2,0,2,0.5267111932692126,▲,▲,,,±,
+OIL.NS,Energy,Small Cap,daily,2,1,1,0.35321776254950377,,▼,▲,▲,▲,
+OMAXE.NS,Real Estate,Micro Cap,daily,1,1,0,1.1422326682014958,▲,,,▼,,▼
+ONGC.NS,Energy,Large Cap,daily,1,1,0,0.15537602400103018,,▼,▲,±,▲,
+PFC.NS,Financials,Mid Cap,daily,4,0,4,1.1295789235634532,▲,▲,▲,▲,▲,
+PFS.NS,Financials,Micro Cap,daily,3,0,3,0.1526388237076824,▲,▲,▲,,,
+PGEL.NS,Information Technology,Micro Cap,daily,0,1,-1,-0.5007209443000585,▼,,,,▼,▲
+PGHL.NS,Health Care,Small Cap,daily,0,1,-1,-0.16097008222103812,▼,,,,▲,
+PGIL.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,-0.0032648065993396425,▼,▲,,,▲,
+PIIND.NS,Materials,Mid Cap,daily,1,1,0,-0.44829230789627134,▼,▲,,,,
+PNB.NS,Financials,Mid Cap,daily,1,2,-1,-0.12544591667393784,,▲,▼,▼,±,
+PPL.NS,Industrials,Micro Cap,daily,0,1,-1,-0.7982629119501227,▼,,,,▲,
+PSB.NS,Financials,Small Cap,daily,3,0,3,0.9912072729435861,▲,,▲,▲,±,▼
+PTC.NS,Utilities,Small Cap,daily,0,1,-1,-0.21188940517437316,,,▼,±,,
+PURVA.NS,Industrials,Micro Cap,daily,1,1,0,-0.35577773973891297,▼,,,▲,,
+QUESS.NS,Industrials,Small Cap,daily,1,0,1,0.23236613918911894,,▲,,,±,
+RAIN.NS,Materials,Small Cap,daily,1,0,1,0.47749198341641813,,▲,,,±,
+RAMKY.NS,Industrials,Micro Cap,daily,1,0,1,0.3965431222699652,▲,,,,±,▼
+RCF.NS,Materials,Small Cap,daily,0,2,-2,-0.7006893420777487,,,▼,▼,▲,
+RCOM.NS,Communication Services,Micro Cap,daily,1,0,1,0.07000828991676783,▲,,,,,
+REPL.NS,Industrials,Micro Cap,daily,2,1,1,-0.7122144377980877,▼,,▲,▲,,
+REPRO.NS,Industrials,Micro Cap,daily,0,1,-1,-0.5063212463203226,▼,,,,,
+RGL.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,-0.8641514213743015,▼,▲,,,▲,▼
+RIIL.NS,Industrials,Micro Cap,daily,1,0,1,0.20745803584048877,,,,▲,,▼
+RITES.NS,Industrials,Small Cap,daily,2,0,2,2.873946219772102,▲,▲,,,▲,▲
+ROUTE.NS,Communication Services,Small Cap,daily,1,1,0,-1.0771424498642068,▼,▲,,,±,
+RUPA.NS,Consumer Discretionary,Small Cap,daily,1,1,0,-0.7601058733592821,▼,▲,,,▲,
+RVNL.NS,Industrials,Small Cap,daily,0,1,-1,-0.5300393481957423,▼,,,,,▲
+SATIA.NS,Materials,Micro Cap,daily,0,1,-1,-0.9365258277234993,▼,,,,,
+SBIN.NS,Financials,Large Cap,daily,0,2,-2,-0.8198261936463023,▼,,▼,±,±,
+SCI.NS,Industrials,Small Cap,daily,1,2,-1,-0.48168164199924285,▲,,▼,▼,,
+SFL.NS,Consumer Discretionary,Small Cap,daily,2,0,2,0.4437496905552557,▲,,▲,,▲,
+SHK.NS,Consumer Staples,Micro Cap,daily,0,3,-3,-1.4266390441123427,▼,,▼,▼,▲,
+SJVN.NS,Utilities,Small Cap,daily,3,0,3,1.0705386464966475,▲,,▲,▲,,
+SOBHA.NS,Real Estate,Small Cap,daily,1,1,0,0.1104218978758586,▲,±,,▼,▲,▼
+SOTL.NS,Materials,Micro Cap,daily,1,1,0,-0.00547960207010012,▼,▲,,,▲,▲
+SPAL.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,0.05676240925037247,▲,▼,,,,
+SPARC.NS,Health Care,Small Cap,daily,2,1,1,0.14819969408709027,▲,▲,,▼,▲,
+SPIC.NS,Materials,Micro Cap,daily,2,1,1,-0.11409736435278364,▼,,▲,▲,,
+SREEL.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,-0.23172795430663518,,,▼,▲,,
+SRF.NS,Materials,Mid Cap,daily,0,3,-3,-1.1478948411353154,▼,,▼,▼,▲,
+SSWL.NS,Consumer Discretionary,Micro Cap,daily,1,1,0,-0.2376655397675864,▼,▲,,,▼,
+STAR.NS,Health Care,Small Cap,daily,0,1,-1,-0.9288877062988777,▼,,,,,▲
+SUVEN.NS,Health Care,Micro Cap,daily,1,1,0,0.5066336067607214,,▲,,▼,▲,
+TAKE.NS,Health Care,Micro Cap,daily,1,1,0,0.05213968386323785,▲,,,▼,±,▼
+TANLA.NS,Information Technology,Small Cap,daily,0,1,-1,-0.6205029788224572,▼,,,,▲,
+TARC.NS,Real Estate,Micro Cap,daily,1,1,0,-0.37793589276905637,▼,▲,,,▲,▼
+TBZ.NS,Consumer Discretionary,Micro Cap,daily,2,1,1,0.1200473081174892,▲,▲,▼,±,▲,
+TCI.NS,Industrials,Small Cap,daily,1,2,-1,-0.6065475707506948,▼,▲,,▼,▲,
+TCS.NS,Information Technology,Large Cap,daily,2,0,2,0.8859576114485375,▲,▲,,,▲,
+TECHM.NS,Information Technology,Large Cap,daily,2,0,2,0.6578736926839753,▲,▲,,,±,
+TI.NS,Consumer Staples,Micro Cap,daily,2,0,2,0.7523262551464205,▲,▲,,,±,
+TIIL.NS,Industrials,Micro Cap,daily,2,1,1,0.1409335733947551,,▲,▼,▲,,
+TNPL.NS,Materials,Micro Cap,daily,0,1,-1,-0.005225273852834404,▼,,,,▲,
+TRENT.NS,Consumer Discretionary,Mid Cap,daily,1,1,0,-0.6347486313699854,▲,▼,,,±,
+UBL.NS,Consumer Staples,Mid Cap,daily,0,1,-1,-0.6788648029905373,▼,,,,▼,
+UFLEX.NS,Consumer Discretionary,Small Cap,daily,2,0,2,0.21095328148958525,▲,▲,,,,
+UNIDT.NS,Energy,Micro Cap,daily,2,0,2,1.4836094626208318,▲,▲,,,,
+UPL.NS,Materials,Mid Cap,daily,0,1,-1,-0.8421459645956331,▼,,,,▲,▼
+URJA.NS,Information Technology,Micro Cap,daily,1,1,0,0.15665824170318704,▲,▼,,,,
+VBL.NS,Consumer Staples,Mid Cap,daily,0,1,-1,-0.24879746402502853,▼,,,,▲,
+VEDL.NS,Materials,Large Cap,daily,1,0,1,0.060594627718687684,,▲,,,,
+VMART.NS,Consumer Discretionary,Small Cap,daily,0,3,-3,-0.6332663882744294,▼,,▼,▼,,▲
+VSSL.NS,Materials,Micro Cap,daily,2,0,2,0.30224686152855706,,,▲,▲,,
+VTL.NS,Consumer Discretionary,Small Cap,daily,0,3,-3,-1.3646185198501952,▼,,▼,▼,▲,▼
+WABAG.NS,Industrials,Micro Cap,daily,0,1,-1,-1.525479814270924,▼,,,,±,
+WENDT.NS,Industrials,Micro Cap,daily,1,1,0,-0.5175019052085269,▼,,,▲,±,▼
+WIPRO.NS,Information Technology,Large Cap,daily,1,1,0,-0.08063584960354835,▲,▼,,,±,
+ZOTA.NS,Health Care,Micro Cap,daily,0,1,-1,-0.16634320639995326,▼,,,,±,
+ZUARI.NS,Materials,Micro Cap,daily,0,2,-2,-0.5645096768338689,▼,▼,,,▲,

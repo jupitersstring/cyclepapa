@@ -1,0 +1,332 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+AAV.TO,Energy,Small Cap,daily,0,4,-4,-1.11900383120866,▼,▼,▼,▼,▼,
+ABX.TO,Materials,Large Cap,daily,2,0,2,0.6820453839969775,▲,,,▲,▼,▼
+AC.TO,Industrials,Mid Cap,daily,0,1,-1,-0.0418791332813468,▼,,,,±,
+ACB.TO,Health Care,Small Cap,daily,1,0,1,0.11573348559173494,▲,,,,▼,
+ACD.TO,Financials,Micro Cap,daily,2,0,2,0.384383155392842,▲,,,▲,,▼
+ACQ.TO,Consumer Discretionary,Small Cap,daily,1,1,0,0.36135834606787326,▲,▼,,,,
+ADN.TO,Materials,Micro Cap,daily,1,2,-1,-0.09208316074995482,▼,,▲,▼,▲,
+ADW-A.TO,Consumer Staples,Small Cap,daily,0,2,-2,-0.7220355148359565,▼,▼,,,,
+ADW-B.TO,Consumer Staples,Small Cap,daily,0,2,-2,-0.7475346249713346,▼,▼,,,,
+AEM.TO,Materials,Large Cap,daily,1,1,0,0.0599690020315633,▲,▼,,,▼,▼
+AGI.TO,Materials,Mid Cap,daily,1,1,0,0.5909413084767894,▲,,▼,,,
+AII.TO,Materials,Micro Cap,daily,0,2,-2,-0.23117301316760708,,▼,▼,,,
+AIM.TO,Industrials,Small Cap,daily,2,0,2,2.284802865621101,▲,▲,,,▲,
+ALA.TO,Utilities,Mid Cap,daily,0,1,-1,-0.43741630137627396,,▼,,,▲,
+ALC.TO,Industrials,Small Cap,daily,1,1,0,-0.6045202120820309,▼,▲,,,,
+ALS.TO,Materials,Small Cap,daily,2,2,0,0.12220705556514971,▲,▲,▼,▼,▼,▲
+ALYA.TO,Information Technology,Micro Cap,daily,3,0,3,1.0788087800959154,,▲,▲,▲,▼,
+APS.TO,Health Care,Small Cap,daily,0,3,-3,-0.536858417033254,,▼,▼,▼,▲,
+AQN.TO,Utilities,Mid Cap,daily,0,2,-2,-0.8637578320070891,▼,▼,,,▲,▲
+ARE.TO,Industrials,Small Cap,daily,1,2,-1,0.10993633350766466,▼,▲,,▼,▲,
+ARG.TO,Materials,Micro Cap,daily,1,0,1,0.40336599963114267,▲,,,,,▼
+ARIS.TO,Materials,Micro Cap,daily,1,0,1,0.46258129310916407,▲,,,,,
+ASM.TO,Materials,Micro Cap,daily,3,1,2,-0.14044964844694266,▲,▼,▲,▲,,▲
+ATH.TO,Energy,Small Cap,daily,1,0,1,0.2745870916109766,▲,,,,,
+ATZ.TO,Consumer Discretionary,Mid Cap,daily,0,1,-1,-0.2227958945358044,,▼,,,,
+AYA.TO,Materials,Small Cap,daily,3,1,2,-0.13731392765128253,▼,▲,▲,▲,▲,
+BB.TO,Information Technology,Mid Cap,daily,2,0,2,0.937350363510005,▲,▲,,,▲,▲
+BBD-A.TO,Industrials,Mid Cap,daily,1,1,0,-0.0944245924859658,▼,,▲,,▼,
+BBD-B.TO,Industrials,Mid Cap,daily,1,1,0,-0.002589151901847442,▲,,▼,±,▲,
+BCE.TO,Communication Services,Large Cap,daily,0,1,-1,-0.25337353922924727,,▼,,,▼,
+BDI.TO,Industrials,Micro Cap,daily,1,0,1,0.9257906978383535,▲,,,,,
+BDT.TO,Industrials,Small Cap,daily,1,0,1,0.8218634907106289,▲,,,,,
+BHC.TO,Health Care,Mid Cap,daily,1,3,-2,-0.38093080014766395,▲,▼,▼,▼,▼,
+BIR.TO,Energy,Small Cap,daily,2,0,2,0.4816485073409712,▲,,,▲,,▼
+BK.TO,Financials,Micro Cap,daily,1,0,1,0.2537789477683359,▲,,,,,
+BKI.TO,Materials,Micro Cap,daily,1,1,0,0.8340172825760768,▲,▼,,,,▼
+BLX.TO,Utilities,Mid Cap,daily,1,0,1,0.08198941556678266,,,,▲,,▼
+BMO.TO,Financials,Large Cap,daily,0,1,-1,-0.0064710197740786395,▼,,,,▼,
+BNS.TO,Financials,Large Cap,daily,0,1,-1,-0.25191311217652185,,,,▼,,
+BOS.TO,Materials,Small Cap,daily,0,3,-3,-0.49496745078371995,▼,,▼,▼,,
+BSX.TO,Materials,Small Cap,daily,2,0,2,0.35846495394782496,▲,,▲,,,▲
+BTE.TO,Energy,Small Cap,daily,0,2,-2,-0.20548405196386216,▼,▼,,,,
+BTO.TO,Materials,Mid Cap,daily,1,3,-2,-0.30149494373748853,▲,▼,▼,▼,▼,▲
+BU.TO,Consumer Staples,Small Cap,daily,2,1,1,-0.1591870839238957,▼,,▲,▲,▼,
+BYD.TO,Consumer Discretionary,Mid Cap,daily,2,0,2,0.23498248060184873,,,▲,▲,,
+BYL.TO,Information Technology,Micro Cap,daily,0,1,-1,-0.384446750033215,▼,,,,,
+CAE.TO,Industrials,Mid Cap,daily,1,0,1,0.1782299150823327,▲,,,,,
+CAS.TO,Materials,Small Cap,daily,0,1,-1,-0.045949426502556845,,,,▼,,
+CCA.TO,Communication Services,Mid Cap,daily,1,0,1,0.6144609094929945,▲,,,,,
+CCO.TO,Materials,Mid Cap,daily,1,1,0,-0.674438741762766,▼,▲,,,,▼
+CEF.TO,Financials,Mid Cap,daily,0,1,-1,-0.8749862528923339,▼,,,,▼,
+CEU.TO,Energy,Small Cap,daily,0,3,-3,-0.5133597144008588,,▼,▼,▼,▼,
+CF.TO,Financials,Small Cap,daily,1,1,0,0.015696518841238516,,▼,▲,±,,▲
+CFF.TO,Materials,Micro Cap,daily,1,1,0,-1.0362437588344464,▼,▲,,,,
+CFP.TO,Materials,Mid Cap,daily,0,1,-1,-0.21356625159119846,,,,▼,,
+CFW.TO,Energy,Micro Cap,daily,1,0,1,0.05435256392891305,,,,▲,▼,▼
+CG.TO,Materials,Mid Cap,daily,2,1,1,-0.19391913265287863,▲,▼,,▲,▼,▲
+CGG.TO,Materials,Small Cap,daily,1,1,0,-0.05628075422457457,▲,▼,,,,
+CGO.TO,Communication Services,Small Cap,daily,1,1,0,-0.4564854290894899,▼,▲,,,,
+CGX.TO,Communication Services,Small Cap,daily,2,0,2,0.567843624961362,▲,,▲,±,,
+CGY.TO,Industrials,Small Cap,daily,1,1,0,-0.09876148473264626,▲,▼,,,,
+CHR.TO,Industrials,Small Cap,daily,0,1,-1,-0.2664334165827795,,▼,,,,
+CIGI.TO,Real Estate,Mid Cap,daily,1,1,0,-0.04615742237340978,▲,▼,,,▼,
+CJ.TO,Energy,Small Cap,daily,1,1,0,0.027971432203550972,▲,▼,,,,▲
+CJR-B.TO,Communication Services,Small Cap,daily,2,0,2,3.187887143061919,▲,,,▲,▲,
+CJT.TO,Industrials,Small Cap,daily,1,2,-1,-0.18258281582473967,±,▼,▲,▼,,
+CKI.TO,Consumer Discretionary,Micro Cap,daily,1,0,1,0.4087486406596521,▲,,,,,
+CLS.TO,Information Technology,Small Cap,daily,0,2,-2,-1.0452646658878177,▼,▼,,,,▼
+CM.TO,Financials,Large Cap,daily,0,1,-1,-0.02163192145332629,▼,,,,,
+CMG.TO,Information Technology,Small Cap,daily,1,0,1,0.2409294458221204,▲,,,,,
+CNQ.TO,Energy,Large Cap,daily,1,0,1,0.2931474529255508,▲,,,,▼,
+CP.TO,Industrials,Large Cap,daily,2,0,2,0.06507254960006936,▲,▲,,,▼,
+CPX.TO,Utilities,Mid Cap,daily,0,4,-4,-2.3457430655908706,▼,▼,▼,▼,,▲
+CRDL.TO,Health Care,Micro Cap,daily,1,1,0,-0.0013616824785693815,,,▲,▼,,
+CRON.TO,Health Care,Mid Cap,daily,1,1,0,-0.03470464937098158,,±,▼,▲,,
+CRRX.TO,Health Care,Micro Cap,daily,1,1,0,0.21365479354272193,▼,▲,,,,
+CSU.TO,Information Technology,Large Cap,daily,0,1,-1,-0.7476963488777467,,▼,,,,▲
+CSW-A.TO,Consumer Staples,Small Cap,daily,0,2,-2,-1.4656405330223912,▼,▼,,,,
+CU.TO,Utilities,Mid Cap,daily,0,1,-1,-0.3048517837946118,▼,,,,,
+CVE.TO,Energy,Large Cap,daily,1,0,1,0.2990493595202731,▲,,,,,
+CVG.TO,Financials,Small Cap,daily,1,1,0,0.18820990803615117,±,,▲,▼,,▼
+CYB.TO,Financials,Small Cap,daily,0,1,-1,-0.047571348655734924,▼,,,,,
+DC-A.TO,Consumer Staples,Micro Cap,daily,1,2,-1,0.020184832493664907,▲,▼,,▼,▼,
+DF.TO,Financials,Small Cap,daily,1,1,0,0.2840926036465462,▲,,,▼,±,
+DFN.TO,Financials,Small Cap,daily,1,1,0,-0.12203120498813902,▲,▼,,,,
+DGS.TO,Financials,Micro Cap,daily,1,2,-1,-0.190351899436523,▼,,▲,▼,,
+DIAM.TO,Materials,Micro Cap,daily,0,1,-1,-2.59387667778169,,▼,,±,,
+DII-A.TO,Consumer Discretionary,Small Cap,daily,2,1,1,0.023050691177685767,▲,▼,▲,±,▼,
+DII-B.TO,Consumer Discretionary,Small Cap,daily,0,2,-2,-0.13713789282211622,▼,▼,,,,
+DML.TO,Materials,Small Cap,daily,1,0,1,0.01935689010299758,▲,,,,,▼
+DNG.TO,Materials,Micro Cap,daily,1,0,1,0.05042087974707301,,▲,,,,
+DOL.TO,Consumer Staples,Large Cap,daily,1,2,-1,-0.5001113192512948,▼,,▲,▼,▼,
+DOO.TO,Consumer Discretionary,Mid Cap,daily,0,4,-4,-0.9376118804671066,▼,▼,▼,▼,▼,
+DR.TO,Health Care,Micro Cap,daily,2,1,1,0.38422926701724447,▲,▲,,▼,▲,▲
+DRM.TO,Real Estate,Mid Cap,daily,2,0,2,0.21359311296769187,▲,▲,,,▼,▲
+DRT.TO,Industrials,Micro Cap,daily,0,1,-1,-0.27280284682354095,▼,,,,▲,▼
+DSG.TO,Information Technology,Mid Cap,daily,1,0,1,0.39818069924091476,▲,,,,▼,
+DXT.TO,Industrials,Small Cap,daily,0,1,-1,-0.07000525200801891,,,,▼,,
+DYA.TO,Industrials,Micro Cap,daily,0,1,-1,-0.07789469782272906,,,,▼,▼,
+ECO.TO,Materials,Micro Cap,daily,2,1,1,-0.07356979143844791,▼,▲,▲,,,
+EDR.TO,Materials,Small Cap,daily,3,1,2,-0.1216362970831989,▲,▼,▲,▲,,▲
+EGLX.TO,Communication Services,Small Cap,daily,1,1,0,0.7135389953010682,▲,▼,,,,
+EIF.TO,Industrials,Small Cap,daily,1,0,1,0.05123919562565524,,,▲,,,
+ELD.TO,Materials,Mid Cap,daily,2,0,2,0.9478037552009042,▲,▲,,,,
+ELEF.TO,Materials,Micro Cap,daily,2,0,2,1.0893419181933097,▲,▲,,,,
+ELF.TO,Financials,Mid Cap,daily,1,2,-1,-0.11862272220960829,▼,,▲,▼,,
+EMA.TO,Utilities,Large Cap,daily,0,1,-1,-0.5403970141787149,▼,,,,,
+ENB.TO,Energy,Large Cap,daily,0,2,-2,-0.2783763999153518,▼,,,▼,,
+ENGH.TO,Information Technology,Mid Cap,daily,1,0,1,0.43314126193404534,▲,,,,,▼
+ENS.TO,Financials,Micro Cap,daily,0,1,-1,-0.11273302431321139,▼,,,,▼,
+EQB.TO,Financials,Small Cap,daily,1,0,1,0.06214569294602904,,▲,,,,
+EQX.TO,Materials,Mid Cap,daily,1,1,0,0.1734182200453692,▲,,▼,,▼,
+ERD.TO,Materials,Micro Cap,daily,3,1,2,0.39098314661203126,▲,▼,▲,▲,,
+ERO.TO,Materials,Mid Cap,daily,1,1,0,1.060619131477001,▼,▲,,,▼,▼
+ESM.TO,Materials,Micro Cap,daily,2,0,2,0.40037691678789333,▲,▲,,,,
+ET.TO,Information Technology,Small Cap,daily,4,0,4,3.142712747092006,▲,▲,▲,▲,▼,
+FC.TO,Financials,Small Cap,daily,2,0,2,0.531603637737107,,▲,▲,±,,
+FEC.TO,Energy,Small Cap,daily,1,1,0,0.031180095264111654,,,▼,▲,▼,
+FF.TO,Materials,Micro Cap,daily,0,1,-1,-0.09869520994372973,,,,▼,,
+FFN.TO,Financials,Small Cap,daily,1,1,0,-0.10811018919012672,▼,▲,,,,
+FM.TO,Materials,Large Cap,daily,1,0,1,0.034710130693904266,±,▲,,,▼,▼
+FRU.TO,Energy,Small Cap,daily,1,1,0,0.05579225411742822,▲,▼,,,▼,
+FSV.TO,Real Estate,Mid Cap,daily,2,0,2,0.31908341725519673,▲,▲,,,▼,
+FSY.TO,Materials,Micro Cap,daily,2,0,2,0.29074589419989527,▲,▲,,,,
+FSZ.TO,Financials,Small Cap,daily,2,0,2,0.17276522254451282,▲,▲,,,,
+FTG.TO,Industrials,Micro Cap,daily,2,2,0,0.3880643913127183,▼,▲,▲,▼,,
+FTN.TO,Financials,Small Cap,daily,0,1,-1,-0.12587575525560452,▼,,,,,
+FTT.TO,Industrials,Mid Cap,daily,1,2,-1,-1.7910495447644368,▼,▼,,▲,▼,
+FURY.TO,Materials,Micro Cap,daily,0,1,-1,-0.17669224628704808,,▼,,,▼,
+FVI.TO,Materials,Small Cap,daily,1,1,0,0.08288628008524085,▲,▼,,,,▼
+FVL.TO,Materials,Micro Cap,daily,1,1,0,0.32801558553661186,▲,,▼,,▲,
+GAU.TO,Materials,Micro Cap,daily,1,1,0,0.20108910654233247,▲,▼,,,▼,
+GBT.TO,Consumer Discretionary,Small Cap,daily,1,0,1,0.01509818309899921,,,▲,,▼,▲
+GDL.TO,Materials,Micro Cap,daily,0,1,-1,-0.6016284108865412,▼,,,,▲,
+GDV.TO,Financials,Micro Cap,daily,1,2,-1,0.3845750041043212,▲,▼,▼,±,,
+GEI.TO,Energy,Mid Cap,daily,0,2,-2,-1.0920466422284711,▼,▼,,,▼,
+GENM.TO,Materials,Micro Cap,daily,1,1,0,0.05919754883755779,▲,▼,,,▼,
+GFL.TO,Industrials,Large Cap,daily,1,0,1,0.10741215194132954,,▲,,,,▲
+GGD.TO,Materials,Small Cap,daily,1,1,0,0.2298543336467639,▲,▼,,,▲,
+GIL.TO,Consumer Discretionary,Mid Cap,daily,1,1,0,0.13057449394167742,▼,±,,▲,▼,
+GMX.TO,Materials,Micro Cap,daily,2,0,2,0.4030417530546732,▲,▲,,,▼,
+GOOS.TO,Consumer Discretionary,Mid Cap,daily,3,1,2,0.4488923767230526,▲,▲,▼,▲,,
+GRN.TO,Industrials,Micro Cap,daily,1,0,1,0.0016739066915112536,▲,,,,,
+GSY.TO,Financials,Small Cap,daily,2,1,1,0.2688240856781179,▲,▲,▼,,,
+GUD.TO,Health Care,Small Cap,daily,2,0,2,0.25557466252726047,▲,▲,,,▲,
+GURU.TO,Consumer Staples,Small Cap,daily,0,2,-2,-0.14669312810732799,,,▼,▼,,▼
+GWO.TO,Financials,Large Cap,daily,2,0,2,0.31173387205271025,▲,,,▲,±,
+HAI.TO,Information Technology,Micro Cap,daily,2,0,2,0.5976644722790059,,,▲,▲,▲,
+HBM.TO,Materials,Mid Cap,daily,0,2,-2,-0.2827304174394693,▼,▼,,,▼,▼
+HBP.TO,Health Care,Micro Cap,daily,2,0,2,0.4531784121797255,▲,▲,,,,▼
+HLF.TO,Consumer Staples,Small Cap,daily,2,0,2,0.08093525498244754,▲,▲,,,,
+HLS.TO,Health Care,Small Cap,daily,1,3,-2,-0.25328274449112614,▼,▲,▼,▼,,
+HPS-A.TO,Industrials,Micro Cap,daily,0,2,-2,-1.411663611505228,▼,,▼,,▲,▲
+HUT.TO,Financials,Small Cap,daily,1,0,1,0.13056938278412702,,▲,,,,
+HWO.TO,Energy,Micro Cap,daily,2,1,1,0.5246867909979449,▲,▲,,▼,▼,
+IAG.TO,Financials,Mid Cap,daily,1,0,1,0.6958555572188652,,▲,,,▼,
+IFA.TO,Consumer Discretionary,Micro Cap,daily,2,0,2,0.20322653242615252,▲,▲,,,▲,
+IFC.TO,Financials,Large Cap,daily,0,1,-1,-0.24205076520948823,,▼,,,▼,
+IFP.TO,Materials,Mid Cap,daily,2,0,2,0.3446000521147752,▲,▲,,,▼,▲
+IGM.TO,Financials,Mid Cap,daily,1,0,1,0.43855875751514417,▲,,,,▼,
+III.TO,Materials,Small Cap,daily,2,0,2,0.6833350300040718,▲,,▲,,±,▼
+IMG.TO,Materials,Small Cap,daily,1,1,0,0.3843373795501509,▲,▼,,,▲,▼
+IMO.TO,Energy,Large Cap,daily,1,0,1,0.35459800416652515,▲,,,,,
+ITH.TO,Materials,Micro Cap,daily,3,0,3,0.5144232977368056,▲,,▲,▲,▼,
+IVN.TO,Materials,Mid Cap,daily,1,0,1,0.5301512604415919,▲,,,,,▲
+JAG.TO,Materials,Small Cap,daily,1,1,0,0.3490835379384653,▲,▼,,,,▲
+JWEL.TO,Consumer Staples,Small Cap,daily,2,0,2,1.1922938542776094,▲,▲,,,▲,▲
+K.TO,Materials,Mid Cap,daily,1,1,0,0.4866098113207197,▲,,▼,±,▼,
+KBL.TO,Industrials,Small Cap,daily,2,0,2,0.7806666203691345,▲,,▲,±,,
+KEL.TO,Energy,Small Cap,daily,1,0,1,0.28838919107518574,▲,,,,,
+KEY.TO,Energy,Mid Cap,daily,0,2,-2,-1.221938234797759,▼,▼,,,▼,
+KITS.TO,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.11163959934740302,±,▼,,,,
+KNT.TO,Materials,Small Cap,daily,0,2,-2,-0.5886435602611758,▼,▼,,,▲,
+KPT.TO,Consumer Staples,Micro Cap,daily,0,1,-1,-0.16453694163921234,▼,,,,▲,
+KXS.TO,Information Technology,Mid Cap,daily,1,0,1,0.37714855073890785,▲,,,,,
+L.TO,Consumer Staples,Large Cap,daily,1,3,-2,0.26137971233620605,▼,▲,▼,▼,,▲
+LABS.TO,Health Care,Micro Cap,daily,1,0,1,1.2059875700684104,▲,,,,,
+LAM.TO,Materials,Micro Cap,daily,0,2,-2,-0.7190988103322087,▼,▼,,,▼,
+LAS-A.TO,Consumer Staples,Small Cap,daily,3,0,3,0.056608230772490595,▲,▲,,▲,▼,▼
+LB.TO,Financials,Small Cap,daily,2,0,2,0.20144281513853973,,,▲,▲,,
+LBS.TO,Financials,Micro Cap,daily,2,2,0,-0.02041384067542767,▼,▲,▼,▲,,
+LGD.TO,Materials,Small Cap,daily,2,0,2,0.8582780627368102,▲,▲,,,,▲
+LGO.TO,Materials,Small Cap,daily,2,1,1,-0.18324277325435984,▲,▼,▲,±,▲,▲
+LIF.TO,Materials,Mid Cap,daily,1,0,1,0.22785172694823133,▲,,,,,
+LNF.TO,Consumer Discretionary,Small Cap,daily,3,0,3,0.47828081547791923,▲,,▲,▲,,
+LNR.TO,Consumer Discretionary,Mid Cap,daily,1,0,1,0.11243442376363906,,▲,,,▼,
+LSPD.TO,Information Technology,Mid Cap,daily,1,0,1,0.16764354424945183,,▲,,,▼,
+LUC.TO,Materials,Micro Cap,daily,2,0,2,0.3790644806913331,,,▲,▲,▲,
+LUG.TO,Materials,Mid Cap,daily,2,0,2,1.0369475911885968,▲,▲,,,,▲
+LUN.TO,Materials,Mid Cap,daily,1,1,0,0.09296370520577418,▲,▼,,,▼,▲
+MAL.TO,Industrials,Small Cap,daily,2,1,1,0.8171883676321147,▲,▲,,▼,,▲
+MBX.TO,Health Care,Micro Cap,daily,2,2,0,0.1058732833667573,▼,▼,▲,▲,,▼
+MDA.TO,Industrials,Small Cap,daily,0,2,-2,-0.7690919113934911,▼,▼,,,,
+MDI.TO,Materials,Small Cap,daily,1,1,0,-0.12584050921322498,▲,▼,,,▼,▼
+MDNA.TO,Health Care,Micro Cap,daily,1,0,1,0.5262180775325641,▲,,,,,
+MEQ.TO,Real Estate,Small Cap,daily,0,1,-1,-0.016126225111366636,,▼,,,,
+MFC.TO,Financials,Large Cap,daily,2,0,2,0.14456436189305483,▲,,,▲,▼,
+MFI.TO,Consumer Staples,Mid Cap,daily,0,3,-3,-0.2908209459487233,▼,,▼,▼,,
+MG.TO,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.3055252533542187,,▼,,,,
+MGA.TO,Materials,Micro Cap,daily,2,0,2,0.37042614305795435,▲,,▲,,,▼
+MKP.TO,Financials,Small Cap,daily,0,1,-1,-0.22945245799052735,▼,,,,,▼
+MPC.TO,Real Estate,Micro Cap,daily,1,0,1,0.0225846790078432,,▲,,,,
+MPVD.TO,Materials,Micro Cap,daily,1,1,0,0.1179160626851895,▼,▲,,,▲,
+MRC.TO,Real Estate,Small Cap,daily,0,1,-1,-0.23455168101905993,▼,,,,±,
+MRD.TO,Real Estate,Small Cap,daily,1,0,1,0.18528332030388173,▲,,,,±,▲
+MRE.TO,Consumer Discretionary,Small Cap,daily,1,0,1,0.5969015130788348,▲,,,,,
+MRU.TO,Consumer Staples,Large Cap,daily,1,2,-1,-0.2758395823167094,▼,,▼,▲,▼,
+MTL.TO,Industrials,Small Cap,daily,0,1,-1,-0.5445263862751412,±,▼,,,,
+MUX.TO,Materials,Small Cap,daily,2,0,2,0.4498826606937767,▲,,▲,±,▼,▼
+MXG.TO,Utilities,Micro Cap,daily,0,2,-2,-0.3513483016683444,,▼,,▼,,
+NA.TO,Financials,Large Cap,daily,0,1,-1,-0.4472109729598944,▼,,,,,
+NDM.TO,Materials,Micro Cap,daily,0,1,-1,-0.5463547162766883,▼,,,,,▲
+NEO.TO,Materials,Small Cap,daily,2,1,1,0.6576340018833395,▲,,▼,▲,,▼
+NEXT.TO,Materials,Micro Cap,daily,1,0,1,0.09814974052385893,▲,±,,,,
+NFI.TO,Consumer Discretionary,Small Cap,daily,2,1,1,-0.4867491836485177,▼,,▲,▲,±,
+NG.TO,Materials,Mid Cap,daily,1,0,1,0.6045865186888276,▲,,,,▲,
+NOA.TO,Energy,Small Cap,daily,2,0,2,0.533430434513517,▲,,▲,,,
+NPI.TO,Utilities,Mid Cap,daily,0,1,-1,-0.09943228094121878,▼,,,,,
+NTR.TO,Materials,Large Cap,daily,1,0,1,0.4199793349431839,▲,,,,,
+NUAG.TO,Materials,Small Cap,daily,0,1,-1,-0.35281193600898697,▼,,,,,
+NVO.TO,Materials,Small Cap,daily,1,1,0,-0.6591448589002888,▼,,,▲,,
+NWC.TO,Consumer Staples,Small Cap,daily,1,1,0,0.00518729446569606,,▲,,▼,,
+NXE.TO,Materials,Mid Cap,daily,1,0,1,0.3998145255314828,▲,±,,,,▲
+OGI.TO,Health Care,Small Cap,daily,0,1,-1,-0.2640599248523741,,,▼,,,
+OLA.TO,Materials,Small Cap,daily,0,4,-4,-1.18924596952704,▼,▼,▼,▼,▼,
+OR.TO,Materials,Mid Cap,daily,2,1,1,0.5816217555275414,▲,,▼,▲,▼,▼
+OTEX.TO,Information Technology,Large Cap,daily,0,4,-4,-0.8675606011431531,▼,▼,▼,▼,▼,
+PAAS.TO,Materials,Mid Cap,daily,1,1,0,0.6156260097663286,▲,,▼,±,,▲
+PBH.TO,Consumer Staples,Mid Cap,daily,1,1,0,0.09152502383247778,▲,▼,,,▼,
+PEY.TO,Energy,Small Cap,daily,1,0,1,0.3810198771947445,▲,,,,▼,
+PHX.TO,Energy,Micro Cap,daily,1,1,0,-0.10119128967239745,▲,▼,,,,
+PHYS.TO,Financials,Mid Cap,daily,3,1,2,2.218935191103698,▲,▲,▼,▲,,
+PIF.TO,Utilities,Micro Cap,daily,0,1,-1,-0.09489330757463046,▼,,,,▲,
+PNE.TO,Energy,Micro Cap,daily,1,0,1,0.0554033337039356,,▲,,,,▲
+POU.TO,Energy,Small Cap,daily,0,1,-1,-0.550450205470824,▼,,,,,
+POW.TO,Financials,Large Cap,daily,1,1,0,-0.5500957134883245,▲,▼,,,,
+PPL.TO,Energy,Large Cap,daily,1,0,1,0.593995653885817,▲,,,,▼,
+PSD.TO,Energy,Micro Cap,daily,1,0,1,0.3193947804350493,,▲,,,,
+PSI.TO,Energy,Small Cap,daily,1,0,1,0.5309879267825273,▲,,,,±,
+PSK.TO,Energy,Mid Cap,daily,1,0,1,0.18638058867007173,▲,,,,▼,
+PSLV.TO,Financials,Mid Cap,daily,1,0,1,0.5168440707664689,▲,,,,▼,
+PTM.TO,Materials,Small Cap,daily,1,2,-1,0.297245570485649,▲,,▼,▼,,▲
+PXT.TO,Energy,Mid Cap,daily,1,1,0,0.18193965051418326,,▼,,▲,▼,
+PYR.TO,Industrials,Small Cap,daily,1,0,1,0.511677961266516,▲,,,,,
+QBR-A.TO,Communication Services,Mid Cap,daily,0,1,-1,-0.08758394057882701,,▼,,,,
+QBR-B.TO,Communication Services,Mid Cap,daily,2,0,2,1.3619973166969261,▲,▲,,,▼,
+QEC.TO,Energy,Micro Cap,daily,2,0,2,1.5816718065065944,▲,▲,,,,
+RCH.TO,Consumer Discretionary,Small Cap,daily,0,2,-2,-0.0834061413021968,,,▼,▼,,▼
+REAL.TO,Information Technology,Small Cap,daily,1,2,-1,-0.5836856324262042,▼,▼,,▲,±,
+ROOT.TO,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.04757970584982346,,▼,,,,
+RSI.TO,Consumer Staples,Small Cap,daily,1,0,1,0.2515711009332778,▲,,,,▼,▲
+RUS.TO,Industrials,Small Cap,daily,1,0,1,1.4460680376515092,▲,,,,±,
+RVX.TO,Health Care,Micro Cap,daily,0,1,-1,-0.0718992921456087,▼,,,,▼,
+RY.TO,Financials,Large Cap,daily,1,2,-1,-0.03562403263871862,▼,▲,,▼,▲,
+S.TO,Materials,Micro Cap,daily,1,0,1,0.3709415145787442,,,▲,,,
+SAP.TO,Consumer Staples,Large Cap,daily,0,2,-2,-0.4773324538311166,▼,,,▼,▼,▲
+SBC.TO,Financials,Micro Cap,daily,0,1,-1,-0.17036487764328695,▼,,,,▲,
+SEA.TO,Materials,Small Cap,daily,1,1,0,0.23682931030891557,▲,▼,,,,
+SEC.TO,Financials,Small Cap,daily,0,1,-1,-0.09135722820775967,,,▼,,▲,
+SHLE.TO,Energy,Micro Cap,daily,1,0,1,0.553446738456551,,,,▲,▼,
+SHOP.TO,Information Technology,Large Cap,daily,0,2,-2,-0.17776660664590438,,,▼,▼,▼,
+SIA.TO,Health Care,Small Cap,daily,0,1,-1,-0.26031468535398933,▼,,,,,
+SII.TO,Financials,Small Cap,daily,1,2,-1,-0.6918583583501788,▼,,▼,▲,▼,▼
+SIS.TO,Industrials,Small Cap,daily,1,0,1,0.15416569550086048,▲,,,,,
+SKE.TO,Materials,Small Cap,daily,1,0,1,0.0771161379061124,▲,,,,,
+SLF.TO,Financials,Large Cap,daily,1,0,1,0.18278671880820713,▲,,,,,
+SLS.TO,Materials,Small Cap,daily,1,1,0,0.33874226019858067,▲,,,▼,,
+SPB.TO,Utilities,Mid Cap,daily,1,0,1,0.04965757035426836,▲,,,,,
+SSRM.TO,Materials,Mid Cap,daily,1,1,0,-0.270597552508928,▲,▼,,,▼,
+STN.TO,Industrials,Mid Cap,daily,0,3,-3,-0.5935515174499099,,▼,▼,▼,▼,
+SU.TO,Energy,Large Cap,daily,1,0,1,0.057751753601983626,▲,,,,▼,
+SVM.TO,Materials,Small Cap,daily,2,2,0,-0.2108217725370376,▼,▲,▼,▲,,▲
+SXP.TO,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.0831082031308449,▼,,,,,
+SYZ.TO,Information Technology,Micro Cap,daily,1,0,1,1.1444120835804046,▲,,,,▲,
+T.TO,Communication Services,Large Cap,daily,0,1,-1,-0.17838448698896076,,▼,,,,▼
+TA.TO,Utilities,Mid Cap,daily,2,2,0,0.0876019347054855,▲,▼,▼,▲,▼,▼
+TBL.TO,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.025390424736901663,▼,,,,▼,
+TCL-A.TO,Industrials,Small Cap,daily,1,0,1,0.08279564196646694,▲,,,,±,
+TCL-B.TO,Industrials,Small Cap,daily,1,0,1,0.11889834865084743,▲,,,,,
+TCS.TO,Information Technology,Small Cap,daily,0,1,-1,-1.0054903605725194,,▼,,,▲,
+TD.TO,Financials,Large Cap,daily,0,1,-1,-0.1317380735538461,,▼,,,▲,
+TECK-A.TO,Materials,Large Cap,daily,1,1,0,0.15929062646164366,▲,▼,,,,▲
+TECK-B.TO,Materials,Large Cap,daily,1,1,0,-0.07013596026880484,▼,▲,,,▼,▲
+TF.TO,Financials,Small Cap,daily,2,0,2,0.36090025850460866,▲,▲,,,,
+TFII.TO,Industrials,Mid Cap,daily,1,0,1,0.06777792281132779,▲,,,,,▲
+TGO.TO,Communication Services,Micro Cap,daily,0,1,-1,-0.10927806428679843,,▼,,,±,
+TI.TO,Materials,Large Cap,daily,1,1,0,-0.21627864129305813,▲,▼,,,,
+TIH.TO,Industrials,Mid Cap,daily,0,4,-4,-1.8120551915791872,▼,▼,▼,▼,,
+TKO.TO,Materials,Small Cap,daily,2,0,2,0.3943255242680235,▲,▲,,,▼,▲
+TLG.TO,Materials,Micro Cap,daily,1,0,1,0.4806714601224324,▲,,,,,▲
+TMQ.TO,Materials,Small Cap,daily,1,0,1,0.22612541769185268,▲,,,,,
+TOT.TO,Energy,Micro Cap,daily,0,1,-1,-0.33771476310314746,▼,,,,,
+TOU.TO,Energy,Mid Cap,daily,1,0,1,0.10225710799823991,▲,,,,▼,
+TOY.TO,Consumer Discretionary,Mid Cap,daily,4,0,4,0.767704280938786,▲,▲,▲,▲,,▲
+TPX-A.TO,Consumer Staples,Large Cap,daily,1,2,-1,-0.15914001212058934,▲,▼,▼,±,▲,
+TPX-B.TO,Consumer Staples,Large Cap,daily,0,2,-2,-0.3011586112664041,▼,▼,,,▼,
+TPZ.TO,Energy,Small Cap,daily,1,1,0,0.09957318884909888,▲,▼,,,▼,
+TRI.TO,Industrials,Large Cap,daily,2,2,0,0.5036305244364365,▲,▲,▼,▼,▼,
+TRP.TO,Energy,Large Cap,daily,0,4,-4,-0.8904886968134058,▼,▼,▼,▼,,
+TRZ.TO,Consumer Discretionary,Micro Cap,daily,1,0,1,0.4211194337188728,▲,,,,,
+TSK.TO,Materials,Micro Cap,daily,1,0,1,0.23342612756926376,▲,,,,,
+TSL.TO,Materials,Micro Cap,daily,0,2,-2,-0.31456979793919876,▼,▼,,,±,
+TVA-B.TO,Communication Services,Micro Cap,daily,1,0,1,0.1580489034591718,,,,▲,,
+TVE.TO,Energy,Small Cap,daily,1,1,0,-0.08427173947795591,▲,▼,,,,
+TVK.TO,Energy,Micro Cap,daily,1,1,0,0.0019175850966507008,▲,,,▼,,▼
+TXG.TO,Materials,Small Cap,daily,1,1,0,0.06603774404453089,▼,▲,,,▼,
+UNC.TO,Financials,Small Cap,daily,3,1,2,0.126971889409265,▲,▲,▲,▼,,
+URB-A.TO,Financials,Micro Cap,daily,3,0,3,1.0145518772866537,▲,▲,▲,,▼,▲
+URB.TO,Financials,Micro Cap,daily,1,1,0,-0.3144343243438865,▼,▲,,,,
+USA.TO,Materials,Micro Cap,daily,3,0,3,0.9393000683255223,▲,,▲,▲,,▼
+VCM.TO,Financials,Micro Cap,daily,1,1,0,-0.27907787341057866,▼,▲,,,▲,▲
+VET.TO,Energy,Small Cap,daily,0,1,-1,-0.13220686809103369,,▼,,,,
+VLN.TO,Industrials,Micro Cap,daily,0,1,-1,-0.017111945375263088,▼,,,,▼,
+VNP.TO,Materials,Micro Cap,daily,1,2,-1,0.39220417511080746,▲,▼,,▼,▲,
+WCN.TO,Industrials,Large Cap,daily,2,0,2,0.0566361507078053,,▲,,▲,,
+WDO.TO,Materials,Small Cap,daily,1,3,-2,-3.3615028012153245,▼,▼,▼,▲,,
+WEF.TO,Materials,Small Cap,daily,0,3,-3,-1.08126112798765,,▼,▼,▼,▼,▲
+WELL.TO,Health Care,Small Cap,daily,0,1,-1,-0.19332329384385386,▼,,,,,
+WFC.TO,Real Estate,Small Cap,daily,1,0,1,0.0001448991201031117,▲,,,,,
+WFG.TO,Materials,Large Cap,daily,2,1,1,0.24620667250561004,▼,±,▲,▲,▼,
+WILD.TO,Communication Services,Small Cap,daily,0,1,-1,-0.31953587257688004,▼,,,,,
+WJX.TO,Industrials,Small Cap,daily,1,1,0,-0.3346324912844241,▼,,,▲,,
+WM.TO,Materials,Small Cap,daily,1,0,1,0.12560666131917675,▲,,,,,
+WN.TO,Consumer Staples,Large Cap,daily,2,1,1,0.19603202410022458,▼,▲,▲,±,▼,▲
+WPM.TO,Materials,Large Cap,daily,1,0,1,0.5326511514763963,▲,,,,±,
+WPRT.TO,Consumer Discretionary,Small Cap,daily,1,0,1,0.30726851162693647,▲,,,,,
+WRN.TO,Materials,Small Cap,daily,1,1,0,-0.004222747462759052,▲,▼,,,±,▲
+WSP.TO,Industrials,Large Cap,daily,1,1,0,-0.019143513254464728,,,▼,▲,,
+WTE.TO,Industrials,Small Cap,daily,1,1,0,0.5390269744845532,▲,▼,,,,
+X.TO,Financials,Mid Cap,daily,2,0,2,0.09752346625080476,▲,,,▲,▼,
+XLY.TO,Health Care,Micro Cap,daily,1,0,1,0.06037576457592552,,▲,,,,

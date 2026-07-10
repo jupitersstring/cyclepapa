@@ -1,0 +1,230 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+22UA.DE,Health Care,Large Cap,daily,0,1,-1,-0.0767097991945934,▼,,,,,
+8TRA.DE,Industrials,Large Cap,daily,1,1,0,0.10956956048566682,▼,,,▲,,▲
+AAD.DE,Industrials,Small Cap,daily,3,0,3,1.6052770998134192,▲,,▲,▲,,▼
+AAG.DE,Industrials,Micro Cap,daily,1,1,0,-0.10018351679303206,,±,▼,▲,±,
+AB9.DE,Industrials,Small Cap,daily,2,2,0,0.37513891434546,▲,▲,▼,▼,,
+ACT.DE,Materials,Micro Cap,daily,0,1,-1,-0.005728396561519767,,▼,,,,
+ACWN.DE,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.1220078516323984,,,▼,±,▲,▼
+ACX.DE,Consumer Discretionary,Small Cap,daily,0,2,-2,-0.14847118235984716,▼,,▼,,,
+ADN1.DE,Information Technology,Small Cap,daily,0,2,-2,-0.15467350134336164,,,▼,▼,,
+ADS.DE,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.5308374827816126,▼,,,,▼,
+AFX.DE,Health Care,Large Cap,daily,0,1,-1,-0.29632177060064674,,▼,,,,
+AG1.DE,Consumer Discretionary,Mid Cap,daily,1,0,1,0.3192044531791123,▲,,,,,▼
+AIXA.DE,Information Technology,Mid Cap,daily,0,1,-1,-0.36445162069119985,,▼,,,▲,▲
+AJ91.DE,Health Care,Micro Cap,daily,1,2,-1,-0.57245872527677,,▲,▼,▼,,
+ALG.DE,Financials,Micro Cap,daily,3,1,2,0.16457556526926062,▲,▲,▲,▼,▼,
+ALV.DE,Financials,Large Cap,daily,0,1,-1,-0.25856287217069385,▼,,,,,
+AOF.DE,Information Technology,Small Cap,daily,2,0,2,0.2704939460663611,,,▲,▲,,
+APM.DE,Communication Services,Micro Cap,daily,2,1,1,0.4720348816381971,▲,,▼,▲,,
+B7E.DE,Financials,Micro Cap,daily,2,1,1,0.15668495752502998,▲,▲,▼,,,
+BAS.DE,Materials,Large Cap,daily,1,1,0,-0.014045335863130198,▲,,,▼,,
+BAYN.DE,Health Care,Large Cap,daily,0,1,-1,-0.3832583505083561,▼,,,,,
+BC8.DE,Information Technology,Mid Cap,daily,1,1,0,0.009495975671414483,▼,▲,,,,
+BDT.DE,Consumer Discretionary,Small Cap,daily,0,2,-2,-0.33620613699353635,▼,▼,,,▲,
+BEZ.DE,Consumer Staples,Micro Cap,daily,0,3,-3,-0.3617699811317353,▼,▼,▼,,▲,▲
+BIJ.DE,Consumer Discretionary,Micro Cap,daily,2,0,2,1.5353717353912315,▲,▲,,,▲,
+BMW.DE,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.04715498104200306,,,▼,±,▼,
+BNN.DE,Health Care,Micro Cap,daily,1,0,1,0.6700515221954314,▲,,,,,
+BNR.DE,Materials,Large Cap,daily,2,1,1,0.11862925313923801,,▲,▼,▲,,▲
+BSL.DE,Information Technology,Small Cap,daily,2,0,2,1.565993678401481,▲,▲,,,▼,▼
+BVB.DE,Consumer Discretionary,Small Cap,daily,2,0,2,0.4081848226082305,▲,,▲,±,▼,
+BWB.DE,Financials,Small Cap,daily,0,2,-2,-0.2406555829573766,▼,▼,,,▼,
+BWQ.DE,Information Technology,Micro Cap,daily,1,1,0,-0.13550346440742989,▼,,▲,,,
+BYW.DE,Industrials,Small Cap,daily,1,3,-2,-0.16184332305356527,▼,▼,▲,▼,▲,
+BYW6.DE,Industrials,Small Cap,daily,2,0,2,0.3059113241314768,▲,,▲,±,,
+CBK.DE,Financials,Mid Cap,daily,0,1,-1,-0.29596725980475397,▼,,,,,
+CEA.DE,Information Technology,Micro Cap,daily,0,3,-3,-0.14534183476579104,,▼,▼,▼,±,▲
+CLIQ.DE,Communication Services,Micro Cap,daily,1,1,0,0.4453092673131163,▲,,,▼,,
+COK.DE,Information Technology,Mid Cap,daily,0,1,-1,-0.1463040375143475,▼,,,,,▼
+CWC.DE,Consumer Discretionary,Small Cap,daily,1,0,1,0.4878063544192165,▲,,,,,
+CYR.DE,Information Technology,Micro Cap,daily,1,2,-1,-0.3876942509726295,▼,▲,,▼,▲,
+DAM.DE,Information Technology,Micro Cap,daily,1,0,1,0.053999646991596956,▲,,,,▼,
+DB1.DE,Financials,Large Cap,daily,2,1,1,0.010646632951433546,±,▼,▲,▲,,▼
+DBAN.DE,Financials,Small Cap,daily,1,0,1,0.4631742639907613,▲,,,,±,
+DBK.DE,Financials,Large Cap,daily,1,3,-2,-0.5523000372094868,▼,▲,▼,▼,▼,
+DEF.DE,Real Estate,Micro Cap,daily,1,2,-1,-0.3646601228625982,▼,▲,▼,,▲,
+DEQ.DE,Real Estate,Small Cap,daily,1,1,0,0.4146747260125556,▲,▼,,,,
+DEX.DE,Consumer Discretionary,Micro Cap,daily,0,3,-3,-1.1307465598034634,▼,±,▼,▼,▼,▲
+DEZ.DE,Industrials,Small Cap,daily,2,0,2,4.0063186186258255,▲,▲,,,▼,
+DLX.DE,Materials,Micro Cap,daily,0,1,-1,-0.20424190868053577,,,▼,,,▲
+DMP.DE,Health Care,Mid Cap,daily,2,2,0,0.9843158837364409,▲,▼,▼,▲,,
+DMRE.DE,Real Estate,Small Cap,daily,1,2,-1,-0.002806464749628035,▲,,▼,▼,▲,
+DR0.DE,Energy,Micro Cap,daily,0,1,-1,-0.34063538578195435,▼,,,,,▼
+DRW3.DE,Health Care,Small Cap,daily,0,1,-1,-0.6903452393672255,▼,,,,,
+DRW8.DE,Health Care,Small Cap,daily,1,1,0,-0.3556938133034141,▼,▲,,,,
+DTE.DE,Communication Services,Large Cap,daily,3,0,3,1.0582044620907463,▲,▲,,▲,▲,
+DUE.DE,Industrials,Mid Cap,daily,2,1,1,0.41548588961152033,▲,▼,,▲,▲,
+DWNI.DE,Real Estate,Large Cap,daily,0,2,-2,-0.3958446547155943,▼,▼,,,,
+DWS.DE,Financials,Mid Cap,daily,0,1,-1,-0.11501680368825538,▼,,,,±,
+E4C.DE,Communication Services,Micro Cap,daily,1,0,1,0.031007055488106963,▲,,,,▼,
+EBK.DE,Utilities,Large Cap,daily,1,1,0,0.08468033312931762,▼,±,▲,,,
+EDL.DE,Communication Services,Micro Cap,daily,1,0,1,0.3433039375493609,▲,,,,▼,
+EKT.DE,Utilities,Small Cap,daily,0,1,-1,-0.14352616006769855,▼,,,,,
+ELG.DE,Information Technology,Small Cap,daily,0,3,-3,-1.3618609561788664,±,▼,▼,▼,,
+EMH.DE,Consumer Discretionary,Micro Cap,daily,1,0,1,0.01070961319173596,▲,,,,,
+ENR.DE,Utilities,Large Cap,daily,1,1,0,-0.36013881106272017,▼,▲,,,,
+EOAN.DE,Utilities,Large Cap,daily,3,1,2,0.48523912117851775,▲,▼,▲,▲,,▲
+ERWE.DE,Real Estate,Micro Cap,daily,1,1,0,0.4491876068113145,▲,▼,,,▲,▼
+ETG.DE,Utilities,Small Cap,daily,1,1,0,1.0590374180491104,▲,,,▼,▼,
+EUZ.DE,Health Care,Small Cap,daily,0,1,-1,-0.016423915006118926,▼,,,,,
+EVD.DE,Communication Services,Mid Cap,daily,1,1,0,0.016962414037262147,▼,▲,,,,
+EVK.DE,Materials,Large Cap,daily,1,0,1,0.06505891771938803,±,,,▲,,
+EVT.DE,Health Care,Mid Cap,daily,1,0,1,0.48891848742599836,▲,,,,,
+EXL.DE,Information Technology,Small Cap,daily,1,0,1,0.2884426872031695,,▲,,,,▲
+F3C.DE,Industrials,Small Cap,daily,0,2,-2,-0.10354291752850293,▼,▼,,,,
+FC9.DE,Real Estate,Micro Cap,daily,0,1,-1,-0.33895863307641755,▼,,,,,
+FEV.DE,Information Technology,Micro Cap,daily,0,1,-1,-0.28966117796789564,,,,▼,,▲
+FIE.DE,Consumer Discretionary,Mid Cap,daily,0,1,-1,-0.1893162915203222,▼,,,,,
+FME.DE,Health Care,Large Cap,daily,3,0,3,0.4608182033777767,▲,,▲,▲,±,
+FNTN.DE,Communication Services,Mid Cap,daily,2,0,2,0.29135697922219106,▲,▲,,,±,▼
+FPE.DE,Materials,Mid Cap,daily,2,1,1,-0.04947404233565289,▼,▲,▲,±,±,
+FPE3.DE,Materials,Mid Cap,daily,0,1,-1,-0.22412460026412423,▼,,,,,
+FRA.DE,Industrials,Mid Cap,daily,0,1,-1,-0.057373700165800984,▼,,,,▼,
+FRE.DE,Health Care,Large Cap,daily,0,1,-1,-0.33354537000217527,▼,,,,,
+FTK.DE,Financials,Small Cap,daily,3,1,2,-0.04702403016934677,▼,▲,▲,▲,,
+FYB.DE,Health Care,Small Cap,daily,0,2,-2,-0.952954225213354,▼,▼,,,,
+G1A.DE,Industrials,Mid Cap,daily,0,1,-1,-0.16246432197176955,▼,,,,▼,
+G24.DE,Communication Services,Mid Cap,daily,1,1,0,-0.3516803968961983,▼,,,▲,,
+GBF.DE,Industrials,Small Cap,daily,0,2,-2,-0.3647780276007687,▼,▼,,,,▼
+GFT.DE,Information Technology,Small Cap,daily,2,0,2,0.35975757309453826,▲,▲,,,,
+GIL.DE,Industrials,Mid Cap,daily,0,1,-1,-0.11495680421822134,,▼,,,▲,
+GLJ.DE,Financials,Small Cap,daily,0,1,-1,-0.2166271803637793,▼,,,,▲,▲
+GME.DE,Health Care,Micro Cap,daily,1,1,0,-0.20846907059630404,▲,,,▼,,
+GSC1.DE,Industrials,Micro Cap,daily,1,1,0,-0.5972268253307043,▼,▲,,,▲,
+GTY.DE,Real Estate,Small Cap,daily,0,1,-1,-0.3481561162663541,▼,,,,▼,
+GXI.DE,Health Care,Mid Cap,daily,2,0,2,0.13366576239546094,,▲,,▲,,
+H9W.DE,Consumer Discretionary,Micro Cap,daily,1,0,1,0.1090368713966946,,▲,,,,
+HAW.DE,Consumer Staples,Small Cap,daily,3,0,3,1.4993535324434961,▲,,▲,▲,±,
+HBH.DE,Consumer Discretionary,Small Cap,daily,1,1,0,-0.10717977468185606,▼,▲,,,▲,
+HEI.DE,Materials,Large Cap,daily,2,0,2,0.4380407688184273,▲,▲,,,▲,
+HEN.DE,Consumer Staples,Large Cap,daily,1,1,0,-0.318131840580789,▼,▲,,,▲,
+HEN3.DE,Consumer Staples,Large Cap,daily,0,2,-2,-0.688548373871223,▼,▼,,,▲,
+HFG.DE,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.1430057846183144,▼,,,,▲,▲
+HLAG.DE,Industrials,Large Cap,daily,2,0,2,0.18030895393206456,,,▲,▲,,
+HLE.DE,Consumer Discretionary,Mid Cap,daily,1,0,1,1.0558113430627825,▲,,,,±,▼
+HMU.DE,Materials,Micro Cap,daily,0,1,-1,-0.19633425531820253,▼,,,,,
+HNL.DE,Industrials,Small Cap,daily,1,0,1,0.319058459748929,▲,,,,▲,
+HOT.DE,Industrials,Mid Cap,daily,2,1,1,0.08136363454684292,▲,,▼,▲,▼,
+HPHA.DE,Health Care,Micro Cap,daily,1,0,1,0.2145660914540567,▲,,,,▼,
+HRPK.DE,Information Technology,Small Cap,daily,0,2,-2,-0.5395578168662238,,,▼,▼,,
+HYQ.DE,Financials,Mid Cap,daily,2,0,2,0.22234004105597013,▲,▲,,,,
+IFX.DE,Information Technology,Large Cap,daily,0,1,-1,-0.11489099472608122,,▼,,,,
+INH.DE,Industrials,Small Cap,daily,0,1,-1,-0.5478407911455402,▼,,,,,
+ISHA.DE,Information Technology,Micro Cap,daily,1,0,1,2.2273241395628856,▲,,,±,▲,
+IUR.DE,Financials,Micro Cap,daily,0,1,-1,-0.8986241712066506,▼,,,,▼,
+IVU.DE,Information Technology,Small Cap,daily,1,0,1,0.09311918662590839,,,▲,±,▼,
+IXX.DE,Information Technology,Small Cap,daily,1,2,-1,0.9599570035550633,▲,▼,,▼,▲,▲
+JEN.DE,Information Technology,Small Cap,daily,1,0,1,0.1506243080722037,▲,±,,,,▼
+JST.DE,Industrials,Small Cap,daily,1,1,0,0.5472913306115033,▲,▼,,,,
+JUN3.DE,Industrials,Mid Cap,daily,0,2,-2,-0.31719368581737634,▼,▼,,,,
+KBX.DE,Consumer Discretionary,Large Cap,daily,0,2,-2,-0.516331682824371,▼,▼,,,,
+KGX.DE,Industrials,Large Cap,daily,1,1,0,-0.10369015185120892,▼,▲,,,,
+KSB.DE,Industrials,Small Cap,daily,1,1,0,0.3795843719920554,▲,▼,,,▼,
+KSB3.DE,Industrials,Small Cap,daily,0,2,-2,-0.6708312564732067,±,▼,▼,±,,
+KSC.DE,Information Technology,Micro Cap,daily,1,1,0,2.7369896935160303,▲,▼,,,▲,
+KTA.DE,Consumer Discretionary,Small Cap,daily,4,0,4,1.4923030727075872,▲,▲,▲,▲,▲,▲
+KWS.DE,Consumer Staples,Mid Cap,daily,3,0,3,0.9383026335965678,▲,▲,,▲,▲,
+LEG.DE,Real Estate,Large Cap,daily,0,2,-2,-1.0600647968124612,▼,▼,,,,▼
+LEI.DE,Consumer Staples,Small Cap,daily,1,1,0,-0.2939113643999038,▼,,,▲,,
+LHA.DE,Industrials,Mid Cap,daily,0,1,-1,-0.6899010250710043,▼,,,,▲,
+LIK.DE,Health Care,Micro Cap,daily,2,0,2,0.19462630533878475,▲,,,▲,▲,
+LPK.DE,Industrials,Small Cap,daily,0,1,-1,-0.20922364695654902,▼,,,,,
+LXS.DE,Materials,Mid Cap,daily,0,4,-4,-0.8101208594354106,▼,▼,▼,▼,,
+M12.DE,Health Care,Micro Cap,daily,1,0,1,1.4703321551889996,▲,,,,,
+MAK.DE,Health Care,Micro Cap,daily,2,0,2,0.8726806476869696,▲,▲,,,,
+MBB.DE,Industrials,Small Cap,daily,1,2,-1,-0.20817934013075157,▼,▼,,▲,,
+MBK.DE,Financials,Micro Cap,daily,1,1,0,-1.0585461457998726,▼,▲,,,,▲
+MBQ.DE,Industrials,Micro Cap,daily,2,0,2,1.8760347870519891,▲,▲,,,,
+MED.DE,Health Care,Micro Cap,daily,0,1,-1,-0.039440931301219256,▼,,,,▼,
+MLL.DE,Industrials,Micro Cap,daily,0,2,-2,-0.4355257923537462,,,▼,▼,▲,▼
+MPCK.DE,Financials,Micro Cap,daily,1,0,1,0.009192165061784148,▲,,,,,
+MRK.DE,Health Care,Large Cap,daily,1,2,-1,-0.4311144389826641,▼,,▲,▼,▼,▲
+MSAG.DE,Industrials,Micro Cap,daily,1,2,-1,-0.04369197417016017,▼,,▲,▼,▲,▲
+MUB.DE,Information Technology,Small Cap,daily,3,0,3,0.9735385639018539,▲,▲,,▲,,
+MUM.DE,Information Technology,Small Cap,daily,3,0,3,0.32158528228620825,▲,,▲,▲,,
+MVV1.DE,Utilities,Mid Cap,daily,1,2,-1,0.19520623955982558,▲,▼,,▼,±,▼
+MXHN.DE,Industrials,Micro Cap,daily,1,0,1,0.41116515762228817,▲,,,,,
+MZX.DE,Materials,Micro Cap,daily,2,0,2,0.6139478024459448,,,▲,▲,,
+NB2.DE,Information Technology,Small Cap,daily,0,1,-1,-0.05619428114925659,,▼,,,,▼
+NBG6.DE,Financials,Small Cap,daily,1,1,0,0.43542305907442325,,▼,▲,±,,
+NDX1.DE,Industrials,Mid Cap,daily,1,1,0,-0.8522398725056963,▼,▲,,,▲,
+NEM.DE,Information Technology,Mid Cap,daily,1,2,-1,-0.09610299365429764,,▲,▼,▼,▲,
+NFN.DE,Information Technology,Small Cap,daily,1,0,1,0.3724074410718113,▲,,,,,
+NN6.DE,Health Care,Micro Cap,daily,4,0,4,0.6519388817049461,▲,▲,▲,▲,,
+NOEJ.DE,Industrials,Small Cap,daily,1,0,1,0.14373884523374317,▲,,,,,
+NTG.DE,Materials,Small Cap,daily,0,1,-1,-0.04222829244474582,▼,,,,,
+O4B.DE,Financials,Small Cap,daily,0,1,-1,-0.12696079653437722,,,,▼,▼,
+OBS.DE,Information Technology,Micro Cap,daily,1,0,1,0.09984769036229377,▲,,,,▼,▼
+OHB.DE,Industrials,Small Cap,daily,0,1,-1,-0.3326877848010138,▼,,,,,▲
+PAH3.DE,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.13984945256265635,▼,,,,▲,
+PAT.DE,Real Estate,Mid Cap,daily,1,0,1,0.12827206801319485,▲,,,,▲,
+PBB.DE,Financials,Small Cap,daily,1,0,1,0.35285262323856686,▲,,,,,
+PCZ.DE,Financials,Small Cap,daily,2,1,1,0.05044721804424966,▼,▲,▲,±,,
+PFV.DE,Industrials,Small Cap,daily,0,2,-2,-0.9605516586922769,,,▼,▼,±,
+PGN.DE,Consumer Discretionary,Micro Cap,daily,1,0,1,0.21250089182176937,,,▲,±,,
+PNE3.DE,Utilities,Small Cap,daily,1,1,0,-0.5344595995580248,,▲,,▼,±,
+PSM.DE,Communication Services,Mid Cap,daily,2,0,2,0.40701463222716605,▲,▲,,,▲,
+PUM.DE,Consumer Discretionary,Large Cap,daily,1,0,1,0.31056487229983654,▲,,,,,
+PWO.DE,Consumer Discretionary,Micro Cap,daily,1,2,-1,-0.25974006052047216,,▲,▼,▼,▼,
+PZS.DE,Industrials,Micro Cap,daily,1,0,1,0.13308904517177714,,▲,,,,
+QB7.DE,Financials,Micro Cap,daily,2,0,2,0.2723369979250242,▲,,,▲,▼,
+RAA.DE,Industrials,Mid Cap,daily,0,1,-1,-0.04303749875018374,±,▼,,,,
+RSL2.DE,Industrials,Micro Cap,daily,0,3,-3,-0.05586875710047796,,▼,▼,▼,±,
+S92.DE,Information Technology,Small Cap,daily,1,1,0,0.046751093180492476,▼,▲,,,,▼
+SAP.DE,Information Technology,Large Cap,daily,3,0,3,0.49968636141902445,,▲,▲,▲,,
+SAX.DE,Communication Services,Mid Cap,daily,0,2,-2,-0.34251937981934194,▼,▼,,,,
+SDF.DE,Materials,Mid Cap,daily,1,1,0,0.040300361862867506,,▲,,▼,,
+SFQ.DE,Consumer Discretionary,Small Cap,daily,0,1,-1,-0.39349798120216234,▼,,,,,
+SHF.DE,Information Technology,Small Cap,daily,1,1,0,-0.18404910257386967,▼,▲,,,,
+SHL.DE,Health Care,Large Cap,daily,0,3,-3,-0.320260609310635,▼,,▼,▼,▼,
+SIE.DE,Industrials,Large Cap,daily,1,3,-2,-1.5176298218924131,▼,▼,▲,▼,▼,▼
+SIS.DE,Information Technology,Small Cap,daily,0,2,-2,-0.14416816118569578,,,▼,▼,,▲
+SIX2.DE,Industrials,Mid Cap,daily,0,1,-1,-0.39645393878250856,▼,,,,,
+SIX3.DE,Industrials,Mid Cap,daily,2,0,2,0.416416954493411,▲,,,▲,,
+SJJ.DE,Information Technology,Micro Cap,daily,1,1,0,0.06739258889481387,,▲,,▼,±,
+SKB.DE,Industrials,Small Cap,daily,1,1,0,-0.004284211316702535,▼,,,▲,,
+SMHN.DE,Information Technology,Small Cap,daily,1,1,0,0.006742241517014816,▼,▲,,,▲,
+SNG.DE,Industrials,Micro Cap,daily,0,2,-2,-0.05824998397137399,▼,▼,,,,
+SRT.DE,Health Care,Large Cap,daily,1,3,-2,0.5042471088995143,▲,▼,▼,▼,,
+SRT3.DE,Health Care,Large Cap,daily,2,2,0,1.571070396451419,▲,▲,▼,▼,▼,
+STO3.DE,Industrials,Small Cap,daily,1,0,1,0.0692238340631767,▲,,,,±,
+SUR.DE,Materials,Small Cap,daily,3,1,2,1.1783174733780322,▲,▲,▲,▼,,
+SVE.DE,Financials,Micro Cap,daily,0,2,-2,-0.13128031151914132,▼,▼,,,,
+SWA.DE,Consumer Staples,Micro Cap,daily,2,2,0,-0.032407383674173215,▼,▼,▲,▲,▲,
+SY1.DE,Materials,Large Cap,daily,0,1,-1,-0.5219011194503235,▼,,,,▼,
+SYT.DE,Information Technology,Micro Cap,daily,0,2,-2,-0.20379425765013132,▼,▼,,,,▲
+SYZ.DE,Information Technology,Micro Cap,daily,0,1,-1,-0.5975280867655234,▼,,,,,▼
+SZG.DE,Materials,Small Cap,daily,0,1,-1,-0.5652364610250529,▼,,,,,
+SZU.DE,Consumer Staples,Mid Cap,daily,3,0,3,0.7277271157999515,,▲,▲,▲,,
+TEG.DE,Real Estate,Mid Cap,daily,0,1,-1,-0.6290220434323623,▼,,,,,▼
+TIMA.DE,Financials,Micro Cap,daily,1,1,0,-0.048529721875044035,,▲,,▼,,▲
+TKA.DE,Industrials,Mid Cap,daily,1,2,-1,-0.17556895256789387,▼,▲,▼,±,,
+TLX.DE,Financials,Mid Cap,daily,0,2,-2,-0.7490875028058352,▼,▼,,,▲,
+TPE.DE,Industrials,Small Cap,daily,1,0,1,0.07264347821169065,▲,,,,▲,
+TTK.DE,Industrials,Small Cap,daily,1,0,1,0.3492423241936549,▲,,,,,
+TTO.DE,Real Estate,Micro Cap,daily,0,1,-1,-0.18531080817893267,,▼,,,▲,
+TTR1.DE,Industrials,Micro Cap,daily,0,3,-3,-1.4253020150206266,▼,,▼,▼,,
+TUI1.DE,Consumer Discretionary,Mid Cap,daily,1,1,0,0.009172204071722076,,,▲,▼,,
+UBK.DE,Financials,Small Cap,daily,0,2,-2,-0.23112959211168052,,,▼,▼,,
+UTDI.DE,Communication Services,Mid Cap,daily,0,1,-1,-0.2896716319112682,▼,,,,±,
+UUU.DE,Industrials,Micro Cap,daily,0,2,-2,-0.08357822946946847,▼,▼,,,,
+UZU.DE,Materials,Small Cap,daily,0,2,-2,-0.1070857427753649,▼,▼,,,,▲
+V3V.DE,Health Care,Micro Cap,daily,0,2,-2,-0.130593357983434,,,▼,▼,±,▼
+VBK.DE,Utilities,Mid Cap,daily,1,1,0,-0.0054167581757527256,,▲,,▼,,
+VIB3.DE,Consumer Discretionary,Small Cap,daily,1,1,0,-0.10089699961634482,▲,▼,,,▲,
+VIH1.DE,Real Estate,Small Cap,daily,0,2,-2,-0.045224230372513496,▼,▼,,,▲,
+VNA.DE,Real Estate,Large Cap,daily,0,2,-2,-0.9218672307611355,▼,▼,,,▲,
+VOS.DE,Industrials,Small Cap,daily,1,0,1,0.3081596765651208,,▲,,,,▼
+VOW.DE,Consumer Discretionary,Large Cap,daily,1,1,0,-0.0008001185165859431,▼,▲,,,,
+VOW3.DE,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.15211209305492188,▼,,,,±,
+VVV3.DE,Financials,Small Cap,daily,1,0,1,0.016941618302419227,▲,,,,,
+WAC.DE,Industrials,Mid Cap,daily,0,3,-3,-0.4643785638065234,▼,,▼,▼,,▲
+WAF.DE,Information Technology,Mid Cap,daily,2,0,2,7.244621524396039,▲,▲,,,,▲
+WCH.DE,Materials,Mid Cap,daily,2,1,1,1.363977252865078,▲,▼,,▲,,▼
+WEW.DE,Consumer Discretionary,Small Cap,daily,3,0,3,0.7821261756139155,,▲,▲,▲,,
+WSU.DE,Industrials,Small Cap,daily,1,1,0,-0.2251463237433999,▼,▲,,,,
+WUW.DE,Financials,Mid Cap,daily,1,2,-1,-0.08248312487678973,▼,▲,,▼,,
+YSN.DE,Materials,Mid Cap,daily,0,2,-2,-0.24582075428504133,▼,▼,,,,
+ZAL.DE,Consumer Discretionary,Large Cap,daily,0,1,-1,-0.7511906769737726,▼,,,,,
+ZIL2.DE,Consumer Discretionary,Small Cap,daily,1,1,0,-0.1867074310353531,▼,,,▲,,
