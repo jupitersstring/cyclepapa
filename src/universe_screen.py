@@ -31,6 +31,14 @@ from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
+# Support both `python3 src/universe_screen.py` and `python3 -m
+# src.universe_screen` invocations.
+try:
+    from src.edgar_util import resolve_cik_to_ticker
+except ModuleNotFoundError:  # invoked as a bare script
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from src.edgar_util import resolve_cik_to_ticker
+
 REPO = Path(__file__).resolve().parent.parent
 UNIVERSE_MD = REPO / "universe.md"
 OUT = REPO / "output" / "universe_screened.md"
@@ -758,6 +766,17 @@ def parse() -> list[Candidate]:
             continue
         if not name or name.startswith("---"):
             continue
+
+        # Parsing improvement: resolve CIK-only identifiers to real
+        # tickers so CIK:NNNN rows rank + display by ticker. Also
+        # collapse a multi-ticker cell ("OPIRQ, OPITQ") to the first.
+        m_cik = re.match(r"CIK[:\s]*0*(\d+)", ticker, re.I)
+        if m_cik:
+            resolved = resolve_cik_to_ticker(m_cik.group(1))
+            if resolved:
+                ticker = resolved
+        elif "," in ticker:
+            ticker = ticker.split(",")[0].strip()
 
         row_region = region
         if row_region == "Unspecified":

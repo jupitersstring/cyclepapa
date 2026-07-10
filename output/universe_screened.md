@@ -73,7 +73,7 @@ size-class proxy from currency-amount detection.
 | **MEA / Frontier** | 110 | 10 | 0.22 | 0.79 | GTCO (Guaranty Trust) (NGX:GTCO) |
 | **SE Asia / Pacific** | 89 | 35 | 0.42 | 0.96 | ACROW LIMITED (ACF) |
 | **United Kingdom** | 38 | 13 | 0.36 | 0.87 | REDCENTRIC PLC (—) |
-| **United States/Canada** | 257 | 83 | 0.39 | 1.13 | AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291) (CIK:0000882291) |
+| **United States/Canada** | 257 | 83 | 0.39 | 1.13 | AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291) (AEMD) |
 | **Unspecified** | 10 | 3 | 0.33 | 0.79 | StrategX Elements Corp. (—) |
 
 ## Continental Europe — top 15 by triage score
@@ -240,19 +240,19 @@ size-class proxy from currency-amount detection.
 
 | Score | Name | Ticker | Conf | Bucket | Archetype | Status | Vintage | Size |
 |---|---|---|---|---|---|---|---|---|
-| 1.13 | AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291) | CIK:0000882291 | ○ | A | A2+F2 | OK | 2026 | small |
-| 1.02 | BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713) | CIK:0001130713 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943) | CIK:0001438943 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332) | CIK:0001740332 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993) | CIK:0001937993 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224) | CIK:0001936224 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424) | CIK:0001720424 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | FMC CORP  (FMC)  (CIK 0000037785) | CIK:0000037785 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | Qnity Electronics, Inc.  (Q)  (CIK 0002058873) | CIK:0002058873 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284) | CIK:0001141284 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | Inuvo, Inc.  (INUV)  (CIK 0000829323) | CIK:0000829323 | ○ | A | A2 | OK | 2026 | small |
-| 1.02 | ['BATTALION OIL CORP  (BATL)  (CIK 0001282648)'] | CIK:0001282648 | ○ | A | A2 | OK | 2026 | small |
-| 1.00 | Encore Medical, Inc.  (EMI)  (CIK 0001838003) | CIK:0001838003 | ○ | A | A2+F2 | OK | 2026 | small |
+| 1.13 | AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291) | AEMD | ○ | A | A2+F2 | OK | 2026 | small |
+| 1.02 | BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713) | BBBY-WT | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943) | RNGE | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332) | REZI | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993) | CVKD | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224) | SRFM | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424) | HIVE | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | FMC CORP  (FMC)  (CIK 0000037785) | FMC | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | Qnity Electronics, Inc.  (Q)  (CIK 0002058873) | Q | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284) | ASNS | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | Inuvo, Inc.  (INUV)  (CIK 0000829323) | INUV | ○ | A | A2 | OK | 2026 | small |
+| 1.02 | ['BATTALION OIL CORP  (BATL)  (CIK 0001282648)'] | BATL | ○ | A | A2 | OK | 2026 | small |
+| 1.00 | Encore Medical, Inc.  (EMI)  (CIK 0001838003) | EMI | ○ | A | A2+F2 | OK | 2026 | small |
 | 0.96 | KalVista Pharmaceuticals, Inc. | CIK:0001348911 | ○ | A | A2+K3 | OK | 2026 | mid |
 | 0.96 | KHEOBA CORP. | CIK:0001909770 | ○ | A | A2+K3 | OK | 2026 | mid |
 
@@ -276,22 +276,22 @@ size-class proxy from currency-amount detection.
 | # | Score | Name | Ticker | Bucket | Archetype | Status | Region | Vintage |
 |---|---|---|---|---|---|---|---|---|
 | 1 | 1.22 | **OHLA (former OHL)** | BME:OHLA | A | A1 | OK | Continental Europe | 2024 |
-| 2 | 1.13 | **AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)** | CIK:0000882291 | A | A2+F2 | OK | United States/Canada | 2026 |
+| 2 | 1.13 | **AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)** | AEMD | A | A2+F2 | OK | United States/Canada | 2026 |
 | 3 | 1.12 | **YPF** | NYSE:YPF | A | A1 | OK | Latin America | 2026 |
 | 4 | 1.08 | **TGS (Transportadora de Gas del Sur)** | NYSE:TGS | A | A1 | OK | Latin America | ? |
-| 5 | 1.02 | **BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)** | CIK:0001130713 | A | A2 | OK | United States/Canada | 2026 |
-| 6 | 1.02 | **RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)** | CIK:0001438943 | A | A2 | OK | United States/Canada | 2026 |
-| 7 | 1.02 | **RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)** | CIK:0001740332 | A | A2 | OK | United States/Canada | 2026 |
-| 8 | 1.02 | **Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)** | CIK:0001937993 | A | A2 | OK | United States/Canada | 2026 |
-| 9 | 1.02 | **SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)** | CIK:0001936224 | A | A2 | OK | United States/Canada | 2026 |
-| 10 | 1.02 | **HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)** | CIK:0001720424 | A | A2 | OK | United States/Canada | 2026 |
-| 11 | 1.02 | **FMC CORP  (FMC)  (CIK 0000037785)** | CIK:0000037785 | A | A2 | OK | United States/Canada | 2026 |
-| 12 | 1.02 | **Qnity Electronics, Inc.  (Q)  (CIK 0002058873)** | CIK:0002058873 | A | A2 | OK | United States/Canada | 2026 |
-| 13 | 1.02 | **ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)** | CIK:0001141284 | A | A2 | OK | United States/Canada | 2026 |
-| 14 | 1.02 | **Inuvo, Inc.  (INUV)  (CIK 0000829323)** | CIK:0000829323 | A | A2 | OK | United States/Canada | 2026 |
-| 15 | 1.02 | **['BATTALION OIL CORP  (BATL)  (CIK 0001282648)']** | CIK:0001282648 | A | A2 | OK | United States/Canada | 2026 |
+| 5 | 1.02 | **BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)** | BBBY-WT | A | A2 | OK | United States/Canada | 2026 |
+| 6 | 1.02 | **RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)** | RNGE | A | A2 | OK | United States/Canada | 2026 |
+| 7 | 1.02 | **RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)** | REZI | A | A2 | OK | United States/Canada | 2026 |
+| 8 | 1.02 | **Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)** | CVKD | A | A2 | OK | United States/Canada | 2026 |
+| 9 | 1.02 | **SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)** | SRFM | A | A2 | OK | United States/Canada | 2026 |
+| 10 | 1.02 | **HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)** | HIVE | A | A2 | OK | United States/Canada | 2026 |
+| 11 | 1.02 | **FMC CORP  (FMC)  (CIK 0000037785)** | FMC | A | A2 | OK | United States/Canada | 2026 |
+| 12 | 1.02 | **Qnity Electronics, Inc.  (Q)  (CIK 0002058873)** | Q | A | A2 | OK | United States/Canada | 2026 |
+| 13 | 1.02 | **ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)** | ASNS | A | A2 | OK | United States/Canada | 2026 |
+| 14 | 1.02 | **Inuvo, Inc.  (INUV)  (CIK 0000829323)** | INUV | A | A2 | OK | United States/Canada | 2026 |
+| 15 | 1.02 | **['BATTALION OIL CORP  (BATL)  (CIK 0001282648)']** | BATL | A | A2 | OK | United States/Canada | 2026 |
 | 16 | 1.01 | **Edenor** | NYSE:EDN | A | A1 | OK | Latin America | ? |
-| 17 | 1.00 | **Encore Medical, Inc.  (EMI)  (CIK 0001838003)** | CIK:0001838003 | A | A2+F2 | OK | United States/Canada | 2026 |
+| 17 | 1.00 | **Encore Medical, Inc.  (EMI)  (CIK 0001838003)** | EMI | A | A2+F2 | OK | United States/Canada | 2026 |
 | 18 | 0.99 | **Banco Sabadell** | BME:SAB | A | A1 | OK | Continental Europe | 2026 |
 | 19 | 0.96 | **Mediobanca** | BIT:MB | A | A1 | OK | Continental Europe | ? |
 | 20 | 0.96 | **ACROW LIMITED** | ACF | A | A2+A1 | OK | SE Asia / Pacific | 2026 |
@@ -299,31 +299,31 @@ size-class proxy from currency-amount detection.
 | 22 | 0.96 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | A | A2+K3 | OK | United States/Canada | 2026 |
 | 23 | 0.96 | **KHEOBA CORP.** | CIK:0001909770 | A | A2+K3 | OK | United States/Canada | 2026 |
 | 24 | 0.96 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | A | A2+K3 | OK | United States/Canada | 2026 |
-| 25 | 0.96 | **WYTEC INTERNATIONAL INC** | CIK:0001560143 | A | A2+K3 | OK | United States/Canada | 2026 |
+| 25 | 0.96 | **WYTEC INTERNATIONAL INC** | WYTC | A | A2+K3 | OK | United States/Canada | 2026 |
 | 26 | 0.96 | **Kennedy-Wilson Holdings, Inc.** | CIK:0001408100 | A | A2+K3 | OK | United States/Canada | 2026 |
 | 27 | 0.96 | **PIMCO Asset-Based Lending Co LLC** | CIK:0002073537 | A | A2+K3 | OK | United States/Canada | 2026 |
-| 28 | 0.96 | **Via Renewables, Inc.** | CIK:0001606268 | A | A2+K3 | OK | United States/Canada | 2026 |
+| 28 | 0.96 | **Via Renewables, Inc.** | VIASP | A | A2+K3 | OK | United States/Canada | 2026 |
 | 29 | 0.96 | **CBAK Energy Technology, Inc.** | CIK:0001117171 | A | A2+K3 | OK | United States/Canada | 2026 |
-| 30 | 0.96 | **Aptose Biosciences Inc.** | CIK:0000882361 | A | A2+K3 | OK | United States/Canada | 2026 |
+| 30 | 0.96 | **Aptose Biosciences Inc.** | APTOF | A | A2+K3 | OK | United States/Canada | 2026 |
 | 31 | 0.96 | **Sustainable Projects Group Inc.** | CIK:0001500305 | A | A2+K3 | OK | United States/Canada | 2026 |
 | 32 | 0.95 | **Thyssenkrupp Steel** | XETR:TKA | A | H | OK | Continental Europe | 2024 |
 | 33 | 0.95 | **Banco Galicia** | NYSE:GGAL | A | A1 | OK | Latin America | 2024 |
 | 34 | 0.91 | **NYCB / Flagstar Financial** | NYSE:FLG | A | A1 | OK | United States/Canada | 2024 |
 | 35 | 0.91 | **Pampa Energía** | NYSE:PAM | A | A1 | OK | Latin America | 2026 |
-| 36 | 0.91 | **Curbline Properties Corp.  (CURB)  (CIK 0002027317)** | CIK:0002027317 | A | A2 | OK | United States/Canada | 2026 |
-| 37 | 0.91 | **['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)']** | CIK:0001631487 | A | A2 | OK | United States/Canada | 2026 |
-| 38 | 0.91 | **['EShallGo Inc.  (EHGO)  (CIK 0001879754)']** | CIK:0001879754 | A | A2 | OK | United States/Canada | 2026 |
-| 39 | 0.91 | **['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)']** | CIK:0001792030 | A | A2 | OK | United States/Canada | 2026 |
-| 40 | 0.91 | **['Redwire Corp  (RDW)  (CIK 0001819810)']** | CIK:0001819810 | A | A2 | OK | United States/Canada | 2026 |
+| 36 | 0.91 | **Curbline Properties Corp.  (CURB)  (CIK 0002027317)** | CURB | A | A2 | OK | United States/Canada | 2026 |
+| 37 | 0.91 | **['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)']** | CLGN | A | A2 | OK | United States/Canada | 2026 |
+| 38 | 0.91 | **['EShallGo Inc.  (EHGO)  (CIK 0001879754)']** | EHGO | A | A2 | OK | United States/Canada | 2026 |
+| 39 | 0.91 | **['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)']** | IMCC | A | A2 | OK | United States/Canada | 2026 |
+| 40 | 0.91 | **['Redwire Corp  (RDW)  (CIK 0001819810)']** | RDW | A | A2 | OK | United States/Canada | 2026 |
 | 41 | 0.91 | **['Three Lions Acquisition Corp.  (CIK 0002128462)']** | CIK:0002128462 | A | A2 | OK | United States/Canada | 2026 |
-| 42 | 0.91 | **['GATX CORP  (GATX)  (CIK 0000040211)']** | CIK:0000040211 | A | A2 | OK | United States/Canada | 2026 |
-| 43 | 0.91 | **['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)']** | CIK:0002129659 | A | A2 | OK | United States/Canada | 2026 |
-| 44 | 0.91 | **['QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)']** | CIK:0001236275 | A | A2 | OK | United States/Canada | 2026 |
-| 45 | 0.91 | **['Stewards, Inc.  (SWRD)  (CIK 0001795851)']** | CIK:0001795851 | A | A2 | OK | United States/Canada | 2026 |
-| 46 | 0.91 | **['Sable Offshore Corp.  (SOC)  (CIK 0001831481)']** | CIK:0001831481 | A | A2 | OK | United States/Canada | 2026 |
-| 47 | 0.91 | **['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']** | CIK:0001253689 | A | A2 | OK | United States/Canada | 2026 |
-| 48 | 0.91 | **['Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)']** | CIK:0001853070 | A | A2 | OK | United States/Canada | 2026 |
-| 49 | 0.91 | **['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']** | CIK:0001905660 | A | A2 | OK | United States/Canada | 2026 |
+| 42 | 0.91 | **['GATX CORP  (GATX)  (CIK 0000040211)']** | GATX | A | A2 | OK | United States/Canada | 2026 |
+| 43 | 0.91 | **['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)']** | FDMMU | A | A2 | OK | United States/Canada | 2026 |
+| 44 | 0.91 | **['QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)']** | QXO-PB | A | A2 | OK | United States/Canada | 2026 |
+| 45 | 0.91 | **['Stewards, Inc.  (SWRD)  (CIK 0001795851)']** | SWRD | A | A2 | OK | United States/Canada | 2026 |
+| 46 | 0.91 | **['Sable Offshore Corp.  (SOC)  (CIK 0001831481)']** | SOC | A | A2 | OK | United States/Canada | 2026 |
+| 47 | 0.91 | **['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']** | CBIO | A | A2 | OK | United States/Canada | 2026 |
+| 48 | 0.91 | **['Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)']** | SOARW | A | A2 | OK | United States/Canada | 2026 |
+| 49 | 0.91 | **['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']** | HUBCZ | A | A2 | OK | United States/Canada | 2026 |
 | 50 | 0.91 | **BHP GROUP LIMITED** | — | A | A2 | OK | SE Asia / Pacific | 2026 |
 | 51 | 0.88 | **DOTZ NANO LIMITED** | DTZ | A | A2 | OK | SE Asia / Pacific | 2026 |
 | 52 | 0.88 | **BALLYMORE RESOURCES LIMITED** | BMR | A | A2 | OK | SE Asia / Pacific | 2026 |
@@ -359,46 +359,46 @@ primary filings and promote.
 
 | Score | Name | Ticker | Region | Bucket | Archetype | Vintage | Size |
 |---|---|---|---|---|---|---|---|
-| 1.13 | **AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)** | CIK:0000882291 | United States/Canada | A | A2+F2 | 2026 | small |
-| 1.02 | **BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)** | CIK:0001130713 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)** | CIK:0001438943 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)** | CIK:0001740332 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)** | CIK:0001937993 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)** | CIK:0001936224 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)** | CIK:0001720424 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **FMC CORP  (FMC)  (CIK 0000037785)** | CIK:0000037785 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **Qnity Electronics, Inc.  (Q)  (CIK 0002058873)** | CIK:0002058873 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)** | CIK:0001141284 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **Inuvo, Inc.  (INUV)  (CIK 0000829323)** | CIK:0000829323 | United States/Canada | A | A2 | 2026 | small |
-| 1.02 | **['BATTALION OIL CORP  (BATL)  (CIK 0001282648)']** | CIK:0001282648 | United States/Canada | A | A2 | 2026 | small |
-| 1.00 | **Encore Medical, Inc.  (EMI)  (CIK 0001838003)** | CIK:0001838003 | United States/Canada | A | A2+F2 | 2026 | small |
+| 1.13 | **AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)** | AEMD | United States/Canada | A | A2+F2 | 2026 | small |
+| 1.02 | **BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)** | BBBY-WT | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)** | RNGE | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)** | REZI | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)** | CVKD | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)** | SRFM | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)** | HIVE | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **FMC CORP  (FMC)  (CIK 0000037785)** | FMC | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **Qnity Electronics, Inc.  (Q)  (CIK 0002058873)** | Q | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)** | ASNS | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **Inuvo, Inc.  (INUV)  (CIK 0000829323)** | INUV | United States/Canada | A | A2 | 2026 | small |
+| 1.02 | **['BATTALION OIL CORP  (BATL)  (CIK 0001282648)']** | BATL | United States/Canada | A | A2 | 2026 | small |
+| 1.00 | **Encore Medical, Inc.  (EMI)  (CIK 0001838003)** | EMI | United States/Canada | A | A2+F2 | 2026 | small |
 | 0.96 | **ACROW LIMITED** | ACF | SE Asia / Pacific | A | A2+A1 | 2026 | mid |
 | 0.96 | **MEMPHASYS LIMITED.** | MEM | SE Asia / Pacific | A | A2+B | 2026 | mid |
 | 0.96 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.96 | **KHEOBA CORP.** | CIK:0001909770 | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.96 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | United States/Canada | A | A2+K3 | 2026 | mid |
-| 0.96 | **WYTEC INTERNATIONAL INC** | CIK:0001560143 | United States/Canada | A | A2+K3 | 2026 | mid |
+| 0.96 | **WYTEC INTERNATIONAL INC** | WYTC | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.96 | **Kennedy-Wilson Holdings, Inc.** | CIK:0001408100 | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.96 | **PIMCO Asset-Based Lending Co LLC** | CIK:0002073537 | United States/Canada | A | A2+K3 | 2026 | mid |
-| 0.96 | **Via Renewables, Inc.** | CIK:0001606268 | United States/Canada | A | A2+K3 | 2026 | mid |
+| 0.96 | **Via Renewables, Inc.** | VIASP | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.96 | **CBAK Energy Technology, Inc.** | CIK:0001117171 | United States/Canada | A | A2+K3 | 2026 | mid |
-| 0.96 | **Aptose Biosciences Inc.** | CIK:0000882361 | United States/Canada | A | A2+K3 | 2026 | mid |
+| 0.96 | **Aptose Biosciences Inc.** | APTOF | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.96 | **Sustainable Projects Group Inc.** | CIK:0001500305 | United States/Canada | A | A2+K3 | 2026 | mid |
 | 0.95 | **Banco Galicia** | NYSE:GGAL | Latin America | A | A1 | 2024 | mid |
-| 0.91 | **Curbline Properties Corp.  (CURB)  (CIK 0002027317)** | CIK:0002027317 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)']** | CIK:0001631487 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['EShallGo Inc.  (EHGO)  (CIK 0001879754)']** | CIK:0001879754 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)']** | CIK:0001792030 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['Redwire Corp  (RDW)  (CIK 0001819810)']** | CIK:0001819810 | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **Curbline Properties Corp.  (CURB)  (CIK 0002027317)** | CURB | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)']** | CLGN | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['EShallGo Inc.  (EHGO)  (CIK 0001879754)']** | EHGO | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)']** | IMCC | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['Redwire Corp  (RDW)  (CIK 0001819810)']** | RDW | United States/Canada | A | A2 | 2026 | small |
 | 0.91 | **['Three Lions Acquisition Corp.  (CIK 0002128462)']** | CIK:0002128462 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['GATX CORP  (GATX)  (CIK 0000040211)']** | CIK:0000040211 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)']** | CIK:0002129659 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)']** | CIK:0001236275 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['Stewards, Inc.  (SWRD)  (CIK 0001795851)']** | CIK:0001795851 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['Sable Offshore Corp.  (SOC)  (CIK 0001831481)']** | CIK:0001831481 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']** | CIK:0001253689 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)']** | CIK:0001853070 | United States/Canada | A | A2 | 2026 | small |
-| 0.91 | **['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']** | CIK:0001905660 | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['GATX CORP  (GATX)  (CIK 0000040211)']** | GATX | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)']** | FDMMU | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)']** | QXO-PB | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['Stewards, Inc.  (SWRD)  (CIK 0001795851)']** | SWRD | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['Sable Offshore Corp.  (SOC)  (CIK 0001831481)']** | SOC | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']** | CBIO | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)']** | SOARW | United States/Canada | A | A2 | 2026 | small |
+| 0.91 | **['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']** | HUBCZ | United States/Canada | A | A2 | 2026 | small |
 
 **185 names need YAML build-out.** Top 40 shown.
 

@@ -112,6 +112,9 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "ofac_license_issuance", "ofac_designation_removal", "ofac_venezuela",
     # ---- Post-reorg labels (postreorg_poll.py) ----
     "post_reorg_freshstart", "post_reorg_emerged", "post_reorg_plan_effective",
+    # ---- 8-K item-code labels (eightk_items_poll.py) ----
+    "item_bankruptcy", "item_default_acceleration",
+    "item_delisting_deficiency",
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }

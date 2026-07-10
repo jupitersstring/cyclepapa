@@ -38,6 +38,8 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
 
+from src.edgar_util import issuer_fields
+
 try:
     import requests
 except ImportError:
@@ -96,11 +98,10 @@ def fetch(query: str, start: date, end: date,
 
 def normalize_hit(label: str, hit: dict, fetched_at: str) -> dict:
     src = hit.get("_source", {})
-    ciks = src.get("ciks", [])
     accession = src.get("adsh", "")
-    cik = ciks[0] if ciks else ""
-    name = (src.get("display_names") or [src.get("name", "")])[0] \
-        if src.get("display_names") else (src.get("name") or "")
+    fields = issuer_fields(src)
+    cik = fields["cik"] or ""
+    name = fields["name"]
     url = (f"https://www.sec.gov/Archives/edgar/data/"
            f"{int(cik):d}/{accession.replace('-', '')}"
            if cik and accession else "")
@@ -122,7 +123,7 @@ def normalize_hit(label: str, hit: dict, fetched_at: str) -> dict:
         "query_label": f"tier_s.{label}",
         "query_note":  note,
         "cik":         cik,
-        "ticker":      (src.get("tickers") or [None])[0],
+        "ticker":      fields["ticker"],
         "isin":        None,
         "name":        name,
         "form":        src.get("form") or "",

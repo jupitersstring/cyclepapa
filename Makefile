@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -108,6 +108,12 @@ thirteenf-poll: audit
 postreorg-poll: audit
 	python3 -m src.postreorg_poll --days-back 90
 
+# 8-K item-code poller — precise structured event triggers (item 1.03
+# bankruptcy, 2.04 default, 3.01 delisting-deficiency, 4.02 restatement).
+# Verifies each hit against EDGAR's structured `items` field.
+eightk-items-poll: audit
+	python3 -m src.eightk_items_poll --days-back 1
+
 # Cross-source corroboration — fuses all pollers; surfaces entities
 # independently flagged by >= 2 distinct sources.
 corroborate: audit
@@ -148,7 +154,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll spinoff cluster-buys corroborate inbox-promote workbook
+refresh: audit poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll spinoff cluster-buys corroborate inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit

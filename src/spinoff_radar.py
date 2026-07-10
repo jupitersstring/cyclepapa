@@ -26,6 +26,7 @@ import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
+from src.edgar_util import issuer_fields
 
 try:
     import requests
@@ -117,9 +118,9 @@ def fetch_one_day(query_label: str, query_def: dict, day: date,
 def normalize_hit(label: str, hit: dict, query_def: dict,
                   fetched_at: str) -> dict:
     src = hit.get("_source", {})
-    ciks = src.get("ciks", [])
     accession = src.get("adsh", "")
-    cik = ciks[0] if ciks else ""
+    fields = issuer_fields(src)
+    cik = fields["cik"] or ""
     url = (
         f"https://www.sec.gov/Archives/edgar/data/"
         f"{int(cik):d}/{accession.replace('-', '')}"
@@ -130,8 +131,8 @@ def normalize_hit(label: str, hit: dict, query_def: dict,
         "query_label": label,
         "query_note": query_def.get("_note", ""),
         "cik": cik,
-        "ticker": (src.get("tickers") or [None])[0],
-        "name": (src.get("display_names") or [src.get("name", "")])[0],
+        "ticker": fields["ticker"],
+        "name": fields["name"],
         "form": src.get("form"),
         "accession": accession,
         "filed": src.get("file_date"),

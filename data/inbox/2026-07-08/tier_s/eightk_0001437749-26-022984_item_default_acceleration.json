@@ -1,0 +1,20 @@
+{
+  "accession": "0001437749-26-022984",
+  "all_items": [
+    "2.04"
+  ],
+  "cik": "0001051627",
+  "fetched_at": "2026-07-10T15:20:37.656166Z",
+  "filed": "2026-07-08",
+  "form": "8-K Item 2.04",
+  "form_code": "8-K/2.04",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "AXT INC",
+  "query_label": "tier_s.item_default_acceleration",
+  "query_note": "8-K Item 2.04 \u2014 triggering event on a financial obligation (acceleration / covenant default / put)",
+  "source": "EDGAR-8K-items",
+  "ticker": "AXTI",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926022984"
+}

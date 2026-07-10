@@ -1,0 +1,22 @@
+{
+  "accession": "0001193125-26-296195",
+  "all_items": [
+    "1.01",
+    "2.04",
+    "9.01"
+  ],
+  "cik": "0001966394",
+  "fetched_at": "2026-07-10T15:20:37.656166Z",
+  "filed": "2026-07-06",
+  "form": "8-K Item 2.04",
+  "form_code": "8-K/2.04",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Fortress Net Lease REIT",
+  "query_label": "tier_s.item_default_acceleration",
+  "query_note": "8-K Item 2.04 \u2014 triggering event on a financial obligation (acceleration / covenant default / put)",
+  "source": "EDGAR-8K-items",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1966394/000119312526296195"
+}

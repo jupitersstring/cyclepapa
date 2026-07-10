@@ -1,0 +1,27 @@
+{
+  "accession": "0001213900-26-076435",
+  "all_items": [
+    "2.01",
+    "3.01",
+    "3.02",
+    "3.03",
+    "5.01",
+    "5.02",
+    "7.01",
+    "8.01"
+  ],
+  "cik": "0002034269",
+  "fetched_at": "2026-07-10T15:20:37.656166Z",
+  "filed": "2026-07-08",
+  "form": "8-K Item 3.01",
+  "form_code": "8-K/3.01",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Cantor Equity Partners II, Inc.",
+  "query_label": "tier_s.item_delisting_deficiency",
+  "query_note": "8-K Item 3.01 \u2014 delisting / continued-listing-rule failure. The PRE-going-dark deficiency signal (~180 days before a Form 15). Cure via reverse split or face delisting.",
+  "source": "EDGAR-8K-items",
+  "ticker": "CEPT",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2034269/000121390026076435"
+}

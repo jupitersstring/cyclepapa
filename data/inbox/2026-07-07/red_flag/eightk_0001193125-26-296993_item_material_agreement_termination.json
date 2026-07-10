@@ -1,0 +1,28 @@
+{
+  "accession": "0001193125-26-296993",
+  "all_items": [
+    "1.02",
+    "2.01",
+    "3.01",
+    "3.03",
+    "5.01",
+    "5.02",
+    "5.03",
+    "8.01",
+    "9.01"
+  ],
+  "cik": "0001868726",
+  "fetched_at": "2026-07-10T15:20:37.656166Z",
+  "filed": "2026-07-07",
+  "form": "8-K Item 1.02",
+  "form_code": "8-K/1.02",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "OLAPLEX HOLDINGS, INC.",
+  "query_label": "red_flag.item_material_agreement_termination",
+  "query_note": "8-K Item 1.02 \u2014 termination of a material definitive agreement",
+  "source": "EDGAR-8K-items",
+  "ticker": "OLPX",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1868726/000119312526296993"
+}

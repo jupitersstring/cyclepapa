@@ -1,0 +1,25 @@
+{
+  "accession": "0001683168-26-005307",
+  "all_items": [
+    "1.01",
+    "1.02",
+    "3.03",
+    "5.03",
+    "7.01",
+    "9.01"
+  ],
+  "cik": "0001829794",
+  "fetched_at": "2026-07-10T15:20:37.656166Z",
+  "filed": "2026-07-06",
+  "form": "8-K Item 1.02",
+  "form_code": "8-K/1.02",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Empery Digital Inc.",
+  "query_label": "red_flag.item_material_agreement_termination",
+  "query_note": "8-K Item 1.02 \u2014 termination of a material definitive agreement",
+  "source": "EDGAR-8K-items",
+  "ticker": "EMPD",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1829794/000168316826005307"
+}
