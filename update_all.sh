@@ -31,6 +31,9 @@ PY
 done
 
 echo "=== STAGE 1: refresh legs (E/ADV/DSR) ==="
+# Fresh update run: clear the per-run region done-file so all regions
+# actually refresh (it exists to make RETRIES within one run resumable).
+rm -f /tmp/refresh_legs_done.txt
 # Process-level retry: each attempt gets a fresh yfinance session, which is
 # what actually clears Yahoo rate limits (they key on session cookies).
 # Region done-file makes every attempt resume where the last stopped.

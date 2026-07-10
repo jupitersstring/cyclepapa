@@ -107,8 +107,10 @@ def main():
 
         if rows:
             out = pd.DataFrame(rows).merge(meta, on="ticker", how="left")
-            out["combined_score"] = (out.get("asset_score", 0).fillna(0) +
-                                      out.get("rel_score", 0).fillna(0))
+            a = out["asset_score"] if "asset_score" in out.columns else 0.0
+            r = out["rel_score"] if "rel_score" in out.columns else 0.0
+            out["combined_score"] = (a.fillna(0) if hasattr(a, "fillna") else a) + \
+                                    (r.fillna(0) if hasattr(r, "fillna") else r)
             header = not os.path.exists(OUT)
             out.to_csv(OUT, mode="a", header=header, index=False)
             print(f"  appended {len(out)} rows -> {OUT}", file=sys.stderr)

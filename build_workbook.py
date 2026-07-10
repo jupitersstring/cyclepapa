@@ -248,7 +248,8 @@ def write_full_universe(wb, df, info):
 
     headers = ["Ticker", "Name", "Sector", "Region", "Mcap $M", "ADV $M",
                "Master", "M", "E", "DSR", "ADV-pn",
-               "PSAR-Asset", "PSAR-Rel", "PSAR-Comb", "BestRank"]
+               "PSAR-Asset", "PSAR-Rel", "PSAR-Comb", "BestRank",
+               "V", "V-Comb", "LELE"]
     r = 6
     for i, h in enumerate(headers, start=2):
         c = ws.cell(row=r, column=i, value=h)
@@ -280,6 +281,9 @@ def write_full_universe(wb, df, info):
             row.get('rel_score', np.nan),
             row.get('combined_score', np.nan),
             row.get('best_rank', np.nan),
+            row.get('V', np.nan),
+            row.get('V_combined', np.nan),
+            row.get('LELE', np.nan),
         ]
         for i, v in enumerate(vals, start=2):
             cell = ws.cell(row=r, column=i, value=v)
@@ -298,10 +302,10 @@ def write_full_universe(wb, df, info):
         r += 1
 
     # Enable Excel filtering on the header row
-    ws.auto_filter.ref = f"B6:P{r-1}"
+    ws.auto_filter.ref = f"B6:S{r-1}"
     ws.freeze_panes = "C7"
 
-    widths = [2, 12, 30, 16, 16, 11, 10, 11, 9, 9, 9, 9, 11, 11, 11, 10]
+    widths = [2, 12, 30, 16, 16, 11, 10, 11, 9, 9, 9, 9, 11, 11, 11, 10, 9, 9, 9]
     for i, w in enumerate(widths, start=1):
         ws.column_dimensions[get_column_letter(i)].width = w
 

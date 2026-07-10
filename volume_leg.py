@@ -63,12 +63,37 @@ def _interp(x, xp, fp):
 
 # ───────────────────────────── the leg
 
-def volume_breakout(bars: pd.DataFrame) -> dict:
+def drop_partial_week(bars: pd.DataFrame,
+                      now: pd.Timestamp = None) -> pd.DataFrame:
+    """Drop the last weekly bar when it belongs to the current, still-open
+    ISO week. yfinance's weekly bars include the in-progress week, which
+    understates volume and fabricates mid-week 'breakouts'."""
+    if bars is None or len(bars) == 0:
+        return bars
+    if not isinstance(bars.index, pd.DatetimeIndex):
+        return bars          # synthetic/backtest bars with plain indices
+    now = now or pd.Timestamp.utcnow().tz_localize(None)
+    monday = (now - pd.Timedelta(days=now.weekday())).normalize()
+    last = bars.index[-1]
+    if getattr(last, "tz", None) is not None:
+        last = last.tz_localize(None)
+    if last >= monday:
+        return bars.iloc[:-1]
+    return bars
+
+
+def volume_breakout(bars: pd.DataFrame, completed_weeks_only: bool = True) -> dict:
     """Evaluate the Dormeier volume leg on weekly OHLCV bars.
 
-    Returns V (0-100), all stage components, and the scanner bucket."""
+    Returns V (0-100), all stage components, and the scanner bucket.
+    completed_weeks_only drops an in-progress final week (live use);
+    set False in backtests where bars are already historical."""
     need = {"Open", "High", "Low", "Close", "Volume"}
-    if bars is None or not need.issubset(bars.columns) or len(bars) < 30:
+    if bars is None or not need.issubset(bars.columns):
+        return {}
+    if completed_weeks_only:
+        bars = drop_partial_week(bars)
+    if bars is None or len(bars) < 30:
         return {}
     bars = bars.dropna(subset=["Close", "Volume"])
     if len(bars) < 30 or bars["Volume"].iloc[-20:].sum() <= 0:
@@ -76,13 +101,15 @@ def volume_breakout(bars: pd.DataFrame) -> dict:
     o = bars["Open"]; h = bars["High"]; l = bars["Low"]
     c = bars["Close"]; v = bars["Volume"]
 
-    # ---- Stage 1: supply dry-up
-    recent = v.iloc[-4:]
-    base = v.iloc[-20:-4]
+    # ---- Stage 1: supply dry-up (spec: median(V[t-4:t-1]) — EXCLUDES the
+    # breakout week so its own volume can't contaminate the ratio)
+    recent = v.iloc[-5:-1]
+    base = v.iloc[-21:-5]
     dryup = float(recent.median() / base.median()) if base.median() > 0 else np.nan
 
+    # Up/down balance over the 10 PRECEDING weeks (excludes current)
     rets = c.pct_change()
-    win = slice(-10, None)
+    win = slice(-11, -1)
     up_v = float(v[win][rets[win] > 0].sum())
     dn_v = float(v[win][rets[win] < 0].sum())
     updown = up_v / dn_v if dn_v > 0 else (2.0 if up_v > 0 else np.nan)

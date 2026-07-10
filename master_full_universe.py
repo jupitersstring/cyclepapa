@@ -80,11 +80,11 @@ def main():
     psar['region'] = psar['region'].fillna(psar['region_sa']) if 'region_sa' in psar.columns else psar['region']
     reg_med = psar.groupby('region')['rel_net_ma'].transform('median')
     psar['rel_net_ma_adj'] = psar['rel_net_ma'] - reg_med
-    # Recompute relative composite score with the regionally-demeaned MA
-    # using the same recency-weighted formula
-    psar_g = psar.sort_values('ticker')
-    psar['rel_score_adj'] = psar['rel_score']  # default
-    # Rebuild combined: use adjusted relative + original asset
+    # Demean the SCORE too: subtracting the region-median rel_score removes
+    # the systematic SPX/currency drift while preserving within-region rank
+    # and the recency weighting baked into rel_score.
+    reg_med_score = psar.groupby('region')['rel_score'].transform('median')
+    psar['rel_score_adj'] = psar['rel_score'] - reg_med_score
     psar['combined_score_adj'] = psar['asset_score'] + psar['rel_score_adj']
     print(f"PSAR pool (region-demeaned): {len(psar)}")
 

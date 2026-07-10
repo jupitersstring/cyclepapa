@@ -27,6 +27,28 @@ import numpy as np
 import pandas as pd
 
 
+def drop_partial_bar(bars: pd.DataFrame, freq: str,
+                     now: pd.Timestamp = None) -> pd.DataFrame:
+    """Drop a final weekly/monthly bar that belongs to the still-open
+    period. Exhaustion counters must not run on 2-day 'months'."""
+    if bars is None or len(bars) == 0:
+        return bars
+    if not isinstance(bars.index, pd.DatetimeIndex):
+        return bars
+    now = now or pd.Timestamp.utcnow().tz_localize(None)
+    last = bars.index[-1]
+    if getattr(last, "tz", None) is not None:
+        last = last.tz_localize(None)
+    if freq == "W":
+        monday = (now - pd.Timedelta(days=now.weekday())).normalize()
+        if last >= monday:
+            return bars.iloc[:-1]
+    elif freq == "M":
+        if (last.year, last.month) == (now.year, now.month):
+            return bars.iloc[:-1]
+    return bars
+
+
 def lelec_signals(bars: pd.DataFrame, swing_len: int = 40,
                   bar_count: int = 10) -> dict:
     """Run the Leledc state machine over OHLC bars (weekly or monthly).
@@ -106,8 +128,12 @@ def lele_score(sig: dict) -> float:
     return 100.0 * (0.55 * rr_part + 0.30 * pos_part + 0.15 * rec_part)
 
 
-def evaluate_ticker(weekly: pd.DataFrame, monthly: pd.DataFrame) -> dict:
+def evaluate_ticker(weekly: pd.DataFrame, monthly: pd.DataFrame,
+                    completed_bars_only: bool = True) -> dict:
     """Weekly + monthly Leledc evaluation with the combined LELE score."""
+    if completed_bars_only:
+        weekly = drop_partial_bar(weekly, "W")
+        monthly = drop_partial_bar(monthly, "M")
     w = lelec_signals(weekly)
     m = lelec_signals(monthly)
     sw = lele_score(w)
