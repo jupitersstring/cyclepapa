@@ -1,0 +1,62 @@
+symbol,sector,cap,tf,up,down,net,score,PRICE,PARTIC,SHARPE,ASYM,VOLUME,VOLAT
+ADMCM.HE,Information Technology,Small Cap,daily,1,2,-1,-1.7135247244137433,▼,,▼,▲,,
+AFAGR.HE,Materials,Micro Cap,daily,2,0,2,0.21373948234397794,▲,,,▲,,
+AKTIA.HE,Financials,Small Cap,daily,0,2,-2,-1.746482499168017,▼,▼,,,,▼
+ALBAV.HE,Financials,Small Cap,daily,1,0,1,0.06706717477891669,▲,,,,±,
+ALBBV.HE,Financials,Small Cap,daily,0,2,-2,-0.8913827265627943,▼,▼,,,,
+ALMA.HE,Communication Services,Small Cap,daily,1,0,1,0.8444820227270089,▲,,,,▼,▼
+ASPO.HE,Industrials,Small Cap,daily,0,2,-2,-2.752667384111149,▼,▼,,,▲,
+ATRAV.HE,Consumer Staples,Small Cap,daily,1,1,0,0.6681153076325317,▲,,,▼,,
+BITTI.HE,Information Technology,Micro Cap,daily,0,2,-2,-2.3486121406273286,▼,▼,,,,
+BOREO.HE,Industrials,Micro Cap,daily,1,0,1,0.5538977593213735,▲,,,,,
+CTY1S.HE,Real Estate,Small Cap,daily,0,1,-1,-0.057767001072999626,,▼,,,,▼
+DETEC.HE,Information Technology,Small Cap,daily,0,1,-1,-0.1324946754733076,▼,,,,±,▼
+ELISA.HE,Communication Services,Mid Cap,daily,0,1,-1,-0.20932075990757626,▼,,,,,
+EQV1V.HE,Financials,Small Cap,daily,1,0,1,0.05644789553096224,▲,,,,,
+ETTE.HE,Industrials,Small Cap,daily,1,1,0,0.2826798358606927,▲,,▼,±,▲,▼
+EVLI.HE,Financials,Small Cap,daily,2,0,2,1.6607275918361577,▲,▲,,,▲,
+FARON.HE,Health Care,Micro Cap,daily,1,0,1,0.19982571060690962,▲,,,,,
+FIA1S.HE,Industrials,Small Cap,daily,0,3,-3,-0.6499511663686401,,▼,▼,▼,,
+GLA1V.HE,Industrials,Micro Cap,daily,0,1,-1,-1.2724674277896442,▼,,,,,
+HUH1V.HE,Consumer Discretionary,Mid Cap,daily,1,1,0,-0.22302014761086172,▼,▲,,,,
+ICP1V.HE,Information Technology,Micro Cap,daily,1,0,1,0.3767043540247117,▲,,,,,
+KAMUX.HE,Consumer Discretionary,Small Cap,daily,0,2,-2,-0.21698886018364977,±,▼,,▼,,
+LEHTO.HE,Real Estate,Micro Cap,daily,1,0,1,0.13019108818166225,,,▲,,,
+MEKKO.HE,Consumer Discretionary,Small Cap,daily,1,1,0,-0.1940495744845443,▼,▲,,,,
+METSA.HE,Materials,Mid Cap,daily,1,1,0,0.20235458717693353,▲,,,▼,▼,▼
+METSB.HE,Materials,Mid Cap,daily,0,1,-1,-0.004683391746586387,▼,,,,,
+MUSTI.HE,Consumer Discretionary,Small Cap,daily,0,1,-1,-0.07322692539387073,▼,,,,,
+NESTE.HE,Energy,Large Cap,daily,1,2,-1,0.5955544453886863,▲,,▼,▼,,▼
+NLG1V.HE,Industrials,Micro Cap,daily,0,1,-1,-0.1254863350752725,,▼,,,▲,▲
+NOHO.HE,Consumer Discretionary,Micro Cap,daily,0,1,-1,-0.21214281441668187,,▼,,,,
+NXTMH.HE,Health Care,Mid Cap,daily,2,0,2,0.02626843939838988,,,▲,▲,±,▲
+OLVAS.HE,Consumer Staples,Small Cap,daily,0,1,-1,-0.7073730459834761,▼,,,,▼,
+OMASP.HE,Financials,Small Cap,daily,1,1,0,0.172624952047898,▲,▼,,,,
+ORNAV.HE,Health Care,Mid Cap,daily,0,2,-2,-0.9396421672826575,▼,▼,,,,
+ORNBV.HE,Health Care,Mid Cap,daily,0,1,-1,-0.7203705429639639,▼,,,,,
+OUT1V.HE,Materials,Mid Cap,daily,0,1,-1,-0.35388107429530674,▼,,,,▲,
+PON1V.HE,Industrials,Small Cap,daily,1,0,1,0.10978303087599924,,▲,,,▲,
+RAIKV.HE,Consumer Staples,Small Cap,daily,1,2,-1,-0.32204780450640275,▲,▼,,▼,▼,
+RAP1V.HE,Industrials,Small Cap,daily,1,0,1,0.4513910363663492,▲,,,,,
+RAUTE.HE,Industrials,Micro Cap,daily,1,2,-1,-0.22093569186408976,,▲,▼,▼,,
+REG1V.HE,Health Care,Small Cap,daily,1,0,1,0.2970020799162847,▲,,,,,
+ROBIT.HE,Energy,Micro Cap,daily,1,0,1,0.08386897935261138,▲,,,,,
+SAGCV.HE,Consumer Discretionary,Micro Cap,daily,2,1,1,0.030271018172150548,,▲,▼,▲,,
+SIILI.HE,Information Technology,Micro Cap,daily,1,0,1,0.23559983920904823,▲,,,,,▼
+SRV1V.HE,Industrials,Micro Cap,daily,0,2,-2,-0.3616796069019791,▼,,,▼,,
+SSH1V.HE,Information Technology,Micro Cap,daily,1,2,-1,-0.3420919412004836,▼,▲,▼,,,
+STEAV.HE,Materials,Large Cap,daily,1,1,0,-0.14427042108497196,▲,▼,,,▼,
+STERV.HE,Materials,Large Cap,daily,0,1,-1,-0.5486070043704131,▼,,,,,
+SUY1V.HE,Consumer Staples,Small Cap,daily,1,0,1,1.1871436929220105,▲,,,,,
+TAALA.HE,Financials,Small Cap,daily,3,0,3,1.1054341430454675,▲,▲,,▲,,▼
+TEM1V.HE,Information Technology,Micro Cap,daily,1,0,1,0.07131359924253286,,▲,,,,
+TLT1V.HE,Information Technology,Micro Cap,daily,2,0,2,1.0844646342490045,▲,▲,,,,
+TNOM.HE,Industrials,Small Cap,daily,1,2,-1,-0.33143129312503583,▼,▲,,▼,,
+TTALO.HE,Health Care,Small Cap,daily,1,0,1,0.039268697362839056,,,▲,±,,▼
+TYRES.HE,Consumer Discretionary,Mid Cap,daily,2,2,0,-1.2520170220655835,▼,▼,▲,▲,▼,
+UPM.HE,Materials,Large Cap,daily,1,2,-1,-0.5401912460268757,▲,▼,,▼,,
+VAIAS.HE,Information Technology,Small Cap,daily,1,1,0,-0.10659285100049595,▼,,▲,,,
+VALMT.HE,Industrials,Mid Cap,daily,0,1,-1,-0.8932468564854982,▼,,,,,
+VERK.HE,Consumer Discretionary,Small Cap,daily,0,2,-2,-0.22377816221617258,,,▼,▼,,
+VIK1V.HE,Industrials,Micro Cap,daily,0,1,-1,-0.09694986642552282,▼,,,,▲,
+YIT.HE,Industrials,Small Cap,daily,0,2,-2,-1.6356524162893669,▼,▼,,,±,▼
