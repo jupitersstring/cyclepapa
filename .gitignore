@@ -10,3 +10,4 @@ data/cyclepapa.db-shm
 /tmp/
 *.pyc
 __pycache__/
+refresh.log
