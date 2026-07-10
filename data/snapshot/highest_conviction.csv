@@ -1,220 +1,220 @@
 ticker,n_funds,max_pct_book,n_threshold,n_hyper,flags,top_funds
-DHR,100,Third Point LLC,1,0,1,HYPER-CONVICTION
-VOO,100,"Karpus Investment Management (Pittsford NY; City of London subsidiary), Marshall Wace LLP, Tiger Management LLC",3,1,2,"CONSENSUS, HYPER-CONVICTION"
-ONTF,100,Indaba Capital Management,1,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-NX,100,,0,0,0,HYPER-CONVICTION
-AERO,100,"Silver Point Capital, Strategic Value Partners (SVPGlobal)",2,2,0,"HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
-LTM,100,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-PYPL,100,"Marathon Asset Management, Punch Card Capital / Norbert Lou (Punch Card Management L.P.)",2,0,2,HYPER-CONVICTION
-PHIIK,100,West Face Capital (Gregory Boland) — Toronto,1,0,1,HYPER-CONVICTION
-LULU,100,Scion Asset Management LLC / Michael Burry,1,0,1,HYPER-CONVICTION
-LDO,100,Greenwood Investors (Steven Wood),1,0,1,HYPER-CONVICTION
-DLTR,100,Semper Augustus (Chris Bloomstran),1,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-TANG,97,Nantahala Capital Management,1,0,1,HYPER-CONVICTION
+DHR,100.0,Third Point LLC,1,0,1,HYPER-CONVICTION
+VOO,100.0,"Karpus Investment Management (Pittsford NY; City of London subsidiary), Marshall Wace LLP, Tiger Management LLC",3,1,2,"CONSENSUS, HYPER-CONVICTION"
+ONTF,100.0,Indaba Capital Management,1,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+NX,100.0,,0,0,0,HYPER-CONVICTION
+AERO,100.0,"Silver Point Capital, Strategic Value Partners (SVPGlobal)",2,2,0,"HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
+LTM,100.0,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+PYPL,100.0,"Marathon Asset Management, Punch Card Capital / Norbert Lou (Punch Card Management L.P.)",2,0,2,HYPER-CONVICTION
+PHIIK,100.0,West Face Capital (Gregory Boland) — Toronto,1,0,1,HYPER-CONVICTION
+LULU,100.0,Scion Asset Management LLC / Michael Burry,1,0,1,HYPER-CONVICTION
+LDO,100.0,Greenwood Investors (Steven Wood),1,0,1,HYPER-CONVICTION
+DLTR,100.0,Semper Augustus (Chris Bloomstran),1,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+TANG,97.0,Nantahala Capital Management,1,0,1,HYPER-CONVICTION
 BALY,96.1,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-PRKS,96,"Engine Capital, GoldenTree Asset Management",2,0,3,"HYPER-CONVICTION, THRESHOLD-FILING"
-CPAY,95,Spruce House Partnership,1,0,2,HYPER-CONVICTION
-LNTH,95,Brigade Capital Management,1,0,2,HYPER-CONVICTION
-REX,93,Mangrove Partners,1,0,2,HYPER-CONVICTION
-SVC,93,Silver Point Capital,1,0,1,HYPER-CONVICTION
-AMZN,92,"Baupost Group LLC, Bridgewater Associates LP (Ray Dalio), Citadel Advisors LLC (Ken Griffin), Claar Advisors (Gary Claar, ex-JANA), D1 Capital Partners LP (Daniel Sundheim), Duquesne Family Office, Egerton Capital Ltd, Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Glenview Capital Management, Gotham Asset Management LLC / Joel Greenblatt",24,5,24,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+PRKS,96.0,"Engine Capital, GoldenTree Asset Management",2,0,3,"HYPER-CONVICTION, THRESHOLD-FILING"
+CPAY,95.0,Spruce House Partnership,1,0,2,HYPER-CONVICTION
+LNTH,95.0,Brigade Capital Management,1,0,2,HYPER-CONVICTION
+REX,93.0,Mangrove Partners,1,0,2,HYPER-CONVICTION
+SVC,93.0,Silver Point Capital,1,0,1,HYPER-CONVICTION
+AMZN,92.0,"Baupost Group LLC, Bridgewater Associates LP (Ray Dalio), Citadel Advisors LLC (Ken Griffin), Claar Advisors (Gary Claar, ex-JANA), D1 Capital Partners LP (Daniel Sundheim), Duquesne Family Office, Egerton Capital Ltd, Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Glenview Capital Management, Gotham Asset Management LLC / Joel Greenblatt",24,5,24,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
 TRE,90.73,,0,0,0,HYPER-CONVICTION
-SOFI,90,Muddy Waters Capital LLC (Carson Block),1,1,2,"HYPER-CONVICTION, THRESHOLD-FILING"
-IBIT,88,"Brevan Howard Capital Management LP (Alan Howard), Edenbrook Capital (Jonathan Brolin), Marathon Asset Management, Schonfeld Strategic Advisors LLC, Weiss Asset Management (Boston)",5,2,4,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-APLE,88,Centerbridge Partners,1,0,1,HYPER-CONVICTION
-HGV,87,"CAS Investment Partners (Cliff Sosin), Nantahala Capital Management",2,0,1,HYPER-CONVICTION
+SOFI,90.0,Muddy Waters Capital LLC (Carson Block),1,1,2,"HYPER-CONVICTION, THRESHOLD-FILING"
+IBIT,88.0,"Brevan Howard Capital Management LP (Alan Howard), Edenbrook Capital (Jonathan Brolin), Marathon Asset Management, Schonfeld Strategic Advisors LLC, Weiss Asset Management (Boston)",5,2,4,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+APLE,88.0,Centerbridge Partners,1,0,1,HYPER-CONVICTION
+HGV,87.0,"CAS Investment Partners (Cliff Sosin), Nantahala Capital Management",2,0,1,HYPER-CONVICTION
 IEP,86.89,Icahn Capital / Carl Icahn,1,0,2,"HYPER-CONVICTION, THRESHOLD-FILING"
 HTHT,86.37,Indus Capital Partners (Smith/Gill/Pinkel),1,0,1,HYPER-CONVICTION
-DIS,86,Corvex Management,1,0,2,HYPER-CONVICTION
-RMT,86,Saba Capital Management,1,0,1,HYPER-CONVICTION
-LUV,85,Silver Point Capital,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
-DAVE,84,Findell Capital Management (Brian Finn),1,0,2,HYPER-CONVICTION
+DIS,86.0,Corvex Management,1,0,2,HYPER-CONVICTION
+RMT,86.0,Saba Capital Management,1,0,1,HYPER-CONVICTION
+LUV,85.0,Silver Point Capital,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
+DAVE,84.0,Findell Capital Management (Brian Finn),1,0,2,HYPER-CONVICTION
 S,83.6,Anchorage Capital Group,1,0,2,HYPER-CONVICTION
 CPRT,83.13,Saber Capital (John Huber),1,0,1,HYPER-CONVICTION
-ACN,83,"Glenview Capital Management, Pzena Investment Management, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP)",3,2,1,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-EQIX,82,"Land & Buildings Investment Management, Point72 Asset Management LP",2,0,4,HYPER-CONVICTION
-IWM,82,"Armistice Capital LLC, Brevan Howard Capital Management LP (Alan Howard), Impactive Capital (Lauren Taylor Wolfe / Christian Asmar), Irenic Capital Management, Millennium Management LLC (Israel Englander), Owl Creek Asset Management",6,0,7,"CONSENSUS, HYPER-CONVICTION"
+ACN,83.0,"Glenview Capital Management, Pzena Investment Management, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP)",3,2,1,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+EQIX,82.0,"Land & Buildings Investment Management, Point72 Asset Management LP",2,0,4,HYPER-CONVICTION
+IWM,82.0,"Armistice Capital LLC, Brevan Howard Capital Management LP (Alan Howard), Impactive Capital (Lauren Taylor Wolfe / Christian Asmar), Irenic Capital Management, Millennium Management LLC (Israel Englander), Owl Creek Asset Management",6,0,7,"CONSENSUS, HYPER-CONVICTION"
 CVNA,81.67,"CAS Investment Partners (Cliff Sosin), RV Capital / Business Owner Fund (Robert Vinall), Renaissance Technologies LLC, Sachem Head Capital Management, Saga Partners (Joe Frankenfield)",5,1,3,"CONSENSUS, HYPER-CONVICTION, THRESHOLD-FILING"
-MSFT,81,"Appaloosa Management LP, Boyar Value Group (Mark & Jonathan Boyar), Caxton Associates LP (Bruce Kovner / Andrew Law), Claar Advisors (Gary Claar, ex-JANA), Egerton Capital Ltd, Hudson Bay Capital Management LP, Lansdowne Partners, Marshall Wace LLP, Owl Creek Asset Management, Pzena Investment Management",15,2,16,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-PBI,81,Saber Capital (John Huber),1,0,0,HYPER-CONVICTION
+MSFT,81.0,"Appaloosa Management LP, Boyar Value Group (Mark & Jonathan Boyar), Caxton Associates LP (Bruce Kovner / Andrew Law), Claar Advisors (Gary Claar, ex-JANA), Egerton Capital Ltd, Hudson Bay Capital Management LP, Lansdowne Partners, Marshall Wace LLP, Owl Creek Asset Management, Pzena Investment Management",15,2,16,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+PBI,81.0,Saber Capital (John Huber),1,0,0,HYPER-CONVICTION
 JOE,80.43,"Fairholme Capital Management LLC / Bruce Berkowitz, Praetorian Capital (Harris ""Kuppy"" Kupperman)",2,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
 PLTR,80.3,"Hound Partners LLC (Jonathan Auerbach), Hudson Bay Capital Management LP, Owl Creek Asset Management, Polar Asset Management Partners (Paul Sabourin, Toronto), Renaissance Technologies LLC, Scion Asset Management LLC / Michael Burry",6,5,3,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-AVGO,80,"Citadel Advisors LLC (Ken Griffin), ExodusPoint Capital Management LP (Michael Gelband), Light Street Capital Management (Glen Kacher), Lone Pine Capital LLC (Stephen Mandel), Point72 Asset Management LP, Polen Capital Management LLC",6,1,7,"CONSENSUS, HYPER-CONVICTION"
-GPK,79,"Eminence Capital LP, Greenlight Capital (David Einhorn)",2,0,4,HYPER-CONVICTION
-CRWD,79,Saba Capital Management,1,0,1,HYPER-CONVICTION
+AVGO,80.0,"Citadel Advisors LLC (Ken Griffin), ExodusPoint Capital Management LP (Michael Gelband), Light Street Capital Management (Glen Kacher), Lone Pine Capital LLC (Stephen Mandel), Point72 Asset Management LP, Polen Capital Management LLC",6,1,7,"CONSENSUS, HYPER-CONVICTION"
+GPK,79.0,"Eminence Capital LP, Greenlight Capital (David Einhorn)",2,0,4,HYPER-CONVICTION
+CRWD,79.0,Saba Capital Management,1,0,1,HYPER-CONVICTION
 EVTL,78.7,Mudrick Capital Management,1,1,1,"HYPER-CONVICTION, THRESHOLD-FILING"
-SE,78,"Davis Selected Advisers LP (Chris Davis), Duquesne Family Office, Eminence Capital LP, Hound Partners LLC (Jonathan Auerbach), Tiger Global Management LLC (Chase Coleman)",5,0,6,"CONSENSUS, HYPER-CONVICTION"
-FLUT,78,Owl Creek Asset Management,1,0,1,HYPER-CONVICTION
-CPRI,77,Greenlight Capital (David Einhorn),1,0,2,HYPER-CONVICTION
-GTLS,76,"Magnetar Capital LLC, Westchester Capital / MERFX (Behren / Shannon), Whitebox Advisors, Yakira Capital",4,1,2,"CONSENSUS, HYPER-CONVICTION"
-CLVT,75,Cove Street Capital,1,0,1,HYPER-CONVICTION
-SMCI,75,"Weiss Asset Management (Boston), Whitebox Advisors",2,0,1,HYPER-CONVICTION
-FIG,73,,0,0,0,HYPER-CONVICTION
+SE,78.0,"Davis Selected Advisers LP (Chris Davis), Duquesne Family Office, Eminence Capital LP, Hound Partners LLC (Jonathan Auerbach), Tiger Global Management LLC (Chase Coleman)",5,0,6,"CONSENSUS, HYPER-CONVICTION"
+FLUT,78.0,Owl Creek Asset Management,1,0,1,HYPER-CONVICTION
+CPRI,77.0,Greenlight Capital (David Einhorn),1,0,2,HYPER-CONVICTION
+GTLS,76.0,"Magnetar Capital LLC, Westchester Capital / MERFX (Behren / Shannon), Whitebox Advisors, Yakira Capital",4,1,2,"CONSENSUS, HYPER-CONVICTION"
+CLVT,75.0,Cove Street Capital,1,0,1,HYPER-CONVICTION
+SMCI,75.0,"Weiss Asset Management (Boston), Whitebox Advisors",2,0,1,HYPER-CONVICTION
+FIG,73.0,,0,0,0,HYPER-CONVICTION
 PAYC,72.61,RV Capital / Business Owner Fund (Robert Vinall),1,0,2,HYPER-CONVICTION
-TLN,72,"Carronade Capital Management LP, Sachem Head Capital Management",2,0,2,HYPER-CONVICTION
-APGE,72,"Avoro Capital Advisors LLC (formerly venBio Select Advisor), Perceptive Advisors LLC, RTW Investments LP",3,1,3,"CONSENSUS, HYPER-CONVICTION"
-MASI,71,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-THRM,71,,0,0,0,HYPER-CONVICTION
+TLN,72.0,"Carronade Capital Management LP, Sachem Head Capital Management",2,0,2,HYPER-CONVICTION
+APGE,72.0,"Avoro Capital Advisors LLC (formerly venBio Select Advisor), Perceptive Advisors LLC, RTW Investments LP",3,1,3,"CONSENSUS, HYPER-CONVICTION"
+MASI,71.0,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+THRM,71.0,,0,0,0,HYPER-CONVICTION
 DECK,70.66,"Greenlight Capital (David Einhorn), Semper Augustus (Chris Bloomstran)",2,1,1,HYPER-CONVICTION
 BAX,70.05,"Greenhaven Associates Inc / Edgar Wachenheim III, Pzena Investment Management",2,0,3,"HYPER-CONVICTION, THRESHOLD-FILING"
-CNC,70,Greenlight Capital (David Einhorn),1,0,2,HYPER-CONVICTION
-WBD,70,"Caxton Associates LP (Bruce Kovner / Andrew Law), Magnetar Capital LLC, Pentwater Capital Management, Sachem Head Capital Management, Sessa Capital (John Petry)",5,2,5,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+CNC,70.0,Greenlight Capital (David Einhorn),1,0,2,HYPER-CONVICTION
+WBD,70.0,"Caxton Associates LP (Bruce Kovner / Andrew Law), Magnetar Capital LLC, Pentwater Capital Management, Sachem Head Capital Management, Sessa Capital (John Petry)",5,2,5,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
 PCOR,68.2,"Praesidium Investment Management, ShawSpring Partners (Dennis Hong)",2,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
-TRS,68,"Alta Fox Capital Management, Permian Investment Partners (Duran/Hendrickson/Swain)",2,0,2,HYPER-CONVICTION
-HYG,68,"Brevan Howard Capital Management LP (Alan Howard), Highbridge Capital, Knighthead Capital Management, Periscope Capital Inc (Jamie Wise / Stephen Church / Robert Visca, Toronto)",4,0,3,"CONSENSUS, HYPER-CONVICTION"
-SNOW,68,"Gotham Asset Management LLC / Joel Greenblatt, Whitebox Advisors",2,0,2,HYPER-CONVICTION
+TRS,68.0,"Alta Fox Capital Management, Permian Investment Partners (Duran/Hendrickson/Swain)",2,0,2,HYPER-CONVICTION
+HYG,68.0,"Brevan Howard Capital Management LP (Alan Howard), Highbridge Capital, Knighthead Capital Management, Periscope Capital Inc (Jamie Wise / Stephen Church / Robert Visca, Toronto)",4,0,3,"CONSENSUS, HYPER-CONVICTION"
+SNOW,68.0,"Gotham Asset Management LLC / Joel Greenblatt, Whitebox Advisors",2,0,2,HYPER-CONVICTION
 HTZ,67.33,Knighthead Capital Management,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
-SPY,67,"Balyasny Asset Management LP (Dmitry Balyasny), Bridgewater Associates LP (Ray Dalio), Brigade Capital Management, Carronade Capital Management LP, Davidson Kempner Capital Management, Edenbrook Capital (Jonathan Brolin), Element Capital Management LP (Jeffrey Talpins), Gotham Asset Management LLC / Joel Greenblatt, JCP Investment Management LLC, Marathon Asset Management",17,5,17,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-CPNG,66,"Abrams Capital Management LP, Duquesne Family Office, Eminence Capital LP, ShawSpring Partners (Dennis Hong), Tiger Global Management LLC (Chase Coleman)",5,1,4,"CONSENSUS, HYPER-CONVICTION"
-MDXG,65,Nantahala Capital Management,1,0,1,HYPER-CONVICTION
-CRWV,65,"Gotham Asset Management LLC / Joel Greenblatt, Soros Fund Management LLC (George/Robert/Alex Soros)",2,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
+SPY,67.0,"Balyasny Asset Management LP (Dmitry Balyasny), Bridgewater Associates LP (Ray Dalio), Brigade Capital Management, Carronade Capital Management LP, Davidson Kempner Capital Management, Edenbrook Capital (Jonathan Brolin), Element Capital Management LP (Jeffrey Talpins), Gotham Asset Management LLC / Joel Greenblatt, JCP Investment Management LLC, Marathon Asset Management",17,5,17,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+CPNG,66.0,"Abrams Capital Management LP, Duquesne Family Office, Eminence Capital LP, ShawSpring Partners (Dennis Hong), Tiger Global Management LLC (Chase Coleman)",5,1,4,"CONSENSUS, HYPER-CONVICTION"
+MDXG,65.0,Nantahala Capital Management,1,0,1,HYPER-CONVICTION
+CRWV,65.0,"Gotham Asset Management LLC / Joel Greenblatt, Soros Fund Management LLC (George/Robert/Alex Soros)",2,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
 XBP,64.89,Avenue Capital Group (Marc Lasry),1,1,2,"HYPER-CONVICTION, THRESHOLD-FILING"
 TFPM,64.8,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 TEVA,64.6,"Additional manager covered: Cobas Asset Management (Francisco García Paramés), Glenview Capital Management, Mangrove Partners, Nantahala Capital Management",4,0,2,"CONSENSUS, HYPER-CONVICTION"
 CSGP,64.59,ShawSpring Partners (Dennis Hong),1,0,0,HYPER-CONVICTION
-XOP,64,,0,0,0,HYPER-CONVICTION
+XOP,64.0,,0,0,0,HYPER-CONVICTION
 CTRA,63.6,Davis Selected Advisers LP (Chris Davis),1,0,2,HYPER-CONVICTION
-NRP,63,"Fairholme Capital Management LLC / Bruce Berkowitz, Saber Capital (John Huber)",2,2,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
+NRP,63.0,"Fairholme Capital Management LLC / Bruce Berkowitz, Saber Capital (John Huber)",2,2,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
 META,62.16,"Abrams Capital Management LP, Appaloosa Management LP, Balyasny Asset Management LP (Dmitry Balyasny), Citadel Advisors LLC (Ken Griffin), Davis Selected Advisers LP (Chris Davis), Element Capital Management LP (Jeffrey Talpins), Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Hound Partners LLC (Jonathan Auerbach), Numantia Patrimonio Global (Emérito Quintana), Pershing Square Capital Management",13,5,9,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
 REP,62.13,,0,0,0,HYPER-CONVICTION
 PLCE,61.3,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 TLT,61.1,"Edenbrook Capital (Jonathan Brolin), ExodusPoint Capital Management LP (Michael Gelband), Greenhaven Road Investment Management LP",3,1,2,"CONSENSUS, HYPER-CONVICTION"
-NVDA,61,"AQR Capital Management LLC (Cliff Asness), Brevan Howard Capital Management LP (Alan Howard), Bridgewater Associates LP (Ray Dalio), Caxton Associates LP (Bruce Kovner / Andrew Law), Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Gotham Asset Management LLC / Joel Greenblatt, Hound Partners LLC (Jonathan Auerbach), Iconiq Capital LLC, Light Street Capital Management (Glen Kacher), Marshall Wace LLP",23,2,24,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+NVDA,61.0,"AQR Capital Management LLC (Cliff Asness), Brevan Howard Capital Management LP (Alan Howard), Bridgewater Associates LP (Ray Dalio), Caxton Associates LP (Bruce Kovner / Andrew Law), Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver), Gotham Asset Management LLC / Joel Greenblatt, Hound Partners LLC (Jonathan Auerbach), Iconiq Capital LLC, Light Street Capital Management (Glen Kacher), Marshall Wace LLP",23,2,24,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
 UBS,60.89,Cevian Capital,1,0,1,HYPER-CONVICTION
-PFGC,60,Eminence Capital LP,1,0,2,HYPER-CONVICTION
-AAPL,60,"Ancora Advisors / Ancora Holdings, Balyasny Asset Management LP (Dmitry Balyasny), Brevan Howard Capital Management LP (Alan Howard), ExodusPoint Capital Management LP (Michael Gelband), Gotham Asset Management LLC / Joel Greenblatt, Millennium Management LLC (Israel Englander), Saba Capital Management",7,0,9,"CONSENSUS, HYPER-CONVICTION"
-RAPT,60,"Caligan Partners LP, Polygon Investment Partners, Redmile Group LLC",3,2,2,"CONSENSUS, HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
-WK,60,"Irenic Capital Management, Praesidium Investment Management",2,0,5,"HYPER-CONVICTION, THRESHOLD-FILING"
-PCG,60,"King Street Capital Management, MILFAM LLC / Neil Subin (Lloyd Miller III estate), Owl Creek Asset Management, Sessa Capital (John Petry), Silver Point Capital, Soros Fund Management LLC (George/Robert/Alex Soros)",6,0,5,"CONSENSUS, HYPER-CONVICTION"
-SSE,60,Knight Vinke Asset Management,1,2,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
+PFGC,60.0,Eminence Capital LP,1,0,2,HYPER-CONVICTION
+AAPL,60.0,"Ancora Advisors / Ancora Holdings, Balyasny Asset Management LP (Dmitry Balyasny), Brevan Howard Capital Management LP (Alan Howard), ExodusPoint Capital Management LP (Michael Gelband), Gotham Asset Management LLC / Joel Greenblatt, Millennium Management LLC (Israel Englander), Saba Capital Management",7,0,9,"CONSENSUS, HYPER-CONVICTION"
+RAPT,60.0,"Caligan Partners LP, Polygon Investment Partners, Redmile Group LLC",3,2,2,"CONSENSUS, HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
+WK,60.0,"Irenic Capital Management, Praesidium Investment Management",2,0,5,"HYPER-CONVICTION, THRESHOLD-FILING"
+PCG,60.0,"King Street Capital Management, MILFAM LLC / Neil Subin (Lloyd Miller III estate), Owl Creek Asset Management, Sessa Capital (John Petry), Silver Point Capital, Soros Fund Management LLC (George/Robert/Alex Soros)",6,0,5,"CONSENSUS, HYPER-CONVICTION"
+SSE,60.0,Knight Vinke Asset Management,1,2,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
 SC,59.99,,0,5,18,"HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
 MRP,59.99,"Brave Warrior Advisors LLC (Glenn Greenberg), Permian Investment Partners (Duran/Hendrickson/Swain)",2,0,3,HYPER-CONVICTION
-VST,59,Owl Creek Asset Management,1,0,1,HYPER-CONVICTION
-ANNX,59,Redmile Group LLC,1,0,2,HYPER-CONVICTION
+VST,59.0,Owl Creek Asset Management,1,0,1,HYPER-CONVICTION
+ANNX,59.0,Redmile Group LLC,1,0,2,HYPER-CONVICTION
 BCC,57.1,Third Avenue Management,1,0,2,HYPER-CONVICTION
-INSM,57,RTW Investments LP,1,0,2,HYPER-CONVICTION
+INSM,57.0,RTW Investments LP,1,0,2,HYPER-CONVICTION
 VAL,56.94,Third Avenue Management,1,0,0,HYPER-CONVICTION
 NETD,56.4,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 FAT,55.7,Fog Cutter Holdings / Andrew Wiederhorn (FAT Brands),1,0,2,HYPER-CONVICTION
 RKT,55.07,"Omega Family Office (Omega Advisors), Third Point LLC, ValueAct Capital, Westchester Capital / MERFX (Behren / Shannon)",4,0,5,"CONSENSUS, HYPER-CONVICTION"
-FLR,55,Greenlight Capital (David Einhorn),1,0,2,HYPER-CONVICTION
-GLD,55,"Bridgewater Associates LP (Ray Dalio), Engine No. 1 LLC",2,3,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
-IEF,54,"Carronade Capital Management LP, Claar Advisors (Gary Claar, ex-JANA), Davidson Kempner Capital Management, Knighthead Capital Management, Marshall Wace LLP, Moore Capital Management LP (Louis Bacon), Owl Creek Asset Management",7,2,8,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
+FLR,55.0,Greenlight Capital (David Einhorn),1,0,2,HYPER-CONVICTION
+GLD,55.0,"Bridgewater Associates LP (Ray Dalio), Engine No. 1 LLC",2,3,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
+IEF,54.0,"Carronade Capital Management LP, Claar Advisors (Gary Claar, ex-JANA), Davidson Kempner Capital Management, Knighthead Capital Management, Marshall Wace LLP, Moore Capital Management LP (Louis Bacon), Owl Creek Asset Management",7,2,8,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
 CRH,53.2,"Cevian Capital, Cruiser Capital (Keith Rosenbloom), Findlay Park Partners (Kingsley/Findlay), Lansdowne Partners, Third Point LLC",5,0,5,"CONSENSUS, HYPER-CONVICTION"
 4464 JP,53.15,Effissimo Capital Management,1,2,1,"HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
-AAL,53,Appaloosa Management LP,1,0,1,HYPER-CONVICTION
-SLNO,52,Nantahala Capital Management,1,0,1,HYPER-CONVICTION
+AAL,53.0,Appaloosa Management LP,1,0,1,HYPER-CONVICTION
+SLNO,52.0,Nantahala Capital Management,1,0,1,HYPER-CONVICTION
 CNHI,51.95,"Tweedy, Browne Company LLC",1,2,0,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
-FLO,51,Hestia Capital Partners,1,0,2,HYPER-CONVICTION
-JD,50,"Marathon Asset Management, Numantia Patrimonio Global (Emérito Quintana), Soros Fund Management LLC (George/Robert/Alex Soros)",3,0,2,"CONSENSUS, HYPER-CONVICTION"
+FLO,51.0,Hestia Capital Partners,1,0,2,HYPER-CONVICTION
+JD,50.0,"Marathon Asset Management, Numantia Patrimonio Global (Emérito Quintana), Soros Fund Management LLC (George/Robert/Alex Soros)",3,0,2,"CONSENSUS, HYPER-CONVICTION"
 WHLR,49.99,Stilwell Value LLC / Stilwell Group,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
 BN,49.69,"Lone Pine Capital LLC (Stephen Mandel), Pershing Square Capital Management, Third Point LLC",3,0,5,"CONSENSUS, HYPER-CONVICTION"
 RACE,49.28,AKO Capital,1,0,2,HYPER-CONVICTION
 GGB,49.18,Donald Smith & Co,1,0,1,HYPER-CONVICTION
-PCH,49,Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners),1,0,1,HYPER-CONVICTION
+PCH,49.0,Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners),1,0,1,HYPER-CONVICTION
 TSM,48.2,"Appaloosa Management LP, Aubrey Capital Management (Andrew Dalrymple), Lansdowne Partners, Point72 Asset Management LP, Soros Fund Management LLC, Viking Global Investors LP (Andreas Halvorsen)",6,0,7,"CONSENSUS, HYPER-CONVICTION"
-PTCT,48,RTW Investments LP,1,0,1,HYPER-CONVICTION
+PTCT,48.0,RTW Investments LP,1,0,1,HYPER-CONVICTION
 HHH,47.74,"JCP Investment Management LLC, Numantia Patrimonio Global (Emérito Quintana), Pershing Square Capital Management",3,3,2,"CONSENSUS, HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
 QQQ,47.41,"Balyasny Asset Management LP (Dmitry Balyasny), Brevan Howard Capital Management LP (Alan Howard), Corvex Management, Davidson Kempner Capital Management, Edenbrook Capital (Jonathan Brolin), Highbridge Capital, Moore Capital Management LP (Louis Bacon), Owl Creek Asset Management, Polar Asset Management Partners (Paul Sabourin, Toronto), Spruce Point Capital Management LLC",11,3,6,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-SHOP,47,Iconiq Capital LLC,1,0,2,HYPER-CONVICTION
+SHOP,47.0,Iconiq Capital LLC,1,0,2,HYPER-CONVICTION
 WFC,46.74,,0,0,0,HYPER-CONVICTION
 SATS,46.4,"Hudson Bay Capital Management LP, Icahn Capital / Carl Icahn, Sachem Head Capital Management, Whitebox Advisors",4,2,3,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-PAR,46,"Pender Fund Capital (David Barr, Vancouver), Voss Capital",2,0,2,"HYPER-CONVICTION, THRESHOLD-FILING"
+PAR,46.0,"Pender Fund Capital (David Barr, Vancouver), Voss Capital",2,0,2,"HYPER-CONVICTION, THRESHOLD-FILING"
 FWONK,45.42,ShawSpring Partners (Dennis Hong),1,0,0,HYPER-CONVICTION
-COO,45,JANA Partners,1,0,2,HYPER-CONVICTION
-MGNI,45,"Choice Equities Fund (Mitchell Scott), Edenbrook Capital (Jonathan Brolin), Radcliffe Capital Management (Steve Katznelson, Bala Cynwyd PA), Roumell Asset Management",4,0,3,"CONSENSUS, HYPER-CONVICTION"
-IAU,45,Silver Point Capital,1,0,2,HYPER-CONVICTION
-JAZZ,45,EcoR1 Capital LLC,1,0,1,HYPER-CONVICTION
-IAC,45,"Aristeia Capital, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",2,0,1,HYPER-CONVICTION
+COO,45.0,JANA Partners,1,0,2,HYPER-CONVICTION
+MGNI,45.0,"Choice Equities Fund (Mitchell Scott), Edenbrook Capital (Jonathan Brolin), Radcliffe Capital Management (Steve Katznelson, Bala Cynwyd PA), Roumell Asset Management",4,0,3,"CONSENSUS, HYPER-CONVICTION"
+IAU,45.0,Silver Point Capital,1,0,2,HYPER-CONVICTION
+JAZZ,45.0,EcoR1 Capital LLC,1,0,1,HYPER-CONVICTION
+IAC,45.0,"Aristeia Capital, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",2,0,1,HYPER-CONVICTION
 RIOT,44.53,"Aurelius Capital Management (Mark Brodsky — US distressed), Starboard Value LP",2,1,3,HYPER-CONVICTION
-GDS,44,"Sachem Head Capital Management, ShawSpring Partners (Dennis Hong)",2,1,2,HYPER-CONVICTION
-DBRG,44,Glazer Capital LLC (Paul Glazer / Mark Ort),1,0,0,HYPER-CONVICTION
-AMD,44,"Glenview Capital Management, Voloridge Investment Management LLC",2,1,1,HYPER-CONVICTION
-OLO,44,Roumell Asset Management,1,0,2,HYPER-CONVICTION
-MPLX,44,"Brave Warrior Advisors LLC (Glenn Greenberg), GoldenTree Asset Management",2,0,2,HYPER-CONVICTION
+GDS,44.0,"Sachem Head Capital Management, ShawSpring Partners (Dennis Hong)",2,1,2,HYPER-CONVICTION
+DBRG,44.0,Glazer Capital LLC (Paul Glazer / Mark Ort),1,0,0,HYPER-CONVICTION
+AMD,44.0,"Glenview Capital Management, Voloridge Investment Management LLC",2,1,1,HYPER-CONVICTION
+OLO,44.0,Roumell Asset Management,1,0,2,HYPER-CONVICTION
+MPLX,44.0,"Brave Warrior Advisors LLC (Glenn Greenberg), GoldenTree Asset Management",2,0,2,HYPER-CONVICTION
 RDN,43.7,Donald Smith & Co,1,0,1,HYPER-CONVICTION
-INSP,43,Deerfield Management Company,1,0,2,HYPER-CONVICTION
-ARVN,43,,0,0,0,HYPER-CONVICTION
+INSP,43.0,Deerfield Management Company,1,0,2,HYPER-CONVICTION
+ARVN,43.0,,0,0,0,HYPER-CONVICTION
 LKQ,42.23,"Ancora Advisors / Ancora Holdings, Pzena Investment Management",2,0,3,HYPER-CONVICTION
 CGEH,42.1,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-NOW,42,"Iconiq Capital LLC, Praesidium Investment Management, Tiger Global Management LLC (Chase Coleman)",3,1,2,"CONSENSUS, HYPER-CONVICTION"
-BCYC,42,Armistice Capital LLC,1,1,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+NOW,42.0,"Iconiq Capital LLC, Praesidium Investment Management, Tiger Global Management LLC (Chase Coleman)",3,1,2,"CONSENSUS, HYPER-CONVICTION"
+BCYC,42.0,Armistice Capital LLC,1,1,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 GOOG,41.49,"Appaloosa Management LP, Davis Selected Advisers LP (Chris Davis), Polar Asset Management Partners (Paul Sabourin, Toronto), Schonfeld Strategic Advisors LLC",4,0,4,"CONSENSUS, HYPER-CONVICTION"
 CRM,41.27,"Eminence Capital LP, First Eagle Investment Management LLC, RV Capital / Business Owner Fund (Robert Vinall), ValueAct Capital",4,0,6,"CONSENSUS, HYPER-CONVICTION"
 CBL,41.2,Canyon Partners (Canyon Capital Advisors),1,0,1,HYPER-CONVICTION
-TPB,41,Findell Capital Management (Brian Finn),1,0,2,HYPER-CONVICTION
-DK,41,,0,0,0,HYPER-CONVICTION
+TPB,41.0,Findell Capital Management (Brian Finn),1,0,2,HYPER-CONVICTION
+DK,41.0,,0,0,0,HYPER-CONVICTION
 POWL,40.9,Voss Capital,1,1,0,HYPER-CONVICTION
 BAC,40.51,Boyar Value Group (Mark & Jonathan Boyar),1,0,0,HYPER-CONVICTION
 APD,40.5,Sessa Capital (John Petry),1,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 JHG,40.22,Hudson Bay Capital Management LP,1,2,0,"HYPER-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
 TPL,40.14,"Bulldog Investors LLC (Phillip Goldstein, Andrew Dakos, Steven Samuels, Rajeev Das), Horizon Kinetics Asset Management LLC / Murray Stahl",2,0,1,HYPER-CONVICTION
-RH,40,Glenview Capital Management,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
-AVI,40,,0,1,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-SGHC,40,Findell Capital Management (Brian Finn),1,0,2,HYPER-CONVICTION
-LOGC,40,Abrams Capital Management LP,1,1,0,HYPER-CONVICTION
-ABUS,40,,0,0,0,HYPER-CONVICTION
-ZDC.V,40,"Donville Kent (Jason Donville, Toronto)",1,0,1,HYPER-CONVICTION
+RH,40.0,Glenview Capital Management,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
+AVI,40.0,,0,1,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+SGHC,40.0,Findell Capital Management (Brian Finn),1,0,2,HYPER-CONVICTION
+LOGC,40.0,Abrams Capital Management LP,1,1,0,HYPER-CONVICTION
+ABUS,40.0,,0,0,0,HYPER-CONVICTION
+ZDC.V,40.0,"Donville Kent (Jason Donville, Toronto)",1,0,1,HYPER-CONVICTION
 HCC,39.47,Pabrai Investment Funds (Dalal Street LLC),1,0,0,HYPER-CONVICTION
-CSR,39,Land & Buildings Investment Management,1,0,3,"HYPER-CONVICTION, THRESHOLD-FILING"
-RDNT,39,RTW Investments LP,1,0,2,HYPER-CONVICTION
+CSR,39.0,Land & Buildings Investment Management,1,0,3,"HYPER-CONVICTION, THRESHOLD-FILING"
+RDNT,39.0,RTW Investments LP,1,0,2,HYPER-CONVICTION
 IVV,38.52,"Balyasny Asset Management LP (Dmitry Balyasny), Bridgewater Associates LP (Ray Dalio), GoldenTree Asset Management, Gotham Asset Management LLC / Joel Greenblatt, Karpus Investment Management (Pittsford NY; City of London subsidiary), Schonfeld Strategic Advisors LLC, Tudor Investment Corp (Paul Tudor Jones II)",7,1,5,"CONSENSUS, HYPER-CONVICTION"
 LOAR,38.41,"Abrams Capital Management LP, Harbert Discovery Fund",2,1,1,HYPER-CONVICTION
-V,38,"Egerton Capital Ltd, Point72 Asset Management LP, Viking Global Investors LP (Andreas Halvorsen)",3,0,4,"CONSENSUS, HYPER-CONVICTION"
-NCLH,38,"Ariel Investments LLC (John Rogers), GoldenTree Asset Management, Hound Partners LLC (Jonathan Auerbach)",3,0,5,"CONSENSUS, HYPER-CONVICTION"
+V,38.0,"Egerton Capital Ltd, Point72 Asset Management LP, Viking Global Investors LP (Andreas Halvorsen)",3,0,4,"CONSENSUS, HYPER-CONVICTION"
+NCLH,38.0,"Ariel Investments LLC (John Rogers), GoldenTree Asset Management, Hound Partners LLC (Jonathan Auerbach)",3,0,5,"CONSENSUS, HYPER-CONVICTION"
 ANET,37.2,"Hudson Bay Capital Management LP, Point72 Asset Management LP",2,0,2,HYPER-CONVICTION
-INBX,37,Caligan Partners LP,1,1,1,HYPER-CONVICTION
-CMPO,37,,0,0,0,HYPER-CONVICTION
-EAF,37,Solus Alternative Asset Management (Chris Pucillo),1,0,0,HYPER-CONVICTION
+INBX,37.0,Caligan Partners LP,1,1,1,HYPER-CONVICTION
+CMPO,37.0,,0,0,0,HYPER-CONVICTION
+EAF,37.0,Solus Alternative Asset Management (Chris Pucillo),1,0,0,HYPER-CONVICTION
 BRK.A,36.38,"Bulldog Investors LLC (Phillip Goldstein, Andrew Dakos, Steven Samuels, Rajeev Das), Punch Card Capital / Norbert Lou (Punch Card Management L.P.), Semper Augustus (Chris Bloomstran)",3,1,1,"CONSENSUS, HYPER-CONVICTION"
 OKTA,36.04,ShawSpring Partners (Dennis Hong),1,0,0,HYPER-CONVICTION
-XLE,36,Soros Fund Management LLC (George/Robert/Alex Soros),1,0,1,HYPER-CONVICTION
-LUMN,36,,0,0,0,HYPER-CONVICTION
-STOK,36,BVF Partners L.P.,1,0,2,HYPER-CONVICTION
+XLE,36.0,Soros Fund Management LLC (George/Robert/Alex Soros),1,0,1,HYPER-CONVICTION
+LUMN,36.0,,0,0,0,HYPER-CONVICTION
+STOK,36.0,BVF Partners L.P.,1,0,2,HYPER-CONVICTION
 ANEB,35.7,22NW LP / 22NW Fund,1,0,1,HYPER-CONVICTION
 RSG,35.6,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 APP,35.2,Muddy Waters Capital LLC (Carson Block),1,0,0,HYPER-CONVICTION
-FOSL,35,"HG Vora Capital (Parag Vora), Nantahala Capital Management",2,2,1,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
-PPTA,35,"Gotham Asset Management LLC / Joel Greenblatt, Paulson & Co Inc",2,1,1,"HYPER-CONVICTION, THRESHOLD-FILING"
+FOSL,35.0,"HG Vora Capital (Parag Vora), Nantahala Capital Management",2,2,1,"HYPER-CONVICTION, MULTI-FUND NEW INIT"
+PPTA,35.0,"Gotham Asset Management LLC / Joel Greenblatt, Paulson & Co Inc",2,1,1,"HYPER-CONVICTION, THRESHOLD-FILING"
 LRMR,34.41,Deerfield Management Company,1,0,1,"HYPER-CONVICTION, THRESHOLD-FILING"
 BITF,34.4,Aurelius Capital Management (Mark Brodsky — US distressed),1,1,0,HYPER-CONVICTION
 HUM,34.35,"Owl Creek Asset Management, Pzena Investment Management, Sessa Capital (John Petry)",3,0,2,"CONSENSUS, HYPER-CONVICTION"
 GM,34.19,,0,0,0,HYPER-CONVICTION
 VTOL,34.1,"Solus Alternative Asset Management (Chris Pucillo), Taconic Capital Advisors",2,0,2,"HYPER-CONVICTION, THRESHOLD-FILING"
-DKNG,34,"Eminence Capital LP, Spruce House Partnership",2,0,4,HYPER-CONVICTION
-COGT,34,"Deerfield Management Company, RTW Investments LP",2,0,4,HYPER-CONVICTION
+DKNG,34.0,"Eminence Capital LP, Spruce House Partnership",2,0,4,HYPER-CONVICTION
+COGT,34.0,"Deerfield Management Company, RTW Investments LP",2,0,4,HYPER-CONVICTION
 CCO,33.6,"Anson Funds Management LP, Legion Partners Asset Management",2,0,4,"HYPER-CONVICTION, THRESHOLD-FILING"
-XLP,33,Elliott Investment Management,1,0,2,HYPER-CONVICTION
-XPO,33,MFN Partners Management,1,0,1,HYPER-CONVICTION
-OSCR,33,Marathon Asset Management,1,0,1,HYPER-CONVICTION
-ASML,33,"Point72 Asset Management LP, Polen Capital Management LLC",2,1,1,HYPER-CONVICTION
-CLYM,33,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
-SRRK,33,Redmile Group LLC,1,0,2,HYPER-CONVICTION
-HKHC,33,,0,0,0,HYPER-CONVICTION
-HYMC,33,Eric Sprott PERSONAL (2176423 Ontario Ltd),1,0,0,HYPER-CONVICTION
+XLP,33.0,Elliott Investment Management,1,0,2,HYPER-CONVICTION
+XPO,33.0,MFN Partners Management,1,0,1,HYPER-CONVICTION
+OSCR,33.0,Marathon Asset Management,1,0,1,HYPER-CONVICTION
+ASML,33.0,"Point72 Asset Management LP, Polen Capital Management LLC",2,1,1,HYPER-CONVICTION
+CLYM,33.0,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
+SRRK,33.0,Redmile Group LLC,1,0,2,HYPER-CONVICTION
+HKHC,33.0,,0,0,0,HYPER-CONVICTION
+HYMC,33.0,Eric Sprott PERSONAL (2176423 Ontario Ltd),1,0,0,HYPER-CONVICTION
 OXY,32.7,"Berkshire Hathaway, Fairholme Capital Management LLC / Bruce Berkowitz",2,1,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 GPOR,32.3,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 CTRI,32.16,Icahn Capital / Carl Icahn,1,0,2,HYPER-CONVICTION
-DT,32,Eminence Capital LP,1,0,2,HYPER-CONVICTION
-MIAX,32,Horizon Kinetics Asset Management LLC / Murray Stahl,1,0,1,HYPER-CONVICTION
+DT,32.0,Eminence Capital LP,1,0,2,HYPER-CONVICTION
+MIAX,32.0,Horizon Kinetics Asset Management LLC / Murray Stahl,1,0,1,HYPER-CONVICTION
 BLDR,31.78,"Bonhoeffer Fund (Keith Smith, Willow Oak), Brave Warrior Advisors LLC (Glenn Greenberg), Coliseum Capital (Adam Gray, Christopher Shackelton)",3,0,2,"CONSENSUS, HYPER-CONVICTION"
 ELV,31.74,"First Eagle Investment Management LLC, Sequoia Fund / Ruane, Cunniff & Goldfarb LLC (now Ruane Cunniff LP)",2,0,1,HYPER-CONVICTION
 GE,31.16,"The Children's Investment Fund Management (TCI, Chris Hohn), Trian Fund Management",2,0,1,HYPER-CONVICTION
-VRT,31,"Engine No. 1 LLC, Omega Family Office (Omega Advisors)",2,0,3,HYPER-CONVICTION
-PTGX,31,"Perceptive Advisors LLC, RTW Investments LP",2,0,2,HYPER-CONVICTION
+VRT,31.0,"Engine No. 1 LLC, Omega Family Office (Omega Advisors)",2,0,3,HYPER-CONVICTION
+PTGX,31.0,"Perceptive Advisors LLC, RTW Investments LP",2,0,2,HYPER-CONVICTION
 ZYME,30.7,"BVF Partners L.P., EcoR1 Capital LLC",2,0,2,"HYPER-CONVICTION, THRESHOLD-FILING"
 NEXN,30.5,,0,0,0,"HYPER-CONVICTION, THRESHOLD-FILING"
 MDGL,30.48,"Armistice Capital LLC, Paulson & Co Inc, RTW Investments LP",3,0,4,"CONSENSUS, HYPER-CONVICTION"
 KVUE,30.47,"Magnetar Capital LLC, Pentwater Capital Management, Starboard Value LP",3,2,4,"CONSENSUS, HYPER-CONVICTION, MULTI-FUND NEW INIT"
-AAG.V,30,,0,0,0,HYPER-CONVICTION
-MOD,30,,0,0,0,HYPER-CONVICTION
+AAG.V,30.0,,0,0,0,HYPER-CONVICTION
+MOD,30.0,,0,0,0,HYPER-CONVICTION
 ALLT,29.7,Outerbridge Capital Management (Rory Wallace),1,1,0,HIGH-CONVICTION
 CNMD,29.4,"Tributary Capital Management (Wynegar, Radtke) — Omaha",1,1,0,HIGH-CONVICTION
 PEPG,29.2,RA Capital Management LP,1,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
-FR,29,Land & Buildings Investment Management,1,0,2,HIGH-CONVICTION
-LPX,29,"Eminence Capital LP, Scopia Capital Management, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",3,2,3,"CONSENSUS, HIGH-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
-TUN,29,Lansdowne Partners,1,3,0,"HIGH-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
-DG,29,,0,0,0,HIGH-CONVICTION
+FR,29.0,Land & Buildings Investment Management,1,0,2,HIGH-CONVICTION
+LPX,29.0,"Eminence Capital LP, Scopia Capital Management, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",3,2,3,"CONSENSUS, HIGH-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
+TUN,29.0,Lansdowne Partners,1,3,0,"HIGH-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
+DG,29.0,,0,0,0,HIGH-CONVICTION
 WHR,28.91,,0,0,0,HIGH-CONVICTION
 ACRV,28.8,RA Capital Management LP,1,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
 SII,28.58,"Praetorian Capital (Harris ""Kuppy"" Kupperman), Sprott Inc / Sprott Asset Management USA / Sprott US Holdings (Rick Rule, Whitney George)",2,0,1,HIGH-CONVICTION
@@ -222,24 +222,24 @@ FTAI,28.4,"Cruiser Capital (Keith Rosenbloom), Owl Creek Asset Management",2,0,1
 LQDA,28.3,"Caligan Partners LP, Findell Capital Management (Brian Finn), Rangeley Capital / YAVF (Andrew Walker / Chris DeMuth)",3,1,2,"CONSENSUS, HIGH-CONVICTION"
 SYBX,28.3,Funicular Funds LP / Cable Car Capital (Jacob Ma-Weaver),1,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 STRR,28.25,Star Equity Fund LP (Jeffrey Eberwein),1,1,1,"HIGH-CONVICTION, THRESHOLD-FILING"
-KGC,28,,0,0,0,HIGH-CONVICTION
-ARKK,28,,0,0,0,HIGH-CONVICTION
+KGC,28.0,,0,0,0,HIGH-CONVICTION
+ARKK,28.0,,0,0,0,HIGH-CONVICTION
 JYNT,27.9,Bandera Partners,1,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 AN,27.9,Brave Warrior Advisors LLC (Glenn Greenberg),1,0,2,HIGH-CONVICTION
 LYV,27.78,"Sachem Head Capital Management, Third Point LLC",2,1,2,HIGH-CONVICTION
 RIG,27.78,"Pabrai Investment Funds (Dalal Street LLC), Solus Alternative Asset Management (Chris Pucillo)",2,0,2,HIGH-CONVICTION
 SWKS,27.6,Pzena Investment Management,1,0,1,HIGH-CONVICTION
-GPN,27,Soros Fund Management LLC (George/Robert/Alex Soros),1,0,1,HIGH-CONVICTION
-AMR,27,Pabrai Investment Funds (Dalal Street LLC),1,0,2,HIGH-CONVICTION
-PRAX,27,"Deerfield Management Company, Perceptive Advisors LLC, Polygon Investment Partners",3,1,3,"CONSENSUS, HIGH-CONVICTION"
-NEM,27,"Bridgewater Associates LP (Ray Dalio), Semper Augustus (Chris Bloomstran)",2,1,1,HIGH-CONVICTION
-FIVE,27,,0,0,0,HIGH-CONVICTION
+GPN,27.0,Soros Fund Management LLC (George/Robert/Alex Soros),1,0,1,HIGH-CONVICTION
+AMR,27.0,Pabrai Investment Funds (Dalal Street LLC),1,0,2,HIGH-CONVICTION
+PRAX,27.0,"Deerfield Management Company, Perceptive Advisors LLC, Polygon Investment Partners",3,1,3,"CONSENSUS, HIGH-CONVICTION"
+NEM,27.0,"Bridgewater Associates LP (Ray Dalio), Semper Augustus (Chris Bloomstran)",2,1,1,HIGH-CONVICTION
+FIVE,27.0,,0,0,0,HIGH-CONVICTION
 ATEN,26.41,,0,0,0,HIGH-CONVICTION
-TBBK,26,Nantahala Capital Management,1,0,1,HIGH-CONVICTION
-GOOGL,26,"Abrams Capital Management LP, Bandera Partners, Berkshire Hathaway, Boyar Value Group (Mark & Jonathan Boyar), Citadel Advisors LLC (Ken Griffin), Davis Selected Advisers LP (Chris Davis), Duquesne Family Office, Egerton Capital Ltd, Gotham Asset Management LLC / Joel Greenblatt, Iconiq Capital LLC",13,3,6,"CONSENSUS, HIGH-CONVICTION, MULTI-FUND NEW INIT"
-BRK.B,26,"Fairholme Capital Management LLC / Bruce Berkowitz, Findlay Park Partners (Kingsley/Findlay), Semper Augustus (Chris Bloomstran)",3,0,2,"CONSENSUS, HIGH-CONVICTION"
-AGIO,26,Polygon Investment Partners,1,1,0,"HIGH-CONVICTION, THRESHOLD-FILING"
-RYN,26,Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners),1,0,1,HIGH-CONVICTION
+TBBK,26.0,Nantahala Capital Management,1,0,1,HIGH-CONVICTION
+GOOGL,26.0,"Abrams Capital Management LP, Bandera Partners, Berkshire Hathaway, Boyar Value Group (Mark & Jonathan Boyar), Citadel Advisors LLC (Ken Griffin), Davis Selected Advisers LP (Chris Davis), Duquesne Family Office, Egerton Capital Ltd, Gotham Asset Management LLC / Joel Greenblatt, Iconiq Capital LLC",13,3,6,"CONSENSUS, HIGH-CONVICTION, MULTI-FUND NEW INIT"
+BRK.B,26.0,"Fairholme Capital Management LLC / Bruce Berkowitz, Findlay Park Partners (Kingsley/Findlay), Semper Augustus (Chris Bloomstran)",3,0,2,"CONSENSUS, HIGH-CONVICTION"
+AGIO,26.0,Polygon Investment Partners,1,1,0,"HIGH-CONVICTION, THRESHOLD-FILING"
+RYN,26.0,Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners),1,0,1,HIGH-CONVICTION
 WTW,24.7,"Abrams Capital Management LP, Baupost Group LLC, Burgundy Asset Management (Tony Arrell, Toronto)",3,0,2,"CONSENSUS, HIGH-CONVICTION"
 WCC,24.6,Davis Selected Advisers LP (Chris Davis),1,1,0,HIGH-CONVICTION
 BRZE,24.5,ShawSpring Partners (Dennis Hong),1,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
@@ -252,15 +252,15 @@ APG,23.34,"ADW Capital Management (Adam Wyden), Cruiser Capital (Keith Rosenbloo
 BABA,23.24,"Brevan Howard Capital Management LP (Alan Howard), Davidson Kempner Capital Management, Highbridge Capital, Hudson Bay Capital Management LP, Saba Capital Management, ShawSpring Partners (Dennis Hong), Third Point LLC, Whitebox Advisors",8,0,6,"CONSENSUS, HIGH-CONVICTION"
 COMM,23.2,,0,0,0,HIGH-CONVICTION
 SDRL,23.09,Elliott Investment Management,1,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
-BST,23,Saba Capital Management,1,0,2,HIGH-CONVICTION
-FLYW,23,"Mangrove Partners, Voss Capital",2,0,4,HIGH-CONVICTION
-LBRT,23,,0,0,0,HIGH-CONVICTION
+BST,23.0,Saba Capital Management,1,0,2,HIGH-CONVICTION
+FLYW,23.0,"Mangrove Partners, Voss Capital",2,0,4,HIGH-CONVICTION
+LBRT,23.0,,0,0,0,HIGH-CONVICTION
 MU,22.9,"Appaloosa Management LP, Bridgewater Associates LP (Ray Dalio), Discovery Capital Management LLC / CT (Rob Citrone), Point72 Asset Management LP, Renaissance Technologies LLC",5,1,7,"CONSENSUS, HIGH-CONVICTION"
 EWR,22.4,,0,2,0,"HIGH-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
 MLTX,22.3,BVF Partners L.P.,1,0,2,"HIGH-CONVICTION, THRESHOLD-FILING"
 NUVL,22.2,,0,0,0,HIGH-CONVICTION
-NKTR,22,"22NW LP / 22NW Fund, BVF Partners L.P., Polygon Investment Partners",3,1,3,"CONSENSUS, HIGH-CONVICTION"
-EB,22,Veradace Partners (Vezendan + Conlin),1,0,0,HIGH-CONVICTION
+NKTR,22.0,"22NW LP / 22NW Fund, BVF Partners L.P., Polygon Investment Partners",3,1,3,"CONSENSUS, HIGH-CONVICTION"
+EB,22.0,Veradace Partners (Vezendan + Conlin),1,0,0,HIGH-CONVICTION
 NTRA,21.87,"Coatue Management LLC (Philippe Laffont), Foresite Capital",2,1,1,HIGH-CONVICTION
 CGAU,21.82,Donald Smith & Co,1,0,1,HIGH-CONVICTION
 SGRY,21.82,King Street Capital Management,1,1,1,"HIGH-CONVICTION, THRESHOLD-FILING"
@@ -270,14 +270,14 @@ LFCR,21.3,"Greenhaven Road Investment Management LP, Laughing Water Capital (Mat
 VRM,21.3,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 CVI,21.21,Icahn Capital / Carl Icahn,1,0,1,HIGH-CONVICTION
 7157 JP,21.13,Effissimo Capital Management,1,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
-NFLX,21,"Coatue Management LLC (Philippe Laffont), Element Capital Management LP (Jeffrey Talpins), Light Street Capital Management (Glen Kacher), Renaissance Technologies LLC, Tiger Global Management LLC (Chase Coleman), Voloridge Investment Management LLC",6,2,6,"CONSENSUS, HIGH-CONVICTION, MULTI-FUND NEW INIT"
+NFLX,21.0,"Coatue Management LLC (Philippe Laffont), Element Capital Management LP (Jeffrey Talpins), Light Street Capital Management (Glen Kacher), Renaissance Technologies LLC, Tiger Global Management LLC (Chase Coleman), Voloridge Investment Management LLC",6,2,6,"CONSENSUS, HIGH-CONVICTION, MULTI-FUND NEW INIT"
 GRBK,20.82,Greenlight Capital (David Einhorn),1,0,0,HIGH-CONVICTION
 RVMD,20.6,"Caligan Partners LP, Rangeley Capital / YAVF (Andrew Walker / Chris DeMuth)",2,1,2,HIGH-CONVICTION
 ALCO,20.6,,0,0,0,HIGH-CONVICTION
 AXP,20.46,Berkshire Hathaway,1,0,0,HIGH-CONVICTION
 ALV,20.43,Cevian Capital,1,0,1,HIGH-CONVICTION
 LEN,20.24,"Brave Warrior Advisors LLC (Glenn Greenberg), Greenhaven Associates Inc / Edgar Wachenheim III",2,0,4,HIGH-CONVICTION
-CHYM,20,"Light Street Capital Management (Glen Kacher), Nantahala Capital Management",2,2,0,"HIGH-CONVICTION, MULTI-FUND NEW INIT"
+CHYM,20.0,"Light Street Capital Management (Glen Kacher), Nantahala Capital Management",2,2,0,"HIGH-CONVICTION, MULTI-FUND NEW INIT"
 GAL,19.999,,0,0,0,HIGH-CONVICTION
 LONA,19.99,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 BA,19.9,"King Street Capital Management, Pentwater Capital Management",2,0,5,HIGH-CONVICTION
@@ -293,9 +293,9 @@ MAXX,19.5,Eric Sprott PERSONAL (2176423 Ontario Ltd),1,0,1,HIGH-CONVICTION
 INTU,19.29,"Polen Capital Management LLC, ShawSpring Partners (Dennis Hong)",2,0,1,HIGH-CONVICTION
 3401 JP,19.26,Effissimo Capital Management,1,2,2,"HIGH-CONVICTION, THRESHOLD-FILING, MULTI-FUND NEW INIT"
 PSO,19.21,Cevian Capital,1,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
-CLBT,19,"Praesidium Investment Management, Voss Capital",2,0,3,HIGH-CONVICTION
-AMRK,19,Cannell Capital,1,0,1,HIGH-CONVICTION
-RLBY,19,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
+CLBT,19.0,"Praesidium Investment Management, Voss Capital",2,0,3,HIGH-CONVICTION
+AMRK,19.0,Cannell Capital,1,0,1,HIGH-CONVICTION
+RLBY,19.0,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 AVTR,18.9,Greenhaven Associates Inc / Edgar Wachenheim III,1,0,2,HIGH-CONVICTION
 NFGC,18.9,Eric Sprott PERSONAL (2176423 Ontario Ltd),1,1,0,HIGH-CONVICTION
 WEX,18.9,Impactive Capital (Lauren Taylor Wolfe / Christian Asmar),1,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
@@ -309,7 +309,7 @@ FEIM,18.8,Edenbrook Capital (Jonathan Brolin),1,0,1,HIGH-CONVICTION
 RRC,18.5,Kopernik Global Investors LLC,1,0,1,HIGH-CONVICTION
 AZTA,18.3,,0,0,0,HIGH-CONVICTION
 AAP,18.3,Veradace Partners (Vezendan + Conlin),1,0,0,HIGH-CONVICTION
-EW,18,OrbiMed Advisors LLC,1,0,2,HIGH-CONVICTION
+EW,18.0,OrbiMed Advisors LLC,1,0,2,HIGH-CONVICTION
 HOG,17.9,"Gate City Capital (Michael Melby), Third Avenue Management",2,2,0,"HIGH-CONVICTION, MULTI-FUND NEW INIT"
 CTSH,17.7,"Dalton Investments, Pzena Investment Management",2,0,4,HIGH-CONVICTION
 TTSH,17.6,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
@@ -325,8 +325,8 @@ TSAT,17.37,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 ANAB,17.3,EcoR1 Capital LLC,1,0,1,HIGH-CONVICTION
 GRFS,17.2,"Mittleman Investment Management (Chris Mittleman) → Now Mittleman Value Partners, Permian Investment Partners (Duran/Hendrickson/Swain)",2,1,0,HIGH-CONVICTION
 MATW,17.14,Barington Capital Group,1,0,1,HIGH-CONVICTION
-ACNT,17,,0,1,0,"HIGH-CONVICTION, THRESHOLD-FILING"
-JSPR,17,Lion Point Capital,1,0,2,HIGH-CONVICTION
+ACNT,17.0,,0,1,0,"HIGH-CONVICTION, THRESHOLD-FILING"
+JSPR,17.0,Lion Point Capital,1,0,2,HIGH-CONVICTION
 CROX,16.9,"Choice Equities Fund (Mitchell Scott), Himalaya Capital Management, Punch Card Capital / Norbert Lou (Punch Card Management L.P.), Voss Capital",4,2,0,"CONSENSUS, HIGH-CONVICTION, MULTI-FUND NEW INIT"
 COAG,16.6,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 SSTI,16.5,Veradace Partners (Vezendan + Conlin),1,0,2,"HIGH-CONVICTION, THRESHOLD-FILING"
@@ -334,11 +334,11 @@ DNA,16.4,Anchorage Capital Group,1,0,2,HIGH-CONVICTION
 GFL,16.38,"ADW Capital Management (Adam Wyden), Cruiser Capital (Keith Rosenbloom)",2,0,0,HIGH-CONVICTION
 CGON,16.3,"Decheng Capital Management, EcoR1 Capital LLC, Foresite Capital",3,1,2,"CONSENSUS, HIGH-CONVICTION"
 ABVX,16.1,Caligan Partners LP,1,0,0,HIGH-CONVICTION
-CARG,16,Alta Fox Capital Management,1,0,1,HIGH-CONVICTION
-ASA,16,Saba Capital Management,1,0,2,HIGH-CONVICTION
-GERN,16,Lion Point Capital,1,0,2,HIGH-CONVICTION
-PRLD,16,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
-TIC,16,Permian Investment Partners (Duran/Hendrickson/Swain),1,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
+CARG,16.0,Alta Fox Capital Management,1,0,1,HIGH-CONVICTION
+ASA,16.0,Saba Capital Management,1,0,2,HIGH-CONVICTION
+GERN,16.0,Lion Point Capital,1,0,2,HIGH-CONVICTION
+PRLD,16.0,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
+TIC,16.0,Permian Investment Partners (Duran/Hendrickson/Swain),1,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
 PFBX,15.99,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
 TIPT,15.9,Veradace Partners (Vezendan + Conlin),1,0,2,"HIGH-CONVICTION, THRESHOLD-FILING"
 NOBH,15.84,,0,0,0,"HIGH-CONVICTION, THRESHOLD-FILING"
@@ -357,14 +357,14 @@ MMYT,15.2,,0,0,0,HIGH-CONVICTION
 VSCO,15.11,Barington Capital Group,1,0,1,HIGH-CONVICTION
 MLYS,15.1,"Caligan Partners LP, Findell Capital Management (Brian Finn)",2,0,1,HIGH-CONVICTION
 VEON,15.1,Solus Alternative Asset Management (Chris Pucillo),1,0,0,HIGH-CONVICTION
-VSTS,15,,0,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
-THC,15,,0,0,0,HIGH-CONVICTION
-DRTTF,15,,0,1,0,"HIGH-CONVICTION, THRESHOLD-FILING"
-HLF,15,Nantahala Capital Management,1,0,2,HIGH-CONVICTION
-NFJ,15,Saba Capital Management,1,0,2,"HIGH-CONVICTION, THRESHOLD-FILING"
-MIST,15,Lion Point Capital,1,0,2,HIGH-CONVICTION
-MLI,15,GAMCO Investors (Mario Gabelli),1,0,1,HIGH-CONVICTION
-GFF,15,Voss Capital,1,0,1,HIGH-CONVICTION
-PLNT,15,Pelham Capital Management,1,0,1,HIGH-CONVICTION
-REGN,15,"Armistice Capital LLC, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",2,0,3,HIGH-CONVICTION
-CTT,15,Maran Capital Management / Maran Partners Fund (Dan Roller),1,0,1,HIGH-CONVICTION
+VSTS,15.0,,0,0,1,"HIGH-CONVICTION, THRESHOLD-FILING"
+THC,15.0,,0,0,0,HIGH-CONVICTION
+DRTTF,15.0,,0,1,0,"HIGH-CONVICTION, THRESHOLD-FILING"
+HLF,15.0,Nantahala Capital Management,1,0,2,HIGH-CONVICTION
+NFJ,15.0,Saba Capital Management,1,0,2,"HIGH-CONVICTION, THRESHOLD-FILING"
+MIST,15.0,Lion Point Capital,1,0,2,HIGH-CONVICTION
+MLI,15.0,GAMCO Investors (Mario Gabelli),1,0,1,HIGH-CONVICTION
+GFF,15.0,Voss Capital,1,0,1,HIGH-CONVICTION
+PLNT,15.0,Pelham Capital Management,1,0,1,HIGH-CONVICTION
+REGN,15.0,"Armistice Capital LLC, Southeastern Asset Management Inc / Mason Hawkins (Longleaf Partners)",2,0,3,HIGH-CONVICTION
+CTT,15.0,Maran Capital Management / Maran Partners Fund (Dan Roller),1,0,1,HIGH-CONVICTION

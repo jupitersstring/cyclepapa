@@ -263,6 +263,8 @@ def sheet_insider_f4(wb, conn):
           AND NOT EXISTS (SELECT 1 FROM ticker_yf y WHERE y.ticker = f.ticker
               AND ((y.mcap_m > 0 AND f.shares*f.price/1e6 > y.mcap_m)
                 OR (y.price > 0 AND (f.price > y.price*5 OR f.price < y.price*0.10))))
+          AND NOT (f.shares*f.price/1e6 > 250
+                   AND NOT EXISTS (SELECT 1 FROM ticker_yf y2 WHERE y2.ticker = f.ticker))
         GROUP BY f.ticker
         HAVING (d_30*1.0 + d_60*0.6 + d_180*0.3) >= 0.1
         ORDER BY (d_30*1.0 + d_60*0.6 + d_180*0.3) DESC"""))
@@ -317,6 +319,8 @@ def sheet_insider_recent(wb, conn):
           AND NOT EXISTS (SELECT 1 FROM ticker_yf y WHERE y.ticker = f.ticker
               AND ((y.mcap_m > 0 AND f.shares*f.price/1e6 > y.mcap_m)
                 OR (y.price > 0 AND (f.price > y.price*5 OR f.price < y.price*0.10))))
+          AND NOT (f.shares*f.price/1e6 > 250
+                   AND NOT EXISTS (SELECT 1 FROM ticker_yf y2 WHERE y2.ticker = f.ticker))
         GROUP BY f.ticker
         HAVING dollars_m >= 0.05
         ORDER BY dollars_m DESC"""))

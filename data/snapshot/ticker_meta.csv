@@ -470,7 +470,7 @@ CGAU,Centerra Gold Inc.,NYSE,,Basic Materials,Gold,3310.79130235,16.57,USD,31.68
 GGAL,Grupo Financiero Galicia S.A.,NasdaqCM,,Financial Services,Banks - Regional,,56.37,USD,57.81839998062849,,,,,2026-06-20,6029,"Commercial Banks, NEC"
 TIVC,Tivic Health Systems Inc,NasdaqCM,,Healthcare,Medical Devices,,1.4,USD,0.24304786958023905,,,,,2026-06-20,,Medical Devices
 MRCY,"Mercury Systems, Inc.",NasdaqGS,,Industrials,Aerospace & Defense,6839.53036653,113.91,USD,59.2018641949296,60.043283,,,,2026-06-20,3670,Electronic Components & Accessories
-NWSA,News Corporation,NasdaqGS,,Communication Services,Entertainment,14194.720000000001,25.28,USD,130.6635964107126,561.5,,,,2026-06-20,2711,Newspapers: Publishing or  Publishing & Printing
+NWSA,News Corporation,NasdaqGS,,Communication Services,Entertainment,14194.720000000001,25.28,USD,130.66359641071261,561.5,,,,2026-06-20,2711,Newspapers: Publishing or  Publishing & Printing
 CLVT,Clarivate Plc,NYSE,,Technology,Information Technology Services,1303.968,2.04,USD,13.116297468984127,639.2,,,,2026-06-20,7374,Services-Computer Processing & Data Preparation
 META,"Meta Platforms, Inc.",NasdaqGS,,Communication Services,Internet Content & Information,1479992.08,577.22,USD,10600.557055779935,2564.0,,,,2026-06-20,7370,"Services-Computer Programming, Data Processing, Etc."
 VHCPU,Vine Hill Capital Investment Corp. II,NasdaqGM,,Financial Services,Shell Companies,67.40000337,10.11,USD,0.29279814473010124,6.666667,,,,2026-06-20,6770,Blank Checks
@@ -712,7 +712,7 @@ FLNC,"Fluence Energy, Inc.",NasdaqGS,,Utilities,Utilities - Renewable,3274.26568
 MKLY,McKinley Acquisition Corporation,NasdaqGM,,Financial Services,Shell Companies,57.97758445,10.19,USD,0.1673617966184429,5.689655,,,,2026-06-20,6770,Blank Checks
 HYPD,"Hyperion DeFi, Inc.",NasdaqCM,,Healthcare,Biotechnology,52.294227150000005,3.45,USD,1.926166177016124,15.157747,,,,2026-06-20,2834,Pharmaceutical Preparations
 EWY,iShares MSCI South Korea ETF,NYSEArca,,,,,219.2,USD,3266.222449040973,,,,,2026-06-20,,
-FDMT,"4D Molecular Therapeutics, Inc.",NasdaqGS,,Healthcare,Biotechnology,504.94411968,9.66,USD,7.475712189653516,52.271648,,,,2026-06-20,2836,"Biological Products, (No Diagnostic Substances)"
+FDMT,"4D Molecular Therapeutics, Inc.",NasdaqGS,,Healthcare,Biotechnology,504.94411968000003,9.66,USD,7.475712189653516,52.271648,,,,2026-06-20,2836,"Biological Products, (No Diagnostic Substances)"
 H,Hyatt Hotels Corporation,NYSE,,Consumer Cyclical,Lodging,19578.68027955,202.09,USD,144.41206205737592,96.880995,,,,2026-06-20,7011,Hotels & Motels
 WRBY,Warby Parker Inc.,NYSE,,Healthcare,Medical Instruments & Supplies,3259.38184,25.96,USD,75.43300068278909,125.554,,,,2026-06-20,3851,Ophthalmic Goods
 RSVRW,"Reservoir Media, Inc.",NasdaqGM,,,,9.52094853,0.145,USD,0.000313656251388602,65.661714,,,,2026-06-20,7900,Services-Amusement & Recreation Services
@@ -734,7 +734,7 @@ MTCH,"Match Group, Inc.",NasdaqGS,,Communication Services,Internet Content & Inf
 ALIT,"Alight, Inc.",NYSE,,Technology,Software - Application,298.6843462736,0.5692,USD,19.6191458898074,524.744108,,,,2026-06-20,7389,"Services-Business Services, NEC"
 CRUS,"Cirrus Logic, Inc.",NasdaqGS,,Technology,Semiconductors,8360.84638397,165.29,USD,102.56352698612213,50.582893,,,,2026-06-20,3674,Semiconductors & Related Devices
 ELMD,"Electromed, Inc.",NYSE American,,Healthcare,Medical Devices,320.27287551999996,38.68,USD,1.7759639775156975,8.280064,,,,2026-06-20,3845,Electromedical & Electrotherapeutic Apparatus
-ALCO,"Alico, Inc.",NasdaqGS,,Consumer Defensive,Farm Products,299.17463118,40.34,USD,0.9917107011198998,7.416327,,,,2026-06-20,0100,Agricultural Production-Crops
+ALCO,"Alico, Inc.",NasdaqGS,,Consumer Defensive,Farm Products,299.17463118,40.34,USD,0.9917107011198998,7.416327,,,,2026-06-20,100,Agricultural Production-Crops
 CCIXW,Churchill Capital Corp IX,NasdaqGM,,,,2.394375,0.3831,USD,0.01577756418135376,6.25,,,,2026-06-20,7373,Services-Computer Integrated Systems Design
 CXH,MFS Investment Grade Municipal Trust,NYSE,,,,,7.63,USD,0.5314335022152901,,,,,2026-06-20,,
 TBPH,"Theravance Biopharma, Inc.",NasdaqGM,,Healthcare,Biotechnology,854.7488228999999,16.58,USD,6.967030861307681,51.553005,,,,2026-06-20,2834,Pharmaceutical Preparations
@@ -1171,7 +1171,7 @@ CCK,"Crown Holdings, Inc.",NYSE,,Consumer Cyclical,Packaging & Containers,11346.
 CENX,Century Aluminum Company,NasdaqGS,,Basic Materials,Aluminum,5117.94797037,51.71,USD,116.90816542292237,98.974047,,,,2026-06-20,3334,Primary Production of  Aluminum
 CHE,Chemed Corporation,NYSE,,Healthcare,Medical Care Facilities,5791.09335208,436.27,USD,103.77055868959427,13.274104,,,,2026-06-20,8082,Services-Home Health Care Services
 CHRW,"C.H. Robinson Worldwide, Inc.",NasdaqGS,,Industrials,Integrated Freight & Logistics,21811.22769168,185.04,USD,303.06264618532657,117.873042,,,,2026-06-20,4731,Arrangement of  Transportation of  Freight & Cargo
-CTVA,"Corteva, Inc.",NYSE,,Basic Materials,Agricultural Inputs,52562.5638,78.59,USD,319.184962208581,668.82,,,,2026-06-20,0100,Agricultural Production-Crops
+CTVA,"Corteva, Inc.",NYSE,,Basic Materials,Agricultural Inputs,52562.5638,78.59,USD,319.184962208581,668.82,,,,2026-06-20,100,Agricultural Production-Crops
 CVCO,"Cavco Industries, Inc.",NasdaqGS,,Consumer Cyclical,Residential Construction,4621.99020829,601.51,USD,73.62901776885987,7.683979,,,,2026-06-20,2451,Mobile Homes
 DD,"DuPont de Nemours, Inc.",NYSE,,Basic Materials,Specialty Chemicals,19557.34550926,47.71,USD,175.26629965533616,409.921306,,,,2026-06-20,2821,"Plastic Materials, Synth Resins & Nonvulcan Elastomers"
 DELL,Dell Technologies Inc.,NYSE,,Technology,Computer Hardware,265765.5,409.5,USD,2596.191778213024,649.0,,,,2026-06-20,3571,Electronic Computers
@@ -1307,7 +1307,7 @@ BTDR,Bitdeer Technologies Group,NasdaqCM,,Technology,Software - Application,4223
 BTI,British American Tobacco p.l.c.,NYSE,,Consumer Defensive,Tobacco,136226.69465391,58.91,USD,247.94670838523507,2312.454501,,,,2026-06-20,2111,Cigarettes
 CAL,"Caleres, Inc.",NYSE,,Consumer Cyclical,Apparel Retail,441.36923616000007,13.14,USD,8.83897158139348,33.589744,,,,2026-06-20,3140,"Footwear, (No Rubber)"
 CASY,"Casey's General Stores, Inc.",NasdaqGS,,Consumer Cyclical,Specialty Retail,31167.3888165,842.25,USD,501.0923849302292,37.004914,,,,2026-06-20,5500,Retail-Auto Dealers & Gasoline Stations
-CE,Celanese Corporation,NYSE,,Basic Materials,Chemicals,5610.33549524,51.16,USD,123.99109211948515,109.662539,,,,2026-06-20,2820,"Plastic Material, Synth Resin/Rubber, Cellulos (No Glass)"
+CE,Celanese Corporation,NYSE,,Basic Materials,Chemicals,5610.3354952400005,51.16,USD,123.99109211948515,109.662539,,,,2026-06-20,2820,"Plastic Material, Synth Resin/Rubber, Cellulos (No Glass)"
 CENTA,Central Garden & Pet Company,NasdaqGS,,Consumer Defensive,Packaged Foods,2339.97986,37.78,USD,11.169396071577072,61.937,,,,2026-06-20,5190,Wholesale-Miscellaneous Nondurable Goods
 CHRD,Chord Energy Corporation,NasdaqGS,,Energy,Oil & Gas E&P,6931.55541096,123.12,USD,120.22814817900658,56.299183,,,,2026-06-20,1311,Crude Petroleum & Natural Gas
 CNM,"Core & Main, Inc.",NYSE,,Industrials,Industrial Distribution,9506.258327579999,48.58,USD,131.91337311347723,195.682551,,,,2026-06-20,5099,"Wholesale-Durable Goods, NEC"
@@ -1748,7 +1748,7 @@ BOBS,"Bob's Discount Furniture, Inc.",NYSE,,Consumer Cyclical,Specialty Retail,1
 BOKF,BOK Financial Corporation,NasdaqGS,,Financial Services,Banks - Regional,7918.849757360001,130.33,USD,41.33055984073877,60.759992,,,,2026-06-20,6021,National Commercial Banks
 BTG,B2Gold Corp.,NYSE American,,Basic Materials,Gold,5764.673980799999,4.3,USD,132.37857881719768,1340.621856,,,,2026-06-20,1040,Gold and Silver Ores
 BW,"Babcock & Wilcox Enterprises, Inc.",NYSE,,Industrials,Specialty Industrial Machinery,2367.37326738,17.38,USD,60.867072543783486,136.212501,,,,2026-06-20,3433,"Heating Equipment, Except Electric & Warm Air Furnaces"
-CALM,"Cal-Maine Foods, Inc.",NasdaqGS,,Consumer Defensive,Farm Products,3682.58218524,77.73,USD,64.91139656413793,47.376588,,,,2026-06-20,0200,Agricultural Prod-Livestock & Animal Specialties
+CALM,"Cal-Maine Foods, Inc.",NasdaqGS,,Consumer Defensive,Farm Products,3682.58218524,77.73,USD,64.91139656413793,47.376588,,,,2026-06-20,200,Agricultural Prod-Livestock & Animal Specialties
 CAR,"Avis Budget Group, Inc.",NasdaqGS,,Industrials,Rental & Leasing Services,6656.287111980001,188.43,USD,830.7526616622448,35.324986,,,,2026-06-20,7510,Services-Auto Rental & Leasing (No Drivers)
 CARG,"CarGurus, Inc.",NasdaqGS,,Consumer Cyclical,Auto & Truck Dealerships,2854.78615282,30.02,USD,43.18047393397391,95.096141,,,,2026-06-20,7374,Services-Computer Processing & Data Preparation
 CBZ,"CBIZ, Inc.",NYSE,,Industrials,Specialty Business Services,1557.2897064000001,31.1,USD,26.60258032217622,50.073624,,,,2026-06-20,7389,"Services-Business Services, NEC"
@@ -1766,7 +1766,7 @@ DCI,"Donaldson Company, Inc.",NYSE,,Industrials,Specialty Industrial Machinery,9
 DEI,"Douglas Emmett, Inc.",NYSE,,Real Estate,REIT - Office,1961.25247657,11.71,USD,27.648631821897627,167.485267,,,,2026-06-20,6798,Real Estate Investment Trusts
 DOC,"Healthpeak Properties, Inc.",NYSE,,Real Estate,REIT - Healthcare Facilities,13485.04937112,19.56,USD,166.83184898012578,689.419702,,,,2026-06-20,6798,Real Estate Investment Trusts
 DOCU,"DocuSign, Inc.",NasdaqGS,,Technology,Software - Application,8300.362109759999,43.47,USD,190.71221490248442,190.944608,,,,2026-06-20,7372,Services-Prepackaged Software
-DOLE,Dole plc,NYSE,,Consumer Defensive,Farm Products,1332.2253,14.0,USD,14.357560321955383,95.15895,,,,2026-06-20,0100,Agricultural Production-Crops
+DOLE,Dole plc,NYSE,,Consumer Defensive,Farm Products,1332.2253,14.0,USD,14.357560321955383,95.15895,,,,2026-06-20,100,Agricultural Production-Crops
 DOV,Dover Corporation,NYSE,,Industrials,Specialty Industrial Machinery,30106.25232798,223.57,USD,210.99571780653,134.661414,,,,2026-06-20,3530,"Construction, Mining & Materials Handling Machinery & Equip"
 DTK,DTE Energy Company 2025 Series ,NYSE,,,,4976.037246960001,23.92,USD,1.1491881397515535,208.028313,,,,2026-06-20,4911,Electric Services
 DYN,"Dyne Therapeutics, Inc.",NasdaqGS,,Healthcare,Biotechnology,3270.9863142,19.8,USD,32.5914067407906,165.201329,,,,2026-06-20,2834,Pharmaceutical Preparations
@@ -2230,7 +2230,7 @@ PUK,Prudential plc,NYSE,,Financial Services,Insurance - Life,68266.64713941001,2
 PZZA,"Papa John's International, Inc.",NasdaqGS,,Consumer Cyclical,Restaurants,1199.93645058,36.47,USD,35.57534802714884,32.902014,,,,2026-06-20,5812,Retail-Eating  Places
 RAC,Rithm Acquisition Corp.,NYSE,,Financial Services,Shell Companies,,10.45,USD,0.8306554419350624,,,,,2026-06-20,6770,Blank Checks
 RES,"RPC, Inc.",NYSE,,Energy,Oil & Gas Equipment & Services,1458.3776123,6.58,USD,14.213296091245114,221.637935,,,,2026-06-20,1389,"Oil & Gas Field Services, NEC"
-RITM,Rithm Capital Corp.,NYSE,,Real Estate,REIT - Mortgage,5130.83762643,9.19,USD,75.62015697131157,558.306597,,,,2026-06-20,6798,Real Estate Investment Trusts
+RITM,Rithm Capital Corp.,NYSE,,Real Estate,REIT - Mortgage,5130.8376264300005,9.19,USD,75.62015697131157,558.306597,,,,2026-06-20,6798,Real Estate Investment Trusts
 RRR,"Red Rock Resorts, Inc.",NasdaqGS,,Consumer Cyclical,Resorts & Casinos,3641.10077,61.33,USD,51.57969149111509,59.369,,,,2026-06-20,7011,Hotels & Motels
 RYAM,Rayonier Advanced Materials Inc.,NYSE,,Basic Materials,Chemicals,610.31886845,9.05,USD,9.341986081173271,67.438549,,,,2026-06-20,2611,Pulp Mills
 S,"SentinelOne, Inc.",NYSE,,Technology,Software - Infrastructure,5061.74446094,15.02,USD,126.86929707559943,337.000297,,,,2026-06-20,7372,Services-Prepackaged Software
@@ -2518,7 +2518,7 @@ ASTL,Algoma Steel Group Inc.,NasdaqGM,,Basic Materials,Steel,474.30078503999994,
 AUB,Atlantic Union Bankshares Corporation,NYSE,,Financial Services,Banks - Regional,5604.409715519999,39.16,USD,39.26046969615817,143.115672,,,,2026-06-20,6022,State Commercial Banks
 AUPH,Aurinia Pharmaceuticals Inc.,NasdaqGM,,Healthcare,Biotechnology,2116.7835046600003,16.46,USD,18.8324503736943,128.601671,,,,2026-06-20,2834,Pharmaceutical Preparations
 AURA,"Aura Biosciences, Inc.",NasdaqGM,,Healthcare,Biotechnology,655.47077772,6.34,USD,3.995480310201645,103.386558,,,,2026-06-20,2836,"Biological Products, (No Diagnostic Substances)"
-AVO,"Mission Produce, Inc.",NasdaqGS,,Consumer Defensive,Food Distribution,1014.79458243,11.49,USD,15.67837998521328,88.319807,,,,2026-06-20,0700,Agricultural Services
+AVO,"Mission Produce, Inc.",NasdaqGS,,Consumer Defensive,Food Distribution,1014.79458243,11.49,USD,15.67837998521328,88.319807,,,,2026-06-20,700,Agricultural Services
 BB,BlackBerry Limited,NYSE,,Technology,Software - Infrastructure,4911.52161178,8.38,USD,199.33498127357439,586.100431,,,,2026-06-20,7372,Services-Prepackaged Software
 BBAI,"BigBear.ai Holdings, Inc.",NYSE,,Technology,Information Technology Services,1877.481844,3.92,USD,156.8095866084423,478.94945,,,,2026-06-20,7372,Services-Prepackaged Software
 BDN,Brandywine Realty Trust,NYSE,,Real Estate,REIT - Office,536.76960105,3.09,USD,6.31728035928607,173.711845,,,,2026-06-20,6798,Real Estate Investment Trusts
@@ -2784,7 +2784,7 @@ FC,Franklin Covey Co.,NYSE,,Consumer Defensive,Education & Training Services,269
 FCELB,"FuelCell Energy, Inc.",OTC Markets OTCPK,,Industrials,Electrical Equipment & Parts,28463.040833,421.0,USD,0.07667235717773438,67.608173,,,,2026-06-20,3620,Electrical Industrial Apparatus
 FCFS,"FirstCash Holdings, Inc.",NasdaqGS,,Financial Services,Credit Services,9953.11978335,227.05,USD,83.68212110266685,43.836687,,,,2026-06-20,5900,Retail-Miscellaneous Retail
 FCPT,"Four Corners Property Trust, Inc.",NYSE,,Real Estate,REIT - Retail,2687.75783453,24.49,USD,18.355174565979837,109.749197,,,,2026-06-20,6798,Real Estate Investment Trusts
-FDP,Del Monte Corporation,NYSE,,Consumer Defensive,Farm Products,1305.50215096,27.44,USD,15.101607422971725,47.576609,,,,2026-06-20,0100,Agricultural Production-Crops
+FDP,Del Monte Corporation,NYSE,,Consumer Defensive,Farm Products,1305.50215096,27.44,USD,15.101607422971725,47.576609,,,,2026-06-20,100,Agricultural Production-Crops
 FIZZ,National Beverage Corp.,NasdaqGS,,Consumer Defensive,Beverages - Non-Alcoholic,3397.90898158,36.29,USD,9.130237160557508,93.632102,,,,2026-06-20,2086,Bottled & Canned Soft Drinks & Carbonated Waters
 FLD,"Fold Holdings, Inc.",NasdaqCM,,Financial Services,Capital Markets,28.946509499999998,0.57,USD,1.5915270666072145,50.78335,,,,2026-06-20,6199,Finance Services
 FULT,Fulton Financial Corporation,NasdaqGS,,Financial Services,Banks - Regional,4376.9591193999995,22.9,USD,42.567539418172835,191.133586,,,,2026-06-20,6021,National Commercial Banks
@@ -3182,7 +3182,7 @@ KE,"Kimball Electronics, Inc.",NasdaqGS,,Industrials,Electrical Equipment & Part
 KRT,Karat Packaging Inc.,NasdaqGS,,Consumer Cyclical,Packaging & Containers,603.9028627499999,30.25,USD,2.7044402324467898,19.963731,,,,2026-06-20,3089,"Plastics Products, NEC"
 KVAC,Keen Vision Acquisition Corporation,NasdaqGM,,Financial Services,Shell Companies,67.1795562,12.2,USD,0.06154747574669974,5.506521,,,,2026-06-20,6770,Blank Checks
 LIF,"Life360, Inc.",NasdaqGS,,Technology,Software - Application,3972.17349282,49.02,USD,44.85804431979656,81.031691,,,,2026-06-20,7374,Services-Computer Processing & Data Preparation
-LMNR,Limoneira Company,NasdaqGS,,Consumer Defensive,Farm Products,236.98533149000002,13.07,USD,1.2295115673854946,18.132007,,,,2026-06-20,0100,Agricultural Production-Crops
+LMNR,Limoneira Company,NasdaqGS,,Consumer Defensive,Farm Products,236.98533149000002,13.07,USD,1.2295115673854946,18.132007,,,,2026-06-20,100,Agricultural Production-Crops
 LMRI,"Lumexa Imaging Holdings, Inc.",NasdaqGS,,Healthcare,Medical Devices,904.1197163500001,9.41,USD,9.641659730805456,96.080735,,,,2026-06-20,8071,Services-Medical Laboratories
 LOB,"Live Oak Bancshares, Inc.",NYSE,,Financial Services,Banks - Regional,1769.99907966,38.26,USD,9.098163859528302,46.262391,,,,2026-06-20,6022,State Commercial Banks
 LPRO,Open Lending Corporation,NasdaqGM,,Financial Services,Credit Services,367.65512502,3.11,USD,4.675309039040841,118.217082,,,,2026-06-20,6141,Personal Credit Institutions
@@ -3266,7 +3266,7 @@ UGP,Ultrapar Participações S.A.,NYSE,,Energy,Oil & Gas Refining & Marketing,51
 UYSCU,UY Scuti Acquisition Corp.,NasdaqCM,,Financial Services,Shell Companies,20.45749056,10.72,USD,0.012702874994277955,1.908348,,,,2026-06-20,6770,Blank Checks
 VELO,"Velo3D, Inc.",NasdaqCM,,Technology,Computer Hardware,889.85791972,29.86,USD,67.18234572040737,29.801002,,,,2026-06-20,3559,"Special Industry Machinery, NEC"
 VEON,VEON Ltd.,NasdaqGS,,Communication Services,Telecom Services,96213.39040401,52.03,USD,4.771910665297508,1849.190667,,,,2026-06-20,4812,Radiotelephone Communications
-VFF,"Village Farms International, Inc.",NasdaqCM,,Consumer Defensive,Farm Products,218.29139026,1.91,USD,2.977304217767343,114.288686,,,,2026-06-20,0100,Agricultural Production-Crops
+VFF,"Village Farms International, Inc.",NasdaqCM,,Consumer Defensive,Farm Products,218.29139026000001,1.91,USD,2.977304217767343,114.288686,,,,2026-06-20,100,Agricultural Production-Crops
 VIV,Telefônica Brasil S.A.,NYSE,,Communication Services,Telecom Services,40232.683971679995,12.59,USD,15.409159046581388,3195.606352,,,,2026-06-20,4813,Telephone Communications (No Radiotelephone)
 VLN,Valens Semiconductor Ltd.,NYSE,,Technology,Semiconductors,251.44264904,2.44,USD,7.485934306873195,103.050266,,,,2026-06-20,3674,Semiconductors & Related Devices
 VRA,"Vera Bradley, Inc.",NasdaqGS,,Consumer Cyclical,Footwear & Accessories,110.9091828,3.9,USD,1.4386103779703379,28.438252,,,,2026-06-20,3100,Leather & Leather Products
@@ -3283,7 +3283,7 @@ AEG,Aegon Ltd.,NYSE,,Financial Services,Insurance - Diversified,,8.42,USD,42.079
 AERT,"Aeries Technology, Inc",NasdaqCM,,Industrials,Consulting Services,350.14945188,7.22,USD,0.2548989584508762,48.497154,,,,2026-06-20,8742,Services-Management Consulting Services
 AESI,Atlas Energy Solutions Inc.,NYSE,,Energy,Oil & Gas Equipment & Services,2023.4704608,16.2,USD,68.9435493654877,124.905584,,,,2026-06-20,1311,Crude Petroleum & Natural Gas
 AGMB,AgomAb Therapeutics NV,NasdaqGS,,Healthcare,Biotechnology,375.15550464,10.98,USD,1.6034028987988829,34.167168,,,,2026-06-20,2836,"Biological Products, (No Diagnostic Substances)"
-AGRO,Adecoagro S.A.,NYSE,,Consumer Defensive,Farm Products,1317.40950264,9.24,USD,18.641169469493626,142.576786,,,,2026-06-20,0100,Agricultural Production-Crops
+AGRO,Adecoagro S.A.,NYSE,,Consumer Defensive,Farm Products,1317.40950264,9.24,USD,18.641169469493626,142.576786,,,,2026-06-20,100,Agricultural Production-Crops
 ALDX,"Aldeyra Therapeutics, Inc.",NasdaqCM,,Healthcare,Biotechnology,118.22929328,1.96,USD,3.3493250151688234,60.321068,,,,2026-06-20,2834,Pharmaceutical Preparations
 ALLT,Allot Ltd.,NasdaqGS,,Technology,Software - Infrastructure,349.27312476,7.18,USD,3.0382133140191434,48.645282,,,,2026-06-20,3576,Computer Communications Equipment
 AMX,"América Móvil, S.A.B. de C.V.",NYSE,,Communication Services,Telecom Services,1594585.44,26.46,USD,38.05041144316196,60264.0,,,,2026-06-20,4813,Telephone Communications (No Radiotelephone)
@@ -3467,7 +3467,7 @@ BETR,Better Home & Finance Holding Company,NasdaqGM,,Financial Services,Mortgage
 BFC,Bank First Corporation,NasdaqCM,,Financial Services,Banks - Regional,1592.7609529200001,142.68,USD,13.521063655138017,11.163169,,,,2026-06-20,6021,National Commercial Banks
 BFST,"Business First Bancshares, Inc.",NasdaqGS,,Financial Services,Banks - Regional,940.14513936,28.77,USD,5.7721034003287555,32.677968,,,,2026-06-20,6022,State Commercial Banks
 BHRB,Burke & Herbert Financial Services Corp.,NasdaqCM,,Financial Services,Banks - Regional,1320.0137910600001,65.51,USD,10.195252279800176,20.149806,,,,2026-06-20,6021,National Commercial Banks
-BNC,CEA Industries Inc.,NasdaqCM,,Industrials,Farm & Heavy Construction Machinery,92.8436625,2.25,USD,0.8086115658331663,41.26385,,,,2026-06-20,0700,Agricultural Services
+BNC,CEA Industries Inc.,NasdaqCM,,Industrials,Farm & Heavy Construction Machinery,92.8436625,2.25,USD,0.8086115658331663,41.26385,,,,2026-06-20,700,Agricultural Services
 BNED,"Barnes & Noble Education, Inc.",NYSE,,Consumer Cyclical,Specialty Retail,377.60027018999995,11.01,USD,2.5031014113128185,34.296119,,,,2026-06-20,5940,Retail-Miscellaneous Shopping Goods Stores
 BNZI,"Banzai International, Inc.",NasdaqCM,,Technology,Software - Application,3.0183953999999997,3.48,USD,1.4764317064052075,0.867355,,,,2026-06-20,7372,Services-Prepackaged Software
 BRBS,"Blue Ridge Bankshares, Inc.",NYSE American,,Financial Services,Banks - Regional,301.20423185,3.35,USD,1.311067884171754,89.911711,,,,2026-06-20,6022,State Commercial Banks
@@ -3475,7 +3475,7 @@ BRLS,Borealis Foods Inc.,NasdaqCM,,Consumer Defensive,Packaged Foods,28.11693086
 BRR,"ProCap Financial, Inc.",NasdaqGM,,Financial Services,Capital Markets,133.14308028000002,1.47,USD,2.4091733071111143,90.573524,,,,2026-06-20,6199,Finance Services
 BSAC,Banco Santander-Chile,NYSE,,Financial Services,Banks - Regional,6150881.57855616,32.64,USD,14.747284104722738,188446.126794,,,,2026-06-20,6029,"Commercial Banks, NEC"
 BSTZ,BlackRock Science and Technology Term Trust,NYSE,,Financial Services,Asset Management,,31.09,USD,5.48238619801104,,,,,2026-06-20,,Asset Management
-BV,"BrightView Holdings, Inc.",NYSE,,Industrials,Specialty Business Services,1216.26,13.05,USD,6.884885075438023,93.2,,,,2026-06-20,0700,Agricultural Services
+BV,"BrightView Holdings, Inc.",NYSE,,Industrials,Specialty Business Services,1216.26,13.05,USD,6.884885075438023,93.2,,,,2026-06-20,700,Agricultural Services
 BWBBP,"Bridgewater Bancshares, Inc.",NasdaqCM,,Financial Services,Banks - Regional,557.360622963,19.989,USD,0.04448623332624082,27.883367,,,,2026-06-20,6022,State Commercial Banks
 BYRN,Byrna Technologies Inc.,NasdaqCM,,Industrials,Aerospace & Defense,133.8453586,5.9,USD,3.474127222726494,22.685654,,,,2026-06-20,3690,"Miscellaneous Electrical Machinery, Equipment & Supplies"
 BZUN,Baozun Inc.,NasdaqGS,,Consumer Cyclical,Internet Retail,484.01130365999995,2.79,USD,0.9861126157328487,173.480754,,,,2026-06-20,5961,Retail-Catalog & Mail-Order Houses
@@ -3838,7 +3838,7 @@ FVCB,"FVCBankcorp, Inc.",NasdaqCM,,Financial Services,Banks - Regional,299.28665
 FVR,"FrontView REIT, Inc.",NYSE,,Real Estate,REIT - Diversified,443.75322852000005,19.59,USD,2.178449743746221,22.652028,,,,2026-06-20,6798,Real Estate Investment Trusts
 GAB,The Gabelli Equity Trust Inc.,NYSE,,Financial Services,Asset Management,,5.49,USD,6.690702821081132,,,,,2026-06-20,,Asset Management
 GAMB,Gambling.com Group Limited,NasdaqGM,,Consumer Cyclical,Gambling,82.82936839999999,2.36,USD,2.8887292255010455,35.09719,,,,2026-06-20,7990,Services-Miscellaneous Amusement & Recreation
-GF,"The New Germany Fund, Inc.",NYSE,,Financial Services,Asset Management,,11.93,USD,0.5901213297143578,,,,,2026-06-20,0000,Asset Management
+GF,"The New Germany Fund, Inc.",NYSE,,Financial Services,Asset Management,,11.93,USD,0.5901213297143578,,,,,2026-06-20,0,Asset Management
 GIBOW,GIBO Holdings Limited,NasdaqCM,,,,0.1066532748,0.0284,USD,,3.755397,,,,2026-06-20,7372,Services-Prepackaged Software
 HASI,"HA Sustainable Infrastructure Capital, Inc.",NYSE,,Financial Services,Asset Management,5016.58372278,39.06,USD,41.061497019284964,128.432763,,,,2026-06-20,6799,"Investors, NEC"
 HIMX,"Himax Technologies, Inc.",NasdaqGS,,Technology,Semiconductors,6317.70660508,18.11,USD,69.86283227355331,348.851828,,,,2026-06-20,3674,Semiconductors & Related Devices
@@ -4080,7 +4080,7 @@ AENT,Alliance Entertainment Holding Corporation,NasdaqCM,,Communication Services
 AFBI,"Affinity Bancshares, Inc.",NasdaqCM,,Financial Services,Banks - Regional,137.31775905,22.53,USD,0.4467824980932569,6.094885,,,,2026-06-20,6036,"Savings Institutions, Not Federally Chartered"
 APLM,"Apollomics, Inc.",NasdaqCM,,Healthcare,Biotechnology,38.426517896,17.498,USD,0.13646042573960102,2.196052,,,,2026-06-20,2834,Pharmaceutical Preparations
 APXT,Apex Treasury Corporation,NasdaqGM,,Financial Services,Shell Companies,100.60000000000001,10.06,USD,0.865965872194056,10.0,,,,2026-06-20,6770,Blank Checks
-AQB,"AquaBounty Technologies, Inc.",NasdaqCM,,Consumer Defensive,Farm Products,4.83837176,0.94,USD,0.03591731714084744,5.147204,,,,2026-06-20,0900,"Fishing, Hunting and Trapping"
+AQB,"AquaBounty Technologies, Inc.",NasdaqCM,,Consumer Defensive,Farm Products,4.83837176,0.94,USD,0.03591731714084744,5.147204,,,,2026-06-20,900,"Fishing, Hunting and Trapping"
 ARKB,ARK 21Shares Bitcoin ETF,Cboe US,,,,2400.7824,20.88,USD,60.98273621046543,114.98,,,,2026-06-20,6221,Commodity Contracts Brokers & Dealers
 ARMP,"Armata Pharmaceuticals, Inc.",NYSE American,,Healthcare,Biotechnology,0.2599068,7.08,USD,0.6097345628783106,0.03671,,,,2026-06-20,2836,"Biological Products, (No Diagnostic Substances)"
 BBAI-WT,"BigBear.ai Holdings, Inc. WT",NYSE,,,,193.97452725000002,0.405,USD,0.019111367175400257,478.94945,,,,2026-06-20,7372,Services-Prepackaged Software
@@ -4265,7 +4265,7 @@ TRPCF,Trip.com Group Limited,OTC Markets OTCPK,,Consumer Cyclical,Travel Service
 TRT,Trio-Tech International,NYSE American,,Technology,Semiconductor Equipment & Materials,160.08244216999998,15.83,USD,19.080746286378055,10.112599,,,,2026-06-20,3559,"Special Industry Machinery, NEC"
 TSMWF,Taiwan Semiconductor Manufacturing Company Limited,OTC Markets OTCPK,,Technology,Semiconductors,447081.90924694424,17.2402,USD,,25932.524521,,,,2026-06-20,3674,Semiconductors & Related Devices
 TVACW,Texas Ventures Acquisition III Corp,NasdaqGM,,,,3.4666668400000002,0.52,USD,,6.666667,,,,2026-06-20,6770,Blank Checks
-TWN,"The Taiwan Fund, Inc.",NYSE,,Financial Services,Asset Management,,100.83,USD,3.8296001153707504,,,,,2026-06-20,0000,Asset Management
+TWN,"The Taiwan Fund, Inc.",NYSE,,Financial Services,Asset Management,,100.83,USD,3.8296001153707504,,,,,2026-06-20,0,Asset Management
 UAN,"CVR Partners, LP",NYSE,,Basic Materials,Agricultural Inputs,1177.4575618000001,111.4,USD,9.108017999470233,10.569637,,,,2026-06-20,2870,Agricultural Chemicals
 UG,"United-Guardian, Inc.",NasdaqGM,,Consumer Defensive,Household & Personal Products,32.344005759999995,7.04,USD,0.03439449208426097,4.594319,,,,2026-06-20,2844,"Perfumes, Cosmetics & Other Toilet Preparations"
 UPLD,"Upland Software, Inc.",NasdaqGM,,Technology,Software - Application,152.39501319000001,5.19,USD,0.2365877264931798,29.363201,,,,2026-06-20,7372,Services-Prepackaged Software
@@ -4361,7 +4361,7 @@ DHIL,Diamond Hill Investment Group Inc,NasdaqGS,,,,,174.99,USD,3.541858624760503
 ATYM.L,"Atalaya Mining Copper, S.A.",LSE,,Basic Materials,Copper,,850.0,GBp,582.5096256111111,,,,,2026-06-20,,Copper
 CBR.V,Cabral Gold Inc.,TSXV,,Basic Materials,Gold,,0.92,CAD,0.4828544568893451,,,,,2026-06-20,,Gold
 CMU,MFS High Yield Municipal Trust,NYSE,,,,,3.36,USD,0.5736133327868289,,,,,2026-06-20,,
-DSM,"BNY Mellon Strategic Municipal Bond Fund, Inc.",NYSE,,Financial Services,Asset Management,,6.13,USD,0.5990230024822056,,,,,2026-06-20,0000,Asset Management
+DSM,"BNY Mellon Strategic Municipal Bond Fund, Inc.",NYSE,,Financial Services,Asset Management,,6.13,USD,0.5990230024822056,,,,,2026-06-20,0,Asset Management
 MN.MI,Arnoldo Mondadori Editore S.p.A.,Milan,,Communication Services,Publishing,,2.09,EUR,0.8411938813110664,,,,,2026-06-20,,Publishing
 FWONK,Formula One Group,NasdaqGS,,Communication Services,Entertainment,30586.120000000003,90.76,USD,167.72256790605783,337.0,,,,2026-06-20,4833,Television Broadcasting Stations
 ZSPC,"zSpace, Inc.",OTC Markets OTCQB,,Technology,Computer Hardware,0.85891897,0.179,USD,2.062614715181274,4.79843,,,,2026-06-20,7372,Services-Prepackaged Software
@@ -4634,7 +4634,7 @@ HWG.L,Harworth Group plc,LSE,,Real Estate,Real Estate - Development,,125.2,GBp,3
 MFUT,Cambria Chesapeake Pure Trend E,Cboe US,,,,,19.0301,USD,0.1769200053781271,,,,,2026-06-20,,
 NB,NioCorp Developments Ltd.,NasdaqGM,,Basic Materials,Other Industrial Metals & Mining,773.06722488,5.31,USD,22.62058217962757,145.587048,,,,2026-06-20,1000,Metal Mining
 MSD,"Morgan Stanley Emerging Markets Debt Fund, Inc.",NYSE,,Financial Services,Asset Management,,7.34,USD,0.7112938930131495,,,,,2026-06-20,,Asset Management
-VRNO,Verano Holdings Corp,OTC Markets OTCPK,,Healthcare,Drug Manufacturers - Specialty & Generic,2066.04484002,5.67,USD,1.5753030616109636,364.381806,,,,2026-06-20,0100,Agricultural Production-Crops
+VRNO,Verano Holdings Corp,OTC Markets OTCPK,,Healthcare,Drug Manufacturers - Specialty & Generic,2066.04484002,5.67,USD,1.5753030616109636,364.381806,,,,2026-06-20,100,Agricultural Production-Crops
 1921.T,Tomoe Corporation,Tokyo,,Industrials,Engineering & Construction,,1679.0,JPY,86.9298435483871,,,,,2026-06-20,,Engineering & Construction
 FRAN.L,Franchise Brands plc,LSE,,Industrials,Specialty Business Services,,144.5,GBp,45.210033003968256,,,,,2026-06-20,,Specialty Business Services
 FARM,Farmer Bros Co,NasdaqGS,,Consumer Defensive,Packaged Foods,,1.28,USD,0.22559051194217802,,,,,2026-06-20,,Packaged Foods
@@ -5028,7 +5028,7 @@ GROV,"Grove Collaborative Holdings, Inc.",NYSE,,Consumer Defensive,Household & P
 GRTUF,Granite Real Estate Investment Trust,OTC Markets OTCQX,,Real Estate,REIT - Industrial,4151.7600719600005,66.19,USD,0.4947331704922146,62.724884,,,,2026-06-20,6798,Real Estate Investment Trusts
 GSOL,Grayscale Solana Staking ETF,NYSEArca,,,,86.35124334999999,5.21,USD,14.05656176258102,16.574135,,,,2026-06-20,6221,Commodity Contracts Brokers & Dealers
 GSRFU,GSR IV Acquisition Corp.,NasdaqGM,,Financial Services,Shell Companies,34.1714256,10.4,USD,0.06727812521457673,3.285714,,,,2026-06-20,6770,Blank Checks
-GTBIF,Green Thumb Industries Inc.,OTC Markets OTCQX,,Healthcare,Drug Manufacturers - Specialty & Generic,1773.47701665,7.65,USD,4.648677949065715,231.827061,,,,2026-06-20,0100,Agricultural Production-Crops
+GTBIF,Green Thumb Industries Inc.,OTC Markets OTCQX,,Healthcare,Drug Manufacturers - Specialty & Generic,1773.47701665,7.65,USD,4.648677949065715,231.827061,,,,2026-06-20,100,Agricultural Production-Crops
 GTBP,"GT Biopharma, Inc.",NasdaqCM,,Healthcare,Biotechnology,18.536332656000003,0.514,USD,0.5621188342775684,36.062904,,,,2026-06-20,2834,Pharmaceutical Preparations
 GTERW,Globa Terra Acquisition Corporation,NasdaqGM,,,,0.446365304,0.088,USD,,5.072333,,,,2026-06-20,6770,Blank Checks
 GTIM,Good Times Restaurants Inc.,NasdaqCM,,Consumer Cyclical,Restaurants,14.147580640000001,1.34,USD,0.0373411715188995,10.557896,,,,2026-06-20,5812,Retail-Eating  Places
@@ -5068,8 +5068,8 @@ HOUR,"Hour Loop, Inc.",NasdaqCM,,Consumer Cyclical,Internet Retail,77.0702391,2.
 HOVRW,New Horizon Aircraft Ltd.,NasdaqCM,,,,17.65270572,0.39,USD,,45.263348,,,,2026-06-20,3721,Aircraft
 HPAI,Helport AI Limited,NasdaqCM,,Technology,Software - Infrastructure,23.282062096,0.622,USD,1.2091967399821617,37.430968,,,,2026-06-20,,Software - Infrastructure
 HPP-PC,"Hudson Pacific Properties, Inc.",NYSE,,Real Estate,REIT - Office,805.4940564,14.85,USD,0.1456967875891501,54.242024,,,,2026-06-20,6500,Real Estate
-HQH,Abrdn Healthcare Investors,NYSE,,Financial Services,Asset Management,,20.19,USD,2.75158209669888,,,,,2026-06-20,0000,Asset Management
-HQL,Abrdn Life Sciences Investors,NYSE,,Financial Services,Asset Management,,17.96,USD,1.8321769048780203,,,,,2026-06-20,0000,Asset Management
+HQH,Abrdn Healthcare Investors,NYSE,,Financial Services,Asset Management,,20.19,USD,2.75158209669888,,,,,2026-06-20,0,Asset Management
+HQL,Abrdn Life Sciences Investors,NYSE,,Financial Services,Asset Management,,17.96,USD,1.8321769048780203,,,,,2026-06-20,0,Asset Management
 HQWWW,Horizon Quantum Holdings Ltd.,NasdaqCM,,,,2.035e-05,20.35,USD,0.6381547357354845,1e-06,,,,2026-06-20,7371,Services-Computer Programming Services
 HSCS,HeartSciences Inc.,NasdaqCM,,Healthcare,Medical Devices,5.859848,1.84,USD,0.06079128536432982,3.1847,,,,2026-06-20,3842,"Orthopedic, Prosthetic & Surgical Appliances & Supplies"
 HTHIF,"Hitachi, Ltd.",OTC Markets OTCPK,,Industrials,Conglomerates,135166.61853904,29.92,USD,1.0145989361196757,4517.600887,,,,2026-06-20,1600,Heavy Construction Other Than Bldg Const - Contractors
@@ -5137,7 +5137,7 @@ JF,J and Friends Holdings Limited,NasdaqGM,,Financial Services,Credit Services,6
 JFIN,Jiayin Group Inc.,NasdaqGM,,Financial Services,Credit Services,837.68984611,4.01,USD,0.32721196990273893,208.900211,,,,2026-06-20,6199,Finance Services
 JGH,Nuveen Global High Income Fund,NYSE,,Financial Services,Asset Management,,12.74,USD,0.9167075902491808,,,,,2026-06-20,,Asset Management
 JHIUF,James Hardie Industries plc,OTC Markets OTCPK,,Basic Materials,Building Materials,14496.25818342,24.98,USD,0.18923147129058837,580.314579,,,,2026-06-20,3272,"Concrete Products, Except Block & Brick"
-JHS,John Hancock Income Securities Trust,NYSE,,Financial Services,Asset Management,,10.99,USD,0.19682448380887507,,,,,2026-06-20,0000,Asset Management
+JHS,John Hancock Income Securities Trust,NYSE,,Financial Services,Asset Management,,10.99,USD,0.19682448380887507,,,,,2026-06-20,0,Asset Management
 JL,J-Long Group Limited,NasdaqCM,,Consumer Cyclical,Apparel Manufacturing,23.47301424,6.24,USD,0.2199703513778746,3.761701,,,,2026-06-20,5600,Retail-Apparel & Accessory Stores
 JOBY-WT,"Joby Aviation, Inc. WT",NYSE,,,,796.75071012,0.81,USD,0.07063038020789623,983.642852,,,,2026-06-20,3721,Aircraft
 JUNS,"Jupiter Neurosciences, Inc.",NasdaqCM,,Healthcare,Biotechnology,8.634937976,0.238,USD,1.3845959455293138,36.281252,,,,2026-06-20,2834,Pharmaceutical Preparations
@@ -5176,7 +5176,7 @@ LKFN,Lakeland Financial Corporation,NasdaqGS,,Financial Services,Banks - Regiona
 LKSPU,Lake Superior Acquisition Corp.,NasdaqGM,,Financial Services,Shell Companies,118.22,10.28,USD,0.01093454552563754,11.5,,,,2026-06-20,6770,Blank Checks
 LNKS,Linkers Industries Limited,NasdaqCM,,Industrials,Electrical Equipment & Parts,,2.68,USD,8.27377351002866,,,,,2026-06-20,3670,Electronic Components & Accessories
 LNZA,"LanzaTech Global, Inc.",NasdaqCM,,Industrials,Waste Management,60.534977999999995,6.0,USD,1.4396634231127798,10.089163,,,,2026-06-20,2860,Industrial Organic Chemicals
-LOCL,Local Bounti Corporation,NYSE,,Consumer Defensive,Farm Products,29.4071883,1.29,USD,3.989106250909157,22.79627,,,,2026-06-20,0100,Agricultural Production-Crops
+LOCL,Local Bounti Corporation,NYSE,,Consumer Defensive,Farm Products,29.4071883,1.29,USD,3.989106250909157,22.79627,,,,2026-06-20,100,Agricultural Production-Crops
 LOKVW,Live Oak Acquisition Corp. V,NasdaqGM,,,,,1.83,USD,,,,,,2026-06-20,5900,Retail-Miscellaneous Retail
 LOTWW,Lotus Technology Inc.,NasdaqCM,,,,38.5684743262,0.0602,USD,,640.672331,,,,2026-06-20,3711,Motor Vehicles & Passenger Car Bodies
 LPAAW,Launch One Acquisition Corp.,NasdaqGM,,,,1.027,0.2054,USD,,5.0,,,,2026-06-20,6770,Blank Checks
@@ -5205,7 +5205,7 @@ MEHA,Functional Brands Inc.,NasdaqCM,,Consumer Defensive,Packaged Foods,0.803570
 MENS,Jyong Biotech Ltd.,NasdaqGM,,Healthcare,Biotechnology,118.60368000000001,1.56,USD,0.21672022808585317,76.028,,,,2026-06-20,2834,Pharmaceutical Preparations
 MEVOW,M Evo Global Acquisition Corp II,NasdaqGM,,,,,0.4,USD,0.0002620000039041042,,,,,2026-06-20,6770,Blank Checks
 MGCLY,Midea Group Co Ltd.,OTC Markets OTCPK,,Consumer Cyclical,"Furnishings, Fixtures & Appliances",,11.28,USD,0.926617012830038,,,,,2026-06-20,,"Furnishings, Fixtures & Appliances"
-MGN,Megan Holdings Limited,NasdaqCM,,Industrials,Engineering & Construction,2.2555,0.1388,USD,5.0825223620985405,16.25,,,,2026-06-20,0200,Agricultural Prod-Livestock & Animal Specialties
+MGN,Megan Holdings Limited,NasdaqCM,,Industrials,Engineering & Construction,2.2555,0.1388,USD,5.0825223620985405,16.25,,,,2026-06-20,200,Agricultural Prod-Livestock & Animal Specialties
 MGYR,"Magyar Bancorp, Inc.",NasdaqGM,,Financial Services,Banks - Regional,117.29853135,18.15,USD,0.07320244035882464,6.462729,,,,2026-06-20,6035,"Savings Institution, Federally Chartered"
 MITQ,"Moving iMage Technologies, Inc.",NYSE American,,Technology,Communication Equipment,5.363208344,0.5395,USD,0.15341906139664352,9.941072,,,,2026-06-20,3861,Photographic Equipment & Supplies
 MLAAW,Mountain Lake Acquisition Corp. II,NasdaqGM,,,,2.4012,0.23,USD,0.0010849100196808578,10.44,,,,2026-06-20,6770,Blank Checks
@@ -5244,7 +5244,7 @@ NAII,"Natural Alternatives International, Inc.",NasdaqGM,,Consumer Defensive,Pac
 NBB,Nuveen Taxable Municipal Income Fund,NYSE,,Financial Services,Asset Management,,15.67,USD,0.7751334080398082,,,,,2026-06-20,,Asset Management
 NCNA,NuCana plc,NasdaqCM,,Healthcare,Biotechnology,39746.82294877,1.91,USD,0.08578253119494766,20809.854947,,,,2026-06-20,2834,Pharmaceutical Preparations
 NCPL,Netcapital Inc.,NasdaqCM,,Financial Services,Capital Markets,5.4464419059999996,0.694,USD,3.2790440123206004,7.847899,,,,2026-06-20,6199,Finance Services
-NCRA,"Nocera, Inc.",NasdaqCM,,Consumer Defensive,Packaged Foods,1.728912769,0.113,USD,2.5530081413728536,15.300113,,,,2026-06-20,0200,Agricultural Prod-Livestock & Animal Specialties
+NCRA,"Nocera, Inc.",NasdaqCM,,Consumer Defensive,Packaged Foods,1.728912769,0.113,USD,2.5530081413728536,15.300113,,,,2026-06-20,200,Agricultural Prod-Livestock & Animal Specialties
 NCV,Virtus Convertible & Income Fund,NYSE,,Financial Services,Asset Management,,17.57,USD,1.3939614903867246,,,,,2026-06-20,,Asset Management
 NEE,"NextEra Energy, Inc.",NYSE,,Utilities,Utilities - Regulated Electric,180873.75,86.75,USD,971.7858286814928,2085.0,,,,2026-06-20,4911,Electric Services
 NEGG,"Newegg Commerce, Inc.",NasdaqCM,,Consumer Cyclical,Internet Retail,369.33453,17.61,USD,2.569614199414849,20.973,,,,2026-06-20,5990,"Retail-Retail Stores, NEC"
@@ -5344,7 +5344,7 @@ PIM,Putnam Master Intermediate Income Trust,NYSE,,Financial Services,Asset Manag
 PLAG,Planet Green Holdings Corp.,NYSE American,,Industrials,Conglomerates,25.6188852,1.8,USD,0.0941972342947498,14.232714,,,,2026-06-20,2030,"Canned, Frozen & Preservd Fruit, Veg & Food Specialties"
 PLBL,Polibeli Group Ltd,NasdaqGM,,Consumer Cyclical,Department Stores,2769.9201083199996,7.64,USD,0.28780142904440564,362.554988,,,,2026-06-20,5064,"Wholesale-Electrical Appliances, Tv & Radio Sets"
 PLDGP,"Prologis, Inc.",OTC Markets OTCQB,,Real Estate,REIT - Industrial,48677.36698,52.21,USD,0.0614621758912739,932.338,,,,2026-06-20,6798,Real Estate Investment Trusts
-PLNH,Planet 13 Holdings Inc.,OTC Markets OTCQX,,Healthcare,Drug Manufacturers - Specialty & Generic,42.71853703,0.13,USD,0.08294959448317532,328.604131,,,,2026-06-20,0100,Agricultural Production-Crops
+PLNH,Planet 13 Holdings Inc.,OTC Markets OTCQX,,Healthcare,Drug Manufacturers - Specialty & Generic,42.71853703,0.13,USD,0.08294959448317532,328.604131,,,,2026-06-20,100,Agricultural Production-Crops
 PLRZ,Polyrizon Ltd.,NasdaqCM,,Healthcare,Biotechnology,21.58292972,13.42,USD,0.6035923071905971,1.608266,,,,2026-06-20,3841,Surgical & Medical Instruments & Apparatus
 PLUR,Pluri Inc.,NasdaqCM,,Healthcare,Biotechnology,21.79488292,2.02,USD,0.029949158462267075,10.789546,,,,2026-06-20,2836,"Biological Products, (No Diagnostic Substances)"
 PLYX,"Polaryx Therapeutics, Inc.",NasdaqCM,,Healthcare,Biotechnology,109.83644903999999,2.32,USD,1.551785277475044,47.343297,,,,2026-06-20,2834,Pharmaceutical Preparations
@@ -5414,7 +5414,7 @@ SCKT,"Socket Mobile, Inc.",NasdaqCM,,Technology,Computer Hardware,5.793393473999
 SCWO,374Water Inc.,NasdaqCM,,Industrials,Pollution & Treatment Controls,39.364884,2.25,USD,0.16349095345884562,17.495504,,,,2026-06-20,3621,Motors & Generators
 SDHY,PGIM Short Duration High Yield Opportunities Fund,NYSE,,Financial Services,Asset Management,,16.12,USD,1.1861030316501855,,,,,2026-06-20,,Asset Management
 SDM,Smart Digital Group Limited,NasdaqCM,,Communication Services,Advertising Agencies,58.691250000000004,1.85,USD,,31.725,,,,2026-06-20,7380,Services-Miscellaneous Business Services
-SEED,Origin Agritech Limited,NasdaqCM,,Basic Materials,Agricultural Inputs,11.7669475932,0.9868,USD,0.0443621252107434,11.924349,,,,2026-06-20,0100,Agricultural Production-Crops
+SEED,Origin Agritech Limited,NasdaqCM,,Basic Materials,Agricultural Inputs,11.7669475932,0.9868,USD,0.0443621252107434,11.924349,,,,2026-06-20,100,Agricultural Production-Crops
 SELF,"Global Self Storage, Inc.",NasdaqCM,,Real Estate,REIT - Specialty,58.022398560000006,5.08,USD,0.12516623523384332,11.421732,,,,2026-06-20,6798,Real Estate Investment Trusts
 SFES,"Safeguard Scientifics, Inc.",OTC Markets OTCPK,,Financial Services,Asset Management,8.19426706,0.49,USD,0.011800314720250943,16.722994,,,,2026-06-20,6799,"Investors, NEC"
 SGA,"Saga Communications, Inc.",NasdaqGM,,Communication Services,Broadcasting,54.857404159999994,8.62,USD,0.13777309391647577,6.363968,,,,2026-06-20,4832,Radio Broadcasting Stations
@@ -5524,7 +5524,7 @@ UXIN,Uxin Limited,NasdaqGS,,Consumer Cyclical,Auto & Truck Dealerships,120492.12
 VALU,"Value Line, Inc.",NasdaqCM,,Financial Services,Financial Data & Stock Exchanges,320.01094342000005,34.09,USD,0.07762101569771766,9.387238,,,,2026-06-20,6282,Investment Advice
 VCX,"Fundrise Growth Tech Fund, LLC",NYSE,,,,,100.51,USD,75.8839467343688,,,,,2026-06-20,,
 VECO,Veeco Instruments Inc.,NasdaqGS,,Technology,Semiconductor Equipment & Materials,4861.31708025,79.65,USD,82.83799738033711,61.033485,,,,2026-06-20,3559,"Special Industry Machinery, NEC"
-VFL,abrdn National Municipal Income Fund,NYSE American,,Financial Services,Asset Management,,10.3,USD,0.3575874371752143,,,,,2026-06-20,0000,Asset Management
+VFL,abrdn National Municipal Income Fund,NYSE American,,Financial Services,Asset Management,,10.3,USD,0.3575874371752143,,,,,2026-06-20,0,Asset Management
 VGASW,"Verde Clean Fuels, Inc.",NasdaqCM,,,,0.6665276806,0.0302,USD,,22.070453,,,,2026-06-20,2860,Industrial Organic Chemicals
 VGI,Virtus Global Multi-Sector Income Fund,NYSE,,Financial Services,Asset Management,,7.4,USD,0.282493999953568,,,,,2026-06-20,,Asset Management
 VHCPW,Vine Hill Capital Investment Corp. II,NasdaqGM,,,,2.9333334800000004,0.44,USD,0.00043999999761581423,6.666667,,,,2026-06-20,6770,Blank Checks

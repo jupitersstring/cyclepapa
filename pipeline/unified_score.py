@@ -185,7 +185,10 @@ def run():
                 AND ((y.mcap_m > 0
                       AND form4_transactions.shares*form4_transactions.price/1e6 > y.mcap_m)
                   OR (y.price > 0 AND (form4_transactions.price > y.price*5
-                                    OR form4_transactions.price < y.price*0.10))))"""
+                                    OR form4_transactions.price < y.price*0.10))))
+          AND NOT (form4_transactions.shares*form4_transactions.price/1e6 > 250
+                   AND NOT EXISTS (SELECT 1 FROM ticker_yf y2
+                                   WHERE y2.ticker = form4_transactions.ticker))"""
     for r in conn.execute("""
         SELECT ticker, SUM(shares*price)/1e6 AS usd_m,
                julianday('now') - julianday(trans_date) AS days_old

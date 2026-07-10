@@ -42,6 +42,9 @@ def run():
                                           OR (y.price > 0
                                               AND (form4_transactions.price > y.price*5
                                                 OR form4_transactions.price < y.price*0.10))))
+                                  AND NOT (form4_transactions.shares*form4_transactions.price/1e6 > 250
+                                           AND NOT EXISTS (SELECT 1 FROM ticker_yf y2
+                                               WHERE y2.ticker = form4_transactions.ticker))
                                 ORDER BY ticker, trans_date"""))
     # group by ticker
     by_t = {}
@@ -120,7 +123,7 @@ def run():
     print(f"{'tkr':<6} {'trigger':<11} {'window_end':<12} {'#insiders':<10} {'total $M':<10} {'avg px':<8} {'top buyer'}")
     for c in found:
         print(f"  {c['ticker']:<6} {c['trigger']:<11} {c['window_end']:<12} {c['n_insiders']:<10} "
-              f"${c['total_usd_m']:<8.2f} ${c['avg_price']:<6} {c['top_buyer'][:24]} (${c['top_buyer_usd_m']:.2f}M)")
+              f"${c['total_usd_m']:<8.2f} ${c['avg_price']:<6} {(c['top_buyer'] or '')[:24]} (${c['top_buyer_usd_m']:.2f}M)")
 
 if __name__ == "__main__":
     run()

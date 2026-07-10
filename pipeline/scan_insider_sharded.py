@@ -79,6 +79,11 @@ def parse_form4(cik, accession, primary_doc):
         if shares_el is None: continue
         try: shares = float(shares_el.text)
         except: continue
+        # >100M shares in ONE insider transaction is never a real open-market
+        # trade — it's an ADS-ratio filing artifact (SaverOne/VWAVW reported
+        # 2.5B ordinary shares at the per-ADS price: 43,200x value inflation).
+        # Re-scans would otherwise resurrect rows we corrected in place.
+        if shares > 1e8: continue
         price = float(price_el.text) if (price_el is not None and price_el.text) else None
         acquired = 1 if (a_d_el is not None and a_d_el.text == "A") else 0
         out.append({"owner": owner, "role": role, "code": code,
