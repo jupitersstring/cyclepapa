@@ -1,20 +1,20 @@
 macro_style,ticker,n_funds,dollar_m,sections_seen,in_tier1,has_cluster,entry_bucket
-Activists / Special Situations,SATS,4,1439.6,"1,4,3",0,0,NEAR_ENTRY
+Activists / Special Situations,SATS,4,1439.6,"1,4,3",0,0,BELOW_ENTRY
 Activists / Special Situations,GTLS,4,103.4,"1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,HHH,3,2732.9,"1,3,4,2",1,0,BELOW_ENTRY
 Activists / Special Situations,WBD,3,1554.4,"1,3,4",0,0,NEAR_ENTRY
-Activists / Special Situations,ILMN,3,984.7,1,0,0,MODERATELY_ABOVE
+Activists / Special Situations,ILMN,3,984.7,1,0,0,WELL_ABOVE
 Activists / Special Situations,RKT,3,762.4,"4,1",0,0,NEAR_ENTRY
 Activists / Special Situations,AAP,3,111.1,"1,4",0,0,NEAR_ENTRY
-Activists / Special Situations,MSTR,3,54.8,1,0,0,NEAR_ENTRY
+Activists / Special Situations,MSTR,3,54.8,1,0,0,BELOW_ENTRY
 Activists / Special Situations,AEM,3,7.1,"5,1",0,0,
-Activists / Special Situations,GE,2,14720.0,1,0,0,NEAR_ENTRY
+Activists / Special Situations,GE,2,14720.0,1,0,0,MODERATELY_ABOVE
 Activists / Special Situations,CP,2,3682.1,"3,1",0,0,NEAR_ENTRY
 Activists / Special Situations,BN,2,3104.5,"1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,JHG,2,1679.8,"1,3,2",0,0,NEAR_ENTRY
 Activists / Special Situations,APD,2,1651.0,"1,2",0,0,NEAR_ENTRY
 Activists / Special Situations,TPB,2,1022.7,"1,4",0,0,NEAR_ENTRY
-Activists / Special Situations,WGS,2,789.1,1,0,1,WELL_ABOVE
+Activists / Special Situations,WGS,2,789.1,1,0,1,BELOW_ENTRY
 Activists / Special Situations,KVUE,2,784.1,"1,3,4",0,0,NEAR_ENTRY
 Activists / Special Situations,LYV,2,418.8,"3,1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,UNP,2,418.7,"1,4",0,0,NEAR_ENTRY
@@ -28,7 +28,7 @@ Activists / Special Situations,LLYVK,2,300.0,3,0,0,NEAR_ENTRY
 Activists / Special Situations,RNA,2,239.3,"1,3",0,0,NEAR_ENTRY
 Activists / Special Situations,CYBR,2,231.9,1,0,0,
 Activists / Special Situations,LLYVA,2,229.0,3,0,0,
-Activists / Special Situations,LQDA,2,191.8,"1,3,4",0,0,NEAR_ENTRY
+Activists / Special Situations,LQDA,2,191.8,"1,3,4",0,0,MODERATELY_ABOVE
 Activists / Special Situations,HRI,2,183.2,"1,3",0,0,NEAR_ENTRY
 Activists / Special Situations,REZI,2,175.0,"1,3",0,0,BELOW_ENTRY
 Activists / Special Situations,CCO,2,145.8,"1,4,2",0,0,NEAR_ENTRY
@@ -41,30 +41,30 @@ Activists / Special Situations,NATL,2,77.0,"1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,FTAI,2,59.0,1,0,0,NEAR_ENTRY
 Biotech Specialists,MDGL,3,2504.0,"1,4",0,0,NEAR_ENTRY
 Biotech Specialists,CELC,3,1390.0,"1,2,4",0,0,NEAR_ENTRY
-Biotech Specialists,PRAX,3,854.0,"2,1,4",0,0,BELOW_ENTRY
+Biotech Specialists,PRAX,3,854.0,"2,1,4",0,0,NEAR_ENTRY
 Biotech Specialists,COGT,3,789.0,"1,4",0,0,NEAR_ENTRY
-Biotech Specialists,ZYME,3,709.0,"1,2,4",0,0,BELOW_ENTRY
+Biotech Specialists,ZYME,3,709.0,"1,2,4",0,0,NEAR_ENTRY
 Biotech Specialists,STOK,3,200.0,"1,4,2",0,0,NEAR_ENTRY
-Biotech Specialists,XNCR,3,109.0,"1,4,2",0,0,NEAR_ENTRY
+Biotech Specialists,XNCR,3,109.0,"1,4,2",0,0,MODERATELY_ABOVE
 Biotech Specialists,PRLD,3,0.0,"2,3",1,1,NEAR_ENTRY
 Biotech Specialists,INSM,2,2359.0,"1,4",0,0,BELOW_ENTRY
 Biotech Specialists,NUVL,2,1960.0,"1,4",0,0,NEAR_ENTRY
-Biotech Specialists,KYMR,2,1235.0,"1,4",0,0,NEAR_ENTRY
-Biotech Specialists,RVMD,2,1196.0,1,0,0,NEAR_ENTRY
+Biotech Specialists,KYMR,2,1235.0,"1,4",0,0,MODERATELY_ABOVE
+Biotech Specialists,RVMD,2,1196.0,1,0,0,MODERATELY_ABOVE
 Biotech Specialists,PTCT,2,789.0,1,0,0,
-Biotech Specialists,EWTX,2,714.0,"1,4",0,0,NEAR_ENTRY
+Biotech Specialists,EWTX,2,714.0,"1,4",0,0,MODERATELY_ABOVE
 Biotech Specialists,SION,2,583.0,"1,2,3",0,0,NEAR_ENTRY
 Biotech Specialists,PTGX,2,560.0,1,0,0,
-Biotech Specialists,APGE,2,381.0,"1,4",0,0,NEAR_ENTRY
+Biotech Specialists,APGE,2,381.0,"1,4",0,0,WELL_ABOVE
 Biotech Specialists,APLS,2,335.0,"3,1",0,0,
 Biotech Specialists,TVTX,2,325.0,1,0,0,
 Biotech Specialists,TARS,2,307.0,"3,1",0,0,
 Biotech Specialists,MBX,2,191.0,"1,2",0,0,
 Biotech Specialists,XBI,2,185.1,"3,1",0,0,NEAR_ENTRY
-Biotech Specialists,NRIX,2,154.0,"2,1,4",0,0,NEAR_ENTRY
+Biotech Specialists,NRIX,2,154.0,"2,1,4",0,0,MODERATELY_ABOVE
 Biotech Specialists,IMVT,2,107.0,"1,3",0,0,
 Biotech Specialists,RAPT,2,30.0,"2,1,4",0,0,
-Biotech Specialists,ACET,2,0.0,2,0,1,NEAR_ENTRY
+Biotech Specialists,ACET,2,0.0,2,0,1,MODERATELY_ABOVE
 Biotech Specialists,NKTR,2,0.0,"4,1",0,0,BELOW_ENTRY
 Biotech Specialists,SANA,2,0.0,"1,2,3",0,0,
 Biotech Specialists,SLDB,2,0.0,2,0,0,
@@ -72,21 +72,21 @@ Biotech Specialists,STRO,2,0.0,2,0,0,
 Biotech Specialists,VYGR,2,0.0,2,0,0,
 Distressed / Event-Driven,LITE,2,10220.0,"1,3",0,0,NEAR_ENTRY
 Distressed / Event-Driven,AERO,2,994.9,"1,2,3",0,0,NEAR_ENTRY
-Distressed / Event-Driven,WDC,2,937.0,"1,4",0,0,WELL_ABOVE
-Distressed / Event-Driven,SATS,2,540.5,1,0,0,NEAR_ENTRY
+Distressed / Event-Driven,WDC,2,937.0,"1,4",0,0,NEAR_ENTRY
+Distressed / Event-Driven,SATS,2,540.5,1,0,0,BELOW_ENTRY
 Distressed / Event-Driven,PCG,2,347.6,"1,4",0,0,NEAR_ENTRY
 Distressed / Event-Driven,AMBP,2,91.0,"1,4",0,0,NEAR_ENTRY
 Distressed / Event-Driven,MNKTQ,2,0.0,2,0,0,
-Family Offices / Individual Filers,NN,2,80.3,"1,2",0,0,NEAR_ENTRY
+Family Offices / Individual Filers,NN,2,80.3,"1,2",0,0,BELOW_ENTRY
 Family Offices / Individual Filers,PCG,2,57.9,1,0,0,NEAR_ENTRY
 Family Offices / Individual Filers,SRL,2,31.5,"1,2",0,0,BELOW_ENTRY
 Family Offices / Individual Filers,BRN,2,0.0,"1,2,3,4",0,0,NEAR_ENTRY
 Family Offices / Individual Filers,MILFAM,2,0.0,0,0,0,
 Foreign / EM Value,MA,4,0.0,"1,5",0,0,NEAR_ENTRY
 Foreign / EM Value,V,4,0.0,5,0,0,
-Foreign / EM Value,BRK-B,3,181.4,"1,5",0,0,
-Foreign / EM Value,HTHT,3,88.9,"1,4",0,0,NEAR_ENTRY
-Foreign / EM Value,IBKR,3,51.1,"5,1",0,0,
+Foreign / EM Value,BRK-B,3,181.4,"1,5",0,0,NEAR_ENTRY
+Foreign / EM Value,HTHT,3,88.9,"1,4",0,0,BELOW_ENTRY
+Foreign / EM Value,IBKR,3,51.1,"5,1",0,0,MODERATELY_ABOVE
 Foreign / EM Value,MELI,3,40.0,"1,5,4",0,0,NEAR_ENTRY
 Foreign / EM Value,2330.TW,3,0.0,5,0,0,
 Foreign / EM Value,AVGO,2,1500.0,"5,4",0,0,NEAR_ENTRY
@@ -110,7 +110,7 @@ Foreign / EM Value,ASML.AS,2,0.0,5,0,0,
 Foreign / EM Value,BAM,2,0.0,"5,1",0,0,
 Foreign / EM Value,BFSA.DE,2,0.0,5,0,0,
 Foreign / EM Value,BKNG,2,0.0,"3,5",0,0,
-Foreign / EM Value,CSU.TO,2,0.0,5,0,0,NEAR_ENTRY
+Foreign / EM Value,CSU.TO,2,0.0,5,0,0,BELOW_ENTRY
 Foreign / EM Value,D05.SI,2,0.0,"1,5",0,0,
 Foreign / EM Value,EPAM,2,0.0,"3,5",0,0,
 Foreign / EM Value,EXPN.L,2,0.0,"1,5",0,0,
@@ -123,7 +123,7 @@ Foreign / EM Value,NA9.DE,2,0.0,5,0,0,
 Foreign / EM Value,NE,2,0.0,"5,1",0,0,
 Foreign / EM Value,NOVO-B.CO,2,0.0,5,0,0,
 Mega Multi-Strats / Quants,AVGO,3,3523.0,"4,1",0,0,NEAR_ENTRY
-Mega Multi-Strats / Quants,MU,3,1737.0,"4,1,3",0,1,NEAR_ENTRY
+Mega Multi-Strats / Quants,MU,3,1737.0,"4,1,3",0,1,MODERATELY_ABOVE
 Mega Multi-Strats / Quants,PLTR,3,1560.0,1,0,0,BELOW_ENTRY
 Mega Multi-Strats / Quants,AMD,3,480.0,"1,4",0,0,NEAR_ENTRY
 Mega Multi-Strats / Quants,BKNG,2,1500.0,"4,5",0,0,
@@ -131,18 +131,18 @@ Mega Multi-Strats / Quants,COST,2,1200.0,"1,4",0,0,NEAR_ENTRY
 Mega Multi-Strats / Quants,EA,2,343.0,"1,4",0,0,NEAR_ENTRY
 Mega Multi-Strats / Quants,GLD,2,208.0,1,0,0,
 Mega Multi-Strats / Quants,FXI,2,191.0,"1,4",0,0,
-Mega Multi-Strats / Quants,BRZE,2,0.0,2,0,0,BELOW_ENTRY
+Mega Multi-Strats / Quants,BRZE,2,0.0,2,0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,MCO,3,7190.3,"1,3,5",0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,WK,3,379.4,"1,2,4",0,0,BELOW_ENTRY
 Small-cap / Multibagger Specialists,CLBT,3,195.5,"1,4",0,0,NEAR_ENTRY
-Small-cap / Multibagger Specialists,TLN,2,1340.5,1,0,0,MODERATELY_ABOVE
+Small-cap / Multibagger Specialists,TLN,2,1340.5,1,0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,DKNG,2,725.4,"1,4",0,1,MODERATELY_ABOVE
 Small-cap / Multibagger Specialists,FLUT,2,669.9,"1,4",0,1,NEAR_ENTRY
 Small-cap / Multibagger Specialists,PFSI,2,597.5,"5,1",0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,GPK,2,513.0,"1,4",0,0,NEAR_ENTRY
-Small-cap / Multibagger Specialists,LQDA,2,283.2,1,0,0,NEAR_ENTRY
+Small-cap / Multibagger Specialists,LQDA,2,283.2,1,0,0,MODERATELY_ABOVE
 Small-cap / Multibagger Specialists,HUM,2,242.5,4,0,0,WELL_ABOVE
-Small-cap / Multibagger Specialists,PAR,2,239.5,"1,2,4",0,1,BELOW_ENTRY
+Small-cap / Multibagger Specialists,PAR,2,239.5,"1,2,4",0,1,NEAR_ENTRY
 Small-cap / Multibagger Specialists,FLYW,2,238.7,"1,4",0,1,WELL_ABOVE
 Small-cap / Multibagger Specialists,CP,2,218.0,"4,5",0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,MLYS,2,197.0,"1,4",0,1,NEAR_ENTRY
@@ -150,28 +150,27 @@ Small-cap / Multibagger Specialists,TEVA,2,145.4,1,0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,SHC,2,104.0,"1,4",0,0,NEAR_ENTRY
 Small-cap / Multibagger Specialists,ALKT,2,101.4,"1,3,4",0,1,NEAR_ENTRY
 Small-cap / Multibagger Specialists,ATMU,2,68.3,"2,1",0,0,NEAR_ENTRY
-Small-cap / Multibagger Specialists,BUR,2,55.5,"1,4",0,0,NEAR_ENTRY
+Small-cap / Multibagger Specialists,BUR,2,55.5,"1,4",0,0,BELOW_ENTRY
 Tiger Cubs / L/S Legends,AVGO,3,541.0,"1,4,3",0,0,NEAR_ENTRY
 Tiger Cubs / L/S Legends,NU,2,743.0,"3,1",0,0,NEAR_ENTRY
-Tiger Cubs / L/S Legends,DASH,2,433.0,"4,3",0,0,NEAR_ENTRY
+Tiger Cubs / L/S Legends,DASH,2,433.0,"4,3",0,0,MODERATELY_ABOVE
 Tiger Cubs / L/S Legends,SPOT,2,376.0,"4,3",0,0,NEAR_ENTRY
 Tiger Cubs / L/S Legends,RDDT,2,21.0,"1,4",0,1,MODERATELY_ABOVE
 Tiger Cubs / L/S Legends,APP,2,0.0,1,0,0,NEAR_ENTRY
 Tiger Cubs / L/S Legends,SE,2,0.0,1,0,0,NEAR_ENTRY
 Tiger Cubs / L/S Legends,WLTH,2,0.0,"2,3",0,0,BELOW_ENTRY
-Value / Concentrated Quality,SC,7,0.0,2,0,0,
 Value / Concentrated Quality,CVNA,6,3564.7,"1,2,4",0,0,BELOW_ENTRY
 Value / Concentrated Quality,MELI,6,1253.0,"1,4,5",0,0,NEAR_ENTRY
 Value / Concentrated Quality,CPNG,5,850.1,"1,4,5",0,1,NEAR_ENTRY
 Value / Concentrated Quality,COF,5,455.0,"1,4",0,0,NEAR_ENTRY
-Value / Concentrated Quality,BRK-B,5,145.0,1,0,0,
+Value / Concentrated Quality,BRK-B,5,145.0,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,NRP,4,225.0,"3,1",1,0,NEAR_ENTRY
-Value / Concentrated Quality,CSU.TO,4,0.0,1,0,0,NEAR_ENTRY
+Value / Concentrated Quality,CSU.TO,4,0.0,1,0,0,BELOW_ENTRY
 Value / Concentrated Quality,MA,3,743.2,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,APG,3,719.2,"1,4",0,0,NEAR_ENTRY
 Value / Concentrated Quality,SE,3,431.5,"1,4,5",0,0,NEAR_ENTRY
 Value / Concentrated Quality,ICE,3,428.7,1,0,0,BELOW_ENTRY
-Value / Concentrated Quality,CRWV,3,356.9,"1,4,3",0,0,NEAR_ENTRY
+Value / Concentrated Quality,CRWV,3,356.9,"1,4,3",0,0,BELOW_ENTRY
 Value / Concentrated Quality,BRK-A,3,192.4,"1,4",0,0,
 Value / Concentrated Quality,MGNI,3,111.4,1,0,0,MODERATELY_ABOVE
 Value / Concentrated Quality,INTU,3,99.5,"5,1",0,0,NEAR_ENTRY
@@ -182,13 +181,13 @@ Value / Concentrated Quality,KKR,3,0.0,1,0,1,NEAR_ENTRY
 Value / Concentrated Quality,DRVN,2,18209.5,"1,3,2",0,0,BELOW_ENTRY
 Value / Concentrated Quality,ENDI,2,4200.0,"5,1",0,0,
 Value / Concentrated Quality,PLTR,2,1832.8,"1,3",0,0,BELOW_ENTRY
-Value / Concentrated Quality,LEN,2,1286.0,"1,4",0,0,NEAR_ENTRY
+Value / Concentrated Quality,LEN,2,1286.0,"1,4,2",0,0,NEAR_ENTRY
 Value / Concentrated Quality,JOE,2,1195.4,"1,2",0,0,NEAR_ENTRY
 Value / Concentrated Quality,MCO,2,1155.6,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,SGI,2,1126.0,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,FICO,2,821.3,"5,1",0,0,NEAR_ENTRY
 Value / Concentrated Quality,SPGI,2,747.8,"3,1",0,1,NEAR_ENTRY
-Value / Concentrated Quality,DASH,2,642.0,"1,4",0,0,NEAR_ENTRY
+Value / Concentrated Quality,DASH,2,642.0,"1,4",0,0,MODERATELY_ABOVE
 Value / Concentrated Quality,UBER,2,573.0,"1,4,3",0,1,NEAR_ENTRY
 Value / Concentrated Quality,ABG,2,501.0,1,0,1,NEAR_ENTRY
 Value / Concentrated Quality,ELV,2,439.0,1,0,0,MODERATELY_ABOVE
@@ -199,3 +198,4 @@ Value / Concentrated Quality,GLBE,2,352.7,"1,2",0,0,NEAR_ENTRY
 Value / Concentrated Quality,ADI,2,327.5,"1,3",0,0,NEAR_ENTRY
 Value / Concentrated Quality,XYZ,2,320.0,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,RACE,2,310.8,"1,5",0,0,NEAR_ENTRY
+Value / Concentrated Quality,CLH,2,301.0,"2,1,4",0,0,NEAR_ENTRY

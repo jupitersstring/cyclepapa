@@ -147,7 +147,12 @@ def run():
         s_by.setdefault(tk, {})[sec] = len(mgrs)
     act = {}
     for r in conn.execute("""SELECT subject_ticker, COUNT(*) n, MAX(pct_class) m
-        FROM holder_13d WHERE subject_ticker IS NOT NULL GROUP BY subject_ticker"""):
+        FROM holder_13d WHERE subject_ticker IS NOT NULL
+          AND filed >= date('now','-24 months')
+        GROUP BY subject_ticker"""):
+        # Recency window: a 13D/G filed years ago (oldest row: 2005!) says nothing
+        # about TODAY's register — holders exit without us seeing every amendment.
+        # Only filings from the last 24 months count as a live activist signal.
         act[r["subject_ticker"]] = (r["n"], r["m"] or 0)
     cl = {}
     for r in conn.execute("""SELECT ticker, n_insiders, total_usd_m FROM insider_clusters

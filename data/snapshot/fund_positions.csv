@@ -914,7 +914,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 948,Maverick Capital Ltd (Lee Ainsl,GOOG,,1,,book,,,,GOOG | Alphabet | top-5 | n/a | Held | https://www.13radar.com/guru/lee-ainslie,2026-05-30
 949,Maverick Capital Ltd (Lee Ainsl,CCCX,,2,9.2,company,,"9.2% (19,976,664 sh; joint w/ Ainslie + David Singer)",,"CCCX | Churchill Capital X / Infleqtion | 9.2% (19,976,664 sh; joint w/ Ainslie + David Singer) | Feb 27, 2026 | SC 13D | https://www.stocktitan.net/sec-filings/CCCX/schedule-13d-churchill-capital-corp-x-cayman-major-shareholder-acquis-2b3cc0b52d67.html",2026-05-30
 950,Maverick Capital Ltd (Lee Ainsl,AMZN,,4,6.56,book,,6.56% (+8.55% shares),,AMZN | smaller | 6.56% (+8.55% shares) | Q4 2025 | https://acquirersmultiple.com/2025/12/maverick-capitals-top-holdings-how-lee-ainslie-is-positioning-for-2026/,2026-05-30
-951,D1 Capital Partners LP (Daniel ,D1,Capital Partners LP (Daniel Sundheim,0,,book,,,,D1 Capital Partners LP (Daniel Sundheim),2026-05-30
+951,D1 Capital Partners LP (Daniel ,,Capital Partners LP (Daniel Sundheim,0,,book,,,,D1 Capital Partners LP (Daniel Sundheim),2026-05-30
 952,D1 Capital Partners LP (Daniel ,CART,,1,,book,,,,CART | Maplebear / Instacart | top holding | n/a | Top | https://13f.info/manager/0001747057-d1-capital-partners-l-p,2026-05-30
 953,D1 Capital Partners LP (Daniel ,CLH,,1,,book,,,,CLH | Clean Harbors | top-5 | n/a | Held | https://13f.info/manager/0001747057-d1-capital-partners-l-p,2026-05-30
 954,D1 Capital Partners LP (Daniel ,FLS,,1,,book,,,,FLS | Flowserve | top-5 | n/a | Held | https://13f.info/manager/0001747057-d1-capital-partners-l-p,2026-05-30
@@ -923,7 +923,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 957,D1 Capital Partners LP (Daniel ,AMZN,Amazon,3,,book,309.4,,2026-04-02,"AMZN (Amazon) | new, 1,340,523 sh / $309.4M | Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/",2026-05-30
 958,D1 Capital Partners LP (Daniel ,SPOT,Spotify,3,,book,,,2026-04-02,SPOT (Spotify) | new | Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/,2026-05-30
 959,D1 Capital Partners LP (Daniel ,ADSK,Autodesk,3,,book,134.9,,2026-04-02,"ADSK (Autodesk) | new, 455,658 sh / ~$134.9M | Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/",2026-05-30
-960,D1 Capital Partners LP (Daniel ,D1,exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$,4,,book,674.0,D1 exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$674M aggregate),2026-04-02,D1 exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$674M aggregate) | Q4 2025 / Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/,2026-05-30
+960,D1 Capital Partners LP (Daniel ,,exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$,4,,book,674.0,D1 exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$674M aggregate),2026-04-02,D1 exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$674M aggregate) | Q4 2025 / Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/,2026-05-30
 961,Light Street Capital Management,TSM,,1,,book,,,,TSM | Taiwan Semiconductor | top holding | n/a | Top | https://whalewisdom.com/filer/light-street-capital-management-llc,2026-05-30
 962,Light Street Capital Management,CHYM,,1,,book,31.0,NEW (+$31M largest add),,CHYM | Chime Financial | top-5 | n/a | NEW (+$31M largest add) | https://www.13radar.com/filer/light-street-capital-management/filings/q4-2025,2026-05-30
 963,Light Street Capital Management,NVDA,,1,,book,12.0,+$12M added,,NVDA | NVIDIA | top-5 | n/a | +$12M added | https://www.13radar.com/filer/light-street-capital-management/filings/q4-2025,2026-05-30
@@ -1091,7 +1091,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 1125,Iconiq Capital LLC,SHOP,,4,4.4,book,,~4.4%,,SHOP | ~4.4% | 6.4% (+47%) | Q4 2025 | https://www.danielscrivner.com/iconiq-trades-and-holdings-q4-2025/,2026-05-30
 1126,Iconiq Capital LLC,GOOGL,,4,3.2,book,,~3.2%,,GOOGL | ~3.2% | 4.0% (+26%) | Q4 2025 | https://www.danielscrivner.com/iconiq-trades-and-holdings-q4-2025/,2026-05-30
 1127,RIT Capital Partners plc (RCP.L,RIT,Capital Partners plc (RCP.L,0,,book,,,,RIT Capital Partners plc (RCP.L),2026-05-30
-1128,RIT Capital Partners plc (RCP.L,H2,2025,4,2.5,book,,<2.5%,,SpaceX | <2.5% | 2.5% NAV (£102.3M) | H2 2025 | https://bmmagazine.co.uk/get-funded/rit-capital-partners-spacex-stake-valuation-2026/,2026-05-30
+1128,RIT Capital Partners plc (RCP.L,,2025,4,2.5,book,,<2.5%,,SpaceX | <2.5% | 2.5% NAV (£102.3M) | H2 2025 | https://bmmagazine.co.uk/get-funded/rit-capital-partners-spacex-stake-valuation-2026/,2026-05-30
 1129,Point72 Asset Management LP,NVDA,,1,3.3,book,2190.0,3.3% / 2.1% (varies pre/post puts),,NVDA | NVIDIA | 3.3% / 2.1% (varies pre/post puts) | $2.19B | +37.9% | https://stockcircle.com/portfolio/steven-cohen,2026-05-30
 1130,Point72 Asset Management LP,TSM,,1,2.8,book,1890.0,2.8%,,TSM | Taiwan Semiconductor ADR | 2.8% | $1.89B | +157.1% | https://stockcircle.com/portfolio/steven-cohen,2026-05-30
 1131,Point72 Asset Management LP,AMZN,,1,2.1,book,1410.0,2.1%,,AMZN | Amazon | 2.1% | $1.41B | +68.2% | https://stockcircle.com/portfolio/steven-cohen,2026-05-30
@@ -1964,7 +1964,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2034,Abrams Capital Management LP,META,,1,3.61,book,215.0,3.61%,,"8 | META | Meta Platforms | 3.61% | 325,155 | $215M",2026-05-30
 2035,Abrams Capital Management LP,UHAL-B,,1,2.56,book,152.0,2.56%,,"9 | UHAL.B | U-Haul (non-voting) | 2.56% | 3,251,469 | $152M",2026-05-30
 2036,Abrams Capital Management LP,LOGC,,1,2.15,book,128.0,2.15%,,"10 | LOGC | ContextLogic Holdings | 2.15% | 18,269,534 | $128M",2026-05-30
-2037,Abrams Capital Management LP,SC,13D,2,40.0,company,,"40.0% (18,269,534 sh)",2026-02-26,"2026-02-26 | SC 13D | ContextLogic Holdings (LOGC) | 40.0% (18,269,534 sh) | New position via US Salt deal; David Abrams & Raja Bobbili joined board",2026-05-30
+2037,Abrams Capital Management LP,LOGC,13D,2,40.0,company,,"40.0% (18,269,534 sh)",2026-02-26,"2026-02-26 | SC 13D | ContextLogic Holdings (LOGC) | 40.0% (18,269,534 sh) | New position via US Salt deal; David Abrams & Raja Bobbili joined board",2026-05-30
 2039,Abrams Capital Management LP,LOGC,,3,40.0,company,128.0,$128M / 40% of class,,LOGC | ContextLogic Holdings | Q4 2025 (13F) -> 13D 2/26/2026 | $128M / 40% of class | New permanent-capital vehicle for Abrams; acquired stake via US Salt acquisition closing 2/26/2026,2026-05-30
 2040,AVAS Capital LLC   Allan Mecham,AVAS,Capital LLC / Allan Mecham (formerly Arlington Value Capital,0,,book,,,,AVAS Capital LLC / Allan Mecham (formerly Arlington Value Capital),2026-05-30
 2041,Brave Warrior Advisors LLC (Gle,OMF,,1,12.25,book,523.0,12.25%,,"1 | OMF | OneMain Holdings | 12.25% | 7,739,293 | $523M | Reduced 0.71%",2026-05-30
@@ -1977,7 +1977,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2048,Brave Warrior Advisors LLC (Gle,BLDR,,1,5.73,book,245.0,5.73%,,"8 | BLDR | Builders FirstSource | 5.73% | 2,379,145 | $245M | Added 31.78%",2026-05-30
 2049,Brave Warrior Advisors LLC (Gle,COF,,1,5.73,book,245.0,5.73%,,"9 | COF | Capital One Financial | 5.73% | 1,008,862 | $245M | Added 4.57%",2026-05-30
 2050,Brave Warrior Advisors LLC (Gle,MPLX,,1,5.59,book,239.0,5.59%,,"10 | MPLX | MPLX LP | 5.59% | 4,474,115 | $239M | Added 0.15%",2026-05-30
-2051,Brave Warrior Advisors LLC (Gle,SC,13G,2,5.58,company,,"5.58% (8,600,224 sh)",2026-01-08,"2026-01-08 | SC 13G | Millrose Properties (MRP) | 5.58% (8,600,224 sh) | Increase to >5% (+59.99% to position)",2026-05-30
+2051,Brave Warrior Advisors LLC (Gle,MRP,13G,2,5.58,company,,"5.58% (8,600,224 sh)",2026-01-08,"2026-01-08 | SC 13G | Millrose Properties (MRP) | 5.58% (8,600,224 sh) | Increase to >5% (+59.99% to position)",2026-05-30
 2053,Brave Warrior Advisors LLC (Gle,AMAT,,3,,book,,,,AMAT | Applied Materials | n/d | New Q4 2025 initiation,2026-05-30
 2054,Brave Warrior Advisors LLC (Gle,SPGI,,3,,book,,,,SPGI | S&P Global | n/d | New Q4 2025 initiation,2026-05-30
 2055,Brave Warrior Advisors LLC (Gle,MRP,,4,6.02,book,,+59.99%,,MRP | +59.99% | 6.02%,2026-05-30
@@ -2001,7 +2001,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2073,Southeastern Asset Management I,ACI,,1,4.7,book,106.0,~4.7%,,"8 | ACI | Albertsons | ~4.7% | 6,166,712 | $106M",2026-05-30
 2074,Southeastern Asset Management I,FDX,,1,4.6,book,104.0,~4.6%,,"9 | FDX | FedEx | ~4.6% | 359,122 | $104M",2026-05-30
 2075,Southeastern Asset Management I,MGM,,1,3.3,book,74.0,~3.3%,,"10 | MGM | MGM Resorts | ~3.3% | 2,033,369 | $74M",2026-05-30
-2076,Southeastern Asset Management I,SC,13G,2,5.4,company,,5.40%,2026-02-13,2026-02-13 | SC 13G | Shenandoah Telecomm (SHEN) | 5.40% | New position,2026-05-30
+2076,Southeastern Asset Management I,SHEN,13G,2,5.4,company,,5.40%,2026-02-13,2026-02-13 | SC 13G | Shenandoah Telecomm (SHEN) | 5.40% | New position,2026-05-30
 2081,Southeastern Asset Management I,FISV,now FI,3,,book,,,,FISV (now FI) | Fiserv | New position,2026-05-30
 2082,Southeastern Asset Management I,EDU,,3,,book,21.0,"New position, +$21M",,"EDU | New Oriental Education | New position, +$21M",2026-05-30
 2083,Southeastern Asset Management I,LPX,,3,,book,22.0,"New position, +$22M",,"LPX | Louisiana-Pacific | New position, +$22M",2026-05-30
@@ -2023,7 +2023,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2099,Greenhaven Associates Inc   Edg,ARW,,1,3.4,book,209.0,3.4%,,8 | ARW | Arrow Electronics | 3.4% | $209M | Added 0.08%,2026-05-30
 2100,Greenhaven Associates Inc   Edg,BAX,,1,3.3,book,204.0,3.3%,,9 | BAX | Baxter International | 3.3% | $204M | Added 70.05%,2026-05-30
 2101,Greenhaven Associates Inc   Edg,LEA,,1,3.3,book,204.0,3.3%,,10 | LEA | Lear Corp | 3.3% | $204M | Reduced 1.10%,2026-05-30
-2102,Greenhaven Associates Inc   Edg,SC,13G,2,5.08,company,,"5.08% (10,943,681 sh)",2026-05-04,"2026-05-04 | SC 13G | Lennar (LEN) | 5.08% (10,943,681 sh) | New >5% disclosure",2026-05-30
+2102,Greenhaven Associates Inc   Edg,LEN,13G,2,5.08,company,,"5.08% (10,943,681 sh)",2026-05-04,"2026-05-04 | SC 13G | Lennar (LEN) | 5.08% (10,943,681 sh) | New >5% disclosure",2026-05-30
 2105,Greenhaven Associates Inc   Edg,SLB,,3,,book,179.0,,,SLB | Schlumberger | New Q4 2025 initiation (~$179M position),2026-05-30
 2106,Greenhaven Associates Inc   Edg,TFX,,3,,book,,,,TFX | Teleflex | New Q4 2025 initiation,2026-05-30
 2107,Greenhaven Associates Inc   Edg,RHI,,3,,book,,,,RHI | Robert Half | New Q4 2025 initiation,2026-05-30
@@ -2042,7 +2042,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2120,Fairholme Capital Management LL,OXY,,1,0.2,book,2.8,0.20%,,"8 | OXY | Occidental Petroleum | 0.20% | 69,100 | $2.8M",2026-05-30
 2121,Fairholme Capital Management LL,ET,,1,0.19,book,2.7,0.19%,,"9 | ET | Energy Transfer | 0.19% | 166,600 | $2.7M",2026-05-30
 2122,Fairholme Capital Management LL,TGT,,1,0.16,book,2.2,0.16%,,"10 | TGT | Target | 0.16% | 23,000 | $2.2M",2026-05-30
-2123,Fairholme Capital Management LL,SC,13D/A (Amend #36,2,32.8,company,,"32.8% (18,804,567 sh)",2026-05-07,"2026-05-07 | SC 13D/A (Amend #36) | St. Joe (JOE) | 32.8% (18,804,567 sh) | Sale of 887,700 sh in trailing 60 days",2026-05-30
+2123,Fairholme Capital Management LL,JOE,13D/A (Amend #36,2,32.8,company,,"32.8% (18,804,567 sh)",2026-05-07,"2026-05-07 | SC 13D/A (Amend #36) | St. Joe (JOE) | 32.8% (18,804,567 sh) | Sale of 887,700 sh in trailing 60 days",2026-05-30
 2124,Fairholme Capital Management LL,PGR,,3,0.41,book,,0.41%,,PGR | Progressive | 0.41% | New Q4 2025 (small exploratory),2026-05-30
 2125,Fairholme Capital Management LL,CF,,3,0.3,book,,0.30%,,CF | CF Industries | 0.30% | New Q4 2025 (small exploratory),2026-05-30
 2126,Fairholme Capital Management LL,TGT,,3,0.16,book,,0.16%,,TGT | Target | 0.16% | New Q4 2025 (small exploratory),2026-05-30
@@ -2057,7 +2057,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2135,Horizon Kinetics Asset Manageme,ICE,,1,1.82,book,135.0,1.82%,,"8 | ICE | Intercontinental Exchange | 1.82% | 830,766 | $135M | No change",2026-05-30
 2136,Horizon Kinetics Asset Manageme,MSB,,1,1.58,book,117.0,1.58%,,9 | MSB | Mesabi Trust | 1.58% | 3.03M | $117M | No change,2026-05-30
 2137,Horizon Kinetics Asset Manageme,BTC,Grayscale Mini,1,1.57,book,116.0,1.57%,,10 | BTC (Grayscale Mini) | Bitcoin Mini Trust | 1.57% | 3.00M | $116M | Reduced 0.1%,2026-05-30
-2138,Horizon Kinetics Asset Manageme,SC,13D/A,2,14.7,company,,14.7%,2026-05-07,2026-05-07 | SC 13D/A | Texas Pacific Land (TPL) | 14.7% | Purchase (+1.36%),2026-05-30
+2138,Horizon Kinetics Asset Manageme,TPL,13D/A,2,14.7,company,,14.7%,2026-05-07,2026-05-07 | SC 13D/A | Texas Pacific Land (TPL) | 14.7% | Purchase (+1.36%),2026-05-30
 2155,Horizon Kinetics Asset Manageme,WES,,3,,book,5.3,,,WES | Western Midstream | $5.3M,2026-05-30
 2156,Horizon Kinetics Asset Manageme,FRMI,,3,,book,0.87,,,FRMI | Fermi | $870K,2026-05-30
 2157,Horizon Kinetics Asset Manageme,VEA,,3,,book,0.257,,,VEA | FTSE Developed Markets ETF | $257K,2026-05-30
@@ -2109,7 +2109,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2203,Cobas Asset Management (Francis,CK,Hutchison (0001 HK,1,4.29,book,,4.29%,,2 | CK Hutchison (0001 HK) | 4.29%,2026-05-30
 2204,Cobas Asset Management (Francis,BW,Offshore (BWO,1,3.44,book,,3.44%,,5 | BW Offshore (BWO) | 3.44%,2026-05-30
 2206,Cobas Asset Management (Francis,TGS,NOPEC (TGS,1,2.8,book,,2.80%,,9 | TGS NOPEC (TGS) | 2.80%,2026-05-30
-2207,Cobas Asset Management (Francis,H2,2025 commentary (published 9 Feb 2026) and May 2026 newsletter referenced; speci,3,,book,,,,H2 2025 commentary (published 9 Feb 2026) and May 2026 newsletter referenced; specific new-name disclosures _not extractable from publicly available abstracts of the H2 2025 letter PDF in this research window._ Source: https://www.cobasam.com/en/quarterly-commentary/comment-second-semester-2025/,2026-05-30
+2207,Cobas Asset Management (Francis,,2025 commentary (published 9 Feb 2026) and May 2026 newsletter referenced; speci,3,,book,,,,H2 2025 commentary (published 9 Feb 2026) and May 2026 newsletter referenced; specific new-name disclosures _not extractable from publicly available abstracts of the H2 2025 letter PDF in this research window._ Source: https://www.cobasam.com/en/quarterly-commentary/comment-second-semester-2025/,2026-05-30
 2209,Fundsmith LLP (Terry Smith),IDEXX,IDXX,1,7.4,book,,~7.4%,,9 | IDEXX (IDXX) | ~7.4%,2026-05-30
 2210,Lindsell Train Limited (Nick Tr,HL,fund updates,0,,book,,,,HL fund updates,2026-05-30
 2211,Marc Cohodes — Independent Shor,BYON,,1,,book,,,,"BYON | Beyond, Inc. | LONG / activist | Hedgeye webcast alongside Beyond Chairman Marcus Lemonis arguing BYON could be a ""3-bagger"" | https://app.hedgeye.com/insights/147373-watch-why-we-believe-byon-is-a-3-bagger-w-marcus-lemonis-marc-co",2026-05-30
@@ -2175,7 +2175,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2275,Ariel Investments LLC (John Rog,CRL,,1,3.53,book,,3.53%,,CRL | Charles River Laboratories | 3.53% | https://stockanalysis.com/quote/mutf/ARGFX/holdings/,2026-05-30
 2276,Ariel Investments LLC (John Rog,MSGE,,2,19.5,company,,"19.5% (7,896,008 sh)",2026-02-13,"MSGE | Madison Square Garden Entertainment | 19.5% (7,896,008 sh) | 2026-02-13 | SC 13G/A | https://whalewisdom.com/filing/ariel-investments-llc-sc-13ga-2026-02-13-msge",2026-05-30
 2277,Ariel Investments LLC (John Rog,SPHR,,2,14.4,company,,"14.4% (4,099,354 sh; Amend #13)",2025-12-05,"SPHR | Sphere Entertainment | 14.4% (4,099,354 sh; Amend #13) | 2025-12-05 | SC 13G/A | https://www.stocktitan.net/sec-filings/SPHR/schedule-13g-a-sphere-entertainment-co-sec-filing-3ce914dfef80.html",2026-05-30
-2278,Ariel Investments LLC (John Rog,SC,13G,2,,company,,,2026-02-13,"CVSA, PBH, LESL | Multiple 13Gs filed 2/13/2026 | n/d | 2026-02-13 | SC 13G | https://www.insidermonkey.com/hedge-fund/ariel-investments/34/",2026-05-30
+2278,Ariel Investments LLC (John Rog,,13G,2,,company,,,2026-02-13,"CVSA, PBH, LESL | Multiple 13Gs filed 2/13/2026 | n/d | 2026-02-13 | SC 13G | https://www.insidermonkey.com/hedge-fund/ariel-investments/34/",2026-05-30
 2279,Ariel Investments LLC (John Rog,RLI,Corp (RLI,3,,book,,,,RLI Corp (RLI) | New (Ariel Appreciation Fund); specialty insurer w/ 30 years underwriting profit | Q1 2026 | https://www.insidermonkey.com/blog/rli-corp-rli-added-as-new-position-on-strong-underwriting-track-record-despite-near-term-industry-headwinds-1748099/,2026-05-30
 2280,Ariel Investments LLC (John Rog,NCLH,Norwegian Cruise Line,4,,book,,,,NCLH (Norwegian Cruise Line) | smaller | Modest increase (reopening/normalization thesis) | Q1 2026 | https://www.insidermonkey.com/hedge-fund/ariel-investments/34/,2026-05-30
 2281,Ariel Investments LLC (John Rog,CRL,Charles River Labs,4,3.35,book,,"189,436 sh (+6,099 sh; 3.35%)",,"CRL (Charles River Labs) | 183,337 sh | 189,436 sh (+6,099 sh; 3.35%) | Q1 2026 | https://www.insidermonkey.com/hedge-fund/ariel-investments/34/",2026-05-30
@@ -2447,7 +2447,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2555,Saga Partners (Joe Frankenfield,ROKU,,1,,book,,,,ROKU | Roku | Discussed in H2 2024 | Saga H2 2024,2026-05-30
 2556,Saga Partners (Joe Frankenfield,TRUP,,1,,book,,,,TRUP | Trupanion | Discussed in H2 2024 | Saga H2 2024,2026-05-30
 2557,Saga Partners (Joe Frankenfield,WISE.L,,1,,book,,,,"WISE LN | Wise PLC | ""Latest investment"" added in 2024 | Saga H2 2024",2026-05-30
-2558,Saga Partners (Joe Frankenfield,H2,2024 +52.2% net vs S&P TR +9.5%. Since-inception (Jan 2017): 259.2% net (17.3% C,4,14.9,book,,H2 2024 +52.2% net vs S&P TR +9.5%. Since-inception (Jan 2017): 259.2% net (17.3% CAGR) vs S&P 204.7% (14.9%). Q1 2026 r,,H2 2024 +52.2% net vs S&P TR +9.5%. Since-inception (Jan 2017): 259.2% net (17.3% CAGR) vs S&P 204.7% (14.9%). Q1 2026 return -23.0% (drawdown — flagged in original prompt context for Saga 2022 -56%). 5-10 positions typically.,2026-05-30
+2558,Saga Partners (Joe Frankenfield,,2024 +52.2% net vs S&P TR +9.5%. Since-inception (Jan 2017): 259.2% net (17.3% C,4,14.9,book,,H2 2024 +52.2% net vs S&P TR +9.5%. Since-inception (Jan 2017): 259.2% net (17.3% CAGR) vs S&P 204.7% (14.9%). Q1 2026 r,,H2 2024 +52.2% net vs S&P TR +9.5%. Since-inception (Jan 2017): 259.2% net (17.3% CAGR) vs S&P 204.7% (14.9%). Q1 2026 return -23.0% (drawdown — flagged in original prompt context for Saga 2022 -56%). 5-10 positions typically.,2026-05-30
 2559,CAS Investment Partners (Cliff ,CAS,Investment Partners (Cliff Sosin,0,,book,,,,CAS Investment Partners (Cliff Sosin),2026-05-30
 2560,CAS Investment Partners (Cliff ,CVNA,,1,81.67,book,1427.7,81.67%,,"CVNA | Carvana | 81.67% | $1,427.7M | Reduce 1.49% | Dataroma",2026-05-30
 2561,CAS Investment Partners (Cliff ,HGV,,1,11.73,book,205.0,11.73%,,HGV | Hilton Grand Vacations | 11.73% | $205.0M | Reduce 1.46% | Dataroma,2026-05-30
@@ -2572,7 +2572,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 2681,azValor Asset Management (Guzmá,TUB,,3,14.42,book,,14.42% top weight Q4 2025,,TUB | Tubacex (Iberia) | 14.42% top weight Q4 2025 | GuruFocus,2026-05-30
 2682,azValor Asset Management (Guzmá,PSG,,3,11.86,book,,11.86% top weight Q4 2025,,PSG | Prosegur Cash (Iberia) | 11.86% top weight Q4 2025 | GuruFocus,2026-05-30
 2683,azValor Asset Management (Guzmá,EBRO,,3,8.51,book,,8.51% top weight Q4 2025,,EBRO | Ebro Foods (Iberia) | 8.51% top weight Q4 2025 | GuruFocus,2026-05-30
-2684,azValor Asset Management (Guzmá,H2,2025 letter (published 18 Feb 2026) reported ~+20% annual growth in internationa,3,,,,"H2 2025 letter (published 18 Feb 2026) reported ~+20% annual growth in international products. AUM €2.894B (mid-2025), €",,"H2 2025 letter (published 18 Feb 2026) reported ~+20% annual growth in international products. AUM €2.894B (mid-2025), €22M net inflows. Top 15 holdings = 53% of Internacional portfolio.",2026-05-30
+2684,azValor Asset Management (Guzmá,,2025 letter (published 18 Feb 2026) reported ~+20% annual growth in internationa,3,,,,"H2 2025 letter (published 18 Feb 2026) reported ~+20% annual growth in international products. AUM €2.894B (mid-2025), €",,"H2 2025 letter (published 18 Feb 2026) reported ~+20% annual growth in international products. AUM €2.894B (mid-2025), €22M net inflows. Top 15 holdings = 53% of Internacional portfolio.",2026-05-30
 2685,Horos Asset Management (Javier ,BKNG,,3,,book,,,,BKNG | Booking Holdings | Q1 2026 letter,2026-05-30
 2686,Horos Asset Management (Javier ,EXOR,,3,,book,,,,EXOR | Exor NV | Q1 2026 letter,2026-05-30
 2687,Horos Asset Management (Javier ,LBTYK,,3,,book,,,,LBTYK | GCI Liberty | Q1 2026 letter,2026-05-30
@@ -2956,7 +2956,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 3066,Suvretta Capital Management,CAPR,,4,1.5,book,,~1.5%,,CAPR | ~1.5% | 3.0% | Q1 2026 (+113%) | 13f.info,2026-05-30
 3067,Suvretta Capital Management,PVLA,,4,2.7,book,,~2.7%,,PVLA | ~2.7% | 3.67% | Q1 2026 (+29-30%) | 13f.info,2026-05-30
 3068,Suvretta Capital Management,LEGN,,4,3.0,book,,~3%,,LEGN | ~3% | 3.5% | Q1 2026 (+14%) | 13f.info,2026-05-30
-3069,D1 Capital Partners,D1,Capital Partners,0,,book,,,,D1 Capital Partners,2026-05-30
+3069,D1 Capital Partners,,Capital Partners,0,,book,,,,D1 Capital Partners,2026-05-30
 3070,D1 Capital Partners,CART,,1,7.52,book,845.0,7.52%,,CART | Maplebear/Instacart | 7.52% | $845M | flat | 13f.info Q1 2026,2026-05-30
 3071,D1 Capital Partners,MELI,,1,5.75,book,646.0,5.75%,,MELI | MercadoLibre | 5.75% | $646M | +67% ($193M add) | 13f.info Q1 2026,2026-05-30
 3072,D1 Capital Partners,JHX,,1,4.77,book,536.0,4.77%,,JHX | James Hardie | 4.77% | $536M | +16% | 13f.info Q1 2026,2026-05-30
@@ -3885,7 +3885,7 @@ id,fund,ticker,company,section,pct_value,pct_kind,dollar_m,change_text,event_dat
 4736,D1 Capital Partners LP (Daniel Sundheim),AMZN,Amazon,3,,book,309.4,"new, 1,340,523 sh / $309.4M | Q1 2026",,"Tiger Cubs / L/S Legends | D1 Capital Partners LP (Daniel Sundheim) | (3) New positions sized large | AMZN (Amazon) | new, 1,340,523 sh / $309.4M | Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/",2026-05-30
 4737,D1 Capital Partners LP (Daniel Sundheim),SPOT,Spotify,3,,book,,new | Q1 2026,,Tiger Cubs / L/S Legends | D1 Capital Partners LP (Daniel Sundheim) | (3) New positions sized large | SPOT (Spotify) | new | Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/,2026-05-30
 4738,D1 Capital Partners LP (Daniel Sundheim),ADSK,Autodesk,3,,book,134.9,"new, 455,658 sh / ~$134.9M | Q1 2026",,"Tiger Cubs / L/S Legends | D1 Capital Partners LP (Daniel Sundheim) | (3) New positions sized large | ADSK (Autodesk) | new, 455,658 sh / ~$134.9M | Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/",2026-05-30
-4739,D1 Capital Partners LP (Daniel Sundheim),D1,,4,,book,,Q4 2025 / Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/,2026-04-02,Tiger Cubs / L/S Legends | D1 Capital Partners LP (Daniel Sundheim) | (4) Existing positions materially increased | D1 exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$674M aggregate) | Q4 2025 / Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps,2026-05-30
+4739,D1 Capital Partners LP (Daniel Sundheim),,,4,,book,,Q4 2025 / Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps-nine-stocks-pours-674201000-into-amazon-spotify-and-autodesk/,2026-04-02,Tiger Cubs / L/S Legends | D1 Capital Partners LP (Daniel Sundheim) | (4) Existing positions materially increased | D1 exited nine names in Q4 2025 while concentrating capital into AMZN/SPOT/ADSK (~$674M aggregate) | Q4 2025 / Q1 2026 | https://dailyhodl.com/2026/04/02/billionaire-dan-sundheim-dumps,2026-05-30
 4740,Light Street Capital Management (Glen Kacher),TSM,Taiwan Semiconductor,1,,book,,Taiwan Semiconductor | top holding | n/a,,Tiger Cubs / L/S Legends | Light Street Capital Management (Glen Kacher) | (1) Highest conviction (recent adds) | TSM | Taiwan Semiconductor | top holding | n/a | https://whalewisdom.com/filer/light-street-capital-management-llc,2026-05-30
 4741,Light Street Capital Management (Glen Kacher),CHYM,Chime Financial,1,,book,,Chime Financial | top-5 | n/a,,Tiger Cubs / L/S Legends | Light Street Capital Management (Glen Kacher) | (1) Highest conviction (recent adds) | CHYM | Chime Financial | top-5 | n/a | https://www.13radar.com/filer/light-street-capital-management/filings/q4-2025,2026-05-30
 4742,Light Street Capital Management (Glen Kacher),NVDA,NVIDIA,1,,book,,NVIDIA | top-5 | n/a,,Tiger Cubs / L/S Legends | Light Street Capital Management (Glen Kacher) | (1) Highest conviction (recent adds) | NVDA | NVIDIA | top-5 | n/a | https://www.13radar.com/filer/light-street-capital-management/filings/q4-2025,2026-05-30

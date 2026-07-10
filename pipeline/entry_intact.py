@@ -95,9 +95,14 @@ def run():
         p80 = s[int(len(s) * 0.80)]
         anchors_by_ticker.setdefault(tkr, []).append(("p80_close", p80))
 
-    # current price
+    # current price — prices-table close, OVERLAID with ticker_yf.price where
+    # available (the yfinance enrich runs more recently than the prices ingest,
+    # so yf is the fresher quote; the prices table only covers ~800 tickers and
+    # can lag by weeks, which skewed every vs-entry % it fed).
     last_px = {r["ticker"]: r["close"] for r in conn.execute(
         "SELECT ticker, close FROM prices WHERE date = (SELECT MAX(date) FROM prices p2 WHERE p2.ticker = prices.ticker)")}
+    for r in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0"):
+        last_px[r["ticker"]] = r["price"]
 
     rows = []
     for tkr in tickers:

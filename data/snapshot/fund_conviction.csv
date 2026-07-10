@@ -625,7 +625,6 @@ Maverick Capital Ltd (Lee Ainsl,NVDA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tige
 Maverick Capital Ltd (Lee Ainsl,TSM,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,3.81,,568.0
 Maverick Capital Ltd (Lee Ainsl,GOOG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
 Maverick Capital Ltd (Lee Ainsl,CCCX,ACTIVIST_13D,3.0,1.4,4.2,Tiger Cubs / L/S Legends,,9.2,0.0
-D1 Capital Partners LP (Daniel ,D1,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,Tiger Cubs / L/S Legends,,,674.0
 D1 Capital Partners LP (Daniel ,CART,TOP_PICK,3.0,1.4,4.2,Tiger Cubs / L/S Legends,7.52,,845.0
 D1 Capital Partners LP (Daniel ,CLH,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.0,1.4,8.4,Tiger Cubs / L/S Legends,,2.5,0.0
 D1 Capital Partners LP (Daniel ,FLS,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.0,1.4,8.4,Tiger Cubs / L/S Legends,3.84,4.6,432.0
@@ -762,7 +761,6 @@ Iconiq Capital LLC,FIG,INSIDER_COBUY,3.5,0.4,1.4,Mega Multi-Strats / Quants,3.5,
 Iconiq Capital LLC,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,3.3,,204.3
 Iconiq Capital LLC,NOW,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE",7.0,0.4,2.8,Mega Multi-Strats / Quants,1.5,,91.8
 Iconiq Capital LLC,BRZE,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,1.7,0.0
-RIT Capital Partners plc (RCP.L,H2,MATERIAL_ADD,2.0,0.4,0.8,Mega Multi-Strats / Quants,2.5,,0.0
 Point72 Asset Management LP,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,3.3,,2190.0
 Point72 Asset Management LP,TSM,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,2.8,,1890.0
 Point72 Asset Management LP,AMZN,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,2.1,,1410.0
@@ -1333,19 +1331,17 @@ Abrams Capital Management LP,ABG,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.
 Abrams Capital Management LP,CPNG,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,5.16,,307.0
 Abrams Capital Management LP,WTW,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.6,7.2,Value / Concentrated Quality,3.98,,237.0
 Abrams Capital Management LP,META,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,3.61,,215.0
-Abrams Capital Management LP,LOGC,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE",7.0,1.6,11.2,Value / Concentrated Quality,2.15,40.0,256.0
-Abrams Capital Management LP,SC,ACTIVIST_13D,3.0,1.6,4.8,Value / Concentrated Quality,,40.0,0.0
+Abrams Capital Management LP,LOGC,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE",10.0,1.6,16.0,Value / Concentrated Quality,2.15,40.0,256.0
 Brave Warrior Advisors LLC (Gle,OMF,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,12.25,,523.0
 Brave Warrior Advisors LLC (Gle,SNX,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,11.13,,475.0
 Brave Warrior Advisors LLC (Gle,ELV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,10.28,,439.0
 Brave Warrior Advisors LLC (Gle,SLM,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",10.0,1.6,16.0,Value / Concentrated Quality,8.13,,347.0
 Brave Warrior Advisors LLC (Gle,AN,"HOLDING_PERSIST,MATERIAL_ADD,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,7.51,,321.0
-Brave Warrior Advisors LLC (Gle,MRP,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,PUBLIC_LETTER,TOP_PICK",12.5,1.6,20.0,Value / Concentrated Quality,6.02,,257.0
+Brave Warrior Advisors LLC (Gle,MRP,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,PUBLIC_LETTER,THRESHOLD_13G,TOP_PICK",14.0,1.6,22.4,Value / Concentrated Quality,6.02,5.58,257.0
 Brave Warrior Advisors LLC (Gle,LEN,"HOLDING_PERSIST,MATERIAL_ADD,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,5.81,,248.0
 Brave Warrior Advisors LLC (Gle,BLDR,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",13.5,1.6,21.6,Value / Concentrated Quality,5.73,,245.0
 Brave Warrior Advisors LLC (Gle,COF,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",10.0,1.6,16.0,Value / Concentrated Quality,5.73,,245.0
 Brave Warrior Advisors LLC (Gle,MPLX,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.59,,239.0
-Brave Warrior Advisors LLC (Gle,SC,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,5.58,0.0
 Brave Warrior Advisors LLC (Gle,AMAT,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.6,7.2,Value / Concentrated Quality,,,0.0
 Brave Warrior Advisors LLC (Gle,SPGI,"INSIDER_COBUY,MULTI_FUND_PEER,NEW_INIT_LARGE,PUBLIC_LETTER",9.0,1.6,14.4,Value / Concentrated Quality,,,0.0
 Punch Card Capital   Norbert Lo,BRK-A,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,36.38,,109.4
@@ -1362,13 +1358,13 @@ Southeastern Asset Management I,RYN,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,
 Southeastern Asset Management I,KHC,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",7.0,1.6,11.2,Value / Concentrated Quality,4.8,,109.0
 Southeastern Asset Management I,ACI,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,4.7,,106.0
 Southeastern Asset Management I,MGM,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.6,7.2,Value / Concentrated Quality,3.3,,74.0
-Southeastern Asset Management I,SC,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,5.4,0.0
+Southeastern Asset Management I,SHEN,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,5.4,0.0
 Southeastern Asset Management I,FISV,"INSIDER_COBUY,NEW_INIT_LARGE",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
 Southeastern Asset Management I,EDU,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,21.0
 Southeastern Asset Management I,LPX,"INSIDER_COBUY,NEW_INIT_LARGE",5.5,1.6,8.8,Value / Concentrated Quality,,,22.0
 Southeastern Asset Management I,MICC,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,23.0
 Greenhaven Associates Inc   Edg,GM,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,20.0,,1234.0
-Greenhaven Associates Inc   Edg,LEN,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.6,16.8,Value / Concentrated Quality,16.8,,1038.0
+Greenhaven Associates Inc   Edg,LEN,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,THRESHOLD_13G,TOP_PICK",12.0,1.6,19.2,Value / Concentrated Quality,16.8,5.08,1038.0
 Greenhaven Associates Inc   Edg,TOL,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.6,16.8,Value / Concentrated Quality,12.3,,758.0
 Greenhaven Associates Inc   Edg,PHM,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,10.5,,649.0
 Greenhaven Associates Inc   Edg,DHI,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,8.1,,502.0
@@ -1376,26 +1372,23 @@ Greenhaven Associates Inc   Edg,OSK,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Qu
 Greenhaven Associates Inc   Edg,AVTR,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",7.0,1.6,11.2,Value / Concentrated Quality,3.8,,235.0
 Greenhaven Associates Inc   Edg,ARW,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,3.4,,209.0
 Greenhaven Associates Inc   Edg,BAX,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,3.3,,204.0
-Greenhaven Associates Inc   Edg,SC,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,5.08,0.0
 Greenhaven Associates Inc   Edg,SLB,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,179.0
 Greenhaven Associates Inc   Edg,TFX,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Greenhaven Associates Inc   Edg,RHI,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
-Fairholme Capital Management LL,JOE,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,80.43,,1153.0
+Fairholme Capital Management LL,JOE,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,80.43,32.8,1153.0
 Fairholme Capital Management LL,EPD,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,12.19,,175.0
 Fairholme Capital Management LL,BRK-B,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,1.68,,24.0
 Fairholme Capital Management LL,PGR,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,0.41,,5.8
 Fairholme Capital Management LL,CF,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,0.3,,4.2
 Fairholme Capital Management LL,OXY,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,0.2,,2.8
 Fairholme Capital Management LL,TGT,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,0.16,,2.2
-Fairholme Capital Management LL,SC,ACTIVIST_13D,3.0,1.6,4.8,Value / Concentrated Quality,,32.8,0.0
 Fairholme Capital Management LL,NRP,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.6,4.8,Value / Concentrated Quality,0.09,,0.0
-Horizon Kinetics Asset Manageme,TPL,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.6,16.8,Value / Concentrated Quality,40.14,,2970.0
+Horizon Kinetics Asset Manageme,TPL,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",13.5,1.6,21.6,Value / Concentrated Quality,40.14,14.7,2970.0
 Horizon Kinetics Asset Manageme,GBTC,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,13.05,,965.0
 Horizon Kinetics Asset Manageme,WPM,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,3.96,,293.0
 Horizon Kinetics Asset Manageme,HE,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,3.23,,239.0
 Horizon Kinetics Asset Manageme,WBI,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,1.85,,137.0
 Horizon Kinetics Asset Manageme,ICE,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,1.82,,135.0
-Horizon Kinetics Asset Manageme,SC,ACTIVIST_13D,3.0,1.6,4.8,Value / Concentrated Quality,,14.7,0.0
 Horizon Kinetics Asset Manageme,WES,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,5.3
 Horizon Kinetics Asset Manageme,FRMI,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.87
 Horizon Kinetics Asset Manageme,VEA,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.257
@@ -1427,7 +1420,6 @@ Gotham Asset Management LLC   J,GVLU,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrat
 Gotham Asset Management LLC   J,GD,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrated Quality,,,21.0
 Gotham Asset Management LLC   J,SLB,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrated Quality,,,15.0
 Akre Capital Management LLC,KKR,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,11.33,,0.0
-Cobas Asset Management (Francis,H2,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.6,7.2,Value / Concentrated Quality,,,0.0
 Fundsmith LLP (Terry Smith),IDEXX,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,7.4,,0.0
 Marc Cohodes — Independent Shor,LONG,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
 Marc Cohodes — Independent Shor,TRUP,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
@@ -1465,7 +1457,6 @@ Ariel Investments LLC (John Rog,MSGE,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.
 Ariel Investments LLC (John Rog,CVSA,INSIDER_COBUY,3.5,1.6,5.6,Value / Concentrated Quality,3.85,,0.0
 Ariel Investments LLC (John Rog,SPHR,"HOLDING_PERSIST,THRESHOLD_13G",3.0,1.6,4.8,Value / Concentrated Quality,3.77,14.4,0.0
 Ariel Investments LLC (John Rog,CRL,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,3.53,,0.0
-Ariel Investments LLC (John Rog,SC,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,,0.0
 Ariel Investments LLC (John Rog,RLI,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Ariel Investments LLC (John Rog,NCLH,"INSIDER_COBUY,MATERIAL_ADD,PUBLIC_LETTER",8.0,1.6,12.8,Value / Concentrated Quality,,,0.0
 Ariel Investments LLC (John Rog,MAT,"INSIDER_COBUY,MATERIAL_ADD",5.5,1.6,8.8,Value / Concentrated Quality,3.27,,0.0
@@ -1635,7 +1626,6 @@ Greenwood Investors (Steven Woo,PDD,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,
 Saga Partners (Joe Frankenfield,CVNA,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
 Saga Partners (Joe Frankenfield,TTD,INSIDER_COBUY,3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
 Saga Partners (Joe Frankenfield,TRUP,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
-Saga Partners (Joe Frankenfield,H2,"HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,14.9,,0.0
 CAS Investment Partners (Cliff ,CVNA,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,THRESHOLD_13G,TOP_PICK",11.0,1.6,17.6,Value / Concentrated Quality,81.67,6.4,2855.4
 CAS Investment Partners (Cliff ,HGV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,11.73,,410.0
 CAS Investment Partners (Cliff ,COF,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.01,,210.0
@@ -1710,7 +1700,6 @@ azValor Asset Management (Guzmá,REP,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Val
 azValor Asset Management (Guzmá,TUB,"HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PICK",9.0,1.0,9.0,Foreign / EM Value,14.42,,0.0
 azValor Asset Management (Guzmá,PSG,"HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PICK",9.0,1.0,9.0,Foreign / EM Value,11.86,,0.0
 azValor Asset Management (Guzmá,EBRO,"NEW_INIT_LARGE,TOP_PICK",5.0,1.0,5.0,Foreign / EM Value,8.51,,0.0
-azValor Asset Management (Guzmá,H2,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Foreign / EM Value,,,0.0
 Horos Asset Management (Javier ,BKNG,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Foreign / EM Value,,,0.0
 Horos Asset Management (Javier ,EXOR,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Foreign / EM Value,,,0.0
 Horos Asset Management (Javier ,LBTYK,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Foreign / EM Value,,,0.0

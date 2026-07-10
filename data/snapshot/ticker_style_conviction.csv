@@ -1005,7 +1005,6 @@ GOOG,Warrant Specialists,0.7,1,0,364.0
 GOOG,Activists / Special Situations,5.6,1,0,2540.0
 GOOG,Other / Unclassified,7.0,2,0,178.0
 CCCX,Tiger Cubs / L/S Legends,4.2,1,0,0.0
-D1,Tiger Cubs / L/S Legends,4.9,1,0,674.0
 CART,Tiger Cubs / L/S Legends,4.2,1,0,845.0
 CLH,Tiger Cubs / L/S Legends,8.4,1,0,0.0
 CLH,Value / Concentrated Quality,5.6,1,0,301.0
@@ -1118,9 +1117,6 @@ SHOP,Mega Multi-Strats / Quants,2.6,1,0,395.3
 FIG,Mega Multi-Strats / Quants,1.4,1,0,217.1
 BRZE,Mega Multi-Strats / Quants,1.2,2,0,0.0
 BRZE,Value / Concentrated Quality,4.8,1,0,52.6
-H2,Mega Multi-Strats / Quants,0.8,1,0,0.0
-H2,Value / Concentrated Quality,21.6,2,1,0.0
-H2,Foreign / EM Value,4.5,1,0,0.0
 ANET,Mega Multi-Strats / Quants,0.4,1,0,1030.0
 ANET,Activists / Special Situations,1.4,1,0,103.6
 ANET,Value / Concentrated Quality,4.8,1,0,126.0
@@ -1594,16 +1590,15 @@ LEGT,Other / Unclassified,1.0,1,0,0.0
 PFX,Activists / Special Situations,7.0,1,0,0.0
 OBE,Activists / Special Situations,6.3,1,0,0.0
 LAD,Value / Concentrated Quality,11.2,1,1,828.0
-LOGC,Value / Concentrated Quality,16.8,2,0,261.8
-SC,Value / Concentrated Quality,24.0,7,0,0.0
+LOGC,Value / Concentrated Quality,21.6,2,0,261.8
 OMF,Value / Concentrated Quality,11.2,1,1,523.0
 SNX,Value / Concentrated Quality,11.2,1,1,475.0
 SLM,Value / Concentrated Quality,17.6,2,0,360.3
 SLM,Activists / Special Situations,11.2,1,1,336.0
 AN,Value / Concentrated Quality,14.4,1,0,321.0
-MRP,Value / Concentrated Quality,20.0,1,0,257.0
+MRP,Value / Concentrated Quality,22.4,1,0,257.0
 MRP,Activists / Special Situations,19.6,1,1,340.0
-LEN,Value / Concentrated Quality,31.2,2,1,1286.0
+LEN,Value / Concentrated Quality,33.6,2,1,1286.0
 LEN,Other / Unclassified,11.5,1,1,0.0
 BLDR,Value / Concentrated Quality,28.8,2,0,245.0
 BLDR,Activists / Special Situations,37.1,2,2,490.1
@@ -1620,6 +1615,7 @@ RYN,Value / Concentrated Quality,10.4,1,0,123.0
 RYN,Other / Unclassified,7.5,1,0,0.0
 ACI,Value / Concentrated Quality,5.6,1,0,106.0
 ACI,Other / Unclassified,4.5,1,0,0.0
+SHEN,Value / Concentrated Quality,2.4,1,0,0.0
 EDU,Value / Concentrated Quality,3.2,1,0,21.0
 EDU,Other / Unclassified,4.5,1,0,0.0
 GM,Value / Concentrated Quality,11.2,1,1,1234.0
@@ -1632,7 +1628,7 @@ ARW,Value / Concentrated Quality,5.6,1,0,209.0
 ARW,Other / Unclassified,4.5,1,0,0.0
 SLB,Value / Concentrated Quality,6.4,2,0,194.0
 SLB,Other / Unclassified,9.0,2,0,0.0
-JOE,Value / Concentrated Quality,29.6,2,2,1237.8
+JOE,Value / Concentrated Quality,36.8,2,2,1237.8
 EPD,Value / Concentrated Quality,11.2,1,1,175.0
 CF,Value / Concentrated Quality,5.6,1,0,4.2
 CF,Other / Unclassified,4.5,1,0,0.0
@@ -1640,7 +1636,7 @@ TGT,Value / Concentrated Quality,5.6,1,0,2.2
 TGT,Other / Unclassified,4.5,1,0,0.0
 NRP,Value / Concentrated Quality,34.4,4,1,225.0
 NRP,Other / Unclassified,5.5,1,0,0.0
-TPL,Value / Concentrated Quality,16.8,1,1,2970.0
+TPL,Value / Concentrated Quality,21.6,1,1,2970.0
 TPL,Warrant Specialists,2.5,1,0,30.4
 TPL,Other / Unclassified,4.5,1,0,0.0
 GBTC,Value / Concentrated Quality,11.2,1,1,965.0
