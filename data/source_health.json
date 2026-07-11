@@ -1,0 +1,173 @@
+{
+  "generated": "2026-07-11T09:46:10.422516Z",
+  "sources": {
+    "ASX": {
+      "active_days": 5,
+      "age_days": 10,
+      "cadence_tolerance_days": 3,
+      "last_count": 149,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 100,
+      "source": "ASX",
+      "status": "STALE",
+      "stdev": 25.6,
+      "total_window": 500
+    },
+    "CVM-IPE": {
+      "active_days": 6,
+      "age_days": 22,
+      "cadence_tolerance_days": 8,
+      "last_count": 9,
+      "last_seen": "2026-06-19",
+      "mean_per_active_day": 12.5,
+      "source": "CVM-IPE",
+      "status": "STALE",
+      "stdev": 6.8,
+      "total_window": 75
+    },
+    "CourtListener-RECAP": {
+      "active_days": 5,
+      "age_days": 11,
+      "cadence_tolerance_days": 3,
+      "last_count": 1,
+      "last_seen": "2026-06-30",
+      "mean_per_active_day": 1.6,
+      "source": "CourtListener-RECAP",
+      "status": "STALE",
+      "stdev": 0.8,
+      "total_window": 8
+    },
+    "EDGAR-8K-items": {
+      "active_days": 5,
+      "age_days": 1,
+      "cadence_tolerance_days": 3,
+      "last_count": 1,
+      "last_seen": "2026-07-10",
+      "mean_per_active_day": 8.4,
+      "source": "EDGAR-8K-items",
+      "status": "OK",
+      "stdev": 4.4,
+      "total_window": 42
+    },
+    "EDGAR-Form15": {
+      "active_days": 3,
+      "age_days": 1,
+      "cadence_tolerance_days": 3,
+      "last_count": 3,
+      "last_seen": "2026-07-10",
+      "mean_per_active_day": 5.7,
+      "source": "EDGAR-Form15",
+      "status": "OK",
+      "stdev": 2.5,
+      "total_window": 17
+    },
+    "EDGAR-SC13D": {
+      "active_days": 3,
+      "age_days": 1,
+      "cadence_tolerance_days": 3,
+      "last_count": 1,
+      "last_seen": "2026-07-10",
+      "mean_per_active_day": 1,
+      "source": "EDGAR-SC13D",
+      "status": "QUIET",
+      "stdev": 0.0,
+      "total_window": 3
+    },
+    "EDGAR-forms": {
+      "active_days": 1,
+      "age_days": 1,
+      "cadence_tolerance_days": 3,
+      "last_count": 15,
+      "last_seen": "2026-07-10",
+      "mean_per_active_day": 15,
+      "source": "EDGAR-forms",
+      "status": "OK",
+      "stdev": 0.0,
+      "total_window": 15
+    },
+    "EDGAR-postreorg": {
+      "active_days": 13,
+      "age_days": 4,
+      "cadence_tolerance_days": 10,
+      "last_count": 1,
+      "last_seen": "2026-07-07",
+      "mean_per_active_day": 1.8,
+      "source": "EDGAR-postreorg",
+      "status": "QUIET",
+      "stdev": 0.7,
+      "total_window": 24
+    },
+    "LDA-Senate": {
+      "active_days": 15,
+      "age_days": 10,
+      "cadence_tolerance_days": 5,
+      "last_count": 60,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 17.3,
+      "source": "LDA-Senate",
+      "status": "STALE",
+      "stdev": 14.4,
+      "total_window": 260
+    },
+    "NSM": {
+      "active_days": 8,
+      "age_days": 10,
+      "cadence_tolerance_days": 3,
+      "last_count": 257,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 184.9,
+      "source": "NSM",
+      "status": "STALE",
+      "stdev": 44.0,
+      "total_window": 1479
+    },
+    "OFAC": {
+      "active_days": 10,
+      "age_days": 10,
+      "cadence_tolerance_days": 10,
+      "last_count": 1,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 1,
+      "source": "OFAC",
+      "status": "QUIET",
+      "stdev": 0.0,
+      "total_window": 10
+    },
+    "SEDAR+": {
+      "active_days": 2,
+      "age_days": 10,
+      "cadence_tolerance_days": 3,
+      "last_count": 2,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 2.5,
+      "source": "SEDAR+",
+      "status": "STALE",
+      "stdev": 0.5,
+      "total_window": 5
+    },
+    "TDnet": {
+      "active_days": 2,
+      "age_days": 10,
+      "cadence_tolerance_days": 3,
+      "last_count": 235,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 132,
+      "source": "TDnet",
+      "status": "STALE",
+      "stdev": 103.0,
+      "total_window": 264
+    },
+    "unknown": {
+      "active_days": 1,
+      "age_days": 10,
+      "cadence_tolerance_days": 3,
+      "last_count": 131,
+      "last_seen": "2026-07-01",
+      "mean_per_active_day": 131,
+      "source": "unknown",
+      "status": "STALE",
+      "stdev": 0.0,
+      "total_window": 131
+    }
+  }
+}

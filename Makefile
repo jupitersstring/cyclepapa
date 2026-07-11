@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -125,6 +125,18 @@ edgar-forms-poll: audit
 poll-all: audit
 	python3 -m src.run_pollers --timeout 600
 
+# Security master — canonical entity crosswalk (CIK/ticker/CUSIP/ISIN/LEI).
+# Warm the SEC crosswalk + batch-resolve inbox CUSIPs so corroboration
+# resolves entities exactly across sources.
+security-master: audit
+	python3 -m src.security_master --warm
+	python3 -m src.security_master --resolve-inbox-cusips --days-back 30
+
+# Source-health observability — per-source freshness + volume-anomaly
+# monitoring. Non-fatal (|| true) so a STALE source doesn't abort refresh.
+source-health: audit
+	-python3 -m src.source_health --days-back 30
+
 # Cross-source corroboration — fuses all pollers; surfaces entities
 # independently flagged by >= 2 distinct sources.
 corroborate: audit
@@ -165,7 +177,7 @@ workbook: universe-rr portfolio
 # reward/risk, regenerates the portfolio file, and rebuilds the
 # workbook. Run hourly during business hours for ca-poll to be useful;
 # the others tolerate a daily cadence.
-refresh: audit poll-all corroborate inbox-promote workbook
+refresh: audit poll-all source-health security-master corroborate inbox-promote workbook
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit
