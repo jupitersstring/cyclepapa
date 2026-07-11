@@ -67,25 +67,41 @@ class YahooClient:
                 continue
 
     def get_json(self, path: str, params: dict, retries: int = 3):
-        """GET a JSON endpoint with the crumb attached; re-warm once on auth failure."""
+        """GET a JSON endpoint with the crumb attached.
+
+        HTTP 404 is a DEFINITIVE answer (dead/unknown symbol) — raise immediately
+        after trying the second host, with no backoff (a full retry cycle wasted
+        ~16s per dead ticker). Auth-shaped failures (401/403/406) invalidate the
+        crumb and re-warm on ANY attempt (a stale crumb on attempt 1+ was
+        previously retried verbatim and failed deterministically)."""
+        last = None
         for attempt in range(retries):
             q = dict(params)
             if self._crumb:
                 q["crumb"] = self._crumb
             qs = urllib.parse.urlencode(q, safe=",")
-            last = None
+            saw_404 = 0
             for host in _HOSTS:
                 try:
                     r = self._raw_get(f"https://{host}{path}?{qs}", "application/json")
                     return json.loads(r.read())
                 except urllib.error.HTTPError as e:
                     last = e
-                    if e.code in (401, 403, 406, 429) and attempt == 0:
-                        self.warm()  # stale crumb / throttle — re-prime once
+                    if e.code == 404:
+                        saw_404 += 1
+                        continue              # try the other host once, no backoff
+                    if e.code in (401, 403, 406):
+                        self._crumb = None    # stale crumb: invalidate, then re-prime
+                        self.warm()
                         break
+                    if e.code == 429:
+                        break                 # throttled: back off (warm won't help)
                 except Exception as e:
                     last = e
-            time.sleep(config.BACKOFF_BASE * (2 ** attempt))
+            if saw_404 == len(_HOSTS):
+                raise RuntimeError(f"yahoo get_json 404 (dead symbol): {path}")
+            if attempt < retries - 1:         # no useless sleep after the final try
+                time.sleep(config.BACKOFF_BASE * (2 ** attempt))
         raise RuntimeError(f"yahoo get_json failed: {path}: {last}")
 
     # ---- batch pre-screen -------------------------------------------------- #
@@ -93,13 +109,25 @@ class YahooClient:
         """{symbol -> quote dict} for the live symbols (dead ones simply absent).
 
         The quote carries marketCap / regularMarketPrice / currency / trailingPE /
-        priceToBook etc., enough to decide liveness and assign a size bucket."""
+        priceToBook etc., enough to decide liveness and assign a size bucket.
+        A failed chunk is retried once after a re-warm; symbols in chunks that
+        still fail are recorded on ``self.failed_symbols`` so callers can
+        distinguish "Yahoo said dead" from "request failed" (a silently dropped
+        chunk would otherwise mark 100 live names dead in a pre-screen)."""
         out: dict[str, dict] = {}
+        self.failed_symbols: list[str] = []
         for i in range(0, len(symbols), chunk):
             part = symbols[i:i + chunk]
-            try:
-                j = self.get_json("/v7/finance/quote", {"symbols": ",".join(part)})
-            except Exception:
+            j = None
+            for attempt in range(2):
+                try:
+                    j = self.get_json("/v7/finance/quote", {"symbols": ",".join(part)})
+                    break
+                except Exception:
+                    if attempt == 0:
+                        self.warm()
+            if j is None:
+                self.failed_symbols.extend(part)
                 continue
             for q in (j.get("quoteResponse") or {}).get("result") or []:
                 sym = q.get("symbol")
@@ -134,7 +162,7 @@ def _timeseries_blocks(client: "YahooClient", symbol: str) -> tuple[dict, dict]:
     missing) — the position-aligned shape metrics expects."""
     types = ",".join([f"annual{k}" for k in _TS_ITEMS] + [f"quarterly{k}" for k in _TS_ITEMS])
     try:
-        j = client.get_json(f"/ws/fundamentals-timeseries/v1/finance/timeseries/{urllib.parse.quote(symbol)}",
+        j = client.get_json(f"/ws/fundamentals-timeseries/v1/finance/timeseries/{urllib.parse.quote(symbol, safe='')}",
                             {"type": types, "period1": _TS_P1, "period2": int(time.time())})
     except Exception:
         return {}, {}
@@ -156,22 +184,37 @@ def _timeseries_blocks(client: "YahooClient", symbol: str) -> tuple[dict, dict]:
                     d[pt["asOfDate"]] = float(v)
         bucket[key] = d
 
-    def _assemble(series: dict) -> dict:
+    def _assemble(series: dict, quarterly: bool = False) -> dict:
         dates = sorted(set().union(*(set(d) for d in series.values()))) if series else []
+        if quarterly and len(dates) >= 2:
+            # Snap onto a COMPLETE quarter grid: metrics._q_yoy_block pairs
+            # vals[-1] with vals[-5] positionally, so a missing quarter in the
+            # union axis would compare the wrong quarters (measured on 13.6% of
+            # names). Missing quarters become explicit NaN rows instead.
+            pidx = pd.PeriodIndex(pd.to_datetime(dates), freq="Q")
+            by_period = dict(zip(pidx, dates))          # later date wins a collision
+            grid = pd.period_range(pidx.min(), pidx.max(), freq="Q")
+            dates = [by_period.get(p, str(p.end_time.date())) for p in grid]
+            present = set(by_period.values())
+            out = {"dates": dates}
+            for key in _TS_ITEMS.values():
+                d = series.get(key, {})
+                out[key] = [d.get(dt, NaN) if dt in present else NaN for dt in dates]
+            return out
         out = {"dates": dates}
         for key in _TS_ITEMS.values():
             d = series.get(key, {})
             out[key] = [d.get(dt, NaN) for dt in dates]
         return out
 
-    return _assemble(ann), _assemble(qtr)
+    return _assemble(ann), _assemble(qtr, quarterly=True)
 
 
 def _price_block(client: YahooClient, symbol: str):
     """Monthly close history from v8/chart -> (features, monthly) via the existing
     price-feature math, so trailing returns match the curl_cffi path exactly."""
     try:
-        j = client.get_json(f"/v8/finance/chart/{urllib.parse.quote(symbol)}",
+        j = client.get_json(f"/v8/finance/chart/{urllib.parse.quote(symbol, safe='')}",
                             {"range": config.PRICE_LOOKBACK, "interval": "1mo"})
         res = (j.get("chart") or {}).get("result") or []
         if not res:
@@ -200,15 +243,17 @@ _QS_MODULES = "defaultKeyStatistics,summaryDetail,financialData,price,assetProfi
 def fetch_raw(symbol: str, client: YahooClient, with_surprises: bool = False) -> dict:
     """Fetch one ticker via the urllib JSON API, in fetch_raw's dict shape."""
     try:
-        j = client.get_json(f"/v10/finance/quoteSummary/{urllib.parse.quote(symbol)}",
+        j = client.get_json(f"/v10/finance/quoteSummary/{urllib.parse.quote(symbol, safe='')}",
                             {"modules": _QS_MODULES})
         res = ((j.get("quoteSummary") or {}).get("result") or [None])[0]
         if res is None:
             raise ValueError("no quoteSummary result")
     except Exception as err:
+        # "surprises" present-but-empty so the negative-cache accept check in
+        # build_fundamentals doesn't refetch dead tickers on every surprise run.
         return {"symbol": symbol, "asof": datetime.now(timezone.utc).isoformat(),
                 "annual": {}, "quarterly": {}, "valuation": {}, "prices": {},
-                "fetch_ok": False, "rate_limited": False, "error": str(err)}
+                "surprises": [], "fetch_ok": False, "rate_limited": False, "error": str(err)}
 
     ann, qtr = _timeseries_blocks(client, symbol)
     valuation = _valuation_from(res)
@@ -248,29 +293,52 @@ def _surprises_from(res: dict) -> list:
         if sp is not None:
             out.append({"date": datetime.fromtimestamp(dt, timezone.utc).date().isoformat() if dt else None,
                         "surprise_pct": max(-200.0, min(200.0, float(sp) * 100.0))})
+    # Yahoo's ordering is usually ascending but NOT guaranteed (observed shuffled
+    # in the wild); surprise_block treats sp[-1] as the latest quarter, so sort.
+    out.sort(key=lambda s: s["date"] or "")
     return out[-12:]
 
 
+def merge_surprises(old: list | None, new: list | None, keep: int = 12) -> list:
+    """Union two surprise histories by date (new wins a collision), sorted, last
+    ``keep``. quoteSummary's earningsHistory only carries ~4 quarters, so REPLACING
+    a stored 12-quarter history with it silently halves the window the 8-quarter
+    surprise metrics (cum8/trend/robust) are computed on — always merge."""
+    by_date = {e["date"]: e for e in (old or []) if e.get("date")}
+    by_date.update({e["date"]: e for e in (new or []) if e.get("date")})
+    return [by_date[d] for d in sorted(by_date)][-keep:]
+
+
 def refresh_market(symbol: str, client: YahooClient, base_raw: dict,
-                   with_surprises: bool = False) -> dict:
+                   with_surprises: bool = False) -> dict | None:
     """Refresh ONLY the market-derived blocks (valuation + prices [+ surprises]) on
     an existing raw, KEEPING its statement blocks — so a stale-price update never
     clobbers the EDGAR deep-history overlay (or any cached statements). Two urllib
-    calls (quoteSummary valuation + chart) vs three for a full fetch."""
+    calls (quoteSummary valuation + chart) vs three for a full fetch.
+
+    Returns None on failure (never a stale copy of the input: the caller must be
+    able to distinguish failure, and the input may carry a ``market_refreshed``
+    stamp from a PRIOR run that would masquerade as success). The prices block is
+    only replaced when the chart leg actually returned data, and surprises are
+    MERGED (see :func:`merge_surprises`), never truncated to quoteSummary's ~4q.
+    """
     try:
-        j = client.get_json(f"/v10/finance/quoteSummary/{urllib.parse.quote(symbol)}",
+        j = client.get_json(f"/v10/finance/quoteSummary/{urllib.parse.quote(symbol, safe='')}",
                             {"modules": _QS_MODULES})
         res = ((j.get("quoteSummary") or {}).get("result") or [None])[0]
         if res is None:
             raise ValueError("no quoteSummary result")
     except Exception:
-        return base_raw                          # leave the raw untouched on failure
+        return None
     out = dict(base_raw)
     out["valuation"] = _valuation_from(res)
     feats, monthly = _price_block(client, symbol)
-    out["prices"] = {**feats, "monthly": monthly}
+    if monthly.get("dates"):                     # chart leg succeeded
+        out["prices"] = {**feats, "monthly": monthly}
+    # else: keep the existing (older but real) price block — an all-NaN overwrite
+    # would erase good return history on a transient chart failure.
     if with_surprises:
-        out["surprises"] = _surprises_from(res)
+        out["surprises"] = merge_surprises(base_raw.get("surprises"), _surprises_from(res))
     out["asof"] = datetime.now(timezone.utc).isoformat()
     out["market_refreshed"] = out["asof"]
     has_stmt = any(any(not math.isnan(x) for x in (out.get("annual", {}) or {}).get(k, []))

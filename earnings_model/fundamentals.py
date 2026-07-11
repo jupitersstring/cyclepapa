@@ -458,6 +458,7 @@ def fetch_raw(symbol: str, session=None, max_retries: int = config.MAX_RETRIES,
         "quarterly": {},
         "valuation": {},
         "prices": {},
+        "surprises": [],   # present-but-empty: keeps the negative cache effective
         "fetch_ok": False,
         "rate_limited": rate_limited,
         "error": str(last_err) if last_err else "unknown",
@@ -518,7 +519,13 @@ def build_fundamentals(
     n = len(syms)
     for i, sym in enumerate(syms, 1):
         cached = None if refresh else load_raw(sym, ttl_days=ttl_days, fail_ttl_days=fail_ttl_days)
-        if cached is not None and (not surprise_regions or "surprises" in cached):
+        # Accept the cached raw unless a surprise run needs a surprises key it
+        # lacks — but never re-fetch a FAILED raw just for surprises (failure
+        # stubs carry no surprises key; requiring one defeated the negative
+        # cache and re-hammered every dead ticker on every surprise run).
+        if cached is not None and (not surprise_regions
+                                   or not cached.get("fetch_ok")
+                                   or "surprises" in cached):
             raw = cached
         else:
             ws = bool(surprise_regions) and sym_region.get(sym) in surprise_regions
@@ -526,10 +533,19 @@ def build_fundamentals(
             # after a run of failures. Only live calls go through it (cache hits
             # above skip the limiter entirely).
             raw = mgr.fetch(sym, with_surprises=ws)
-            # Cache successes long, and failures briefly: a short-lived negative
-            # cache stops a re-run hammering genuinely-dead tickers, while still
-            # auto-retrying transient 429/timeout casualties once it expires.
-            save_raw(sym, raw)
+            if raw.get("fetch_ok"):
+                # Cache successes long, failures briefly (negative cache).
+                save_raw(sym, raw)
+            else:
+                # NEVER overwrite a good cached raw with a failure: when the
+                # transport is broken/throttled (e.g. curl_cffi TLS-reset through
+                # the agent proxy) a TTL-expired re-fetch fails and would erase
+                # real data. Keep and USE the stale-but-good raw instead.
+                prior = load_raw(sym, ttl_days=None, fail_ttl_days=None)
+                if prior is not None and prior.get("fetch_ok"):
+                    raw = prior
+                else:
+                    save_raw(sym, raw)   # only stamp failure over nothing/failure
         row = metrics.compute_metrics(raw)
         # Rename yfinance info fields that collide with fd grouping columns.
         for src, dst in _RENAME.items():

@@ -99,7 +99,7 @@ def main() -> None:
             continue
         ws = sym_region.get(sym) in config.SURPRISE_REGIONS
         out = yahoo.refresh_market(sym, client, base, with_surprises=ws)
-        if out.get("market_refreshed"):
+        if out is not None:                 # None = refresh failed; keep old raw
             F.save_raw(sym, out)
             done += 1
         since += 1

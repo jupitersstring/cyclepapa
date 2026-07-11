@@ -44,6 +44,7 @@ def step_fetch(
     symbols: list[str] | None = None,
     refresh: bool = False,
     backfill_size: bool = True,
+    ttl_days: float = config.CACHE_TTL_DAYS,
     out: Path = config.FUNDAMENTALS_PATH,
 ) -> pd.DataFrame:
     uni = pd.read_parquet(universe_path)
@@ -51,7 +52,7 @@ def step_fetch(
         n = min(sample, len(uni))
         symbols = uni.sample(n, random_state=config.RANDOM_STATE)["symbol"].tolist()
     funda = fundamentals.build_fundamentals(
-        uni, limit=limit, symbols=symbols, refresh=refresh
+        uni, limit=limit, symbols=symbols, refresh=refresh, ttl_days=ttl_days
     )
     if backfill_size:
         # Recompute size buckets for Unclassified names from live market cap,

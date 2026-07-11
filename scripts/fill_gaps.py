@@ -59,8 +59,15 @@ def main() -> None:
     args = ap.parse_args()
 
     uni = pd.read_parquet(config.UNIVERSE_PATH)
-    scored = set(pd.read_parquet(config.CACHE_DIR / "scored.parquet")["symbol"].astype(str))
-    todo = [s for s in uni["symbol"].astype(str).tolist() if s not in scored]
+    # The documented contract: retry names whose CACHED raw has no data. Deriving
+    # this from scored.parquet (as before) wrongly re-fetched anything fetched
+    # after the last rebuild — and, through a broken transport, could overwrite
+    # good raws with failures.
+    todo = []
+    for s_ in uni["symbol"].astype(str).tolist():
+        r = F.load_raw(s_, ttl_days=None, fail_ttl_days=None)
+        if r is None or not r.get("fetch_ok"):
+            todo.append(s_)
     if args.limit:
         todo = todo[: args.limit]
     print(f"fill_gaps: retrying {len(todo)} no-data names", flush=True)
