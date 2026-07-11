@@ -1,0 +1,33 @@
+{
+  "accession": "corrob-TBRG",
+  "cik": "",
+  "conviction_score": 2.479,
+  "fetched_at": "2026-07-11T09:44:24.220454Z",
+  "filed": "2026-07-11",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.9,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "red_flag.item_material_agreement_termination",
+    "tier_s.delisting_form25",
+    "tier_s.item_delisting_deficiency"
+  ],
+  "n_sources": 2,
+  "name": "TruBridge, Inc.",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (EDGAR-8K-items, EDGAR-forms); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "EDGAR-8K-items",
+    "EDGAR-forms"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag",
+    "tier_s"
+  ],
+  "url": ""
+}

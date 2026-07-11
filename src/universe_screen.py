@@ -666,7 +666,9 @@ def size_multiplier(size: str) -> float:
 _CORROBORATION: dict[str, int] | None = None
 
 
-def _load_corroboration() -> dict[str, int]:
+def _load_corroboration() -> dict[str, dict]:
+    """entity_stem -> {n_sources, conviction_score, ...} from
+    data/corroboration.json."""
     global _CORROBORATION
     if _CORROBORATION is None:
         _CORROBORATION = {}
@@ -675,18 +677,20 @@ def _load_corroboration() -> dict[str, int]:
             try:
                 data = json.loads(path.read_text())
                 for stem, e in data.items():
-                    _CORROBORATION[stem] = int(e.get("n_sources", 0))
+                    if isinstance(e, dict):
+                        _CORROBORATION[stem.upper()] = e
             except (json.JSONDecodeError, OSError, ValueError):
                 _CORROBORATION = {}
     return _CORROBORATION
 
 
 def corroboration_boost(c: Candidate) -> float:
-    """Multiplier for names independently flagged by multiple pollers.
-    2 sources → x1.15, 3 → x1.30, 4+ → x1.50. Cross-source corroboration
-    is the framework's highest-conviction sourced signal."""
+    """Multiplier for names flagged by multiple pollers, scaled by the
+    weighted CONVICTION score (event-severity × source-reliability ×
+    recency), not just a raw source count. A hard, reliable, recent
+    corroboration (bankruptcy + delisting) boosts more than soft,
+    stale, repeated signals. Capped at x1.50."""
     corrob = _load_corroboration()
-    # Match by ticker stem or name stem
     keys = set()
     if c.ticker:
         keys.add(re.sub(r"[^A-Za-z0-9]", "", c.ticker.split(":")[-1]).upper())
@@ -695,14 +699,21 @@ def corroboration_boost(c: Candidate) -> float:
                         re.sub(r"\b(plc|ltd|limited|inc|corp|corporation|"
                                r"group|holdings?|sa|nv|ag|co|se)\b", "",
                                c.name, flags=re.I)).upper())
-    n = max((corrob.get(k, 0) for k in keys if k), default=0)
-    if n >= 4:
-        return 1.50
-    if n == 3:
-        return 1.30
-    if n == 2:
-        return 1.15
-    return 1.0
+    best = None
+    for k in keys:
+        e = corrob.get(k)
+        if e and (best is None or
+                  e.get("conviction_score", 0) > best.get("conviction_score", 0)):
+            best = e
+    if not best:
+        return 1.0
+    conv = float(best.get("conviction_score", 0.0))
+    n = int(best.get("n_sources", 0))
+    if n < 2:
+        return 1.0
+    # Map conviction to a boost: ~1.0 conviction → +0.15, ~2.5 → +0.50.
+    boost = 1.0 + min(0.50, 0.15 + 0.14 * conv)
+    return round(min(1.50, boost), 3)
 
 
 def triage_score(c: Candidate) -> float:

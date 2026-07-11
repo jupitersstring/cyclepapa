@@ -1,0 +1,35 @@
+{
+  "accession": "corrob-FMC",
+  "cik": "",
+  "conviction_score": 1.197,
+  "fetched_at": "2026-07-11T09:44:24.220454Z",
+  "filed": "2026-07-11",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.85,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "form_8k_spin",
+    "red_flag.fcpa",
+    "tier_s.exchange_offer"
+  ],
+  "n_sources": 3,
+  "name": "FMC CORP  (FMC)  (CIK 0000037785)",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 3 independent sources (red_flag, spinoff, tier_s); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "url": ""
+}

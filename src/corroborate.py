@@ -65,8 +65,103 @@ def stem_ticker(t) -> str:
     return re.sub(r"[^A-Za-z0-9]", "", str(t).split(":")[-1]).upper()
 
 
+# ---- institutional weighted-corroboration model -------------------------
+# Event-severity weight per query-label sub-type. Hard, dated, structural
+# events (a bankruptcy petition, a firm takeover offer, a plan becoming
+# effective) carry far more conviction than soft/ambient signals (a
+# lobbying registration, a trading update). Default 0.5 for unlisted.
+EVENT_SEVERITY: dict[str, float] = {
+    # hardest — a legally-binding structural event has occurred / is filed
+    "item_bankruptcy": 1.0, "bankruptcy_11": 1.0, "bankruptcy_15": 1.0,
+    "judicial_recovery": 1.0, "bankruptcy_br": 1.0, "civil_rehabilitation": 1.0,
+    "post_reorg_plan_effective": 1.0, "post_reorg_freshstart": 1.0,
+    "scheme": 0.95, "rule_2_7": 0.95, "recommended_offer": 0.95,
+    "takeover_bid": 0.95, "tob": 0.95, "mbo": 0.95, "opa": 0.95,
+    "merger_vote": 0.9, "plan_of_arrangement": 0.9, "delisting_form25": 0.9,
+    "item_default_acceleration": 0.9, "receivership": 0.9,
+    "voluntary_administration": 0.9, "administrators": 0.9,
+    "rights_offering": 0.85, "exchange_offer": 0.85, "restructuring": 0.85,
+    "self_tender": 0.85, "issuer_bid": 0.85, "compulsory_acquisition": 0.85,
+    "item_delisting_deficiency": 0.8, "delisting": 0.8, "suspension": 0.8,
+    "going_dark_12b": 0.8, "going_dark_12g": 0.8, "cancellation": 0.8,
+    "proxy_contest": 0.8, "sc_13d": 0.8, "early_warning": 0.8,
+    "post_reorg_emerged": 0.8,
+    "capital_raising": 0.7, "capital_increase": 0.7, "third_party_allotment": 0.7,
+    "material_change": 0.7, "sc_13d_a": 0.7, "material_fact": 0.65,
+    "item_restatement": 0.75, "cluster_sells": 0.75,
+    "strategic_review": 0.65, "rule_2_4": 0.65, "major_shareholder_change": 0.6,
+    "thirteenf_new_position": 0.6, "thirteenf_add": 0.5,
+    # soft / ambient signals
+    "going_concern": 0.55, "credit_spread_widening": 0.5,
+    "sec_comment_letter": 0.5, "buyback": 0.45, "spac_arb": 0.4,
+    "ofac_designation_other": 0.4, "earnings_revision": 0.4,
+}
+
+# Source-reliability weight. A court docket / structured regulatory
+# filing is more reliable than a keyword full-text hit or a lobbying
+# registration (which is a weak proxy for a future event).
+SOURCE_RELIABILITY: dict[str, float] = {
+    "CourtListener-RECAP": 1.0, "EDGAR-SC13D": 1.0, "EDGAR-Form15": 1.0,
+    "EDGAR-8K-items": 0.95, "EDGAR-forms": 0.95, "EDGAR-postreorg": 0.95,
+    "SEDAR+": 0.9, "NSM": 0.9, "TDnet": 0.9, "CVM-IPE": 0.9, "ASX": 0.9,
+    "EDGAR-13F": 0.85, "EDGAR-spinoff-radar": 0.85, "OFAC": 0.85,
+    "EDGAR-FTS": 0.7,          # keyword full-text — noisier
+    "FRED-ICE-BofA-OAS": 0.6,  # market-level, not name-level
+    "LDA-Senate": 0.45,        # lobbying — weak forward proxy
+}
+
+RECENCY_HALFLIFE_DAYS = 21.0   # a signal's weight halves every 3 weeks
+
+
+def _severity(label: str) -> float:
+    sub = (label or "").split(".")[-1]
+    return EVENT_SEVERITY.get(sub, 0.5)
+
+
+def _reliability(source: str) -> float:
+    return SOURCE_RELIABILITY.get(source, 0.6)
+
+
+def _recency_weight(day_iso: str) -> float:
+    try:
+        d = date.fromisoformat((day_iso or "")[:10])
+    except ValueError:
+        return 0.5
+    age = max(0, (date.today() - d).days)
+    return 0.5 ** (age / RECENCY_HALFLIFE_DAYS)
+
+
+_SM = None
+
+
+def _sec_master():
+    global _SM
+    if _SM is None:
+        try:
+            from src.security_master import SecurityMaster
+            _SM = SecurityMaster()
+        except Exception:
+            _SM = False
+    return _SM or None
+
+
 def entity_key(rec: dict) -> str:
-    """Resolve an inbox record to a stable entity key."""
+    """Resolve an inbox record to a canonical entity key via the security
+    master (CIK<->ticker<->CUSIP<->ISIN crosswalk), so a 13F CUSIP
+    position and an 8-K ticker filing for the same issuer collapse to the
+    same key. Falls back to the local stem logic if the master is
+    unavailable (offline)."""
+    sm = _sec_master()
+    if sm is not None:
+        try:
+            key = sm.canonical_key(
+                cik=rec.get("cik"), ticker=rec.get("ticker"),
+                cusip=rec.get("cusip"), isin=rec.get("isin"),
+                name=rec.get("name"))
+            if key:
+                return key.upper()
+        except Exception:
+            pass
     return (stem_ticker(rec.get("ticker"))
             or (rec.get("cusip") or "").upper()
             or (rec.get("isin") or "").upper()
@@ -104,10 +199,15 @@ def collect_inbox(days_back: int) -> list[dict]:
 
 
 def build_corroboration(records: list[dict]) -> dict[str, dict]:
-    """entity_key -> {sources, tiers, labels, name, days, records}."""
+    """entity_key -> aggregate with a weighted institutional conviction
+    score. conviction = sum over records of
+        severity(event) * reliability(source) * recency(day),
+    with a diversity bonus for distinct sources so a name seen by three
+    INDEPENDENT sources outranks one seen thrice by the same source."""
     by_entity: dict[str, dict] = defaultdict(
         lambda: {"sources": set(), "tiers": set(), "labels": set(),
-                 "name": "", "days": set(), "n_records": 0})
+                 "name": "", "days": set(), "n_records": 0,
+                 "conviction": 0.0, "hardest": 0.0})
     for rec in records:
         # Skip our own derived corroboration records — they are not an
         # independent primary source and would inflate the count on re-run.
@@ -121,12 +221,23 @@ def build_corroboration(records: list[dict]) -> dict[str, dict]:
         src = rec.get("source", "") or rec.get("_tier_dir", "")
         if src:
             e["sources"].add(src)
+        label = rec.get("query_label", "")
         e["tiers"].add(rec.get("tier", "") or rec.get("_tier_dir", ""))
-        e["labels"].add(rec.get("query_label", ""))
-        e["days"].add(rec.get("filed") or rec.get("_day", ""))
+        e["labels"].add(label)
+        day = rec.get("filed") or rec.get("_day", "")
+        e["days"].add(day)
         e["n_records"] += 1
+        sev = _severity(label)
+        e["conviction"] += sev * _reliability(src) * _recency_weight(day)
+        e["hardest"] = max(e["hardest"], sev)
         if not e["name"]:
             e["name"] = display_name(rec)
+    # Diversity multiplier: distinct-source count amplifies conviction
+    # (independent confirmation is worth more than repetition).
+    for e in by_entity.values():
+        n_src = len(e["sources"])
+        e["diversity_mult"] = 1.0 + 0.25 * max(0, n_src - 1)
+        e["conviction_score"] = round(e["conviction"] * e["diversity_mult"], 3)
     return by_entity
 
 
@@ -159,6 +270,8 @@ def emit_corroborated_inbox(entity_key: str, e: dict,
         "sources":     sources,
         "tiers":       sorted(t for t in e["tiers"] if t),
         "labels":      sorted(l for l in e["labels"] if l),
+        "conviction_score": e.get("conviction_score", 0.0),
+        "hardest_event": round(e.get("hardest", 0.0), 3),
         "source":      "corroboration",
         "fetched_at":  fetched_at,
     }
@@ -180,10 +293,14 @@ def main() -> int:
     by_entity = build_corroboration(records)
     print(f"  {len(by_entity)} distinct entities")
 
-    # Rank by (n distinct sources, n records)
+    # Rank by weighted conviction score (institutional), then distinct
+    # sources as a tiebreak. This replaces the naive distinct-source
+    # count: a name flagged by one hard, reliable, recent event
+    # (bankruptcy filed today) can outrank a name flagged by three soft,
+    # stale, low-reliability signals.
     ranked = sorted(
         by_entity.items(),
-        key=lambda kv: (len(kv[1]["sources"]), kv[1]["n_records"]),
+        key=lambda kv: (kv[1]["conviction_score"], len(kv[1]["sources"])),
         reverse=True)
 
     corroborated = [(k, e) for k, e in ranked
@@ -201,6 +318,8 @@ def main() -> int:
             "sources": sorted(e["sources"]),
             "tiers": sorted(t for t in e["tiers"] if t),
             "n_records": e["n_records"],
+            "conviction_score": e["conviction_score"],
+            "hardest_event": round(e["hardest"], 3),
         }
     CORROB_JSON.parent.mkdir(parents=True, exist_ok=True)
     CORROB_JSON.write_text(json.dumps(persist, indent=2, sort_keys=True))
@@ -220,28 +339,33 @@ def main() -> int:
         f"- {len(by_entity)} distinct entities",
         f"- {len(corroborated)} corroborated by >= {args.min_sources} sources",
         "",
-        "## Top corroborated entities",
+        "## Top corroborated entities (ranked by weighted conviction)",
         "",
-        "| Rank | Entity | Sources | # | Tiers | Query labels |",
-        "|---:|---|---:|---:|---|---|",
+        "Conviction = Σ severity(event) × reliability(source) × recency(day), "
+        "× a distinct-source diversity multiplier. Entity resolution is via "
+        "the security master (CIK↔ticker↔CUSIP↔ISIN), so a 13F CUSIP "
+        "position and an 8-K ticker filing for the same issuer corroborate.",
+        "",
+        "| Rank | Entity | Conviction | Sources | # | Hardest | Query labels |",
+        "|---:|---|---:|---:|---:|---:|---|",
     ]
     for i, (k, e) in enumerate(corroborated[:60], 1):
-        srcs = ", ".join(sorted(e["sources"]))
-        tiers = ", ".join(sorted(t for t in e["tiers"] if t))
         labels = ", ".join(sorted(
             l.split(".")[-1] for l in e["labels"] if l)[:6])
         lines.append(
-            f"| {i} | {e['name'][:40]} | {len(e['sources'])} | "
-            f"{e['n_records']} | {tiers[:30]} | {labels[:50]} |")
+            f"| {i} | {e['name'][:38]} | {e['conviction_score']:.2f} | "
+            f"{len(e['sources'])} | {e['n_records']} | "
+            f"{e['hardest']:.2f} | {labels[:46]} |")
     CORROB_MD.parent.mkdir(parents=True, exist_ok=True)
     CORROB_MD.write_text("\n".join(lines) + "\n")
 
     print(f"\nWrote {CORROB_JSON}")
     print(f"Wrote {CORROB_MD}")
-    print(f"\nTop corroborated entities:")
+    print(f"\nTop corroborated entities (by weighted conviction):")
     for i, (k, e) in enumerate(corroborated[:12], 1):
-        print(f"  {i:2d}. {len(e['sources'])} sources  "
-              f"{e['name'][:38]:38s} [{', '.join(sorted(e['sources']))}]")
+        print(f"  {i:2d}. conv={e['conviction_score']:5.2f} "
+              f"{len(e['sources'])}src  {e['name'][:34]:34s} "
+              f"[{', '.join(sorted(e['sources']))}]")
     return 0
 
 

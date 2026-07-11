@@ -1,20 +1,7 @@
 {
-  "ACTELISNETWORKSASNSCIK0001141284": {
-    "n_records": 3,
-    "n_sources": 3,
-    "name": "ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)",
-    "sources": [
-      "red_flag",
-      "spinoff",
-      "tier_s"
-    ],
-    "tiers": [
-      "red_flag",
-      "spinoff",
-      "tier_s"
-    ]
-  },
-  "AETHLONMEDICALAEMDCIK0000882291": {
+  "AEMD": {
+    "conviction_score": 1.617,
+    "hardest_event": 0.95,
     "n_records": 4,
     "n_sources": 3,
     "name": "AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)",
@@ -29,7 +16,41 @@
       "tier_s"
     ]
   },
-  "BATTALIONOILBATLCIK0001282648": {
+  "APTOF": {
+    "conviction_score": 0.988,
+    "hardest_event": 0.8,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Aptose Biosciences Inc.  (APTOF)  (CIK 0000882361)",
+    "sources": [
+      "EDGAR-Form15",
+      "red_flag"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "ASNS": {
+    "conviction_score": 1.262,
+    "hardest_event": 0.95,
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "BATL": {
+    "conviction_score": 1.898,
+    "hardest_event": 1.0,
     "n_records": 3,
     "n_sources": 3,
     "name": "BATTALION OIL CORP  (BATL)  (CIK 0001282648)",
@@ -43,7 +64,9 @@
       "tier_s"
     ]
   },
-  "BEDBATHBEYONDBBBYBBBYWTCIK0001130713": {
+  "BBBY-WT": {
+    "conviction_score": 1.197,
+    "hardest_event": 0.85,
     "n_records": 3,
     "n_sources": 3,
     "name": "BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)",
@@ -59,6 +82,8 @@
     ]
   },
   "BHP": {
+    "conviction_score": 1.591,
+    "hardest_event": 0.5,
     "n_records": 4,
     "n_sources": 2,
     "name": "BHP GROUP LIMITED",
@@ -70,7 +95,54 @@
       "rev_pref"
     ]
   },
-  "CADRENALTHERAPEUTICSCVKDCIK0001937993": {
+  "CBIO": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "CLGN": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "CURB": {
+    "conviction_score": 0.809,
+    "hardest_event": 0.5,
+    "n_records": 3,
+    "n_sources": 2,
+    "name": "Curbline Properties Corp.  (CURB)  (CIK 0002027317)",
+    "sources": [
+      "red_flag",
+      "spinoff"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff"
+    ]
+  },
+  "CVKD": {
+    "conviction_score": 1.262,
+    "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
     "name": "Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)",
@@ -85,59 +157,9 @@
       "tier_s"
     ]
   },
-  "COLLPLANTBIOTECHNOLOGIESCLGNCIK0001631487": {
-    "n_records": 2,
-    "n_sources": 2,
-    "name": "CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)",
-    "sources": [
-      "red_flag",
-      "tier_s"
-    ],
-    "tiers": [
-      "red_flag",
-      "tier_s"
-    ]
-  },
-  "CRESCENTBIOPHARMACBIOCIK0001253689": {
-    "n_records": 2,
-    "n_sources": 2,
-    "name": "CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)",
-    "sources": [
-      "red_flag",
-      "tier_s"
-    ],
-    "tiers": [
-      "red_flag",
-      "tier_s"
-    ]
-  },
-  "CURBLINEPROPERTIESCURBCIK0002027317": {
-    "n_records": 3,
-    "n_sources": 2,
-    "name": "Curbline Properties Corp.  (CURB)  (CIK 0002027317)",
-    "sources": [
-      "red_flag",
-      "spinoff"
-    ],
-    "tiers": [
-      "red_flag",
-      "spinoff"
-    ]
-  },
-  "ENCOREMEDICALEMICIK0001838003": {
-    "n_records": 2,
-    "n_sources": 2,
-    "name": "Encore Medical, Inc.  (EMI)  (CIK 0001838003)",
-    "sources": [
-      "red_flag",
-      "spinoff"
-    ],
-    "tiers": [
-      "red_flag",
-      "spinoff"
-    ]
-  },
-  "ESHALLGOEHGOCIK0001879754": {
+  "EHGO": {
+    "conviction_score": 1.294,
+    "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 2,
     "name": "EShallGo Inc.  (EHGO)  (CIK 0001879754)",
@@ -150,7 +172,39 @@
       "tier_s"
     ]
   },
-  "FMCFMCCIK0000037785": {
+  "EMI": {
+    "conviction_score": 0.539,
+    "hardest_event": 0.5,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Encore Medical, Inc.  (EMI)  (CIK 0001838003)",
+    "sources": [
+      "red_flag",
+      "spinoff"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff"
+    ]
+  },
+  "FDMMU": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "FMC": {
+    "conviction_score": 1.197,
+    "hardest_event": 0.85,
     "n_records": 3,
     "n_sources": 3,
     "name": "FMC CORP  (FMC)  (CIK 0000037785)",
@@ -165,20 +219,9 @@
       "tier_s"
     ]
   },
-  "FREEDOMMETALSACQUISITIONFDMMCIK0002129659": {
-    "n_records": 2,
-    "n_sources": 2,
-    "name": "Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)",
-    "sources": [
-      "red_flag",
-      "tier_s"
-    ],
-    "tiers": [
-      "red_flag",
-      "tier_s"
-    ]
-  },
-  "GATXGATXCIK0000040211": {
+  "GATX": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
     "name": "GATX CORP  (GATX)  (CIK 0000040211)",
@@ -191,7 +234,9 @@
       "tier_s"
     ]
   },
-  "HIVEDIGITALTECHNOLOGIESHIVECIK0001720424": {
+  "HIVE": {
+    "conviction_score": 1.262,
+    "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
     "name": "HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)",
@@ -206,7 +251,9 @@
       "tier_s"
     ]
   },
-  "HUBCYBERSECURITYHUBCHUBCWHUBCZCIK0001905660": {
+  "HUBCZ": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
     "name": "Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)",
@@ -219,7 +266,9 @@
       "tier_s"
     ]
   },
-  "IMCANNABISIMCCCIK0001792030": {
+  "IMCC": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
     "name": "IM Cannabis Corp.  (IMCC)  (CIK 0001792030)",
@@ -232,7 +281,9 @@
       "tier_s"
     ]
   },
-  "INUVOINUVCIK0000829323": {
+  "INUV": {
+    "conviction_score": 1.262,
+    "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
     "name": "Inuvo, Inc.  (INUV)  (CIK 0000829323)",
@@ -247,22 +298,24 @@
       "tier_s"
     ]
   },
-  "QNITYELECTRONICSQCIK0002058873": {
-    "n_records": 3,
-    "n_sources": 3,
-    "name": "Qnity Electronics, Inc.  (Q)  (CIK 0002058873)",
+  "LEG": {
+    "conviction_score": 1.438,
+    "hardest_event": 0.9,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "LEGGETT & PLATT INC",
     "sources": [
-      "red_flag",
-      "spinoff",
-      "tier_s"
+      "ASX",
+      "EDGAR-forms"
     ],
     "tiers": [
-      "red_flag",
-      "spinoff",
+      "rev_pref",
       "tier_s"
     ]
   },
-  "QXOQXOQXOPBCIK0001236275": {
+  "QXO-PB": {
+    "conviction_score": 0.539,
+    "hardest_event": 0.5,
     "n_records": 2,
     "n_sources": 2,
     "name": "QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)",
@@ -275,22 +328,9 @@
       "tier_s"
     ]
   },
-  "RANGEIMPACTRNGECIK0001438943": {
-    "n_records": 3,
-    "n_sources": 3,
-    "name": "RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)",
-    "sources": [
-      "red_flag",
-      "spinoff",
-      "tier_s"
-    ],
-    "tiers": [
-      "red_flag",
-      "spinoff",
-      "tier_s"
-    ]
-  },
-  "REDWIRERDWCIK0001819810": {
+  "RDW": {
+    "conviction_score": 0.728,
+    "hardest_event": 0.85,
     "n_records": 2,
     "n_sources": 2,
     "name": "Redwire Corp  (RDW)  (CIK 0001819810)",
@@ -303,7 +343,9 @@
       "tier_s"
     ]
   },
-  "RESIDEOTECHNOLOGIESREZICIK0001740332": {
+  "REZI": {
+    "conviction_score": 0.97,
+    "hardest_event": 0.5,
     "n_records": 3,
     "n_sources": 3,
     "name": "RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)",
@@ -318,7 +360,41 @@
       "tier_s"
     ]
   },
-  "SABLEOFFSHORESOCCIK0001831481": {
+  "RNGE": {
+    "conviction_score": 1.262,
+    "hardest_event": 0.95,
+    "n_records": 3,
+    "n_sources": 3,
+    "name": "RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)",
+    "sources": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "spinoff",
+      "tier_s"
+    ]
+  },
+  "SOAR": {
+    "conviction_score": 0.755,
+    "hardest_event": 0.85,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)",
+    "sources": [
+      "red_flag",
+      "tier_s"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "SOC": {
+    "conviction_score": 0.997,
+    "hardest_event": 0.85,
     "n_records": 3,
     "n_sources": 2,
     "name": "Sable Offshore Corp.  (SOC)  (CIK 0001831481)",
@@ -331,20 +407,9 @@
       "tier_s"
     ]
   },
-  "STEWARDSSWRDCIK0001795851": {
-    "n_records": 2,
-    "n_sources": 2,
-    "name": "Stewards, Inc.  (SWRD)  (CIK 0001795851)",
-    "sources": [
-      "red_flag",
-      "tier_s"
-    ],
-    "tiers": [
-      "red_flag",
-      "tier_s"
-    ]
-  },
-  "SURFAIRMOBILITYSRFMCIK0001936224": {
+  "SRFM": {
+    "conviction_score": 1.262,
+    "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
     "name": "SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)",
@@ -359,10 +424,12 @@
       "tier_s"
     ]
   },
-  "THREELIONSACQUISITIONCIK0002128462": {
+  "SWRD": {
+    "conviction_score": 0.728,
+    "hardest_event": 0.85,
     "n_records": 2,
     "n_sources": 2,
-    "name": "Three Lions Acquisition Corp.  (CIK 0002128462)",
+    "name": "Stewards, Inc.  (SWRD)  (CIK 0001795851)",
     "sources": [
       "red_flag",
       "tier_s"
@@ -372,10 +439,27 @@
       "tier_s"
     ]
   },
-  "VOLATOSOARSOARWCIK0001853070": {
+  "TBRG": {
+    "conviction_score": 2.479,
+    "hardest_event": 0.9,
+    "n_records": 3,
+    "n_sources": 2,
+    "name": "TruBridge, Inc.",
+    "sources": [
+      "EDGAR-8K-items",
+      "EDGAR-forms"
+    ],
+    "tiers": [
+      "red_flag",
+      "tier_s"
+    ]
+  },
+  "TLAC": {
+    "conviction_score": 0.782,
+    "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
-    "name": "Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)",
+    "name": "Three Lions Acquisition Corp.  (CIK 0002128462)",
     "sources": [
       "red_flag",
       "tier_s"
