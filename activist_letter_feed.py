@@ -109,14 +109,18 @@ def main() -> int:
     print(f"[1/2] Scanning 8-K Item 7.01/8.01 {start}..{end}",
           file=sys.stderr, flush=True)
 
+    # METHODOLOGY FIX (audit finding A9): the old queries[:30] cap
+    # silently dropped the 8-K query pair for all but the first ~15
+    # activists. To bound runtime WITHOUT losing coverage, we now run
+    # ONE combined query per activist (the two phrase variants OR'd)
+    # and cap pagination per query instead of truncating the firm list.
     queries = []
     for a in KNOWN_ACTIVISTS:
-        # quote-wrapped multi-word firm
-        queries.append(f'"{a}" "strategic alternatives"')
-        queries.append(f'"{a}" "public letter"')
+        queries.append(
+            f'"{a}" ("strategic alternatives" OR "public letter")')
 
     seen = set()
-    for q in queries[:30]:  # cap on queries to keep runtime bounded
+    for q in queries:
         offset = 0
         while len(seen) < args.limit and offset < 200:
             url = (f"{EFTS}?forms=8-K&dateRange=custom"

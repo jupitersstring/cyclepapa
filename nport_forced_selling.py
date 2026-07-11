@@ -113,7 +113,7 @@ def cik_for_fund(name: str) -> str | None:
     return None
 
 
-def recent_nport_filings(cik: str, n: int = 2) -> list[dict]:
+def recent_nport_filings(cik: str, n: int = 10) -> list[dict]:
     """Return last n NPORT-P filings for a CIK."""
     try:
         from edgar import _get
@@ -138,20 +138,28 @@ def recent_nport_filings(cik: str, n: int = 2) -> list[dict]:
     return out
 
 
-def parse_nport(cik: str, accession: str) -> dict[str, dict]:
+def parse_nport(cik: str, accession: str) -> tuple[str, dict[str, dict]]:
     """Parse N-PORT-P primary XML for holdings.
-    Returns {cusip: {value_usd, shares, name}}."""
+
+    METHODOLOGY FIX (audit finding — series mixing): trust-level CIKs
+    (e.g. Dodge & Cox Funds) file one N-PORT-P per fund SERIES, so
+    consecutive filings under the same CIK are often DIFFERENT funds.
+    Diffing them produces garbage deltas. We now extract the S000-
+    prefixed seriesId from genInfo and the caller pairs only
+    same-series filings.
+
+    Returns (series_id, {cusip: {value_usd, shares, name}})."""
     try:
         from edgar import _get
     except ImportError:
-        return {}
+        return ("", {})
     acc_no = accession.replace("-", "")
     base = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc_no}"
     # N-PORT-P primary is typically primary_doc.xml or primarydoc.xml
     try:
         idx = _get(f"{base}/index.json").json()
     except Exception:
-        return {}
+        return ("", {})
     primary_xml = None
     for f in (idx.get("directory", {}).get("item") or []):
         name = f.get("name", "")
@@ -170,18 +178,20 @@ def parse_nport(cik: str, accession: str) -> dict[str, dict]:
             except Exception:
                 continue
     if not primary_xml:
-        return {}
+        return ("", {})
     try:
         xml_text = _get(primary_xml).text
     except Exception:
-        return {}
+        return ("", {})
     xml_text = re.sub(r' xmlns="[^"]+"', "", xml_text)
     xml_text = re.sub(r"<n1:", "<", xml_text)
     xml_text = re.sub(r"</n1:", "</", xml_text)
     try:
         root = ET.fromstring(xml_text)
     except Exception:
-        return {}
+        return ("", {})
+
+    series_id = (root.findtext(".//seriesId") or "").strip()
 
     out = {}
     # N-PORT holdings are in invstOrSec subtree
@@ -206,7 +216,7 @@ def parse_nport(cik: str, accession: str) -> dict[str, dict]:
             out[cusip]["shares"] += shrs
         else:
             out[cusip] = {"value_usd": value, "shares": shrs, "name": name}
-    return out
+    return (series_id, out)
 
 
 def build_name_index() -> dict:
@@ -290,18 +300,62 @@ def main() -> int:
     yf = json.loads((ROOT / "yfinance_quick.json").read_text())
 
     n_parsed = 0
+    from datetime import datetime, timezone
+    _today = datetime.now(timezone.utc).replace(tzinfo=None)
+
     for name, cik in fund_ciks.items():
         print(f"\n[{name[:32]}] CIK {cik}", file=sys.stderr, flush=True)
-        filings = recent_nport_filings(cik, n=2)
+        filings = recent_nport_filings(cik, n=10)
         time.sleep(args.sleep)
         if len(filings) < 2:
             print(f"  only {len(filings)} filings", file=sys.stderr)
             continue
-        cur = parse_nport(cik, filings[0]["accession"])
+
+        # METHODOLOGY FIX (series mixing + staleness): parse the most
+        # recent filing, note its seriesId, then walk subsequent
+        # filings until one with the SAME series is found. Gate on
+        # recency: current filing <=200d old, pair gap <=200d.
+        try:
+            cur_dt = datetime.strptime(
+                filings[0]["filing_date"][:10], "%Y-%m-%d")
+        except Exception:
+            continue
+        if (_today - cur_dt).days > 200:
+            print(f"  STALE latest N-PORT {filings[0]['filing_date']} "
+                  f"-- skipped", file=sys.stderr)
+            continue
+
+        cur_series, cur = parse_nport(cik, filings[0]["accession"])
         time.sleep(args.sleep)
-        prior = parse_nport(cik, filings[1]["accession"])
-        time.sleep(args.sleep)
-        print(f"  cur={len(cur)} prior={len(prior)}", file=sys.stderr)
+        if not cur:
+            print("  current filing unparseable", file=sys.stderr)
+            continue
+
+        prior = {}
+        prior_series = ""
+        for cand in filings[1:]:
+            try:
+                cand_dt = datetime.strptime(
+                    cand["filing_date"][:10], "%Y-%m-%d")
+                if (cur_dt - cand_dt).days > 200:
+                    break   # too far back; stop walking
+            except Exception:
+                continue
+            ps, ph = parse_nport(cik, cand["accession"])
+            time.sleep(args.sleep)
+            if not ph:
+                continue
+            # Same series (or both unlabeled single-series filers)
+            if ps == cur_series:
+                prior, prior_series = ph, ps
+                break
+        if not prior:
+            print(f"  no same-series prior within 200d "
+                  f"(series={cur_series or 'unlabeled'}) -- skipped",
+                  file=sys.stderr)
+            continue
+        print(f"  series={cur_series or 'unlabeled'} "
+              f"cur={len(cur)} prior={len(prior)}", file=sys.stderr)
         n_parsed += 1
 
         all_cusips = set(cur) | set(prior)

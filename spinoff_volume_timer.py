@@ -79,11 +79,18 @@ def main() -> int:
     out = {}
     n_processed = 0
     for tk, fd in candidates.items():
+        # METHODOLOGY FIX (audit finding A7): `fd` is the Form 10
+        # FILING date, not the distribution date -- distribution
+        # typically follows registration by 3-6 months. The old code
+        # labeled pre-listing names EARLY_FORCED_SELLING. We now
+        # derive the true first-trade date from the first session with
+        # non-zero volume; if none exists yet, the name is
+        # PRE_DISTRIBUTION (registered, not yet trading).
         try:
-            dist_dt = datetime.strptime(fd[:10], "%Y-%m-%d")
+            reg_dt = datetime.strptime(fd[:10], "%Y-%m-%d")
         except Exception:
             continue
-        if dist_dt < cutoff:
+        if reg_dt < cutoff:
             continue
 
         # Fetch daily volume + shares outstanding
@@ -93,16 +100,38 @@ def main() -> int:
             so = info.get("sharesOutstanding") or info.get("floatShares")
             if not so:
                 continue
-            hist = t.history(start=dist_dt.strftime("%Y-%m-%d"),
+            hist = t.history(start=reg_dt.strftime("%Y-%m-%d"),
                               end=today.strftime("%Y-%m-%d"))
-            if hist is None or len(hist) == 0:
-                continue
-            cum_vol = int(hist["Volume"].sum())
         except Exception:
             continue
 
+        first_trade_dt = None
+        cum_vol = 0
+        if hist is not None and len(hist) > 0:
+            traded = hist[hist["Volume"] > 0]
+            if len(traded) > 0:
+                first_trade_dt = traded.index[0].to_pydatetime()\
+                    .replace(tzinfo=None)
+                cum_vol = int(traded["Volume"].sum())
+
+        if first_trade_dt is None:
+            out[tk] = {
+                "registration_date": fd[:10],
+                "distribution_date": None,
+                "first_trade_date": None,
+                "days_since_first_trade": None,
+                "shares_out_est": so,
+                "cum_volume": 0,
+                "pct_of_shares": 0.0,
+                "status": "PRE_DISTRIBUTION",
+                "score": 0,
+            }
+            n_processed += 1
+            time.sleep(args.sleep)
+            continue
+
         pct_of_shares = cum_vol / so * 100 if so else 0
-        days_since = (today - dist_dt).days
+        days_since = (today - first_trade_dt).days
 
         if pct_of_shares < 20:
             status = "EARLY_FORCED_SELLING"
@@ -124,7 +153,12 @@ def main() -> int:
             score = 0
 
         out[tk] = {
-            "distribution_date": fd[:10],
+            "registration_date": fd[:10],
+            # kept for backward compatibility; now the true first-trade
+            # date rather than the Form 10 filing date
+            "distribution_date": first_trade_dt.strftime("%Y-%m-%d"),
+            "first_trade_date": first_trade_dt.strftime("%Y-%m-%d"),
+            "days_since_first_trade": days_since,
             "days_since_distribution": days_since,
             "shares_out_est": so,
             "cum_volume": cum_vol,

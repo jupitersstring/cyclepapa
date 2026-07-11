@@ -68,8 +68,11 @@ PATTERNS = {
     "long_term_debt": re.compile(
         r"long[\-\s]+term\s+debt[\s\.\-]*\$?\s*([\d,]+(?:\.\d+)?)",
         re.I),
+    # Audit finding A10: accept stockholders OR shareholders spelling
+    # (old pattern captured equity on only 33/164 filings).
     "equity": re.compile(
-        r"total\s+stockholders[\s'’]+\s*equity[\s\.\-]*\$?\s*([\d,]+(?:\.\d+)?)",
+        r"total\s+(?:stock|share)holders[\s'’]*\s*equity"
+        r"[\s\.\-]*\$?\s*([\d,]+(?:\.\d+)?)",
         re.I),
     "shares_outstanding": re.compile(
         r"common\s+stock.*?outstanding\s+\(?(\d[\d,]*?\.?\d*)",

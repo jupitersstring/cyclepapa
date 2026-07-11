@@ -1,40 +1,11 @@
 {
-  "RIG": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 1,
-    "delta_value_usd": 103605909000,
-    "filers_adding": [
-      "elliott investment management"
-    ],
-    "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
-  },
-  "BILL": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 2,
-    "activist_added": 0,
-    "activist_trimmed": 2,
-    "new_positions": 0,
-    "delta_value_usd": -277703532000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "starboard value lp",
-      "elliott investment management"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 2 activist trim"
-  },
-  "STRD": {
+  "CCI": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
     "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -11170280000,
+    "delta_value_usd": -9261000000,
     "filers_adding": [],
     "filers_trimming": [
       "elliott investment management"
@@ -42,47 +13,19 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "OR": {
+  "PEP": {
     "n_filers_adding": 1,
     "n_filers_trimming": 0,
     "activist_added": 1,
     "activist_trimmed": 0,
     "new_positions": 0,
-    "delta_value_usd": 8181930000,
+    "delta_value_usd": 15006750000,
     "filers_adding": [
       "elliott investment management"
     ],
     "filers_trimming": [],
     "score": 19.0,
     "reasons": "1 known activist added"
-  },
-  "FTV": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 1,
-    "delta_value_usd": 41460000000,
-    "filers_adding": [
-      "elliott investment management"
-    ],
-    "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
-  },
-  "ETSY": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -27300000000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "elliott investment management"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
   },
   "SU": {
     "n_filers_adding": 1,
@@ -112,20 +55,6 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "PSX": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 0,
-    "delta_value_usd": 1022998140000,
-    "filers_adding": [
-      "elliott investment management"
-    ],
-    "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
-  },
   "HDB": {
     "n_filers_adding": 1,
     "n_filers_trimming": 0,
@@ -140,13 +69,112 @@
     "score": 19.0,
     "reasons": "1 known activist added"
   },
-  "PEP": {
+  "HPE": {
     "n_filers_adding": 1,
     "n_filers_trimming": 0,
     "activist_added": 1,
     "activist_trimmed": 0,
     "new_positions": 0,
-    "delta_value_usd": 15006750000,
+    "delta_value_usd": 205395418000,
+    "filers_adding": [
+      "elliott investment management"
+    ],
+    "filers_trimming": [],
+    "score": 19.0,
+    "reasons": "1 known activist added"
+  },
+  "BILL": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 2,
+    "activist_added": 0,
+    "activist_trimmed": 2,
+    "new_positions": 0,
+    "delta_value_usd": -277703532000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "starboard value lp",
+      "elliott investment management"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 2 activist trim"
+  },
+  "WPM": {
+    "n_filers_adding": 1,
+    "n_filers_trimming": 0,
+    "activist_added": 1,
+    "activist_trimmed": 0,
+    "new_positions": 1,
+    "delta_value_usd": 13101000000,
+    "filers_adding": [
+      "elliott investment management"
+    ],
+    "filers_trimming": [],
+    "score": 27.0,
+    "reasons": "1 known activist added; 1 new position(s)"
+  },
+  "FTV": {
+    "n_filers_adding": 1,
+    "n_filers_trimming": 0,
+    "activist_added": 1,
+    "activist_trimmed": 0,
+    "new_positions": 1,
+    "delta_value_usd": 41460000000,
+    "filers_adding": [
+      "elliott investment management"
+    ],
+    "filers_trimming": [],
+    "score": 27.0,
+    "reasons": "1 known activist added; 1 new position(s)"
+  },
+  "PINS": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 1,
+    "activist_added": 0,
+    "activist_trimmed": 1,
+    "new_positions": 0,
+    "delta_value_usd": -211400000000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "elliott investment management"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "ETSY": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 1,
+    "activist_added": 0,
+    "activist_trimmed": 1,
+    "new_positions": 0,
+    "delta_value_usd": -27300000000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "elliott investment management"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "PSX": {
+    "n_filers_adding": 1,
+    "n_filers_trimming": 0,
+    "activist_added": 1,
+    "activist_trimmed": 0,
+    "new_positions": 0,
+    "delta_value_usd": 1022998140000,
+    "filers_adding": [
+      "elliott investment management"
+    ],
+    "filers_trimming": [],
+    "score": 19.0,
+    "reasons": "1 known activist added"
+  },
+  "SDRL": {
+    "n_filers_adding": 1,
+    "n_filers_trimming": 0,
+    "activist_added": 1,
+    "activist_trimmed": 0,
+    "new_positions": 0,
+    "delta_value_usd": 56985341000,
     "filers_adding": [
       "elliott investment management"
     ],
@@ -182,27 +210,13 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "HPE": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 0,
-    "delta_value_usd": 205395418000,
-    "filers_adding": [
-      "elliott investment management"
-    ],
-    "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
-  },
-  "WPM": {
+  "RIG": {
     "n_filers_adding": 1,
     "n_filers_trimming": 0,
     "activist_added": 1,
     "activist_trimmed": 0,
     "new_positions": 1,
-    "delta_value_usd": 13101000000,
+    "delta_value_usd": 103605909000,
     "filers_adding": [
       "elliott investment management"
     ],
@@ -210,41 +224,13 @@
     "score": 27.0,
     "reasons": "1 known activist added; 1 new position(s)"
   },
-  "CCI": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -9261000000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "elliott investment management"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
-  },
-  "PINS": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -211400000000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "elliott investment management"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
-  },
-  "SDRL": {
+  "OR": {
     "n_filers_adding": 1,
     "n_filers_trimming": 0,
     "activist_added": 1,
     "activist_trimmed": 0,
     "new_positions": 0,
-    "delta_value_usd": 56985341000,
+    "delta_value_usd": 8181930000,
     "filers_adding": [
       "elliott investment management"
     ],
@@ -252,27 +238,27 @@
     "score": 19.0,
     "reasons": "1 known activist added"
   },
-  "KVUE": {
+  "STRD": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
     "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -273076000,
+    "delta_value_usd": -11170280000,
     "filers_adding": [],
     "filers_trimming": [
-      "starboard value lp"
+      "elliott investment management"
     ],
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "QRVO": {
+  "ROG": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
     "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -53402293000,
+    "delta_value_usd": -47484633000,
     "filers_adding": [],
     "filers_trimming": [
       "starboard value lp"
@@ -293,20 +279,6 @@
     ],
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
-  },
-  "GPGI": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 1,
-    "delta_value_usd": 85962179000,
-    "filers_adding": [
-      "starboard value lp"
-    ],
-    "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
   },
   "RIOT": {
     "n_filers_adding": 1,
@@ -336,13 +308,13 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "MTCH": {
+  "CRM": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
     "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -18004699000,
+    "delta_value_usd": -249101496000,
     "filers_adding": [],
     "filers_trimming": [
       "starboard value lp"
@@ -350,27 +322,27 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "KMX": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 1,
-    "delta_value_usd": 257852632000,
-    "filers_adding": [
-      "starboard value lp"
-    ],
-    "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
-  },
-  "ROG": {
+  "QRVO": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
     "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -47484633000,
+    "delta_value_usd": -53402293000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "starboard value lp"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "MTCH": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 1,
+    "activist_added": 0,
+    "activist_trimmed": 1,
+    "new_positions": 0,
+    "delta_value_usd": -18004699000,
     "filers_adding": [],
     "filers_trimming": [
       "starboard value lp"
@@ -392,20 +364,6 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "FLR": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -71085134000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "starboard value lp"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
-  },
   "ADSK": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
@@ -420,19 +378,19 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "CRM": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -249101496000,
-    "filers_adding": [],
-    "filers_trimming": [
+  "GPGI": {
+    "n_filers_adding": 1,
+    "n_filers_trimming": 0,
+    "activist_added": 1,
+    "activist_trimmed": 0,
+    "new_positions": 1,
+    "delta_value_usd": 85962179000,
+    "filers_adding": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "filers_trimming": [],
+    "score": 27.0,
+    "reasons": "1 known activist added; 1 new position(s)"
   },
   "GENVR": {
     "n_filers_adding": 0,
@@ -447,6 +405,48 @@
     ],
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "KVUE": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 1,
+    "activist_added": 0,
+    "activist_trimmed": 1,
+    "new_positions": 0,
+    "delta_value_usd": -273076000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "starboard value lp"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "FLR": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 1,
+    "activist_added": 0,
+    "activist_trimmed": 1,
+    "new_positions": 0,
+    "delta_value_usd": -71085134000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "starboard value lp"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "KMX": {
+    "n_filers_adding": 1,
+    "n_filers_trimming": 0,
+    "activist_added": 1,
+    "activist_trimmed": 0,
+    "new_positions": 1,
+    "delta_value_usd": 257852632000,
+    "filers_adding": [
+      "starboard value lp"
+    ],
+    "filers_trimming": [],
+    "score": 27.0,
+    "reasons": "1 known activist added; 1 new position(s)"
   },
   "BRCC": {
     "n_filers_adding": 0,
@@ -463,20 +463,18 @@
     "reasons": "net smart-money exits; 1 activist trim"
   },
   "FRPT": {
-    "n_filers_adding": 1,
+    "n_filers_adding": 0,
     "n_filers_trimming": 1,
-    "activist_added": 1,
+    "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -7843888000,
-    "filers_adding": [
-      "jana partners"
-    ],
+    "delta_value_usd": -24440851000,
+    "filers_adding": [],
     "filers_trimming": [
       "engaged capital llc"
     ],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
   },
   "BL": {
     "n_filers_adding": 0,
@@ -534,30 +532,30 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "LDOS": {
-    "n_filers_adding": 1,
-    "n_filers_trimming": 0,
-    "activist_added": 1,
-    "activist_trimmed": 0,
-    "new_positions": 1,
-    "delta_value_usd": 28749806000,
-    "filers_adding": [
-      "jana partners"
-    ],
-    "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
-  },
-  "BKSY-WT": {
+  "META": {
     "n_filers_adding": 0,
     "n_filers_trimming": 1,
     "activist_added": 0,
     "activist_trimmed": 1,
     "new_positions": 0,
-    "delta_value_usd": -4321382000,
+    "delta_value_usd": -242437757000,
     "filers_adding": [],
     "filers_trimming": [
-      "jana partners"
+      "pershing square capital"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 1 activist trim"
+  },
+  "HHH": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 1,
+    "activist_added": 0,
+    "activist_trimmed": 1,
+    "new_positions": 0,
+    "delta_value_usd": -311247576000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "pershing square capital"
     ],
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
@@ -576,35 +574,6 @@
     "score": 19.0,
     "reasons": "1 known activist added"
   },
-  "GOOGN": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 2,
-    "activist_added": 0,
-    "activist_trimmed": 2,
-    "new_positions": 0,
-    "delta_value_usd": -2047797918000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "pershing square capital",
-      "pershing square capital"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 2 activist trim"
-  },
-  "HHH": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -311247576000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "pershing square capital"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
-  },
   "MSFT": {
     "n_filers_adding": 1,
     "n_filers_trimming": 0,
@@ -618,6 +587,21 @@
     "filers_trimming": [],
     "score": 27.0,
     "reasons": "1 known activist added; 1 new position(s)"
+  },
+  "GOOGM": {
+    "n_filers_adding": 0,
+    "n_filers_trimming": 2,
+    "activist_added": 0,
+    "activist_trimmed": 2,
+    "new_positions": 0,
+    "delta_value_usd": -2047797918000,
+    "filers_adding": [],
+    "filers_trimming": [
+      "pershing square capital",
+      "pershing square capital"
+    ],
+    "score": -15,
+    "reasons": "net smart-money exits; 2 activist trim"
   },
   "UBER": {
     "n_filers_adding": 0,
@@ -633,18 +617,38 @@
     "score": -15,
     "reasons": "net smart-money exits; 1 activist trim"
   },
-  "META": {
-    "n_filers_adding": 0,
-    "n_filers_trimming": 1,
-    "activist_added": 0,
-    "activist_trimmed": 1,
-    "new_positions": 0,
-    "delta_value_usd": -242437757000,
-    "filers_adding": [],
-    "filers_trimming": [
-      "pershing square capital"
-    ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+  "_META_FILINGS_USED": {
+    "elliott investment management": {
+      "current": "2026-05-15",
+      "prior": "2026-02-18"
+    },
+    "starboard value lp": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    },
+    "engaged capital llc": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    },
+    "mantle ridge lp": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    },
+    "third point llc": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    },
+    "pershing square capital": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    },
+    "engine capital": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    },
+    "land & buildings": {
+      "current": "2026-05-15",
+      "prior": "2026-02-17"
+    }
   }
 }

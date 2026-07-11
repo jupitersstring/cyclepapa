@@ -131,16 +131,36 @@ def main() -> int:
         shares_with_dates = [(s["date"], s["shares"]) for s in series
                               if s["shares"] is not None]
 
+        # METHODOLOGY FIX (audit finding A1): the old check used >=,
+        # so FLAT series counted as declining, and same-day amendment
+        # pairs produced duplicate readings (both prior "declining"
+        # hits, KALV 77.8->77.8 and LE 95.2->95.2, were same-date
+        # duplicates -- false positives). A real decline now requires
+        # (a) readings on DISTINCT dates and (b) a material drop:
+        # >=1.0pp on the pct series or >=2% fewer shares.
         declining = False
         delta_str = ""
-        if len(pcts_with_dates) >= 2:
-            pcts = [p for _, p in pcts_with_dates]
-            declining = all(pcts[i] >= pcts[i+1] for i in range(len(pcts)-1))
+
+        def _dedupe_by_date(pairs):
+            seen = {}
+            for dt, val in pairs:
+                seen[dt] = val   # keep latest reading per date
+            return sorted(seen.items())
+
+        pd_ = _dedupe_by_date(pcts_with_dates)
+        sd_ = _dedupe_by_date(shares_with_dates)
+        if len(pd_) >= 2:
+            pcts = [p for _, p in pd_]
+            monotone = all(pcts[i] >= pcts[i+1] for i in range(len(pcts)-1))
+            material = (pcts[0] - pcts[-1]) >= 1.0
+            declining = monotone and material
             if declining:
                 delta_str = f"pct {pcts[0]:.1f} -> {pcts[-1]:.1f}"
-        elif len(shares_with_dates) >= 2:
-            sh = [s for _, s in shares_with_dates]
-            declining = all(sh[i] >= sh[i+1] for i in range(len(sh)-1))
+        elif len(sd_) >= 2:
+            sh = [s for _, s in sd_]
+            monotone = all(sh[i] >= sh[i+1] for i in range(len(sh)-1))
+            material = sh[0] > 0 and (sh[0] - sh[-1]) / sh[0] >= 0.02
+            declining = monotone and material
             if declining:
                 delta_str = f"shares {sh[0]:,} -> {sh[-1]:,}"
 

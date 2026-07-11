@@ -73,32 +73,40 @@ def main() -> int:
         insider_pct = _num(y.get("insider_pct"))
         short_pct = _num(y.get("short_pct"))
 
-        # All three pillars must clear thresholds for FULL triangulation
-        # (Voss CHH bar: 26% SI + 40% insider). We use slightly relaxed
-        # versions to avoid empty output but flag the FULL bar.
+        # METHODOLOGY FIX (audit finding A3): CIC language is near-
+        # universal proxy boilerplate (968 of 1,982 scanned names had
+        # ONLY the language pillar). The Voss signal is the
+        # triangulation, not the boilerplate. CIC-language points are
+        # awarded ONLY when at least one behavioral pillar (insider
+        # ownership >= 15% or short interest >= 10%) also fires;
+        # otherwise the row is recorded with score 0 so the consensus
+        # does not count a phantom layer firing.
+        insider_fires = insider_pct is not None and insider_pct >= 0.15
+        short_fires = short_pct is not None and short_pct >= 0.10
+        pillar_present = insider_fires or short_fires
+
         score = 0.0
         reasons = []
-        if has_cic_single:
-            score += 15; reasons.append("single-trigger CIC")
-        elif has_cic_double:
-            score += 8; reasons.append("double-trigger CIC")
+        if pillar_present:
+            if has_cic_single:
+                score += 15; reasons.append("single-trigger CIC")
+            elif has_cic_double:
+                score += 8; reasons.append("double-trigger CIC")
+        else:
+            reasons.append("CIC language only (no behavioral pillar) — not scored")
 
         full_voss = False
         if insider_pct is not None and insider_pct >= 0.30:
             score += 18; reasons.append(f"insider {insider_pct*100:.0f}%")
             if short_pct is not None and short_pct >= 0.20:
                 full_voss = True
-        elif insider_pct is not None and insider_pct >= 0.15:
+        elif insider_fires:
             score += 9; reasons.append(f"insider {insider_pct*100:.0f}%")
-        elif insider_pct is not None and insider_pct >= 0.05:
-            score += 4
 
         if short_pct is not None and short_pct >= 0.20:
             score += 18; reasons.append(f"short {short_pct*100:.0f}%")
-        elif short_pct is not None and short_pct >= 0.10:
+        elif short_fires:
             score += 9; reasons.append(f"short {short_pct*100:.0f}%")
-        elif short_pct is not None and short_pct >= 0.05:
-            score += 4
 
         if full_voss:
             score += 15

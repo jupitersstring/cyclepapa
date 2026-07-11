@@ -216,11 +216,32 @@ def main() -> int:
             odd_score = 0
             snippet = ""
 
+        # METHODOLOGY FIX (audit finding A5): the odd-lot edge only
+        # exists while the tender is LIVE. LEN scored the full edge on
+        # a 198-day-old completed exchange (past-tense results 8-K).
+        # Liveness gate on the latest filing's age: <=60d full score,
+        # 61-120d half, older -> 0 (flagged stale).
+        days_ago = None
+        for fil in filings_list:
+            if isinstance(fil, dict) and fil.get("days_ago") is not None:
+                days_ago = fil["days_ago"]
+                break
+        liveness = "LIVE"
+        if days_ago is None or days_ago > 120:
+            if odd_score:
+                liveness = "STALE_OR_COMPLETED"
+            odd_score = 0
+        elif days_ago > 60:
+            odd_score = round(odd_score * 0.5, 1)
+            liveness = "AGING"
+
         odd_lot_out[tk] = {
             "has_odd_lot_language": has_odd_lot,
             "has_not_prorated_clause": has_prorate,
             "snippet": snippet,
             "accession": accession,
+            "latest_filing_days_ago": days_ago,
+            "liveness": liveness,
             "score": odd_score,
         }
 

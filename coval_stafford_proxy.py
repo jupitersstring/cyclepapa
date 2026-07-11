@@ -61,6 +61,14 @@ def main() -> int:
         dd = (1 - px / hi) * 100
         run_low = (px / lo - 1) * 100 if lo and lo > 0 else None
 
+        # METHODOLOGY FIX (audit finding A6): yfinance
+        # heldPercentInstitutions can exceed 100% (share-class double
+        # counting; 456 of 1,180 rows were >100%). Cap at 100% for
+        # scoring so the "very high" bucket isn't saturated by the
+        # artifact; the raw value is preserved in the output.
+        inst_raw = inst
+        inst = min(inst, 1.0)
+
         # Coval-Stafford pressure score: all four pillars
         score = 0.0
         reasons = []
@@ -91,6 +99,7 @@ def main() -> int:
 
         out[tk] = {
             "inst_pct": inst,
+            "inst_pct_raw": inst_raw,
             "short_pct": short,
             "drawdown_pct": round(dd, 1),
             "above_52w_low_pct": run_low,

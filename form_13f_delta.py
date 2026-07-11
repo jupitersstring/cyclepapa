@@ -344,6 +344,10 @@ def main() -> int:
         "land &", "politan", "saba", "voss",
     )
 
+    from datetime import datetime, timezone
+    _today = datetime.now(timezone.utc).replace(tzinfo=None)
+    filer_dates_used = {}
+
     for name, cik in filer_ciks.items():
         print(f"\n[{name}] CIK {cik}", file=sys.stderr, flush=True)
         filings = fetch_13f_filings(cik, n_recent=2)
@@ -352,6 +356,30 @@ def main() -> int:
             continue
         cur = filings[0]
         prior = filings[1]
+
+        # METHODOLOGY FIX (audit finding A2): the name->CIK resolution
+        # can land on a stale/renamed entity whose most recent 13F is
+        # YEARS old (observed: 2008, 2011, 2023 filings being treated
+        # as the "current quarter"). Deltas from ancient filings are
+        # not current signal. Gate: current filing must be <=200 days
+        # old and the pair must be adjacent quarters (<=200 days apart).
+        try:
+            cur_dt = datetime.strptime(cur["filing_date"][:10], "%Y-%m-%d")
+            prior_dt = datetime.strptime(prior["filing_date"][:10], "%Y-%m-%d")
+        except Exception:
+            print("  unparseable filing dates -- skipped", file=sys.stderr)
+            continue
+        if (_today - cur_dt).days > 200:
+            print(f"  STALE: latest 13F {cur['filing_date']} "
+                  f"({(_today - cur_dt).days}d old) -- skipped",
+                  file=sys.stderr)
+            continue
+        if (cur_dt - prior_dt).days > 200:
+            print(f"  NON-ADJACENT quarters ({cur['filing_date']} vs "
+                  f"{prior['filing_date']}) -- skipped", file=sys.stderr)
+            continue
+        filer_dates_used[name] = {"current": cur["filing_date"],
+                                   "prior": prior["filing_date"]}
         print(f"  current Q: {cur['filing_date']}  prior Q: {prior['filing_date']}",
               file=sys.stderr)
 
@@ -442,10 +470,18 @@ def main() -> int:
             "reasons": "; ".join(reasons),
         }
 
+    # Provenance: record which filings fed each delta so staleness is
+    # auditable downstream (audit finding A2 -- prior output had no
+    # filing-date trail). Stored under a reserved meta key that the
+    # consensus loader ignores (not a valid ticker).
+    out["_META_FILINGS_USED"] = filer_dates_used
     OUT.write_text(json.dumps(out, indent=2))
-    print(f"\nwrote {OUT} ({len(out)})")
+    print(f"\nwrote {OUT} ({len(out) - 1} tickers, "
+          f"{len(filer_dates_used)} filers used)")
 
-    ranked = sorted(out.items(), key=lambda x: -x[1]["score"])
+    ranked = sorted(
+        ((tk, v) for tk, v in out.items() if not tk.startswith("_META")),
+        key=lambda x: -x[1]["score"])
     print(f"\n=== TOP 20 by 13F-delta score ===")
     for tk, v in ranked[:20]:
         print(f"  {tk:<7} score={v['score']:<5.0f} added={v['n_filers_adding']} "

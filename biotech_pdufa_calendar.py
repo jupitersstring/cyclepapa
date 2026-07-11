@@ -45,7 +45,7 @@ PDUFA_RX = re.compile(
     r"target\s+action\s+date|"
     r"PDUFA\s+target)[^.]{0,200}?"
     r"(January|February|March|April|May|June|July|August|"
-    r"September|October|November|December)\s+\d{1,2},?\s+(\d{4})",
+    r"September|October|November|December)\s+(\d{1,2}),?\s+(\d{4})",
     re.I,
 )
 DRUG_NAME_RX = re.compile(
@@ -60,19 +60,19 @@ MONTHS = {m: i for i, m in enumerate(
 
 
 def parse_pdufa_date(text: str) -> tuple[str, datetime] | None:
+    """METHODOLOGY FIX (audit finding A4): the day is now captured
+    directly adjacent to the month inside PDUFA_RX (group 2) instead of
+    scanning the whole matched block for the first digit -- which had
+    grabbed "Phase 3" / "Q1" / "Cohort 1" digits as the day."""
     m = PDUFA_RX.search(text)
     if not m:
         return None
     month_name = m.group(1).title()
-    year = int(m.group(2))
-    # find day in matched block
-    block = m.group(0)
-    day_m = re.search(r"(\d{1,2})", block)
-    if not day_m:
-        return None
+    day = int(m.group(2))
+    year = int(m.group(3))
     try:
-        dt = datetime(year, MONTHS[month_name], int(day_m.group(1)))
-        return block.strip(), dt
+        dt = datetime(year, MONTHS[month_name], day)
+        return m.group(0).strip(), dt
     except Exception:
         return None
 

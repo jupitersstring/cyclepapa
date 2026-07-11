@@ -1,14 +1,14 @@
 {
   "HRMY": {
     "pdufa_date_text": "PDUFA DATE Q1 2027 UTILITY PATENTS FILED TO EXTEND PITOLISANT FRANCHISE INTO 2040s 7 February 24, 2026",
-    "pdufa_date": "2026-02-01",
-    "days_to_pdufa": -145,
+    "pdufa_date": "2026-02-24",
+    "days_to_pdufa": -138,
     "drug_name": null,
     "filing_date": "2026-02-24",
     "accession": "0001104659-26-018858",
     "sector": "Healthcare",
-    "score": 0.0,
-    "reasons": ""
+    "score": 0,
+    "reasons": "PDUFA -138d (out of window)"
   },
   "LENZ": {
     "pdufa_date_text": "PDUFA target action date of August 8, 2025",
@@ -41,7 +41,7 @@
     "accession": "0001104659-26-056655",
     "sector": "Healthcare",
     "score": 0.0,
-    "reasons": ""
+    "reasons": "date parse failed under strict day-adjacency (audit A4) \u2014 not scored"
   },
   "VNDA": {
     "pdufa_date_text": "PDUFA target action date of December 12, 2026",
@@ -326,8 +326,8 @@
     "filing_date": "2026-05-07",
     "accession": "0001193125-26-210369",
     "sector": "Healthcare",
-    "score": 8.0,
-    "reasons": "PDUFA 6d ago (post-decision)"
+    "score": 0.0,
+    "reasons": "date parse failed under strict day-adjacency (audit A4) \u2014 not scored"
   },
   "RGNX": {
     "pdufa_date_text": "PDUFA action date from November 9, 2025",
@@ -397,14 +397,14 @@
   },
   "CYTK": {
     "pdufa_date_text": "PDUFA date Continue enrollment in Cohort 1 of November 14, 2026",
-    "pdufa_date": "2026-11-01",
-    "days_to_pdufa": 128,
+    "pdufa_date": "2026-11-14",
+    "days_to_pdufa": 125,
     "drug_name": null,
     "filing_date": "2026-05-05",
     "accession": "0001193125-26-206420",
     "sector": "Healthcare",
-    "score": 14.0,
-    "reasons": "PDUFA in 128d"
+    "score": 14,
+    "reasons": "PDUFA in 125d"
   },
   "CELC": {
     "pdufa_date_text": "PDUFA goal date of July 17, 2026",
