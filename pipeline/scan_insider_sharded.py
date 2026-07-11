@@ -44,7 +44,7 @@ def recent_form4(cik, lookback_days=180):
             out.append((rec["accessionNumber"][i], rec["primaryDocument"][i], rec["filingDate"][i]))
     return out
 
-def parse_form4(cik, accession, primary_doc):
+def parse_form4(cik, accession, primary_doc, tkr=None):
     acc = accession.replace("-", "")
     raw_doc = primary_doc.split("/")[-1]
     url = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/{raw_doc}"
@@ -85,6 +85,10 @@ def parse_form4(cik, accession, primary_doc):
         # Re-scans would otherwise resurrect rows we corrected in place.
         if shares > 1e8: continue
         price = float(price_el.text) if (price_el is not None and price_el.text) else None
+        # Likewise no US share PRICE exceeds ~$1M except BRK-A: corrupted price
+        # fields (STNG "px=$1,230,435", FINS px==shares==4e7) get rejected here
+        # so re-scans stop resurrecting them.
+        if price and price > 2e5 and tkr != "BRK-A": continue
         acquired = 1 if (a_d_el is not None and a_d_el.text == "A") else 0
         out.append({"owner": owner, "role": role, "code": code,
                     "shares": shares, "price": price, "acquired": acquired,
@@ -142,7 +146,7 @@ def scan_one_ticker(tkr):
     rows = []
     for acc, doc, dt in filings:
         try:
-            txns = parse_form4(cik, acc, doc)
+            txns = parse_form4(cik, acc, doc, tkr=tkr)
         except Exception:
             continue
         for t in txns:

@@ -163,13 +163,23 @@ def fetch_one(tkr, session):
 def run(max_n=4000, rps=3.0):
     conn = sqlite3.connect(DB)
     init_schema(conn)
-    have = {r[0] for r in conn.execute("SELECT ticker FROM ticker_yf WHERE mcap_m IS NOT NULL OR ev_ebitda IS NOT NULL")}
+    conn.execute("""CREATE TABLE IF NOT EXISTS yf_dead (
+        ticker TEXT PRIMARY KEY, asof TEXT)""")
+    # FRESH = enriched within the last 10 days. Older rows re-enrich so prices
+    # and mcaps track the market instead of freezing at their first fetch.
+    fresh = {r[0] for r in conn.execute(
+        "SELECT ticker FROM ticker_yf WHERE (mcap_m IS NOT NULL OR ev_ebitda IS NOT NULL) "
+        "AND asof >= date('now','-10 days')")}
+    # Known-dead (delisted/acquired): quote 404s with valid crumb auth. Skip —
+    # but retest each ticker every ~30 days in case of relisting.
+    dead = {r[0] for r in conn.execute(
+        "SELECT ticker FROM yf_dead WHERE asof >= date('now','-30 days')")}
     # Universe: everything in unified_signal with a signal, by score priority.
     # Include FOREIGN tickers (Yahoo covers them) — fills the non-US gap.
     targets = [r[0] for r in conn.execute("""
         SELECT ticker FROM unified_signal ORDER BY score DESC""")]
-    todo = [t for t in targets if t not in have][:max_n]
-    print(f"yfinance enrich: {len(todo)} tickers (skip {len(have)} done), ~{rps} req/s")
+    todo = [t for t in targets if t not in fresh and t not in dead][:max_n]
+    print(f"yfinance enrich: {len(todo)} tickers (skip {len(fresh)} fresh, {len(dead)} dead), ~{rps} req/s")
 
     session = make_session()
     asof = time.strftime("%Y-%m-%d")
@@ -187,6 +197,13 @@ def run(max_n=4000, rps=3.0):
         res = fetch_one(tkr, session)
         if not res:
             n_fail += 1
+            # With crumb auth working, a no-quote US ticker is DELISTED (the
+            # 2025-26 M&A wave), not a fetch failure — record it so pick sheets
+            # can exclude it and future runs stop re-fetching. Foreign tickers
+            # (suffix/no-suffix mismatches) are NOT marked — too ambiguous.
+            if _CRUMB[0] and "." not in tkr and tkr.isalpha():
+                conn.execute("INSERT OR REPLACE INTO yf_dead VALUES (?,?)", (tkr, asof))
+                conn.commit()
             # periodic session refresh on repeated failures
             if n_fail % 25 == 0:
                 session = make_session()

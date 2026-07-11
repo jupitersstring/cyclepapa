@@ -105,7 +105,7 @@ def run():
       asymmetry_score REAL,     -- downside protection × upside potential
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
-      sec_type TEXT,            -- 'common' | 'etf' | 'preferred' | 'warrant' | 'unit' | 'right'
+      sec_type TEXT,            -- 'common'|'etf'|'preferred'|'warrant'|'unit'|'right'|'delisted'
       score REAL,
       components TEXT
     );
@@ -328,6 +328,13 @@ def run():
     universe = set(sm) | set(s_by) | set(act) | set(cl) | set(pct_book_max)
     # ticker -> name map for sec_type's same-issuer suffix check
     _names = {t: (tm.get(t, {}).get("name") or yf_name.get(t)) for t in universe}
+    # Delisted set (quote 404s under valid crumb auth — the 2025-26 M&A wave):
+    # a "pick" that can no longer be bought is noise; classified out of pick
+    # sheets but kept in reference sheets like everything else.
+    try:
+        _dead = {r[0] for r in conn.execute("SELECT ticker FROM yf_dead")}
+    except Exception:
+        _dead = set()
     print(f"scoring {len(universe)} tickers")
     n = 0
     for tkr in universe:
@@ -360,7 +367,8 @@ def run():
         c8_bnk  = c8.get("bnk",  0)
         ev_ebitda, pb_ratio = valn.get(tkr, (None, None))
         pe_ttm = yf_pe.get(tkr)
-        sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
+        sec_type = ("delisted" if tkr in _dead
+                    else classify_sec_type(tkr, _names.get(tkr), _names))
         # Revealed preference — what funds are ACTIVELY doing (not just holding):
         # new major positions weigh 2×, material adds 1×, top-conviction holds 0.5×
         revealed_pref = 2.0 * s3 + 1.0 * s4 + 0.5 * s1
