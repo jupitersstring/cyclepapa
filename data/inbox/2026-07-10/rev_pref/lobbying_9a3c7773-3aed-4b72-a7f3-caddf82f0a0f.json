@@ -1,0 +1,22 @@
+{
+  "accession": "9a3c7773-3aed-4b72-a7f3-caddf82f0a0f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "AMERICAN SOCIETY OF AGRONOMY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN SOCIETY OF AGRONOMY engaged AMERICAN SOCIETY OF AGRONOMY on  (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN SOCIETY OF AGRONOMY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/9a3c7773-3aed-4b72-a7f3-caddf82f0a0f/print/"
+}

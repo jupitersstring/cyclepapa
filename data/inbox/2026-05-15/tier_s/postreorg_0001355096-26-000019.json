@@ -1,17 +1,17 @@
 {
   "accession": "0001355096-26-000019",
   "cik": "0001355096",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-05-15",
   "form": "10-Q",
   "form_code": "10-Q",
   "isin": null,
   "jurisdiction": "US",
-  "name": "QVC Group, Inc.  (QVCAQ, QVCGQ, QVCPQ)  (CIK 0001355096)",
+  "name": "QVC Group, Inc.",
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "QVCAQ",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1355096/000135509626000019"
 }

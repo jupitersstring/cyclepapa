@@ -1,0 +1,22 @@
+{
+  "accession": "8ffa07b3-5211-4416-a793-516045ab8d59",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "TELNYX LLC",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 TELNYX LLC engaged TELNYX LLC for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "TELNYX LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8ffa07b3-5211-4416-a793-516045ab8d59/print/"
+}

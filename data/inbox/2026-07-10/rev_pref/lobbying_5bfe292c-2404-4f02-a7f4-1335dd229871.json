@@ -1,0 +1,22 @@
+{
+  "accession": "5bfe292c-2404-4f02-a7f4-1335dd229871",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "130000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Budget/Appropriations \u00b7 Food Industry (safety, labeling, etc.) \u00b7 Animals",
+  "jurisdiction": "US",
+  "name": "UNITED EGG PRODUCERS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNITED EGG PRODUCERS engaged CORNERSTONE GOVERNMENT AFFAIRS, INC. on Agriculture \u00b7 Budget/Appropriations \u00b7 Food Industry (safety, labeling, etc.) \u00b7 A (universe-name match: UNITED)",
+  "registrant": "CORNERSTONE GOVERNMENT AFFAIRS, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/5bfe292c-2404-4f02-a7f4-1335dd229871/print/"
+}

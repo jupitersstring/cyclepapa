@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001901336",
+  "fetched_at": "2026-07-11T09:56:11.107688Z",
+  "filed": "2026-07-11",
+  "form": "25-NSE",
+  "form_code": "25-NSE",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Alchemy Investments Acquisition Corp 1",
+  "query_label": "tier_s.delisting_form25",
+  "query_note": "Form 25-NSE \u2014 notification of removal from listing (the delisting event itself)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1901336/000135445726000663/0001354457-26-000663-index.htm"
+}

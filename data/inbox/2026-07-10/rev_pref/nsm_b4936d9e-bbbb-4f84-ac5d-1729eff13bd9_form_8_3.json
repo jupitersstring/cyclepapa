@@ -1,0 +1,16 @@
+{
+  "accession": "b4936d9e-bbbb-4f84-ac5d-1729eff13bd9",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "J.P. Morgan Securities LLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b4936d9e-bbbb-4f84-ac5d-1729eff13bd9.html"
+}

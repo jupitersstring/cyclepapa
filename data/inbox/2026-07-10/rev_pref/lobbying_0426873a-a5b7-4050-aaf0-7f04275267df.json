@@ -1,0 +1,22 @@
+{
+  "accession": "0426873a-a5b7-4050-aaf0-7f04275267df",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "WORLD GOLD COUNCIL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 WORLD GOLD COUNCIL engaged INTEGER, LLC on Taxation/Internal Revenue Code (universe-name match: WORLD)",
+  "registrant": "INTEGER, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "WORLD",
+  "url": "https://lda.senate.gov/filings/public/filing/0426873a-a5b7-4050-aaf0-7f04275267df/print/"
+}

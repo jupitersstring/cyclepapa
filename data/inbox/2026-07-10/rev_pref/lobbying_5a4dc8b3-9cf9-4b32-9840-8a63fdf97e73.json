@@ -1,0 +1,22 @@
+{
+  "accession": "5a4dc8b3-9cf9-4b32-9840-8a63fdf97e73",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "24000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "CITY OF CAMARILLO, CA",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 CITY OF CAMARILLO, CA engaged DOWNS GOVERNMENT AFFAIRS for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/5a4dc8b3-9cf9-4b32-9840-8a63fdf97e73/print/"
+}

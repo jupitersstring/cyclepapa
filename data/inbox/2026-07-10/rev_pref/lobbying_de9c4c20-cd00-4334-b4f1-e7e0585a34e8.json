@@ -1,0 +1,22 @@
+{
+  "accession": "de9c4c20-cd00-4334-b4f1-e7e0585a34e8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "SAN JUAN COLLEGE",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 SAN JUAN COLLEGE engaged DOWNS GOVERNMENT AFFAIRS for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/de9c4c20-cd00-4334-b4f1-e7e0585a34e8/print/"
+}

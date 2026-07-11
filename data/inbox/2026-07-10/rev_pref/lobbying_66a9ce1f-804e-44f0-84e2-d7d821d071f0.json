@@ -1,0 +1,22 @@
+{
+  "accession": "66a9ce1f-804e-44f0-84e2-d7d821d071f0",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "15000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Transportation \u00b7 Trade (domestic/foreign) \u00b7 Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "UNITED GRAIN CORPORATION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 UNITED GRAIN CORPORATION engaged CFM STRATEGIC COMMUNICATIONS (CONKLING F for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CFM STRATEGIC COMMUNICATIONS (CONKLING FISKUM & MCCORMICK)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/66a9ce1f-804e-44f0-84e2-d7d821d071f0/print/"
+}

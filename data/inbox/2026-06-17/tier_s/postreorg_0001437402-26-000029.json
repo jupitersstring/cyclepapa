@@ -1,17 +1,17 @@
 {
   "accession": "0001437402-26-000029",
   "cik": "0001437402",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-06-17",
   "form": "8-K",
   "form_code": "8-K",
   "isin": null,
   "jurisdiction": "US",
-  "name": "ARDELYX, INC.  (ARDX)  (CIK 0001437402)",
+  "name": "ARDELYX, INC.",
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "ARDX",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1437402/000143740226000029"
 }

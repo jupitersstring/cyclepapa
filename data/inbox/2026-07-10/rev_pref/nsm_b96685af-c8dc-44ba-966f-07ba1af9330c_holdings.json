@@ -1,0 +1,16 @@
+{
+  "accession": "b96685af-c8dc-44ba-966f-07ba1af9330c",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "PINEWOOD TECHNOLOGIES GROUP PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b96685af-c8dc-44ba-966f-07ba1af9330c.html"
+}

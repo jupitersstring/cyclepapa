@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001102993",
+  "fetched_at": "2026-07-11T09:56:11.107688Z",
+  "filed": "2026-07-11",
+  "form": "DEFM14A",
+  "form_code": "DEFM14A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "LIVEPERSON INC",
+  "query_label": "tier_s.merger_vote",
+  "query_note": "DEFM14A \u2014 definitive merger proxy (shareholder vote on a deal; merger-arb window)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1102993/000121390026076759/0001213900-26-076759-index.htm"
+}

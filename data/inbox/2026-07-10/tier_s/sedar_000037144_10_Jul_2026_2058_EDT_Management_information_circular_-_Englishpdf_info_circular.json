@@ -1,0 +1,18 @@
+{
+  "accession": "000037144_10_Jul_2026_2058_EDT_Management_information_circular_-_Englishpdf",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:47:21.486621Z",
+  "filed": "2026-07-10",
+  "form": "Management information circular - English.pdf",
+  "form_code": "",
+  "isin": null,
+  "issuer_num": "000037144",
+  "jurisdiction": "British Columbia",
+  "name": "Reco Central Alberta Inc.",
+  "query_label": "tier_s.info_circular",
+  "query_note": "info circular \u2014 often contains plan of arrangement details",
+  "source": "SEDAR+",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sedarplus.ca/csa-party/records/issuer.html?issuerNo=000037144"
+}

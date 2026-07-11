@@ -1,0 +1,22 @@
+{
+  "accession": "da1bb37f-14df-4dd8-959d-44d12b0edce9",
+  "cik": "",
+  "expenses": "60000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources \u00b7 Energy/Nuclear \u00b7 Environment/Superfund \u00b7 Postal \u00b7 Utilities \u00b7 Agriculture",
+  "jurisdiction": "US",
+  "name": "MISSOURI FARM BUREAU FEDERATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 MISSOURI FARM BUREAU FEDERATION engaged MISSOURI FARM BUREAU FEDERATION for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MISSOURI FARM BUREAU FEDERATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/da1bb37f-14df-4dd8-959d-44d12b0edce9/print/"
+}

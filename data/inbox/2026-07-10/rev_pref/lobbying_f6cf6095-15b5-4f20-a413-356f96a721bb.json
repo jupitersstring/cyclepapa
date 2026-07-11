@@ -1,0 +1,22 @@
+{
+  "accession": "f6cf6095-15b5-4f20-a413-356f96a721bb",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Aviation/Airlines/Airports",
+  "jurisdiction": "US",
+  "name": "LUFTHANSA GERMAN AIRLINES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 LUFTHANSA GERMAN AIRLINES engaged CAPITOL POINT GROUP, LLC on Aviation/Airlines/Airports (universe-name match: LUFTHANSA)",
+  "registrant": "CAPITOL POINT GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "LUFTHANSA",
+  "url": "https://lda.senate.gov/filings/public/filing/f6cf6095-15b5-4f20-a413-356f96a721bb/print/"
+}

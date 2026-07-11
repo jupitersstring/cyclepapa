@@ -1,0 +1,22 @@
+{
+  "accession": "f4de6066-3f6f-49d0-ae67-81ad23d8490c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "D&D MACHINERY & SALES INC.",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 D&D MACHINERY & SALES INC. engaged BRAMER GROUP LLC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BRAMER GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f4de6066-3f6f-49d0-ae67-81ad23d8490c/print/"
+}

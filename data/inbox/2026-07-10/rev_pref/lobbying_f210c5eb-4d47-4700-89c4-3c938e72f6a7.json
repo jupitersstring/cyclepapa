@@ -1,0 +1,22 @@
+{
+  "accession": "f210c5eb-4d47-4700-89c4-3c938e72f6a7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Aviation/Airlines/Airports \u00b7 Defense \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "DAVENPORT AVIATION",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 DAVENPORT AVIATION engaged ICE MILLER STRATEGIES LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ICE MILLER STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f210c5eb-4d47-4700-89c4-3c938e72f6a7/print/"
+}

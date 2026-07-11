@@ -1,0 +1,20 @@
+{
+  "accession": "0001437749-26-023320",
+  "all_items": [
+    "3.01"
+  ],
+  "cik": "0000832489",
+  "fetched_at": "2026-07-11T09:56:00.916533Z",
+  "filed": "2026-07-10",
+  "form": "8-K Item 3.01",
+  "form_code": "8-K/3.01",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GeoVax Labs, Inc.",
+  "query_label": "tier_s.item_delisting_deficiency",
+  "query_note": "8-K Item 3.01 \u2014 delisting / continued-listing-rule failure. The PRE-going-dark deficiency signal (~180 days before a Form 15). Cure via reverse split or face delisting.",
+  "source": "EDGAR-8K-items",
+  "ticker": "GOVX",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/832489/000143774926023320"
+}

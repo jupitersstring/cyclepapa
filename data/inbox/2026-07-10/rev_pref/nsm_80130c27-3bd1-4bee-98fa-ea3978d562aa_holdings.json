@@ -1,0 +1,16 @@
+{
+  "accession": "80130c27-3bd1-4bee-98fa-ea3978d562aa",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "HERALD INVESTMENT TRUST PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/80130c27-3bd1-4bee-98fa-ea3978d562aa.html"
+}

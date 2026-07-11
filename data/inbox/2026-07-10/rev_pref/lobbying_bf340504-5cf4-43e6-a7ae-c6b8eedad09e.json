@@ -1,0 +1,22 @@
+{
+  "accession": "bf340504-5cf4-43e6-a7ae-c6b8eedad09e",
+  "cik": "",
+  "expenses": "108000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code \u00b7 Energy/Nuclear \u00b7 Environment/Superfund \u00b7 Trade (domestic/foreign) \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "RHEEM MANUFACTURING COMPANY",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 RHEEM MANUFACTURING COMPANY engaged RHEEM MANUFACTURING COMPANY for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "RHEEM MANUFACTURING COMPANY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bf340504-5cf4-43e6-a7ae-c6b8eedad09e/print/"
+}

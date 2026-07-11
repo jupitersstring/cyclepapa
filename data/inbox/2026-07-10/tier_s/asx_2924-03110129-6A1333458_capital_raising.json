@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110129-6A1333458",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Prospectus - Options Placement",
+  "form_code": "Issued Capital - Other|Disclosure Document",
+  "industry": "Metals & Mining",
+  "isin": "AU0000371999",
+  "jurisdiction": "AU",
+  "name": "HAWK RESOURCES LIMITED.",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "HWK",
+  "tier": "tier_s",
+  "url": ""
+}

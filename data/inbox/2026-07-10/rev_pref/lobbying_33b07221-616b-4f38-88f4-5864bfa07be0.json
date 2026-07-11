@@ -1,0 +1,22 @@
+{
+  "accession": "33b07221-616b-4f38-88f4-5864bfa07be0",
+  "cik": "",
+  "expenses": "40000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Financial Institutions/Investments/Securities \u00b7 Taxation/Internal Revenue Code \u00b7 Banking",
+  "jurisdiction": "US",
+  "name": "MICHIGAN CREDIT UNION LEAGUE",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 MICHIGAN CREDIT UNION LEAGUE engaged MICHIGAN CREDIT UNION LEAGUE for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MICHIGAN CREDIT UNION LEAGUE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNION",
+  "url": "https://lda.senate.gov/filings/public/filing/33b07221-616b-4f38-88f4-5864bfa07be0/print/"
+}

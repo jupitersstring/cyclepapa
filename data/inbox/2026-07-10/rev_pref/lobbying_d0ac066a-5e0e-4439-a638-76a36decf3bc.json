@@ -1,0 +1,22 @@
+{
+  "accession": "d0ac066a-5e0e-4439-a638-76a36decf3bc",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "CANADIAN AMERICAN BUSINESS COUNCIL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CANADIAN AMERICAN BUSINESS COUNCIL engaged BURKE CONSULTING LLC on Trade (domestic/foreign) (universe-name match: CANADIAN)",
+  "registrant": "BURKE CONSULTING LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CANADIAN",
+  "url": "https://lda.senate.gov/filings/public/filing/d0ac066a-5e0e-4439-a638-76a36decf3bc/print/"
+}

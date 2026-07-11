@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001552947",
+  "fetched_at": "2026-07-11T09:56:11.107688Z",
+  "filed": "2026-07-11",
+  "form": "25-NSE",
+  "form_code": "25-NSE",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Two Roads Shared Trust",
+  "query_label": "tier_s.delisting_form25",
+  "query_note": "Form 25-NSE \u2014 notification of removal from listing (the delisting event itself)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1552947/000141783526000205/0001417835-26-000205-index.htm"
+}

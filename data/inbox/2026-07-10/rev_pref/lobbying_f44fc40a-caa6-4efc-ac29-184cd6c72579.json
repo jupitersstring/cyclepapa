@@ -1,0 +1,22 @@
+{
+  "accession": "f44fc40a-caa6-4efc-ac29-184cd6c72579",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "OLMSTED COUNTY, MN",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 OLMSTED COUNTY, MN engaged DOWNS GOVERNMENT AFFAIRS for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f44fc40a-caa6-4efc-ac29-184cd6c72579/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "a0773678-6bb3-43a9-8131-feeecd5b3511",
+  "cik": "",
+  "expenses": "300000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Small Business \u00b7 Financial Institutions/Investments/Securities \u00b7 Food Industry (safety, labeling, etc.) \u00b7 Tobacco",
+  "jurisdiction": "US",
+  "name": "7-ELEVEN INC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 7-ELEVEN INC engaged 7-ELEVEN, INC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "7-ELEVEN, INC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a0773678-6bb3-43a9-8131-feeecd5b3511/print/"
+}

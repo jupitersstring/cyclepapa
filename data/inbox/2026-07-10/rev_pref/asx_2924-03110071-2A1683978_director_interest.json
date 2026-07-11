@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110071-2A1683978",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Change of Director's Interest Notice - MH",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "isin": "AU0000237729",
+  "jurisdiction": "AU",
+  "name": "OMEGA OIL & GAS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Energy",
+  "source": "ASX",
+  "ticker": "OMA",
+  "tier": "rev_pref",
+  "url": ""
+}

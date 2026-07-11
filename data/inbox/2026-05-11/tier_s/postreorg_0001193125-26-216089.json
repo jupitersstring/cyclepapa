@@ -1,17 +1,17 @@
 {
   "accession": "0001193125-26-216089",
   "cik": "0001302387",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-05-11",
   "form": "10-Q",
   "form_code": "10-Q",
   "isin": null,
   "jurisdiction": "US",
-  "name": "BV Financial, Inc.  (BVFL)  (CIK 0001302387)",
+  "name": "BV Financial, Inc.",
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "BVFL",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1302387/000119312526216089"
 }

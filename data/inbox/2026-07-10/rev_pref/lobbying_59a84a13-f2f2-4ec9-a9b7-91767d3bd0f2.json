@@ -1,0 +1,22 @@
+{
+  "accession": "59a84a13-f2f2-4ec9-a9b7-91767d3bd0f2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "5000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Education",
+  "jurisdiction": "US",
+  "name": "COMMUNITY COLLEGE LEAGUE OF CALIFORNIA",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 COMMUNITY COLLEGE LEAGUE OF CALIFORNIA engaged DOWNS GOVERNMENT AFFAIRS on Budget/Appropriations \u00b7 Education (universe-name match: CALIFORNIA)",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/59a84a13-f2f2-4ec9-a9b7-91767d3bd0f2/print/"
+}

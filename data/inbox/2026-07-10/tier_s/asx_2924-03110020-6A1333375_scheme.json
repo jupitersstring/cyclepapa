@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110020-6A1333375",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "GRANT OF COURT ORDERS CONVENING SCHEME MEETING",
+  "form_code": "Scheme of Arrangement",
+  "industry": "Metals & Mining",
+  "isin": "AU0000399131",
+  "jurisdiction": "AU",
+  "name": "LOYAL METALS LTD",
+  "price_sensitive": false,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "LLM",
+  "tier": "tier_s",
+  "url": ""
+}

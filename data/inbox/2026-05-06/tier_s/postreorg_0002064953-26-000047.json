@@ -1,17 +1,17 @@
 {
   "accession": "0002064953-26-000047",
   "cik": "0002064953",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-05-06",
   "form": "10-Q",
   "form_code": "10-Q",
   "isin": null,
   "jurisdiction": "US",
-  "name": "Solstice Advanced Materials Inc.  (SOLS)  (CIK 0002064953)",
+  "name": "Solstice Advanced Materials Inc.",
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "SOLS",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000047"
 }

@@ -1,0 +1,22 @@
+{
+  "accession": "825df566-4ffe-414a-ab45-1ce192f01fa5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Automotive Industry \u00b7 Trucking/Shipping \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL MOTOR VEHICLE TRADE ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTERNATIONAL MOTOR VEHICLE TRADE ASSOCIATION engaged ICE MILLER STRATEGIES LLC on Automotive Industry \u00b7 Trucking/Shipping \u00b7 Trade (domestic/foreign) (universe-name match: INTERNATIONAL)",
+  "registrant": "ICE MILLER STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/825df566-4ffe-414a-ab45-1ce192f01fa5/print/"
+}

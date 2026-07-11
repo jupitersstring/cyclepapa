@@ -1,0 +1,22 @@
+{
+  "accession": "3a26dee9-3ca4-492e-a0f4-7d42386ebbd7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "EASTERN NEW MEXICO UNIVERSITY-RUIDOSO",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 EASTERN NEW MEXICO UNIVERSITY-RUIDOSO engaged DOWNS GOVERNMENT AFFAIRS on Education (universe-name match: EASTERN)",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "EASTERN",
+  "url": "https://lda.senate.gov/filings/public/filing/3a26dee9-3ca4-492e-a0f4-7d42386ebbd7/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "95beba6d-b320-44d4-8c7c-60d3935c1e44",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Environment/Superfund \u00b7 Energy/Nuclear \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "U.S. BIOCHAR COALITION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 U.S. BIOCHAR COALITION engaged SMART POLICY GROUP for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SMART POLICY GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/95beba6d-b320-44d4-8c7c-60d3935c1e44/print/"
+}

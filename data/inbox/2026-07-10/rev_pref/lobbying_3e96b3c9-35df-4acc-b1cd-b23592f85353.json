@@ -1,0 +1,22 @@
+{
+  "accession": "3e96b3c9-35df-4acc-b1cd-b23592f85353",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Family issues/Abortion/Adoption",
+  "jurisdiction": "US",
+  "name": "CHILD CARE FOR EVERY FAMILY NETWORK",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CHILD CARE FOR EVERY FAMILY NETWORK engaged ACTUM I, LLC on Family issues/Abortion/Adoption (universe-name match: NETWORK)",
+  "registrant": "ACTUM I, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NETWORK",
+  "url": "https://lda.senate.gov/filings/public/filing/3e96b3c9-35df-4acc-b1cd-b23592f85353/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "374f036c-7d66-4e0e-8bf1-3a54d8c171bd",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "80000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "SILVERLINING",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 SILVERLINING engaged ALPINE GROUP PARTNERS, LLC. for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ALPINE GROUP PARTNERS, LLC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/374f036c-7d66-4e0e-8bf1-3a54d8c171bd/print/"
+}

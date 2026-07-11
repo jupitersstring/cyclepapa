@@ -1,0 +1,18 @@
+{
+  "accession": "000048409_10_Jul_2026_2258_EDT_Material_change_report_-_Frenchpdf",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:47:21.486621Z",
+  "filed": "2026-07-10",
+  "form": "Material change report - French.pdf",
+  "form_code": "",
+  "isin": null,
+  "issuer_num": "000048409",
+  "jurisdiction": "",
+  "name": "Garda World Security Corporation",
+  "query_label": "tier_s.material_change",
+  "query_note": "Form 51-102F3 material change \u2014 verify whether structural",
+  "source": "SEDAR+",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sedarplus.ca/csa-party/records/issuer.html?issuerNo=000048409"
+}

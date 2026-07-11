@@ -1,0 +1,22 @@
+{
+  "accession": "2dcf6c95-dd6e-4e00-b52b-3cbba7b19139",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Small Business \u00b7 Taxation/Internal Revenue Code \u00b7 Banking \u00b7 Budget/Appropriations \u00b7 Health Issues \u00b7 Immigration",
+  "jurisdiction": "US",
+  "name": "SMALL BUSINESS MAJORITY FOUNDATION, INC.",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 SMALL BUSINESS MAJORITY FOUNDATION, INC. engaged SMALL BUSINESS MAJORITY FOUNDATION, INC. for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SMALL BUSINESS MAJORITY FOUNDATION, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2dcf6c95-dd6e-4e00-b52b-3cbba7b19139/print/"
+}

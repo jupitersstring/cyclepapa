@@ -1,0 +1,22 @@
+{
+  "accession": "f5154cb4-3eae-443c-b948-b12fcbe1750a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "TEAMSTERS LOCAL UNION 1150",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 TEAMSTERS LOCAL UNION 1150 engaged THE HARPLE GROUP, LLC on Labor Issues/Antitrust/Workplace (universe-name match: LOCAL)",
+  "registrant": "THE HARPLE GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "LOCAL",
+  "url": "https://lda.senate.gov/filings/public/filing/f5154cb4-3eae-443c-b948-b12fcbe1750a/print/"
+}

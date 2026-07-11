@@ -1,0 +1,22 @@
+{
+  "accession": "9d22d307-8929-40ed-a957-87ed6f7a0c52",
+  "cik": "",
+  "expenses": "1270000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Agriculture \u00b7 Environment/Superfund \u00b7 Trade (domestic/foreign) \u00b7 Taxation/Internal Revenue Code \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "NUTRIEN US LLC (FORMERLY KNOWN AS AGRIUM U.S. INC.) (A NUTRIEN LTD SUBSIDIARY)",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 NUTRIEN US LLC (FORMERLY KNOWN AS AGRIUM U.S. INC.) (A NUTRI engaged NUTRIEN US LLC (FORMERLY KNOWN AS AGRIUM for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "NUTRIEN US LLC (FORMERLY KNOWN AS AGRIUM U.S. INC.) (A NUTRIEN LTD SUBSIDIARY).",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/9d22d307-8929-40ed-a957-87ed6f7a0c52/print/"
+}

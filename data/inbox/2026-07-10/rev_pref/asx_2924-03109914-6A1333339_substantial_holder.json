@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03109914-6A1333339",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Becoming a substantial holder",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Machinery",
+  "isin": "AU000000SIX0",
+  "jurisdiction": "AU",
+  "name": "SPRINTEX LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "SIX",
+  "tier": "rev_pref",
+  "url": ""
+}

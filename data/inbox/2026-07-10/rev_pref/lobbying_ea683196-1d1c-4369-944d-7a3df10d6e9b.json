@@ -1,0 +1,22 @@
+{
+  "accession": "ea683196-1d1c-4369-944d-7a3df10d6e9b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Banking",
+  "jurisdiction": "US",
+  "name": "INDEPENDENT BANKERS ASSOCIATION OF TEXAS",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 INDEPENDENT BANKERS ASSOCIATION OF TEXAS engaged INDEPENDENT BANKERS ASSOCIATION OF TEXAS for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "INDEPENDENT BANKERS ASSOCIATION OF TEXAS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ea683196-1d1c-4369-944d-7a3df10d6e9b/print/"
+}

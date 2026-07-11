@@ -1,0 +1,22 @@
+{
+  "accession": "2593002c-ac86-4f6e-b12a-43d007885f37",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Education \u00b7 Manufacturing \u00b7 Torts \u00b7 Small Business \u00b7 Veterans",
+  "jurisdiction": "US",
+  "name": "NATIONAL ASSOCIATION OF ELECTRICAL DISTRIBUTORS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 NATIONAL ASSOCIATION OF ELECTRICAL DISTRIBUTORS engaged SCHOENING STRATEGIES, LLC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SCHOENING STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2593002c-ac86-4f6e-b12a-43d007885f37/print/"
+}

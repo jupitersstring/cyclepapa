@@ -1,0 +1,22 @@
+{
+  "accession": "0d053001-6a8e-48b4-8e23-c475c7233ac0",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "FOURTH PARTY AI",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 FOURTH PARTY AI engaged CONVERGE PUBLIC STRATEGIES on Labor Issues/Antitrust/Workplace (universe-name match: PARTY)",
+  "registrant": "CONVERGE PUBLIC STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PARTY",
+  "url": "https://lda.senate.gov/filings/public/filing/0d053001-6a8e-48b4-8e23-c475c7233ac0/print/"
+}

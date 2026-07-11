@@ -1,0 +1,22 @@
+{
+  "accession": "ef41e2db-ff69-409a-b50d-e6d28affd01d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Aerospace",
+  "jurisdiction": "US",
+  "name": "THE LAW OFFICE OF BART FISHER ON BEHALF OF SPACE PHOENIX SYSTEMS LLC",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 THE LAW OFFICE OF BART FISHER ON BEHALF OF SPACE PHOENIX SYS engaged ALBERTINE ENTERPRISES, INC. for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ALBERTINE ENTERPRISES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "OFFICE",
+  "url": "https://lda.senate.gov/filings/public/filing/ef41e2db-ff69-409a-b50d-e6d28affd01d/print/"
+}

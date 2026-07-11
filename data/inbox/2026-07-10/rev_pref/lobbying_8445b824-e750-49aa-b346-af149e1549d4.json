@@ -1,0 +1,22 @@
+{
+  "accession": "8445b824-e750-49aa-b346-af149e1549d4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "CHARTER COMMUNICATIONS OPERATING, LLC",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 CHARTER COMMUNICATIONS OPERATING, LLC engaged CASSIDY & ASSOCIATES, INC. for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CASSIDY & ASSOCIATES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8445b824-e750-49aa-b346-af149e1549d4/print/"
+}

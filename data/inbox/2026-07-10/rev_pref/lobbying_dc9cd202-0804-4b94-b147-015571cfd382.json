@@ -1,0 +1,22 @@
+{
+  "accession": "dc9cd202-0804-4b94-b147-015571cfd382",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Family issues/Abortion/Adoption \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "NATIONAL DIAPER BANK NETWORK",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL DIAPER BANK NETWORK engaged ACTUM I, LLC on Family issues/Abortion/Adoption \u00b7 Budget/Appropriations (universe-name match: NETWORK)",
+  "registrant": "ACTUM I, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NETWORK",
+  "url": "https://lda.senate.gov/filings/public/filing/dc9cd202-0804-4b94-b147-015571cfd382/print/"
+}

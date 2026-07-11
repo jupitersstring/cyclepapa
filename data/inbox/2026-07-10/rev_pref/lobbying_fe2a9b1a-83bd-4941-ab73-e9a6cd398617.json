@@ -1,0 +1,22 @@
+{
+  "accession": "fe2a9b1a-83bd-4941-ab73-e9a6cd398617",
+  "cik": "",
+  "expenses": "30000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Trade (domestic/foreign) \u00b7 Consumer Issues/Safety/Products \u00b7 Transportation \u00b7 Tariff (miscellaneous tariff bills) \u00b7 Natural Resources \u00b7 Automotive Industry",
+  "jurisdiction": "US",
+  "name": "PEOPLEFORBIKES COALITION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 PEOPLEFORBIKES COALITION engaged PEOPLEFORBIKES COALITION for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PEOPLEFORBIKES COALITION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/fe2a9b1a-83bd-4941-ab73-e9a6cd398617/print/"
+}

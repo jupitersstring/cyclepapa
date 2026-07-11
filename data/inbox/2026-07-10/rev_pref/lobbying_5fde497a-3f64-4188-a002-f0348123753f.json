@@ -1,0 +1,22 @@
+{
+  "accession": "5fde497a-3f64-4188-a002-f0348123753f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "15000.00",
+  "isin": null,
+  "issues": "Aviation/Airlines/Airports",
+  "jurisdiction": "US",
+  "name": "AVDYNE AERO SERVICES, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AVDYNE AERO SERVICES, LLC engaged ALBERTINE ENTERPRISES, INC. on Aviation/Airlines/Airports (universe-name match: AERO)",
+  "registrant": "ALBERTINE ENTERPRISES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AERO",
+  "url": "https://lda.senate.gov/filings/public/filing/5fde497a-3f64-4188-a002-f0348123753f/print/"
+}

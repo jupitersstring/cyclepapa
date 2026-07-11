@@ -1,0 +1,16 @@
+{
+  "accession": "845017f9-a1a9-45dd-b29b-82290bc8b3ae",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Tender Offer",
+  "form_code": "TEN",
+  "isin": null,
+  "name": "GLOBALDATA PLC",
+  "query_label": "tier_s.tender",
+  "query_note": "tender offer",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/845017f9-a1a9-45dd-b29b-82290bc8b3ae.html"
+}

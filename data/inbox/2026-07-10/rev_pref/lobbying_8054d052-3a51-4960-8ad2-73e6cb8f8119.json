@@ -1,0 +1,22 @@
+{
+  "accession": "8054d052-3a51-4960-8ad2-73e6cb8f8119",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Medicare/Medicaid",
+  "jurisdiction": "US",
+  "name": "AMERICAN SOCIETY OF ANESTHESIOLOGISTS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN SOCIETY OF ANESTHESIOLOGISTS engaged HOLLAND & KNIGHT LLP on Medicare/Medicaid (universe-name match: AMERICAN)",
+  "registrant": "HOLLAND & KNIGHT LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/8054d052-3a51-4960-8ad2-73e6cb8f8119/print/"
+}

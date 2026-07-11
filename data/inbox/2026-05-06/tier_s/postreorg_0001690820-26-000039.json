@@ -1,17 +1,17 @@
 {
   "accession": "0001690820-26-000039",
   "cik": "0001690820",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-05-06",
   "form": "8-K",
   "form_code": "8-K",
   "isin": null,
   "jurisdiction": "US",
-  "name": "CARVANA CO.  (CVNA)  (CIK 0001690820)",
+  "name": "CARVANA CO.",
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "CVNA",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000039"
 }

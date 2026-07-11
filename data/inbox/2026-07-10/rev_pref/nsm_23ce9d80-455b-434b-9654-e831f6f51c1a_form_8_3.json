@@ -1,0 +1,16 @@
+{
+  "accession": "23ce9d80-455b-434b-9654-e831f6f51c1a",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "AllianzGI-Global Equity Business",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/23ce9d80-455b-434b-9654-e831f6f51c1a.html"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "f8051d40-5d9f-4c55-b703-9252de7e7529",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "22500.00",
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "FOUNDATION FOR CALIFORNIA COMMUNITY COLLEGES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 FOUNDATION FOR CALIFORNIA COMMUNITY COLLEGES engaged DOWNS GOVERNMENT AFFAIRS on Education (universe-name match: CALIFORNIA)",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/f8051d40-5d9f-4c55-b703-9252de7e7529/print/"
+}

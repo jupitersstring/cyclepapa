@@ -299,9 +299,9 @@
     ]
   },
   "LEG": {
-    "conviction_score": 1.438,
+    "conviction_score": 2.507,
     "hardest_event": 0.9,
-    "n_records": 2,
+    "n_records": 3,
     "n_sources": 2,
     "name": "LEGGETT & PLATT INC",
     "sources": [
@@ -310,6 +310,20 @@
     ],
     "tiers": [
       "rev_pref",
+      "tier_s"
+    ]
+  },
+  "ORGN": {
+    "conviction_score": 2.069,
+    "hardest_event": 0.9,
+    "n_records": 2,
+    "n_sources": 2,
+    "name": "Origin Materials, Inc.",
+    "sources": [
+      "EDGAR-Form15",
+      "EDGAR-forms"
+    ],
+    "tiers": [
       "tier_s"
     ]
   },
@@ -440,9 +454,9 @@
     ]
   },
   "TBRG": {
-    "conviction_score": 2.479,
+    "conviction_score": 3.548,
     "hardest_event": 0.9,
-    "n_records": 3,
+    "n_records": 4,
     "n_sources": 2,
     "name": "TruBridge, Inc.",
     "sources": [

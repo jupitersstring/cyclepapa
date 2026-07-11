@@ -1,0 +1,22 @@
+{
+  "accession": "ca32c731-aa5c-4edb-9a20-6f1566047b89",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Economics/Economic Development",
+  "jurisdiction": "US",
+  "name": "JAPAN BANK FOR INTERNATIONAL COOPERATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JAPAN BANK FOR INTERNATIONAL COOPERATION engaged JAPAN BANK FOR INTERNATIONAL COOPERATION on Economics/Economic Development (universe-name match: JAPAN)",
+  "registrant": "JAPAN BANK FOR INTERNATIONAL COOPERATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JAPAN",
+  "url": "https://lda.senate.gov/filings/public/filing/ca32c731-aa5c-4edb-9a20-6f1566047b89/print/"
+}

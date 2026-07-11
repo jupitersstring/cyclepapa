@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03109987-6A1333370",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Software",
+  "isin": "AU0000127011",
+  "jurisdiction": "AU",
+  "name": "COMPLII FINTECH SOLUTIONS LTD",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "CF1",
+  "tier": "rev_pref",
+  "url": ""
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "8d5ae1c2-27f6-439b-8a7c-285f96a4b095",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Education \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "GASTON COLLEGE FOUNDATION, INC.",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 GASTON COLLEGE FOUNDATION, INC. engaged DOWNS GOVERNMENT AFFAIRS for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8d5ae1c2-27f6-439b-8a7c-285f96a4b095/print/"
+}

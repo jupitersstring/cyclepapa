@@ -1,8 +1,8 @@
 {
   "accession": "corrob-LEG",
   "cik": "",
-  "conviction_score": 1.438,
-  "fetched_at": "2026-07-11T09:44:24.220454Z",
+  "conviction_score": 2.507,
+  "fetched_at": "2026-07-11T17:14:39.777527Z",
   "filed": "2026-07-11",
   "form": "Cross-source corroboration",
   "form_code": "CORROBORATED",
@@ -16,7 +16,7 @@
   "n_sources": 2,
   "name": "LEGGETT & PLATT INC",
   "query_label": "tier_s.corroborated_multi",
-  "query_note": "CORROBORATED across 2 independent sources (ASX, EDGAR-forms); 2 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "query_note": "CORROBORATED across 2 independent sources (ASX, EDGAR-forms); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
   "source": "corroboration",
   "sources": [
     "ASX",

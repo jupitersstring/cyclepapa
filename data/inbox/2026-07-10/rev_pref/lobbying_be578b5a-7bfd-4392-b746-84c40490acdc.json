@@ -1,0 +1,22 @@
+{
+  "accession": "be578b5a-7bfd-4392-b746-84c40490acdc",
+  "cik": "",
+  "expenses": "1930000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Banking \u00b7 Commodities (big ticket) \u00b7 Financial Institutions/Investments/Securities \u00b7 Taxation/Internal Revenue Code \u00b7 Retirement",
+  "jurisdiction": "US",
+  "name": "SECURITIES INDUSTRY AND FINANCIAL MARKETS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 SECURITIES INDUSTRY AND FINANCIAL MARKETS ASSOCIATION engaged SECURITIES INDUSTRY AND FINANCIAL MARKET for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SECURITIES INDUSTRY AND FINANCIAL MARKETS ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/be578b5a-7bfd-4392-b746-84c40490acdc/print/"
+}

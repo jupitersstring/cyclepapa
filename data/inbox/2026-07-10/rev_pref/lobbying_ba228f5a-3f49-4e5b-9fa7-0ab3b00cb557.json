@@ -1,0 +1,22 @@
+{
+  "accession": "ba228f5a-3f49-4e5b-9fa7-0ab3b00cb557",
+  "cik": "",
+  "expenses": "40000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Computer Industry \u00b7 Defense \u00b7 Homeland Security \u00b7 Manufacturing \u00b7 Science/Technology \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "BLUEFORS INC.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 BLUEFORS INC. engaged BLUEFORS INC. for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BLUEFORS INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ba228f5a-3f49-4e5b-9fa7-0ab3b00cb557/print/"
+}

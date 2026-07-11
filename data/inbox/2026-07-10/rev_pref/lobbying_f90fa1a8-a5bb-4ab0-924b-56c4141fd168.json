@@ -1,0 +1,22 @@
+{
+  "accession": "f90fa1a8-a5bb-4ab0-924b-56c4141fd168",
+  "cik": "",
+  "expenses": "15000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Clean Air and Water (quality) \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "HEARTH, PATIO & BARBECUE ASSOCIATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 HEARTH, PATIO & BARBECUE ASSOCIATION engaged HEARTH, PATIO & BARBECUE ASSOCIATION for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HEARTH, PATIO & BARBECUE ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f90fa1a8-a5bb-4ab0-924b-56c4141fd168/print/"
+}

@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110021-3A696992",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Final Director's Interest Notice - Zhang",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Food Products",
+  "isin": "AU000000AHF7",
+  "jurisdiction": "AU",
+  "name": "AUSTRALIAN DAIRY NUTRITIONALS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Consumer Staples",
+  "source": "ASX",
+  "ticker": "AHF",
+  "tier": "rev_pref",
+  "url": ""
+}

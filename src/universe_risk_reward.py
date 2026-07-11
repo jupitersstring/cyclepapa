@@ -44,6 +44,26 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
+
+def clean_display_name(n: str) -> str:
+    """Sanitize a name pulled from a universe.md row for institutional-
+    clean display: strip stringified-list wrappers (['NAME'] -> NAME),
+    the embedded "(TICKER) (CIK NNNN)" EDGAR suffix, and collapse
+    whitespace. Legacy rows promoted before the parser fixes carry these
+    artifacts; cleaning at render keeps the deliverable clean without
+    rewriting universe.md."""
+    if not n:
+        return ""
+    s = str(n).strip()
+    # ['FOO BAR'] or ["FOO"] -> FOO BAR
+    m = re.match(r"^\[\s*['\"](.+?)['\"]\s*(?:,.*)?\]$", s)
+    if m:
+        s = m.group(1)
+    # strip trailing "(TICKER) (CIK NNNN)" or bare "(CIK NNNN)"
+    s = re.sub(r"\s*(?:\([A-Z0-9.,\-\s]+\)\s*)?\(CIK\s*\d+\).*$", "", s, flags=re.I)
+    s = re.sub(r"\s{2,}", " ", s).strip(" '\"[]")
+    return s or str(n).strip()
+
 try:
     import yaml
 except ImportError:
@@ -138,7 +158,7 @@ def parse_universe_screened() -> list[UniverseRow]:
         rows.append(UniverseRow(
             region=region,
             score=float(mm.group(1)),
-            name=mm.group(2).strip(),
+            name=clean_display_name(mm.group(2)),
             ticker=mm.group(3).strip(),
             conf=mm.group(4).strip(),
             bucket=mm.group(5).strip(),

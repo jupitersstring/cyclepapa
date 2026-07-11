@@ -1,0 +1,22 @@
+{
+  "accession": "4cde5200-dd6c-4487-8401-794b1cb7b3e4",
+  "cik": "",
+  "expenses": "200000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Budget/Appropriations \u00b7 Government Issues \u00b7 Science/Technology \u00b7 Tariff (miscellaneous tariff bills) \u00b7 Trade (domestic/foreign) \u00b7 Waste (hazardous/solid/interstate/nuclear) \u00b7 Medical/",
+  "jurisdiction": "US",
+  "name": "TERRAPOWER, LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 TERRAPOWER, LLC engaged TERRAPOWER, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "TERRAPOWER, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4cde5200-dd6c-4487-8401-794b1cb7b3e4/print/"
+}

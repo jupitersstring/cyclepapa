@@ -1,0 +1,22 @@
+{
+  "accession": "e71a31ae-f826-4acc-b0ba-0663dea255b8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Trade (domestic/foreign) \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "APPLIED MATERIALS, INC.",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 APPLIED MATERIALS, INC. engaged RICCHETTI INCORPORATED for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "RICCHETTI INCORPORATED",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/e71a31ae-f826-4acc-b0ba-0663dea255b8/print/"
+}

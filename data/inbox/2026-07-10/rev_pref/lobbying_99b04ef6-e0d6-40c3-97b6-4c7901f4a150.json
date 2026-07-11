@@ -1,0 +1,22 @@
+{
+  "accession": "99b04ef6-e0d6-40c3-97b6-4c7901f4a150",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "NOBLE SUPPLY AND LOGISTICS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NOBLE SUPPLY AND LOGISTICS engaged ALBERTINE ENTERPRISES, INC. on  (universe-name match: NOBLE)",
+  "registrant": "ALBERTINE ENTERPRISES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NOBLE",
+  "url": "https://lda.senate.gov/filings/public/filing/99b04ef6-e0d6-40c3-97b6-4c7901f4a150/print/"
+}

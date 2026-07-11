@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001703079",
+  "fetched_at": "2026-07-11T09:56:11.107688Z",
+  "filed": "2026-07-11",
+  "form": "DEFC14A",
+  "form_code": "DEFC14A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "XAI Floating Rate & Alternative Income Trust",
+  "query_label": "tier_s.proxy_contest",
+  "query_note": "DEFC14A \u2014 definitive CONTESTED proxy statement",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1703079/000121390026076544/0001213900-26-076544-index.htm"
+}

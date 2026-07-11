@@ -1,0 +1,22 @@
+{
+  "accession": "1d348eae-7391-4696-b0fa-1ce29fbea5f5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "CALIFORNIA INSTITUTE OF TECHNOLOGY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CALIFORNIA INSTITUTE OF TECHNOLOGY engaged FEDERAL SCIENCE PARTNERS LLC on Budget/Appropriations (universe-name match: CALIFORNIA)",
+  "registrant": "FEDERAL SCIENCE PARTNERS LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/1d348eae-7391-4696-b0fa-1ce29fbea5f5/print/"
+}

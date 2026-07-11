@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110024-2A1683935",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Unsolicited indicative strategic investment proposal",
+  "form_code": "Indicative Non-Binding Proposal|Placement",
+  "industry": "Metals & Mining",
+  "isin": "AU0000330250",
+  "jurisdiction": "AU",
+  "name": "TARTANA MINERALS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "TAT",
+  "tier": "tier_s",
+  "url": ""
+}

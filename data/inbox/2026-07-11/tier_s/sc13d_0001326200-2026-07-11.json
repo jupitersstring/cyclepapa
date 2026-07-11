@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001326200",
+  "fetched_at": "2026-07-11T09:52:16.542984Z",
+  "filed": "2026-07-11",
+  "form": "SC 13D/A",
+  "form_code": "SC 13D/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GENCO SHIPPING & TRADING LTD",
+  "query_label": "tier_s.sc_13d_a",
+  "query_note": "13D amendment \u2014 material change to 5pct stake (filed within 2 business days post-Feb 2024)",
+  "source": "EDGAR-SC13D",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1326200/000110465926081696/0001104659-26-081696-index.htm"
+}

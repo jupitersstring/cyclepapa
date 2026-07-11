@@ -1,0 +1,16 @@
+{
+  "accession": "342cd96d-84b1-4210-b7fa-cef44f781204",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "BARCLAYS PLC",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/342cd96d-84b1-4210-b7fa-cef44f781204.html"
+}

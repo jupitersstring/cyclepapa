@@ -1,0 +1,22 @@
+{
+  "accession": "0aab5e0d-f965-4645-8e83-fa1b6ede2510",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Education \u00b7 Health Issues \u00b7 Sports/Athletics \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "UNIVERSITY OF CINCINNATI",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 UNIVERSITY OF CINCINNATI engaged LEWIS-BURKE ASSOCIATES, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "LEWIS-BURKE ASSOCIATES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/0aab5e0d-f965-4645-8e83-fa1b6ede2510/print/"
+}

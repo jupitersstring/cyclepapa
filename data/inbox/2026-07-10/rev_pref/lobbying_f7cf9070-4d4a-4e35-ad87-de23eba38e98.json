@@ -1,0 +1,22 @@
+{
+  "accession": "f7cf9070-4d4a-4e35-ad87-de23eba38e98",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Telecommunications \u00b7 Taxation/Internal Revenue Code \u00b7 Computer Industry \u00b7 Copyright/Patent/Trademark \u00b7 Trade (domestic/foreign) \u00b7 Immigration \u00b7 Postal",
+  "jurisdiction": "US",
+  "name": "EBAY, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 EBAY, INC. engaged THE GIBSON GROUP, LLC for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE GIBSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f7cf9070-4d4a-4e35-ad87-de23eba38e98/print/"
+}

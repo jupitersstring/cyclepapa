@@ -1,17 +1,17 @@
 {
   "accession": "0001841666-26-000034",
   "cik": "0001841666",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-05-07",
   "form": "10-Q",
   "form_code": "10-Q",
   "isin": null,
   "jurisdiction": "US",
-  "name": "APA Corp  (APA)  (CIK 0001841666)",
+  "name": "APA Corp",
   "query_label": "tier_s.post_reorg_emerged",
   "query_note": "Emerged from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and coverage vacuum.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "APA",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000034"
 }

@@ -1,17 +1,17 @@
 {
   "accession": "0000950103-26-007060",
   "cik": "0001100682",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-05-11",
   "form": "8-K",
   "form_code": "8-K",
   "isin": null,
   "jurisdiction": "US",
-  "name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.  (CRL)  (CIK 0001100682)",
+  "name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.",
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "CRL",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1100682/000095010326007060"
 }

@@ -1,0 +1,22 @@
+{
+  "accession": "544cfa78-8a1e-4c6f-9023-038090623788",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "75000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "TECK RESOURCES LIMITED",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 TECK RESOURCES LIMITED engaged BURKE CONSULTING LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BURKE CONSULTING LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/544cfa78-8a1e-4c6f-9023-038090623788/print/"
+}

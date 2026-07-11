@@ -1,0 +1,22 @@
+{
+  "accession": "7d8a1605-f76c-4cdf-b64b-9035bb7f3ee6",
+  "cik": "",
+  "expenses": "180000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Transportation \u00b7 Trucking/Shipping \u00b7 Taxation/Internal Revenue Code \u00b7 Trade (domestic/foreign) \u00b7 Energy/Nuclear \u00b7 Environment/Superfund",
+  "jurisdiction": "US",
+  "name": "PACCAR INC",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 PACCAR INC engaged PACCAR INC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PACCAR INC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/7d8a1605-f76c-4cdf-b64b-9035bb7f3ee6/print/"
+}

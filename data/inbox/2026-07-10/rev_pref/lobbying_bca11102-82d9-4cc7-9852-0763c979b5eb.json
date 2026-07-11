@@ -1,0 +1,22 @@
+{
+  "accession": "bca11102-82d9-4cc7-9852-0763c979b5eb",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "AMERICAN FEED INDUSTRY ASSN",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN FEED INDUSTRY ASSN engaged AMERICAN FEED INDUSTRY ASSN on  (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN FEED INDUSTRY ASSN",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/bca11102-82d9-4cc7-9852-0763c979b5eb/print/"
+}

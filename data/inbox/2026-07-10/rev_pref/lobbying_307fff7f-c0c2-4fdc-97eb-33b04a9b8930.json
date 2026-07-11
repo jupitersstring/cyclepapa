@@ -1,0 +1,22 @@
+{
+  "accession": "307fff7f-c0c2-4fdc-97eb-33b04a9b8930",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "AMERICAN INTERNATIONAL COLLEGE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN INTERNATIONAL COLLEGE engaged DOWNS GOVERNMENT AFFAIRS on Education (universe-name match: AMERICAN)",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/307fff7f-c0c2-4fdc-97eb-33b04a9b8930/print/"
+}

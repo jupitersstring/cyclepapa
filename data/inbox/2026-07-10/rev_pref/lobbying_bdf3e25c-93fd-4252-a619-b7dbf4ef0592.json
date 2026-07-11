@@ -1,0 +1,22 @@
+{
+  "accession": "bdf3e25c-93fd-4252-a619-b7dbf4ef0592",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Health Issues \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "EMD SERONO, INC.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 EMD SERONO, INC. engaged THE D MAJOR GROUP for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE D MAJOR GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bdf3e25c-93fd-4252-a619-b7dbf4ef0592/print/"
+}

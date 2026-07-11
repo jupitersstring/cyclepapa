@@ -1,0 +1,36 @@
+{
+  "accession": "cluster-1679788_20260603_20260609",
+  "cik": "1679788",
+  "fetched_at": "2026-07-11T09:52:21.354488Z",
+  "filed": "2026-06-09",
+  "form": "Cluster of Form 4 sells (S-code)",
+  "form_code": "FORM4_CLUSTER",
+  "isin": null,
+  "jurisdiction": "US",
+  "n_unique_insiders": 2,
+  "n_unplanned_10b5_1": 0,
+  "name": "Coinbase",
+  "query_label": "red_flag.cluster_sells",
+  "query_note": "Cluster sells: 2 insiders sold $430,643 between 2026-06-03 and 2026-06-09; 0 of 2 were NOT covered by 10b5-1 affirmative defence (post-Feb 2023 cooling-off rule)",
+  "sales": [
+    {
+      "filed": "2026-06-03",
+      "insider": "WILSON FREDERICK R",
+      "is_10b5_1": true,
+      "role": "Director",
+      "value_usd": 106276.98
+    },
+    {
+      "filed": "2026-06-09",
+      "insider": "Jones Jennifer N.",
+      "is_10b5_1": true,
+      "role": "Chief Accounting Officer",
+      "value_usd": 324365.65
+    }
+  ],
+  "source": "EDGAR-Form4-cluster-sells",
+  "ticker": null,
+  "tier": "red_flag",
+  "total_usd": 430642.63,
+  "url": ""
+}

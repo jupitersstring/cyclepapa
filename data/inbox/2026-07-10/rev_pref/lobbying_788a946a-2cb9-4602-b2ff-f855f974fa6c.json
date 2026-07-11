@@ -1,0 +1,22 @@
+{
+  "accession": "788a946a-2cb9-4602-b2ff-f855f974fa6c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Urban Development/Municipalities \u00b7 Marine/Maritime/Boating/Fisheries",
+  "jurisdiction": "US",
+  "name": "PORT OF MORROW",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 PORT OF MORROW engaged CFM STRATEGIC COMMUNICATIONS (CONKLING F for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CFM STRATEGIC COMMUNICATIONS (CONKLING FISKUM & MCCORMICK)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/788a946a-2cb9-4602-b2ff-f855f974fa6c/print/"
+}

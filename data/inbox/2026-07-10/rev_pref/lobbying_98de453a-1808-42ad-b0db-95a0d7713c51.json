@@ -1,0 +1,22 @@
+{
+  "accession": "98de453a-1808-42ad-b0db-95a0d7713c51",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Clean Air and Water (quality) \u00b7 Energy/Nuclear \u00b7 Environment/Superfund \u00b7 Government Issues \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "SIFF & ASSOCIATES, PLLC (OBO THE MECHANICAL CONTRACTORS ASSOCIATION OF AMERICA)",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 SIFF & ASSOCIATES, PLLC (OBO THE MECHANICAL CONTRACTORS ASSO engaged LONGBOW PUBLIC POLICY GROUP, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "LONGBOW PUBLIC POLICY GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/98de453a-1808-42ad-b0db-95a0d7713c51/print/"
+}

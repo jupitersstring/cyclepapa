@@ -1,0 +1,22 @@
+{
+  "accession": "54294514-9c6f-437d-8ca2-779a690910a3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "PLUG POWER, INC.",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 PLUG POWER, INC. engaged BRACEWELL LLP for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BRACEWELL LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PLUG",
+  "url": "https://lda.senate.gov/filings/public/filing/54294514-9c6f-437d-8ca2-779a690910a3/print/"
+}

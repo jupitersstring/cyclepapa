@@ -1,0 +1,18 @@
+{
+  "accession": "000045374_10_Jul_2026_2144_EDT_Material_change_report_-_Englishpdf",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:47:21.486621Z",
+  "filed": "2026-07-10",
+  "form": "Material change report - English.pdf",
+  "form_code": "",
+  "isin": null,
+  "issuer_num": "000045374",
+  "jurisdiction": "British Columbia",
+  "name": "Usha Resources Ltd.",
+  "query_label": "tier_s.material_change",
+  "query_note": "Form 51-102F3 material change \u2014 verify whether structural",
+  "source": "SEDAR+",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sedarplus.ca/csa-party/records/issuer.html?issuerNo=000045374"
+}

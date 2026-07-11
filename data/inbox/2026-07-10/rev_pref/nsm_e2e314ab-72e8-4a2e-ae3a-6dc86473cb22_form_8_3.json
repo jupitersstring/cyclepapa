@@ -1,0 +1,16 @@
+{
+  "accession": "e2e314ab-72e8-4a2e-ae3a-6dc86473cb22",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Form 8.3",
+  "form_code": "RET",
+  "isin": null,
+  "name": "THE BANK OF NOVA SCOTIA",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/e2e314ab-72e8-4a2e-ae3a-6dc86473cb22.html"
+}

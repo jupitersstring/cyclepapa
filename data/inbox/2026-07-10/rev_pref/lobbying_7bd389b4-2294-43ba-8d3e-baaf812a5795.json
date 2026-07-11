@@ -1,0 +1,22 @@
+{
+  "accession": "7bd389b4-2294-43ba-8d3e-baaf812a5795",
+  "cik": "",
+  "expenses": "350000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Medicare/Medicaid \u00b7 Health Issues \u00b7 Disaster Planning/Emergencies \u00b7 Taxation/Internal Revenue Code \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "AMERICAN AMBULANCE ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN AMBULANCE ASSOCIATION engaged AMERICAN AMBULANCE ASSOCIATION on Medicare/Medicaid \u00b7 Health Issues \u00b7 Disaster Planning/Emergencies \u00b7 Taxation/Int (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN AMBULANCE ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/7bd389b4-2294-43ba-8d3e-baaf812a5795/print/"
+}

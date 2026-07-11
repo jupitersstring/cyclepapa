@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110112-6A1333446",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Initial Director's Interest Notice - Ching (Sharon) Iu",
+  "form_code": "Initial Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU0000035701",
+  "jurisdiction": "AU",
+  "name": "THETA GOLD MINES LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "TGM",
+  "tier": "rev_pref",
+  "url": ""
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "fa90423d-1087-4919-944b-b496d16a238d",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Irish Takeover Panel",
+  "form_code": "ITP",
+  "isin": null,
+  "name": "Royal Bank of Canada",
+  "query_label": "rev_pref.form_8_3",
+  "query_note": "City Code disclosure of dealings in offer period",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/fa90423d-1087-4919-944b-b496d16a238d.html"
+}

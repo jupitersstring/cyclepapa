@@ -1,0 +1,22 @@
+{
+  "accession": "82b5feff-79b6-474d-86c8-185bb615b492",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Aviation/Airlines/Airports",
+  "jurisdiction": "US",
+  "name": "TEAM HALLAHAN (ON BEHALF OF CITY OF CLEVELAND)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 TEAM HALLAHAN (ON BEHALF OF CITY OF CLEVELAND) engaged RED CARR LLC on Aviation/Airlines/Airports (universe-name match: TEAM)",
+  "registrant": "RED CARR LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "TEAM",
+  "url": "https://lda.senate.gov/filings/public/filing/82b5feff-79b6-474d-86c8-185bb615b492/print/"
+}

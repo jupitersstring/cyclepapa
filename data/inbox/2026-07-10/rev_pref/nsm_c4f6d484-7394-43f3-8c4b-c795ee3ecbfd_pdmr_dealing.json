@@ -1,0 +1,16 @@
+{
+  "accession": "c4f6d484-7394-43f3-8c4b-c795ee3ecbfd",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Director/PDMR Shareholding",
+  "form_code": "DSH",
+  "isin": null,
+  "name": "TELECOM PLUS PLC",
+  "query_label": "rev_pref.pdmr_dealing",
+  "query_note": "UK insider transaction (Lakonishok-Lee analogue)",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/c4f6d484-7394-43f3-8c4b-c795ee3ecbfd.html"
+}

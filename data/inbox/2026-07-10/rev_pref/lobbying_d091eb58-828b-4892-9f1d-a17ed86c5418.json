@@ -1,0 +1,22 @@
+{
+  "accession": "d091eb58-828b-4892-9f1d-a17ed86c5418",
+  "cik": "",
+  "expenses": "189000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Education \u00b7 Health Issues \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Medicare/Medicaid \u00b7 Veterans \u00b7 Medical/Disease Research/Clinical Labs \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "THE AMERICAN OCCUPATIONAL THERAPY ASSOCIATION, INC. (AOTA)",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 THE AMERICAN OCCUPATIONAL THERAPY ASSOCIATION, INC. (AOTA) engaged THE AMERICAN OCCUPATIONAL THERAPY ASSOCI for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE AMERICAN OCCUPATIONAL THERAPY ASSOCIATION, INC. (AOTA)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/d091eb58-828b-4892-9f1d-a17ed86c5418/print/"
+}

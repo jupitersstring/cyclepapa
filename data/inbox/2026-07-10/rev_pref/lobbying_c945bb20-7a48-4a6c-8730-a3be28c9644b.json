@@ -1,0 +1,22 @@
+{
+  "accession": "c945bb20-7a48-4a6c-8730-a3be28c9644b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "PACIFIC FUSION CORPORATION",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 PACIFIC FUSION CORPORATION engaged LEWIS-BURKE ASSOCIATES, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "LEWIS-BURKE ASSOCIATES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PACIFIC",
+  "url": "https://lda.senate.gov/filings/public/filing/c945bb20-7a48-4a6c-8730-a3be28c9644b/print/"
+}

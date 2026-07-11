@@ -1,0 +1,22 @@
+{
+  "accession": "adbedb48-32fd-43fd-8ada-fa6cf4f94121",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Disaster Planning/Emergencies \u00b7 Natural Resources \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "PARA LA NATURALEZA, INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 PARA LA NATURALEZA, INC. engaged SQUIRE PATTON BOGGS on Agriculture \u00b7 Disaster Planning/Emergencies \u00b7 Natural Resources \u00b7 Taxation/Inter (universe-name match: PARA)",
+  "registrant": "SQUIRE PATTON BOGGS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PARA",
+  "url": "https://lda.senate.gov/filings/public/filing/adbedb48-32fd-43fd-8ada-fa6cf4f94121/print/"
+}

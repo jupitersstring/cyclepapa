@@ -1,0 +1,22 @@
+{
+  "accession": "de805b34-4ed4-40ff-a261-18c45c4f678c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "120000.00",
+  "isin": null,
+  "issues": "Food Industry (safety, labeling, etc.)",
+  "jurisdiction": "US",
+  "name": "UNION GANADERA REGIONAL DE CHI",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNION GANADERA REGIONAL DE CHI engaged SQUIRE PATTON BOGGS on Food Industry (safety, labeling, etc.) (universe-name match: UNION)",
+  "registrant": "SQUIRE PATTON BOGGS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNION",
+  "url": "https://lda.senate.gov/filings/public/filing/de805b34-4ed4-40ff-a261-18c45c4f678c/print/"
+}

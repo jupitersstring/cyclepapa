@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03110011-2A1683928",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Successful Completion of Retail Entitlement Offer",
+  "form_code": "Non-Renounceable Issue",
+  "industry": "Diversified REITs",
+  "isin": "AU000000CNI5",
+  "jurisdiction": "AU",
+  "name": "CENTURIA CAPITAL GROUP",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Real Estate",
+  "source": "ASX",
+  "ticker": "CNI",
+  "tier": "tier_s",
+  "url": ""
+}

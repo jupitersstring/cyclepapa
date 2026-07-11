@@ -1,0 +1,22 @@
+{
+  "accession": "215f2fcb-82f4-4884-a9c8-5513fc8e9976",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Disaster Planning/Emergencies",
+  "jurisdiction": "US",
+  "name": "THE CATHOLIC CHURCH EXTENSION SOCIETY OF THE UNITED STATES OF AMERICA",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 THE CATHOLIC CHURCH EXTENSION SOCIETY OF THE UNITED STATES O engaged HOLLAND & KNIGHT LLP on Disaster Planning/Emergencies (universe-name match: UNITED)",
+  "registrant": "HOLLAND & KNIGHT LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/215f2fcb-82f4-4884-a9c8-5513fc8e9976/print/"
+}

@@ -1,0 +1,16 @@
+{
+  "accession": "d99264bf-dc9f-442a-a530-3f11d1028daa",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Result of Tender Offer",
+  "form_code": "RTE",
+  "isin": null,
+  "name": "INVESTMENT COMPANY PLC(THE)",
+  "query_label": "tier_s.tender",
+  "query_note": "tender offer",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/d99264bf-dc9f-442a-a530-3f11d1028daa.html"
+}

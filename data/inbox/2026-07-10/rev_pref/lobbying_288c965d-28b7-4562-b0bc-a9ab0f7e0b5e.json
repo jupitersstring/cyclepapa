@@ -1,0 +1,22 @@
+{
+  "accession": "288c965d-28b7-4562-b0bc-a9ab0f7e0b5e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Fuel/Gas/Oil",
+  "jurisdiction": "US",
+  "name": "PEABODY ENERGY CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 PEABODY ENERGY CORPORATION engaged CORNERSTONE GOVERNMENT AFFAIRS, INC. for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CORNERSTONE GOVERNMENT AFFAIRS, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PEABODY",
+  "url": "https://lda.senate.gov/filings/public/filing/288c965d-28b7-4562-b0bc-a9ab0f7e0b5e/print/"
+}

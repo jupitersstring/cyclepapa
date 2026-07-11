@@ -1,0 +1,22 @@
+{
+  "accession": "127eec8f-40d0-42a3-b232-bd36799aada6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "COWLITZ PUBLIC UTILITY DISTRICT",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 COWLITZ PUBLIC UTILITY DISTRICT engaged CFM STRATEGIC COMMUNICATIONS (CONKLING F for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CFM STRATEGIC COMMUNICATIONS (CONKLING FISKUM & MCCORMICK)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/127eec8f-40d0-42a3-b232-bd36799aada6/print/"
+}

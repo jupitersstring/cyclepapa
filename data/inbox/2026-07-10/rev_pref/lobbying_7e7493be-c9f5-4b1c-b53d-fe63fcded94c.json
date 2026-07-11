@@ -1,0 +1,22 @@
+{
+  "accession": "7e7493be-c9f5-4b1c-b53d-fe63fcded94c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Insurance \u00b7 Medicare/Medicaid",
+  "jurisdiction": "US",
+  "name": "HEALTH CARE SERVICE CORPORATION, A MUTUAL LEGAL RESERVE COMPANY (HCSC)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 HEALTH CARE SERVICE CORPORATION, A MUTUAL LEGAL RESERVE COMP engaged THE D MAJOR GROUP on Insurance \u00b7 Medicare/Medicaid (universe-name match: LEGAL)",
+  "registrant": "THE D MAJOR GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "LEGAL",
+  "url": "https://lda.senate.gov/filings/public/filing/7e7493be-c9f5-4b1c-b53d-fe63fcded94c/print/"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001900520",
+  "fetched_at": "2026-07-11T09:52:18.335521Z",
+  "filed": "2026-07-11",
+  "form": "15-12G",
+  "form_code": "15-12G",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Lomond Therapeutics Holdings, Inc.",
+  "query_label": "tier_s.going_dark_12g",
+  "query_note": "Form 15-12G: termination of Section 12(g) registration \u2014 held by < 300 record-holders (or < 500 with assets < $10m); reporting suspends. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.",
+  "source": "EDGAR-Form15",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1900520/000121390026077133/0001213900-26-077133-index.htm"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "d0b9404b-1a28-49ba-a688-4b54cd93c15f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "LEONARDO DRS, INC (FORMER DRS TECHNOLOGIES, INC.)",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 LEONARDO DRS, INC (FORMER DRS TECHNOLOGIES, INC.) engaged STAPLETON & ASSOCIATES, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "STAPLETON & ASSOCIATES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d0b9404b-1a28-49ba-a688-4b54cd93c15f/print/"
+}

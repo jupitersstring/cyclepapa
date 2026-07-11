@@ -1,0 +1,22 @@
+{
+  "accession": "052719bf-233d-4871-9e51-53698f14c04a",
+  "cik": "",
+  "expenses": "125000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Homeland Security \u00b7 Agriculture \u00b7 Science/Technology \u00b7 Budget/Appropriations \u00b7 Clean Air and Water (quality) \u00b7 Transportation \u00b7 Natural Resources \u00b7 Taxation/Internal Revenue Code \u00b7 Utilities",
+  "jurisdiction": "US",
+  "name": "ASSOCIATION OF CALIFORNIA WATER AGENCIES",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 ASSOCIATION OF CALIFORNIA WATER AGENCIES engaged ASSOCIATION OF CALIFORNIA WATER AGENCIES for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ASSOCIATION OF CALIFORNIA WATER AGENCIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/052719bf-233d-4871-9e51-53698f14c04a/print/"
+}

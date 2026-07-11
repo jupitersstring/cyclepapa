@@ -1,0 +1,22 @@
+{
+  "accession": "94c6236e-69e1-4ba6-88a3-3928b6a36de7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "WIRELESS INFRASTRUCTURE ASSOCIATION",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 WIRELESS INFRASTRUCTURE ASSOCIATION engaged ICE MILLER STRATEGIES LLC for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ICE MILLER STRATEGIES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/94c6236e-69e1-4ba6-88a3-3928b6a36de7/print/"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001870600",
+  "fetched_at": "2026-07-11T09:56:11.107688Z",
+  "filed": "2026-07-11",
+  "form": "25-NSE",
+  "form_code": "25-NSE",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Solo Brands, Inc.",
+  "query_label": "tier_s.delisting_form25",
+  "query_note": "Form 25-NSE \u2014 notification of removal from listing (the delisting event itself)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1870600/000087666126000606/0000876661-26-000606-index.htm"
+}

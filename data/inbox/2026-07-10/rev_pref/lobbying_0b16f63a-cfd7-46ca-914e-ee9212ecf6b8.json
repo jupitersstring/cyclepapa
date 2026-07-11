@@ -1,0 +1,22 @@
+{
+  "accession": "0b16f63a-cfd7-46ca-914e-ee9212ecf6b8",
+  "cik": "",
+  "expenses": "75000.00",
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues \u00b7 Defense \u00b7 Housing \u00b7 Medical/Disease Research/Clinical Labs \u00b7 Education \u00b7 Disaster Planning/Emergencies \u00b7 Energy/Nuclear \u00b7 Budget/Appropriations \u00b7 Civil Rights/Civil Liberties \u00b7 Aviatio",
+  "jurisdiction": "US",
+  "name": "CURE SMA",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 CURE SMA engaged CURE SMA for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CURE SMA",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/0b16f63a-cfd7-46ca-914e-ee9212ecf6b8/print/"
+}

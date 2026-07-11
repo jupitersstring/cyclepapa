@@ -1,0 +1,22 @@
+{
+  "accession": "ebdf6ae5-e884-487a-80d3-23809c574f8c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Telecommunications \u00b7 Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "TELEPERFORMANCE GROUP, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 TELEPERFORMANCE GROUP, INC. engaged FGS GLOBAL (US) LLC (FKA FGH HOLDINGS LL for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FGS GLOBAL (US) LLC (FKA FGH HOLDINGS LLC)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ebdf6ae5-e884-487a-80d3-23809c574f8c/print/"
+}

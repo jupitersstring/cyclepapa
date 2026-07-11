@@ -1,0 +1,22 @@
+{
+  "accession": "2740ba06-8da1-4812-8f83-c2978997e9f2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "25000.00",
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "CALIFORNIA COMMUNITY COLLEGE CHANCELLORS OFFICE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CALIFORNIA COMMUNITY COLLEGE CHANCELLORS OFFICE engaged DOWNS GOVERNMENT AFFAIRS on Education (universe-name match: CALIFORNIA)",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/2740ba06-8da1-4812-8f83-c2978997e9f2/print/"
+}

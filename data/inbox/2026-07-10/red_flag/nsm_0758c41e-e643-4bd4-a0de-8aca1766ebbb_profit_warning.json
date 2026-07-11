@@ -1,0 +1,16 @@
+{
+  "accession": "0758c41e-e643-4bd4-a0de-8aca1766ebbb",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Trading Statement",
+  "form_code": "TST",
+  "isin": null,
+  "name": "JOHNSON SERVICE GROUP PLC",
+  "query_label": "red_flag.profit_warning",
+  "query_note": "UK trading update \u2014 verify whether profit warning",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/0758c41e-e643-4bd4-a0de-8aca1766ebbb.html"
+}

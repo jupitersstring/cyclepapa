@@ -1,0 +1,22 @@
+{
+  "accession": "09c4cc2c-a281-4fb3-bef6-a60c24b30b5b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "FUEL CELL AND HYDROGEN ENERGY ASSOCIATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 FUEL CELL AND HYDROGEN ENERGY ASSOCIATION engaged BRACEWELL LLP for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BRACEWELL LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/09c4cc2c-a281-4fb3-bef6-a60c24b30b5b/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "d2347463-9f01-4a59-9dc1-c39f7a943622",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Telecommunications \u00b7 Defense \u00b7 Budget/Appropriations \u00b7 Government Issues \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "VERIZON",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 VERIZON engaged CASSIDY & ASSOCIATES, INC. for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CASSIDY & ASSOCIATES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d2347463-9f01-4a59-9dc1-c39f7a943622/print/"
+}

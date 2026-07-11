@@ -1,17 +1,17 @@
 {
   "accession": "0001355096-26-000010",
   "cik": "0001355096",
-  "fetched_at": "2026-07-10T14:41:09.202260Z",
+  "fetched_at": "2026-07-11T09:55:55.798254Z",
   "filed": "2026-04-15",
   "form": "10-K",
   "form_code": "10-K",
   "isin": null,
   "jurisdiction": "US",
-  "name": "QVC Group, Inc.  (QVCGA, QVCGB, QVCGP)  (CIK 0001355096)",
+  "name": "QVC Group, Inc.",
   "query_label": "tier_s.post_reorg_emerged",
   "query_note": "Emerged from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and coverage vacuum.",
   "source": "EDGAR-postreorg",
-  "ticker": null,
+  "ticker": "QVCGA",
   "tier": "tier_s",
   "url": "https://www.sec.gov/Archives/edgar/data/1355096/000135509626000010"
 }

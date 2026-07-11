@@ -1,0 +1,22 @@
+{
+  "accession": "59c5a1b6-3412-4430-a50b-ea57a19dc40b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "WEST CHESTER UNIVERSITY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 WEST CHESTER UNIVERSITY engaged DOWNS GOVERNMENT AFFAIRS on Education (universe-name match: WEST)",
+  "registrant": "DOWNS GOVERNMENT AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "WEST",
+  "url": "https://lda.senate.gov/filings/public/filing/59c5a1b6-3412-4430-a50b-ea57a19dc40b/print/"
+}

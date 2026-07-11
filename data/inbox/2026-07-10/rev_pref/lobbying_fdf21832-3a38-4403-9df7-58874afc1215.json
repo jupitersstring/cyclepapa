@@ -1,0 +1,22 @@
+{
+  "accession": "fdf21832-3a38-4403-9df7-58874afc1215",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "LAW OFFICE OF BART S. FISHER, ON BEHALF OF UNIVERSAL GREEN GROUP",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 LAW OFFICE OF BART S. FISHER, ON BEHALF OF UNIVERSAL GREEN G engaged ALBERTINE ENTERPRISES, INC. on  (universe-name match: OFFICE)",
+  "registrant": "ALBERTINE ENTERPRISES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "OFFICE",
+  "url": "https://lda.senate.gov/filings/public/filing/fdf21832-3a38-4403-9df7-58874afc1215/print/"
+}

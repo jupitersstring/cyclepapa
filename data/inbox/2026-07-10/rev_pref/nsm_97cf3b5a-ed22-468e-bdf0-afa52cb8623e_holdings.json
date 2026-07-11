@@ -1,0 +1,16 @@
+{
+  "accession": "97cf3b5a-ed22-468e-bdf0-afa52cb8623e",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "LIONTRUST ASSET MANAGEMENT PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/97cf3b5a-ed22-468e-bdf0-afa52cb8623e.html"
+}

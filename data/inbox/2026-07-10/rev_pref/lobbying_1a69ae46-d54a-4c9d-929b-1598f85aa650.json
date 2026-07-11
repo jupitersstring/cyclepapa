@@ -1,0 +1,22 @@
+{
+  "accession": "1a69ae46-d54a-4c9d-929b-1598f85aa650",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Roads/Highway \u00b7 Environment/Superfund \u00b7 Disaster Planning/Emergencies \u00b7 Agriculture \u00b7 Housing \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "AMERICAN FLOOD COALITION ACTION INC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 AMERICAN FLOOD COALITION ACTION INC engaged ALPINE GROUP PARTNERS, LLC. for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ALPINE GROUP PARTNERS, LLC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/1a69ae46-d54a-4c9d-929b-1598f85aa650/print/"
+}

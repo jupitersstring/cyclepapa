@@ -1,0 +1,22 @@
+{
+  "accession": "b9443646-b78f-4595-895f-8dd9be79c5fc",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "MERIDIAM INFRASTRUCTURE",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 MERIDIAM INFRASTRUCTURE engaged CAPITOL POINT GROUP, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CAPITOL POINT GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/b9443646-b78f-4595-895f-8dd9be79c5fc/print/"
+}

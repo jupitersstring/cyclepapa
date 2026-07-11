@@ -1,0 +1,22 @@
+{
+  "accession": "78612647-73b3-4375-8faf-73c3bab1ae7d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Manufacturing",
+  "jurisdiction": "US",
+  "name": "KERBEY HARRINGTON PINKARD LLP ON BEHALF OF CABOT CORPORATION",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 KERBEY HARRINGTON PINKARD LLP ON BEHALF OF CABOT CORPORATION engaged VENABLE LLP for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "VENABLE LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/78612647-73b3-4375-8faf-73c3bab1ae7d/print/"
+}

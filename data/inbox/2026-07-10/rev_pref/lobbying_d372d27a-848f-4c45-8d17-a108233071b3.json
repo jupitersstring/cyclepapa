@@ -1,0 +1,22 @@
+{
+  "accession": "d372d27a-848f-4c45-8d17-a108233071b3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Natural Resources \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "AMERICAN FOREST FOUNDATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN FOREST FOUNDATION engaged CORNERSTONE GOVERNMENT AFFAIRS, INC. on Agriculture \u00b7 Natural Resources \u00b7 Taxation/Internal Revenue Code (universe-name match: AMERICAN)",
+  "registrant": "CORNERSTONE GOVERNMENT AFFAIRS, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/d372d27a-848f-4c45-8d17-a108233071b3/print/"
+}

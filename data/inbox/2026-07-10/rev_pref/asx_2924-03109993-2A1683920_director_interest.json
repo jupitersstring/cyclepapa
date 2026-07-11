@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03109993-2A1683920",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:52:06.124814Z",
+  "filed": "2026-07-10",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Diversified Consumer Services",
+  "isin": "AU000000AKG9",
+  "jurisdiction": "AU",
+  "name": "ACADEMIES AUSTRALASIA GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Consumer Discretionary",
+  "source": "ASX",
+  "ticker": "AKG",
+  "tier": "rev_pref",
+  "url": ""
+}

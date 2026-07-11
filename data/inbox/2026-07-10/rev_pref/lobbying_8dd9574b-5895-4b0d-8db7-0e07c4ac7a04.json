@@ -1,0 +1,22 @@
+{
+  "accession": "8dd9574b-5895-4b0d-8db7-0e07c4ac7a04",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Telecommunications \u00b7 Consumer Issues/Safety/Products \u00b7 Sports/Athletics",
+  "jurisdiction": "US",
+  "name": "SPORTS FANS COALITION, INC.",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 SPORTS FANS COALITION, INC. engaged I STREET ADVOCATES for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "I STREET ADVOCATES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8dd9574b-5895-4b0d-8db7-0e07c4ac7a04/print/"
+}

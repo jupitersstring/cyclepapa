@@ -1,0 +1,22 @@
+{
+  "accession": "795e3377-4aa4-4027-b261-95f73dff6aff",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Science/Technology \u00b7 Trade (domestic/foreign) \u00b7 Energy/Nuclear \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "NUCLEAR ENERGY INSTITUTE",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 NUCLEAR ENERGY INSTITUTE engaged THE HARPLE GROUP, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE HARPLE GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/795e3377-4aa4-4027-b261-95f73dff6aff/print/"
+}

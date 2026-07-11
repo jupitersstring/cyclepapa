@@ -1,0 +1,16 @@
+{
+  "accession": "62814601-b1d3-4e5c-94bd-301659813bdc",
+  "cik": "",
+  "fetched_at": "2026-07-11T09:46:57.280399Z",
+  "filed": "2026-07-10",
+  "form": "Holding(s) in Company",
+  "form_code": "HOL",
+  "isin": null,
+  "name": "HARBOUR ENERGY PLC",
+  "query_label": "rev_pref.holdings",
+  "query_note": "3pct holding disclosure under DTR 5",
+  "source": "NSM",
+  "ticker": null,
+  "tier": "rev_pref",
+  "url": "https://data.fca.org.uk/artefacts/NSM/RNS/7f41d32c-b617-4d71-81bc-c6f84b426893.html"
+}

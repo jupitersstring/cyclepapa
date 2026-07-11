@@ -1,0 +1,22 @@
+{
+  "accession": "9d23bebe-69aa-4f75-9e0e-429669307054",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-11T09:54:27.240565Z",
+  "filed": "2026-07-10",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Railroads",
+  "jurisdiction": "US",
+  "name": "HIGH ROCK WESTMINSTER LLC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 HIGH ROCK WESTMINSTER LLC engaged VENABLE LLP for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "VENABLE LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/9d23bebe-69aa-4f75-9e0e-429669307054/print/"
+}
