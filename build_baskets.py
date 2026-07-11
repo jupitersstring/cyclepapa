@@ -120,12 +120,18 @@ def uncorrelated_basket(pool, n_target=30, eps=0.5):
     ccys = {currency_for_ticker(t) for t in have}
     fx = fetch_fx(ccys, period="24mo") if any(c != "USD" for c in ccys) else {}
     usd = pd.DataFrame({t: usd_close(daily, t, fx) for t in have}).dropna(how="all")
-    weekly = usd.resample("W-FRI").last().pct_change().dropna()
+    # dropna(how="all") — a bare dropna() removes every row containing ANY
+    # NaN, and with 200 tickers across 18 holiday calendars that wipes the
+    # whole matrix (observed: 200/200 fetched, 0 selected). Pairwise corr
+    # with min_periods handles the remaining gaps.
+    weekly = usd.resample("W-FRI").last().pct_change().dropna(how="all")
     keep = [t for t in weekly.columns if weekly[t].notna().sum() >= 40]
     weekly = weekly[keep]
     if weekly.shape[1] < 2:
         return pool.head(0), {}
-    corr = weekly.corr().abs()
+    corr = weekly.corr(min_periods=30).abs()
+    # NaN pair-correlations (insufficient overlap) block selection via the
+    # `all(<= eps)` test, which is the conservative behavior we want.
     pool_idx = pool.set_index("ticker")
     chosen = []
     for t in pool_idx.index:
@@ -138,7 +144,7 @@ def uncorrelated_basket(pool, n_target=30, eps=0.5):
     if not chosen:
         return pool.head(0), {}
     sub = weekly[chosen]
-    cov = sub.cov().values
+    cov = np.nan_to_num(sub.cov().values)
     eig = np.linalg.eigvalsh(cov)
     n_eff = (np.trace(cov) ** 2) / np.trace(cov @ cov) if cov.size else 0
     iu = np.triu_indices_from(corr.loc[chosen, chosen].values, k=1)

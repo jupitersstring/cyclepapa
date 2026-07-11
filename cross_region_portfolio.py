@@ -92,7 +92,7 @@ def main():
     fx = fetch_fx(ccys, period="24mo") if any(c != "USD" for c in ccys) else {}
     usd = pd.DataFrame({t: usd_close(daily, t, fx) for t in have}).dropna(how="all")
 
-    weekly_ret = usd.resample("W-FRI").last().pct_change().dropna()
+    weekly_ret = usd.resample("W-FRI").last().pct_change().dropna(how="all")
     keep = [t for t in weekly_ret.columns if weekly_ret[t].notna().sum() >= 40]
     weekly_ret = weekly_ret[keep]
     if weekly_ret.shape[1] < 2:
