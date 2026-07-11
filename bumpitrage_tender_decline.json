@@ -684,9 +684,9 @@
         "shares": null
       }
     ],
-    "declining": true,
-    "score": 33.0,
-    "reasons": "declining acceptance (pct 77.8 -> 77.8); 4 amendments"
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
   },
   "KROS": {
     "n_amendments": 2,
@@ -735,9 +735,9 @@
         "shares": null
       }
     ],
-    "declining": true,
-    "score": 33.0,
-    "reasons": "declining acceptance (pct 95.2 -> 95.2); 5 amendments"
+    "declining": false,
+    "score": 8.0,
+    "reasons": "5 amendments"
   },
   "LEN": {
     "n_amendments": 8,

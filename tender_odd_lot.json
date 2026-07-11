@@ -4,6 +4,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001476840-26-000063",
+    "latest_filing_days_ago": 0,
+    "liveness": "LIVE",
     "score": 0
   },
   "ABX": {
@@ -11,6 +13,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-25-027937",
+    "latest_filing_days_ago": 317,
+    "liveness": "LIVE",
     "score": 0
   },
   "ABXL": {
@@ -18,6 +22,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-25-027937",
+    "latest_filing_days_ago": 317,
+    "liveness": "LIVE",
     "score": 0
   },
   "ASRT": {
@@ -25,6 +31,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-063278",
+    "latest_filing_days_ago": 25,
+    "liveness": "LIVE",
     "score": 0
   },
   "BCX": {
@@ -32,6 +40,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-123419",
+    "latest_filing_days_ago": 387,
+    "liveness": "LIVE",
     "score": 0
   },
   "BGY": {
@@ -39,6 +49,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-124267",
+    "latest_filing_days_ago": 386,
+    "liveness": "LIVE",
     "score": 0
   },
   "BIIB": {
@@ -46,6 +58,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-26-222837",
+    "latest_filing_days_ago": 29,
+    "liveness": "LIVE",
     "score": 0
   },
   "BOE": {
@@ -53,6 +67,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-123411",
+    "latest_filing_days_ago": 387,
+    "liveness": "LIVE",
     "score": 0
   },
   "BSTZ": {
@@ -60,6 +76,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-124270",
+    "latest_filing_days_ago": 386,
+    "liveness": "LIVE",
     "score": 0
   },
   "BTX": {
@@ -67,6 +85,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-157195",
+    "latest_filing_days_ago": 337,
+    "liveness": "LIVE",
     "score": 0
   },
   "CAF": {
@@ -74,13 +94,17 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-039224",
-    "score": 0
+    "latest_filing_days_ago": 71,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "CMU": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0000930413-26-001549",
+    "latest_filing_days_ago": 32,
+    "liveness": "LIVE",
     "score": 0
   },
   "CXH": {
@@ -88,6 +112,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0000930413-26-001670",
+    "latest_filing_days_ago": 24,
+    "liveness": "LIVE",
     "score": 0
   },
   "DTST": {
@@ -95,6 +121,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001731122-26-000079",
+    "latest_filing_days_ago": 147,
+    "liveness": "LIVE",
     "score": 0
   },
   "DXLG": {
@@ -102,6 +130,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001493152-26-028374",
+    "latest_filing_days_ago": 0,
+    "liveness": "LIVE",
     "score": 0
   },
   "EFR": {
@@ -109,6 +139,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001133228-26-008640",
+    "latest_filing_days_ago": 11,
+    "liveness": "LIVE",
     "score": 0
   },
   "EIX": {
@@ -116,6 +148,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-327218",
+    "latest_filing_days_ago": 172,
+    "liveness": "LIVE",
     "score": 0
   },
   "ENZN": {
@@ -123,13 +157,17 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-034177",
-    "score": 0
+    "latest_filing_days_ago": 79,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "EVF": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001133228-26-008642",
+    "latest_filing_days_ago": 11,
+    "liveness": "LIVE",
     "score": 0
   },
   "FSK": {
@@ -137,6 +175,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-070767",
+    "latest_filing_days_ago": 7,
+    "liveness": "LIVE",
     "score": 0
   },
   "GETY": {
@@ -144,13 +184,17 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001213900-26-037535",
-    "score": 0
+    "latest_filing_days_ago": 73,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "GLXY": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001859392-25-000055",
+    "latest_filing_days_ago": 268,
+    "liveness": "LIVE",
     "score": 0
   },
   "GMAB": {
@@ -158,6 +202,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-335916",
+    "latest_filing_days_ago": 164,
+    "liveness": "LIVE",
     "score": 0
   },
   "GNK": {
@@ -165,6 +211,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-26-024958",
+    "latest_filing_days_ago": 1,
+    "liveness": "LIVE",
     "score": 0
   },
   "GPUS": {
@@ -172,6 +220,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193805-26-000788",
+    "latest_filing_days_ago": 2,
+    "liveness": "LIVE",
     "score": 0
   },
   "HCKT": {
@@ -179,6 +229,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-311324",
+    "latest_filing_days_ago": 186,
+    "liveness": "LIVE",
     "score": 0
   },
   "HERZ": {
@@ -186,6 +238,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001999371-25-015726",
+    "latest_filing_days_ago": 234,
+    "liveness": "LIVE",
     "score": 0
   },
   "HTT": {
@@ -193,6 +247,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-065886",
+    "latest_filing_days_ago": 17,
+    "liveness": "LIVE",
     "score": 0
   },
   "INFY": {
@@ -200,6 +256,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-25-309826",
+    "latest_filing_days_ago": 189,
+    "liveness": "LIVE",
     "score": 0
   },
   "IZEA": {
@@ -207,6 +265,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001495231-25-000120",
+    "latest_filing_days_ago": 359,
+    "liveness": "LIVE",
     "score": 0
   },
   "JOF": {
@@ -214,6 +274,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-26-023437",
+    "latest_filing_days_ago": 11,
+    "liveness": "LIVE",
     "score": 0
   },
   "KALV": {
@@ -221,6 +283,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-26-024887",
+    "latest_filing_days_ago": 1,
+    "liveness": "LIVE",
     "score": 0
   },
   "KROS": {
@@ -228,6 +292,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-25-114608",
+    "latest_filing_days_ago": 204,
+    "liveness": "LIVE",
     "score": 0
   },
   "LE": {
@@ -235,20 +301,26 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-038287",
-    "score": 0
+    "latest_filing_days_ago": 72,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "LEN": {
     "has_odd_lot_language": true,
     "has_not_prorated_clause": true,
     "snippet": "&#8221; who have validly tendered all of their shares, were not subject to proration, in accordance with the terms of the Exchange Offer. All sh",
     "accession": "0001193125-25-300679",
-    "score": 25
+    "latest_filing_days_ago": 198,
+    "liveness": "STALE_OR_COMPLETED",
+    "score": 0
   },
   "LSTA": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-26-024737",
+    "latest_filing_days_ago": 2,
+    "liveness": "LIVE",
     "score": 0
   },
   "MLCI": {
@@ -256,6 +328,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0002051820-26-000024",
+    "latest_filing_days_ago": 126,
+    "liveness": "LIVE",
     "score": 0
   },
   "MLCIL": {
@@ -263,6 +337,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0002051820-26-000024",
+    "latest_filing_days_ago": 126,
+    "liveness": "LIVE",
     "score": 0
   },
   "MRNA": {
@@ -270,6 +346,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001682852-25-000098",
+    "latest_filing_days_ago": 178,
+    "liveness": "LIVE",
     "score": 0
   },
   "NBIX": {
@@ -277,6 +355,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-26-227997",
+    "latest_filing_days_ago": 25,
+    "liveness": "LIVE",
     "score": 0
   },
   "NESR": {
@@ -284,6 +364,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001641172-25-017273",
+    "latest_filing_days_ago": 346,
+    "liveness": "LIVE",
     "score": 0
   },
   "NEXN": {
@@ -291,6 +373,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001178913-25-002131",
+    "latest_filing_days_ago": 371,
+    "liveness": "LIVE",
     "score": 0
   },
   "NHP": {
@@ -298,6 +382,8 @@
     "has_not_prorated_clause": false,
     "snippet": "set forth in Section 1 (&#8220;Number of Shares; Priority; Odd Lots; Proration&#8221;), Section 2 (&#8220;Purpose of the Offers",
     "accession": "0001140361-26-021793",
+    "latest_filing_days_ago": 25,
+    "liveness": "LIVE",
     "score": 10
   },
   "NHPAP": {
@@ -305,6 +391,8 @@
     "has_not_prorated_clause": false,
     "snippet": "set forth in Section 1 (&#8220;Number of Shares; Priority; Odd Lots; Proration&#8221;), Section 2 (&#8220;Purpose of the Offers",
     "accession": "0001140361-26-021793",
+    "latest_filing_days_ago": 25,
+    "liveness": "LIVE",
     "score": 10
   },
   "NHPBP": {
@@ -312,6 +400,8 @@
     "has_not_prorated_clause": false,
     "snippet": "set forth in Section 1 (&#8220;Number of Shares; Priority; Odd Lots; Proration&#8221;), Section 2 (&#8220;Purpose of the Offers",
     "accession": "0001140361-26-021793",
+    "latest_filing_days_ago": 25,
+    "liveness": "LIVE",
     "score": 10
   },
   "OPTU": {
@@ -319,6 +409,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001213900-26-063179",
+    "latest_filing_days_ago": 11,
+    "liveness": "LIVE",
     "score": 0
   },
   "RBNE": {
@@ -326,6 +418,8 @@
     "has_not_prorated_clause": false,
     "snippet": "gregate of 1,000,000 Common Shares including 339,775 &#8220;odd lots.&#8221; The Company accepted the shares on a pro rata basis",
     "accession": "0001140361-26-017143",
+    "latest_filing_days_ago": 46,
+    "liveness": "LIVE",
     "score": 10
   },
   "RCKT": {
@@ -333,6 +427,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-26-023174",
+    "latest_filing_days_ago": 15,
+    "liveness": "LIVE",
     "score": 0
   },
   "RGNX": {
@@ -340,6 +436,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-26-254638",
+    "latest_filing_days_ago": 9,
+    "liveness": "LIVE",
     "score": 0
   },
   "RGR": {
@@ -347,13 +445,17 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001174947-26-000424",
-    "score": 0
+    "latest_filing_days_ago": 78,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "SAN": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": true,
     "snippet": "",
     "accession": "0001193125-26-264813",
+    "latest_filing_days_ago": 2,
+    "liveness": "LIVE",
     "score": 0
   },
   "SCHL": {
@@ -361,6 +463,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-26-173633",
+    "latest_filing_days_ago": 50,
+    "liveness": "LIVE",
     "score": 0
   },
   "SVRN": {
@@ -368,6 +472,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0000919574-26-000310",
+    "latest_filing_days_ago": 150,
+    "liveness": "LIVE",
     "score": 0
   },
   "SWZ": {
@@ -375,6 +481,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001999371-26-001460",
+    "latest_filing_days_ago": 141,
+    "liveness": "LIVE",
     "score": 0
   },
   "TLSI": {
@@ -382,6 +490,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001641172-25-021005",
+    "latest_filing_days_ago": 322,
+    "liveness": "LIVE",
     "score": 0
   },
   "TORO": {
@@ -389,6 +499,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001140361-25-030219",
+    "latest_filing_days_ago": 305,
+    "liveness": "LIVE",
     "score": 0
   },
   "V": {
@@ -396,6 +508,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001193125-26-215912",
+    "latest_filing_days_ago": 32,
+    "liveness": "LIVE",
     "score": 0
   },
   "VCX": {
@@ -403,13 +517,17 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001213900-26-025076",
-    "score": 0
+    "latest_filing_days_ago": 95,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "VIASP": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001654954-25-006486",
+    "latest_filing_days_ago": 374,
+    "liveness": "LIVE",
     "score": 0
   },
   "WBD": {
@@ -417,20 +535,26 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-021688",
-    "score": 0
+    "latest_filing_days_ago": 105,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "WIX": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001178913-26-001986",
-    "score": 0
+    "latest_filing_days_ago": 70,
+    "liveness": "AGING",
+    "score": 0.0
   },
   "WTM": {
     "has_odd_lot_language": false,
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-25-124380",
+    "latest_filing_days_ago": 165,
+    "liveness": "LIVE",
     "score": 0
   },
   "YEXT": {
@@ -438,6 +562,8 @@
     "has_not_prorated_clause": false,
     "snippet": "",
     "accession": "0001104659-26-032449",
-    "score": 0
+    "latest_filing_days_ago": 84,
+    "liveness": "AGING",
+    "score": 0.0
   }
 }
