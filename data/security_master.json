@@ -1,0 +1,28 @@
+{
+  "entities": {
+    "FMC": {
+      "cik": "37785",
+      "entity_id": "FMC",
+      "ticker": "FMC"
+    },
+    "GOOGL": {
+      "cik": "1652044",
+      "cusip": "02079K305",
+      "entity_id": "GOOGL",
+      "name": "ALPHABET INC-CL A",
+      "name_stem": "ALPHABETCLA",
+      "ticker": "GOOGL"
+    },
+    "WOLF": {
+      "cik": "895419",
+      "entity_id": "WOLF",
+      "ticker": "WOLF"
+    }
+  },
+  "index": {
+    "cik:1652044": "GOOGL",
+    "cik:37785": "FMC",
+    "cik:895419": "WOLF",
+    "cusip:02079K305": "GOOGL"
+  }
+}
