@@ -108,8 +108,10 @@ def uncorrelated_basket(pool, n_target=30, eps=0.5):
     with any already-picked name. Uses weekly USD-normalized returns."""
     tickers = pool.ticker.tolist()
     print(f"Fetching 24mo OHLC for {len(tickers)} candidates...", file=sys.stderr)
-    daily = fetch_ohlc(tickers, period="24mo", chunk=40, retries=4,
-                       pause_between_chunks=1.0)
+    # Gentle pacing: small chunks + long pauses keep this burst under
+    # Yahoo's limiter even right after a full-universe scan.
+    daily = fetch_ohlc(tickers, period="24mo", chunk=20, retries=5,
+                       pause_between_chunks=4.0)
     closes = daily.get("Close")
     if closes is None or closes.empty:
         return pool.head(0), {}
