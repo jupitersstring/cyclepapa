@@ -178,7 +178,13 @@ def _price_block(client: YahooClient, symbol: str):
             return {k: NaN for k in config.PRICE_FEATURE_KEYS}, {"dates": [], "close": []}
         r0 = res[0]
         ts = r0.get("timestamp") or []
-        closes = (((r0.get("indicators") or {}).get("quote") or [{}])[0]).get("close") or []
+        ind = r0.get("indicators") or {}
+        # Prefer ADJUSTED closes (splits + dividends), matching yfinance
+        # history(auto_adjust=True): raw quote closes exclude dividends, which
+        # understates trailing returns for dividend payers (KO 12m: 23.0% raw vs
+        # 26.5% adjusted) and would bias the dormancy/price-response ranks.
+        closes = ((ind.get("adjclose") or [{}])[0]).get("adjclose") or \
+                 ((ind.get("quote") or [{}])[0]).get("close") or []
         idx = pd.to_datetime([datetime.fromtimestamp(t, timezone.utc) for t in ts])
         hist = pd.DataFrame({"Close": closes}, index=idx).dropna()
         return fundamentals._price_features(hist)
