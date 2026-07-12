@@ -44,6 +44,9 @@ echo "### Derived re-ranking (no network) ###"
 run python3 layer_freshness.py             || true
 run python3 full_universe_consensus.py     || true
 run python3 full_universe_consensus_noval.py || true
+run python3 grand_unified_ranker.py        || true
+run python3 consensus_meta_ranker.py       || true
+run python3 psu_universe_rank.py           || true
 run python3 layer_correlation.py           || true
 run python3 systematic_rankings.py         || true
 
