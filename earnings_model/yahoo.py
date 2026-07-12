@@ -184,30 +184,48 @@ def _timeseries_blocks(client: "YahooClient", symbol: str) -> tuple[dict, dict]:
                     d[pt["asOfDate"]] = float(v)
         bucket[key] = d
 
-    def _assemble(series: dict, quarterly: bool = False) -> dict:
-        dates = sorted(set().union(*(set(d) for d in series.values()))) if series else []
-        if quarterly and len(dates) >= 2:
-            # Snap onto a COMPLETE quarter grid: metrics._q_yoy_block pairs
-            # vals[-1] with vals[-5] positionally, so a missing quarter in the
-            # union axis would compare the wrong quarters (measured on 13.6% of
-            # names). Missing quarters become explicit NaN rows instead.
-            pidx = pd.PeriodIndex(pd.to_datetime(dates), freq="Q")
-            by_period = dict(zip(pidx, dates))          # later date wins a collision
-            grid = pd.period_range(pidx.min(), pidx.max(), freq="Q")
-            dates = [by_period.get(p, str(p.end_time.date())) for p in grid]
-            present = set(by_period.values())
-            out = {"dates": dates}
-            for key in _TS_ITEMS.values():
-                d = series.get(key, {})
-                out[key] = [d.get(dt, NaN) if dt in present else NaN for dt in dates]
-            return out
+    return _assemble_block(ann), _assemble_block(qtr, quarterly=True)
+
+
+def _assemble_block(series: dict, quarterly: bool = False) -> dict:
+    """Project {item -> {date: val}} onto a shared sorted date axis. For the
+    quarterly axis, snap onto a COMPLETE quarter grid — metrics._q_yoy_block pairs
+    vals[-1] with vals[-5] positionally, so a missing quarter in a plain union axis
+    would compare the wrong quarters (measured on 13.6% of names); missing quarters
+    become explicit NaN rows instead."""
+    dates = sorted(set().union(*(set(d) for d in series.values()))) if series else []
+    if quarterly and len(dates) >= 2:
+        pidx = pd.PeriodIndex(pd.to_datetime(dates), freq="Q")
+        by_period = dict(zip(pidx, dates))              # later date wins a collision
+        grid = pd.period_range(pidx.min(), pidx.max(), freq="Q")
+        dates = [by_period.get(p, str(p.end_time.date())) for p in grid]
+        present = set(by_period.values())
         out = {"dates": dates}
         for key in _TS_ITEMS.values():
             d = series.get(key, {})
-            out[key] = [d.get(dt, NaN) for dt in dates]
+            out[key] = [d.get(dt, NaN) if dt in present else NaN for dt in dates]
         return out
+    out = {"dates": dates}
+    for key in _TS_ITEMS.values():
+        d = series.get(key, {})
+        out[key] = [d.get(dt, NaN) for dt in dates]
+    return out
 
-    return _assemble(ann), _assemble(qtr, quarterly=True)
+
+def regrid_quarterly(block: dict) -> dict:
+    """Repair a cached quarterly statement block IN PLACE (no network): rebuild its
+    {date: val} series from the stored parallel lists and re-assemble onto the
+    complete quarter grid. For blocks fetched before the grid fix, this inserts the
+    NaN rows for skipped quarters so positional YoY realigns."""
+    dates = block.get("dates") or []
+    if len(dates) < 2:
+        return block
+    series = {}
+    for key in _TS_ITEMS.values():
+        vals = block.get(key) or []
+        series[key] = {dt: v for dt, v in zip(dates, vals)
+                       if isinstance(v, (int, float)) and v == v}
+    return _assemble_block(series, quarterly=True)
 
 
 def _price_block(client: YahooClient, symbol: str):
