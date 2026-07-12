@@ -1,117 +1,222 @@
 rank,source,ticker,name,region,score,bucket,archetype,status,size,bear_loss,base_r,bull_r,ev,rr
 1,REAL,EPA:LOCAL,Solocal Group,Continental Europe,1.0,A,E+A1,OK,—,0.15,3.5,7.5,4.04,20.2
-2,PROXY,TBRG,"TruBridge, Inc.",United States/Canada,1.3,A,A2+K3,OK,small,0.195,2.63,3.45,2.29,6.6
-3,PROXY,APTOF,Aptose Biosciences Inc.,United States/Canada,1.24,A,A2+K3,OK,mid,0.209,2.58,3.36,2.24,5.9
-4,PROXY,AEMD,AETHLON MEDICAL INC,United States/Canada,1.19,A,A2+F2,OK,small,0.22,2.53,3.29,2.2,5.4
-5,PROXY,LEG,LEGGETT & PLATT INC,United States/Canada,1.18,A,A2,OK,small,0.222,2.52,3.27,2.19,5.3
-6,PROXY,BATL,BATTALION OIL CORP,United States/Canada,1.12,A,A2,OK,small,0.235,2.47,3.18,2.14,4.8
-7,PROXY,NYSE:TGS,TGS (Transportadora de Gas del Sur),Latin America,1.08,A,A1,OK,large,0.244,2.44,3.12,2.1,4.5
-8,PROXY,EMI,"Encore Medical, Inc.",United States/Canada,1.06,A,A2+F2,OK,small,0.249,2.42,3.09,2.09,4.4
-9,PROXY,EHGO,EShallGo Inc.,United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-10,PROXY,RNGE,"RANGE IMPACT, INC.",United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-11,PROXY,CVKD,"Cadrenal Therapeutics, Inc.",United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-12,PROXY,SRFM,SURF AIR MOBILITY INC.,United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-13,PROXY,HIVE,HIVE Digital Technologies Ltd.,United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-14,PROXY,ASNS,ACTELIS NETWORKS INC,United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-15,PROXY,INUV,"Inuvo, Inc.",United States/Canada,1.05,A,A2,OK,small,0.251,2.41,3.08,2.08,4.3
-16,PROXY,FMC,FMC CORP,United States/Canada,1.04,A,A2,OK,small,0.254,2.4,3.06,2.07,4.2
-17,PROXY,NYSE:EDN,Edenor,Latin America,1.01,A,A1,OK,small,0.26,2.38,3.02,2.05,4.0
-18,PROXY,BIT:MB,Mediobanca,Continental Europe,0.96,A,A1,OK,small,0.272,2.33,2.94,2.0,3.7
-19,PROXY,ACF,ACROW LIMITED,SE Asia / Pacific,0.96,A,A2+A1,OK,mid,0.272,2.33,2.94,2.0,3.7
-20,PROXY,MEM,MEMPHASYS LIMITED.,SE Asia / Pacific,0.96,A,A2+B,OK,mid,0.272,2.33,2.94,2.0,3.7
-21,PROXY,NYSE:GGAL,Banco Galicia,Latin America,0.95,A,A1,OK,mid,0.274,2.33,2.92,2.0,3.6
-22,REAL,NYSE:LAC,Lithium Americas,United States/Canada,1.0,A,A2,OK,—,0.6,3.0,6.0,3.1,3.5
-23,REAL,XETR:SZG,Salzgitter,Continental Europe,0.42,A,A2,OK,large,0.45,2.5,4.5,2.51,3.4
-24,PROXY,NYSE:PAM,Pampa Energía,Latin America,0.91,A,A1,OK,small,0.283,2.29,2.87,1.96,3.4
-25,PROXY,3544,サツドラＨＤ,Japan,0.87,A,A2+C,OK,small,0.292,2.26,2.8,1.93,3.2
-26,PROXY,6897,ツインバード,Japan,0.87,A,A2+C,OK,small,0.292,2.26,2.8,1.93,3.2
-27,PROXY,4951,エステー,Japan,0.87,A,A2+C,OK,small,0.292,2.26,2.8,1.93,3.2
-28,PROXY,3659,ネクソン,Japan,0.87,A,A2+C,OK,small,0.292,2.26,2.8,1.93,3.2
-29,PROXY,DTZ,DOTZ NANO LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-30,PROXY,BMR,BALLYMORE RESOURCES LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-31,PROXY,CQT,CONNEQT HEALTH LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-32,PROXY,JLL,JINDALEE LITHIUM LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-33,PROXY,KSN,KINGSTON RESOURCES LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-34,PROXY,PNN,POWER MINERALS LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-35,PROXY,EIQ,ECHOIQ LIMITED,SE Asia / Pacific,0.88,A,A2,OK,mid,0.289,2.27,2.82,1.94,3.2
-36,PROXY,ERM,EMMERSON RESOURCES LIMITED,SE Asia / Pacific,0.87,A,A2+E,OK,small,0.292,2.26,2.8,1.93,3.2
-37,PROXY,PEX,PEEL MINING LIMITED,SE Asia / Pacific,0.87,A,A2+E,OK,small,0.292,2.26,2.8,1.93,3.2
-38,PROXY,AIS,AERIS RESOURCES LIMITED,SE Asia / Pacific,0.87,A,A2+E,OK,small,0.292,2.26,2.8,1.93,3.2
-39,PROXY,ASM,AUSTRALIAN STRATEGIC MATERIALS LIMITED,SE Asia / Pacific,0.87,A,A2+E,OK,small,0.292,2.26,2.8,1.93,3.2
-40,PROXY,QUB,QUBE HOLDINGS LIMITED,SE Asia / Pacific,0.87,A,A2+E,OK,small,0.292,2.26,2.8,1.93,3.2
-41,REAL,XETR:TKA,Thyssenkrupp Steel,Continental Europe,0.95,A,H,OK,large,0.45,2.3,4.2,2.34,3.0
-42,REAL,NGX:GTCO,GTCO (Guaranty Trust),MEA / Frontier,0.79,A,G,OK,mid,0.4,2.1,3.8,2.15,2.9
-43,REAL,STO:ELUX-B,AB Electrolux (Series B),Continental Europe,1.0,A,A1+D,OK,—,0.45,2.2,4.0,2.32,2.9
-44,REAL,TSE:6305,Hitachi Construction Machinery,Japan,0.86,A,H,OK,small,0.25,1.7,2.8,1.69,2.8
-45,PROXY,8074,ＹＵＡＳＡ,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-46,PROXY,2198,アイ・ケイ・ケイＨＤ,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-47,PROXY,3454,ファーストブラザーズ,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-48,PROXY,3803,Ｇ－イメージ情,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-49,PROXY,4641,アルプス技,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-50,PROXY,4170,Ｇ－ＫａｉｚｅｎＰＦ,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-51,PROXY,272A,グリーンクロスＨＤ,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-52,PROXY,6701,ＮＥＣ,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-53,PROXY,4689,ＬＩＮＥヤフー,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-54,PROXY,7902,ソノコム,Japan,0.79,A,A2,OK,small,0.31,2.19,2.69,1.86,2.8
-55,REAL,DFM:DSI,Drake & Scull,MEA / Frontier,0.78,A,A2,OK,small,0.45,2.3,4.2,2.25,2.8
-56,REAL,BME:OHLA,OHLA (former OHL),Continental Europe,1.22,A,A1,OK,mid,0.5,2.4,4.5,2.35,2.7
-57,REAL,KRX:241560,Doosan Bobcat → Doosan Robotics merger,Korea,0.86,A,H,OK,small,0.25,1.7,2.5,1.66,2.7
-58,REAL,EPA:ETL,Eutelsat Communications,Continental Europe,1.0,A,A1+F,OK,—,0.5,2.2,4.5,2.35,2.7
-59,REAL,BME:SAB,Banco Sabadell,Continental Europe,0.99,A,A1,OK,small,0.25,1.65,2.4,1.66,2.6
-60,PROXY,BME:TLGO,Talgo,Continental Europe,0.76,A,A1,OK,mid,0.317,2.16,2.64,1.84,2.6
-61,REAL,NYSE:YPF,YPF,Latin America,1.12,A,A1,OK,small,0.35,1.8,3.2,1.92,2.6
-62,PROXY,LSE:ASC,ASOS,United Kingdom,0.76,A,A1,OK,small,0.317,2.16,2.64,1.84,2.6
-63,REAL,LSE:DRX,Drax Group,United Kingdom,1.0,A,A1+G,OK,—,0.55,2.2,4.5,2.45,2.6
-64,REAL,NASDAQ:UREE,USA Rare Earth,United States/Canada,1.0,A,A2,OK,—,0.65,2.5,5.5,2.71,2.6
-65,PROXY,KRX:028260,Samsung C&T,Korea,0.82,A,H,OK,small,0.404,2.3,3.0,1.96,2.4
-66,PROXY,LSE:AML,Aston Martin Lagonda,United Kingdom,0.7,A,A1,OK,small,0.33,2.11,2.55,1.79,2.4
-67,PROXY,HK:2202,Vanke,Greater China / HK,0.69,A,A1,YELLOW,mid,0.332,2.1,2.54,1.78,2.3
-68,PROXY,LSE:VOD,Vodafone,United Kingdom,0.67,A,A1,OK,small,0.337,2.08,2.5,1.76,2.3
-69,PROXY,LSE:TLW,Tullow Oil,United Kingdom,0.67,A,A1,OK,small,0.337,2.08,2.5,1.76,2.3
-70,REAL,NYSE:HE,Hawaiian Electric Industries,United States/Canada,1.0,A,A1+G,OK,—,0.4,1.8,3.0,1.92,2.3
-71,REAL,NYSE/TSX:TMQ,Trilogy Metals,United States/Canada,1.0,A,A2,OK,—,0.55,2.2,4.5,2.14,2.1
-72,PROXY,XETR:TUI1,Tui AG,Continental Europe,0.59,A,A2,OK,small,0.355,2.02,2.38,1.7,2.0
-73,PROXY,LSE:PDL,Petra Diamonds,United Kingdom,0.6,A,A1,OK,small,0.353,2.02,2.4,1.7,2.0
-74,REAL,NYSE:MP,MP Materials Corp,United States/Canada,1.0,A,A2,OK,—,0.45,1.8,3.2,1.9,2.0
-75,PROXY,NYSE:AENZ,Aenza (former Graña y Montero),Continental Europe,0.57,A,A2,OK,small,0.359,2.0,2.35,1.68,1.9
-76,PROXY,KRX:034730,SK Inc,Korea,0.69,A,H,OK,small,0.443,2.17,2.79,1.84,1.9
-77,PROXY,NGX:ZENITHBANK,Zenith Bank,MEA / Frontier,0.76,A,G,OK,mid,0.422,2.11,2.64,1.78,1.9
-78,REAL,NYSE:FLG,Flagstar Financial (formerly NYCB),United States/Canada,1.0,A,A1,OK,—,0.45,1.85,3.2,1.86,1.9
-79,PROXY,EGX:COMI,Egypt Commercial International Bank,MEA / Frontier,0.75,A,G,OK,small,0.425,2.1,2.62,1.77,1.8
-80,PROXY,NGX:FIDELITYBK,Fidelity Bank,MEA / Frontier,0.73,A,G,OK,mid,0.431,2.08,2.59,1.76,1.8
-81,PROXY,KRX:034220,LG Display,Korea,0.64,A,H,OK,small,0.458,2.12,2.71,1.79,1.7
-82,PROXY,EGX:TMGH,Talaat Moustafa Group,MEA / Frontier,0.72,A,G,OK,small,0.434,2.07,2.58,1.75,1.7
-83,PROXY,NYSE:SBSW,Sibanye-Stillwater,MEA / Frontier,0.71,B,G,OK,mid,0.437,2.06,2.56,1.74,1.7
-84,PROXY,HK:1918,Sunac China,Greater China / HK,0.55,A,F,OK,small,0.485,2.09,2.67,1.77,1.6
-85,PROXY,NGX:ACCESSCORP,Access Holdings,MEA / Frontier,0.67,A,G,OK,mid,0.449,2.03,2.5,1.7,1.6
+2,PROXY,NYSE:TGS,TGS (Transportadora de Gas del Sur),Latin America,1.08,A,A1,OK,large,0.244,2.44,3.12,2.1,4.5
+3,PROXY,NYSE:EDN,Edenor,Latin America,1.01,A,A1,OK,small,0.26,2.38,3.02,2.05,4.0
+4,PROXY,BIT:MB,Mediobanca,Continental Europe,0.96,A,A1,OK,small,0.272,2.33,2.94,2.0,3.7
+5,PROXY,NYSE:GGAL,Banco Galicia,Latin America,0.95,A,A1,OK,mid,0.274,2.33,2.92,2.0,3.6
+6,REAL,NYSE:LAC,Lithium Americas,United States/Canada,1.0,A,A2,OK,—,0.6,3.0,6.0,3.1,3.5
+7,REAL,XETR:SZG,Salzgitter,Continental Europe,0.42,A,A2,OK,large,0.45,2.5,4.5,2.51,3.4
+8,PROXY,NYSE:PAM,Pampa Energía,Latin America,0.91,A,A1,OK,small,0.283,2.29,2.87,1.96,3.4
+9,REAL,XETR:TKA,Thyssenkrupp Steel,Continental Europe,0.95,A,H,OK,large,0.45,2.3,4.2,2.34,3.0
+10,PROXY,ACF,ACROW LIMITED,SE Asia / Pacific,0.83,A,A1,OK,mid,0.301,2.22,2.75,1.9,3.0
+11,REAL,NGX:GTCO,GTCO (Guaranty Trust),MEA / Frontier,0.79,A,G,OK,mid,0.4,2.1,3.8,2.15,2.9
+12,REAL,STO:ELUX-B,AB Electrolux (Series B),Continental Europe,1.0,A,A1+D,OK,—,0.45,2.2,4.0,2.32,2.9
+13,REAL,TSE:6305,Hitachi Construction Machinery,Japan,0.86,A,H,OK,small,0.25,1.7,2.8,1.69,2.8
+14,REAL,DFM:DSI,Drake & Scull,MEA / Frontier,0.78,A,A2,OK,small,0.45,2.3,4.2,2.25,2.8
+15,REAL,BME:OHLA,OHLA (former OHL),Continental Europe,1.22,A,A1,OK,mid,0.5,2.4,4.5,2.35,2.7
+16,REAL,EPA:ETL,Eutelsat,Continental Europe,0.32,A,Unknown,OK,small,0.5,2.2,4.5,2.35,2.7
+17,REAL,EPA:WLN,Worldline,Continental Europe,0.3,A,Unknown,OK,small,0.6,2.5,5.5,2.62,2.7
+18,REAL,KRX:241560,Doosan Bobcat → Doosan Robotics merger,Korea,0.86,A,H,OK,small,0.25,1.7,2.5,1.66,2.7
+19,REAL,BME:SAB,Banco Sabadell,Continental Europe,0.99,A,A1,OK,small,0.25,1.65,2.4,1.66,2.6
+20,PROXY,BME:TLGO,Talgo,Continental Europe,0.76,A,A1,OK,mid,0.317,2.16,2.64,1.84,2.6
+21,REAL,NYSE:YPF,YPF,Latin America,1.12,A,A1,OK,small,0.35,1.8,3.2,1.92,2.6
+22,PROXY,LSE:ASC,ASOS,United Kingdom,0.76,A,A1,OK,small,0.317,2.16,2.64,1.84,2.6
+23,PROXY,TBRG,"TruBridge, Inc.",United States/Canada,0.96,A,K3,OK,small,0.362,2.29,2.94,1.96,2.6
+24,PROXY,LEG,LEGGETT & PLATT INC,United States/Canada,0.84,A,C,OK,small,0.338,2.21,2.76,1.88,2.6
+25,REAL,LSE:DRX,Drax Group,United Kingdom,1.0,A,A1+G,OK,—,0.55,2.2,4.5,2.45,2.6
+26,REAL,NASDAQ:UREE,USA Rare Earth,United States/Canada,1.0,A,A2,OK,—,0.65,2.5,5.5,2.71,2.6
+27,PROXY,TSX:CFW,Calfrac Well Services,United States/Canada,0.73,A,A1,OK,small,0.323,2.14,2.59,1.81,2.5
+28,PROXY,KRX:028260,Samsung C&T,Korea,0.82,A,H,OK,small,0.404,2.3,3.0,1.96,2.4
+29,PROXY,LSE:AML,Aston Martin Lagonda,United Kingdom,0.7,A,A1,OK,small,0.33,2.11,2.55,1.79,2.4
+30,PROXY,APTOF,Aptose Biosciences Inc.,United States/Canada,0.91,A,K3,OK,mid,0.377,2.24,2.87,1.91,2.4
+31,PROXY,HK:2202,Vanke,Greater China / HK,0.69,A,A1,YELLOW,mid,0.332,2.1,2.54,1.78,2.3
+32,PROXY,LSE:VOD,Vodafone,United Kingdom,0.67,A,A1,OK,small,0.337,2.08,2.5,1.76,2.3
+33,PROXY,LSE:TLW,Tullow Oil,United Kingdom,0.67,A,A1,OK,small,0.337,2.08,2.5,1.76,2.3
+34,PROXY,NYSE:FFWM,First Foundation,United States/Canada,0.67,A,A1,OK,small,0.337,2.08,2.5,1.76,2.3
+35,REAL,NYSE:HE,Hawaiian Electric Industries,United States/Canada,1.0,A,A1+G,OK,—,0.4,1.8,3.0,1.92,2.3
+36,PROXY,TSE:8304,Aozora Bank,Japan,0.75,A,H,OK,small,0.425,2.23,2.89,1.9,2.1
+37,REAL,NYSE/TSX:TMQ,Trilogy Metals,United States/Canada,1.0,A,A2,OK,—,0.55,2.2,4.5,2.14,2.1
+38,PROXY,XETR:TUI1,Tui AG,Continental Europe,0.59,A,A2,OK,small,0.355,2.02,2.38,1.7,2.0
+39,PROXY,LSE:PDL,Petra Diamonds,United Kingdom,0.6,A,A1,OK,small,0.353,2.02,2.4,1.7,2.0
+40,REAL,NYSE:MP,MP Materials Corp,United States/Canada,1.0,A,A2,OK,—,0.45,1.8,3.2,1.9,2.0
+41,PROXY,NYSE:AENZ,Aenza (former Graña y Montero),Continental Europe,0.57,A,A2,OK,small,0.359,2.0,2.35,1.68,1.9
+42,PROXY,KRX:034730,SK Inc,Korea,0.69,A,H,OK,small,0.443,2.17,2.79,1.84,1.9
+43,PROXY,NGX:ZENITHBANK,Zenith Bank,MEA / Frontier,0.76,A,G,OK,mid,0.422,2.11,2.64,1.78,1.9
+44,REAL,NYSE:FLG,NYCB / Flagstar Financial,United States/Canada,0.91,A,A1,OK,small,0.45,1.85,3.2,1.86,1.9
+45,PROXY,AEMD,AETHLON MEDICAL INC,United States/Canada,0.77,A,F2,OK,small,0.419,2.12,2.66,1.79,1.9
+46,PROXY,EGX:COMI,Egypt Commercial International Bank,MEA / Frontier,0.75,A,G,OK,small,0.425,2.1,2.62,1.77,1.8
+47,PROXY,NGX:FIDELITYBK,Fidelity Bank,MEA / Frontier,0.73,A,G,OK,mid,0.431,2.08,2.59,1.76,1.8
+48,PROXY,KRX:034220,LG Display,Korea,0.64,A,H,OK,small,0.458,2.12,2.71,1.79,1.7
+49,PROXY,EGX:TMGH,Talaat Moustafa Group,MEA / Frontier,0.72,A,G,OK,small,0.434,2.07,2.58,1.75,1.7
+50,PROXY,NYSE:SBSW,Sibanye-Stillwater,MEA / Frontier,0.71,B,G,OK,mid,0.437,2.06,2.56,1.74,1.7
+51,PROXY,MEM,MEMPHASYS LIMITED.,SE Asia / Pacific,0.71,A,B,OK,mid,0.437,2.06,2.56,1.74,1.7
+52,PROXY,CIK:0001348911,"KalVista Pharmaceuticals, Inc.",United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+53,PROXY,CIK:0001909770,KHEOBA CORP.,United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+54,PROXY,CIK:0001489096,"Thermon Group Holdings, Inc.",United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+55,PROXY,WYTC,WYTEC INTERNATIONAL INC,United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+56,PROXY,CIK:0001408100,"Kennedy-Wilson Holdings, Inc.",United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+57,PROXY,CIK:0002073537,PIMCO Asset-Based Lending Co LLC,United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+58,PROXY,VIASP,"Via Renewables, Inc.",United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+59,PROXY,CIK:0001117171,"CBAK Energy Technology, Inc.",United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+60,PROXY,CIK:0001500305,Sustainable Projects Group Inc.,United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+61,PROXY,CIK:0001127703,PROASSURANCE CORP,United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+62,PROXY,CIK:0001900520,"Lomond Therapeutics Holdings, Inc.",United States/Canada,0.71,A,K3,OK,mid,0.437,2.06,2.56,1.74,1.7
+63,PROXY,HK:1918,Sunac China,Greater China / HK,0.55,A,F,OK,small,0.485,2.09,2.67,1.77,1.6
+64,PROXY,8074,ＹＵＡＳＡ,Japan,0.6,A,H,OK,small,0.47,2.08,2.64,1.76,1.6
+65,PROXY,2198,アイ・ケイ・ケイＨＤ,Japan,0.6,A,H,OK,small,0.47,2.08,2.64,1.76,1.6
+66,PROXY,3454,ファーストブラザーズ,Japan,0.6,A,H,OK,small,0.47,2.08,2.64,1.76,1.6
+67,PROXY,4641,アルプス技,Japan,0.6,A,H,OK,small,0.47,2.08,2.64,1.76,1.6
+68,PROXY,4170,Ｇ－ＫａｉｚｅｎＰＦ,Japan,0.6,A,H,OK,small,0.47,2.08,2.64,1.76,1.6
+69,PROXY,TSE:6753,Sharp,Japan,0.59,A,H,OK,small,0.473,2.08,2.62,1.75,1.6
+70,PROXY,3544,サツドラＨＤ,Japan,0.56,A,C,OK,small,0.41,1.97,2.34,1.65,1.6
+71,PROXY,6897,ツインバード,Japan,0.56,A,C,OK,small,0.41,1.97,2.34,1.65,1.6
+72,PROXY,4951,エステー,Japan,0.56,A,C,OK,small,0.41,1.97,2.34,1.65,1.6
+73,PROXY,3659,ネクソン,Japan,0.56,A,C,OK,small,0.41,1.97,2.34,1.65,1.6
+74,PROXY,B3:LIGT3,Light SA,Latin America,0.58,A,E,OK,small,0.405,1.98,2.37,1.66,1.6
+75,PROXY,NGX:ACCESSCORP,Access Holdings,MEA / Frontier,0.67,A,G,OK,mid,0.449,2.03,2.5,1.7,1.6
+76,PROXY,ERM,EMMERSON RESOURCES LIMITED,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+77,PROXY,PEX,PEEL MINING LIMITED,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+78,PROXY,AIS,AERIS RESOURCES LIMITED,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+79,PROXY,ASM,AUSTRALIAN STRATEGIC MATERIALS LIMITED,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+80,PROXY,QUB,QUBE HOLDINGS LIMITED,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+81,PROXY,NVA,NOVA MINERALS CORP,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+82,PROXY,PAF,PAN AFRICAN RESOURCES PLC,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+83,PROXY,QOR,QORIA LIMITED,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+84,PROXY,LLM,LOYAL METALS LTD,SE Asia / Pacific,0.56,A,E,OK,small,0.41,1.97,2.34,1.65,1.6
+85,PROXY,EMI,"Encore Medical, Inc.",United States/Canada,0.69,A,F2,OK,small,0.443,2.05,2.54,1.72,1.6
 86,REAL,HKEX:SUNAC,Sunac China Holdings,Greater China / HK,1.0,B,F+A,OK,—,0.7,2.2,5.5,2.1,1.6
 87,PROXY,VIE:VOE,voestalpine,Continental Europe,0.46,A,A2+A1,OK,large,0.384,1.9,2.19,1.59,1.5
-88,PROXY,NGX:UBA,UBA,MEA / Frontier,0.66,A,G,OK,mid,0.452,2.02,2.49,1.7,1.5
-89,PROXY,JSE:EOH,EOH Holdings,MEA / Frontier,0.64,A,G,OK,small,0.458,2.0,2.46,1.68,1.5
-90,PROXY,VIE:WIE,Wienerberger,Continental Europe,0.35,A,A2,OK,mid,0.409,1.81,2.02,1.5,1.2
-91,PROXY,EPA:FER,Ferrovial,Continental Europe,0.35,A,A1,OK,large,0.409,1.81,2.02,1.5,1.2
-92,PROXY,HK:127,Chinese Estates Holdings,Greater China / HK,0.44,A,H,OK,small,0.518,1.93,2.38,1.61,1.2
-93,PROXY,EGX:CIB,CIB Egypt,MEA / Frontier,0.5,A,G,OK,small,0.5,1.88,2.25,1.56,1.1
-94,PROXY,EURONEXT:PTSB,Permanent TSB,Continental Europe,0.38,A,H,OK,small,0.536,1.87,2.28,1.55,1.0
-95,PROXY,HK:3380,Logan Group,Greater China / HK,0.31,A (low),F,OK,small,0.557,1.85,2.26,1.53,1.0
-96,PROXY,KRX:011170,Lotte Chemical,Korea,0.35,A,H,PRE_RECAP,small,0.545,1.84,2.23,1.52,1.0
-97,PROXY,GSE:MTNGH,MTN Ghana,MEA / Frontier,0.46,A,G,OK,small,0.512,1.84,2.19,1.52,1.0
-98,PROXY,GSE:CAL,Calbank Ghana,MEA / Frontier,0.44,A,G,OK,small,0.518,1.82,2.16,1.5,1.0
-99,PROXY,NGX:WEMABANK,Wema Bank,MEA / Frontier,0.43,A,G,OK,small,0.521,1.81,2.15,1.5,1.0
-100,PROXY,SWX:AMS,ams-OSRAM,Continental Europe,0.42,A,Unknown,OK,large,0.524,1.8,2.13,1.49,0.9
-101,PROXY,KRX:011200,HMM,Korea,0.33,B → done,H,OK,small,0.551,1.82,2.19,1.5,0.9
-102,PROXY,KRX:023530,Lotte Shopping,Korea,0.33,A,H,OK,small,0.551,1.82,2.19,1.5,0.9
-103,PROXY,HK:3377,Sino-Ocean Group,Greater China / HK,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
-104,PROXY,HK:6098,Country Garden Services,Greater China / HK,0.35,A,Unknown,OK,small,0.545,1.74,2.02,1.43,0.8
-105,PROXY,HK:2007,Country Garden,Greater China / HK,0.24,A (very low) → C,F,OK,small,0.578,1.78,2.14,1.46,0.8
-106,PROXY,various,Doosan Group,Korea,0.34,A,Unknown,OK,small,0.548,1.73,2.01,1.42,0.8
-107,PROXY,HK:17,New World Development,Greater China / HK,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
-108,PROXY,HK:1638,Kaisa Group,Greater China / HK,0.21,A (low),F,OK,small,0.587,1.75,2.09,1.43,0.7
-109,PROXY,KRX:073240,Kumho Tire,Korea,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
-110,PROXY,KRX:003490,Korean Air,Korea,0.29,A,Unknown,OK,small,0.563,1.69,1.94,1.37,0.7
-111,PROXY,KRX:012330,Hyundai Mobis,Korea,0.25,A,H,OK,small,0.575,1.74,2.06,1.43,0.7
-112,PROXY,KRX:086280,Hyundai Glovis,Korea,0.25,A,H,OK,small,0.575,1.74,2.06,1.43,0.7
-113,PROXY,KRX:003550,LG Corp,Korea,0.22,A,H,OK,small,0.584,1.71,2.01,1.4,0.7
-114,PROXY,SHE:300230,Shanghai Yongli Belting,Greater China / HK,0.28,A,Unknown,OK,small,0.566,1.68,1.92,1.36,0.6
-115,PROXY,HK:656,Fosun International,Greater China / HK,0.26,A,Unknown,OK,small,0.572,1.66,1.89,1.35,0.6
-116,PROXY,HK:2233,West China Cement,Greater China / HK,0.23,A,Unknown,OK,small,0.581,1.63,1.84,1.32,0.6
+88,PROXY,private,Aeroportos do Brasil (Vinci),Latin America,0.44,A,A1,OK,small,0.389,1.89,2.16,1.57,1.5
+89,PROXY,NGX:UBA,UBA,MEA / Frontier,0.66,A,G,OK,mid,0.452,2.02,2.49,1.7,1.5
+90,PROXY,JSE:EOH,EOH Holdings,MEA / Frontier,0.64,A,G,OK,small,0.458,2.0,2.46,1.68,1.5
+91,PROXY,CIK:0001783876,Teamshares Inc.,United States/Canada,0.64,A,K3,OK,small,0.458,2.0,2.46,1.68,1.5
+92,PROXY,CIK:0001574219,J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11,United States/Canada,0.64,A,K3,OK,small,0.458,2.0,2.46,1.68,1.5
+93,PROXY,TSE:6740,Japan Display,Japan,0.54,A,H,OK,small,0.488,2.03,2.54,1.7,1.4
+94,PROXY,TSE,Rapidus-adjacent suppliers,Japan,0.32,A,A2+H,OK,small,0.416,1.88,2.18,1.57,1.4
+95,PROXY,NZX:SML,Synlait Milk,SE Asia / Pacific,0.61,A,D,OK,small,0.467,1.97,2.42,1.65,1.4
+96,PROXY,LSE:MTRO,Metro Bank,United Kingdom,0.51,A,H,OK,small,0.497,2.0,2.49,1.67,1.4
+97,PROXY,LSE:VANQ,Provident Financial → Vanquis Banking,United Kingdom,0.43,A (warn),A1,OK,small,0.391,1.88,2.15,1.56,1.4
+98,PROXY,VIE:WIE,Wienerberger,Continental Europe,0.35,A,A2,OK,mid,0.409,1.81,2.02,1.5,1.2
+99,PROXY,EPA:FER,Ferrovial,Continental Europe,0.35,A,A1,OK,large,0.409,1.81,2.02,1.5,1.2
+100,PROXY,SIX:HOLN,Holcim,Continental Europe,0.34,A,A2,OK,large,0.411,1.8,2.01,1.49,1.2
+101,PROXY,NYSE:STLA,Stellantis,Continental Europe,0.33,A,A2+A1,OK,small,0.413,1.79,2.0,1.48,1.2
+102,PROXY,HK:127,Chinese Estates Holdings,Greater China / HK,0.44,A,H,OK,small,0.518,1.93,2.38,1.61,1.2
+103,PROXY,XETR:KGX,KION Group,Continental Europe,0.31,A,A2,OK,small,0.418,1.77,1.96,1.46,1.1
+104,PROXY,XETR:VOW3,Volkswagen Preferred,Continental Europe,0.31,A,A2,OK,small,0.418,1.77,1.96,1.46,1.1
+105,PROXY,BIT:ANIM,Anima Holding,Continental Europe,0.3,A,A1,OK,small,0.42,1.77,1.95,1.46,1.1
+106,PROXY,EPA:RNO,Renault Group,Continental Europe,0.3,A,A1,OK,small,0.42,1.77,1.95,1.46,1.1
+107,PROXY,BIT:UCG,UniCredit,Continental Europe,0.3,A,A1,OK,small,0.42,1.77,1.95,1.46,1.1
+108,PROXY,EPA:ENGI,Engie,Continental Europe,0.29,A,A2+A1,OK,small,0.422,1.76,1.94,1.45,1.1
+109,PROXY,EGX:CIB,CIB Egypt,MEA / Frontier,0.5,A,G,OK,small,0.5,1.88,2.25,1.56,1.1
+110,PROXY,ADX:ALDAR,Aldar Properties,MEA / Frontier,0.3,A,A2,OK,small,0.42,1.77,1.95,1.46,1.1
+111,PROXY,TADAWUL:2222,Saudi Aramco,MEA / Frontier,0.3,A,A2,OK,small,0.42,1.77,1.95,1.46,1.1
+112,PROXY,TADAWUL:7010,Saudi Telecom,MEA / Frontier,0.3,A,A2,OK,small,0.42,1.77,1.95,1.46,1.1
+113,PROXY,TADAWUL:2010,Saudi Basic Industries (SABIC),MEA / Frontier,0.29,A,A2,OK,small,0.422,1.76,1.94,1.45,1.1
+114,PROXY,ADX:TABREED,Tabreed,MEA / Frontier,0.29,A,A2,OK,small,0.422,1.76,1.94,1.45,1.1
+115,PROXY,EURONEXT:PTSB,Permanent TSB,Continental Europe,0.38,A,H,OK,small,0.536,1.87,2.28,1.55,1.0
+116,PROXY,HK:3380,Logan Group,Greater China / HK,0.31,A (low),F,OK,small,0.557,1.85,2.26,1.53,1.0
+117,PROXY,KRX:011170,Lotte Chemical,Korea,0.35,A,H,PRE_RECAP,small,0.545,1.84,2.23,1.52,1.0
+118,PROXY,GSE:MTNGH,MTN Ghana,MEA / Frontier,0.46,A,G,OK,small,0.512,1.84,2.19,1.52,1.0
+119,PROXY,GSE:CAL,Calbank Ghana,MEA / Frontier,0.44,A,G,OK,small,0.518,1.82,2.16,1.5,1.0
+120,PROXY,NGX:WEMABANK,Wema Bank,MEA / Frontier,0.43,A,G,OK,small,0.521,1.81,2.15,1.5,1.0
+121,PROXY,ADX:EAND,Etisalat by E&,MEA / Frontier,0.28,A,A2,OK,small,0.425,1.75,1.92,1.44,1.0
+122,PROXY,TADAWUL:4020,Saudi Real Estate (Akaria),MEA / Frontier,0.27,A,A2,OK,small,0.427,1.74,1.91,1.43,1.0
+123,PROXY,DFM:EMAAR,Emaar Properties,MEA / Frontier,0.27,A,A2,OK,small,0.427,1.74,1.91,1.43,1.0
+124,PROXY,ADX:FAB,First Abu Dhabi Bank (FAB),MEA / Frontier,0.27,A,A2,OK,small,0.427,1.74,1.91,1.43,1.0
+125,PROXY,QSE:ERES,Ezdan Holdings,MEA / Frontier,0.26,A,A2,OK,small,0.429,1.73,1.89,1.42,1.0
+126,PROXY,KSE:KFH,Kuwait Finance House (KFH),MEA / Frontier,0.25,A,A2,OK,small,0.431,1.72,1.88,1.41,1.0
+127,PROXY,QSE:QNBK,Qatar National Bank,MEA / Frontier,0.25,A,A2,OK,small,0.431,1.72,1.88,1.41,1.0
+128,PROXY,CSE:COMB,Commercial Bank of Ceylon,SE Asia / Pacific,0.47,A,G,OK,small,0.509,1.85,2.21,1.53,1.0
+129,PROXY,HOSE:HAG,HAGL (Hoang Anh Gia Lai),SE Asia / Pacific,0.46,A,Unknown,OK,small,0.512,1.84,2.19,1.52,1.0
+130,PROXY,CSE:HNB,Hatton National Bank,SE Asia / Pacific,0.43,A,G,OK,small,0.521,1.81,2.15,1.5,1.0
+131,PROXY,SWX:AMS,ams-OSRAM,Continental Europe,0.42,A,Unknown,OK,large,0.524,1.8,2.13,1.49,0.9
+132,PROXY,TSE:7201,Nissan,Japan,0.34,A,H,PRE_RECAP,small,0.548,1.83,2.21,1.51,0.9
+133,PROXY,various,Editas / 2seventy pattern,MEA / Frontier,0.4,A,Unknown,OK,small,0.53,1.79,2.1,1.47,0.9
+134,PROXY,KRX:011200,HMM,Korea,0.33,B → done,H,OK,small,0.551,1.82,2.19,1.5,0.9
+135,PROXY,KRX:023530,Lotte Shopping,Korea,0.33,A,H,OK,small,0.551,1.82,2.19,1.5,0.9
+136,PROXY,TADAWUL:2280,Almarai,MEA / Frontier,0.24,A,A2,OK,small,0.434,1.71,1.86,1.41,0.9
+137,PROXY,DTZ,DOTZ NANO LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+138,PROXY,BMR,BALLYMORE RESOURCES LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+139,PROXY,CQT,CONNEQT HEALTH LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+140,PROXY,JLL,JINDALEE LITHIUM LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+141,PROXY,KSN,KINGSTON RESOURCES LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+142,PROXY,PNN,POWER MINERALS LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+143,PROXY,EIQ,ECHOIQ LIMITED,SE Asia / Pacific,0.42,A,Unknown,OK,mid,0.524,1.8,2.13,1.49,0.9
+144,PROXY,LSE:BOO,Boohoo,United Kingdom,0.23,A,A1,OK,small,0.436,1.7,1.84,1.4,0.9
+145,PROXY,LSE:FEVR,Fevertree Drinks,United Kingdom,0.21,A,A1,OK,small,0.44,1.69,1.81,1.38,0.9
+146,PROXY,LSE:FRAS,Frasers Group,United Kingdom,0.21,A,A1,OK,small,0.44,1.69,1.81,1.38,0.9
+147,PROXY,LSE:BT.A,BT Group,United Kingdom,0.21,A,A1,OK,small,0.44,1.69,1.81,1.38,0.9
+148,PROXY,BIT:SPM,Saipem,Continental Europe,0.35,A,Unknown,OK,large,0.545,1.74,2.02,1.43,0.8
+149,PROXY,XETR:AT1,Aroundtown,Continental Europe,0.34,A,Unknown,OK,small,0.548,1.73,2.01,1.42,0.8
+150,PROXY,BIT:BMPS,Monte dei Paschi,Continental Europe,0.34,A,Unknown,OK,small,0.548,1.73,2.01,1.42,0.8
+151,PROXY,HK:3377,Sino-Ocean Group,Greater China / HK,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+152,PROXY,HK:6098,Country Garden Services,Greater China / HK,0.35,A,Unknown,OK,small,0.545,1.74,2.02,1.43,0.8
+153,PROXY,HK:2007,Country Garden,Greater China / HK,0.24,A (very low) → C,F,OK,small,0.578,1.78,2.14,1.46,0.8
+154,PROXY,3803,Ｇ－イメージ情,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+155,PROXY,272A,グリーンクロスＨＤ,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+156,PROXY,6701,ＮＥＣ,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+157,PROXY,4689,ＬＩＮＥヤフー,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+158,PROXY,7902,ソノコム,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+159,PROXY,5110,住友ゴム,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+160,PROXY,5903,ＳＨＩＮＰＯ,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+161,PROXY,6763,帝通工,Japan,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+162,PROXY,TSE:8830,Sumitomo Realty,Japan,0.26,A,H,OK,small,0.572,1.75,2.08,1.44,0.8
+163,PROXY,GSE:RBGH,Republic Bank Ghana,MEA / Frontier,0.38,A,G,OK,small,0.536,1.77,2.07,1.45,0.8
+164,PROXY,GSE:SOGEGH,Société Générale Ghana,MEA / Frontier,0.38,A,G,OK,small,0.536,1.77,2.07,1.45,0.8
+165,PROXY,NASDAQ:ASTS,AST SpaceMobile,MEA / Frontier,0.35,A,K1,OK,small,0.545,1.74,2.02,1.43,0.8
+166,PROXY,NASDAQ:ALMS,Acelyrin / Alumis merger,MEA / Frontier,0.35,A,Unknown,OK,small,0.545,1.74,2.02,1.43,0.8
+167,PROXY,BRU,BURU ENERGY LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+168,PROXY,IG6,INTERNATIONAL GRAPHITE LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+169,PROXY,INF,INFINITY METALS LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+170,PROXY,FDR,FINDER ENERGY HOLDINGS LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+171,PROXY,M2M,MT MALCOLM MINES NL,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+172,PROXY,TG1,TECHGEN METALS LTD,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+173,PROXY,IVG,INVERT GRAPHITE LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+174,PROXY,SOR,STRATEGIC ELEMENTS LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+175,PROXY,ALX,ATLAS ARTERIA,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+176,PROXY,NMT,NEOMETALS LTD,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+177,PROXY,NVU,NANOVEU LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+178,PROXY,FRS,FORRESTANIA RESOURCES LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+179,PROXY,KIT,KAPSTREAM INVESTMENT TRUST,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+180,PROXY,AKO,AKORA RESOURCES LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+181,PROXY,CBL,CONTROL BIONICS LIMITED,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+182,PROXY,HWK,HAWK RESOURCES LIMITED.,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+183,PROXY,CNI,CENTURIA CAPITAL GROUP,SE Asia / Pacific,0.38,A,Unknown,OK,small,0.536,1.77,2.07,1.45,0.8
+184,PROXY,LSE:BA,BAE Systems,United Kingdom,0.2,A,A1,OK,small,0.443,1.68,1.8,1.37,0.8
+185,PROXY,LSE:ENQ,Enquest,United Kingdom,0.2,A,A1,OK,small,0.443,1.68,1.8,1.37,0.8
+186,PROXY,ST:VPLAY-B,Viaplay Group,Continental Europe,0.33,A,Unknown,OK,small,0.551,1.72,2.0,1.41,0.7
+187,PROXY,ST:SBB-B,SBB (Samhällsbyggnadsbolaget),Continental Europe,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
+188,PROXY,BIT:TIT,Telecom Italia (TIM),Continental Europe,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
+189,PROXY,BIT/BME,Banco BPM / Sabadell,Continental Europe,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
+190,PROXY,CSE:ORSTED,Ørsted,Continental Europe,0.3,A,Unknown,OK,small,0.56,1.7,1.95,1.38,0.7
+191,PROXY,ST:OXE,OXE Marine,Continental Europe,0.3,A,Unknown,OK,small,0.56,1.7,1.95,1.38,0.7
+192,PROXY,ATHEX:TATT,Attica/Crediabank,Continental Europe,0.3,A,Unknown,OK,small,0.56,1.7,1.95,1.38,0.7
+193,PROXY,EPA:AF,Air France-KLM,Continental Europe,0.3,A,Unknown,OK,small,0.56,1.7,1.95,1.38,0.7
+194,PROXY,ST:INTRUM,Intrum,Continental Europe,0.3,C → B,Unknown,OK,small,0.56,1.7,1.95,1.38,0.7
+195,PROXY,HK:17,New World Development,Greater China / HK,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
+196,PROXY,HK:1638,Kaisa Group,Greater China / HK,0.21,A (low),F,OK,small,0.587,1.75,2.09,1.43,0.7
+197,PROXY,TSE:6723,Renesas Electronics,Japan,0.25,A,H,OK,small,0.575,1.74,2.06,1.43,0.7
+198,PROXY,TSE:7974,Nintendo,Japan,0.24,A,H,OK,small,0.578,1.73,2.05,1.42,0.7
+199,PROXY,TSE:8579,Sumitomo Mitsui Auto Service,Japan,0.24,A,H,OK,small,0.578,1.73,2.05,1.42,0.7
+200,PROXY,TSE:6201,Toyota Industries,Japan,0.23,A,H,OK,small,0.581,1.72,2.03,1.41,0.7
+201,PROXY,TSE:3382,Seven & i,Japan,0.23,A,H,OK,small,0.581,1.72,2.03,1.41,0.7
+202,PROXY,TSE:8802,Mitsubishi Estate,Japan,0.23,A,H,OK,small,0.581,1.72,2.03,1.41,0.7
+203,PROXY,TSE:9501,Tokyo Electric Power,Japan,0.23,A,H,OK,small,0.581,1.72,2.03,1.41,0.7
+204,PROXY,TSE:7272,Yamaha Motor,Japan,0.23,A,H,OK,small,0.581,1.72,2.03,1.41,0.7
+205,PROXY,KRX:073240,Kumho Tire,Korea,0.32,A,Unknown,OK,small,0.554,1.71,1.98,1.4,0.7
+206,PROXY,KRX:003490,Korean Air,Korea,0.29,A,Unknown,OK,small,0.563,1.69,1.94,1.37,0.7
+207,PROXY,KRX:012330,Hyundai Mobis,Korea,0.25,A,H,OK,small,0.575,1.74,2.06,1.43,0.7
+208,PROXY,KRX:086280,Hyundai Glovis,Korea,0.25,A,H,OK,small,0.575,1.74,2.06,1.43,0.7
+209,PROXY,KRX:003550,LG Corp,Korea,0.22,A,H,OK,small,0.584,1.71,2.01,1.4,0.7
+210,PROXY,KRX:329180,HD Hyundai Heavy,Korea,0.22,A,H,OK,small,0.584,1.71,2.01,1.4,0.7
+211,PROXY,KRX,SK Inc / SK Innovation,Korea,0.22,A,H,OK,small,0.584,1.71,2.01,1.4,0.7
+212,PROXY,KRX:005490,Posco Holdings,Korea,0.21,A,H,OK,small,0.587,1.7,2.0,1.39,0.7
+213,PROXY,GSE,MTN Ghana / Ghana banks,MEA / Frontier,0.29,A,Unknown,OK,small,0.563,1.69,1.94,1.37,0.7
+214,PROXY,SHE:300230,Shanghai Yongli Belting,Greater China / HK,0.28,A,Unknown,OK,small,0.566,1.68,1.92,1.36,0.6
+215,PROXY,HK:656,Fosun International,Greater China / HK,0.26,A,Unknown,OK,small,0.572,1.66,1.89,1.35,0.6
+216,PROXY,HK:2233,West China Cement,Greater China / HK,0.23,A,Unknown,OK,small,0.581,1.63,1.84,1.32,0.6
+217,PROXY,XETR:EVT,EU: Evotec,MEA / Frontier,0.25,A,Unknown,OK,small,0.575,1.65,1.88,1.34,0.6
+218,PROXY,NSE(NGE):ETI,Ecobank Transnational,MEA / Frontier,0.25,A,G,OK,small,0.575,1.65,1.88,1.34,0.6
+219,PROXY,ZSE,"Zimbabwe (Delta, Econet)",MEA / Frontier,0.25,A,Unknown,OK,small,0.575,1.65,1.88,1.34,0.6
+220,PROXY,NASDAQ:STRO,Sutro Biopharma,MEA / Frontier,0.25,A,Unknown,OK,small,0.575,1.65,1.88,1.34,0.6
+221,PROXY,DFM:UPP,Union Properties,MEA / Frontier,0.24,A,Unknown,OK,small,0.578,1.64,1.86,1.33,0.6

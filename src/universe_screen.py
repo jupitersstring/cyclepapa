@@ -49,9 +49,16 @@ OUT = REPO / "output" / "universe_screened.md"
 ARCHETYPE_PATTERNS: list[tuple[str, list[str]]] = [
     ("A2", [
         # US sovereign industrial policy
-        r"\bdod\b", r"\bdo[ec]\b", r"\bchips? act\b", r"\bpentagon\b",
+        # NB: use UPPER-case agency acronyms only, matched via a
+        # case-sensitive check below — 'doc'/'doe'/'saf' as lowercase
+        # common words (e.g. "primary doc") must NOT match. These are
+        # kept lowercase here but the note text is boilerplate-stripped
+        # and event-mapped first, so agency matches only fire on genuine
+        # agency mentions in descriptive rows.
+        r"\bdod\b", r"\bdepartment of energy\b", r"\bdepartment of commerce\b",
+        r"\bchips? act\b", r"\bpentagon\b",
         r"\batvm\b", r"\bceefc\b", r"\bdepartment of (defen[cs]e|energy|commerce)\b",
-        r"\bcritical[ -]?mineral", r"\bsaf\b",
+        r"\bcritical[ -]?mineral",
         r"\bsovereign.*?(anchor|stake|equity|floor|offtake)",
         r"\bgovernment\b.*?\b(stake|equity|loan|floor|offtake)\b",
         # European sovereign industrial policy
@@ -509,9 +516,92 @@ def infer_region_from_row(name: str, ticker: str, notes: str) -> str:
     return "Unspecified"
 
 
+# Auto-promoted-row event-type -> archetype. The archetype keyword
+# classifier was built for richly-described hand-curated universe.md
+# rows; auto-promoted rows carry a terse "[SOURCE] Auto-promoted from
+# <form> (acc ...); <event note>" plus boilerplate. Map the poller
+# event-type DIRECTLY to the correct archetype so these rows aren't
+# left to fuzzy keyword matching (which mis-fired — e.g. "primary doc"
+# matched the DOE/DOC A2 pattern and tagged everything A2).
+POLLER_EVENT_ARCHETYPE: list[tuple[str, str, list[str]]] = [
+    # (substring in note/label, primary, secondaries)
+    ("fresh-start accounting",          "F", []),   # post-reorg emergence
+    ("emerged from chapter 11",         "F", []),
+    ("plan of reorganization",          "F", []),
+    ("post-reorg",                      "F", []),
+    ("going-dark",                      "K3", []),
+    ("section 12(g) registration",      "K3", []),
+    ("section 12(b)",                   "K3", []),
+    ("removal from listing",            "K3", []),   # 25-NSE delisting
+    ("delisting / continued-listing",   "K3", []),
+    ("delisting-deficiency",            "K3", []),
+    ("deficiency signal",               "K3", []),
+    ("definitive merger proxy",         "C", []),    # merger vote / arb
+    ("merger proxy",                    "C", []),
+    ("self-tender",                     "C", []),
+    ("dutch auction",                   "C", []),
+    ("tender offer",                    "C", []),
+    ("scheme of arrangement",           "E", []),
+    ("plan of arrangement",             "E", []),
+    ("recuperação judicial",            "E", []),
+    ("judicial recovery",               "E", []),
+    ("civil rehabilitation",            "E", []),
+    ("voluntary administration",        "E", []),
+    ("chapter 11",                      "E", []),
+    ("proxy contest",                   "H", []),    # activist campaign
+    ("activist proxy",                  "H", []),
+    ("non-management soliciting",       "H", []),
+    ("5pct beneficial-ownership",       "H", []),    # SC 13D
+    ("material change to 5pct",         "H", []),
+    ("major shareholder",               "H", []),
+    ("controlling-shareholder",         "H", []),
+    ("rights offering",                 "A1", []),
+    ("rights issue",                    "A1", []),
+    ("open offer",                      "A1", []),
+    ("capital increase",                "A1", []),
+    ("third-party share allocation",    "B", []),    # PIPE
+    ("convertible",                     "B", []),
+    ("exchange offer",                  "C", []),
+    ("consent solicitation",            "C", []),
+    ("liability management",            "C", []),
+    ("restructuring plan",              "E", []),
+    ("company voluntary arrangement",   "E", []),
+    ("mbo",                             "H", []),
+    ("management buyout",               "H", []),
+    ("institutional revealed preference", "H", []),  # 13F smart-money
+    ("13f",                             "H", []),
+    ("cluster sells",                   "H", []),
+    ("going concern",                   "E", []),
+    ("restatement",                     "E", []),
+    ("material fact",                   "C", []),
+    ("ofac",                            "G", []),     # sanctions
+    ("sanctions",                       "G", []),
+]
+
+# Boilerplate to strip before archetype keyword matching so framework
+# annotations don't leak into classification.
+_BOILERPLATE = re.compile(
+    r"\[[^\]]+\]|auto-promoted from|\(acc [^)]*\)|"
+    r"verify (?:primary )?doc(?:ument)? before scoring|"
+    r"verify against primary docs?|filing \d{4}-\d{2}-\d{2}", re.I)
+
+
 def classify_archetypes(notes: str, section: str = "") -> tuple[str, list[str]]:
-    """Return (primary, [secondary]) archetype codes."""
-    text = (notes + " " + section).lower()
+    """Return (primary, [secondary]) archetype codes. For auto-promoted
+    rows, map the poller event-type directly; otherwise run the keyword
+    classifier on boilerplate-stripped text."""
+    raw = f"{notes} {section}"
+    low = raw.lower()
+    # 1. Auto-promoted rows: event-type -> archetype (exact, not fuzzy)
+    if "auto-promoted" in low or "[edgar-" in low or "[nsm]" in low \
+            or "[tdnet]" in low or "[asx]" in low or "[cvm-ipe]" in low \
+            or "[sedar+]" in low or "[courtlistener" in low \
+            or "[ofac]" in low or "[lda-senate]" in low:
+        for needle, prim, sec in POLLER_EVENT_ARCHETYPE:
+            if needle in low:
+                return prim, sec
+    # 2. Keyword classifier on boilerplate-stripped text
+    text = _BOILERPLATE.sub(" ", raw).lower()
     hits: list[str] = []
     for code, patterns in ARCHETYPE_PATTERNS:
         for p in patterns:
@@ -910,9 +1000,11 @@ def render(candidates: list[Candidate]) -> str:
         lines.append(f"| **{region}** | {len(cs)} | {t0t1} | {mean:.2f} | {top.triage_score:.2f} | {top.name} ({top.ticker}) |")
     lines.append("")
 
-    # Top per region — show 15 per region for richer regional view
+    # Top per region — show 40 per region so the downstream reward/risk
+    # ranker (universe_risk_reward.py, which parses these tables) has a
+    # deep enough candidate pool to build a genuine top-100 by asymmetry.
     for region in sorted(by_region):
-        cs = sorted(by_region[region], key=lambda x: -x.triage_score)[:15]
+        cs = sorted(by_region[region], key=lambda x: -x.triage_score)[:40]
         if not cs:
             continue
         lines.append(f"## {region} — top {len(cs)} by triage score")

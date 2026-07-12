@@ -270,7 +270,7 @@ def build_executive_summary(wb: Workbook, candidates: list[dict],
     PROXY (universe-screener score × archetype tilt) where they don't."""
     ws = wb.create_sheet("Executive Summary")
     ws.sheet_view.showGridLines = False
-    ws["A1"] = "Universe-wide top picks · ranked by quantitative reward/risk"
+    ws["A1"] = "Universe-wide top 100 · ranked by quantitative reward/risk (asymmetry)"
     ws["A1"].font = FONT_SUBHEAD
     ws["A2"] = (f"Universe coverage: {len(universe_rr)} investable names "
                 f"({sum(1 for r in universe_rr if r['source']=='REAL')} "
@@ -291,7 +291,7 @@ def build_executive_summary(wb: Workbook, candidates: list[dict],
         ws.cell(row=4, column=j, value=h)
     style_header_row(ws, 4, len(headers))
 
-    top = universe_rr[:25]
+    top = universe_rr[:100]
     for i, r in enumerate(top):
         row = 5 + i
         cells = [
@@ -330,9 +330,11 @@ def build_executive_summary(wb: Workbook, candidates: list[dict],
 
     # Footnote
     ws.cell(row=last_row + 2, column=1, value=(
-        "Reward/Risk = (EV× − 1) ÷ Bear loss.  "
-        "Universe-screener output ranks 697 named candidates on archetype, "
-        "vintage, status, size, region. Investable filter drops "
+        "Reward/Risk = (EV× − 1) ÷ Bear loss = the asymmetry metric.  "
+        "The broad universe-screener scores the full candidate set on "
+        "archetype, vintage, status, size, region, and cross-source "
+        "corroboration; this asymmetric scan ranks the investable subset "
+        f"({len(universe_rr)} names) by reward/risk. Investable filter drops "
         "PASS_FALSE_FRIEND / ACQUIRED / ARC_DONE / REPEAT_RX and "
         "non-equity placeholder tickers ((state), (private), (delisted)). "
         "PROXY waterfall: bear_loss = max(0.10, 0.65 − 0.30·score), "

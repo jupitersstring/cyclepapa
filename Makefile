@@ -181,7 +181,7 @@ refresh: audit poll-all source-health security-master corroborate inbox-promote 
 	@echo "Universe refreshed end-to-end. Open output/cyclepapa_risk_reward_workbook.xlsx"
 
 inbox-promote: audit
-	python3 -m src.inbox_promote --days-back 7
+	python3 -m src.inbox_promote --days-back 120
 
 all: audit poll uk-poll ca-poll jp-poll spinoff cluster-buys inbox-promote universe score waterfall portfolio events
 	@echo "All pipelines run."
