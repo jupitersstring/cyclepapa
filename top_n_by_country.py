@@ -351,7 +351,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _put_pct(ws, row, 17, r.get('momentum_12m'), font=f_text)
 
         _put_score(ws, row, 18, r.get('yartseva_score'), font=f_text_muted)
-        _put_int(ws, row, 19, int(r.get('cluster_n') or 0), font=f_text_muted)
+        _cn = r.get('cluster_n')
+        _put_int(ws, row, 19, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
