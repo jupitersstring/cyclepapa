@@ -1,10 +1,9 @@
 {
   "n_raw_layers": 30,
-  "n_effective_layers_at_06": 25,
+  "n_effective_layers_at_06": 26,
   "clusters": [
     [
-      "psu_pts",
-      "voss_cic_pts"
+      "psu_pts"
     ],
     [
       "valuation_pts"
@@ -41,6 +40,9 @@
     ],
     [
       "odd_lot_pts"
+    ],
+    [
+      "voss_cic_pts"
     ],
     [
       "post_ch11_pts"

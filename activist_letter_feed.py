@@ -71,8 +71,13 @@ KNOWN_ACTIVISTS = [
     "voss capital",
 ]
 
+# METHODOLOGY FIX (audit finding A11): word boundaries required.
+# The plain substring alternation matched "voss capital" INSIDE
+# "Winklevoss Capital Fund" -- a false positive (Winklevoss Capital
+# is a family office, not the Voss Capital activist). \b before each
+# name prevents mid-word matches.
 ACTIVIST_RX = re.compile(
-    "|".join(re.escape(a) for a in KNOWN_ACTIVISTS),
+    r"\b(?:" + "|".join(re.escape(a) for a in KNOWN_ACTIVISTS) + r")\b",
     re.I,
 )
 

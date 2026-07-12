@@ -8,7 +8,7 @@ scoring functions mean what they say?
 
 Every finding below was verified against the artifacts on disk before
 being declared, and every confirmed defect was fixed in the same pass.
-Fix commits reference the finding IDs (A1–A10).
+Fix commits reference the finding IDs (A1–A11).
 
 ---
 
@@ -112,6 +112,17 @@ rows re-parsed locally: 2 dates corrected; 2 rows whose stored text no
 longer parses under the stricter pattern (SRRK, LNTH) were zeroed with
 an explanatory reason rather than silently kept.
 
+### A11 — Activist name matching lacked word boundaries  [MEDIUM]
+
+**Evidence.** Found during post-fix re-verification: "Winklevoss
+Capital Fund, LLC" was flagged as a Voss Capital 13D because the
+substring alternation matched "voss capital" inside "winklevoss
+capital." A family office was being scored as a known activist.
+
+**Fix.** `\b` word boundaries wrap the alternation; unit-verified
+that "Voss Capital, LP" matches and "Winklevoss Capital Fund" does
+not.
+
 ### A10 — 10-Q equity captured on only 33/164 filings  [LOW]
 
 **Evidence.** The regex accepted only "stockholders equity"; the
@@ -155,6 +166,9 @@ scored, so no score impact.)
 4. **Date fields must name what they actually are.** "distribution_
    date" holding a registration date propagated a wrong mental model
    into the status labels.
+5. **Name matching needs word boundaries.** Substring alternations
+   over entity names will eventually match inside longer names
+   (Voss / Winklevoss). Every curated-list matcher now uses \b.
 
 ## Residual known limitations (documented, not fixed here)
 
