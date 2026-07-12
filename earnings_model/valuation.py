@@ -15,10 +15,19 @@ import numpy as np
 import pandas as pd
 
 # Names that aren't ordinary operating equity (warrants, preferreds, depositary
-# shares, units, rights, BDCs / closed-end vehicles) — excluded from an
-# earnings screen. Catches the bulk of the US small-cap "non-stock" tail.
+# shares, units, rights, BDCs) plus closed-end funds / Brazilian real-estate funds
+# (FIIs) — excluded from an EARNINGS screen (they have distributions/NAV, not an
+# operating income statement). High precision: matches "... Fund" and the CEF
+# trust forms (income/term/municipal trust) and Brazilian "Fundo de Investimento
+# Imobiliário / FII", but the ``\bfund\b`` negative-lookahead SPARES real operating
+# names — asset managers ("Fund Managers/Advisors"), and plain "Trust" is never
+# matched so REITs/royalty trusts (Arbor Realty Trust, PermRock Royalty Trust) stay.
 _NONOP_RE = re.compile(
-    r"warrant|preferred|\bpfd\b|depositary|\brights?\b|\bunits?\b|\bbdc\b|%", re.I
+    r"warrant|preferred|\bpfd\b|depositary|\brights?\b|\bunits?\b|\bbdc\b|%|"
+    r"investimento imobili|\bFII\b|closed[- ]end|\bCEF\b|income fund\b|term trust\b|"
+    r"municipal (income )?(fund|trust)|"
+    r"\bfund\b(?!\s*(manage|advis|admin|servic|of canada|holding))",
+    re.I,
 )
 
 # Preferred shares identified by TICKER SUFFIX rather than name: the ``-P<letter>``
