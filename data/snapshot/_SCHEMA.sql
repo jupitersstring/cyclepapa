@@ -170,26 +170,6 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
-CREATE TABLE ticker_entry_intact (
-      ticker TEXT PRIMARY KEY,
-      current_px REAL, anchor_px REAL, anchor_source TEXT,
-      vs_entry_pct REAL, bucket TEXT,
-      conviction_score REAL, n_funds INTEGER,
-      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
-      anchors_seen TEXT);
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -218,3 +198,38 @@ CREATE INDEX idx_us_score ON unified_signal(score DESC);
 CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
 CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
 CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
+CREATE TABLE pb_people (
+      person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
+      primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
+      is_former INTEGER, board_seats TEXT, roles TEXT,
+      location TEXT, country TEXT, biography TEXT,
+      theme TEXT, company_website TEXT, is_principal INTEGER DEFAULT 0);
+CREATE INDEX idx_pbp_name ON pb_people(full_name);
+CREATE INDEX idx_pbp_company ON pb_people(primary_company);
+CREATE INDEX idx_pbp_theme ON pb_people(theme);
+CREATE TABLE pb_affiliation (
+      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
+      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0);
+CREATE INDEX idx_pba_company ON pb_affiliation(company);
+CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
+CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
+CREATE TABLE ticker_entry_intact (
+      ticker TEXT PRIMARY KEY,
+      current_px REAL, anchor_px REAL, anchor_source TEXT,
+      vs_entry_pct REAL, bucket TEXT,
+      conviction_score REAL, n_funds INTEGER,
+      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
+      anchors_seen TEXT);
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));

@@ -21,6 +21,14 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    # --- PitchBook-sourced additions (2026-07, verified active 13F filers) ---
+    "Cat Rock Capital Management":          "1654648",
+    "Theleme Partners":                     "1511881",
+    "Clarkston Capital Partners":           "1562855",
+    "Hosking Partners":                     "1650135",
+    "Tybourne Capital Management":          "1553936",
+    "Man Group":                            "1637460",
+    "Mubadala Investment Company":          "1704268",
     "Pershing Square Capital Manag":       "1336528",
     "Pershing Square Capital Management":  "1336528",
     "Third Point LLC":                     "1040273",
