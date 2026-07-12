@@ -15,24 +15,24 @@ size-class proxy from currency-amount detection.
 | Triage tier | Threshold | Count | Action |
 |---|---|---|---|
 | **T0** | ≥ 0.80 | 18 | full YAML build + verify ASAP |
-| **T1** | 0.55–0.80 | 160 | priority YAML build-out |
+| **T1** | 0.55–0.80 | 162 | priority YAML build-out |
 | **T2** | 0.35–0.55 | 295 | watch + light YAML |
-| **T3** | 0.20–0.35 | 202 | sector-context only |
+| **T3** | 0.20–0.35 | 200 | sector-context only |
 | **pass** | < 0.20 | 450 | universe ballast |
 
 ## Archetype classification (primary + multi-tag)
 
 | Archetype | Primary count |
 |---|---|
-| Unknown | 446 |
+| Unknown | 444 |
 | F | 175 |
 | B | 118 |
-| A1 | 95 |
+| A1 | 96 |
 | H | 71 |
 | G | 52 |
 | K3 | 48 |
 | A2 | 46 |
-| E | 39 |
+| E | 40 |
 | C | 23 |
 | K1 | 9 |
 | F2 | 2 |
@@ -57,11 +57,11 @@ size-class proxy from currency-amount detection.
 
 | Cohort | Count |
 |---|---|
-| 2024+ | 540 |
-| 2022-2023 | 27 |
-| 2018-2021 | 32 |
-| pre-2018 | 18 |
-| unknown | 508 |
+| 2024+ | 544 |
+| 2022-2023 | 31 |
+| 2018-2021 | 36 |
+| pre-2018 | 20 |
+| unknown | 494 |
 
 ## Region summary
 
@@ -71,12 +71,12 @@ size-class proxy from currency-amount detection.
 | **Greater China / HK** | 47 | 2 | 0.18 | 0.69 | Vanke (HK:2202) |
 | **Japan** | 101 | 14 | 0.20 | 0.86 | Hitachi Construction Machinery (TSE:6305) |
 | **Korea** | 33 | 5 | 0.27 | 0.86 | Doosan Bobcat → Doosan Robotics merger (KRX:241560) |
-| **Latin America** | 114 | 15 | 0.32 | 1.12 | YPF (NYSE:YPF) |
+| **Latin America** | 116 | 17 | 0.32 | 1.12 | YPF (NYSE:YPF) |
 | **MEA / Frontier** | 110 | 10 | 0.22 | 0.79 | GTCO (Guaranty Trust) (NGX:GTCO) |
 | **SE Asia / Pacific** | 114 | 12 | 0.30 | 0.83 | ACROW LIMITED (ACF) |
 | **United Kingdom** | 40 | 13 | 0.31 | 0.76 | ASOS (LSE:ASC) |
 | **United States/Canada** | 423 | 98 | 0.39 | 0.96 | TruBridge, Inc. (TBRG) |
-| **Unspecified** | 12 | 1 | 0.25 | 0.56 | Pulsar Helium Inc. (—) |
+| **Unspecified** | 10 | 1 | 0.27 | 0.56 | Pulsar Helium Inc. (—) |
 
 ## Continental Europe — top 40 by triage score
 
@@ -163,8 +163,8 @@ size-class proxy from currency-amount detection.
 | 0.11 | China South City | HK:1668 | ○ | A (low) | F | OK | ? | small |
 | 0.11 | Greenland HK | HK:337 | ○ | A (low) | F | OK | ? | small |
 | 0.10 | Times China | HK:1233 | ○ | A (low) | Unknown | OK | 2023 | small |
-| 0.10 | China Vanke Tianjin Bond Plan | n/a | ○ | — | Unknown | OK | ? | small |
-| 0.09 | Ping An-adjacent trust products | — | ○ | — | Unknown | OK | ? | small |
+| 0.10 | China Vanke Tianjin Bond Plan | n/a | ○ |  | Unknown | OK | ? | small |
+| 0.09 | Ping An-adjacent trust products | — | ○ |  | Unknown | OK | ? | small |
 | 0.09 | Guangzhou R&F | HK:2777 | ○ | A (low) | Unknown | OK | ? | small |
 | 0.00 | China Evergrande | (delisted) | ★ | C | F | PASS_FALSE_FRIEND | 2024 | small |
 
@@ -246,8 +246,8 @@ size-class proxy from currency-amount detection.
 | 0.09 | Doosan Bobcat | KRX:241560 | ▲ | A | Unknown | OK | ? | small |
 | 0.09 | Doosan Robotics | KRX:454910 | ▲ | A | Unknown | OK | ? | small |
 | 0.09 | Hyosung TNC | KRX:298020 | ▲ | A | Unknown | OK | ? | small |
-| 0.06 | Hanwha Ocean | KRX:042660 | ★ | done | H | ARC_DONE | ? | small |
 | 0.05 | KOSPI mid/small distressed | various | ▲ | A/C | Unknown | OK | ? | small |
+| 0.05 | Hanwha Ocean | KRX:042660 | ★ |  | H | ARC_DONE | ? | small |
 | 0.00 | Asiana Airlines | (acquired KAL 2024) | ★ | C → acquired | Unknown | ACQUIRED | 2024 | small |
 | 0.00 | Homeplus | (private; MBK) | ○ | C | E+H | PASS | 2025 | small |
 
@@ -264,10 +264,12 @@ size-class proxy from currency-amount detection.
 | 0.75 | COMERC ENERGIA S.A. | — | ○ | A | A1 | OK | 2026 | small |
 | 0.75 | SOCIEDADE ABASTECIMENTO DE AGUA E SANEAMENTO SA | — | ○ | A | A1 | OK | 2026 | small |
 | 0.75 | MINERVA S/A | — | ○ | A | A1 | OK | 2026 | small |
+| 0.75 | BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL | — | ○ | A | A1 | OK | 2026 | small |
 | 0.58 | Light SA | B3:LIGT3 | ★ | A | E | OK | ? | small |
 | 0.56 | ATOM EDUCAÇÃO E EDITORA S.A. | — | ○ | A | C | OK | 2026 | small |
 | 0.56 | OI S.A. - EM RECUPERAÇÃO JUDICIAL | — | ○ | A | E | OK | 2026 | small |
 | 0.56 | PETTENATI S.A. INDUSTRIA TEXTIL | — | ○ | A | C | OK | 2026 | small |
+| 0.56 | MANUFATURA DE  BRINQUEDOS ESTRELA SA | — | ○ | A | E | OK | 2026 | small |
 | 0.56 | BBM LOGÍSTICA S.A. | — | ○ | A | E | OK | 2026 | small |
 | 0.56 | GRUPO TOKY S.A. | — | ○ | A | E | OK | 2026 | small |
 | 0.51 | Edenor | NYSE:EDN | ○ | A | A1 | OK | ? | small |
@@ -282,6 +284,8 @@ size-class proxy from currency-amount detection.
 | 0.38 | CIA. DE SANEAMENTO DO PARANÁ - SANEPAR | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | BANCO DO ESTADO DO RIO GRANDE DO SUL SA | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | UNIPAR CARBOCLORO S.A. | — | ○ | A | Unknown | OK | 2026 | small |
+| 0.38 | AZEVEDO & TRAVASSOS ENERGIA S.A. | — | ○ | A | Unknown | OK | 2026 | small |
+| 0.38 | VALID SOLUÇÕES S.A. | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | ULTRAPAR PARTICIPAÇÕES SA | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | PLATÃO CAPITAL S.A. | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | BRAVA ENERGIA S.A. | — | ○ | A | Unknown | OK | 2026 | small |
@@ -291,10 +295,6 @@ size-class proxy from currency-amount detection.
 | 0.38 | PRIO S.A. | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | LM TRANSPORTES INTERESTADUAIS SERVIÇOS E COMÉRCIO S.A. | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | MOURA DUBEUX ENGENHARIA S/A | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.38 | ORIZON VALORIZAÇÃO DE RESÍDUOS S.A. | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.38 | EMPREENDIMENTOS PAGUE MENOS SA | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.38 | JALLES MACHADO S.A. | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.38 | SLC AGRICOLA SA | — | ○ | A | Unknown | OK | 2026 | small |
 
 ## MEA / Frontier — top 40 by triage score
 
@@ -476,7 +476,7 @@ size-class proxy from currency-amount detection.
 | 0.64 | Teamshares Inc. | CIK:0001783876 | ○ | A | K3 | OK | 2026 | small |
 | 0.64 | J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11 | CIK:0001574219 | ○ | A | K3 | OK | 2026 | small |
 
-## Unspecified — top 12 by triage score
+## Unspecified — top 10 by triage score
 
 | Score | Name | Ticker | Conf | Bucket | Archetype | Status | Vintage | Size |
 |---|---|---|---|---|---|---|---|---|
@@ -485,13 +485,11 @@ size-class proxy from currency-amount detection.
 | 0.38 | H2 Ventures 1 Inc. | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | Origin Materials, Inc. | — | ○ | A | Unknown | OK | 2026 | small |
 | 0.38 | Aptose Biosciences Inc.  (APTOF)  (CIK 0000882361) | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.35 | MANUFATURA DE  BRINQUEDOS ESTRELA SA | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.34 | BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL | — | ○ | A | Unknown | OK | 2026 | small |
-| 0.05 | Calfrac Well Services | TSX:CFW | A | 3/3 | Unknown | OK | ? | small |
-| 0.05 | Worldline | EPA:WLN | A | 2/3 | Unknown | OK | ? | small |
-| 0.05 | Ørsted | CSE:ORSTED | A | 2/3 | Unknown | OK | ? | small |
-| 0.05 | Petra Diamonds | LSE:PDL | A | 2/3 | Unknown | OK | ? | small |
-| 0.05 | McDermott International | OTC:MCDIF | C → B | n/a | Unknown | OK | ? | small |
+| 0.23 | McDermott International | OTC:MCDIF | ★ | C → B | Unknown | OK | ? | ? |
+| 0.09 | Calfrac Well Services | TSX:CFW | 3/3 | A | Unknown | OK | ? | small |
+| 0.09 | Worldline | EPA:WLN | 2/3 | A | Unknown | OK | ? | small |
+| 0.09 | Ørsted | CSE:ORSTED | 2/3 | A | Unknown | OK | ? | small |
+| 0.09 | Petra Diamonds | LSE:PDL | 2/3 | A | Unknown | OK | ? | small |
 
 ## Global top 75 (triage-score ranked)
 
@@ -526,52 +524,52 @@ size-class proxy from currency-amount detection.
 | 27 | 0.75 | **COMERC ENERGIA S.A.** | — | A | A1 | OK | Latin America | 2026 |
 | 28 | 0.75 | **SOCIEDADE ABASTECIMENTO DE AGUA E SANEAMENTO SA** | — | A | A1 | OK | Latin America | 2026 |
 | 29 | 0.75 | **MINERVA S/A** | — | A | A1 | OK | Latin America | 2026 |
-| 30 | 0.75 | **Aozora Bank** | TSE:8304 | A | H | OK | Japan | 2026 |
-| 31 | 0.73 | **Calfrac Well Services** | TSX:CFW | A | A1 | OK | United States/Canada | ? |
-| 32 | 0.73 | **Fidelity Bank** | NGX:FIDELITYBK | A | G | OK | MEA / Frontier | ? |
-| 33 | 0.72 | **Talaat Moustafa Group** | EGX:TMGH | A | G | OK | MEA / Frontier | ? |
-| 34 | 0.71 | **MEMPHASYS LIMITED.** | MEM | A | B | OK | SE Asia / Pacific | 2026 |
-| 35 | 0.71 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | A | K3 | OK | United States/Canada | 2026 |
-| 36 | 0.71 | **KHEOBA CORP.** | CIK:0001909770 | A | K3 | OK | United States/Canada | 2026 |
-| 37 | 0.71 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | A | K3 | OK | United States/Canada | 2026 |
-| 38 | 0.71 | **WYTEC INTERNATIONAL INC** | WYTC | A | K3 | OK | United States/Canada | 2026 |
-| 39 | 0.71 | **Kennedy-Wilson Holdings, Inc.** | CIK:0001408100 | A | K3 | OK | United States/Canada | 2026 |
-| 40 | 0.71 | **PIMCO Asset-Based Lending Co LLC** | CIK:0002073537 | A | K3 | OK | United States/Canada | 2026 |
-| 41 | 0.71 | **Via Renewables, Inc.** | VIASP | A | K3 | OK | United States/Canada | 2026 |
-| 42 | 0.71 | **CBAK Energy Technology, Inc.** | CIK:0001117171 | A | K3 | OK | United States/Canada | 2026 |
-| 43 | 0.71 | **Sustainable Projects Group Inc.** | CIK:0001500305 | A | K3 | OK | United States/Canada | 2026 |
-| 44 | 0.71 | **PROASSURANCE CORP** | CIK:0001127703 | A | K3 | OK | United States/Canada | 2026 |
-| 45 | 0.71 | **Lomond Therapeutics Holdings, Inc.** | CIK:0001900520 | A | K3 | OK | United States/Canada | 2026 |
-| 46 | 0.71 | **Sibanye-Stillwater** | NYSE:SBSW | B | G | OK | MEA / Frontier | ? |
-| 47 | 0.70 | **Aston Martin Lagonda** | LSE:AML | A | A1 | OK | United Kingdom | ? |
-| 48 | 0.69 | **SK Inc** | KRX:034730 | A | H | OK | Korea | 2026 |
-| 49 | 0.69 | **Encore Medical, Inc.  (EMI)  (CIK 0001838003)** | EMI | A | F2 | OK | United States/Canada | 2026 |
-| 50 | 0.69 | **Vanke** | HK:2202 | A | A1 | YELLOW | Greater China / HK | 2025 |
-| 51 | 0.68 | **Hitachi Transport System → Logisteed** | (Hitachi 40%) | A | H | OK | Japan | 2026 |
-| 52 | 0.68 | **Counter Narcotics Designations; Russia-related Designations Removals; Publication of Report for Licensing Activities Undertaken Pursuant to the Trade Sanctions Reform and Export Enhancement Act (TSRA)** | — | A | G | OK | United States/Canada | 2026 |
-| 53 | 0.68 | **Russia-related Designations Removals** | — | A | G | OK | United States/Canada | 2026 |
-| 54 | 0.68 | **Democratic Republic of the Congo-related Designations; Issuance of Amended Russia-related General License and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
-| 55 | 0.68 | **Issuance of Democratic Republic of the Congo-related General License** | — | A | G | OK | United States/Canada | 2026 |
-| 56 | 0.68 | **Issuance of Amended Russia-related General License and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
-| 57 | 0.68 | **Issuance of Amended Iran-related General License** | — | A | G | OK | United States/Canada | 2026 |
-| 58 | 0.68 | **Transnational Criminal Organizations Designations; Cuba Designations; Russia-related Designations Removals; Issuance of TCO-related General License; Publication of OFAC-OFSI Comparative Overview** | — | A | G | OK | United States/Canada | 2026 |
-| 59 | 0.68 | **Cuba Designation; Russia-related Designations Removals and Designation Update; Issuance of Amended Russia-related General Licenses and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
-| 60 | 0.68 | **Non-Proliferation Designations; Iran-related Designations; Issuance of Venezuela-related Amended General Licenses and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
-| 61 | 0.68 | **Designations Removals** | — | A | G | OK | United States/Canada | 2026 |
-| 62 | 0.68 | **Counter Terrorism and Counter Narcotics Designation Update, Russia-related Designation Removal** | — | A | G | OK | United States/Canada | 2026 |
-| 63 | 0.68 | **Counter Terrorism and Iran-related Designations; Cuba Designation and Designations Updates; Issuance of Cuba-related General License and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
-| 64 | 0.68 | **Issuance of Venezuela-related General License** | — | A | G | OK | United States/Canada | 2026 |
-| 65 | 0.68 | **Issuance of Venezuela-related General License and Amended Frequently Asked Question** | — | A | G | OK | United States/Canada | 2026 |
-| 66 | 0.68 | **Iran-related Designations; Issuance of Iran-related General License and Frequently Asked Question; Publication of Iran-related OFAC Alert** | — | A | G | OK | United States/Canada | 2026 |
-| 67 | 0.68 | **Iran-related Designations; Counter Terrorism and Iran-related Designation Update; Issuance of Iran-related General License** | — | A | G | OK | United States/Canada | 2026 |
-| 68 | 0.68 | **Counter Terrorism, Counter Narcotics, and Cyber-related Designations; Issuance of Cyber-related General License** | — | A | G | OK | United States/Canada | 2026 |
-| 69 | 0.68 | **Nicaragua-related Designations; Issuance of Nicaragua-related General License** | — | A | G | OK | United States/Canada | 2026 |
-| 70 | 0.67 | **Vodafone** | LSE:VOD | A | A1 | OK | United Kingdom | 2024 |
-| 71 | 0.67 | **First Foundation** | NYSE:FFWM | A | A1 | OK | United States/Canada | 2024 |
-| 72 | 0.67 | **Tullow Oil** | LSE:TLW | A | A1 | OK | United Kingdom | 2024 |
-| 73 | 0.67 | **Access Holdings** | NGX:ACCESSCORP | A | G | OK | MEA / Frontier | ? |
-| 74 | 0.66 | **UBA** | NGX:UBA | A | G | OK | MEA / Frontier | ? |
-| 75 | 0.64 | **LG Display** | KRX:034220 | A | H | OK | Korea | 2026 |
+| 30 | 0.75 | **BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL** | — | A | A1 | OK | Latin America | 2026 |
+| 31 | 0.75 | **Aozora Bank** | TSE:8304 | A | H | OK | Japan | 2026 |
+| 32 | 0.73 | **Calfrac Well Services** | TSX:CFW | A | A1 | OK | United States/Canada | ? |
+| 33 | 0.73 | **Fidelity Bank** | NGX:FIDELITYBK | A | G | OK | MEA / Frontier | ? |
+| 34 | 0.72 | **Talaat Moustafa Group** | EGX:TMGH | A | G | OK | MEA / Frontier | ? |
+| 35 | 0.71 | **MEMPHASYS LIMITED.** | MEM | A | B | OK | SE Asia / Pacific | 2026 |
+| 36 | 0.71 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | A | K3 | OK | United States/Canada | 2026 |
+| 37 | 0.71 | **KHEOBA CORP.** | CIK:0001909770 | A | K3 | OK | United States/Canada | 2026 |
+| 38 | 0.71 | **Thermon Group Holdings, Inc.** | CIK:0001489096 | A | K3 | OK | United States/Canada | 2026 |
+| 39 | 0.71 | **WYTEC INTERNATIONAL INC** | WYTC | A | K3 | OK | United States/Canada | 2026 |
+| 40 | 0.71 | **Kennedy-Wilson Holdings, Inc.** | CIK:0001408100 | A | K3 | OK | United States/Canada | 2026 |
+| 41 | 0.71 | **PIMCO Asset-Based Lending Co LLC** | CIK:0002073537 | A | K3 | OK | United States/Canada | 2026 |
+| 42 | 0.71 | **Via Renewables, Inc.** | VIASP | A | K3 | OK | United States/Canada | 2026 |
+| 43 | 0.71 | **CBAK Energy Technology, Inc.** | CIK:0001117171 | A | K3 | OK | United States/Canada | 2026 |
+| 44 | 0.71 | **Sustainable Projects Group Inc.** | CIK:0001500305 | A | K3 | OK | United States/Canada | 2026 |
+| 45 | 0.71 | **PROASSURANCE CORP** | CIK:0001127703 | A | K3 | OK | United States/Canada | 2026 |
+| 46 | 0.71 | **Lomond Therapeutics Holdings, Inc.** | CIK:0001900520 | A | K3 | OK | United States/Canada | 2026 |
+| 47 | 0.71 | **Sibanye-Stillwater** | NYSE:SBSW | B | G | OK | MEA / Frontier | ? |
+| 48 | 0.70 | **Aston Martin Lagonda** | LSE:AML | A | A1 | OK | United Kingdom | ? |
+| 49 | 0.69 | **SK Inc** | KRX:034730 | A | H | OK | Korea | 2026 |
+| 50 | 0.69 | **Encore Medical, Inc.  (EMI)  (CIK 0001838003)** | EMI | A | F2 | OK | United States/Canada | 2026 |
+| 51 | 0.69 | **Vanke** | HK:2202 | A | A1 | YELLOW | Greater China / HK | 2025 |
+| 52 | 0.68 | **Hitachi Transport System → Logisteed** | (Hitachi 40%) | A | H | OK | Japan | 2026 |
+| 53 | 0.68 | **Counter Narcotics Designations; Russia-related Designations Removals; Publication of Report for Licensing Activities Undertaken Pursuant to the Trade Sanctions Reform and Export Enhancement Act (TSRA)** | — | A | G | OK | United States/Canada | 2026 |
+| 54 | 0.68 | **Russia-related Designations Removals** | — | A | G | OK | United States/Canada | 2026 |
+| 55 | 0.68 | **Democratic Republic of the Congo-related Designations; Issuance of Amended Russia-related General License and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
+| 56 | 0.68 | **Issuance of Democratic Republic of the Congo-related General License** | — | A | G | OK | United States/Canada | 2026 |
+| 57 | 0.68 | **Issuance of Amended Russia-related General License and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
+| 58 | 0.68 | **Issuance of Amended Iran-related General License** | — | A | G | OK | United States/Canada | 2026 |
+| 59 | 0.68 | **Transnational Criminal Organizations Designations; Cuba Designations; Russia-related Designations Removals; Issuance of TCO-related General License; Publication of OFAC-OFSI Comparative Overview** | — | A | G | OK | United States/Canada | 2026 |
+| 60 | 0.68 | **Cuba Designation; Russia-related Designations Removals and Designation Update; Issuance of Amended Russia-related General Licenses and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
+| 61 | 0.68 | **Non-Proliferation Designations; Iran-related Designations; Issuance of Venezuela-related Amended General Licenses and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
+| 62 | 0.68 | **Designations Removals** | — | A | G | OK | United States/Canada | 2026 |
+| 63 | 0.68 | **Counter Terrorism and Counter Narcotics Designation Update, Russia-related Designation Removal** | — | A | G | OK | United States/Canada | 2026 |
+| 64 | 0.68 | **Counter Terrorism and Iran-related Designations; Cuba Designation and Designations Updates; Issuance of Cuba-related General License and Frequently Asked Questions** | — | A | G | OK | United States/Canada | 2026 |
+| 65 | 0.68 | **Issuance of Venezuela-related General License** | — | A | G | OK | United States/Canada | 2026 |
+| 66 | 0.68 | **Issuance of Venezuela-related General License and Amended Frequently Asked Question** | — | A | G | OK | United States/Canada | 2026 |
+| 67 | 0.68 | **Iran-related Designations; Issuance of Iran-related General License and Frequently Asked Question; Publication of Iran-related OFAC Alert** | — | A | G | OK | United States/Canada | 2026 |
+| 68 | 0.68 | **Iran-related Designations; Counter Terrorism and Iran-related Designation Update; Issuance of Iran-related General License** | — | A | G | OK | United States/Canada | 2026 |
+| 69 | 0.68 | **Counter Terrorism, Counter Narcotics, and Cyber-related Designations; Issuance of Cyber-related General License** | — | A | G | OK | United States/Canada | 2026 |
+| 70 | 0.68 | **Nicaragua-related Designations; Issuance of Nicaragua-related General License** | — | A | G | OK | United States/Canada | 2026 |
+| 71 | 0.67 | **Vodafone** | LSE:VOD | A | A1 | OK | United Kingdom | 2024 |
+| 72 | 0.67 | **First Foundation** | NYSE:FFWM | A | A1 | OK | United States/Canada | 2024 |
+| 73 | 0.67 | **Tullow Oil** | LSE:TLW | A | A1 | OK | United Kingdom | 2024 |
+| 74 | 0.67 | **Access Holdings** | NGX:ACCESSCORP | A | G | OK | MEA / Frontier | ? |
+| 75 | 0.66 | **UBA** | NGX:UBA | A | G | OK | MEA / Frontier | ? |
 
 ## Priority YAML build-out queue
 
@@ -591,6 +589,7 @@ primary filings and promote.
 | 0.75 | **COMERC ENERGIA S.A.** | — | Latin America | A | A1 | 2026 | small |
 | 0.75 | **SOCIEDADE ABASTECIMENTO DE AGUA E SANEAMENTO SA** | — | Latin America | A | A1 | 2026 | small |
 | 0.75 | **MINERVA S/A** | — | Latin America | A | A1 | 2026 | small |
+| 0.75 | **BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL** | — | Latin America | A | A1 | 2026 | small |
 | 0.71 | **MEMPHASYS LIMITED.** | MEM | SE Asia / Pacific | A | B | 2026 | mid |
 | 0.71 | **KalVista Pharmaceuticals, Inc.** | CIK:0001348911 | United States/Canada | A | K3 | 2026 | mid |
 | 0.71 | **KHEOBA CORP.** | CIK:0001909770 | United States/Canada | A | K3 | 2026 | mid |
@@ -620,9 +619,8 @@ primary filings and promote.
 | 0.68 | **Issuance of Venezuela-related General License** | — | United States/Canada | A | G | 2026 | small |
 | 0.68 | **Issuance of Venezuela-related General License and Amended Frequently Asked Question** | — | United States/Canada | A | G | 2026 | small |
 | 0.68 | **Iran-related Designations; Issuance of Iran-related General License and Frequently Asked Question; Publication of Iran-related OFAC Alert** | — | United States/Canada | A | G | 2026 | small |
-| 0.68 | **Iran-related Designations; Counter Terrorism and Iran-related Designation Update; Issuance of Iran-related General License** | — | United States/Canada | A | G | 2026 | small |
 
-**135 names need YAML build-out.** Top 40 shown.
+**137 names need YAML build-out.** Top 40 shown.
 
 ## Sanity check: high-scoring names auto-flagged as completed arc / false friend
 

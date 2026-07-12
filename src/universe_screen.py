@@ -751,6 +751,47 @@ def size_multiplier(size: str) -> float:
     return {"large": 1.10, "mid": 1.0, "small": 0.90, "?": 0.95}[size]
 
 
+_CONF_CHARS = set("★○●◐▲△◆◇☆")
+_BUCKET_RE = re.compile(
+    r"^\s*(A|B|C|D)\b(?:\s*(?:→|->|/)\s*[A-D](?:\s*\(?\w+\)?)?)?\s*$"
+    r"|^\s*[A-D]\s*\(", re.I)
+
+
+def _classify_columns(rest: list[str]) -> tuple[str, str, str]:
+    """From the cells AFTER (name, ticker), identify (conf, bucket, notes)
+    by content so heterogeneous prior-session table layouts all parse.
+
+    - conf: a cell that is purely confidence glyphs (★/○/▲/●/◐) or a
+      fraction like "3/3" (triangulation, treated as high confidence).
+    - bucket: a cell matching a bucket code (A, B, C, "C → B", "A (low)").
+    - notes: the longest remaining cell (the descriptive column), else "".
+    """
+    conf = bucket = ""
+    used = [False] * len(rest)
+    # 1. confidence column: glyphs, or an N/M triangulation fraction
+    for i, cell in enumerate(rest):
+        s = cell.strip()
+        if s and (all(ch in _CONF_CHARS or ch.isspace() for ch in s)
+                  or re.fullmatch(r"\d\s*/\s*\d", s)):
+            conf, used[i] = s, True
+            break
+    # 2. bucket column: a bucket code
+    for i, cell in enumerate(rest):
+        if used[i]:
+            continue
+        if _BUCKET_RE.match(cell.strip()):
+            bucket, used[i] = cell.strip(), True
+            break
+    # 3. notes: JOIN all remaining descriptive cells so signal-bearing
+    #    flags in extra columns (e.g. an "Emerged" post-reorg marker,
+    #    a "Triangulation" cell) are preserved rather than discarded.
+    remaining = [rest[i].strip() for i in range(len(rest))
+                 if not used[i] and rest[i].strip()
+                 and rest[i].strip().lower() not in ("n/a", "na", "-", "—")]
+    notes = " · ".join(remaining)
+    return conf, bucket, notes
+
+
 # Cross-source corroboration map (data/corroboration.json), loaded once.
 # entity_stem -> n_distinct_sources. Multi-source names get a triage boost.
 _CORROBORATION: dict[str, int] | None = None
@@ -857,12 +898,16 @@ def parse() -> list[Candidate]:
             continue
         name = cells[0]
         ticker = cells[1] if len(cells) > 1 else ""
-        if len(cells) >= 5:
-            conf, bucket, notes = cells[2], cells[3], cells[4]
-        elif len(cells) == 4:
-            conf, bucket, notes = "", cells[2], cells[3]
-        else:
-            continue
+        # Content-aware column detection. universe.md aggregates tables
+        # from many prior sessions with heterogeneous layouts — e.g.
+        # "| Name | Ticker | Conf | Bucket | Notes |" AND
+        # "| Name | Ticker | Bucket | Triangulation | Status |". A fixed
+        # positional read mangled the latter (McDermott, Calfrac, Ørsted,
+        # Petra Diamonds — the prior-session core picks — scored ~0.05 and
+        # were dropped). Identify each field by its CONTENT among the
+        # remaining cells instead of assuming a position.
+        rest = cells[2:]
+        conf, bucket, notes = _classify_columns(rest)
         if name.lower() == "name" or ticker.lower() == "ticker":
             continue
         if not name or name.startswith("---"):

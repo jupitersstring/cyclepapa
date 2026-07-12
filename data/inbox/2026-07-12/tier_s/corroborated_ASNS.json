@@ -1,0 +1,35 @@
+{
+  "accession": "corrob-ASNS",
+  "cik": "",
+  "conviction_score": 1.221,
+  "fetched_at": "2026-07-12T21:25:09.610630Z",
+  "filed": "2026-07-12",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.95,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "form_8k_spin",
+    "red_flag.advisor",
+    "tier_s.scheme"
+  ],
+  "n_sources": 3,
+  "name": "ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 3 independent sources (red_flag, spinoff, tier_s); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "url": ""
+}

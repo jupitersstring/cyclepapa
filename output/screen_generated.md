@@ -1,4 +1,4 @@
-# Generated screen (2026-06-21)
+# Generated screen (2026-07-12)
 
 Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit.
 
@@ -70,12 +70,14 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 - ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+- ⚠️  warning: stale: last history entry 31 days ago
 
 ### ETL.yaml
 - ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 - ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+- ⚠️  warning: stale: last history entry 31 days ago
 
 ### FLG.yaml
 - ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
@@ -99,7 +101,7 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 - ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
-- ⚠️  warning: stale: last history entry 126 days ago
+- ⚠️  warning: stale: last history entry 147 days ago
 
 ### LOCAL.yaml
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
@@ -109,6 +111,9 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 - ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+
+### MPVD.yaml
+- ⚠️  warning: stale: last history entry 31 days ago
 
 ### SAB.yaml
 - ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
@@ -120,11 +125,15 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 
+### TMQ.yaml
+- ⚠️  warning: stale: last history entry 31 days ago
+
 ### UREE.yaml
 - ⚠️  warning: Tier 1 missing diligence-depth block: consensus_pricing
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 - ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+- ⚠️  warning: stale: last history entry 31 days ago
 
 ### WLN.yaml
 - ⚠️  warning: Tier 1 has 1 unverified deal fields; sizing blocked at full conviction
@@ -132,4 +141,5 @@ Auto-generated from `data/candidates/*.yaml` by `src/score.py`. Do NOT hand-edit
 - ⚠️  warning: Tier 1 missing diligence-depth block: catalyst_independence
 - ⚠️  warning: Tier 1 missing diligence-depth block: expert_calls
 - ⚠️  warning: core Tier 1 has only 0 expert calls logged (target: >= 3 per process_improvements.md §G)
+- ⚠️  warning: stale: last history entry 31 days ago
 

@@ -1,0 +1,32 @@
+{
+  "accession": "corrob-SOC",
+  "cik": "",
+  "conviction_score": 0.965,
+  "fetched_at": "2026-07-12T21:25:09.610630Z",
+  "filed": "2026-07-12",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.85,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "red_flag.advisor",
+    "tier_s.exchange_offer"
+  ],
+  "n_sources": 2,
+  "name": "Sable Offshore Corp.  (SOC)  (CIK 0001831481)",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (red_flag, tier_s); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "red_flag",
+    "tier_s"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag",
+    "tier_s"
+  ],
+  "url": ""
+}

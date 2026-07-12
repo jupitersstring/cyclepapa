@@ -29,7 +29,7 @@ Filters:
   ARC_DONE, REPEAT_RX)
 - ticker must be a real exchange:code (drops "(state)", "(private)",
   "(delisted)" placeholders)
-- score must be >= 0.20 (above 'pass' threshold)
+- score must be >= 0.15 (soft threshold; prefer surfacing over cliff-drop)
 
 Output:
   output/universe_risk_reward.md   (ranked markdown)
@@ -268,7 +268,7 @@ NAME_NOT_INVESTABLE = re.compile(
 def is_investable(row: UniverseRow) -> bool:
     if row.status.upper() in STATUS_DROP:
         return False
-    if row.score < 0.20:
+    if row.score < 0.15:
         return False
     tkr = (row.ticker or "").strip()
     if tkr and TICKER_NOT_INVESTABLE.match(tkr):

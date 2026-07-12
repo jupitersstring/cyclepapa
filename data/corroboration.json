@@ -1,6 +1,6 @@
 {
   "AEMD": {
-    "conviction_score": 1.617,
+    "conviction_score": 1.565,
     "hardest_event": 0.95,
     "n_records": 4,
     "n_sources": 3,
@@ -17,7 +17,7 @@
     ]
   },
   "APTOF": {
-    "conviction_score": 0.988,
+    "conviction_score": 0.956,
     "hardest_event": 0.8,
     "n_records": 2,
     "n_sources": 2,
@@ -32,7 +32,7 @@
     ]
   },
   "ASNS": {
-    "conviction_score": 1.262,
+    "conviction_score": 1.221,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
@@ -49,7 +49,7 @@
     ]
   },
   "BATL": {
-    "conviction_score": 1.898,
+    "conviction_score": 1.836,
     "hardest_event": 1.0,
     "n_records": 3,
     "n_sources": 3,
@@ -65,7 +65,7 @@
     ]
   },
   "BBBY-WT": {
-    "conviction_score": 1.197,
+    "conviction_score": 1.158,
     "hardest_event": 0.85,
     "n_records": 3,
     "n_sources": 3,
@@ -82,7 +82,7 @@
     ]
   },
   "BHP": {
-    "conviction_score": 1.591,
+    "conviction_score": 1.54,
     "hardest_event": 0.5,
     "n_records": 4,
     "n_sources": 2,
@@ -96,7 +96,7 @@
     ]
   },
   "CBIO": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
@@ -111,7 +111,7 @@
     ]
   },
   "CLGN": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
@@ -126,7 +126,7 @@
     ]
   },
   "CURB": {
-    "conviction_score": 0.809,
+    "conviction_score": 0.782,
     "hardest_event": 0.5,
     "n_records": 3,
     "n_sources": 2,
@@ -141,7 +141,7 @@
     ]
   },
   "CVKD": {
-    "conviction_score": 1.262,
+    "conviction_score": 1.221,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
@@ -158,7 +158,7 @@
     ]
   },
   "EHGO": {
-    "conviction_score": 1.294,
+    "conviction_score": 1.252,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 2,
@@ -173,7 +173,7 @@
     ]
   },
   "EMI": {
-    "conviction_score": 0.539,
+    "conviction_score": 0.522,
     "hardest_event": 0.5,
     "n_records": 2,
     "n_sources": 2,
@@ -188,7 +188,7 @@
     ]
   },
   "FDMMU": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
@@ -203,7 +203,7 @@
     ]
   },
   "FMC": {
-    "conviction_score": 1.197,
+    "conviction_score": 1.158,
     "hardest_event": 0.85,
     "n_records": 3,
     "n_sources": 3,
@@ -220,7 +220,7 @@
     ]
   },
   "GATX": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
@@ -235,7 +235,7 @@
     ]
   },
   "HIVE": {
-    "conviction_score": 1.262,
+    "conviction_score": 1.221,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
@@ -252,7 +252,7 @@
     ]
   },
   "HUBCZ": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
@@ -267,7 +267,7 @@
     ]
   },
   "IMCC": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
@@ -282,7 +282,7 @@
     ]
   },
   "INUV": {
-    "conviction_score": 1.262,
+    "conviction_score": 1.221,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
@@ -299,7 +299,7 @@
     ]
   },
   "LEG": {
-    "conviction_score": 2.507,
+    "conviction_score": 2.426,
     "hardest_event": 0.9,
     "n_records": 3,
     "n_sources": 2,
@@ -314,7 +314,7 @@
     ]
   },
   "ORGN": {
-    "conviction_score": 2.069,
+    "conviction_score": 2.002,
     "hardest_event": 0.9,
     "n_records": 2,
     "n_sources": 2,
@@ -328,7 +328,7 @@
     ]
   },
   "QXO-PB": {
-    "conviction_score": 0.539,
+    "conviction_score": 0.522,
     "hardest_event": 0.5,
     "n_records": 2,
     "n_sources": 2,
@@ -343,7 +343,7 @@
     ]
   },
   "RDW": {
-    "conviction_score": 0.728,
+    "conviction_score": 0.704,
     "hardest_event": 0.85,
     "n_records": 2,
     "n_sources": 2,
@@ -358,7 +358,7 @@
     ]
   },
   "REZI": {
-    "conviction_score": 0.97,
+    "conviction_score": 0.939,
     "hardest_event": 0.5,
     "n_records": 3,
     "n_sources": 3,
@@ -375,7 +375,7 @@
     ]
   },
   "RNGE": {
-    "conviction_score": 1.262,
+    "conviction_score": 1.221,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
@@ -392,7 +392,7 @@
     ]
   },
   "SOAR": {
-    "conviction_score": 0.755,
+    "conviction_score": 0.73,
     "hardest_event": 0.85,
     "n_records": 2,
     "n_sources": 2,
@@ -407,7 +407,7 @@
     ]
   },
   "SOC": {
-    "conviction_score": 0.997,
+    "conviction_score": 0.965,
     "hardest_event": 0.85,
     "n_records": 3,
     "n_sources": 2,
@@ -422,7 +422,7 @@
     ]
   },
   "SRFM": {
-    "conviction_score": 1.262,
+    "conviction_score": 1.221,
     "hardest_event": 0.95,
     "n_records": 3,
     "n_sources": 3,
@@ -439,7 +439,7 @@
     ]
   },
   "SWRD": {
-    "conviction_score": 0.728,
+    "conviction_score": 0.704,
     "hardest_event": 0.85,
     "n_records": 2,
     "n_sources": 2,
@@ -454,7 +454,7 @@
     ]
   },
   "TBRG": {
-    "conviction_score": 3.548,
+    "conviction_score": 3.433,
     "hardest_event": 0.9,
     "n_records": 4,
     "n_sources": 2,
@@ -469,7 +469,7 @@
     ]
   },
   "TLAC": {
-    "conviction_score": 0.782,
+    "conviction_score": 0.756,
     "hardest_event": 0.95,
     "n_records": 2,
     "n_sources": 2,
