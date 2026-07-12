@@ -81,6 +81,10 @@ run python3 layer_freshness.py             || true
 # run BEFORE the consensus stage.
 run python3 psu_gov_asymmetry.py           || true
 run python3 psu_archetypes_full.py         || true
+# Reconstructed generators for the three formerly-frozen scorer CSVs
+# (bastian_forcing, psu_valcreate, psu_asymmetric_full) -- also feed
+# the consensus, so likewise BEFORE it.
+run python3 gen_orphan_scorers.py          || true
 run python3 full_universe_consensus.py     || true
 run python3 full_universe_consensus_noval.py || true
 run python3 grand_unified_ranker.py        || true

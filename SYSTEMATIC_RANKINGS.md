@@ -11,21 +11,22 @@ These are surfaced by >=3 of 8 independent screens AND win at least one PSU/gove
 | Rank | Ticker | Screens | Archetypes | Why it converges |
 |---:|---|--:|--:|---|
 | 1 | **HFFG** | 6 | 4 | Triple PSU $ hurdle (rev/EBITDA/FCF) + P/B 0.48 + clawback strengthened |
-| 2 | **CSGP** | 4 | 5 | 10x CEO ownership + EBITDA $ hurdle + SOP 45% + buyback EXECUTING -3.6% |
-| 3 | **LE** | 4 | 4 | 12-tranche price ladder + 86% PSU + ROIC stack (carveout caution) |
-| 4 | **NUS** | 4 | 2 | Named asset-sale PSU + 5-metric clean per-share stack + P/B 0.33 |
-| 5 | **GO** | 4 | 1 | Forward $ targets + Cohen-Malloy informational buys |
+| 2 | **LE** | 6 | 4 | 12-tranche price ladder + 86% PSU + ROIC stack (carveout caution) |
+| 3 | **MAT** | 4 | 3 | Double dollar hurdle EBITDA + FCF (unique 2-archetype win) |
+| 4 | **GO** | 4 | 1 | Forward $ targets + Cohen-Malloy informational buys |
+| 5 | **DXLG** | 4 | 1 | bastian_forcing,grand_unified,psu_asymmetric_full,psu_gov_as |
 | 6 | **ADT** | 4 | 1 | 90% PSU%LTI (heaviest) + verified shrink -7.3% |
-| 7 | **MAT** | 3 | 3 | Double dollar hurdle EBITDA + FCF (unique 2-archetype win) |
+| 7 | **CSGP** | 3 | 5 | 10x CEO ownership + EBITDA $ hurdle + SOP 45% + buyback EXECUTING -3.6% |
 | 8 | **FISV** | 3 | 3 | grand_unified,psu_gov_asymmetry,unified_composite |
 | 9 | **TROX** | 3 | 2 | grand_unified,psu_gov_asymmetry,psu_valcreate |
-| 10 | **KMPR** | 3 | 2 | Custom per-share + anti-hedge + EXECUTING buyback (repricing flag) |
-| 11 | **DXLG** | 3 | 1 | bastian_forcing,grand_unified,psu_gov_asymmetry |
-| 12 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
-| 13 | **GPRO** | 3 | 1 | PSU vests on spin / separation |
+| 10 | **NUS** | 3 | 2 | Named asset-sale PSU + 5-metric clean per-share stack + P/B 0.33 |
+| 11 | **KMPR** | 3 | 2 | Custom per-share + anti-hedge + EXECUTING buyback (repricing flag) |
+| 12 | **LMT** | 3 | 1 | FCF $ hurdle + backlog target |
+| 13 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
 | 14 | **WHR** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
-| 15 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
-| 16 | **BUSE** | 3 | 1 | grand_unified,informational_buys,psu_gov_asymmetry |
+| 15 | **A** | 3 | 1 | grand_unified,psu_asymmetric_full,psu_valcreate |
+| 16 | **CNH** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
+| 17 | **BUSE** | 3 | 1 | grand_unified,informational_buys,psu_gov_asymmetry |
 
 
 ## 2. Per-pattern leaders -- top names by catalyst type
@@ -100,7 +101,7 @@ Use this to deploy systematically by mandate.
 | 7 | SD | 64.6 | C | +10 PSU.spin_separation | P/B 0.98 |
 | 8 | ASIX | 63.9 | B | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; gov 15 | P/B 0.67 | buyback NO_AUTH +0.4% |
 | 9 | LGL | 63.9 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.99; microcap | buyback NO_AUTH +20.4% |
-| 10 | LBTYB | 63.0 | B | +10 PSU.spin_separation | P/B 0.47 | buyback NO_AUTH -0.2% |
+| 10 | LBTYK | 63.0 | B | +10 PSU.spin_separation | P/B 0.38 | buyback NO_AUTH +1.1% |
 
 ### Named asset-sale trigger
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -180,13 +181,13 @@ Use this to deploy systematically by mandate.
 ### Live ISSUER SELF-TENDER
 | Rank | Ticker | Norm | Tier | Reasons |
 |---:|---|--:|---|---|
-| 1 | SVRN | 88.6 | C | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
-| 2 | RBNE | 88.6 | C | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 1 | RBNE | 88.6 | C | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 2 | SVRN | 88.6 | C | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
 | 3 | LEN | 75.0 | B | +12 PSU.revenue_dollar_target; gov 15 | tender SELF_TENDER |
 | 4 | MLCI | 69.8 | B | P/B 0.46; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
 | 5 | GETY | 67.9 | B | P/B 0.47; DD 81% | buyback NO_AUTH +1.0% | tender SELF_TENDER |
-| 6 | HTT | 66.1 | B | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
-| 7 | ENZN | 66.1 | B | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
+| 6 | ENZN | 66.1 | B | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
+| 7 | HTT | 66.1 | B | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 8 | GPUS | 59.2 | B | P/B 0.50; DD 96%; microcap | buyback ANOMALY_REVIEW +138.0% | tender SELF_TENDER |
 | 9 | MRNA | 56.8 | B | tender SELF_TENDER |
 | 10 | WTM | 56.5 | B | P/B 0.92 | tender SELF_TENDER |
@@ -198,8 +199,8 @@ Use this to deploy systematically by mandate.
 | 2 | DXLG | 85.6 | B | gov 15 | P/B 0.38; microcap | tender TARGET |
 | 3 | ASRT | 56.6 | B | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback NO_AUTH +0.7% | tender TARGET |
 | 4 | FSK | 43.8 | B | P/B 0.55 | buyback NO_AUTH +0.0% | tender TARGET |
-| 5 | RGR | 42.5 | B | tender TARGET |
-| 6 | GNK | 42.5 | B | tender TARGET |
+| 5 | GNK | 42.5 | B | tender TARGET |
+| 6 | RGR | 42.5 | B | tender TARGET |
 | 7 | LSTA | 40.2 | B | microcap | tender TARGET |
 | 8 | WBD | 33.5 | B | buyback DILUTING +0.8% | tender TARGET |
 | 9 | GMAB | 33.1 | B | buyback NO_AUTH -0.3% | tender TARGET |
@@ -241,13 +242,13 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 ### Valuation floor (P/B, drawdown, microcap)
 | Rank | Ticker | Layer pts | Norm | Tier | Reasons |
 |---:|---|--:|--:|---|---|
-| 1 | SVRN | 33.0 | 88.6 | C | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
-| 2 | RBNE | 33.0 | 88.6 | C | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 1 | RBNE | 33.0 | 88.6 | C | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 2 | SVRN | 33.0 | 88.6 | C | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
 | 3 | GNPX | 33.0 | 81.2 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.32; DD 99%; microcap | buyback ANO |
 | 4 | CRMT | 33.0 | 67.8 | C | P/B 0.04; DD 96%; microcap |
 | 5 | ZSTK | 33.0 | 62.5 | C | P/B 0.06; DD 91%; microcap |
-| 6 | ENVB | 33.0 | 57.7 | C | P/B 0.48; DD 93%; microcap |
-| 7 | XBP | 33.0 | 57.7 | C | P/B 0.28; DD 92%; microcap |
+| 6 | XBP | 33.0 | 57.7 | C | P/B 0.28; DD 92%; microcap |
+| 7 | ENVB | 33.0 | 57.7 | C | P/B 0.48; DD 93%; microcap |
 | 8 | JTAI | 33.0 | 56.9 | B | +10 PSU.spin_separation | P/B 0.13; DD 99%; microcap | buyback ANOMALY_REVIEW +8021.2% |
 | 9 | IPDN | 33.0 | 51.6 | C | P/B 0.47; DD 95%; microcap |
 | 10 | WKSP | 33.0 | 51.3 | C | P/B 0.44; DD 85%; microcap |
@@ -270,14 +271,14 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 | Rank | Ticker | Layer pts | Norm | Tier | Reasons |
 |---:|---|--:|--:|---|---|
 | 1 | LE | 25.0 | 91.3 | B | PSU core 51; gov 15 | P/B 0.77 | tender TARGET |
-| 2 | SVRN | 25.0 | 88.6 | C | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
-| 3 | RBNE | 25.0 | 88.6 | C | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 2 | RBNE | 25.0 | 88.6 | C | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 3 | SVRN | 25.0 | 88.6 | C | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
 | 4 | DXLG | 25.0 | 85.6 | B | gov 15 | P/B 0.38; microcap | tender TARGET |
 | 5 | LEN | 25.0 | 75.0 | B | +12 PSU.revenue_dollar_target; gov 15 | tender SELF_TENDER |
 | 6 | MLCI | 25.0 | 69.8 | B | P/B 0.46; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
 | 7 | GETY | 25.0 | 67.9 | B | P/B 0.47; DD 81% | buyback NO_AUTH +1.0% | tender SELF_TENDER |
-| 8 | HTT | 25.0 | 66.1 | B | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
-| 9 | ENZN | 25.0 | 66.1 | B | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
+| 8 | ENZN | 25.0 | 66.1 | B | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
+| 9 | HTT | 25.0 | 66.1 | B | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 10 | GPUS | 25.0 | 59.2 | B | P/B 0.50; DD 96%; microcap | buyback ANOMALY_REVIEW +138.0% | tender SELF_TENDER |
 
 
@@ -309,16 +310,16 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 15 | FUBO | 67.3 | 4 | +12 PSU.merger_acquisition_close; gov 15 | P/B 0.33; DD 84% | buyback ANOMALY_REVIEW -72.6% |
 | 16 | ANGI | 66.9 | 4 | P/B 0.22 | buyback SHRINKING_NO_AUTH -8.8% |
 | 17 | GRPN | 66.3 | 4 | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -6.0% |
-| 18 | HTT | 66.1 | 4 | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
-| 19 | ENZN | 66.1 | 4 | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
+| 18 | ENZN | 66.1 | 4 | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
+| 19 | HTT | 66.1 | 4 | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 20 | ALIT | 66.0 | 4 | P/B 0.29; DD 91% | buyback EXECUTING -4.1% |
 
 ### Top 20 in Tier C
 | Rank | Ticker | Norm | Layers | Reasons |
 |---:|---|--:|--:|---|
 | 1 | THRY | 97.5 | 3 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target; +12 PSU.fcf_dollar_target | P/B 0.69 |
-| 2 | SVRN | 88.6 | 3 | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
-| 3 | RBNE | 88.6 | 3 | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 2 | RBNE | 88.6 | 3 | P/B 0.12; DD 98%; microcap | tender SELF_TENDER |
+| 3 | SVRN | 88.6 | 3 | P/B 0.05; DD 99%; microcap | tender SELF_TENDER |
 | 4 | TROX | 80.2 | 3 | PSU core 64; PSU%LTI=86; gov 15 | P/B 0.92 |
 | 5 | VERI | 78.2 | 3 | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 85% |
 | 6 | WHR | 77.3 | 3 | +10 PSU.operating_margin_target; gov 16 | P/B 0.67 |
@@ -334,8 +335,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 16 | RBLX | 62.9 | 3 | +12 PSU.ebitda_dollar_target; PSU%LTI=80 |
 | 17 | ZSTK | 62.5 | 3 | P/B 0.06; DD 91%; microcap |
 | 18 | WKC | 62.0 | 3 | PSU core 54; PSU%LTI=86 |
-| 19 | TNL | 61.1 | 3 | +12 PSU.revenue_dollar_target |
-| 20 | RC | 61.1 | 3 | P/B 0.24 |
+| 19 | RC | 61.1 | 3 | P/B 0.24 |
+| 20 | TNL | 61.1 | 3 | +12 PSU.revenue_dollar_target |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -344,49 +345,53 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 |---|---|
 | HFFG | front-loaded grant |
 | LE | retirement carveout |
-| NUS | retirement carveout |
-| GO | discretionary hurdle, single-trigger CIC |
-| GETY | discretionary hurdle |
-| FUBO | discretionary hurdle, retirement carveout |
-| BCO | discretionary hurdle, retirement carveout |
-| BDC | discretionary hurdle, repricing language, retirement carveout |
-| FIS | discretionary hurdle, repricing language, retirement carveout |
-| OSUR | repricing language, retirement carveout, single-trigger CIC |
-| GRNT | retirement carveout |
-| ADT | retirement carveout |
-| AUPH | discretionary hurdle |
-| NXST | discretionary hurdle |
 | SNBR | discretionary hurdle, retirement carveout |
 | MAT | discretionary hurdle, repricing language, retirement carveout |
-| FISV | discretionary hurdle, repricing language, retirement carveout |
-| TROX | retirement carveout |
-| KMPR | repricing language, retirement carveout |
+| GO | discretionary hurdle, single-trigger CIC |
 | DXLG | retirement carveout |
-| GRND | discretionary hurdle, retirement carveout |
-| LGL | discretionary hurdle, repricing language |
-| CNMD | discretionary hurdle, repricing language, retirement carveout |
-| GPRO | discretionary hurdle, retirement carveout |
-| OLED | retirement carveout |
-| DT | discretionary hurdle, retirement carveout |
-| OPCH | discretionary hurdle, retirement carveout |
-| WHR | discretionary hurdle, repricing language, retirement carveout |
-| CLW | single-trigger CIC |
-| TXRH | discretionary hurdle, retirement carveout |
-| NSP | discretionary hurdle, retirement carveout, single-trigger CIC |
-| DCH | retirement carveout |
-| INFU | retirement carveout |
-| CDE | single-trigger CIC |
-| HAIN | discretionary hurdle, front-loaded grant, retirement carveout, single-trigger CIC |
-| NOW | discretionary hurdle, retirement carveout, single-trigger CIC |
-| LCII | discretionary hurdle, retirement carveout |
 | SD | discretionary hurdle, front-loaded grant, retirement carveout |
-| AMD | discretionary hurdle, retirement carveout |
+| OSUR | repricing language, retirement carveout, single-trigger CIC |
+| FIS | discretionary hurdle, repricing language, retirement carveout |
+| BCO | discretionary hurdle, retirement carveout |
+| OLED | retirement carveout |
+| NSP | discretionary hurdle, retirement carveout, single-trigger CIC |
+| ADT | retirement carveout |
+| GIII | discretionary hurdle, repricing language |
+| SAFE | discretionary hurdle, front-loaded grant |
+| GRNT | retirement carveout |
+| SOLS | retirement carveout |
+| AIN | discretionary hurdle, retirement carveout |
+| TROX | retirement carveout |
+| FISV | discretionary hurdle, repricing language, retirement carveout |
+| NUS | retirement carveout |
+| KMPR | repricing language, retirement carveout |
+| BEEP | discretionary hurdle, retirement carveout |
+| GETY | discretionary hurdle |
+| LMT | retirement carveout |
+| CNMD | discretionary hurdle, repricing language, retirement carveout |
+| WW | discretionary hurdle, retirement carveout |
+| FUBO | discretionary hurdle, retirement carveout |
+| WHR | discretionary hurdle, repricing language, retirement carveout |
+| LGL | discretionary hurdle, repricing language |
+| OPCH | discretionary hurdle, retirement carveout |
+| BDC | discretionary hurdle, repricing language, retirement carveout |
+| A | retirement carveout |
+| DCH | retirement carveout |
+| DOV | repricing language, retirement carveout |
+| CRM | discretionary hurdle, repricing language, retirement carveout |
+| TBI | discretionary hurdle, retirement carveout |
+| CNH | retirement carveout |
+| GRND | discretionary hurdle, retirement carveout |
+| JTAI | discretionary hurdle, retirement carveout |
+| ADSK | retirement carveout |
+| CLW | single-trigger CIC |
+| PTLO | single-trigger CIC |
 
 
 ## 6. Use-case deployment sheet
 
-- **Highest-conviction concentrated (top-3 convergent)**: HFFG, CSGP, LE
-- **Microcap forcing-function basket (Bastian)**: BEEP, GNPX, LGL, DXLG, WW, OSUR
+- **Highest-conviction concentrated (top-3 convergent)**: HFFG, LE, MAT
+- **Microcap forcing-function basket (Bastian)**: LGL, HTT, MLCI, BEEP, GNPX, NUS
 - **Mungerian forward-dollar PSU concentration**: THRY, MAT, GOGO, TRU, EHTH
 - **Verified buyback compounders (EXECUTING)**: PAYC, AMH, CRM, MORN, RNR
 - **Live SELF_TENDER**: EXFY, ABX, ABXL
