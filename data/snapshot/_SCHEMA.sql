@@ -177,6 +177,19 @@ CREATE TABLE ticker_entry_intact (
       conviction_score REAL, n_funds INTEGER,
       n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
       anchors_seen TEXT);
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -205,16 +218,3 @@ CREATE INDEX idx_us_score ON unified_signal(score DESC);
 CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
 CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
 CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));

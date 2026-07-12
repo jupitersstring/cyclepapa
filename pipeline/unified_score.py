@@ -367,8 +367,13 @@ def run():
         c8_bnk  = c8.get("bnk",  0)
         ev_ebitda, pb_ratio = valn.get(tkr, (None, None))
         pe_ttm = yf_pe.get(tkr)
-        sec_type = ("delisted" if tkr in _dead
-                    else classify_sec_type(tkr, _names.get(tkr), _names))
+        # Dead-check applies only to what would otherwise be COMMON stock:
+        # ETFs/warrants often lack the equity fields (marketCap/EV/PE) in
+        # quoteSummary and would misclassify as delisted when they are simply
+        # fund-type quotes — their real class already excludes them from picks.
+        sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
+        if sec_type == "common" and tkr in _dead:
+            sec_type = "delisted"
         # Revealed preference — what funds are ACTIVELY doing (not just holding):
         # new major positions weigh 2×, material adds 1×, top-conviction holds 0.5×
         revealed_pref = 2.0 * s3 + 1.0 * s4 + 0.5 * s1
