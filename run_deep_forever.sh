@@ -22,11 +22,28 @@ ts() { date '+%Y-%m-%d %H:%M:%S'; }
 
 [ -f "$SENTINEL" ] && { echo "$(ts) already rendered — exit" >> "$LOG"; exit 0; }
 
+# Commit accumulated enrichment so it survives container re-clones. The
+# output files are tracked (removed from .gitignore) precisely so a
+# mid-flight restart resumes from committed progress rather than zero.
+commit_progress() {
+  git add fdb_expansion_yartseva.csv fdb_deep_attempts.json 2>/dev/null
+  if ! git diff --cached --quiet 2>/dev/null; then
+    git commit -q -m "Deep enrichment progress: $(tail -n +2 fdb_expansion_yartseva.csv 2>/dev/null | wc -l | tr -d ' ') names" 2>>"$LOG"
+    for i in 1 2 3 4; do
+      git push -q origin claude/yartseva-multibagger-database-lZS4a 2>>"$LOG" && break
+      sleep $((2**i))
+    done
+  fi
+}
+
 ATT=0
 while true; do
   ATT=$((ATT+1))
-  echo "$(ts) deep run #$ATT" >> "$LOG"
-  "$PY" ticker_yf_deep.py --rate 2.5 >> deep_enrich.log 2>&1
+  echo "$(ts) deep chunk #$ATT" >> "$LOG"
+  # Bounded chunk so we commit every few minutes; caps data-loss on a
+  # restart to one chunk. --limit slices the todo list per invocation.
+  "$PY" ticker_yf_deep.py --rate 2.5 --limit 400 >> deep_enrich.log 2>&1
+  commit_progress
   REMAIN=$("$PY" - <<'PYEOF'
 import pandas as pd, os, json
 u = pd.read_csv("fdb_expansion_universe.csv")["symbol"].dropna().drop_duplicates()
@@ -44,7 +61,7 @@ PYEOF
 )
   echo "$(ts) remaining=$REMAIN" >> "$LOG"
   [ "${REMAIN:-1}" -le "$EXHAUST" ] && { echo "$(ts) exhausted" >> "$LOG"; break; }
-  sleep 15
+  sleep 5
 done
 
 echo "$(ts) merging + re-rendering" >> "$LOG"
@@ -69,4 +86,20 @@ for cmd in \
 done
 
 date > "$SENTINEL"
+
+# Commit + push the merged master + regenerated workbooks so the final
+# result survives a container re-clone.
+git add asymmetry_global.csv archetype_tags.csv \
+  fdb_expansion_yartseva.csv fdb_deep_attempts.json \
+  asymmetry_country_workbook.xlsx asymmetry_harvard_workbook.xlsx asymmetry_nms_book.xlsx \
+  top_by_archetype_book.xlsx nms_multibagger_candidates.xlsx segment_detail_book.xlsx \
+  top_n_by_country.xlsx top_n_by_country_inflection.xlsx \
+  top_n_by_country.csv top_n_by_country_inflection.csv 2>/dev/null
+if ! git diff --cached --quiet 2>/dev/null; then
+  git commit -q -m "Deep enrichment complete: merge + regenerate all workbooks" 2>>"$LOG"
+  for i in 1 2 3 4; do
+    git push -q origin claude/yartseva-multibagger-database-lZS4a 2>>"$LOG" && break
+    sleep $((2**i))
+  done
+fi
 echo "$(ts) DONE" >> "$LOG"
