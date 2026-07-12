@@ -14,16 +14,18 @@ These are surfaced by >=3 of 8 independent screens AND win at least one PSU/gove
 | 2 | **CSGP** | 4 | 5 | 10x CEO ownership + EBITDA $ hurdle + SOP 45% + buyback EXECUTING -3.6% |
 | 3 | **LE** | 4 | 4 | 12-tranche price ladder + 86% PSU + ROIC stack (carveout caution) |
 | 4 | **NUS** | 4 | 2 | Named asset-sale PSU + 5-metric clean per-share stack + P/B 0.33 |
-| 5 | **ADT** | 4 | 2 | 90% PSU%LTI (heaviest) + verified shrink -7.3% |
-| 6 | **GO** | 4 | 1 | Forward $ targets + Cohen-Malloy informational buys |
-| 7 | **KMPR** | 3 | 3 | Custom per-share + anti-hedge + EXECUTING buyback (repricing flag) |
-| 8 | **MAT** | 3 | 2 | Double dollar hurdle EBITDA + FCF (unique 2-archetype win) |
-| 9 | **LMT** | 3 | 2 | FCF $ hurdle + backlog target |
-| 10 | **FISV** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
-| 11 | **RNR** | 3 | 1 | Deepest per-share metric stack (>=5) |
-| 12 | **GPRO** | 3 | 1 | PSU vests on spin / separation |
-| 13 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
-| 14 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
+| 5 | **GO** | 4 | 1 | Forward $ targets + Cohen-Malloy informational buys |
+| 6 | **ADT** | 4 | 1 | 90% PSU%LTI (heaviest) + verified shrink -7.3% |
+| 7 | **MAT** | 3 | 3 | Double dollar hurdle EBITDA + FCF (unique 2-archetype win) |
+| 8 | **FISV** | 3 | 3 | grand_unified,psu_gov_asymmetry,unified_composite |
+| 9 | **TROX** | 3 | 2 | grand_unified,psu_gov_asymmetry,psu_valcreate |
+| 10 | **KMPR** | 3 | 2 | Custom per-share + anti-hedge + EXECUTING buyback (repricing flag) |
+| 11 | **DXLG** | 3 | 1 | bastian_forcing,grand_unified,psu_gov_asymmetry |
+| 12 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
+| 13 | **GPRO** | 3 | 1 | PSU vests on spin / separation |
+| 14 | **WHR** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
+| 15 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
+| 16 | **BUSE** | 3 | 1 | grand_unified,informational_buys,psu_gov_asymmetry |
 
 
 ## 2. Per-pattern leaders -- top names by catalyst type
@@ -96,8 +98,8 @@ Use this to deploy systematically by mandate.
 | 5 | GRPN | 66.3 | B | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -6.0% |
 | 6 | SNDX | 64.9 | C | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +10 PSU.fda_phase_milestone |
 | 7 | SD | 64.6 | C | +10 PSU.spin_separation | P/B 0.98 |
-| 8 | LGL | 63.9 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.99; microcap | buyback NO_AUTH +20.4% |
-| 9 | ASIX | 63.9 | B | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; gov 15 | P/B 0.67 | buyback NO_AUTH +0.4% |
+| 8 | ASIX | 63.9 | B | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; gov 15 | P/B 0.67 | buyback NO_AUTH +0.4% |
+| 9 | LGL | 63.9 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.99; microcap | buyback NO_AUTH +20.4% |
 | 10 | LBTYB | 63.0 | B | +10 PSU.spin_separation | P/B 0.47 | buyback NO_AUTH -0.2% |
 
 ### Named asset-sale trigger
@@ -187,7 +189,7 @@ Use this to deploy systematically by mandate.
 | 7 | ENZN | 66.1 | B | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER |
 | 8 | GPUS | 59.2 | B | P/B 0.50; DD 96%; microcap | buyback ANOMALY_REVIEW +138.0% | tender SELF_TENDER |
 | 9 | MRNA | 56.8 | B | tender SELF_TENDER |
-| 10 | TORO | 56.5 | C | P/B 0.67 | tender SELF_TENDER |
+| 10 | WTM | 56.5 | B | P/B 0.92 | tender SELF_TENDER |
 
 ### Live TARGET 14D-9
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -332,8 +334,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 16 | RBLX | 62.9 | 3 | +12 PSU.ebitda_dollar_target; PSU%LTI=80 |
 | 17 | ZSTK | 62.5 | 3 | P/B 0.06; DD 91%; microcap |
 | 18 | WKC | 62.0 | 3 | PSU core 54; PSU%LTI=86 |
-| 19 | RC | 61.1 | 3 | P/B 0.24 |
-| 20 | TNL | 61.1 | 3 | +12 PSU.revenue_dollar_target |
+| 19 | TNL | 61.1 | 3 | +12 PSU.revenue_dollar_target |
+| 20 | RC | 61.1 | 3 | P/B 0.24 |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -346,39 +348,39 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | GO | discretionary hurdle, single-trigger CIC |
 | GETY | discretionary hurdle |
 | FUBO | discretionary hurdle, retirement carveout |
+| BCO | discretionary hurdle, retirement carveout |
 | BDC | discretionary hurdle, repricing language, retirement carveout |
 | FIS | discretionary hurdle, repricing language, retirement carveout |
-| BCO | discretionary hurdle, retirement carveout |
-| ADT | retirement carveout |
 | OSUR | repricing language, retirement carveout, single-trigger CIC |
-| AUPH | discretionary hurdle |
-| NSP | discretionary hurdle, retirement carveout, single-trigger CIC |
 | GRNT | retirement carveout |
+| ADT | retirement carveout |
+| AUPH | discretionary hurdle |
 | NXST | discretionary hurdle |
 | SNBR | discretionary hurdle, retirement carveout |
-| OPEN | discretionary hurdle, front-loaded grant, retirement carveout, single-trigger CIC |
-| KMPR | repricing language, retirement carveout |
 | MAT | discretionary hurdle, repricing language, retirement carveout |
 | FISV | discretionary hurdle, repricing language, retirement carveout |
 | TROX | retirement carveout |
+| KMPR | repricing language, retirement carveout |
+| DXLG | retirement carveout |
 | GRND | discretionary hurdle, retirement carveout |
-| OPCH | discretionary hurdle, retirement carveout |
+| LGL | discretionary hurdle, repricing language |
+| CNMD | discretionary hurdle, repricing language, retirement carveout |
 | GPRO | discretionary hurdle, retirement carveout |
 | OLED | retirement carveout |
-| LGL | discretionary hurdle, repricing language |
 | DT | discretionary hurdle, retirement carveout |
-| CNMD | discretionary hurdle, repricing language, retirement carveout |
-| LMT | retirement carveout |
+| OPCH | discretionary hurdle, retirement carveout |
+| WHR | discretionary hurdle, repricing language, retirement carveout |
 | CLW | single-trigger CIC |
 | TXRH | discretionary hurdle, retirement carveout |
-| LCII | discretionary hurdle, retirement carveout |
+| NSP | discretionary hurdle, retirement carveout, single-trigger CIC |
+| DCH | retirement carveout |
 | INFU | retirement carveout |
 | CDE | single-trigger CIC |
-| DCH | retirement carveout |
 | HAIN | discretionary hurdle, front-loaded grant, retirement carveout, single-trigger CIC |
-| AMD | discretionary hurdle, retirement carveout |
-| SD | discretionary hurdle, front-loaded grant, retirement carveout |
 | NOW | discretionary hurdle, retirement carveout, single-trigger CIC |
+| LCII | discretionary hurdle, retirement carveout |
+| SD | discretionary hurdle, front-loaded grant, retirement carveout |
+| AMD | discretionary hurdle, retirement carveout |
 
 
 ## 6. Use-case deployment sheet
