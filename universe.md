@@ -1664,3 +1664,33 @@ Inserted by `src/inbox_promote.py`. Each row carries its source form + accession
 | Ionetix Corp / DE / | CIK:0002108121 | ○ | A | [EDGAR-postreorg] Auto-promoted from 8-K filing 2026-04-16 (acc 0001213900-26-044239); Plan of Reorganization effective — emergence event. New equity distributed to creditors; watch for forced selling window.; verify primary doc before scoring |
 | Nicaragua-related Designations; Issuance of Nicaragua-related General License | — | ○ | A | [OFAC] Auto-promoted from OFAC Recent Action filing 2026-04-16 (acc ofac-20260416-Nicaragua-related_Designations); OFAC General License issued — dated transaction window; verify primary doc before scoring |
 | ALT5 Sigma Corp | ALTS | ○ | A | [EDGAR-postreorg] Auto-promoted from 10-K filing 2026-04-13 (acc 0001493152-26-016259); Emerged from Chapter 11 — post-reorg equity now trading. Verify float, creditor overhang, and coverage vacuum.; verify primary doc before scoring |
+
+### Auto-promoted from pollers (2026-07-12)
+
+Inserted by `src/inbox_promote.py`. Each row carries its source form + accession in the notes column. Re-score via the universe screen and verify against primary docs before YAML build-out.
+
+| Name | Ticker | Conf. | Bucket | Notes |
+|---|---|---|---|---|
+| TRITON MINERALS LTD | TON | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-07-10 (acc 2924-03109925-6A1333343); Trading halt or suspension; verify primary doc before scoring |
+| PERPETUAL LIMITED | PPT | ○ | A | [ASX] Auto-promoted from Perpetual rejects non-binding indicative proposal filing 2026-07-01 (acc 2924-03106528-2A1681325); Trading halt or suspension; verify primary doc before scoring |
+| ENLITIC INC. | ENL | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-30 (acc 2924-03106048-3A696327); Trading halt or suspension; verify primary doc before scoring |
+| EXCITE TECHNOLOGY SERVICES LTD | EXT | ○ | A | [ASX] Auto-promoted from Trading halt filing 2026-06-30 (acc 2924-03106150-3A696346); Trading halt or suspension; verify primary doc before scoring |
+| ARCHER MATERIALS LIMITED | AXE | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-30 (acc 2924-03106094-2A1681041); Trading halt or suspension; verify primary doc before scoring |
+| INOVIQ LTD | IIQ | ○ | A | [ASX] Auto-promoted from EXO-OC algorithm and clinical study update filing 2026-06-30 (acc 2924-03106111-3A696323); Trading halt or suspension; verify primary doc before scoring |
+| INTELLIGENT MONITORING GROUP LIMITED | IMB | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-30 (acc 2924-03106099-6A1331845); Trading halt or suspension; verify primary doc before scoring |
+| ALLIGATOR ENERGY LIMITED | AGE | ○ | A | [ASX] Auto-promoted from Samphire Resource Increases By 67% filing 2026-06-19 (acc 2924-03101908-2A1678221); Trading halt or suspension; verify primary doc before scoring |
+| ELECTRO OPTIC SYSTEMS HOLDINGS LIMITED | EOS | ○ | A | [ASX] Auto-promoted from RWS order (US$124m) and UAE JV laser & RWS filing 2026-06-19 (acc 2924-03101887-2A1678212); Trading halt or suspension; verify primary doc before scoring |
+| GENERAL SHOPPING E OUTLETS DO BRASIL BRASIL S.A. | — | ○ | A | [CVM-IPE] Auto-promoted from Fato Relevante · Liquidação da oferta de permuta e prorrogação de prazo filing 2026-06-19 (acc 021008IPE180620260133996289-14); Liquidação — formal liquidation; verify primary doc before scoring |
+| BPH ENERGY LTD | BPH | ○ | A | [ASX] Auto-promoted from PEP11 Update filing 2026-06-19 (acc 2924-03101878-6A1330138); Trading halt or suspension; verify primary doc before scoring |
+| BOA RESOURCES LTD | BOA | ○ | A | [ASX] Auto-promoted from Suspension from Quotation filing 2026-06-18 (acc 2924-03101834-6A1330117); Trading halt or suspension; verify primary doc before scoring |
+| HASTINGS TECHNOLOGY METALS LTD | HAS | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-18 (acc 2924-03101827-6A1330115); Trading halt or suspension; verify primary doc before scoring |
+| TARUGA MINERALS LIMITED | TAR | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-18 (acc 2924-03101809-6A1330108); Trading halt or suspension; verify primary doc before scoring |
+| MARQUEE RESOURCES LIMITED | MQR | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-18 (acc 2924-03101843-6A1330121); Trading halt or suspension; verify primary doc before scoring |
+| ARMAC LOCAÇÃO, LOGÍSTICA E SERVIÇOS S.A. | — | ○ | A | [CVM-IPE] Auto-promoted from Fato Relevante · Celebração, Alteração ou Rescisão de Acordo de Acionistas filing 2026-06-18 (acc 026069IPE180620260116331903-07); Cisão — demerger / spinoff; verify primary doc before scoring |
+| 1414 DEGREES LIMITED | 14D | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-18 (acc 2924-03101784-2A1678154); Trading halt or suspension; verify primary doc before scoring |
+| BOUNTY OIL & GAS NL | BUY | ○ | A | [ASX] Auto-promoted from PEP11 UPDATE filing 2026-06-18 (acc 2924-03101807-2A1678118); Trading halt or suspension; verify primary doc before scoring |
+| MEC RESOURCES LIMITED | MMR | ○ | A | [ASX] Auto-promoted from PEP11 Update - Federal Court Judgement filing 2026-06-18 (acc 2924-03101867-6A1330132); Trading halt or suspension; verify primary doc before scoring |
+| PROVARIS ENERGY LTD | PV1 | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-17 (acc 2924-03101468-6A1329978); Trading halt or suspension; verify primary doc before scoring |
+| CRITICAL MINERALS GROUP LIMITED | CMG | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-17 (acc 2924-03101403-2A1677992); Trading halt or suspension; verify primary doc before scoring |
+| CLEARVUE TECHNOLOGIES LIMITED | CPV | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-17 (acc 2924-03101462-6A1329975); Trading halt or suspension; verify primary doc before scoring |
+| LOTUS RESOURCES LIMITED | LOT | ○ | A | [ASX] Auto-promoted from Trading Halt filing 2026-06-17 (acc 2924-03101441-6A1329961); Trading halt or suspension; verify primary doc before scoring |

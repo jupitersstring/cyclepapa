@@ -252,9 +252,17 @@ def overlay_real(row: UniverseRow, yamls: dict[str, dict]) -> None:
 
 # Status terms that bin a name OUT of the active universe
 STATUS_DROP = {"PASS_FALSE_FRIEND", "ACQUIRED", "ARC_DONE", "REPEAT_RX"}
-# Ticker placeholders that mean the name is not investable in equity form
+# Ticker placeholders that mean the name is genuinely not investable in
+# listed-equity form (private / delisted / state-held). A bare "—" or
+# empty ticker is NOT in this set: many real listed issuers arrive
+# without a ticker (e.g. Brazilian CVM records that don't expose the B3
+# symbol), and dropping them silently loses whole source legs.
 TICKER_NOT_INVESTABLE = re.compile(
-    r"^\(.*\)$|^\(state\)|^\(private|delisted|^Hitachi 40%|^—|^-$")
+    r"^\(.*\)$|^\(state\)|^\(private|delisted|taken private|"
+    r"^Hitachi 40%", re.I)
+# Name-column placeholders (the name itself isn't a real company).
+NAME_NOT_INVESTABLE = re.compile(
+    r"^\(|^—$|^-$|^\?+$|census$|^various\b", re.I)
 
 
 def is_investable(row: UniverseRow) -> bool:
@@ -262,8 +270,16 @@ def is_investable(row: UniverseRow) -> bool:
         return False
     if row.score < 0.20:
         return False
-    if not row.ticker or TICKER_NOT_INVESTABLE.match(row.ticker.strip()):
+    tkr = (row.ticker or "").strip()
+    if tkr and TICKER_NOT_INVESTABLE.match(tkr):
         return False
+    # Tickerless rows are kept IF the name is a real company (not a
+    # placeholder) — ranked/deduped by name. Only drop when BOTH the
+    # ticker is missing AND the name is unusable.
+    if (not tkr or tkr in ("—", "-")):
+        nm = (row.name or "").strip()
+        if not nm or NAME_NOT_INVESTABLE.match(nm) or len(nm) < 4:
+            return False
     return True
 
 
@@ -358,6 +374,11 @@ def main() -> int:
     by_ticker: dict[str, UniverseRow] = {}
     for r in keep:
         key = re.sub(r"[^A-Za-z0-9-]", "", r.ticker.split(":")[-1]).upper()
+        if not key:
+            # tickerless (e.g. Brazilian CVM) — key by name stem so they
+            # don't all collapse into one empty-key bucket.
+            key = "NAME:" + re.sub(r"[^A-Za-z0-9]", "",
+                                   (r.name or "")).upper()[:24]
         if key not in by_ticker:
             by_ticker[key] = r
             continue

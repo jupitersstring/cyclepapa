@@ -130,7 +130,7 @@ poll-all: audit
 # resolves entities exactly across sources.
 security-master: audit
 	python3 -m src.security_master --warm
-	python3 -m src.security_master --resolve-inbox-cusips --days-back 30
+	python3 -m src.security_master --resolve-inbox-cusips --days-back 120
 
 # Source-health observability — per-source freshness + volume-anomaly
 # monitoring. Non-fatal (|| true) so a STALE source doesn't abort refresh.

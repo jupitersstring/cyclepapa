@@ -100,10 +100,12 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "judicial_recovery", "extrajudicial_recovery", "bankruptcy_br",
     "opa", "merger", "capital_increase", "corp_reorg",
     "material_fact", "stock_split",
+    "spinoff",  # CVM Cisão (demerger)
     # ---- ASX labels (asx_poll.py) ----
     "takeover_bid", "target_statement", "off_market_offer",
     "compulsory_acquisition", "capital_raising",
     "voluntary_administration", "receivership",
+    "suspension_halt", "liquidation",  # ASX suspensions/liquidations
     # ---- SC 13D labels (sc13d_poll.py) ----
     "sc_13d", "sc_13d_a",
     # ---- Form 15 going-dark labels (form15_poll.py) ----
@@ -264,13 +266,20 @@ def dedup_key(rec: dict) -> str:
 
 
 def identifier_for_row(rec: dict) -> str:
-    """Human-readable identifier for the universe.md Ticker column."""
+    """Human-readable identifier for the universe.md Ticker column.
+    Falls through ticker → ISIN → CIK → CVM code → issuer_num so
+    tickerless records (Brazilian CVM, Japanese TDnet) remain traceable
+    instead of showing a bare em-dash."""
     if rec.get("ticker"):
         return str(rec["ticker"])
     if rec.get("isin"):
         return f"ISIN:{rec['isin']}"
     if rec.get("cik"):
         return f"CIK:{rec['cik']}"
+    if rec.get("cvm_code"):
+        return f"CVM:{rec['cvm_code']}"
+    if rec.get("issuer_num"):
+        return f"#{rec['issuer_num']}"
     return "—"
 
 
