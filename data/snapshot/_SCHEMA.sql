@@ -149,6 +149,11 @@ CREATE INDEX idx_8k_ticker ON catalysts_8k(ticker);
 CREATE INDEX idx_8k_filed ON catalysts_8k(filed);
 CREATE UNIQUE INDEX ux_form4_txn
         ON form4_transactions(accession, owner, code, trans_date, shares, COALESCE(price,-1));
+CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
+CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
+CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
+CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
+CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -192,7 +197,7 @@ CREATE TABLE unified_signal (
       asymmetry_score REAL,     -- downside protection × upside potential
       expected_return_pct REAL,
       entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
-      sec_type TEXT,            -- 'common' | 'etf' | 'preferred' | 'warrant' | 'unit' | 'right'
+      sec_type TEXT,            -- 'common'|'etf'|'preferred'|'warrant'|'unit'|'right'|'delisted'
       score REAL,
       components TEXT
     );
@@ -213,5 +218,3 @@ CREATE TABLE style_consensus (
       macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
       sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
       PRIMARY KEY (macro_style, ticker));
-CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
-CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);

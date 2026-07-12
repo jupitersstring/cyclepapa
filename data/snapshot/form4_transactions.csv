@@ -70237,7 +70237,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 175268,0001104659-26-024778,WRBY,,Director,2026-03-04,S,15793.0,27.53,0,https://www.sec.gov/Archives/edgar/data/1504776/000110465926024778/xslF345X05/tm268224-1_4seq1.xml
 175269,0001104659-26-004194,WRBY,,Co-Chief Executive Officer,2026-01-13,S,660.0,29.99,0,https://www.sec.gov/Archives/edgar/data/1504776/000110465926004194/xslF345X05/tm263322-2_4seq1.xml
 175270,0001104659-26-004193,WRBY,,Co-Chief Executive Officer,2026-01-13,S,80094.0,29.46,0,https://www.sec.gov/Archives/edgar/data/1504776/000110465926004193/xslF345X05/tm263322-1_4seq1.xml
-175271,0002105585-26-000003,QUCY,,10%+ Owner,2025-10-17,P,643850.0,402000.0,1,https://www.sec.gov/Archives/edgar/data/1874252/000210558526000003/xslF345X05/primary_doc.xml
 175272,0001437749-26-018034,RBKB,,"1st SVP, Com Mkt Pres",2026-05-19,S,4162.0,15.915,0,https://www.sec.gov/Archives/edgar/data/1751783/000143774926018034/xslF345X06/rdgdoc.xml
 175273,0001593086-26-000012,CAPR,,,2026-06-25,S,24100.0,30.38,0,https://www.sec.gov/Archives/edgar/data/1133869/000159308626000012/xslF345X06/form4-06292026_090604.xml
 175274,0001593087-26-000013,CAPR,,,2026-06-25,S,24100.0,30.38,0,https://www.sec.gov/Archives/edgar/data/1133869/000159308726000013/xslF345X06/form4-06292026_090601.xml
@@ -77890,7 +77889,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 182921,0002063361-26-000004,OPBK,,Chief Financial Officer,2026-03-12,S,958.0,12.91,0,https://www.sec.gov/Archives/edgar/data/1722010/000206336126000004/xslF345X05/wk-form4_1773348019.xml
 182922,0001587528-26-000004,VMC,,,2026-06-15,S,2212.0,292.29,0,https://www.sec.gov/Archives/edgar/data/1396009/000158752826000004/xslF345X06/primarydocument.xml
 182923,0001631925-26-000003,VMC,,,2026-02-20,S,1137.0,303.72,0,https://www.sec.gov/Archives/edgar/data/1396009/000163192526000003/xslF345X05/primarydocument.xml
-182924,0000905148-26-003232,FINS,,,2026-07-08,P,40000000.0,40000000.0,1,https://www.sec.gov/Archives/edgar/data/1745059/000090514826003232/xslF345X06/form4.xml
 182925,0001753542-26-000001,FINS,,Director,2026-02-20,P,379.0,13.17,1,https://www.sec.gov/Archives/edgar/data/1745059/000175354226000001/xslF345X05/primary_doc.xml
 182926,0001724113-26-000001,FINS,,,2025-11-20,P,9203.0,12.88,1,https://www.sec.gov/Archives/edgar/data/1745059/000172411326000001/xslF345X05/primary_doc.xml
 182927,0001724044-26-000001,FINS,,,2025-11-06,P,313.0,13.15,1,https://www.sec.gov/Archives/edgar/data/1745059/000172404426000001/xslF345X05/primary_doc.xml
@@ -85974,7 +85972,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 191005,0001827169-26-000010,INDV,,Director,2026-03-13,P,8.0,31.085,1,https://www.sec.gov/Archives/edgar/data/1625297/000182716926000010/xslF345X05/wk-form4_1773433529.xml
 191006,0001369067-26-000006,INDV,,Director,2026-03-06,P,940.0,31.865,1,https://www.sec.gov/Archives/edgar/data/1625297/000136906726000006/xslF345X05/wk-form4_1773237273.xml
 191007,0001827169-26-000008,INDV,,Director,2026-03-09,P,31.0,32.56,1,https://www.sec.gov/Archives/edgar/data/1625297/000182716926000008/xslF345X05/wk-form4_1773231148.xml
-191008,0001969452-26-000010,STNG,,Director,2026-06-22,S,15000.0,1230435.0,0,https://www.sec.gov/Archives/edgar/data/1483934/000196945226000010/xslF345X06/primary_doc.xml
 191009,0000921895-26-000772,QRHC,,10%+ Owner,2026-03-19,P,8500.0,0.87,1,https://www.sec.gov/Archives/edgar/data/1442236/000092189526000772/xslF345X06/form412364002_03232026.xml
 191010,0000921895-26-000750,QRHC,,Director,2026-03-18,P,11000.0,0.8961,1,https://www.sec.gov/Archives/edgar/data/1442236/000092189526000750/xslF345X06/form412364002_03192026.xml
 191011,0000921895-26-000729,QRHC,,Director,2026-03-16,P,5000.0,1.16,1,https://www.sec.gov/Archives/edgar/data/1442236/000092189526000729/xslF345X06/form412364002_03182026.xml
