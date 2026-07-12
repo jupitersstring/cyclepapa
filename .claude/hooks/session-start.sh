@@ -22,26 +22,22 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
     exit 0
 fi
 
-# Idempotent: if a watchdog or harvest python is already running, do nothing.
-# pgrep -f matches against full command line.
-if pgrep -f "run_harvest_forever.sh" > /dev/null 2>&1 \
-   || pgrep -f "edgar_full_harvest.py" > /dev/null 2>&1; then
-    echo "session-start-hook: harvest already running, skipping spawn" >&2
-    exit 0
+# The web container is re-cloned fresh on restart, so Python deps are
+# gone every session. Reinstall (fast when already present) before any
+# driver runs — otherwise the pipeline's pandas/openpyxl/etc. calls fail.
+if [ -f "$PROJECT_DIR/requirements.txt" ] \
+   && ! python3 -c "import pandas, openpyxl, financedatabase" > /dev/null 2>&1; then
+    echo "session-start-hook: installing Python deps..." >&2
+    pip3 install -q -r "$PROJECT_DIR/requirements.txt" > "$PROJECT_DIR/pip_install.log" 2>&1 \
+        && echo "session-start-hook: deps installed" >&2 \
+        || echo "session-start-hook: dep install had errors (see pip_install.log)" >&2
 fi
 
-# Watchdog must be executable
-if [ ! -x "$PROJECT_DIR/run_harvest_forever.sh" ]; then
-    chmod +x "$PROJECT_DIR/run_harvest_forever.sh" 2>/dev/null || true
-fi
-
-# Detach: new session, redirect all I/O. The watchdog itself is a small
-# bash script that re-exec's the python harvest if it dies.
-setsid nohup "$PROJECT_DIR/run_harvest_forever.sh" \
-    > "$PROJECT_DIR/harvest_watchdog.log" 2>&1 < /dev/null &
-disown $!
-echo "session-start-hook: launched harvest watchdog (PID $!) in background" >&2
-
+# ---------------------------------------------------------------------
+# Enrichment drivers launch FIRST, before the harvest idempotency check
+# below — that check exits early when the (now-complete) EDGAR harvest
+# watchdog is alive, which would otherwise starve these of a relaunch.
+# ---------------------------------------------------------------------
 # Deep multi-year enrichment of the FDB-expansion names takes priority
 # while it's in flight. It's the SINGLE Yahoo hitter during that phase
 # (statements + quote + chart per name) — running the other enrichers
@@ -76,5 +72,25 @@ elif [ -f "$PROJECT_DIR/.deep_rendered" ]; then
         echo "session-start-hook: resumed yahoo_chart_fill (PID $!)" >&2
     fi
 fi
+
+# Idempotent: if a watchdog or harvest python is already running, do nothing.
+# pgrep -f matches against full command line.
+if pgrep -f "run_harvest_forever.sh" > /dev/null 2>&1 \
+   || pgrep -f "edgar_full_harvest.py" > /dev/null 2>&1; then
+    echo "session-start-hook: harvest already running, skipping spawn" >&2
+    exit 0
+fi
+
+# Watchdog must be executable
+if [ ! -x "$PROJECT_DIR/run_harvest_forever.sh" ]; then
+    chmod +x "$PROJECT_DIR/run_harvest_forever.sh" 2>/dev/null || true
+fi
+
+# Detach: new session, redirect all I/O. The watchdog itself is a small
+# bash script that re-exec's the python harvest if it dies.
+setsid nohup "$PROJECT_DIR/run_harvest_forever.sh" \
+    > "$PROJECT_DIR/harvest_watchdog.log" 2>&1 < /dev/null &
+disown $!
+echo "session-start-hook: launched harvest watchdog (PID $!) in background" >&2
 
 exit 0
