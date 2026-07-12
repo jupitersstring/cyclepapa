@@ -47,10 +47,13 @@ def sheet_readme(wb, conn):
         (f"{n_map} distinct tickers were matched to our universe for cross-referencing.",),
         ("",),
         ("How to read it — the alpha logic",),
+        ("• 'What Titans Are Buying' — THE forward signal: recent new positions & material adds by titan-run",),
+        (f"   funds ({conn.execute('SELECT COUNT(*) FROM pb_principal_fund').fetchone()[0]} legends linked to their funds — Ackman, Einhorn, Icahn, Klarman, Li Lu, Tepper...).",),
+        ("• 'What Titans Own' — each legend's largest disclosed 13F positions by conviction (% of book).",),
+        ("• 'Titan Consensus' — names held by MULTIPLE titans at once; where the smart money converges.",),
+        ("• 'Titan-Connected Tickers' — where a titan's board seat COINCIDES with independent smart-money",),
+        ("   accumulation (our smart_money_n / score). Two independent signals pointing at the same name.",),
         ("• 'Principal Positions' — where a tracked titan personally sits (board seat / chairman / advisor).",),
-        ("• 'Titan-Connected Tickers' — the gold sheet: tickers where an influential person's placement",),
-        ("   COINCIDES with independent smart-money accumulation (our smart_money_n / score). Two independent",),
-        ("   signals pointing at the same name.",),
         ("• 'Concentrated Managers' — the roster-relevant fund managers; shows which we now track holdings for.",),
         ("• 'Family Office / SWF Map' — Gulf, royal, and billionaire-vehicle affiliations mapped to tickers.",),
         ("• 'New Roster Funds' — 7 investment firms found missing from our tracker and now ingested.",),
@@ -68,6 +71,86 @@ def sheet_readme(wb, conn):
     ]
     for i, r in enumerate(rows, start=3):
         ws.cell(row=i, column=1, value=r[0])
+    return ws
+
+
+def sheet_titans_buying(wb, conn):
+    """The forward signal: recent NEW initiations (section 3) and material ADDS
+    (section 4) by titan-run funds — what they are actively buying now."""
+    ws = wb.create_sheet("What Titans Are Buying")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "What Titans Are Buying — recent initiations & adds",
+                "New positions (NEW) and material adds (ADD) from titan-run funds. The forward signal: what the smart money is accumulating now.", 6)
+    hdr = ["Titan", "Fund", "Action", "Ticker", "Company", "Our Score"]
+    write_table_header(ws, 4, hdr)
+    rows = conn.execute("""
+        SELECT pf.principal, pf.fund,
+               CASE fp.section WHEN 3 THEN 'NEW' WHEN 4 THEN 'ADD' END,
+               fp.ticker, u.name, u.score
+        FROM pb_principal_fund pf
+        JOIN fund_positions fp ON fp.fund=pf.fund AND fp.section IN (3,4) AND fp.ticker IS NOT NULL
+        LEFT JOIN unified_signal u ON u.ticker=fp.ticker
+        WHERE COALESCE(u.sec_type,'common')='common'
+        GROUP BY pf.principal, fp.ticker, fp.section
+        ORDER BY pf.principal, fp.section, (u.score IS NULL), u.score DESC""").fetchall()
+    out = []
+    for r in rows:
+        out.append([r[0], (r[1] or "")[:30], r[2], r[3], (r[4] or "")[:26],
+                    round(r[5], 1) if r[5] is not None else ""])
+    write_table_rows(ws, out, 5, ticker_col=4)
+    return ws
+
+
+def sheet_titans_own(wb, conn):
+    """What titans hold: top 13F positions by book weight, per titan-run fund."""
+    ws = wb.create_sheet("What Titans Own")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "What Titans Own — top 13F positions by conviction",
+                "Each titan-run fund's largest disclosed US positions (by % of 13F book), with our score overlay. Their standing bullish bets.", 6)
+    hdr = ["Titan", "Fund", "Ticker", "Company", "% Book", "Our Score"]
+    write_table_header(ws, 4, hdr)
+    out = []
+    links = conn.execute("SELECT principal, fund FROM pb_principal_fund ORDER BY principal").fetchall()
+    for person, fund in links:
+        tops = conn.execute("""
+            SELECT h.ticker, u.name, h.pct_book, u.score
+            FROM fund_13f_holdings h LEFT JOIN unified_signal u ON u.ticker=h.ticker
+            WHERE h.fund=? AND h.ticker IS NOT NULL AND COALESCE(u.sec_type,'common')='common'
+            ORDER BY h.value_k DESC LIMIT 6""", (fund,)).fetchall()
+        for t in tops:
+            out.append([person, (fund or "")[:28], t[0], (t[1] or "")[:26],
+                        round(t[2], 1) if t[2] is not None else "",
+                        round(t[3], 1) if t[3] is not None else ""])
+    write_table_rows(ws, out, 5, ticker_col=3)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=5).number_format = '0.0"%"'
+    return ws
+
+
+def sheet_titan_consensus(wb, conn):
+    """Where multiple titans converge — the highest-conviction consensus names."""
+    ws = wb.create_sheet("Titan Consensus")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Titan Consensus — where the smart money converges",
+                "Tickers held by MULTIPLE titan-run funds, ranked by number of titans. Consensus conviction among tracked legends.", 6)
+    hdr = ["Ticker", "Company", "# Titans", "Titans", "Our Score", "Smart$ n"]
+    write_table_header(ws, 4, hdr)
+    rows = conn.execute("""
+        SELECT h.ticker, u.name, COUNT(DISTINCT pf.principal) nt,
+               GROUP_CONCAT(DISTINCT pf.principal), u.score, u.smart_money_n
+        FROM pb_principal_fund pf
+        JOIN fund_13f_holdings h ON h.fund=pf.fund AND h.ticker IS NOT NULL
+        LEFT JOIN unified_signal u ON u.ticker=h.ticker
+        WHERE COALESCE(u.sec_type,'common')='common'
+        GROUP BY h.ticker
+        HAVING COUNT(DISTINCT pf.principal) >= 2
+        ORDER BY nt DESC, u.score DESC LIMIT 80""").fetchall()
+    out = []
+    for r in rows:
+        out.append([r[0], (r[1] or "")[:26], r[2], (r[3] or "")[:40],
+                    round(r[4], 1) if r[4] is not None else "",
+                    round(r[5], 1) if r[5] is not None else ""])
+    write_table_rows(ws, out, 5, ticker_col=1)
     return ws
 
 
@@ -231,6 +314,9 @@ def run():
     wb = openpyxl.Workbook()
     wb.remove(wb.active)
     sheet_readme(wb, conn)
+    sheet_titans_buying(wb, conn)
+    sheet_titans_own(wb, conn)
+    sheet_titan_consensus(wb, conn)
     sheet_titan_tickers(wb, conn)
     sheet_principal_positions(wb, conn)
     sheet_concentrated_managers(wb, conn)

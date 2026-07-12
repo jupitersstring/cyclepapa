@@ -67,6 +67,51 @@ def _cell(r, ci, key):
     v = str(r[i]).strip()
     return v or None
 
+# Curated principal -> fund keyword map. Firm-named funds (Pershing=Ackman) and
+# Excel-truncated manager parentheticals ("Bridgewater ... (Ray ") defeat pure
+# name matching, so the titan->fund link is curated and resolved against the
+# roster at ingest. Keywords must ALL appear in the roster fund string.
+TITAN_FUND_KEYWORDS = {
+    "Bill Ackman": ["Pershing Square"], "Carl Icahn": ["Icahn"],
+    "David Einhorn": ["Greenlight"], "Daniel Loeb": ["Third Point"],
+    "Seth Klarman": ["Baupost"], "Ken Griffin": ["Citadel"],
+    "Israel Englander": ["Millennium"], "Steve Cohen": ["Point72"],
+    "Ray Dalio": ["Bridgewater"], "David E. Shaw": ["Shaw"],
+    "Paul Singer": ["Elliott"], "Nelson Peltz": ["Trian"],
+    "Jeff Smith": ["Starboard"], "Larry Robbins": ["Glenview"],
+    "Chase Coleman": ["Tiger Global"], "Philippe Laffont": ["Coatue"],
+    "Andreas Halvorsen": ["Viking"], "Stephen Mandel": ["Lone Pine"],
+    "Paul Marshall": ["Marshall Wace"], "Ian Wace": ["Marshall Wace"],
+    "Alan Howard": ["Brevan"], "David Tepper": ["Appaloosa"],
+    "Mohnish Pabrai": ["Pabrai"], "Chuck Akre": ["Akre"], "Li Lu": ["Himalaya"],
+    "Guy Spier": ["Aquamarine"], "Tom Russo": ["Russo"], "Chris Mittleman": ["Mittleman"],
+    "Fred Liu": ["Hayden"], "Patrick Degorce": ["Theleme"], "Alex Captain": ["Cat Rock"],
+    "David Iben": ["Kopernik"], "William von Mueffling": ["Cantillon"],
+    "Jeremy Hosking": ["Hosking"], "Paul Hilal": ["Mantle Ridge"], "Parag Vora": ["Vora"],
+    "Scott Ferguson": ["Sachem"], "Cliff Asness": ["AQR"], "Boaz Weinstein": ["Saba"],
+    "Bill Miller": ["Miller Value"], "Brian Bares": ["Bares"], "Andrew Brenton": ["Turtle Creek"],
+    "François Rochon": ["Giverny"], "Francois Rochon": ["Giverny"], "Peter Seilern": ["Seilern"],
+    "John Armitage": ["Egerton"], "Eashwar Krishnan": ["Tybourne"], "Chris Hohn": ["TCI"],
+    "Clifton Robbins": ["Blue Harbour"], "Arnaud Ajdler": ["Engine"], "Chris Kiper": ["Legion"],
+    "Snehal Amin": ["WindAcre"], "Zachary Sternberg": ["Spruce House"], "Ben Stein": ["Spruce House"],
+    "Adam Katz": ["Irenic"], "Eric Wittouck": ["Artal"], "Michael Platt": ["BlueCrest"],
+}
+
+def build_principal_fund(conn):
+    """Resolve TITAN_FUND_KEYWORDS against funds that actually have holdings."""
+    conn.execute("DROP TABLE IF EXISTS pb_principal_fund")
+    conn.execute("CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT)")
+    funds = [r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_13f_holdings")]
+    n = 0
+    for person, kws in TITAN_FUND_KEYWORDS.items():
+        for f in funds:
+            fl = f.lower()
+            if all(k.lower() in fl for k in kws):
+                conn.execute("INSERT INTO pb_principal_fund VALUES (?,?)", (person, f))
+                n += 1
+                break
+    return n
+
 def init_schema(conn):
     conn.executescript("""
     DROP TABLE IF EXISTS pb_people;
@@ -152,8 +197,10 @@ def run():
         k = load_file(path, conn, pkeys)
         print(f"  {base.split('-')[0]} [{THEMES.get(base.split('-')[0],'?')}]: {k} people")
         total += k
+    n_links = build_principal_fund(conn)
     conn.commit()
     n_prin = conn.execute("SELECT COUNT(DISTINCT full_name) FROM pb_people WHERE is_principal=1").fetchone()[0]
+    print(f"  {n_links} principal->fund links resolved (what-they-own backbone)")
     print(f"loaded {total} people rows; "
           f"{conn.execute('SELECT COUNT(DISTINCT full_name) FROM pb_people').fetchone()[0]} distinct individuals; "
           f"{len(principals)} principals parsed, {n_prin} present in data")
