@@ -101,6 +101,37 @@ class UniverseRow:
     yaml_ticker: str = ""
 
 
+def load_full_candidates() -> list[UniverseRow]:
+    """Read the COMPLETE candidate set (output/universe_full.csv) emitted
+    by universe_screen.py. This replaces parsing the lossy per-region
+    top-40 markdown tables, which silently dropped every investable name
+    below the display cutoff (200+ energy/coal/drilling restructuring
+    names). Returns [] if the file is absent (caller falls back to the
+    markdown parse)."""
+    full = REPO / "output" / "universe_full.csv"
+    if not full.exists():
+        return []
+    rows: list[UniverseRow] = []
+    for r in csv.DictReader(full.open()):
+        try:
+            score = float(r["score"])
+        except (ValueError, KeyError):
+            continue
+        rows.append(UniverseRow(
+            region=r.get("region", "") or "Unspecified",
+            score=score,
+            name=clean_display_name(r.get("name", "")),
+            ticker=(r.get("ticker") or "").strip(),
+            conf=(r.get("conf") or "").strip(),
+            bucket=(r.get("bucket") or "").strip(),
+            archetype=(r.get("archetype") or "").strip(),
+            status=(r.get("status") or "").strip(),
+            vintage=(r.get("vintage") or "").strip(),
+            size=(r.get("size") or "").strip(),
+        ))
+    return rows
+
+
 def parse_universe_screened() -> list[UniverseRow]:
     """Pull every named row from each region's top-15 table.
 
@@ -348,8 +379,14 @@ def main() -> int:
     if not UNIVERSE_SCREENED.exists():
         print("Run `make universe` first.", file=sys.stderr)
         return 1
-    rows = parse_universe_screened()
-    print(f"Parsed {len(rows)} rows from {len(set(r.region for r in rows))} regions")
+    rows = load_full_candidates()
+    if rows:
+        print(f"Loaded {len(rows)} candidates from the COMPLETE screener set "
+              f"(output/universe_full.csv)")
+    else:
+        rows = parse_universe_screened()
+        print(f"Parsed {len(rows)} rows from per-region tables (fallback)")
+    print(f"  {len(set(r.region for r in rows))} regions")
     yamls = load_real_yamls()
     print(f"Found {len(yamls)} hand-built Tier 1+2 YAMLs")
 

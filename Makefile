@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -142,6 +142,11 @@ source-health: audit
 corroborate: audit
 	python3 -m src.corroborate --days-back 14
 
+# Pipeline completeness guard — traces every universe.md name to the
+# ranking and flags any above-threshold name silently dropped.
+reconcile: audit
+	-python3 -m src.reconcile
+
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
 		python3 src/waterfall.py $$f; \
@@ -165,6 +170,7 @@ universe: audit
 # Apply quantitative reward/risk ranking across every universe row.
 # Depends on `universe` so the screener output is fresh.
 universe-rr: universe
+	-python3 -m src.reconcile
 	python3 -m src.universe_risk_reward
 
 # Rebuild the Excel workbook from the latest universe-wide ranking,

@@ -1,0 +1,1126 @@
+score,name,ticker,conf,bucket,archetype,status,vintage,size,region
+1.22,OHLA (former OHL),BME:OHLA,★,A,A1,OK,2024,mid,Continental Europe
+1.12,YPF,NYSE:YPF,★,A,A1,OK,2026,small,Latin America
+1.08,TGS (Transportadora de Gas del Sur),NYSE:TGS,★,A,A1,OK,?,large,Latin America
+1.01,Edenor,NYSE:EDN,★,A,A1,OK,?,small,Latin America
+0.99,Banco Sabadell,BME:SAB,★,A,A1,OK,2026,small,Continental Europe
+0.96,Mediobanca,BIT:MB,★,A,A1,OK,?,small,Continental Europe
+0.96,"TruBridge, Inc.",TBRG,○,A,K3,OK,2026,small,United States/Canada
+0.96,"TruBridge, Inc.",TBRG,○,A,K3,OK,2026,small,United States/Canada
+0.95,Thyssenkrupp Steel,XETR:TKA,★,A,H,OK,2024,large,Continental Europe
+0.95,Banco Galicia,NYSE:GGAL,★,A,A1,OK,2024,mid,Latin America
+0.91,NYCB / Flagstar Financial,NYSE:FLG,★,A,A1,OK,2024,small,United States/Canada
+0.91,Pampa Energía,NYSE:PAM,★,A,A1,OK,2026,small,Latin America
+0.91,Aptose Biosciences Inc.,APTOF,○,A,K3,OK,2026,mid,United States/Canada
+0.86,Hitachi Construction Machinery,TSE:6305,★,A,H,OK,2026,small,Japan
+0.86,Doosan Bobcat → Doosan Robotics merger,KRX:241560,★,A,H,OK,2026,small,Korea
+0.84,LEGGETT & PLATT INC,LEG,○,A,C,OK,2026,small,United States/Canada
+0.83,ACROW LIMITED,ACF,○,A,A1,OK,2026,mid,SE Asia / Pacific
+0.82,Samsung C&T,KRX:028260,★,A,H,OK,2026,small,Korea
+0.79,GTCO (Guaranty Trust),NGX:GTCO,★,A,G,OK,?,mid,MEA / Frontier
+0.78,Drake & Scull,DFM:DSI,★,A,A2,OK,?,small,MEA / Frontier
+0.77,AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291),AEMD,○,A,F2,OK,2026,small,United States/Canada
+0.76,Talgo,BME:TLGO,○,A,A1,OK,2024,mid,Continental Europe
+0.76,ASOS,LSE:ASC,★,A,A1,OK,2024,small,United Kingdom
+0.76,Zenith Bank,NGX:ZENITHBANK,★,A,G,OK,?,mid,MEA / Frontier
+0.75,Egypt Commercial International Bank,EGX:COMI,★,A,G,OK,?,small,MEA / Frontier
+0.75,IRANI PAPEL E EMBALAGEM S.A.,—,○,A,A1,OK,2026,small,Latin America
+0.75,COMERC ENERGIA S.A.,—,○,A,A1,OK,2026,small,Latin America
+0.75,SOCIEDADE ABASTECIMENTO DE AGUA E SANEAMENTO SA,—,○,A,A1,OK,2026,small,Latin America
+0.75,MINERVA S/A,—,○,A,A1,OK,2026,small,Latin America
+0.75,BRADESCO LEASING S.A. - ARRENDAMENTO MERCANTIL,—,○,A,A1,OK,2026,small,Latin America
+0.75,Aozora Bank,TSE:8304,★,A,H,OK,2026,small,Japan
+0.73,Calfrac Well Services,TSX:CFW,★,A,A1,OK,?,small,United States/Canada
+0.73,Fidelity Bank,NGX:FIDELITYBK,★,A,G,OK,?,mid,MEA / Frontier
+0.72,Talaat Moustafa Group,EGX:TMGH,★,A,G,OK,?,small,MEA / Frontier
+0.71,MEMPHASYS LIMITED.,MEM,○,A,B,OK,2026,mid,SE Asia / Pacific
+0.71,"KalVista Pharmaceuticals, Inc.",CIK:0001348911,○,A,K3,OK,2026,mid,United States/Canada
+0.71,KHEOBA CORP.,CIK:0001909770,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"Thermon Group Holdings, Inc.",CIK:0001489096,○,A,K3,OK,2026,mid,United States/Canada
+0.71,WYTEC INTERNATIONAL INC,WYTC,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"Kennedy-Wilson Holdings, Inc.",CIK:0001408100,○,A,K3,OK,2026,mid,United States/Canada
+0.71,PIMCO Asset-Based Lending Co LLC,CIK:0002073537,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"Via Renewables, Inc.",VIASP,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"CBAK Energy Technology, Inc.",CIK:0001117171,○,A,K3,OK,2026,mid,United States/Canada
+0.71,Sustainable Projects Group Inc.,CIK:0001500305,○,A,K3,OK,2026,mid,United States/Canada
+0.71,PROASSURANCE CORP,CIK:0001127703,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"Lomond Therapeutics Holdings, Inc.",CIK:0001900520,○,A,K3,OK,2026,mid,United States/Canada
+0.71,Sibanye-Stillwater,NYSE:SBSW,★,B,G,OK,?,mid,MEA / Frontier
+0.70,Aston Martin Lagonda,LSE:AML,★,A,A1,OK,?,small,United Kingdom
+0.69,SK Inc,KRX:034730,★,A,H,OK,2026,small,Korea
+0.69,"Encore Medical, Inc.  (EMI)  (CIK 0001838003)",EMI,○,A,F2,OK,2026,small,United States/Canada
+0.69,Vanke,HK:2202,★,A,A1,YELLOW,2025,mid,Greater China / HK
+0.68,Hitachi Transport System → Logisteed,(Hitachi 40%),★,A,H,OK,2026,small,Japan
+0.68,Counter Narcotics Designations; Russia-related Designations Removals; Publication of Report for Licensing Activities Undertaken Pursuant to the Trade Sanctions Reform and Export Enhancement Act (TSRA),—,○,A,G,OK,2026,small,United States/Canada
+0.68,Russia-related Designations Removals,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Democratic Republic of the Congo-related Designations; Issuance of Amended Russia-related General License and Frequently Asked Questions,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Issuance of Democratic Republic of the Congo-related General License,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Issuance of Amended Russia-related General License and Frequently Asked Questions,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Issuance of Amended Iran-related General License,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Transnational Criminal Organizations Designations; Cuba Designations; Russia-related Designations Removals; Issuance of TCO-related General License; Publication of OFAC-OFSI Comparative Overview,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Cuba Designation; Russia-related Designations Removals and Designation Update; Issuance of Amended Russia-related General Licenses and Frequently Asked Questions,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Non-Proliferation Designations; Iran-related Designations; Issuance of Venezuela-related Amended General Licenses and Frequently Asked Questions,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Designations Removals,—,○,A,G,OK,2026,small,United States/Canada
+0.68,"Counter Terrorism and Counter Narcotics Designation Update, Russia-related Designation Removal",—,○,A,G,OK,2026,small,United States/Canada
+0.68,Counter Terrorism and Iran-related Designations; Cuba Designation and Designations Updates; Issuance of Cuba-related General License and Frequently Asked Questions,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Issuance of Venezuela-related General License,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Issuance of Venezuela-related General License and Amended Frequently Asked Question,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Iran-related Designations; Issuance of Iran-related General License and Frequently Asked Question; Publication of Iran-related OFAC Alert,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Iran-related Designations; Counter Terrorism and Iran-related Designation Update; Issuance of Iran-related General License,—,○,A,G,OK,2026,small,United States/Canada
+0.68,"Counter Terrorism, Counter Narcotics, and Cyber-related Designations; Issuance of Cyber-related General License",—,○,A,G,OK,2026,small,United States/Canada
+0.68,Nicaragua-related Designations; Issuance of Nicaragua-related General License,—,○,A,G,OK,2026,small,United States/Canada
+0.67,Vodafone,LSE:VOD,★,A,A1,OK,2024,small,United Kingdom
+0.67,First Foundation,NYSE:FFWM,★,A,A1,OK,2024,small,United States/Canada
+0.67,Tullow Oil,LSE:TLW,★,A,A1,OK,2024,small,United Kingdom
+0.67,Access Holdings,NGX:ACCESSCORP,★,A,G,OK,?,mid,MEA / Frontier
+0.66,UBA,NGX:UBA,★,A,G,OK,?,mid,MEA / Frontier
+0.64,LG Display,KRX:034220,★,A,H,OK,2026,small,Korea
+0.64,EOH Holdings,JSE:EOH,★,A,G,OK,?,small,MEA / Frontier
+0.64,Toshiba,(private 2023),★,C → B,A2+H,OK,?,small,Japan
+0.64,Teamshares Inc.,CIK:0001783876,○,A,K3,OK,2026,small,United States/Canada
+0.64,J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11,CIK:0001574219,○,A,K3,OK,2026,small,United States/Canada
+0.64,Nissan Auto Receivables 2022-A Owner Trust,CIK:0001905655,○,A,K3,OK,2026,small,United States/Canada
+0.64,AmeriCredit Automobile Receivables Trust 2021-3,CIK:0001888143,○,A,K3,OK,2026,small,United States/Canada
+0.64,Two Roads Shared Trust,CIK:0001552947,○,A,K3,OK,2026,small,United States/Canada
+0.64,World Omni Auto Receivables Trust 2022-B,CIK:0001926999,○,A,K3,OK,2026,small,United States/Canada
+0.64,GS Mortgage Securities Trust 2015-GC32,CIK:0001644697,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Solo Brands, Inc.",SBDS,○,A,K3,OK,2026,small,United States/Canada
+0.64,FREYR Battery,CIK:0001844224,○,A,K3,OK,2026,small,United States/Canada
+0.64,"SPLASH BEVERAGE GROUP, INC.",SBEV,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Onfolio Holdings, Inc",ONFO,○,A,K3,OK,2026,small,United States/Canada
+0.64,"HYDROFARM HOLDINGS GROUP, INC.",HYFM,○,A,K3,OK,2026,small,United States/Canada
+0.64,Bayview Acquisition Corp,BAYA,○,A,K3,OK,2026,small,United States/Canada
+0.64,Prairie Operating Co.,PROP,○,A,K3,OK,2026,small,United States/Canada
+0.64,Real Asset Acquisition Corp.,RAAQ,○,A,K3,OK,2026,small,United States/Canada
+0.64,Securitize Corp.,SECZ,○,A,K3,OK,2026,small,United States/Canada
+0.64,Borealis Foods Inc.,BRLS,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Cantor Equity Partners II, Inc.",CEPT,○,A,K3,OK,2026,small,United States/Canada
+0.64,"OLAPLEX HOLDINGS, INC.",OLPX,○,A,K3,OK,2026,small,United States/Canada
+0.64,DevvStream Corp.,DEVSF,○,A,K3,OK,2026,small,United States/Canada
+0.64,Cytosorbents Corp,CTSO,○,A,K3,OK,2026,small,United States/Canada
+0.64,"CISO Global, Inc.",CISO,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Polar Power, Inc.",POLA,○,A,K3,OK,2026,small,United States/Canada
+0.64,Innovator ETFs Trust,CIK:0001415726,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Inotiv, Inc.",NOTVQ,○,A,K3,OK,2026,small,United States/Canada
+0.64,Spring Valley Acquisition Corp. III,SVACU,○,A,K3,OK,2026,small,United States/Canada
+0.64,Alchemy Investments Acquisition Corp 1,ALCUF,○,A,K3,OK,2026,small,United States/Canada
+0.64,T1 Energy Inc.,TE-WT,○,A,K3,OK,2026,small,United States/Canada
+0.64,"REVIVA PHARMACEUTICALS HOLDINGS, INC.",RVPH,○,A,K3,OK,2026,small,United States/Canada
+0.64,"GoHealth, Inc.",GOCOQ,○,A,K3,OK,2026,small,United States/Canada
+0.64,MERCER INTERNATIONAL INC.,MERC,○,A,K3,OK,2026,small,United States/Canada
+0.64,"ENvue Medical, Inc.",FEED,○,A,K3,OK,2026,small,United States/Canada
+0.64,Lakeside Holding Ltd,LSH,○,A,K3,OK,2026,small,United States/Canada
+0.64,"GeoVax Labs, Inc.",GOVX,○,A,K3,OK,2026,small,United States/Canada
+0.61,Synlait Milk,NZX:SML,★,A,D,OK,2024,small,SE Asia / Pacific
+0.61,MedioCredito Centrale (MCC),(state),○,A,A1,OK,?,small,Continental Europe
+0.60,Petra Diamonds,LSE:PDL,★,A,A1,OK,?,small,United Kingdom
+0.60,ＹＵＡＳＡ,8074,○,A,H,OK,2026,small,Japan
+0.60,アイ・ケイ・ケイＨＤ,2198,○,A,H,OK,2026,small,Japan
+0.60,ファーストブラザーズ,3454,○,A,H,OK,2026,small,Japan
+0.60,アルプス技,4641,○,A,H,OK,2026,small,Japan
+0.60,Ｇ－ＫａｉｚｅｎＰＦ,4170,○,A,H,OK,2026,small,Japan
+0.60,GENCO SHIPPING & TRADING LTD,GNK,○,A,H,OK,2026,small,United States/Canada
+0.60,"Seer, Inc.",SEER,○,A,H,OK,2026,small,United States/Canada
+0.60,Fermi Inc.,FRMI,○,A,H,OK,2026,small,United States/Canada
+0.60,NEUGEBAUER TOBY R,CIK:0001098464,○,A,H,OK,2026,small,United States/Canada
+0.60,Radoff Bradley Louis,CIK:0001380585,○,A,H,OK,2026,small,United States/Canada
+0.59,Tui AG,XETR:TUI1,○,A,A2,OK,2022,small,Continental Europe
+0.59,Sharp,TSE:6753,★,A,H,OK,2024,small,Japan
+0.58,Coinbase,NASDAQ:COIN,★,A,B,OK,?,small,United States/Canada
+0.58,Light SA,B3:LIGT3,★,A,E,OK,?,small,Latin America
+0.57,Aenza (former Graña y Montero),NYSE:AENZ,○,A,A2,OK,?,small,Continental Europe
+0.56,REDCENTRIC PLC,—,○,A,C,OK,2026,small,United Kingdom
+0.56,CT HEALTHCARE TRUST PLC,—,○,A,C,OK,2026,small,United Kingdom
+0.56,JUST GROUP PLC,—,○,A,C,OK,2026,small,United Kingdom
+0.56,Zambia (Republic of) (MoF),—,○,A,C,OK,2026,small,United Kingdom
+0.56,Pulsar Helium Inc.,—,○,A,E,OK,2026,small,Unspecified
+0.56,サツドラＨＤ,3544,○,A,C,OK,2026,small,Japan
+0.56,ツインバード,6897,○,A,C,OK,2026,small,Japan
+0.56,エステー,4951,○,A,C,OK,2026,small,Japan
+0.56,ネクソン,3659,○,A,C,OK,2026,small,Japan
+0.56,"John Whitfield Mecom, III",—,○,A,E,OK,2026,small,United States/Canada
+0.56,"Berkshire Land & Realty, LLC",—,○,A,E,OK,2026,small,United States/Canada
+0.56,"Urban Medspa & Weight Loss Center Charlotte, P.C.",—,○,A,E,OK,2026,small,United States/Canada
+0.56,GVO Partners LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,GVO Holdings Group LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,GVO Topco LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,"GVO Still Waters, LLC",—,○,A,E,OK,2026,small,United States/Canada
+0.56,"GVO Urban, LLC",—,○,A,E,OK,2026,small,United States/Canada
+0.56,"GVO Sweetgrass, LLC",—,○,A,E,OK,2026,small,United States/Canada
+0.56,15 Codman Park LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,ATOM EDUCAÇÃO E EDITORA S.A.,—,○,A,C,OK,2026,small,Latin America
+0.56,OI S.A. - EM RECUPERAÇÃO JUDICIAL,—,○,A,E,OK,2026,small,Latin America
+0.56,PETTENATI S.A. INDUSTRIA TEXTIL,—,○,A,C,OK,2026,small,Latin America
+0.56,MANUFATURA DE  BRINQUEDOS ESTRELA SA,—,○,A,E,OK,2026,small,Latin America
+0.56,BBM LOGÍSTICA S.A.,—,○,A,E,OK,2026,small,Latin America
+0.56,GRUPO TOKY S.A.,—,○,A,E,OK,2026,small,Latin America
+0.56,EMMERSON RESOURCES LIMITED,ERM,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,PEEL MINING LIMITED,PEX,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,AERIS RESOURCES LIMITED,AIS,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,AUSTRALIAN STRATEGIC MATERIALS LIMITED,ASM,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,QUBE HOLDINGS LIMITED,QUB,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,NOVA MINERALS CORP,NVA,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,PAN AFRICAN RESOURCES PLC,PAF,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,AngloGold Ashanti plc,—,○,A,E,OK,2026,small,United States/Canada
+0.56,Caplink Ventures Inc.,—,○,A,E,OK,2026,small,United States/Canada
+0.56,QORIA LIMITED,QOR,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,LEGAL & GENERAL GROUP PLC,—,○,A,C,OK,2026,small,United Kingdom
+0.56,Treatt PLC,—,○,A,E,OK,2026,small,United Kingdom
+0.56,"RE/MAX Holdings, Inc.",RMAX,○,A,C,OK,2026,small,United States/Canada
+0.56,Inflection Point Acquisition Corp. III,IPCXU,○,A,C,OK,2026,small,United States/Canada
+0.56,LIVEPERSON INC,LPSN,○,A,C,OK,2026,small,United States/Canada
+0.56,"Simulations Plus, Inc.",SLP,○,A,C,OK,2026,small,United States/Canada
+0.56,Reco Central Alberta Inc.,—,○,A,E,OK,2026,small,United States/Canada
+0.56,GLOBALDATA PLC,—,○,A,C,OK,2026,small,United Kingdom
+0.56,LOYAL METALS LTD,LLM,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,INVESTMENT COMPANY PLC(THE),—,○,A,C,OK,2026,small,United Kingdom
+0.56,Global Agami Cab LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,Universal Agami Transit Inc.,—,○,A,E,OK,2026,small,United States/Canada
+0.56,Planet Agami Cab LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,LG Display,KRX:034220,★,A,H,OK,?,small,Korea
+0.55,Sunac China,HK:1918,★,A,F,OK,?,small,Greater China / HK
+0.54,Japan Display,TSE:6740,★,A,H,OK,2026,small,Japan
+0.53,Eneti,(merged Cadeler),★,A,B,OK,?,small,United States/Canada
+0.53,Toshiba,(private 2023; JIP),★,C → B,E+H,OK,2026,small,Japan
+0.53,Japan Display,TSE:6740,★,A,H,OK,?,small,Japan
+0.53,['BATTALION OIL CORP  (BATL)  (CIK 0001282648)'],BATL,○,A,Unknown,OK,2026,small,United States/Canada
+0.52,Copper Property CTL Pass Through Trust  (CPPTL)  (CIK 0001837671),CPPTL,○,A,F,OK,2026,small,United States/Canada
+0.52,Ernexa Therapeutics Inc.,ERNA,○,A,F,OK,2026,small,United States/Canada
+0.52,MSC INDUSTRIAL DIRECT CO INC,MSM,○,A,F,OK,2026,small,United States/Canada
+0.52,Vistra Corp.,VST,○,A,F,OK,2026,small,United States/Canada
+0.52,Finwise Bancorp,FINW,○,A,F,OK,2026,small,United States/Canada
+0.52,"IMMUNIC, INC.",IMUX,○,A,F,OK,2026,small,United States/Canada
+0.52,"Capstone Energy Plus, Inc.",CGEH,○,A,F,OK,2026,small,United States/Canada
+0.52,CARMAX INC,KMX,○,A,F,OK,2026,small,United States/Canada
+0.52,WEYCO GROUP INC,WEYS,○,A,F,OK,2026,small,United States/Canada
+0.52,Compass Diversified Holdings,CODI,○,A,F,OK,2026,small,United States/Canada
+0.52,RMR GROUP INC.,RMR,○,A,F,OK,2026,small,United States/Canada
+0.52,PDF SOLUTIONS INC,PDFS,○,A,F,OK,2026,small,United States/Canada
+0.52,SEADRILL Ltd,SDRL,○,A,F,OK,2026,small,United States/Canada
+0.52,"ARDELYX, INC.",ARDX,○,A,F,OK,2026,small,United States/Canada
+0.52,COMTECH TELECOMMUNICATIONS CORP /DE/,CMTL,○,A,F,OK,2026,small,United States/Canada
+0.52,Talen Energy Corp,TLN,○,A,F,OK,2026,small,United States/Canada
+0.52,TARGET CORP,TGT,○,A,F,OK,2026,small,United States/Canada
+0.52,"Pacira BioSciences, Inc.",PCRX,○,A,F,OK,2026,small,United States/Canada
+0.52,"Crocs, Inc.",CROX,○,A,F,OK,2026,small,United States/Canada
+0.52,Wheels Up Experience Inc.,UP,○,A,F,OK,2026,small,United States/Canada
+0.52,BRT Apartments Corp.,BRT,○,A,F,OK,2026,small,United States/Canada
+0.52,Fusemachines Inc.,FUSE,○,A,F,OK,2026,small,United States/Canada
+0.52,NovoCure Ltd,NVCR,○,A,F,OK,2026,small,United States/Canada
+0.52,GoDaddy Inc.,GDDY,○,A,F,OK,2026,small,United States/Canada
+0.52,Copper Property CTL Pass Through Trust,CPPTL,○,A,F,OK,2026,small,United States/Canada
+0.52,"Abacus Global Management, Inc.",ABX,○,A,F,OK,2026,small,United States/Canada
+0.52,"PACIFIC BIOSCIENCES OF CALIFORNIA, INC.",PACB,○,A,F,OK,2026,small,United States/Canada
+0.52,Lipocine Inc.,LPCN,○,A,F,OK,2026,small,United States/Canada
+0.52,BARRETT BUSINESS SERVICES INC,BBSI,○,A,F,OK,2026,small,United States/Canada
+0.52,"Phoenix Energy One, LLC",PHXE-P,○,A,F,OK,2026,small,United States/Canada
+0.52,WORKIVA INC,WK,○,A,F,OK,2026,small,United States/Canada
+0.52,Trinseo PLC,TSEOF,○,A,F,OK,2026,small,United States/Canada
+0.52,"Matternet, Inc.",CIK:0002075109,○,A,F,OK,2026,small,United States/Canada
+0.52,PERDOCEO EDUCATION Corp,PRDO,○,A,F,OK,2026,small,United States/Canada
+0.52,Solventum Corp,SOLV,○,A,F,OK,2026,small,United States/Canada
+0.52,ZEBRA TECHNOLOGIES CORP,ZBRA,○,A,F,OK,2026,small,United States/Canada
+0.52,AMERICAN STATES WATER CO,AWR,○,A,F,OK,2026,small,United States/Canada
+0.52,RADIAN GROUP INC,RDN,○,A,F,OK,2026,small,United States/Canada
+0.52,ANI PHARMACEUTICALS INC,ANIP,○,A,F,OK,2026,small,United States/Canada
+0.52,Proto Labs Inc,PRLB,○,A,F,OK,2026,small,United States/Canada
+0.52,Regional Management Corp.,RM,○,A,F,OK,2026,small,United States/Canada
+0.52,ROPER TECHNOLOGIES INC,ROP,○,A,F,OK,2026,small,United States/Canada
+0.52,"AtriCure, Inc.",ATRC,○,A,F,OK,2026,small,United States/Canada
+0.52,LAMAR ADVERTISING CO/NEW,LAMR,○,A,F,OK,2026,small,United States/Canada
+0.52,"Hyperscale Data, Inc.",GPUS,○,A,F,OK,2026,small,United States/Canada
+0.52,AI Financial Corp,AIFC,○,A,F,OK,2026,small,United States/Canada
+0.52,Celcuity Inc.,CELC,○,A,F,OK,2026,small,United States/Canada
+0.52,"Nine Energy Service, Inc.",NINE,○,A,F,OK,2026,small,United States/Canada
+0.52,"QVC Group, Inc.",QVCAQ,○,A,F,OK,2026,small,United States/Canada
+0.52,NU RIDE INC.,NRDE,○,A,F,OK,2026,small,United States/Canada
+0.52,QVC INC,QVCCQ,○,A,F,OK,2026,small,United States/Canada
+0.52,Cushman & Wakefield Ltd.,CWK,○,A,F,OK,2026,small,United States/Canada
+0.52,"Mentor Capital, Inc.",MNTR,○,A,F,OK,2026,small,United States/Canada
+0.52,MDU RESOURCES GROUP INC,MDU,○,A,F,OK,2026,small,United States/Canada
+0.52,Keenova Therapeutics plc,CIK:0001567892,○,A,F,OK,2026,small,United States/Canada
+0.52,Federal Home Loan Bank of Dallas,CIK:0001331757,○,A,F,OK,2026,small,United States/Canada
+0.52,"BV Financial, Inc.",BVFL,○,A,F,OK,2026,small,United States/Canada
+0.52,"CHARLES RIVER LABORATORIES INTERNATIONAL, INC.",CRL,○,A,F,OK,2026,small,United States/Canada
+0.52,"Boundless Bio, Inc.",BOLD,○,A,F,OK,2026,small,United States/Canada
+0.52,"NEXSTAR MEDIA GROUP, INC.",NXST,○,A,F,OK,2026,small,United States/Canada
+0.52,NEW ENGLAND REALTY ASSOCIATES LIMITED PARTNERSHIP,NEN,○,A,F,OK,2026,small,United States/Canada
+0.52,UGI CORP /PA/,UGI,○,A,F,OK,2026,small,United States/Canada
+0.52,WASHINGTON TRUST BANCORP INC,WASH,○,A,F,OK,2026,small,United States/Canada
+0.52,"Privia Health Group, Inc.",PRVA,○,A,F,OK,2026,small,United States/Canada
+0.52,APA Corp,APA,○,A,F,OK,2026,small,United States/Canada
+0.52,Federal Home Loan Bank of Indianapolis,CIK:0001331754,○,A,F,OK,2026,small,United States/Canada
+0.52,"Red Rock Resorts, Inc.",RRR,○,A,F,OK,2026,small,United States/Canada
+0.52,NATURES SUNSHINE PRODUCTS INC,NATR,○,A,F,OK,2026,small,United States/Canada
+0.52,EDAP TMS SA,EDAP,○,A,F,OK,2026,small,United States/Canada
+0.52,CENTRUS ENERGY CORP,LEU,○,A,F,OK,2026,small,United States/Canada
+0.52,Solstice Advanced Materials Inc.,SOLS,○,A,F,OK,2026,small,United States/Canada
+0.52,Blue Bird Corp,BLBD,○,A,F,OK,2026,small,United States/Canada
+0.52,Ryerson Holding Corp,RYZ,○,A,F,OK,2026,small,United States/Canada
+0.52,CONECTISYS CORP,CONC,○,A,F,OK,2026,small,United States/Canada
+0.52,PERRIGO Co plc,PRGO,○,A,F,OK,2026,small,United States/Canada
+0.52,"SKYWORKS SOLUTIONS, INC.",SWKS,○,A,F,OK,2026,small,United States/Canada
+0.52,Versigent PLC,VGNT,○,A,F,OK,2026,small,United States/Canada
+0.52,BOSTON SCIENTIFIC CORP,BSX,○,A,F,OK,2026,small,United States/Canada
+0.52,BRINKS CO,BCO,○,A,F,OK,2026,small,United States/Canada
+0.52,"FEDERATED HERMES, INC.",FHI,○,A,F,OK,2026,small,United States/Canada
+0.52,EASTMAN CHEMICAL CO,EMN,○,A,F,OK,2026,small,United States/Canada
+0.52,Chemours Co,CC,○,A,F,OK,2026,small,United States/Canada
+0.52,Trane Technologies plc,TT,○,A,F,OK,2026,small,United States/Canada
+0.52,Mastercard Inc,MA,○,A,F,OK,2026,small,United States/Canada
+0.52,"QVC Group, Inc.",QVCGA,○,A,F,OK,2026,small,United States/Canada
+0.52,Knowles Corp,KN,○,A,F,OK,2026,small,United States/Canada
+0.52,"NRG ENERGY, INC.",NRG,○,A,F,OK,2026,small,United States/Canada
+0.52,S&P Global Inc.,SPGI,○,A,F,OK,2026,small,United States/Canada
+0.52,LAS VEGAS SANDS CORP,LVS,○,A,F,OK,2026,small,United States/Canada
+0.52,PG&E Corp,PCG,○,A,F,OK,2026,small,United States/Canada
+0.52,CANADIAN PACIFIC KANSAS CITY LTD/CN,CP,○,A,F,OK,2026,small,United States/Canada
+0.52,TELEDYNE TECHNOLOGIES INC,TDY,○,A,F,OK,2026,small,United States/Canada
+0.52,SYNOPSYS INC,SNPS,○,A,F,OK,2026,small,United States/Canada
+0.52,QVC INC,QVCC,○,A,F,OK,2026,small,United States/Canada
+0.52,FARMERS NATIONAL BANC CORP /OH/,FMNB,○,A,F,OK,2026,small,United States/Canada
+0.52,Ionetix Corp / DE /,CIK:0002108121,○,A,F,OK,2026,small,United States/Canada
+0.52,ALT5 Sigma Corp,ALTS,○,A,F,OK,2026,small,United States/Canada
+0.51,Metro Bank,LSE:MTRO,★,A,H,OK,2023,small,United Kingdom
+0.51,BHP GROUP LIMITED,—,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.51,Edenor,NYSE:EDN,○,A,A1,OK,?,small,Latin America
+0.50,CIB Egypt,EGX:CIB,★,A,G,OK,?,small,MEA / Frontier
+0.50,Core Scientific,NASDAQ:CORZ,★,C → B,B,OK,?,small,United States/Canada
+0.50,['EShallGo Inc.  (EHGO)  (CIK 0001879754)'],EHGO,○,A,Unknown,OK,2026,small,United States/Canada
+0.50,"RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)",RNGE,○,A,Unknown,OK,2026,small,United States/Canada
+0.50,"Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)",CVKD,○,A,Unknown,OK,2026,small,United States/Canada
+0.50,SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224),SRFM,○,A,Unknown,OK,2026,small,United States/Canada
+0.50,HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424),HIVE,○,A,Unknown,OK,2026,small,United States/Canada
+0.50,ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284),ASNS,○,A,Unknown,OK,2026,small,United States/Canada
+0.50,"Inuvo, Inc.  (INUV)  (CIK 0000829323)",INUV,○,A,Unknown,OK,2026,small,United States/Canada
+0.49,FMC CORP  (FMC)  (CIK 0000037785),FMC,○,A,Unknown,OK,2026,small,United States/Canada
+0.49,Lucid Group,NASDAQ:LCID,○,A,A2,OK,?,small,United States/Canada
+0.48,Carvana,NYSE:CVNA,★,A,C,OK,2023,small,United States/Canada
+0.48,['Sable Offshore Corp.  (SOC)  (CIK 0001831481)'],SOC,○,A,Unknown,OK,2026,small,United States/Canada
+0.48,"RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)",REZI,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,Commercial Bank of Ceylon,CSE:COMB,○,A,G,OK,?,small,SE Asia / Pacific
+0.47,Curbline Properties Corp.  (CURB)  (CIK 0002027317),CURB,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)'],CLGN,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)'],IMCC,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,['GATX CORP  (GATX)  (CIK 0000040211)'],GATX,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)'],FDMMU,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,"['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']",CBIO,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,"['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']",HUBCZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,['Redwire Corp  (RDW)  (CIK 0001819810)'],RDW,○,A,Unknown,OK,2026,small,United States/Canada
+0.47,"['Stewards, Inc.  (SWRD)  (CIK 0001795851)']",SWRD,○,A,Unknown,OK,2026,small,United States/Canada
+0.46,voestalpine,VIE:VOE,▲,A,A2+A1,OK,?,large,Continental Europe
+0.46,MTN Ghana,GSE:MTNGH,○,A,G,OK,?,small,MEA / Frontier
+0.46,HAGL (Hoang Anh Gia Lai),HOSE:HAG,★,A,Unknown,OK,?,small,SE Asia / Pacific
+0.45,Shinsei Bank → SBI Shinsei,(taken private),★,C → B,H,OK,?,small,Japan
+0.44,Calbank Ghana,GSE:CAL,○,A,G,OK,?,small,MEA / Frontier
+0.44,Aeroportos do Brasil (Vinci),private,○,A,A1,OK,?,small,Latin America
+0.44,Chinese Estates Holdings,HK:127,○,A,H,OK,2022,small,Greater China / HK
+0.43,Wema Bank,NGX:WEMABANK,○,A,G,OK,?,small,MEA / Frontier
+0.43,Provident Financial → Vanquis Banking,LSE:VANQ,★,A (warn),A1,OK,?,small,United Kingdom
+0.43,Hatton National Bank,CSE:HNB,○,A,G,OK,?,small,SE Asia / Pacific
+0.42,Salzgitter,XETR:SZG,▲,A,A2,OK,?,large,Continental Europe
+0.42,Drake & Scull,DFM:DSI,★,A,Unknown,OK,?,mid,MEA / Frontier
+0.42,Office Properties Income Trust,NASDAQ:OPI,★,A,C,OK,2023,small,United States/Canada
+0.42,ams-OSRAM,SWX:AMS,★,A,Unknown,OK,?,large,Continental Europe
+0.42,DOTZ NANO LIMITED,DTZ,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,BALLYMORE RESOURCES LIMITED,BMR,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,CONNEQT HEALTH LIMITED,CQT,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,JINDALEE LITHIUM LIMITED,JLL,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,KINGSTON RESOURCES LIMITED,KSN,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,POWER MINERALS LIMITED,PNN,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,ECHOIQ LIMITED,EIQ,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,ELECTRO OPTIC SYSTEMS HOLDINGS LIMITED,EOS,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,Step Energy Services,TSX:STEP,○,A,B,OK,?,small,United States/Canada
+0.41,Chesapeake / Expand Energy,NYSE:EXE,★,C → B,F,OK,2024,small,United States/Canada
+0.41,Garrett Motion,NASDAQ:GTX,★,C → B,F,OK,2021,small,United States/Canada
+0.40,Whiting Petroleum,(merged Oasis → Chord Energy),★,C → B,B,OK,?,small,United States/Canada
+0.40,Editas / 2seventy pattern,various,★,A,Unknown,OK,?,small,MEA / Frontier
+0.38,Pioneer,(private; Baring 2019),★,C → B,H,OK,?,small,Japan
+0.38,Core Natural Resources,NYSE:CNR,★,C → B,F,OK,?,small,United States/Canada
+0.38,Permanent TSB,EURONEXT:PTSB,○,A,H,OK,?,small,Continental Europe
+0.38,Republic Bank Ghana,GSE:RBGH,○,A,G,OK,?,small,MEA / Frontier
+0.38,Société Générale Ghana,GSE:SOGEGH,○,A,G,OK,?,small,MEA / Frontier
+0.38,Thyssenkrupp,XETR:TKA,★,A,Unknown,OK,?,small,Continental Europe
+0.38,Sino-Ocean Group,HK:3377,★,A,Unknown,OK,?,small,Greater China / HK
+0.38,PPHE HOTEL GROUP LIMITED,—,○,A,Unknown,OK,2026,small,United Kingdom
+0.38,Van Elle Holdings PLC,—,○,A,Unknown,OK,2026,small,United Kingdom
+0.38,StrategX Elements Corp.,—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,H2 Ventures 1 Inc.,—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Ｇ－イメージ情,3803,○,A,Unknown,OK,2026,small,Japan
+0.38,KALLAS INCORPORAÇÕES E CONSTRUÇÕES S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,UNIDAS LOCAÇÕES E SERVIÇOS S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,SUZANO HOLDING S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,AZZAS 2154 S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,BANCO BMG S/A,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,ALARES INTERNET PARTICIPAÇÕES S/A,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,AURA MINERALS INC,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,CIA. DE SANEAMENTO DO PARANÁ - SANEPAR,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,BANCO DO ESTADO DO RIO GRANDE DO SUL SA,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,UNIPAR CARBOCLORO S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,AZEVEDO & TRAVASSOS ENERGIA S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,VALID SOLUÇÕES S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,ULTRAPAR PARTICIPAÇÕES SA,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,PLATÃO CAPITAL S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,BRAVA ENERGIA S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,COSAN S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,ELDORADO BRASIL CELULOSE S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,TELEFÔNICA BRASIL S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,PRIO S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,LM TRANSPORTES INTERESTADUAIS SERVIÇOS E COMÉRCIO S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,MOURA DUBEUX ENGENHARIA S/A,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,ORIZON VALORIZAÇÃO DE RESÍDUOS S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,EMPREENDIMENTOS PAGUE MENOS SA,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,JALLES MACHADO S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,SLC AGRICOLA SA,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,ONCOCLÍNICAS DO BRASIL SERVIÇOS MÉDICOS S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,MPM CORPÓREOS S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,ITAUSA S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,NEOGRID PARTICIPACÕES S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,CIA SANEAMENTO BÁSICO ESTADO SÃO PAULO,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,MOTIVA INFRAESTRUTURA DE MOBILIDADE S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,TRISUL S/A,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,CONCESSIONÁRIA DA LINHA 4 DO METRÔ DE SÃO PAULO S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,AXIA ENERGIA S.A.,—,○,A,Unknown,OK,2026,small,Latin America
+0.38,BURU ENERGY LIMITED,BRU,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,INTERNATIONAL GRAPHITE LIMITED,IG6,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,INFINITY METALS LIMITED,INF,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,FINDER ENERGY HOLDINGS LIMITED,FDR,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,MT MALCOLM MINES NL,M2M,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,TECHGEN METALS LTD,TG1,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,INVERT GRAPHITE LIMITED,IVG,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,STRATEGIC ELEMENTS LIMITED,SOR,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,ATLAS ARTERIA,ALX,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,"Velo3D, Inc.  (VELO, VLDXW)  (CIK 0001825079)",VLDXW,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)",BBBY-WT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ARROW FINANCIAL CORP  (AROW)  (CIK 0000717538),AROW,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ADI GLOBAL DISTRIBUTION INC.  (ADIG)  (CIK 0002105139),ADIG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Qnity Electronics, Inc.  (Q)  (CIK 0002058873)",Q,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"BOX INC  (BOX, BXCAP)  (CIK 0001372612)",BXCAP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AMBARELLA INC  (AMBA)  (CIK 0001280263),AMBA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Cloudflare, Inc.  (NET)  (CIK 0001477333)",NET,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,NEOMETALS LTD,NMT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,NANOVEU LIMITED,NVU,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,グリーンクロスＨＤ,272A,○,A,Unknown,OK,2026,small,Japan
+0.38,['Transocean Ltd.  (RIG)  (CIK 0001451505)'],RIG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ＮＥＣ,6701,○,A,Unknown,OK,2026,small,Japan
+0.38,['Three Lions Acquisition Corp.  (CIK 0002128462)'],CIK:0002128462,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ＬＩＮＥヤフー,4689,○,A,Unknown,OK,2026,small,Japan
+0.38,"['Valaris Ltd  (VAL, VAL-WT)  (CIK 0000314808)']",VAL-WT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['FIRST BANCORP /PR/  (FBP)  (CIK 0001057706)'],FBP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['QXO, Inc.  (QXO, QXO-PB)  (CIK 0001236275)']",QXO-PB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['Energy Vault Holdings, Inc.  (NRGV)  (CIK 0001828536)']",NRGV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ソノコム,7902,○,A,Unknown,OK,2026,small,Japan
+0.38,['Marex Group plc  (MRX)  (CIK 0001997464)'],MRX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['AVIS BUDGET GROUP, INC.  (CAR)  (CIK 0000723612)']",CAR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['Evans Bronwyn  (CIK 0002037266)', 'EBR Systems, Inc.  (CIK 0001347123)']",CIK:0002037266,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,FORRESTANIA RESOURCES LIMITED,FRS,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,住友ゴム,5110,○,A,Unknown,OK,2026,small,Japan
+0.38,KAPSTREAM INVESTMENT TRUST,KIT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,"['Alight, Inc. / Delaware  (ALIT)  (CIK 0001809104)']",ALIT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['SIFY TECHNOLOGIES LTD  (SIFY)  (CIK 0001094324)'],SIFY,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ＳＨＩＮＰＯ,5903,○,A,Unknown,OK,2026,small,Japan
+0.38,['Dell Technologies Inc.  (DELL)  (CIK 0001571996)'],DELL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['SCOTTS MIRACLE-GRO CO  (SMG)  (CIK 0000825542)'],SMG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['CANADIAN IMPERIAL BANK OF COMMERCE /CAN/  (CM, CNDIF)  (CIK 0001045520)']",CNDIF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,帝通工,6763,○,A,Unknown,OK,2026,small,Japan
+0.38,"['Eos Energy Enterprises, Inc.  (EOSE)  (CIK 0001805077)']",EOSER,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['Volato Group, Inc.  (SOAR, SOARW)  (CIK 0001853070)']",SOARW,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['AerCap Holdings N.V.  (AER)  (CIK 0001378789)', 'AerCap Aviation Solutions B.V.  (CIK 0001552087)', 'Aercap Funding DAC  (CIK 0002129045)', 'AerCap Ireland Capital DAC  (CIK 0001639856)', 'AerCap Ireland Ltd  (CIK 0001639858)', 'AerCap U.S. Global Aviation LLC  (CIK 0001639862)', 'INTERNATIONAL LEASE FINANCE CORP  (CIK 0000714311)', 'AerCap Global Aviation Trust  (CIK 0001603794)']",AER,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['QXO Insulation, LLC  (BLD)  (CIK 0001633931)']",BLD,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AKORA RESOURCES LIMITED,AKO,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,CONTROL BIONICS LIMITED,CBL,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,XAI Floating Rate & Alternative Income Trust,XFLT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Octagon Credit Investors, LLC",CIK:0001717906,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AXT INC,AXTI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Fortress Net Lease REIT,CIK:0001966394,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Origin Materials, Inc.",—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Stilwell Joseph,CIK:0001113303,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Aptose Biosciences Inc.  (APTOF)  (CIK 0000882361),—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"Central Plains Bancshares, Inc.",CPBI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,HAWK RESOURCES LIMITED.,HWK,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,CENTURIA CAPITAL GROUP,CNI,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,TARTANA MINERALS LIMITED,TAT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,Garda World Security Corporation,—,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Usha Resources Ltd.,—,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,TRITON MINERALS LTD,TON,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,PERPETUAL LIMITED,PPT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,ENLITIC INC.,ENL,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,EXCITE TECHNOLOGY SERVICES LTD,EXT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,ARCHER MATERIALS LIMITED,AXE,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,INOVIQ LTD,IIQ,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,INTELLIGENT MONITORING GROUP LIMITED,IMB,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,ALLIGATOR ENERGY LIMITED,AGE,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,BPH ENERGY LTD,BPH,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,BOA RESOURCES LTD,BOA,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,HASTINGS TECHNOLOGY METALS LTD,HAS,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,TARUGA MINERALS LIMITED,TAR,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,MARQUEE RESOURCES LIMITED,MQR,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,"ARMAC LOCAÇÃO, LOGÍSTICA E SERVIÇOS S.A.",—,○,A,Unknown,OK,2026,small,Latin America
+0.38,1414 DEGREES LIMITED,14D,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,BOUNTY OIL & GAS NL,BUY,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,MEC RESOURCES LIMITED,MMR,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,PROVARIS ENERGY LTD,PV1,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,CRITICAL MINERALS GROUP LIMITED,CMG,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,CLEARVUE TECHNOLOGIES LIMITED,CPV,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,LOTUS RESOURCES LIMITED,LOT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.37,Alpha Metallurgical Resources,NYSE:AMR,★,C → B,F,OK,?,small,United States/Canada
+0.36,Sampath Bank,CSE:SAMP,○,A,G,OK,?,small,SE Asia / Pacific
+0.36,Red Lobster,(Ch.11 2024),★,C → B,F,OK,?,small,United States/Canada
+0.36,Fossil Group,NYSE:FOSL,★,A,Unknown,OK,?,small,United States/Canada
+0.36,Sharp Corp,TSE:6753,★,A,Unknown,OK,?,small,Japan
+0.36,Diamond Offshore,(acquired Noble 2024),★,C → B,F,OK,?,small,United States/Canada
+0.35,Noble Corp,NYSE:NE,★,C → B,F,OK,2022,small,United States/Canada
+0.35,AST SpaceMobile,NASDAQ:ASTS,★,A,K1,OK,2021,small,MEA / Frontier
+0.35,Wienerberger,VIE:WIE,▲,A,A2,OK,2024,mid,Continental Europe
+0.35,Ferrovial,EPA:FER,▲,A,A1,OK,2024,large,Continental Europe
+0.35,Acelyrin / Alumis merger,NASDAQ:ALMS,★,A,Unknown,OK,2025,small,MEA / Frontier
+0.35,Saipem,BIT:SPM,★,A,Unknown,OK,2022,large,Continental Europe
+0.35,Country Garden Services,HK:6098,○,A,Unknown,OK,2026,small,Greater China / HK
+0.35,Lotte Chemical,KRX:011170,○,A,H,PRE_RECAP,2024,small,Korea
+0.34,Aroundtown,XETR:AT1,★,A,Unknown,OK,?,small,Continental Europe
+0.34,Monte dei Paschi,BIT:BMPS,★,A,Unknown,OK,?,small,Continental Europe
+0.34,Nissan,TSE:7201,○,A,H,PRE_RECAP,?,small,Japan
+0.34,Holcim,SIX:HOLN,▲,A,A2,OK,?,large,Continental Europe
+0.34,DiDi Global,(delisted),★,A,Unknown,OK,?,small,Greater China / HK
+0.34,Endo International,NYSE:NDOI?,★,C → B,F,OK,2024,small,United States/Canada
+0.34,Cano Health,(Ch.11 2024),★,C → B,F,OK,2024,small,United States/Canada
+0.34,Endo International,NYSE:ENDP,★,C → B,F,OK,2024,small,United States/Canada
+0.34,GenesisCare,(Ch.11 2023),★,C → B,F,OK,2024,small,United States/Canada
+0.34,Audacy,(Ch.11 2024),★,C → B,F,OK,2024,small,United States/Canada
+0.34,Diamond Sports / Bally Sports,(Ch.11 2024),★,C → B,F,OK,2024,small,United States/Canada
+0.34,Doosan Group,various,★,A,Unknown,OK,?,small,Korea
+0.34,Cebu Air,PSE:CEB,★,A,A1,OK,2021,small,SE Asia / Pacific
+0.34,EOH Holdings,JSE:EOH,★,A,Unknown,OK,?,small,Latin America
+0.33,AMC Entertainment,NYSE:AMC,★,A,Unknown,OK,?,small,United States/Canada
+0.33,Viaplay Group,ST:VPLAY-B,★,A,Unknown,OK,?,small,Continental Europe
+0.33,Cemex,NYSE:CX,★,A,Unknown,OK,?,small,Latin America
+0.33,HMM,KRX:011200,★,B → done,H,OK,?,small,Korea
+0.33,Stellantis,NYSE:STLA,▲,A,A2+A1,OK,?,small,Continental Europe
+0.33,Lotte Shopping,KRX:023530,○,A,H,OK,?,small,Korea
+0.33,Maxeon Solar,NASDAQ:MAXN,○,A,C,OK,2024,small,United States/Canada
+0.33,Altice France (SFR),(private),○,A,C,OK,2024,small,United States/Canada
+0.33,DISH Network,(merged EchoStar),★,A,Unknown,OK,?,small,United States/Canada
+0.33,iHeart Media,NYSE:IHRT,○,A,C,OK,2024,small,United States/Canada
+0.33,Capital A (AirAsia),KLSE:5099,★,A,Unknown,OK,?,small,SE Asia / Pacific
+0.33,Aeris Industria,B3:AERI3,★,A,Unknown,OK,2024,small,Latin America
+0.32,New World Development,HK:17,○,A,Unknown,OK,2024,small,Greater China / HK
+0.32,Banco Macro,NYSE:BMA,▲,A,A1,OK,?,small,Latin America
+0.32,Vibra Energia,B3:VBBR3,▲,A,A1,OK,?,small,Latin America
+0.32,Sabadell,BME:SAB,★,A,Unknown,OK,2024,small,Continental Europe
+0.32,SBB (Samhällsbyggnadsbolaget),ST:SBB-B,★,A,Unknown,OK,?,small,Continental Europe
+0.32,OHLA (formerly OHL),BME:OHLA,★,A,Unknown,OK,?,small,Continental Europe
+0.32,Kumho Tire,KRX:073240,★,A,Unknown,OK,?,small,Korea
+0.32,Sapura Energy,KLSE:5218,★,A,Unknown,OK,?,small,SE Asia / Pacific
+0.32,Genesis Digital,(private),○,A,B,OK,?,small,United States/Canada
+0.32,Lumen Technologies (CenturyLink),NYSE:LUMN,★,A,Unknown,OK,2024,small,United States/Canada
+0.32,Rapidus-adjacent suppliers,TSE,▲,A,A2+H,OK,?,small,Japan
+0.32,Telecom Italia (TIM),BIT:TIT,★,A,Unknown,OK,2024,small,Continental Europe
+0.32,Eutelsat,EPA:ETL,★,A,Unknown,OK,?,small,Continental Europe
+0.32,Banco BPM / Sabadell,BIT/BME,★,A,Unknown,OK,?,small,Continental Europe
+0.31,Sarcos / Velodyne-Ouster pattern,various,★,A,K1,OK,2021,small,MEA / Frontier
+0.31,KION Group,XETR:KGX,▲,A,A2,OK,?,small,Continental Europe
+0.31,TV Azteca,BMV:AZTECA,★,A,Unknown,OK,?,small,Latin America
+0.31,Volkswagen Preferred,XETR:VOW3,▲,A,A2,OK,?,small,Continental Europe
+0.31,Logan Group,HK:3380,★,A (low),F,OK,2025,small,Greater China / HK
+0.31,Banco Sabadell,BME:SAB,★,A,Unknown,OK,?,small,Continental Europe
+0.30,Aldar Properties,ADX:ALDAR,▲,A,A2,OK,?,small,MEA / Frontier
+0.30,Suzano,B3:SUZB3,▲,A,A1,OK,2024,small,Latin America
+0.30,Worldline,EPA:WLN,★,A,Unknown,OK,?,small,Continental Europe
+0.30,Ørsted,CSE:ORSTED,★,A,Unknown,OK,?,small,Continental Europe
+0.30,OXE Marine,ST:OXE,★,A,Unknown,OK,?,small,Continental Europe
+0.30,mm2 Asia,SGX:1B0,★,A,Unknown,OK,?,small,SE Asia / Pacific
+0.30,Brait,JSE:BAT,★,A,Unknown,OK,?,small,Latin America
+0.30,Anima Holding,BIT:ANIM,▲,A,A1,OK,2024,small,Continental Europe
+0.30,Attica/Crediabank,ATHEX:TATT,★,A,Unknown,OK,?,small,Continental Europe
+0.30,Marelli (Calsonic Kansei),(private; KKR),★,C → B,F,OK,2022,small,Japan
+0.30,Aeromexico,(delisted 2022 → relisted 2024),★,C → B,F,OK,2022,small,Latin America
+0.30,Latam Airlines,NYSE:LTM,★,C → B,F,OK,2022,small,Latin America
+0.30,Air France-KLM,EPA:AF,★,A,Unknown,OK,2022,small,Continental Europe
+0.30,Renault Group,EPA:RNO,▲,A,A1,OK,?,small,Continental Europe
+0.30,Intrum,ST:INTRUM,★,C → B,Unknown,OK,?,small,Continental Europe
+0.30,Saudi Aramco,TADAWUL:2222,▲,A,A2,OK,?,small,MEA / Frontier
+0.30,Saudi Telecom,TADAWUL:7010,▲,A,A2,OK,?,small,MEA / Frontier
+0.30,UniCredit,BIT:UCG,▲,A,A1,OK,?,small,Continental Europe
+0.29,Steinhoff residual / Pepkor,JSE:PPH,★,A,Unknown,OK,?,small,Latin America
+0.29,Aluar,BCBA:ALUA,▲,A,A1,OK,?,small,Latin America
+0.29,Cemig,NYSE:CIG,▲,A,A1,OK,?,small,Latin America
+0.29,Saudi Basic Industries (SABIC),TADAWUL:2010,▲,A,A2,OK,?,small,MEA / Frontier
+0.29,MTN Ghana / Ghana banks,GSE,○,A,Unknown,OK,?,small,MEA / Frontier
+0.29,Engie,EPA:ENGI,▲,A,A2+A1,OK,?,small,Continental Europe
+0.29,Klöckner & Co,XETR:KCO,▲,A,A2,OK,2024,small,Continental Europe
+0.29,Suedzucker,XETR:SZU,▲,A,A2,OK,?,small,Continental Europe
+0.29,Tabreed,ADX:TABREED,▲,A,A2,OK,?,small,MEA / Frontier
+0.29,Korean Air,KRX:003490,★,A,Unknown,OK,?,small,Korea
+0.29,Grupo Supervielle,NYSE:SUPV,▲,A,A1,OK,?,small,Latin America
+0.29,Air Methods,(Ch.11 2023),★,C → B,F,OK,2023,small,United States/Canada
+0.29,OMV,VIE:OMV,▲,A,A2,OK,?,small,Continental Europe
+0.28,IRSA Inversiones,NYSE:IRS,▲,A,A1,OK,?,small,Latin America
+0.28,Borr Drilling,NYSE:BORR,○,A,F,OK,?,small,United States/Canada
+0.28,Americanas,B3:AMER3,★,A (very low) → C,E,OK,2024,small,Latin America
+0.28,Continental,XETR:CON,▲,A,A2,OK,?,small,Continental Europe
+0.28,Iberdrola,BME:IBE,▲,A,A2,OK,?,small,Continental Europe
+0.28,K-Electric,PSX:KEL,○,A,Unknown,OK,?,small,SE Asia / Pacific
+0.28,HMM (Hyundai Merchant Marine),KRX:011200,★,C → B,Unknown,OK,?,small,Korea
+0.28,Shanghai Yongli Belting,SHE:300230,○,A,Unknown,OK,?,small,Greater China / HK
+0.28,Schaeffler,XETR:SHA,▲,A,A2,OK,?,small,Continental Europe
+0.28,EDP,BME:EDP,▲,A,A2,OK,?,small,Continental Europe
+0.28,Raiffeisen International,VIE:RBI,○,A,Unknown,OK,?,small,Continental Europe
+0.28,Etisalat by E&,ADX:EAND,▲,A,A2,OK,?,small,MEA / Frontier
+0.27,Klabin,B3:KLBN3,▲,A,A1,OK,?,small,Latin America
+0.27,Faurecia / Forvia,EPA:FRVIA,▲,A,A2,OK,?,small,Continental Europe
+0.27,Saudi Real Estate (Akaria),TADAWUL:4020,▲,A,A2,OK,?,small,MEA / Frontier
+0.27,True Corp,THB:TRUE,★,A,Unknown,OK,2023,small,SE Asia / Pacific
+0.27,Emaar Properties,DFM:EMAAR,▲,A,A2,OK,?,small,MEA / Frontier
+0.27,Banca Popolare di Sondrio,BIT:BPSO,▲,A,A1,OK,?,small,Continental Europe
+0.27,Bankinter,BME:BKT,▲,A,A1,OK,?,small,Continental Europe
+0.27,First Abu Dhabi Bank (FAB),ADX:FAB,▲,A,A2,OK,?,small,MEA / Frontier
+0.27,Solaria Energía,BME:SLR,▲,A,A2,OK,?,small,Continental Europe
+0.26,Fosun International,HK:656,○,A,Unknown,OK,?,small,Greater China / HK
+0.26,Endesa,BME:ELE,▲,A,A2,OK,?,small,Continental Europe
+0.26,CHIMERIC THERAPEUTICS LIMITED,CHM,○,A,Unknown,PRE_RECAP,2026,small,SE Asia / Pacific
+0.26,Plastic Omnium,EPA:POM,▲,A,A2,OK,?,small,Continental Europe
+0.26,Codere,(private),★,C → B,Unknown,OK,?,small,Continental Europe
+0.26,Ezdan Holdings,QSE:ERES,▲,A,A2,OK,?,small,MEA / Frontier
+0.26,Sumitomo Realty,TSE:8830,▲,A,H,OK,2026,small,Japan
+0.26,Bouygues,EPA:EN,▲,A,A2,OK,?,small,Continental Europe
+0.25,Renesas Electronics,TSE:6723,▲,A,H,OK,2026,small,Japan
+0.25,Hyundai Mobis,KRX:012330,▲,A,H,OK,2026,small,Korea
+0.25,Cresud,NYSE:CRESY,▲,A,A1,OK,?,small,Latin America
+0.25,Marfrig,B3:MRFG3,▲,A,A1,OK,?,small,Latin America
+0.25,Banco Macro / Galicia / Supervielle,NYSE:BMA/GGAL/SUPV,▲,A,A1,OK,?,small,Latin America
+0.25,EU: Evotec,XETR:EVT,○,A,Unknown,OK,?,small,MEA / Frontier
+0.25,Ecobank Transnational,NSE(NGE):ETI,▲,A,G,OK,?,small,MEA / Frontier
+0.25,"Zimbabwe (Delta, Econet)",ZSE,○,A,Unknown,OK,?,small,MEA / Frontier
+0.25,Kuwait Finance House (KFH),KSE:KFH,▲,A,A2,OK,?,small,MEA / Frontier
+0.25,WW International,NASDAQ:WW,○,A,Unknown,OK,?,small,United States/Canada
+0.25,IRSA / Cresud,NYSE:IRS/CRESY,▲,A,A1,OK,?,small,Latin America
+0.25,Localiza,B3:RENT3,▲,A,A1,OK,?,small,Latin America
+0.25,Cumulus Media,(Ch.11 2024),★,C → B,Unknown,OK,?,small,United States/Canada
+0.25,Drake & Scull,DFM:DSI,★,C → B,Unknown,OK,2024,small,Latin America
+0.25,Hyundai Glovis,KRX:086280,▲,A,H,OK,2026,small,Korea
+0.25,Qatar National Bank,QSE:QNBK,▲,A,A2,OK,?,small,MEA / Frontier
+0.25,Sutro Biopharma,NASDAQ:STRO,○,A,Unknown,OK,2025,small,MEA / Frontier
+0.25,Intesa Sanpaolo,BIT:ISP,▲,A,A1,OK,?,small,Continental Europe
+0.24,Union Properties,DFM:UPP,○,A,Unknown,OK,?,small,MEA / Frontier
+0.24,ACS,BME:ACS,▲,A,A1,OK,?,small,Continental Europe
+0.24,Country Garden,HK:2007,★,A (very low) → C,F,OK,?,small,Greater China / HK
+0.24,Almarai,TADAWUL:2280,▲,A,A2,OK,?,small,MEA / Frontier
+0.24,Acciona,BME:ANA,▲,A,A2,OK,?,small,Continental Europe
+0.24,Vinci,EPA:DG,▲,A,A2,OK,?,small,Continental Europe
+0.24,Kenya Airways,NSE(K):KQ,○,C → B,Unknown,OK,?,small,MEA / Frontier
+0.24,GFH Financial,BHB:GFH,▲,A,A2,OK,?,small,MEA / Frontier
+0.24,Nintendo,TSE:7974,▲,A,H,OK,2026,small,Japan
+0.24,Pampa Energía,NYSE:PAM,▲,A,A1,OK,?,small,Latin America
+0.24,Oman Cables,MSM:OCAI,▲,A,A2,OK,?,small,MEA / Frontier
+0.24,Sumitomo Mitsui Auto Service,TSE:8579,▲,A,H,OK,2026,small,Japan
+0.24,Dalian Wanda Commercial,(private),○,B,Unknown,OK,?,small,Greater China / HK
+0.23,Keros Therapeutics,NASDAQ:KROS,○,A,Unknown,OK,?,small,MEA / Frontier
+0.23,Eiffage,EPA:FGR,▲,A,A2,OK,?,small,Continental Europe
+0.23,Aeroméxico,NYSE:AERO,★,C → B,Unknown,OK,?,small,Latin America
+0.23,Sacyr,BME:SCYR,▲,A,A1,OK,?,small,Continental Europe
+0.23,Eletrobras,NYSE:EBR,▲,A,A1,OK,2022,small,Latin America
+0.23,Toyota Industries,TSE:6201,▲,A,H,OK,2026,small,Japan
+0.23,Bausch Health,NYSE:BHC,○,A,Unknown,OK,?,small,United States/Canada
+0.23,John Keells Holdings,CSE:JKH,▲,A,G,OK,?,small,SE Asia / Pacific
+0.23,Seven & i,TSE:3382,▲,A,H,OK,?,small,Japan
+0.23,MTN Group,JSE:MTN,▲,A,G,OK,?,small,MEA / Frontier
+0.23,Mitsubishi Estate,TSE:8802,▲,A,H,OK,2026,small,Japan
+0.23,Boohoo,LSE:BOO,▲,A,A1,OK,?,small,United Kingdom
+0.23,Loma Negra,NYSE:LOMA,▲,A,A1,OK,?,small,Latin America
+0.23,Curaleaf,TSX:CURA,○,A,Unknown,OK,?,small,MEA / Frontier
+0.23,Banca Generali,BIT:BGN,▲,A,A1,OK,?,small,Continental Europe
+0.23,McDermott International,OTC:MCDIF,★,C → B,Unknown,OK,?,?,Unspecified
+0.23,Implats (Impala Platinum),JSE:IMP,▲,A,G,OK,?,small,MEA / Frontier
+0.23,Bidvest Group,JSE:BVT,▲,A,G,OK,?,small,MEA / Frontier
+0.23,Dubai Islamic Bank,DFM:DIB,▲,A,A2,OK,?,small,MEA / Frontier
+0.23,HeidelbergMaterials,XETR:HEI,▲,A,H,OK,?,small,Continental Europe
+0.23,Tokyo Electric Power,TSE:9501,▲,A,H,OK,2026,small,Japan
+0.23,Mullen Automotive,NASDAQ:MULN,★,A (low),B,OK,?,small,United States/Canada
+0.23,Yamaha Motor,TSE:7272,▲,A,H,OK,2026,small,Japan
+0.23,Transportadora Gas del Sur,NYSE:TGS,▲,A,A1,OK,?,small,Latin America
+0.23,West China Cement,HK:2233,○,A,Unknown,OK,?,small,Greater China / HK
+0.22,ZOZO,TSE:3092,▲,A,H,OK,2026,small,Japan
+0.22,TBS Holdings,TSE:9401,▲,A,H,OK,2026,small,Japan
+0.22,Valaris,NYSE:VAL,★,C → B,F,OK,2021,mid,United States/Canada
+0.22,LG Corp,KRX:003550,▲,A,H,OK,2026,small,Korea
+0.22,Lufthansa,XETR:LHA,★,A,Unknown,OK,2020,large,Continental Europe
+0.22,Heritage Insurance,NYSE:HRTG,▲,A,A1,OK,2009,small,United States/Canada
+0.22,HD Hyundai Heavy,KRX:329180,▲,A,H,OK,2026,small,Korea
+0.22,SK Inc / SK Innovation,KRX,▲,A,H,OK,?,small,Korea
+0.21,Sotherly Hotels,NASDAQ:SOHO,○,A,Unknown,OK,?,small,United States/Canada
+0.21,Fevertree Drinks,LSE:FEVR,▲,A,A1,OK,?,small,United Kingdom
+0.21,Total Play Telecom,(private),○,A,Unknown,OK,?,small,Latin America
+0.21,Acerinox,BME:ACX,▲,A,A1,OK,?,small,Continental Europe
+0.21,Hayleys,CSE:HAYL,▲,A,G,OK,?,small,SE Asia / Pacific
+0.21,Standard Chartered Ghana,GSE:SCB,▲,A,G,OK,?,small,MEA / Frontier
+0.21,AirAsia X,KLSE:5238,★,C → B,Unknown,OK,2022,small,SE Asia / Pacific
+0.21,Saizeriya,TSE:7581,▲,A,H,OK,2026,small,Japan
+0.21,Idemitsu Kosan,TSE:5019,▲,A,H,OK,2026,small,Japan
+0.21,Vodacom Group,JSE:VOD,▲,A,G,OK,?,small,MEA / Frontier
+0.21,Anglo American Platinum,JSE:AMS,▲,A,G,OK,?,small,MEA / Frontier
+0.21,AMC Networks,NASDAQ:AMCX,○,A,Unknown,OK,?,small,United States/Canada
+0.21,Aluar / Ternium Argentina,BCBA,▲,A,A1,OK,?,small,Latin America
+0.21,Islami Bank Bangladesh,DSE:ISLAMIBANK,○,A (low),G+H,OK,?,small,SE Asia / Pacific
+0.21,Frasers Group,LSE:FRAS,▲,A,A1,OK,?,small,United Kingdom
+0.21,Heimstaden Bostad / AB,(private),○,A,Unknown,OK,?,small,Continental Europe
+0.21,Konica Minolta,TSE:4902,▲,A,H,OK,2026,small,Japan
+0.21,Kaisa Group,HK:1638,★,A (low),F,OK,?,small,Greater China / HK
+0.21,Faraday Future,NASDAQ:FFIE,▲,A,B,OK,?,small,United States/Canada
+0.21,Western Alliance,NYSE:WAL,▲,A,A1,OK,2009,small,United States/Canada
+0.21,BT Group,LSE:BT.A,▲,A,A1,OK,?,small,United Kingdom
+0.21,Posco Holdings,KRX:005490,▲,A,H,OK,2026,small,Korea
+0.21,Sunac China,HK:1918,★,A (low),F,OK,2024,small,Greater China / HK
+0.20,Borr Drilling,OSL:BORR,○,A,Unknown,OK,?,small,Continental Europe
+0.20,Hoa Binh Construction,HOSE:HBC,★,A (low),F,OK,2024,small,SE Asia / Pacific
+0.20,BAE Systems,LSE:BA,▲,A,A1,OK,?,small,United Kingdom
+0.20,Stanbic IBTC,NGX:STANBIC,▲,A,G,OK,?,small,MEA / Frontier
+0.20,Enquest,LSE:ENQ,▲,A,A1,OK,?,small,United Kingdom
+0.20,Symbotic,NASDAQ:SYM,▲,A,K1,OK,2021,small,MEA / Frontier
+0.20,Rivian,NASDAQ:RIVN,▲,A,B,OK,2024,small,United States/Canada
+0.20,Polestar,NASDAQ:PSNY,▲,A,B,OK,?,small,United States/Canada
+0.20,Trican Well Service,TSX:TCW,▲,A,B,OK,?,small,United States/Canada
+0.20,Pakistan International Airlines,(privatisation),○,C → B,Unknown,OK,?,small,SE Asia / Pacific
+0.20,Kioxia,TSE:285A,▲,A,H,OK,?,small,Japan
+0.20,Wallbox,NYSE:WBX,▲,A,B,OK,?,small,United States/Canada
+0.19,Mammoth Energy,NASDAQ:TUSK,▲,A,B,OK,?,small,United States/Canada
+0.19,Sunnova Energy,NYSE:NOVA,▲,A,B,OK,?,small,United States/Canada
+0.19,Enovix,NASDAQ:ENVX,○,A,K1,OK,2021,small,MEA / Frontier
+0.19,Planet Labs,NYSE:PL,○,A,K1,OK,2021,small,MEA / Frontier
+0.19,CIFI Holdings,HK:884,★,A (low),F,OK,?,small,Greater China / HK
+0.19,KB Financial,KRX:105560,▲,A,H,OK,2026,small,Korea
+0.19,Norwegian Air Shuttle,OSL:NAS,★,C → B,F,OK,2021,small,Continental Europe
+0.19,California Resources Corp,NYSE:CRC,★,C → B,F,OK,2020,small,United States/Canada
+0.19,Plug Power,NASDAQ:PLUG,▲,A,B,OK,?,small,United States/Canada
+0.19,Marathon Digital,NASDAQ:MARA,▲,A,B,OK,?,small,United States/Canada
+0.19,Customers Bancorp,NYSE:CUBI,▲,A,A1,OK,2009,small,United States/Canada
+0.19,Comerica,NYSE:CMA,▲,A,A1,OK,2009,small,United States/Canada
+0.19,Zions Bancorp,NASDAQ:ZION,▲,A,A1,OK,2009,small,United States/Canada
+0.19,Genworth Financial,NYSE:GNW,▲,A,A1,OK,2009,small,United States/Canada
+0.19,EchoStar,NASDAQ:SATS,○,A,Unknown,OK,?,small,United States/Canada
+0.19,Naked Wines,LSE:WINE,▲,A,A1,OK,?,small,United Kingdom
+0.19,OneSavings Bank,LSE:OSB,▲,A,A1,OK,?,small,United Kingdom
+0.19,Funding Circle,LSE:FCH,▲,A,A1,OK,?,small,United Kingdom
+0.19,Trainline,LSE:TRN,▲,A,A1,OK,?,small,United Kingdom
+0.19,Centrica,LSE:CNA,▲,A,A1,OK,?,small,United Kingdom
+0.19,Softcat,LSE:SCT,▲,A,A1,OK,?,small,United Kingdom
+0.19,Mitsubishi Logistics,TSE:9301,▲,A,H,OK,2026,small,Japan
+0.19,KT Corp,KRX:030200,▲,A,H,OK,2026,small,Korea
+0.19,Aitken Spence,CSE:SPEN,▲,A,G,OK,?,small,SE Asia / Pacific
+0.19,VinFast,NASDAQ:VFS,▲,A,B,OK,?,small,United States/Canada
+0.19,Hyosung TNC,KRX:298020,▲,A,H,OK,2026,small,Korea
+0.18,ChargePoint,NYSE:CHPT,▲,A,B,OK,?,small,United States/Canada
+0.18,Hut 8,NASDAQ:HUT,▲,A,B,OK,?,small,United States/Canada
+0.18,Nippon Express → NX Holdings,TSE:9147,▲,A,H,OK,2026,small,Japan
+0.18,Forum Energy / NES Fircroft,various,▲,A,B,OK,?,small,United States/Canada
+0.18,Talos Energy,NYSE:TALO,▲,A,B,OK,?,small,United States/Canada
+0.18,Frontier Communications,(acquired Verizon 2024),★,C → B,F,OK,2021,small,United States/Canada
+0.18,THG (formerly The Hut Group),LSE:THG,▲,A,H,OK,?,small,United Kingdom
+0.18,Liberty Energy,NYSE:LBRT,▲,A,B,OK,?,small,United States/Canada
+0.18,Logan Group,HK:3380,★,A (low),F,OK,?,small,Greater China / HK
+0.18,Walgreens Boots Alliance,NASDAQ:WBA,▲,A,H,OK,2024,small,United States/Canada
+0.18,ProPetro Holding,NYSE:PUMP,▲,A,B,OK,?,small,United States/Canada
+0.18,Samsung C&T,KRX:028260,▲,A,H,OK,?,small,Korea
+0.18,Bloom Energy,NYSE:BE,▲,A,B,OK,?,small,United States/Canada
+0.18,Cipher Mining,NASDAQ:CIFR,▲,A,B,OK,?,small,United States/Canada
+0.18,Robinhood,NASDAQ:HOOD,▲,A,B,OK,?,small,United States/Canada
+0.18,Adient,NYSE:ADNT,▲,A,B,OK,?,small,United States/Canada
+0.18,American Axle,NYSE:AXL,▲,A,B,OK,?,small,United States/Canada
+0.18,Peabody Energy,NYSE:BTU,★,C → B,F,OK,2020,small,United States/Canada
+0.18,Sage Therapeutics,(acquired Biogen 2025),★,C → done,Unknown,OK,?,small,MEA / Frontier
+0.18,Star Bulk,NASDAQ:SBLK,▲,A,B,OK,?,small,United States/Canada
+0.18,Dorian LPG,NYSE:LPG,▲,A,B,OK,?,small,United States/Canada
+0.18,PAL Holdings (Philippine Airlines),PSE:PAL,★,C → B,F,OK,2021,small,SE Asia / Pacific
+0.18,Avianca Holdings,NYSE:AVH,★,C → B,F,OK,2021,small,Latin America
+0.18,YPF,NYSE:YPF,★,A,A1,ARC_DONE,?,small,Latin America
+0.17,Forum Energy Tech,NYSE:FET,▲,A,B,OK,?,small,United States/Canada
+0.17,ZIM Integrated,NYSE:ZIM,▲,A,B,OK,?,small,United States/Canada
+0.17,Country Garden Holdings,HK:2007,★,A (very low) → C,Unknown,OK,?,small,Greater China / HK
+0.17,Shimao Group,HK:813,★,A (low),F,OK,2024,small,Greater China / HK
+0.17,Bitfarms,NASDAQ:BITF,▲,A,B,OK,2024,small,United States/Canada
+0.17,Kaisa Group,HK:1638,★,A (low),F,OK,?,small,Greater China / HK
+0.17,Shinhan Financial,KRX:055550,▲,A,H,OK,2026,small,Korea
+0.17,Vanke,SZSE:000002,▲,A,F,OK,?,small,Greater China / HK
+0.17,Enphase / SolarEdge,NASDAQ:SEDG,▲,A,B,OK,?,small,United States/Canada
+0.17,Scorpio Tankers,NYSE:STNG,▲,A,B,OK,?,small,United States/Canada
+0.17,Frontline,NYSE:FRO,▲,A,B,OK,?,small,United States/Canada
+0.17,International Seaways,NYSE:INSW,▲,A,B,OK,?,small,United States/Canada
+0.17,Vietnam Airlines,HOSE:HVN,★,A,Unknown,OK,2021,small,SE Asia / Pacific
+0.17,Ranger Oil,(acquired Baytex),★,,B,OK,2023,small,United States/Canada
+0.17,Powerlong RE,HK:1238,○,A (low),F,OK,2025,mid,Greater China / HK
+0.17,RPC Inc,NYSE:RES,▲,A,B,OK,?,small,United States/Canada
+0.17,Manitowoc,NYSE:MTW,▲,A,B,OK,?,small,United States/Canada
+0.17,Bristow Group,NYSE:VTOL,★,C → B,F,OK,2019,small,United States/Canada
+0.17,Vallourec,EPA:VK,★,C → B,F,OK,2021,small,Continental Europe
+0.17,CGG,EPA:CGGYY,★,C → B,F,OK,2018,small,Continental Europe
+0.17,Beyond Meat,NASDAQ:BYND,★,A (low),Unknown,OK,2025,mid,United States/Canada
+0.17,Solaris Oilfield Infra,NYSE:SOI,▲,A,B,OK,?,small,United States/Canada
+0.17,Riot Platforms,NASDAQ:RIOT,▲,A,B,OK,?,small,United States/Canada
+0.17,Genco Shipping,NYSE:GNK,▲,A,B,OK,?,small,United States/Canada
+0.17,Diana Shipping,NYSE:DSX,▲,A,B,OK,?,small,United States/Canada
+0.17,Pangaea Logistics,NASDAQ:PANL,▲,A,B,OK,?,small,United States/Canada
+0.17,Yuzhou Group,HK:1628,★,A (low),F,OK,?,small,Greater China / HK
+0.17,Fantasia Holdings,HK:1777,★,A (low),F,OK,?,small,Greater China / HK
+0.17,Light SA,B3:LIGT3,★,A (low),E,OK,2023,small,Latin America
+0.17,NCS Multistage,NASDAQ:NCSM,▲,A,B,OK,?,small,United States/Canada
+0.17,Westport Fuel Systems,NASDAQ:WPRT,▲,A,B,OK,?,small,United States/Canada
+0.17,JDI/JOLED pattern smallcaps,TSE,○,A (low),H,OK,?,small,Japan
+0.16,Greenidge Generation,NASDAQ:GREE,▲,A,B,OK,?,small,United States/Canada
+0.16,Lotte Holdings,KRX:004990,▲,A,H,PRE_RECAP,2026,small,Korea
+0.16,Finnair,HEL:FIA1S,★,A,Unknown,OK,2020,small,Continental Europe
+0.16,Air New Zealand,NZX:AIR,★,A,Unknown,OK,2020,small,SE Asia / Pacific
+0.16,EVgo,NASDAQ:EVGO,▲,A,B,OK,?,small,United States/Canada
+0.16,Blink Charging,NASDAQ:BLNK,▲,A,B,OK,?,small,United States/Canada
+0.16,TeraWulf,NASDAQ:WULF,▲,A,B,OK,?,small,United States/Canada
+0.16,Iris Energy,NASDAQ:IREN,▲,A,B,OK,?,small,United States/Canada
+0.16,Magna International,NYSE:MGA,▲,A,B,OK,?,small,United States/Canada
+0.16,Hyster-Yale,NYSE:HY,▲,A,B,OK,?,small,United States/Canada
+0.16,Astec Industries,NASDAQ:ASTE,▲,A,B,OK,?,small,United States/Canada
+0.16,Annaly Capital,NYSE:NLY,★,A,Unknown,OK,2020,small,United States/Canada
+0.16,Thai Airways,THB:THAI,★,A (low),E,OK,2022,small,SE Asia / Pacific
+0.16,Transocean,NYSE:RIG,▲,A,F,OK,?,small,United States/Canada
+0.16,Hopson Development,HK:754,▲,A,F,OK,?,small,Greater China / HK
+0.15,First Bank of Nigeria,NGX:FBNH,▲,A,G,PRE_RECAP,?,small,MEA / Frontier
+0.15,Hallador Energy,NASDAQ:HNRG,▲,A,F,OK,?,small,United States/Canada
+0.15,Canopy Growth,TSX:WEED,★,A (low),Unknown,OK,?,small,MEA / Frontier
+0.15,ABC China (Agricultural Bank),HK:1288,▲,A,Unknown,OK,2024,small,Greater China / HK
+0.15,Star Entertainment,ASX:SGR,★,A (low) → B,Unknown,OK,?,small,SE Asia / Pacific
+0.15,Hopson Development,HK:754,▲,A,Unknown,OK,?,small,Greater China / HK
+0.15,Oi SA,(twice judicial),★,A (low) → C,Unknown,OK,2023,small,Latin America
+0.15,China Galaxy Securities,HK:6881,▲,A,Unknown,OK,?,small,Greater China / HK
+0.14,Ramaco Resources,NASDAQ:METC,▲,A,F,OK,?,small,United States/Canada
+0.14,Tianjin Tasly Pharma,SH:600535,▲,A,Unknown,OK,2024,mid,Greater China / HK
+0.14,CES Energy Solutions,TSX:CEU,▲,A,B,PRE_RECAP,?,small,United States/Canada
+0.13,Saudi mid-caps post-Tadawul reforms,TADAWUL,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.13,Meyer Burger,SWX:MBTN,★,A (low),Unknown,OK,?,small,Continental Europe
+0.13,Helix Energy Solutions,NYSE:HLX,▲,A,F,OK,?,small,United States/Canada
+0.13,PacWest,(acquired Banc of California 2023),★,C → B,A1,OK,2009,small,United States/Canada
+0.13,BRAC Bank,DSE:BRACBANK,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.13,Turkish Airlines,BIST:THYAO,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.13,Akbank / Garanti / İşbank / Yapı Kredi,BIST,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.13,Third-point-style busted shells,various,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.13,Vertiv,NYSE:VRT,★,,K1,OK,2021,small,MEA / Frontier
+0.13,Green Thumb,CSE:GTII,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.13,ABN AMRO / NatWest state exits,AMS/LSE,▲,A,Unknown,OK,?,small,Continental Europe
+0.13,Engro,PSX:ENGRO,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.12,KCB / Equity Group,NSE(K),▲,A,Unknown,OK,?,small,MEA / Frontier
+0.12,Commercial International Bank,EGX:COMI,▲,A,Unknown,OK,2024,small,MEA / Frontier
+0.12,Hudson Pacific,NYSE:HPP,▲,A,Unknown,OK,2024,small,United States/Canada
+0.12,Lucky Cement,PSX:LUCK,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.12,EFG Hermes,EGX:HRHO,▲,A,Unknown,OK,2024,small,MEA / Frontier
+0.12,Talaat Moustafa Group,EGX:TMGH,▲,A,Unknown,OK,2024,small,MEA / Frontier
+0.11,Krakatau Steel,IDX:KRAS,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,United Bank / MCB / HBL,PSX,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,Eastern Company,EGX:EAST,▲,A,Unknown,OK,2024,small,MEA / Frontier
+0.11,Galata Wind / Enerjisa,BIST,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.11,Safaricom,NSE(K):SCOM,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.11,Eagle Bulk Shipping,(acquired Star Bulk 2024),★,A,B,ARC_DONE,?,small,United States/Canada
+0.11,Vornado,NYSE:VNO,▲,A,Unknown,OK,?,small,United States/Canada
+0.11,Hub Power,PSX:HUBC,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,GFH Financial,BHB:GFH,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.11,Bavarian Nordic / Valneva,CPH/EPA,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.11,Tegna,NYSE:TGNA,▲,A,Unknown,OK,?,small,United States/Canada
+0.11,Forvia (Faurecia),EPA:FRVIA,▲,A,Unknown,OK,?,small,Continental Europe
+0.11,Banco BPM,BIT:BAMI,▲,A,Unknown,OK,2024,small,Continental Europe
+0.11,YPF,NYSE:YPF,▲,A,Unknown,OK,?,small,Latin America
+0.11,Peloton Interactive,NASDAQ:PTON,▲,A,Unknown,OK,2024,small,United States/Canada
+0.11,SL Green Realty,NYSE:SLG,▲,A,Unknown,OK,?,small,United States/Canada
+0.11,CCC SA,WAR:CCC,▲,A,Unknown,OK,?,small,Continental Europe
+0.11,Magnis Energy,ASX:MNS,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,SoftBank Group,TSE:9984,▲,A,Unknown,OK,?,small,Japan
+0.11,Citic Securities,HK:6030,▲,A,Unknown,OK,?,small,Greater China / HK
+0.11,Orascom Construction,EGX:ORAS,▲,A,Unknown,OK,2024,small,MEA / Frontier
+0.11,CVS Health,NYSE:CVS,▲,A,Unknown,OK,?,small,United States/Canada
+0.11,Indofarma,IDX:INAF,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,Powerlong RE,HK:1238,○,A (low),F,OK,?,small,Greater China / HK
+0.11,Times China,HK:1233,○,A (low),F,OK,?,small,Greater China / HK
+0.11,Aoyuan Group,HK:3883,○,A (low),F,OK,?,small,Greater China / HK
+0.11,China South City,HK:1668,○,A (low),F,OK,?,small,Greater China / HK
+0.11,Paramount Global,NASDAQ:PARA,▲,A,Unknown,OK,2024,small,United States/Canada
+0.11,Vingroup,HOSE:VIC,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,Latitude Financial,ASX:LFS,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,Sasol,JSE:SOL,▲,A,Unknown,OK,?,small,Latin America
+0.11,Koç Holding,BIST:KCHOL,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.11,Block Inc / Afterpay,ASX:SQ2,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.11,IRSA,NYSE:IRS,▲,A,Unknown,OK,?,small,Latin America
+0.11,Cresud,NASDAQ:CRESY,▲,A,Unknown,OK,?,small,Latin America
+0.11,BuzzFeed,NASDAQ:BZFD,▲,A,Unknown,OK,?,small,United States/Canada
+0.11,Greenland HK,HK:337,○,A (low),F,OK,?,small,Greater China / HK
+0.10,Altice USA,NYSE:ATUS,▲,A,Unknown,OK,?,small,United States/Canada
+0.10,Gannett,NYSE:GCI,▲,A,Unknown,OK,?,small,United States/Canada
+0.10,Pepkor,JSE:PPH,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,HD Hyundai Heavy,KRX:329180,▲,A,Unknown,OK,?,small,Korea
+0.10,Times China,HK:1233,○,A (low),Unknown,OK,2023,small,Greater China / HK
+0.10,Garuda Indonesia,IDX:GIAA,★,A (low),Unknown,OK,2022,small,SE Asia / Pacific
+0.10,Tower,NZX:TWR,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.10,Petrobras,B3:PETR3,▲,A,Unknown,OK,?,small,Latin America
+0.10,OTP / Erste exposure basket,BUD/VIE,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,Vonovia,XETR:VNA,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,Archer / Joby,NYSE:ACHR/JOBY,▲,A,K1,OK,2021,small,MEA / Frontier
+0.10,Castellum,ST:CAST,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,Coronado Global Resources,ASX:CRN,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.10,Warrior Met Coal,NYSE:HCC,★,C → B,F,OK,2016,small,United States/Canada
+0.10,China Vanke Tianjin Bond Plan,n/a,○,,Unknown,OK,?,small,Greater China / HK
+0.10,Brixmor Property,NYSE:BRX,▲,A,Unknown,OK,?,small,United States/Canada
+0.10,Two Harbors,NYSE:TWO,▲,A,Unknown,OK,?,small,United States/Canada
+0.10,Cosan,B3:CSAN3,▲,A,Unknown,OK,?,small,Latin America
+0.10,Duc Long Gia Lai,HOSE:DLG,○,A (low),Unknown,OK,?,small,SE Asia / Pacific
+0.10,KGHM,WAR:KGH,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,Bausch+Lomb,NYSE:BLCO,▲,A,Unknown,OK,?,small,United States/Canada
+0.10,Salzgitter,XETR:SZG,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,Klöckner & Co,XETR:KCO,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,voestalpine,VIE:VOE,▲,A,Unknown,OK,?,small,Continental Europe
+0.10,Hanwha Solutions,KRX:009830,▲,A,Unknown,OK,?,small,Korea
+0.10,Hoa Phat Group,HOSE:HPG,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.10,Whitehaven Coal,ASX:WHC,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.10,Marfrig,B3:MRFG3,▲,A,Unknown,OK,?,small,Latin America
+0.10,Türk Hava Yollari,BIST:THYAO,▲,A,Unknown,OK,?,small,Latin America
+0.10,Dana Gas,ADX:DANA,★,A,Unknown,OK,2017,small,MEA / Frontier
+0.10,BR Properties,B3:BRPR3,▲,A,Unknown,OK,?,small,Latin America
+0.10,Tilray,NASDAQ:TLRY,○,A (low),Unknown,OK,?,small,MEA / Frontier
+0.09,Brandywine Realty,NYSE:BDN,▲,A,Unknown,OK,?,small,United States/Canada
+0.09,KW (Kennedy-Wilson),NYSE:KW,▲,A,Unknown,OK,?,small,United States/Canada
+0.09,Veris Residential,NYSE:VRE,▲,A,Unknown,OK,?,small,United States/Canada
+0.09,Easterly Government,NYSE:DEA,▲,A,Unknown,OK,?,small,United States/Canada
+0.09,Chatham Lodging,NYSE:CLDT,▲,A,Unknown,OK,?,small,United States/Canada
+0.09,Townsquare Media,NYSE:TSQ,▲,A,Unknown,OK,?,small,United States/Canada
+0.09,Vox Media,(private; raises),▲,A,Unknown,OK,?,small,United States/Canada
+0.09,Plastic Omnium,EPA:POM,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Rexel,EPA:RXL,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Heidelberger Druckmaschinen,XETR:HDD,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,GreenIT (Schmolz+Bickenbach),SWX:STLN,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Hugo Boss,XETR:BOSS,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Galenica / Adecco,various,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Webuild (Salini Impregilo),BIT:WBD,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Banca Popolare di Sondrio,BIT:BPSO,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Caixa Geral / Novo Banco,(Portugal),▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Fastighets AB Balder,ST:BALD-B,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Hexagon Composites,OSL:HEX,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Magnora,OSL:MGN,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Pareto Bank,OSL:PARB,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Sacyr,BME:SCYR,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,ACS,BME:ACS,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Solaria Energía,BME:SLR,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Mercator Medical,WAR:MRC,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Eurocash,WAR:EUR,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Asbis Enterprises,WAR:ASB,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Mol Hungarian,BUD:MOL,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,OTP Bank,BUD:OTP,▲,A,Unknown,OK,?,small,Continental Europe
+0.09,Renesas Electronics,TSE:6723,▲,A,Unknown,OK,?,small,Japan
+0.09,Nidec,TSE:6594,▲,A,Unknown,OK,?,small,Japan
+0.09,Eisai / Sumitomo Pharma,various,▲,A,Unknown,OK,?,small,Japan
+0.09,Daikoku Denki,TSE:6430,▲,A,Unknown,OK,?,small,Japan
+0.09,Doosan Bobcat,KRX:241560,▲,A,Unknown,OK,?,small,Korea
+0.09,Doosan Robotics,KRX:454910,▲,A,Unknown,OK,?,small,Korea
+0.09,Hyosung TNC,KRX:298020,▲,A,Unknown,OK,?,small,Korea
+0.09,MNC Vision Networks,IDX:IPTV,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Lippo Karawaci,IDX:LPKR,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Saksiam Leasing,THB:SAK,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Vinhomes,HOSE:VHM,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Tyro Payments,ASX:TYR,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Adore Beauty,ASX:ABY,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Yancoal,ASX:YAL,▲,A,Unknown,OK,?,small,SE Asia / Pacific
+0.09,Ultrapar,B3:UGPA3,▲,A,Unknown,OK,?,small,Latin America
+0.09,Banco Pan,B3:BPAN4,▲,A,Unknown,OK,?,small,Latin America
+0.09,Inter & Co,NASDAQ:INTR,▲,A,Unknown,OK,?,small,Latin America
+0.09,Tsogo Sun Hotels,JSE:TGO,▲,A,Unknown,OK,?,small,Latin America
+0.09,Bidvest,JSE:BVT,▲,A,Unknown,OK,?,small,Latin America
+0.09,Tabreed,ADX:TABREED,▲,A,Unknown,OK,?,small,Latin America
+0.09,Etihad Etisalat,TADAWUL:7020,▲,A,Unknown,OK,?,small,Latin America
+0.09,Akbank,BIST:AKBNK,▲,A,Unknown,OK,?,small,Latin America
+0.09,Garanti BBVA,BIST:GARAN,▲,A,Unknown,OK,?,small,Latin America
+0.09,Kuwait Finance House / Warba,Boursa Kuwait,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.09,Sabancı Holding,BIST:SAHOL,▲,A,Unknown,OK,?,small,MEA / Frontier
+0.09,Ping An-adjacent trust products,—,○,,Unknown,OK,?,small,Greater China / HK
+0.09,Guangzhou R&F,HK:2777,○,A (low),Unknown,OK,?,small,Greater China / HK
+0.09,Calfrac Well Services,TSX:CFW,3/3,A,Unknown,OK,?,small,Unspecified
+0.09,Worldline,EPA:WLN,2/3,A,Unknown,OK,?,small,Unspecified
+0.09,Ørsted,CSE:ORSTED,2/3,A,Unknown,OK,?,small,Unspecified
+0.09,Petra Diamonds,LSE:PDL,2/3,A,Unknown,OK,?,small,Unspecified
+0.09,Tunisia banks,BVMT,○,A (low),Unknown,OK,?,small,MEA / Frontier
+0.09,Eletrobras,B3:ELET3,▲,A,Unknown,OK,2022,small,Latin America
+0.09,United Insurance Holdings,NASDAQ:UIHC,○,C → B,A1,OK,2009,small,United States/Canada
+0.08,SandRidge Energy,NYSE:SD,★,C → B,F,OK,2016,small,United States/Canada
+0.08,"Greek banks (Piraeus, Alpha, NBG, Eurobank)",various,★,A,Unknown,OK,2010,small,Continental Europe
+0.08,Rolls-Royce,LSE:RR,★,A,A1,ARC_DONE,2020,large,United Kingdom
+0.07,Exela → XBP Europe,NASDAQ:XBP,,,F,OK,?,small,MEA / Frontier
+0.07,Casino Guichard,EPA:CO,★,A (very low),Unknown,OK,2024,small,Continental Europe
+0.07,Atos,EPA:ATO,★,A (very low),Unknown,OK,?,small,Continental Europe
+0.07,SiriusPoint,NYSE:SPNT,,,F,OK,?,small,MEA / Frontier
+0.06,Avaya,(private),,,F,OK,?,small,MEA / Frontier
+0.06,Bed Bath stub / DK-Butterfly,claims only,,,F,OK,?,small,MEA / Frontier
+0.06,Core Scientific,NASDAQ:CORZ,,,F,OK,2024,small,MEA / Frontier
+0.06,Wolfspeed,NYSE:WOLF,,,F,OK,2025,small,MEA / Frontier
+0.06,Vroom,NASDAQ:VRM,,,F,OK,2025,small,MEA / Frontier
+0.06,WW International,NASDAQ:WW,,,F,OK,2025,small,MEA / Frontier
+0.06,Party City Holdco (2023 vintage),(refiled),,,F,OK,?,small,MEA / Frontier
+0.06,Enjoy → Asurion,(gone),,,F,OK,?,small,MEA / Frontier
+0.06,Team Inc,NYSE:TISI,,,F,OK,2022,small,MEA / Frontier
+0.05,KOSPI mid/small distressed,various,▲,A/C,Unknown,OK,?,small,Korea
+0.05,Diebold Nixdorf,NYSE:DBD,,,F,OK,2023,small,MEA / Frontier
+0.05,Akumin,(private; Stonepeak),,,F,OK,2023,small,MEA / Frontier
+0.05,Hanwha Ocean,KRX:042660,★,,H,ARC_DONE,?,small,Korea
+0.04,Marks & Spencer,LSE:MKS,▲,A,A1,ARC_DONE,?,small,United Kingdom
+0.04,Spirit Halloween,n/a,,,Unknown,OK,?,small,United States/Canada
+0.04,TLG Immobilien,(private after Aroundtown),,,Unknown,OK,?,small,Continental Europe
+0.04,Banco BPI,(private/CaixaBank),,,Unknown,OK,?,small,Continental Europe
+0.04,Garrett Motion,NASDAQ:GTX,,,F,OK,2021,small,MEA / Frontier
+0.04,"Cyprus banks (BoC, Hellenic)",CSE/ATHEX,▲,A,Unknown,OK,2013,small,Continental Europe
+0.03,Hertz,NASDAQ:HTZ,,,F,OK,2021,small,MEA / Frontier
+0.03,Valaris / Noble / Tidewater,NYSE,,,F,OK,2021,small,MEA / Frontier
+0.03,GOL / LATAM / Avianca / Aeromexico / PAL,NYSE/local,,,F,OK,2021,small,MEA / Frontier
+0.03,Banca Monte dei Paschi,BIT:BMPS,★,,Unknown,ARC_DONE,?,small,Continental Europe
+0.02,Rocket Lab,NASDAQ:RKLB,★,,K1,ARC_DONE,2021,small,MEA / Frontier
+0.02,Peabody / Warrior Met / Alpha Met / Core Natural,NYSE,,,F,OK,2016,small,MEA / Frontier
+0.01,California Resources / Expand Energy / Chord / Talos,NYSE,,,F,OK,2016,small,MEA / Frontier
+0.00,US Well Services,(acquired ProFrac 2022),★,C,B,PASS,?,small,United States/Canada
+0.00,Basic Energy Services,(gone),★,C,B,PASS,2021,small,United States/Canada
+0.00,Tidewater,NYSE:TDW,★,C,F,PASS,2017,small,United States/Canada
+0.00,Pacific Drilling,(gone),★,C,F,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Tidewater,NYSE:TDW,★,C → B,F,ACQUIRED,2023,small,United States/Canada
+0.00,Mallinckrodt,(re-emerged 2024),★,C → C,B,REPEAT_RX,?,small,United States/Canada
+0.00,Halcón Resources,(gone),★,C,B,PASS_FALSE_FRIEND,2019,small,United States/Canada
+0.00,Energy XXI,(acquired 2018),★,C,B,PASS,?,small,United States/Canada
+0.00,SunPower,(Ch.11 2024),★,C,B,PASS,?,small,United States/Canada
+0.00,Lordstown Motors,(Ch.11 2023),★,C,B,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Nikola,(Ch.11 2025),★,C,B,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Hyzon Motors,(delisted),★,C,B,PASS,?,small,United States/Canada
+0.00,Lion Electric,(CCAA 2024),○,C,B,PASS,?,small,United States/Canada
+0.00,Northvolt,(private; SEK Ch.11 2024),★,C,B,PASS,?,small,United States/Canada
+0.00,Britishvolt,(UK administration 2023),★,C,B,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Steward Health,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Envision Healthcare,(Ch.11 2023),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Mallinckrodt,NYSE:MNK,★,C → C,Unknown,ACQUIRED,?,small,United States/Canada
+0.00,Akorn Pharmaceuticals,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Surgalign Holdings,(gone),★,C,Unknown,PASS_FALSE_FRIEND,2023,small,United States/Canada
+0.00,Big Lots,(Ch.11 2024 → emerged sale),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Express Inc,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Rite Aid,(Ch.11 2023; Ch.22 2025),★,C → C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Tupperware Brands,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Container Store,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Bed Bath & Beyond,(gone 2023),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Joann Inc,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,At Home Group,(Ch.11 2025),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Party City,(Ch.11 2025),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,BurgerFi,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,TGI Fridays,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Hooters,(Ch.11 2025),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,99 Cents Only,(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,Zachry Holdings,(Ch.11 2024),★,C,Unknown,PASS,?,small,United States/Canada
+0.00,LL Flooring (Lumber Liquidators),(Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,United States/Canada
+0.00,First Republic,(acquired JPM 2023),★,C,A1,PASS_FALSE_FRIEND,2009,small,United States/Canada
+0.00,Signature Bank,(acquired NYCB 2023),★,C,A1,PASS_FALSE_FRIEND,2009,small,United States/Canada
+0.00,Silicon Valley Bank,(acquired First Citizens 2023),★,C,A1,PASS_FALSE_FRIEND,2009,small,United States/Canada
+0.00,Republic First Bancorp,(acquired Fulton 2024),★,C,A1,PASS_FALSE_FRIEND,2009,small,United States/Canada
+0.00,Frontier Communications,(acquired Verizon 2024),★,,Unknown,ACQUIRED,2024,small,United States/Canada
+0.00,Vice Media,(Ch.11 2023),★,C,Unknown,PASS,?,small,United States/Canada
+0.00,Stronghold Digital,NASDAQ:SDIG,★,A,B,ACQUIRED,2024,small,United States/Canada
+0.00,Argo Blockchain,NASDAQ:ARBK,★,C,B,PASS,2024,small,United States/Canada
+0.00,Spirit AeroSystems,(acquired Boeing 2024),★,C → acquired,B,ACQUIRED,2024,small,United States/Canada
+0.00,Petrofac,(gone),★,C,E,PASS_FALSE_FRIEND,2025,small,United Kingdom
+0.00,Wood Group,(gone private 2026),★,C,A1,PASS_FALSE_FRIEND,2026,small,United Kingdom
+0.00,Cazoo,(delisted 2024),★,C,A1,PASS_FALSE_FRIEND,?,small,United Kingdom
+0.00,Made.com,(gone),★,C,A1,PASS_FALSE_FRIEND,?,small,United Kingdom
+0.00,Ted Baker,(sold 2022),★,C → acquired,A1,ACQUIRED,?,small,United Kingdom
+0.00,Carpetright,(Ch.11 2024),★,C,A1,PASS_FALSE_FRIEND,?,small,United Kingdom
+0.00,Wilko,(admin 2023),★,C,A1,PASS_FALSE_FRIEND,?,small,United Kingdom
+0.00,Network International,(acquired 2024),★,C → acquired,A1,ACQUIRED,?,small,United Kingdom
+0.00,Orpea / Emeis,EPA:EMEIS,★,C,Unknown,PASS,?,small,Continental Europe
+0.00,EDF,(re-nationalized 2023),★,C,A1,PASS,?,small,Continental Europe
+0.00,Solocal Group,EPA:LOCAL,★,C,Unknown,PASS,?,small,Continental Europe
+0.00,Adler Group,(CH StaRUG-equivalent),★,C,Unknown,PASS,?,small,Continental Europe
+0.00,Encavis,(acquired KKR 2024),★,C → acquired,H,ACQUIRED,?,small,Continental Europe
+0.00,Varta,XETR:VAR1,★,C,E,PASS,?,small,Continental Europe
+0.00,Steinhoff,(delisted 2023),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Continental Europe
+0.00,ABENGOA,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Continental Europe
+0.00,SAS Group,(private post-Ch.11 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Continental Europe
+0.00,Abengoa,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Continental Europe
+0.00,Frigoglass,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Continental Europe
+0.00,Folli Follie,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Continental Europe
+0.00,China Evergrande,(delisted),★,C,F,PASS_FALSE_FRIEND,2024,small,Greater China / HK
+0.00,HNA Group affiliates,various,★,C,Unknown,PASS,?,small,Greater China / HK
+0.00,Tsinghua Unigroup,(private),★,C,Unknown,PASS,2022,small,Greater China / HK
+0.00,Anbang Insurance,(state-acquired),★,C,Unknown,ACQUIRED,2018,small,Greater China / HK
+0.00,Asiana Airlines,(acquired KAL 2024),★,C → acquired,Unknown,ACQUIRED,2024,small,Korea
+0.00,Sri Rejeki Isman (Sritex),IDX:SRIL,★,C,Unknown,PASS,2024,small,SE Asia / Pacific
+0.00,Boustead Holdings,(private 2024),★,C → acquired,H,ACQUIRED,?,small,SE Asia / Pacific
+0.00,Hyflux,(gone 2021),★,C,Unknown,PASS_FALSE_FRIEND,?,small,SE Asia / Pacific
+0.00,Ezion Holdings,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,SE Asia / Pacific
+0.00,Eagle Hospitality REIT,(gone),★,C,Unknown,PASS_FALSE_FRIEND,?,small,SE Asia / Pacific
+0.00,Genex Power,(acquired EnergyAustralia 2024),★,C → acquired,Unknown,ACQUIRED,2024,small,SE Asia / Pacific
+0.00,Mosaic Brands,(admin 2024),★,C,Unknown,PASS_FALSE_FRIEND,?,small,SE Asia / Pacific
+0.00,Pacific Smiles Group,(acquired Genesis Capital 2025),★,C → acquired,Unknown,ACQUIRED,?,small,SE Asia / Pacific
+0.00,Lupatech,B3:LUPA3,★,C,Unknown,PASS,?,small,Latin America
+0.00,Paranapanema,(gone),★,C,Unknown,PASS_FALSE_FRIEND,2023,small,Latin America
+0.00,Crédito Real,(gone 2022),★,C,Unknown,PASS_FALSE_FRIEND,?,small,Latin America
+0.00,Tongaat Hulett,(BR),★,C,Unknown,PASS,?,small,Latin America
+0.00,NMC Health,(delisted; gone),★,C,Unknown,PASS,2020,small,Latin America
+0.00,Petropavlovsk,(gone 2022),★,C,Unknown,PASS,?,small,Latin America
+0.00,Polymetal,(delisted 2024),★,C,Unknown,PASS,?,small,Latin America
+0.00,Arabtec successor entities,(gone),★,C,Unknown,PASS_FALSE_FRIEND,2020,small,MEA / Frontier
+0.00,Marelli,(private; KKR),★,C,H,PASS,2024,small,Japan
+0.00,Toshiba,(private; JIP),★,C,E+H,PASS,?,small,Japan
+0.00,Homeplus,(private; MBK),○,C,E+H,PASS,2025,small,Korea
+0.00,Zhongzhi/Zhongrong fallout names,—,★,C,Unknown,PASS,?,small,Greater China / HK
+0.00,Yango/Yuzhou/Modern Land,HK,★,C,Unknown,PASS,?,small,Greater China / HK
+0.00,iTeos Therapeutics,(wound down 2025),★,A,Unknown,PASS_FALSE_FRIEND,?,small,MEA / Frontier
+0.00,Canoo / Arrival / Lordstown,(gone),★,C,K1,PASS,2021,small,MEA / Frontier
+0.00,MedMen / Hexo etc.,(gone),★,C,Unknown,PASS,?,small,MEA / Frontier
+0.00,Invacare → holdco,(private),,,F,PASS_FALSE_FRIEND,2023,small,MEA / Frontier
+0.00,Boskalis Westminster,(delisted; HAL),○,C → acquired,H,ACQUIRED,2022,mid,Continental Europe
+0.00,Rhön-Klinikum,(private),○,C → acquired,H,ACQUIRED,?,small,Continental Europe
+0.00,Encavis,(acquired KKR Mar 2024),★,C → acquired,A2+H,ACQUIRED,?,small,Continental Europe
+0.00,Eroski,(cooperative),▲,C,A1,PASS,2024,small,Continental Europe
+0.00,Tianjin Steel Pipe,(private),○,C,Unknown,PASS,2024,small,Greater China / HK
+0.00,Yango / Yuzhou / Modern Land / Fantasia,HK various,★,C,Unknown,PASS_FALSE_FRIEND,?,small,Greater China / HK
+0.00,OI SA,B3:OIBR3,★,C,A1,PASS_FALSE_FRIEND,?,small,Latin America
+0.00,Heritage Bank Nigeria,(gone),★,C,G,PASS,2024,small,MEA / Frontier
+0.00,Tongaat Hulett,(provisional liquidation 2026),★,C,G,REPEAT_RX,2026,small,MEA / Frontier
+0.00,Liberty Holdings (renamed),(taken-private template),★,C → acquired,G,ACQUIRED,?,small,MEA / Frontier
+0.00,EDF,(re-nationalised 2023),★,C,A1,PASS,?,small,Continental Europe
+0.00,Atlantia → Mundys (taken private),(private 2023),★,C → acquired,H,ACQUIRED,?,small,Continental Europe
+0.00,グロバル社,3271,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＪＨＤ,2721,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＲｅＹｕｕＪａｐａｎ,9425,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ブイキューブ,3681,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－ＮＡＴＴＹＨＤ,7674,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｒ－平和ＲＥ,8966,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－テラドローン,278A,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－シンカ,149A,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＫＯＺＯＨＤ,9973,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－ＧＮＩ,2160,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＳＡＮＫＯ　ＭＦ,2762,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－クリングル,4884,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－ＯＴＳ,4564,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＡＳＡＨＩ　ＥＩＴＯ,5341,○,A,B,ACQUIRED,2026,small,Japan
+0.00,東邦鉛,5707,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－ＭＤＮＴ,2370,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－メドレック,4586,○,A,B,ACQUIRED,2026,small,Japan
+0.00,みずほリース,8425,○,A,B,ACQUIRED,2026,small,Japan
+0.00,クオンタムＳ,2338,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ｅｎｉｓｈ,3667,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－リプロセル,4978,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＪＢイレブン,3066,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ウチヤマＨＤ,6059,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＷＨＹ　ＨＯＷ　ＤＯ,3823,○,A,B,ACQUIRED,2026,small,Japan
+0.00,太洋物産,9941,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ビート,9399,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－キッズ・バイオ,4584,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－ＴＯＲＩＣＯ,7138,○,A,B,ACQUIRED,2026,small,Japan
+0.00,イノベーション,3970,○,A,B,ACQUIRED,2026,small,Japan
+0.00,セキド,9878,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ダイヤＨＤ,6699,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ＡＮＡＰ,3189,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－海帆,3133,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－モダリス,4883,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ハピネス＆Ｄ,3174,○,A,B,ACQUIRED,2026,small,Japan
+0.00,オルトプラス,3672,○,A,B,ACQUIRED,2026,small,Japan
+0.00,倉元,5216,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－シンバイオ製薬,4582,○,A,B,ACQUIRED,2026,small,Japan
+0.00,メタプラネット,3350,○,A,B,ACQUIRED,2026,small,Japan
+0.00,船井総研ＨＤ,9757,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－ＷＩＺＥ,3664,○,A,B,ACQUIRED,2026,small,Japan
+0.00,ウインテスト,6721,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－フルッタフルッタ,2586,○,A,B,ACQUIRED,2026,small,Japan
+0.00,Ｇ－リボミック,4591,○,A,B,ACQUIRED,2026,small,Japan
+0.00,フジコピアン,7957,○,A,B,ACQUIRED,2026,small,Japan
+0.00,GENERAL SHOPPING E OUTLETS DO BRASIL BRASIL S.A.,—,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Latin America

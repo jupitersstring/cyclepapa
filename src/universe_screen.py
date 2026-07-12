@@ -1151,11 +1151,33 @@ def render(candidates: list[Candidate]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def write_full_candidate_csv(candidates: list["Candidate"]) -> None:
+    """Emit EVERY scored candidate to a complete machine-readable CSV so
+    the downstream reward/risk ranker sees the full universe, not just the
+    lossy per-region top-40 display tables (which silently dropped 200+
+    investable names below the display cutoff — Transocean, Peabody,
+    Chesapeake, Valaris, the whole energy/coal/drilling restructuring
+    universe)."""
+    import csv as _csv
+    out = REPO / "output" / "universe_full.csv"
+    with out.open("w", newline="") as f:
+        w = _csv.writer(f)
+        w.writerow(["score", "name", "ticker", "conf", "bucket",
+                    "archetype", "status", "vintage", "size", "region"])
+        for c in sorted(candidates, key=lambda x: -x.triage_score):
+            arch = c.archetype + ("+" + ",".join(c.secondary_archetypes)
+                                  if c.secondary_archetypes else "")
+            w.writerow([f"{c.triage_score:.2f}", c.name, c.ticker, c.conf,
+                        c.bucket, arch, c.status,
+                        c.vintage_year or "?", c.size_class, c.region])
+
+
 def main():
     candidates = parse()
     OUT.write_text(render(candidates))
+    write_full_candidate_csv(candidates)
     print(f"Wrote {OUT}")
-    print(f"  {len(candidates)} candidates parsed")
+    print(f"  {len(candidates)} candidates parsed (full set → output/universe_full.csv)")
     print(f"  T0 (>=0.80): {sum(1 for c in candidates if c.triage_score >= 0.80)}")
     print(f"  T1 (0.55-0.80): {sum(1 for c in candidates if 0.55 <= c.triage_score < 0.80)}")
     print(f"  T2 (0.35-0.55): {sum(1 for c in candidates if 0.35 <= c.triage_score < 0.55)}")
