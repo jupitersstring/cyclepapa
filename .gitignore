@@ -11,3 +11,6 @@ data/cyclepapa.db-shm
 *.pyc
 __pycache__/
 *.log
+
+# transient pipeline logs
+*.log

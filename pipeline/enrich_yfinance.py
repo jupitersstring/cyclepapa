@@ -198,14 +198,19 @@ def run(max_n=4000, rps=3.0):
         if not res:
             n_fail += 1
             # With crumb auth working, a no-quote US ticker is DELISTED (the
-            # 2025-26 M&A wave), not a fetch failure — record it so pick sheets
-            # can exclude it and future runs stop re-fetching. Foreign tickers
-            # (suffix/no-suffix mismatches) are NOT marked — too ambiguous.
+            # 2025-26 M&A wave), not a fetch failure. But a TRANSIENT blip also
+            # returns None (bulk-run verification found live ETFs marked dead),
+            # so only mark dead after a fresh-session CONFIRMING second miss.
+            # Foreign tickers (suffix mismatches) are never marked — ambiguous.
             if _CRUMB[0] and "." not in tkr and tkr.isalpha():
-                conn.execute("INSERT OR REPLACE INTO yf_dead VALUES (?,?)", (tkr, asof))
-                conn.commit()
+                time.sleep(1.0)
+                confirm = make_session()
+                if _CRUMB[0] and fetch_one(tkr, confirm) is None:
+                    conn.execute("INSERT OR REPLACE INTO yf_dead VALUES (?,?)", (tkr, asof))
+                    conn.commit()
+                session = confirm
             # periodic session refresh on repeated failures
-            if n_fail % 25 == 0:
+            elif n_fail % 25 == 0:
                 session = make_session()
             continue
         # Column-explicit UPSERT: update only the valuation columns and leave
