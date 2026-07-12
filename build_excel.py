@@ -67,11 +67,42 @@ def pick_top(df, n, rank_col="best_rank"):
               .head(n))
 
 
+import json, os
+_FUND_CACHE_PATH = "/home/user/cyclepapa/data/fundamentals_cache.json"
+_FUND_CACHE = None
+
+
+def _load_fund_cache():
+    global _FUND_CACHE
+    if _FUND_CACHE is None:
+        try:
+            with open(_FUND_CACHE_PATH) as f:
+                _FUND_CACHE = json.load(f)
+        except Exception:
+            _FUND_CACHE = {}
+    return _FUND_CACHE
+
+
+def _save_fund_cache():
+    if _FUND_CACHE is not None:
+        try:
+            with open(_FUND_CACHE_PATH, "w") as f:
+                json.dump(_FUND_CACHE, f)
+        except Exception:
+            pass
+
+
 def get_info(ticker):
+    """Cache-first fundamentals lookup. Live-fetch only cache misses so a
+    rerun after a full pipeline pass survives Yahoo rate limiting; a failed
+    live fetch returns whatever (possibly empty) cached record exists."""
+    cache = _load_fund_cache()
+    if ticker in cache:
+        return cache[ticker]
     try:
         t = yf.Ticker(ticker)
         info = t.info or {}
-        return {
+        rec = {
             "longName":              info.get("longName") or info.get("shortName"),
             "country":               info.get("country"),
             "sector":                info.get("sector"),
@@ -95,6 +126,11 @@ def get_info(ticker):
             "summary":               (info.get("longBusinessSummary") or "")[:600],
             "website":               info.get("website"),
         }
+        # Only cache non-empty results so a rate-limited empty fetch can be
+        # retried on the next run.
+        if rec.get("longName") or rec.get("marketCap"):
+            cache[ticker] = rec
+        return rec
     except Exception:
         return {}
 
@@ -162,6 +198,18 @@ def narrative_score(row):
 
 def main():
     big = load_all()
+    # Merge the standalone-scan legs (Leledc R/R, Dormeier Volume) so the
+    # picks workbook reflects every measure, not just the region-CSV legs.
+    for path, keep in [("/tmp/leledc_rank.csv", ["LELE", "LELE_W", "LELE_M",
+                                                 "w_rr", "w_support", "w_resistance"]),
+                       ("/tmp/volume_rank.csv", ["V", "v_bucket", "v_rvol",
+                                                 "v_vpci", "v_dryup"])]:
+        try:
+            leg = pd.read_csv(path).drop_duplicates("ticker")
+            cols = ["ticker"] + [c for c in keep if c in leg.columns]
+            big = big.merge(leg[cols], on="ticker", how="left")
+        except FileNotFoundError:
+            pass
     big = big[big.ticker.apply(is_native)].copy()
     big["best_rank"] = big[["daily_rank", "weekly_rank", "monthly_rank"]].max(axis=1)
     not_rejected = (
@@ -398,12 +446,17 @@ def main():
     # Collect unique tickers across all tabs, fetch info once each.
     all_tickers = sorted({t for df in tabs.values() for t in df["ticker"]})
     print(f"Fetching yfinance info for {len(all_tickers)} unique tickers...", file=sys.stderr)
+    _load_fund_cache()
+    n_cached = sum(1 for t in all_tickers if t in _FUND_CACHE)
+    print(f"  {n_cached}/{len(all_tickers)} already in fundamentals cache", file=sys.stderr)
     info_cache = {}
     for i, t in enumerate(all_tickers):
         info_cache[t] = get_info(t)
         if (i + 1) % 25 == 0:
             print(f"  fetched {i+1}/{len(all_tickers)}", file=sys.stderr)
+            _save_fund_cache()
             time.sleep(0.5)
+    _save_fund_cache()
     info_df = pd.DataFrame.from_dict(info_cache, orient="index")
     info_df.index.name = "ticker"
     info_df = info_df.reset_index()
@@ -477,6 +530,8 @@ def main():
         "ADV", "ADV_play_now", "adv_20", "adv_to_mcap",
         "adv_slope_pct_wk", "adv_accel_pct_wk",
         "play_now_score",
+        "LELE", "LELE_W", "LELE_M", "w_rr",
+        "V", "v_bucket", "v_rvol", "v_vpci", "v_dryup",
         "six_school_avg", "all_conf_avg", "all_conf_min",
     ]
     info_cols = [
