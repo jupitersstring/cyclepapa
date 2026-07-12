@@ -38,6 +38,7 @@ def build_index(conn):
 
 def run():
     conn = sqlite3.connect(DB)
+    conn.execute("UPDATE pb_affiliation SET ticker=NULL")   # idempotent re-map
     idx = build_index(conn)
     # longest keys first so a fuzzy contains-match prefers the most specific name
     keys_by_len = sorted(idx.keys(), key=len, reverse=True)
@@ -51,11 +52,15 @@ def run():
         if tk:
             exact += 1
         elif len(n) >= 6:
-            # fuzzy: our universe name fully contains the affiliation name (or vice
-            # versa) as a whole-word prefix — guards against 'ARC' matching 'ARCELOR'
+            # fuzzy: one name is a whole-word prefix of the other. Require the
+            # SHORTER (the shared stem) to be multi-word, so a generic single word
+            # can't bridge two different firms — e.g. "Reliance" must not link
+            # "Reliance Industries" (Ambani, India) to "Reliance, Inc." (US steel, RS).
             for k in keys_by_len:
-                if (n == k or n.startswith(k + " ") or k.startswith(n + " ")) and abs(len(k) - len(n)) <= 12:
-                    tk = idx[k]; fuzzy += 1; break
+                if n == k or n.startswith(k + " ") or k.startswith(n + " "):
+                    stem = k if len(k) < len(n) else n
+                    if " " in stem and abs(len(k) - len(n)) <= 12:
+                        tk = idx[k]; fuzzy += 1; break
         if tk:
             conn.execute("UPDATE pb_affiliation SET ticker=? WHERE rowid=?", (tk, rowid))
     conn.commit()

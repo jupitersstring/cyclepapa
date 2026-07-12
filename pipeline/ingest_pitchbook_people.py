@@ -127,12 +127,30 @@ def init_schema(conn):
     CREATE INDEX idx_pbp_theme ON pb_people(theme);
     CREATE TABLE pb_affiliation (
       full_name TEXT, company TEXT, company_type TEXT, position TEXT,
-      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0);
+      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
+      role_class TEXT);
     CREATE INDEX idx_pba_company ON pb_affiliation(company);
     CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
     """)
 
 _FORMER_RE = re.compile(r"\(former\)", re.I)
+# Role classification for the tea-leaves signal. An OUTSIDE board seat (a
+# director/advisor who does NOT run the company) is the signal — an investor or
+# operator being PLACED onto a board. A founder/CEO on their own board is not.
+_OP_RE = re.compile(r"\b(CEO|Chief Executive|CFO|Chief Financial|COO|Chief Oper|"
+                    r"President|Founder|Co-Founder|Managing Partner|Owner)\b", re.I)
+_BOARD_RE = re.compile(r"\b(Board Member|Director|Non-executive|Non-Executive|"
+                       r"Advisor|Adviser|Board Observer|Chairman|Chair|Trustee)\b", re.I)
+
+def role_class(position):
+    pos = position or ""
+    is_board = bool(_BOARD_RE.search(pos))
+    is_op = bool(_OP_RE.search(pos))
+    if is_board and not is_op:
+        return "outside_director"   # the tea leaf
+    if is_op:
+        return "operator"
+    return "other"
 
 def load_file(path, conn, principal_keys):
     prefix = os.path.basename(path).split("-")[0]
@@ -174,9 +192,9 @@ def load_file(path, conn, principal_keys):
             theme, _cell(r, ci, "Primary Company Website"), is_prin))
         if company:
             conn.execute("""INSERT INTO pb_affiliation
-                (full_name, company, company_type, position, is_former, theme, ticker, is_principal)
-                VALUES (?,?,?,?,?,?,NULL,?)""",
-                (full, company, ctype, pos, is_former, theme, is_prin))
+                (full_name, company, company_type, position, is_former, theme, ticker, is_principal, role_class)
+                VALUES (?,?,?,?,?,?,NULL,?,?)""",
+                (full, company, ctype, pos, is_former, theme, is_prin, role_class(pos)))
         n += 1
     return n
 
