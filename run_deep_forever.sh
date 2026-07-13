@@ -75,8 +75,25 @@ echo "$(ts) merging + re-rendering" >> "$LOG"
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
 "$PY" - <<'PYEOF' >> "$LOG" 2>&1
 import pandas as pd, numpy as np
-d = pd.read_csv("asymmetry_global.csv")
-d.replace([np.inf,-np.inf], np.nan).to_csv("asymmetry_global.csv", index=False)
+d = pd.read_csv("asymmetry_global.csv", low_memory=False)
+d = d.replace([np.inf, -np.inf], np.nan)
+# Plausibility clamp: nano/micro-caps with near-zero market cap produce
+# absurd ratios (e.g. fcf_yield of 190,000x) that would spuriously inflate
+# composite scores. Null values outside sane bands rather than clamp-to-edge
+# so they create no fake signal. (~138 fcf_yield outliers observed.)
+BANDS = {
+    'fcf_yield': (-2.0, 2.0), 'dividend_yield': (0.0, 1.0),
+    'ev_ebitda': (-1000, 1000), 'ev_ebit': (-1000, 1000),
+    'ev_sales': (-500, 500), 'p_e': (-1000, 1000), 'p_s': (0, 1000),
+    'p_b': (-500, 500), 'pb': (-500, 500),
+}
+for col, (lo, hi) in BANDS.items():
+    if col in d.columns:
+        bad = d[col].notna() & ((d[col] < lo) | (d[col] > hi))
+        if bad.any():
+            print(f"  clamp: nulled {int(bad.sum())} out-of-band {col}", flush=True)
+            d.loc[bad, col] = np.nan
+d.to_csv("asymmetry_global.csv", index=False)
 PYEOF
 
 for cmd in \
