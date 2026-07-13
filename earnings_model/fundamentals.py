@@ -52,6 +52,31 @@ def make_session(warm: bool = True):
     return session
 
 
+_CURL_HEALTHY: bool | None = None   # environment probe, cached per process
+
+
+def curl_cffi_healthy(session=None) -> bool:
+    """Can the curl_cffi transport actually reach Yahoo, or does the egress proxy
+    reset its impersonated-TLS handshake (curl error 35)? The result is an
+    environment property (not session-specific), so it is probed once and cached.
+    When False, :class:`SessionManager` transparently routes fetches through the
+    urllib :mod:`earnings_model.yahoo` client instead."""
+    global _CURL_HEALTHY
+    if _CURL_HEALTHY is not None:
+        return _CURL_HEALTHY
+    s = session if session is not None else make_session(warm=False)
+    ok = False
+    if s is not None:
+        try:
+            r = s.get("https://query1.finance.yahoo.com/v8/finance/chart/AAPL"
+                      "?range=1d&interval=1d", timeout=8)
+            ok = getattr(r, "status_code", None) == 200
+        except Exception:
+            ok = False
+    _CURL_HEALTHY = ok
+    return ok
+
+
 class RateLimiter:
     """Adaptive inter-request pacer for a shared-IP bulk run.
 
@@ -93,26 +118,43 @@ class SessionManager:
     ``mgr.fetch(symbol)`` per ticker and it paces, adapts, and self-heals."""
 
     def __init__(self, rps: float | None = None,
-                 refresh_after: int = config.SESSION_REFRESH_AFTER_FAILS):
+                 refresh_after: int = config.SESSION_REFRESH_AFTER_FAILS,
+                 transport: str = "auto"):
         min_interval = (1.0 / rps) if rps else config.RATE_MIN_INTERVAL
         self.limiter = RateLimiter(min_interval=min_interval)
         self.refresh_after = refresh_after
         self._session = make_session(warm=True)
         self._consec_fails = 0
         self.refreshes = 0
+        # Transport auto-detection: if curl_cffi is reset by the proxy, fall back
+        # to the urllib Yahoo client so build_fundamentals/step_fetch/fetch_new
+        # keep working without any call-site changes.
+        self._yahoo = None
+        if transport == "urllib" or (transport == "auto"
+                                     and not curl_cffi_healthy(self._session)):
+            from . import yahoo   # lazy: yahoo imports fundamentals (circular)
+            self._yahoo = yahoo.YahooClient()
 
     @property
     def session(self):
         return self._session
 
     def refresh(self) -> None:
-        self._session = make_session(warm=True)
+        if self._yahoo is not None:
+            self._yahoo.warm()
+        else:
+            self._session = make_session(warm=True)
         self._consec_fails = 0
         self.refreshes += 1
 
     def fetch(self, symbol: str, **kw) -> dict:
         self.limiter.wait()
-        raw = fetch_raw(symbol, session=self._session, **kw)
+        if self._yahoo is not None:
+            from . import yahoo
+            raw = yahoo.fetch_raw(symbol, self._yahoo,
+                                  with_surprises=kw.get("with_surprises", False))
+        else:
+            raw = fetch_raw(symbol, session=self._session, **kw)
         if raw.get("fetch_ok"):
             self._consec_fails = 0
             self.limiter.recover()
