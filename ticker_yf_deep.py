@@ -204,7 +204,13 @@ def main():
     ap.add_argument("--rate", type=float, default=2.5)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--attempts", default="fdb_deep_attempts.json")
-    ap.add_argument("--max-attempts", type=int, default=3)
+    # A name that returns HTTP 200 with empty/insufficient data is
+    # deterministically dead — Yahoo has no fundamentals-timeseries for
+    # it, and retrying just burns throttle budget. Soft-throttle surfaces
+    # as 429 (caught as Throttled, which does NOT count an attempt), so 2
+    # tries is enough to absorb a transient non-429 blip while retiring
+    # the ~12k dead nano-caps fast.
+    ap.add_argument("--max-attempts", type=int, default=2)
     args = ap.parse_args()
 
     src = pd.read_csv(args.symbols_from)

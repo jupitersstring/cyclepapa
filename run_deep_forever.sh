@@ -55,8 +55,11 @@ att = {}
 if os.path.exists("fdb_deep_attempts.json"):
     try: att = json.load(open("fdb_deep_attempts.json"))
     except Exception: att = {}
-# "remaining" = names neither enriched nor retired (attempts < 3)
-print(len([s for s in u if s not in done and att.get(s, 0) < 3]))
+# "remaining" = names neither enriched nor retired. MUST match the
+# enricher's --max-attempts (default 2) or names stuck at the cap are
+# counted as remaining forever and the driver never reaches exhaust.
+MAX_ATTEMPTS = 2
+print(len([s for s in u if s not in done and att.get(s, 0) < MAX_ATTEMPTS]))
 PYEOF
 )
   echo "$(ts) remaining=$REMAIN" >> "$LOG"
