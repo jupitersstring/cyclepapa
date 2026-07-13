@@ -386,9 +386,13 @@ def is_native(t):
     return suf in {
         ".L",".PA",".AS",".BR",".LS",".IR",".MI",".MC",".SW",".VI",
         ".DE",".ST",".OL",".CO",".HE",".AT",
-        ".T",".JP",".HK",".SI",".KS",".KQ",".TW",".NS",".BO",
+        ".T",".JP",".HK",".SI",".KS",".KQ",".TW",".TWO",".NS",".BO",
         ".SS",".SZ",".AX",".NZ",
     }
+    # NOTE: this suffix set MUST match master_full_universe.is_clean and
+    # audit_coverage.NATIVE_SUF. ".TWO" (Taipei OTC) was previously omitted
+    # here, silently excluding 81 tickers from the PSAR/Volume/Leledc scans
+    # while the master still counted them — a divergent "native" definition.
 
 
 def main(tickers_override=None, skip_intraday=False, native_only=False):

@@ -76,11 +76,13 @@ def main():
             sys.exit(2)
 
         rows = []
+        rej = {"no_fetch": 0, "exception": 0}
         for t in batch:
             try:
                 w = weekly.get(t)
                 m = monthly.get(t)
                 if w is None and m is None:
+                    rej["no_fetch"] += 1
                     continue
                 r = evaluate_ticker(w, m)
                 row = {"ticker": t}
@@ -88,6 +90,7 @@ def main():
                     row[k] = r.get(k, np.nan)
                 rows.append(row)
             except Exception:
+                rej["exception"] += 1
                 continue
 
         if rows:
@@ -95,6 +98,8 @@ def main():
             header = not os.path.exists(OUT)
             out.to_csv(OUT, mode="a", header=header, index=False)
             print(f"  appended {len(out)} rows -> {OUT}", file=sys.stderr)
+        if sum(rej.values()):
+            print(f"  rejected {sum(rej.values())}/{len(batch)}: {rej}", file=sys.stderr)
 
         del weekly, monthly
         gc.collect()

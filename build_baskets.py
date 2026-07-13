@@ -216,6 +216,13 @@ def main():
 
     # 5. THEMATIC: TECH cluster (top 15 tech by master, $5M+)
     pool5 = full[full.adv_usd >= 5e6].sort_values('master', ascending=False).head(200)
+    # Patch sector for any pool5 ticker not already in the seed lookup — else
+    # attach() maps them to sector='' and they can never match the == filter
+    # below (silently excluded 14 Technology + 2 Real Estate names). The other
+    # sector-filtered baskets already do this; tech/reits previously did not.
+    extras = [t for t in pool5.ticker if t not in sectors]
+    if extras:
+        sectors.update(name_lookup(extras))
     pool5 = attach(pool5)
     tech = pool5[pool5.sector == 'Technology'].head(15)
     baskets['tech_15'] = tech[cols]

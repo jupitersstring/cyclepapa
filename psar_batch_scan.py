@@ -86,6 +86,7 @@ def main():
             per_interval[iv] = fetch_interval_bulk(batch, iv)
 
         rows = []
+        rej = {"no_composite": 0, "exception": 0}
         for t in batch:
             try:
                 asset_ma, rel_ma, used = composites_for_ticker(
@@ -93,6 +94,7 @@ def main():
                 a = current_and_slope(asset_ma)
                 r = current_and_slope(rel_ma)
                 if a is None and r is None:
+                    rej["no_composite"] += 1   # <10 valid composite points / no TF survived
                     continue
                 row = {"ticker": t, "n_active_tfs": len(used)}
                 if a is not None:
@@ -103,7 +105,10 @@ def main():
                                rel_score=r[2])
                 rows.append(row)
             except Exception:
+                rej["exception"] += 1
                 continue
+        if sum(rej.values()):
+            print(f"  rejected {sum(rej.values())}/{len(batch)}: {rej}", file=sys.stderr)
 
         if rows:
             out = pd.DataFrame(rows).merge(meta, on="ticker", how="left")

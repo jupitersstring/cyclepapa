@@ -57,26 +57,33 @@ def main():
             print("ABORT: batch fetch rate-limited; exit 2", file=sys.stderr)
             sys.exit(2)
         rows = []
+        rej = {"no_fetch": 0, "no_volume": 0, "leg_gate": 0, "exception": 0}
         for t in batch:
             try:
                 w = weekly.get(t)
                 if w is None:
+                    rej["no_fetch"] += 1
                     continue
                 # fetch_interval_bulk returns OHLC only if Volume absent from
                 # its column set; ensure Volume present
                 if "Volume" not in w.columns:
+                    rej["no_volume"] += 1
                     continue
                 r = volume_breakout(w)
                 if not r:
+                    rej["leg_gate"] += 1   # <30 weekly bars / no volume / tot_w==0
                     continue
                 r["ticker"] = t
                 rows.append(r)
             except Exception:
+                rej["exception"] += 1
                 continue
         if rows:
             out = pd.DataFrame(rows).merge(meta, on="ticker", how="left")
             out.to_csv(OUT, mode="a", header=not os.path.exists(OUT), index=False)
             print(f"  appended {len(out)} -> {OUT}", file=sys.stderr)
+        if sum(rej.values()):
+            print(f"  rejected {sum(rej.values())}/{len(batch)}: {rej}", file=sys.stderr)
         del weekly
         gc.collect()
 
