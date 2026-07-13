@@ -206,8 +206,8 @@ def build_tier_sheet(ws, tier_name: str, df: pd.DataFrame):
 
         _write_money(ws, row, 9, r.get('market_cap'), font=mono)
         _verdict_badge(ws, row, 10, r.get('verdict', 'UNRESEARCHED'))
-        _write_int(ws, row, 11, int(r.get('archetype_count') or 0), font=mono)
-        _write_int(ws, row, 12, int(r.get('cluster_n') or 0), font=mono)
+        _write_int(ws, row, 11, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=mono)
+        _write_int(ws, row, 12, int(r['cluster_n']) if pd.notna(r.get('cluster_n')) else 0, font=mono)
 
         # Archetypes string (truncate to 70 chars)
         tags = str(r.get('archetype_tags_str') or '')[:70]

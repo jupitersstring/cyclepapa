@@ -636,7 +636,7 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
         ("Intrinsic discount",   r.get('intrinsic_discount'),     "score"),
         ("Qual multiplier (x)",  r.get('qual_mult') or 1.0,       "ratio"),
         ("Post-rally factor (x)", r.get('post_rally_factor') or 1.0, "ratio"),
-        ("Cluster signals (of 7)", int(r.get('cluster_n') or 0), "int"),
+        ("Cluster signals (of 7)", int(r['cluster_n']) if pd.notna(r.get('cluster_n')) else 0, "int"),
     ]
     label_font = _font(size=9, bold=True, color=MUTED, name=SANS)
     num_font = _font(size=10, name=MONO)
@@ -716,8 +716,9 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
         flags.append(f"Sub-book  (P/B {float(r['pb']):.2f})")
     if pd.notna(r.get('insider_ownership_pct')) and r.get('insider_ownership_pct', 0) >= 0.30:
         flags.append(f"Insider-aligned  ({float(r['insider_ownership_pct']) * 100:.0f}% insider)")
-    if int(r.get('cluster_n') or 0) >= 4:
-        flags.append(f"Cluster stack  ({int(r['cluster_n'])} of 7 inflection signals)")
+    _cn = r.get('cluster_n')
+    if pd.notna(_cn) and int(_cn) >= 4:
+        flags.append(f"Cluster stack  ({int(_cn)} of 7 inflection signals)")
     if flags:
         _section_rule(ws, row, "Signals firing", span_cols=5); row += 1
         for f in flags:

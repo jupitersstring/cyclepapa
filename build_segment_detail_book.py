@@ -168,7 +168,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_today_as
         _write_score(ws, r_idx, 13, r.get('net_debt_ebitda'), font=f_text)
         _write_pct(ws, r_idx, 14, r.get('momentum_12m'), font=f_text)
         # Segment columns
-        _write_int(ws, r_idx, 15, int(r.get('segment_count') or 0), font=f_text)
+        _write_int(ws, r_idx, 15, int(r['segment_count']) if pd.notna(r.get('segment_count')) else 0, font=f_text)
         _write_ratio(ws, r_idx, 16, r.get('segment_revenue_hhi'), font=f_text)
         ls_name = str(r.get('largest_segment_name') or '')[:22]
         ls_share = r.get('largest_segment_share')
@@ -180,7 +180,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_today_as
         ws.cell(row=r_idx, column=17).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=r_idx, column=18, value=str(r.get('top_segments') or '')[:80]).font = f_text_muted
         ws.cell(row=r_idx, column=18).alignment = _TXT_ALIGN_LEFT
-        _write_int(ws, r_idx, 19, int(r.get('geographic_region_count') or 0), font=f_text)
+        _write_int(ws, r_idx, 19, int(r['geographic_region_count']) if pd.notna(r.get('geographic_region_count')) else 0, font=f_text)
         ws.cell(row=r_idx, column=20, value=str(r.get('top_regions') or '')[:60]).font = f_text_muted
         ws.cell(row=r_idx, column=20).alignment = _TXT_ALIGN_LEFT
         fs_name = str(r.get('fastest_segment_name') or '')[:20]

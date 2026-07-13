@@ -34,3 +34,5 @@ asymmetry_global.prefdb.bak
 deep_enrich.log
 deep_driver.log
 .deep_rendered
+.yahoo_session.json
+pip_install.log

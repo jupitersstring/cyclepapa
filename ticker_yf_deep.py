@@ -286,14 +286,22 @@ def main():
                 "market_cap": m.get("market_cap_bucket")}
         try:
             row = enrich_one(sess, sym, meta)
-        except (Throttled, StaleCrumb):
-            # Transient — does NOT count as an attempt; the name stays in
-            # todo and gets retried once the throttle window clears.
+        except StaleCrumb:
+            # The crumb is genuinely invalid (401/403). This is the ONLY
+            # case that warrants re-hitting getcrumb — force a real re-warm
+            # (bypasses the disk cache). Does not count as an attempt.
             consec += 1
-            back = min(90, 10 * (1 + consec // 5))
-            time.sleep(back)
-            if consec % 25 == 0:
-                sess.warm()
+            if not sess.warm(force=True):
+                time.sleep(30)
+            continue
+        except Throttled:
+            # Rate-limited (429) — the crumb is FINE, we're just being
+            # throttled. Re-warming here would hit the already-throttled
+            # getcrumb endpoint and deepen the throttle (the root-cause
+            # amplifier). So back off only; never re-warm on 429. Does not
+            # count as an attempt — the name stays in todo.
+            consec += 1
+            time.sleep(min(90, 8 * (1 + consec // 3)))
             continue
         except Exception:
             row = None

@@ -105,24 +105,81 @@ OUT_COLUMNS = ["symbol"] + sorted({c for _, _, c in FIELD_MAP})
 class YahooSession:
     """Warmed cookie + crumb session with auto re-warm."""
 
+    # Persisted so every fresh process (each 400-name chunk, every
+    # container restart) REUSES the cookie+crumb instead of re-hitting
+    # /v1/test/getcrumb — that endpoint is the most aggressively
+    # IP-throttled, so re-warming per process was the dominant
+    # self-inflicted amplifier of the 429s. The crumb/cookie pair is
+    # valid for hours; we reuse it optimistically and only pay the
+    # getcrumb tax again when a data call proves it stale.
+    SESSION_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                 ".yahoo_session.json")
+    SESSION_MAX_AGE = 7200  # 2h
+
     def __init__(self):
         self.cj = http.cookiejar.CookieJar()
         self.opener = None
         self.crumb = None
+        self._ua = None
         self._build_opener()
 
-    def _build_opener(self):
-        ua = random.choice(UA_POOL)
+    def _build_opener(self, ua: str = None):
+        self._ua = ua or random.choice(UA_POOL)
         self.opener = urllib.request.build_opener(
             urllib.request.HTTPCookieProcessor(self.cj))
         self.opener.addheaders = [
-            ("User-Agent", ua),
+            ("User-Agent", self._ua),
             ("Accept", "text/html,application/json,application/xhtml+xml,*/*"),
             ("Accept-Language", "en-US,en;q=0.9"),
         ]
 
-    def warm(self, max_attempts: int = 5) -> bool:
-        """Obtain cookies + crumb. Returns True on success. Backs off on 429."""
+    def _save_session(self):
+        try:
+            cookies = [{"name": c.name, "value": c.value,
+                        "domain": c.domain, "path": c.path} for c in self.cj]
+            tmp = self.SESSION_CACHE + ".tmp"
+            with open(tmp, "w") as f:
+                json.dump({"crumb": self.crumb, "cookies": cookies,
+                           "ua": self._ua, "ts": time.time()}, f)
+            os.replace(tmp, self.SESSION_CACHE)
+        except Exception:
+            pass
+
+    def _load_session(self) -> bool:
+        """Reuse a recent on-disk cookie+crumb. No network. Returns True if
+        a usable crumb was loaded (used optimistically; a later StaleCrumb
+        forces a real re-warm)."""
+        try:
+            if not os.path.exists(self.SESSION_CACHE):
+                return False
+            d = json.load(open(self.SESSION_CACHE))
+            if time.time() - d.get("ts", 0) > self.SESSION_MAX_AGE:
+                return False
+            crumb = d.get("crumb")
+            if not crumb:
+                return False
+            self.cj.clear()
+            for ck in d.get("cookies", []):
+                dom = ck.get("domain", "")
+                self.cj.set_cookie(http.cookiejar.Cookie(
+                    0, ck["name"], ck["value"], None, False,
+                    dom, bool(dom), dom.startswith("."),
+                    ck.get("path", "/"), True, False, None, True, None, None, {}))
+            # Reuse the SAME UA the crumb was minted with (Yahoo binds them)
+            self._build_opener(d.get("ua"))
+            self.crumb = crumb
+            return True
+        except Exception:
+            return False
+
+    def warm(self, max_attempts: int = 5, force: bool = False) -> bool:
+        """Obtain cookies + crumb. Returns True on success. Backs off on 429.
+
+        Unless force=True, first tries the persisted session so a fresh
+        process skips the throttled getcrumb call entirely. force=True is
+        used after a StaleCrumb (the cached crumb is genuinely invalid)."""
+        if not force and self._load_session():
+            return True
         for attempt in range(max_attempts):
             try:
                 # Fresh jar + opener each warm attempt
@@ -147,6 +204,7 @@ class YahooSession:
                         crumb = r.read().decode().strip()
                         if crumb and "Too Many" not in crumb and len(crumb) < 40:
                             self.crumb = crumb
+                            self._save_session()  # persist for other processes
                             return True
                     except urllib.error.HTTPError as e:
                         if e.code == 429:

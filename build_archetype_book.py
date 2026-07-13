@@ -219,7 +219,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         _write_score(ws, r_idx, 16, r.get('net_debt_ebitda'), font=f_text)
         _write_pct(ws, r_idx, 17, r.get('ebitda_margin'), font=f_text)
         _write_pct(ws, r_idx, 18, r.get('momentum_12m'), font=f_text)
-        _write_int(ws, r_idx, 19, int(r.get('archetype_count') or 0), font=f_text_muted)
+        _write_int(ws, r_idx, 19, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
         for c in range(1, 20):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
