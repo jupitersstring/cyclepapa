@@ -36,8 +36,15 @@ OUT_CSV = ROOT / "voss_cic_triangulation.csv"
 def load_proxy() -> dict:
     out = {}
     for fn in sorted(glob.glob(str(ROOT / "proxy_scan*.json"))):
-        try: d = json.loads(open(fn).read())
-        except: continue
+        try:
+            d = json.loads(open(fn).read())
+        except Exception as e:
+            # BUGFIX (silent-drop audit): a bare except:continue here
+            # silently discarded an ENTIRE proxy shard (thousands of
+            # tickers) on any read/parse error. Make the loss loud.
+            print(f"  WARNING: could not load {fn}: {e} -- "
+                  f"shard SKIPPED", flush=True)
+            continue
         rows = d if isinstance(d, list) else d.values()
         for r in rows:
             if isinstance(r, dict) and r.get("ticker"):

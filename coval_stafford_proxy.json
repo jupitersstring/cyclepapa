@@ -369,6 +369,16 @@
     "score": 28.0,
     "reasons": "inst 87% (very high); DD 49%; 9% above 52w low"
   },
+  "SCHW": {
+    "inst_pct": 0.84494,
+    "inst_pct_raw": 0.84494,
+    "short_pct": 0.0,
+    "drawdown_pct": 14.7,
+    "above_52w_low_pct": 9.218675559790391,
+    "full_quadrilateral": false,
+    "score": 20.0,
+    "reasons": "inst 84% (very high); 9% above 52w low"
+  },
   "SRRK": {
     "inst_pct": 1.0,
     "inst_pct_raw": 1.1656,
@@ -2188,6 +2198,16 @@
     "full_quadrilateral": true,
     "score": 45.0,
     "reasons": "inst 69%; short 35%; DD 63%; FULL Coval-Stafford proxy quadrilateral"
+  },
+  "FISV": {
+    "inst_pct": 0.0,
+    "inst_pct_raw": 0.0,
+    "short_pct": 0.0,
+    "drawdown_pct": 73.0,
+    "above_52w_low_pct": 1.034409964112304,
+    "full_quadrilateral": false,
+    "score": 23.0,
+    "reasons": "DD 73%; 1% above 52w low"
   },
   "FWONA": {
     "inst_pct": 0.95485,
@@ -7279,6 +7299,16 @@
     "score": 20.0,
     "reasons": "inst 100% (very high); 2% above 52w low"
   },
+  "WFC": {
+    "inst_pct": 0.78736997,
+    "inst_pct_raw": 0.78736997,
+    "short_pct": 0.0,
+    "drawdown_pct": 15.9,
+    "above_52w_low_pct": 12.943116240725484,
+    "full_quadrilateral": false,
+    "score": 20.0,
+    "reasons": "inst 79% (very high); 13% above 52w low"
+  },
   "WM": {
     "inst_pct": 0.86241996,
     "inst_pct_raw": 0.86241996,
@@ -8179,6 +8209,16 @@
     "score": 19.0,
     "reasons": "inst 100% (very high); short 14%"
   },
+  "MKC": {
+    "inst_pct": 0.94674003,
+    "inst_pct_raw": 0.94674003,
+    "short_pct": 0.0,
+    "drawdown_pct": 40.3,
+    "above_52w_low_pct": 4.060687193217305,
+    "full_quadrilateral": false,
+    "score": 28.0,
+    "reasons": "inst 95% (very high); DD 40%; 4% above 52w low"
+  },
   "MMS": {
     "inst_pct": 1.0,
     "inst_pct_raw": 1.10339,
@@ -8679,6 +8719,16 @@
     "score": 20.0,
     "reasons": "inst 86% (very high); 13% above 52w low"
   },
+  "HL": {
+    "inst_pct": 0.76548,
+    "inst_pct_raw": 0.76548,
+    "short_pct": 0.0,
+    "drawdown_pct": 53.3,
+    "above_52w_low_pct": 191.24087591240877,
+    "full_quadrilateral": false,
+    "score": 20.0,
+    "reasons": "inst 77% (very high); DD 53%"
+  },
   "CRI": {
     "inst_pct": 1.0,
     "inst_pct_raw": 1.15634,
@@ -8698,6 +8748,16 @@
     "full_quadrilateral": false,
     "score": 28.0,
     "reasons": "inst 62%; short 27%; DD 42%"
+  },
+  "CMS": {
+    "inst_pct": 1.0,
+    "inst_pct_raw": 1.00489,
+    "short_pct": 0.0,
+    "drawdown_pct": 8.7,
+    "above_52w_low_pct": 7.265019733957012,
+    "full_quadrilateral": false,
+    "score": 20.0,
+    "reasons": "inst 100% (very high); 7% above 52w low"
   },
   "NFG": {
     "inst_pct": 0.83052003,
@@ -9798,6 +9858,16 @@
     "full_quadrilateral": false,
     "score": 20.0,
     "reasons": "inst 86% (very high); 7% above 52w low"
+  },
+  "UPLD": {
+    "inst_pct": 0.0,
+    "inst_pct_raw": 0.0,
+    "short_pct": 0.0215,
+    "drawdown_pct": 86.7,
+    "above_52w_low_pct": 5.487804878048785,
+    "full_quadrilateral": false,
+    "score": 23.0,
+    "reasons": "DD 87%; 5% above 52w low"
   },
   "YETI": {
     "inst_pct": 1.0,

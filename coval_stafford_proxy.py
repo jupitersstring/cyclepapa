@@ -54,10 +54,15 @@ def main() -> int:
         px = _num(y.get("price"))
         hi = _num(y.get("fwk_high"))
         lo = _num(y.get("fwk_low"))
-        if not (inst and short and px and hi):
+        # BUGFIX (silent-drop audit): `if not (inst and short ...)` also
+        # dropped names with a legitimately 0% short interest (a high-
+        # institutional, deeply-drawn-down name with no shorts is still
+        # a valid fire-sale candidate). Only price/high are structurally
+        # required; treat missing inst/short as 0, not as a drop.
+        if px is None or hi is None or hi <= 0:
             continue
-        if hi <= 0:
-            continue
+        inst = inst if inst is not None else 0.0
+        short = short if short is not None else 0.0
         dd = (1 - px / hi) * 100
         run_low = (px / lo - 1) * 100 if lo and lo > 0 else None
 

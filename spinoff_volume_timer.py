@@ -69,7 +69,15 @@ def main() -> int:
             if r.get("latest_event_kind") == "FORM_10_SPINOFF":
                 tk = r.get("ticker", "").upper()
                 if tk and not tk.startswith("CIK"):
-                    candidates[tk] = r.get("latest_event_date", candidates.get(tk, ""))
+                    # BUGFIX (silent-drop audit): unconditional assignment
+                    # let this source clobber a valid Form-10 date from
+                    # source-1 with a possibly-empty date. Keep the
+                    # latest non-empty date, mirroring source-1's guard.
+                    fd = r.get("latest_event_date") or ""
+                    if fd and (tk not in candidates or fd > candidates[tk]):
+                        candidates[tk] = fd
+                    elif tk not in candidates:
+                        candidates[tk] = fd
 
     print(f"Candidate spinoff tickers: {len(candidates)}", file=sys.stderr)
 

@@ -300,6 +300,7 @@ def main() -> int:
     yf = json.loads((ROOT / "yfinance_quick.json").read_text())
 
     n_parsed = 0
+    n_unresolved = 0
     from datetime import datetime, timezone
     _today = datetime.now(timezone.utc).replace(tzinfo=None)
 
@@ -366,6 +367,9 @@ def main() -> int:
                       or prior.get(cusip, {}).get("name"))
             tk = resolve_issuer(issuer or "", name_idx)
             if not tk:
+                # Silent-drop audit: count unresolved issuer names so
+                # the coverage gap is visible, not invisible.
+                n_unresolved += 1
                 continue
             dv = cv - pv
             # Filter dust (changes < $50K)
@@ -433,7 +437,8 @@ def main() -> int:
         }
 
     OUT.write_text(json.dumps(out, indent=2, default=str))
-    print(f"\nwrote {OUT} ({len(out)} tickers; {n_parsed} funds parsed)")
+    print(f"\nwrote {OUT} ({len(out)} tickers; {n_parsed} funds parsed; "
+          f"{n_unresolved} holdings unresolved to ticker)")
 
     ranked = sorted(out.items(), key=lambda x: -x[1]["score"])
     print(f"\n=== TOP 20 N-PORT forced-selling pressure ===")

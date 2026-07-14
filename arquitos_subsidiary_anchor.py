@@ -52,8 +52,12 @@ IMPLIED_RX = re.compile(
 
 def parse_dollar(text: str, near_phrase_pattern: str = None) -> float | None:
     if near_phrase_pattern:
-        m = re.search(near_phrase_pattern + r"[^.]{0,300}?" +
-                       r"\$\s*([\d,.]+)\s*(million|billion|m\b|bn?\b)?",
+        # BUGFIX (silent-drop audit): callers pass literal phrases like
+        # "for $" -- the bare $ was interpreted as a regex end-anchor,
+        # so the deal-value extractor never matched. Escape the literal,
+        # then append the dollar-amount pattern.
+        m = re.search(re.escape(near_phrase_pattern) + r"[^.]{0,300}?" +
+                       r"\$?\s*([\d,.]+)\s*(million|billion|m\b|bn?\b)?",
                        text, re.I)
         if not m:
             return None
