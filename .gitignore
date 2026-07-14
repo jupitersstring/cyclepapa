@@ -15,3 +15,4 @@ __pycache__/
 # Explicit allow for the persisted data tree (overrides any nested ignore)
 !data/
 !data/**
+data/master_full_universe.csv
