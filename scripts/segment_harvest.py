@@ -86,6 +86,7 @@ def harvest_one(ticker):
         seg_oi  = {}    # {segment: {fy: value}}
         total_rev = {}  # {fy: consolidated revenue}
 
+        parse_error = False
         for fl in recent:
             try:
                 xb = fl.xbrl()
@@ -112,7 +113,13 @@ def harvest_one(ticker):
                     if _is_segment_member(lab):
                         seg_oi.setdefault(str(lab), {})[int(fy)] = float(val)
             except Exception:
+                parse_error = True
                 continue
+
+        # If the filing(s) failed to parse and we got nothing, treat as retriable
+        # (return None) rather than recording a false "no segments" done row.
+        if parse_error and not seg_rev:
+            return None
 
         # Keep only segments that have >= 2 years of revenue
         seg_rev = {s: v for s, v in seg_rev.items() if len(v) >= 2}
@@ -184,8 +191,11 @@ def harvest_one(ticker):
             # High-margin segment also growing = positive mix shift toward profit
             out['seg_high_margin_growing'] = bool(growths.get(best, -1) > 0.05 and mix_shifts.get(best, 0) > 0)
         return out
-    except Exception as e:
-        return {'ticker': ticker, 'has_segments': False, 'error': str(e)[:60]}
+    except Exception:
+        # Transient/parse failure — return None so the task loop does NOT write a
+        # done row; the ticker stays unrecorded and is retried on the next --resume.
+        # (Genuine "company has no segment data" paths above return has_segments=False.)
+        return None
 
 
 ap = argparse.ArgumentParser()

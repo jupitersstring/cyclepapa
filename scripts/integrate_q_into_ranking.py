@@ -26,14 +26,22 @@ for p in sorted(glob.glob('data/qmaggie/qmaggie_*.csv')):
     try:
         d = pd.read_csv(p)
         if len(d): q_frames.append(d)
-    except Exception: pass
+    except Exception as e:
+        print(f"  WARN: skipped Q file {p}: {e}", file=sys.stderr)
 if q_frames:
     qall = pd.concat(q_frames, ignore_index=True, sort=False).drop_duplicates(subset='ticker', keep='first')
     qcols = ['ticker','best_leg_pct','leg_end_bars_ago','ret_1m_pct','ret_3m_pct','ret_6m_pct',
              'consol_days','consol_range_pct','adr_pct','above_sma10','above_sma20','above_sma50',
              'sma10_rising','sma20_rising','pct_below_leg_high','vol_contract_ratio','qmaggie_pass']
     qall = qall[[c for c in qcols if c in qall.columns]]
-    df = df.merge(qall, on='ticker', how='left')
+    # Outer merge so Q-pass tickers absent from the universe aren't silently dropped.
+    _before = set(df['ticker'])
+    df = df.merge(qall, on='ticker', how='outer')
+    _added = [t for t in df['ticker'] if t not in _before]
+    if _added:
+        df.loc[df['region'].isna(), 'region'] = 'us'
+        df.loc[df['cap_tier'].isna(), 'cap_tier'] = 'unknown'
+        print(f"  Q outer-merge added {len(_added)} passing tickers not in universe: {_added[:10]}", file=sys.stderr)
     print(f"  Q merged: {df['qmaggie_pass'].fillna(False).sum()} Q-pass", file=sys.stderr)
 else:
     df['qmaggie_pass'] = False
@@ -45,13 +53,20 @@ for p in sorted(glob.glob('data/ep/ep_*.csv')):
     try:
         d = pd.read_csv(p)
         if len(d): e_frames.append(d)
-    except Exception: pass
+    except Exception as e:
+        print(f"  WARN: skipped EP file {p}: {e}", file=sys.stderr)
 if e_frames:
     eall = pd.concat(e_frames, ignore_index=True, sort=False).drop_duplicates(subset='ticker', keep='first')
     ecols = ['ticker','biggest_gap_pct','vol_ratio_gap_day','pre_gap_range_6m_pct',
              'pre_gap_return_6m_pct','days_since_gap','hold_pct_since_gap','ep_pass']
     eall = eall[[c for c in ecols if c in eall.columns]]
-    df = df.merge(eall, on='ticker', how='left')
+    _before = set(df['ticker'])
+    df = df.merge(eall, on='ticker', how='outer')
+    _added = [t for t in df['ticker'] if t not in _before]
+    if _added:
+        df.loc[df['region'].isna(), 'region'] = 'us'
+        df.loc[df['cap_tier'].isna(), 'cap_tier'] = 'unknown'
+        print(f"  EP outer-merge added {len(_added)} passing tickers not in universe: {_added[:10]}", file=sys.stderr)
     print(f"  EP merged: {df['ep_pass'].fillna(False).sum()} EP-pass", file=sys.stderr)
 else:
     df['ep_pass'] = False
