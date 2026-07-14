@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+SRTG.JK,ID,PT Saratoga Investama Sedaya Tbk,Financial Services,1515.0,83.846,9,0.32,1.099,10.576,0.992,-2.1,-2.077,309.611,60.924,1.0,0.989,,,20527998.0
+PNLF.JK,ID,PT Panin Financial Tbk,Financial Services,218.0,78.568,8,0.221,3.297,,0.645,,2.426,254.307,,0.0,0.476,0.14,0.845,6980812.0
+KLBF.JK,ID,PT Kalbe Farma Tbk.,Healthcare,700.0,78.33,13,1.304,8.787,9.357,0.875,5.457,0.797,13.389,7.565,0.383,0.137,0.101,-0.035,31674203.0
+DMAS.JK,ID,PT Puradelta Lestari Tbk,Real Estate,153.0,72.601,12,0.993,5.837,5.252,3.977,5.139,3.289,17.35,5.645,0.737,0.756,1.074,1.302,7374311.0
+TINS.JK,ID,PT TIMAH Tbk,Basic Materials,3490.0,71.982,13,2.61,9.643,18.678,1.742,5.534,1.605,7.893,8.584,0.313,0.344,1.605,11.842,25992660.0

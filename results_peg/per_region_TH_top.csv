@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+MEGA.BK,TH,Mega Lifesciences Public Company Limited,Healthcare,35.0,79.987,13,2.905,14.831,12.266,2.119,8.141,1.843,13.019,7.119,0.524,0.218,0.064,0.344,30515.0
+SIS.BK,TH,SiS Distribution (Thailand) Public Company Limited,Technology,21.6,74.252,13,1.562,8.12,7.97,0.25,6.709,0.269,-7.783,15.358,0.08,0.033,0.028,0.278,7564.0
+SAT-R.BK,TH,Somboon Advance Technology Public Company Limited,Consumer Cyclical,15.8,72.751,12,0.804,8.927,,0.967,2.235,0.39,59.326,10.561,0.207,0.108,-0.004,0.12,6718.0
+UTP-R.BK,TH,United Paper Public Company Limited,Basic Materials,7.9,72.356,12,1.03,9.294,,1.362,3.058,0.701,48.568,12.661,0.191,0.201,0.045,0.278,5135.0
+TSTH.BK,TH,Tata Steel (Thailand) Public Company Limited,Basic Materials,0.89,72.123,12,0.499,3.87,,0.284,1.313,0.122,57.106,34.457,0.115,0.026,-0.024,-0.162,7495.0

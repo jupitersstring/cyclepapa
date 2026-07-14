@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+STO3.F,DE,Sto SE & Co. KGaA,Industrials,101.0,75.468,13,0.851,16.639,9.647,0.411,4.534,0.304,24.324,29.889,0.546,0.048,-0.003,0.328,655.0
+DRW8.F,DE,Drägerwerk AG & Co. KGaA,Healthcare,70.6,74.602,12,0.814,8.673,10.02,0.378,4.534,0.394,-5.523,9.396,0.453,0.025,0.035,,1324.0
+UZU.F,DE,Uzin Utz SE,Basic Materials,55.4,73.394,13,0.951,10.573,10.036,0.552,5.304,0.592,-12.644,4.583,0.57,0.083,0.085,-0.27,279.0
+MUB.DE,DE,Mühlbauer Holding AG,Technology,39.4,73.052,9,0.722,23.176,,1.079,2.189,0.203,14.97,,0.545,0.021,-0.019,3.091,559.0
+KSB3.F,DE,KSB SE & Co. KGaA,Industrials,850.0,72.028,13,1.282,10.583,8.84,0.488,4.275,0.446,18.648,4.726,0.579,-0.018,0.03,0.387,1489.0

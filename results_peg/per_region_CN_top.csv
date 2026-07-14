@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+000807.SZ,CN,"Yunnan Aluminium Co., Ltd.",Basic Materials,24.17,81.512,13,2.351,9.629,6.996,1.352,5.331,1.227,13.897,7.614,0.223,0.296,0.137,2.694,83821.0
+000997.SZ,CN,"Newland Digital Technology Co.,Ltd.",Technology,17.75,81.096,13,2.352,18.112,12.589,1.913,10.285,1.406,27.826,8.712,0.333,0.146,0.339,-0.084,17982.0
+002154.SZ,CN,"Bxn Holding Co., Ltd.",Consumer Cyclical,3.88,80.946,13,1.161,14.37,8.083,1.067,7.933,0.793,27.614,2.779,0.622,0.169,0.105,0.333,5662.0
+000650.SZ,CN,"Renhe Pharmacy Co.,Ltd",Healthcare,5.13,80.066,13,1.112,19.731,8.41,1.952,5.289,1.014,57.143,9.687,0.365,0.212,0.146,-0.146,7182.0
+000612.SZ,CN,"JiaoZuo WanFang Aluminum Manufacturing Co., Ltd",Basic Materials,11.03,80.035,12,1.706,9.269,,1.943,6.094,1.689,13.081,4.05,0.284,0.33,0.185,2.17,13150.0

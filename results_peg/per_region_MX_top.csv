@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+HERDEZ.MX,MX,"Grupo Herdez, S.A.B. de C.V.",Consumer Defensive,56.72,82.174,13,0.977,10.602,8.428,0.469,3.792,0.603,20.205,43.309,0.398,0.11,0.053,43.506,18242.0
+PINFRAL.MX,MX,"Promotora y Operadora de Infraestructura, S. A. B. de C. V.",Industrials,201.9,77.885,13,1.209,5.703,17.804,3.622,2.785,3.219,37.825,16.66,0.559,0.539,0.184,0.271,75677.0
+GPROFUT.MX,MX,"Grupo Profuturo, S.A.B. de C.V.",Financial Services,126.4,68.125,12,1.986,8.858,,0.948,5.585,0.903,-6.987,9.135,0.298,0.194,0.291,0.333,36033.0
+CUERVO.MX,MX,"Becle, S.A.B. de C.V.",Consumer Defensive,14.62,66.307,13,0.746,6.645,10.498,1.285,6.486,1.513,-17.64,13.356,0.55,0.092,-0.231,-0.662,52503.0
+LIVEPOLC-1.MX,MX,"El Puerto de Liverpool, S.A.B. de C.V.",Consumer Cyclical,101.36,65.865,13,0.756,8.109,5.998,0.594,5.13,0.737,-23.778,6.771,0.357,0.079,-0.002,-0.169,136045.0

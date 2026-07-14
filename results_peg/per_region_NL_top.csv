@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+FLOW.AS,NL,Flow Traders Ltd.,Financial Services,25.82,77.778,9,1.295,8.664,7.84,1.37,-8.509,-3.675,368.18,,1.0,0.429,0.167,0.378,1125.0
+FFARM.AS,NL,ForFarmers N.V.,Consumer Defensive,6.31,68.132,13,1.561,11.268,9.166,0.177,5.275,0.223,-11.455,10.5,0.181,0.032,0.137,0.044,558.0
+TOM2.AS,NL,TomTom N.V.,Technology,4.776,65.522,13,4.079,119.4,16.469,1.094,8.819,0.713,34.601,2.124,0.89,0.107,-0.08,4.5,595.0
+CRBN.AS,NL,Corbion N.V.,Basic Materials,20.3,65.513,13,1.575,15.984,12.971,0.923,8.383,1.24,-34.356,-1.145,0.264,0.087,-0.045,0.375,1170.0
+ADYEN.AS,NL,Adyen N.V.,Technology,875.8,64.332,13,5.226,26.042,18.569,11.623,14.24,7.173,38.288,1.934,0.681,0.495,0.169,0.119,27620.0

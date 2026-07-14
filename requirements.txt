@@ -1,0 +1,26 @@
+# cyclepapa — pinned runtime dependencies.
+#
+# Pin pandas to the 2.x line. The pipeline (build_workbook + the screeners)
+# is ~2x faster on pandas 2.2 than on 3.0 for this read-many-parquet +
+# groupby workload, and every result artifact in the repo was produced on
+# 2.x — pinning keeps output identical across sessions. A fresh container
+# that pip-installs the latest pulls pandas 3.x, which silently changes both
+# speed and (occasionally) dtype/formatting behaviour.
+#
+# Install on a fresh container with:  pip install -r requirements.txt
+pandas==2.2.3
+numpy==2.4.6           # verified to coexist with pandas 2.2.3 (no dtype warnings)
+pyarrow==25.0.0        # parquet engine
+openpyxl==3.1.5        # xlsx writer for the workbooks
+
+# Data sources
+requests==2.33.1       # the warmed Yahoo cookie+crumb session (yahoo_session.py)
+yfinance==1.5.1        # used via a passed-in requests session, not curl_cffi
+financedatabase==2.4.0 # static symbol/metadata universe (EM expansion targets)
+edgartools==5.42.0     # SEC EDGAR XBRL segments
+curl_cffi==0.15.0      # yfinance's default transport (TLS fails here — we bypass it)
+
+# Parsing / numerics
+lxml==6.1.1
+beautifulsoup4==4.15.0
+scipy==1.17.1

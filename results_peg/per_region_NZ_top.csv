@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+SKL.NZ,NZ,Skellerup Holdings Limited,Industrials,6.57,69.963,13,5.363,21.9,18.53,3.466,14.297,3.59,-3.577,3.941,0.438,0.222,0.11,0.19,1288.0
+SPG.NZ,NZ,Stride Property Group,Real Estate,1.145,69.841,12,0.673,19.083,11.852,4.374,10.202,6.622,-47.866,7.782,0.799,0.656,-0.009,,642.0
+FPH.NZ,NZ,Fisher & Paykel Healthcare Corporation Limited,Healthcare,38.37,66.538,13,10.647,48.57,35.689,9.762,29.241,9.62,1.398,1.772,0.637,0.287,0.14,0.143,22534.0
+DGL.NZ,NZ,Delegat Group Limited,Consumer Defensive,4.02,66.41,13,0.687,6.814,7.119,1.16,7.446,2.329,-100.819,10.208,0.471,0.266,0.005,0.829,407.0
+SPK.NZ,NZ,Spark New Zealand Limited,Communication Services,1.86,65.385,13,2.598,13.286,13.416,0.95,6.86,1.553,-63.517,10.29,0.317,0.076,-0.012,0.782,3516.0

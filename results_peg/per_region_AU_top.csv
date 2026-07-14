@@ -1,0 +1,6 @@
+ticker,region,longName,sector,currentPrice,composite,n_valid,priceToBook,trailingPE,forwardPE,priceToSalesTrailing12Months,enterpriseToEbitda,enterpriseToRevenue,net_cash_pct,fcfYield_pct,grossMargins,operatingMargins,revenueGrowth,earningsGrowth,marketCap_M
+FGX.AX,AU,Future Generation Australia Limited,Financial Services,1.345,84.24,9,0.963,10.346,,7.852,,-0.802,110.213,12.362,1.0,1.086,0.557,0.601,553.0
+PIC.AX,AU,Perpetual Equity Investment Company Limited,Financial Services,1.155,82.839,9,0.917,12.833,,8.237,,-1.134,113.479,6.774,1.0,0.879,2.212,2.424,445.0
+CUV.AX,AU,Clinuvel Pharmaceuticals Limited,Healthcare,8.96,78.514,13,1.805,14.0,11.708,4.692,4.963,2.251,51.496,7.126,0.896,0.366,0.036,-0.263,452.0
+ALK.AX,AU,Alkane Resources Ltd,Basic Materials,1.415,76.401,13,1.835,15.722,5.818,2.557,4.398,2.153,15.81,9.307,0.356,0.43,3.341,4.114,1933.0
+RRL.AX,AU,Regis Resources Limited,Basic Materials,7.08,74.554,13,2.822,11.062,5.063,2.738,4.224,2.201,14.152,12.193,0.385,0.414,0.4,2.606,5361.0

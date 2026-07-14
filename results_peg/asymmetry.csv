@@ -1,0 +1,151 @@
+ticker,n_scans,scans,avg_strength,asym_score,company,sector,country,mcap,pe,pb,ev_ebitda,fcf_yield,net_cash,rev_g,chg52w
+BCIP_JK,6,"below_book, crashed_quality, deep_value_growth, ev_fcf, fcf_machine, graham",0.558,6.558,PT Bumi Citra Permai Tbk,Real Estate,Indonesia,80075268096.0,3.030303,0.15684912,4.438,0.7165398969780803,8797557760.0,0.464,-0.45098037
+PMJS_JK,5,"below_book, deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.466,5.466,PT Putra Mandiri Jembar Tbk,Consumer Cyclical,Indonesia,1416826847232.0,10.6515,0.515152,3.369,0.6639665032645727,991941754880.0,0.275,-0.11965811
+COLL,5,"analyst_gap, ev_fcf, fcf_machine, multi_screen, unpriced_segment",0.281,5.281,"Collegium Pharmaceutical, Inc.",Healthcare,United States,1095288704.0,16.393204,3.5027487,3.839,0.3036815834813905,-507936992.0,0.089,
+VIVIDM_BO,5,"deep_value_growth, ev_fcf, fcf_machine, graham, net_cash_growth",0.246,5.246,Vivid Mercantile Limited,Industrials,India,731871744.0,6.759259,1.3392038,3.368,0.28439870469982237,372259008.0,4.917,0.06569338
+ASMI_JK,4,"below_book, fcf_machine, negative_ev, net_cash_growth",0.664,4.664,PT Asuransi Maximus Graha Persada Tbk,Financial Services,Indonesia,134375702528.0,5.1369863,0.34164676,-6.114,0.6001703073604042,323386388544.0,0.296,
+ABDA_JK,4,"deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.643,4.643,PT Asuransi Bina Dana Arta Tbk,Financial Services,Indonesia,2141782933504.0,20.408163,1.20771,0.624,0.4555329280786698,2057178710016.0,0.441,
+GENSOL_BO,4,"below_book, crashed_quality, deep_value_growth, graham",0.64,4.64,Gensol Engineering Limited,Technology,India,812371712.0,0.92756796,0.13610919,3.691,,-11152499968.0,0.564,-0.6098597
+1596_HK,4,"below_book, deep_value_growth, ev_fcf, fcf_machine",0.629,4.629,Hebei Yichen Industrial Group Corporation Limited,Industrials,China,381456448.0,1.1621622,0.12461622,1.68,0.5207337535948534,-260013024.0,1.01,
+GMD_MX,4,"below_book, deep_value_growth, fcf_machine, graham",0.583,4.583,"Grupo Mexicano de Desarrollo, S.A.B.",Utilities,Mexico,1220784512.0,3.2634146,0.1881063,2.707,0.4436599929603301,598024960.0,0.394,-0.23977274
+0819_HK,4,"below_book, ev_fcf, fcf_machine, graham",0.545,4.545,Tianneng Power International Limited,Consumer Cyclical,Hong Kong,5923415552.0,3.5540543,0.29614094,5.586,0.532795694695843,-1741950976.0,0.107,
+1525_HK,4,"below_book, ev_fcf, fcf_machine, graham",0.531,4.531,Shanghai Gench Education Group Limited,Consumer Defensive,China,738699968.0,2.5070424,0.24437307,1.444,0.28936342393343656,122997024.0,0.083,
+SLDE,4,"deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.518,4.518,"Slide Insurance Holdings, Inc.",Financial Services,United States,1899392384.0,4.554945,1.7504222,1.144,0.4046309917182441,1175862016.0,0.382,
+1890_HK,4,"below_book, deep_value_growth, ev_fcf, fcf_machine",0.517,4.517,China Kepei Education Group Limited,Consumer Defensive,China,1712111488.0,2.073171,0.25063345,1.55,0.3045336823299208,235868032.0,0.202,
+VISN,4,"deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.515,4.515,"Vistance Networks, Inc.",Technology,United States,2855711488.0,18.617647,0.62138015,1.058,0.2645050171118687,2444000128.0,0.216,
+MTRE3_SA,4,"below_book, ev_fcf, fcf_machine, graham",0.493,4.493,Mitre Realty Empreendimentos e Participações S.A.,Real Estate,Brazil,351172384.0,5.724138,0.34461284,9.615,0.681416771086419,-501598016.0,0.191,-0.19999999
+7844_T,4,"deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.465,4.465,Marvelous Inc.,Communication Services,Japan,26955057152.0,13.513514,0.97159874,1.829,0.3674867032238893,17525000192.0,0.223,
+HFPC-U_TO,4,"below_book, fcf_machine, negative_ev, net_cash_growth",0.462,4.462,Helios Fairfax Partners Corporation,Financial Services,Canada,188702160.0,4.142857,0.40739876,-3.905,0.331173993980779,406850000.0,1.585,
+GENCO_BK,4,"below_book, deep_value_growth, ev_fcf, net_cash_growth",0.448,4.448,General Environmental Conservation Public Company Limited,Industrials,Thailand,354786816.0,8.0,0.32,1.845,0.10343605327205845,238713984.0,0.393,0.27999997
+GENCO-R_BK,4,"below_book, deep_value_growth, ev_fcf, net_cash_growth",0.448,4.448,General Environmental Conservation Public Company Limited,Industrials,Thailand,354786816.0,8.0,0.32,1.845,0.10343605327205845,238713984.0,0.393,-0.16705537
+ESCOM_IS,4,"deep_value_growth, ev_fcf, fcf_machine, graham",0.443,4.443,Escort Teknoloji Yatirim A.S.,Technology,Turkey,4334779392.0,3.3977902,1.1443989,2.043,0.30892941552491354,1076317.0,840.536,0.96485627
+TOP_BK,4,"below_book, ev_fcf, fcf_machine, graham",0.439,4.439,Thai Oil Public Company Limited,Energy,Thailand,100522598400.0,3.2632341,0.5169621,4.011,0.4794248552970155,-41949995008.0,0.147,
+VEDAVAAG_BO,4,"below_book, deep_value_growth, ev_fcf, fcf_machine",0.407,4.407,Vedavaag Systems Limited,Technology,India,543665536.0,10.436936,0.35876313,4.045,0.42330852474709746,30516000.0,0.705,-0.4374848
+TAKUNI-R_BK,4,"below_book, ev_fcf, negative_ev, net_cash_growth",0.398,4.398,Takuni Group Public Company Limited,Industrials,Thailand,328000096.0,3.4166667,0.6972789,0.4,4.725008178046387,460312000.0,0.18,0.0
+MANAKSIA_BO,4,"below_book, ev_fcf, graham, negative_ev",0.348,4.348,Manaksia Limited,Industrials,India,3814081536.0,7.2841053,0.5272551,0.487,0.40349915791627167,3846997056.0,-0.119,-0.20632756
+MANAKSIA_NS,4,"below_book, ev_fcf, graham, negative_ev",0.347,4.347,Manaksia Limited,Industrials,India,3820634880.0,7.296621,0.528161,0.506,0.4028070559833239,3846997056.0,-0.119,-0.20197046
+MOHITPPR_BO,4,"below_book, ev_fcf, fcf_machine, graham",0.288,4.288,Mohit Paper Mills Limited,Basic Materials,India,381500000.0,5.748945,0.6623724,4.545,0.6223525661861075,-716120008.0,0.168,-0.17608899
+1846_HK,4,"below_book, deep_value_growth, ev_fcf, fcf_machine",0.28,4.28,EuroEyes International Eye Clinic Limited,Healthcare,Germany,798755328.0,14.705882,0.6392227,3.074,0.28671530313723304,302723968.0,0.206,
+2348_HK,4,"below_book, graham, negative_ev, net_cash_growth",0.263,4.263,Dawnrays Pharmaceutical (Holdings) Limited,Healthcare,Hong Kong,1563491328.0,6.5,0.39944312,-0.477,0.0911160282431704,1727356024.0,0.244,
+TPP-R_BK,4,"below_book, crashed_quality, ev_fcf, graham",0.232,4.232,Thai Packaging & Printing Public Company Limited,Consumer Cyclical,Thailand,468750016.0,7.530121,0.47413138,1.499,0.0658217364199514,357280992.0,0.062,-0.49
+ROCK-R_BK,4,"below_book, deep_value_growth, ev_fcf, fcf_machine",0.198,4.198,Rockworth Public Company Limited,Consumer Cyclical,Thailand,212000000.0,3.1831834,0.43704134,4.122,0.3242442264150943,-93409792.0,0.319,-0.27981466
+ROCK_BK,4,"below_book, deep_value_growth, ev_fcf, fcf_machine",0.198,4.198,Rockworth Public Company Limited,Consumer Cyclical,Thailand,212000000.0,3.1831834,0.43704134,4.122,0.3242442264150943,-93409792.0,0.319,-0.00934577
+PTC_NS,4,"deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.187,4.187,PTC India Limited,Utilities,India,55249952768.0,9.122679,0.9234522,4.008,0.2745009214339823,29019799552.0,0.289,
+PTC_BO,4,"deep_value_growth, ev_fcf, fcf_machine, net_cash_growth",0.187,4.187,PTC India Limited,Utilities,India,55338754048.0,9.132877,0.9249364,4.011,0.2740604338660227,29019799552.0,0.289,
+SNV_JO,4,"deep_value_growth, ev_fcf, fcf_machine, graham",0.128,4.128,Santova Limited,Industrials,South Africa,1029727488.0,7.54717,79.06701,4.394,0.28757620190867433,18572000.0,1.162,-0.13885897
+2867_TW,3,"fcf_machine, negative_ev, net_cash_growth",0.851,3.851,Mercuries Life Insurance Company Ltd.,Financial Services,Taiwan,51561635840.0,43.699997,1.2777777,-2.68,0.6092370369605403,190844803072.0,0.614,
+1778_HK,3,"below_book, fcf_machine, negative_ev",0.814,3.814,"Colour Life Services Group Co., Limited",Real Estate,China,301223968.0,8.1,0.05984371,-2.921,0.5781694503141264,1065237008.0,0.083,
+TCL-A_TO,3,"below_book, ev_fcf, graham",0.776,3.776,Transcontinental Inc.,Consumer Cyclical,Canada,420179776.0,2.7135134,0.22142826,2.192,1.3763751256795378,-458900000.0,-0.05,
+ALLD3_SA,3,"below_book, ev_fcf, graham",0.769,3.769,Allied Tecnologia S.A.,Technology,Brazil,466373088.0,1.3925502,0.30293587,1.306,0.771685282149042,-197000000.0,-0.031,-0.30472106
+NBG6_DE,3,"deep_value_growth, ev_fcf, fcf_machine",0.766,3.766,NÜRNBERGER Beteiligungs-AG,Financial Services,Germany,1381760640.0,21.505377,1.5852257,2.176,0.7045487241552922,437378832.0,0.196,
+0873_HK,3,"below_book, negative_ev, net_cash_growth",0.753,3.753,Shimao Services Holdings Limited,Real Estate,China,1332813440.0,10.8,0.14876726,-4.767,0.059021481656127354,3076565928.0,0.103,
+AII,3,"deep_value_growth, ev_fcf, fcf_machine",0.72,3.72,"American Integrity Insurance Group, Inc.",Financial Services,United States,333239776.0,3.5144627,0.9928209,1.89,0.5885098182277017,140493992.0,0.265,
+JPOLYINVST_NS,3,"deep_value_growth, ev_fcf, fcf_machine",0.696,3.696,Jindal Poly Investment and Finance Company Limited,Financial Services,India,11639859200.0,1.3574013,0.7251977,1.152,0.5538644151296951,-234200000.0,5.041,0.26979423
+JPOLYINVST_BO,3,"deep_value_growth, ev_fcf, fcf_machine",0.694,3.694,Jindal Poly Investment and Finance Company Limited,Financial Services,India,11723428864.0,1.3670462,0.7304043,1.154,0.5499162303783822,-234200000.0,5.041,0.2780038
+MVST,3,"analyst_gap, insider_cluster, unpriced_segment",0.691,3.691,"Microvast Holdings, Inc.",Consumer Cyclical,United States,369804704.0,,0.79342383,10.969,0.1071383018426937,-199855000.0,-0.48,-0.6942149
+ROYALIND_BO,3,"below_book, ev_fcf, graham",0.689,3.689,Royal India Corporation Limited,Consumer Cyclical,India,716077952.0,1.3733032,0.52563214,1.112,0.9473397220307098,-103149000.0,0.036,-0.28418547
+RIDDHICORP_BO,3,"deep_value_growth, ev_fcf, fcf_machine",0.681,3.681,Riddhi Corporate Services Limited,Industrials,India,708697280.0,8.543634,1.4601467,2.624,0.6965853290702626,347771968.0,0.874,-0.06533605
+AMN,3,"ev_fcf, fcf_machine, insider_cluster",0.665,3.665,"AMN Healthcare Services, Inc.",Healthcare,United States,1270631040.0,,1.776669,5.123,0.5284921482793306,-216179008.0,0.999,0.5849056
+LIGT3_SA,3,"below_book, ev_fcf, graham",0.629,3.629,Light S.A.,Utilities,Brazil,1437320576.0,1.5,0.12762527,5.534,1.3654168240335551,-8713642368.0,0.081,
+ZEAL_CO,3,"deep_value_growth, ev_fcf, net_cash_growth",0.61,3.61,Zealand Pharma A/S,Healthcare,Denmark,19557617664.0,3.139756,1.3703246,0.849,0.21598702953353735,14053999744.0,3.25,
+BCG_BO,3,"below_book, graham, net_cash_growth",0.598,3.598,Brightcom Group Limited,Communication Services,India,20124663808.0,2.0901468,0.19037981,0.341,-0.2628955428262526,14155055104.0,0.617,-0.030155659
+BCG_NS,3,"below_book, graham, net_cash_growth",0.597,3.597,Brightcom Group Limited,Communication Services,India,20185219072.0,2.096436,0.19095266,0.341,-0.26210686131908234,14155055104.0,0.617,-0.027317047
+900909_SS,3,"below_book, ev_fcf, negative_ev",0.593,3.593,Shanghai Huayi Group Corporation Limited,Basic Materials,China,1057169920.0,12.45,0.31863567,2.339,1.3599727090229734,3892288512.0,0.016,
+ALMENDRAL_SN,3,"below_book, fcf_machine, graham",0.591,3.591,Almendral S.A.,Communication Services,Chile,479267618816.0,4.5238094,0.3778785,4.439,0.6566889695104371,-2105291243520.0,0.067,0.44769645
+1827_T,3,"deep_value_growth, ev_fcf, net_cash_growth",0.586,3.586,Nakano Corporation,Industrials,Japan,39243624448.0,8.95265,0.7888969,1.57,0.2469923430452659,30915000192.0,0.607,
+AKP-R_BK,3,"below_book, deep_value_growth, graham",0.585,3.585,Akkhie Prakarn Public Company Limited,Industrials,Thailand,282800000.0,3.6842105,0.4027618,1.929,-0.31944418670438474,125115008.0,0.21,0.20000005
+AKP_BK,3,"below_book, deep_value_growth, graham",0.585,3.585,Akkhie Prakarn Public Company Limited,Industrials,Thailand,282800000.0,3.6842105,0.4027618,1.929,-0.31944418670438474,125115008.0,0.21,0.22807014
+2881_TW,3,"deep_value_growth, ev_fcf, fcf_machine",0.578,3.578,"Fubon Financial Holding Co., Ltd.",Financial Services,Taiwan,1885869703168.0,16.467781,1.9269975,3.562,0.6174353511846363,499763314688.0,1.756,
+SRSN_JK,3,"below_book, ev_fcf, graham",0.571,3.571,PT Indo Acidatama Tbk,Basic Materials,Indonesia,403339968512.0,4.179663,0.48089692,2.751,0.7525620972496537,-17663112192.0,-0.233,0.34000003
+SAPR4_SA,3,"below_book, ev_fcf, fcf_machine",0.57,3.57,Companhia de Saneamento do Paraná - SANEPAR,Utilities,Brazil,10986464256.0,9.565789,0.17300874,1.493,0.26791318438891937,-1921381376.0,0.078,
+900923_SS,3,"below_book, ev_fcf, graham",0.559,3.559,"Shanghai Bailian (Group) Co., Ltd.",Consumer Cyclical,China,1020544192.0,5.7200003,0.33550432,3.52,1.869290630385558,-443086848.0,-0.089,
+UCID_JK,3,"below_book, graham, negative_ev",0.555,3.555,PT Uni-Charm Indonesia Tbk,Consumer Defensive,Indonesia,1521305518080.0,1.240678,0.32545802,2.395,0.22773317687117028,1866891051008.0,-0.078,-0.268
+HBR_L,3,"deep_value_growth, ev_fcf, fcf_machine",0.554,3.554,Harbour Energy plc,Energy,United Kingdom,3915963136.0,,1.3139917,1.656,0.6769407136727449,-4879000128.0,0.158,
+SUC_BK,3,"below_book, ev_fcf, negative_ev",0.545,3.545,Saha-Union Public Company Limited,Industrials,Thailand,8175000064.0,4.572148,0.32469854,0.305,0.07977504818280085,9182609792.0,-0.124,
+GRR_AX,3,"below_book, graham, negative_ev",0.54,3.54,Grange Resources Limited,Basic Materials,Australia,185174192.0,4.0,0.16701461,-0.844,0.24326150158117066,274972992.0,-0.053,
+TYCHE_BO,3,"ev_fcf, fcf_machine, net_cash_growth",0.538,3.538,Tyche Industries Limited,Healthcare,India,1309950080.0,19.074627,0.9994839,28.456,0.604313471243118,753180032.0,0.235,-0.11371589
+1850_T,3,"below_book, ev_fcf, graham",0.514,3.514,"Nankai Tatsumura Construction Co., Ltd.",Industrials,Japan,11014823936.0,5.4109874,0.57502884,1.827,0.7473337923356164,5918000000.0,-0.264,
+BCRX,3,"analyst_gap, insider_cluster, unpriced_segment",0.491,3.491,"BioCryst Pharmaceuticals, Inc.",Healthcare,United States,2526376704.0,,-3.9908254,9.637,0.10464917903232851,-619683008.0,0.075,0.109375
+TELB4_SA,3,"below_book, negative_ev, net_cash_growth",0.484,3.484,Telecomunicações Brasileiras S.A. - Telebras,Communication Services,Brazil,791389696.0,5.0718956,0.45168802,-1.813,1.0524064442709145,1540632016.0,0.179,
+MAIN_JK,3,"below_book, deep_value_growth, graham",0.482,3.482,PT Malindo Feedmill Tbk,Consumer Defensive,Indonesia,1460975828992.0,3.226919,0.48626286,2.868,0.09260652422795207,-1162953687040.0,0.166,0.07377052
+RAYSG_IS,3,"deep_value_growth, ev_fcf, net_cash_growth",0.476,3.476,Ray Sigorta Anonim Sirketi,Financial Services,Turkey,29939625984.0,7.65,3.2034059,2.004,0.18985638374499741,19963935596.0,0.449,-0.20416123
+PANTH_BO,3,"below_book, deep_value_growth, graham",0.474,3.474,Panth Infinity Limited,Consumer Cyclical,India,595714624.0,1.5254238,0.6017719,3.161,-0.19036862858683154,-746433984.0,2.941,0.32089555
+YASHMGM_BO,3,"ev_fcf, fcf_machine, net_cash_growth",0.47,3.47,Yash Management & Satellite Ltd.,Financial Services,India,165750000.0,54.166664,0.7549361,8.469,0.36229574660633485,151963764.0,1.939,-0.07495254
+KOTHARIPRO_BO,3,"below_book, ev_fcf, fcf_machine",0.47,3.47,Kothari Products Limited,Industrials,India,4178140928.0,13.539652,0.35728142,-8.031,0.3885130951714992,315100032.0,0.421,-0.1974318
+KOTHARIPRO_NS,3,"below_book, ev_fcf, fcf_machine",0.469,3.469,Kothari Products Limited,Industrials,India,4199031552.0,13.607349,0.3590678,-8.006,0.3865802016245483,315100032.0,0.421,-0.19622296
+STEP,3,"analyst_gap, ev_fcf, fcf_machine",0.465,3.465,StepStone Group Inc.,Financial Services,United States,4983467520.0,,,-4.786,0.527443060369339,-186935040.0,0.558,-0.28756756
+042420_KQ,3,"ev_fcf, fcf_machine, negative_ev",0.457,3.457,NEOWIZ HOLDINGS Corporation,Communication Services,South Korea,133168103424.0,,,2.683,0.4332955500633863,374497753344.0,0.138,
+600104_SS,3,"below_book, ev_fcf, negative_ev",0.438,3.438,SAIC Motor Corporation Limited,Consumer Cyclical,China,120240603136.0,11.75281,0.39767328,1.881,0.33636091983217115,126072782848.0,-0.003,
+SK-R_BK,3,"below_book, deep_value_growth, net_cash_growth",0.432,3.432,Sirakorn Public Company Limited,Basic Materials,Thailand,239199984.0,10.4,0.5579399,1.004,-0.12199833591962113,207879051.0,0.407,-0.052631557
+SK_BK,3,"below_book, deep_value_growth, net_cash_growth",0.432,3.432,Sirakorn Public Company Limited,Basic Materials,Thailand,239199984.0,10.4,0.5579399,1.004,-0.12199833591962113,207879051.0,0.407,-0.08771932
+MARINSA_SN,3,"ev_fcf, negative_ev, net_cash_growth",0.431,3.431,Marítima de Inversiones S.A.,Industrials,Chile,253350445056.0,7.234727,0.77882296,,0.05800149728867426,266303750144.0,0.605,0.028583765
+SRB_L,3,"deep_value_growth, ev_fcf, graham",0.428,3.428,Serabi Gold plc,Basic Materials,United Kingdom,251730736.0,5.0752125,1.69016,1.996,0.19045591635659462,61719000.0,0.833,
+KBLM_JK,3,"deep_value_growth, ev_fcf, fcf_machine",0.396,3.396,PT Kabelindo Murni Tbk,Industrials,Indonesia,320320012288.0,91.90231,0.22266167,4.285,0.4339501611751387,125850435584.0,0.451,-0.033783793
+LSF_AX,3,"fcf_machine, negative_ev, net_cash_growth",0.385,3.385,L1 Long Short Fund Limited,Financial Services,Australia,2902943744.0,28.625,1.2445651,,0.31179737529216134,5664793088.0,12.021,
+CRMD,3,"analyst_gap, deep_value_growth, graham",0.376,3.376,CorMedix Inc.,Healthcare,United States,692730176.0,4.069124,1.5838566,2.835,0.17299240043499997,30672000.0,2.261,
+MOLI_JK,3,"below_book, ev_fcf, graham",0.375,3.375,PT Madusari Murni Indah Tbk,Basic Materials,Indonesia,648320712704.0,6.7023377,0.5122245,3.817,0.5330596469741137,107643888776.0,-0.171,0.24607325
+EKAD_JK,3,"below_book, ev_fcf, net_cash_growth",0.374,3.374,PT Ekadharma International Tbk,Basic Materials,Indonesia,593958731776.0,1.1622105,0.48124284,1.544,0.07667320674591042,515829018624.0,0.107,-0.06077349
+SHREYANIND_BO,3,"below_book, ev_fcf, negative_ev",0.37,3.37,Shreyans Industries Limited,Basic Materials,India,1940966912.0,4.1257715,0.44118893,0.55,0.09609430786628474,2014072960.0,0.074,-0.20591772
+1905_T,3,"deep_value_growth, ev_fcf, net_cash_growth",0.366,3.366,Tenox Corporation,Industrials,Japan,10139346944.0,10.90479,0.7439537,1.357,0.06002605763087694,7881999872.0,0.208,
+PREB_BK,3,"below_book, deep_value_growth, graham",0.348,3.348,Pre-Built Public Company Limited,Industrials,Thailand,1074194048.0,4.9014087,0.40231216,4.074,0.11828022342570269,-431152384.0,0.254,0.0116279125
+PREB-R_BK,3,"below_book, deep_value_growth, graham",0.348,3.348,Pre-Built Public Company Limited,Industrials,Thailand,1074194048.0,4.9014087,0.40231216,4.074,0.11828022342570269,-431152384.0,0.254,-0.06699264
+GLRYH_IS,3,"below_book, ev_fcf, negative_ev",0.346,3.346,Güler Yatirim Holding A.S.,Financial Services,Turkey,2058000000.0,3.3300972,0.3907496,1.123,0.9419921166180758,4856759552.0,0.07,-0.15517241
+MERK_JK,3,"deep_value_growth, ev_fcf, graham",0.33,3.33,PT Merck Tbk,Healthcare,Indonesia,1666560032768.0,5.6369615,1.6010859,3.029,0.20058602370583548,424517533696.0,0.316,0.25675678
+7937_T,3,"below_book, deep_value_growth, net_cash_growth",0.324,3.324,"Tsutsumi Jewelry Co.,Ltd.",Consumer Cyclical,Japan,42113798144.0,11.408374,0.6007333,1.799,-0.01028463380384293,32224999424.0,0.509,
+WEX,3,"ev_fcf, fcf_machine, insider_cluster",0.323,3.323,WEX Inc.,Technology,United States,4421228544.0,14.377678,3.4724717,5.003,0.2840471664158332,171800064.0,0.058,
+KIJA_JK,3,"below_book, ev_fcf, graham",0.31,3.31,PT Kawasan Industri Jababeka Tbk,Real Estate,Indonesia,2454026190848.0,5.5529413,0.3882128,3.444,0.4488453449159722,-767140036608.0,-0.077,-0.34444445
+WEHA_JK,3,"below_book, deep_value_growth, graham",0.308,3.308,PT WEHA Transportasi Indonesia Tbk,Industrials,Indonesia,146055495680.0,6.176652,0.56238544,2.76,0.09461549808626825,-95589763072.0,0.175,-0.07407409
+INCI_JK,3,"below_book, graham, negative_ev",0.303,3.303,PT Intanwijaya Internasional Tbk,Basic Materials,Indonesia,133938520064.0,7.6638823,0.27674493,-2.202,0.20330353970604254,196780519808.0,0.05,0.11206901
+CPI-R_BK,3,"below_book, deep_value_growth, graham",0.299,3.299,Chumporn Palm Oil Industry Public Company Limited,Consumer Defensive,Thailand,2189324032.0,4.9428573,0.60851216,3.271,0.19040587592654717,-375045984.0,0.282,0.20321405
+CPI_BK,3,"below_book, deep_value_growth, graham",0.299,3.299,Chumporn Palm Oil Industry Public Company Limited,Consumer Defensive,Thailand,2189324032.0,4.9428573,0.60851216,3.271,0.19040587592654717,-375045984.0,0.282,0.26277375
+AUSTENG_BO,3,"below_book, deep_value_growth, net_cash_growth",0.297,3.297,Austin Engineering Company Limited,Industrials,India,458721792.0,9.46198,0.6487661,1.549,,291489992.0,0.154,-0.11081082
+ANSGR_IS,3,"fcf_machine, negative_ev, net_cash_growth",0.278,3.278,Anadolu Anonim Türk Sigorta Sirketi,Financial Services,Turkey,54080000000.0,4.425532,1.5325325,-1.97,0.26295437633136093,90426303160.0,0.579,0.212556
+NIACL_NS,3,"ev_fcf, fcf_machine, net_cash_growth",0.278,3.278,The New India Assurance Company Limited,Financial Services,India,333406863360.0,23.579254,0.8642698,6.265,0.2678963259120354,192898908160.0,0.137,
+NIACL_BO,3,"ev_fcf, fcf_machine, net_cash_growth",0.278,3.278,The New India Assurance Company Limited,Financial Services,India,333060800512.0,23.582266,0.8633727,6.25,0.2681746803907712,192898908160.0,0.137,
+TELB3_SA,3,"below_book, negative_ev, net_cash_growth",0.266,3.266,Telecomunicações Brasileiras S.A. - Telebras,Communication Services,Brazil,1030030464.0,6.6013074,0.6195559,-1.236,0.8085815372544166,1540632016.0,0.179,
+COCE5_SA,3,"below_book, deep_value_growth, fcf_machine",0.265,3.265,Companhia Energética do Ceará - COELCE,Utilities,Brazil,2688307712.0,8.652778,0.47948897,4.31,0.45972846727450817,-6864224096.0,0.219,
+SCHAND_BO,3,"below_book, deep_value_growth, graham",0.257,3.257,S Chand And Company Limited,Communication Services,India,5327864832.0,7.015792,0.5050944,3.282,-0.007093836122304989,526560000.0,0.162,-0.3393209
+SCHAND_NS,3,"below_book, deep_value_growth, graham",0.255,3.255,S Chand And Company Limited,Communication Services,India,5335624704.0,7.0227485,0.50583005,3.288,-0.007083519193481866,526560000.0,0.162,-0.3383854
+1960_T,3,"below_book, ev_fcf, graham",0.252,3.252,Sanyo Engineering & Construction Inc.,Industrials,Japan,21511667712.0,7.7759895,0.6426765,2.847,0.23600563284862996,10715000320.0,-0.104,
+200550_SZ,3,"below_book, graham, net_cash_growth",0.251,3.251,"Jiangling Motors Corporation, Ltd.",Consumer Cyclical,China,8666669056.0,6.048193,0.6128523,-0.736,,10036270728.0,0.134,
+TPP_BK,3,"below_book, ev_fcf, graham",0.25,3.25,Thai Packaging & Printing Public Company Limited,Consumer Cyclical,Thailand,468750016.0,7.530121,0.47413138,1.499,0.0658217364199514,357280992.0,0.062,0.059322
+1814_T,3,"deep_value_growth, ev_fcf, fcf_machine",0.233,3.233,"Daisue Construction Co., Ltd.",Real Estate,Japan,32687536128.0,8.688157,1.2966615,3.499,0.25172821248376714,8023000576.0,0.265,
+JHSF3_SA,3,"ev_fcf, fcf_machine, graham",0.233,3.233,JHSF Participações S.A.,Real Estate,Brazil,7093817344.0,3.3670886,1.0045317,4.973,0.2549931389944737,-1310900992.0,0.333,
+3932_T,3,"deep_value_growth, graham, net_cash_growth",0.231,3.231,Akatsuki Inc.,Communication Services,Japan,35062030336.0,7.4350014,0.92653036,2.383,0.03562971214240638,23319999488.0,0.249,
+FG,3,"deep_value_growth, ev_fcf, fcf_machine",0.23,3.23,"F&G Annuities & Life, Inc.",Financial Services,United States,3642012416.0,7.121762,0.79600406,3.894,0.31713237959483115,96999936.0,0.307,
+COCE3_SA,3,"below_book, deep_value_growth, fcf_machine",0.222,3.222,Companhia Energética do Ceará - COELCE,Utilities,Brazil,2875583232.0,9.255556,0.5128916,4.395,0.42978814532188786,-6864224096.0,0.219,
+4479_T,3,"deep_value_growth, ev_fcf, net_cash_growth",0.218,3.218,"Makuake, Inc.",Financial Services,Japan,10440998912.0,16.259678,1.7699612,3.881,0.11447659922905278,6753999872.0,0.261,
+EPAM,3,"analyst_gap, ev_fcf, multi_screen",0.211,3.211,"EPAM Systems, Inc.",Technology,United States,4048422400.0,11.13362,1.1914939,4.576,0.17115314449401328,749015968.0,0.076,-0.54948276
+SCP_BK,3,"deep_value_growth, ev_fcf, net_cash_growth",0.189,3.189,Southern Concrete Pile Public Company Limited,Basic Materials,Thailand,2540699904.0,8.181818,1.1553273,2.47,0.08934188238549247,1434848960.0,0.277,0.44000006
+SCP-R_BK,3,"deep_value_growth, ev_fcf, net_cash_growth",0.189,3.189,Southern Concrete Pile Public Company Limited,Basic Materials,Thailand,2540699904.0,8.181818,1.1553273,2.47,0.08934188238549247,1434848960.0,0.277,0.23655963
+MTRYO_IS,3,"fcf_machine, negative_ev, net_cash_growth",0.184,3.184,Metro Yatirim Ortakligi A.S.,Financial Services,Turkey,462000000.0,4.910714,1.0180472,-0.564,0.29432969696969696,584777984.0,1.272,0.7405063
+AALI_JK,3,"below_book, ev_fcf, graham",0.183,3.183,PT Astra Agro Lestari Tbk,Consumer Defensive,Indonesia,11884950454272.0,7.5815244,0.4969169,2.058,0.1517692929965595,4703853740032.0,0.068,
+SMTO3_SA,3,"below_book, deep_value_growth, graham",0.181,3.181,São Martinho S.A.,Basic Materials,Brazil,4819004928.0,5.901186,0.65439403,3.826,0.10133936098767982,-7667381760.0,0.291,
+JAK_BK,3,"ev_fcf, fcf_machine, graham",0.174,3.174,Jakpaisan Estate Public Company Limited,Real Estate,Thailand,377599968.0,6.555555,0.7117008,5.923,0.31815873458972327,-119383636.0,0.638,0.29670334
+JAK-R_BK,3,"ev_fcf, fcf_machine, graham",0.174,3.174,Jakpaisan Estate Public Company Limited,Real Estate,Thailand,377599968.0,6.555555,0.7117008,5.923,0.31815873458972327,-119383636.0,0.638,-0.15217394
+GTM,3,"analyst_gap, below_book, graham",0.172,3.172,ZoomInfo Technologies Inc.,Technology,United States,828157696.0,7.0249996,0.56459713,6.709,0.4284661070154446,-1393500032.0,0.015,
+ANDHRSUGAR_NS,3,"below_book, deep_value_growth, ev_fcf",0.17,3.17,The Andhra Sugars Limited,Basic Materials,India,11384973312.0,13.884297,0.6744388,3.852,0.19465410934816604,4198060104.0,0.274,0.010021687
+ANDHRSUGAR_BO,3,"below_book, deep_value_growth, ev_fcf",0.17,3.17,The Andhra Sugars Limited,Basic Materials,India,11384973312.0,13.884297,0.6744388,3.858,0.19465410934816604,4198060104.0,0.274,0.012329221
+DRA_BO,3,"below_book, deep_value_growth, graham",0.165,3.165,DRA Consultants Limited,Industrials,India,206345696.0,7.1249995,0.57566947,3.848,-0.023300011064926695,44186000.0,0.308,-0.24790084
+SDR_L,3,"deep_value_growth, ev_fcf, net_cash_growth",0.158,3.158,Schroders plc,Financial Services,United Kingdom,9106434048.0,17.176472,2.0819964,4.325,0.1334029273804279,5309800192.0,0.155,
+BYMA_BA,3,"deep_value_growth, ev_fcf, net_cash_growth",0.15,3.15,Bolsas y Mercados Argentinos S.A.,Financial Services,Argentina,2353377312768.0,10.969116,3.1932044,3.762,0.06911216410457256,1661535518720.0,0.244,0.61911
+BBW,3,"analyst_gap, graham, insider_cluster",0.131,3.131,"Build-A-Bear Workshop, Inc.",Consumer Cyclical,United States,402828064.0,7.5245905,2.542735,5.846,0.04120399367209927,-99847000.0,-0.024,
+DHPIND_BO,3,"below_book, negative_ev, net_cash_growth",0.123,3.123,DHP India Limited,Industrials,India,1604999936.0,14.506507,0.6777059,-1.085,0.048766900386966745,1764656968.0,0.157,-0.23016101
+UHS,3,"graham, insider_cluster, multi_screen",0.112,3.112,"Universal Health Services, Inc.",Healthcare,United States,8545916928.0,5.8968253,1.1448196,5.262,0.07615555047904159,-5006788832.0,0.096,
+EASON_BK,3,"below_book, ev_fcf, graham",0.105,3.105,Eason & Co Public Company Limited,Basic Materials,Thailand,601966784.0,6.5882354,0.6447899,4.847,0.15966911556369195,189738494.0,0.061,-0.026086986
+GUJTLRM_BO,2,"below_book, ev_fcf",1.0,3.0,Gujarat Toolroom Limited,Industrials,India,724044736.0,8.666667,0.026588945,-12.274,3.624999436498907,-565915000.0,,-0.559322
+1252_HK,2,"below_book, graham",0.94,2.94,China Tianrui Group Cement Company Limited,Basic Materials,China,739987584.0,1.8461539,0.04038662,9.476,1.4105229527742995,-11330857024.0,0.147,
+MADRASFERT_BO,2,"ev_fcf, fcf_machine",0.917,2.917,Madras Fertilizers Limited,Basic Materials,India,11248092160.0,13.991984,12.199895,10.013,0.7972029589060551,216800256.0,0.26,-0.23442984
+SSK_JO,2,"ev_fcf, graham",0.915,2.915,Stefanutti Stocks Holdings Limited,Industrials,South Africa,1087083904.0,1.8207283,183.25346,0.79,0.8062386176219201,441513984.0,0.034,0.62907267
+MADRASFERT_NS,2,"ev_fcf, fcf_machine",0.907,2.907,Madras Fertilizers Limited,Basic Materials,India,11389860864.0,14.168337,12.35366,10.088,0.7872802362618923,216800256.0,0.26,-0.22765207
+PNLF_JK,2,"below_book, net_cash_growth",0.899,2.899,PT Panin Financial Tbk,Financial Services,Indonesia,6980811882496.0,3.2970355,0.22141646,,,17752665358336.0,0.14,
+AFC_BK,2,"below_book, ev_fcf",0.893,2.893,Asia Fiber Public Company Limited,Consumer Cyclical,Thailand,192323392.0,6.1159415,0.16106254,1.604,0.38601981396002,117580812.0,-0.244,0.15300548
+BMTR_JK,2,"below_book, graham",0.891,2.891,PT Global Mediacom Tbk,Communication Services,Indonesia,1929596370944.0,2.3046875,0.11896456,6.87,-0.0018190980812649287,-2600960786432.0,-0.13,
+1431_HK,2,"below_book, graham",0.877,2.877,YuanShengTai Dairy Farm Limited,Consumer Defensive,China,1172624128.0,1.7857143,0.18061374,0.802,-0.27639195225565066,292102016.0,0.055,
+K2A-B_ST,2,"below_book, graham",0.865,2.865,K2A Knaust & Andersson Fastigheter AB (publ),Real Estate,Sweden,342602528.0,1.9000001,0.1854003,39.48,0.2189125703123825,-4019899904.0,-0.314,
+GARO_BA,2,"deep_value_growth, ev_fcf",0.852,2.852,Garovaglio y Zorraquín S.A.,Industrials,Argentina,18260000768.0,30.116112,1.5848042,1.312,1.0881786214829583,5455655424.0,0.259,1.5696595
+1317_HK,2,"below_book, graham",0.846,2.846,China Maple Leaf Educational Systems Limited,Consumer Defensive,China,530081952.0,1.5666666,0.2356356,8.24,,-2490248000.0,-0.112,
+PSH-R_BK,2,"below_book, graham",0.845,2.845,Pruksa Holding Public Company Limited,Real Estate,Thailand,7442599936.0,2.1383648,0.18793876,35.112,0.20650817042653413,-10743652352.0,-0.027,
+1817_HK,2,"below_book, ev_fcf",0.822,2.822,Mulsanne Group Holding Limited,Consumer Cyclical,China,212290000.0,5.75,0.24521051,5.862,2.849068425267323,-392200992.0,-0.08,
+SCCO_JK,2,"below_book, ev_fcf",0.802,2.802,PT Supreme Cable Manufacturing & Commerce Tbk,Industrials,Indonesia,1784463884288.0,5.694791,0.31274927,0.772,0.26532668144466964,1466751909888.0,-0.013,0.053398013
+SAPR3_SA,2,"below_book, ev_fcf",0.801,2.801,Companhia de Saneamento do Paraná - SANEPAR,Utilities,Brazil,12845246464.0,11.184211,0.2022798,1.628,0.22914458140209337,-1921381376.0,0.078,
