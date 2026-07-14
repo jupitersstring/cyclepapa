@@ -396,9 +396,17 @@ def screen_13d_activism(overlays: dict, lookback_days: int = 90,
     print(f"[13D] got {len(hits)} 13D / 13D-A filings", file=sys.stderr)
 
     rows = []
+    n_unresolved_13d = 0
     for h in hits:
+        # BUGFIX (silent-drop audit): a 13D whose target_ticker didn't
+        # resolve was dropped silently. Fall back to a CIK placeholder
+        # (module convention elsewhere) and only drop when both are
+        # empty, counting the loss.
         tk = (h.get("target_ticker") or "").upper()
         if not tk:
+            tk = f"CIK{h['target_cik']}" if h.get("target_cik") else ""
+        if not tk:
+            n_unresolved_13d += 1
             continue
         yf = overlays["yf"].get(tk, {}) or {}
         filer = h.get("filer_name") or ""

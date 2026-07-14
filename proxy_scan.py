@@ -218,10 +218,15 @@ def main() -> int:
         try:
             f = recent_def14a(tk)
         except Exception as e:
-            out[tk] = {"_complete": True, "_error": str(e)[:120]}
+            # BUGFIX (silent-drop audit): a transient fetch failure must
+            # NOT be marked _complete, or the resume guard permanently
+            # skips this ticker and its DEF 14A is never scanned. Omit
+            # _complete so it retries next run.
+            out[tk] = {"_error": str(e)[:120]}
             continue
         time.sleep(args.sleep)
         if not f:
+            # Genuine absence (no DEF 14A on file) -- legitimately final.
             out[tk] = {"_complete": True, "no_def14a": True}
             n_done += 1
             continue
@@ -232,9 +237,8 @@ def main() -> int:
                                           f["primary_doc"])
             time.sleep(args.sleep)
         if not text:
-            out[tk] = {"_complete": True, "_error": "fetch_failed",
-                       **f}
-            n_done += 1
+            # Transient fetch failure -- retry-eligible (no _complete).
+            out[tk] = {"_error": "fetch_failed", **f}
             continue
 
         q = yq.get(tk) or {}

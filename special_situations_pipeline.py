@@ -146,15 +146,18 @@ def score_hit(tk: str, kind: str, ov: dict) -> tuple[float, list[str]]:
             score += 15
             reasons.append("13E-3 going-private")
 
+    # BUGFIX (silent-drop audit): correct field names -- cancel_10b5_1
+    # stores the signed value under "score" (not signed_score); form4
+    # cluster is len(buyer_set) (not max_cluster_size).
     c10 = ov["c10"].get(tk, {})
-    sgn = c10.get("signed_score") if isinstance(c10, dict) else None
+    sgn = c10.get("score") if isinstance(c10, dict) else None
     if sgn:
         score += min(abs(sgn), 25) * (1 if sgn > 0 else -0.6)
         reasons.append(f"10b5-1 signed {sgn:+.0f}")
 
     f4 = ov["f4"].get(tk, {})
     if isinstance(f4, dict):
-        cluster = f4.get("max_cluster_size") or 0
+        cluster = len(f4.get("buyer_set") or [])
         if cluster >= 3:
             score += min(cluster * 3, 25)
             reasons.append(f"F4 cluster {cluster}")

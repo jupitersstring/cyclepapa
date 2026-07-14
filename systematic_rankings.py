@@ -169,12 +169,18 @@ def main() -> int:
          lambda r: (tender.get(r["ticker"], {}).get("role") == "TARGET")),
         ("Going-private (13E-3)",
          lambda r: bool(tender.get(r["ticker"], {}).get("has_13e3"))),
-        ("CEO/Chair 10b5-1 sell-plan termination (signed_score >= 30)",
-         lambda r: (c10.get(r["ticker"], {}).get("signed_score") or 0) >= 30),
+        # BUGFIX (silent-drop audit): these predicates read fields that
+        # do not exist in the source JSON (signed_score/max_cluster_size/
+        # total_musd), so every match was false and three whole catalyst
+        # sections silently vanished from SYSTEMATIC_RANKINGS.md. Correct
+        # keys: cancel_10b5_1 -> "score"; form4_buys -> len(buyer_set)
+        # and total_dollar.
+        ("CEO/Chair 10b5-1 sell-plan termination (score >= 30)",
+         lambda r: (c10.get(r["ticker"], {}).get("score") or 0) >= 30),
         ("Insider 4+ buyer cluster (Form 4 P-buys)",
-         lambda r: (f4.get(r["ticker"], {}).get("max_cluster_size") or 0) >= 4),
+         lambda r: len(f4.get(r["ticker"], {}).get("buyer_set") or []) >= 4),
         ("Material insider dollar cluster (>=$1M total)",
-         lambda r: (f4.get(r["ticker"], {}).get("total_musd") or 0) >= 1),
+         lambda r: (f4.get(r["ticker"], {}).get("total_dollar") or 0) >= 1e6),
         ("Deep-value floor (P/B < 0.5 with PSU program)",
          lambda r: ((yf.get(r["ticker"], {}).get("p_b") or 99) < 0.5
                     and bool(proxy.get(r["ticker"])))),

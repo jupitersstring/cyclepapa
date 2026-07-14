@@ -248,6 +248,16 @@ def gen_psu_asymmetric_full(proxy, yf, c10):
                     score += 12
                 elif mult >= 2:
                     score += 6
+        elif hurdles:
+            # BUGFIX (silent-drop audit): a name with a real price-ladder
+            # but no yfinance price (missing overlay) was dropped
+            # entirely because ladder inclusion was gated on `px`. Keep
+            # it as a candidate on the ladder alone -- the multiple just
+            # can't be computed.
+            archetypes.append(
+                f"price ladder {len(hurdles)}-tranche "
+                f"${min(hurdles):.0f}-${max(hurdles):.0f} (spot n/a)")
+            score += 6
 
         for cat in cc:
             archetypes.append(CAT_LABEL.get(cat, cat))

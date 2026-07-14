@@ -750,11 +750,23 @@ def main() -> int:
                 "data_available": None,  # True / False / None=untried
                 "_cache_version": "v3-dedup-foreign-aware",
             }
+            # BUGFIX (silent-drop audit): a transient filings-fetch
+            # failure previously fell through to filings=[] and then
+            # marked the record _complete with data_available=False, so
+            # the ticker looked permanently like "no 10b5-1 data" and
+            # never retried. Flag the failure and skip finalization so
+            # the resume guard re-attempts it next run.
+            _fetch_failed = False
             try:
                 filings = recent_10q_for(tk, limit=args.quarters, days=args.days)
             except Exception as e:
                 print(f"  {tk}: filings fetch fail: {e}", file=sys.stderr)
                 filings = []
+                _fetch_failed = True
+            if _fetch_failed:
+                cur["_fetch_error"] = True   # no _complete -> retried
+                out[tk] = cur
+                continue
             for fl in filings:
                 acc = fl.accession
                 text = load_cached(acc)

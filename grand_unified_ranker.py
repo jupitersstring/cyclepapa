@@ -176,7 +176,11 @@ def score_tender(t: dict) -> tuple[float, bool, str]:
 def score_c10(c: dict) -> tuple[float, bool, str]:
     if not isinstance(c, dict):
         return 0.0, False, ""
-    signed = c.get("signed_score")
+    # BUGFIX (silent-drop audit): cancel_10b5_1.json stores the signed
+    # directional value under "score", not "signed_score". Reading the
+    # wrong field silently zeroed the entire 10b5-1 layer (1,106 real
+    # signals) across the whole universe.
+    signed = c.get("score")
     if signed is None:
         return 0.0, False, ""
     # cap absolute contribution at 25 (matches composite weighting)
@@ -190,8 +194,12 @@ def score_c10(c: dict) -> tuple[float, bool, str]:
 def score_f4(f: dict) -> tuple[float, bool, str]:
     if not isinstance(f, dict):
         return 0.0, False, ""
-    cluster = f.get("max_cluster_size") or 0
-    musd = f.get("total_musd") or 0
+    # BUGFIX (silent-drop audit): form4_buys.json has no max_cluster_size
+    # or total_musd keys -- the cluster is len(buyer_set) and the dollars
+    # are total_dollar. Reading absent fields zeroed all 346 insider
+    # clusters while has_f4 stayed True (shrinking their norm_score).
+    cluster = len(f.get("buyer_set") or [])
+    musd = (f.get("total_dollar") or 0) / 1e6
     if cluster == 0 and musd == 0:
         return 0.0, True, ""
     s = min(cluster * 4, 20)
@@ -205,7 +213,12 @@ def score_f144(f: dict) -> tuple[float, bool, str]:
     """Form 144 (proposed sales) is BEARISH -- negative contribution."""
     if not isinstance(f, dict):
         return 0.0, False, ""
+    # BUGFIX (silent-drop audit): form144_scan.json stores the bearish
+    # value under "score", not "points". Reading "points" (absent)
+    # killed the entire Form-144 layer (288 real signals).
     pts = f.get("points")
+    if pts is None:
+        pts = f.get("score")
     if pts is None:
         return 0.0, False, ""
     return float(pts), True, f"Form144 {pts:+.0f}"

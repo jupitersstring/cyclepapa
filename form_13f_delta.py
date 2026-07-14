@@ -336,6 +336,7 @@ def main() -> int:
         "filers_new": [], "filers_exited": [],
         "delta_value_usd": 0, "delta_shares": 0,
     })
+    n_unresolved = 0   # holdings whose issuer name didn't map to a ticker
 
     activist_substr = (
         "elliott", "starboard", "trian", "engaged",
@@ -407,9 +408,14 @@ def main() -> int:
             # Resolve via 13F's nameOfIssuer field (much more reliable)
             issuer = cur_h.get(cusip, {}).get("name") or prior_h.get(cusip, {}).get("name")
             if not issuer:
+                n_unresolved += 1
                 continue
             tk = issuer_name_to_ticker(issuer, name_idx)
             if not tk:
+                # Silent-drop audit: unresolved issuer names are a real
+                # coverage gap (not an error) -- count them so the drop
+                # is visible rather than invisible.
+                n_unresolved += 1
                 continue
 
             rec = per_ticker_changes[tk]
@@ -475,9 +481,11 @@ def main() -> int:
     # filing-date trail). Stored under a reserved meta key that the
     # consensus loader ignores (not a valid ticker).
     out["_META_FILINGS_USED"] = filer_dates_used
+    out["_META_UNRESOLVED_HOLDINGS"] = n_unresolved
     OUT.write_text(json.dumps(out, indent=2))
-    print(f"\nwrote {OUT} ({len(out) - 1} tickers, "
-          f"{len(filer_dates_used)} filers used)")
+    print(f"\nwrote {OUT} ({len(out) - 2} tickers, "
+          f"{len(filer_dates_used)} filers used, "
+          f"{n_unresolved} material holdings unresolved to ticker)")
 
     ranked = sorted(
         ((tk, v) for tk, v in out.items() if not tk.startswith("_META")),

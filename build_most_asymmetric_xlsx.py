@@ -1239,8 +1239,14 @@ def build_by_archetype(wb: Workbook, arch_psu: dict, arch_asym: dict,
                 if (ROOT / "ASYMMETRIC_BY_ARCHETYPE.md").exists() else ""
 
     def parse_archetype_pairs(text, src):
+        # BUGFIX (silent-drop audit): the greedy `.*?` could span past a
+        # section that has NO Winner line into the next archetype's
+        # Winner, mis-attributing the ticker and dropping the correct
+        # (empty) section. The tempered `(?:(?!\n###?\s+\w+\d+\.).)*?`
+        # forbids the match from crossing a subsequent archetype header.
         blocks = re.findall(
-            r"###?\s+(\w+\d+)\.\s+([^\n]+?)\n.*?\*\*Winner:\s*"
+            r"###?\s+(\w+\d+)\.\s+([^\n]+?)\n"
+            r"(?:(?!\n###?\s+\w+\d+\.).)*?\*\*Winner:\s*"
             r"([A-Z][A-Z0-9.\-]{0,10})\*\*",
             text, re.S)
         return [(code, desc.strip(), tk, src)

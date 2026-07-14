@@ -221,7 +221,10 @@ def main() -> int:
         try:
             filings = fetch_tender_filings(tk)
         except Exception as e:
-            out[tk] = {"_complete": True, "_error": str(e)[:120]}
+            # BUGFIX (silent-drop audit): transient fetch failure must
+            # not be marked _complete or the resume guard skips it
+            # forever. Omit _complete -> retried next run.
+            out[tk] = {"_error": str(e)[:120]}
             continue
         time.sleep(args.sleep)
 
@@ -236,9 +239,13 @@ def main() -> int:
         q = yq.get(tk) or {}
         sc, reasons = score_tender(filings, terms,
                                    q.get("mcap"), q.get("price"))
+        # BUGFIX (silent-drop audit): has_13e3 was read by 9 downstream
+        # consumers but never produced here, so the going-private signal
+        # was silently absent everywhere. Derive it from the filing set.
+        has_13e3 = any("13E" in (f.get("form") or "") for f in filings)
         out[tk] = {
             "ticker": tk, "filings": filings, "terms": terms,
-            "score": sc, "reasons": reasons,
+            "score": sc, "reasons": reasons, "has_13e3": has_13e3,
             "_complete": True, "_version": EXTRACT_VERSION,
         }
         if filings:

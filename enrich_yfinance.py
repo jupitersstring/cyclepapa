@@ -89,12 +89,16 @@ def main() -> int:
             row = fetch_one(yf, tk)
         except Exception as e:
             row = {"_error": str(e)[:120]}
-        if row:
+        # BUGFIX (silent-drop audit): persisting _error rows made
+        # `if tk in existing: continue` permanently skip a ticker after
+        # one transient fetch failure (rate-limit/TLS), so it never
+        # retried. Count the failure but do NOT persist it -> retried
+        # next run.
+        if row and "_error" not in row:
             existing[tk] = row
-            if "_error" in row:
-                n_failed += 1
-            else:
-                n_added += 1
+            n_added += 1
+        else:
+            n_failed += 1
         time.sleep(args.sleep)
         if i % args.checkpoint_every == 0:
             tmp = OUT.with_suffix(".tmp")
