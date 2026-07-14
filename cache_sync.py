@@ -39,6 +39,37 @@ def _run(cmd, **kw):
     return subprocess.run(cmd, cwd=REPO, check=False, capture_output=True, text=True, **kw)
 
 
+def _local_ticker_count() -> int:
+    """How many distinct info_metrics tickers are in the local cache right now."""
+    yf = REPO / '.cache' / 'yf'
+    if not yf.exists():
+        return 0
+    return len({p.name.split('__')[0] for p in yf.glob('*__info_metrics.parquet')})
+
+
+def _remote_manifest_tickers():
+    """info_metrics_tickers recorded in the current origin/cache-snapshot
+    MANIFEST, or None if it can't be read (branch missing / git unreachable).
+
+    NB: fetch WITHOUT a 'branch:branch' refspec — creating a local
+    cache-snapshot branch here would collide with push()'s
+    `git checkout --orphan cache-snapshot`. FETCH_HEAD (and the
+    origin/ remote-tracking ref) carry the tip without a local branch."""
+    _run(['git', 'fetch', 'origin', SNAPSHOT_BRANCH])
+    r = _run(['git', 'show', 'FETCH_HEAD:cache_chunks/MANIFEST'])
+    if r.returncode != 0:
+        r = _run(['git', 'show', f'origin/{SNAPSHOT_BRANCH}:cache_chunks/MANIFEST'])
+    if r.returncode != 0:
+        return None
+    for line in r.stdout.splitlines():
+        if line.startswith('cache.yf.info_metrics_tickers='):
+            try:
+                return int(line.split('=', 1)[1])
+            except ValueError:
+                return None
+    return None
+
+
 def _existing_paths():
     return [p for p in PERSIST_PATHS if (REPO / p).exists()]
 
@@ -81,12 +112,29 @@ def _chunks_to_tar(chunk_dir: Path, out_tar: Path):
             dst.write(c.read_bytes())
 
 
-def push():
+def push(force=False):
     """Snapshot current cache+results to origin/cache-snapshot (force-push)."""
     paths = _existing_paths()
     if not paths:
         print('Nothing to push — no cache or results present.')
         return 1
+    # CLOBBER GUARD: never overwrite a good snapshot with a sparse/unrestored
+    # cache. A fresh container whose restore failed would otherwise push its
+    # near-empty cache over origin/cache-snapshot and destroy it — exactly the
+    # loss this whole snapshot mechanism exists to prevent.
+    if not force:
+        local_n = _local_ticker_count()
+        if local_n < 100:
+            print(f'REFUSING to push: local cache has only {local_n} info_metrics '
+                  f'tickers — almost certainly unrestored. Run `cache_sync.py pull` '
+                  f'first, or pass --force to override.')
+            return 5
+        remote_n = _remote_manifest_tickers()
+        if remote_n and local_n < 0.5 * remote_n:
+            print(f'REFUSING to push: local cache has {local_n} tickers vs the existing '
+                  f"snapshot's {remote_n} — pushing would clobber a larger good "
+                  f'snapshot. Pass --force to override.')
+            return 5
     print(f'Snapshotting: {[str(p) for p in paths]}')
     # Build chunks in a temp staging dir
     staging = REPO / '.cache_snapshot_staging'
@@ -118,6 +166,10 @@ def push():
     if wt.exists(): shutil.rmtree(wt)
     # Make an orphan branch worktree
     _run(['git', 'worktree', 'remove', '--force', str(wt)])  # cleanup any stale
+    # Drop any local cache-snapshot branch first: pull() (and the clobber guard,
+    # on older code) can leave one behind, and `checkout --orphan cache-snapshot`
+    # below fails outright if that branch name already exists.
+    _run(['git', 'branch', '-D', SNAPSHOT_BRANCH])
     r = _run(['git', 'worktree', 'add', '--detach', str(wt)])
     if r.returncode != 0:
         print(f'worktree add failed: {r.stderr}'); return 2
@@ -250,8 +302,11 @@ def status():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('cmd', choices=['push','pull','status'])
+    ap.add_argument('--force', action='store_true',
+                    help='push: bypass the clobber guard (allow overwriting the '
+                         'snapshot with a smaller/sparse cache)')
     args = ap.parse_args()
-    if args.cmd == 'push':   sys.exit(push())
+    if args.cmd == 'push':   sys.exit(push(force=args.force))
     if args.cmd == 'pull':   sys.exit(pull())
     if args.cmd == 'status': status(); sys.exit(0)
 
