@@ -46,8 +46,8 @@ ap.add_argument('--benchmark', default='SPY')
 args = ap.parse_args()
 
 uni = pd.read_csv(args.universe)
-syms = uni['ticker'].dropna().unique().tolist()
-syms = [s for s in syms if isinstance(s,str) and not ('.' not in s and ('-' in s or s.endswith('U') or s.endswith('W')))]
+from _ticker_filter import common_stock_tickers
+syms = common_stock_tickers(uni)
 print(f"universe: {len(syms)} | benchmark: {args.benchmark}", file=sys.stderr)
 
 bench_df = yf.download(args.benchmark, period='5y', interval='1d', progress=False, auto_adjust=True)

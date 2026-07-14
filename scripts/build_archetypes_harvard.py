@@ -152,14 +152,35 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
 
     row = [3]
 
+    # Visible cap for the stacked summary sheet; FULL membership is exported to CSV
+    # so nothing is silently dropped (audit fix: head(25)/head(40) were hiding
+    # thousands of cohort members with no indication).
+    COHORT_CAP = 150
+    import re as _re
+    os.makedirs('data/synthesis/archetypes', exist_ok=True)
+    def _export_cohort(title, dfsub, sort_col=None, ascending=False):
+        slug = _re.sub(r'[^a-z0-9]+', '_', title.lower().split('—')[0].split('-')[0].strip())[:40].strip('_')
+        d = dfsub
+        if sort_col and sort_col in d.columns:
+            d = d.sort_values(sort_col, ascending=ascending)
+        keep = [c for c in ['ticker','name','region','cap_tier','mktCap_M','roic_mean','roiic_1y',
+                'ev_valuation','peg_forward','peg_trailing','fcf_yield_pct','rev_g_pct',
+                'largest_segment','seg_fastest_name','seg_rev_growth_fastest','seg_mix_shift_pp',
+                'backlog_concept_used','backlog_inflection_pp','backlog_to_ev_ratio','ev_total',
+                'all_legs_score'] if c in d.columns]
+        d[keep].to_csv(f'data/synthesis/archetypes/{slug}.csv', index=False)
+        return len(d)
+
     def section(title):
         ws.set_row(row[0], 22)
         ws.merge_range(row[0], 0, row[0], 21, title.upper(), S['section'])
         row[0] += 1
 
     # ─── Standard archetype block — includes segment + backlog specifics ───
-    def write_block(title, dfsub, sort_col=None, ascending=False, n=25):
-        section(f"{title}  ·  {len(dfsub)} names")
+    def write_block(title, dfsub, sort_col=None, ascending=False, n=COHORT_CAP):
+        _export_cohort(title, dfsub, sort_col, ascending)
+        _cap = 'showing top %d of ' % n if len(dfsub) > n else ''
+        section(f"{title}  ·  {_cap}{len(dfsub)} names  ·  full list → archetypes/*.csv" if _cap else f"{title}  ·  {len(dfsub)} names")
         headers = ['Ticker','Company','Region','Cap','Mkt Cap (M)','ROIC Mn %','ROIC Min %',
                    'ROIIC 1y %','CC-ROIC %','EV/EBIT','PEG fwd','PEG ttm','FCF Y %','Rev G %','Largest Seg','Largest %',
                    'Fastest Seg','Fastest %','Mix Δ pp','Backlog Concept','Backlog Δ pp','Inflect','CC Inflect','Score']
@@ -200,7 +221,8 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
 
     # Specialized segment block (different columns — emphasis on segment specifics)
     def write_segment_block(title, dfsub):
-        section(f"{title}  ·  {len(dfsub)} names")
+        _export_cohort(title, dfsub, 'seg_rev_growth_fastest', False)
+        section(f"{title}  ·  {len(dfsub)} names  ·  full list → archetypes/*.csv")
         headers = ['Ticker','Company','Region','Cap','Mkt Cap (M)','Largest Segment','Largest %',
                    'Fastest Segment','Fastest %','Slowest Segment','Slowest %','Mix Gainer','Mix Δ pp',
                    'Best-Margin Seg','Best Mgn %','Worst Mgn %','Dispersion','# Seg','Hi-Mgn ↑','Latest FY','EV/EBIT','Score']
@@ -241,7 +263,9 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
 
     # Specialized backlog block
     def write_backlog_block(title, dfsub):
-        section(f"{title}  ·  {len(dfsub)} names")
+        _export_cohort(title, dfsub, 'backlog_inflection_pp', False)
+        _cap = 'showing top %d of ' % COHORT_CAP if len(dfsub) > COHORT_CAP else ''
+        section(f"{title}  ·  {_cap}{len(dfsub)} names  ·  full list → archetypes/*.csv" if _cap else f"{title}  ·  {len(dfsub)} names")
         headers = ['Ticker','Company','Region','Cap','Mkt Cap (M)','Backlog Concept','Latest Backlog (M)',
                    'Latest Date','QoQ %','YoY %','4Q Avg %','8Q Avg %','Accel Δ pp','Backlog / Rev',
                    'EV (M)','Backlog / EV','ROIC Mn %','ROIIC 1y %','EV/EBITDA','FCF Y %','Rev G %','Score']
@@ -250,7 +274,7 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
         row[0] += 1
         if 'backlog_inflection_pp' in dfsub.columns:
             dfsub = dfsub.sort_values('backlog_inflection_pp', ascending=False)
-        for _, r in dfsub.head(40).iterrows():
+        for _, r in dfsub.head(COHORT_CAP).iterrows():
             wt(ws, row[0], 0, r.get('ticker'), S['text_l_b'], S['em'])
             wt(ws, row[0], 1, str(r.get('name',''))[:24] if pd.notna(r.get('name')) else None, S['text_l'], S['em'])
             wt(ws, row[0], 2, REGION_FULLNAME.get(r.get('region',''), r.get('region','')), S['text_l'], S['em'])

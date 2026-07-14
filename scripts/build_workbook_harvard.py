@@ -322,8 +322,9 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
             bl = bl.sort_values('backlog_inflection_pp', ascending=False)
         if len(bl):
             ws.set_row(row, 20)
+            _blcap = ' — showing top 40' if len(bl) > 40 else ''
             ws.merge_range(row, 0, row, 14,
-                f'BACKLOG INFLECTION — {len(bl)} NAMES (largest accel first)', S['section']); row += 1
+                f'BACKLOG INFLECTION — {len(bl)} NAMES (largest accel first){_blcap}; full list in archetypes workbook', S['section']); row += 1
             bl_hdr = ['Ticker','Company','Cap','Concept','Latest Backlog (M)','QoQ %','YoY %',
                       '4Q Avg %','8Q Avg %','Δ pp','Backlog/Rev','EV (M)','Backlog/EV','Latest Date',
                       'EV/EBITDA','FCF Y %','Score']
@@ -355,12 +356,14 @@ with pd.ExcelWriter(xlsx_path, engine='xlsxwriter') as writer:
 
     # Compounder cohort with full ROIC specifics
     if 'compounder_score' in df.columns and df['compounder_score'].notna().any():
-        comp = df[df['has_history']].sort_values('compounder_score', ascending=False).head(30)
+        comp_all = df[df['has_history']].sort_values('compounder_score', ascending=False)
+        comp = comp_all.head(30)
         n_strict = int(df.get('enduring_strict', pd.Series(False, index=df.index)).sum())
         n_infl   = int(df.get('roiic_inflection', pd.Series(False, index=df.index)).sum())
         ws.set_row(row, 20)
+        _ccap = f' — showing top 30 of {len(comp_all):,}' if len(comp_all) > 30 else ''
         ws.merge_range(row, 0, row, 14,
-            f'ENDURING COMPOUNDERS — LINDY MULTI-METHOD ROIC  ·  {n_strict} strict  ·  {n_infl} ROIIC inflecting',
+            f'ENDURING COMPOUNDERS — LINDY MULTI-METHOD ROIC  ·  {n_strict} strict  ·  {n_infl} ROIIC inflecting{_ccap}',
             S['section']); row += 1
         ch = ['Ticker','Company','Sector','Cap','Market Cap (M)','ROIC Mean %','ROIC Min %',
               'Method Agr','ROIIC 1y %','ROIIC 3y %','CC-ROIC %','EV/EBIT','FCF Y %','Strict','Score']

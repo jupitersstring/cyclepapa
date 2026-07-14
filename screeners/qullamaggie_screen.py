@@ -23,8 +23,8 @@ ap.add_argument('--period', default='9mo')
 args = ap.parse_args()
 
 uni = pd.read_csv(args.universe)
-syms = uni['ticker'].dropna().unique().tolist()
-syms = [s for s in syms if isinstance(s,str) and not ('.' not in s and ('-' in s or s.endswith('U') or s.endswith('W')))]
+from _ticker_filter import common_stock_tickers
+syms = common_stock_tickers(uni)
 print(f"qmaggie universe: {len(syms)}", file=sys.stderr)
 
 def screen_one(t, df):

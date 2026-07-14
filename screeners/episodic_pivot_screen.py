@@ -23,8 +23,8 @@ ap.add_argument('--window-days', type=int, default=5, help='Recent N days to loo
 args = ap.parse_args()
 
 uni = pd.read_csv(args.universe)
-syms = uni['ticker'].dropna().unique().tolist()
-syms = [s for s in syms if isinstance(s,str) and not ('.' not in s and ('-' in s or s.endswith('U') or s.endswith('W')))]
+from _ticker_filter import common_stock_tickers
+syms = common_stock_tickers(uni)
 print(f"EP universe: {len(syms)}", file=sys.stderr)
 
 def screen_one(t, df):
