@@ -37,20 +37,24 @@ def fetch_companyfacts(cik):
 def latest_annual(facts_dict, concept_keys, prefer_form='10-K'):
     """Find the latest annual value for a concept. Returns (value, period_end) or (None, None)."""
     if not facts_dict: return None, None
-    us_gaap = facts_dict.get('facts', {}).get('us-gaap', {})
-    dei = facts_dict.get('facts', {}).get('dei', {})
+    facts = facts_dict.get('facts', {})
+    us_gaap = facts.get('us-gaap', {})
+    dei = facts.get('dei', {})
+    ifrs = facts.get('ifrs-full', {})   # IFRS filers (many 20-F / 40-F)
     for concept in concept_keys:
-        for ns in (us_gaap, dei):
+        for ns in (us_gaap, dei, ifrs):
             if concept not in ns: continue
             units = ns[concept].get('units', {})
             for u in ('USD', 'shares', 'pure', 'USD/shares'):
                 if u not in units: continue
                 rows = units[u]
-                # Prefer 10-K, then 10-K/A; FY filings
+                # Prefer 10-K, then foreign annual forms (20-F, 40-F Canadian MJDS)
                 annual = [r for r in rows if r.get('form','').startswith('10-K')
                           and r.get('fp','') in ('FY','')]
                 if not annual:
                     annual = [r for r in rows if r.get('form','').startswith('20-F')]
+                if not annual:
+                    annual = [r for r in rows if r.get('form','').startswith('40-F')]
                 if not annual: continue
                 annual.sort(key=lambda r: r.get('end',''), reverse=True)
                 # Take the most recent one with a non-null val
@@ -65,25 +69,32 @@ def derive_one(ticker, cik, price):
     facts = fetch_companyfacts(cik)
     if facts is None:
         return None
-    # Shares outstanding — try companyfacts CommonStockSharesOutstanding first, then dei.EntityCommonStockSharesOutstanding
+    # Concept lists include IFRS-full variants so 20-F/40-F IFRS filers aren't dropped.
     shares, sh_date = latest_annual(facts,
-        ['CommonStockSharesOutstanding','CommonStockSharesIssued','EntityCommonStockSharesOutstanding'])
+        ['CommonStockSharesOutstanding','CommonStockSharesIssued','EntityCommonStockSharesOutstanding',
+         'NumberOfSharesOutstanding','IssuedCapital'])
     # Book value (stockholders equity)
     equity, eq_date = latest_annual(facts,
-        ['StockholdersEquity','StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest'])
-    # Net income (TTM-ish; latest annual)
-    ni, ni_date = latest_annual(facts, ['NetIncomeLoss','ProfitLoss'])
+        ['StockholdersEquity','StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest',
+         'Equity','EquityAttributableToOwnersOfParent'])
+    # Net income (latest annual)
+    ni, ni_date = latest_annual(facts, ['NetIncomeLoss','ProfitLoss',
+                                        'ProfitLossAttributableToOwnersOfParent'])
     # EBITDA — derived if we have OpIncome + D&A
-    op_inc, _ = latest_annual(facts, ['OperatingIncomeLoss'])
+    op_inc, _ = latest_annual(facts, ['OperatingIncomeLoss','ProfitLossFromOperatingActivities'])
     da,     _ = latest_annual(facts, ['DepreciationDepletionAndAmortization',
-                                       'DepreciationAndAmortization','Depreciation'])
+                                       'DepreciationAndAmortization','Depreciation',
+                                       'DepreciationAmortisationAndImpairmentExpense'])
     # Total debt & cash for EV
-    debt_lt, _ = latest_annual(facts, ['LongTermDebt','LongTermDebtNoncurrent'])
-    debt_st, _ = latest_annual(facts, ['ShortTermBorrowings','DebtCurrent'])
-    cash, _    = latest_annual(facts, ['CashAndCashEquivalentsAtCarryingValue','Cash','CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents'])
+    debt_lt, _ = latest_annual(facts, ['LongTermDebt','LongTermDebtNoncurrent','NoncurrentBorrowings'])
+    debt_st, _ = latest_annual(facts, ['ShortTermBorrowings','DebtCurrent','CurrentBorrowings'])
+    cash, _    = latest_annual(facts, ['CashAndCashEquivalentsAtCarryingValue','Cash',
+                                       'CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents',
+                                       'CashAndCashEquivalents'])
     # Revenue (for sanity / EV/Sales)
     rev, _ = latest_annual(facts, ['Revenues','RevenueFromContractWithCustomerExcludingAssessedTax',
-                                    'RevenueFromContractWithCustomerIncludingAssessedTax','SalesRevenueNet'])
+                                    'RevenueFromContractWithCustomerIncludingAssessedTax','SalesRevenueNet',
+                                    'Revenue'])
 
     out = {'ticker': ticker, 'shares': shares, 'book_value': equity, 'net_income': ni,
            'op_income': op_inc, 'da': da, 'debt_lt': debt_lt, 'debt_st': debt_st,
@@ -137,17 +148,21 @@ tk_cik = {v['ticker'].upper(): v['cik_str'] for v in sec.values()}
 # Load synthesis to get the price and identify rows to derive
 df = pd.read_csv('data/synthesis/v2_universe_ranked_full_q.csv', low_memory=False)
 df['ticker'] = df['ticker'].astype(str).str.upper().str.strip()
-has_price = pd.to_numeric(df['price'], errors='coerce') > 0
 has_cik = df['ticker'].isin(tk_cik.keys())
+# NOTE: price is only needed for PB/PE/mktCap; net_debt/book_value/EBITDA come from
+# EDGAR regardless of price, so we do NOT gate on price>0 (that silently dropped
+# price-less names whose backlog EV we still want).
 
-# Target 1: US-region rows missing PB/PE/mktCap
-missing_val = (df['pb'].isna()) | (df['pe'].isna()) | (df['mktCap'].isna())
-us = df[df['region'].isin(['us','us_x','us_nms']) & missing_val & has_cik & has_price]
+def _na(col):
+    return df[col].isna() if col in df.columns else pd.Series(True, index=df.index)
+
+# Target 1: US-region rows missing ANY derivable valuation input (pb/pe/mktCap/ev/net_debt/ev_ebitda)
+missing_val = _na('pb') | _na('pe') | _na('mktCap') | _na('ev') | _na('net_debt') | _na('ev_ebitda')
+us = df[df['region'].isin(['us','us_x','us_nms']) & missing_val & has_cik]
 
 # Target 2: ALL backlog names (any region) — backlog EV must come from EDGAR.
-# Pull SEC shares/debt/cash for every backlog ticker so EV is fully populated.
 bl_mask = df.get('backlog_latest', pd.Series(index=df.index, dtype=float)).notna()
-backlog = df[bl_mask & has_cik & has_price]
+backlog = df[bl_mask & has_cik]
 
 target = pd.concat([us, backlog]).drop_duplicates('ticker')
 print(f"US missing-val: {len(us):,}  ·  backlog names: {len(backlog):,}  ·  union: {len(target):,}", file=sys.stderr)

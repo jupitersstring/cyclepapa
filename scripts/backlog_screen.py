@@ -76,7 +76,7 @@ def fetch_concept(cik, tag, session, limiter, max_retries=3):
         limiter.wait()
         try:
             r = session.get(url, headers={'User-Agent': UA}, timeout=30)
-            if r.status_code == 404: return None
+            if r.status_code == 404: return None          # genuine: no such concept for this filer
             if r.status_code == 429:
                 time.sleep(2 ** attempt * 3); continue
             r.raise_for_status()
@@ -84,8 +84,8 @@ def fetch_concept(cik, tag, session, limiter, max_retries=3):
         except Exception:
             if attempt < max_retries - 1:
                 time.sleep(2 ** attempt); continue
-            return None
-    return None
+            return 'ERROR'                                 # transient: retries exhausted, do NOT mark done
+    return 'ERROR'                                         # 429 loop exhausted
 
 
 def extract_quarterly_series(concept_json, unit='USD'):
@@ -99,7 +99,8 @@ def extract_quarterly_series(concept_json, unit='USD'):
     series = {}
     for d in data:
         form = d.get('form', '')
-        if form not in ('10-K','10-Q','10-K/A','10-Q/A','20-F','40-F'): continue
+        # Include 6-K: foreign private issuers file interim RPO/deferred-rev data there.
+        if form not in ('10-K','10-Q','10-K/A','10-Q/A','20-F','40-F','20-F/A','40-F/A','6-K'): continue
         end = d.get('end', '')
         val = d.get('val')
         if val is None: continue
@@ -152,9 +153,12 @@ def compute_inflection(series):
 def fetch_one(ticker, cik, session, limiter, rev_lookup=None):
     """Try each backlog concept until one returns data."""
     result = {'ticker': ticker, 'cik': cik, 'backlog_concept_used': None}
+    any_error = False
     for tag in BACKLOG_TAGS:
         cj = fetch_concept(cik, tag, session, limiter)
-        if cj is None: continue
+        if cj == 'ERROR':
+            any_error = True; continue      # transient failure — don't treat as "no data"
+        if cj is None: continue              # genuine 404: this filer lacks this concept
         series = extract_quarterly_series(cj)
         if len(series) < 5: continue  # need at least 5 quarters
         m = compute_inflection(series)
@@ -163,7 +167,11 @@ def fetch_one(ticker, cik, session, limiter, rev_lookup=None):
             result['backlog_concept_used'] = tag
             break
     if result.get('backlog_concept_used') is None:
-        return result  # no backlog data
+        # If we found nothing AND some request errored transiently, signal a retry
+        # (return None) so the ticker is NOT written as a done no-backlog row.
+        if any_error:
+            return None
+        return result  # genuinely no backlog data (all 404s)
 
     # Book-to-bill / backlog-to-revenue
     if rev_lookup and ticker in rev_lookup:
