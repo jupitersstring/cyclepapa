@@ -1,0 +1,386 @@
+ticker,name,sector,industry,market_cap
+ACSEL.IS,Aciselsan Acipayam Seluloz Sanayi Ve Ticaret A.S.,Materials,Chemicals,Nano Cap
+ADEL.IS,Adel Kalemcilik Ticaret ve Sanayi A.S.,Industrials,Commercial Services & Supplies,Nano Cap
+ADESE.IS,Adese Gayrimenkul Yatirim A.S.,Consumer Staples,Household Products,Nano Cap
+AEFES.IS,Anadolu Efes Biracilik ve Malt Sanayii Anonim Sirketi,Consumer Staples,Beverages,Small Cap
+AFYON.IS,Afyon Cimento Sanayi Turk Anonim Sirketi,Materials,Construction Materials,Micro Cap
+AGHOL.IS,AG Anadolu Grubu Holding A.S.,Consumer Staples,Beverages,Small Cap
+AGYO.IS,Atakule Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+AKBNK.IS,Akbank T.A.S.,Financials,Banks,Mid Cap
+AKCNS.IS,Akcansa Cimento Sanayi ve Ticaret Anonim Sirketi,Materials,Construction Materials,Micro Cap
+AKENR.IS,Akenerji Elektrik Uretim A.S.,Utilities,Electric Utilities,Micro Cap
+AKFGY.IS,Akfen Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+AKGRT.IS,Aksigorta A.S.,Financials,Insurance,Micro Cap
+AKMGY.IS,Akmerkez Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+AKSA.IS,Aksa Akrilik Kimya Sanayii A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+AKSEN.IS,Aksa Enerji Uretim A.S.,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+AKSGY.IS,Akis Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+AKSUE.IS,Aksu Enerji ve Ticaret Anonim Sirketi,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+AKYHO.IS,Akdeniz Yatirim Holding A.S.,Industrials,Professional Services,Nano Cap
+ALARK.IS,Alarko Holding A.S.,Industrials,Industrial Conglomerates,Small Cap
+ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,Financials,Banks,Micro Cap
+ALCAR.IS,Alarko Carrier Sanayi ve Ticaret A.S.,Industrials,Machinery,Micro Cap
+ALCTL.IS,Alcatel Lucent Teletas Telekomunikasyon A.S.,Information Technology,Communications Equipment,Micro Cap
+ALGYO.IS,Alarko Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+ALKA.IS,Alkim Kagit Sanayi ve Ticaret AS,Materials,Paper & Forest Products,Micro Cap
+ALKIM.IS,Alkim Alkali Kimya A.S.,Materials,Paper & Forest Products,Micro Cap
+ANELE.IS,Anel Elektrik Proje Taahhut ve Ticaret Anonim Sirketi,Industrials,Construction & Engineering,Nano Cap
+ANHYT.IS,Anadolu Hayat Emeklilik Anonim Sirketi,Financials,Insurance,Micro Cap
+ANSGR.IS,Anadolu Anonim Turk Sigorta Sirketi,Financials,Insurance,Micro Cap
+ARCLK.IS,Arcelik Anonim Sirketi,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+ARDYZ.IS,ARD Grup Bilisim Teknolojileri Anonim Sirketi,Information Technology,Software,Micro Cap
+ARENA.IS,Arena Bilgisayar Sanayi ve Ticaret A.S.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+ARMDA.IS,Armada Bilgisayar Sistemleri Sanayi ve Ticaret A.S.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+ARSAN.IS,Arsan Tekstil Ticaret ve Sanayi Anonim Sirketi,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ASELS.IS,Aselsan Elektronik Sanayi ve Ticaret Anonim Sirketi,Industrials,Aerospace & Defense,Mid Cap
+ASUZU.IS,Anadolu Isuzu Otomotiv Sanayi ve Ticaret A.S.,Consumer Discretionary,Automobiles,Micro Cap
+ATAGY.IS,Ata Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+ATEKS.IS,Akin Tekstil Anonim Sirketi,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+ATLAS.IS,Atlas Menkul Kiymetler Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+ATSYH.IS,Atlantis Yatirim Holding A.S.,Financials,Capital Markets,Nano Cap
+AVGYO.IS,Avrasya Gayrimenkul Yatirim Ortakligi Anonim Sirketi,Financials,Capital Markets,Nano Cap
+AVHOL.IS,Avrupa Yatirim Holding A.S.,Financials,Capital Markets,Small Cap
+AVISA.IS,AvivaSA Emeklilik ve Hayat A.S.,Financials,Insurance,Micro Cap
+AVOD.IS,A.V.O.D. Kurutulmus Gida ve Tarim Urunleri A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+AVTUR.IS,Avrasya Petrol ve Turistik Tesisler Yatirimlar Anonim Sirketi,Financials,Capital Markets,Nano Cap
+AYCES.IS,Altin Yunus Cesme Turistik Tesisler A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+AYEN.IS,Ayen Enerji A.S.,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+AYES.IS,Ayes Celik Hasir Ve Cit Sanayi A.S.,Materials,Metals & Mining,Nano Cap
+AYGAZ.IS,Aygaz A.S.,Utilities,Gas Utilities,Small Cap
+BAGFS.IS,Bagfas Bandirma Gubre Fabrikalari A.S.,Materials,Construction Materials,Micro Cap
+BAKAB.IS,Bak Ambalaj Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Micro Cap
+BALAT.IS,Balatacilar Balatacilik Sanayi Ve Ticaret A.S.,Consumer Discretionary,Auto Components,Nano Cap
+BANVT.IS,Banvit Bandirma Vitaminli Yem Sanayii Anonim Sirketi,Consumer Staples,Food & Staples Retailing,Small Cap
+BASCM.IS,Bastas Baskent Cimento Sanayi ve Ticaret A.S.,Materials,Construction Materials,Micro Cap
+BAYRK.IS,Bayrak EBT Taban Sanayi ve Ticaret Anonim Sirketi,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+BERA.IS,Bera Holding A.S.,Industrials,Industrial Conglomerates,Small Cap
+BEYAZ.IS,Beyaz Filo Oto Kiralama A.S.,Industrials,Commercial Services & Supplies,Micro Cap
+BFREN.IS,Bosch Fren Sistemleri Sanayi ve Ticaret A.S.,Consumer Discretionary,Auto Components,Micro Cap
+BIMAS.IS,BIM Birlesik Magazalar A.S.,Consumer Staples,Food & Staples Retailing,Mid Cap
+BIZIM.IS,Bizim Toptan Satis Magazalari A.S.,Consumer Discretionary,Household Durables,Micro Cap
+BJKAS.IS,Besiktas Futbol Yatirimlari Sanayi ve Ticaret A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+BLCYT.IS,Bilici Yatirim Sanayi ve Ticaret A.S.,Industrials,Industrial Conglomerates,Micro Cap
+BNTAS.IS,Bantas Bandirma Ambalaj Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Nano Cap
+BOSSA.IS,Bossa Ticaret ve Sanayi Isletmeleri T.A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+BRKO.IS,Birko Birlesik Koyunlulular Mensucat Ticaret ve Sanayi A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+BRKSN.IS,Berkosan Yalitim Ve Tecrit Maddeleri Uretim Ve Ticaret A.S.,Industrials,Industrial Conglomerates,Nano Cap
+BRMEN.IS,Birlik Mensucat Ticaret ve Sanayi Isletmesi A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+BRSAN.IS,Borusan Mannesmann Boru Sanayi ve Ticaret A.S.,Materials,Metals & Mining,Micro Cap
+BRYAT.IS,Borusan Yatirim ve Pazarlama A.S.,Materials,Metals & Mining,Small Cap
+BSOKE.IS,Batisoke Soke Cimento Sanayii T.A.S.,Materials,Construction Materials,Micro Cap
+BTCIM.IS,Baticim Bati Anadolu Cimento Sanayii Anonim Sirketi,Materials,Construction Materials,Micro Cap
+BUCIM.IS,Bursa Cimento Fabrikasi A.S.,Materials,Construction Materials,Micro Cap
+BURCE.IS,Burcelik Bursa Celik Dokum Sanayii A.S.,Industrials,Machinery,Nano Cap
+BURVA.IS,Burcelik Vana Sanayi ve Ticaret A.S.,Industrials,Building Products,Nano Cap
+CASA.IS,Casa Emtia Petrol Kimyevi ve Turevleri San. Tic. A.S.,Consumer Staples,Household Products,Micro Cap
+CCOLA.IS,Coca-Cola Icecek Anonim Sirketi,Consumer Staples,Beverages,Small Cap
+CELHA.IS,Celik Halat ve Tel Sanayii A.S.,Industrials,Building Products,Nano Cap
+CEMAS.IS,Cemas Dokum Sanayi A.S.,Industrials,Building Products,Micro Cap
+CEMTS.IS,Cemtas Celik Makina Sanayi ve Ticaret A.S.,Materials,Metals & Mining,Micro Cap
+CEOEM.IS,Ceo Event Medya A.S.,Industrials,Professional Services,Nano Cap
+CIMSA.IS,Cimsa Cimento Sanayi ve Ticaret A.S.,Materials,Construction Materials,Micro Cap
+CLEBI.IS,Celebi Hava Servisi A.S.,Industrials,Air Freight & Logistics,Small Cap
+CMBTN.IS,Cimbeton Hazir Beton ve Prefabrik Yapi Elemanlari Sanayi ve Ticaret Anonim Sirketi,Materials,Construction Materials,Nano Cap
+CMENT.IS,Cimentas Izmir Cimento Fabrikasi Turk A.S.,Materials,Construction Materials,Micro Cap
+COSMO.IS,Cosmos Yatirim Holding Anonim Sirketi,Financials,Capital Markets,Nano Cap
+CRDFA.IS,Creditwest Faktoring Anonim Sirketi,Financials,Consumer Finance,Nano Cap
+CUSAN.IS,Cuhadaroglu Metal Sanayi ve Pazarlama A.S.,Industrials,Building Products,Nano Cap
+DAGHL.IS,Dagi Yatirim Holding A.S.,Financials,Capital Markets,Nano Cap
+DAGI.IS,Dagi Giyim Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+DENGE.IS,Denge Yatirim Holding A.S.,Financials,Capital Markets,Nano Cap
+DERHL.IS,Derluks Yatirim Holding Anonim Sirketi,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+DERIM.IS,Derimod Konfeksiyon Ayakkabi Deri Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+DESA.IS,Desa Deri Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+DESPC.IS,Despec Bilgisayar Pazarlama ve Ticaret Anonim Sirketi,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+DEVA.IS,Deva Holding A.S.,Health Care,Pharmaceuticals,Small Cap
+DGATE.IS,Datagate Bilgisayar Malzemeleri Ticaret Anonim Sriketi,Consumer Discretionary,Specialty Retail,Nano Cap
+DGGYO.IS,Dogus Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+DGKLB.IS,Dogtas Kelebek Mobilya Sanayi ve Ticaret A.S.,Consumer Discretionary,Household Durables,Micro Cap
+DIRIT.IS,Diriteks Dirilis Tekstil Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+DITAS.IS,Ditas Dogan Yedek Parca Imalat ve Teknik A.S.,Consumer Discretionary,Auto Components,Nano Cap
+DMSAS.IS,Demisas Dokum Emaye Mamulleri Sanayi Anonim Sirketi,Consumer Discretionary,Auto Components,Nano Cap
+DOAS.IS,Dogus Otomotiv Servis ve Ticaret A.S.,Consumer Discretionary,Automobiles,Small Cap
+DOBUR.IS,Dogan Burda Dergi Yayincilik Ve Pazarlama A.S.,Communication Services,Diversified Telecommunication Services,Nano Cap
+DOGUB.IS,Dogusan Boru Sanayi ve Ticaret Anonim Sirketi,Industrials,Building Products,Nano Cap
+DOHOL.IS,Dogan Sirketler Grubu Holding A.S.,Industrials,Industrial Conglomerates,Small Cap
+DOKTA.IS,Doktas Dokumculuk Ticaret ve Sanayi A.S.,Consumer Discretionary,Auto Components,Micro Cap
+DURDO.IS,Duran Dogan Basim ve Ambalaj Sanayi A.S.,Consumer Discretionary,Distributors,Nano Cap
+DYOBY.IS,DYO Boya Fabrikalari Sanayi ve Ticaret A.S.,Materials,Chemicals,Micro Cap
+DZGYO.IS,Deniz Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+ECILC.IS,"EIS Eczacibasi Ilac, Sinai ve Finansal Yatirimlar Sanayi ve Ticaret A.S.",Health Care,Pharmaceuticals,Small Cap
+ECZYT.IS,Eczacibasi Yatirim Holding Ortakligi A.S.,Industrials,Industrial Conglomerates,Small Cap
+EDIP.IS,Edip Gayrimenkul Yatirim Sanayi ve Ticaret A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+EGEEN.IS,Ege Endustri ve Ticaret A.S.,Consumer Discretionary,Auto Components,Micro Cap
+EGGUB.IS,Ege Gubre Sanayi A.S.,Materials,Construction Materials,Micro Cap
+EGPRO.IS,Ege Profil Ticaret ve Sanayi Anonim Sirketi,Industrials,Building Products,Micro Cap
+EGSER.IS,Ege Seramik Sanayi ve Ticaret A.S.,Industrials,Building Products,Micro Cap
+EKGYO.IS,Emlak Konut Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+EKIZ.IS,Ekiz Kimya Sanayi ve Ticaret Anonim Sirketi,Consumer Staples,Household Products,Nano Cap
+EMKEL.IS,Emek Elektrik Endustrisi Anonim Sirketi,Industrials,Electrical Equipment,Nano Cap
+EMNIS.IS,Eminis Ambalaj Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Nano Cap
+ENJSA.IS,Enerjisa Enerji A.S.,Utilities,Electric Utilities,Small Cap
+ENKAI.IS,Enka Insaat ve Sanayi A.S.,Industrials,Construction & Engineering,Mid Cap
+EPLAS.IS,Egeplast Ege Plastik Ticaret ve Sanayi Anonim Sirketi,Industrials,Building Products,Nano Cap
+ERBOS.IS,Erbosan Erciyas Boru Sanayii ve Ticaret A.S.,Industrials,Building Products,Micro Cap
+EREGL.IS,Eregli Demir ve Celik Fabrikalari T.A.S.,Materials,Metals & Mining,Mid Cap
+ERSU.IS,Ersu Meyve ve Gida Sanayii A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+ESCOM.IS,Escort Teknoloji Yatirim A.S.,Information Technology,IT Services,Nano Cap
+ETILR.IS,Etiler Gida Ve Ticari Yatirimlar Sanayi Ve Ticaret Anonim Sirketi,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ETYAT.IS,Euro Trend Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+EUHOL.IS,Euro Yatirim Holding A.S.,Financials,Capital Markets,Nano Cap
+EUKYO.IS,Euro Kapital Yatirim Ortakligi Anonim Sirketi,Financials,Capital Markets,Nano Cap
+EUYO.IS,Euro Menkul Kiymet Yatirim Ortakligi Anonim Sirketi,Financials,Capital Markets,Nano Cap
+FADE.IS,Fade Gida Yatirim Sanayi Ticaret Anonim Sirketi,Consumer Staples,Food & Staples Retailing,Micro Cap
+FENER.IS,Fenerbahce Futbol A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+FLAP.IS,Flap Kongre Toplanti Hizmetleri Otomotiv ve Turizm A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+FMIZP.IS,Federal-Mogul Izmit Piston Ve Pim Uretim Tesisleri A.S.,Consumer Discretionary,Auto Components,Micro Cap
+FORMT.IS,Formet Celik Kapi Sanayi ve Ticaret A.S.,Industrials,Building Products,Nano Cap
+FRIGO.IS,Frigo-Pak Gida Maddeleri Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+FROTO.IS,Ford Otomotiv Sanayi A.S.,Consumer Discretionary,Automobiles,Mid Cap
+GARAN.IS,Turkiye Garanti Bankasi A.S.,Financials,Banks,Mid Cap
+GARFA.IS,Garanti Faktoring A.S.,Financials,Capital Markets,Micro Cap
+GEDIK.IS,Gedik Yatirim Menkul Degerler A.S.,Financials,Capital Markets,Micro Cap
+GEDZA.IS,Gediz Ambalaj Sanayi ve Ticaret A.S.,Materials,Chemicals,Nano Cap
+GENTS.IS,Gentas Dekoratif Yuzeyler Sanayi ve Ticaret A.S.,Consumer Discretionary,Household Durables,Micro Cap
+GEREL.IS,Gersan Elektrik Ticaret ve Sanayi Anonim Sirketi,Industrials,Electrical Equipment,Nano Cap
+GLBMD.IS,Global Menkul Degerler Anonim Sirketi,Financials,Capital Markets,Nano Cap
+GLRYH.IS,Guler Yatirim Holding A.S.,Financials,Capital Markets,Nano Cap
+GLYHO.IS,Global Yatirim Holding A.S.,Industrials,Industrial Conglomerates,Micro Cap
+GOLTS.IS,Goltas Goller Bolgesi Cimento Sanayi ve Ticaret A.S.,Materials,Construction Materials,Micro Cap
+GOODY.IS,Goodyear Lastikleri T.A.S.,Consumer Discretionary,Auto Components,Micro Cap
+GOZDE.IS,Gozde Girisim Sermayesi Yatirim Ortakligi A.S.,Financials,Capital Markets,Micro Cap
+GRNYO.IS,Garanti Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+GSDDE.IS,GSD Denizcilik Gayrimenkul Insaat Sanayi ve Ticaret A.S.,Industrials,Marine,Nano Cap
+GSDHO.IS,GSD Holding A.S.,Financials,Capital Markets,Micro Cap
+GSRAY.IS,Galatasaray Sportif Sinai ve Ticari Yatirimlar A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+GUBRF.IS,Gubre Fabrikalari Turk Anonim Sirketi,Materials,Construction Materials,Small Cap
+HALKB.IS,Turkiye Halk Bankasi A.S.,Financials,Banks,Small Cap
+HATEK.IS,Hateks Hatay Tekstil Isletmeleri A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+HDFGS.IS,Hedef Girisim Sermayesi Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+HEKTS.IS,Hektas Ticaret T.A.S.,Materials,Construction Materials,Small Cap
+HLGYO.IS,Halk Gayrimenkul Yatirim Ortakligi A.S,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+HUBVC.IS,Hub Girisim Sermayesi Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+HURGZ.IS,Hurriyet Gazetecilik ve Matbaacilik A.S.,Communication Services,Diversified Telecommunication Services,Micro Cap
+ICBCT.IS,ICBC Turkey Bank A.S.,Financials,Banks,Small Cap
+IDEAS.IS,Idealist Danismanlik A.S.,Industrials,Professional Services,Nano Cap
+IDGYO.IS,Idealist Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+IEYHO.IS,Isiklar Enerji ve Yapi Holding A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+IHEVA.IS,Ihlas Ev Aletleri Imalat Sanayi ve Ticaret A.S.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+IHGZT.IS,Ihlas Gazetecilik A.S.,Communication Services,Diversified Telecommunication Services,Nano Cap
+IHLAS.IS,Ihlas Holding A.S.,Industrials,Industrial Conglomerates,Micro Cap
+IHLGM.IS,Ihlas Gayrimenkul Proje Gelistirme ve Ticaret A.S.,Real Estate,Real Estate Management & Development,Micro Cap
+IHYAY.IS,Ihlas Yayin Holding A.S.,Communication Services,Entertainment,Nano Cap
+INDES.IS,Indeks Bilgisayar Sistemleri Muhendislik Sanayi ve Ticaret Anonim Sirketi,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+INFO.IS,Info Yatirim Menkul Degerler A.S.,Financials,Capital Markets,Nano Cap
+INTEM.IS,Intema Insaat ve Tesisat Malzemeleri Yatirim ve Pazarlama A.S.,Consumer Discretionary,Household Durables,Micro Cap
+INVEO.IS,Inveo Yatirim Holding A.S.,Financials,Capital Markets,Micro Cap
+IPEKE.IS,Ipek Dogal Enerji Kaynaklari Arastirma ve Uretim A.S.,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+ISATR.IS,Turkiye Is Bankasi A.S.,Financials,Banks,Small Cap
+ISBIR.IS,Isbir Holding A.S.,Consumer Discretionary,Household Durables,Small Cap
+ISBTR.IS,Turkiye Is Bankasi A.S.,Financials,Banks,Small Cap
+ISCTR.IS,Turkiye Is Bankasi A.S.,Financials,Banks,Small Cap
+ISDMR.IS,Iskenderun Demir ve Celik A.S.,Materials,Metals & Mining,Mid Cap
+ISFIN.IS,Is Finansal Kiralama Anonim Sirketi,Financials,Consumer Finance,Micro Cap
+ISGSY.IS,Is Girisim Sermayesi Yatirim Ortakligi AS,Financials,,Micro Cap
+ISGYO.IS,Is Gayrimenkul Yatirim Ortakligi Anonim Sirketi,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+ISKUR.IS,Turkiye Is Bankasi A.S.,Financials,,Mid Cap
+ISMEN.IS,Is Yatirim Menkul Degerler Anonim Sirketi,Financials,Capital Markets,Small Cap
+ISYAT.IS,Is Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+ITTFH.IS,Ittifak Holding A.S.,Industrials,Industrial Conglomerates,Nano Cap
+IZFAS.IS,Izmir Firca Sanayi ve Ticaret Anonim Sirketi,Consumer Staples,Household Products,Nano Cap
+IZMDC.IS,Izmir Demir Celik Sanayi Anonim Sirketi,Materials,Metals & Mining,Micro Cap
+IZTAR.IS,Iz Hayvancilik Tarim ve Gida Sanayi Ticaret A.S.,Consumer Staples,Household Products,Nano Cap
+JANTS.IS,Jantsa Jant Sanayi ve Ticaret A.S.,Consumer Discretionary,Auto Components,Micro Cap
+KAPLM.IS,Kaplamin Ambalaj Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Nano Cap
+KAREL.IS,Karel Elektronik Sanayi Ve Ticaret A.S.,Information Technology,Communications Equipment,Micro Cap
+KARSN.IS,Karsan Otomotiv Sanayii ve Ticaret A.S.,Consumer Discretionary,Automobiles,Small Cap
+KARTN.IS,Kartonsan Karton Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Small Cap
+KATMR.IS,Katmerciler Arac Ustu Ekipman Sanayi ve Ticaret A.S.,Industrials,Machinery,Micro Cap
+KCHOL.IS,Koc Holding AS,Industrials,Industrial Conglomerates,Mid Cap
+KENT.IS,Kent Gida Maddeleri Sanayii ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Mid Cap
+KERVN.IS,Kervansaray Yatirim Holding A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+KERVT.IS,Kerevitas Gida Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Micro Cap
+KFEIN.IS,Kafein Yazilim Hizmetleri Ticaret A.S.,Information Technology,Software,Nano Cap
+KLGYO.IS,Kiler Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+KLMSN.IS,Klimasan Klima Sanayi ve Ticaret A.S.,Industrials,Machinery,Micro Cap
+KLNMA.IS,Turkiye Kalkinma ve Yatirim Bankasi A.S.,Financials,Banks,Mid Cap
+KNFRT.IS,Konfrut Gida Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+KONTR.IS,Kontrolmatik Teknoloji Enerji Ve Muhendislik Anonim Sirketi,Industrials,Industrial Conglomerates,Micro Cap
+KONYA.IS,Konya Cimento Sanayii Anonim Sirketi,Materials,Construction Materials,Micro Cap
+KORDS.IS,Kordsa Teknik Tekstil A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+KOZAA.IS,Koza Anadolu Metal Madencilik Isletmeleri A.S.,Materials,Metals & Mining,Small Cap
+KOZAL.IS,Koza Altin Isletmeleri A.S.,Materials,Metals & Mining,Small Cap
+KRDMA.IS,Kardemir Karabuk Demir Celik Sanayi Ve Ticaret A.S.,Materials,Metals & Mining,Small Cap
+KRDMB.IS,Kardemir Karabuk Demir Celik Sanayi Ve Ticaret A.S.,Materials,Metals & Mining,Small Cap
+KRDMD.IS,Kardemir Karabuk Demir Celik Sanayi Ve Ticaret A.S.,Materials,Metals & Mining,Small Cap
+KRGYO.IS,Korfez Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+KRONT.IS,Kron Telekomunikasyon Hizmetleri A.S.,Information Technology,Communications Equipment,Micro Cap
+KRSTL.IS,Kristal Kola ve Mesrubat Sanayi Ticaret A.S.,Consumer Staples,Beverages,Nano Cap
+KRTEK.IS,Karsu Tekstil Sanayii ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+KUTPO.IS,Kutahya Porselen Sanayi Anonim Sirketi,Consumer Discretionary,Household Durables,Micro Cap
+KUYAS.IS,Kuyumcukent Gayrimenkul Yatirimlari A.S.,Real Estate,Real Estate Management & Development,Nano Cap
+LIDFA.IS,Lider Faktoring A.S.,Financials,Consumer Finance,Nano Cap
+LINK.IS,Link Bilgisayar Sistemleri Yazilimi ve Donanimi Sanayi ve Ticaret A.S.,Information Technology,Software,Nano Cap
+LKMNH.IS,"Lokman Hekim Engurusag Saglik, Turizm, Egitim Hizmetleri ve Insaat Taahhut A.S.",Health Care,Health Care Equipment & Supplies,Nano Cap
+LOGO.IS,Logo Yazilim Sanayi ve Ticaret A.S.,Information Technology,Software,Micro Cap
+LUKSK.IS,Luks Kadife Ticaret ve Sanayi A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+MAALT.IS,Marmaris Altinyunus Turistik Tesisler Anonim Sirketi,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+MAKTK.IS,Makina Takim Endustrisi A.S.,Industrials,Building Products,Nano Cap
+MARKA.IS,Marka Yatirim Holding A.S.,Financials,Capital Markets,Nano Cap
+MARTI.IS,Marti Otel Isletmeleri A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+MAVI.IS,Mavi Giyim Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+MEGAP.IS,Mega Polietilen Kopuk Sanayi ve Ticaret Anonim Sirketi,Materials,Chemicals,Nano Cap
+MEPET.IS,Mepet Metro Petrol ve Tesisleri Sanayi Ticaret A.S.,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+MERIT.IS,Merit Turizm Yatirim ve Isletme Anonim Sirketi,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+MERKO.IS,Merko Gida Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+METRO.IS,Metro Ticari ve Mali Yatirimlar Holding A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+METUR.IS,Metemtur Otelcilik ve Turizm Isletmeleri A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+MGROS.IS,Migros Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Small Cap
+MIPAZ.IS,Milpa Ticari ve Sinai Urunler Pazarlama Sanayi ve Ticaret A.S.,Industrials,Industrial Conglomerates,Micro Cap
+MMCAS.IS,MMC Sanayi Ve Ticari Yatirimlar A.S.,Industrials,Air Freight & Logistics,Nano Cap
+MNDRS.IS,Menderes Tekstil Sanayi ve Ticaret Anonim Sirketi,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+MPARK.IS,MLP Saglik Hizmetleri A.S.,Health Care,Health Care Equipment & Supplies,Small Cap
+MRGYO.IS,Marti Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+MRSHL.IS,Marshall Boya Ve Vernik Sanayii A.S.,Materials,Chemicals,Micro Cap
+MSGYO.IS,Mistral Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+MTRYO.IS,Metro Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+MZHLD.IS,Mazhar Zorlu Holding A.S.,Industrials,Industrial Conglomerates,Nano Cap
+NATEN.IS,Naturel Yenilenebilir Enerji Ticaret A.S.,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+NETAS.IS,Netas Telekomunikasyon A.S.,Information Technology,Communications Equipment,Micro Cap
+NIBAS.IS,Nigbas Nigde Beton Sanayi Ve Ticaret A.S.,Industrials,Construction & Engineering,Micro Cap
+NTHOL.IS,Net Holding A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+NUGYO.IS,Nurol Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+NUHCM.IS,Nuh Cimento Sanayi A.S.,Materials,Construction Materials,Small Cap
+ODAS.IS,Odas Elektrik Uretim Sanayi Ticaret A.S.,Utilities,Electric Utilities,Micro Cap
+OLMIP.IS,Olmuksan International Paper Ambalaj Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Micro Cap
+ORGE.IS,Orge Enerji Elektrik Taahhut Anonim Sirketi,Utilities,Electric Utilities,Nano Cap
+ORMA.IS,Orma Orman Mahsulleri Integre Sanayi Ve Ticaret A.S.,Consumer Discretionary,Household Durables,Micro Cap
+OSMEN.IS,Osmanli Yatirim Menkul Degerler A.S.,Financials,Capital Markets,Nano Cap
+OSTIM.IS,Ostim Endustriyel Yatirimlar ve Isletme A.S.,Financials,Capital Markets,Nano Cap
+OTKAR.IS,Otokar Otomotiv ve Savunma Sanayi A.S.,Consumer Discretionary,Automobiles,Small Cap
+OYAKC.IS,OYAK Cimento Fabrikalari A.S.,Materials,Construction Materials,Small Cap
+OYAYO.IS,Oyak Yatirim Ortakligi AS,Financials,Capital Markets,Nano Cap
+OYLUM.IS,Oylum Sinai Yatirimlar Anonim Sirketi,Consumer Staples,Food & Staples Retailing,Nano Cap
+OZBAL.IS,Ozbal Celik Boru Sanayi Ticaret ve Taahhut Anonim Sirketi,Materials,Metals & Mining,Nano Cap
+OZGYO.IS,Ozderici Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+OZKGY.IS,Ozak Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+OZRDN.IS,√ñzerden Plastik Sanayi ve Ticaret A.S.,Consumer Discretionary,Distributors,Nano Cap
+PAGYO.IS,Panora Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+PAMEL.IS,Pamukova Yenilenebilir Elektrik Uretim A.S.,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+PAPIL.IS,Papilon Savunma-Guvenlik Sistemleri Bilisim Muhendislik Hizmetleri Ithalat Ihracat Sanayi ve Ticaret,Information Technology,,Nano Cap
+PARSN.IS,Parsan Makina Parcalari Sanayii A.S.,Industrials,Machinery,Micro Cap
+PEGYO.IS,PERA Gayrimenkul Yatirim Ortakligi AS,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+PEKGY.IS,Peker Gayrimenkul Yatirim Ortakligi Anonim Sirketi,Real Estate,Real Estate Management & Development,Nano Cap
+PENGD.IS,Penguen Gida Sanayi A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+PETKM.IS,Petkim Petrokimya Holding A.S.,Materials,Chemicals,Small Cap
+PETUN.IS,Pinar Entegre Et ve Un Sanayii A.S.,Consumer Staples,Food & Staples Retailing,Micro Cap
+PGSUS.IS,Pegasus Hava Tasimaciligi Anonim Sirketi,Industrials,Airlines,Small Cap
+PINSU.IS,Pinar Su ve Icecek Sanayi ve Ticaret A.S.,Consumer Staples,Beverages,Nano Cap
+PKART.IS,Plastikkart Akilli Kart Iletisim Sistemleri Sanayi ve Ticaret A.S.,Industrials,Commercial Services & Supplies,Nano Cap
+PKENT.IS,Petrokent Turizm A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+PNSUT.IS,Pinar Sut Mamulleri Sanayii A.S.,Consumer Staples,Food & Staples Retailing,Micro Cap
+POLHO.IS,Polisan Holding A.S.,Materials,Chemicals,Micro Cap
+POLTK.IS,Politeknik Metal Sanayi ve Ticaret Anonim Sirketi,Materials,Chemicals,Micro Cap
+PRKAB.IS,Turk Prysmian Kablo ve Sistemleri Anonim Sirketi,Industrials,Electrical Equipment,Micro Cap
+PRKME.IS,Park Elektrik Uretim Madencilik Sanayi ve Ticaret A.S.,Materials,Metals & Mining,Micro Cap
+PRZMA.IS,Prizma Pres Matbaacilik Yayincilik Sanayi ve Ticaret A.S.,Industrials,Professional Services,Nano Cap
+PSDTC.IS,Pergamon Status Dis Ticaret A.S.,Industrials,Industrial Conglomerates,Nano Cap
+QNBFL.IS,QNB Finans Finansal Kiralama AS,Financials,Consumer Finance,Small Cap
+QUAGR.IS,QUA Granite Hayal Yapi ve Urunleri Sanayi Ticaret A.S.,Industrials,Building Products,Micro Cap
+RALYH.IS,Ral Yatirim Holding A.S.,Industrials,Construction & Engineering,Nano Cap
+RAYSG.IS,Ray Sigorta Anonim Sirketi,Financials,Insurance,Micro Cap
+RODRG.IS,Rodrigo Tekstil Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ROYAL.IS,Royal Hali Iplik Tekstil Mobilya Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+RTALB.IS,RTA Laboratuvarlari Biyolojik Urunler Ilac ve Makine Sanayi Ticaret A.S.,Health Care,Biotechnology,Micro Cap
+RYGYO.IS,Reysas Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+RYSAS.IS,Reysas Tasimacilik ve Lojistik Ticaret A.S.,Industrials,Air Freight & Logistics,Micro Cap
+SAFKR.IS,Safkar Ege Sogutmacilik Klima Soguk Hava Tesisleri Ihracat Ithalat Sanayi ve Ticaret A.S.,Consumer Discretionary,Auto Components,Nano Cap
+SAHOL.IS,Haci √ñmer Sabanci Holding A.S.,Financials,Banks,Small Cap
+SAMAT.IS,Saray Matbaacilik Kagitcilik kirtasiyecilik Ticaret Ve Sanayi A.S.,Industrials,Professional Services,Nano Cap
+SANEL.IS,San-el Muhendislik Elektrik Taahhut Sanayi ve Ticaret A.S.,Industrials,Electrical Equipment,Nano Cap
+SANFM.IS,Sanifoam Sunger Sanayi ve Ticaret A.S.,Consumer Staples,Household Products,Nano Cap
+SANKO.IS,Sanko Pazarlama Ithalat Ihracat Anonim Sirketi,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+SARKY.IS,Sarkuysan Elektrolitik Bakir Sanayi ve Ticaret A.S.,Materials,Metals & Mining,Small Cap
+SASA.IS,Sasa Polyester Sanayi A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+SAYAS.IS,Say Yenilenebilir Enerji Ekipmanlari Sanayi ve Ticaret A.S.,Communication Services,Diversified Telecommunication Services,Micro Cap
+SEKFK.IS,Seker Finansal Kiralama A.S.,Financials,Consumer Finance,Nano Cap
+SEKUR.IS,Sekuro Plastik Ambalaj Sanayi A.S.,Consumer Discretionary,Distributors,Nano Cap
+SELEC.IS,Selcuk Ecza Deposu Ticaret ve Sanayi A.S.,Health Care,Pharmaceuticals,Small Cap
+SELGD.IS,Selcuk Gida Endustri Ihracat Ithalat A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+SERVE.IS,Serve Film Produksiyon Eglence A.S.,Communication Services,Entertainment,Nano Cap
+SEYKM.IS,Seyitler Kimya Sanayi A.S.,Health Care,Health Care Equipment & Supplies,Nano Cap
+SILVR.IS,Silverline Endustri ve Ticaret A.S.,Consumer Discretionary,Household Durables,Nano Cap
+SISE.IS,Turkiye Sise Ve Cam Fabrikalari A.S.,Materials,Chemicals,Small Cap
+SKBNK.IS,Sekerbank T.A.S.,Financials,Banks,Micro Cap
+SKTAS.IS,Soktas Tekstil Sanayi Ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+SMART.IS,Smartiks Yazilim A.S.,Information Technology,Software,Nano Cap
+SNGYO.IS,Sinpas Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+SNKRN.IS,Senkron Guvenlik ve Iletisim Sistemleri A.S.,Industrials,Professional Services,Nano Cap
+SNPAM.IS,Sonmez Pamuklu Sanayii A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+SODSN.IS,Sodas Sodyum Sanayii A.S.,Materials,Chemicals,Nano Cap
+SOKM.IS,Sok Marketler Ticaret A.S.,Consumer Discretionary,Household Durables,Small Cap
+SONME.IS,Sonmez Filament Sentetik Iplik ve Elyaf Sanayi A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+SRVGY.IS,Servet Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+SUMAS.IS,Sumas Suni Tahta ve Mobilya Sanayi A.S.,Materials,Paper & Forest Products,Nano Cap
+TACTR.IS,Tac Tarim Urunleri Hayvancilik Gida Sanayi ve Ticaret A.S.,Consumer Staples,Household Products,Nano Cap
+TATGD.IS,Tat Gida Sanayi A.S.,Consumer Staples,Food & Staples Retailing,Micro Cap
+TAVHL.IS,TAV Havalimanlari Holding A.S.,Industrials,Transportation Infrastructure,Small Cap
+TBORG.IS,Turk Tuborg Bira ve Malt Sanayii A.S.,Consumer Staples,Beverages,Small Cap
+TCELL.IS,Turkcell Iletisim Hizmetleri A.S.,Communication Services,Diversified Telecommunication Services,Mid Cap
+TDGYO.IS,Trend Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Real Estate Management & Development,Nano Cap
+TEKTU.IS,Tek-Art Insaat Ticaret Turizm Sanayi ve Yatirimlar Anonim Sirketi,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+TGSAS.IS,TGS Dis Ticaret Anonim Sirketi,Industrials,Trading Companies & Distributors,Nano Cap
+THYAO.IS,Turk Hava Yollari Anonim Ortakligi,Industrials,Airlines,Mid Cap
+TIRE.IS,Mondi Tire Kutsan Kagit ve Ambalaj Sanayi A.S.,Consumer Discretionary,Distributors,Nano Cap
+TKFEN.IS,Tekfen Holding Anonim Sirketi,Industrials,Construction & Engineering,Small Cap
+TKNSA.IS,Teknosa Ic ve Dis Ticaret Anonim Sirketi,Consumer Discretionary,Specialty Retail,Micro Cap
+TKURU.IS,Taze Kuru Gida Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Nano Cap
+TLMAN.IS,Trabzon Liman Isletmeciligi Anonim Sirketi,Industrials,Transportation Infrastructure,Micro Cap
+TMPOL.IS,Temapol Polimer Plastik ve Insaat Sanayi Ticaret A.S.,Materials,Chemicals,Nano Cap
+TMSN.IS,Tumosan Motor ve Traktor Sanayi A.S.,Industrials,Machinery,Micro Cap
+TOASO.IS,Tofas Turk Otomobil Fabrikasi A.S.,Consumer Discretionary,Automobiles,Small Cap
+TRCAS.IS,Turcas Petrol A.S.,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+TRGYO.IS,Torunlar Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+TSGYO.IS,TSKB Gayrimenkul Yatirim Ortakligi A.S,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+TSKB.IS,Turkiye Sinai Kalkinma Bankasi A.S.,Financials,Banks,Micro Cap
+TSPOR.IS,Trabzonspor Sportif Yatirim ve Futbol Isletmeciligi Ticaret A.S.,Communication Services,Media,Micro Cap
+TTKOM.IS,Turk Telekomunikasyon Anonim Sirketi,Communication Services,Diversified Telecommunication Services,Mid Cap
+TTRAK.IS,Turk Traktor ve Ziraat Makineleri A.S.,Industrials,Machinery,Small Cap
+TUCLK.IS,Tugcelik Aluminyum Ve Metal Mamulleri Sanayi Ve Ticaret A.S.,Industrials,Building Products,Nano Cap
+TUKAS.IS,Tukas Gida Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Micro Cap
+TUPRS.IS,Turkiye Petrol Rafinerileri A.S.,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+TURGG.IS,Turker Proje Gayrimenkul ve Yatirim Gelistirme A.S.,Real Estate,Real Estate Management & Development,Micro Cap
+TURSG.IS,Turkiye Sigorta Anonim Sirketi,Financials,Insurance,Small Cap
+ULAS.IS,Ulaslar Turizm Yatirimlari ve Dayanikli Tuketim Mallari Ticaret Pazarlama A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ULKER.IS,Ulker Biskuvi Sanayi A.S.,Consumer Staples,Food & Staples Retailing,Small Cap
+ULUSE.IS,Ulusoy Elektrik Imalat Taahhut ve Ticaret A.S.,Industrials,Electrical Equipment,Small Cap
+ULUUN.IS,Ulusoy Un Sanayi ve Ticaret A.S.,Consumer Staples,Food & Staples Retailing,Micro Cap
+UMPAS.IS,Umpas Holding A.S.,Financials,Capital Markets,Nano Cap
+USAK.IS,Usak Seramik Sanayi A.S.,Industrials,Building Products,Nano Cap
+UTPYA.IS,Utopya Turizm Insaat Isletmecilik Ticaret A.S.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+UZERB.IS,Uzertas Boya Sanayi Ticaret ve Yatirim A.S.,Materials,Chemicals,Nano Cap
+VAKBN.IS,Turkiye Vakiflar Bankasi Turk Anonim Ortakligi,Financials,Banks,Small Cap
+VAKFN.IS,Vakif Finansal Kiralama A.S.,Industrials,Commercial Services & Supplies,Micro Cap
+VAKKO.IS,Vakko Tekstil ve Hazir Giyim Sanayi Isletmeleri A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+VANGD.IS,Vanet Gida Sanayi Ic Ve Dis Ticaret Anonim Sirketi,Consumer Staples,Food & Staples Retailing,Nano Cap
+VERTU.IS,Verusaturk Girisim Sermayesi Yatirim Ortakligi A.S.,Financials,Capital Markets,Micro Cap
+VERUS.IS,Verusa Holding A.S.,Financials,Capital Markets,Micro Cap
+VESBE.IS,Vestel Beyaz Esya Sanayi ve Ticaret A.S.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+VESTL.IS,Vestel Elektronik Sanayi ve Ticaret Anonim Sirketi,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+VKFYO.IS,Vakif Menkul Kiymet Yatirim Ortakligi A.S.,Financials,Capital Markets,Nano Cap
+VKGYO.IS,Vakif Gayrimenkul Yatirim Ortakligi AS,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+VKING.IS,Viking Kagit ve Seluloz A.S.,Consumer Staples,Household Products,Nano Cap
+YAPRK.IS,Yaprak Sut ve Besi Ciftlikleri Sanayi ve Ticaret A.S.,Consumer Staples,Household Products,Nano Cap
+YATAS.IS,Yatas Yatak ve Yorgan Sanayi ve Ticaret A.S.,Consumer Discretionary,Household Durables,Micro Cap
+YAYLA.IS,Yayla Enerji Uretim Turizm ve Insaat Ticaret A.S.,Industrials,Construction & Engineering,Nano Cap
+YBTAS.IS,Yibitas Yozgat Isci Birligi Insaat Malzemeleri Ticaret ve Sanayi A.S.,Materials,Construction Materials,Nano Cap
+YESIL.IS,Yesil Yatirim Holding Anonim Sirketi,Financials,Capital Markets,Nano Cap
+YGGYO.IS,Yeni Gimat Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+YGYO.IS,Yesil Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+YKBNK.IS,Yapi ve Kredi Bankasi A.S.,Financials,Banks,Small Cap
+YKGYO.IS,Yapi Kredi Koray Gayrimenkul Yatirim Ortakligi A.S.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+YKSLN.IS,Yukselen Celik Anonim Sirketi,Materials,Metals & Mining,Nano Cap
+YONGA.IS,Yonga Mobilya Sanayi ve Ticaret A.S.,Consumer Discretionary,Household Durables,Nano Cap
+YUNSA.IS,Yunsa Yunlu Sanayi ve Ticaret A.S.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+YYAPI.IS,Yesil Yapi Endustrisi A.S.,Industrials,Construction & Engineering,Nano Cap
+ZOREN.IS,Zorlu Enerji Elektrik Uretim A.S.,Utilities,Electric Utilities,Micro Cap

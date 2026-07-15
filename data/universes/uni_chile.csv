@@ -1,0 +1,113 @@
+ticker,name,sector,industry,market_cap
+AESGENER.SN,AES Andes S.A.,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+AGUAS-A.SN,Aguas Andinas S.A.,Utilities,Water Utilities,Small Cap
+ALMENDRAL.SN,Almendral S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+ANASAC.SN,Agricola Nacional S.A.C. e I.,Consumer Staples,Household Products,Micro Cap
+ANDINA-A.SN,Embotelladora Andina S.A.,Consumer Staples,Beverages,Small Cap
+ANDINA-B.SN,Embotelladora Andina S.A.,Consumer Staples,Beverages,Small Cap
+ANTARCHILE.SN,AntarChile S.A.,Industrials,Industrial Conglomerates,Mid Cap
+AXXION.SN,Axxion S.A.,Financials,Capital Markets,Micro Cap
+BANVIDA.SN,Banvida S.A.,Financials,Insurance,Small Cap
+BESALCO.SN,Besalco S.A.,Industrials,Construction & Engineering,Micro Cap
+BICECORP.SN,Bicecorp S.A.,Financials,Capital Markets,Small Cap
+BLUMAR.SN,Blumar S.A.,Consumer Staples,Household Products,Small Cap
+BOLSASTGO.SN,"Bolsa de Comercio de Santiago, Bolsa de Valores",Financials,Capital Markets,Micro Cap
+CAMANCHACA.SN,Compania Pesquera Camanchaca S.A.,Consumer Staples,Household Products,Micro Cap
+CAP.SN,CAP S.A.,Materials,Metals & Mining,Mid Cap
+CAROZZI.SN,Carozzi S.A.,Consumer Staples,Food & Staples Retailing,Small Cap
+CCU.SN,Compania Cervecerias Unidas S.A.,Consumer Staples,Beverages,Mid Cap
+CEMENTOS.SN,Cementos Bio Bio S.A.,Materials,Construction Materials,Micro Cap
+CENCOSHOPP.SN,Cencosud Shopping S.A.,Real Estate,Real Estate Management & Development,Mid Cap
+CENCOSUD.SN,Cencosud S.A.,Consumer Discretionary,Household Durables,Mid Cap
+CGE.SN,Compania General de Electricidad S.A.,Utilities,Multi-Utilities,Mid Cap
+CGEGAS.SN,CGE Gas Natural S.A.,Utilities,Multi-Utilities,Small Cap
+CIC.SN,Companias CIC S.A.,Consumer Discretionary,Household Durables,Nano Cap
+CINTAC.SN,Cintac S.A.,Materials,Metals & Mining,Micro Cap
+CMPC.SN,Empresas CMPC S.A.,Materials,Paper & Forest Products,Mid Cap
+COLBUN.SN,Colbun S.A.,Utilities,Electric Utilities,Mid Cap
+COLO-COLO.SN,Blanco y Negro S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+COLOSO.SN,Sociedad Pesquera Coloso S.A.,Consumer Staples,Household Products,Nano Cap
+CONCHATORO.SN,Vina Concha y Toro S.A.,Consumer Staples,Beverages,Small Cap
+COUNTRY-A.SN,Prince of Wales Country Club S.A.I.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+CRISTALES.SN,Cristalerias de Chile S.A.,Consumer Discretionary,Distributors,Micro Cap
+CRUZADOS.SN,Cruzados SADP,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+CTC.SN,Telefonica Chile S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+DUNCANFOX.SN,Duncan Fox S.A.,Consumer Staples,Food & Staples Retailing,Micro Cap
+ECL.SN,Engie Energia Chile S.A.,Utilities,Electric Utilities,Small Cap
+EDELMAG.SN,Empresa Electrica de Magallanes S.A.,Utilities,Electric Utilities,Micro Cap
+EDELPA.SN,Envases del Pacifico S.A.,Consumer Discretionary,Distributors,Nano Cap
+EISA.SN,Echeverria Izquierdo S.A.,Industrials,Construction & Engineering,Micro Cap
+ELECMETAL.SN,Compania Electro Metalurgica S.A.,Materials,Metals & Mining,Small Cap
+ELUXSA.SN,Electrolux de Chile S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+EMBONOR-A.SN,Coca-Cola Embonor S.A.,Consumer Staples,Beverages,Small Cap
+EMBONOR-B.SN,Coca-Cola Embonor S.A.,Consumer Staples,Beverages,Small Cap
+EMILIANA.SN,Vinedos Emiliana S.A.,Consumer Staples,Beverages,Nano Cap
+ENAEX.SN,Enaex S.A.,Materials,Chemicals,Small Cap
+ENELCHILE.SN,Enel Chile S.A.,Utilities,Electric Utilities,Mid Cap
+ENELDXCH.SN,Enel Distribucion Chile S.A.,Utilities,Electric Utilities,Small Cap
+ENELGXCH.SN,Enel Generacion Chile S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+ENJOY.SN,Enjoy S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ENLASA.SN,Energia Latina S.A.,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+EPERVA.SN,Empresa Pesquera Eperva S.A.,Consumer Staples,Household Products,Nano Cap
+ESSBIO-C.SN,Essbio S.A.,Utilities,Water Utilities,Small Cap
+ESVAL-C.SN,Esval S.A.,Utilities,Water Utilities,Small Cap
+FALABELLA.SN,Falabella S.A.,Consumer Discretionary,Household Durables,Mid Cap
+FORUS.SN,Forus S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+FROWARD.SN,Portuaria Cabo Froward S.A.,Industrials,Marine,Micro Cap
+GASCO.SN,Empresas Gasco S.A.,Utilities,Gas Utilities,Small Cap
+GOLF.SN,Sociedad Anonima de Deportes Club de Golf Santiago,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+HF.SN,Hortifrut S.A.,Consumer Staples,Household Products,Small Cap
+HIPODROMOA.SN,Sociedad Hipodromo Chile S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+HITES.SN,Empresas Hites S.A.,Consumer Discretionary,Household Durables,Micro Cap
+IANSA.SN,Empresas Iansa S.A.,Consumer Staples,Food & Staples Retailing,Micro Cap
+INDISA.SN,Instituto de Diagnostico S.A.,Health Care,Health Care Equipment & Supplies,Micro Cap
+INGEVEC.SN,Ingevec S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+INVERCAP.SN,Invercap S.A.,Materials,Metals & Mining,Small Cap
+ISANPA.SN,Inmobiliaria San Patricio S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+ITAUCORP.SN,Itau Corpbanca,Financials,Banks,Mid Cap
+LAS-CONDES.SN,Clinica Las Condes S.A.,Health Care,Health Care Equipment & Supplies,Micro Cap
+LIPIGAS.SN,Empresas Lipigas S.A.,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+LTM.SN,LATAM Airlines Group S.A.,Industrials,Airlines,Small Cap
+MALLPLAZA.SN,Plaza S.A.,Real Estate,Real Estate Management & Development,Mid Cap
+MANQUEHUE.SN,Inmobiliaria Manquehue S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+MASISA.SN,Masisa S.A.,Materials,Paper & Forest Products,Micro Cap
+MELON.SN,Melon S.A.,Materials,Construction Materials,Micro Cap
+MINERA.SN,Minera Valparaiso S.A.,Industrials,Industrial Conglomerates,Small Cap
+MOLLER.SN,Empresa Constructora Moller y Perez Cotapos S.A.,Industrials,Construction & Engineering,Micro Cap
+MOLYMET.SN,Molibdenos y Metales S.A.,Materials,Metals & Mining,Small Cap
+MULTIFOODS.SN,Multiexport Foods S.A.,Consumer Staples,Household Products,Small Cap
+NAVARINO.SN,Navarino S.A.,Industrials,Marine,Micro Cap
+NAVIERA.SN,Grupo Empresas Navieras S.A.,Industrials,Marine,Micro Cap
+NITRATOS.SN,Nitratos de Chile S.A.,Financials,Capital Markets,Micro Cap
+NORTEGRAN.SN,Norte Grande S.A.,Financials,Capital Markets,Small Cap
+NUEVAPOLAR.SN,Empresas La Polar S.A.,Consumer Discretionary,Household Durables,Micro Cap
+OXIQUIM.SN,Oxiquim S.A.,Materials,Chemicals,Micro Cap
+PARAUCO.SN,Parque Arauco S.A.,Real Estate,Real Estate Management & Development,Small Cap
+PASUR.SN,Forestal Constructora y Comercial del Pacifico Sur SA,Financials,Capital Markets,Small Cap
+PAZ.SN,Paz Corp S.A.,Real Estate,Real Estate Management & Development,Micro Cap
+PEHUENCHE.SN,Empresa Electrica Pehuenche S.A.,Utilities,Electric Utilities,Small Cap
+POLO.SN,Club de Polo y Equitacion San Cristobal S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+POTASIOS-A.SN,Potasios de Chile S.A.,Industrials,Industrial Conglomerates,Micro Cap
+PUCOBRE.SN,Sociedad Punta del Cobre S.A.,Materials,Metals & Mining,Small Cap
+QUINENCO.SN,Quinenco SA,Industrials,Industrial Conglomerates,Mid Cap
+RIPLEY.SN,Ripley Corp S.A.,Consumer Discretionary,Household Durables,Small Cap
+SALFACORP.SN,SalfaCorp S.A.,Industrials,Construction & Engineering,Micro Cap
+SANTANA.SN,Santana S.A.,Financials,Capital Markets,Micro Cap
+SCHWAGER.SN,Schwager S.A.,Industrials,Construction & Engineering,Nano Cap
+SCOTIABKCL.SN,"Scotiabank Chile, S.A.",Financials,Banks,Mid Cap
+SECURITY.SN,Grupo Security S.A.,Financials,Banks,Small Cap
+SK.SN,Sigdo Koppers S.A.,Industrials,Industrial Conglomerates,Small Cap
+SMSAAM.SN,Sociedad Matriz SAAM S.A.,Industrials,Marine,Small Cap
+SMU.SN,SMU S.A.,Consumer Discretionary,Household Durables,Small Cap
+SOCOVESA.SN,Socovesa S.A.,Industrials,Construction & Engineering,Micro Cap
+SONDA.SN,Sonda S.A.,Information Technology,IT Services,Small Cap
+SOPROCAL.SN,"Soprocal, Calerias e Industrias S.A.",Materials,Metals & Mining,Nano Cap
+SOQUICOM.SN,Soquimich Comercial S.A.,Materials,Construction Materials,Micro Cap
+SPORTFRAN.SN,S.A. Inmobiliaria Sport Francais,Real Estate,Real Estate Management & Development,Nano Cap
+TRICOT.SN,Empresas Tricot S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+VAPORES.SN,Compania Sud Americana de Vapores S.A.,Industrials,Marine,Mid Cap
+VENTANAS.SN,Puerto Ventanas S.A.,Industrials,Marine,Micro Cap
+VOLCAN.SN,Compania Industrial El Volcan S.A.,Materials,Construction Materials,Micro Cap
+VSPT.SN,Vina San Pedro Tarapaca S.A.,Consumer Staples,Beverages,Small Cap
+WATTS.SN,Watt's S.A.,Consumer Staples,Food & Staples Retailing,Small Cap
+ZOFRI.SN,Zona Franca de Iquique S.A.,Real Estate,Real Estate Management & Development,Micro Cap

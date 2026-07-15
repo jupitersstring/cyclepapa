@@ -1,0 +1,3 @@
+ticker,name,industry,sector,currency,mktCap,ev,rev,gm,opm,roe,roa,rev_g,earn_g,fcf,fcf_yield,ebitda,ev_ebitda,ev_ebit,pe,fpe,pb,ps,net_debt,nd_ebitda,insiders,div_yield,beta
+NTEL.OL,NORTEL,,,NOK,470080000,515935000,263102160.0,0.06943,-0.35830003,-1.53096,-0.30616,1.104,,46954456,0.09988609598366235,-23457444,-21.994510569864303,,,,9.881423,1.7866824,45855000,-1.9548165605766767,0.81007004,,0.221
+OTEC.OL,OTELLO CORPORATION,Advertising Agencies,Communication Services,NOK,1263040512,1247159512,,0.0,0.0,0.49138,-0.039619997,,,1577625,0.0012490691985024783,0,,,2.8732395,,1.1232991,,-15881000,,0.24876,,0.822

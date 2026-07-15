@@ -1,0 +1,602 @@
+ticker,name,sector,industry,market_cap
+0K6O.L,FARFETCH LTD,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+0KWZ.L,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+0LC.F,Ashtead Group plc,Industrials,Commercial Services & Supplies,Large Cap
+0LC.SG,Ashtead Group plc,Industrials,Commercial Services & Supplies,Large Cap
+0M3.BE,IHS Markit Ltd.,Industrials,Professional Services,Large Cap
+0M3.MU,IHS Markit Ltd.,Industrials,Professional Services,Large Cap
+0OC.BE,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+0OC.DU,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+0OC.F,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+0OC.MU,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+0OC.SG,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+0OC1.F,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+0WP.BE,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+0WP.DU,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+0WP.F,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+0WP.MU,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+0WP.SG,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+0WPA.MU,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+0Y4Q.L,Willis Towers Watson Public Limited Company,Financials,Insurance,Large Cap
+0Y5X.L,Pentair plc,Industrials,Machinery,Large Cap
+16A.DU,Clarivate Plc,Information Technology,IT Services,Large Cap
+16A.F,Clarivate Plc,Information Technology,IT Services,Large Cap
+1LNB.F,Spirax-Sarco Engineering plc,Industrials,Machinery,Large Cap
+1LNB.SG,Spirax-Sarco Engineering plc,Industrials,Machinery,Large Cap
+24W5.BE,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+24W5.DU,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+24W5.F,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+24W5.MU,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+24W5.SG,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+27MA.F,Melrose Industries PLC,Industrials,Machinery,Large Cap
+27MA.SG,Melrose Industries PLC,Industrials,Machinery,Large Cap
+2888.HK,Standard Chartered PLC,Financials,Banks,Large Cap
+3BA.F,Barratt Developments plc,Industrials,Construction & Engineering,Large Cap
+3BA.SG,Barratt Developments plc,Industrials,Construction & Engineering,Large Cap
+3BAA.F,Barratt Developments plc,Industrials,Construction & Engineering,Large Cap
+3RB.DE,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+3RB.F,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+3RBB.F,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+3RBB.SG,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+4A91.F,AVEVA Group plc,Information Technology,Software,Large Cap
+4A91.SG,AVEVA Group plc,Information Technology,Software,Large Cap
+6CMB.F,Croda International Plc,Materials,Chemicals,Large Cap
+6CMB.SG,Croda International Plc,Materials,Chemicals,Large Cap
+6GI.BE,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+6GI.DU,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+6GI.F,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+6GI.HA,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+6GI.HM,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+6GI.MU,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+AAL.L,Anglo American plc,Materials,Metals & Mining,Large Cap
+AAM.SW,Anglo American plc,Materials,Metals & Mining,Large Cap
+AAUKF,Anglo American plc,Materials,Metals & Mining,Large Cap
+ABF.L,Associated British Foods plc,Consumer Staples,Food & Staples Retailing,Large Cap
+ADM.L,Admiral Group plc,Financials,Insurance,Large Cap
+AFO1.F,Associated British Foods plc,Consumer Staples,Food & Staples Retailing,Large Cap
+AFO1.SG,Associated British Foods plc,Consumer Staples,Food & Staples Retailing,Large Cap
+AFO2.F,Associated British Foods plc,Consumer Staples,Food & Staples Retailing,Large Cap
+AGL.JO,Anglo American plc,Materials,Metals & Mining,Large Cap
+AGLN.MX,Anglo American plc,Materials,Metals & Mining,Large Cap
+AGY.L,Allergy Therapeutics plc,Health Care,Pharmaceuticals,Large Cap
+AGYTF,Allergy Therapeutics plc,Health Care,Pharmaceuticals,Large Cap
+AHT.L,Ashtead Group plc,Industrials,Commercial Services & Supplies,Large Cap
+AIVAF,Aviva plc,Financials,Insurance,Large Cap
+ALLFG.AS,Allfunds Group plc,Financials,Capital Markets,Large Cap
+AMIGF,Admiral Group plc,Financials,Insurance,Large Cap
+AMIGY,Admiral Group plc,Financials,Insurance,Large Cap
+ANFGF,Antofagasta plc,Materials,Metals & Mining,Large Cap
+ANTO.L,Antofagasta plc,Materials,Metals & Mining,Large Cap
+ARM,Arm Holdings plc American Depositary Shares,Information Technology,,Large Cap
+ASBFF,Associated British Foods plc,Consumer Staples,Food & Staples Retailing,Large Cap
+ASBFY,Associated British Foods plc,Consumer Staples,Food & Staples Retailing,Large Cap
+ASHTF,Ashtead Group plc,Industrials,Commercial Services & Supplies,Large Cap
+ASHTY,Ashtead Group plc,Industrials,Commercial Services & Supplies,Large Cap
+AV-A.L,Aviva plc,Financials,Insurance,Large Cap
+AV-B.L,Aviva plc,Financials,Insurance,Large Cap
+AV.L,Aviva plc,Financials,Insurance,Large Cap
+AVEVF,AVEVA Group plc,Information Technology,Software,Large Cap
+AVV.L,AVEVA Group plc,Information Technology,Software,Large Cap
+AVVIY,Aviva plc,Financials,Insurance,Large Cap
+AVVN.MX,AVEVA Group plc,Information Technology,Software,Large Cap
+AVVYY,AVEVA Group plc,Information Technology,Software,Large Cap
+AZN,AstraZeneca PLC,Health Care,Pharmaceuticals,Mega Cap
+AZN.BA,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+AZN.L,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+AZN.ST,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+AZNCF,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+AZNN.MX,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+B1CS34.SA,Barclays PLC,Financials,Banks,Large Cap
+B1PP34.SA,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BA.L,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BA1N.MX,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BAESF,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BAESY,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BARC.L,Barclays PLC,Financials,Banks,Large Cap
+BATS.L,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BB2.F,Burberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BB2.SG,Burberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BB2A.F,Burberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BBRYF,Burberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BCLYF,Barclays PLC,Financials,Banks,Large Cap
+BCS,Barclays PLC,Financials,Banks,Large Cap
+BCS.BA,Barclays PLC,Financials,Banks,Large Cap
+BCSN.MX,Barclays PLC,Financials,Banks,Large Cap
+BCY.BE,Barclays PLC,Financials,Banks,Large Cap
+BCY.DE,Barclays PLC,Financials,Banks,Large Cap
+BCY.DU,Barclays PLC,Financials,Banks,Large Cap
+BCY.F,Barclays PLC,Financials,Banks,Large Cap
+BCY.HA,Barclays PLC,Financials,Banks,Large Cap
+BCY.HM,Barclays PLC,Financials,Banks,Large Cap
+BCY.MU,Barclays PLC,Financials,Banks,Large Cap
+BCY.SG,Barclays PLC,Financials,Banks,Large Cap
+BCY2.BE,Barclays PLC,Financials,Banks,Large Cap
+BCY2.F,Barclays PLC,Financials,Banks,Large Cap
+BDEV.L,Barratt Developments plc,Industrials,Construction & Engineering,Large Cap
+BMT.DE,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BMT.F,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BMTA.F,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BNZL.L,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+BP,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BP.BA,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BP.L,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BPAQF,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BPE.DE,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BPE.F,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BPE5.DE,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BPE5.F,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BPN.MX,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BRBY.L,Burberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BSP.BE,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSP.DE,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSP.DU,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSP.F,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSP.MU,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSP.SG,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSPA.F,BAE Systems plc,Industrials,Aerospace & Defense,Large Cap
+BSU.F,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BSU.SG,BP p.l.c.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+BTAFF,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BTAN.MX,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTDPF,Barratt Developments plc,Industrials,Construction & Engineering,Large Cap
+BTDPY,Barratt Developments plc,Industrials,Construction & Engineering,Large Cap
+BTGOF,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTI,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BTI.JO,British American Tobacco p.l.c.,Consumer Staples,Tobacco,Large Cap
+BTL.SG,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.BE,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.DE,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.DU,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.F,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.HA,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.HM,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.MU,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BTQ.SG,BT Group plc,Communication Services,Diversified Telecommunication Services,Large Cap
+BURBY,Burberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BUZ1.BE,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+BUZ1.DU,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+BUZ1.F,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+BUZ1.SG,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+BZLFF,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+BZLFY,Bunzl plc,Consumer Staples,Food & Staples Retailing,Large Cap
+CCEP,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CCEP.AS,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CCEP.L,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CCEP.MC,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CCEPN.MX,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CK0.F,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CK0.TI,Coca-Cola Europacific Partners PLC,Consumer Staples,Beverages,Large Cap
+CMPGF,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CMPGY,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CNH,CNH Industrial N.V. Common Shares,Industrials,Machinery,Large Cap
+CNHI,CNH Industrial N.V.,Industrials,Machinery,Large Cap
+CNHI.MI,CNH Industrial N.V.,Industrials,Machinery,Large Cap
+CNHI.VI,CNH Industrial N.V.,Industrials,Machinery,Large Cap
+COIHF,Croda International Plc,Materials,Chemicals,Large Cap
+COIHY,Croda International Plc,Materials,Chemicals,Large Cap
+CPG.L,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CPGN.MX,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CRA1.F,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+CRCL,Circle Internet Group Inc. Class A Common Stock,Financials,Consumer Finance,Large Cap
+CRDA.L,Croda International Plc,Materials,Chemicals,Large Cap
+DEO,Diageo plc,Consumer Staples,Beverages,Large Cap
+DEON.MX,Diageo plc,Consumer Staples,Beverages,Large Cap
+DGE.L,Diageo plc,Consumer Staples,Beverages,Large Cap
+DGE.PA,Diageo plc,Consumer Staples,Beverages,Large Cap
+DGEAF,Diageo plc,Consumer Staples,Beverages,Large Cap
+DGED.L,Diageo plc,Consumer Staples,Beverages,Large Cap
+DGEN.MX,Diageo plc,Consumer Staples,Beverages,Large Cap
+DMB.F,Hargreaves Lansdown plc,Financials,Capital Markets,Large Cap
+DMB.SG,Hargreaves Lansdown plc,Financials,Capital Markets,Large Cap
+ENT.L,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+EVR.L,EVRAZ plc,Materials,Metals & Mining,Large Cap
+EVRZF,EVRAZ plc,Materials,Metals & Mining,Large Cap
+EVZ.BE,EVRAZ plc,Materials,Metals & Mining,Large Cap
+EVZ.DU,EVRAZ plc,Materials,Metals & Mining,Large Cap
+EVZ.F,EVRAZ plc,Materials,Metals & Mining,Large Cap
+EVZ.MU,EVRAZ plc,Materials,Metals & Mining,Large Cap
+EVZ.SG,EVRAZ plc,Materials,Metals & Mining,Large Cap
+F1F.F,FARFETCH LTD,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+F1F.MU,FARFETCH LTD,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+FERG,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+FERG.L,Ferguson plc,Industrials,Trading Companies & Distributors,Large Cap
+FG1.BE,Antofagasta plc,Materials,Metals & Mining,Large Cap
+FG1.DU,Antofagasta plc,Materials,Metals & Mining,Large Cap
+FG1.F,Antofagasta plc,Materials,Metals & Mining,Large Cap
+FG1.MU,Antofagasta plc,Materials,Metals & Mining,Large Cap
+FG1.SG,Antofagasta plc,Materials,Metals & Mining,Large Cap
+FLN.BE,Admiral Group plc,Financials,Insurance,Large Cap
+FLN.DU,Admiral Group plc,Financials,Insurance,Large Cap
+FLN.F,Admiral Group plc,Financials,Insurance,Large Cap
+FLN.SG,Admiral Group plc,Financials,Insurance,Large Cap
+FTI,TechnipFMC plc,Energy,Energy Equipment & Services,Large Cap
+GLAXF,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GMVHF,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+GMVHY,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+GS7.DE,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GS7.F,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GS7.SG,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GS7A.F,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GS7A.SG,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GSK,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GSK.BA,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GSK.L,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GSKN.MX,GlaxoSmithKline plc,Health Care,Pharmaceuticals,Large Cap
+GU8.BE,Aviva plc,Financials,Insurance,Large Cap
+GU8.DU,Aviva plc,Financials,Insurance,Large Cap
+GU8.F,Aviva plc,Financials,Insurance,Large Cap
+GU8.HA,Aviva plc,Financials,Insurance,Large Cap
+GU8.MU,Aviva plc,Financials,Insurance,Large Cap
+GU8.SG,Aviva plc,Financials,Insurance,Large Cap
+GU8E.BE,Aviva plc,Financials,Insurance,Large Cap
+GU8E.F,Aviva plc,Financials,Insurance,Large Cap
+GUI.BE,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.DE,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.DU,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.F,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.HA,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.HM,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.MU,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUI.SG,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUIA.BE,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUIA.F,Diageo plc,Consumer Staples,Beverages,Large Cap
+GUIA.SG,Diageo plc,Consumer Staples,Beverages,Large Cap
+GVC.VI,Entain Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+H11.BE,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+H11.DU,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+H11.F,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+H11.SG,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+H1SB34.SA,HSBC Holdings Plc,Financials,Banks,Large Cap
+HALMY,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+HBC1.DE,HSBC Holdings Plc,Financials,Banks,Large Cap
+HBC1.F,HSBC Holdings Plc,Financials,Banks,Large Cap
+HBC1.SG,HSBC Holdings Plc,Financials,Banks,Large Cap
+HBC2.F,HSBC Holdings Plc,Financials,Banks,Large Cap
+HBC2.SG,HSBC Holdings Plc,Financials,Banks,Large Cap
+HBCN.MX,HSBC Holdings Plc,Financials,Banks,Large Cap
+HBCYF,HSBC Holdings Plc,Financials,Banks,Large Cap
+HL.L,Hargreaves Lansdown plc,Financials,Capital Markets,Large Cap
+HLL.SG,Hargreaves Lansdown plc,Financials,Capital Markets,Large Cap
+HLMA.L,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+HLMAF,Halma plc,Industrials,Industrial Conglomerates,Large Cap
+HLN,Haleon plc American Depositary Shares (Each representing two Ordinary Shares),Consumer Staples,,Large Cap
+HRGLF,Hargreaves Lansdown plc,Financials,Capital Markets,Large Cap
+HRGLY,Hargreaves Lansdown plc,Financials,Capital Markets,Large Cap
+HSBA.L,HSBC Holdings Plc,Financials,Banks,Large Cap
+HSBC,HSBC Holdings Plc,Financials,Banks,Mega Cap
+HSBC.BA,HSBC Holdings Plc,Financials,Banks,Large Cap
+I1HG34.SA,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+I1NF34.SA,IHS Markit Ltd.,Industrials,Professional Services,Large Cap
+IC1B.F,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+IC1H.F,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+IC1H.SG,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ICHGF,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+IEA.BE,Informa plc,Communication Services,Diversified Telecommunication Services,Large Cap
+IEA.DU,Informa plc,Communication Services,Diversified Telecommunication Services,Large Cap
+IEA.F,Informa plc,Communication Services,Diversified Telecommunication Services,Large Cap
+IFJPY,Informa plc,Communication Services,Diversified Telecommunication Services,Large Cap
+IFPJF,Informa plc,Communication Services,Diversified Telecommunication Services,Large Cap
+IGQ5.BE,3i Group plc,Financials,,Large Cap
+IGQ5.DU,3i Group plc,Financials,,Large Cap
+IGQ5.F,3i Group plc,Financials,,Large Cap
+IGQ5.MU,3i Group plc,Financials,,Large Cap
+IGQ5.SG,3i Group plc,Financials,,Large Cap
+IHG,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+IHG.L,InterContinental Hotels Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+III.L,3i Group plc,Financials,,Large Cap
+IKTSF,Intertek Group plc,Industrials,Professional Services,Large Cap
+IKTSY,Intertek Group plc,Industrials,Professional Services,Large Cap
+IMB.L,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+IMBBF,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+IMBBY,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+IMBN.MX,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+INF.L,Informa plc,Communication Services,Diversified Telecommunication Services,Large Cap
+INFO,IHS Markit Ltd.,Industrials,Professional Services,Large Cap
+IT1.F,Intertek Group plc,Industrials,Professional Services,Large Cap
+IT1.SG,Intertek Group plc,Industrials,Professional Services,Large Cap
+ITB.BE,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITB.DE,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITB.DU,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITB.F,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITB.MU,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITB.SG,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITBA.BE,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITBA.F,Imperial Brands PLC,Consumer Staples,Tobacco,Large Cap
+ITRK.L,Intertek Group plc,Industrials,Professional Services,Large Cap
+ITRKN.MX,Intertek Group plc,Industrials,Professional Services,Large Cap
+JD.L,JD Sports Fashion plc,Consumer Discretionary,Specialty Retail,Large Cap
+JDDSF,JD Sports Fashion plc,Consumer Discretionary,Specialty Retail,Large Cap
+JDSPY,JD Sports Fashion plc,Consumer Discretionary,Specialty Retail,Large Cap
+JE00BJJN4441.SG,CLARIVATE PLC,Information Technology,IT Services,Large Cap
+K6S.SI,Prudential plc,Financials,Insurance,Large Cap
+KFI1.DE,Kingfisher plc,Consumer Discretionary,Household Durables,Large Cap
+KFI1.F,Kingfisher plc,Consumer Discretionary,Household Durables,Large Cap
+KFI1.SG,Kingfisher plc,Consumer Discretionary,Household Durables,Large Cap
+KGF.L,Kingfisher plc,Consumer Discretionary,Household Durables,Large Cap
+KGFHF,Kingfisher plc,Consumer Discretionary,Household Durables,Large Cap
+KGFHY,Kingfisher plc,Consumer Discretionary,Household Durables,Large Cap
+KYC.BE,Mondi plc,Materials,Paper & Forest Products,Large Cap
+KYC.DU,Mondi plc,Materials,Paper & Forest Products,Large Cap
+KYC.F,Mondi plc,Materials,Paper & Forest Products,Large Cap
+KYC.MU,Mondi plc,Materials,Paper & Forest Products,Large Cap
+KYC.SG,Mondi plc,Materials,Paper & Forest Products,Large Cap
+KYCA.F,Mondi plc,Materials,Paper & Forest Products,Large Cap
+L1BT34.SA,Liberty Global plc,Communication Services,Entertainment,Large Cap
+L1BT35.SA,Liberty Global plc,Communication Services,Entertainment,Large Cap
+L1IN34.SA,Linde plc,Materials,Chemicals,Large Cap
+LBTA.VI,Liberty Global plc,Communication Services,Entertainment,Large Cap
+LBTC.VI,Liberty Global plc,Communication Services,Entertainment,Large Cap
+LDNXF,London Stock Exchange Group plc,Financials,Capital Markets,Large Cap
+LGEN.L,Legal & General Group Plc,Financials,Insurance,Large Cap
+LGGNF,Legal & General Group Plc,Financials,Insurance,Large Cap
+LGGNY,Legal & General Group Plc,Financials,Insurance,Large Cap
+LGI.F,Legal & General Group Plc,Financials,Insurance,Large Cap
+LGI.SG,Legal & General Group Plc,Financials,Insurance,Large Cap
+LIN,Linde plc,Materials,Chemicals,Mega Cap
+LIN.BE,Linde plc,Materials,Chemicals,Large Cap
+LIN.DE,Linde plc,Materials,Chemicals,Large Cap
+LIN.DU,Linde plc,Materials,Chemicals,Large Cap
+LIN.F,Linde plc,Materials,Chemicals,Large Cap
+LIN.HA,Linde plc,Materials,Chemicals,Large Cap
+LIN.HM,Linde plc,Materials,Chemicals,Large Cap
+LIN.MU,Linde plc,Materials,Chemicals,Large Cap
+LIN.SG,Linde plc,Materials,Chemicals,Large Cap
+LINI.VI,Linde plc,Materials,Chemicals,Large Cap
+LINN.MX,Linde plc,Materials,Chemicals,Large Cap
+LLD.DE,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LLD.F,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LLD.SG,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LLD2.F,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LLDTF,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LLOBF,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LLOY.L,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LNSTY,London Stock Exchange Group plc,Financials,Capital Markets,Large Cap
+LS4C.F,London Stock Exchange Group plc,Financials,Capital Markets,Large Cap
+LS4D.F,London Stock Exchange Group plc,Financials,Capital Markets,Large Cap
+LSEG.L,London Stock Exchange Group plc,Financials,Capital Markets,Large Cap
+LSEN.MX,London Stock Exchange Group plc,Financials,Capital Markets,Large Cap
+LYG,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LYG.BA,Lloyds Banking Group plc,Financials,Banks,Large Cap
+LYGN.MX,Lloyds Banking Group plc,Financials,Banks,Large Cap
+MLSPF,Melrose Industries PLC,Industrials,Machinery,Large Cap
+MNDI.L,Mondi plc,Materials,Paper & Forest Products,Large Cap
+MNP.JO,Mondi plc,Materials,Paper & Forest Products,Large Cap
+MONDF,Mondi plc,Materials,Paper & Forest Products,Large Cap
+MONDY,Mondi plc,Materials,Paper & Forest Products,Large Cap
+MRO.L,Melrose Industries PLC,Industrials,Machinery,Large Cap
+NG.L,National Grid plc,Utilities,Electric Utilities,Large Cap
+NGG,National Grid plc,Utilities,Electric Utilities,Large Cap
+NGG.BA,National Grid plc,Utilities,Electric Utilities,Large Cap
+NGGTF,National Grid plc,Utilities,Electric Utilities,Large Cap
+NGLB.DE,Anglo American plc,Materials,Metals & Mining,Large Cap
+NGLB.F,Anglo American plc,Materials,Metals & Mining,Large Cap
+NGLB.SG,Anglo American plc,Materials,Metals & Mining,Large Cap
+NGLD.F,Anglo American plc,Materials,Metals & Mining,Large Cap
+NGLD.SG,Anglo American plc,Materials,Metals & Mining,Large Cap
+NGLOY,Anglo American plc,Materials,Metals & Mining,Large Cap
+NNGD.F,National Grid plc,Utilities,Electric Utilities,Large Cap
+NNGF.BE,National Grid plc,Utilities,Electric Utilities,Large Cap
+NNGF.DE,National Grid plc,Utilities,Electric Utilities,Large Cap
+NNGF.DU,National Grid plc,Utilities,Electric Utilities,Large Cap
+NNGF.F,National Grid plc,Utilities,Electric Utilities,Large Cap
+NNGF.MU,National Grid plc,Utilities,Electric Utilities,Large Cap
+NNGF.SG,National Grid plc,Utilities,Electric Utilities,Large Cap
+NPW1.F,Smith & Nephew plc,Health Care,Health Care Technology,Large Cap
+NPW1.SG,Smith & Nephew plc,Health Care,Health Care Technology,Large Cap
+NPWA.F,Smith & Nephew plc,Health Care,Health Care Technology,Large Cap
+NVT,nVent Electric plc,Industrials,Electrical Equipment,Large Cap
+NWG,NatWest Group plc,Financials,Banks,Large Cap
+NWG.L,NatWest Group plc,Financials,Banks,Large Cap
+NXG.BE,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NXG.DU,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NXG.F,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NXG.SG,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NXGPF,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NXGPY,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NXT.L,NEXT plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+OCDDY,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+OCDGF,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+OCDO.L,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+OCDON.MX,Ocado Group plc,Consumer Staples,Food & Staples Retailing,Large Cap
+OHP.BE,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+OHP.DU,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+OHP.F,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+OHP.MU,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+OHP.SG,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+OHP0.F,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+P1NR34.SA,Pentair plc,Industrials,Machinery,Large Cap
+P1UK34.SA,Prudential plc,Financials,Insurance,Large Cap
+PHNX.L,Phoenix Group Holdings plc,Financials,Insurance,Large Cap
+PNR,Pentair plc,Industrials,Machinery,Large Cap
+PNT.DE,Pentair plc,Industrials,Machinery,Large Cap
+PNT.DU,Pentair plc,Industrials,Machinery,Large Cap
+PNT.F,Pentair plc,Industrials,Machinery,Large Cap
+PNT.MU,Pentair plc,Industrials,Machinery,Large Cap
+PNT.SG,Pentair plc,Industrials,Machinery,Large Cap
+PNXGF,Phoenix Group Holdings plc,Financials,Insurance,Large Cap
+PRU.BE,Prudential plc,Financials,Insurance,Large Cap
+PRU.DE,Prudential plc,Financials,Insurance,Large Cap
+PRU.DU,Prudential plc,Financials,Insurance,Large Cap
+PRU.F,Prudential plc,Financials,Insurance,Large Cap
+PRU.HA,Prudential plc,Financials,Insurance,Large Cap
+PRU.HM,Prudential plc,Financials,Insurance,Large Cap
+PRU.L,Prudential plc,Financials,Insurance,Large Cap
+PRU.MU,Prudential plc,Financials,Insurance,Large Cap
+PRU.SG,Prudential plc,Financials,Insurance,Large Cap
+PRU2.F,Prudential plc,Financials,Insurance,Large Cap
+PSMMF,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+PSMMY,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+PSN.L,Persimmon Plc,Industrials,Construction & Engineering,Large Cap
+PUK,Prudential plc,Financials,Insurance,Large Cap
+PUK-P,Prudential plc,Financials,Insurance,Large Cap
+PUK-PA,Prudential plc,Financials,Insurance,Large Cap
+PUKN.MX,Prudential plc,Financials,Insurance,Large Cap
+PUKPF,Prudential plc,Financials,Insurance,Large Cap
+PYX.BE,Schroders plc,Financials,Capital Markets,Large Cap
+PYX.DU,Schroders plc,Financials,Capital Markets,Large Cap
+PYX.F,Schroders plc,Financials,Capital Markets,Large Cap
+PYX.SG,Schroders plc,Financials,Capital Markets,Large Cap
+PYXA.BE,Schroders plc,Financials,Capital Markets,Large Cap
+PYXA.DU,Schroders plc,Financials,Capital Markets,Large Cap
+PYXA.F,Schroders plc,Financials,Capital Markets,Large Cap
+PYXA.MU,Schroders plc,Financials,Capital Markets,Large Cap
+R1EL34.SA,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RBGLY,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+RBGPF,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+RBN.MX,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+RBSPF,NatWest Group plc,Financials,Banks,Large Cap
+RDEB.BE,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.DE,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.DU,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.F,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.HA,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.HM,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.MU,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDEB.SG,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDED.F,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RDED.SG,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+REL.L,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RELN.MX,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RELX,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+REN.AS,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+RIO,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RIO.AX,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RIO.BA,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RIO.L,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RIO1.DE,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RIO1.F,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RIOA.F,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RION.MX,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RKLIF,Rentokil Initial plc,Industrials,Professional Services,Large Cap
+RKT.L,Reckitt Benckiser Group plc,Consumer Staples,Household Products,Large Cap
+RLLCF,Rolls Royce Holdings plc,Industrials,Aerospace & Defense,Mega Cap
+RLXXF,RELX PLC,Communication Services,Diversified Telecommunication Services,Large Cap
+ROIV,Roivant Sciences Ltd. Common Shares,Health Care,Biotechnology,Large Cap
+RR.L,Rolls Royce Holdings plc,Industrials,Aerospace & Defense,Mega Cap
+RRU.F,Rolls Royce Holdings plc,Industrials,Aerospace & Defense,Mega Cap
+RRU1.F,Rolls Royce Holdings plc,Industrials,Aerospace & Defense,Mega Cap
+RTNTF,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RTO.F,Rentokil Initial plc,Industrials,Professional Services,Large Cap
+RTO.L,Rentokil Initial plc,Industrials,Professional Services,Large Cap
+RTO1.F,Rentokil Initial plc,Industrials,Professional Services,Large Cap
+RTO1.SG,Rentokil Initial plc,Industrials,Professional Services,Large Cap
+RTOKY,Rentokil Initial plc,Industrials,Professional Services,Large Cap
+RTPPF,Rio Tinto plc,Materials,Metals & Mining,Large Cap
+RYCEF,Rolls Royce Holdings plc,Industrials,Aerospace & Defense,Mega Cap
+RYCEY,Rolls Royce Holdings plc,Industrials,Aerospace & Defense,Mega Cap
+RYS1.BE,NatWest Group plc,Financials,Banks,Large Cap
+RYS1.DE,The Royal Bank of Scotland Group plc,,,Large Cap
+RYS1.DU,NatWest Group plc,Financials,Banks,Large Cap
+RYS1.F,NatWest Group plc,Financials,Banks,Large Cap
+RYS1.HA,NatWest Group plc,Financials,Banks,Large Cap
+RYS1.HM,NatWest Group plc,Financials,Banks,Large Cap
+RYS1.MU,NatWest Group plc,Financials,Banks,Large Cap
+RYS1.SG,NatWest Group plc,Financials,Banks,Large Cap
+RYS2.F,NatWest Group plc,Financials,Banks,Large Cap
+S4VC.BE,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+S4VC.DU,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+S4VC.F,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+S4VC.MU,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+S4VC.SG,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SCBFF,Standard Chartered PLC,Financials,Banks,Large Cap
+SCBFY,Standard Chartered PLC,Financials,Banks,Large Cap
+SCT.BE,SSE plc,Utilities,Multi-Utilities,Large Cap
+SCT.DE,SSE plc,Utilities,Multi-Utilities,Large Cap
+SCT.DU,SSE plc,Utilities,Multi-Utilities,Large Cap
+SCT.F,SSE plc,Utilities,Multi-Utilities,Large Cap
+SCT.MU,SSE plc,Utilities,Multi-Utilities,Large Cap
+SCT.SG,SSE plc,Utilities,Multi-Utilities,Large Cap
+SCTA.F,SSE plc,Utilities,Multi-Utilities,Large Cap
+SDR.L,Schroders plc,Financials,Capital Markets,Large Cap
+SDRC.L,Schroders plc,Financials,Capital Markets,Large Cap
+SEGXF,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SGE.L,The Sage Group plc,Information Technology,Software,Large Cap
+SGGEF,The Sage Group plc,Information Technology,Software,Large Cap
+SGK1.F,The Sage Group plc,Information Technology,Software,Large Cap
+SGPYY,The Sage Group plc,Information Technology,Software,Large Cap
+SGRO.L,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SGRO.PA,SEGRO Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SHEL,Shell plc ,Energy,"Oil, Gas & Consumable Fuels",Mega Cap
+SHEL.BA,Shell plc ,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SHEL.L,Shell plc ,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SHEL1N.MX,Shell plc ,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SHELL.AS,Shell plc ,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SHELL.PR,Shell plc ,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SHNWF,Schroders plc,Financials,Capital Markets,Large Cap
+SN,SharkNinja Inc. Ordinary Shares,Consumer Discretionary,,Large Cap
+SN.L,Smith & Nephew plc,Health Care,Health Care Technology,Large Cap
+SNN,Smith & Nephew plc,Health Care,Health Care Technology,Large Cap
+SNNUF,Smith & Nephew plc,Health Care,Health Care Technology,Large Cap
+SPX.L,Spirax-Sarco Engineering plc,Industrials,Machinery,Large Cap
+SPXSF,Spirax-Sarco Engineering plc,Industrials,Machinery,Large Cap
+SPXSY,Spirax-Sarco Engineering plc,Industrials,Machinery,Large Cap
+SSE.L,SSE plc,Utilities,Multi-Utilities,Large Cap
+SSEZF,SSE plc,Utilities,Multi-Utilities,Large Cap
+SSEZY,SSE plc,Utilities,Multi-Utilities,Large Cap
+STAN.L,Standard Chartered PLC,Financials,Banks,Large Cap
+STD.F,Standard Chartered PLC,Financials,Banks,Large Cap
+STD.SG,Standard Chartered PLC,Financials,Banks,Large Cap
+STD0.F,Standard Chartered PLC,Financials,Banks,Large Cap
+STJ.L,St. James Place Capital Plc.,Financials,Capital Markets,Large Cap
+STJPF,St. James Place Capital Plc.,Financials,Capital Markets,Large Cap
+STMZF,Scottish Mortgage Investment Trust PLC,Financials,,Large Cap
+TCO0.BE,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO0.DE,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO0.DU,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO0.F,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO0.HA,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO0.HM,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO0.MU,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TCO2.F,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TGOPF,3i Group plc,Financials,,Large Cap
+TGOPY,3i Group plc,Financials,,Large Cap
+TSCDF,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TSCDY,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TSCO.L,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+TSCON.MX,Tesco PLC,Consumer Staples,Food & Staples Retailing,Large Cap
+UL,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UL.BA,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULC.BA,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULD.BA,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULEV34.SA,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULN.MX,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULVR.L,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULVR.PR,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULVR.VI,Unilever PLC,Consumer Staples,Household Products,Large Cap
+ULVRN.MX,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UN,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNA.AS,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNLYF,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVA.F,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVA.SG,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.BE,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.DE,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.DU,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.F,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.HA,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.HM,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.MU,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UNVB.SG,Unilever PLC,Consumer Staples,Household Products,Large Cap
+UV4L0Q.MI,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+W1LT34.SA,Willis Towers Watson Public Limited Company,Financials,Insurance,Large Cap
+W1PP34.SA,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+WLTW,Willis Towers Watson Public Limited Company,Financials,Insurance,Large Cap
+WPP.L,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+WPPGF,WPP plc,Communication Services,Diversified Telecommunication Services,Large Cap
+WSE,Wise Group plc Class A Ordinary Shares,Real Estate,Real Estate Management & Development,Large Cap
+WTW,Willis Towers Watson Public Limited Company Ordinary Shares,Financials,Insurance,Large Cap
+WTY.F,Willis Towers Watson Public Limited Company,Financials,Insurance,Large Cap
+X01909.TI,FARFETCH LTD,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+XGR.F,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+XGR2.F,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+XGR2.SG,Compass Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ZEG.BE,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.DE,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.DU,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.F,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.HA,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.HM,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.MU,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEG.SG,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEGA.F,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap
+ZEGA.SG,AstraZeneca PLC,Health Care,Pharmaceuticals,Large Cap

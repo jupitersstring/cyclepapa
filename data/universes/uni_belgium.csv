@@ -1,0 +1,118 @@
+ticker,name,sector,industry,market_cap
+ABO.BR,ABO-Group Environment NV,Industrials,Transportation Infrastructure,Micro Cap
+ACCB.BR,Accentis N.V.,Financials,,Micro Cap
+ACKB.BR,Ackermans & Van Haaren NV,Industrials,Construction & Engineering,Mid Cap
+AED.BR,Aedifica SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+AGFB.BR,Agfa-Gevaert NV,Industrials,Machinery,Small Cap
+ALEMK.BR,Emakina Group SA,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALEVA.BR,Evadix Sa,Industrials,Professional Services,Nano Cap
+ANT.BR,Immo-Antares NV,Real Estate,Real Estate Management & Development,Nano Cap
+ASC.BR,Ascencio SCA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+ASIT.BR,ASIT Biotech S.A.,Health Care,Biotechnology,Nano Cap
+ATEB.BR,Atenor SA,Real Estate,Real Estate Management & Development,Small Cap
+BALTA.BR,Balta Group NV,Consumer Discretionary,Household Durables,Micro Cap
+BANI.BR,Banimmo SA,Real Estate,Real Estate Management & Development,Nano Cap
+BAR.BR,Barco NV,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+BAS.BR,Basilix Cert,Real Estate,Real Estate Management & Development,Nano Cap
+BCART.BR,Biocartis Group NV,Health Care,Biotechnology,Micro Cap
+BEAB.BR,Immo-Beaulieu NV,Real Estate,Real Estate Management & Development,Nano Cap
+BEFB.BR,Befimmo SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+BEKB.BR,Bekaert SA,Industrials,Building Products,Mid Cap
+BELR.BR,Belgian Resources and Capital Company,Financials,Capital Markets,Nano Cap
+BELU.BR,Beluga NV,Financials,Capital Markets,Nano Cap
+BNB.BR,Banque nationale de Belgique SA,Financials,Banks,Small Cap
+BPOST.BR,bpost SA/NV,Industrials,Air Freight & Logistics,Mid Cap
+CAMB.BR,Campine NV,Industrials,Transportation Infrastructure,Micro Cap
+CAND.BR,Candela Invest SA,Financials,Capital Markets,Nano Cap
+CENER.BR,Cenergy Holdings SA,Industrials,Electrical Equipment,Small Cap
+CFEB.BR,Compagnie d'Entreprises CFE SA,Industrials,Construction & Engineering,Mid Cap
+CLEX.BR,Cumulex N.V.,Consumer Staples,Food & Staples Retailing,Nano Cap
+COBH.BR,Brouwerij Handelsmaatschappij NV,Consumer Staples,Beverages,Small Cap
+COFB.BR,Cofinimmo SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+COLR.BR,Etn. Fr. Colruyt NV,Consumer Staples,Food & Staples Retailing,Mid Cap
+COMB.BR,Compagnie du Bois Sauvage SA,Financials,Capital Markets,Small Cap
+CYAD.BR,Celyad Oncology SA,Health Care,Biotechnology,Micro Cap
+DECB.BR,Deceuninck NV,Industrials,Building Products,Small Cap
+DIE.BR,D'Ieteren Group SA/NV,Consumer Discretionary,Automobiles,Mid Cap
+DIEG.BR,Immolease Trust NV,Real Estate,Real Estate Management & Development,Nano Cap
+DISL.BR,Immobiliere Distri-Land NV,Real Estate,Real Estate Management & Development,Nano Cap
+EKOP.BR,Ekopak NV,Utilities,Water Utilities,Micro Cap
+ELI.BR,Elia Group SA/NV,Utilities,Electric Utilities,Mid Cap
+ENGB.BR,Rosier SA,Materials,Construction Materials,Nano Cap
+EURN.BR,Euronav NV,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+EVS.BR,EVS Broadcast Equipment SA,Information Technology,Communications Equipment,Micro Cap
+EXM.BR,Exmar NV,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+FAGR.BR,Fagron NV,Health Care,Pharmaceuticals,Small Cap
+FLOB.BR,Floridienne S.A.,Industrials,Industrial Conglomerates,Small Cap
+FLUX.BR,Fluxys Belgium SA,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+FOU.BR,Fountain S.A.,Consumer Staples,Food & Staples Retailing,Nano Cap
+GENK.BR,Genk Logistics,Real Estate,Real Estate Management & Development,Nano Cap
+GIMB.BR,Gimv NV,Financials,Capital Markets,Small Cap
+GREEN.BR,Greenyard NV,Consumer Staples,Food & Staples Retailing,Small Cap
+GROWN.BR,Growners SA,Real Estate,Real Estate Management & Development,Nano Cap
+HOMI.BR,Home Invest Belgium S.A.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+HYL.BR,Hyloris Pharmaceuticals SA,Health Care,Biotechnology,Small Cap
+IBAB.BR,Ion Beam Applications S.A.,Health Care,Health Care Technology,Small Cap
+IEP.BR,"Iep Invest, NV",Real Estate,Real Estate Management & Development,Micro Cap
+IMMO.BR,Immobel SA,Real Estate,Real Estate Management & Development,Small Cap
+IMMOU.BR,Immo Moury SCA,Real Estate,Real Estate Management & Development,Nano Cap
+INCLU.BR,Inclusio SA,Real Estate,Real Estate Management & Development,Micro Cap
+INTO.BR,Intervest Offices & Warehouses nv,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+JEN.BR,Jensen-Group NV,Industrials,Machinery,Micro Cap
+KBCA.BR,KBC Ancora SCA,Financials,Capital Markets,Mid Cap
+KEYW.BR,Keyware Technologies NV,Information Technology,Software,Nano Cap
+KIN.BR,Kinepolis Group NV,Communication Services,Entertainment,Small Cap
+LEAS.BR,Leasinvest Real Estate SCA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+LOTB.BR,Lotus Bakeries NV,Consumer Staples,Food & Staples Retailing,Mid Cap
+MCC.BR,Immo Mcc NV,Real Estate,Real Estate Management & Development,Nano Cap
+MDXH.BR,MDxHealth SA,Health Care,Biotechnology,Micro Cap
+MELE.BR,Melexis NV,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+MIKO.BR,Miko NV,Consumer Staples,Food & Staples Retailing,Micro Cap
+MITRA.BR,Mithra Pharmaceuticals,Health Care,Pharmaceuticals,Small Cap
+MLNEU.BR,Compagnie Financiere de Neufcour S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+MONT.BR,Montea Comm. VA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+MOUR.BR,Moury Construct SA,Industrials,Construction & Engineering,Micro Cap
+NEWT.BR,Newtree S.A.,Consumer Staples,Food & Staples Retailing,Nano Cap
+NYXH.BR,Nyxoah S.A.,Health Care,Health Care Equipment & Supplies,Small Cap
+OBEL.BR,Orange Belgium S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+ONTEX.BR,Ontex Group NV,Consumer Staples,Household Products,Small Cap
+OPTI.BR,Crescent NV,Information Technology,Communications Equipment,Micro Cap
+OXUR.BR,Oxurion NV,Health Care,Biotechnology,Micro Cap
+PIC.BR,Picanol nv,Industrials,Machinery,Small Cap
+PNSB.BR,Personalized Nursing Services Societe Anonyme,Health Care,Health Care Equipment & Supplies,Nano Cap
+PROX.BR,Proximus PLC,Communication Services,Diversified Telecommunication Services,Mid Cap
+QFG.BR,Quest for Growth Belgium,Financials,Capital Markets,Micro Cap
+QRF.BR,Qrf Comm. VA,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+REAL.BR,Realco S.A.,Consumer Staples,Household Products,Nano Cap
+REC.BR,Recticel SA/NV,Materials,Chemicals,Small Cap
+RES.BR,Resilux NV,Consumer Discretionary,Distributors,Small Cap
+RET.BR,Retail Estates N.V.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+ROU.BR,Roularta Media Group NV,Communication Services,Diversified Telecommunication Services,Micro Cap
+SCHD.BR,Scheerders van Kerchove's Verenigde fabrieken nv,Materials,Construction Materials,Nano Cap
+SEQUA.BR,Sequana Medical NV,Health Care,Health Care Technology,Micro Cap
+SIOE.BR,Sioen Industries NV,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+SIP.BR,Sipef NV,Consumer Staples,Household Products,Small Cap
+SMAR.BR,Smartphoto Group NV,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SOFT.BR,Softimat S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+SOLV.BR,Solvac S.A.,Materials,Chemicals,Mid Cap
+SPA.BR,"Societe de Services, de Participations, de Direction et d'Elaboration",Consumer Staples,Beverages,Small Cap
+TERB.BR,Ter Beke NV,Consumer Staples,Food & Staples Retailing,Micro Cap
+TESB.BR,Tessenderlo Group NV,Materials,Construction Materials,Small Cap
+TEXF.BR,Texaf S.A.,Industrials,Industrial Conglomerates,Micro Cap
+TITC.BR,Titan Cement International S.A.,Materials,Construction Materials,Small Cap
+TNET.BR,Telenet Group Holding NV,Communication Services,Diversified Telecommunication Services,Mid Cap
+TUB.BR,Financiere de Tubize SA,Health Care,Biotechnology,Mid Cap
+UNI.BR,Flowsparks N.V.,Consumer Staples,Household Products,Nano Cap
+UPG.BR,Unifiedpost Group SA,Information Technology,Software,Small Cap
+VAN.BR,Van de Velde NV,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+VASTB.BR,Vastned Retail Belgium SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+VGP.BR,VGP NV,Real Estate,Real Estate Management & Development,Mid Cap
+VIO.BR,Viohalco S.A.,Materials,Metals & Mining,Small Cap
+WDP.BR,Warehouses De Pauw SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+WEB.BR,Warehouses Estates Belgium SCA,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+WEHB.BR,Wereldhave Belgium Naamloze vennootschap,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+WOLE.BR,Woluwe Extension SA,Real Estate,Real Estate Management & Development,Nano Cap
+WOLS.BR,Woluwe Shopping Center,Consumer Discretionary,Household Durables,Nano Cap
+XIOR.BR,Xior Student Housing N.V.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+ZEN.BR,Immo-Zenobe Gramme SA,Real Estate,Real Estate Management & Development,Nano Cap
+ZENT.BR,Zenitel NV,Information Technology,Communications Equipment,Micro Cap

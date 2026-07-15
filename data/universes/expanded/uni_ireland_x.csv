@@ -1,0 +1,75 @@
+ticker,name,sector,industry,market_cap,exchange
+18I.DE,Adient plc,Consumer Discretionary,Auto Components,Mid Cap,GER
+2M6.DE,Medtronic plc,Health Care,Health Care Technology,Large Cap,GER
+3CRM.L,Leverage Shares 3x Salesforce.Com ETC,Financials,,,LSE
+AAP3.L,Leverage Shares 3x Apple ETC,Financials,,,LSE
+AMDS.L,Leverage Shares -1x Advanced Micro Devices ETC,,,,LSE
+AMZ3.L,Leverage Shares 3x Amazon ETC,,,,LSE
+ARK.L,Arkle Resources PLC,Materials,Metals & Mining,,LSE
+BIRG.DE,Bank of Ireland Group plc,Financials,Banks,Mid Cap,GER
+BOD.L,Botswana Diamonds plc,Materials,Metals & Mining,,LSE
+C43.DE,"COSMO PHARMACEUT.  EO-,26",Health Care,,,GER
+CGNR.L,Conroy Gold and Natural Resources plc,Materials,Metals & Mining,,LSE
+CLON.L,Clontarf Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+CRM3.L,Leverage Shares 3x Salesforce.Com ETC,Information Technology,,,LSE
+CRMS.L,Leverage Shares -1x Salesforce.Com ETC,Information Technology,,,LSE
+CRN.L,Cairn Homes plc,Industrials,Construction & Engineering,,LSE
+DAL.L,Dalata Hotel Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+DQ7A.IR,Donegal Investment Group plc,,,,ISE
+DVRG.L,DeepVerge plc,Consumer Staples,Household Products,,LSE
+EQT.L,EQTEC plc,Utilities,Multi-Utilities,,LSE
+FBS.L,Leverage Shares -1x Facebook ETC,Financials,,,LSE
+GACA.L,General Accident plc 8 7/8% CUM IRRD PRF GBP1,Financials,,,LSE
+GACB.L,General Accident plc 7 7/8% CUM IRRD PRF GBP1,Financials,,,LSE
+GOO3.L,Leverage Shares 3x Alphabet ETC,Financials,,,LSE
+GOOE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+GWMO.L,Great Western Mining Corporation PLC,Materials,Metals & Mining,,LSE
+IMC.L,IMC Exploration Group Public Limited Company,Materials,Metals & Mining,,LSE
+JPE.L,JPMorgan Elect plc ¬≠- Managed Growth,Financials,,,LSE
+KDR.L,Karelian Diamond Resources Plc,Materials,Metals & Mining,,LSE
+KIBO.L,Kibo Energy PLC,Materials,Metals & Mining,,LSE
+KMR.L,Kenmare Resources Ltd.,Materials,Metals & Mining,,LSE
+LOGP.L,Lansdowne Oil & Gas plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+LQQ3.L,Boost Issuer Public Limited Company - Boost NASDAQ 100 3x Leverage Daily ETP,Financials,,,LSE
+LQQS.L,Boost Issuer Public Limited Company - Boost NASDAQ 100 3x Short Daily ETP,Financials,,,LSE
+MCON.L,Mincon Group plc,Industrials,Building Products,,LSE
+MUS.L,Leverage Shares -1x Micron Technology ETC,,,,LSE
+NFL3.L,Leverage Shares 3x Netflix ETC,Consumer Discretionary,,,LSE
+NFLS.L,Leverage Shares -1x Netflix ETC,Consumer Discretionary,,,LSE
+NVD3.L,Leverage Shares 3x NVIDIA ETC,Financials,,,LSE
+ORM.L,Ormonde Mining plc,Materials,Metals & Mining,,LSE
+OVB.L,Ovoca Bio plc,Health Care,Biotechnology,,LSE
+PET.L,Petrel Resources Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+RY4C.DE,Ryanair Holdings plc,Industrials,Airlines,Large Cap,GER
+SAMD.L,Leverage Shares -1x Advanced Micro Devices ETC,Financials,,,LSE
+SAMZ.L,Leverage Shares -1x Amazon ETC,Financials,,,LSE
+SAPE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+SAZE.L,Leverage Shares Public Limited Company,Financials,,,LSE
+SCRE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+SGLP.L,Invesco Physical Gold ETC,Financials,,,LSE
+SGOE.L,LEVERAGE SHARES PUBLIC LIMITED ,,,,LSE
+SJPE.L,Leverage Shares -1x Short JPMorgan ETP,Financials,,,LSE
+SLVP.L,Invesco Physical Silver ETC,Financials,,,LSE
+SMSE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+SMSF.L,Leverage Shares -1x Microsoft ETC,Financials,,,LSE
+SMUE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+SNFE.L,LEVERAGE SHARES PUBLIC LIMITED ,,,,LSE
+SNVD.L,Leverage Shares Public Limited Company,Financials,,,LSE
+SNVE.L,Leverage Shares Public Limited Company,Financials,,,LSE
+SPAP.L,Invesco Physical Palladium ETC,Financials,,,LSE
+SPPP.L,Invesco Physical Platinum ETC,Financials,,,LSE
+SPPT.L,Invesco Physical Platinum ETC,Financials,,,LSE
+SPYP.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+SSLV.L,Invesco Physical Silver ETC,Financials,,,LSE
+STSE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+STSL.L,Leverage Shares -1x Tesla ETC,Financials,,,LSE
+SUBE.L,LEVERAGE SHARES PUBLIC LIMITED ,Financials,,,LSE
+SUBR.L,Leverage Shares -1x Uber ETC,Financials,,,LSE
+TSLS.L,Leverage Shares -1x Tesla ETC,Financials,,,LSE
+TYIA.DE,Johnson Controls International plc,Industrials,Construction & Engineering,Large Cap,GER
+UBRS.L,Leverage Shares -1x Uber ETC,Financials,,,LSE
+UPR.L,Uniphar plc,Health Care,Health Care Equipment & Supplies,,LSE
+VILX.L,Boost Issuer Public Limited Company - Boost S&P 500 VIX Short-Term Futures 2.25x Leverage Daily ETP,Financials,,,LSE
+VIXL.L,WisdomTree S&amp;P 500 VIX Short-Term Futures 2.25x Daily Leveraged,Financials,,,LSE
+VRE.L,VR Education Holdings Plc,Information Technology,Software,,LSE
+WTID.L,WisdomTree WTI Crude Oil Pre-roll,Energy,,,LSE

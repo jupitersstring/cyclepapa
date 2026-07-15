@@ -1,0 +1,273 @@
+ticker,name,sector,industry,market_cap
+0OHK.L,Stolt-Nielsen Limited,Industrials,Marine,Small Cap
+0Z1Q.L,Manchester United plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+68HN.L,John Menzies plc,Industrials,Air Freight & Logistics,Small Cap
+ABC.L,Abcam plc,Health Care,Biotechnology,Mid Cap
+ADT1.L,Adriatic Metals PLC,Materials,Metals & Mining,Small Cap
+AEG.L,Active Energy Group PLC,Industrials,Construction & Engineering,Nano Cap
+AFC.L,AFC Energy plc,Industrials,Electrical Equipment,Small Cap
+AFN.L,ADVFN Plc,Financials,Capital Markets,Nano Cap
+AGK.L,Aggreko Plc,Industrials,Commercial Services & Supplies,Mid Cap
+AGL.L,ANGLE plc,Health Care,Biotechnology,Micro Cap
+AGM.L,Applied Graphene Materials plc,Materials,Chemicals,Nano Cap
+AGR.L,Assura Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+ALS.L,Altus Strategies plc,Materials,Metals & Mining,Micro Cap
+AML.L,Aston Martin Lagonda Global Holdings plc,Consumer Discretionary,Automobiles,Mid Cap
+APF.L,Anglo Pacific Group plc,Materials,Metals & Mining,Small Cap
+ARB.L,Argo Blockchain plc,Financials,Capital Markets,Small Cap
+ARW.L,Arrow Global Group PLC,Financials,Capital Markets,Small Cap
+ASC.L,ASOS Plc,Consumer Discretionary,Internet & Direct Marketing Retail,Mid Cap
+ASHM.L,Ashmore Group plc,Financials,Capital Markets,Mid Cap
+AUTO.L,Auto Trader Group plc,Communication Services,Diversified Telecommunication Services,Mid Cap
+AXS.L,Accsys Technologies PLC,Materials,Paper & Forest Products,Micro Cap
+BAB.L,Babcock International Group Plc,Industrials,Construction & Engineering,Mid Cap
+BAKK.L,Bakkavor Group plc,Consumer Staples,Food & Staples Retailing,Small Cap
+BBY.L,Balfour Beatty plc,Industrials,Construction & Engineering,Mid Cap
+BCN.L,Bacanora Lithium Plc,Materials,Metals & Mining,Micro Cap
+BEZ.L,Beazley plc,Financials,Insurance,Mid Cap
+BGEO.L,Bank of Georgia Group PLC,Financials,Banks,Small Cap
+BIFF.L,Biffa plc,Industrials,Transportation Infrastructure,Small Cap
+BIRD.L,Blackbird plc,Information Technology,Software,Micro Cap
+BKG.L,The Berkeley Group Holdings plc,Industrials,Construction & Engineering,Mid Cap
+BLND.L,British Land Company Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+BLVN.L,Bowleven plc,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+BMS.L,Braemar Shipping Services Plc,Industrials,Marine,Micro Cap
+BOO.L,boohoo group plc,Consumer Discretionary,Internet & Direct Marketing Retail,Mid Cap
+BOXE.L,Tritax EuroBox EUR plc,Real Estate,,Small Cap
+BOY.L,Bodycote plc,Industrials,Machinery,Mid Cap
+BPCR.L,BIOPHARMA CREDIT PLC,Financials,,Small Cap
+BVIC.L,Britvic plc,Consumer Staples,Beverages,Mid Cap
+BWY.L,Bellway p.l.c.,Industrials,Construction & Engineering,Mid Cap
+BYG.L,Big Yellow Group PLC,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+CAMB.L,Cambria Automobiles plc,Consumer Discretionary,Automobiles,Micro Cap
+CARD.L,Card Factory plc,Consumer Discretionary,Specialty Retail,Small Cap
+CASP.L,Caspian Sunrise plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+CBG.L,Close Brothers Group plc,Financials,Capital Markets,Mid Cap
+CCP.L,Celtic plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+CCPA.L,Celtic plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+CCPC.L,Celtic plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+CHG.L,Chemring Group PLC,Industrials,Aerospace & Defense,Small Cap
+CINE.L,Cineworld Group plc,Communication Services,Entertainment,Small Cap
+CIR.L,Circassia Group Plc,Health Care,Biotechnology,Micro Cap
+CKN.L,Clarkson PLC,Industrials,Marine,Small Cap
+CLDN.L,Caledonia Investments plc,Financials,,Mid Cap
+CNA.L,Centrica plc,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+CNE.L,Cairn Energy PLC,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+CNR.L,Condor Gold Plc,Materials,Metals & Mining,Micro Cap
+CNS.L,Corero Network Security plc,Financials,Diversified Financial Services,Micro Cap
+COA.L,COATS GROUP PLC,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+CRV.L,Craven House Capital Plc,Financials,Capital Markets,Nano Cap
+CSP.L,Countryside Properties PLC,Industrials,Construction & Engineering,Mid Cap
+CTEC.L,ConvaTec Group Plc,Health Care,Health Care Equipment & Supplies,Mid Cap
+CWR.L,Ceres Power Holdings plc,Industrials,Electrical Equipment,Mid Cap
+DDDD.L,4D pharma plc,Health Care,Biotechnology,Micro Cap
+DIA.L,Dialight plc,Industrials,Electrical Equipment,Micro Cap
+DLAR.L,De La Rue plc,Industrials,Professional Services,Small Cap
+DLG.L,Direct Line Insurance Group plc,Financials,Insurance,Mid Cap
+DLN.L,Derwent London plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+DMGT.L,Daily Mail and General Trust plc,Communication Services,Diversified Telecommunication Services,Mid Cap
+DOCS.L,Dr. Martens plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+DOM.L,Domino's Pizza Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+DOTD.L,dotdigital Group Plc,Information Technology,Software,Small Cap
+DRX.L,Drax Group plc,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+DTY.L,DIGNITY PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+DVO.L,Devro plc,Consumer Staples,Food & Staples Retailing,Small Cap
+ECK.L,Eckoh plc,Information Technology,IT Services,Micro Cap
+ELM.L,Elementis plc,Materials,Chemicals,Small Cap
+ENOG.L,Energean plc,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+ENQ.L,EnQuest PLC,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+ESNT.L,Essentra plc,Materials,Chemicals,Small Cap
+EZJ.L,easyJet plc,Industrials,Airlines,Mid Cap
+FDP.L,First Derivatives plc,Information Technology,IT Services,Small Cap
+FEVR.L,Fevertree Drinks Plc,Consumer Staples,Beverages,Mid Cap
+FGP.L,FirstGroup plc,Industrials,Road & Rail,Small Cap
+FIPP.L,IP Group Plc,Financials,Capital Markets,Small Cap
+FORT.L,Forterra plc,Materials,Construction Materials,Small Cap
+FOXT.L,Foxtons Group plc,Real Estate,Real Estate Management & Development,Micro Cap
+FTC.L,Filtronic plc,Information Technology,Communications Equipment,Nano Cap
+FUM.L,Futura Medical plc,Health Care,Biotechnology,Micro Cap
+GAMA.L,Gamma Communications plc,Communication Services,Diversified Telecommunication Services,Mid Cap
+GAW.L,Games Workshop Group,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+GBG.L,GB Group plc,Information Technology,Software,Mid Cap
+GCM.L,GCM Resources Plc,Materials,Metals & Mining,Nano Cap
+GEMD.L,Gem Diamonds Limited,Materials,Metals & Mining,Micro Cap
+GENL.L,Genel Energy plc,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+GFS.L,G4S plc,Industrials,Professional Services,Mid Cap
+GILD.L,Guild Esports Plc,Communication Services,Entertainment,Nano Cap
+GMR.L,Gaming Realms plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+GNS.L,Genus plc,Health Care,Biotechnology,Mid Cap
+GRG.L,Greggs plc,Consumer Staples,Food & Staples Retailing,Mid Cap
+GROW.L,Draper Esprit plc,Financials,Capital Markets,Small Cap
+GYM.L,The Gym Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+GYS.L,Gamesys Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+HAYD.L,Haydale Graphene Industries plc,Materials,Chemicals,Nano Cap
+HBR.L,Harbour Energy plc,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+HEMO.L,Hemogenyx Pharmaceuticals Plc,Health Care,Biotechnology,Nano Cap
+HFD.L,Halfords Group plc,Consumer Discretionary,Specialty Retail,Small Cap
+HIK.L,Hikma Pharmaceuticals PLC,Health Care,Pharmaceuticals,Mid Cap
+HMSO.L,Hammerson plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+HOC.L,Hochschild Mining PLC,Materials,Metals & Mining,Small Cap
+HOTC.L,Hotel Chocolat Group plc,Consumer Staples,Food & Staples Retailing,Small Cap
+HSD.L,Hansard Global Plc,Financials,Insurance,Micro Cap
+HTG.L,Hunting PLC,Energy,Energy Equipment & Services,Small Cap
+HUM.L,Hummingbird Resources PLC,Materials,Metals & Mining,Micro Cap
+HUR.L,Hurricane Energy plc,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+HWDN.L,Howden Joinery Group Plc,Consumer Discretionary,Household Durables,Mid Cap
+HYVE.L,Hyve Group Plc,Industrials,Professional Services,Small Cap
+HZM.L,Horizonte Minerals Plc,Materials,Metals & Mining,Micro Cap
+IBST.L,Ibstock plc,Materials,Construction Materials,Small Cap
+ICP.L,Intermediate Capital Group plc,Financials,Capital Markets,Mid Cap
+IGG.L,IG Group Holdings plc,Financials,Capital Markets,Mid Cap
+IKA.L,Ilika plc,Industrials,Electrical Equipment,Small Cap
+IMI.L,IMI plc,Industrials,Machinery,Mid Cap
+IMM.L,ImmuPharma plc,Health Care,Biotechnology,Nano Cap
+INCH.L,Inchcape plc,Consumer Discretionary,Automobiles,Mid Cap
+IOF.L,Iofina plc,Materials,Chemicals,Nano Cap
+IPO.L,IP Group Plc,Financials,Capital Markets,Small Cap
+IQE.L,IQE plc,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+ITM.L,ITM Power Plc,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+ITV.L,ITV plc,Communication Services,Media,Mid Cap
+IXI.L,IXICO plc,Health Care,Biotechnology,Micro Cap
+JAY.L,Bluejay Mining plc,Materials,Metals & Mining,Micro Cap
+JDW.L,J D Wetherspoon plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+JET2.L,Jet2 plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+JLP.L,Jubilee Metals Group PLC,Materials,Metals & Mining,Small Cap
+JMAT.L,Johnson Matthey Plc,Materials,Chemicals,Mid Cap
+KAZ.L,KAZ Minerals PLC,Materials,Metals & Mining,Mid Cap
+KCT.L,Kin and Carta plc,Industrials,Professional Services,Small Cap
+KLR.L,Keller Group plc,Industrials,Construction & Engineering,Small Cap
+KNOS.L,Kainos Group plc,Information Technology,Software,Mid Cap
+LAND.L,Land Securities Group plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+LMP.L,LondonMetric Property Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+LOOK.L,Lookers plc,Consumer Discretionary,Automobiles,Small Cap
+LOOP.L,LoopUp Group plc,Information Technology,Software,Micro Cap
+LSAI.L,Location Sciences Group PLC,Information Technology,Software,Nano Cap
+LSL.L,LSL Property Services plc,Real Estate,Real Estate Management & Development,Small Cap
+LTG.L,Learning Technologies Group plc,Consumer Staples,Household Products,Nano Cap
+MAB.L,Mitchells & Butlers plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+MARS.L,Marston's PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+MCRO.L,Micro Focus International plc,Information Technology,Software,Mid Cap
+MGGT.L,Meggitt PLC,Industrials,Aerospace & Defense,Mid Cap
+MIRI.L,Mirriad Advertising plc,Communication Services,Diversified Telecommunication Services,Micro Cap
+MKS.L,Marks and Spencer Group plc,Consumer Discretionary,Household Durables,Mid Cap
+MNG.L,M&G plc,Financials,Capital Markets,Mid Cap
+MNTC.L,The Schiehallion Fund Limited,Financials,Capital Markets,Small Cap
+MNTN.L,The Schiehallion Fund Limited,Financials,Capital Markets,Small Cap
+MNZS.L,John Menzies plc,Industrials,Air Freight & Logistics,Small Cap
+MOTR.L,Motorpoint Group plc,Consumer Discretionary,Automobiles,Small Cap
+MRL.L,Marlowe plc,Industrials,Professional Services,Small Cap
+MRW.L,Wm Morrison Supermarkets PLC,Consumer Staples,Food & Staples Retailing,Mid Cap
+MTO.L,Mitie Group plc,Industrials,Professional Services,Small Cap
+MTPH.L,Midatech Pharma plc,Health Care,Biotechnology,Nano Cap
+MTRO.L,Metro Bank PLC,Financials,Banks,Micro Cap
+NAH.L,NAHL Group plc,Communication Services,Diversified Telecommunication Services,Nano Cap
+NANO.L,Nanoco Group plc,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+NAPS.L,Napster Group PLC,Communication Services,Entertainment,Micro Cap
+NBS.L,Nationwide Building Society,Financials,Banks,Mid Cap
+NCC.L,NCC Group plc,Information Technology,Software,Small Cap
+NCYT.L,Novacyt S.A.,Health Care,Biotechnology,Small Cap
+NEX.L,National Express Group PLC,Industrials,Road & Rail,Mid Cap
+NFC.L,Next Fifteen Communications Group plc,Communication Services,Diversified Telecommunication Services,Small Cap
+OKYO.L,OKYO Pharma Limited,Health Care,Biotechnology,Micro Cap
+ORPH.L,Open Orphan plc,Health Care,Biotechnology,Small Cap
+OXB.L,Oxford Biomedica PLC,Health Care,Biotechnology,Small Cap
+OXIG.L,Oxford Instruments plc,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+PAGE.L,PageGroup plc,Industrials,Professional Services,Mid Cap
+PANR.L,Pantheon Resources Plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+PETS.L,Pets At Home Group Plc,Consumer Discretionary,Specialty Retail,Mid Cap
+PFD.L,Premier Foods plc,Consumer Staples,Food & Staples Retailing,Small Cap
+PFG.L,Provident Financial plc,Financials,Consumer Finance,Small Cap
+PHAR.L,Pharos Energy plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+PNN.L,Pennon Group Plc,Utilities,Water Utilities,Mid Cap
+PPC.L,President Energy Plc,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+PREM.L,African Minerals Limited,Materials,Metals & Mining,Nano Cap
+PRM.L,Proteome Sciences plc,Health Care,Biotechnology,Nano Cap
+PRSM.L,Blue Prism Group plc,Information Technology,Software,Small Cap
+PSON.L,Pearson plc,Communication Services,Diversified Telecommunication Services,Mid Cap
+PURP.L,Purplebricks Group plc,Real Estate,Real Estate Management & Development,Small Cap
+QFI.L,Quadrise Fuels International plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+QQ.L,QinetiQ Group plc,Industrials,Aerospace & Defense,Mid Cap
+RDW.L,Redrow plc,Industrials,Construction & Engineering,Mid Cap
+RENE.L,ReNeuron Group plc,Health Care,Biotechnology,Micro Cap
+RENX.L,Renalytix AI plc,Health Care,Biotechnology,Small Cap
+RGP.L,Ross Group Plc,Industrials,Industrial Conglomerates,Nano Cap
+RKH.L,Rockhopper Exploration Plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+RMG.L,Royal Mail plc,Industrials,Air Freight & Logistics,Mid Cap
+RMM.L,Rambler Metals and Mining PLC,Materials,Metals & Mining,Mid Cap
+RMV.L,Rightmove plc,Communication Services,Diversified Telecommunication Services,Mid Cap
+RNK.L,The Rank Group Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ROO.L,Deliveroo plc,Consumer Discretionary,Internet & Direct Marketing Retail,Mid Cap
+ROR.L,Rotork plc,Industrials,Machinery,Mid Cap
+RPS.L,RPS Group plc,Industrials,Professional Services,Small Cap
+RSAB.L,RSA Insurance Group plc,Financials,Insurance,Mid Cap
+RSW.L,Renishaw plc,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+RTN.L,The Restaurant Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+SAE.L,SIMEC Atlantis Energy Limited,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+SAFE.L,Safestore Holdings plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+SAV.L,Savannah Resources Plc,Materials,Metals & Mining,Micro Cap
+SAVE.L,Savannah Energy PLC,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+SBRY.L,J Sainsbury plc,Consumer Staples,Food & Staples Retailing,Mid Cap
+SCLP.L,Scancell Holdings plc,Health Care,Biotechnology,Micro Cap
+SDRY.L,Superdry plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+SDX.L,SDX Energy plc,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+SFOR.L,S4 Capital plc,Communication Services,Diversified Telecommunication Services,Mid Cap
+SGC.L,Stagecoach Group plc,Industrials,Road & Rail,Small Cap
+SIG.L,Signature Aviation plc,Industrials,Air Freight & Logistics,Mid Cap
+SLA.L,Standard Life Aberdeen plc,Financials,Capital Markets,Mid Cap
+SLN.L,Silence Therapeutics plc,Health Care,Biotechnology,Small Cap
+SMDS.L,DS Smith Plc,Consumer Discretionary,Distributors,Mid Cap
+SMIN.L,Smiths Group plc,Industrials,Machinery,Mid Cap
+SNG.L,Synairgen plc,Health Care,Biotechnology,Small Cap
+SNR.L,Senior Plc,Industrials,Aerospace & Defense,Small Cap
+SOU.L,Sound Energy plc,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+SPO.L,Sportech PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+SPT.L,Spirent Communications plc,Information Technology,Software,Mid Cap
+SQZ.L,Serica Energy plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+SRB.L,Serabi Gold plc,Materials,Metals & Mining,Small Cap
+SRP.L,Serco Group plc,Industrials,Professional Services,Mid Cap
+SSPF.L,SSP Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+SSPG.L,SSP Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+SSPN.L,SSP Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+STCK.L,Stock Spirits Group PLC,Consumer Staples,Beverages,Small Cap
+STX.L,Shield Therapeutics plc,Health Care,Pharmaceuticals,Micro Cap
+SVS.L,Savills plc,Real Estate,Real Estate Management & Development,Mid Cap
+SVT.L,Severn Trent Plc,Utilities,Water Utilities,Mid Cap
+SXS.L,Spectris plc,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+TATE.L,Tate & Lyle plc,Consumer Staples,Food & Staples Retailing,Mid Cap
+TCM.L,Telit Communications PLC,Information Technology,Communications Equipment,Small Cap
+TED.L,Ted Baker Plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+TEK.L,Tekcapital plc,Information Technology,Software,Nano Cap
+TFGS.L,Tetragon Financial Group Limited,Financials,,Small Cap
+THR.L,Thor Mining PLC,Materials,Metals & Mining,Micro Cap
+THRU.L,Thruvision Group plc,Industrials,Professional Services,Micro Cap
+TILS.L,Tiziana Life Sciences PLC,Health Care,Biotechnology,Micro Cap
+TLW.L,Tullow Oil plc,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+TM17.L,Team17 Group plc,Communication Services,Interactive Media & Services,Small Cap
+TPK.L,Travis Perkins plc,Industrials,Building Products,Mid Cap
+TRN.L,Trainline Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+TRU.L,TruFin plc,Financials,Consumer Finance,Micro Cap
+TRX.L,Tissue Regenix Group plc,Health Care,Biotechnology,Nano Cap
+TTG.L,TT Electronics plc,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+TUNG.L,Tungsten Corporation plc,Industrials,Professional Services,Micro Cap
+TW.L,Taylor Wimpey plc,Industrials,Construction & Engineering,Mid Cap
+UFO.L,Alien Metals Limited,Materials,Metals & Mining,Micro Cap
+ULE.L,Ultra Electronics Holdings plc,Industrials,Aerospace & Defense,Small Cap
+UTG.L,The Unite Group plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+UU.L,United Utilities Group PLC,Utilities,Water Utilities,Mid Cap
+VCT.L,Victrex plc,Materials,Chemicals,Mid Cap
+VEC.L,Vectura Group plc,Health Care,Pharmaceuticals,Small Cap
+VLS.L,Velocys plc,Energy,Energy Equipment & Services,Micro Cap
+VRS.L,Versarien plc,Materials,Chemicals,Micro Cap
+VSVS.L,Vesuvius plc,Materials,Metals & Mining,Mid Cap
+VTAS.L,Volta Finance Limited,Financials,,Micro Cap
+WAND.L,WANdisco plc,Information Technology,Software,Small Cap
+WEIR.L,Weir Group PLC,Industrials,Machinery,Mid Cap
+WG.L,John Wood Group PLC,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+WINE.L,Naked Wines plc,Consumer Staples,Beverages,Small Cap
+WKP.L,Workspace Group plc,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+WMH.L,William Hill PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+WOSG.L,Watches of Switzerland Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+WTB.L,Whitbread PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+YOU.L,YouGov plc,Communication Services,Diversified Telecommunication Services,Small Cap
+ZOE.L,Zoetic International Plc,Health Care,Pharmaceuticals,Micro Cap
+ZPHR.L,Zephyr Energy plc,Energy,"Oil, Gas & Consumable Fuels",Micro Cap

@@ -1,0 +1,806 @@
+ticker,name,sector,industry,market_cap
+0008.HK,PCCW Limited,Communication Services,Diversified Telecommunication Services,Mid Cap
+0009.HK,Keyne Ltd,Real Estate,Real Estate Management & Development,Nano Cap
+0010.HK,Hang Lung Group Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0014.HK,Hysan Development Company Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0018.HK,Oriental Press Group Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+0022.HK,Mexan Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+0025.HK,Chevalier International Holdings Limited,Industrials,Industrial Conglomerates,Small Cap
+0029.HK,Dynamic Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0030.HK,Ban Loong Holdings Limited,Financials,Capital Markets,Small Cap
+0033.HK,Amber Hill Financial Holdings Limited,Financials,Capital Markets,Micro Cap
+0034.HK,Kowloon Development Company Limited,Real Estate,Real Estate Management & Development,Small Cap
+0035.HK,Far East Consortium International Limited,Real Estate,Real Estate Management & Development,Small Cap
+0039.HK,China Beidahuang Industry Group Holdings Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+0043.HK,C.P. Pokphand Co. Ltd.,Consumer Staples,Household Products,Mid Cap
+0045.HK,"The Hongkong and Shanghai Hotels, Limited",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+0047.HK,Hop Hing Group Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0048.HK,China Automotive Interior Decoration Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0050.HK,Hong Kong Ferry (Holdings) Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0052.HK,Fairwood Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0053.HK,Guoco Group Limited,Industrials,Industrial Conglomerates,Mid Cap
+0055.HK,Neway Group Holdings Limited,Industrials,Professional Services,Nano Cap
+0057.HK,Chen Hsong Holdings Limited,Industrials,Machinery,Micro Cap
+0058.HK,Sunway International Holdings Limited,Materials,Construction Materials,Nano Cap
+0064.HK,Get Nice Holdings Limited,Financials,Capital Markets,Micro Cap
+0069.HK,Shangri-La Asia Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+0071.HK,"Miramar Hotel and Investment Company, Limited",Industrials,Industrial Conglomerates,Small Cap
+0073.HK,Asian Citrus Holdings Limited,Consumer Staples,Household Products,Micro Cap
+0075.HK,Y. T. Realty Group Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0076.HK,Elate Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0078.HK,Regal Hotels International Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+0081.HK,China Overseas Grand Oceans Group Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0084.HK,Stelux Holdings International Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0085.HK,China Electronics Huada Technology Company Limited,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+0088.HK,Tai Cheung Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0093.HK,Termbray Industries International (Holdings) Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0094.HK,Greenheart Group Limited,Materials,Paper & Forest Products,Nano Cap
+0095.HK,LVGEM (China) Real Estate Investment Company Limited,Real Estate,Real Estate Management & Development,Small Cap
+0102.HK,Summit Ascent Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+0103.HK,Shougang Concord Century Holdings Limited,Materials,Metals & Mining,Micro Cap
+0106.HK,"Landsea Green Properties Co., Ltd.",Real Estate,Real Estate Management & Development,Small Cap
+0111.HK,Cinda International Holdings Limited,Financials,Capital Markets,Nano Cap
+0113.HK,Dickson Concepts (International) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0114.HK,Herald Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0116.HK,Chow Sang Sang Holdings International Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+0117.HK,Tianli Holdings Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0120.HK,Cosmopolitan International Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0122.HK,Crocodile Garments Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0123.HK,Yuexiu Property Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0124.HK,Guangdong Land Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0126.HK,Carrianna Group Holdings Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0128.HK,ENM Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0130.HK,Moiselle International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0131.HK,Cheuk Nang (Holdings) Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0135.HK,KunLun Energy Co. Ltd.,Energy,"Oil, Gas & Consumable Fuels",Mid Cap
+0136.HK,China Ruyi Holdings Limited,Financials,Diversified Financial Services,Micro Cap
+0137.HK,Jinhui Holdings Company Limited,Industrials,Marine,Micro Cap
+0141.HK,Sky Chinafortune Holdings Group Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0143.HK,Guoan International Limited,Information Technology,Communications Equipment,Nano Cap
+0145.HK,CCIAM Future Energy Limited,Financials,Capital Markets,Nano Cap
+0146.HK,Tai Ping Carpets International Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0148.HK,Kingboard Holdings Limited,Industrials,Industrial Conglomerates,Mid Cap
+0150.HK,Hypebeast Limited,Communication Services,Diversified Telecommunication Services,Small Cap
+0151.HK,Want Want China Holdings Limited,Consumer Staples,Food & Staples Retailing,Mid Cap
+0152.HK,Shenzhen International Holdings Limited,Industrials,Transportation Infrastructure,Mid Cap
+0156.HK,Lippo China Resources Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+0158.HK,Melbourne Enterprises Limited,Real Estate,Real Estate Management & Development,Small Cap
+0159.HK,Brockman Mining Limited,Materials,Metals & Mining,Micro Cap
+0160.HK,"Hon Kwok Land Investment Company, Limited",Real Estate,Real Estate Management & Development,Micro Cap
+0162.HK,Century Ginwa Retail Holdings Limited,Consumer Discretionary,Household Durables,Nano Cap
+0163.HK,Emperor International Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0164.HK,China Baoli Technologies Holdings Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+0165.HK,China Everbright Limited,Financials,Capital Markets,Mid Cap
+0169.HK,Wanda Hotel Development Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0171.HK,Silver Grant International Holdings Group Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0173.HK,K. Wah International Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0174.HK,Gemini Investments (Holdings) Limited,Financials,Capital Markets,Micro Cap
+0176.HK,Superactive Group Company Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0180.HK,Kader Holdings Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0181.HK,Fujian Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+0183.HK,Winfull Group Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0184.HK,Keck Seng Investments (Hong Kong) Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0185.HK,Zensun Enterprises Limited,Real Estate,Real Estate Management & Development,Small Cap
+0186.HK,Nimble Holdings Company Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0188.HK,Sunwah Kingsway Capital Holdings Limited,Financials,Capital Markets,Nano Cap
+0190.HK,HKC (Holdings) Limited,Real Estate,Real Estate Management & Development,Small Cap
+0191.HK,Lai Sun Garment (International) Limited,Real Estate,Real Estate Management & Development,Small Cap
+0194.HK,Liu Chong Hing Investment Limited,Real Estate,Real Estate Management & Development,Small Cap
+0195.HK,Greentech Technology International Limited,Materials,Metals & Mining,Micro Cap
+0197.HK,Heng Tai Consumables Group Limited,Consumer Staples,Household Products,Nano Cap
+0200.HK,Melco International Development Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+0201.HK,Magnificent Hotel Investments Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0202.HK,EverChina Int'l Holdings Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0205.HK,SEEC Media Group Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+0206.HK,"CMIC Ocean En-Tech Holding Co., Ltd.",Energy,Energy Equipment & Services,Micro Cap
+0208.HK,Polytec Asset Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0209.HK,Winshine Science Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+0211.HK,Styland Holdings Limited,Financials,Capital Markets,Nano Cap
+0212.HK,Nanyang Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0215.HK,Hutchison Telecommunications Hong Kong Holdings Limited,Communication Services,Diversified Telecommunication Services,Small Cap
+0216.HK,"Chinney Investments, Limited",Real Estate,Real Estate Management & Development,Micro Cap
+0217.HK,China Chengtong Development Group Limited,Financials,Capital Markets,Micro Cap
+0218.HK,Shenwan Hongyuan (H.K.) Limited,Financials,Capital Markets,Micro Cap
+0223.HK,Elife Holdings Limited,Financials,Capital Markets,Nano Cap
+0225.HK,Pokfulam Development Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0230.HK,Minmetals Land Limited,Real Estate,Real Estate Management & Development,Small Cap
+0232.HK,AVIC International Holding (HK) Limited,Industrials,Aerospace & Defense,Micro Cap
+0236.HK,San Miguel Brewery Hong Kong Limited,Consumer Staples,Beverages,Nano Cap
+0237.HK,"Safety Godown Company, Limited",Real Estate,Real Estate Management & Development,Micro Cap
+0239.HK,Pak Fah Yeow International Limited,Health Care,Pharmaceuticals,Micro Cap
+0242.HK,Shun Tak Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0243.HK,QPL International Holdings Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+0244.HK,"The Sincere Company, Limited",Consumer Discretionary,Household Durables,Micro Cap
+0245.HK,China Vered Financial Holding Corporation Limited,Financials,Capital Markets,Small Cap
+0247.HK,Tsim Sha Tsui Properties Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0248.HK,HKC International Holdings Limited,Information Technology,Communications Equipment,Nano Cap
+0255.HK,Lung Kee (Bermuda) Holdings Limited,Industrials,Building Products,Micro Cap
+0256.HK,Citychamp Watch & Jewellery Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+0257.HK,China Everbright Environment Group Limited,Industrials,Transportation Infrastructure,Mid Cap
+0258.HK,Tomson Group Limited,Real Estate,Real Estate Management & Development,Small Cap
+0259.HK,Yeebo (International Holdings) Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0260.HK,AVIC Joy Holdings (HK) Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+0261.HK,GBA Holdings Limited,Information Technology,Communications Equipment,Micro Cap
+0262.HK,Deson Development International Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0266.HK,Tian Teck Land Limited,Real Estate,Real Estate Management & Development,Small Cap
+0270.HK,Guangdong Investment Limited,Utilities,Water Utilities,Mid Cap
+0271.HK,Asiasec Properties Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0274.HK,China Billion Resources Limited,Materials,Metals & Mining,Nano Cap
+0276.HK,Mongolia Energy Corporation Limited,Materials,Metals & Mining,Nano Cap
+0281.HK,Rivera (Holdings) Limited,Financials,Capital Markets,Micro Cap
+0286.HK,Aidigong Maternal & Child Health Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+0287.HK,Winfair Investment Company Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0293.HK,Cathay Pacific Airways Limited,Industrials,Airlines,Mid Cap
+0294.HK,Yangtzekiang Garment Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0296.HK,Emperor Entertainment Hotel Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0297.HK,Sinofert Holdings Limited,Materials,Construction Materials,Small Cap
+0298.HK,Chuang's China Investments Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0299.HK,Glory Sun Land Group Limited,Financials,Capital Markets,Micro Cap
+0303.HK,"VTech Holdings, Ltd.",Information Technology,Communications Equipment,Mid Cap
+0305.HK,Wuling Motors Holdings Limited,Consumer Discretionary,Auto Components,Small Cap
+0306.HK,Kwoon Chung Bus Holdings Limited,Industrials,Road & Rail,Micro Cap
+0310.HK,Prosperity Investment Holdings Limited,Financials,Capital Markets,Nano Cap
+0311.HK,Luen Thai Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0313.HK,Richly Field China Development Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0318.HK,Vongroup Limited,Information Technology,IT Services,Nano Cap
+0320.HK,Computime Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0321.HK,Texwinca Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+0330.HK,Esprit Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0335.HK,Upbest Group Limited,Financials,Capital Markets,Micro Cap
+0336.HK,Huabao International Holdings Limited,Materials,Chemicals,Mid Cap
+0340.HK,Tongguan Gold Group Limited,Materials,Metals & Mining,Micro Cap
+0341.HK,Cafe de Coral Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+0342.HK,NewOcean Energy Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+0343.HK,Culturecom Holdings Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+0345.HK,Vitasoy International Holdings Limited,Consumer Staples,Food & Staples Retailing,Mid Cap
+0346.HK,Yanchang Petroleum International Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+0348.HK,China Healthwise Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+0359.HK,"China Haisheng Juice Holdings Co., Ltd",Consumer Staples,Beverages,Nano Cap
+0361.HK,Sino Golf Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0362.HK,Xinyang Maojian Group Limited,Utilities,Electric Utilities,Micro Cap
+0366.HK,Luks Group (Vietnam Holdings) Company Limited,Materials,Construction Materials,Micro Cap
+0367.HK,Chuang's Consortium International Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0368.HK,Superland Group Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+0374.HK,Four Seas Mercantile Holdings Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+0375.HK,YGM Trading Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0376.HK,Yunfeng Financial Group Limited,Financials,Capital Markets,Small Cap
+0377.HK,China Huajun Group Limited,Materials,Chemicals,Nano Cap
+0380.HK,Softpower International Limited,Consumer Discretionary,Household Durables,Nano Cap
+0381.HK,Kiu Hung International Holdings Limited,Consumer Discretionary,,Nano Cap
+0385.HK,Chinney Alliance Group Limited,Industrials,Construction & Engineering,Micro Cap
+0387.HK,Leeport (Holdings) Limited,Industrials,Machinery,Nano Cap
+0393.HK,Glorious Sun Enterprises Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0395.HK,Smartac International Holdings Limited,Consumer Discretionary,Internet & Direct Marketing Retail,Nano Cap
+0398.HK,Oriental Watch Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0401.HK,Wanjia Group Holdings Limited,Health Care,Health Care Providers & Services,Nano Cap
+0403.HK,Starlite Holdings Limited,Consumer Discretionary,Distributors,Nano Cap
+0405.HK,Yuexiu Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+0406.HK,Yau Lee Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+0408.HK,Yip's Chemical Holdings Limited,Materials,Chemicals,Small Cap
+0411.HK,Lam Soon (Hong Kong) Limited,Consumer Staples,Food & Staples Retailing,Small Cap
+0412.HK,China Shandong Hi-Speed Financial Group Limited,Financials,Capital Markets,Small Cap
+0417.HK,Tse Sui Luen Jewellery (International) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0419.HK,Huayi Tencent Entertainment Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+0420.HK,Fountain Set (Holdings) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0428.HK,Cocoon Holdings Limited,Financials,Capital Markets,Nano Cap
+0435.HK,Sunlight Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+0439.HK,KuangChi Science Limited,Industrials,Aerospace & Defense,Micro Cap
+0440.HK,Dah Sing Financial Holdings Limited,Financials,Banks,Small Cap
+0442.HK,"Hifood Group Holdings Co., Limited",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0444.HK,Sincere Watch (Hong Kong) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0455.HK,Tianda Pharmaceuticals Limited,Health Care,Pharmaceuticals,Micro Cap
+0458.HK,Tristate Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0459.HK,Midland IC&I Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0460.HK,Sihuan Pharmaceutical Holdings Group Ltd.,Health Care,Pharmaceuticals,Mid Cap
+0464.HK,China Overseas Nuoxin International Holdings Limited,Consumer Staples,Household Products,Nano Cap
+0471.HK,CMMB Vision Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0472.HK,New Silkroad Culturaltainment Limited,Consumer Staples,Beverages,Micro Cap
+0474.HK,Aceso Life Science Group Limited,Industrials,Industrial Conglomerates,Micro Cap
+0480.HK,HKR International Limited,Real Estate,Real Estate Management & Development,Small Cap
+0482.HK,Sandmartin International Holdings Limited,Information Technology,Communications Equipment,Nano Cap
+0483.HK,Bauhaus International (Holdings) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0485.HK,China Sinostar Group Company Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0487.HK,Success Universe Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0493.HK,GOME Retail Holdings Limited,Consumer Discretionary,Specialty Retail,Mid Cap
+0495.HK,Paladin Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0498.HK,Blue River Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+0499.HK,Qingdao Holdings International Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0505.HK,Xingye Alloy Materials Group Limited,Materials,Metals & Mining,Micro Cap
+0508.HK,Dingyi Group Investment Limited,Financials,Consumer Finance,Micro Cap
+0509.HK,Century Sunshine Group Holdings Limited,Materials,Construction Materials,Nano Cap
+0511.HK,Television Broadcasts Limited,Communication Services,Media,Small Cap
+0518.HK,Tungtex (Holdings) Company Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0521.HK,CWT International Limited,Materials,Metals & Mining,Micro Cap
+0527.HK,China Ruifeng Renewable Energy Holdings Limited,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+0535.HK,Gemdale Properties and Investment Corporation Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0536.HK,Tradelink Electronic Commerce Limited,Information Technology,Software,Micro Cap
+0538.HK,Ajisen (China) Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0544.HK,Daido Group Limited,Industrials,Professional Services,Nano Cap
+0547.HK,Digital Domain Holdings Limited,Communication Services,Entertainment,Small Cap
+0551.HK,Yue Yuen Industrial (Holdings) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+0558.HK,L.K. Technology Holdings Limited,Industrials,Machinery,Small Cap
+0559.HK,DeTai New Energy Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0567.HK,Daisho Microline Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+0571.HK,eSun Holdings Limited,Communication Services,Entertainment,Micro Cap
+0573.HK,Tao Heung Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0574.HK,Pa Shun International Holdings Limited,Health Care,Pharmaceuticals,Nano Cap
+0575.HK,Regent Pacific Group Limited,Financials,Capital Markets,Micro Cap
+0577.HK,South Shore Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+0578.HK,Rosan Resources Holdings Limited,Materials,Metals & Mining,Nano Cap
+0582.HK,Landing International Development Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0590.HK,Luk Fook Holdings (International) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+0592.HK,Bossini International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0593.HK,DreamEast Group Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0596.HK,Inspur International Limited,Information Technology,Software,Small Cap
+0601.HK,Rare Earth Magnesium Technology Group Holdings Limited,Materials,Metals & Mining,Nano Cap
+0602.HK,Jiahua Stores Holdings Limited,Consumer Discretionary,Household Durables,Nano Cap
+0607.HK,Fullshare Holdings Limited,Industrials,Machinery,Small Cap
+0611.HK,China Nuclear Energy Technology Corporation Limited,Industrials,Construction & Engineering,Micro Cap
+0612.HK,China Investment Fund Company Limited,Financials,Capital Markets,Small Cap
+0613.HK,Planetree International Development Limited,Financials,Capital Markets,Micro Cap
+0616.HK,Eminence Enterprise Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0617.HK,Paliburg Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+0618.HK,Peking University Resources (Holdings) Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0620.HK,DTXS Silk Road Investment Holdings Company Limited,Consumer Discretionary,Internet & Direct Marketing Retail,Small Cap
+0621.HK,Taung Gold International Limited,Materials,Metals & Mining,Micro Cap
+0622.HK,Oshidori International Holdings Limited,Financials,Capital Markets,Small Cap
+0627.HK,"Fullsun International Holdings Group Co., Limited",Consumer Discretionary,,Nano Cap
+0628.HK,"Gome Finance Technology Co., Ltd.",Financials,Consumer Finance,Micro Cap
+0635.HK,Playmates Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0636.HK,KLN Logistics Group Limited,Financials,Diversified Financial Services,Micro Cap
+0639.HK,Shougang Fushan Resources Group Limited,Materials,Metals & Mining,Small Cap
+0641.HK,CHTC Fong's International Company Limited,Industrials,Machinery,Micro Cap
+0653.HK,Bonjour Holdings Limited,Consumer Discretionary,Specialty Retail,Micro Cap
+0655.HK,Hongkong Chinese Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0659.HK,NWS Holdings Limited,Industrials,Construction & Engineering,Mid Cap
+0661.HK,China Daye Non-Ferrous Metals Mining Limited,Materials,Metals & Mining,Micro Cap
+0665.HK,Haitong International Securities Group Limited,Financials,Capital Markets,Small Cap
+0668.HK,Doyen International Holdings Limited,Financials,Consumer Finance,Nano Cap
+0674.HK,China Tangshang Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0676.HK,Pegasus International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0682.HK,Chaoda Modern Agriculture (Holdings) Limited,Consumer Staples,Household Products,Nano Cap
+0683.HK,Kerry Properties Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0684.HK,Allan International Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+0687.HK,Tysan Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+0697.HK,Shoucheng Holdings Limited,Industrials,Transportation Infrastructure,Small Cap
+0698.HK,Tongda Group Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0709.HK,Giordano International Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0710.HK,BOE Varitronix Ltd,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0713.HK,World Houseware (Holdings) Limited,Consumer Discretionary,Household Durables,Micro Cap
+0715.HK,China Oceanwide Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0716.HK,Singamas Container Holdings Limited,Consumer Discretionary,Distributors,Micro Cap
+0717.HK,Emperor Capital Group Limited,Financials,Capital Markets,Micro Cap
+0722.HK,UMP Healthcare Holdings Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+0724.HK,Ruixin International Holdings Limited,Industrials,Electrical Equipment,Nano Cap
+0725.HK,Perennial International Limited,Industrials,Electrical Equipment,Nano Cap
+0730.HK,Shougang Concord Grand (Group) Limited,Financials,Consumer Finance,Micro Cap
+0732.HK,Truly International Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0738.HK,Le Saunda Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0750.HK,China Shuifa Singyes Energy Holdings Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+0751.HK,Skyworth Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0752.HK,Pico Far East Holdings Limited,Industrials,Professional Services,Micro Cap
+0754.HK,Hopson Development Holdings Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0755.HK,Shanghai Zendai Property Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0757.HK,Solargiga Energy Holdings Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+0758.HK,Macrolink Capital Holdings Limited,Materials,Metals & Mining,Nano Cap
+0760.HK,Talent Property Group Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0764.HK,Eternity Investment Limited,Financials,Consumer Finance,Micro Cap
+0765.HK,Perfectech International Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+0771.HK,Automated Systems Holdings Limited,Information Technology,IT Services,Micro Cap
+0776.HK,Imperium Group Global Holdings Limited,Consumer Discretionary,Household Durables,Small Cap
+0784.HK,Ling Yui Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+0789.HK,Artini Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0794.HK,Come Sure Group (Holdings) Limited,Materials,Paper & Forest Products,Nano Cap
+0803.HK,Prosperity International Holdings (H.K.) Limited,Materials,Metals & Mining,Nano Cap
+0808.HK,Prosperity Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+0813.HK,Shimao Group Holdings Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0817.HK,China Jinmao Holdings Group Limited,Real Estate,Real Estate Management & Development,Mid Cap
+0819.HK,Tianneng Power International Limited,Consumer Discretionary,Auto Components,Small Cap
+0821.HK,Value Convergence Holdings Limited,Financials,Capital Markets,Micro Cap
+0825.HK,New World Department Store China Limited,Consumer Discretionary,Household Durables,Small Cap
+0828.HK,Dynasty Fine Wines Group Limited,Consumer Staples,Beverages,Micro Cap
+0829.HK,Shenguan Holdings (Group) Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+0831.HK,Convenience Retail Asia Limited,Consumer Discretionary,Household Durables,Micro Cap
+0833.HK,Alltronics Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0841.HK,Asia Cassava Resources Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+0844.HK,Greatime International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0845.HK,Glorious Property Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0852.HK,Strong Petrochemical Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+0854.HK,Willas-Array Electronics (Holdings) Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0855.HK,China Water Affairs Group Limited,Utilities,Water Utilities,Small Cap
+0856.HK,VSTECS Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+0858.HK,Extrawell Pharmaceutical Holdings Limited,Health Care,Pharmaceuticals,Nano Cap
+0859.HK,Zhongchang International Holdings Group Limited,Real Estate,Real Estate Management & Development,Nano Cap
+0865.HK,Jiande International Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0866.HK,China Qinfa Group Limited,Materials,Metals & Mining,Nano Cap
+0869.HK,Playmates Toys Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0876.HK,Kaisa Health Group Holdings Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+0878.HK,Soundwill Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0880.HK,SJM Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+0882.HK,Tianjin Development Holdings Limited,Industrials,,Micro Cap
+0887.HK,Emperor Watch & Jewellery Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+0888.HK,Bison Finance Group Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+0889.HK,Datronix Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+0891.HK,Trinity Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+0893.HK,China Vanadium Titano-Magnetite Mining Company Limited,Materials,Metals & Mining,Micro Cap
+0896.HK,Hanison Construction Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+0897.HK,Wai Yuen Tong Medicine Holdings Limited,Health Care,Pharmaceuticals,Micro Cap
+0898.HK,Multifield International Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0900.HK,AEON Credit Service (Asia) Company Limited,Financials,Consumer Finance,Micro Cap
+0905.HK,Global Mastermind Capital Limited,Financials,Capital Markets,Nano Cap
+0907.HK,Elegance Optical International Holdings Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+0908.HK,Zhuhai Holdings Investment Group Limited,Industrials,Marine,Small Cap
+0910.HK,China Sandi Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+0911.HK,Qianhai Health Holdings Limited,Health Care,Pharmaceuticals,Nano Cap
+0913.HK,Unity Investments Holdings Limited,Financials,Capital Markets,Nano Cap
+0915.HK,Daohe Global Group Limited,Consumer Discretionary,Specialty Retail,Nano Cap
+0922.HK,Anxian Yuan China Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0927.HK,Fujikon Industrial Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+0929.HK,IPE Group Limited,Industrials,Building Products,Micro Cap
+0932.HK,Shunten International (Holdings) Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+0934.HK,Sinopec Kantons Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+0943.HK,Zhongzheng International Company Limited,Consumer Staples,Household Products,Nano Cap
+0952.HK,China Tonghai International Financial Limited,Financials,Capital Markets,Micro Cap
+0966.HK,China Taiping Insurance Holdings Company Limited,Financials,Insurance,Mid Cap
+0970.HK,Sparkle Roll Group Limited,Consumer Discretionary,Automobiles,Micro Cap
+0976.HK,Chiho Environmental Group Limited,Industrials,Building Products,Micro Cap
+0982.HK,Huafa Property Services Group Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+0983.HK,SOCAM Development Limited,Real Estate,Real Estate Management & Development,Micro Cap
+0990.HK,Theme International Holdings Limited,Materials,Metals & Mining,Small Cap
+0993.HK,Huarong International Financial Holdings Limited,Financials,Capital Markets,Micro Cap
+0997.HK,Chinlink International Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+1002.HK,V.S. International Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+1003.HK,Huanxi Media Group Limited,Communication Services,Entertainment,Small Cap
+1004.HK,China Smarter Energy Group Holdings Limited,Financials,Capital Markets,Nano Cap
+1005.HK,Matrix Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1007.HK,Longhui International Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1008.HK,Brilliant Circle Holdings International Limited,Consumer Discretionary,Distributors,Micro Cap
+1010.HK,PacRay International Holdings Limited,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+1020.HK,Cybernaut International Holdings Company Limited,Consumer Discretionary,Internet & Direct Marketing Retail,Micro Cap
+1023.HK,Sitoy Group Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1025.HK,KNT Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1028.HK,C.banner International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1031.HK,Kingston Financial Group Limited,Financials,Capital Markets,Small Cap
+1034.HK,Fullwealth International Group Holdings Limited,Industrials,Construction & Engineering,Small Cap
+1036.HK,Vanke Overseas Investment Holding Company Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1037.HK,Maxnerva Technology Services Limited,Information Technology,IT Services,Nano Cap
+1039.HK,Changyou Alliance Group Limited,Consumer Discretionary,Internet & Direct Marketing Retail,Micro Cap
+1047.HK,Ngai Hing Hong Company Limited,Materials,Chemicals,Nano Cap
+1049.HK,Celestial Asia Securities Holdings Limited,Consumer Discretionary,Household Durables,Nano Cap
+1050.HK,Karrie International Holdings Limited,Industrials,Building Products,Small Cap
+1052.HK,Yuexiu Transport Infrastructure Limited,Industrials,Transportation Infrastructure,Small Cap
+1058.HK,Guangdong Tannery Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1060.HK,Alibaba Pictures Group Limited,Communication Services,Entertainment,Mid Cap
+1063.HK,SUNCORP TECHNOLOGIES LIMITED,Industrials,Industrial Conglomerates,Nano Cap
+1083.HK,Towngas China Company Limited,Utilities,Gas Utilities,Small Cap
+1084.HK,Green Future Food Hydrocolloid Marine Science Company Limited,Consumer Staples,Household Products,Micro Cap
+1091.HK,South Manganese Investment Limited,Materials,Metals & Mining,Micro Cap
+1094.HK,China Public Procurement Limited,Industrials,Industrial Conglomerates,Nano Cap
+1100.HK,Mainland Headwear Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1101.HK,China Huarong Energy Company Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+1104.HK,APAC Resources Limited,Financials,Capital Markets,Micro Cap
+1112.HK,Health and Happiness (H&H) International Holdings Limited,Consumer Staples,Food & Staples Retailing,Mid Cap
+1114.HK,Brilliance China Automotive Holdings Limited,Consumer Discretionary,Automobiles,Mid Cap
+1115.HK,Tibet Water Resources Ltd.,Consumer Staples,Beverages,Small Cap
+1116.HK,Mayer Holdings Limited,Materials,Metals & Mining,Micro Cap
+1118.HK,Golik Holdings Limited,Materials,Metals & Mining,Micro Cap
+1125.HK,Lai Fung Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+1134.HK,Kelfred Holdings Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+1140.HK,Wealthking Investments Limited,Financials,Capital Markets,Small Cap
+1141.HK,CMBC Capital Holdings Limited,Financials,Capital Markets,Small Cap
+1142.HK,Siberian Mining Group Company Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+1143.HK,Link-Asia International MedTech Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+1145.HK,Courage Investment Group Limited,Industrials,Marine,Nano Cap
+1148.HK,Xinchen China Power Holdings Limited,Consumer Discretionary,Auto Components,Micro Cap
+1150.HK,Milan Station Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1159.HK,Starlight Culture Entertainment Group Limited,Communication Services,Entertainment,Micro Cap
+1161.HK,Water Oasis Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1162.HK,Lumina Group Limited,Industrials,Professional Services,Nano Cap
+1165.HK,Shunfeng International Clean Energy Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+1166.HK,Solartech International Holdings Limited,Industrials,Electrical Equipment,Nano Cap
+1168.HK,Sinolink Worldwide Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1170.HK,Kingmaker Footwear Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1172.HK,Magnus Concordia Group Limited,Industrials,Professional Services,Micro Cap
+1173.HK,Veeko International Holdings Limited,Consumer Staples,Household Products,Nano Cap
+1175.HK,"Fresh Express Delivery Holdings Group Co., Limited",Consumer Staples,Food & Staples Retailing,Nano Cap
+1176.HK,Zhuguang Holdings Group Company Limited,Real Estate,Real Estate Management & Development,Small Cap
+1180.HK,Paradise Entertainment Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1181.HK,Tang Palace (China) Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1182.HK,Success Dragon International Holdings Limited,Industrials,Professional Services,Nano Cap
+1184.HK,S.A.S. Dragon Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+1185.HK,China Energine International (Holdings) Limited,Utilities,Independent Power and Renewable Electricity Producers,Micro Cap
+1195.HK,Kingwell Group Limited,Real Estate,Real Estate Management & Development,Nano Cap
+1196.HK,Realord Group Holdings Limited,Industrials,Transportation Infrastructure,Mid Cap
+1198.HK,Royale Home Holdings Limited,Consumer Discretionary,Household Durables,Small Cap
+1199.HK,COSCO SHIPPING Ports Limited,Industrials,Marine,Mid Cap
+1200.HK,Midland Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1201.HK,Tesson Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1203.HK,GDH Guangnan (Holdings) Limited,Materials,Metals & Mining,Micro Cap
+1213.HK,Mobicon Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+1218.HK,Easyknit International Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+1222.HK,Wang On Group Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1230.HK,Yashili International Holdings Ltd,Consumer Staples,Food & Staples Retailing,Small Cap
+1235.HK,Travel Expert (Asia) Enterprises Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1239.HK,Teamway International Group Holdings Limited,Consumer Discretionary,Distributors,Nano Cap
+1240.HK,CNQC International Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1243.HK,Wang On Properties Limited,Real Estate,Real Estate Management & Development,Micro Cap
+1246.HK,Boill Healthcare Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+1257.HK,China Everbright Greentech Ltd.,Industrials,Construction & Engineering,Small Cap
+1259.HK,Prosperous Future Holdings Limited,Consumer Staples,Household Products,Nano Cap
+1270.HK,Langham Hospitality Investments Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+1282.HK,Glory Sun Financial Group Limited,Industrials,Industrial Conglomerates,Small Cap
+1292.HK,"Changan Minsheng APLL Logistics Co., Ltd.",Industrials,Air Freight & Logistics,Micro Cap
+1303.HK,Huili Resources (Group) Limited,Industrials,Industrial Conglomerates,Nano Cap
+1310.HK,HKBN Ltd.,Communication Services,Diversified Telecommunication Services,Small Cap
+1312.HK,Tongfang Kontafarma Holdings Limited,Materials,Construction Materials,Nano Cap
+1314.HK,Tsui Wah Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1319.HK,Oi Wah Pawnshop Credit Holdings Limited,Financials,Thrifts & Mortgage Finance,Micro Cap
+1323.HK,Huasheng International Holding Limited,Consumer Staples,Household Products,Small Cap
+1326.HK,Transmit Entertainment Limited,Communication Services,Entertainment,Nano Cap
+1327.HK,Luxxu Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1332.HK,Touyun Biotech Group Limited,Consumer Discretionary,Distributors,Small Cap
+1335.HK,Sheen Tai Holdings Group Company Limited,Consumer Discretionary,Distributors,Nano Cap
+1366.HK,Jiangnan Group Limited,Industrials,Electrical Equipment,Small Cap
+1371.HK,China Ecotourism Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1373.HK,International Housewares Retail Company Limited,Consumer Discretionary,Household Durables,Micro Cap
+1381.HK,Canvest Environmental Protection Group Company Limited,Industrials,Transportation Infrastructure,Small Cap
+1382.HK,Pacific Textiles Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1383.HK,Suncity Group Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+1386.HK,Vestate Group Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1387.HK,China Dili Group,Real Estate,Real Estate Management & Development,Mid Cap
+1388.HK,Embry Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1389.HK,Major Holdings Limited,Consumer Staples,Beverages,Nano Cap
+1397.HK,Baguio Green Group Limited,Industrials,Transportation Infrastructure,Nano Cap
+1399.HK,Veson Holdings Limited,Industrials,Electrical Equipment,Nano Cap
+1410.HK,Edvance International Holdings Limited,Information Technology,Software,Micro Cap
+1413.HK,Kwong Luen Engineering Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1418.HK,Sinomax Group Limited,Consumer Discretionary,Household Durables,Nano Cap
+1421.HK,Kingbo Strike Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+1429.HK,Skymission Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1433.HK,Cirtek Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1443.HK,Fulum Group Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1446.HK,Hung Fook Tong Group Holdings Limited,Consumer Staples,Beverages,Nano Cap
+1447.HK,SFK Construction Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+1455.HK,Fourace Industries Group Holdings Limited,Consumer Staples,Household Products,Nano Cap
+1466.HK,Affluent Partners Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1468.HK,Kingkey Financial International (Holdings) Limited,Industrials,Industrial Conglomerates,Small Cap
+1469.HK,Get Nice Financial Group Limited,Financials,Capital Markets,Micro Cap
+1472.HK,Sang Hing Holdings (International) Limited,Industrials,Construction & Engineering,Nano Cap
+1473.HK,Pangaea Connectivity Technology Limited,Information Technology,Communications Equipment,Micro Cap
+1475.HK,Nissin Foods Company Limited,Consumer Staples,Food & Staples Retailing,Small Cap
+1483.HK,U Banquet Group Holding Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1498.HK,PuraPharm Corporation Limited,Health Care,Pharmaceuticals,Nano Cap
+1499.HK,OKG Technology Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+1520.HK,CEFC Hong Kong Financial Investment Company Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1523.HK,Plover Bay Technologies Limited,Information Technology,Communications Equipment,Micro Cap
+1536.HK,Yuk Wing Group Holdings Limited,Industrials,Machinery,Nano Cap
+1539.HK,Synergy Group Holdings International Limited,Industrials,Electrical Equipment,Micro Cap
+1540.HK,Left Field Printing Group Limited,Industrials,Professional Services,Nano Cap
+1546.HK,Thelloy Development Group Limited,Industrials,Construction & Engineering,Nano Cap
+1556.HK,Chinney Kin Wing Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1559.HK,Kwan On Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+1560.HK,Star Properties Group (Cayman Islands) Limited,Real Estate,Real Estate Management & Development,Nano Cap
+1566.HK,CA Cultural Technology Group Limited,Communication Services,Entertainment,Small Cap
+1568.HK,Sundart Holdings Limited,Industrials,Professional Services,Small Cap
+1581.HK,Progressive Path Group Holdings Limited,Industrials,Commercial Services & Supplies,Nano Cap
+1608.HK,VPower Group International Holdings Limited,Industrials,Electrical Equipment,Small Cap
+1611.HK,Huobi Technology Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+1612.HK,Vincent Medical Holdings Limited,Health Care,Health Care Technology,Micro Cap
+1621.HK,Vico International Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+1630.HK,Kin Shing Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1632.HK,Minshang Creative Technology Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+1633.HK,Sheung Yue Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1647.HK,Grandshores Technology Group Limited,Industrials,Construction & Engineering,Nano Cap
+1660.HK,Zhaobangji Properties Holdings Limited,Industrials,Trading Companies & Distributors,Small Cap
+1662.HK,Yee Hop Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+1686.HK,SUNeVision Holdings Ltd.,Information Technology,IT Services,Mid Cap
+1689.HK,Huaxi Holdings Company Limited,Consumer Discretionary,Distributors,Micro Cap
+1703.HK,Palace Banquet Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1707.HK,Geotech Holdings Ltd.,Industrials,Construction & Engineering,Micro Cap
+1710.HK,Trio Industrial Electronics Group Limited,Industrials,Electrical Equipment,Nano Cap
+1711.HK,Ulferts International Limited,Consumer Discretionary,Specialty Retail,Nano Cap
+1716.HK,Most Kwai Chung Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+1717.HK,Ausnutria Dairy Corporation Ltd,Consumer Staples,Food & Staples Retailing,Mid Cap
+1726.HK,HKE Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+1729.HK,Time Interconnect Technology Limited,Industrials,Electrical Equipment,Micro Cap
+1731.HK,Prosperous Industrial (Holdings) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1738.HK,Feishang Anthracite Resources Limited,Materials,Metals & Mining,Nano Cap
+1740.HK,Values Cultural Investment Limited,Communication Services,Entertainment,Nano Cap
+1751.HK,Kingland Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1757.HK,Affluent Foundation Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1760.HK,Intron Technology Holdings Limited,Consumer Discretionary,Auto Components,Small Cap
+1775.HK,BExcellent Group Holdings Limited,Consumer Staples,Household Products,Nano Cap
+1783.HK,Golden Ponder Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1788.HK,Guotai Junan International Holdings Limited,Financials,Capital Markets,Small Cap
+1793.HK,Wecon Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1795.HK,Yadong Group Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1821.HK,ESR Cayman Limited,Real Estate,Real Estate Management & Development,Mid Cap
+1827.HK,Miricor Enterprises Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+1830.HK,Perfect Shape Medical Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+1832.HK,S.A.I. Leisure Group Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1836.HK,Stella International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+1841.HK,A.Plus Group Holdings Limited,Industrials,Professional Services,Nano Cap
+1842.HK,Grown Up Group Investment Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+1848.HK,China Aircraft Leasing Group Holdings Limited,Industrials,Air Freight & Logistics,Small Cap
+1850.HK,WINDMILL Group Limited,Industrials,Professional Services,Nano Cap
+1854.HK,Goal Forward Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+1856.HK,Ernest Borel Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1867.HK,LKS Holding Group Limited,Industrials,Professional Services,Micro Cap
+1870.HK,Acme International Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1878.HK,SouthGobi Resources Ltd.,Materials,Metals & Mining,Micro Cap
+1881.HK,Regal Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+1882.HK,Haitian International Holdings Limited,Industrials,Machinery,Mid Cap
+1884.HK,eprint Group Limited,Industrials,Professional Services,Nano Cap
+1888.HK,Kingboard Laminates Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+1894.HK,Hang Yick Holdings Company Limited,Materials,Metals & Mining,Micro Cap
+1906.HK,Bonny International Holding Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1912.HK,Contel Technology Company Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+1920.HK,Hands Form Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+1975.HK,Sun Hing Printing Holdings Limited,Industrials,Professional Services,Nano Cap
+1977.HK,Analogue Holdings Limited,Industrials,Construction & Engineering,Small Cap
+1982.HK,Nameson Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+1985.HK,Microware Group Limited,Information Technology,IT Services,Nano Cap
+1992.HK,Fosun Tourism Group,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+1993.HK,Asiaray Media Group Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+2003.HK,VCREDIT Holdings Limited,Financials,Consumer Finance,Small Cap
+2005.HK,SSY Group Limited,Health Care,Pharmaceuticals,Mid Cap
+2033.HK,Time Watch Investments Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+2078.HK,PanAsialum Holdings Company Limited,Materials,Metals & Mining,Nano Cap
+2086.HK,HNA Technology Investments Holdings Limited,Industrials,Professional Services,Nano Cap
+2110.HK,Yue Kan Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+2119.HK,Tsit Wing International Holdings Limited,Consumer Staples,Beverages,Micro Cap
+2130.HK,CN Logistics International Holdings Limited,Industrials,Air Freight & Logistics,Micro Cap
+2132.HK,Landrich Holding Limited,Industrials,Construction & Engineering,Nano Cap
+2161.HK,JBM (Healthcare) Limited,Health Care,Pharmaceuticals,Micro Cap
+2183.HK,Sansheng Holdings (Group) Co. Ltd.,Real Estate,Real Estate Management & Development,Small Cap
+2189.HK,Kato (Hong Kong) Holdings Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+2191.HK,SF Real Estate Investment Trust,Real Estate,,Small Cap
+2195.HK,Unity Enterprise Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+2199.HK,Regina Miracle International (Holdings) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+2203.HK,Brainhole Technology Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+2222.HK,NVC International Holdings Limited,Consumer Discretionary,Household Durables,Micro Cap
+2223.HK,Casablanca Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+2225.HK,Jinhai International Group Holdings Limited,Industrials,Professional Services,Small Cap
+2230.HK,Medialink Group Limited,Communication Services,Entertainment,Micro Cap
+2232.HK,Crystal International Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+2262.HK,Steve Leung Design Group Limited,Industrials,Construction & Engineering,Micro Cap
+2263.HK,Fu Shek Financial Holdings Limited,Financials,Capital Markets,Nano Cap
+2288.HK,Rykadan Capital Limited,Real Estate,Real Estate Management & Development,Nano Cap
+2292.HK,Thing On Enterprise Limited,Real Estate,Real Estate Management & Development,Micro Cap
+2293.HK,Bamboos Health Care Holdings Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+2299.HK,Billion Industrial Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+2302.HK,CNNC International Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2307.HK,Kam Hing International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+2309.HK,Birmingham Sports Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+2317.HK,Vedan International (Holdings) Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+2320.HK,Hop Fung Group Holdings Limited,Materials,Paper & Forest Products,Nano Cap
+2322.HK,Hong Kong ChaoShang Group Limited,Industrials,Industrial Conglomerates,Small Cap
+2326.HK,New Provenance Everlasting Holdings Limited,Materials,Metals & Mining,Micro Cap
+2327.HK,Meilleure Health International Industry Group Limited,Industrials,Industrial Conglomerates,Micro Cap
+2330.HK,China Uptown Group Company Limited,Real Estate,Real Estate Management & Development,Nano Cap
+2336.HK,Hailiang International Holdings Limited,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2339.HK,BeijingWest Industries International Limited,Consumer Discretionary,Auto Components,Nano Cap
+2340.HK,Synergis Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+2341.HK,EcoGreen International Group Limited,Materials,Chemicals,Micro Cap
+2342.HK,Comba Telecom Systems Holdings Limited,Information Technology,Communications Equipment,Small Cap
+2343.HK,Pacific Basin Shipping Limited,Industrials,Marine,Small Cap
+2348.HK,Dawnrays Pharmaceutical (Holdings) Limited,Health Care,Pharmaceuticals,Small Cap
+2356.HK,Dah Sing Banking Group Limited,Financials,Banks,Small Cap
+2362.HK,Jinchuan Group International Resources Co. Ltd,Materials,Metals & Mining,Small Cap
+2363.HK,Tongda Hong Tai Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+2368.HK,Eagle Nice (International) Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+2371.HK,China Chuanglian Education Financial Group Limited,Consumer Staples,Household Products,Micro Cap
+2633.HK,Jacobson Pharma Corporation Limited,Health Care,Pharmaceuticals,Micro Cap
+2663.HK,KPa-BM Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+2678.HK,Texhong Textile Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+2680.HK,Innovax Holdings Limited,Financials,Capital Markets,Nano Cap
+2683.HK,Wah Sun Handbags International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+2768.HK,Jiayuan International Group Limited,Real Estate,Real Estate Management & Development,Small Cap
+2788.HK,Yorkey Optical International (Cayman) Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+2878.HK,Solomon Systech (International) Ltd.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+2885.HK,Peiport Holdings Ltd.,Industrials,Professional Services,Nano Cap
+2886.HK,"Binhai Investment Co., Ltd.",Utilities,Gas Utilities,Micro Cap
+3318.HK,China Boton Group Company Limited,Materials,Chemicals,Small Cap
+3322.HK,Win Hanverky Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+3329.HK,BOCOM International Holdings Company Limited,Financials,Capital Markets,Small Cap
+3330.HK,Lingbao Gold Group Company Limited Class H,Materials,Metals & Mining,Micro Cap
+3331.HK,VINDA INTERNATIONAL HOLDINGS LIMITED,Consumer Staples,Household Products,Mid Cap
+3336.HK,Ju Teng International Holdings Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3389.HK,Hengdeli Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+3390.HK,Tycoon Group Holdings Limited,Health Care,Pharmaceuticals,Micro Cap
+3393.HK,Wasion Holdings Limited,Industrials,Electrical Equipment,Small Cap
+3398.HK,China Ting Group Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+3399.HK,Guangdong Yueyun Transportation Company Limited,Industrials,Air Freight & Logistics,Micro Cap
+3600.HK,Modern Dental Group Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+3608.HK,Yongsheng Advanced Materials Company Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+3613.HK,Beijing Tong Ren Tang Chinese Medicine Company Limited,Health Care,Pharmaceuticals,Small Cap
+3623.HK,China Success Finance Group Holdings Limited,Financials,Capital Markets,Micro Cap
+3628.HK,RENHENG Enterprise Holdings Limited,Industrials,Machinery,Nano Cap
+3633.HK,Zhongyu Gas Holdings Limited,Utilities,Gas Utilities,Mid Cap
+3638.HK,Huabang Technology Holdings Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+3681.HK,SinoMab BioScience Limited,Health Care,Biotechnology,Small Cap
+3683.HK,Great Harvest Maeta Group Holdings Limited,Industrials,Marine,Micro Cap
+3728.HK,Ching Lee Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+3789.HK,Royal Deluxe Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+3800.HK,GCL-Poly Energy Holdings Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Mid Cap
+3816.HK,KFM Kingdom Holdings Limited,Industrials,Building Products,Nano Cap
+3828.HK,Ming Fai International Holdings Limited,Consumer Staples,Household Products,Micro Cap
+3830.HK,Kiddieland International Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+3838.HK,China Starch Holdings Limited,Consumer Staples,Food & Staples Retailing,Micro Cap
+3848.HK,Wealthy Way Group Limited,Financials,Consumer Finance,Micro Cap
+3877.HK,CSSC (Hong Kong) Shipping Company Limited,Industrials,Commercial Services & Supplies,Small Cap
+3878.HK,Vicon Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+3888.HK,Kingsoft Corporation Limited,Communication Services,Interactive Media & Services,Mid Cap
+3889.HK,Global Sweeteners Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+3893.HK,Crosstec Group Holdings Limited,Industrials,Professional Services,Nano Cap
+3991.HK,Changhong Jiahua Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+3998.HK,Bosideng International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Mid Cap
+6036.HK,Apex Ace Holding Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+6063.HK,Lotus Horizon Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+6110.HK,Topsports International Holdings Limited,Industrials,Commercial Services & Supplies,Mid Cap
+6123.HK,YTO Express (International) Holdings Limited,Industrials,Air Freight & Logistics,Micro Cap
+6128.HK,Graphex Group Limited,Materials,Metals & Mining,Micro Cap
+6182.HK,Twintek Investment Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+6193.HK,Tailam Tech Construction Holdings Limited,Materials,Construction Materials,Nano Cap
+6805.HK,Kimou Environmental Holding Limited,Industrials,Transportation Infrastructure,Micro Cap
+6811.HK,Tai Hing Group Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+6812.HK,Winson Holdings Hong Kong Limited,Industrials,Transportation Infrastructure,Nano Cap
+6822.HK,King's Flair International (Holdings) Limited,Consumer Discretionary,Household Durables,Micro Cap
+6829.HK,Dragon Rise Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+6838.HK,Winox Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+6877.HK,CLSA Premium Limited,Financials,Capital Markets,Micro Cap
+6880.HK,Tempus Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+6888.HK,Freetech Road Recycling Technology (Holdings) Limited,Industrials,Transportation Infrastructure,Nano Cap
+8006.HK,Sino Splendid Holdings Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+8011.HK,Polyard Petroleum International Group Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+8017.HK,TradeGo FinTech Limited,Information Technology,Software,Micro Cap
+8018.HK,Finsoft Financial Investment Holdings Limited,Information Technology,Software,Nano Cap
+8019.HK,Hao Wen Holdings Limited,Financials,Consumer Finance,Nano Cap
+8020.HK,Unitas Holdings Limited,Industrials,Marine,Nano Cap
+8021.HK,WLS Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+8022.HK,Evershine Group Holdings Limited,Industrials,Industrial Conglomerates,Nano Cap
+8023.HK,Kwong Man Kee Group Limited,Industrials,Construction & Engineering,Nano Cap
+8026.HK,China Brilliant Global Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+8028.HK,Timeless Software Limited,Materials,Metals & Mining,Nano Cap
+8036.HK,eBroker Group Limited,Information Technology,Software,Nano Cap
+8039.HK,KNK Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8040.HK,DCB Holdings Limited,Industrials,Professional Services,Nano Cap
+8041.HK,Luxey International (Holdings) Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8043.HK,Atlinks Group Limited,Information Technology,Communications Equipment,Nano Cap
+8050.HK,Quantum Thinking Limited,Information Technology,IT Services,Micro Cap
+8051.HK,CircuTech International Holdings Limited,Industrials,Professional Services,Nano Cap
+8052.HK,Luk Hing Entertainment Group Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8053.HK,Pizu Group Holdings Limited,Materials,Chemicals,Micro Cap
+8057.HK,Madison Holdings Group Limited,Consumer Staples,Beverages,Micro Cap
+8059.HK,Glory Flame Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8062.HK,EFT Solutions Holdings Limited,Information Technology,Software,Nano Cap
+8063.HK,Global Mastermind Holdings Limited,Financials,Consumer Finance,Nano Cap
+8065.HK,KML Technology Group Limited,Industrials,Transportation Infrastructure,Nano Cap
+8066.HK,Phoenitron Holdings Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+8069.HK,WWPKG Holdings Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8070.HK,Keen Ocean International Holding Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+8071.HK,China Netcom Technology Holdings Limited,Financials,Consumer Finance,Nano Cap
+8072.HK,Roma Group Limited,Financials,Capital Markets,Nano Cap
+8079.HK,Easy Repay Finance & Investment Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+8083.HK,China Youzan Limited,Information Technology,Software,Mid Cap
+8091.HK,OOH Holdings Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+8101.HK,EJE (Hong Kong) Holdings Limited,Consumer Discretionary,Household Durables,Nano Cap
+8103.HK,hmvod Limited,Information Technology,IT Services,Nano Cap
+8109.HK,Kirin Group Holdings Limited,Financials,Insurance,Nano Cap
+8115.HK,"Shanghai Qingpu Fire-Fighting Equipment Co., Ltd.",Industrials,Machinery,Nano Cap
+8117.HK,China Primary Energy Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+8118.HK,Bortex Global Limited,Consumer Discretionary,Household Durables,Nano Cap
+8120.HK,China Demeter Financial Investments Limited,Consumer Staples,Household Products,Nano Cap
+8123.HK,Sinofortune Financial Holdings Limited,Financials,Capital Markets,Nano Cap
+8128.HK,China Geothermal Industry Development Group Limited,Industrials,Construction & Engineering,Nano Cap
+8130.HK,Dadi International Group Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+8131.HK,abc Multiactive Limited,Information Technology,Software,Nano Cap
+8133.HK,Jete Power Holdings Limited,Industrials,Building Products,Nano Cap
+8137.HK,Honbridge Holdings Limited,Industrials,Electrical Equipment,Small Cap
+8140.HK,BOSA Technology Holdings Limited,Materials,Metals & Mining,Nano Cap
+8143.HK,Good Fellow Healthcare Holdings Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+8146.HK,Grace Wine Holdings Limited,Consumer Staples,Beverages,Nano Cap
+8148.HK,Aurum Pacific (China) Group Limited,Information Technology,IT Services,Nano Cap
+8149.HK,Altus Holdings Limited,Industrials,Industrial Conglomerates,Nano Cap
+8150.HK,Seamless Green China (Holdings) Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+8153.HK,Farnova Group Holdings Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+8156.HK,Sinopharm Tech Holdings Limited,Information Technology,Software,Micro Cap
+8158.HK,China Regenerative Medicine International Limited,Health Care,Biotechnology,Micro Cap
+8163.HK,Merdeka Financial Group Limited,Consumer Discretionary,Specialty Retail,Nano Cap
+8167.HK,Neo Telemedia Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+8168.HK,Amasse Capital Holdings Limited,Financials,Capital Markets,Nano Cap
+8172.HK,Lajin Entertainment Network Group Limited,Financials,Diversified Financial Services,Micro Cap
+8176.HK,SuperRobotics Limited,Consumer Staples,Household Products,Nano Cap
+8179.HK,Palinda Group Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+8187.HK,Jimu Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8198.HK,Loto Interactive Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8203.HK,Kaisun Holdings Limited,Materials,Metals & Mining,Nano Cap
+8205.HK,Shanghai Jiaoda Withub Information Industrial Company Limited,Information Technology,Software,Nano Cap
+8206.HK,Shentong Robot Education Group Company Limited,Industrials,Professional Services,Nano Cap
+8208.HK,WMCH Global Investment Limited,Industrials,Construction & Engineering,Nano Cap
+8211.HK,"Zhejiang Yongan Rongtong Holdings Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8213.HK,StarGlory Holdings Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8216.HK,Maxicity Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+8217.HK,Luen Wong Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8218.HK,Echo International Holdings Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+8219.HK,Hanvey Group Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8220.HK,Bingo Group Holdings Limited,Communication Services,Entertainment,Nano Cap
+8226.HK,KOALA Financial Group Limited,Financials,Capital Markets,Nano Cap
+8231.HK,PFC Device Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+8232.HK,Classified Group (Holdings) Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8246.HK,Zhonghua Gas Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+8260.HK,Yin He Holdings Limited,Industrials,Professional Services,Nano Cap
+8269.HK,Wealth Glory Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+8271.HK,Global Digital Creations Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+8275.HK,Beaver Group (Holding) Company Limited,Industrials,Construction & Engineering,Nano Cap
+8277.HK,Steed Oriental (Holdings) Company Limited,Materials,Paper & Forest Products,Nano Cap
+8279.HK,AGTech Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+8285.HK,Sling Group Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8287.HK,Zioncom Holdings Limited,Information Technology,Communications Equipment,Nano Cap
+8290.HK,Ahsay Backup Software Development Company Limited,Information Technology,Software,Nano Cap
+8295.HK,Zhongjin Technology Services Group Company Limited,Financials,Capital Markets,Small Cap
+8297.HK,My Heart Bodibra Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+8300.HK,Royal Catering Group Holdings Company Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8307.HK,Medicskin Holdings Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+8309.HK,Man Shing Global Holdings Limited,Industrials,Transportation Infrastructure,Nano Cap
+8310.HK,Dafeng Port Heshun Technology Company Limited,Industrials,Air Freight & Logistics,Nano Cap
+8315.HK,Greatwalle Inc.,Industrials,Professional Services,Nano Cap
+8316.HK,Quantong Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+8317.HK,Finet Group Limited,Industrials,Professional Services,Nano Cap
+8319.HK,Expert Systems Holdings Limited,Information Technology,IT Services,Nano Cap
+8320.HK,Allied Sustainability and Environmental Consultants Group Limited,Industrials,Transportation Infrastructure,Nano Cap
+8325.HK,China Smartpay Group Holdings Limited,Industrials,Professional Services,Micro Cap
+8326.HK,Tonking New Energy Group Holdings Limited,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+8333.HK,Astrum Financial Holdings Limited,Financials,Capital Markets,Nano Cap
+8337.HK,Directel Holdings Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+8340.HK,Vinco Financial Group Limited,Financials,Capital Markets,Nano Cap
+8341.HK,Aeso Holding Limited,Industrials,Professional Services,Nano Cap
+8347.HK,F8 Enterprises (Holdings) Group Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+8350.HK,Excalibur Global Financial Holdings Limited,Financials,Capital Markets,Nano Cap
+8362.HK,Winning Tower Group Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+8363.HK,SDM Group Holdings Limited,Consumer Staples,Household Products,Nano Cap
+8367.HK,Simplicity Holding Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8371.HK,Taste Gourmet Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+8372.HK,Grand Brilliance Group Holdings Limited,Health Care,Health Care Providers & Services,Nano Cap
+8385.HK,Prosperous Printing Company Limited,Industrials,Professional Services,Nano Cap
+8411.HK,K W Nelson Interior Design and Contracting Group Limited,Industrials,Construction & Engineering,Nano Cap
+8413.HK,Asia Grocery Distribution Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+8417.HK,Dadi Education Holdings Limited,Consumer Staples,Household Products,Nano Cap
+8419.HK,AV Promotions Holdings Limited,Industrials,Professional Services,Nano Cap
+8425.HK,Hing Ming Holdings Limited,Industrials,Commercial Services & Supplies,Micro Cap
+8429.HK,Icicle Group Holdings Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+8431.HK,Hao Bai International (Cayman) Limited,Industrials,Construction & Engineering,Nano Cap
+8436.HK,Takbo Group Holdings Limited,Consumer Staples,Household Products,Nano Cap
+8439.HK,Somerley Capital Holdings Limited,Financials,Capital Markets,Nano Cap
+8446.HK,In Technical Productions Holdings Limited,Communication Services,Entertainment,Nano Cap
+8448.HK,Universe Printshop Holdings Limited,Industrials,Professional Services,Nano Cap
+8450.HK,EDICO Holdings Limited,Industrials,Professional Services,Nano Cap
+8456.HK,Mansion International Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8460.HK,Basetrophy Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8462.HK,Omnibridge Holdings Limited,Industrials,Professional Services,Nano Cap
+8472.HK,Lapco Holdings Limited,Industrials,Transportation Infrastructure,Nano Cap
+8481.HK,Shenglong Splendecor International Limited,Materials,Paper & Forest Products,Nano Cap
+8483.HK,Max Sight Group Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8490.HK,Niche-Tech Group Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+8501.HK,Sanbase Corporation Limited,Industrials,Professional Services,Nano Cap
+8507.HK,i.century Holding Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+8512.HK,Hyfusin Group Holdings Limited,Consumer Staples,Household Products,Nano Cap
+8516.HK,Grand Talents Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8523.HK,Sheung Moon Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8526.HK,Wing Fung Group Asia Limited,Industrials,Building Products,Nano Cap
+8532.HK,Polyfair Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8535.HK,Vistar Holdings Limited,Industrials,Professional Services,Micro Cap
+8545.HK,Amuse Group Holding Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+8601.HK,Boltek Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+8603.HK,Fameglow Holdings Limited,Consumer Staples,Household Products,Nano Cap
+8606.HK,Kinetix Systems Holdings Limited,Information Technology,IT Services,Micro Cap
+8616.HK,Sunray Engineering Group Limited,Industrials,Construction & Engineering,Nano Cap
+8617.HK,Best Linking Group Holdings Limited,Industrials,Machinery,Nano Cap
+8622.HK,Huakang Biomedical Holdings Company Limited,Health Care,Pharmaceuticals,Nano Cap
+8635.HK,Novacon Technology Group Limited,Information Technology,Software,Nano Cap
+8645.HK,Nomad Technologies Holdings Limited,Information Technology,IT Services,Nano Cap
+8657.HK,True Partner Capital Holding Limited,Financials,Capital Markets,Micro Cap
+8659.HK,Yik Wo International Holdings Limited,Consumer Discretionary,Distributors,Nano Cap
+87001.HK,Hui Xian Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+9918.HK,Wise Ally International Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+9963.HK,Transtech Optelecom Science Holdings Limited,Information Technology,Communications Equipment,Nano Cap

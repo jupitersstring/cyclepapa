@@ -1,0 +1,446 @@
+ticker,name,sector,industry,market_cap
+1A0.SI,Katrina Group Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1A1.SI,Wong Fong Industries Limited,Industrials,Machinery,Nano Cap
+1A4.SI,AGV Group Limited,Industrials,Building Products,Nano Cap
+1B0.SI,mm2 Asia Ltd.,Communication Services,Entertainment,Micro Cap
+1B1.SI,HC Surgical Specialists Limited,Health Care,Biotechnology,Micro Cap
+1D0.SI,Kimly Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+1D1.SI,UnUsUaL Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+1D3.SI,LifeBrandz Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1D4.SI,Aoxin Q & M Dental Group Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+1E3.SI,Sanli Environmental Limited,Industrials,Transportation Infrastructure,Nano Cap
+1F0.SI,shopper360 Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+1G6.SI,No Signboard Holdings Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+1H2.SI,Olive Tree Estates Limited,Real Estate,Real Estate Management & Development,Nano Cap
+1J3.SI,Asian Healthcare Specialists Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+1J5.SI,Hyphens Pharma International Limited,Health Care,Pharmaceuticals,Micro Cap
+40B.SI,HealthBank Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+40D.SI,Starburst Holdings Limited,Industrials,Aerospace & Defense,Nano Cap
+40E.SI,Spackman Entertainment Group Limited,Communication Services,Entertainment,Nano Cap
+40T.SI,ISEC Healthcare Ltd.,Health Care,Health Care Equipment & Supplies,Micro Cap
+40V.SI,Alset International Limited,Real Estate,Real Estate Management & Development,Micro Cap
+40W.SI,ZICO Holdings Inc.,Industrials,Professional Services,Nano Cap
+41B.SI,Huationg Global Limited,Industrials,Construction & Engineering,Nano Cap
+41H.SI,BlackGold Natural Resources Limited,Materials,Metals & Mining,Nano Cap
+41O.SI,LHN Limited,Real Estate,Real Estate Management & Development,Micro Cap
+42D.SI,NauticAWT Limited,Industrials,Construction & Engineering,Nano Cap
+42E.SI,Choo Chiang Holdings Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+42F.SI,Yinda Infocomm Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+42N.SI,IPS Securex Holdings Limited,Industrials,Professional Services,Nano Cap
+42R.SI,Jumbo Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+42Z.SI,Eindec Corporation Limited,Industrials,Machinery,Nano Cap
+43B.SI,Secura Group Limited,Industrials,Professional Services,Nano Cap
+43F.SI,Acromec Limited,Industrials,Construction & Engineering,Nano Cap
+43Q.SI,Advancer Global Limited,Industrials,Professional Services,Nano Cap
+504.SI,HS Optimus Holdings Limited,Consumer Discretionary,Household Durables,Nano Cap
+505.SI,AsiaMedic Limited,Health Care,Biotechnology,Nano Cap
+508.SI,Fuji Offset Plates Manufacturing Ltd,Industrials,Machinery,Nano Cap
+541.SI,Abundance International Limited,Materials,Chemicals,Nano Cap
+543.SI,Noel Gifts International Ltd,Consumer Discretionary,Specialty Retail,Nano Cap
+544.SI,CSE Global Limited,Information Technology,IT Services,Micro Cap
+558.SI,UMS Holdings Limited,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+564.SI,Spindex Industries Limited,Industrials,Building Products,Micro Cap
+567.SI,Colex Holdings Limited,Industrials,Transportation Infrastructure,Nano Cap
+569.SI,Vicplas International Ltd,Health Care,Health Care Technology,Micro Cap
+570.SI,Transit-Mixed Concrete Ltd,Industrials,Commercial Services & Supplies,Nano Cap
+573.SI,Challenger Technologies Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+575.SI,ASTI Holdings Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+579.SI,Oceanus Group Limited,Consumer Staples,Household Products,Small Cap
+580.SI,Santak Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+583.SI,Progen Holdings Ltd,Industrials,Building Products,Nano Cap
+584.SI,OEL (Holdings) Limited,Real Estate,Real Estate Management & Development,Nano Cap
+594.SI,CapAllianz Holdings Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+595.SI,GKE Corporation Limited,Industrials,Air Freight & Logistics,Micro Cap
+596.SI,Pavillon Holdings Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5AB.SI,Trek 2000 International Ltd,Information Technology,Communications Equipment,Nano Cap
+5AE.SI,Pollux Properties Ltd.,Real Estate,Real Estate Management & Development,Micro Cap
+5AL.SI,Annica Holdings Limited,Energy,Energy Equipment & Services,Nano Cap
+5CF.SI,OKP Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+5CR.SI,Asiatic Group (Holdings) Limited,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+5CT.SI,ecoWise Holdings Limited,Industrials,Transportation Infrastructure,Micro Cap
+5DM.SI,Ying Li International Real Estate Limited,Real Estate,Real Estate Management & Development,Micro Cap
+5DO.SI,Sakae Holdings Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5DP.SI,Heeton Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+5DS.SI,Megachem Limited,Materials,Chemicals,Nano Cap
+5EB.SI,CFM Holdings Limited,Industrials,Building Products,Micro Cap
+5EF.SI,Adventus Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+5EG.SI,Zhongxin Fruit and Juice Limited,Consumer Staples,Beverages,Nano Cap
+5EV.SI,Hosen Group Ltd.,Consumer Staples,Food & Staples Retailing,Nano Cap
+5F4.SI,Figtree Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+5F7.SI,Wilton Resources Corporation Limited,Materials,Metals & Mining,Micro Cap
+5FW.SI,Acesian Partners Limited,Industrials,Machinery,Nano Cap
+5G3.SI,TalkMed Group Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+5G9.SI,Tritech Group Limited,Industrials,Construction & Engineering,Nano Cap
+5GI.SI,Interra Resources Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+5H0.SI,SingHaiyi Group Ltd.,Real Estate,Real Estate Management & Development,Micro Cap
+5HC.SI,Ntegrator International Ltd.,Information Technology,IT Services,Nano Cap
+5HG.SI,Edition Ltd.,Consumer Staples,Household Products,Nano Cap
+5HH.SI,Sinjia Land Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5HT.SI,Imperium Crown Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5HV.SI,Koh Brothers Eco Engineering Limited,Industrials,Construction & Engineering,Micro Cap
+5I0.SI,QT Vascular Ltd.,Health Care,Health Care Technology,Nano Cap
+5I1.SI,KOP Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5IF.SI,Natural Cool Holdings Limited,Industrials,Building Products,Nano Cap
+5IG.SI,Gallant Venture Ltd.,Consumer Discretionary,Automobiles,Small Cap
+5JK.SI,Hiap Hoe Limited,Real Estate,Real Estate Management & Development,Micro Cap
+5JS.SI,Indofood Agri Resources Ltd.,Consumer Staples,Household Products,Small Cap
+5KI.SI,Soup Restaurant Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5LE.SI,Sitra Holdings (International) Limited,Consumer Discretionary,Household Durables,Nano Cap
+5LY.SI,Marco Polo Marine Ltd.,Industrials,Marine,Micro Cap
+5MD.SI,Soon Lian Holdings Limited,Materials,Metals & Mining,Nano Cap
+5MZ.SI,Kingsmen Creatives Ltd.,Industrials,Professional Services,Nano Cap
+5NF.SI,Mencast Holdings Ltd.,Energy,Energy Equipment & Services,Nano Cap
+5NG.SI,Healthway Medical Corporation Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+5NV.SI,Chasen Holdings Limited,Industrials,Industrial Conglomerates,Nano Cap
+5OC.SI,Koyo International Limited,Industrials,Construction & Engineering,Nano Cap
+5OQ.SI,TEHO International Inc Ltd.,Energy,Energy Equipment & Services,Nano Cap
+5OR.SI,Heatec Jietong Holdings Ltd.,Energy,Energy Equipment & Services,Nano Cap
+5OX.SI,Mary Chia Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+5PC.SI,Goodland Group Limited,Real Estate,Real Estate Management & Development,Nano Cap
+5PF.SI,Jason Marine Group Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+5PO.SI,Hiap Tong Corporation Ltd.,Industrials,Commercial Services & Supplies,Nano Cap
+5RE.SI,Asia Vets Holdings Ltd.,Health Care,Health Care Equipment & Supplies,Nano Cap
+5RF.SI,Mercurius Capital Investment Limited,Real Estate,Real Estate Management & Development,Micro Cap
+5SO.SI,Duty Free International Limited,Consumer Discretionary,Specialty Retail,Micro Cap
+5SR.SI,Zhongmin Baihui Retail Group Ltd.,Consumer Discretionary,Household Durables,Micro Cap
+5TI.SI,Kitchen Culture Holdings Ltd.,Consumer Discretionary,Household Durables,Nano Cap
+5TP.SI,CNMC Goldmine Holdings Limited,Materials,Metals & Mining,Micro Cap
+5TT.SI,Keong Hong Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+5UA.SI,Luminor Financial Holdings Limited,Real Estate,Real Estate Management & Development,Nano Cap
+5UL.SI,Atlantic Navigation Holdings (Singapore) Limited,Industrials,Marine,Nano Cap
+5UN.SI,Sincap Group Limited,Materials,Metals & Mining,Nano Cap
+5UO.SI,Sysma Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+5UX.SI,Oxley Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+5VC.SI,Kori Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+5VI.SI,Boldtek Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+5VJ.SI,Halcyon Agri Corporation Limited,Materials,Chemicals,Small Cap
+5VP.SI,GDS Global Limited,Industrials,Building Products,Nano Cap
+5VS.SI,Hafary Holdings Limited,Industrials,Building Products,Micro Cap
+5WA.SI,OUE Lippo Healthcare Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+5WE.SI,Moya Holdings Asia Limited,Utilities,Water Utilities,Micro Cap
+5WF.SI,ISOTeam Ltd.,Real Estate,Real Estate Management & Development,Nano Cap
+5WG.SI,Singapore Kitchen Equipment Limited,Consumer Discretionary,Household Durables,Nano Cap
+5WV.SI,AsiaPhos Limited,Materials,Metals & Mining,Nano Cap
+8A1.SI,Forise International Limited,Financials,Capital Markets,Nano Cap
+8AZ.SI,Aztech Global Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+8YY.SI,Biolidics Limited,Health Care,Health Care Technology,Micro Cap
+A04.SI,ASL Marine Holdings Ltd.,Industrials,Aerospace & Defense,Nano Cap
+A17U.SI,Ascendas Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+A26.SI,Sinarmas Land Limited,Real Estate,Real Estate Management & Development,Small Cap
+A30.SI,Aspial Corporation Limited,Real Estate,Real Estate Management & Development,Micro Cap
+A31.SI,Addvalue Technologies Ltd,Information Technology,Communications Equipment,Nano Cap
+A33.SI,Blumont Group Ltd.,Industrials,Professional Services,Micro Cap
+A34.SI,Amara Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+A50.SI,Thomson Medical Group Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+A52.SI,AnnAik Limited,Materials,Metals & Mining,Nano Cap
+A55.SI,Asia Enterprises Holding Limited,Materials,Metals & Mining,Nano Cap
+A78.SI,Shen Yao Holdings Limited,Materials,Metals & Mining,Micro Cap
+A7RU.SI,Keppel Infrastructure Trust,Utilities,Gas Utilities,Mid Cap
+ACV.SI,Frasers Hospitality Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+ADN.SI,First Sponsor Group Limited,Real Estate,Real Estate Management & Development,Small Cap
+AGS.SI,The Hour Glass Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+AIY.SI,iFAST Corporation Ltd.,Information Technology,Software,Small Cap
+AJBU.SI,Keppel DC REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+AU8U.SI,CapitaLand China Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+AUE.SI,Golden Energy and Resources Limited,Materials,Metals & Mining,Small Cap
+AVM.SI,Boustead Projects Limited,Industrials,Construction & Engineering,Micro Cap
+AVV.SI,CEI Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+AVX.SI,HL Global Enterprises Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+AW9U.SI,First Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+AWC.SI,Brook Crompton Holdings Ltd.,Industrials,Electrical Equipment,Nano Cap
+AWE.SI,SP Corporation Limited,Industrials,Trading Companies & Distributors,Nano Cap
+AWG.SI,AEI Corporation Ltd.,Materials,Metals & Mining,Micro Cap
+AWI.SI,Thakral Corporation Ltd,Consumer Discretionary,Specialty Retail,Nano Cap
+AWS.SI,GYP Properties Limited,Real Estate,Real Estate Management & Development,Nano Cap
+AWV.SI,Captii Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+AWX.SI,AEM Holdings Ltd,Information Technology,Semiconductors & Semiconductor Equipment,Small Cap
+AWZ.SI,Multi-Chem Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+AXB.SI,Yongnam Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+AYV.SI,Acma Ltd.,Consumer Discretionary,Auto Components,Nano Cap
+AZA.SI,IPC Corporation Ltd,Real Estate,Real Estate Management & Development,Nano Cap
+B16.SI,GL Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+B26.SI,Ban Leong Technologies Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+B28.SI,Bonvests Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+B58.SI,Banyan Tree Holdings Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+B61.SI,Bukit Sembawang Estates Limited,Real Estate,Real Estate Management & Development,Small Cap
+B69.SI,Broadway Industrial Group Limited,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+B73.SI,Global Investments Limited,Financials,Capital Markets,Micro Cap
+B7K.SI,Sin Ghee Huat Corporation Ltd.,Materials,Metals & Mining,Nano Cap
+B9S.SI,CosmoSteel Holdings Limited,Industrials,Trading Companies & Distributors,Nano Cap
+BAI.SI,Digilife Technologies Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+BAZ.SI,Lion Asiapac Limited,Materials,Construction Materials,Nano Cap
+BBP.SI,Hor Kew Corporation Limited,Industrials,Construction & Engineering,Nano Cap
+BCV.SI,Qian Hu Corporation Limited,Consumer Staples,Household Products,Nano Cap
+BCY.SI,Powermatic Data Systems Limited,Information Technology,Communications Equipment,Micro Cap
+BDA.SI,PNE Industries Ltd,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+BDF.SI,Excelpoint Technology Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+BDU.SI,Federal International (2000) Ltd,Energy,Energy Equipment & Services,Nano Cap
+BDX.SI,GSH Corporation Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+BEC.SI,BRC Asia Limited,Materials,Metals & Mining,Micro Cap
+BEI.SI,LHT Holdings Limited,Materials,Paper & Forest Products,Nano Cap
+BEZ.SI,Beng Kuang Marine Limited,Industrials,Aerospace & Defense,Nano Cap
+BFI.SI,Tiong Seng Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+BFT.SI,Fabchem China Limited,Materials,Chemicals,Nano Cap
+BFU.SI,Tye Soon Limited,Industrials,Trading Companies & Distributors,Nano Cap
+BHK.SI,SIIC Environment Holdings Ltd.,Industrials,Construction & Engineering,Small Cap
+BHO.SI,Top Global Limited,Real Estate,Real Estate Management & Development,Micro Cap
+BHU.SI,SUTL Enterprise Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+BIP.SI,Vibrant Group Limited,Industrials,Air Freight & Logistics,Nano Cap
+BIX.SI,Ellipsiz Ltd,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+BJD.SI,VibroPower Corporation Limited,Industrials,Machinery,Nano Cap
+BJW.SI,Shinvest Holding Ltd.,Industrials,Building Products,Micro Cap
+BJZ.SI,Koda Ltd,Consumer Discretionary,Household Durables,Nano Cap
+BKA.SI,Sin Heng Heavy Machinery Limited,Industrials,Machinery,Nano Cap
+BKW.SI,Datapulse Technology Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+BKX.SI,Yongmao Holdings Limited,Industrials,Machinery,Micro Cap
+BKY.SI,Avi-Tech Electronics Limited,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+BKZ.SI,Suntar Eco-City Limited,Health Care,Pharmaceuticals,Nano Cap
+BLA.SI,Union Steel Holdings Limited,Industrials,Transportation Infrastructure,Nano Cap
+BLH.SI,Hai Leck Holdings Limited,Energy,Energy Equipment & Services,Micro Cap
+BLR.SI,Darco Water Technologies Limited,Industrials,Construction & Engineering,Nano Cap
+BLU.SI,GRP Limited,Industrials,Industrial Conglomerates,Nano Cap
+BLW.SI,Global Palm Resources Holdings Limited,Consumer Staples,Household Products,Nano Cap
+BLZ.SI,Advanced Holdings Ltd.,Energy,Energy Equipment & Services,Nano Cap
+BMGU.SI,BHG Retail REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+BMT.SI,New Silkroutes Group Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+BN4.SI,Keppel Corporation Limited,Industrials,Industrial Conglomerates,Mid Cap
+BOU.SI,Informatics Education Ltd.,Consumer Staples,Household Products,Nano Cap
+BPF.SI,YHI International Limited,Consumer Discretionary,Auto Components,Micro Cap
+BQC.SI,A-Smart Holdings Ltd.,Industrials,Professional Services,Nano Cap
+BQD.SI,Envictus International Holdings Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+BQF.SI,XMH Holdings Ltd.,Industrials,Machinery,Nano Cap
+BQM.SI,Tiong Woon Corporation Holding Ltd,Industrials,Commercial Services & Supplies,Micro Cap
+BQN.SI,BH Global Corporation Limited,Industrials,Electrical Equipment,Micro Cap
+BRD.SI,Sapphire Corporation Limited,Industrials,Construction & Engineering,Nano Cap
+BRS.SI,USP Group Limited,Industrials,Industrial Conglomerates,Nano Cap
+BSL.SI,Raffles Medical Group Ltd,Health Care,Health Care Equipment & Supplies,Small Cap
+BTE.SI,Bund Center Investment Ltd,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+BTG.SI,HG Metal Manufacturing Limited,Materials,Metals & Mining,Nano Cap
+BTJ.SI,A-Sonic Aerospace Limited,Industrials,Air Freight & Logistics,Nano Cap
+BTM.SI,Penguin International Limited,Industrials,Aerospace & Defense,Micro Cap
+BTOU.SI,Manulife US Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+BTP.SI,Baker Technology Limited,Energy,Energy Equipment & Services,Nano Cap
+BUOU.SI,Frasers Logistics & Commercial Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+BVQ.SI,Procurri Corporation Limited,Information Technology,IT Services,Micro Cap
+BWCU.SI,EC World Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+C04.SI,Casa Holdings Limited,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+C05.SI,Chemical Industries (Far East) Limited,Materials,Chemicals,Nano Cap
+C06.SI,CSC Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+C07.SI,Jardine Cycle & Carriage Limited,Consumer Discretionary,Automobiles,Mid Cap
+C09.SI,City Developments Limited,Real Estate,Real Estate Management & Development,Mid Cap
+C13.SI,CH Offshore Ltd.,Energy,Energy Equipment & Services,Nano Cap
+C29.SI,Chip Eng Seng Corporation Ltd,Real Estate,Real Estate Management & Development,Micro Cap
+C2PU.SI,Parkway Life Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+C33.SI,Chuan Hup Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+C41.SI,Cortina Holdings Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+C50.SI,Cheung Woh Technologies Ltd,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+C52.SI,Comfortdelgro Corporation Limited,Industrials,Road & Rail,Mid Cap
+C70.SI,City Developments Limited,Real Estate,Real Estate Management & Development,Mid Cap
+C76.SI,Creative Technology Ltd.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+C8R.SI,Jiutian Chemical Group Limited,Materials,Chemicals,Micro Cap
+CEDU.SI,Dasin Retail Trust,Real Estate,Real Estate Management & Development,Small Cap
+CHJ.SI,Uni-Asia Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+CHZ.SI,HRnetGroup Limited,Industrials,Professional Services,Small Cap
+CJLU.SI,NetLink NBN Trust,Communication Services,Diversified Telecommunication Services,Mid Cap
+CJN.SI,British and Malayan Holdings Limited,Financials,Capital Markets,Nano Cap
+CLN.SI,APAC Realty Limited,Real Estate,Real Estate Management & Development,Micro Cap
+CMOU.SI,Keppel Pacific Oak US REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+CNE.SI,MindChamps PreSchool Limited,Consumer Staples,Household Products,Micro Cap
+CNNU.SI,Cromwell European Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+CRPU.SI,Sasseur Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+CSFU.SI,Cromwell European Real Estate Investment Trust,Real Estate,,Mid Cap
+CTO.SI,Hong Lai Huat Group Limited,Consumer Staples,Household Products,Nano Cap
+CY6U.SI,Ascendas India Trust,Real Estate,Real Estate Management & Development,Small Cap
+D8DU.SI,First Ship Lease Trust,Industrials,Marine,Micro Cap
+DM0.SI,Hanwell Holdings Limited,Consumer Discretionary,Distributors,Micro Cap
+E27.SI,The Place Holdings Limited,Communication Services,Diversified Telecommunication Services,Small Cap
+E3B.SI,Wee Hur Holdings Ltd.,Industrials,Construction & Engineering,Micro Cap
+E5H.SI,Golden Agri-Resources Ltd,Consumer Staples,Household Products,Mid Cap
+E6R.SI,Samko Timber Limited,Materials,Paper & Forest Products,Micro Cap
+E8Z.SI,Roxy-Pacific Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+EB5.SI,First Resources Limited,Consumer Staples,Household Products,Small Cap
+EB7.SI,KTL Global Limited,Industrials,Professional Services,Nano Cap
+EHG.SI,Econ Healthcare (Asia) Limited,Health Care,Health Care Equipment & Supplies,Micro Cap
+ER0.SI,KSH Holdings Limited,Real Estate,Real Estate Management & Development,Micro Cap
+F03.SI,Food Empire Holdings Limited,Consumer Staples,Beverages,Small Cap
+F10.SI,F J Benjamin Holdings Ltd,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+F13.SI,Fu Yu Corporation Limited,Industrials,Machinery,Micro Cap
+F17.SI,GuocoLand Limited,Real Estate,Real Estate Management & Development,Small Cap
+F1E.SI,Low Keng Huat (Singapore) Limited,Real Estate,Real Estate Management & Development,Micro Cap
+F31.SI,Fragrance Group Limited,Real Estate,Real Estate Management & Development,Small Cap
+F83.SI,"COSCO Shipping International (Singapore) Co., Ltd.",Industrials,Air Freight & Logistics,Small Cap
+F86.SI,MYP Ltd.,Real Estate,Real Estate Management & Development,Micro Cap
+F99.SI,Fraser & Neave Ltd.,Consumer Staples,Food & Staples Retailing,Small Cap
+F9D.SI,Boustead Singapore Limited,Industrials,Industrial Conglomerates,Small Cap
+FQ7.SI,Jasper Investments Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+FRQ.SI,Singapore Paincare Holdings Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+G07.SI,Great Eastern Holdings Limited,Financials,Insurance,Mid Cap
+G0I.SI,Nam Lee Pressed Metal Industries Limited,Industrials,Building Products,Micro Cap
+G13.SI,Genting Singapore Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+G20.SI,GP Industries Limited,Industrials,Electrical Equipment,Micro Cap
+G41.SI,G. K. Goh Holdings Limited,Financials,Capital Markets,Micro Cap
+G50.SI,Grand Banks Yachts Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+G92.SI,China Aviation Oil (Singapore) Corporation Ltd,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+H02.SI,Haw Par Corporation Limited,Health Care,Pharmaceuticals,Mid Cap
+H07.SI,Stamford Land Corporation Ltd,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+H12.SI,Hotel Royal Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+H13.SI,Ho Bee Land Limited,Real Estate,Real Estate Management & Development,Small Cap
+H15.SI,Hotel Properties Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+H18.SI,Hotel Grand Central Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+H19.SI,Hwa Hong Corporation Limited,Real Estate,Real Estate Management & Development,Micro Cap
+H22.SI,Hong Leong Asia Ltd.,Industrials,Machinery,Small Cap
+H30.SI,Hong Fok Corporation Limited,Real Estate,Real Estate Management & Development,Small Cap
+HMN.SI,Ascott Residence Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+I06.SI,Intraco Limited,Industrials,Trading Companies & Distributors,Nano Cap
+I07.SI,ISDN Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+I11.SI,Renaissance United Limited,Utilities,Gas Utilities,Nano Cap
+I15.SI,Isetan (Singapore) Limited,Consumer Discretionary,Household Durables,Micro Cap
+I49.SI,IFS Capital Limited,Financials,Consumer Finance,Micro Cap
+IX2.SI,PEC Ltd.,Energy,Energy Equipment & Services,Micro Cap
+J03.SI,Jadason Enterprises Ltd,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+J2T.SI,Hock Lian Seng Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+J69U.SI,Frasers Centrepoint Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+J85.SI,CDL Hospitality Trusts,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+J91U.SI,ESR-REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+JLB.SI,Grand Venture Technology Limited,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+JYEU.SI,Lendlease Global Commercial REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+K03.SI,Khong Guan Limited,Consumer Staples,Food & Staples Retailing,Nano Cap
+K1Q.SI,T T J Holdings Limited,Industrials,Building Products,Nano Cap
+K2LU.SI,ARA LOGOS Logistics Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+K71U.SI,Keppel REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+K75.SI,Koh Brothers Group Limited,Industrials,Construction & Engineering,Nano Cap
+KJ5.SI,BBR Holdings (S) Ltd,Industrials,Construction & Engineering,Nano Cap
+KUH.SI,TSH Corporation Limited,Industrials,Industrial Conglomerates,Nano Cap
+KUO.SI,International Cement Group Ltd.,Materials,Construction Materials,Micro Cap
+L02.SI,Manhattan Resources Limited,Industrials,Marine,Micro Cap
+L03.SI,Lian Beng Group Ltd,Industrials,Construction & Engineering,Micro Cap
+L19.SI,Lum Chang Holdings Limited,Industrials,Construction & Engineering,Micro Cap
+L23.SI,Enviro-Hub Holdings Ltd.,Industrials,Transportation Infrastructure,Micro Cap
+L38.SI,AF Global Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+LJ3.SI,OUE Limited,Real Estate,Real Estate Management & Development,Small Cap
+LUY.SI,Raffles Infrastructure Holdings Limited,Industrials,Transportation Infrastructure,Nano Cap
+M01.SI,Metro Holdings Limited,Consumer Discretionary,Household Durables,Small Cap
+M03.SI,Miyoshi Limited,Industrials,Building Products,Nano Cap
+M05.SI,MTQ Corporation Limited,Energy,Energy Equipment & Services,Nano Cap
+M11.SI,Manufacturing Integration Technology Ltd,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+M14.SI,InnoTek Limited,Industrials,Building Products,Micro Cap
+M15.SI,Matex International Limited,Materials,Chemicals,Nano Cap
+M1GU.SI,Sabana Shari'ah Compliant Industrial Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+M1Z.SI,TEE International Limited,Industrials,Construction & Engineering,Nano Cap
+M44U.SI,Mapletree Logistics Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+ME8U.SI,Mapletree Industrial Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+MF6.SI,Mun Siong Engineering Limited,Industrials,Construction & Engineering,Nano Cap
+MIJ.SI,Alliance Healthcare Group Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+MR7.SI,Nordic Group Limited,Industrials,Construction & Engineering,Micro Cap
+MV4.SI,Mewah International Inc.,Consumer Staples,Household Products,Small Cap
+MXNU.SI,Elite Commercial REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+MZH.SI,Nanofilm Technologies International Limited,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+N01.SI,Nera Telecommunications Ltd,Information Technology,Communications Equipment,Nano Cap
+N02.SI,NSL Ltd,Materials,Construction Materials,Micro Cap
+N08.SI,New Toyo International Holdings Ltd,Consumer Discretionary,Distributors,Micro Cap
+N2IU.SI,Mapletree Commercial Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+N32.SI,Nippecraft Limited,Industrials,Commercial Services & Supplies,Nano Cap
+NEX.SI,Reclaims Global Limited,Industrials,Transportation Infrastructure,Nano Cap
+NHD.SI,Jubilee Industries Holdings Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+NO4.SI,Dyna-Mac Holdings Ltd.,Industrials,Construction & Engineering,Micro Cap
+NR7.SI,Raffles Education Corporation Limited,Consumer Staples,Household Products,Micro Cap
+NS8U.SI,Hutchison Port Holdings Trust,Industrials,Air Freight & Logistics,Mid Cap
+O08.SI,Ossia International Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+O10.SI,Far East Orchard Limited,Real Estate,Real Estate Management & Development,Small Cap
+O32.SI,Olam International Limited,Consumer Staples,Food & Staples Retailing,Mid Cap
+O5RU.SI,AIMS APAC REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+O9E.SI,Parkson Retail Asia Limited,Consumer Discretionary,Household Durables,Nano Cap
+ODBU.SI,United Hampshire US Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+OMK.SI,Vividthree Holdings Ltd.,Communication Services,Entertainment,Nano Cap
+OTX.SI,Medinex Limited,Health Care,Health Care Equipment & Supplies,Nano Cap
+OU8.SI,Centurion Corporation Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+OV8.SI,Sheng Siong Group Ltd,Consumer Staples,Food & Staples Retailing,Small Cap
+OXMU.SI,Prime US REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+OYY.SI,PropNex Limited,Real Estate,Real Estate Management & Development,Small Cap
+P15.SI,Pacific Century Regional Developments Limited,Financials,Capital Markets,Small Cap
+P34.SI,Delfi Limited,Consumer Staples,Food & Staples Retailing,Small Cap
+P52.SI,Pan-United Corporation Ltd,Materials,Construction Materials,Micro Cap
+P7VU.SI,Hutchison Port Holdings Trust,Industrials,Air Freight & Logistics,Mid Cap
+P8A.SI,Cordlife Group Limited,Health Care,Biotechnology,Micro Cap
+PA3.SI,TA Corporation Ltd,Industrials,Construction & Engineering,Nano Cap
+Q01.SI,QAF Limited,Consumer Staples,Food & Staples Retailing,Small Cap
+Q0X.SI,Ley Choon Group Holdings Limited,Industrials,Construction & Engineering,Nano Cap
+Q5T.SI,Far East Hospitality Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+QC7.SI,Q & M Dental Group (Singapore) Limited,Health Care,Health Care Equipment & Supplies,Small Cap
+QES.SI,China Sunsine Chemical Holdings Ltd.,Materials,Chemicals,Small Cap
+QS9.SI,Global Invacom Group Limited,Information Technology,Communications Equipment,Nano Cap
+QSD.SI,Resources Global Development Limited,Industrials,Marine,Nano Cap
+QZG.SI,Accrelist Ltd.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+RCU.SI,Revez Corporation Ltd.,Information Technology,IT Services,Nano Cap
+RDR.SI,Incredible Holdings Ltd.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+RE4.SI,Geo Energy Resources Limited,Materials,Metals & Mining,Micro Cap
+RF7.SI,AMOS Group Limited,Industrials,Marine,Nano Cap
+RQ1.SI,Overseas Education Limited,Consumer Staples,Household Products,Micro Cap
+RW0U.SI,Mapletree North Asia Commercial Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+S08.SI,Singapore Post Limited,Industrials,Air Freight & Logistics,Small Cap
+S19.SI,Singapore Shipping Corporation Limited,Industrials,Marine,Micro Cap
+S20.SI,The Straits Trading Company Limited,Materials,Metals & Mining,Small Cap
+S23.SI,Singapura Finance Ltd,Financials,Consumer Finance,Micro Cap
+S29.SI,Stamford Tyres Corporation Limited,Consumer Discretionary,Auto Components,Nano Cap
+S35.SI,Sing Investments & Finance Limited,Financials,Consumer Finance,Micro Cap
+S3N.SI,OKH Global Ltd.,Real Estate,Real Estate Management & Development,Nano Cap
+S41.SI,Hong Leong Finance Limited,Financials,Consumer Finance,Small Cap
+S44.SI,EnGro Corporation Limited,Materials,Construction Materials,Micro Cap
+S49.SI,Singapore Reinsurance Corporation Limited,Financials,Insurance,Micro Cap
+S51.SI,Sembcorp Marine Ltd,Industrials,Aerospace & Defense,Small Cap
+S56.SI,Samudera Shipping Line Ltd,Industrials,Marine,Micro Cap
+S58.SI,SATS Ltd.,Industrials,Air Freight & Logistics,Mid Cap
+S59.SI,SIA Engineering Company Limited,Industrials,Air Freight & Logistics,Small Cap
+S61.SI,SBS Transit Ltd,Industrials,Road & Rail,Small Cap
+S63.SI,Singapore Technologies Engineering Ltd,Industrials,Aerospace & Defense,Mid Cap
+S68.SI,Singapore Exchange Limited,Financials,Capital Markets,Mid Cap
+S69.SI,Serial System Ltd,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+S71.SI,Sunright Limited,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+S7OU.SI,Asian Pay Television Trust,Communication Services,Entertainment,Micro Cap
+S7P.SI,Soilbuild Construction Group Ltd.,Industrials,Construction & Engineering,Nano Cap
+S85.SI,Straco Corporation Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+S9B.SI,Amcorp Global Limited,Real Estate,Real Estate Management & Development,Nano Cap
+SJY.SI,MeGroup Ltd.,Consumer Discretionary,Automobiles,Nano Cap
+SK6U.SI,SPH REIT,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+STP.SI,Silkroad Nickel Ltd.,Materials,Metals & Mining,Micro Cap
+SYM.SI,Memiontec Holdings Ltd.,Utilities,Water Utilities,Nano Cap
+T12.SI,Tat Seng Packaging Group Ltd,Consumer Discretionary,Distributors,Micro Cap
+T24.SI,Tuan Sing Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+T39.SI,Singapore Press Holdings Limited,Communication Services,Diversified Telecommunication Services,Mid Cap
+T41.SI,TeleChoice International Limited,Communication Services,Diversified Telecommunication Services,Micro Cap
+T55.SI,TIH Limited,Financials,Capital Markets,Nano Cap
+T6I.SI,ValueMax Group Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+T82U.SI,Suntec Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+TCU.SI,Credit Bureau Asia Limited,Financials,Capital Markets,Micro Cap
+TQ5.SI,Frasers Property Limited,Real Estate,Real Estate Management & Development,Mid Cap
+TS0U.SI,OUE Commercial Real Estate Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+TVV.SI,MC Payment Limited,Information Technology,Software,Micro Cap
+U06.SI,Singapore Land Group Limited,Real Estate,Real Estate Management & Development,Mid Cap
+U09.SI,Avarga Limited,Industrials,Building Products,Micro Cap
+U10.SI,UOB-Kay Hian Holdings Limited,Financials,Capital Markets,Small Cap
+U13.SI,United Overseas Insurance Limited,Financials,Insurance,Small Cap
+U14.SI,UOL Group Limited,Real Estate,Real Estate Management & Development,Mid Cap
+U96.SI,SembCorp Industries Ltd.,Industrials,Industrial Conglomerates,Mid Cap
+UD1U.SI,IREIT Global,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+UD2.SI,Japfa Ltd.,Consumer Staples,Household Products,Small Cap
+UV1.SI,Regal International Group Ltd.,Real Estate,Real Estate Management & Development,Nano Cap
+V03.SI,Venture Corporation Limited,Information Technology,"Electronic Equipment, Instruments & Components",Mid Cap
+V2Y.SI,V2Y Corporation Ltd.,Industrials,Professional Services,Nano Cap
+V3M.SI,Metech International Limited,Industrials,Professional Services,Nano Cap
+VFP.SI,Beverly JCG Ltd.,Health Care,Health Care Equipment & Supplies,Nano Cap
+VL6.SI,Koufu Group Limited,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+VVL.SI,Alpha DX Group Limited,Energy,"Oil, Gas & Consumable Fuels",Nano Cap
+W05.SI,Wing Tai Holdings Limited,Real Estate,Real Estate Management & Development,Small Cap
+WJP.SI,VICOM Ltd,Consumer Discretionary,Automobiles,Small Cap
+WPC.SI,Vallianz Holdings Limited,Industrials,Marine,Nano Cap
+XCF.SI,KTMG Limited,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+XJB.SI,"G.H.Y Culture & Media Holding Co., Limited",Communication Services,Entertainment,Small Cap
+XVG.SI,Aedge Group Limited,Industrials,Professional Services,Nano Cap
+XZL.SI,ARA US Hospitality Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+Y03.SI,Yeo Hiap Seng Limited,Consumer Staples,Food & Staples Retailing,Small Cap
+Y35.SI,AnAn International Limited,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+Y3D.SI,mDR Limited,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+Y45.SI,Singapore Myanmar Investco Limited,Consumer Discretionary,Specialty Retail,Nano Cap
+YYB.SI,Arion Entertainment Singapore Limited,Communication Services,Diversified Telecommunication Services,Nano Cap
+Z25.SI,Yanlord Land Group Limited,Real Estate,Real Estate Management & Development,Small Cap
+Z59.SI,Yoma Strategic Holdings Ltd.,Real Estate,Real Estate Management & Development,Micro Cap

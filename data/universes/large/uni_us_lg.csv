@@ -1,0 +1,937 @@
+ticker,name,sector,industry,market_cap
+A,"Agilent Technologies, Inc.",Health Care,Biotechnology,Large Cap
+AA,Alcoa Corporation,Materials,Metals & Mining,Large Cap
+AAPL,Apple Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Mega Cap
+ABBV,AbbVie Inc.,Health Care,Pharmaceuticals,Mega Cap
+ABC,AmerisourceBergen Corporation,Health Care,Health Care Providers & Services,Large Cap
+ABMD,"Abiomed, Inc.",Health Care,Health Care Technology,Large Cap
+ABNB,"Airbnb, Inc. Class A",Communication Services,Diversified Telecommunication Services,Large Cap
+ABT,Abbott Laboratories,Health Care,Health Care Technology,Mega Cap
+ACM,AECOM,Industrials,Construction & Engineering,Large Cap
+ADBE,Adobe Inc.,Information Technology,Software,Large Cap
+ADI,"Analog Devices, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+ADM,Archer-Daniels-Midland Company,Consumer Staples,Household Products,Large Cap
+ADP,"Automatic Data Processing, Inc.",Industrials,Professional Services,Large Cap
+ADSK,"Autodesk, Inc.",Information Technology,Software,Large Cap
+AEE,Ameren Corporation,Utilities,Electric Utilities,Large Cap
+AEIS,"Advanced Energy Industries, Inc.",Industrials,Electrical Equipment,Large Cap
+AEP,"American Electric Power Company, Inc.",Utilities,Electric Utilities,Large Cap
+AEPPL,"American Electric Power Company, Inc.",Utilities,Electric Utilities,Large Cap
+AEPPZ,"American Electric Power Company, Inc.",Utilities,Electric Utilities,Large Cap
+AES,The AES Corporation,Utilities,Multi-Utilities,Large Cap
+AESC,The AES Corporation,Utilities,Multi-Utilities,Large Cap
+AFG,"American Financial Group, Inc.",Financials,Insurance,Large Cap
+AFL,Aflac Incorporated,Financials,Insurance,Large Cap
+AFRM,"Affirm Holdings, Inc.",Information Technology,IT Services,Large Cap
+AGNC,AGNC Investment Corp.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AGNCL,AGNC Investment Corp. Depositary Shares Each Representing a 1/1000th Interest in a Share of 7.75% Series G Fixed-Rate Reset Cumulative Redeemable Preferred Stock,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AGNCM,AGNC Investment Corp.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AGNCN,AGNC Investment Corp.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AGNCO,AGNC Investment Corp.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AGNCP,AGNC Investment Corp.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AGNCZ,AGNC Investment Corp. Depositary Shares Each Representing a 1/1000th Interest in a Share of 8.75% Series H Fixed-Rate Cumulative Redeemable Preferred Stock,,,Large Cap
+AGR,"AVANGRID, INC.",Utilities,Electric Utilities,Large Cap
+AIG,"American International Group, Inc.",Financials,Insurance,Large Cap
+AIG-PA,"American International Group, Inc.",Financials,Insurance,Large Cap
+AIT,"Applied Industrial Technologies, Inc.",Industrials,Trading Companies & Distributors,Large Cap
+AIZ,"Assurant, Inc.",Financials,Insurance,Large Cap
+AJG,Arthur J. Gallagher & Co.,Financials,Insurance,Large Cap
+AKAM,"Akamai Technologies, Inc.",Information Technology,Software,Large Cap
+ALAB,Astera Labs Inc. Common Stock,Information Technology,,Large Cap
+ALB,Albemarle Corporation,Materials,Chemicals,Large Cap
+ALGN,"Align Technology, Inc.",Health Care,Health Care Technology,Large Cap
+ALL,The Allstate Corporation,Financials,Insurance,Large Cap
+ALL-PB,The Allstate Corporation,Financials,Insurance,Large Cap
+ALL-PG,The Allstate Corporation,Financials,Insurance,Large Cap
+ALL-PH,The Allstate Corporation,Financials,Insurance,Large Cap
+ALL-PI,The Allstate Corporation,Financials,Insurance,Large Cap
+ALLY,Ally Financial Inc.,Financials,Consumer Finance,Large Cap
+ALNY,"Alnylam Pharmaceuticals, Inc.",Health Care,Biotechnology,Large Cap
+ALSN,"Allison Transmission Holdings, Inc.",Consumer Discretionary,Auto Components,Large Cap
+ALXN,"Alexion Pharmaceuticals, Inc.",Health Care,Biotechnology,Large Cap
+AM,Antero Midstream Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+AMAT,"Applied Materials, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+AMD,"Advanced Micro Devices, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+AME,"AMETEK, Inc.",Industrials,Machinery,Large Cap
+AMGN,Amgen Inc.,Health Care,Pharmaceuticals,Mega Cap
+AMH,American Homes 4 Rent,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AMKR,"Amkor Technology, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+AMP,"Ameriprise Financial, Inc.",Financials,Capital Markets,Large Cap
+AMRZ,Amrize Ltd Ordinary Shares,Materials,Construction Materials,Large Cap
+AMT,American Tower Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AMZN,"Amazon.com, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Mega Cap
+ANET,"Arista Networks, Inc.",Financials,Diversified Financial Services,Large Cap
+ANSS,"ANSYS, Inc.",Information Technology,Software,Large Cap
+ANTM,"Anthem, Inc.",Health Care,Health Care Providers & Services,Large Cap
+AOS,A.O. Smith Corporation,Industrials,Machinery,Large Cap
+APA,APA Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+APD,"Air Products and Chemicals, Inc.",Materials,Chemicals,Large Cap
+APG,APi Group Corporation,Industrials,Construction & Engineering,Large Cap
+APH,Amphenol Corporation Class A,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+APO,"Apollo Global Management, Inc.",Financials,Capital Markets,Large Cap
+APO-PA,"Apollo Global Management, Inc.",Financials,Capital Markets,Large Cap
+APO-PB,"Apollo Global Management, Inc.",Financials,Capital Markets,Large Cap
+APP,AppLovin Corp. Class A,Information Technology,Software,Large Cap
+AR,Antero Resources Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ARCC,Ares Capital Corporation,Financials,Capital Markets,Large Cap
+ARES,Ares Management Corporation,Financials,Capital Markets,Large Cap
+ARMK,Aramark,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ARXS,Arxis Inc. Class A Common Stock,Industrials,Aerospace & Defense,Large Cap
+ASTS,"AST SpaceMobile, Inc.",Communication Services,Diversified Telecommunication Services,Large Cap
+ATI,Allegheny Technologies Incorporated,Industrials,Building Products,Large Cap
+ATO,Atmos Energy Corporation,Utilities,Gas Utilities,Large Cap
+ATVI,"ACTIVISION BLIZZARD, INC.",Communication Services,Interactive Media & Services,Large Cap
+AVAV,"AeroVironment, Inc.",Industrials,Aerospace & Defense,Large Cap
+AVB,"AvalonBay Communities, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+AVGO,Broadcom Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+AVGOP,Broadcom Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+AVLR,"Avalara, Inc.",Information Technology,Software,Large Cap
+AVTR-PA,"Avantor, Inc.",Materials,Chemicals,Large Cap
+AVY,Avery Dennison Corporation,Industrials,Commercial Services & Supplies,Large Cap
+AWK,"American Water Works Company, Inc.",Utilities,Water Utilities,Large Cap
+AXON,Axon Enterprise Inc,Industrials,Aerospace & Defense,Large Cap
+AXP,American Express Company,Financials,Consumer Finance,Mega Cap
+AZPN,"Aspen Technology, Inc.",Information Technology,Software,Large Cap
+B,Barnes Group Inc.,Industrials,Machinery,Large Cap
+BA,Boeing Company (The),Industrials,Aerospace & Defense,Large Cap
+BAC,Bank of America Corporation,Financials,Banks,Mega Cap
+BAC-PA,Bank of America Corporation,Financials,Banks,Mega Cap
+BAC-PB,Bank of America Corporation,Financials,Banks,Mega Cap
+BAC-PE,Bank of America Corporation,Financials,Banks,Mega Cap
+BAC-PK,Bank of America Corporation,Financials,Banks,Mega Cap
+BAC-PL,Bank of America Corporation,Financials,Banks,Mega Cap
+BALL,Ball Corporation Common Stock,Consumer Discretionary,Distributors,Large Cap
+BAX,Baxter International Inc.,Health Care,Health Care Equipment & Supplies,Large Cap
+BBIO,"BridgeBio Pharma, Inc.",Health Care,Biotechnology,Large Cap
+BBY,"Best Buy Co., Inc.",Consumer Discretionary,Specialty Retail,Large Cap
+BDX,"Becton, Dickinson and Company",Health Care,Health Care Equipment & Supplies,Large Cap
+BE,Bloom Energy Corporation,Industrials,Electrical Equipment,Large Cap
+BEN,"Franklin Resources, Inc.",Financials,Capital Markets,Large Cap
+BEPC,Brookfield Renewable Corporation,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+BF-A,Brown-Forman Corporation,Consumer Staples,Beverages,Large Cap
+BF-B,Brown-Forman Corporation,Consumer Staples,Beverages,Large Cap
+BG,Bunge Limited,Consumer Staples,Household Products,Large Cap
+BIIB,Biogen Inc.,Health Care,Pharmaceuticals,Large Cap
+BJ,"BJ's Wholesale Club Holdings, Inc.",Consumer Staples,Household Products,Large Cap
+BK,The Bank of New York Mellon Corporation,Financials,Capital Markets,Large Cap
+BKDT,Brookdale Senior Living Inc. 7.00% Tangible Equity Units,Health Care,Health Care Equipment & Supplies,Large Cap
+BKI,"BLACK KNIGHT, INC.",Information Technology,Software,Large Cap
+BKNG,Booking Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+BKR,Baker Hughes Company Class A,Energy,Energy Equipment & Services,Large Cap
+BLD,TopBuild Corp.,Industrials,Construction & Engineering,Large Cap
+BLDR,"Builders FirstSource, Inc.",Industrials,Building Products,Large Cap
+BLK,"BlackRock, Inc.",Financials,Capital Markets,Large Cap
+BLL,Ball Corporation,Consumer Discretionary,Distributors,Large Cap
+BML-PG,Bank of America Corporation,Financials,Banks,Mega Cap
+BML-PH,Bank of America Corporation,Financials,Banks,Mega Cap
+BML-PJ,Bank of America Corporation,Financials,Banks,Mega Cap
+BML-PL,Bank of America Corporation,Financials,Banks,Mega Cap
+BMRN,BioMarin Pharmaceutical Inc.,Health Care,Biotechnology,Large Cap
+BMY,Bristol-Myers Squibb Company,Health Care,Pharmaceuticals,Large Cap
+BR,"Broadridge Financial Solutions, Inc.",Information Technology,IT Services,Large Cap
+BRK-A,Berkshire Hathaway Inc.,Financials,Insurance,Mega Cap
+BRK-B,Berkshire Hathaway Inc.,Financials,Insurance,Mega Cap
+BRK/A,Berkshire Hathaway Inc.,Financials,,Mega Cap
+BRK/B,Berkshire Hathaway Inc.,Financials,,Mega Cap
+BRKRP,Bruker Corporation 6.375% Mandatory Convertible Preferred Stock Series A,Health Care,Biotechnology,Large Cap
+BRO,"Brown & Brown, Inc.",Financials,Insurance,Large Cap
+BSX,Boston Scientific Corporation,Health Care,,Large Cap
+BSY,"Bentley Systems, Incorporated Class B",Information Technology,Software,Large Cap
+BTSGU,BrightSpring Health Services Inc. Tangible Equity Unit,Health Care,,Large Cap
+BURL,"Burlington Stores, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+BWA,BorgWarner Inc.,Consumer Discretionary,Auto Components,Large Cap
+BWXT,"BWX Technologies, Inc.",Industrials,Aerospace & Defense,Large Cap
+C,Citigroup Inc.,Financials,Banks,Large Cap
+C-PJ,Citigroup Inc.,Financials,Banks,Large Cap
+C-PK,Citigroup Inc.,Financials,Banks,Large Cap
+CACI,CACI International Inc,Information Technology,IT Services,Large Cap
+CAH,"Cardinal Health, Inc.",Health Care,Health Care Providers & Services,Large Cap
+CARR,Carrier Global Corp.,Industrials,Building Products,Large Cap
+CASY,"Casey's General Stores, Inc.",Consumer Staples,Food & Staples Retailing,Large Cap
+CAT,Caterpillar Inc.,Industrials,Machinery,Mega Cap
+CBRE,"CBRE Group, Inc. Class A",Real Estate,Real Estate Management & Development,Large Cap
+CBRS,Cerebras Systems Inc. Class A Common Stock,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+CCI,Crown Castle Inc.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+CCK,"Crown Holdings, Inc.",Consumer Discretionary,Distributors,Large Cap
+CCL,Carnival Corporation & plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CDAY,Ceridian HCM Holding Inc.,Information Technology,Software,Large Cap
+CDE,"Coeur Mining, Inc.",Materials,Metals & Mining,Large Cap
+CDNS,"Cadence Design Systems, Inc.",Information Technology,Software,Large Cap
+CDW,CDW Corporation,Information Technology,IT Services,Large Cap
+CEG,Constellation Energy Corporation Common Stock ,Utilities,Electric Utilities,Large Cap
+CELG-RI,Bristol-Myers Squibb Company,Health Care,Pharmaceuticals,Large Cap
+CELH,"Celsius Holdings, Inc.",Consumer Staples,Beverages,Large Cap
+CERN,Cerner Corporation,Health Care,Health Care Providers & Services,Large Cap
+CET,Central Securities Corp.,Financials,Capital Markets,Large Cap
+CF,"IES Holdings, Inc.",Industrials,Construction & Engineering,Large Cap
+CFG,"Citizens Financial Group, Inc.",Financials,Banks,Large Cap
+CFG-PD,"Citizens Financial Group, Inc.",Financials,Banks,Large Cap
+CFG-PE,"Citizens Financial Group, Inc.",Financials,Banks,Large Cap
+CFLT,Confluent Inc. Class A Common Stock,Information Technology,Software,Large Cap
+CG,The Carlyle Group Inc.,Financials,Capital Markets,Large Cap
+CHD,"Church & Dwight Co., Inc.",Consumer Staples,Household Products,Large Cap
+CHK,Chesapeake Energy Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+CHRW,"C.H. Robinson Worldwide, Inc.",Industrials,Air Freight & Logistics,Large Cap
+CHTR,"Charter Communications, Inc. Class A",Communication Services,Entertainment,Large Cap
+CHWY,"Chewy, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+CI,Cigna Corporation,Health Care,Health Care Providers & Services,Large Cap
+CIEN,Ciena Corporation,Information Technology,Communications Equipment,Large Cap
+CINF,Cincinnati Financial Corporation,Financials,Insurance,Large Cap
+CL,Colgate-Palmolive Company,Consumer Staples,Household Products,Large Cap
+CLH,"Clean Harbors, Inc.",Industrials,Transportation Infrastructure,Large Cap
+CLR,"Continental Resources, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+CLX,The Clorox Company,Consumer Staples,Household Products,Large Cap
+CMA,COMERICA INCORPORATED,Financials,Banks,Large Cap
+CMCSA,Comcast Corporation,Communication Services,Entertainment,Large Cap
+CME,CME Group Inc.,Financials,Capital Markets,Large Cap
+CMG,"Chipotle Mexican Grill, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CMI,Cummins Inc.,Industrials,Machinery,Large Cap
+CMS,CMS Energy Corporation,Utilities,Electric Utilities,Large Cap
+CNA,CNA Financial Corporation,Financials,Insurance,Large Cap
+CNC,Centene Corporation,Health Care,Health Care Providers & Services,Large Cap
+CNM,Core & Main Inc. Class A Common Stock,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+CNP,"CenterPoint Energy, Inc.",Utilities,Electric Utilities,Large Cap
+CNP-PB,"CenterPoint Energy, Inc.",Utilities,Electric Utilities,Large Cap
+COHR,"Coherent, Inc.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+COIN,"Coinbase Global, Inc. Class A",Information Technology,Software,Large Cap
+COKE,"Coca-Cola Consolidated, Inc.",Consumer Staples,Beverages,Large Cap
+COO,"The Cooper Companies, Inc.",Health Care,Health Care Equipment & Supplies,Large Cap
+COOP,MR. COOPER GROUP INC.,Financials,Thrifts & Mortgage Finance,Large Cap
+COP,ConocoPhillips,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+COR,CoreSite Realty Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+COST,Costco Wholesale Corporation,Consumer Staples,Household Products,Mega Cap
+COUP,Coupa Software Incorporated,Information Technology,Software,Large Cap
+CPAY,Corpay Inc. Common Stock,Information Technology,Software,Large Cap
+CPRT,"Copart, Inc.",Industrials,Professional Services,Large Cap
+CPT,Camden Property Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+CQP,"Cheniere Energy Partners, L.P.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+CR,Crane Co.,Industrials,Machinery,Large Cap
+CRBG,Corebridge Financial Inc. Common Stock,Financials,Capital Markets,Large Cap
+CRDO,Credo Technology Group Holding Ltd Ordinary Shares,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+CREE,"Cree, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+CRH,RH,Consumer Discretionary,Specialty Retail,Large Cap
+CRHM,RH,Consumer Discretionary,Specialty Retail,Large Cap
+CRM,"Salesforce, Inc.",Information Technology,Software,Large Cap
+CRS,Carpenter Technology Corporation,Industrials,Building Products,Large Cap
+CRWD,"CrowdStrike Holdings, Inc. Class A",Information Technology,Software,Large Cap
+CRWV,CoreWeave Inc. Class A Common Stock,Information Technology,Software,Large Cap
+CSCO,"Cisco Systems, Inc.",Information Technology,Communications Equipment,Mega Cap
+CSGP,"CoStar Group, Inc.",Real Estate,Real Estate Management & Development,Large Cap
+CSL,Carlisle Companies Incorporated,Industrials,Building Products,Large Cap
+CSX,CSX Corporation,Industrials,Road & Rail,Large Cap
+CTA-PA,E. I. du Pont de Nemours and Company,Materials,Construction Materials,Large Cap
+CTA-PB,E. I. du Pont de Nemours and Company,Materials,Construction Materials,Large Cap
+CTAS,Cintas Corporation,Industrials,Professional Services,Large Cap
+CTLT,"Catalent, Inc.",Health Care,Pharmaceuticals,Large Cap
+CTRA,Coterra Energy Inc. Common Stock,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+CTSH,Cognizant Technology Solutions Corporation Class A,Information Technology,IT Services,Large Cap
+CTVA,Corteva Inc,Materials,Construction Materials,Large Cap
+CTXS,"Citrix Systems, Inc.",Information Technology,Software,Large Cap
+CUK,Carnival Corporation & plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+CVNA,Carvana Co.,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+CVS,CVS Health Corporation,Health Care,Health Care Providers & Services,Large Cap
+CVX,Chevron Corporation,Energy,"Oil, Gas & Consumable Fuels",Mega Cap
+CW,Curtiss-Wright Corporation,Industrials,Machinery,Large Cap
+D,"Dominion Energy, Inc.",Utilities,Electric Utilities,Large Cap
+DAL,"Delta Air Lines, Inc.",Industrials,Airlines,Large Cap
+DASH,"DoorDash, Inc.",Communication Services,Diversified Telecommunication Services,Large Cap
+DAY,Dayforce Inc. Common Stock,Information Technology,Software,Large Cap
+DCI,"Donaldson Company, Inc.",Industrials,Machinery,Large Cap
+DCUE,"Dominion Energy, Inc.",Utilities,Electric Utilities,Large Cap
+DD,"DuPont de Nemours, Inc.",Materials,Chemicals,Large Cap
+DDOG,"Datadog, Inc. Class A",Information Technology,Software,Large Cap
+DE,Deere & Company,Industrials,Machinery,Large Cap
+DECK,Deckers Outdoor Corporation,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+DELL,Dell Technologies Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+DFS,Discover Financial Services,Financials,Consumer Finance,Large Cap
+DG,Dollar General Corporation,Consumer Staples,Household Products,Large Cap
+DGX,Quest Diagnostics Incorporated,Health Care,Biotechnology,Large Cap
+DHI,"D.R. Horton, Inc.",Industrials,Construction & Engineering,Large Cap
+DHR,Danaher Corporation,Health Care,Biotechnology,Large Cap
+DHR-PA,Danaher Corporation,Health Care,Biotechnology,Large Cap
+DHR-PB,Danaher Corporation,Health Care,Biotechnology,Large Cap
+DIS,Walt Disney Company,Communication Services,Entertainment,Large Cap
+DISCA,"Discovery, Inc.",Communication Services,Entertainment,Large Cap
+DISCB,"Discovery, Inc.",Communication Services,Entertainment,Large Cap
+DISCK,"Discovery, Inc.",Communication Services,Entertainment,Large Cap
+DKNG,DraftKings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+DKS,"Dick's Sporting Goods, Inc.",Consumer Discretionary,Specialty Retail,Large Cap
+DLR,"Digital Realty Trust, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DLR-PC,"Digital Realty Trust, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DLR-PJ,"Digital Realty Trust, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DLR-PK,"Digital Realty Trust, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DLR-PL,"Digital Realty Trust, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DLTR,"Dollar Tree, Inc.",Consumer Staples,Household Products,Large Cap
+DOC,Physicians Realty Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DOV,Dover Corporation,Industrials,Machinery,Large Cap
+DOW,Dow Inc.,Materials,Chemicals,Large Cap
+DPZ,"Domino's Pizza, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+DRE,Duke Realty Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+DRI,"Darden Restaurants, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+DT,"Dynatrace, Inc.",Information Technology,Software,Large Cap
+DTE,DTE Energy Company,Utilities,Electric Utilities,Large Cap
+DTP,DTE Energy Company,Utilities,Electric Utilities,Large Cap
+DUK,Duke Energy Corporation,Utilities,Electric Utilities,Large Cap
+DUK-PA,Duke Energy Corporation,Utilities,Electric Utilities,Large Cap
+DUKB,Duke Energy Corporation 5.625% Junior Subordinated Debentures due 2078,Utilities,Electric Utilities,Large Cap
+DVA,DaVita Inc.,Health Care,Health Care Equipment & Supplies,Large Cap
+DVN,Devon Energy Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+DXCM,"DexCom, Inc.",Health Care,Biotechnology,Large Cap
+DY,"Dycom Industries, Inc.",Industrials,Construction & Engineering,Large Cap
+EA,Electronic Arts Inc.,Communication Services,Interactive Media & Services,Large Cap
+EBAY,eBay Inc.,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+ECCF,Eagle Point Credit Company Inc. 8.00% Series F Term Preferred Stock due 2029,Financials,,Large Cap
+ECL,Ecolab Inc.,Materials,Chemicals,Large Cap
+ED,"Consolidated Edison, Inc.",Utilities,Electric Utilities,Large Cap
+EDR,"Endeavor Group Holdings, Inc.",Communication Services,Entertainment,Large Cap
+EFX,Equifax Inc.,Industrials,Professional Services,Large Cap
+EGP,"EastGroup Properties, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+EHC,Encompass Health Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+EIX,Edison International,Utilities,Electric Utilities,Large Cap
+EL,The Estee Lauder Companies Inc.,Consumer Staples,Household Products,Large Cap
+ELAN,Elanco Animal Health Incorporat,Health Care,Pharmaceuticals,Large Cap
+ELAT,Elanco Animal Health Incorporat,Health Care,Pharmaceuticals,Large Cap
+ELS,"Equity LifeStyle Properties, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+ELV,Elevance Health Inc. Common Stock,Health Care,Biotechnology,Large Cap
+EME,"EMCOR Group, Inc.",Industrials,Construction & Engineering,Large Cap
+EMR,Emerson Electric Co.,Industrials,Machinery,Large Cap
+ENSG,"The Ensign Group, Inc.",Health Care,Health Care Equipment & Supplies,Large Cap
+ENTG,"Entegris, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+EOG,"EOG Resources, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+EPD,Enterprise Products Partners L.P.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+EQH,"Equitable Holdings, Inc.",Financials,Insurance,Large Cap
+EQH-PA,"Equitable Holdings, Inc.",Financials,Insurance,Large Cap
+EQH-PC,"Equitable Holdings, Inc.",Financials,Insurance,Large Cap
+EQIX,"Equinix, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+EQR,Equity Residential,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+EQT,EQT Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ERIE,Erie Indemnity Company,Financials,Insurance,Large Cap
+ES,Eversource Energy,Utilities,Electric Utilities,Large Cap
+ESS,"Essex Property Trust, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+ET,Energy Transfer LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ET-PC,Energy Transfer LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ET-PD,Energy Transfer LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ET-PE,Energy Transfer LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+ETHA,iShares Ethereum Trust ETF,Financials,Capital Markets,Large Cap
+ETR,Entergy Corporation,Utilities,Electric Utilities,Large Cap
+EVR,Evercore Inc.,Financials,Capital Markets,Large Cap
+EVRG,"Evergy, Inc.",Utilities,Electric Utilities,Large Cap
+EW,Edwards Lifesciences Corporation,Health Care,Health Care Technology,Large Cap
+EWBC,"East West Bancorp, Inc.",Financials,Banks,Large Cap
+EXAS,Exact Sciences Corporation,Health Care,Biotechnology,Large Cap
+EXC,Exelon Corporation,Utilities,Multi-Utilities,Large Cap
+EXE,Expand Energy Corporation Common Stock,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+EXEEL,Expand Energy Corporation Class C Warrants,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+EXEEW,Expand Energy Corporation Class A Warrants,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+EXEEZ,Expand Energy Corporation Class B Warrants,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+EXEL,"Exelixis, Inc.",Health Care,Biotechnology,Large Cap
+EXPD,"Expeditors International of Washington, Inc.",Industrials,Air Freight & Logistics,Large Cap
+EXPE,"Expedia Group, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+EXR,Extra Space Storage Inc.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+F,Ford Motor Company,Consumer Discretionary,Automobiles,Large Cap
+F-PB,Ford Motor Company,Consumer Discretionary,Automobiles,Large Cap
+F-PC,Ford Motor Company,Consumer Discretionary,Automobiles,Large Cap
+FANG,"Diamondback Energy, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+FAST,Fastenal Company,Industrials,Trading Companies & Distributors,Large Cap
+FBHS,"Fortune Brands Home & Security, Inc.",Consumer Discretionary,Household Durables,Large Cap
+FCNCA,"First Citizens BancShares, Inc.",Financials,Banks,Large Cap
+FCX,"Freeport-McMoRan, Inc.",Materials,Metals & Mining,Large Cap
+FDS,FactSet Research Systems Inc.,Financials,Capital Markets,Large Cap
+FDX,FedEx Corporation,Industrials,Air Freight & Logistics,Large Cap
+FE,FirstEnergy Corp.,Utilities,Electric Utilities,Large Cap
+FFIV,"F5, Inc.",Financials,Diversified Financial Services,Large Cap
+FHN,First Horizon Corporation,Financials,Banks,Large Cap
+FI,"Fiserv, Inc.",Information Technology,IT Services,Large Cap
+FICO,Fair Isaac Corporation,Information Technology,Software,Large Cap
+FIS,"Fidelity National Information Services, Inc.",Information Technology,IT Services,Large Cap
+FISV,Fiserv Inc. Common Stock,Real Estate,Real Estate Management & Development,Large Cap
+FITB,Fifth Third Bancorp,Financials,Banks,Large Cap
+FITBI,Fifth Third Bancorp,Financials,Banks,Large Cap
+FITBM,Fifth Third Bancorp Depositary Shares Representing a 1/40th Ownership Interest in a Share of 6.875% Fixed-Rate Reset Non-Cumulative Perpetual Preferred Stock Series M,Financials,Banks,Large Cap
+FITBO,Fifth Third Bancorp,Financials,Banks,Large Cap
+FITBP,Fifth Third Bancorp,Financials,Banks,Large Cap
+FIVE,"Five Below, Inc.",Consumer Discretionary,Specialty Retail,Large Cap
+FIX,"Comfort Systems USA, Inc.",Industrials,Construction & Engineering,Large Cap
+FLS,Flowserve Corporation,Industrials,Machinery,Large Cap
+FLT,"FLEETCOR Technologies, Inc.",Information Technology,IT Services,Large Cap
+FLUT,Flutter Entertainment plc Ordinary Shares,Communication Services,Diversified Telecommunication Services,Large Cap
+FNF,"Fidelity National Financial, Inc.",Financials,Insurance,Large Cap
+FOX,Fox Corporation Class A,Communication Services,Media,Large Cap
+FOXA,Fox Corporation Class A,Communication Services,Media,Large Cap
+FPS,Forgent Power Solutions Inc. Class A Common Stock,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+FRC-PH,First Republic Bank,Financials,Banks,Large Cap
+FRC-PI,First Republic Bank,Financials,Banks,Large Cap
+FRC-PJ,First Republic Bank,Financials,Banks,Large Cap
+FRC-PK,First Republic Bank,Financials,Banks,Large Cap
+FRT-PC,Federal Realty Investment Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+FRVO,Fervo Energy Company Class A common stock,Utilities,Electric Utilities,Large Cap
+FSLR,"First Solar, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+FTAI,Fortress Transportation and Infrastructure Investors LLC,Industrials,Commercial Services & Supplies,Large Cap
+FTNT,"Fortinet, Inc.",Information Technology,Software,Large Cap
+FTV,Fortive Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+FTV-PA,Fortive Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+GAP,Gap Inc. (The) Common Stock,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+GD,General Dynamics Corporation,Industrials,,Large Cap
+GDDY,GoDaddy Inc.,Information Technology,Software,Large Cap
+GE,General Electric Company,Industrials,Machinery,Mega Cap
+GEHC,GE HealthCare Technologies Inc. Common Stock ,Information Technology,Software,Large Cap
+GEN,Gen Digital Inc. Common Stock,Information Technology,Software,Large Cap
+GEV,GE Vernova Inc. Common Stock,Energy,,Mega Cap
+GFS,GlobalFoundries Inc. Ordinary Shares,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+GGG,Graco Inc.,Industrials,Machinery,Large Cap
+GH,"Guardant Health, Inc.",Health Care,Biotechnology,Large Cap
+GILD,"Gilead Sciences, Inc.",Health Care,Pharmaceuticals,Large Cap
+GIS,"General Mills, Inc.",Consumer Staples,Food & Staples Retailing,Large Cap
+GL,Globe Life Inc.,Financials,Insurance,Large Cap
+GL-PC,Globe Life Inc.,Financials,Insurance,Large Cap
+GLPI,"Gaming and Leisure Properties, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+GLW,Corning Inc,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+GM,General Motors Company,Consumer Discretionary,Automobiles,Large Cap
+GME,GameStop Corp.,Consumer Discretionary,Specialty Retail,Large Cap
+GMED,"Globus Medical, Inc.",Health Care,Health Care Technology,Large Cap
+GNRC,Generac Holdings Inc.,Industrials,Machinery,Large Cap
+GOOG,Alphabet Inc.,Communication Services,Diversified Telecommunication Services,Mega Cap
+GOOGL,Alphabet Inc.,Communication Services,Diversified Telecommunication Services,Mega Cap
+GPC,Genuine Parts Company,Consumer Discretionary,Specialty Retail,Large Cap
+GPN,Global Payments Inc.,Industrials,Professional Services,Large Cap
+GS,"The Goldman Sachs Group, Inc.",Financials,Capital Markets,Mega Cap
+GS-PD,"The Goldman Sachs Group, Inc.",Financials,Capital Markets,Large Cap
+GS-PJ,"The Goldman Sachs Group, Inc.",Financials,Capital Markets,Large Cap
+GWRE,"Guidewire Software, Inc.",Information Technology,Software,Large Cap
+GWW,"W.W. Grainger, Inc.",Industrials,Trading Companies & Distributors,Large Cap
+H,Hyatt Hotels Corporation,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HAL,Halliburton Company,Energy,Energy Equipment & Services,Large Cap
+HAS,"Hasbro, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HBAN,Huntington Bancshares Incorporated,Financials,Banks,Large Cap
+HBANL,Huntington Bancshares Incorporated Depositary Shares Each Representing a 1/40th Interest in a Share of 6.875% Series J Non-Cumulative Perpetual Preferred Stock,Financials,Banks,Large Cap
+HBANM,Huntington Bancshares Incorporated Depositary Shares each representing a 1/1000th interest in a share of Huntington Series I Preferred Stock,Financials,Banks,Large Cap
+HBANN,Huntington Bancshares Incorporated,Financials,Banks,Large Cap
+HBANO,Huntington Bancshares Incorporated,Financials,Banks,Large Cap
+HBANP,Huntington Bancshares Incorporated,Financials,Banks,Large Cap
+HBANZ,Huntington Bancshares Incorporated Depositary Shares Each Representing a 1/1000th Interest in a Share of 5.50% Series L Non-Cumulative Perpetual Preferred Stock,Financials,Banks,Large Cap
+HCA,"HCA Healthcare, Inc.",Health Care,Health Care Equipment & Supplies,Large Cap
+HD,"Home Depot, Inc.",Consumer Discretionary,Household Durables,Mega Cap
+HEI,HEICO Corporation,Industrials,Aerospace & Defense,Large Cap
+HEI-A,HEICO Corporation,Industrials,Aerospace & Defense,Large Cap
+HES,HESS CORPORATION,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+HGH,"The Hartford Financial Services Group, Inc.",Financials,Insurance,Large Cap
+HIG,"The Hartford Financial Services Group, Inc.",Financials,Insurance,Large Cap
+HII,"Huntington Ingalls Industries, Inc.",Industrials,Aerospace & Defense,Large Cap
+HL,Hecla Mining Company,Materials,Metals & Mining,Large Cap
+HLI,"Houlihan Lokey, Inc.",Financials,Capital Markets,Large Cap
+HLT,Hilton Worldwide Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+HOLX,"Hologic, Inc.",Health Care,Health Care Equipment & Supplies,Large Cap
+HOOD,Robinhood Markets Inc. Class A Common Stock,Financials,Capital Markets,Large Cap
+HPE,Hewlett Packard Enterprise Co.,Information Technology,Communications Equipment,Large Cap
+HPQ,HP Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+HRL,Hormel Foods Corporation,Consumer Staples,Food & Staples Retailing,Large Cap
+HST,"Host Hotels & Resorts, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+HSY,The Hershey Company,Consumer Staples,Food & Staples Retailing,Large Cap
+HUBB,Hubbell Incorporated,Industrials,Electrical Equipment,Large Cap
+HUBS,"HubSpot, Inc.",Information Technology,Software,Large Cap
+HUM,Humana Inc.,Health Care,Health Care Providers & Services,Large Cap
+HWM,Howmet Aerospace Inc.,Industrials,Machinery,Large Cap
+HWM-P,Howmet Aerospace Inc.,Industrials,Machinery,Large Cap
+IBIT,iShares Bitcoin Trust ETF,,,Large Cap
+IBKR,"Interactive Brokers Group, Inc. Class A",Financials,Capital Markets,Large Cap
+IBM,International Business Machines Corporation,Information Technology,IT Services,Mega Cap
+IBRX,ImmunityBio Inc,Health Care,Biotechnology,Large Cap
+ICE,"Intercontinental Exchange, Inc.",Financials,Capital Markets,Large Cap
+IDXX,"IDEXX Laboratories, Inc.",Health Care,Biotechnology,Large Cap
+IEX,IDEX Corporation,Industrials,Machinery,Large Cap
+IFF,International Flavors & Fragrances Inc.,Materials,Chemicals,Large Cap
+IFFT,International Flavors & Fragrances Inc.,Materials,Chemicals,Large Cap
+IIVI,II-VI Incorporated,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+ILMN,"Illumina, Inc.",Health Care,Biotechnology,Large Cap
+INCY,Incyte Corporation,Health Care,Biotechnology,Large Cap
+INSM,Insmed Incorporated,Health Care,Biotechnology,Large Cap
+INTC,Intel Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+INTU,Intuit Inc.,Information Technology,Software,Large Cap
+INVH,Invitation Homes Inc.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+IONQ,IonQ Inc. Common Stock,Industrials,Building Products,Large Cap
+IONS,"Ionis Pharmaceuticals, Inc.",Health Care,Biotechnology,Large Cap
+IP,International Paper Company,Consumer Discretionary,Distributors,Large Cap
+IQV,IQVIA Holdings Inc,Health Care,Biotechnology,Large Cap
+IR,Ingersoll Rand Inc.,Industrials,Machinery,Large Cap
+IRM,Iron Mountain Incorporated,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+ISRG,"Intuitive Surgical, Inc.",Health Care,Health Care Equipment & Supplies,Large Cap
+IT,"Gartner, Inc.",Information Technology,IT Services,Large Cap
+ITCI,"Intra-Cellular Therapies, Inc.",Health Care,Biotechnology,Large Cap
+ITT,ITT Inc.,Industrials,Machinery,Large Cap
+ITW,Illinois Tool Works Inc.,Industrials,Machinery,Large Cap
+IVZ,Invesco Ltd.,Financials,Capital Markets,Large Cap
+J,Jacobs Engineering Group Inc.,Industrials,Construction & Engineering,Large Cap
+JBHT,"J.B. Hunt Transport Services, Inc.",Industrials,Air Freight & Logistics,Large Cap
+JBL,Jabil Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+JKHY,"Jack Henry & Associates, Inc.",Information Technology,IT Services,Large Cap
+JNJ,Johnson & Johnson,Health Care,Pharmaceuticals,Mega Cap
+JNPR,two,Financials,Diversified Financial Services,Large Cap
+JPM,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+JPM-PC,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+JPM-PD,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+JPM-PG,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+JPM-PH,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+JPM-PJ,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+JPM-PK,JPMorgan Chase & Co.,Financials,Banks,Mega Cap
+K,Kellogg Company,Consumer Staples,Food & Staples Retailing,Large Cap
+KDP,Keurig Dr Pepper Inc.,Consumer Staples,Beverages,Large Cap
+KEY,KeyCorp,Financials,Banks,Large Cap
+KEY-PI,KeyCorp,Financials,Banks,Large Cap
+KEY-PJ,KeyCorp,Financials,Banks,Large Cap
+KEY-PK,KeyCorp,Financials,Banks,Large Cap
+KEYS,Keysight Technologies Inc,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KHC,Kraft Heinz Company,Consumer Staples,Food & Staples Retailing,Large Cap
+KIM,Kimco Realty Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+KKR,KKR & Co. Inc.,Financials,Capital Markets,Large Cap
+KKR-PA,KKR & Co. Inc.,Financials,Capital Markets,Large Cap
+KKR-PB,KKR & Co. Inc.,Financials,Capital Markets,Large Cap
+KLAC,KLA Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+KMB,Kimberly-Clark Corporation,Consumer Staples,Household Products,Large Cap
+KMI,Kinder Morgan Inc Class P,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+KNX,Knight-Swift Transportation Holdings Inc.,Industrials,Transportation Infrastructure,Large Cap
+KO,Coca-Cola Company,Consumer Staples,Beverages,Mega Cap
+KR,The Kroger Co.,Consumer Staples,Food & Staples Retailing,Large Cap
+KRMN,Karman Holdings Inc.,Health Care,,Large Cap
+KRTX,"Karuna Therapeutics, Inc.",Health Care,Biotechnology,Large Cap
+KSU,Kansas City Southern,Industrials,Road & Rail,Large Cap
+KSU-P,Kansas City Southern,Industrials,Road & Rail,Large Cap
+KTOS,"Kratos Defense & Security Solutions, Inc.",Industrials,Aerospace & Defense,Large Cap
+KVUE,Kenvue Inc. Common Stock,Materials,Chemicals,Large Cap
+L,Loews Corporation,Financials,Insurance,Large Cap
+LAMR,Lamar Advertising Company,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+LDOS,"Leidos Holdings, Inc.",Information Technology,IT Services,Large Cap
+LECO,"Lincoln Electric Holdings, Inc.",Industrials,Building Products,Large Cap
+LEN,Lennar Corporation,Industrials,Construction & Engineering,Large Cap
+LEN-B,Lennar Corporation,Industrials,Construction & Engineering,Large Cap
+LH,Laboratory Corporation of America Holdings,Health Care,Biotechnology,Large Cap
+LHX,L3Harris Technologies Inc,Industrials,Aerospace & Defense,Large Cap
+LII,Lennox International Inc.,Industrials,Machinery,Large Cap
+LITE,Lumentum Holdings Inc.,Information Technology,Communications Equipment,Large Cap
+LLY,Eli Lilly and Company,Health Care,Pharmaceuticals,Mega Cap
+LMT,Lockheed Martin Corporation,Industrials,Aerospace & Defense,Large Cap
+LNG,"Cheniere Energy, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+LNT,Alliant Energy Corporation,Utilities,Electric Utilities,Large Cap
+LOW,"Lowe's Companies, Inc.",Consumer Discretionary,Household Durables,Large Cap
+LPLA,LPL Financial Holdings Inc.,Financials,Capital Markets,Large Cap
+LRCX,Lam Research Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+LSCC,Lattice Semiconductor Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+LSI,"LIFE STORAGE, INC.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+LUV,Southwest Airlines Co.,Industrials,Airlines,Large Cap
+LVS,Las Vegas Sands Corp.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+LYB,LyondellBasell Industries NV,Materials,Chemicals,Large Cap
+LYV,"Live Nation Entertainment, Inc.",Communication Services,Entertainment,Large Cap
+MA,Mastercard Incorporated Class A,Financials,Consumer Finance,Mega Cap
+MAA,"Mid-America Apartment Communities, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+MAA-PI,"Mid-America Apartment Communities, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+MAR,"Marriott International, Inc. Class A",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+MAS,Masco Corporation,Industrials,Building Products,Large Cap
+MCD,McDonald's Corporation,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mega Cap
+MCHP,Microchip Technology Incorporated,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+MCHPP,Microchip Technology Incorporated Depositary Shares Each Representing a 1/20th Interest in a Share of 7.50% Series A Mandatory Convertible Preferred Stock,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+MCK,McKesson Corporation,Health Care,Health Care Providers & Services,Large Cap
+MCO,Moody's Corporation,Financials,Capital Markets,Large Cap
+MDB,"MongoDB, Inc. Class A",Information Technology,Software,Large Cap
+MDLN,Medline Inc. Class A Common Stock,Health Care,Health Care Technology,Large Cap
+MDLZ,"Mondelez International, Inc. Class A",Consumer Staples,Food & Staples Retailing,Large Cap
+MEDP,"Medpace Holdings, Inc.",Health Care,Biotechnology,Large Cap
+MET,"MetLife, Inc.",Financials,Insurance,Large Cap
+MET-PA,"MetLife, Inc.",Financials,Insurance,Large Cap
+MET-PE,"MetLife, Inc.",Financials,Insurance,Large Cap
+MET-PF,"MetLife, Inc.",Financials,Insurance,Large Cap
+META,Meta Platforms Inc Class A,Communication Services,Diversified Telecommunication Services,Mega Cap
+MKC,"McCormick & Company, Incorporated",Consumer Staples,Food & Staples Retailing,Large Cap
+MKC-V,"McCormick & Company, Incorporated",Consumer Staples,Food & Staples Retailing,Large Cap
+MKL,Markel Corporation,Financials,Insurance,Large Cap
+MKSI,"MKS Instruments, Inc.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MLI,"Mueller Industries, Inc.",Industrials,Building Products,Large Cap
+MLM,"Martin Marietta Materials, Inc.",Materials,Construction Materials,Large Cap
+MMC,"Marsh & McLennan Companies, Inc.",Financials,Insurance,Large Cap
+MMM,3M Company,Industrials,Machinery,Large Cap
+MMP,"Magellan Midstream Partners, L.P.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MNST,Monster Beverage Corporation,Consumer Staples,Beverages,Large Cap
+MO,"Altria Group, Inc.",Consumer Staples,Tobacco,Large Cap
+MOD,Modine Manufacturing Company,Consumer Discretionary,Auto Components,Large Cap
+MP,MP Materials Corp.,Materials,Metals & Mining,Large Cap
+MPC,Marathon Petroleum Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MPLX,MPLX LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MPWR,"Monolithic Power Systems, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+MRK,"Merck & Co., Inc.",Health Care,Pharmaceuticals,Mega Cap
+MRNA,"Moderna, Inc.",Health Care,Biotechnology,Large Cap
+MRO,Marathon Oil Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MRSH,Marsh Common Stock,Financials,Insurance,Large Cap
+MRVL,"Marvell Technology, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+MS,Morgan Stanley,Financials,Capital Markets,Mega Cap
+MSCI,MSCI Inc.,Financials,Capital Markets,Large Cap
+MSFT,Microsoft Corporation,Information Technology,Software,Mega Cap
+MSI,"Motorola Solutions, Inc.",Information Technology,Communications Equipment,Large Cap
+MSTR,MicroStrategy Incorporated,Information Technology,Software,Large Cap
+MTB,M&T Bank Corporation,Financials,Banks,Large Cap
+MTD,"Mettler-Toledo International, Inc.",Health Care,Biotechnology,Large Cap
+MTSI,"MACOM Technology Solutions Holdings, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+MTZ,"MasTec, Inc.",Industrials,Construction & Engineering,Large Cap
+MU,"Micron Technology, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+MXIM,"Maxim Integrated Products, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+NBIX,"Neurocrine Biosciences, Inc.",Health Care,Biotechnology,Large Cap
+NCLH,Norwegian Cruise Line Holdings Ltd.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+NDAQ,"Nasdaq, Inc.",Financials,Capital Markets,Large Cap
+NDSN,Nordson Corporation,Industrials,Machinery,Large Cap
+NEE,"NextEra Energy, Inc.",Utilities,Electric Utilities,Large Cap
+NEE-PN,"NextEra Energy, Inc.",Utilities,Electric Utilities,Large Cap
+NEE-PO,"NextEra Energy, Inc.",Utilities,Electric Utilities,Large Cap
+NEE-PP,"NextEra Energy, Inc.",Utilities,Electric Utilities,Large Cap
+NEE-PQ,"NextEra Energy, Inc.",Utilities,Electric Utilities,Large Cap
+NEM,Newmont Corporation,Materials,Metals & Mining,Large Cap
+NET,"Cloudflare, Inc.",Information Technology,Software,Large Cap
+NFLX,"Netflix, Inc.",Communication Services,Entertainment,Mega Cap
+NI,NISOURCE INC,Utilities,Gas Utilities,Large Cap
+NI-PB,NISOURCE INC,Utilities,Gas Utilities,Large Cap
+NIMC,NISOURCE INC,Utilities,Gas Utilities,Large Cap
+NKE,"Nike, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+NLOK,NortonLifeLock Inc.,Information Technology,Software,Large Cap
+NLY,"Annaly Capital Management, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+NLY-PF,"Annaly Capital Management, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+NLY-PG,"Annaly Capital Management, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+NLY-PI,"Annaly Capital Management, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+NOC,Northrop Grumman Corp.,Industrials,Aerospace & Defense,Large Cap
+NOW,"ServiceNow, Inc.",Information Technology,Software,Large Cap
+NRG,"NRG Energy, Inc.",Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+NSC,Norfolk Southern Corporation,Industrials,Road & Rail,Large Cap
+NTAP,"NetApp, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+NTNX,"Nutanix, Inc. Class A",Information Technology,Software,Large Cap
+NTRA,"Natera, Inc.",Health Care,Biotechnology,Large Cap
+NTRS,Northern Trust Corporation,Financials,Capital Markets,Large Cap
+NUAN,"Nuance Communications, Inc.",Information Technology,Software,Large Cap
+NUE,Nucor Corporation,Materials,Metals & Mining,Large Cap
+NVDA,NVIDIA Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Mega Cap
+NVR,"NVR, Inc.",Industrials,Construction & Engineering,Large Cap
+NWS,News Corporation,Communication Services,Media,Large Cap
+NWSA,News Corporation,Communication Services,Media,Large Cap
+NXT,Nextracker Inc. Class A Common Stock,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+NYT,New York Times Company Class A,Communication Services,Diversified Telecommunication Services,Large Cap
+O,Realty Income Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+ODFL,"Old Dominion Freight Line, Inc.",Industrials,Transportation Infrastructure,Large Cap
+OGE,OGE Energy Corp.,Utilities,Electric Utilities,Large Cap
+OHI,"Omega Healthcare Investors, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+OKTA,"Okta, Inc. Class A",Information Technology,Software,Large Cap
+OMC,Omnicom Group Inc.,Communication Services,Diversified Telecommunication Services,Large Cap
+ON,ON Semiconductor Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+ONTO,"Onto Innovation, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+ORCL,Oracle Corporation,Information Technology,Software,Mega Cap
+ORI,Old Republic International Corporation,Financials,Insurance,Large Cap
+ORLY,"O'Reilly Automotive, Inc.",Consumer Discretionary,Specialty Retail,Large Cap
+OSK,Oshkosh Corporation,Industrials,Machinery,Large Cap
+OTIS,Otis Worldwide Corporation,Industrials,Machinery,Large Cap
+OVV,Ovintiv Inc. (DE),Energy,"Oil, Gas & Consumable Fuels",Large Cap
+OWL,Blue Owl Capital Inc. Class A Common Stock,Financials,Capital Markets,Large Cap
+OXY,Occidental Petroleum Corporatio,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+OXY-WT,Occidental Petroleum Corporatio,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+P,Everpure Inc.,,,Large Cap
+PAA,"Plains All American Pipeline, L.P.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+PAG,"Penske Automotive Group, Inc.",Consumer Discretionary,Automobiles,Large Cap
+PANW,"Palo Alto Networks, Inc.",Financials,Diversified Financial Services,Large Cap
+PARAA,Paramount Global Class A Common Stock,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+PAYX,"Paychex, Inc.",Industrials,Professional Services,Large Cap
+PCAR,PACCAR Inc,Industrials,Machinery,Large Cap
+PCG,PG&E Corporation,Utilities,Electric Utilities,Large Cap
+PCGU,PG&E Corporation,Utilities,Electric Utilities,Mega Cap
+PEG,Public Service Enterprise Group Inc,Utilities,Multi-Utilities,Large Cap
+PEN,"Penumbra, Inc.",Health Care,Health Care Technology,Large Cap
+PEP,"PepsiCo, Inc.",Consumer Staples,Beverages,Mega Cap
+PFE,"Pfizer, Inc.",Health Care,Pharmaceuticals,Large Cap
+PFG,"Principal Financial Group, Inc.",Financials,Insurance,Large Cap
+PFGC,Performance Food Group Company,Consumer Staples,Food & Staples Retailing,Large Cap
+PG,The Procter & Gamble Company,Consumer Staples,Household Products,Mega Cap
+PGR,Progressive Corporation,Financials,Insurance,Large Cap
+PH,Parker-Hannifin Corporation,Industrials,Machinery,Large Cap
+PHM,"PulteGroup, Inc.",Industrials,Construction & Engineering,Large Cap
+PINS,"Pinterest, Inc.",Communication Services,Diversified Telecommunication Services,Large Cap
+PKG,Packaging Corporation of America,Consumer Discretionary,Distributors,Large Cap
+PKI,"PerkinElmer, Inc.",Health Care,Biotechnology,Large Cap
+PLD,"Prologis, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PLTR,Palantir Technologies Inc. Class A,Information Technology,Software,Mega Cap
+PM,Philip Morris International Inc.,Consumer Staples,Tobacco,Mega Cap
+PNC,"The PNC Financial Services Group, Inc.",Financials,Banks,Large Cap
+PNC-PP,"The PNC Financial Services Group, Inc.",Financials,Banks,Large Cap
+PNFP,"Pinnacle Financial Partners, Inc.",Financials,Banks,Large Cap
+PNW,Pinnacle West Capital Corp,Utilities,Electric Utilities,Large Cap
+PODD,Insulet Corporation,Health Care,Health Care Technology,Large Cap
+PPC,Pilgrim's Pride Corporation,Consumer Staples,Food & Staples Retailing,Large Cap
+PPD,"PPD, Inc.",Health Care,Pharmaceuticals,Large Cap
+PPG,"PPG Industries, Inc.",Materials,Chemicals,Large Cap
+PPL,PPL Corporation,Utilities,Electric Utilities,Large Cap
+PPLC,PPL Corporation Corporate Units,Utilities,Electric Utilities,Large Cap
+PR,Permian Resources Corporation Class A Common Stock,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+PRAH,"PRA Health Sciences, Inc.",Health Care,Biotechnology,Large Cap
+PRU,"Prudential Financial, Inc.",Financials,Insurance,Large Cap
+PSA,Public Storage,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PSA-PE,Public Storage,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PSA-PG,Public Storage,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PSA-PH,Public Storage,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PSA-PI,Public Storage,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PSA-PK,Public Storage,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+PSKY,Paramount Skydance Corporation Class B Common Stock,Communication Services,Media,Large Cap
+PSTG,"Pure Storage, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+PSX,Phillips 66,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+PSXP,Phillips 66,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+PTC,PTC Inc.,Information Technology,Software,Large Cap
+PWR,"Quanta Services, Inc.",Industrials,Construction & Engineering,Large Cap
+PYPL,"PayPal Holdings, Inc.",Financials,Consumer Finance,Large Cap
+QCOM,QUALCOMM Incorporated,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+QRTEP,"Qurate Retail, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+QS-WT,QuantumScape Corporation,Consumer Discretionary,Auto Components,Large Cap
+QXO,QXO Inc. Common Stock,Information Technology,Software,Large Cap
+RBC,Regal Beloit Corporation,Industrials,Machinery,Large Cap
+RBLX,Roblox Corporation,Communication Services,Interactive Media & Services,Large Cap
+RBRK,Rubrik Inc. Class A Common Stock,Information Technology,,Large Cap
+RCL,Royal Caribbean Group,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+RDDT,Reddit Inc. Class A Common Stock,Communication Services,,Large Cap
+REG,Regency Centers Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+REGN,"Regeneron Pharmaceuticals, Inc.",Health Care,Biotechnology,Large Cap
+RF,Regions Financial Corporation,Financials,Banks,Large Cap
+RF-PA,Regions Financial Corporation,Financials,Banks,Large Cap
+RF-PB,Regions Financial Corporation,Financials,Banks,Large Cap
+RF-PC,Regions Financial Corporation,Financials,Banks,Large Cap
+RGA,"Reinsurance Group of America, Incorporated",Financials,Insurance,Large Cap
+RGLD,"Royal Gold, Inc.",Materials,Metals & Mining,Large Cap
+RIVN,Rivian Automotive Inc. Class A Common Stock,Consumer Discretionary,Automobiles,Large Cap
+RJF,"Raymond James Financial, Inc.",Financials,Capital Markets,Large Cap
+RKLB,Rocket Lab USA Inc. Common Stock,Industrials,Aerospace & Defense,Large Cap
+RKT,"Rocket Companies, Inc.",Financials,Thrifts & Mortgage Finance,Large Cap
+RL,Ralph Lauren Corporation Class A,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+RMBS,Rambus Inc.,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+RMD,ResMed Inc.,Health Care,Health Care Equipment & Supplies,Large Cap
+ROK,"Rockwell Automation, Inc.",Industrials,Machinery,Large Cap
+ROKU,"Roku, Inc. Class A",Communication Services,Entertainment,Large Cap
+ROL,"Rollins, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+ROP,"Roper Technologies, Inc.",Industrials,Machinery,Large Cap
+ROST,"Ross Stores, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+RPM,RPM International Inc.,Materials,Chemicals,Large Cap
+RPRX,Royalty Pharma Plc Class A,Health Care,Biotechnology,Large Cap
+RRX,Regal Rexnord Corporation Common Stock,Energy,Energy Equipment & Services,Large Cap
+RS,Reliance Steel & Aluminum Co.,Materials,Metals & Mining,Large Cap
+RSG,"Republic Services, Inc.",Industrials,Transportation Infrastructure,Large Cap
+RTX,Raytheon Technologies Corporation,Industrials,Aerospace & Defense,Mega Cap
+RVMD,"Revolution Medicines, Inc.",Health Care,Biotechnology,Large Cap
+RVTY,Revvity Inc. Common Stock,Health Care,Biotechnology,Large Cap
+RYAN,Ryan Specialty Holdings Inc. Class A Common Stock,Financials,,Large Cap
+SABRP,Sabre Corporation,Information Technology,IT Services,Large Cap
+SAIA,"Saia, Inc.",Industrials,Transportation Infrastructure,Large Cap
+SARO,StandardAero Inc. Common Stock,Industrials,Aerospace & Defense,Large Cap
+SATS,EchoStar Corporation,Information Technology,Communications Equipment,Large Cap
+SBAC,SBA Communications Corporation,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SBNY,Signature Bank,Financials,Banks,Large Cap
+SBNYP,Signature Bank,Financials,Banks,Large Cap
+SBUX,Starbucks Corporation,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SC,Santander Consumer USA Holdings Inc.,Financials,Consumer Finance,Large Cap
+SCCO,Southern Copper Corporation,Materials,Metals & Mining,Large Cap
+SCHW,The Charles Schwab Corporation,Financials,Capital Markets,Large Cap
+SCHW-PC,The Charles Schwab Corporation,Financials,Capital Markets,Large Cap
+SCHW-PD,The Charles Schwab Corporation,Financials,Capital Markets,Large Cap
+SCHW-PJ,The Charles Schwab Corporation,Financials,Capital Markets,Large Cap
+SCI,Service Corporation International,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SGEN,Seagen Inc.,Health Care,Biotechnology,Large Cap
+SGI,Somnigroup International Inc. Common Stock,Consumer Discretionary,Household Durables,Large Cap
+SHW,Sherwin-Williams Company,Materials,Chemicals,Large Cap
+SITM,SiTime Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+SIVB,SVB Financial Group,Financials,Banks,Large Cap
+SIVBP,SVB Financial Group,Financials,Banks,Large Cap
+SJM,J.M. Smucker Company,Consumer Staples,Food & Staples Retailing,Large Cap
+SLB,Schlumberger Limited,Energy,Energy Equipment & Services,Large Cap
+SLMBP,SLM Corporation,Financials,Consumer Finance,Large Cap
+SMCI,"Super Micro Computer, Inc.",Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+SMMT,Summit Therapeutics Inc.,Health Care,Biotechnology,Large Cap
+SNA,Snap-on Incorporated,Industrials,Building Products,Large Cap
+SNDK,Sandisk Corporation Common Stock,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SNOW,"Snowflake, Inc.",Information Technology,Software,Large Cap
+SNPS,"Synopsys, Inc.",Information Technology,Software,Large Cap
+SNX,TD SYNNEX Corporation,Information Technology,IT Services,Large Cap
+SO,The Southern Company,Utilities,Electric Utilities,Large Cap
+SOFI,"SoFi Technologies, Inc.",Financials,Consumer Finance,Large Cap
+SOFIW,"SoFi Technologies, Inc.",Financials,Consumer Finance,Large Cap
+SOJC,Southern Company (The) Series 2017B 5.25% Junior Subordinated Notes due December 1 2077,,Electric Utilities,Large Cap
+SOLV,Solventum Corporation Common Stock,Health Care,Health Care Technology,Large Cap
+SOMN,Southern Company (The) 2025 Series A Corporate Units,Materials,Metals & Mining,Large Cap
+SPG,"Simon Property Group, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SPG-PJ,"Simon Property Group, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SPGI,S&P Global Inc.,Financials,Capital Markets,Large Cap
+SPLK,Splunk Inc.,Information Technology,Software,Large Cap
+SPXC,SPX Corporation,Industrials,Machinery,Large Cap
+SQ,"Square, Inc.",Information Technology,Software,Large Cap
+SRE,Sempra Energy,Utilities,Multi-Utilities,Large Cap
+SRE-PB,Sempra Energy,Utilities,Multi-Utilities,Large Cap
+SREA,Sempra Energy,Utilities,Multi-Utilities,Large Cap
+SSNC,"IES Holdings, Inc.",Industrials,Construction & Engineering,Large Cap
+STLD,"Steel Dynamics, Inc.",Materials,Metals & Mining,Large Cap
+STRC,Sarcos Technology and Robotics Corporation Common Stock,Industrials,Building Products,Large Cap
+STRD,MicroStrategy Incorporated 10.00% Series A Perpetual Stride Preferred Stock,Information Technology,Software,Large Cap
+STRF,MicroStrategy Incorporated 10.00% Series A Perpetual Strife Preferred Stock,,,Large Cap
+STRK,MicroStrategy Incorporated 8.00% Series A Perpetual Strike Preferred Stock,Information Technology,Software,Large Cap
+STRL,"Sterling Construction Company, Inc.",Industrials,Construction & Engineering,Large Cap
+STT,State Street Corporation,Financials,Capital Markets,Large Cap
+STT-PD,State Street Corporation,Financials,Capital Markets,Large Cap
+STT-PG,State Street Corporation,Financials,Capital Markets,Large Cap
+STZ,"Constellation Brands, Inc.",Consumer Staples,Beverages,Large Cap
+STZ-B,"Constellation Brands, Inc.",Consumer Staples,Beverages,Large Cap
+SUI,"Sun Communities, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+SUN,Sunoco LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+SUNB,Sunbelt Rentals Holdings Inc. Common Stock,Industrials,Professional Services,Large Cap
+SWAV,"SHOCKWAVE MEDICAL, INC.",Health Care,Health Care Technology,Large Cap
+SWK,"Stanley Black & Decker, Inc.",Industrials,Building Products,Large Cap
+SWT,"Stanley Black & Decker, Inc.",Industrials,Building Products,Large Cap
+SYF,Synchrony Financial,Financials,Consumer Finance,Large Cap
+SYF-PA,Synchrony Financial,Financials,Consumer Finance,Large Cap
+SYK,Stryker Corporation,Health Care,Health Care Technology,Large Cap
+SYM,Symbotic Inc. Class A Common Stock,Financials,Diversified Financial Services,Large Cap
+SYY,Sysco Corporation,Consumer Staples,Food & Staples Retailing,Large Cap
+T,AT&T Inc.,Communication Services,Diversified Telecommunication Services,Large Cap
+TAP-A,Molson Coors Beverage Company,Consumer Staples,Beverages,Large Cap
+TBC,AT&T Inc.,Communication Services,Diversified Telecommunication Services,Large Cap
+TDG,TransDigm Group Incorporated,Industrials,Aerospace & Defense,Large Cap
+TDY,Teledyne Technologies Incorporated,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+TELZ,Tellurian Inc. 8.25% Senior Notes due 2028,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TER,"Teradyne, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+TFC,Truist Financial Corporation,Financials,Banks,Large Cap
+TFC-PH,Truist Financial Corporation,Financials,Banks,Large Cap
+TFC-PI,Truist Financial Corporation,Financials,Banks,Large Cap
+TFC-PO,Truist Financial Corporation,Financials,Banks,Large Cap
+TFC-PR,Truist Financial Corporation,Financials,Banks,Large Cap
+TGT,Target Corporation,Consumer Staples,Household Products,Large Cap
+THC,Tenet Healthcare Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+TJX,TJX Companies Inc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+TKO,TKO Group Holdings Inc. Class A Common Stock,Communication Services,,Large Cap
+TLN,Talen Energy Corporation Common Stock,Utilities,Electric Utilities,Large Cap
+TMO,Thermo Fisher Scientific Inc.,Health Care,Biotechnology,Large Cap
+TMUS,"T-Mobile US, Inc.",Communication Services,Diversified Telecommunication Services,Mega Cap
+TOL,"Toll Brothers, Inc.",Industrials,Construction & Engineering,Large Cap
+TOST,Toast Inc. Class A Common Stock,Information Technology,Software,Large Cap
+TPG,TPG Inc. Class A Common Stock,Financials,Capital Markets,Large Cap
+TPL,Texas Pacific Land Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TPR,"Tapestry, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+TPX,"Tempur Sealy International, Inc.",Consumer Discretionary,Household Durables,Large Cap
+TRGP,Targa Resources Corp.,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+TRMB,Trimble Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+TROW,"T. Rowe Price Group, Inc.",Financials,Capital Markets,Large Cap
+TRU,TransUnion,Industrials,Professional Services,Large Cap
+TRV,"Travelers Companies, Inc.",Financials,Insurance,Large Cap
+TSCO,Tractor Supply Company,Consumer Discretionary,Specialty Retail,Large Cap
+TSLA,"Tesla, Inc.",Consumer Discretionary,Automobiles,Mega Cap
+TSN,"Tyson Foods, Inc. Class A",Consumer Staples,Household Products,Large Cap
+TTD,"The Trade Desk, Inc.",Information Technology,Software,Large Cap
+TTMI,"TTM Technologies, Inc.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+TTWO,"Take-Two Interactive Software, Inc.",Financials,Diversified Financial Services,Large Cap
+TW,"Tradeweb Markets, Inc. Class A",Financials,Capital Markets,Large Cap
+TWLO,Twilio Inc.,Communication Services,Diversified Telecommunication Services,Large Cap
+TWTR,"TWITTER, INC.",Communication Services,Diversified Telecommunication Services,Large Cap
+TXN,Texas Instruments Incorporated,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+TXRH,"Texas Roadhouse, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+TXT,Textron Inc.,Industrials,Aerospace & Defense,Large Cap
+TYL,"Tyler Technologies, Inc.",Information Technology,Software,Large Cap
+UAL,"United Airlines Holdings, Inc.",Industrials,Airlines,Large Cap
+UBER,"Uber Technologies, Inc.",Information Technology,Software,Large Cap
+UDR,"UDR, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+UGIC,UGI Corporation Corporate Units,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+UHS,"Universal Health Services, Inc. Class B",Health Care,Health Care Equipment & Supplies,Large Cap
+UI,Ubiquiti Inc.,Information Technology,Communications Equipment,Large Cap
+ULS,UL Solutions Inc.,Industrials,,Large Cap
+ULTA,Ulta Beauty Inc.,Consumer Discretionary,Specialty Retail,Large Cap
+UNH,UnitedHealth Group Incorporated,Health Care,Health Care Providers & Services,Mega Cap
+UNM,Unum Group,Financials,Insurance,Large Cap
+UNP,Union Pacific Corporation,Industrials,Road & Rail,Large Cap
+UPS,"United Parcel Service, Inc.",Industrials,Air Freight & Logistics,Large Cap
+URI,"United Rentals, Inc.",Industrials,Commercial Services & Supplies,Large Cap
+USB,U.S. Bancorp,Financials,Banks,Large Cap
+USB-PA,U.S. Bancorp,Financials,Banks,Large Cap
+USB-PH,U.S. Bancorp,Financials,Banks,Large Cap
+USB-PM,U.S. Bancorp,Financials,Banks,Large Cap
+USB-PP,U.S. Bancorp,Financials,Banks,Large Cap
+USFD,US Foods Holding Corp.,Consumer Staples,Food & Staples Retailing,Large Cap
+UTHR,United Therapeutics Corporation,Health Care,Biotechnology,Large Cap
+UWMC-WT,UWM Holdings Corporation,Financials,Thrifts & Mortgage Finance,Large Cap
+V,Visa Inc.,Financials,Consumer Finance,Mega Cap
+VEEV,Veeva Systems Inc Class A,Health Care,Health Care Providers & Services,Large Cap
+VG,Vonage Holdings Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+VIAC,ViacomCBS Inc.,Communication Services,Entertainment,Large Cap
+VIACA,ViacomCBS Inc.,Communication Services,Entertainment,Large Cap
+VIACP,ViacomCBS Inc.,Communication Services,Entertainment,Large Cap
+VICI,VICI Properties Inc.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VLO,Valero Energy Corporation,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+VLTO,Veralto Corp Common Stock ,Industrials,,Large Cap
+VLYPN,Valley National Bancorp 8.250% Fixed-Rate Reset Non-Cumulative Perpetual Preferred Stock Series C,Financials,,Large Cap
+VLYPO,Valley National Bancorp,Financials,Banks,Large Cap
+VLYPP,Valley National Bancorp,Financials,Banks,Large Cap
+VMC,Vulcan Materials Company,Materials,Construction Materials,Large Cap
+VMW,VMWARE LLC,Information Technology,Software,Large Cap
+VNO-PK,Vornado Realty Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VNO-PL,Vornado Realty Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VNO-PM,Vornado Realty Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VNO-PN,Vornado Realty Trust,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VNOM,Viper Energy Partners LP,Energy,"Oil, Gas & Consumable Fuels",Large Cap
+VRSK,"Verisk Analytics, Inc.",Industrials,Professional Services,Large Cap
+VRSN,"VeriSign, Inc.",Information Technology,Software,Large Cap
+VRT,Vertiv Holdings Co,Industrials,Electrical Equipment,Large Cap
+VRTX,Vertex Pharmaceuticals Incorporated,Health Care,Biotechnology,Large Cap
+VST,Vistra Corp.,Utilities,Independent Power and Renewable Electricity Producers,Large Cap
+VTR,"Ventas, Inc.",Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+VTRS,"Viatris, Inc.",Health Care,Pharmaceuticals,Large Cap
+VZ,Verizon Communications Inc.,Communication Services,Diversified Telecommunication Services,Mega Cap
+WAB,Westinghouse Air Brake Technologies Corporation,Industrials,Road & Rail,Large Cap
+WAT,Waters Corporation,Health Care,Biotechnology,Large Cap
+WBA,"Walgreens Boots Alliance, Inc.",Health Care,Pharmaceuticals,Large Cap
+WBD,Warner Bros. Discovery Inc. Series A Common Stock ,Communication Services,Entertainment,Large Cap
+WBS,Webster Financial Corporation,Financials,Banks,Large Cap
+WCC,"WESCO International, Inc.",Industrials,Trading Companies & Distributors,Large Cap
+WDAY,"Workday, Inc. Class A",Information Technology,Software,Large Cap
+WDC,Western Digital Corporation,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+WEC,WEC Energy Group Inc,Utilities,Electric Utilities,Large Cap
+WELL,Welltower Inc.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+WES,"Western Midstream Partners, LP",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+WFC,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PA,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PL,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PN,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PO,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PQ,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PR,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PX,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PY,Wells Fargo & Company,Financials,Banks,Mega Cap
+WFC-PZ,Wells Fargo & Company,Financials,Banks,Mega Cap
+WLK,Westlake Corporation,Materials,Chemicals,Large Cap
+WM,"Waste Management, Inc.",Industrials,Transportation Infrastructure,Large Cap
+WMB,"The Williams Companies, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+WMG,Warner Music Group Corp. Class A,Communication Services,Entertainment,Large Cap
+WMS,"Advanced Drainage Systems, Inc.",Industrials,Building Products,Large Cap
+WMT,Walmart Inc.,Consumer Staples,Household Products,Mega Cap
+WORK,"Slack Technologies, Inc.",Information Technology,Software,Large Cap
+WPC,W. P. Carey Inc.,Real Estate,Equity Real Estate Investment Trusts (REITs),Large Cap
+WRB,W. R. Berkley Corporation,Financials,Insurance,Large Cap
+WRB-PD,W. R. Berkley Corporation,Financials,Insurance,Large Cap
+WRB-PE,W. R. Berkley Corporation,Financials,Insurance,Large Cap
+WRK,WestRock Company,Consumer Discretionary,Distributors,Large Cap
+WSM,"Williams-Sonoma, Inc.",Consumer Discretionary,Specialty Retail,Large Cap
+WSO,"Watsco, Inc.",Industrials,Trading Companies & Distributors,Large Cap
+WSO-B,"Watsco, Inc.",Industrials,Trading Companies & Distributors,Large Cap
+WST,"West Pharmaceutical Services, Inc.",Health Care,Health Care Equipment & Supplies,Large Cap
+WTRG,"Essential Utilities, Inc.",Utilities,Water Utilities,Large Cap
+WTS,"Watts Water Technologies, Inc. Class A",Industrials,Machinery,Large Cap
+WWD,"Woodward, Inc.",Industrials,Aerospace & Defense,Large Cap
+WY,RH,Consumer Discretionary,Specialty Retail,Large Cap
+WYNN,"Wynn Resorts, Limited",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+X,UNITED STATES STEEL CORPORATION,Materials,Metals & Mining,Large Cap
+XEL,Xcel Energy Inc.,Utilities,Electric Utilities,Large Cap
+XLNX,"Xilinx, Inc.",Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+XM,Qualtrics International Inc.,Information Technology,Software,Large Cap
+XOM,Exxon Mobil Corporation,Energy,"Oil, Gas & Consumable Fuels",Mega Cap
+XPO,"XPO, Inc.",Industrials,Air Freight & Logistics,Large Cap
+XYL,Xylem Inc.,Industrials,Machinery,Large Cap
+XYZ,Block Inc. Class A Common Stock,Information Technology,Software,Large Cap
+Y,Alleghany Corporation,Financials,Insurance,Large Cap
+YUM,"Yum! Brands, Inc.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+YUMC,"China Holdings, Inc.",Health Care,Biotechnology,Large Cap
+Z,"Zillow Group, Inc.",Communication Services,Diversified Telecommunication Services,Large Cap
+ZBH,"Zimmer Biomet Holdings, Inc.",Health Care,Health Care Technology,Large Cap
+ZBRA,Zebra Technologies Corporation Class A,Information Technology,Communications Equipment,Large Cap
+ZEN,"Zendesk, Inc.",Information Technology,Software,Large Cap
+ZG,"Zillow Group, Inc.",Communication Services,Diversified Telecommunication Services,Large Cap
+ZM,"Zoom Video Communications, Inc.",Communication Services,Diversified Telecommunication Services,Large Cap
+ZNGA,Zynga Inc.,Communication Services,Interactive Media & Services,Large Cap
+ZS,"Zscaler, Inc.",Information Technology,Software,Large Cap

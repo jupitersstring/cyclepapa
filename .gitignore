@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Keep all data outputs (overrides nothing — listed for clarity)
+!data/**

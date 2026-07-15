@@ -1,0 +1,823 @@
+ticker,name,sector,industry,market_cap,exchange
+0HCC.L,3U Holding,,,,LSE
+0LQQ.L,Vodafone Group Public Limited Company,,,,LSE
+0OGK.IL,Subsea 7 S.A.,Energy,,,IOB
+0RG4.IL,TORM plc,Energy,"Oil, Gas & Consumable Fuels",Small Cap,IOB
+0RMV.IL,TechnipFMC plc,Energy,Energy Equipment & Services,Mid Cap,IOB
+4BB.L,4basebio UK Societas,Health Care,Biotechnology,,LSE
+AA4.L,Amedeo Air Four Plus Limited,Industrials,Aerospace & Defense,,LSE
+AAAP.L,Anglo African Agriculture Plc,Consumer Staples,Household Products,,LSE
+AAF.L,Airtel Africa Plc,Communication Services,Diversified Telecommunication Services,,LSE
+AAU.L,Ariana Resources plc,Materials,Metals & Mining,,LSE
+ABDN.L,Aberdeen Group PLC,Financials,Capital Markets,,
+ABDP.L,AB Dynamics plc,Consumer Discretionary,Auto Components,,LSE
+ABDX.L,Abingdon Health Plc,Health Care,Biotechnology,,LSE
+ACC.L,Access Intelligence Plc,Information Technology,Software,,LSE
+ACP.L,Armadale Capital Plc,Materials,Metals & Mining,,LSE
+ACRL.L,Accrol Group Holdings plc,Consumer Staples,Household Products,,LSE
+ACSO.L,accesso Technology Group plc,Information Technology,Software,,LSE
+ACT.L,Actual Experience plc,Information Technology,IT Services,,LSE
+ADA.L,Adams Plc,Financials,Capital Markets,,LSE
+ADME.L,ADM Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+ADT.L,AdEPT Technology Group plc,Communication Services,Diversified Telecommunication Services,,LSE
+ADVT.L,AdvancedAdvT Limited,Financials,Diversified Financial Services,,LSE
+AEO.L,Aeorema Communications plc,Communication Services,Entertainment,,LSE
+AEP.L,Anglo-Eastern Plantations Plc,Consumer Staples,Household Products,,LSE
+AEWU.L,AEW UK REIT Ord,Real Estate,,,LSE
+AFHP.L,AFH Financial Group Plc,Financials,Capital Markets,,LSE
+AFX.L,Alpha FX Group plc,Financials,Capital Markets,,LSE
+AGFX.L,Argentex Group Plc,Financials,Capital Markets,,LSE
+AIEA.L,AIREA plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+AIR.L,Air Partner plc,Industrials,Air Freight & Logistics,,LSE
+AIRE.L,Alternative Income REIT PLC,Real Estate,,,LSE
+AJB.L,AJ Bell plc,Financials,Capital Markets,,LSE
+ALBA.L,Alba Mineral Resources plc,Materials,Metals & Mining,,LSE
+ALFA.L,Alfa Financial Software Holdings PLC,Information Technology,Software,,LSE
+ALGW.L,Alpha Growth plc,Financials,Capital Markets,,LSE
+ALT.L,Altitude Group plc,Information Technology,Software,,LSE
+ALTN.L,AltynGold plc,Materials,Metals & Mining,,LSE
+ALU.L,The Alumasc Group plc,Industrials,Building Products,,LSE
+AMGO.L,Amigo Holdings PLC,Financials,Consumer Finance,,LSE
+AMO.L,Amino Technologies plc,Information Technology,Communications Equipment,,LSE
+AMP.L,AMPEAK ENERGY,,,,LSE
+AMS.L,Advanced Medical Solutions Group plc,Health Care,Health Care Equipment & Supplies,,LSE
+AMTE.L,AMTE Power plc,Industrials,Electrical Equipment,,LSE
+ANCR.L,Animalcare Group plc,Health Care,Health Care Equipment & Supplies,,LSE
+ANG.L,Angling Direct PLC,Consumer Discretionary,Specialty Retail,,LSE
+ANGS.L,Angus Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+ANP.L,Anpario plc,Consumer Staples,Food & Staples Retailing,,LSE
+ANX.L,Anexo Group Plc,Industrials,Commercial Services & Supplies,,LSE
+AO.L,AO World plc,Consumer Discretionary,Internet & Direct Marketing Retail,,LSE
+AOM.L,ActiveOps Limited,Information Technology,Software,,LSE
+APH.L,ALLIANCE PHARMA PLC,Health Care,Pharmaceuticals,,LSE
+APP.L,Appreciate Group plc,Financials,Consumer Finance,,LSE
+APTD.L,Aptitude Software Group plc,Information Technology,Software,,LSE
+AQSG.L,Aquila Services Group plc,Financials,Capital Markets,,LSE
+AQX.L,Aquis Exchange PLC,Financials,Capital Markets,,LSE
+ARBB.L,Arbuthnot Banking Group PLC,Financials,Banks,,LSE
+ARC.L,Arcontech Group plc,Information Technology,Software,,LSE
+ARDN.L,Arden Partners plc,Financials,Capital Markets,,LSE
+ARE.L,Arena Events Group plc,Communication Services,Diversified Telecommunication Services,,LSE
+ARIX.L,Arix Bioscience plc,Health Care,Biotechnology,,LSE
+ASCL.L,Ascential plc,Communication Services,Diversified Telecommunication Services,,LSE
+ASLI.L,abrdn European Logistics Income PLC,Real Estate,,,LSE
+ASLR.L,Asimilar Group Plc,Financials,Capital Markets,,LSE
+AST.L,Ascent Resources plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+ASTO.L,AssetCo plc,Industrials,Professional Services,,LSE
+ASY.L,Andrews Sykes Group plc,Industrials,Commercial Services & Supplies,,LSE
+ATG.L,Auction Technology Group plc,Information Technology,Software,,LSE
+ATQT.L,ATTRAQT Group plc,Information Technology,Software,,LSE
+AUG.L,Augean plc,Industrials,Transportation Infrastructure,,LSE
+AUK.L,Aukett Swanke Group Plc,Industrials,Construction & Engineering,,LSE
+AUTG.L,Autins Group plc,Consumer Discretionary,Auto Components,,LSE
+AVCT.L,Avacta Group Plc,Health Care,Biotechnology,,LSE
+AVG.L,Avingtrans plc,Industrials,Machinery,,LSE
+AVO.L,Advanced Oncotherapy plc,Health Care,Health Care Technology,,LSE
+AVON.L,Avon Rubber p.l.c.,Industrials,Aerospace & Defense,,LSE
+AYM.L,Anglesey Mining plc,Materials,Metals & Mining,,LSE
+BAG.L,A.G. BARR p.l.c.,Consumer Staples,Beverages,,LSE
+BAR.L,Brand Architekts Group plc,Consumer Staples,Household Products,,LSE
+BARK.L,Barkby Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+BBB.L,Bigblu Broadband plc,Communication Services,Diversified Telecommunication Services,,LSE
+BBOX.L,Tritax Big Box REIT plc,Real Estate,,,LSE
+BBSN.L,Brave Bison Group plc,Communication Services,Diversified Telecommunication Services,,LSE
+BCG.L,Baltic Classifieds Group PLC,,Interactive Media & Services,,
+BEG.L,Begbies Traynor Group plc,Industrials,Professional Services,,LSE
+BEM.L,Beowulf Mining plc,Materials,Metals & Mining,,LSE
+BEMO.L,Barings Emerging EMEA Opportunities Plc,Financials,Capital Markets,,LSE
+BERM.L,Bermele plc,Financials,Diversified Financial Services,,LSE
+BGO.L,Bango plc,Information Technology,IT Services,,LSE
+BIDS.L,Bidstack Group Plc,Communication Services,Interactive Media & Services,,LSE
+BIH.L,Boston International Holdings Plc,Financials,Diversified Financial Services,,LSE
+BILB.L,Bilby Plc,Industrials,Professional Services,,LSE
+BILN.L,Billington Holdings Plc,Industrials,Construction & Engineering,,LSE
+BIOM.L,Biome Technologies plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+BISI.L,Bisichi PLC,Materials,Metals & Mining,,LSE
+BKS.L,Beeks Trading Corporation Ltd.,Information Technology,Software,,LSE
+BLOE.L,Block Energy Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+BLTG.L,Blancco Technology Group plc,Information Technology,Software,,LSE
+BLU.L,Blue Star Capital plc,Financials,Capital Markets,,LSE
+BLV.L,Belvoir Group PLC,Real Estate,Real Estate Management & Development,,LSE
+BMK.L,Benchmark Holdings plc,Health Care,Pharmaceuticals,,LSE
+BMT.L,Braime Group PLC,Industrials,Trading Companies & Distributors,,LSE
+BMTO.L,Braime Group PLC,Industrials,Trading Companies & Distributors,,LSE
+BMY.L,Bloomsbury Publishing plc,Communication Services,Diversified Telecommunication Services,,LSE
+BOIL.L,Baron Oil Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+BONH.L,Bonhill Group Plc,Communication Services,Entertainment,,LSE
+BOOT.L,Henry Boot PLC,Real Estate,Real Estate Management & Development,,LSE
+BOR.L,Borders & Southern Petroleum plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+BOTB.L,Best of the Best PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+BOWL.L,Hollywood Bowl Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+BPM.L,B.P. Marsh & Partners PLC,Financials,Capital Markets,,LSE
+BPT.L,Bridgepoint Group PLC,Financials,Capital Markets,,
+BRCK.L,Brickability Group Plc,Industrials,Trading Companies & Distributors,,LSE
+BRD.L,BlueRock Diamonds PLC,Materials,Metals & Mining,,LSE
+BRES.L,Blencowe Resources Plc,Materials,Metals & Mining,,LSE
+BRGE.L,BlackRock Greater Europe Investment Trust plc,Financials,Capital Markets,,LSE
+BRH.L,Braveheart Investment Group plc,Financials,Capital Markets,,LSE
+BRK.L,Brooks Macdonald Group plc,Financials,Capital Markets,,LSE
+BRW.L,Brewin Dolphin Holdings PLC,Financials,Capital Markets,,LSE
+BSFA.L,BSF Enterprise Plc,Financials,Capital Markets,,LSE
+BT-A.L,BT Group,,,,LSE
+BTRW.L,Barratt Redrow PLC,Consumer Discretionary,Household Durables,,
+BVXP.L,Bioventix PLC,Health Care,Biotechnology,,LSE
+BWNG.L,N Brown Group plc,Consumer Discretionary,Internet & Direct Marketing Retail,,LSE
+BYIT.L,Bytes Technology Group PLC,Information Technology,Software,,LSE
+BYOT.L,Byotrol plc,Consumer Staples,Household Products,,LSE
+BZT.L,Bezant Resources Plc,Materials,Metals & Mining,,LSE
+C4XD.L,C4X Discovery Holdings plc,Health Care,Biotechnology,,LSE
+CAD.L,Cadogan Petroleum plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+CAL.L,Capital & Regional Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+CALL.L,CLOUDCALL GROUP PLC,Information Technology,Software,,LSE
+CAM.L,Camellia Plc,Consumer Staples,Household Products,,LSE
+CAML.L,Central Asia Metals plc,Materials,Metals & Mining,,LSE
+CAN.L,Canal+ SA,Communication Services,Media,,
+CAPC.L,Capital & Counties Properties PLC,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+CAR.L,Carclo plc,Consumer Discretionary,Auto Components,,LSE
+CARR.L,Carr's Group plc,Consumer Staples,Household Products,,LSE
+CAU.L,Centaur Media Plc,Communication Services,Diversified Telecommunication Services,,LSE
+CAY.L,Charles Stanley Group PLC,Financials,Capital Markets,,LSE
+CBOX.L,Cake Box Holdings Plc,Consumer Staples,Food & Staples Retailing,,LSE
+CBP.L,Curtis Banks Group plc,Financials,Capital Markets,,LSE
+CBX.L,Cellular Goods PLC,Health Care,Pharmaceuticals,,LSE
+CCAP.L,Conduity Capital Plc,Financials,Diversified Financial Services,,LSE
+CCC.L,Computacenter Plc,Information Technology,IT Services,,LSE
+CCS.L,Crossword Cybersecurity Plc,Information Technology,Software,,LSE
+CCT.L,The Character Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+CDFF.L,Cardiff Property Plc,Real Estate,Real Estate Management & Development,,LSE
+CEPS.L,CEPS PLC,Industrials,Professional Services,,LSE
+CER.L,Cerillion Plc,Information Technology,Software,,LSE
+CFX.L,Colefax Group PLC,Consumer Discretionary,Household Durables,,LSE
+CFYN.L,Caffyns plc,Consumer Discretionary,Automobiles,,LSE
+CGO.L,Contango Holdings plc,Financials,Capital Markets,,LSE
+CGS.L,Castings P.L.C.,Industrials,Machinery,,LSE
+CHF.L,Chesterfield Resources plc,Materials,Metals & Mining,,LSE
+CHH.L,Churchill China plc,Consumer Discretionary,Household Durables,,LSE
+CHRT.L,Cohort plc,Industrials,Aerospace & Defense,,LSE
+CHRY.L,Chrysalis Investments Limited,Financials,Capital Markets,,LSE
+CIC.L,The Conygar Investment Company PLC,Real Estate,Real Estate Management & Development,,LSE
+CIN.L,City of London Group plc,Financials,Capital Markets,,LSE
+CKT.L,Checkit plc,Information Technology,Software,,LSE
+CLCO.L,CloudCoCo Group plc,Information Technology,Software,,LSE
+CLG.L,Clipper Logistics plc,Industrials,Air Freight & Logistics,,LSE
+CLI.L,CLS Holdings plc,Real Estate,Real Estate Management & Development,,LSE
+CLIG.L,City of London Investment Group PLC,Financials,Capital Markets,,LSE
+CLIN.L,Clinigen Group plc,Health Care,Health Care Providers & Services,,LSE
+CLP.L,Clear Leisure plc,Financials,Capital Markets,,LSE
+CLX.L,Calnex Solutions Plc,Information Technology,Communications Equipment,,LSE
+CMCX.L,CMC Markets Plc,Financials,Capital Markets,,LSE
+CMET.L,Capital Metals plc,Materials,Metals & Mining,,LSE
+CMH.L,Chamberlin plc,Industrials,Machinery,,LSE
+CML.L,CML Microsystems plc,Information Technology,Semiconductors & Semiconductor Equipment,,LSE
+CMRS.L,Caerus Mineral Resources Plc,Materials,Metals & Mining,,LSE
+CMX.L,Catalyst Media Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+CNC.L,Concurrent Technologies Plc,Information Technology,"Technology Hardware, Storage & Peripherals",,LSE
+CNIC.L,CentralNic Group Plc,Communication Services,Diversified Telecommunication Services,,LSE
+CNKS.L,Cenkos Securities plc,Financials,Capital Markets,,LSE
+CNN.L,Caledonian Trust PLC,Real Estate,Real Estate Management & Development,,LSE
+COBR.L,Cobra Resources plc,Materials,Metals & Mining,,LSE
+COG.L,Cambridge Cognition Holdings Plc,Health Care,Health Care Providers & Services,,LSE
+COM.L,Comptoir Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+CORO.L,Coro Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+COST.L,Costain Group PLC,Industrials,Construction & Engineering,,LSE
+CPC.L,The City Pub Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+CPP.L,CPPGroup Plc,Industrials,Professional Services,,LSE
+CRCL.L,Corcel PLC,Materials,Metals & Mining,,LSE
+CREI.L,Custodian REIT Ord,Real Estate,,,LSE
+CREO.L,Creo Medical Limited,Health Care,Health Care Technology,,LSE
+CRL.L,Creightons Plc,Consumer Staples,Household Products,,LSE
+CRPR.L,James Cropper PLC,Materials,Paper & Forest Products,,LSE
+CRST.L,Crest Nicholson Holdings plc,Industrials,Construction & Engineering,,LSE
+CRTM.L,Critical Metals Plc,Materials,Metals & Mining,,LSE
+CRU.L,Coral Products plc,Consumer Discretionary,Distributors,,LSE
+CRW.L,Craneware plc,Health Care,Health Care Providers & Services,,LSE
+CSN.L,Chesnara plc,Financials,Insurance,,LSE
+CSSG.L,Croma Security Solutions Group plc,Industrials,Professional Services,,LSE
+CTEA.L,Catenae Innovation Plc,Information Technology,Software,,LSE
+CTG.L,Christie Group plc,Industrials,Professional Services,,LSE
+CTH.L,CareTech Holdings PLC,Health Care,Health Care Equipment & Supplies,,LSE
+CTNA.L,Catena Group plc,Financials,Capital Markets,,LSE
+CTO.L,TClarke plc,Industrials,Construction & Engineering,,LSE
+CURY.L,Currys PLC,Consumer Discretionary,Specialty Retail,,
+CVSG.L,CVS Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+CWK.L,Cranswick plc,Consumer Staples,Food & Staples Retailing,,LSE
+CYAN.L,CyanConnode Holdings plc,Information Technology,Communications Equipment,,LSE
+CYBA.L,Cyba Plc,Financials,Diversified Financial Services,,LSE
+D4T4.L,D4t4 Solutions Plc,Information Technology,Software,,LSE
+DARK.L,Darktrace plc,Information Technology,Software,,LSE
+DATA.L,GlobalData Plc,Industrials,Professional Services,,LSE
+DBOX.L,Digitalbox plc,Communication Services,Diversified Telecommunication Services,,LSE
+DCD.L,DCD Media Plc,Communication Services,Entertainment,,LSE
+DELT.L,Deltic Energy Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+DEMG.L,Deltex Medical Group plc,Health Care,Health Care Technology,,LSE
+DEST.L,Destiny Pharma plc,Health Care,Biotechnology,,LSE
+DEV.L,Dev Clever Holdings Plc,Information Technology,Software,,LSE
+DFCH.L,Distribution Finance Capital Holdings plc,Financials,Consumer Finance,,LSE
+DFS.L,DFS Furniture plc,Consumer Discretionary,Household Durables,,LSE
+DGI9.L,Digital 9 Infrastructure PLC,Financials,Capital Markets,,LSE
+DIS.L,Distil Plc,Consumer Staples,Beverages,,LSE
+DKE.L,Dukemount Capital Plc,Real Estate,Real Estate Management & Development,,LSE
+DMTR.L,DeepMatter Group Plc,Information Technology,Software,,LSE
+DNL.L,Diurnal Group plc,Health Care,Pharmaceuticals,,LSE
+DNLM.L,Dunelm Group plc,Consumer Discretionary,Specialty Retail,,LSE
+DPH.L,Dechra Pharmaceuticals PLC,Health Care,Pharmaceuticals,,LSE
+DPLM.L,Diploma PLC,Industrials,Trading Companies & Distributors,,LSE
+DRV.L,Driver Group plc,Industrials,Professional Services,,LSE
+DSCV.L,discoverIE Group plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+DSG.L,Dillistone Group Plc,,,,LSE
+DUKE.L,Duke Royalty Limited,Financials,Capital Markets,,LSE
+DWF.L,DWF Group plc,Industrials,Professional Services,,LSE
+DWHA.L,Dewhurst plc,Industrials,Electrical Equipment,,LSE
+DWHT.L,Dewhurst plc,Industrials,Electrical Equipment,,LSE
+DX.L,DX (Group) plc,Industrials,Air Freight & Logistics,,LSE
+DXRX.L,Diaceutics PLC,Health Care,Biotechnology,,LSE
+EAAS.L,eEnergy Group Plc,Industrials,Electrical Equipment,,LSE
+EAH.L,ECO Animal Health Group plc,Health Care,Pharmaceuticals,,LSE
+EBOX.L,Tritax EuroBox plc,Real Estate,,,LSE
+EBQ.L,Ebiquity plc,Communication Services,Diversified Telecommunication Services,,LSE
+ECEL.L,Eurocell plc,Industrials,Building Products,,LSE
+ECHO.L,Echo Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+ECR.L,ECR Minerals plc,Materials,Metals & Mining,,LSE
+ECSC.L,ECSC Group plc,Information Technology,Software,,LSE
+EDEN.L,Eden Research plc,Materials,Construction Materials,,LSE
+EDL.L,Edenville Energy Plc,Materials,Metals & Mining,,LSE
+EDR.L,Egdon Resources plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+EEE.L,Empire Metals Limited,Materials,Metals & Mining,,LSE
+EKF.L,EKF Diagnostics Holdings plc,Health Care,Biotechnology,,LSE
+ELCO.L,Eleco Plc,Information Technology,Software,,LSE
+ELIX.L,Elixirr International plc,Industrials,Professional Services,,LSE
+ELLA.L,Ecclesiastical Insurance Office plc,Financials,Insurance,,LSE
+EMAN.L,Everyman Media Group plc,Communication Services,Entertainment,,LSE
+EMIS.L,EMIS Group plc,Health Care,Health Care Providers & Services,,LSE
+EMR.L,Empresaria Group plc,Industrials,Professional Services,,LSE
+ENW.L,Enwell Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+EOG.L,Europa Oil & Gas (Holdings) plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+EPWN.L,Epwin Group PLC,Industrials,Building Products,,LSE
+EQLS.L,Equals Group plc,Financials,Consumer Finance,,LSE
+EQN.L,Equiniti Group plc,Information Technology,Software,,LSE
+ERGO.L,Ergomed plc,Health Care,Biotechnology,,LSE
+ESC.L,Escape Hunt plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+ESO.L,EPE Special Opportunities Limited,Financials,Capital Markets,,LSE
+ESP.L,Empiric Student Property plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+EST.L,East Star Resources Plc,Financials,Diversified Financial Services,,LSE
+ESYS.L,essensys plc,Information Technology,Software,,LSE
+ETX.L,e-therapeutics plc,Health Care,Biotechnology,,LSE
+EUA.L,Eurasia Mining Plc,Materials,Metals & Mining,,LSE
+EVE.L,eve Sleep plc,Consumer Discretionary,Household Durables,,LSE
+EVG.L,Evgen Pharma plc,Health Care,Biotechnology,,LSE
+EYE.L,Eagle Eye Solutions Group plc,Information Technology,Software,,LSE
+FA.L,FireAngel Safety Technology Group plc,Industrials,Professional Services,,LSE
+FAB.L,Fusion Antibodies plc,Health Care,Biotechnology,,LSE
+FAN.L,Volution Group plc,Industrials,Building Products,,LSE
+FCAP.L,finnCap Group plc,Financials,Capital Markets,,LSE
+FCCN.L,French Connection Group PLC,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+FCH.L,Funding Circle Holdings Plc,Financials,Consumer Finance,,LSE
+FCRM.L,Fulcrum Utility Services Limited,Utilities,Gas Utilities,,LSE
+FDBK.L,Feedback plc,Health Care,Health Care Providers & Services,,LSE
+FDEV.L,Frontier Developments plc,Communication Services,Interactive Media & Services,,LSE
+FDM.L,FDM Group (Holdings) plc,Information Technology,IT Services,,LSE
+FEN.L,Frenkel Topping Group Plc,Financials,Capital Markets,,LSE
+FIF.L,Finsbury Food Group Plc,Consumer Staples,Food & Staples Retailing,,LSE
+FIH.L,FIH group plc,Industrials,Industrial Conglomerates,,LSE
+FJV.L,Fidelity Japan Trust PLC,Financials,,,LSE
+FKE.L,Fiske plc,Financials,Capital Markets,,LSE
+FLK.L,Fletcher King Plc,Real Estate,Real Estate Management & Development,,LSE
+FLO.L,Flowtech Fluidpower plc,Industrials,Trading Companies & Distributors,,LSE
+FLTA.L,Filta Group Holdings plc,Industrials,Professional Services,,LSE
+FLX.L,Falanx Group Limited,Information Technology,Software,,LSE
+FNTL.L,Fintel Plc,Industrials,Professional Services,,LSE
+FNX.L,Fonix Mobile plc,Information Technology,IT Services,,LSE
+FOUR.L,4imprint Group plc,Communication Services,Diversified Telecommunication Services,,LSE
+FOX.L,Fox Corporation Class B,Materials,Metals & Mining,,LSE
+FPO.L,First Property Group plc,Real Estate,Real Estate Management & Development,,LSE
+FRAN.L,Franchise Brands plc,Industrials,Professional Services,,LSE
+FRAS.L,Frasers Group plc,Consumer Discretionary,Specialty Retail,,LSE
+FRP.L,FRP Advisory Group plc,Financials,Capital Markets,,LSE
+FSG.L,Foresight Group Holdings Limited,Financials,Capital Markets,,LSE
+FSJ.L,James Fisher and Sons plc,Industrials,Professional Services,,LSE
+FSTA.L,"Fuller, Smith & Turner P.L.C. Class A",Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+FUL.L,The Fulham Shore PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+FUTR.L,Future plc,Communication Services,Diversified Telecommunication Services,,LSE
+G4M.L,Gear4music (Holdings) plc,Consumer Discretionary,Internet & Direct Marketing Retail,,LSE
+GATC.L,Gattaca plc,Industrials,Professional Services,,LSE
+GDP.L,Goldplat PLC,Materials,Metals & Mining,,LSE
+GDR.L,genedrive plc,Health Care,Biotechnology,,LSE
+GDWN.L,Goodwin PLC,Industrials,Machinery,,LSE
+GEN.L,Genuit Group plc,Industrials,Building Products,,LSE
+GETB.L,GetBusy plc,Information Technology,Software,,LSE
+GFM.L,Griffin Mining Limited,Materials,Metals & Mining,,LSE
+GFRD.L,Galliford Try Holdings PLC,Industrials,Construction & Engineering,,LSE
+GGP.L,Greatland Gold plc,Materials,Metals & Mining,,LSE
+GHE.L,Gresham House plc,Financials,Capital Markets,,LSE
+GHH.L,Gooch & Housego PLC,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+GHT.L,Gresham Technologies plc,Information Technology,Software,,LSE
+GLO.L,ContourGlobal plc,Utilities,Independent Power and Renewable Electricity Producers,,LSE
+GLR.L,Galileo Resources Plc,Materials,Metals & Mining,,LSE
+GMAA.L,Gama Aviation Plc,Industrials,Air Freight & Logistics,,LSE
+GOG.L,The Go-Ahead Group plc,Industrials,Road & Rail,,LSE
+GOOD.L,Good Energy Group PLC,Utilities,Independent Power and Renewable Electricity Producers,,LSE
+GPOR.L,Great Portland Estates Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+GRA.L,Grafenia Plc,Industrials,Professional Services,,LSE
+GRC.L,GRC International Group plc,Information Technology,IT Services,,LSE
+GRI.L,Grainger plc,Real Estate,Real Estate Management & Development,,LSE
+GSF.L,Gore Street Energy Storage,,,,LSE
+GSS.L,Genesis Emerging Markets Fund,Financials,Capital Markets,,LSE
+GTC.L,Getech Group plc,Energy,Energy Equipment & Services,,LSE
+GTLY.L,Gateley (Holdings) Plc,Industrials,Professional Services,,LSE
+GUN.L,Gunsynd Plc,Financials,Capital Markets,,LSE
+GUS.L,Gusbourne PLC,Consumer Staples,Beverages,,LSE
+HAS.L,Hays plc,Industrials,Professional Services,,LSE
+HAT.L,H&T Group plc,Financials,Consumer Finance,,LSE
+HCFT.L,Highcroft Investments Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+HDD.L,Hardide plc,Materials,Chemicals,,LSE
+HDT.L,Holders Technology plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+HEAD.L,Headlam Group plc,Consumer Discretionary,Household Durables,,LSE
+HFG.L,Hilton Food Group plc,Consumer Staples,Food & Staples Retailing,,LSE
+HICL.L,HICL INFRASTRUCTURE PLC,Financials,,,LSE
+HILS.L,Hill & Smith Holdings PLC,Industrials,Construction & Engineering,,LSE
+HLCL.L,Helical plc,Real Estate,Real Estate Management & Development,,LSE
+HLN.L,Haleon PLC,,Pharmaceuticals,,
+HNG.L,Hawkwing plc,Financials,Diversified Financial Services,,LSE
+HPAC.L,Hermes Pacific Investments plc,Financials,Capital Markets,,LSE
+HRN.L,Hornby PLC,Consumer Discretionary,Specialty Retail,,LSE
+HSM.L,Samuel Heath & Sons plc,Industrials,Building Products,,LSE
+HSP.L,Hargreaves Services Plc,Industrials,Air Freight & Logistics,,LSE
+HSS.L,HSS Hire Group plc,Industrials,Commercial Services & Supplies,,LSE
+HSV.L,HomeServe plc,Industrials,Professional Services,,LSE
+HTWS.L,Helios Towers plc,Communication Services,Diversified Telecommunication Services,,LSE
+HUI.L,Hydrogen Utopia International,,,,LSE
+HUW.L,Helios Underwriting Plc,Financials,Insurance,,LSE
+HVT.L,The Heavitree Brewery PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+HVTA.L,The Heavitree Brewery PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+HWG.L,Harworth Group plc,Real Estate,Real Estate Management & Development,,LSE
+I3E.L,i3 Energy Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+ICGT.L,ICG Enterprise Trust Plc,Financials,,,LSE
+ICON.L,Iconic Labs Plc,Communication Services,Diversified Telecommunication Services,,LSE
+IDE.L,IDE Group Holdings plc,Information Technology,IT Services,,LSE
+IDEA.L,Ideagen plc,Information Technology,Software,,LSE
+IDH.L,Immunodiagnostic Systems Holdings PLC,Health Care,Health Care Technology,,LSE
+IDOX.L,IDOX plc,Information Technology,Software,,LSE
+IDP.L,InnovaDerma PLC,Consumer Staples,Household Products,,LSE
+IGAS.L,IGas Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+IGE.L,Image Scan Holdings Plc,Industrials,Professional Services,,LSE
+IGP.L,Intercede Group plc,Information Technology,Software,,LSE
+IGR.L,IG Design Group PLC,Consumer Discretionary,Specialty Retail,,LSE
+IHC.L,Inspiration Healthcare Group plc,Health Care,Health Care Technology,,LSE
+IHP.L,IntegraFin Holdings plc,Financials,Capital Markets,,LSE
+IIG.L,Intuitive Investments Group Plc,Financials,Capital Markets,,LSE
+IME.L,Immedia Group Plc,Communication Services,Diversified Telecommunication Services,,LSE
+IMMO.L,Immotion Group Plc,Communication Services,Entertainment,,LSE
+INCE.L,The Ince Group plc,Industrials,Professional Services,,LSE
+INFA.L,InfraStrata plc,Utilities,Gas Utilities,,LSE
+ING.L,Ingenta plc,Information Technology,Software,,LSE
+INHC.L,Induction Healthcare Group PLC,Health Care,Health Care Providers & Services,,LSE
+INL.L,Inland Homes plc,Real Estate,Real Estate Management & Development,,LSE
+INLZ.L,Inland ZDP Plc,Real Estate,Real Estate Management & Development,,LSE
+INS.L,Instem plc,Health Care,Health Care Providers & Services,,LSE
+INSE.L,Inspired Energy PLC,Industrials,Professional Services,,LSE
+INSP.L,Inspirit Energy Holdings Plc,Industrials,Machinery,,LSE
+INVR.L,Investec plc,Financials,Capital Markets,,LSE
+INX.L,i-nexus Global plc,Information Technology,Software,,LSE
+IOG.L,IOG plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+IOM.L,iomart Group plc,Information Technology,Software,,LSE
+IPEL.L,Impellam Group plc,Industrials,Professional Services,,LSE
+IPF.L,International Personal Finance plc,Financials,Consumer Finance,,LSE
+IPX.L,Impax Asset Management Group plc,Financials,Capital Markets,,LSE
+IQG.L,IQGeo Group plc,Information Technology,Software,,LSE
+IRON.L,Ironveld Plc,Materials,Metals & Mining,,LSE
+ITH.L,Ithaca Energy PLC,Energy,"Oil, Gas & Consumable Fuels",,
+ITS.L,In The Style Group Plc,Consumer Discretionary,Internet & Direct Marketing Retail,,LSE
+IUG.L,Intelligent Ultrasound Group plc,Health Care,Health Care Technology,,LSE
+JAN.L,Jangada Mines Plc,Materials,Metals & Mining,,LSE
+JDG.L,Judges Scientific plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+JHD.L,James Halstead plc,Industrials,Building Products,,LSE
+JIM.L,Jarvis Securities plc,Financials,Capital Markets,,LSE
+JKX.L,JKX Oil & Gas plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+JLG.L,John Laing Group plc,Industrials,Transportation Infrastructure,,LSE
+JLH.L,John Lewis of Hungerford plc,Consumer Discretionary,Household Durables,,LSE
+JNEO.L,Journeo plc,Industrials,Professional Services,,LSE
+JOUL.L,Joules Group Plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+JSG.L,Johnson Service Group PLC,Industrials,Professional Services,,LSE
+JUP.L,Jupiter Fund Management Plc,Financials,Capital Markets,,LSE
+JUST.L,Just Group plc,Financials,Insurance,,LSE
+JWNG.L,Jaywing plc,Communication Services,Diversified Telecommunication Services,,LSE
+K3C.L,K3 Capital Group PLC,Financials,Capital Markets,,LSE
+KAPE.L,Kape Technologies Plc,Information Technology,Software,,LSE
+KAT.L,Katoro Gold plc,Materials,Metals & Mining,,LSE
+KAV.L,KAVANGO RESOURCES PLC,Materials,Metals & Mining,,LSE
+KBT.L,K3 Business Technology Group plc,Information Technology,IT Services,,LSE
+KDNC.L,Cadence Minerals Plc,Materials,Metals & Mining,,LSE
+KEYS.L,Keystone Law Group plc,,,,LSE
+KGH.L,Knights Group Holdings plc,Industrials,Professional Services,,LSE
+KIE.L,Kier Group plc,Industrials,Construction & Engineering,,LSE
+KIST.L,Kistos PLC,Financials,Capital Markets,,LSE
+KMK.L,Kromek Group plc,Health Care,Health Care Technology,,LSE
+KNB.L,Kanabo Group Plc,Health Care,Pharmaceuticals,,LSE
+KOD.L,Kodal Minerals Plc,Materials,Metals & Mining,,LSE
+KOO.L,Kooth plc,Communication Services,Diversified Telecommunication Services,,LSE
+KP2.L,Kore Potash plc,Materials,Metals & Mining,,LSE
+KRM.L,KRM22 Plc,Financials,Capital Markets,,LSE
+KRPZ.L,Kropz plc,Materials,Construction Materials,,LSE
+KRS.L,Keras Resources Plc,Materials,Metals & Mining,,LSE
+KWG.L,Kingswood Holdings Limited,Financials,Capital Markets,,LSE
+KZG.L,Kazera Global plc,Financials,Capital Markets,,LSE
+LABS.L,Life Science REIT,,,,LSE
+LAS.L,London & Associated Properties PLC,Real Estate,Real Estate Management & Development,,LSE
+LBE.L,Longboat Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+LDG.L,Logistics Development Group plc,Industrials,Air Freight & Logistics,,LSE
+LDSG.L,Leeds Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+LFI.L,London Finance & Investment Group P.L.C.,Financials,Capital Markets,,LSE
+LGRS.L,Loungers plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+LIO.L,Liontrust Asset Management PLC,Financials,Capital Markets,,LSE
+LME.L,Limitless Earth plc,Financials,Capital Markets,,LSE
+LOK.L,Lok'nStore Group Plc,Real Estate,Real Estate Management & Development,,LSE
+LPA.L,LPA Group Plc,Industrials,Electrical Equipment,,LSE
+LSC.L,London Security plc,Industrials,Professional Services,,LSE
+LTHM.L,James Latham plc,Industrials,Trading Companies & Distributors,,LSE
+LUCE.L,Luceco plc,Industrials,Electrical Equipment,,LSE
+LVCG.L,Live Company Group Plc,Communication Services,Entertainment,,LSE
+MAB1.L,Mortgage Advice Bureau (Holdings) plc,Financials,Thrifts & Mortgage Finance,,LSE
+MAC.L,Marechale Capital Plc,Financials,Capital Markets,,LSE
+MACF.L,Macfarlane Group PLC,Consumer Discretionary,Distributors,,LSE
+MACP.L,Marwyn Acquisition Company Plc,Materials,Chemicals,,LSE
+MAI.L,Maintel Holdings Plc,Information Technology,Communications Equipment,,LSE
+MANO.L,Manolete Partners Plc,Industrials,Professional Services,,LSE
+MAST.L,MAST Energy Developments PLC,Utilities,Independent Power and Renewable Electricity Producers,,LSE
+MATE.L,JPMorgan Multi-Asset Growth & Income plc,Financials,,,LSE
+MBH.L,Michelmersh Brick Holdings PLC,Materials,Construction Materials,,LSE
+MBT.L,Mobile Tornado Group plc,Communication Services,Diversified Telecommunication Services,,LSE
+MCB.L,McBride plc,Consumer Staples,Household Products,,LSE
+MCG.L,Mobico Group,,,,LSE
+MCKS.L,McKay Securities Plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+MCL.L,Morses Club PLC,Financials,Consumer Finance,,LSE
+MCLS.L,McColl's Retail Group plc,Consumer Staples,Food & Staples Retailing,,LSE
+MDZ.L,MediaZest plc,Communication Services,Diversified Telecommunication Services,,LSE
+MEAL.L,Parsley Box Group plc,Consumer Discretionary,Internet & Direct Marketing Retail,,LSE
+MER.L,Mears Group PLC,Industrials,Professional Services,,LSE
+MERC.L,Mercia Asset Management PLC,Financials,Capital Markets,,LSE
+MGAM.L,Morgan Advanced Materials plc,Industrials,Machinery,,LSE
+MGNS.L,Morgan Sindall Group plc,Industrials,Construction & Engineering,,LSE
+MGP.L,Medica Group Plc,Health Care,Health Care Technology,,LSE
+MHC.L,MyHealthChecked Plc,Health Care,Health Care Technology,,LSE
+MIDW.L,Midwich Group plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+MIN.L,Minoan Group Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+MIND.L,Mind Gym plc,Industrials,Professional Services,,LSE
+MIRA.L,Mirada Plc,Communication Services,Entertainment,,LSE
+MLVN.L,Malvern International plc,Consumer Staples,Household Products,,LSE
+MMAG.L,musicMagpie plc,Consumer Discretionary,Specialty Retail,,LSE
+MMH.L,Marshall Motor Holdings Plc,Consumer Discretionary,Automobiles,,LSE
+MMM.L,"Mining, Minerals & Metals plc",Financials,Diversified Financial Services,,LSE
+MNP.L,Martin Currie Global Portfolio Investment Trust,Financials,,,LSE
+MNRG.L,MetalNRG plc,Materials,Metals & Mining,,LSE
+MODE.L,Mode Global Holdings PLC,Information Technology,IT Services,,LSE
+MONY.L,MONY Group plc,,,,LSE
+MOON.L,Moonpig Group PLC,Consumer Discretionary,Specialty Retail,,LSE
+MOS.L,Mobile Streams Plc,Communication Services,Interactive Media & Services,,LSE
+MPAC.L,Mpac Group plc,Industrials,Machinery,,LSE
+MPE.L,M.P. Evans Group plc,Consumer Staples,Household Products,,LSE
+MPO.L,Macau Property Opportunities Fund Limited,Real Estate,,,LSE
+MRIT.L,Merit Group plc,Information Technology,IT Services,,LSE
+MSI.L,MS INTERNATIONAL plc,Industrials,Aerospace & Defense,,LSE
+MSLH.L,Marshalls plc,Materials,Construction Materials,,LSE
+MSYS.L,Microsaic Systems plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+MTC.L,Mothercare plc,Consumer Discretionary,Specialty Retail,,LSE
+MTL.L,Metals Exploration plc,Materials,Metals & Mining,,LSE
+MTLN.L,Metlen Energy & Metals PLC,,Industrial Conglomerates,,
+MTR.L,Metal Tiger plc,Materials,Metals & Mining,,LSE
+MTVW.L,Mountview Estates P.L.C.,Real Estate,Real Estate Management & Development,,LSE
+MTW.L,Mattioli Woods plc,Financials,Capital Markets,,LSE
+MUL.L,Mulberry Group plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+MUST.L,Mustang Energy PLC,Financials,Diversified Financial Services,,LSE
+N4P.L,N4 Pharma Plc,Health Care,Pharmaceuticals,,LSE
+NAIT.L,The North American Income Trust plc,Financials,Capital Markets,,LSE
+NAR.L,Northamber plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+NBB.L,Norman Broadbent plc,Industrials,Professional Services,,LSE
+NBI.L,Northbridge Industrial Services plc,Industrials,Machinery,,LSE
+NET.L,Netcall plc,Information Technology,Software,,LSE
+NEXS.L,Nexus Infrastructure plc,Industrials,Construction & Engineering,,LSE
+NFX.L,Nuformix plc,Health Care,Biotechnology,,LSE
+NGHT.L,Nightcap Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+NICL.L,Nichols plc,Consumer Staples,Beverages,,LSE
+NIOX.L,Niox Group,,,,LSE
+NMCN.L,nmcn plc,Industrials,Construction & Engineering,,LSE
+NOG.L,"Northern Oil and Gas, Inc.",Energy,"Oil, Gas & Consumable Fuels",,LSE
+NRR.L,NewRiver REIT plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+NSCI.L,NetScientific plc,Health Care,Biotechnology,,LSE
+NSF.L,Non-Standard Finance plc,Financials,Consumer Finance,,LSE
+NSH.L,Norish Plc,Industrials,Professional Services,,LSE
+NTBR.L,Northern Bear PLC,Industrials,Building Products,,LSE
+NTOG.L,Nostra Terra Oil and Gas Company plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+NTQ.L,Enteq Upstream Plc,Energy,Energy Equipment & Services,,LSE
+NUC.L,Nucleus Financial Group plc,Financials,Capital Markets,,LSE
+NUM.L,Numis Corporation Plc,Financials,Capital Markets,,LSE
+NVT.L,Northern Venture Trust,Financials,,,LSE
+NWF.L,NWF Group plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+NWT.L,Newmark Security plc,Industrials,Professional Services,,LSE
+NXR.L,Norcros plc,Industrials,Building Products,,LSE
+OBC.L,ONLINE BLOCKCHAIN PLC,Information Technology,Software,,LSE
+OBD.L,Oxford BioDynamics Plc,Health Care,Biotechnology,,LSE
+ODX.L,Omega Diagnostics Group PLC,Health Care,Health Care Equipment & Supplies,,LSE
+OMG.L,Oxford Metrics plc,Information Technology,Software,,LSE
+OMIP.L,One Media iP Group Plc,,,,LSE
+ONC.L,Oncimmune Holdings plc,Health Care,Biotechnology,,LSE
+ONT.L,Oxford Nanopore Technologies PLC,Health Care,Life Sciences Tools & Services,,
+OPTI.L,OptiBiotix Health Plc,Health Care,Biotechnology,,LSE
+ORCH.L,Orchard Funding Group plc,Financials,Consumer Finance,,LSE
+ORCP.L,Oracle Power plc,Materials,Metals & Mining,,LSE
+ORR.L,Oriole Resources PLC,Materials,Metals & Mining,,LSE
+OSB.L,OSB Group Plc,Financials,Thrifts & Mortgage Finance,,LSE
+OSI.L,Osirium Technologies PLC,Information Technology,Software,,LSE
+OTAQ.L,OTAQ plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+OTB.L,On the Beach Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+OTMP.L,OnTheMarket plc,Communication Services,Diversified Telecommunication Services,,LSE
+PAG.L,Paragon Banking Group PLC,Financials,Thrifts & Mortgage Finance,,LSE
+PAT.L,Panthera Resources PLC,Materials,Metals & Mining,,LSE
+PATH.L,Path Investments Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+PAY.L,PayPoint plc,Information Technology,IT Services,,LSE
+PBEE.L,PensionBee Group plc,Information Technology,Software,,LSE
+PCA.L,Palace Capital Plc,Real Estate,Real Estate Management & Development,,LSE
+PCF.L,PCF Group plc,Financials,Consumer Finance,,LSE
+PCIP.L,PCI-PAL PLC,Information Technology,IT Services,,LSE
+PDG.L,Pendragon PLC,Consumer Discretionary,Automobiles,,LSE
+PDL.L,Petra Diamonds Limited,Materials,Metals & Mining,,LSE
+PEB.L,Pebble Beach Systems Group plc,Information Technology,Communications Equipment,,LSE
+PEBB.L,The Pebble Group Plc,Communication Services,Diversified Telecommunication Services,,LSE
+PEG.L,Petards Group plc,Industrials,Professional Services,,LSE
+PEN.L,Pennant International Group plc,Information Technology,Software,,LSE
+PERE.L,Pembridge Resources plc,Materials,Metals & Mining,,LSE
+PFP.L,Pathfinder Minerals Plc,Materials,Metals & Mining,,LSE
+PGH.L,Personal Group Holdings Plc,Financials,Insurance,,LSE
+PGR.L,Phoenix Global Resources plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+PHD.L,Proactis Holdings PLC,Information Technology,Software,,LSE
+PHP.L,Primary Health Properties PLC,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+PHSC.L,PHSC plc,Industrials,Industrial Conglomerates,,LSE
+PHTM.L,Photo-Me International plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+PIER.L,The Brighton Pier Group PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+PIP.L,PipeHawk plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+PIRI.L,Pires Investments plc,Financials,Capital Markets,,LSE
+PMG.L,The Parkmead Group plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+PMI.L,Premier Miton Group plc,Financials,Capital Markets,,LSE
+PMP.L,Portmeirion Group PLC,Consumer Discretionary,Household Durables,,LSE
+PNPL.L,Pineapple Power Corporation plc,Utilities,Independent Power and Renewable Electricity Producers,,LSE
+PNS.L,Panther Securities Plc,Real Estate,Real Estate Management & Development,,LSE
+POG.L,Petropavlovsk PLC,Materials,Metals & Mining,,LSE
+POLR.L,Polar Capital Holdings Plc,Financials,Capital Markets,,LSE
+POS.L,Plexus Holdings plc,Energy,Energy Equipment & Services,,LSE
+POW.L,Power Metal Resources plc,Materials,Metals & Mining,,LSE
+PPG.L,Plutus PowerGen Plc,Financials,Diversified Financial Services,,LSE
+PPP.L,Pennpetro Energy Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+PPS.L,Proton Motor Power Systems Plc,Industrials,Electrical Equipment,,LSE
+PRE.L,Pensana Plc,Materials,Metals & Mining,,LSE
+PRES.L,Pressure Technologies plc,Energy,Energy Equipment & Services,,LSE
+PRIM.L,Primorus Investments plc,Financials,Capital Markets,,LSE
+PRP.L,Prime People Plc,Industrials,Professional Services,,LSE
+PRV.L,Porvair plc,Industrials,Construction & Engineering,,LSE
+PSDL.L,Phoenix Spree Deutschland Limited,Real Estate,,,LSE
+PTD.L,Pittards plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+PTRO.L,Pelatro Plc,Information Technology,Software,,LSE
+PTY.L,Parity Group plc,Industrials,Professional Services,,LSE
+PXEN.L,Prospex Energy PLC,Energy,"Oil, Gas & Consumable Fuels",,LSE
+PXS.L,Provexis plc,Health Care,Pharmaceuticals,,LSE
+PYC.L,Physiomics Plc,Health Care,Biotechnology,,LSE
+PZC.L,PZ Cussons Plc,Consumer Staples,Household Products,,LSE
+QLT.L,Quilter plc,Financials,Capital Markets,,LSE
+QRT.L,"The Quarto Group, Inc.",Communication Services,Diversified Telecommunication Services,,LSE
+QTX.L,Quartix Technologies Plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+QUIZ.L,QUIZ plc,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",,LSE
+QXT.L,Quixant Plc,Information Technology,"Technology Hardware, Storage & Peripherals",,LSE
+RAT.L,Rathbones Group Plc,,,,LSE
+RAV.L,Raven Property Group Limited,Real Estate,Real Estate Management & Development,,LSE
+RBD.L,Reabold Resources Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+RBG.L,Revolution Bars Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+RBGP.L,RBG Holdings plc,Industrials,Professional Services,,LSE
+RBN.L,Robinson plc,Consumer Discretionary,Distributors,,LSE
+RCDO.L,Ricardo plc,Industrials,Professional Services,,LSE
+RCH.L,Reach plc,Communication Services,Diversified Telecommunication Services,,LSE
+RCN.L,Redcentric plc,Information Technology,IT Services,,LSE
+RDGC.L,Ridgecrest plc,Industrials,Professional Services,,LSE
+RDI.L,RDI REIT P.L.C.,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+RDT.L,Rosslyn Data Technologies plc,Information Technology,Software,,LSE
+RE-B.L,R.E.A. Holdings plc,Consumer Staples,Household Products,,LSE
+RE.L,R.E.A. Holdings plc,Consumer Staples,Household Products,,LSE
+REAT.L,REACT Group plc,Industrials,Professional Services,,LSE
+REC.L,Record plc,Financials,Capital Markets,,LSE
+REDD.L,Redde Northgate plc,Industrials,Commercial Services & Supplies,,LSE
+REDX.L,Redx Pharma Plc,Health Care,Biotechnology,,LSE
+RESI.L,Residential Secure Income plc,Real Estate,,,LSE
+RFG.L,Roebuck Food,,,,LSE
+RFX.L,Ramsdens Holdings PLC,Industrials,Industrial Conglomerates,,LSE
+RGD.L,Real Good Food plc,Consumer Staples,Food & Staples Retailing,,LSE
+RGL.L,Regional REIT Ltd,Real Estate,,,LSE
+RIV.L,River and Mercantile Group PLC,Financials,Capital Markets,,LSE
+RLE.L,Real Estate Investors plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+RM.L,RM plc,Information Technology,Software,,LSE
+RMS.L,Remote Monitored Systems plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+RNO.L,Renold plc,Industrials,Machinery,,LSE
+RNWH.L,Renew Holdings plc,Industrials,Construction & Engineering,,LSE
+ROCK.L,Rockfire Resources plc,Materials,Metals & Mining,,LSE
+ROL.L,Rotala PLC,Industrials,Road & Rail,,LSE
+ROQ.L,Roquefort Investments plc,Health Care,Biotechnology,,LSE
+RPI.L,Raspberry PI Holdings PLC,,"Technology Hardware, Storage & Peripherals",,
+RRR.L,Red Rock Resources plc,Materials,Metals & Mining,,LSE
+RS1.L,RS GROUP PLC,,Trading Companies & Distributors,,
+RSA.L,RSA Insurance Group Limited,Financials,Insurance,,LSE
+RST.L,Restore plc,Industrials,Professional Services,,LSE
+RTC.L,RTC Group plc,Industrials,Professional Services,,LSE
+RUA.L,Rua Life Sciences Plc,Health Care,Health Care Technology,,LSE
+RUR.L,Rurelec PLC,Utilities,Independent Power and Renewable Electricity Producers,,LSE
+RWA.L,Robert Walters plc,Industrials,Professional Services,,LSE
+RWI.L,Renewi plc,Industrials,Transportation Infrastructure,,LSE
+RWS.L,RWS Holdings Plc,Industrials,Professional Services,,LSE
+SAA.L,M&C Saatchi plc,Communication Services,Diversified Telecommunication Services,,LSE
+SAG.L,Science Group plc,Industrials,Professional Services,,LSE
+SAGA.L,Saga plc,Financials,Insurance,,LSE
+SAL.L,SpaceandPeople plc,Communication Services,Diversified Telecommunication Services,,LSE
+SAR.L,Sareum Holdings plc,Health Care,Biotechnology,,LSE
+SBI.L,Sourcebio International Plc,Health Care,Health Care Equipment & Supplies,,LSE
+SBRE.L,Sabre Insurance Group plc,Financials,Insurance,,LSE
+SBTX.L,SkinBioTherapeutics Plc,Health Care,Biotechnology,,LSE
+SCE.L,Surface Transforms Plc,Consumer Discretionary,Auto Components,,LSE
+SCHO.L,Scholium Group Plc,Consumer Discretionary,Specialty Retail,,LSE
+SCIN.L,The Scottish Investment Trust PLC,Financials,Capital Markets,,LSE
+SCIR.L,Scirocco Energy Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+SCS.L,ScS Group plc,Consumer Discretionary,Specialty Retail,,LSE
+SCT.L,Softcat plc,Information Technology,IT Services,,LSE
+SDG.L,Sanderson Design Group plc,Consumer Discretionary,Household Durables,,LSE
+SDI.L,SDI Group plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+SDY.L,Speedy Hire Plc,Industrials,Professional Services,,LSE
+SEEN.L,SEEEN plc,Information Technology,Software,,LSE
+SENS.L,Sensyne Health plc,Health Care,Health Care Providers & Services,,LSE
+SEQI.L,Sequoia Economic Infrastructure Income Fund Limited,Financials,,,LSE
+SERE.L,Schroder European Real Estate Inv Trust,Real Estate,,,LSE
+SEY.L,Sterling Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+SFE.L,Safestyle UK plc,Industrials,Building Products,,LSE
+SFR.L,Severfield plc,Industrials,Construction & Engineering,,LSE
+SGM.L,Sigma Capital Group plc,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+SHB.L,Shaftesbury PLC,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+SHI.L,SIG plc,Industrials,Trading Companies & Distributors,,LSE
+SHOE.L,Shoe Zone plc,,,,LSE
+SIS.L,Science in Sport plc,Consumer Staples,Food & Staples Retailing,,LSE
+SIXH.L,The 600 Group PLC,Industrials,Machinery,,LSE
+SJH.L,St James House plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+SLNG.L,H C Slingsby plc,Industrials,Trading Companies & Distributors,,LSE
+SLS.L,Standard Life UK Smaller Companies Trust plc,Financials,Capital Markets,,LSE
+SMJ.L,J. Smart & Co. (Contractors) PLC,Industrials,Construction & Engineering,,LSE
+SML.L,Strategic Minerals Plc,Materials,Metals & Mining,,LSE
+SMP.L,St. Modwen Properties PLC,Real Estate,Real Estate Management & Development,,LSE
+SMRT.L,Smartspace Software plc,Information Technology,Software,,LSE
+SMS.L,Smart Metering Systems plc,Industrials,Electrical Equipment,,LSE
+SMWH.L,WH Smith PLC,Consumer Discretionary,Specialty Retail,,LSE
+SNN.L,Sanne Group plc,Financials,Capital Markets,,LSE
+SNT.L,Sabien Technology Group Plc,Industrials,Machinery,,LSE
+SNWS.L,Smiths News plc,Communication Services,Diversified Telecommunication Services,,LSE
+SNX.L,Synectics plc,Industrials,Professional Services,,LSE
+SOLI.L,Solid State plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+SOS.L,Sosandar Plc,Consumer Discretionary,Internet & Direct Marketing Retail,,LSE
+SPA.L,1Spatial Plc,Information Technology,Software,,LSE
+SPC.L,U.K. Spac Plc,Financials,Diversified Financial Services,,LSE
+SPE.L,Sopheon plc,Information Technology,Software,,LSE
+SPEC.L,Inspecs Group plc,Health Care,Health Care Equipment & Supplies,,LSE
+SPI.L,Spire Healthcare Group PLC,Health Care,Health Care Equipment & Supplies,,LSE
+SPR.L,Springfield Properties Plc,Industrials,Construction & Engineering,,LSE
+SRC.L,SigmaRoc plc,Materials,Construction Materials,,LSE
+SREI.L,Schroder Real Estate Investment Trust,Real Estate,,,LSE
+SRES.L,Sunrise Resources plc,Materials,Metals & Mining,,LSE
+SRT.L,SRT Marine Systems plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+SST.L,The Scottish Oriental Smaller Companies Trust plc,Financials,Capital Markets,,LSE
+SSTY.L,Safestay plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+STAF.L,Staffline Group plc,Industrials,Professional Services,,LSE
+STB.L,Secure Trust Bank PLC,Financials,Banks,,LSE
+STEM.L,SThree plc,Industrials,Professional Services,,LSE
+STM.L,STM Group Plc,Financials,Capital Markets,,LSE
+STS.L,Securities Trust of Scotland plc,Financials,Capital Markets,,LSE
+STU.L,Studio Retail Group plc,Consumer Discretionary,Specialty Retail,,LSE
+STVG.L,STV Group plc,Communication Services,Media,,LSE
+SUH.L,Sutton Harbour Group plc,Industrials,Transportation Infrastructure,,LSE
+SUMO.L,"SUMO LOGIC, INC.",Communication Services,Interactive Media & Services,,LSE
+SUN.L,Surgical Innovations Group plc,Health Care,Health Care Technology,,LSE
+SUP.L,Supreme Plc,Industrials,Electrical Equipment,,LSE
+SUPR.L,Supermarket Income REIT plc,Real Estate,,,LSE
+SUR.L,Sureserve Group plc,Industrials,Construction & Engineering,,LSE
+SUS.L,S&U plc,Financials,Consumer Finance,,LSE
+SVE.L,Starvest plc,Financials,Capital Markets,,LSE
+SWC.L,Summerway Capital Plc,Financials,Capital Markets,,LSE
+SWG.L,Shearwater Group plc,Information Technology,Software,,LSE
+SYM.L,Symphony Environmental Technologies plc,Consumer Discretionary,Distributors,,LSE
+SYME.L,Supply@ME Capital plc,Information Technology,Software,,LSE
+SYNT.L,Synthomer plc,Materials,Chemicals,,LSE
+SYS.L,SysGroup plc,Information Technology,Software,,LSE
+SYS1.L,System1 Group PLC,Communication Services,Diversified Telecommunication Services,,LSE
+TAM.L,Tatton Asset Management plc,Financials,Capital Markets,,LSE
+TAN.L,Tanfield Group PLC,Financials,Capital Markets,,LSE
+TAST.L,Tasty plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+TAVI.L,Tavistock Investments Plc,Financials,Capital Markets,,LSE
+TCN.L,Tricorn Group plc,Industrials,Machinery,,LSE
+TEG.L,Ten Entertainment Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+TENG.L,Ten Lifestyle Group Plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+TEP.L,Telecom Plus PLC,Utilities,Multi-Utilities,,LSE
+TERN.L,Tern Plc,Information Technology,Software,,LSE
+TET.L,Treatt plc,Materials,Chemicals,,LSE
+TFW.L,FW Thorpe Plc,Industrials,Electrical Equipment,,LSE
+TGP.L,Tekmar Group plc,Industrials,Construction & Engineering,,LSE
+TGR.L,Tirupati Graphite plc,Materials,Metals & Mining,,LSE
+THG.L,THG Plc,Consumer Discretionary,Specialty Retail,,LSE
+TIDE.L,Crimson Tide plc,Information Technology,Software,,LSE
+TIFS.L,TI Fluid Systems plc,Consumer Discretionary,Auto Components,,LSE
+TIGT.L,Troy Income & Growth Trust Plc,Financials,Capital Markets,,LSE
+TIME.L,Time Finance plc,Financials,Consumer Finance,,LSE
+TLY.L,Totally plc,Health Care,Health Care Equipment & Supplies,,LSE
+TMG.L,The Mission Group plc,Communication Services,Diversified Telecommunication Services,,LSE
+TMO.L,Time Out Group plc,Communication Services,Entertainment,,LSE
+TND.L,Tandem Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+TON.L,Titon Holdings Plc,Industrials,Building Products,,LSE
+TOOP.L,Toople Plc,Communication Services,Diversified Telecommunication Services,,LSE
+TOWN.L,Town Centre Securities PLC,Real Estate,Equity Real Estate Investment Trusts (REITs),,LSE
+TPFG.L,The Property Franchise Group PLC,Real Estate,Real Estate Management & Development,,LSE
+TPG.L,TP Group plc,Industrials,Aerospace & Defense,,LSE
+TPT.L,Topps Tiles Plc,Consumer Discretionary,Household Durables,,LSE
+TPX.L,The Panoply Holdings plc,Information Technology,IT Services,,LSE
+TRAF.L,Trafalgar Property Group plc,Real Estate,Real Estate Management & Development,,LSE
+TRAK.L,Trakm8 Holdings PLC,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+TRB.L,Tribal Group plc,Information Technology,Software,,LSE
+TRCS.L,Tracsis plc,Information Technology,Software,,LSE
+TRD.L,Triad Group plc,Information Technology,IT Services,,LSE
+TRI.L,Trifast plc,Industrials,Building Products,,LSE
+TRIN.L,Trinity Exploration & Production plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+TRP.L,Tower Resources plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+TRR.L,Trident Royalties Plc,Materials,Metals & Mining,,LSE
+TRT.L,Transense Technologies plc,Consumer Discretionary,Auto Components,,LSE
+TSG.L,Trans-Siberian Gold plc,Materials,Metals & Mining,,LSE
+TST.L,Touchstar plc,Information Technology,"Technology Hardware, Storage & Peripherals",,LSE
+TSTL.L,Tristel plc,Health Care,Health Care Equipment & Supplies,,LSE
+TUNE.L,Focusrite Plc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+TWD.L,Trackwise Designs plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+TYM.L,Tertiary Minerals plc,Materials,Metals & Mining,,LSE
+TYMN.L,Tyman plc,Industrials,Building Products,,LSE
+UAI.L,U and I Group PLC,Real Estate,Real Estate Management & Development,,LSE
+UEX.L,Urban Exposure Plc,Financials,Consumer Finance,,LSE
+UHS.L,Umuthi Healthcare Solutions Plc,Health Care,Health Care Providers & Services,,LSE
+UJO.L,Union Jack Oil plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+UKOG.L,UK Oil & Gas PLC,Energy,"Oil, Gas & Consumable Fuels",,LSE
+UKW.L,GREENCOAT UK WIND PLC,Utilities,,,LSE
+ULS.L,ULS Technology plc,Communication Services,Diversified Telecommunication Services,,LSE
+UNG.L,Universe Group plc,Industrials,Professional Services,,LSE
+UOG.L,United Oil & Gas Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+UPGS.L,UP Global Sourcing Holdings plc,Consumer Discretionary,Specialty Retail,,LSE
+UPL.L,Upland Resources Limited,Energy,"Oil, Gas & Consumable Fuels",,LSE
+VAL.L,ValiRx plc,Health Care,Biotechnology,,LSE
+VANL.L,Van Elle Holdings plc,Industrials,Construction & Engineering,,LSE
+VARE.L,Various Eateries PLC,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+VAST.L,Vast Resources plc,Materials,Metals & Mining,,LSE
+VCAP.L,Vector Capital Plc,Financials,Consumer Finance,,LSE
+VCP.L,Victoria plc,Consumer Discretionary,Household Durables,,LSE
+VDTK.L,Verditek PLC,Information Technology,"Technology Hardware, Storage & Peripherals",,LSE
+VEL.L,Velocity Composites plc,Industrials,Aerospace & Defense,,LSE
+VELA.L,Vela Technologies PLC,Financials,Capital Markets,,LSE
+VINO.L,Virgin Wines UK PLC,Consumer Staples,Beverages,,LSE
+VLE.L,Volvere plc,Financials,Capital Markets,,LSE
+VLG.L,Venture Life Group plc,Health Care,Pharmaceuticals,,LSE
+VLX.L,Volex plc,Industrials,Electrical Equipment,,LSE
+VNET.L,Vianet Group plc,Industrials,Professional Services,,LSE
+VOD.L,Vodafone Group Public Limited Company,,,,LSE
+VOG.L,Victoria Oil & Gas Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+VP.L,Vp plc,Industrials,Commercial Services & Supplies,,LSE
+VRCI.L,Verici Dx plc,Health Care,Biotechnology,,LSE
+VTC.L,The Vitec Group plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+VTU.L,Vertu Motors plc,Consumer Discretionary,Automobiles,,LSE
+VTY.L,Vistry Group PLC,Industrials,Construction & Engineering,,LSE
+VVO.L,Vivo Energy plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+W7L.L,WARPAINT LONDON PLC,Consumer Staples,Household Products,,LSE
+WATR.L,Water Intelligence plc,Industrials,Professional Services,,LSE
+WBI.L,Woodbois Limited,Materials,Paper & Forest Products,,LSE
+WCAT.L,Wildcat Petroleum Plc,Energy,"Oil, Gas & Consumable Fuels",,LSE
+WCW.L,Walker Crips Group plc,Financials,Capital Markets,,LSE
+WEY.L,Wey Education plc,Consumer Staples,Household Products,,LSE
+WHI.L,WH Ireland Group plc,Financials,Capital Markets,,LSE
+WIL.L,Wilmington plc,Industrials,Industrial Conglomerates,,LSE
+WIN.L,Wincanton plc,Industrials,Air Freight & Logistics,,LSE
+WINK.L,M Winkworth PLC,Real Estate,Real Estate Management & Development,,LSE
+WISE.L,Wise,,,,LSE
+WIX.L,Wickes Group plc,Consumer Discretionary,Household Durables,,LSE
+WJG.L,Watkin Jones Plc,,,,LSE
+WPHO.L,Windar Photonics Plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+WRES.L,W Resources Plc,Materials,Metals & Mining,,LSE
+WRKS.L,TheWorks.co.uk plc,Consumer Discretionary,Specialty Retail,,LSE
+WSG.L,Westminster Group PLC,Industrials,Professional Services,,LSE
+WSP.L,Wynnstay Properties Plc,Real Estate,Real Estate Management & Development,,LSE
+WYN.L,Wynnstay Group Plc,Materials,Construction Materials,,LSE
+XAR.L,Xaar plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE
+XPD.L,Xpediator Plc,Industrials,Air Freight & Logistics,,LSE
+XPS.L,XPS Pensions Group plc,Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+XSG.L,Xeros Technology Group plc,Industrials,Machinery,,LSE
+XTR.L,Xtract Resources Plc,Materials,Metals & Mining,,LSE
+YGEN.L,Yourgene Health Plc,Health Care,Biotechnology,,LSE
+YNGA.L,"Young & Co.'s Brewery, P.L.C.",Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+YNGN.L,"Young & Co.'s Brewery, P.L.C.",Consumer Discretionary,"Hotels, Restaurants & Leisure",,LSE
+YU.L,Yu Group PLC,Utilities,Multi-Utilities,,LSE
+ZEG.L,Zegona Communications plc,Communication Services,Diversified Telecommunication Services,,LSE
+ZIG.L,Zigup PLC,Industrials,Road & Rail,,
+ZIN.L,Zinc Media Group plc,Communication Services,Entertainment,,LSE
+ZNWD.L,Zinnwald Lithium Plc,Materials,Metals & Mining,,LSE
+ZOO.L,ZOO Digital Group plc,Information Technology,Software,,LSE
+ZTF.L,Zotefoams plc,Materials,Chemicals,,LSE
+ZYT.L,Zytronic plc,Information Technology,"Electronic Equipment, Instruments & Components",,LSE

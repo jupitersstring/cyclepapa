@@ -1,0 +1,398 @@
+#!/usr/bin/env python3
+"""Fill gaps in v2_universe_ranked_full_q.csv from all available metadata sources.
+
+Sources:
+  • data/universes/uni_*.csv  +  data/universes/expanded/uni_*_x.csv  (name, sector, industry, market_cap, exchange)
+  • /tmp/sec_tickers.json (ticker → official SEC company title — covers US EDGAR-only)
+  • data/research/segments_us.csv (segment specifics — fastest/slowest/largest names + values)
+  • data/research/backlog_us.csv (backlog specifics — concept, dates, growth)
+
+Also fixes the `roic_mean_4y_med` → `roic_mean` rename so downstream archetype scripts work.
+"""
+import os, sys, json, glob
+import pandas as pd
+import numpy as np
+
+src = 'data/synthesis/v2_universe_ranked_full_q.csv'
+if not os.path.exists(src):
+    src = 'data/synthesis/v2_universe_ranked_full.csv'
+df = pd.read_csv(src)
+df['ticker'] = df['ticker'].astype(str).str.strip().str.upper()
+print(f"Loaded {len(df)} rows from {src}", file=sys.stderr)
+
+# ─── 0. Ingest EDGAR-only backlog & segment names not in the ranked universe ───
+# The SEC universe carries thousands of filers financedatabase never indexed.
+# Any of them with real backlog or segment data should appear in those cohorts.
+_existing = set(df['ticker'])
+_add = set()
+def _is_common(t):
+    t = str(t).upper()
+    if any(x in t for x in ['-P','-WT','-WS','-UN','-RT','.WS','.U ','.RT','-W','-U','$']): return False
+    if '-' in t and t.rsplit('-', 1)[-1][:1] == 'P': return False
+    return True
+for _src, _flagcol in [('data/research/backlog_us.csv', 'backlog_latest'),
+                       ('data/research/segments_us.csv', 'has_segments')]:
+    if os.path.exists(_src):
+        _b = pd.read_csv(_src, low_memory=False)
+        _b['ticker'] = _b['ticker'].astype(str).str.upper().str.strip()
+        if _flagcol == 'has_segments':
+            _hit = _b[_b.get('has_segments', pd.Series(False)).fillna(False).astype(bool)]
+        else:
+            _hit = _b[_b[_flagcol].notna()]
+        for t in _hit['ticker']:
+            if t not in _existing and _is_common(t):
+                _add.add(t)
+if _add:
+    new = pd.DataFrame({'ticker': sorted(_add)})
+    new['region'] = 'us'
+    new['cap_tier'] = 'unknown'
+    new['edgar_only'] = True
+    df = pd.concat([df, new], ignore_index=True, sort=False)
+    print(f"  ingested {len(_add):,} EDGAR-only backlog/segment names (now {len(df):,} rows)", file=sys.stderr)
+print(f"  gaps before: name {df['name'].isna().sum()}  sector {df.get('sector', pd.Series(dtype=str)).isna().sum()}  mktCap {df.get('mktCap', pd.Series(dtype=float)).isna().sum()}", file=sys.stderr)
+
+# ─── 1. Build master metadata dict from all universe files ───
+meta_rows = []
+for u in sorted(glob.glob('data/universes/uni_*.csv') + glob.glob('data/universes/expanded/uni_*_x.csv')):
+    try:
+        d = pd.read_csv(u, low_memory=False)
+        d.columns = [c.lower() for c in d.columns]
+        cols = {'ticker','name','sector','industry','market_cap','exchange','country'}
+        d = d[[c for c in cols if c in d.columns]].copy()
+        if 'ticker' not in d.columns: continue
+        d['ticker'] = d['ticker'].astype(str).str.strip().str.upper()
+        # NOTE: financedatabase's `market_cap` column is a TIER TEXT LABEL
+        # ('Nano Cap','Micro Cap','Small Cap','Mid Cap','Large Cap','Mega Cap'),
+        # NOT a number. Keep it as a tier string; numeric coerce would null it all.
+        if 'market_cap' in d.columns:
+            d['cap_tier_text'] = d['market_cap'].astype(str).str.strip()
+            d = d.drop(columns=['market_cap'])
+        meta_rows.append(d)
+    except Exception as e:
+        print(f"  skip {u}: {e}", file=sys.stderr)
+meta = pd.concat(meta_rows, ignore_index=True) if meta_rows else pd.DataFrame()
+# Per-ticker dedup — prefer the row carrying the most metadata (name+sector present)
+if len(meta):
+    _rank = meta[['name','sector']].notna().sum(axis=1) if 'name' in meta.columns else pd.Series(0, index=meta.index)
+    meta = (meta.assign(_meta_rank=_rank)
+                .sort_values('_meta_rank', ascending=False)
+                .drop_duplicates('ticker', keep='first')
+                .drop(columns=['_meta_rank']))
+    print(f"  meta dict built: {len(meta)} unique tickers from universe files", file=sys.stderr)
+
+# Tier-text → canonical cap_tier
+_TIER_MAP = {'nano cap':'micro','micro cap':'micro','small cap':'small','mid cap':'mid',
+             'large cap':'large','mega cap':'mega'}
+
+# ─── 2. SEC ticker titles as a name fallback ───
+sec_name = {}
+if os.path.exists('/tmp/sec_tickers.json'):
+    with open('/tmp/sec_tickers.json') as f:
+        sec_raw = json.load(f)
+    for v in sec_raw.values():
+        t = str(v.get('ticker','')).upper().strip()
+        ttl = str(v.get('title','')).strip()
+        if t and ttl: sec_name[t] = ttl
+    print(f"  SEC titles: {len(sec_name)}", file=sys.stderr)
+
+# ─── 3. Backfill name / sector / industry / mktCap / exchange ───
+df['ticker'] = df['ticker'].astype(str).str.strip().str.upper()
+
+# Build the lookup dict from meta
+meta_idx = meta.set_index('ticker') if len(meta) else pd.DataFrame()
+
+def fill(row, col):
+    if col in row and pd.notna(row[col]) and str(row[col]).strip() not in ('', 'nan', 'None'):
+        return row[col]
+    t = row['ticker']
+    if len(meta_idx) and t in meta_idx.index and col in meta_idx.columns:
+        v = meta_idx.loc[t, col]
+        if pd.notna(v): return v
+    return row.get(col, np.nan)
+
+# Vectorized backfill (much faster than apply)
+for col in ['name', 'sector', 'industry', 'exchange', 'country']:
+    if col not in df.columns:
+        df[col] = np.nan
+    if col in meta_idx.columns:
+        fill_map = meta_idx[col].dropna().to_dict()
+        df[col] = df[col].where(df[col].notna() & (df[col].astype(str).str.strip().isin(['','nan','None']) == False),
+                                df['ticker'].map(fill_map))
+
+# Carry the universe tier-text label onto df (fills cap_tier for tickers whose only
+# size source is the universe file — the old numeric `market_cap` path was a no-op).
+if 'mktCap' not in df.columns:
+    df['mktCap'] = np.nan
+if 'cap_tier_text' in meta_idx.columns:
+    df['cap_tier_text'] = df['ticker'].map(meta_idx['cap_tier_text'].dropna().to_dict())
+
+# Final fallback for name: SEC EDGAR title
+if sec_name:
+    df['name'] = df['name'].where(df['name'].notna() & (df['name'].astype(str).str.strip() != ''),
+                                  df['ticker'].map(sec_name))
+
+# Re-derive mktCap_M
+df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+
+# ─── 4. Cap tier: prefer numeric mktCap, else the universe tier-text label ───
+# (Runs again after stage-8 mktCap fills, below, to catch late-filled numeric caps.)
+def cap_tier_from_mc(mc):
+    if pd.isna(mc): return None
+    if mc >= 200e9:  return 'mega'
+    if mc >= 10e9:   return 'large'
+    if mc >= 2e9:    return 'mid'
+    if mc >= 300e6:  return 'small'
+    if mc > 0:       return 'micro'
+    return None
+def refresh_cap_tier():
+    unknown = df['cap_tier'].isin(['unknown', '', np.nan]) | df['cap_tier'].isna()
+    # 4a. numeric mktCap where present
+    from_mc = df.loc[unknown, 'mktCap'].apply(cap_tier_from_mc)
+    df.loc[unknown, 'cap_tier'] = from_mc.where(from_mc.notna(), df.loc[unknown, 'cap_tier'])
+    # 4b. universe tier-text label for those still unknown
+    if 'cap_tier_text' in df.columns:
+        still = df['cap_tier'].isin(['unknown', '', np.nan]) | df['cap_tier'].isna()
+        txt = df.loc[still, 'cap_tier_text'].astype(str).str.strip().str.lower().map(_TIER_MAP)
+        df.loc[still, 'cap_tier'] = txt.where(txt.notna(), df.loc[still, 'cap_tier'])
+    df['cap_tier'] = df['cap_tier'].fillna('unknown')
+refresh_cap_tier()
+
+# ─── 5. Fix the roic_mean_4y_med → roic_mean rename ───
+# Older archetype script references roic_mean_4y_med but compounders_ranked now exports roic_mean.
+if 'roic_mean' in df.columns and 'roic_mean_4y_med' not in df.columns:
+    df['roic_mean_4y_med'] = df['roic_mean']
+if 'roic_min' in df.columns and 'roic_min_4y_med' not in df.columns:
+    df['roic_min_4y_med'] = df['roic_min']
+if 'roic_std' in df.columns and 'roic_std_4y_med' not in df.columns:
+    df['roic_std_4y_med'] = df['roic_std']
+# has_history = roic_years >= 3 (or roe_history for financials)
+if 'has_history' not in df.columns:
+    yrs = pd.to_numeric(df.get('roic_years', pd.Series(np.nan, index=df.index)), errors='coerce')
+    roe_yrs = pd.to_numeric(df.get('roe_min_4y', pd.Series(np.nan, index=df.index)), errors='coerce').notna().astype(int) * 3
+    df['has_history'] = ((yrs.fillna(0) >= 3) | (roe_yrs >= 3)).fillna(False).astype(bool)
+
+# ─── 6. Merge segment specifics with full names ───
+seg_path = 'data/research/segments_us.csv'
+if os.path.exists(seg_path):
+    s = pd.read_csv(seg_path)
+    keep = ['ticker','has_segments','n_segments','largest_segment','largest_segment_pct',
+            'seg_rev_growth_fastest','seg_fastest_name','seg_rev_growth_slowest',
+            'seg_slowest_name','seg_growth_dispersion','seg_mix_shift_pp',
+            'seg_mix_gainer','seg_inflection_flag','seg_margin_best',
+            'seg_margin_best_name','seg_margin_worst','seg_high_margin_growing']
+    s = s[[c for c in keep if c in s.columns]]
+    s['ticker'] = s['ticker'].astype(str).str.upper().str.strip()
+    # Drop existing segment cols from df before merge
+    for c in [x for x in s.columns if x != 'ticker' and x in df.columns]:
+        df = df.drop(columns=[c])
+    df = df.merge(s, on='ticker', how='left')
+    n_seg = int(df.get('has_segments', pd.Series(False, index=df.index)).fillna(False).sum())
+    print(f"  merged segments: {len(s)} rows  ({n_seg} with segment data)", file=sys.stderr)
+
+# ─── 7. Merge backlog specifics ───
+bl_path = 'data/research/backlog_us.csv'
+if os.path.exists(bl_path):
+    b = pd.read_csv(bl_path)
+    keep = ['ticker','backlog_concept_used','backlog_latest','backlog_latest_date',
+            'backlog_qoq_pct','backlog_yoy_pct','backlog_growth_4q_mean',
+            'backlog_growth_8q_mean','backlog_inflection_pp','backlog_inflection_flag',
+            'backlog_to_rev_ratio','backlog_quarters_history']
+    b = b[[c for c in keep if c in b.columns]]
+    b['ticker'] = b['ticker'].astype(str).str.upper().str.strip()
+    for c in [x for x in b.columns if x != 'ticker' and x in df.columns]:
+        df = df.drop(columns=[c])
+    df = df.merge(b, on='ticker', how='left')
+    n_bl = int(df.get('backlog_latest', pd.Series(np.nan, index=df.index)).notna().sum())
+    print(f"  merged backlog: {len(b)} rows  ({n_bl} with backlog data)", file=sys.stderr)
+
+# ─── 8. Pull ALL useful fundamentals cols (master_synthesis only kept 8) ───
+# data/fundamentals/fund_*.csv has 28 cols — we were only using 8 of them.
+fund_frames = []
+for fp in sorted(glob.glob('data/fundamentals/fund_*.csv')):
+    try:
+        fd = pd.read_csv(fp, low_memory=False)
+        keep = ['ticker','pb','pe','fpe','ps','roe','roa','gm','opm','earn_g','ebitda','ev',
+                'ev_ebitda','ev_ebit','fcf','fcf_yield','rev','rev_g','net_debt','nd_ebitda',
+                'div_yield','insiders','beta','mktCap','price','currency']
+        fd = fd[[c for c in keep if c in fd.columns]]
+        if 'ticker' in fd.columns:
+            fd['ticker'] = fd['ticker'].astype(str).str.upper().str.strip()
+            fund_frames.append(fd)
+    except Exception: pass
+if fund_frames:
+    fall = (pd.concat(fund_frames, ignore_index=True)
+              .drop_duplicates('ticker', keep='first')
+              .set_index('ticker'))
+    # Fill-only-nulls for EVERY fundamentals column (add it if absent, else fill its NaNs).
+    # BUGFIX: previously new_cols used an 'add only if absent' guard, but all of them
+    # already exist upstream, so net_debt/fcf/ev_ebitda/etc. were NEVER filled — which
+    # cascaded into ev_total and backlog_to_ev_ratio falling back to bare mktCap.
+    fill_cols = ['pb','pe','roe','roa','gm','earn_g','ebitda','ev','rev','fcf_yield','rev_g',
+                 'mktCap','price','fpe','ps','opm','ev_ebitda','net_debt','nd_ebitda',
+                 'div_yield','insiders','beta','currency','fcf']
+    for col in fill_cols:
+        if col not in fall.columns: continue
+        m = fall[col].dropna().to_dict()
+        if col in df.columns:
+            df[col] = df[col].where(df[col].notna(), df['ticker'].map(m))
+        else:
+            df[col] = df['ticker'].map(m)
+    # Re-derive mktCap_M after mktCap fill
+    df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+    print(f"  pulled {len(fall):,} fundamentals rows; filled {len(fill_cols)} cols", file=sys.stderr)
+
+# ─── 7b. EV column + backlog-to-EV ratio (committed revenue per $ of EV) ───
+# Prefer an explicit EV, else derive from mktCap + net debt, else fall back to mktCap.
+ev_series = pd.Series(np.nan, index=df.index)
+if 'ev' in df.columns:
+    ev_series = pd.to_numeric(df['ev'], errors='coerce')
+nd = pd.to_numeric(df.get('net_debt', pd.Series(np.nan, index=df.index)), errors='coerce')
+mc = pd.to_numeric(df.get('mktCap', pd.Series(np.nan, index=df.index)), errors='coerce')
+ev_derived = mc + nd.fillna(0)
+df['ev_total'] = ev_series.where(ev_series.notna(), ev_derived)
+# backlog / EV — how much committed future revenue per $ of enterprise value
+if 'backlog_latest' in df.columns:
+    bl = pd.to_numeric(df['backlog_latest'], errors='coerce')
+    df['backlog_to_ev_ratio'] = (bl / df['ev_total']).where(df['ev_total'] > 0)
+    n_be = int(df['backlog_to_ev_ratio'].notna().sum())
+    print(f"  computed backlog_to_ev_ratio: {n_be:,} names", file=sys.stderr)
+
+# ─── 8b. SEC-direct derived PB/PE/EV/EBITDA (Yahoo-block bypass) ───
+deriv = 'data/research/derived_us_pb_pe.csv'
+if os.path.exists(deriv):
+    d = pd.read_csv(deriv)
+    d['ticker'] = d['ticker'].astype(str).str.upper().str.strip()
+    d = d.drop_duplicates('ticker', keep='first').set_index('ticker')
+    fills = 0
+    pairs = [('pb','derived_pb'), ('pe','derived_pe'), ('mktCap','derived_mktCap'),
+             ('ev_ebitda','derived_ev_ebitda'), ('ps','derived_ps'),
+             ('net_debt','derived_net_debt'), ('ebitda','derived_ebitda')]
+    for target, src_col in pairs:
+        if src_col not in d.columns: continue
+        m = d[src_col].dropna().to_dict()
+        if target in df.columns:
+            before = df[target].notna().sum()
+            df[target] = df[target].where(df[target].notna(), df['ticker'].map(m))
+            fills += df[target].notna().sum() - before
+        else:
+            df[target] = df['ticker'].map(m)
+            fills += df[target].notna().sum()
+    # SEC-derived EV (mktCap + net debt from EDGAR) — used directly in ev_total below
+    if 'derived_ev' in d.columns:
+        df['sec_ev'] = df['ticker'].map(d['derived_ev'].dropna().to_dict())
+    # Also derive ev_valuation fallback from ev_ebitda
+    if 'ev_valuation' in df.columns and 'ev_ebitda' in df.columns:
+        df['ev_valuation'] = df['ev_valuation'].where(df['ev_valuation'].notna(),
+                                                      df['ev_ebitda'])
+    df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+    # ─── Recompute ev_total with full priority: explicit EV > SEC-derived EV > mktCap + net_debt ───
+    ev_explicit = pd.to_numeric(df.get('ev', pd.Series(np.nan, index=df.index)), errors='coerce')
+    ev_sec      = pd.to_numeric(df.get('sec_ev', pd.Series(np.nan, index=df.index)), errors='coerce')
+    nd2 = pd.to_numeric(df.get('net_debt', pd.Series(np.nan, index=df.index)), errors='coerce')
+    mc2 = pd.to_numeric(df.get('mktCap', pd.Series(np.nan, index=df.index)), errors='coerce')
+    ev_fallback = mc2 + nd2.fillna(0)
+    df['ev_total'] = ev_explicit.where(ev_explicit.notna(),
+                       ev_sec.where(ev_sec.notna(), ev_fallback))
+    # Recompute backlog/EV with the now-complete EV
+    if 'backlog_latest' in df.columns:
+        bl2 = pd.to_numeric(df['backlog_latest'], errors='coerce')
+        df['backlog_to_ev_ratio'] = (bl2 / df['ev_total']).where(df['ev_total'] > 0)
+    n_ev = int(df['ev_total'].notna().sum())
+    print(f"  merged SEC-derived: {len(d):,} rows · {fills:,} cell fills · ev_total now {n_ev:,}", file=sys.stderr)
+
+# ─── 8c. Authoritative Yahoo values (ticker_yf.csv) — HIGHEST priority, overwrites ───
+yf_path = 'data/research/ticker_yf.csv'
+if os.path.exists(yf_path) and os.path.getsize(yf_path) > 50:
+    y = pd.read_csv(yf_path)
+    y['ticker'] = y['ticker'].astype(str).str.upper().str.strip()
+    y = y.drop_duplicates('ticker', keep='last').set_index('ticker')
+    # Map authoritative Yahoo → our canonical columns (overwrite where Yahoo has a value)
+    auth = [('price','yf_price'), ('mktCap','yf_mktCap'), ('pb','yf_pb'), ('pe','yf_pe'), ('fpe','yf_fpe'),
+            ('ps','yf_ps'), ('ev_ebitda','yf_ev_ebitda'), ('ev_total','yf_ev'),
+            ('fcf','yf_fcf'), ('roe','yf_roe'), ('beta','yf_beta'), ('div_yield','yf_div_yield')]
+    over = 0
+    for target, src_col in auth:
+        if src_col not in y.columns: continue
+        m = y[src_col].dropna().to_dict()
+        if target not in df.columns: df[target] = np.nan
+        mapped = df['ticker'].map(m)
+        # Overwrite only where Yahoo actually has a value (authoritative wins)
+        df[target] = mapped.where(mapped.notna(), df[target])
+        over += mapped.notna().sum()
+    # ev_valuation: prefer Yahoo ev_ebitda as the authoritative multiple
+    if 'yf_ev_ebitda' in y.columns:
+        m = y['yf_ev_ebitda'].dropna().to_dict()
+        mapped = df['ticker'].map(m)
+        df['ev_valuation'] = mapped.where(mapped.notna(), df['ev_valuation'])
+    # Carry authoritative growth + PEG straight through for the PEG step (8d)
+    for raw_col in ['yf_earnings_growth','yf_revenue_growth','yf_peg','yf_trailing_peg']:
+        if raw_col in y.columns:
+            df[raw_col] = df['ticker'].map(y[raw_col].dropna().to_dict())
+    df['mktCap_M'] = pd.to_numeric(df['mktCap'], errors='coerce') / 1e6
+    # Recompute backlog_to_ev with authoritative EV
+    if 'backlog_latest' in df.columns and 'ev_total' in df.columns:
+        bl = pd.to_numeric(df['backlog_latest'], errors='coerce')
+        ev = pd.to_numeric(df['ev_total'], errors='coerce')
+        df['backlog_to_ev_ratio'] = (bl / ev).where(ev > 0)
+    print(f"  merged authoritative Yahoo: {len(y):,} rows · {over:,} cell overwrites", file=sys.stderr)
+
+# Refresh cap tiers now that every mktCap source (fundamentals, SEC-derived, Yahoo) has been applied.
+refresh_cap_tier()
+print(f"  cap_tier still unknown: {int((df['cap_tier'] == 'unknown').sum()):,}", file=sys.stderr)
+
+# ─── 8d. PEG ratios (trailing + forward) ───
+# Forward EPS growth derived cleanly from the trailing-vs-forward P/E spread:
+#   fpe = price / fwd_eps, pe = price / ttm_eps  →  pe/fpe = fwd_eps/ttm_eps = 1 + g
+# So implied forward EPS growth = pe/fpe - 1. Authoritative Yahoo earningsGrowth wins
+# where present (merged below). earn_g is the trailing fallback.
+pe_v  = pd.to_numeric(df.get('pe',  pd.Series(np.nan, index=df.index)), errors='coerce')
+fpe_v = pd.to_numeric(df.get('fpe', pd.Series(np.nan, index=df.index)), errors='coerce')
+eg_v  = pd.to_numeric(df.get('earn_g', pd.Series(np.nan, index=df.index)), errors='coerce')
+
+# Implied forward EPS growth from PE spread (only when both PEs are positive)
+implied_fwd_g = (pe_v / fpe_v - 1.0).where((pe_v > 0) & (fpe_v > 0))
+# Authoritative Yahoo earnings growth, if the enricher captured it
+if 'yf_earnings_growth' in df.columns:
+    yf_eg = pd.to_numeric(df['yf_earnings_growth'], errors='coerce')
+    fwd_growth = yf_eg.where(yf_eg.notna(), implied_fwd_g)
+else:
+    fwd_growth = implied_fwd_g
+# Forward growth fallback to trailing earnings growth
+fwd_growth = fwd_growth.where(fwd_growth.notna(), eg_v)
+df['eps_growth_fwd'] = fwd_growth          # as a fraction (0.15 = 15%)
+
+# Trailing PEG = P/E ÷ (earnings growth in %).  Only meaningful when growth > 0.
+df['peg_trailing'] = (pe_v / (eg_v * 100)).where(eg_v > 0)
+# Forward PEG = forward P/E ÷ (forward EPS growth in %).
+df['peg_forward'] = (fpe_v / (fwd_growth * 100)).where((fwd_growth > 0) & (fpe_v > 0))
+# Use trailing P/E with forward growth as a secondary view (GARP screens often want this)
+df['peg_fwd_growth_ttm_pe'] = (pe_v / (fwd_growth * 100)).where((fwd_growth > 0) & (pe_v > 0))
+# Authoritative Yahoo PEG overrides trailing where present
+if 'yf_peg' in df.columns:
+    yfpeg = pd.to_numeric(df['yf_peg'], errors='coerce')
+    df['peg_trailing'] = yfpeg.where(yfpeg.notna(), df['peg_trailing'])
+n_pt = int(df['peg_trailing'].notna().sum()); n_pf = int(df['peg_forward'].notna().sum())
+print(f"  computed PEG: trailing {n_pt:,} · forward {n_pf:,}", file=sys.stderr)
+
+# ─── 9. Sanity flags on extreme values (flag, don't cap) ───
+def flag_extreme(s, lo, hi):
+    v = pd.to_numeric(s, errors='coerce')
+    return ((v < lo) | (v > hi)).fillna(False)
+
+if 'fcf_yield' in df.columns:
+    df['fcf_yield_extreme'] = flag_extreme(df['fcf_yield'], -1.0, 0.5)
+if 'rev_g' in df.columns:
+    df['rev_g_extreme'] = flag_extreme(df['rev_g'], -1.0, 10.0)
+if 'price' in df.columns:
+    df['price_extreme'] = flag_extreme(df['price'], 0, 100_000)
+if 'mktCap' in df.columns:
+    df['mktCap_extreme'] = flag_extreme(df['mktCap'], 0, 5e12)
+if 'ev_valuation' in df.columns:
+    df['ev_valuation_extreme'] = flag_extreme(df['ev_valuation'], -200, 500)
+if 'roiic_1y' in df.columns:
+    df['roiic_extreme'] = flag_extreme(df['roiic_1y'], -5.0, 5.0)
+
+# ─── 10. Write back ───
+df.to_csv(src, index=False)
+print(f"  gaps after:  name {df['name'].isna().sum()}  sector {df['sector'].isna().sum()}  mktCap {df['mktCap'].isna().sum()}", file=sys.stderr)
+print(f"Wrote {src} ({len(df)} rows, {len(df.columns)} cols)", file=sys.stderr)

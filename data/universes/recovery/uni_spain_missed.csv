@@ -1,0 +1,42 @@
+ticker,name,sector,industry,market_cap
+ADL.MC,"ADL Bionatur Solutions, S.A.",Health Care,Biotechnology,Nano Cap
+ALB.MC,"Corporacion Financiera Alba, S.A.",Financials,Capital Markets,Mid Cap
+APPS.MC,"Applus Services, S.A.",Industrials,Professional Services,Small Cap
+BAIN.MC,"Borges Agricultural & Industrial Nuts, S.A.",Consumer Staples,Household Products,Micro Cap
+BDL.MC,"Baron de Ley, S.A.",Consumer Staples,Beverages,Small Cap
+BIO.MC,"Biosearch, S.A.",Health Care,Biotechnology,Micro Cap
+CDR.MC,"Codere, S.A.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+EKT.MC,"Euskaltel, S.A.",Communication Services,Diversified Telecommunication Services,Mid Cap
+GALQ.MC,"General de Alquiler de Maquinaria, S.A.",Industrials,Aerospace & Defense,Micro Cap
+GCO.MC,"GRUPO CATALANA OCCIDENTE, S.A.",Financials,Insurance,Mid Cap
+GRN.MC,"Greenalia, S.A.",Industrials,Industrial Conglomerates,Small Cap
+IFF.MC,"Iffe Futura, S.A.",,,Nano Cap
+INC.MC,"Inclam, S.A.",Industrials,Construction & Engineering,Nano Cap
+LBK.MC,"Liberbank, S.A.",Financials,Banks,Small Cap
+LRE.MC,"Lar Espana Real Estate SOCIMI, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+MED.MC,"Medcomtech, S.A.",Health Care,Health Care Providers & Services,Nano Cap
+MONI.MC,"Mondo TV Iberoamerica, S.A.U.",Communication Services,Entertainment,Nano Cap
+NHH.MC,"NH Hotel Group, S.A.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+NTX.MC,"Netex Knowledge Factory, S.A.",Information Technology,Software,Nano Cap
+OHL.MC,Obrascon Huarte Lain SA,Industrials,Construction & Engineering,Micro Cap
+PRO.MC,"Proeduca Altus, S.A.",Consumer Staples,Household Products,Small Cap
+QBT.MC,"Quabit Inmobiliaria, S.A.",Real Estate,Real Estate Management & Development,Micro Cap
+SPK.MC,"Solarpack Corporacion Tecnologica, S.A.",Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+SPS.MC,"Service Point Solutions, S.A.",Industrials,Professional Services,Micro Cap
+TL5.MC,"Mediaset Espana Comunicacion, S.A.",Communication Services,Media,Mid Cap
+TR1.MC,"TIER 1 Technology, S.A.",Information Technology,IT Services,Nano Cap
+VER.MC,"Vertice Trescientos Sesenta Grados, S.A.",Communication Services,Entertainment,Small Cap
+YAC1.MC,"Almagro Capital SOCIMI, S.A.",Real Estate,,Nano Cap
+YAPS.MC,"Albirana Properties SOCIMI, S.A.U.",Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+YGGC.MC,"General de Galerias Comerciales SOCIMI, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+YINM.MC,"Inmofam 99 SOCIMI, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+YMEI.MC,"Mercal Inmuebles Socimi, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+YMPI.MC,Mistral Patrimonio Inmobiliario Socimi S.A.,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+YORS.MC,"Optimum RE Spain, SOCIMI, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+YPR2.MC,"Corpfin Capital Prime Retail II, SOCIMI, S.A.",Real Estate,,Nano Cap
+YPR3.MC,"Corpfin Capital Prime Retail III, SOCIMI, S.A.",Real Estate,,Nano Cap
+YSPS.MC,"Student Properties Spain SOCIMI, S.A.",Real Estate,,Nano Cap
+YTRA.MC,"Trajano Iberia Socimi, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+YVBA.MC,"VBARE Iberian Properties SOCIMI, S.A.",Real Estate,,Nano Cap
+YVRS.MC,"Elix Vintage Residencial SOCIMI, S.A.",Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+ZOT.MC,"Zardoya Otis, S.A.",Industrials,Machinery,Mid Cap

@@ -1,0 +1,602 @@
+ticker,name,sector,industry,market_cap
+AAA.PA,Alan Allman Associates,Industrials,Professional Services,Micro Cap
+AB.PA,AB Science S.A.,Health Care,Pharmaceuticals,Small Cap
+ABCA.PA,ABC arbitrage SA,Financials,Capital Markets,Small Cap
+ABEO.PA,Abeo SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+ABIO.PA,Albioma,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+ABNX.PA,ABIONYX Pharma SA,Health Care,Biotechnology,Nano Cap
+ABVX.PA,ABIVAX Societe Anonyme,Health Care,Biotechnology,Small Cap
+ACAN.PA,Acanthe Developpement,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+ADOC.PA,Adocia SA,Health Care,Biotechnology,Micro Cap
+ADUX.PA,AdUX SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+ADV.PA,Advenis SA,Financials,Capital Markets,Nano Cap
+ADVI.PA,AdVini S.A.,Consumer Staples,Beverages,Micro Cap
+ADVIC.PA,Advicenne S.A.,Health Care,Biotechnology,Micro Cap
+AF.PA,AIR FRANCE - KLM,Industrials,Airlines,Mid Cap
+AKE.PA,Arkema S.A.,Materials,Chemicals,Mid Cap
+AKW.PA,AKWEL,Consumer Discretionary,Auto Components,Small Cap
+ALACT.PA,Groupe Actiplay SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALADA.PA,ADA Societe Anonyme,Industrials,Commercial Services & Supplies,Nano Cap
+ALADM.PA,ADThink Media Societe Anonyme,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALADO.PA,Adomos S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+ALAGP.PA,Agripower France SASU,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+ALAGR.PA,AgroGeneration SA,Consumer Staples,Household Products,Nano Cap
+ALALO.PA,ACHETER-LOUER.FR,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALAQU.PA,Aquila SA,Industrials,Professional Services,Nano Cap
+ALARF.PA,Adeunis Societe anonyme,Information Technology,Communications Equipment,Nano Cap
+ALATF.PA,Artefact SA,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALBDM.PA,BD Multimedia SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALBFR.PA,Sidetrade SA,Information Technology,Software,Micro Cap
+ALBI.PA,Gascogne SA,Consumer Discretionary,Distributors,Micro Cap
+ALBIO.PA,Biosynex SA,Health Care,Biotechnology,Micro Cap
+ALBKK.PA,Baikowski SA,Materials,Chemicals,Micro Cap
+ALBLD.PA,Bilendi SA,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALBLU.PA,Bluelinea Societe Anonyme,Health Care,Health Care Technology,Nano Cap
+ALBPS.PA,Biophytis SA,Health Care,Biotechnology,Micro Cap
+ALBUD.PA,MINT Societe anonyme,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALCAR.PA,CARMAT,Health Care,Health Care Technology,Small Cap
+ALCES.PA,Cesar SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ALCG.PA,Cabasse Group,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALCHI.PA,ALCHIMIE,Communication Services,Media,Micro Cap
+ALCJ.PA,Crossject Societe Anonyme,Health Care,Health Care Equipment & Supplies,Micro Cap
+ALCLA.PA,Clasquin SA,Industrials,Air Freight & Logistics,Micro Cap
+ALCLS.PA,Cellectis S.A.,Health Care,Biotechnology,Small Cap
+ALCOF.PA,Cofidur S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALCOG.PA,Cogra 48 Societe Anonyme,Materials,Paper & Forest Products,Nano Cap
+ALCOR.PA,Biocorp Production,Health Care,Health Care Technology,Micro Cap
+ALCRB.PA,Carbios SA,Materials,Chemicals,Small Cap
+ALCUR.PA,Arcure S.A.,Industrials,Machinery,Nano Cap
+ALCYB.PA,Cybergun S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ALD.PA,ALD S.A.,Industrials,Commercial Services & Supplies,Mid Cap
+ALDAR.PA,Damartex,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+ALDBL.PA,Bernard Loiseau S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ALDBT.PA,DBT SA,Industrials,Machinery,Nano Cap
+ALDEI.PA,Deinove SA,Health Care,Biotechnology,Nano Cap
+ALDEL.PA,Delfingen Industry S.A.,Consumer Discretionary,Auto Components,Micro Cap
+ALDEV.PA,Devernois S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ALDLS.PA,DLSI,Industrials,Professional Services,Nano Cap
+ALDNE.PA,Don't Nod Entertainment S.A.,Communication Services,Interactive Media & Services,Micro Cap
+ALDOL.PA,Dietswell S.A.,Energy,Energy Equipment & Services,Nano Cap
+ALDUB.PA,Encres Dubuit,Materials,Chemicals,Nano Cap
+ALECO.PA,ecomiam SA,Consumer Staples,Food & Staples Retailing,Micro Cap
+ALECR.PA,Eurofins-Cerep SA,Health Care,Pharmaceuticals,Micro Cap
+ALEMG.PA,Euromedis Groupe,Health Care,Health Care Technology,Micro Cap
+ALEMV.PA,Emova Group SA,Consumer Discretionary,Specialty Retail,Nano Cap
+ALENE.PA,Enertime SA,Industrials,Machinery,Nano Cap
+ALENR.PA,Entreprendre S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALENT.PA,SA Entreparticuliers.com,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALEO2.PA,Eo2 Societe Anonyme,Materials,Paper & Forest Products,Nano Cap
+ALERS.PA,Eurobio-Scientific SA,Health Care,Biotechnology,Micro Cap
+ALESA.PA,Ecoslops S.A.,Industrials,Transportation Infrastructure,Micro Cap
+ALESK.PA,Esker SA,Information Technology,Software,Small Cap
+ALEUA.PA,Eurasia Groupe SA,Real Estate,Real Estate Management & Development,Nano Cap
+ALEUP.PA,Europlasma S.A.,Industrials,Transportation Infrastructure,Nano Cap
+ALFBA.PA,Fashion Bel Air S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ALFIL.PA,Filae S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALFLE.PA,Fleury Michon SA,Consumer Staples,Food & Staples Retailing,Micro Cap
+ALFOC.PA,Focus Home Interactive Societe anonyme,Communication Services,Interactive Media & Services,Small Cap
+ALFPC.PA,Fountaine Pajot SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+ALFRE.PA,Freelance.com SA,Industrials,Professional Services,Micro Cap
+ALGAU.PA,Gaussin SA,Industrials,,Micro Cap
+ALGBE.PA,GLOBAL BIOENERGIES,Utilities,Multi-Utilities,Micro Cap
+ALGEC.PA,GECI International S.A.,Information Technology,Software,Nano Cap
+ALGEM.PA,Eurogerm SA,Consumer Staples,Household Products,Micro Cap
+ALGEN.PA,genOway Societe anonyme,Health Care,Biotechnology,Nano Cap
+ALGEV.PA,Gevelot SA,Industrials,Machinery,Micro Cap
+ALGIL.PA,Groupe Guillin S.A.,Consumer Discretionary,Distributors,Small Cap
+ALGLD.PA,Gold By Gold SA,Materials,Metals & Mining,Nano Cap
+ALGTR.PA,Groupe Tera SA,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALHGR.PA,Hoffmann Green Cement Technologies Societe anonyme,Materials,Construction Materials,Small Cap
+ALHIO.PA,Hiolle Industries S.A.,Industrials,Machinery,Nano Cap
+ALHIT.PA,HITECHPROS Societe anonyme,Information Technology,IT Services,Nano Cap
+ALHRG.PA,Herige,Materials,Construction Materials,Micro Cap
+ALHRS.PA,Hydrogen Refueling Solutions SA,Consumer Discretionary,Specialty Retail,Small Cap
+ALHYG.PA,Hybrigenics Societe Anonyme,Health Care,Biotechnology,Micro Cap
+ALI2S.PA,i2S SA,Industrials,Electrical Equipment,Nano Cap
+ALICR.PA,I.CERAM SA,Health Care,Health Care Equipment & Supplies,Nano Cap
+ALIDS.PA,Idsud S.A.,Financials,Capital Markets,Micro Cap
+ALIMO.PA,Groupimo S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+ALIMP.PA,Implanet S.A.,Health Care,Health Care Technology,Nano Cap
+ALIMR.PA,Immersion SA,Information Technology,Software,Nano Cap
+ALINN.PA,Innelec Multimedia SA,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALINS.PA,Intrasense SA,Health Care,Health Care Providers & Services,Nano Cap
+ALINT.PA,IntegraGen SA,Health Care,Biotechnology,Nano Cap
+ALITL.PA,IT Link SA,Information Technology,IT Services,Nano Cap
+ALJXR.PA,Archos S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALKAL.PA,Kalray S.A.,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+ALKEY.PA,Keyrus S.A.,Information Technology,IT Services,Micro Cap
+ALKKO.PA,KKO International SA,Consumer Staples,Household Products,Nano Cap
+ALKLK.PA,Kerlink SA,Information Technology,Software,Nano Cap
+ALLAN.PA,Lanson-BCC,Consumer Staples,Beverages,Micro Cap
+ALLDL.PA,Groupe LDLC societe anonyme,Consumer Discretionary,Specialty Retail,Small Cap
+ALLEC.PA,COGELEC,Information Technology,Communications Equipment,Micro Cap
+ALLEX.PA,Lexibook - Linguistic Electronic System Societe anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ALLGO.PA,Largo SA,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALLHB.PA,Les Hotels Baverez S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+ALLIX.PA,Wallix Group SA,Information Technology,Software,Micro Cap
+ALLOG.PA,Logic Instrument S.A.,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+ALLUX.PA,Installux S.A.,Materials,Metals & Mining,Micro Cap
+ALM.PA,Alpha MOS SA,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALMAK.PA,Makheia Group Societe anonyme,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALMAR.PA,Mare Nostrum Societe anonyme,Industrials,Professional Services,Nano Cap
+ALMAS.PA,Mastrad Societe Anonyme,Consumer Staples,Household Products,Nano Cap
+ALMDG.PA,MGI Digital Graphic Technology,Industrials,Professional Services,Small Cap
+ALMDP.PA,Medesis Pharma S.A.,Health Care,Biotechnology,Nano Cap
+ALMDT.PA,Median Technologies,Health Care,Biotechnology,Micro Cap
+ALMEC.PA,Mecelec Composites SA,Industrials,Electrical Equipment,Nano Cap
+ALMER.PA,Sapmer SA,Consumer Staples,Food & Staples Retailing,Nano Cap
+ALMET.PA,Methanor SCA,Utilities,Multi-Utilities,Nano Cap
+ALMGI.PA,MG International,Industrials,Professional Services,Micro Cap
+ALMIB.PA,Amoeba S.A.,Materials,Construction Materials,Nano Cap
+ALMII.PA,Maison Internationale de l'Informatique S.A.S.,Information Technology,IT Services,Nano Cap
+ALMIL.PA,1000mercis,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALMLB.PA,Miliboo Societe anonyme,Consumer Discretionary,Household Durables,Nano Cap
+ALMND.PA,Montagne et Neige Developpement SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+ALMNG.PA,madvertise SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALMOU.PA,Moulinvest SA,Materials,Paper & Forest Products,Micro Cap
+ALMRB.PA,Mr. Bricolage SA,Consumer Discretionary,Household Durables,Micro Cap
+ALMUN.PA,Munic S.A.,Information Technology,Software,Nano Cap
+ALNEV.PA,Neovacs S.A.,Health Care,Biotechnology,Nano Cap
+ALNLF.PA,Neolife SA,Consumer Discretionary,Household Durables,Nano Cap
+ALNRG.PA,Energisme S.A.,Information Technology,Software,Micro Cap
+ALNSC.PA,NSC Groupe SA,Industrials,Machinery,Nano Cap
+ALNSE.PA,NSE S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+ALNTG.PA,Netgem SA,Information Technology,Communications Equipment,Nano Cap
+ALNXT.PA,Nextedia S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALOBR.PA,Ober SA,Industrials,Building Products,Nano Cap
+ALODI.PA,O2i Societe Anonyme,Information Technology,Software,Nano Cap
+ALONC.PA,Oncodesign Societe Anonyme,Health Care,Biotechnology,Micro Cap
+ALONX.PA,Onxeo SA,Health Care,Biotechnology,Micro Cap
+ALORD.PA,Ordissimo SA,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+ALOSM.PA,Osmozis SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALP.PA,ADLPartner,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALPAR.PA,Groupe Parot SA,Consumer Discretionary,Automobiles,Nano Cap
+ALPAT.PA,Plant Advanced Technologies SA,Health Care,Biotechnology,Nano Cap
+ALPAU.PA,PAULIC Meunerie SA,Consumer Staples,Food & Staples Retailing,Nano Cap
+ALPCV.PA,Cerinnov Group SA,Industrials,Machinery,Nano Cap
+ALPDX.PA,Piscines Desjoyaux SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+ALPHA.PA,PHARNEXT,Health Care,Biotechnology,Micro Cap
+ALPHE.PA,Pherecydes Pharma Societe anonyme,Health Care,Biotechnology,Micro Cap
+ALPIX.PA,Pixium Vision SA,Health Care,Health Care Equipment & Supplies,Nano Cap
+ALPJT.PA,Poujoulat SA,Industrials,Building Products,Micro Cap
+ALPLA.PA,PlanetMedia SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALPOU.PA,Poulaillon SA,Consumer Staples,Food & Staples Retailing,Nano Cap
+ALPRE.PA,Predilife S.A.,Health Care,Biotechnology,Nano Cap
+ALPRI.PA,"Prismaflex International, S.A.",Communication Services,Diversified Telecommunication Services,Nano Cap
+ALPRO.PA,Prodware,Information Technology,Software,Nano Cap
+ALQGC.PA,Quantum Genomics Societe Anonyme,Health Care,Biotechnology,Micro Cap
+ALQWA.PA,Qwamplify,Communication Services,Diversified Telecommunication Services,Nano Cap
+ALREA.PA,Realites,Real Estate,Real Estate Management & Development,Micro Cap
+ALREW.PA,Reworld Media Societe Anonyme,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALRIB.PA,Riber S.A.,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+ALROC.PA,RocTool S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+ALSAF.PA,Safe Orthopaedics SA,Health Care,Health Care Equipment & Supplies,Nano Cap
+ALSAS.PA,Stradim Espace Finances SA,Real Estate,Real Estate Management & Development,Nano Cap
+ALSEN.PA,Sensorion SA,Health Care,Biotechnology,Micro Cap
+ALSER.PA,Serma Group Societe anonyme,Industrials,Professional Services,Small Cap
+ALSGD.PA,SpineGuard,Health Care,Health Care Technology,Nano Cap
+ALSIP.PA,"SI Participations S.C.A, SCR",Financials,Capital Markets,Nano Cap
+ALSPW.PA,Spineway Societe Anonyme,Health Care,Health Care Technology,Nano Cap
+ALSSI.PA,SuperSonic Imagine SA,Health Care,Health Care Technology,Nano Cap
+ALSTW.PA,Streamwide S.A.,Information Technology,Software,Micro Cap
+ALTA.PA,Altarea SCA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+ALTAN.PA,Le Tanneur & Cie Societe anonyme,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+ALTBG.PA,The Blockchain Group,Communication Services,Diversified Telecommunication Services,Micro Cap
+ALTER.PA,Theradiag SA,Health Care,Health Care Technology,Nano Cap
+ALTEV.PA,Envea Societe Anonyme,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+ALTHE.PA,Theraclion SA,Health Care,Health Care Technology,Nano Cap
+ALTHX.PA,Theranexus Societe Anonyme,Health Care,Biotechnology,Micro Cap
+ALTIV.PA,Tivoly S.A.,Industrials,Machinery,Nano Cap
+ALTRI.PA,Trilogiq S.A.,Industrials,Commercial Services & Supplies,Nano Cap
+ALTRO.PA,Tronic's Microsystems SA,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+ALTTI.PA,Travel Technology Interactive,Information Technology,Software,Nano Cap
+ALTUR.PA,"Altur Investissement SCA, SCR",Financials,Capital Markets,Nano Cap
+ALTUV.PA,Bio-UV Group SA,Industrials,Transportation Infrastructure,Micro Cap
+ALTVO.PA,Evolis SA,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+ALTXC.PA,TXCOM Societe Anonyme,Information Technology,Communications Equipment,Nano Cap
+ALU10.PA,U10 Corp,Consumer Discretionary,Household Durables,Nano Cap
+ALUCI.PA,Lucibel SA,Industrials,Electrical Equipment,Nano Cap
+ALUCR.PA,Ucar SA,Industrials,Commercial Services & Supplies,Nano Cap
+ALUMS.PA,Umanis SA,Information Technology,IT Services,Micro Cap
+ALUNT.PA,Uniti S.A,Industrials,Construction & Engineering,Nano Cap
+ALUPG.PA,UPERGY Societe Anonyme,Consumer Discretionary,Specialty Retail,Nano Cap
+ALUVI.PA,UV Germi SA,Industrials,Construction & Engineering,Nano Cap
+ALVAL.PA,Valbiotis SA,Health Care,Biotechnology,Micro Cap
+ALVDM.PA,Voyageurs du Monde SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ALVER.PA,Vergnet SA,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+ALVGO.PA,Vogo S.A.,Information Technology,Software,Nano Cap
+ALVIA.PA,Vialife SA,Consumer Discretionary,Specialty Retail,Nano Cap
+ALVIV.PA,Visiativ SA,Information Technology,Software,Micro Cap
+ALVMG.PA,Visiomed Group SA,Health Care,Health Care Equipment & Supplies,Nano Cap
+ALVTX.PA,Voluntis S.A.,Health Care,Health Care Providers & Services,Nano Cap
+ALVU.PA,Vente-Unique.com SA,Consumer Discretionary,Household Durables,Micro Cap
+ALWEC.PA,We.Connect SA,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+ALWED.PA,Wedia SA,Information Technology,Software,Nano Cap
+ALWF.PA,WINFARM Societe anonyme,Industrials,Machinery,Micro Cap
+ALWIT.PA,Witbe S.A.,Communication Services,Diversified Telecommunication Services,Nano Cap
+AMPLI.PA,Amplitude Surgical SA,Health Care,Health Care Equipment & Supplies,Micro Cap
+AREIT.PA,Altareit SCA,Real Estate,Real Estate Management & Development,Small Cap
+ARG.PA,Argan SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+ARTE.PA,Artea SA,Real Estate,Real Estate Management & Development,Micro Cap
+ARTO.PA,La Societe Industrielle et Financiere de l'Artois,Information Technology,"Technology Hardware, Storage & Peripherals",Small Cap
+ASP.PA,AST Groupe,Industrials,Construction & Engineering,Micro Cap
+ASY.PA,Assystem S.A.,Industrials,Construction & Engineering,Small Cap
+ATA.PA,Atari SA,Communication Services,Interactive Media & Services,Micro Cap
+ATE.PA,Alten S.A.,Information Technology,IT Services,Mid Cap
+ATEME.PA,Ateme SA,Information Technology,Communications Equipment,Micro Cap
+ATI.PA,ACTIA Group S.A.,Consumer Discretionary,Auto Components,Micro Cap
+ATO.PA,Atos SE,Information Technology,IT Services,Mid Cap
+AUB.PA,Aubay Societe Anonyme,Information Technology,IT Services,Small Cap
+AUGR.PA,Augros Cosmetic Packaging SA,Consumer Discretionary,Distributors,Nano Cap
+AURE.PA,Aurea SA,Industrials,Transportation Infrastructure,Micro Cap
+AURS.PA,AURES Technologies S.A.,Industrials,Commercial Services & Supplies,Micro Cap
+BALYO.PA,Balyo SA,Industrials,Machinery,Micro Cap
+BASS.PA,BASSAC Societe anonyme,Industrials,Construction & Engineering,Small Cap
+BB.PA,Societe BIC SA,Consumer Staples,Household Products,Mid Cap
+BEN.PA,Beneteau S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+BERR.PA,Financiere et Immobiliere de l'Etang de Berre et de la Mediterranee Societe anonyme,Real Estate,Real Estate Management & Development,Nano Cap
+BIG.PA,Bigben Interactive SA,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+BLC.PA,Bastide Le Confort Medical SA,Health Care,Health Care Providers & Services,Small Cap
+BLEE.PA,Bleecker Societe Anonyme,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+BOI.PA,Boiron SA,Health Care,Pharmaceuticals,Small Cap
+BON.PA,Bonduelle SCA,Consumer Staples,Food & Staples Retailing,Small Cap
+BOOST.PA,Boostheat SA,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+BSD.PA,Bourse Direct SA,Financials,Capital Markets,Micro Cap
+BUI.PA,Barbara Bui SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+BUR.PA,Burelle SA,Consumer Discretionary,Auto Components,Small Cap
+CAF.PA,Caisse Regionale de Credit Agricole Mutuel de Paris et d'Ile-de-France,Financials,Banks,Small Cap
+CAFO.PA,Centrale d'Achat Francaise pour l'Outre-Mer Societe Anonyme,Consumer Discretionary,Specialty Retail,Micro Cap
+CAPLI.PA,Groupe Capelli,Real Estate,Real Estate Management & Development,Micro Cap
+CARM.PA,Carmila S.A.,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+CARP.PA,Carpinienne de Participations,Real Estate,Real Estate Management & Development,Nano Cap
+CAS.PA,Cast SA,Information Technology,Software,Micro Cap
+CAT31.PA,Caisse Regionale de Credit Agricole Mutuel Toulouse 31,Financials,Banks,Small Cap
+CATG.PA,SA Catana Group,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+CATS.PA,"Casino, Guichard-Perrachon Societe Anonyme",Consumer Staples,Food & Staples Retailing,Mid Cap
+CBDG.PA,Compagnie du Cambodge,Industrials,Road & Rail,Mid Cap
+CBE.PA,Robertet SA,Materials,Chemicals,Mid Cap
+CBOT.PA,CBo Territoria Societe Anonyme,Real Estate,Real Estate Management & Development,Micro Cap
+CBSM.PA,Societe Centrale des Bois et des Scieries de la Manche S.A.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+CCN.PA,Caisse Regionale de Credit Agricole Mutuel de Normandie-Seine Societe cooperative,Financials,Banks,Small Cap
+CDA.PA,Compagnie des Alpes SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+CEN.PA,Groupe CRIT SA,Industrials,Professional Services,Small Cap
+CFI.PA,CFI-Compagnie Fonciere Internationale,Real Estate,Real Estate Management & Development,Nano Cap
+CGG.PA,CGG,Energy,Energy Equipment & Services,Small Cap
+CGGBS.PA,CGG,Energy,Energy Equipment & Services,Small Cap
+CGGBT.PA,CGG,Energy,Energy Equipment & Services,Small Cap
+CGM.PA,Cegedim SA,Health Care,Health Care Providers & Services,Small Cap
+CGR.PA,CeGeREAL,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+CHSR.PA,Chausseria,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+CIB.PA,Cibox Inter@ctive,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+CIV.PA,Caisse regionale de Credit Agricole Mutuel d'Ille-et-Vilaine Societe cooperative,Financials,Banks,Micro Cap
+CLA.PA,Claranova SE,Information Technology,Software,Small Cap
+CMO.PA,Caisse Regionale de Credit Agricole du Morbihan,Financials,Banks,Micro Cap
+CNF.PA,Caisse Regionale de Credit Agricole Mutuel Nord de France Societe cooperative,Financials,Banks,Small Cap
+CO.PA,"Casino, Guichard-Perrachon Societe Anonyme",Consumer Staples,Food & Staples Retailing,Mid Cap
+COFA.PA,Coface SA,Financials,Insurance,Small Cap
+COH.PA,Coheris SA,Information Technology,Software,Nano Cap
+COM.PA,CNIM Groupe SA,Industrials,Transportation Infrastructure,Micro Cap
+COUR.PA,Courtois S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+COV.PA,Covivio,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+COVH.PA,Covivio,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+COX.PA,Nicox S.A.,Health Care,Biotechnology,Micro Cap
+CRAP.PA,Caisse Regionale de Credit Agricole Mutuel Alpes Provence Societe cooperative,Financials,Banks,Small Cap
+CRAV.PA,Caisse regionale de Credit Agricole Mutuel Atlantique Vendee,Financials,Banks,Small Cap
+CRBP2.PA,Caisse Regionale de Credit Agricole Mutuel Brie Picardie Societe cooperative,Financials,Banks,Small Cap
+CRI.PA,Chargeurs SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+CRLA.PA,Caisse Regionale de Credit Agricole Mutuel du Languedoc Societe cooperative,Financials,Banks,Small Cap
+CRLO.PA,Caisse regionale de Credit Agricole Mutuel Loire Haute-Loire - Societe cooperative,Financials,Banks,Small Cap
+CROS.PA,Crosswood SA,Real Estate,Real Estate Management & Development,Micro Cap
+CRTO.PA,Caisse Regionale de Credit Agricole Mutuel de La Touraine et du Poitou Societe Cooperative,Financials,Banks,Small Cap
+CTRG.PA,Catering International & Services Societe Anonyme,Industrials,Professional Services,Micro Cap
+DBG.PA,Derichebourg SA,Industrials,Transportation Infrastructure,Small Cap
+DBV.PA,DBV Technologies S.A.,Health Care,Biotechnology,Small Cap
+DEC.PA,JCDecaux SA,Communication Services,Diversified Telecommunication Services,Mid Cap
+DGM.PA,Diagnostic Medical Systems S.A.,Health Care,Health Care Technology,Nano Cap
+DLTA.PA,Delta Plus Group,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+DPAM.PA,Les Docks des Petroles d'Ambes -SA,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+DPT.PA,S.T. Dupont S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Micro Cap
+DVT.PA,Devoteam SA,Information Technology,IT Services,Small Cap
+EBPF.PA,Financiere et Immobiliere de l'Etang de Berre et de la Mediterranee Societe anonyme,Real Estate,Real Estate Management & Development,Micro Cap
+ECP.PA,EuropaCorp SA,Communication Services,Entertainment,Micro Cap
+EDI.PA,Media 6 SA,Industrials,Commercial Services & Supplies,Nano Cap
+EFI.PA,Eurasia Fonciere Investissements Societe Anonyme,Real Estate,Real Estate Management & Development,Nano Cap
+EGR.PA,Evergreen SA,Financials,Capital Markets,Nano Cap
+EIFF.PA,Societe de la Tour Eiffel,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+EKI.PA,EKINOPS S.A.,Information Technology,Communications Equipment,Micro Cap
+ELEC.PA,Electricite de Strasbourg Societe Anonyme,Utilities,Independent Power and Renewable Electricity Producers,Small Cap
+ELIOR.PA,Elior Group SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ELIS.PA,Elis SA,Industrials,Professional Services,Mid Cap
+EO.PA,Faurecia S.E.,Consumer Discretionary,Auto Components,Mid Cap
+EOS.PA,ACTEOS S.A.,Information Technology,Software,Nano Cap
+EOSI.PA,EOS imaging SA,Health Care,Health Care Technology,Micro Cap
+EPCP.PA,EPC Groupe,Materials,Chemicals,Micro Cap
+EPS.PA,ENGIE Eps S.A.,Industrials,Machinery,Micro Cap
+ERA.PA,ERAMET S.A.,Materials,Metals & Mining,Mid Cap
+ERYP.PA,ERYTECH Pharma S.A.,Health Care,Biotechnology,Micro Cap
+ES.PA,Esso S.A.F.,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+ESI.PA,ESI Group SA,Information Technology,Software,Small Cap
+ETL.PA,Eutelsat Communications,Information Technology,Communications Equipment,Mid Cap
+EUCAR.PA,Europcar Mobility Group S.A.,Industrials,Commercial Services & Supplies,Mid Cap
+EUR.PA,EURO Ressources S.A.,Materials,Metals & Mining,Micro Cap
+EURS.PA,Fonciere Euris SA,Real Estate,Real Estate Management & Development,Micro Cap
+EXAC.PA,Exacompta Clairefontaine S.A.,Materials,Paper & Forest Products,Micro Cap
+EXE.PA,EXEL Industries SA,Industrials,Machinery,Small Cap
+FALG.PA,Fermentalg Societe Anonyme,Health Care,Biotechnology,Micro Cap
+FATL.PA,Fonciere Atland,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+FAUV.PA,Fauvet-Girel,Industrials,Road & Rail,Nano Cap
+FAYE.PA,"Fayenceries de Sarreguemines, Digoin & Vitry-le-Francois Societe Anonyme",Consumer Staples,Household Products,Nano Cap
+FBEL.PA,Bel Societe anonyme,Consumer Staples,Food & Staples Retailing,Mid Cap
+FCMC.PA,Societe Fermiere du Casino Municipal de Cannes,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+FGA.PA,Figeac Aero Societe Anonyme,Industrials,Aerospace & Defense,Micro Cap
+FII.PA,Lisi S.A.,Industrials,Aerospace & Defense,Small Cap
+FINM.PA,Financiere Marjos SA,Industrials,Industrial Conglomerates,Nano Cap
+FIPP.PA,FIPP S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+FLO.PA,Groupe Flo SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+FLY.PA,Societe Fonciere Lyonnaise SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+FNAC.PA,Fnac Darty SA,Consumer Discretionary,Specialty Retail,Small Cap
+FNTS.PA,Finatis Societe Anonyme,Consumer Staples,Food & Staples Retailing,Micro Cap
+FPG.PA,Union Technologies Informatique Group S.A.,Information Technology,IT Services,Nano Cap
+FPN.PA,Fonciere Paris Nord,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+FR.PA,Valeo SE,Consumer Discretionary,Auto Components,Mid Cap
+FREY.PA,Frey SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+GALIM.PA,Galimmo SCA,Real Estate,Real Estate Management & Development,Small Cap
+GAM.PA,Gaumont SA,Communication Services,Entertainment,Small Cap
+GBT.PA,Guerbet SA,Health Care,Health Care Technology,Small Cap
+GDS.PA,Ramsay Generale de Sante SA,Health Care,Health Care Equipment & Supplies,Mid Cap
+GEA.PA,Grenobloise d'Electronique et d'Automatismes Societe Anonyme,Industrials,Commercial Services & Supplies,Micro Cap
+GENX.PA,Generix SA,Information Technology,Software,Micro Cap
+GET.PA,Getlink SE,Industrials,Road & Rail,Mid Cap
+GID.PA,Egide S.A.,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+GIRO.PA,Signaux Girod S.A.,Industrials,Road & Rail,Nano Cap
+GJAJ.PA,Groupe JAJ,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+GKTX.PA,Genkyotex SA,Health Care,Biotechnology,Nano Cap
+GLO.PA,GL Events SA,Industrials,Professional Services,Small Cap
+GNFT.PA,Genfit SA,Health Care,Biotechnology,Micro Cap
+GOE.PA,Groupe Gorge SA,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+GPE.PA,Groupe Pizzorno Environnement,Industrials,Transportation Infrastructure,Micro Cap
+GREV.PA,Musee Grevin SA,Communication Services,Entertainment,Nano Cap
+GRVO.PA,Graines Voltz S.A.,Materials,Construction Materials,Micro Cap
+GTT.PA,Gaztransport & Technigaz SA,Energy,Energy Equipment & Services,Mid Cap
+GUI.PA,Guillemot Corporation S.A.,Information Technology,"Technology Hardware, Storage & Peripherals",Micro Cap
+GV.PA,GENOMIC VISION,Health Care,Biotechnology,Nano Cap
+HCO.PA,High Co. SA,Communication Services,Diversified Telecommunication Services,Micro Cap
+HDP.PA,Les Hotels de Paris SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+HEXA.PA,Hexaom S.A.,Industrials,Construction & Engineering,Small Cap
+HF.PA,HF Company SA,Information Technology,Communications Equipment,Nano Cap
+HIPAY.PA,HiPay Group SA,Information Technology,Software,Micro Cap
+HOP.PA,Hopscotch Global PR Group,Communication Services,Diversified Telecommunication Services,Nano Cap
+ICAD.PA,Icade SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+IDIP.PA,IDI,Financials,Capital Markets,Small Cap
+IDL.PA,ID Logistics Group SA,Industrials,Professional Services,Small Cap
+IGE.PA,IGE+XAO SA,Information Technology,Software,Small Cap
+ILD.PA,iliad S.A.,Communication Services,Diversified Telecommunication Services,Mid Cap
+IMDA.PA,Immobiliere Dassault SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+INEA.PA,Fonciere Inea S.A.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+INF.PA,Infotel SA,Information Technology,IT Services,Small Cap
+INFE.PA,Compagnie Industrielle et Financiere d'Entreprises SA,Industrials,Construction & Engineering,Micro Cap
+IPH.PA,Innate Pharma,Health Care,Biotechnology,Small Cap
+IPN.PA,Ipsen S.A.,Health Care,Pharmaceuticals,Mid Cap
+IPS.PA,Ipsos SA,Communication Services,Diversified Telecommunication Services,Small Cap
+IRD.PA,Groupe IRD SA,Financials,Capital Markets,Micro Cap
+ITE.PA,Itesoft S.A.,Information Technology,Software,Nano Cap
+ITP.PA,Interparfums,Consumer Staples,Household Products,Mid Cap
+IVA.PA,Inventiva S.A.,Health Care,Biotechnology,Small Cap
+JBOG.PA,Jacques Bogart S.A.,Consumer Staples,Household Products,Micro Cap
+JCQ.PA,Jacquet Metals SA,Materials,Metals & Mining,Small Cap
+KOF.PA,Kaufman & Broad S.A.,Industrials,Construction & Engineering,Small Cap
+KORI.PA,Korian,Health Care,Health Care Equipment & Supplies,Mid Cap
+LACR.PA,LACROIX Group SA,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+LAT.PA,Latecoere S.A.,Industrials,Aerospace & Defense,Micro Cap
+LBIRD.PA,Lumibird SA,Health Care,Biotechnology,Small Cap
+LBON.PA,Compagnie Lebon,Financials,Capital Markets,Micro Cap
+LEBL.PA,Fonciere 7 investissement Societe Anonyme,Consumer Discretionary,Household Durables,Nano Cap
+LFDE.PA,La Francaise de l'Energie S.A.,Energy,"Oil, Gas & Consumable Fuels",Micro Cap
+LI.PA,Klepierre SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Mid Cap
+LIN.PA,Linedata Services SA,Information Technology,Software,Micro Cap
+LNA.PA,LNA Sante SA,Health Care,Health Care Equipment & Supplies,Small Cap
+LOCAL.PA,Solocal Group S.A.,Communication Services,Diversified Telecommunication Services,Small Cap
+LOUP.PA,L.D.C. S.A.,Consumer Staples,Food & Staples Retailing,Small Cap
+LPE.PA,Laurent-Perrier SA,Consumer Staples,Beverages,Small Cap
+LSS.PA,Lectra SA,Information Technology,Software,Small Cap
+LYS.PA,Lysogene S.A.,Health Care,Biotechnology,Micro Cap
+MALT.PA,Malteries Franco-Belges,Consumer Staples,Beverages,Small Cap
+MAN.PA,Manutan International S.A.,Industrials,Professional Services,Small Cap
+MAU.PA,Etablissements Maurel & Prom SA,Energy,"Oil, Gas & Consumable Fuels",Small Cap
+MBWS.PA,Marie Brizard Wine & Spirits SA,Consumer Staples,Beverages,Micro Cap
+MCPHY.PA,MCPHY ENERGY,Industrials,Machinery,Small Cap
+MDM.PA,Maisons du Monde SA,Consumer Discretionary,Household Durables,Small Cap
+MEDCL.PA,MedinCell S.A.,Health Care,Biotechnology,Small Cap
+MEMS.PA,"MEMSCAP, S.A.",Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+MERY.PA,Mercialys SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+METEX.PA,METabolic EXplorer S.A.,Materials,Chemicals,Micro Cap
+MF.PA,Wendel,Financials,Capital Markets,Mid Cap
+MKEA.PA,Mauna Kea Technologies SA,Health Care,Health Care Technology,Nano Cap
+ML350.PA,Rapidopret SAS,Real Estate,Real Estate Management & Development,Nano Cap
+MLAAE.PA,Caire,Industrials,Air Freight & Logistics,Nano Cap
+MLABO.PA,Toutabo SA,Consumer Staples,Household Products,Nano Cap
+MLACT.PA,Activium Group SAS,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+MLAEM.PA,Ashler et Manson SA,Financials,Insurance,Nano Cap
+MLAHC.PA,@Health SA,Health Care,Biotechnology,Nano Cap
+MLAIM.PA,Air Marine SA,Industrials,Aerospace & Defense,Nano Cap
+MLALV.PA,Alveen S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+MLAUD.PA,Audience Labs,Communication Services,Diversified Telecommunication Services,Nano Cap
+MLBAT.PA,Batla Minerals SA,Materials,Metals & Mining,Nano Cap
+MLBSP.PA,Blue Shark Power System,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+MLCAC.PA,Lombard et Medot SA,Consumer Staples,Beverages,Nano Cap
+MLCEC.PA,SA Cecurity.com,Information Technology,Software,Nano Cap
+MLCFD.PA,Compagnie de Chemins de Fer Departementaux Societe Anonyme,Industrials,Road & Rail,Nano Cap
+MLCHE.PA,Cheops Technology France SA,Information Technology,IT Services,Nano Cap
+MLCIO.PA,Groupe CIOA,Industrials,Professional Services,Nano Cap
+MLCMB.PA,Compagnie Du Mont-Blanc,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+MLCMI.PA,Societe De Conseil En Externalisation Et En Marketing Internet Societe Anonyme,Industrials,Professional Services,Nano Cap
+MLCVG.PA,Societe des Chemins de Fer et Tramways du Var et du Gard,Financials,Capital Markets,Small Cap
+MLDAM.PA,Damaris SA,Information Technology,Software,Nano Cap
+MLDYN.PA,Dynafond Societe Anonyme,Materials,Metals & Mining,Nano Cap
+MLEDR.PA,Compagnie des Eaux de Royan,Utilities,Water Utilities,Nano Cap
+MLERO.PA,Euroland Corporate Societe anonyme,Financials,Capital Markets,Nano Cap
+MLEVE.PA,Everset,Consumer Discretionary,,Nano Cap
+MLFDV.PA,FD,Consumer Staples,Food & Staples Retailing,Nano Cap
+MLFTI.PA,France Tourisme Immobilier SA,Real Estate,Real Estate Management & Development,Nano Cap
+MLGEL.PA,Gel Groupe SA,Industrials,Professional Services,Nano Cap
+MLGML.PA,Gour Medical SA,Health Care,Pharmaceuticals,Nano Cap
+MLHIN.PA,Societe Hoteliere et Immobiliere de Nice S.A.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+MLHMC.PA,Hotel Majestic Cannes,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+MLHOP.PA,Participation Industrielle Miniere Societe Anonyme,Industrials,Industrial Conglomerates,Nano Cap
+MLHPE.PA,Hopening SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+MLHPI.PA,Hopium Societe anonyme,Consumer Discretionary,Automobiles,Micro Cap
+MLHYD.PA,Hydraulique P.B Societe anonyme,Industrials,Machinery,Nano Cap
+MLHYE.PA,Hydro-Exploitations Societe anonyme,Industrials,Construction & Engineering,Nano Cap
+MLIDS.PA,IDS France SAS,Information Technology,Software,Nano Cap
+MLIFC.PA,Infoclip S.A.,Information Technology,Software,Nano Cap
+MLIML.PA,ImAlliance SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+MLIMP.PA,Imprimerie Chirat Societe Anonyme,Communication Services,Diversified Telecommunication Services,Nano Cap
+MLLCB.PA,Les Constructeurs du Bois S.A.,Real Estate,Real Estate Management & Development,Nano Cap
+MLLOI.PA,Locasystem International SA,Information Technology,IT Services,Nano Cap
+MLMAB.PA,Maison Antoine Baud Societe Anonyme,Real Estate,Equity Real Estate Investment Trusts (REITs),Nano Cap
+MLMAD.PA,Made SA,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+MLMMC.PA,SA Multimicrocloud,,,Nano Cap
+MLMON.PA,MonFinancier SAS,Financials,Capital Markets,Nano Cap
+MLNAT.PA,Nature et Logis SA,Industrials,Construction & Engineering,Nano Cap
+MLNEI.PA,News Invest,Industrials,Industrial Conglomerates,Nano Cap
+MLNEO.PA,Neocom Multimedia SA,Communication Services,Diversified Telecommunication Services,Nano Cap
+MLNMA.PA,Nicolas Miguet et Associes SA,Financials,Capital Markets,Nano Cap
+MLNOV.PA,Novatech Industries,Information Technology,"Electronic Equipment, Instruments & Components",Nano Cap
+MLOCT.PA,Octopus Biosafety SA,Information Technology,"Technology Hardware, Storage & Peripherals",Nano Cap
+MLONL.PA,Onlineformapro S.A.,Consumer Staples,Household Products,Nano Cap
+MLOSA.PA,O Sorbet D'amour SA,Consumer Staples,Food & Staples Retailing,Nano Cap
+MLPAC.PA,Pacte Novation,Information Technology,Software,Nano Cap
+MLPFX.PA,Parfex SA,Materials,Chemicals,Nano Cap
+MLPLC.PA,Placoplatre SA,Industrials,Building Products,Small Cap
+MLROU.PA,Rousselet Centrifugation S.A.,Industrials,Machinery,Nano Cap
+MLSBT.PA,Scientific Brain Training SA,Health Care,Health Care Equipment & Supplies,Nano Cap
+MLSDN.PA,La Savonnerie De Nyons,Consumer Staples,Household Products,Nano Cap
+MLSIM.PA,Simo International Societe Anonyme,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+MLSML.PA,Smalto Holding SA,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+MLSRP.PA,Speed Rabbit Pizza SA,Consumer Staples,Food & Staples Retailing,Nano Cap
+MLTBM.PA,Les Toques Blanches du Monde Societe Anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+MLTEA.PA,Team Societe anonyme,Industrials,Aerospace & Defense,Micro Cap
+MLTRA.PA,Compagnie des Tramways de Rouen,Financials,Capital Markets,Nano Cap
+MLTRO.PA,TROC DE L'ILE SA,Consumer Discretionary,Specialty Retail,Nano Cap
+MLUMG.PA,Umalis Group,Industrials,Professional Services,Nano Cap
+MLUMH.PA,Union Metallurgique de la Haute-Seine S.A.,Industrials,Building Products,Nano Cap
+MLVAP.PA,Kumulus Vape S.A.,Consumer Discretionary,Internet & Direct Marketing Retail,Nano Cap
+MLVER.PA,Verney-Carron S.A.,Industrials,Aerospace & Defense,Nano Cap
+MLVIN.PA,Fonciere Vindi Societe Anonyme,Real Estate,Real Estate Management & Development,Micro Cap
+MLVIS.PA,Visio Nerf,Industrials,Machinery,Nano Cap
+MLWEA.PA,"Weaccess Group, Societe Anonyme",Communication Services,Diversified Telecommunication Services,Nano Cap
+MMB.PA,Lagardere SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+MMT.PA,Metropole Television S.A.,Communication Services,Media,Mid Cap
+MONC.PA,Financiere Moncey SA,Financials,Capital Markets,Small Cap
+MRM.PA,M.R.M. SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+MRN.PA,Mersen SA,Industrials,Electrical Equipment,Small Cap
+MTU.PA,Manitou BF SA,Industrials,Machinery,Small Cap
+MUN.PA,Micropole S.A.,Information Technology,IT Services,Nano Cap
+NACON.PA,Nacon S.A.,Communication Services,Interactive Media & Services,Small Cap
+NANO.PA,Nanobiotix S.A.,Health Care,Biotechnology,Small Cap
+NAVYA.PA,NAVYA,Consumer Discretionary,Automobiles,Micro Cap
+NEOEN.PA,Neoen S.A.,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+NEX.PA,Nexans S.A.,Industrials,Electrical Equipment,Mid Cap
+NEXTS.PA,NextStage - S.C.A.,Financials,Capital Markets,Micro Cap
+NK.PA,Imerys S.A.,Materials,Construction Materials,Mid Cap
+NR21.PA,NR21 Societe Anonyme,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Nano Cap
+NRG.PA,NRJ Group SA,Communication Services,Media,Small Cap
+NXI.PA,Nexity SA,Real Estate,Real Estate Management & Development,Mid Cap
+ODET.PA,Financiere de l'Odet SA,Industrials,Industrial Conglomerates,Mid Cap
+OLG.PA,Olympique Lyonnais Groupe SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+OLGOS.PA,Olympique Lyonnais Groupe SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+OPN.PA,Groupe Open,Information Technology,IT Services,Micro Cap
+ORAP.PA,Orapi SA,Materials,Chemicals,Micro Cap
+OREGE.PA,Orege Societe Anonyme,Industrials,Transportation Infrastructure,Micro Cap
+ORIA.PA,Fiducial Real Estate SA,Real Estate,Real Estate Management & Development,Small Cap
+ORP.PA,Orpea SA,Health Care,Health Care Equipment & Supplies,Mid Cap
+OSE.PA,OSE Immunotherapeutics SA,Health Care,Biotechnology,Micro Cap
+PAR.PA,Paref SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+PARP.PA,Groupe Partouche SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+PARRO.PA,Parrot S.A.,Information Technology,Communications Equipment,Micro Cap
+PAT.PA,Patrimoine et Commerce SA,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+PCA.PA,PCAS SA,Materials,Chemicals,Micro Cap
+PERR.PA,Gerard Perrier Industrie S.A.,Industrials,Electrical Equipment,Small Cap
+PEUG.PA,Peugeot Invest Societe anonyme,Financials,Capital Markets,Mid Cap
+PHA.PA,Pharmagest Interactive SA,Health Care,Health Care Providers & Services,Small Cap
+PID.PA,Paragon ID SA,Information Technology,Semiconductors & Semiconductor Equipment,Micro Cap
+PIG.PA,Haulotte Group SA,Industrials,Machinery,Micro Cap
+POM.PA,Compagnie Plastic Omnium SA,Consumer Discretionary,Auto Components,Mid Cap
+POXEL.PA,Poxel S.A.,Health Care,Biotechnology,Micro Cap
+PRC.PA,Artprice.com,Communication Services,Diversified Telecommunication Services,Nano Cap
+PREC.PA,Precia S.A.,Industrials,Machinery,Micro Cap
+PROAC.PA,Proactis SA,Information Technology,Software,Nano Cap
+PROL.PA,Prologue S.A.,Information Technology,Software,Nano Cap
+PSAT.PA,Passat Societe Anonyme,Consumer Discretionary,Specialty Retail,Nano Cap
+PVL.PA,Plastiques du Val de Loire SA,Consumer Discretionary,Auto Components,Micro Cap
+PWG.PA,Prodways Group SA,Industrials,Machinery,Micro Cap
+QDT.PA,Quadient S.A.,Information Technology,Software,Small Cap
+RAL.PA,Rallye SA,Consumer Staples,Food & Staples Retailing,Micro Cap
+RBO.PA,Roche Bobois SA,Consumer Discretionary,Household Durables,Micro Cap
+RBT.PA,Robertet SA,Materials,Chemicals,Mid Cap
+RE.PA,Colas SA,Industrials,Transportation Infrastructure,Mid Cap
+RF.PA,Eurazeo SE,Financials,Capital Markets,Mid Cap
+RIN.PA,VILMORIN & CIE,Consumer Staples,Household Products,Small Cap
+ROTH.PA,Rothschild & Co SCA,Financials,Capital Markets,Mid Cap
+RUI.PA,Rubis,Utilities,Gas Utilities,Mid Cap
+RXL.PA,Rexel S.A.,Industrials,Trading Companies & Distributors,Mid Cap
+SABE.PA,Saint Jean Groupe Societe anonyme,Consumer Staples,Food & Staples Retailing,Micro Cap
+SACI.PA,Fiducial Office Solutions,Industrials,Commercial Services & Supplies,Micro Cap
+SAMS.PA,Samse SA,Industrials,Trading Companies & Distributors,Small Cap
+SAVE.PA,Savencia SA,Consumer Staples,Food & Staples Retailing,Small Cap
+SBT.PA,Oeneo SA,Consumer Staples,Beverages,Small Cap
+SCHP.PA,Seche Environnement SA,Industrials,Transportation Infrastructure,Small Cap
+SCR.PA,SCOR SE,Financials,Insurance,Mid Cap
+SDG.PA,Synergie SE,Industrials,Professional Services,Small Cap
+SDT.PA,Visiodent SA,Health Care,Health Care Providers & Services,Nano Cap
+SEC.PA,Soditech SA,Industrials,Construction & Engineering,Nano Cap
+SEFER.PA,SergeFerrari Group SA,Industrials,Building Products,Micro Cap
+SELER.PA,Selectirente,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+SESL.PA,SES-imagotag Societe Anonyme,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+SFCA.PA,Societe Francaise de Casinos Societe Anonyme,Consumer Discretionary,"Hotels, Restaurants & Leisure",Nano Cap
+SFPI.PA,Groupe SFPI SA,Industrials,Machinery,Micro Cap
+SIGHT.PA,GenSight Biologics S.A.,Health Care,Biotechnology,Micro Cap
+SII.PA,Societe pour l'Informatique Industrielle SII S.A.,Information Technology,IT Services,Small Cap
+SK.PA,SEB SA,Consumer Discretionary,Household Durables,Mid Cap
+SMCP.PA,SMCP S.A.,Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Small Cap
+SMTPC.PA,Societe Marseillaise du Tunnel Prado Carenage,Industrials,Transportation Infrastructure,Micro Cap
+SO.PA,Somfy SA,Consumer Discretionary,Household Durables,Mid Cap
+SOG.PA,SOGECLAIR SA,Industrials,Aerospace & Defense,Micro Cap
+SOI.PA,Soitec S.A.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+SOP.PA,Sopra Steria Group SA,Information Technology,IT Services,Mid Cap
+SPEL.PA,Fonciere Volta,Real Estate,Real Estate Management & Development,Micro Cap
+SPIE.PA,SPIE SA,Industrials,Construction & Engineering,Mid Cap
+SQI.PA,SQLI,Information Technology,IT Services,Micro Cap
+SRP.PA,SRP Groupe S.A.,Consumer Discretionary,Internet & Direct Marketing Retail,Small Cap
+STF.PA,STEF SA,Industrials,Air Freight & Logistics,Small Cap
+SX.PA,CS Communication & Systemes SA,Industrials,Aerospace & Defense,Micro Cap
+TAYN.PA,Societe de Tayninh SA,Real Estate,Real Estate Management & Development,Nano Cap
+TCH.PA,Technicolor SA,Communication Services,Entertainment,Small Cap
+TE.PA,Technip Energies N.V.,Energy,Energy Equipment & Services,Mid Cap
+TES.PA,Tessi SA,Information Technology,IT Services,Small Cap
+TFF.PA,TFF Group,Consumer Discretionary,Distributors,Small Cap
+TFI.PA,Television Francaise 1 SA,Communication Services,Media,Mid Cap
+THEP.PA,Thermador Groupe SA,Industrials,Trading Companies & Distributors,Small Cap
+TIPI.PA,Tipiak Societe Anonyme,Consumer Staples,Food & Staples Retailing,Micro Cap
+TKO.PA,Tikehau Capital,Financials,Capital Markets,Mid Cap
+TKTT.PA,Tarkett S.A.,Industrials,Building Products,Small Cap
+TNG.PA,Transgene SA,Health Care,Biotechnology,Micro Cap
+TOUP.PA,Touax SCA,Industrials,Marine,Micro Cap
+TRI.PA,Trigano S.A.,Consumer Discretionary,Automobiles,Mid Cap
+UBI.PA,Ubisoft Entertainment SA,Communication Services,Interactive Media & Services,Mid Cap
+UFF.PA,Union Financiere de France Banque SA,Financials,Capital Markets,Small Cap
+UNBL.PA,Unibel S.A.,Consumer Staples,Food & Staples Retailing,Mid Cap
+VAC.PA,Pierre et Vacances SA,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+VCT.PA,Vicat SA,Materials,Construction Materials,Mid Cap
+VDLO.PA,Videlio SA,Information Technology,Communications Equipment,Micro Cap
+VETO.PA,Vetoquinol SA,Health Care,Pharmaceuticals,Small Cap
+VIL.PA,"VIEL & Cie, societe anonyme",Financials,Capital Markets,Small Cap
+VIRP.PA,Virbac SA,Health Care,Pharmaceuticals,Mid Cap
+VK.PA,Vallourec S.A.,Materials,Metals & Mining,Micro Cap
+VLA.PA,Valneva SE,Health Care,Biotechnology,Small Cap
+VLTSA.PA,Voltalia SA,Utilities,Independent Power and Renewable Electricity Producers,Mid Cap
+VMX.PA,Verimatrix Societe anonyme,Information Technology,Software,Micro Cap
+VRAP.PA,Vranken-Pommery Monopole Societe Anonyme,Consumer Staples,Beverages,Micro Cap
+VRLA.PA,Verallia Societe Anonyme,Consumer Discretionary,Distributors,Mid Cap
+XPO.PA,XPO Logistics Europe SA,Industrials,Air Freight & Logistics,Mid Cap
+YERA.PA,ERAMET S.A.,Materials,Metals & Mining,Mid Cap

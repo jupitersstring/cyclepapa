@@ -1,0 +1,81 @@
+ticker,name,sector,industry,market_cap
+AALB.AS,Aalberts N.V.,Industrials,Machinery,Mid Cap
+ACCEL.AS,Accell Group N.V.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ACOMO.AS,Amsterdam Commodities N.V.,Consumer Staples,Food & Staples Retailing,Small Cap
+AGN.AS,Aegon N.V.,Financials,Insurance,Mid Cap
+AJAX.AS,AFC Ajax N.V.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Small Cap
+ALFEN.AS,Alfen N.V.,Industrials,Electrical Equipment,Small Cap
+ALX.AS,Alumexx N.V.,Consumer Discretionary,Internet & Direct Marketing Retail,Nano Cap
+AMG.AS,AMG Advanced Metallurgical Group N.V.,Materials,Metals & Mining,Small Cap
+ARCAD.AS,Arcadis NV,Industrials,Construction & Engineering,Mid Cap
+ASRNL.AS,ASR Nederland N.V.,Financials,Insurance,Mid Cap
+AVTX.AS,Avantium N.V.,Materials,Chemicals,Micro Cap
+BAMNB.AS,Koninklijke BAM Groep NV,Industrials,Construction & Engineering,Small Cap
+BBED.AS,Beter Bed Holding N.V.,Consumer Discretionary,Household Durables,Micro Cap
+BESI.AS,BE Semiconductor Industries N.V.,Information Technology,Semiconductors & Semiconductor Equipment,Mid Cap
+BEVER.AS,Bever Holding NV,Real Estate,Real Estate Management & Development,Micro Cap
+BFIT.AS,Basic-Fit NV,Consumer Discretionary,"Hotels, Restaurants & Leisure",Mid Cap
+BOKA.AS,Royal Boskalis Westminster N.V.,Industrials,Construction & Engineering,Mid Cap
+BOLS.AS,Lucas Bols B.V.,Consumer Staples,Beverages,Micro Cap
+BRILL.AS,Koninklijke Brill NV,Communication Services,Diversified Telecommunication Services,Micro Cap
+BRNL.AS,Brunel International N.V.,Industrials,Professional Services,Small Cap
+CLB.AS,Core Laboratories N.V.,Energy,Energy Equipment & Services,Small Cap
+CMCOM.AS,CM.com N.V.,Information Technology,Software,Small Cap
+CRBN.AS,Corbion N.V.,Materials,Chemicals,Mid Cap
+CTAC.AS,Ctac N.V.,Information Technology,IT Services,Micro Cap
+CTPNV.AS,CTP B.V.,Real Estate,Real Estate Management & Development,Mid Cap
+DGB.AS,DGB Group N.V.,Information Technology,Software,Nano Cap
+DPA.AS,DPA Group N.V.,Industrials,Professional Services,Micro Cap
+EAS2P.AS,Ease2pay N.V.,Information Technology,Software,Nano Cap
+ECMPA.AS,Eurocommercial Properties N.V.,Real Estate,Equity Real Estate Investment Trusts (REITs),Micro Cap
+EFIC1.AS,European FinTech IPO Company 1 B.V.,Financials,Diversified Financial Services,Small Cap
+ENVI.AS,Envipco Holding N.V.,Industrials,Construction & Engineering,Micro Cap
+ESG.AS,ESG Core Investments B.V.,Financials,Diversified Financial Services,Micro Cap
+ESP.AS,Esperite N.V.,Health Care,Health Care Equipment & Supplies,Nano Cap
+FAST.AS,Fastned B.V.,Consumer Discretionary,Specialty Retail,Small Cap
+FFARM.AS,ForFarmers N.V.,Consumer Staples,Household Products,Small Cap
+FLOW.AS,Flow Traders N.V.,Financials,Capital Markets,Small Cap
+FUR.AS,Fugro N.V.,Energy,Energy Equipment & Services,Small Cap
+GOJXN.AS,GeoJunxion N.V.,Communication Services,Diversified Telecommunication Services,Nano Cap
+GVNV.AS,GrandVision N.V.,Consumer Discretionary,Specialty Retail,Mid Cap
+HDG.AS,Hunter Douglas N.V.,Consumer Discretionary,Household Durables,Mid Cap
+HEIJM.AS,Koninklijke Heijmans N.V.,Industrials,Construction & Engineering,Small Cap
+HOLCO.AS,Holland Colours NV,Materials,Chemicals,Micro Cap
+HUNDP.AS,Hunter Douglas N.V.,Consumer Discretionary,Household Durables,Mid Cap
+HYDRA.AS,Hydratec Industries NV,Industrials,Machinery,Micro Cap
+ICT.AS,ICT Group N.V.,Information Technology,Software,Micro Cap
+IEX.AS,IEX Group N.V.,Financials,Capital Markets,Nano Cap
+IMCD.AS,IMCD N.V.,Materials,Chemicals,Mid Cap
+INTER.AS,Intertrust N.V.,Financials,Capital Markets,Small Cap
+KDS.AS,Kiadis Pharma N.V.,Health Care,Biotechnology,Micro Cap
+KENDR.AS,Kendrion N.V.,Consumer Discretionary,Auto Components,Small Cap
+LIGHT.AS,Signify N.V.,Industrials,Electrical Equipment,Mid Cap
+LVIDE.AS,Lavide Holding N.V.,Financials,Diversified Financial Services,Nano Cap
+NEDAP.AS,Nedap N.V.,Information Technology,"Electronic Equipment, Instruments & Components",Small Cap
+NEDSE.AS,MKB Nedsense NV,Information Technology,Software,Nano Cap
+NEWAY.AS,Neways Electronics International N.V.,Information Technology,"Electronic Equipment, Instruments & Components",Micro Cap
+NOVI.AS,Novisource N.V.,Information Technology,IT Services,Nano Cap
+NSE.AS,New Sources Energy N.V.,Utilities,Independent Power and Renewable Electricity Producers,Nano Cap
+NSI.AS,NSI N.V.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+OCI.AS,OCI N.V.,Materials,Chemicals,Mid Cap
+ORANW.AS,Oranjewoud N.V.,Industrials,Construction & Engineering,Small Cap
+ORDI.AS,Ordina N.V.,Information Technology,IT Services,Small Cap
+PHARM.AS,Pharming Group N.V.,Health Care,Biotechnology,Small Cap
+PNL.AS,PostNL N.V.,Industrials,Air Freight & Logistics,Mid Cap
+PORF.AS,B.V. Delftsch Aardewerkfabriek De Porceleyne Fles Anno 1653,Consumer Staples,Household Products,Nano Cap
+PREVA.AS,Value8 N.V.,Financials,Capital Markets,Nano Cap
+ROOD.AS,RoodMicrotec N.V.,Information Technology,Semiconductors & Semiconductor Equipment,Nano Cap
+SBMO.AS,SBM Offshore N.V.,Energy,Energy Equipment & Services,Mid Cap
+SIFG.AS,Sif Holding N.V.,Industrials,Building Products,Small Cap
+SLIGR.AS,Sligro Food Group N.V.,Consumer Staples,Food & Staples Retailing,Small Cap
+SNOW.AS,SnowWorld N.V.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Micro Cap
+STRN.AS,Stern Groep N.V.,Consumer Discretionary,Automobiles,Micro Cap
+TIE.AS,TIE KINETIX,Information Technology,Software,Nano Cap
+TOM2.AS,TomTom N.V.,Information Technology,Software,Small Cap
+TWEKA.AS,TKH Group N.V.,Information Technology,Communications Equipment,Mid Cap
+VALUE.AS,Value8 N.V.,Financials,Capital Markets,Micro Cap
+VASTN.AS,Vastned Retail N.V.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap
+VEON.AS,VEON Ltd.,Communication Services,Diversified Telecommunication Services,Mid Cap
+VLK.AS,Van Lanschot Kempen N.V.,Financials,Banks,Small Cap
+VPK.AS,Royal Vopak N.V.,Energy,Energy Equipment & Services,Mid Cap
+WHA.AS,Wereldhave N.V.,Real Estate,Equity Real Estate Investment Trusts (REITs),Small Cap

@@ -1,0 +1,569 @@
+ticker,name,sector,industry,market_cap
+042420.KQ,Z Holdings Corporation,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+0K85.L,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+0Q0C.L,Toshiba Corporation,Industrials,Machinery,Large Cap
+0R15.L,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+0YX.F,Sysmex Corporation,Health Care,Biotechnology,Large Cap
+1925.T,"Daiwa House Industry Co.,Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+1928.T,"Sekisui House, Ltd.",Industrials,Construction & Engineering,Large Cap
+1RH.F,"Recruit Holdings Co., Ltd.",Industrials,Professional Services,Large Cap
+2413.T,"M3, Inc.",Health Care,Health Care Providers & Services,Large Cap
+2502.T,Asahi Group Holdings Ltd,Consumer Staples,Beverages,Large Cap
+2503.T,"Kirin Holdings Company, Limited",Consumer Staples,Beverages,Large Cap
+2587.T,Suntory Beverage & Food Limited,Consumer Staples,Beverages,Large Cap
+2801.T,Kikkoman Corp.,Consumer Staples,Food & Staples Retailing,Large Cap
+2802.T,"Ajinomoto Co., Inc.",Consumer Staples,Food & Staples Retailing,Large Cap
+3064.T,"MonotaRO Co., Ltd.",Industrials,Building Products,Large Cap
+3092.T,"ZOZO, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+3402.T,"Toray Industries, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+3407.T,Asahi Kasei Corporation,Materials,Chemicals,Large Cap
+3659.T,"NEXON Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+3765.T,Gungho Online Entertainment Inc.,Communication Services,Interactive Media & Services,Large Cap
+4151.T,"Kyowa Kirin Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+4307.T,"Nomura Research Institute, Ltd.",Information Technology,IT Services,Large Cap
+4452.T,Kao Corporation,Consumer Staples,Household Products,Large Cap
+4502.F,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+4502.T,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+4503.T,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+4507.T,"Shionogi & Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+4519.T,"Chugai Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+4523.T,"Eisai Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+4528.T,"Ono Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+4543.T,Terumo Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+4543N.MX,Terumo Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+4568.T,"Daiichi Sankyo Company, Limited",Health Care,Pharmaceuticals,Large Cap
+4578.T,"Otsuka Holdings Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+4661.T,"Oriental Land Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+4684.T,"OBIC Co.,Ltd.",Information Technology,Software,Large Cap
+4755.T,"Rakuten Group, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+4768.T,Otsuka Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+4901.T,FUJIFILM Holdings Corporation,Industrials,Commercial Services & Supplies,Large Cap
+4911.T,"Shiseido Company, Limited",Consumer Staples,Household Products,Large Cap
+5020.T,"ENEOS Holdings, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+6098.T,"Recruit Holdings Co., Ltd.",Industrials,Professional Services,Large Cap
+6201.T,Toyota Industries Corporation,Consumer Discretionary,Automobiles,Large Cap
+6301.T,Komatsu Ltd.,Industrials,Machinery,Large Cap
+6326.T,Kubota Corporation,Industrials,Machinery,Large Cap
+6367.T,"Daikin Industries,Ltd.",Industrials,Building Products,Large Cap
+6383.T,"Daifuku Co., Ltd.",Industrials,Machinery,Large Cap
+6479.T,MinebeaMitsumi Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6501.T,"Hitachi, Ltd.",Industrials,Industrial Conglomerates,Large Cap
+6502.T,Toshiba Corporation,Industrials,Machinery,Large Cap
+6506.F,YASKAWA Electric Corporation,Industrials,Electrical Equipment,Large Cap
+6506.T,YASKAWA Electric Corporation,Industrials,Electrical Equipment,Large Cap
+6586.T,Makita Corporation,Industrials,Building Products,Large Cap
+6594.T,Nidec Corp.,Industrials,Machinery,Large Cap
+6645.T,OMRON Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6701.T,NEC Corporation,Information Technology,IT Services,Large Cap
+6702.T,Fujitsu Limited,Information Technology,IT Services,Large Cap
+6723.T,Renesas Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+6752.T,Panasonic Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6753.T,Sharp Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6758.T,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6762.T,TDK Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6857.T,Advantest Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+6861.T,Keyence Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6869.T,Sysmex Corporation,Health Care,Biotechnology,Large Cap
+6902.T,DENSO Corporation,Consumer Discretionary,Auto Components,Large Cap
+6920.T,Lasertec Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6954.T,Fanuc Corporation,Industrials,Machinery,Large Cap
+6971.T,Kyocera Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6981.T,"Murata Manufacturing Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+6988.T,Nitto Denko Corporation,Materials,Chemicals,Large Cap
+6HK.F,"Toray Industries, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+7011.T,Mitsubishi Heavy Industries Ltd.,Industrials,Machinery,Large Cap
+7201.T,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+7202.T,Isuzu Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+7203.T,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+7259.T,Aisin Corporation,Consumer Discretionary,Auto Components,Large Cap
+7267.T,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+7269.T,Suzuki Motor Corporation,Consumer Discretionary,Automobiles,Large Cap
+7270.T,Subaru Corporation,Consumer Discretionary,Automobiles,Large Cap
+7272.T,"Yamaha Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+7309.T,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+7701.T,Shimadzu Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+7741.T,HOYA Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+7751.T,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+7832.T,BANDAI NAMCO Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+7974.T,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+7NX.F,"NEXON Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+7NX.SG,"NEXON Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+7SN.F,Suntory Beverage & Food Limited,Consumer Staples,Beverages,Large Cap
+8001.T,ITOCHU Corporation,Industrials,Industrial Conglomerates,Large Cap
+8002.T,Marubeni Corporation,Industrials,Industrial Conglomerates,Large Cap
+8015.T,Toyota Tsusho Corp.,Materials,Metals & Mining,Large Cap
+8035.T,Tokyo Electron Limited,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+8113.T,Unicharm Corporation,Consumer Staples,Household Products,Large Cap
+8267.T,"Aeon Co., Ltd.",Consumer Discretionary,Household Durables,Large Cap
+8306.T,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Large Cap
+8411.T,"Mizuho Financial Group, Inc.",Financials,Banks,Large Cap
+8421.T,Shinkin Central Bank,Financials,Banks,Large Cap
+8591.T,ORIX Corp.,Financials,Consumer Finance,Large Cap
+8604.T,"Nomura Holdings, Inc.",Financials,Capital Markets,Large Cap
+8630.T,"Sompo Holdings, Inc.",Financials,Insurance,Large Cap
+8766.T,"Tokio Marine Holdings, Inc.",Financials,Insurance,Large Cap
+8801.T,"Mitsui Fudosan Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+9433.T,KDDI Corporation,Communication Services,Diversified Telecommunication Services,Large Cap
+9434.T,SoftBank Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+9735.T,"SECOM CO., LTD.",Industrials,Professional Services,Large Cap
+9843.T,"Nitori Holdings Co., Ltd.",Consumer Discretionary,Specialty Retail,Large Cap
+9917.TW,"SECOM CO., LTD.",Industrials,Professional Services,Large Cap
+9984.T,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+9TO.F,Toyota Tsusho Corp.,Materials,Metals & Mining,Large Cap
+ABW.F,Asahi Group Holdings Ltd,Consumer Staples,Beverages,Large Cap
+ADTTF,Advantest Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+AHKSF,Asahi Kasei Corporation,Materials,Chemicals,Large Cap
+AHKSY,Asahi Kasei Corporation,Materials,Chemicals,Large Cap
+AJI.F,"Ajinomoto Co., Inc.",Consumer Staples,Food & Staples Retailing,Large Cap
+AJINF,"Ajinomoto Co., Inc.",Consumer Staples,Food & Staples Retailing,Large Cap
+AJINY,"Ajinomoto Co., Inc.",Consumer Staples,Food & Staples Retailing,Large Cap
+AKN.F,Aisin Corporation,Consumer Discretionary,Auto Components,Large Cap
+AKN.SG,Aisin Corporation,Consumer Discretionary,Auto Components,Large Cap
+ALNPF,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ALNPY,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ALPMF,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+ALPMY,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+ANCA.BE,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ANCA.DU,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ANCA.F,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ANCA.MU,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ANCA.SG,ANA Holdings Inc.,Industrials,Airlines,Large Cap
+ANK.F,"Sompo Holdings, Inc.",Financials,Insurance,Large Cap
+AONNF,"Aeon Co., Ltd.",Consumer Discretionary,Household Durables,Large Cap
+AONNY,"Aeon Co., Ltd.",Consumer Discretionary,Household Durables,Large Cap
+ASAA.F,Asahi Kasei Corporation,Materials,Chemicals,Large Cap
+ASBRF,Asahi Group Holdings Ltd,Consumer Staples,Beverages,Large Cap
+ASEKY,Aisin Corporation,Consumer Discretionary,Auto Components,Large Cap
+ASGLY,AGC Inc.,Materials,Chemicals,Large Cap
+ATEYY,Advantest Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+CAJ,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CAJ.BA,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CAJFF,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CAJI34.SA,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CAJN.MX,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CHGCF,"Chugai Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+CHGCY,"Chugai Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+CJPRF,Central Japan Railway Company,Industrials,Road & Rail,Large Cap
+CJPRY,Central Japan Railway Company,Industrials,Road & Rail,Large Cap
+CMTDF,"Sumitomo Mitsui Trust Holdings, Inc.",Financials,Banks,Large Cap
+CNN1.BE,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.DU,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.F,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.HA,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.HM,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.MU,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.SG,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNN1.VI,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNNA.BE,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNNA.F,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNNA.MU,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CNNA.SG,Canon Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",Large Cap
+CUP.F,"Chugai Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+D4S.F,"Daiichi Sankyo Company, Limited",Health Care,Pharmaceuticals,Large Cap
+D65.SG,Disco Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+DAIFN.MX,"Daifuku Co., Ltd.",Industrials,Machinery,Large Cap
+DAIUF,"Daifuku Co., Ltd.",Industrials,Machinery,Large Cap
+DCNSF,"Dai-ichi Life Holdings, Inc.",Financials,Insurance,Large Cap
+DFKCY,"Daifuku Co., Ltd.",Industrials,Machinery,Large Cap
+DIP.F,KDDI Corporation,Communication Services,Diversified Telecommunication Services,Large Cap
+DKI.F,"Daikin Industries,Ltd.",Industrials,Building Products,Large Cap
+DKI.VI,"Daikin Industries,Ltd.",Industrials,Building Products,Large Cap
+DKIA.F,"Daikin Industries,Ltd.",Industrials,Building Products,Large Cap
+DKILF,"Daikin Industries,Ltd.",Industrials,Building Products,Large Cap
+DKILY,"Daikin Industries,Ltd.",Industrials,Building Products,Large Cap
+DNO.F,DENSO Corporation,Consumer Discretionary,Auto Components,Large Cap
+DNOA.F,DENSO Corporation,Consumer Discretionary,Auto Components,Large Cap
+DNZOF,DENSO Corporation,Consumer Discretionary,Auto Components,Large Cap
+DNZOY,DENSO Corporation,Consumer Discretionary,Auto Components,Large Cap
+DQJCY,Pan Pacific International Holdings Corporation,Consumer Staples,Household Products,Large Cap
+DSCSY,Disco Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+DSKYF,"Daiichi Sankyo Company, Limited",Health Care,Pharmaceuticals,Large Cap
+DSNKY,"Daiichi Sankyo Company, Limited",Health Care,Pharmaceuticals,Large Cap
+DWAHF,"Daiwa House Industry Co.,Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+DWAHY,"Daiwa House Industry Co.,Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+DWH.F,"Daiwa House Industry Co.,Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+EII.F,"Eisai Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+EJPRY,East Japan Railway Company,Industrials,Road & Rail,Large Cap
+EJR.F,East Japan Railway Company,Industrials,Road & Rail,Large Cap
+ESALY,"Eisai Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+FANUF,Fanuc Corporation,Industrials,Machinery,Large Cap
+FANUN.MX,Fanuc Corporation,Industrials,Machinery,Large Cap
+FANUY,Fanuc Corporation,Industrials,Machinery,Large Cap
+FJI.F,FUJIFILM Holdings Corporation,Industrials,Commercial Services & Supplies,Large Cap
+FJI.VI,FUJIFILM Holdings Corporation,Industrials,Commercial Services & Supplies,Large Cap
+FJTSF,Fujitsu Limited,Information Technology,IT Services,Large Cap
+FJTSY,Fujitsu Limited,Information Technology,IT Services,Large Cap
+FR7.F,"Fast Retailing Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+FR70.F,"Fast Retailing Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+FR7H.SG,"Fast Retailing Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+FRCOF,"Fast Retailing Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+FRCOY,"Fast Retailing Co., Ltd.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+FTS,TIS Inc.,Information Technology,IT Services,Large Cap
+FUC.F,Fanuc Corporation,Industrials,Machinery,Large Cap
+FUCA.F,Fanuc Corporation,Industrials,Machinery,Large Cap
+FUH.F,Subaru Corporation,Consumer Discretionary,Automobiles,Large Cap
+FUJ1.F,Fujitsu Limited,Information Technology,IT Services,Large Cap
+FUJA.F,Fujitsu Limited,Information Technology,IT Services,Large Cap
+FUJHF,Subaru Corporation,Consumer Discretionary,Automobiles,Large Cap
+FUJHY,Subaru Corporation,Consumer Discretionary,Automobiles,Large Cap
+FUJIF,FUJIFILM Holdings Corporation,Industrials,Commercial Services & Supplies,Large Cap
+FUJIY,FUJIFILM Holdings Corporation,Industrials,Commercial Services & Supplies,Large Cap
+G03.F,Gungho Online Entertainment Inc.,Communication Services,Interactive Media & Services,Large Cap
+GUNGF,Gungho Online Entertainment Inc.,Communication Services,Interactive Media & Services,Large Cap
+HDM.F,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+HDMA.F,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+HDZ.F,Shimadzu Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+HIA1.F,"Hitachi, Ltd.",Industrials,Industrial Conglomerates,Large Cap
+HMC,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+HMC.BA,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+HMCN.MX,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+HNDAF,"Honda Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+HOCPF,HOYA Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+HOCPY,HOYA Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+HTHIF,"Hitachi, Ltd.",Industrials,Industrial Conglomerates,Large Cap
+HTHIY,"Hitachi, Ltd.",Industrials,Industrial Conglomerates,Large Cap
+HYB.F,HOYA Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+IOC.F,ITOCHU Corporation,Industrials,Industrial Conglomerates,Large Cap
+IOC.VI,ITOCHU Corporation,Industrials,Industrial Conglomerates,Large Cap
+ISU.F,Isuzu Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+ISU.SG,ISUZU MOTORS LTD. Registered Sh,Industrials,,Large Cap
+ISUA.F,Isuzu Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+ISUZF,Isuzu Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+ISUZY,Isuzu Motors Limited,Consumer Discretionary,Automobiles,Large Cap
+ITOCF,ITOCHU Corporation,Industrials,Industrial Conglomerates,Large Cap
+ITOCY,ITOCHU Corporation,Industrials,Industrial Conglomerates,Large Cap
+IX,ORIX Corp.,Financials,Consumer Finance,Large Cap
+JAP.F,Central Japan Railway Company,Industrials,Road & Rail,Large Cap
+JAPAF,Japan Tobacco Inc.,Consumer Staples,Tobacco,Large Cap
+JAPAY,Japan Tobacco Inc.,Consumer Staples,Tobacco,Large Cap
+JAT.F,Japan Tobacco Inc.,Consumer Staples,Tobacco,Large Cap
+JAT.SG,Japan Tobacco Inc.,Consumer Staples,Tobacco,Large Cap
+JAT.VI,Japan Tobacco Inc.,Consumer Staples,Tobacco,Large Cap
+JATA.F,Japan Tobacco Inc.,Consumer Staples,Tobacco,Large Cap
+JHJ.F,"ENEOS Holdings, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+JPHLF,"Japan Post Holdings Co., Ltd.",Financials,Banks,Large Cap
+JPPHY,"Japan Post Holdings Co., Ltd.",Financials,Banks,Large Cap
+JPXGY,"Japan Exchange Group, Inc.",Financials,Capital Markets,Large Cap
+JUS1.F,"Aeon Co., Ltd.",Consumer Discretionary,Household Durables,Large Cap
+JXHLY,"ENEOS Holdings, Inc.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+KAO.F,Kao Corporation,Consumer Staples,Household Products,Large Cap
+KAOCF,Kao Corporation,Consumer Staples,Household Products,Large Cap
+KAOOY,Kao Corporation,Consumer Staples,Household Products,Large Cap
+KDDIF,KDDI Corporation,Communication Services,Diversified Telecommunication Services,Large Cap
+KDDIY,KDDI Corporation,Communication Services,Diversified Telecommunication Services,Large Cap
+KEE.F,Keyence Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KEE.VI,Keyence Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KEYN.MX,Keyence Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KIK.F,Kikkoman Corp.,Consumer Staples,Food & Staples Retailing,Large Cap
+KIKOF,Kikkoman Corp.,Consumer Staples,Food & Staples Retailing,Large Cap
+KIR.F,"Kirin Holdings Company, Limited",Consumer Staples,Beverages,Large Cap
+KMTUF,Komatsu Ltd.,Industrials,Machinery,Large Cap
+KMTUY,Komatsu Ltd.,Industrials,Machinery,Large Cap
+KNBWF,"Kirin Holdings Company, Limited",Consumer Staples,Beverages,Large Cap
+KNBWY,"Kirin Holdings Company, Limited",Consumer Staples,Beverages,Large Cap
+KOM1.F,Komatsu Ltd.,Industrials,Machinery,Large Cap
+KOM1.SG,Komatsu Ltd.,Industrials,Machinery,Large Cap
+KOMA.F,Komatsu Ltd.,Industrials,Machinery,Large Cap
+KUBTF,Kubota Corporation,Industrials,Machinery,Large Cap
+KUBTY,Kubota Corporation,Industrials,Machinery,Large Cap
+KUO1.F,Kubota Corporation,Industrials,Machinery,Large Cap
+KUOA.F,Kubota Corporation,Industrials,Machinery,Large Cap
+KY4.F,"Kyowa Kirin Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+KYCCF,Keyence Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KYKOF,"Kyowa Kirin Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+KYOCF,Kyocera Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KYOCY,Kyocera Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KYR.F,Kyocera Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+KYRA.F,Kyocera Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+LSRCF,Lasertec Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+LSRCY,Lasertec Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+M3C.F,Mitsubishi Chemical Holdings Corporation,Materials,Chemicals,Large Cap
+MARA.F,Marubeni Corporation,Industrials,Industrial Conglomerates,Large Cap
+MARUF,Marubeni Corporation,Industrials,Industrial Conglomerates,Large Cap
+MARUY,Marubeni Corporation,Industrials,Industrial Conglomerates,Large Cap
+MAT1.F,Panasonic Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MAT1.VI,Panasonic Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MATA.F,Panasonic Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MBFJF,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Large Cap
+MBI.F,Mitsubishi Corporation,Industrials,Industrial Conglomerates,Large Cap
+MEA.F,MinebeaMitsumi Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MEL.L,Mitsubishi Electric Corporation,Industrials,Electrical Equipment,Large Cap
+MES.F,"Mitsubishi Estate Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+MFG,"Mizuho Financial Group, Inc.",Financials,Banks,Large Cap
+MFU.F,"Mitsui Fudosan Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+MFZ.F,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Large Cap
+MFZA.F,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Large Cap
+MFZA.SG,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Large Cap
+MH6.F,"Tokio Marine Holdings, Inc.",Financials,Insurance,Large Cap
+MHVYF,Mitsubishi Heavy Industries Ltd.,Industrials,Machinery,Large Cap
+MIE1.F,Mitsubishi Electric Corporation,Industrials,Electrical Equipment,Large Cap
+MIELF,Mitsubishi Electric Corporation,Industrials,Electrical Equipment,Large Cap
+MIELY,Mitsubishi Electric Corporation,Industrials,Electrical Equipment,Large Cap
+MIH.F,Mitsubishi Heavy Industries Ltd.,Industrials,Machinery,Large Cap
+MITEF,"Mitsubishi Estate Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+MITEY,"Mitsubishi Estate Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+MITSF,"Mitsui & Co., Ltd.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MITSN.MX,Mitsubishi Electric Corporation,Industrials,Electrical Equipment,Large Cap
+MITSY,"Mitsui & Co., Ltd.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MIU.F,"Sumitomo Mitsui Trust Holdings, Inc.",Financials,Banks,Large Cap
+MK2A.F,Makita Corporation,Industrials,Building Products,Large Cap
+MKTAY,Makita Corporation,Industrials,Building Products,Large Cap
+MNBEY,MinebeaMitsumi Inc.,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MONOY,"MonotaRO Co., Ltd.",Industrials,Building Products,Large Cap
+MRAAF,"Murata Manufacturing Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MRAAY,"Murata Manufacturing Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MSADF,"MS&AD Insurance Group Holdings, Inc.",Financials,Insurance,Large Cap
+MSADY,"MS&AD Insurance Group Holdings, Inc.",Financials,Insurance,Large Cap
+MSBHF,Mitsubishi Corporation,Industrials,Industrial Conglomerates,Large Cap
+MTHRF,"M3, Inc.",Health Care,Health Care Providers & Services,Large Cap
+MTHRY,"M3, Inc.",Health Care,Health Care Providers & Services,Large Cap
+MTLHF,Mitsubishi Chemical Holdings Corporation,Materials,Chemicals,Large Cap
+MTLHY,Mitsubishi Chemical Holdings Corporation,Materials,Chemicals,Large Cap
+MTS1.F,"Mitsui & Co., Ltd.",Energy,"Oil, Gas & Consumable Fuels",Large Cap
+MTSFF,"Mitsui Fudosan Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+MTSFY,"Mitsui Fudosan Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+MUFG,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Mega Cap
+MUFGN.MX,"Mitsubishi UFJ Financial Group, Inc. Sponsored ADR",Financials,Banks,Large Cap
+MUR1.F,"Murata Manufacturing Co., Ltd.",Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+MZ8.F,"Mizuho Financial Group, Inc.",Financials,Banks,Large Cap
+MZ8A.F,"Mizuho Financial Group, Inc.",Financials,Banks,Large Cap
+MZ8A.SG,"Mizuho Financial Group, Inc.",Financials,Banks,Large Cap
+MZHOF,"Mizuho Financial Group, Inc.",Financials,Banks,Large Cap
+N9B.F,BANDAI NAMCO Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+N9B.SG,BANDAI NAMCO Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+NCBDF,BANDAI NAMCO Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+NCBDY,BANDAI NAMCO Holdings Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+NCLTF,"Nitori Holdings Co., Ltd.",Consumer Discretionary,Specialty Retail,Large Cap
+NCLTY,"Nitori Holdings Co., Ltd.",Consumer Discretionary,Specialty Retail,Large Cap
+ND5.F,Nitto Denko Corporation,Materials,Chemicals,Large Cap
+NDEKF,Nitto Denko Corporation,Materials,Chemicals,Large Cap
+NDEKY,Nitto Denko Corporation,Materials,Chemicals,Large Cap
+NEC1.F,NEC Corporation,Information Technology,IT Services,Large Cap
+NEN.F,Renesas Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+NEXOF,"NEXON Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NEXOY,"NEXON Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NI7.F,"Nippon Paint Holdings Co., Ltd.",Materials,Chemicals,Large Cap
+NIB.F,Nidec Corp.,Industrials,Machinery,Large Cap
+NIB.VI,Nidec Corp.,Industrials,Machinery,Large Cap
+NIB1.F,Nidec Corp.,Industrials,Machinery,Large Cap
+NIDECN.MX,Nidec Corp.,Industrials,Machinery,Large Cap
+NISA.F,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+NISA.VI,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+NISE.F,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+NISTF,Nippon Steel Corporation,Materials,Metals & Mining,Large Cap
+NJDCY,Nidec Corp.,Industrials,Machinery,Large Cap
+NMR,"Nomura Holdings, Inc.",Financials,Capital Markets,Large Cap
+NNDNF,Nidec Corp.,Industrials,Machinery,Large Cap
+NPCPF,"Nippon Paint Holdings Co., Ltd.",Materials,Chemicals,Large Cap
+NPS.F,Nippon Steel Corporation,Materials,Metals & Mining,Large Cap
+NPSA.F,Nippon Steel Corporation,Materials,Metals & Mining,Large Cap
+NPSCY,Nippon Steel Corporation,Materials,Metals & Mining,Large Cap
+NR7.F,"Nomura Research Institute, Ltd.",Information Technology,IT Services,Large Cap
+NRILY,"Nomura Research Institute, Ltd.",Information Technology,IT Services,Large Cap
+NRSCF,"Nomura Holdings, Inc.",Financials,Capital Markets,Large Cap
+NSANF,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+NSANY,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+NSANYN.MX,"Nissan Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+NSE.F,"Nomura Holdings, Inc.",Financials,Capital Markets,Large Cap
+NSEA.F,"Nomura Holdings, Inc.",Financials,Capital Markets,Large Cap
+NT5.F,NTT DATA Corporation,Information Technology,IT Services,Large Cap
+NTDOF,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NTDOY,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NTDOYN.MX,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NTDTY,NTT DATA Corporation,Information Technology,IT Services,Large Cap
+NTO.F,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NTO.VI,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+NTOA.F,"Nintendo Co., Ltd.",Communication Services,Interactive Media & Services,Large Cap
+OBL.F,"OBIC Co.,Ltd.",Information Technology,Software,Large Cap
+OIX.F,ORIX Corp.,Financials,Consumer Finance,Large Cap
+OIXA.F,ORIX Corp.,Financials,Consumer Finance,Large Cap
+OLCLF,"Oriental Land Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+OLCLY,"Oriental Land Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+OLL.F,"Oriental Land Co., Ltd.",Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+OMRNN.MX,OMRON Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+OMRNY,OMRON Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+ON4.MU,"Ono Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+OPHLF,"Ono Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+OPHLY,"Ono Pharmaceutical Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+ORXCF,ORIX Corp.,Financials,Consumer Finance,Large Cap
+OS1.F,"Otsuka Holdings Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+OSCUF,"Japan Exchange Group, Inc.",Financials,Capital Markets,Large Cap
+OSKU.F,"Japan Exchange Group, Inc.",Financials,Capital Markets,Large Cap
+OTSKF,"Otsuka Holdings Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+OTSKY,"Otsuka Holdings Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+PAYP,PayPay Corporation American Depository Shares,Real Estate,Real Estate Management & Development,Large Cap
+PCRFF,Panasonic Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+PCRFY,Panasonic Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+QHH.F,"Dai-ichi Life Holdings, Inc.",Financials,Insurance,Large Cap
+QJE.F,Pan Pacific International Holdings Corporation,Consumer Staples,Household Products,Large Cap
+QMC.F,SMC Corporation,Industrials,Machinery,Large Cap
+RAK.F,"Rakuten Group, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+RAK.VI,"Rakuten Group, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+RAKA.F,"Rakuten Group, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+RCRRF,"Recruit Holdings Co., Ltd.",Industrials,Professional Services,Large Cap
+RCRUY,"Recruit Holdings Co., Ltd.",Industrials,Professional Services,Large Cap
+RKUNF,"Rakuten Group, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+RKUNY,"Rakuten Group, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+RL2.F,"Sumitomo Realty & Development Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+RNECF,Renesas Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+RNECN.MX,Renesas Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+RNECY,Renesas Electronics Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+S19.F,"Sumitomo Metal Mining Co., Ltd.",Materials,Metals & Mining,Large Cap
+S6M.F,"Seven & i Holdings Co., Ltd.",Consumer Staples,Food & Staples Retailing,Large Cap
+S6MA.F,"Seven & i Holdings Co., Ltd.",Consumer Staples,Food & Staples Retailing,Large Cap
+SAR.F,"ZOZO, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+SAR.SG,"Start Today Co., Ltd.",,,Large Cap
+SATLF,"ZOZO, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+SEH.F,"Shin-Etsu Chemical Co., Ltd.",Materials,Chemicals,Large Cap
+SFBQF,SoftBank Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.BE,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.DU,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.F,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.HA,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.HM,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.MU,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.SG,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFT.VI,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFTBF,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFTBY,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFTC.VI,SoftBank Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFTU.F,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SFTU.SG,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SGIOF,"Shionogi & Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+SGIOY,"Shionogi & Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+SH0.F,"Shionogi & Co., Ltd.",Health Care,Pharmaceuticals,Large Cap
+SHCAF,Sharp Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SHCAY,Sharp Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SHD.F,"Shiseido Company, Limited",Consumer Staples,Household Products,Large Cap
+SHDA.F,"Shiseido Company, Limited",Consumer Staples,Household Products,Large Cap
+SHECF,"Shin-Etsu Chemical Co., Ltd.",Materials,Chemicals,Large Cap
+SHECY,"Shin-Etsu Chemical Co., Ltd.",Materials,Chemicals,Large Cap
+SHJ.BE,AGC Inc.,Materials,Chemicals,Large Cap
+SHJ.DU,AGC Inc.,Materials,Chemicals,Large Cap
+SHJ.F,AGC Inc.,Materials,Chemicals,Large Cap
+SHJ.MU,AGC Inc.,Materials,Chemicals,Large Cap
+SHJ.SG,AGC Inc.,Materials,Chemicals,Large Cap
+SHM.BE,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHM.DU,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHM.F,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHM.HA,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHM.SG,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHM.VI,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHM1.F,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHMDF,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SHMZF,Shimadzu Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SKHSF,"Sekisui House, Ltd.",Industrials,Construction & Engineering,Large Cap
+SKHSY,"Sekisui House, Ltd.",Industrials,Construction & Engineering,Large Cap
+SMCAY,SMC Corporation,Industrials,Machinery,Large Cap
+SMCN.MX,SMC Corporation,Industrials,Machinery,Large Cap
+SMECF,SMC Corporation,Industrials,Machinery,Large Cap
+SMFG,"Sumitomo Mitsui Financial Group, Inc.",Financials,Banks,Large Cap
+SMFNF,"Sumitomo Mitsui Financial Group, Inc.",Financials,Banks,Large Cap
+SMMYY,"Sumitomo Metal Mining Co., Ltd.",Materials,Metals & Mining,Large Cap
+SMNNY,Shimano Inc.,Consumer Discretionary,"Hotels, Restaurants & Leisure",Large Cap
+SMO.F,"Sumitomo Electric Industries, Ltd.",Consumer Discretionary,Auto Components,Large Cap
+SMO1.F,"Sumitomo Electric Industries, Ltd.",Consumer Discretionary,Auto Components,Large Cap
+SMPNY,"Sompo Holdings, Inc.",Financials,Insurance,Large Cap
+SMTOF,"Sumitomo Electric Industries, Ltd.",Consumer Discretionary,Auto Components,Large Cap
+SMTOY,"Sumitomo Electric Industries, Ltd.",Consumer Discretionary,Auto Components,Large Cap
+SNEJF,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SNEN.MX,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SOBKY,SoftBank Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SOFTN.MX,SoftBank Group Corp.,Communication Services,Diversified Telecommunication Services,Large Cap
+SOMLF,"SECOM CO., LTD.",Industrials,Professional Services,Large Cap
+SOMLY,"SECOM CO., LTD.",Industrials,Professional Services,Large Cap
+SON1.F,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SON1.VI,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SONA.F,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SONA.SG,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SONY,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SONY.BA,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SONYN.MX,Sony Group Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SPH1.F,"Sekisui House, Ltd.",Industrials,Construction & Engineering,Large Cap
+SRP.F,Sharp Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SRPB.F,Sharp Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+SRTTY,"ZOZO, Inc.",Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+SSDOF,"Shiseido Company, Limited",Consumer Staples,Household Products,Large Cap
+SSDOY,"Shiseido Company, Limited",Consumer Staples,Household Products,Large Cap
+SSMXF,Sysmex Corporation,Health Care,Biotechnology,Large Cap
+SSMXY,Sysmex Corporation,Health Care,Biotechnology,Large Cap
+SSUMF,Sumitomo Corporation,Industrials,Industrial Conglomerates,Large Cap
+SSUMY,Sumitomo Corporation,Industrials,Industrial Conglomerates,Large Cap
+STBFF,Suntory Beverage & Food Limited,Consumer Staples,Beverages,Large Cap
+STBFY,Suntory Beverage & Food Limited,Consumer Staples,Beverages,Large Cap
+STMNF,"Sumitomo Metal Mining Co., Ltd.",Materials,Metals & Mining,Large Cap
+SUK.F,Suzuki Motor Corporation,Consumer Discretionary,Automobiles,Large Cap
+SUMA.F,Sumitomo Corporation,Industrials,Industrial Conglomerates,Large Cap
+SUMB.F,Sumitomo Corporation,Industrials,Industrial Conglomerates,Large Cap
+SURDF,"Sumitomo Realty & Development Co., Ltd.",Real Estate,Real Estate Management & Development,Large Cap
+SUTNY,"Sumitomo Mitsui Trust Holdings, Inc.",Financials,Banks,Large Cap
+SVNDF,"Seven & i Holdings Co., Ltd.",Consumer Staples,Food & Staples Retailing,Large Cap
+SVNDY,"Seven & i Holdings Co., Ltd.",Consumer Staples,Food & Staples Retailing,Large Cap
+SZKMF,Suzuki Motor Corporation,Consumer Discretionary,Automobiles,Large Cap
+SZKMY,Suzuki Motor Corporation,Consumer Discretionary,Automobiles,Large Cap
+TAH.F,Toyota Industries Corporation,Consumer Discretionary,Automobiles,Large Cap
+TAK,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TAKN.MX,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TAKP34.SA,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TDK.F,TDK Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+TKD.F,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TKD.VI,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TKDA.F,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TKDA.SG,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TKOMF,"Tokio Marine Holdings, Inc.",Financials,Insurance,Large Cap
+TKOMY,"Tokio Marine Holdings, Inc.",Financials,Insurance,Large Cap
+TKPHF,Takeda Pharmaceutical Co. Ltd.,Health Care,Pharmaceuticals,Large Cap
+TKY.F,Tokyo Electron Limited,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+TM,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TM.BA,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TMN.MX,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TOELF,Tokyo Electron Limited,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+TOELY,Tokyo Electron Limited,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+TOM.F,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TOM.VI,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TOMA.F,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TOR1.F,"Toray Industries, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+TOSBF,Toshiba Corporation,Industrials,Machinery,Large Cap
+TOSYY,Toshiba Corporation,Industrials,Machinery,Large Cap
+TOYOF,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+TRUMF,Terumo Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+TRUMY,Terumo Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+TRYIF,"Toray Industries, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+TRYIY,"Toray Industries, Inc.",Consumer Discretionary,"Textiles, Apparel & Luxury Goods",Large Cap
+TSE.F,Toshiba Corporation,Industrials,Machinery,Large Cap
+TSE1.F,Toshiba Corporation,Industrials,Machinery,Large Cap
+TSE1.VI,Toshiba Corporation,Industrials,Machinery,Large Cap
+TTDKF,TDK Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+TTDKY,TDK Corporation,Information Technology,"Electronic Equipment, Instruments & Components",Large Cap
+TUO.F,Terumo Corporation,Health Care,Health Care Equipment & Supplies,Large Cap
+TYIDF,Toyota Industries Corporation,Consumer Discretionary,Automobiles,Large Cap
+TYIDY,Toyota Industries Corporation,Consumer Discretionary,Automobiles,Large Cap
+TYT.L,Toyota Motor Corporation,Consumer Discretionary,Automobiles,Mega Cap
+UN4.F,Unicharm Corporation,Consumer Staples,Household Products,Large Cap
+UN41.F,Unicharm Corporation,Consumer Staples,Household Products,Large Cap
+UNCHF,Unicharm Corporation,Consumer Staples,Household Products,Large Cap
+UNICY,Unicharm Corporation,Consumer Staples,Household Products,Large Cap
+VAN.F,Advantest Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+VANA.F,Advantest Corporation,Information Technology,Semiconductors & Semiconductor Equipment,Large Cap
+WEJ.F,West Japan Railway Company,Industrials,Road & Rail,Large Cap
+WJRYF,West Japan Railway Company,Industrials,Road & Rail,Large Cap
+WJRYY,West Japan Railway Company,Industrials,Road & Rail,Large Cap
+XMF.F,"Sumitomo Mitsui Financial Group, Inc.",Financials,Banks,Large Cap
+XMFA.F,"Sumitomo Mitsui Financial Group, Inc.",Financials,Banks,Large Cap
+XSC.F,"SECOM CO., LTD.",Industrials,Professional Services,Large Cap
+YAHOF,Z Holdings Corporation,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+YAHOY,Z Holdings Corporation,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+YAMHF,"Yamaha Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+YAMHY,"Yamaha Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+YASKY,YASKAWA Electric Corporation,Industrials,Electrical Equipment,Large Cap
+YASKYN.MX,YASKAWA Electric Corporation,Industrials,Electrical Equipment,Large Cap
+YEC.F,YASKAWA Electric Corporation,Industrials,Electrical Equipment,Large Cap
+YEC0.F,YASKAWA Electric Corporation,Industrials,Electrical Equipment,Large Cap
+YMA.F,"Yamaha Motor Co., Ltd.",Consumer Discretionary,Automobiles,Large Cap
+YOJ.F,Z Holdings Corporation,Consumer Discretionary,Internet & Direct Marketing Retail,Large Cap
+YPH.DU,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+YPH.F,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+YPH.MU,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+YPH.SG,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+YPHA.F,Astellas Pharma Inc.,Health Care,Pharmaceuticals,Large Cap
+ZTS,TIS Inc.,Information Technology,IT Services,Large Cap

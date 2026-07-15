@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/user/cyclepapa/scripts/durability_bootstrap.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
