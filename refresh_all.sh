@@ -29,7 +29,11 @@ echo "[2/6] regenerating momentum CSVs for $N universes (offline, P=4)"
 run_one() {
   u="$1"
   csv=$(ls -t "momentum_rank_${u}_"*.csv 2>/dev/null | head -1)
-  if [ -z "${FORCE:-}" ] && [ -n "$csv" ] && [ "$csv" -nt momentum_rank.py ]; then
+  cache="/tmp/cyclepapa_dl_${u}_daily_2y.pkl"
+  # Regenerate when forced, or when the CSV is missing, or older than the
+  # engine code OR the (possibly freshly-updated) price cache.
+  if [ -z "${FORCE:-}" ] && [ -n "$csv" ] && [ "$csv" -nt momentum_rank.py ] \
+     && { [ ! -f "$cache" ] || [ "$csv" -nt "$cache" ]; }; then
     echo "$(date +%H:%M:%S) $u SKIP(fresh)" >> /tmp/mr_logs/_refresh_progress.log
     return
   fi
