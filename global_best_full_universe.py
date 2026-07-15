@@ -358,8 +358,8 @@ with pd.ExcelWriter(out_path, engine="xlsxwriter") as writer:
         ws.set_row(0, None, hdr)
         ws.freeze_panes(1, 1)
         for ci, col_ in enumerate(sheet_df.columns):
-            ml = max(len(str(col_)),
-                      *(min(len(str(v)), 70) for v in sheet_df[col_].head(40).fillna(""))) + 2
+            widths = [min(len(str(v)), 70) for v in sheet_df[col_].head(40).fillna("")]
+            ml = max([len(str(col_))] + widths) + 2  # robust when the sheet is empty
             ws.set_column(ci, ci, min(ml, 35))
         for sc in ["n_cats_passed","pre_run_score","mv_composite_score",
                    "aqr_trend_score","td_mtf_composite"]:

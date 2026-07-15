@@ -149,6 +149,16 @@ def fetch_fx_rates(currencies):
     resolve, so USD-ADV never silently becomes NaN offline.
     """
     rates = {"USD": 1.0}
+    offline = os.environ.get("CYCLEPAPA_OFFLINE", "").strip().lower() in ("1","true","yes","on")
+    if offline:
+        for ccy in currencies:
+            rates[ccy] = STATIC_FX_TO_USD.get(ccy, rates.get(ccy))
+            if rates.get(ccy) is None:
+                del rates[ccy]
+                print(f"  FX {ccy}USD: [offline] no static rate, will skip")
+            else:
+                print(f"  FX {ccy}USD: [offline] static {rates[ccy]:.6f}")
+        return rates
     for ccy in currencies:
         if ccy in rates:
             continue
