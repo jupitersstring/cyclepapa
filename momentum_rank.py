@@ -57,6 +57,12 @@ _REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
 _DURABLE_CACHE_DIR = os.path.join(_REPO_ROOT, "data", "cache")
 _DURABLE_SPY_DIR = os.path.join(_REPO_ROOT, "data", "spy")
 
+# Offline mode: when CYCLEPAPA_OFFLINE is set, skip ALL yfinance downloads and
+# use only what is already in the durable cache. Without this, regenerating in
+# a network-restricted sandbox blocks (and eventually hangs) on doomed download
+# attempts for the handful of tickers missing from the cache.
+OFFLINE = os.environ.get("CYCLEPAPA_OFFLINE", "").strip().lower() in ("1", "true", "yes", "on")
+
 PICKLE_TMPL = "/tmp/cyclepapa_dl_{universe}_daily_{years}y.pkl"
 
 
@@ -133,6 +139,10 @@ def download_daily(universe, tickers, years=2, chunk_size=80, batch_sleep=15):
     frames, done = load_pickle_frames(universe, years)
     if frames:
         print(f"  resumed: {len(frames)} kept, {len(done)} already attempted")
+    if OFFLINE:
+        print(f"  [offline] using {len(frames)} cached daily tickers; "
+              f"skipping download of {len([t for t in tickers if t not in done])} missing")
+        return frames
     todo = [t for t in tickers if t not in done]
     total = len(todo)
     n_batches = (total + chunk_size - 1) // chunk_size
@@ -225,6 +235,9 @@ def download_intraday(universe, tickers, interval, period, chunk_size=80, batch_
     frames, done = load_pickle_frames_intraday(universe, interval, period)
     if frames:
         print(f"  intraday {interval} resumed: {len(frames)} kept, {len(done)} attempted")
+    if OFFLINE:
+        print(f"  [offline] using {len(frames)} cached intraday {interval} tickers; skipping download")
+        return frames
     todo = [t for t in tickers if t not in done]
     total = len(todo)
     if total == 0:
@@ -283,6 +296,12 @@ def load_or_download_spy_monthly(years=10):
                 return spy
         except Exception:
             pass
+    if OFFLINE:
+        if spy is not None:
+            print(f"  [offline] using cached SPY monthly ({len(spy)} bars).")
+            return spy
+        print("  [offline] no cached SPY monthly available.")
+        return None
     print(f"  Downloading SPY monthly ({years}y)...")
     try:
         data = yf.download("SPY", period=f"{years}y", interval="1mo",
@@ -327,6 +346,9 @@ def download_monthly(universe, tickers, years=10, chunk_size=100, batch_sleep=10
     frames, done = load_pickle_frames_monthly(universe, years)
     if frames:
         print(f"  monthly resumed: {len(frames)} kept, {len(done)} attempted")
+    if OFFLINE:
+        print(f"  [offline] using {len(frames)} cached monthly tickers; skipping download")
+        return frames
     todo = [t for t in tickers if t not in done]
     total = len(todo)
     n_batches = (total + chunk_size - 1) // chunk_size
@@ -383,6 +405,12 @@ def load_or_download_spy(years=3):
                 return spy
         except Exception:
             pass
+    if OFFLINE:
+        if spy is not None:
+            print(f"  [offline] using cached SPY daily ({len(spy)} bars, last={spy.index[-1].date()}).")
+            return spy
+        print("  [offline] no cached SPY daily available.")
+        return None
     print(f"  Downloading SPY benchmark ({years}y daily)...")
     try:
         data = yf.download("SPY", period=f"{years}y", interval="1d",
