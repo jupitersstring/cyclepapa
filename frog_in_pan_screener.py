@@ -190,13 +190,33 @@ def load_universe(
         pref = df["country"].map(COUNTRY_TO_SUFFIX).fillna("__none__").to_numpy()
         is_primary = pd.Series(suffix == pref, index=df.index).fillna(False)
         df = df.assign(_is_primary=is_primary.values)
-        # Stable sort by name, primary listings first; rows with NaN name
-        # (e.g. include_suffixes additions) won't dedupe and will all stay.
+        # Cross-listing collapse: same (name, country) rows are considered
+        # the same security-in-the-same-jurisdiction only if one of them is
+        # the primary listing. Same-name rows within the same country that
+        # are BOTH non-primary (e.g. BRK-A/BRK-B, ARR/ARR-PC, preferred
+        # series) are DISTINCT securities and are preserved. Same-name rows
+        # across countries survive as separate cross-listings (the ranker
+        # will present them as they scored).
         df = df.sort_values(by=["name", "_is_primary"], ascending=[True, False],
                             na_position="last")
-        named = df[df["name"].notna()].drop_duplicates(subset="name", keep="first")
-        unnamed = df[df["name"].isna()]
-        df = pd.concat([named, unnamed])
+        n_before = len(df)
+        # Only drop a row if a same-(name, country) primary row also exists.
+        prim_keys = set(
+            zip(
+                df.loc[df["_is_primary"] & df["name"].notna(), "name"].astype(str),
+                df.loc[df["_is_primary"] & df["name"].notna(), "country"].astype(str),
+            )
+        )
+        key = list(zip(df["name"].astype(str), df["country"].astype(str)))
+        drop_mask = pd.Series(
+            [(not p) and (k in prim_keys) for p, k in zip(df["_is_primary"].values, key)],
+            index=df.index,
+        )
+        df = df[~drop_mask]
+        n_dropped = n_before - len(df)
+        if n_dropped:
+            print(f"  [info] collapsed {n_dropped} cross-listings to primary",
+                  file=sys.stderr)
         df = df.drop(columns=["_is_primary"])
 
     if len(df) < min_n:
@@ -293,10 +313,12 @@ def compute_fip(symbol: str, prices: pd.Series, skip_recent_days: int = 21) -> F
 
     monthly = prices.resample("ME").last().dropna()
     pret_m = fip_m = fip_m_prev = m_inflection = float("nan")
-    monthly_ret = pd.Series(dtype=float)
     skip_m = max(0, round(skip / 21))
+    # Compute monthly returns unconditionally so the short-window (12-month)
+    # branch below can enter even when the long-window (24-month) guard
+    # fails — e.g. an IPO with 15-24 months of history.
+    monthly_ret = monthly.pct_change() if len(monthly) > 1 else pd.Series(dtype=float)
     if len(monthly) >= 24 + skip_m:
-        monthly_ret = monthly.pct_change()
         end_m = -skip_m if skip_m > 0 else None
         pret_m, fip_m = _fip(monthly_ret.iloc[-(24 + skip_m):end_m])
         if len(monthly_ret) >= 30 + skip_m:
@@ -369,6 +391,23 @@ def _save_price_cache(cache: dict[str, pd.Series]) -> None:
         print(f"[warn] could not write price cache: {e}", file=sys.stderr)
 
 
+CACHE_STALENESS_DAYS = 3  # refetch cached series older than this
+
+
+def _is_stale(obj, max_age_days: int = CACHE_STALENESS_DAYS) -> bool:
+    """True if a cached price series / OHLC frame is too old to trust."""
+    if obj is None or len(obj) == 0:
+        return True
+    try:
+        last = pd.Timestamp(obj.index[-1])
+    except Exception:  # noqa: BLE001
+        return True
+    if last.tzinfo is not None:
+        last = last.tz_convert(None)
+    age = (pd.Timestamp.today().normalize() - last.normalize()).days
+    return age > max_age_days
+
+
 def download_prices(
     symbols: list[str],
     period: str = "2y",
@@ -385,12 +424,16 @@ def download_prices(
     from yfinance.exceptions import YFRateLimitError
 
     cache = _load_price_cache() if use_cache else {}
-    cached_hits = sum(1 for s in symbols if s in cache)
-    if cached_hits:
-        print(f"  cache hit on {cached_hits}/{len(symbols)} symbols", file=sys.stderr)
-    todo = [s for s in symbols if s not in cache]
+    fresh_hits = sum(1 for s in symbols if s in cache and not _is_stale(cache.get(s)))
+    stale_hits = sum(1 for s in symbols if s in cache and _is_stale(cache.get(s)))
+    if fresh_hits or stale_hits:
+        print(f"  cache hit on {fresh_hits}/{len(symbols)} symbols "
+              f"({stale_hits} stale, will refetch)", file=sys.stderr)
+    todo = [s for s in symbols if s not in cache or _is_stale(cache.get(s))]
 
-    out: dict[str, pd.Series] = {s: cache[s] for s in symbols if s in cache}
+    out: dict[str, pd.Series] = {
+        s: cache[s] for s in symbols if s in cache and not _is_stale(cache.get(s))
+    }
     save_every = 5  # batches
 
     def _fetch_batch(chunk: list[str]) -> pd.DataFrame | None:
@@ -433,14 +476,15 @@ def download_prices(
                     out[chunk[0]] = s.dropna()
                     cache[chunk[0]] = out[chunk[0]]
 
-        if (bi + 1) % save_every == 0:
+        if use_cache and (bi + 1) % save_every == 0:
             _save_price_cache(cache)
             print(f"  batch {bi + 1}/{n_batches}: {len(out)} series cached so far",
                   file=sys.stderr)
 
         time.sleep(sleep_between)
 
-    _save_price_cache(cache)
+    if use_cache:
+        _save_price_cache(cache)
     return out
 
 
@@ -478,11 +522,15 @@ def download_ohlc(
     from yfinance.exceptions import YFRateLimitError
 
     cache = _load_ohlc_cache() if use_cache else {}
-    cached_hits = sum(1 for s in symbols if s in cache)
-    if cached_hits:
-        print(f"  ohlc cache hit on {cached_hits}/{len(symbols)} symbols", file=sys.stderr)
-    todo = [s for s in symbols if s not in cache]
-    out: dict[str, pd.DataFrame] = {s: cache[s] for s in symbols if s in cache}
+    fresh_hits = sum(1 for s in symbols if s in cache and not _is_stale(cache.get(s)))
+    stale_hits = sum(1 for s in symbols if s in cache and _is_stale(cache.get(s)))
+    if fresh_hits or stale_hits:
+        print(f"  ohlc cache hit on {fresh_hits}/{len(symbols)} symbols "
+              f"({stale_hits} stale, will refetch)", file=sys.stderr)
+    todo = [s for s in symbols if s not in cache or _is_stale(cache.get(s))]
+    out: dict[str, pd.DataFrame] = {
+        s: cache[s] for s in symbols if s in cache and not _is_stale(cache.get(s))
+    }
 
     def _fetch_batch(chunk: list[str]) -> pd.DataFrame | None:
         for attempt in range(4):
@@ -525,13 +573,14 @@ def download_ohlc(
                     out[chunk[0]] = sub
                     cache[chunk[0]] = sub
 
-        if (bi + 1) % save_every == 0:
+        if use_cache and (bi + 1) % save_every == 0:
             _save_ohlc_cache(cache)
             print(f"  ohlc batch {bi + 1}/{n_batches}: {len(out)} cached so far",
                   file=sys.stderr)
         time.sleep(sleep_between)
 
-    _save_ohlc_cache(cache)
+    if use_cache:
+        _save_ohlc_cache(cache)
     return out
 
 
@@ -649,7 +698,14 @@ class QullaResult:
     va_fip_d: float
 
 
-def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series) -> QullaResult | None:
+def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series,
+                  skip_recent_days: int = 21) -> QullaResult | None:
+    """Compute RS-vs-SPX FIP and volatility-asymmetry metrics.
+
+    `skip_recent_days` matches compute_fip's default of 21 so today's partial
+    bar (and the partial current W-FRI / ME period) do not leak into the RS
+    FIP / asym metrics. Set to 0 for a real-time signal that includes today.
+    """
     ohlc = ohlc.dropna(how="any")
     if len(ohlc) < 260:
         return None
@@ -659,15 +715,20 @@ def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series) -> Qull
     rs = (ohlc["Close"].astype(float) / spx_aligned).dropna()
     if len(rs) < 260:
         return None
+    skip = max(0, int(skip_recent_days))
+    end_d = -skip if skip > 0 else None
     rs_ret = rs.pct_change()
-    rs_pret_d, rs_fip_d = _fip(rs_ret.iloc[-252:])
+    rs_pret_d, rs_fip_d = _fip(rs_ret.iloc[-(252 + skip):end_d])
 
     rs_w = rs.resample("W-FRI").last().dropna()
     if len(rs_w) < 70:
         return None
     rs_w_ret = rs_w.pct_change()
-    _, rs_fip_w = _fip(rs_w_ret.iloc[-52:])
-    _, rs_fip_w_prev = _fip(rs_w_ret.iloc[-(52 + 13):-13])
+    skip_w = max(0, round(skip / 5))
+    end_w = -skip_w if skip_w > 0 else None
+    _, rs_fip_w = _fip(rs_w_ret.iloc[-(52 + skip_w):end_w])
+    prev_end_w = -(13 + skip_w) if (13 + skip_w) > 0 else None
+    _, rs_fip_w_prev = _fip(rs_w_ret.iloc[-(52 + 13 + skip_w):prev_end_w])
     rs_fip_w_inflection = (
         rs_fip_w - rs_fip_w_prev
         if not (math.isnan(rs_fip_w) or math.isnan(rs_fip_w_prev))
@@ -699,8 +760,10 @@ def compute_qulla(symbol: str, ohlc: pd.DataFrame, spx_close: pd.Series) -> Qull
         if len(asym_m) >= 4 else float("nan")
     )
 
-    # FIP on the smoothed daily asymmetry series.
-    va_pret_d, va_fip_d = _fip_change(asym_d, n=252)
+    # FIP on the smoothed daily asymmetry series. Skip the recent partial
+    # window to stay consistent with the RS FIP metrics above.
+    asym_d_for_fip = asym_d.iloc[:end_d] if end_d is not None else asym_d
+    va_pret_d, va_fip_d = _fip_change(asym_d_for_fip, n=252)
 
     return QullaResult(
         symbol=symbol,
@@ -801,10 +864,15 @@ def shortlist_by_tech_score(qrs: list[QullaResult], top_n: int) -> list[QullaRes
 
 
 def _band_score(series: pd.Series, target: float, sigma: float) -> pd.Series:
-    """Gaussian-shaped score in [0,1] peaking at `target`, NaN -> 0."""
+    """Gaussian-shaped score in [0,1] peaking at `target`, NaN -> 0.5 (neutral).
+
+    A neutral 0.5 for missing data prevents silent penalization of tickers
+    that simply lack the input series — the prior 0.0 was indistinguishable
+    from a genuine many-sigmas-off-target reading.
+    """
     s = series.astype(float)
     score = np.exp(-0.5 * ((s - target) / sigma) ** 2)
-    return pd.Series(score, index=s.index).fillna(0.0)
+    return pd.Series(score, index=s.index).fillna(0.5)
 
 
 def shortlist_early_stage(qrs: list[QullaResult], top_n: int) -> list[QullaResult]:
@@ -917,8 +985,11 @@ def build_qulla_table(
         (deep daily FIP, weekly fip > daily fip but inflecting smoother).
     """
     rows = []
+    missing_funds = 0
     for q in qrs:
         fu = funds.get(q.symbol)
+        if fu is None:
+            missing_funds += 1
         meta = universe.loc[q.symbol] if q.symbol in universe.index else None
         rows.append({
             "symbol": q.symbol,
@@ -926,6 +997,7 @@ def build_qulla_table(
             "country": meta["country"] if meta is not None and "country" in meta else "",
             "market_cap_bucket": meta["market_cap"] if meta is not None and "market_cap" in meta else "",
             "sector": (fu.sector if fu else "") or (meta["sector"] if meta is not None and "sector" in meta else ""),
+            "data_incomplete": fu is None,
             "market_cap": fu.market_cap if fu else float("nan"),
             "last_price": q.last_price,
             "rs_pret_d": q.rs_pret_d,
@@ -952,7 +1024,16 @@ def build_qulla_table(
     df = pd.DataFrame(rows)
     if df.empty:
         return df
+    if missing_funds:
+        print(f"  [warn] {missing_funds}/{len(rows)} candidates kept with "
+              f"incomplete fundamentals (data_incomplete=True)", file=sys.stderr)
 
+    # Preserve sign information: negative book / negative EBITDA is a real
+    # bearish signal, not missing data. `_pct_rank` will still receive NaN
+    # here, but the raw negative value survives in the `pb`/`ev_ebitda`
+    # columns and in the boolean flags below.
+    df["pb_negative"] = (df["pb"] <= 0).fillna(False)
+    df["ev_ebitda_negative"] = (df["ev_ebitda"] <= 0).fillna(False)
     pb_clean = df["pb"].where(df["pb"] > 0)
     ev_clean = df["ev_ebitda"].where(df["ev_ebitda"] > 0)
     rank_pb        = _pct_rank(pb_clean,                      lower_is_better=True)
@@ -1072,7 +1153,16 @@ def build_qulla_table(
         )
 
     df = df.sort_values("score", ascending=False)
-    df = df.drop_duplicates(subset="name", keep="first").reset_index(drop=True)
+    # Dedup by (name, country): same-country same-name rows are distinct
+    # securities (share classes, preferreds) and are preserved. Same-name
+    # rows across countries are cross-listings — the higher-scoring listing
+    # survives. Log the count so silent collapse is visible.
+    n_before = len(df)
+    df = df.drop_duplicates(subset=["name", "country"], keep="first").reset_index(drop=True)
+    n_dropped = n_before - len(df)
+    if n_dropped:
+        print(f"  [info] merged {n_dropped} cross-listings by (name, country)",
+              file=sys.stderr)
     return df
 
 
@@ -1128,6 +1218,7 @@ def fetch_fundamentals(symbol: str) -> Fundamentals | None:
 
     info: dict = {}
     tk = None
+    last_err: str | None = None
     for attempt in range(4):
         try:
             tk = yf.Ticker(symbol)
@@ -1136,9 +1227,24 @@ def fetch_fundamentals(symbol: str) -> Fundamentals | None:
         except YFRateLimitError:
             wait = 20 * (2 ** attempt) + random.uniform(0, 5)
             time.sleep(wait)
-        except Exception:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
+            last_err = f"{type(e).__name__}: {e}"
+            # Retry transient network / JSON parse errors once with backoff.
+            if attempt < 3:
+                time.sleep(2 * (2 ** attempt))
+                continue
+            print(f"  [warn] fetch_fundamentals({symbol}): {last_err}",
+                  file=sys.stderr)
             return None
     if tk is None or not info:
+        return None
+    # Yahoo stub responses return truthy dicts like {'symbol':'X','quoteType':'EQUITY'}
+    # for delisted / thinly-covered tickers. Reject unless at least one
+    # meaningful field is present — otherwise every downstream metric is NaN
+    # and the row silently reaches the ranker as if fundamentals were fetched.
+    meaningful_keys = ("trailingPE", "marketCap", "enterpriseValue",
+                       "totalRevenue", "priceToBook", "revenueGrowth")
+    if not any(info.get(k) is not None for k in meaningful_keys):
         return None
 
     pb = _safe(info.get("priceToBook"))
@@ -1234,16 +1340,19 @@ def filter_fip_candidates(
 
 
 def _pct_rank(series: pd.Series, lower_is_better: bool) -> pd.Series:
-    """Return a percentile in [0,1] where HIGHER = better. NaNs map to 0.
+    """Return a percentile in [0,1] where HIGHER = better. NaNs map to 0.5.
 
     For lower_is_better=True we rank with pandas ascending=False so the
     smallest input value lands at pct ≈ 1.0; for higher_is_better=True we
     use ascending=True so the largest value tops the distribution. NaNs
-    are excluded from the rank (na_option="keep") and then filled to 0
-    so missing fundamentals never look like a virtue.
+    are excluded from the rank (na_option="keep") and then filled to 0.5
+    (neutral) so missing data is treated as unknown rather than as the
+    single worst reading in the cohort — a strictly-worse-than-worst score
+    of 0 was the prior behaviour and silently penalized data-incomplete
+    tickers as if they were the actual worst.
     """
     r = series.rank(ascending=not lower_is_better, pct=True, na_option="keep")
-    return r.fillna(0.0)
+    return r.fillna(0.5)
 
 
 def build_screen_table(
@@ -1261,18 +1370,20 @@ def build_screen_table(
     }
 
     rows = []
+    missing_funds = 0
     for f in fips:
         fu = funds.get(f.symbol)
         if fu is None:
-            continue
+            missing_funds += 1
         meta = universe.loc[f.symbol] if f.symbol in universe.index else None
         rows.append({
             "symbol": f.symbol,
-            "name": fu.name,
-            "sector": fu.sector or (meta["sector"] if meta is not None and "sector" in meta else ""),
+            "name": (fu.name if fu else (meta["name"] if meta is not None and "name" in meta else f.symbol)),
+            "sector": (fu.sector if fu else "") or (meta["sector"] if meta is not None and "sector" in meta else ""),
             "country": meta["country"] if meta is not None and "country" in meta else "",
             "market_cap_bucket": meta["market_cap"] if meta is not None and "market_cap" in meta else "",
-            "market_cap": fu.market_cap,
+            "data_incomplete": fu is None,
+            "market_cap": fu.market_cap if fu else float("nan"),
             "last_price": f.last_price,
             "pret_d": f.pret_d,
             "fip_d": f.fip_d,
@@ -1280,17 +1391,24 @@ def build_screen_table(
             "fip_w": f.fip_w,
             "fip_w_prev": f.fip_w_prev,
             "fip_w_inflection": f.fip_w_inflection,
-            "pb": fu.pb,
-            "ev_ebitda": fu.ev_ebitda,
-            "rev_growth": fu.rev_growth,
-            "rev_growth_prev": fu.rev_growth_prev,
-            "rev_growth_inflection": fu.rev_growth_inflection,
+            "pb": fu.pb if fu else float("nan"),
+            "ev_ebitda": fu.ev_ebitda if fu else float("nan"),
+            "rev_growth": fu.rev_growth if fu else float("nan"),
+            "rev_growth_prev": fu.rev_growth_prev if fu else float("nan"),
+            "rev_growth_inflection": fu.rev_growth_inflection if fu else float("nan"),
         })
     df = pd.DataFrame(rows)
     if df.empty:
         return df
+    if missing_funds:
+        print(f"  [warn] {missing_funds}/{len(rows)} candidates kept with "
+              f"incomplete fundamentals (data_incomplete=True)", file=sys.stderr)
 
     # Guard: P/B and EV/EBITDA should be positive to be meaningful as "low is good".
+    # Preserve the sign as a boolean flag so a genuinely-negative reading is
+    # visible in the output (previously silently collapsed to NaN → rank 0).
+    df["pb_negative"] = (df["pb"] <= 0).fillna(False)
+    df["ev_ebitda_negative"] = (df["ev_ebitda"] <= 0).fillna(False)
     pb_clean = df["pb"].where(df["pb"] > 0)
     ev_clean = df["ev_ebitda"].where(df["ev_ebitda"] > 0)
 

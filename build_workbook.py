@@ -91,10 +91,13 @@ for c in PCT_COLS:
         df[c] = pd.to_numeric(df[c], errors='coerce') * 100
 
 # --- Format codes ---
+# Accounting convention: parens for negatives, accounting separators. Genuine
+# zero renders as literal zero; en-dash is reserved for missing data only —
+# render_table writes EN_DASH explicitly whenever pd.isna(v) is True.
 EN_DASH = "–"
-FMT_RAW   = '#,##0;(#,##0);"–"'
-FMT_PP    = '#,##0.0;(#,##0.0);"–"'
-FMT_RATIO = '#,##0.00;(#,##0.00);"–"'
+FMT_RAW   = '#,##0;(#,##0);0'
+FMT_PP    = '#,##0.0;(#,##0.0);0.0'
+FMT_RATIO = '#,##0.00;(#,##0.00);0.00'
 
 NUM_FMT = {
     'Market Cap': FMT_RAW,
