@@ -55,10 +55,18 @@ skip = {"name","sector","_universe","security_type","_ccy","fb_lists","tags",
 for c in df.columns:
     if c not in skip and c not in bools and df[c].dtype == "object":
         df[c] = pd.to_numeric(df[c], errors="coerce")
-df = df.sort_values("mv_composite_score", ascending=False, na_position="last")
+# De-dup cross-listings preferring the most-informative row (has a name, not
+# the generic wiki-union feed) so real companies don't show up nameless.
+df["_has_name"] = df["name"].notna() & (df["name"].astype(str).str.strip().ne(""))
+df["_not_wiki"] = ~df["_universe"].isin(["wiki-union"])
+df = df.sort_values(
+    ["_has_name", "_not_wiki", "mv_composite_score"],
+    ascending=[False, False, False], na_position="last")
 df = df[~df.index.duplicated(keep="first")]
+df = df.drop(columns=["_has_name", "_not_wiki"])
 if "security_type" in df.columns:
-    df = df[df["security_type"] == "common"].copy()
+    st = df["security_type"].astype("string").str.lower()
+    df = df[st.isna() | (st == "common")].copy()
 if "adv_20d_usd_millions" in df.columns:
     df["adv_usd_M"] = df["adv_20d_usd_millions"]
 else:
@@ -71,7 +79,19 @@ EU_UNI = {"de-all","fr-all","ch-all","it-all","es-all","nl-all","se-all","be-all
 ASIA_UNI = {"jp-all","cn-all","kr-all","tw-all","hk-all","in-all","sg-all",
             "th-all","id-all","il-all","sa-all","tr-all"}
 LATAM_UNI = {"br-all","mx-all","ar-all","cl-all"}
-def region(u):
+SUFFIX_REGION = {
+    "L":"UK",
+    "DE":"EU","F":"EU","PA":"EU","MI":"EU","MC":"EU","AS":"EU","SW":"EU","ST":"EU",
+    "BR":"EU","OL":"EU","CO":"EU","HE":"EU","VI":"EU","LS":"EU","IR":"EU","AT":"EU",
+    "T":"ASIA","HK":"ASIA","KS":"ASIA","KQ":"ASIA","TW":"ASIA","TWO":"ASIA","NS":"ASIA",
+    "BO":"ASIA","SI":"ASIA","SS":"ASIA","SZ":"ASIA","BK":"ASIA","JK":"ASIA","TA":"ASIA",
+    "SR":"ASIA","IS":"ASIA",
+    "AX":"OCEANIA","NZ":"OCEANIA",
+    "TO":"CA","V":"CA","CN":"CA",
+    "SA":"LATAM","MX":"LATAM","BA":"LATAM","SN":"LATAM",
+    "JO":"AFRICA",
+}
+def region(u, tkr=None):
     if u == "us-all" or u == "wiki-r1k": return "US"
     if u == "uk-all" or u == "wiki-aim100": return "UK"
     if u in EU_UNI: return "EU"
@@ -80,8 +100,16 @@ def region(u):
     if u in ("au-all","nz-all"): return "OCEANIA"
     if u == "za-all": return "AFRICA"
     if u == "ca-all": return "CA"
+    if tkr is not None:
+        s = str(tkr)
+        if "." in s:
+            suf = s.rsplit(".", 1)[-1].upper()
+            if suf in SUFFIX_REGION:
+                return SUFFIX_REGION[suf]
+        else:
+            return "US"
     return "OTHER"
-df["region"] = df["_universe"].apply(region)
+df["region"] = [region(u, t) for u, t in zip(df["_universe"], df.index)]
 
 print(f"Universe loaded: {len(df)} common-equity rows")
 
@@ -290,7 +318,7 @@ sheets["Balanced Best (5+cats, not run, liquid)"] = balanced.sort_values(
 
 # 6. Per region
 for r, floor in [("US",20),("UK",20),("EU",10),("ASIA",5),
-                 ("LATAM",1),("OCEANIA",5),("CA",5),("AFRICA",1)]:
+                 ("LATAM",1),("OCEANIA",5),("CA",5),("AFRICA",1),("OTHER",1)]:
     sub = df[(df["region"] == r) & (df["adv_usd_M"].fillna(0) >= floor)]
     if len(sub) < 10:
         sub = df[df["region"] == r]

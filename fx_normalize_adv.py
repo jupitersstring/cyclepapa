@@ -128,8 +128,26 @@ def get_currency(universe, ticker):
     return ("USD", 1.0)
 
 
+# Approximate USD conversion rates, used as an OFFLINE FALLBACK when the live
+# yfinance FX fetch is unavailable (rate-limited / sandbox). Precise enough for
+# liquidity bucketing; live rates override these whenever a download succeeds.
+STATIC_FX_TO_USD = {
+    "USD": 1.0, "EUR": 1.08, "GBP": 1.27, "GBp": 0.0127, "JPY": 0.0067,
+    "CHF": 1.12, "SEK": 0.096, "NOK": 0.094, "DKK": 0.145, "CAD": 0.73,
+    "AUD": 0.66, "NZD": 0.61, "HKD": 0.128, "CNY": 0.138, "KRW": 0.00075,
+    "TWD": 0.031, "INR": 0.012, "SGD": 0.74, "BRL": 0.20, "MXN": 0.058,
+    "ZAR": 0.054, "ILS": 0.27, "THB": 0.028, "IDR": 0.000063, "TRY": 0.031,
+    "SAR": 0.267, "ARS": 0.0011, "CLP": 0.0011, "PLN": 0.25, "HUF": 0.0028,
+    "CZK": 0.043, "ILA": 0.0027,
+}
+
+
 def fetch_fx_rates(currencies):
-    """Fetch FX rate to USD for each currency via yfinance ='{}USD=X'."""
+    """Fetch FX rate to USD for each currency via yfinance ='{}USD=X'.
+
+    Falls back to STATIC_FX_TO_USD for any currency the live fetch can't
+    resolve, so USD-ADV never silently becomes NaN offline.
+    """
     rates = {"USD": 1.0}
     for ccy in currencies:
         if ccy in rates:
@@ -157,7 +175,13 @@ def fetch_fx_rates(currencies):
                     continue
         except Exception:
             pass
-        print(f"  FX {ccy}USD: NOT FOUND, will skip")
+        # Offline fallback: use a static approximate rate rather than skipping
+        # (which would leave USD-ADV NaN for the whole currency).
+        if ccy in STATIC_FX_TO_USD:
+            rates[ccy] = STATIC_FX_TO_USD[ccy]
+            print(f"  FX {ccy}USD: live fetch failed -> static fallback {rates[ccy]:.6f}")
+        else:
+            print(f"  FX {ccy}USD: NOT FOUND (no static fallback), will skip")
     return rates
 
 

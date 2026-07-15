@@ -284,9 +284,16 @@ def load_or_download_spy_monthly(years=10):
         except Exception:
             pass
     print(f"  Downloading SPY monthly ({years}y)...")
-    data = yf.download("SPY", period=f"{years}y", interval="1mo",
-                       auto_adjust=True, progress=False)
+    try:
+        data = yf.download("SPY", period=f"{years}y", interval="1mo",
+                           auto_adjust=True, progress=False)
+    except Exception as e:
+        data = None
+        print(f"  SPY monthly download failed ({e}).")
     if data is None or data.empty:
+        if spy is not None:
+            print(f"  Falling back to STALE cached SPY monthly ({len(spy)} bars).")
+            return spy
         return None
     spy_close = data["Close"]
     if isinstance(spy_close, pd.DataFrame):
@@ -377,9 +384,19 @@ def load_or_download_spy(years=3):
         except Exception:
             pass
     print(f"  Downloading SPY benchmark ({years}y daily)...")
-    data = yf.download("SPY", period=f"{years}y", interval="1d",
-                       auto_adjust=True, progress=False)
+    try:
+        data = yf.download("SPY", period=f"{years}y", interval="1d",
+                           auto_adjust=True, progress=False)
+    except Exception as e:
+        data = None
+        print(f"  SPY daily download failed ({e}).")
     if data is None or data.empty:
+        # Offline / rate-limited: fall back to the durable cache even if
+        # stale rather than dropping every relative-to-SPY signal silently.
+        if spy is not None:
+            print(f"  Falling back to STALE cached SPY daily "
+                  f"({len(spy)} bars, last={spy.index[-1].date()}).")
+            return spy
         return None
     spy_close = data["Close"]
     if isinstance(spy_close, pd.DataFrame):
@@ -2477,45 +2494,10 @@ def main():
         )
     )
 
-    # --- CLIMAX-TOP TURNING (mirror of bullish bow-tie / fresh Stage 2) ---
-    # Late-stage uptrend exhausting — RS still elevated, parabolic top
-    # warning, AND TD MTF turning bearish. These are the BEST sell-strength
-    # short candidates (well-loved names just rolling).
-    df["bearish_climax_turning"] = (
-        _bser("mv_climax_top_warning")
-        & (_nser("rs_rank_max", 0) >= 90)
-        & (_nser("td_mtf_composite", 0) <= -0.3)
-    )
-
-    # --- BEARISH COMPOSITE SCORE (mirror of pre_run_score for short side) ---
-    # Sums independent bear-side measure families. Higher = stronger short
-    # setup. Used by the workbook composite sheet.
-    def _safe_bear(c, d=0): return df[c].fillna(d) if c in df.columns else d
-    def _bcol_bear(c): return df[c].fillna(False) if c in df.columns else pd.Series(False, index=df.index)
-
-    df["bearish_setup_score"] = (
-        _bcol_bear("mv_stage4_pass").astype(int) * 4
-        + _bcol_bear("bearish_setup_canonical").astype(int) * 4
-        + _bcol_bear("bearish_setup_consolidating").astype(int) * 3
-        + _bcol_bear("bearish_climax_turning").astype(int) * 3
-        + _bcol_bear("mv_climax_top_warning").astype(int) * 2
-        + _bcol_bear("td_bearish_exhaustion_strong").astype(int) * 3
-        + _bcol_bear("td_bearish_exhaustion").astype(int) * 1
-        + (_safe_bear("td_m_sell_cd") >= 13).astype(int) * 4
-        + (_safe_bear("td_w_sell_cd") >= 13).astype(int) * 2
-        + (_safe_bear("td_m_sell_setup") >= 9).astype(int) * 2
-        + (_safe_bear("td_w_sell_setup") >= 9).astype(int) * 1
-        + (_safe_bear("td_mtf_composite") <= -0.5).astype(int) * 3
-        + (_safe_bear("td_mtf_composite") <= -0.3).astype(int) * 1
-        + _bcol_bear("harmonic_bearish_consonance").astype(int) * 3
-        + _bcol_bear("stacked_ma_down").astype(int) * 2
-        + _bcol_bear("weekly_stacked_ma_down").astype(int) * 2
-        + _bcol_bear("rs_laggard_strict").astype(int) * 2
-        + _bcol_bear("rs_laggard").astype(int) * 1
-        + _bcol_bear("prior_decline_30pct").astype(int) * 2
-        + _bcol_bear("lower_highs_4w").astype(int) * 1
-        + _bcol_bear("surfing_below_10_or_20").astype(int) * 1
-    )
+    # NOTE: bearish_climax_turning and bearish_setup_score depend on
+    # td_mtf_composite and harmonic_bearish_consonance, which are computed
+    # further below. They are assembled after those columns exist (search
+    # for "BEARISH COMPOSITE SCORE (assembled post-TD/harmonic)").
 
     # ===== Harmonic patterns =====
     # Score per timeframe (presence + direction + quality). Monthly + weekly
@@ -2641,6 +2623,49 @@ def main():
     df["td_bullish_exhaustion_strong"] = df["td_mtf_composite"] >= 1.0
     df["td_bearish_exhaustion"] = df["td_mtf_composite"] <= -0.5
     df["td_bearish_exhaustion_strong"] = df["td_mtf_composite"] <= -1.0
+
+    # --- CLIMAX-TOP TURNING (mirror of bullish bow-tie / fresh Stage 2) ---
+    # Late-stage uptrend exhausting — RS still elevated, parabolic top
+    # warning, AND TD MTF turning bearish. Assembled here (post-TD) because
+    # it depends on td_mtf_composite computed just above.
+    df["bearish_climax_turning"] = (
+        _bser("mv_climax_top_warning")
+        & (_nser("rs_rank_max", 0) >= 90)
+        & (_nser("td_mtf_composite", 0) <= -0.3)
+    )
+
+    # --- BEARISH COMPOSITE SCORE (assembled post-TD/harmonic) ---
+    # Sums independent bear-side measure families. Higher = stronger short
+    # setup. Uses Series-safe accessors so a missing column contributes 0
+    # instead of raising. Every referenced column exists by this point.
+    def _safe_bear(c, d=0):
+        return df[c].fillna(d) if c in df.columns else pd.Series(d, index=df.index)
+    def _bcol_bear(c):
+        return df[c].fillna(False) if c in df.columns else pd.Series(False, index=df.index)
+
+    df["bearish_setup_score"] = (
+        _bcol_bear("mv_stage4_pass").astype(int) * 4
+        + _bcol_bear("bearish_setup_canonical").astype(int) * 4
+        + _bcol_bear("bearish_setup_consolidating").astype(int) * 3
+        + _bcol_bear("bearish_climax_turning").astype(int) * 3
+        + _bcol_bear("mv_climax_top_warning").astype(int) * 2
+        + _bcol_bear("td_bearish_exhaustion_strong").astype(int) * 3
+        + _bcol_bear("td_bearish_exhaustion").astype(int) * 1
+        + (_safe_bear("td_m_sell_cd") >= 13).astype(int) * 4
+        + (_safe_bear("td_w_sell_cd") >= 13).astype(int) * 2
+        + (_safe_bear("td_m_sell_setup") >= 9).astype(int) * 2
+        + (_safe_bear("td_w_sell_setup") >= 9).astype(int) * 1
+        + (_safe_bear("td_mtf_composite") <= -0.5).astype(int) * 3
+        + (_safe_bear("td_mtf_composite") <= -0.3).astype(int) * 1
+        + _bcol_bear("harmonic_bearish_consonance").astype(int) * 3
+        + _bcol_bear("stacked_ma_down").astype(int) * 2
+        + _bcol_bear("weekly_stacked_ma_down").astype(int) * 2
+        + _bcol_bear("rs_laggard_strict").astype(int) * 2
+        + _bcol_bear("rs_laggard").astype(int) * 1
+        + _bcol_bear("prior_decline_30pct").astype(int) * 2
+        + _bcol_bear("lower_highs_4w").astype(int) * 1
+        + _bcol_bear("surfing_below_10_or_20").astype(int) * 1
+    )
 
     # ===== BREAKOUT_SQUEEZE setup =====
     # Daily squeeze is HIGH and just RELEASING (vol about to expand)

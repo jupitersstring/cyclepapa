@@ -56,10 +56,25 @@ skip_cols = {"name","sector","_universe","security_type","_ccy","fb_lists","tags
 for c in df.columns:
     if c not in skip_cols and c not in bools and df[c].dtype == "object":
         df[c] = pd.to_numeric(df[c], errors="coerce")
-df = df.sort_values("mv_composite_score", ascending=False, na_position="last")
+# --- De-duplicate cross-listings WITHOUT silently dropping the named row ---
+# The same ticker appears in several universes (e.g. PNC in us-all AND
+# wiki-union). The wiki-union copy often has a blank name/sector and maps to
+# region OTHER. Sorting by mv_composite_score alone let that blank copy win
+# the dedup, so real companies showed up nameless and vanished from their
+# region sheet. Prefer the most-informative row: has a name, is NOT the
+# generic wiki-union feed, then highest composite.
+df["_has_name"] = df["name"].notna() & (df["name"].astype(str).str.strip().ne(""))
+df["_not_wiki"] = ~df["_universe"].isin(["wiki-union"])
+df = df.sort_values(
+    ["_has_name", "_not_wiki", "mv_composite_score"],
+    ascending=[False, False, False], na_position="last")
 df = df[~df.index.duplicated(keep="first")]
+df = df.drop(columns=["_has_name", "_not_wiki"])
+# security_type filter: treat UNCLASSIFIED (NaN) as common rather than
+# silently dropping it — only quarantine rows explicitly flagged non-common.
 if "security_type" in df.columns:
-    df = df[df["security_type"] == "common"].copy()
+    st = df["security_type"].astype("string").str.lower()
+    df = df[st.isna() | (st == "common")].copy()
 if "adv_20d_usd_millions" in df.columns:
     df["adv"] = df["adv_20d_usd_millions"]
 else:
@@ -71,7 +86,22 @@ EU_UNI = {"de-all","fr-all","ch-all","it-all","es-all","nl-all","se-all","be-all
 ASIA_UNI = {"jp-all","cn-all","kr-all","tw-all","hk-all","in-all","sg-all",
             "th-all","id-all","il-all","sa-all","tr-all"}
 LATAM_UNI = {"br-all","mx-all","ar-all","cl-all"}
-def region(u):
+# Exchange-suffix -> region, for tickers that only arrive via the generic
+# wiki-union feed (no country-universe tag). Without this they fell to
+# "OTHER" and were dropped from every per-region sheet.
+SUFFIX_REGION = {
+    "L":"UK",
+    "DE":"EU","F":"EU","PA":"EU","MI":"EU","MC":"EU","AS":"EU","SW":"EU","ST":"EU",
+    "BR":"EU","OL":"EU","CO":"EU","HE":"EU","VI":"EU","LS":"EU","IR":"EU","AT":"EU",
+    "T":"ASIA","HK":"ASIA","KS":"ASIA","KQ":"ASIA","TW":"ASIA","TWO":"ASIA","NS":"ASIA",
+    "BO":"ASIA","SI":"ASIA","SS":"ASIA","SZ":"ASIA","BK":"ASIA","JK":"ASIA","TA":"ASIA",
+    "SR":"ASIA","IS":"ASIA",
+    "AX":"OCEANIA","NZ":"OCEANIA",
+    "TO":"CA","V":"CA","CN":"CA",
+    "SA":"LATAM","MX":"LATAM","BA":"LATAM","SN":"LATAM",
+    "JO":"AFRICA",
+}
+def region(u, tkr=None):
     if u == "us-all" or u == "wiki-r1k": return "US"
     if u == "uk-all" or u == "wiki-aim100": return "UK"
     if u in EU_UNI: return "EU"
@@ -80,10 +110,22 @@ def region(u):
     if u in ("au-all","nz-all"): return "OCEANIA"
     if u == "za-all": return "AFRICA"
     if u == "ca-all": return "CA"
+    # Generic wiki-union / unknown: infer from the ticker's exchange suffix
+    # so the name still lands in a real region instead of being dropped.
+    if tkr is not None:
+        s = str(tkr)
+        if "." in s:
+            suf = s.rsplit(".", 1)[-1].upper()
+            if suf in SUFFIX_REGION:
+                return SUFFIX_REGION[suf]
+        else:
+            return "US"  # bare tickers (no suffix) are US listings
     return "OTHER"
-df["region"] = df["_universe"].apply(region)
+df["region"] = [region(u, t) for u, t in zip(df["_universe"], df.index)]
 
-REGION_ORDER = ["US", "UK", "EU", "ASIA", "OCEANIA", "CA", "LATAM", "AFRICA"]
+# OTHER is a real bucket now (catch-all) so nothing is silently excluded from
+# the workbook even if a suffix is unmapped.
+REGION_ORDER = ["US", "UK", "EU", "ASIA", "OCEANIA", "CA", "LATAM", "AFRICA", "OTHER"]
 TOP_N_PER_REGION = 12
 
 print(f"Universe: {len(df)} common-equity tickers, {df['region'].nunique()} regions")
